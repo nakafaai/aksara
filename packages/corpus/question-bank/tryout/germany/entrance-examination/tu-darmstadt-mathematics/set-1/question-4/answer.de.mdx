@@ -1,39 +1,35 @@
-# Eine Wurzel in der Wurzel
+# Wie viele Ecken die Grundfläche hat
 
-<InlineMath math="\sqrt{11-6\sqrt2}" /> sieht schwer aus, aber oft ist die Zahl unter der Wurzel **das Quadrat eines Terms wie <InlineMath math="a-b\sqrt2" />**. Such ganze Zahlen <InlineMath math="a" /> und <InlineMath math="b" />:
+Ein Prisma mit einem <InlineMath math="n" />-Eck als Grundfläche hat <InlineMath math="n" /> Kanten unten, <InlineMath math="n" /> oben und <InlineMath math="n" /> senkrechte Kanten. **Es hat also <InlineMath math="3n" /> Kanten**:
 
-<BlockMath math="(a-b\sqrt2)^2=a^2+2b^2-2ab\sqrt2" />
+<BlockMath math="3n=30\quad\Rightarrow\quad n=10" />
 
-Für <InlineMath math="11-6\sqrt2" /> brauchst du <InlineMath math="a^2+2b^2=11" /> und <InlineMath math="2ab=6" />. Das Paar <InlineMath math="a=3" />, <InlineMath math="b=1" /> passt, denn <InlineMath math="9+2=11" /> und <InlineMath math="2\cdot3\cdot1=6" />.
+Dieses Prisma hat <InlineMath math="20" /> Ecken, <InlineMath math="10" /> oben und <InlineMath math="10" /> unten.
 
-# Beide Wurzeln vereinfachen
+# Von einer Ecke oben aus
 
-<BlockMath math="\begin{aligned}
-(3-\sqrt2)^2&=9-6\sqrt2+2=11-6\sqrt2 \\
-(3+\sqrt2)^2&=9+6\sqrt2+2=11+6\sqrt2
-\end{aligned}" />
+Nimm eine Ecke der Deckfläche. Alle anderen Ecken oben liegen in derselben Deckfläche, keine davon liefert eine Raumdiagonale. Unten liegen **die Ecke direkt darunter und ihre beiden Nachbarn mit ihr auf einer gemeinsamen Seitenfläche**. Es bleiben <InlineMath math="10-3=7" /> Ecken.
 
-Eine Quadratwurzel ist nie negativ. **Weil <InlineMath math="3-\sqrt2\approx1{,}59" /> positiv ist**, gilt <InlineMath math="\sqrt{11-6\sqrt2}=3-\sqrt2" />. Genauso ist <InlineMath math="\sqrt{11+6\sqrt2}=3+\sqrt2" />.
+Jede Raumdiagonale verbindet eine Ecke oben mit einer Ecke unten, keine wird also doppelt gezählt:
 
-<BlockMath math="(3-\sqrt2)+(3+\sqrt2)=6" />
+<BlockMath math="10\cdot7=70" />
 
 # Probe auf einem zweiten Weg
 
-Nenn die Summe <InlineMath math="S" />. Quadriere sie und benutze <InlineMath math="\sqrt{p}\sqrt{q}=\sqrt{pq}" />:
+Zwischen zwei Ecken gibt es <InlineMath math="\binom{20}{2}=190" /> Strecken. **Zieh alle Strecken ab, die in einer Fläche liegen**:
 
-<BlockMath math="\begin{aligned}
-S^2&=(11-6\sqrt2)+(11+6\sqrt2)+2\sqrt{(11-6\sqrt2)(11+6\sqrt2)} \\
-&=22+2\sqrt{121-72}=22+2\cdot7=36
-\end{aligned}" />
+- die <InlineMath math="30" /> Kanten,
+- die Diagonalen der beiden Grundflächen, <InlineMath math="2\cdot\frac{10\cdot7}{2}=70" />,
+- die Diagonalen der <InlineMath math="10" /> rechteckigen Seitenflächen, <InlineMath math="10\cdot2=20" />.
 
-Weil <InlineMath math="S" /> positiv ist, gilt <InlineMath math="S=6" />. **Dasselbe Ergebnis**.
+<BlockMath math="190-30-70-20=70" />
 
-Der Term hat also den Wert <InlineMath math="6" />.
+Das Prisma hat also <InlineMath math="70" /> Raumdiagonalen.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="\sqrt{22}" /> addiert die Zahlen unter den Wurzeln. **Eine Summe zweier Wurzeln ist nicht die Wurzel der Summe**.
-- <InlineMath math="2\sqrt{11}" /> streicht das <InlineMath math="\pm6\sqrt2" /> unter den Wurzeln, als würde es sich in jeder Wurzel aufheben.
-- <InlineMath math="2\sqrt2" /> ist <InlineMath math="(3+\sqrt2)-(3-\sqrt2)" />, also die Differenz statt der Summe.
-- <InlineMath math="3+\sqrt2" /> vereinfacht nur eine Wurzel und vergisst die andere.
-- <InlineMath math="36" /> ist <InlineMath math="S^2" />. Die Wurzel wurde noch nicht gezogen.
+- <InlineMath math="90" /> **lässt nur die Ecke direkt darunter weg**, dabei liegen auch die beiden Nachbarn auf einer gemeinsamen Seitenfläche. Das ist dasselbe, wie die Diagonalen der Seitenflächen zu vergessen.
+- <InlineMath math="35" /> halbiert noch einmal, als würde jede Diagonale doppelt gezählt. Von oben nach unten zählt man jede nur einmal.
+- <InlineMath math="80" /> lässt nur die Ecke darunter und einen Nachbarn weg.
+- <InlineMath math="140" /> vergisst, die Diagonalen der beiden Grundflächen abzuziehen.
+- <InlineMath math="160" /> zieht nur die Kanten ab und zählt jede andere Strecke als Raumdiagonale.

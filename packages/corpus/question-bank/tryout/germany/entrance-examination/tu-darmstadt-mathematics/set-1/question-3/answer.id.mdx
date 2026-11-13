@@ -1,53 +1,38 @@
-# Kapan akarnya boleh dihitung
+# Tiga tempat untuk sudut siku-siku
 
-Akar kuadrat hanya bisa dihitung dari bilangan yang tidak negatif. Jadi <InlineMath math="3x+1\ge0" /> dan <InlineMath math="x-1\ge0" />. Syarat kedua lebih ketat, sehingga **kamu hanya mencari <InlineMath math="x\ge1" />**.
+Soal ini tidak menyebut di titik mana sudut siku-sikunya. **Jadi ada tiga kasus: siku-siku di <InlineMath math="A" />, di <InlineMath math="B" />, atau di <InlineMath math="P" />**. Dua ruas tegak lurus tepat saat hasil kali skalar vektor arahnya nol.
 
-# Mengkuadratkan dengan aman
+Untuk <InlineMath math="P(x\mid0)" /> kamu punya:
 
-Pindahkan <InlineMath math="\sqrt{x-1}" /> ke kanan dulu, supaya di kiri tinggal satu akar:
+<BlockMath math="\overrightarrow{AB}=\begin{pmatrix}6\\-2\end{pmatrix},\quad\overrightarrow{AP}=\begin{pmatrix}x-1\\-3\end{pmatrix},\quad\overrightarrow{BP}=\begin{pmatrix}x-7\\-1\end{pmatrix}" />
 
-<BlockMath math="\sqrt{3x+1}=2+\sqrt{x-1}" />
-
-**Kedua ruas tidak negatif**, jadi boleh dikuadratkan. Di ruas kanan, pakai <InlineMath math="(p+q)^2=p^2+2pq+q^2" />:
+# Siku-siku di A atau di B
 
 <BlockMath math="\begin{aligned}
-3x+1&=4+4\sqrt{x-1}+(x-1) \\
-2x-2&=4\sqrt{x-1} \\
-x-1&=2\sqrt{x-1}
+\text{di }A:&\quad\overrightarrow{AB}\cdot\overrightarrow{AP}=6(x-1)+(-2)(-3)=6x=0\quad\Rightarrow\quad x=0 \\
+\text{di }B:&\quad\overrightarrow{BA}\cdot\overrightarrow{BP}=-6(x-7)+2\cdot(-1)=40-6x=0\quad\Rightarrow\quad x=\frac{20}{3}
 \end{aligned}" />
 
-# Jebakan saat membagi
+**Masing-masing kasus ini memberi tepat satu titik**, karena persamaannya linear.
 
-Sekarang muncul godaan untuk membagi kedua ruas dengan <InlineMath math="\sqrt{x-1}" />. Jangan! **<InlineMath math="\sqrt{x-1}" /> bisa bernilai nol**, dan membagi dengan nol membuang satu jawaban.
-
-Lebih aman memberi nama <InlineMath math="t=\sqrt{x-1}" />. Maka <InlineMath math="x-1=t^2" />, dan persamaannya menjadi:
+# Siku-siku di P
 
 <BlockMath math="\begin{aligned}
-t^2&=2t \\
-t^2-2t&=0 \\
-t(t-2)&=0
+\overrightarrow{PA}\cdot\overrightarrow{PB}=(1-x)(7-x)+3\cdot1&=0 \\
+x^2-8x+10&=0 \\
+x&=4\pm\sqrt6
 \end{aligned}" />
 
-Jadi <InlineMath math="t=0" /> atau <InlineMath math="t=2" />. Kembalikan ke <InlineMath math="x" /> dengan <InlineMath math="x=t^2+1" />:
+Ini sama dengan memotong sumbu <InlineMath math="x" /> dengan lingkaran Thales berdiameter <InlineMath math="AB" />, yang berpusat di <InlineMath math="(4\mid2)" /> dengan jari-jari <InlineMath math="\sqrt{10}" />. **Lingkaran itu memotong sumbu di dua titik**.
 
-- <InlineMath math="t=0" /> memberi <InlineMath math="x=1" />.
-- <InlineMath math="t=2" /> memberi <InlineMath math="x=5" />.
+Keempat titik ini tidak ada yang segaris dengan <InlineMath math="A" /> dan <InlineMath math="B" />, karena garis <InlineMath math="AB" /> baru memotong sumbu <InlineMath math="x" /> di <InlineMath math="x=10" />. Jadi semuanya memberi segitiga sungguhan.
 
-# Cek ke soal asli
-
-**Mengkuadratkan bisa memunculkan jawaban palsu**, jadi cek keduanya:
-
-<BlockMath math="\begin{aligned}
-x=1:&\quad \sqrt{4}-\sqrt{0}=2-0=2 \\
-x=5:&\quad \sqrt{16}-\sqrt{4}=4-2=2
-\end{aligned}" />
-
-Keduanya benar. Jadi, persamaan itu punya tepat dua penyelesaian, yaitu <InlineMath math="x=1" /> dan <InlineMath math="x=5" />.
+Jadi, <InlineMath math="x=0" />, <InlineMath math="x=4-\sqrt6" />, <InlineMath math="x=4+\sqrt6" />, atau <InlineMath math="x=\frac{20}{3}" />.
 
 # Kenapa pilihan lain salah
 
-- Hanya <InlineMath math="x=5" /> muncul kalau kamu membagi dengan <InlineMath math="\sqrt{x-1}" />. Pembagian itu membuang <InlineMath math="x=1" />, padahal <InlineMath math="x=1" /> lolos cek.
-- Hanya <InlineMath math="x=1" /> muncul dari **kesalahan mengkuadratkan per suku**, yaitu menganggap <InlineMath math="\left(\sqrt{3x+1}-\sqrt{x-1}\right)^2=(3x+1)-(x-1)" />. Suku tengah <InlineMath math="-2\sqrt{3x+1}\sqrt{x-1}" /> hilang, dan <InlineMath math="x=5" /> ikut hilang.
-- <InlineMath math="x=0" /> dan <InlineMath math="x=5" /> menukar <InlineMath math="t=0" /> dengan <InlineMath math="x=0" />. Padahal <InlineMath math="x=0" /> bahkan tidak boleh dipakai, karena <InlineMath math="\sqrt{0-1}" /> tidak terdefinisi.
-- Hanya <InlineMath math="x=2" /> menuliskan nilai <InlineMath math="t" />, bukan nilai <InlineMath math="x" />. Untuk <InlineMath math="x=2" /> ruas kiri bernilai <InlineMath math="\sqrt7-1\approx1{,}65" />.
-- <InlineMath math="x=1" /> dan <InlineMath math="x=2" /> mengembalikan <InlineMath math="t=0" /> dengan benar, tetapi lupa mengubah <InlineMath math="t=2" /> menjadi <InlineMath math="x=5" />.
+- Hanya <InlineMath math="4\pm\sqrt6" /> **hanya memikirkan sudut siku-siku di <InlineMath math="P" />**. Soalnya tidak menyebut titik sudutnya.
+- Hanya <InlineMath math="x=0" /> atau <InlineMath math="x=\frac{20}{3}" /> lupa kasus siku-siku di <InlineMath math="P" />.
+- <InlineMath math="\frac{22}{3}" /> salah tanda di kasus <InlineMath math="B" />, sehingga <InlineMath math="-6(x-7)+2=0" />.
+- <InlineMath math="x=10" /> adalah titik pada garis <InlineMath math="AB" />. Di sana <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="P" /> segaris, jadi tidak ada segitiga.
+- <InlineMath math="x=2" /> salah tanda di kasus <InlineMath math="A" />, sehingga <InlineMath math="6(x-1)-6=0" />.

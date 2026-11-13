@@ -1,39 +1,35 @@
-# A root inside a root
+# How many corners the base has
 
-<InlineMath math="\sqrt{11-6\sqrt2}" /> looks hard, but often the number under the root is **the square of something like <InlineMath math="a-b\sqrt2" />**. Look for whole numbers <InlineMath math="a" /> and <InlineMath math="b" />:
+A prism with an <InlineMath math="n" />-gon base has <InlineMath math="n" /> edges on the bottom, <InlineMath math="n" /> on the top and <InlineMath math="n" /> upright edges. **So it has <InlineMath math="3n" /> edges**:
 
-<BlockMath math="(a-b\sqrt2)^2=a^2+2b^2-2ab\sqrt2" />
+<BlockMath math="3n=30\quad\Rightarrow\quad n=10" />
 
-To get <InlineMath math="11-6\sqrt2" />, you need <InlineMath math="a^2+2b^2=11" /> and <InlineMath math="2ab=6" />. The pair <InlineMath math="a=3" />, <InlineMath math="b=1" /> works, because <InlineMath math="9+2=11" /> and <InlineMath math="2\cdot3\cdot1=6" />.
+This prism has <InlineMath math="20" /> corners, <InlineMath math="10" /> on top and <InlineMath math="10" /> at the bottom.
 
-# Simplifying both roots
+# From one corner on top
 
-<BlockMath math="\begin{aligned}
-(3-\sqrt2)^2&=9-6\sqrt2+2=11-6\sqrt2 \\
-(3+\sqrt2)^2&=9+6\sqrt2+2=11+6\sqrt2
-\end{aligned}" />
+Take one corner on the top face. Every other top corner lies in the same top face, so none of them gives a space diagonal. At the bottom, **the corner right below it and that corner's two neighbours share an upright face with it**. That leaves <InlineMath math="10-3=7" /> corners.
 
-A square root is never negative. **Since <InlineMath math="3-\sqrt2\approx1.59" /> is positive**, you get <InlineMath math="\sqrt{11-6\sqrt2}=3-\sqrt2" />. In the same way, <InlineMath math="\sqrt{11+6\sqrt2}=3+\sqrt2" />.
+Each space diagonal joins one top corner to one bottom corner, so none is counted twice:
 
-<BlockMath math="(3-\sqrt2)+(3+\sqrt2)=6" />
+<BlockMath math="10\cdot7=70" />
 
-# A check another way
+# Checking another way
 
-Call the sum <InlineMath math="S" />. Square it and use <InlineMath math="\sqrt{p}\sqrt{q}=\sqrt{pq}" />:
+There are <InlineMath math="\binom{20}{2}=190" /> segments between two corners. **Remove every segment that lies in a face**:
 
-<BlockMath math="\begin{aligned}
-S^2&=(11-6\sqrt2)+(11+6\sqrt2)+2\sqrt{(11-6\sqrt2)(11+6\sqrt2)} \\
-&=22+2\sqrt{121-72}=22+2\cdot7=36
-\end{aligned}" />
+- the <InlineMath math="30" /> edges,
+- the diagonals of the two bases, <InlineMath math="2\cdot\frac{10\cdot7}{2}=70" />,
+- the diagonals of the <InlineMath math="10" /> rectangular upright faces, <InlineMath math="10\cdot2=20" />.
 
-Since <InlineMath math="S" /> is positive, <InlineMath math="S=6" />. **Same result**.
+<BlockMath math="190-30-70-20=70" />
 
-So the value is <InlineMath math="6" />.
+So the prism has <InlineMath math="70" /> space diagonals.
 
 # Why the other options are wrong
 
-- <InlineMath math="\sqrt{22}" /> adds the numbers under the roots. **A sum of two roots isn't the root of the sum**.
-- <InlineMath math="2\sqrt{11}" /> deletes the <InlineMath math="\pm6\sqrt2" /> under the roots, as if they cancelled inside each root.
-- <InlineMath math="2\sqrt2" /> is <InlineMath math="(3+\sqrt2)-(3-\sqrt2)" />, the difference instead of the sum.
-- <InlineMath math="3+\sqrt2" /> simplifies only one root and forgets the other.
-- <InlineMath math="36" /> is <InlineMath math="S^2" />. The square root hasn't been taken yet.
+- <InlineMath math="90" /> **removes only the corner right below**, but its two neighbours share an upright face too. That's the same as forgetting the diagonals of the upright faces.
+- <InlineMath math="35" /> halves again, as if every diagonal were counted twice. Going from top to bottom counts each one once.
+- <InlineMath math="80" /> removes only the corner below and one neighbour.
+- <InlineMath math="140" /> forgets to remove the diagonals of the two bases.
+- <InlineMath math="160" /> removes only the edges and counts every other segment as a space diagonal.

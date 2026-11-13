@@ -1,41 +1,40 @@
-# Die Gleichung für die Schnittpunkte
+# Beide Seiten quadrieren
 
-Ein Schnittpunkt hat auf der Geraden und auf der Parabel dasselbe <InlineMath math="y" />. **Setz die beiden Terme für <InlineMath math="y" /> gleich**:
-
-<BlockMath math="\begin{aligned}
-x^2-2x+4&=mx \\
-x^2-(2+m)x+4&=0
-\end{aligned}" />
-
-Die beiden Lösungen <InlineMath math="x_1" /> und <InlineMath math="x_2" /> sind die <InlineMath math="x" />-Koordinaten der Schnittpunkte.
-
-# Der Abstand zweier Lösungen
-
-Die Lösungsformel liefert <InlineMath math="x_{1,2}=\frac{(2+m)\pm\sqrt D}{2}" />. **Die Differenz der Lösungen ist also <InlineMath math="\sqrt D" />**, weil die vorderen Teile gleich sind und wegfallen:
-
-<BlockMath math="x_1-x_2=\frac{2\sqrt D}{2}=\sqrt D,\qquad D=(2+m)^2-16" />
-
-Die Differenz soll <InlineMath math="3" /> sein:
+Du kennst <InlineMath math="\sin x" /> und <InlineMath math="\cos x" /> noch nicht einzeln. **Quadriere beide Seiten**, denn dann entsteht <InlineMath math="\sin^2x+\cos^2x" />, und das ist immer <InlineMath math="1" />:
 
 <BlockMath math="\begin{aligned}
-\sqrt{(2+m)^2-16}&=3 \\
-(2+m)^2&=25 \\
-2+m=5\quad&\text{oder}\quad 2+m=-5 \\
-m=3\quad&\text{oder}\quad m=-7
+(\sin x+\cos x)^2&=\frac{289}{169} \\
+\sin^2x+2\sin x\cos x+\cos^2x&=\frac{289}{169} \\
+1+2\sin x\cos x&=\frac{289}{169} \\
+\sin x\cos x&=\frac{60}{169}
 \end{aligned}" />
 
-# Beide Werte prüfen
+# Zwei Zahlen aus Summe und Produkt
 
-- <InlineMath math="m=3" />: <InlineMath math="x^2-5x+4=0" /> hat die Lösungen <InlineMath math="1" /> und <InlineMath math="4" />. Die Differenz ist <InlineMath math="3" />.
-- <InlineMath math="m=-7" />: <InlineMath math="x^2+5x+4=0" /> hat die Lösungen <InlineMath math="-1" /> und <InlineMath math="-4" />. Die Differenz ist ebenfalls <InlineMath math="3" />.
+Jetzt kennst du die Summe <InlineMath math="\sin x+\cos x=\frac{17}{13}" /> und das Produkt <InlineMath math="\sin x\cos x=\frac{60}{169}" />. **Zwei Zahlen mit dieser Summe und diesem Produkt sind die Lösungen der folgenden quadratischen Gleichung**:
 
-**Beide Werte erfüllen die Bedingung**, denn die Aufgabe schränkt die Lage der Schnittpunkte nicht ein.
+<BlockMath math="\begin{aligned}
+t^2-\frac{17}{13}t+\frac{60}{169}&=0 \\
+169t^2-221t+60&=0 \\
+(13t-5)(13t-12)&=0
+\end{aligned}" />
 
-Die gesuchten Werte sind also <InlineMath math="m=3" /> oder <InlineMath math="m=-7" />.
+Die beiden Zahlen sind also <InlineMath math="\frac{5}{13}" /> und <InlineMath math="\frac{12}{13}" />. Bleibt nur zu klären, welche der Sinus und welche der Kosinus ist.
+
+# Den Winkelbereich nutzen
+
+Für <InlineMath math="0^\circ<x<45^\circ" /> liegt der Winkel näher an <InlineMath math="0^\circ" />, also **ist sein Sinus kleiner als sein Kosinus**. Deshalb gilt:
+
+<BlockMath math="\sin x=\frac{5}{13},\qquad\cos x=\frac{12}{13},\qquad\tan x=\frac{\sin x}{\cos x}=\frac{5}{12}" />
+
+Probe: <InlineMath math="\frac{5}{13}+\frac{12}{13}=\frac{17}{13}" />, und <InlineMath math="\tan x=\frac{5}{12}<1" /> passt zu einem Winkel unter <InlineMath math="45^\circ" />.
+
+Also ist <InlineMath math="\tan x=\frac{5}{12}" />.
 
 # Warum die anderen Antworten falsch sind
 
-- Nur <InlineMath math="m=3" /> oder nur <InlineMath math="m=-7" /> **verliert eine der beiden Wurzeln** aus <InlineMath math="2+m=\pm5" />.
-- <InlineMath math="m=5" /> oder <InlineMath math="m=-5" /> vergisst den Summanden <InlineMath math="-2x" />, dann wird daraus <InlineMath math="m^2-16=9" />.
-- <InlineMath math="m=2" /> oder <InlineMath math="m=-6" /> benutzt <InlineMath math="D=0" />. Das ist die Bedingung für eine Tangente, bei der die Lösungen zusammenfallen.
-- <InlineMath math="m=7" /> oder <InlineMath math="m=-3" /> hat einen Vorzeichenfehler, <InlineMath math="m-2=\pm5" />. Für <InlineMath math="m=7" /> lautet die Gleichung <InlineMath math="x^2-9x+4=0" />, deren Lösungen <InlineMath math="\sqrt{65}" /> auseinanderliegen.
+- <InlineMath math="\frac{12}{5}" /> **vertauscht Sinus und Kosinus**. Ein Tangens über <InlineMath math="1" /> gehört zu einem Winkel über <InlineMath math="45^\circ" />.
+- <InlineMath math="\frac{60}{169}" /> ist <InlineMath math="\sin x\cos x" />, der Zwischenschritt, nicht der Tangens.
+- <InlineMath math="\frac{5}{12}" /> oder <InlineMath math="\frac{12}{5}" /> übersieht den Winkelbereich. Ohne ihn wären beide Werte möglich, hier gilt aber nur einer.
+- <InlineMath math="\frac{120}{169}" /> ist <InlineMath math="2\sin x\cos x=\sin2x" />.
+- „Keinen solchen Winkel“ erhält man, wenn man ohne den mittleren Summanden quadriert. Dann steht da <InlineMath math="1=\frac{289}{169}" />, was unmöglich aussieht, aber nur, weil <InlineMath math="2\sin x\cos x" /> fehlt.

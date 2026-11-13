@@ -7,6 +7,14 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
+          label: "$$30-10\\sqrt3$$ Liter",
+        },
+        {
+          correct: false,
+          label: "$$30+10\\sqrt3$$ Liter",
+        },
+        {
+          correct: false,
           label: "$$20$$ Liter",
         },
         {
@@ -15,19 +23,11 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$15$$ Liter",
+          label: "$$60-20\\sqrt3$$ Liter",
         },
         {
           correct: false,
-          label: "$$25$$ Liter",
-        },
-        {
-          correct: false,
-          label: "$$30$$ Liter",
-        },
-        {
-          correct: false,
-          label: "$$35$$ Liter",
+          label: "$$30-10\\sqrt3$$ Liter oder $$30+10\\sqrt3$$ Liter",
         },
       ],
     },

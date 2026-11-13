@@ -1,29 +1,40 @@
-# Apa yang terjadi pada garam di setiap langkah
+# Apa yang tersisa setiap kali dikuras
 
-Air murni tidak membawa garam. Jadi setiap kali <InlineMath math="x" /> liter larutan diambil, **ikut terbuang bagian <InlineMath math="\frac{x}{40}" /> dari garam yang ada saat itu**, lalu volumenya kembali ke <InlineMath math="40" /> liter. Bagian garam yang tersisa setelah satu langkah adalah <InlineMath math="1-\frac{x}{40}" />.
+Misalkan pada pengurasan pertama dibuang <InlineMath math="x" /> liter. Air tidak membawa zat antibeku, jadi **setiap pengurasan membuang bagian yang sama dari zat antibeku seperti dari cairannya**, lalu volumenya kembali menjadi <InlineMath math="40" /> liter.
 
-# Menyusun persamaan
+- Pengurasan pertama membuang <InlineMath math="\frac{x}{40}" /> bagian, jadi tersisa <InlineMath math="1-\frac{x}{40}" /> bagian zat antibeku.
+- Pengurasan kedua membuang <InlineMath math="2x" /> liter, yaitu <InlineMath math="\frac{2x}{40}" /> bagian, jadi tersisa <InlineMath math="1-\frac{2x}{40}" /> dari yang ada saat itu.
 
-Setelah dua langkah, kadar garam dikali faktor itu dua kali:
+Kadarnya turun dari <InlineMath math="20\,\%" /> ke <InlineMath math="5\,\%" />, yaitu menjadi <InlineMath math="\frac14" /> kadar awalnya. **Kedua sisa itu dikalikan, bukan dijumlahkan**:
+
+<BlockMath math="\left(1-\frac{x}{40}\right)\left(1-\frac{2x}{40}\right)=\frac14" />
+
+# Menyelesaikan persamaan kuadratnya
+
+**Kalikan kedua ruas dengan <InlineMath math="1600" />** agar pecahannya hilang:
 
 <BlockMath math="\begin{aligned}
-0{,}2\cdot\left(1-\tfrac{x}{40}\right)^2&=0{,}05 \\
-\left(1-\tfrac{x}{40}\right)^2&=0{,}25 \\
-1-\tfrac{x}{40}&=0{,}5 \\
-x&=20
+(40-x)(40-2x)&=400 \\
+1600-120x+2x^2&=400 \\
+x^2-60x+600&=0 \\
+x&=30\pm\sqrt{900-600}=30\pm10\sqrt3
 \end{aligned}" />
 
-Akar negatif <InlineMath math="1-\frac{x}{40}=-0{,}5" /> memberi <InlineMath math="x=60" />, dan **itu tidak mungkin karena wadahnya hanya berisi <InlineMath math="40" /> liter**.
+# Memilih akar yang mungkin
 
-# Cek dengan banyak garam
+Pengurasan kedua membuang <InlineMath math="2x" /> liter dari tangki <InlineMath math="40" /> liter, jadi **harus berlaku <InlineMath math="2x\le40" />, yaitu <InlineMath math="x\le20" />**.
 
-Mula-mula ada <InlineMath math="0{,}2\cdot40=8" /> satuan garam. Mengambil <InlineMath math="20" /> liter membuang setengahnya, tersisa <InlineMath math="4" />. Mengambil lagi <InlineMath math="20" /> liter membuang setengahnya lagi, tersisa <InlineMath math="2" />. Kadar akhirnya <InlineMath math="\frac{2}{40}=5\%" />. **Hasilnya cocok dengan soal**.
+- <InlineMath math="30+10\sqrt3\approx47{,}3" /> bahkan lebih besar dari isi tangki, jadi gugur.
+- <InlineMath math="30-10\sqrt3\approx12{,}7" /> memenuhi <InlineMath math="x\le20" />.
 
-Jadi, <InlineMath math="x=20" /> liter.
+Cek: <InlineMath math="1-\frac{12{,}7}{40}\approx0{,}683" /> dan <InlineMath math="1-\frac{25{,}4}{40}\approx0{,}366" />, hasil kalinya sekitar <InlineMath math="0{,}25" />.
+
+Jadi, pada pengurasan pertama dibuang <InlineMath math="30-10\sqrt3" /> liter, sekitar <InlineMath math="12{,}7" /> liter.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="15" /> liter menganggap kedua langkah mengurangi kadar dengan jumlah yang sama: <InlineMath math="0{,}2\left(1-\frac{2x}{40}\right)=0{,}05" />. **Langkah kedua hanya membuang garam yang tersisa**, bukan garam awal.
-- <InlineMath math="30" /> liter menganggap hanya ada satu kali penggantian: <InlineMath math="0{,}2\left(1-\frac{x}{40}\right)=0{,}05" />.
-- <InlineMath math="10" /> liter memberi kadar <InlineMath math="0{,}2\cdot0{,}75^2=11{,}25\%" />, masih terlalu tinggi.
-- <InlineMath math="25" /> liter dan <InlineMath math="35" /> liter memberi kadar sekitar <InlineMath math="2{,}8\%" /> dan <InlineMath math="0{,}3\%" />, terlalu rendah.
+- <InlineMath math="30+10\sqrt3" /> liter **lupa memeriksa akar terhadap isi tangki**. Liter sebanyak itu tidak mungkin dibuang dari <InlineMath math="40" /> liter.
+- Pilihan yang memuat kedua akar juga lupa pemeriksaan itu.
+- <InlineMath math="20" /> liter menganggap kedua pengurasan sama besar, sehingga <InlineMath math="\left(1-\frac{x}{40}\right)^2=\frac14" />.
+- <InlineMath math="10" /> liter menjumlahkan bagian yang dibuang, <InlineMath math="\frac{x}{40}+\frac{2x}{40}=\frac34" />, padahal pengurasan kedua hanya mengenai zat antibeku yang masih tersisa.
+- <InlineMath math="60-20\sqrt3" /> liter **adalah banyaknya cairan pada pengurasan kedua**, yaitu <InlineMath math="2x" />, padahal yang ditanya pengurasan pertama.

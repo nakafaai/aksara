@@ -1,41 +1,40 @@
-# The equation for the meeting points
+# Squaring both sides
 
-A meeting point has the same <InlineMath math="y" /> on the line and on the parabola. **Set the two formulas for <InlineMath math="y" /> equal**:
-
-<BlockMath math="\begin{aligned}
-x^2-2x+4&=mx \\
-x^2-(2+m)x+4&=0
-\end{aligned}" />
-
-The two solutions <InlineMath math="x_1" /> and <InlineMath math="x_2" /> are the <InlineMath math="x" />-coordinates of the two meeting points.
-
-# The gap between two roots
-
-The quadratic formula gives <InlineMath math="x_{1,2}=\frac{(2+m)\pm\sqrt D}{2}" />. So **the difference of the roots equals <InlineMath math="\sqrt D" />**, because the front parts are equal and cancel:
-
-<BlockMath math="x_1-x_2=\frac{2\sqrt D}{2}=\sqrt D,\qquad D=(2+m)^2-16" />
-
-The difference has to be <InlineMath math="3" />:
+You don't know <InlineMath math="\sin x" /> and <InlineMath math="\cos x" /> one by one yet. **Square both sides**, because the result contains <InlineMath math="\sin^2x+\cos^2x" />, which is always <InlineMath math="1" />:
 
 <BlockMath math="\begin{aligned}
-\sqrt{(2+m)^2-16}&=3 \\
-(2+m)^2&=25 \\
-2+m=5\quad&\text{or}\quad 2+m=-5 \\
-m=3\quad&\text{or}\quad m=-7
+(\sin x+\cos x)^2&=\frac{289}{169} \\
+\sin^2x+2\sin x\cos x+\cos^2x&=\frac{289}{169} \\
+1+2\sin x\cos x&=\frac{289}{169} \\
+\sin x\cos x&=\frac{60}{169}
 \end{aligned}" />
 
-# Checking both values
+# Two numbers from their sum and product
 
-- <InlineMath math="m=3" />: <InlineMath math="x^2-5x+4=0" /> has roots <InlineMath math="1" /> and <InlineMath math="4" />. The difference is <InlineMath math="3" />.
-- <InlineMath math="m=-7" />: <InlineMath math="x^2+5x+4=0" /> has roots <InlineMath math="-1" /> and <InlineMath math="-4" />. The difference is <InlineMath math="3" /> too.
+Now you know the sum <InlineMath math="\sin x+\cos x=\frac{17}{13}" /> and the product <InlineMath math="\sin x\cos x=\frac{60}{169}" />. **Two numbers with that sum and product are the roots of this quadratic**:
 
-**Both values meet the condition**, because the problem doesn't restrict where the meeting points are.
+<BlockMath math="\begin{aligned}
+t^2-\frac{17}{13}t+\frac{60}{169}&=0 \\
+169t^2-221t+60&=0 \\
+(13t-5)(13t-12)&=0
+\end{aligned}" />
 
-So the values are <InlineMath math="m=3" /> or <InlineMath math="m=-7" />.
+So the two numbers are <InlineMath math="\frac{5}{13}" /> and <InlineMath math="\frac{12}{13}" />. All that's left is to decide which one is the sine and which is the cosine.
+
+# Using the angle range
+
+For <InlineMath math="0^\circ<x<45^\circ" />, the angle is closer to <InlineMath math="0^\circ" />, so **its sine is smaller than its cosine**. That means:
+
+<BlockMath math="\sin x=\frac{5}{13},\qquad\cos x=\frac{12}{13},\qquad\tan x=\frac{\sin x}{\cos x}=\frac{5}{12}" />
+
+Check: <InlineMath math="\frac{5}{13}+\frac{12}{13}=\frac{17}{13}" />, and <InlineMath math="\tan x=\frac{5}{12}<1" /> fits an angle below <InlineMath math="45^\circ" />.
+
+So <InlineMath math="\tan x=\frac{5}{12}" />.
 
 # Why the other options are wrong
 
-- Only <InlineMath math="m=3" /> or only <InlineMath math="m=-7" /> **drops one of the two square roots** of <InlineMath math="2+m=\pm5" />.
-- <InlineMath math="m=5" /> or <InlineMath math="m=-5" /> forgets the term <InlineMath math="-2x" />, so the equation becomes <InlineMath math="m^2-16=9" />.
-- <InlineMath math="m=2" /> or <InlineMath math="m=-6" /> uses <InlineMath math="D=0" />. That's the condition for the line to touch the parabola, where the roots are zero apart.
-- <InlineMath math="m=7" /> or <InlineMath math="m=-3" /> has a sign slip, <InlineMath math="m-2=\pm5" />. For <InlineMath math="m=7" />, the equation is <InlineMath math="x^2-9x+4=0" />, whose roots are <InlineMath math="\sqrt{65}" /> apart.
+- <InlineMath math="\frac{12}{5}" /> **swaps the sine and the cosine**. A tangent above <InlineMath math="1" /> means an angle above <InlineMath math="45^\circ" />.
+- <InlineMath math="\frac{60}{169}" /> is <InlineMath math="\sin x\cos x" />, the middle step, not the tangent.
+- <InlineMath math="\frac{5}{12}" /> or <InlineMath math="\frac{12}{5}" /> ignores the angle range. Without it both values are possible, but here only one holds.
+- <InlineMath math="\frac{120}{169}" /> is <InlineMath math="2\sin x\cos x=\sin2x" />.
+- "No such angle" comes from squaring without the middle term. That gives <InlineMath math="1=\frac{289}{169}" />, which looks impossible, but only because <InlineMath math="2\sin x\cos x" /> went missing.

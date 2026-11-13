@@ -1,41 +1,40 @@
-# Persamaan titik potong
+# Mengkuadratkan kedua ruas
 
-Titik potong punya <InlineMath math="y" /> yang sama di garis dan di parabola. **Samakan kedua rumus <InlineMath math="y" />**:
-
-<BlockMath math="\begin{aligned}
-x^2-2x+4&=mx \\
-x^2-(2+m)x+4&=0
-\end{aligned}" />
-
-Dua penyelesaian <InlineMath math="x_1" /> dan <InlineMath math="x_2" /> persamaan ini adalah absis kedua titik potong.
-
-# Selisih dua akar
-
-Rumus akar persamaan kuadrat memberi <InlineMath math="x_{1,2}=\frac{(2+m)\pm\sqrt D}{2}" />. Jadi **selisih kedua akar sama dengan <InlineMath math="\sqrt D" />**, karena bagian depannya sama dan saling menghapus:
-
-<BlockMath math="x_1-x_2=\frac{2\sqrt D}{2}=\sqrt D,\qquad D=(2+m)^2-16" />
-
-Selisihnya harus <InlineMath math="3" />:
+Kamu belum tahu <InlineMath math="\sin x" /> dan <InlineMath math="\cos x" /> satu per satu. **Kuadratkan kedua ruas**, karena hasilnya memuat <InlineMath math="\sin^2x+\cos^2x" />, yang selalu bernilai <InlineMath math="1" />:
 
 <BlockMath math="\begin{aligned}
-\sqrt{(2+m)^2-16}&=3 \\
-(2+m)^2&=25 \\
-2+m=5\quad&\text{atau}\quad 2+m=-5 \\
-m=3\quad&\text{atau}\quad m=-7
+(\sin x+\cos x)^2&=\frac{289}{169} \\
+\sin^2x+2\sin x\cos x+\cos^2x&=\frac{289}{169} \\
+1+2\sin x\cos x&=\frac{289}{169} \\
+\sin x\cos x&=\frac{60}{169}
 \end{aligned}" />
 
-# Cek kedua nilai
+# Dua bilangan dari jumlah dan hasil kalinya
 
-- <InlineMath math="m=3" />: <InlineMath math="x^2-5x+4=0" />, akarnya <InlineMath math="1" /> dan <InlineMath math="4" />. Selisihnya <InlineMath math="3" />.
-- <InlineMath math="m=-7" />: <InlineMath math="x^2+5x+4=0" />, akarnya <InlineMath math="-1" /> dan <InlineMath math="-4" />. Selisihnya juga <InlineMath math="3" />.
+Sekarang kamu tahu jumlah <InlineMath math="\sin x+\cos x=\frac{17}{13}" /> dan hasil kali <InlineMath math="\sin x\cos x=\frac{60}{169}" />. **Dua bilangan dengan jumlah dan hasil kali itu adalah akar persamaan kuadrat berikut**:
 
-**Kedua nilai memenuhi syarat soal**, karena soal tidak membatasi letak titik potongnya.
+<BlockMath math="\begin{aligned}
+t^2-\frac{17}{13}t+\frac{60}{169}&=0 \\
+169t^2-221t+60&=0 \\
+(13t-5)(13t-12)&=0
+\end{aligned}" />
 
-Jadi, nilai <InlineMath math="m" /> yang memenuhi adalah <InlineMath math="m=3" /> atau <InlineMath math="m=-7" />.
+Jadi kedua bilangan itu adalah <InlineMath math="\frac{5}{13}" /> dan <InlineMath math="\frac{12}{13}" />. Tinggal menentukan mana yang sinus dan mana yang kosinus.
+
+# Memakai batas sudutnya
+
+Untuk <InlineMath math="0^\circ<x<45^\circ" />, sudutnya lebih dekat ke <InlineMath math="0^\circ" />, jadi **sinusnya lebih kecil daripada kosinusnya**. Karena itu:
+
+<BlockMath math="\sin x=\frac{5}{13},\qquad\cos x=\frac{12}{13},\qquad\tan x=\frac{\sin x}{\cos x}=\frac{5}{12}" />
+
+Cek: <InlineMath math="\frac{5}{13}+\frac{12}{13}=\frac{17}{13}" />, dan <InlineMath math="\tan x=\frac{5}{12}<1" /> memang cocok dengan sudut di bawah <InlineMath math="45^\circ" />.
+
+Jadi, <InlineMath math="\tan x=\frac{5}{12}" />.
 
 # Kenapa pilihan lain salah
 
-- Hanya <InlineMath math="m=3" /> atau hanya <InlineMath math="m=-7" /> **membuang salah satu dari dua akar kuadrat** <InlineMath math="2+m=\pm5" />.
-- <InlineMath math="m=5" /> atau <InlineMath math="m=-5" /> melupakan suku <InlineMath math="-2x" />, sehingga persamaannya menjadi <InlineMath math="m^2-16=9" />.
-- <InlineMath math="m=2" /> atau <InlineMath math="m=-6" /> memakai <InlineMath math="D=0" />. Itu syarat garis menyinggung parabola, dan selisih akarnya nol.
-- <InlineMath math="m=7" /> atau <InlineMath math="m=-3" /> salah tanda menjadi <InlineMath math="m-2=\pm5" />. Untuk <InlineMath math="m=7" />, persamaannya <InlineMath math="x^2-9x+4=0" /> dengan selisih akar <InlineMath math="\sqrt{65}" />.
+- <InlineMath math="\frac{12}{5}" /> **menukar sinus dan kosinus**. Nilai tangen di atas <InlineMath math="1" /> berarti sudutnya lebih dari <InlineMath math="45^\circ" />.
+- <InlineMath math="\frac{60}{169}" /> adalah <InlineMath math="\sin x\cos x" />, hasil langkah tengah, bukan tangennya.
+- <InlineMath math="\frac{5}{12}" /> atau <InlineMath math="\frac{12}{5}" /> mengabaikan batas sudut. Tanpa batas itu kedua nilai mungkin, tetapi di sini hanya satu yang berlaku.
+- <InlineMath math="\frac{120}{169}" /> adalah <InlineMath math="2\sin x\cos x=\sin2x" />.
+- "Tidak ada sudut seperti itu" muncul kalau kuadrat dihitung tanpa suku tengah. Hasilnya <InlineMath math="1=\frac{289}{169}" />, yang tampak mustahil, padahal suku <InlineMath math="2\sin x\cos x" /> terlupa.

@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\sqrt{22}$$",
+          label: "$$90$$",
         },
         {
           correct: false,
-          label: "$$2\\sqrt{11}$$",
+          label: "$$35$$",
         },
         {
           correct: false,
-          label: "$$2\\sqrt2$$",
+          label: "$$80$$",
         },
         {
           correct: false,
-          label: "$$3+\\sqrt2$$",
+          label: "$$140$$",
         },
         {
           correct: false,
-          label: "$$36$$",
+          label: "$$160$$",
         },
         {
           correct: true,
-          label: "$$6$$",
+          label: "$$70$$",
         },
       ],
     },

@@ -1,29 +1,40 @@
-# What happens to the salt at each step
+# What's left after each drain
 
-Pure water carries no salt. So every time <InlineMath math="x" /> litres of solution are taken out, **the fraction <InlineMath math="\frac{x}{40}" /> of the salt present at that moment goes with them**, and then the volume goes back to <InlineMath math="40" /> litres. After one step, the fraction of salt left is <InlineMath math="1-\frac{x}{40}" />.
+Say the first drain removes <InlineMath math="x" /> litres. Water carries no antifreeze, so **each drain removes the same share of the antifreeze as of the liquid**, and then the volume is back to <InlineMath math="40" /> litres.
 
-# Setting up the equation
+- The first drain removes a share of <InlineMath math="\frac{x}{40}" />, so <InlineMath math="1-\frac{x}{40}" /> of the antifreeze is left.
+- The second drain removes <InlineMath math="2x" /> litres, a share of <InlineMath math="\frac{2x}{40}" />, so <InlineMath math="1-\frac{2x}{40}" /> of what was there is left.
 
-After two steps, the concentration has been multiplied by that factor twice:
+The content drops from <InlineMath math="20\,\%" /> to <InlineMath math="5\,\%" />, to <InlineMath math="\frac14" /> of what it was. **The two remaining shares multiply, they don't add**:
+
+<BlockMath math="\left(1-\frac{x}{40}\right)\left(1-\frac{2x}{40}\right)=\frac14" />
+
+# Solving the quadratic
+
+**Multiply both sides by <InlineMath math="1600" />** to clear the fractions:
 
 <BlockMath math="\begin{aligned}
-0.2\cdot\left(1-\tfrac{x}{40}\right)^2&=0.05 \\
-\left(1-\tfrac{x}{40}\right)^2&=0.25 \\
-1-\tfrac{x}{40}&=0.5 \\
-x&=20
+(40-x)(40-2x)&=400 \\
+1600-120x+2x^2&=400 \\
+x^2-60x+600&=0 \\
+x&=30\pm\sqrt{900-600}=30\pm10\sqrt3
 \end{aligned}" />
 
-The negative root <InlineMath math="1-\frac{x}{40}=-0.5" /> gives <InlineMath math="x=60" />, and **that's impossible because the container only holds <InlineMath math="40" /> litres**.
+# Picking the possible root
 
-# A check with the amount of salt
+The second drain removes <InlineMath math="2x" /> litres from a <InlineMath math="40" />-litre system, so **<InlineMath math="2x\le40" /> must hold, that is <InlineMath math="x\le20" />**.
 
-At first there are <InlineMath math="0.2\cdot40=8" /> units of salt. Taking out <InlineMath math="20" /> litres removes half, leaving <InlineMath math="4" />. Taking out <InlineMath math="20" /> litres again removes half of that, leaving <InlineMath math="2" />. The final concentration is <InlineMath math="\frac{2}{40}=5\%" />. **It matches the problem**.
+- <InlineMath math="30+10\sqrt3\approx47.3" /> is more than the whole system holds, so it drops out.
+- <InlineMath math="30-10\sqrt3\approx12.7" /> meets <InlineMath math="x\le20" />.
 
-So <InlineMath math="x=20" /> litres.
+Check: <InlineMath math="1-\frac{12.7}{40}\approx0.683" /> and <InlineMath math="1-\frac{25.4}{40}\approx0.366" />, and their product is about <InlineMath math="0.25" />.
+
+So the first drain removed <InlineMath math="30-10\sqrt3" /> litres, about <InlineMath math="12.7" /> litres.
 
 # Why the other options are wrong
 
-- <InlineMath math="15" /> litres assumes both steps lower the concentration by the same amount: <InlineMath math="0.2\left(1-\frac{2x}{40}\right)=0.05" />. **The second step only removes the salt that's left**, not the original salt.
-- <InlineMath math="30" /> litres assumes there's only one replacement: <InlineMath math="0.2\left(1-\frac{x}{40}\right)=0.05" />.
-- <InlineMath math="10" /> litres gives <InlineMath math="0.2\cdot0.75^2=11.25\%" />, still too high.
-- <InlineMath math="25" /> and <InlineMath math="35" /> litres give about <InlineMath math="2.8\%" /> and <InlineMath math="0.3\%" />, too low.
+- <InlineMath math="30+10\sqrt3" /> litres **forgets to check the root against the system's volume**. You can't drain that much from <InlineMath math="40" /> litres.
+- The option with both roots forgets the same check.
+- <InlineMath math="20" /> litres treats both drains as the same size, so <InlineMath math="\left(1-\frac{x}{40}\right)^2=\frac14" />.
+- <InlineMath math="10" /> litres adds the drained shares, <InlineMath math="\frac{x}{40}+\frac{2x}{40}=\frac34" />, but the second drain only hits the antifreeze that's still there.
+- <InlineMath math="60-20\sqrt3" /> litres **is the second drain**, <InlineMath math="2x" />, but the question asks for the first one.

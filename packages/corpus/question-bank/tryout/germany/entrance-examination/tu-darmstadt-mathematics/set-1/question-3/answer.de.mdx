@@ -1,53 +1,38 @@
-# Wann die Wurzeln erlaubt sind
+# Drei mögliche Stellen für den rechten Winkel
 
-Eine Quadratwurzel gibt es nur von Zahlen, die nicht negativ sind. Also muss <InlineMath math="3x+1\ge0" /> und <InlineMath math="x-1\ge0" /> gelten. Die zweite Bedingung ist strenger, also **suchst du nur unter den <InlineMath math="x\ge1" />**.
+Die Aufgabe sagt nicht, an welcher Ecke der rechte Winkel liegt. **Es gibt also drei Fälle: rechter Winkel bei <InlineMath math="A" />, bei <InlineMath math="B" /> oder bei <InlineMath math="P" />**. Zwei Strecken stehen genau dann senkrecht, wenn das Skalarprodukt ihrer Richtungsvektoren null ist.
 
-# Sicher quadrieren
+Für <InlineMath math="P(x\mid0)" /> gilt:
 
-Bring zuerst <InlineMath math="\sqrt{x-1}" /> auf die rechte Seite, damit links nur noch eine Wurzel steht:
+<BlockMath math="\overrightarrow{AB}=\begin{pmatrix}6\\-2\end{pmatrix},\quad\overrightarrow{AP}=\begin{pmatrix}x-1\\-3\end{pmatrix},\quad\overrightarrow{BP}=\begin{pmatrix}x-7\\-1\end{pmatrix}" />
 
-<BlockMath math="\sqrt{3x+1}=2+\sqrt{x-1}" />
-
-**Beide Seiten sind nicht negativ**, also darfst du quadrieren. Rechts benutzt du <InlineMath math="(p+q)^2=p^2+2pq+q^2" />:
+# Rechter Winkel bei A oder bei B
 
 <BlockMath math="\begin{aligned}
-3x+1&=4+4\sqrt{x-1}+(x-1) \\
-2x-2&=4\sqrt{x-1} \\
-x-1&=2\sqrt{x-1}
+\text{bei }A:&\quad\overrightarrow{AB}\cdot\overrightarrow{AP}=6(x-1)+(-2)(-3)=6x=0\quad\Rightarrow\quad x=0 \\
+\text{bei }B:&\quad\overrightarrow{BA}\cdot\overrightarrow{BP}=-6(x-7)+2\cdot(-1)=40-6x=0\quad\Rightarrow\quad x=\frac{20}{3}
 \end{aligned}" />
 
-# Die Falle beim Dividieren
+**Jeder dieser Fälle liefert genau einen Punkt**, weil die Gleichung linear ist.
 
-Jetzt ist es verlockend, beide Seiten durch <InlineMath math="\sqrt{x-1}" /> zu teilen. Lass das! **<InlineMath math="\sqrt{x-1}" /> kann null sein**, und durch null teilen wirft eine Lösung weg.
-
-Sicherer ist es, <InlineMath math="t=\sqrt{x-1}" /> zu setzen. Dann ist <InlineMath math="x-1=t^2" />, und die Gleichung wird zu:
+# Rechter Winkel bei P
 
 <BlockMath math="\begin{aligned}
-t^2&=2t \\
-t^2-2t&=0 \\
-t(t-2)&=0
+\overrightarrow{PA}\cdot\overrightarrow{PB}=(1-x)(7-x)+3\cdot1&=0 \\
+x^2-8x+10&=0 \\
+x&=4\pm\sqrt6
 \end{aligned}" />
 
-Also ist <InlineMath math="t=0" /> oder <InlineMath math="t=2" />. Mit <InlineMath math="x=t^2+1" /> kommst du zurück zu <InlineMath math="x" />:
+Das ist dasselbe, wie die <InlineMath math="x" />-Achse mit dem Thaleskreis über <InlineMath math="AB" /> zu schneiden, der den Mittelpunkt <InlineMath math="(4\mid2)" /> und den Radius <InlineMath math="\sqrt{10}" /> hat. **Der Kreis schneidet die Achse zweimal**.
 
-- <InlineMath math="t=0" /> ergibt <InlineMath math="x=1" />.
-- <InlineMath math="t=2" /> ergibt <InlineMath math="x=5" />.
+Keiner der vier Punkte liegt mit <InlineMath math="A" /> und <InlineMath math="B" /> auf einer Geraden, denn die Gerade <InlineMath math="AB" /> trifft die <InlineMath math="x" />-Achse erst bei <InlineMath math="x=10" />. Jeder liefert also ein echtes Dreieck.
 
-# Probe in der ursprünglichen Gleichung
-
-**Quadrieren kann Scheinlösungen erzeugen**, also prüfst du beide:
-
-<BlockMath math="\begin{aligned}
-x=1:&\quad \sqrt{4}-\sqrt{0}=2-0=2 \\
-x=5:&\quad \sqrt{16}-\sqrt{4}=4-2=2
-\end{aligned}" />
-
-Beide stimmen. Die Gleichung hat also genau zwei Lösungen, <InlineMath math="x=1" /> und <InlineMath math="x=5" />.
+Also ist <InlineMath math="x=0" />, <InlineMath math="x=4-\sqrt6" />, <InlineMath math="x=4+\sqrt6" /> oder <InlineMath math="x=\frac{20}{3}" />.
 
 # Warum die anderen Antworten falsch sind
 
-- Nur <InlineMath math="x=5" /> entsteht, wenn du durch <InlineMath math="\sqrt{x-1}" /> teilst. Dabei geht <InlineMath math="x=1" /> verloren, obwohl <InlineMath math="x=1" /> die Probe besteht.
-- Nur <InlineMath math="x=1" /> entsteht, wenn du **gliedweise quadrierst**, also so tust, als wäre <InlineMath math="\left(\sqrt{3x+1}-\sqrt{x-1}\right)^2=(3x+1)-(x-1)" />. Der Mittelterm <InlineMath math="-2\sqrt{3x+1}\sqrt{x-1}" /> fehlt, und mit ihm <InlineMath math="x=5" />.
-- <InlineMath math="x=0" /> und <InlineMath math="x=5" /> verwechselt <InlineMath math="t=0" /> mit <InlineMath math="x=0" />. Dabei ist <InlineMath math="x=0" /> gar nicht erlaubt, denn <InlineMath math="\sqrt{0-1}" /> ist nicht definiert.
-- Nur <InlineMath math="x=2" /> schreibt den Wert von <InlineMath math="t" /> hin, nicht den von <InlineMath math="x" />. Für <InlineMath math="x=2" /> ergibt die linke Seite <InlineMath math="\sqrt7-1\approx1{,}65" />.
-- <InlineMath math="x=1" /> und <InlineMath math="x=2" /> rechnet <InlineMath math="t=0" /> richtig zurück, vergisst aber, <InlineMath math="t=2" /> in <InlineMath math="x=5" /> umzurechnen.
+- Nur <InlineMath math="4\pm\sqrt6" /> **denkt nur an den rechten Winkel bei <InlineMath math="P" />**. Die Aufgabe nennt die Ecke nicht.
+- Nur <InlineMath math="x=0" /> oder <InlineMath math="x=\frac{20}{3}" /> vergisst den Fall mit dem rechten Winkel bei <InlineMath math="P" />.
+- <InlineMath math="\frac{22}{3}" /> hat im Fall <InlineMath math="B" /> ein falsches Vorzeichen, also <InlineMath math="-6(x-7)+2=0" />.
+- <InlineMath math="x=10" /> ist der Punkt auf der Geraden <InlineMath math="AB" />. Dort liegen <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="P" /> auf einer Geraden, es gibt kein Dreieck.
+- <InlineMath math="x=2" /> hat im Fall <InlineMath math="A" /> ein falsches Vorzeichen, also <InlineMath math="6(x-1)-6=0" />.

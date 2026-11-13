@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$x=1$$ und $$x=5$$",
+          label: "$$x=0$$, $$x=4-\\sqrt6$$, $$x=4+\\sqrt6$$ oder $$x=\\frac{20}{3}$$",
         },
         {
           correct: false,
-          label: "nur $$x=5$$",
+          label: "$$x=4-\\sqrt6$$ oder $$x=4+\\sqrt6$$",
         },
         {
           correct: false,
-          label: "nur $$x=1$$",
+          label: "$$x=0$$ oder $$x=\\frac{20}{3}$$",
         },
         {
           correct: false,
-          label: "$$x=0$$ und $$x=5$$",
+          label: "$$x=0$$, $$x=4-\\sqrt6$$, $$x=4+\\sqrt6$$ oder $$x=\\frac{22}{3}$$",
         },
         {
           correct: false,
-          label: "nur $$x=2$$",
+          label: "$$x=4-\\sqrt6$$, $$x=4+\\sqrt6$$ oder $$x=10$$",
         },
         {
           correct: false,
-          label: "$$x=1$$ und $$x=2$$",
+          label: "$$x=2$$, $$x=4-\\sqrt6$$, $$x=4+\\sqrt6$$ oder $$x=\\frac{20}{3}$$",
         },
       ],
     },

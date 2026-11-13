@@ -1,53 +1,38 @@
-# When the roots make sense
+# Three places for the right angle
 
-You can only take the square root of a number that isn't negative. So <InlineMath math="3x+1\ge0" /> and <InlineMath math="x-1\ge0" />. The second condition is stricter, so **you only look for <InlineMath math="x\ge1" />**.
+The task doesn't say at which vertex the right angle is. **So there are three cases: the right angle at <InlineMath math="A" />, at <InlineMath math="B" /> or at <InlineMath math="P" />**. Two segments are perpendicular exactly when the dot product of their direction vectors is zero.
 
-# Squaring safely
+For <InlineMath math="P(x\mid0)" /> you have:
 
-First move <InlineMath math="\sqrt{x-1}" /> to the right, so that only one root is left on the left:
+<BlockMath math="\overrightarrow{AB}=\begin{pmatrix}6\\-2\end{pmatrix},\quad\overrightarrow{AP}=\begin{pmatrix}x-1\\-3\end{pmatrix},\quad\overrightarrow{BP}=\begin{pmatrix}x-7\\-1\end{pmatrix}" />
 
-<BlockMath math="\sqrt{3x+1}=2+\sqrt{x-1}" />
-
-**Both sides are not negative**, so you may square them. On the right, use <InlineMath math="(p+q)^2=p^2+2pq+q^2" />:
+# Right angle at A or at B
 
 <BlockMath math="\begin{aligned}
-3x+1&=4+4\sqrt{x-1}+(x-1) \\
-2x-2&=4\sqrt{x-1} \\
-x-1&=2\sqrt{x-1}
+\text{at }A:&\quad\overrightarrow{AB}\cdot\overrightarrow{AP}=6(x-1)+(-2)(-3)=6x=0\quad\Rightarrow\quad x=0 \\
+\text{at }B:&\quad\overrightarrow{BA}\cdot\overrightarrow{BP}=-6(x-7)+2\cdot(-1)=40-6x=0\quad\Rightarrow\quad x=\frac{20}{3}
 \end{aligned}" />
 
-# The trap when dividing
+**Each of these cases gives exactly one point**, because the equation is linear.
 
-Now it's tempting to divide both sides by <InlineMath math="\sqrt{x-1}" />. Don't! **<InlineMath math="\sqrt{x-1}" /> can be zero**, and dividing by zero throws away an answer.
-
-It's safer to call <InlineMath math="t=\sqrt{x-1}" />. Then <InlineMath math="x-1=t^2" />, and the equation becomes:
+# Right angle at P
 
 <BlockMath math="\begin{aligned}
-t^2&=2t \\
-t^2-2t&=0 \\
-t(t-2)&=0
+\overrightarrow{PA}\cdot\overrightarrow{PB}=(1-x)(7-x)+3\cdot1&=0 \\
+x^2-8x+10&=0 \\
+x&=4\pm\sqrt6
 \end{aligned}" />
 
-So <InlineMath math="t=0" /> or <InlineMath math="t=2" />. Go back to <InlineMath math="x" /> with <InlineMath math="x=t^2+1" />:
+That's the same as cutting the <InlineMath math="x" />-axis with the Thales circle on <InlineMath math="AB" />, centred at <InlineMath math="(4\mid2)" /> with radius <InlineMath math="\sqrt{10}" />. **The circle crosses the axis at two points**.
 
-- <InlineMath math="t=0" /> gives <InlineMath math="x=1" />.
-- <InlineMath math="t=2" /> gives <InlineMath math="x=5" />.
+None of the four points lies on a line with <InlineMath math="A" /> and <InlineMath math="B" />, since line <InlineMath math="AB" /> only meets the <InlineMath math="x" />-axis at <InlineMath math="x=10" />. So each one gives a real triangle.
 
-# Check in the original equation
-
-**Squaring can create fake answers**, so check both:
-
-<BlockMath math="\begin{aligned}
-x=1:&\quad \sqrt{4}-\sqrt{0}=2-0=2 \\
-x=5:&\quad \sqrt{16}-\sqrt{4}=4-2=2
-\end{aligned}" />
-
-Both are correct. So the equation has exactly two solutions, <InlineMath math="x=1" /> and <InlineMath math="x=5" />.
+So <InlineMath math="x=0" />, <InlineMath math="x=4-\sqrt6" />, <InlineMath math="x=4+\sqrt6" /> or <InlineMath math="x=\frac{20}{3}" />.
 
 # Why the other options are wrong
 
-- Only <InlineMath math="x=5" /> comes from dividing by <InlineMath math="\sqrt{x-1}" />. That division throws away <InlineMath math="x=1" />, even though <InlineMath math="x=1" /> passes the check.
-- Only <InlineMath math="x=1" /> comes from **squaring term by term**, as if <InlineMath math="\left(\sqrt{3x+1}-\sqrt{x-1}\right)^2=(3x+1)-(x-1)" />. The middle term <InlineMath math="-2\sqrt{3x+1}\sqrt{x-1}" /> goes missing, and so does <InlineMath math="x=5" />.
-- <InlineMath math="x=0" /> and <InlineMath math="x=5" /> mixes up <InlineMath math="t=0" /> with <InlineMath math="x=0" />. But <InlineMath math="x=0" /> isn't even allowed, because <InlineMath math="\sqrt{0-1}" /> isn't defined.
-- Only <InlineMath math="x=2" /> writes down the value of <InlineMath math="t" />, not of <InlineMath math="x" />. For <InlineMath math="x=2" /> the left side is <InlineMath math="\sqrt7-1\approx1.65" />.
-- <InlineMath math="x=1" /> and <InlineMath math="x=2" /> turns <InlineMath math="t=0" /> back into <InlineMath math="x" /> correctly but forgets to turn <InlineMath math="t=2" /> into <InlineMath math="x=5" />.
+- Only <InlineMath math="4\pm\sqrt6" /> **only thinks of the right angle at <InlineMath math="P" />**. The task doesn't name the vertex.
+- Only <InlineMath math="x=0" /> or <InlineMath math="x=\frac{20}{3}" /> forgets the case with the right angle at <InlineMath math="P" />.
+- <InlineMath math="\frac{22}{3}" /> gets a sign wrong in case <InlineMath math="B" />, so <InlineMath math="-6(x-7)+2=0" />.
+- <InlineMath math="x=10" /> is the point on line <InlineMath math="AB" />. There <InlineMath math="A" />, <InlineMath math="B" /> and <InlineMath math="P" /> are in a line, so there's no triangle.
+- <InlineMath math="x=2" /> gets a sign wrong in case <InlineMath math="A" />, so <InlineMath math="6(x-1)-6=0" />.

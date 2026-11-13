@@ -1,39 +1,35 @@
-# Akar di dalam akar
+# Berapa sudut alasnya
 
-Bentuk <InlineMath math="\sqrt{11-6\sqrt2}" /> terlihat sulit, tetapi sering kali bilangan di bawah akar adalah **kuadrat dari bentuk <InlineMath math="a-b\sqrt2" />**. Coba cari <InlineMath math="a" /> dan <InlineMath math="b" /> bulat:
+Prisma dengan alas segi-<InlineMath math="n" /> punya <InlineMath math="n" /> rusuk di alas bawah, <InlineMath math="n" /> di alas atas, dan <InlineMath math="n" /> rusuk tegak. **Jadi banyak rusuknya <InlineMath math="3n" />**:
 
-<BlockMath math="(a-b\sqrt2)^2=a^2+2b^2-2ab\sqrt2" />
+<BlockMath math="3n=30\quad\Rightarrow\quad n=10" />
 
-Supaya hasilnya <InlineMath math="11-6\sqrt2" />, kamu perlu <InlineMath math="a^2+2b^2=11" /> dan <InlineMath math="2ab=6" />. Pasangan <InlineMath math="a=3" />, <InlineMath math="b=1" /> cocok, karena <InlineMath math="9+2=11" /> dan <InlineMath math="2\cdot3\cdot1=6" />.
+Prisma ini punya <InlineMath math="20" /> titik sudut, <InlineMath math="10" /> di atas dan <InlineMath math="10" /> di bawah.
 
-# Menyederhanakan kedua akar
+# Dari satu titik di atas
 
-<BlockMath math="\begin{aligned}
-(3-\sqrt2)^2&=9-6\sqrt2+2=11-6\sqrt2 \\
-(3+\sqrt2)^2&=9+6\sqrt2+2=11+6\sqrt2
-\end{aligned}" />
+Ambil satu titik sudut di alas atas. Semua titik lain di alas atas ada di bidang alas yang sama, jadi tidak ada yang memberi diagonal ruang. Di alas bawah, **titik tepat di bawahnya dan dua tetangganya ada di sisi tegak yang sama dengannya**. Sisanya tinggal <InlineMath math="10-3=7" /> titik.
 
-Akar kuadrat selalu bernilai tidak negatif. **Karena <InlineMath math="3-\sqrt2\approx1{,}59" /> positif**, berlaku <InlineMath math="\sqrt{11-6\sqrt2}=3-\sqrt2" />. Begitu juga <InlineMath math="\sqrt{11+6\sqrt2}=3+\sqrt2" />.
+Setiap diagonal ruang menghubungkan satu titik atas dengan satu titik bawah, jadi tidak ada yang terhitung dua kali:
 
-<BlockMath math="(3-\sqrt2)+(3+\sqrt2)=6" />
+<BlockMath math="10\cdot7=70" />
 
 # Cek dengan cara lain
 
-Sebut jumlahnya <InlineMath math="S" />. Kuadratkan, lalu pakai <InlineMath math="\sqrt{p}\sqrt{q}=\sqrt{pq}" />:
+Ada <InlineMath math="\binom{20}{2}=190" /> ruas di antara dua titik sudut. **Buang semua ruas yang terletak di sebuah sisi**:
 
-<BlockMath math="\begin{aligned}
-S^2&=(11-6\sqrt2)+(11+6\sqrt2)+2\sqrt{(11-6\sqrt2)(11+6\sqrt2)} \\
-&=22+2\sqrt{121-72}=22+2\cdot7=36
-\end{aligned}" />
+- <InlineMath math="30" /> rusuk,
+- diagonal kedua alas, <InlineMath math="2\cdot\frac{10\cdot7}{2}=70" />,
+- diagonal <InlineMath math="10" /> sisi tegak berbentuk persegi panjang, <InlineMath math="10\cdot2=20" />.
 
-Karena <InlineMath math="S" /> positif, <InlineMath math="S=6" />. **Hasilnya sama**.
+<BlockMath math="190-30-70-20=70" />
 
-Jadi, nilai bentuk itu adalah <InlineMath math="6" />.
+Jadi, prisma itu punya <InlineMath math="70" /> diagonal ruang.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="\sqrt{22}" /> menjumlahkan bilangan di bawah akar. **Jumlah dua akar tidak sama dengan akar dari jumlahnya**.
-- <InlineMath math="2\sqrt{11}" /> menghapus <InlineMath math="\pm6\sqrt2" /> di bawah akar, seolah-olah keduanya saling menghabiskan di setiap akar.
-- <InlineMath math="2\sqrt2" /> adalah <InlineMath math="(3+\sqrt2)-(3-\sqrt2)" />, yaitu selisihnya, bukan jumlahnya.
-- <InlineMath math="3+\sqrt2" /> hanya menyederhanakan satu akar dan melupakan akar yang lain.
-- <InlineMath math="36" /> adalah <InlineMath math="S^2" />. Akarnya belum diambil.
+- <InlineMath math="90" /> **hanya membuang titik tepat di bawah**, padahal dua tetangganya juga sebidang di sisi tegak. Ini sama dengan lupa diagonal sisi tegak.
+- <InlineMath math="35" /> membagi dua lagi, seolah-olah setiap diagonal dihitung dua kali. Dari atas ke bawah setiap diagonal hanya terhitung sekali.
+- <InlineMath math="80" /> hanya membuang titik di bawah dan satu tetangga.
+- <InlineMath math="140" /> lupa membuang diagonal kedua alas.
+- <InlineMath math="160" /> hanya membuang rusuk dan menganggap semua ruas lain diagonal ruang.
