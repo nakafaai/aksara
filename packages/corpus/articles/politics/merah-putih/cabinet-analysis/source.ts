@@ -9,6 +9,7 @@ export const merahPutihCabinetAnalysisArticle = defineArticleSource({
     de: "kabinett-merah-putih-und-koalitionspolitik",
     en: "merah-putih-cabinet-analysis",
     id: "merah-putih-cabinet-analysis",
+    ms: "kabinet-merah-putih-dan-politik-gabungan",
   },
   slug: "merah-putih-cabinet-analysis",
   sourceRoot: "articles/politics/merah-putih/cabinet-analysis",
