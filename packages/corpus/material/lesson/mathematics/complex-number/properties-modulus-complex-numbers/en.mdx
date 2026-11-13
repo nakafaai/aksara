@@ -123,7 +123,7 @@ The direct distance is shorter than the path through the right-angle corner:
 
 <MathVisual
   title={<>Direct distance and a two-side path</>}
-  description={<>A horizontal vector of length 3 and a vertical vector of length 4 produce a direct vector of length 5. The length 5 does not exceed the path length 3 plus 4.</>}
+  description={<>A horizontal vector of length <InlineMath math="3" /> and a vertical vector of length <InlineMath math="4" /> produce a direct vector of length <InlineMath math="5" />. The length <InlineMath math="5" /> does not exceed the path length <InlineMath math="3" /> plus <InlineMath math="4" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: -0.5, max: 4.5 } },
@@ -235,11 +235,11 @@ Both endpoints are attainable: opposite directions give the lower bound, while t
 
 <BlockMath math="\begin{aligned}|3+(-5)|&amp;=2\\|3+5|&amp;=8\end{aligned}" />
 
-Turn <InlineMath math="z_2" /> with <InlineMath math="|z_2| = 5" /> around while <InlineMath math="z_1 = 3" /> stays fixed. The length <InlineMath math="|z_1 + z_2| = \sqrt{34 + 30\cos\theta}" /> falls from 8 at <InlineMath math="\theta = 0^\circ" /> to 2 at <InlineMath math="\theta = 180^\circ" />, so it always stays between <InlineMath math="5 - 3 = 2" /> and <InlineMath math="3 + 5 = 8" />.
+Turn <InlineMath math="z_2" /> with <InlineMath math="|z_2| = 5" /> around while <InlineMath math="z_1 = 3" /> stays fixed. The length <InlineMath math="|z_1 + z_2| = \sqrt{34 + 30\cos\theta}" /> falls from <InlineMath math="8" /> at <InlineMath math="\theta = 0^\circ" /> to <InlineMath math="2" /> at <InlineMath math="\theta = 180^\circ" />, so it always stays between <InlineMath math="5 - 3 = 2" /> and <InlineMath math="3 + 5 = 8" />.
 
 <BarChart
   title={<><InlineMath math="|z_1 + z_2|" /> as <InlineMath math="z_2" /> turns</>}
-  description={<>Bars of <InlineMath math="|3 + 5(\cos\theta + i\sin\theta)|" /> for <InlineMath math="\theta = 0^\circ, 60^\circ, 90^\circ, 120^\circ, 180^\circ" />: 8, 7, <InlineMath math="\sqrt{34}" />, <InlineMath math="\sqrt{19}" /> and 2.</>}
+  description={<>Bars of <InlineMath math="|3 + 5(\cos\theta + i\sin\theta)|" /> for <InlineMath math="\theta = 0^\circ, 60^\circ, 90^\circ, 120^\circ, 180^\circ" />: <InlineMath math="8" />, <InlineMath math="7" />, <InlineMath math="\sqrt{34}" />, <InlineMath math="\sqrt{19}" /> and <InlineMath math="2" />.</>}
   yAxisLabel="Modulus"
   data={[0, 60, 90, 120, 180].map((d) => ({ name: d + "°", value: Math.sqrt(34 + 30 * Math.cos((d * Math.PI) / 180)) }))}
   chartConfig={{ value: { label: "Modulus", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

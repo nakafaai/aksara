@@ -141,11 +141,11 @@ Pertahankan garis melalui titik rata-rata <InlineMath math="(\bar x, \bar y) = \
   chartConfig={{ value: { label: "Jumlah kuadrat residu", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-Sekarang pertahankan gradien <InlineMath math="b \approx 8{,}222" /> dan geser garis ke atas atau ke bawah sejauh <InlineMath math="d" /> ribu unit. Setiap pergeseran menambahkan <InlineMath math="12d^2" /> pada jumlah kuadrat residu, satu <InlineMath math="d^2" /> untuk setiap pasangan dari 12 pasangan, jadi titik potong <InlineMath math="a \approx 30{,}491" /> adalah yang terbaik.
+Sekarang pertahankan gradien <InlineMath math="b \approx 8{,}222" /> dan geser garis ke atas atau ke bawah sejauh <InlineMath math="d" /> ribu unit. Setiap pergeseran menambahkan <InlineMath math="12d^2" /> pada jumlah kuadrat residu, satu <InlineMath math="d^2" /> untuk setiap pasangan dari <InlineMath math="12" /> pasangan, jadi titik potong <InlineMath math="a \approx 30{,}491" /> adalah yang terbaik.
 
 <BarChart
   title={<>Jumlah kuadrat residu terhadap pergeseran</>}
-  description={<>Batang jumlah kuadrat residu untuk garis taksiran yang digeser sejauh <InlineMath math="d = -10, -5, 0, 5, 10" />. Batang terkecil, sekitar 1906,6, adalah garis taksiran itu sendiri.</>}
+  description={<>Batang jumlah kuadrat residu untuk garis taksiran yang digeser sejauh <InlineMath math="d = -10, -5, 0, 5, 10" />. Batang terkecil, sekitar <InlineMath math="1906{,}6" />, adalah garis taksiran itu sendiri.</>}
   yAxisLabel="Jumlah kuadrat residu"
   data={[-10, -5, 0, 5, 10].map((d) => ({ name: String(d), value: 31265 / 4 - 2875 ** 2 / (16 * (1049 / 12)) + 12 * d ** 2 }))}
   chartConfig={{ value: { label: "Jumlah kuadrat residu", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

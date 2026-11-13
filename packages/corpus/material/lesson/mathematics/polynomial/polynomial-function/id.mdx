@@ -15,7 +15,7 @@ Setiap masukan menghasilkan <Highlight>tepat satu nilai fungsi</Highlight>. Untu
 
 <MathVisual
   title={<>Dari masukan ke titik pada grafik</>}
-  description={<>Grafik <InlineMath math="P(x) = 2x^2 - 3x + 1" />. Titik (2,3) menunjukkan bahwa masukan 2 menghasilkan keluaran 3.</>}
+  description={<>Grafik <InlineMath math="P(x) = 2x^2 - 3x + 1" />. Titik (<InlineMath math="2{,}3" />) menunjukkan bahwa masukan <InlineMath math="2" /> menghasilkan keluaran <InlineMath math="3" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.25, max: 2.25 }, y: { min: -0.5, max: 3.5 } },
@@ -62,11 +62,11 @@ Misalkan kita punya fungsi: <InlineMath math="f(x) = 5x^3 - 2x^2 + 7x - 1" />
 
 Pada polinomial tak nol, <Highlight>koefisien utama tidak nol</Highlight>. Koefisien suku lain boleh nol, seperti koefisien pangkat tiga pada latihan berikut.
 
-Baca koefisien <InlineMath math="f(x) = 5x^3 - 2x^2 + 7x - 1" /> dari derajat tertinggi ke bawah. Koefisien utamanya 5, lalu <InlineMath math="a_2 = -2" />, <InlineMath math="a_1 = 7" />, dan konstanta <InlineMath math="a_0 = -1" />.
+Baca koefisien <InlineMath math="f(x) = 5x^3 - 2x^2 + 7x - 1" /> dari derajat tertinggi ke bawah. Koefisien utamanya <InlineMath math="5" />, lalu <InlineMath math="a_2 = -2" />, <InlineMath math="a_1 = 7" />, dan konstanta <InlineMath math="a_0 = -1" />.
 
 <BarChart
   title={<>Koefisien <InlineMath math="5x^3 - 2x^2 + 7x - 1" /></>}
-  description={<>Batang koefisien 5, <InlineMath math="-2" />, 7, dan <InlineMath math="-1" /> pada derajat 3, 2, 1, dan 0.</>}
+  description={<>Batang koefisien <InlineMath math="5" />, <InlineMath math="-2" />, <InlineMath math="7" />, dan <InlineMath math="-1" /> pada derajat <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="1" />, dan <InlineMath math="0" />.</>}
   yAxisLabel="Koefisien"
   data={[["derajat 3", 5], ["derajat 2", -2], ["derajat 1", 7], ["derajat 0", -1]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Koefisien", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -94,11 +94,11 @@ Substitusikan <InlineMath math="t=2" /> ke dalam fungsi:
 
 <BlockMath math="\begin{aligned}p(2)&amp;=-2(2)^4+3(2)^2-2+8\\&amp;=-32+12-2+8\\&amp;=-14\end{aligned}" />
 
-Hitung <InlineMath math="p(t) = -2t^4 + 3t^2 - t + 8" /> di <InlineMath math="t = -2" /> sampai 2. Suku utama <InlineMath math="-2t^4" /> menguasai kedua ujungnya: <InlineMath math="p(-2) = -10" /> dan <InlineMath math="p(2) = -14" />, seperti pada pembahasan.
+Hitung <InlineMath math="p(t) = -2t^4 + 3t^2 - t + 8" /> di <InlineMath math="t = -2" /> sampai <InlineMath math="2" />. Suku utama <InlineMath math="-2t^4" /> menguasai kedua ujungnya: <InlineMath math="p(-2) = -10" /> dan <InlineMath math="p(2) = -14" />, seperti pada pembahasan.
 
 <BarChart
   title={<>Nilai <InlineMath math="p(t) = -2t^4 + 3t^2 - t + 8" /></>}
-  description={<>Batang <InlineMath math="p(t)" /> untuk <InlineMath math="t = -2, -1, 0, 1, 2" />: <InlineMath math="-10" />, 10, 8, 8, dan <InlineMath math="-14" />.</>}
+  description={<>Batang <InlineMath math="p(t)" /> untuk <InlineMath math="t = -2, -1, 0, 1, 2" />: <InlineMath math="-10" />, <InlineMath math="10" />, <InlineMath math="8" />, <InlineMath math="8" />, dan <InlineMath math="-14" />.</>}
   yAxisLabel="p(t)"
   data={[-2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: -2 * x ** 4 + 3 * x ** 2 - x + 8 }))}
   chartConfig={{ value: { label: "p(t)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

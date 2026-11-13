@@ -75,13 +75,13 @@ Ein Landwirt hat <InlineMath math="20\text{ m}" /> Zaunmaterial und möchte dami
 
 **Schritt 7**: Prüfe, ob der Scheitel die größte Fläche liefert. Der Scheitel liegt im Bereich <InlineMath math="0<l<10" />. An den Randwerten fällt das Rechteck zusammen und die Fläche nähert sich <InlineMath math="0" />. Damit liefert der innere Scheitel das globale Maximum.
 
-Die quadratische Ergänzung begründet das Maximum. Von 25 wird ein **nichtnegatives Quadrat** abgezogen. Genau bei Breite fünf ist dieser Abzug null:
+Die quadratische Ergänzung begründet das Maximum. Von <InlineMath math="25" /> wird ein **nichtnegatives Quadrat** abgezogen. Genau bei Breite fünf ist dieser Abzug null:
 
 <BlockMath math="A(l)=25-(l-5)^2\le25" />
 
 <MathVisual
   title={<>Fläche in Abhängigkeit von der Seitenlänge</>}
-  description={<>Waagerecht liest du die Breite in Metern, senkrecht die Fläche in Quadratmetern. Der Punkt (5,25) ist das Maximum.</>}
+  description={<>Waagerecht liest du die Breite in Metern, senkrecht die Fläche in Quadratmetern. Der Punkt (<InlineMath math="5{,}25" />) ist das Maximum.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -3, max: 28 } },
@@ -129,7 +129,7 @@ Wegen <InlineMath math="a=-2<0" /> besitzt das Modell ein Maximum:
 
 Das Modell sagt einen maximalen Gewinn von <InlineMath math="\text{IDR }1\,250\,000" /> beim Verkauf von <InlineMath math="25" /> Spielzeugen voraus. Der Scheitel liegt bereits bei einer ganzen Zahl, daher ist kein Vergleich gerundeter Stückzahlen nötig.
 
-Tabellier den Gewinn <InlineMath math="P(x) = -2x^2 + 100x" />: Er steigt bis 1250 Tausend Rupiah bei <InlineMath math="x = 25" /> und fällt symmetrisch zurück, 1200 bei 20 und bei 30 und 800 bei 10 und bei 40.
+Tabellier den Gewinn <InlineMath math="P(x) = -2x^2 + 100x" />: Er steigt bis <InlineMath math="1250" /> Tausend Rupiah bei <InlineMath math="x = 25" /> und fällt symmetrisch zurück, <InlineMath math="1200" /> bei <InlineMath math="20" /> und bei <InlineMath math="30" /> und <InlineMath math="800" /> bei <InlineMath math="10" /> und bei <InlineMath math="40" />.
 
 <BarChart
   title={<>Gewinn um den Scheitel</>}
@@ -161,11 +161,11 @@ Das Modell beginnt für <InlineMath math="t=0" /> am Boden und erreicht ihn für
 
 Die Rakete erreicht eine maximale Höhe von <InlineMath math="80\text{ m}" /> nach <InlineMath math="4\text{ s}" />.
 
-Die Höhen zu vollen Sekunden sind symmetrisch zu <InlineMath math="t = 4" />: 35 m bei 1 s und 7 s, 60 m bei 2 s und 6 s, 75 m bei 3 s und 5 s und oben 80 m bei 4 s.
+Die Höhen zu vollen Sekunden sind symmetrisch zu <InlineMath math="t = 4" />: <InlineMath math="35\text{ m}" /> bei <InlineMath math="1\text{ s}" /> und <InlineMath math="7\text{ s}" />, <InlineMath math="60\text{ m}" /> bei <InlineMath math="2\text{ s}" /> und <InlineMath math="6\text{ s}" />, <InlineMath math="75\text{ m}" /> bei <InlineMath math="3\text{ s}" /> und <InlineMath math="5\text{ s}" /> und oben <InlineMath math="80\text{ m}" /> bei <InlineMath math="4\text{ s}" />.
 
 <BarChart
   title={<>Raketenhöhe Sekunde für Sekunde</>}
-  description={<>Balken von <InlineMath math="h(t) = -5t^2 + 40t" /> in Metern für <InlineMath math="t = 0" /> bis 8 Sekunden.</>}
+  description={<>Balken von <InlineMath math="h(t) = -5t^2 + 40t" /> in Metern für <InlineMath math="t = 0" /> bis <InlineMath math="8" /> Sekunden.</>}
   yAxisLabel="Höhe (m)"
   data={[0, 1, 2, 3, 4, 5, 6, 7, 8].map((t) => ({ name: String(t), value: -5 * t ** 2 + 40 * t }))}
   chartConfig={{ value: { label: "Höhe (m)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

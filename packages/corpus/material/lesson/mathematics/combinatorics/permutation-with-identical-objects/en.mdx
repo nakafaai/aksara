@@ -22,23 +22,23 @@ For example, the letters of MAMA have <InlineMath math="n = 4" /> with two M and
 Give the identical letters temporary labels: <InlineMath math="M_1, M_2, A_1, A_2" />. With labels, the four letters are all different and can be arranged in <InlineMath math="4! = 24" /> ways. Once the labels are removed, the arrangements <InlineMath math="M_1 A_1 M_2 A_2" /> and <InlineMath math="M_2 A_1 M_1 A_2" /> become the same word, MAMA.
 
 <Mermaid
-  title={<>From 24 labelled arrangements to 6 words MAMA</>}
+  title={<>From <InlineMath math="24" /> labelled arrangements to <InlineMath math="6" /> words MAMA</>}
   description={<>Each time a set of labels is removed, arrangements that differ only in the order of identical letters merge.</>}
   chart={`flowchart LR
   A["24 labelled arrangements"] -->|"remove the M labels, divide by 2!"| B["12 arrangements"]
   B -->|"remove the A labels, divide by 2!"| C["6 visible arrangements"]`}
 />
 
-Each visible arrangement appears exactly <InlineMath math="2! \times 2! = 4" /> times among the 24 labelled ones: <InlineMath math="2!" /> ways to swap the two M and <InlineMath math="2!" /> ways to swap the two A. So the number of visible arrangements is <InlineMath math="\frac{24}{4} = 6" />. You can check this by listing every position of the letter M:
+Each visible arrangement appears exactly <InlineMath math="2! \times 2! = 4" /> times among the <InlineMath math="24" /> labelled ones: <InlineMath math="2!" /> ways to swap the two M and <InlineMath math="2!" /> ways to swap the two A. So the number of visible arrangements is <InlineMath math="\frac{24}{4} = 6" />. You can check this by listing every position of the letter M:
 
 | Positions of M | Visible arrangement |
 | --- | --- |
-| 1 and 2 | MMAA |
-| 1 and 3 | MAMA |
-| 1 and 4 | MAAM |
-| 2 and 3 | AMMA |
-| 2 and 4 | AMAM |
-| 3 and 4 | AAMM |
+| <InlineMath math="1" /> and <InlineMath math="2" /> | MMAA |
+| <InlineMath math="1" /> and <InlineMath math="3" /> | MAMA |
+| <InlineMath math="1" /> and <InlineMath math="4" /> | MAAM |
+| <InlineMath math="2" /> and <InlineMath math="3" /> | AMMA |
+| <InlineMath math="2" /> and <InlineMath math="4" /> | AMAM |
+| <InlineMath math="3" /> and <InlineMath math="4" /> | AAMM |
 
 Listing the positions gives **exactly six arrangements**, as the formula says. Dividing by <InlineMath math="r_i!" /> removes every swap inside one group that the eye cannot see.
 
@@ -65,9 +65,9 @@ The word BANANA has <InlineMath math="n = 6" /> letters. Record the frequencies 
 
 | Letter | Frequency |
 | --- | --- |
-| B | 1 |
-| A | 3 |
-| N | 2 |
+| B | <InlineMath math="1" /> |
+| A | <InlineMath math="3" /> |
+| N | <InlineMath math="2" /> |
 
 The frequencies add up to <InlineMath math="1 + 3 + 2 = 6" />, equal to <InlineMath math="n" />. Without a condition, the number of arrangements is <InlineMath math="\frac{6!}{1! \, 3! \, 2!} = \frac{720}{12} = 60" />.
 
@@ -85,7 +85,7 @@ Conditions shrink the count. All arrangements of <InlineMath math="BANANA" /> nu
 
 <BarChart
   title={<>Arrangements of <InlineMath math="BANANA" /> with and without conditions</>}
-  description={<>Bars of 60 arrangements without a condition, 10 with B first and 20 with the two N together.</>}
+  description={<>Bars of <InlineMath math="60" /> arrangements without a condition, <InlineMath math="10" /> with B first and <InlineMath math="20" /> with the two N together.</>}
   yAxisLabel="Arrangements"
   data={[["no condition", 720 / (1 * 6 * 2)], ["B first", 120 / (6 * 2)], ["NN together", 120 / 6]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Arrangements", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -100,7 +100,7 @@ When there are only two kinds of objects, **the formula equals a** [combination]
 For example, a shortest path that moves <InlineMath math="3" /> squares right and <InlineMath math="2" /> squares up is an arrangement of the steps RRRUU, where R means one square right and U one square up. So there are <InlineMath math="10" /> paths.
 
 <MathVisual
-  title={<>Two shortest paths across a 3 by 2 grid</>}
+  title={<>Two shortest paths across a <InlineMath math="3" /> by <InlineMath math="2" /> grid</>}
   description={<>Every path from <InlineMath math="S" /> to <InlineMath math="F" /> uses three R steps and two U steps. The paths RRRUU and RURRU differ only in the order of their steps.</>}
   scene={{
     space: "plane",
@@ -165,7 +165,7 @@ Each repeated letter divides the count: <InlineMath math="ABCD" /> has <InlineMa
 
 <BarChart
   title={<>Arrangements of four letters</>}
-  description={<>Bars of the number of arrangements of <InlineMath math="ABCD" />, <InlineMath math="AABC" /> and <InlineMath math="AABB" />: 24, 12 and 6.</>}
+  description={<>Bars of the number of arrangements of <InlineMath math="ABCD" />, <InlineMath math="AABC" /> and <InlineMath math="AABB" />: <InlineMath math="24" />, <InlineMath math="12" /> and <InlineMath math="6" />.</>}
   yAxisLabel="Arrangements"
   data={[["ABCD", 24 / 1], ["AABC", 24 / 2], ["AABB", 24 / (2 * 2)]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Arrangements", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -209,7 +209,7 @@ Check by choosing positions: <InlineMath math="\binom{10}{3}\binom{7}{2}\binom{5
 
 Check: choose <InlineMath math="3" /> red positions from <InlineMath math="8" />, then <InlineMath math="3" /> white positions from <InlineMath math="5" />, and the rest are yellow, so <InlineMath math="\binom{8}{3}\binom{5}{3} = 56 \times 10 = 560" />.
 
-**Problem 3**. The digit 1 appears twice, 2 three times, and 3 once, so there are <InlineMath math="\frac{6!}{2! \, 3!} = \frac{720}{12} = 60" /> numbers. A number greater than <InlineMath math="300\,000" /> must start with 3, because any other leading digit gives a number below <InlineMath math="300\,000" />. Conversely, every number that starts with 3 is greater than <InlineMath math="300\,000" />, because there is no digit 0 and the smallest such number is <InlineMath math="311\,222" />. The rest, <InlineMath math="1, 1, 2, 2, 2" />, can be arranged in <InlineMath math="\frac{5!}{2! \, 3!} = 10" /> ways. Check: the digit 3 comes first in <InlineMath math="\frac{1}{6}" /> of all arrangements, and <InlineMath math="\frac{1}{6} \times 60 = 10" />.
+**Problem 3**. The digit <InlineMath math="1" /> appears twice, <InlineMath math="2" /> three times, and <InlineMath math="3" /> once, so there are <InlineMath math="\frac{6!}{2! \, 3!} = \frac{720}{12} = 60" /> numbers. A number greater than <InlineMath math="300\,000" /> must start with <InlineMath math="3" />, because any other leading digit gives a number below <InlineMath math="300\,000" />. Conversely, every number that starts with <InlineMath math="3" /> is greater than <InlineMath math="300\,000" />, because there is no digit <InlineMath math="0" /> and the smallest such number is <InlineMath math="311\,222" />. The rest, <InlineMath math="1, 1, 2, 2, 2" />, can be arranged in <InlineMath math="\frac{5!}{2! \, 3!} = 10" /> ways. Check: the digit <InlineMath math="3" /> comes first in <InlineMath math="\frac{1}{6}" /> of all arrangements, and <InlineMath math="\frac{1}{6} \times 60 = 10" />.
 
 **Problem 4**. INDONESIA has <InlineMath math="9" /> letters: I twice, N twice, and D, O, E, S, A once each.
 

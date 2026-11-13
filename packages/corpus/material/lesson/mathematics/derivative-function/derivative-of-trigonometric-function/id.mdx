@@ -34,7 +34,7 @@ Untuk <InlineMath math="f(x)=\sin x" />, turunan <InlineMath math="f'(x)=\cos x"
 
 <BarChart
   title={<>Kemiringan sinus adalah kosinus</>}
-  description={<>Batang <InlineMath math="\cos x" />, kemiringan <InlineMath math="\sin x" />, di <InlineMath math="x = 0, \tfrac{\pi}{6}, \tfrac{\pi}{3}, \tfrac{\pi}{2}, \tfrac{2\pi}{3}, \tfrac{5\pi}{6}, \pi" /> dalam radian. Kemiringannya 1 di 0, 0 di titik maksimum <InlineMath math="\tfrac{\pi}{2}" />, dan negatif setelahnya.</>}
+  description={<>Batang <InlineMath math="\cos x" />, kemiringan <InlineMath math="\sin x" />, di <InlineMath math="x = 0, \tfrac{\pi}{6}, \tfrac{\pi}{3}, \tfrac{\pi}{2}, \tfrac{2\pi}{3}, \tfrac{5\pi}{6}, \pi" /> dalam radian. Kemiringannya <InlineMath math="1" /> di <InlineMath math="0" />, <InlineMath math="0" /> di titik maksimum <InlineMath math="\tfrac{\pi}{2}" />, dan negatif setelahnya.</>}
   yAxisLabel="Kemiringan sin x"
   data={[["0", 0], ["π/6", 1 / 6], ["π/3", 1 / 3], ["π/2", 1 / 2], ["2π/3", 2 / 3], ["5π/6", 5 / 6], ["π", 1]].map(([name, k]) => ({ name, value: Math.round(1000 * Math.cos(k * Math.PI)) / 1000 }))}
   chartConfig={{ value: { label: "Kemiringan sin x", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -42,10 +42,10 @@ Untuk <InlineMath math="f(x)=\sin x" />, turunan <InlineMath math="f'(x)=\cos x"
 
 Pada <InlineMath math="-\pi/2<x<\pi/2" />, kosinus positif sehingga sinus naik. Pada <InlineMath math="\pi/2<x<\pi" />, kosinus negatif sehingga sinus turun. **Turunan nol** pada puncak berarti garis singgung mendatar.
 
-Sekarang tinggi <InlineMath math="\sin x" /> pada sudut yang sama: 0, <InlineMath math="\tfrac12" />, sekitar 0,866, 1, lalu turun lagi. Batangnya naik tepat ketika batang kosinus positif dan turun ketika batang kosinus negatif.
+Sekarang tinggi <InlineMath math="\sin x" /> pada sudut yang sama: <InlineMath math="0" />, <InlineMath math="\tfrac12" />, sekitar <InlineMath math="0{,}866" />, <InlineMath math="1" />, lalu turun lagi. Batangnya naik tepat ketika batang kosinus positif dan turun ketika batang kosinus negatif.
 
 <BarChart
-  title={<>Tinggi <InlineMath math="\sin x" /> dari 0 sampai <InlineMath math="\pi" /></>}
+  title={<>Tinggi <InlineMath math="\sin x" /> dari <InlineMath math="0" /> sampai <InlineMath math="\pi" /></>}
   description={<>Batang <InlineMath math="\sin x" /> di <InlineMath math="x = 0, \tfrac{\pi}{6}, \tfrac{\pi}{3}, \tfrac{\pi}{2}, \tfrac{2\pi}{3}, \tfrac{5\pi}{6}, \pi" />.</>}
   yAxisLabel="sin x"
   data={[["0", 0], ["π/6", 1 / 6], ["π/3", 1 / 3], ["π/2", 1 / 2], ["2π/3", 2 / 3], ["5π/6", 5 / 6], ["π", 1]].map(([name, k]) => ({ name, value: Math.round(1000 * Math.sin(k * Math.PI)) / 1000 }))}

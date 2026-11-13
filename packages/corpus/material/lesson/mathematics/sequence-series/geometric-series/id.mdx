@@ -44,7 +44,7 @@ Setiap bulan menyiapkan bibit tiga kali lebih banyak daripada bulan sebelumnya: 
 
 ## Menemukan Rumus Jumlah Suku Pertama
 
-Kita akan **mengurangkan dua jumlah yang hampir sama**. Untuk tiga bulan pertama, kalikan jumlah bibit dengan rasio tiga. Suku 12 dan 36 kemudian muncul pada kedua jumlah dan saling menghapus.
+Kita akan **mengurangkan dua jumlah yang hampir sama**. Untuk tiga bulan pertama, kalikan jumlah bibit dengan rasio tiga. Suku <InlineMath math="12" /> dan <InlineMath math="36" /> kemudian muncul pada kedua jumlah dan saling menghapus.
 
 <BlockMath math="\begin{aligned}S_3&amp;=4+12+36\\3S_3&amp;=12+36+108\\3S_3-S_3&amp;=108-4\\2S_3&amp;=104\\S_3&amp;=52\end{aligned}" />
 
@@ -64,7 +64,7 @@ Cek rasionya dari bulan ke bulan: <InlineMath math="\frac{12}{4}" />, <InlineMat
 
 <BarChart
   title={<>Rasio antara bulan yang berurutan</>}
-  description={<>Rasio setiap bulan terhadap bulan sebelumnya, selalu 3.</>}
+  description={<>Rasio setiap bulan terhadap bulan sebelumnya, selalu <InlineMath math="3" />.</>}
   yAxisLabel="Rasio"
   data={[["Feb", (4 * 3 ** 1) / (4 * 3 ** 0)], ["Mar", (4 * 3 ** 2) / (4 * 3 ** 1)], ["Apr", (4 * 3 ** 3) / (4 * 3 ** 2)], ["Mei", (4 * 3 ** 4) / (4 * 3 ** 3)]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Rasio", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

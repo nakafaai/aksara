@@ -19,7 +19,7 @@ Nilai ujian yang berdistribusi <InlineMath math="N(75, 10^2)" /> punya nilai har
 
 <BarChart
   title={<>Pasangan nilai yang sama tinggi di sekitar <InlineMath math="\mu = 2" /></>}
-  description={<>Tinggi kepadatan <InlineMath math="N(2, 1)" /> di <InlineMath math="x = 0{,}5;\ 1;\ 2;\ 3;\ 3{,}5" />. Nilai di 1 dan 3 sama, sekitar <InlineMath math="0{,}242" />, begitu juga nilai di 0,5 dan 3,5, sekitar <InlineMath math="0{,}130" />, karena jaraknya ke pusat sama.</>}
+  description={<>Tinggi kepadatan <InlineMath math="N(2, 1)" /> di <InlineMath math="x = 0{,}5;\ 1;\ 2;\ 3;\ 3{,}5" />. Nilai di <InlineMath math="1" /> dan <InlineMath math="3" /> sama, sekitar <InlineMath math="0{,}242" />, begitu juga nilai di <InlineMath math="0{,}5" /> dan <InlineMath math="3{,}5" />, sekitar <InlineMath math="0{,}130" />, karena jaraknya ke pusat sama.</>}
   yAxisLabel="Kepadatan"
   data={[0.5, 1, 2, 3, 3.5].map((x) => ({ name: String(x), value: Math.exp(-0.5 * (x - 2) ** 2) / Math.sqrt(2 * Math.PI) }))}
   chartConfig={{ value: { label: "Kepadatan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

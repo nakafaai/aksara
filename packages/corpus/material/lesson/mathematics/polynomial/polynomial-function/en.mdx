@@ -15,7 +15,7 @@ Each input produces <Highlight>exactly one function value</Highlight>. For <Inli
 
 <MathVisual
   title={<>From an input to a point on the graph</>}
-  description={<>The graph of <InlineMath math="P(x) = 2x^2 - 3x + 1" />. Point (2,3) shows that input 2 produces output 3.</>}
+  description={<>The graph of <InlineMath math="P(x) = 2x^2 - 3x + 1" />. Point (2,3) shows that input <InlineMath math="2" /> produces output <InlineMath math="3" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.25, max: 2.25 }, y: { min: -0.5, max: 3.5 } },
@@ -62,11 +62,11 @@ Suppose we have the function: <InlineMath math="f(x) = 5x^3 - 2x^2 + 7x - 1" />
 
 A nonzero polynomial has a <Highlight>nonzero leading coefficient</Highlight>. Other coefficients may be zero, as the cubic coefficient is in the exercise below.
 
-Read the coefficients of <InlineMath math="f(x) = 5x^3 - 2x^2 + 7x - 1" /> from the highest degree down. The leading coefficient is 5, then <InlineMath math="a_2 = -2" />, <InlineMath math="a_1 = 7" /> and the constant <InlineMath math="a_0 = -1" />.
+Read the coefficients of <InlineMath math="f(x) = 5x^3 - 2x^2 + 7x - 1" /> from the highest degree down. The leading coefficient is <InlineMath math="5" />, then <InlineMath math="a_2 = -2" />, <InlineMath math="a_1 = 7" /> and the constant <InlineMath math="a_0 = -1" />.
 
 <BarChart
   title={<>Coefficients of <InlineMath math="5x^3 - 2x^2 + 7x - 1" /></>}
-  description={<>Bars of the coefficients 5, <InlineMath math="-2" />, 7 and <InlineMath math="-1" /> at degrees 3, 2, 1 and 0.</>}
+  description={<>Bars of the coefficients <InlineMath math="5" />, <InlineMath math="-2" />, <InlineMath math="7" /> and <InlineMath math="-1" /> at degrees <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="1" /> and <InlineMath math="0" />.</>}
   yAxisLabel="Coefficient"
   data={[["degree 3", 5], ["degree 2", -2], ["degree 1", 7], ["degree 0", -1]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Coefficient", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -94,11 +94,11 @@ Evaluate the function by substituting <InlineMath math="t=2" />:
 
 <BlockMath math="\begin{aligned}p(2)&amp;=-2(2)^4+3(2)^2-2+8\\&amp;=-32+12-2+8\\&amp;=-14\end{aligned}" />
 
-Evaluate <InlineMath math="p(t) = -2t^4 + 3t^2 - t + 8" /> at <InlineMath math="t = -2" /> to 2. The leading term <InlineMath math="-2t^4" /> takes over at the ends: <InlineMath math="p(-2) = -10" /> and <InlineMath math="p(2) = -14" />, as in the worked solution.
+Evaluate <InlineMath math="p(t) = -2t^4 + 3t^2 - t + 8" /> at <InlineMath math="t = -2" /> to <InlineMath math="2" />. The leading term <InlineMath math="-2t^4" /> takes over at the ends: <InlineMath math="p(-2) = -10" /> and <InlineMath math="p(2) = -14" />, as in the worked solution.
 
 <BarChart
   title={<>Values of <InlineMath math="p(t) = -2t^4 + 3t^2 - t + 8" /></>}
-  description={<>Bars of <InlineMath math="p(t)" /> for <InlineMath math="t = -2, -1, 0, 1, 2" />: <InlineMath math="-10" />, 10, 8, 8 and <InlineMath math="-14" />.</>}
+  description={<>Bars of <InlineMath math="p(t)" /> for <InlineMath math="t = -2, -1, 0, 1, 2" />: <InlineMath math="-10" />, <InlineMath math="10" />, <InlineMath math="8" />, <InlineMath math="8" /> and <InlineMath math="-14" />.</>}
   yAxisLabel="p(t)"
   data={[-2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: -2 * x ** 4 + 3 * x ** 2 - x + 8 }))}
   chartConfig={{ value: { label: "p(t)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
