@@ -1,26 +1,33 @@
-# Bayangkan seribu produk
+# Banyak semua cara mengambil
 
-**Persentase lebih mudah dipahami kalau diubah menjadi banyak barang**. Misalkan pabrik membuat <InlineMath math="1{.}000" /> produk.
+Keempat kaus kaki diambil sekaligus, jadi urutannya tidak penting. **Banyak cara memilih <InlineMath math="4" /> dari <InlineMath math="10" />** adalah:
 
-| Mesin | Banyak produk | Banyak yang cacat |
-| :---: | :---: | :---: |
-| A | <InlineMath math="600" /> | <InlineMath math="3\%\cdot600=18" /> |
-| B | <InlineMath math="400" /> | <InlineMath math="5\%\cdot400=20" /> |
-| Jumlah | <InlineMath math="1{.}000" /> | <InlineMath math="38" /> |
+<BlockMath math="C(10,4)=\frac{10\cdot9\cdot8\cdot7}{4\cdot3\cdot2\cdot1}=210" />
 
-# Peluang dengan syarat cacat
+# Lewat kejadian sebaliknya
 
-Soal sudah memberi tahu bahwa produknya cacat. Jadi **yang diperhitungkan hanya <InlineMath math="38" /> produk cacat**, bukan semua <InlineMath math="1{.}000" /> produk. Dari <InlineMath math="38" /> produk cacat itu, <InlineMath math="20" /> berasal dari mesin B:
+Kata sedikitnya satu pasang mencakup tepat satu pasang dan tepat dua pasang. Lebih mudah **menghitung kebalikannya**: tidak ada satu pun pasangan, artinya keempat kaus kaki bermotif berbeda semua.
 
-<BlockMath math="P(\text{B}\mid\text{cacat})=\frac{20}{38}=\frac{10}{19}\approx0{,}53" />
+Untuk itu, pilih dulu <InlineMath math="4" /> motif dari <InlineMath math="5" /> motif. Lalu dari setiap motif terpilih ambil salah satu dari dua kaus kakinya, kiri atau kanan.
 
-Cek: peluang dari mesin A adalah <InlineMath math="\frac{18}{38}=\frac9{19}" />, dan <InlineMath math="\frac9{19}+\frac{10}{19}=1" />. Masuk akal juga bahwa mesin B sedikit lebih mungkin, walaupun produksinya lebih sedikit, karena persentase cacatnya lebih tinggi.
+<BlockMath math="\begin{aligned}
+\text{tanpa pasangan}&=C(5,4)\cdot2^4=5\cdot16=80 \\
+P(\text{tanpa pasangan})&=\frac{80}{210}=\frac{8}{21}
+\end{aligned}" />
 
-Jadi, peluang produk itu berasal dari mesin B adalah <InlineMath math="\frac{10}{19}" />.
+# Peluang yang diminta
+
+**Kurangkan dari satu**:
+
+<BlockMath math="P(\text{sedikitnya satu pasang})=1-\frac{8}{21}=\frac{13}{21}" />
+
+Jadi, peluangnya adalah <InlineMath math="\frac{13}{21}" />.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="\frac25" /> adalah peluang sebuah produk berasal dari mesin B **sebelum** diketahui cacat. Informasi bahwa produknya cacat belum dipakai.
-- <InlineMath math="\frac1{20}" /> adalah peluang produk mesin B cacat, yaitu arah syarat yang terbalik.
-- <InlineMath math="\frac1{50}" /> adalah <InlineMath math="\frac{20}{1{.}000}" />, peluang produk berasal dari B **dan** cacat, dihitung dari semua produk.
-- <InlineMath math="\frac9{19}" /> adalah peluang produk cacat itu berasal dari mesin A.
+Setiap pilihan yang salah **berhenti terlalu cepat atau menghitung ganda**.
+
+- <InlineMath math="\frac{8}{21}" /> adalah peluang tanpa pasangan, belum dikurangkan dari satu.
+- <InlineMath math="\frac47" /> hanya menghitung tepat satu pasang, yaitu <InlineMath math="120" /> cara, dan melupakan <InlineMath math="10" /> cara yang menghasilkan dua pasang.
+- <InlineMath math="\frac23" /> memilih satu pasang lalu dua kaus kaki bebas dari <InlineMath math="8" /> sisanya, yaitu <InlineMath math="5\cdot28=140" />. Ambilan dengan dua pasang terhitung dua kali.
+- <InlineMath math="\frac{41}{42}" /> lupa bahwa setiap motif terpilih punya dua pilihan kaus kaki, sehingga yang tanpa pasangan dihitung hanya <InlineMath math="5" /> cara.

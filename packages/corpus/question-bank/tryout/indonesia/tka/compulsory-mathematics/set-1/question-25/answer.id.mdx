@@ -1,19 +1,22 @@
-# Peluang irisan dulu
+# Peluang dalam bentuk r
 
-Hampir semua pernyataan bergantung pada <InlineMath math="P(A\cap B)" />, jadi **hitung irisannya dulu** dari rumus gabungan:
+Karena <InlineMath math="r" /> tidak diketahui, **tulis setiap peluang sebagai rumus dalam <InlineMath math="r" />**. Bola kedua bisa merah setelah bola pertama merah atau setelah bola pertama putih.
 
 <BlockMath math="\begin{aligned}
-P(A\cup B)&=P(A)+P(B)-P(A\cap B) \\
-0{,}7&=0{,}5+0{,}4-P(A\cap B) \\
-P(A\cap B)&=0{,}2
+P(A)&=\frac{r}{8} \\
+P(A\cap B)&=\frac{r}{8}\cdot\frac{r-1}{7}=\frac{r(r-1)}{56} \\
+P(B)&=\frac{r(r-1)}{56}+\frac{8-r}{8}\cdot\frac{r}{7}=\frac{7r}{56}=\frac{r}{8} \\
+P(B\mid A)&=\frac{r-1}{7}
 \end{aligned}" />
+
+Hasilnya **<InlineMath math="P(B)" /> sama dengan <InlineMath math="P(A)" />**. Masuk akal, karena sebelum apa pun dilihat, bola kedua sama acaknya dengan bola pertama.
 
 # Menilai setiap pernyataan
 
-- **Salah**: saling lepas berarti <InlineMath math="A" /> dan <InlineMath math="B" /> tidak bisa terjadi bersamaan, jadi <InlineMath math="P(A\cap B)=0" />. Di sini irisannya <InlineMath math="0{,}2" />.
-- **Benar**: saling bebas berarti <InlineMath math="P(A\cap B)=P(A)\cdot P(B)" />. Ternyata <InlineMath math="0{,}5\cdot0{,}4=0{,}2" />, sama dengan irisannya.
-- **Salah**: <InlineMath math="P(A\mid B)=\frac{P(A\cap B)}{P(B)}=\frac{0{,}2}{0{,}4}=0{,}5" />. Nilai <InlineMath math="0{,}4" /> adalah <InlineMath math="P(B)" />, bukan peluang bersyarat itu.
-- **Benar**: keduanya tidak terjadi adalah kebalikan dari "paling sedikit satu terjadi", jadi <InlineMath math="1-P(A\cup B)=1-0{,}7=0{,}3" />.
-- **Benar**: "tepat satu" adalah gabungan dikurangi bagian yang dua-duanya terjadi, <InlineMath math="0{,}7-0{,}2=0{,}5" />. Cek dengan cara lain: <InlineMath math="(0{,}5-0{,}2)+(0{,}4-0{,}2)=0{,}3+0{,}2=0{,}5" />.
+1. **Salah**. Kedua peluang sama, <InlineMath math="P(B)=P(A)=\frac r8" />.
+2. **Benar**. <InlineMath math="\frac{r-1}{7}<\frac r8" /> sama dengan <InlineMath math="8r-8<7r" />, yaitu <InlineMath math="r<8" />. Ini selalu terpenuhi.
+3. **Salah**. Peluang sewarna adalah <InlineMath math="\frac{r(r-1)+(8-r)(7-r)}{56}" />. Untuk <InlineMath math="r=4" /> nilainya <InlineMath math="\frac{24}{56}=\frac37" />, sedangkan untuk <InlineMath math="r=1" /> nilainya <InlineMath math="\frac{42}{56}=\frac34" />. Justru <InlineMath math="r=4" /> memberi peluang paling kecil.
+4. **Benar**. Saling bebas berarti <InlineMath math="P(B\mid A)=P(B)" />. Tetapi <InlineMath math="\frac{r-1}{7}" /> selalu lebih kecil daripada <InlineMath math="\frac r8" />, seperti di pernyataan kedua.
+5. **Benar**. <InlineMath math="P(A\mid B)=\frac{P(A\cap B)}{P(B)}" /> dan <InlineMath math="P(B\mid A)=\frac{P(A\cap B)}{P(A)}" />. Pembilangnya sama dan penyebutnya juga sama, karena <InlineMath math="P(A)=P(B)" />.
 
-Jadi, pernyataan yang benar adalah: kedua kejadian saling bebas, peluang keduanya tidak terjadi <InlineMath math="0{,}3" />, dan peluang tepat satu terjadi <InlineMath math="0{,}5" />.
+Jadi, pernyataan yang benar adalah pernyataan kedua, keempat, dan kelima.

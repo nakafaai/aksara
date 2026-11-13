@@ -12,25 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Kejadian $$A$$ dan $$B$$ saling lepas.",
+          label: "$$P(B)<P(A)$$",
         },
         {
           correct: true,
-          label: "Kejadian $$A$$ dan $$B$$ saling bebas.",
+          label: "$$P(B\\mid A)<P(A)$$",
         },
         {
           correct: false,
-          label: "$$P(A\\mid B)=0{,}4$$",
+          label: "Peluang kedua bola berwarna sama paling besar jika $$r=4$$.",
         },
         {
           correct: true,
-          label:
-            "Peluang kejadian $$A$$ dan kejadian $$B$$ sama-sama tidak terjadi adalah $$0{,}3$$.",
+          label: "Kejadian $$A$$ dan $$B$$ tidak saling bebas.",
         },
         {
           correct: true,
-          label:
-            "Peluang tepat satu dari kejadian $$A$$ dan $$B$$ terjadi adalah $$0{,}5$$.",
+          label: "$$P(A\\mid B)=P(B\\mid A)$$",
         },
       ],
     },

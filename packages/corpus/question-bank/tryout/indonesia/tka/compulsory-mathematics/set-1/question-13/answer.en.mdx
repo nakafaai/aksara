@@ -1,66 +1,39 @@
-# The shape of APQB
+# Two kinds of belt pieces
 
-A radius drawn to a point of tangency is always **perpendicular to the tangent line**. So <InlineMath math="AP" /> and <InlineMath math="BQ" /> are both perpendicular to <InlineMath math="PQ" />, which makes them parallel. The quadrilateral <InlineMath math="APQB" /> is a right trapezoid with parallel sides <InlineMath math="9" /> and <InlineMath math="4" />, and its height is <InlineMath math="PQ" />.
+The belt is made of **two straight pieces of equal length and two arcs**, one arc on each wheel. So you need two things: the length of one straight piece and the angle of each arc.
 
-<MathVisual
-  title="A trapezoid from two circles"
-  description={<>The large circle with centre <InlineMath math="A" /> touches a horizontal line at <InlineMath math="P" />. The small circle with centre <InlineMath math="B" /> touches the same line at <InlineMath math="Q" />. The two circles touch each other on the outside. The segments <InlineMath math="AP" /> and <InlineMath math="BQ" /> are perpendicular to the tangent line, and the segment <InlineMath math="AB" /> passes through the point where the circles touch.</>}
-  labels={{
-    a: <InlineMath math="A" />,
-    b: <InlineMath math="B" />,
-    p: <InlineMath math="P" />,
-    q: <InlineMath math="Q" />,
-    "radius-a": <InlineMath math="9" />,
-    "radius-b": <InlineMath math="4" />,
-    "tangent-length": <InlineMath math="12" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -10, max: 17 },
-      y: { min: -2, max: 19 },
-    },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      { id: "circle-a", kind: "circle", appearance: "primary", center: { x: 0, y: 9 }, radius: 9 },
-      { id: "circle-b", kind: "circle", appearance: "primary", center: { x: 2 * Math.sqrt(9 * 4), y: 4 }, radius: 4 },
-      { id: "tangent", kind: "line", appearance: "reference", through: [{ x: 0, y: 0 }, { x: 2 * Math.sqrt(9 * 4), y: 0 }] },
-      { id: "radius-a", kind: "segment", appearance: "highlight", from: { x: 0, y: 9 }, to: { x: 0, y: 0 } },
-      { id: "radius-b", kind: "segment", appearance: "highlight", from: { x: 2 * Math.sqrt(9 * 4), y: 4 }, to: { x: 2 * Math.sqrt(9 * 4), y: 0 } },
-      { id: "centres", kind: "segment", appearance: "secondary", from: { x: 0, y: 9 }, to: { x: 2 * Math.sqrt(9 * 4), y: 4 } },
-      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 9 } },
-      { id: "point-b", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(9 * 4), y: 4 } },
-      { id: "point-p", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
-      { id: "point-q", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(9 * 4), y: 0 } },
-    ],
-    labels: [
-      { key: "a", objectId: "point-a", at: { x: 0, y: 9 }, placement: "above-left" },
-      { key: "b", objectId: "point-b", at: { x: 2 * Math.sqrt(9 * 4), y: 4 }, placement: "above-right" },
-      { key: "p", objectId: "point-p", at: { x: 0, y: 0 }, placement: "below" },
-      { key: "q", objectId: "point-q", at: { x: 2 * Math.sqrt(9 * 4), y: 0 }, placement: "below" },
-      { key: "radius-a", objectId: "radius-a", at: { x: 0, y: 4.5 }, placement: "left" },
-      { key: "radius-b", objectId: "radius-b", at: { x: 2 * Math.sqrt(9 * 4), y: 2 }, placement: "right" },
-      { key: "tangent-length", objectId: "tangent", at: { x: Math.sqrt(9 * 4), y: 0 }, placement: "below" },
-    ],
-  }}
-/>
+# The length of a straight piece
 
-# The length of the tangent PQ
+A straight piece touches both wheels, so it's perpendicular to the radius at each point of contact. Slide that piece toward the centre of the small wheel by <InlineMath math="2" /> cm. **You get a right triangle** with hypotenuse <InlineMath math="12" /> (the distance between centres) and one side <InlineMath math="8-2=6" /> (the difference of the radii).
 
-The circles touch on the outside, so **the distance between the centres is the sum of the radii**, <InlineMath math="AB=9+4=13\text{ cm}" />. Draw a line from <InlineMath math="B" /> parallel to <InlineMath math="PQ" /> until it meets <InlineMath math="AP" />. That makes a right triangle with hypotenuse <InlineMath math="13" /> and one leg <InlineMath math="9-4=5" />:
+<BlockMath math="t=\sqrt{12^2-6^2}=\sqrt{108}=6\sqrt3" />
 
-<BlockMath math="PQ=\sqrt{13^2-5^2}=\sqrt{169-25}=\sqrt{144}=12\text{ cm}" />
+# The angle of each arc
 
-# The area of the trapezoid
+In that triangle, the side <InlineMath math="6" /> is half of the hypotenuse <InlineMath math="12" />, so **a <InlineMath math="30^\circ" /> angle appears**. That tilts each radius to a contact point <InlineMath math="30^\circ" /> away from the half-circle position. The belt wraps more than half of the big wheel and less than half of the small one.
 
-<BlockMath math="\text{area}=\frac{AP+BQ}{2}\cdot PQ=\frac{9+4}{2}\cdot12=78\text{ cm}^2" />
+<BlockMath math="\begin{aligned}
+\text{big wheel}&:\ 180^\circ+2\cdot30^\circ=240^\circ \\
+\text{small wheel}&:\ 180^\circ-2\cdot30^\circ=120^\circ
+\end{aligned}" />
 
-So **the area of <InlineMath math="APQB" /> is <InlineMath math="78\text{ cm}^2" />**.
+# The length of the belt
+
+An arc is the share of the circumference that matches its angle. **Add the two straight pieces and the two arcs**:
+
+<BlockMath math="\begin{aligned}
+\text{big arc}&=\tfrac{240}{360}\cdot2\pi\cdot8=\tfrac{32\pi}{3} \\
+\text{small arc}&=\tfrac{120}{360}\cdot2\pi\cdot2=\tfrac{4\pi}{3} \\
+\text{belt length}&=2\cdot6\sqrt3+\tfrac{32\pi}{3}+\tfrac{4\pi}{3}=12\sqrt3+12\pi
+\end{aligned}" />
+
+So the belt is <InlineMath math="(12\sqrt3+12\pi)" /> cm long.
 
 # Why the other options are wrong
 
-- <InlineMath math="156\text{ cm}^2" /> forgets to halve in the trapezoid area formula.
-- <InlineMath math="65\text{ cm}^2" /> is <InlineMath math="13\cdot5" />, the product of two sides of the helper triangle. **The area of the quadrilateral isn't the product of any two segments**.
-- <InlineMath math="54\text{ cm}^2" /> is only the triangle <InlineMath math="\frac12\cdot9\cdot12" />. The part below <InlineMath math="B" /> is missing.
-- <InlineMath math="84.5\text{ cm}^2" /> uses <InlineMath math="AB=13" /> as the height. The trapezoid's height is <InlineMath math="PQ" />, which is perpendicular to both parallel sides.
+Each wrong option **gets one part of the belt wrong**.
+
+- <InlineMath math="(12\sqrt3+8\pi)" /> cm swaps the arc angles, giving the big wheel <InlineMath math="120^\circ" /> and the small wheel <InlineMath math="240^\circ" />. But the belt hugs the big wheel more.
+- <InlineMath math="(6\sqrt3+12\pi)" /> cm counts only one straight piece, but there are two.
+- <InlineMath math="(4\sqrt{11}+12\pi)" /> cm uses the sum of the radii, <InlineMath math="8+2" />. That's for a crossed belt.
+- <InlineMath math="(12\sqrt3+10\pi)" /> cm assumes the belt wraps exactly half of each wheel. That's only true when both wheels are the same size.

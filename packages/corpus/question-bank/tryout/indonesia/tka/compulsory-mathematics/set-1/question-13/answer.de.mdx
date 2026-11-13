@@ -1,66 +1,39 @@
-# Die Form von APQB
+# Zwei Arten von Riemenstücken
 
-Ein Radius zum Berührpunkt steht immer **senkrecht auf der Tangente**. Also stehen <InlineMath math="AP" /> und <InlineMath math="BQ" /> beide senkrecht auf <InlineMath math="PQ" /> und sind deshalb parallel. Das Viereck <InlineMath math="APQB" /> ist ein rechtwinkliges Trapez mit den parallelen Seiten <InlineMath math="9" /> und <InlineMath math="4" />, und seine Höhe ist <InlineMath math="PQ" />.
+Der Riemen besteht aus **zwei gleich langen geraden Stücken und zwei Bögen**, ein Bogen an jedem Rad. Du brauchst also zwei Dinge: die Länge eines geraden Stücks und den Winkel jedes Bogens.
 
-<MathVisual
-  title="Ein Trapez aus zwei Kreisen"
-  description={<>Der große Kreis mit Mittelpunkt <InlineMath math="A" /> berührt eine waagerechte Gerade in <InlineMath math="P" />. Der kleine Kreis mit Mittelpunkt <InlineMath math="B" /> berührt dieselbe Gerade in <InlineMath math="Q" />. Die beiden Kreise berühren sich von außen. Die Strecken <InlineMath math="AP" /> und <InlineMath math="BQ" /> stehen senkrecht auf der Tangente, und die Strecke <InlineMath math="AB" /> geht durch den Berührpunkt der Kreise.</>}
-  labels={{
-    a: <InlineMath math="A" />,
-    b: <InlineMath math="B" />,
-    p: <InlineMath math="P" />,
-    q: <InlineMath math="Q" />,
-    "radius-a": <InlineMath math="9" />,
-    "radius-b": <InlineMath math="4" />,
-    "tangent-length": <InlineMath math="12" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -10, max: 17 },
-      y: { min: -2, max: 19 },
-    },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      { id: "circle-a", kind: "circle", appearance: "primary", center: { x: 0, y: 9 }, radius: 9 },
-      { id: "circle-b", kind: "circle", appearance: "primary", center: { x: 2 * Math.sqrt(9 * 4), y: 4 }, radius: 4 },
-      { id: "tangent", kind: "line", appearance: "reference", through: [{ x: 0, y: 0 }, { x: 2 * Math.sqrt(9 * 4), y: 0 }] },
-      { id: "radius-a", kind: "segment", appearance: "highlight", from: { x: 0, y: 9 }, to: { x: 0, y: 0 } },
-      { id: "radius-b", kind: "segment", appearance: "highlight", from: { x: 2 * Math.sqrt(9 * 4), y: 4 }, to: { x: 2 * Math.sqrt(9 * 4), y: 0 } },
-      { id: "centres", kind: "segment", appearance: "secondary", from: { x: 0, y: 9 }, to: { x: 2 * Math.sqrt(9 * 4), y: 4 } },
-      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 9 } },
-      { id: "point-b", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(9 * 4), y: 4 } },
-      { id: "point-p", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
-      { id: "point-q", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(9 * 4), y: 0 } },
-    ],
-    labels: [
-      { key: "a", objectId: "point-a", at: { x: 0, y: 9 }, placement: "above-left" },
-      { key: "b", objectId: "point-b", at: { x: 2 * Math.sqrt(9 * 4), y: 4 }, placement: "above-right" },
-      { key: "p", objectId: "point-p", at: { x: 0, y: 0 }, placement: "below" },
-      { key: "q", objectId: "point-q", at: { x: 2 * Math.sqrt(9 * 4), y: 0 }, placement: "below" },
-      { key: "radius-a", objectId: "radius-a", at: { x: 0, y: 4.5 }, placement: "left" },
-      { key: "radius-b", objectId: "radius-b", at: { x: 2 * Math.sqrt(9 * 4), y: 2 }, placement: "right" },
-      { key: "tangent-length", objectId: "tangent", at: { x: Math.sqrt(9 * 4), y: 0 }, placement: "below" },
-    ],
-  }}
-/>
+# Die Länge eines geraden Stücks
 
-# Die Länge der Tangentenstrecke PQ
+Ein gerades Stück berührt beide Räder, steht also an jedem Berührpunkt senkrecht auf dem Radius. Verschiebe das Stück um <InlineMath math="2" /> cm zum Mittelpunkt des kleinen Rades. **Es entsteht ein rechtwinkliges Dreieck** mit der Hypotenuse <InlineMath math="12" /> (Abstand der Mittelpunkte) und einer Kathete <InlineMath math="8-2=6" /> (Differenz der Radien).
 
-Die Kreise berühren sich von außen, also **ist der Abstand der Mittelpunkte die Summe der Radien**, <InlineMath math="AB=9+4=13\text{ cm}" />. Zieh von <InlineMath math="B" /> eine Parallele zu <InlineMath math="PQ" /> bis zur Strecke <InlineMath math="AP" />. So entsteht ein rechtwinkliges Dreieck mit Hypotenuse <InlineMath math="13" /> und einer Kathete <InlineMath math="9-4=5" />:
+<BlockMath math="t=\sqrt{12^2-6^2}=\sqrt{108}=6\sqrt3" />
 
-<BlockMath math="PQ=\sqrt{13^2-5^2}=\sqrt{169-25}=\sqrt{144}=12\text{ cm}" />
+# Der Winkel jedes Bogens
 
-# Der Flächeninhalt des Trapezes
+In diesem Dreieck ist die Seite <InlineMath math="6" /> halb so lang wie die Hypotenuse <InlineMath math="12" />, also **taucht ein Winkel von <InlineMath math="30^\circ" /> auf**. Dadurch ist jeder Radius zu einem Berührpunkt um <InlineMath math="30^\circ" /> gegenüber der Halbkreislage gedreht. Der Riemen umschlingt mehr als die Hälfte des großen Rades und weniger als die Hälfte des kleinen.
 
-<BlockMath math="\text{Fläche}=\frac{AP+BQ}{2}\cdot PQ=\frac{9+4}{2}\cdot12=78\text{ cm}^2" />
+<BlockMath math="\begin{aligned}
+\text{großes Rad}&:\ 180^\circ+2\cdot30^\circ=240^\circ \\
+\text{kleines Rad}&:\ 180^\circ-2\cdot30^\circ=120^\circ
+\end{aligned}" />
 
-Das Viereck <InlineMath math="APQB" /> **hat also den Flächeninhalt <InlineMath math="78\text{ cm}^2" />**.
+# Die Länge des Riemens
+
+Ein Bogen ist der Anteil des Umfangs, der zu seinem Winkel passt. **Addiere die zwei geraden Stücke und die zwei Bögen**:
+
+<BlockMath math="\begin{aligned}
+\text{großer Bogen}&=\tfrac{240}{360}\cdot2\pi\cdot8=\tfrac{32\pi}{3} \\
+\text{kleiner Bogen}&=\tfrac{120}{360}\cdot2\pi\cdot2=\tfrac{4\pi}{3} \\
+\text{Riemenlänge}&=2\cdot6\sqrt3+\tfrac{32\pi}{3}+\tfrac{4\pi}{3}=12\sqrt3+12\pi
+\end{aligned}" />
+
+Der Riemen ist also <InlineMath math="(12\sqrt3+12\pi)" /> cm lang.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="156\text{ cm}^2" /> vergisst das Halbieren in der Trapezformel.
-- <InlineMath math="65\text{ cm}^2" /> ist <InlineMath math="13\cdot5" />, das Produkt zweier Seiten des Hilfsdreiecks. **Die Fläche des Vierecks ist nicht das Produkt zweier beliebiger Strecken**.
-- <InlineMath math="54\text{ cm}^2" /> ist nur das Dreieck <InlineMath math="\frac12\cdot9\cdot12" />. Der Teil unter <InlineMath math="B" /> fehlt.
-- <InlineMath math="84{,}5\text{ cm}^2" /> nimmt <InlineMath math="AB=13" /> als Höhe. Die Höhe des Trapezes ist <InlineMath math="PQ" />, die senkrecht auf beiden parallelen Seiten steht.
+Jede falsche Antwort **macht bei einem Teil des Riemens einen Fehler**.
+
+- <InlineMath math="(12\sqrt3+8\pi)" /> cm vertauscht die Bogenwinkel und gibt dem großen Rad <InlineMath math="120^\circ" /> und dem kleinen <InlineMath math="240^\circ" />. Der Riemen liegt aber am großen Rad länger an.
+- <InlineMath math="(6\sqrt3+12\pi)" /> cm zählt nur ein gerades Stück, es sind aber zwei.
+- <InlineMath math="(4\sqrt{11}+12\pi)" /> cm benutzt die Summe der Radien, <InlineMath math="8+2" />. Das gilt für einen gekreuzten Riemen.
+- <InlineMath math="(12\sqrt3+10\pi)" /> cm nimmt an, dass der Riemen jedes Rad genau zur Hälfte umschlingt. Das stimmt nur, wenn beide Räder gleich groß sind.

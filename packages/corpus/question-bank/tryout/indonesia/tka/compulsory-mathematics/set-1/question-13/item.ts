@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$156\\text{ cm}^2$$",
+          label: "$$(12\\sqrt{3}+8\\pi)$$ cm",
         },
         {
           correct: false,
-          label: "$$65\\text{ cm}^2$$",
+          label: "$$(6\\sqrt{3}+12\\pi)$$ cm",
         },
         {
           correct: false,
-          label: "$$54\\text{ cm}^2$$",
+          label: "$$(4\\sqrt{11}+12\\pi)$$ cm",
         },
         {
           correct: false,
-          label: "$$84{,}5\\text{ cm}^2$$",
+          label: "$$(12\\sqrt{3}+10\\pi)$$ cm",
         },
         {
           correct: true,
-          label: "$$78\\text{ cm}^2$$",
+          label: "$$(12\\sqrt{3}+12\\pi)$$ cm",
         },
       ],
     },

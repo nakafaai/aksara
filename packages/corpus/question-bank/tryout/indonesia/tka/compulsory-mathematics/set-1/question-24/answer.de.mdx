@@ -1,26 +1,33 @@
-# Stell dir tausend Produkte vor
+# Alle Möglichkeiten zu ziehen
 
-**Prozente sind leichter zu verstehen, wenn du sie in Stückzahlen umrechnest**. Angenommen, die Fabrik stellt <InlineMath math="1{.}000" /> Produkte her.
+Die vier Socken werden gleichzeitig gezogen, die Reihenfolge spielt also keine Rolle. **Die Anzahl der Möglichkeiten, <InlineMath math="4" /> aus <InlineMath math="10" /> zu wählen**, ist:
 
-| Maschine | Produkte | Fehlerhaft |
-| :---: | :---: | :---: |
-| A | <InlineMath math="600" /> | <InlineMath math="3\,\%\cdot600=18" /> |
-| B | <InlineMath math="400" /> | <InlineMath math="5\,\%\cdot400=20" /> |
-| Summe | <InlineMath math="1{.}000" /> | <InlineMath math="38" /> |
+<BlockMath math="C(10,4)=\frac{10\cdot9\cdot8\cdot7}{4\cdot3\cdot2\cdot1}=210" />
 
-# Wahrscheinlichkeit unter der Bedingung fehlerhaft
+# Über das Gegenereignis
 
-Du weißt schon, dass das Produkt fehlerhaft ist. **Es zählen also nur die <InlineMath math="38" /> fehlerhaften Produkte**, nicht alle <InlineMath math="1{.}000" />. Von diesen <InlineMath math="38" /> kommen <InlineMath math="20" /> aus Maschine B:
+Mindestens ein Paar umfasst genau ein Paar und genau zwei Paare. Einfacher ist es, **das Gegenteil zu zählen**: gar kein Paar, also haben alle vier Socken verschiedene Muster.
 
-<BlockMath math="P(\text{B}\mid\text{fehlerhaft})=\frac{20}{38}=\frac{10}{19}\approx0{,}53" />
+Dafür wählst du zuerst <InlineMath math="4" /> der <InlineMath math="5" /> Muster. Dann nimmst du von jedem gewählten Muster eine seiner zwei Socken, links oder rechts.
 
-Probe: Für Maschine A ist die Wahrscheinlichkeit <InlineMath math="\frac{18}{38}=\frac9{19}" />, und <InlineMath math="\frac9{19}+\frac{10}{19}=1" />. Es passt auch, dass Maschine B etwas wahrscheinlicher ist, obwohl sie weniger herstellt, weil ihr Fehleranteil höher ist.
+<BlockMath math="\begin{aligned}
+\text{kein Paar}&=C(5,4)\cdot2^4=5\cdot16=80 \\
+P(\text{kein Paar})&=\frac{80}{210}=\frac{8}{21}
+\end{aligned}" />
 
-Die Wahrscheinlichkeit, dass das Produkt aus Maschine B stammt, ist also <InlineMath math="\frac{10}{19}" />.
+# Die gesuchte Wahrscheinlichkeit
+
+**Ziehe von eins ab**:
+
+<BlockMath math="P(\text{mindestens ein Paar})=1-\frac{8}{21}=\frac{13}{21}" />
+
+Die Wahrscheinlichkeit ist also <InlineMath math="\frac{13}{21}" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="\frac25" /> ist die Wahrscheinlichkeit, dass ein Produkt aus Maschine B stammt, **bevor** du weißt, dass es fehlerhaft ist. Die Information über den Fehler wird nicht benutzt.
-- <InlineMath math="\frac1{20}" /> ist die Wahrscheinlichkeit, dass ein Produkt aus Maschine B fehlerhaft ist, also die Bedingung in der falschen Richtung.
-- <InlineMath math="\frac1{50}" /> ist <InlineMath math="\frac{20}{1{.}000}" />, die Wahrscheinlichkeit, dass ein Produkt aus B stammt **und** fehlerhaft ist, gerechnet über alle Produkte.
-- <InlineMath math="\frac9{19}" /> ist die Wahrscheinlichkeit, dass das fehlerhafte Produkt aus Maschine A stammt.
+Jede falsche Antwort **hört zu früh auf oder zählt etwas doppelt**.
+
+- <InlineMath math="\frac{8}{21}" /> ist die Wahrscheinlichkeit für kein Paar, noch nicht von eins abgezogen.
+- <InlineMath math="\frac47" /> zählt nur genau ein Paar, also <InlineMath math="120" /> Möglichkeiten, und vergisst die <InlineMath math="10" /> Möglichkeiten mit zwei Paaren.
+- <InlineMath math="\frac23" /> wählt ein Paar und dann zwei beliebige der übrigen <InlineMath math="8" /> Socken, also <InlineMath math="5\cdot28=140" />. Ziehungen mit zwei Paaren werden dabei doppelt gezählt.
+- <InlineMath math="\frac{41}{42}" /> vergisst, dass jedes gewählte Muster zwei Socken zur Auswahl hat, und zählt deshalb nur <InlineMath math="5" /> Möglichkeiten ohne Paar.

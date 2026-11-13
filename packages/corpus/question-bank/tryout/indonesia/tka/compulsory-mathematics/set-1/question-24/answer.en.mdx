@@ -1,26 +1,33 @@
-# Picture a thousand products
+# All the ways to draw
 
-**Percentages are easier to follow as numbers of items**. Suppose the factory makes <InlineMath math="1{,}000" /> products.
+The four socks are taken at once, so order doesn't matter. **The number of ways to choose <InlineMath math="4" /> from <InlineMath math="10" />** is:
 
-| Machine | Products | Defective |
-| :---: | :---: | :---: |
-| A | <InlineMath math="600" /> | <InlineMath math="3\%\cdot600=18" /> |
-| B | <InlineMath math="400" /> | <InlineMath math="5\%\cdot400=20" /> |
-| Total | <InlineMath math="1{,}000" /> | <InlineMath math="38" /> |
+<BlockMath math="C(10,4)=\frac{10\cdot9\cdot8\cdot7}{4\cdot3\cdot2\cdot1}=210" />
 
-# Probability given a defect
+# Through the opposite event
 
-You're told the product is defective. So **only the <InlineMath math="38" /> defective products count**, not all <InlineMath math="1{,}000" />. Of those <InlineMath math="38" />, <InlineMath math="20" /> come from machine B:
+At least one pair covers exactly one pair and exactly two pairs. It's easier to **count the opposite**: no pair at all, which means all four socks have different patterns.
 
-<BlockMath math="P(\text{B}\mid\text{defective})=\frac{20}{38}=\frac{10}{19}\approx0.53" />
+For that, first choose <InlineMath math="4" /> patterns out of <InlineMath math="5" />. Then from each chosen pattern take one of its two socks, left or right.
 
-Check: the probability for machine A is <InlineMath math="\frac{18}{38}=\frac9{19}" />, and <InlineMath math="\frac9{19}+\frac{10}{19}=1" />. It also makes sense that machine B is a little more likely even though it makes fewer products, because its defect rate is higher.
+<BlockMath math="\begin{aligned}
+\text{no pair}&=C(5,4)\cdot2^4=5\cdot16=80 \\
+P(\text{no pair})&=\frac{80}{210}=\frac{8}{21}
+\end{aligned}" />
 
-So the probability that the product came from machine B is <InlineMath math="\frac{10}{19}" />.
+# The probability you want
+
+**Subtract from one**:
+
+<BlockMath math="P(\text{at least one pair})=1-\frac{8}{21}=\frac{13}{21}" />
+
+So the probability is <InlineMath math="\frac{13}{21}" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="\frac25" /> is the probability that a product comes from machine B **before** you know it's defective. The defect information isn't used.
-- <InlineMath math="\frac1{20}" /> is the probability that a product from machine B is defective, which is the condition the wrong way round.
-- <InlineMath math="\frac1{50}" /> is <InlineMath math="\frac{20}{1{,}000}" />, the probability that a product comes from B **and** is defective, counted out of all products.
-- <InlineMath math="\frac9{19}" /> is the probability that the defective product came from machine A.
+Each wrong option **stops too early or counts something twice**.
+
+- <InlineMath math="\frac{8}{21}" /> is the probability of no pair, before subtracting it from one.
+- <InlineMath math="\frac47" /> counts only exactly one pair, <InlineMath math="120" /> ways, and forgets the <InlineMath math="10" /> ways that give two pairs.
+- <InlineMath math="\frac23" /> picks one pair and then any two of the other <InlineMath math="8" /> socks, <InlineMath math="5\cdot28=140" />. Draws with two pairs get counted twice.
+- <InlineMath math="\frac{41}{42}" /> forgets that each chosen pattern has two socks to pick from, so it counts only <InlineMath math="5" /> ways with no pair.
