@@ -29,6 +29,12 @@ export const tanzilTextAttribution = QuranEmbeddedSourceAttributionSchema.make({
         "Der Qurantext von Tanzil liegt in uthmanischer Schrift, Version 1.1, vor. Er steht unter der Lizenz Creative Commons Namensnennung 3.0 und wird unverändert wiedergegeben. Copyright (C) 2007-2026 Tanzil Project.",
       title: "Tanzil-Qurantext in uthmanischer Schrift",
     },
+    {
+      appLocale: AppLocaleSchema.make("ms"),
+      notice:
+        "Teks Al-Quran Tanzil (Uthmani, Versi 1.1). Hak cipta (C) 2007-2026 Projek Tanzil. Creative Commons Attribution 3.0. Diedarkan tanpa perubahan; teks ini tidak boleh diubah.",
+      title: "Teks Al-Quran Tanzil (Uthmani)",
+    },
   ],
   id: "tanzil-text",
   kind: "embedded",
@@ -70,6 +76,12 @@ export const tanzilMetadataAttribution =
         notice:
           "Die Quran-Metadaten, Version 1.0, enthalten arabische Surennamen, englische Transliteration und englische Namensbedeutungen. Die Originaldatei nennt Creative Commons Namensnennung als Lizenz. Copyright (C) 2008-2009 Tanzil.info.",
         title: "Quran-Metadaten",
+      },
+      {
+        appLocale: AppLocaleSchema.make("ms"),
+        notice:
+          "Metadata Al-Quran, Versi 1.0, memberikan nama surah dalam bahasa Arab, transliterasi Inggeris dan maksud nama dalam bahasa Inggeris. Hak cipta (C) 2008-2009 Tanzil.info. Artifak rasmi menyatakan lesen CC BY.",
+        title: "Metadata Al-Quran",
       },
     ],
     id: "tanzil-metadata",

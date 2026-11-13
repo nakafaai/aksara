@@ -67,6 +67,7 @@ export type ParsedMetadata = typeof ParsedMetadataSchema.Type;
 export const RawSourcesSchema = Schema.Struct({
   arabic: Schema.String,
   metadata: Schema.String,
+  responseTranslations: localizedSourceMapSchema(Schema.Array(Schema.String)),
   tafsir: Schema.Array(Schema.String),
   translations: localizedSourceMapSchema(Schema.String),
 });

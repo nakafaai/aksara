@@ -101,7 +101,12 @@ export const parseQuranMetadata = Effect.fn("AksaraCorpus.parseQuranMetadata")(
       MutableList.append<SurahMetadata>(surahRows, {
         name: {
           arabic: name,
-          meaning: { de: localizedName.de, en: meaning, id: localizedName.id },
+          meaning: {
+            de: localizedName.de,
+            en: meaning,
+            id: localizedName.id,
+            ms: localizedName.ms,
+          },
           transliteration,
         },
         number,

@@ -7,7 +7,7 @@ import {
 } from "#corpus/quran/names";
 
 describe("Quran surah names", () => {
-  it.effect("decodes all reviewed Indonesian and German source values", () =>
+  it.effect("decodes all reviewed Indonesian, German and Malay source values", () =>
     Effect.gen(function* () {
       const names = yield* readQuranSurahNames();
 
@@ -17,18 +17,22 @@ describe("Quran surah names", () => {
       expect(Option.getOrUndefined(MutableHashMap.get(names, 2))).toEqual({
         de: "Die Kuh",
         id: "Sapi",
+        ms: "Lembu Betina",
       });
       expect(Option.getOrUndefined(MutableHashMap.get(names, 46))).toEqual({
         de: "Die Dünen",
         id: "Ahqaf",
+        ms: "Bukit-bukit Pasir",
       });
       expect(Option.getOrUndefined(MutableHashMap.get(names, 108))).toEqual({
         de: "Die Fülle",
         id: "Nikmat yang Banyak",
+        ms: "Nikmat yang Banyak",
       });
       expect(Option.getOrUndefined(MutableHashMap.get(names, 114))).toEqual({
         de: "Die Menschen",
         id: "Manusia",
+        ms: "Manusia",
       });
     })
   );
@@ -36,7 +40,7 @@ describe("Quran surah names", () => {
   it.effect("rejects an incomplete source inventory with a typed failure", () =>
     Effect.gen(function* () {
       const error = yield* decodeQuranSurahNames([
-        [1, "Pembuka", "Die Eröffnende"],
+        [1, "Pembuka", "Die Eröffnende", "Pembukaan"],
       ]).pipe(Effect.flip);
 
       expect(error).toMatchObject({

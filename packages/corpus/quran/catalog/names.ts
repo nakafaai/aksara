@@ -28,6 +28,12 @@ export const kemenagNamesAttribution =
           "Alle 114 indonesischen Bedeutungen der Surennamen stammen aus dem offiziellen LPMQ-Archiv der überarbeiteten Koranübersetzung von 2019, Version 4. Nur die Großschreibung für die Anzeige wurde normalisiert.",
         title: "Indonesische Surennamen-Bedeutungen von LPMQ",
       },
+      {
+        appLocale: AppLocaleSchema.make("ms"),
+        notice:
+          "Kesemua 114 maksud nama surah dalam bahasa Indonesia diambil daripada arkib terjemahan rasmi LPMQ yang disemak pada 2019, versi 4. Huruf besar dipaparkan secara seragam tanpa mengubah perkataannya.",
+        title: "Maksud nama surah bahasa Indonesia daripada LPMQ",
+      },
     ],
     id: "kemenag-names",
     kind: "embedded",
@@ -67,6 +73,12 @@ export const bubenheimNamesAttribution =
           "Alle 114 deutschen Surenüberschriften und die in den Quellfußnoten genannten Bedeutungen folgen der offiziellen Ausgabe von Bubenheim und Elyas, herausgegeben vom König-Fahd-Komplex. Eigennamen bleiben wie in dieser Ausgabe unübersetzt.",
         title: "Deutsche Surennamen aus der Bubenheim-Ausgabe",
       },
+      {
+        appLocale: AppLocaleSchema.make("ms"),
+        notice:
+          "Kesemua 114 tajuk surah dalam bahasa Jerman dan maksud yang dinyatakan dalam nota kaki sumbernya mengikut edisi rasmi Bubenheim dan Elyas terbitan Kompleks Raja Fahd. Tajuk yang berupa nama khas kekal tidak diterjemahkan, sama seperti dalam edisi itu.",
+        title: "Nama surah bahasa Jerman daripada edisi Bubenheim",
+      },
     ],
     id: "bubenheim-names",
     kind: "embedded",
@@ -82,3 +94,49 @@ export const bubenheimNamesAttribution =
       "https://api3.islamhouse.com/v3/paV29H2gm56kvLPy/main/get-item/59081/de/json",
     version: "islamhouse-attachment-1590725541",
   });
+
+/** Nakafa's reviewed record of the 114 Malay surah-name meanings. */
+export const nakafaMalayNamesAttribution =
+  QuranEmbeddedSourceAttributionSchema.make({
+    artifact: { ...QURAN_SOURCE_POLICY.data.names.ms.artifact },
+    copy: [
+      {
+        appLocale: AppLocaleSchema.make("en"),
+        notice:
+          "No official Malaysian edition lists all 114 surah-name meanings, so Nakafa wrote the Malay values from the Arabic names and reviewed each one against the Tanzil English and LPMQ Indonesian meanings.",
+        title: "Malay surah-name meanings by Nakafa",
+      },
+      {
+        appLocale: AppLocaleSchema.make("id"),
+        notice:
+          "Belum ada edisi resmi Malaysia yang memuat makna ke-114 nama surah, jadi Nakafa menulis makna berbahasa Melayu dari nama Arabnya dan meninjau masing-masing terhadap makna bahasa Inggris dari Tanzil dan makna bahasa Indonesia dari LPMQ.",
+        title: "Makna nama surah berbahasa Melayu dari Nakafa",
+      },
+      {
+        appLocale: AppLocaleSchema.make("de"),
+        notice:
+          "Keine offizielle malaysische Ausgabe nennt die Bedeutungen aller 114 Surennamen. Deshalb hat Nakafa die malaiischen Bedeutungen aus den arabischen Namen geschrieben und jede mit den englischen Bedeutungen von Tanzil und den indonesischen von LPMQ abgeglichen.",
+        title: "Malaiische Surennamen von Nakafa",
+      },
+      {
+        appLocale: AppLocaleSchema.make("ms"),
+        notice:
+          "Tiada edisi rasmi Malaysia yang menyenaraikan maksud kesemua 114 nama surah, jadi Nakafa menulis maksud dalam bahasa Melayu daripada nama Arabnya dan menyemak setiap satu dengan maksud bahasa Inggeris daripada Tanzil dan maksud bahasa Indonesia daripada LPMQ.",
+        title: "Maksud nama surah bahasa Melayu oleh Nakafa",
+      },
+    ],
+    id: "nakafa-malay-names",
+    kind: "embedded",
+    publisher: "Nakafa",
+    retrievedAt: "2026-11-13T15:30:00Z",
+    sourceUrl:
+      "https://github.com/nakafaai/aksara/blob/main/packages/corpus/quran/sources/nakafa/names.md",
+    terms: {
+      artifact: { ...QURAN_SOURCE_POLICY.terms.nakafa.artifact },
+      url: "https://github.com/nakafaai/aksara/blob/main/LICENSE",
+    },
+    updateUrl:
+      "https://github.com/nakafaai/aksara/commits/main/packages/corpus/quran/sources/nakafa/names.md",
+    version: "2026-11-13",
+  });
+

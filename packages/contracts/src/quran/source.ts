@@ -57,8 +57,18 @@ export function quranSourceFileCount(activeAppLocales: ActiveAppLocaleList) {
   )
     ? QURAN_SURAH_COUNT
     : 0;
+  // The Malay translation is pinned as one QuranEnc response per surah.
+  const translationFileCount = Arr.reduce(
+    activeAppLocales,
+    0,
+    (count, appLocale) =>
+      count +
+      (quranTranslationSourceId(appLocale) === "quranenc-malay"
+        ? QURAN_SURAH_COUNT
+        : 1)
+  );
   return (
-    2 + activeAppLocales.length + supplementalNameFileCount + tafsirFileCount
+    2 + translationFileCount + supplementalNameFileCount + tafsirFileCount
   );
 }
 

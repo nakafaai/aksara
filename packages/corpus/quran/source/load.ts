@@ -30,7 +30,7 @@ import {
   QURAN_SOURCE_POLICY,
   sha256Hex,
 } from "#corpus/quran/source/policy";
-import { readTafsirSources } from "#corpus/quran/source/tafsir";
+import { readQuranEncResponses } from "#corpus/quran/source/responses";
 
 const LoadedQuranSourcesSchema = Schema.Struct({
   sources: RawSourcesSchema,
@@ -182,8 +182,14 @@ export const loadPinnedQuranSources = Effect.fn(
         sourceRoot,
         QURAN_SOURCE_POLICY.data.names.id
       ),
+      ms: readPinnedFile(
+        fileSystem,
+        path,
+        sourceRoot,
+        QURAN_SOURCE_POLICY.data.names.ms
+      ),
     },
-    { concurrency: 2 }
+    { concurrency: 3 }
   );
   yield* Effect.forEach(
     Record.values(QURAN_SOURCE_POLICY.evidence),
@@ -195,7 +201,20 @@ export const loadPinnedQuranSources = Effect.fn(
     (source) => readPinnedFile(fileSystem, path, sourceRoot, source),
     { concurrency: 2, discard: true }
   );
-  const tafsir = yield* readTafsirSources(fileSystem, path, sourceRoot);
+  const tafsir = yield* readQuranEncResponses(
+    fileSystem,
+    path,
+    sourceRoot,
+    QURAN_SOURCE_POLICY.tafsir,
+    "Tafsir"
+  );
+  const malay = yield* readQuranEncResponses(
+    fileSystem,
+    path,
+    sourceRoot,
+    QURAN_SOURCE_POLICY.malayTranslation,
+    "Malay translation"
+  );
 
   const bundle = MutableList.make<Uint8Array>();
   MutableList.append(
@@ -208,6 +227,7 @@ export const loadPinnedQuranSources = Effect.fn(
     [QURAN_SOURCE_POLICY.data.metadata.name, dataBytes.metadata.bytes],
     [QURAN_SOURCE_POLICY.data.names.id.name, names.id],
     [QURAN_SOURCE_POLICY.data.names.de.name, names.de],
+    [QURAN_SOURCE_POLICY.data.names.ms.name, names.ms],
     [QURAN_SOURCE_POLICY.data.translations.en.name, translations.en.bytes],
     [QURAN_SOURCE_POLICY.data.translations.id.name, translations.id.bytes],
     [QURAN_SOURCE_POLICY.data.translations.de.name, translations.de.bytes],
@@ -218,15 +238,17 @@ export const loadPinnedQuranSources = Effect.fn(
     }
     byteCount += bytes.byteLength;
   }
-  Arr.forEach(tafsir.sourceBytes, (bytes, index) => {
-    for (const part of bundleParts(
-      `${QURAN_SOURCE_POLICY.tafsir.name}/${index + 1}.json`,
-      bytes
-    )) {
-      MutableList.append(bundle, part);
-    }
-    byteCount += bytes.byteLength;
-  });
+  for (const [bundleName, responses] of [
+    [QURAN_SOURCE_POLICY.tafsir.name, tafsir.sourceBytes],
+    [QURAN_SOURCE_POLICY.malayTranslation.name, malay.sourceBytes],
+  ] as const) {
+    Arr.forEach(responses, (bytes, index) => {
+      for (const part of bundleParts(`${bundleName}/${index + 1}.json`, bytes)) {
+        MutableList.append(bundle, part);
+      }
+      byteCount += bytes.byteLength;
+    });
+  }
   const digest = yield* digestBundle(MutableList.toArray(bundle));
   const summary = QuranSourceArtifactSchema.make({
     byteCount,
@@ -237,6 +259,7 @@ export const loadPinnedQuranSources = Effect.fn(
     sources: {
       arabic: dataBytes.arabic.text,
       metadata: dataBytes.metadata.text,
+      responseTranslations: { ms: malay.sources },
       tafsir: tafsir.sources,
       translations: mapLocalizedSource(translations, ({ text }) => text),
     },

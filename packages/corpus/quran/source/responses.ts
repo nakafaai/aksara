@@ -3,22 +3,27 @@ import { bundleParts, digestBundle } from "#corpus/quran/source/bundle";
 import { decodeSource } from "#corpus/quran/source/decode";
 import { QuranSourceFileError } from "#corpus/quran/source/failure";
 import {
-  QURAN_SOURCE_POLICY,
-  QURAN_TAFSIR_BUNDLE_DOMAIN,
+  type QuranApiBundle,
+  QURANENC_BUNDLE_DOMAIN,
 } from "#corpus/quran/source/policy";
 
-/** Reads the exact 114 QuranEnc responses and authenticates their bundle. */
-export const readTafsirSources = Effect.fn(
-  "AksaraCorpus.readPinnedQuranTafsir"
+/**
+ * Reads the exact 114 QuranEnc responses of one pinned bundle (the Indonesian
+ * Tafsir, the Malay translation) and authenticates them as one identity.
+ */
+export const readQuranEncResponses = Effect.fn(
+  "AksaraCorpus.readPinnedQuranEncResponses"
 )(function* (
   fileSystem: FileSystem.FileSystem,
   path: Path.Path,
-  sourceRoot: string
+  sourceRoot: string,
+  bundle: QuranApiBundle,
+  label: string
 ) {
   const parts = MutableList.make<Uint8Array>();
   MutableList.append(
     parts,
-    new TextEncoder().encode(`${QURAN_TAFSIR_BUNDLE_DOMAIN}\n`)
+    new TextEncoder().encode(`${QURANENC_BUNDLE_DOMAIN}\n`)
   );
   const sourceBytes = MutableList.make<Uint8Array>();
   const sources = MutableList.make<string>();
@@ -26,12 +31,10 @@ export const readTafsirSources = Effect.fn(
   for (let number = 1; number <= 114; number += 1) {
     const name = `${number}.json`;
     const bytes = yield* Effect.mapError(
-      fileSystem.readFile(
-        path.join(sourceRoot, QURAN_SOURCE_POLICY.tafsir.directory, name)
-      ),
+      fileSystem.readFile(path.join(sourceRoot, bundle.directory, name)),
       () =>
         new QuranSourceFileError({
-          detail: `Could not read QuranEnc Tafsir source ${name}.`,
+          detail: `Could not read QuranEnc ${label} source ${name}.`,
         })
     );
     const text = yield* decodeSource(name, bytes);
@@ -42,14 +45,13 @@ export const readTafsirSources = Effect.fn(
     MutableList.append(sourceBytes, bytes);
     MutableList.append(sources, text);
   }
-  const expected = QURAN_SOURCE_POLICY.tafsir.artifact;
   const digest = yield* digestBundle(MutableList.toArray(parts));
   if (
-    byteCount !== expected.byteCount ||
-    digest !== expected.digest.slice("sha256:".length)
+    byteCount !== bundle.artifact.byteCount ||
+    digest !== bundle.artifact.digest.slice("sha256:".length)
   ) {
     return yield* new QuranSourceFileError({
-      detail: "Pinned QuranEnc Tafsir bundle drifted.",
+      detail: `Pinned QuranEnc ${label} bundle drifted.`,
     });
   }
   return {

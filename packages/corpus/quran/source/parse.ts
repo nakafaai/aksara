@@ -129,11 +129,16 @@ const parseTranslation = Effect.fn("AksaraCorpus.parseQuranTranslation")(
   }
 );
 
-/** Parses exact QuranEnc Al-Mukhtasar API responses in canonical order. */
-const parseTafsir = Effect.fn("AksaraCorpus.parseQuranTafsir")(function* (
-  sources: readonly string[],
-  metadata: readonly SurahMetadata[]
-) {
+/**
+ * Parses one bundle of exact QuranEnc API responses (the Indonesian Tafsir,
+ * the Malay translation) into one text and its notes per verse, in order.
+ */
+const parseQuranEncResponses = Effect.fn("AksaraCorpus.parseQuranEncResponses")(
+  function* (
+    sources: readonly string[],
+    metadata: readonly SurahMetadata[],
+    label: string
+  ) {
   const tafsirRows = MutableList.make<Tafsir>();
   yield* Effect.forEach(
     sources,
@@ -151,7 +156,7 @@ const parseTafsir = Effect.fn("AksaraCorpus.parseQuranTafsir")(function* (
         const expected = metadata[surahIndex];
         if (!expected || response.result.length !== expected.numberOfVerses) {
           return yield* quranGenerationFailure(
-            `Incomplete QuranEnc tafsir surah ${surahIndex + 1}.`
+            `Incomplete QuranEnc ${label} surah ${surahIndex + 1}.`
           );
         }
         yield* Effect.forEach(
@@ -164,7 +169,7 @@ const parseTafsir = Effect.fn("AksaraCorpus.parseQuranTafsir")(function* (
                 row.translation.length === 0
               ) {
                 return yield* quranGenerationFailure(
-                  `Invalid QuranEnc tafsir verse ${surahIndex + 1}:${verseIndex + 1}.`
+                  `Invalid QuranEnc ${label} verse ${surahIndex + 1}:${verseIndex + 1}.`
                 );
               }
               MutableList.append(tafsirRows, {
@@ -179,9 +184,29 @@ const parseTafsir = Effect.fn("AksaraCorpus.parseQuranTafsir")(function* (
   );
   const tafsir = MutableList.toArray(tafsirRows);
   if (tafsir.length !== EXPECTED_VERSES) {
-    return yield* quranGenerationFailure("QuranEnc tafsir is incomplete.");
+    return yield* quranGenerationFailure(`QuranEnc ${label} is incomplete.`);
   }
   return tafsir;
+  }
+);
+
+/** Parses one QuranEnc response bundle into checked translation rows. */
+const parseResponseTranslation = Effect.fn(
+  "AksaraCorpus.parseQuranResponseTranslation"
+)(function* (sources: readonly string[], metadata: readonly SurahMetadata[]) {
+  const rows = yield* parseQuranEncResponses(sources, metadata, "translation");
+  return yield* Effect.forEach(rows, ({ footnotes, text }, index) =>
+    Schema.decodeEffect(QuranTranslationSchema)(
+      { footnotes: footnotes ?? "", text },
+      { onExcessProperty: "error" }
+    ).pipe(
+      Effect.mapError(() =>
+        quranGenerationFailure(
+          `Invalid QuranEnc translation notes at verse ${index + 1}.`
+        )
+      )
+    )
+  );
 });
 
 /** Decodes every pinned source into the exact generated surah model. */
@@ -201,11 +226,20 @@ export const parseQuranSources = Effect.fn("AksaraCorpus.parseQuranSources")(
     ) {
       return yield* quranGenerationFailure("Tanzil Arabic text is incomplete.");
     }
-    const translations = yield* traverseLocalizedSources(
+    const xmlTranslations = yield* traverseLocalizedSources(
       sources.translations,
       (source) => parseTranslation(source, metadata.surahs)
     );
-    const tafsir = yield* parseTafsir(sources.tafsir, metadata.surahs);
+    const responseTranslations = yield* traverseLocalizedSources(
+      sources.responseTranslations,
+      (responses) => parseResponseTranslation(responses, metadata.surahs)
+    );
+    const translations = { ...xmlTranslations, ...responseTranslations };
+    const tafsir = yield* parseQuranEncResponses(
+      sources.tafsir,
+      metadata.surahs,
+      "tafsir"
+    );
 
     const surahRows = MutableList.make<Surah>();
     for (const surah of metadata.surahs) {
@@ -224,7 +258,6 @@ export const parseQuranSources = Effect.fn("AksaraCorpus.parseQuranSources")(
         );
         const englishText = translation.en;
         const indonesianText = translation.id;
-        const germanText = translation.de;
         const tafsirText = tafsir[position - 1];
         if (
           !(
@@ -243,10 +276,11 @@ export const parseQuranSources = Effect.fn("AksaraCorpus.parseQuranSources")(
             `Incomplete merged Quran verse ${surah.number}:${index + 1}.`
           );
         }
-        const verseTranslation =
-          germanText === undefined
-            ? { en: englishText, id: indonesianText }
-            : { de: germanText, en: englishText, id: indonesianText };
+        const verseTranslation = {
+          ...translation,
+          en: englishText,
+          id: indonesianText,
+        };
         MutableList.append(verseRows, {
           meta: {
             hizbQuarter,
