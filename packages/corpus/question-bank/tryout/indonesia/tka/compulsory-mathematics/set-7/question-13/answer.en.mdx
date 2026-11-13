@@ -1,10 +1,27 @@
-Translations, rotations, and reflections are **isometries**: they only move, turn, or flip a figure without changing its side lengths. A dilation with scale factor <InlineMath math="k" /> multiplies every length by <InlineMath math="|k|" />, so the size changes exactly when <InlineMath math="|k|\ne1" />.
+# Two mirrors make one rotation
 
-<BlockMath math="\left|\tfrac12\right|=\tfrac12\ne1,\qquad|-1|=1" />
+The question asks for the image of <InlineMath math="P" /> after applying <InlineMath math="T" /> three times. You don't need to reflect six times one by one, because **two reflections in two intersecting lines make one rotation**.
 
-So the dilation with centre <InlineMath math="(2,0)" /> and scale factor <InlineMath math="\frac12" /> gives an image of a different size, with every length halved.
+Both lines pass through the origin <InlineMath math="O" />. Line <InlineMath math="g" /> makes an angle of <InlineMath math="45^\circ" /> with the positive <InlineMath math="x" />-axis, since its gradient is <InlineMath math="1" />. Line <InlineMath math="h" /> makes an angle of <InlineMath math="60^\circ" />, since its gradient is <InlineMath math="\sqrt3=\tan60^\circ" />.
 
-- The translation by <InlineMath math="\begin{pmatrix}3\\-2\end{pmatrix}" /> only slides the figure.
-- The <InlineMath math="90^\circ" /> rotation only turns the figure, wherever its centre is.
-- The reflection in <InlineMath math="y=x" /> only flips the figure.
-- The dilation with factor <InlineMath math="-1" /> flips the figure through <InlineMath math="O" />, but <InlineMath math="|-1|=1" />, so its size stays the same.
+The rule: the first mirror followed by the second mirror is a rotation about the point where they meet, through **twice** the angle from the first line to the second, in the direction from the first line towards the second.
+
+<BlockMath math="\begin{aligned}
+\text{angle from } g \text{ to } h&=60^\circ-45^\circ=15^\circ \\
+T&=\text{rotation through } 2\cdot15^\circ=30^\circ \text{ anticlockwise}
+\end{aligned}" />
+
+# Three rotations
+
+Applying <InlineMath math="T" /> three times means turning <InlineMath math="3\cdot30^\circ=90^\circ" /> anticlockwise about <InlineMath math="O" />. A <InlineMath math="90^\circ" /> rotation turns <InlineMath math="(x,y)" /> into <InlineMath math="(-y,x)" />.
+
+<BlockMath math="P(4,2)\ \longmapsto\ (-2,4)" />
+
+As a check, **the distance to the centre doesn't change**, <InlineMath math="\sqrt{16+4}=\sqrt{4+16}" />, and the dot product <InlineMath math="(4,2)\cdot(-2,4)=-8+8=0" />, so the turn really is a right angle.
+
+So the final image of <InlineMath math="P" /> is <InlineMath math="(-2,4)" />.
+
+- <InlineMath math="(2,-4)" /> comes from swapping the order, reflecting in <InlineMath math="h" /> first and then <InlineMath math="g" />. The rotation then goes clockwise.
+- <InlineMath math="(\sqrt2,\ 3\sqrt2)" /> forgets to double the angle, so each <InlineMath math="T" /> counts as <InlineMath math="15^\circ" /> and the total is only <InlineMath math="45^\circ" />.
+- <InlineMath math="(-4,-2)" /> treats each single reflection as a <InlineMath math="30^\circ" /> rotation, so six reflections give <InlineMath math="180^\circ" />.
+- <InlineMath math="(2\sqrt3-1,\ \sqrt3+2)" /> applies <InlineMath math="T" /> only once, a <InlineMath math="30^\circ" /> rotation.

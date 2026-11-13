@@ -1,10 +1,27 @@
-Translasi, rotasi, dan pencerminan adalah **isometri**: ketiganya hanya memindahkan, memutar, atau membalik bangun tanpa mengubah panjang sisinya. Dilatasi dengan faktor skala <InlineMath math="k" /> mengubah setiap panjang menjadi <InlineMath math="|k|" /> kali panjang semula, jadi ukurannya berubah tepat jika <InlineMath math="|k|\ne1" />.
+# Dua cermin menjadi satu rotasi
 
-<BlockMath math="\left|\tfrac12\right|=\tfrac12\ne1,\qquad|-1|=1" />
+Soal ini menanyakan bayangan <InlineMath math="P" /> setelah <InlineMath math="T" /> dikerjakan tiga kali. Kamu tidak perlu mencerminkan enam kali satu per satu, karena **dua pencerminan terhadap dua garis yang berpotongan sama dengan satu rotasi**.
 
-Jadi, dilatasi dengan pusat <InlineMath math="(2,0)" /> dan faktor skala <InlineMath math="\frac12" /> menghasilkan bayangan yang ukurannya berbeda, yaitu setiap panjang menjadi setengahnya.
+Kedua garis melalui titik asal <InlineMath math="O" />. Garis <InlineMath math="g" /> membentuk sudut <InlineMath math="45^\circ" /> dengan sumbu <InlineMath math="x" /> positif, karena gradiennya <InlineMath math="1" />. Garis <InlineMath math="h" /> membentuk sudut <InlineMath math="60^\circ" />, karena gradiennya <InlineMath math="\sqrt3=\tan60^\circ" />.
 
-- Translasi oleh <InlineMath math="\begin{pmatrix}3\\-2\end{pmatrix}" /> hanya menggeser bangun.
-- Rotasi <InlineMath math="90^\circ" /> hanya memutar bangun, apa pun pusatnya.
-- Pencerminan terhadap <InlineMath math="y=x" /> hanya membalik bangun.
-- Dilatasi dengan faktor <InlineMath math="-1" /> membalik bangun melalui <InlineMath math="O" />, tetapi <InlineMath math="|-1|=1" />, jadi ukurannya tetap.
+Aturannya: cermin pertama lalu cermin kedua sama dengan rotasi berpusat di titik potongnya, sejauh **dua kali** sudut dari garis pertama ke garis kedua, dengan arah dari garis pertama menuju garis kedua.
+
+<BlockMath math="\begin{aligned}
+\text{sudut dari } g \text{ ke } h&=60^\circ-45^\circ=15^\circ \\
+T&=\text{rotasi } 2\cdot15^\circ=30^\circ \text{ berlawanan arah jarum jam}
+\end{aligned}" />
+
+# Tiga kali rotasi
+
+Mengerjakan <InlineMath math="T" /> tiga kali berarti memutar <InlineMath math="3\cdot30^\circ=90^\circ" /> berlawanan arah jarum jam terhadap <InlineMath math="O" />. Rotasi <InlineMath math="90^\circ" /> mengubah <InlineMath math="(x,y)" /> menjadi <InlineMath math="(-y,x)" />.
+
+<BlockMath math="P(4,2)\ \longmapsto\ (-2,4)" />
+
+Sebagai cek, **jarak ke titik pusat tidak berubah**, yaitu <InlineMath math="\sqrt{16+4}=\sqrt{4+16}" />, dan hasil kali titik <InlineMath math="(4,2)\cdot(-2,4)=-8+8=0" />, jadi sudut putarnya memang siku-siku.
+
+Jadi, bayangan akhir titik <InlineMath math="P" /> adalah <InlineMath math="(-2,4)" />.
+
+- <InlineMath math="(2,-4)" /> muncul kalau urutannya dibalik, yaitu cermin <InlineMath math="h" /> dulu baru <InlineMath math="g" />. Rotasinya jadi searah jarum jam.
+- <InlineMath math="(\sqrt2,\ 3\sqrt2)" /> lupa menggandakan sudut, sehingga setiap <InlineMath math="T" /> dihitung <InlineMath math="15^\circ" /> dan totalnya hanya <InlineMath math="45^\circ" />.
+- <InlineMath math="(-4,-2)" /> menganggap setiap pencerminan sebagai rotasi <InlineMath math="30^\circ" />, sehingga enam pencerminan dihitung <InlineMath math="180^\circ" />.
+- <InlineMath math="(2\sqrt3-1,\ \sqrt3+2)" /> hanya mengerjakan <InlineMath math="T" /> satu kali, yaitu rotasi <InlineMath math="30^\circ" />.
