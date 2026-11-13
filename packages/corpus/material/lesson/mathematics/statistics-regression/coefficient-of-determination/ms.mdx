@@ -1,0 +1,166 @@
+
+export const metadata = {
+  title: "Pekali Penentuan",
+  description: "Kira pekali penentuan dan tafsirkan berapa banyak variasi yang dicerap dapat diterangkan oleh model regresi.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-30",
+  dateModified: "2026-11-08",
+  subject: "Statistik",
+};
+
+## Bahagian Variasi Cerapan yang Diterangkan oleh Model
+
+Selepas kita menyuaikan garis regresi linear, soalan seterusnya ialah: berapa banyakkah **variasi yang dicerap** dapat diterangkan oleh model itu?
+
+Ukuran yang menjawab soalan ini ialah **pekali penentuan**, yang biasanya ditandakan dengan <InlineMath math="R^2" />. Dalam model regresi linear mudah dengan satu pemboleh ubah peramal dan satu pintasan, <InlineMath math="R^2=r^2" />. Jadi pekali penentuan boleh dicari dengan <Highlight>mengira kuasa dua pekali korelasi Pearson</Highlight>.
+
+Nilai <InlineMath math="r^2" /> memberikan **kadaran atau peratusan** variasi yang dicerap dalam pemboleh ubah bersandar <InlineMath math="Y" /> yang diterangkan oleh model linear yang disuaikan menggunakan <InlineMath math="X" />.
+
+## Pekali Penentuan daripada Gambar Rajah Serakan
+
+Nilai <InlineMath math="r^2" /> berkait erat dengan sejauh mana titik-titik data berkelompok rapat di sekitar garis regresi:
+
+Tembereng garis putus-putus menunjukkan **reja mencancang**, iaitu beza antara nilai cerapan dan nilai ramalan pada kedudukan mengufuk yang sama. Bandingkan panjang tembereng itu dengan serakan keseluruhan nilai respons. Pekali penentuan menyatakan perbandingan variasi ini dalam satu nombor.
+
+### Model yang Menerangkan Hampir Semua Variasi
+
+<ScatterDiagram
+  title={
+    <>
+      <InlineMath math="r^2" /> Tinggi
+    </>
+  }
+  description={<>Titik data sangat hampir dengan garis regresi.</>}
+  xAxisLabel="Pemboleh Ubah X"
+  yAxisLabel="Pemboleh Ubah Y"
+  datasets={[
+    {
+      name: "Data",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 2 },
+        { x: 2, y: 3.1 },
+        { x: 3, y: 3.9 },
+        { x: 4, y: 5.2 },
+        { x: 5, y: 6.1 },
+        { x: 6, y: 6.8 },
+        { x: 7, y: 8.1 },
+        { x: 8, y: 9.0 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  showResiduals
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+/>
+
+Pengiraan bagi titik-titik ini memberikan <InlineMath math="R^2\approx0.997" />, atau <InlineMath math="99.7\%" />. Jadi **titik-titik yang berkelompok rapat di sekitar garis regresi** sepadan dengan nilai yang dikira: model itu menerangkan hampir semua variasi yang dicerap dalam <InlineMath math="Y" />.
+### Model yang Menerangkan Sedikit Variasi
+
+<ScatterDiagram
+  title={
+    <>
+      <InlineMath math="r^2" /> Rendah
+    </>
+  }
+  description={<>Titik data bertaburan jauh dari garis regresi.</>}
+  xAxisLabel="Pemboleh Ubah X"
+  yAxisLabel="Pemboleh Ubah Y"
+  datasets={[
+    {
+      name: "Data",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 2 },
+        { x: 2, y: 8 },
+        { x: 3, y: 3 },
+        { x: 4, y: 6 },
+        { x: 5, y: 1 },
+        { x: 6, y: 9 },
+        { x: 7, y: 4 },
+        { x: 8, y: 7 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  showResiduals
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+/>
+
+Bagi set data kedua, <InlineMath math="R^2\approx0.078" />, atau <InlineMath math="7.8\%" />. **Reja yang lebih panjang** sepadan dengan nilai yang rendah itu: model linear ini hanya menerangkan sebahagian kecil variasi yang dicerap dalam <InlineMath math="Y" />.
+## Mengira Pekali Penentuan
+
+Bagi regresi linear mudah dengan satu pemboleh ubah peramal dan satu pintasan, <InlineMath math="R^2" /> sama dengan kuasa dua pekali korelasi <InlineMath math="r" />.
+
+<BlockMath math="r^2 = (r)^2" />
+
+Selepas <InlineMath math="r" /> diketahui, kira kuasa duanya untuk mendapat <InlineMath math="r^2" />.
+
+Bagi pekali korelasi yang tertakrif, <InlineMath math="-1 \le r \le 1" />. Jadi kuasa duanya terletak di antara sifar dan satu:
+
+<BlockMath math="0 \le r^2 \le 1" />
+
+**Secara matematik (menggunakan Hasil Tambah Kuasa Dua)**:
+
+Nilai <InlineMath math="r^2" /> juga boleh dikira terus menggunakan nilai Hasil Tambah Kuasa Dua yang digunakan untuk mengira <InlineMath math="r" />:
+
+<BlockMath math="r^2 = \frac{(SS_{xy})^2}{SS_{xx} SS_{yy}}" />
+
+Sebutan <InlineMath math="SS" /> meringkaskan sisihan daripada min. Kira **sisihan bagi setiap pasangan data** sebelum menjumlahkan kuasa dua atau hasil darabnya:
+
+<BlockMath math="\begin{aligned}SS_{xx}&=\sum(x_i-\bar x)^2 \\ SS_{yy}&=\sum(y_i-\bar y)^2 \\ SS_{xy}&=\sum(x_i-\bar x)(y_i-\bar y)\end{aligned}" />
+
+Bagi set data kedua yang diplot, <InlineMath math="\bar x=4.5" /> dan <InlineMath math="\bar y=5" />. Contohnya, pasangan pertama <InlineMath math="(1,2)" /> menyumbang <InlineMath math="(1-4.5)^2=12.25" /> kepada <InlineMath math="SS_{xx}" />, <InlineMath math="(2-5)^2=9" /> kepada <InlineMath math="SS_{yy}" />, dan <InlineMath math="(1-4.5)(2-5)=10.5" /> kepada <InlineMath math="SS_{xy}" />. Apabila sumbangan semua lapan pasangan ditambah, kita dapat:
+
+<MathContainer>
+  <BlockMath math="SS_{xx}=42,\quad SS_{yy}=60,\quad SS_{xy}=14" />
+  <BlockMath math="R^2=\frac{14^2}{42\cdot60}=\frac{196}{2520}=\frac7{90}\approx0.07778" />
+</MathContainer>
+
+Nisbah ini memerlukan variasi dalam kedua-dua pemboleh ubah, jadi <InlineMath math="SS_{xx}>0" /> dan <InlineMath math="SS_{yy}>0" />. Kalau setiap nilai <InlineMath math="y" /> sama, variasi keseluruhannya sifar dan nisbah pekali penentuan yang biasa tidak tertakrif.
+
+<InlineMath math="SS_{yy}" /> menambah kuasa dua jarak mencancang ke min <InlineMath math="\bar y = 5" />: <InlineMath math="9 + 9 + 4 + 1 + 16 + 16 + 1 + 4 = 60" />. Garis regresi hanya menerangkan <InlineMath math="\frac{196}{2520} \approx 7.8\%" /> daripada variasi keseluruhan ini.
+
+<MathVisual
+  title={<>Sisihan daripada min</>}
+  description={<>Lapan titik bagi set data kedua dengan garis min <InlineMath math="y = 5" /> dan satu tembereng garis mencancang dari setiap titik ke garis itu.</>}
+  labels={{
+    mean: <InlineMath math="\bar y = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.4, max: 8.6 }, y: { min: 0.4, max: 9.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mean", kind: "line", through: [{ x: 0, y: 5 }, { x: 9, y: 5 }], appearance: "reference" },
+      { id: "d1", kind: "segment", from: { x: 1, y: 2 }, to: { x: 1, y: 5 }, appearance: "construction" },
+      { id: "d2", kind: "segment", from: { x: 2, y: 8 }, to: { x: 2, y: 5 }, appearance: "construction" },
+      { id: "d3", kind: "segment", from: { x: 3, y: 3 }, to: { x: 3, y: 5 }, appearance: "construction" },
+      { id: "d4", kind: "segment", from: { x: 4, y: 6 }, to: { x: 4, y: 5 }, appearance: "construction" },
+      { id: "d5", kind: "segment", from: { x: 5, y: 1 }, to: { x: 5, y: 5 }, appearance: "construction" },
+      { id: "d6", kind: "segment", from: { x: 6, y: 9 }, to: { x: 6, y: 5 }, appearance: "construction" },
+      { id: "d7", kind: "segment", from: { x: 7, y: 4 }, to: { x: 7, y: 5 }, appearance: "construction" },
+      { id: "d8", kind: "segment", from: { x: 8, y: 7 }, to: { x: 8, y: 5 }, appearance: "construction" },
+      { id: "p1", kind: "point", at: { x: 1, y: 2 }, appearance: "primary" },
+      { id: "p2", kind: "point", at: { x: 2, y: 8 }, appearance: "primary" },
+      { id: "p3", kind: "point", at: { x: 3, y: 3 }, appearance: "primary" },
+      { id: "p4", kind: "point", at: { x: 4, y: 6 }, appearance: "primary" },
+      { id: "p5", kind: "point", at: { x: 5, y: 1 }, appearance: "primary" },
+      { id: "p6", kind: "point", at: { x: 6, y: 9 }, appearance: "primary" },
+      { id: "p7", kind: "point", at: { x: 7, y: 4 }, appearance: "primary" },
+      { id: "p8", kind: "point", at: { x: 8, y: 7 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 8, y: 5 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Tafsiran sebagai Peratusan
+
+Darabkan <InlineMath math="r^2" /> dengan <InlineMath math="100" /> untuk menyatakan kadaran variasi dalam <InlineMath math="Y" /> yang diterangkan oleh model itu sebagai peratusan.
+
+- Kalau <InlineMath math="r^2 = 0.81" />, model linear yang disuaikan menggunakan <InlineMath math="X" /> menerangkan <InlineMath math="81\%" /> daripada variasi yang dicerap dalam <InlineMath math="Y" />.
+- Baki variasi (<InlineMath math="1 - r^2" /> atau <InlineMath math="19\%" /> dalam contoh ini) **tidak diterangkan oleh model linear ini**. Baki ini mungkin melibatkan pemboleh ubah yang tidak dimasukkan, corak tak linear, ralat pengukuran atau variasi rawak biasa, tetapi <InlineMath math="r^2" /> sahaja tidak dapat memberitahu kita penjelasan mana yang bertanggungjawab.
+
+Nilai <InlineMath math="r^2" /> yang lebih tinggi bermaksud model ini menerangkan lebih banyak variasi yang dicerap dalam <InlineMath math="Y" />. Nilai itu sendiri tidak membuktikan hubungan sebab dan akibat atau menjamin ramalan yang boleh dipercayai. Kita juga mesti meneliti reja, julat data, dan sama ada model linear masuk akal dalam konteks itu.

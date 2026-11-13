@@ -1,0 +1,232 @@
+export const metadata = {
+  title: "Siri Aritmetik",
+  description: "Guna kaedah pasangan Gauss dan rumus siri aritmetik untuk mengira hasil tambah dalam contoh berserta jalan kerja.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-08",
+  dateModified: "2026-11-08",
+  subject: "Jujukan dan Siri",
+};
+
+## Memasangkan Sebutan untuk Menambah Nombor dari Satu hingga Seratus
+
+Ada satu kisah terkenal tentang Carl Friedrich Gauss yang menunjukkan cara bijak untuk menambah banyak nombor. Dalam kisah itu, seorang guru meminta murid-muridnya menambah semua nombor dari <InlineMath math="1" /> hingga <InlineMath math="100" />: <InlineMath math="1 + 2 + 3 + \dots + 98 + 99 + 100" />.
+
+Gauss tidak menambah sebutan itu satu demi satu. Dia memasangkan nombor di awal senarai dengan nombor di hujung senarai. <Highlight>Hasil tambah yang dibentuk daripada sebutan</Highlight> sesuatu _janjang aritmetik_ dipanggil **siri aritmetik**.
+
+Contohnya, <InlineMath math="1, 2, 3, \dots, 100" /> ialah janjang aritmetik dengan sebutan pertama <InlineMath math="a=1" /> dan beza sepunya <InlineMath math="b=1" />. Siri aritmetik yang sepadan ialah <InlineMath math="1 + 2 + 3 + \dots + 100" />.
+
+### Kaedah Pasangan Gauss
+
+Gauss memasangkan sebutan dari **dua hujung senarai yang bertentangan**:
+
+| Pasangan | Dari awal | Dari hujung | Hasil tambah |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="100" /> | <InlineMath math="101" /> |
+| <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="99" /> | <InlineMath math="101" /> |
+| <InlineMath math="3" /> | <InlineMath math="3" /> | <InlineMath math="98" /> | <InlineMath math="101" /> |
+| … | … | … | … |
+| <InlineMath math="50" /> | <InlineMath math="50" /> | <InlineMath math="51" /> | <InlineMath math="101" /> |
+
+Ada <InlineMath math="50" /> pasangan, dan hasil tambah setiap pasangan ialah <InlineMath math="101" />. Jadi, jumlahnya ialah <InlineMath math="50 \times 101 = 5050" />.
+
+Berikut ialah gambaran cara memasangkan ini untuk <InlineMath math="1 + 2 + \cdots + 6" />. Tangga jingga mengandungi lajur setinggi <InlineMath math="1" /> hingga <InlineMath math="6" />. Salinan kedua yang diterbalikkan memenuhi ruang selebihnya, dengan lajur setinggi <InlineMath math="6" /> menurun hingga <InlineMath math="1" />. Setiap pasangan lajur setinggi <InlineMath math="7" />, jadi dua salinan itu membentuk segi empat tepat <InlineMath math="6 \times 7" /> dan satu salinan bernilai <InlineMath math="42 / 2 = 21" />.
+
+<MathVisual
+  title={<>Dua tangga memenuhi satu segi empat tepat</>}
+  description={<>Tangga bagi <InlineMath math="1 + 2 + \cdots + 6" /> dan salinannya yang diterbalikkan bersama-sama memenuhi segi empat tepat berukuran <InlineMath math="6" /> kali <InlineMath math="7" />, jadi hasil tambahnya ialah separuh daripada <InlineMath math="42" />.</>}
+  labels={{
+    frame: <InlineMath math="6 \times 7 = 42" />,
+    lo6: <InlineMath math="1 + 2 + \cdots + 6" />,
+    hi1: <InlineMath math="6 + 5 + \cdots + 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "frame", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 7 }, { x: 0, y: 7 }], appearance: "reference" },
+      { id: "lo1", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "lo2", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 1, y: 2 }], appearance: "primary" },
+      { id: "lo3", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 2, y: 3 }], appearance: "primary" },
+      { id: "lo4", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 }, { x: 3, y: 4 }], appearance: "primary" },
+      { id: "lo5", kind: "polygon", vertices: [{ x: 4, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 5 }, { x: 4, y: 5 }], appearance: "primary" },
+      { id: "lo6", kind: "polygon", vertices: [{ x: 5, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 6 }, { x: 5, y: 6 }], appearance: "primary" },
+      { id: "hi1", kind: "polygon", vertices: [{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 1, y: 7 }, { x: 0, y: 7 }], appearance: "secondary" },
+      { id: "hi2", kind: "polygon", vertices: [{ x: 1, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 7 }, { x: 1, y: 7 }], appearance: "secondary" },
+      { id: "hi3", kind: "polygon", vertices: [{ x: 2, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 7 }, { x: 2, y: 7 }], appearance: "secondary" },
+      { id: "hi4", kind: "polygon", vertices: [{ x: 3, y: 4 }, { x: 4, y: 4 }, { x: 4, y: 7 }, { x: 3, y: 7 }], appearance: "secondary" },
+      { id: "hi5", kind: "polygon", vertices: [{ x: 4, y: 5 }, { x: 5, y: 5 }, { x: 5, y: 7 }, { x: 4, y: 7 }], appearance: "secondary" },
+      { id: "hi6", kind: "polygon", vertices: [{ x: 5, y: 6 }, { x: 6, y: 6 }, { x: 6, y: 7 }, { x: 5, y: 7 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "frame", objectId: "frame", at: { x: 3, y: 7 }, placement: "above" },
+      { key: "lo6", objectId: "lo6", at: { x: 5.5, y: 3 }, placement: "center" },
+      { key: "hi1", objectId: "hi1", at: { x: 0.5, y: 4 }, placement: "center" },
+    ],
+  }}
+/>
+
+## Mencari Rumus Am
+
+Kita boleh guna kaedah Gauss untuk menerbitkan **rumus am** bagi hasil tambah <InlineMath math="n" /> sebutan pertama siri aritmetik, yang biasanya ditandakan dengan <InlineMath math="S_n" />.
+
+Mulakan dengan satu siri aritmetik:
+
+<BlockMath math="\begin{aligned} S_n &amp;= U_1 + U_2 + U_3 \\ &amp;\quad{}+ \dots + U_{n-1} + U_n \end{aligned}" />
+
+Jika ditulis menggunakan sebutan pertama <InlineMath math="(a)" /> dan beza sepunya <InlineMath math="(b)" />:
+
+<BlockMath math="\begin{aligned} S_n &amp;= a + (a+b) + (a+2b) + \dots \\ &amp;\quad{}+ (a+(n-2)b) + (a+(n-1)b) \end{aligned}" />
+
+Tulis siri <InlineMath math="S_n" /> yang sama dalam susunan terbalik, dari sebutan terakhir hingga sebutan pertama:
+
+<BlockMath math="S_n = U_n + U_{n-1} + \dots + U_2 + U_1" />
+
+Atau:
+
+<BlockMath math="\begin{aligned} S_n &amp;= (a+(n-1)b) + (a+(n-2)b) \\ &amp;\quad{}+ \dots + (a+b) + a \end{aligned}" />
+
+Tambahkan kedua-dua bentuk <InlineMath math="S_n" /> itu sebutan demi sebutan:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} S_n &amp;= a + (a+b) \\ &amp;\quad{}+ \dots + (a+(n-2)b) \\ &amp;\quad{}+ (a+(n-1)b) \end{aligned}" />
+  <BlockMath math="\begin{aligned} S_n &amp;= (a+(n-1)b) + (a+(n-2)b) \\ &amp;\quad{}+ \dots + (a+b) + a \end{aligned}" />
+  <BlockMath math="\begin{aligned} 2S_n &amp;=[2a+(n-1)b] \\ &amp;\quad{}+[2a+(n-1)b] \\ &amp;\quad{}+\dots+[2a+(n-1)b] \\ &amp;\quad{}+[2a+(n-1)b] \end{aligned}" />
+</MathContainer>
+
+Setiap pasangan mencancang mempunyai hasil tambah yang sama, iaitu <InlineMath math="2a + (n-1)b" />. Oleh sebab setiap baris mengandungi <InlineMath math="n" /> sebutan, penambahan ini menghasilkan <InlineMath math="n" /> hasil tambah pasangan yang serupa.
+
+Jadi, kita dapat:
+
+<BlockMath math="2S_n = n \times (2a + (n-1)b)" />
+
+Dengan membahagikan kedua-dua belah dengan <InlineMath math="2" />, kita peroleh rumus hasil tambah <InlineMath math="n" /> sebutan pertama bagi siri aritmetik:
+
+<BlockMath math="S_n = \frac{n}{2} (2a + (n-1)b)" />
+
+Penerbitan ini sah sama ada <InlineMath math="n" /> genap atau ganjil. Apabila <InlineMath math="n" /> ganjil, cara membalikkan susunan siri dan menambahnya tetap mengira sebutan tengah dengan betul kerana kedua-dua salinan siri itu dimasukkan.
+
+## Rumus Praktikal bagi Siri Aritmetik
+
+Ada dua rumus utama yang biasa digunakan untuk mengira <InlineMath math="S_n" />:
+
+1.  Jika **sebutan pertama** <InlineMath math="a" /> dan **beza sepunya** <InlineMath math="b" /> diketahui:
+
+    <BlockMath math="S_n = \frac{n}{2}(2a + (n - 1)b)" />
+
+2.  Jika **sebutan pertama** <InlineMath math="a" /> dan **sebutan terakhir** <InlineMath math="U_n" /> diketahui:
+    Ingat semula, rumus sebutan ke-<InlineMath math="n" /> ialah <InlineMath math="U_n = a + (n-1)b" />. Gantikan rumus ini ke dalam rumus pertama:
+
+    <MathContainer>
+      <BlockMath math="S_n = \frac{n}{2}(a + a + (n - 1)b)" />
+      <BlockMath math="S_n = \frac{n}{2}(a + U_n)" />
+    </MathContainer>
+
+    Rumus kedua ialah **bilangan sebutan didarab dengan purata sebutan pertama dan sebutan terakhir**. Purata itu ialah <InlineMath math="(a+U_n)/2" />, jadi rumus ini juga sah untuk bilangan sebutan yang ganjil.
+
+**Tatatanda**:
+
+- <InlineMath math="S_n" /> = Hasil tambah <InlineMath math="n" /> sebutan pertama
+- <InlineMath math="n" /> = Bilangan sebutan
+- <InlineMath math="a" /> = Sebutan pertama (<InlineMath math="U_1" />)
+- <InlineMath math="b" /> = Beza sepunya (beza antara sebutan)
+- <InlineMath math="U_n" /> = Sebutan ke-<InlineMath math="n" />
+
+Pasangkan nombor dari <InlineMath math="1" /> hingga <InlineMath math="10" /> dari kedua-dua hujung: <InlineMath math="1 + 10" />, <InlineMath math="2 + 9" />, dan seterusnya. Setiap pasangan mempunyai ketinggian yang sama, iaitu <InlineMath math="11" />, dan ada <InlineMath math="5" /> pasangan, jadi <InlineMath math="1 + 2 + \cdots + 10 = 5 \cdot 11 = 55" />.
+
+<BarChart
+  title={<>Setiap pasangan dari kedua-dua hujung mempunyai hasil tambah yang sama</>}
+  description={<>Lima pasangan bagi nombor 1 hingga 10, yang diambil dari kedua-dua hujung, setiap satunya dengan hasil tambah <InlineMath math="11" />.</>}
+  yAxisLabel="Hasil tambah pasangan"
+  data={[["pasangan 1", 1 + (11 - 1)], ["pasangan 2", 2 + (11 - 2)], ["pasangan 3", 3 + (11 - 3)], ["pasangan 4", 4 + (11 - 4)], ["pasangan 5", 5 + (11 - 5)]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Hasil tambah pasangan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Mengira Dua Siri Aritmetik
+
+Kedua-dua soalan di bawah memberikan **sebutan yang diperlukan** untuk rumus hasil tambah. Gantikan nilainya dahulu, kemudian bandingkan jawapan kamu dengan jalan kerja yang diberi. Dalam setiap soalan, tentukan dahulu sama ada siri itu aritmetik, kerana pilihan itulah yang menentukan rumus mana yang digunakan.
+
+### Menambah Integer dari Satu hingga Seratus
+
+Kira semula **hasil tambah siri** <InlineMath math="1 + 2 + 3 + \dots + 98 + 99 + 100" />.
+
+Diberi:
+
+- Sebutan pertama <InlineMath math="a = 1" />
+- Sebutan terakhir <InlineMath math="U_n = U_{100} = 100" />
+- Bilangan sebutan <InlineMath math="n = 100" />
+
+Oleh sebab <InlineMath math="a" /> dan <InlineMath math="U_n" /> diketahui, kita guna rumus kedua:
+
+<MathContainer>
+  <BlockMath math="S_n = \frac{n}{2}(a + U_n)" />
+  <BlockMath math="S_{100} = \frac{100}{2}(1 + 100)" />
+  <BlockMath math="S_{100} = 50(101)" />
+  <BlockMath math="S_{100} = 5050" />
+</MathContainer>
+
+Jawapan ini sama dengan pengiraan secara berpasangan tadi.
+
+### Menggunakan Sebutan Pertama dan Beza Sepunya
+
+Diberi siri aritmetik <InlineMath math="13 + 16 + 19 + 22 + \dots" />. Kira hasil tambah <InlineMath math="30" /> sebutan **pertama** <InlineMath math="(S_{30})" />.
+
+Diberi:
+
+- Sebutan pertama <InlineMath math="a = 13" />
+- Beza sepunya <InlineMath math="b = 16 - 13 = 3" />
+- Bilangan sebutan yang ditambah <InlineMath math="n = 30" />
+
+Oleh sebab <InlineMath math="a" /> dan <InlineMath math="b" /> diketahui, kita guna rumus pertama:
+
+<MathContainer>
+  <BlockMath math="S_n = \frac{n}{2}(2a + (n - 1)b)" />
+  <BlockMath math="S_{30} = \frac{30}{2}[2(13) + (30 - 1)(3)]" />
+  <BlockMath math="S_{30} = 15[26 + (29)(3)]" />
+  <BlockMath math="S_{30} = 15(26 + 87)" />
+  <BlockMath math="S_{30} = 15(113)" />
+  <BlockMath math="S_{30} = 1695" />
+</MathContainer>
+
+Jadi, hasil tambah <InlineMath math="30" /> sebutan pertama siri ini ialah <InlineMath math="1695" />.
+
+## Aplikasi pada Susunan Kerusi Panggung
+
+Sebuah panggung ada <InlineMath math="20" /> kerusi pada baris **pertama** dan <InlineMath math="4" /> kerusi lebih pada setiap baris berikutnya. Bilangan kerusi pada baris <InlineMath math="15" /> dan jumlah kerusi dalam lima belas baris pertama ialah:
+
+<MathContainer>
+  <BlockMath math="U_{15}=20+14\cdot4=76" />
+  <BlockMath math="S_{15}=\frac{15}{2}(20+76)=720" />
+</MathContainer>
+
+Hasil pertama hanya menerangkan baris <InlineMath math="15" />. Hasil kedua menerangkan semua kerusi dalam lima belas baris pertama, jadi sebutan jujukan dan hasil tambah siri menjawab soalan yang berbeza.
+
+Kira siri ini baris demi baris untuk panggung itu. Setiap palang ialah jumlah <InlineMath math="S_n" /> selepas <InlineMath math="n" /> baris, daripada <InlineMath math="S_1 = 20" /> hingga <InlineMath math="S_{15} = 720" />. Palang-palang itu bertambah tinggi dengan semakin cepat kerana setiap baris baharu ada <InlineMath math="4" /> kerusi lebih daripada baris sebelumnya.
+
+<BarChart
+  title={<>Jumlah kerusi selepas setiap baris</>}
+  description={<>Palang <InlineMath math="n" /> menunjukkan <InlineMath math="S_n = \frac{n}{2}(2 \cdot 20 + (n-1)4)" />, iaitu kerusi dalam <InlineMath math="n" /> baris pertama.</>}
+  yAxisLabel="Jumlah kerusi"
+  data={Array.from({ length: 15 }, (_, i) => {
+    const n = i + 1;
+    return { name: `${n}`, value: (n / 2) * (2 * 20 + (n - 1) * 4) };
+  })}
+  chartConfig={{ value: { label: "Jumlah kerusi", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Latihan
+
+Kira **siri aritmetik terhingga** ini:
+
+<BlockMath math="8+13+18+\dots+103" />
+
+### Penyelesaian
+
+Mula-mula, tentukan **berapa banyak sebutan** dalam siri ini. Beza sepunyanya ialah <InlineMath math="5" />:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}103&amp;=8+5(n-1)\\95&amp;=5(n-1)\\19&amp;=n-1\\n&amp;=20\end{aligned}" />
+  <BlockMath math="S_{20}=\frac{20}{2}(8+103)=1110" />
+</MathContainer>
+
+Hasil tambahnya ialah <InlineMath math="1110" />.
