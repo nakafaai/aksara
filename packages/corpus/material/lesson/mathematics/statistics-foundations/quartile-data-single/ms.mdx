@@ -1,0 +1,211 @@
+export const metadata = {
+  title: "Kuartil bagi Data Tak Terkumpul",
+  description: "Kira Q1, Q2, dan Q3 bagi data tak terkumpul dengan satu konvensyen interpolasi yang dinyatakan dan satu contoh lengkap.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-22",
+  dateModified: "2026-11-08",
+  subject: "Statistik",
+};
+
+## Tiga Sempadan Merentas Set Data yang Tersusun
+
+Median menandakan bahagian tengah set data yang tersusun pada <InlineMath math="50\%" />. **Kuartil** meluaskan idea itu dengan menandakan tiga kedudukan merentas data yang tersusun.
+
+Kedudukan-kedudukan itu membahagikan taburan mengikut pangkat kepada **empat** bahagian, setiap satu mewakili kira-kira satu perempat daripada cerapan. Dengan set data yang terhingga atau nilai yang sama, bahagian-bahagian itu tidak semestinya mengandungi empat set yang jelas berbeza dan sama saiz.
+
+Ada tiga sempadan kuartil:
+
+1.  **Kuartil Bawah (<InlineMath math="Q_1" />)**: Sempadan pada kira-kira pangkat <InlineMath math="25\%" />.
+2.  **Kuartil Tengah (<InlineMath math="Q_2" />)**: **Median**, pada kira-kira pangkat <InlineMath math="50\%" />.
+3.  **Kuartil Atas (<InlineMath math="Q_3" />)**: Sempadan pada kira-kira pangkat <InlineMath math="75\%" />.
+
+Bersama-sama, <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" /> menerangkan suku bawah, pusat, dan suku atas sesuatu taburan yang tersusun.
+
+Apabila disusun daripada yang terkecil kepada yang terbesar, tujuh markah itu naik sebagai bar pada kedudukan <InlineMath math="1" /> hingga <InlineMath math="7" />. Kuartil berada pada kedudukan <InlineMath math="2" />, <InlineMath math="4" /> dan <InlineMath math="6" />: <InlineMath math="Q_1 = 6" />, <InlineMath math="Q_2 = 7" /> dan <InlineMath math="Q_3 = 9" />.
+
+<BarChart
+  title={<>Markah tersusun mengikut kedudukan</>}
+  description={<>Tujuh markah dalam susunan menaik, satu bar bagi setiap kedudukan.</>}
+  yAxisLabel="Markah"
+  data={[["1", 5], ["2", 6], ["3", 7], ["4", 7], ["5", 8], ["6", 9], ["7", 10]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Markah", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Cara Mencari Kedudukan Kuartil
+
+Bagaimana kita mencari kedudukan pangkat bagi <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" /> dalam **data yang tersusun**?
+
+Andaikan kita ada <InlineMath math="n" /> data yang sudah disusun daripada yang terkecil kepada yang terbesar.
+
+Kuartil boleh ditakrifkan dengan beberapa konvensyen pemangkatan yang sah, jadi pakej perisian mungkin memberikan nilai yang sedikit berbeza untuk set data kecil yang sama. Pengiraan di bawah secara konsisten menggunakan kedudukan interpolasi <InlineMath math="p(n+1)" />, dengan <InlineMath math="p" /> ialah <InlineMath math="\frac14" />, <InlineMath math="\frac12" />, atau <InlineMath math="\frac34" />. Kedudukan di bawah <InlineMath math="1" /> diambil sebagai nilai minimum dan kedudukan di atas <InlineMath math="n" /> diambil sebagai nilai maksimum. Untuk perbandingan yang sah, kira setiap keputusan dengan konvensyen yang sama.
+### Kuartil Bawah
+
+Untuk kuartil bawah:
+
+<BlockMath math="\text{Kedudukan } Q_1 = \frac{1}{4}(n+1)" />
+
+- **Kalau hasilnya nombor bulat**, contohnya <InlineMath math="5" />, maka <InlineMath math="Q_1" /> ialah nilai pada kedudukan <InlineMath math="5" />.
+- **Kalau hasilnya ada perpuluhan**, contohnya <InlineMath math="5.25" />, maka <InlineMath math="Q_1" /> terletak antara kedudukan <InlineMath math="5" /> dan <InlineMath math="6" />. Bahagian perpuluhan memberitahu kita sejauh mana perlu bergerak daripada nilai pada kedudukan bawah ke arah nilai seterusnya.
+
+**Contoh**:
+
+Katakan kita ada <InlineMath math="20" /> data (<InlineMath math="n=20" />).
+
+Kedudukan <InlineMath math="Q_1" /> ialah data pada <InlineMath math="\frac{1}{4}(20+1)" />, iaitu data ke-<InlineMath math="\frac{21}{4}" /> atau <InlineMath math="5.25" />.
+
+Maksudnya, <InlineMath math="Q_1" /> terletak antara kedudukan <InlineMath math="5" /> dan <InlineMath math="6" />.
+
+Katakan nilai kelima dalam <InlineMath math="20" /> cerapan tersusun itu ialah <InlineMath math="8" /> dan nilai keenam ialah <InlineMath math="12" />. **Pemberat interpolasi** <InlineMath math="0.25" /> mengambil satu perempat daripada beza antara kedua-duanya. Ia bukan sekadar purata dua nilai itu.
+
+<BlockMath math="Q_1=8+0.25(12-8)=8+1=9" />
+
+### Kuartil Tengah
+
+Kuartil tengah ialah median:
+
+<BlockMath math="\text{Kedudukan } Q_2 = \frac{1}{2}(n+1)" />
+
+Peraturannya sama seperti untuk <InlineMath math="Q_1" />:
+
+- **Kalau hasilnya nombor bulat**, katakan <InlineMath math="10" />, <InlineMath math="Q_2" /> ialah nilai data ke-<InlineMath math="10" />.
+- **Kalau hasilnya ada perpuluhan**, katakan <InlineMath math="10.5" />, <InlineMath math="Q_2" /> terletak antara data ke-<InlineMath math="10" /> dan ke-<InlineMath math="11" />.
+
+**Contoh (<InlineMath math="n=20" />)**:
+
+Kedudukan <InlineMath math="Q_2" /> ialah data pada <InlineMath math="\frac{1}{2}(20+1)" />, iaitu data ke-<InlineMath math="\frac{21}{2}" /> atau <InlineMath math="10.5" />.
+
+Maksudnya, <InlineMath math="Q_2" /> (median) terletak antara data ke-<InlineMath math="10" /> dan ke-<InlineMath math="11" />.
+
+### Kuartil Atas
+
+Rumusnya serupa lagi:
+
+<BlockMath math="\text{Kedudukan } Q_3 = \frac{3}{4}(n+1)" />
+
+Peraturan interpolasi yang sama digunakan:
+
+- **Kalau hasilnya nombor bulat**, katakan <InlineMath math="15" />, <InlineMath math="Q_3" /> ialah nilai data ke-<InlineMath math="15" />.
+- **Kalau hasilnya ada perpuluhan**, katakan <InlineMath math="15.75" />, <InlineMath math="Q_3" /> terletak antara data ke-<InlineMath math="15" /> dan ke-<InlineMath math="16" />.
+
+**Contoh (<InlineMath math="n=20" />)**:
+
+Kedudukan <InlineMath math="Q_3" /> ialah data pada <InlineMath math="\frac{3}{4}(20+1)" />, iaitu data ke-<InlineMath math="\frac{63}{4}" /> atau <InlineMath math="15.75" />.
+
+Kedudukan <InlineMath math="15.75" /> meletakkan <InlineMath math="Q_3" /> antara data ke-<InlineMath math="15" /> dan ke-<InlineMath math="16" />.
+
+## Latihan dengan jalan kerja
+
+Cuba cari kedudukan <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" /> daripada markah ujian matematik <InlineMath math="7" /> orang kanak-kanak ini:
+
+**Markah**: <InlineMath math="7, 5, 8, 6, 9, 7, 10" />
+
+Cuba selesaikan sendiri dahulu. Kemudian bandingkan cara kamu dengan penyelesaian lengkap di bawah.
+
+**Langkah 1**: Susun data itu dahulu!
+
+| Kedudukan | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Nilai | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> | <InlineMath math="10" /> |
+
+Bilangan data: <InlineMath math="n = 7" />
+
+**Langkah 2**: Cari kedudukan kuartil dengan rumus
+
+- **Kedudukan <InlineMath math="Q_1" />**:
+
+  <BlockMath math="\begin{aligned}\frac{1}{4}(n+1) &= \frac{1}{4}(7+1) \\ &= \frac{8}{4} \\ &= 2\end{aligned}" />
+
+  Hasilnya nombor bulat (<InlineMath math="2" />), jadi <InlineMath math="Q_1" /> ialah data ke-<InlineMath math="2" />.
+
+- **Kedudukan <InlineMath math="Q_2" /> (Median)**:
+
+  <BlockMath math="\begin{aligned}\frac{1}{2}(n+1) &= \frac{1}{2}(7+1) \\ &= \frac{8}{2} \\ &= 4\end{aligned}" />
+
+  Hasilnya nombor bulat (<InlineMath math="4" />), jadi <InlineMath math="Q_2" /> ialah data ke-<InlineMath math="4" />.
+
+- **Kedudukan <InlineMath math="Q_3" />**:
+
+  <BlockMath math="\begin{aligned}\frac{3}{4}(n+1) &= \frac{3}{4}(7+1) \\ &= \frac{24}{4} \\ &= 6\end{aligned}" />
+
+  Hasilnya nombor bulat (<InlineMath math="6" />), jadi <InlineMath math="Q_3" /> ialah data ke-<InlineMath math="6" />.
+
+**Langkah 3**: Tentukan nilai kuartil
+
+Menggunakan data tersusun daripada Langkah 1:
+
+- <InlineMath math="Q_1" /> ialah data ke-<InlineMath math="2" /> = <InlineMath math="6" />
+- <InlineMath math="Q_2" /> ialah data ke-<InlineMath math="4" /> = <InlineMath math="7" />
+- <InlineMath math="Q_3" /> ialah data ke-<InlineMath math="6" /> = <InlineMath math="9" />
+
+Ini tujuh markah tersusun dalam bentuk titik. Tiga potongan kuartil jatuh pada kedudukan <InlineMath math="2" />, <InlineMath math="4" /> dan <InlineMath math="6" />: <InlineMath math="Q_1 = 6" />, <InlineMath math="Q_2 = 7" /> dan <InlineMath math="Q_3 = 9" />. Antara potongan yang bersebelahan ada tepat satu markah, pada kedudukan <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="5" /> dan <InlineMath math="7" />, jadi potongan itu membahagikan tujuh markah kepada empat bahagian yang sama.
+
+<MathVisual
+  title={<>Tiga potongan melalui tujuh markah</>}
+  description={<>Markah <InlineMath math="5, 6, 7, 7, 8, 9, 10" /> sebagai titik, dengan potongan pada <InlineMath math="Q_1 = 6" />, <InlineMath math="Q_2 = 7" /> dan <InlineMath math="Q_3 = 9" />.</>}
+  labels={{
+    q1: <InlineMath math="Q_1" />,
+    q2: <InlineMath math="Q_2" />,
+    q3: <InlineMath math="Q_3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 4, max: 11 }, y: { min: -0.4, max: 1.8 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 4, y: 0 }, to: { x: 11, y: 0 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 5, y: 0.6 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 6, y: 0.6 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 7, y: 0.6 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 7, y: 1.2 }, appearance: "primary" },
+      { id: "d4", kind: "point", at: { x: 8, y: 0.6 }, appearance: "primary" },
+      { id: "d5", kind: "point", at: { x: 9, y: 0.6 }, appearance: "primary" },
+      { id: "d6", kind: "point", at: { x: 10, y: 0.6 }, appearance: "primary" },
+      { id: "q1", kind: "segment", from: { x: 6, y: -0.3 }, to: { x: 6, y: 1.6 }, appearance: "secondary" },
+      { id: "q2", kind: "segment", from: { x: 7, y: -0.3 }, to: { x: 7, y: 1.6 }, appearance: "answer" },
+      { id: "q3", kind: "segment", from: { x: 9, y: -0.3 }, to: { x: 9, y: 1.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "q1", objectId: "q1", at: { x: 6, y: 1.6 }, placement: "above" },
+      { key: "q2", objectId: "q2", at: { x: 7, y: 1.6 }, placement: "above" },
+      { key: "q3", objectId: "q3", at: { x: 9, y: 1.6 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Kuartil Keempat
+
+Kuartil <Highlight>membahagikan data tersusun kepada empat bahagian</Highlight>. <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" /> menandakan sempadan pada <InlineMath math="25\%" />, <InlineMath math="50\%" />, dan <InlineMath math="75\%" />. Sempadan luar pada <InlineMath math="100\%" /> ialah nilai maksimum.
+
+Nilai maksimum kadang-kadang dilabel <InlineMath math="Q_4" />, dan nilai minimum kadang-kadang dilabel <InlineMath math="Q_0" />. Kebanyakan ringkasan statistik menamakan minimum dan maksimum secara terus dan mengkhaskan tatatanda kuartil untuk <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" />.
+
+Plot kotak memuatkan lima nombor yang sama dalam satu gambar. Misai bermula daripada nilai minimum <InlineMath math="5" /> hingga <InlineMath math="Q_1 = 6" /> dan daripada <InlineMath math="Q_3 = 9" /> hingga nilai maksimum <InlineMath math="10" />. Kotak itu meliputi separuh tengah markah, dan garis di dalamnya ialah median <InlineMath math="7" />.
+
+<MathVisual
+  title={<>Plot kotak bagi tujuh markah</>}
+  description={<>Misai daripada <InlineMath math="5" /> hingga <InlineMath math="6" /> dan daripada <InlineMath math="9" /> hingga <InlineMath math="10" />, kotak daripada <InlineMath math="Q_1 = 6" /> hingga <InlineMath math="Q_3 = 9" />, dan garis median pada <InlineMath math="7" />.</>}
+  labels={{
+    min: <InlineMath math="5" />,
+    q1: <InlineMath math="Q_1 = 6" />,
+    q2: <InlineMath math="Q_2 = 7" />,
+    q3: <InlineMath math="Q_3 = 9" />,
+    max: <InlineMath math="10" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 4, max: 11 }, y: { min: -1, max: 1 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "blo", kind: "segment", from: { x: 5, y: 0 }, to: { x: 6, y: 0 }, appearance: "primary" },
+      { id: "bhi", kind: "segment", from: { x: 9, y: 0 }, to: { x: 10, y: 0 }, appearance: "primary" },
+      { id: "bbox", kind: "polygon", vertices: [{ x: 6, y: 0 - 0.4 }, { x: 9, y: 0 - 0.4 }, { x: 9, y: 0 + 0.4 }, { x: 6, y: 0 + 0.4 }], appearance: "primary" },
+      { id: "bmid", kind: "segment", from: { x: 7, y: 0 - 0.4 }, to: { x: 7, y: 0 + 0.4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "min", objectId: "blo", at: { x: 5, y: 0 }, placement: "left" },
+      { key: "q1", objectId: "bbox", at: { x: 6, y: -0.4 }, placement: "below" },
+      { key: "q2", objectId: "bmid", at: { x: 7, y: 0.4 }, placement: "above" },
+      { key: "q3", objectId: "bbox", at: { x: 9, y: -0.4 }, placement: "below" },
+      { key: "max", objectId: "bhi", at: { x: 10, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
