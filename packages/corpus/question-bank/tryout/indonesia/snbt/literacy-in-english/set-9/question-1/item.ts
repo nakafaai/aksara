@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "main-idea",
   },
-  stimulus: "tambora-1816",
+  stimulus: "hawthorne-effect",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Tambora cooled distant regions, though the link was understood much later.",
+            "The lighting tests support the effect far less than its fame suggests, yet being studied may still change behaviour and needs a named cause.",
         },
         {
           correct: false,
           label:
-            "Mary Shelley wrote *Frankenstein* because she was frightened by news of a distant volcano.",
+            "The reanalysed lighting records showed that being studied does not change behaviour, so the label should be dropped from research.",
         },
         {
           correct: false,
           label:
-            "Ice cores prove that volcanoes cause most cold summers in Europe.",
+            "The effect is real but was credited to the wrong study, since it showed up in the relay room rather than in the lighting tests.",
         },
         {
           correct: false,
           label:
-            "The eruption mainly harmed people on Sumbawa and the nearby islands.",
+            "The 2014 review confirmed that being studied changes behaviour in predictable ways, so the doubts about the lighting tests matter little.",
         },
         {
           correct: false,
           label:
-            "People in 1816 blamed Tambora for the snow that fell in New England.",
+            "The studies at the plant were flawed from the start, because the electrical industry paid for tests that were meant to show that brighter lighting raised output.",
         },
       ],
     },

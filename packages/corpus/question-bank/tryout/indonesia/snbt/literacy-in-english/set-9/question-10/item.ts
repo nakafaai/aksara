@@ -4,35 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "figurative-language",
   },
-  stimulus: "zoo-purpose",
+  stimulus: "open-offices",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Build a much larger enclosure in order to add a second herd of elephants.",
+            "Part of the privacy that the partitions used to give is recreated by what employees do.",
         },
         {
-          correct: false,
+          column: 2,
+          label: "The employees rebuilt physical barriers on the open floor.",
+        },
+        {
+          column: 1,
           label:
-            "Replace its breeding programmes with more shows for visitors.",
+            "The rise in email and instant messaging fits the writer's claim.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Release all of its penguins into the nearest park to free up space.",
+            "The claim implies that the badges undercounted the employees' face-to-face talk.",
         },
         {
-          correct: true,
-          label: "Rehome its polar bears and breed a threatened local frog.",
-        },
-        {
-          correct: false,
-          label: "Buy more famous animals so that visitor numbers keep rising.",
+          column: 1,
+          label:
+            "On this view, a team whose members do not mind being overheard would lose less face-to-face talk after a move to an open plan.",
         },
       ],
     },
