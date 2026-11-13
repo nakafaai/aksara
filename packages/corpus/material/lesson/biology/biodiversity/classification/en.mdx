@@ -4,7 +4,7 @@ export const metadata = {
     "Artificial, natural, and phylogenetic classification organize living things using different grouping criteria.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Biodiversity of Living Organisms",
 };
 
@@ -96,6 +96,36 @@ The historical five-kingdom system used broad trait combinations to place organi
 
 Natural classification compares several biological traits so the grouping does not depend on one visible habit.
 
+Natural classification compares many traits at once, and the cell itself carries several of them. Pick each cell below and compare where its genetic material sits, what wall surrounds it, and which organelles supply its energy.
+
+<CellCutawayLab
+  title={<>Cells from Four Groups of Organisms</>}
+  description={<>Each cell is cut in half and drawn at its real size. Pick a cell and compare its nucleus, its wall, and its energy organelles.</>}
+  cells={["bacterium", "yeast", "plant", "animal"]}
+  labels={{
+    choose: "Choose a cell",
+    cells: {
+      animal: "Animal cell",
+      bacterium: "Bacterium",
+      plant: "Leaf cell",
+      yeast: "Yeast",
+    },
+    facts: {
+      animal: { nucleus: <>inside a nuclear membrane</>, wall: <>none</>, power: <>mitochondria</> },
+      bacterium: { nucleus: <>nucleoid, no membrane</>, wall: <>peptidoglycan</>, power: <>cell membrane</> },
+      plant: { nucleus: <>inside a nuclear membrane</>, wall: <>cellulose</>, power: <>chloroplasts and mitochondria</> },
+      yeast: { nucleus: <>inside a nuclear membrane</>, wall: <>glucan and chitin</>, power: <>mitochondria</> },
+    },
+    size: <>Length</>,
+    nucleus: <>Genetic material</>,
+    wall: <>Cell wall</>,
+    power: <>Energy organelles</>,
+    viewLabel: "A cell cut in half with its organelles",
+  }}
+/>
+
+The bacterium has no nucleus, so its DNA lies in a **nucleoid**. The yeast, leaf, and animal cells keep their DNA inside a nuclear membrane, which makes all three **eukaryotes**. The cell wall splits them again: cellulose in plants, glucan and chitin in fungi, and no wall at all in animals. Their sizes differ a lot too. A leaf cell <InlineMath math="40\ \mu\text{m}" /> long is about <InlineMath math="20" /> times as long as a bacterium of only <InlineMath math="2\ \mu\text{m}" />. So organisms share a group because **many traits match**, not because of one trait alone.
+
 ### Phylogenetic Classification Infers Common Ancestry
 
 Phylogenetic classification infers evolutionary relationships. Evidence may include body structure, development, fossils, and molecular data such as DNA or RNA sequences. A group that contains one common ancestor and all of its descendants is called **monophyletic**. New evidence can change an organism's position, so check the grouping basis and supporting evidence for each group.
@@ -164,6 +194,26 @@ A key with yes-or-no questions splits every group into two. After <InlineMath ma
     three: <InlineMath math="2^3=8" />,
   }}
 />
+
+Phylogenetic classification compares DNA base sequences. The fewer differences two species show in the same gene, the closer their relationship, because they split from a common ancestor more recently.
+
+<DnaHelixLab
+  title={<>Comparing the DNA of Two Species</>}
+  description={<>An example stretch of the same gene in two species, <InlineMath math="27" /> base pairs long. Switch the species and watch the different bases glow.</>}
+  sequence="ATG GCT AAC CTG GTA CAG TTC GAA AGC"
+  variant="ATG GCC AAC CTG GTG CAG TTT GAA AGC"
+  labels={{
+    choose: "Choose a species",
+    strands: { first: <>Species A</>, second: <>Species B</> },
+    length: <>Base pairs</>,
+    span: <>Length</>,
+    differences: <>Different bases</>,
+    identity: <>Same bases</>,
+    viewLabel: "DNA double helix with the different bases glowing",
+  }}
+/>
+
+Out of <InlineMath math="27" /> bases, <InlineMath math="3" /> differ, so the stretches are <InlineMath math="\tfrac{24}{27} \approx 88.9\%" /> the same. This is an example stretch so you can count it yourself. Real comparisons use thousands of bases from several genes, but the method is the same: count the differences, then group the species that match best.
 
 ## Taxa and Ranks in a Hierarchy
 

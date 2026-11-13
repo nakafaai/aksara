@@ -5,7 +5,7 @@ export const metadata = {
     "Viren können Krankheiten verursachen, mikrobielle Populationen beeinflussen oder als biotechnologische Werkzeuge dienen, je nach ihrer Beziehung zum Wirt.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Viren und ihre Wirkungen",
 };
 
@@ -78,6 +78,30 @@ Viruserkrankungen betreffen Menschen, andere Tiere und Pflanzen. Beim Menschen k
 
 Um eine Viruserkrankung zu verstehen, prüfe **den Übertragungsweg** und das betroffene Gewebe. Dengueviren werden hauptsächlich durch Stiche infizierter Aedes-Mücken übertragen. Atemwegsviren können sich verbreiten, wenn jemand Atemwegspartikel einer infizierten Person einatmet. Pflanzenviren gelangen etwa durch Insekten, Verletzungen oder infiziertes Pflanzmaterial in neue Wirte.
 
+Der Übertragungsweg entscheidet, welche Maßnahme wirkt. Wechsle den Weg und probier Masken und Händewaschen aus.
+
+<EpidemicSpreadLab
+  title={<>Der Weg entscheidet über die Maßnahme</>}
+  description={<>Wähl, ob sich das Virus über die Luft oder durch Berührung verbreitet, und stell dann Masken und Händewaschen ein.</>}
+  measures={["masks", "washing"]}
+  routes={["air", "touch"]}
+  labels={{
+    chooseRoute: "Übertragungsweg wählen",
+    routes: { air: <>Über die Luft</>, touch: <>Durch Berührung</> },
+    masks: "Menschen mit Maske",
+    washing: "Menschen, die Hände waschen",
+    reproduction: <>Ein Fall steckt an</>,
+    peak: <>Höchstens gleichzeitig krank</>,
+    total: <>Jemals angesteckt</>,
+    infected: <>Gerade angesteckt</>,
+    recovered: <>Genesen</>,
+    immune: <>Durch Impfung immun</>,
+    viewLabel: "Marktplatz mit spazierenden Menschen und einer Kurve des Ausbruchs",
+  }}
+/>
+
+Über die Luft senken Masken die Zahl der Angesteckten pro Fall von <InlineMath math="3" /> auf <InlineMath math="0{,}75" />, wenn alle eine tragen, während Händewaschen nichts ändert. Bei Berührung halbiert Händewaschen die Zahl auf <InlineMath math="1{,}5" />, während Masken keinen Unterschied machen. Erkenne also zuerst den Weg und wähl dann die Maßnahme.
+
 ### Schutzmaßnahmen richten sich nach dem Übertragungsweg
 
 Atemwegspartikel, Mückenstiche und bestimmte Körperflüssigkeiten sind verschiedene Übertragungswege. Für die Wahl einer Schutzmaßnahme müssen **Übertragungsweg, Zielzellen und die Bedingungen** bekannt sein, die eine Übertragung begünstigen.
@@ -139,6 +163,24 @@ Dreh diesen viralen Vektor. Seine Proteinhülle, der Teil, der schon weiß, wie 
     removed: <>Krankheitsgene entfernt</>,
   }}
 />
+
+Impfstoffe sind eine kontrollierte Nutzung von Viren. Ein Impfstoff aus abgeschwächten oder inaktivierten Viren oder aus einem Teil davon, etwa dem Spike-Protein, trainiert den Körper, ohne die Krankheit auszulösen.
+
+<AntibodyNeutralizeLab
+  title={<>Antikörper bauen sich nach der Impfung auf</>}
+  description={<>Verschieb die Tage nach der ersten Dosis und drück auf Abspielen, um zu sehen, ob Virionen noch andocken können.</>}
+  mode="days"
+  labels={{
+    day: "Tage nach der Dosis",
+    level: <>Antikörperspiegel</>,
+    covered: <>Bedeckte Spikes</>,
+    blocked: <>Blockierte Virionen</>,
+    chance: <>Chance, dass ein Virion blockiert ist</>,
+    viewLabel: "SARS-CoV-2-Virionen nähern sich ACE2-Rezeptoren einer Zelloberfläche, mit Antikörpern an ihren Spikes",
+  }}
+/>
+
+In der ersten Woche gibt es kaum Antikörper, deshalb können Virionen noch andocken. An Tag <InlineMath math="7" /> gibt dieses Modell jedem Virion etwa <InlineMath math="41\%" /> Chance, blockiert zu werden. In der zweiten Woche steigt der Spiegel, und etwa ab Tag <InlineMath math="14" /> ist fast jedes Virion blockiert. Deshalb beginnt der Schutz einige Zeit nach der Impfung, nicht am selben Tag.
 
 ## Viruswirkungen beurteilen
 

@@ -4,7 +4,7 @@ export const metadata = {
     "Produzenten, Konsumenten und Zersetzer übernehmen unterschiedliche Aufgaben im Energiefluss, im Stoffkreislauf und in den Beziehungen eines Ökosystems.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Vielfalt der Lebewesen",
 };
 
@@ -25,6 +25,32 @@ In viele Ökosysteme gelangt Energie als Sonnenlicht. Am Ende wird sie **als Wä
 In einem Garten bauen Produzenten organisches Material auf, Konsumenten nehmen Nahrung von anderen Organismen auf und Zersetzer führen Stoffe in die Umwelt zurück.
 
 > Verfolge zwei Wege durch das Ökosystem. Folge der Energie von einer Nahrungsquelle zu ihren Konsumenten. Folge anschließend den Stoffen, die Zersetzer in die Umwelt zurückführen und die Organismen erneut aufnehmen können.
+
+Energie gelangt über Produzenten in ein Ökosystem. Vergleiche eine Blattzelle mit einer Tierzelle, um zu sehen, wo dieser Fluss beginnt.
+
+<CellCutawayLab
+  title={<>Die Zelle eines Produzenten und eines Konsumenten</>}
+  description={<>Beide Zellen sind in echter Größe halbiert. Wähl eine Zelle und such nach Chloroplasten.</>}
+  cells={["plant", "animal"]}
+  labels={{
+    choose: "Zelle wählen",
+    cells: {
+      animal: "Tierzelle",
+      plant: "Blattzelle",
+    },
+    facts: {
+      animal: { nucleus: <>in einer Kernhülle</>, wall: <>keine</>, power: <>Mitochondrien</> },
+      plant: { nucleus: <>in einer Kernhülle</>, wall: <>Cellulose</>, power: <>Chloroplasten und Mitochondrien</> },
+    },
+    size: <>Länge</>,
+    nucleus: <>Erbgut</>,
+    wall: <>Zellwand</>,
+    power: <>Energie-Organellen</>,
+    viewLabel: "Eine halbierte Zelle mit ihren Organellen",
+  }}
+/>
+
+Die Blattzelle enthält **Chloroplasten**, die Licht einfangen und Zucker aufbauen, also stellt eine Pflanze ihre Nahrung selbst her. Die Tierzelle hat Mitochondrien, aber keine Chloroplasten, deshalb muss ein Tier Nahrung fressen, die andere Lebewesen gebildet haben. Beide Zellen nutzen Mitochondrien, um die Energie aus dieser Nahrung freizusetzen.
 
 ## Energie fließt von den Nahrungsquellen aus
 
@@ -104,6 +130,24 @@ Nur etwa ein Zehntel der Energie einer Stufe kommt bei der nächsten an, also <I
     bird: <InlineMath math="\text{Vogel: } 100\ \mathrm{kJ}" />,
   }}
 />
+
+Jede Ebene gibt nur einen Teil ihrer Energie weiter. Deshalb kann ein Feld nur eine begrenzte Zahl Ratten ernähren und die Ratten nur eine begrenzte Zahl Eulen.
+
+<PredatorPreyLab
+  title={<>Nahrung begrenzt Ratten und Eulen</>}
+  description={<>Der Reis auf diesem Feld reicht für höchstens <InlineMath math="400" /> Ratten. Stell die Eulen zu Beginn ein und spiel <InlineMath math="20" /> Jahre ab.</>}
+  capacity={400}
+  labels={{
+    start: "Eulen zu Beginn",
+    prey: <>Ratten</>,
+    predators: <>Eulen</>,
+    peak: <>Meiste Ratten</>,
+    year: <>Jahr</>,
+    viewLabel: "Reisfeld mit Reisfeldratten und Schleiereulen",
+  }}
+/>
+
+Weil der Reis die Ratten begrenzt, werden die Schwankungen kleiner, und das Feld pendelt sich bei etwa <InlineMath math="100" /> Ratten und <InlineMath math="15" /> Eulen ein. Dass es viel weniger Eulen als Ratten gibt, ist kein Zufall. Eine Eule braucht viele Ratten zum Leben, genau wie die Energiepyramide zeigt.
 
 ## Stoffe durchlaufen mithilfe der Zersetzer einen Kreislauf
 

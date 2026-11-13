@@ -4,7 +4,7 @@ export const metadata = {
     "Künstliche, natürliche und phylogenetische Klassifikation als verschiedene Wege verstehen, Lebewesen nach nachvollziehbaren Kriterien zu ordnen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Vielfalt der Lebewesen",
 };
 
@@ -96,6 +96,36 @@ Die natürliche Klassifikation berücksichtigt **mehrere Merkmale gleichzeitig**
 
 Damit ist die natürliche Klassifikation aussagekräftiger als eine Einteilung nach einem einzelnen sichtbaren Merkmal. Sie prüft, ob mehrere biologische Merkmale dieselbe Zuordnung stützen.
 
+Die natürliche Klassifikation vergleicht viele Merkmale auf einmal, und die Zelle selbst trägt einige davon. Wähl unten jede Zelle aus und vergleiche, wo ihr Erbgut liegt, welche Wand sie umgibt und welche Organellen ihr Energie liefern.
+
+<CellCutawayLab
+  title={<>Zellen aus vier Gruppen von Lebewesen</>}
+  description={<>Jede Zelle ist halbiert und in echter Größe gezeichnet. Wähl eine Zelle und vergleiche Kern, Wand und Energie-Organellen.</>}
+  cells={["bacterium", "yeast", "plant", "animal"]}
+  labels={{
+    choose: "Zelle wählen",
+    cells: {
+      animal: "Tierzelle",
+      bacterium: "Bakterium",
+      plant: "Blattzelle",
+      yeast: "Hefe",
+    },
+    facts: {
+      animal: { nucleus: <>in einer Kernhülle</>, wall: <>keine</>, power: <>Mitochondrien</> },
+      bacterium: { nucleus: <>Nucleoid ohne Membran</>, wall: <>Peptidoglykan</>, power: <>Zellmembran</> },
+      plant: { nucleus: <>in einer Kernhülle</>, wall: <>Cellulose</>, power: <>Chloroplasten und Mitochondrien</> },
+      yeast: { nucleus: <>in einer Kernhülle</>, wall: <>Glucan und Chitin</>, power: <>Mitochondrien</> },
+    },
+    size: <>Länge</>,
+    nucleus: <>Erbgut</>,
+    wall: <>Zellwand</>,
+    power: <>Energie-Organellen</>,
+    viewLabel: "Eine halbierte Zelle mit ihren Organellen",
+  }}
+/>
+
+Das Bakterium hat keinen Zellkern, deshalb liegt seine DNA in einem **Nucleoid**. Hefe, Blattzelle und Tierzelle halten ihre DNA in einer Kernhülle, also sind alle drei **Eukaryoten**. Die Zellwand trennt sie noch einmal: Cellulose bei Pflanzen, Glucan und Chitin bei Pilzen, gar keine Wand bei Tieren. Auch die Größen unterscheiden sich stark. Eine Blattzelle von <InlineMath math="40\ \mu\text{m}" /> ist etwa <InlineMath math="20" />-mal so lang wie ein Bakterium mit nur <InlineMath math="2\ \mu\text{m}" />. Lebewesen kommen also in eine Gruppe, weil **viele Merkmale passen**, nicht wegen eines einzigen.
+
 ### Phylogenetische Klassifikation untersucht Abstammung
 
 Phylogenetische Klassifikation erschließt evolutionäre Verwandtschaft anhand von Körperbau, Entwicklung, Fossilien und molekularen Daten wie DNA- oder RNA-Sequenzen. Eine Gruppe aus einem gemeinsamen Vorfahren und allen seinen Nachfahren heißt **monophyletisch**. Neue Befunde können die Einordnung verändern. Deshalb gehören Kriterien und Belege zu jeder Klassifikation.
@@ -164,6 +194,26 @@ Ein Schlüssel mit Ja-oder-Nein-Fragen teilt jede Gruppe in zwei. Nach <InlineMa
     three: <InlineMath math="2^3=8" />,
   }}
 />
+
+Die phylogenetische Klassifikation vergleicht Basenfolgen der DNA. Je weniger Unterschiede zwei Arten im selben Gen zeigen, desto enger sind sie verwandt, weil sie sich erst vor Kurzem von einem gemeinsamen Vorfahren getrennt haben.
+
+<DnaHelixLab
+  title={<>Die DNA zweier Arten vergleichen</>}
+  description={<>Ein Beispielstück desselben Gens bei zwei Arten, <InlineMath math="27" /> Basenpaare lang. Wechsle die Art und sieh, wie die abweichenden Basen leuchten.</>}
+  sequence="ATG GCT AAC CTG GTA CAG TTC GAA AGC"
+  variant="ATG GCC AAC CTG GTG CAG TTT GAA AGC"
+  labels={{
+    choose: "Art wählen",
+    strands: { first: <>Art A</>, second: <>Art B</> },
+    length: <>Basenpaare</>,
+    span: <>Länge</>,
+    differences: <>Abweichende Basen</>,
+    identity: <>Gleiche Basen</>,
+    viewLabel: "DNA-Doppelhelix mit leuchtenden abweichenden Basen",
+  }}
+/>
+
+Von <InlineMath math="27" /> Basen weichen <InlineMath math="3" /> ab, die Stücke stimmen also zu <InlineMath math="\tfrac{24}{27} \approx 88{,}9\%" /> überein. Das ist ein Beispielstück, damit du selbst zählen kannst. Echte Vergleiche nutzen Tausende Basen aus mehreren Genen, aber das Vorgehen bleibt gleich: Unterschiede zählen, dann die ähnlichsten Arten zusammenfassen.
 
 ## Taxa und Ränge in einer Hierarchie
 

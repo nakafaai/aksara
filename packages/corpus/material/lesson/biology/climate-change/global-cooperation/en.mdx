@@ -4,7 +4,7 @@ export const metadata = {
     "Climate change requires global cooperation on temperature targets, data monitoring, international agreements, and shared action.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Climate Change",
 };
 
@@ -81,6 +81,25 @@ A temperature target becomes a common measure once you turn it into a budget. Th
   }}
 />
 
+Temperature targets matter for every coast. The village below shows what each emission pathway in the IPCC's latest assessment means for sea level by 2100.
+
+<SeaLevelRiseLab
+  title={<>Sea Level in 2100 Depends on the Pathway</>}
+  description={<>Choose a pathway. The sea rises to its median for 2100, compared with the 1995 to 2014 average.</>}
+  mode="scenario"
+  labels={{
+    choose: "Choose a pathway",
+    scenarios: { ssp126: <InlineMath math="\text{SSP1-2.6}" />, ssp245: <InlineMath math="\text{SSP2-4.5}" />, ssp585: <InlineMath math="\text{SSP5-8.5}" /> },
+    level: <>Sea level rise by 2100</>,
+    warming: <>Warming in 2081 to 2100</>,
+    range: <>Likely range</>,
+    retreat: <>Shoreline moves inland</>,
+    viewLabel: "Coastal village on a gentle beach with a tide gauge",
+  }}
+/>
+
+Under <InlineMath math="\text{SSP1-2.6}" /> the sea rises about <InlineMath math="0.44\text{ m}" /> by 2100 and warming stays near <InlineMath math="1.8^\circ\text{C}" />. Under <InlineMath math="\text{SSP5-8.5}" /> the rise is about <InlineMath math="0.77\text{ m}" /> with about <InlineMath math="4.4^\circ\text{C}" /> of warming. On this beach every <InlineMath math="1\text{ m}" /> of rise moves the shoreline <InlineMath math="20\text{ m}" /> inland. Which pathway happens depends on how much **all countries** cut together.
+
 ## Roles in International Climate Cooperation
 
 Global cooperation runs through several kinds of institutions, and each one carries a different job. **Some assess evidence**, some shape agreements, some run programmes, and some track progress. A body that publishes research does not decide national targets, and the process that records national reports does not set those targets either.
@@ -106,6 +125,25 @@ After submitting an NDC, countries report actions, progress, and support under t
 | Adaptation support | Provides finance, technology, or capacity to vulnerable places | Climate risk and the resources available to reduce it are unevenly distributed |
 
 > Targets set the direction, national plans state intended action, reports record progress, and the global stocktake assesses the combined result.
+
+One country's cuts cannot hold the climate on their own, because <InlineMath math="\mathrm{CO_2}" /> mixes through the whole atmosphere. Test it in the bathtub model below.
+
+<CarbonBudgetLab
+  title={<>Every Region Fills the Same Tub</>}
+  description={<>Emissions pour in from the tap, the ocean and land drain part away, and the water level is the <InlineMath math="\mathrm{CO_2}" /> in the air. Pick the regions that cut their fossil <InlineMath math="\mathrm{CO_2}" /> to zero by 2050.</>}
+  mode="cooperate"
+  labels={{
+    chooseRegions: "Choose regions",
+    regions: { china: <>China</>, usa: <>USA</>, india: <>India</>, europe: <>EU</>, rest: <>Rest of the world</> },
+    level: <><InlineMath math="\mathrm{CO_2}" /> in 2100</>,
+    warming: <>Warming in 2100</>,
+    emissions: <><InlineMath math="\mathrm{CO_2}" /> released in 2050 per year</>,
+    peak: <>Highest <InlineMath math="\mathrm{CO_2}" /></>,
+    viewLabel: "Atmosphere bathtub with an emissions tap, a sink drain and a carbon dioxide graph",
+  }}
+/>
+
+With no region joining, <InlineMath math="\mathrm{CO_2}" /> in this model keeps climbing to about <InlineMath math="521\text{ ppm}" /> by 2100. China alone releases about <InlineMath math="31\%" /> of the world's fossil <InlineMath math="\mathrm{CO_2}" />, yet if only China cuts, <InlineMath math="\mathrm{CO_2}" /> still rises to about <InlineMath math="467\text{ ppm}" />. When China, the USA, India and the EU join together, <InlineMath math="\mathrm{CO_2}" /> peaks near <InlineMath math="445\text{ ppm}" /> and then falls. When every region joins, it falls to about <InlineMath math="348\text{ ppm}" /> by 2100. The thin line shows the path with no cuts at all.
 
 ## Global Agreements Shape Local Decisions
 
