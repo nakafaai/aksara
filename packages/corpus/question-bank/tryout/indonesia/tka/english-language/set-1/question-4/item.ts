@@ -20,12 +20,12 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "A tamarind seedling reaches a girl's knee some months after it is planted.",
+            "A tamarind seedling reaches a girl's knee a year or two after it is planted.",
         },
         {
           column: 1,
           label:
-            "A heron standing on a drowned minaret calls out as a boat drifts closer.",
+            "A heron standing on a drowned minaret gives a loud cry as a boat drifts closer.",
         },
         {
           column: 2,
