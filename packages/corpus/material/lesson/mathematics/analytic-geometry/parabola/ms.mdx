@@ -1,0 +1,310 @@
+export const metadata = {
+  title: "Parabola",
+  description: "Terbitkan persamaan parabola daripada verteks, fokus dan direktriksnya melalui contoh berserta jalan kerja.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-09-12",
+  subject: "Geometri Analitik",
+};
+
+
+
+## Laluan dan Pemantul Berbentuk Parabola
+
+Kalau rintangan udara diabaikan dan graviti dianggap malar, gerakan bola keranjang di udara mengikut laluan **berbentuk parabola**. Air yang memancut keluar dari air pancut pada satu sudut juga mengikut model yang sama, selagi andaian itu munasabah.
+
+Bentuk parabola juga berguna dalam teknologi. Piring satelit mengumpul isyarat, lampu sorot menghalakan cahaya, dan gerbang berbentuk parabola dapat dilihat pada jambatan dan seni bina moden.
+
+Ciri utamanya ialah sifat **pantulan**. Sinar yang datang selari dengan paksi akan dipantulkan ke arah **fokus**. Sebaliknya, sinar yang dipancarkan dari fokus akan keluar dari pemantul parabola dalam arah yang selari dengan paksi. Sebab itulah bentuk parabola boleh mengumpul atau menghalakan tenaga dengan berkesan.
+
+<MathVisual
+  title={<>Parabola <InlineMath math="y = ax^2" /> dalam Kehidupan Sebenar</>}
+  description={<>Gambar rajah parabola dengan fokus di <InlineMath math="F(0, \frac{1}{4a})" /> dan direktriks <InlineMath math="y = -\frac{1}{4a}" />.</>}
+  labels={{
+    "l1": <>Parabola</>,
+    "l2": <InlineMath math="F" />,
+    "l3": <InlineMath math="O" />,
+    "l4": <>Direktriks</>,
+    "l5": <InlineMath math="P" />,
+    "l6": <InlineMath math="Q" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -2, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((t - 40) / 10)", y: "((0.2 * ((t - 40) / 10)) * ((t - 40) / 10))", parameter: { min: 0, max: 80 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 1.25 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "((-5) + (t * 10))", y: "(-1.25)", parameter: { min: 0, max: 1 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 1.25 }, { x: 2, y: 0.8 }, { x: 2, y: -1.25 }], appearance: "reference" },
+      { id: "s5-p0", kind: "point", at: { x: 0, y: 1.25 }, appearance: "reference" },
+      { id: "s5-p1", kind: "point", at: { x: 2, y: 0.8 }, appearance: "reference" },
+      { id: "s5-p2", kind: "point", at: { x: 2, y: -1.25 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -3, y: 1.8 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 1.25 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l4", objectId: "s4", at: { x: 5, y: -1.25 }, placement: "below-left" },
+      { key: "l5", objectId: "s5", at: { x: 2, y: 0.8 }, placement: "above-right" },
+      { key: "l6", objectId: "s5", at: { x: 2, y: -1.25 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+## Parabola daripada Satu Titik Tetap dan Satu Garis Tetap
+
+Parabola terdiri daripada titik-titik yang **sama jarak dari fokus dan dari direktriks**. Fokus ialah titik tetap yang tidak terletak pada direktriks, dan direktriks ialah garis tetap. Jarak ke garis diukur secara **berserenjang** dengan garis itu.
+
+Dalam graf pertama, ambil <InlineMath math="P(2,0.8)" />, fokus <InlineMath math="F(0,1.25)" />, dan kaki serenjang <InlineMath math="Q(2,-1.25)" />. Dua tembereng garis itu menunjukkan jarak yang sama.
+
+<BlockMath math="PF=\sqrt{(2-0)^2+(0.8-1.25)^2}=2.05,\qquad PQ=0.8-(-1.25)=2.05" />
+
+Untuk menerbitkan persamaan bagi kes umum, letakkan fokus di <InlineMath math="F(p,0)" /> dan direktriks pada <InlineMath math="x=-p" />, dengan <InlineMath math="p \ne 0" />. Jarak yang sama bagi <InlineMath math="P(x,y)" /> memberikan:
+
+<BlockMath math="\sqrt{(x-p)^2+y^2}=|x+p|" />
+
+Kuasa duakan kedua-dua jarak yang tidak negatif itu. Selepas sebutan yang sama dihapuskan, yang tinggal ialah bentuk piawai mengufuk.
+
+<BlockMath math="\begin{aligned}(x-p)^2+y^2&amp;=(x+p)^2\\x^2-2px+p^2+y^2&amp;=x^2+2px+p^2\\y^2&amp;=4px\end{aligned}" />
+
+Tukar peranan koordinat supaya fokus berada di <InlineMath math="(0,p)" /> dan direktriks pada <InlineMath math="y=-p" />. Hasilnya ialah bentuk mencancang <InlineMath math="x^2=4py" />.
+
+## Persamaan Piawai Parabola
+
+Mulakan dengan parabola yang verteksnya di asalan <InlineMath math="O(0,0)" />. Arah bukaannya menghasilkan empat bentuk piawai.
+
+<MathVisual
+  title={<>Empat Bentuk Piawai Parabola dengan Verteks <InlineMath math="O(0,0)" /></>}
+  description={<>Parabola piawai <InlineMath math="x^2 = 4py" /> (mencancang) dan <InlineMath math="y^2 = 4px" /> (mengufuk).</>}
+  labels={{
+    "l1": <InlineMath math="x^2=4y" />,
+    "l2": <InlineMath math="x^2=-4y" />,
+    "l3": <InlineMath math="y^2=4x" />,
+    "l4": <InlineMath math="y^2=-4x" />,
+    "l5": <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((t - 30) / 10)", y: "((0.25 * ((t - 30) / 10)) * ((t - 30) / 10))", parameter: { min: 0, max: 60 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((t - 30) / 10)", y: "(((-0.25) * ((t - 30) / 10)) * ((t - 30) / 10))", parameter: { min: 0, max: 60 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((0.25 * ((t - 30) / 10)) * ((t - 30) / 10))", y: "((t - 30) / 10)", parameter: { min: 0, max: 60 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(((-0.25) * ((t - 30) / 10)) * ((t - 30) / 10))", y: "((t - 30) / 10)", parameter: { min: 0, max: 60 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -3, y: 2.25 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 3, y: -2.25 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 2.25, y: 3 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: -2.25, y: -3 }, placement: "below-left" },
+      { key: "l5", objectId: "s5", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Dua persamaan piawai bagi parabola yang paksinya selari dengan paksi koordinat menggunakan parameter bertanda <InlineMath math="p" />:
+
+<MathContainer>
+  <BlockMath math="y^2 = 4px \quad \text{(paksi mengufuk)}" />
+  <BlockMath math="x^2 = 4py \quad \text{(paksi mencancang)}" />
+</MathContainer>
+
+Kalau <InlineMath math="p > 0" />, parabola terbuka ke kanan atau ke atas. Kalau <InlineMath math="p < 0" />, parabola terbuka ke kiri atau ke bawah. **Jarak dari verteks ke fokus** ialah <InlineMath math="|p|" />, dan <InlineMath math="|p|" /> yang lebih besar menghasilkan parabola yang lebih lebar.
+
+Contohnya, bagi parabola <InlineMath math="y^2 = 4px" /> (terbuka ke kanan):
+
+<MathContainer>
+  <BlockMath math="\text{Verteks: } (0, 0)" />
+  <BlockMath math="\text{Fokus: } (p, 0)" />
+  <BlockMath math="\text{Direktriks: } x = -p" />
+  <BlockMath math="\text{Paksi simetri: } y = 0" />
+</MathContainer>
+
+## Parabola dengan Verteks Sebarang
+
+Parabola tidak semestinya terletak di asalan. Apabila verteksnya di <InlineMath math="(h, k)" />, kita guna **bentuk piawai yang dianjakkan**.
+
+<MathVisual
+  title={<>Parabola <InlineMath math="(x-h)^2 = 4p(y-k)" /> dengan Verteks <InlineMath math="(h,k)" /></>}
+  description={<>Parabola dengan verteks <InlineMath math="V(2,1)" />, fokus <InlineMath math="F(2,1.5)" /> dan parameter <InlineMath math="p = 0.5" />.</>}
+  labels={{
+    "l1": <>Parabola</>,
+    "l2": <InlineMath math="V" />,
+    "l3": <InlineMath math="F" />,
+    "l4": <InlineMath math="y=0.5" />,
+    "l5": <InlineMath math="x=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 7 }, y: { min: -2, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-1) + (t / 20))", y: "(1 + ((1 / (4 * 0.5)) * ((((-1) + (t / 20)) - 2))^(2)))", parameter: { min: 0, max: 120 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 2, y: 1.5 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "((-2) + (t * 8))", y: "0.5", parameter: { min: 0, max: 1 }, appearance: "highlight" },
+      { id: "s5", kind: "line", through: [{ x: 2, y: -1 }, { x: 2, y: 5 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -0.5, y: 4.13 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 1 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 2, y: 1.5 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 6, y: 0.5 }, placement: "below-left" },
+      { key: "l5", objectId: "s5", at: { x: 2, y: 5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Bentuk persamaan parabola secara umum dengan verteks di <InlineMath math="(h, k)" />:
+
+<MathContainer>
+  <BlockMath math="(y-k)^2 = 4p(x-h) \quad \text{(mengufuk)}" />
+  <BlockMath math="(x-h)^2 = 4p(y-k) \quad \text{(mencancang)}" />
+</MathContainer>
+
+Bagi parabola mencancang <InlineMath math="(x-h)^2 = 4p(y-k)" />:
+
+<MathContainer>
+  <BlockMath math="\text{Verteks: } (h, k)" />
+  <BlockMath math="\text{Fokus: } (h, k+p)" />
+  <BlockMath math="\text{Direktriks: } y = k-p" />
+  <BlockMath math="\text{Paksi simetri: } x = h" />
+</MathContainer>
+
+Bagi parabola mengufuk <InlineMath math="(y-k)^2 = 4p(x-h)" />:
+
+<MathContainer>
+  <BlockMath math="\text{Verteks: } (h, k)" />
+  <BlockMath math="\text{Fokus: } (h+p, k)" />
+  <BlockMath math="\text{Direktriks: } x = h-p" />
+  <BlockMath math="\text{Paksi simetri: } y = k" />
+</MathContainer>
+
+> Tanda <InlineMath math="p" /> menentukan arah bukaan. Dalam bentuk mengufuk, positif bermaksud ke kanan dan negatif bermaksud ke kiri. Dalam bentuk mencancang, positif bermaksud ke atas dan negatif bermaksud ke bawah.
+
+## Menentukan Unsur Parabola
+
+Persamaan parabola menentukan orientasi, verteks, fokus, direktriks dan paksi simetrinya. Mulakan dengan mengenal pasti orientasinya:
+
+- Kalau pemboleh ubah <InlineMath math="x" /> dikuasaduakan → parabola **mencancang** (terbuka ke atas/bawah)
+- Kalau pemboleh ubah <InlineMath math="y" /> dikuasaduakan → parabola **mengufuk** (terbuka ke kiri/kanan)
+
+Dalam contoh berikut, kita gunakan [penyempurnaan kuasa dua](/ms/subjek/matematik/fungsi-kuadratik/penyempurnaan-kuasa-dua) untuk menulis semula persamaan dalam bentuk piawai. Bentuk piawai itu kemudian memberikan verteks, fokus, direktriks dan paksi simetri.
+
+**Contoh**: Diberi parabola dengan persamaan <InlineMath math="x^2 - 4x - 8y + 12 = 0" />
+
+Langkah pertama ialah menukarkannya kepada bentuk piawai dengan penyempurnaan kuasa dua:
+
+<MathContainer>
+  <BlockMath math="x^2 - 4x - 8y + 12 = 0" />
+  <BlockMath math="x^2 - 4x = 8y - 12" />
+  <BlockMath math="x^2 - 4x + 4 = 8y - 12 + 4" />
+  <BlockMath math="(x-2)^2 = 8y - 8" />
+  <BlockMath math="(x-2)^2 = 8(y-1)" />
+</MathContainer>
+
+Daripada bentuk <InlineMath math="(x-2)^2 = 8(y-1)" />, kita kenal pasti:
+
+- <InlineMath math="h = 2" />, <InlineMath math="k = 1" />
+- <InlineMath math="4p = 8" />, jadi <InlineMath math="p = 2" />
+
+Unsur-unsur parabola itu ialah:
+
+<MathVisual
+  title={<>Analisis Parabola <InlineMath math="(x-2)^2 = 8(y-1)" /></>}
+  description={<>Mengenal pasti verteks <InlineMath math="V(2,1)" />, fokus <InlineMath math="F(2,3)" />, direktriks <InlineMath math="y = -1" /> dan <InlineMath math="p = 2" />.</>}
+  labels={{
+    "l1": <>Parabola</>,
+    "l2": <InlineMath math="V" />,
+    "l3": <InlineMath math="F" />,
+    "l4": <InlineMath math="y=-1" />,
+    "l5": <InlineMath math="x=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 10.5 }, y: { min: -3, max: 7 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-4) + (t / 10))", y: "(1 + ((1 / (4 * 2)) * ((((-4) + (t / 10)) - 2))^(2)))", parameter: { min: 0, max: 120 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 2, y: 3 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "((-5) + (t * 14))", y: "(-1)", parameter: { min: 0, max: 1 }, appearance: "highlight" },
+      { id: "s5", kind: "line", through: [{ x: 2, y: -2 }, { x: 2, y: 6 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.1, y: 2.2 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 1 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 2, y: 3 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 9, y: -1 }, placement: "below-left" },
+      { key: "l5", objectId: "s5", at: { x: 2, y: 6 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Daripada analisis ini, kita dapat:
+
+<MathContainer>
+  <BlockMath math="\text{Verteks: } (2, 1)" />
+  <BlockMath math="\text{Fokus: } (2, 3)" />
+  <BlockMath math="\text{Direktriks: } y = -1" />
+  <BlockMath math="\text{Paksi simetri: } x = 2" />
+</MathContainer>
+  Parabola ini terbuka ke atas kerana <InlineMath math="p=2>0" />.
+
+## Mencari Persamaan Parabola serta Verteks dan Fokusnya
+
+Dua soalan dengan jalan kerja berikut mengaitkan bentuk piawai dengan verteks dan fokus.
+
+**Soalan 1**: Tentukan persamaan parabola yang mempunyai verteks di <InlineMath math="(1, -2)" /> dan fokus di <InlineMath math="(4, -2)" />.
+
+**Penyelesaian**:
+
+Oleh sebab verteks dan fokus mempunyai koordinat <InlineMath math="y" /> yang sama, parabola ini **mengufuk**.
+
+<MathContainer>
+  <BlockMath math="\text{Verteks: } (h, k) = (1, -2)" />
+  <BlockMath math="\text{Fokus: } (h+p, k) = (4, -2)" />
+</MathContainer>
+
+Daripada syarat fokus, kita dapat <InlineMath math="h + p = 4" />. Gantikan <InlineMath math="h = 1" />:
+
+<BlockMath math="1 + p = 4 \Rightarrow p = 3" />
+
+Persamaan bagi parabola mengufuk ialah <InlineMath math="(y-k)^2 = 4p(x-h)" />:
+
+<MathContainer>
+  <BlockMath math="(y-(-2))^2 = 4(3)(x-1)" />
+  <BlockMath math="(y+2)^2 = 12(x-1)" />
+</MathContainer>
+
+**Soalan 2**: Diberi parabola <InlineMath math="y^2 - 6y - 4x + 13 = 0" />. Tentukan koordinat verteks dan fokusnya.
+
+**Penyelesaian**:
+
+Sempurnakan kuasa dua bagi pemboleh ubah <InlineMath math="y" />:
+
+<MathContainer>
+  <BlockMath math="y^2 - 6y - 4x + 13 = 0" />
+  <BlockMath math="y^2 - 6y = 4x - 13" />
+  <BlockMath math="y^2 - 6y + 9 = 4x - 13 + 9" />
+  <BlockMath math="(y-3)^2 = 4x - 4" />
+  <BlockMath math="(y-3)^2 = 4(x-1)" />
+</MathContainer>
+
+Daripada bentuk <InlineMath math="(y-3)^2 = 4(x-1)" />, kita kenal pasti:
+
+<MathContainer>
+  <BlockMath math="h = 1, \quad k = 3" />
+  <BlockMath math="4p = 4 \Rightarrow p = 1" />
+</MathContainer>
+
+Pengiraan ini memberikan:
+
+<MathContainer>
+  <BlockMath math="\text{Verteks: } (h, k) = (1, 3)" />
+  <BlockMath math="\begin{aligned} \text{Fokus: } (h+p, k) &amp;= (1+1, 3) \\ &amp;= (2, 3) \end{aligned}" />
+</MathContainer>

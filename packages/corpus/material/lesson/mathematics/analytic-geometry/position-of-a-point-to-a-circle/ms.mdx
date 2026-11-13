@@ -1,0 +1,221 @@
+export const metadata = {
+  title: "Kedudukan Titik terhadap Bulatan",
+  description: "Titik boleh berada di dalam, pada, atau di luar bulatan. Tentukan kedudukannya dengan jarak titik ke pusat atau tanda kuasa titik, berserta contoh dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Geometri Analitik",
+};
+
+## Tiga Kedudukan Titik terhadap Bulatan
+
+Satu titik sentiasa berada **di dalam bulatan**, **tepat pada bulatan**, atau **di luar bulatan**. Untuk tahu yang mana satu, bandingkan jarak titik itu ke pusat <InlineMath math="d" /> dengan jejari <InlineMath math="r" />, atau kira **kuasa titik** <InlineMath math="K" />. Bagi titik <InlineMath math="A(x_0, y_0)" /> dan bulatan yang berpusat <InlineMath math="(a, b)" />:
+
+<BlockMath math="K_A = (x_0 - a)^2 + (y_0 - b)^2 - r^2" />
+
+| Kuasa titik | Jarak ke pusat | Kedudukan |
+| --- | --- | --- |
+| <InlineMath math="K_A < 0" /> | <InlineMath math="d < r" /> | Di dalam bulatan |
+| <InlineMath math="K_A = 0" /> | <InlineMath math="d = r" /> | Pada bulatan |
+| <InlineMath math="K_A > 0" /> | <InlineMath math="d > r" /> | Di luar bulatan |
+
+<MathVisual
+  title={<>Kedudukan Titik terhadap Bulatan</>}
+  description={<>Gambaran tiga kedudukan yang mungkin bagi titik A terhadap bulatan.</>}
+  labels={{
+    "l1": <InlineMath math="P(0,0)" />,
+    "l2": <><InlineMath math="A" /> (di dalam)</>,
+    "l3": <><InlineMath math="B" /> (pada)</>,
+    "l4": <><InlineMath math="C" /> (di luar)</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 1.5, y: 1 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 2.6, y: 1.5 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 4.5, y: 2 }, appearance: "reference" },
+      { id: "s6", kind: "parametric", x: "((-5) + (t * (5 - (-5))))", y: "0", parameter: { min: 0, max: 1 }, appearance: "warning" },
+      { id: "s7", kind: "parametric", x: "0", y: "((-4) + (t * (4 - (-4))))", parameter: { min: 0, max: 1 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 1.5, y: 1 }, placement: "below" },
+      { key: "l3", objectId: "s4", at: { x: 2.6, y: 1.5 }, placement: "above-right" },
+      { key: "l4", objectId: "s5", at: { x: 4.5, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Dalam graf ini, pusatnya <InlineMath math="(0, 0)" /> dan jejarinya <InlineMath math="3" />, jadi kuasa setiap titik ialah kuasa dua jaraknya ke pusat tolak sembilan:
+
+| Titik | Kuasa titik | Kedudukan |
+| --- | --- | --- |
+| <InlineMath math="A(\frac32,1)" /> | <InlineMath math="K_A=\frac94+1-9=-\frac{23}{4}" /> | Di dalam |
+| <InlineMath math="B(\frac{3\sqrt3}2,\frac32)" /> | <InlineMath math="K_B=\frac{27}4+\frac94-9=0" /> | Pada bulatan |
+| <InlineMath math="C(\frac92,2)" /> | <InlineMath math="K_C=\frac{81}4+4-9=\frac{61}4" /> | Di luar |
+
+## Kuasa Titik dan Jarak ke Pusat
+
+Kuasa titik ialah **kuasa dua jarak ke pusat tolak kuasa dua jejari**, <InlineMath math="K_A = d^2 - r^2" />. Faktorkan ungkapan ini menjadi <InlineMath math="K_A = (d - r)(d + r)" />. Faktor <InlineMath math="d + r" /> sentiasa positif kerana <InlineMath math="d \ge 0" /> dan <InlineMath math="r > 0" />, jadi tanda <InlineMath math="K_A" /> sama dengan tanda <InlineMath math="d - r" />. Sebab itulah kamu tidak perlu mencari punca kuasa dua langsung: tanda kuasa titik sudah cukup.
+
+Bagi bulatan dalam bentuk am <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, sebelah kiri persamaan itu ialah kembangan <InlineMath math="(x - a)^2 + (y - b)^2 - r^2" /> dengan <InlineMath math="a = -\frac{D}{2}" />, <InlineMath math="b = -\frac{E}{2}" />, dan <InlineMath math="r^2 = a^2 + b^2 - F" />. Jadi kamu dapat kuasa titik dengan **menggantikan koordinat titik itu terus** ke dalam sebelah kiri:
+
+<BlockMath math="K_A = x_0^2 + y_0^2 + Dx_0 + Ey_0 + F" />
+
+Rumus ini hanya boleh digunakan apabila pekali <InlineMath math="x^2" /> dan <InlineMath math="y^2" /> sama dengan <InlineMath math="1" />. Pusat dan jejari bagi bentuk am pula kamu baca melalui penyempurnaan kuasa dua, seperti dalam [persamaan bulatan](/ms/subjek/matematik/geometri-analitik/persamaan-bulatan).
+
+## Maksud Kuasa Titik bagi Titik di Luar Bulatan
+
+Bagi titik di luar bulatan, kuasa titik ialah kuasa dua suatu panjang. Lukis tangen dari titik <InlineMath math="C" /> ke bulatan dan namakan titik sentuhannya <InlineMath math="T" />. Jejari <InlineMath math="OT" /> berserenjang dengan tangen, jadi segi tiga <InlineMath math="OTC" /> bersudut tegak di <InlineMath math="T" />, dan teorem Pythagoras memberikan
+
+<BlockMath math="CT^2 = OC^2 - OT^2 = d^2 - r^2 = K_C" />
+
+Jadi **kuasa titik sama dengan kuasa dua panjang tangen** dari titik itu.
+
+<MathVisual
+  title="Panjang tangen dari titik di luar bulatan"
+  description={<>Bulatan <InlineMath math="x^2 + y^2 = 9" /> dan titik <InlineMath math="C(5, 0)" />. Segi tiga <InlineMath math="OTC" /> bersudut tegak di titik sentuhan <InlineMath math="T" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 6 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "primary" },
+      { id: "tangent", kind: "segment", from: { x: 5, y: 0 }, to: { x: 9 / 5, y: 12 / 5 }, appearance: "highlight" },
+      { id: "radius", kind: "segment", from: { x: 0, y: 0 }, to: { x: 9 / 5, y: 12 / 5 }, appearance: "secondary" },
+      { id: "distance", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "construction" },
+      { id: "point", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+      { id: "touch", kind: "point", at: { x: 9 / 5, y: 12 / 5 }, appearance: "highlight" },
+      { id: "center", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "point", objectId: "point", at: { x: 5, y: 0 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 9 / 5, y: 12 / 5 }, placement: "above" },
+      { key: "center", objectId: "center", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "tangent", objectId: "tangent", at: { x: 17 / 5, y: 6 / 5 }, placement: "above-right" },
+      { key: "radius", objectId: "radius", at: { x: 9 / 10, y: 6 / 5 }, placement: "left" },
+      { key: "distance", objectId: "distance", at: { x: 5 / 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    point: <InlineMath math="C" />,
+    touch: <InlineMath math="T" />,
+    center: <InlineMath math="O" />,
+    tangent: <InlineMath math="CT = 4" />,
+    radius: <InlineMath math="r = 3" />,
+    distance: <InlineMath math="d = 5" />,
+  }}
+/>
+
+Bagi <InlineMath math="C(5, 0)" />, kuasa titiknya ialah <InlineMath math="K_C = 5^2 + 0^2 - 9 = 16" />, jadi panjang tangennya ialah <InlineMath math="CT = \sqrt{16} = 4" />. Semak dengan titik sentuhan <InlineMath math="T\left(\frac95, \frac{12}5\right)" />. Titik ini terletak pada bulatan kerana <InlineMath math="\frac{81}{25} + \frac{144}{25} = 9" />, dan <InlineMath math="OT" /> berserenjang dengan <InlineMath math="TC" /> kerana hasil darab skalarnya <InlineMath math="\left(\frac95, \frac{12}5\right) \cdot \left(\frac{16}5, -\frac{12}5\right) = \frac{144}{25} - \frac{144}{25} = 0" />. Panjangnya pula <InlineMath math="CT^2 = \left(\frac{16}5\right)^2 + \left(\frac{12}5\right)^2 = 16" />. Dari titik di luar bulatan, sentiasa ada dua [tangen kepada bulatan](/ms/subjek/matematik/geometri-analitik/persamaan-tangen-kepada-bulatan) yang sama panjang, kerana kedua-dua segi tiga bersudut tegak itu berkongsi hipotenus <InlineMath math="OC" /> dan kaki <InlineMath math="r" />. Apabila jarak yang dibandingkan dengan jejari ialah jarak dari pusat ke suatu garis, hasilnya menentukan [persilangan garis dan bulatan](/ms/subjek/matematik/geometri-analitik/kedudukan-garis-terhadap-bulatan).
+
+## Contoh Titik dan Bulatan dalam Bentuk Am
+
+Cari kedudukan titik <InlineMath math="A(1, -2)" /> terhadap bulatan <InlineMath math="x^2 + y^2 - 8x - 2y - 8 = 0" />.
+
+Gantikan koordinat <InlineMath math="A" /> terus ke dalam sebelah kiri:
+
+<MathContainer>
+  <BlockMath math="K_A = 1^2 + (-2)^2 - 8(1) - 2(-2) - 8" />
+  <BlockMath math="K_A = 1 + 4 - 8 + 4 - 8 = -7" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="K_A = -7 < 0" />, titik <InlineMath math="A" /> berada **di dalam bulatan**.
+
+<MathVisual
+  title={<>Titik <InlineMath math="A" /> di dalam bulatan berpusat <InlineMath math="(4, 1)" /></>}
+  description={<>Bulatan ini berpusat <InlineMath math="P(4, 1)" /> dan berjejari <InlineMath math="5" />. Jarak <InlineMath math="PA = 3\sqrt{2}" /> lebih pendek daripada jejari.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 10 }, y: { min: -5, max: 7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 4, y: 1 }, radius: 5, appearance: "primary" },
+      { id: "distance", kind: "segment", from: { x: 4, y: 1 }, to: { x: 1, y: -2 }, appearance: "highlight" },
+      { id: "radius", kind: "segment", from: { x: 4, y: 1 }, to: { x: 9, y: 1 }, appearance: "construction" },
+      { id: "point", kind: "point", at: { x: 1, y: -2 }, appearance: "answer" },
+      { id: "center", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "point", objectId: "point", at: { x: 1, y: -2 }, placement: "below-left" },
+      { key: "center", objectId: "center", at: { x: 4, y: 1 }, placement: "above" },
+      { key: "distance", objectId: "distance", at: { x: 5 / 2, y: -1 / 2 }, placement: "below-right" },
+      { key: "radius", objectId: "radius", at: { x: 13 / 2, y: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    point: <InlineMath math="A" />,
+    center: <InlineMath math="P" />,
+    distance: <InlineMath math="3\sqrt{2}" />,
+    radius: <InlineMath math="r = 5" />,
+  }}
+/>
+
+Semak dengan jarak ke pusat. Penyempurnaan kuasa dua memberikan <InlineMath math="(x - 4)^2 + (y - 1)^2 = 25" />, jadi pusatnya <InlineMath math="P(4, 1)" /> dan <InlineMath math="r = 5" />. Kuasa dua jaraknya ialah <InlineMath math="PA^2 = (1 - 4)^2 + (-2 - 1)^2 = 18" />, jadi <InlineMath math="K_A = 18 - 25 = -7" />, sama seperti hasil penggantian terus.
+
+## Contoh Koordinat yang Meletakkan Titik pada Bulatan
+
+Diberi titik <InlineMath math="Q(k, 3)" /> dan bulatan <InlineMath math="x^2 + y^2 - 4x + 2y - 20 = 0" />. Cari nilai-nilai <InlineMath math="k" /> supaya <InlineMath math="Q" /> berada pada bulatan, kemudian cari syaratnya supaya <InlineMath math="Q" /> berada di dalam bulatan itu.
+
+Titik pada bulatan bermaksud **kuasa titiknya sifar**:
+
+<MathContainer>
+  <BlockMath math="K_Q = k^2 + 9 - 4k + 6 - 20 = k^2 - 4k - 5" />
+  <BlockMath math="k^2 - 4k - 5 = (k - 5)(k + 1) = 0" />
+  <BlockMath math="k = 5 \quad \text{atau} \quad k = -1" />
+</MathContainer>
+
+Titik <InlineMath math="Q" /> berada di dalam bulatan apabila <InlineMath math="K_Q < 0" />, iaitu <InlineMath math="(k - 5)(k + 1) < 0" />. Hasil darab ini negatif di antara dua puncanya, jadi <InlineMath math="-1 < k < 5" />. Semak: bulatan ini berpusat <InlineMath math="(2, -1)" /> dan <InlineMath math="r = 5" />, dan bagi <InlineMath math="k = 5" /> jaraknya ialah <InlineMath math="\sqrt{3^2 + 4^2} = 5" />. Bagi <InlineMath math="k = 2" />, kuasa titiknya <InlineMath math="-9" />, dan <InlineMath math="2" /> memang terletak di antara <InlineMath math="-1" /> dan <InlineMath math="5" />.
+
+## Kesilapan Lazim
+
+| Kesilapan | Mengapa salah | Cara menyemak |
+| --- | --- | --- |
+| Membandingkan <InlineMath math="d^2" /> dengan <InlineMath math="r" /> | Kuasa dua jarak mesti dibandingkan dengan kuasa dua jejari | Bagi <InlineMath math="x^2 + y^2 = 16" />, bandingkan <InlineMath math="d^2" /> dengan <InlineMath math="16" /> |
+| Membaca pusat dengan tanda yang terbalik | <InlineMath math="(x - 3)^2 + (y + 2)^2 = 25" /> berpusat <InlineMath math="(3, -2)" /> | Pusat ialah titik yang menjadikan setiap kurungan sifar |
+| Menggantikan ke dalam <InlineMath math="2x^2 + 2y^2 - 8x = 0" /> tanpa membahagi dahulu | Hasilnya dua kali ganda kuasa titik, jadi panjang tangen yang diperoleh salah | Bahagi dahulu sehingga pekali <InlineMath math="x^2" /> menjadi <InlineMath math="1" /> |
+| Menganggap kuasa titik sebagai jarak | <InlineMath math="K" /> boleh negatif, tetapi jarak tidak pernah negatif | Ingat <InlineMath math="K = d^2 - r^2" /> |
+| Menganggap titik pada bulatan sebagai titik di dalam bulatan | Pada bulatan bermaksud tepat pada lilitan, <InlineMath math="K = 0" /> | Semak sama ada kuasa titik itu tepat sifar |
+
+Cara semak paling cepat ialah **menggunakan kedua-dua kaedah**: kuasa titik daripada penggantian terus mesti sama dengan <InlineMath math="d^2 - r^2" /> yang dikira daripada pusat dan jejari.
+
+## Soalan Latihan
+
+Kira kuasa setiap titik, kemudian **semak dengan jarak titik itu ke pusat**.
+
+1. Cari kedudukan titik <InlineMath math="A(3, 4)" /> terhadap bulatan <InlineMath math="x^2 + y^2 = 16" />, kemudian cari panjang tangen dari <InlineMath math="A" />.
+
+2. Tentukan sama ada titik <InlineMath math="B(6, -8)" /> berada pada bulatan <InlineMath math="x^2 + y^2 = 100" />.
+
+3. Cari kedudukan titik <InlineMath math="C(2, 1)" /> terhadap bulatan <InlineMath math="x^2 + y^2 - 4x + 6y - 12 = 0" />.
+
+4. Cari semua nilai <InlineMath math="p" /> supaya titik <InlineMath math="D(p, 2)" /> berada di dalam bulatan <InlineMath math="(x - 3)^2 + (y + 2)^2 = 25" />.
+
+### Penyelesaian
+
+**Soalan 1**. Kuasa titiknya ialah <InlineMath math="K_A = 3^2 + 4^2 - 16 = 9" />. Oleh sebab <InlineMath math="K_A > 0" />, titik <InlineMath math="A" /> berada **di luar bulatan**, dan panjang tangennya ialah <InlineMath math="\sqrt{9} = 3" />. Semak: jarak ke pusat <InlineMath math="d = 5" /> lebih besar daripada <InlineMath math="r = 4" />, dan <InlineMath math="3^2 + 4^2 = 5^2" /> sepadan dengan segi tiga bersudut tegak <InlineMath math="OTA" />.
+
+**Soalan 2**. Kuasa titiknya ialah <InlineMath math="K_B = 6^2 + (-8)^2 - 100 = 36 + 64 - 100 = 0" />. Jadi titik <InlineMath math="B" /> berada **tepat pada bulatan**. Semak: jaraknya ke pusat ialah <InlineMath math="\sqrt{100} = 10" />, sama dengan jejari.
+
+**Soalan 3**. Gantikan terus:
+
+<MathContainer>
+  <BlockMath math="K_C = 2^2 + 1^2 - 4(2) + 6(1) - 12" />
+  <BlockMath math="K_C = 4 + 1 - 8 + 6 - 12 = -9" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="K_C < 0" />, titik <InlineMath math="C" /> berada **di dalam bulatan**. Semak: bulatan ini berpusat <InlineMath math="(2, -3)" /> dan <InlineMath math="r^2 = 4 + 9 + 12 = 25" />, dan <InlineMath math="d^2 = 0^2 + 4^2 = 16" />, jadi <InlineMath math="d^2 - r^2 = -9" />.
+
+**Soalan 4**. Titik di dalam bulatan ada kuasa titik yang negatif:
+
+<MathContainer>
+  <BlockMath math="(p - 3)^2 + (2 + 2)^2 - 25 < 0" />
+  <BlockMath math="(p - 3)^2 < 9" />
+  <BlockMath math="-3 < p - 3 < 3 \quad\Longrightarrow\quad 0 < p < 6" />
+</MathContainer>
+
+Semak: bagi <InlineMath math="p = 3" />, kuasa titiknya <InlineMath math="0 + 16 - 25 = -9 < 0" />. Bagi <InlineMath math="p = 6" />, kuasa titiknya <InlineMath math="9 + 16 - 25 = 0" />, jadi titik itu berada tepat pada bulatan dan tidak termasuk.

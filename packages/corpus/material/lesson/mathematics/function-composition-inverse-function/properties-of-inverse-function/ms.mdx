@@ -1,0 +1,236 @@
+export const metadata = {
+  title: "Sifat Fungsi Songsang",
+  description: "Gunakan identiti gubahan, songsangan dua kali, dan pertukaran domain dengan julat untuk menyemak fungsi songsang.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-27",
+  dateModified: "2026-11-08",
+  subject: "Fungsi Gubahan dan Fungsi Songsang",
+};
+
+## Sifat Gubahan dengan Fungsi Songsang
+
+Fungsi dan songsangannya <Highlight>membatalkan satu sama lain</Highlight>. Tertib gubahan menentukan set tempat identiti itu berlaku: <InlineMath math="f\circ f^{-1}" /> ialah fungsi identiti pada julat <InlineMath math="f" />, manakala <InlineMath math="f^{-1}\circ f" /> ialah fungsi identiti pada domain <InlineMath math="f" />.
+
+**Langkah 1**. Gubahan <InlineMath math="f" /> dengan <InlineMath math="f^{-1}" />.
+
+<BlockMath math="(f \circ f^{-1})(x) = f(f^{-1}(x)) = x" />
+
+Persamaan ini benar untuk semua <InlineMath math="x" /> dalam domain <InlineMath math="f^{-1}" /> (iaitu julat <InlineMath math="f" />).
+
+**Langkah 2**. Gubahan <InlineMath math="f^{-1}" /> dengan <InlineMath math="f" />.
+
+<BlockMath math="(f^{-1} \circ f)(x) = f^{-1}(f(x)) = x" />
+
+Persamaan ini benar untuk semua <InlineMath math="x" /> dalam domain <InlineMath math="f" />.
+
+**Contoh**:
+
+Kita tahu bahawa jika <InlineMath math="f(x) = 2x + 3" />, songsangannya ialah <InlineMath math="f^{-1}(x) = \frac{x - 3}{2}" />. Sahkan sifat gubahan itu:
+
+<MathContainer>
+<BlockMath math="\begin{aligned}f(f^{-1}(x)) &= f\left(\frac{x - 3}{2}\right) \\ &= 2\left(\frac{x - 3}{2}\right) + 3 \\ &= (x - 3) + 3 \\ &= x\end{aligned}" />
+<BlockMath math="\begin{aligned}f^{-1}(f(x)) &= f^{-1}(2x + 3) \\ &= \frac{(2x + 3) - 3}{2} \\ &= \frac{2x}{2} \\ &= x\end{aligned}" />
+</MathContainer>
+
+Kedua-dua gubahan memberikan semula input asal, <InlineMath math="x" />.
+
+Ikut input melalui <InlineMath math="f^{-1}(x) = \tfrac{x - 3}{2}" /> dan kemudian <InlineMath math="f(x) = 2x + 3" />. Input <InlineMath math="5" /> pergi ke <InlineMath math="1" /> dan kembali ke <InlineMath math="5" />, dan setiap laluan lain juga kembali ke tempat ia bermula. Itulah maksud <InlineMath math="(f \circ f^{-1})(x) = x" />.
+
+<MathVisual
+  title={<>f membatalkan songsangannya</>}
+  description={<>Tiga paksi untuk <InlineMath math="x" />, <InlineMath math="f^{-1}(x)" /> dan <InlineMath math="f(f^{-1}(x))" />, dengan setiap laluan kembali kepada nilai permulaannya.</>}
+  labels={{
+    x: <InlineMath math="x" />,
+    inv: <InlineMath math="f^{-1}(x)" />,
+    back: <InlineMath math="f(f^{-1}(x))" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -3.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis0", kind: "segment", from: { x: 0, y: -3 }, to: { x: 0, y: 6 }, appearance: "reference" },
+      { id: "axis1", kind: "segment", from: { x: 3, y: -3 }, to: { x: 3, y: 6 }, appearance: "reference" },
+      { id: "axis2", kind: "segment", from: { x: 6, y: -3 }, to: { x: 6, y: 6 }, appearance: "reference" },
+      { id: "p0s0", kind: "segment", from: { x: 0, y: -1 }, to: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "p0s1", kind: "segment", from: { x: 3, y: -2 }, to: { x: 6, y: -1 }, appearance: "primary" },
+      { id: "p0v0", kind: "point", at: { x: 0, y: -1 }, appearance: "primary" },
+      { id: "p0v1", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "p0v2", kind: "point", at: { x: 6, y: -1 }, appearance: "primary" },
+      { id: "p1s0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "p1s1", kind: "segment", from: { x: 3, y: -1 }, to: { x: 6, y: 1 }, appearance: "secondary" },
+      { id: "p1v0", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "p1v1", kind: "point", at: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "p1v2", kind: "point", at: { x: 6, y: 1 }, appearance: "secondary" },
+      { id: "p2s0", kind: "segment", from: { x: 0, y: 3 }, to: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "p2s1", kind: "segment", from: { x: 3, y: 0 }, to: { x: 6, y: 3 }, appearance: "answer" },
+      { id: "p2v0", kind: "point", at: { x: 0, y: 3 }, appearance: "answer" },
+      { id: "p2v1", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "p2v2", kind: "point", at: { x: 6, y: 3 }, appearance: "answer" },
+      { id: "p3s0", kind: "segment", from: { x: 0, y: 5 }, to: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "p3s1", kind: "segment", from: { x: 3, y: 1 }, to: { x: 6, y: 5 }, appearance: "construction" },
+      { id: "p3v0", kind: "point", at: { x: 0, y: 5 }, appearance: "construction" },
+      { id: "p3v1", kind: "point", at: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "p3v2", kind: "point", at: { x: 6, y: 5 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "x", objectId: "axis0", at: { x: 0, y: 6 }, placement: "above" },
+      { key: "inv", objectId: "axis1", at: { x: 3, y: 6 }, placement: "above" },
+      { key: "back", objectId: "axis2", at: { x: 6, y: 6 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Sifat Songsangan bagi Fungsi Songsang
+
+Jika kita cari songsangan bagi fungsi songsang, kita akan dapat semula fungsi asal.
+
+<BlockMath math="(f^{-1})^{-1}(x) = f(x)" />
+
+Mengambil songsangan menukar tempat input dan output bagi setiap pasangan. Menukar tempat kedua-duanya sekali lagi akan mengembalikan fungsi asal.
+
+Input dan output melalui **dua kali pertukaran**. Untuk fungsi di atas, ikut pasangan bertertib dalam jadual ini.
+
+| Fungsi asal | Songsangan | Songsangan bagi songsangan |
+| --- | --- | --- |
+| <InlineMath math="(0,3)" /> | <InlineMath math="(3,0)" /> | <InlineMath math="(0,3)" /> |
+| <InlineMath math="(2,7)" /> | <InlineMath math="(7,2)" /> | <InlineMath math="(2,7)" /> |
+
+Graf <InlineMath math="f^{-1}" /> ialah imej cermin <InlineMath math="f" /> pada garis <InlineMath math="y = x" />. Untuk <InlineMath math="f(x) = 2x + 3" />, titik <InlineMath math="(1, 5)" /> pada <InlineMath math="f" /> dipantulkan kepada <InlineMath math="(5, 1)" /> pada <InlineMath math="f^{-1}(x) = \tfrac{x - 3}{2}" />. Pantulkan sekali lagi dan kamu kembali pada <InlineMath math="f" />, sebab itulah <InlineMath math="(f^{-1})^{-1} = f" />.
+
+<MathVisual
+  title={<>f dan songsangannya ialah imej cermin antara satu sama lain</>}
+  description={<>Garis <InlineMath math="f(x) = 2x + 3" /> dan <InlineMath math="f^{-1}(x) = \tfrac{x-3}{2}" />, imej cermin antara satu sama lain pada <InlineMath math="y = x" />, dengan titik yang dipantulkan <InlineMath math="(1, 5)" /> dan <InlineMath math="(5, 1)" />.</>}
+  labels={{
+    f: <InlineMath math="f" />,
+    inv: <InlineMath math="f^{-1}" />,
+    p: <InlineMath math="(1, 5)" />,
+    q: <InlineMath math="(5, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 7 }, y: { min: -2, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "f", kind: "line", through: [{ x: 0, y: 3 }, { x: 1, y: 5 }], appearance: "primary" },
+      { id: "inv", kind: "line", through: [{ x: 3, y: 0 }, { x: 5, y: 1 }], appearance: "secondary" },
+      { id: "link", kind: "segment", from: { x: 1, y: 5 }, to: { x: 5, y: 1 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "q", kind: "point", at: { x: 5, y: 1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 2, y: 7 }, placement: "right" },
+      { key: "inv", objectId: "inv", at: { x: 7, y: 2 }, placement: "above" },
+      { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "q", objectId: "q", at: { x: 5, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Sifat Songsangan bagi Fungsi Gubahan
+
+Jika kita ada gubahan dua fungsi yang boleh disongsangkan, dengan domain dan kodomain yang serasi, songsangan bagi gubahan itu ialah gubahan bagi songsangan kedua-dua fungsi, tetapi dalam **tertib terbalik**.
+
+Katakan <InlineMath math="f" /> dan <InlineMath math="g" /> ialah dua fungsi dengan songsangan <InlineMath math="f^{-1}" /> dan <InlineMath math="g^{-1}" />. Maka songsangan bagi gubahan <InlineMath math="f \circ g" /> ialah:
+
+<BlockMath math="(f \circ g)^{-1}(x) = (g^{-1} \circ f^{-1})(x)" />
+
+Baca gubahan ini dari kanan ke kiri: <InlineMath math="f^{-1}" /> dikenakan dahulu, kemudian <InlineMath math="g^{-1}" />.
+
+**Contoh**:
+
+Katakan <InlineMath math="f(x) = x + 1" /> (songsangannya ialah <InlineMath math="f^{-1}(x) = x - 1" />) dan <InlineMath math="g(x) = 3x" /> (songsangannya ialah <InlineMath math="g^{-1}(x) = \frac{x}{3}" />).
+
+**Langkah 1**. Cari <InlineMath math="(f \circ g)(x)" />.
+
+<BlockMath math="\begin{aligned} (f \circ g)(x) &amp;= f(g(x)) \\ &amp;= f(3x) \\ &amp;= 3x + 1 \end{aligned}" />
+
+**Langkah 2**. Cari songsangan bagi <InlineMath math="(f \circ g)(x)" />.
+
+Katakan <InlineMath math="y = 3x + 1" />. Tukar tempat <InlineMath math="x" /> dan <InlineMath math="y" />: <InlineMath math="x = 3y + 1" />.
+
+Selesaikan untuk <InlineMath math="y" />: <InlineMath math="x - 1 = 3y \implies y = \frac{x - 1}{3}" />.
+
+Jadi, <InlineMath math="(f \circ g)^{-1}(x) = \frac{x - 1}{3}" />.
+
+**Langkah 3**. Cari <InlineMath math="(g^{-1} \circ f^{-1})(x)" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} (g^{-1} \circ f^{-1})(x) &amp;= g^{-1}(f^{-1}(x)) \\ &amp;= g^{-1}(x - 1) \end{aligned}" />
+  <BlockMath math="g^{-1}(x - 1) = \frac{x - 1}{3}" />
+</MathContainer>
+
+Oleh sebab hasil daripada langkah 2 dan 3 sama, terbuktilah bahawa <InlineMath math="(f \circ g)^{-1}(x) = (g^{-1} \circ f^{-1})(x)" />.
+
+<Mermaid
+  title={<>Menterbalikkan operasi</>}
+  description={<>Pendaraban dengan tiga berlaku sebelum tambah satu. Untuk berpatah balik, tolak satu dahulu sebelum bahagi dengan tiga.</>}
+  chart={`flowchart LR
+    A["2"] -->|"darab 3"| B["6"] -->|"tambah 1"| C["7"]
+    D["7"] -->|"tolak 1"| E["6"] -->|"bahagi dengan 3"| F["2"]
+  `}
+/>
+
+## Hubungan Domain dan Julat
+
+Domain bagi fungsi asal <InlineMath math="f" /> menjadi julat bagi fungsi songsangnya <InlineMath math="f^{-1}" />, dan julat bagi fungsi asal <InlineMath math="f" /> menjadi domain bagi fungsi songsangnya <InlineMath math="f^{-1}" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;\text{Domain}(f) = \text{Julat}(f^{-1}) \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;\text{Julat}(f) = \text{Domain}(f^{-1}) \end{aligned}" />
+</MathContainer>
+
+**Domain dan julat bertukar peranan** apabila kita mengambil songsangan. Ambil fungsi kuadratik yang dihadkan berikut.
+
+<MathContainer>
+  <BlockMath math="q:[0,\infty)\to[1,\infty),\quad q(x)=x^2+1" />
+  <BlockMath math="q^{-1}:[1,\infty)\to[0,\infty),\quad q^{-1}(x)=\sqrt{x-1}" />
+</MathContainer>
+
+| Fungsi | Domain | Julat |
+| --- | --- | --- |
+| <InlineMath math="q" /> | <InlineMath math="[0,\infty)" /> | <InlineMath math="[1,\infty)" /> |
+| <InlineMath math="q^{-1}" /> | <InlineMath math="[1,\infty)" /> | <InlineMath math="[0,\infty)" /> |
+
+Punca kuasa dua mengembalikan input asal kerana fungsi kuadratik ini ada domain bukan negatif. Tanpa sekatan ini, punca kuasa dua bagi kuasa dua sesuatu nombor negatif memberikan nilai mutlak nombor itu.
+
+<MathContainer>
+  <BlockMath math="q^{-1}(q(x))=\sqrt{x^2}=x,\quad x\geq0" />
+  <BlockMath math="q(q^{-1}(y))=(\sqrt{y-1})^2+1=y,\quad y\geq1" />
+</MathContainer>
+
+Songsangan menukar tempat input dan output. Titik-titik <InlineMath math="f(x) = 2x + 3" /> untuk <InlineMath math="x = 0, 1, 2, 3" /> ialah <InlineMath math="(0, 3)" /> hingga <InlineMath math="(3, 9)" />, dan titik-titik <InlineMath math="f^{-1}" /> ialah pasangan yang sama tetapi diterbalikkan, <InlineMath math="(3, 0)" /> hingga <InlineMath math="(9, 3)" />. Jadi domain <InlineMath math="f^{-1}" /> ialah julat <InlineMath math="f" />, dan julatnya ialah domain <InlineMath math="f" />.
+
+<MathVisual
+  title={<>Input dan output bertukar tempat</>}
+  description={<>Empat titik pada <InlineMath math="f" /> dan imej cerminnya pada <InlineMath math="y = x" />, iaitu titik-titik pada <InlineMath math="f^{-1}" />.</>}
+  labels={{
+    f3: <InlineMath math="(3, 9)" />,
+    g3: <InlineMath math="(9, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -0.5, max: 10 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "m0", kind: "segment", from: { x: 0, y: 3 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "m1", kind: "segment", from: { x: 1, y: 5 }, to: { x: 5, y: 1 }, appearance: "construction" },
+      { id: "m2", kind: "segment", from: { x: 2, y: 7 }, to: { x: 7, y: 2 }, appearance: "construction" },
+      { id: "m3", kind: "segment", from: { x: 3, y: 9 }, to: { x: 9, y: 3 }, appearance: "construction" },
+      { id: "f0", kind: "point", at: { x: 0, y: 3 }, appearance: "primary" },
+      { id: "f1", kind: "point", at: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "f2", kind: "point", at: { x: 2, y: 7 }, appearance: "primary" },
+      { id: "f3", kind: "point", at: { x: 3, y: 9 }, appearance: "primary" },
+      { id: "g0", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "g1", kind: "point", at: { x: 5, y: 1 }, appearance: "secondary" },
+      { id: "g2", kind: "point", at: { x: 7, y: 2 }, appearance: "secondary" },
+      { id: "g3", kind: "point", at: { x: 9, y: 3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f3", objectId: "f3", at: { x: 3, y: 9 }, placement: "left" },
+      { key: "g3", objectId: "g3", at: { x: 9, y: 3 }, placement: "below" },
+    ],
+  }}
+/>

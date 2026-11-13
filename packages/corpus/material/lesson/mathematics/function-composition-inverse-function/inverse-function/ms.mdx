@@ -1,0 +1,190 @@
+export const metadata = {
+  title: "Fungsi Songsang",
+    description: "Cari fungsi songsang, sahkan bahawa fungsi asal ialah fungsi bijektif, dan kaitkan kedua-dua graf melalui pantulan pada garis y sama dengan x.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-27",
+  dateModified: "2026-11-08",
+  subject: "Fungsi Gubahan dan Fungsi Songsang",
+};
+
+## Menterbalikkan Pasangan Input dan Output
+
+Kamu selalu menterjemah perkataan atau ayat dari bahasa Inggeris ke bahasa Melayu, contohnya semasa menonton filem atau membaca berita. Proses terjemahan ini serupa dengan cara fungsi bekerja: ada input (perkataan bahasa Inggeris) dan ada output (perkataan bahasa Melayu).
+
+Terjemahan bahasa yang sebenar boleh jadi kabur. Di sini kita sengaja menggunakan kamus yang kecil, dan setiap perkataan yang dipilih ada tepat satu terjemahan sebagai pasangannya.
+
+<InverseFunctionIllustration
+  title={<>Mesin Terjemahan</>}
+  description={<>Mesin terjemahan menukar perkataan atau ayat dari bahasa Inggeris ke bahasa Melayu.</>}
+  machineLabel="Mesin Terjemahan"
+  content={{ input: "Mathematics", output: "Matematik" }}
+/>
+
+Di sini, "Mesin Terjemahan" bertindak seperti fungsi yang menukar "Mathematics" (input) kepada "Matematik" (output).
+
+Pemetaan terbalik membawa "Matematik" kembali kepada "Mathematics". Pemetaan ini ialah **fungsi songsang**.
+
+## Takrif Fungsi Songsang
+
+Fungsi songsang **menukar tempat input dan output**. Jika fungsi <InlineMath math="f" /> memetakan unsur <InlineMath math="x" /> dari domain <InlineMath math="A" /> kepada unsur <InlineMath math="y" /> dalam kodomain <InlineMath math="B" />, maka fungsi songsangnya, yang ditandakan sebagai <InlineMath math="f^{-1}" /> (dibaca "f songsang"), memetakan unsur <InlineMath math="y" /> dari <InlineMath math="B" /> kembali kepada unsur <InlineMath math="x" /> dalam <InlineMath math="A" />.
+
+Secara matematik:
+
+<BlockMath math="y = f(x) \iff x = f^{-1}(y)" />
+
+Dengan kata lain, jika <InlineMath math="f" /> menukar <InlineMath math="x" /> kepada <InlineMath math="y" />, maka <InlineMath math="f^{-1}" /> menukar <InlineMath math="y" /> kembali kepada <InlineMath math="x" />. Fungsi songsang "membatalkan" kesan fungsi asal.
+
+Tatatanda <InlineMath math="f^{-1}(x)" /> menandakan fungsi songsang. Songsangan pendaraban, atau salingan, ditulis sebagai <InlineMath math="\frac{1}{f(x)}" />.
+
+Untuk membezakan kedua-dua tatatanda ini, ambil <InlineMath math="f(x)=2x+3" />. Songsangan mencari semula input asal, manakala salingan membahagikan satu dengan nilai fungsi.
+
+| Input | Fungsi songsang | Salingan |
+| --- | --- | --- |
+| <InlineMath math="3" /> | <InlineMath math="f^{-1}(3)=0" /> | <InlineMath math="1/f(3)=1/9" /> |
+| <InlineMath math="5" /> | <InlineMath math="f^{-1}(5)=1" /> | <InlineMath math="1/f(5)=1/13" /> |
+
+## Syarat Fungsi Mempunyai Songsangan
+
+Supaya fungsi <InlineMath math="f:A\to B" /> <Highlight>ada songsangan dua sisi</Highlight> <InlineMath math="f^{-1}:B\to A" />, fungsi <InlineMath math="f" /> mesti **bijektif**. Fungsi bijektif ialah fungsi yang **injektif** (satu dengan satu) dan **surjektif** (keseluruh) sekali gus.
+
+- **Injektif (Satu dengan satu)**: Setiap unsur yang berbeza dalam domain dipetakan kepada unsur yang berbeza dalam kodomain. Tiada dua input berbeza yang menghasilkan output yang sama.
+- **Surjektif (Keseluruh)**: Setiap unsur dalam kodomain ialah hasil pemetaan daripada sekurang-kurangnya satu unsur dalam domain. Semua output yang mungkin memang dicapai.
+
+Domain dan kodomain yang dinyatakan itu penting. Jika <InlineMath math="f" /> injektif tetapi tidak mencapai seluruh <InlineMath math="B" />, kita boleh gantikan kodomainnya dengan julat sebenarnya. Jika julat itu ditulis sebagai <InlineMath math="\operatorname{Im}(f)" />, fungsi yang terhasil, <InlineMath math="f:A\to \operatorname{Im}(f)" />, ialah fungsi bijektif dan oleh itu ada songsangan <InlineMath math="f^{-1}:\operatorname{Im}(f)\to A" />. Jika <InlineMath math="f" /> tidak injektif, menterbalikkan pasangannya akan menghantar satu output kepada lebih daripada satu input, jadi hubungan terbalik itu bukan fungsi melainkan domain asalnya dihadkan.
+
+Contohnya, <InlineMath math="q(x)=x^2" /> tidak injektif pada <InlineMath math="\mathbb{R}" /> kerana <InlineMath math="q(2)=q(-2)=4" />. Apabila domain dan kodomainnya dihadkan, kita dapat fungsi bijektif
+
+<BlockMath math="q:[0,\infty)\to[0,\infty),\qquad q(x)=x^2" />
+
+Fungsi ini ada songsangan <InlineMath math="q^{-1}(x)=\sqrt{x}" />.
+
+## Menentukan Rumus Fungsi Songsang
+
+Untuk mencari rumus fungsi songsang <InlineMath math="f^{-1}(x)" /> daripada fungsi <InlineMath math="f(x)" />, kamu boleh ikut langkah-langkah ini:
+
+1.  Gantikan <InlineMath math="f(x)" /> dengan <InlineMath math="y" />.
+2.  Tukar tempat pemboleh ubah <InlineMath math="x" /> dan <InlineMath math="y" /> dalam persamaan itu.
+3.  Selesaikan persamaan itu untuk <InlineMath math="y" /> dalam sebutan <InlineMath math="x" />.
+4.  Gantikan <InlineMath math="y" /> dengan <InlineMath math="f^{-1}(x)" /> untuk mendapatkan rumus fungsi songsang.
+
+**Contoh**:
+
+Katakan <InlineMath math="f:\mathbb{R}\to\mathbb{R}" /> ditakrifkan oleh <InlineMath math="f(x) = 2x + 3" />. Cari songsangannya.
+
+**Langkah 1**. Gantikan <InlineMath math="f(x)" /> dengan <InlineMath math="y" />:
+
+<BlockMath math="y = 2x + 3" />
+
+**Langkah 2**. Tukar tempat <InlineMath math="x" /> dan <InlineMath math="y" />:
+
+<BlockMath math="x = 2y + 3" />
+
+**Langkah 3**. Selesaikan untuk <InlineMath math="y" />:
+
+<MathContainer>
+  <BlockMath math="x - 3 = 2y" />
+  <BlockMath math="\frac{x - 3}{2} = y" />
+</MathContainer>
+
+**Langkah 4**. Gantikan <InlineMath math="y" /> dengan <InlineMath math="f^{-1}(x)" />:
+
+<BlockMath math="f^{-1}(x) = \frac{x - 3}{2}" />
+
+Jadi, fungsi songsang bagi <InlineMath math="f(x) = 2x + 3" /> ialah <InlineMath math="f^{-1}(x) = \frac{x - 3}{2}" />.
+## Graf Fungsi dan Songsangannya
+
+Graf fungsi songsang <InlineMath math="f^{-1}(x)" /> ialah pantulan graf fungsi asal <InlineMath math="f(x)" /> pada garis <InlineMath math="y = x" />.
+
+Sebagai contoh, lihat graf <InlineMath math="f(x) = 2x + 3" />, songsangannya <InlineMath math="f^{-1}(x) = \frac{x - 3}{2}" />, dan garis identiti <InlineMath math="y=x" />.
+
+<MathVisual
+  title={<><InlineMath math="f(x) = 2x + 3" /> dan songsangannya</>}
+  description={<>Garis <InlineMath math="f(x) = 2x + 3" /> dan <InlineMath math="f^{-1}(x) = \frac{x - 3}{2}" /> ialah imej cermin antara satu sama lain pada <InlineMath math="y = x" />. Titik <InlineMath math="(1, 5)" /> pada <InlineMath math="f" /> sepadan dengan <InlineMath math="(5, 1)" /> pada <InlineMath math="f^{-1}" />, dengan titik tengah <InlineMath math="(3, 3)" />.</>}
+  labels={{
+    f: <InlineMath math="f(x) = 2x + 3" />,
+    inv: <InlineMath math="f^{-1}(x) = \frac{x - 3}{2}" />,
+    mirror: <InlineMath math="y = x" />,
+    p: <InlineMath math="(1, 5)" />,
+    q: <InlineMath math="(5, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 7.5 }, y: { min: -5.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "f", kind: "segment", from: { x: -4, y: -5 }, to: { x: 2, y: 7 }, appearance: "primary" },
+      { id: "inv", kind: "segment", from: { x: -5, y: -4 }, to: { x: 7, y: 2 }, appearance: "secondary" },
+      { id: "pair", kind: "segment", from: { x: 1, y: 5 }, to: { x: 5, y: 1 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "q", kind: "point", at: { x: 5, y: 1 }, appearance: "secondary" },
+      { id: "mid", kind: "point", at: { x: 3, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 2, y: 7 }, placement: "left" },
+      { key: "inv", objectId: "inv", at: { x: 7, y: 2 }, placement: "above-left" },
+      { key: "mirror", objectId: "mirror", at: { x: 7, y: 7 }, placement: "below-right" },
+      { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "q", objectId: "q", at: { x: 5, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
+Pantulan **menukar tempat koordinat**. Titik <InlineMath math="(1,5)" /> pada graf asal menjadi <InlineMath math="(5,1)" /> pada graf songsang. Kedua-dua titik itu terletak pada sisi bertentangan garis cermin, dan titik tengahnya ialah <InlineMath math="(3,3)" />.
+
+## Semak Kefahaman Kamu
+
+Katakan <InlineMath math="r:\mathbb{R}\to\mathbb{R}" /> ditakrifkan oleh <InlineMath math="r(x)=3x-5" />. Selesaikan tiga langkah di bawah untuk fungsi ini. Semak **kedua-dua gubahan** pada akhirnya, kerana songsangan yang betul membatalkan fungsi asal dalam kedua-dua tertib.
+
+1. Cari <InlineMath math="r^{-1}(x)" />.
+2. Sahkan kedua-dua gubahan <InlineMath math="r^{-1}(r(x))" /> dan <InlineMath math="r(r^{-1}(x))" />.
+3. Nyatakan domain dan julat bagi kedua-dua fungsi.
+
+### Penyelesaian
+
+**Soalan 1**. Bermula dengan <InlineMath math="y=3x-5" />, **tukar tempat pemboleh ubah** dan selesaikan untuk <InlineMath math="y" />:
+
+<MathContainer>
+  <BlockMath math="x=3y-5" />
+  <BlockMath math="x+5=3y" />
+  <BlockMath math="r^{-1}(x)=\frac{x+5}{3}" />
+</MathContainer>
+
+**Soalan 2**. Sekarang sahkan kedua-dua arah:
+
+<MathContainer>
+  <BlockMath math="r^{-1}(r(x))=\frac{(3x-5)+5}{3}=x" />
+  <BlockMath math="r(r^{-1}(x))=3\left(\frac{x+5}{3}\right)-5=x" />
+</MathContainer>
+
+**Soalan 3**. Kedua-dua <InlineMath math="r" /> dan <InlineMath math="r^{-1}" /> ada domain <InlineMath math="\mathbb{R}" /> dan julat <InlineMath math="\mathbb{R}" />. Kedua-dua identiti itu mengesahkan bahawa fungsi-fungsi ini membatalkan satu sama lain pada seluruh domainnya.
+
+Untuk <InlineMath math="r(x) = 3x - 5" />, songsangannya ialah <InlineMath math="r^{-1}(x) = \frac{x + 5}{3}" />. Kedua-dua garis itu menyilang garis cermin <InlineMath math="y = x" /> pada titik yang sama, iaitu <InlineMath math="\left(\tfrac52, \tfrac52\right)" />. Inilah satu-satunya input yang tidak diubah oleh <InlineMath math="r" />, kerana <InlineMath math="3 \cdot \tfrac52 - 5 = \tfrac52" />.
+
+<MathVisual
+  title={<><InlineMath math="r" /> dan <InlineMath math="r^{-1}" /> bertemu pada garis cermin</>}
+  description={<>Garis <InlineMath math="r(x) = 3x - 5" /> dan <InlineMath math="r^{-1}(x) = \frac{x + 5}{3}" />, imej cermin antara satu sama lain pada <InlineMath math="y = x" />, menyilang garis itu pada <InlineMath math="\left(\tfrac52, \tfrac52\right)" />.</>}
+  labels={{
+    r: <InlineMath math="r(x) = 3x - 5" />,
+    inv: <InlineMath math="r^{-1}(x)" />,
+    mirror: <InlineMath math="y = x" />,
+    fixed: <InlineMath math="\left(\tfrac52, \tfrac52\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -5.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "r", kind: "segment", from: { x: 0, y: -5 }, to: { x: 10 / 3, y: 5 }, appearance: "primary" },
+      { id: "inv", kind: "segment", from: { x: -5, y: 0 }, to: { x: 5, y: 10 / 3 }, appearance: "secondary" },
+      { id: "fixed", kind: "point", at: { x: 5 / 2, y: 5 / 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "r", objectId: "r", at: { x: 0, y: -5 }, placement: "right" },
+      { key: "inv", objectId: "inv", at: { x: -5, y: 0 }, placement: "above" },
+      { key: "mirror", objectId: "mirror", at: { x: -9 / 2, y: -9 / 2 }, placement: "right" },
+      { key: "fixed", objectId: "fixed", at: { x: 5 / 2, y: 5 / 2 }, placement: "right" },
+    ],
+  }}
+/>

@@ -1,0 +1,230 @@
+export const metadata = {
+  title: "Fungsi Gubahan",
+  description: "Gubah fungsi mengikut tertib dan bandingkan hasilnya apabila tertib itu diterbalikkan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-27",
+  dateModified: "2026-11-08",
+  subject: "Fungsi Gubahan dan Fungsi Songsang",
+};
+
+## Menggunakan Satu Fungsi Selepas Fungsi yang Lain
+
+Sebuah kedai mengenakan diskaun dan potongan harga tetap yang sama dalam dua tertib yang berbeza:
+
+1.  **Promosi A**: Diskaun <InlineMath math="20\%" />, kemudian potongan lagi sebanyak <InlineMath math="\text{Rp}25{,}000.00" />.
+2.  **Promosi B**: Potongan harga sebanyak <InlineMath math="\text{Rp}25{,}000.00" />, kemudian diskaun <InlineMath math="20\%" />.
+
+Adakah kedua-dua promosi menghasilkan harga akhir yang sama? Kita boleh menjawabnya dengan menulis setiap operasi sebagai fungsi, kemudian menggubah kedua-dua fungsi itu mengikut tertib yang dinyatakan.
+
+### Takrif Gubahan Fungsi
+
+Gubahan fungsi ialah <Highlight>gabungan dua atau lebih fungsi secara berturutan</Highlight> untuk menghasilkan fungsi baharu.
+
+Jika kita ada fungsi <InlineMath math="g: A \to B" /> dan fungsi <InlineMath math="f: B \to C" />, maka gubahannya, yang ditulis sebagai <InlineMath math="(f \circ g)(x)" />, ialah fungsi baharu yang memetakan terus dari domain <InlineMath math="A" /> ke kodomain <InlineMath math="C" />.
+
+Maksudnya, kita kenakan fungsi <InlineMath math="g" /> dahulu, kemudian kita masukkan hasilnya ke dalam fungsi <InlineMath math="f" />.
+
+Secara matematik, ini ditulis sebagai:
+
+<BlockMath math="(f \circ g)(x) = f(g(x))" />
+
+Fungsi gubahan itu hanya tertakrif untuk input <InlineMath math="x" /> dalam domain <InlineMath math="g" /> yang outputnya, <InlineMath math="g(x)" />, berada dalam domain <InlineMath math="f" />:
+
+<BlockMath math="D_{f\circ g}=\{x\in D_g\mid g(x)\in D_f\}" />
+
+Ikut setiap input melalui mesin-mesin itu: mula-mula <InlineMath math="g(x) = x^2 - 3" />, kemudian <InlineMath math="f(u) = 2u + 1" />. Input <InlineMath math="2" /> pergi ke <InlineMath math="1" /> dan kemudian ke <InlineMath math="3" />. Input <InlineMath math="-1" /> dan <InlineMath math="1" /> kedua-duanya sampai ke <InlineMath math="-2" /> selepas <InlineMath math="g" />, jadi kedua-duanya berakhir pada output yang sama, iaitu <InlineMath math="-3" />.
+
+<MathVisual
+  title={<>Menjejak input melalui g dan kemudian f</>}
+  description={<>Tiga paksi mencancang untuk <InlineMath math="x" />, <InlineMath math="g(x)" /> dan <InlineMath math="f(g(x))" />, dengan laluan bagi input <InlineMath math="-1, 0, 1" /> dan <InlineMath math="2" />.</>}
+  labels={{
+    x: <InlineMath math="x" />,
+    g: <InlineMath math="g(x)" />,
+    f: <InlineMath math="f(g(x))" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -6, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis0", kind: "segment", from: { x: 0, y: -5.5 }, to: { x: 0, y: 3.5 }, appearance: "reference" },
+      { id: "axis1", kind: "segment", from: { x: 3, y: -5.5 }, to: { x: 3, y: 3.5 }, appearance: "reference" },
+      { id: "axis2", kind: "segment", from: { x: 6, y: -5.5 }, to: { x: 6, y: 3.5 }, appearance: "reference" },
+      { id: "p0s0", kind: "segment", from: { x: 0, y: -1 }, to: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "p0s1", kind: "segment", from: { x: 3, y: -2 }, to: { x: 6, y: -3 }, appearance: "primary" },
+      { id: "p0v0", kind: "point", at: { x: 0, y: -1 }, appearance: "primary" },
+      { id: "p0v1", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "p0v2", kind: "point", at: { x: 6, y: -3 }, appearance: "primary" },
+      { id: "p1s0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -3 }, appearance: "secondary" },
+      { id: "p1s1", kind: "segment", from: { x: 3, y: -3 }, to: { x: 6, y: -5 }, appearance: "secondary" },
+      { id: "p1v0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "p1v1", kind: "point", at: { x: 3, y: -3 }, appearance: "secondary" },
+      { id: "p1v2", kind: "point", at: { x: 6, y: -5 }, appearance: "secondary" },
+      { id: "p2s0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 3, y: -2 }, appearance: "answer" },
+      { id: "p2s1", kind: "segment", from: { x: 3, y: -2 }, to: { x: 6, y: -3 }, appearance: "answer" },
+      { id: "p2v0", kind: "point", at: { x: 0, y: 1 }, appearance: "answer" },
+      { id: "p2v1", kind: "point", at: { x: 3, y: -2 }, appearance: "answer" },
+      { id: "p2v2", kind: "point", at: { x: 6, y: -3 }, appearance: "answer" },
+      { id: "p3s0", kind: "segment", from: { x: 0, y: 2 }, to: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "p3s1", kind: "segment", from: { x: 3, y: 1 }, to: { x: 6, y: 3 }, appearance: "construction" },
+      { id: "p3v0", kind: "point", at: { x: 0, y: 2 }, appearance: "construction" },
+      { id: "p3v1", kind: "point", at: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "p3v2", kind: "point", at: { x: 6, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "x", objectId: "axis0", at: { x: 0, y: 3.5 }, placement: "above" },
+      { key: "g", objectId: "axis1", at: { x: 3, y: 3.5 }, placement: "above" },
+      { key: "f", objectId: "axis2", at: { x: 6, y: 3.5 }, placement: "above" },
+    ],
+  }}
+/>
+
+### Pengiraan Promosi
+
+Kira harga akhir bagi barang yang bernilai <InlineMath math="\text{Rp}200{,}000.00" />. Contoh ringkas ini mengabaikan cukai, syarat pembelian minimum, dan had harga terendah supaya hanya tertib kedua-dua operasi itu yang berubah.
+
+Katakan <InlineMath math="x" /> ialah harga asal barang itu.
+
+- **Fungsi diskaun <InlineMath math="20\%" />**: <InlineMath math="d(x) = x - 0.20x = 0.80x" />
+- **Fungsi potongan <InlineMath math="\text{Rp}25{,}000.00" />**: <InlineMath math="p(x) = x - 25000" />
+
+Sekarang gubah kedua-dua fungsi ini mengikut urutan promosi:
+
+**Promosi A (Diskaun dahulu, kemudian potongan harga)**: Kita mencari <InlineMath math="(p \circ d)(x)" />
+
+<BlockMath math="\begin{aligned} (p \circ d)(x) &amp;= p(d(x)) \\ &amp;= p(0.80x) \\ &amp;= 0.80x - 25000 \end{aligned}" />
+
+Untuk <InlineMath math="x = 200000" />:
+
+<BlockMath math="\begin{aligned} &amp;(p \circ d)(200000) \\ &amp;= 0.80(200000) - 25000 \\ &amp;= 160000 - 25000 \\ &amp;= 135000 \end{aligned}" />
+
+Jadi, harga akhir dengan Promosi A ialah <InlineMath math="\text{Rp}135{,}000.00" />.
+
+**Promosi B (Potongan harga dahulu, kemudian diskaun)**: Kita mencari <InlineMath math="(d \circ p)(x)" />
+
+<BlockMath math="\begin{aligned}(d \circ p)(x) &= d(p(x)) \\ &= d(x - 25000) \\ &= 0.80(x - 25000) \\ &= 0.80x - 20000\end{aligned}" />
+
+Untuk <InlineMath math="x = 200000" />:
+
+<BlockMath math="\begin{aligned} &amp;(d \circ p)(200000) \\ &amp;= 0.80(200000) - 20000 \\ &amp;= 160000 - 20000 \\ &amp;= 140000 \end{aligned}" />
+
+Jadi, harga akhir dengan Promosi B ialah <InlineMath math="\text{Rp}140{,}000.00" />.
+
+Bagi barang ini, Promosi A (<InlineMath math="p \circ d" />) memberikan harga akhir <InlineMath math="\text{Rp}135{,}000.00" />, manakala Promosi B (<InlineMath math="d \circ p" />) memberikan <InlineMath math="\text{Rp}140{,}000.00" />. Menukar tertib mengubah hasilnya, jadi secara umumnya <InlineMath math="(f \circ g)(x) \neq (g \circ f)(x)" />.
+
+Ikut **harga perantaraan** selepas operasi pertama. Dalam Promosi B, diskaun peratusan itu turut dikenakan pada potongan tetap, jadi nilai sebenar potongan itu menjadi lebih kecil.
+
+<Mermaid
+  title={<>Dua Tertib Promosi</>}
+  description={<>Kedua-dua laluan bermula pada dua ratus ribu rupiah. Menukar tertib diskaun peratusan dan potongan tetap mengubah harga akhir.</>}
+  chart={`flowchart LR
+  A["Rp200000"] -->|"Diskaun 20%"| A1["Rp160000"]
+  A1 -->|"Tolak Rp25,000"| A2["Rp135000"]
+  B["Rp200000"] -->|"Tolak Rp25,000"| B1["Rp175000"]
+  B1 -->|"Diskaun 20%"| B2["Rp140000"]`}
+/>
+
+Berikut ialah kedua-dua harga akhir secara bersebelahan. Jika diskaun <InlineMath math="20\%" /> diambil dahulu dan kemudian jumlah tetap ditolak, harga akhirnya <InlineMath math="\text{Rp}135{,}000" />, manakala tertib yang satu lagi berakhir pada <InlineMath math="\text{Rp}140{,}000" />. Dua fungsi yang sama dalam tertib yang berbeza memberikan hasil yang berbeza.
+
+<BarChart
+  title={<>Harga akhir bagi setiap tertib promosi</>}
+  description={<>Harga akhir apabila diskaun peratusan didahulukan dan apabila potongan tetap didahulukan.</>}
+  yAxisLabel="Harga akhir (Rp)"
+  data={[["diskaun dahulu", 200000 * 0.8 - 25000], ["potongan dahulu", (200000 - 25000) * 0.8]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Harga akhir (Rp)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Membandingkan Dua Tertib Gubahan
+
+Katakan kita ada dua fungsi:
+
+<MathContainer>
+  <BlockMath math="f(x) = 2x + 1" />
+  <BlockMath math="g(x) = x^2 - 3" />
+</MathContainer>
+
+Tentukan <InlineMath math="(f \circ g)(x)" /> dan <InlineMath math="(g \circ f)(x)" />.
+
+**Penyelesaian**:
+
+**Mencari <InlineMath math="(f \circ g)(x)" />**:
+
+<BlockMath math="(f \circ g)(x) = f(g(x)) = f(x^2 - 3)" />
+
+Gantikan <InlineMath math="x" /> dalam <InlineMath math="f(x)" /> dengan <InlineMath math="g(x)" />:
+
+<BlockMath math="\begin{aligned} f(x^2 - 3) &amp;= 2(x^2 - 3) + 1 \\ &amp;= 2x^2 - 6 + 1 \\ &amp;= 2x^2 - 5 \end{aligned}" />
+
+Jadi, <InlineMath math="(f \circ g)(x) = 2x^2 - 5" />.
+
+**Mencari <InlineMath math="(g \circ f)(x)" />**:
+
+<BlockMath math="(g \circ f)(x) = g(f(x)) = g(2x + 1)" />
+
+Gantikan <InlineMath math="x" /> dalam <InlineMath math="g(x)" /> dengan <InlineMath math="f(x)" />:
+
+<BlockMath math="\begin{aligned} g(2x + 1) &amp;= (2x + 1)^2 - 3 \\ &amp;= (4x^2 + 4x + 1) - 3 \\ &amp;= 4x^2 + 4x - 2 \end{aligned}" />
+
+Jadi, <InlineMath math="(g \circ f)(x) = 4x^2 + 4x - 2" />.
+
+Oleh sebab <InlineMath math="(f \circ g)(x) \neq (g \circ f)(x)" />, gubahan fungsi tidak kalis tukar tertib.
+
+Kedua-dua tertib sebagai graf: <InlineMath math="(f \circ g)(x) = 2(x^2 - 3) + 1 = 2x^2 - 5" /> dan <InlineMath math="(g \circ f)(x) = (2x + 1)^2 - 3 = 4x^2 + 4x - 2" />. Kedua-duanya ialah dua parabola yang berbeza. Pada <InlineMath math="x = 1" />, yang pertama memberikan <InlineMath math="-3" /> dan yang kedua memberikan <InlineMath math="6" />, jadi menukar tertib mengubah fungsinya.
+
+<MathVisual
+  title={<>Dua tertib gubahan memberikan parabola yang berbeza</>}
+  description={<>Parabola <InlineMath math="2x^2 - 5" /> dan <InlineMath math="4x^2 + 4x - 2" /> dengan nilainya pada <InlineMath math="x = 1" />: <InlineMath math="-3" /> dan <InlineMath math="6" />.</>}
+  labels={{
+    fg: <InlineMath math="f \circ g" />,
+    gf: <InlineMath math="g \circ f" />,
+    a: <InlineMath math="-3" />,
+    b: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 1.5 }, y: { min: -5.5, max: 8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "fg", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: -5 }, domain: { min: -2, max: 1.5 }, appearance: "primary" },
+      { id: "gf", kind: "quadratic", inputAxis: "x", coefficients: { a: 4, b: 4, c: -2 }, domain: { min: -2, max: 1 }, appearance: "secondary" },
+      { id: "a", kind: "point", at: { x: 1, y: -3 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: 1, y: 6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "fg", objectId: "fg", at: { x: -2, y: 3 }, placement: "right" },
+      { key: "gf", objectId: "gf", at: { x: -2, y: 6 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 1, y: -3 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: 1, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Domain Mesti Mengikut Tertib
+
+Gubahan tidak sama dengan pendaraban dua fungsi, dan domainnya tidak boleh dicari dengan melihat **rumus akhir** sahaja. Katakan
+
+<MathContainer>
+  <BlockMath math="f(u)=\sqrt{u-1}" />
+  <BlockMath math="g(x)=x^2" />
+</MathContainer>
+
+Maka
+
+<BlockMath math="(f\circ g)(x)=\sqrt{x^2-1}" />
+
+Input itu mesti memenuhi <InlineMath math="x\in D_g=\mathbb{R}" /> dan <InlineMath math="g(x)=x^2\in D_f=[1,\infty)" />. Oleh itu,
+
+<MathContainer>
+  <BlockMath math="x^2\ge 1" />
+  <BlockMath math="D_{f\circ g}=(-\infty,-1]\cup[1,\infty)" />
+</MathContainer>
+
+Semakan ini menerangkan sebab nilai di antara <InlineMath math="-1" /> dan <InlineMath math="1" /> dikecualikan: nilai-nilai itu menjadikan ungkapan di bawah tanda punca kuasa dua negatif.
+
+### Rumus yang Dipermudahkan Mengekalkan Sekatan Domainnya
+
+**Kekalkan sekatan domain selepas mempermudahkan**. Ambil <InlineMath math="a(u)=1/u" /> dan <InlineMath math="b(x)=1/x" />, kedua-duanya tertakrif pada nombor nyata bukan sifar:
+
+<BlockMath math="(a\circ b)(x)=\frac1{1/x}=x,\qquad D_{a\circ b}=\mathbb{R}\setminus\{0\}" />
+
+Rumus akhir itu kelihatan seperti fungsi identiti, tetapi <InlineMath math="x=0" /> masih dikecualikan kerana operasi pertama, <InlineMath math="b(0)" />, tidak tertakrif.
