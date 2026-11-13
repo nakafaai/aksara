@@ -1,68 +1,36 @@
-Setiap pernyataan dapat diperiksa langsung dari koordinat. Sisi <InlineMath math="AB" /> terletak pada sumbu <InlineMath math="x" />, jadi **tinggi segitiga terhadap <InlineMath math="AB" /> adalah ordinat titik <InlineMath math="C" />**, yaitu 4.
+Ragam adalah rata-rata kuadrat simpangan, jadi kamu perlu **jumlah kuadrat simpangan** dan banyak datanya. Rencananya: cari <InlineMath math="x" /> dari syarat rata-rata, ubah simpangan baku menjadi ragam, hitung jumlah kuadrat simpangan data lama, tambahkan simpangan dua data baru, lalu bagi dengan banyak data yang baru.
 
-# Luas dan panjang sisi
+# Mencari nilai x
+
+Jumlah data lama adalah <InlineMath math="10\times15=150" />. Data baru berisi <InlineMath math="12" /> bilangan dengan rata-rata <InlineMath math="15" />, jadi jumlahnya <InlineMath math="12\times15=180" />. Artinya, **dua data baru harus berjumlah <InlineMath math="2\times15=30" />**.
 
 <BlockMath math="\begin{aligned}
-L&=\tfrac12\cdot AB\cdot t=\tfrac12\cdot6\cdot4=12\\
-AC&=\sqrt{(2-0)^2+(4-0)^2}=\sqrt{20}=2\sqrt5
+x+2x&=180-150=30\\
+x&=10
 \end{aligned}" />
 
-Pernyataan pertama dan ketiga **benar**.
+Dua data barunya adalah <InlineMath math="10" /> dan <InlineMath math="20" />.
 
-# Sudut di titik C
+# Simpangan data lama
 
-Sudut di <InlineMath math="C" /> siku-siku jika vektor <InlineMath math="\overrightarrow{CA}" /> dan <InlineMath math="\overrightarrow{CB}" /> tegak lurus, yaitu jika **hasil kali titiknya nol**.
+Soal memberi simpangan baku <InlineMath math="2" />, jadi **ragam data lama adalah <InlineMath math="2^2=4" />**, bukan <InlineMath math="2" />. Rata-ratanya tetap <InlineMath math="15" />, jadi simpangan setiap data lama tidak berubah. Jumlah kuadrat simpangan data lama sama dengan ragam dikali banyak data: <InlineMath math="10\times4=40" />.
 
-<BlockMath math="\overrightarrow{CA}\cdot\overrightarrow{CB}=(-2,-4)\cdot(4,-4)=-8+16=8\ne0" />
+# Ragam data baru
 
-Sudut di <InlineMath math="C" /> tidak siku-siku, jadi pernyataan kedua salah.
+Tambahkan kuadrat simpangan dua data baru, lalu **bagi dengan banyak data yang baru**, yaitu <InlineMath math="12" />.
 
-# Pusat lingkaran luar
+<BlockMath math="\begin{aligned}
+(10-15)^2+(20-15)^2&=25+25=50\\
+\text{ragam baru}&=\frac{40+50}{12}=\frac{90}{12}=\frac{15}{2}
+\end{aligned}" />
 
-Pusat lingkaran luar adalah titik potong sumbu-sumbu sisi. Sumbu <InlineMath math="AB" /> adalah garis <InlineMath math="x=3" />. Sumbu <InlineMath math="AC" /> melalui titik tengah <InlineMath math="(1,2)" /> dan tegak lurus <InlineMath math="AC" /> yang bergradien 2, jadi gradiennya <InlineMath math="-\tfrac12" />. Substitusikan <InlineMath math="x=3" /> ke persamaan sumbu itu.
+Cek dengan contoh nyata. Data lima bilangan <InlineMath math="13" /> dan lima bilangan <InlineMath math="17" /> punya rata-rata <InlineMath math="15" /> dan ragam <InlineMath math="4" />, jadi simpangan bakunya <InlineMath math="2" />. Setelah <InlineMath math="10" /> dan <InlineMath math="20" /> ditambahkan, jumlah kuadrat simpangannya <InlineMath math="10\times4+25+25=90" />, dan ragamnya <InlineMath math="\tfrac{90}{12}=\tfrac{15}{2}" />.
 
-<BlockMath math="y-2=-\tfrac12(3-1)\quad\Rightarrow\quad y=1" />
+# Jebakan pada pilihan lain
 
-Pusatnya <InlineMath math="(3,1)" />. **Cek jaraknya**: <InlineMath math="OA^2=9+1" />, <InlineMath math="OB^2=9+1" />, dan <InlineMath math="OC^2=1+9" /> sama-sama 10. Titik <InlineMath math="(3,2)" /> berjarak <InlineMath math="\sqrt{13}" /> ke <InlineMath math="A" /> tetapi <InlineMath math="\sqrt5" /> ke <InlineMath math="C" />, jadi pernyataan keempat salah.
+- <InlineMath math="\tfrac{55}{4}" /> memakai <InlineMath math="x+2x=15" />, sehingga <InlineMath math="x=5" /> dan data barunya <InlineMath math="5" /> dan <InlineMath math="10" />. Hasilnya <InlineMath math="\tfrac{40+100+25}{12}" />, padahal dengan data itu rata-ratanya sudah tidak <InlineMath math="15" />.
+- <InlineMath math="9" /> membagi <InlineMath math="90" /> dengan <InlineMath math="10" />, yaitu **banyak data lama**, bukan <InlineMath math="12" />.
+- <InlineMath math="\tfrac{49}{6}" /> menambahkan <InlineMath math="\tfrac{50}{12}" /> ke ragam lama <InlineMath math="4" /> tanpa membagi ulang <InlineMath math="40" /> dengan <InlineMath math="12" />.
+- <InlineMath math="\tfrac{35}{6}" /> memakai simpangan baku <InlineMath math="2" /> sebagai ragam, sehingga jumlah kuadrat simpangan lama keliru menjadi <InlineMath math="20" /> dan hasilnya <InlineMath math="\tfrac{20+50}{12}" />.
 
-<MathVisual
-  title={<>Segitiga <InlineMath math="ABC" /> dan lingkaran luarnya</>}
-  description={<>Pusat lingkaran luar <InlineMath math="O(3,1)" /> berjarak sama, yaitu <InlineMath math="\sqrt{10}" />, ke ketiga titik sudut.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -3, max: 9 },
-      y: { min: -3, max: 6 },
-    },
-    view: { kind: "fit", padding: 0.12 },
-    objects: [
-      {
-        id: "triangle",
-        kind: "polygon",
-        appearance: "primary",
-        vertices: [
-          { x: 0, y: 0 },
-          { x: 6, y: 0 },
-          { x: 2, y: 4 },
-        ],
-      },
-      { id: "circumcircle", kind: "circle", appearance: "secondary", center: { x: 3, y: 1 }, radius: Math.sqrt(10) },
-      { id: "center", kind: "point", appearance: "highlight", at: { x: 3, y: 1 } },
-    ],
-    labels: [
-      { key: "a", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "b", objectId: "triangle", at: { x: 6, y: 0 }, placement: "below-right" },
-      { key: "c", objectId: "triangle", at: { x: 2, y: 4 }, placement: "above" },
-      { key: "o", objectId: "center", at: { x: 3, y: 1 }, placement: "right" },
-    ],
-  }}
-  labels={{
-    a: <InlineMath math="A(0,0)" />,
-    b: <InlineMath math="B(6,0)" />,
-    c: <InlineMath math="C(2,4)" />,
-    o: <InlineMath math="O(3,1)" />,
-  }}
-/>
-
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **benar**, dan keempat **salah**.
+Jadi, ragam data yang baru adalah <InlineMath math="\tfrac{15}{2}" />.

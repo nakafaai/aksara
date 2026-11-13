@@ -1,17 +1,48 @@
-With five coins, more heads than tails means **at least three heads**. There are <InlineMath math="2^5=32" /> equally likely outcomes because the coins are fair.
+The formula <InlineMath math="S_n" /> gives sums, not terms. Term number <InlineMath math="n" /> is the difference of two consecutive sums, but **that difference only works from <InlineMath math="n=2" /> on**, because the first term is just <InlineMath math="S_1" /> itself. The plan: find the formula for every term carefully, then judge the four statements.
 
-# Counting the favorable outcomes
+# Finding every term
 
-The number of ways to get exactly <InlineMath math="k" /> heads is **the number of ways to choose which coins show heads**, <InlineMath math="\binom5k" />.
+The first term comes straight from the sum formula: <InlineMath math="a_1=S_1=2-5+3=0" />. For <InlineMath math="n\ge2" />, subtract the sum of <InlineMath math="n-1" /> terms from the sum of <InlineMath math="n" /> terms.
 
-<BlockMath math="\binom53+\binom54+\binom55=10+5+1=16" />
+<BlockMath math="\begin{aligned}
+a_n&=S_n-S_{n-1}\\
+&=\left(2n^2-5n+3\right)-\left(2(n-1)^2-5(n-1)+3\right)\\
+&=2n^2-5n+3-2n^2+4n-2+5n-5-3\\
+&=4n-7
+\end{aligned}" />
 
-The probability is <InlineMath math="\frac{16}{32}=\frac12" />.
+The formula <InlineMath math="4n-7" /> gives <InlineMath math="-3" /> for <InlineMath math="n=1" />, but <InlineMath math="a_1=0" />. That mismatch comes from **the constant <InlineMath math="3" /> in <InlineMath math="S_n" />**. So the sequence is <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="9" />, <InlineMath math="13" />, and so on.
 
-# The symmetry argument
+# The first statement
 
-Five coins cannot show equally many heads and tails, because 5 is odd. So every outcome has more heads **or** more tails. Swapping heads and tails on every coin pairs the two groups one to one, so **the two groups are equal in size**, 16 outcomes each.
+The difference of the first two terms is <InlineMath math="a_2-a_1=1-0=1" />, while the next difference is <InlineMath math="a_3-a_2=5-1=4" />. **A difference that isn't constant means it isn't an arithmetic sequence**, so the first statement is false.
 
-The value <InlineMath math="\tfrac5{16}" /> counts only exactly three heads. The value <InlineMath math="\tfrac{15}{32}" /> forgets the outcome with five heads. The value <InlineMath math="\tfrac{13}{16}" /> also counts two heads, and the value <InlineMath math="\tfrac{31}{32}" /> is the probability of at least one head.
+# The second statement
 
-So the required probability is <InlineMath math="\tfrac12" />.
+Term number <InlineMath math="15" /> uses the formula for <InlineMath math="n\ge2" />: <InlineMath math="a_{15}=4\cdot15-7=53" />. Check with the sum formula: <InlineMath math="S_{15}-S_{14}=378-325=53" />. **The second statement is true**.
+
+# The third statement
+
+The first pair gives <InlineMath math="a_1+a_2=0+1=1" />. For <InlineMath math="n\ge2" />, the sum of two consecutive terms follows this formula.
+
+<BlockMath math="\begin{aligned}
+a_n+a_{n+1}&=(4n-7)+(4n-3)=8n-10\\
+8n-10&=2{,}026\\
+8n&=2{,}036\\
+n&=254.5
+\end{aligned}" />
+
+That value of <InlineMath math="n" /> isn't a natural number, and the first pair only adds up to <InlineMath math="1" />. So **no two consecutive terms add up to <InlineMath math="2{,}026" />**, and the third statement is false.
+
+# The fourth statement
+
+The odd-numbered terms from <InlineMath math="a_3" /> to <InlineMath math="a_{19}" /> are <InlineMath math="9" /> terms, namely <InlineMath math="5" />, <InlineMath math="13" />, up to <InlineMath math="69" />, with common difference <InlineMath math="8" />. **Add the first term separately**, since its value <InlineMath math="a_1=0" /> doesn't follow the formula <InlineMath math="4n-7" />.
+
+<BlockMath math="\begin{aligned}
+a_3+a_5+\dots+a_{19}&=\frac{9}{2}(5+69)=333\\
+a_1+a_3+\dots+a_{19}&=0+333=333
+\end{aligned}" />
+
+Check it another way: <InlineMath math="S_{19}=630" />, and the even-numbered terms add up to <InlineMath math="a_2+a_4+\dots+a_{18}=\tfrac92(1+65)=297" />, so the odd-numbered terms add up to <InlineMath math="630-297=333" />. If you work out <InlineMath math="a_1" /> with <InlineMath math="4n-7" />, you'll wrongly get <InlineMath math="330" />. The fourth statement is true.
+
+So the first statement is false, the second is true, the third is false, and the fourth is true.

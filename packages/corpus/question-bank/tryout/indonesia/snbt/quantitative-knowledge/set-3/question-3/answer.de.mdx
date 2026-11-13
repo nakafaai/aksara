@@ -1,24 +1,40 @@
-Eine Bruchgleichung musst du zusammen mit **der Bedingung lösen, dass kein Nenner null wird**. Wegen <InlineMath math="x^2-4=(x-2)(x+2)" /> sind <InlineMath math="x=2" /> und <InlineMath math="x=-2" /> von vornherein ausgeschlossen.
+Jede der vier Aussagen braucht ihren eigenen Beweis oder ein Gegenbeispiel. Das Werkzeug ist jedes Mal dasselbe: Schreibe <InlineMath math="x=n+f" /> mit dem **ganzzahligen Anteil** <InlineMath math="n=\lfloor x\rfloor" /> und dem **Nachkommaanteil** <InlineMath math="f" />, wobei <InlineMath math="0\le f<1" /> gilt.
 
-# Nenner beseitigen
+# Erste Aussage
 
-**Multipliziere beide Seiten** mit <InlineMath math="(x-2)(x+2)" />.
+Setze <InlineMath math="n=\lfloor x\rfloor" />. Die Gleichung wird zu <InlineMath math="x^2=4n-3" />. Die linke Seite ist nicht negativ, also <InlineMath math="n\ge 1" />, damit <InlineMath math="x\ge 1" /> und <InlineMath math="x=\sqrt{4n-3}" />. Damit <InlineMath math="\lfloor x\rfloor" /> wirklich <InlineMath math="n" /> ist, muss <InlineMath math="n\le x<n+1" /> gelten. Alle Seiten sind positiv, du darfst also quadrieren.
 
 <BlockMath math="\begin{aligned}
-x(x+2)+4(x-2)&=8\\
-x^2+2x+4x-8&=8\\
-x^2+6x-16&=0\\
-(x+8)(x-2)&=0
+n^2\le 4n-3 &\iff (n-1)(n-3)\le 0 \iff 1\le n\le 3\\
+4n-3<(n+1)^2 &\iff (n-1)^2+3>0
 \end{aligned}" />
 
-Die Kandidaten sind <InlineMath math="x=-8" /> und <InlineMath math="x=2" />.
+Die zweite Bedingung gilt immer, also ist <InlineMath math="n=1" />, <InlineMath math="n=2" /> oder <InlineMath math="n=3" />. Das liefert <InlineMath math="x=1" />, <InlineMath math="x=\sqrt{5}" /> und <InlineMath math="x=3" />. Für <InlineMath math="\sqrt{5}" /> gilt <InlineMath math="2<\sqrt{5}<3" />, also <InlineMath math="\lfloor\sqrt{5}\rfloor=2" />, und die Gleichung stimmt. Ersetzt du <InlineMath math="\lfloor x\rfloor" /> einfach durch <InlineMath math="x" />, bekommst du nur <InlineMath math="1" /> und <InlineMath math="3" /> und **verlierst die Lösung <InlineMath math="\sqrt{5}" />**. Es gibt genau <InlineMath math="3" /> Lösungen, die erste Aussage ist also wahr.
 
-# Bedingung prüfen
+# Zweite Aussage
 
-Der Wert <InlineMath math="x=2" /> macht einen Nenner null, also **ist <InlineMath math="x=2" /> keine Lösung**. Er entsteht, weil die Multiplikation mit <InlineMath math="(x-2)(x+2)" /> eine Scheinlösung hinzufügt. Probe für <InlineMath math="x=-8" />: Die linke Seite ist <InlineMath math="\frac{-8}{-10}+\frac{4}{-6}=\frac45-\frac23=\frac2{15}" />, die rechte Seite <InlineMath math="\frac8{60}=\frac2{15}" />.
+Mit <InlineMath math="x=n+f" /> gilt <InlineMath math="\lfloor 2x\rfloor=2n+\lfloor 2f\rfloor" />. Dabei ist <InlineMath math="\lfloor 2f\rfloor=0" /> für <InlineMath math="f<\tfrac{1}{2}" /> und <InlineMath math="\lfloor 2f\rfloor=1" /> für <InlineMath math="f\ge\tfrac{1}{2}" />. Die linke Seite **kann also nur <InlineMath math="3n" /> oder <InlineMath math="3n+1" /> sein**.
 
-Die einzige Lösung ist <InlineMath math="x=-8" />, die Summe ist also <InlineMath math="-8" />.
+<BlockMath math="\begin{aligned}
+3n=10 &\implies n=\tfrac{10}{3}\ \text{ist keine ganze Zahl}\\
+3n+1=10 &\implies n=3\ \text{und}\ f\ge\tfrac{1}{2}
+\end{aligned}" />
 
-Der Wert <InlineMath math="-6" /> addiert beide Kandidaten, ohne die Bedingung zu prüfen. Der Wert 2 nimmt nur die Scheinlösung. Die Werte 6 und 8 entstehen durch Vorzeichenfehler beim Faktorisieren.
+Der zweite Fall liefert <InlineMath math="3{,}5\le x<4" />. Zum Beispiel ergibt <InlineMath math="x=3{,}5" /> den Wert <InlineMath math="\lfloor 3{,}5\rfloor+\lfloor 7\rfloor=3+7=10" />. Die Gleichung hat also Lösungen, und die zweite Aussage ist falsch. Die Falle besteht darin, nur <InlineMath math="3n=10" /> auszuprobieren.
 
-Die Summe aller Lösungen ist also <InlineMath math="-8" />.
+# Dritte Aussage
+
+Unterscheide zwei Fälle nach dem Nachkommaanteil <InlineMath math="f" />.
+
+<BlockMath math="\begin{aligned}
+0\le f<\tfrac{1}{2}&:\quad \lfloor x\rfloor+\left\lfloor x+\tfrac{1}{2}\right\rfloor=n+n=2n=\lfloor 2x\rfloor\\
+\tfrac{1}{2}\le f<1&:\quad \lfloor x\rfloor+\left\lfloor x+\tfrac{1}{2}\right\rfloor=n+(n+1)=2n+1=\lfloor 2x\rfloor
+\end{aligned}" />
+
+Im ersten Fall liegt <InlineMath math="x+\tfrac{1}{2}" /> noch unter <InlineMath math="n+1" />. Im zweiten Fall hat <InlineMath math="x+\tfrac{1}{2}" /> die Zahl <InlineMath math="n+1" /> erreicht, aber noch nicht <InlineMath math="n+2" />. **Die beiden Fälle decken alle reellen Zahlen ab**, die Gleichheit gilt also immer, und die dritte Aussage ist wahr.
+
+# Vierte Aussage
+
+Setze <InlineMath math="m=\lfloor x\rfloor" />. Die Ungleichung lautet <InlineMath math="m^2-m-6=(m-3)(m+2)<0" />, also <InlineMath math="-2<m<3" />. Da <InlineMath math="m" /> ganzzahlig ist, bleibt <InlineMath math="-1" />, <InlineMath math="0" />, <InlineMath math="1" /> oder <InlineMath math="2" />. Übersetze das zurück in <InlineMath math="x" />: <InlineMath math="\lfloor x\rfloor\ge -1" /> bedeutet <InlineMath math="x\ge -1" />, und <InlineMath math="\lfloor x\rfloor\le 2" /> bedeutet <InlineMath math="x<3" />. Die Lösungsmenge ist <InlineMath math="-1\le x<3" />, die vierte Aussage ist also wahr. Die Antwort <InlineMath math="-2<x<3" /> behandelt <InlineMath math="\lfloor x\rfloor" /> wie <InlineMath math="x" />, aber <InlineMath math="x=-1{,}5" /> liefert <InlineMath math="m=-2" />, und **der Wert <InlineMath math="(-2)^2+2-6=0" /> ist nicht kleiner als null**.
+
+Die erste Aussage ist also wahr, die zweite falsch, die dritte wahr und die vierte wahr.

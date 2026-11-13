@@ -1,15 +1,41 @@
-The given fact that <InlineMath math="n" /> is **a positive integer** applies to every statement. This condition often decides whether a statement leaves one value or more.
+You're looking for the sum of the first five terms of the geometric sequence that forms. Here's the plan: write the arithmetic sequence with one unknown, use the geometric condition to get a quadratic, then **throw out the root that makes an original number non-positive**.
 
-# Statement one alone
+# Writing the arithmetic sequence
 
-<BlockMath math="n^2-2n-15=(n-5)(n+3)=0\quad\Rightarrow\quad n=5\ \text{or}\ n=-3" />
+The sum of three terms of an arithmetic sequence is three times the middle term, because the first and third terms sit equally far from the middle. So the middle term is <InlineMath math="\frac{15}{3}=5" />, and **the three numbers can be written as <InlineMath math="5-d" />, <InlineMath math="5" />, <InlineMath math="5+d" />** with common difference <InlineMath math="d" />.
 
-The value <InlineMath math="-3" /> **is not a positive integer**, so only <InlineMath math="n=5" /> remains. Statement (1) alone is sufficient.
+After the additions, the new numbers are <InlineMath math="6-d" />, <InlineMath math="6" />, and <InlineMath math="9+d" />.
 
-# Statement two alone
+# The geometric condition
 
-Since <InlineMath math="32=2^5" /> and the function <InlineMath math="2^n" /> is increasing, the equation <InlineMath math="2^n=32" /> **holds only for <InlineMath math="n=5" />**. Statement (2) alone is sufficient too.
+In a geometric sequence, the middle term divided by the first equals the third divided by the middle. So **the square of the middle term equals the product of its two neighbors**.
 
-A student who forgets the positivity condition thinks statement (1) leaves two values and wrongly concludes that only statement (2) is sufficient.
+<BlockMath math="\begin{aligned}
+6^2&=(6-d)(9+d)\\
+36&=54-3d-d^2\\
+d^2+3d-18&=0\\
+(d+6)(d-3)&=0
+\end{aligned}" />
 
-So **each statement alone is sufficient** to answer the question.
+So <InlineMath math="d=3" /> or <InlineMath math="d=-6" />.
+
+# Picking the valid root
+
+For <InlineMath math="d=-6" />, the original numbers are <InlineMath math="11" />, <InlineMath math="5" />, <InlineMath math="-1" />. The number <InlineMath math="-1" /> isn't positive, so **this root breaks the condition in the prompt** and has to go, even though <InlineMath math="12" />, <InlineMath math="6" />, <InlineMath math="3" /> really is a geometric sequence.
+
+For <InlineMath math="d=3" />, the original numbers are <InlineMath math="2" />, <InlineMath math="5" />, <InlineMath math="8" />, all positive. The geometric sequence is <InlineMath math="3" />, <InlineMath math="6" />, <InlineMath math="12" /> with ratio <InlineMath math="2" />.
+
+<BlockMath math="S_5=\frac{3\left(2^5-1\right)}{2-1}=3\cdot31=93" />
+
+Check by adding directly: <InlineMath math="3+6+12+24+48=93" />.
+
+# The tempting wrong options
+
+The other options come from **a root that wasn't checked** or from stopping at the wrong term.
+
+- <InlineMath math="\frac{93}{4}" /> comes from using the root <InlineMath math="d=-6" />, which gives <InlineMath math="12" />, <InlineMath math="6" />, <InlineMath math="3" /> with ratio <InlineMath math="\frac12" />.
+- <InlineMath math="21" /> is the sum of just the three terms that formed, <InlineMath math="3+6+12" />.
+- <InlineMath math="45" /> is the sum of the first four terms.
+- <InlineMath math="48" /> is the fifth term, not the sum of five terms.
+
+So the sum of the first five terms of the geometric sequence is <InlineMath math="93" />.

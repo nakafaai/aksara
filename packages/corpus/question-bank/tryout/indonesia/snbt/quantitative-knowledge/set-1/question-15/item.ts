@@ -5,11 +5,14 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$2\\sqrt{10}$$" },
-        { correct: false, label: "$$5+\\sqrt{13}$$" },
-        { correct: false, label: "$$2+2\\sqrt{13}$$" },
-        { correct: false, label: "$$4+2\\sqrt{10}$$" },
-        { correct: true, label: "$$6\\sqrt2$$" },
+        { correct: false, label: "$$P>Q$$" },
+        { correct: false, label: "$$Q>P$$" },
+        { correct: false, label: "$$P=Q$$" },
+        {
+          correct: true,
+          label:
+            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
+        },
       ],
     },
   },

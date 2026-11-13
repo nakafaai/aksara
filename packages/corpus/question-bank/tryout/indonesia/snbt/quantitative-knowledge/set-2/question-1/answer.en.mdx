@@ -1,21 +1,41 @@
-Write <InlineMath math="n^2+n=n(n+1)" />. This is **a product of two consecutive integers**, so one factor is always even. Since <InlineMath math="6=2\times3" />, divisibility by 6 depends only on the factor 3.
+The last two digits of a number are **its remainder on division by <InlineMath math="100" />**. Since <InlineMath math="100=4\times25" /> and <InlineMath math="4" /> and <InlineMath math="25" /> share no factor other than <InlineMath math="1" />, you can find the remainders on division by <InlineMath math="4" /> and by <InlineMath math="25" /> separately and then combine them. The notation <InlineMath math="a\equiv b\pmod{25}" /> means that <InlineMath math="a" /> and <InlineMath math="b" /> leave the same remainder on division by <InlineMath math="25" />.
 
-# The condition for the factor three
+# Shrinking the exponent
 
-The prime 3 divides <InlineMath math="n(n+1)" /> exactly when 3 divides <InlineMath math="n" /> or 3 divides <InlineMath math="n+1" />. The second condition means that <InlineMath math="n" /> **leaves remainder 2 on division by 3**.
+Start with a power of two whose remainder is easy to find. Since <InlineMath math="2^{10}=1{,}024=41\times25-1" />, you get <InlineMath math="2^{10}\equiv-1\pmod{25}" />, so <InlineMath math="2^{20}\equiv1\pmod{25}" />. That means the remainders of powers of two on division by <InlineMath math="25" /> **repeat every <InlineMath math="20" /> steps of the exponent**, and you only need the exponent's remainder on division by <InlineMath math="20" />.
 
-| Remainder of <InlineMath math="n" /> on division by 3 | Example | Is <InlineMath math="n(n+1)" /> divisible by 3? |
-| :---: | :---: | :---: |
-| 0 | <InlineMath math="3\times4=12" /> | Yes |
-| 1 | <InlineMath math="1\times2=2" /> | No |
-| 2 | <InlineMath math="2\times3=6" /> | Yes |
+Find the remainder of <InlineMath math="4^{2026}" /> on division by <InlineMath math="20" /> through the divisors <InlineMath math="4" /> and <InlineMath math="5" />. Clearly <InlineMath math="4^{2026}" /> is a multiple of <InlineMath math="4" />. For the divisor <InlineMath math="5" />, use <InlineMath math="4\equiv-1\pmod 5" />, and the even exponent removes the minus sign.
 
-# Counting the numbers
+<BlockMath math="\begin{aligned}
+4^{2026}&\equiv(-1)^{2026}=1\pmod 5\\
+4^{2026}&\equiv0\pmod 4
+\end{aligned}" />
 
-The multiples of 3 from 1 to 100 are 3, 6, up to 99, which is 33 numbers. The numbers with remainder 2 are 2, 5, up to 98, which is <InlineMath math="\frac{98-2}{3}+1=33" /> numbers.
+From <InlineMath math="0" /> to <InlineMath math="19" />, the only number that's a multiple of <InlineMath math="4" /> and leaves remainder <InlineMath math="1" /> on division by <InlineMath math="5" /> is <InlineMath math="16" />. So <InlineMath math="4^{2026}=20k+16" /> for some integer <InlineMath math="k\ge0" />. **An even exponent gives remainder <InlineMath math="16" />**, not the <InlineMath math="4" /> you get for odd exponents.
 
-<BlockMath math="33+33=66" />
+# Remainders on division by twenty five and four
 
-The value 33 counts only the multiples of 3. The value 67 uses remainder 1, although <InlineMath math="n+1" /> divisible by 3 means that <InlineMath math="n" /> leaves remainder 2. The value 50 counts only the even numbers, although the factor 2 is always there. The value 100 assumes that a product of two consecutive integers is always divisible by 6, which is true only for a product of three consecutive integers.
+Now use that form of the exponent. The factor <InlineMath math="2^{20}" /> leaves remainder <InlineMath math="1" />, so it **doesn't change the remainder**.
 
-So **66** numbers <InlineMath math="n" /> satisfy the condition.
+<BlockMath math="\begin{aligned}
+N=2^{20k+16}&=\left(2^{20}\right)^{k}\times2^{16}\\
+&\equiv1^{k}\times65{,}536\\
+&\equiv11\pmod{25}
+\end{aligned}" />
+
+The last line holds because <InlineMath math="65{,}536=2{,}621\times25+11" />. For the divisor <InlineMath math="4" />, the exponent of <InlineMath math="N" /> is far bigger than <InlineMath math="2" />, so <InlineMath math="N" /> contains the factor <InlineMath math="2^2=4" /> and its remainder is <InlineMath math="0" />.
+
+# Combining the two remainders
+
+From <InlineMath math="0" /> to <InlineMath math="99" />, the numbers that leave remainder <InlineMath math="11" /> on division by <InlineMath math="25" /> are only <InlineMath math="11" />, <InlineMath math="36" />, <InlineMath math="61" />, and <InlineMath math="86" />. Of these, only <InlineMath math="36" /> is divisible by <InlineMath math="4" />. The condition is **a multiple of four, not just an even number**, because <InlineMath math="86" /> is even but <InlineMath math="86=4\times21+2" />.
+
+Check it a second way. The remainders of powers of two on division by <InlineMath math="100" /> repeat every <InlineMath math="20" /> steps starting from <InlineMath math="2^2" />, because <InlineMath math="2^{22}=4{,}194{,}304" /> ends in <InlineMath math="04" />, just like <InlineMath math="2^2" />. The exponent <InlineMath math="20k+16" /> is at least <InlineMath math="16" />, so <InlineMath math="N" /> ends the same way as <InlineMath math="2^{16}=65{,}536" />, that is, in <InlineMath math="36" />. The results match.
+
+# Traps in the other options
+
+- <InlineMath math="16" /> comes from using the odd-exponent pattern, <InlineMath math="4^{2026}\equiv4\pmod{20}" />, and then computing <InlineMath math="2^4=16" />.
+- <InlineMath math="64" /> comes from shrinking the exponent by the last digit of <InlineMath math="4^{2026}" />, which is <InlineMath math="6" />, as if the cycle were <InlineMath math="10" />, and then computing <InlineMath math="2^6=64" />.
+- <InlineMath math="76" /> comes from treating <InlineMath math="4^{2026}" /> as a multiple of <InlineMath math="20" /> just because it's a multiple of <InlineMath math="4" />. But <InlineMath math="4^{2026}" /> leaves remainder <InlineMath math="1" /> on division by <InlineMath math="5" />, so **the exponent isn't a multiple of twenty**, and the form <InlineMath math="2^{20k}" /> ending in <InlineMath math="76" /> doesn't apply.
+- <InlineMath math="96" /> comes from writing <InlineMath math="4^{2026}=2^{4052}" /> and then shrinking <InlineMath math="4052" /> by its remainder on division by <InlineMath math="20" />, which is <InlineMath math="12" />, giving <InlineMath math="2^{12}=4{,}096" />. What you need is the remainder of <InlineMath math="2^{4052}" /> on division by <InlineMath math="20" />, not the remainder of <InlineMath math="4052" />.
+
+So the last two digits of <InlineMath math="N=2^{4^{2026}}" /> are <InlineMath math="36" />.

@@ -1,20 +1,33 @@
-"Bola merah kedua terambil pada pengambilan ketiga" berarti dua hal terjadi bersamaan: **tepat satu bola merah muncul pada dua pengambilan pertama**, lalu pengambilan ketiga juga merah.
+Cari dulu himpunan penyelesaian lengkapnya, lalu nilai setiap pernyataan. Kedua ruas boleh dikuadratkan **hanya jika keduanya tidak negatif**, jadi kamu perlu membagi kasus menurut tanda <InlineMath math="x-3" />.
 
-# Dua urutan yang mungkin
+# Syarat bentuk akar
 
-Bola merah pertama bisa muncul pada pengambilan pertama atau kedua. Karena tanpa pengembalian, setiap peluang dihitung dari isi kantong yang tersisa.
+Bentuk <InlineMath math="\sqrt{x+3}" /> hanya terdefinisi jika <InlineMath math="x+3\ge0" />, yaitu <InlineMath math="x\ge-3" />. Nilai akar itu **selalu tidak negatif**.
+
+# Kasus ruas kanan negatif
+
+Jika <InlineMath math="-3\le x<3" />, ruas kanan <InlineMath math="x-3" /> negatif. Bilangan yang tidak negatif selalu lebih besar daripada bilangan negatif, jadi **semua <InlineMath math="x" /> di selang ini memenuhi** tanpa perlu dihitung lagi.
+
+# Kasus ruas kanan tidak negatif
+
+Jika <InlineMath math="x\ge3" />, kedua ruas tidak negatif, jadi **pengkuadratan tidak mengubah arah tanda**.
 
 <BlockMath math="\begin{aligned}
-P(\text{M, P, M})&=\frac4{10}\cdot\frac69\cdot\frac38=\frac{72}{720}\\
-P(\text{P, M, M})&=\frac6{10}\cdot\frac49\cdot\frac38=\frac{72}{720}
+x+3&>(x-3)^2=x^2-6x+9\\
+0&>x^2-7x+6=(x-1)(x-6)\\
+1&<x<6
 \end{aligned}" />
 
-Kedua urutan **saling lepas**, jadi peluangnya dijumlahkan.
+Digabung dengan <InlineMath math="x\ge3" />, kasus ini memberi <InlineMath math="3\le x<6" />. Himpunan penyelesaian lengkapnya adalah <InlineMath math="-3\le x<6" />. Ujung <InlineMath math="6" /> tidak ikut, karena <InlineMath math="\sqrt9=3" /> tidak lebih besar daripada <InlineMath math="3" />.
 
-<BlockMath math="P=\frac{72+72}{720}=\frac{144}{720}=\frac15" />
+# Menilai keempat pernyataan
 
-# Pilihan yang keliru
+**Pernyataan pertama**. Bilangan <InlineMath math="x=0" /> memenuhi, karena <InlineMath math="\sqrt3>-3" />, padahal <InlineMath math="0" /> tidak lebih dari <InlineMath math="1" />. Syarat <InlineMath math="x>1" /> muncul jika kamu **mengkuadratkan tanpa membagi kasus**, sehingga seluruh selang <InlineMath math="-3\le x\le1" /> hilang. Pernyataan ini **salah**.
 
-Nilai <InlineMath math="\tfrac1{10}" /> hanya menghitung satu urutan. Nilai <InlineMath math="\tfrac3{10}" /> adalah peluang tepat dua merah dalam tiga pengambilan, tanpa mensyaratkan merah kedua berada di posisi ketiga. Nilai <InlineMath math="\tfrac25" /> hanya peluang pengambilan ketiga merah. Nilai <InlineMath math="\tfrac8{15}" /> berhenti pada peluang **tepat satu merah dalam dua pengambilan pertama**.
+**Pernyataan kedua**. Bilangan bulat di <InlineMath math="-3\le x<6" /> adalah <InlineMath math="-3" />, <InlineMath math="-2" />, sampai <InlineMath math="5" />. Banyaknya <InlineMath math="5-(-3)+1=9" />, dengan <InlineMath math="-3" /> ikut dan <InlineMath math="6" /> tidak. Pernyataan ini **benar**.
 
-Jadi, peluang yang ditanyakan adalah <InlineMath math="\tfrac15" />.
+**Pernyataan ketiga**. Ambil lagi <InlineMath math="x=0" />. Pertidaksamaan baru menuntut <InlineMath math="\sqrt3>3" />, padahal <InlineMath math="3<9" /> berarti <InlineMath math="\sqrt3<3" />. Jadi ada penyelesaian soal yang tidak memenuhi pertidaksamaan baru, dan pernyataan ini **salah**.
+
+**Pernyataan keempat**. Kata "ada" cukup dibuktikan dengan satu contoh. Ambil <InlineMath math="x=\tfrac{11}{2}" />, sehingga <InlineMath math="x-3=\tfrac52>2" />. Bilangan ini ada di dalam <InlineMath math="-3\le x<6" />, dan cek langsung memberi <InlineMath math="x+3=\tfrac{17}{2}=\tfrac{34}{4}>\tfrac{25}{4}=\left(\tfrac52\right)^2" />, jadi <InlineMath math="\sqrt{x+3}>x-3" />. Pernyataan ini **benar**.
+
+Jadi, pernyataan pertama salah, pernyataan kedua benar, pernyataan ketiga salah, dan pernyataan keempat benar.

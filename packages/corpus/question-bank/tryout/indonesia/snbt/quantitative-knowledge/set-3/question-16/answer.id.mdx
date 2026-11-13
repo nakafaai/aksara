@@ -1,21 +1,47 @@
-Misalkan bilangan terbesar <InlineMath math="L" /> dan bilangan terkecil <InlineMath math="K" />. Perubahan rata-rata memberi **jumlah kedua bilangan itu**, sedangkan selisihnya sudah diketahui.
+Sisa pembagian oleh <InlineMath math="x^2-1=(x-1)(x+1)" /> ditentukan oleh nilai suku banyak di <InlineMath math="x=1" /> dan <InlineMath math="x=-1" />. Rencananya: dari sisa <InlineMath math="\left(P(x)\right)^2" />, cari kuadrat <InlineMath math="P(1)" /> dan <InlineMath math="P(-1)" />, periksa **semua kemungkinan tanda**, pakai syarat <InlineMath math="0<a<b" /> untuk memilih satu, lalu hitung sisa <InlineMath math="(x+2)\cdot P(x)" />.
 
-# Jumlah bilangan terbesar dan terkecil
+# Nilai P di satu dan minus satu
 
-Jumlah sepuluh bilangan adalah <InlineMath math="10\times20=200" />. Jumlah delapan bilangan yang tersisa adalah <InlineMath math="8\times19=152" />. **Selisih kedua jumlah** itu adalah jumlah dua bilangan yang dibuang.
-
-<BlockMath math="L+K=200-152=48" />
-
-# Menyelesaikan sistem
+Tulis <InlineMath math="\left(P(x)\right)^2=\left(x^2-1\right)K(x)+12x+13" />. Di <InlineMath math="x=\pm 1" />, faktor <InlineMath math="x^2-1" /> bernilai nol, jadi **yang tersisa hanya nilai sisanya**.
 
 <BlockMath math="\begin{aligned}
-L+K&=48\\
-L-K&=30\\
-2L&=78\quad\Rightarrow\quad L=39,\ K=9
+\left(P(1)\right)^2&=12+13=25\\
+\left(P(-1)\right)^2&=-12+13=1
 \end{aligned}" />
 
-Cek: <InlineMath math="39-9=30" />, dan delapan bilangan sisanya berjumlah 152 dengan rata-rata 19, yang wajar berada di antara 9 dan 39.
+Jadi <InlineMath math="P(1)=5" /> atau <InlineMath math="P(1)=-5" />, dan <InlineMath math="P(-1)=1" /> atau <InlineMath math="P(-1)=-1" />.
 
-Nilai 48 adalah jumlah <InlineMath math="L+K" />, belum diuraikan. Nilai 30 adalah selisihnya, dan nilai 9 adalah bilangan terkecil. Nilai 35 menghitung jumlah delapan bilangan dengan rata-rata 20, sehingga <InlineMath math="L+K=40" />.
+# Empat kemungkinan sisa
 
-Jadi, bilangan terbesar adalah **39**.
+Dari <InlineMath math="P(x)=\left(x^2-1\right)H(x)+ax+b" /> diperoleh <InlineMath math="P(1)=a+b" /> dan <InlineMath math="P(-1)=-a+b" />, sehingga <InlineMath math="a=\tfrac{P(1)-P(-1)}{2}" /> dan <InlineMath math="b=\tfrac{P(1)+P(-1)}{2}" />.
+
+| <InlineMath math="P(1)" /> | <InlineMath math="P(-1)" /> | <InlineMath math="a" /> | <InlineMath math="b" /> | Memenuhi <InlineMath math="0<a<b" />? |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="5" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | ya |
+| <InlineMath math="5" /> | <InlineMath math="-1" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | tidak, <InlineMath math="a>b" /> |
+| <InlineMath math="-5" /> | <InlineMath math="1" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | tidak, negatif |
+| <InlineMath math="-5" /> | <InlineMath math="-1" /> | <InlineMath math="-2" /> | <InlineMath math="-3" /> | tidak, negatif |
+
+**Hanya satu kasus yang lolos**, yaitu <InlineMath math="P(1)=5" /> dan <InlineMath math="P(-1)=1" />, dengan sisa <InlineMath math="2x+3" />.
+
+# Sisa dari hasil kali
+
+Misalkan <InlineMath math="G(x)=(x+2)\cdot P(x)" /> dan sisanya <InlineMath math="cx+d" />. Dengan alasan yang sama, **sisa <InlineMath math="G" /> ditentukan oleh <InlineMath math="G(1)" /> dan <InlineMath math="G(-1)" />**.
+
+<BlockMath math="\begin{aligned}
+G(1)&=3\cdot P(1)=15=c+d\\
+G(-1)&=1\cdot P(-1)=1=-c+d\\
+d&=\tfrac{15+1}{2}=8,\quad c=15-8=7
+\end{aligned}" />
+
+Sisanya <InlineMath math="7x+8" />.
+
+# Memeriksa dengan cara lain
+
+Kalikan <InlineMath math="(x+2)" /> dengan sisa <InlineMath math="2x+3" />, lalu ganti bagian <InlineMath math="x^2" /> dengan <InlineMath math="\left(x^2-1\right)+1" />: <InlineMath math="(x+2)(2x+3)=2x^2+7x+6=2\left(x^2-1\right)+7x+8" />. Hasilnya sama. Contoh nyata juga ada: **<InlineMath math="P(x)=2x+3" /> memenuhi semua syarat**, karena <InlineMath math="(2x+3)^2=4\left(x^2-1\right)+12x+13" />.
+
+# Memeriksa pilihan lain
+
+Pilihan <InlineMath math="8x+7" /> memakai kasus <InlineMath math="a=3" /> dan <InlineMath math="b=2" />, yaitu **lupa syarat <InlineMath math="a<b" />**. Pilihan <InlineMath math="7x+7" /> mengganti <InlineMath math="2x^2" /> dengan <InlineMath math="1" />, jadi **lupa koefisiennya**: <InlineMath math="2x^2" /> menyisakan <InlineMath math="2" />, bukan <InlineMath math="1" />. Pilihan <InlineMath math="7x+6" /> membuang suku <InlineMath math="2x^2" /> begitu saja, padahal <InlineMath math="2x^2" /> menyisakan <InlineMath math="2" />. Pilihan <InlineMath math="15x+1" /> menuliskan nilai <InlineMath math="G(1)=15" /> dan <InlineMath math="G(-1)=1" /> langsung sebagai koefisien.
+
+Jadi, sisa pembagian <InlineMath math="(x+2)\cdot P(x)" /> oleh <InlineMath math="x^2-1" /> adalah <InlineMath math="7x+8" />.

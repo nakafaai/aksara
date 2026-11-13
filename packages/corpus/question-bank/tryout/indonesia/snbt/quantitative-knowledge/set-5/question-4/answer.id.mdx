@@ -1,25 +1,40 @@
-Ubah setiap logaritma menjadi bentuk yang memuat <InlineMath math="{}^{2}\log5" />. Tiga sifat yang dipakai adalah **logaritma hasil kali, logaritma pangkat, dan pertukaran basis**.
+Kedua ruas persamaan <InlineMath math="2^{x^2-1}=3^{x+1}" /> punya basis berbeda, jadi **pangkatnya tidak boleh langsung disamakan**. Rencananya, ambil logaritma basis <InlineMath math="2" /> di kedua ruas supaya pangkatnya turun, cari semua penyelesaian <InlineMath math="x" />, lalu hitung <InlineMath math="2^x" /> untuk masing-masing dan jumlahkan.
 
-# Pernyataan dengan hasil kali
+# Mengubah ke persamaan kuadrat
 
-Pecah 10 dan 40 menjadi hasil kali pangkat 2 dan 5.
-
-<BlockMath math="\begin{aligned}
-{}^{2}\log10&={}^{2}\log2+{}^{2}\log5=1+p\\
-{}^{2}\log40&={}^{2}\log8+{}^{2}\log5=3+p
-\end{aligned}" />
-
-Logaritma hasil kali **menjadi jumlah**, bukan hasil kali, jadi <InlineMath math="1+p\ne2p" /> dan <InlineMath math="3+p\ne3p" /> karena <InlineMath math="p\ne1" />. Pernyataan pertama dan keempat salah.
-
-# Pernyataan dengan pangkat dan basis
-
-Basis dan bilangan yang sama-sama dipangkatkan dua **menghasilkan nilai yang sama**, karena <InlineMath math="{}^{a^n}\log b^n={}^{a}\log b" />.
+Logaritma basis <InlineMath math="2" /> dari <InlineMath math="2^{x^2-1}" /> adalah <InlineMath math="x^2-1" />, dan logaritma dari <InlineMath math="3^{x+1}" /> adalah <InlineMath math="(x+1)\cdot{}^{2}\log3" />. Perhatikan bahwa <InlineMath math="x^2-1=(x+1)(x-1)" /> punya faktor yang sama dengan ruas kanan. **Jangan membagi kedua ruas dengan <InlineMath math="x+1" />**, karena faktor itu bisa bernilai nol. Pindahkan semua suku ke satu ruas, lalu faktorkan.
 
 <BlockMath math="\begin{aligned}
-{}^{4}\log25&={}^{2^2}\log5^2={}^{2}\log5=p\\
-{}^{5}\log2&=\frac{1}{{}^{2}\log5}=\frac1p
+x^2-1&=(x+1)\cdot{}^{2}\log3\\
+(x+1)(x-1)-(x+1)\cdot{}^{2}\log3&=0\\
+(x+1)\left(x-1-{}^{2}\log3\right)&=0
 \end{aligned}" />
 
-Pernyataan kedua dan ketiga benar.
+Jadi <InlineMath math="x=-1" /> atau <InlineMath math="x=1+{}^{2}\log3" />. Untuk <InlineMath math="x=-1" />, kedua ruas bernilai <InlineMath math="2^0=3^0=1" />, jadi akar ini sah.
 
-Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **benar**, dan keempat **salah**.
+# Menghitung nilai dua pangkat x
+
+Untuk akar kedua, pakai sifat **bilangan pokok yang dipangkatkan logaritma dengan basis yang sama menghasilkan bilangan di dalam logaritma**, yaitu <InlineMath math="2^{{}^{2}\log3}=3" />.
+
+<BlockMath math="\begin{aligned}
+2^{-1}&=\tfrac12\\
+2^{1+{}^{2}\log3}&=2\cdot2^{{}^{2}\log3}=2\cdot3=6\\
+\tfrac12+6&=\tfrac{13}{2}
+\end{aligned}" />
+
+# Memeriksa akar kedua
+
+Akar kedua memenuhi <InlineMath math="2^{x-1}=2^{{}^{2}\log3}=3" />. Pakai itu di ruas kiri.
+
+<BlockMath math="2^{x^2-1}=2^{(x-1)(x+1)}=\left(2^{x-1}\right)^{x+1}=3^{x+1}" />
+
+Ruas kiri sama dengan ruas kanan, jadi **kedua akar sah dan harus ikut dijumlahkan**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="6" /> muncul kalau kedua ruas dibagi <InlineMath math="x+1" />, sehingga **akar <InlineMath math="x=-1" /> hilang**.
+- <InlineMath math="3" /> adalah <InlineMath math="2^{a+b}" /> untuk jumlah kedua akar <InlineMath math="a+b={}^{2}\log3" />, padahal <InlineMath math="2^a+2^b" /> tidak sama dengan <InlineMath math="2^{a+b}" />.
+- <InlineMath math="\tfrac92" /> muncul kalau pangkatnya disamakan seolah basisnya sama: <InlineMath math="x^2-1=x+1" /> memberi <InlineMath math="x=2" /> atau <InlineMath math="x=-1" />, lalu <InlineMath math="4+\tfrac12" />.
+- <InlineMath math="\tfrac72" /> muncul kalau angka <InlineMath math="1" /> di akar kedua terlupa, sehingga <InlineMath math="x={}^{2}\log3" /> dan <InlineMath math="3+\tfrac12" />.
+
+Jadi, jumlah nilai <InlineMath math="2^x" /> untuk semua penyelesaian persamaan itu adalah <InlineMath math="\tfrac{13}{2}" />.

@@ -1,20 +1,33 @@
-„Die zweite rote Kugel kommt beim dritten Zug“ bedeutet, dass zwei Dinge zusammen eintreten: **In den ersten beiden Zügen kommt genau eine rote Kugel**, und der dritte Zug ist ebenfalls rot.
+Bestimme zuerst die vollständige Lösungsmenge und beurteile dann jede Aussage. Du darfst beide Seiten **nur quadrieren, wenn beide nichtnegativ sind**, also brauchst du eine Fallunterscheidung nach dem Vorzeichen von <InlineMath math="x-3" />.
 
-# Die zwei möglichen Reihenfolgen
+# Die Bedingung für die Wurzel
 
-Die erste rote Kugel kann beim ersten oder beim zweiten Zug kommen. Weil nicht zurückgelegt wird, rechnest du jede Wahrscheinlichkeit mit dem, was noch im Beutel ist.
+Der Ausdruck <InlineMath math="\sqrt{x+3}" /> ist nur für <InlineMath math="x+3\ge0" /> definiert, also für <InlineMath math="x\ge-3" />. Sein Wert ist **immer nichtnegativ**.
+
+# Der Fall mit negativer rechter Seite
+
+Für <InlineMath math="-3\le x<3" /> ist die rechte Seite <InlineMath math="x-3" /> negativ. Eine nichtnegative Zahl ist immer größer als eine negative, also **erfüllt jedes <InlineMath math="x" /> in diesem Intervall die Ungleichung**, ganz ohne weitere Rechnung.
+
+# Der Fall mit nichtnegativer rechter Seite
+
+Für <InlineMath math="x\ge3" /> sind beide Seiten nichtnegativ, also **ändert das Quadrieren die Richtung des Zeichens nicht**.
 
 <BlockMath math="\begin{aligned}
-P(\text{R, W, R})&=\frac4{10}\cdot\frac69\cdot\frac38=\frac{72}{720}\\
-P(\text{W, R, R})&=\frac6{10}\cdot\frac49\cdot\frac38=\frac{72}{720}
+x+3&>(x-3)^2=x^2-6x+9\\
+0&>x^2-7x+6=(x-1)(x-6)\\
+1&<x<6
 \end{aligned}" />
 
-Die beiden Reihenfolgen **schließen sich gegenseitig aus**, ihre Wahrscheinlichkeiten werden also addiert.
+Zusammen mit <InlineMath math="x\ge3" /> liefert dieser Fall <InlineMath math="3\le x<6" />. Die vollständige Lösungsmenge ist <InlineMath math="-3\le x<6" />. Der Rand <InlineMath math="6" /> gehört nicht dazu, denn <InlineMath math="\sqrt9=3" /> ist nicht größer als <InlineMath math="3" />.
 
-<BlockMath math="P=\frac{72+72}{720}=\frac{144}{720}=\frac15" />
+# Die vier Aussagen beurteilen
 
-# Die falschen Wahlmöglichkeiten
+**Aussage 1**. Die Zahl <InlineMath math="x=0" /> erfüllt die Ungleichung, denn <InlineMath math="\sqrt3>-3" />, aber <InlineMath math="0" /> ist nicht größer als <InlineMath math="1" />. Die Bedingung <InlineMath math="x>1" /> entsteht, wenn du **ohne Fallunterscheidung quadrierst** und so das ganze Intervall <InlineMath math="-3\le x\le1" /> verlierst. Diese Aussage ist **falsch**.
 
-Der Wert <InlineMath math="\tfrac1{10}" /> zählt nur eine Reihenfolge. Der Wert <InlineMath math="\tfrac3{10}" /> ist die Wahrscheinlichkeit für genau zwei rote Kugeln in drei Zügen, ohne dass die zweite rote an dritter Stelle stehen muss. Der Wert <InlineMath math="\tfrac25" /> ist nur die Wahrscheinlichkeit, dass der dritte Zug rot ist. Der Wert <InlineMath math="\tfrac8{15}" /> bleibt bei der Wahrscheinlichkeit für **genau eine rote Kugel in den ersten beiden Zügen** stehen.
+**Aussage 2**. Die ganzen Zahlen in <InlineMath math="-3\le x<6" /> sind <InlineMath math="-3" />, <InlineMath math="-2" /> bis <InlineMath math="5" />. Das sind <InlineMath math="5-(-3)+1=9" /> Zahlen, mit <InlineMath math="-3" /> und ohne <InlineMath math="6" />. Diese Aussage ist **wahr**.
 
-Die gesuchte Wahrscheinlichkeit ist also <InlineMath math="\tfrac15" />.
+**Aussage 3**. Nimm wieder <InlineMath math="x=0" />. Die neue Ungleichung verlangt <InlineMath math="\sqrt3>3" />, aber aus <InlineMath math="3<9" /> folgt <InlineMath math="\sqrt3<3" />. Es gibt also eine Lösung der ursprünglichen Ungleichung, die die neue nicht erfüllt, und diese Aussage ist **falsch**.
+
+**Aussage 4**. Für „es gibt“ reicht ein Beispiel. Nimm <InlineMath math="x=\tfrac{11}{2}" />, dann ist <InlineMath math="x-3=\tfrac52>2" />. Diese Zahl liegt in <InlineMath math="-3\le x<6" />, und eine direkte Probe liefert <InlineMath math="x+3=\tfrac{17}{2}=\tfrac{34}{4}>\tfrac{25}{4}=\left(\tfrac52\right)^2" />, also <InlineMath math="\sqrt{x+3}>x-3" />. Diese Aussage ist **wahr**.
+
+Die erste Aussage ist also falsch, die zweite wahr, die dritte falsch und die vierte wahr.

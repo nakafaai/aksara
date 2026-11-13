@@ -1,20 +1,30 @@
-Read the five values from the graph: 120, 150, 135, 180, and 165. Each statement tests a different measure, so **compute the required measures one by one**.
+This fraction equation is hard to count directly, so the plan is to turn it into **a product of two factors with a fixed value**. After that, each factor pair gives one solution, and you just count the pairs with <InlineMath math="x<y" />.
 
-# Mean and median
+# Turning it into a product
 
-<BlockMath math="\bar x=\frac{120+150+135+180+165}{5}=\frac{750}{5}=150" />
+Multiply both sides by <InlineMath math="24xy" />, then **add <InlineMath math="576=24^2" /> to both sides** so the left side factors.
 
-In order, the data are 120, 135, 150, 165, 180, so the median is 150. **The median equals the mean**, it is not larger. The first statement is true, and the third statement is false.
+<BlockMath math="\begin{aligned}
+24y+24x&=xy\\
+xy-24x-24y&=0\\
+xy-24x-24y+576&=576\\
+(x-24)(y-24)&=576
+\end{aligned}" />
 
-# Daily changes
+# Both factors are positive
 
-| Change | Difference | Percentage |
-| :---: | :---: | :---: |
-| Monday to Tuesday | <InlineMath math="+30" /> | <InlineMath math="\frac{30}{120}=25\%" /> |
-| Tuesday to Wednesday | <InlineMath math="-15" /> | <InlineMath math="-10\%" /> |
-| Wednesday to Thursday | <InlineMath math="+45" /> | <InlineMath math="\frac{45}{135}\approx33.3\%" /> |
-| Thursday to Friday | <InlineMath math="-15" /> | <InlineMath math="\approx-8.3\%" /> |
+Since <InlineMath math="\tfrac1y" /> is positive, <InlineMath math="\tfrac1x" /> is smaller than <InlineMath math="\tfrac{1}{24}" />, so <InlineMath math="x>24" />. For the same reason, <InlineMath math="y>24" />. So **both factors <InlineMath math="x-24" /> and <InlineMath math="y-24" /> are positive**, and you don't need to check negative factor pairs.
 
-The largest rise, 45 visitors, happens from Wednesday to Thursday, so the second statement is true. The rise from Monday to Tuesday is 25%, because a percentage is taken **relative to the starting value 120**. The number 30 is the difference in visitors, not a percentage, so the fourth statement is false.
+# Counting the pairs
 
-So the first statement is **true**, the second is **true**, the third is **false**, and the fourth is **false**.
+The prime factorisation is <InlineMath math="576=2^6\cdot3^2" />, so it has <InlineMath math="(6+1)(2+1)=21" /> positive divisors. Each divisor <InlineMath math="d" /> gives one ordered pair <InlineMath math="(x,y)=\left(24+d,\ 24+\tfrac{576}{d}\right)" />. The divisor <InlineMath math="d=24" /> gives <InlineMath math="x=y=48" />, which doesn't satisfy <InlineMath math="x<y" />. The other <InlineMath math="20" /> ordered pairs come in swapped twins, and **exactly half of them** have <InlineMath math="x<y" />.
+
+<BlockMath math="\frac{21-1}{2}=10" />
+
+Check with the list: <InlineMath math="x<y" /> happens exactly when <InlineMath math="d<24" />, which means <InlineMath math="d=1,2,3,4,6,8,9,12,16,18" />, so <InlineMath math="10" /> values. For example, <InlineMath math="d=1" /> gives <InlineMath math="(25,600)" />, and <InlineMath math="\tfrac{1}{25}+\tfrac{1}{600}=\tfrac{24+1}{600}=\tfrac{1}{24}" />.
+
+# Common mistakes
+
+**The pair with <InlineMath math="x=y" /> has to be removed before you halve**. If you don't, you get <InlineMath math="11" />. The answer <InlineMath math="21" /> counts ordered pairs without the condition <InlineMath math="x<y" />, and the answer <InlineMath math="4" /> comes from counting the divisors of <InlineMath math="24" /> instead of the divisors of <InlineMath math="24^2" />.
+
+So the number of positive integer pairs <InlineMath math="(x,y)" /> with <InlineMath math="x<y" /> that satisfy the equation is <InlineMath math="10" />.

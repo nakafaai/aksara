@@ -1,13 +1,47 @@
-The students are different and named, so the books can be handed out **one student after another**. The order of books in one student's hands does not matter, so each step is a combination.
+You need to judge four statements about matrices with a parameter <InlineMath math="k" />. Before calculating, compare the two matrices, because there's **a hidden link between <InlineMath math="A" /> and <InlineMath math="B" />** that settles two statements at once.
 
-# Choosing books for each student
+# The link between the two matrices
 
-Rani chooses 2 books from 6, Sena chooses 2 of the remaining 4, and Tio receives the last 2. **The three choices are multiplied** because they happen in sequence.
+Subtract <InlineMath math="B" /> from <InlineMath math="A" />.
 
-<BlockMath math="\binom62\cdot\binom42\cdot\binom22=15\cdot6\cdot1=90" />
+<BlockMath math="A-B=\begin{pmatrix} k-1 & 0 \\ 0 & k-1 \end{pmatrix}=(k-1)I" />
 
-# Checking the other options
+So <InlineMath math="A=B+(k-1)I" />, where <InlineMath math="I" /> is the identity matrix. The identity matrix commutes with every matrix, so **<InlineMath math="A" /> always commutes with <InlineMath math="B" />**.
 
-The value 15 divides again by <InlineMath math="3!" />, as if the three students were indistinguishable. The value 540 multiplies by <InlineMath math="3!" /> instead, although the students are already distinguished from the first step, so **every distribution is counted six times**. The value 360 computes <InlineMath math="\frac{6!}{2!}" />, which removes the order of the books for only one student. The value 729 is <InlineMath math="3^6" />, which lets a student receive any number of books.
+<BlockMath math="\begin{aligned}
+AB&=\bigl(B+(k-1)I\bigr)B=B^2+(k-1)B\\
+BA&=B\bigl(B+(k-1)I\bigr)=B^2+(k-1)B
+\end{aligned}" />
 
-So there are **90** ways to distribute the books.
+The results match for every <InlineMath math="k" />. Check with <InlineMath math="k=0" />: <InlineMath math="AB" /> and <InlineMath math="BA" /> both equal <InlineMath math="\begin{pmatrix} 6 & 0 \\ 0 & 6 \end{pmatrix}" />.
+
+# The first and second statements
+
+A matrix has no inverse when its determinant is <InlineMath math="0" />.
+
+<BlockMath math="\det A=k(k-1)-3\cdot2=k^2-k-6=(k-3)(k+2)" />
+
+The determinant is zero for <InlineMath math="k=3" /> and <InlineMath math="k=-2" />, so there are **two values, not one**. The first statement is false.
+
+The second statement is false too. The relation <InlineMath math="AB=BA" /> holds for every <InlineMath math="k" />, not only when <InlineMath math="k=1" /> (where <InlineMath math="A=B" />). The case <InlineMath math="k=0" /> above is an example.
+
+# The third statement
+
+Work out both sides as functions of <InlineMath math="k" />, using <InlineMath math="\det B=1\cdot0-3\cdot2=-6" />.
+
+<BlockMath math="\begin{aligned}
+\det(A+B)&=(k+1)(k-1)-6\cdot4=k^2-25\\
+\det A+\det B&=k^2-k-6-6=k^2-k-12
+\end{aligned}" />
+
+The two sides match only when <InlineMath math="-25=-k-12" />, which means <InlineMath math="k=13" />. For <InlineMath math="k=0" />, the left side is <InlineMath math="-25" /> but the right side is <InlineMath math="-12" />. **The determinant doesn't add up over sums**, so the third statement is false.
+
+# The fourth statement
+
+For <InlineMath math="k=4" />, <InlineMath math="\det A=16-4-6=6" /> and <InlineMath math="\det B=-6" />, so both inverses exist. The general rule is <InlineMath math="(AB)^{-1}=B^{-1}A^{-1}" />, with the order reversed. Meanwhile, <InlineMath math="A^{-1}B^{-1}" /> is the inverse of <InlineMath math="BA" />.
+
+<BlockMath math="A^{-1}B^{-1}=(BA)^{-1}=(AB)^{-1}" />
+
+The last step works because <InlineMath math="BA=AB" />. So **in this problem the order of the inverses doesn't matter**, and the fourth statement is true. If you only remember that the order has to be reversed, you'd call it false.
+
+So the first statement is false, the second is false, the third is false, and the fourth is true.

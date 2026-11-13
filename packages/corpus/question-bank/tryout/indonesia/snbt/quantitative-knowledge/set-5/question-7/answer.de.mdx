@@ -1,15 +1,42 @@
-Gefragt ist **ein einziger Wert von <InlineMath math="x+y" />**. Die drei Größen hängen über <InlineMath math="(x+y)^2=x^2+y^2+2xy" /> zusammen.
+Gesucht ist der Flächeninhalt des Bereichs, der in allen drei Kreisen zugleich liegt. Der Plan: Erkenne zuerst die Form dieses Bereichs und zerlege ihn dann in **Teile, deren Flächen leicht zu berechnen sind**: ein Dreieck und einige Kreisabschnitte (die Fläche zwischen einem Bogen und seiner Sehne).
 
-# Jede Aussage allein
+# Die Form der Schnittfläche
 
-Aussage (1) wird von <InlineMath math="(2,3)" /> mit der Summe 5 und von <InlineMath math="(1,6)" /> mit der Summe 7 erfüllt. Aussage (2) wird von <InlineMath math="(2,3)" /> mit der Summe 5 und von <InlineMath math="(2,-3)" /> mit der Summe <InlineMath math="-1" /> erfüllt. **Jede lässt verschiedene Summen zu**, keine reicht allein aus.
+Jeder Radius ist so lang wie eine Dreiecksseite, also geht der Kreis um <InlineMath math="A" /> durch <InlineMath math="B" /> und <InlineMath math="C" />, und bei den anderen beiden Kreisen ist es genauso. Das Dreieck <InlineMath math="ABC" /> liegt ganz in allen drei Kreisen. Jenseits der Seite <InlineMath math="BC" /> wird der Bereich vom Bogen <InlineMath math="BC" /> des Kreises um <InlineMath math="A" /> begrenzt. Jeder Punkt dieses Bogens ist höchstens <InlineMath math="6\text{ cm}" /> von <InlineMath math="B" /> und von <InlineMath math="C" /> entfernt, also liegt der Abschnitt jenseits von <InlineMath math="BC" /> auch in den anderen beiden Kreisen. Damit **besteht die Schnittfläche aus dem Dreieck <InlineMath math="ABC" /> und <InlineMath math="3" /> gleich großen Kreisabschnitten**.
 
-# Beide Aussagen zusammen
+# Die Fläche eines Kreisabschnitts
 
-<BlockMath math="(x+y)^2=13+2(6)=25\quad\Rightarrow\quad x+y=5\ \text{oder}\ x+y=-5" />
+Der Abschnitt jenseits der Seite <InlineMath math="BC" /> ist der Kreissektor um <InlineMath math="A" /> minus das Dreieck <InlineMath math="ABC" />. Der Sektorwinkel ist der Winkel im gleichseitigen Dreieck, also <InlineMath math="60^\circ" />, und damit **ist der Sektor ein Sechstel des Kreises**.
 
-Beide Vorzeichen kommen tatsächlich vor: <InlineMath math="(2,3)" /> liefert 5, während <InlineMath math="(-2,-3)" /> ebenfalls <InlineMath math="xy=6" /> und <InlineMath math="x^2+y^2=13" /> erfüllt, aber <InlineMath math="-5" /> liefert. **Die Wurzel aus 25 hat zwei Vorzeichen**, der Wert von <InlineMath math="x+y" /> ist also noch nicht eindeutig.
+<BlockMath math="\begin{aligned}
+A_{\text{Sektor}}&=\tfrac{60}{360}\cdot\pi\cdot6^2=6\pi\\
+A_{\text{Dreieck}}&=\tfrac{\sqrt3}{4}\cdot6^2=9\sqrt3\\
+A_{\text{Abschnitt}}&=6\pi-9\sqrt3
+\end{aligned}" />
 
-Wer nur die positive Wurzel nimmt, schließt fälschlich, dass beide Aussagen zusammen ausreichen.
+# Die Fläche des ganzen Bereichs
 
-**Aussage (1) und Aussage (2) reichen also auch zusammen nicht aus**, um die Frage zu beantworten.
+**Addiere das Dreieck und die <InlineMath math="3" /> Abschnitte**.
+
+<BlockMath math="\begin{aligned}
+A&=9\sqrt3+3\left(6\pi-9\sqrt3\right)\\
+&=9\sqrt3+18\pi-27\sqrt3\\
+&=18\pi-18\sqrt3
+\end{aligned}" />
+
+# Probe auf einem zweiten Weg
+
+Die <InlineMath math="3" /> Sektoren mit <InlineMath math="60^\circ" /> um <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" /> überdecken denselben Bereich. Jeder Sektor enthält das Dreieck <InlineMath math="ABC" />, also **wird das Dreieck <InlineMath math="3" />-mal gezählt** und muss <InlineMath math="2" />-mal abgezogen werden.
+
+<BlockMath math="3\cdot6\pi-2\cdot9\sqrt3=18\pi-18\sqrt3" />
+
+Das Ergebnis stimmt überein. Der Wert ist ungefähr <InlineMath math="56{,}5-31{,}2=25{,}3" /> und damit größer als die Dreiecksfläche <InlineMath math="9\sqrt3\approx15{,}6" />. Das passt, denn der Bereich enthält das Dreieck.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\left(18\pi-27\sqrt3\right)\text{ cm}^2" /> addiert nur die <InlineMath math="3" /> Abschnitte und **vergisst das Dreieck in der Mitte**.
+- <InlineMath math="\left(18\pi-9\sqrt3\right)\text{ cm}^2" /> zieht das Dreieck nur einmal von den <InlineMath math="3" /> Sektoren ab, obwohl es <InlineMath math="3" />-mal gezählt wurde.
+- <InlineMath math="18\pi\text{ cm}^2" /> addiert nur die <InlineMath math="3" /> Sektoren, ohne die Überlappung abzuziehen.
+- <InlineMath math="\left(36\pi-18\sqrt3\right)\text{ cm}^2" /> benutzt den Sektorwinkel <InlineMath math="120^\circ" />, aber der Winkel im gleichseitigen Dreieck ist <InlineMath math="60^\circ" />.
+
+Der Flächeninhalt des Bereichs in allen drei Kreisen ist also <InlineMath math="\left(18\pi-18\sqrt3\right)\text{ cm}^2" />.

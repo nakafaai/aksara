@@ -1,26 +1,44 @@
-The inequality <InlineMath math="\lvert A\rvert<B" /> is equivalent to <InlineMath math="-B<A<B" />. This form also forces <InlineMath math="B>0" />, so **both bounds must hold at the same time**.
+You're counting ordered triples, so the order of the numbers matters. Count in three layers: **every positive triple with sum <InlineMath math="30" />**, then throw out the ones that break the limit <InlineMath math="15" />, then throw out the ones with a repeated number.
 
-# Solving both bounds
+# Counting every positive triple
 
-With <InlineMath math="A=2x-5" /> and <InlineMath math="B=x+1" />, the inequality becomes
+Picture <InlineMath math="30" /> units in a row. Between them there are <InlineMath math="29" /> gaps. Choosing <InlineMath math="2" /> gaps to cut at splits the row into three positive parts, <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" />. Each choice of gaps gives **exactly one ordered triple**, and each triple comes from exactly one choice.
 
-<BlockMath math="-(x+1)<2x-5<x+1" />
+<BlockMath math="\binom{29}{2}=\frac{29\cdot28}{2}=406" />
 
-Solve the right bound and the left bound separately.
+# Throwing out triples above the limit
+
+Count the triples with <InlineMath math="a\ge16" />. Write <InlineMath math="a=a'+15" /> with <InlineMath math="a'\ge1" />, so the condition becomes <InlineMath math="a'+b+c=15" /> with all three positive.
+
+<BlockMath math="\binom{14}{2}=\frac{14\cdot13}{2}=91" />
+
+The same holds for <InlineMath math="b\ge16" /> and <InlineMath math="c\ge16" />. Two numbers can't both be at least <InlineMath math="16" />, because those two alone already add up to <InlineMath math="32>30" />. So **the three groups don't overlap**, and you just subtract all of them.
+
+<BlockMath math="406-3\cdot91=406-273=133" />
+
+# Throwing out triples with a repeated number
+
+Count the triples with <InlineMath math="a=b" />. The condition becomes <InlineMath math="2a+c=30" />, with <InlineMath math="1\le c\le15" />.
 
 <BlockMath math="\begin{aligned}
-2x-5&<x+1 &&\Rightarrow\quad x<6\\
-2x-5&>-x-1 &&\Rightarrow\quad 3x>4 \quad\Rightarrow\quad x>\tfrac43
+1\le 30-2a&\le15\\
+15\le 2a&\le29\\
+8\le a&\le14
 \end{aligned}" />
 
-**The intersection of the two bounds** is <InlineMath math="\tfrac43<x<6" />. On this interval <InlineMath math="x+1>0" />, so the condition <InlineMath math="B>0" /> holds automatically.
+There are <InlineMath math="7" /> triples with <InlineMath math="a=b" />. In the same way, there are <InlineMath math="7" /> triples with <InlineMath math="b=c" /> and <InlineMath math="7" /> with <InlineMath math="a=c" />. The triple <InlineMath math="(10,10,10)" /> **belongs to all three groups at once**, and it's the only triple in any two of them. Use inclusion-exclusion so that triple is counted exactly once.
 
-# Adding the integers
+<BlockMath math="\begin{aligned}
+\text{triples with a repeat}&=7+7+7-1-1-1+1=19\\
+\text{triples wanted}&=133-19=114
+\end{aligned}" />
 
-The integers in <InlineMath math="\tfrac43<x<6" /> are 2, 3, 4, and 5. **Check the endpoints**: <InlineMath math="x=5" /> gives <InlineMath math="5<6" />, while <InlineMath math="x=6" /> gives the false statement <InlineMath math="7<7" />, and <InlineMath math="x=1" /> gives the false statement <InlineMath math="3<2" />.
+# Checking the result
 
-<BlockMath math="2+3+4+5=14" />
+Three different numbers can be ordered in <InlineMath math="3!=6" /> ways. So the number of ordered triples you want must be a multiple of <InlineMath math="6" />. The result is <InlineMath math="114=6\cdot19" />, so **there are <InlineMath math="19" /> sets of three different numbers** that work, such as <InlineMath math="\{1,14,15\}" /> and <InlineMath math="\{9,10,11\}" />.
 
-The value 12 uses only the case <InlineMath math="2x-5\ge0" />, so it loses <InlineMath math="x=2" />. The value 15 rounds the bound <InlineMath math="\tfrac43" /> down and includes <InlineMath math="x=1" />. The value 20 includes <InlineMath math="x=6" />, although the sign is strictly less than. The value 21 makes both of these mistakes.
+# Common slips
 
-So the sum of all integer solutions is **14**.
+The answer <InlineMath math="406" /> comes from forgetting the limit <InlineMath math="15" />. The answer <InlineMath math="133" /> comes from forgetting that the numbers must be different. The answer <InlineMath math="112" /> comes from subtracting <InlineMath math="3\cdot7=21" /> repeated triples directly, so **<InlineMath math="(10,10,10)" /> gets removed three times**. That answer also fails because <InlineMath math="112" /> isn't a multiple of <InlineMath math="6" />.
+
+So the number of ordered triples that meet all three conditions is <InlineMath math="114" />.

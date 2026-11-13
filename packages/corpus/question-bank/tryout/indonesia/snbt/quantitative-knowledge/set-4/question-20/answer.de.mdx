@@ -1,19 +1,35 @@
-Bestimme zuerst die Summe jeder Zeile und jeder Spalte. Jede Aussage verwendet **eine andere Bezugsgruppe**, achte also darauf, welche Gruppe das Ganze bildet.
+Du zählst dreistellige Zahlen mit zwei Bedingungen: Die Quersumme ist <InlineMath math="15" />, und die Hunderterziffer ist größer als die Einerziffer. Der Plan: Zähl alle Ziffernfolgen mit der Summe <InlineMath math="15" /> und nutz dann **das Vertauschen von Hunderter- und Einerziffer**, um die Anzahl in zwei gleich große Gruppen zu teilen.
 
-| Geschlecht | Pfadfinder | Basketball | Summe |
-| :--- | :---: | :---: | :---: |
-| Jungen | 12 | 18 | 30 |
-| Mädchen | 20 | 10 | 30 |
-| Summe | 32 | 28 | 60 |
+# Alle Ziffernfolgen mit der Summe fünfzehn
 
-# Bedingte Wahrscheinlichkeit und Gruppengrößen
+Nenn die Hunderter-, Zehner- und Einerziffer <InlineMath math="a" />, <InlineMath math="b" />, <InlineMath math="c" />. Erlaub vorerst auch <InlineMath math="a=0" />, sodass jede Ziffer von <InlineMath math="0" /> bis <InlineMath math="9" /> gehen darf. Ohne obere Grenze hat <InlineMath math="a+b+c=15" /> genau <InlineMath math="\binom{17}{2}" /> Lösungen in natürlichen Zahlen mit null (Sterne und Striche). Dann **streichst du die Folgen mit einer Ziffer von <InlineMath math="10" /> oder mehr**, denn das sind keine Ziffern.
 
-Die erste Aussage wählt **nur unter den Pfadfindern** aus, der Ergebnisraum hat also 32 Schüler und nicht 60. Die Wahrscheinlichkeit ist <InlineMath math="\frac{20}{32}=\frac58" />, die erste Aussage ist also wahr. Es gibt 30 Jungen und 30 Mädchen, deshalb ist auch die vierte Aussage wahr.
+Ist <InlineMath math="a\ge10" />, schreib <InlineMath math="a=10+a'" />. Dann gilt <InlineMath math="a'+b+c=5" /> mit <InlineMath math="\binom{7}{2}=21" /> Lösungen. Dasselbe gilt für <InlineMath math="b" /> und <InlineMath math="c" />. Zwei Ziffern können nicht beide mindestens <InlineMath math="10" /> sein, weil die Summe nur <InlineMath math="15" /> ist.
 
-# Die zwei Prozentaussagen
+<BlockMath math="\binom{17}{2}-3\binom{7}{2}=136-63=73" />
 
-Basketball spielen 28 von 60 Schülern, also <InlineMath math="\frac{28}{60}\approx46{,}7\,\%" />, weniger als die Hälfte. Die zweite Aussage ist falsch.
+# Hunderter und Einer vertauschen
 
-Von den 30 Jungen spielen 18 Basketball, also <InlineMath math="\frac{18}{30}=60\,\%" />. Das ist **nicht mehr als 65 %**, die dritte Aussage ist also falsch. Beachte, dass durch die 30 Jungen geteilt wird und nicht durch die 28 Basketballspieler.
+Das Vertauschen von <InlineMath math="a" /> und <InlineMath math="c" /> ändert die Quersumme nicht. Es ordnet jeder Folge mit <InlineMath math="a>c" /> genau eine Folge mit <InlineMath math="a<c" /> zu, also **sind diese beiden Gruppen gleich groß**. Ohne Partner bleiben nur die Folgen mit <InlineMath math="a=c" />.
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.
+Für <InlineMath math="a=c" /> gilt <InlineMath math="2a+b=15" />, also muss <InlineMath math="b=15-2a" /> zwischen <InlineMath math="0" /> und <InlineMath math="9" /> liegen. Das klappt für <InlineMath math="a=3, 4, 5, 6, 7" />, also bei <InlineMath math="5" /> Folgen.
+
+<BlockMath math="\text{Folgen mit }a>c=\frac{73-5}{2}=34" />
+
+Die Bedingung <InlineMath math="a>c\ge0" /> sorgt automatisch für <InlineMath math="a\ge1" />, alle diese Folgen sind also echte dreistellige Zahlen.
+
+# Probe auf einem anderen Weg
+
+Zähl **direkt nach der Einerziffer** <InlineMath math="c" />. Wähl für jedes <InlineMath math="c" /> ein <InlineMath math="a>c" />, sodass <InlineMath math="b=15-a-c" /> zwischen <InlineMath math="0" /> und <InlineMath math="9" /> liegt.
+
+| <InlineMath math="c" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Möglichkeiten für <InlineMath math="a" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="6" /> | <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+
+Die Summe ist <InlineMath math="4+5+6+6+5+4+3+1=34" />, wie oben.
+
+# Fallen, die du vermeiden solltest
+
+**Der tückischste Fehler** ist, mit den <InlineMath math="69" /> dreistelligen Zahlen mit Quersumme <InlineMath math="15" /> zu beginnen und <InlineMath math="\frac{69-5}{2}=32" /> zu rechnen. Das stimmt nicht, weil die <InlineMath math="4" /> Folgen mit <InlineMath math="a=0" /> nur aus der Gruppe mit <InlineMath math="a<c" /> gestrichen wurden. Dann sind die beiden Gruppen nicht mehr gleich groß. Ein anderer Fehler ist, Ziffern ab <InlineMath math="10" /> nicht zu streichen und so bei <InlineMath math="136" /> zu beginnen.
+
+Es gibt also <InlineMath math="34" /> dreistellige Zahlen, die beide Bedingungen erfüllen.

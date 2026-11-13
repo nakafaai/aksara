@@ -1,21 +1,40 @@
-Das Dreieck <InlineMath math="DEF" /> liegt schräg zu den Quadratseiten, seine Grundseite und Höhe sind also schwer abzulesen. Einfacher ist es, **vom Quadrat drei rechtwinklige Eckdreiecke abzuziehen**: <InlineMath math="AED" />, <InlineMath math="EBF" /> und <InlineMath math="FCD" />.
+Du suchst jedes <InlineMath math="x" />, für das eine Potenz den Wert <InlineMath math="1" /> hat. Eine solche Potenz hat **drei Wege zum Wert <InlineMath math="1" />**, und jeder Weg hat eine eigene Bedingung. Der Plan: Prüf die drei Wege nacheinander, teste jeden Kandidaten und addiere die, die übrig bleiben.
 
-# Die drei Eckdreiecke
+# Drei Wege zur Eins
 
-Jedes Eckdreieck ist rechtwinklig, sein Flächeninhalt ist also **das halbe Produkt der Katheten**. Die Mittelpunkte teilen jede Seite von 12 cm in zwei Teile von 6 cm.
+Nenn die Basis <InlineMath math="h(x)=x-4" /> und den Exponenten <InlineMath math="g(x)=x^2-11x+28=(x-4)(x-7)" />. Die Potenz <InlineMath math="h^g" /> ist nur in diesen drei Fällen gleich <InlineMath math="1" />.
 
-| Dreieck | Katheten | Flächeninhalt |
-| :---: | :---: | :---: |
-| <InlineMath math="AED" /> | <InlineMath math="AE=6" />, <InlineMath math="AD=12" /> | 36 |
-| <InlineMath math="EBF" /> | <InlineMath math="EB=6" />, <InlineMath math="BF=6" /> | 18 |
-| <InlineMath math="FCD" /> | <InlineMath math="FC=6" />, <InlineMath math="CD=12" /> | 36 |
+- Die Basis ist <InlineMath math="1" />, denn <InlineMath math="1" /> hoch irgendwas bleibt <InlineMath math="1" />.
+- Die Basis ist <InlineMath math="-1" /> und der Exponent gerade, denn <InlineMath math="(-1)" /> hoch eine gerade Zahl ist <InlineMath math="1" />.
+- Der Exponent ist <InlineMath math="0" /> und **die Basis ist nicht <InlineMath math="0" />**, denn <InlineMath math="0^0" /> ist nicht definiert.
 
-# Flächeninhalt des Dreiecks DEF
+Einen anderen Weg gibt es nicht. Eine Basis außer <InlineMath math="0" />, <InlineMath math="1" /> und <InlineMath math="-1" /> liefert nur mit dem Exponenten <InlineMath math="0" /> den Wert <InlineMath math="1" />.
 
-Die drei Eckdreiecke und das Dreieck <InlineMath math="DEF" /> **füllen das Quadrat genau, ohne Überlappung**.
+# Jeden Weg testen
 
-<BlockMath math="[DEF]=144-36-18-36=54\text{ cm}^2" />
+Teste jeden Weg zusammen mit seiner Bedingung.
 
-Der Wert 72 zieht nur die beiden großen Dreiecke ab und vergisst <InlineMath math="EBF" />. Der Wert 90 zieht nur ein großes Dreieck und <InlineMath math="EBF" /> ab. Der Wert 108 zieht nur ein großes Dreieck ab, der Wert 126 nur <InlineMath math="EBF" />.
+<BlockMath math="\begin{aligned}
+x-4=1&\ \Rightarrow\ x=5,\quad g(5)=25-55+28=-2,\quad1^{-2}=1\\
+x-4=-1&\ \Rightarrow\ x=3,\quad g(3)=9-33+28=4,\quad(-1)^4=1\\
+g(x)=0&\ \Rightarrow\ x=4\ \text{oder}\ x=7
+\end{aligned}" />
 
-Der Flächeninhalt des Dreiecks <InlineMath math="DEF" /> beträgt also **<InlineMath math="54\text{ cm}^2" />**.
+Beim dritten Weg macht <InlineMath math="x=4" /> die Basis zu <InlineMath math="0" />, und es entsteht das nicht definierte <InlineMath math="0^0" />. Also **fällt <InlineMath math="x=4" /> weg**. Für <InlineMath math="x=7" /> ist die Basis <InlineMath math="3" />, und <InlineMath math="3^0=1" />, also ist <InlineMath math="x=7" /> gültig.
+
+Beim zweiten Weg ist der Exponent <InlineMath math="4" /> tatsächlich gerade. Diesen Weg übersieht man leicht, weil viele nur Basis <InlineMath math="1" /> und Exponent <InlineMath math="0" /> prüfen.
+
+# Die Lösungen addieren
+
+**Die drei übrig gebliebenen Werte** sind <InlineMath math="x=3" />, <InlineMath math="x=5" /> und <InlineMath math="x=7" />. Ihre Summe ist <InlineMath math="3+5+7=15" />. Prüf <InlineMath math="x=3" /> noch einmal direkt in der Gleichung: <InlineMath math="(3-4)^{9-33+28}=(-1)^4=1" />.
+
+# Die verlockenden falschen Optionen
+
+Jede andere Option entsteht, wenn **ein Weg fehlt oder ein Kandidat nicht getestet wird**.
+
+- <InlineMath math="19" /> entsteht, wenn du <InlineMath math="x=4" /> behältst, obwohl <InlineMath math="0^0" /> nicht definiert ist.
+- <InlineMath math="12" /> entsteht, wenn du den Weg mit Basis <InlineMath math="-1" /> übersiehst und <InlineMath math="x=3" /> verlierst.
+- <InlineMath math="10" /> entsteht, wenn du den Weg mit Basis <InlineMath math="1" /> übersiehst und <InlineMath math="x=5" /> verlierst.
+- <InlineMath math="8" /> entsteht, wenn du den Weg mit Exponent <InlineMath math="0" /> übersiehst und <InlineMath math="x=7" /> verlierst.
+
+Die Summe aller Werte von <InlineMath math="x" />, die die Gleichung erfüllen, ist also <InlineMath math="15" />.

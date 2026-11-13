@@ -1,20 +1,36 @@
-A quadratic equation with roots <InlineMath math="u" /> and <InlineMath math="v" /> can be written <InlineMath math="x^2-(u+v)x+uv=0" />. So what you need is **the sum and product of the new roots**, which follow from <InlineMath math="\alpha+\beta=3" /> and <InlineMath math="\alpha\beta=1" /> without finding the roots.
+You're counting circular seatings that avoid two forbidden pairs at once. Counting the good seatings directly is messy, so the plan is to count all seatings, take away the ones that break a rule, and use **the inclusion-exclusion principle** so no seating gets taken away twice.
 
-# The sum and product of the new roots
+# All circular seatings
+
+Two seatings count as the same when everyone has the same left and right neighbours, which means **rotating everyone together doesn't give a new seating**. So put Ani in one chair as a fixed reference, then arrange the other <InlineMath math="6" /> people in the remaining <InlineMath math="6" /> chairs.
+
+<BlockMath math="(7-1)!=6!=720" />
+
+# Seatings that break a rule
+
+If Ani and Budi sit together, **glue them into one block**. Then <InlineMath math="6" /> units sit in a circle, and inside the block there are <InlineMath math="2" /> orders (Ani on Budi's left or right). The same goes for Citra and Dodi. If both pairs sit together, you have two blocks and <InlineMath math="3" /> other people, so <InlineMath math="5" /> units.
 
 <BlockMath math="\begin{aligned}
-\alpha^2+\beta^2&=(\alpha+\beta)^2-2\alpha\beta=9-2=7\\
-\alpha^2\beta^2&=(\alpha\beta)^2=1
+\text{Ani and Budi together}&=(6-1)!\times2=240\\
+\text{Citra and Dodi together}&=(6-1)!\times2=240\\
+\text{both pairs together}&=(5-1)!\times2\times2=96
 \end{aligned}" />
 
-# Building the equation
+# Inclusion and exclusion
 
-Put the sum and product into the general form. **The sum of the roots enters with a minus sign**.
+A seating where both pairs sit together is counted in the first group and again in the second. So **the seatings with both violations have to be added back once**.
 
-<BlockMath math="x^2-7x+1=0" />
+<BlockMath math="\begin{aligned}
+\text{at least one violation}&=240+240-96=384\\
+\text{allowed seatings}&=720-384=336
+\end{aligned}" />
 
-A check with the actual roots: <InlineMath math="\alpha=\frac{3+\sqrt5}{2}" /> gives <InlineMath math="\alpha^2=\frac{7+3\sqrt5}{2}" />, and this value satisfies <InlineMath math="x^2-7x+1=0" />.
+# A check by another route
 
-The equation with coefficient 9 forgets to subtract <InlineMath math="2\alpha\beta" />, and the one with 11 adds it. The equation <InlineMath math="x^2+7x+1=0" /> has the wrong sign on the sum of the roots. The equation with constant 2 uses <InlineMath math="2\alpha\beta" /> as the product.
+Count in stages. There are <InlineMath math="720-240=480" /> seatings where Ani and Budi aren't neighbours. Of the <InlineMath math="240" /> seatings where Citra and Dodi are neighbours, <InlineMath math="96" /> also have Ani and Budi together, so <InlineMath math="240-96=144" /> keep Ani and Budi apart. Remove those from the <InlineMath math="480" />.
 
-So the required equation is <InlineMath math="x^2-7x+1=0" />.
+<BlockMath math="480-144=336" />
+
+You get the same answer. **The usual mistakes** are forgetting to add back the <InlineMath math="96" />, which gives <InlineMath math="720-480=240" />, using <InlineMath math="7!" /> even though rotations count as the same, or forgetting the factor <InlineMath math="2" /> for the order inside each block.
+
+So the number of allowed seatings is <InlineMath math="336" />.

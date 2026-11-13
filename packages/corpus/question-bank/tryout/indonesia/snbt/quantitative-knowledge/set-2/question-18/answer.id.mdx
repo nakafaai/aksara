@@ -1,23 +1,28 @@
-Hitung semua segitiga, lalu **kurangi segitiga yang memakai sisi segi delapan**. Segitiga seperti itu dibagi menurut banyak sisi segi delapan yang dipakainya, agar tidak ada yang terhitung dua kali.
+Ada dua larangan: panitia tidak boleh berisi satu jenis kelamin saja, dan Andi tidak boleh bersama Budi. **Urutan anggota tidak penting**, jadi kamu memakai kombinasi. Rencananya: hitung panitia campuran, lalu buang panitia campuran yang memuat Andi dan Budi sekaligus.
 
-# Semua segitiga
+# Panitia campuran
 
-**Tidak ada tiga titik sudut** segi delapan beraturan **yang segaris**, jadi setiap pilihan tiga titik membentuk segitiga.
+Dari <InlineMath math="9" /> siswa, semua panitia empat orang ada <InlineMath math="\binom94=126" />. Buang **panitia yang hanya berisi satu jenis kelamin**, yaitu yang semuanya laki-laki dan yang semuanya perempuan.
 
-<BlockMath math="\binom83=\frac{8\cdot7\cdot6}{3\cdot2\cdot1}=56" />
+<BlockMath math="\begin{aligned}
+\binom94-\binom54-\binom44&=126-5-1=120
+\end{aligned}" />
 
-# Segitiga yang memakai sisi segi delapan
+# Panitia yang memuat Andi dan Budi
 
-Segitiga dengan **dua sisi segi delapan** dibentuk oleh tiga titik berurutan. Ada 8 pilihan titik tengah, jadi ada 8 segitiga seperti ini.
+Jika Andi dan Budi sama-sama masuk, dua anggota lain dipilih dari <InlineMath math="7" /> siswa sisanya: <InlineMath math="\binom72=21" /> panitia. Tetapi <InlineMath math="\binom32=3" /> di antaranya berisi laki-laki semua, yaitu Andi, Budi, dan dua dari tiga siswa laki-laki lain. Ketiga panitia itu **sudah dibuang pada langkah pertama**, jadi jangan dibuang dua kali. Panitia campuran yang memuat Andi dan Budi ada <InlineMath math="21-3=18" />.
 
-Segitiga dengan **tepat satu sisi segi delapan** dibentuk oleh satu sisi segi delapan dan titik ketiga yang tidak bertetangga dengan kedua ujung sisi itu. Untuk setiap sisi, dua ujungnya dan dua tetangganya tidak boleh dipilih, sehingga tersisa <InlineMath math="8-4=4" /> titik.
+# Hasil akhir
 
-<BlockMath math="8\times4=32" />
+<BlockMath math="120-18=102" />
 
-Banyak segitiga tanpa sisi segi delapan adalah
+Cek dengan urutan lain: **buang pasangan Andi dan Budi lebih dulu**. Panitia tanpa pasangan Andi dan Budi ada <InlineMath math="126-21=105" />. Di antaranya, panitia laki-laki semua yang tidak memuat keduanya ada <InlineMath math="5-3=2" />, dan panitia perempuan semua ada <InlineMath math="1" />. Jadi <InlineMath math="105-2-1=102" />, sama.
 
-<BlockMath math="56-8-32=16" />
+# Jebakan pada pilihan lain
 
-Nilai 56 adalah semua segitiga. Nilai 48 hanya membuang segitiga dengan dua sisi segi delapan. Nilai 40 adalah segitiga yang memakai paling sedikit satu sisi, kebalikan dari yang ditanyakan. Nilai 32 adalah segitiga dengan tepat satu sisi segi delapan.
+- <InlineMath math="120" /> lupa larangan Andi dan Budi.
+- <InlineMath math="108" /> hanya membuang panitia Andi dan Budi yang dua anggota lainnya satu laki-laki dan satu perempuan, <InlineMath math="3\times4=12" /> panitia, dan **lupa panitia Andi, Budi, dan dua perempuan**, yaitu <InlineMath math="\binom42=6" /> panitia.
+- <InlineMath math="105" /> menangani larangan Andi dan Budi tetapi lupa syarat paling sedikit satu laki-laki dan satu perempuan.
+- <InlineMath math="99" /> mengurangkan seluruh <InlineMath math="21" /> panitia yang memuat Andi dan Budi, termasuk tiga panitia laki-laki semua yang sudah dibuang sebelumnya.
 
-Jadi, banyak segitiga yang dapat dibentuk adalah **16**.
+Jadi, banyak cara membentuk panitia itu adalah <InlineMath math="102" />.

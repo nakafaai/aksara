@@ -1,22 +1,40 @@
-Perbandingan <InlineMath math="AP:PB=1:2" /> berarti <InlineMath math="P" /> berada **sepertiga jalan dari <InlineMath math="A" /> menuju <InlineMath math="B" />**, bukan di tengah dan bukan sepertiga dari <InlineMath math="B" />.
+Alat utamanya adalah **teorema sisa**: sisa pembagian suku banyak oleh <InlineMath math="x-a" /> sama dengan nilainya di <InlineMath math="x=a" />. Jadi <InlineMath math="P(1)=3" /> dan <InlineMath math="P(2)=5" />. Sisa pembagian oleh suku banyak berderajat dua paling tinggi berderajat satu, dan sisa itu ditentukan oleh nilai di kedua akar pembaginya.
 
-# Menentukan koordinat P
-
-Vektor dari <InlineMath math="A" /> ke <InlineMath math="B" /> adalah <InlineMath math="(8-(-1),\,-5-7)=(9,-12)" />. Titik <InlineMath math="P" /> diperoleh dengan **menambahkan sepertiga vektor itu** ke <InlineMath math="A" />.
+Pertama, cari sisa <InlineMath math="P(x)" /> oleh <InlineMath math="(x-1)(x-2)" />. Tulis <InlineMath math="P(x)=(x-1)(x-2)H(x)+px+q" /> dengan <InlineMath math="H(x)" /> hasil bagi, lalu masukkan <InlineMath math="x=1" /> dan <InlineMath math="x=2" />.
 
 <BlockMath math="\begin{aligned}
-P&=A+\tfrac13(9,-12)\\
-&=(-1+3,\ 7-4)=(2,3)
+p+q&=3\\
+2p+q&=5\\
+p=2,\quad q&=1
 \end{aligned}" />
 
-Cek: <InlineMath math="AP=\sqrt{3^2+4^2}=5" /> dan <InlineMath math="PB=\sqrt{6^2+8^2}=10" />, jadi <InlineMath math="AP:PB=1:2" />.
+Jadi <InlineMath math="P(x)=(x-1)(x-2)H(x)+2x+1" />, dengan <InlineMath math="H(x)" /> suku banyak apa pun.
 
-# Jarak ke titik asal
+# Sisa kuadrat suku banyak
 
-Gunakan **rumus jarak dari titik asal**, yaitu akar jumlah kuadrat kedua koordinat.
+Nilai <InlineMath math="\left(P(x)\right)^2" /> di <InlineMath math="x=1" /> adalah <InlineMath math="9" /> dan di <InlineMath math="x=2" /> adalah <InlineMath math="25" />. Sisanya berbentuk <InlineMath math="sx+t" />, jadi <InlineMath math="s+t=9" /> dan <InlineMath math="2s+t=25" />, sehingga <InlineMath math="s=16" /> dan <InlineMath math="t=-7" />. Sisanya **bukan <InlineMath math="(2x+1)^2" />**, karena bentuk itu berderajat dua dan masih bisa dibagi lagi.
 
-<BlockMath math="OP=\sqrt{2^2+3^2}=\sqrt{13}" />
+<BlockMath math="(2x+1)^2=4x^2+4x+1=4\left(x^2-3x+2\right)+16x-7" />
 
-Nilai 5 adalah panjang <InlineMath math="AP" />, bukan jarak <InlineMath math="P" /> ke titik asal. Nilai <InlineMath math="\sqrt{26}" /> memakai titik <InlineMath math="(5,-1)" />, yaitu titik yang sepertiga jalan dari <InlineMath math="B" />. Nilai <InlineMath math="\tfrac12\sqrt{53}" /> memakai titik tengah <InlineMath math="AB" />, dan nilai 15 adalah panjang <InlineMath math="AB" />.
+Pernyataan pertama **benar**.
 
-Jadi, jarak titik <InlineMath math="P" /> ke titik asal adalah <InlineMath math="\sqrt{13}" />.
+# Nilai di titik tiga
+
+Masukkan <InlineMath math="x=3" /> ke bentuk umum: <InlineMath math="P(3)=2\cdot1\cdot H(3)+7=2H(3)+7" />. Nilai ini bergantung pada <InlineMath math="H" />, jadi **nilai di luar titik satu dan dua tidak terkunci**. Untuk <InlineMath math="H(x)=0" />, <InlineMath math="P(3)=7" />. Untuk <InlineMath math="H(x)=1" />, <InlineMath math="P(x)=x^2-x+3" /> dan <InlineMath math="P(3)=9" />. Kedua suku banyak itu memenuhi keterangan soal, tetapi nilainya di <InlineMath math="3" /> berbeda. Pernyataan kedua **salah**.
+
+# Sisa setelah pergeseran
+
+Misalkan <InlineMath math="G(x)=P(x+1)" />. Pembaginya <InlineMath math="x^2-x=x(x-1)" /> berakar <InlineMath math="0" /> dan <InlineMath math="1" />, jadi yang dibutuhkan adalah **nilai di akar pembagi yang baru**: <InlineMath math="G(0)=P(1)=3" /> dan <InlineMath math="G(1)=P(2)=5" />. Sisanya <InlineMath math="ux+v" /> dengan <InlineMath math="v=3" /> dan <InlineMath math="u+v=5" />, jadi <InlineMath math="u=2" /> dan sisanya <InlineMath math="2x+3" />. Pernyataan ketiga **benar**.
+
+# Suku banyak berderajat tiga
+
+Untuk kata "ada", **cukup satu contoh**. Dari <InlineMath math="P(3)=2H(3)+7=0" />, kamu butuh <InlineMath math="H(3)=-\tfrac72" />. Pilih <InlineMath math="H(x)=x-\tfrac{13}{2}" />, yang berderajat satu, sehingga <InlineMath math="P" /> berderajat tiga.
+
+<BlockMath math="\begin{aligned}
+P(x)&=(x-1)(x-2)\left(x-\tfrac{13}{2}\right)+2x+1\\
+P(3)&=2\cdot1\cdot\left(-\tfrac72\right)+7=0
+\end{aligned}" />
+
+Suku banyak ini juga memenuhi <InlineMath math="P(1)=3" /> dan <InlineMath math="P(2)=5" />, karena hasil kali di depannya nol di kedua titik itu. Pernyataan keempat **benar**.
+
+Jadi, pernyataan pertama benar, pernyataan kedua salah, pernyataan ketiga benar, dan pernyataan keempat benar.

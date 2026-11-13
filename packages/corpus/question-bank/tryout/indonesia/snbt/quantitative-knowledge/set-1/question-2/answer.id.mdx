@@ -1,19 +1,47 @@
-Basis dan pangkat ketiga bilangan berbeda, jadi keduanya tidak bisa dibandingkan langsung. Pangkat 30, 20, dan 12 sama-sama habis dibagi 2, sehingga ketiga bilangan dapat ditulis sebagai **kuadrat dari bilangan yang lebih kecil**.
+Untuk menyusun persamaan kuadrat baru, kamu cukup tahu **jumlah dan hasil kali kedua akar barunya**. Rencananya ada tiga langkah: tentukan dulu nilai <InlineMath math="p" />, sederhanakan bentuk pangkat tiga dengan bantuan persamaan aslinya, lalu hitung jumlah dan hasil kali akar baru.
 
-# Menyamakan pangkat
+# Menentukan koefisien persamaan
 
-Tulis setiap bilangan sebagai suatu bilangan yang dikuadratkan.
+Rumus Vieta menghubungkan akar dengan koefisien. Untuk <InlineMath math="x^2+px+1=0" />, jumlah akarnya <InlineMath math="\alpha+\beta=-p" /> dan hasil kalinya <InlineMath math="\alpha\beta=1" />. Jumlah kuadrat akar bisa ditulis dengan keduanya.
 
 <BlockMath math="\begin{aligned}
-a&=2^{30}=\left(2^{15}\right)^2=32{.}768^2\\
-b&=3^{20}=\left(3^{10}\right)^2=59{.}049^2\\
-c&=5^{12}=\left(5^{6}\right)^2=15{.}625^2
+\alpha^2+\beta^2&=(\alpha+\beta)^2-2\alpha\beta\\
+7&=p^2-2\\
+p^2&=9
 \end{aligned}" />
 
-Untuk bilangan positif, **kuadrat mempertahankan urutan**. Karena <InlineMath math="15{.}625<32{.}768<59{.}049" />, berlaku <InlineMath math="c<a<b" />.
+Ada dua calon, <InlineMath math="p=3" /> atau <InlineMath math="p=-3" />. Soal menyebut **kedua akar positif**, jadi jumlahnya positif: <InlineMath math="-p>0" />. Calon <InlineMath math="p=3" /> ditolak karena memberi jumlah akar <InlineMath math="-3" />. Jadi <InlineMath math="p=-3" />, persamaannya <InlineMath math="x^2-3x+1=0" />, dengan <InlineMath math="\alpha+\beta=3" /> dan <InlineMath math="\alpha\beta=1" />. Diskriminannya <InlineMath math="9-4=5>0" />, jadi kedua akar memang real.
 
-# Memeriksa pilihan lain
+# Menyederhanakan pangkat tiga
 
-Urutan yang benar harus **memperhitungkan basis dan pangkat sekaligus**. Urutan <InlineMath math="a<b<c" /> hanya melihat basisnya, padahal pangkat <InlineMath math="c" /> paling kecil. Urutan <InlineMath math="c<b<a" /> hanya melihat pangkatnya. Urutan <InlineMath math="a<c<b" /> dan <InlineMath math="b<a<c" /> bertentangan dengan perbandingan bilangan dasar di atas.
+Karena <InlineMath math="\alpha" /> adalah akar, berlaku <InlineMath math="\alpha^2-3\alpha+1=0" />, atau <InlineMath math="\alpha^2=3\alpha-1" />. Persamaan ini boleh dipakai untuk **mengganti setiap <InlineMath math="\alpha^2" /> dengan <InlineMath math="3\alpha-1" />**. Untuk <InlineMath math="\alpha^3" />, kalikan dulu <InlineMath math="\alpha^2" /> dengan <InlineMath math="\alpha" />, lalu ganti lagi <InlineMath math="\alpha^2" /> yang muncul.
 
-Jadi, urutan dari yang terkecil adalah **<InlineMath math="c<a<b" />**.
+<BlockMath math="\begin{aligned}
+\alpha^3&=\alpha\cdot\alpha^2=3\alpha^2-\alpha=3(3\alpha-1)-\alpha=8\alpha-3\\
+\alpha^3-2\alpha^2&=(8\alpha-3)-2(3\alpha-1)=2\alpha-1
+\end{aligned}" />
+
+Dengan cara yang sama, <InlineMath math="\beta^3-2\beta^2=2\beta-1" />. Jadi kedua akar baru adalah <InlineMath math="2\alpha-1" /> dan <InlineMath math="2\beta-1" />.
+
+# Menyusun persamaan baru
+
+Hitung jumlah dan hasil kali akar baru dari <InlineMath math="\alpha+\beta=3" /> dan <InlineMath math="\alpha\beta=1" />.
+
+<BlockMath math="\begin{aligned}
+(2\alpha-1)+(2\beta-1)&=2(\alpha+\beta)-2=6-2=4\\
+(2\alpha-1)(2\beta-1)&=4\alpha\beta-2(\alpha+\beta)+1=4-6+1=-1
+\end{aligned}" />
+
+Persamaan kuadrat dengan jumlah akar <InlineMath math="4" /> dan hasil kali akar <InlineMath math="-1" /> disusun dengan **pola jumlah dan hasil kali akar**, yaitu <InlineMath math="x^2-(\text{jumlah})x+(\text{hasil kali})=0" />. Hasilnya <InlineMath math="x^2-4x-1=0" />.
+
+# Memeriksa hasil
+
+Akar-akar <InlineMath math="x^2-3x+1=0" /> adalah <InlineMath math="\frac{3+\sqrt5}{2}" /> dan <InlineMath math="\frac{3-\sqrt5}{2}" />, keduanya positif. Akar baru <InlineMath math="2\alpha-1" /> menjadi <InlineMath math="2+\sqrt5" />, dan **substitusi ke persamaan baru memberi nol**.
+
+<BlockMath math="(2+\sqrt5)^2-4(2+\sqrt5)-1=(9+4\sqrt5)-(8+4\sqrt5)-1=0" />
+
+# Pilihan yang keliru
+
+Pilihan <InlineMath math="x^2+32x+11=0" /> muncul jika **calon <InlineMath math="p=3" /> tidak ditolak**, padahal akar-akarnya negatif. Pilihan <InlineMath math="x^2+4x-1=0" /> memakai jumlah akar dengan tanda yang terbalik saat menyusun persamaan. Pilihan <InlineMath math="x^2-4x+11=0" /> muncul dari salah tanda saat mengalikan, yaitu menulis <InlineMath math="4\alpha\beta+2(\alpha+\beta)+1=11" />. Pilihan <InlineMath math="x^2-5x-5=0" /> muncul jika <InlineMath math="\alpha^3" /> ditulis <InlineMath math="3\alpha^2-1" />, yaitu hanya suku pertama yang dikalikan dengan <InlineMath math="\alpha" />.
+
+Jadi, persamaan kuadrat yang akar-akarnya <InlineMath math="\alpha^3-2\alpha^2" /> dan <InlineMath math="\beta^3-2\beta^2" /> adalah <InlineMath math="x^2-4x-1=0" />.

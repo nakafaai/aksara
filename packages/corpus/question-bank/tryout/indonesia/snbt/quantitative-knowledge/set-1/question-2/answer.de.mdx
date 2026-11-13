@@ -1,19 +1,47 @@
-Die drei Zahlen haben verschiedene Basen und verschiedene Exponenten, deshalb kannst du sie nicht direkt vergleichen. Die Exponenten 30, 20 und 12 sind alle durch 2 teilbar. So lässt sich jede Zahl als **Quadrat einer kleineren Zahl** schreiben.
+Für die neue quadratische Gleichung brauchst du nur **die Summe und das Produkt ihrer beiden neuen Lösungen**. Der Plan hat drei Schritte: Bestimme zuerst <InlineMath math="p" />, vereinfache die dritten Potenzen mit Hilfe der ursprünglichen Gleichung und berechne dann Summe und Produkt der neuen Lösungen.
 
-# Exponenten angleichen
+# Den fehlenden Koeffizienten bestimmen
 
-Schreibe jede Zahl als Quadrat.
+Der Satz von Vieta verbindet die Lösungen mit den Koeffizienten. Für <InlineMath math="x^2+px+1=0" /> ist die Summe der Lösungen <InlineMath math="\alpha+\beta=-p" /> und ihr Produkt <InlineMath math="\alpha\beta=1" />. Damit kannst du die Summe der Quadrate der Lösungen ausdrücken.
 
 <BlockMath math="\begin{aligned}
-a&=2^{30}=\left(2^{15}\right)^2=32{.}768^2\\
-b&=3^{20}=\left(3^{10}\right)^2=59{.}049^2\\
-c&=5^{12}=\left(5^{6}\right)^2=15{.}625^2
+\alpha^2+\beta^2&=(\alpha+\beta)^2-2\alpha\beta\\
+7&=p^2-2\\
+p^2&=9
 \end{aligned}" />
 
-Bei positiven Zahlen **bleibt die Reihenfolge beim Quadrieren erhalten**. Aus <InlineMath math="15{.}625<32{.}768<59{.}049" /> folgt <InlineMath math="c<a<b" />.
+Es gibt zwei Kandidaten, <InlineMath math="p=3" /> oder <InlineMath math="p=-3" />. Laut Aufgabe sind **beide Lösungen positiv**, also ist ihre Summe positiv: <InlineMath math="-p>0" />. Der Kandidat <InlineMath math="p=3" /> fällt weg, weil er die Summe <InlineMath math="-3" /> liefert. Also gilt <InlineMath math="p=-3" />, die Gleichung lautet <InlineMath math="x^2-3x+1=0" />, und es ist <InlineMath math="\alpha+\beta=3" /> und <InlineMath math="\alpha\beta=1" />. Die Diskriminante ist <InlineMath math="9-4=5>0" />, also sind beide Lösungen wirklich reell.
 
-# Andere Reihenfolgen prüfen
+# Die dritten Potenzen vereinfachen
 
-Eine richtige Reihenfolge muss **Basis und Exponent zusammen berücksichtigen**. Die Reihenfolge <InlineMath math="a<b<c" /> berücksichtigt nur die Basen, obwohl <InlineMath math="c" /> den kleinsten Exponenten hat. Die Reihenfolge <InlineMath math="c<b<a" /> berücksichtigt nur die Exponenten. Die Reihenfolgen <InlineMath math="a<c<b" /> und <InlineMath math="b<a<c" /> widersprechen dem Vergleich der quadrierten Zahlen oben.
+Weil <InlineMath math="\alpha" /> eine Lösung ist, gilt <InlineMath math="\alpha^2-3\alpha+1=0" />, also <InlineMath math="\alpha^2=3\alpha-1" />. Damit darfst du **jedes <InlineMath math="\alpha^2" /> durch <InlineMath math="3\alpha-1" /> ersetzen**. Für <InlineMath math="\alpha^3" /> multiplizierst du zuerst <InlineMath math="\alpha^2" /> mit <InlineMath math="\alpha" /> und ersetzt dann das neu entstandene <InlineMath math="\alpha^2" />.
 
-Von der kleinsten zur größten Zahl lautet die Reihenfolge also **<InlineMath math="c<a<b" />**.
+<BlockMath math="\begin{aligned}
+\alpha^3&=\alpha\cdot\alpha^2=3\alpha^2-\alpha=3(3\alpha-1)-\alpha=8\alpha-3\\
+\alpha^3-2\alpha^2&=(8\alpha-3)-2(3\alpha-1)=2\alpha-1
+\end{aligned}" />
+
+Genauso gilt <InlineMath math="\beta^3-2\beta^2=2\beta-1" />. Die beiden neuen Lösungen sind also <InlineMath math="2\alpha-1" /> und <InlineMath math="2\beta-1" />.
+
+# Die neue Gleichung aufstellen
+
+Berechne Summe und Produkt der neuen Lösungen aus <InlineMath math="\alpha+\beta=3" /> und <InlineMath math="\alpha\beta=1" />.
+
+<BlockMath math="\begin{aligned}
+(2\alpha-1)+(2\beta-1)&=2(\alpha+\beta)-2=6-2=4\\
+(2\alpha-1)(2\beta-1)&=4\alpha\beta-2(\alpha+\beta)+1=4-6+1=-1
+\end{aligned}" />
+
+Eine quadratische Gleichung, deren Lösungen die Summe <InlineMath math="4" /> und das Produkt <InlineMath math="-1" /> haben, folgt **dem Muster aus Summe und Produkt**, also <InlineMath math="x^2-(\text{Summe})x+(\text{Produkt})=0" />. Das ergibt <InlineMath math="x^2-4x-1=0" />.
+
+# Das Ergebnis prüfen
+
+Die Lösungen von <InlineMath math="x^2-3x+1=0" /> sind <InlineMath math="\frac{3+\sqrt5}{2}" /> und <InlineMath math="\frac{3-\sqrt5}{2}" />, beide positiv. Die neue Lösung <InlineMath math="2\alpha-1" /> wird zu <InlineMath math="2+\sqrt5" />, und **Einsetzen in die neue Gleichung ergibt null**.
+
+<BlockMath math="(2+\sqrt5)^2-4(2+\sqrt5)-1=(9+4\sqrt5)-(8+4\sqrt5)-1=0" />
+
+# Die falschen Antworten
+
+Die Antwort <InlineMath math="x^2+32x+11=0" /> entsteht, wenn du **den Kandidaten <InlineMath math="p=3" /> nicht verwirfst**, obwohl seine Lösungen negativ sind. Die Antwort <InlineMath math="x^2+4x-1=0" /> verwendet beim Aufstellen der Gleichung die Summe mit falschem Vorzeichen. Die Antwort <InlineMath math="x^2-4x+11=0" /> entsteht durch einen Vorzeichenfehler im Produkt, nämlich <InlineMath math="4\alpha\beta+2(\alpha+\beta)+1=11" />. Die Antwort <InlineMath math="x^2-5x-5=0" /> entsteht, wenn du <InlineMath math="\alpha^3" /> als <InlineMath math="3\alpha^2-1" /> schreibst und damit nur den ersten Summanden mit <InlineMath math="\alpha" /> multiplizierst.
+
+Die quadratische Gleichung mit den Lösungen <InlineMath math="\alpha^3-2\alpha^2" /> und <InlineMath math="\beta^3-2\beta^2" /> ist also <InlineMath math="x^2-4x-1=0" />.

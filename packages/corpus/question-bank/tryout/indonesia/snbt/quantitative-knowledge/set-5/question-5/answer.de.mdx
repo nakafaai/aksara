@@ -1,19 +1,34 @@
-Eine abschnittsweise definierte Funktion verwendet auf jedem Intervall eine andere Vorschrift. Löse <InlineMath math="f(x)=5" /> für jeden Abschnitt und **behalte nur die Lösungen, die im eigenen Intervall des Abschnitts liegen**.
+Der Wert von <InlineMath math="Q" /> ist schon bekannt: Der Median ist <InlineMath math="10{,}5" />. Offen ist <InlineMath math="x" />, also brauchst du **alle Werte von <InlineMath math="x" />, die den Median <InlineMath math="10{,}5" /> ergeben**, und vergleichst dann für jeden davon den Mittelwert mit <InlineMath math="10{,}5" />.
 
-# Abschnitt für x kleiner als drei
+# Die möglichen Werte von x
 
-<BlockMath math="2x+1=5\quad\Rightarrow\quad x=2" />
+Der Median von sechs Werten ist der Mittelwert der beiden mittleren Werte, wenn die Daten sortiert sind. Die bekannten Werte lauten der Reihe nach <InlineMath math="3" />, <InlineMath math="5" />, <InlineMath math="9" />, <InlineMath math="12" />, <InlineMath math="16" />, und die Lage von <InlineMath math="x" /> bestimmt die beiden mittleren Werte.
 
-Der Wert <InlineMath math="x=2" /> ist tatsächlich kleiner als 3, **diese Lösung ist also gültig**.
+| Lage von <InlineMath math="x" /> | Die beiden mittleren Werte | Median |
+| :---: | :---: | :---: |
+| <InlineMath math="x\le5" /> | <InlineMath math="5" /> und <InlineMath math="9" /> | <InlineMath math="7" /> |
+| <InlineMath math="5\le x\le9" /> | <InlineMath math="x" /> und <InlineMath math="9" /> | <InlineMath math="\tfrac{x+9}{2}\le9" /> |
+| <InlineMath math="9\le x\le12" /> | <InlineMath math="9" /> und <InlineMath math="x" /> | <InlineMath math="\tfrac{9+x}{2}\le10{,}5" /> |
+| <InlineMath math="x\ge12" /> | <InlineMath math="9" /> und <InlineMath math="12" /> | <InlineMath math="10{,}5" /> |
 
-# Abschnitt für x mindestens drei
+Der Median erreicht <InlineMath math="10{,}5" /> erst bei <InlineMath math="x\ge12" />, und danach ändert er sich nicht mehr, weil die beiden mittleren Werte <InlineMath math="9" /> und <InlineMath math="12" /> bleiben. Also **liefert die Medianbedingung nur <InlineMath math="x\ge12" />** und nicht den einen Wert <InlineMath math="x=12" />.
 
-<BlockMath math="x^2-4=5\quad\Rightarrow\quad x^2=9\quad\Rightarrow\quad x=3\ \text{oder}\ x=-3" />
+# Mittelwert und Median vergleichen
 
-Dieser Abschnitt gilt nur für <InlineMath math="x\ge3" />. Der Wert <InlineMath math="x=3" /> ist gültig, <InlineMath math="x=-3" /> wird dagegen **verworfen**, denn für <InlineMath math="x=-3" /> gilt die Vorschrift <InlineMath math="2x+1" />, und sie liefert <InlineMath math="f(-3)=-5" />.
+Der Mittelwert der sechs Werte ist <InlineMath math="P=\tfrac{3+5+9+12+16+x}{6}=\tfrac{45+x}{6}" />, und es gilt <InlineMath math="Q=10{,}5=\tfrac{63}{6}" />. Der Vergleich hängt also nur davon ab, wie <InlineMath math="45+x" /> zu <InlineMath math="63" /> steht, das heißt, wie <InlineMath math="x" /> zu <InlineMath math="18" /> steht. Probiere drei erlaubte Werte von <InlineMath math="x" /> aus.
 
-Die Lösungen sind 2 und 3, ihre Summe ist also <InlineMath math="2+3=5" />.
+<BlockMath math="\begin{aligned}
+x=12:&\quad P=\tfrac{57}{6}=9{,}5<10{,}5\\
+x=18:&\quad P=\tfrac{63}{6}=10{,}5\\
+x=24:&\quad P=\tfrac{69}{6}=11{,}5>10{,}5
+\end{aligned}" />
 
-Der Wert 2 verwendet nur den ersten Abschnitt, der Wert 3 nur den zweiten. Der Wert <InlineMath math="-1" /> nimmt <InlineMath math="-3" /> statt 3. Der Wert 6 zählt <InlineMath math="x=3" /> doppelt.
+Alle drei Werte erfüllen <InlineMath math="x\ge12" />, der Median ist also jedes Mal <InlineMath math="10{,}5" />. **Alle drei Beziehungen sind möglich**, die Angaben reichen also nicht aus.
 
-Die Summe aller passenden Werte von <InlineMath math="x" /> ist also **5**.
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="Q>P" /> entsteht, wenn du <InlineMath math="\tfrac{9+x}{2}=10{,}5" /> nur zu <InlineMath math="x=12" /> löst und **vergisst, dass der Median auch für größere <InlineMath math="x" /> bei <InlineMath math="10{,}5" /> bleibt**.
+- <InlineMath math="P>Q" /> stimmt nur für <InlineMath math="x>18" />, etwa <InlineMath math="x=24" />, aber nicht für <InlineMath math="x=12" />.
+- <InlineMath math="P=Q" /> tritt nur bei einem Wert auf, nämlich <InlineMath math="x=18" />.
+
+Die Angaben reichen also nicht aus, um zu entscheiden, wie Mittelwert und Median der sechs Werte zueinander stehen.

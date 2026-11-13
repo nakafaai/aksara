@@ -1,18 +1,38 @@
-The chart gives the frequency of each score. The mean must **use the frequencies as weights**, while the median is read from the positions of the ordered data.
+You need to decide whether the information always gives the same answer, yes or no. If one line still meets the circle at two points while another doesn't, the information isn't sufficient. Here's the plan: find the center and radius, check where the point <InlineMath math="(5,1)" /> sits, then **look at the tangent line at that point**.
 
-# Computing the mean
+# Center and radius of the circle
+
+Complete the square in <InlineMath math="x" /> and in <InlineMath math="y" />.
 
 <BlockMath math="\begin{aligned}
-\bar x&=\frac{4(60)+7(70)+6(80)+3(90)}{20}\\
-&=\frac{240+490+480+270}{20}=\frac{1480}{20}=74
+x^2-4x+y^2+6y&=12\\
+(x-2)^2+(y+3)^2&=12+4+9=25
 \end{aligned}" />
 
-# Finding the median
+The center is <InlineMath math="M(2,-3)" /> and the radius is <InlineMath math="5" />. The point <InlineMath math="(5,1)" /> gives <InlineMath math="(5-2)^2+(1+3)^2=9+16=25" />, so **that point lies exactly on the circle**.
 
-Order the twenty values from smallest to largest. The median is the mean of the 10th and 11th values. The cumulative frequency is 4 for the score 60 and 11 for the score 70, so **values 5 to 11 are all 70**. The median is 70.
+# The tangent at that point
 
-The difference is <InlineMath math="74-70=4" />.
+A line through a point on the circle meets the circle at two points, except the tangent at that point, which touches it only once. The tangent is **perpendicular to the radius** at the point of contact. The radius from <InlineMath math="M(2,-3)" /> to <InlineMath math="(5,1)" /> has slope <InlineMath math="\frac{1-(-3)}{5-2}=\frac43" />, so the tangent has slope <InlineMath math="-\frac34" />, because perpendicular slopes multiply to <InlineMath math="-1" />.
 
-The value 5 appears when the mean is taken as the unweighted mean of the four scores, <InlineMath math="\tfrac{60+70+80+90}{4}=75" />. The value 1 uses a median of 75, the mean of the two middle categories rather than the two middle values. The value 6 uses a median of 80, and the value 10 uses a mean of 80.
+<BlockMath math="\begin{aligned}
+y-1&=-\tfrac34(x-5)\\
+3x+4y-19&=0\\
+\text{distance from }M&=\frac{|3(2)+4(-3)-19|}{\sqrt{3^2+4^2}}=\frac{25}{5}=5
+\end{aligned}" />
 
-So the difference between the mean and the median is **4**.
+The distance equals the radius, so this line really only touches the circle.
+
+# Each statement alone
+
+Statement (1) alone isn't sufficient. The tangent <InlineMath math="3x+4y-19=0" /> passes through <InlineMath math="(5,1)" /> but touches the circle at just one point, so the answer is no. The line <InlineMath math="y=1" /> also passes through <InlineMath math="(5,1)" /> and meets the circle at <InlineMath math="(5,1)" /> and <InlineMath math="(-1,1)" />, so the answer is yes. Passing through a point of the circle **doesn't guarantee two intersections**.
+
+Statement (2) alone isn't sufficient either. The line <InlineMath math="x+y-20=0" /> has slope <InlineMath math="-1" /> and is <InlineMath math="\frac{21}{\sqrt2}" /> away from the center, more than <InlineMath math="5" />, so it misses the circle. A line with slope <InlineMath math="-1" /> through the center <InlineMath math="M" /> surely meets it at two points.
+
+# Both statements together
+
+The tangent's slope is <InlineMath math="-\frac34" />, which is **negative too**. So the tangent satisfies both statements, and the answer for it is no. Meanwhile, the line through <InlineMath math="(5,1)" /> and <InlineMath math="(2,2)" /> has slope <InlineMath math="\frac{2-1}{2-5}=-\frac13" />, also negative. The point <InlineMath math="(2,2)" /> is on the circle, since <InlineMath math="0^2+5^2=25" />, so this line meets the circle at two different points and the answer is yes.
+
+Both lines satisfy statements (1) and (2), yet the answers differ. If you assume a point on the circle means two intersections, you'd pick statement (1) as sufficient. If you skip computing the tangent's slope, you'd think a negative slope rules out touching.
+
+So **statements (1) and (2) are not sufficient** to answer the question, even together.

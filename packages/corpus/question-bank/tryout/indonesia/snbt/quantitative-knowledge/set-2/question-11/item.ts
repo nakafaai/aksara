@@ -5,26 +5,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$\\left(\\dfrac{32\\pi}{3}-8\\sqrt3\\right)\\text{ cm}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$\\left(\\dfrac{16\\pi}{3}-4\\sqrt3\\right)\\text{ cm}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$\\left(\\dfrac{32\\pi}{3}-4\\sqrt3\\right)\\text{ cm}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$\\left(\\dfrac{32\\pi}{3}-16\\sqrt3\\right)\\text{ cm}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$\\left(\\dfrac{16\\pi}{3}-8\\sqrt3\\right)\\text{ cm}^2$$",
-        },
+        { correct: true, label: "$$-\\dfrac{37}{12}$$" },
+        { correct: false, label: "$$-\\dfrac{35}{12}$$" },
+        { correct: false, label: "$$-\\dfrac{1}{12}$$" },
+        { correct: false, label: "$$1$$" },
+        { correct: false, label: "$$\\dfrac{37}{12}$$" },
       ],
     },
   },

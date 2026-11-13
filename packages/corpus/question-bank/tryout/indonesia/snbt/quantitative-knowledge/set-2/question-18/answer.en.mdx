@@ -1,23 +1,28 @@
-Count all triangles, then **subtract the triangles that use a side of the octagon**. Split those by how many octagon sides they use, so that none is counted twice.
+There are two restrictions: the committee can't be all one gender, and Andi can't be with Budi. **The order of members doesn't matter**, so you use combinations. The plan: count the mixed committees, then remove the mixed committees that contain both Andi and Budi.
 
-# All triangles
+# Mixed committees
 
-**No three vertices** of a regular octagon **are collinear**, so every choice of three vertices forms a triangle.
+From <InlineMath math="9" /> students, there are <InlineMath math="\binom94=126" /> committees of four. Remove **the committees with only one gender**, the all-boy and the all-girl ones.
 
-<BlockMath math="\binom83=\frac{8\cdot7\cdot6}{3\cdot2\cdot1}=56" />
+<BlockMath math="\begin{aligned}
+\binom94-\binom54-\binom44&=126-5-1=120
+\end{aligned}" />
 
-# Triangles that use an octagon side
+# Committees with Andi and Budi
 
-A triangle with **two octagon sides** is formed by three consecutive vertices. There are 8 choices for the middle vertex, so there are 8 such triangles.
+If Andi and Budi are both in, the other two members come from the remaining <InlineMath math="7" /> students: <InlineMath math="\binom72=21" /> committees. But <InlineMath math="\binom32=3" /> of them are all boys, namely Andi, Budi, and two of the other three boys. Those three committees were **already removed in the first step**, so don't remove them twice. The mixed committees with both Andi and Budi number <InlineMath math="21-3=18" />.
 
-A triangle with **exactly one octagon side** is formed by one side of the octagon and a third vertex that is not next to either end of that side. For each side, its two ends and their two other neighbors are ruled out, which leaves <InlineMath math="8-4=4" /> vertices.
+# The final count
 
-<BlockMath math="8\times4=32" />
+<BlockMath math="120-18=102" />
 
-The number of triangles with no octagon side is
+Check it in the other order: **remove the Andi and Budi pair first**. Committees without the pair Andi and Budi number <InlineMath math="126-21=105" />. Among them, the all-boy committees without both of them number <InlineMath math="5-3=2" />, and there's <InlineMath math="1" /> all-girl committee. So <InlineMath math="105-2-1=102" />, the same.
 
-<BlockMath math="56-8-32=16" />
+# Traps in the other options
 
-The value 56 counts all triangles. The value 48 removes only the triangles with two octagon sides. The value 40 counts the triangles with at least one octagon side, the opposite of what is asked. The value 32 counts the triangles with exactly one octagon side.
+- <InlineMath math="120" /> forgets the Andi and Budi rule.
+- <InlineMath math="108" /> only removes the Andi and Budi committees whose other two members are one boy and one girl, <InlineMath math="3\times4=12" /> committees, and **forgets the committees of Andi, Budi, and two girls**, which number <InlineMath math="\binom42=6" />.
+- <InlineMath math="105" /> handles the Andi and Budi rule but forgets that there must be at least one boy and one girl.
+- <InlineMath math="99" /> subtracts all <InlineMath math="21" /> committees with Andi and Budi, including the three all-boy committees that were already removed.
 
-So **16** such triangles can be formed.
+So there are <InlineMath math="102" /> ways to form the committee.

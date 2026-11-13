@@ -1,21 +1,52 @@
-"Paling sedikit dua" berarti **tepat dua atau tepat tiga** tembakan mengenai sasaran. Kedua kejadian itu saling lepas, jadi peluangnya dijumlahkan. Tembakan saling bebas, sehingga peluang satu urutan hasil adalah hasil kali peluang setiap tembakan.
+Kamu mencari semua <InlineMath math="m" /> yang membuat <InlineMath math="f" /> kembali ke <InlineMath math="x" /> setelah dipakai dua kali. Rencananya: tulis <InlineMath math="f(x)=ax+b" />, hitung <InlineMath math="f\bigl(f(x)\bigr)" />, samakan koefisiennya dengan <InlineMath math="x" />, lalu **periksa kedua kasus yang muncul dengan syaratnya masing-masing**.
 
-# Tepat dua tembakan kena
+# Komposisi fungsi linear
 
-Satu tembakan yang meleset bisa terjadi pada tembakan pertama, kedua, atau ketiga, jadi ada **tiga urutan** dengan peluang yang sama.
+Misalkan <InlineMath math="a=m^2-8m+13" /> dan <InlineMath math="b=m-6" />.
 
-<BlockMath math="P(\text{tepat }2)=3\cdot(0{,}6)^2(0{,}4)=3\cdot0{,}144=0{,}432" />
+<BlockMath math="f\bigl(f(x)\bigr)=a(ax+b)+b=a^2x+(a+1)b" />
 
-# Tepat tiga tembakan kena
+Agar sama dengan <InlineMath math="x" /> untuk setiap <InlineMath math="x" />, **koefisien <InlineMath math="x" /> harus <InlineMath math="1" /> dan suku tetapnya harus <InlineMath math="0" />**: <InlineMath math="a^2=1" /> dan <InlineMath math="(a+1)b=0" />. Dari <InlineMath math="a^2=1" />, ada dua kasus, <InlineMath math="a=1" /> atau <InlineMath math="a=-1" />.
 
-Hanya ada **satu urutan**, yaitu ketiga tembakan kena.
+# Kasus koefisien satu
 
-<BlockMath math="P(\text{tepat }3)=(0{,}6)^3=0{,}216" />
+Jika <InlineMath math="a=1" />, syarat kedua menjadi <InlineMath math="2b=0" />, jadi **<InlineMath math="b" /> juga harus <InlineMath math="0" />**. Fungsinya harus <InlineMath math="f(x)=x" />.
 
-Jumlahkan kedua kasus.
+<BlockMath math="\begin{aligned}
+m^2-8m+13&=1\\
+m^2-8m+12&=0\\
+(m-2)(m-6)&=0
+\end{aligned}" />
 
-<BlockMath math="P(\text{paling sedikit }2)=0{,}432+0{,}216=0{,}648" />
+Untuk <InlineMath math="m=6" />, <InlineMath math="b=0" />, jadi sah. Untuk <InlineMath math="m=2" />, <InlineMath math="b=-4" />, sehingga <InlineMath math="f(x)=x-4" /> dan <InlineMath math="f\bigl(f(x)\bigr)=x-8" />. Nilai <InlineMath math="m=2" /> harus dibuang.
 
-Nilai 0,432 hanya menghitung tepat dua, dan nilai 0,216 hanya menghitung tepat tiga. Nilai 0,36 adalah <InlineMath math="(0{,}6)^2" />, yang mengabaikan tembakan ketiga dan banyak urutannya. Nilai 0,784 adalah <InlineMath math="1-0{,}216" />, yaitu peluang paling banyak dua tembakan kena.
+# Kasus koefisien negatif satu
 
-Jadi, peluang paling sedikit dua tembakan mengenai sasaran adalah <InlineMath math="0{,}648" />.
+Jika <InlineMath math="a=-1" />, syarat kedua <InlineMath math="(a+1)b=0\cdot b=0" /> **selalu terpenuhi**, berapa pun <InlineMath math="b" />. Misalnya <InlineMath math="f(x)=-x+b" /> memberi <InlineMath math="f\bigl(f(x)\bigr)=-(-x+b)+b=x" />.
+
+<BlockMath math="\begin{aligned}
+m^2-8m+13&=-1\\
+m^2-8m+14&=0\\
+m&=\frac{8\pm\sqrt{64-56}}{2}=4\pm\sqrt2
+\end{aligned}" />
+
+Kedua nilai itu sah.
+
+# Hasil kali semua nilai
+
+**Semua nilai <InlineMath math="m" /> yang lolos** adalah <InlineMath math="6" />, <InlineMath math="4+\sqrt2" />, dan <InlineMath math="4-\sqrt2" />.
+
+<BlockMath math="6\cdot\left(4+\sqrt2\right)\left(4-\sqrt2\right)=6\cdot(16-2)=6\cdot14=84" />
+
+Coba cek hasil kali kedua akar kasus kedua lewat Vieta: hasil kali akar <InlineMath math="m^2-8m+14=0" /> adalah <InlineMath math="14" />, cocok.
+
+# Pilihan yang menjebak
+
+Setiap pilihan lain muncul karena **satu kasus terlewat atau satu calon tidak diuji**.
+
+- <InlineMath math="14" /> muncul jika kasus <InlineMath math="a=1" /> terlewat, misalnya karena mengira hanya <InlineMath math="f(x)=-x+b" /> yang bisa kembali ke <InlineMath math="x" />.
+- <InlineMath math="168" /> muncul jika <InlineMath math="m=2" /> ikut dipakai tanpa memeriksa <InlineMath math="b=0" />.
+- <InlineMath math="6" /> muncul jika kasus <InlineMath math="a=-1" /> terlewat.
+- <InlineMath math="12" /> muncul jika kasus <InlineMath math="a=-1" /> terlewat dan <InlineMath math="m=2" /> ikut dipakai.
+
+Jadi, hasil kali semua nilai <InlineMath math="m" /> yang mungkin adalah <InlineMath math="84" />.

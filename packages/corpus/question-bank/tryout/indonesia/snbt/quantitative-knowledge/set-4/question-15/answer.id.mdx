@@ -1,46 +1,31 @@
-Grafik <InlineMath math="y=\lvert x-2\rvert" /> berbentuk huruf V dengan puncak di <InlineMath math="(2,0)" />. Garis <InlineMath math="y=4" /> memotong kedua lengannya, sehingga **daerah yang dibatasi adalah sebuah segitiga**.
+Kamu menghitung cara membagi permen identik dengan tiga syarat sekaligus. Syarat si sulung bergantung pada jatah si bungsu, jadi rencananya: **pecah menjadi kasus menurut jatah si bungsu**, hitung setiap kasus dengan metode bintang dan sekat, lalu jumlahkan.
 
-<MathVisual
-  title={<>Daerah antara <InlineMath math="y=\lvert x-2\rvert" /> dan <InlineMath math="y=4" /></>}
-  description={<>Grafik berbentuk huruf V dengan puncak <InlineMath math="(2,0)" /> memotong garis <InlineMath math="y=4" /> di <InlineMath math="(-2,4)" /> dan <InlineMath math="(6,4)" />. Daerah di antaranya adalah segitiga.</>}
-  labels={{
-    "l1": <InlineMath math="(-2,4)" />,
-    "l2": <InlineMath math="(2,0)" />,
-    "l3": <InlineMath math="(6,4)" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -4, max: 8 }, y: { min: -0.5, max: 5.5 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "parametric", x: "((-3) + (t / 10))", y: "abs((((-3) + (t / 10)) - 2))", parameter: { min: 0, max: 100 }, appearance: "primary" },
-      { id: "s1-p10", kind: "point", at: { x: -2, y: 4 }, appearance: "primary" },
-      { id: "s1-p50", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
-      { id: "s1-p90", kind: "point", at: { x: 6, y: 4 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "((-3) + (10 * t))", y: "4", parameter: { min: 0, max: 1 }, appearance: "secondary" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s1", at: { x: -2, y: 4 }, placement: "above-left" },
-      { key: "l2", objectId: "s1", at: { x: 2, y: 0 }, placement: "below" },
-      { key: "l3", objectId: "s1", at: { x: 6, y: 4 }, placement: "above-right" },
-    ],
-  }}
-/>
+# Metode bintang dan sekat
 
-# Titik potong
+Membagi <InlineMath math="N" /> permen identik kepada <InlineMath math="3" /> anak, tanpa syarat minimal, sama dengan menyusun <InlineMath math="N" /> bintang dan <InlineMath math="2" /> sekat dalam satu baris. Bintang sebelum sekat pertama milik anak pertama, di antara sekat milik anak kedua, dan sesudah sekat kedua milik anak ketiga. Banyak susunannya adalah **memilih posisi <InlineMath math="2" /> sekat dari <InlineMath math="N+2" /> tempat**, yaitu <InlineMath math="\binom{N+2}{2}" />.
 
-Selesaikan <InlineMath math="\lvert x-2\rvert=4" />.
+Jika ada jatah minimal, berikan dulu jatah minimal itu, lalu bagikan sisanya tanpa syarat.
 
-<BlockMath math="x-2=4\ \ \text{atau}\ \ x-2=-4\quad\Rightarrow\quad x=6\ \ \text{atau}\ \ x=-2" />
+# Kasus menurut jatah si bungsu
 
-Titik sudut segitiga adalah <InlineMath math="(-2,4)" />, <InlineMath math="(6,4)" />, dan puncak <InlineMath math="(2,0)" />. Sumbu <InlineMath math="y" /> **tidak ikut membatasi daerah** karena tidak disebut dalam soal.
+Si bungsu mendapat <InlineMath math="y" /> permen dengan <InlineMath math="2\le y\le4" />. Si sulung harus mendapat **lebih banyak dari <InlineMath math="y" />**, jadi minimal <InlineMath math="y+1" />. Anak kedua dan ketiga minimal <InlineMath math="2" />. Setelah jatah minimal diberikan, sisa permen untuk ketiga anak itu adalah <InlineMath math="N=17-y-(y+1)-2-2=12-2y" />.
 
-# Menghitung luas
+<BlockMath math="\begin{aligned}
+y=2:\quad N=8,&\quad\binom{10}{2}=45\\
+y=3:\quad N=6,&\quad\binom{8}{2}=28\\
+y=4:\quad N=4,&\quad\binom{6}{2}=15\\
+\text{total}&=45+28+15=88
+\end{aligned}" />
 
-Alas segitiga terletak pada garis <InlineMath math="y=4" /> dengan panjang <InlineMath math="6-(-2)=8" />. Tingginya adalah jarak puncak <InlineMath math="(2,0)" /> ke garis itu, yaitu 4.
+Coba cek kasus <InlineMath math="y=4" /> dengan cara lain. Si sulung minimal <InlineMath math="5" />, dua anak tengah minimal <InlineMath math="2" />, dan jumlah ketiganya <InlineMath math="13" />. Sisa <InlineMath math="4" /> permen dibagi bebas ke <InlineMath math="3" /> anak memberi <InlineMath math="15" /> cara, sama dengan hitungan di atas. Tanpa syarat si sulung, total ketiga kasus adalah <InlineMath math="55+45+36=136" />, jadi <InlineMath math="88" /> memang lebih kecil, sesuai harapan.
 
-<BlockMath math="L=\tfrac12\cdot8\cdot4=16" />
+# Pilihan yang menjebak
 
-Nilai 32 lupa faktor <InlineMath math="\tfrac12" />. Nilai 8 hanya menghitung separuh segitiga di satu sisi puncak. Nilai 14 dan 6 memotong daerah dengan sumbu <InlineMath math="y" />, yang tidak termasuk batas daerah.
+Setiap pilihan lain muncul karena **satu syarat dibaca terlalu longgar atau terlalu ketat**.
 
-Jadi, luas daerahnya adalah **16 satuan luas**.
+- <InlineMath math="136" /> muncul jika syarat si sulung lebih banyak dari si bungsu diabaikan.
+- <InlineMath math="112" /> muncul jika lebih banyak dibaca sebagai paling sedikit sama, sehingga si sulung boleh mendapat <InlineMath math="y" /> permen.
+- <InlineMath math="95" /> muncul jika batas paling banyak <InlineMath math="4" /> untuk si bungsu diabaikan, sehingga kasus <InlineMath math="y=5" /> dan <InlineMath math="y=6" /> ikut terhitung.
+- <InlineMath math="73" /> muncul jika paling banyak <InlineMath math="4" /> dibaca sebagai kurang dari <InlineMath math="4" />, sehingga kasus <InlineMath math="y=4" /> hilang.
+
+Jadi, banyak cara membagikan permen itu adalah <InlineMath math="88" />.

@@ -1,26 +1,37 @@
-Bringe die Gleichung von <InlineMath math="g" /> in die Form <InlineMath math="y=mx+c" />, damit sich Steigung und Achsenabschnitte ablesen lassen. Eine Gerade senkrecht zu <InlineMath math="g" /> hat **eine Steigung, deren Produkt mit der Steigung von <InlineMath math="g" /> gleich <InlineMath math="-1" /> ist**.
+Gefragt ist eine bedingte Wahrscheinlichkeit, nämlich **der Anteil der wirklich Kranken unter allen Menschen mit zwei positiven Tests**. Am sichersten stellst du dir <InlineMath math="1{.}000" /> Einwohner vor und verfolgst sie durch den ersten und den zweiten Test.
 
-# Gleichungen beider Geraden
+# Der erste Test
 
-<BlockMath math="\begin{aligned}
-g:\ 2x-3y=6\quad&\Rightarrow\quad y=\tfrac23x-2\\
-h:\ m_h=-\tfrac32\quad&\Rightarrow\quad y=-\tfrac32x+4
-\end{aligned}" />
-
-Die Steigung von <InlineMath math="g" /> ist <InlineMath math="\tfrac23" />, die erste Aussage ist also **wahr**. Die Gerade <InlineMath math="h" /> schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="y=0" />, also bei <InlineMath math="x=\tfrac83" /> und nicht bei 6. Die zweite Aussage ist falsch.
-
-# Schnittpunkt und Dreiecksfläche
-
-Setze die Gleichung von <InlineMath math="h" /> in die Gleichung von <InlineMath math="g" /> ein.
+Von <InlineMath math="1{.}000" /> Menschen sind <InlineMath math="10\%" /> krank und die übrigen gesund. Der erste Test ist bei <InlineMath math="90\%" /> der Kranken und **auch bei <InlineMath math="20\%" /> der Gesunden** positiv.
 
 <BlockMath math="\begin{aligned}
-2x-3\left(-\tfrac32x+4\right)&=6\\
-\tfrac{13}{2}x&=18\\
-x=\tfrac{36}{13},\qquad y&=-\tfrac32\cdot\tfrac{36}{13}+4=-\tfrac{2}{13}
+\text{krank}&=100,\qquad \text{gesund}=900\\
+\text{krank und positiv}&=90\%\times100=90\\
+\text{gesund und positiv}&=20\%\times900=180
 \end{aligned}" />
 
-Der Schnittpunkt hat eine negative <InlineMath math="y" />-Koordinate, er **liegt also im IV. Quadranten** und nicht im I. Die dritte Aussage ist falsch.
+# Der zweite Test
 
-Die Gerade <InlineMath math="g" /> schneidet die <InlineMath math="x" />-Achse in <InlineMath math="(3,0)" /> und die <InlineMath math="y" />-Achse in <InlineMath math="(0,-2)" />. Das Dreieck, das sie mit den Achsen bildet, ist rechtwinklig mit den Katheten 3 und 2, sein Flächeninhalt ist also <InlineMath math="\tfrac12\cdot3\cdot2=3" />. Die vierte Aussage ist wahr.
+**Den zweiten Test machen nur die <InlineMath math="90+180=270" /> Menschen, die beim ersten Test positiv waren**. Weil die beiden Ergebnisse für Menschen mit gleichem Zustand unabhängig sind, gelten dieselben Anteile wie beim ersten Test.
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.
+<BlockMath math="\begin{aligned}
+\text{krank und zweimal positiv}&=90\%\times90=81\\
+\text{gesund und zweimal positiv}&=20\%\times180=36
+\end{aligned}" />
+
+# Die bedingte Wahrscheinlichkeit
+
+Zweimal positiv getestet wurden <InlineMath math="81+36=117" /> Menschen, und <InlineMath math="81" /> davon sind krank.
+
+<BlockMath math="P(\text{krank}\mid\text{zweimal positiv})=\frac{81}{117}=\frac{9}{13}" />
+
+Prüfe das mit der Formel, ohne die <InlineMath math="1{.}000" /> Menschen: <InlineMath math="\tfrac{0{,}1\times0{,}9^2}{0{,}1\times0{,}9^2+0{,}9\times0{,}2^2}=\tfrac{0{,}081}{0{,}117}=\tfrac{9}{13}" />. Der Wert ist größer als die Wahrscheinlichkeit nach einem positiven Test, und das passt, denn **der zweite Test siebt weitere Gesunde aus**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\tfrac13" /> **hört nach dem ersten Test auf**: <InlineMath math="\tfrac{90}{90+180}" />.
+- <InlineMath math="\tfrac{9}{29}" /> zählt die beim zweiten Test positiven Gesunden aus allen <InlineMath math="900" /> Gesunden und erhält so <InlineMath math="\tfrac{81}{81+180}" />.
+- <InlineMath math="\tfrac{81}{100}" /> ist die Wahrscheinlichkeit, als Kranker zweimal positiv zu sein, also die umgekehrte Bedingung.
+- <InlineMath math="\tfrac{81}{85}" /> übersieht, dass nur <InlineMath math="10\%" /> der Einwohner krank sind: <InlineMath math="\tfrac{0{,}81}{0{,}81+0{,}04}" />.
+
+Die Wahrscheinlichkeit, dass ein zweimal positiv getesteter Mensch wirklich krank ist, beträgt also <InlineMath math="\tfrac{9}{13}" />.

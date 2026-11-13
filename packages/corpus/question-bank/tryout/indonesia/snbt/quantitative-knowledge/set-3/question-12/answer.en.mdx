@@ -1,17 +1,35 @@
-Point <InlineMath math="M" /> lies directly above <InlineMath math="A" />, 3 cm up. The segment <InlineMath math="MC" /> is the hypotenuse of triangle <InlineMath math="MAC" />, which **has a right angle at <InlineMath math="A" />** because edge <InlineMath math="AE" /> is perpendicular to the base.
+A box plot doesn't show every value, so many data sets fit it. A statement with **must** has to hold for every data set that fits, while a statement with **can** only needs one data set that fits. Start from the values that are already fixed.
 
-# The base diagonal
+# The values that are fixed
 
-The horizontal side of that triangle is **the face diagonal** <InlineMath math="AC" />.
+Write the sorted data as <InlineMath math="x_1\le x_2\le\cdots\le x_{11}" />. The median is the middle value <InlineMath math="x_6" />, the lower quartile is the median of <InlineMath math="x_1" /> to <InlineMath math="x_5" />, which is <InlineMath math="x_3" />, and the upper quartile is the median of <InlineMath math="x_7" /> to <InlineMath math="x_{11}" />, which is <InlineMath math="x_9" />. So **five values are fixed** and the other six are only bounded.
 
-<BlockMath math="AC=\sqrt{6^2+6^2}=6\sqrt2" />
+<BlockMath math="\begin{aligned}
+x_1&=2,\quad x_3=5,\quad x_6=8,\quad x_9=10,\quad x_{11}=15\\
+2&\le x_2\le 5,\quad 5\le x_4\le x_5\le 8,\quad 8\le x_7\le x_8\le 10,\quad 10\le x_{10}\le 15
+\end{aligned}" />
 
-# The distance from M to C
+# Statement one
 
-Apply **the Pythagorean theorem** to triangle <InlineMath math="MAC" /> with <InlineMath math="MA=3" />.
+The mean is smallest when every free value is as small as possible.
 
-<BlockMath math="MC=\sqrt{MA^2+AC^2}=\sqrt{9+72}=\sqrt{81}=9" />
+<BlockMath math="\begin{aligned}
+\text{smallest sum}&=2+2+5+5+5+8+8+8+10+10+15=78\\
+\text{smallest mean}&=\frac{78}{11}=7\tfrac{1}{11}>7
+\end{aligned}" />
 
-The value <InlineMath math="6\sqrt2" /> is the base diagonal <InlineMath math="AC" /> and forgets the 3 cm height. The value <InlineMath math="6\sqrt3" /> is the space diagonal <InlineMath math="AG" />, as if <InlineMath math="M" /> were at <InlineMath math="E" />. The value <InlineMath math="3\sqrt5" /> is the distance from <InlineMath math="M" /> to vertex <InlineMath math="B" /> or <InlineMath math="D" />, not to <InlineMath math="C" />. The value 15 adds <InlineMath math="MA+AB+BC=3+6+6" /> along the edges, although distance is measured in a straight line.
+**Even the smallest possible data set** gives a mean above <InlineMath math="7" />, so the mean must be greater than <InlineMath math="7" />. Statement one is true.
 
-So the distance from <InlineMath math="M" /> to <InlineMath math="C" /> is **<InlineMath math="9\text{ cm}" />**.
+# Statement two
+
+The value <InlineMath math="15" /> can appear at most twice, as <InlineMath math="x_{10}" /> and <InlineMath math="x_{11}" />, because <InlineMath math="x_9=10" />. Now look at the four values <InlineMath math="x_6" />, <InlineMath math="x_7" />, <InlineMath math="x_8" />, <InlineMath math="x_9" />. All four are integers from <InlineMath math="8" /> to <InlineMath math="10" />, but there are only three such integers, so **some value must appear at least twice**. That value ties with or beats the number of times <InlineMath math="15" /> appears, so <InlineMath math="15" /> can't be the only mode. Statement two is false.
+
+# Statement three
+
+One example is enough. Take the data <InlineMath math="2,3,5,6,7,8,9,9,10,10,15" />. Its smallest value is <InlineMath math="2" />, <InlineMath math="x_3=5" />, <InlineMath math="x_6=8" />, <InlineMath math="x_9=10" />, and its largest value is <InlineMath math="15" />, so the summary fits. Here **only <InlineMath math="15" /> is greater than <InlineMath math="10" />**, because <InlineMath math="x_{10}=10" />. Statement three is true.
+
+# Statement four
+
+A mean of <InlineMath math="8.5" /> means a total of <InlineMath math="11\cdot 8.5=93.5" />. But a sum of integers is always an integer, so **a total of <InlineMath math="93.5" /> is impossible**. The value <InlineMath math="8.5" /> does lie between the smallest mean <InlineMath math="\tfrac{78}{11}" /> and the largest mean <InlineMath math="\tfrac{96}{11}" /> (from <InlineMath math="x_2=5" />, <InlineMath math="x_4=x_5=8" />, <InlineMath math="x_7=x_8=10" />, and <InlineMath math="x_{10}=15" />), but that isn't enough. Statement four is false.
+
+So statement one is true, statement two is false, statement three is true, and statement four is false.

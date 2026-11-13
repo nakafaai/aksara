@@ -1,20 +1,37 @@
-Aus den Angaben folgt, dass die Punktsumme der Klasse A <InlineMath math="30\times72=2160" /> beträgt. Gefragt ist **die Anzahl der Schüler in Klasse B**, etwa <InlineMath math="n" />. Eine Aussage reicht aus, wenn sie genau einen Wert für <InlineMath math="n" /> liefert.
+Eine Aussage reicht, wenn **jedes Dreieck, das sie erfüllt, denselben Flächeninhalt hat**. Das wichtigste Werkzeug ist die Formel für die Länge der Seitenhalbierenden, die die drei Seiten mit <InlineMath math="AM" /> verbindet. Prüfe Aussage (1) allein und dann Aussage (2) allein.
 
-# Erste Aussage allein
+# Die Formel für die Seitenhalbierende herleiten
 
-Die Punktsumme der Klasse B ist <InlineMath math="77n" />, und der gemeinsame Mittelwert ist die Summe aller Punkte geteilt durch die Anzahl aller Schüler. Diese Gleichung **enthält nur eine Unbekannte**.
+In den Dreiecken <InlineMath math="ABM" /> und <InlineMath math="ACM" /> ergänzen sich die Winkel bei <InlineMath math="M" /> zu einem gestreckten Winkel, also **haben ihre Kosinuswerte entgegengesetzte Vorzeichen**. Schreibe den Kosinussatz für beide Dreiecke auf, mit <InlineMath math="BM=CM=\frac{BC}{2}" /> und <InlineMath math="\theta=\angle AMB" />.
 
 <BlockMath math="\begin{aligned}
-\frac{2160+77n}{30+n}&=74\\
-2160+77n&=2220+74n\\
-3n&=60\\
-n&=20
+AB^2&=AM^2+BM^2-2\cdot AM\cdot BM\cos\theta\\
+AC^2&=AM^2+CM^2+2\cdot AM\cdot CM\cos\theta\\
+AB^2+AC^2&=2AM^2+\frac{BC^2}{2}
 \end{aligned}" />
 
-Probe: <InlineMath math="\frac{2160+1540}{50}=\frac{3700}{50}=74" />. Aussage (1) allein reicht aus.
+Die dritte Zeile ist die Summe der ersten beiden. Die Kosinusterme heben sich auf, weil <InlineMath math="BM=CM" /> gilt.
 
-# Zweite Aussage allein
+# Nur die erste Aussage
 
-Aussage (2) nennt die Punktsumme der Klasse B, aber **weder Mittelwert noch Schülerzahl**. Klasse B könnte 20 Schüler mit Mittelwert 77 oder 22 Schüler mit Mittelwert 70 haben, beide Fälle ergeben 1.540. Aussage (2) allein reicht nicht aus.
+Setze <InlineMath math="AB=6" />, <InlineMath math="AC=8" /> und <InlineMath math="AM=5" /> in die Formel ein.
 
-Weil Aussage (1) allein ausreicht und Aussage (2) allein nicht, lautet die Antwort: **Aussage (1) allein reicht aus**, Aussage (2) allein dagegen nicht.
+<BlockMath math="\begin{aligned}
+36+64&=2\cdot25+\frac{BC^2}{2}\\
+BC^2&=100\\
+BC&=10
+\end{aligned}" />
+
+Alle drei Seiten liegen jetzt fest, nämlich <InlineMath math="6" />, <InlineMath math="8" /> und <InlineMath math="10" />, also ist **das Dreieck eindeutig** und damit auch sein Flächeninhalt. Wegen <InlineMath math="6^2+8^2=10^2" /> ist der Winkel bei <InlineMath math="A" /> ein rechter, und die Fläche ist <InlineMath math="\frac12\cdot6\cdot8=24\text{ cm}^2" />. Aussage (1) allein reicht.
+
+# Nur die zweite Aussage
+
+Aus <InlineMath math="BC=10" /> folgt <InlineMath math="BM=MC=5=AM" />. Der Punkt <InlineMath math="A" /> ist <InlineMath math="5" /> vom Mittelpunkt von <InlineMath math="BC" /> entfernt, liegt also auf dem Kreis mit dem Durchmesser <InlineMath math="BC" />, und der Winkel bei <InlineMath math="A" /> ist ein rechter. Aber **die beiden Katheten liegen nicht fest**, bekannt ist nur <InlineMath math="AB^2+AC^2=100" />.
+
+Das erste Beispiel, <InlineMath math="AB=6" /> und <InlineMath math="AC=8" />, liefert die Fläche <InlineMath math="24\text{ cm}^2" />. Das zweite Beispiel, <InlineMath math="AB=AC=5\sqrt2" />, erfüllt (2) ebenfalls, denn <InlineMath math="50+50=2\cdot25+\frac{100}{2}" />, hat aber die Fläche <InlineMath math="\frac12\cdot5\sqrt2\cdot5\sqrt2=25\text{ cm}^2" />. Zwei verschiedene Flächen bedeuten, dass Aussage (2) allein nicht reicht.
+
+# Warum die anderen Antworten verlocken
+
+Die Antworten, dass beide Aussagen zusammen nötig sind oder keine reicht, entstehen, wenn du meinst, Aussage (1) **brauche noch den Winkel zwischen <InlineMath math="AB" /> und <InlineMath math="AC" />**, obwohl die Seitenhalbierende die dritte Seite schon festlegt. Die Antwort, dass jede Aussage allein reicht, entsteht, wenn du meinst, der rechte Winkel aus Aussage (2) lege die Fläche schon fest.
+
+Aussage (1) allein reicht also, um die Frage zu beantworten, Aussage (2) allein aber nicht.

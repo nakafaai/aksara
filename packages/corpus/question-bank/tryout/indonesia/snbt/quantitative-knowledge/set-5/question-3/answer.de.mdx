@@ -1,17 +1,55 @@
-Die Werte von <InlineMath math="a" /> und <InlineMath math="b" /> sind unbekannt. Vergleiche die beiden Größen deshalb über **das Vorzeichen ihrer Differenz** für jedes Paar mit <InlineMath math="0<a<b" />.
+Die Funktion <InlineMath math="h(x)=\sqrt{2-{}^{2}\log\left(x^2-2x\right)}" /> ist reell, wenn zwei Bedingungen gelten: **Die Zahl im Logarithmus ist positiv**, und **die Zahl unter der Wurzel ist nicht negativ**. Der Plan: Bestimme zuerst den Definitionsbereich von <InlineMath math="h" /> und prüfe dann die vier Aussagen nacheinander. Kürzer wird es, wenn du <InlineMath math="u=x^2-2x" /> schreibst.
 
-# Differenz vereinfachen
+# Der Definitionsbereich von h
+
+Der Logarithmus verlangt <InlineMath math="u>0" />. Die Wurzel verlangt <InlineMath math="{}^{2}\log u\le2" />, und weil die Basis <InlineMath math="2" /> größer als <InlineMath math="1" /> ist, wächst der Logarithmus, also gilt <InlineMath math="u\le2^2=4" />. Du brauchst also <InlineMath math="0<x^2-2x\le4" />.
 
 <BlockMath math="\begin{aligned}
-Q-P&=\frac{a+1}{b+1}-\frac ab\\
-&=\frac{b(a+1)-a(b+1)}{b(b+1)}\\
-&=\frac{b-a}{b(b+1)}
+x^2-2x>0\quad&\Longleftrightarrow\quad x<0\ \text{oder}\ x>2\\
+x^2-2x-4\le0\quad&\Longleftrightarrow\quad 1-\sqrt5\le x\le1+\sqrt5
 \end{aligned}" />
 
-Der Zähler <InlineMath math="b-a" /> ist positiv, weil <InlineMath math="a<b" /> gilt, und der Nenner <InlineMath math="b(b+1)" /> ist positiv, weil <InlineMath math="b>0" /> ist. Also **ist die Differenz immer positiv**.
+Beide Bedingungen zusammen ergeben <InlineMath math="1-\sqrt5\le x<0" /> oder <InlineMath math="2<x\le1+\sqrt5" />. Also **besteht der Definitionsbereich von <InlineMath math="h" /> aus zwei getrennten Intervallen**, und <InlineMath math="x=0" /> sowie <InlineMath math="x=2" /> fallen heraus, weil dort <InlineMath math="u=0" /> gilt.
 
-# Mit einem Beispiel prüfen
+# Die erste Aussage
 
-Für <InlineMath math="a=1" /> und <InlineMath math="b=3" /> gilt <InlineMath math="P=\tfrac13" /> und <InlineMath math="Q=\tfrac24=\tfrac12" />. Wer zu Zähler und Nenner eines Bruchs unter 1 dieselbe Zahl addiert, **bringt den Bruch näher an 1**, sein Wert steigt also.
+Wegen <InlineMath math="2<\sqrt5<3" /> liegt der linke Rand <InlineMath math="1-\sqrt5" /> zwischen <InlineMath math="-2" /> und <InlineMath math="-1" />, und der rechte Rand <InlineMath math="1+\sqrt5" /> liegt zwischen <InlineMath math="3" /> und <InlineMath math="4" />. Die einzige ganze Zahl im linken Intervall ist <InlineMath math="-1" />, im rechten nur <InlineMath math="3" />. Beide liefern <InlineMath math="u=3" />, und das liegt tatsächlich zwischen <InlineMath math="0" /> und <InlineMath math="4" />. Wenn du nur <InlineMath math="u\le4" /> benutzt, zählst du auch <InlineMath math="0" />, <InlineMath math="1" /> und <InlineMath math="2" /> mit, aber **der Logarithmus von null oder einer negativen Zahl ist nicht definiert**. Der Definitionsbereich enthält genau <InlineMath math="2" /> ganze Zahlen, die erste Aussage ist also wahr.
 
-Die Wahl, die Informationen reichten nicht aus, entsteht, weil <InlineMath math="a" /> und <InlineMath math="b" /> nicht eindeutig sind, obwohl das Vorzeichen der Differenz für jedes Paar gleich ist. Die richtige Beziehung ist also <InlineMath math="Q>P" />.
+# Die zweite Aussage
+
+Der Wert <InlineMath math="h(x)=0" /> bedeutet <InlineMath math="{}^{2}\log u=2" />, also <InlineMath math="u=4" />.
+
+<BlockMath math="\begin{aligned}
+x^2-2x&=4\\
+x^2-2x-4&=0\\
+x&=1-\sqrt5\ \text{oder}\ x=1+\sqrt5
+\end{aligned}" />
+
+Beide Werte sind Ränder des Definitionsbereichs, also zählen beide. **Die Gleichung hat <InlineMath math="2" /> Lösungen** und nicht <InlineMath math="1" />, die zweite Aussage ist also falsch.
+
+# Die dritte Aussage
+
+Viele denken, <InlineMath math="2-{}^{2}\log u" /> sei höchstens <InlineMath math="2" />, und damit gelte <InlineMath math="h(x)\le\sqrt2" />. Das stimmt nicht, denn **der Logarithmus ist negativ, wenn <InlineMath math="u" /> zwischen <InlineMath math="0" /> und <InlineMath math="1" /> liegt**. Such ein <InlineMath math="x" /> mit <InlineMath math="h(x)=3" /> und benutze dabei <InlineMath math="u=(x-1)^2-1" />.
+
+<BlockMath math="\begin{aligned}
+2-{}^{2}\log u&=9\\
+{}^{2}\log u&=-7\\
+u&=2^{-7}=\tfrac{1}{128}\\
+(x-1)^2-1&=\tfrac{1}{128}\\
+(x-1)^2&=\tfrac{129}{128}
+\end{aligned}" />
+
+Die Zahl <InlineMath math="\tfrac{129}{128}" /> ist positiv, also sind <InlineMath math="x=1\pm\sqrt{\tfrac{129}{128}}" /> reelle Zahlen, und <InlineMath math="u=\tfrac{1}{128}" /> erfüllt <InlineMath math="0<u\le4" />. Die dritte Aussage ist wahr.
+
+# Die vierte Aussage
+
+Ersetze <InlineMath math="x" /> in <InlineMath math="u" /> durch <InlineMath math="2-x" />.
+
+<BlockMath math="\begin{aligned}
+(2-x)^2-2(2-x)&=4-4x+x^2-4+2x\\
+&=x^2-2x
+\end{aligned}" />
+
+Der Wert von <InlineMath math="u" /> ändert sich nicht, und der Definitionsbereich hängt nur von <InlineMath math="u" /> ab. Also **ist der Definitionsbereich symmetrisch zu <InlineMath math="x=1" />**: Liegt <InlineMath math="x" /> darin, dann auch <InlineMath math="2-x" />. Die Paare <InlineMath math="-1" /> und <InlineMath math="3" /> sowie <InlineMath math="1-\sqrt5" /> und <InlineMath math="1+\sqrt5" /> passen dazu. Die vierte Aussage ist wahr.
+
+Die erste Aussage ist also wahr, die zweite falsch, die dritte wahr und die vierte wahr.

@@ -1,28 +1,33 @@
-The sign of <InlineMath math="x+1" /> is not known, so you **must not multiply both sides by <InlineMath math="x+1" /> straight away**. Move every term to one side and examine the sign of the resulting fraction.
+Both <InlineMath math="P" /> and <InlineMath math="Q" /> get smaller as <InlineMath math="n" /> grows, and for <InlineMath math="n=1" /> they're very close. So a few test values won't settle it: you need **a comparison that holds for every <InlineMath math="n" />**. The plan is to rewrite <InlineMath math="P" /> as a fraction with numerator <InlineMath math="1" /> and then compare the denominators.
 
-# Forming a single fraction
+# Rationalizing the first quantity
+
+Multiply the numerator and the denominator of <InlineMath math="P" /> by its conjugate, <InlineMath math="\sqrt{n+1}+\sqrt{n}" />.
 
 <BlockMath math="\begin{aligned}
-\frac{x-3}{x+1}-2&\ge0\\
-\frac{x-3-2(x+1)}{x+1}&\ge0\\
-\frac{-x-5}{x+1}&\ge0\\
-\frac{x+5}{x+1}&\le0
+P&=\frac{\left(\sqrt{n+1}-\sqrt{n}\right)\left(\sqrt{n+1}+\sqrt{n}\right)}{\sqrt{n+1}+\sqrt{n}}\\
+&=\frac{(n+1)-n}{\sqrt{n+1}+\sqrt{n}}=\frac{1}{\sqrt{n+1}+\sqrt{n}}
 \end{aligned}" />
 
-The last line multiplies by <InlineMath math="-1" />, so **the inequality sign flips**.
+Now <InlineMath math="P" /> and <InlineMath math="Q" /> both have numerator <InlineMath math="1" /> and a positive denominator. For fractions like that, **the smaller denominator gives the larger value**. So you only need to compare <InlineMath math="\sqrt{n+1}+\sqrt{n}" /> with <InlineMath math="\sqrt{4n+2}" />.
 
-# Checking the signs
+# Comparing the two denominators
 
-The numerator is zero at <InlineMath math="x=-5" />, and the denominator is zero at <InlineMath math="x=-1" />.
+Both denominators are positive, so they're in the same order as their squares. The square of the denominator of <InlineMath math="P" /> contains <InlineMath math="2\sqrt{n^2+n}" />, and that term is **always less than <InlineMath math="2n+1" />** because its square is smaller.
 
-| Interval | Sign of <InlineMath math="x+5" /> | Sign of <InlineMath math="x+1" /> | Sign of the fraction |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="x<-5" /> | negative | negative | positive |
-| <InlineMath math="-5<x<-1" /> | positive | negative | negative |
-| <InlineMath math="x>-1" /> | positive | positive | positive |
+<BlockMath math="\begin{aligned}
+\left(2\sqrt{n^2+n}\right)^2=4n^2+4n&<4n^2+4n+1=(2n+1)^2\\
+\left(\sqrt{n+1}+\sqrt{n}\right)^2=2n+1+2\sqrt{n^2+n}&<2n+1+(2n+1)=4n+2
+\end{aligned}" />
 
-The fraction is negative on <InlineMath math="-5<x<-1" /> and zero at <InlineMath math="x=-5" />. The point <InlineMath math="x=-1" /> is **excluded** because the denominator is zero there. Check <InlineMath math="x=-3" />: <InlineMath math="\frac{-6}{-2}=3\ge2" />.
+So <InlineMath math="\sqrt{n+1}+\sqrt{n}<\sqrt{4n+2}" />. The denominator of <InlineMath math="P" /> is smaller, so <InlineMath math="P>Q" /> for every positive integer <InlineMath math="n" />.
 
-The set <InlineMath math="x\le-5" /> appears when both sides are multiplied by <InlineMath math="x+1" /> as if it were positive. The set with <InlineMath math="-5<x" /> drops <InlineMath math="x=-5" />, although the left side is exactly 2 there. The set with <InlineMath math="x\le-1" /> includes the point where the denominator is zero. The set <InlineMath math="x\le-5" /> or <InlineMath math="x>-1" /> is the region with the opposite sign.
+# Checking with an example
 
-So the solution set is <InlineMath math="\{x\mid -5\le x<-1\}" />.
+For <InlineMath math="n=1" />, <InlineMath math="P=\sqrt{2}-1\approx 0.414" /> and <InlineMath math="Q=\tfrac{1}{\sqrt{6}}\approx 0.408" />. Indeed <InlineMath math="P>Q" />, but the gap is only about <InlineMath math="0.006" />, so **a rough estimate can easily mislead you**, and the algebra above is what decides it.
+
+# Checking the other options
+
+The option <InlineMath math="Q>P" /> comes from **treating <InlineMath math="Q" /> as the upper bound** <InlineMath math="\tfrac{1}{2\sqrt{n}}" />, the well-known bound for <InlineMath math="\sqrt{n+1}-\sqrt{n}" />, but <InlineMath math="Q=\tfrac{1}{2\sqrt{n+\frac{1}{2}}}" /> is smaller than that bound. The option <InlineMath math="P=Q" /> comes from treating <InlineMath math="\sqrt{n+1}+\sqrt{n}" /> as <InlineMath math="2\sqrt{n+\tfrac{1}{2}}" />, as if the root of an average were the average of the roots. The option that the information isn't enough comes from thinking the order might change for large <InlineMath math="n" />, but the inequality above holds for every <InlineMath math="n" />.
+
+So for every positive integer <InlineMath math="n" />, the quantity <InlineMath math="P" /> is greater than <InlineMath math="Q" />.

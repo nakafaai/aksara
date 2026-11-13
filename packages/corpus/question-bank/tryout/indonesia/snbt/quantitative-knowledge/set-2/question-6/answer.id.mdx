@@ -1,24 +1,41 @@
-Parabola dengan koefisien <InlineMath math="x^2" /> positif terbuka ke atas. Nilainya selalu positif, atau grafiknya berada di atas sumbu <InlineMath math="x" />, tepat ketika **tidak memotong dan tidak menyinggung sumbu <InlineMath math="x" />**, yaitu ketika diskriminannya negatif.
+Kamu perlu rumus <InlineMath math="f(x)" /> dulu, karena <InlineMath math="f(a)=f(2)" /> tidak bisa diselesaikan hanya dengan satu nilai. Rencananya: buat persamaan kedua dengan menukar <InlineMath math="x" /> dan <InlineMath math="\tfrac1x" />, hilangkan <InlineMath math="f\left(\tfrac1x\right)" />, lalu selesaikan persamaan untuk <InlineMath math="a" /> dan **buang calon yang dilarang**.
 
-# Syarat diskriminan
+# Persamaan kedua dari pertukaran
 
-Dengan <InlineMath math="a=1" />, <InlineMath math="b=-2k" />, dan <InlineMath math="c=k+6" />:
+Persamaan itu berlaku untuk setiap <InlineMath math="x\ne0" />, jadi kamu **boleh mengganti <InlineMath math="x" /> dengan <InlineMath math="\tfrac1x" />**, yang juga tidak nol.
+
+<BlockMath math="f\left(\frac1x\right)+2f(x)=\frac3x+3" />
+
+# Menghilangkan suku pasangannya
+
+Kalikan persamaan kedua dengan <InlineMath math="2" />, lalu kurangi dengan persamaan awal. Suku <InlineMath math="2f\left(\tfrac1x\right)" /> **saling menghapus**, dan yang tersisa hanya <InlineMath math="f(x)" />.
 
 <BlockMath math="\begin{aligned}
-D=(-2k)^2-4(1)(k+6)&<0\\
-4k^2-4k-24&<0\\
-k^2-k-6&<0\\
-(k-3)(k+2)&<0
+4f(x)+2f\left(\tfrac1x\right)-f(x)-2f\left(\tfrac1x\right)&=\frac6x+6-3x-3\\
+3f(x)&=\frac6x-3x+3\\
+f(x)&=\frac2x-x+1
 \end{aligned}" />
 
-Hasil kali dua faktor negatif ketika kedua faktor **berlawanan tanda**, yaitu untuk <InlineMath math="-2<k<3" />.
+Cek ke persamaan awal: <InlineMath math="f(x)+2f\left(\tfrac1x\right)=\tfrac2x-x+1+2\left(2x-\tfrac1x+1\right)=3x+3" />. Rumusnya benar.
 
-# Menjumlahkan bilangan bulat
+# Menyelesaikan persamaan untuk a
 
-Bilangan bulat dalam selang itu adalah <InlineMath math="-1" />, 0, 1, dan 2. Ujung <InlineMath math="k=-2" /> dan <InlineMath math="k=3" /> tidak termasuk karena pada ujung itu <InlineMath math="D=0" /> dan parabola menyinggung sumbu <InlineMath math="x" />.
+Hitung <InlineMath math="f(2)=1-2+1=0" />, jadi kamu mencari <InlineMath math="a" /> dengan <InlineMath math="f(a)=0" />. Kalikan dengan <InlineMath math="a" />, yang boleh karena <InlineMath math="a\ne0" />.
 
-<BlockMath math="-1+0+1+2=2" />
+<BlockMath math="\begin{aligned}
+\frac2a-a+1&=0\\
+2-a^2+a&=0\\
+a^2-a-2&=0\\
+(a-2)(a+1)&=0
+\end{aligned}" />
 
-Nilai 3 memasukkan kedua ujung. Nilai 5 memasukkan <InlineMath math="k=3" />, sedangkan nilai 0 memasukkan <InlineMath math="k=-2" />. Nilai <InlineMath math="-2" /> muncul dari kesalahan tanda <InlineMath math="k^2+k-6<0" />, yang memberi <InlineMath math="-3<k<2" />.
+Calon <InlineMath math="a=2" /> **dibuang oleh syarat <InlineMath math="a\ne2" />**, jadi <InlineMath math="a=-1" />. Cek: <InlineMath math="f(-1)=-2+1+1=0=f(2)" />.
 
-Jadi, jumlah semua bilangan bulat <InlineMath math="k" /> yang memenuhi adalah **2**.
+# Jebakan pada pilihan lain
+
+- <InlineMath math="-2" /> adalah hasil kali kedua akar <InlineMath math="a^2-a-2=0" />, bukan akar yang lain. Dari <InlineMath math="2\cdot a=-2" />, akar yang lain adalah <InlineMath math="-1" />.
+- <InlineMath math="-\tfrac14" /> muncul jika hasil eliminasi untuk <InlineMath math="f\left(\tfrac1x\right)" />, yaitu <InlineMath math="2x-\tfrac1x+1" />, **dibaca sebagai rumus <InlineMath math="f(x)" />**.
+- <InlineMath math="\tfrac12" /> muncul jika kamu mengira <InlineMath math="f(a)=f\left(\tfrac1a\right)" /> karena persamaannya memasangkan <InlineMath math="x" /> dengan <InlineMath math="\tfrac1x" />, padahal <InlineMath math="f\left(\tfrac12\right)=4-\tfrac12+1=\tfrac92\ne0" />.
+- <InlineMath math="1" /> muncul jika kedua persamaan dijumlahkan, bukan dikurangkan, saat eliminasi, sehingga rumusnya keliru menjadi <InlineMath math="f(x)=\tfrac2x+x+3" />.
+
+Jadi, nilai <InlineMath math="a" /> adalah <InlineMath math="-1" />.
