@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kepala perpustakaan seharusnya membagi $$120$$ dengan $$1{.}500$$, sehingga penunggak yang sudah kembali aktif hanya $$8\\%$$.",
+            "Kepala perpustakaan seharusnya membagi $$120$$ dengan $$1{.}500$$, sehingga penunggak yang sudah kembali aktif tepat $$8\\%$$.",
         },
         {
           correct: false,
