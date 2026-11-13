@@ -1,0 +1,24 @@
+# When Andi can win
+
+Andi wins if one of his throws goes in **before any of Budi's throws goes in**. Andi's chance changes: <InlineMath math="\tfrac14" />, then <InlineMath math="\tfrac12" />, then <InlineMath math="\tfrac34" />. Budi's chance of missing is always <InlineMath math="1-\tfrac13=\tfrac23" />.
+
+There are three ways for Andi to win, and they can't happen together.
+
+| Way | Order of throws | Probability |
+| :---: | :---: | :---: |
+| In on throw 1 | Andi scores | <InlineMath math="\tfrac14" /> |
+| In on throw 2 | Andi misses, Budi misses, Andi scores | <InlineMath math="\tfrac34\cdot\tfrac23\cdot\tfrac12=\tfrac14" /> |
+| In on throw 3 | two rounds of misses, then Andi scores | <InlineMath math="\tfrac34\cdot\tfrac23\cdot\tfrac12\cdot\tfrac23\cdot\tfrac34=\tfrac18" /> |
+
+<BlockMath math="P(\text{Andi wins})=\tfrac14+\tfrac14+\tfrac18=\tfrac58" />
+
+# Check with the other outcomes
+
+Budi wins with probability <InlineMath math="\tfrac34\cdot\tfrac13+\tfrac34\cdot\tfrac23\cdot\tfrac12\cdot\tfrac13+\tfrac34\cdot\tfrac23\cdot\tfrac12\cdot\tfrac23\cdot\tfrac14\cdot\tfrac13=\tfrac{25}{72}" />, and a draw has probability <InlineMath math="\tfrac{1}{36}" />. They add up to <InlineMath math="\tfrac{45}{72}+\tfrac{25}{72}+\tfrac{2}{72}=1" />, so **the calculation is consistent**.
+
+So the probability that Andi wins is <InlineMath math="\tfrac58" />.
+
+- <InlineMath math="\tfrac{47}{72}" /> works out <InlineMath math="1-\tfrac{25}{72}" />, forgetting that the game can end in a draw.
+- <InlineMath math="\tfrac12" /> counts only the first two rounds.
+- <InlineMath math="\tfrac{7}{16}" /> keeps Andi's chance at <InlineMath math="\tfrac14" /> on every throw.
+- <InlineMath math="\tfrac{13}{32}" /> uses Budi's chance of scoring, <InlineMath math="\tfrac13" />, but Andi only throws again if Budi misses.

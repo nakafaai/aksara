@@ -1,0 +1,23 @@
+# How many numbers in all
+
+The sample space is every four-digit number with different digits whose first digit isn't <InlineMath math="0" />. Fill the slots from the left: the first digit has <InlineMath math="6" /> choices (not <InlineMath math="0" />), then <InlineMath math="6" />, <InlineMath math="5" /> and <InlineMath math="4" /> choices.
+
+<BlockMath math="n(S)=6\cdot6\cdot5\cdot4=720" />
+
+# Even numbers above four thousand
+
+Two slots have conditions: the first digit must be <InlineMath math="4" />, <InlineMath math="5" /> or <InlineMath math="6" />, and the last digit must be even, that is <InlineMath math="0,2,4,6" />. These conditions **get in each other's way**, because <InlineMath math="4" /> and <InlineMath math="6" /> are even. So split the cases by the first digit.
+
+| First digit | Choices for the last digit | Two middle digits | Numbers |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="4" /> or <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="5\cdot4=20" /> | <InlineMath math="2\cdot3\cdot20=120" /> |
+| <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="5\cdot4=20" /> | <InlineMath math="1\cdot4\cdot20=80" /> |
+
+<BlockMath math="P=\frac{120+80}{720}=\frac{200}{720}=\frac{5}{18}" />
+
+So the probability is <InlineMath math="\tfrac{5}{18}" />.
+
+- <InlineMath math="\tfrac{1}{4}" /> gives the last digit <InlineMath math="3" /> choices in every case, forgetting that a first digit of <InlineMath math="5" /> doesn't use up an even digit.
+- <InlineMath math="\tfrac{5}{21}" /> lets the first digit be <InlineMath math="0" /> in the sample space, so the denominator becomes <InlineMath math="840" />.
+- <InlineMath math="\tfrac{7}{36}" /> doesn't count <InlineMath math="0" /> as even.
+- <InlineMath math="\tfrac{5}{36}" /> counts the two middle digits as a combination, but their order makes different numbers.

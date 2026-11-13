@@ -1,0 +1,30 @@
+# The corrected data
+
+Only days with sales **less than** <InlineMath math="40" /> change. The day with exactly <InlineMath math="40" /> cups isn't corrected. Four days change: <InlineMath math="33, 38, 31, 32" /> become <InlineMath math="38, 43, 36, 37" />.
+
+| | Sorted data | Mean | Median | Range |
+| :---: | :---: | :---: | :---: | :---: |
+| Before | <InlineMath math="31,32,33,38,40,41,45,46,46,48" /> | <InlineMath math="40" /> | <InlineMath math="40.5" /> | <InlineMath math="17" /> |
+| After | <InlineMath math="36,37,38,40,41,43,45,46,46,48" /> | <InlineMath math="42" /> | <InlineMath math="42" /> | <InlineMath math="12" /> |
+
+New mean: the total rises by <InlineMath math="4\cdot5=20" />, so the mean rises by <InlineMath math="\tfrac{20}{10}=2" /> to <InlineMath math="42" />.
+
+# The new standard deviation
+
+Find how far each new value is from <InlineMath math="42" />, square it, and add.
+
+<BlockMath math="\begin{aligned}
+\text{differences}&:\ -1,-4,4,1,-6,3,-2,6,-5,4 \\
+\textstyle\sum(x_i-\bar x)^2&=1+16+16+1+36+9+4+36+25+16=160 \\
+S&=\sqrt{\tfrac{160}{10}}=4
+\end{aligned}" />
+
+# Judging each statement
+
+1. **False**. The median rises from <InlineMath math="40.5" /> to <InlineMath math="42" />, because the two middle values change.
+2. **True**. The mean becomes <InlineMath math="42" />.
+3. **True**. The range drops from <InlineMath math="17" /> to <InlineMath math="12" />, because the smallest value rises from <InlineMath math="31" /> to <InlineMath math="36" /> while the largest stays <InlineMath math="48" />.
+4. **True**. The new standard deviation is <InlineMath math="4" />, no longer <InlineMath math="6" />.
+5. **True**. The lowest sales are now <InlineMath math="36" />, which is <InlineMath math="42-36=6" /> from the mean, and <InlineMath math="6>4" />. If you used the old standard deviation of <InlineMath math="6" />, the gap wouldn't be more than one standard deviation. That's the trap.
+
+So the true statements are the second, third, fourth and fifth.

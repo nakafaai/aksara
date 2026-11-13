@@ -1,0 +1,30 @@
+# Die korrigierten Daten
+
+Nur Tage mit einem Verkauf von **weniger als** <InlineMath math="40" /> Gläsern ändern sich. Der Tag mit genau <InlineMath math="40" /> Gläsern wird nicht korrigiert. Vier Tage ändern sich: <InlineMath math="33, 38, 31, 32" /> werden zu <InlineMath math="38, 43, 36, 37" />.
+
+| | Geordnete Daten | Mittelwert | Median | Spannweite |
+| :---: | :---: | :---: | :---: | :---: |
+| Vorher | <InlineMath math="31,32,33,38,40,41,45,46,46,48" /> | <InlineMath math="40" /> | <InlineMath math="40{,}5" /> | <InlineMath math="17" /> |
+| Nachher | <InlineMath math="36,37,38,40,41,43,45,46,46,48" /> | <InlineMath math="42" /> | <InlineMath math="42" /> | <InlineMath math="12" /> |
+
+Neuer Mittelwert: Die Summe steigt um <InlineMath math="4\cdot5=20" />, der Mittelwert also um <InlineMath math="\tfrac{20}{10}=2" /> auf <InlineMath math="42" />.
+
+# Die neue Standardabweichung
+
+Bestimme für jeden neuen Wert den Abstand zu <InlineMath math="42" />, quadriere und addiere.
+
+<BlockMath math="\begin{aligned}
+\text{Abweichungen}&:\ -1,-4,4,1,-6,3,-2,6,-5,4 \\
+\textstyle\sum(x_i-\bar x)^2&=1+16+16+1+36+9+4+36+25+16=160 \\
+S&=\sqrt{\tfrac{160}{10}}=4
+\end{aligned}" />
+
+# Jede Aussage prüfen
+
+1. **Falsch**. Der Median steigt von <InlineMath math="40{,}5" /> auf <InlineMath math="42" />, weil sich die beiden mittleren Werte ändern.
+2. **Richtig**. Der Mittelwert wird <InlineMath math="42" />.
+3. **Richtig**. Die Spannweite sinkt von <InlineMath math="17" /> auf <InlineMath math="12" />, weil der kleinste Wert von <InlineMath math="31" /> auf <InlineMath math="36" /> steigt und der größte <InlineMath math="48" /> bleibt.
+4. **Richtig**. Die neue Standardabweichung ist <InlineMath math="4" />, nicht mehr <InlineMath math="6" />.
+5. **Richtig**. Der kleinste Verkauf ist jetzt <InlineMath math="36" />, also <InlineMath math="42-36=6" /> vom Mittelwert entfernt, und <InlineMath math="6>4" />. Mit der alten Standardabweichung <InlineMath math="6" /> wäre der Abstand nicht größer als eine Standardabweichung. Das ist die Falle.
+
+Richtig sind also die zweite, dritte, vierte und fünfte Aussage.
