@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "parallel-argument",
+    topic: "flaw",
   },
-  stimulus: "jalur",
+  stimulus: "pengayaan",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Semua gang yang diberi lampu jalan di kelurahan itu mengalami penurunan kasus pencurian. Gang Kenanga termasuk gang yang diberi lampu jalan. Jadi, pencurian di Gang Kenanga menurun.",
+            "Kepala sekolah tidak memperhitungkan bahwa pada Januari peserta sudah unggul $$4$$ poin atas siswa yang tidak mendaftar.",
         },
         {
           correct: false,
           label:
-            "Jika lampu jalan dipasang, pencurian berkurang. Pencurian di Gang Mawar tidak berkurang. Jadi, lampu jalan tidak dipasang di Gang Mawar.",
+            "Kepala sekolah seharusnya membandingkan peserta dengan seluruh $$120$$ siswa yang tidak mengikuti kelas tambahan sehingga efek kelas itu sekitar $$6{,}5$$ poin.",
+        },
+        {
+          correct: false,
+          label:
+            "Kelompok pembanding yang dipakai kepala sekolah hanya berisi $$30$$ siswa, separuh dari banyak peserta, sehingga rata-rata kedua kelompok tidak dapat dibandingkan.",
         },
         {
           correct: true,
           label:
-            "Sejak lampu jalan dipasang di Gang Melati, kasus pencurian di gang itu berkurang. Jadi, memasang lampu jalan di semua gang akan mengurangi pencurian di seluruh kelurahan.",
+            "Efek $$5$$ poin hanya diukur pada siswa yang mau mendaftar, padahal kelas wajib tahun depan juga diikuti siswa seperti $$90$$ siswa yang tahun ini tidak mendaftar.",
         },
         {
           correct: false,
           label:
-            "Di setiap gang yang diberi lampu jalan, pencurian berkurang. Jadi, lampu jalan mungkin ikut menekan pencurian.",
-        },
-        {
-          correct: false,
-          label:
-            "Pencurian di Gang Melati berkurang setelah ronda malam dimulai. Jadi, ronda malam lebih efektif daripada lampu jalan.",
+            "Kepala sekolah mengabaikan bahwa pendaftar yang tidak mendapat tempat juga naik $$3$$ poin.",
         },
       ],
     },

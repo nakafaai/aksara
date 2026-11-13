@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "quantifier",
+    topic: "categorical-syllogism",
   },
   versions: {
     id: {
@@ -12,26 +12,26 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "Rina bukan pegawai bagian keuangan.",
+          label:
+            "Sebagian kain yang dibuat dengan alat tenun gedogan tidak dipajang di ruang utama.",
+        },
+        {
+          correct: false,
+          label: "Tidak ada kain tenun ikat yang dipajang di ruang utama.",
         },
         {
           correct: false,
           label:
-            "Semua pegawai yang bukan bagian keuangan mengajukan cuti panjang.",
-        },
-        {
-          correct: false,
-          label: "Sebagian pegawai bagian keuangan mengajukan cuti panjang.",
+            "Semua kain yang tidak dipajang di ruang utama belum bersertifikat pewarna alami.",
         },
         {
           correct: false,
           label:
-            "Setiap pegawai yang tidak mengajukan cuti panjang adalah pegawai bagian keuangan.",
+            "Sebagian kain yang dipajang di ruang utama bukan kain yang dibuat dengan alat tenun gedogan.",
         },
         {
           correct: false,
-          label:
-            "Semua pegawai yang telah bekerja lebih dari dua tahun mengajukan cuti panjang.",
+          label: "Sebagian kain tenun ikat sudah bersertifikat pewarna alami.",
         },
       ],
     },

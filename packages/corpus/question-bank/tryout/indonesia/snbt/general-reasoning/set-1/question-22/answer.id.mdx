@@ -1,17 +1,34 @@
-Aturan yang benar harus cocok dengan **ketiga baris lengkap**, bukan hanya dua baris pertama. Dua baris pertama mudah menipu karena pola "kolom 2 ditambah 1" atau tripel Pythagoras tampak cocok.
+Rata-rata baru regu Biru bergantung pada banyak anggotanya, padahal **ukuran kedua regu tidak disebutkan**. Jadi, ukuran itu harus dicari dulu dari dua rata-rata gabungan yang diketahui. Alat utamanya adalah hubungan <InlineMath math="\text{jumlah}=\text{rata-rata}\times\text{banyak orang}" />.
 
-Uji beberapa dugaan aturan dengan bilangan di kolom 1 sebagai <InlineMath math="a" /> dan kolom 2 sebagai <InlineMath math="b" />:
+Langkah pertama, cari banyak anggota regu Merah sebelum pemindahan. Misalkan banyaknya <InlineMath math="m" />. Setelah <InlineMath math="4" /> penjahit dengan rata-rata <InlineMath math="32" /> masuk, rata-rata regu Merah menjadi <InlineMath math="20" />:
 
-| Dugaan aturan | Baris 1 | Baris 2 | Baris 3 |
-| --- | --- | --- | --- |
-| <InlineMath math="b+1" /> | <InlineMath math="5" /> cocok | <InlineMath math="13" /> cocok | <InlineMath math="10" /> tidak cocok |
-| <InlineMath math="a+b-2" /> | <InlineMath math="5" /> cocok | <InlineMath math="15" /> tidak cocok | <InlineMath math="11" /> tidak cocok |
-| <InlineMath math="a^2-b" /> | <InlineMath math="9-4=5" /> cocok | <InlineMath math="25-12=13" /> cocok | <InlineMath math="16-9=7" /> cocok |
+<BlockMath math="\begin{aligned}
+\frac{14m+4\times32}{m+4} &= 20 \\
+14m+128 &= 20m+80 \\
+48 &= 6m \\
+m &= 8
+\end{aligned}" />
 
-Hanya aturan **kuadrat bilangan pertama dikurangi bilangan kedua** yang cocok dengan semua baris. Terapkan pada baris terakhir:
+Langkah kedua, cari banyak anggota regu Biru sebelum pemindahan. Misalkan banyaknya <InlineMath math="b" />. Rata-rata seluruh penjahit adalah <InlineMath math="24" />:
 
-<BlockMath math="6^2-20=36-20=16" />
+<BlockMath math="\begin{aligned}
+\frac{14\times8+29b}{8+b} &= 24 \\
+112+29b &= 192+24b \\
+5b &= 80 \\
+b &= 16
+\end{aligned}" />
 
-Pilihan lain berasal dari aturan yang gugur. Bilangan <InlineMath math="21" /> berasal dari <InlineMath math="b+1" />, <InlineMath math="24" /> dari <InlineMath math="a+b-2" />, <InlineMath math="26" /> dari <InlineMath math="a+b" />, dan <InlineMath math="14" /> dari <InlineMath math="b-a" />. Semuanya sudah dibantah oleh baris ketiga.
+Langkah ketiga, hitung rata-rata baru regu Biru. Jumlah hasil kerjanya semula <InlineMath math="29\times16=464" /> potong. Empat penjahit yang pindah membawa <InlineMath math="4\times32=128" /> potong, dan anggotanya tinggal <InlineMath math="16-4=12" /> orang:
 
-Jadi, bilangan yang mengganti tanda tanya adalah <InlineMath math="16" />.
+<BlockMath math="\frac{464-128}{12} = \frac{336}{12} = 28" />
+
+Cek dengan rata-rata seluruh penjahit. Pemindahan tidak menambah atau mengurangi penjahit, jadi rata-rata seluruhnya harus tetap <InlineMath math="24" />. Memang, <InlineMath math="\dfrac{20\times12+28\times12}{24}=\dfrac{576}{24}=24" />.
+
+Pilihan lain berasal dari langkah yang terlewat:
+
+- <InlineMath math="29" /> potong menganggap rata-rata regu Biru tidak berubah. Padahal yang pindah adalah penjahit yang hasilnya di atas rata-rata regu Biru, jadi rata-rata yang tersisa pasti turun.
+- <InlineMath math="21" /> potong muncul jika <InlineMath math="336" /> tetap dibagi <InlineMath math="16" />, seolah-olah empat penjahit itu masih anggota regu Biru.
+- <InlineMath math="23" /> potong muncul jika regu Biru dianggap turun sebanyak kenaikan regu Merah, yaitu <InlineMath math="29-6" />. Kedua regu tidak sama besar, jadi perubahannya juga tidak sama.
+- <InlineMath math="26" /> potong muncul jika kedua regu dianggap sama besar, masing-masing <InlineMath math="8" /> orang, sehingga rata-rata gabungan <InlineMath math="24" /> tidak dipakai.
+
+Jadi, setelah pemindahan, rata-rata hasil kerja regu Biru adalah <InlineMath math="28" /> potong per orang per hari.

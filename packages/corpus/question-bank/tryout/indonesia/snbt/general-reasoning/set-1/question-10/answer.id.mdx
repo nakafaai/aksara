@@ -1,24 +1,30 @@
-Cari aturan yang berlaku untuk **ketiga contoh sekaligus**. Bandingkan dulu susunan huruf mati, lalu perubahan huruf vokal.
+Setiap suku terdiri atas dua huruf, dan kedua huruf itu bergerak dengan **aturan yang berbeda**. Supaya mudah dihitung, ubah setiap huruf menjadi nomor urutnya di alfabet: <InlineMath math="\text{A} = 1" />, <InlineMath math="\text{B} = 2" />, dan seterusnya sampai <InlineMath math="\text{Z} = 26" />.
 
-Perhatikan posisi huruf mati. Pada RAKIT, huruf terakhir T pindah ke depan. Pada BOLAN, N pindah ke depan. Pada MUSIK, K pindah ke depan. Jadi, langkah pertama adalah **memindahkan huruf terakhir ke posisi pertama**:
+Huruf pertama adalah B, D, G, K, P, yaitu <InlineMath math="2, 4, 7, 11, 16" />. Selisihnya <InlineMath math="+2, +3, +4, +5" />, jadi selisih berikutnya <InlineMath math="+6, +7, +8, +9, +10" />.
 
-| Masukan | Setelah huruf terakhir dipindah | Keluaran |
-| --- | --- | --- |
-| RAKIT | TRAKI | TREKO |
-| BOLAN | NBOLA | NBULE |
-| MUSIK | KMUSI | KMASO |
+Huruf kedua adalah S, Z, G, N, U, yaitu <InlineMath math="19, 26, 7, 14, 21" />. Dari Z ke G tampak mundur, padahal alfabetnya melingkar: <InlineMath math="26 + 7 = 33" />, dan <InlineMath math="33 - 26 = 7" />, yaitu G. Jadi, huruf kedua selalu maju <InlineMath math="7" />.
 
-Bandingkan kolom tengah dengan keluaran. Huruf mati tetap, tetapi setiap vokal berganti dengan **vokal berikutnya** dalam urutan melingkar A, E, I, O, U: A menjadi E, I menjadi O, O menjadi U, dan U menjadi A. Keempat perubahan itu tampak pada contoh, yaitu A menjadi E (RAKIT, BOLAN), I menjadi O (RAKIT, MUSIK), O menjadi U (BOLAN), dan U menjadi A (MUSIK).
+Kalau nomornya melewati <InlineMath math="26" />, kurangi <InlineMath math="26" />. Lanjutkan kedua aturan bersamaan dari suku ke-<InlineMath math="6" /> sampai suku ke-<InlineMath math="10" />:
 
-Terapkan kedua langkah pada PITAR:
+| Suku | Huruf pertama | Huruf kedua | Pasangan |
+| --- | --- | --- | --- |
+| <InlineMath math="6" /> | <InlineMath math="16 + 6 = 22" />, V | <InlineMath math="21 + 7 = 28" />, lalu <InlineMath math="28 - 26 = 2" />, B | VB |
+| <InlineMath math="7" /> | <InlineMath math="22 + 7 = 29" />, lalu <InlineMath math="29 - 26 = 3" />, C | <InlineMath math="2 + 7 = 9" />, I | CI |
+| <InlineMath math="8" /> | <InlineMath math="3 + 8 = 11" />, K | <InlineMath math="9 + 7 = 16" />, P | KP |
+| <InlineMath math="9" /> | <InlineMath math="11 + 9 = 20" />, T | <InlineMath math="16 + 7 = 23" />, W | TW |
+| <InlineMath math="10" /> | <InlineMath math="20 + 10 = 30" />, lalu <InlineMath math="30 - 26 = 4" />, D | <InlineMath math="23 + 7 = 30" />, lalu <InlineMath math="30 - 26 = 4" />, D | DD |
 
-<BlockMath math="\text{PITAR} \;\rightarrow\; \text{RPITA} \;\rightarrow\; \text{RPOTE}" />
+Cek dengan menghitung langsung dari suku ke-<InlineMath math="5" />. Huruf pertama maju <InlineMath math="6 + 7 + 8 + 9 + 10 = 40" /> langkah, dan huruf kedua maju <InlineMath math="5 \times 7 = 35" /> langkah:
 
-Pilihan lain muncul dari aturan yang tidak lengkap atau keliru:
+<BlockMath math="\begin{aligned} \text{Huruf pertama: } & 16 + 40 = 56 = 2(26) + 4 \\ \text{Huruf kedua: } & 21 + 35 = 56 = 2(26) + 4 \end{aligned}" />
 
-- RPITA hanya memindahkan huruf terakhir tanpa mengganti vokal.
-- POTER hanya mengganti vokal tanpa memindahkan huruf.
-- OTERP memindahkan huruf pertama ke belakang, padahal contoh memindahkan huruf terakhir ke depan.
-- RPETU mengganti vokal ke arah sebaliknya, misalnya I menjadi E.
+Keduanya bernomor <InlineMath math="4" />, yaitu D, cocok dengan tabel.
 
-Jadi, keluaran mesin untuk PITAR adalah RPOTE.
+Pilihan lain muncul dari kesalahan berikut:
+
+- TW adalah suku ke-<InlineMath math="9" />, jadi berhenti satu suku terlalu cepat.
+- OD muncul kalau huruf pertama dianggap selalu maju <InlineMath math="5" /> dan tidak menyadari selisihnya terus bertambah.
+- YD muncul kalau selisih huruf pertama dimulai lagi dari <InlineMath math="+5" />, bukan <InlineMath math="+6" />: <InlineMath math="16 + 5 + 6 + 7 + 8 + 9 = 51" />, lalu <InlineMath math="51 - 26 = 25" />, yaitu Y.
+- DW muncul kalau huruf kedua hanya dimajukan sampai suku ke-<InlineMath math="9" />.
+
+Jadi, suku ke-<InlineMath math="10" /> barisan itu adalah DD.

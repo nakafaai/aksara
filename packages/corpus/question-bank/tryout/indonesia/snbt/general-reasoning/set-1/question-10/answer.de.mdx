@@ -1,24 +1,30 @@
-Suche eine Regel, die für **alle drei Beispiele zugleich** gilt. Vergleiche zuerst die Anordnung der Konsonanten, dann die Veränderung der Vokale.
+Jedes Glied besteht aus zwei Buchstaben, und die beiden Buchstaben bewegen sich nach **verschiedenen Regeln**. Damit das Zählen leicht wird, ersetzt du jeden Buchstaben durch seine Stelle im Alphabet: <InlineMath math="\text{A} = 1" />, <InlineMath math="\text{B} = 2" /> und so weiter bis <InlineMath math="\text{Z} = 26" />.
 
-Sieh dir die Konsonanten an. Bei RAKIT wandert der letzte Buchstabe T nach vorn. Bei BOLAN wandert N nach vorn, bei MUSIK das K. Der erste Schritt ist also, **den letzten Buchstaben an die erste Stelle zu setzen**:
+Die ersten Buchstaben sind B, D, G, K, P, also <InlineMath math="2, 4, 7, 11, 16" />. Die Schritte sind <InlineMath math="+2, +3, +4, +5" />, also folgen <InlineMath math="+6, +7, +8, +9, +10" />.
 
-| Eingabe | Nach dem Verschieben des letzten Buchstabens | Ausgabe |
-| --- | --- | --- |
-| RAKIT | TRAKI | TREKO |
-| BOLAN | NBOLA | NBULE |
-| MUSIK | KMUSI | KMASO |
+Die zweiten Buchstaben sind S, Z, G, N, U, also <InlineMath math="19, 26, 7, 14, 21" />. Von Z nach G sieht es nach einem Schritt zurück aus, aber das Alphabet läuft im Kreis: <InlineMath math="26 + 7 = 33" />, und <InlineMath math="33 - 26 = 7" />, also G. Der zweite Buchstabe rückt also immer um <InlineMath math="7" /> vor.
 
-Vergleiche die mittlere Spalte mit der Ausgabe. Die Konsonanten bleiben, aber jeder Vokal wird zum **nächsten Vokal** im Kreis A, E, I, O, U: A wird E, I wird O, O wird U und U wird A. Alle vier Änderungen kommen in den Beispielen vor: A zu E (RAKIT, BOLAN), I zu O (RAKIT, MUSIK), O zu U (BOLAN) und U zu A (MUSIK).
+Wenn eine Stelle über <InlineMath math="26" /> hinausgeht, ziehst du <InlineMath math="26" /> ab. Führe jetzt beide Regeln nebeneinander vom <InlineMath math="6" />. bis zum <InlineMath math="10" />. Glied fort:
 
-Wende beide Schritte auf PITAR an:
+| Glied | Erster Buchstabe | Zweiter Buchstabe | Paar |
+| --- | --- | --- | --- |
+| <InlineMath math="6" /> | <InlineMath math="16 + 6 = 22" />, V | <InlineMath math="21 + 7 = 28" />, dann <InlineMath math="28 - 26 = 2" />, B | VB |
+| <InlineMath math="7" /> | <InlineMath math="22 + 7 = 29" />, dann <InlineMath math="29 - 26 = 3" />, C | <InlineMath math="2 + 7 = 9" />, I | CI |
+| <InlineMath math="8" /> | <InlineMath math="3 + 8 = 11" />, K | <InlineMath math="9 + 7 = 16" />, P | KP |
+| <InlineMath math="9" /> | <InlineMath math="11 + 9 = 20" />, T | <InlineMath math="16 + 7 = 23" />, W | TW |
+| <InlineMath math="10" /> | <InlineMath math="20 + 10 = 30" />, dann <InlineMath math="30 - 26 = 4" />, D | <InlineMath math="23 + 7 = 30" />, dann <InlineMath math="30 - 26 = 4" />, D | DD |
 
-<BlockMath math="\text{PITAR} \;\rightarrow\; \text{RPITA} \;\rightarrow\; \text{RPOTE}" />
+Zur Kontrolle springst du direkt vom <InlineMath math="5" />. Glied aus. Der erste Buchstabe rückt um <InlineMath math="6 + 7 + 8 + 9 + 10 = 40" /> Stellen vor, der zweite um <InlineMath math="5 \cdot 7 = 35" /> Stellen:
 
-Die anderen Optionen entstehen aus einer unvollständigen oder falschen Regel:
+<BlockMath math="\begin{aligned} \text{Erster Buchstabe: } & 16 + 40 = 56 = 2(26) + 4 \\ \text{Zweiter Buchstabe: } & 21 + 35 = 56 = 2(26) + 4 \end{aligned}" />
 
-- RPITA verschiebt nur den letzten Buchstaben und behält die Vokale.
-- POTER ändert nur die Vokale und verschiebt keinen Buchstaben.
-- OTERP setzt den ersten Buchstaben ans Ende, die Beispiele setzen aber den letzten Buchstaben nach vorn.
-- RPETU verschiebt die Vokale rückwärts, zum Beispiel I zu E.
+Beide landen auf Stelle <InlineMath math="4" />, also D, passend zur Tabelle.
 
-Die Maschine macht aus PITAR also RPOTE.
+Die anderen Optionen entstehen durch diese Fehler:
+
+- TW ist das <InlineMath math="9" />. Glied, hier wird also ein Glied zu früh aufgehört.
+- OD entsteht, wenn du annimmst, der erste Buchstabe rücke immer um <InlineMath math="5" /> vor, und übersiehst, dass die Schritte weiter wachsen.
+- YD entsteht, wenn die Schritte des ersten Buchstabens wieder bei <InlineMath math="+5" /> statt bei <InlineMath math="+6" /> beginnen: <InlineMath math="16 + 5 + 6 + 7 + 8 + 9 = 51" />, dann <InlineMath math="51 - 26 = 25" />, also Y.
+- DW entsteht, wenn du den zweiten Buchstaben nur bis zum <InlineMath math="9" />. Glied weiterrückst.
+
+Das <InlineMath math="10" />. Glied der Folge ist also DD.
