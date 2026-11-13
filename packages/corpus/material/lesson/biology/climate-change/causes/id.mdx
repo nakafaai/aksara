@@ -5,7 +5,7 @@ export const metadata = {
     "Efek rumah kaca menjelaskan mengapa Bumi menghangat. Pembakaran bahan bakar fosil, perubahan lahan, limbah organik, produksi plastik, dan aktivitas manusia lain menambah gas rumah kaca atau mengurangi penyerapan karbon.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Perubahan Iklim",
 };
 
@@ -79,6 +79,29 @@ Dalam model sederhana di buku pelajaran, tiap lapisan gas rumah kaca menyerap se
   }}
 />
 
+Tiga gas rumah kaca utama dari kegiatan manusia adalah <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{CH_4}" />, dan <InlineMath math="\mathrm{N_2O}" />. Putar molekulnya dan bandingkan bentuknya.
+
+<MoleculeShapeLab
+  title={<>Tiga Gas Rumah Kaca dalam 3D</>}
+  description={<>Pilih karbon dioksida, metana, atau dinitrogen oksida, lalu bandingkan sudut ikatannya.</>}
+  molecules={[
+    { id: "carbon-dioxide", name: "Karbon dioksida" },
+    { id: "methane", name: "Metana" },
+    { id: "dinitrogen-monoxide", name: "Dinitrogen oksida" },
+  ]}
+  labels={{
+    atoms: <>Atom penyusun</>,
+    choose: "Pilih molekul",
+    fill: <>Model ruang</>,
+    formula: <>Rumus molekul</>,
+    mass: <>Massa molekul relatif</>,
+    shape: <>Sudut atau panjang ikatan</>,
+    view: "Model molekul tiga dimensi",
+  }}
+/>
+
+<InlineMath math="\mathrm{CO_2}" /> dan <InlineMath math="\mathrm{N_2O}" /> berbentuk lurus, sedangkan <InlineMath math="\mathrm{CH_4}" /> berbentuk tetrahedron dengan sudut <InlineMath math="109{,}5^\circ" />. Ketiganya punya tiga atom atau lebih, sehingga ikatannya dapat bergetar dan menyerap radiasi inframerah dari permukaan Bumi. Molekul dua atom yang sama seperti nitrogen dan oksigen hampir tidak menyerapnya. Per kilogram, dalam <InlineMath math="100" /> tahun, <InlineMath math="\mathrm{CH_4}" /> dari bahan bakar fosil menahan panas sekitar <InlineMath math="30" /> kali dan <InlineMath math="\mathrm{N_2O}" /> sekitar <InlineMath math="273" /> kali lebih kuat daripada <InlineMath math="\mathrm{CO_2}" />.
+
 ## Pembakaran Memindahkan Karbon ke Atmosfer
 
 Ketika bahan bakar fosil dibakar, atau biomassa hutan dibakar dan terurai setelah penebangan, karbon tersimpan masuk ke atmosfer terutama sebagai karbon dioksida. Karbonnya tidak terbentuk baru, melainkan **berpindah dari simpanan jangka panjang ke atmosfer**. Perpindahan itulah yang menaikkan konsentrasi gas rumah kaca di atmosfer.
@@ -88,6 +111,31 @@ Ketika bahan bakar fosil dibakar, atau biomassa hutan dibakar dan terurai setela
 Bahan bakar fosil terbentuk dari karbon yang tersimpan sangat lama di bawah permukaan Bumi. Saat batu bara, minyak, atau gas dibakar, karbon itu **bereaksi dengan oksigen** dan menghasilkan karbon dioksida.
 
 Karbon dioksida adalah salah satu dari beberapa gas rumah kaca. Emisinya besar karena banyak aktivitas manusia memakai energi dari bahan bakar fosil. Kendaraan, pabrik, pembangkit listrik, dan proses industri dapat menambah karbon dioksida ke atmosfer.
+
+Elpiji yang dipakai untuk memasak adalah campuran propana dan butana. Saat dibakar, karbon yang tersimpan di dalamnya berpindah ke udara sebagai <InlineMath math="\mathrm{CO_2}" />.
+
+<ReactionBalanceLab
+  title={<>Membakar Bahan Bakar Melepaskan Karbon Dioksida</>}
+  description={<>Jalankan reaksi atom demi atom. Bandingkan pembakaran propana dan metana.</>}
+  reactions={[
+    { id: "propane-combustion", name: "Membakar propana", tab: <InlineMath math="\mathrm{C_3H_8}" /> },
+    { id: "methane-combustion", name: "Membakar metana", tab: <InlineMath math="\mathrm{CH_4}" /> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Jumlah atom tiap unsur</>,
+    choose: "Pilih reaksi",
+    equation: <>Persamaan reaksi</>,
+    mass: <>Massa pereaksi dan produk</>,
+    molecules: <>Jumlah molekul</>,
+    products: <>Produk</>,
+    progress: "Jalannya reaksi",
+    reactants: <>Pereaksi</>,
+    view: "Reaksi pada tingkat atom",
+  }}
+/>
+
+Persamaannya <InlineMath math="\mathrm{C_3H_8} + 5\,\mathrm{O_2} \rightarrow 3\,\mathrm{CO_2} + 4\,\mathrm{H_2O}" />. Satu molekul propana menghasilkan tiga molekul <InlineMath math="\mathrm{CO_2}" />, karena setiap atom karbonnya mengambil oksigen dari udara. Itulah sebabnya sekitar <InlineMath math="44\text{ g}" /> propana menghasilkan sekitar <InlineMath math="3 \times 44 = 132\text{ g}" /> <InlineMath math="\mathrm{CO_2}" />, tiga kali massa bahan bakarnya.
 
 ### Katalis Kendaraan Menangani Polutan Tertentu
 

@@ -5,7 +5,7 @@ export const metadata = {
     "Der Treibhauseffekt erklärt die Erwärmung der Erde. Fossile Brennstoffe, Landnutzungsänderungen, organische Abfälle, Kunststoffproduktion und weitere menschliche Aktivitäten verstärken sie.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Klimawandel",
 };
 
@@ -79,6 +79,29 @@ In einem einfachen Lehrbuchmodell nimmt jede Schicht aus Treibhausgas die ganze 
   }}
 />
 
+Die drei wichtigsten Treibhausgase aus menschlicher Tätigkeit sind <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{CH_4}" /> und <InlineMath math="\mathrm{N_2O}" />. Dreh jedes Molekül und vergleiche seine Form.
+
+<MoleculeShapeLab
+  title={<>Drei Treibhausgase in 3D</>}
+  description={<>Wähl Kohlendioxid, Methan oder Distickstoffmonoxid und vergleiche die Bindungswinkel.</>}
+  molecules={[
+    { id: "carbon-dioxide", name: "Kohlendioxid" },
+    { id: "methane", name: "Methan" },
+    { id: "dinitrogen-monoxide", name: "Distickstoffmonoxid" },
+  ]}
+  labels={{
+    atoms: <>Atome</>,
+    choose: "Molekül wählen",
+    fill: <>Kalottenmodell</>,
+    formula: <>Summenformel</>,
+    mass: <>Relative Molekülmasse</>,
+    shape: <>Bindungswinkel oder -länge</>,
+    view: "Dreidimensionales Molekülmodell",
+  }}
+/>
+
+<InlineMath math="\mathrm{CO_2}" /> und <InlineMath math="\mathrm{N_2O}" /> sind gestreckt, <InlineMath math="\mathrm{CH_4}" /> ist ein Tetraeder mit Winkeln von <InlineMath math="109{,}5^\circ" />. Alle drei haben drei oder mehr Atome, deshalb können ihre Bindungen schwingen und Infrarotstrahlung der Erdoberfläche aufnehmen. Zweiatomige Moleküle aus einem Element wie Stickstoff und Sauerstoff nehmen sie kaum auf. Pro Kilogramm hält fossiles <InlineMath math="\mathrm{CH_4}" /> über <InlineMath math="100" /> Jahre etwa <InlineMath math="30" />-mal und <InlineMath math="\mathrm{N_2O}" /> etwa <InlineMath math="273" />-mal so viel Wärme zurück wie <InlineMath math="\mathrm{CO_2}" />.
+
 ## Durch Verbrennung gelangt Kohlenstoff in die Atmosphäre
 
 Viele menschliche Aktivitäten bringen **lange gespeicherten Kohlenstoff** in kurzer Zeit in die Atmosphäre. Dadurch verschiebt sich das Gleichgewicht, weil Kohlenstoff freigesetzt wird, der zuvor gebunden war.
@@ -88,6 +111,31 @@ Viele menschliche Aktivitäten bringen **lange gespeicherten Kohlenstoff** in ku
 Fossile Brennstoffe entstehen aus Kohlenstoff, der über Millionen von Jahren unter der Erdoberfläche gespeichert wurde. Werden Kohle, Erdöl oder Erdgas verbrannt, reagiert dieser Kohlenstoff **mit Sauerstoff zu Kohlendioxid**.
 
 Kohlendioxid ist eines von mehreren Treibhausgasen. Seine Emissionsmenge ist groß, weil viele menschliche Aktivitäten Energie aus fossilen Brennstoffen nutzen. Verkehr, Fabriken, Kraftwerke und industrielle Prozesse geben Kohlendioxid an die Atmosphäre ab.
+
+Flüssiggas zum Kochen ist ein Gemisch aus Propan und Butan. Beim Verbrennen gelangt der darin gespeicherte Kohlenstoff als <InlineMath math="\mathrm{CO_2}" /> in die Luft.
+
+<ReactionBalanceLab
+  title={<>Verbrennen setzt Kohlendioxid frei</>}
+  description={<>Lass die Reaktion Atom für Atom ablaufen. Vergleiche das Verbrennen von Propan und Methan.</>}
+  reactions={[
+    { id: "propane-combustion", name: "Propan verbrennen", tab: <InlineMath math="\mathrm{C_3H_8}" /> },
+    { id: "methane-combustion", name: "Methan verbrennen", tab: <InlineMath math="\mathrm{CH_4}" /> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Atome je Element</>,
+    choose: "Reaktion wählen",
+    equation: <>Reaktionsgleichung</>,
+    mass: <>Masse der Edukte und Produkte</>,
+    molecules: <>Anzahl der Moleküle</>,
+    products: <>Produkte</>,
+    progress: "Reaktionsverlauf",
+    reactants: <>Edukte</>,
+    view: "Reaktion auf Teilchenebene",
+  }}
+/>
+
+Die Gleichung lautet <InlineMath math="\mathrm{C_3H_8} + 5\,\mathrm{O_2} \rightarrow 3\,\mathrm{CO_2} + 4\,\mathrm{H_2O}" />. Ein Propanmolekül liefert drei <InlineMath math="\mathrm{CO_2}" />-Moleküle, weil jedes seiner Kohlenstoffatome Sauerstoff aus der Luft aufnimmt. Deshalb entstehen aus etwa <InlineMath math="44\text{ g}" /> Propan etwa <InlineMath math="3 \times 44 = 132\text{ g}" /> <InlineMath math="\mathrm{CO_2}" />, dreimal so viel wie die Masse des Brennstoffs.
 
 ### Fahrzeugkatalysatoren behandeln bestimmte Schadstoffe
 
