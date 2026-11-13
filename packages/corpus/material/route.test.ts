@@ -11,6 +11,7 @@ import {
 } from "#corpus/material/domain";
 import { materialLessonPath, materialTopicPath } from "#corpus/material/route";
 import { decodeMaterialSources } from "#corpus/material/source";
+import { PublicRouteSegmentSchema } from "#corpus/route/schema";
 import { lessonMaterialSource } from "#corpus/test/material";
 
 describe("material public routes", () => {
@@ -84,7 +85,10 @@ describe("material public routes", () => {
         const malay = AppLocaleSchema.make("ms");
         const written = {
           ...source,
-          routeSlugs: { ...source.routeSlugs, ms: "fungsi-gubahan" },
+          routeSlugs: {
+            ...source.routeSlugs,
+            ms: PublicRouteSegmentSchema.make("fungsi-gubahan"),
+          },
         };
         if (!section) {
           return;
@@ -95,7 +99,10 @@ describe("material public routes", () => {
             written,
             {
               ...section,
-              routeSlugs: { ...section.routeSlugs, ms: "konsep-fungsi" },
+              routeSlugs: {
+                ...section.routeSlugs,
+                ms: PublicRouteSegmentSchema.make("konsep-fungsi"),
+              },
             },
             descriptor,
             malay
