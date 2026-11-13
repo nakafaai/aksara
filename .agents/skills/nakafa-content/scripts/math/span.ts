@@ -50,6 +50,8 @@ const TEXT_PATTERNS = [
     `(?<![\\p{L}])${LABEL}\\s*(?:(?:nomor|no\\.|nr\\.|ke-)\\s*)?${LABEL_NUMBER}(?!\\s?%)`,
     "giu"
   ),
+  // Python 3.6, ES2020 parts, HTML5 parts, Android 14: software versions
+  /(?:Python|Java|JavaScript|ECMAScript|TypeScript|HTML|CSS|Node(?:\.js)?|NumPy|pandas|PHP|Ubuntu|Windows|macOS|iOS|Android|Excel|Unicode|Bluetooth|Wi-Fi|USB)\s*v?\d+(?:\.\d+)*/gu,
   // Law Number 39, Nummer 4, Nr. 3
   /(?:Number|Nummer|Nr\.)\s*\d+/gu,
   // (1), [12], and (2019) markers and citations

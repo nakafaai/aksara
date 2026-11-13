@@ -111,6 +111,10 @@ it("keeps list, statement, and citation markers as text", () => {
   );
   assert.deepEqual(quantities("2.1 Turunan"), []);
   assert.deepEqual(quantities("10.00 g of zinc"), ["10.00 g"]);
+  assert.deepEqual(
+    quantities("since Python 3.6, Android 14, USB 3.0 and Node.js 26"),
+    []
+  );
   assert.deepEqual(quantities("nilainya 1.2 di tengah"), ["1.2"]);
 });
 
