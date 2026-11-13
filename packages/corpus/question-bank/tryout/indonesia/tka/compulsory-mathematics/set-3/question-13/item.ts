@@ -1,0 +1,38 @@
+import type { ItemSource } from "#corpus/question-bank/item";
+
+const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "knowledge-understanding",
+    contentDomain: "geometry-measurement",
+    topic: "geometry-transformations",
+  },
+  versions: {
+    id: {
+      kind: "choice",
+      options: [
+        {
+          correct: false,
+          label: "$$(-9,-6)$$",
+        },
+        {
+          correct: false,
+          label: "$$(-6,-3)$$",
+        },
+        {
+          correct: true,
+          label: "$$(-3,0)$$",
+        },
+        {
+          correct: false,
+          label: "$$(1,2)$$",
+        },
+        {
+          correct: false,
+          label: "$$(6,9)$$",
+        },
+      ],
+    },
+  },
+};
+
+export default item;
