@@ -1,0 +1,63 @@
+# Lukis dahulu graf sebelah kiri persamaan
+
+Bilangan penyelesaian <InlineMath math="|x^2-4x|=a" /> sama dengan **bilangan titik persilangan graf <InlineMath math="y=|x^2-4x|" /> dengan garis mengufuk <InlineMath math="y=a" />**. Jadi lukis dahulu graf bagi sebelah kiri persamaan.
+
+Tanpa nilai mutlak, <InlineMath math="x^2-4x=(x-2)^2-4" /> ialah parabola yang terbuka ke atas dengan titik minimum <InlineMath math="(2\mid-4)" /> dan pintasan-<InlineMath math="x" /> di <InlineMath math="x=0" /> dan <InlineMath math="x=4" />. Nilai mutlak memantulkan bahagian negatif, iaitu bahagian antara <InlineMath math="0" /> dan <InlineMath math="4" />, ke atas paksi-<InlineMath math="x" />. Titik <InlineMath math="(2\mid-4)" /> menjadi bonggol dengan puncak tertinggi <InlineMath math="(2\mid4)" />.
+
+<MathVisual
+  title="Graf nilai mutlak bagi parabola"
+  description={<>Graf <InlineMath math="y=|x^2-4x|" /> menyentuh paksi-<InlineMath math="x" /> di <InlineMath math="x=0" /> dan <InlineMath math="x=4" />. Di antara kedua-duanya ada bonggol dengan puncak <InlineMath math="(2\mid4)" />, dan di luarnya graf itu naik. Garis mengufuk <InlineMath math="y=4" /> menyentuh puncak bonggol dan memotong kedua-dua lengan luar.</>}
+  labels={{
+    top: <InlineMath math="(2\mid4)" />,
+    line: <InlineMath math="y=4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 5.5 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left-arm", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 0 }, domain: { min: -1, max: 0 }, inputAxis: "x" },
+      { id: "bump", kind: "quadratic", appearance: "primary", coefficients: { a: -1, b: 4, c: 0 }, domain: { min: 0, max: 4 }, inputAxis: "x" },
+      { id: "right-arm", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 0 }, domain: { min: 4, max: 5 }, inputAxis: "x" },
+      { id: "level", kind: "line", appearance: "highlight", through: [{ x: -1, y: 4 }, { x: 5, y: 4 }] },
+      { id: "point-top", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+      { id: "point-left", kind: "point", appearance: "answer", at: { x: 2 - 2 * Math.sqrt(2), y: 4 } },
+      { id: "point-right", kind: "point", appearance: "answer", at: { x: 2 + 2 * Math.sqrt(2), y: 4 } },
+    ],
+    labels: [
+      { key: "top", objectId: "point-top", at: { x: 2, y: 4 }, placement: "above" },
+      { key: "line", objectId: "level", at: { x: 5, y: 4 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+# Mengira titik persilangan untuk setiap nilai a
+
+Gerakkan garis <InlineMath math="y=a" /> dari bawah ke atas dan kira titik persilangannya:
+
+| Nilai <InlineMath math="a" /> | Titik persilangan |
+| :---: | :---: |
+| <InlineMath math="a<0" /> | <InlineMath math="0" /> |
+| <InlineMath math="a=0" /> | <InlineMath math="2" /> |
+| <InlineMath math="0<a<4" /> | <InlineMath math="4" /> |
+| <InlineMath math="a=4" /> | <InlineMath math="3" /> |
+| <InlineMath math="a>4" /> | <InlineMath math="2" /> |
+
+**Tepat tiga titik persilangan hanya berlaku apabila garis menyentuh puncak bonggol**, iaitu <InlineMath math="a=4" />.
+
+# Semak ketiga-tiga penyelesaian
+
+Untuk <InlineMath math="a=4" />, bahagian bonggol memberi <InlineMath math="-(x^2-4x)=4" />, iaitu <InlineMath math="(x-2)^2=0" />, jadi <InlineMath math="x=2" />. Kedua-dua lengan luar memberi <InlineMath math="x^2-4x=4" />, iaitu <InlineMath math="(x-2)^2=8" />, jadi <InlineMath math="x=2\pm2\sqrt2" />. **Ada tepat tiga penyelesaian yang berbeza**.
+
+Jadi, persamaan itu mempunyai tepat tiga penyelesaian untuk <InlineMath math="a=4" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="a=0" /> hanya memberi <InlineMath math="x=0" /> dan <InlineMath math="x=4" />, iaitu dua penyelesaian.
+- <InlineMath math="0<a<4" /> memberi empat penyelesaian: dua pada bonggol dan dua pada lengan luar. Contohnya <InlineMath math="a=2" />.
+- <InlineMath math="a>4" /> berada di atas bonggol, jadi garis hanya memotong kedua-dua lengan luar.
+- <InlineMath math="a=-4" /> ialah nilai minimum parabola tanpa nilai mutlak. **Nilai mutlak tidak pernah negatif**, jadi tiada penyelesaian.

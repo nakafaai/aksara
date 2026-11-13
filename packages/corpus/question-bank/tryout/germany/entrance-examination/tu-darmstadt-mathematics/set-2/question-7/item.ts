@@ -6,28 +6,28 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$25\\,\\%$$",
-        },
-        {
-          correct: false,
-          label: "$$27{,}5\\,\\%$$",
-        },
-        {
-          correct: false,
-          label: "$$50\\,\\%$$",
-        },
-        {
           correct: true,
-          label: "$$30\\,\\%$$",
+          label: "$$2\\sqrt5$$",
         },
         {
           correct: false,
-          label: "$$55\\,\\%$$",
+          label: "$$\\sqrt5$$",
         },
         {
           correct: false,
-          label: "$$75\\,\\%$$",
+          label: "$$2$$",
+        },
+        {
+          correct: false,
+          label: "$$4$$",
+        },
+        {
+          correct: false,
+          label: "Die Länge hängt davon ab, wohin die Parabel verschoben wird.",
+        },
+        {
+          correct: false,
+          label: "$$2\\sqrt2$$",
         },
       ],
     },
