@@ -103,6 +103,7 @@ layer(NodeServices.layer)("material registry", (it) => {
           "faecher/biologie/vielfalt-der-lebewesen/bakterien",
           "subjects/biology/biodiversity/bacteria",
           "materi/biologi/keanekaragaman-makhluk-hidup/bakteri",
+          "subjek/biologi/biodiversiti/bakteria",
           "faecher/chemie/atombau/elektronenhuelle",
           "subjects/chemistry/structure-matter/atom-shell",
           "materi/kimia/struktur-atom/kulit-atom",
