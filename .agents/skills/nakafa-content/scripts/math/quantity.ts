@@ -4,7 +4,7 @@ import { unitLength } from "#nakafa-content/math/unit";
 
 /** The prefix, number, and suffix of one plain quantity. */
 const QUANTITY_PATTERN =
-  /^(?<sign>[-−])?(?<currency>Rp\.?\s?|US\$|\$|€\s?|£)?(?<number>\d+(?:[.,:/]\d+)*)(?<suffix>.*)$/su;
+  /^(?<sign>[-−])?(?<currency>Rp\.?\s?|US\$|\$|€\s?|£)?(?<number>\d+(?:[.,:/]\d+)*)(?:[-–](?<upper>\d+(?:[.,:/]\d+)*))?(?<suffix>.*)$/su;
 const PERCENT_PATTERN = /^\s?%$/u;
 const UNIT_PATTERN = /^ ?(?<unit>.+?)(?<power>[⁻]?[¹²³]|\^-?\d)?$/su;
 const TIME_BEFORE_PATTERN =
@@ -104,7 +104,7 @@ function suffixLatex(suffix: string): string | undefined {
 
 /**
  * Returns the `math` value for one plain quantity in the corpus convention
- * (`5\text{ cm}`, `\text{ m/s}^2`, `30^\circ\text{C}`, `25\%`,
+ * (`5\text{ cm}`, `\text{ m/s}^2`, `30^\circ\text{C}`, `25\%`, `2\text{-}3`,
  * `\text{Rp}5{.}000`, `2{,}5` in Indonesian and German, `5{,}000` in English
  * and Malay), or `undefined` when its separators are ambiguous in the locale
  * and a person must decide. `before` is the text before the quantity, which
@@ -120,11 +120,13 @@ export function quantityMath(
     return;
   }
   assert.ok(groups.suffix !== undefined);
-  const number = numberLatex(groups.number, locale, before);
+  const lower = numberLatex(groups.number, locale, before);
+  const upper = groups.upper ? numberLatex(groups.upper, locale, before) : "";
   const suffix = suffixLatex(groups.suffix);
-  if (number === undefined || suffix === undefined) {
+  if (lower === undefined || upper === undefined || suffix === undefined) {
     return;
   }
+  const number = groups.upper ? `${lower}\\text{-}${upper}` : lower;
   const sign = groups.sign ? "-" : "";
   const currency = groups.currency ? currencyLatex(groups.currency) : "";
   return `${sign}${currency}${number}${suffix}`;

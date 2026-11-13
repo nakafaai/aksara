@@ -29,6 +29,16 @@ it("writes fractions, clock times, and ratios", () => {
   assert.equal(quantityMath("07.30", "id", "nilai "), undefined);
 });
 
+it("writes a range with a text hyphen, in the locale of each bound", () => {
+  assert.equal(quantityMath("2-3", "id", ""), "2\\text{-}3");
+  assert.equal(quantityMath("10–20%", "en", ""), "10\\text{-}20\\%");
+  assert.equal(
+    quantityMath("1,5-2,5 kg", "id", ""),
+    "1{,}5\\text{-}2{,}5\\text{ kg}"
+  );
+  assert.equal(quantityMath("2-3.5", "id", ""), undefined);
+});
+
 it("writes signs, currencies, and percent signs", () => {
   assert.equal(quantityMath("-5", "en", ""), "-5");
   assert.equal(quantityMath("−3", "en", ""), "-3");

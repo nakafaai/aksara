@@ -49,6 +49,13 @@ it("takes a quantity's sign, currency, percent sign, and unit with it", () => {
   );
 });
 
+it("joins a dashed range into one quantity unless an operator makes it a subtraction", () => {
+  assert.deepEqual(
+    quantities("2-3 kali, 10–20%, 1,5-2,5 kg, 8-3=5, 4+2-3, 1998-2024"),
+    ["2-3", "10–20%", "1,5-2,5 kg", "8", "3", "5", "4", "2", "3"]
+  );
+});
+
 it("keeps a unit symbol that starts a word, and a word unit, as prose", () => {
   assert.deepEqual(quantities("5 menit, 3 meter, 2 jam, 4 mangga, 6 sisi"), [
     "5",
@@ -89,7 +96,7 @@ it("keeps a year-like number that carries a unit, percent, or currency as a quan
 it("keeps document, exam, and legal labels as text and counts as quantities", () => {
   assert.deepEqual(
     quantities(
-      "Soal 3, Kelas 10, Langkah 1 dan 2, nomor 1, 2, dan 3, Bab 4.1, Step 2, Klasse 9, Aufgabe 2b, Gleichung (2), Pasal 1(2), Soal 1–5, soal 6 sampai 9, Law Number 39, Nr. 4, **Lösung 2**, Pembahasan 3, Tingkat 5%, 3 soal, Kelas 10, 25 siswa"
+      "Soal 3, Kelas 10, Kumpulan 2, Group 4, Langkah 1 dan 2, nomor 1, 2, dan 3, Bab 4.1, Step 2, Klasse 9, Aufgabe 2b, Gleichung (2), Pasal 1(2), Soal 1–5, soal 6 sampai 9, Law Number 39, Nr. 4, **Lösung 2**, Pembahasan 3, Tingkat 5%, 3 soal, Kelas 10, 25 siswa"
     ),
     ["5%", "3", "25"]
   );

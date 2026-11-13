@@ -89,6 +89,33 @@ function quantityStart(text: string, start: number): number {
   return SIGN_BEFORE_PATTERN.test(before) ? start - 1 : start;
 }
 
+const RANGE_DASH_PATTERN = /^[-–]$/u;
+const OPERATOR_BEFORE_PATTERN = /[=<>+×*÷/^]\s*$/u;
+const OPERATOR_AFTER_PATTERN = /^\s*[=<>+×*÷/^]/u;
+
+/**
+ * Joins two quantities that a dash with no spaces joins into one range, such
+ * as `2-3 kali` or `10–20%`, unless an operator sits next to them, because
+ * `8-3=5` is a subtraction.
+ */
+function joinRanges(text: string, matches: NumberMatch[]): NumberMatch[] {
+  const joined: NumberMatch[] = [];
+  for (const match of matches) {
+    const previous = joined.at(-1);
+    const isRange =
+      previous !== undefined &&
+      RANGE_DASH_PATTERN.test(text.slice(previous.end, match.start)) &&
+      !OPERATOR_BEFORE_PATTERN.test(text.slice(0, previous.start)) &&
+      !OPERATOR_AFTER_PATTERN.test(text.slice(match.end));
+    if (isRange) {
+      joined[joined.length - 1] = { end: match.end, start: previous.start };
+    } else {
+      joined.push(match);
+    }
+  }
+  return joined;
+}
+
 /**
  * Returns every plain number in one text that a learner reads as a quantity:
  * a count, a measurement, an amount, a percentage, or a value. Years, dates,
@@ -118,7 +145,7 @@ export function findNumbers(text: string): NumberMatch[] {
       matches.push({ end, start: quantity });
     }
   }
-  return matches;
+  return joinRanges(text, matches);
 }
 
 /** The scan of learner text for a plain number used as a quantity. */
