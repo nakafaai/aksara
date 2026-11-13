@@ -1,23 +1,29 @@
-No side of the triangle is parallel to an axis. So **put an axis-parallel rectangle around the triangle** and subtract the three right triangles left over. Work in coordinate units first and convert to square metres only at the end.
+# A substitution that hides a condition
 
-The rectangle runs from <InlineMath math="x=-10" /> to <InlineMath math="x=13" /> and from <InlineMath math="y=-11" /> to <InlineMath math="y=14" />.
+Write <InlineMath math="t=3^x" />. Then <InlineMath math="9^x=\left(3^x\right)^2=t^2" />, and the equation becomes:
 
-<BlockMath math="\begin{aligned}
-A_{\text{rectangle}}&=23\cdot25=575 \\
-\text{corner at }AB&:\ \tfrac12\cdot23\cdot1=11.5 \\
-\text{corner at }BC&:\ \tfrac12\cdot22\cdot25=275 \\
-\text{corner at }CA&:\ \tfrac12\cdot1\cdot24=12 \\
-A_{ABC}&=575-11.5-275-12=276.5
-\end{aligned}" />
+<BlockMath math="t^2-6t+a=0" />
 
-One unit is <InlineMath math="10\text{ m}" />, so one square unit is <InlineMath math="10\cdot10=100\text{ m}^2" />. The area is therefore <InlineMath math="276.5\cdot100=27{,}650\text{ m}^2" />.
+Here's the key: <InlineMath math="3^x" /> is always positive. **Every root <InlineMath math="t>0" /> gives exactly one <InlineMath math="x" />, and a root <InlineMath math="t\le0" /> gives nothing**. So you count the positive roots <InlineMath math="t" />.
 
-As a check with the determinant formula, <InlineMath math="\frac12\,|23\cdot24-1\cdot(-1)|=\frac12\cdot553=276.5" />.
+# Counting positive roots
 
-So the swimming zone has an area of <InlineMath math="27{,}650\text{ m}^2" />.
+The two roots add up to <InlineMath math="6" />, their product is <InlineMath math="a" />, and the discriminant is <InlineMath math="36-4a" />. **Go through every case for <InlineMath math="a" />**:
 
-- <InlineMath math="2{,}765\text{ m}^2" /> converts the square unit with the factor <InlineMath math="10" /> instead of <InlineMath math="100" />.
-- <InlineMath math="28{,}750\text{ m}^2" /> takes half of the surrounding rectangle.
-- <InlineMath math="28{,}800\text{ m}^2" /> subtracts only two of the three corner triangles and forgets the one at <InlineMath math="AB" />.
-- <InlineMath math="55{,}300\text{ m}^2" /> forgets the factor <InlineMath math="\frac12" /> in the determinant formula.
-- <InlineMath math="57{,}500\text{ m}^2" /> is the whole rectangle.
+- <InlineMath math="a>9" />: negative discriminant, no <InlineMath math="t" />, so no <InlineMath math="x" />.
+- <InlineMath math="a=9" />: double root <InlineMath math="t=3>0" />, so exactly one <InlineMath math="x" />.
+- <InlineMath math="0<a<9" />: two different roots with positive sum and product, so both are positive. That's two values of <InlineMath math="x" />.
+- <InlineMath math="a=0" />: <InlineMath math="t(t-6)=0" />. The root <InlineMath math="t=0" /> drops out, <InlineMath math="t=6" /> stays, so exactly one <InlineMath math="x" />.
+- <InlineMath math="a<0" />: negative product, so one root is positive and one is negative. Exactly one <InlineMath math="x" />.
+
+Check with <InlineMath math="a=-7" />: <InlineMath math="(t-7)(t+1)=0" />, only <InlineMath math="t=7" /> is positive, so only <InlineMath math="x=\log_37" />.
+
+So there's exactly one solution for <InlineMath math="a\le0" /> or <InlineMath math="a=9" />.
+
+# Why the other options are wrong
+
+- Only <InlineMath math="a=9" /> **thinks only of the double root** and forgets the case of one positive root next to one that isn't positive.
+- <InlineMath math="a<0" /> or <InlineMath math="a=9" /> forgets <InlineMath math="a=0" />. The root <InlineMath math="t=0" /> drops out, but <InlineMath math="t=6" /> still gives one solution.
+- <InlineMath math="a\le0" /> forgets the double root at <InlineMath math="a=9" />.
+- <InlineMath math="0<a<9" /> actually gives two solutions.
+- <InlineMath math="a<0" /> forgets both boundary cases, <InlineMath math="a=0" /> and <InlineMath math="a=9" />.

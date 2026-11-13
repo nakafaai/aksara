@@ -1,49 +1,27 @@
-Titik puncak (*Scheitelpunkt*) paling mudah dibaca dari **bentuk puncak** <InlineMath math="y=(x-d)^2+e" />, yang diperoleh dengan melengkapkan kuadrat. Bagi dua koefisien <InlineMath math="x" />, yaitu <InlineMath math="6" />, menjadi <InlineMath math="3" />. Lalu tambahkan kuadratnya, <InlineMath math="9" />, dan langsung kurangkan lagi.
+# Melihat penampang
 
-<BlockMath math="\begin{aligned}
-y&=x^2+6x+9-9+7 \\
-&=(x+3)^2-2
-\end{aligned}" />
+Potong kerucut dan bola melalui sumbu kerucut. **Penampangnya adalah segitiga sama kaki di dalam lingkaran berjari-jari <InlineMath math="5" />**. Puncak kerucut ada di lingkaran, dan pusat bola <InlineMath math="M" /> ada di sumbu kerucut.
 
-Bentuk <InlineMath math="(x+3)^2" /> tidak pernah negatif dan bernilai nol tepat di <InlineMath math="x=-3" />. Jadi, nilai <InlineMath math="y" /> terkecil adalah <InlineMath math="-2" />, dan titik puncaknya <InlineMath math="(-3\mid-2)" />.
+# Di mana alas kerucut berada
 
-<MathVisual
-  title="Parabola dan titik puncaknya"
-  description={<>Parabola <InlineMath math="y=x^2+6x+7" /> terbuka ke atas. Titik terendahnya <InlineMath math="(-3\mid-2)" />. Titik <InlineMath math="(-6\mid7)" /> dan <InlineMath math="(0\mid7)" /> terletak pada parabola, simetris terhadap garis <InlineMath math="x=-3" />.</>}
-  labels={{
-    vertex: <InlineMath math="(-3\mid-2)" />,
-    "point-left": <InlineMath math="(-6\mid7)" />,
-    "point-right": <InlineMath math="(0\mid7)" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -7, max: 1 },
-      y: { min: -3, max: 9 },
-    },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      { id: "graph", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: 6, c: 7 }, domain: { min: -6.2, max: 0.2 }, inputAxis: "x" },
-      { id: "axis", kind: "segment", appearance: "construction", from: { x: -3, y: -2 }, to: { x: -3, y: 8 } },
-      { id: "vertex-point", kind: "point", appearance: "answer", at: { x: -3, y: -2 } },
-      { id: "point-left-dot", kind: "point", appearance: "reference", at: { x: -6, y: 7 } },
-      { id: "point-right-dot", kind: "point", appearance: "reference", at: { x: 0, y: 7 } },
-    ],
-    labels: [
-      { key: "vertex", objectId: "vertex-point", at: { x: -3, y: -2 }, placement: "below" },
-      { key: "point-left", objectId: "point-left-dot", at: { x: -6, y: 7 }, placement: "left" },
-      { key: "point-right", objectId: "point-right-dot", at: { x: 0, y: 7 }, placement: "right" },
-    ],
-  }}
-/>
+Dari puncak ke pusat <InlineMath math="M" /> jaraknya <InlineMath math="5" />, karena itu jari-jari bola. Alasnya <InlineMath math="8" /> di bawah puncak, jadi **alas berada <InlineMath math="8-5=3" /> di bawah pusat bola**.
 
-Sebagai pemeriksaan, titik <InlineMath math="(-6\mid7)" /> dan <InlineMath math="(0\mid7)" /> terletak pada parabola dan memiliki nilai <InlineMath math="y" /> yang sama. Titik puncak berada tepat di tengah keduanya, di <InlineMath math="x=-3" />, dan <InlineMath math="(-3)^2+6\cdot(-3)+7=-2" />.
+Tepi alas juga ada di bola. Pusat bola, pusat alas, dan satu titik tepi alas membentuk segitiga siku-siku:
 
-Jadi, titik puncak parabola itu adalah <InlineMath math="(-3\mid-2)" />.
+<BlockMath math="r^2+3^2=5^2\quad\Rightarrow\quad r^2=16" />
 
-- <InlineMath math="(-3\mid7)" /> memiliki absis yang benar, tetapi mengambil suku tetap <InlineMath math="7" /> sebagai nilai <InlineMath math="y" />, bukan menyubstitusikan <InlineMath math="x=-3" />.
-- <InlineMath math="(3\mid34)" /> muncul karena tanda absisnya salah. Titik puncak berada di <InlineMath math="x=-\frac{b}{2a}=-3" />.
-- <InlineMath math="(-6\mid7)" /> mengambil koefisien <InlineMath math="6" /> dengan tanda minus sebagai absis tanpa membaginya dua. Titik ini memang terletak pada parabola, tetapi bukan titik terendahnya.
-- <InlineMath math="(-3\mid2)" /> menukar tanda saat melengkapkan kuadrat dan menghitung <InlineMath math="9-7=2" />, padahal seharusnya <InlineMath math="-9+7=-2" />.
-- <InlineMath math="(-3\mid16)" /> menambahkan kuadrat pelengkap, bukan mengurangkannya lagi, karena <InlineMath math="9+7=16" />.
+# Volume kerucut
+
+<BlockMath math="V=\frac13\pi r^2h=\frac13\pi\cdot16\cdot8=\frac{128\pi}{3}\text{ cm}^3" />
+
+**Jari-jari alasnya <InlineMath math="r=4" />**, jadi segitiga siku-siku tadi punya sisi <InlineMath math="3" />, <InlineMath math="4" />, dan <InlineMath math="5" />.
+
+Jadi, volume kerucut adalah <InlineMath math="\frac{128\pi}{3}\text{ cm}^3" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\frac{200\pi}{3}" /> **memakai jari-jari bola sebagai jari-jari alas**, seolah-olah alasnya melalui pusat bola.
+- <InlineMath math="24\pi" /> menaruh pusat bola di tengah tinggi kerucut, sehingga <InlineMath math="r^2=25-16=9" />.
+- <InlineMath math="128\pi" /> lupa faktor <InlineMath math="\frac13" /> pada volume kerucut.
+- <InlineMath math="\frac{272\pi}3" /> menjumlahkan pada teorema Pythagoras, <InlineMath math="r^2=25+9" />, padahal sisi miringnya adalah jari-jari bola.
+- <InlineMath math="\frac{80\pi}{3}" /> memakai <InlineMath math="r^2=16" /> dengan benar, tetapi mengambil jari-jari bola <InlineMath math="5" /> sebagai tinggi kerucut.
