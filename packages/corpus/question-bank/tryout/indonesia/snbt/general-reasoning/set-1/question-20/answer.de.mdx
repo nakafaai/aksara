@@ -1,13 +1,25 @@
-Fasse die Bedingungen zu zwei Ketten zusammen und probiere jede mögliche Position aus. Die erste Kette ist **Indah, dann Gita, dann Hasan** (nicht unbedingt direkt hintereinander). Die zweite Kette ist **Fikri, direkt gefolgt von Joni**.
+Gesucht ist eine Aussage, die in jeder Altersreihenfolge stimmt, die zu allen fünf Angaben passt. Angabe 2 enthält ein "oder", also teilst du am saubersten in zwei Fälle und suchst die Aussage, die beide Fälle übersteht.
 
-Fikri wird nicht Erster, und Joni muss direkt nach Fikri ins Ziel kommen. Fikri kann also nur Platz 2, 3 oder 4 belegen.
+Beginne mit dem Sicheren. Angabe 1 liefert die Reihenfolge Wulan, Putri, Oki von älter nach jünger. Beide Teile von Angabe 2 können nicht gleichzeitig gelten, denn Sekar kann nicht älter als Wulan und zugleich jünger als Oki sein, der jünger als Wulan ist.
 
-- Wird Fikri Zweiter, wird Joni Dritter. Die übrigen Plätze 1, 4 und 5 gehen der Reihe nach an Indah, Gita und Hasan, also wird Hasan Fünfter. Das verletzt die Bedingung, dass Hasan nicht Letzter ist.
-- Wird Fikri Dritter, wird Joni Vierter. Die übrigen Plätze 1, 2 und 5 machen Hasan wieder zum Fünften, was ebenfalls verboten ist.
-- Wird Fikri Vierter, wird Joni Fünfter. Die übrigen Plätze 1, 2 und 3 gehen an Indah, Gita und Hasan. Alle Bedingungen sind erfüllt.
+Erster Fall: Sekar ist älter als Wulan. Die Reihenfolge wird Sekar, Wulan, Putri, Oki. Nach Angabe 3 ist Tegar älter als Sekar, also auch älter als Wulan, Putri und Oki. Nur Rafi ist noch nicht mit Tegar verglichen. Angabe 5 sagt, dass Tegar nicht der Älteste ist, also muss jemand älter als Tegar sein, und der einzige Kandidat ist Rafi. Dieser Fall liefert nur eine Reihenfolge, vom Ältesten an: Rafi, Tegar, Sekar, Wulan, Putri, Oki. Hier ist Rafi älter als Sekar.
 
-Die einzig mögliche Zielreihenfolge ist:
+Zweiter Fall: Sekar ist jünger als Oki. Jetzt ist Sekar jünger als Oki, Putri und Wulan. Rafi ist älter als Putri, also auch älter als Sekar. Tegar ist nach Angabe 3 älter als Sekar. Alle fünf anderen sind älter als Sekar, also ist Sekar die Jüngste, und wieder ist Rafi älter als Sekar.
 
-<BlockMath math="\text{Indah},\ \text{Gita},\ \text{Hasan},\ \text{Fikri},\ \text{Joni}" />
+In beiden Fällen ist **Rafi immer älter als Sekar**, auch wenn der Grund verschieden ist. Im ersten Fall liegt es an Angabe 5, im zweiten Fall an Angabe 4.
 
-Die anderen Läufer belegen andere Plätze: Indah den ersten, Gita den zweiten, Fikri den vierten und Joni den fünften. Als Dritter kommt also Hasan ins Ziel.
+Die anderen Aussagen stimmen nur in manchen Reihenfolgen. Jede Reihenfolge in dieser Tabelle, vom Ältesten an geschrieben, erfüllt alle fünf Angaben.
+
+| Aussage | Reihenfolge, die sie widerlegt |
+| --- | --- |
+| Sekar ist die Jüngste | Rafi, Tegar, Sekar, Wulan, Putri, Oki |
+| Tegar ist älter als Oki | Rafi, Wulan, Putri, Oki, Tegar, Sekar |
+| Rafi ist der Älteste | Wulan, Rafi, Putri, Oki, Tegar, Sekar |
+| Wulan ist älter als Tegar | Rafi, Tegar, Sekar, Wulan, Putri, Oki |
+
+- Sekar ist die Jüngste nur im zweiten Fall. Diese Auswahl entsteht, wenn du den ersten Fall übersiehst.
+- Tegar ist älter als Oki kommt aus einer Kette in die falsche Richtung. Im zweiten Fall ist Tegar älter als Sekar und Oki auch älter als Sekar, aber diese beiden Angaben vergleichen Tegar nicht mit Oki.
+- Rafi ist der Älteste überträgt das Ergebnis des ersten Falls auf den zweiten. Im zweiten Fall darf Wulan älter als Rafi sein.
+- Wulan ist älter als Tegar entsteht, wenn du Wulan automatisch weit oben siehst, weil ihr Name Angabe 1 eröffnet. Im ersten Fall ist Tegar sogar älter als Wulan.
+
+Sicher stimmt also, dass Rafi älter als Sekar ist.

@@ -1,15 +1,32 @@
-Split the problem into two steps: **count the numbers divisible by 4 or 6**, then **remove those also divisible by 5**.
+A voucher goes to every member in the "yoga or pilates" group who doesn't take swimming. So first count the whole "yoga or pilates" group, then remove the members of that group who also swim. **Both counts use inclusion-exclusion**: add two groups, then subtract the part that got counted twice.
 
-**Step 1** uses inclusion and exclusion. Numbers divisible by both <InlineMath math="4" /> and <InlineMath math="6" /> are multiples of their least common multiple, <InlineMath math="12" />, and must not be counted twice.
+Step one: the members who take yoga or pilates. Add yoga and pilates, then subtract the <InlineMath math="25" /> members who take both once, because they were counted twice:
 
-<BlockMath math="\left\lfloor\frac{200}{4}\right\rfloor+\left\lfloor\frac{200}{6}\right\rfloor-\left\lfloor\frac{200}{12}\right\rfloor=50+33-16=67" />
+<BlockMath math="85+60-25 = 120" />
 
-**Step 2** counts the numbers among those <InlineMath math="67" /> that are also divisible by <InlineMath math="5" />. Numbers divisible by <InlineMath math="4" /> and <InlineMath math="5" /> are multiples of <InlineMath math="20" />, those divisible by <InlineMath math="6" /> and <InlineMath math="5" /> are multiples of <InlineMath math="30" />, and the overlap is the multiples of <InlineMath math="60" />.
+Step two: the members of that group who also swim. They're the members who take yoga and swimming, or pilates and swimming. Both of those groups contain the <InlineMath math="8" /> members who take all three classes, so subtract those <InlineMath math="8" /> once:
 
-<BlockMath math="\left\lfloor\frac{200}{20}\right\rfloor+\left\lfloor\frac{200}{30}\right\rfloor-\left\lfloor\frac{200}{60}\right\rfloor=10+6-3=13" />
+<BlockMath math="40+30-8 = 62" />
 
-Subtract step 2 from step 1:
+Step three: remove them from the first group:
 
-<BlockMath math="67-13=54" />
+<BlockMath math="120-62 = 58" />
 
-As a check, <InlineMath math="60" /> is divisible by <InlineMath math="4" />, <InlineMath math="6" />, and <InlineMath math="5" />. It is counted once in step 1 and removed once in step 2, as the conditions require. So <InlineMath math="54" /> numbers qualify.
+Check by splitting the "yoga or pilates, no swimming" group into three parts that don't overlap:
+
+| Part | Calculation | Members |
+| --- | --- | --- |
+| yoga and pilates, no swimming | <InlineMath math="25-8" /> | <InlineMath math="17" /> |
+| yoga only | <InlineMath math="85-17-(40-8)-8" /> | <InlineMath math="28" /> |
+| pilates only | <InlineMath math="60-17-(30-8)-8" /> | <InlineMath math="13" /> |
+| total | <InlineMath math="17+28+13" /> | <InlineMath math="58" /> |
+
+The result matches: <InlineMath math="58" />.
+
+Some wrong results come up often:
+
+- <InlineMath math="50" /> comes from removing <InlineMath math="40+30=70" />, which removes the <InlineMath math="8" /> members who take all three classes twice.
+- <InlineMath math="83" /> comes from not subtracting the <InlineMath math="25" /> members who take yoga and pilates, so the first group is counted as <InlineMath math="145" />.
+- <InlineMath math="120" /> comes from forgetting the "doesn't take swimming" condition.
+
+So the fitness center hands out <InlineMath math="58" /> vouchers.

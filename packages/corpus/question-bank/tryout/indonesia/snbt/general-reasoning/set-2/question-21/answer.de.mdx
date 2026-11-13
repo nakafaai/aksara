@@ -1,9 +1,25 @@
-Betrachte **die Differenzen aufeinanderfolgender Glieder**:
+Gefragt sind zwei Glieder weit hinten in der Folge, das <InlineMath math="20" />. und das <InlineMath math="21" />. Glied. Du brauchst das Muster und musst dann **jede Stelle übersetzen** in eine Stelle innerhalb dieses Musters.
 
-<BlockMath math="7-5=2,\quad 11-7=4,\quad 19-11=8,\quad 35-19=16" />
+Die Differenzen benachbarter Glieder springen hoch und runter: <InlineMath math="+2,\ +1,\ +6,\ -1,\ +8,\ -1,\ +8" />. Solche Differenzen bilden kein einheitliches Muster. Das zeigt dir, dass hier zwei Folgen ineinander verschränkt sind. Trenne die Glieder an ungeraden Stellen von denen an geraden Stellen.
 
-Jede Differenz ist doppelt so groß wie die vorige: <InlineMath math="2, 4, 8, 16" />. Die nächste Differenz ist <InlineMath math="32" />.
+An den ungeraden Stellen (1., 3., 5., 7.) stehen <InlineMath math="2,\ 5,\ 10,\ 17" />. Die Differenzen sind <InlineMath math="3,\ 5,\ 7" /> und wachsen jedes Mal um <InlineMath math="2" />. Das sind Quadratzahlen plus eins: <InlineMath math="1^2+1,\ 2^2+1,\ 3^2+1,\ 4^2+1" />. Das <InlineMath math="k" />-te Glied dieser Teilfolge ist also <InlineMath math="k^2+1" /> und steht an Stelle <InlineMath math="2k-1" />.
 
-<BlockMath math="35+32=67" />
+An den geraden Stellen (2., 4., 6., 8.) stehen <InlineMath math="4,\ 11,\ 18,\ 25" />. Jedes Glied kommt um <InlineMath math="7" /> dazu. Das <InlineMath math="k" />-te Glied dieser Teilfolge ist also <InlineMath math="4+7(k-1)=7k-3" /> und steht an Stelle <InlineMath math="2k" />.
 
-Dasselbe Muster ergibt sich aus der Regel <InlineMath math="u_{n+1}=2u_n-3" />, etwa <InlineMath math="2\times5-3=7" /> und <InlineMath math="2\times35-3=67" />. Beide Wege stimmen überein. Die nächste Zahl ist also <InlineMath math="67" />.
+Die Stelle <InlineMath math="20" /> ist gerade, das Glied gehört also zur geraden Teilfolge mit <InlineMath math="2k=20" />, also <InlineMath math="k=10" />. Die Stelle <InlineMath math="21" /> ist ungerade, das Glied gehört also zur ungeraden Teilfolge mit <InlineMath math="2k-1=21" />, also <InlineMath math="k=11" />.
+
+<BlockMath math="\begin{aligned}
+U_{20} &= 7(10)-3 = 67 \\
+U_{21} &= 11^2+1 = 122 \\
+U_{20}+U_{21} &= 67+122 = 189
+\end{aligned}" />
+
+Prüf das, indem du beide Teilfolgen fortsetzt. Ungerade Teilfolge: <InlineMath math="2,\ 5,\ 10,\ 17,\ 26,\ 37,\ 50,\ 65,\ 82,\ 101,\ 122" />, ihr <InlineMath math="11" />. Glied ist wirklich <InlineMath math="122" />. Gerade Teilfolge: <InlineMath math="4,\ 11,\ 18,\ 25,\ 32,\ 39,\ 46,\ 53,\ 60,\ 67" />, ihr <InlineMath math="10" />. Glied ist wirklich <InlineMath math="67" />.
+
+Ein paar verlockende Wege, die schiefgehen:
+
+- Setzt du <InlineMath math="20" /> und <InlineMath math="21" /> direkt in die Formeln ein, bekommst du <InlineMath math="7(20)-3=137" /> und <InlineMath math="21^2+1=442" />, zusammen <InlineMath math="579" />. Die Stellen in der Gesamtfolge sind dann noch nicht in Stellen der Teilfolgen übersetzt.
+- Nimmst du für beide Glieder <InlineMath math="k=10" />, bekommst du <InlineMath math="67+101=168" />. Das <InlineMath math="21" />. Glied ist aber das <InlineMath math="11" />. der ungeraden Teilfolge, nicht das <InlineMath math="10" />.
+- Vertauschst du die Teilfolgen, also die Quadratregel für Stelle <InlineMath math="20" /> und die Regel plus <InlineMath math="7" /> für Stelle <InlineMath math="21" />, bekommst du <InlineMath math="101+74=175" />.
+
+Das <InlineMath math="20" />. und das <InlineMath math="21" />. Glied ergeben zusammen also <InlineMath math="189" />.

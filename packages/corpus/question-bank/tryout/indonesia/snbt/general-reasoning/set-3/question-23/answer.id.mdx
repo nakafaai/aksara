@@ -1,19 +1,31 @@
-Persentase dari dua sekolah tidak dapat dibandingkan langsung karena **banyak siswanya berbeda**. Ubah dulu setiap persentase menjadi banyak siswa.
+Soal ini menanyakan hari ketika kapasitas kapal paling banyak terpakai. Kamu butuh dua data: total penumpang kedua arah dari diagram, dan banyak keberangkatan setiap hari dari bacaan.
 
-| Cara | Sekolah A (dari <InlineMath math="800" />) | Sekolah B (dari <InlineMath math="1{.}200" />) |
-| --- | --- | --- |
-| Berjalan kaki | <InlineMath math="120" /> | <InlineMath math="120" /> |
-| Bersepeda | <InlineMath math="200" /> | <InlineMath math="240" /> |
-| Angkutan umum | <InlineMath math="280" /> | <InlineMath math="480" /> |
-| Diantar keluarga | <InlineMath math="200" /> | <InlineMath math="360" /> |
+Kuncinya, **kapasitas harian tidak sama setiap hari**. Pada Senin sampai Jumat ada tiga keberangkatan dari setiap pelabuhan, sedangkan pada Sabtu dan Minggu ada empat. Setiap keberangkatan memuat paling banyak <InlineMath math="200" /> penumpang, dan ada dua pelabuhan keberangkatan. Jadi, kapasitas hariannya seperti ini.
 
-Pesepeda di sekolah B berjumlah <InlineMath math="240" />, lebih banyak daripada <InlineMath math="200" /> di sekolah A, **meskipun persentasenya lebih kecil**. Pernyataan ini sesuai dengan data.
+<BlockMath math="\begin{aligned}
+\text{Senin sampai Jumat} &: 2 \times 3 \times 200 = 1{.}200 \\
+\text{Sabtu dan Minggu} &: 2 \times 4 \times 200 = 1{.}600
+\end{aligned}" />
 
-Pernyataan lain tidak sesuai:
+Sekarang jumlahkan dua batang pada setiap hari, lalu bagi dengan kapasitas hari itu.
 
-- Persentase yang lebih kecil tidak berarti jumlah yang lebih kecil. Sekolah B justru memiliki lebih banyak pesepeda karena siswanya lebih banyak.
-- Pengguna angkutan umum berjumlah <InlineMath math="280+480=760" />, lebih dari <InlineMath math="700" />.
-- Siswa yang berjalan kaki sama banyak, yaitu <InlineMath math="120" /> di setiap sekolah.
-- Siswa sekolah B yang diantar atau berjalan kaki mencakup <InlineMath math="30\%+10\%=40\%" />, kurang dari separuh.
+| Hari | Total penumpang | Kapasitas | Keterisian |
+| --- | --- | --- | --- |
+| Senin | <InlineMath math="360+560=920" /> | <InlineMath math="1{.}200" /> | <InlineMath math="\approx 76{,}7\%" /> |
+| Selasa | <InlineMath math="380+340=720" /> | <InlineMath math="1{.}200" /> | <InlineMath math="60\%" /> |
+| Rabu | <InlineMath math="420+400=820" /> | <InlineMath math="1{.}200" /> | <InlineMath math="\approx 68{,}3\%" /> |
+| Kamis | <InlineMath math="550+380=930" /> | <InlineMath math="1{.}200" /> | <InlineMath math="77{,}5\%" /> |
+| Jumat | <InlineMath math="530+530=1{.}060" /> | <InlineMath math="1{.}200" /> | <InlineMath math="\approx 88{,}3\%" /> |
+| Sabtu | <InlineMath math="660+640=1{.}300" /> | <InlineMath math="1{.}600" /> | <InlineMath math="81{,}25\%" /> |
+| Minggu | <InlineMath math="540+690=1{.}230" /> | <InlineMath math="1{.}600" /> | <InlineMath math="\approx 76{,}9\%" /> |
 
-Jadi, pernyataan yang sesuai adalah banyak siswa sekolah B yang bersepeda lebih banyak daripada siswa sekolah A yang bersepeda.
+Keterisian tertinggi ada pada hari Jumat. Coba cek pesaing terdekatnya, Sabtu. Supaya Sabtu menyamai Jumat, Sabtu butuh sekitar <InlineMath math="0{,}883 \times 1{.}600 \approx 1{.}413" /> penumpang. Penumpang Sabtu hanya <InlineMath math="1{.}300" />, jadi Sabtu memang kalah.
+
+Sekarang lihat kenapa pilihan lain menggoda.
+
+- Sabtu punya penumpang terbanyak, <InlineMath math="1{.}300" /> orang. Itu alasan petugas dalam bacaan, padahal kapasitas Sabtu juga lebih besar, yaitu <InlineMath math="1{.}600" />.
+- Minggu punya batang tertinggi, yaitu <InlineMath math="690" /> penumpang dari Karang Mas. Satu batang belum mewakili seluruh hari, dan keterisian gabungan Minggu hanya sekitar <InlineMath math="76{,}9\%" />.
+- Senin muncul kalau kamu hanya melihat arah Karang Mas: <InlineMath math="560" /> dari kapasitas <InlineMath math="600" />, sekitar <InlineMath math="93{,}3\%" />. Arah Batu Lintang hari itu jauh lebih sepi, jadi keterisian gabungannya hanya sekitar <InlineMath math="76{,}7\%" />.
+- Kamis muncul kalau kamu hanya melihat arah Batu Lintang: <InlineMath math="550" /> dari <InlineMath math="600" />, sekitar <InlineMath math="91{,}7\%" />. Keterisian gabungannya hanya <InlineMath math="77{,}5\%" />.
+
+Jadi, persentase keterisian kedua arah paling tinggi terjadi pada hari Jumat, sekitar <InlineMath math="88{,}3\%" />.

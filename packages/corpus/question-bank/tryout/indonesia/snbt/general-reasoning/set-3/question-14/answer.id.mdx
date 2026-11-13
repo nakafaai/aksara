@@ -1,27 +1,31 @@
-Cari semua susunan yang mungkin. Mulailah dari **pasangan K dan L**, karena keduanya harus berada di rak yang sama dan memakan dua tempat sekaligus.
+Pernyataan yang mungkin benar cukup benar pada **paling sedikit satu susunan sah**. Empat pernyataan lainnya harus mustahil di semua susunan. Karena itu, cara paling aman adalah menemukan semua susunan sah dulu, lalu mencocokkan setiap pernyataan.
 
-O sudah menempati satu tempat di rak tengah, jadi rak tengah hanya punya dua tempat lagi. K dan L bisa berada di rak atas, rak tengah, atau rak bawah.
+Kunci dulu orang yang posisinya paling terikat, lalu turunkan posisi orang lain satu per satu.
 
-**K dan L di rak atas**. Rak atas penuh. P harus lebih tinggi daripada Q, jadi P di rak tengah dan Q di rak bawah. M dan N mengisi sisa satu tempat di rak tengah dan satu tempat di rak bawah, dengan dua kemungkinan.
+- Aturan 1 memberi dua kasus: Asri di kursi 1 dan Bonar di kursi 5, atau Bonar di kursi 1 dan Asri di kursi 5. Di kedua kasus, kursi 3 dan kursi 7 berjarak dua dari Asri.
+- Dimas tidak boleh di sebelah Asri (aturan 3). Dimas juga tidak bisa di kursi 3 atau kursi 7. Jika Dimas di kursi 3, Elok yang berhadapan dengannya duduk di kursi 7, lalu Fajar harus berjarak dua dari Elok, yaitu di kursi 5 atau kursi 1. Dua kursi itu milik Asri dan Bonar, jadi Fajar tidak kebagian kursi. Hal yang sama terjadi jika Dimas di kursi 7. Jadi Dimas duduk di sebelah Bonar.
+- Cahya bersebelahan dengan Dimas (aturan 2). Satu tetangga Dimas sudah ditempati Bonar, jadi Cahya duduk di tetangga Dimas yang lain, yaitu kursi 3 atau kursi 7.
+- Elok berhadapan dengan Dimas (aturan 4), sehingga Elok duduk di sebelah Asri, di sisi yang jauh dari Cahya.
+- Fajar berjarak dua dari Elok (aturan 5). Ada dua kursi kosong yang cocok, jadi ada dua cabang.
+- Galuh dan Hamid mengisi dua kursi terakhir, dengan Galuh di nomor yang lebih kecil (aturan 6). Aturan 7 lalu mencoret dua susunan yang menaruh Hamid di sebelah Cahya.
 
-**K dan L di rak tengah**. Rak tengah berisi K, L, dan O. Rak atas dan bawah masing-masing punya dua tempat untuk M, N, P, dan Q. N tidak boleh di atas, jadi N di bawah. M harus berbeda rak dengan N, jadi M di atas. P harus lebih tinggi daripada Q, jadi P di atas dan Q di bawah.
+Hasilnya enam susunan sah. Kolom 1 sampai 8 adalah nomor kursi, dan setiap orang ditulis dengan huruf pertama namanya, misalnya A untuk Asri dan F untuk Fajar.
 
-**K dan L di rak bawah**. Rak atas dan sisa dua tempat di rak tengah diisi M, N, P, dan Q. N tidak boleh di atas, jadi N di tengah. M harus berbeda rak dengan N, jadi M di atas. Q tidak boleh lebih tinggi daripada P, jadi P di atas dan Q di tengah.
+| Susunan | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| I | A | F | C | D | B | G | H | E |
+| II | A | G | C | D | B | F | H | E |
+| III | A | E | G | H | B | D | C | F |
+| IV | B | D | C | F | A | E | G | H |
+| V | B | D | C | G | A | E | H | F |
+| VI | B | G | H | E | A | F | C | D |
 
-| Susunan | Rak atas | Rak tengah | Rak bawah |
-| --- | --- | --- | --- |
-| I | K, L | M, O, P | N, Q |
-| II | K, L | N, O, P | M, Q |
-| III | M, P | K, L, O | N, Q |
-| IV | M, P | N, O, Q | K, L |
+Sekarang periksa setiap pernyataan.
 
-Pada keempat susunan, **K tidak pernah berada di rak yang sama dengan M**. Pernyataan ini pasti benar.
+- Hamid di kursi 4 terjadi pada susunan III. Cek aturannya: Asri (1) berhadapan dengan Bonar (5), Dimas (6) bersebelahan dengan Cahya (7) dan tidak bersebelahan dengan Asri, Elok (2) berhadapan dengan Dimas (6), Fajar (8) berjarak dua dari Elok (2), Galuh (3) bernomor lebih kecil daripada Hamid (4), dan Hamid tidak bersebelahan dengan Cahya. Semua aturan terpenuhi, jadi pernyataan ini mungkin benar.
+- Dimas di kursi 3 mustahil, karena Fajar tidak kebagian kursi seperti yang sudah ditunjukkan di atas. Pernyataan ini menjebak jika kamu hanya memeriksa aturan 2 sampai 4 dan lupa memastikan Fajar masih punya tempat.
+- Asri di kursi 1 bersama Fajar di kursi 4 mustahil. Dengan Asri di kursi 1, Fajar di kursi 4 hanya bisa terjadi jika Cahya di kursi 7, Dimas di kursi 6, dan Elok di kursi 2. Kursi sisa adalah 3 dan 8, jadi Galuh di kursi 3 dan Hamid di kursi 8, padahal kursi 8 bersebelahan dengan Cahya di kursi 7. Ini jebakan bagi yang lupa aturan 7.
+- Fajar berhadapan dengan Cahya mustahil. Cahya selalu di kursi bernomor ganjil (3 atau 7). Elok duduk di sebelah Asri yang bernomor ganjil, jadi nomor Elok genap, dan Fajar yang berjarak dua dari Elok juga bernomor genap. Dua kursi yang berhadapan berselisih <InlineMath math="4" />, jadi keduanya sama-sama ganjil atau sama-sama genap. Pernyataan ini terlihat bebas karena tidak ada aturan yang menghubungkan Fajar dan Cahya secara langsung.
+- Hamid di kursi 6 juga mustahil. Saat Asri di kursi 1 dan Cahya di kursi 3, Hamid harus di kursi 7 karena nomornya harus lebih besar daripada nomor Galuh. Saat Bonar di kursi 1 dan Cahya di kursi 7, Hamid di kursi 6 bersebelahan dengan Cahya. Pada dua kasus lain, kursi 6 milik Dimas atau Elok. Jebakannya adalah menukar Galuh dan Hamid tanpa memeriksa aturan 6 dan aturan 7.
 
-Pernyataan lain tidak berlaku pada semua susunan:
-
-- P berada di rak atas pada susunan III dan IV.
-- Q berada di rak tengah pada susunan IV.
-- N berada di rak tengah pada susunan II dan IV.
-- M berada di rak tengah pada susunan I dan di rak bawah pada susunan II.
-
-Jadi, pernyataan yang pasti benar adalah K tidak berada di rak yang sama dengan M.
+Jadi, pernyataan yang mungkin benar adalah Hamid duduk di kursi 4.

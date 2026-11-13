@@ -1,14 +1,38 @@
-The July starting stock equals **the end-of-June stock**. Compute it from the table first:
+This question joins two rows of the table. Hasan's row gives you **a limit on the bill per resident**, and you then apply that limit to Made's row and work backwards until you reach kWh.
 
-<BlockMath math="10+(180-175)=15" />
-
-Production from January to June totals <InlineMath math="180" /> and sales total <InlineMath math="175" />, so the end-of-June stock is <InlineMath math="15" /> wardrobes.
-
-Let July production be <InlineMath math="x" />. The end-of-July stock must not be less than the start-of-January stock of <InlineMath math="10" />:
+Step one: find the Hasan family's May bill per resident. Hasan used <InlineMath math="2{,}495-2{,}385=110\text{ kWh}" />, and <InlineMath math="4" /> people live there.
 
 <BlockMath math="\begin{aligned}
-15+x-30 &\ge 10 \\
-x &\ge 25
+\text{Hasan's bill} &= 40(1{,}200)+70(1{,}600)+25{,}000 = 185{,}000 \\
+\text{per resident} &= 185{,}000\div4 = 46{,}250
 \end{aligned}" />
 
-Check the boundary: with <InlineMath math="25" /> produced, the end-of-July stock is <InlineMath math="15+25-30=10" />, exactly the January starting stock. Producing <InlineMath math="24" /> would leave <InlineMath math="9" />, less than <InlineMath math="10" />. So July production must be at least <InlineMath math="25" /> wardrobes.
+Step two: turn that into a limit on the Made family's bill. <InlineMath math="6" /> people live in Made's home, so Made's June bill can be at most <InlineMath math="6\times46{,}250" /> rupiah. The fixed charge still has to be paid, so the usage cost can be at most what's left.
+
+<BlockMath math="\begin{aligned}
+\text{Made's bill} &\le 6\times46{,}250 = 277{,}500 \\
+\text{Made's usage cost} &\le 277{,}500-25{,}000 = 252{,}500
+\end{aligned}" />
+
+Step three: work backwards from rupiah to kWh, block by block. If the first <InlineMath math="120" /> kWh are used in full, they cost <InlineMath math="40(1{,}200)+80(1{,}600)=176{,}000" />. That's still below <InlineMath math="252{,}500" />, so the rest of the money goes to Block III kWh.
+
+<BlockMath math="\frac{252{,}500-176{,}000}{2{,}200} = \frac{76{,}500}{2{,}200} \approx 34.8" />
+
+Since usage is recorded in whole kWh, Block III can hold at most <InlineMath math="34" /> kWh. Rounding up to <InlineMath math="35" /> would already break the limit. So Made's June usage can be at most <InlineMath math="120+34=154\text{ kWh}" />.
+
+Check the boundary by working out the bill per resident for <InlineMath math="154" /> kWh and <InlineMath math="155" /> kWh.
+
+<BlockMath math="\begin{aligned}
+154\text{ kWh} &: \frac{176{,}000+34(2{,}200)+25{,}000}{6} = \frac{275{,}800}{6} \approx 45{,}967 \le 46{,}250 \\
+155\text{ kWh} &: \frac{176{,}000+35(2{,}200)+25{,}000}{6} = \frac{278{,}000}{6} \approx 46{,}333 > 46{,}250
+\end{aligned}" />
+
+<InlineMath math="154" /> kWh still works, and <InlineMath math="155" /> kWh doesn't. Made used <InlineMath math="4{,}238-4{,}068=170\text{ kWh}" /> in May, so the cut must be at least <InlineMath math="170-154=16" /> kWh.
+
+Some shortcuts that go wrong:
+
+- Comparing usage per resident instead of bill per resident: Hasan uses <InlineMath math="110\div4=27.5" /> kWh per person, which would cap Made at <InlineMath math="6\times27.5=165" /> kWh and need a cut of only <InlineMath math="5" /> kWh. That's wrong because Made's extra kWh sit in the pricier Block III.
+- Leaving out the fixed charge for both families: the limit becomes a usage cost of <InlineMath math="6\times(160{,}000\div4)=240{,}000" />, Made's usage is capped at <InlineMath math="149" /> kWh, and the cut becomes <InlineMath math="21" /> kWh.
+- Rounding <InlineMath math="34.8" /> up to <InlineMath math="35" /> gives <InlineMath math="155" /> kWh and a cut of <InlineMath math="15" /> kWh, but <InlineMath math="155" /> kWh is already over the limit.
+
+So the Made family has to cut its usage by at least <InlineMath math="16" /> kWh.

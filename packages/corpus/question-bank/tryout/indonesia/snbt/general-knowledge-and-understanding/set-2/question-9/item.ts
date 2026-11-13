@@ -3,36 +3,37 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "paragraph-meaning",
-    topic: "inference",
+    contentDomain: "word-relation",
+    topic: "antonym",
   },
-  stimulus: "bakau",
+  stimulus: "antibiotik",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Agar bambu dapat tumbuh menjadi hutan baru di tepi pantai.",
-        },
-        {
-          correct: false,
-          label: "Agar tambak di belakangnya dapat diperluas ke arah laut.",
+          label:
+            "Sekolah itu menerapkan aturan seragam yang *ketat*, tanpa pengecualian bagi siapa pun.",
         },
         {
           correct: true,
           label:
-            "Agar lumpur mengendap lebih dulu sehingga bibit mangrove dapat tumbuh baik.",
+            "Selama pertandingan final, pintu masuk stadion dijaga *ketat* oleh petugas.",
         },
         {
           correct: false,
           label:
-            "Agar nelayan dapat menambatkan perahu di dekat bibit mangrove.",
+            "Celana olahraganya terlalu *ketat* sehingga ia sulit berlari.",
         },
         {
           correct: false,
           label:
-            "Agar gelombang dipantulkan kembali ke tengah laut untuk selamanya sehingga pantai tidak pernah tergerus.",
+            "Pekan ini ia sangat *sibuk* sehingga jarang pulang sebelum malam.",
+        },
+        {
+          correct: false,
+          label: "Baut pada roda sepeda itu sudah *kencang* kembali.",
         },
       ],
     },

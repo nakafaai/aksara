@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "vocabulary",
-    topic: "polysemy",
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "paragraph-relation",
   },
-  stimulus: "gamelan",
+  stimulus: "delta",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Keadaan serasi atau selaras antara dua hal.",
+          label:
+            "Paragraf ketiga menambahkan rupa delta keempat, yaitu delta yang dibentuk oleh kegiatan manusia, sebagai pelengkap tiga rupa pada paragraf kedua.",
+        },
+        {
+          correct: false,
+          label:
+            "Paragraf ketiga membantah paragraf kedua dengan menunjukkan bahwa nasib delta kini ditentukan oleh manusia, bukan lagi oleh tarik-menarik antara sungai dan laut.",
+        },
+        {
+          correct: false,
+          label:
+            "Paragraf ketiga memberi pengecualian bagi paragraf pertama, yaitu daratan delta berhenti tumbuh ke arah laut begitu bendungan dibangun di hulu.",
         },
         {
           correct: true,
-          label: "Sistem nada yang dipakai dalam karawitan.",
+          label:
+            "Paragraf ketiga memakai syarat keseimbangan dari paragraf kedua untuk menunjukkan bahwa pertumbuhan daratan pada paragraf pertama dapat berbalik menjadi penyusutan.",
         },
         {
           correct: false,
-          label: "Bagian senapan yang berbentuk pipa panjang.",
-        },
-        {
-          correct: false,
-          label: "Tempo cepat atau lambatnya sebuah gending.",
-        },
-        {
-          correct: false,
-          label: "Syair yang dinyanyikan bersama gending.",
+          label:
+            "Paragraf ketiga memperinci proses pada paragraf pertama dengan menambahkan pemadatan endapan sebagai tahap akhir pembentukan daratan delta.",
         },
       ],
     },

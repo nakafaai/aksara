@@ -1,16 +1,27 @@
-An implication <InlineMath math="p \Rightarrow q" /> is false only when <InlineMath math="p" /> is true and <InlineMath math="q" /> is false. So **the negation of an implication is "p and not q"**:
+This question asks for the negation (*ingkaran*), the statement that's true exactly when the original is false. The original is an if-then statement, and its "then" part joins two things with *dan* ("and"). Both the "if" part and the "then" part also contain quantifiers: *tidak ada* ("no") and *semua* ("all").
 
-<BlockMath math="\neg(p \Rightarrow q) \equiv p \wedge \neg q" />
+Give each part a name so the shape is easy to see.
 
-Here <InlineMath math="p" /> is "today is a holiday" and <InlineMath math="q" /> is "all shops in the market are closed". The negation of <InlineMath math="q" /> is not "all shops are open" but **"some shop is not closed"**, because one shop staying open is enough to refute "all shops are closed".
+- <InlineMath math="p" />: no volunteer is absent from the morning roll call.
+- <InlineMath math="q" />: the post opens on time.
+- <InlineMath math="r" />: all volunteers get a lunch ration.
 
-The result: today is a holiday and some shop in the market is not closed.
+The original is <InlineMath math="p \Rightarrow (q \wedge r)" />. An if-then statement is false in only one situation: the "if" part happens, but the "then" part doesn't. So **the "if" part stays exactly as it is**, including its *tidak ada*, and only the "then" part gets negated.
 
-The other options are wrong:
+<BlockMath math="\neg\big(p \Rightarrow (q \wedge r)\big) \equiv p \wedge \neg(q \wedge r) \equiv p \wedge (\neg q \vee \neg r)" />
 
-- "Today is not a holiday and all shops are open" wrongly negates both <InlineMath math="p" /> and <InlineMath math="q" />.
-- "If today is not a holiday, some shop is open" is still an implication, not a negation.
-- "Today is a holiday and all shops are open" is too strong. The negation needs only one shop that is not closed.
-- "Today is not a holiday or all shops are closed" is another form of the original statement, <InlineMath math="\neg p \vee q" />, so it is equivalent, not the negation.
+The second step uses De Morgan's law: the negation of "<InlineMath math="q" /> and <InlineMath math="r" />" is "not <InlineMath math="q" /> or not <InlineMath math="r" />". Now translate each part back.
 
-So the negation is "Today is a holiday and some shop in the market is not closed".
+- <InlineMath math="\neg q" />: the post doesn't open on time.
+- <InlineMath math="\neg r" />: the negation of "all volunteers get a lunch ration" (*semua relawan mendapat jatah makan siang*) is "some volunteer doesn't get a lunch ration" (*ada relawan yang tidak mendapat jatah makan siang*). To refute "all", one volunteer who misses out is enough.
+
+The result: no volunteer is absent from the morning roll call, but the post doesn't open on time or some volunteer doesn't get a lunch ration. Check the meaning: the original really is broken when everyone has shown up but one of its two promises fails.
+
+Each other option misses at one point.
+
+- The version starting with "some volunteer is absent" (*ada relawan yang absen*) also negates the "if" part. But when someone is absent, the original isn't broken at all.
+- The version with "doesn't open on time and some volunteer doesn't get a ration" forgets that De Morgan's law turns "and" into "or". It only covers the case where both promises fail together, yet one failure is already enough.
+- The version with "all volunteers don't get a ration" (*semua relawan tidak mendapat jatah*) negates the quantifier wrongly. That sentence means no volunteer gets a ration at all, which is far stronger than the negation, which only needs one volunteer.
+- The version that still has the if-then form just negates both parts. The negation of an if-then statement isn't an if-then statement anymore. It's an "and" statement.
+
+So the negation is "No volunteer is absent from the morning roll call, but the post doesn't open on time or some volunteer doesn't get a lunch ration" (*Tidak ada relawan yang absen pada apel pagi, tetapi posko tidak dibuka tepat waktu atau ada relawan yang tidak mendapat jatah makan siang*).

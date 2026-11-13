@@ -4,37 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "paragraph-meaning",
-    topic: "application",
+    topic: "detail",
   },
-  stimulus: "bahasa",
+  stimulus: "serapan",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Bahasa dengan $$300$$ penutur yang masih dipakai orang tua untuk berbicara dengan anak-anaknya setiap hari.",
+            "Kata daerah yang sudah jarang dipakai dapat kembali lazim setelah dijadikan padanan istilah.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Bahasa dengan $$2$$ juta penutur yang dipakai di rumah dan diajarkan di sekolah.",
+            "Makna Jawa kata *mengunduh* sudah tidak tercatat dalam KBBI karena kalah populer oleh makna barunya.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Bahasa dengan $$5{.}000$$ penutur yang dipakai anak-anak ketika bermain bersama.",
+            "Kata daerah yang sudah sering muncul di media nasional tidak perlu lagi ditulis dengan huruf miring dalam tulisan baku.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Bahasa dengan $$800$$ penutur yang memiliki kamus lengkap dan dipakai keluarga muda di rumah.",
-        },
-        {
-          correct: true,
-          label:
-            "Bahasa dengan $$50{.}000$$ penutur yang hanya dipakai oleh orang berusia di atas $$60$$ tahun.",
+            "Penutur bahasa Indonesia tetap dapat menunjukkan rasa hormat kepada lawan bicara walaupun bahasanya tidak memiliki tingkat tutur seperti bahasa Jawa.",
         },
       ],
     },

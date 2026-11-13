@@ -3,35 +3,36 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "paragraph-meaning",
-    topic: "main-idea",
+    contentDomain: "vocabulary",
+    topic: "affix-meaning",
   },
-  stimulus: "tsunami",
+  stimulus: "kedelai",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Semua gempa bumi di bawah laut menimbulkan tsunami besar.",
-        },
-        {
-          correct: false,
           label:
-            "Gempa yang pusatnya sangat dalam selalu menimbulkan tsunami paling tinggi karena energinya tersimpan lebih lama di dalam bumi sebelum dilepaskan.",
+            "*Pemindahan* bibit dari persemaian ke sawah dilakukan pada sore hari.",
         },
         {
           correct: false,
-          label: "Letusan gunung api adalah penyebab utama tsunami di dunia.",
-        },
-        {
-          correct: false,
-          label: "Tsunami hanya dapat dipicu oleh gempa bumi.",
+          label: "Bus itu menunggu penumpang di *perhentian* dekat pasar.",
         },
         {
           correct: true,
           label:
-            "Tsunami terutama terbentuk karena dasar laut naik atau turun secara tiba-tiba, sehingga tidak semua gempa bawah laut menimbulkannya.",
+            "*Perputaran* kincir air itu melambat ketika aliran sungai menyusut.",
+        },
+        {
+          correct: false,
+          label: "Ibu menyimpan *perhiasan* emasnya di dalam lemari.",
+        },
+        {
+          correct: false,
+          label:
+            "*Perbaikan* pematang sawah itu dikerjakan warga secara bergotong royong.",
         },
       ],
     },

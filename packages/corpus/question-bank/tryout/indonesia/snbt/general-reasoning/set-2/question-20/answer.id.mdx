@@ -1,14 +1,31 @@
-Ada empat kemungkinan pemakan kue. Uji setiap kemungkinan dan **hitung berapa pernyataan yang benar**. Kemungkinan yang tepat adalah yang menghasilkan tepat satu pernyataan benar.
+Pernyataan yang pasti benar harus berlaku di setiap urutan kedatangan yang memenuhi keempat keterangan. Jadi, kamu perlu tahu dulu urutan apa saja yang mungkin.
 
-| Pemakan | Rafi | Sela | Tomi | Umar | Banyak yang benar |
-| --- | --- | --- | --- | --- | --- |
-| Rafi | Salah | Salah | Benar | Benar | <InlineMath math="2" /> |
-| Sela | Benar | Salah | Benar | Benar | <InlineMath math="3" /> |
-| Tomi | Salah | Salah | Salah | Benar | <InlineMath math="1" /> |
-| Umar | Salah | Benar | Benar | Salah | <InlineMath math="2" /> |
+Keterangan 1 dan 2 bisa disambung menjadi satu rantai, dari yang paling awal ke yang paling akhir.
 
-Cara mengisi kolom Umar: pernyataan Umar benar tepat ketika pernyataan Sela salah. Pernyataan Sela hanya benar jika Umar pemakannya, jadi pernyataan Umar benar pada semua kemungkinan kecuali ketika Umar pemakannya.
+<BlockMath math="\text{Oki} \rightarrow \text{Rani} \rightarrow \text{Taufik} \rightarrow \text{Sinta}" />
 
-Hanya kemungkinan **Tomi sebagai pemakan** yang menghasilkan tepat satu pernyataan benar, yaitu pernyataan Umar. Karena kemungkinan itu tunggal, pemakannya dapat ditentukan, sehingga pilihan "tidak dapat ditentukan" juga salah.
+Keterangan 4 adalah kunci soal ini, dan keterangan itu harus dibaca bersama keterangan 3. Umar tiba sebelum Vina. Andaikan Vina yang tiba sebelum Sinta. Umar tiba lebih awal lagi, jadi Umar juga sebelum Sinta, dan ada dua orang dari pasangan itu yang mendahului Sinta. Itu melanggar kata "tepat satu". Jadi, **Umar tiba sebelum Sinta**, sedangkan **Vina tiba setelah Sinta**.
 
-Jadi, yang memakan kue adalah Tomi.
+Sekarang hitung orang di depan Sinta. Oki, Rani, dan Taufik ada di depannya karena rantai tadi, dan Umar juga di depannya. Hanya Vina yang datang setelah Sinta.
+
+<BlockMath math="\underbrace{4}_{\text{sebelum Sinta}} + \underbrace{1}_{\text{Sinta}} + \underbrace{1}_{\text{setelah Sinta}} = 6" />
+
+Jadi, Sinta selalu peserta kelima dan Vina selalu peserta keenam. Satu-satunya yang masih bebas adalah posisi Umar di antara Oki, Rani, dan Taufik, sehingga ada empat urutan yang mungkin.
+
+| Kemungkinan | Ke-1 | Ke-2 | Ke-3 | Ke-4 | Ke-5 | Ke-6 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | Umar | Oki | Rani | Taufik | Sinta | Vina |
+| 2 | Oki | Umar | Rani | Taufik | Sinta | Vina |
+| 3 | Oki | Rani | Umar | Taufik | Sinta | Vina |
+| 4 | Oki | Rani | Taufik | Umar | Sinta | Vina |
+
+Cek keterangan 4 pada setiap baris: dari Umar dan Vina, hanya Umar yang tiba sebelum Sinta. Keempat baris memenuhinya.
+
+Pilihan lain hanya benar di sebagian baris, atau tidak pernah benar.
+
+- "Oki adalah peserta yang pertama tiba" gagal di kemungkinan 1. Oki memang awal rantai, tetapi Umar tidak terikat pada rantai itu dan bisa datang paling awal.
+- "Umar tiba sebelum Taufik" gagal di kemungkinan 4. Keterangan hanya menjamin Umar sebelum Sinta, bukan sebelum Taufik.
+- "Vina tiba sebelum Sinta" tidak pernah terjadi. Pilihan ini muncul kalau keterangan 4 dibaca tanpa keterangan 3, lalu Vina yang dipilih sebagai orang yang mendahului Sinta.
+- "Taufik adalah peserta keempat yang tiba" gagal di kemungkinan 4, ketika Umar menyelip di antara Taufik dan Sinta sehingga Taufik menjadi peserta ketiga.
+
+Jadi, yang pasti benar adalah bahwa Sinta adalah peserta kelima yang tiba.

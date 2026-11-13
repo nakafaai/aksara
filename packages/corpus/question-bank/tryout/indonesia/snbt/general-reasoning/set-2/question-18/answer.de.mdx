@@ -1,19 +1,34 @@
-Wende die Regeln **in der Reihenfolge ihrer Priorität** an. Eine frühere Regel geht immer vor, und die Ankunftszeit entscheidet nur bei Gleichstand. Die Tabellenspalten sind *Jam datang* (Ankunftszeit), *Usia* (Alter), *Hamil* (schwanger) und *Tanda bahaya* (Warnzeichen).
+Ein ehrlicher Bewohner (*jujur*) sagt nur wahre Sätze, ein Lügner (*pembohong*) nur falsche. Du suchst also die Verteilung der Typen, bei der **jeder Satz zum Typ seines Sprechers passt**.
 
-**Regel 1**. Nur Jihan zeigt Warnzeichen, also wird Jihan zuerst behandelt, obwohl Jihan um <InlineMath math="8{:}00" /> Uhr kam.
+Fang mit Sekars Satz an, denn ein falscher Wenn-Satz verrät am meisten. Ein Satz "Wenn <InlineMath math="P" />, dann <InlineMath math="Q" />" ist nur in einer Situation falsch: wenn <InlineMath math="P" /> eintritt und <InlineMath math="Q" /> nicht.
 
-**Regel 2**. Unter den übrigen haben Kurnia (<InlineMath math="62" /> Jahre), Ilham (<InlineMath math="70" /> Jahre) und Gita (schwanger) Vorrang. Hadi ist <InlineMath math="45" /> und nicht schwanger und gehört zur letzten Gruppe.
+Erster Schritt: Zeig, dass **Sekar ehrlich sein muss**. Angenommen, Sekar lügt. Dann ist ihr Satz falsch, also ist Raka ehrlich und Tegar kein Lügner, das heißt, auch Tegar ist ehrlich. Damit wäre Sekar die einzige Lügnerin. Der ehrliche Raka sagt aber, dass es mindestens zwei Lügner gibt. Das ist ein Widerspruch, also ist Sekar ehrlich.
 
-**Regel 3**. Innerhalb der Vorranggruppe zählt die Ankunft: Kurnia um <InlineMath math="7{:}55" /> Uhr, Ilham um <InlineMath math="8{:}10" /> Uhr, dann Gita um <InlineMath math="8{:}15" /> Uhr.
+Zweiter Schritt: Zeig, dass Raka lügt. Angenommen, Raka ist ehrlich. Dann ist sein Satz wahr, und es gibt mindestens zwei Lügner. Raka und Sekar sind beide ehrlich, also bleibt nur Tegar als möglicher Lügner. Eine Person reicht nicht, also kann Raka nicht ehrlich sein.
 
-<BlockMath math="\text{Jihan},\ \text{Kurnia},\ \text{Ilham},\ \text{Gita},\ \text{Hadi}" />
+Dritter Schritt: Bestimm Tegar. Weil Raka lügt, ist sein Satz falsch. Das Gegenteil von "mindestens zwei Lügner" ist "höchstens ein Lügner". Raka selbst ist schon dieser eine Lügner, also muss Tegar ehrlich sein.
 
-Als Dritter wird Ilham behandelt.
+Prüf alle drei Sätze mit diesem Ergebnis.
 
-Die anderen Antworten entstehen aus falsch angewandten Regeln:
+- Raka lügt, und sein Satz ist tatsächlich falsch, denn es gibt nur einen Lügner.
+- Sekar ist ehrlich, und ihr Satz ist wahr. Der Teil "Raka ist ehrlich" tritt nicht ein, also wird der Wenn-Satz nicht verletzt.
+- Tegar ist ehrlich, und sein Satz ist wahr, denn Sekar und Tegar sind beide ehrlich.
 
-- Nur nach Ankunftszeit ergibt sich Hadi, Kurnia, Jihan, dann wäre Jihan Dritter.
-- Wer Regel 2 nach Jihan übergeht, erhält Jihan, Hadi, Kurnia, dann wäre Kurnia Dritter.
-- Wer Schwangere vor Älteren einordnet, erhält Jihan, Gita, Kurnia, und wieder wäre Kurnia Dritter. Regel 2 gibt beiden Gruppen **denselben Vorrang**.
+In Tegars Satz steckt eine Falle. Er kann Tegars eigenen Typ nicht festlegen. Ist Tegar ehrlich, hat Sekar denselben Typ, ist also ehrlich. Lügt Tegar, ist sein Satz falsch, also hat Sekar einen anderen Typ und ist wieder ehrlich. Beide Fälle sagen nur "Sekar ist ehrlich", deshalb muss Tegars Typ aus Rakas Satz kommen.
 
-Als Dritter wird also Ilham behandelt.
+Die Tabelle zeigt, wessen Satz bei jeder Antwort zu seinem Typ passt.
+
+| Antwort | Raka | Sekar | Tegar |
+| --- | --- | --- | --- |
+| Raka ehrlich, Sekar ehrlich, Tegar Lügner | Passt nicht | Passt | Passt |
+| Raka ehrlich, Sekar Lügnerin, Tegar ehrlich | Passt nicht | Passt | Passt nicht |
+| Raka Lügner, Sekar ehrlich, Tegar Lügner | Passt nicht | Passt | Passt |
+| Raka Lügner, Sekar ehrlich, Tegar ehrlich | Passt | Passt | Passt |
+| Raka ehrlich, Sekar Lügnerin, Tegar Lügner | Passt | Passt nicht | Passt nicht |
+
+- Raka ehrlich, Sekar ehrlich, Tegar Lügner besteht bei Sekar und Tegar. Die Falle ist, Sekars Satz mit einem ehrlichen Raka durchzurechnen und Rakas eigene Behauptung nie zu prüfen, obwohl nur Tegar lügt.
+- Raka ehrlich, Sekar Lügnerin, Tegar ehrlich ist genau das, was die Verneinung von Sekars Satz liefert. Die Falle ist, dort aufzuhören, obwohl diese Verteilung nur einen Lügner hat.
+- Raka Lügner, Sekar ehrlich, Tegar Lügner vergisst, dass Raka sich selbst mitzählt. Bei zwei Lügnern wäre Rakas Satz wahr, obwohl Raka lügt.
+- Raka ehrlich, Sekar Lügnerin, Tegar Lügner passt zu Rakas Satz. Diese Verteilung entsteht, wenn du Sekars Satz falsch verneinst, nämlich als "Raka ist ehrlich und Tegar ist ein Lügner".
+
+Raka ist also ein Lügner, Sekar und Tegar sind beide ehrlich.

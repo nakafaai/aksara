@@ -1,18 +1,31 @@
-Stok pada akhir suatu bulan bergantung pada **semua bulan sebelumnya**, bukan hanya produksi bulan itu. Hitung stok akhir bulan satu per satu dengan rumus
+Soal ini membandingkan dua cara membayar pemakaian yang sama: dua meteran terpisah atau satu meteran bersama. Dari tabel, pemakaian Mei Keluarga Hasan <InlineMath math="2{.}495-2{.}385=110\text{ kWh}" />, dan pemakaian Keluarga Lestari <InlineMath math="6{.}952-6{.}917=35\text{ kWh}" />.
 
-<BlockMath math="\text{stok akhir}=\text{stok awal}+\text{produksi}-\text{penjualan}" />
+Kuncinya ada di kalimat bahwa **blok dihitung terpisah untuk setiap meteran**. Dengan dua meteran, setiap keluarga mendapat jatah <InlineMath math="40" /> kWh pertama dengan tarif Blok I. Dengan satu meteran, jatah murah itu hanya ada satu kali, tetapi biaya bebannya juga cuma satu kali. Dua efek ini berlawanan, jadi cara paling aman adalah menghitung kedua total secara lengkap.
 
-| Bulan | Perhitungan | Stok akhir |
-| --- | --- | --- |
-| Januari | <InlineMath math="10+30-25" /> | <InlineMath math="15" /> |
-| Februari | <InlineMath math="15+40-30" /> | <InlineMath math="25" /> |
-| Maret | <InlineMath math="25+25-35" /> | <InlineMath math="15" /> |
-| April | <InlineMath math="15+35-20" /> | <InlineMath math="30" /> |
-| Mei | <InlineMath math="30+30-40" /> | <InlineMath math="20" /> |
-| Juni | <InlineMath math="20+20-25" /> | <InlineMath math="15" /> |
+Mulai dari dua meteran terpisah. Pemakaian Hasan melewati <InlineMath math="40" /> kWh, jadi <InlineMath math="70" /> kWh sisanya masuk Blok II. Pemakaian Lestari seluruhnya masih di Blok I.
 
-Stok paling banyak adalah <InlineMath math="30" /> lemari pada akhir April.
+<BlockMath math="\begin{aligned}
+\text{Hasan} &= 40(1{.}200)+70(1{.}600)+25{.}000 = 48{.}000+112{.}000+25{.}000 = 185{.}000 \\
+\text{Lestari} &= 35(1{.}200)+25{.}000 = 42{.}000+25{.}000 = 67{.}000 \\
+\text{total terpisah} &= 185{.}000+67{.}000 = 252{.}000
+\end{aligned}" />
 
-Pilihan Februari menjebak karena produksi Februari paling banyak, yaitu <InlineMath math="40" />. Namun, stok akhir Februari hanya <InlineMath math="25" />, karena penjualannya juga besar dan stok awalnya lebih kecil. Maret, Mei, dan Juni memiliki penjualan lebih besar daripada produksi, sehingga stoknya turun pada bulan-bulan itu.
+Dengan satu meteran, pemakaiannya <InlineMath math="110+35=145\text{ kWh}" />. Angka ini melewati batas <InlineMath math="120" /> kWh, jadi <InlineMath math="25" /> kWh terakhir masuk Blok III. Biaya beban dibayar satu kali.
 
-Jadi, stok lemari paling banyak terjadi pada akhir April.
+<BlockMath math="\begin{aligned}
+\text{satu meteran} &= 40(1{.}200)+80(1{.}600)+25(2{.}200)+25{.}000 \\
+&= 48{.}000+128{.}000+55{.}000+25{.}000 = 256{.}000
+\end{aligned}" />
+
+Selisihnya <InlineMath math="256{.}000-252{.}000=4{.}000" />. Biaya beban yang hilang, <InlineMath math="\text{Rp}25{.}000" />, kalah oleh kenaikan biaya pemakaian. Tanpa biaya beban, satu meteran membayar <InlineMath math="231{.}000" />, sedangkan dua meteran membayar <InlineMath math="160{.}000+42{.}000=202{.}000" />, jadi biaya pemakaian naik <InlineMath math="29{.}000" /> rupiah.
+
+Cek kenaikan itu dari sisi kWh. Semua <InlineMath math="35" /> kWh milik Lestari kehilangan tarif Blok I dan naik ke tarif Blok II, yaitu <InlineMath math="400" /> rupiah lebih mahal per kWh, totalnya <InlineMath math="35\times400=14{.}000" />. Akibatnya, <InlineMath math="25" /> kWh terdorong dari Blok II ke Blok III dan naik <InlineMath math="600" /> rupiah per kWh, totalnya <InlineMath math="25\times600=15{.}000" />. Jumlahnya <InlineMath math="29{.}000" />, sama dengan hitungan di atas.
+
+Pilihan lain menggoda karena masing-masing hanya menangkap sebagian perubahan:
+
+- Lebih murah <InlineMath math="\text{Rp}25{.}000" /> hanya menghitung biaya beban yang hilang dan menganggap biaya pemakaian tidak berubah.
+- Lebih murah <InlineMath math="\text{Rp}10{.}000" /> hanya menghitung <InlineMath math="25" /> kWh yang masuk Blok III (<InlineMath math="15{.}000" />), lalu lupa bahwa kWh Lestari kehilangan tarif Blok I.
+- Lebih mahal <InlineMath math="\text{Rp}29{.}000" /> sudah benar menghitung kenaikan biaya pemakaian, tetapi lupa bahwa satu biaya beban hilang.
+- Lebih mahal <InlineMath math="\text{Rp}76{.}000" /> mengenakan tarif blok tertinggi yang tercapai pada seluruh kWh, padahal tarif setiap blok hanya berlaku untuk kWh di blok itu.
+
+Jadi, dengan satu meteran bersama, total tagihan Juni kedua keluarga **lebih mahal** <InlineMath math="\text{Rp}4{.}000" />.

@@ -1,21 +1,32 @@
-The key is the **distance the train covers in each event**, not just the time.
+An analog clock numbered <InlineMath math="1" /> to <InlineMath math="12" /> repeats its display every <InlineMath math="12" /> hours. So a slow clock looks right again when it's behind by **one full turn of the dial**, which is <InlineMath math="12" /> hours or <InlineMath math="12\times60=720" /> minutes, not <InlineMath math="24" /> hours. Your job is to track how far behind it is until that reaches <InlineMath math="720" /> minutes.
 
-When passing the pole, the front of the train moves from the pole until the rear leaves it. That distance equals the train's length, <InlineMath math="150\text{ m}" />, so the speed is
-
-<BlockMath math="v=\frac{150\text{ m}}{10\text{ s}}=15\text{ m/s}" />
-
-When passing the tunnel, the front must cover **the tunnel length plus the train length**. The front enters, travels the whole tunnel, and then must move another train length so the rear comes out:
+Step one: find how far behind it is when the battery dies. From 1 March at 12.00 to 1 May at 12.00 there are <InlineMath math="31" /> days in March and <InlineMath math="30" /> days in April.
 
 <BlockMath math="\begin{aligned}
-L+150 &= 15\times40=600 \\
-L &= 450\text{ m}
+\text{running time} &= 31+30 = 61 \text{ days} \\
+\text{delay} &= 61\times6 = 366 \text{ minutes}
 \end{aligned}" />
 
-The other options come from misreading the distance:
+Step two: add the effect of the stop. During those <InlineMath math="3" /> hours, real time moves on <InlineMath math="180" /> minutes while the hands stand still. So the delay grows by exactly <InlineMath math="180" /> minutes.
 
-- <InlineMath math="600\text{ m}" /> is the whole distance covered, without subtracting the train length.
-- <InlineMath math="750\text{ m}" /> comes from adding the train length to <InlineMath math="600\text{ m}" /> instead.
-- <InlineMath math="300\text{ m}" /> comes from subtracting the train length twice.
-- <InlineMath math="525\text{ m}" /> comes from subtracting only half the train length.
+<BlockMath math="366+180 = 546 \text{ minutes on 1 May at 15.00}" />
 
-So the tunnel is <InlineMath math="450\text{ m}" /> long.
+Step three: work out how much more delay is needed. Once it's running again, the clock falls <InlineMath math="6" /> minutes behind each day.
+
+<BlockMath math="\begin{aligned}
+\text{still needed} &= 720-546 = 174 \text{ minutes} \\
+\text{time} &= 174\div6 = 29 \text{ days}
+\end{aligned}" />
+
+Twenty-nine days after 1 May at 15.00 is 30 May at 15.00. At that moment the clock shows 3 o'clock, and on a <InlineMath math="12" />-hour face that looks the same as 15.00.
+
+Check that this really is the first time: before the battery died the delay was only <InlineMath math="366" /> minutes, and after the stop it was <InlineMath math="546" /> minutes. Neither reaches <InlineMath math="720" />, so there's no earlier moment.
+
+The other options each skip one step:
+
+- 29 Mei 2027 (29 May) counts 1 May as the first of the <InlineMath math="29" /> days, but 29 days after 1 May is 30 May.
+- 29 Juni 2027 (29 June) ignores the stop and counts <InlineMath math="720\div6=120" /> days from 1 March.
+- 30 Juli 2027 (30 July) uses only the <InlineMath math="180" /> minutes from the stop and forgets the <InlineMath math="366" /> minutes of delay before it, so it waits <InlineMath math="540\div6=90" /> days from 1 May.
+- 27 September 2027 waits for a delay of <InlineMath math="24" /> hours (<InlineMath math="1{,}440" /> minutes), as if it were a <InlineMath math="24" />-hour digital clock, so it waits <InlineMath math="(1{,}440-546)\div6=149" /> days.
+
+So the clock first shows the correct time again on 30 May 2027.

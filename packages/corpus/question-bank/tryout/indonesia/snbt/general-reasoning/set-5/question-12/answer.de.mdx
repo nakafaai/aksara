@@ -1,20 +1,28 @@
-Die ersten drei Aussagen bilden eine **Kette von Implikationen**:
+Diese Aufgabe läuft andersherum als eine gewöhnliche Prämissenaufgabe. Die Schlussfolgerung ist schon gegeben, und du suchst eine vierte Prämisse, die sie gültig macht. Der Weg dahin: **Verfolge die Kette vom Ende der Schlussfolgerung rückwärts**, finde das fehlende Glied und wähle die Antwort, die es ergänzt.
 
-<BlockMath math="\text{Schleuse offen}\Rightarrow\text{Abfluss steigt}\Rightarrow\text{keine Boote}\Rightarrow\text{Stände zu}" />
+Gib jedem Ereignis ein Symbol, damit du die Kette gut siehst.
 
-Die vierte Aussage sagt, dass die Stände **nicht** geschlossen sind. Mit dem Modus tollens gehst du die Kette rückwärts:
+- <InlineMath math="p" />: Am Finaltag fällt starker Regen.
+- <InlineMath math="q" />: Das Finale wird in die Sporthalle verlegt.
+- <InlineMath math="r" />: Die Zuschauerzahl wird auf <InlineMath math="300" /> Personen begrenzt.
+- <InlineMath math="s" />: Die Schülerinnen und Schüler der zehnten Klasse (*kelas X*) bekommen Karten.
+- <InlineMath math="t" />: Die zehnte Klasse sieht das Finale live.
 
-- Die Stände sind nicht geschlossen, also **fahren** die Ausflugsboote.
-- Die Boote fahren, also ist der Abfluss des Flusses **nicht gestiegen**.
-- Der Abfluss ist nicht gestiegen, also wurde die Schleuse **nicht geöffnet**.
+Prämisse 1 ist <InlineMath math="p \Rightarrow q" />. Prämisse 3 ist <InlineMath math="r \Rightarrow \neg s" />. Prämisse 2 benutzt *hanya jika* ("nur wenn"). Der Satz "<InlineMath math="t" /> nur wenn <InlineMath math="s" />" bedeutet <InlineMath math="t \Rightarrow s" />: Die Klasse kann nur live zusehen, wenn sie Karten hat. Die gewünschte Schlussfolgerung ist <InlineMath math="p \Rightarrow \neg t" />.
 
-Die Ausflugsboote fahren also, und die Schleuse des oberen Staudamms wurde nicht geöffnet.
+Geh jetzt von <InlineMath math="\neg t" /> aus rückwärts. Die Kontraposition von Prämisse 2, also die Form "wenn nicht <InlineMath math="s" />, dann nicht <InlineMath math="t" />", hat immer denselben Wahrheitswert wie Prämisse 2. Also gilt <InlineMath math="\neg s \Rightarrow \neg t" />. Prämisse 3 liefert <InlineMath math="r \Rightarrow \neg s" />. Von vorn liefert Prämisse 1 <InlineMath math="p \Rightarrow q" />. Setz alles zusammen.
 
-Die anderen Optionen sind nicht gültig:
+<BlockMath math="p \Rightarrow q \;\overset{?}{\Rightarrow}\; r \Rightarrow \neg s \Rightarrow \neg t" />
 
-- Der Abfluss ist nicht gestiegen, eine Option mit steigendem Abfluss widerspricht dem Ergebnis.
-- Die Schleuse wurde nicht geöffnet, eine Option mit geöffneter Schleuse widerspricht ihm ebenso.
-- Die Boote fahren ja.
-- Der Abfluss ist nicht gestiegen, es gibt also keinen Anstieg, dessen Ursache zu erklären wäre.
+Das fehlende Glied ist <InlineMath math="q \Rightarrow r" />: Wird das Finale in die Sporthalle verlegt, wird die Zuschauerzahl auf <InlineMath math="300" /> Personen begrenzt. Genau diese Form steht nicht unter den Antworten. Dort steht ihre Kontraposition <InlineMath math="\neg r \Rightarrow \neg q" />: Wird die Zuschauerzahl nicht auf <InlineMath math="300" /> Personen begrenzt, wird das Finale nicht in die Sporthalle verlegt. Eine Kontraposition hat immer denselben Wahrheitswert wie die ursprüngliche Aussage, also **schließt diese Antwort genau die Lücke in der Kette**.
 
-Gültig ist also der Schluss, dass die Ausflugsboote fahren und die Schleuse des oberen Staudamms nicht geöffnet wurde.
+Um die anderen Antworten zu prüfen, nimmst du eine Beispielsituation. Es regnet stark, das Finale wird in die Sporthalle verlegt, die Zuschauerzahl wird nicht begrenzt, die zehnte Klasse bekommt Karten und sieht live zu. Alle drei Prämissen gelten, aber die Schlussfolgerung scheitert, denn es hat geregnet und die Klasse hat trotzdem zugesehen. Eine falsche Antwort schließt diese Situation nicht aus.
+
+- "Wird die Zuschauerzahl begrenzt, wird das Finale verlegt" ist die Umkehrung des gesuchten Glieds, also dieselben Teile in umgekehrter Richtung. In der Beispielsituation ist die Zahl nicht begrenzt, also wird diese Aussage nicht verletzt.
+- "Wird das Finale nicht verlegt, wird die Zuschauerzahl nicht begrenzt" ist die Inversion, beide Teile verneint, aber nicht vertauscht. In der Beispielsituation wird das Finale verlegt, also wird auch diese Aussage nicht verletzt.
+- "Bekommt die Klasse Karten, sieht sie live zu" dreht Prämisse 2 um. Diese Aussage passt sogar zur Beispielsituation.
+- "Bekommt die Klasse keine Karten, wird das Finale verlegt" verbindet die falschen Teile. In der Beispielsituation bekommt die Klasse Karten, also verlangt diese Aussage nichts.
+
+Die richtige Antwort schließt die Beispielsituation aus, denn die Zuschauerzahl ist nicht begrenzt, und trotzdem wird das Finale verlegt.
+
+Die vierte Prämisse, die die Schlussfolgerung gültig macht, lautet also: "Wird die Zuschauerzahl nicht auf <InlineMath math="300" /> Personen begrenzt, wird das Finale nicht in die Sporthalle verlegt."

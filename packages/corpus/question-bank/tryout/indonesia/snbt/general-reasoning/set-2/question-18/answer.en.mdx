@@ -1,19 +1,34 @@
-Apply the rules **in their order of priority**. An earlier rule always beats a later one, and arrival time only breaks ties. The table columns are *Jam datang* (arrival time), *Usia* (age), *Hamil* (pregnant), and *Tanda bahaya* (danger signs).
+An honest villager (*jujur*) only says true sentences, and a liar (*pembohong*) only says false ones. So you're looking for the assignment of types that makes **every sentence match its speaker's type**.
 
-**Rule 1**. Only Jihan shows danger signs, so Jihan is served first even though Jihan arrived at <InlineMath math="08{:}00" />.
+Start with Sekar's sentence, because a false "if" sentence tells you the most. A sentence "if <InlineMath math="P" />, <InlineMath math="Q" />" is false in only one situation: when <InlineMath math="P" /> happens and <InlineMath math="Q" /> doesn't.
 
-**Rule 2**. Among the others, priority goes to Kurnia (<InlineMath math="62" /> years), Ilham (<InlineMath math="70" /> years), and Gita (pregnant). Hadi is <InlineMath math="45" /> and not pregnant, so Hadi is in the last group.
+First step, show that **Sekar must be honest**. Suppose Sekar is a liar. Her sentence is false, so Raka is honest and Tegar isn't a liar, which means Tegar is honest too. Then Sekar is the only liar. But honest Raka says there are at least two liars. That's a contradiction, so Sekar is honest.
 
-**Rule 3**. Inside the priority group, order by arrival: Kurnia at <InlineMath math="07{:}55" />, Ilham at <InlineMath math="08{:}10" />, then Gita at <InlineMath math="08{:}15" />.
+Second step, show that Raka is a liar. Suppose Raka is honest. His sentence is true, so there are at least two liars. Raka and Sekar are both honest, so the only possible liar left is Tegar. One person isn't enough, so Raka can't be honest.
 
-<BlockMath math="\text{Jihan},\ \text{Kurnia},\ \text{Ilham},\ \text{Gita},\ \text{Hadi}" />
+Third step, settle Tegar. Since Raka is a liar, his sentence is false. The opposite of "at least two liars" is "at most one liar". Raka himself is already that one liar, so Tegar must be honest.
 
-The third patient is Ilham.
+Check all three sentences against this result.
 
-The other answers come from misapplying the rules:
+- Raka is a liar, and his sentence really is false, because there's only one liar.
+- Sekar is honest, and her sentence is true. The part "Raka is honest" doesn't happen, so the "if" sentence isn't broken.
+- Tegar is honest, and his sentence is true, because Sekar and Tegar are both honest.
 
-- Using arrival time alone gives Hadi, Kurnia, Jihan, so Jihan would be third.
-- Ignoring rule 2 after Jihan gives Jihan, Hadi, Kurnia, so Kurnia would be third.
-- Treating pregnancy as ranking above old age gives Jihan, Gita, Kurnia, so Kurnia would again be third. Rule 2 gives both groups **the same priority**.
+Tegar's sentence hides a trap. It can't decide Tegar's own type. If Tegar is honest, Sekar is the same type as him, so she's honest. If Tegar is a liar, his sentence is false, so Sekar is a different type, which again means honest. Both cases only say "Sekar is honest", so Tegar's type has to come from Raka's sentence.
 
-So the patient served third is Ilham.
+This table shows whose sentence matches their type in each option.
+
+| Option | Raka | Sekar | Tegar |
+| --- | --- | --- | --- |
+| Raka honest, Sekar honest, Tegar liar | No match | Match | Match |
+| Raka honest, Sekar liar, Tegar honest | No match | Match | No match |
+| Raka liar, Sekar honest, Tegar liar | No match | Match | Match |
+| Raka liar, Sekar honest, Tegar honest | Match | Match | Match |
+| Raka honest, Sekar liar, Tegar liar | Match | No match | No match |
+
+- Raka honest, Sekar honest, Tegar liar passes for Sekar and Tegar. The trap is running Sekar's sentence with Raka honest and never testing Raka's own claim, even though Tegar is the only liar.
+- Raka honest, Sekar liar, Tegar honest is exactly what denying Sekar's sentence gives. The trap is stopping there, even though this assignment has only one liar.
+- Raka liar, Sekar honest, Tegar liar forgets that Raka counts himself. With two liars, Raka's sentence would be true, yet Raka is a liar.
+- Raka honest, Sekar liar, Tegar liar fits Raka's sentence. It comes from wrongly denying Sekar's sentence as "Raka is honest and Tegar is a liar".
+
+So Raka is a liar, while Sekar and Tegar are both honest.

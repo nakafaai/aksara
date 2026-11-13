@@ -4,35 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "reading",
-    topic: "inference",
+    topic: "main-idea",
   },
-  stimulus: "rooftop-garden",
+  stimulus: "antrean",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Tanaman hidroponik di sekolah itu tidak memerlukan unsur hara.",
-        },
-        {
-          correct: false,
-          label: "Sabut kelapa menjadi sumber nutrisi utama bagi tanaman.",
-        },
-        {
-          correct: false,
-          label: "Larutan yang asam membuat akar tumbuh lebih cepat.",
-        },
-        {
-          correct: false,
-          label:
-            "Hasil panen pertama dibagikan tanpa bayaran kepada orang tua siswa.",
+          label: "membuktikan bahwa aplikasi antrean telah menyelesaikan masalah ruang tunggu yang digambarkan pada paragraf pertama",
         },
         {
           correct: true,
-          label:
-            "Jika pompa berhenti bekerja, larutan tidak lagi sampai ke ujung atas pipa.",
+          label: "menilai hasil aplikasi antrean sekaligus menunjukkan bahwa masalah yang muncul justru datang dari kelompok yang tidak dikhawatirkan pada paragraf pertama",
+        },
+        {
+          correct: false,
+          label: "menguatkan dugaan pada paragraf pertama bahwa pasien lansia paling kesulitan memakai aplikasi antrean",
+        },
+        {
+          correct: false,
+          label: "menjelaskan aturan aplikasi antrean tentang pasien yang terlambat dan batas waktu layanan poli umum",
+        },
+        {
+          correct: false,
+          label: "mengusulkan agar loket pendaftaran dipertahankan khusus untuk pasien lansia yang belum memiliki ponsel pintar",
         },
       ],
     },

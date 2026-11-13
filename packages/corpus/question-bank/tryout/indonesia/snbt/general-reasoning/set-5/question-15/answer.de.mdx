@@ -1,17 +1,27 @@
-Verfolge die Regeln, die durch Indras Wahl **ausgelöst** werden.
+Eine Aussage, die sicher wahr ist, muss in jedem Team gelten, das alle sechs Bedingungen erfüllt. Um eine Antwort zu streichen, reicht ein einziges gültiges Team, das ihr widerspricht. Um eine Antwort anzunehmen, brauchst du einen Beweis, der alle Möglichkeiten abdeckt.
 
-- Regel 5: Indra ist gewählt, also wird Joko gewählt.
-- Regel 3: Joko ist gewählt, also nicht Kiki.
-- Regel 2: Indra ist gewählt, also nicht Hana.
-- Regel 4: Hana ist nicht gewählt, also muss Lusi gewählt werden.
+Fang mit der Antwort "Wenn Gendis ausgewählt wird, wird auch Danu ausgewählt" an. Nimm an, Gendis ist dabei, Danu aber nicht. Verfolge die Folgen Schritt für Schritt.
 
-Bisher besteht das Team aus Indra, Joko und Lusi. Der letzte Platz geht an Fani oder Gilang. Fani geht nicht, denn mit Fani kommt Gilang, und das Team hätte fünf Personen. Der letzte Platz geht also an **Gilang**.
+1. Gendis ist dabei, also darf Fauzan nicht dabei sein (Bedingung 6).
+2. Das Team braucht ein Mitglied aus der Chemie (Bedingung 1). Danu und Fauzan fehlen, also muss Elvira dabei sein.
+3. Elvira ist dabei, also darf Bening nicht dabei sein (Bedingung 3).
+4. Bening fehlt, also darf auch Haikal nicht dabei sein. Bedingung 5 heißt: Haikal darf nur dabei sein, wenn Bening dabei ist.
+5. Danu fehlt, also darf auch Arka nicht dabei sein. Das ist die Kontraposition von Bedingung 2. Die Kontraposition von "wenn <InlineMath math="p" />, dann <InlineMath math="q" />" ist "wenn nicht <InlineMath math="q" />, dann nicht <InlineMath math="p" />", und sie hat immer denselben Wahrheitswert wie die ursprüngliche Aussage.
 
-Die anderen Optionen verletzen eine Regel:
+Zähl jetzt, wer noch infrage kommt. Arka, Bening, Danu, Fauzan und Haikal sind gestrichen. Übrig bleiben nur Cempaka, Elvira und Gendis, also drei Personen, aber das Team braucht vier. Die Annahme ist unmöglich, also **enthält jedes Team mit Gendis auch Danu**.
 
-- Kiki geht nicht, denn Joko muss mit Indra dabei sein, und Joko darf nicht mit Kiki zusammen sein.
-- Das Team Indra, Fani, Gilang und Joko hat weder Hana noch Lusi und verletzt Regel 4.
-- Hana darf nicht mit Indra zusammen sein.
-- Das Team Indra, Fani, Gilang und Lusi hat keinen Joko und verletzt Regel 5.
+Für die anderen vier Antworten reicht jeweils ein gültiges Team als Gegenbeispiel. Diese vier Teams erfüllen alle sechs Bedingungen. Du kannst jedes genauso prüfen wie oben.
 
-Die anderen drei Personen sind also Gilang, Joko und Lusi.
+| Name des Teams | Mitglieder |
+| --- | --- |
+| Team P | Bening, Cempaka, Fauzan, Haikal |
+| Team Q | Bening, Cempaka, Danu, Haikal |
+| Team R | Arka, Danu, Elvira, Gendis |
+| Team S | Arka, Bening, Danu, Gendis |
+
+- "Danu wird ausgewählt" scheitert an Team P. Team P nimmt Fauzan als Mitglied aus der Chemie. Das ist erlaubt, weil Gendis fehlt und Bedingung 6 Fauzan deshalb nicht blockiert. In diese Falle tappst du, wenn du nur Teams mit Gendis ausprobierst.
+- "Wenn Danu ausgewählt wird, wird auch Gendis ausgewählt" scheitert an Team Q, das Danu ohne Gendis enthält. Diese Aussage dreht die gerade bewiesene Aussage um. So eine Umkehrung ist nicht automatisch wahr, nur weil die ursprüngliche Aussage wahr ist.
+- "Mindestens eine von Bening und Cempaka wird ausgewählt" scheitert an Team R. Team R hat nur ein Mitglied aus der Biologie, nämlich Arka, und keine Bedingung verbietet das.
+- "Wenn Bening ausgewählt wird, wird auch Haikal ausgewählt" scheitert an Team S. Nach Bedingung 5 braucht Haikal Bening, nicht umgekehrt.
+
+Sicher wahr ist also: Wenn Gendis ausgewählt wird, wird auch Danu ausgewählt.

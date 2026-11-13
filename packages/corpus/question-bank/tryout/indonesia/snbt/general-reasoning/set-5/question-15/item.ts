@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "deductive-reasoning",
     topic: "selection",
   },
-  stimulus: "estafet",
+  stimulus: "sains",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Danu dipilih.",
+        },
+        {
+          correct: false,
+          label: "Jika Danu dipilih, Gendis juga dipilih.",
+        },
+        {
+          correct: false,
+          label: "Paling sedikit satu dari Bening dan Cempaka dipilih.",
+        },
+        {
           correct: true,
-          label: "Gilang, Joko, dan Lusi",
+          label: "Jika Gendis dipilih, Danu juga dipilih.",
         },
         {
           correct: false,
-          label: "Gilang, Kiki, dan Lusi",
-        },
-        {
-          correct: false,
-          label: "Fani, Gilang, dan Joko",
-        },
-        {
-          correct: false,
-          label: "Gilang, Hana, dan Joko",
-        },
-        {
-          correct: false,
-          label: "Fani, Gilang, dan Lusi",
+          label: "Jika Bening dipilih, Haikal juga dipilih.",
         },
       ],
     },

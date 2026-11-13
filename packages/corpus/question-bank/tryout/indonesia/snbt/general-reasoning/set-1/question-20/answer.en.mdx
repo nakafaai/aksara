@@ -1,13 +1,25 @@
-Combine the conditions into two chains and try each possible position. The first chain is **Indah, then Gita, then Hasan** (not necessarily consecutive). The second chain is **Fikri immediately followed by Joni**.
+You're looking for a statement that's true in every age order that fits all five facts. Fact 2 uses "or", so the neatest route is to split into two cases and look for the statement that survives both.
 
-Fikri does not finish first, and Joni must finish right after Fikri. So Fikri can only be in position 2, 3, or 4.
+Start with what's certain. Fact 1 gives the order Wulan, Putri, Oki from older to younger. Both parts of fact 2 can't hold at once, because Sekar can't be older than Wulan while also being younger than Oki, who is younger than Wulan.
 
-- If Fikri is 2nd, Joni is 3rd. The remaining positions 1, 4, and 5 go to Indah, Gita, and Hasan in that order, so Hasan is 5th. This breaks the condition that Hasan is not last.
-- If Fikri is 3rd, Joni is 4th. The remaining positions 1, 2, and 5 put Hasan 5th again, which also breaks the condition.
-- If Fikri is 4th, Joni is 5th. The remaining positions 1, 2, and 3 go to Indah, Gita, and Hasan. Every condition holds.
+Case one: Sekar is older than Wulan. The order becomes Sekar, Wulan, Putri, Oki. By fact 3, Tegar is older than Sekar, so Tegar is also older than Wulan, Putri, and Oki. The only person not yet compared with Tegar is Rafi. Fact 5 says Tegar isn't the oldest, so someone must be older than Tegar, and the only candidate is Rafi. This case gives just one order, from oldest: Rafi, Tegar, Sekar, Wulan, Putri, Oki. Here Rafi is older than Sekar.
 
-The only possible finishing order is:
+Case two: Sekar is younger than Oki. Now Sekar is younger than Oki, Putri, and Wulan. Rafi is older than Putri, so Rafi is older than Sekar too. Tegar is older than Sekar by fact 3. All five others are older than Sekar, so Sekar is the youngest, and once again Rafi is older than Sekar.
 
-<BlockMath math="\text{Indah},\ \text{Gita},\ \text{Hasan},\ \text{Fikri},\ \text{Joni}" />
+In both cases, **Rafi is always older than Sekar**, even though the reason differs. In case one the reason is fact 5. In case two the reason is fact 4.
 
-The other runners hold different positions: Indah 1st, Gita 2nd, Fikri 4th, and Joni 5th. So the runner who finishes third is Hasan.
+The other statements hold only in some orders. Every order in this table, written from oldest, fits all five facts.
+
+| Statement | Order that breaks it |
+| --- | --- |
+| Sekar is the youngest | Rafi, Tegar, Sekar, Wulan, Putri, Oki |
+| Tegar is older than Oki | Rafi, Wulan, Putri, Oki, Tegar, Sekar |
+| Rafi is the oldest | Wulan, Rafi, Putri, Oki, Tegar, Sekar |
+| Wulan is older than Tegar | Rafi, Tegar, Sekar, Wulan, Putri, Oki |
+
+- Sekar is the youngest only in case two. This option shows up if you miss case one.
+- Tegar is older than Oki comes from a chain pointing the wrong way. In case two, Tegar is older than Sekar and Oki is also older than Sekar, but those two facts don't compare Tegar with Oki.
+- Rafi is the oldest is the result of case one forced onto case two. In case two, Wulan can be older than Rafi.
+- Wulan is older than Tegar shows up if you assume Wulan sits near the top because her name opens fact 1. In case one, Tegar is actually older than Wulan.
+
+So the statement that must be true is that Rafi is older than Sekar.

@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "writing",
-    topic: "word-choice",
+    topic: "punctuation",
   },
-  stimulus: "rain-gauge",
+  stimulus: "peron",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "kalimat (2)",
+          label:
+            "Agar buku-buku tetap tersusun rapi, rak-rak itu dirawat bergiliran oleh: mahasiswa, pensiunan guru, dan pedagang kios di peron.",
         },
         {
           correct: false,
-          label: "kalimat (3)",
-        },
-        {
-          correct: false,
-          label: "kalimat (4)",
-        },
-        {
-          correct: false,
-          label: "kalimat (5)",
+          label:
+            "Agar buku-buku tetap tersusun rapi, rak-rak itu dirawat bergiliran oleh mahasiswa, pensiunan, guru, dan pedagang kios di peron.",
         },
         {
           correct: true,
-          label: "kalimat (6)",
+          label:
+            "Agar buku-buku tetap tersusun rapi, rak-rak itu dirawat bergiliran oleh mahasiswa, pensiunan guru, dan pedagang kios di peron.",
+        },
+        {
+          correct: false,
+          label:
+            "Agar buku-buku tetap tersusun rapi rak-rak itu dirawat bergiliran oleh mahasiswa, pensiunan guru, dan pedagang kios di peron.",
+        },
+        {
+          correct: false,
+          label:
+            "Agar buku-buku tetap tersusun rapi, rak-rak itu dirawat bergiliran oleh mahasiswa, pensiunan, guru dan pedagang kios di peron.",
         },
       ],
     },

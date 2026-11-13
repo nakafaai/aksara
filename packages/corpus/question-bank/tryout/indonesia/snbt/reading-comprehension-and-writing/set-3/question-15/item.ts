@@ -2,34 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "reading",
-    topic: "title",
+    cognitiveLevel: "reasoning",
+    contentDomain: "writing",
+    topic: "coherence",
   },
-  stimulus: "suspension-bridge",
+  stimulus: "lapak",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Insinyur Sukarelawan di Kampung Lebak Muncang",
-        },
-        {
-          correct: false,
-          label: "Bahaya Arus Sungai pada Musim Hujan",
-        },
-        {
           correct: true,
-          label: "Jembatan Gotong Royong untuk Sekolah dan Pasar",
+          label: "kalimat (3)",
         },
         {
           correct: false,
-          label: "Rakit Bambu Penyeberangan Warga",
+          label: "kalimat (11)",
         },
         {
           correct: false,
-          label: "Kabel Baja dari Pemerintah Kabupaten",
+          label: "kalimat (12)",
+        },
+        {
+          correct: false,
+          label: "kalimat (13)",
+        },
+        {
+          correct: false,
+          label: "kalimat (14)",
         },
       ],
     },

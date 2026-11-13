@@ -4,33 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "reading",
-    topic: "data-interpretation",
+    topic: "argument-evaluation",
   },
-  stimulus: "waste-bank",
+  stimulus: "gelasan",
   versions: {
     id: {
-      columns: ["Sesuai", "Tidak sesuai"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Kaleng aluminium mempunyai harga beli per kilogram paling tinggi.",
+            "Tahun lalu, sebagian besar pengunjung yang terluka tergores benang gelasan dari layang-layang aduan yang putus.",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "Sampah ditimbang di rumah warga sebelum dibawa ke bank sampah.",
+            "Tahun ini, lomba aduan dipindahkan ke ujung pantai yang tertutup bagi penonton, sedangkan tahun lalu lomba itu digelar tepat di depan tali pembatas.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Pada bulan Agustus, berat kardus yang diterima lebih besar daripada berat botol plastik bening.",
+            "Pos kesehatan festival tahun ini buka dua jam lebih lama sehingga lebih banyak luka ringan yang tercatat.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Seluruh uang hasil penjualan sampah dipakai untuk membeli tempat sampah terpilah.",
+            "Jumlah pengunjung festival tahun ini lebih banyak daripada jumlah pengunjung tahun lalu.",
+        },
+        {
+          correct: false,
+          label:
+            "Dua peserta yang didapati membawa benang gelasan tidak diizinkan ikut lomba aduan.",
         },
       ],
     },

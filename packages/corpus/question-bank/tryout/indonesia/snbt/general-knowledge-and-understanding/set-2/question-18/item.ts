@@ -3,33 +3,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "sentence-meaning",
-    topic: "sentence-relation",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
   },
-  stimulus: "gerhana",
+  stimulus: "gang",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Kalimat (5) membantah isi kalimat (4).",
+          label: "kendaraan yang membawa mereka dari daerah asal ke kota",
         },
         {
           correct: false,
-          label: "Kalimat (5) memberikan contoh lain dari isi kalimat (4).",
-        },
-        {
-          correct: false,
-          label: "Kalimat (5) menyatakan akibat dari isi kalimat (4).",
+          label: "kamar yang mereka sewa dari kerabat setelah mendapat pekerjaan",
         },
         {
           correct: true,
-          label: "Kalimat (5) menjelaskan penyebab keadaan pada kalimat (4).",
+          label: "tempat tinggal sementara di rumah kerabat",
         },
         {
           correct: false,
-          label: "Kalimat (5) mengulang isi kalimat (4) dengan kata-kata lain.",
+          label: "kesempatan bekerja di usaha rumahan milik kerabat",
+        },
+        {
+          correct: false,
+          label: "bantuan biaya hidup dari kerabat selama mencari kerja",
         },
       ],
     },

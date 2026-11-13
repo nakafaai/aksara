@@ -1,14 +1,18 @@
-Read the three columns together and notice **the month that breaks the pattern**, May. The columns are *Rata-rata suhu maksimum* (average maximum temperature), *Kipas angin terjual* (fans sold), and *Pengunjung kolam renang* (pool visitors).
+The head of nursing uses one piece of data: <InlineMath math="12" /> of the <InlineMath math="18" /> night-shift errors happened between 04.00 and 07.00. From that, the head of nursing concludes that nurses make mistakes more often after working more than <InlineMath math="7" /> hours and predicts that the night-time error rate will fall once the shift is split in two. The question asks for the assumption that **must** be true, the one whose reversal makes the reasoning collapse.
 
-From January to April, the temperature rises from <InlineMath math="30" /> to <InlineMath math="34^{\circ}\text{C}" />, and both fan sales and pool visitors rise with it. In June, the temperature drops to <InlineMath math="33^{\circ}\text{C}" />, and both also fall compared with April. May has the highest temperature and the highest fan sales, but pool visitors crash to <InlineMath math="1{,}100" />. That drop is explained by **the pool being closed for three weeks**.
+Focus on the words "more often". They mean the error rate, errors per medication given, is higher in the last hours. Errors piling up in the last hours doesn't by itself mean the rate there is high. If most medicines are given in those hours anyway, you'd expect most errors there too.
 
-So the best conclusion is that both tend to be higher in hotter months, except pool visitors in May.
+Let <InlineMath math="a" /> be the number of medications given from 04.00 to 07.00. The other <InlineMath math="2{,}000-a" /> are given from 21.00 to 04.00, with <InlineMath math="18-12=6" /> errors. The rate in the last hours is higher than before them when:
 
-The other options do not fit:
+<BlockMath math="\begin{aligned} \frac{12}{a} &> \frac{6}{2{,}000-a} \\ 12\,(2{,}000-a) &> 6a \\ 24{,}000 &> 18a \\ a &< \tfrac{24{,}000}{18}=\tfrac{2}{3}\cdot 2{,}000 \end{aligned}" />
 
-- In May, fan sales peak while pool visitors are at their lowest. That refutes the claim that fans sell because the pool is busy.
-- Fan sales did not fall in May. They reached <InlineMath math="290" /> units.
-- Fan sales rise and fall with the temperature, so a claim of no relation contradicts the data.
-- The passage already gives the reason the pool was quiet in May, the closure for repairs, not excessive heat.
+So the data shows nurses err more often in the last hours only if the medications given from 04.00 to 07.00 are **less than two-thirds** of all night-shift medications. Test it by reversing it. If the last hours handle two-thirds or more, their error rate is equal to or lower than the earlier rate. The data no longer points to fatigue, and the prediction loses its footing. An assumption whose reversal breaks the argument is the required one.
 
-So fan sales and pool visitors tend to be higher in hotter months, except pool visitors in May, when the pool was closed.
+Here's why the other options fail.
+
+- "Less than half" is enough, but it isn't required. Say the last hours handle <InlineMath math="60\%" /> of the medications, <InlineMath math="1{,}200" />. Their rate is <InlineMath math="12\div 1{,}200" />, or <InlineMath math="10" /> per <InlineMath math="1{,}000" />, while the earlier rate is <InlineMath math="6\div 800" />, or <InlineMath math="7.5" /> per <InlineMath math="1{,}000" />. The argument still works above one half, so this condition is too strict.
+- What happens to the morning and afternoon shifts isn't needed, because the head of nursing's conclusion is only about night-time.
+- Data on nurses working overtime in the morning and afternoon shifts would support the argument, but even if it's false, the night-shift data stands on its own. It helps, but it isn't required.
+- The number of medications given may change, because the conclusion is about the error rate, errors per <InlineMath math="1{,}000" /> medications, not about the number of errors.
+
+So the required assumption is that the medications given from 04.00 to 07.00 are less than two-thirds of all night-shift medications.

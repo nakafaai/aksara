@@ -1,18 +1,26 @@
-Zähle die Randpunkte einer Anordnung <InlineMath math="k\times k" /> sorgfältig, denn **jeder Eckpunkt liegt auf zwei Seiten zugleich**.
+In dieser Aufgabe beziehen sich die Prozentangaben auf drei verschiedene Grundwerte. Die Erhöhung um <InlineMath math="40\%" /> bezieht sich auf den Anfangspreis, der Rabatt von Laden P auf den erhöhten Preis und der Rabatt von Laden Q auf den Anfangspreis. Die gesuchte Senkung bezieht sich auf **den Preis, den Laden Q gerade verlangt**, denn genau dieser Preis wird gesenkt.
 
-Jede Seite hat <InlineMath math="k" /> Punkte. Addiert man die vier Seiten einfach, zählt jede Ecke doppelt. Es gibt <InlineMath math="4" /> Ecken, also
+Beide Läden starten beim gleichen Preis. Setz den Anfangspreis also auf <InlineMath math="100" />. Das ist nur ein Vergleichswert, der Prozentsatz gilt deshalb für jeden Anfangspreis.
 
-<BlockMath math="\text{Randpunkte}=4k-4=4(k-1)" />
+Berechne zuerst den Preis bei Laden P. Nach der Erhöhung um <InlineMath math="40\%" /> liegt er bei <InlineMath math="140" />. Der Rabatt beträgt <InlineMath math="40\%" /> von <InlineMath math="140" />:
 
-Prüfe mit der Tabelle: <InlineMath math="4(2-1)=4" />, <InlineMath math="4(3-1)=8" /> und <InlineMath math="4(4-1)=12" />. Für die Anordnung <InlineMath math="15\times15" />:
+<BlockMath math="\text{Laden P}: \quad 140 - 0{,}4\times140 = 140-56 = 84" />
 
-<BlockMath math="4(15-1)=56" />
+Jetzt der Preis bei Laden Q. Auch er steigt auf <InlineMath math="140" />, aber der Rabatt beträgt <InlineMath math="20\%" /> vom Anfangspreis <InlineMath math="100" />, also <InlineMath math="20" />:
 
-Die anderen Optionen entstehen aus diesen Fehlern:
+<BlockMath math="\text{Laden Q}: \quad 140 - 0{,}2\times100 = 140-20 = 120" />
 
-- <InlineMath math="60" /> ist <InlineMath math="4\times15" />, die Ecken werden doppelt gezählt.
-- <InlineMath math="64" /> ist <InlineMath math="4\times16" />, als hätte jede Seite <InlineMath math="16" /> Punkte.
-- <InlineMath math="169" /> ist <InlineMath math="13^2" />, die Punkte **im Inneren**, nicht am Rand.
-- <InlineMath math="225" /> ist <InlineMath math="15^2" />, alle Punkte.
+Laden Q muss von <InlineMath math="120" /> auf <InlineMath math="84" /> heruntergehen. Vergleich den Unterschied mit dem aktuellen Preis von Laden Q:
 
-Am Rand liegen also <InlineMath math="56" /> Punkte.
+<BlockMath math="\frac{120-84}{120}\times100\% = \frac{36}{120}\times100\% = 30\%" />
+
+Prüf das Ergebnis: <InlineMath math="120" /> minus <InlineMath math="30\%" /> von <InlineMath math="120" /> ergibt <InlineMath math="120-36=84" />, genau den Preis von Laden P.
+
+Jede andere Option entsteht durch einen vertauschten Grundwert:
+
+- <InlineMath math="20\%" /> entsteht, wenn du glaubst, dass eine Erhöhung um <InlineMath math="40\%" /> und danach eine Senkung um <InlineMath math="40\%" /> Laden P zurück zum Anfangspreis bringt, oder wenn du einfach <InlineMath math="40\%-20\%" /> rechnest. Der Rabatt von Laden P bezieht sich aber auf <InlineMath math="140" />, sein Preis endet also bei <InlineMath math="84" />.
+- <InlineMath math="25\%" /> entsteht, wenn du den Rabatt von Laden Q von <InlineMath math="140" /> berechnest. Dann liegt Q bei <InlineMath math="112" />, und die Senkung ist <InlineMath math="28/112" />. In der Aufgabe bezieht sich der Rabatt von Laden Q aber auf den Anfangspreis.
+- <InlineMath math="28\%" /> entsteht aus demselben Fehler plus einem zweiten: Q wird mit <InlineMath math="112" /> angesetzt, und der Unterschied von <InlineMath math="28" /> wird auf den Anfangspreis <InlineMath math="100" /> bezogen.
+- <InlineMath math="36\%" /> benutzt die richtigen Preise, vergleicht den Unterschied von <InlineMath math="36" /> aber mit dem Anfangspreis <InlineMath math="100" /> statt mit dem aktuellen Preis von Laden Q.
+
+Laden Q muss seinen aktuellen Preis also um <InlineMath math="30\%" /> senken.

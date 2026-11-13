@@ -1,19 +1,30 @@
-Ein Bewerber erhält das Stipendium nur, wenn **alle drei Bedingungen zugleich erfüllt sind**. Prüfe jeden Bewerber bei jeder Bedingung und achte auf die Ausnahme in Bedingung 2.
+Die Aufgabe gibt dir eine starke Regel: Von den vier Aussagen ist genau eine wahr. Du könntest alle vier Verdächtigen nacheinander durchprobieren, aber Lutfis Aussage bietet einen schnelleren Weg.
 
-| Bewerber | Bedingung 1 | Bedingung 2 | Bedingung 3 |
-| --- | --- | --- | --- |
-| Ani | Erfüllt, Durchschnitt <InlineMath math="86" /> | Nicht erfüllt | Erfüllt |
-| Budi | Erfüllt, Durchschnitt <InlineMath math="82" /> und nationale Urkunde | Erfüllt | Nicht erfüllt |
-| Cici | Nicht erfüllt | Erfüllt | Erfüllt |
-| Dedi | Erfüllt, Durchschnitt <InlineMath math="81" /> und nationale Urkunde | Erfüllt durch die Ausnahme | Erfüllt |
-| Eka | Nicht erfüllt | Erfüllt | Erfüllt |
+Lutfi spricht nicht über den Täter. Er spricht über Kiranas Aussage. "Kirana lügt" ist genau dann wahr, wenn Kiranas Aussage falsch ist, und genau dann falsch, wenn Kiranas Aussage wahr ist. Also **sagt von Kirana und Lutfi immer genau eine Person die Wahrheit**. Da insgesamt nur eine Aussage wahr ist, gehört diese eine wahre Aussage Kirana oder Lutfi. Damit sind Jokos Aussage und Mayas Aussage beide falsch.
 
-Die Begründung für jeden Bewerber:
+Nutze jetzt diese beiden falschen Aussagen.
 
-- Ani erfüllt die Notenbedingung, aber das Einkommen der Eltern von <InlineMath math="\text{Rp}7{.}000{.}000" /> liegt über der Grenze. Anis Urkunde ist auf Provinzebene, die Ausnahme in Bedingung 2 gilt also nicht.
-- Budi erhält bereits ein anderes Stipendium und scheitert an Bedingung 3.
-- Cicis Durchschnitt von <InlineMath math="84" /> liegt unter <InlineMath math="85" />, und Cici hat keine Urkunde für den Weg über <InlineMath math="80" />.
-- Dedi nutzt den Weg mit einem Durchschnitt von mindestens <InlineMath math="80" /> und einer nationalen Urkunde. Das Einkommen der Eltern von <InlineMath math="\text{Rp}6{.}500{.}000" /> liegt über der Grenze, aber **die nationale Urkunde befreit Dedi von Bedingung 2**. Ein anderes Stipendium erhält Dedi nicht.
-- Eka hat eine nationale Urkunde, aber Ekas Durchschnitt von <InlineMath math="79" /> erreicht <InlineMath math="80" /> nicht.
+1. Joko sagte "der Täter ist Lutfi oder Maya". Das ist falsch, also ist der Täter weder Lutfi noch Maya. Übrig bleiben Joko oder Kirana.
+2. Maya sagte "der Täter ist nicht ich und nicht Kirana". Eine Aussage mit "und" ist falsch, sobald mindestens ein Teil falsch ist. Also ist der Täter Maya oder Kirana.
 
-Das Stipendium erhält also Dedi.
+Die einzige Person, die in beiden Schritten vorkommt, ist Kirana. Kirana ist die Täterin. Damit ist Kiranas Aussage "der Täter ist Joko" falsch und Lutfis Aussage "Kirana lügt" wahr.
+
+Prüfe mit einer Tabelle für alle vier Verdächtigen. W bedeutet wahr und F bedeutet falsch.
+
+| Wenn der Täter ist | Joko | Kirana | Lutfi | Maya | Anzahl wahrer Aussagen |
+| --- | --- | --- | --- | --- | --- |
+| Joko | F | W | F | W | <InlineMath math="2" /> |
+| Kirana | F | F | W | F | <InlineMath math="1" /> |
+| Lutfi | W | F | W | W | <InlineMath math="3" /> |
+| Maya | W | F | W | F | <InlineMath math="2" /> |
+
+Nur die Zeile Kirana hat genau eine wahre Aussage, und diese Aussage stammt von Lutfi.
+
+Die anderen Auswahlen scheitern an diesen Fehlern.
+
+- Joko als Täter mit Kirana als ehrlicher Person entsteht, wenn du Kiranas Beschuldigung sofort glaubst. In diesem Fall ist auch Mayas Aussage wahr, also sind zwei Aussagen wahr.
+- Maya als Täterin mit Joko als ehrlicher Person übersieht, dass Lutfi automatisch recht hat, sobald Kirana falschliegt. In diesem Fall sind Joko und Lutfi beide wahr.
+- Kirana als Täterin mit Maya als ehrlicher Person prüft nur den Teil "nicht ich". Mayas Aussage verwendet "und", also muss auch "nicht Kirana" stimmen, und das tut es nicht, wenn Kirana die Täterin ist.
+- Lutfi als Täter mit Joko als ehrlicher Person hört auf, sobald Jokos Aussage passt. In diesem Fall sind auch Lutfi und Maya wahr, also drei Aussagen.
+
+Kirana ist also die Täterin, und die einzige wahre Aussage stammt von Lutfi.

@@ -4,35 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "conclusion",
+    topic: "strengthening",
   },
-  stimulus: "kantong",
+  stimulus: "denda",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Aturan pungutan kantong plastik gagal sepenuhnya.",
-        },
-        {
-          correct: false,
-          label: "Warga kota itu tidak peduli terhadap lingkungan.",
+          label:
+            "Di antara pinjaman oleh anggota yang menerima pesan pengingat, persentase pinjaman yang terlambat turun dari $$9\\%$$ menjadi $$3\\%$$.",
         },
         {
           correct: false,
           label:
-            "Pemakaian plastik oleh warga naik $$40\\%$$ setelah aturan berlaku.",
-        },
-        {
-          correct: false,
-          label:
-            "Pungutan kantong plastik perlu dinaikkan dan diberlakukan juga pada kantong sampah agar penjualan kantong sampah turun kembali seperti sebelum aturan berlaku.",
+            "Di perpustakaan kota tetangga, yang tidak mengubah aturan apa pun pada bulan Juli, persentase pinjaman yang terlambat tidak berubah.",
         },
         {
           correct: true,
           label:
-            "Penurunan kantong plastik belanja belum tentu berarti pemakaian plastik warga turun sebanyak itu, karena sebagian warga tampaknya beralih membeli kantong sampah.",
+            "Di antara pinjaman oleh anggota yang tidak mendaftarkan nomor ponsel sehingga tidak pernah menerima pesan pengingat, persentase pinjaman yang terlambat juga turun dari $$10\\%$$ menjadi $$5\\%$$.",
+        },
+        {
+          correct: false,
+          label:
+            "Perpustakaan lain yang pada bulan yang sama menghapus denda dan mulai mengirim pesan pengingat juga mengalami penurunan serupa.",
+        },
+        {
+          correct: false,
+          label:
+            "Dalam wawancara, banyak penunggak lama mengaku dulu enggan datang karena malu harus membayar denda yang sudah menumpuk.",
         },
       ],
     },

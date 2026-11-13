@@ -3,33 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "word-relation",
-    topic: "analogy",
+    contentDomain: "paragraph-meaning",
+    topic: "paragraph-relation",
   },
-  stimulus: "lebah",
+  stimulus: "koperasi",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "madu : lebah",
+          label:
+            "Memberi contoh lain bunga majemuk pada saldo simpanan sukarela seorang anggota, seperti contoh pada paragraf kedua.",
+        },
+        {
+          correct: false,
+          label:
+            "Membantah paragraf kedua dengan menunjukkan bahwa bunga majemuk justru dapat merugikan koperasi.",
+        },
+        {
+          correct: false,
+          label:
+            "Mengalihkan pembahasan ke pinjaman macet sebagai masalah utama yang mengancam pembagian SHU.",
+        },
+        {
+          correct: false,
+          label:
+            "Menerapkan logika bunga majemuk pada koperasi untuk menunjukkan bahwa SHU yang disimpan kembali dengan sendirinya akan terus berlipat.",
         },
         {
           correct: true,
-          label: "mawar : bunga",
-        },
-        {
-          correct: false,
-          label: "petani : kebun",
-        },
-        {
-          correct: false,
-          label: "serbuk sari : putik",
-        },
-        {
-          correct: false,
-          label: "pestisida : hama",
+          label:
+            "Menggabungkan pembagian SHU dari paragraf pertama dengan logika bunga majemuk dari paragraf kedua pada tingkat koperasi, lalu menetapkan syarat agar putaran itu berjalan.",
         },
       ],
     },

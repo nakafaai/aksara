@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "quantifiers",
+    topic: "categorical-syllogism",
   },
   versions: {
     id: {
@@ -12,26 +12,24 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Semua pemakai lencana biru lulus ujian bahasa Jepang.",
+          label: "Sebagian peserta pameran sekolah adalah anggota klub teater.",
         },
         {
           correct: false,
           label:
-            "Sebagian pemandu yang lulus ujian bahasa Jepang bertugas di galeri lantai dua.",
+            "Tidak ada anggota klub fotografi yang menjadi panitia pentas seni.",
         },
         {
           correct: false,
-          label:
-            "Tidak ada petugas akhir pekan yang lulus ujian bahasa Jepang.",
+          label: "Sebagian anggota klub teater bukan anggota klub fotografi.",
         },
         {
           correct: true,
-          label:
-            "Sebagian pemakai lencana biru tidak bertugas pada akhir pekan.",
+          label: "Sebagian anggota klub fotografi bukan anggota klub teater.",
         },
         {
           correct: false,
-          label: "Semua petugas galeri lantai dua memakai lencana biru.",
+          label: "Sebagian anggota klub teater tidak mengikuti pameran sekolah.",
         },
       ],
     },

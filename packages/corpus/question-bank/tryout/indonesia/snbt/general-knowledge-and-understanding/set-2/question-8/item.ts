@@ -3,35 +3,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "sentence-meaning",
-    topic: "sentence-relation",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
   },
-  stimulus: "bakau",
+  stimulus: "antibiotik",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Kalimat (7) dan (8) membantah isi kalimat (6).",
-        },
-        {
-          correct: false,
+          column: 2,
           label:
-            "Kalimat (7) dan (8) memberikan definisi istilah dalam kalimat (6).",
+            "Karena golongan antibiotik baru sudah lama jarang ditemukan, dunia kesehatan kini berhenti mencarinya dan beralih menjaga obat yang ada.",
         },
         {
-          correct: false,
-          label: "Kalimat (7) dan (8) menyebutkan penyebab mangrove ditebang.",
-        },
-        {
-          correct: true,
+          column: 1,
           label:
-            "Kalimat (7) dan (8) menjelaskan akibat dari keadaan pada kalimat (6).",
+            "Seseorang yang belum pernah meminum antibiotik tetap dapat terinfeksi bakteri yang resistan.",
         },
         {
-          correct: false,
-          label: "Kalimat (7) dan (8) membandingkan tambak dengan permukiman.",
+          column: 1,
+          label:
+            "Gen resistansi yang muncul pada bakteri di tubuh seseorang dapat sampai ke jenis bakteri lain di tubuh orang lain.",
+        },
+        {
+          column: 2,
+          label:
+            "Karena aturannya mewajibkan resep, antibiotik di Indonesia hanya dapat diperoleh dengan resep dokter.",
         },
       ],
     },

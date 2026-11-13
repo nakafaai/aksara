@@ -1,16 +1,35 @@
-A statement is Benar (true) only if it holds in every valid schedule. Otherwise it is Salah (false). Use the two groups of possible schedules, and for an "if" statement check **only the schedules where the "if" part holds**.
+Mark each statement Benar (true, it must hold) or Salah (false, it need not hold). The extra condition is that gamelan is in a morning session. A statement is Benar only if it holds in **every valid schedule that puts gamelan in a morning session**. One valid schedule that makes it false is enough for Salah.
 
-| Group | Friday | Saturday | Sunday |
-| --- | --- | --- | --- |
-| A | Q and R | P and T | U afternoon, S evening |
-| B | T afternoon, S evening | P and U | Q and R |
+Start with condition 1. Gamelan can't be on Monday morning, because no session comes before Monday morning for batik. So gamelan is on Tuesday morning or Wednesday morning. The session right before a morning session is always the afternoon session of the day before, so batik is always in an afternoon session. Now split into two cases.
 
-**Statement 1** is true. U must perform on a later day than T, so U cannot perform on the first day, Friday.
+Case with gamelan on Tuesday morning:
 
-**Statement 2** is false. In group A, T performs on Saturday with P and can take the evening session.
+- Batik is on Monday afternoon.
+- Wayang can't be on Tuesday (condition 2), and it can't be on Wednesday, because the wayang day must come before the dongeng day (condition 3). So wayang is on Monday morning.
+- Dongeng must be in a morning session, and Tuesday morning is taken, so dongeng is on Wednesday morning.
+- Angklung and kuliner fill Tuesday afternoon and Wednesday afternoon in either order. Both orders work, because kuliner stays in an afternoon session and the batik day still comes before the kuliner day.
 
-**Statement 3** is false. In group B, S performs on Friday.
+Case with gamelan on Wednesday morning:
 
-**Statement 4** is true. Q performs on Friday only in group A, and in that group U always performs on Sunday.
+- Batik is on Tuesday afternoon.
+- Dongeng must be in a morning session, and Wednesday morning is taken. Dongeng can't be on Monday either, because the wayang day must come before the dongeng day. So dongeng is on Tuesday morning, and wayang is on Monday.
+- Kuliner must be on a day after the batik day (condition 6), so kuliner is on Wednesday afternoon.
+- Angklung fills the remaining Monday session. Wayang and angklung can swap sessions on Monday.
 
-So statements 1 and 4 are true, and statements 2 and 3 are false.
+That gives four schedules.
+
+| Schedule | Monday morning | Monday afternoon | Tuesday morning | Tuesday afternoon | Wednesday morning | Wednesday afternoon |
+| --- | --- | --- | --- | --- | --- | --- |
+| I | wayang | batik | gamelan | angklung | dongeng | kuliner |
+| II | wayang | batik | gamelan | kuliner | dongeng | angklung |
+| III | wayang | angklung | dongeng | batik | gamelan | kuliner |
+| IV | angklung | wayang | dongeng | batik | gamelan | kuliner |
+
+Now judge each statement.
+
+- Angklung on Monday is Salah. It happens only in schedules III and IV. In schedules I and II, angklung is on Tuesday afternoon or Wednesday afternoon. This one looks true if you only check the case with gamelan on Wednesday morning.
+- Wayang on Monday is Benar. In both cases, Tuesday and Wednesday are closed to wayang, so wayang is always on Monday.
+- Batik in an afternoon session is Benar. Batik comes right before gamelan, which is in a morning session, so batik is always in the afternoon session of the day before.
+- Wayang in a morning session is Salah. Schedule IV puts angklung on Monday morning and wayang on Monday afternoon, and it meets every condition.
+
+So the statements about wayang on Monday and batik in an afternoon session are Benar, while the statements about angklung on Monday and wayang in a morning session are Salah.

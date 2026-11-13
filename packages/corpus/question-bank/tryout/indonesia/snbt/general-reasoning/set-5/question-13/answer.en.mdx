@@ -1,15 +1,30 @@
-The statement has the form "every stall satisfies <InlineMath math="p \lor q" />", with <InlineMath math="p" />: accepts cashless payment and <InlineMath math="q" />: displays a price list. Negate it in **two steps**.
+A negation is a statement that always has the opposite truth value of the original: when one is true, the other is false. The trap in this question is that the negation you'd normally write isn't among the options. So you need to **find the sentence that means the same as the negation**, not the one that looks like it.
 
-- The negation of "every" is "**there is**".
-- The negation of <InlineMath math="p \lor q" /> is <InlineMath math="\lnot p \land \lnot q" />: does not accept cashless payment **and** does not display a price list.
+The original statement says that at least one participant has three features at once.
 
-So the negation is "There is a stall in Pasar Baru that does not accept cashless payment and does not display a price list" (*Ada kios ... yang tidak menerima pembayaran nontunai dan tidak memasang daftar harga*).
+- First feature: attended from the first day.
+- Second feature: handed in the practical report.
+- Third feature: didn't receive a certificate.
 
-The other options are wrong:
+Its negation: no participant at all has all three features together. The standard form is "Every participant who attended from the first day and handed in the practical report received a certificate." That form isn't offered, so use this test: the correct negation forbids exactly one combination, attended, handed in the report, but no certificate. Every other combination must stay allowed.
 
-- "Every stall" does not negate the quantifier. That statement is much stronger than the negation needed.
-- *Atau* (or) after the negation is wrong. The negation of <InlineMath math="p \lor q" /> uses *dan* (and).
-- "No stall ..." means every stall fails both, as strong as the first option.
-- A stall that accepts cashless payment still satisfies the original statement, so it does not refute it.
+Now look at "Every participant who attended from the first day but didn't receive a certificate didn't hand in the practical report." Take a participant who attended from the first day and didn't receive a certificate. This sentence forces that participant not to have handed in the report. So the combination attended, report, no certificate is forbidden, and no other combination is. The sentence **forbids exactly the same single combination**, so it means the same as the negation.
 
-So the negation is that there is a stall in Pasar Baru that does not accept cashless payment and does not display a price list.
+The table checks each option by the combinations it forbids. "Yes" means the participant has that feature.
+
+| What the option says | Forbidden combinations (attended, report, certificate) | Same as the negation? |
+| --- | --- | --- |
+| No certificate, then didn't attend and didn't hand in the report | (yes, yes, no), (yes, no, no), and (no, yes, no) | No, it forbids too much |
+| Some participants didn't attend or didn't hand in the report, yet got a certificate | None, it only claims that certain participants exist | No |
+| Attended but no certificate, then didn't hand in the report | (yes, yes, no) | Yes |
+| Attended but didn't hand in the report, then no certificate | (yes, no, yes) | No, a different combination |
+| Got a certificate, then attended and handed in the report | (no, yes, yes), (yes, no, yes), and (no, no, yes) | No |
+
+Each wrong option sets its own trap.
+
+- "Every participant without a certificate didn't attend and didn't hand in the report" comes from a faulty contrapositive. The contrapositive of the standard form is "no certificate, then didn't attend **or** didn't hand in the report", because the negation of "attended and handed in" is "didn't attend or didn't hand in". The word "and" makes this option also forbid a participant who attended, skipped the report and got no certificate, which the negation allows.
+- "Some participants who didn't attend or didn't hand in the report received a certificate" keeps the word "some". The negation of "there is someone who ..." always becomes "there is no one who ..." or "every ...", never "some" again.
+- "Every participant who attended but didn't hand in the report didn't receive a certificate" swaps the roles of the report and the certificate. It forbids a participant who attended, skipped the report and still got a certificate, which is a different combination.
+- "Every participant who received a certificate attended and handed in the report" is the converse, the standard form turned around. It talks about certificate holders, while the negation talks about participants who attended and handed in the report.
+
+So the negation is "Every cooking course participant who attended from the first day but didn't receive a certificate didn't hand in the practical report."

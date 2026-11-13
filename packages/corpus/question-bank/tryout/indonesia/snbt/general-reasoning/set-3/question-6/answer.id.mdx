@@ -1,12 +1,24 @@
-Data enam bulan saja hanya memberi enam pasangan suhu dan penjualan. Untuk menguji dugaan, kamu perlu **lebih banyak pasangan suhu dan penjualan kipas**, terutama dari keadaan yang berbeda. Dengan begitu, kamu bisa melihat apakah pola "suhu tinggi, penjualan tinggi" terus berulang.
+Ada dua hasil April sampai Juni yang tampak bertentangan: banyak kesalahan pada malam hari turun dari <InlineMath math="18" /> menjadi <InlineMath math="15" />, tetapi angka kesalahan pada malam hari naik. Pada Januari sampai Maret, angka itu <InlineMath math="\tfrac{18}{2{.}000}\cdot 1{.}000=9" /> per <InlineMath math="1{.}000" /> pemberian obat.
 
-Penjualan kipas dan suhu pada bulan-bulan yang sama di tahun-tahun sebelumnya memberi tepat jenis data itu. Jika tahun yang lebih panas juga mencatat penjualan lebih tinggi, dugaan menjadi lebih kuat. Jika tidak, dugaan melemah.
+Ingat bahwa angka kesalahan adalah pecahan: kesalahan dibagi pemberian obat. Pembilangnya turun, tetapi pecahannya naik. Itu hanya mungkin jika **penyebutnya turun lebih tajam** daripada pembilangnya. Jadi, penjelasan yang tepat harus membuat pemberian obat pada malam hari berkurang, dan berkurangnya harus cukup banyak.
 
-Pilihan lain tidak menguji hubungan suhu dan penjualan kipas:
+Seberapa banyak? Misalkan <InlineMath math="p" /> adalah banyak pemberian obat malam hari pada April sampai Juni. Angka kesalahan naik melewati <InlineMath math="9" /> jika:
 
-- Harga tiket kolam renang berkaitan dengan pengunjung kolam, bukan penjualan kipas.
-- Jumlah karyawan toko tidak menyangkut suhu.
-- Merek yang paling laris tidak memberi informasi tentang pengaruh suhu terhadap banyaknya kipas yang terjual.
-- Lama penutupan kolam hanya menjelaskan data pengunjung kolam pada bulan Mei.
+<BlockMath math="\begin{aligned} \frac{15}{p}\cdot 1{.}000 &> 9 \\ p &< \frac{15{.}000}{9}\approx 1{.}667 \end{aligned}" />
 
-Jadi, data yang paling membantu adalah penjualan kipas angin dan rata-rata suhu maksimum pada bulan-bulan yang sama di beberapa tahun sebelumnya.
+Pemberian obat malam hari harus turun dari <InlineMath math="2{.}000" /> menjadi di bawah sekitar <InlineMath math="1{.}667" />, artinya berkurang lebih dari seperenam, atau sekitar <InlineMath math="16{,}7\%" />. Batas seperenam ini datang dari pembilang: banyak kesalahan turun tepat seperenam, dari <InlineMath math="18" /> ke <InlineMath math="15" />, jadi penyebut harus turun lebih dari seperenam agar pecahannya naik.
+
+Pemindahan obat rutin pukul 05.00 ke pukul 08.00 memotong pemberian obat malam hari sekitar seperempat, kira-kira dari <InlineMath math="2{.}000" /> menjadi <InlineMath math="1{.}500" />. Cek:
+
+<BlockMath math="\frac{15}{1{.}500}\cdot 1{.}000=10>9" />
+
+Kedua fakta terpenuhi: kesalahan turun ke <InlineMath math="15" />, sedangkan angkanya naik ke sekitar <InlineMath math="10" />. Pukul 08.00 sudah masuk sif pagi, jadi pemberian obat itu memang keluar dari hitungan malam hari.
+
+Pilihan lain gugur karena alasan berikut.
+
+- Perawat yang lebih segar menjelaskan turunnya banyak kesalahan saja. Kalau pemberian obat tetap <InlineMath math="2{.}000" />, angkanya menjadi <InlineMath math="\tfrac{15}{2{.}000}\cdot 1{.}000=7{,}5" />, turun. Fakta kedua tidak terjelaskan.
+- Daftar periksa yang lebih rinci membuat lebih banyak kesalahan terhitung, jadi justru membuat turunnya banyak kesalahan makin aneh. Selama pemberian obat tidak berkurang, angka kesalahan tidak mungkin naik ketika banyak kesalahan turun.
+- Pemberian obat yang turun sekitar <InlineMath math="10\%" /> sudah benar arahnya, tetapi kurang tajam. Dengan sekitar <InlineMath math="1{.}800" /> pemberian, angkanya <InlineMath math="\tfrac{15}{1{.}800}\cdot 1{.}000\approx 8{,}3" />, masih di bawah <InlineMath math="9" />.
+- Pemberian obat yang bertambah membuat penyebut naik, sehingga angka kesalahan makin turun. Arahnya terbalik.
+
+Jadi, penjelasan yang membuat kedua hasil itu sama-sama benar adalah pemindahan jadwal obat rutin pukul 05.00 ke pukul 08.00, yang mengurangi pemberian obat malam hari sekitar seperempat.

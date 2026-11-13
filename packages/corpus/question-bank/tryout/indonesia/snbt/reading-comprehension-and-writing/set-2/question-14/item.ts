@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "writing",
-    topic: "spelling",
+    topic: "effective-sentence",
   },
-  stimulus: "medicine-delivery",
+  stimulus: "debat",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "mengambil",
-        },
-        {
           correct: true,
-          label: "apotik",
+          label:
+            "Lomba tahun ini diikuti oleh para siswa dari enam belas SMA di kabupaten itu.",
         },
         {
           correct: false,
-          label: "mengantarkannya",
+          label:
+            "Dalam lomba tahun ini diikuti oleh para siswa dari enam belas SMA di kabupaten itu.",
         },
         {
           correct: false,
-          label: "puskesmas",
+          label:
+            "Lomba tahun ini diikuti oleh para siswa-siswa dari enam belas SMA di kabupaten itu.",
         },
         {
           correct: false,
-          label: "sama",
+          label:
+            "Dalam lomba tahun ini, para siswa dari enam belas SMA di kabupaten itu ikut serta di dalamnya.",
+        },
+        {
+          correct: false,
+          label:
+            "Lomba tahun ini diikuti oleh enam belas siswa SMA di kabupaten itu.",
         },
       ],
     },

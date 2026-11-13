@@ -2,33 +2,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "rule-application",
+    topic: "truth-teller",
   },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$\\text{Rp}94{.}000$$",
-        },
-        {
           correct: true,
-          label: "$$\\text{Rp}100{.}000$$",
+          label: "Juwita tidak meraih peringkat $$3$$.",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}125{.}000$$",
+          label: "Laksmi meraih peringkat $$4$$.",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}135{.}000$$",
+          label: "Ilham adalah finalis yang berbohong.",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}150{.}000$$",
+          label: "Mahesa meraih peringkat $$1$$.",
+        },
+        {
+          correct: false,
+          label: "Ilham meraih peringkat $$3$$.",
         },
       ],
     },

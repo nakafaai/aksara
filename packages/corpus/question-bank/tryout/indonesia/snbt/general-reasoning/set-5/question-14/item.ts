@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "deductive-reasoning",
     topic: "selection",
   },
-  stimulus: "estafet",
+  stimulus: "sains",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Fani",
-        },
-        {
-          correct: false,
-          label: "Hana",
-        },
-        {
-          correct: false,
-          label: "Lusi",
-        },
-        {
-          correct: false,
-          label: "Joko",
-        },
-        {
           correct: true,
-          label: "Gilang",
+          label: "Bening, Elvira, Fauzan, dan Haikal",
+        },
+        {
+          correct: false,
+          label: "Cempaka, Elvira, Fauzan, dan Gendis",
+        },
+        {
+          correct: false,
+          label: "Arka, Danu, Elvira, dan Fauzan",
+        },
+        {
+          correct: false,
+          label: "Arka, Bening, Danu, dan Gendis",
+        },
+        {
+          correct: false,
+          label: "Bening, Danu, Fauzan, dan Haikal",
         },
       ],
     },

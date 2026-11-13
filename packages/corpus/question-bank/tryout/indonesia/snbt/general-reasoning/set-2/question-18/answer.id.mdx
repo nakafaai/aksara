@@ -1,19 +1,34 @@
-Terapkan aturan **sesuai urutan prioritasnya**. Aturan yang lebih awal selalu mengalahkan aturan berikutnya, sedangkan jam datang hanya dipakai untuk pasien yang setara.
+Warga jujur hanya mengucapkan kalimat yang benar, dan warga pembohong hanya mengucapkan kalimat yang salah. Jadi, kamu mencari pembagian jenis yang membuat **setiap kalimat cocok dengan jenis pengucapnya**.
 
-**Aturan 1**. Hanya Jihan yang menunjukkan tanda bahaya, jadi Jihan dilayani pertama walaupun datang pukul <InlineMath math="08.00" />.
+Mulailah dari kalimat Sekar, karena kalimat "jika" yang salah memberi informasi paling banyak. Kalimat "jika <InlineMath math="P" />, <InlineMath math="Q" />" hanya salah dalam satu keadaan, yaitu ketika <InlineMath math="P" /> terjadi dan <InlineMath math="Q" /> tidak terjadi.
 
-**Aturan 2**. Di antara pasien lain, yang didahulukan adalah Kurnia (<InlineMath math="62" /> tahun), Ilham (<InlineMath math="70" /> tahun), dan Gita (hamil). Hadi berusia <InlineMath math="45" /> tahun dan tidak hamil, jadi berada di kelompok terakhir.
+Langkah pertama, tunjukkan bahwa **Sekar pasti jujur**. Andaikan Sekar pembohong. Kalimatnya salah, jadi Raka jujur dan Tegar tidak pembohong, artinya Tegar juga jujur. Dengan begitu, pembohongnya hanya Sekar seorang. Padahal Raka yang jujur berkata paling sedikit ada dua pembohong. Ini bertentangan, jadi Sekar jujur.
 
-**Aturan 3**. Di dalam kelompok prioritas, urutkan menurut jam datang: Kurnia <InlineMath math="07.55" />, Ilham <InlineMath math="08.10" />, lalu Gita <InlineMath math="08.15" />.
+Langkah kedua, tunjukkan bahwa Raka pembohong. Andaikan Raka jujur. Kalimatnya benar, jadi paling sedikit ada dua pembohong. Raka dan Sekar sama-sama jujur, sehingga calon pembohong tinggal Tegar seorang. Satu orang tidak cukup, jadi Raka bukan warga jujur.
 
-<BlockMath math="\text{Jihan},\ \text{Kurnia},\ \text{Ilham},\ \text{Gita},\ \text{Hadi}" />
+Langkah ketiga, tentukan Tegar. Karena Raka pembohong, kalimatnya salah. Lawan dari "paling sedikit dua pembohong" adalah "paling banyak satu pembohong". Raka sendiri sudah menjadi satu pembohong itu, jadi Tegar harus jujur.
 
-Pasien urutan ketiga adalah Ilham.
+Cek ketiga kalimat dengan hasil ini.
 
-Jawaban lain muncul dari salah menerapkan aturan:
+- Raka pembohong, dan kalimatnya memang salah karena pembohongnya hanya satu.
+- Sekar jujur, dan kalimatnya benar. Bagian "Raka jujur" tidak terjadi, jadi kalimat "jika" itu tidak dilanggar.
+- Tegar jujur, dan kalimatnya benar karena Sekar dan Tegar sama-sama jujur.
 
-- Jika hanya jam datang yang dipakai, urutannya Hadi, Kurnia, Jihan, sehingga Jihan menjadi ketiga.
-- Jika aturan 2 diabaikan setelah Jihan, urutannya Jihan, Hadi, Kurnia, sehingga Kurnia menjadi ketiga.
-- Jika ibu hamil dianggap selalu lebih didahulukan daripada pasien lanjut usia, urutannya Jihan, Gita, Kurnia, sehingga Kurnia lagi-lagi menjadi ketiga. Aturan 2 menyebut keduanya memiliki **prioritas yang sama**.
+Ada satu jebakan pada kalimat Tegar. Kalimat itu tidak bisa menentukan jenis Tegar sendiri. Kalau Tegar jujur, Sekar sejenis dengannya, yaitu jujur. Kalau Tegar pembohong, kalimatnya salah, jadi Sekar berbeda jenis, yaitu jujur juga. Kedua kemungkinan hanya mengatakan "Sekar jujur", sehingga jenis Tegar harus diputuskan dari kalimat Raka.
 
-Jadi, pasien yang dilayani pada urutan ketiga adalah Ilham.
+Tabel ini menunjukkan kalimat siapa yang cocok dengan jenisnya pada setiap pilihan.
+
+| Pilihan | Raka | Sekar | Tegar |
+| --- | --- | --- | --- |
+| Raka jujur, Sekar jujur, Tegar pembohong | Tidak cocok | Cocok | Cocok |
+| Raka jujur, Sekar pembohong, Tegar jujur | Tidak cocok | Cocok | Tidak cocok |
+| Raka pembohong, Sekar jujur, Tegar pembohong | Tidak cocok | Cocok | Cocok |
+| Raka pembohong, Sekar jujur, Tegar jujur | Cocok | Cocok | Cocok |
+| Raka jujur, Sekar pembohong, Tegar pembohong | Cocok | Tidak cocok | Tidak cocok |
+
+- Raka jujur, Sekar jujur, Tegar pembohong lolos untuk Sekar dan Tegar. Jebakannya adalah memakai kalimat Sekar dengan Raka jujur tanpa pernah menguji kalimat Raka sendiri, padahal pembohongnya hanya Tegar.
+- Raka jujur, Sekar pembohong, Tegar jujur adalah hasil tepat dari menyangkal kalimat Sekar. Jebakannya adalah berhenti di situ, padahal susunan ini hanya punya satu pembohong.
+- Raka pembohong, Sekar jujur, Tegar pembohong lupa bahwa Raka ikut terhitung. Dengan dua pembohong, kalimat Raka justru benar, padahal Raka pembohong.
+- Raka jujur, Sekar pembohong, Tegar pembohong cocok untuk kalimat Raka. Susunan ini muncul kalau kalimat Sekar disangkal secara keliru menjadi "Raka jujur dan Tegar pembohong".
+
+Jadi, Raka adalah pembohong, sedangkan Sekar dan Tegar adalah warga jujur.

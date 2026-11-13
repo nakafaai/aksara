@@ -2,35 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "data-comparison",
+    topic: "data-interpretation",
   },
-  stimulus: "bibit",
+  stimulus: "kantin",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
+          column: 2,
           label:
-            "Pada penyiraman pagi, tambahan tinggi akibat kompos dua kali tambahan tinggi akibat pupuk cair.",
+            "Pada minggu sesudah label, lebih dari $$40\\%$$ seluruh siswa sekolah membeli minuman tinggi gula.",
         },
         {
           column: 1,
           label:
-            "Rata-rata tinggi seluruh bibit berpupuk cair lebih besar daripada rata-rata tinggi seluruh bibit berkompos.",
+            "Pada minggu sesudah label, seperenam pembeli minuman tinggi gula adalah siswa yang pada minggu sebelum label tidak membeli minuman tinggi gula.",
+        },
+        {
+          column: 1,
+          label:
+            "Rata-rata banyak kemasan minuman tinggi gula yang dibeli setiap pembelinya sama pada kedua minggu.",
         },
         {
           column: 2,
           label:
-            "Pada penyiraman sore, tambahan tinggi akibat pupuk cair dua kali tambahan tinggi akibat kompos.",
-        },
-        {
-          column: 2,
-          label:
-            "Kombinasi perlakuan yang menghasilkan bibit tertinggi adalah pupuk cair dengan penyiraman pagi.",
+            "Dari minggu sebelum ke minggu sesudah label, banyak kemasan minuman yang tidak tinggi gula naik dengan persentase yang sama dengan turunnya banyak kemasan minuman tinggi gula.",
         },
       ],
     },

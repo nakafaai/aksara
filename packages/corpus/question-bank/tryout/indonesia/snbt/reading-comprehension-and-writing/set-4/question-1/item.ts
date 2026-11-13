@@ -2,38 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "reading",
-    topic: "main-idea",
+    topic: "author-purpose",
   },
-  stimulus: "mangrove-nursery",
+  stimulus: "kecapi",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Garis pantai Desa Pasir Putih mundur hampir dua meter setiap tahun.",
-        },
-        {
           correct: true,
           label:
-            "Kelompok nelayan Desa Pasir Putih menahan abrasi dengan membibitkan dan menanam bakau.",
+            "menunjukkan bahwa keunggulan bibit sambungan pada kalimat (13) baru tampak di tempat yang diterpa angin kencang",
         },
         {
           correct: false,
           label:
-            "Buah bakau yang jatuh di muara dapat disemai di dalam kantong plastik.",
-        },
-        {
-          correct: false,
-          label: "Pagar bambu melindungi bibit bakau dari ombak.",
+            "membantah simpulan bahwa bibit sambungan lebih tahan tumbang daripada bibit cangkok",
         },
         {
           correct: false,
           label:
-            "Akar bakau menjadi tempat kepiting dan ikan kecil berkembang biak.",
+            "menunjukkan bahwa akar tunggang tidak berpengaruh terhadap ketahanan pohon saat diterpa angin",
+        },
+        {
+          correct: false,
+          label:
+            "menunjukkan bahwa pohon cangkok di lereng barat lebih tahan tumbang daripada pohon cangkok di lereng timur",
+        },
+        {
+          correct: false,
+          label:
+            "memberi contoh tempat yang tidak cocok untuk ditanami bibit cangkok",
         },
       ],
     },

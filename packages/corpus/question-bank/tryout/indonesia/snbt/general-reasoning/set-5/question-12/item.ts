@@ -13,27 +13,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Debit Sungai Cilaki naik, tetapi perahu wisata tetap beroperasi.",
+            "Jika jumlah penonton dibatasi $$300$$ orang, pertandingan final dipindahkan ke gedung olahraga.",
+        },
+        {
+          correct: false,
+          label:
+            "Jika pertandingan final tidak dipindahkan ke gedung olahraga, jumlah penonton tidak dibatasi $$300$$ orang.",
         },
         {
           correct: true,
           label:
-            "Perahu wisata beroperasi dan pintu air bendungan hulu tidak dibuka.",
+            "Jika jumlah penonton tidak dibatasi $$300$$ orang, pertandingan final tidak dipindahkan ke gedung olahraga.",
         },
         {
           correct: false,
           label:
-            "Pintu air bendungan hulu dibuka, tetapi debit Sungai Cilaki tidak naik.",
+            "Jika siswa kelas X mendapat tiket, mereka menonton pertandingan final secara langsung.",
         },
         {
           correct: false,
           label:
-            "Perahu wisata tidak beroperasi, tetapi pedagang tetap membuka lapaknya.",
-        },
-        {
-          correct: false,
-          label:
-            "Debit Sungai Cilaki naik karena hujan, bukan karena pintu air dibuka.",
+            "Jika siswa kelas X tidak mendapat tiket, pertandingan final dipindahkan ke gedung olahraga.",
         },
       ],
     },

@@ -1,22 +1,26 @@
-Write the statement in symbols so its form is clear. Let <InlineMath math="p" />: the train tickets are sold out, <InlineMath math="q" />: Rani takes the bus, and <InlineMath math="r" />: Rani postpones the trip. The statement is <InlineMath math="p \Rightarrow (q \vee r)" />.
+The negation (*ingkaran*) is the statement that's true exactly when the original is false. So first ask: when is the original false?
 
-An implication is false only when the "if" part is true and the "then" part is false. So this statement is **broken only when the tickets are sold out, Rani does not take the bus, and Rani does not postpone**. An equivalent statement must be broken in exactly the same situation.
+The original talks about one group: athletes who passed the regional selection and have never had a serious injury. For this group, it demands that every athlete meets at least one of two things: being on the provincial core team or holding a sports scholarship.
 
-Transform it algebraically:
+The original is false when at least one athlete in that group fails the demand. Failing "A or B" means not A and also not B. This rule is De Morgan's law: the negation of "or" becomes "and", and each part gets negated.
 
-<BlockMath math="\begin{aligned}
-p \Rightarrow (q \vee r) &\equiv \neg p \vee q \vee r \\
-&\equiv \neg(p \wedge \neg q) \vee r \\
-&\equiv (p \wedge \neg q) \Rightarrow r
-\end{aligned}" />
+In symbols, let <InlineMath math="K(x)" />: athlete <InlineMath math="x" /> passed the regional selection and has never had a serious injury, <InlineMath math="T(x)" />: on the provincial core team, and <InlineMath math="B(x)" />: holds a sports scholarship.
 
-The last form reads: if the train tickets are sold out and Rani does not take the bus, Rani postpones the trip. It is also broken only when the tickets are sold out, Rani does not take the bus, and Rani does not postpone.
+<BlockMath math="\neg\,\forall x\,\big(K(x) \Rightarrow (T(x) \vee B(x))\big) \;\equiv\; \exists x\,\big(K(x) \wedge \neg T(x) \wedge \neg B(x)\big)" />
 
-The other options are not equivalent:
+There are three changes, and only three.
 
-- "If Rani takes the bus or postpones, the tickets are sold out" is the converse. It is broken when Rani takes the bus although tickets remain, a situation that does not break the original.
-- "If the tickets are not sold out, Rani neither takes the bus nor postpones the trip" is the inverse, which is also not equivalent to the original implication.
-- "If Rani does not take the bus or does not postpone, the tickets are not sold out" negates <InlineMath math="q \vee r" /> incorrectly. The correct negation is "does not take the bus **and** does not postpone".
-- "The tickets are sold out, but Rani neither takes the bus nor postpones" is the negation of the original, not an equivalent statement.
+1. "All" (*semua*) becomes "there is" (*ada*).
+2. The group description, passed the regional selection and never seriously injured, **stays whole and isn't negated**. It only points to which athletes we're talking about.
+3. The demand "core team or scholarship" is negated into "not on the core team and not a scholarship holder".
 
-So the equivalent statement is "if the train tickets are sold out and Rani does not take the bus, Rani postpones the trip".
+The result is "there is an athlete who passed the regional selection and has never had a serious injury, but who is not on the provincial core team and not a sports scholarship holder".
+
+The other options fail because of these slips.
+
+- The version with "not on the core team or not a scholarship holder" forgets to turn "or" into "and". An athlete in the group who holds a scholarship but isn't on the core team fits this option, yet doesn't contradict the original.
+- The version starting with "all" isn't a negation. It's a much stronger claim. If the group holds one core-team athlete and one athlete with neither status, the original is false and this option is false too. A negation can't be false together with the original.
+- The version with "didn't pass the regional selection or has had a serious injury" negates the group description. Such athletes sit outside the group, so whatever their status, they can't contradict the original.
+- The version "there is an athlete who is not on the core team and not a scholarship holder" drops the group description. An athlete who never passed the regional selection can fit it without contradicting the original.
+
+So the negation is that there is an athlete who passed the regional selection and has never had a serious injury, but who is not on the provincial core team and not a sports scholarship holder.
