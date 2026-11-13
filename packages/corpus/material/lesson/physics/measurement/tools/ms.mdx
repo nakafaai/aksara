@@ -1,0 +1,262 @@
+
+export const metadata = {
+  title: "Jenis-jenis Alat Pengukur",
+  description:
+    "Alat pengukur fizik yang biasa digunakan berbeza mengikut kuantiti dan julat yang diukurnya, dan setiap hasil mesti dilaporkan bersama unitnya.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-04-25",
+  dateModified: "2026-09-12",
+  subject: "Pengukuran dalam Kerja Saintifik",
+};
+
+## Pengukuran Menghubungkan Nilai dengan Unit
+
+Setiap kali kita menimbang bahan masakan, melihat meter laju, membaca suhu badan atau mengukur panjang meja, kita sedang mengukur sesuatu. Dalam fizik, pengukuran ialah <Highlight>proses eksperimen untuk memperoleh satu atau lebih nilai kuantiti</Highlight>. Unit pengukuran pula memberikan <Highlight>rujukan yang dikongsi bersama</Highlight>.
+
+Nilai kuantiti ialah hasil darab nilai berangka dengan unitnya.
+
+Contohnya, jika panjang sesuatu objek dibaca sebagai <InlineMath math="8 \text{ cm}" />, maka <InlineMath math="8" /> ialah nilai berangka dan <InlineMath math="\text{cm}" /> ialah unitnya.
+
+> Pilih alat yang mengukur kuantiti yang diperlukan dan meliputi julat yang dijangka dengan resolusi yang sesuai. Alat yang tidak sesuai memberikan hasil yang tidak boleh digunakan, walaupun skalanya dibaca dengan betul.
+
+## Membandingkan Alat Pengukur
+
+Gunakan model interaktif berikut untuk membandingkan tiga alat pengukur. Pilih satu alat, putar paparannya, kemudian semak **kuantiti yang diukur**, unit dan bacaan skalanya, supaya kamu nampak bahawa setiap alat dipadankan dengan kuantitinya sendiri.
+
+<MeasurementToolsLab
+  title={<>Perbandingan Tiga Alat Pengukur</>}
+  description={
+    <>
+      Pilih satu alat untuk melihat hubungan antara kuantiti, objek yang
+      diukur dan bacaannya.
+    </>
+  }
+  labels={{
+    chooseTool: "Pilih alat pengukur",
+    decimalSeparator: ".",
+    instrument: "Alat pengukur",
+    measuredObject: "Objek yang diukur",
+    reading: "Bacaan",
+    tools: {
+      length: {
+        tab: "Panjang",
+        control: "Panjang blok",
+        instrument: "Pembaris",
+        object: "Blok kecil",
+      },
+      mass: {
+        tab: "Jisim",
+        control: "Jisim objek",
+        instrument: "Neraca",
+        object: "Objek pepejal",
+      },
+      time: {
+        tab: "Masa",
+        control: "Tempoh gerakan",
+        instrument: "Jam randik",
+        object: "Tempoh gerakan",
+      },
+    },
+  }}
+/>
+
+## Memilih Alat Pengukur
+
+Kenal pasti kuantitinya sebelum kamu mengukur. Julat yang dijangka dan resolusi yang diperlukan menentukan alat pengukur, manakala kuantiti itu menentukan unit yang digunakan untuk melaporkan hasilnya.
+
+<Mermaid
+  title="Padankan Alat dengan Kuantiti"
+  description="Mulakan daripada objek yang diukur, kemudian pilih alat berdasarkan kepersisan, julat dan cara skalanya dibaca."
+  chart={`flowchart TD
+    A["Kuantiti yang diukur"] --> B["Panjang"]
+    A --> C["Jisim"]
+    A --> D["Masa"]
+    B --> E["Alat pengukur panjang"]
+    C --> F["Neraca"]
+    D --> G["Jam atau jam randik"]`}
+/>
+
+S.I. ialah singkatan antarabangsa bagi *Système international d’unités*, iaitu **Sistem Unit Antarabangsa**. Dalam amalan, S.I. menyediakan unit rujukan yang dikongsi bersama, jadi hasil pengukuran dari makmal dan negara yang berbeza boleh dibandingkan secara terus.
+
+Dalam S.I., kuantiti asas yang kerap muncul pada awal pelajaran fizik termasuklah panjang, jisim dan masa. Unit asasnya ialah <InlineMath math="\text{m}" /> bagi panjang, <InlineMath math="\text{kg}" /> bagi jisim dan <InlineMath math="\text{s}" /> bagi masa.
+
+## Membaca Hasil Pengukuran
+
+Tiga contoh di bawah melatih kamu membaca alat pengukur dengan melihat **titik mula**, nilai yang dipaparkan dan unitnya. Setiap contoh juga menerangkan maksud nombor yang dibaca.
+
+### Panjang
+
+Semasa membaca pembaris, periksa **kedua-dua hujung objek**. Jika objek bermula pada <InlineMath math="0 \text{ cm}" /> dan berakhir pada <InlineMath math="8 \text{ cm}" />, hasilnya ialah:
+
+<BlockMath math="\begin{aligned}
+\text{panjang objek} &= 8 \text{ cm} - 0 \text{ cm} \\
+&= 8 \text{ cm}
+\end{aligned}" />
+
+Jika objek bermula pada <InlineMath math="1 \text{ cm}" /> dan berakhir pada <InlineMath math="7 \text{ cm}" />, panjangnya bukan <InlineMath math="7 \text{ cm}" />, kerana objek itu tidak bermula pada sifar.
+
+<BlockMath math="\begin{aligned}
+\text{panjang objek} &= 7 \text{ cm} - 1 \text{ cm} \\
+&= 6 \text{ cm}
+\end{aligned}" />
+
+### Jisim
+
+Jisim menunjukkan sejauh mana sesuatu objek menentang perubahan pada gerakannya. Neraca mengukur jisim dengan membandingkan objek itu dengan **jisim yang diketahui**. Jika neraca menunjukkan bacaan <InlineMath math="250 \text{ g}" />, jisim objek itu ialah:
+
+<BlockMath math="m = 250 \text{ g}" />
+
+Dalam model interaktif di atas, neraca itu dimodelkan sebagai neraca lengan sama. Objek diletakkan pada piring kiri, manakala jisim rujukan <InlineMath math="250 \text{ g}" /> diletakkan pada piring kanan. Jika jisim objek lebih besar daripada <InlineMath math="250 \text{ g}" />, sisi objek akan turun. Jika jisim objek lebih kecil daripada <InlineMath math="250 \text{ g}" />, sisi jisim rujukan pula yang turun. Jika kedua-dua jisim sama, neraca berada dalam keseimbangan.
+
+Simbol <InlineMath math="\tau" /> mewakili magnitud tork, iaitu kesan putaran daya pada neraca. Kedua-dua lengan mempunyai panjang <InlineMath math="r" />, dan <InlineMath math="g" /> ialah magnitud pecutan graviti. Jisim yang sama pada lengan yang sama panjang menghasilkan dua tork yang bertentangan arah dengan magnitud yang sama.
+
+<BlockMath math="\begin{aligned}
+\tau_\text{kiri} &= r m_\text{objek } g \\
+\tau_\text{kanan} &= r m_\text{rujukan } g \\
+m_\text{objek} = m_\text{rujukan} &\Rightarrow \tau_\text{kiri} = \tau_\text{kanan}
+\end{aligned}" />
+
+Untuk penulisan dalam unit S.I. sepenuhnya, jisim ini boleh ditukar kepada kilogram.
+
+<BlockMath math="\begin{aligned}
+250 \text{ g} &= 250 \times 10^{-3} \text{ kg} \\
+&= 0.25 \text{ kg}
+\end{aligned}" />
+
+### Masa
+
+Jam randik digunakan apabila kita mahu mengukur **tempoh sesuatu peristiwa**. Jika jam randik menunjukkan bacaan <InlineMath math="12.8 \text{ s}" />, peristiwa itu berlangsung selama <InlineMath math="12.8" /> saat.
+
+<BlockMath math="t = 12.8 \text{ s}" />
+
+Angkup vernier membolehkan bacaan hingga satu persepuluh milimeter dengan menjajarkan dua skala. Sepuluh senggatan kecil pada skala vernier merentang 9 mm, jadi sifar vernier yang sudah melepasi 23 mm dan garis ketujuh yang segaris dengan satu garis skala utama memberikan 23.7 mm. Zum masuk ke garis merah jambu.
+
+<MathVisual
+  title={<>Membaca Angkup Vernier</>}
+  description={<>Skala utama dalam milimeter (atas) dan skala vernier dengan 10 senggatan sepanjang 9 mm (bawah).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 14 }, y: { min: -1.6, max: 1.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "main", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 13, y: 0 } },
+      { id: "mm-0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 0.6 } },
+      { id: "mm-1", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 0.3 } },
+      { id: "mm-2", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 0.3 } },
+      { id: "mm-3", kind: "segment", appearance: "reference", from: { x: 3, y: 0 }, to: { x: 3, y: 0.3 } },
+      { id: "mm-4", kind: "segment", appearance: "reference", from: { x: 4, y: 0 }, to: { x: 4, y: 0.3 } },
+      { id: "mm-5", kind: "segment", appearance: "reference", from: { x: 5, y: 0 }, to: { x: 5, y: 0.45 } },
+      { id: "mm-6", kind: "segment", appearance: "reference", from: { x: 6, y: 0 }, to: { x: 6, y: 0.3 } },
+      { id: "mm-7", kind: "segment", appearance: "reference", from: { x: 7, y: 0 }, to: { x: 7, y: 0.3 } },
+      { id: "mm-8", kind: "segment", appearance: "reference", from: { x: 8, y: 0 }, to: { x: 8, y: 0.3 } },
+      { id: "mm-9", kind: "segment", appearance: "reference", from: { x: 9, y: 0 }, to: { x: 9, y: 0.3 } },
+      { id: "mm-10", kind: "segment", appearance: "reference", from: { x: 10, y: 0 }, to: { x: 10, y: 0.6 } },
+      { id: "mm-11", kind: "segment", appearance: "reference", from: { x: 11, y: 0 }, to: { x: 11, y: 0.3 } },
+      { id: "mm-12", kind: "segment", appearance: "reference", from: { x: 12, y: 0 }, to: { x: 12, y: 0.3 } },
+      { id: "mm-13", kind: "segment", appearance: "reference", from: { x: 13, y: 0 }, to: { x: 13, y: 0.3 } },
+      { id: "v-0", kind: "segment", appearance: "secondary", from: { x: 3.7, y: -0.1 }, to: { x: 3.7, y: -0.7 } },
+      { id: "v-1", kind: "segment", appearance: "secondary", from: { x: 4.6, y: -0.1 }, to: { x: 4.6, y: -0.5 } },
+      { id: "v-2", kind: "segment", appearance: "secondary", from: { x: 5.5, y: -0.1 }, to: { x: 5.5, y: -0.5 } },
+      { id: "v-3", kind: "segment", appearance: "secondary", from: { x: 6.4, y: -0.1 }, to: { x: 6.4, y: -0.5 } },
+      { id: "v-4", kind: "segment", appearance: "secondary", from: { x: 7.3, y: -0.1 }, to: { x: 7.3, y: -0.5 } },
+      { id: "v-5", kind: "segment", appearance: "secondary", from: { x: 8.2, y: -0.1 }, to: { x: 8.2, y: -0.7 } },
+      { id: "v-6", kind: "segment", appearance: "secondary", from: { x: 9.1, y: -0.1 }, to: { x: 9.1, y: -0.5 } },
+      { id: "v-7", kind: "segment", appearance: "answer", from: { x: 10, y: -0.1 }, to: { x: 10, y: -0.5 } },
+      { id: "v-8", kind: "segment", appearance: "secondary", from: { x: 10.9, y: -0.1 }, to: { x: 10.9, y: -0.5 } },
+      { id: "v-9", kind: "segment", appearance: "secondary", from: { x: 11.8, y: -0.1 }, to: { x: 11.8, y: -0.5 } },
+      { id: "v-10", kind: "segment", appearance: "secondary", from: { x: 12.7, y: -0.1 }, to: { x: 12.7, y: -0.7 } },
+    ],
+    labels: [
+      { key: "two", objectId: "mm-0", at: { x: 0, y: 0.6 }, placement: "above" },
+      { key: "three", objectId: "mm-10", at: { x: 10, y: 0.6 }, placement: "above" },
+      { key: "zero", objectId: "v-0", at: { x: 3.7, y: -0.7 }, placement: "below" },
+      { key: "line", objectId: "v-7", at: { x: 10, y: -0.5 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    two: <InlineMath math="2\text{ cm}" />,
+    three: <InlineMath math="3\text{ cm}" />,
+    zero: <InlineMath math="0" />,
+    line: <InlineMath math="23+7\times0.1=23.7\text{ mm}" />,
+  }}
+/>
+
+## Alat Pengukur di Sekeliling Kita
+
+Banyak kuantiti harian boleh dibaca terus daripada alat pengukur. Kuantiti lain, seperti ketumpatan, boleh dihitung daripada beberapa pengukuran. Jadual ini memadankan alat pengukur yang lazim dengan kuantiti yang diukurnya, jadi kamu boleh memilih alat berdasarkan kuantiti yang kamu perlukan.
+
+| Alat | Kuantiti yang diukur |
+| --- | --- |
+| Pembaris atau pita pengukur | Panjang meja, ketinggian badan atau jarak yang pendek |
+| Angkup vernier | Diameter luar, diameter dalam atau kedalaman objek kecil |
+| Tolok skru mikrometer | Ketebalan objek yang sangat kecil, seperti dawai halus |
+| Neraca | Jisim objek |
+| Termometer | Suhu |
+| Jam randik | Tempoh sesuatu peristiwa |
+| Meter laju | <Highlight>Laju kenderaan</Highlight> |
+
+Memilih alat ialah keputusan pertama, dan membaca unitnya ialah keputusan kedua. Termometer memberikan suhu dalam darjah Celsius, manakala neraca memberikan jisim dalam kilogram, jadi nombor sahaja tidak memberitahu apa yang diukur.
+
+## Mencari Panjang daripada Dua Bacaan
+
+Sebatang pensel diletakkan di atas pembaris. **Hujung kiri pensel** berada pada <InlineMath math="2 \text{ cm}" />, manakala hujung kanannya berada pada <InlineMath math="15 \text{ cm}" />. Panjang pensel itu ialah:
+
+<BlockMath math="\begin{aligned}
+\text{panjang pensel} &= 15 \text{ cm} - 2 \text{ cm} \\
+&= 13 \text{ cm}
+\end{aligned}" />
+
+Jadi, panjang pensel itu ialah <InlineMath math="13 \text{ cm}" />.
+
+Contoh pensel ini ada tiga bahagian: panjang ialah kuantiti yang dicari, pembaris ialah alat pengukurnya, dan <InlineMath math="13\text{ cm}" /> ialah hasil bersama unitnya. Apabila ketiga-tiganya dinyatakan, orang lain boleh mengenal pasti apa yang diukur dan membandingkannya dengan panjang lain yang dilaporkan dalam unit yang sama.
+
+Takrif [pengukuran](https://jcgm.bipm.org/vim/en/2.1.html) dan [nilai kuantiti](https://jcgm.bipm.org/vim/en/1.19.html) diambil daripada dua entri berasingan dalam International Vocabulary of Metrology.
+
+Pensel di bawah tidak bermula pada sifar, jadi baca kedua-dua hujungnya. Pangkalnya berada pada <InlineMath math="1\text{ cm}" /> dan matanya pada <InlineMath math="8\text{ cm}" />, jadi panjangnya ialah beza antara kedua-dua bacaan itu, iaitu <InlineMath math="7\text{ cm}" />.
+
+<MathVisual
+  title={<>Membaca Panjang daripada Dua Tanda</>}
+  description={<>Sebatang pensel dari tanda 1 cm hingga tanda 8 cm pada pembaris. Satu petak grid ialah 1 cm.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9.5 }, y: { min: -0.5, max: 2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ruler", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 9, y: 0 } },
+      { id: "half-0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 0.4 } },
+      { id: "half-1", kind: "segment", appearance: "reference", from: { x: 1 / 2, y: 0 }, to: { x: 1 / 2, y: 0.28 } },
+      { id: "half-2", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 0.4 } },
+      { id: "half-3", kind: "segment", appearance: "reference", from: { x: 3 / 2, y: 0 }, to: { x: 3 / 2, y: 0.28 } },
+      { id: "half-4", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 0.4 } },
+      { id: "half-5", kind: "segment", appearance: "reference", from: { x: 5 / 2, y: 0 }, to: { x: 5 / 2, y: 0.28 } },
+      { id: "half-6", kind: "segment", appearance: "reference", from: { x: 3, y: 0 }, to: { x: 3, y: 0.4 } },
+      { id: "half-7", kind: "segment", appearance: "reference", from: { x: 7 / 2, y: 0 }, to: { x: 7 / 2, y: 0.28 } },
+      { id: "half-8", kind: "segment", appearance: "reference", from: { x: 4, y: 0 }, to: { x: 4, y: 0.4 } },
+      { id: "half-9", kind: "segment", appearance: "reference", from: { x: 9 / 2, y: 0 }, to: { x: 9 / 2, y: 0.28 } },
+      { id: "half-10", kind: "segment", appearance: "reference", from: { x: 5, y: 0 }, to: { x: 5, y: 0.4 } },
+      { id: "half-11", kind: "segment", appearance: "reference", from: { x: 11 / 2, y: 0 }, to: { x: 11 / 2, y: 0.28 } },
+      { id: "half-12", kind: "segment", appearance: "reference", from: { x: 6, y: 0 }, to: { x: 6, y: 0.4 } },
+      { id: "half-13", kind: "segment", appearance: "reference", from: { x: 13 / 2, y: 0 }, to: { x: 13 / 2, y: 0.28 } },
+      { id: "half-14", kind: "segment", appearance: "reference", from: { x: 7, y: 0 }, to: { x: 7, y: 0.4 } },
+      { id: "half-15", kind: "segment", appearance: "reference", from: { x: 15 / 2, y: 0 }, to: { x: 15 / 2, y: 0.28 } },
+      { id: "half-16", kind: "segment", appearance: "reference", from: { x: 8, y: 0 }, to: { x: 8, y: 0.4 } },
+      { id: "half-17", kind: "segment", appearance: "reference", from: { x: 17 / 2, y: 0 }, to: { x: 17 / 2, y: 0.28 } },
+      { id: "half-18", kind: "segment", appearance: "reference", from: { x: 9, y: 0 }, to: { x: 9, y: 0.4 } },
+      { id: "pencil", kind: "segment", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 8, y: 1 } },
+      { id: "pencil-head", kind: "polygon", appearance: "primary", vertices: [{ x: 8, y: 1 }, { x: 7.7, y: 1.15 }, { x: 7.7, y: 0.85 }] },
+      { id: "pencil-start", kind: "point", appearance: "primary", at: { x: 1, y: 1 } },
+    ],
+    labels: [
+      { key: "cm0", objectId: "half-0", at: { x: 0, y: 0.4 }, placement: "above" },
+      { key: "cm1", objectId: "half-2", at: { x: 1, y: 0.4 }, placement: "above" },
+      { key: "cm8", objectId: "half-16", at: { x: 8, y: 0.4 }, placement: "above" },
+      { key: "length", objectId: "pencil", at: { x: 4.5, y: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    cm0: <InlineMath math="0" />,
+    cm1: <InlineMath math="1" />,
+    cm8: <InlineMath math="8" />,
+    length: <InlineMath math="L=8-1=7\text{ cm}" />,
+  }}
+/>

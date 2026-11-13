@@ -1,0 +1,259 @@
+export const metadata = {
+  title: "Peraturan Angka Bererti",
+  description:
+    "Angka bererti dan peraturan pembundaran memastikan nilai yang dikira sepadan dengan kepersisan pengukuran.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-04-25",
+  dateModified: "2026-09-12",
+  subject: "Pengukuran dalam Kerja Saintifik",
+};
+
+## Resolusi Pengukuran Menentukan Digit yang Dilaporkan
+
+Apabila diameter penutup botol dibaca sebagai <InlineMath math="3.12 \text{ cm}" />, kalkulator boleh mengeluarkan banyak digit selepas luasnya dikira. Resolusi alat pengukur menghadkan berapa banyak digit itu yang boleh dilaporkan. Peraturan **angka bererti** menentukan digit mana yang layak berada dalam hasil akhir.
+
+Angka bererti ialah <Highlight>digit yang dikekalkan untuk menyampaikan resolusi</Highlight> sesuatu nilai yang diukur. Tulis nilai itu hanya sehingga tempat perpuluhan yang disokong oleh alat. Digit terakhir yang dilaporkan menunjukkan had bacaan itu dan boleh berubah apabila nilai dibundarkan.
+
+Zum masuk pada garis fuchsia di tepi kanan penutup botol. Garis itu sudah melepasi tanda <InlineMath math="3.1\text{ cm}" /> tetapi belum sampai ke <InlineMath math="3.2\text{ cm}" />. Jadi, digit <InlineMath math="3" /> dan <InlineMath math="1" /> datang terus daripada tanda skala, dan digit terakhir <InlineMath math="2" /> ialah anggaran kamu di antara dua tanda. Digit anggaran itulah angka bererti terakhir yang kamu laporkan, dan tiada digit kalkulator selepasnya yang disokong.
+
+<MathVisual
+  title={<>Membaca Penutup Botol pada Pembaris</>}
+  description={<>Pembaris dengan satu tanda setiap 0.1 cm di bawah penutup botol. Zum masuk di tempat garis fuchsia memotong pembaris.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ruler", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "mm-0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 0.4 } },
+      { id: "mm-1", kind: "segment", appearance: "reference", from: { x: 1 / 10, y: 0 }, to: { x: 1 / 10, y: 0.16 } },
+      { id: "mm-2", kind: "segment", appearance: "reference", from: { x: 2 / 10, y: 0 }, to: { x: 2 / 10, y: 0.16 } },
+      { id: "mm-3", kind: "segment", appearance: "reference", from: { x: 3 / 10, y: 0 }, to: { x: 3 / 10, y: 0.16 } },
+      { id: "mm-4", kind: "segment", appearance: "reference", from: { x: 4 / 10, y: 0 }, to: { x: 4 / 10, y: 0.16 } },
+      { id: "mm-5", kind: "segment", appearance: "reference", from: { x: 5 / 10, y: 0 }, to: { x: 5 / 10, y: 0.28 } },
+      { id: "mm-6", kind: "segment", appearance: "reference", from: { x: 6 / 10, y: 0 }, to: { x: 6 / 10, y: 0.16 } },
+      { id: "mm-7", kind: "segment", appearance: "reference", from: { x: 7 / 10, y: 0 }, to: { x: 7 / 10, y: 0.16 } },
+      { id: "mm-8", kind: "segment", appearance: "reference", from: { x: 8 / 10, y: 0 }, to: { x: 8 / 10, y: 0.16 } },
+      { id: "mm-9", kind: "segment", appearance: "reference", from: { x: 9 / 10, y: 0 }, to: { x: 9 / 10, y: 0.16 } },
+      { id: "mm-10", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 0.4 } },
+      { id: "mm-11", kind: "segment", appearance: "reference", from: { x: 11 / 10, y: 0 }, to: { x: 11 / 10, y: 0.16 } },
+      { id: "mm-12", kind: "segment", appearance: "reference", from: { x: 12 / 10, y: 0 }, to: { x: 12 / 10, y: 0.16 } },
+      { id: "mm-13", kind: "segment", appearance: "reference", from: { x: 13 / 10, y: 0 }, to: { x: 13 / 10, y: 0.16 } },
+      { id: "mm-14", kind: "segment", appearance: "reference", from: { x: 14 / 10, y: 0 }, to: { x: 14 / 10, y: 0.16 } },
+      { id: "mm-15", kind: "segment", appearance: "reference", from: { x: 15 / 10, y: 0 }, to: { x: 15 / 10, y: 0.28 } },
+      { id: "mm-16", kind: "segment", appearance: "reference", from: { x: 16 / 10, y: 0 }, to: { x: 16 / 10, y: 0.16 } },
+      { id: "mm-17", kind: "segment", appearance: "reference", from: { x: 17 / 10, y: 0 }, to: { x: 17 / 10, y: 0.16 } },
+      { id: "mm-18", kind: "segment", appearance: "reference", from: { x: 18 / 10, y: 0 }, to: { x: 18 / 10, y: 0.16 } },
+      { id: "mm-19", kind: "segment", appearance: "reference", from: { x: 19 / 10, y: 0 }, to: { x: 19 / 10, y: 0.16 } },
+      { id: "mm-20", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 0.4 } },
+      { id: "mm-21", kind: "segment", appearance: "reference", from: { x: 21 / 10, y: 0 }, to: { x: 21 / 10, y: 0.16 } },
+      { id: "mm-22", kind: "segment", appearance: "reference", from: { x: 22 / 10, y: 0 }, to: { x: 22 / 10, y: 0.16 } },
+      { id: "mm-23", kind: "segment", appearance: "reference", from: { x: 23 / 10, y: 0 }, to: { x: 23 / 10, y: 0.16 } },
+      { id: "mm-24", kind: "segment", appearance: "reference", from: { x: 24 / 10, y: 0 }, to: { x: 24 / 10, y: 0.16 } },
+      { id: "mm-25", kind: "segment", appearance: "reference", from: { x: 25 / 10, y: 0 }, to: { x: 25 / 10, y: 0.28 } },
+      { id: "mm-26", kind: "segment", appearance: "reference", from: { x: 26 / 10, y: 0 }, to: { x: 26 / 10, y: 0.16 } },
+      { id: "mm-27", kind: "segment", appearance: "reference", from: { x: 27 / 10, y: 0 }, to: { x: 27 / 10, y: 0.16 } },
+      { id: "mm-28", kind: "segment", appearance: "reference", from: { x: 28 / 10, y: 0 }, to: { x: 28 / 10, y: 0.16 } },
+      { id: "mm-29", kind: "segment", appearance: "reference", from: { x: 29 / 10, y: 0 }, to: { x: 29 / 10, y: 0.16 } },
+      { id: "mm-30", kind: "segment", appearance: "reference", from: { x: 3, y: 0 }, to: { x: 3, y: 0.4 } },
+      { id: "mm-31", kind: "segment", appearance: "reference", from: { x: 31 / 10, y: 0 }, to: { x: 31 / 10, y: 0.16 } },
+      { id: "mm-32", kind: "segment", appearance: "reference", from: { x: 32 / 10, y: 0 }, to: { x: 32 / 10, y: 0.16 } },
+      { id: "mm-33", kind: "segment", appearance: "reference", from: { x: 33 / 10, y: 0 }, to: { x: 33 / 10, y: 0.16 } },
+      { id: "mm-34", kind: "segment", appearance: "reference", from: { x: 34 / 10, y: 0 }, to: { x: 34 / 10, y: 0.16 } },
+      { id: "mm-35", kind: "segment", appearance: "reference", from: { x: 35 / 10, y: 0 }, to: { x: 35 / 10, y: 0.28 } },
+      { id: "mm-36", kind: "segment", appearance: "reference", from: { x: 36 / 10, y: 0 }, to: { x: 36 / 10, y: 0.16 } },
+      { id: "mm-37", kind: "segment", appearance: "reference", from: { x: 37 / 10, y: 0 }, to: { x: 37 / 10, y: 0.16 } },
+      { id: "mm-38", kind: "segment", appearance: "reference", from: { x: 38 / 10, y: 0 }, to: { x: 38 / 10, y: 0.16 } },
+      { id: "mm-39", kind: "segment", appearance: "reference", from: { x: 39 / 10, y: 0 }, to: { x: 39 / 10, y: 0.16 } },
+      { id: "mm-40", kind: "segment", appearance: "reference", from: { x: 4, y: 0 }, to: { x: 4, y: 0.4 } },
+      { id: "coin", kind: "circle", appearance: "primary", center: { x: 1.56, y: 2.56 }, radius: 1.56 },
+      { id: "diameter", kind: "segment", appearance: "answer", from: { x: 3.12, y: 0 }, to: { x: 3.12, y: 2.56 } },
+    ],
+    labels: [
+      { key: "cm0", objectId: "mm-0", at: { x: 0, y: 0.4 }, placement: "above" },
+      { key: "cm1", objectId: "mm-10", at: { x: 1, y: 0.4 }, placement: "above" },
+      { key: "cm2", objectId: "mm-20", at: { x: 2, y: 0.4 }, placement: "above" },
+      { key: "cm3", objectId: "mm-30", at: { x: 3, y: 0.4 }, placement: "above" },
+      { key: "cm4", objectId: "mm-40", at: { x: 4, y: 0.4 }, placement: "above" },
+      { key: "d", objectId: "diameter", at: { x: 3.12, y: 1.28 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    cm0: <InlineMath math="0" />,
+    cm1: <InlineMath math="1" />,
+    cm2: <InlineMath math="2" />,
+    cm3: <InlineMath math="3" />,
+    cm4: <InlineMath math="4" />,
+    d: <InlineMath math="d=3.12\text{ cm}" />,
+  }}
+/>
+
+Peraturan angka bererti menghalang sesuatu laporan daripada menunjukkan kepersisan yang lebih tinggi daripada yang disokong oleh alat pengukur.
+
+| Situasi | Soalan yang perlu dijawab |
+| :-------- | :----------------- |
+| Membaca satu pengukuran | Digit mana yang benar-benar disokong oleh alat? |
+| Penambahan dan penolakan | Data mana yang mempunyai bilangan tempat perpuluhan paling sedikit? |
+| Pendaraban dan pembahagian | Data mana yang mempunyai bilangan angka bererti paling sedikit? |
+
+## Sifar Boleh Menjadi Digit atau Hanya Memegang Nilai Tempat
+
+Sifar memang mengelirukan kerana maknanya bergantung pada **tempat sifar itu ditulis**.
+
+| Cara ukuran ditulis | Cara membaca angka bererti |
+| :------------------ | :---------------------------------- |
+| <InlineMath math="3.25 \text{ cm}" /> | Setiap digit bukan sifar dikira, jadi ada <InlineMath math="3" /> angka bererti. |
+| <InlineMath math="1.004 \text{ cm}" /> | Sifar di antara digit bukan sifar dikira, jadi ada <InlineMath math="4" /> angka bererti. |
+| <InlineMath math="31.00 \text{ cm}" /> | Sifar selepas titik perpuluhan dikira, jadi ada <InlineMath math="4" /> angka bererti. |
+| <InlineMath math="0.0026 \text{ kg}" /> | Sifar sebelum digit bukan sifar yang pertama hanya memegang nilai tempat, jadi ada <InlineMath math="2" /> angka bererti. |
+| <InlineMath math="1000 \text{ m}" /> | Sifar di hujung nombor ini kabur maknanya kecuali resolusi atau bilangan angka bererti dinyatakan. |
+| <InlineMath math="3.14 \times 10^{-5} \text{ m}" /> | Pekali <InlineMath math="3.14" /> mempunyai <InlineMath math="3" /> angka bererti |
+
+Dalam bentuk piawai, kuasa seperti <InlineMath math="10^{-5}" /> memberikan skala. Kuasa itu tidak menambah angka bererti.
+
+Bentuk piawai menyatakan dengan tepat sifar hujung mana yang bererti kerana setiap digit dalam pekalinya dikira.
+
+Dengan <InlineMath math="1" /> angka bererti:
+
+<BlockMath math="1000\text{ m}=1\times10^3\text{ m}" />
+
+Dengan <InlineMath math="4" /> angka bererti:
+
+<BlockMath math="1000\text{ m}=1.000\times10^3\text{ m}" />
+
+## Bundarkan Sekali Menggunakan Digit Pertama yang Dibuang
+
+Selepas kamu tahu bilangan digit yang dibenarkan, periksa **digit pertama yang akan dibuang**.
+
+| Digit pertama yang dibuang | Keputusan |
+| :------------------ | :------- |
+| <InlineMath math="<5" /> | Kekalkan digit terakhir yang disimpan tanpa perubahan. |
+| <InlineMath math=">5" />, atau <InlineMath math="5" /> yang diikuti digit bukan sifar | Tambah <InlineMath math="1" /> pada digit terakhir yang disimpan. |
+| Tepat <InlineMath math="5" /> yang diikuti sifar sahaja | Gunakan pembundaran ke genap: kekalkan digit terakhir yang genap, atau tambah <InlineMath math="1" /> pada digit terakhir yang ganjil. |
+
+Contohnya, jika luas yang dikira ialah <InlineMath math="52.976686625 \text{ cm}^2" /> dan luas itu mesti ditulis dengan <InlineMath math="4" /> angka bererti, digit seterusnya ialah <InlineMath math="6" />.
+
+<BlockMath math="52.976686625 \text{ cm}^2 \to 52.98 \text{ cm}^2" />
+
+Jika nilai yang dikira ialah <InlineMath math="52.973376625 \text{ cm}^2" />, digit seterusnya ialah <InlineMath math="3" />.
+
+<BlockMath math="52.973376625 \text{ cm}^2 \to 52.97 \text{ cm}^2" />
+
+Bagi kes yang tepat di tengah-tengah, pembundaran ke genap menghalang siri nilai yang panjang daripada condong ke atas.
+
+<BlockMath math="\begin{aligned}
+7.450 &\to 7.4 \\
+7.550 &\to 7.6
+\end{aligned}" />
+
+Bundarkan terus daripada nilai yang belum dibundarkan kepada kepersisan akhir. Jangan bundarkan melalui beberapa nilai perantaraan.
+
+Lihat digit pertama yang dibuang sahaja. Di bawah 5, kamu kekalkan digit terakhir. Di atas 5, kamu naikkan digit itu. Tepat 5 tanpa digit lain selepasnya pula dibundarkan ke digit genap yang terdekat. Zum masuk pada tiga bacaan di antara 3.140 dan 3.150.
+
+<MathVisual
+  title={<>Membundarkan Berdasarkan Digit Pertama yang Dibuang</>}
+  description={<>Tiga bacaan dibundarkan kepada dua tempat perpuluhan pada garis nombor yang dibesarkan. Satu petak grid ialah 0.001.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -0.8, max: 2.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "line", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "low", kind: "point", appearance: "construction", at: { x: 0, y: 0 } },
+      { id: "high", kind: "point", appearance: "construction", at: { x: 10, y: 0 } },
+      { id: "down", kind: "segment", appearance: "primary", from: { x: 2, y: 0.6 }, to: { x: 0, y: 0.6 } },
+      { id: "down-head", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0.6 }, { x: 0.4, y: 0.8 }, { x: 0.4, y: 0.4 }] },
+      { id: "up", kind: "segment", appearance: "secondary", from: { x: 6, y: 0.6 }, to: { x: 10, y: 0.6 } },
+      { id: "up-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 10, y: 0.6 }, { x: 9.6, y: 0.8 }, { x: 9.6, y: 0.4 }] },
+      { id: "even", kind: "segment", appearance: "answer", from: { x: 5, y: 1.4 }, to: { x: 0, y: 1.4 } },
+      { id: "even-head", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 1.4 }, { x: 0.4, y: 1.6 }, { x: 0.4, y: 1.2 }] },
+    ],
+    labels: [
+      { key: "low", objectId: "low", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "high", objectId: "high", at: { x: 10, y: 0 }, placement: "below" },
+      { key: "down", objectId: "down", at: { x: 2, y: 0.6 }, placement: "above" },
+      { key: "up", objectId: "up", at: { x: 6, y: 0.6 }, placement: "above" },
+      { key: "even", objectId: "even", at: { x: 5, y: 1.4 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    low: <InlineMath math="3.140" />,
+    high: <InlineMath math="3.150" />,
+    down: <InlineMath math="3.142\to3.14" />,
+    up: <InlineMath math="3.146\to3.15" />,
+    even: <InlineMath math="3.145\to3.14" />,
+  }}
+/>
+
+## Membundarkan Hasil Tambah Mengikut Tempat Perpuluhan
+
+Bagi penambahan dan penolakan, hasilnya mengekalkan tempat perpuluhan pengukuran yang mempunyai **tempat perpuluhan paling sedikit**.
+
+Katakan sebatang rod besi sepanjang <InlineMath math="8.235 \text{ cm}" /> disambungkan dengan rod lain sepanjang <InlineMath math="4.5 \text{ cm}" />.
+
+<BlockMath math="\begin{aligned}
+8.235 \text{ cm}+4.5 \text{ cm} &= 12.735 \text{ cm} \\
+&\to 12.7 \text{ cm}
+\end{aligned}" />
+
+Nilai <InlineMath math="12.735 \text{ cm}" /> dibundarkan kepada <InlineMath math="1" /> tempat perpuluhan kerana <InlineMath math="4.5 \text{ cm}" /> hanya mempunyai <InlineMath math="1" /> digit selepas titik perpuluhan.
+
+## Membundarkan Hasil Darab Mengikut Angka Bererti Paling Sedikit
+
+Apabila sesuatu pengiraan hanya menjejaki angka bererti, hasil pendaraban dan pembahagian dibundarkan kepada **angka bererti paling sedikit** dalam kalangan nilai yang diukur. Jalan pintas ini tidak menggantikan pengiraan ketidakpastian pengukuran.
+
+Katakan sebuah segi empat tepat mempunyai lebar <InlineMath math="12.455 \text{ cm}" /> dan panjang <InlineMath math="35.2 \text{ cm}" />.
+
+<BlockMath math="\begin{aligned}
+A &= l \times w \\
+&= 35.2 \text{ cm} \times 12.455 \text{ cm} \\
+&= 438.416 \text{ cm}^2 \\
+&\to 438 \text{ cm}^2
+\end{aligned}" />
+
+Nilai <InlineMath math="12.455 \text{ cm}" /> mempunyai <InlineMath math="5" /> angka bererti, manakala <InlineMath math="35.2 \text{ cm}" /> mempunyai <InlineMath math="3" /> angka bererti. Oleh itu, luasnya dilaporkan dengan <InlineMath math="3" /> angka bererti.
+
+Bagi penutup botol yang diameternya <InlineMath math="3.12 \text{ cm}" />, faktor rumus yang tepat seperti <InlineMath math="\pi" /> dan <InlineMath math="\frac{1}{4}" /> tidak menghadkan angka bererti kerana faktor itu bukan data yang diukur. Gunakan nilai <InlineMath math="\pi" /> daripada kalkulator dan simpan digit tambahan sehingga baris terakhir.
+
+<BlockMath math="\begin{aligned}
+A &= \frac{1}{4}\pi d^2 \\
+&= \frac{1}{4}\pi(3.12 \text{ cm})^2 \\
+&= 7.645379881\ldots \text{ cm}^2 \\
+&\to 7.65 \text{ cm}^2
+\end{aligned}" />
+
+Jika Sistem Unit Antarabangsa (S.I.) diperlukan, tukar <InlineMath math="\text{cm}^2" /> kepada <InlineMath math="\text{m}^2" />. S.I. ialah piawai antarabangsa bagi unit pengukuran yang digunakan dalam sains.
+
+<BlockMath math="\begin{aligned} 7.65 \text{ cm}^2 &amp;= 0.000765 \text{ m}^2 \\ &amp;= 7.65 \times 10^{-4} \text{ m}^2 \end{aligned}" />
+
+Bagi penambahan dan penolakan, bundarkan mengikut tempat perpuluhan. Bagi pendaraban dan pembahagian, bundarkan mengikut angka bererti paling sedikit dalam kalangan nilai yang diukur. [Pembundaran ke genap dan pembundaran satu langkah](https://www.nist.gov/document/2023-nist-hb130-uniform-packaging-and-labeling-regulation) menghalang pembundaran berulang daripada membuat hasilnya condong.
+
+Pilih peraturan berdasarkan operasinya, kemudian bundarkan sekali sahaja pada akhir. Hasil tambah mengekalkan tempat perpuluhan paling sedikit, jadi hasilnya berakhir pada satu tempat perpuluhan. Hasil darab mengekalkan angka bererti paling sedikit, jadi hasilnya ada dua angka bererti. Zum masuk pada kedua-dua anak panah.
+
+<MathVisual
+  title={<>Peraturan Pembundaran Mana yang Digunakan</>}
+  description={<>Hasil tambah (oren, satu petak grid ialah 0.01) dan hasil darab (ungu, satu petak grid ialah 0.01) dibundarkan mengikut peraturan masing-masing.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.8, max: 2.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "sum-line", kind: "segment", appearance: "reference", from: { x: 0, y: 1.5 }, to: { x: 10, y: 1.5 } },
+      { id: "product-line", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "sum", kind: "segment", appearance: "primary", from: { x: 6, y: 1.5 }, to: { x: 5, y: 1.5 } },
+      { id: "sum-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 1.5 }, { x: 5.3, y: 1.65 }, { x: 5.3, y: 1.35 }] },
+      { id: "product", kind: "segment", appearance: "secondary", from: { x: 5, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "product-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 10, y: 0 }, { x: 9.7, y: 0.15 }, { x: 9.7, y: -0.15 }] },
+      { id: "sum-exact", kind: "point", appearance: "primary", at: { x: 6, y: 1.5 } },
+      { id: "product-exact", kind: "point", appearance: "secondary", at: { x: 5, y: 0 } },
+    ],
+    labels: [
+      { key: "sum", objectId: "sum-exact", at: { x: 6, y: 1.5 }, placement: "above" },
+      { key: "product", objectId: "product-exact", at: { x: 5, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    sum: <InlineMath math="12.11+0.3=12.41\to12.4" />,
+    product: <InlineMath math="2.5\times3.42=8.55\to8.6" />,
+  }}
+/>
