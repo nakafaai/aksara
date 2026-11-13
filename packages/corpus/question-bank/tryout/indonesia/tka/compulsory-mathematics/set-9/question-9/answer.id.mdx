@@ -1,0 +1,17 @@
+# Rumus biaya parkir
+
+Setiap pernyataan harus diuji untuk semua lama parkir, jadi tulis dulu rumus <InlineMath math="f" />. Kuncinya ada di kata **dimulai**: jam yang baru terpakai sebagian tetap dihitung penuh, jadi banyak jam tambahan adalah <InlineMath math="t-1" /> yang dibulatkan ke atas.
+
+<BlockMath math="f(t)=\begin{cases}5{.}000, & 0<t\le1\\[2pt] \min\left(5{.}000+3{.}000\cdot\lceil t-1\rceil,\ 20{.}000\right), & 1<t\le24\end{cases}" />
+
+Batas <InlineMath math="20{.}000" /> tercapai saat <InlineMath math="5{.}000+3{.}000k\ge20{.}000" />, yaitu <InlineMath math="k\ge5" /> jam tambahan. Itu terjadi untuk setiap <InlineMath math="t>5" />.
+
+# Menilai setiap pernyataan
+
+1. **Benar**. <InlineMath math="\lceil2{,}5-1\rceil=2" /> dan <InlineMath math="\lceil3-1\rceil=2" />, jadi keduanya <InlineMath math="5{.}000+6{.}000=11{.}000" />.
+2. **Salah**. Grafik <InlineMath math="f" /> berbentuk tangga. Contohnya <InlineMath math="f(1{,}2)=f(1{,}5)=8{.}000" />, jadi tidak selalu naik.
+3. **Salah**. Sebelum batas, biayanya <InlineMath math="5{.}000+3{.}000k" />, yaitu <InlineMath math="8{.}000, 11{.}000, 14{.}000, 17{.}000" />, lalu langsung <InlineMath math="20{.}000" />. Nilai <InlineMath math="18{.}000" /> tidak pernah muncul.
+4. **Benar**. Untuk <InlineMath math="t\ge6" /> berlaku <InlineMath math="t>5" />, jadi biayanya sudah terkena batas <InlineMath math="20{.}000" />.
+5. **Salah**. Untuk <InlineMath math="t=1" />, <InlineMath math="f(2)=8{.}000" />, sedangkan <InlineMath math="2f(1)=10{.}000" />. Satu contoh penyangkal sudah cukup.
+
+Jadi, pernyataan yang benar adalah pernyataan pertama dan keempat.

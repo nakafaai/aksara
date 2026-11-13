@@ -1,0 +1,17 @@
+# The fee formula
+
+Each statement has to be tested for every parking time, so first write a formula for <InlineMath math="f" />. The key word is **started**: an hour that's only partly used still counts in full, so the number of extra hours is <InlineMath math="t-1" /> rounded up.
+
+<BlockMath math="f(t)=\begin{cases}5{,}000, & 0<t\le1\\[2pt] \min\left(5{,}000+3{,}000\cdot\lceil t-1\rceil,\ 20{,}000\right), & 1<t\le24\end{cases}" />
+
+The cap of <InlineMath math="20{,}000" /> is reached when <InlineMath math="5{,}000+3{,}000k\ge20{,}000" />, that is <InlineMath math="k\ge5" /> extra hours. That happens for every <InlineMath math="t>5" />.
+
+# Judging each statement
+
+1. **True**. <InlineMath math="\lceil2.5-1\rceil=2" /> and <InlineMath math="\lceil3-1\rceil=2" />, so both cost <InlineMath math="5{,}000+6{,}000=11{,}000" />.
+2. **False**. The graph of <InlineMath math="f" /> is a staircase. For example <InlineMath math="f(1.2)=f(1.5)=8{,}000" />, so it doesn't always rise.
+3. **False**. Before the cap the fee is <InlineMath math="5{,}000+3{,}000k" />: <InlineMath math="8{,}000, 11{,}000, 14{,}000, 17{,}000" />, then it jumps straight to <InlineMath math="20{,}000" />. The value <InlineMath math="18{,}000" /> never appears.
+4. **True**. For <InlineMath math="t\ge6" /> we have <InlineMath math="t>5" />, so the fee has already hit the <InlineMath math="20{,}000" /> cap.
+5. **False**. For <InlineMath math="t=1" />, <InlineMath math="f(2)=8{,}000" />, but <InlineMath math="2f(1)=10{,}000" />. One counterexample is enough.
+
+So the true statements are the first and the fourth.
