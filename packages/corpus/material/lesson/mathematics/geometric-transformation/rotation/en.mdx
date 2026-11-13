@@ -1,16 +1,20 @@
 
 export const metadata = {
   title: "Rotation",
-  description: "Use centers, directions, and angles to rotate points and lines while preserving distances and shape.",
+  description: "Use the rotation formula to turn points and lines about the origin or a center (a, b), including the quick rules for 90°, 180°, and 270°.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-11-08",
+  dateModified: "2026-11-13",
   subject: "Geometric Transformation",
 };
 
 ## Center and Angle of a Rotation
 
 Rotation turns every point of a figure <Highlight>through the same angle</Highlight> around a fixed center. The figure changes position and turns, while distances, angles, shape, size, and the order of its vertices are preserved.
+
+About the origin <InlineMath math="O(0, 0)" />, a rotation through <InlineMath math="\theta" /> takes the point <InlineMath math="(x, y)" /> to <InlineMath math="(x\cos\theta - y\sin\theta,\ x\sin\theta + y\cos\theta)" />. The special angles have shorter rules: <InlineMath math="90^\circ" /> gives <InlineMath math="(-y, x)" />, <InlineMath math="180^\circ" /> gives <InlineMath math="(-x, -y)" />, and <InlineMath math="270^\circ" /> gives <InlineMath math="(y, -x)" />. When the center is <InlineMath math="C(a, b)" />, rotate the offset <InlineMath math="(x - a, y - b)" /> with the same formula, then add <InlineMath math="(a, b)" /> back:
+
+<BlockMath math="\begin{aligned} x' &= a + (x - a)\cos\theta - (y - b)\sin\theta \\ y' &= b + (x - a)\sin\theta + (y - b)\cos\theta \end{aligned}" />
 
 A rotation needs two pieces of information:
 
@@ -25,7 +29,7 @@ Angles differing by a full turn give the same image. For example, a <InlineMath 
 
 <BlockMath math="90^\circ-360^\circ=-270^\circ" />
 
-Turn <InlineMath math="P(4, 1)" /> about <InlineMath math="C(1, 1)" /> through <InlineMath math="90^\circ" />. The center stays fixed, the distance <InlineMath math="CP = CP' = 3" /> does not change, and the direction from <InlineMath math="C" /> turns a quarter turn counterclockwise, so <InlineMath math="P" /> lands at <InlineMath math="P'(1, 4)" />.
+Turn <InlineMath math="P(4, 1)" /> about <InlineMath math="C(1, 1)" /> through <InlineMath math="90^\circ" />. The center stays fixed, the distance <InlineMath math="CP = CP' = 3" /> does not change, and the direction from <InlineMath math="C" /> turns a quarter turn counterclockwise, so <InlineMath math="P" /> lands at <InlineMath math="P'(1, 4)" />. The formula for a center <InlineMath math="C(a, b)" /> gives the same point: the offset is <InlineMath math="(3, 0)" />, a <InlineMath math="90^\circ" /> turn makes it <InlineMath math="(0, 3)" />, and adding <InlineMath math="(1, 1)" /> gives <InlineMath math="(1, 4)" />.
 
 <MathVisual
   title={<>A quarter turn about <InlineMath math="C(1, 1)" /></>}

@@ -1,16 +1,20 @@
 
 export const metadata = {
   title: "Drehung",
-    description: "Bestimme Drehzentrum, Drehrichtung und Drehwinkel und berechne die Bildkoordinaten von Punkten und Geraden.",
+    description: "Nutze die Drehformel, um Punkte und Geraden um den Ursprung oder ein Zentrum (a, b) zu drehen, mit den Kurzregeln für 90°, 180° und 270°.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-11-08",
+  dateModified: "2026-11-13",
   subject: "Geometrische Transformation",
 };
 
 ## Drehzentrum und Drehwinkel legen die Abbildung fest
 
 Eine Drehung bewegt jeden Punkt einer Figur <Highlight>um denselben Winkel</Highlight> um ein festes Zentrum. Die Figur wird versetzt und gedreht, während Abstände, Winkel, Form, Größe und die Reihenfolge ihrer Eckpunkte erhalten bleiben.
+
+Um den Ursprung <InlineMath math="O(0, 0)" /> bringt eine Drehung um <InlineMath math="\theta" /> den Punkt <InlineMath math="(x, y)" /> nach <InlineMath math="(x\cos\theta - y\sin\theta,\ x\sin\theta + y\cos\theta)" />. Für die besonderen Winkel gibt es kürzere Regeln: <InlineMath math="90^\circ" /> liefert <InlineMath math="(-y, x)" />, <InlineMath math="180^\circ" /> liefert <InlineMath math="(-x, -y)" /> und <InlineMath math="270^\circ" /> liefert <InlineMath math="(y, -x)" />. Liegt das Zentrum bei <InlineMath math="C(a, b)" />, drehst du den Vektor von <InlineMath math="C" /> nach <InlineMath math="P" />, also <InlineMath math="(x - a, y - b)" />, mit derselben Formel und addierst danach wieder <InlineMath math="(a, b)" />:
+
+<BlockMath math="\begin{aligned} x' &= a + (x - a)\cos\theta - (y - b)\sin\theta \\ y' &= b + (x - a)\sin\theta + (y - b)\cos\theta \end{aligned}" />
 
 Zwei Angaben bestimmen eine Drehung:
 
@@ -25,7 +29,7 @@ Winkel, die sich um eine volle Drehung unterscheiden, ergeben denselben Bildpunk
 
 <BlockMath math="90^\circ-360^\circ=-270^\circ" />
 
-Dreh <InlineMath math="P(4, 1)" /> um <InlineMath math="C(1, 1)" /> um <InlineMath math="90^\circ" />. Das Zentrum bleibt fest, der Abstand <InlineMath math="CP = CP' = 3" /> ändert sich nicht, und die Richtung von <InlineMath math="C" /> aus dreht sich eine Vierteldrehung gegen den Uhrzeigersinn, also landet <InlineMath math="P" /> bei <InlineMath math="P'(1, 4)" />.
+Dreh <InlineMath math="P(4, 1)" /> um <InlineMath math="C(1, 1)" /> um <InlineMath math="90^\circ" />. Das Zentrum bleibt fest, der Abstand <InlineMath math="CP = CP' = 3" /> ändert sich nicht, und die Richtung von <InlineMath math="C" /> aus dreht sich eine Vierteldrehung gegen den Uhrzeigersinn, also landet <InlineMath math="P" /> bei <InlineMath math="P'(1, 4)" />. Die Formel mit Zentrum <InlineMath math="C(a, b)" /> liefert denselben Punkt: Der Vektor von <InlineMath math="C" /> nach <InlineMath math="P" /> ist <InlineMath math="(3, 0)" />, die Vierteldrehung macht daraus <InlineMath math="(0, 3)" />, und mit <InlineMath math="(1, 1)" /> addiert ergibt sich <InlineMath math="(1, 4)" />.
 
 <MathVisual
   title={<>Eine Vierteldrehung um <InlineMath math="C(1, 1)" /></>}

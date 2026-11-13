@@ -1,16 +1,20 @@
 
 export const metadata = {
   title: "Rotasi",
-  description: "Gunakan pusat, arah, dan sudut untuk merotasi titik maupun garis sambil mempertahankan jarak dan bentuk.",
+  description: "Pakai rumus rotasi untuk memutar titik dan garis terhadap titik asal atau pusat (a, b), termasuk aturan cepat 90°, 180°, dan 270°.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-11-08",
+  dateModified: "2026-11-13",
   subject: "Transformasi Geometri",
 };
 
 ## Pusat dan Sudut yang Menentukan Rotasi
 
 Rotasi memutar setiap titik suatu bangun dengan <Highlight>sudut yang sama</Highlight> terhadap satu pusat tetap. Bangun berpindah dan berputar, sedangkan jarak, sudut, bentuk, ukuran, dan urutan titik sudutnya tetap.
+
+Terhadap titik asal <InlineMath math="O(0, 0)" />, rotasi sebesar <InlineMath math="\theta" /> memindahkan titik <InlineMath math="(x, y)" /> ke <InlineMath math="(x\cos\theta - y\sin\theta,\ x\sin\theta + y\cos\theta)" />. Untuk sudut khusus, aturannya lebih singkat: <InlineMath math="90^\circ" /> memberi <InlineMath math="(-y, x)" />, <InlineMath math="180^\circ" /> memberi <InlineMath math="(-x, -y)" />, dan <InlineMath math="270^\circ" /> memberi <InlineMath math="(y, -x)" />. Kalau pusatnya <InlineMath math="C(a, b)" />, putar selisih <InlineMath math="(x - a, y - b)" /> dengan rumus yang sama, lalu tambahkan lagi <InlineMath math="(a, b)" />:
+
+<BlockMath math="\begin{aligned} x' &= a + (x - a)\cos\theta - (y - b)\sin\theta \\ y' &= b + (x - a)\sin\theta + (y - b)\cos\theta \end{aligned}" />
 
 Rotasi ditentukan oleh dua hal:
 
@@ -25,7 +29,7 @@ Putaran yang berbeda sebesar satu putaran penuh memberikan bayangan yang sama. M
 
 <BlockMath math="90^\circ-360^\circ=-270^\circ" />
 
-Putar <InlineMath math="P(4, 1)" /> terhadap <InlineMath math="C(1, 1)" /> sejauh <InlineMath math="90^\circ" />. Pusatnya tetap, jarak <InlineMath math="CP = CP' = 3" /> tidak berubah, dan arah dari <InlineMath math="C" /> berputar seperempat putaran berlawanan arah jarum jam, jadi <InlineMath math="P" /> mendarat di <InlineMath math="P'(1, 4)" />.
+Putar <InlineMath math="P(4, 1)" /> terhadap <InlineMath math="C(1, 1)" /> sejauh <InlineMath math="90^\circ" />. Pusatnya tetap, jarak <InlineMath math="CP = CP' = 3" /> tidak berubah, dan arah dari <InlineMath math="C" /> berputar seperempat putaran berlawanan arah jarum jam, jadi <InlineMath math="P" /> mendarat di <InlineMath math="P'(1, 4)" />. Rumus pusat <InlineMath math="C(a, b)" /> memberi titik yang sama: selisihnya <InlineMath math="(3, 0)" />, putaran <InlineMath math="90^\circ" /> mengubahnya menjadi <InlineMath math="(0, 3)" />, dan setelah ditambah <InlineMath math="(1, 1)" /> hasilnya <InlineMath math="(1, 4)" />.
 
 <MathVisual
   title={<>Seperempat putaran terhadap <InlineMath math="C(1, 1)" /></>}
