@@ -1,0 +1,218 @@
+export const metadata = {
+  title: "Pilih Atur dengan Objek Serupa",
+  description: "Kira susunan berbeza bagi huruf atau objek yang berulang dengan n! dibahagi dengan faktorial setiap kumpulan, berserta contoh jalan kerja dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Kombinatorik",
+};
+
+## Rumus Pilih Atur dengan Objek Serupa
+
+Jika <InlineMath math="n" /> objek terbahagi kepada beberapa kumpulan objek serupa, dengan <InlineMath math="r_1" /> objek jenis pertama, <InlineMath math="r_2" /> objek jenis kedua, dan seterusnya, **bilangan susunan yang berbeza** ialah
+
+<BlockMath math="P = \frac{n!}{r_1! \, r_2! \cdots r_k!}, \qquad r_1 + r_2 + \cdots + r_k = n" />
+
+Di sini <InlineMath math="k" /> ialah bilangan kumpulan objek serupa.
+
+Contohnya, huruf-huruf MAMA ada <InlineMath math="n = 4" /> dengan dua M dan dua A, jadi bilangan susunannya ialah <InlineMath math="\frac{4!}{2! \, 2!} = \frac{24}{4} = 6" />. Nilai ini **lebih kecil** daripada <InlineMath math="4! = 24" />, kerana menukar tempat dua huruf yang serupa tidak menghasilkan susunan baharu.
+
+## Mengapa Kamu Membahagi dengan Faktorial Setiap Kumpulan
+
+Beri huruf-huruf yang serupa itu label sementara: <InlineMath math="M_1, M_2, A_1, A_2" />. Dengan label, keempat-empat huruf itu semuanya berbeza dan boleh disusun dalam <InlineMath math="4! = 24" /> cara. Apabila label dibuang, susunan <InlineMath math="M_1 A_1 M_2 A_2" /> dan <InlineMath math="M_2 A_1 M_1 A_2" /> menjadi perkataan yang sama, iaitu MAMA.
+
+<Mermaid
+  title={<>Daripada <InlineMath math="24" /> susunan berlabel kepada <InlineMath math="6" /> susunan MAMA</>}
+  description={<>Setiap kali sekumpulan label dibuang, susunan yang hanya berbeza pada tertib huruf serupa akan bergabung menjadi satu.</>}
+  chart={`flowchart LR
+  A["24 susunan berlabel"] -->|"buang label M, bahagi dengan 2!"| B["12 susunan"]
+  B -->|"buang label A, bahagi dengan 2!"| C["6 susunan yang kelihatan"]`}
+/>
+
+Setiap susunan yang kelihatan muncul tepat <InlineMath math="2! \times 2! = 4" /> kali dalam <InlineMath math="24" /> susunan berlabel itu: <InlineMath math="2!" /> cara untuk menukar tempat dua M dan <InlineMath math="2!" /> cara untuk menukar tempat dua A. Jadi bilangan susunan yang kelihatan ialah <InlineMath math="\frac{24}{4} = 6" />. Kamu boleh menyemaknya dengan menyenaraikan setiap kedudukan huruf M:
+
+| Kedudukan M | Susunan yang kelihatan |
+| --- | --- |
+| <InlineMath math="1" /> dan <InlineMath math="2" /> | MMAA |
+| <InlineMath math="1" /> dan <InlineMath math="3" /> | MAMA |
+| <InlineMath math="1" /> dan <InlineMath math="4" /> | MAAM |
+| <InlineMath math="2" /> dan <InlineMath math="3" /> | AMMA |
+| <InlineMath math="2" /> dan <InlineMath math="4" /> | AMAM |
+| <InlineMath math="3" /> dan <InlineMath math="4" /> | AAMM |
+
+Senarai kedudukan ini memberikan **tepat enam susunan**, sama seperti yang dinyatakan oleh rumus. Membahagi dengan <InlineMath math="r_i!" /> membuang setiap pertukaran tempat dalam satu kumpulan yang tidak dapat dilihat oleh mata.
+
+## Contoh dengan Huruf-huruf KALIMANTAN
+
+Berapakah bilangan susunan berbeza yang boleh dibentuk daripada huruf-huruf KALIMANTAN?
+
+Perkataan itu ada <InlineMath math="n = 10" /> huruf. A muncul <InlineMath math="3" /> kali, N muncul <InlineMath math="2" /> kali, dan K, L, I, M, T masing-masing muncul sekali. Gantikan ke dalam rumus:
+
+<MathContainer>
+  <BlockMath math="P = \frac{10!}{3! \, 2!} = \frac{3\,628\,800}{6 \times 2}" />
+  <BlockMath math="P = \frac{3\,628\,800}{12} = 302\,400" />
+</MathContainer>
+
+Semak dengan memilih kedudukan. Pilih <InlineMath math="3" /> daripada <InlineMath math="10" /> kedudukan untuk A, kemudian <InlineMath math="2" /> daripada <InlineMath math="7" /> kedudukan yang tinggal untuk N, kemudian susun lima huruf yang lain pada lima kedudukan terakhir:
+
+<BlockMath math="\binom{10}{3} \times \binom{7}{2} \times 5! = 120 \times 21 \times 120 = 302\,400" />
+
+Kedua-dua kaedah memberikan **hasil yang sama**, jadi kamu boleh yakin tiada susunan yang dikira dua kali atau tertinggal.
+
+## Contoh dengan BANANA dan Satu Syarat
+
+Perkataan BANANA ada <InlineMath math="n = 6" /> huruf. Catat kekerapan setiap huruf dahulu:
+
+| Huruf | Kekerapan |
+| --- | --- |
+| B | <InlineMath math="1" /> |
+| A | <InlineMath math="3" /> |
+| N | <InlineMath math="2" /> |
+
+Jumlah kekerapan ialah <InlineMath math="1 + 3 + 2 = 6" />, sama dengan <InlineMath math="n" />. Tanpa syarat, bilangan susunannya ialah <InlineMath math="\frac{6!}{1! \, 3! \, 2!} = \frac{720}{12} = 60" />.
+
+Syarat mengubah apa yang kamu susun. Jika B mesti berada di hadapan, kedudukan pertama sudah diisi, dan hanya ANANA yang tinggal untuk disusun:
+
+<BlockMath math="\frac{5!}{3! \, 2!} = \frac{120}{12} = 10" />
+
+Jika dua N mesti bersebelahan, anggap NN sebagai **satu blok**. Objek yang perlu disusun menjadi B, A, A, A, dan blok NN, iaitu lima objek dengan tiga A yang serupa:
+
+<BlockMath math="\frac{5!}{3!} = \frac{120}{6} = 20" />
+
+Blok NN tidak didarab dengan <InlineMath math="2!" />, kerana menukar tempat dua N dalam blok itu tidak mengubah perkataan. Semak hasil kedua dengan meletakkan blok itu: NN boleh menduduki <InlineMath math="5" /> pasangan kedudukan bersebelahan, dan bagi setiap pasangan, B, A, A, A mengisi empat kedudukan yang lain dalam <InlineMath math="\frac{4!}{3!} = 4" /> cara, jadi <InlineMath math="5 \times 4 = 20" />. Semak hasil pertama dengan simetri. Huruf yang muncul <InlineMath math="r" /> kali dalam <InlineMath math="n" /> huruf berada di hadapan dalam <InlineMath math="\frac{r}{n}" /> daripada semua susunan, kerana setiap susunan yang kelihatan ada bilangan versi berlabel yang sama. B muncul sekali, jadi B berada di hadapan dalam <InlineMath math="\frac{1}{6} \times 60 = 10" /> susunan.
+
+Syarat mengecilkan kiraan. Bilangan semua susunan <InlineMath math="BANANA" /> ialah <InlineMath math="\frac{6!}{1!\,3!\,2!} = 60" />. Apabila B ditetapkan di hadapan, tinggal <InlineMath math="\frac{5!}{3!\,2!} = 10" />, dan apabila dua N dilekatkan bersama, tinggal <InlineMath math="\frac{5!}{3!} = 20" />.
+
+<BarChart
+  title={<>Susunan <InlineMath math="BANANA" /> dengan dan tanpa syarat</>}
+  description={<>Palang bagi <InlineMath math="60" /> susunan tanpa syarat, <InlineMath math="10" /> dengan B di hadapan dan <InlineMath math="20" /> dengan dua N bersebelahan.</>}
+  yAxisLabel="Bilangan susunan"
+  data={[["tanpa syarat", 720 / (1 * 6 * 2)], ["B di hadapan", 120 / (6 * 2)], ["NN bersebelahan", 120 / 6]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Bilangan susunan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Dua Jenis Objek dan Gabungan
+
+Apabila hanya ada dua jenis objek, **rumus ini sama dengan** [gabungan](/ms/subjek/matematik/kombinatorik/gabungan). Menyusun tiga A dan dua B bermaksud memilih <InlineMath math="2" /> daripada <InlineMath math="5" /> kedudukan untuk B, dan kedudukan selebihnya diisi oleh A secara automatik:
+
+<BlockMath math="\frac{5!}{3! \, 2!} = \binom{5}{2} = 10" />
+
+Contohnya, laluan terpendek yang bergerak <InlineMath math="3" /> petak ke kanan dan <InlineMath math="2" /> petak ke atas ialah satu susunan langkah RRRUU, dengan R bermaksud satu petak ke kanan dan U satu petak ke atas. Jadi ada <InlineMath math="10" /> laluan.
+
+<MathVisual
+  title={<>Dua laluan terpendek merentasi grid <InlineMath math="3" /> kali <InlineMath math="2" /></>}
+  description={<>Setiap laluan dari <InlineMath math="S" /> ke <InlineMath math="F" /> menggunakan tiga langkah R dan dua langkah U. Laluan RRRUU dan RURRU hanya berbeza pada tertib langkahnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "column-0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 2 }, appearance: "construction" },
+      { id: "column-1", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "column-2", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 2 }, appearance: "construction" },
+      { id: "column-3", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 2 }, appearance: "construction" },
+      { id: "row-0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "row-1", kind: "segment", from: { x: 0, y: 1 }, to: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "row-2", kind: "segment", from: { x: 0, y: 2 }, to: { x: 3, y: 2 }, appearance: "construction" },
+      { id: "first-path", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }], appearance: "primary" },
+      { id: "second-path", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 2 }], appearance: "secondary" },
+      { id: "start", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "finish", kind: "point", at: { x: 3, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "finish", objectId: "finish", at: { x: 3, y: 2 }, placement: "above-right" },
+      { key: "first-path", objectId: "first-path", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "second-path", objectId: "second-path", at: { x: 2, y: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    start: <InlineMath math="S" />,
+    finish: <InlineMath math="F" />,
+    "first-path": <InlineMath math="\text{RRRUU}" />,
+    "second-path": <InlineMath math="\text{RURRU}" />,
+  }}
+/>
+
+## Perbezaannya daripada Pilih Atur Biasa
+
+[Pilih atur semua objek](/ms/subjek/matematik/kombinatorik/pilih-atur-semua-objek) menganggap setiap objek berbeza, jadi bilangan susunannya ialah <InlineMath math="n!" />. Pilih atur dengan objek serupa ialah kes yang lebih am: jika setiap kumpulan hanya ada satu objek, semua <InlineMath math="r_i! = 1" /> dan rumus itu kembali menjadi <InlineMath math="n!" />.
+
+| Objek yang disusun | Rumus | Bilangan susunan |
+| --- | --- | --- |
+| A, B, C, D (semuanya berbeza) | <InlineMath math="4!" /> | <InlineMath math="24" /> |
+| A, A, B, C (dua A serupa) | <InlineMath math="\frac{4!}{2!}" /> | <InlineMath math="12" /> |
+| A, A, B, B (dua pasangan serupa) | <InlineMath math="\frac{4!}{2! \, 2!}" /> | <InlineMath math="6" /> |
+
+Makin banyak objek serupa dalam satu kumpulan, **makin besar faktorial pada penyebut**, jadi hasilnya makin kecil.
+
+<Mermaid
+  title={<>Memilih cara mengira susunan</>}
+  description={<>Soalan tentang objek serupa, kedudukan tetap, dan objek yang mesti bersebelahan menentukan rumus yang digunakan.</>}
+  chart={`flowchart TD
+  A{"Ada objek serupa?"} -->|"tidak"| B["n!"]
+  A -->|"ya"| C["n! dibahagi dengan faktorial setiap kumpulan"]
+  C --> D{"Ada kedudukan tetap?"}
+  D -->|"ya"| E["Keluarkan objek itu, kurangkan n"]
+  D -->|"tidak"| F{"Ada objek yang mesti bersebelahan?"}
+  E --> F
+  F -->|"ya"| G["Gabungkan objek itu sebagai satu blok"]
+  F -->|"tidak"| H["Kira dengan rumus"]
+  G --> H`}
+/>
+
+Setiap huruf yang berulang membahagi kiraan: <InlineMath math="ABCD" /> ada <InlineMath math="4! = 24" /> susunan, <InlineMath math="AABC" /> ada <InlineMath math="\frac{4!}{2!} = 12" />, dan <InlineMath math="AABB" /> ada <InlineMath math="\frac{4!}{2!\,2!} = 6" />.
+
+<BarChart
+  title={<>Susunan empat huruf</>}
+  description={<>Palang bagi bilangan susunan <InlineMath math="ABCD" />, <InlineMath math="AABC" /> dan <InlineMath math="AABB" />: <InlineMath math="24" />, <InlineMath math="12" /> dan <InlineMath math="6" />.</>}
+  yAxisLabel="Bilangan susunan"
+  data={[["ABCD", 24 / 1], ["AABC", 24 / 2], ["AABB", 24 / (2 * 2)]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Bilangan susunan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Kesilapan Lazim
+
+| Kesilapan | Mengapa salah | Cara menyemak |
+| --- | --- | --- |
+| Menggunakan <InlineMath math="n!" /> walaupun ada huruf yang berulang | Pertukaran tempat huruf serupa dikira sebagai susunan baharu | Kira kekerapan setiap huruf dahulu |
+| Salah mengira kekerapan sesuatu huruf | Perkataan “MATEMATIKA” ada tiga A, bukan dua | Jumlah kekerapan mesti sama dengan <InlineMath math="n" /> |
+| Menambah faktorial pada penyebut | Penyebutnya ialah <InlineMath math="3! \times 2!" />, bukan <InlineMath math="3! + 2!" /> | Setiap kumpulan bertukar tempat secara bebas, jadi bilangan pertukarannya didarab |
+| Mendarab blok NN dengan <InlineMath math="2!" /> | Dua N itu serupa, jadi menukar tempatnya tidak menghasilkan perkataan baharu | Darab dengan susunan dalam blok hanya apabila blok itu mengandungi objek yang berbeza |
+| Terlupa syarat yang menetapkan kedudukan | Jika B mesti berada di hadapan, B tidak lagi disusun | Kurangkan <InlineMath math="n" /> dan kekerapan bagi objek yang kedudukannya tetap |
+
+Semakan paling kukuh ialah **mengira dengan memilih kedudukan** bagi setiap kumpulan. Hasilnya mesti sama dengan rumus faktorial.
+
+## Soalan Latihan
+
+Kira kekerapan setiap unsur dahulu, kemudian **pastikan jumlah kekerapan sama dengan <InlineMath math="n" />**.
+
+1. Berapakah bilangan susunan berbeza yang boleh dibentuk daripada huruf-huruf perkataan “MATEMATIKA”?
+
+2. Sebuah kedai bunga menyusun <InlineMath math="8" /> kuntum mawar dalam satu barisan. Hanya warnanya yang dibezakan: <InlineMath math="3" /> merah, <InlineMath math="3" /> putih dan <InlineMath math="2" /> kuning. Berapakah bilangan susunan warna yang mungkin?
+
+3. Nombor enam digit dibentuk daripada digit <InlineMath math="1, 1, 2, 2, 2, 3" />. Berapakah bilangan nombor yang boleh dibentuk, dan berapa banyak daripadanya yang lebih besar daripada <InlineMath math="300\,000" />?
+
+4. Berapakah bilangan susunan berbeza yang boleh dibentuk daripada huruf-huruf INDONESIA?
+
+### Penyelesaian
+
+**Soalan 1**. Kira **kekerapan setiap huruf** dahulu. Perkataan “MATEMATIKA” ada <InlineMath math="10" /> huruf: M dua kali, A tiga kali, T dua kali, dan E, I, K masing-masing sekali. Jumlahnya ialah <InlineMath math="2 + 3 + 2 + 1 + 1 + 1 = 10" />.
+
+<BlockMath math="P = \frac{10!}{2! \, 3! \, 2!} = \frac{3\,628\,800}{24} = 151\,200" />
+
+Semak dengan memilih kedudukan: <InlineMath math="\binom{10}{3}\binom{7}{2}\binom{5}{2} \times 3! = 120 \times 21 \times 10 \times 6 = 151\,200" />.
+
+**Soalan 2**. Ada <InlineMath math="8" /> kuntum mawar dalam tiga kumpulan warna:
+
+<BlockMath math="P = \frac{8!}{3! \, 3! \, 2!} = \frac{40\,320}{72} = 560" />
+
+Semak: pilih <InlineMath math="3" /> kedudukan merah daripada <InlineMath math="8" />, kemudian <InlineMath math="3" /> kedudukan putih daripada <InlineMath math="5" />, dan bakinya kuning, jadi <InlineMath math="\binom{8}{3}\binom{5}{3} = 56 \times 10 = 560" />.
+
+**Soalan 3**. Digit <InlineMath math="1" /> muncul dua kali, <InlineMath math="2" /> tiga kali, dan <InlineMath math="3" /> sekali, jadi ada <InlineMath math="\frac{6!}{2! \, 3!} = \frac{720}{12} = 60" /> nombor. Nombor yang lebih besar daripada <InlineMath math="300\,000" /> mesti bermula dengan <InlineMath math="3" />, kerana mana-mana digit pertama yang lain memberikan nombor di bawah <InlineMath math="300\,000" />. Sebaliknya, setiap nombor yang bermula dengan <InlineMath math="3" /> lebih besar daripada <InlineMath math="300\,000" />, kerana tiada digit <InlineMath math="0" /> dan nombor terkecil seperti itu ialah <InlineMath math="311\,222" />. Baki digit, <InlineMath math="1, 1, 2, 2, 2" />, boleh disusun dalam <InlineMath math="\frac{5!}{2! \, 3!} = 10" /> cara. Semak: digit <InlineMath math="3" /> berada di hadapan dalam <InlineMath math="\frac{1}{6}" /> daripada semua susunan, dan <InlineMath math="\frac{1}{6} \times 60 = 10" />.
+
+**Soalan 4**. INDONESIA ada <InlineMath math="9" /> huruf: I dua kali, N dua kali, dan D, O, E, S, A masing-masing sekali.
+
+<BlockMath math="P = \frac{9!}{2! \, 2!} = \frac{362\,880}{4} = 90\,720" />
+
+Semak dengan memilih kedudukan: <InlineMath math="\binom{9}{2}\binom{7}{2} \times 5! = 36 \times 21 \times 120 = 90\,720" />.

@@ -1,0 +1,190 @@
+
+
+export const metadata = {
+  title: "Komponen Vektor",
+  description: "Leraikan vektor kepada komponen koordinat, dapatkan semula magnitudnya dengan teorem Pythagoras, dan bentuk vektor unit arah.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-11",
+  dateModified: "2026-11-08",
+  subject: "Vektor dan Operasinya",
+};
+
+## Meleraikan Vektor di Sepanjang Paksi Koordinat
+
+Setiap vektor pada satah koordinat <Highlight>boleh dileraikan di sepanjang dua paksi koordinat</Highlight>. Dalam <InlineMath math="\vec{v}=a\mathbf{i}+b\mathbf{j}" />, nombor bertanda <InlineMath math="a" /> dan <InlineMath math="b" /> ialah komponen skalar. Vektor <InlineMath math="a\mathbf{i}" /> dan <InlineMath math="b\mathbf{j}" /> pula ialah komponen vektor yang sepadan, atau unjuran ortogon pada paksi.
+
+Komponen skalar memberitahu kita sejauh mana vektor itu memanjang di sepanjang paksi-<InlineMath math="x" /> dan paksi-<InlineMath math="y" />, dan tandanya menunjukkan ke arah mana. Setiap vektor pada satah ialah gabungan linear vektor unit <InlineMath math="\mathbf{i}" /> dan <InlineMath math="\mathbf{j}" />.
+
+<MathVisual
+  title={<><InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" /> dan komponennya</>}
+  description={<>Vektor ke <InlineMath math="(6, 8)" /> bersama vektor komponennya, iaitu <InlineMath math="6\mathbf{i}" /> di sepanjang paksi-x dan <InlineMath math="8\mathbf{j}" /> di sepanjang paksi-y.</>}
+  labels={{
+    ab: <InlineMath math="\overrightarrow{AB}" />,
+    x: <InlineMath math="6\mathbf{i}" />,
+    y: <InlineMath math="8\mathbf{j}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 7 }, y: { min: -0.8, max: 8.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "gx", kind: "segment", from: { x: 6, y: 0 }, to: { x: 6, y: 8 }, appearance: "reference" },
+      { id: "gy", kind: "segment", from: { x: 0, y: 8 }, to: { x: 6, y: 8 }, appearance: "reference" },
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 0 }, appearance: "construction" },
+      { id: "x-head", kind: "polygon", vertices: [{ x: 6, y: 0 }, { x: 28 / 5, y: 4 / 25 }, { x: 28 / 5, y: -4 / 25 }], appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 8 }, appearance: "highlight" },
+      { id: "y-head", kind: "polygon", vertices: [{ x: 0, y: 8 }, { x: -4 / 25, y: 38 / 5 }, { x: 4 / 25, y: 38 / 5 }], appearance: "highlight" },
+      { id: "ab", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "primary" },
+      { id: "ab-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 704 / 125, y: 972 / 125 }, { x: 736 / 125, y: 948 / 125 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "ab", objectId: "ab", at: { x: 3, y: 4 }, placement: "below-right" },
+      { key: "x", objectId: "x", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "y", objectId: "y", at: { x: 0, y: 4 }, placement: "left" },
+    ],
+  }}
+/>
+
+Jika kita ada vektor <InlineMath math="\overrightarrow{AB}" />, maka:
+
+<BlockMath math="\overrightarrow{AB} = a\mathbf{i} + b\mathbf{j}" />
+
+Komponen dalam bentuk ini ialah:
+
+- <InlineMath math="a" /> ialah komponen skalar mengufuk, dan <InlineMath math="a\mathbf{i}" /> ialah unjuran vektor yang sepadan
+- <InlineMath math="b" /> ialah komponen skalar mencancang, dan <InlineMath math="b\mathbf{j}" /> ialah unjuran vektor yang sepadan
+- <InlineMath math="\mathbf{i}" /> ialah vektor unit dalam arah paksi-<InlineMath math="x" />
+- <InlineMath math="\mathbf{j}" /> ialah vektor unit dalam arah paksi-<InlineMath math="y" />
+
+### Contoh Komponen Vektor
+
+Lihat vektor <InlineMath math="\overrightarrow{AB}" /> dalam gambar rajah. Vektor ini boleh ditulis sebagai:
+
+<BlockMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" />
+
+Ini bermakna <InlineMath math="\overrightarrow{AB}" /> mempunyai komponen skalar <InlineMath math="6" /> dan <InlineMath math="8" />, dengan **unjuran vektor** <InlineMath math="6\mathbf{i}" /> ke kanan dan <InlineMath math="8\mathbf{j}" /> ke atas.
+
+## Magnitud Vektor daripada Komponennya
+
+Apabila kita tahu komponen sesuatu vektor, kita boleh hitung panjang atau magnitud vektor itu menggunakan **teorem Pythagoras**.
+
+Magnitud vektor <InlineMath math="\overrightarrow{AB}" /> ditandakan dengan <InlineMath math="|\overrightarrow{AB}|" /> dan dihitung menggunakan rumus:
+
+<BlockMath math="|\overrightarrow{AB}| = \sqrt{a^2 + b^2}" />
+
+Dalam rumus ini, <InlineMath math="a" /> dan <InlineMath math="b" /> ialah komponen bagi <InlineMath math="\overrightarrow{AB}" />.
+
+### Contoh Pengiraan Magnitud Vektor
+
+Gunakan **hasil tambah kuasa dua komponen**, kemudian ambil punca kuasa dua yang positif untuk mendapatkan magnitud vektor itu.
+
+Untuk vektor <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" />, magnitudnya ialah:
+
+<BlockMath math="\begin{aligned} |\overrightarrow{AB}| &amp;= \sqrt{6^2 + 8^2} \\ &amp;= \sqrt{36 + 64} \\ &amp;= \sqrt{100} \\ &amp;= 10 \end{aligned}" />
+
+## Vektor dalam Ruang Tiga Dimensi
+
+Vektor boleh digunakan pada satah dua dimensi dan juga dalam ruang tiga dimensi.
+
+<MathVisual
+  title={<>Vektor dalam ruang dan tiga komponennya</>}
+  description={<>Vektor ke <InlineMath math="(5, 7, 4)" /> bersama vektor komponennya <InlineMath math="5\mathbf{i}" />, <InlineMath math="7\mathbf{j}" /> dan <InlineMath math="4\mathbf{k}" /> di sepanjang tiga paksi.</>}
+  labels={{
+    v: <InlineMath math="\vec{v}" />,
+    x: <InlineMath math="5\mathbf{i}" />,
+    y: <InlineMath math="7\mathbf{j}" />,
+    z: <InlineMath math="4\mathbf{k}" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 8 }, z: { min: -0.5, max: 5 } },
+    view: { kind: "isometric", target: { x: 5 / 2, y: 7 / 2, z: 2 } },
+    objects: [
+      { id: "guide", kind: "polyline", vertices: [{ x: 5, y: 0, z: 0 }, { x: 5, y: 7, z: 0 }, { x: 5, y: 7, z: 4 }], appearance: "reference" },
+      { id: "x", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 5, y: 0, z: 0 }, appearance: "construction" },
+      { id: "x-head", kind: "polygon", vertices: [{ x: 5, y: 0, z: 0 }, { x: 23 / 5, y: 0, z: 4 / 25 }, { x: 23 / 5, y: 0, z: -4 / 25 }], appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 7, z: 0 }, appearance: "highlight" },
+      { id: "y-head", kind: "polygon", vertices: [{ x: 0, y: 7, z: 0 }, { x: 0, y: 33 / 5, z: -4 / 25 }, { x: 0, y: 33 / 5, z: 4 / 25 }], appearance: "highlight" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 4 }, appearance: "secondary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 0, y: 0, z: 4 }, { x: -4 / 25, y: 0, z: 18 / 5 }, { x: 4 / 25, y: 0, z: 18 / 5 }], appearance: "secondary" },
+      { id: "v", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 5, y: 7, z: 4 }, appearance: "primary" },
+      { id: "v-head", kind: "polygon", vertices: [{ x: 5, y: 7, z: 4 }, { x: (5) + (-2 / Math.sqrt(90)) + (-16 / 25 / Math.sqrt(41)), y: (7) + (-14 / 5 / Math.sqrt(90)), z: (4) + (-8 / 5 / Math.sqrt(90)) + (4 / 5 / Math.sqrt(41)) }, { x: (5) + (-2 / Math.sqrt(90)) + (16 / 25 / Math.sqrt(41)), y: (7) + (-14 / 5 / Math.sqrt(90)), z: (4) + (-8 / 5 / Math.sqrt(90)) + (-4 / 5 / Math.sqrt(41)) }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 5 / 2, y: 7 / 2, z: 2 }, placement: "above" },
+      { key: "x", objectId: "x", at: { x: 5 / 2, y: 0, z: 0 }, placement: "below" },
+      { key: "y", objectId: "y", at: { x: 0, y: 7 / 2, z: 0 }, placement: "left" },
+      { key: "z", objectId: "z", at: { x: 0, y: 0, z: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+Dalam ruang tiga dimensi, vektor mempunyai **tiga komponen**, iaitu komponen <InlineMath math="x" />, <InlineMath math="y" /> dan <InlineMath math="z" />. Vektor dalam ruang tiga dimensi boleh dinyatakan sebagai:
+
+<BlockMath math="\vec{v} = a\mathbf{i} + b\mathbf{j} + c\mathbf{k}" />
+
+Komponen dalam bentuk ini ialah:
+
+- <InlineMath math="a" /> ialah komponen skalar di sepanjang paksi-<InlineMath math="x" />, manakala <InlineMath math="a\mathbf{i}" /> ialah unjuran vektornya
+- <InlineMath math="b" /> ialah komponen skalar di sepanjang paksi-<InlineMath math="y" />, manakala <InlineMath math="b\mathbf{j}" /> ialah unjuran vektornya
+- <InlineMath math="c" /> ialah komponen skalar di sepanjang paksi-<InlineMath math="z" />, manakala <InlineMath math="c\mathbf{k}" /> ialah unjuran vektornya
+- <InlineMath math="\mathbf{i}" />, <InlineMath math="\mathbf{j}" /> dan <InlineMath math="\mathbf{k}" /> ialah
+  vektor unit dalam arah paksi <InlineMath math="x" />, <InlineMath math="y" /> dan <InlineMath math="z" />
+
+Magnitud vektor dalam ruang tiga dimensi dihitung menggunakan rumus:
+
+<BlockMath math="|\vec{v}| = \sqrt{a^2 + b^2 + c^2}" />
+
+## Vektor Unit Arah
+
+Untuk mewakili arah vektor bukan sifar, kita boleh gunakan vektor unit. Vektor unit mempunyai magnitud <InlineMath math="1 \text{ unit}" />. Kita dapatkannya dengan **membahagi vektor bukan sifar itu dengan magnitudnya**.
+
+Tandakan vektor unit arah bagi <InlineMath math="\overrightarrow{AB}" /> dengan <InlineMath math="\mathbf{u}_{AB}" />. Vektor ini dihitung menggunakan:
+
+<BlockMath math="\mathbf{u}_{AB} = \frac{\overrightarrow{AB}}{|\overrightarrow{AB}|}" />
+
+Membahagi <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" /> dengan panjangnya, iaitu <InlineMath math="10" />, memberikan <InlineMath math="\mathbf{u}_{AB} = 0.6\mathbf{i} + 0.8\mathbf{j}" />. Vektor unit ini terletak pada sinar yang sama dengan <InlineMath math="\overrightarrow{AB}" />, tetapi berakhir pada bulatan berjejari <InlineMath math="1" />.
+
+<MathVisual
+  title={<>Vektor unit arah bagi <InlineMath math="\overrightarrow{AB}" /></>}
+  description={<>Vektor <InlineMath math="\overrightarrow{AB}" /> ke <InlineMath math="(6, 8)" /> dan vektor unit arahnya <InlineMath math="\mathbf{u}_{AB} = (0.6, 0.8)" />, yang berakhir pada bulatan unit.</>}
+  labels={{
+    ab: <InlineMath math="\overrightarrow{AB}" />,
+    u: <InlineMath math="\mathbf{u}_{AB}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 7 }, y: { min: -1.3, max: 8.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "ab", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "primary" },
+      { id: "ab-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 704 / 125, y: 972 / 125 }, { x: 736 / 125, y: 948 / 125 }], appearance: "primary" },
+      { id: "u", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / 5, y: 4 / 5 }, appearance: "answer" },
+      { id: "u-head", kind: "polygon", vertices: [{ x: 3 / 5, y: 4 / 5 }, { x: 67 / 150, y: 53 / 75 }, { x: 83 / 150, y: 47 / 75 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "ab", objectId: "ab", at: { x: 3, y: 4 }, placement: "below-right" },
+      { key: "u", objectId: "u", at: { x: 3 / 5, y: 4 / 5 }, placement: "left" },
+    ],
+  }}
+/>
+
+### Contoh Vektor Unit Arah
+
+Untuk vektor <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" /> dengan magnitud <InlineMath math="10" />, vektor unit arahnya ialah:
+
+<BlockMath math="\begin{aligned} \mathbf{u}_{AB} &amp;= \frac{6\mathbf{i} + 8\mathbf{j}}{10} \\ &amp;= \frac{6}{10}\mathbf{i} + \frac{8}{10}\mathbf{j} \\ &amp;= 0.6\mathbf{i} + 0.8\mathbf{j} \end{aligned}" />
+
+Vektor unit ini **menunjukkan arah** vektor <InlineMath math="\overrightarrow{AB}" /> tanpa mengambil kira magnitudnya.
+
+## Aplikasi Komponen Vektor
+
+Meleraikan vektor di sepanjang paksi yang dipilih membantu pengiraan berikut:
+
+- Mengira halaju dan sesaran dalam fizik
+- Menganalisis daya dalam mekanik
+- Menentukan arah dan magnitud vektor paduan dalam pergerakan objek
+- Navigasi dan penentuan kedudukan dalam sistem koordinat
+
+Komponen vektor memisahkan magnitud dan arah di sepanjang paksi yang dipilih, jadi **setiap paksi** boleh dikira secara berasingan sebelum hasilnya digabungkan.

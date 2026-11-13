@@ -1,0 +1,159 @@
+
+
+export const metadata = {
+  title: "Vektor Kedudukan",
+  description: "Terangkan bagaimana vektor kedudukan menentukan lokasi titik dari asalan, kaitannya dengan sesaran, dan cara ia diwakili dalam sistem koordinat.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-12",
+  dateModified: "2026-09-07",
+  subject: "Vektor dan Operasinya",
+};
+
+## Menentukan Lokasi Titik dari Asalan
+
+Vektor kedudukan <Highlight>bermula di asalan</Highlight> <InlineMath math="O" /> dan berakhir pada satu titik dalam sistem koordinat. Komponennya ialah koordinat titik akhir itu, jadi vektor ini merekodkan lokasi titik tersebut relatif kepada asalan.
+
+<MathVisual
+  title={<>Visualisasi Vektor Kedudukan</>}
+  description={
+    <>
+      Contoh vektor kedudukan dari asalan <InlineMath math="O" /> ke titik{" "}
+      <InlineMath math="A" /> dan <InlineMath math="B" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="OA" />,
+    "l2": <InlineMath math="OB" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 8 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: -3, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 7, y: 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -3, y: 2 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 7, y: 5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+### Ciri-ciri Vektor Kedudukan
+
+Ketiga-tiga sifat ini datang daripada fakta yang sama: pangkal vektor itu tetap di asalan <InlineMath math="O" />, jadi **titik akhir sahaja** sudah menentukan vektor itu.
+
+- Sentiasa bermula dari asalan <InlineMath math="O" /> (pusat koordinat)
+- Berakhir pada satu titik tertentu dalam sistem koordinat
+- Koordinat vektor kedudukan sama dengan koordinat titik akhirnya
+
+## Perwakilan Vektor Kedudukan
+
+Secara umum, jika kita ada titik <InlineMath math="P" /> dengan koordinat <InlineMath math="(x, y)" /> dalam satah, maka **vektor kedudukan** dari titik <InlineMath math="O" /> ke titik <InlineMath math="P" /> boleh ditulis sebagai <InlineMath math="\overrightarrow{OP} = (x, y)" />.
+
+Dalam ruang tiga dimensi, jika titik <InlineMath math="P" /> mempunyai koordinat <InlineMath math="(x, y, z)" />, maka vektor kedudukannya ialah <InlineMath math="\overrightarrow{OP} = (x, y, z)" />.
+
+Dalam visualisasi di bawah, kita menggunakan tatatanda <InlineMath math="OA" />, <InlineMath math="OB" />, <InlineMath math="OC" /> dan <InlineMath math="OD" /> untuk menunjukkan vektor kedudukan dari titik <InlineMath math="O" /> ke titik tertentu (<InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" /> atau <InlineMath math="D" />).
+
+<MathVisual
+  title={<>Vektor Kedudukan dalam Ruang Tiga Dimensi</>}
+  description={<>Contoh beberapa vektor kedudukan dalam ruang tiga dimensi.</>}
+  labels={{
+    "l1": <InlineMath math="OA" />,
+    "l2": <InlineMath math="OB" />,
+    "l3": <InlineMath math="OC" />,
+    "l4": <InlineMath math="OD" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 4.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: -7 }, target: { x: 1.5, y: 1.7, z: 1.5 } },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 4, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 4 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 3, z: 3 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 4, y: 0, z: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 4, z: 0 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 0, z: 4 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 3, y: 3, z: 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Contoh Vektor Kedudukan
+
+Koordinat titik menjadi **komponen vektor kedudukan** kerana titik awalnya ialah asalan. Baca komponen mengufuk dan komponen mencancang terus daripada dua koordinat itu.
+
+- Titik <InlineMath math="A" /> dengan koordinat <InlineMath math="(-3, 2)" />
+- Titik <InlineMath math="B" /> dengan koordinat <InlineMath math="(7, 5)" />
+
+Maka, vektor kedudukan bagi kedua-dua titik ini ialah:
+
+- <InlineMath math="\overrightarrow{OA} = (-3, 2)" />
+- <InlineMath math="\overrightarrow{OB} = (7, 5)" />
+
+## Kegunaan Vektor Kedudukan
+
+Kegunaannya terbahagi kepada dua kumpulan: membaca satu lokasi, dan **membandingkan dua lokasi**.
+
+1. Menentukan lokasi titik dalam sistem koordinat
+2. Mengira sesaran daripada beza antara dua kedudukan
+3. Menyatakan perubahan kedudukan dengan operasi vektor
+4. Mewakili lokasi relatif kepada asalan koordinat yang dipilih, termasuk koordinat yang diperoleh daripada sistem navigasi seperti GPS
+
+## Hubungan dengan Vektor Sesaran
+
+Vektor sesaran boleh diperoleh daripada **beza antara dua vektor kedudukan**. Jika kita ada vektor kedudukan <InlineMath math="\overrightarrow{OA}" /> dan <InlineMath math="\overrightarrow{OB}" />, maka vektor sesaran dari <InlineMath math="A" /> ke <InlineMath math="B" /> ialah:
+
+<BlockMath math="\overrightarrow{AB} = \overrightarrow{OB} - \overrightarrow{OA}" />
+
+<ContentBlock>
+  <MathVisual
+    title={<>Hubungan antara Vektor Kedudukan dan Vektor Sesaran</>}
+    description={
+        <>
+          Vektor sesaran <InlineMath math="AB" /> diperoleh daripada
+          beza antara vektor kedudukan <InlineMath math="OB" /> dan{" "}
+          <InlineMath math="OA" />.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="OA" />,
+      "l2": <InlineMath math="OB" />,
+      "l3": <InlineMath math="AB" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -4, max: 8 }, y: { min: -0.5, max: 5.5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: -3, y: 2 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 7, y: 5 }, appearance: "secondary" },
+        { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 2 }, { x: (-3) + 0.5 * ((7) - (-3)), y: (2) + 0.5 * ((5) - (2)) }, { x: 7, y: 5 }], appearance: "answer" },
+        { id: "s3-head", kind: "vector", from: { x: 2, y: 3.5 }, to: { x: 7, y: 5 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: -3, y: 2 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 7, y: 5 }, placement: "above-right" },
+        { key: "l3", objectId: "s3", at: { x: 2, y: 3.5 }, placement: "above-right" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+Daripada contoh tadi, vektor sesaran dari <InlineMath math="A" /> ke <InlineMath math="B" /> ialah:
+
+<BlockMath
+  math="\begin{align}
+\overrightarrow{AB} &= \overrightarrow{OB} - \overrightarrow{OA} \\
+&= (7, 5) - (-3, 2) \\
+&= (7-(-3), 5-2) \\
+&= (10, 3)
+\end{align}"
+/>
+
+Untuk bergerak dari titik <InlineMath math="A" /> ke titik <InlineMath math="B" />, kita perlu bergerak <InlineMath math="10 \text{ unit}" /> ke kanan dan <InlineMath math="3 \text{ unit}" /> ke atas.
