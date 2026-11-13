@@ -1,18 +1,75 @@
-Because <InlineMath math="\overline{AA'}" /> and <InlineMath math="\overline{BB'}" /> are parallel, the **second intercept theorem** (*zweiter Strahlensatz*) applies: the parallel segments are in the same ratio as their distances from <InlineMath math="S" />, each **measured from the vertex <InlineMath math="S" />**.
+# What the fold means
 
-The distance from <InlineMath math="S" /> to <InlineMath math="B" /> comes from the two given parts: <InlineMath math="\overline{SB}=\overline{SA}+\overline{AB}=4+6=10\text{ cm}" />.
+Call the rectangle <InlineMath math="ABCD" /> with <InlineMath math="AB=8" /> and <InlineMath math="BC=6" />, and fold it so that <InlineMath math="A" /> lands exactly on <InlineMath math="C" />. Every point of the crease is equally far from <InlineMath math="A" /> and <InlineMath math="C" />, because those two points meet when you fold. So **the crease is the perpendicular bisector of <InlineMath math="AC" />**: the line perpendicular to <InlineMath math="AC" /> through its midpoint <InlineMath math="M" />.
+
+<MathVisual
+  title="A fold that brings opposite corners together"
+  description={<>The rectangle <InlineMath math="ABCD" /> measures <InlineMath math="8" /> by <InlineMath math="6" />. The diagonal <InlineMath math="AC" /> is drawn, and the crease <InlineMath math="EF" /> crosses it at right angles at its midpoint <InlineMath math="M" />. <InlineMath math="E" /> lies on side <InlineMath math="AB" /> and <InlineMath math="F" /> on side <InlineMath math="CD" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    f: <InlineMath math="F" />,
+    m: <InlineMath math="M" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 9 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "sheet", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 6 }, { x: 0, y: 6 }] },
+      { id: "diagonal", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8, y: 6 } },
+      { id: "crease", kind: "segment", appearance: "highlight", from: { x: (8 * 8 + 6 * 6) / (2 * 8), y: 0 }, to: { x: 8 - (8 * 8 + 6 * 6) / (2 * 8), y: 6 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 8, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 8, y: 6 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
+      { id: "point-e", kind: "point", appearance: "answer", at: { x: (8 * 8 + 6 * 6) / (2 * 8), y: 0 } },
+      { id: "point-f", kind: "point", appearance: "answer", at: { x: 8 - (8 * 8 + 6 * 6) / (2 * 8), y: 6 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 8, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 8, y: 6 }, placement: "above-right" },
+      { key: "d", objectId: "point-d", at: { x: 0, y: 6 }, placement: "above-left" },
+      { key: "e", objectId: "point-e", at: { x: (8 * 8 + 6 * 6) / (2 * 8), y: 0 }, placement: "below" },
+      { key: "f", objectId: "point-f", at: { x: 8 - (8 * 8 + 6 * 6) / (2 * 8), y: 6 }, placement: "above" },
+      { key: "m", objectId: "point-m", at: { x: 4, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Where the crease meets the sides
+
+Say the crease meets <InlineMath math="AB" /> at <InlineMath math="E" /> with <InlineMath math="AE=x" />. Since <InlineMath math="E" /> is on the perpendicular bisector of <InlineMath math="AC" />, **<InlineMath math="E" /> is equally far from <InlineMath math="A" /> and <InlineMath math="C" />**. You get <InlineMath math="EC" /> from the right triangle <InlineMath math="EBC" />:
 
 <BlockMath math="\begin{aligned}
-\frac{\overline{BB'}}{\overline{AA'}}&=\frac{\overline{SB}}{\overline{SA}} \\
-\overline{BB'}&=3\cdot\frac{10}{4}=7.5\text{ cm}
+AE^2&=EB^2+BC^2 \\
+x^2&=(8-x)^2+6^2 \\
+0&=64-16x+36 \\
+x&=6.25
 \end{aligned}" />
 
-The result is plausible. <InlineMath math="B" /> is <InlineMath math="2.5" /> times as far from <InlineMath math="S" /> as <InlineMath math="A" />, so <InlineMath math="\overline{BB'}" /> is also <InlineMath math="2.5" /> times as long as <InlineMath math="\overline{AA'}" />.
+# The length of the crease
 
-So the segment <InlineMath math="\overline{BB'}" /> is <InlineMath math="7.5\text{ cm}" /> long.
+The diagonal is <InlineMath math="AC=\sqrt{8^2+6^2}=10" />, so <InlineMath math="AM=5" />. Triangle <InlineMath math="AME" /> has its right angle at <InlineMath math="M" />, because **the crease is perpendicular to the diagonal**:
 
-- <InlineMath math="1.2\text{ cm}" /> comes from <InlineMath math="3\cdot\frac{4}{10}" />, the inverted ratio. The segment farther from <InlineMath math="S" /> must be longer, not shorter.
-- <InlineMath math="4.5\text{ cm}" /> comes from <InlineMath math="3\cdot\frac{6}{4}" />. It uses the part <InlineMath math="\overline{AB}" /> instead of <InlineMath math="\overline{SB}" />, although the theorem measures both distances from <InlineMath math="S" />.
-- <InlineMath math="6\text{ cm}" /> is the length of <InlineMath math="\overline{AB}" />, not a length on a parallel.
-- <InlineMath math="9\text{ cm}" /> comes from adding, <InlineMath math="3+6" />. The theorem needs a ratio.
-- <InlineMath math="10\text{ cm}" /> is the length of <InlineMath math="\overline{SB}" />, not a length on a parallel.
+<BlockMath math="ME=\sqrt{AE^2-AM^2}=\sqrt{39.0625-25}=\sqrt{14.0625}=3.75" />
+
+The picture is symmetric about <InlineMath math="M" />, so <InlineMath math="MF=ME" /> and <InlineMath math="EF=2\cdot3.75=7.5\text{ cm}" />.
+
+So the crease is <InlineMath math="7.5\text{ cm}" /> long.
+
+# Why the other options are wrong
+
+- <InlineMath math="10\text{ cm}" /> is the diagonal <InlineMath math="AC" />. **The crease crosses the diagonal at right angles**, it doesn't lie along it.
+- <InlineMath math="5\text{ cm}" /> is half the diagonal, <InlineMath math="AM" />.
+- <InlineMath math="6.25\text{ cm}" /> is <InlineMath math="AE" />, the distance from the corner to the end of the crease.
+- <InlineMath math="6\text{ cm}" /> and <InlineMath math="8\text{ cm}" /> are the width and length of the sheet, the crease you'd get folding parallel to a side. Such a fold doesn't bring opposite corners together.
