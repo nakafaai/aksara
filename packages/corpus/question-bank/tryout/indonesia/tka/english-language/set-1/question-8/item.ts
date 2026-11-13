@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "recount",
-    topic: "sequence",
+    cognitiveLevel: "textual",
+    contentDomain: "procedure",
+    topic: "outline",
   },
-  stimulus: "repair-workshop",
+  stimulus: "gauge",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The mistake showed that every repair should use new parts, so the writer later replaced the noisy brake immediately.",
+            "(1) why the scale must be tested, (2) the test pours and the table, (3) setting the zero line, (4) the failed first trial and its cause, (5) rules for daily use",
         },
         {
           correct: false,
           label:
-            "The mistake convinced the writer that service notes slow repairs, so the writer stopped recording observations.",
+            "(1) why the scale must be tested, (2) setting the zero line, (3) the test pours and the table, (4) rules for daily use, (5) the failed first trial and its cause",
         },
         {
           correct: true,
           label:
-            "The mistake showed that similar-looking parts still require records and measurements, a method the writer later applied before advising another volunteer.",
+            "(1) why the scale must be tested, (2) setting the zero line, (3) the test pours and the table, (4) the failed first trial and its cause, (5) rules for daily use",
         },
         {
           correct: false,
           label:
-            "The mistake mattered only because it took an hour, whereas the final-day decision was based on speed alone.",
+            "(1) why rain is measured in millilitres, (2) setting the zero line, (3) the test pours and the table, (4) the failed first trial and its cause, (5) rules for daily use",
         },
         {
           correct: false,
           label:
-            "The mistake taught the writer to let Sari make uncertain decisions, which is why the writer avoided guiding the new volunteer.",
+            "(1) why the scale must be tested, (2) setting the zero line, (3) the test pours and the table, (4) the failed first trial, traced to a leak, (5) rules for daily use",
         },
       ],
     },

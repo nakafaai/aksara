@@ -2,38 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "descriptive",
-    topic: "text-fit",
+    cognitiveLevel: "textual",
+    contentDomain: "narrative",
+    topic: "explicit-information",
   },
-  stimulus: "rooftop-garden",
+  stimulus: "reservoir",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "They were given in metres and later checked by the boatman.",
+        },
+        {
+          correct: false,
+          label:
+            "They put the mosque nearer to the well than the school gate was.",
+        },
+        {
+          correct: false,
+          label:
+            "They were correct on Laras's map because she drew each step at her own stride.",
+        },
+        {
+          correct: false,
+          label:
+            "They prove that the minaret stood exactly $$90$$ of Laras's steps from the well.",
+        },
+        {
           correct: true,
-          label: "New volunteers read the notebook before changing a zone.",
-        },
-        {
-          correct: false,
           label:
-            "The center replaces the zone labels with one roof map because the notebook already records details.",
-        },
-        {
-          correct: false,
-          label:
-            "The garden's arrangement becomes fixed after the four zones are first labeled.",
-        },
-        {
-          correct: false,
-          label:
-            "Failed experiments are moved to a separate notebook before new volunteers use the zone.",
-        },
-        {
-          correct: false,
-          label:
-            "Volunteers tie the tomato frames to the roof railing so the planters remain stable.",
+            "They were counted in a young child's steps, so the distances on Laras's map came out too long.",
         },
       ],
     },

@@ -3,36 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
-    contentDomain: "procedure",
-    topic: "outline",
+    contentDomain: "descriptive",
+    topic: "explicit-information",
   },
-  stimulus: "leak-test",
+  stimulus: "boardwalk",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "Inspect visible pipes, replace the meter, wait, and compare the new reading.",
+            "The tall grass of the low marsh carries air down to its roots through hollow channels in its stems.",
         },
         {
           correct: false,
           label:
-            "Take one photograph and immediately declare the leak's location.",
+            "Glasswort gets rid of salt through tiny glands on its leaves.",
+        },
+        {
+          correct: false,
+          label:
+            "Sea lavender grows in the middle of the white-crusted salt pans.",
         },
         {
           correct: true,
           label:
-            "Prepare the period, record, wait, compare, repeat if needed, and report safely.",
+            "The mudflat is covered by the tide twice a day, like the low marsh, but for longer.",
         },
         {
           correct: false,
-          label: "Run the irrigation system, wait, and ignore the meter.",
-        },
-        {
-          correct: false,
-          label: "Disconnect essential equipment before checking the display.",
+          label:
+            "The boardwalk drops by about $$1$$ m between the car park and the mudflat.",
         },
       ],
     },

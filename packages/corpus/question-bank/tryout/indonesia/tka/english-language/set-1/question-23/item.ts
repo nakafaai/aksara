@@ -2,38 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
-    topic: "supporting-detail",
+    topic: "synthesis",
   },
-  stimulus: "later-start",
+  stimulus: "weekend",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "A single average can represent families because school schedules shape their mornings similarly.",
+          label: "Weekend practice should not count toward a student's grade.",
+        },
+        {
+          correct: false,
+          label: "A weekend with nothing due will leave many students idle.",
+        },
+        {
+          correct: false,
+          label: "Students without a quiet place at home are graded unfairly.",
         },
         {
           correct: true,
-          label:
-            "Connected routines may create problems that a meeting does not predict.",
-        },
-        {
-          correct: false,
-          label: "One survey answer is enough to define success.",
+          label: "Short, regular practice works better than one long session.",
         },
         {
           correct: false,
           label:
-            "Sports practice can be excluded from the trial because it occurs after lessons.",
-        },
-        {
-          correct: false,
-          label:
-            "The overall average is sufficient to show how each subgroup experienced the change.",
+            "Weekend assignments arrive late more often than weekday ones.",
         },
       ],
     },

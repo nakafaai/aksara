@@ -6,34 +6,34 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "main-idea-purpose",
   },
-  stimulus: "later-start",
+  stimulus: "weekend",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "To argue that the reported outcomes already justify a permanent later start",
-        },
-        {
-          correct: false,
-          label:
-            "To focus on transport objections instead of testing attendance and learning effects",
-        },
-        {
           correct: true,
           label:
-            "To argue for a careful, measurable, and reversible schedule trial",
-        },
-        {
-          correct: false,
-          label: "To replace attendance records with one survey",
+            "Grading weekend work is unfair because it rewards home conditions rather than learning.",
         },
         {
           correct: false,
           label:
-            "To make extracurricular scheduling the main measure of the trial's success",
+            "Practice matters, and nobody on the planning committee disputes it.",
+        },
+        {
+          correct: false,
+          label: "Mathematics skills fade when they are used only once a week.",
+        },
+        {
+          correct: false,
+          label:
+            "Students who work in a family shop should not be given any homework.",
+        },
+        {
+          correct: false,
+          label:
+            "Weekend practice should be replaced by longer practice sessions on weekdays.",
         },
       ],
     },

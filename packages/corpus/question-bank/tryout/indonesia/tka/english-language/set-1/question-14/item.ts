@@ -2,36 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "narrative",
-    topic: "character",
+    cognitiveLevel: "textual",
+    contentDomain: "recount",
+    topic: "outline",
   },
-  stimulus: "weather-notebook",
+  stimulus: "broadcast",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "She refuses to work with Arif again.",
-        },
-        {
-          correct: false,
-          label: "She values speed more than fairness.",
+          label:
+            "Pak Hadi's knock, the final rehearsal, the office painting, the repeated announcement, the classroom check",
         },
         {
           correct: false,
           label:
-            "She remains confident that her first explanation was reasonable despite the later evidence.",
+            "the office painting, the final rehearsal, Pak Hadi's knock, the repeated announcement, the classroom check",
+        },
+        {
+          correct: false,
+          label:
+            "the final rehearsal, the office painting, Pak Hadi's knock, the classroom check, the repeated announcement",
+        },
+        {
+          correct: false,
+          label:
+            "the final rehearsal, the office painting, the repeated announcement, Pak Hadi's knock, the classroom check",
         },
         {
           correct: true,
-          label: "She can reflect on a mistake and revise her judgment.",
-        },
-        {
-          correct: false,
           label:
-            "She values preserving the recovered notebook more than revising her first judgment.",
+            "the final rehearsal, the office painting, Pak Hadi's knock, the repeated announcement, the classroom check",
         },
       ],
     },

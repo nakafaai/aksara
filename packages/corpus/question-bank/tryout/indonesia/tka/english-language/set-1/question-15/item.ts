@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "narrative",
-    topic: "realism-fantasy",
+    cognitiveLevel: "textual",
+    contentDomain: "recount",
+    topic: "summary",
   },
-  stimulus: "weather-notebook",
+  stimulus: "broadcast",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "A caretaker's mistake ruined a radio club's first broadcast, so the club stopped trusting the school staff.",
+        },
+        {
+          correct: false,
+          label:
+            "After two weeks of rehearsals, a radio club's first live broadcast went smoothly apart from a short delay.",
+        },
+        {
           correct: true,
           label:
-            "The notebook is damaged by an ordinary cause, and the characters recover only the evidence still available.",
+            "A radio club's first broadcast went unheard because a cable had been moved, a fault its headphone checks could not reveal, so the club now confirms from a classroom that listeners can hear.",
         },
         {
           correct: false,
           label:
-            "The story is realistic because the surviving plants reveal the exact rainfall data missing from the notebook.",
+            "A radio club learned that live broadcasts are too risky and moved to recorded programmes.",
         },
         {
           correct: false,
           label:
-            "The story becomes unrealistic because wet pages cannot be dried or photographed.",
-        },
-        {
-          correct: false,
-          label:
-            "The digital copy restores every blurred record, so the accident causes no loss of evidence.",
-        },
-        {
-          correct: false,
-          label:
-            "Mina's final observation turns the notebook into a character that can judge her accusation.",
+            "A host kept talking for four minutes to a silent school because her headphones had stopped working.",
         },
       ],
     },

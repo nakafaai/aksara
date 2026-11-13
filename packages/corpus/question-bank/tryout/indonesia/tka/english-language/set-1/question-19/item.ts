@@ -3,38 +3,36 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "procedure",
-    topic: "prediction",
+    contentDomain: "descriptive",
+    topic: "supporting-detail",
   },
-  stimulus: "leak-test",
+  stimulus: "boardwalk",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "To warn visitors not to touch the mud from the boardwalk",
+        },
+        {
+          correct: false,
+          label:
+            "To suggest that waste from the car park has polluted the low marsh",
+        },
+        {
           correct: true,
           label:
-            "Continuous flow is still suspected, so keep the records and contact the responsible manager or a qualified plumber.",
+            "To give a sign that the soil holds no air, which explains why the grass must carry air down to its roots",
+        },
+        {
+          correct: false,
+          label: "To show that the low marsh is saltier than the high marsh",
         },
         {
           correct: false,
           label:
-            "The leak must be behind the nearest wall, so that section should be opened immediately.",
-        },
-        {
-          correct: false,
-          label:
-            "The repeated movement proves the meter is faulty, so replace it before recording the result.",
-        },
-        {
-          correct: false,
-          label:
-            "Dry visible fixtures rule out continuous flow, so no further action is needed.",
-        },
-        {
-          correct: false,
-          label:
-            "Delete the first readings because they cannot help a later inspection locate the problem.",
+            "To explain why no plant can root in the mudflat at the far end",
         },
       ],
     },

@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "recount",
-    topic: "summary",
+    cognitiveLevel: "inferential",
+    contentDomain: "procedure",
+    topic: "cause-effect",
   },
-  stimulus: "repair-workshop",
+  stimulus: "gauge",
   versions: {
     en: {
       kind: "choice",
@@ -14,25 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "A workshop focuses on stocking spare chains before asking owners about recurring faults.",
+            "The bottle leaked slowly through a crack near its domed base.",
         },
         {
           correct: false,
-          label: "A child teaches Sari how to repair a rear wheel.",
+          label:
+            "Some of the water evaporated while the group was still pouring.",
+        },
+        {
+          correct: false,
+          label:
+            "The bottle's straight section was narrower than the funnel opening.",
         },
         {
           correct: true,
           label:
-            "A volunteer learns that careful diagnosis matters more than replacing parts quickly.",
-        },
-        {
-          correct: false,
-          label: "The writer spends a week buying new bicycles.",
+            "Each pour held less water than intended because the cylinder was read from above.",
         },
         {
           correct: false,
           label:
-            "The workshop measures successful learning by the number of new components installed.",
+            "The funnel opening was smaller than $$80\\text{ cm}^2$$, so it caught too little water.",
         },
       ],
     },

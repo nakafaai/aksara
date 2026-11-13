@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "recount",
-    topic: "reader-response",
+    contentDomain: "procedure",
+    topic: "information-validity",
   },
-  stimulus: "repair-workshop",
+  stimulus: "gauge",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Speed should take priority when a repair initially appears routine.",
-        },
-        {
-          correct: false,
-          label: "Service notes make practical work less reliable.",
+            "Its reading shows how hard the rain was falling at the moment it is read.",
         },
         {
           correct: false,
           label:
-            "A mentor best protects safety by giving the solution before the learner tests an idea.",
+            "Any gauge made from a $$2$$-litre bottle will have marks $$2$$ mm apart for each millimetre of rain.",
+        },
+        {
+          correct: false,
+          label:
+            "Water standing $$10$$ mm above the zero line means that $$10$$ mm of rain fell.",
+        },
+        {
+          correct: false,
+          label:
+            "A gauge placed close to a wall will always give readings that are too high.",
         },
         {
           correct: true,
           label:
-            "Patience can prevent unnecessary repairs and repeated mistakes.",
-        },
-        {
-          correct: false,
-          label:
-            "Measurements are unnecessary when replacement parts look identical.",
+            "Water standing $$15$$ mm above the zero line one morning means $$7.5$$ mm of rain fell since the last emptying.",
         },
       ],
     },

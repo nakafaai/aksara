@@ -2,38 +2,31 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "procedure",
-    topic: "information-validity",
+    cognitiveLevel: "textual",
+    contentDomain: "descriptive",
+    topic: "classification",
   },
-  stimulus: "leak-test",
+  stimulus: "boardwalk",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Flooded at least once a day", "Flooded less than once a day"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "A guess about a hidden pipe without observations",
+          column: 2,
+          label: "The ground where glasswort grows",
         },
         {
-          correct: false,
-          label:
-            "A list of room colors and furniture placed near visible pipes",
+          column: 1,
+          label: "The ground where the tall, stiff grass grows",
         },
         {
-          correct: false,
-          label:
-            "A list of electricity use recorded during the same test period",
+          column: 1,
+          label: "The bare mud where the boardwalk ends",
         },
         {
-          correct: true,
-          label:
-            "The two readings, exact times, and any visible signs of water",
-        },
-        {
-          correct: false,
-          label:
-            "An assurance that the observer did not notice other water use",
+          column: 2,
+          label: "The ground around the edges of the salt pans",
         },
       ],
     },
