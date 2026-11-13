@@ -3,26 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
-    contentDomain: "descriptive",
-    topic: "classification",
+    contentDomain: "narrative",
+    topic: "synthesis",
   },
-  stimulus: "rooftop-garden",
+  stimulus: "reservoir",
   versions: {
     en: {
-      columns: ["Plant support", "Water care", "Record keeping"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Bamboo frames tied to heavy planters",
+          correct: false,
+          label:
+            "From the boat, Grandmother named every one of the houses that the map was still missing.",
         },
         {
-          column: 2,
-          label: "Mesh covers on the containers",
+          correct: true,
+          label:
+            "The tree that bent the river road on the map was the same kind as the seed Grandmother planted.",
         },
         {
-          column: 3,
-          label: "A notebook in a sealed box",
+          correct: true,
+          label:
+            "The minaret that rose in August belonged to the mosque Laras first drew on the wrong side of the school.",
+        },
+        {
+          correct: false,
+          label:
+            "The seed Grandmother planted had been in her keeping ever since the year the valley filled.",
+        },
+        {
+          correct: false,
+          label:
+            "Laras moved the mosque to the east side of the school only after seeing the minaret from the boat.",
         },
       ],
     },

@@ -1,0 +1,172 @@
+
+export const metadata = {
+  title: "Halaju dan Laju",
+  description:
+    "Bezakan laju sebagai berapa pantas satu lintasan dilalui dengan halaju sebagai perubahan kedudukan beserta arahnya.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-06-06",
+  dateModified: "2026-09-12",
+  subject: "Kinematik",
+};
+
+## Mengukur Gerakan dengan Jarak dan Sesaran
+
+Apabila sesuatu objek bergerak, **laju** menyatakan jarak yang dilalui per unit masa. **Halaju** menyatakan sesaran per unit masa bersama arahnya.
+
+Laju ialah kuantiti skalar, jadi ia mempunyai nilai dan unit tanpa arah. Halaju ialah kuantiti vektor, jadi ia mempunyai nilai dan arah.
+
+  <BlockMath math="\begin{aligned}
+\text{laju purata} &= \frac{s}{\Delta t} \\
+\bar{v} &= \frac{\Delta x}{\Delta t}
+\end{aligned}" />
+
+Simbol <InlineMath math="s" /> bermaksud jarak yang dilalui, <InlineMath math="\Delta x" /> bermaksud sesaran pada satu garis lurus, dan <InlineMath math="\Delta t" /> bermaksud selang masa. Rumus-rumus ini mengira laju purata dan halaju purata sepanjang selang masa itu.
+
+> Laju menggunakan seluruh jarak yang dilalui. Halaju menggunakan sesaran bersih beserta tandanya.
+
+<VelocitySpeedLab
+  title={<>Gerakan Kereta pada Satu Garis</>}
+  description={
+    <>
+      Pilih cara kereta bergerak untuk membandingkan lintasan jarak berwarna
+      hijau kebiruan dengan garis sesaran berwarna ungu apabila kedudukan akhir berubah.
+    </>
+  }
+  labels={{
+    chooseCase: "Pilih laluan kereta",
+    modeLabels: {
+      forward: <>Ke Hadapan</>,
+      partialReturn: <>Patah Balik Sebahagian</>,
+      backToStart: <>Kembali ke Titik Mula</>,
+    },
+    factLabels: {
+      distance: <>Jarak dilalui</>,
+      displacement: <>Sesaran</>,
+      speed: <>Laju purata</>,
+      velocity: <>Halaju purata</>,
+    },
+    viewLabel: "Gerakan kereta untuk laju dan halaju",
+  }}
+/>
+
+## Laju daripada Panjang Lintasan dan Halaju daripada Perubahan Kedudukan
+
+Untuk membezakan dua idea ini, semak jumlah lintasan yang benar-benar dilalui dan perubahan kedudukan dari awal hingga akhir. Laju dikira daripada keseluruhan jarak, manakala halaju dikira daripada sesaran bersih per masa.
+
+Dalam selang masa yang sama, gerakan lurus **tanpa berpatah balik** memberikan laju purata yang sama dengan magnitud halaju purata. Jika objek berpatah balik, jarak melebihi magnitud sesaran, jadi kedua-dua purata itu berbeza. Pada sebarang satu ketika, laju seketika sentiasa sama dengan magnitud halaju seketika.
+
+Dalam jadual di bawah, arah ke kanan ialah arah positif.
+
+| Gerakan objek | Jarak dilalui | Sesaran |
+| :------------ | :---------------- | :----------- |
+| Bergerak lurus dari <InlineMath math="0 \text{ m}" /> ke <InlineMath math="8 \text{ m}" /> | <InlineMath math="8 \text{ m}" /> | <InlineMath math="+8 \text{ m}" /> |
+| Bergerak dari <InlineMath math="0 \text{ m}" /> ke <InlineMath math="8 \text{ m}" />, kemudian kembali ke <InlineMath math="4 \text{ m}" /> | <InlineMath math="12 \text{ m}" /> | <InlineMath math="+4 \text{ m}" /> |
+| Bergerak dari <InlineMath math="0 \text{ m}" /> ke <InlineMath math="8 \text{ m}" />, kemudian kembali ke <InlineMath math="0 \text{ m}" /> | <InlineMath math="16 \text{ m}" /> | <InlineMath math="0 \text{ m}" /> |
+
+Perhatikan baris terakhir. Objek itu jelas bergerak kerana jaraknya <InlineMath math="16 \text{ m}" />, tetapi perubahan kedudukan akhirnya sifar kerana ia kembali ke titik mula.
+
+## Laju Purata Menggunakan Panjang Lintasan
+
+Katakan sebuah objek bergerak dari kedudukan <InlineMath math="0 \text{ m}" /> ke <InlineMath math="8 \text{ m}" />, kemudian kembali ke kedudukan <InlineMath math="4 \text{ m}" />. Seluruh perjalanan mengambil masa <InlineMath math="4 \text{ s}" />.
+
+Jarak yang dilalui ialah:
+
+<BlockMath math="s=8 \text{ m}+4 \text{ m}=12 \text{ m}" />
+
+Laju puratanya ialah:
+
+<BlockMath math="\begin{aligned} \text{laju purata} &amp;=\frac{12 \text{ m}}{4 \text{ s}} \\ &amp;=3 \text{ m/s} \end{aligned}" />
+
+Nilai ini hanya memberitahu berapa pantas objek bergerak di sepanjang lintasan. Ia tidak menerangkan arah bersih.
+
+Oleh itu, laju purata **sentiasa bukan negatif**. Selagi objek terus bergerak di sepanjang lintasan, jumlah panjang lintasan yang terkumpul akan bertambah.
+
+## Halaju Purata Menggunakan Sesaran
+
+Bagi contoh yang sama, sesarannya ialah:
+
+<BlockMath math="\Delta x=4 \text{ m}-0 \text{ m}=+4 \text{ m}" />
+
+Halaju puratanya ialah:
+
+<BlockMath math="\bar{v}=\frac{+4 \text{ m}}{4 \text{ s}}=+1 \text{ m/s}" />
+
+Tanda positif bermaksud halaju bersih menghala ke kanan. Jika hasilnya negatif, halaju bersih menghala ke kiri.
+
+Oleh itu, halaju purata mesti dibaca bersama **arah positif yang dipilih** pada awalnya. Tanpa arah rujukan itu, tanda positif atau negatif tidak mempunyai makna yang jelas.
+
+Kedua-dua perjalanan di bawah mengambil masa <InlineMath math="4\text{ s}" /> dan kedua-duanya sampai ke <InlineMath math="8\text{ m}" />. Perjalanan oren kembali ke <InlineMath math="4\text{ m}" />: laju <InlineMath math="12/4=3\text{ m/s}" />, halaju <InlineMath math="+4/4=+1\text{ m/s}" />. Perjalanan ungu pula kembali sepenuhnya ke titik mula: laju <InlineMath math="4\text{ m/s}" />, halaju <InlineMath math="0" />. Kira naik dan turun setiap garis untuk mendapatkan jarak, dan bandingkan titik hujungnya sahaja untuk mendapatkan sesaran.
+
+<MathVisual
+  title={<>Dua Perjalanan dengan Laju dan Halaju yang Berbeza</>}
+  description={<>Pergi ke 8 m dan kembali ke 4 m atau ke 0 m, setiap satu dalam 4 s pada laju malar. Paksi mengufuk: masa dalam s. Paksi menegak: kedudukan dalam unit 2 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "to-four", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: (4 * 8) / 12, y: 4 }, { x: 4, y: 2 }] },
+      { id: "to-zero", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 4 }, { x: 4, y: 0 }] },
+      { id: "four-end", kind: "point", appearance: "primary", at: { x: 4, y: 2 } },
+      { id: "zero-top", kind: "point", appearance: "secondary", at: { x: 2, y: 4 } },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "four", objectId: "four-end", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "zero", objectId: "zero-top", at: { x: 2, y: 4 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    four: <InlineMath math="12\text{ m},\ \Delta x=+4\text{ m}" />,
+    zero: <InlineMath math="16\text{ m},\ \Delta x=0" />,
+  }}
+/>
+
+## Apabila Laju dan Halaju Mempunyai Nilai yang Berbeza
+
+Sekarang bayangkan objek itu bergerak dari <InlineMath math="0 \text{ m}" /> ke <InlineMath math="8 \text{ m}" />, kemudian kembali ke <InlineMath math="0 \text{ m}" /> dalam <InlineMath math="4 \text{ s}" />.
+
+Jarak yang dilalui ialah <InlineMath math="16 \text{ m}" />, jadi lajunya ialah:
+
+<BlockMath math="\begin{aligned} \text{laju purata} &amp;=\frac{16 \text{ m}}{4 \text{ s}} \\ &amp;=4 \text{ m/s} \end{aligned}" />
+
+Sesarannya ialah <InlineMath math="0 \text{ m}" />, jadi halajunya ialah:
+
+<BlockMath math="\bar{v}=\frac{0 \text{ m}}{4 \text{ s}}=0 \text{ m/s}" />
+
+Jadi, laju purata boleh mempunyai nilai bukan sifar walaupun halaju purata bagi perjalanan itu sifar. <Highlight>Laju menggunakan panjang lintasan</Highlight>, manakala halaju menggunakan perubahan kedudukan dari awal hingga akhir.
+
+## Memilih Rumus yang Betul
+
+| Kuantiti | Berdasarkan | Ada arah? | Contoh unit |
+| :------- | :------- | :------------- | :----------- |
+| Laju purata | Jarak dilalui | Tidak | <InlineMath math="\text{m/s}" /> |
+| Halaju purata | Sesaran | Ya | <InlineMath math="\text{m/s}" /> ke kanan |
+
+Jika soalan bertanya berapa pantas lintasan dilalui, gunakan jarak dan laju. Jika soalan bertanya berapa pantas kedudukan berubah dalam satu arah, gunakan **sesaran** dan halaju.
+
+Kalau kamu berlari mengelilingi trek, kedua-dua purata itu akan berbeza. Selepas satu pusingan penuh, jarak kamu ialah seluruh lilitan bulatan, tetapi kamu kembali ke tempat kamu bermula, jadi halaju puratanya sifar. Selepas separuh pusingan, sesarannya ialah diameter. Zum masuk untuk melihat kedua-dua label itu.
+
+<MathVisual
+  title={<>Jarak Memberi Laju dan Sesaran Memberi Halaju</>}
+  description={<>Trek bulat berjejari 3 m dengan titik mula (magenta) dan sesaran separuh pusingan (oren).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 9 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "track", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 3 },
+      { id: "start", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "half", kind: "segment", appearance: "primary", from: { x: 3, y: 0 }, to: { x: -3, y: 0 } },
+      { id: "half-end", kind: "point", appearance: "primary", at: { x: -3, y: 0 } },
+    ],
+    labels: [
+      { key: "lap", objectId: "start", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "half", objectId: "half", at: { x: 0, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    lap: <InlineMath math="\text{1 pusingan: } s=2\pi r\approx18.85\text{ m},\ \Delta x=0" />,
+    half: <InlineMath math="\text{separuh: } s=\pi r,\ \lvert\Delta x\rvert=2r=6\text{ m}" />,
+  }}
+/>

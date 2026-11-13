@@ -1,0 +1,322 @@
+export const metadata = {
+    title: "Aplikasi Had",
+    description: "Gunakan had pada model kesihatan, ekonomi, populasi, isyarat dan tindak balas yang dipermudahkan, sambil menyemak apa yang boleh dan tidak boleh dibuktikan oleh setiap model.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-05-26",
+    dateModified: "2026-11-08",
+    subject: "Had",
+};
+
+## Model Kesihatan Awam yang Dipermudahkan
+
+Had boleh menerangkan <Highlight>kelakuan jangka panjang sesuatu model matematik</Highlight>. Dalam kesihatan awam, sesuatu rumus mesti dipadankan dengan data yang boleh dipercayai dan disahkan dahulu sebelum sesiapa menggunakannya untuk membuat keputusan sebenar. Rumus di bawah menunjukkan cara mengira had dan menyemak domain sah sesuatu model.
+
+### Memeriksa Domain Model
+
+Rumus yang sengaja dipermudahkan ini digunakan untuk menyemak sejauh mana model itu kekal bermakna:
+
+<BlockMath math="\begin{aligned} &amp;N(t) \\ &amp;= 285000 - \sqrt{t^2 - t + (190.68)^3} \end{aligned}" />
+
+Di sini, <InlineMath math="N(t)" /> ditafsirkan sebagai bilangan kes dalam model, manakala <InlineMath math="t" /> ialah input tidak negatif yang unitnya mesti ditakrifkan untuk senario yang dikaji.
+
+Untuk menguji sama ada rumus itu kekal bermakna dalam jangka panjang, kira:
+
+Ringkaskan sebutan punca kuasa dua sebagai <InlineMath math="R(t)" />:
+
+<MathContainer>
+  <BlockMath math="R(t)=\sqrt{t^2-t+(190.68)^3}" />
+
+  <BlockMath math="\begin{aligned} &amp;\lim_{t\to\infty}N(t) \\ &amp;=\lim_{t\to\infty}(285000-R(t)) \end{aligned}" />
+</MathContainer>
+
+Untuk mengira had itu dengan tepat, keluarkan faktor <InlineMath math="t^2" /> daripada tanda punca. Untuk <InlineMath math="t>0" />, punca kuasa duanya ialah <InlineMath math="t" />:
+
+<BlockMath math="R(t)=t\sqrt{1-\frac1t+\frac{(190.68)^3}{t^2}}" />
+
+Faktor punca kuasa dua yang terakhir menghampiri <InlineMath math="1" />, manakala <InlineMath math="t\to\infty" />. Jadi <InlineMath math="R(t)\to\infty" /> dan **rumus bilangan kes menjadi negatif** untuk input yang cukup besar:
+
+<BlockMath math="\lim_{t\to\infty}N(t)=-\infty" />
+
+> Bilangan kes yang negatif bermaksud rumus itu telah digunakan di luar **domain sah** model. Bilangan kes tidak boleh negatif, jadi rumus itu bermakna hanya selagi <InlineMath math="N(t) \geq 0" />. Baca rumus yang dipermudahkan ini sebagai contoh matematik tentang cara menilai rumus, dan jangan gunakannya untuk keputusan perubatan atau dasar.
+
+### Input yang Memberikan Hasil Tidak Negatif
+
+Kita boleh mengira syarat <InlineMath math="N(t)\ge0" />, bukan sekadar menyatakannya. Kedua-dua belah yang dikuasaduakan di bawah ini tidak negatif:
+
+<MathContainer>
+<BlockMath math="C=(190.68)^3" />
+
+<BlockMath math="\begin{aligned}N(t)\ge0&\iff\sqrt{t^2-t+C}\le285000\\&\iff t^2-t+C\le285000^2\\&\iff0\le t\le\frac{1+\sqrt{1+4(285000^2-C)}}2\end{aligned}" />
+</MathContainer>
+
+Untuk <InlineMath math="t\ge0" />, batas atasnya lebih kurang <InlineMath math="284988.34" />. Input contoh <InlineMath math="282367" /> berada di bawahnya. Ini hanya menyemak **output yang tidak negatif**, bukan kesepadanan dengan data.
+
+## Aplikasi dalam Ekonomi
+
+Kuantiti marginal mengukur perubahan yang dihasilkan oleh satu unit tambahan. Had menukar perubahan itu kepada **kadar seketika**, iaitu maksud nilai marginal apabila unit tambahan itu dibuat sekecil mana yang kita mahu.
+
+### Analisis Kos Marginal
+
+Dalam model kos yang boleh dibezakan, **kos marginal** ialah kadar seketika perubahan jumlah kos terhadap output. Kos marginal ditakrifkan oleh terbitan:
+
+**Takrif matematik menggunakan had**:
+
+<BlockMath math="\begin{aligned} &amp;\text{Kos Marginal} \\ &amp;= \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x} \end{aligned}" />
+
+Kuantiti dalam takrif ini ialah:
+- <InlineMath math="C(x)" /> = fungsi jumlah kos pengeluaran bagi <InlineMath math="x \text{ unit}" />
+- <InlineMath math="\Delta x" /> = perubahan kecil dalam kuantiti pengeluaran
+- Had itu memberikan **kadar perubahan seketika** kos terhadap pengeluaran
+
+Apabila output dikira dalam unit penuh, kos tambahan yang tepat bagi unit seterusnya ialah <InlineMath math="C(x+1)-C(x)" />. Terbitan <InlineMath math="C'(x)" /> selalunya menganggarkan perubahan diskret itu, tetapi kedua-dua kuantiti itu tidak semestinya sama.
+
+### Model Pertumbuhan Populasi
+
+Ambil parameter positif <InlineMath math="K>0" />, <InlineMath math="A>0" />, dan <InlineMath math="r>0" />. Model populasi logistik yang ideal kemudiannya ada bentuk:
+
+<BlockMath math="P(t) = \frac{K}{1 + Ae^{-rt}}" />
+
+Oleh sebab <InlineMath math="e^{-rt} \to 0" /> apabila <InlineMath math="t \to \infty" />, model itu menghampiri **parameter daya tampungnya**:
+
+<BlockMath math="\lim_{t \to \infty} P(t) = \frac{K}{1+A(0)}=K" />
+
+Di sini, <InlineMath math="K" /> ialah parameter bagi model yang dipermudahkan. Daya tampung persekitaran sebenar boleh berubah, jadi had ini tidak mendakwa bahawa setiap populasi yang diukur akan menetap secara kekal pada satu nilai tetap.
+
+Ambil <InlineMath math="A=4" /> dan perkenalkan koordinat tanpa dimensi <InlineMath math="u=rt" /> dan <InlineMath math="q=P/K" />. Graf kemudiannya menunjukkan **pecahan daya tampung yang dicapai**:
+
+<BlockMath math="q(u)=\frac1{1+4e^{-u}}" />
+
+Pada <InlineMath math="u=0" />, <InlineMath math="q=1/5" />. Pada <InlineMath math="u=\ln4" />, <InlineMath math="q=1/(1+4/4)=1/2" />. Lengkung itu menghampiri <InlineMath math="q=1" /> tanpa mencapainya dalam masa terhingga.
+
+<MathVisual
+  title={<>Populasi sebagai pecahan daya tampung</>}
+  description={<>Lengkung <InlineMath math="q = \frac{1}{1 + 4e^{-u}}" /> untuk <InlineMath math="0 \le u \le 6" />, dengan <InlineMath math="u = rt" /> dan <InlineMath math="q = P/K" />. Lengkung ini bermula pada <InlineMath math="\tfrac15" />, mencapai <InlineMath math="\tfrac12" /> pada <InlineMath math="u = \ln 4" /> dan menghampiri garis <InlineMath math="q = 1" /> tanpa mencapainya.</>}
+  labels={{
+    limit: <InlineMath math="q = 1" />,
+    start: <InlineMath math="\left(0, \tfrac15\right)" />,
+    half: <InlineMath math="\left(\ln 4, \tfrac12\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 6.4 }, y: { min: -0.1, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "limit", kind: "line", through: [{ x: 0, y: 1 }, { x: 6, y: 1 }], appearance: "reference" },
+      { id: "q", kind: "polyline", vertices: [{ x: 0, y: 1 / (1 + 4 * Math.exp(-(0))) }, { x: 1 / 10, y: 1 / (1 + 4 * Math.exp(-(1 / 10))) }, { x: 1 / 5, y: 1 / (1 + 4 * Math.exp(-(1 / 5))) }, { x: 3 / 10, y: 1 / (1 + 4 * Math.exp(-(3 / 10))) }, { x: 2 / 5, y: 1 / (1 + 4 * Math.exp(-(2 / 5))) }, { x: 1 / 2, y: 1 / (1 + 4 * Math.exp(-(1 / 2))) }, { x: 3 / 5, y: 1 / (1 + 4 * Math.exp(-(3 / 5))) }, { x: 7 / 10, y: 1 / (1 + 4 * Math.exp(-(7 / 10))) }, { x: 4 / 5, y: 1 / (1 + 4 * Math.exp(-(4 / 5))) }, { x: 9 / 10, y: 1 / (1 + 4 * Math.exp(-(9 / 10))) }, { x: 1, y: 1 / (1 + 4 * Math.exp(-(1))) }, { x: 11 / 10, y: 1 / (1 + 4 * Math.exp(-(11 / 10))) }, { x: 6 / 5, y: 1 / (1 + 4 * Math.exp(-(6 / 5))) }, { x: 13 / 10, y: 1 / (1 + 4 * Math.exp(-(13 / 10))) }, { x: 7 / 5, y: 1 / (1 + 4 * Math.exp(-(7 / 5))) }, { x: 3 / 2, y: 1 / (1 + 4 * Math.exp(-(3 / 2))) }, { x: 8 / 5, y: 1 / (1 + 4 * Math.exp(-(8 / 5))) }, { x: 17 / 10, y: 1 / (1 + 4 * Math.exp(-(17 / 10))) }, { x: 9 / 5, y: 1 / (1 + 4 * Math.exp(-(9 / 5))) }, { x: 19 / 10, y: 1 / (1 + 4 * Math.exp(-(19 / 10))) }, { x: 2, y: 1 / (1 + 4 * Math.exp(-(2))) }, { x: 21 / 10, y: 1 / (1 + 4 * Math.exp(-(21 / 10))) }, { x: 11 / 5, y: 1 / (1 + 4 * Math.exp(-(11 / 5))) }, { x: 23 / 10, y: 1 / (1 + 4 * Math.exp(-(23 / 10))) }, { x: 12 / 5, y: 1 / (1 + 4 * Math.exp(-(12 / 5))) }, { x: 5 / 2, y: 1 / (1 + 4 * Math.exp(-(5 / 2))) }, { x: 13 / 5, y: 1 / (1 + 4 * Math.exp(-(13 / 5))) }, { x: 27 / 10, y: 1 / (1 + 4 * Math.exp(-(27 / 10))) }, { x: 14 / 5, y: 1 / (1 + 4 * Math.exp(-(14 / 5))) }, { x: 29 / 10, y: 1 / (1 + 4 * Math.exp(-(29 / 10))) }, { x: 3, y: 1 / (1 + 4 * Math.exp(-(3))) }, { x: 31 / 10, y: 1 / (1 + 4 * Math.exp(-(31 / 10))) }, { x: 16 / 5, y: 1 / (1 + 4 * Math.exp(-(16 / 5))) }, { x: 33 / 10, y: 1 / (1 + 4 * Math.exp(-(33 / 10))) }, { x: 17 / 5, y: 1 / (1 + 4 * Math.exp(-(17 / 5))) }, { x: 7 / 2, y: 1 / (1 + 4 * Math.exp(-(7 / 2))) }, { x: 18 / 5, y: 1 / (1 + 4 * Math.exp(-(18 / 5))) }, { x: 37 / 10, y: 1 / (1 + 4 * Math.exp(-(37 / 10))) }, { x: 19 / 5, y: 1 / (1 + 4 * Math.exp(-(19 / 5))) }, { x: 39 / 10, y: 1 / (1 + 4 * Math.exp(-(39 / 10))) }, { x: 4, y: 1 / (1 + 4 * Math.exp(-(4))) }, { x: 41 / 10, y: 1 / (1 + 4 * Math.exp(-(41 / 10))) }, { x: 21 / 5, y: 1 / (1 + 4 * Math.exp(-(21 / 5))) }, { x: 43 / 10, y: 1 / (1 + 4 * Math.exp(-(43 / 10))) }, { x: 22 / 5, y: 1 / (1 + 4 * Math.exp(-(22 / 5))) }, { x: 9 / 2, y: 1 / (1 + 4 * Math.exp(-(9 / 2))) }, { x: 23 / 5, y: 1 / (1 + 4 * Math.exp(-(23 / 5))) }, { x: 47 / 10, y: 1 / (1 + 4 * Math.exp(-(47 / 10))) }, { x: 24 / 5, y: 1 / (1 + 4 * Math.exp(-(24 / 5))) }, { x: 49 / 10, y: 1 / (1 + 4 * Math.exp(-(49 / 10))) }, { x: 5, y: 1 / (1 + 4 * Math.exp(-(5))) }, { x: 51 / 10, y: 1 / (1 + 4 * Math.exp(-(51 / 10))) }, { x: 26 / 5, y: 1 / (1 + 4 * Math.exp(-(26 / 5))) }, { x: 53 / 10, y: 1 / (1 + 4 * Math.exp(-(53 / 10))) }, { x: 27 / 5, y: 1 / (1 + 4 * Math.exp(-(27 / 5))) }, { x: 11 / 2, y: 1 / (1 + 4 * Math.exp(-(11 / 2))) }, { x: 28 / 5, y: 1 / (1 + 4 * Math.exp(-(28 / 5))) }, { x: 57 / 10, y: 1 / (1 + 4 * Math.exp(-(57 / 10))) }, { x: 29 / 5, y: 1 / (1 + 4 * Math.exp(-(29 / 5))) }, { x: 59 / 10, y: 1 / (1 + 4 * Math.exp(-(59 / 10))) }, { x: 6, y: 1 / (1 + 4 * Math.exp(-(6))) }], appearance: "secondary" },
+      { id: "start", kind: "point", at: { x: 0, y: 1 / 5 }, appearance: "answer" },
+      { id: "half", kind: "point", at: { x: Math.log(4), y: 1 / 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 6, y: 1 }, placement: "above" },
+      { key: "start", objectId: "start", at: { x: 0, y: 1 / 5 }, placement: "right" },
+      { key: "half", objectId: "half", at: { x: Math.log(4), y: 1 / 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+## Aplikasi dalam Teknologi dan Sains
+
+Contoh penapis mengubah frekuensi, manakala contoh tindak balas mengubah masa. Kenal pasti **pemboleh ubah yang menghampiri suatu nilai** sebelum kamu menilai had itu supaya maksudnya jelas.
+
+### Sambutan Frekuensi Penapis Analog
+
+Untuk **model lulus rendah analog tertib pertama yang dinormalkan** dengan frekuensi sudut potong <InlineMath math="\omega_c>0" />, sambutan magnitudnya ialah:
+
+<BlockMath math="|H(i\omega)|=\frac{1}{\sqrt{1+(\omega/\omega_c)^2}}" />
+
+Nilai-nilai hadnya menjelaskan kelakuan ideal itu:
+
+<MathContainer>
+<BlockMath math="\lim_{\omega \to 0}|H(i\omega)|=1" />
+<BlockMath math="\lim_{\omega \to \infty}|H(i\omega)|=0" />
+</MathContainer>
+
+Model analog ini meluluskan frekuensi yang sangat rendah dengan gandaan yang menghampiri satu, dan semakin melemahkan frekuensi tinggi. Pada frekuensi potong, penggantian memberikan:
+
+<BlockMath math="|H(i\omega_c)|=\frac1{\sqrt{1+1^2}}=\frac1{\sqrt2}" />
+
+Gandaan <InlineMath math="|H(i\omega)| = \frac{1}{\sqrt{1 + (\omega/\omega_c)^2}}" /> ialah <InlineMath math="1" /> pada <InlineMath math="\omega = 0" />, <InlineMath math="\tfrac{1}{\sqrt2} \approx 0.707" /> pada frekuensi potong <InlineMath math="\omega = \omega_c" />, dan menurun ke arah <InlineMath math="0" /> apabila frekuensi bertambah.
+
+<BarChart
+  title={<>Gandaan penapis</>}
+  description={<>Palang <InlineMath math="|H(i\omega)|" /> untuk <InlineMath math="\omega/\omega_c = 0, 0.5, 1, 2, 5, 10" />.</>}
+  yAxisLabel="Gandaan"
+  data={[0, 0.5, 1, 2, 5, 10].map((x) => ({ name: String(x), value: 1 / Math.sqrt(1 + x ** 2) }))}
+  chartConfig={{ value: { label: "Gandaan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Kadar Tindak Balas Kimia
+
+Untuk **penggunaan tertib pertama yang ideal** bagi bahan tindak balas <InlineMath math="A" />, hukum kadar dalam bentuk kamiran ialah:
+
+<BlockMath math="[A](t)=[A]_0e^{-kt}, \qquad k>0" />
+
+Pengiraannya memberikan:
+
+<BlockMath math="\lim_{t \to \infty}[A](t)=[A]_0\lim_{t \to \infty}e^{-kt}=0" />
+
+Kesimpulan ini hanya untuk model tertib pertama tak berbalik itu. Tindak balas berbalik pada keseimbangan biasanya memerlukan model lain, dan kepekatan bahan tindak balasnya tidak semestinya sifar.
+
+## Mengira Kes pada Sasaran Vaksinasi
+
+Biar <InlineMath math="t" /> ialah bilangan orang yang sudah divaksin. Model berikut mengira bilangan **kes positif yang tinggal**, <InlineMath math="N(t)" />:
+
+<BlockMath math="\begin{aligned} &amp;N(t) \\ &amp;= 285000 - \sqrt{t^2 - t + (190.68)^3} \end{aligned}" />
+
+Kita akan kira <InlineMath math="N(282{,}367)" /> untuk sasaran vaksinasi seramai <InlineMath math="282{,}367 \text{ orang}" />.
+
+### Data dan Andaian
+
+Pengiraan ini menggunakan andaian berikut:
+
+- Jumlah penduduk ialah <InlineMath math="576{,}260 \text{ orang}" />.
+- Kanak-kanak membentuk <InlineMath math="21\%" /> daripada penduduk, dan orang dewasa membentuk <InlineMath math="79\%" />.
+- **Kadaran kes positif** ialah <InlineMath math="30\%" /> dalam setiap kumpulan umur.
+- Dalam senario rekaan ini, orang dewasa yang layak berumur lebih daripada <InlineMath math="18 \text{ tahun}" /> dan tidak termasuk dalam kumpulan kes positif.
+
+Andaian ini memberikan bilangan penduduk berikut:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} \text{Kanak-kanak} &amp;= 0.21 \times 576{,}260 \\ &amp;= 121{,}014.6 \\ &amp;\approx 121{,}015 \text{ orang} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Orang dewasa} = 0.79 \times 576{,}260 \\ &amp;= 455{,}245.4 \approx 455{,}245 \text{ orang} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Jumlah kes positif} \\ &amp;= 0.3 \times 576{,}260 = 172{,}878 \text{ orang} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Kes positif dalam kalangan orang dewasa} \\ &amp;= 0.79 \times 0.30 \times 576{,}260 \\  &amp;= 136{,}573.62 \\ &amp;\approx 136{,}574 \text{ orang} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Orang dewasa yang layak} \\ &amp;= 0.79 \times 0.70 \times 576{,}260 \\  &amp;= 318{,}671.78 \\ &amp;\approx 318{,}672 \text{ orang} \end{aligned}" />
+</MathContainer>
+
+Dengan bilangan orang layak yang belum dibundarkan, sasaran itu mewakili:
+
+<BlockMath math="\frac{282{,}367}{318{,}671.78}\times 100\% \approx 88.6\%" />
+
+Sasaran itu lebih kurang <InlineMath math="88.6\%" /> daripada orang dewasa yang layak dalam pengiraan ini. Rumus yang dipermudahkan ini hanya menunjukkan cara menilai fungsi pada sasaran itu. Rumus ini tidak boleh menentukan sasaran vaksinasi yang sebenar.
+
+### Pengiraan
+
+Untuk mengira bilangan kes dalam model, kita gunakan <InlineMath math="t=282{,}367" />:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} R_0 &amp;=(282367)^2-282367 +(190.68)^3 \end{aligned}" />
+
+  <BlockMath math="N(282367)=285000-\sqrt{R_0}" />
+</MathContainer>
+
+**Langkah 1** mengira sebutan pemalar.
+
+<BlockMath math="\begin{aligned} &amp;(190.68)^3 \\ &amp;= 190.68 \times 190.68 \times 190.68 \\ &amp;\approx 6{,}932{,}907.88 \end{aligned}" />
+
+Nilai yang dipaparkan dibundarkan kepada dua tempat perpuluhan. Pengiraan seterusnya menyimpan **nilai yang belum dibundarkan** secara dalaman.
+
+**Langkah 2** mengira kuasa dua bilangan vaksinasi.
+
+<BlockMath math="(282{,}367)^2 = 79{,}731{,}122{,}689" />
+
+**Langkah 3** menggabungkan nilai di bawah punca kuasa dua.
+
+<BlockMath math="\begin{aligned} &amp;79731122689-282367 \\ &amp;\quad{}+6932907.88 \\ &amp;=79737773229.88 \end{aligned}" />
+
+**Langkah 4** memberikan hasil akhir.
+
+<MathContainer>
+  <BlockMath math="R_0\approx79737773229.88" />
+
+  <BlockMath math="N(282367)=285000-\sqrt{R_0}" />
+  <BlockMath math="\approx 285{,}000 - 282{,}378.78" />
+  <BlockMath math="= 2{,}621.22 \approx 2{,}621 \text{ orang}" />
+</MathContainer>
+
+### Maksud Hasil
+
+Jika <InlineMath math="282{,}367" /> orang divaksin, rumus yang diberikan menghasilkan lebih kurang <InlineMath math="2{,}621" /> kes yang tinggal. Hasil ini datang daripada rumus yang dipermudahkan sahaja. Data sebenar masih diperlukan untuk membuat ramalan atau keputusan tentang pengagihan sumber kesihatan.
+
+**Nilai awalnya tidak sepadan**: rumus itu memberikan <InlineMath math="N(0)\approx282367" />, manakala andaian penduduk memberikan <InlineMath math="172878" /> kes awal. Jadi contoh ini melatih kita menilai dan mempersoalkan sesuatu model. Hasil rumus itu tidak boleh dianggap sebagai ramalan bagi penduduk yang dinyatakan.
+
+## Batasan Rumus dan Model
+
+Nilai <InlineMath math="2{,}621 \text{ kes}" /> menjawab soalan matematik bagi rumus yang diberikan. Keputusan sebenar masih memerlukan bukti yang disahkan secara bebas tentang:
+
+1. **Kapasiti hospital** semasa dan unjurannya
+2. **Kakitangan perubatan** yang ada dan beban tugas mereka
+3. **Pengagihan sumber** dalam beberapa senario yang munasabah
+4. Ketidakpastian dan **strategi komunikasi awam** yang jujur
+
+> Had menerangkan kelakuan sesuatu rumus. Data sebenar masih diperlukan untuk menentukan sama ada rumus itu sepadan dengan keadaan sebenar. Nyatakan andaian, domain sah, unit, dan ketidakpastian model apabila kamu menerangkan hasil pengiraan.
+
+## Latihan
+
+Setiap soalan memberikan satu situasi dan meminta **nilai yang dihampiri oleh suatu kuantiti**. Kenal pasti kuantiti itu dahulu, kemudian nilaikan hadnya.
+
+1. Sebuah syarikat farmaseutikal memodelkan pengeluaran vaksin kumulatif dengan <InlineMath math="P(t) = 50000(1 - e^{-0.1t})" /> untuk <InlineMath math="t \geq 0" />. Tentukan siling pengeluaran jangka panjang yang diramalkan oleh model itu.
+
+2. Capaian kumulatif sesuatu mesej media sosial dalam model ialah <InlineMath math="I(t) = \frac{100000t}{t + 50}" /> untuk <InlineMath math="t \geq 0" />. Kira had apabila <InlineMath math="t \to \infty" /> dan terangkan capaian jangka panjang yang diramalkan oleh model itu.
+
+3. Model jumlah kos untuk menghasilkan <InlineMath math="x" /> pelitup muka ialah <InlineMath math="C(x) = 1000 + 5x + 0.01x^2" />. Tentukan fungsi kos marginal menggunakan takrif had, kemudian bandingkan fungsi itu dengan kos tepat untuk menambah output daripada <InlineMath math="x" /> kepada <InlineMath math="x+1" />.
+
+### Jalan Kerja
+
+**Soalan 1**. **Siling jangka panjang** model itu diperoleh dengan mengira had apabila <InlineMath math="t \to \infty" />:
+
+<MathContainer>
+<BlockMath math="\lim_{t \to \infty} P(t) = \lim_{t \to \infty} 50000(1 - e^{-0.1t})" />
+<BlockMath math="= 50000 \lim_{t \to \infty} (1 - e^{-0.1t})" />
+<BlockMath math="\begin{aligned}  &amp;= 50000(1 - 0) \\ &amp;= 50000 \text{ unit vaksin} \end{aligned}" />
+</MathContainer>
+
+Pengeluaran kumulatif dalam model itu menghampiri <InlineMath math="50{,}000" /> unit vaksin. Pengeluaran itu tidak sama dengan nilai tersebut pada mana-mana <InlineMath math="t" /> yang terhingga kerana <InlineMath math="e^{-0.1t}>0" /> untuk <InlineMath math="t" /> yang terhingga.
+
+**Soalan 2**. Bahagikan pengangka dan penyebut dengan <InlineMath math="t" /> untuk mengenal pasti **sebutan yang menghampiri sifar**. Pembahagian ini sah untuk <InlineMath math="t>0" />, seperti yang diperlukan berhampiran had ini.
+
+<MathContainer>
+<BlockMath math="\lim_{t \to \infty} I(t) = \lim_{t \to \infty} \frac{100000t}{t + 50}" />
+<BlockMath math="= \lim_{t \to \infty} \frac{100000t}{t(1 + \frac{50}{t})} = \lim_{t \to \infty} \frac{100000}{1 + \frac{50}{t}}" />
+<BlockMath math="= \frac{100000}{1 + 0} = 100000 \text{ orang}" />
+</MathContainer>
+
+Dalam model ini, capaian kumulatif menghampiri <InlineMath math="100{,}000 \text{ orang}" /> apabila masa bertambah. Nombor itu ialah aras ketepuan model. Mesej sebenar mungkin sampai kepada khalayak yang berbeza kerana keadaannya boleh berubah.
+
+**Soalan 3**. Kos marginal ialah terbitan fungsi kos, dan terbitan ini boleh dikira menggunakan takrif had:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\text{Kos Marginal} \\ &amp;= \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x} \end{aligned}" />
+</MathContainer>
+
+**Langkah terperinci**:
+
+<BlockMath math="\begin{aligned} C(x + \Delta x) &amp;= 1000 + 5(x + \Delta x) \\ &amp;\quad{}+ 0.01(x + \Delta x)^2 \end{aligned}" />
+
+Kita kembangkan:
+
+<BlockMath math="(x + \Delta x)^2 = x^2 + 2x\Delta x + (\Delta x)^2" />
+
+Kemudian kita gantikan:
+
+<BlockMath math="\begin{aligned} &amp;C(x + \Delta x) \\ &amp;= 1000 + 5x \\ &amp;\quad{}+ 5\Delta x + 0.01x^2 \\ &amp;\quad{}+ 0.02x\Delta x + 0.01(\Delta x)^2 \end{aligned}" />
+
+Jadi,
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(x + \Delta x) - C(x) \\ &amp;= 5\Delta x \\ &amp;\quad{}+ 0.02x\Delta x + 0.01(\Delta x)^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\frac{C(x + \Delta x) - C(x)}{\Delta x} \\ &amp;= 5 + 0.02x + 0.01\Delta x \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\lim_{\Delta x \to 0} (5 + 0.02x + 0.01\Delta x) \\ &amp;= 5 + 0.02x \end{aligned}" />
+</MathContainer>
+
+Jadi, fungsi kos marginal ialah <InlineMath math="C'(x)=5+0.02x" /> unit mata wang bagi setiap unit output.
+
+Kos tepat bagi satu unit penuh seterusnya ialah:
+
+<MathContainer>
+<BlockMath math="C(x+1)-C(x)" />
+<BlockMath math="\begin{aligned}  &amp;=1000 +5(x+1) \\ &amp;\quad{}+0.01(x+1)^2 \\ &amp;\quad{}-(1000+5x+0.01x^2) \end{aligned}" />
+<BlockMath math="=5.01+0.02x" />
+</MathContainer>
+
+Terbitan itu kurang <InlineMath math="0.01" /> unit mata wang daripada tokokan satu unit ini. Perbandingan ini menunjukkan sebab kos marginal ialah kadar seketika dan hanya anggaran bagi kos diskret unit seterusnya.
+
+Soalan 2 dalam bentuk carta: <InlineMath math="I(t) = \frac{100{,}000t}{t + 50}" /> naik perlahan-lahan ke arah <InlineMath math="100{,}000" />. Nilainya separuh daripada itu pada <InlineMath math="t = 50" />, <InlineMath math="80{,}000" /> pada <InlineMath math="t = 200" />, dan lebih kurang <InlineMath math="99{,}010" /> pada <InlineMath math="t = 5{,}000" />.
+
+<BarChart
+  title={<>Jangkitan menghampiri had</>}
+  description={<>Palang <InlineMath math="I(t)" /> untuk <InlineMath math="t = 50, 100, 200, 500, 1000, 5000" />.</>}
+  yAxisLabel="Orang"
+  data={[50, 100, 200, 500, 1000, 5000].map((x) => ({ name: String(x), value: (100000 * x) / (x + 50) }))}
+  chartConfig={{ value: { label: "Orang", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

@@ -2,39 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "descriptive",
-    topic: "cause-effect",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "narrative",
+    topic: "realism-fantasy",
   },
-  stimulus: "rooftop-garden",
+  stimulus: "reservoir",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Could happen in real life", "Could not happen in real life"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "The container will stay cooler because a dark surface reflects more sunlight.",
+            "A seedling planted at night reaches a girl's knee by the next morning.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "The rain gauge will become less accurate because the container color has changed.",
+            "A tamarind seedling reaches a girl's knee a year or two after it is planted.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "The tomato frames will be more likely to pull loose from their heavy planters.",
+            "A heron standing on a drowned minaret gives a loud cry as a boat drifts closer.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "The stored water will probably warm more quickly, repeating the condition linked to the wilted lettuce.",
-        },
-        {
-          correct: false,
-          label:
-            "The mesh will stop keeping leaves and insects out of the water.",
+            "A pencil line moves by itself overnight to curve around the place where a tree once stood.",
         },
       ],
     },
