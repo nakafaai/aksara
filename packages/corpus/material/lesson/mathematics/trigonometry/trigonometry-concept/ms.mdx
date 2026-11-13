@@ -1,0 +1,252 @@
+
+export const metadata = {
+  title: "Asas Trigonometri",
+  description: "Bina trigonometri daripada segi tiga bersudut tegak, keserupaan, teorem Pythagoras, enam nisbah, dan contoh mengukur tinggi daripada bayang dengan andaian yang dinyatakan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-13",
+  dateModified: "2026-11-08",
+  subject: "Trigonometri",
+};
+
+## Ukuran Segi Tiga dan Nisbah Sisi
+
+Perkataan trigonometri dibina daripada perkataan Yunani bagi segi tiga dan ukuran. Segi tiga bersudut tegak ialah titik mula yang semula jadi kerana <Highlight>nisbah sisinya ditentukan oleh sudutnya</Highlight>. Kemudian, trigonometri meluaskan idea ini kepada bulatan unit, fungsi berkala, dan banyak situasi selain segi tiga.
+
+### Mengingat Semula Teorem Pythagoras
+
+Untuk segi tiga bersudut tegak dengan kaki <InlineMath math="a" /> dan <InlineMath math="b" /> serta hipotenus <InlineMath math="c" />, teorem Pythagoras menyatakan:
+
+<BlockMath math="a^2 + b^2 = c^2" />
+
+Hipotenus **bertentangan dengan sudut tegak**. Kita akan gunakan teorem ini untuk menerbitkan nisbah sisi yang tepat bagi [segi tiga bersudut tegak khas](/ms/subjek/matematik/trigonometri/nisbah-trigonometri-sudut-khas).
+
+### Nisbah dan Kadaran
+
+Fungsi trigonometri bermula sebagai nisbah panjang sisi. Nisbah membandingkan dua kuantiti, manakala kadaran menyatakan bahawa **dua nisbah adalah sama**.
+
+Katakan sebatang pembaris tegak dan sebatang pokok tegak berdiri di atas tanah rata yang sama dan bayang kedua-duanya diukur pada masa yang sama. Cahaya matahari yang selari menjadikan dua segi tiga tinggi dan bayang itu serupa. Kalau tinggi pembaris <InlineMath math="6 \text{ cm}" />, bayangnya <InlineMath math="3 \text{ cm}" />, dan bayang pokok <InlineMath math="150 \text{ cm}" />, biar tinggi pokok ialah <InlineMath math="h" />:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;\frac{\text{tinggi pembaris}}{\text{bayang pembaris}} \\ &amp;=\frac{\text{tinggi pokok}}{\text{bayang pokok}} \end{aligned}" />
+  <BlockMath math="\frac{6}{3}=\frac{h}{150}" />
+  <BlockMath math="h=\frac{6}{3}\cdot150\text{ cm}=300\text{ cm}=3\text{ m}" />
+</MathContainer>
+
+Kadaran ini berfungsi kerana kedua-dua segi tiga berkongsi dua sudut tirus yang sama. Dua bayang sahaja tidak menjamin nisbah yang sama.
+
+## Segi Tiga Serupa
+
+Segi tiga serupa ada sudut sepadan yang sama dan **sisi sepadan yang berkadaran**. Mana-mana satu ujian piawai ini sudah cukup untuk membuktikan keserupaan:
+
+| Ujian | Maklumat yang mencukupi |
+| --- | --- |
+| AA | Dua pasang sudut sepadan adalah sama. Pasangan ketiga kemudian sama secara automatik. |
+| SSS | Ketiga-tiga pasang sisi sepadan berkadaran. |
+| SAS | Dua pasang sisi sepadan berkadaran dan sudut yang diapitnya adalah sama. |
+
+Segi tiga serupa ada bentuk yang sama walaupun saiznya berbeza. Setiap panjang sepadan didarab dengan faktor skala yang sama.
+
+### Aplikasi Segi Tiga Serupa
+
+Gunakan faktor skala sepunya untuk mencari panjang yang tidak diketahui atau mengekalkan kadaran:
+
+1. **Mengukur tinggi**: Bayang atau garis penglihatan boleh membentuk segi tiga serupa bagi objek yang susah diukur secara terus.
+
+2. **Lukisan berskala**: Pelan atau model mengekalkan kadaran manakala setiap panjang dibesarkan atau dikecilkan dengan satu faktor skala.
+
+3. **Geometri dan pembinaan**: Ukuran tidak langsung boleh disemak melalui sudut sepadan dan sisi yang berkadaran.
+
+## Nisbah Trigonometri
+
+Nisbah trigonometri membandingkan sisi-sisi segi tiga bersudut tegak berdasarkan sudut tirus yang dipilih.
+
+Bayangkan segi tiga bersudut tegak dengan sudut <InlineMath math="\theta" /> (theta). Kita namakan sisi-sisinya sebagai:
+
+- **Hipotenus**: sisi yang bertentangan dengan sudut tegak
+- **Sisi bertentangan**: sisi yang bertentangan dengan sudut <InlineMath math="\theta" />.
+- **Sisi bersebelahan**: sisi yang bersebelahan dengan sudut <InlineMath math="\theta" /> selain hipotenus.
+
+<ContentBlock>
+  <MathVisual
+    title={<>Nama sisi dalam segi tiga bersudut tegak</>}
+    description={<>Segi tiga bersudut tegak dengan <InlineMath math="\theta = 45^\circ" /> di bucu kiri, yang menunjukkan hipotenus, sisi bertentangan dan sisi bersebelahan.</>}
+    labels={{
+      opp: <>Sisi Bertentangan</>,
+      adj: <>Sisi Bersebelahan</>,
+      hyp: <>Hipotenus</>,
+      theta: <InlineMath math="\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 4.4 }, y: { min: -0.7, max: 3.6 } },
+      view: { kind: "fit", padding: 0.3 },
+      objects: [
+        { id: "hyp", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "primary" },
+        { id: "opp", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 3 }, appearance: "secondary" },
+        { id: "adj", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+        { id: "right", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 53 / 20, y: 0 }, { x: 53 / 20, y: 7 / 20 }, { x: 3, y: 7 / 20 }], appearance: "reference" },
+        { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 4 / 5, startDegrees: 0, sweepDegrees: 45, appearance: "highlight" },
+      ],
+      labels: [
+        { key: "hyp", objectId: "hyp", at: { x: 3 / 2, y: 3 / 2 }, placement: "above-left" },
+        { key: "opp", objectId: "opp", at: { x: 3, y: 3 / 2 }, placement: "right" },
+        { key: "adj", objectId: "adj", at: { x: 3 / 2, y: 0 }, placement: "below" },
+        { key: "theta", objectId: "theta", at: { x: 0.8 * Math.cos(Math.PI / 8), y: 0.8 * Math.sin(Math.PI / 8) }, placement: "right" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+Daripada tiga sisi ini, kita dapat enam nisbah trigonometri asas. Untuk sudut tirus dalam segi tiga bersudut tegak yang tidak merosot, ketiga-tiga panjang sisi positif, jadi setiap nisbah di bawah tertakrif:
+
+1. **Sinus** (<InlineMath math="\sin" />):
+
+   <BlockMath math="\sin \theta = \frac{\text{sisi bertentangan}}{\text{hipotenus}}" />
+
+2. **Kosinus** (<InlineMath math="\cos" />):
+
+   <BlockMath math="\cos \theta = \frac{\text{sisi bersebelahan}}{\text{hipotenus}}" />
+
+3. **Tangen** (<InlineMath math="\tan" />):
+
+   <BlockMath math="\tan \theta = \frac{\text{sisi bertentangan}}{\text{sisi bersebelahan}}" />
+
+4. **Kosekan** (<InlineMath math="\csc" />):
+
+   <BlockMath math="\csc \theta = \frac{1}{\sin \theta} = \frac{\text{hipotenus}}{\text{sisi bertentangan}}" />
+
+5. **Sekan** (<InlineMath math="\sec" />):
+
+   <BlockMath math="\sec \theta = \frac{1}{\cos \theta} = \frac{\text{hipotenus}}{\text{sisi bersebelahan}}" />
+
+6. **Kotangen** (<InlineMath math="\cot" />):
+
+   <BlockMath math="\cot \theta = \frac{1}{\tan \theta} = \frac{\text{sisi bersebelahan}}{\text{sisi bertentangan}}" />
+
+### Nisbah yang Ditentukan oleh Sudut
+
+Dua segi tiga bersudut tegak dengan sudut tirus yang sama, contohnya <InlineMath math="\theta=30^\circ" />, juga berkongsi sudut tegak. Jadi ujian AA membuktikan bahawa kedua-duanya serupa. Apabila setiap sisi diskalakan dengan **faktor yang sama**, setiap hasil bahagi panjang sisi sepadan tidak berubah.
+
+Contoh mudah:
+
+- Segi tiga <InlineMath math="A" /> ada sisi bertentangan <InlineMath math="3 \text{ cm}" /> dan hipotenus <InlineMath math="6 \text{ cm}" />.
+- Segi tiga <InlineMath math="B" /> ada sisi bertentangan <InlineMath math="5 \text{ cm}" /> dan hipotenus <InlineMath math="10 \text{ cm}" />.
+
+Kalau kita kira <InlineMath math="\sin \theta" /> bagi kedua-dua segi tiga:
+
+- <InlineMath math="\sin \theta" /> bagi segi tiga <InlineMath math="A" /> ialah <InlineMath math="\frac{3}{6} = 0.5" />.
+- <InlineMath math="\sin \theta" /> bagi segi tiga <InlineMath math="B" /> ialah <InlineMath math="\frac{5}{10} = 0.5" />.
+
+Walaupun saiz segi tiga itu berbeza, <InlineMath math="\sin \theta" /> ada nilai yang sama. Penaakulan yang sama juga digunakan untuk nisbah sisi yang lain.
+
+<MathVisual
+  title={<>Titik bagi <InlineMath math="\theta = 30^\circ" /> pada bulatan unit</>}
+  description={<>Jejari ke <InlineMath math="(\cos 30^\circ, \sin 30^\circ) = \left(\tfrac{\sqrt3}{2}, \tfrac12\right)" />, dengan <InlineMath math="\cos 30^\circ" /> sebagai kaki mengufuk dan <InlineMath math="\sin 30^\circ" /> sebagai kaki mencancang.</>}
+  labels={{
+    cos: <InlineMath math="\cos 30^\circ" />,
+    sin: <InlineMath math="\sin 30^\circ" />,
+    point: <InlineMath math="(\cos\theta, \sin\theta)" />,
+    theta: <InlineMath math="\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 1.3 }, y: { min: -1.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "cos", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.sqrt(3) / 2, y: 0 }, appearance: "construction" },
+      { id: "sin", kind: "segment", from: { x: Math.sqrt(3) / 2, y: 0 }, to: { x: Math.sqrt(3) / 2, y: 1 / 2 }, appearance: "highlight" },
+      { id: "radius", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.sqrt(3) / 2, y: 1 / 2 }, appearance: "primary" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 3 / 10, startDegrees: 0, sweepDegrees: 30, appearance: "highlight" },
+      { id: "point", kind: "point", at: { x: Math.sqrt(3) / 2, y: 1 / 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "cos", objectId: "cos", at: { x: Math.sqrt(3) / 2 / 2, y: 0 }, placement: "below" },
+      { key: "sin", objectId: "sin", at: { x: Math.sqrt(3) / 2, y: 1 / 4 }, placement: "right" },
+      { key: "point", objectId: "point", at: { x: Math.sqrt(3) / 2, y: 1 / 2 }, placement: "above-right" },
+      { key: "theta", objectId: "theta", at: { x: 0.3 * Math.cos(Math.PI / 12), y: 0.3 * Math.sin(Math.PI / 12) }, placement: "right" },
+    ],
+  }}
+/>
+
+Pada bulatan unit, titik yang sepadan dengan <InlineMath math="\theta" /> ada koordinat <InlineMath math="(\cos \theta,\sin \theta)" />. Takrif ini meluaskan sinus dan kosinus melebihi sudut tirus dalam segi tiga bersudut tegak.
+
+Nisbah segi tiga bersudut tegak dan koordinat bulatan unit sepadan untuk sudut tirus, jadi nilai yang sama boleh digunakan dalam masalah dengan segi tiga yang berlainan saiz.
+
+Lukis kedua-dua segi tiga dengan <InlineMath math="\theta = 30^\circ" /> di bucu yang sama. Segi tiga <InlineMath math="A" /> ada sisi bertentangan 3 cm dan hipotenus 6 cm, segi tiga <InlineMath math="B" /> ada 5 cm dan 10 cm, jadi <InlineMath math="\sin\theta = \frac36 = \frac{5}{10} = 0.5" /> bagi kedua-duanya.
+
+<MathVisual
+  title={<>Dua saiz, satu sinus</>}
+  description={<>Dua segi tiga bersudut tegak dengan <InlineMath math="\theta = 30^\circ" /> pada asalan: sisi bertentangan 3 dengan hipotenus 6, dan sisi bertentangan 5 dengan hipotenus 10.</>}
+  labels={{
+    "small-hyp": <InlineMath math="6" />,
+    "small-opp": <InlineMath math="3" />,
+    "big-hyp": <InlineMath math="10" />,
+    "big-opp": <InlineMath math="5" />,
+    theta: <InlineMath math="\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 9.6 }, y: { min: -0.7, max: 5.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "big", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 5 * Math.sqrt(3), y: 0 }, { x: 5 * Math.sqrt(3), y: 5 }], appearance: "secondary" },
+      { id: "small", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3 * Math.sqrt(3), y: 0 }, { x: 3 * Math.sqrt(3), y: 3 }], appearance: "primary" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 6 / 5, startDegrees: 0, sweepDegrees: 30, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "small-hyp", objectId: "small", at: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, placement: "above-left" },
+      { key: "small-opp", objectId: "small", at: { x: 3 * Math.sqrt(3), y: 3 / 2 }, placement: "left" },
+      { key: "big-hyp", objectId: "big", at: { x: 5 * Math.sqrt(3) / 2, y: 5 / 2 }, placement: "above-left" },
+      { key: "big-opp", objectId: "big", at: { x: 5 * Math.sqrt(3), y: 5 / 2 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 1.2 * Math.cos(Math.PI / 12), y: 1.2 * Math.sin(Math.PI / 12) }, placement: "right" },
+    ],
+  }}
+/>
+
+## Mengukur Panjang dan Memodelkan Perubahan Berkala
+
+Trigonometri menghubungkan **sudut dengan panjang** semasa mengukur bayang dan kecerunan bumbung. Pada bulatan unit, sinus dan kosinus juga berulang selepas satu pusingan. Ulangan itu digunakan untuk memodelkan gelombang, manakala navigasi cakerawala memerlukan geometri pada permukaan Bumi.
+
+### Mengukur Tinggi dengan Bayang
+
+Untuk objek tegak yang berdekatan di atas tanah rata, tinggi dibahagi dengan panjang bayang adalah sama apabila bayang itu diukur **pada masa yang sama**. Hal ini berlaku kerana cahaya matahari selari dan segi tiganya serupa.
+
+Lebih daripada <InlineMath math="2200 \text{ tahun}" /> dahulu, Eratosthenes menganggarkan lilitan Bumi dengan membandingkan sudut Matahari di dua lokasi dan menggabungkan beza sudut itu dengan jarak antara dua lokasi tersebut. Tanpa jarak itu, beza sudut sahaja tidak dapat menentukan lilitan.
+
+### Navigasi
+
+Dalam navigasi cakerawala, seorang pemerhati mengukur **altitud jasad cakerawala di atas ufuk** dan merekodkan masa cerapan. [U.S. Naval Observatory](https://aa.usno.navy.mil/faq/celnav) menyediakan data astronomi untuk menukar cerapan sebegini kepada garis kedudukan. Satu cerapan mengehadkan kedudukan kapal yang mungkin. Beberapa cerapan, bersama data masa dan pergerakan kapal, diperlukan untuk menentukan kedudukan.
+
+### Seni Bina dan Pembinaan
+
+Katakan sebuah bumbung membentuk sudut <InlineMath math="30^\circ" /> dengan garis mengufuk, dan jarak mengufuk dari tepinya ke puncak ialah <InlineMath math="3\text{ m}" />. Kasau bumbung ialah **hipotenus**, jadi panjangnya <InlineMath math="L" /> diperoleh daripada kosinus:
+
+<BlockMath math="\begin{aligned}\cos30^\circ&amp;=\frac{3}{L}\\L&amp;=\frac{3}{\cos30^\circ}=\frac{3}{\sqrt3/2}\\&amp;=2\sqrt3\text{ m}\approx3.46\text{ m}\end{aligned}" />
+
+Kasau itu lebih panjang daripada jarak mengufuk, kerana hipotenus mesti sisi yang paling panjang. Pengiraan ini tidak mengambil kira juntaian bumbung di luar tepinya.
+
+### Elektronik dan Gelombang
+
+Gelombang bunyi, gelombang radio, dan arus elektrik ulang-alik boleh dimodelkan dengan fungsi sinus dan kosinus. Gelombang berulang, jadi sudut yang bertambah melebihi satu pusingan penuh menerangkan **kitaran seterusnya**, bukan arah yang baharu. Sinus dan kosinus membawa ulangan itu untuk setiap isyarat berkala.
+
+## Mengukur Tinggi dengan Nisbah Bayang
+
+Pilih objek tegak yang berdekatan di atas tanah rata dan ukur bayangnya pada **masa yang hampir sama**. Cara ini memastikan sudut matahari kekal hampir sama.
+
+1. Ukur satu tinggi rujukan <InlineMath math="h_r" /> dan panjang bayang mengufuknya <InlineMath math="s_r" />.
+
+2. Kira nisbah sepunya <InlineMath math="k=h_r/s_r" />.
+
+3. Ukur panjang bayang objek lain <InlineMath math="s" /> dan anggarkan tingginya dengan <InlineMath math="h=ks" />.
+
+4. Kalau perlu, kira sudut dongak Matahari dengan <InlineMath math="\theta=\arctan k" />.
+
+Contohnya, kalau objek rujukan setinggi <InlineMath math="1.5 \text{ m}" /> menghasilkan bayang <InlineMath math="2.0 \text{ m}" />, maka <InlineMath math="k=0.75" />. Objek dengan bayang <InlineMath math="8.0 \text{ m}" /> ada tinggi anggaran
+
+<MathContainer>
+  <BlockMath math="h=0.75\times8.0\text{ m}=6.0\text{ m}" />
+  <BlockMath math="\theta=\arctan(0.75)\approx36.87^\circ" />
+</MathContainer>
+
+Kalau tanahnya condong, objek itu tidak tegak, atau masa ukuran berbeza dengan ketara, model mudah ini tidak lagi boleh digunakan tanpa pelarasan.
