@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "operation-pattern",
+    topic: "symbol-pattern",
   },
   versions: {
     id: {
@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$25$$",
+          label: "○ ○ ○ ○ ○ ○ ●",
         },
         {
           correct: false,
-          label: "$$43$$",
+          label: "○ ○ ● ● ○ ○ ○",
         },
         {
           correct: false,
-          label: "$$67$$",
+          label: "○ ○ ○ ○ ○ ● ●",
         },
         {
           correct: true,
-          label: "$$73$$",
+          label: "● ○ ○ ○ ○ ○ ●",
         },
         {
           correct: false,
-          label: "$$91$$",
+          label: "○ ● ● ● ○ ○ ○",
         },
       ],
     },

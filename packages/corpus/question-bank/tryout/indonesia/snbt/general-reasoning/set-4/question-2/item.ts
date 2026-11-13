@@ -6,33 +6,35 @@ const item: ItemSource = {
     contentDomain: "inductive-reasoning",
     topic: "weakening",
   },
-  stimulus: "lampu",
+  stimulus: "itik",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Lampu natrium lebih murah dipasang daripada lampu LED.",
+          label:
+            "Pemeriksaan tembolok itik pada pertengahan musim menunjukkan bahwa wereng hanya sebagian kecil dari isinya, jauh lebih sedikit daripada keong dan biji gulma yang ikut dimakan.",
         },
         {
           correct: true,
           label:
-            "Penutup penyaring cahaya biru juga mengurangi kecerahan lampu hingga kira-kira separuhnya.",
+            "Semua petak yang dilepasi itik ditanam serentak lebih awal, sedangkan sebagian besar petak tanpa itik ditanam tiga pekan kemudian, dan sejak sebelum ada itik, petak yang ditanam belakangan di desa itu lebih sering melewati ambang wereng.",
         },
         {
           correct: false,
           label:
-            "Perangkap di bawah kedua jenis lampu diganti dan dihitung isinya dengan jadwal yang sama setiap minggu.",
-        },
-        {
-          correct: false,
-          label: "Sebagian besar serangga yang tertangkap adalah ngengat.",
+            "Pada petak yang dilepasi itik, hitungan wereng tertinggi selama musim itu rata-rata $$7$$ ekor per rumpun, tidak jauh di bawah ambang yang membuat sebuah petak wajib disemprot.",
         },
         {
           correct: false,
           label:
-            "Penggantian lampu menghemat pemakaian listrik sekitar $$50\\%$$.",
+            "Pemilik petak tanpa itik menghitung wereng dua kali seminggu pada rumpun yang dipilih acak, dengan cara yang sama seperti pemilik petak yang dilepasi itik.",
+        },
+        {
+          correct: false,
+          label:
+            "Sebagian pemilik petak tanpa itik mengatakan bahwa mereka tidak memelihara itik karena khawatir itiknya dicuri dan tidak punya waktu untuk menggembalakannya.",
         },
       ],
     },

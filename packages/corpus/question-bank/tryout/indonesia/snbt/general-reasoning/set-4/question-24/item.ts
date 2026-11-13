@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
     topic: "data-interpretation",
   },
-  stimulus: "unduhan",
+  stimulus: "pelatihan",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -15,20 +15,21 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Selisih unduhan Y dan X pada bulan Januari adalah $$20$$ ribu.",
-        },
-        {
-          column: 1,
-          label: "Selisih unduhan Y dan X mengecil setiap bulan.",
-        },
-        {
-          column: 2,
-          label: "Rata-rata unduhan X per bulan lebih dari $$32$$ ribu.",
+            "Dari seluruh peserta yang mengikuti ujian di keempat kecamatan, kurang dari $$80\\%$$ yang lulus.",
         },
         {
           column: 2,
           label:
-            "Unduhan Y pada bulan Mei lebih dari $$1{,}25$$ kali unduhan Y pada bulan Januari.",
+            "Dibandingkan dengan banyak peserta terdaftarnya, Kecamatan S meluluskan bagian peserta yang paling besar.",
+        },
+        {
+          column: 2,
+          label:
+            "Kecamatan dengan persentase peserta memenuhi syarat kehadiran tertinggi juga memiliki persentase kelulusan tertinggi.",
+        },
+        {
+          column: 1,
+          label: "Kecamatan P meluluskan lebih dari $$60\\%$$ peserta terdaftarnya.",
         },
       ],
     },

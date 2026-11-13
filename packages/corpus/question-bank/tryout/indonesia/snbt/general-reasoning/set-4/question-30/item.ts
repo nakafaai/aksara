@@ -4,12 +4,18 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
-    topic: "arithmetic-series",
+    topic: "optimization",
   },
   versions: {
     id: {
-      kind: "numericEntry",
-      value: "728",
+      kind: "choice",
+      options: [
+        { correct: false, label: "pukul $$17.24$$" },
+        { correct: false, label: "pukul $$19.24$$" },
+        { correct: true, label: "pukul $$20.24$$" },
+        { correct: false, label: "pukul $$20.40$$" },
+        { correct: false, label: "pukul $$21.24$$" },
+      ],
     },
   },
 };
