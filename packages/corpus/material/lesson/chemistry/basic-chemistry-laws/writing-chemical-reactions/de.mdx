@@ -19,6 +19,31 @@ Das Grundmuster sieht so aus.
 
 Der Pfeil wird als „ergibt“ gelesen. Ein Pluszeichen trennt mehrere Stoffe auf derselben Seite.
 
+### Jede Formel ist ein echtes Molekül
+
+Bevor du eine Gleichung schreibst, lern die Formeln kennen. Dreh die Modelle von <InlineMath math="\mathrm{N_2}" />, <InlineMath math="\mathrm{O_2}" />, <InlineMath math="\mathrm{NO}" /> und <InlineMath math="\mathrm{SO_2}" />. Die kleinen Zahlen in einer Formel zählen die Atome in einem Molekül, deshalb darfst du sie **beim Ausgleichen nie ändern**.
+
+<MoleculeShapeLab
+  title={<>Formeln und Molekülformen</>}
+  description={<>Zähl die Atome in jedem Modell und vergleiche sie mit der Formel.</>}
+  molecules={[
+    { id: "nitrogen", name: "Stickstoff" },
+    { id: "oxygen", name: "Sauerstoff" },
+    { id: "nitrogen-monoxide", name: "Stickstoffmonoxid" },
+    { id: "sulfur-dioxide", name: "Schwefeldioxid" },
+  ]}
+  labels={{
+    atoms: <>Atome</>,
+    choose: "Molekül wählen",
+    fill: <>Kalottenmodell</>,
+    formula: <>Summenformel</>,
+    mass: <>Relative Molekülmasse</>,
+    shape: <>Bindungswinkel oder -länge</>,
+    view: "Dreidimensionales Molekülmodell",
+  }}
+/>
+
+
 ## Reaktionsgleichung der Methanverbrennung
 
 Ausgangspunkt ist ein gewöhnlicher Satz: Methan reagiert mit Sauerstoff zu Kohlendioxid und Wasser. Daraus werden zuerst die Stoffnamen und anschließend die **Formeln auf beiden Seiten des Pfeils**.
@@ -161,5 +186,31 @@ Mach den letzten Schritt mit dem Gas im Campingkocher: <InlineMath math="\mathrm
     c: <InlineMath math="\mathrm{C}:\ 3=3" />,
     h: <InlineMath math="\mathrm{H}:\ 8=4\cdot2" />,
     o: <InlineMath math="\mathrm{O}:\ 5\cdot2=3\cdot2+4" />,
+  }}
+/>
+
+### Den Ausgleich Atom für Atom prüfen
+
+Der letzte Schritt beim Aufstellen einer Gleichung ist die Kontrolle jedes Elements. Wähl eine Reaktion und schau dir die Atomzahlen an. Für jedes Element müssen die Zahlen links und rechts vom Gleichheitszeichen **übereinstimmen**. Koeffizienten dürfen sich ändern, Formeln nie.
+
+<ReactionBalanceLab
+  title={<>Ausgeglichene Gleichungen</>}
+  description={<>Jedes Element hat auf beiden Seiten gleich viele Atome.</>}
+  reactions={[
+    { id: "nitrogen-fixation", name: "Bildung von Stickstoffmonoxid", tab: <InlineMath math="\mathrm{NO}" /> },
+    { id: "sulfur-dioxide-oxidation", name: "Oxidation von Schwefeldioxid", tab: <InlineMath math="\mathrm{SO_3}" /> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Atome je Element</>,
+    choose: "Reaktion wählen",
+    economy: <>Atomökonomie</>,
+    equation: <>Reaktionsgleichung</>,
+    mass: <>Masse der Edukte und Produkte</>,
+    molecules: <>Anzahl der Moleküle</>,
+    products: <>Produkte</>,
+    progress: "Reaktionsverlauf",
+    reactants: <>Edukte</>,
+    view: "Reaktion auf Teilchenebene",
   }}
 />

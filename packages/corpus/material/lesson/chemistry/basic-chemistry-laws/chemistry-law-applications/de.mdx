@@ -149,6 +149,30 @@ Zuerst wird die Systemgrenze festgelegt, danach nur der tatsächlich relevante T
 - Bei zwei Verbindungen aus denselben Elementen erst ein Element auf dieselbe Masse bringen, dann das andere vergleichen.
 - Bei Gasvolumina prüfen, ob alle Gase bei gleicher Temperatur und gleichem Druck gemessen wurden.
 
+### Die Moleküle hinter den Zahlen
+
+In einer Aufgabe mit zwei Gesetzen **kommt jede Masse und jedes Volumen von echten Molekülen**. Dreh die Modelle von <InlineMath math="\mathrm{C_3H_8}" />, <InlineMath math="\mathrm{CO_2}" /> und <InlineMath math="\mathrm{H_2O}" />. Die relative Molekülmasse zeigt, woher eine Zahl wie <InlineMath math="44" /> oder <InlineMath math="18" /> kommt: aus den Massen der Atome zusammengezählt.
+
+<MoleculeShapeLab
+  title={<>Moleküle in einer Verbrennungsaufgabe</>}
+  description={<>Der Brennstoff Propan und seine zwei Verbrennungsprodukte.</>}
+  molecules={[
+    { id: "propane", name: "Propan" },
+    { id: "carbon-dioxide", name: "Kohlenstoffdioxid" },
+    { id: "water", name: "Wasser" },
+  ]}
+  labels={{
+    atoms: <>Atome</>,
+    choose: "Molekül wählen",
+    fill: <>Kalottenmodell</>,
+    formula: <>Summenformel</>,
+    mass: <>Relative Molekülmasse</>,
+    shape: <>Bindungswinkel oder -länge</>,
+    view: "Dreidimensionales Molekülmodell",
+  }}
+/>
+
+
 ## Methanverbrennung
 
 Methan verbrennt nach folgender ausgeglichener Gleichung:
@@ -199,5 +223,30 @@ Lies die Koeffizienten von <InlineMath math="\mathrm{CH_4(g)}+2\mathrm{O_2(g)}\r
     o2: <InlineMath math="2\mathrm{O_2}:\ 100\ \mathrm{mL}" />,
     co2: <InlineMath math="\mathrm{CO_2}:\ 50\ \mathrm{mL}" />,
     h2o: <InlineMath math="2\mathrm{H_2O(g)}:\ 100\ \mathrm{mL}" />,
+  }}
+/>
+
+### Propan folgt denselben Regeln
+
+Methan ist nicht der einzige Brennstoff, mit dem du rechnen kannst. Flaschengas zum Kochen besteht vor allem aus Propan, und auch seine Verbrennung **geht Atom für Atom auf**. Zieh den Regler und beobachte, wie aus <InlineMath math="6" /> Eduktmolekülen <InlineMath math="7" /> Produktmoleküle werden, während beide Seiten die Masse <InlineMath math="204" /> behalten.
+
+<ReactionBalanceLab
+  title={<>Verbrennung von Propan</>}
+  description={<>Ein Propanmolekül reagiert mit fünf Sauerstoffmolekülen.</>}
+  reactions={[
+    { id: "propane-combustion", name: "Verbrennung von Propan", tab: <InlineMath math="\mathrm{C_3H_8}" /> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Atome je Element</>,
+    choose: "Reaktion wählen",
+    economy: <>Atomökonomie</>,
+    equation: <>Reaktionsgleichung</>,
+    mass: <>Masse der Edukte und Produkte</>,
+    molecules: <>Anzahl der Moleküle</>,
+    products: <>Produkte</>,
+    progress: "Reaktionsverlauf",
+    reactants: <>Edukte</>,
+    view: "Reaktion auf Teilchenebene",
   }}
 />

@@ -19,6 +19,31 @@ The basic pattern looks like this.
 
 Read the arrow as "yields". A plus sign means there is more than one substance on the same side.
 
+### Every Formula Is a Real Molecule
+
+Before you write an equation, get to know each formula. Turn the models of <InlineMath math="\mathrm{N_2}" />, <InlineMath math="\mathrm{O_2}" />, <InlineMath math="\mathrm{NO}" />, and <InlineMath math="\mathrm{SO_2}" />. The small numbers in a formula count the atoms inside one molecule, so you must **never change them while balancing**.
+
+<MoleculeShapeLab
+  title={<>Formulas and Molecular Shapes</>}
+  description={<>Count the atoms in each model and match them to the formula.</>}
+  molecules={[
+    { id: "nitrogen", name: "Nitrogen" },
+    { id: "oxygen", name: "Oxygen" },
+    { id: "nitrogen-monoxide", name: "Nitrogen monoxide" },
+    { id: "sulfur-dioxide", name: "Sulfur dioxide" },
+  ]}
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Choose a molecule",
+    fill: <>Space-filling model</>,
+    formula: <>Molecular formula</>,
+    mass: <>Relative molecular mass</>,
+    shape: <>Bond angle or length</>,
+    view: "Three-dimensional molecular model",
+  }}
+/>
+
+
 ## Methane Combustion Equation
 
 Start from an ordinary sentence: methane reacts with oxygen to produce carbon dioxide and water. **Reactants go on the left**, products go on the right.
@@ -161,5 +186,31 @@ Run the last step on the gas in a camping stove: <InlineMath math="\mathrm{C_3H_
     c: <InlineMath math="\mathrm{C}:\ 3=3" />,
     h: <InlineMath math="\mathrm{H}:\ 8=4\cdot2" />,
     o: <InlineMath math="\mathrm{O}:\ 5\cdot2=3\cdot2+4" />,
+  }}
+/>
+
+### Checking a Balance Atom by Atom
+
+The last step in writing an equation is to check each element. Choose a reaction and look at the atom count reading. The numbers on both sides of each equals sign **must match for every element**. Coefficients may change, but formulas never do.
+
+<ReactionBalanceLab
+  title={<>Balanced Equations</>}
+  description={<>Every element has the same number of atoms on both sides.</>}
+  reactions={[
+    { id: "nitrogen-fixation", name: "Forming nitrogen monoxide", tab: <InlineMath math="\mathrm{NO}" /> },
+    { id: "sulfur-dioxide-oxidation", name: "Oxidising sulfur dioxide", tab: <InlineMath math="\mathrm{SO_3}" /> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Atoms of each element</>,
+    choose: "Choose a reaction",
+    economy: <>Atom economy</>,
+    equation: <>Balanced equation</>,
+    mass: <>Mass of reactants and products</>,
+    molecules: <>Number of molecules</>,
+    products: <>Products</>,
+    progress: "Reaction progress",
+    reactants: <>Reactants</>,
+    view: "Reaction at the level of atoms",
   }}
 />

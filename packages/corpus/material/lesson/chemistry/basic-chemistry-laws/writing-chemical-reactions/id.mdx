@@ -19,6 +19,31 @@ Pola dasarnya seperti ini.
 
 Tanda panah dibaca "menghasilkan". Tanda tambah berarti ada lebih dari satu zat di sisi yang sama.
 
+### Setiap Rumus Adalah Molekul Nyata
+
+Sebelum menulis persamaan, kenali dulu rumus setiap zat. Putar model <InlineMath math="\mathrm{N_2}" />, <InlineMath math="\mathrm{O_2}" />, <InlineMath math="\mathrm{NO}" />, dan <InlineMath math="\mathrm{SO_2}" />. Angka kecil di rumus menghitung atom di dalam satu molekul, jadi angka itu **tidak boleh kamu ubah saat menyetarakan reaksi**.
+
+<MoleculeShapeLab
+  title={<>Rumus dan Bentuk Molekul</>}
+  description={<>Hitung atom pada setiap model dan cocokkan dengan rumusnya.</>}
+  molecules={[
+    { id: "nitrogen", name: "Nitrogen" },
+    { id: "oxygen", name: "Oksigen" },
+    { id: "nitrogen-monoxide", name: "Nitrogen monoksida" },
+    { id: "sulfur-dioxide", name: "Belerang dioksida" },
+  ]}
+  labels={{
+    atoms: <>Atom penyusun</>,
+    choose: "Pilih molekul",
+    fill: <>Model ruang</>,
+    formula: <>Rumus molekul</>,
+    mass: <>Massa molekul relatif</>,
+    shape: <>Sudut atau panjang ikatan</>,
+    view: "Model molekul tiga dimensi",
+  }}
+/>
+
+
 ## Persamaan Pembakaran Metana
 
 Mulai dari kalimat biasa: metana bereaksi dengan oksigen menghasilkan karbon dioksida dan air. Di kiri ada **reaktan, di kanan ada produk**.
@@ -161,5 +186,31 @@ Jalankan langkah terakhir pada gas di kompor kemah: <InlineMath math="\mathrm{C_
     c: <InlineMath math="\mathrm{C}:\ 3=3" />,
     h: <InlineMath math="\mathrm{H}:\ 8=4\cdot2" />,
     o: <InlineMath math="\mathrm{O}:\ 5\cdot2=3\cdot2+4" />,
+  }}
+/>
+
+### Memeriksa Kesetaraan Atom demi Atom
+
+Langkah terakhir menulis persamaan adalah memeriksa setiap unsur. Pilih salah satu reaksi dan lihat kolom jumlah atom. Nilai di kiri dan kanan tanda sama dengan **harus sama untuk setiap unsur**. Koefisien boleh berubah, tetapi rumus tidak.
+
+<ReactionBalanceLab
+  title={<>Persamaan yang Setara</>}
+  description={<>Jumlah atom tiap unsur sama di kedua sisi.</>}
+  reactions={[
+    { id: "nitrogen-fixation", name: "Pembentukan nitrogen monoksida", tab: <InlineMath math="\mathrm{NO}" /> },
+    { id: "sulfur-dioxide-oxidation", name: "Oksidasi belerang dioksida", tab: <InlineMath math="\mathrm{SO_3}" /> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Jumlah atom tiap unsur</>,
+    choose: "Pilih reaksi",
+    economy: <>Ekonomi atom</>,
+    equation: <>Persamaan reaksi</>,
+    mass: <>Massa pereaksi dan produk</>,
+    molecules: <>Jumlah molekul</>,
+    products: <>Produk</>,
+    progress: "Jalannya reaksi",
+    reactants: <>Pereaksi</>,
+    view: "Reaksi pada tingkat atom",
   }}
 />

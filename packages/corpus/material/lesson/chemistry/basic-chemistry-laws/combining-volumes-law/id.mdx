@@ -19,6 +19,33 @@ Aturan ini hanya berlaku untuk zat yang berwujud gas. Volumenya juga harus diban
 
 Kita memakai **pendekatan gas ideal** dan menghitung volume yang benar-benar bereaksi atau terbentuk. Gas berlebih yang tidak bereaksi harus dihitung terpisah.
 
+### Koefisien Menghitung Molekul
+
+Perbandingan volume gas sama dengan perbandingan koefisien karena **koefisien menghitung molekul**. Pilih reaksi hidrogen klorida, lalu geser slider. <InlineMath math="1" /> molekul <InlineMath math="\mathrm{H_2}" /> dan <InlineMath math="1" /> molekul <InlineMath math="\mathrm{Cl_2}" /> menghasilkan <InlineMath math="2" /> molekul <InlineMath math="\mathrm{HCl}" />, persis seperti perbandingan volume <InlineMath math="1 : 1 : 2" />.
+
+<ReactionBalanceLab
+  title={<>Molekul Gas Bergabung</>}
+  description={<>Bandingkan jumlah molekul sebelum dan sesudah reaksi.</>}
+  reactions={[
+    { id: "hydrogen-chloride-synthesis", name: "Pembentukan hidrogen klorida", tab: <InlineMath math="\mathrm{HCl}" /> },
+    { id: "ammonia-synthesis", name: "Pembentukan amonia", tab: <InlineMath math="\mathrm{NH_3}" /> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Jumlah atom tiap unsur</>,
+    choose: "Pilih reaksi",
+    economy: <>Ekonomi atom</>,
+    equation: <>Persamaan reaksi</>,
+    mass: <>Massa pereaksi dan produk</>,
+    molecules: <>Jumlah molekul</>,
+    products: <>Produk</>,
+    progress: "Jalannya reaksi",
+    reactants: <>Pereaksi</>,
+    view: "Reaksi pada tingkat atom",
+  }}
+/>
+
+
 ## Air Harus Berwujud Gas
 
 Perhatikan persamaan pembentukan uap air.
@@ -180,6 +207,30 @@ V_{\mathrm{N_2}} &= 1 \times 300 = 300\ \mathrm{mL}
 \end{aligned}" />
 
 Jadi, penguraian <InlineMath math="600\ \mathrm{mL}" /> gas amonia menghasilkan <InlineMath math="900\ \mathrm{mL}" /> gas hidrogen dan <InlineMath math="300\ \mathrm{mL}" /> gas nitrogen.
+
+### Molekul dalam Contoh Amonia
+
+Amonia terurai menjadi nitrogen dan hidrogen. Putar ketiga molekulnya dan hitung atomnya. Setiap <InlineMath math="\mathrm{NH_3}" /> membawa <InlineMath math="1" /> atom nitrogen, sedangkan setiap <InlineMath math="\mathrm{N_2}" /> butuh <InlineMath math="2" />. Itulah sebabnya <InlineMath math="2" /> volume amonia **hanya menghasilkan** <InlineMath math="1" /> volume nitrogen.
+
+<MoleculeShapeLab
+  title={<>Amonia, Nitrogen, dan Hidrogen</>}
+  description={<>Model tiga dimensi dari pereaksi dan produk penguraian amonia.</>}
+  molecules={[
+    { id: "ammonia", name: "Amonia" },
+    { id: "nitrogen", name: "Nitrogen" },
+    { id: "hydrogen", name: "Hidrogen" },
+  ]}
+  labels={{
+    atoms: <>Atom penyusun</>,
+    choose: "Pilih molekul",
+    fill: <>Model ruang</>,
+    formula: <>Rumus molekul</>,
+    mass: <>Massa molekul relatif</>,
+    shape: <>Sudut atau panjang ikatan</>,
+    view: "Model molekul tiga dimensi",
+  }}
+/>
+
 
 ## Syarat Perbandingan Volume Gas
 
