@@ -1,28 +1,32 @@
-Hitung **nilai akhir setiap mahasiswa**, lalu periksa ketiga syarat. Seorang mahasiswa lulus hanya jika tidak gagal pada satu syarat pun.
+Soal ini meminta pernyataan yang pasti benar, dengan syarat tepat dua dari lima pernyataan salah. Daripada mencoba satu per satu secara acak, cari dulu **pasangan pernyataan yang saling terkait**, karena pasangan itu mengunci banyaknya pernyataan yang salah.
 
-<BlockMath math="\begin{aligned}
-\text{Ayu} &: 0{,}4(80)+0{,}6(50)=32+30=62 \\
-\text{Bagas} &: 0{,}4(90)+0{,}6(45)=36+27=63 \\
-\text{Citra} &: 0{,}4(55)+0{,}6(65)=22+39=61 \\
-\text{Dimas} &: 0{,}4(50)+0{,}6(66)=20+39{,}6=59{,}6 \\
-\text{Elsa} &: 0{,}4(70)+0{,}6(60)=28+36=64
-\end{aligned}" />
+Ada dua pasangan seperti itu.
 
-| Mahasiswa | Nilai akhir paling sedikit 60 | Kehadiran paling sedikit 75% | UAS paling sedikit 50 | Lulus? |
-| --- | --- | --- | --- | --- |
-| Ayu | Ya | Ya | Ya, tepat <InlineMath math="50" /> | Ya |
-| Bagas | Ya | Ya | Tidak | Tidak |
-| Citra | Ya | Tidak | Ya | Tidak |
-| Dimas | Tidak | Ya | Ya | Tidak |
-| Elsa | Ya | Ya, tepat <InlineMath math="75\%" /> | Ya | Ya |
+- Yosef berkata pernyataan Rani salah. Jadi pernyataan Yosef benar tepat ketika pernyataan Rani salah. Dari pasangan Rani dan Yosef, selalu tepat satu yang salah.
+- Vina berkata pernyataan Putu benar. Jadi pernyataan Vina dan pernyataan Putu selalu bernilai sama: keduanya benar, atau keduanya salah.
 
-Ayu dan Elsa memenuhi syarat tepat pada batasnya. Kata **paling sedikit** berarti nilai yang sama dengan batas tetap memenuhi syarat.
+Sekarang hitung. Total yang salah tepat dua, dan pasangan Rani dan Yosef sudah menyumbang satu. Jadi masih ada tepat satu pernyataan salah di antara Putu, Vina, dan Joko. Putu dan Vina tidak bisa menyumbang tepat satu, karena keduanya selalu benar bersama atau salah bersama. Akibatnya Putu dan Vina sama-sama benar, dan pernyataan Joko yang salah.
 
-Pilihan lain muncul karena satu syarat terlewat:
+Pernyataan Joko salah berarti Vina yang lupa. Cek pernyataan lain dengan Vina sebagai orang yang lupa. Putu benar, karena yang lupa memang Rani atau Vina. Rani juga benar, karena yang lupa bukan Rani dan bukan Yosef. Maka pernyataan Yosef salah, dan dua pernyataan yang salah adalah milik Yosef dan Joko.
 
-- Bagas ikut lulus jika syarat UAS diabaikan, padahal UAS-nya <InlineMath math="45" />.
-- Citra ikut lulus jika syarat kehadiran diabaikan, padahal kehadirannya <InlineMath math="70\%" />.
-- Dimas ikut lulus jika nilai akhir <InlineMath math="59{,}6" /> dibulatkan menjadi <InlineMath math="60" />, padahal syaratnya paling sedikit <InlineMath math="60" />.
-- "Elsa saja" muncul jika Ayu dianggap gagal karena UAS-nya tepat <InlineMath math="50" />.
+Tabel berikut memeriksa kelima kemungkinan sekaligus, supaya terlihat bahwa jawabannya tunggal. B berarti pernyataan benar dan S berarti pernyataan salah.
 
-Jadi, mahasiswa yang lulus adalah Ayu dan Elsa.
+| Yang lupa | Putu | Rani | Vina | Yosef | Joko | Banyak yang salah |
+| --- | --- | --- | --- | --- | --- | --- |
+| Joko | S | B | S | S | B | 3 |
+| Putu | S | B | S | S | B | 3 |
+| Rani | B | S | B | B | B | 1 |
+| Vina | B | B | B | S | S | 2 |
+| Yosef | S | S | S | B | B | 3 |
+
+Hanya baris Vina yang memuat tepat dua pernyataan salah.
+
+Sekarang periksa setiap pilihan.
+
+- Rani yang lupa dengan pernyataan Yosef benar membuat hanya satu pernyataan yang salah, yaitu milik Rani. Jebakan ini muncul jika kamu menyalahkan Rani dari pasangan Rani dan Yosef, lalu lupa menghitung ulang banyaknya pernyataan salah.
+- Pernyataan Putu dan Vina sama-sama salah sudah menghabiskan jatah dua kesalahan, padahal pasangan Rani dan Yosef selalu menambah satu lagi. Totalnya menjadi tiga.
+- Vina yang lupa dengan pernyataan Rani benar cocok dengan baris Vina. Ini satu-satunya pilihan yang pasti benar.
+- Yosef yang lupa dengan pernyataan Joko benar membuat tiga pernyataan salah. Pilihan ini cocok hanya jika syaratnya terbaca "tepat dua benar", bukan "tepat dua salah".
+- Vina yang lupa dengan pernyataan Joko benar tidak mungkin, karena Joko justru berkata bukan Vina yang lupa.
+
+Jadi, yang pasti benar adalah Vina yang lupa mengembalikan kunci, dan pernyataan Rani benar.

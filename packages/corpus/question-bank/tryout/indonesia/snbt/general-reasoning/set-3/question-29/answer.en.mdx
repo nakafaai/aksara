@@ -1,15 +1,35 @@
-Write the number as <InlineMath math="\overline{abc}" /> with <InlineMath math="a+b+c=5" />. The key condition is that **the hundreds digit <InlineMath math="a" /> cannot be zero**, since the number must have three digits.
+Call the hundreds digit <InlineMath math="r" />, the tens digit <InlineMath math="p" />, and the units digit <InlineMath math="s" />. Every digit comes from <InlineMath math="1" /> to <InlineMath math="9" />, and no two are the same. The second condition asks for <InlineMath math="r > s" />. The exclusion throws out numbers with <InlineMath math="p > r" />, so the ones left have <InlineMath math="p < r" />, since <InlineMath math="p" /> can't equal <InlineMath math="r" />.
 
-Count by the value of <InlineMath math="a" />. For each <InlineMath math="a" />, the remainder <InlineMath math="5-a" /> is split between <InlineMath math="b" /> and <InlineMath math="c" />, each from <InlineMath math="0" /> to <InlineMath math="9" />. The number of pairs <InlineMath math="(b,c)" /> with <InlineMath math="b+c=s" /> is <InlineMath math="s+1" />.
+Put the two rules together: <InlineMath math="r > s" /> and <InlineMath math="r > p" />. That means **the hundreds digit has to be the largest** of the three. Now count case by case, by the value of <InlineMath math="r" />.
 
-| <InlineMath math="a" /> | <InlineMath math="b+c" /> | Number of pairs |
-| --- | --- | --- |
-| <InlineMath math="1" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
-| <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> |
-| <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
-| <InlineMath math="4" /> | <InlineMath math="1" /> | <InlineMath math="2" /> |
-| <InlineMath math="5" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
+For a given <InlineMath math="r" />, the units digit comes from <InlineMath math="1" /> to <InlineMath math="r - 1" />, which gives <InlineMath math="r - 1" /> choices. The tens digit also has to be smaller than <InlineMath math="r" /> and can't match the units digit, which gives <InlineMath math="r - 2" /> choices.
 
-<BlockMath math="5+4+3+2+1=15" />
+| Hundreds digit <InlineMath math="r" /> | Units choices | Tens choices | Numbers |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> or <InlineMath math="2" /> | not enough digits | not enough digits | <InlineMath math="0" /> |
+| <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="2" /> |
+| <InlineMath math="4" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="6" /> |
+| <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="3" /> | <InlineMath math="12" /> |
+| <InlineMath math="6" /> | <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="20" /> |
+| <InlineMath math="7" /> | <InlineMath math="6" /> | <InlineMath math="5" /> | <InlineMath math="30" /> |
+| <InlineMath math="8" /> | <InlineMath math="7" /> | <InlineMath math="6" /> | <InlineMath math="42" /> |
+| <InlineMath math="9" /> | <InlineMath math="8" /> | <InlineMath math="7" /> | <InlineMath math="56" /> |
 
-For example, with <InlineMath math="a=3" /> the numbers are <InlineMath math="302" />, <InlineMath math="311" />, and <InlineMath math="320" />. Counting a zero hundreds digit as well would give <InlineMath math="21" />, but a number like <InlineMath math="023" /> does not have three digits. So there are <InlineMath math="15" /> numbers.
+Add up the cases.
+
+<BlockMath math="2 + 6 + 12 + 20 + 30 + 42 + 56 = 168" />
+
+Check it another way. First pick three different digits from <InlineMath math="1" /> to <InlineMath math="9" />. There are <InlineMath math="\binom{9}{3} = 84" /> ways. The largest digit must go in the hundreds place, and the other two can swap places, so each choice gives <InlineMath math="2" /> numbers.
+
+<BlockMath math="84 \times 2 = 168" />
+
+This also explains the exclusion. Before it, each set of three digits gives <InlineMath math="3" /> numbers with the hundreds digit bigger than the units digit, <InlineMath math="84 \times 3 = 252" /> in total. Of those three, exactly one puts the largest digit in the tens place, and that's the one thrown out.
+
+Some common wrong results:
+
+- <InlineMath math="252" /> means the exclusion was forgotten.
+- <InlineMath math="126" /> comes from assuming the tens digit beats the hundreds digit in half the cases. It's only a third, one arrangement out of three.
+- <InlineMath math="240" /> comes from letting the digit <InlineMath math="0" /> into the tens or units place.
+- <InlineMath math="84" /> is the number thrown out, not the number left.
+
+So <InlineMath math="168" /> numbers are left.

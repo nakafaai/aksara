@@ -1,17 +1,23 @@
-Ordne die Angaben als **Vergleichsketten**. Das Zeichen <InlineMath math=">" /> bedeutet schwerer.
+Gesucht ist die Aussage, die in **jeder Größenreihenfolge** gilt, die zu allen vier Angaben passt, nicht nur in der ersten, die du findest.
 
-<BlockMath math="\begin{aligned}
-P &> S > R \\
-P &> T > Q
-\end{aligned}" />
+Fang mit der Angabe an, die eine Position festlegt, also Angabe 4. Genau drei Mitglieder sind größer als Mira, also ist Mira die Viertgrößte. Bei sechs Mitgliedern sind damit genau zwei kleiner als Mira.
 
-Die erste Kette folgt aus "S ist leichter als P" und "R ist leichter als S". Die zweite folgt aus der Aussage über T und Q. P steht an der Spitze beider Ketten, ist also schwerer als alle vier anderen Kisten. Also **ist P sicher die schwerste Kiste**.
+Schau jetzt, wer über Mira stehen kann. Lusi ist sicher größer als Mira, und Oki ist sicher kleiner (Angabe 1). Die drei Mitglieder, die größer als Mira sind, sind also Lusi und zwei aus Kevin, Sekar und Niken.
 
-Die beiden Ketten werden nie miteinander verglichen, daher lässt sich die Reihenfolge von S, R, T und Q nicht festlegen:
+Prüf Sekar mit einer Annahme. Angenommen, Sekar wäre kleiner als Mira. Niken ist kleiner als Sekar (Angabe 3), also wäre auch Niken kleiner als Mira. Zusammen mit Oki wären das drei Mitglieder unter Mira, aber es gibt nur zwei Plätze. Die Annahme ist unmöglich, also **ist Sekar sicher größer als Mira**.
 
-- Q ist nicht unbedingt die leichteste, denn R könnte leichter sein als Q.
-- S und T werden nie verglichen, S ist also nicht unbedingt schwerer als T.
-- Auch R und Q werden nie verglichen.
-- Die zweitschwerste kann S oder T sein, T ist also nicht unbedingt die zweitschwerste.
+Für das ganze Bild teilst du alle Reihenfolgen in zwei Fälle, je nachdem, wo Niken steht. Die Reihenfolgen sind von groß nach klein notiert.
 
-Sicher wahr ist also, dass P die schwerste Kiste ist.
+- Niken ist größer als Mira. Die oberen drei sind Lusi, Sekar und Niken. Kevin rutscht unter Mira, und weil Kevin größer als Oki ist, sind die unteren zwei Kevin und dann Oki. Zum Beispiel: Lusi, Sekar, Niken, Mira, Kevin, Oki.
+- Niken ist kleiner als Mira. Die unteren zwei sind Niken und Oki in beliebiger Reihenfolge. Die oberen drei sind Lusi, Kevin und Sekar, wobei Lusi größer als Kevin ist. Zum Beispiel: Lusi, Kevin, Sekar, Mira, Oki, Niken.
+
+In beiden Fällen steht Sekar über Mira.
+
+Jede andere Option hat eine gültige Reihenfolge, in der sie falsch ist.
+
+- Die Aussage, Lusi sei am größten, scheitert an Sekar, Lusi, Kevin, Mira, Niken, Oki. Die Angaben setzen Lusi nur über Mira, Kevin und Oki, nicht über Sekar.
+- Kevin größer als Mira scheitert an Lusi, Sekar, Niken, Mira, Kevin, Oki. Diese Option erwischt dich, wenn du vergisst, dass Niken über Mira rücken und Kevin nach unten drücken kann.
+- Die Aussage, Oki sei am kleinsten, scheitert an Lusi, Kevin, Sekar, Mira, Oki, Niken. Keine Angabe vergleicht Oki mit Niken.
+- Sekar größer als Kevin scheitert an Lusi, Kevin, Sekar, Mira, Niken, Oki. Die Angaben vergleichen Sekar nie mit Kevin.
+
+Sicher wahr ist also, dass Sekar größer als Mira ist.

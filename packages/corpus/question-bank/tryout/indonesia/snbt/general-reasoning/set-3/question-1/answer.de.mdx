@@ -1,12 +1,24 @@
-Eine gute Schlussfolgerung muss **zwei Muster zugleich** erklären: Gehwege hinter Hecken sind sauberer, und der Unterschied ist bei schwachem Wind viel größer.
+Gesucht ist die Schlussfolgerung, die die Tabelle wirklich garantiert. Die Tabelle teilt die Kaffeegärten nach Hanglage auf, also brauchst du zwei Schritte: Vergleiche Gärten mit und ohne Schattenbäume **am selben Hang**, und prüfe dann, wie die Verteilung der Gärten auf die beiden Hänge die Gesamtdurchschnitte prägt.
 
-Bei schwachem Wind treiben die Abgaspartikel langsam, sodass die Hecke sie abfangen kann, bevor sie den Gehweg erreichen. Der Unterschied bei PM2,5 beträgt dann <InlineMath math="30\%" />. Bei starkem Wind vermischt sich die Luft schnell in alle Richtungen, die Hecke wirkt weniger, und der Unterschied schrumpft auf <InlineMath math="8\%" />. Beide Muster passen zur Schlussfolgerung, dass **die Hecke einen Teil der Partikel aufhält**, vor allem wenn sich die Luft kaum bewegt.
+Beginne innerhalb jedes Hangs. Am flachen Hang (*lereng landai*) bringen beschattete Gärten im Schnitt <InlineMath math="1{.}000" /> Kilogramm pro Hektar, unbeschattete <InlineMath math="900" />. Am steilen Hang (*lereng curam*) sind es <InlineMath math="700" /> gegen <InlineMath math="600" />. An beiden Hängen liegen die beschatteten Gärten <InlineMath math="100" /> Kilogramm pro Hektar vorn.
 
-Die anderen Optionen sind nicht gestützt:
+Berechne jetzt die Gesamtdurchschnitte. Alle Gärten sind gleich groß, also ist der Gesamtdurchschnitt ein gewichteter Durchschnitt: Multipliziere den Durchschnitt jeder Gruppe mit ihrer Anzahl an Gärten, addiere und teile durch die Gesamtzahl.
 
-- Gemessen wurden Gehwege an <InlineMath math="12" /> Straßenabschnitten, nicht die Luft der ganzen Stadt.
-- Bei starkem Wind beträgt der Unterschied noch <InlineMath math="8\%" />, die Wirkung ist also klein, aber nicht null.
-- An Abschnitten mit dichten Hecken war PM2,5 auf der Fahrbahn sogar höher, die Fahrenden profitieren also nicht.
-- Einen Grenzwert nennt der Text nicht.
+<BlockMath math="\begin{aligned} \text{beschattet} &= \frac{10\cdot 1{.}000+40\cdot 700}{50}=\frac{38{.}000}{50}=760 \\ \text{unbeschattet} &= \frac{40\cdot 900+10\cdot 600}{50}=\frac{42{.}000}{50}=840 \end{aligned}" />
 
-Am wahrscheinlichsten ist also, dass die Hecken einen Teil der Partikel von der Straße fernhalten, besonders wenn sich die Luft kaum bewegt.
+Insgesamt verlieren die beschatteten Gärten, obwohl sie an jedem Hang gewinnen. Der Grund ist die Verteilung. Von den <InlineMath math="50" /> beschatteten Gärten liegen <InlineMath math="40" /> am ertragsschwachen steilen Hang, während <InlineMath math="40" /> der <InlineMath math="50" /> unbeschatteten Gärten am ertragsstarken flachen Hang liegen.
+
+Die Was-wäre-wenn-Schlussfolgerung prüft genau das. Verteile die beschatteten Gärten wie die unbeschatteten, also <InlineMath math="40" /> am flachen und <InlineMath math="10" /> am steilen Hang, und lass den Durchschnitt jeder Gruppe gleich:
+
+<BlockMath math="\frac{40\cdot 1{.}000+10\cdot 700}{50}=\frac{47{.}000}{50}=940>840" />
+
+Diese Schlussfolgerung ist sicher, denn sie nutzt nur die Zahlen der Tabelle und die Annahme, die in der Option selbst steht. Prüfe das Ergebnis: <InlineMath math="940-840=100" />, genau der Vorsprung an jedem Hang. Das passt, denn bei gleicher Verteilung wandert der Vorsprung von <InlineMath math="100" /> an jedem Hang unverändert in den Gesamtdurchschnitt.
+
+Darum scheitern die anderen Optionen.
+
+- Die Option, nach der unbeschattete Gärten an beiden Hängen besser sind, dreht die Tabelle um. An jedem Hang liegen die beschatteten Gärten vorn. Der Fehler: Das Gesamtergebnis (<InlineMath math="760<840" />) wird auf jede Gruppe übertragen.
+- Die Zahl <InlineMath math="850" /> entsteht aus <InlineMath math="(1{.}000+700):2" />, einem einfachen Durchschnitt, der die Anzahl der Gärten übergeht. Am steilen Hang gibt es viermal so viele beschattete Gärten, also ist der richtige Durchschnitt <InlineMath math="760" /> und liegt unter <InlineMath math="840" />.
+- Die Option "jeder Garten gewinnt <InlineMath math="100" /> Kilogramm" geht über die Daten hinaus. Die <InlineMath math="100" /> sind ein Unterschied zwischen Durchschnitten, kein Zuwachs in jedem Garten, und Beobachtungsdaten wie diese beweisen keine Ursache.
+- Die Option, die den Schattenbäumen die niedrigen Erträge am steilen Hang anlastet, widerspricht der Tabelle. Am steilen Hang sind gerade die unbeschatteten Gärten am schwächsten (<InlineMath math="600" />), also erklären Schattenbäume die niedrigen Erträge dort nicht.
+
+Am besten gestützt ist also: Hätten die beschatteten Gärten dieselbe Hangverteilung wie die unbeschatteten, läge ihr Durchschnitt (<InlineMath math="940" />) über dem der unbeschatteten Gärten (<InlineMath math="840" />).

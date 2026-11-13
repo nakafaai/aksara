@@ -1,19 +1,31 @@
-Percentages from two schools cannot be compared directly because **the schools have different numbers of students**. Convert each percentage into a number of students first. The rows are walking (*berjalan kaki*), cycling (*bersepeda*), public transport (*angkutan umum*), and driven by family (*diantar keluarga*).
+The question asks for the day when the ferry's capacity is used the most. You need two things: the total passengers in both directions from the chart, and the number of departures each day from the text.
 
-| Mode | School A (of <InlineMath math="800" />) | School B (of <InlineMath math="1{,}200" />) |
-| --- | --- | --- |
-| Walking | <InlineMath math="120" /> | <InlineMath math="120" /> |
-| Cycling | <InlineMath math="200" /> | <InlineMath math="240" /> |
-| Public transport | <InlineMath math="280" /> | <InlineMath math="480" /> |
-| Driven by family | <InlineMath math="200" /> | <InlineMath math="360" /> |
+Here's the catch: **the daily capacity changes during the week**. From Monday to Friday there are three departures from each port, while on Saturday and Sunday there are four. Each departure carries at most <InlineMath math="200" /> passengers, and there are two ports of departure. So the daily capacity is:
 
-School B has <InlineMath math="240" /> cyclists, more than the <InlineMath math="200" /> at school A, **even though its percentage is smaller**. This statement matches the data.
+<BlockMath math="\begin{aligned}
+\text{Monday to Friday} &: 2 \times 3 \times 200 = 1{,}200 \\
+\text{Saturday and Sunday} &: 2 \times 4 \times 200 = 1{,}600
+\end{aligned}" />
 
-The other statements do not:
+Now add the two bars for each day and divide by that day's capacity.
 
-- A smaller percentage does not mean a smaller number. School B actually has more cyclists because it has more students.
-- Public transport users total <InlineMath math="280+480=760" />, more than <InlineMath math="700" />.
-- The number of students who walk is the same, <InlineMath math="120" /> at each school.
-- At school B, those driven or walking make up <InlineMath math="30\%+10\%=40\%" />, less than half.
+| Day | Total passengers | Capacity | Occupancy |
+| --- | --- | --- | --- |
+| Monday | <InlineMath math="360+560=920" /> | <InlineMath math="1{,}200" /> | <InlineMath math="\approx 76.7\%" /> |
+| Tuesday | <InlineMath math="380+340=720" /> | <InlineMath math="1{,}200" /> | <InlineMath math="60\%" /> |
+| Wednesday | <InlineMath math="420+400=820" /> | <InlineMath math="1{,}200" /> | <InlineMath math="\approx 68.3\%" /> |
+| Thursday | <InlineMath math="550+380=930" /> | <InlineMath math="1{,}200" /> | <InlineMath math="77.5\%" /> |
+| Friday | <InlineMath math="530+530=1{,}060" /> | <InlineMath math="1{,}200" /> | <InlineMath math="\approx 88.3\%" /> |
+| Saturday | <InlineMath math="660+640=1{,}300" /> | <InlineMath math="1{,}600" /> | <InlineMath math="81.25\%" /> |
+| Sunday | <InlineMath math="540+690=1{,}230" /> | <InlineMath math="1{,}600" /> | <InlineMath math="\approx 76.9\%" /> |
 
-So the statement that matches the data is that more school B students cycle than school A students.
+The highest occupancy is on Friday. Check it against the closest rival, Saturday. To match Friday, Saturday would need about <InlineMath math="0.883 \times 1{,}600 \approx 1{,}413" /> passengers. It only had <InlineMath math="1{,}300" />, so Saturday really does fall short.
+
+Here's why the other options are tempting.
+
+- Saturday has the most passengers, <InlineMath math="1{,}300" />. That's the officer's reason in the text, but Saturday's capacity is also bigger, <InlineMath math="1{,}600" />.
+- Sunday has the tallest bar, <InlineMath math="690" /> passengers from Karang Mas. One bar doesn't describe the whole day, and Sunday's combined occupancy is only about <InlineMath math="76.9\%" />.
+- Monday comes from looking only at the Karang Mas direction: <InlineMath math="560" /> out of a capacity of <InlineMath math="600" />, about <InlineMath math="93.3\%" />. The Batu Lintang direction was much quieter that day, so the combined occupancy is only about <InlineMath math="76.7\%" />.
+- Thursday comes from looking only at the Batu Lintang direction: <InlineMath math="550" /> out of <InlineMath math="600" />, about <InlineMath math="91.7\%" />. Its combined occupancy is only <InlineMath math="77.5\%" />.
+
+So the combined occupancy of both directions is highest on Friday, at about <InlineMath math="88.3\%" />.
