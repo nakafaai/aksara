@@ -48,6 +48,29 @@ Air resistance is ignored and gravity is constant. Right and up are positive, an
 
 The ball's shadow on the water moves at a constant speed, like an object in [uniform linear motion](/en/subjects/physics/kinematics/uniform-linear-motion), because it follows only the horizontal component. The ball itself rises and falls, because its vertical component <InlineMath math="v_y = v_{0y} - gt" /> keeps decreasing.
 
+### Aim at a Falling Can
+
+A classic demonstration proves the split into two components. A launcher aims straight at a can, and the can drops at the instant the ball leaves. **Gravity pulls both down by the same amount in the same time**, so the ball meets the can.
+
+<FallingTargetAimLab
+  speed={12}
+  title={<>Aim at a Falling Can</>}
+  description={
+    <>
+      The can hangs <InlineMath math="4\text{ m}" /> away and <InlineMath math="2\text{ m}" /> up. Ghost images every <InlineMath math="0.05\text{ s}" /> show both paths. Change the launch speed and try to miss.
+    </>
+  }
+  labels={{
+    drop: <>Drop of the can at the meeting</>,
+    meetTime: <>Time to meet</>,
+    speed: <>Launch speed</>,
+    speedName: "Launch speed",
+    viewLabel: "Launcher aimed at a falling can",
+  }}
+/>
+
+At <InlineMath math="12\text{ m/s}" /> they meet after <InlineMath math="0.37\text{ s}" />, when both have dropped <InlineMath math="0.69\text{ m}" /> below their straight lines. Any speed above about <InlineMath math="7.1\text{ m/s}" /> hits, because the horizontal motion only decides when the ball arrives.
+
 ## Time to the Top and Maximum Height
 
 At the top, the object is still moving horizontally, but **its vertical velocity is zero**. Setting <InlineMath math="v_y = v_{0y} - gt = 0" /> gives the time to the top, and the third vertical equation gives the maximum height:
@@ -58,6 +81,31 @@ At the top, the object is still moving horizontally, but **its vertical velocity
 </MathContainer>
 
 Both formulas use only the vertical component. That component moves like an object thrown upward at <InlineMath math="v_{0y}" /> in [vertical motion](/en/subjects/physics/kinematics/vertical-movement).
+
+### Same Speed at Different Angles
+
+Keep the launch speed and change only the angle. **A steeper launch spends more time rising, so it climbs higher**, because the vertical component <InlineMath math="v_0\sin\theta" /> grows.
+
+<ParabolicMovementLab
+  title={<>Peak Height at Different Angles</>}
+  description={
+    <>
+      Choose a launch angle and compare the peak height and the time to reach it.
+    </>
+  }
+  labels={{
+    chooseLaunch: "Choose launch angle",
+    factLabels: {
+      initialSpeed: <>Initial speed</>,
+      flightTime: <>Time in the air</>,
+      range: <>Range</>,
+      peakHeight: <>Peak height</>,
+    },
+    viewLabel: "Projectile ball path visual",
+  }}
+/>
+
+The time to the top is <InlineMath math="t_{\text{top}}=\frac{v_0\sin\theta}{g}" /> and the peak height is <InlineMath math="h_{\max}=\frac{(v_0\sin\theta)^2}{2g}" />, so the steepest launch rises highest and stays up longest.
 
 ## Time of Flight and Range
 
@@ -78,6 +126,29 @@ The last step uses the identity <InlineMath math="2\sin\theta\cos\theta = \sin 2
   E --> F["R = v₀x T"]
   B --> G["Velocity at time t: v_y = v₀y - gt"]`}
 />
+
+### A Kick Split into Components
+
+A strobe photo shows the two components as two patterns. A ball kicked with <InlineMath math="v_x=6\text{ m/s}" /> and <InlineMath math="v_{0y}=8\text{ m/s}" /> is photographed every <InlineMath math="0.2\text{ s}" />. **The horizontal arrows never change**, while the vertical arrows shrink, flip, and grow.
+
+<StrobePhotoMotionLab
+  shot="components"
+  title={<>A Kicked Ball in Components</>}
+  description={
+    <>
+      Teal arrows are the horizontal component and violet arrows the vertical component at each flash.
+    </>
+  }
+  labels={{
+    airTime: <>Time in the air</>,
+    height: <>Start height</>,
+    interval: <>Time between flashes</>,
+    outcome: <>Range</>,
+    viewLabel: "Strobe photograph built up flash by flash",
+  }}
+/>
+
+The ball tops out at <InlineMath math="\frac{8^2}{2(10)}=3.2\text{ m}" /> after <InlineMath math="0.8\text{ s}" />, lands after <InlineMath math="1.6\text{ s}" />, and covers <InlineMath math="6(1.6)=9.6\text{ m}" />. The even horizontal gaps are the constant <InlineMath math="v_x" />.
 
 ## Velocity Along the Path
 
@@ -198,6 +269,30 @@ A ball is kicked from the ground at <InlineMath math="20\text{ m/s}" /> at an an
 </MathContainer>
 
 Check with the direct formula: <InlineMath math="\frac{20^2 \sin 90^\circ}{10} = 40\text{ m}" />. This range is longer than a <InlineMath math="30^\circ" /> or <InlineMath math="60^\circ" /> throw at the same speed, which both land at <InlineMath math="20\sqrt{3} \approx 34.6\text{ m}" />.
+
+### Forty Five Degrees with a Garden Hose
+
+A garden hose shows the best angle in one glance, because every drop follows the same parabola. **On level ground the range is greatest at <InlineMath math="45^\circ" />**, where <InlineMath math="\sin2\theta=1" />.
+
+<HoseJetProjectileLab
+  angle={45}
+  speed={8}
+  title={<>A Garden Hose at Six Angles</>}
+  description={
+    <>
+      Water leaves the nozzle at <InlineMath math="8\text{ m/s}" />. The dashed line is the stream at <InlineMath math="45^\circ" />. Tilt the hose and compare.
+    </>
+  }
+  labels={{
+    chooseAngle: "Choose the nozzle angle",
+    flight: <>Time in the air</>,
+    range: <>Range</>,
+    top: <>Top height</>,
+    viewLabel: "Water jet from a garden hose",
+  }}
+/>
+
+At <InlineMath math="45^\circ" /> the water lands <InlineMath math="\frac{8^2}{10}=6.4\text{ m}" /> away after <InlineMath math="1.13\text{ s}" />. At <InlineMath math="30^\circ" /> and <InlineMath math="60^\circ" /> it lands at the same <InlineMath math="5.54\text{ m}" />, because those angles add up to <InlineMath math="90^\circ" />.
 
 ## Common Mistakes
 

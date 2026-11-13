@@ -69,6 +69,32 @@ Bei der sanften Kurve folgt der Ball der gekrümmten Bahn und legt deshalb etwa 
 
 <BlockMath math="\begin{aligned} &amp;s_{\text{gesamt}}\approx 16{,}7\text{ m} \\ &amp;|\Delta \vec r|=14\text{ m} \\ &amp;\Delta t=5\text{ s} \\ &amp;\text{mittlere Schnelligkeit}&amp;\approx \frac{16{,}7}{5} \\ &amp;\approx3{,}3\text{ m/s} \\ &amp;|\bar{\vec v}| =\frac{14}{5} \\ &amp;=2{,}8\text{ m/s} \end{aligned}" />
 
+### Eine Lichtschranke misst einen Mittelwert
+
+Eine Geschwindigkeitsmessung an der Straße sieht nie nur einen Augenblick. Sie stoppt das Auto zwischen zwei Lichtstrahlen in festem Abstand und teilt den Abstand durch diese Zeit, also ist ihr Wert **ein Mittelwert über die Strecke**.
+
+<SpeedTrapInstantSpeedLab
+  title={<>Lichtschranken auf einer Teststrecke</>}
+  description={
+    <>
+      Ein Auto beschleunigt aus dem Stand mit{" "}
+      <InlineMath math="4\text{ m/s}^2" /> durch zwei Lichtschranken um die{" "}
+      <InlineMath math="50\text{ m}" />-Marke. Ändere den Abstand und
+      vergleiche die Anzeige.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Angezeigter Wert</>,
+    chooseGap: "Abstand der Lichtschranken wählen",
+    elapsed: <>Zeit zwischen den Strahlen</>,
+    gap: <>Abstand der Lichtschranken</>,
+    instantSpeed: <>Schnelligkeit in der Mitte</>,
+    viewLabel: "Auto fährt durch zwei Lichtschranken auf einer Teststrecke",
+  }}
+/>
+
+Bei <InlineMath math="40\text{ m}" /> Abstand braucht das Auto <InlineMath math="2{,}043\text{ s}" />, also zeigt die Messung <InlineMath math="19{,}58\text{ m/s}" />, etwas weniger als die <InlineMath math="20\text{ m/s}" />, die das Auto in der Mitte hat. Der Wert gilt für die ganze Strecke, nicht für einen Moment.
+
 ## Das gleiche Zeitintervall kann verschiedene Fahrten beschreiben
 
 Angenommen, zwei Fahrten dauern beide <InlineMath math="3 \text{ s}" />. Die erste Fahrt geht geradeaus <InlineMath math="6 \text{ m}" /> nach rechts. Die zweite Fahrt geht <InlineMath math="6 \text{ m}" /> nach rechts und dann <InlineMath math="3 \text{ m}" /> zurück nach links. Die Zeit ist gleich, aber **Wegstrecke und Verschiebung sind verschieden**.
@@ -79,6 +105,31 @@ Angenommen, zwei Fahrten dauern beide <InlineMath math="3 \text{ s}" />. Die ers
 | Hin und teilweise zurück | <InlineMath math="9 \text{ m}" /> | <InlineMath math="3 \text{ m}" /> nach rechts | Die mittlere Schnelligkeit ist größer als der Betrag der mittleren Geschwindigkeit |
 
 Diese Tabelle zeigt, woher der Unterschied kommt. Die Zeit ändert sich nicht, aber der Zähler in beiden Formeln ändert sich.
+
+### Mittlere Geschwindigkeit als Steigung
+
+Im Ort-Zeit-Diagramm ist die mittlere Geschwindigkeit über ein Intervall **die Steigung der Geraden durch seine beiden Punkte**. Die Fahrt eines Autos zeigt, warum verschiedene Intervalle derselben Fahrt verschiedene Mittelwerte liefern.
+
+<CarTripSecantSlopeLab
+  trip="commute"
+  title={<>Mittlere Geschwindigkeit auf dem Arbeitsweg</>}
+  description={
+    <>
+      Das Auto beschleunigt, fährt gleichmäßig, bremst an einer roten Ampel,
+      wartet und fährt weiter. Wähle ein Intervall: Die Fahnen markieren, wo
+      das Auto an seinen beiden Enden war.
+    </>
+  }
+  labels={{
+    change: <>Verschiebung</>,
+    chooseInterval: "Zeitintervall wählen",
+    elapsed: <>Zeitintervall</>,
+    rate: <>Mittlere Geschwindigkeit</>,
+    viewLabel: "Auto auf dem Arbeitsweg mit seinem Ort-Zeit-Diagramm",
+  }}
+/>
+
+Über die ganze Fahrt legt das Auto <InlineMath math="110\text{ m}" /> in <InlineMath math="20\text{ s}" /> zurück, also ist <InlineMath math="\bar{v}=5{,}5\text{ m/s}" />. Zwischen <InlineMath math="4" /> und <InlineMath math="10\text{ s}" /> fährt es gleichmäßig mit <InlineMath math="10\text{ m/s}" />, zwischen <InlineMath math="10" /> und <InlineMath math="16\text{ s}" /> kommt es nur auf etwa <InlineMath math="1{,}67\text{ m/s}" />, weil es an der Ampel wartet.
 
 ## Mittlere Schnelligkeit und mittlere Geschwindigkeit auf einem Rückweg
 
@@ -137,6 +188,35 @@ Beispielsweise beginnt ein Objekt bei <InlineMath math="x=8 \text{ m}" /> und en
 
 Ein negativer Wert bedeutet nicht, dass die Bewegung „langsamer als null“ ist. Er zeigt, dass die mittlere Geschwindigkeit relativ zur gewählten Achse nach links gerichtet ist.
 
+### Hin und ein Stück zurück
+
+Ein Spaziergang entlang einer Straße zeigt, **woher das Vorzeichen kommt**. Nimm Osten als positiv: Du gehst <InlineMath math="300\text{ m}" /> nach Osten und dann <InlineMath math="100\text{ m}" /> zurück nach Westen, mit <InlineMath math="1\text{ m/s}" />.
+
+<CityWalkDisplacementLab
+  legs={[
+    { east: 300, north: 0 },
+    { east: -100, north: 0 },
+  ]}
+  pace={1}
+  title={<>Ein Spaziergang hin und ein Stück zurück</>}
+  description={
+    <>
+      Der gelbe Weg ist alles, was du gegangen bist. Der violette Pfeil
+      verbindet den Start mit deinem Standort und zeigt weiter nach Osten.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Mittlere Schnelligkeit</>,
+    averageVelocity: <>Betrag der mittleren Geschwindigkeit</>,
+    displacement: <>Betrag der Verschiebung</>,
+    distance: <>Gegangene Strecke</>,
+    time: <>Zeit</>,
+    viewLabel: "Spaziergang auf einer Straße von oben gesehen",
+  }}
+/>
+
+Du gehst <InlineMath math="400\text{ m}" /> in <InlineMath math="400\text{ s}" />, also ist die mittlere Schnelligkeit <InlineMath math="1\text{ m/s}" />. Die Verschiebung beträgt <InlineMath math="+200\text{ m}" />, also ist die mittlere Geschwindigkeit <InlineMath math="+0{,}5\text{ m/s}" />: positiv, weil du östlich vom Start ankommst.
+
 ## Eine Schleife kann eine mittlere Geschwindigkeit von null haben
 
 Kehrt ein Objekt **zu seinem Ausgangspunkt zurück**, beträgt seine Verschiebung <InlineMath math="0 \text{ m}" />. Damit ist auch seine mittlere Geschwindigkeit <InlineMath math="0 \text{ m/s}" />, obwohl die mittlere Schnelligkeit weiterhin größer als null sein kann.
@@ -177,3 +257,30 @@ Fahrt B geht <InlineMath math="6\text{ m}" /> nach rechts und <InlineMath math="
     net: <InlineMath math="\frac{3\text{ m}}{3\text{ s}}=1\text{ m/s}" />,
   }}
 />
+
+### Eine Runde auf der Laufbahn
+
+Eine volle Runde ist **eine Schleife, die genau an ihrem Start endet**. Ein Läufer auf Bahn 1 einer <InlineMath math="400\text{ m}" />-Bahn läuft gleichmäßig <InlineMath math="8\text{ m/s}" />, und seine Verschiebung von der Startlinie wächst, schrumpft und verschwindet.
+
+<RunningTrackDisplacementLab
+  speed={8}
+  title={<>Eine Runde auf der Bahn</>}
+  description={
+    <>
+      Halte den Läufer nach <InlineMath math="100" />,{" "}
+      <InlineMath math="200" />, <InlineMath math="300" /> oder{" "}
+      <InlineMath math="400\text{ m}" /> an und vergleiche die violette
+      Verschiebung mit dem gelben Weg.
+    </>
+  }
+  labels={{
+    averageVelocity: <>Betrag der mittleren Geschwindigkeit</>,
+    chooseDistance: "Laufstrecke wählen",
+    displacement: <>Betrag der Verschiebung</>,
+    distance: <>Gelaufene Strecke</>,
+    time: <>Zeit</>,
+    viewLabel: "Läufer auf einer 400-m-Leichtathletikbahn von oben gesehen",
+  }}
+/>
+
+Nach <InlineMath math="200\text{ m}" /> ist der Läufer <InlineMath math="112\text{ m}" /> vom Start entfernt, also hat die mittlere Geschwindigkeit den Betrag <InlineMath math="4{,}48\text{ m/s}" />. Nach der vollen Runde ist die Verschiebung null und damit auch die mittlere Geschwindigkeit, während die mittlere Schnelligkeit weiter <InlineMath math="8\text{ m/s}" /> beträgt.

@@ -69,6 +69,32 @@ In all three, the acceleration stays <InlineMath math="-g" /> for the whole moti
   D --> E`}
 />
 
+### A Feather and a Coin in a Vacuum
+
+Free fall means only gravity acts. In air, drag holds a feather back, so **pump the air out and every object falls with the same acceleration**, as the Apollo 15 crew showed with a hammer and a feather on the Moon.
+
+<FeatherCoinVacuumLab
+  title={<>A Feather and a Coin in a Vacuum</>}
+  description={
+    <>
+      Drop a coin and a feather together inside a glass tube, first with air, then with the air pumped out.
+    </>
+  }
+  labels={{
+    airs: {
+      air: <>With air</>,
+      vacuum: <>Vacuum</>,
+    },
+    chooseAir: "Choose what fills the tube",
+    coinTime: <>Coin lands after</>,
+    drop: <>Drop height</>,
+    featherTime: <>Feather lands after</>,
+    viewLabel: "Coin and feather falling in a glass tube",
+  }}
+/>
+
+In the vacuum both fall <InlineMath math="1.1\text{ m}" /> in <InlineMath math="\sqrt{\frac{2(1.1)}{10}}\approx0.47\text{ s}" /> and land together. With air the coin still lands after about <InlineMath math="0.47\text{ s}" />, but the feather drifts down for about <InlineMath math="2.25\text{ s}" />.
+
 ## An Object Thrown Upward
 
 When an object is thrown upward, its velocity starts positive and **keeps decreasing because of gravity** until it reaches zero at the highest point. Setting <InlineMath math="v_y = 0" /> gives the rise time and the maximum height above the launch point:
@@ -127,6 +153,29 @@ Slide the time for a ball thrown up at <InlineMath math="20\text{ m/s}" />. The 
   }}
 />
 
+### A Toss in a Strobe Photo
+
+A strobe photo shows a toss in one picture. A ball thrown up at <InlineMath math="5\text{ m/s}" /> **loses <InlineMath math="1\text{ m/s}" /> of upward velocity every tenth of a second**, so its images bunch together near the top.
+
+<StrobePhotoMotionLab
+  shot="toss"
+  title={<>A Tossed Ball, Flash by Flash</>}
+  description={
+    <>
+      A lamp flashes every <InlineMath math="0.1\text{ s}" />. Watch the gaps shrink on the way up and grow on the way down.
+    </>
+  }
+  labels={{
+    airTime: <>Time in the air</>,
+    height: <>Start height</>,
+    interval: <>Time between flashes</>,
+    outcome: <>Top height</>,
+    viewLabel: "Strobe photograph built up flash by flash",
+  }}
+/>
+
+The ball stops rising after <InlineMath math="\frac{5}{10}=0.5\text{ s}" /> at a height of <InlineMath math="\frac{5^2}{2(10)}=1.25\text{ m}" />, and it is back at the hand after <InlineMath math="1\text{ s}" />, moving down at <InlineMath math="5\text{ m/s}" />.
+
 ## An Object in Free Fall
 
 In school physics, free fall means an object released **with no initial velocity**, so <InlineMath math="v_0 = 0" />. Some books call any motion under gravity alone free fall, throws included, but this page uses the first meaning. For an object falling through a height <InlineMath math="h" />, the fall time and the speed on reaching the ground are:
@@ -141,6 +190,29 @@ A ball dropped from a height of <InlineMath math="20\text{ m}" /> reaches the gr
 <BlockMath math="v_y = 0 - 10(2) = -20\text{ m/s}" />
 
 The minus sign means the ball is moving downward. Check its speed with the second formula: <InlineMath math="v = \sqrt{2 \times 10 \times 20} = 20\text{ m/s}" />. This is the same speed a ball thrown up at <InlineMath math="20\text{ m/s}" /> has when it gets back to its launch point, because both fall <InlineMath math="20\text{ m}" /> from a moment of rest.
+
+### Free Fall Flash by Flash
+
+Dropped from rest, a ball falls <InlineMath math="5\text{ cm}" /> in the first tenth of a second and **then farther in every tenth that follows**, because its speed grows by <InlineMath math="1\text{ m/s}" /> each time.
+
+<StrobePhotoMotionLab
+  shot="drop"
+  title={<>A Dropped Ball, Flash by Flash</>}
+  description={
+    <>
+      A lamp flashes every <InlineMath math="0.1\text{ s}" /> while the shutter stays open. Compare the gaps from top to bottom.
+    </>
+  }
+  labels={{
+    airTime: <>Time in the air</>,
+    height: <>Start height</>,
+    interval: <>Time between flashes</>,
+    outcome: <>Speed at the floor</>,
+    viewLabel: "Strobe photograph built up flash by flash",
+  }}
+/>
+
+From <InlineMath math="1.8\text{ m}" /> the ball lands after <InlineMath math="\sqrt{\frac{2(1.8)}{10}}=0.6\text{ s}" /> at <InlineMath math="10(0.6)=6\text{ m/s}" />. The gaps grow as <InlineMath math="5" />, <InlineMath math="15" />, <InlineMath math="25" />, and so on up to <InlineMath math="55\text{ cm}" />.
 
 ## An Object Thrown Downward
 
@@ -194,6 +266,30 @@ That is why the time a projectile spends in the air comes from its vertical moti
     t3: <InlineMath math="t=3\text{ s}" />,
   }}
 />
+
+### A Vertical Jet beside Angled Ones
+
+A garden hose pointed straight up is vertical motion you can watch all at once. **Every drop rises and falls back to the nozzle**, and the same speed tilted over gives a parabola.
+
+<HoseJetProjectileLab
+  angle={90}
+  speed={8}
+  title={<>A Garden Hose at Six Angles</>}
+  description={
+    <>
+      The water leaves at <InlineMath math="8\text{ m/s}" />. Start straight up, then tilt the nozzle.
+    </>
+  }
+  labels={{
+    chooseAngle: "Choose the nozzle angle",
+    flight: <>Time in the air</>,
+    range: <>Range</>,
+    top: <>Top height</>,
+    viewLabel: "Water jet from a garden hose",
+  }}
+/>
+
+Straight up the water climbs <InlineMath math="\frac{8^2}{2(10)}=3.2\text{ m}" /> and is back after <InlineMath math="\frac{2(8)}{10}=1.6\text{ s}" />. At <InlineMath math="60^\circ" /> the vertical part is only <InlineMath math="8\sin60^\circ\approx6.9\text{ m/s}" />, so the stream rises to <InlineMath math="2.4\text{ m}" />.
 
 ## Common Mistakes
 

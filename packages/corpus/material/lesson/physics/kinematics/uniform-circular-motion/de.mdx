@@ -38,6 +38,30 @@ Der Geschwindigkeitsbetrag beschreibt nur, wie schnell sich das Objekt entlang d
   }}
 />
 
+### Ein Läufer in der Kurve
+
+Jede Kurve einer Laufbahn ist ein Halbkreis. Ein Läufer, der dort <InlineMath math="8\text{ m/s}" /> hält, hat zwar **eine konstante Schnelligkeit**, doch seine Geschwindigkeit dreht sich, also wird er beschleunigt.
+
+<RunningTrackDisplacementLab
+  speed={8}
+  title={<>Durch die Kurve</>}
+  description={
+    <>
+      Achte auf den türkisen Pfeil: Seine Länge bleibt gleich, während er sich durch die Kurve dreht. Halte den Lauf bei <InlineMath math="100\text{ m}" /> an, um ihn mitten in der Kurve zu sehen.
+    </>
+  }
+  labels={{
+    averageVelocity: <>Betrag der mittleren Geschwindigkeit</>,
+    chooseDistance: "Laufstrecke wählen",
+    displacement: <>Betrag der Verschiebung</>,
+    distance: <>Gelaufene Strecke</>,
+    time: <>Zeit</>,
+    viewLabel: "Läufer auf einer 400-m-Leichtathletikbahn von oben gesehen",
+  }}
+/>
+
+Auf Bahn 1 hat die Kurve einen Radius von etwa <InlineMath math="36{,}8\text{ m}" />, also beträgt die Zentripetalbeschleunigung dort <InlineMath math="\frac{8^2}{36{,}8}\approx1{,}74\text{ m/s}^2" />. Auf den Geraden hört der Pfeil auf, sich zu drehen, und die Beschleunigung ist null.
+
 ## Die Winkelverschiebung beschreibt die Position auf dem Kreis
 
 Bei geradliniger Bewegung geben wir die Position oft als Abstand vom Nullpunkt an. Bei kreisförmiger Bewegung beschreibt ein Winkel die Position. Der vom Objekt **überstrichene Winkel** wird als Winkelverschiebung bezeichnet.
@@ -47,6 +71,29 @@ Wenn sich ein Objekt von einer Referenzlinie aus bewegt und in der Zeit <InlineM
 <BlockMath math="\omega_{\text{mittel}}=\frac{\Delta\theta}{\Delta t}" />
 
 Das Symbol <InlineMath math="\omega" /> wird Omega gelesen. Bei einer gleichförmigen Kreisbewegung ist die Winkelgeschwindigkeit konstant und entspricht deshalb dem Mittelwert in jedem Zeitintervall. Ihre Einheit ist Radiant pro Sekunde, geschrieben als <InlineMath math="\text{rad/s}" />. Das Bogenmaß eignet sich hier besonders gut, weil eine volle Umdrehung <InlineMath math="2\pi" /> Radiant entspricht.
+
+### Ein Winkel für das ganze Rad
+
+An einem drehenden Rad **überstreicht jeder Punkt in gleicher Zeit denselben Winkel**, also hat das ganze Rad eine Winkelgeschwindigkeit. Ein Ventil auf der Felge und ein Reflektor auf halbem Weg machen den Vergleich leicht.
+
+<BicycleWheelSpeedLab
+  title={<>Ein Rad, zwei Schnelligkeiten</>}
+  description={
+    <>
+      Wähle die Zeit für eine Umdrehung. Beide Marken drehen sich um denselben Winkel, aber ihre Geschwindigkeitspfeile unterscheiden sich.
+    </>
+  }
+  labels={{
+    angularSpeed: <>Winkelgeschwindigkeit</>,
+    choosePeriod: "Zeit für eine Umdrehung wählen",
+    reflectorSpeed: <>Schnelligkeit des Reflektors</>,
+    valveAcceleration: <>Zentripetalbeschleunigung des Ventils</>,
+    valveSpeed: <>Schnelligkeit des Ventils</>,
+    viewLabel: "Fahrradrad dreht sich auf einem Ständer",
+  }}
+/>
+
+Bei einer Umdrehung pro Sekunde überstreichen beide Marken jede Sekunde <InlineMath math="2\pi\text{ rad}" />, also ist <InlineMath math="\omega\approx6{,}28\text{ rad/s}" /> für Ventil und Reflektor gleich. Ihre Schnelligkeiten unterscheiden sich, etwa <InlineMath math="1{,}95" /> und <InlineMath math="0{,}97\text{ m/s}" />, weil sie auf verschiedenen Radien sitzen.
 
 ## Umlaufzeit und Frequenz beschreiben dieselbe Runde
 
@@ -120,6 +167,37 @@ Der tangentiale Geschwindigkeitsbetrag beschreibt, wie schnell sich das Objekt *
 
 Die Formel <InlineMath math="v=\lvert\omega\rvert r" /> zeigt, dass zwei Objekte mit demselben Winkelgeschwindigkeitsbetrag nicht unbedingt denselben tangentialen Geschwindigkeitsbetrag besitzen. Das weiter vom Mittelpunkt entfernte Objekt legt in derselben Zeit einen längeren Weg zurück und bewegt sich deshalb schneller.
 
+### Loslassen und die Kugel fliegt gerade
+
+Eine Kugel an einer Schnur zeigt, warum die Geschwindigkeit tangential ist. Solange die Schnur zieht, **biegt die Kugel weiter ab**, und sobald du loslässt, fliegt sie gerade entlang der Tangente.
+
+<StringWhirlReleaseLab
+  period={0.8}
+  radius={0.8}
+  title={<>Lass die Schnur los</>}
+  description={
+    <>
+      Die Schnur ist <InlineMath math="0{,}8\text{ m}" /> lang, und eine Umdrehung dauert <InlineMath math="0{,}8\text{ s}" />. Wähle den Punkt, an dem du loslässt.
+    </>
+  }
+  labels={{
+    acceleration: <>Zentripetalbeschleunigung</>,
+    chooseRelease: "Loslasspunkt wählen",
+    period: <>Zeit für eine Umdrehung</>,
+    radius: <>Schnurlänge</>,
+    releases: {
+      east: <>Osten</>,
+      north: <>Norden</>,
+      west: <>Westen</>,
+      south: <>Süden</>,
+    },
+    speed: <>Schnelligkeit</>,
+    viewLabel: "Kugel an einer Schnur von oben gesehen",
+  }}
+/>
+
+Hier ist <InlineMath math="\omega=\frac{2\pi}{0{,}8}\approx7{,}85\text{ rad/s}" />, also <InlineMath math="v=\omega r\approx6{,}28\text{ m/s}" />. Lässt du am Ostpunkt los, fliegt die Kugel nach Norden, senkrecht zur Schnur, die sie gerade verlassen hat.
+
 ## Zentripetalbeschleunigung zeigt immer nach innen
 
 Auch bei konstantem Geschwindigkeitsbetrag dreht sich der Geschwindigkeitsvektor fortlaufend. Jede Änderung seiner Richtung erfordert eine Beschleunigung. Bei der gleichförmigen Kreisbewegung heißt sie Zentripetalbeschleunigung.
@@ -130,6 +208,34 @@ Auch bei konstantem Geschwindigkeitsbetrag dreht sich der Geschwindigkeitsvektor
 </MathContainer>
 
 Die Zentripetalbeschleunigung <Highlight>zeigt stets zum Mittelpunkt des Kreises</Highlight>. Sie wirkt also nicht entlang der Bewegungsbahn: Die Geschwindigkeit verläuft tangential, die Zentripetalbeschleunigung weist nach innen.
+
+### Die Schwerkraft als Zentripetalzug
+
+Bei einem Satelliten auf einer Kreisbahn liefert die Schwerkraft die Zentripetalbeschleunigung. **Die Schwerkraft zeigt zum Erdmittelpunkt**, genau dorthin, wohin <InlineMath math="a_c" /> zeigen muss.
+
+<SatelliteOrbitCircularLab
+  title={<>Satelliten auf Kreisbahnen</>}
+  description={
+    <>
+      Wähle einen Satelliten. Der türkise Pfeil ist seine Geschwindigkeit, der fuchsiafarbene seine Beschleunigung zum Erdmittelpunkt.
+    </>
+  }
+  labels={{
+    acceleration: <>Zentripetalbeschleunigung</>,
+    chooseOrbit: "Satellit wählen",
+    orbits: {
+      station: <>Raumstation</>,
+      gps: <>GPS</>,
+      geostationary: <>Geostationär</>,
+    },
+    period: <>Zeit für einen Umlauf</>,
+    radius: <>Bahnradius</>,
+    speed: <>Schnelligkeit</>,
+    viewLabel: "Satelliten umkreisen die Erde",
+  }}
+/>
+
+Die Raumstation kreist mit etwa <InlineMath math="7{,}67\text{ km/s}" /> einmal in <InlineMath math="92{,}4\text{ min}" />, also ist <InlineMath math="a_c=\frac{v^2}{r}\approx8{,}69\text{ m/s}^2" />. Ein geostationärer Satellit braucht etwa <InlineMath math="23{,}93\text{ h}" />, so lange, wie sich die Erde einmal dreht.
 
 ## Eine volle Umdrehung eines Kleinwagens
 

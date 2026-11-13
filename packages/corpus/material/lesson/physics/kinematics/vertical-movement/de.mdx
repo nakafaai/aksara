@@ -70,6 +70,32 @@ Bei allen dreien bleibt die Beschleunigung während der ganzen Bewegung <InlineM
   D --> E`}
 />
 
+### Feder und Münze im Vakuum
+
+Freier Fall heißt, dass nur die Schwerkraft wirkt. In Luft bremst der Luftwiderstand eine Feder, also **fällt ohne Luft jeder Körper mit derselben Beschleunigung**, wie die Crew von Apollo 15 mit Hammer und Feder auf dem Mond gezeigt hat.
+
+<FeatherCoinVacuumLab
+  title={<>Feder und Münze im Vakuum</>}
+  description={
+    <>
+      Lass eine Münze und eine Feder zusammen in einer Glasröhre fallen, erst mit Luft, dann mit abgepumpter Luft.
+    </>
+  }
+  labels={{
+    airs: {
+      air: <>Mit Luft</>,
+      vacuum: <>Vakuum</>,
+    },
+    chooseAir: "Füllung der Röhre wählen",
+    coinTime: <>Münze landet nach</>,
+    drop: <>Fallhöhe</>,
+    featherTime: <>Feder landet nach</>,
+    viewLabel: "Münze und Feder fallen in einer Glasröhre",
+  }}
+/>
+
+Im Vakuum fallen beide <InlineMath math="1{,}1\text{ m}" /> in <InlineMath math="\sqrt{\frac{2(1{,}1)}{10}}\approx0{,}47\text{ s}" /> und landen gleichzeitig. Mit Luft landet die Münze weiter nach etwa <InlineMath math="0{,}47\text{ s}" />, die Feder schwebt aber etwa <InlineMath math="2{,}25\text{ s}" /> lang hinab.
+
 ## Senkrechter Wurf nach oben
 
 Beim Wurf nach oben ist die Geschwindigkeit zuerst positiv und **nimmt durch die Schwerkraft ständig ab**, bis sie im höchsten Punkt null ist. Aus <InlineMath math="v_y = 0" /> folgen Steigzeit und maximale Höhe über dem Abwurfpunkt:
@@ -128,6 +154,29 @@ Verschieb die Zeit für einen Ball, der mit <InlineMath math="20\text{ m/s}" /> 
   }}
 />
 
+### Ein Wurf im Stroboskopfoto
+
+Ein Stroboskopfoto zeigt einen Wurf in einem Bild. Eine Kugel, die mit <InlineMath math="5\text{ m/s}" /> hochgeworfen wird, **verliert jede Zehntelsekunde <InlineMath math="1\text{ m/s}" /> Geschwindigkeit nach oben**, also drängen sich ihre Bilder oben zusammen.
+
+<StrobePhotoMotionLab
+  shot="toss"
+  title={<>Eine hochgeworfene Kugel, Blitz für Blitz</>}
+  description={
+    <>
+      Eine Lampe blitzt alle <InlineMath math="0{,}1\text{ s}" />. Sieh, wie die Abstände beim Steigen schrumpfen und beim Fallen wachsen.
+    </>
+  }
+  labels={{
+    airTime: <>Zeit in der Luft</>,
+    height: <>Starthöhe</>,
+    interval: <>Zeit zwischen den Blitzen</>,
+    outcome: <>Gipfelhöhe</>,
+    viewLabel: "Stroboskopfoto, Blitz für Blitz aufgebaut",
+  }}
+/>
+
+Die Kugel hört nach <InlineMath math="\frac{5}{10}=0{,}5\text{ s}" /> in <InlineMath math="\frac{5^2}{2(10)}=1{,}25\text{ m}" /> Höhe auf zu steigen und ist nach <InlineMath math="1\text{ s}" /> wieder in der Hand, mit <InlineMath math="5\text{ m/s}" /> nach unten.
+
 ## Freier Fall
 
 Im Schulunterricht heißt freier Fall, dass ein Körper **ohne Anfangsgeschwindigkeit** losgelassen wird, also <InlineMath math="v_0 = 0" />. Manche Bücher nennen jede Bewegung unter alleiniger Schwerkraft freien Fall, Würfe eingeschlossen, diese Seite nutzt aber die erste Bedeutung. Für eine Fallhöhe <InlineMath math="h" /> gelten Fallzeit und Aufprallgeschwindigkeit:
@@ -142,6 +191,29 @@ Ein Ball, der aus <InlineMath math="20\text{ m}" /> Höhe fallen gelassen wird, 
 <BlockMath math="v_y = 0 - 10(2) = -20\text{ m/s}" />
 
 Das Minus bedeutet, dass sich der Ball nach unten bewegt. Prüfe den Betrag mit der zweiten Formel: <InlineMath math="v = \sqrt{2 \times 10 \times 20} = 20\text{ m/s}" />. Genau diese Schnelligkeit hat auch ein mit <InlineMath math="20\text{ m/s}" /> hochgeworfener Ball, wenn er wieder am Abwurfpunkt ankommt, denn beide fallen <InlineMath math="20\text{ m}" /> aus dem Stillstand.
+
+### Freier Fall Blitz für Blitz
+
+Aus der Ruhe fallen gelassen, fällt eine Kugel in der ersten Zehntelsekunde <InlineMath math="5\text{ cm}" /> und **danach in jeder Zehntelsekunde weiter**, weil ihre Schnelligkeit jedes Mal um <InlineMath math="1\text{ m/s}" /> wächst.
+
+<StrobePhotoMotionLab
+  shot="drop"
+  title={<>Eine fallende Kugel, Blitz für Blitz</>}
+  description={
+    <>
+      Eine Lampe blitzt alle <InlineMath math="0{,}1\text{ s}" />, während der Verschluss offen bleibt. Vergleiche die Abstände von oben nach unten.
+    </>
+  }
+  labels={{
+    airTime: <>Zeit in der Luft</>,
+    height: <>Starthöhe</>,
+    interval: <>Zeit zwischen den Blitzen</>,
+    outcome: <>Schnelligkeit am Boden</>,
+    viewLabel: "Stroboskopfoto, Blitz für Blitz aufgebaut",
+  }}
+/>
+
+Aus <InlineMath math="1{,}8\text{ m}" /> landet die Kugel nach <InlineMath math="\sqrt{\frac{2(1{,}8)}{10}}=0{,}6\text{ s}" /> mit <InlineMath math="10(0{,}6)=6\text{ m/s}" />. Die Abstände wachsen wie <InlineMath math="5" />, <InlineMath math="15" />, <InlineMath math="25" /> und so weiter bis <InlineMath math="55\text{ cm}" />.
 
 ## Senkrechter Wurf nach unten
 
@@ -195,6 +267,30 @@ Deshalb ergibt sich die Flugzeit eines schräg geworfenen Körpers allein aus se
     t3: <InlineMath math="t=3\text{ s}" />,
   }}
 />
+
+### Ein senkrechter Strahl neben schrägen
+
+Ein Gartenschlauch, der gerade nach oben zeigt, ist senkrechte Bewegung, die du auf einmal siehst. **Jeder Tropfen steigt und fällt zurück zur Düse**, und dieselbe Schnelligkeit schräg ergibt eine Parabel.
+
+<HoseJetProjectileLab
+  angle={90}
+  speed={8}
+  title={<>Ein Gartenschlauch bei sechs Winkeln</>}
+  description={
+    <>
+      Das Wasser verlässt die Düse mit <InlineMath math="8\text{ m/s}" />. Beginne senkrecht nach oben und neige dann die Düse.
+    </>
+  }
+  labels={{
+    chooseAngle: "Winkel der Düse wählen",
+    flight: <>Zeit in der Luft</>,
+    range: <>Reichweite</>,
+    top: <>Gipfelhöhe</>,
+    viewLabel: "Wasserstrahl aus einem Gartenschlauch",
+  }}
+/>
+
+Senkrecht steigt das Wasser <InlineMath math="\frac{8^2}{2(10)}=3{,}2\text{ m}" /> hoch und ist nach <InlineMath math="\frac{2(8)}{10}=1{,}6\text{ s}" /> zurück. Bei <InlineMath math="60^\circ" /> ist der senkrechte Anteil nur <InlineMath math="8\sin60^\circ\approx6{,}9\text{ m/s}" />, also steigt der Strahl auf <InlineMath math="2{,}4\text{ m}" />.
 
 ## Häufige Fehler
 

@@ -25,6 +25,28 @@ If a car starts at <InlineMath math="0\text{ m/s}" /> and gains <InlineMath math
 
 Here, <InlineMath math="v_0" /> is initial velocity, <InlineMath math="v_t" /> is velocity after time <InlineMath math="t" />, <InlineMath math="a" /> is acceleration, and <InlineMath math="\Delta x" /> is displacement.
 
+### Galileo Measured It with Bells
+
+Galileo tested uniformly accelerated motion by rolling a ball down a gentle ramp. **The velocity grows by the same amount every second**, so at <InlineMath math="3^\circ" /> the ball moves at about <InlineMath math="0.374" />, <InlineMath math="0.748" />, <InlineMath math="1.12" />, and <InlineMath math="1.50\text{ m/s}" /> after each second.
+
+<GalileoInclineBellsLab
+  title={<>Galileo's Ramp and Bells</>}
+  description={
+    <>
+      Four bells stand where the ball will be after <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, and <InlineMath math="4\text{ s}" />. They ring at an even beat although the gaps between them grow.
+    </>
+  }
+  labels={{
+    acceleration: <>Acceleration down the ramp</>,
+    chooseAngle: "Choose the ramp angle",
+    firstSecond: <>Distance in the first second</>,
+    gaps: <>Gaps between bells</>,
+    viewLabel: "Steel ball rolling down Galileo's ramp past four bells",
+  }}
+/>
+
+The bells stand at about <InlineMath math="0.19" />, <InlineMath math="0.75" />, <InlineMath math="1.68" />, and <InlineMath math="2.99\text{ m}" /> along the ramp, so the gaps grow as <InlineMath math="1:3:5:7" />. Equal velocity changes in equal times always give that pattern from rest.
+
 ## Position Marks No Longer Stay Evenly Spaced
 
 In uniform linear motion, the position marks each second are equally spaced. In uniformly accelerated motion, those gaps can change. While an object keeps moving in the **same direction**, the gaps grow when its speed increases and shrink when its speed decreases. If the object reverses direction, the order and side of the marks must also be examined.
@@ -81,6 +103,35 @@ For the toy car starting from rest, the marks each second land at <InlineMath ma
     marks: <InlineMath math="1,\ 4,\ 9,\ 16,\ 25\text{ m}" />,
   }}
 />
+
+### Strips That Grow by One Centimetre
+
+A ticker tape turns the same idea into paper. The trolley speeds up at <InlineMath math="1\text{ m/s}^2" />, and **each tenth-of-a-second strip is <InlineMath math="1\text{ cm}" /> longer than the one before**.
+
+<TickerTapeMotionLab
+  motion="speeding"
+  title={<>Ticker Tape of a Trolley Speeding Up</>}
+  description={
+    <>
+      The timer prints a dot every <InlineMath math="0.02\text{ s}" />. Stood side by side, the strips form a velocity-time chart whose tops rise in a straight line.
+    </>
+  }
+  labels={{
+    acceleration: <>Acceleration from the strips</>,
+    chooseMotion: "Choose the trolley's motion",
+    firstStrip: <>First strip</>,
+    interval: <>Time between dots</>,
+    lastStrip: <>Last strip</>,
+    motions: {
+      uniform: <>Steady</>,
+      speeding: <>Speeding up</>,
+      slowing: <>Slowing down</>,
+    },
+    viewLabel: "Trolley pulling paper tape through a ticker timer",
+  }}
+/>
+
+The strips grow from <InlineMath math="2.5\text{ cm}" /> to <InlineMath math="9.5\text{ cm}" />. A strip lasts <InlineMath math="0.1\text{ s}" />, so <InlineMath math="a=\frac{0.01\text{ m}}{(0.1\text{ s})^2}=1\text{ m/s}^2" />, and the area of all the strips together is the <InlineMath math="48\text{ cm}" /> the trolley moved.
 
 ## Calculating Displacement from Graph Area
 
@@ -141,6 +192,29 @@ The two results answer different questions. Final velocity gives the car's speed
 You can check the displacement using the **triangular area under the velocity-time graph**. Its base is the elapsed time and its height is the final velocity.
 
 <BlockMath math="\Delta x=\frac{1}{2}(5\text{ s})(10\text{ m/s})=25\text{ m}" />
+
+### Starting from Rest in a Strobe Photo
+
+A dropped ball is the purest start from rest: it gains <InlineMath math="10\text{ m/s}" /> every second. **From rest, the distance fallen grows with the square of the time**, <InlineMath math="h=\frac{1}{2}gt^2" />.
+
+<StrobePhotoMotionLab
+  shot="drop"
+  title={<>A Ball Dropped from Rest</>}
+  description={
+    <>
+      A lamp flashes every <InlineMath math="0.1\text{ s}" /> while the shutter stays open, so each image is one flash.
+    </>
+  }
+  labels={{
+    airTime: <>Time in the air</>,
+    height: <>Start height</>,
+    interval: <>Time between flashes</>,
+    outcome: <>Speed at the floor</>,
+    viewLabel: "Strobe photograph built up flash by flash",
+  }}
+/>
+
+After <InlineMath math="0.1" />, <InlineMath math="0.2" />, and <InlineMath math="0.3\text{ s}" /> the ball has fallen <InlineMath math="5" />, <InlineMath math="20" />, and <InlineMath math="45\text{ cm}" />, the same <InlineMath math="1:4:9" /> pattern as the car starting from rest. It reaches the floor <InlineMath math="1.8\text{ m}" /> down after <InlineMath math="0.6\text{ s}" />.
 
 ## Acceleration Sign Depends on the Positive Direction
 

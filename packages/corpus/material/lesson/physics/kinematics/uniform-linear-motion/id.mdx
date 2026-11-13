@@ -24,6 +24,37 @@ x(t) &= x(t_0)+v(t-t_0)
 
 Simbol <InlineMath math="x(t_0)" /> dan <InlineMath math="x(t)" /> menyatakan posisi pada waktu awal dan akhir, <InlineMath math="v" /> menyatakan kecepatan tetap, <InlineMath math="\Delta t=t-t_0" /> menyatakan selang waktu, dan <InlineMath math="\Delta x" /> menyatakan perpindahan.
 
+### Kereta dengan Kecepatan Tetap
+
+Kereta komuter di jalur lurus dengan <InlineMath math="20\text{ m/s}" /> adalah gerak lurus beraturan yang bisa kamu lihat dari peron. Kereta menempuh **<InlineMath math="20\text{ m}" /> setiap detik dengan arah yang sama**.
+
+<TrainPassengerRelativeLab
+  title={<>Kereta Melintasi Peron</>}
+  description={
+    <>
+      Amati dari peron dulu. Panah merah muda adalah kecepatan kereta yang tetap, dan panah hijau toska milik penumpang yang berjalan di dalamnya.
+    </>
+  }
+  labels={{
+    chooseObserver: "Pilih pengamat",
+    chooseWay: "Pilih arah jalan",
+    observers: {
+      platform: <>Dari peron</>,
+      train: <>Dari kursi kereta</>,
+    },
+    passenger: <>Kecepatan penumpang</>,
+    train: <>Kecepatan kereta</>,
+    viewLabel: "Penumpang berjalan di kereta yang melaju",
+    walk: <>Kecepatan jalan di dalam gerbong</>,
+    ways: {
+      forward: <>Jalan ke depan</>,
+      backward: <>Jalan ke belakang</>,
+    },
+  }}
+/>
+
+Dilihat dari peron, panah kereta tidak pernah berubah, dan itulah arti kecepatan tetap. Dilihat dari kursi kereta, kereta diam, jadi gerak yang sama bisa beraturan bagi satu pengamat dan tidak ada bagi pengamat lain.
+
 ## Posisi pada Selang Waktu yang Sama
 
 Jika posisi benda dicatat setiap **selang waktu yang sama**, GLB menghasilkan jarak antartitik yang sama. Pita pencatat waktu bekerja dengan memberi tanda pada pita dalam selang waktu yang tetap. Jarak antartanda menunjukkan seberapa jauh benda bergerak selama setiap selang waktu.
@@ -58,6 +89,35 @@ Posisi benda berubah, tetapi selisih antara dua posisi berturut-turut tetap <Inl
     viewLabel: "Visual jejak gerak lurus beraturan",
   }}
 />
+
+### Potongan Pita yang Sama Panjang
+
+Pita ticker timer adalah versi laboratorium dari jejak posisi yang berjarak sama. Alat mencetak titik setiap <InlineMath math="0{,}02\text{ s}" />, dan pada kecepatan tetap **setiap potongan sepersepuluh detik sama panjang**.
+
+<TickerTapeMotionLab
+  motion="uniform"
+  title={<>Pita Ticker Timer Troli yang Tetap</>}
+  description={
+    <>
+      Susun potongan pitanya berdampingan: potongan yang sama panjang membentuk diagram kecepatan yang datar.
+    </>
+  }
+  labels={{
+    acceleration: <>Percepatan dari potongan pita</>,
+    chooseMotion: "Pilih gerak troli",
+    firstStrip: <>Potongan pertama</>,
+    interval: <>Selang waktu antartitik</>,
+    lastStrip: <>Potongan terakhir</>,
+    motions: {
+      uniform: <>Tetap</>,
+      speeding: <>Makin cepat</>,
+      slowing: <>Melambat</>,
+    },
+    viewLabel: "Troli menarik pita kertas melewati ticker timer",
+  }}
+/>
+
+Setiap potongan panjangnya <InlineMath math="6\text{ cm}" />, jadi troli bergerak <InlineMath math="\frac{0{,}06\text{ m}}{0{,}1\text{ s}}=0{,}6\text{ m/s}" />, dan percepatan dari potongan pitanya <InlineMath math="0" />.
 
 ## Menghitung Posisi Akhir
 
@@ -106,6 +166,29 @@ Titik-titik di bawah adalah tanda posisi, satu setiap sekon. Titik itu naik <Inl
   }}
 />
 
+### Setiap Selang Memberi Kemiringan yang Sama
+
+Pada grafik posisi terhadap waktu untuk GLB, **setiap garis potong punya kemiringan yang sama**, karena grafiknya berupa satu garis lurus. Mobil yang melaju tetap <InlineMath math="8\text{ m/s}" /> mengikuti <InlineMath math="x=8t" />.
+
+<CarTripSecantSlopeLab
+  trip="cruise"
+  title={<>Mobil yang Melaju dengan Kecepatan Tetap</>}
+  description={
+    <>
+      Pilih selang mana pun. Garis potongnya selalu berimpit dengan grafik itu sendiri.
+    </>
+  }
+  labels={{
+    change: <>Perpindahan</>,
+    chooseInterval: "Pilih selang waktu",
+    elapsed: <>Selang waktu</>,
+    rate: <>Kecepatan rata-rata</>,
+    viewLabel: "Perjalanan mobil dengan grafik posisi terhadap waktu",
+  }}
+/>
+
+Dari <InlineMath math="0" /> sampai <InlineMath math="2\text{ s}" />, mobil menempuh <InlineMath math="16\text{ m}" />, dari <InlineMath math="4" /> sampai <InlineMath math="10\text{ s}" /> menempuh <InlineMath math="48\text{ m}" />, dan keduanya memberi <InlineMath math="\bar{v}=8\text{ m/s}" />. Setelah <InlineMath math="10\text{ s}" />, posisi akhirnya <InlineMath math="x=8(10)=80\text{ m}" />.
+
 ## Membaca GLB dari Grafik
 
 Dua grafik menandai GLB. Grafik kecepatan terhadap waktu harus mendatar, sedangkan grafik posisi terhadap waktu harus berupa garis lurus dengan **gradien tetap**.
@@ -145,3 +228,27 @@ Pada grafik kecepatan terhadap waktu, gerak yang sama menjadi garis datar di <In
 GLB membutuhkan kecepatan tetap. Artinya, besar dan arah gerak harus tetap. Kelajuan tetap hanya memastikan besarnya.
 
 Mobil yang bergerak dengan kelajuan tetap di lintasan melingkar tidak termasuk GLB, <Highlight>karena arah kecepatannya terus berubah</Highlight>. Sebaliknya, kereta yang bergerak lurus dengan besar dan arah kecepatan tetap termasuk GLB.
+
+### Kelajuan Tetap di Lintasan Melengkung
+
+Pelari yang mempertahankan <InlineMath math="8\text{ m/s}" /> mengelilingi lintasan atletik punya kelajuan tetap, tetapi **arah kecepatannya berubah di setiap tikungan**, jadi geraknya bukan GLB.
+
+<RunningTrackDisplacementLab
+  speed={8}
+  title={<>Kelajuan Tetap Bukan Kecepatan Tetap</>}
+  description={
+    <>
+      Ikuti panah kecepatan hijau toska di sepanjang lintasan. Panjangnya tetap, tetapi arahnya tidak.
+    </>
+  }
+  labels={{
+    averageVelocity: <>Besar kecepatan rata-rata</>,
+    chooseDistance: "Pilih jarak lari",
+    displacement: <>Besar perpindahan</>,
+    distance: <>Jarak lari</>,
+    time: <>Waktu</>,
+    viewLabel: "Pelari di lintasan atletik 400 m dilihat dari atas",
+  }}
+/>
+
+Hanya di lintasan lurus panah itu mempertahankan panjang sekaligus arahnya. Satu putaran butuh <InlineMath math="\frac{400}{8}=50\text{ s}" /> dengan kelajuan tetap, tetapi pelari berakhir di titik awal, dengan kecepatan rata-rata <InlineMath math="0" />.

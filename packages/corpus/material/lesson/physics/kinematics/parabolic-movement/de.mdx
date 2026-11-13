@@ -53,6 +53,29 @@ Die Schwerkraft zieht nach unten, also ändert sich nur die senkrechte Geschwind
 
 Im Scheitelpunkt bleibt der Körper nicht stehen. Sein senkrechter Anteil ist null, aber er bewegt sich weiter mit <InlineMath math="v_x" /> waagerecht. Dieser senkrechte Anteil verhält sich genau wie ein Körper beim [senkrechten Wurf](/de/faecher/physik/kinematik/vertikale-bewegung) nach oben, der waagerechte Anteil wie eine [gleichförmige geradlinige Bewegung](/de/faecher/physik/kinematik/gleichfoermige-geradlinige-bewegung).
 
+### Zwei Körper fallen gleichzeitig
+
+Hier ist ein Versuch zu dieser Idee. Ein Rohr zielt genau auf eine Dose, und die Dose wird losgelassen, sobald die Kugel das Rohr verlässt. **Ohne Schwerkraft träfe die Kugel die Dose dort, wo sie hing**, und die Schwerkraft senkt beide um denselben Betrag.
+
+<FallingTargetAimLab
+  speed={8}
+  title={<>Ziel auf eine fallende Dose</>}
+  description={
+    <>
+      Die Dose hängt <InlineMath math="4\text{ m}" /> entfernt und <InlineMath math="2\text{ m}" /> hoch, und das Rohr zielt genau auf sie. Ändere die Abschussschnelligkeit.
+    </>
+  }
+  labels={{
+    drop: <>Fallhöhe der Dose beim Treffen</>,
+    meetTime: <>Zeit bis zum Treffen</>,
+    speed: <>Abschussschnelligkeit</>,
+    speedName: "Abschussschnelligkeit",
+    viewLabel: "Abschussrohr zielt auf eine fallende Dose",
+  }}
+/>
+
+Bei <InlineMath math="8\text{ m/s}" /> erreicht die Kugel die Linie der Dose nach <InlineMath math="0{,}56\text{ s}" />, wenn beide <InlineMath math="1{,}56\text{ m}" /> gefallen sind, und trifft trotzdem. Die Schwerkraft ändert nur die senkrechte Bewegung, und zwar bei beiden Körpern gleich.
+
 ## Die Wurfweite hängt von der Flugzeit ab
 
 Die Wurfweite <InlineMath math="R" /> ist der waagerechte Abstand vom Abwurfpunkt bis zum Auftreffpunkt. Weil die waagerechte Bewegung gleichförmig ist, gilt **Wurfweite gleich waagerechte Geschwindigkeit mal Flugzeit**:
@@ -72,6 +95,30 @@ Die Flugzeit ergibt sich allein aus der senkrechten Bewegung. Von zwei Bällen m
   D --> E`}
 />
 
+### Ein Strahl bei jedem Winkel
+
+Ein Gartenschlauch macht die Regel zur Wurfweite sichtbar. Das ganze Wasser verlässt die Düse mit <InlineMath math="8\text{ m/s}" />, und **der Strahl, der am längsten in der Luft bleibt, landet nicht immer am weitesten**.
+
+<HoseJetProjectileLab
+  angle={30}
+  speed={8}
+  title={<>Ein Gartenschlauch bei sechs Winkeln</>}
+  description={
+    <>
+      Neige die Düse und vergleiche die Zeit in der Luft mit der Wurfweite. Die gestrichelte Linie ist der Strahl bei <InlineMath math="45^\circ" />.
+    </>
+  }
+  labels={{
+    chooseAngle: "Winkel der Düse wählen",
+    flight: <>Zeit in der Luft</>,
+    range: <>Reichweite</>,
+    top: <>Gipfelhöhe</>,
+    viewLabel: "Wasserstrahl aus einem Gartenschlauch",
+  }}
+/>
+
+Bei <InlineMath math="30^\circ" /> fliegt das Wasser <InlineMath math="0{,}8\text{ s}" /> und landet <InlineMath math="5{,}54\text{ m}" /> weit. Bei <InlineMath math="60^\circ" /> fliegt es <InlineMath math="1{,}39\text{ s}" /> und landet an derselben Stelle, <InlineMath math="5{,}54\text{ m}" />, weil seine waagerechte Geschwindigkeit kleiner ist.
+
 ## Ein Ball rollt vom Tisch
 
 Ein waagerecht geworfener Körper hat keine senkrechte Anfangsgeschwindigkeit, seine senkrechte Bewegung ist also ein **freier Fall**. Angenommen, ein Ball rollt mit <InlineMath math="v_x = 4\text{ m/s}" /> waagerecht über die Kante eines <InlineMath math="1{,}25\text{ m}" /> hohen Tisches. Mit <InlineMath math="g = 10\text{ m/s}^2" /> folgt die Fallzeit aus der senkrechten Bewegung:
@@ -83,6 +130,29 @@ Die Wurfweite folgt aus der waagerechten Bewegung in derselben Zeit:
 <BlockMath math="R = v_x t = 4(0{,}5) = 2\text{ m}" />
 
 Probe mit der senkrechten Gleichung: <InlineMath math="\frac{1}{2}(10)(0{,}5)^2 = 1{,}25\text{ m}" />, genau die Tischhöhe. Ein Ball, der an derselben Tischkante aus der Ruhe fallen gelassen wird, erreicht den Boden ebenfalls nach <InlineMath math="0{,}5\text{ s}" />, denn die waagerechte Geschwindigkeit ändert die Fallzeit nicht.
+
+### Das Tischbeispiel im Stroboskopfoto
+
+Hier ist das Tischbeispiel fotografiert. Eine Kugel rollt mit <InlineMath math="4\text{ m/s}" /> von einem <InlineMath math="1{,}25\text{ m}" /> hohen Tisch, während eine zweite daneben fallen gelassen wird, mit einem Blitz alle <InlineMath math="0{,}05\text{ s}" />. Bei jedem Blitz **sind beide Kugeln gleich hoch**.
+
+<StrobePhotoMotionLab
+  shot="launch"
+  title={<>Fallen gelassen und vom Tisch gerollt</>}
+  description={
+    <>
+      Die Stahlkugel wird fallen gelassen, und die türkise Kugel rollt im selben Moment vom Tisch. Vergleiche ihre Höhen Blitz für Blitz.
+    </>
+  }
+  labels={{
+    airTime: <>Zeit in der Luft</>,
+    height: <>Starthöhe</>,
+    interval: <>Zeit zwischen den Blitzen</>,
+    outcome: <>Weite der gerollten Kugel</>,
+    viewLabel: "Stroboskopfoto, Blitz für Blitz aufgebaut",
+  }}
+/>
+
+Beide erreichen den Boden nach <InlineMath math="0{,}5\text{ s}" />, genau wie in der Rechnung, und die gerollte Kugel landet <InlineMath math="4(0{,}5)=2\text{ m}" /> vom Tisch entfernt. Ihre waagerechte Schnelligkeit hat sich beim Fallen nicht geändert.
 
 ## Abwurfwinkel und Wurfweite
 
@@ -181,6 +251,39 @@ Probier jetzt selbst jeden Winkel aus. Mit <InlineMath math="v_0=20\text{ m/s}" 
     time: <InlineMath math="T=\tfrac{2v_0\sin\theta}{g}\ (\text{s})" />,
   }}
 />
+
+### Eine Kanonenkugel über dem Wasser
+
+Eine Kanonenkugel folgt denselben Regeln in größerem Maßstab. **Ihr Schatten auf dem Wasser bewegt sich mit konstanter Schnelligkeit**, während die Kugel selbst steigt und fällt.
+
+<ParabolicMovementAnalysisLab
+  decimalSeparator="comma"
+  title={<>Eine Kanonenkugel über dem Wasser</>}
+  description={
+    <>
+      Wechsle zwischen den Abschüssen und vergleiche die waagerechte und die senkrechte Komponente mit der Wurfweite.
+    </>
+  }
+  labels={{
+    chooseScenario: "Abwurf wählen",
+    scenarioNames: {
+      "sixty-degree": <>Sechzig Grad</>,
+      "long-drive": <>Lange Fahrt</>,
+      "high-arc": <>Hoher Bogen</>,
+    },
+    factLabels: {
+      horizontalComponent: <>Horizontale Komponente</>,
+      verticalComponent: <>Vertikale Komponente</>,
+      peakTime: <>Zeit bis zum höchsten Punkt</>,
+      flightTime: <>Flugzeit</>,
+      range: <>Wurfweite</>,
+      instantaneousVelocity: <>Momentane Geschwindigkeit nach zwei Sekunden</>,
+    },
+    viewLabel: "Visuelle Analyse von Kanonenkugelprojektilen",
+  }}
+/>
+
+Jeder Abschuss behält seine waagerechte Komponente während des ganzen Flugs. Der höhere Bogen bringt eine größere senkrechte Komponente und eine längere Flugzeit, aber nicht immer eine größere Wurfweite.
 
 ## Häufige Fehler
 

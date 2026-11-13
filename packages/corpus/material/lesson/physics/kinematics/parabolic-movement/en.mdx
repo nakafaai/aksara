@@ -52,6 +52,29 @@ Gravity pulls downward, so only the vertical velocity changes. The horizontal ve
 
 The object does not stop at the top. Its vertical component is zero, but it is still moving horizontally at <InlineMath math="v_x" />. That vertical component behaves exactly like an object thrown upward in [vertical motion](/en/subjects/physics/kinematics/vertical-movement), and the horizontal component like [uniform linear motion](/en/subjects/physics/kinematics/uniform-linear-motion).
 
+### Two Falls in One Instant
+
+Here is a demonstration of that idea. A launcher aims straight at a can, and the can is released the moment the ball leaves. **Without gravity the ball would hit the can where it hung**, and gravity lowers both by the same amount.
+
+<FallingTargetAimLab
+  speed={8}
+  title={<>Aim at a Falling Can</>}
+  description={
+    <>
+      The can hangs <InlineMath math="4\text{ m}" /> away and <InlineMath math="2\text{ m}" /> up, and the launcher points straight at it. Change the launch speed.
+    </>
+  }
+  labels={{
+    drop: <>Drop of the can at the meeting</>,
+    meetTime: <>Time to meet</>,
+    speed: <>Launch speed</>,
+    speedName: "Launch speed",
+    viewLabel: "Launcher aimed at a falling can",
+  }}
+/>
+
+At <InlineMath math="8\text{ m/s}" /> the ball reaches the can\'s line after <InlineMath math="0.56\text{ s}" />, when both have fallen <InlineMath math="1.56\text{ m}" />, so it still hits. Gravity changes only the vertical motion, and it changes both bodies the same way.
+
 ## The Range Depends on the Time in the Air
 
 The range <InlineMath math="R" /> is the horizontal distance from the launch point to the landing point. Because the horizontal motion has constant velocity, the range is **the horizontal velocity times the time in the air**:
@@ -71,6 +94,30 @@ The time in the air comes from the vertical motion alone. Of two balls with the 
   D --> E`}
 />
 
+### One Stream at Every Angle
+
+A garden hose turns the range rule into something you can watch. All the water leaves at <InlineMath math="8\text{ m/s}" />, and **the stream that stays longest in the air does not always land farthest**.
+
+<HoseJetProjectileLab
+  angle={30}
+  speed={8}
+  title={<>A Garden Hose at Six Angles</>}
+  description={
+    <>
+      Tilt the nozzle and compare the time in the air with the range. The dashed line is the stream at <InlineMath math="45^\circ" />.
+    </>
+  }
+  labels={{
+    chooseAngle: "Choose the nozzle angle",
+    flight: <>Time in the air</>,
+    range: <>Range</>,
+    top: <>Top height</>,
+    viewLabel: "Water jet from a garden hose",
+  }}
+/>
+
+At <InlineMath math="30^\circ" /> the water flies for <InlineMath math="0.8\text{ s}" /> and lands <InlineMath math="5.54\text{ m}" /> away. At <InlineMath math="60^\circ" /> it flies for <InlineMath math="1.39\text{ s}" /> and lands at the same <InlineMath math="5.54\text{ m}" />, because its horizontal velocity is smaller.
+
 ## A Ball Rolling Off a Table
 
 An object launched horizontally has zero initial vertical velocity, so its vertical motion is **free fall**. Suppose a ball rolls horizontally off the edge of a table <InlineMath math="1.25\text{ m}" /> high with <InlineMath math="v_x = 4\text{ m/s}" />. With <InlineMath math="g = 10\text{ m/s}^2" />, the fall time comes from the vertical motion:
@@ -82,6 +129,29 @@ The range comes from the horizontal motion during that same time:
 <BlockMath math="R = v_x t = 4(0.5) = 2\text{ m}" />
 
 Check with the vertical equation: <InlineMath math="\frac{1}{2}(10)(0.5)^2 = 1.25\text{ m}" />, the height of the table. A ball dropped from rest at the same table edge also reaches the floor after <InlineMath math="0.5\text{ s}" />, because the horizontal velocity does not change how long the fall takes.
+
+### The Table Example in a Strobe Photo
+
+Here is the table example photographed. One ball rolls off a <InlineMath math="1.25\text{ m}" /> table at <InlineMath math="4\text{ m/s}" /> while a twin is dropped beside it, with a flash every <InlineMath math="0.05\text{ s}" />. At every flash **the two balls are at the same height**.
+
+<StrobePhotoMotionLab
+  shot="launch"
+  title={<>Dropped and Rolled Off Together</>}
+  description={
+    <>
+      The steel ball is dropped and the teal ball rolls off the table at the same instant. Compare their heights flash by flash.
+    </>
+  }
+  labels={{
+    airTime: <>Time in the air</>,
+    height: <>Start height</>,
+    interval: <>Time between flashes</>,
+    outcome: <>Reach of the rolled ball</>,
+    viewLabel: "Strobe photograph built up flash by flash",
+  }}
+/>
+
+Both reach the floor after <InlineMath math="0.5\text{ s}" />, just as the calculation said, and the rolling ball lands <InlineMath math="4(0.5)=2\text{ m}" /> from the table. Its horizontal speed never changed when it fell.
 
 ## Launch Angle and Range
 
@@ -180,6 +250,38 @@ Now try every angle yourself. With <InlineMath math="v_0=20\text{ m/s}" /> and <
     time: <InlineMath math="T=\tfrac{2v_0\sin\theta}{g}\ (\text{s})" />,
   }}
 />
+
+### A Cannonball over the Water
+
+A cannonball follows the same rules on a larger scale. **Its shadow on the water moves at a constant speed**, while the ball itself rises and falls.
+
+<ParabolicMovementAnalysisLab
+  title={<>A Cannonball over the Water</>}
+  description={
+    <>
+      Switch between the launches and compare the horizontal and vertical components with the range.
+    </>
+  }
+  labels={{
+    chooseScenario: "Choose launch",
+    scenarioNames: {
+      "sixty-degree": <>Sixty Degrees</>,
+      "long-drive": <>Long Drive</>,
+      "high-arc": <>High Arc</>,
+    },
+    factLabels: {
+      horizontalComponent: <>Horizontal component</>,
+      verticalComponent: <>Vertical component</>,
+      peakTime: <>Peak time</>,
+      flightTime: <>Flight time</>,
+      range: <>Range</>,
+      instantaneousVelocity: <>Velocity at two seconds</>,
+    },
+    viewLabel: "Cannonball projectile analysis visual",
+  }}
+/>
+
+Each launch keeps its horizontal component for the whole flight. The higher arc gives a larger vertical component and a longer time in the air, but not always a longer range.
 
 ## Common Mistakes
 

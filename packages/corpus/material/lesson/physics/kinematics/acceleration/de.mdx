@@ -81,6 +81,31 @@ Vergleiche in der Bewegungsspur die Geschwindigkeit von einem Intervall zum näc
 
 Die gestrichelte Linie zeigt den vollständigen Verlauf, die dicke Linie den ausgewählten Abschnitt. Eine steigende Linie bedeutet zunehmende Geschwindigkeit, eine waagerechte Linie konstante Geschwindigkeit und eine fallende Linie abnehmende Geschwindigkeit. Die mittlere Beschleunigung des Abschnitts ist das Verhältnis von <InlineMath math="\Delta v" /> zu <InlineMath math="\Delta t" />.
 
+### Galileis Rampe hält den Takt
+
+Galilei hat das Fallen verlangsamt, indem er eine Kugel eine flache Rampe hinabrollen ließ. Die Kugel gewinnt **jede Sekunde dieselbe Geschwindigkeit dazu**, deshalb wächst ihr Weg mit dem Quadrat der Zeit. Glocken beim Einfachen, Vierfachen, Neunfachen und Sechzehnfachen des Wegs der ersten Sekunde läuten in einem gleichmäßigen Takt.
+
+<GalileoInclineBellsLab
+  title={<>Galileis Rampe und ihre Glocken</>}
+  description={
+    <>
+      Eine Stahlkugel rollt aus der Ruhe an vier Glocken vorbei, die dort
+      stehen, wo sie nach <InlineMath math="1" />, <InlineMath math="2" />,{" "}
+      <InlineMath math="3" /> und <InlineMath math="4\text{ s}" /> ist.
+      Neige die Rampe und vergleiche die Abstände.
+    </>
+  }
+  labels={{
+    acceleration: <>Beschleunigung die Rampe hinab</>,
+    chooseAngle: "Neigungswinkel wählen",
+    firstSecond: <>Weg in der ersten Sekunde</>,
+    gaps: <>Abstände der Glocken</>,
+    viewLabel: "Stahlkugel rollt an vier Glocken vorbei Galileis Rampe hinab",
+  }}
+/>
+
+Bei <InlineMath math="3^\circ" /> beschleunigt die Kugel mit etwa <InlineMath math="0{,}374\text{ m/s}^2" />, also rollt sie in der ersten Sekunde <InlineMath math="18{,}7\text{ cm}" /> weit. Bei jedem Winkel bleiben die Abstände im Verhältnis <InlineMath math="1:3:5:7" />, weil eine konstante Beschleunigung jede Sekunde dieselbe Geschwindigkeit dazugibt.
+
 ## Das Zeichen der Beschleunigung lesen
 
 Das Vorzeichen der Beschleunigung ist nur zusammen mit der gewählten positiven Richtung aussagekräftig. In diesem eindimensionalen Beispiel sei die Richtung nach rechts positiv.
@@ -125,6 +150,37 @@ Lies die Vorzeichen zusammen. Bei <InlineMath math="v>0" /> lässt eine Beschleu
   }}
 />
 
+### Immer kürzere Streifen
+
+Ein Tickerband zeigt dasselbe im Labor. Rollt ein Wagen nach rechts und wird langsamer, ist jeder Streifen von einer Zehntelsekunde **um denselben Betrag kürzer als der davor**, also zeigt die Geschwindigkeitsänderung zur negativen Seite.
+
+<TickerTapeMotionLab
+  motion="slowing"
+  title={<>Tickerband eines bremsenden Wagens</>}
+  description={
+    <>
+      Der Ticker druckt alle <InlineMath math="0{,}02\text{ s}" /> einen
+      Punkt. Jeder Streifen umfasst <InlineMath math="0{,}1\text{ s}" /> Band
+      und steht im Diagramm wie ein Balken eines Geschwindigkeit-Zeit-Diagramms.
+    </>
+  }
+  labels={{
+    acceleration: <>Beschleunigung aus den Streifen</>,
+    chooseMotion: "Bewegung des Wagens wählen",
+    firstStrip: <>Erster Streifen</>,
+    interval: <>Zeit zwischen zwei Punkten</>,
+    lastStrip: <>Letzter Streifen</>,
+    motions: {
+      uniform: <>Gleichmäßig</>,
+      speeding: <>Schneller werdend</>,
+      slowing: <>Langsamer werdend</>,
+    },
+    viewLabel: "Wagen zieht ein Papierband durch einen Ticker",
+  }}
+/>
+
+Die Streifen schrumpfen von <InlineMath math="9{,}5\text{ cm}" /> auf <InlineMath math="2{,}5\text{ cm}" />, jedes Mal um <InlineMath math="1\text{ cm}" />. Ein Streifen dauert <InlineMath math="0{,}1\text{ s}" />, also ist die Beschleunigung <InlineMath math="\frac{-0{,}01\text{ m}}{(0{,}1\text{ s})^2}=-1\text{ m/s}^2" />, obwohl der Wagen noch nach rechts fährt.
+
 ## Berechnung der Geschwindigkeitsänderung pro Sekunde
 
 Angenommen, ein Auto ändert seine Geschwindigkeit in <InlineMath math="4\text{ s}" /> von <InlineMath math="2\text{ m/s}" /> auf <InlineMath math="18\text{ m/s}" />. Seine mittlere Beschleunigung beträgt:
@@ -145,6 +201,32 @@ a_{\text{mittel}} &= \frac{2-18}{4} \\
 \end{aligned}" />
 
 Der Wert <InlineMath math="-4\text{ m/s}^2" /> bedeutet, dass die Geschwindigkeit jede Sekunde um <InlineMath math="4\text{ m/s}" /> abnimmt, wenn sich das Auto noch in positiver Richtung bewegt.
+
+### Mittlere Beschleunigung auf dem Arbeitsweg
+
+Eine echte Fahrt hat selten nur eine Beschleunigung. Im Geschwindigkeit-Zeit-Diagramm ist die mittlere Beschleunigung über ein Intervall **die Steigung der Geraden durch seine beiden Punkte**.
+
+<CarTripSecantSlopeLab
+  graph="velocity"
+  trip="commute"
+  title={<>Mittlere Beschleunigung auf dem Arbeitsweg</>}
+  description={
+    <>
+      Das Auto beschleunigt, fährt gleichmäßig, bremst an einer roten Ampel,
+      wartet und fährt weiter. Wähle ein Intervall und zeichne seine Sekante
+      ins Geschwindigkeit-Zeit-Diagramm.
+    </>
+  }
+  labels={{
+    change: <>Geschwindigkeitsänderung</>,
+    chooseInterval: "Zeitintervall wählen",
+    elapsed: <>Zeitintervall</>,
+    rate: <>Mittlere Beschleunigung</>,
+    viewLabel: "Auto auf dem Arbeitsweg mit seinem Geschwindigkeit-Zeit-Diagramm",
+  }}
+/>
+
+Von <InlineMath math="0" /> bis <InlineMath math="4\text{ s}" /> steigt die Geschwindigkeit von <InlineMath math="0" /> auf <InlineMath math="10\text{ m/s}" />, also ist <InlineMath math="\bar{a}=2{,}5\text{ m/s}^2" />. Über die ganzen <InlineMath math="20\text{ s}" /> endet das Auto wieder bei <InlineMath math="10\text{ m/s}" />, also ist <InlineMath math="\bar{a}=0{,}5\text{ m/s}^2" />, obwohl es zwischendurch stark gebremst hat.
 
 ## Auch eine Beschleunigung von null muss interpretiert werden
 

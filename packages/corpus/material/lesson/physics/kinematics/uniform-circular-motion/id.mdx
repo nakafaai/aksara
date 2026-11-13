@@ -38,6 +38,30 @@ Kelajuan hanya menyatakan seberapa cepat benda menempuh lintasan. Kecepatan meny
   }}
 />
 
+### Pelari di Tikungan
+
+Setiap tikungan lintasan atletik adalah setengah lingkaran. Pelari yang mempertahankan <InlineMath math="8\text{ m/s}" /> di sana punya **kelajuan tetap tetapi kecepatan yang berbelok**, jadi pelari itu mengalami percepatan.
+
+<RunningTrackDisplacementLab
+  speed={8}
+  title={<>Mengitari Tikungan</>}
+  description={
+    <>
+      Perhatikan panah hijau toska: panjangnya tetap, tetapi arahnya berbelok di tikungan. Hentikan larinya di <InlineMath math="100\text{ m}" /> untuk melihatnya di tengah tikungan.
+    </>
+  }
+  labels={{
+    averageVelocity: <>Besar kecepatan rata-rata</>,
+    chooseDistance: "Pilih jarak lari",
+    displacement: <>Besar perpindahan</>,
+    distance: <>Jarak lari</>,
+    time: <>Waktu</>,
+    viewLabel: "Pelari di lintasan atletik 400 m dilihat dari atas",
+  }}
+/>
+
+Di lajur 1, jari-jari tikungannya sekitar <InlineMath math="36{,}8\text{ m}" />, jadi percepatan sentripetal pelari di sana <InlineMath math="\frac{8^2}{36{,}8}\approx1{,}74\text{ m/s}^2" />. Di lintasan lurus, panahnya berhenti berbelok dan percepatannya nol.
+
 ## Posisi dan Perpindahan Sudut
 
 Pada gerak lurus, koordinat menyatakan posisi terhadap titik nol. Pada gerak melingkar, sudut menyatakan **posisi terhadap garis acuan**. Perubahan sudut tersebut disebut perpindahan sudut.
@@ -47,6 +71,29 @@ Jika benda bergerak dari garis acuan lalu menyapu sudut bertanda <InlineMath mat
 <BlockMath math="\omega_{\text{rata-rata}}=\frac{\Delta\theta}{\Delta t}" />
 
 Simbol <InlineMath math="\omega" /> dibaca omega. Pada gerak melingkar beraturan, kecepatan sudutnya tetap, sehingga nilainya sama dengan rata-rata pada setiap selang. Satuannya radian per sekon, ditulis <InlineMath math="\text{rad/s}" />. Radian dipakai karena satu putaran penuh sama dengan <InlineMath math="2\pi" /> radian.
+
+### Satu Sudut untuk Seluruh Roda
+
+Pada roda yang berputar, **setiap titik menyapu sudut yang sama dalam waktu yang sama**, jadi seluruh roda punya satu kecepatan sudut. Pentil di pelek dan reflektor di tengah jari-jari memudahkan perbandingannya.
+
+<BicycleWheelSpeedLab
+  title={<>Satu Roda, Dua Kelajuan</>}
+  description={
+    <>
+      Pilih waktu satu putaran. Kedua tanda berputar dengan sudut yang sama, tetapi panah kecepatannya berbeda.
+    </>
+  }
+  labels={{
+    angularSpeed: <>Kelajuan sudut</>,
+    choosePeriod: "Pilih waktu satu putaran",
+    reflectorSpeed: <>Kelajuan reflektor</>,
+    valveAcceleration: <>Percepatan sentripetal pentil</>,
+    valveSpeed: <>Kelajuan pentil</>,
+    viewLabel: "Roda sepeda berputar di penyangga",
+  }}
+/>
+
+Pada satu putaran per detik, kedua tanda menyapu <InlineMath math="2\pi\text{ rad}" /> setiap detik, jadi <InlineMath math="\omega\approx6{,}28\text{ rad/s}" /> untuk pentil maupun reflektor. Kelajuannya berbeda, sekitar <InlineMath math="1{,}95" /> dan <InlineMath math="0{,}97\text{ m/s}" />, karena jari-jarinya berbeda.
 
 ## Periode dan Frekuensi Menjelaskan Satu Putaran
 
@@ -120,6 +167,37 @@ Kelajuan tangensial adalah besar kecepatan benda **di sepanjang lintasan lingkar
 
 Rumus <InlineMath math="v=\lvert\omega\rvert r" /> berarti dua benda dengan kelajuan sudut sama belum tentu memiliki kelajuan tangensial yang sama. Benda yang lebih jauh dari pusat menempuh lintasan lebih panjang, sehingga kelajuan tangensialnya lebih besar.
 
+### Lepaskan dan Bola Terbang Lurus
+
+Bola yang diputar dengan tali menunjukkan kenapa kecepatan menyinggung lingkaran. Selama tali menarik, **bola terus berbelok**, dan begitu kamu lepaskan, bola terbang lurus mengikuti garis singgungnya.
+
+<StringWhirlReleaseLab
+  period={0.8}
+  radius={0.8}
+  title={<>Lepaskan Talinya</>}
+  description={
+    <>
+      Panjang talinya <InlineMath math="0{,}8\text{ m}" /> dan satu putaran butuh <InlineMath math="0{,}8\text{ s}" />. Pilih titik tempat kamu melepaskannya.
+    </>
+  }
+  labels={{
+    acceleration: <>Percepatan sentripetal</>,
+    chooseRelease: "Pilih titik lepas",
+    period: <>Waktu satu putaran</>,
+    radius: <>Panjang tali</>,
+    releases: {
+      east: <>Timur</>,
+      north: <>Utara</>,
+      west: <>Barat</>,
+      south: <>Selatan</>,
+    },
+    speed: <>Kelajuan</>,
+    viewLabel: "Bola diputar dengan tali dilihat dari atas",
+  }}
+/>
+
+Di sini <InlineMath math="\omega=\frac{2\pi}{0{,}8}\approx7{,}85\text{ rad/s}" />, jadi <InlineMath math="v=\omega r\approx6{,}28\text{ m/s}" />. Lepaskan di titik timur, maka bola melaju ke utara, tegak lurus terhadap tali yang baru ditinggalkannya.
+
 ## Percepatan Sentripetal Selalu Menuju Pusat
 
 Walaupun kelajuan tetap, arah kecepatan terus berbelok. Perubahan arah kecepatan ini membutuhkan percepatan. Pada gerak melingkar beraturan, percepatan tersebut disebut percepatan sentripetal.
@@ -130,6 +208,34 @@ Walaupun kelajuan tetap, arah kecepatan terus berbelok. Perubahan arah kecepatan
 </MathContainer>
 
 Arah percepatan sentripetal selalu **menuju pusat lingkaran**. Jadi, jangan bayangkan percepatan ini searah gerak benda. Kecepatan menyinggung lintasan, sedangkan percepatan sentripetal menunjuk ke dalam.
+
+### Gravitasi sebagai Tarikan Sentripetal
+
+Untuk satelit di orbit melingkar, gravitasilah yang memberi percepatan sentripetal. **Gravitasi mengarah ke pusat Bumi**, tepat ke arah yang dibutuhkan <InlineMath math="a_c" />.
+
+<SatelliteOrbitCircularLab
+  title={<>Satelit di Orbit Melingkar</>}
+  description={
+    <>
+      Pilih satelitnya. Panah hijau toska adalah kecepatannya, dan panah fuchsia adalah percepatannya menuju pusat Bumi.
+    </>
+  }
+  labels={{
+    acceleration: <>Percepatan sentripetal</>,
+    chooseOrbit: "Pilih satelit",
+    orbits: {
+      station: <>Stasiun antariksa</>,
+      gps: <>GPS</>,
+      geostationary: <>Geostasioner</>,
+    },
+    period: <>Waktu satu orbit</>,
+    radius: <>Jari-jari orbit</>,
+    speed: <>Kelajuan</>,
+    viewLabel: "Satelit mengorbit Bumi",
+  }}
+/>
+
+Stasiun antariksa mengitari Bumi sekitar <InlineMath math="7{,}67\text{ km/s}" /> sekali setiap <InlineMath math="92{,}4\text{ min}" />, jadi <InlineMath math="a_c=\frac{v^2}{r}\approx8{,}69\text{ m/s}^2" />. Satelit geostasioner butuh sekitar <InlineMath math="23{,}93\text{ h}" />, waktu yang dibutuhkan Bumi untuk berputar sekali.
 
 ## Perhitungan Satu Putaran Mobil Kecil
 

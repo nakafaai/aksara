@@ -65,6 +65,34 @@ In der folgenden Tabelle ist die Richtung nach rechts positiv.
 
 Die letzte Zeile zeigt den Unterschied besonders deutlich: Das Objekt legt <InlineMath math="16 \text{ m}" /> zurück, seine Verschiebung ist dennoch null, weil es zum Startpunkt zurückkehrt.
 
+### Zwei Mittelwerte aus einem Weg
+
+Geh <InlineMath math="300\text{ m}" /> nach Norden und dann <InlineMath math="400\text{ m}" /> nach Osten mit <InlineMath math="1{,}25\text{ m/s}" />. **Derselbe Weg liefert zwei verschiedene Mittelwerte**, einen aus dem Weg und einen aus dem Pfeil.
+
+<CityWalkDisplacementLab
+  legs={[
+    { east: 0, north: 300 },
+    { east: 400, north: 0 },
+  ]}
+  pace={1.25}
+  title={<>Zwei Mittelwerte aus einem Weg</>}
+  description={
+    <>
+      Der gelbe Weg ist die Wegstrecke und der violette Pfeil die Verschiebung. Beide werden durch dieselbe Zeit geteilt.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Mittlere Schnelligkeit</>,
+    averageVelocity: <>Betrag der mittleren Geschwindigkeit</>,
+    displacement: <>Betrag der Verschiebung</>,
+    distance: <>Gegangene Strecke</>,
+    time: <>Zeit</>,
+    viewLabel: "Spaziergang durch eine Stadt von oben gesehen",
+  }}
+/>
+
+Der Weg dauert <InlineMath math="\frac{700}{1{,}25}=560\text{ s}" />. Die mittlere Schnelligkeit ist <InlineMath math="\frac{700}{560}=1{,}25\text{ m/s}" />, die mittlere Geschwindigkeit hat den Betrag <InlineMath math="\frac{500}{560}\approx0{,}89\text{ m/s}" /> und zeigt vom Start zum Ziel.
+
 ## Die mittlere Schnelligkeit beruht auf der Weglänge
 
 Angenommen, ein Objekt bewegt sich von der Position <InlineMath math="0 \text{ m}" /> nach <InlineMath math="8 \text{ m}" /> und kehrt dann zur Position <InlineMath math="4 \text{ m}" /> zurück. Die gesamte Bewegung dauert <InlineMath math="4 \text{ s}" />.
@@ -80,6 +108,30 @@ Die mittlere Schnelligkeit beträgt:
 Dieser Wert gibt an, wie schnell sich das Objekt **entlang seines Weges** bewegt hat. Eine Richtung enthält er nicht.
 
 Die Schnelligkeit ist daher nie negativ. Solange sich das Objekt bewegt, wächst die insgesamt zurückgelegte Weglänge.
+
+### Die Schnelligkeit zählt jeden Meter der Runde
+
+Ein Läufer hält <InlineMath math="8\text{ m/s}" /> auf einer <InlineMath math="400\text{ m}" />-Bahn. **Die mittlere Schnelligkeit nutzt jeden gelaufenen Meter**, also bleibt sie <InlineMath math="8\text{ m/s}" />, wo immer du den Läufer anhältst.
+
+<RunningTrackDisplacementLab
+  speed={8}
+  title={<>Schnelligkeit und Geschwindigkeit auf einer Runde</>}
+  description={
+    <>
+      Halte den Lauf an jeder Marke an und vergleiche die mittlere Geschwindigkeit mit der gleichbleibenden Schnelligkeit.
+    </>
+  }
+  labels={{
+    averageVelocity: <>Betrag der mittleren Geschwindigkeit</>,
+    chooseDistance: "Laufstrecke wählen",
+    displacement: <>Betrag der Verschiebung</>,
+    distance: <>Gelaufene Strecke</>,
+    time: <>Zeit</>,
+    viewLabel: "Läufer auf einer 400-m-Leichtathletikbahn von oben gesehen",
+  }}
+/>
+
+Nach einer vollen Runde von <InlineMath math="50\text{ s}" /> ist die mittlere Schnelligkeit <InlineMath math="\frac{400}{50}=8\text{ m/s}" />. Die Verschiebung ist null, also ist die mittlere Geschwindigkeit <InlineMath math="0" />, der deutlichste Fall, in dem sich beide Werte unterscheiden.
 
 ## Die mittlere Geschwindigkeit berücksichtigt die Richtung
 
@@ -136,6 +188,29 @@ Die Verschiebung beträgt <InlineMath math="0 \text{ m}" />, daher beträgt die 
 
 Die mittlere Schnelligkeit kann also ungleich null sein, obwohl die mittlere Geschwindigkeit null ist. Das ist kein Widerspruch: <Highlight>Die Schnelligkeit beruht auf der Weglänge</Highlight>, die Geschwindigkeit auf der Ortsänderung zwischen Anfang und Ende.
 
+### Hin und zurück auf einer Linie
+
+Ein Auto rollt mit <InlineMath math="6\text{ m/s}" /> eine leichte Steigung hinauf, steht nach <InlineMath math="5\text{ s}" /> still und rollt zurück zum Start. Auf dem Rückweg **ist seine Geschwindigkeit negativ**, während seine Schnelligkeit positiv bleibt.
+
+<CarTripSecantSlopeLab
+  trip="return"
+  title={<>Hin und zurück rollen</>}
+  description={
+    <>
+      Wähle ein Intervall und lies die mittlere Geschwindigkeit ab. Die Fahnen markieren die beiden Positionen des Autos.
+    </>
+  }
+  labels={{
+    change: <>Verschiebung</>,
+    chooseInterval: "Zeitintervall wählen",
+    elapsed: <>Zeitintervall</>,
+    rate: <>Mittlere Geschwindigkeit</>,
+    viewLabel: "Autofahrt mit ihrem Ort-Zeit-Diagramm",
+  }}
+/>
+
+Von <InlineMath math="5" /> bis <InlineMath math="10\text{ s}" /> beträgt die mittlere Geschwindigkeit <InlineMath math="-3\text{ m/s}" />, die mittlere Schnelligkeit aber <InlineMath math="\frac{15}{5}=3\text{ m/s}" />. Über die ganzen <InlineMath math="10\text{ s}" /> ist die mittlere Schnelligkeit <InlineMath math="3\text{ m/s}" /> und die mittlere Geschwindigkeit <InlineMath math="0" />.
+
 ## Die Wahl der richtigen Formel
 
 | Größe | Berechnung beruht auf | Besitzt eine Richtung? | Beispieleinheit |
@@ -170,3 +245,26 @@ Lauf eine Runde, und die beiden Mittelwerte trennen sich. Nach einer ganzen Rund
     half: <InlineMath math="\text{halb: } s=\pi r,\ \lvert\Delta x\rvert=2r=6\text{ m}" />,
   }}
 />
+
+### Eine Lichtschranke misst die Schnelligkeit
+
+Eine Geschwindigkeitsmessung an der Straße meldet eine Schnelligkeit, keine Geschwindigkeit. **Sie teilt den Abstand zweier Strahlen durch die Zeit dazwischen**, egal in welche Richtung das Auto fährt.
+
+<SpeedTrapInstantSpeedLab
+  title={<>Lichtschranken auf einer Teststrecke</>}
+  description={
+    <>
+      Ein Auto beschleunigt aus dem Stand durch zwei Lichtschranken um die <InlineMath math="50\text{ m}" />-Marke. Verkleinere den Abstand und vergleiche den Wert.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Angezeigter Wert</>,
+    chooseGap: "Abstand der Lichtschranken wählen",
+    elapsed: <>Zeit zwischen den Strahlen</>,
+    gap: <>Abstand der Lichtschranken</>,
+    instantSpeed: <>Schnelligkeit in der Mitte</>,
+    viewLabel: "Auto fährt durch zwei Lichtschranken auf einer Teststrecke",
+  }}
+/>
+
+Bei <InlineMath math="40\text{ m}" /> Abstand zeigt die Messung <InlineMath math="19{,}58\text{ m/s}" />. Fährt das Auto andersherum, bleibt der Wert gleich, während die Geschwindigkeit ihr Vorzeichen wechseln würde.

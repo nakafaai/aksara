@@ -78,6 +78,29 @@ Sieh dir den Grenzwert an einer Beispielbewegung an, <InlineMath math="x=t^2" />
   }}
 />
 
+### Lichtschranken mit schrumpfendem Abstand
+
+Eine Lichtschranke misst die Zeit über einen Abstand, also liefert sie immer einen Mittelwert. Verkleinere den Abstand, dann **nähert sich der Mittelwert der Schnelligkeit in der Mitte**. Das Auto beschleunigt aus dem Stand mit <InlineMath math="4\text{ m/s}^2" /> und passiert die Mitte mit <InlineMath math="20\text{ m/s}" />.
+
+<SpeedTrapInstantSpeedLab
+  title={<>Lichtschranken, die zusammenrücken</>}
+  description={
+    <>
+      Zwei Lichtschranken stehen um die <InlineMath math="50\text{ m}" />-Marke. Wähle den Abstand und sieh zu, wie die Sekante im Diagramm zur Tangente in der Mitte wird.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Angezeigter Wert</>,
+    chooseGap: "Abstand der Lichtschranken wählen",
+    elapsed: <>Zeit zwischen den Strahlen</>,
+    gap: <>Abstand der Lichtschranken</>,
+    instantSpeed: <>Schnelligkeit in der Mitte</>,
+    viewLabel: "Auto fährt durch zwei Lichtschranken auf einer Teststrecke",
+  }}
+/>
+
+Der Wert steigt von <InlineMath math="19{,}58\text{ m/s}" /> bei <InlineMath math="40\text{ m}" /> Abstand auf <InlineMath math="19{,}9" /> und <InlineMath math="19{,}97\text{ m/s}" />, und bei <InlineMath math="2\text{ m}" /> zeigt die Messung <InlineMath math="20\text{ m/s}" /> auf zwei Nachkommastellen. Dieser Grenzwert ist die Momentanschnelligkeit.
+
 ## Die Richtung bestimmt das Vorzeichen der Geschwindigkeit
 
 Der Messpunkt in der Simulation erfasst das Auto zu einem bestimmten Zeitpunkt. Die Schnelligkeit gibt den Betrag der Bewegung an. Die **Fahrtrichtung** beim Passieren des Messpunkts bestimmt das Vorzeichen der Geschwindigkeit.
@@ -120,6 +143,37 @@ Ein Tacho zeigt nur den Betrag. Ergänze die Richtung als Vorzeichen: nach recht
   }}
 />
 
+### Gleiche Schnelligkeit bei wechselnder Geschwindigkeit
+
+Lass eine Kugel an einer <InlineMath math="0{,}8\text{ m}" /> langen Schnur einmal alle <InlineMath math="0{,}8\text{ s}" /> kreisen. Ihre Schnelligkeit bleibt <InlineMath math="6{,}28\text{ m/s}" />, aber **ihre Momentangeschwindigkeit zeigt immer entlang des Kreises in diesem Moment**, also dreht sich die Richtung ständig.
+
+<StringWhirlReleaseLab
+  period={0.8}
+  radius={0.8}
+  title={<>Lass die Schnur los</>}
+  description={
+    <>
+      Der türkise Pfeil ist die Geschwindigkeit der Kugel in diesem Moment. Wähle, wo du loslässt: Die Kugel fliegt entlang dieses Pfeils davon.
+    </>
+  }
+  labels={{
+    acceleration: <>Zentripetalbeschleunigung</>,
+    chooseRelease: "Loslasspunkt wählen",
+    period: <>Zeit für eine Umdrehung</>,
+    radius: <>Schnurlänge</>,
+    releases: {
+      east: <>Osten</>,
+      north: <>Norden</>,
+      west: <>Westen</>,
+      south: <>Süden</>,
+    },
+    speed: <>Schnelligkeit</>,
+    viewLabel: "Kugel an einer Schnur von oben gesehen",
+  }}
+/>
+
+Lässt du am Nordpunkt los, fliegt die Kugel nach Westen, in die Richtung ihrer Geschwindigkeit in genau diesem Augenblick. Zwei Momente mit gleicher Schnelligkeit können also verschiedene Geschwindigkeiten haben, und welche Richtung du abliest, hängt vom Moment ab.
+
 ## Unterschied zur mittleren Schnelligkeit
 
 Die momentane Schnelligkeit unterscheidet sich von der mittleren Schnelligkeit. Die mittlere Schnelligkeit nutzt die gesamte Wegstrecke und die gesamte Zeit, während die momentane Schnelligkeit den Zustand zu **einem einzigen Zeitpunkt** beschreibt.
@@ -128,8 +182,54 @@ Wenn ein Tacho gerade <InlineMath math="15 \text{ m/s}" /> anzeigt, bedeutet das
 
 Ein Fahrzeug kann etwa an einer roten Ampel stehen und danach schnell weiterfahren. Seine mittlere Schnelligkeit kann niedrig sein, weil die gesamte Fahrzeit zählt, obwohl seine momentane Schnelligkeit während der Fahrt deutlich höher ist.
 
+### Eine fallende Kugel hat nie eine feste Schnelligkeit
+
+Eine Kugel, die aus <InlineMath math="1{,}8\text{ m}" /> fällt, ist <InlineMath math="0{,}6\text{ s}" /> unterwegs, also beträgt ihre mittlere Schnelligkeit <InlineMath math="\frac{1{,}8}{0{,}6}=3\text{ m/s}" />. **Ihre Momentanschnelligkeit bleibt nie bei diesem Mittelwert**, denn sie wächst mit jedem Blitz um <InlineMath math="1\text{ m/s}" />.
+
+<StrobePhotoMotionLab
+  shot="drop"
+  title={<>Eine fallende Kugel, Blitz für Blitz</>}
+  description={
+    <>
+      Eine Lampe blitzt alle <InlineMath math="0{,}1\text{ s}" /> in einem dunklen Raum, während der Verschluss der Kamera offen bleibt. Jedes Bild der Kugel ist ein Blitz.
+    </>
+  }
+  labels={{
+    airTime: <>Zeit in der Luft</>,
+    height: <>Starthöhe</>,
+    interval: <>Zeit zwischen den Blitzen</>,
+    outcome: <>Schnelligkeit am Boden</>,
+    viewLabel: "Stroboskopfoto, Blitz für Blitz aufgebaut",
+  }}
+/>
+
+Die Abstände wachsen von <InlineMath math="5\text{ cm}" /> auf <InlineMath math="55\text{ cm}" />, und die Kugel erreicht den Boden mit <InlineMath math="6\text{ m/s}" />, dem Doppelten ihrer mittleren Schnelligkeit. Nur in einem Moment, nach der halben Fallzeit bei <InlineMath math="0{,}3\text{ s}" />, ist die Momentanschnelligkeit gleich dem Mittelwert.
+
 ## Ein Tachometer misst die aktuelle Schnelligkeit
 
 Eine ausgeschilderte Grenze von <InlineMath math="80 \text{ km/h}" /> gilt für das Fahrzeug **zu jedem Zeitpunkt**. Ein Messgerät am Straßenrand erfasst deshalb die momentane Schnelligkeit beim Vorbeifahren.
 
 Ein Fahrzeug mit <InlineMath math="90 \text{ km/h}" /> beim Vorbeifahren überschreitet diese Grenze auch dann, wenn seine mittlere Schnelligkeit auf der gesamten Fahrt nur <InlineMath math="60 \text{ km/h}" /> beträgt. Wartezeit an einer roten Ampel senkt den Mittelwert, verändert aber nicht den Messwert beim Vorbeifahren.
+
+### So misst ein Fahrradcomputer die Schnelligkeit
+
+Ein Fahrradcomputer zählt, wie oft ein Magnet am Rad an einem Sensor vorbeikommt. Die Schnelligkeit eines Punkts am Rad ist **sein Kreisumfang geteilt durch die Zeit für eine Umdrehung**. Das Ventil sitzt auf der Felge, <InlineMath math="0{,}311\text{ m}" /> von der Achse entfernt.
+
+<BicycleWheelSpeedLab
+  title={<>Ein Rad, zwei Schnelligkeiten</>}
+  description={
+    <>
+      Das Ventil und ein Reflektor auf halber Höhe der Speichen drehen sich jede Sekunde um denselben Winkel. Vergleiche die Längen ihrer Geschwindigkeitspfeile.
+    </>
+  }
+  labels={{
+    angularSpeed: <>Winkelgeschwindigkeit</>,
+    choosePeriod: "Zeit für eine Umdrehung wählen",
+    reflectorSpeed: <>Schnelligkeit des Reflektors</>,
+    valveAcceleration: <>Zentripetalbeschleunigung des Ventils</>,
+    valveSpeed: <>Schnelligkeit des Ventils</>,
+    viewLabel: "Fahrradrad dreht sich auf einem Ständer",
+  }}
+/>
+
+Bei einer Umdrehung pro Sekunde bewegt sich das Ventil mit <InlineMath math="2\pi(0{,}311)\approx1{,}95\text{ m/s}" /> und der Reflektor mit etwa <InlineMath math="0{,}97\text{ m/s}" />. Wähle <InlineMath math="T=0{,}5\text{ s}" />, dann verdoppeln sich beide, und jeder Pfeil bleibt tangential an seinem Kreis.

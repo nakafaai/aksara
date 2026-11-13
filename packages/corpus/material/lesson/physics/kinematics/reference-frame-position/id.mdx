@@ -22,6 +22,37 @@ Jika gerak hanya terjadi pada satu garis, kita bisa memilih satu arah sebagai po
 
 Rumus ini menggeser titik asal koordinat, sedangkan posisi benda, sumbu, dan arah positifnya tetap.
 
+### Siapa yang Bergerak Bergantung pada Kerangka
+
+Kerangka acuan juga menentukan **apa yang dianggap bergerak**. Seorang penumpang berjalan di dalam gerbong saat kereta melaju <InlineMath math="20\text{ m/s}" />, dan ada dua orang yang mengamati.
+
+<TrainPassengerRelativeLab
+  title={<>Berjalan di Kereta yang Melaju</>}
+  description={
+    <>
+      Amati dari peron, lalu dari kursi di dalam kereta. Panah menunjukkan kecepatan yang diukur setiap pengamat, dengan arah kereta sebagai arah positif.
+    </>
+  }
+  labels={{
+    chooseObserver: "Pilih pengamat",
+    chooseWay: "Pilih arah jalan",
+    observers: {
+      platform: <>Dari peron</>,
+      train: <>Dari kursi kereta</>,
+    },
+    passenger: <>Kecepatan penumpang</>,
+    train: <>Kecepatan kereta</>,
+    viewLabel: "Penumpang berjalan di kereta yang melaju",
+    walk: <>Kecepatan jalan di dalam gerbong</>,
+    ways: {
+      forward: <>Jalan ke depan</>,
+      backward: <>Jalan ke belakang</>,
+    },
+  }}
+/>
+
+Dari peron, penumpang bergerak dengan <InlineMath math="+21{,}5\text{ m/s}" />. Dari kursi kereta, penumpang yang sama hanya bergerak <InlineMath math="+1{,}5\text{ m/s}" />, dan justru peronlah yang tampak bergeser ke belakang.
+
 ## Posisi dari Patokan Berbeda
 
 Ambil contoh satu benda berada di koordinat <InlineMath math="30 \text{ m}" /> ketika toko dijadikan titik nol. Jika titik asal digeser ke rumah Rani di koordinat <InlineMath math="20 \text{ m}" />, koordinat baru benda menjadi <InlineMath math="+10 \text{ m}" />.
@@ -67,6 +98,33 @@ Lihat adegan di bawah. Garis abu-abu adalah bendanya, dan garis itu tidak pernah
   }}
 />
 
+### Tiga Titik Acuan di Satu Jalan
+
+Ini rumus <InlineMath math="x\'=x_{\text{benda}}-x_{\text{acuan}}" /> saat dipakai. Toko berada di titik nol, rumah Rani di <InlineMath math="20\text{ m}" />, dan tiang bendera di <InlineMath math="50\text{ m}" />, dengan timur positif. Mengganti titik acuan **menggeser setiap posisi sebesar koordinat titik acuan itu**.
+
+<StreetOriginPositionLab
+  title={<>Satu Perjalanan, Tiga Titik Acuan</>}
+  description={
+    <>
+      Pesepeda bergerak dari <InlineMath math="20\text{ m}" /> ke <InlineMath math="50\text{ m}" /> lalu kembali ke <InlineMath math="35\text{ m}" />. Pilih titik acuannya dan baca posisinya.
+    </>
+  }
+  labels={{
+    change: <>Perubahan posisi</>,
+    chooseOrigin: "Pilih titik acuan",
+    end: <>Posisi akhir</>,
+    origins: {
+      store: <>Toko</>,
+      house: <>Rumah Rani</>,
+      pole: <>Tiang bendera</>,
+    },
+    start: <>Posisi awal</>,
+    viewLabel: "Pesepeda di jalan dengan tiga tempat",
+  }}
+/>
+
+Diukur dari rumah Rani, pesepeda mulai di <InlineMath math="0" /> dan berakhir di <InlineMath math="+15\text{ m}" />. Diukur dari tiang bendera, posisi awalnya <InlineMath math="-30\text{ m}" /> dan akhirnya <InlineMath math="-15\text{ m}" />, di sebelah barat titik nol yang baru.
+
 ## Membaca Tanda dan Arah
 
 Tanda posisi menunjukkan <Highlight>sisi benda terhadap titik acuan</Highlight>. Dalam contoh jalan tadi, timur dipilih sebagai arah positif. Nilai positif berarti benda berada di timur titik acuan, sedangkan nilai negatif berarti benda berada di baratnya.
@@ -78,6 +136,34 @@ Tanda posisi menunjukkan <Highlight>sisi benda terhadap titik acuan</Highlight>.
 | Rumah Naya di <InlineMath math="50 \text{ m}" /> | Benda di <InlineMath math="30 \text{ m}" /> | <InlineMath math="-20 \text{ m}" /> atau <InlineMath math="20 \text{ m}" /> ke barat |
 
 Nilai <InlineMath math="-20 \text{ m}" /> bukan berarti jaraknya negatif. Tanda negatif hanya menunjukkan arah relatif terhadap patokan yang kita pilih.
+
+### Dua Arah di Peta
+
+Di peta kota, posisi butuh **dua bilangan bertanda**, satu untuk setiap arah. Anggap timur dan utara positif, lalu berjalan <InlineMath math="150\text{ m}" /> ke barat dan <InlineMath math="200\text{ m}" /> ke utara.
+
+<CityWalkDisplacementLab
+  legs={[
+    { east: -150, north: 0 },
+    { east: 0, north: 200 },
+  ]}
+  pace={1.25}
+  title={<>Berjalan pada Dua Sumbu</>}
+  description={
+    <>
+      Panah ungu mengarah dari rumah ke posisimu sekarang. Bagian timurnya negatif dan bagian utaranya positif.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Kelajuan rata-rata</>,
+    averageVelocity: <>Besar kecepatan rata-rata</>,
+    displacement: <>Besar perpindahan</>,
+    distance: <>Jarak tempuh</>,
+    time: <>Waktu</>,
+    viewLabel: "Jalan kaki di kota dilihat dari atas",
+  }}
+/>
+
+Kamu berakhir di <InlineMath math="x=-150\text{ m}" /> dan <InlineMath math="y=+200\text{ m}" /> dari rumah, yaitu <InlineMath math="\sqrt{150^2+200^2}=250\text{ m}" /> jauhnya dalam garis lurus, walaupun kamu berjalan <InlineMath math="350\text{ m}" />.
 
 ## Kalimat Posisi yang Lengkap
 
@@ -133,6 +219,34 @@ Dalam dua dimensi, pernyataan posisi butuh titik asal dan dua bilangan. Dari <In
   }}
 />
 
+### Ketinggian dari Dua Titik Acuan
+
+Posisi satelit juga butuh titik acuannya. Stasiun antariksa mengorbit sekitar <InlineMath math="400\text{ km}" /> di atas permukaan Bumi, yaitu <InlineMath math="6771\text{ km}" /> dari pusat Bumi. Kedua angka itu benar, karena **diukur dari titik acuan yang berbeda**.
+
+<SatelliteOrbitCircularLab
+  title={<>Satelit di Sekitar Bumi</>}
+  description={
+    <>
+      Pilih satelitnya. Jari-jari orbit diukur dari pusat Bumi, bukan dari permukaan tanah.
+    </>
+  }
+  labels={{
+    acceleration: <>Percepatan sentripetal</>,
+    chooseOrbit: "Pilih satelit",
+    orbits: {
+      station: <>Stasiun antariksa</>,
+      gps: <>GPS</>,
+      geostationary: <>Geostasioner</>,
+    },
+    period: <>Waktu satu orbit</>,
+    radius: <>Jari-jari orbit</>,
+    speed: <>Kelajuan</>,
+    viewLabel: "Satelit mengorbit Bumi",
+  }}
+/>
+
+Tambahkan jari-jari rata-rata Bumi, <InlineMath math="6371\text{ km}" />, ke ketinggian di atas tanah, maka kamu mendapat jari-jari dari pusat: <InlineMath math="6371+400=6771\text{ km}" />. Kalimat posisi yang lengkap menyebut acuan yang mana yang dipakai.
+
 ## Kalimat Posisi dari Patokan Toko
 
 Sebuah penanda berada pada koordinat <InlineMath math="40 \text{ m}" /> ketika toko menjadi titik asal. Rumah Dimas berada pada koordinat <InlineMath math="30 \text{ m}" /> dalam kerangka yang sama. Jika **titik asal digeser** ke rumah Dimas, koordinat penanda menjadi:
@@ -178,3 +292,31 @@ Kedua panah di bawah berakhir di patok yang sama. Yang berubah hanya titik beran
     coord1: <InlineMath math="+10\text{ m}" />,
   }}
 />
+
+### Titik Pendaratan Perahu
+
+Perahu yang menyeberangi sungai menunjukkan kalimat posisi dengan dua acuan sekaligus. Titik pendaratannya **diukur di sepanjang tepi sungai dari titik yang tepat di seberang**. Haluan perahu mengarah <InlineMath math="30^\circ" /> ke hulu dengan <InlineMath math="4\text{ m/s}" />, sementara arus sungai mengalir <InlineMath math="3\text{ m/s}" />.
+
+<RiverBoatCrossingLab
+  boatSpeed={4}
+  current={3}
+  heading={-30}
+  width={60}
+  title={<>Menyeberangi Sungai yang Mengalir</>}
+  description={
+    <>
+      Putar arah haluan dan perhatikan tempat perahu mendarat di tepi seberang yang berjarak <InlineMath math="60\text{ m}" />.
+    </>
+  }
+  labels={{
+    angle: <>Sudut dari arah tegak lurus</>,
+    drift: <>Hanyut ke hilir</>,
+    groundSpeed: <>Kelajuan terhadap tanah</>,
+    heading: <>Arah haluan</>,
+    headingName: "Arah haluan perahu",
+    time: <>Waktu menyeberang</>,
+    viewLabel: "Perahu menyeberangi sungai dilihat dari atas",
+  }}
+/>
+
+Dengan haluan ini, perahu mendarat sekitar <InlineMath math="17{,}3\text{ m}" /> ke arah hilir dari titik yang tepat di seberang. Jawaban yang lengkap menyebut titik itu, jaraknya, dan arahnya ke hilir.

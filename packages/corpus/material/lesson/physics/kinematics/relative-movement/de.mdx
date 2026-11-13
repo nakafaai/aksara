@@ -60,6 +60,37 @@ Das negative Vorzeichen zeigt, dass die relative Bewegung nach links gerichtet i
 
 Fahren zwei Fahrzeuge in dieselbe Richtung, kann das langsamere Fahrzeug für die Person im schnelleren Fahrzeug rückwärts erscheinen. Das Auto hat seine Fahrtrichtung relativ zur Straße nicht geändert. Nur die Beschreibung aus dem fahrenden Taxi fällt anders aus.
 
+### Gehen in einem Zug
+
+Geschwindigkeiten, die ein bewegter Beobachter misst, sind einfach um seine eigene Geschwindigkeit verringert. Ein Zug fährt mit <InlineMath math="20\text{ m/s}" />, und eine Person geht darin mit <InlineMath math="1{,}5\text{ m/s}" />, also **hängt die Antwort vom Beobachter ab**.
+
+<TrainPassengerRelativeLab
+  title={<>Gehen in einem fahrenden Zug</>}
+  description={
+    <>
+      Wechsle zwischen Bahnsteig und Sitzplatz im Zug und zwischen Gehen nach vorn und nach hinten.
+    </>
+  }
+  labels={{
+    chooseObserver: "Beobachter wählen",
+    chooseWay: "Gehrichtung wählen",
+    observers: {
+      platform: <>Vom Bahnsteig</>,
+      train: <>Von einem Sitzplatz</>,
+    },
+    passenger: <>Geschwindigkeit der Person</>,
+    train: <>Geschwindigkeit des Zuges</>,
+    viewLabel: "Person geht durch einen fahrenden Zug",
+    walk: <>Gehgeschwindigkeit im Wagen</>,
+    ways: {
+      forward: <>Nach vorn gehen</>,
+      backward: <>Nach hinten gehen</>,
+    },
+  }}
+/>
+
+Geht die Person nach hinten, bewegt sie sich gegenüber dem Bahnsteig mit <InlineMath math="20-1{,}5=18{,}5\text{ m/s}" />, gegenüber dem Sitz aber mit <InlineMath math="-1{,}5\text{ m/s}" />. Ziehst du die Geschwindigkeit des Beobachters ab, <InlineMath math="v_{AB}=v_A-v_B" />, passen beide Werte zusammen.
+
 ## Wenn der Beobachter still steht
 
 Wenn der Beobachter relativ zum Boden stillsteht, ist die Relativgeschwindigkeit dieselbe wie die Geschwindigkeit relativ zum Boden.
@@ -71,6 +102,35 @@ Deshalb wird bei vielen einfachen Aufgaben stillschweigend angenommen, dass eine
 Ein Objekt kann auch **relativ zu einem bewegten Beobachter ruhen**. Fahren Auto und Taxi beide mit <InlineMath math="12\text{ m/s}" /> nach rechts, ist ihre Geschwindigkeitsdifferenz null:
 
 <BlockMath math="v_{\text{Auto/Taxi}}=12-12=0\text{ m/s}" />
+
+### Regen aus einem fahrenden Auto
+
+Bei Windstille fällt Regen senkrecht. **Aus einem fahrenden Auto gesehen kommt der Regen schräg**, weil seine Geschwindigkeit relativ zum Auto seine eigene minus die des Autos ist.
+
+<RainDriveRelativeVelocityLab
+  car={10}
+  title={<>Regen auf ein fahrendes Auto</>}
+  description={
+    <>
+      Große Regentropfen fallen mit etwa <InlineMath math="6{,}5\text{ m/s}" />. Wechsle den Beobachter und ändere die Schnelligkeit des Autos.
+    </>
+  }
+  labels={{
+    angle: <>Neigung gegen die Senkrechte</>,
+    apparentSpeed: <>Gesehene Schnelligkeit des Regens</>,
+    carSpeed: <>Schnelligkeit des Autos</>,
+    carSpeedName: "Schnelligkeit des Autos",
+    chooseFrame: "Beobachter wählen",
+    frames: {
+      ground: <>Vom Straßenrand</>,
+      car: <>Aus dem Auto</>,
+    },
+    rainSpeed: <>Fallschnelligkeit des Regens</>,
+    viewLabel: "Regen fällt auf ein fahrendes Auto",
+  }}
+/>
+
+Bei <InlineMath math="10\text{ m/s}" /> scheint der Regen mit <InlineMath math="\sqrt{6{,}5^2+10^2}\approx11{,}9\text{ m/s}" /> zu kommen, etwa <InlineMath math="57^\circ" /> gegen die Senkrechte geneigt. Vom Straßenrand aus fallen dieselben Tropfen weiter senkrecht.
 
 ## Wenn sich beide bewegen
 
@@ -114,6 +174,33 @@ Hier fahren Auto, Taxi und Lastwagen vom selben Punkt los. Der Abstand zwischen 
   }}
 />
 
+### Ein Boot auf einem strömenden Fluss
+
+Ein Boot bewegt sich durch das Wasser, und das Wasser bewegt sich am Ufer vorbei. **Die Geschwindigkeit des Boots gegenüber dem Ufer ist die Summe aus beiden**, Spitze an Ende gezeichnet.
+
+<RiverBoatCrossingLab
+  boatSpeed={4}
+  current={3}
+  width={60}
+  title={<>Über einen strömenden Fluss</>}
+  description={
+    <>
+      Das Boot fährt mit <InlineMath math="4\text{ m/s}" /> durch das Wasser, und die Strömung fließt mit <InlineMath math="3\text{ m/s}" />. Dreh den Kurs.
+    </>
+  }
+  labels={{
+    angle: <>Winkel zur direkten Querung</>,
+    drift: <>Abdrift flussabwärts</>,
+    groundSpeed: <>Schnelligkeit über Grund</>,
+    heading: <>Kurs</>,
+    headingName: "Kurs des Boots",
+    time: <>Zeit für die Querung</>,
+    viewLabel: "Boot überquert einen Fluss, von oben gesehen",
+  }}
+/>
+
+Bei Kurs genau quer bewegt sich das Boot gegenüber dem Ufer mit <InlineMath math="\sqrt{4^2+3^2}=5\text{ m/s}" />, überquert den <InlineMath math="60\text{ m}" /> breiten Fluss in <InlineMath math="15\text{ s}" /> und landet <InlineMath math="45\text{ m}" /> flussabwärts.
+
 ## Relativgeschwindigkeit ist eine Differenz
 
 | Situation | Berechnung | Bedeutung der Relativbewegung |
@@ -151,3 +238,26 @@ Jeder Beobachter rechnet dieselbe Subtraktion, <InlineMath math="v_\text{rel}=v_
     truck: <InlineMath math="12-(-8)=+20" />,
   }}
 />
+
+### Gerade Linien relativ zu einer fallenden Dose
+
+Relativbewegung erklärt einen berühmten Versuch. Ein Rohr zielt genau auf eine Dose, die im Moment des Abschusses fällt. Beide fallen gleich, also **bewegt sich die Kugel relativ zur Dose geradlinig** auf sie zu.
+
+<FallingTargetAimLab
+  speed={10}
+  title={<>Ziel auf eine fallende Dose</>}
+  description={
+    <>
+      Die Dose hängt <InlineMath math="4\text{ m}" /> entfernt und <InlineMath math="2\text{ m}" /> hoch. Ändere die Abschussschnelligkeit und sieh, wie der Abstand entlang der Ziellinie schrumpft.
+    </>
+  }
+  labels={{
+    drop: <>Fallhöhe der Dose beim Treffen</>,
+    meetTime: <>Zeit bis zum Treffen</>,
+    speed: <>Abschussschnelligkeit</>,
+    speedName: "Abschussschnelligkeit",
+    viewLabel: "Abschussrohr zielt auf eine fallende Dose",
+  }}
+/>
+
+Bei <InlineMath math="10\text{ m/s}" /> trifft die Kugel die Dose nach <InlineMath math="0{,}45\text{ s}" />, wenn beide <InlineMath math="1\text{ m}" /> gefallen sind. Ziehst du die Geschwindigkeit der Dose von der der Kugel ab, hebt sich die Schwerkraft heraus.

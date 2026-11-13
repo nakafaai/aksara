@@ -20,6 +20,35 @@ Simbol <InlineMath math="\Delta x" /> dibaca "delta x" dan berarti perpindahan p
 
 > Gerak dikenali dari posisi yang berubah terhadap waktu. Perpindahan hanya membandingkan dua titik ujung yang dipilih.
 
+### Posisi yang Tercetak di Pita
+
+Ticker timer mengubah posisi pada waktu yang berbeda menjadi titik. Alat itu mencetak satu titik setiap <InlineMath math="0{,}02\text{ s}" /> pada pita yang ditarik troli, jadi **setiap titik adalah posisi troli pada satu saat**.
+
+<TickerTapeMotionLab
+  motion="uniform"
+  title={<>Posisi di Pita Ticker Timer</>}
+  description={
+    <>
+      Troli menarik pita melewati ticker timer. Hitung titiknya: waktu yang berlalu antara dua titik bertetangga selalu sama.
+    </>
+  }
+  labels={{
+    acceleration: <>Percepatan dari potongan pita</>,
+    chooseMotion: "Pilih gerak troli",
+    firstStrip: <>Potongan pertama</>,
+    interval: <>Selang waktu antartitik</>,
+    lastStrip: <>Potongan terakhir</>,
+    motions: {
+      uniform: <>Tetap</>,
+      speeding: <>Makin cepat</>,
+      slowing: <>Melambat</>,
+    },
+    viewLabel: "Troli menarik pita kertas melewati ticker timer",
+  }}
+/>
+
+Saat geraknya tetap, setiap potongan sepersepuluh detik panjangnya <InlineMath math="6\text{ cm}" />. Membandingkan dua titik memberi tahu seberapa jauh troli berpindah di antara dua saat itu, dan itulah perubahan posisi.
+
 ## Selisih Posisi pada Lintasan Lurus
 
 Pada lintasan lurus dengan titik nol tetap, perubahan posisi hanya bergantung pada **selisih posisi akhir dan posisi awal**. Misalnya benda mula-mula di <InlineMath math="20 \text{ m}" /> lalu berada di <InlineMath math="50 \text{ m}" />, maka perubahan posisinya <InlineMath math="+30 \text{ m}" />.
@@ -68,6 +97,29 @@ Coba gambar kedua keadaan itu sebagai grafik posisi terhadap waktu, lalu ikuti s
   }}
 />
 
+### Membaca Perubahan Posisi dari Grafik
+
+Pada grafik posisi terhadap waktu, **perubahan posisi pada suatu selang adalah kenaikan di antara kedua titiknya**. Mobil yang melaju tetap <InlineMath math="8\text{ m/s}" /> menunjukkannya dengan jelas.
+
+<CarTripSecantSlopeLab
+  trip="cruise"
+  title={<>Perubahan Posisi Mobil yang Melaju Tetap</>}
+  description={
+    <>
+      Pilih selang waktu. Bendera menandai dua posisi di jalan, dan anak tangga tegak pada grafik adalah perubahan posisinya.
+    </>
+  }
+  labels={{
+    change: <>Perpindahan</>,
+    chooseInterval: "Pilih selang waktu",
+    elapsed: <>Selang waktu</>,
+    rate: <>Kecepatan rata-rata</>,
+    viewLabel: "Perjalanan mobil dengan grafik posisi terhadap waktu",
+  }}
+/>
+
+Dari <InlineMath math="2" /> sampai <InlineMath math="6\text{ s}" />, mobil berpindah dari <InlineMath math="16\text{ m}" /> ke <InlineMath math="48\text{ m}" />, jadi <InlineMath math="\Delta x=48-16=32\text{ m}" />. Selama <InlineMath math="10\text{ s}" /> penuh, perubahannya <InlineMath math="80\text{ m}" />.
+
 ## Patokan Harus Konsisten
 
 Saat menghitung perubahan posisi, posisi awal dan posisi akhir harus dibaca dari **patokan yang sama**. Jangan mengambil posisi awal dari toko, lalu posisi akhir dari rumah lain, karena hasilnya tidak lagi menjelaskan gerak benda yang sama dalam satu kerangka acuan.
@@ -79,6 +131,33 @@ Saat menghitung perubahan posisi, posisi awal dan posisi akhir harus dibaca dari
 | Rumah Naya di <InlineMath math="50 \text{ m}" /> | <InlineMath math="-30 \text{ m}" /> | <InlineMath math="0 \text{ m}" /> | <InlineMath math="+30 \text{ m}" /> |
 
 Perubahan posisi tetap sama karena memindahkan titik acuan hanya mengubah nilai koordinat awal dan akhir. Selisih posisi akhir dan posisi awal tetap <InlineMath math="+30\text{ m}" /> pada ketiga baris.
+
+### Mengganti Titik Acuan Menggeser Semua Posisi
+
+Ambil sebuah jalan dengan toko di titik nol, rumah Rani <InlineMath math="20\text{ m}" /> di timurnya, dan tiang bendera di <InlineMath math="50\text{ m}" />. Memindahkan titik acuan menggeser semua posisi dengan jumlah yang sama, jadi **perubahan posisinya tetap**.
+
+<StreetOriginPositionLab
+  title={<>Satu Perjalanan, Tiga Titik Acuan</>}
+  description={
+    <>
+      Pesepeda bergerak dari <InlineMath math="20\text{ m}" /> ke <InlineMath math="50\text{ m}" /> lalu kembali ke <InlineMath math="35\text{ m}" />, dengan timur positif. Ganti titik acuannya dan perhatikan seluruh grafik bergeser.
+    </>
+  }
+  labels={{
+    change: <>Perubahan posisi</>,
+    chooseOrigin: "Pilih titik acuan",
+    end: <>Posisi akhir</>,
+    origins: {
+      store: <>Toko</>,
+      house: <>Rumah Rani</>,
+      pole: <>Tiang bendera</>,
+    },
+    start: <>Posisi awal</>,
+    viewLabel: "Pesepeda di jalan dengan tiga tempat",
+  }}
+/>
+
+Dari toko, perjalanannya dari <InlineMath math="+20\text{ m}" /> ke <InlineMath math="+35\text{ m}" />. Dari tiang bendera, perjalanannya dari <InlineMath math="-30\text{ m}" /> ke <InlineMath math="-15\text{ m}" />. Keduanya memberi <InlineMath math="\Delta x=+15\text{ m}" />, asalkan kamu memakai satu titik acuan untuk kedua posisi.
 
 ## Membaca Tanda Perubahan Posisi
 
@@ -120,6 +199,34 @@ Ambil kedua posisi dari acuan yang sama, kurangkan <InlineMath math="\Delta x=x_
   }}
 />
 
+### Jalan Kaki yang Berakhir di Barat
+
+Anggap timur positif, lalu berjalanlah <InlineMath math="250\text{ m}" /> ke barat dan <InlineMath math="100\text{ m}" /> kembali ke timur. Posisi akhirmu ada di sebelah barat titik awal, jadi **perubahan posisinya negatif**.
+
+<CityWalkDisplacementLab
+  legs={[
+    { east: -250, north: 0 },
+    { east: 100, north: 0 },
+  ]}
+  pace={1.25}
+  title={<>Jalan Kaki yang Berakhir di Barat</>}
+  description={
+    <>
+      Panah ungu menghubungkan titik awal dengan posisimu sekarang. Panjangnya adalah besar perubahan posisi, dan arahnya menentukan tandanya.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Kelajuan rata-rata</>,
+    averageVelocity: <>Besar kecepatan rata-rata</>,
+    displacement: <>Besar perpindahan</>,
+    distance: <>Jarak tempuh</>,
+    time: <>Waktu</>,
+    viewLabel: "Jalan kaki di kota dilihat dari atas",
+  }}
+/>
+
+Kamu berjalan <InlineMath math="350\text{ m}" /> dalam <InlineMath math="280\text{ s}" />, tetapi berakhir hanya <InlineMath math="150\text{ m}" /> dari titik awal. Dengan timur positif, <InlineMath math="\Delta x=-250+100=-150\text{ m}" />.
+
 ## Menghitung Selisih Akhir dan Awal
 
 Seorang siswa mula-mula berada <InlineMath math="10 \text{ m}" /> di timur gerbang. Setelah beberapa detik, ia berada <InlineMath math="40 \text{ m}" /> di timur gerbang. Perubahan posisinya adalah:
@@ -160,3 +267,26 @@ Panah di bawah berawal di posisi awal dan berakhir di posisi akhir. Panjangnya a
     change: <InlineMath math="\Delta x=40-10=+30\text{ m}" />,
   }}
 />
+
+### Naik lalu Kembali ke Tangan
+
+Posisi bekerja dengan cara yang sama ke arah atas. Lempar bola lurus ke atas dengan <InlineMath math="5\text{ m/s}" /> dan tangkap di ketinggian saat bola lepas dari tanganmu. Bola bergerak, tetapi **posisi akhirnya sama dengan posisi awalnya**.
+
+<StrobePhotoMotionLab
+  shot="toss"
+  title={<>Bola Dilempar ke Atas, Kilatan demi Kilatan</>}
+  description={
+    <>
+      Lampu berkedip setiap <InlineMath math="0{,}1\text{ s}" />. Arah atas positif, dan tanganmu adalah titik nol.
+    </>
+  }
+  labels={{
+    airTime: <>Waktu di udara</>,
+    height: <>Tinggi awal</>,
+    interval: <>Selang antarkilatan</>,
+    outcome: <>Tinggi puncak</>,
+    viewLabel: "Foto stroboskop yang terbentuk kilatan demi kilatan",
+  }}
+/>
+
+Bola naik <InlineMath math="1{,}25\text{ m}" /> dalam <InlineMath math="0{,}5\text{ s}" /> dan kembali ke tanganmu setelah <InlineMath math="1\text{ s}" />. Perubahan posisinya selama lemparan itu <InlineMath math="\Delta y=0-0=0" />, walaupun bola menempuh <InlineMath math="2{,}5\text{ m}" />.

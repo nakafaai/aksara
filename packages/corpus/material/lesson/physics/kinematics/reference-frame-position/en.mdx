@@ -22,6 +22,37 @@ If motion happens along one straight line, we can choose one direction as positi
 
 This equation keeps the object in place and shifts the coordinate origin while the axis and positive direction stay fixed.
 
+### Who Is Moving Depends on the Frame
+
+A frame of reference also decides **what counts as moving**. A passenger walks along a carriage while the train runs at <InlineMath math="20\text{ m/s}" />, and two people watch.
+
+<TrainPassengerRelativeLab
+  title={<>Walking in a Moving Train</>}
+  description={
+    <>
+      Watch from the platform, then from a seat in the train. The arrows show the velocities each observer measures, with the train\'s direction positive.
+    </>
+  }
+  labels={{
+    chooseObserver: "Choose the observer",
+    chooseWay: "Choose the walking direction",
+    observers: {
+      platform: <>From the platform</>,
+      train: <>From a seat</>,
+    },
+    passenger: <>Passenger velocity</>,
+    train: <>Train velocity</>,
+    viewLabel: "Passenger walking in a moving train",
+    walk: <>Walking velocity in the carriage</>,
+    ways: {
+      forward: <>Walk forward</>,
+      backward: <>Walk back</>,
+    },
+  }}
+/>
+
+From the platform the passenger moves at <InlineMath math="+21.5\text{ m/s}" />. From a seat the same passenger moves at only <InlineMath math="+1.5\text{ m/s}" />, and it is the platform that slides backward.
+
 ## Position from Different References
 
 Take one object at coordinate <InlineMath math="30 \text{ m}" /> when the store is used as zero. If the origin is shifted to Rani's house at coordinate <InlineMath math="20 \text{ m}" />, the object's new coordinate becomes <InlineMath math="+10 \text{ m}" />.
@@ -67,6 +98,33 @@ Look at the scene below. The gray line is the object, and it never moves. Each a
   }}
 />
 
+### Three Origins on One Street
+
+Here is the formula <InlineMath math="x\'=x_{\text{object}}-x_{\text{origin}}" /> at work. A store stands at zero, Rani\'s house at <InlineMath math="20\text{ m}" />, and a flagpole at <InlineMath math="50\text{ m}" />, east positive. Switching the origin **shifts every position by the origin\'s own coordinate**.
+
+<StreetOriginPositionLab
+  title={<>One Ride, Three Origins</>}
+  description={
+    <>
+      A cyclist rides from <InlineMath math="20\text{ m}" /> to <InlineMath math="50\text{ m}" /> and back to <InlineMath math="35\text{ m}" />. Pick the origin and read the positions.
+    </>
+  }
+  labels={{
+    change: <>Change of position</>,
+    chooseOrigin: "Choose the origin",
+    end: <>Final position</>,
+    origins: {
+      store: <>Store</>,
+      house: <>Rani's house</>,
+      pole: <>Flagpole</>,
+    },
+    start: <>Initial position</>,
+    viewLabel: "Cyclist on a street with three landmarks",
+  }}
+/>
+
+Measured from Rani\'s house, the cyclist starts at <InlineMath math="0" /> and ends at <InlineMath math="+15\text{ m}" />. Measured from the flagpole, the start is <InlineMath math="-30\text{ m}" /> and the end <InlineMath math="-15\text{ m}" />, west of the new zero.
+
 ## Reading Sign and Direction
 
 The sign of a position tells us <Highlight>which side of the reference point</Highlight> the object is on. In the street example, east is chosen as positive. So a positive value means the object is east of the reference point, while a negative value means the object is west of it.
@@ -78,6 +136,34 @@ The sign of a position tells us <Highlight>which side of the reference point</Hi
 | Naya's house at <InlineMath math="50 \text{ m}" /> | Object at <InlineMath math="30 \text{ m}" /> | <InlineMath math="-20 \text{ m}" /> or <InlineMath math="20 \text{ m}" /> west |
 
 The value <InlineMath math="-20 \text{ m}" /> does not mean the distance is negative. The negative sign only tells the direction relative to the reference point.
+
+### Two Directions on a Map
+
+On a town map a position needs **two signed numbers**, one for each direction. Take east and north as positive and walk <InlineMath math="150\text{ m}" /> west, then <InlineMath math="200\text{ m}" /> north.
+
+<CityWalkDisplacementLab
+  legs={[
+    { east: -150, north: 0 },
+    { east: 0, north: 200 },
+  ]}
+  pace={1.25}
+  title={<>A Walk on Two Axes</>}
+  description={
+    <>
+      The violet arrow points from home to where you stand. Its east part is negative and its north part is positive.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Average speed</>,
+    averageVelocity: <>Size of the average velocity</>,
+    displacement: <>Size of the displacement</>,
+    distance: <>Distance walked</>,
+    time: <>Time</>,
+    viewLabel: "Walk through a town seen from above",
+  }}
+/>
+
+You end at <InlineMath math="x=-150\text{ m}" /> and <InlineMath math="y=+200\text{ m}" /> from home, which is <InlineMath math="\sqrt{150^2+200^2}=250\text{ m}" /> away in a straight line, although you walked <InlineMath math="350\text{ m}" />.
 
 ## A Complete Position Statement
 
@@ -133,6 +219,34 @@ In two dimensions a position statement needs an origin and two numbers. From <In
   }}
 />
 
+### Height Measured from Two Origins
+
+A satellite\'s position also needs its reference. The space station orbits about <InlineMath math="400\text{ km}" /> above the ground, which is <InlineMath math="6771\text{ km}" /> from the Earth\'s centre. Both numbers are right, because **they are measured from different origins**.
+
+<SatelliteOrbitCircularLab
+  title={<>Satellites around the Earth</>}
+  description={
+    <>
+      Pick a satellite. The orbit radius is measured from the centre of the Earth, not from the ground.
+    </>
+  }
+  labels={{
+    acceleration: <>Centripetal acceleration</>,
+    chooseOrbit: "Choose the satellite",
+    orbits: {
+      station: <>Space station</>,
+      gps: <>GPS</>,
+      geostationary: <>Geostationary</>,
+    },
+    period: <>Time for one orbit</>,
+    radius: <>Orbit radius</>,
+    speed: <>Speed</>,
+    viewLabel: "Satellites orbiting the Earth",
+  }}
+/>
+
+Add the Earth\'s mean radius, <InlineMath math="6371\text{ km}" />, to the height above the ground and you get the radius from the centre: <InlineMath math="6371+400=6771\text{ km}" />. A complete statement names which one it means.
+
 ## A Position Sentence from the Store
 
 A marker is at coordinate <InlineMath math="40 \text{ m}" /> when the store is the origin. Dimas's house is at coordinate <InlineMath math="30 \text{ m}" /> in the same frame. If the **origin is shifted** to Dimas's house, the marker's coordinate is:
@@ -178,3 +292,31 @@ Both arrows below end at the same marker. Only their starting point, the origin,
     coord1: <InlineMath math="+10\text{ m}" />,
   }}
 />
+
+### The Landing Point of a Boat
+
+A boat crossing a river shows a position sentence with two references at once. The landing point is **measured along the bank from the point straight across**. The boat heads <InlineMath math="30^\circ" /> upstream at <InlineMath math="4\text{ m/s}" /> while the river flows at <InlineMath math="3\text{ m/s}" />.
+
+<RiverBoatCrossingLab
+  boatSpeed={4}
+  current={3}
+  heading={-30}
+  width={60}
+  title={<>Crossing a Flowing River</>}
+  description={
+    <>
+      Turn the heading and watch where the boat lands on the far bank, <InlineMath math="60\text{ m}" /> away.
+    </>
+  }
+  labels={{
+    angle: <>Angle from straight across</>,
+    drift: <>Drift downstream</>,
+    groundSpeed: <>Speed over the ground</>,
+    heading: <>Heading</>,
+    headingName: "Boat heading",
+    time: <>Crossing time</>,
+    viewLabel: "Boat crossing a river seen from above",
+  }}
+/>
+
+At this heading the boat lands about <InlineMath math="17.3\text{ m}" /> downstream of the point straight across. A complete answer names that point, the distance, and the direction downstream.
