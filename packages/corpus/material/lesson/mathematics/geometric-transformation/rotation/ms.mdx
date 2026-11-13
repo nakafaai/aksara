@@ -1,0 +1,224 @@
+
+export const metadata = {
+  title: "Putaran",
+  description: "Gunakan pusat, arah, dan sudut untuk memutarkan titik dan garis sambil mengekalkan jarak dan bentuk.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-10",
+  dateModified: "2026-11-08",
+  subject: "Transformasi Geometri",
+};
+
+## Pusat dan Sudut Putaran
+
+Putaran memusingkan setiap titik pada sesuatu rajah <Highlight>melalui sudut yang sama</Highlight> mengelilingi satu pusat yang tetap. Kedudukan rajah itu berubah dan rajah itu berpusing, manakala jarak, sudut, bentuk, saiz, dan tertib bucunya kekal.
+
+Putaran memerlukan dua maklumat:
+
+- **Pusat Putaran (<InlineMath math="C" />)**: Titik tetap yang menjadi paksi pusingan.
+- **Sudut Putaran (<InlineMath math="\theta" />)**: Sudut berarah yang memberikan magnitud dan arah pusingan. Sudut positif memutar mengikut arah lawan jam, manakala sudut negatif memutar mengikut arah jam.
+
+### Takrif Putaran
+
+Pusat <InlineMath math="C" /> **kekal di tempatnya**. Bagi titik <InlineMath math="P\ne C" />, putaran mengekalkan <InlineMath math="CP=CP'" /> dan memusingkan arah dari pusat melalui sudut berarah <InlineMath math="\theta" />. Ukur dari sinar <InlineMath math="CP" /> ke arah sinar <InlineMath math="CP'" />, dengan arah lawan jam sebagai positif.
+
+Sudut yang berbeza sebanyak satu pusingan penuh memberikan imej yang sama. Contohnya, pusingan <InlineMath math="90^\circ" /> mengikut arah lawan jam memberikan hasil yang sama seperti pusingan <InlineMath math="270^\circ" /> mengikut arah jam:
+
+<BlockMath math="90^\circ-360^\circ=-270^\circ" />
+
+Putarkan <InlineMath math="P(4, 1)" /> pada <InlineMath math="C(1, 1)" /> melalui <InlineMath math="90^\circ" />. Pusatnya kekal, jarak <InlineMath math="CP = CP' = 3" /> tidak berubah, dan arah dari <InlineMath math="C" /> berpusing suku pusingan mengikut arah lawan jam, jadi <InlineMath math="P" /> mendarat di <InlineMath math="P'(1, 4)" />.
+
+<MathVisual
+  title={<>Suku pusingan pada <InlineMath math="C(1, 1)" /></>}
+  description={<>Titik <InlineMath math="P(4, 1)" /> diputarkan <InlineMath math="90^\circ" /> mengikut arah lawan jam pada <InlineMath math="C(1, 1)" /> ke <InlineMath math="P'(1, 4)" />, dengan kedua-dua jejari sepanjang <InlineMath math="3" />.</>}
+  labels={{
+    c: <InlineMath math="C(1, 1)" />,
+    p: <InlineMath math="P(4, 1)" />,
+    image: <InlineMath math="P'(1, 4)" />,
+    turn: <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "cp", kind: "segment", from: { x: 1, y: 1 }, to: { x: 4, y: 1 }, appearance: "construction" },
+      { id: "ci", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 4 }, appearance: "construction" },
+      { id: "turn", kind: "arc", center: { x: 1, y: 1 }, radius: 3, startDegrees: 0, sweepDegrees: 90, appearance: "highlight" },
+      { id: "c", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "p", kind: "point", at: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: 1, y: 4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "c", objectId: "c", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "p", objectId: "p", at: { x: 4, y: 1 }, placement: "below" },
+      { key: "image", objectId: "image", at: { x: 1, y: 4 }, placement: "left" },
+      { key: "turn", objectId: "turn", at: { x: 1 + 3 / Math.sqrt(2), y: 1 + 3 / Math.sqrt(2) }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Putaran pada Asalan
+
+Bagi putaran pada asalan, **sinus dan kosinus sudut pusingan** menentukan cara koordinat bergabung. Menggantikan nilai sudut khas memberikan petua yang lebih ringkas:
+
+<MathContainer>
+  <BlockMath math="x' = x \cos \theta - y \sin \theta" />
+  <BlockMath math="y' = x \sin \theta + y \cos \theta" />
+</MathContainer>
+
+| Sudut | Imej | Arah |
+| --- | --- | --- |
+| <InlineMath math="90^\circ" /> | <InlineMath math="(-y,x)" /> | Suku pusingan arah lawan jam |
+| <InlineMath math="-90^\circ" /> | <InlineMath math="(y,-x)" /> | Suku pusingan arah jam |
+| <InlineMath math="180^\circ" /> | <InlineMath math="(-x,-y)" /> | Setengah pusingan |
+
+
+## Memutarkan Titik Sebanyak Suku Pusingan
+
+Titik <InlineMath math="B(0,4)" /> diputarkan pada asalan <InlineMath math="(0,0)" /> sebanyak <InlineMath math="90^\circ" />. Tentukan imejnya.
+
+Di sini, <InlineMath math="x=0" />, <InlineMath math="y=4" />, dan <InlineMath math="\theta = 90^\circ" />.
+
+Kita tahu <InlineMath math="\cos 90^\circ = 0" /> dan <InlineMath math="\sin 90^\circ = 1" />.
+
+Gunakan **sudut positif** untuk pusingan arah lawan jam ini:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= (0) \cos 90^\circ - (4) \sin 90^\circ \\ &amp;= 0 \cdot 0 - 4 \cdot 1 \\ &amp;= -4 \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= (0) \sin 90^\circ + (4) \cos 90^\circ \\ &amp;= 0 \cdot 1 + 4 \cdot 0 \\ &amp;= 0 \end{aligned}" />
+</MathContainer>
+
+Imej bagi titik <InlineMath math="B(0,4)" /> ialah <InlineMath math="B'(-4,0)" />.
+
+<MathVisual
+  title={<>Suku pusingan <InlineMath math="B(0, 4)" /> pada asalan</>}
+  description={<><InlineMath math="B(0, 4)" /> berpusing <InlineMath math="90^\circ" /> mengikut arah lawan jam pada <InlineMath math="O" /> ke <InlineMath math="B'(-4, 0)" />. Kedua-dua titik berada <InlineMath math="4" /> unit dari <InlineMath math="O" />.</>}
+  labels={{
+    b: <InlineMath math="B(0, 4)" />,
+    image: <InlineMath math="B'(-4, 0)" />,
+    turn: <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 1.5 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ob", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 4 }, appearance: "construction" },
+      { id: "oi", kind: "segment", from: { x: 0, y: 0 }, to: { x: -4, y: 0 }, appearance: "construction" },
+      { id: "turn", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 90, sweepDegrees: 90, appearance: "highlight" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "b", kind: "point", at: { x: 0, y: 4 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b", objectId: "b", at: { x: 0, y: 4 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: -4, y: 0 }, placement: "below" },
+      { key: "turn", objectId: "turn", at: { x: -2 * Math.sqrt(2), y: 2 * Math.sqrt(2) }, placement: "above-left" },
+    ],
+  }}
+/>
+
+## Memutarkan Garis Sebanyak Suku Pusingan
+
+Tentukan imej bagi garis <InlineMath math="y=2x" /> yang diputarkan pada asalan <InlineMath math="(0,0)" /> sebanyak <InlineMath math="90^\circ" />.
+
+Biar <InlineMath math="P(x,y)" /> ialah sebarang titik pada garis <InlineMath math="y=2x" />. Imejnya, <InlineMath math="P'(x',y')" />, selepas putaran <InlineMath math="90^\circ" /> pada asalan ialah:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= x \cos 90^\circ - y \sin 90^\circ \\ &amp;= x(0) - y(1) \\ &amp;= -y \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= x \sin 90^\circ + y \cos 90^\circ \\ &amp;= x(1) + y(0) \\ &amp;= x \end{aligned}" />
+</MathContainer>
+
+Daripada sini, kita dapat <InlineMath math="y = -x'" /> dan <InlineMath math="x = y'" />.
+
+Gantikan <InlineMath math="x = y'" /> dan <InlineMath math="y = -x'" /> ke dalam **persamaan garis asal** <InlineMath math="y=2x" />:
+
+<MathContainer>
+  <BlockMath math="(-x') = 2(y')" />
+  <BlockMath math="-x' = 2y'" />
+</MathContainer>
+
+Dengan menukar <InlineMath math="x'" /> dan <InlineMath math="y'" /> kembali kepada <InlineMath math="x" /> dan <InlineMath math="y" />, persamaan garis imej ialah <InlineMath math="-x = 2y" /> atau <InlineMath math="y = -\frac{1}{2}x" />.
+
+<MathVisual
+  title={<>Garis <InlineMath math="y = 2x" /> selepas suku pusingan</>}
+  description={<>Garis <InlineMath math="y = 2x" /> dan imejnya <InlineMath math="y = -\tfrac12 x" /> selepas putaran <InlineMath math="90^\circ" /> pada asalan, dengan titik <InlineMath math="(1, 2)" /> berpusing ke <InlineMath math="(-2, 1)" />.</>}
+  labels={{
+    l: <InlineMath math="y = 2x" />,
+    "image-line": <InlineMath math="y = -\tfrac12 x" />,
+    a: <InlineMath math="(1, 2)" />,
+    image: <InlineMath math="(-2, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -2, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "l", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 2 }], appearance: "primary" },
+      { id: "image-line", kind: "line", through: [{ x: 0, y: 0 }, { x: -2, y: 1 }], appearance: "secondary" },
+      { id: "turn", kind: "arc", center: { x: 0, y: 0 }, radius: Math.sqrt(5), startDegrees: Math.atan2(2, 1) * 180 / Math.PI, sweepDegrees: 90, appearance: "highlight" },
+      { id: "a", kind: "point", at: { x: 1, y: 2 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: -2, y: 1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l", objectId: "l", at: { x: 7 / 5, y: 14 / 5 }, placement: "right" },
+      { key: "image-line", objectId: "image-line", at: { x: -14 / 5, y: 7 / 5 }, placement: "above" },
+      { key: "a", objectId: "a", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: -2, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Dua soalan pertama menggunakan **suku pusingan positif**. Soalan terakhir menggunakan setengah pusingan, yang menyongsangkan tanda kedua-dua koordinat. Bagi garis, gantikan ke dalam persamaan asal supaya setiap titik padanya dipetakan.
+
+1.  Titik <InlineMath math="A(3,0)" /> diputarkan pada asalan <InlineMath math="(0,0)" /> sebanyak <InlineMath math="90^\circ" />. Tentukan imejnya.
+2.  Tentukan imej bagi garis <InlineMath math="y=4x" /> yang diputarkan pada asalan <InlineMath math="(0,0)" /> sebanyak <InlineMath math="90^\circ" />.
+3.  Titik <InlineMath math="P(-2, -5)" /> diputarkan pada asalan <InlineMath math="O(0,0)" /> sebanyak <InlineMath math="180^\circ" />. Tentukan koordinat imejnya.
+
+### Penyelesaian
+
+Gunakan nilai sinus dan kosinus bagi sudut yang diberi. Bagi garis, **nyatakan koordinat asal dalam sebutan koordinat imej** sebelum menggantikannya ke dalam persamaan.
+
+**Penyelesaian 1**
+
+Titik <InlineMath math="A(3,0)" />, <InlineMath math="\theta = 90^\circ" />. <InlineMath math="x=3, y=0" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 3 \cos 90^\circ - 0 \sin 90^\circ \\ &amp;= 3(0) - 0(1) \\ &amp;= 0 \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= 3 \sin 90^\circ + 0 \cos 90^\circ \\ &amp;= 3(1) + 0(0) \\ &amp;= 3 \end{aligned}" />
+</MathContainer>
+
+Jadi, imejnya ialah <InlineMath math="A'(0,3)" />.
+
+**Penyelesaian 2**
+
+Garis <InlineMath math="y=4x" />, <InlineMath math="\theta = 90^\circ" />.
+
+<MathContainer>
+  <BlockMath math="x' = -y" />
+  <BlockMath math="y' = x" />
+</MathContainer>
+
+Jadi <InlineMath math="y = -x'" /> dan <InlineMath math="x = y'" />.
+
+Gantikan ke dalam persamaan garis: <InlineMath math="(-x') = 4(y')" />.
+
+Persamaan garis imej: <InlineMath math="-x = 4y" /> atau <InlineMath math="y = -\frac{1}{4}x" />.
+
+**Penyelesaian 3**
+
+Titik <InlineMath math="P(-2,-5)" />, <InlineMath math="\theta = 180^\circ" />. <InlineMath math="x=-2, y=-5" />.
+
+<MathContainer>
+  <BlockMath math="\cos 180^\circ = -1" />
+  <BlockMath math="\sin 180^\circ = 0" />
+</MathContainer>
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= (-2) \cos 180^\circ - (-5) \sin 180^\circ \\ &amp;= (-2)(-1) - (-5)(0) \\ &amp;= 2 - 0 \\ &amp;= 2 \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= (-2) \sin 180^\circ + (-5) \cos 180^\circ \\ &amp;= (-2)(0) + (-5)(-1) \\ &amp;= 0 + 5 \\ &amp;= 5 \end{aligned}" />
+</MathContainer>
+
+Jadi, imej bagi titik <InlineMath math="P" /> ialah <InlineMath math="P'(2,5)" />.
