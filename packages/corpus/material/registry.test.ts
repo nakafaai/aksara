@@ -64,7 +64,7 @@ layer(NodeServices.layer)("material registry", (it) => {
           Order.String
         );
 
-        expect(entries).toHaveLength(1149);
+        expect(entries).toHaveLength(authoredPaths.length);
         expect(
           HashSet.size(
             HashSet.fromIterable(
@@ -77,7 +77,9 @@ layer(NodeServices.layer)("material registry", (it) => {
             Arr.filter(entries, ({ route }) => route.appLocale === locale)
           ).toHaveLength(383);
         }
-        expect(HashSet.size(HashSet.fromIterable(projectedPaths))).toBe(1149);
+        expect(HashSet.size(HashSet.fromIterable(projectedPaths))).toBe(
+          authoredPaths.length
+        );
         expect(projectedPaths).toEqual(authoredPaths);
 
         const representativeKeys = HashSet.fromIterable<string>([
