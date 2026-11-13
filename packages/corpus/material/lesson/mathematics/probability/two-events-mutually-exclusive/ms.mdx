@@ -1,0 +1,215 @@
+export const metadata = {
+  title: "Peristiwa Saling Eksklusif",
+  description: "Dua peristiwa saling eksklusif apabila tidak boleh berlaku bersama, jadi P(A ∪ B) = P(A) + P(B). Pelajari tandanya, contoh dua biji dadu, dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-21",
+  dateModified: "2026-11-08",
+  subject: "Kebarangkalian",
+};
+
+## Peristiwa Saling Eksklusif dan Petua Kebarangkaliannya
+
+Dua peristiwa <InlineMath math="A" /> dan <InlineMath math="B" /> **saling eksklusif** apabila kedua-duanya tidak boleh berlaku bersama dalam satu cubaan. Persilangannya kosong, <InlineMath math="A \cap B = \varnothing" />, jadi <InlineMath math="P(A \cap B) = 0" />. Untuk peristiwa saling eksklusif, kebarangkalian <InlineMath math="A" /> atau <InlineMath math="B" /> hanyalah hasil tambahnya:
+
+<BlockMath math="P(A \cup B) = P(A) + P(B)" />
+
+<MathVisual
+  title={<>Gambar rajah Venn bagi dua peristiwa saling eksklusif</>}
+  description={<>Satu lambungan dadu dengan <InlineMath math="A = \{1, 2\}" /> dan <InlineMath math="B = \{5, 6\}" />. Bulatan-bulatan itu tidak bersentuhan, jadi tiada kesudahan yang tergolong dalam kedua-duanya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "sample-space", kind: "polygon", vertices: [{ x: -3.8, y: -2.4 }, { x: 3.8, y: -2.4 }, { x: 3.8, y: 2.4 }, { x: -3.8, y: 2.4 }], appearance: "reference" },
+      { id: "a", kind: "circle", center: { x: -1.7, y: 0 }, radius: 1.2, appearance: "primary" },
+      { id: "b", kind: "circle", center: { x: 1.7, y: 0 }, radius: 1.2, appearance: "secondary" },
+      { id: "one", kind: "point", at: { x: -2.2, y: 0.3 }, appearance: "primary" },
+      { id: "two", kind: "point", at: { x: -1.4, y: -0.3 }, appearance: "primary" },
+      { id: "five", kind: "point", at: { x: 1.4, y: 0.3 }, appearance: "secondary" },
+      { id: "six", kind: "point", at: { x: 2.2, y: -0.3 }, appearance: "secondary" },
+      { id: "three", kind: "point", at: { x: -0.3, y: 1.8 }, appearance: "reference" },
+      { id: "four", kind: "point", at: { x: 0.3, y: -1.8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -1.7, y: 1.2 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 1.7, y: 1.2 }, placement: "above" },
+      { key: "sample-space", objectId: "sample-space", at: { x: -3.8, y: -2.4 }, placement: "above-right" },
+      { key: "one", objectId: "one", at: { x: -2.2, y: 0.3 }, placement: "right" },
+      { key: "two", objectId: "two", at: { x: -1.4, y: -0.3 }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 1.4, y: 0.3 }, placement: "right" },
+      { key: "six", objectId: "six", at: { x: 2.2, y: -0.3 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: -0.3, y: 1.8 }, placement: "right" },
+      { key: "four", objectId: "four", at: { x: 0.3, y: -1.8 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    "sample-space": <InlineMath math="S" />,
+    one: <InlineMath math="1" />,
+    two: <InlineMath math="2" />,
+    five: <InlineMath math="5" />,
+    six: <InlineMath math="6" />,
+    three: <InlineMath math="3" />,
+    four: <InlineMath math="4" />,
+  }}
+/>
+
+Untuk dadu itu, <InlineMath math="P(A \cup B) = \frac{2}{6} + \frac{2}{6} = \frac{4}{6} = \frac{2}{3}" />. Semak dengan menyenaraikan: <InlineMath math="A \cup B = \{1, 2, 5, 6\}" /> mengandungi <InlineMath math="4" /> daripada <InlineMath math="6" /> kesudahan.
+
+## Mengenal Pasti Peristiwa Saling Eksklusif
+
+Tanya satu soalan: adakah satu kesudahan yang memenuhi **kedua-dua peristiwa serentak**? Kalau tiada, peristiwa itu saling eksklusif. Setiap eksperimen dalam jadual ini ada kesudahan asas yang sama boleh jadi.
+
+| Eksperimen | Dua peristiwa | Kebarangkalian kesatuan |
+| --- | --- | --- |
+| Duit syiling adil | Gambar atau angka | <InlineMath math="\frac12+\frac12=1" /> |
+| Dadu adil | Tiga atau lima | <InlineMath math="\frac16+\frac16=\frac13" /> |
+| Dadu adil | Genap atau ganjil | <InlineMath math="\frac36+\frac36=1" /> |
+| Kad terup | Raja atau permaisuri | <InlineMath math="\frac4{52}+\frac4{52}=\frac2{13}" /> |
+| Kad terup | Merah atau kelawar | <InlineMath math="\frac{26}{52}+\frac{13}{52}=\frac34" /> |
+
+Baris terakhir saling eksklusif kerana setiap kad kelawar berwarna hitam. Sebaliknya, kad merah dan kad raja **tidak** saling eksklusif, kerana raja hati dan raja daiman tergolong dalam kedua-duanya. Peristiwa seperti itu menggunakan petua untuk [peristiwa yang tidak saling eksklusif](/ms/subjek/matematik/kebarangkalian/peristiwa-tidak-saling-eksklusif).
+
+## Mengapa Kebarangkalian Boleh Terus Ditambah
+
+Untuk mana-mana dua peristiwa yang persilangannya kosong, <InlineMath math="P(A \cup B) = P(A) + P(B)" /> sentiasa benar, kerana tiada kesudahan yang dikira dua kali. Dalam ruang sampel dengan kesudahan yang sama boleh jadi, kamu boleh kira sebabnya secara terus: bilangan unsur dalam kesatuan ialah hasil tambah bilangan unsur dalam dua peristiwa itu.
+
+<BlockMath math="n(A \cup B) = n(A) + n(B) \quad\Longrightarrow\quad P(A \cup B) = \frac{n(A) + n(B)}{n(S)} = P(A) + P(B)" />
+
+Petua ini ialah kes khas bagi [petua tambah](/ms/subjek/matematik/kebarangkalian/petua-tambah) am <InlineMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" /> dengan <InlineMath math="P(A \cap B) = 0" />. Petua yang sama berfungsi untuk lebih daripada dua peristiwa, dengan syarat **setiap pasangan saling eksklusif**: <InlineMath math="P(A_1 \cup A_2 \cup A_3) = P(A_1) + P(A_2) + P(A_3)" />.
+
+## Satu Peristiwa dan Pelengkapnya
+
+Peristiwa <InlineMath math="A" /> dan pelengkapnya <InlineMath math="A^c" /> (bukan <InlineMath math="A" />) sentiasa saling eksklusif, dan **bersama-sama membentuk seluruh ruang sampel**. Jadi <InlineMath math="P(A) + P(A^c) = P(S) = 1" />, atau
+
+<BlockMath math="P(A^c) = 1 - P(A)" />
+
+Petua pelengkap menjimatkan kerja apabila peristiwa yang ditanya ada banyak kesudahan. Kebarangkalian dadu tidak menunjukkan <InlineMath math="6" /> ialah <InlineMath math="1 - \frac{1}{6} = \frac{5}{6}" />, tanpa perlu menambah lima kebarangkalian. Semak dengan menyenaraikan: kesudahan selain <InlineMath math="6" /> ialah <InlineMath math="\{1, 2, 3, 4, 5\}" />, iaitu <InlineMath math="5" /> daripada <InlineMath math="6" /> kesudahan.
+
+<MathVisual
+  title={<>Peristiwa A dan pelengkapnya</>}
+  description={<>Satu dadu dengan <InlineMath math="A = \{6\}" />. Lima kesudahan di luar bulatan membentuk pelengkap <InlineMath math="A^c = \{1, 2, 3, 4, 5\}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "sample-space", kind: "polygon", vertices: [{ x: -3.8, y: -2.4 }, { x: 3.8, y: -2.4 }, { x: 3.8, y: 2.4 }, { x: -3.8, y: 2.4 }], appearance: "reference" },
+      { id: "six-event", kind: "circle", center: { x: 2, y: 0 }, radius: 1.1, appearance: "primary" },
+      { id: "six", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "one", kind: "point", at: { x: -3, y: 1.2 }, appearance: "secondary" },
+      { id: "two", kind: "point", at: { x: -1.5, y: 1.2 }, appearance: "secondary" },
+      { id: "three", kind: "point", at: { x: -3, y: -1.2 }, appearance: "secondary" },
+      { id: "four", kind: "point", at: { x: -1.5, y: -1.2 }, appearance: "secondary" },
+      { id: "five", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "six-event", objectId: "six-event", at: { x: 2, y: 1.1 }, placement: "above" },
+      { key: "sample-space", objectId: "sample-space", at: { x: -3.8, y: 2.4 }, placement: "below-right" },
+      { key: "six", objectId: "six", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: -3, y: 1.2 }, placement: "right" },
+      { key: "two", objectId: "two", at: { x: -1.5, y: 1.2 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: -3, y: -1.2 }, placement: "right" },
+      { key: "four", objectId: "four", at: { x: -1.5, y: -1.2 }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 0, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "six-event": <InlineMath math="A" />,
+    "sample-space": <InlineMath math="S" />,
+    six: <InlineMath math="6" />,
+    one: <InlineMath math="1" />,
+    two: <InlineMath math="2" />,
+    three: <InlineMath math="3" />,
+    four: <InlineMath math="4" />,
+    five: <InlineMath math="5" />,
+  }}
+/>
+
+## Contoh dengan Hasil Tambah Dua Biji Dadu
+
+Dua biji dadu dilambung bersama. Cari kebarangkalian hasil tambah dua dadu itu ialah <InlineMath math="7" /> atau <InlineMath math="11" />.
+
+Ruang sampel ada <InlineMath math="6 \times 6 = 36" /> pasangan yang sama boleh jadi. Hasil tambah <InlineMath math="7" /> datang daripada <InlineMath math="6" /> pasangan, dan hasil tambah <InlineMath math="11" /> daripada <InlineMath math="2" /> pasangan. Satu lambungan tidak boleh memberikan hasil tambah <InlineMath math="7" /> dan <InlineMath math="11" /> serentak, jadi peristiwa itu **saling eksklusif**:
+
+<BlockMath math="P(7 \text{ atau } 11) = \frac{6}{36} + \frac{2}{36} = \frac{8}{36} = \frac{2}{9}" />
+
+<MathVisual
+  title={<>Pasangan dua biji dadu yang hasil tambahnya <InlineMath math="7" /> atau <InlineMath math="11" /></>}
+  description={<>Setiap titik <InlineMath math="(a, b)" /> ialah keputusan dadu pertama dan dadu kedua. Titik pada garis <InlineMath math="a + b = 7" /> dan <InlineMath math="a + b = 11" /> tidak pernah bertindih.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "seven", kind: "segment", from: { x: 1, y: 6 }, to: { x: 6, y: 1 }, appearance: "primary" },
+      { id: "eleven", kind: "segment", from: { x: 5, y: 6 }, to: { x: 6, y: 5 }, appearance: "secondary" },
+      { id: "seven-1", kind: "point", at: { x: 1, y: 6 }, appearance: "primary" },
+      { id: "seven-2", kind: "point", at: { x: 2, y: 5 }, appearance: "primary" },
+      { id: "seven-3", kind: "point", at: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "seven-4", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "seven-5", kind: "point", at: { x: 5, y: 2 }, appearance: "primary" },
+      { id: "seven-6", kind: "point", at: { x: 6, y: 1 }, appearance: "primary" },
+      { id: "eleven-1", kind: "point", at: { x: 5, y: 6 }, appearance: "secondary" },
+      { id: "eleven-2", kind: "point", at: { x: 6, y: 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "seven", objectId: "seven", at: { x: 3, y: 4 }, placement: "below-left" },
+      { key: "eleven", objectId: "eleven", at: { x: 6, y: 5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    seven: <InlineMath math="a + b = 7" />,
+    eleven: <InlineMath math="a + b = 11" />,
+  }}
+/>
+
+Semak dengan menyenaraikan. Hasil tambah <InlineMath math="7" /> datang daripada <InlineMath math="(1, 6)" />, <InlineMath math="(2, 5)" />, <InlineMath math="(3, 4)" />, <InlineMath math="(4, 3)" />, <InlineMath math="(5, 2)" />, <InlineMath math="(6, 1)" />, dan hasil tambah <InlineMath math="11" /> daripada <InlineMath math="(5, 6)" />, <InlineMath math="(6, 5)" />. Tiada pasangan yang muncul dalam kedua-dua senarai, dan semuanya ada <InlineMath math="8" /> pasangan daripada <InlineMath math="36" />.
+
+## Saling Eksklusif Tidak Sama dengan Tak Bersandar
+
+Istilah saling eksklusif dan tak bersandar selalu tertukar. **Saling eksklusif** bermaksud dua peristiwa itu tidak boleh berlaku bersama. [Tak bersandar](/ms/subjek/matematik/kombinatorik/kebarangkalian-peristiwa-tak-bersandar) ditakrifkan oleh <InlineMath math="P(A \cap B) = P(A)\,P(B)" />. Kalau <InlineMath math="P(A) > 0" />, ini sama dengan mengatakan bahawa berlakunya <InlineMath math="A" /> tidak mengubah kebarangkalian <InlineMath math="B" />.
+
+Kalau <InlineMath math="P(A) > 0" /> dan <InlineMath math="P(B) > 0" />, peristiwa saling eksklusif **tidak boleh** tak bersandar. Persilangannya ada kebarangkalian <InlineMath math="0" />, manakala <InlineMath math="P(A)\,P(B) > 0" />. Untuk dadu tadi, mengetahui bahawa <InlineMath math="A" /> berlaku memberikan kebarangkalian bersyarat <InlineMath math="P(B \mid A) = 0" />, manakala <InlineMath math="P(B) = \frac{1}{3}" />, jadi peristiwa itu memang saling mempengaruhi.
+
+## Kesilapan Lazim
+
+| Kesilapan | Sebab ia salah | Cara menyemak |
+| --- | --- | --- |
+| Menambah kebarangkalian peristiwa yang bertindih | Kesudahan dalam persilangan dikira dua kali | **Tulis persilangan dahulu**, ia mesti kosong |
+| Menganggap saling eksklusif sebagai tak bersandar | Saling eksklusif memberikan <InlineMath math="P(A \cap B) = 0" />, tak bersandar memberikan <InlineMath math="P(A)P(B)" /> | Bandingkan <InlineMath math="P(A \cap B)" /> dengan <InlineMath math="P(A)P(B)" /> |
+| Menganggap kad merah dan kad raja saling eksklusif | Raja hati dan raja daiman tergolong dalam kedua-duanya | Cari satu kesudahan yang memenuhi kedua-dua syarat |
+| Menambah tiga peristiwa yang hanya sebahagiannya saling eksklusif | Petua hasil tambah memerlukan setiap pasangan saling eksklusif | Semak semua pasangan, bukan satu sahaja |
+| Mendapat kebarangkalian kesatuan melebihi <InlineMath math="1" /> | Itu tanda kebarangkalian peristiwa yang bertindih telah ditambah, jadi persilangan dikira dua kali | Peristiwa saling eksklusif tidak pernah memberikan hasil tambah melebihi <InlineMath math="1" /> |
+
+## Soalan Latihan
+
+Pastikan persilangannya kosong dahulu, kemudian **semak jawapan kamu dengan menyenaraikan kesudahan**.
+
+1. Sebiji dadu dilambung sekali dengan <InlineMath math="A = \{1, 2\}" /> dan <InlineMath math="B = \{5, 6\}" />. Cari <InlineMath math="P(A \cup B)" /> dan kebarangkalian bahawa kedua-dua peristiwa tidak berlaku.
+
+2. Sekeping kad dicabut daripada satu pek <InlineMath math="52" /> keping. Cari kebarangkalian mencabut kad raja atau kad permaisuri.
+
+3. Dua biji dadu dilambung. Cari kebarangkalian hasil tambahnya <InlineMath math="2" /> atau <InlineMath math="12" />.
+
+4. Peristiwa <InlineMath math="A" /> dan <InlineMath math="B" /> saling eksklusif dengan <InlineMath math="P(A) = 0.3" /> dan <InlineMath math="P(B) = 0.5" />. Cari <InlineMath math="P(A \cup B)" />, kebarangkalian bahawa kedua-duanya tidak berlaku, dan sama ada kedua-duanya tak bersandar.
+
+### Penyelesaian
+
+**Soalan 1**. Persilangannya kosong, jadi <InlineMath math="P(A \cup B) = \frac{2}{6} + \frac{2}{6} = \frac{2}{3}" />. Kesudahan di luar <InlineMath math="A \cup B" /> ialah <InlineMath math="\{3, 4\}" />, jadi kebarangkalian bahawa kedua-dua peristiwa tidak berlaku ialah <InlineMath math="\frac{2}{6} = \frac{1}{3}" />. Semak dengan pelengkap: <InlineMath math="1 - \frac{2}{3} = \frac{1}{3}" />.
+
+**Soalan 2**. Sekeping kad tidak boleh menjadi kad raja dan kad permaisuri serentak, jadi
+
+<BlockMath math="P = \frac{4}{52} + \frac{4}{52} = \frac{8}{52} = \frac{2}{13}" />
+
+Semak: 8 keping kad memenuhi syarat, iaitu 4 kad raja dan 4 kad permaisuri.
+
+**Soalan 3**. Hasil tambah <InlineMath math="2" /> hanya datang daripada <InlineMath math="(1, 1)" />, dan hasil tambah <InlineMath math="12" /> hanya daripada <InlineMath math="(6, 6)" />. Peristiwa itu saling eksklusif:
+
+<BlockMath math="P = \frac{1}{36} + \frac{1}{36} = \frac{2}{36} = \frac{1}{18}" />
+
+Semak: 2 daripada 36 pasangan memenuhi syarat.
+
+**Soalan 4**. Oleh sebab kedua-duanya saling eksklusif, <InlineMath math="P(A \cup B) = 0.3 + 0.5 = 0.8" />, dan kebarangkalian bahawa kedua-duanya tidak berlaku ialah <InlineMath math="1 - 0.8 = 0.2" />. Kedua-duanya **bukan peristiwa tak bersandar**, kerana <InlineMath math="P(A \cap B) = 0" /> manakala <InlineMath math="P(A)\,P(B) = 0.15" />. Semak: <InlineMath math="0.8 + 0.2 = 1" />.
