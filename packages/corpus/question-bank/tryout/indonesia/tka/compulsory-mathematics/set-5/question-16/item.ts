@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "village-pool",
+  stimulus: "menara",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$125\\text{ m}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$187{,}5\\text{ m}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$250\\text{ m}^3$$",
+          label: "$$2{.}002$$ liter",
         },
         {
           correct: true,
-          label: "$$375\\text{ m}^3$$",
+          label: "$$2{.}117{,}5$$ liter",
         },
         {
           correct: false,
-          label: "$$500\\text{ m}^3$$",
+          label: "$$2{.}156$$ liter",
+        },
+        {
+          correct: false,
+          label: "$$2{.}579{,}5$$ liter",
+        },
+        {
+          correct: false,
+          label: "$$2{.}656{,}5$$ liter",
         },
       ],
     },

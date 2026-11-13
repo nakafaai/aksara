@@ -1,12 +1,53 @@
-Gefragt ist nur nach der Klassenstufe X, **geteilt wird also durch die Zahl der Lernenden in Stufe X**, <InlineMath math="80" />, nicht durch alle <InlineMath math="200" />.
+Gefragt ist, an wie vielen Tagen die Einnahmen nahe am Mittelwert liegen, nämlich **weniger als** eine Standardabweichung entfernt. Plane zwei Schritte: Bestimme Mittelwert und Standardabweichung der neuen Einnahmen und übersetze die Bedingung dann zurück in Becher aus der Tabelle.
 
-<BlockMath math="\frac{20}{80}\cdot100\,\%=25\,\%" />
+# Mittelwert und Standardabweichung der Einnahmen
 
-Zur Kontrolle: Ein Viertel von <InlineMath math="80" /> sind <InlineMath math="20" />.
+Der Preis steigt um <InlineMath math="20\%" />, der neue Preis ist also <InlineMath math="1{,}2\cdot\text{Rp}5{.}000=\text{Rp}6{.}000" />. An einem Tag mit <InlineMath math="x" /> verkauften Bechern sind die Einnahmen <InlineMath math="P=6{.}000x+30{.}000" />.
 
-Der Anteil beträgt also <InlineMath math="25\,\%" />.
+Jeder Wert wird mit <InlineMath math="6{.}000" /> multipliziert und dann um <InlineMath math="30{.}000" /> erhöht. Der Mittelwert macht beides mit. Die Standardabweichung macht nur die Multiplikation mit, denn **dieselbe Zahl zu jedem Wert zu addieren ändert die Streuung nicht**.
 
-- <InlineMath math="20\,\%" /> ist der Anteil aller Radfahrenden aus allen Stufen, <InlineMath math="\frac{40}{200}" />.
-- <InlineMath math="40\,\%" /> ist der Anteil der Stufe X an allen, <InlineMath math="\frac{80}{200}" />.
-- <InlineMath math="50\,\%" /> ist der Anteil der Stufe X unter den Radfahrenden, <InlineMath math="\frac{20}{40}" />.
-- <InlineMath math="75\,\%" /> ist der Anteil der Stufe X, der nicht Rad fährt, <InlineMath math="\frac{60}{80}" />.
+<BlockMath math="\begin{aligned}
+\bar{P}&=6{.}000\cdot40+30{.}000=270{.}000 \\
+S_P&=6{.}000\cdot6=36{.}000
+\end{aligned}" />
+
+# Zurück zu den Bechern
+
+Die Bedingung ist, dass die Einnahmen um weniger als <InlineMath math="36{.}000" /> vom Mittelwert abweichen. Schreib das mit <InlineMath math="x" />:
+
+<BlockMath math="\begin{aligned}
+\left|6{.}000x+30{.}000-270{.}000\right|&<36{.}000 \\
+\left|6{.}000x-240{.}000\right|&<36{.}000 \\
+|x-40|&<6 \\
+34<x&<46
+\end{aligned}" />
+
+Das ist genau die Bedingung **weniger als eine Standardabweichung bei den Becherdaten**, mit Mittelwert <InlineMath math="40" /> und Standardabweichung <InlineMath math="6" />. Mit einer positiven Zahl multiplizieren und einen festen Betrag addieren verschiebt keinen Tag, wenn du seine Lage in Standardabweichungen misst.
+
+# Die Tage zählen
+
+Prüfe jeden Tag der Tabelle mit <InlineMath math="34<x<46" />:
+
+| Tag | Becher <InlineMath math="x" /> | <InlineMath math="\lvert x-40\rvert" /> | Zählt |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="41" /> | <InlineMath math="1" /> | ja |
+| <InlineMath math="2" /> | <InlineMath math="33" /> | <InlineMath math="7" /> | nein |
+| <InlineMath math="3" /> | <InlineMath math="46" /> | <InlineMath math="6" /> | nein |
+| <InlineMath math="4" /> | <InlineMath math="38" /> | <InlineMath math="2" /> | ja |
+| <InlineMath math="5" /> | <InlineMath math="31" /> | <InlineMath math="9" /> | nein |
+| <InlineMath math="6" /> | <InlineMath math="45" /> | <InlineMath math="5" /> | ja |
+| <InlineMath math="7" /> | <InlineMath math="40" /> | <InlineMath math="0" /> | ja |
+| <InlineMath math="8" /> | <InlineMath math="48" /> | <InlineMath math="8" /> | nein |
+| <InlineMath math="9" /> | <InlineMath math="32" /> | <InlineMath math="8" /> | nein |
+| <InlineMath math="10" /> | <InlineMath math="46" /> | <InlineMath math="6" /> | nein |
+
+Die zwei Tage mit <InlineMath math="46" /> Bechern liegen genau eine Standardabweichung entfernt, nicht weniger, also **zählen sie nicht mit**. Es bleiben nur die Tage mit <InlineMath math="41" />, <InlineMath math="38" />, <InlineMath math="45" /> und <InlineMath math="40" /> Bechern.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="5" /> Tage entstehen, wenn du den Mittelwert der Einnahmen als <InlineMath math="6{.}000\cdot40=240{.}000" /> ohne den festen Betrag nimmst, obwohl die Einnahmen jedes Tages ihn enthalten. Die Bedingung verschiebt sich dann zu <InlineMath math="29<x<41" />.
+- <InlineMath math="6" /> Tage zählt die beiden Tage mit <InlineMath math="46" /> Bechern mit. Ihr Abstand ist genau eine Standardabweichung, gefragt ist aber **weniger als**.
+- <InlineMath math="7" /> Tage rechnet mit der Standardabweichung <InlineMath math="1{,}2^2\cdot30{.}000=43{.}200" />, als würde der Faktor <InlineMath math="1{,}2" /> zweimal angewendet. Die Bedingung wird dann <InlineMath math="|x-40|<7{,}2" />.
+- <InlineMath math="10" /> Tage addiert <InlineMath math="30{.}000" /> zur Standardabweichung, also <InlineMath math="S_P=66{.}000" /> und <InlineMath math="|x-40|<11" />. Derselbe Zusatzbetrag an jedem Tag vergrößert die Streuung nicht.
+
+An <InlineMath math="4" /> Tagen weichen die Einnahmen also um weniger als eine Standardabweichung vom Mittelwert ab.

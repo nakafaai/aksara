@@ -1,11 +1,37 @@
-Die Quartile teilen <InlineMath math="32" /> verschiedene Noten in **vier Gruppen zu je <InlineMath math="8" /> Noten**. Also liegen <InlineMath math="8" /> Schüler unter dem unteren Quartil und <InlineMath math="8" /> über dem oberen.
+Alle drei Aussagen betreffen die wirklichen Daten, aber die Tabelle verrät nur, wie viele Schüler in jeder Klasse sind. Eine Aussage ist **nur dann sicher richtig, wenn sie für jede mögliche Verteilung der Schüler innerhalb ihrer Klassen gilt**. Um eine Aussage zu widerlegen, genügt ein Datensatz, der zur Tabelle passt, aber die Aussage verletzt.
+
+# Häufigkeit jeder Klasse
+
+Die Häufigkeit jeder Klasse ist der Unterschied benachbarter kumulierter Zeilen:
+
+| Klasse | <InlineMath math="0\text{ bis }10" /> | <InlineMath math="10\text{ bis }20" /> | <InlineMath math="20\text{ bis }30" /> | <InlineMath math="30\text{ bis }40" /> | <InlineMath math="40\text{ bis }50" /> | <InlineMath math="50\text{ bis }60" /> | <InlineMath math="60\text{ bis }70" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Häufigkeit | <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="24" /> | <InlineMath math="20" /> | <InlineMath math="16" /> | <InlineMath math="6" /> | <InlineMath math="6" /> |
+
+Jede Klasse enthält ihre untere Grenze, aber nicht ihre obere. Ein Schüler in der Klasse <InlineMath math="30\le t<40" /> kann also genau <InlineMath math="30" /> Minuten lesen, aber **immer weniger als** <InlineMath math="40" /> Minuten.
+
+# Jede Aussage prüfen
+
+**Aussage 1**. Der wirkliche Mittelwert ist am größten, wenn jeder Schüler so nah wie möglich an der oberen Grenze seiner Klasse liegt. Rechne die Summe aus, als läge jeder genau auf der oberen Grenze:
 
 <BlockMath math="\begin{aligned}
-\text{über }Q_1\text{ in XI-2}&=32-8=24=75\,\%\cdot32 \\
-Q_3-Q_1\ \text{XI-1}&=82-62=20,\qquad Q_3-Q_1\ \text{XI-2}=78-64=14
+&2\cdot10+6\cdot20+24\cdot30+20\cdot40+16\cdot50+6\cdot60+6\cdot70 \\
+&=20+120+720+800+800+360+420=3{.}240 \\
+&\frac{3{.}240}{80}=40{,}5
 \end{aligned}" />
 
-- Genau <InlineMath math="24" /> Schüler der XI-2, also <InlineMath math="75\,\%" />, liegen über dem unteren Quartil <InlineMath math="64" />. Mindestens <InlineMath math="75\,\%" /> ist also erfüllt. Die Aussage ist richtig.
-- Die beste Note der XI-1 ist <InlineMath math="96" />, höher als die <InlineMath math="90" /> der XI-2. Die Aussage ist falsch.
-- Die Note <InlineMath math="80" /> liegt über dem oberen Quartil der XI-2, <InlineMath math="78" />, und nur <InlineMath math="8" /> Schüler liegen über <InlineMath math="78" />. Dieser Schüler gehört also zu den besten <InlineMath math="8" />. Die Aussage ist richtig.
-- Der Quartilsabstand der XI-2 ist <InlineMath math="14" />, kleiner als die <InlineMath math="20" /> der XI-1, die mittlere Hälfte der XI-2 liegt also sogar enger zusammen. Die Aussage ist falsch.
+Jeder Schüler liest weniger als die obere Grenze seiner Klasse, also ist die wirkliche Summe kleiner als <InlineMath math="3{.}240" /> und der Mittelwert kleiner als <InlineMath math="40{,}5" />. Das ist immer kleiner als <InlineMath math="41" />, egal wie die Schüler verteilt sind. **Richtig**.
+
+**Aussage 2**. Bis zur Klasse <InlineMath math="20\le t<30" /> gibt es <InlineMath math="32" /> Schüler, bis zur Klasse <InlineMath math="30\le t<40" /> gibt es <InlineMath math="52" />. Der <InlineMath math="40" />-te und der <InlineMath math="41" />-te Wert liegen also sicher in der Klasse <InlineMath math="30\le t<40" />, und vom wirklichen Median weißt du nur sicher, dass er zwischen <InlineMath math="30" /> und <InlineMath math="40" /> liegt. Ein Gegenbeispiel: Alle zwanzig Schüler dieser Klasse lesen genau <InlineMath math="30" /> Minuten. Das passt zur Tabelle, und
+
+<BlockMath math="\text{Median}=\frac{30+30}{2}=30\le32" />
+
+Der geschätzte Median ist zwar <InlineMath math="34" />, aber eine Schätzung ist keine Gewissheit. **Falsch**.
+
+**Aussage 3**. Sicher mindestens <InlineMath math="45" /> Minuten lesen nur die Schüler in den Klassen <InlineMath math="50\le t<60" /> und <InlineMath math="60\le t<70" />, das sind <InlineMath math="6+6=12" /> Schüler. Die sechzehn Schüler der Klasse <InlineMath math="40\le t<50" /> könnten alle genau <InlineMath math="40" /> Minuten lesen, und die Daten passten trotzdem zur Tabelle. In diesem Beispiel lesen nur so viele Schüler <InlineMath math="45" /> Minuten oder länger:
+
+<BlockMath math="6+6=12<20" />
+
+Die Zahl <InlineMath math="20" /> stammt aus der Schätzung <InlineMath math="\tfrac12\cdot16+12=20" />, die annimmt, dass sich die Klasse <InlineMath math="40\le t<50" /> genau zur Hälfte aufteilt. **Falsch**.
+
+Die Urteile lauten also Richtig, Falsch, Falsch.

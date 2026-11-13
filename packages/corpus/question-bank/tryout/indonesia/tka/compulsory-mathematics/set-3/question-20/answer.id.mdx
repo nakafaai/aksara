@@ -1,15 +1,73 @@
-Jarak mendatar, selisih ketinggian, dan lintasan membentuk segitiga siku-siku. **Tangen sudut adalah sisi depan dibagi sisi samping**: sisi depan sudut <InlineMath math="\alpha" /> adalah selisih ketinggian, dan sisi sampingnya jarak mendatar <InlineMath math="1{.}640\text{ m}" />.
+Soal ini menanyakan jarak mendatar total, yaitu jarak mendatar bagian pertama, ditambah bordes, ditambah jarak mendatar bagian kedua. Kedua bagian punya kemiringan berbeda, jadi **tinggi bagian kedua harus dicari dari sisa tinggi yang belum dinaiki bagian pertama**.
+
+# Bagian pertama
+
+Setiap bagian miring adalah sisi miring sebuah segitiga siku-siku: sisi tegaknya tinggi yang dinaiki, sisi datarnya jarak mendatar. Dari <InlineMath math="\sin\alpha=\frac{7}{25}" />, sisi depan <InlineMath math="7" /> dan sisi miring <InlineMath math="25" />, sehingga **sisi sampingnya dicari dengan Pythagoras**:
 
 <BlockMath math="\begin{aligned}
-\tan\alpha&=\frac{h}{1{.}640} \\
-h&=1{.}640\cdot\frac{9}{40}=369\text{ m}
+\text{sisi samping}&=\sqrt{25^2-7^2}=\sqrt{576}=24 \quad\Rightarrow\quad \cos\alpha=\frac{24}{25} \\
+\text{tinggi}_1&=5\cdot\frac{7}{25}=1{,}4\text{ m} \\
+\text{mendatar}_1&=5\cdot\frac{24}{25}=4{,}8\text{ m}
 \end{aligned}" />
 
-Sebagai pemeriksaan, segitiganya sebangun dengan segitiga <InlineMath math="9" />-<InlineMath math="40" />-<InlineMath math="41" /> berfaktor <InlineMath math="41" />: <InlineMath math="h=369" />, jarak mendatar <InlineMath math="1{.}640" />, dan panjang lintasan <InlineMath math="1{.}681" />.
+# Bagian kedua
 
-Jadi, selisih ketinggiannya <InlineMath math="369\text{ m}" />.
+Bordes datar tidak menambah tinggi. Jadi bagian kedua harus menaikkan sisa tingginya. Untuk sudut <InlineMath math="\beta" />, sisi samping <InlineMath math="\sqrt{13^2-5^2}=12" />, jadi <InlineMath math="\cos\beta=\frac{12}{13}" />:
 
-- <InlineMath math="36{,}9\text{ m}" /> mengubah <InlineMath math="0{,}369\text{ km}" /> menjadi meter dengan mengalikan <InlineMath math="100" />, padahal <InlineMath math="1\text{ km}=1{.}000\text{ m}" />.
-- <InlineMath math="328\text{ m}" /> membulatkan <InlineMath math="\frac{9}{40}=0{,}225" /> menjadi <InlineMath math="0{,}2" /> sebelum mengalikan.
-- <InlineMath math="360\text{ m}" /> memakai <InlineMath math="\sin\alpha=\frac{9}{41}" /> terhadap jarak mendatar, padahal sinus berpasangan dengan sisi miring.
-- <InlineMath math="1{.}600\text{ m}" /> memakai <InlineMath math="\cos\alpha=\frac{40}{41}" />.
+<BlockMath math="\begin{aligned}
+\text{tinggi}_2&=2{,}9-1{,}4=1{,}5\text{ m} \\
+\text{panjang miring}_2&=\frac{1{,}5}{\sin\beta}=1{,}5\cdot\frac{13}{5}=3{,}9\text{ m} \\
+\text{mendatar}_2&=3{,}9\cdot\frac{12}{13}=3{,}6\text{ m}
+\end{aligned}" />
+
+**Cek dengan Pythagoras**: <InlineMath math="1{,}5^2+3{,}6^2=2{,}25+12{,}96=15{,}21=3{,}9^2" />. Cocok.
+
+# Jarak mendatar total
+
+Ketiga bagian naik ke arah yang sama, jadi **jarak mendatarnya dijumlahkan**:
+
+<BlockMath math="4{,}8+1{,}5+3{,}6=9{,}9\text{ m}" />
+
+<MathVisual
+  title={<>Penampang samping jalur landai</>}
+  description={<>Penampang samping jalur landai dalam meter. Bagian pertama naik setinggi <InlineMath math="1{,}4" /> dengan jarak mendatar <InlineMath math="4{,}8" />. Bordes datar sepanjang <InlineMath math="1{,}5" />. Bagian kedua naik setinggi <InlineMath math="1{,}5" /> dengan jarak mendatar <InlineMath math="3{,}6" />, sampai ketinggian <InlineMath math="2{,}9" />. Jarak mendatar totalnya <InlineMath math="9{,}9" />.</>}
+  labels={{
+    "run-one": <InlineMath math="4{,}8" />,
+    "rise-one": <InlineMath math="1{,}4" />,
+    landing: <InlineMath math="1{,}5" />,
+    "run-two": <InlineMath math="3{,}6" />,
+    "rise-two": <InlineMath math="1{,}5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 11 },
+      y: { min: -0.6, max: 3.4 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "ramp", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4.8, y: 1.4 }, { x: 6.3, y: 1.4 }, { x: 9.9, y: 2.9 }] },
+      { id: "run-one", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4.8, y: 0 } },
+      { id: "rise-one", kind: "segment", appearance: "construction", from: { x: 4.8, y: 0 }, to: { x: 4.8, y: 1.4 } },
+      { id: "run-two", kind: "segment", appearance: "construction", from: { x: 6.3, y: 1.4 }, to: { x: 9.9, y: 1.4 } },
+      { id: "rise-two", kind: "segment", appearance: "construction", from: { x: 9.9, y: 1.4 }, to: { x: 9.9, y: 2.9 } },
+    ],
+    labels: [
+      { key: "run-one", objectId: "run-one", at: { x: 2.4, y: 0 }, placement: "below" },
+      { key: "rise-one", objectId: "rise-one", at: { x: 4.8, y: 0.7 }, placement: "right" },
+      { key: "landing", objectId: "ramp", at: { x: 5.55, y: 1.4 }, placement: "above" },
+      { key: "run-two", objectId: "run-two", at: { x: 8.1, y: 1.4 }, placement: "below" },
+      { key: "rise-two", objectId: "rise-two", at: { x: 9.9, y: 2.15 }, placement: "right" },
+    ],
+  }}
+/>
+
+Jadi, jarak mendatar dari kaki jalur landai sampai ujung atas bagian kedua adalah <InlineMath math="9{,}9\text{ m}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="13{,}26\text{ m}" /> memakai seluruh tinggi <InlineMath math="2{,}9\text{ m}" /> untuk bagian kedua: <InlineMath math="2{,}9\cdot\frac{12}{5}=6{,}96" />. **Bagian pertama sudah menaikkan <InlineMath math="1{,}4\text{ m}" />**.
+- <InlineMath math="10{,}4\text{ m}" /> menjumlahkan panjang miring <InlineMath math="5+1{,}5+3{,}9" />. Yang ditanya jarak mendatar, bukan panjang permukaan jalur.
+- <InlineMath math="8{,}4\text{ m}" /> lupa menambahkan bordes <InlineMath math="1{,}5\text{ m}" />.
+- <InlineMath math="7{,}5\text{ m}" /> menghitung jarak mendatar sebagai panjang miring dikurangi tinggi: <InlineMath math="5-1{,}4=3{,}6" /> dan <InlineMath math="3{,}9-1{,}5=2{,}4" />. Sisi segitiga siku-siku tidak dikurangkan begitu saja, gunakan Pythagoras atau kosinus.

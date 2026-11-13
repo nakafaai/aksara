@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$288\\text{ m}^2$$",
+        },
+        {
           correct: true,
-          label: "$$4$$ detik",
+          label: "$$280\\text{ m}^2$$",
         },
         {
           correct: false,
-          label: "$$2$$ detik",
+          label: "$$264{,}5\\text{ m}^2$$",
         },
         {
           correct: false,
-          label: "$$6$$ detik",
+          label: "$$260\\text{ m}^2$$",
         },
         {
           correct: false,
-          label: "$$8$$ detik",
-        },
-        {
-          correct: false,
-          label: "$$5$$ detik",
+          label: "$$252\\text{ m}^2$$",
         },
       ],
     },

@@ -1,16 +1,86 @@
-Pagar mengelilingi tanah, jadi yang diperlukan adalah **keliling segitiga**. Sisi miringnya belum diketahui dan dicari dengan teorema Pythagoras.
+Saat kertas dilipat, titik <InlineMath math="A" /> menempel di <InlineMath math="P" />. Artinya **setiap titik pada garis lipatan berjarak sama ke <InlineMath math="A" /> dan ke <InlineMath math="P" />**. Jadi <InlineMath math="EA=EP" /> dan <InlineMath math="FA=FP" />. Pakai koordinat <InlineMath math="A(0,0)" />, <InlineMath math="B(40,0)" />, <InlineMath math="C(40,24)" />, dan <InlineMath math="D(0,24)" />.
+
+# Letak titik P
+
+Karena <InlineMath math="BE=15" />, <InlineMath math="AE=40-15=25" />, jadi <InlineMath math="E(25,0)" />. Misalkan <InlineMath math="P(p,24)" />. Dari <InlineMath math="EP=EA=25" />, pakai Pythagoras pertama.
 
 <BlockMath math="\begin{aligned}
-c&=\sqrt{20^2+21^2}=\sqrt{400+441}=\sqrt{841}=29\text{ m} \\
-K&=20+21+29=70\text{ m} \\
-\text{biaya}&=70\cdot45{.}000=3{.}150{.}000
+(p-25)^2+24^2&=25^2 \\
+(p-25)^2&=625-576=49 \\
+p&=32\ \text{ atau }\ p=18
 \end{aligned}" />
 
-Sebagai pemeriksaan, <InlineMath math="29^2=841" /> dan <InlineMath math="20^2+21^2=400+441=841" />, jadi segitiganya memang siku-siku dengan sisi miring <InlineMath math="29\text{ m}" />.
+**Ada dua kemungkinan letak <InlineMath math="P" />**, dan keduanya ada di sisi <InlineMath math="DC" />. Syarat tentang <InlineMath math="F" /> yang akan memilih.
 
-Jadi, biaya pemagaran <InlineMath math="\text{Rp}3{.}150{.}000" />.
+# Kasus yang dibuang
 
-- <InlineMath math="\text{Rp}1{.}305{.}000" /> hanya memagari sisi miring, <InlineMath math="29\cdot45{.}000" />.
-- <InlineMath math="\text{Rp}1{.}845{.}000" /> hanya memagari kedua sisi siku-siku, <InlineMath math="41\cdot45{.}000" />.
-- <InlineMath math="\text{Rp}3{.}690{.}000" /> menganggap sisi miring <InlineMath math="20+21=41\text{ m}" />, sehingga kelilingnya <InlineMath math="82\text{ m}" />.
-- <InlineMath math="\text{Rp}9{.}450{.}000" /> memakai luas <InlineMath math="210\text{ m}^2" />, padahal pagar mengikuti keliling.
+Titik <InlineMath math="F(f,24)" /> ada di garis <InlineMath math="DC" /> dan memenuhi <InlineMath math="FA=FP" />.
+
+<BlockMath math="\begin{aligned}
+f^2+24^2&=(p-f)^2 \\
+576&=p^2-2pf\ \Rightarrow\ f=\frac{p^2-576}{2p}
+\end{aligned}" />
+
+Untuk <InlineMath math="p=32" />: <InlineMath math="f=\frac{1024-576}{64}=7" />, jadi <InlineMath math="F(7,24)" /> ada di sisi <InlineMath math="DC" />. Untuk <InlineMath math="p=18" />: <InlineMath math="f=\frac{324-576}{36}=-7" />, yaitu di luar kertas, di kiri <InlineMath math="D" />. Lipatan untuk <InlineMath math="P(18,24)" /> berakhir di sisi <InlineMath math="AD" />, bukan di <InlineMath math="DC" />. **Kasus <InlineMath math="p=18" /> melanggar syarat soal**, jadi <InlineMath math="P(32,24)" />.
+
+# Panjang lipatan
+
+Sekarang <InlineMath math="E(25,0)" /> dan <InlineMath math="F(7,24)" />. Pakai Pythagoras kedua dengan selisih mendatar <InlineMath math="18" /> dan selisih tegak <InlineMath math="24" />.
+
+<BlockMath math="EF=\sqrt{(25-7)^2+24^2}=\sqrt{324+576}=\sqrt{900}=30" />
+
+Cek: <InlineMath math="FA=\sqrt{7^2+24^2}=25" /> dan <InlineMath math="FP=32-7=25" />. **Jaraknya sama**, jadi <InlineMath math="F" /> memang di garis lipatan.
+
+<MathVisual
+  title={<>Lipatan pada kertas <InlineMath math="ABCD" /></>}
+  description={<>Persegi panjang dengan <InlineMath math="A(0,0)" />, <InlineMath math="B(40,0)" />, <InlineMath math="C(40,24)" />, dan <InlineMath math="D(0,24)" />. Titik <InlineMath math="E(25,0)" /> ada di <InlineMath math="AB" />, titik <InlineMath math="F(7,24)" /> dan <InlineMath math="P(32,24)" /> ada di <InlineMath math="DC" />. Ruas <InlineMath math="EF" /> adalah lipatan, dan ruas <InlineMath math="AP" /> tegak lurus terhadap lipatan itu.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    f: <InlineMath math="F" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 43 },
+      y: { min: -3, max: 27 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "sheet", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 24 }, { x: 0, y: 24 }] },
+      { id: "crease", kind: "segment", appearance: "answer", from: { x: 25, y: 0 }, to: { x: 7, y: 24 } },
+      { id: "fold-path", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 32, y: 24 } },
+      { id: "edge-ep", kind: "segment", appearance: "secondary", from: { x: 25, y: 0 }, to: { x: 32, y: 24 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 40, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 40, y: 24 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 24 } },
+      { id: "point-e", kind: "point", appearance: "highlight", at: { x: 25, y: 0 } },
+      { id: "point-f", kind: "point", appearance: "highlight", at: { x: 7, y: 24 } },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 32, y: 24 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 40, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 40, y: 24 }, placement: "above-right" },
+      { key: "d", objectId: "point-d", at: { x: 0, y: 24 }, placement: "above-left" },
+      { key: "e", objectId: "point-e", at: { x: 25, y: 0 }, placement: "below" },
+      { key: "f", objectId: "point-f", at: { x: 7, y: 24 }, placement: "above" },
+      { key: "p", objectId: "point-p", at: { x: 32, y: 24 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="26\text{ cm}" /> menganggap <InlineMath math="DF=BE=15" />, seolah lipatan melewati pusat persegi panjang seperti saat <InlineMath math="A" /> dilipat ke <InlineMath math="C" />. Hasilnya <InlineMath math="\sqrt{10^2+24^2}=26" />.
+- <InlineMath math="40\text{ cm}" /> memakai <InlineMath math="P(18,24)" /> dan menarik ruas ke <InlineMath math="F(-7,24)" /> yang ada di luar kertas. Angka ini juga sama dengan panjang <InlineMath math="AP" /> untuk <InlineMath math="P(32,24)" />, padahal <InlineMath math="AP" /> bukan lipatan.
+- <InlineMath math="25\text{ cm}" /> berhenti di <InlineMath math="EA=EP" /> dan belum menghitung <InlineMath math="EF" />.
+- <InlineMath math="31{,}25\text{ cm}" /> adalah panjang lipatan untuk <InlineMath math="P(18,24)" />, yang memotong <InlineMath math="AD" /> di titik berjarak <InlineMath math="18{,}75" /> dari <InlineMath math="A" />. **Lipatan itu tidak berakhir di sisi <InlineMath math="DC" />**, jadi tidak sesuai soal.
+
+Jadi, panjang lipatan <InlineMath math="EF" /> adalah <InlineMath math="30\text{ cm}" />.

@@ -1,16 +1,96 @@
-Jede Bildkoordinate ist die ursprüngliche Koordinate **mal <InlineMath math="-2" />**: <InlineMath math="(3,0)\to(-6,0)" /> und <InlineMath math="(0,2)\to(0,-4)" />. Prüfe also, ob jede Abbildung <InlineMath math="(x,y)" /> auf <InlineMath math="(-2x,-2y)" /> abbildet.
+Alle fünf Aussagen fragen, was sich nach zwei hintereinander ausgeführten Abbildungen ändert und was bleibt. Am sichersten ist es, **<InlineMath math="T" /> als eine einzige Koordinatenvorschrift aufzuschreiben** und jede Aussage damit zu prüfen.
+
+# Die Vorschrift von T und das Bilddreieck
+
+Die zentrische Streckung mit Zentrum <InlineMath math="P(2,1)" /> und Faktor <InlineMath math="-2" /> multipliziert jeden Abstandsvektor von <InlineMath math="P" /> mit <InlineMath math="-2" />. Danach dreht die Spiegelung an der <InlineMath math="x" />-Achse das Vorzeichen der <InlineMath math="y" />-Koordinate um.
 
 <BlockMath math="\begin{aligned}
-\text{Drehung }180^\circ\text{, dann Streckung }2&:\ (x,y)\to(-x,-y)\to(-2x,-2y) \\
-\text{Streckung }2\text{, dann Punktspiegelung an }O&:\ (x,y)\to(2x,2y)\to(-2x,-2y) \\
-\text{Spiegelung an der }y\text{-Achse, dann Streckung }2&:\ C(0,2)\to(0,2)\to(0,4) \\
-\text{Spiegelung an }y=x\text{, dann Streckung }-2&:\ B(3,0)\to(0,3)\to(0,-6)
+\text{Streckung: }(x,y)&\mapsto\bigl(2-2(x-2),\;1-2(y-1)\bigr)=(6-2x,\;3-2y) \\
+\text{Spiegelung: }(6-2x,\;3-2y)&\mapsto(6-2x,\;2y-3) \\
+T(x,y)&=(6-2x,\;2y-3)
 \end{aligned}" />
 
-- Die Streckung mit Zentrum <InlineMath math="O" /> und Faktor <InlineMath math="-2" /> bildet <InlineMath math="(x,y)" /> direkt auf <InlineMath math="(-2x,-2y)" /> ab. Richtig.
-- Die Spiegelung an der <InlineMath math="y" />-Achse und dann die Streckung mit <InlineMath math="2" /> schickt <InlineMath math="C" /> nach <InlineMath math="(0,4)" />, nicht nach <InlineMath math="(0,-4)" />. Falsch.
-- Die Drehung um <InlineMath math="180^\circ" /> und dann die Streckung mit <InlineMath math="2" /> ergibt <InlineMath math="(-2x,-2y)" />. Richtig.
-- Die Spiegelung an <InlineMath math="y=x" /> und dann die Streckung mit <InlineMath math="-2" /> schickt <InlineMath math="B" /> nach <InlineMath math="(0,-6)" />, nicht nach <InlineMath math="(-6,0)" />. Falsch.
-- Die Punktspiegelung an <InlineMath math="O" /> ist eine Drehung um <InlineMath math="180^\circ" />, also ergibt auch Streckung mit <InlineMath math="2" /> und dann Punktspiegelung an <InlineMath math="O" /> die Abbildung <InlineMath math="(-2x,-2y)" />. Richtig.
+**Die drei Ecken landen** auf <InlineMath math="D'(6,-3)" />, <InlineMath math="E'(-2,-3)" /> und <InlineMath math="F'(6,3)" />.
 
-Passend sind also die Streckung mit <InlineMath math="-2" />, die Drehung um <InlineMath math="180^\circ" /> mit anschließender Streckung mit <InlineMath math="2" /> und die Streckung mit <InlineMath math="2" /> mit anschließender Punktspiegelung an <InlineMath math="O" />.
+<MathVisual
+  title={<>Dreieck <InlineMath math="DEF" /> und sein Bild</>}
+  description={<>Das Dreieck <InlineMath math="D(0,0)" />, <InlineMath math="E(4,0)" />, <InlineMath math="F(0,3)" /> und sein Bild <InlineMath math="D'(6,-3)" />, <InlineMath math="E'(-2,-3)" />, <InlineMath math="F'(6,3)" />. Der Punkt <InlineMath math="P(2,1)" /> und der Fixpunkt <InlineMath math="(2,3)" /> liegen beide auf der Geraden <InlineMath math="x=2" />.</>}
+  labels={{
+    "label-d": <InlineMath math="D" />,
+    "label-e": <InlineMath math="E" />,
+    "label-f": <InlineMath math="F" />,
+    "label-d-image": <InlineMath math="D'" />,
+    "label-e-image": <InlineMath math="E'" />,
+    "label-f-image": <InlineMath math="F'" />,
+    "label-p": <InlineMath math="P(2,1)" />,
+    "label-fixed": <InlineMath math="(2,3)" />,
+    "label-line": <InlineMath math="x=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 8 },
+      y: { min: -5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line-two", kind: "line", appearance: "construction", through: [{ x: 2, y: -4 }, { x: 2, y: 4 }] },
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 0, y: 3 }] },
+      { id: "triangle-image", kind: "polygon", appearance: "secondary", vertices: [{ x: 6, y: -3 }, { x: -2, y: -3 }, { x: 6, y: 3 }] },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+      { id: "point-f", kind: "point", appearance: "reference", at: { x: 0, y: 3 } },
+      { id: "point-d-image", kind: "point", appearance: "reference", at: { x: 6, y: -3 } },
+      { id: "point-e-image", kind: "point", appearance: "reference", at: { x: -2, y: -3 } },
+      { id: "point-f-image", kind: "point", appearance: "reference", at: { x: 6, y: 3 } },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 2, y: 1 } },
+      { id: "point-fixed", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+    ],
+    labels: [
+      { key: "label-d", objectId: "point-d", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "label-e", objectId: "point-e", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "label-f", objectId: "point-f", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "label-d-image", objectId: "point-d-image", at: { x: 6, y: -3 }, placement: "right" },
+      { key: "label-e-image", objectId: "point-e-image", at: { x: -2, y: -3 }, placement: "left" },
+      { key: "label-f-image", objectId: "point-f-image", at: { x: 6, y: 3 }, placement: "right" },
+      { key: "label-p", objectId: "point-p", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "label-fixed", objectId: "point-fixed", at: { x: 2, y: 3 }, placement: "above-right" },
+      { key: "label-line", objectId: "line-two", at: { x: 2, y: -4 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Die Aussagen im Einzelnen
+
+**Richtig**. Aussage 1 betrifft den Flächeninhalt. Das Dreieck <InlineMath math="DEF" /> hat den Inhalt <InlineMath math="\tfrac12\cdot4\cdot3=6" />. Das Dreieck <InlineMath math="D'E'F'" /> ist bei <InlineMath math="D'" /> rechtwinklig, mit <InlineMath math="D'E'=6-(-2)=8" /> und <InlineMath math="D'F'=3-(-3)=6" />:
+
+<BlockMath math="L_{D'E'F'}=\tfrac12\cdot8\cdot6=24=4\cdot6" />
+
+Das passt zur allgemeinen Regel: Eine Streckung mit Faktor <InlineMath math="k" /> multipliziert Flächen mit <InlineMath math="k^2=(-2)^2=4" />, und eine Spiegelung ändert den Inhalt nicht. Das Minuszeichen im Streckfaktor **macht den Flächeninhalt nicht negativ**.
+
+**Richtig**. Aussage 2 betrifft die Richtung einer Geraden. Schreib einen Bildpunkt als <InlineMath math="(X,Y)=(6-2x,\;2y-3)" />, also <InlineMath math="x=\tfrac{6-X}{2}" /> und <InlineMath math="y=\tfrac{Y+3}{2}" />. Setz das in die ursprüngliche Gerade ein:
+
+<BlockMath math="\begin{aligned}
+3\cdot\frac{6-X}{2}-4\cdot\frac{Y+3}{2}&=1 \\
+18-3X-4Y-12&=2 \\
+3X+4Y&=4
+\end{aligned}" />
+
+Die Gerade <InlineMath math="3x+4y=4" /> ist parallel zu <InlineMath math="3x+4y=0" />, weil beide die Steigung <InlineMath math="-\tfrac34" /> haben. Die Streckung erhält die Richtung einer Geraden, aber die Spiegelung an der <InlineMath math="x" />-Achse macht aus der Steigung <InlineMath math="\tfrac34" /> die Steigung <InlineMath math="-\tfrac34" />. Das Bild ist also **nicht parallel zur ursprünglichen Geraden**.
+
+**Falsch**. Aussage 3 betrifft den Umlaufsinn der Ecken. <InlineMath math="D\to E\to F" /> läuft tatsächlich gegen den Uhrzeigersinn: von <InlineMath math="D" /> nach rechts zu <InlineMath math="E" />, dann nach links oben zu <InlineMath math="F" />. Im Bild gehst du von <InlineMath math="D'(6,-3)" /> nach links zu <InlineMath math="E'(-2,-3)" />, dann nach rechts oben zu <InlineMath math="F'(6,3)" />. Das ist im Uhrzeigersinn. Eine Streckung mit negativem Faktor ist eine Drehung um <InlineMath math="180^\circ" /> zusammen mit einer Vergrößerung, **diese Streckung kehrt den Umlaufsinn also nicht um**. Nur die Spiegelung kehrt ihn um, und nach einer Umkehr läuft das Bild im Uhrzeigersinn. Die Falle ist der Gedanke, dass sich negativer Faktor und Spiegelung aufheben.
+
+**Falsch**. Aussage 4 betrifft das Streckzentrum. Die Streckung lässt ihr eigenes Zentrum liegen, die anschließende Spiegelung verschiebt es aber:
+
+<BlockMath math="T(2,1)=(6-4,\;2-3)=(2,-1)\neq(2,1)" />
+
+Der Punkt, der wirklich fest bleibt, erfüllt <InlineMath math="6-2x=x" /> und <InlineMath math="2y-3=y" />, das ist <InlineMath math="(2,3)" />. Das Streckzentrum ist also **kein Fixpunkt dieser Verkettung**.
+
+**Richtig**. Aussage 5 betrifft die Gerade <InlineMath math="x=2" />. Jeder Punkt <InlineMath math="(2,y)" /> dieser Geraden geht über in
+
+<BlockMath math="T(2,y)=(6-4,\;2y-3)=(2,\;2y-3)" />
+
+Die <InlineMath math="x" />-Koordinate bleibt <InlineMath math="2" />, jedes Bild liegt also wieder auf <InlineMath math="x=2" />. Umgekehrt ist jeder Punkt <InlineMath math="(2,t)" /> das Bild von <InlineMath math="\bigl(2,\tfrac{t+3}{2}\bigr)" />. Das Bild der Geraden ist also **genau wieder die Gerade <InlineMath math="x=2" />**, auch wenn ihre Punkte entlang der Geraden wandern, außer dem Fixpunkt <InlineMath math="(2,3)" />.
+
+Richtig sind also die Aussagen 1, 2 und 5.

@@ -1,9 +1,56 @@
-Sebuah pabrik akan membuat kotak tertutup berbentuk balok dengan volume <InlineMath math="1{.}000\text{ cm}^3" />. Ada tiga rancangan ukuran berikut.
+Persegi <InlineMath math="ABCD" /> memiliki panjang sisi <InlineMath math="20\text{ cm}" />. Lingkaran <InlineMath math="L" /> berpusat di <InlineMath math="O" /> dan menyinggung keempat sisi persegi <InlineMath math="ABCD" />. Garis <InlineMath math="g" /> melalui <InlineMath math="O" /> dan sejajar <InlineMath math="AB" />. Persegi <InlineMath math="PQRS" /> dibuat dengan titik <InlineMath math="P" /> dan <InlineMath math="Q" /> pada garis <InlineMath math="g" />, sedangkan titik <InlineMath math="R" /> dan <InlineMath math="S" /> terletak pada lingkaran <InlineMath math="L" />, seperti pada gambar berikut.
 
-| Rancangan | Ukuran |
-| --- | --- |
-| P | <InlineMath math="20\text{ cm}\times10\text{ cm}\times5\text{ cm}" /> |
-| Q | <InlineMath math="25\text{ cm}\times8\text{ cm}\times5\text{ cm}" /> |
-| R | <InlineMath math="10\text{ cm}\times10\text{ cm}\times10\text{ cm}" /> |
+<MathVisual
+  title={<>Persegi <InlineMath math="PQRS" /> di dalam lingkaran <InlineMath math="L" /></>}
+  description={<>Persegi <InlineMath math="ABCD" /> dengan lingkaran <InlineMath math="L" /> berpusat <InlineMath math="O" /> yang menyinggung keempat sisinya. Garis <InlineMath math="g" /> melalui <InlineMath math="O" /> sejajar <InlineMath math="AB" />. Persegi <InlineMath math="PQRS" /> berada di atas garis <InlineMath math="g" />, dengan <InlineMath math="P" /> dan <InlineMath math="Q" /> pada garis <InlineMath math="g" /> serta <InlineMath math="R" /> dan <InlineMath math="S" /> pada lingkaran.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    o: <InlineMath math="O" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    r: <InlineMath math="R" />,
+    s: <InlineMath math="S" />,
+    g: <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -12, max: 12 },
+      y: { min: -12, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "outer", kind: "polygon", appearance: "primary", vertices: [{ x: -10, y: -10 }, { x: 10, y: -10 }, { x: 10, y: 10 }, { x: -10, y: 10 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 10 },
+      { id: "line-g", kind: "segment", appearance: "reference", from: { x: -10, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "inner", kind: "polygon", appearance: "highlight", vertices: [{ x: -2 * Math.sqrt(5), y: 0 }, { x: 2 * Math.sqrt(5), y: 0 }, { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }] },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: -10, y: -10 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 10, y: -10 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 10, y: 10 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: -10, y: 10 } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: -2 * Math.sqrt(5), y: 0 } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(5), y: 0 } },
+      { id: "point-r", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
+      { id: "point-s", kind: "point", appearance: "reference", at: { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: -10, y: -10 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 10, y: -10 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 10, y: 10 }, placement: "above-right" },
+      { key: "d", objectId: "point-d", at: { x: -10, y: 10 }, placement: "above-left" },
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "p", objectId: "point-p", at: { x: -2 * Math.sqrt(5), y: 0 }, placement: "below" },
+      { key: "q", objectId: "point-q", at: { x: 2 * Math.sqrt(5), y: 0 }, placement: "below" },
+      { key: "r", objectId: "point-r", at: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, placement: "above-right" },
+      { key: "s", objectId: "point-s", at: { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, placement: "above-left" },
+      { key: "g", objectId: "line-g", at: { x: -10, y: 0 }, placement: "left" },
+    ],
+  }}
+/>
 
-Banyak bahan yang diperlukan sebanding dengan luas permukaan kotak. Pernyataan yang benar adalah ....
+Perbandingan luas persegi <InlineMath math="PQRS" /> terhadap luas persegi <InlineMath math="ABCD" /> adalah ....

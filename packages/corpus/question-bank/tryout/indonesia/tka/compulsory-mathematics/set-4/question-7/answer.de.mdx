@@ -1,15 +1,54 @@
-Zuerst wird Kelvin in Celsius umgerechnet, dann Celsius in Fahrenheit. Das ist **die Verkettung <InlineMath math="(f\circ g)(K)=f\big(g(K)\big)" />**, bei der <InlineMath math="g" /> zuerst wirkt.
+# Die quadratische Funktion finden
+
+Die Aufgabe hat zwei Teile. Erstens bestimmst du <InlineMath math="a" />, <InlineMath math="b" /> und <InlineMath math="c" /> aus den drei Punkten. Zweitens suchst du **alle reellen <InlineMath math="x" />**, für die einer der Faktoren null wird, und multiplizierst sie.
+
+Setz die drei Punkte in <InlineMath math="f(x)=ax^2+bx+c" /> ein.
 
 <BlockMath math="\begin{aligned}
-g(302)&=302-273=29 \\
-f(29)&=\frac95\cdot29+32=52{,}2+32=84{,}2
+f(-1)=19:&\quad a-b+c=19 \\
+f(1)=-5:&\quad a+b+c=-5 \\
+f(4)=-11:&\quad 16a+4b+c=-11
 \end{aligned}" />
 
-Zur Kontrolle: Die Verkettung lautet <InlineMath math="(f\circ g)(K)=\frac95\,(K-273)+32" />, und für <InlineMath math="K=302" /> ergibt sie ebenfalls <InlineMath math="84{,}2" />.
+Zieh die erste Gleichung von der zweiten ab, dann gilt <InlineMath math="2b=-24" />, also <InlineMath math="b=-12" /> und <InlineMath math="a+c=7" />. Setz <InlineMath math="b=-12" /> in die dritte Gleichung ein.
 
-Der Raum hat also <InlineMath math="84{,}2^\circ\text{F}" />.
+<BlockMath math="\begin{aligned}
+16a-48+c&=-11 \\
+16a+c&=37 \\
+(16a+c)-(a+c)&=37-7 \\
+15a=30,\quad a=2,\quad c&=5
+\end{aligned}" />
 
-- <InlineMath math="1{.}067^\circ\text{F}" /> addiert <InlineMath math="273" />, statt es abzuziehen, und rechnet so mit <InlineMath math="575^\circ\text{C}" />.
-- <InlineMath math="575{,}6^\circ\text{F}" /> setzt <InlineMath math="302" /> direkt in <InlineMath math="f" /> ein, ohne Kelvin in Celsius umzurechnen.
-- <InlineMath math="357{,}2^\circ\text{F}" /> addiert zum richtigen Ergebnis noch einmal <InlineMath math="273" />.
-- <InlineMath math="109{,}8^\circ\text{F}" /> addiert <InlineMath math="32" />, bevor mit <InlineMath math="\frac95" /> multipliziert wird.
+Also ist <InlineMath math="f(x)=2x^2-12x+5=2(x-3)^2-13" />. Der kleinste Wert von <InlineMath math="f" /> ist <InlineMath math="-13" />, bei <InlineMath math="x=3" />.
+
+# Zwei Fälle aus dem Nullprodukt
+
+Ein Produkt aus zwei Faktoren ist null, wenn einer der Faktoren null ist. Es gibt also **zwei Fälle**: <InlineMath math="f(x)=-7" /> oder <InlineMath math="f(x)=-15" />.
+
+Der Fall <InlineMath math="f(x)=-15" /> hat keine reelle Lösung, weil der kleinste Wert von <InlineMath math="f" /> gleich <InlineMath math="-13" /> ist. Prüf es mit der Diskriminante. Für <InlineMath math="px^2+qx+r=0" /> ist sie <InlineMath math="D=q^2-4pr" />, und reelle Nullstellen gibt es nur bei <InlineMath math="D\ge0" />.
+
+<BlockMath math="\begin{aligned}
+2x^2-12x+20=0 &\iff x^2-6x+10=0 \\
+D&=(-6)^2-4\cdot1\cdot10=-4<0
+\end{aligned}" />
+
+Der Fall <InlineMath math="f(x)=-7" /> liefert eine neue Gleichung, deren **konstanter Term sich geändert hat**:
+
+<BlockMath math="\begin{aligned}
+2x^2-12x+5&=-7 \\
+2x^2-12x+12&=0 \\
+x^2-6x+6&=0,\qquad D=(-6)^2-4\cdot1\cdot6=12>0
+\end{aligned}" />
+
+Es gibt zwei reelle Lösungen, <InlineMath math="x=3\pm\sqrt3" />. Nach Vieta ist das Produkt der Lösungen von <InlineMath math="px^2+qx+r=0" /> gleich <InlineMath math="\frac{r}{p}" />, hier <InlineMath math="\frac{6}{1}=6" />. Direkte Kontrolle: <InlineMath math="(3+\sqrt3)(3-\sqrt3)=9-3=6" />.
+
+# Die verlockenden Antworten
+
+Jede andere Antwort **verrutscht bei einem Vieta-Schritt oder einem Fall**.
+
+- <InlineMath math="-6" /> entsteht, wenn du das Minuszeichen aus der Summenformel <InlineMath math="-\frac{q}{p}" /> auf das Produkt überträgst. Das Produkt ist <InlineMath math="\frac{r}{p}" />, ohne Minus.
+- <InlineMath math="\frac52" /> benutzt die ursprüngliche Konstante <InlineMath math="c=5" /> aus <InlineMath math="f(x)=0" />. Die Gleichung lautet aber <InlineMath math="f(x)=-7" />, die Konstante wird also <InlineMath math="5+7=12" />.
+- <InlineMath math="10" /> ist das Produkt aus dem Fall <InlineMath math="f(x)=-15" />, <InlineMath math="\frac{20}{2}" />. Dieser Fall hat gar keine reellen Lösungen.
+- <InlineMath math="60" /> multipliziert die Produkte beider Fälle, <InlineMath math="6\cdot10" />. Die Lösungen des zweiten Falls sind nicht reell und dürfen nicht mitgezählt werden.
+
+Das Produkt aller reellen <InlineMath math="x" />, die die Gleichung erfüllen, ist also <InlineMath math="6" />.

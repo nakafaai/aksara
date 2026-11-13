@@ -1,14 +1,48 @@
-Jede Aussage braucht den Kurs, der zur Richtung des Geschäfts passt: Kunden **kaufen** zum Verkaufskurs und **verkaufen** zum Ankaufskurs.
+# Die günstigsten Kosten für jeden Bedarf
+
+Alle drei Aussagen betreffen jede mögliche Blattzahl, ein einzelnes Beispiel reicht also nicht. Verschaffe dir zuerst den vollständigen Überblick. Wer **genau** <InlineMath math="n" /> Blätter bestellt, zahlt <InlineMath math="500n" /> für <InlineMath math="n\le199" />, <InlineMath math="400n" /> für <InlineMath math="200\le n\le499" /> und <InlineMath math="300n" /> für <InlineMath math="n\ge500" />.
+
+Leere Blätter helfen nur, wenn sie die Bestellung auf eine Stufengrenze heben, also auf <InlineMath math="200" /> oder <InlineMath math="500" /> Blätter. Über die Grenze hinaus kommen nur Blätter zum gleichen Preis dazu. Du brauchst also nur diese zwei Zahlen:
 
 <BlockMath math="\begin{aligned}
-\frac{12{.}000-11{.}800}{12{.}000}&=\frac{200}{12{.}000}\approx1{,}67\,\% \\
-\frac{3{.}500-3{.}400}{3{.}500}&=\frac{100}{3{.}500}\approx2{,}86\,\% \\
-\frac{11{.}800}{3{.}500}&\approx3{,}37 \\
-\frac{12{.}000{.}000}{12{.}000}\cdot11{.}800&=1{.}000\cdot11{.}800=11{.}800{.}000 \\
-1{,}04\cdot3{.}500&=3{.}640
+\text{Kosten für }200\text{ Blätter}&=200\cdot400=80{.}000 \\
+\text{Kosten für }500\text{ Blätter}&=500\cdot300=150{.}000
 \end{aligned}" />
 
-- Die Spanne beim Singapur-Dollar beträgt etwa <InlineMath math="1{,}67\,\%" />, weniger als beim Ringgit mit etwa <InlineMath math="2{,}86\,\%" />. Die Aussage ist richtig.
-- Der Verkauf von <InlineMath math="1" /> Singapur-Dollar bringt <InlineMath math="\text{Rp}11{.}800" />, und damit kaufst du nur etwa <InlineMath math="3{,}37" /> Ringgit. Die Aussage ist falsch.
-- Aus <InlineMath math="\text{Rp}12{.}000{.}000" /> werden <InlineMath math="1{.}000" /> Dollar, die zurück <InlineMath math="\text{Rp}11{.}800{.}000" /> bringen. Der Verlust beträgt genau <InlineMath math="\text{Rp}200{.}000" />. Die Aussage ist richtig.
-- Der Verkaufskurs des Ringgit steigt auf <InlineMath math="\text{Rp}3{.}640" />, also nicht über <InlineMath math="\text{Rp}3{.}650" />. Die Aussage ist falsch.
+Auffüllen auf <InlineMath math="200" /> Blätter ist günstiger, wenn <InlineMath math="500n>80{.}000" />, also <InlineMath math="n>160" />. Auffüllen auf <InlineMath math="500" /> Blätter ist günstiger, wenn <InlineMath math="400n>150{.}000" />, also <InlineMath math="n>375" />. Für <InlineMath math="n\le199" /> lohnen sich <InlineMath math="500" /> Blätter nie, denn <InlineMath math="150{.}000" /> ist mehr als <InlineMath math="500\cdot199=99{.}500" />. Das ergibt:
+
+| Bedarf <InlineMath math="n" /> | Günstigster Weg | Günstigste Kosten |
+| --- | --- | --- |
+| <InlineMath math="1" /> bis <InlineMath math="160" /> | genau <InlineMath math="n" /> Blätter | <InlineMath math="500n" /> |
+| <InlineMath math="161" /> bis <InlineMath math="199" /> | <InlineMath math="200" /> Blätter | <InlineMath math="80{.}000" /> |
+| <InlineMath math="200" /> bis <InlineMath math="375" /> | genau <InlineMath math="n" /> Blätter | <InlineMath math="400n" /> |
+| <InlineMath math="376" /> bis <InlineMath math="499" /> | <InlineMath math="500" /> Blätter | <InlineMath math="150{.}000" /> |
+
+Schau dir <InlineMath math="n=160" /> und <InlineMath math="n=375" /> an: Dort kostet das Auffüllen **genau gleich viel**, nicht weniger.
+
+# Die erste Aussage
+
+Die gemeinsame Bestellung hat mehr Blätter, ihr Preis pro Blatt ist also nie höher als bei einer der beiden Bestellungen. Zusammenlegen ist demnach nie teurer. Aber **auf jeden Fall günstiger** scheitert, wenn die gemeinsame Bestellung in derselben Stufe bleibt. Nimm Bestellungen mit <InlineMath math="100" /> und <InlineMath math="50" /> Blättern:
+
+<BlockMath math="\begin{aligned}
+\text{getrennt}&=100\cdot500+50\cdot500=75{.}000 \\
+\text{zusammen}&=150\cdot500=75{.}000
+\end{aligned}" />
+
+Die Kosten sind gleich, die Aussage ist also **Falsch**.
+
+# Die zweite Aussage
+
+Laut Tabelle machen zusätzliche Blätter die Kosten **echt kleiner** genau für <InlineMath math="n=161" /> bis <InlineMath math="199" /> und <InlineMath math="n=376" /> bis <InlineMath math="499" />:
+
+<BlockMath math="(199-161+1)+(499-376+1)=39+124=163" />
+
+Zählst du <InlineMath math="n=160" /> und <InlineMath math="n=375" /> mit, kommst du auf <InlineMath math="165" />, obwohl die Kosten dort nur gleich sind. Vergisst du die Grenze bei <InlineMath math="200" /> Blättern, kommst du auf <InlineMath math="124" />. Es sind genau <InlineMath math="163" />, die Aussage ist also **Richtig**.
+
+# Die dritte Aussage
+
+Suche in jeder Zeile der Tabelle die größten günstigsten Kosten. Zeile eins erreicht höchstens <InlineMath math="500\cdot160=80{.}000" />, Zeile zwei <InlineMath math="80{.}000" />, Zeile drei höchstens <InlineMath math="400\cdot375=150{.}000" /> und Zeile vier <InlineMath math="150{.}000" />. Also **liegen die günstigsten Kosten nie über <InlineMath math="\text{Rp}150{.}000" />**.
+
+Genau <InlineMath math="499" /> Blätter kosten zwar <InlineMath math="499\cdot400=199{.}600" />, das sind aber nicht die günstigsten Kosten, denn <InlineMath math="500" /> Blätter kosten nur <InlineMath math="150{.}000" />. Die Aussage ist **Richtig**.
+
+Die Antworten lauten also Falsch, Richtig, Richtig.

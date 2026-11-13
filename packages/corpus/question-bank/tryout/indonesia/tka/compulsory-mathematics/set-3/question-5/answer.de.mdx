@@ -1,13 +1,81 @@
-Übersetze die Angaben in ein **System linearer Ungleichungen**. Für die Säcke bleiben <InlineMath math="1{.}200-64=1{.}136\text{ kg}" />. Sei <InlineMath math="x" /> die Zahl der Reissäcke und <InlineMath math="y" /> die Zahl der Zuckersäcke, beide ganze Zahlen ab <InlineMath math="0" />.
+Die Abbildung zeigt nur zwei Geraden und einen schraffierten Bereich. Der erste Schritt ist deshalb, **das Ungleichungssystem aus der Abbildung aufzustellen**. Danach prüfst du jede Aussage mit diesem System, nicht nach Augenmaß.
+
+# Das System aus der Abbildung
+
+Eine Gerade, die die Achsen bei <InlineMath math="(a,0)" /> und <InlineMath math="(0,b)" /> schneidet, hat die Gleichung <InlineMath math="\frac{x}{a}+\frac{y}{b}=1" />. Multipliziere mit den Nennern, damit ganze Zahlen herauskommen.
 
 <BlockMath math="\begin{aligned}
-50x+35y&\le1{.}136 \\
-x+y&\le28
+\frac{x}{6}+\frac{y}{9}=1\ &\Rightarrow\ 3x+2y=18 \\
+\frac{x}{12}+\frac{y}{4}=1\ &\Rightarrow\ x+3y=12
 \end{aligned}" />
 
-- <InlineMath math="50\cdot12+35\cdot14=600+490=1{.}090\le1{.}136" /> und <InlineMath math="12+14=26\le28" />. Die Aussage ist richtig.
-- Mit nur Reis gilt <InlineMath math="50x\le1{.}136" />, also <InlineMath math="x\le22{,}72" />. Höchstens <InlineMath math="22" /> Säcke passen, denn <InlineMath math="23" /> Säcke wiegen <InlineMath math="1{.}150\text{ kg}" />. Die Aussage ist falsch.
-- Mit <InlineMath math="y=28-x" /> wird die Last zu <InlineMath math="50x+35(28-x)=980+15x\le1{.}136" />, also <InlineMath math="x\le10{,}4" />. Höchstens <InlineMath math="10" /> Reissäcke passen. Die Aussage ist richtig.
-- <InlineMath math="50x+35y=5(10x+7y)" /> ist immer ein Vielfaches von <InlineMath math="5" />, <InlineMath math="1{.}136" /> aber nicht. Die größte mögliche Last ist <InlineMath math="1{.}135\text{ kg}" />, zum Beispiel mit <InlineMath math="22" /> Reissäcken und <InlineMath math="1" /> Zuckersack. Die Aussage ist falsch.
+Der Punkt <InlineMath math="(0,0)" /> liegt im schraffierten Bereich, und es gilt <InlineMath math="0\le18" /> sowie <InlineMath math="0\le12" />. Der Bereich liegt also bei beiden Geraden auf der Seite "kleiner oder gleich".
 
-Richtig sind also die erste und die dritte Aussage.
+<BlockMath math="3x+2y\le18,\qquad x+3y\le12,\qquad x\ge0,\qquad y\ge0" />
+
+Die Ecke, in der sich die Geraden schneiden, findest du durch Einsetzen von <InlineMath math="x=12-3y" />.
+
+<BlockMath math="\begin{aligned}
+3(12-3y)+2y&=18 \\
+36-7y&=18\ \Rightarrow\ y=\tfrac{18}{7},\quad x=12-\tfrac{54}{7}=\tfrac{30}{7}
+\end{aligned}" />
+
+Der Schnittpunkt ist <InlineMath math="\left(\tfrac{30}{7},\tfrac{18}{7}\right)\approx(4{,}29\,|\,2{,}57)" />. **Links vom Schnittpunkt liegt die Gerade <InlineMath math="x+3y=12" /> tiefer**, rechts davon die Gerade <InlineMath math="3x+2y=18" />. Der obere Rand des Bereichs ist immer die tiefere Gerade.
+
+<MathVisual
+  title={<>Lösungsbereich und Schnittpunkt</>}
+  description={<>Der schraffierte Bereich ist das Viereck mit den Ecken <InlineMath math="(0,0)" />, <InlineMath math="(6,0)" />, <InlineMath math="\left(\tfrac{30}{7},\tfrac{18}{7}\right)" /> und <InlineMath math="(0,4)" />. Die Gerade <InlineMath math="3x+2y=18" /> geht durch <InlineMath math="(0,9)" /> und <InlineMath math="(6,0)" />. Die Gerade <InlineMath math="x+3y=12" /> geht durch <InlineMath math="(0,4)" /> und <InlineMath math="(12,0)" />. Der Punkt <InlineMath math="(3,3)" /> liegt auf der Geraden <InlineMath math="x+3y=12" /> im Bereich.</>}
+  labels={{
+    "first-line": <InlineMath math="3x+2y=18" />,
+    "second-line": <InlineMath math="x+3y=12" />,
+    corner: <InlineMath math="\left(\tfrac{30}{7},\tfrac{18}{7}\right)" />,
+    best: <InlineMath math="(3,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 13 },
+      y: { min: -1, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 30 / 7, y: 18 / 7 }, { x: 0, y: 4 }] },
+      { id: "first-line", kind: "segment", appearance: "primary", from: { x: 0, y: 9 }, to: { x: 6, y: 0 } },
+      { id: "second-line", kind: "segment", appearance: "secondary", from: { x: 0, y: 4 }, to: { x: 12, y: 0 } },
+      { id: "corner-point", kind: "point", appearance: "reference", at: { x: 30 / 7, y: 18 / 7 } },
+      { id: "best-point", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "first-line", objectId: "first-line", at: { x: 1.5, y: 6.75 }, placement: "right" },
+      { key: "second-line", objectId: "second-line", at: { x: 9, y: 1 }, placement: "above" },
+      { key: "corner", objectId: "corner-point", at: { x: 30 / 7, y: 18 / 7 }, placement: "right" },
+      { key: "best", objectId: "best-point", at: { x: 3, y: 3 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+# Jede Aussage einzeln
+
+1. **Richtig**. Für <InlineMath math="(4,2)" />: <InlineMath math="3\cdot4+2\cdot2=16\le18" /> und <InlineMath math="4+3\cdot2=10\le12" />, der Punkt liegt also drin. Für <InlineMath math="(4,3)" />: <InlineMath math="3\cdot4+2\cdot3=18\le18" />, aber <InlineMath math="4+3\cdot3=13>12" />. Der Punkt <InlineMath math="(4,3)" /> liegt genau auf der ersten Geraden, aber über der zweiten, also nicht im Bereich.
+2. **Falsch**. Für jedes <InlineMath math="x" /> legt die tiefere Gerade das größte <InlineMath math="y" /> fest, also der kleinere der Werte <InlineMath math="\frac{18-3x}{2}" /> und <InlineMath math="\frac{12-x}{3}" />.
+
+| <InlineMath math="x" /> | <InlineMath math="\frac{18-3x}{2}" /> | <InlineMath math="\frac{12-x}{3}" /> | Erlaubte ganze <InlineMath math="y" /> | Punkte |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="3" /> | <InlineMath math="4{,}5" /> | <InlineMath math="3" /> | <InlineMath math="0,1,2,3" /> | <InlineMath math="4" /> |
+| <InlineMath math="4" /> | <InlineMath math="3" /> | <InlineMath math="2\tfrac{2}{3}" /> | <InlineMath math="0,1,2" /> | <InlineMath math="3" /> |
+| <InlineMath math="5" /> | <InlineMath math="1{,}5" /> | <InlineMath math="2\tfrac{1}{3}" /> | <InlineMath math="0,1" /> | <InlineMath math="2" /> |
+
+Zusammen sind das <InlineMath math="4+3+2=9" /> Punkte, nicht <InlineMath math="10" />. Die <InlineMath math="10" /> bekommst du, wenn du für den ganzen Streifen die Gerade <InlineMath math="x+3y=12" /> nimmst, aber **bei <InlineMath math="x=5" /> ist die Grenze schon auf die Gerade <InlineMath math="3x+2y=18" /> gewechselt**.
+
+3. **Richtig**. Im Schnittpunkt ist der Wert <InlineMath math="2\cdot\tfrac{30}{7}+3\cdot\tfrac{18}{7}=\tfrac{114}{7}\approx16{,}3" />, aber dieser Punkt ist nicht ganzzahlig. Ganzzahlige Punkte liefern also höchstens <InlineMath math="16" />. Prüf, ob <InlineMath math="16" /> erreichbar ist: Die Gleichung <InlineMath math="2x+3y=16" /> hat mit ganzen <InlineMath math="x,y\ge0" /> nur die Lösungen <InlineMath math="(8,0)" />, <InlineMath math="(5,2)" /> und <InlineMath math="(2,4)" />.
+
+<BlockMath math="\begin{aligned}
+(8,0)&:\ 3\cdot8+2\cdot0=24>18 \\
+(5,2)&:\ 3\cdot5+2\cdot2=19>18 \\
+(2,4)&:\ 2+3\cdot4=14>12
+\end{aligned}" />
+
+Alle drei liegen außerhalb. Den Wert <InlineMath math="15" /> erreichst du bei <InlineMath math="(3,3)" />, denn <InlineMath math="9+6=15\le18" /> und <InlineMath math="3+9=12\le12" />. Rundest du den Schnittpunkt auf <InlineMath math="(4,3)" />, verlässt du den Bereich, und <InlineMath math="(4,2)" /> liefert nur <InlineMath math="14" />.
+
+Aussage 1 ist also richtig, Aussage 2 falsch und Aussage 3 richtig.

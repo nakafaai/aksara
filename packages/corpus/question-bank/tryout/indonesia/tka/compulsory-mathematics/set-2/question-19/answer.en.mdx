@@ -1,12 +1,41 @@
-Here you only judge whether the information is **enough for a definite answer**, not what the answer is. Test each statement on its own first, then both together. A statement is enough when it answers the question the same way in every possible case.
+The question doesn't give the radius of the cylinder, and you don't need it. The rise in water level equals the volume of what sinks divided by the base area of the cylinder. The base area doesn't change, so **the rise is proportional to the volume of the marbles**. The big marbles tell you the rise per marble, and a volume ratio takes you to the small ones.
 
-- **Statement (1) alone**: <InlineMath math="\frac43\pi r^3=288\pi" /> gives <InlineMath math="r^3=216" />, so <InlineMath math="r=6" /> and a sphere surface of <InlineMath math="4\pi\cdot36=144\pi\approx452.4\text{ cm}^2" />. The statement says nothing about the cube, so it is not enough.
-- **Statement (2) alone**: it says nothing about the sphere and is not enough.
-- **Both together**: the cube's surface is <InlineMath math="6s^2" />. For <InlineMath math="s=8" /> it is <InlineMath math="384<452.4" />, so the answer would be yes. For <InlineMath math="s=9" /> it is <InlineMath math="486>452.4" />, so the answer would be no. Even together the question stays open.
+# Rise from one big marble
 
-So the two statements are not enough, even together.
+Five big marbles lift the water from <InlineMath math="12\text{ cm}" /> to <InlineMath math="14.7\text{ cm}" />. **Divide that rise by the number of marbles** to get what one marble does.
 
-- The option that statement (1) alone is enough is wrong, because statement (1) alone allows two different answers.
-- The option that statement (2) alone is enough is wrong, because statement (2) alone allows two different answers.
-- The option that only both statements together are enough is wrong, because even both statements together allow two different answers.
-- The option that each statement alone is enough is wrong, because statement (1) alone allows two different answers.
+<BlockMath math="\frac{14.7-12}{5}=\frac{2.7}{5}=0.54\text{ cm per big marble}" />
+
+# Rise from one small marble
+
+The volume of a ball is <InlineMath math="\frac43\pi\left(\frac d2\right)^3" />, so the volume is proportional to **the cube of the diameter**, not the diameter itself. The diameters of the small and big marbles are in the ratio <InlineMath math="2:3" />.
+
+<BlockMath math="\begin{aligned}
+\frac{V_{\text{small}}}{V_{\text{big}}}&=\left(\frac23\right)^3=\frac{8}{27} \\
+\text{rise per small marble}&=0.54\cdot\frac{8}{27}=0.16\text{ cm}
+\end{aligned}" />
+
+# Number of small marbles
+
+Once the big marbles are in, the gap from the water surface to the rim is <InlineMath math="18-14.7=3.3\text{ cm}" />. With <InlineMath math="n" /> small marbles the water rises <InlineMath math="0.16n" />, and that can't be more than <InlineMath math="3.3" />.
+
+<BlockMath math="\begin{aligned}
+0.16n&\le3.3 \\
+n&\le\frac{3.3}{0.16}=20.625
+\end{aligned}" />
+
+The number of marbles is a whole number, and rounding up would make the water spill. So it's **at most <InlineMath math="20" /> marbles**. Check both sides.
+
+<BlockMath math="\begin{aligned}
+n=20&:\ 14.7+20\cdot0.16=17.9\text{ cm}\le18\text{ cm} \\
+n=21&:\ 14.7+21\cdot0.16=18.06\text{ cm}>18\text{ cm}
+\end{aligned}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="9" /> comes from treating volume as proportional to the diameter, so the rise would be <InlineMath math="0.54\cdot\frac23=0.36\text{ cm}" />.
+- <InlineMath math="13" /> comes from treating volume as proportional to the square of the diameter, so the rise would be <InlineMath math="0.54\cdot\frac49=0.24\text{ cm}" />. Squares go with area, not volume.
+- <InlineMath math="21" /> rounds <InlineMath math="20.625" /> up. The <InlineMath math="21" />st marble takes the water to <InlineMath math="18.06\text{ cm}" />, so it **spills**.
+- <InlineMath math="37" /> measures the empty space from the original water level, <InlineMath math="18-12=6\text{ cm}" />. But the big marbles are already in the cylinder and have already raised the water.
+
+So at most <InlineMath math="20" /> small marbles can go in without the water spilling.

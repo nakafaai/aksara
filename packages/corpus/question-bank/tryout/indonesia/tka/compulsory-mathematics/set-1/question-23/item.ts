@@ -6,31 +6,31 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "coffee-sales",
+  stimulus: "call-duration",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Rata-rata penjualan per hari naik dibandingkan data $$30$$ hari.",
+            "Panggilan yang lamanya paling sedikit $$20$$ menit hanya seperempat dari seluruh panggilan, tetapi taksiran total lama panggilan itu lebih dari $$40\\%$$ taksiran total lama seluruh panggilan.",
         },
         {
-          correct: true,
-          label: "Median penjualan tetap $$50$$ gelas.",
+          column: 2,
+          label:
+            "Jika tabel disusun ulang menjadi tiga kelas, yaitu $$0\\le t<10$$, $$10\\le t<20$$, dan $$20\\le t<30$$, taksiran rata-rata dari tabel baru sama dengan taksiran rata-rata dari tabel semula.",
         },
         {
-          correct: false,
-          label: "Modus data hanya $$60$$ gelas.",
+          column: 1,
+          label:
+            "Taksiran modus lebih kecil daripada taksiran rata-rata, dengan selisih lebih dari $$6$$ menit.",
         },
         {
-          correct: true,
-          label: "Jangkauan data tidak berubah.",
-        },
-        {
-          correct: false,
-          label: "Rata-rata penjualan per hari lebih dari $$52$$ gelas.",
+          column: 2,
+          label:
+            "Jika $$7$$ panggilan yang tercatat pada kelas $$15\\le t<20$$ ternyata seharusnya berada di kelas $$10\\le t<15$$, taksiran modus menjadi lebih dari $$10$$ menit.",
         },
       ],
     },

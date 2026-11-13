@@ -1,24 +1,73 @@
-Two theorems carry the whole problem. An **inscribed angle on a diameter** is a right angle (Thales' theorem). And all inscribed angles on the same arc are equal, while the central angle is twice as large.
+# The region the camera records
 
-Because <InlineMath math="AC" /> is a diameter, <InlineMath math="\angle ABC=\angle ADC=90^\circ" />. The angle sum in a triangle gives:
+The question asks for the length of the stretch of path where the person is recorded whole, from the soles of the feet to the top of the head. Two conditions have to hold at once: the feet must be recorded and the head must be recorded. Each condition gives its own range of distances, and you keep the part they share.
+
+Put the foot of the pole at the origin and the camera <InlineMath math="K" /> at height <InlineMath math="6" />. A line of sight with angle of depression <InlineMath math="\theta" /> drops <InlineMath math="\tan\theta" /> metres for every metre across. So at horizontal distance <InlineMath math="x" /> from the pole, that line is at height <InlineMath math="6-x\tan\theta" />. A point at height <InlineMath math="y" /> is recorded if it lies between the two lines of sight.
+
+<BlockMath math="6-x\tan60^\circ\le y\le 6-x\tan30^\circ,\qquad\tan60^\circ=\sqrt{3},\quad\tan30^\circ=\tfrac{1}{\sqrt{3}}" />
+
+The person's body is an upright segment. The recorded region is bounded by two straight lines, so a segment with both ends inside the region lies entirely inside it. That's why **the whole body is recorded exactly when both the feet and the head are recorded**.
+
+# The conditions for feet and head
+
+For the feet, put <InlineMath math="y=0" />. For the head, put <InlineMath math="y=1.5" />. Each inequality gives one bound on the distance.
 
 <BlockMath math="\begin{aligned}
-\angle ACB&=180^\circ-90^\circ-28^\circ=62^\circ \\
-\angle ACD&=180^\circ-90^\circ-46^\circ=44^\circ \\
-\angle BCD&=62^\circ+44^\circ=106^\circ
+\text{feet: }&0\ge6-x\sqrt{3}\Rightarrow x\ge\frac{6}{\sqrt{3}}=2\sqrt{3}, & 0&\le6-\frac{x}{\sqrt{3}}\Rightarrow x\le6\sqrt{3} \\
+\text{head: }&1.5\ge6-x\sqrt{3}\Rightarrow x\ge\frac{4.5}{\sqrt{3}}=\tfrac32\sqrt{3}, & 1.5&\le6-\frac{x}{\sqrt{3}}\Rightarrow x\le\tfrac92\sqrt{3}
 \end{aligned}" />
 
-The inscribed angle <InlineMath math="\angle BAC" /> and the central angle <InlineMath math="\angle BOC" /> stand on the arc <InlineMath math="BC" />. The angles <InlineMath math="\angle ACB" /> and <InlineMath math="\angle ADB" /> stand on the arc <InlineMath math="AB" />.
+| Part of the body | Nearest distance | Farthest distance |
+| :---: | :---: | :---: |
+| Feet | <InlineMath math="2\sqrt{3}" /> | <InlineMath math="6\sqrt{3}" /> |
+| Head | <InlineMath math="\tfrac32\sqrt{3}" /> | <InlineMath math="\tfrac92\sqrt{3}" /> |
+| Whole body | <InlineMath math="2\sqrt{3}" /> | <InlineMath math="\tfrac92\sqrt{3}" /> |
 
-<BlockMath math="\begin{aligned}
-\angle BOC&=2\cdot28^\circ=56^\circ \\
-\angle BDC&=\angle BAC=28^\circ \\
-\angle ADB&=\angle ACB=62^\circ
-\end{aligned}" />
+Close to the pole, **the feet leave the picture first**, so the feet set the near limit. Far from the pole, the head leaves first, so the head sets the far limit.
 
-As a check, opposite angles of a cyclic quadrilateral add up to <InlineMath math="180^\circ" />, and indeed <InlineMath math="\angle BAD+\angle BCD=74^\circ+106^\circ=180^\circ" />.
+<MathVisual
+  title={<>The camera's recorded region and the two limit positions</>}
+  description={<>An upright pole <InlineMath math="6" /> m tall with camera <InlineMath math="K" /> on top. The line of sight at a <InlineMath math="60^\circ" /> angle of depression meets the ground <InlineMath math="2\sqrt{3}" /> m from the foot of the pole, and the line at <InlineMath math="30^\circ" /> meets it <InlineMath math="6\sqrt{3}" /> m away. A person <InlineMath math="1.5" /> m tall is drawn at the two limit positions: at <InlineMath math="2\sqrt{3}" /> m the feet are exactly on the <InlineMath math="60^\circ" /> line, and at <InlineMath math="\tfrac{9}{2}\sqrt{3}" /> m the head is exactly on the <InlineMath math="30^\circ" /> line. The piece of ground between the two positions is the stretch asked for.</>}
+  labels={{
+    camera: <InlineMath math="K" />,
+    near: <InlineMath math="x=2\sqrt{3}" />,
+    far: <InlineMath math="x=\tfrac{9}{2}\sqrt{3}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 12 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -1, y: 0 }, to: { x: 11.5, y: 0 } },
+      { id: "pole", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 6 } },
+      { id: "steep", kind: "segment", appearance: "secondary", from: { x: 0, y: 6 }, to: { x: 2 * Math.sqrt(3), y: 0 } },
+      { id: "shallow", kind: "segment", appearance: "secondary", from: { x: 0, y: 6 }, to: { x: 6 * Math.sqrt(3), y: 0 } },
+      { id: "near-person", kind: "segment", appearance: "primary", from: { x: 2 * Math.sqrt(3), y: 0 }, to: { x: 2 * Math.sqrt(3), y: 1.5 } },
+      { id: "far-person", kind: "segment", appearance: "primary", from: { x: 4.5 * Math.sqrt(3), y: 0 }, to: { x: 4.5 * Math.sqrt(3), y: 1.5 } },
+      { id: "stretch", kind: "segment", appearance: "answer", from: { x: 2 * Math.sqrt(3), y: 0 }, to: { x: 4.5 * Math.sqrt(3), y: 0 } },
+      { id: "camera", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
+    ],
+    labels: [
+      { key: "camera", objectId: "camera", at: { x: 0, y: 6 }, placement: "left" },
+      { key: "near", objectId: "near-person", at: { x: 2 * Math.sqrt(3), y: 1.5 }, placement: "above-left" },
+      { key: "far", objectId: "far-person", at: { x: 4.5 * Math.sqrt(3), y: 1.5 }, placement: "above-right" },
+    ],
+  }}
+/>
 
-- <InlineMath math="\angle BCD=106^\circ" /> is true.
-- As a central angle, <InlineMath math="\angle BOC" /> is twice <InlineMath math="\angle BAC" />, so it is <InlineMath math="56^\circ" />. The statement is false.
-- <InlineMath math="\angle BDC" /> stands on the same arc as <InlineMath math="\angle BAC" /> and measures <InlineMath math="28^\circ" />. The value <InlineMath math="46^\circ" /> belongs to <InlineMath math="\angle CAD" />. The statement is false.
-- <InlineMath math="\angle ADB=62^\circ" /> is true.
+<BlockMath math="\text{length of the stretch}=\tfrac92\sqrt{3}-2\sqrt{3}=\tfrac52\sqrt{3}\approx4.33\text{ m}" />
+
+# Why the other options are wrong
+
+The wrong options come from checking only one part of the body, or from answering something other than the length of the stretch. Remember, **both conditions must hold at the same time**.
+
+- <InlineMath math="2\sqrt{3}\text{ m}" /> is the distance of the nearest position from the pole, not the length of the stretch.
+- <InlineMath math="3\sqrt{3}\text{ m}" /> uses only the head condition, <InlineMath math="\tfrac92\sqrt{3}-\tfrac32\sqrt{3}" />. Between <InlineMath math="\tfrac32\sqrt{3}" /> and <InlineMath math="2\sqrt{3}" />, the feet aren't recorded yet.
+- <InlineMath math="4\sqrt{3}\text{ m}" /> uses only the feet condition, <InlineMath math="6\sqrt{3}-2\sqrt{3}" />. Beyond <InlineMath math="\tfrac92\sqrt{3}" />, the head has already left the picture.
+- <InlineMath math="\tfrac92\sqrt{3}\text{ m}" /> is the stretch where at least part of the body is recorded, from <InlineMath math="\tfrac32\sqrt{3}" /> to <InlineMath math="6\sqrt{3}" />. The question wants the whole body.
+
+So the stretch of path where the person's whole body is recorded is <InlineMath math="\tfrac52\sqrt{3}\text{ m}" /> long.

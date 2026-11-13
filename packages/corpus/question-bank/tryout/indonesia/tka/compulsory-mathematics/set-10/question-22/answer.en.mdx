@@ -1,14 +1,28 @@
-Work out the mean, median, mode, and range, and watch **the effect of the value <InlineMath math="34" />, far bigger than the rest**.
+# The starting median and mean
+
+Each statement changes the scores and then claims something about the median and the mean. So work out both for the original data first. Keep the difference in mind: **the median depends only on the values in the middle positions, while the mean depends on the total of all the values**.
+
+Sort the eight scores: <InlineMath math="56,\ 58,\ 66,\ 68,\ 70,\ 72,\ 82,\ 88" />. There's an even number of values, so the median is the mean of the <InlineMath math="4" />th and <InlineMath math="5" />th values:
 
 <BlockMath math="\begin{aligned}
-\bar x&=\frac{3+4+4+5+5+5+6+6+7+8+9+34}{12}=\frac{96}{12}=8 \\
-\text{median}&=\frac{5+6}{2}=5.5,\qquad\text{range}=34-3=31
+\text{median}&=\frac{68+70}{2}=69 \\
+\text{mean}&=\frac{560}{8}=70
 \end{aligned}" />
 
-- The mean of <InlineMath math="8" /> is larger than the median of <InlineMath math="5.5" />. The value <InlineMath math="34" /> pulls the mean up but barely moves the median. This statement is true.
-- The mean is <InlineMath math="8" /> minutes, not <InlineMath math="7" />. This statement is false.
-- Only <InlineMath math="2" /> of the <InlineMath math="12" /> customers, those who waited <InlineMath math="9" /> and <InlineMath math="34" /> minutes, waited more than <InlineMath math="8" /> minutes. This statement is false.
-- The value <InlineMath math="5" /> appears <InlineMath math="3" /> times, the most often. This statement is true.
-- The range is <InlineMath math="34-3=31" /> minutes. This statement is true.
+# Checking each statement
 
-So the true statements are the ones about the mean being larger than the median, the mode of <InlineMath math="5" /> minutes, and the range of <InlineMath math="31" /> minutes.
+**Statement 1**. The total becomes <InlineMath math="560+69+71=700" /> for <InlineMath math="10" /> students, so the mean stays <InlineMath math="70" />. The new order is <InlineMath math="56,\ 58,\ 66,\ 68,\ 69,\ 70,\ 71,\ 72,\ 82,\ 88" />, and the median is the mean of the <InlineMath math="5" />th and <InlineMath math="6" />th values, <InlineMath math="\frac{69+70}{2}=69.5" />. The median rises from <InlineMath math="69" />. **True**.
+
+**Statement 2**. The order becomes <InlineMath math="56,\ 58,\ 66,\ 68,\ 70,\ 80,\ 82,\ 88" />. Asri's score sits in position <InlineMath math="6" />, above the middle, so **the <InlineMath math="4" />th and <InlineMath math="5" />th values are still <InlineMath math="68" /> and <InlineMath math="70" />**. The median stays <InlineMath math="69" />, even though the mean goes up. **False**.
+
+**Statement 3**. Indra goes up <InlineMath math="6" /> points and Bima goes down <InlineMath math="6" /> points, so the total stays <InlineMath math="560" /> and the mean stays <InlineMath math="70" />. The new order is <InlineMath math="56,\ 58,\ 66,\ 70,\ 72,\ 74,\ 82,\ 82" />, so:
+
+<BlockMath math="\text{median}=\frac{70+72}{2}=71=69+2" />
+
+The median rises by exactly <InlineMath math="2" />. **True**.
+
+**Statement 4**. Without Dani, seven scores remain: <InlineMath math="58,\ 66,\ 68,\ 70,\ 72,\ 82,\ 88" />. The median is now the <InlineMath math="4" />th value, <InlineMath math="70" />, so the median does rise. But the mean is <InlineMath math="\frac{560-56}{7}=\frac{504}{7}=72" />, which rises too, because the removed score is below the mean. **False**.
+
+**Statement 5**. The student with the fewest study hours is Dani (<InlineMath math="56" />), and the one with the most is Fajar (<InlineMath math="82" />). Removing two scores keeps the mean only if those two scores average exactly <InlineMath math="70" />. Here <InlineMath math="\frac{56+82}{2}=69" />, so the mean changes to <InlineMath math="\frac{560-138}{6}=\frac{422}{6}\approx70.33" />. **False**.
+
+So the true statements are statements 1 and 3.

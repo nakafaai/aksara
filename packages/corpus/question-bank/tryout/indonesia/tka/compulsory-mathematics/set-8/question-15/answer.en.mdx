@@ -1,14 +1,42 @@
-A dilation with centre <InlineMath math="P" /> and factor <InlineMath math="k" /> maps a point <InlineMath math="X" /> to <InlineMath math="X'" /> so that **the vector from <InlineMath math="P" /> to the image is <InlineMath math="k" /> times the vector from <InlineMath math="P" /> to the point**, that is <InlineMath math="\overrightarrow{PX'}=k\cdot\overrightarrow{PX}" />. Check every statement with this rule.
+You need to judge five statements about fixed points and lines that are mapped onto themselves. The safest route is to **write down the image formula of** <InlineMath math="T" /> **first**, then test every statement with it.
+
+# The image formula
+
+A rotation of <InlineMath math="180^\circ" /> about <InlineMath math="O" /> flips the sign of both coordinates. A reflection in the line <InlineMath math="x=3" /> keeps <InlineMath math="y" /> and turns <InlineMath math="x" /> into <InlineMath math="6-x" />, because <InlineMath math="3" /> is halfway between <InlineMath math="x" /> and <InlineMath math="6-x" />. The rotation comes first, then the reflection:
 
 <BlockMath math="\begin{aligned}
-X'&=P+k(X-P) \\
-(3,2)\ \text{with}\ k=3&:\ (1,2)+3\big((3,2)-(1,2)\big)=(1,2)+(6,0)=(7,2)
+(x,y)&\xrightarrow{\text{rotation }180^\circ}(-x,-y) \\
+&\xrightarrow{\text{reflect in }x=3}\bigl(6-(-x),\,-y\bigr)=(x+6,\,-y)
 \end{aligned}" />
 
-- The image of <InlineMath math="(3,2)" /> is <InlineMath math="(7,2)" />. The value <InlineMath math="(9,6)" /> comes from taking the centre as <InlineMath math="O(0,0)" />. This statement is false.
-- For <InlineMath math="X=P" />, <InlineMath math="\overrightarrow{PX}" /> is the zero vector, so <InlineMath math="P'=P" /> for every <InlineMath math="k" />. This statement is true.
-- For <InlineMath math="k=-1" />, every point moves to the opposite side of <InlineMath math="P" /> at the same distance, exactly like a <InlineMath math="180^\circ" /> rotation about <InlineMath math="P" />. This statement is true.
-- Distances to <InlineMath math="P" /> are multiplied by <InlineMath math="|k|=2" />, not <InlineMath math="4" />. It is area that is multiplied by <InlineMath math="4" />. This statement is false.
-- A dilation keeps the direction of lines, so the image of a line is parallel to it. A line not through <InlineMath math="P" /> is at distance <InlineMath math="d" /> from <InlineMath math="P" />, and its image is at distance <InlineMath math="2d" />, so it is a different line. This statement is true.
+So <InlineMath math="T(x,y)=(x+6,\,-y)" />. In words, **every point is flipped over the horizontal axis and then slid to the right** by <InlineMath math="6" /> units.
 
-So the true statements are the ones about <InlineMath math="P" /> staying fixed, <InlineMath math="k=-1" /> acting as a <InlineMath math="180^\circ" /> rotation, and the parallel image line for <InlineMath math="k=2" />.
+# Judging each statement
+
+**Statement 1**. A fixed point would need <InlineMath math="(x+6,-y)=(x,y)" />. The equation <InlineMath math="x+6=x" /> means <InlineMath math="6=0" />, which is impossible. Not a single point stays put. **True**.
+
+**Statement 2**. Take any point on that line, <InlineMath math="(3,t)" />:
+
+<BlockMath math="T(3,t)=(3+6,\,-t)=(9,\,-t)" />
+
+All the images lie on the line <InlineMath math="x=9" />, not on <InlineMath math="x=3" />. A mirror line doesn't move under the reflection alone, but here the rotation first carries <InlineMath math="(3,t)" /> to <InlineMath math="(-3,-t)" />, far from the mirror. **False**.
+
+**Statement 3**. A point on the <InlineMath math="x" />-axis looks like <InlineMath math="(t,0)" />, and its image <InlineMath math="(t+6,0)" /> is still on the <InlineMath math="x" />-axis. Going the other way, every point <InlineMath math="(s,0)" /> is the image of <InlineMath math="(s-6,0)" />, so the image covers the whole <InlineMath math="x" />-axis. The points move, but the line stays. **True**.
+
+**Statement 4**. A point on the line <InlineMath math="y=x" /> looks like <InlineMath math="(t,t)" />:
+
+<BlockMath math="\begin{aligned}
+T(t,t)&=(t+6,\,-t) \\
+X=t+6,\quad Y&=-t \\
+Y&=-(X-6)=-X+6
+\end{aligned}" />
+
+Check with two points: <InlineMath math="(0,0)" /> goes to <InlineMath math="(6,0)" /> and <InlineMath math="(1,1)" /> goes to <InlineMath math="(7,-1)" />. Both satisfy <InlineMath math="y=-x+6" />. **True**.
+
+**Statement 5**. Apply the formula for <InlineMath math="T" /> twice:
+
+<BlockMath math="T\bigl(T(x,y)\bigr)=T(x+6,\,-y)=\bigl((x+6)+6,\,-(-y)\bigr)=(x+12,\,y)" />
+
+The flip over the <InlineMath math="x" />-axis happens twice and cancels out, while the slides add up. Every point moves <InlineMath math="12" /> units to the right. **True**.
+
+So the true statements are statements 1, 3, 4, and 5.

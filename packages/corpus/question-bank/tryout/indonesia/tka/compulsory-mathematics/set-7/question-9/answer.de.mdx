@@ -1,14 +1,59 @@
-Die Steigung von <InlineMath math="f" /> ist <InlineMath math="k-2" />, der <InlineMath math="y" />-Achsenabschnitt <InlineMath math="(0,k)" />. **Jede Aussage lässt sich mit einer dieser beiden Größen prüfen** oder indem du einen Wert von <InlineMath math="f" /> direkt ausrechnest.
+# Was du wirklich weißt
+
+Die Skizze ist nur ein Beispiel. Eine Aussage ist nur dann **sicher richtig**, wenn sie für jede Parabel mit <InlineMath math="a<0" />, <InlineMath math="-1<p<0" /> und <InlineMath math="1<q<2" /> gilt. Übersetze also jede Aussage in eine Eigenschaft des Graphen und prüfe, ob sie immer eintritt.
+
+Du hast zwei Werkzeuge. Erstens ist <InlineMath math="g(x)" /> wegen <InlineMath math="a<0" /> zwischen den beiden Nullstellen positiv und außerhalb negativ. Zweitens liegt die x-Koordinate des Scheitels, nenne sie <InlineMath math="h" />, genau in der Mitte der beiden Nullstellen:
 
 <BlockMath math="\begin{aligned}
-f(-1)&=-(k-2)+k=2 \\
-f(1)&=(k-2)+k=2k-2
+h&=-\frac{b}{2a}=\frac{p+q}{2} \\
+-1+1<p+q&<0+2 \\
+0<h&<1
 \end{aligned}" />
 
-- <InlineMath math="f(-1)=2" /> für jedes <InlineMath math="k" />, weil sich die <InlineMath math="k" />-Terme wegheben. Jeder Graph von <InlineMath math="f" /> geht durch <InlineMath math="(-1,2)" />. Die Aussage ist richtig.
-- Der Graph steigt nur bei positiver Steigung, also für <InlineMath math="k>2" />. Für <InlineMath math="k=1" /> ist die Steigung <InlineMath math="-1" />, der Graph fällt. Die Aussage ist falsch.
-- Parallel zu <InlineMath math="y=3x+1" /> heißt Steigung <InlineMath math="3" />, also <InlineMath math="k-2=3" /> und <InlineMath math="k=5" />. Der Graph ist <InlineMath math="y=3x+5" />, parallel und nicht identisch. Die Aussage ist richtig.
-- Für <InlineMath math="k=2" /> ist <InlineMath math="f(x)=2" />, eine waagerechte Gerade durch <InlineMath math="(0,2)" />, nicht durch <InlineMath math="(0,0)" />. Die Aussage ist falsch.
-- <InlineMath math="f(1)=2k-2=0" /> ergibt <InlineMath math="k=1" />. Die Aussage ist richtig.
+Außerdem gilt <InlineMath math="g(0)=c" />, <InlineMath math="g(1)=a+b+c" /> und <InlineMath math="g(-1)=a-b+c" />.
 
-Richtig sind also die Aussagen zum Punkt <InlineMath math="(-1,2)" />, zur Parallelen mit <InlineMath math="k=5" /> und zu <InlineMath math="f(1)=0" /> mit <InlineMath math="k=1" />.
+# Jede Aussage beurteilen
+
+1. **Falsch**. Die Aussage <InlineMath math="a+b>0" /> ist nicht sicher. Beachte <InlineMath math="a+b=g(1)-g(0)" />. Das Vorzeichen hängt von der Lage des Scheitels ab: Ist <InlineMath math="h>\tfrac12" />, liegt <InlineMath math="x=1" /> näher am Scheitel, also <InlineMath math="g(1)>g(0)" />. Ist <InlineMath math="h<\tfrac12" />, ist es umgekehrt. Zwei Beispiele, die beide die Bedingungen erfüllen:
+
+<BlockMath math="\begin{aligned}
+p=-0{,}4,\ q=1{,}6:&\quad g(x)=-x^2+1{,}2x+0{,}64,\quad a+b=0{,}2>0 \\
+p=-0{,}9,\ q=1{,}2:&\quad g(x)=-x^2+0{,}3x+1{,}08,\quad a+b=-0{,}7<0
+\end{aligned}" />
+
+<MathVisual
+  title={<>Zwei Parabeln, die beide die Bedingungen erfüllen</>}
+  description={<>Die erste Parabel <InlineMath math="-x^2+1{,}2x+0{,}64" /> schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="-0{,}4" /> und <InlineMath math="1{,}6" />, mit <InlineMath math="g(0)=0{,}64" /> und <InlineMath math="g(1)=0{,}84" />. Die zweite Parabel <InlineMath math="-x^2+0{,}3x+1{,}08" /> schneidet sie bei <InlineMath math="-0{,}9" /> und <InlineMath math="1{,}2" />, mit <InlineMath math="g(0)=1{,}08" /> und <InlineMath math="g(1)=0{,}38" />. Bei der ersten Parabel ist der Wert an der Stelle <InlineMath math="x=1" /> größer, bei der zweiten kleiner.</>}
+  labels={{
+    first: <InlineMath math="g_1" />,
+    second: <InlineMath math="g_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 2.5 },
+      y: { min: -1.5, max: 1.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-graph", kind: "quadratic", appearance: "primary", coefficients: { a: -1, b: 1.2, c: 0.64 }, domain: { min: -0.8, max: 2 }, inputAxis: "x" },
+      { id: "second-graph", kind: "quadratic", appearance: "secondary", coefficients: { a: -1, b: 0.3, c: 1.08 }, domain: { min: -1.1, max: 1.4 }, inputAxis: "x" },
+      { id: "first-at-zero", kind: "point", appearance: "reference", at: { x: 0, y: 0.64 } },
+      { id: "first-at-one", kind: "point", appearance: "highlight", at: { x: 1, y: 0.84 } },
+      { id: "second-at-zero", kind: "point", appearance: "reference", at: { x: 0, y: 1.08 } },
+      { id: "second-at-one", kind: "point", appearance: "highlight", at: { x: 1, y: 0.38 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first-graph", at: { x: 1.5, y: 0.19 }, placement: "right" },
+      { key: "second", objectId: "second-graph", at: { x: -1, y: -0.22 }, placement: "left" },
+    ],
+  }}
+/>
+
+2. **Richtig**. Aus <InlineMath math="h=-\frac{b}{2a}" /> folgt <InlineMath math="b=-2a\,h" />. Wegen <InlineMath math="a<0" /> ist <InlineMath math="-2a" /> positiv, und <InlineMath math="h>0" />. Also ist <InlineMath math="b>0" /> für jede Parabel, die die Bedingungen erfüllt.
+3. **Richtig**. Der Wert <InlineMath math="a-b+c" /> ist <InlineMath math="g(-1)" />. Wegen <InlineMath math="-1<p" /> liegt <InlineMath math="x=-1" /> links von beiden Nullstellen, wo der Graph unter der <InlineMath math="x" />-Achse verläuft. Also ist <InlineMath math="a-b+c<0" />.
+4. **Richtig**. Setze <InlineMath math="b=-2a\,h" /> ein, dann ist <InlineMath math="2a+b=2a\,(1-h)" />. Der Faktor <InlineMath math="2a" /> ist negativ, und <InlineMath math="1-h" /> ist positiv, weil <InlineMath math="h<1" />. **Negativ mal positiv ist immer negativ**, also <InlineMath math="2a+b<0" />.
+5. **Richtig**. Die Stellen <InlineMath math="x=0" /> und <InlineMath math="x=1" /> liegen beide zwischen <InlineMath math="p" /> und <InlineMath math="q" />, also ist <InlineMath math="c=g(0)>0" /> und <InlineMath math="a+b+c=g(1)>0" />. Das Produkt zweier positiver Zahlen ist positiv.
+
+Sicher richtig sind also <InlineMath math="b>0" />, <InlineMath math="a-b+c<0" />, <InlineMath math="2a+b<0" /> und <InlineMath math="c\,(a+b+c)>0" />.

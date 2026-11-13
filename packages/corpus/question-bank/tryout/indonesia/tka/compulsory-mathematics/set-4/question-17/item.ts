@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "milk-cans",
+  stimulus: "atap",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$192$$ kaleng",
+          label: "$$1{.}540$$",
         },
         {
           correct: false,
-          label: "$$96$$ kaleng",
+          label: "$$1{.}740$$",
         },
         {
           correct: false,
-          label: "$$61$$ kaleng",
+          label: "$$1{.}755$$",
+        },
+        {
+          correct: false,
+          label: "$$1{.}800$$",
         },
         {
           correct: true,
-          label: "$$48$$ kaleng",
-        },
-        {
-          correct: false,
-          label: "$$24$$ kaleng",
+          label: "$$1{.}840$$",
         },
       ],
     },

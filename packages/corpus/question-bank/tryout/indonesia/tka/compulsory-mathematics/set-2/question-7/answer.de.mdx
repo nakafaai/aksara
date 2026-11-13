@@ -1,19 +1,37 @@
-Gesucht ist die **Länge des Zeitintervalls**, in dem <InlineMath math="h(t)>34" /> gilt. Stelle die Ungleichung auf und bringe sie in Normalform.
+# Die Fläche als quadratische Funktion
+
+Gesucht ist die größte Fläche des Geheges. Zwei Dinge übersieht man leicht: **Die Toröffnung spart Draht**, und die Seite an der Mauer darf **nicht länger als <InlineMath math="20\text{ m}" />** sein.
+
+Jede Seite senkrecht zur Mauer sei <InlineMath math="x" /> Meter lang, die Seite parallel zur Mauer <InlineMath math="y" /> Meter. Draht kommt an beide <InlineMath math="x" />-Seiten und an die <InlineMath math="y" />-Seite, außer an die Öffnung von <InlineMath math="2\text{ m}" />:
 
 <BlockMath math="\begin{aligned}
--2t^2+16t+10&>34 \\
--2t^2+16t-24&>0 \\
-t^2-8t+12&<0 \\
-(t-2)(t-6)&<0
+2x+(y-2)&=46 \\
+y&=48-2x \\
+L(x)&=x(48-2x)=-2x^2+48x=-2(x-12)^2+288
 \end{aligned}" />
 
-Beim Teilen durch <InlineMath math="-2" /> dreht sich das Ungleichheitszeichen um. Das Produkt ist negativ, wenn die Faktoren verschiedene Vorzeichen haben, also für <InlineMath math="2<t<6" />. Das Intervall ist <InlineMath math="6-2=4" /> Sekunden lang.
+# Der Scheitel ist nicht erlaubt
 
-Zur Kontrolle: <InlineMath math="h(2)=-8+32+10=34" /> und <InlineMath math="h(4)=-32+64+10=42>34" />.
+Die letzte Form zeigt den Scheitel bei <InlineMath math="x=12" /> mit der Fläche <InlineMath math="288" />. Für <InlineMath math="x=12" /> ist die Seite an der Mauer aber <InlineMath math="y=48-24=24\text{ m}" />, also länger als die Mauer. Dieser Scheitel **erfüllt die Bedingung nicht**.
 
-Die Drohne ist also <InlineMath math="4" /> Sekunden lang höher als <InlineMath math="34" /> Meter.
+Die Mauer schränkt die Werte von <InlineMath math="x" /> ein:
 
-- <InlineMath math="2" /> Sekunden ist der Zeitpunkt, zu dem die Drohne <InlineMath math="34" /> Meter erreicht, nicht die Dauer.
-- <InlineMath math="6" /> Sekunden ist der Zeitpunkt, zu dem sie wieder unter <InlineMath math="34" /> Meter sinkt.
-- <InlineMath math="8" /> Sekunden addiert die beiden Zeitpunkte, statt sie voneinander abzuziehen.
-- <InlineMath math="5" /> Sekunden entsteht, wenn beim Teilen durch <InlineMath math="-2" /> das Ungleichheitszeichen nicht umgedreht wird: Dann folgt <InlineMath math="t<2" /> oder <InlineMath math="t>6" />, und innerhalb von <InlineMath math="0\le t\le9" /> werden <InlineMath math="2+3" /> Sekunden addiert.
+<BlockMath math="\begin{aligned}
+48-2x&\le20 \\
+x&\ge14
+\end{aligned}" />
+
+Für <InlineMath math="x\ge14" /> bist du schon rechts vom Scheitel, wo <InlineMath math="L(x)" /> immer weiter fällt, wenn <InlineMath math="x" /> wächst. Die größte Fläche liegt also am Rand, bei <InlineMath math="x=14" />:
+
+<BlockMath math="L(14)=14\cdot(48-28)=14\cdot20=280" />
+
+Probe: Der Draht reicht genau, <InlineMath math="2\cdot14+(20-2)=46\text{ m}" />, und die Seite von <InlineMath math="20\text{ m}" /> passt genau an die Mauer. Zum Vergleich liefert <InlineMath math="x=15" /> nur <InlineMath math="15\cdot18=270" />.
+
+Die größte Fläche des Geheges beträgt also <InlineMath math="280\text{ m}^2" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="288\text{ m}^2" /> ist die Fläche am Scheitel mit den Maßen <InlineMath math="12\times24" />. Aber **eine Seite von <InlineMath math="24\text{ m}" /> passt nicht an eine Mauer von <InlineMath math="20\text{ m}" />**.
+- <InlineMath math="264{,}5\text{ m}^2" /> vergisst die Öffnung und die Mauergrenze. Aus <InlineMath math="2x+y=46" /> liegt der Scheitel bei <InlineMath math="11{,}5\times23" />.
+- <InlineMath math="260\text{ m}^2" /> beachtet die Mauer, vergisst aber die Öffnung. Aus <InlineMath math="2x+20=46" /> folgt <InlineMath math="x=13" />, also die Fläche <InlineMath math="13\cdot20" />.
+- <InlineMath math="252\text{ m}^2" /> zieht die Öffnung von der Seitenlänge ab, sodass die Seite an der Mauer nur <InlineMath math="18\text{ m}" /> lang wird. Die Öffnung spart Draht, sie verkürzt die Seite des Geheges nicht.

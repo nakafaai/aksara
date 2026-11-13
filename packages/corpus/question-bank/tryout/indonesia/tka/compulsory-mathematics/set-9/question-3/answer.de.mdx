@@ -1,13 +1,42 @@
-Jede Aussage ist **ein Verhältnis oder ein Prozentsatz der Rezeptzutaten**. Berechne die verglichenen Größen.
+Alle drei Aussagen nutzen dieselbe Regel aus dem Text: Von einer Tablette sind nach <InlineMath math="t" /> Stunden noch <InlineMath math="160\left(\tfrac{1}{2}\right)^{t/6}" /> übrig, und die Reste aller Tabletten werden addiert. Jede Aussage **ändert nur eine Sache**, also rechnest du nur den geänderten Teil neu.
+
+# Die erste Aussage
+
+**Falsch**. Sei <InlineMath math="A_n" /> die Menge direkt nach der <InlineMath math="n" />-ten Tablette. In <InlineMath math="6" /> Stunden halbiert sich die Menge, dann kommt eine neue Tablette mit <InlineMath math="160" /> dazu. Schau dir jetzt den Abstand zu <InlineMath math="320" /> an.
 
 <BlockMath math="\begin{aligned}
-150:300&=1:2 \\
-\frac{90}{300+150+90}&=\frac{90}{540}\approx16{,}7\,\% \\
-\frac{36}{24}\cdot2&=1{,}5\cdot2=3 \\
-\frac{1{.}000}{300}\cdot24&=80
+A_{n+1}&=\tfrac{1}{2}A_n+160 \\
+320-A_{n+1}&=320-\tfrac{1}{2}A_n-160=\tfrac{1}{2}\left(320-A_n\right)
 \end{aligned}" />
 
-- Butter <InlineMath math="150" /> g und Mehl <InlineMath math="300" /> g ergeben das Verhältnis <InlineMath math="1:2" />. Die Aussage ist richtig.
-- Puderzucker macht etwa <InlineMath math="16{,}7\,\%" /> der drei Zutaten zusammen aus, mehr als <InlineMath math="15\,\%" />. Die Aussage ist falsch.
-- Der Faktor für <InlineMath math="36" /> Kekse ist <InlineMath math="1{,}5" />, also braucht man <InlineMath math="1{,}5\cdot2=3" /> Eier. Die Aussage ist richtig.
-- <InlineMath math="1" /> kg Mehl reicht für genau <InlineMath math="80" /> Kekse, nicht mehr. Die Aussage ist falsch.
+Der Abstand zu <InlineMath math="320" /> **halbiert sich jedes Mal**, wird aber nie null. Am Anfang ist er <InlineMath math="320-160=160" />, also gilt
+
+<BlockMath math="A_n=320-160\left(\tfrac{1}{2}\right)^{n-1}" />
+
+Die Werte sind <InlineMath math="160,\ 240,\ 280,\ 300,\ 310,\ 315,\ \ldots" />: Sie steigen immer, bleiben aber immer unter <InlineMath math="320" />. Zwischen zwei Tabletten sinkt die Menge sogar, also liegt sie zu keinem Zeitpunkt über <InlineMath math="320\text{ mg}" />.
+
+# Die zweite Aussage
+
+**Richtig**. Die Tabletten um 6 Uhr und 18 Uhr bleiben, nur die zweite Tablette rückt auf 15 Uhr. Berechne den Rest jeder Tablette direkt nach der Einnahme um 18 Uhr.
+
+<BlockMath math="\begin{aligned}
+\text{Tablette 6 Uhr (12 Stunden)}&:\ 160\left(\tfrac{1}{2}\right)^{2}=40 \\
+\text{Tablette 15 Uhr (3 Stunden)}&:\ 160\left(\tfrac{1}{2}\right)^{1/2}=80\sqrt{2} \\
+\text{Tablette 18 Uhr (0 Stunden)}&:\ 160 \\
+\text{Summe}&=200+80\sqrt{2}\approx200+112{,}8=312{,}8
+\end{aligned}" />
+
+Das ist mehr als <InlineMath math="300" />, denn <InlineMath math="80\sqrt{2}>100" />, weil <InlineMath math="\sqrt{2}>1{,}25" /> ist. Das passt auch zur Anschauung: Eine **später genommene Tablette hatte weniger Zeit zum Abnehmen**, also liegt die Summe über den <InlineMath math="280\text{ mg}" /> des ursprünglichen Plans.
+
+# Die dritte Aussage
+
+**Falsch**. Enthält jede Tablette <InlineMath math="320\text{ mg}" />, verdoppelt sich der Rest jeder Tablette zu jedem Zeitpunkt. Direkt nach der Tablette um 18 Uhr sind also <InlineMath math="2\cdot280=560\text{ mg}" /> im Blut. Vergleiche, wie lange es bis <InlineMath math="70\text{ mg}" /> dauert.
+
+<BlockMath math="\begin{aligned}
+\text{vorher: } 280\left(\tfrac{1}{2}\right)^{t/6}=70&\ \Rightarrow\ \left(\tfrac{1}{2}\right)^{t/6}=\tfrac{1}{4}\ \Rightarrow\ t=12 \\
+\text{neu: } 560\left(\tfrac{1}{2}\right)^{t/6}=70&\ \Rightarrow\ \left(\tfrac{1}{2}\right)^{t/6}=\tfrac{1}{8}\ \Rightarrow\ t=18
+\end{aligned}" />
+
+Die Zeit wächst von <InlineMath math="12" /> auf <InlineMath math="18" /> Stunden, nicht auf <InlineMath math="24" /> Stunden. Eine doppelte Menge braucht nur **eine zusätzliche Halbwertszeit**, also die <InlineMath math="6" /> Stunden bis zur Halbierung, um wieder beim ursprünglichen Stand zu sein.
+
+Die Antworten lauten also: Falsch, Richtig, Falsch.

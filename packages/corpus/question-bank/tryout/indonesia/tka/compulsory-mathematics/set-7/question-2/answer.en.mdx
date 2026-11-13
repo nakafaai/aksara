@@ -1,20 +1,42 @@
-First work out **how much fertiliser is needed**, then choose the cheapest set of whole packs that covers it.
+# The limit as an intensity
 
-<BlockMath math="\frac{2{,}600}{4}\cdot10=650\cdot10=6{,}500\text{ mL}=6.5\text{ litres}" />
+The question asks for the largest number of big drums that keeps the front row of the audience quiet enough. The limit is written in decibels, but only intensities can be added. So **first turn the <InlineMath math="90\text{ dB}" /> limit into an intensity limit**.
 
-The large pack is cheaper per mL, <InlineMath math="\text{Rp}84" /> against <InlineMath math="\text{Rp}96" /> for the small pack. So use as many large packs as possible and cover the rest the cheapest way.
+<BlockMath math="\begin{aligned}
+10\log\frac{I}{10^{-12}}&<90 \\
+\frac{I}{10^{-12}}&<10^{9} \\
+I&<10^{-3}\ \text{W/m}^2
+\end{aligned}" />
 
-| Choice | Contents | Cost |
-| --- | --- | --- |
-| <InlineMath math="6" /> large | <InlineMath math="6" /> litres | not enough |
-| <InlineMath math="6" /> large and <InlineMath math="1" /> small | <InlineMath math="6.25" /> litres | not enough |
-| <InlineMath math="6" /> large and <InlineMath math="2" /> small | <InlineMath math="6.5" /> litres | <InlineMath math="504{,}000+48{,}000=552{,}000" /> |
-| <InlineMath math="7" /> large | <InlineMath math="7" /> litres | <InlineMath math="588{,}000" /> |
-| <InlineMath math="5" /> large and <InlineMath math="6" /> small | <InlineMath math="6.5" /> litres | <InlineMath math="420{,}000+144{,}000=564{,}000" /> |
+# What each drum contributes
 
-So the cheapest purchase that is enough costs <InlineMath math="\text{Rp}552{,}000" />.
+From the reading, one big drum at <InlineMath math="1\text{ m}" /> has intensity <InlineMath math="10^{-2}\ \text{W/m}^2" />, because <InlineMath math="10\log(10^{-2}/10^{-12})=100" />. A small drum has a quarter of that. Now divide by the square of the distance to the front row.
 
-- <InlineMath math="\text{Rp}504{,}000" /> buys only <InlineMath math="6" /> litres, <InlineMath math="0.5" /> litres short.
-- <InlineMath math="\text{Rp}528{,}000" /> buys <InlineMath math="6.25" /> litres, still <InlineMath math="0.25" /> litres short.
-- <InlineMath math="\text{Rp}546{,}000" /> computes <InlineMath math="6.5\cdot84{,}000" />, as if half a large pack could be bought.
-- <InlineMath math="\text{Rp}588{,}000" /> is enough, but <InlineMath math="\text{Rp}36{,}000" /> more than <InlineMath math="6" /> large and <InlineMath math="2" /> small.
+<BlockMath math="\begin{aligned}
+\text{one big drum at }20\text{ m}&:\ \frac{10^{-2}}{20^2}=2.5\cdot10^{-5}\ \text{W/m}^2 \\
+\text{one small drum at }40\text{ m}&:\ \frac{\tfrac14\cdot10^{-2}}{40^2}=1.5625\cdot10^{-6}\ \text{W/m}^2 \\
+\text{32 small drums}&:\ 32\cdot1.5625\cdot10^{-6}=5\cdot10^{-5}\ \text{W/m}^2
+\end{aligned}" />
+
+There's a quick way to see this. A small drum is a quarter of a big one, and it's twice as far away, so its intensity is divided by <InlineMath math="2^2=4" /> again. So **one small drum on stage B is worth <InlineMath math="\tfrac1{16}" /> of a big drum on stage A**, and <InlineMath math="32" /> small drums are worth <InlineMath math="2" /> big drums.
+
+# The largest number of big drums
+
+Add the intensities of both stages and use the strict limit.
+
+<BlockMath math="\begin{aligned}
+n\cdot2.5\cdot10^{-5}+5\cdot10^{-5}&<10^{-3} \\
+2.5n+5&<100 \\
+n&<38
+\end{aligned}" />
+
+Because the condition says **less than**, <InlineMath math="n=38" /> isn't allowed. With <InlineMath math="n=38" /> the intensity is exactly <InlineMath math="40\cdot2.5\cdot10^{-5}=10^{-3}" />, which is exactly <InlineMath math="90\text{ dB}" />. With <InlineMath math="n=37" /> it's <InlineMath math="39\cdot2.5\cdot10^{-5}=9.75\cdot10^{-4}" />, still below the limit.
+
+# Why the other options are wrong
+
+- <InlineMath math="31" /> comes from treating the small drums as if they were also <InlineMath math="20\text{ m}" /> away, or from forgetting the factor <InlineMath math="\tfrac14" />. Both make the <InlineMath math="32" /> small drums worth <InlineMath math="8" /> big ones.
+- <InlineMath math="35" /> comes from not squaring the distance ratio <InlineMath math="\tfrac{20}{40}" />. **Intensity follows the square of the distance**, so the factor is <InlineMath math="\tfrac14\cdot\tfrac14" />, not <InlineMath math="\tfrac14\cdot\tfrac12" />.
+- <InlineMath math="38" /> uses less than or equal to. At <InlineMath math="n=38" /> the level is exactly <InlineMath math="90\text{ dB}" />, which isn't less than <InlineMath math="90\text{ dB}" />.
+- <InlineMath math="39" /> forgets the <InlineMath math="32" /> small drums that are playing at the same time.
+
+So the largest possible <InlineMath math="n" /> is <InlineMath math="37" />.

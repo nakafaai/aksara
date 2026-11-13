@@ -1,16 +1,32 @@
-Schreib die Kerzenhöhe als <InlineMath math="h(t)=h_0-vt" />, mit <InlineMath math="t" /> Stunden seit dem Anzünden. **Die Abbrenngeschwindigkeit ergibt sich aus den zwei Messwerten**, die Anfangshöhe durch Zurückrechnen auf <InlineMath math="t=0" />.
+# Die Wertemenge der inneren Funktion
+
+Die Funktion <InlineMath math="g\circ f" /> bedeutet <InlineMath math="g\big(f(x)\big)" />: Berechne zuerst <InlineMath math="f(x)" /> und setz das Ergebnis dann in <InlineMath math="g" /> ein. Also bekommt <InlineMath math="g" /> nur Werte, die <InlineMath math="f" /> wirklich liefert. **Bestimme zuerst die Wertemenge von <InlineMath math="f" /> auf ihrem Definitionsbereich**.
+
+Ergänze quadratisch, damit du den Scheitel siehst.
 
 <BlockMath math="\begin{aligned}
-v&=\frac{18-12}{5-2}=2\text{ cm pro Stunde} \\
-h_0&=18+2\cdot2=22\text{ cm} \\
-h(t)&=22-2t=0\ \Rightarrow\ t=11
+f(x)&=(x-2)^2-1 \\
+f(2)&=-1,\quad f(0)=3,\quad f(5)=8
 \end{aligned}" />
 
-Probe: <InlineMath math="h(5)=22-10=12" />, wie gegeben.
+Der Scheitel <InlineMath math="x=2" /> liegt im Definitionsbereich <InlineMath math="0\le x\le5" />, also ist der kleinste Wert von <InlineMath math="f" /> gleich <InlineMath math="-1" />. Der größte Wert liegt am Rand, der weiter vom Scheitel entfernt ist, bei <InlineMath math="x=5" />. Die Wertemenge von <InlineMath math="f" /> ist <InlineMath math="-1\le f(x)\le8" />.
 
-Die Kerze ist also <InlineMath math="11" /> Stunden nach dem Anzünden abgebrannt.
+# Die äußere Funktion auf diesem Intervall
 
-- <InlineMath math="9" /> Stunden zählt ab der <InlineMath math="2" />. Stunde, <InlineMath math="\frac{18}{2}" />, ohne die ersten <InlineMath math="2" /> Stunden.
-- <InlineMath math="13" /> Stunden addiert die ersten <InlineMath math="2" /> Stunden ein zweites Mal zur richtigen Antwort.
-- <InlineMath math="17" /> Stunden teilt den Höhenunterschied durch <InlineMath math="5" /> Stunden statt durch die <InlineMath math="3" /> Stunden dazwischen.
-- <InlineMath math="22" /> ist die Anfangshöhe in Zentimetern, keine Zeit.
+Setz jetzt <InlineMath math="t=f(x)" /> mit <InlineMath math="-1\le t\le8" />. Schreib <InlineMath math="g" /> in Scheitelform.
+
+<BlockMath math="\begin{aligned}
+g(t)&=(t-2)^2-6 \\
+g(2)&=-6,\quad g(-1)=3,\quad g(8)=30
+\end{aligned}" />
+
+Der Scheitel von <InlineMath math="g" /> bei <InlineMath math="t=2" /> **liegt in <InlineMath math="-1\le t\le8" />**, also ist der kleinste Wert <InlineMath math="-6" />. Der Wert <InlineMath math="t=2" /> wird auch wirklich erreicht, denn <InlineMath math="f(x)=2" /> liefert <InlineMath math="x=2\pm\sqrt3" />, und beide Stellen liegen zwischen <InlineMath math="0" /> und <InlineMath math="5" />. Der größte Wert liegt am Rand, der weiter von <InlineMath math="t=2" /> entfernt ist, also bei <InlineMath math="t=8" /> mit <InlineMath math="g(8)=30" />.
+
+Die Wertemenge von <InlineMath math="g\circ f" /> ist also <InlineMath math="-6\le y\le30" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="y\ge-6" /> ist die Wertemenge von <InlineMath math="g" /> auf allen reellen Zahlen. Dabei vergisst du, dass <InlineMath math="g" /> nur Werte <InlineMath math="t" /> von <InlineMath math="-1" /> bis <InlineMath math="8" /> bekommt.
+- <InlineMath math="-5\le y\le30" /> entsteht, wenn du die Wertemenge von <InlineMath math="f" /> nur aus den Rändern bestimmst, also <InlineMath math="3\le t\le8" />. Der Scheitel von <InlineMath math="f" /> bei <InlineMath math="x=2" /> fehlt dann.
+- <InlineMath math="-1\le y\le8" /> ist die Wertemenge von <InlineMath math="f" />. Hier **hörst du einen Schritt zu früh auf**.
+- <InlineMath math="3\le y\le30" /> entsteht, wenn du <InlineMath math="g" /> nur an den Rändern <InlineMath math="t=-1" /> und <InlineMath math="t=8" /> auswertest. Der Scheitel von <InlineMath math="g" /> im Intervall fehlt dann.

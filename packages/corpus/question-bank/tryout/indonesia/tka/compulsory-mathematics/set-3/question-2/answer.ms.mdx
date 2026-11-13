@@ -1,0 +1,56 @@
+Soalan ini meminta bilangan tiket dalam pesanan Fajar. Katakan pesanan itu mengandungi <InlineMath math="e" /> tiket *early bird* dan <InlineMath math="r" /> tiket biasa. Frasa **mengandungi kedua-dua jenis tiket** bermaksud <InlineMath math="e\ge1" /> dan <InlineMath math="r\ge1" />, manakala had pesanan memberi <InlineMath math="e+r\le9" />.
+
+# Persamaan bayaran
+
+Katakan <InlineMath math="g" /> ialah bilangan potongan kumpulan. Fajar membayar harga tiket, tolak potongan, tambah satu caj perkhidmatan. Supaya nombornya kecil, tulis semua amaun dalam ribu rupiah.
+
+<BlockMath math="\begin{aligned}
+90e+150r-90g+25&=745 \\
+90e+150r-90g&=720
+\end{aligned}" />
+
+Kerana <InlineMath math="e+r\le9" />, **pesanan ini mendapat paling banyak satu potongan**. Jadi <InlineMath math="g=0" /> apabila <InlineMath math="e+r\le4" />, dan <InlineMath math="g=1" /> apabila <InlineMath math="5\le e+r\le9" />. Kamu perlu menyemak kedua-dua kes.
+
+# Kes tanpa potongan
+
+Jika <InlineMath math="g=0" />, bahagikan kedua-dua belah persamaan dengan <InlineMath math="30" />.
+
+<BlockMath math="\begin{aligned}
+90e+150r&=720 \\
+3e+5r&=24
+\end{aligned}" />
+
+Dengan <InlineMath math="e,r\ge1" />, satu-satunya pasangan nombor bulat ialah <InlineMath math="e=3" /> dan <InlineMath math="r=3" />, iaitu <InlineMath math="6" /> tiket. Tetapi kes ini mensyaratkan paling banyak <InlineMath math="4" /> tiket. **Kes ini bercanggah dengan syaratnya sendiri**, jadi kes ini ditolak.
+
+# Kes dengan satu potongan
+
+Jika <InlineMath math="g=1" />, pindahkan potongan ke sebelah kanan dan bahagikan dengan <InlineMath math="30" />.
+
+<BlockMath math="\begin{aligned}
+90e+150r&=810 \\
+3e+5r&=27 \\
+3e&=27-5r
+\end{aligned}" />
+
+Sebelah kiri ialah gandaan <InlineMath math="3" />, jadi <InlineMath math="5r" /> juga mesti gandaan <InlineMath math="3" />. Maksudnya, **<InlineMath math="r" /> mesti gandaan <InlineMath math="3" />**.
+
+| <InlineMath math="r" /> | <InlineMath math="e=\frac{27-5r}{3}" /> | Bilangan tiket | Keputusan |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="9" /> | <InlineMath math="9" /> | ditolak, tiada tiket biasa |
+| <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="7" /> | memenuhi semua syarat |
+| <InlineMath math="6" /> | <InlineMath math="-1" /> | tiada | ditolak, <InlineMath math="e" /> negatif |
+
+Jadi pesanan Fajar mengandungi <InlineMath math="4" /> tiket *early bird* dan <InlineMath math="3" /> tiket biasa, iaitu <InlineMath math="7" /> tiket semuanya. Bilangan ini terletak antara <InlineMath math="5" /> dan <InlineMath math="9" />, jadi pesanan itu memang mendapat satu potongan.
+
+Semak dengan mengira semula bayarannya:
+
+<BlockMath math="4\cdot90{,}000+3\cdot150{,}000-90{,}000+25{,}000=360{,}000+450{,}000-65{,}000=745{,}000" />
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="3" /> hanyalah bilangan tiket biasa, belum dicampur tiket *early bird*.
+- <InlineMath math="4" /> hanyalah bilangan tiket *early bird*, belum dicampur tiket biasa.
+- <InlineMath math="6" /> muncul apabila potongan kumpulan terlupa. Pesanan <InlineMath math="6" /> tiket **sebenarnya layak mendapat satu potongan**, jadi pasangan <InlineMath math="(3,3)" /> hanya membayar <InlineMath math="\text{Rp}655{,}000" />.
+- <InlineMath math="9" /> datang daripada <InlineMath math="9" /> tiket *early bird* sahaja. Amaunnya sepadan, tetapi pesanan itu tiada tiket biasa, sedangkan soalan menyatakan kedua-dua jenis tiket ada.
+
+Jadi, bilangan tiket dalam pesanan Fajar ialah <InlineMath math="7" />.

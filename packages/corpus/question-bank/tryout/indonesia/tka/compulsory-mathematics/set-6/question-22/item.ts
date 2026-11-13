@@ -6,31 +6,32 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "shoe-sizes",
+  stimulus: "hujan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Rata-rata ukuran sepatu kurang dari mediannya.",
-        },
-        {
           correct: true,
-          label: "Jangkauan antarkuartilnya adalah $$2$$.",
+          label: "Jangkauan curah hujan Kota P lebih dari dua kali jangkauan curah hujan Kota Q.",
         },
         {
           correct: true,
           label:
-            "Lebih dari separuh siswa memakai sepatu berukuran $$39$$ atau $$40$$.",
-        },
-        {
-          correct: true,
-          label: "Modus data sama dengan mediannya.",
+            "Rata-rata curah hujan Kota Q tepat $$60\\text{ mm}$$ lebih tinggi daripada rata-rata curah hujan Kota P.",
         },
         {
           correct: false,
-          label: "Rata-rata ukuran sepatu lebih dari $$39{,}5$$.",
+          label: "Pada bulan Mei, curah hujan Kota Q $$60\\%$$ lebih tinggi daripada curah hujan Kota P.",
+        },
+        {
+          correct: true,
+          label: "Selisih curah hujan kedua kota paling besar terjadi pada bulan Juni.",
+        },
+        {
+          correct: true,
+          label:
+            "Jika kedua belas data curah hujan kedua kota digabungkan, rata-ratanya lebih kecil daripada mediannya.",
         },
       ],
     },

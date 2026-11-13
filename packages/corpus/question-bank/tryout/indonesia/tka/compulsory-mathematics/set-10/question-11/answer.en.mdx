@@ -1,10 +1,81 @@
-East and north are perpendicular, so the harbour and the two ships form **a right triangle with the right angle at the harbour**. The distance between the ships is its hypotenuse.
+# A perpendicular from the centre
 
-<BlockMath math="d=\sqrt{24^2+18^2}=\sqrt{576+324}=\sqrt{900}=30" />
+The part of the park outside the pond is a ring, and its area is <InlineMath math="\pi R^2-\pi r^2=\pi(R^2-r^2)" />, where <InlineMath math="R" /> is the park's radius and <InlineMath math="r" /> is the pond's radius. You **don't need <InlineMath math="R" /> and <InlineMath math="r" /> separately**, only the difference of their squares.
 
-So the ships are now <InlineMath math="30" /> km apart.
+Draw the line from the centre <InlineMath math="O" /> perpendicular to the path, and call its foot <InlineMath math="M" />. A perpendicular from the centre to a chord always cuts that chord in half. <InlineMath math="AB" /> is a chord of the park and <InlineMath math="CD" /> is a chord of the pond, and both lie on the same line, so <InlineMath math="M" /> is the midpoint of both.
 
-- <InlineMath math="42" /> km adds the two distances, but the ships aren't on one straight line with the harbour.
-- <InlineMath math="216" /> is the triangle's area, <InlineMath math="\tfrac12\cdot24\cdot18" />, not a distance.
-- <InlineMath math="432" /> is the product of the two distances.
-- <InlineMath math="900" /> is the square of the distance, before taking the root.
+<BlockMath math="\begin{aligned}
+CM&=MD=\tfrac{1}{2}\cdot6=3 \\
+AM&=MB \;\Rightarrow\; DB=AC=5 \\
+AM&=AC+CM=5+3=8
+\end{aligned}" />
+
+<MathVisual
+  title={<>Right triangles sharing the side <InlineMath math="OM" /></>}
+  description={<>The figure from the question with the point <InlineMath math="M" /> added, the foot of the perpendicular from <InlineMath math="O" /> to <InlineMath math="AB" />. The segment <InlineMath math="OA" /> is the park's radius <InlineMath math="R" /> and <InlineMath math="OC" /> is the pond's radius <InlineMath math="r" />. Triangles <InlineMath math="OMA" /> and <InlineMath math="OMC" /> have a right angle at <InlineMath math="M" />, with <InlineMath math="AM=8" /> and <InlineMath math="CM=3" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    m: <InlineMath math="M" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    "radius-r": <InlineMath math="R" />,
+    "radius-small": <InlineMath math="r" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 10 },
+      y: { min: -10, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "park", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: Math.sqrt(80) },
+      { id: "pond", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "path", kind: "segment", appearance: "highlight", from: { x: -8, y: -4 }, to: { x: 8, y: -4 } },
+      { id: "perpendicular", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: -4 } },
+      { id: "radius-oa", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -8, y: -4 } },
+      { id: "radius-oc", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -3, y: -4 } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 0, y: -4 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: -8, y: -4 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 8, y: -4 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: -3, y: -4 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 3, y: -4 } },
+    ],
+    labels: [
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "m", objectId: "point-m", at: { x: 0, y: -4 }, placement: "below" },
+      { key: "a", objectId: "point-a", at: { x: -8, y: -4 }, placement: "left" },
+      { key: "b", objectId: "point-b", at: { x: 8, y: -4 }, placement: "right" },
+      { key: "c", objectId: "point-c", at: { x: -3, y: -4 }, placement: "below-left" },
+      { key: "d", objectId: "point-d", at: { x: 3, y: -4 }, placement: "below-right" },
+      { key: "radius-r", objectId: "radius-oa", at: { x: -4, y: -2 }, placement: "above-left" },
+      { key: "radius-small", objectId: "radius-oc", at: { x: -1.5, y: -2 }, placement: "right" },
+    ],
+  }}
+/>
+
+# The difference of the squared radii
+
+Triangles <InlineMath math="OMA" /> and <InlineMath math="OMC" /> both have a right angle at <InlineMath math="M" /> and share the side <InlineMath math="OM" />. Write Pythagoras for both and subtract. **The unknown side <InlineMath math="OM" /> drops out**.
+
+<BlockMath math="\begin{aligned}
+R^2&=OM^2+AM^2=OM^2+64 \\
+r^2&=OM^2+CM^2=OM^2+9 \\
+R^2-r^2&=64-9=55 \\
+\text{ring area}&=\pi(R^2-r^2)=55\pi\text{ m}^2
+\end{aligned}" />
+
+Check it another way: <InlineMath math="AC\cdot AD=5\cdot11=55" />, the same as <InlineMath math="R^2-r^2" />. The result doesn't depend on how far the path is from the centre.
+
+So the area of the park outside the pond is <InlineMath math="55\pi\text{ m}^2" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="110\pi\text{ m}^2" /> computes <InlineMath math="\frac{AB^2-CD^2}{2}=\frac{256-36}{2}" />. Squaring half a length divides by <InlineMath math="4" />, not by <InlineMath math="2" />.
+- <InlineMath math="80\pi\text{ m}^2" /> uses <InlineMath math="AC\cdot AB=5\cdot16" />. The right product is <InlineMath math="AC\cdot AD" />, the two distances from <InlineMath math="A" /> to the points where the path meets the pond.
+- <InlineMath math="73\pi\text{ m}^2" /> adds <InlineMath math="AM^2+CM^2=64+9" />. The two Pythagoras equations have to be subtracted so that <InlineMath math="OM^2" /> drops out.
+- <InlineMath math="64\pi\text{ m}^2" /> uses <InlineMath math="\pi\cdot AM^2" />, the formula for a chord that only **touches** the pond. This path cuts through the pond, so <InlineMath math="CM^2" /> still has to be subtracted.

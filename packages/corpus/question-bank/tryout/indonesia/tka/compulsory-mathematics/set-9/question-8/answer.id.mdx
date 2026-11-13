@@ -1,12 +1,43 @@
-Deret ini mempunyai suku pertama <InlineMath math="a=2" /> dan **beda <InlineMath math="b=3" />**. Pakai rumus <InlineMath math="S_n=\frac n2\big(2a+(n-1)b\big)" />.
+Soal ini meminta bilangan terbesar dari barisan aritmetika **sebelum diubah**. Kuncinya ada dua: syarat barisan geometri memberi dua kemungkinan beda, dan kata naik membuang salah satunya.
 
-<BlockMath math="S_{20}=\frac{20}{2}\big(2\cdot2+19\cdot3\big)=10\cdot61=610" />
+# Menulis ketiga bilangan
 
-Cek dengan suku terakhir: <InlineMath math="U_{20}=2+19\cdot3=59" />, dan <InlineMath math="S_{20}=\frac{20}{2}(2+59)=610" />.
+Pada barisan aritmetika, **suku tengah adalah rata-rata ketiga suku**. Jumlahnya <InlineMath math="45" />, jadi suku tengahnya <InlineMath math="15" />. Tulis ketiga bilangan dengan beda <InlineMath math="d" />.
 
-Jadi, jumlah <InlineMath math="20" /> suku pertama deret itu adalah <InlineMath math="610" />.
+<BlockMath math="\begin{aligned}
+\text{semula}&:\ 15-d,\ \ 15,\ \ 15+d \\
+\text{setelah diubah}&:\ 12-d,\ \ 15,\ \ 22+d
+\end{aligned}" />
 
-- <InlineMath math="59" /> adalah suku ke-<InlineMath math="20" />, bukan jumlahnya.
-- <InlineMath math="305" /> membagi dua lagi hasil yang sudah benar.
-- <InlineMath math="590" /> memakai <InlineMath math="a+19b" /> di dalam kurung, padahal yang benar <InlineMath math="2a+19b" />.
-- <InlineMath math="1{.}220" /> lupa membagi <InlineMath math="n" /> dengan <InlineMath math="2" />.
+# Syarat barisan geometri
+
+Tiga bilangan membentuk barisan geometri kalau **kuadrat suku tengah sama dengan hasil kali kedua suku tepinya**, karena rasio suku kedua terhadap suku pertama sama dengan rasio suku ketiga terhadap suku kedua.
+
+<BlockMath math="\begin{aligned}
+15^2&=(12-d)(22+d) \\
+225&=264-10d-d^2 \\
+d^2+10d-39&=0 \\
+(d+13)(d-3)&=0
+\end{aligned}" />
+
+Jadi <InlineMath math="d=3" /> atau <InlineMath math="d=-13" />.
+
+# Memilih beda yang benar
+
+Coba kedua kemungkinan.
+
+| Beda | Barisan aritmetika | Barisan geometri | Rasio |
+| --- | --- | --- | --- |
+| <InlineMath math="d=3" /> | <InlineMath math="12,\ 15,\ 18" /> | <InlineMath math="9,\ 15,\ 25" /> | <InlineMath math="\tfrac{5}{3}" /> |
+| <InlineMath math="d=-13" /> | <InlineMath math="28,\ 15,\ 2" /> | <InlineMath math="25,\ 15,\ 9" /> | <InlineMath math="\tfrac{3}{5}" /> |
+
+Keduanya memenuhi syarat geometri, tetapi soal menyebut barisan aritmetika **naik**. Barisan <InlineMath math="28,\ 15,\ 2" /> turun, jadi <InlineMath math="d=-13" /> dibuang. Barisan semulanya <InlineMath math="12,\ 15,\ 18" />, dan bilangan terbesarnya <InlineMath math="18" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="25" /> adalah suku terbesar barisan geometri. Itu bilangan **setelah diubah**, jadi tambahan <InlineMath math="7" /> belum dikembalikan.
+- <InlineMath math="32" /> muncul kalau tambahan <InlineMath math="7" /> dikembalikan ke arah yang salah, <InlineMath math="25+7" />. Suku ketiga semula didapat dengan mengurangkan <InlineMath math="7" />.
+- <InlineMath math="28" /> adalah bilangan terbesar barisan turun <InlineMath math="28,\ 15,\ 2" />, yang ditolak oleh kata naik.
+- <InlineMath math="22" /> muncul kalau kamu memakai barisan geometri yang turun <InlineMath math="25,\ 15,\ 9" />, lalu mengembalikan suku pertamanya ke arah yang salah, <InlineMath math="25-3" />. Barisan itu sudah ditolak, dan suku pertamanya semula <InlineMath math="25+3=28" />.
+
+Jadi, bilangan terbesar pada barisan aritmetika semula adalah <InlineMath math="18" />.

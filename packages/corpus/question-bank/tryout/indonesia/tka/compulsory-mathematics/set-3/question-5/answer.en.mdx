@@ -1,13 +1,81 @@
-Translate the information into a **system of linear inequalities**. The sacks may weigh <InlineMath math="1{,}200-64=1{,}136\text{ kg}" /> in total. Let <InlineMath math="x" /> be the number of rice sacks and <InlineMath math="y" /> the number of sugar sacks, both whole numbers from <InlineMath math="0" />.
+The figure only shows two lines and a shaded region. So the first step is **building the system of inequalities from the figure**. After that, you check every statement against that system, not by eye.
+
+# The system from the figure
+
+A line that cuts the axes at <InlineMath math="(a,0)" /> and <InlineMath math="(0,b)" /> has the equation <InlineMath math="\frac{x}{a}+\frac{y}{b}=1" />. Multiply through by the denominators to get whole numbers.
 
 <BlockMath math="\begin{aligned}
-50x+35y&\le1{,}136 \\
-x+y&\le28
+\frac{x}{6}+\frac{y}{9}=1\ &\Rightarrow\ 3x+2y=18 \\
+\frac{x}{12}+\frac{y}{4}=1\ &\Rightarrow\ x+3y=12
 \end{aligned}" />
 
-- <InlineMath math="50\cdot12+35\cdot14=600+490=1{,}090\le1{,}136" /> and <InlineMath math="12+14=26\le28" />. The statement is true.
-- With rice only, <InlineMath math="50x\le1{,}136" />, so <InlineMath math="x\le22.72" />. At most <InlineMath math="22" /> sacks fit, because <InlineMath math="23" /> sacks weigh <InlineMath math="1{,}150\text{ kg}" />. The statement is false.
-- With <InlineMath math="y=28-x" />, the load becomes <InlineMath math="50x+35(28-x)=980+15x\le1{,}136" />, so <InlineMath math="x\le10.4" />. At most <InlineMath math="10" /> rice sacks fit. The statement is true.
-- <InlineMath math="50x+35y=5(10x+7y)" /> is always a multiple of <InlineMath math="5" />, but <InlineMath math="1{,}136" /> is not. The largest possible load is <InlineMath math="1{,}135\text{ kg}" />, for example with <InlineMath math="22" /> rice sacks and <InlineMath math="1" /> sugar sack. The statement is false.
+The point <InlineMath math="(0,0)" /> is in the shaded region, and <InlineMath math="0\le18" /> and <InlineMath math="0\le12" />. So the region is on the "less than or equal to" side of both lines.
 
-So the first and third statements are true.
+<BlockMath math="3x+2y\le18,\qquad x+3y\le12,\qquad x\ge0,\qquad y\ge0" />
+
+You get the corner where the two lines cross by substituting <InlineMath math="x=12-3y" />.
+
+<BlockMath math="\begin{aligned}
+3(12-3y)+2y&=18 \\
+36-7y&=18\ \Rightarrow\ y=\tfrac{18}{7},\quad x=12-\tfrac{54}{7}=\tfrac{30}{7}
+\end{aligned}" />
+
+The crossing point is <InlineMath math="\left(\tfrac{30}{7},\tfrac{18}{7}\right)\approx(4.29,\ 2.57)" />. **To the left of the crossing point, the line <InlineMath math="x+3y=12" /> is the lower one**, and to the right of it, the line <InlineMath math="3x+2y=18" /> is lower. The top edge of the region is always the lower line.
+
+<MathVisual
+  title={<>Feasible region and crossing point</>}
+  description={<>The shaded region is the quadrilateral with corners <InlineMath math="(0,0)" />, <InlineMath math="(6,0)" />, <InlineMath math="\left(\tfrac{30}{7},\tfrac{18}{7}\right)" /> and <InlineMath math="(0,4)" />. The line <InlineMath math="3x+2y=18" /> passes through <InlineMath math="(0,9)" /> and <InlineMath math="(6,0)" />. The line <InlineMath math="x+3y=12" /> passes through <InlineMath math="(0,4)" /> and <InlineMath math="(12,0)" />. The point <InlineMath math="(3,3)" /> lies on the line <InlineMath math="x+3y=12" />, inside the region.</>}
+  labels={{
+    "first-line": <InlineMath math="3x+2y=18" />,
+    "second-line": <InlineMath math="x+3y=12" />,
+    corner: <InlineMath math="\left(\tfrac{30}{7},\tfrac{18}{7}\right)" />,
+    best: <InlineMath math="(3,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 13 },
+      y: { min: -1, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 30 / 7, y: 18 / 7 }, { x: 0, y: 4 }] },
+      { id: "first-line", kind: "segment", appearance: "primary", from: { x: 0, y: 9 }, to: { x: 6, y: 0 } },
+      { id: "second-line", kind: "segment", appearance: "secondary", from: { x: 0, y: 4 }, to: { x: 12, y: 0 } },
+      { id: "corner-point", kind: "point", appearance: "reference", at: { x: 30 / 7, y: 18 / 7 } },
+      { id: "best-point", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "first-line", objectId: "first-line", at: { x: 1.5, y: 6.75 }, placement: "right" },
+      { key: "second-line", objectId: "second-line", at: { x: 9, y: 1 }, placement: "above" },
+      { key: "corner", objectId: "corner-point", at: { x: 30 / 7, y: 18 / 7 }, placement: "right" },
+      { key: "best", objectId: "best-point", at: { x: 3, y: 3 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+# Judging each statement
+
+1. **True**. For <InlineMath math="(4,2)" />: <InlineMath math="3\cdot4+2\cdot2=16\le18" /> and <InlineMath math="4+3\cdot2=10\le12" />, so it's inside. For <InlineMath math="(4,3)" />: <InlineMath math="3\cdot4+2\cdot3=18\le18" />, but <InlineMath math="4+3\cdot3=13>12" />. The point <InlineMath math="(4,3)" /> sits exactly on the first line but above the second one, so it's outside.
+2. **False**. For each <InlineMath math="x" />, the biggest <InlineMath math="y" /> is set by the lower line, the smaller of <InlineMath math="\frac{18-3x}{2}" /> and <InlineMath math="\frac{12-x}{3}" />.
+
+| <InlineMath math="x" /> | <InlineMath math="\frac{18-3x}{2}" /> | <InlineMath math="\frac{12-x}{3}" /> | Allowed whole <InlineMath math="y" /> | Points |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="3" /> | <InlineMath math="4.5" /> | <InlineMath math="3" /> | <InlineMath math="0,1,2,3" /> | <InlineMath math="4" /> |
+| <InlineMath math="4" /> | <InlineMath math="3" /> | <InlineMath math="2\tfrac{2}{3}" /> | <InlineMath math="0,1,2" /> | <InlineMath math="3" /> |
+| <InlineMath math="5" /> | <InlineMath math="1.5" /> | <InlineMath math="2\tfrac{1}{3}" /> | <InlineMath math="0,1" /> | <InlineMath math="2" /> |
+
+The total is <InlineMath math="4+3+2=9" />, not <InlineMath math="10" />. You get <InlineMath math="10" /> if you use the line <InlineMath math="x+3y=12" /> for the whole strip, but **at <InlineMath math="x=5" /> the limit has already switched to the line <InlineMath math="3x+2y=18" />**.
+
+3. **True**. At the crossing point the value is <InlineMath math="2\cdot\tfrac{30}{7}+3\cdot\tfrac{18}{7}=\tfrac{114}{7}\approx16.3" />, but that point isn't a whole-number point. So whole-number points give at most <InlineMath math="16" />. Check whether <InlineMath math="16" /> can be reached: <InlineMath math="2x+3y=16" /> with whole <InlineMath math="x,y\ge0" /> only has <InlineMath math="(8,0)" />, <InlineMath math="(5,2)" /> and <InlineMath math="(2,4)" />.
+
+<BlockMath math="\begin{aligned}
+(8,0)&:\ 3\cdot8+2\cdot0=24>18 \\
+(5,2)&:\ 3\cdot5+2\cdot2=19>18 \\
+(2,4)&:\ 2+3\cdot4=14>12
+\end{aligned}" />
+
+All three are outside the region. The value <InlineMath math="15" /> is reached at <InlineMath math="(3,3)" />, because <InlineMath math="9+6=15\le18" /> and <InlineMath math="3+9=12\le12" />. Rounding the crossing point to <InlineMath math="(4,3)" /> leaves the region, and <InlineMath math="(4,2)" /> only gives <InlineMath math="14" />.
+
+So statement 1 is true, statement 2 is false, and statement 3 is true.

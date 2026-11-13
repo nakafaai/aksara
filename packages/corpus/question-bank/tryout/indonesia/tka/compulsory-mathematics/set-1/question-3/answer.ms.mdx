@@ -1,0 +1,63 @@
+# Dua fungsi tambang
+
+Keempat-empat pernyataan membandingkan dua fungsi: tambang luar waktu puncak <InlineMath math="F(d)" /> dan tambang waktu puncak, iaitu jam sibuk dalam soalan, <InlineMath math="P(d)" />, dengan <InlineMath math="d" /> jarak dalam km. Supaya kemas, namakan <InlineMath math="K(d)" /> sebagai bahagian tambang luar waktu puncak yang dikira setiap km:
+
+<BlockMath math="K(d)=\begin{cases}0, & 0<d\le2 \\ 4{,}500\,(d-2), & 2<d\le12 \\ 45{,}000+3{,}500\,(d-12), & d>12\end{cases}" />
+
+Tarif buka pintu tidak didarab, jadi
+
+<BlockMath math="F(d)=10{,}000+K(d),\qquad P(d)=10{,}000+1.2\,K(d)." />
+
+**Setiap pernyataan boleh dinilai daripada dua rumus ini**, asalkan kamu menyemak setiap bahagian julat jarak.
+
+# Pernyataan pertama
+
+Daripada rumus <InlineMath math="F" />, bahagian setiap km ialah <InlineMath math="K=F-10{,}000" />. Gantikan ke dalam rumus <InlineMath math="P" />:
+
+<BlockMath math="\begin{aligned}
+P&=10{,}000+1.2\,(F-10{,}000) \\
+&=10{,}000+1.2F-12{,}000 \\
+&=1.2F-2{,}000
+\end{aligned}" />
+
+Langkah ini sah pada setiap bahagian julat, termasuk <InlineMath math="d\le2" />. Di situ <InlineMath math="F=10{,}000" /> dan <InlineMath math="1.2\cdot10{,}000-2{,}000=10{,}000" />, sama dengan <InlineMath math="P" />. Jadi **tambang waktu puncak bukan <InlineMath math="1.2F" />, tetapi <InlineMath math="1.2F" /> tolak <InlineMath math="2{,}000" />**, kerana tarif buka pintu tidak naik. Pernyataan ini **Betul**.
+
+# Pernyataan kedua
+
+Bagi jarak sehingga <InlineMath math="2\text{ km}" />, penumpang hanya membayar tarif buka pintu. Ambil perjalanan <InlineMath math="1\text{ km}" /> dan <InlineMath math="2\text{ km}" />:
+
+<BlockMath math="F(1)=F(2)=10{,}000" />
+
+Dua jarak yang berbeza memberikan tambang yang sama, jadi **fungsi <InlineMath math="F" /> bukan fungsi satu dengan satu** pada awal perjalanan. Satu contoh penyangkal sudah memadai. Pernyataan ini **Salah**.
+
+# Pernyataan ketiga
+
+Bandingkan kos bagi setiap km tambahan. Pada waktu puncak selepas km ke-<InlineMath math="12" />, satu km tambahan berharga <InlineMath math="1.2\cdot3{,}500" />. Di luar waktu puncak antara km ke-<InlineMath math="2" /> dan km ke-<InlineMath math="12" />, satu km tambahan berharga <InlineMath math="4{,}500" />.
+
+<BlockMath math="1.2\cdot3{,}500=4{,}200<4{,}500" />
+
+Waktu puncak memang lebih mahal bagi **jarak yang sama**, tetapi di sini kamu membandingkan kadar pertambahan pada dua bahagian julat yang berbeza. Pertambahannya sebenarnya lebih kecil. Pernyataan ini **Salah**.
+
+# Pernyataan keempat
+
+Syarat <InlineMath math="P(d)=F(d+3)" /> sama dengan <InlineMath math="1.2\,K(d)=K(d+3)" />. Rumus <InlineMath math="K" /> bertukar pada km ke-<InlineMath math="2" /> dan km ke-<InlineMath math="12" />, jadi **semak setiap kes dan buang punca yang jatuh di luar kesnya sendiri**.
+
+| Kes | Persamaan | Punca | Keputusan |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="d\le2" /> | <InlineMath math="10{,}000=F(d+3)" /> | tiada | <InlineMath math="F(d+3)\ge F(3)=14{,}500" /> |
+| <InlineMath math="2<d\le9" /> | <InlineMath math="5{,}400(d-2)=4{,}500(d+1)" /> | <InlineMath math="d=17" /> | ditolak, <InlineMath math="17>9" /> |
+| <InlineMath math="9<d\le12" /> | <InlineMath math="5{,}400(d-2)=45{,}000+3{,}500(d-9)" /> | <InlineMath math="d=\frac{243}{19}\approx12.79" /> | ditolak, melebihi <InlineMath math="12" /> |
+| <InlineMath math="d>12" /> | <InlineMath math="1.2\,[45{,}000+3{,}500(d-12)]=45{,}000+3{,}500(d-9)" /> | <InlineMath math="d=\frac{99}{7}\approx14.14" /> | diterima |
+
+Kes terakhir diselesaikan begini:
+
+<BlockMath math="\begin{aligned}
+54{,}000+4{,}200(d-12)&=45{,}000+3{,}500(d-9) \\
+3{,}600+4{,}200d&=13{,}500+3{,}500d \\
+700d&=9{,}900 \\
+d&=\tfrac{99}{7}
+\end{aligned}" />
+
+Semakan: bahagian setiap km bagi <InlineMath math="\frac{99}{7}\text{ km}" /> ialah <InlineMath math="45{,}000+3{,}500\cdot\frac{15}{7}=52{,}500" />, jadi <InlineMath math="P=10{,}000+1.2\cdot52{,}500=73{,}000" />. Bagi <InlineMath math="\frac{120}{7}\text{ km}" />, bahagian setiap km ialah <InlineMath math="45{,}000+3{,}500\cdot\frac{36}{7}=63{,}000" />, jadi <InlineMath math="F=73{,}000" />. Jika kamu hanya mencuba rumus <InlineMath math="4{,}500" /> setiap km, kamu akan mendapat <InlineMath math="d=17" /> yang ditolak lalu menyangka tiada jawapan. Pernyataan ini **Betul**.
+
+Jadi, urutannya: Betul, Salah, Salah, Betul.

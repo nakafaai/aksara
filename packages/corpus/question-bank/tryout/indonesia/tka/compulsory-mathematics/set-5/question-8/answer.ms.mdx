@@ -1,0 +1,51 @@
+# Simpanan pertama dan kenaikannya
+
+Simpanan yang bertambah dengan jumlah yang sama setiap bulan membentuk **janjang aritmetik**. Soalan tidak memberi simpanan bulan pertama, jadi cari dahulu daripada dua simpanan yang diketahui. Supaya nombornya ringan, semua nilai di bawah ditulis dalam ribu rupiah.
+
+Katakan simpanan bulan pertama ialah <InlineMath math="a" /> dan kenaikan setiap bulan ialah <InlineMath math="b" />. Simpanan bulan ke-<InlineMath math="n" /> ialah <InlineMath math="a+(n-1)b" />:
+
+<BlockMath math="\begin{aligned}
+a+3b&=160 \\
+a+8b&=260 \\
+5b&=100\ \Rightarrow\ b=20,\quad a=160-60=100
+\end{aligned}" />
+
+Jadi Rina bermula dengan <InlineMath math="\text{Rp}100{,}000" /> dan simpanannya naik <InlineMath math="\text{Rp}20{,}000" /> setiap bulan.
+
+# Jumlah simpanan selepas beberapa bulan
+
+Jumlah selepas <InlineMath math="n" /> bulan ialah **hasil tambah <InlineMath math="n" /> sebutan pertama** janjang itu:
+
+<BlockMath math="\begin{aligned}
+S_n&=\frac n2\left(2a+(n-1)b\right) \\
+&=\frac n2\left(200+20(n-1)\right) \\
+&=\frac n2\left(180+20n\right)=10n^2+90n
+\end{aligned}" />
+
+# Bila jumlahnya melebihi sasaran
+
+Sasarannya <InlineMath math="5{,}800" /> ribu, dan jumlahnya mesti **lebih daripada** sasaran, bukan sama dengannya:
+
+<BlockMath math="\begin{aligned}
+10n^2+90n&>5{,}800 \\
+n^2+9n-580&>0 \\
+(n-20)(n+29)&>0
+\end{aligned}" />
+
+Bilangan bulan <InlineMath math="n" /> positif, jadi <InlineMath math="n+29" /> sentiasa positif dan syaratnya menjadi <InlineMath math="n>20" />. Semak nilai di sekitar sempadan:
+
+<BlockMath math="\begin{aligned}
+S_{20}&=10\cdot400+90\cdot20=5{,}800 \\
+S_{21}&=10\cdot441+90\cdot21=6{,}300
+\end{aligned}" />
+
+Selepas bulan ke-<InlineMath math="20" />, jumlahnya **tepat** <InlineMath math="\text{Rp}5{,}800{,}000" />, belum melebihi. Hanya selepas bulan ke-<InlineMath math="21" /> jumlahnya melepasi sasaran.
+
+Jadi, jumlah simpanan Rina melebihi <InlineMath math="\text{Rp}5{,}800{,}000" /> buat kali pertama selepas simpanan bulan ke-<InlineMath math="21" />.
+
+# Mengapa pilihan lain salah
+
+- Bulan ke-<InlineMath math="20" /> ialah saat jumlahnya **sama dengan** sasaran. Soalan meminta lebih daripada, jadi bulan itu belum cukup.
+- Bulan ke-<InlineMath math="16" /> mengira jumlah sebagai <InlineMath math="n" /> kali simpanan bulan ke-<InlineMath math="n" />, iaitu <InlineMath math="20n^2+80n" />. Simpanan bulan-bulan awal lebih kecil, jadi cara ini terlebih kira.
+- Bulan ke-<InlineMath math="18" /> menggunakan <InlineMath math="160" /> sebagai simpanan pertama. Sedangkan <InlineMath math="160" /> ialah simpanan bulan ke-<InlineMath math="4" />.
+- Bulan ke-<InlineMath math="23" /> menggunakan <InlineMath math="\frac n2\left(a+(n-1)b\right)" />. Rumus hasil tambah mengandungi <InlineMath math="2a" />, iaitu sebutan pertama ditambah sebutan terakhir.

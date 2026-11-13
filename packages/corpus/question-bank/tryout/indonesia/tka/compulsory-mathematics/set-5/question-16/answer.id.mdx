@@ -1,15 +1,69 @@
-Kalau kolam dilihat dari samping, sepanjang <InlineMath math="25\text{ m}" />, penampang airnya berbentuk **trapesium siku-siku** dengan sisi sejajar <InlineMath math="1\text{ m}" /> dan <InlineMath math="2\text{ m}" />. Penampang itu sama di seluruh lebar kolam, jadi air kolam berbentuk prisma dengan alas trapesium dan tinggi prisma <InlineMath math="10\text{ m}" />.
+# Satuan yang memudahkan
+
+Soal ini meminta banyak air yang masih harus masuk, mulai dari permukaan air <InlineMath math="0{,}3\text{ m}" /> di atas ujung kerucut sampai garis batas aman. Air itu mengisi dua bagian: **sisa kerucut di atas air yang sudah ada**, lalu tabung sampai garis batas aman.
+
+Hitung dalam desimeter, karena <InlineMath math="1\text{ dm}^3=1" /> liter. Jari-jari <InlineMath math="r=7\text{ dm}" />, tinggi kerucut <InlineMath math="6\text{ dm}" />, tinggi tabung <InlineMath math="15\text{ dm}" />, dan garis batas aman <InlineMath math="3\text{ dm}" /> di bawah tepi atas. Luas alas tabung dan kerucut sama:
+
+<BlockMath math="\pi r^2=\frac{22}{7}\cdot7^2=154\text{ dm}^2" />
+
+# Sisa kerucut yang belum terisi
+
+Volume kerucut penuh adalah <InlineMath math="\tfrac13\cdot154\cdot6=308" /> liter. Air yang sudah ada membentuk kerucut kecil setinggi <InlineMath math="3\text{ dm}" />, yaitu setengah tinggi kerucut besar. Kerucut kecil itu sebangun dengan kerucut besar, jadi jari-jarinya juga setengah, yaitu <InlineMath math="3{,}5\text{ dm}" />. Karena tinggi dan jari-jari sama-sama dikali <InlineMath math="\tfrac12" />, **volumenya dikali <InlineMath math="\left(\tfrac12\right)^3=\tfrac18" />**, bukan <InlineMath math="\tfrac12" />.
 
 <BlockMath math="\begin{aligned}
-L_{\text{trapesium}}&=\frac{1+2}{2}\cdot25=37{,}5\text{ m}^2 \\
-V&=37{,}5\cdot10=375\text{ m}^3
+V_{\text{air awal}}&=\tfrac18\cdot308=38{,}5\text{ liter} \\
+\text{cek}&:\ \tfrac13\cdot\tfrac{22}{7}\cdot3{,}5^2\cdot3=38{,}5\text{ liter} \\
+V_{\text{sisa kerucut}}&=308-38{,}5=269{,}5\text{ liter}
 \end{aligned}" />
 
-Ini sama dengan memakai kedalaman rata-rata <InlineMath math="1{,}5\text{ m}" /> untuk seluruh permukaan <InlineMath math="25\cdot10=250\text{ m}^2" />.
+<MathVisual
+  title={<>Air awal di dalam kerucut</>}
+  description={<>Penampang tandon seperti pada gambar soal. Air awal mengisi segitiga kecil di ujung kerucut setinggi <InlineMath math="0{,}3\text{ m}" />, yaitu setengah tinggi kerucut, dengan lebar permukaan <InlineMath math="0{,}7\text{ m}" />. Garis batas aman ada <InlineMath math="0{,}3\text{ m}" /> di bawah tepi atas tabung.</>}
+  labels={{
+    water: <InlineMath math="0{,}3\text{ m}" />,
+    surface: <InlineMath math="0{,}7\text{ m}" />,
+    safe: <>garis batas aman</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -16, max: 20 },
+      y: { min: -2, max: 24 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tank", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 7, y: 6 }, { x: 7, y: 21 }, { x: -7, y: 21 }, { x: -7, y: 6 }] },
+      { id: "water", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3.5, y: 3 }, { x: -3.5, y: 3 }] },
+      { id: "junction", kind: "segment", appearance: "construction", from: { x: -7, y: 6 }, to: { x: 7, y: 6 } },
+      { id: "water-height", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "safe-line", kind: "segment", appearance: "warning", from: { x: -7, y: 18 }, to: { x: 7, y: 18 } },
+    ],
+    labels: [
+      { key: "water", objectId: "water-height", at: { x: 0, y: 1.5 }, placement: "right" },
+      { key: "surface", objectId: "water", at: { x: -3.5, y: 3 }, placement: "left" },
+      { key: "safe", objectId: "safe-line", at: { x: 7, y: 18 }, placement: "right" },
+    ],
+  }}
+/>
 
-Jadi, volume air kolam saat penuh adalah <InlineMath math="375\text{ m}^3" />.
+# Bagian tabung sampai garis batas aman
 
-- <InlineMath math="125\text{ m}^3" /> hanya menghitung air yang lebih dalam dari <InlineMath math="1\text{ m}" />, yaitu prisma segitiga <InlineMath math="\tfrac12\cdot25\cdot1\cdot10" />.
-- <InlineMath math="187{,}5\text{ m}^3" /> membagi dua lagi luas trapesium yang sudah dihitung.
-- <InlineMath math="250\text{ m}^3" /> menganggap seluruh kolam sedalam <InlineMath math="1\text{ m}" />.
-- <InlineMath math="500\text{ m}^3" /> menganggap seluruh kolam sedalam <InlineMath math="2\text{ m}" />.
+Di dalam tabung, air naik dari alas tabung sampai <InlineMath math="3\text{ dm}" /> di bawah tepi atas. **Tinggi air di tabung hanya <InlineMath math="15-3=12\text{ dm}" />**, bukan seluruh tinggi tabung.
+
+<BlockMath math="V_{\text{tabung}}=154\cdot12=1{.}848\text{ liter}" />
+
+# Jumlah air yang dipompakan
+
+<BlockMath math="269{,}5+1{.}848=2{.}117{,}5\text{ liter}" />
+
+Cek kewajarannya. Tandon yang penuh sampai garis batas aman berisi <InlineMath math="308+1{.}848=2{.}156" /> liter, dan isi awalnya <InlineMath math="38{,}5" /> liter. Selisihnya <InlineMath math="2{.}156-38{,}5=2{.}117{,}5" /> liter, **sama dengan hasil tadi**.
+
+Jadi, banyak air yang harus dipompakan adalah <InlineMath math="2{.}117{,}5" /> liter.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="2{.}002" /> liter menganggap air setinggi setengah kerucut berisi setengah volume kerucut, yaitu <InlineMath math="154" /> liter. Pada benda sebangun, **volume berubah dengan pangkat tiga perbandingan tinggi**.
+- <InlineMath math="2{.}156" /> liter lupa mengurangi <InlineMath math="38{,}5" /> liter air yang sudah ada di dalam kerucut.
+- <InlineMath math="2{.}579{,}5" /> liter mengisi tabung sampai tepi atas, <InlineMath math="154\cdot15=2{.}310" /> liter, padahal air hanya boleh sampai garis batas aman.
+- <InlineMath math="2{.}656{,}5" /> liter lupa faktor <InlineMath math="\tfrac13" /> pada volume kerucut, sehingga kerucut dihitung <InlineMath math="924" /> liter dan sisanya <InlineMath math="924-115{,}5=808{,}5" /> liter.

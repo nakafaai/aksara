@@ -1,15 +1,43 @@
-Pada komposisi <InlineMath math="(g\circ f)(3)=g\big(f(3)\big)" />, **fungsi yang lebih dekat ke <InlineMath math="x" /> dikerjakan lebih dulu**. Hitung <InlineMath math="f(3)" />, lalu masukkan hasilnya ke <InlineMath math="g" />.
+Soal ini meminta banyak bilangan bulat <InlineMath math="x" /> yang membuat <InlineMath math="f(x)" /> terjepit di antara <InlineMath math="-4" /> dan <InlineMath math="12" />. Kamu perlu menyusun rumus <InlineMath math="f" /> dulu, lalu memperhatikan **dua tanda pertidaksamaan yang sama-sama tegas**.
+
+# Rumus fungsinya
+
+Grafik fungsi kuadrat simetris terhadap sumbunya. Karena <InlineMath math="f(-2)=f(8)" />, sumbu simetrinya tepat di tengah <InlineMath math="-2" /> dan <InlineMath math="8" />, yaitu <InlineMath math="x=\frac{-2+8}{2}=3" />. Daerah hasil <InlineMath math="y\ge-6" /> berarti grafiknya terbuka ke atas dan **nilai minimumnya <InlineMath math="-6" /> di titik puncak**. Jadi <InlineMath math="f(x)=a(x-3)^2-6" /> dengan <InlineMath math="a>0" />.
 
 <BlockMath math="\begin{aligned}
-f(3)&=5-2\cdot3=-1 \\
-g(-1)&=(-1)^2+4\cdot(-1)=1-4=-3
+f(1)&=a(1-3)^2-6=-4 \\
+4a&=2\ \Rightarrow\ a=\tfrac12 \\
+f(x)&=\tfrac12(x-3)^2-6
 \end{aligned}" />
 
-Sebagai pemeriksaan, rumus komposisinya <InlineMath math="(g\circ f)(x)=(5-2x)^2+4(5-2x)" />, dan untuk <InlineMath math="x=3" /> diperoleh <InlineMath math="1-4=-3" />.
+# Syarat sebagai jarak dari sumbu
 
-Jadi, <InlineMath math="(g\circ f)(3)=-3" />.
+Misalkan <InlineMath math="d=|x-3|" />, yaitu jarak <InlineMath math="x" /> ke sumbu simetri. Karena <InlineMath math="x" /> bulat, <InlineMath math="d" /> juga bulat. Ubah kedua pertidaksamaan menjadi syarat untuk <InlineMath math="d" />.
 
-- <InlineMath math="-37" /> menghitung <InlineMath math="(f\circ g)(3)=f(21)=5-42" />, yaitu urutan yang terbalik.
-- <InlineMath math="-21" /> mengalikan <InlineMath math="g(3)=21" /> dengan <InlineMath math="f(3)=-1" />, padahal komposisi bukan perkalian.
-- <InlineMath math="-5" /> menganggap <InlineMath math="(-1)^2=-1" />.
-- <InlineMath math="5" /> menghitung <InlineMath math="4\cdot(-1)" /> sebagai <InlineMath math="4" />.
+<BlockMath math="\begin{aligned}
+-4<\tfrac12d^2-6\ &\Rightarrow\ d^2>4\ \Rightarrow\ d>2 \\
+\tfrac12d^2-6<12\ &\Rightarrow\ d^2<36\ \Rightarrow\ d<6
+\end{aligned}" />
+
+Jadi <InlineMath math="2<d<6" />, artinya <InlineMath math="d=3,4,5" />. **Setiap nilai <InlineMath math="d" /> memberi dua nilai <InlineMath math="x" />**, satu di kiri sumbu dan satu di kanan.
+
+| <InlineMath math="d" /> | <InlineMath math="x" /> | <InlineMath math="f(x)" /> | Memenuhi? |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="3" /> | <InlineMath math="-6" /> | tidak |
+| <InlineMath math="1" /> | <InlineMath math="2" /> dan <InlineMath math="4" /> | <InlineMath math="-5{,}5" /> | tidak |
+| <InlineMath math="2" /> | <InlineMath math="1" /> dan <InlineMath math="5" /> | <InlineMath math="-4" /> | tidak, harus lebih dari <InlineMath math="-4" /> |
+| <InlineMath math="3" /> | <InlineMath math="0" /> dan <InlineMath math="6" /> | <InlineMath math="-1{,}5" /> | ya |
+| <InlineMath math="4" /> | <InlineMath math="-1" /> dan <InlineMath math="7" /> | <InlineMath math="2" /> | ya |
+| <InlineMath math="5" /> | <InlineMath math="-2" /> dan <InlineMath math="8" /> | <InlineMath math="6{,}5" /> | ya |
+| <InlineMath math="6" /> | <InlineMath math="-3" /> dan <InlineMath math="9" /> | <InlineMath math="12" /> | tidak, harus kurang dari <InlineMath math="12" /> |
+
+Bilangan yang memenuhi adalah <InlineMath math="-2,-1,0,6,7,8" />, jadi ada <InlineMath math="6" /> bilangan. Perhatikan bahwa <InlineMath math="x=1" /> dari soal tepat berada di batas bawah dan ikut gugur.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="11" /> hanya memakai <InlineMath math="f(x)<12" /> dan lupa syarat <InlineMath math="f(x)>-4" />, sehingga bilangan di sekitar puncak, <InlineMath math="1" /> sampai <InlineMath math="5" />, ikut terhitung.
+- <InlineMath math="10" /> memperlakukan kedua tanda sebagai <InlineMath math="\le" />, sehingga <InlineMath math="d=2" /> dan <InlineMath math="d=6" /> ikut terhitung.
+- <InlineMath math="8" /> memperlakukan salah satu tanda sebagai <InlineMath math="\le" />, sehingga satu pasang batas ikut terhitung.
+- <InlineMath math="3" /> hanya menghitung sisi kanan sumbu, <InlineMath math="x=6,7,8" />. **Parabola punya dua cabang**, jadi sisi kiri juga harus dihitung.
+
+Jadi, banyak bilangan bulat <InlineMath math="x" /> yang memenuhi adalah <InlineMath math="6" />.

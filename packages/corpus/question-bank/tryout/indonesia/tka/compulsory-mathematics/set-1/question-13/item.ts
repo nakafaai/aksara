@@ -2,9 +2,9 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
+    cognitiveLevel: "application",
     contentDomain: "geometry-measurement",
-    topic: "geometry-transformations",
+    topic: "geometry-objects",
   },
   versions: {
     id: {
@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$(5,8)$$",
+          label: "$$156\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$(1,7)$$",
+          label: "$$65\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$(1,3)$$",
+          label: "$$54\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$(-3,-1)$$",
+          label: "$$84{,}5\\text{ cm}^2$$",
         },
         {
           correct: true,
-          label: "$$(1,9)$$",
+          label: "$$78\\text{ cm}^2$$",
         },
       ],
     },

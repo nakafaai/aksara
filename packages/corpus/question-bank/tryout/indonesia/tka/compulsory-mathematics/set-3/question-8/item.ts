@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$80$$ buku",
-        },
-        {
-          correct: false,
-          label: "$$234$$ buku",
-        },
-        {
-          correct: false,
-          label: "$$480$$ buku",
-        },
-        {
-          correct: false,
-          label: "$$517$$ buku",
-        },
-        {
           correct: true,
-          label: "$$564$$ buku",
+          label: "$$3{.}584$$",
+        },
+        {
+          correct: false,
+          label: "$$1{.}792$$",
+        },
+        {
+          correct: false,
+          label: "$$1{.}536$$",
+        },
+        {
+          correct: false,
+          label: "$$1{.}001$$",
+        },
+        {
+          correct: false,
+          label: "$$-1{.}792$$",
         },
       ],
     },

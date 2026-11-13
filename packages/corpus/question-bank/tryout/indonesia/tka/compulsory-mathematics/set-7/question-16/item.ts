@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "ice-cream",
+  stimulus: "pipa",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$37{,}68\\text{ cm}^3$$",
+          label: "$$3\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$56{,}52\\text{ cm}^3$$",
+          label: "$$6\\text{ cm}$$",
+        },
+        {
+          correct: false,
+          label: "$$10\\text{ cm}$$",
+        },
+        {
+          correct: false,
+          label: "$$15\\text{ cm}$$",
         },
         {
           correct: true,
-          label: "$$113{,}04\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$339{,}12\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$452{,}16\\text{ cm}^3$$",
+          label: "$$30\\text{ cm}$$",
         },
       ],
     },

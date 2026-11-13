@@ -1,15 +1,40 @@
-Read the chart as a frequency table, then **work out each measure from the number of books, not from the bar heights**.
+All five statements need the complete table, so the first step is finding <InlineMath math="x" />. Remember that <InlineMath math="3.2" /> is **the mean of the students who aren't only children**, not the mean of all the students.
+
+# Completing the table
+
+There are <InlineMath math="30+x" /> students who aren't only children, with <InlineMath math="1\cdot6+2\cdot4+3\cdot11+4x+5\cdot9=92+4x" /> siblings in total:
 
 <BlockMath math="\begin{aligned}
-\bar x&=\frac{0\cdot2+1\cdot5+2\cdot8+3\cdot6+4\cdot3+5\cdot1}{25}=\frac{56}{25}=2.24 \\
-\text{at least 3 books}&:\ 6+3+1=10\ \text{students} \\
-\text{no books}&:\ \frac{2}{25}=8\,\%
+\frac{92+4x}{30+x}&=3.2 \\
+92+4x&=96+3.2x \\
+x&=5
 \end{aligned}" />
 
-- The largest value is <InlineMath math="5" /> books and the smallest <InlineMath math="0" />, so the range is <InlineMath math="5" />. The value <InlineMath math="8" /> is the height of the tallest bar. This statement is false.
-- The mean is <InlineMath math="2.24" /> books. This statement is true.
-- Only <InlineMath math="10" /> of <InlineMath math="25" /> students, <InlineMath math="40\,\%" />, read at least <InlineMath math="3" /> books. This statement is false.
-- The mode is <InlineMath math="2" /> books, read by <InlineMath math="8" /> students, and the median is also <InlineMath math="2" />. This statement is true.
-- <InlineMath math="2" /> of <InlineMath math="25" /> students read no books, which is <InlineMath math="8\,\%" />. This statement is true.
+So the class has <InlineMath math="n=40" /> students with <InlineMath math="112" /> siblings in total, and **the mean of all the students** is <InlineMath math="\frac{112}{40}=2.8" />.
 
-So the true statements are the ones about the mean of <InlineMath math="2.24" />, the mode equalling the median, and the <InlineMath math="8\,\%" /> who read no books.
+# The data in order
+
+Picture the <InlineMath math="40" /> values lined up from smallest to largest. The cumulative frequency tells you which positions share the same value:
+
+| Siblings | Frequency | Positions |
+| :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="5" /> | <InlineMath math="1" /> to <InlineMath math="5" /> |
+| <InlineMath math="1" /> | <InlineMath math="6" /> | <InlineMath math="6" /> to <InlineMath math="11" /> |
+| <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="12" /> to <InlineMath math="15" /> |
+| <InlineMath math="3" /> | <InlineMath math="11" /> | <InlineMath math="16" /> to <InlineMath math="26" /> |
+| <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="27" /> to <InlineMath math="31" /> |
+| <InlineMath math="5" /> | <InlineMath math="9" /> | <InlineMath math="32" /> to <InlineMath math="40" /> |
+
+With <InlineMath math="40" /> values, **the median is the average of the <InlineMath math="20" />th and <InlineMath math="21" />st values**, the lower quartile is the average of the <InlineMath math="10" />th and <InlineMath math="11" />th, and the upper quartile is the average of the <InlineMath math="30" />th and <InlineMath math="31" />st:
+
+<BlockMath math="Q_1=\frac{1+1}{2}=1,\qquad \text{median}=\frac{3+3}{2}=3,\qquad Q_3=\frac{4+4}{2}=4" />
+
+# Judging each statement
+
+1. **False**. More than <InlineMath math="3" /> siblings means <InlineMath math="4" /> or <InlineMath math="5" />: <InlineMath math="5+9=14" /> students. Fewer than <InlineMath math="3" /> means <InlineMath math="0" />, <InlineMath math="1" /> or <InlineMath math="2" />: <InlineMath math="5+6+4=15" /> students. They're only one apart, but they're not equal.
+2. **True**. The interquartile range is <InlineMath math="Q_3-Q_1=4-1=3" />.
+3. **True**. The median <InlineMath math="3" /> is bigger than the mean of all the students, <InlineMath math="2.8" />. If you use <InlineMath math="3.2" /> instead, the conclusion flips, so watch which mean you use.
+4. **False**. There are <InlineMath math="11+5+9=25" /> students with at least <InlineMath math="3" /> siblings, and they have <InlineMath math="3\cdot11+4\cdot5+5\cdot9=98" /> siblings in total. Their mean is <InlineMath math="\frac{98}{25}=3.92" />, just under <InlineMath math="4" />.
+5. **True**. Without the <InlineMath math="5" /> only children, <InlineMath math="35" /> values are left, and the median is the <InlineMath math="18" />th. Positions <InlineMath math="1" /> to <InlineMath math="6" /> are <InlineMath math="1" />, positions <InlineMath math="7" /> to <InlineMath math="10" /> are <InlineMath math="2" />, and positions <InlineMath math="11" /> to <InlineMath math="21" /> are <InlineMath math="3" />. So the median stays <InlineMath math="3" />. The mode also stays <InlineMath math="3" />, because the frequency <InlineMath math="11" /> is still the largest.
+
+So the true statements are the second, the third and the fifth.

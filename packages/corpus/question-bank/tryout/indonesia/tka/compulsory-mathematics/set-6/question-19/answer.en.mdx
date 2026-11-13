@@ -1,16 +1,35 @@
-Eight equal small cubes are stacked <InlineMath math="2\times2\times2" />, so **each small cube's edge is half the original edge**. Let the original edge be <InlineMath math="s" />.
+The question asks for the least material for one box, but **only among the proposals that are at least <InlineMath math="10\text{ cm}" /> tall**. The volume is fixed, so you first have to get each proposal's height from the volume.
+
+# The height of each proposal
+
+The volume of a box is base area times height, so its height is <InlineMath math="t=\frac{V}{p\cdot l}" />:
 
 <BlockMath math="\begin{aligned}
-L_{\text{original}}&=6s^2 \\
-L_{\text{8 small cubes}}&=8\cdot6\left(\frac s2\right)^2=8\cdot\frac{6s^2}{4}=12s^2 \\
-\frac{12s^2}{6s^2}&=2
+P&: t=\frac{4{,}000}{25\cdot20}=\frac{4{,}000}{500}=8\text{ cm} \\
+Q&: t=\frac{4{,}000}{25\cdot10}=\frac{4{,}000}{250}=16\text{ cm} \\
+R&: t=\frac{4{,}000}{20\cdot10}=\frac{4{,}000}{200}=20\text{ cm}
 \end{aligned}" />
 
-You can also see why from the cuts. Each of the three cutting planes opens up two new faces of area <InlineMath math="s^2" />, so the area grows by <InlineMath math="3\cdot2s^2=6s^2" />, as much as the original area.
+Proposal P is only <InlineMath math="8\text{ cm}" /> tall, so **P is out**: the bottles can't stand in it. That leaves Q and R.
 
-So the total surface area of the eight small cubes is <InlineMath math="2" /> times that of the original cube.
+# Material for a box without a lid
 
-- <InlineMath math="\frac12" /> turns the ratio upside down.
-- <InlineMath math="1" /> assumes the surface area stays the same because the volume does.
-- <InlineMath math="1\frac12" /> assumes each cut opens only one new face.
-- <InlineMath math="8" /> matches the ratio to the number of cubes, but each small cube has only a quarter of the original surface area.
+A box without a lid has one base and four upright sides. Only the top is missing, so **the base still counts**:
+
+<BlockMath math="L=p\cdot l+2\cdot t\cdot(p+l)" />
+
+<BlockMath math="\begin{aligned}
+Q&: L=25\cdot10+2\cdot16\cdot(25+10)=250+1{,}120=1{,}370\text{ cm}^2 \\
+R&: L=20\cdot10+2\cdot20\cdot(20+10)=200+1{,}200=1{,}400\text{ cm}^2
+\end{aligned}" />
+
+Proposal Q uses less. Interestingly, with a lid the order flips: Q would need <InlineMath math="1{,}370+250=1{,}620" /> and R would need <InlineMath math="1{,}400+200=1{,}600" />. A box without a lid doesn't pay for a second base, so a wide base pays off. **The most cube-like shape isn't always the most economical**.
+
+# Why the other options are wrong
+
+- <InlineMath math="1{,}120\text{ cm}^2" /> is just the four upright sides of Q. The base was forgotten, but only the lid is missing.
+- <InlineMath math="1{,}220\text{ cm}^2" /> is the material for proposal P, which really is the smallest. But **P is only <InlineMath math="8\text{ cm}" /> tall**, so it fails the requirement.
+- <InlineMath math="1{,}400\text{ cm}^2" /> is proposal R. You get it if you assume the most cube-like box always uses the least material.
+- <InlineMath math="1{,}600\text{ cm}^2" /> comes from treating the box as having a lid. With a lid, R would be cheapest at <InlineMath math="1{,}600\text{ cm}^2" />, but this box has no lid.
+
+So the least material among the proposals that meet the requirement is <InlineMath math="1{,}370\text{ cm}^2" />, from proposal Q.

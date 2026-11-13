@@ -1,0 +1,72 @@
+Soalan ini bertanya berapa lama masa yang diambil sehingga air di hujung dalam sedalam <InlineMath math="1.2\text{ m}" />. Perangkapnya ada pada bentuk air: dasar kolam condong, jadi pada saat itu **air belum menutupi seluruh dasar kolam**. Bentuk air bukan kuboid.
+
+# Kadar alir dari paip
+
+Kadar alir ialah isi padu air yang keluar setiap saat, iaitu luas keratan rentas paip didarab dengan laju air. Jejari paip ialah <InlineMath math="3.5\text{ cm}" /> dan lajunya <InlineMath math="2\text{ m/s}=200\text{ cm/s}" />:
+
+<BlockMath math="\begin{aligned}
+A&=\frac{22}{7}\cdot3.5^2=38.5\text{ cm}^2 \\
+Q&=38.5\cdot200=7{,}700\text{ cm}^3/\text{s}=7.7\text{ liter/s}
+\end{aligned}" />
+
+Perhatikan bahawa **yang dikuasaduakan ialah jejari**, iaitu separuh daripada diameter <InlineMath math="7\text{ cm}" />.
+
+# Bentuk air dalam kolam
+
+Dasar kolam turun <InlineMath math="2.0-0.4=1.6\text{ m}" /> sepanjang <InlineMath math="11\text{ m}" />. Air di hujung dalam baru <InlineMath math="1.2\text{ m}" />, kurang daripada <InlineMath math="1.6\text{ m}" />, jadi permukaan air belum sampai ke hujung cetek. Jika dilihat dari sisi, air membentuk **segi tiga bersudut tegak yang serupa** dengan segi tiga penurunan dasar kolam (tapak <InlineMath math="11" />, tinggi <InlineMath math="1.6" />).
+
+<MathVisual
+  title={<>Pandangan sisi kolam</>}
+  description={<>Kolam dilihat dari sisi. Bibir kolam ialah garis atas sepanjang <InlineMath math="11" /> meter. Dasar kolam turun secara lurus dari kedalaman <InlineMath math="0.4" /> meter di hujung cetek ke <InlineMath math="2.0" /> meter di hujung dalam. Air berbentuk segi tiga di hujung dalam: tingginya <InlineMath math="1.2" /> meter dan panjang permukaannya <InlineMath math="\ell=8.25" /> meter.</>}
+  labels={{
+    shallow: <InlineMath math="0.4\text{ m}" />,
+    depth: <InlineMath math="1.2\text{ m}" />,
+    surface: <InlineMath math="\ell" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 13 },
+      y: { min: -2.6, max: 0.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rim", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 11, y: 0 } },
+      { id: "pool", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 0, y: -0.4 }, { x: 11, y: -2 }, { x: 11, y: 0 }] },
+      { id: "water", kind: "polygon", appearance: "highlight", vertices: [{ x: 2.75, y: -0.8 }, { x: 11, y: -0.8 }, { x: 11, y: -2 }] },
+    ],
+    labels: [
+      { key: "shallow", objectId: "pool", at: { x: 0, y: -0.2 }, placement: "left" },
+      { key: "depth", objectId: "water", at: { x: 11, y: -1.4 }, placement: "right" },
+      { key: "surface", objectId: "water", at: { x: 6.875, y: -0.8 }, placement: "above" },
+    ],
+  }}
+/>
+
+Panjang permukaan air <InlineMath math="\ell" /> diperoleh daripada keserupaan, kemudian isi padu air ialah luas segi tiga didarab dengan lebar kolam:
+
+<BlockMath math="\begin{aligned}
+\frac{\ell}{11}&=\frac{1.2}{1.6}\ \Rightarrow\ \ell=8.25\text{ m} \\
+V&=\tfrac12\cdot8.25\cdot1.2\cdot7=34.65\text{ m}^3=34{,}650\text{ liter}
+\end{aligned}" />
+
+# Masa pengisian
+
+**Bahagikan isi padu dengan kadar alir**:
+
+<BlockMath math="\begin{aligned}
+t&=\frac{34{,}650}{7.7}=4{,}500\text{ s} \\
+&=75\text{ minit}=1\text{ jam }15\text{ minit}
+\end{aligned}" />
+
+Semak: dalam <InlineMath math="4{,}500" /> saat paip mengalirkan <InlineMath math="7.7\cdot4{,}500=34{,}650" /> liter, tepat sama dengan isi padu segi tiga air tadi.
+
+# Mengapa jawapan lain salah
+
+- <InlineMath math="18" /> minit <InlineMath math="45" /> saat muncul jika diameter <InlineMath math="7\text{ cm}" /> digunakan sebagai jejari. Luas keratan rentas menjadi empat kali ganda, jadi masanya satu perempat.
+- <InlineMath math="1" /> jam muncul jika keserupaan menggunakan kedalaman hujung dalam <InlineMath math="2.0\text{ m}" />, sedangkan dasar kolam hanya turun <InlineMath math="1.6\text{ m}" />. Hasilnya <InlineMath math="\ell=6.6\text{ m}" />, terlalu pendek.
+- <InlineMath math="1" /> jam <InlineMath math="40" /> minit muncul jika segi tiga air dianggap sepanjang kolam, <InlineMath math="11\text{ m}" />. Itu hanya benar ketika air tepat menyentuh hujung cetek.
+- <InlineMath math="3" /> jam <InlineMath math="20" /> minit muncul jika air dianggap kuboid <InlineMath math="11\times7\times1.2" />, seolah-olah **dasar kolam rata**.
+
+Jadi, masa yang diperlukan ialah <InlineMath math="1" /> jam <InlineMath math="15" /> minit.

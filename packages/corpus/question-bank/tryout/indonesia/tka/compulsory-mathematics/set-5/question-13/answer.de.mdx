@@ -1,10 +1,89 @@
-Führe die beiden Spiegelungen **in der Reihenfolge der Aufgabe** aus. Die Spiegelung an der Geraden <InlineMath math="y=x" /> vertauscht die Koordinaten, die Spiegelung an der <InlineMath math="y" />-Achse ändert nur das Vorzeichen der <InlineMath math="x" />-Koordinate.
+# Das Ergebnis der Streckung
 
-<BlockMath math="P(3,-5)\xrightarrow{\ y=x\ }P'(-5,3)\xrightarrow{\ y\text{-Achse}\ }P''(5,3)" />
+Gesucht ist der Flächeninhalt des Teils des Enddreiecks, den das ursprüngliche Dreieck nicht bedeckt. Du brauchst also zwei Dinge: **den Flächeninhalt des Enddreiecks** und **die Lage des ursprünglichen Dreiecks** dazu.
 
-Das endgültige Bild von <InlineMath math="P" /> ist also <InlineMath math="(5,3)" />.
+Eine zentrische Streckung mit Zentrum <InlineMath math="A" /> und Faktor <InlineMath math="-3" /> multipliziert jeden Vektor ab <InlineMath math="A" /> mit <InlineMath math="-3" />. Der Punkt <InlineMath math="A" /> selbst bleibt liegen:
 
-- <InlineMath math="(-5,-3)" /> entsteht bei umgekehrter Reihenfolge: erst die <InlineMath math="y" />-Achse ergibt <InlineMath math="(-3,-5)" />, dann <InlineMath math="y=x" />.
-- <InlineMath math="(-5,3)" /> ist erst das Ergebnis der ersten Spiegelung.
-- <InlineMath math="(-3,-5)" /> spiegelt <InlineMath math="P" /> nur an der <InlineMath math="y" />-Achse.
-- <InlineMath math="(5,-3)" /> ändert im zweiten Schritt beide Vorzeichen, doch die Spiegelung an der <InlineMath math="y" />-Achse lässt die <InlineMath math="y" />-Koordinate unverändert.
+<BlockMath math="\begin{aligned}
+\vec{AB}=(2,0)&\ \Rightarrow\ -3(2,0)=(-6,0),\quad B'=(-5,1) \\
+\vec{AC}=(0,3)&\ \Rightarrow\ -3(0,3)=(0,-9),\quad C'=(1,-8)
+\end{aligned}" />
+
+Das Minuszeichen legt das Dreieck <InlineMath math="AB'C'" /> auf die andere Seite von <InlineMath math="A" />. In diesem Moment berührt es <InlineMath math="ABC" /> nur im Punkt <InlineMath math="A" />.
+
+# Das Ergebnis der Drehung
+
+Eine Drehung um <InlineMath math="180^\circ" /> um <InlineMath math="A" /> kehrt jeden Vektor ab <InlineMath math="A" /> um:
+
+<BlockMath math="\begin{aligned}
+(-6,0)&\ \Rightarrow\ (6,0),\quad B''=(7,1) \\
+(0,-9)&\ \Rightarrow\ (0,9),\quad C''=(1,10)
+\end{aligned}" />
+
+Diese Drehung **kehrt die Richtung wieder um, die der negative Faktor umgekehrt hat**. Insgesamt wirkt das wie eine Streckung mit Zentrum <InlineMath math="A" /> und Faktor <InlineMath math="+3" />, das Enddreieck liegt also wieder auf derselben Seite wie <InlineMath math="ABC" />.
+
+<MathVisual
+  title={<>Ursprüngliches, gestrecktes und Enddreieck</>}
+  description={<>Das ursprüngliche Dreieck <InlineMath math="ABC" /> hat <InlineMath math="A(1,1)" />, <InlineMath math="B(3,1)" />, <InlineMath math="C(1,4)" />. Das gestreckte Dreieck <InlineMath math="AB'C'" /> mit <InlineMath math="B'(-5,1)" /> und <InlineMath math="C'(1,-8)" /> liegt auf der anderen Seite von <InlineMath math="A" />. Das Enddreieck <InlineMath math="AB''C''" /> mit <InlineMath math="B''(7,1)" /> und <InlineMath math="C''(1,10)" /> enthält das ganze Dreieck <InlineMath math="ABC" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    "b-first": <InlineMath math="B'" />,
+    "c-first": <InlineMath math="C'" />,
+    "b-final": <InlineMath math="B''" />,
+    "c-final": <InlineMath math="C''" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 9 },
+      y: { min: -10, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "final", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 1 }, { x: 7, y: 1 }, { x: 1, y: 10 }] },
+      { id: "first", kind: "polygon", appearance: "construction", vertices: [{ x: 1, y: 1 }, { x: -5, y: 1 }, { x: 1, y: -8 }] },
+      { id: "original", kind: "polygon", appearance: "highlight", vertices: [{ x: 1, y: 1 }, { x: 3, y: 1 }, { x: 1, y: 4 }] },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 3, y: 1 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 1, y: 4 } },
+      { id: "point-b-first", kind: "point", appearance: "reference", at: { x: -5, y: 1 } },
+      { id: "point-c-first", kind: "point", appearance: "reference", at: { x: 1, y: -8 } },
+      { id: "point-b-final", kind: "point", appearance: "reference", at: { x: 7, y: 1 } },
+      { id: "point-c-final", kind: "point", appearance: "reference", at: { x: 1, y: 10 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 3, y: 1 }, placement: "below" },
+      { key: "c", objectId: "point-c", at: { x: 1, y: 4 }, placement: "left" },
+      { key: "b-first", objectId: "point-b-first", at: { x: -5, y: 1 }, placement: "above" },
+      { key: "c-first", objectId: "point-c-first", at: { x: 1, y: -8 }, placement: "right" },
+      { key: "b-final", objectId: "point-b-final", at: { x: 7, y: 1 }, placement: "below" },
+      { key: "c-final", objectId: "point-c-final", at: { x: 1, y: 10 }, placement: "left" },
+    ],
+  }}
+/>
+
+# Der gesuchte Flächeninhalt
+
+Das Dreieck <InlineMath math="ABC" /> ist rechtwinklig bei <InlineMath math="A" /> mit den Katheten <InlineMath math="2" /> und <InlineMath math="3" />. Jede Seite wird mit <InlineMath math="3" /> multipliziert, also **wird der Flächeninhalt mit <InlineMath math="3^2=9" /> multipliziert**:
+
+<BlockMath math="\begin{aligned}
+\text{Fläche }ABC&=\tfrac12\cdot2\cdot3=3 \\
+\text{Fläche }A''B''C''&=\tfrac12\cdot6\cdot9=27=9\cdot3
+\end{aligned}" />
+
+Beide Dreiecke haben den rechten Winkel bei <InlineMath math="A" /> mit gleich gerichteten Katheten, und <InlineMath math="ABC" /> ist kleiner. Prüfe mit der Hypotenuse des Enddreiecks, der Geraden <InlineMath math="3x+2y=23" />: Die Punkte <InlineMath math="B" /> und <InlineMath math="C" /> liefern beide <InlineMath math="11\le23" />, liegen also innen. Das ganze Dreieck <InlineMath math="ABC" /> wird vom Enddreieck bedeckt:
+
+<BlockMath math="27-3=24" />
+
+Der Flächeninhalt innerhalb von <InlineMath math="A''B''C''" />, der nicht von <InlineMath math="ABC" /> bedeckt ist, beträgt also <InlineMath math="24" /> Flächeneinheiten.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="27" /> ist der ganze Flächeninhalt des Enddreiecks. Das kommt heraus, wenn du meinst, der Faktor <InlineMath math="-3" /> lege das Enddreieck **auf die andere Seite** von <InlineMath math="ABC" />. Die Drehung um <InlineMath math="180^\circ" /> bringt es aber zurück, sodass <InlineMath math="ABC" /> bedeckt ist.
+- <InlineMath math="6" /> multipliziert den Flächeninhalt mit <InlineMath math="3" /> und erhält <InlineMath math="9-3" />. Der Flächeninhalt ändert sich mit dem Quadrat des Streckfaktors.
+- <InlineMath math="48" /> vergisst das <InlineMath math="\frac12" /> in der Dreiecksfläche: <InlineMath math="6\cdot9-2\cdot3" />.
+- <InlineMath math="78" /> multipliziert den Flächeninhalt mit <InlineMath math="3^3=27" /> und erhält <InlineMath math="81-3" />. Die dritte Potenz gehört zum Volumen, nicht zur Fläche.

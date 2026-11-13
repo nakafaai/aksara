@@ -1,18 +1,37 @@
-Der Ergebnisraum besteht aus <InlineMath math="6\cdot6=36" /> gleich wahrscheinlichen geordneten Paaren, weil beide Würfel fair sind und der erste vom zweiten unterschieden wird. Die Augensumme liegt zwischen <InlineMath math="2" /> und <InlineMath math="12" />, und **prim sind die Summen <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="5" />, <InlineMath math="7" /> und <InlineMath math="11" />**.
+# Drei mögliche umgelegte Kugeln
 
-| Summe | Paare | Anzahl |
-| --- | --- | --- |
-| <InlineMath math="2" /> | <InlineMath math="(1,1)" /> | <InlineMath math="1" /> |
-| <InlineMath math="3" /> | <InlineMath math="(1,2),(2,1)" /> | <InlineMath math="2" /> |
-| <InlineMath math="5" /> | <InlineMath math="(1,4),(4,1),(2,3),(3,2)" /> | <InlineMath math="4" /> |
-| <InlineMath math="7" /> | <InlineMath math="(1,6),(6,1),(2,5),(5,2),(3,4),(4,3)" /> | <InlineMath math="6" /> |
-| <InlineMath math="11" /> | <InlineMath math="(5,6),(6,5)" /> | <InlineMath math="2" /> |
+Was beim Ziehen in Kiste B liegt, hängt von der Farbe der Kugel ab, die aus Kiste A umgelegt wurde, und diese Farbe kennst du nicht. Also **teilst du nach der Farbe der umgelegten Kugel in Fälle auf**, bestimmst in jedem Fall die Wahrscheinlichkeit für zwei gleichfarbige Kugeln und fasst die Fälle dann zusammen.
 
-<BlockMath math="P=\frac{1+2+4+6+2}{36}=\frac{15}{36}=\frac{5}{12}" />
+Kiste A enthält <InlineMath math="4" /> Kugeln, also ist die umgelegte Kugel mit den Wahrscheinlichkeiten <InlineMath math="\tfrac24=\tfrac12" />, <InlineMath math="\tfrac14" /> und <InlineMath math="\tfrac14" /> rot, blau oder grün. Die Werte sind nicht gleich, weil es zwei rote Kugeln gibt.
 
-Die Wahrscheinlichkeit für eine Primzahl als Augensumme ist also <InlineMath math="\frac{5}{12}" />.
+# Gleichfarbige Paare in jedem Fall
 
-- <InlineMath math="\frac{8}{21}" /> zählt Paare ohne Reihenfolge, doch <InlineMath math="(1,2)" /> und <InlineMath math="(2,1)" /> sind zwei verschiedene Ergebnisse.
-- <InlineMath math="\frac{7}{18}" /> vergisst, dass <InlineMath math="2" /> eine Primzahl ist.
-- <InlineMath math="\frac{5}{11}" /> nimmt alle elf Summen als gleich wahrscheinlich an, doch die Summe <InlineMath math="7" /> kommt viel öfter vor als die Summe <InlineMath math="2" />.
-- <InlineMath math="\frac{7}{12}" /> ist die Wahrscheinlichkeit, dass die Summe **keine** Primzahl ist.
+Nach dem Umlegen liegen <InlineMath math="6" /> Kugeln in Kiste B. Zwei nacheinander ohne Zurücklegen gezogene Kugeln bilden ein Paar, und die Reihenfolge ändert nichts daran, ob die Farben gleich sind. Es gibt <InlineMath math="\binom62=15" /> mögliche Paare. **Ein gleichfarbiges Paar kann nur aus einer Farbe mit mindestens zwei Kugeln kommen**.
+
+| Umgelegte Kugel | Wahrscheinlichkeit | Kiste B (rot, blau, grün) | Gleichfarbige Paare | Wahrscheinlichkeit gleiche Farbe |
+| :---: | :---: | :---: | :---: | :---: |
+| rot | <InlineMath math="\tfrac12" /> | <InlineMath math="3,\ 2,\ 1" /> | <InlineMath math="3+1+0=4" /> | <InlineMath math="\tfrac{4}{15}" /> |
+| blau | <InlineMath math="\tfrac14" /> | <InlineMath math="2,\ 3,\ 1" /> | <InlineMath math="1+3+0=4" /> | <InlineMath math="\tfrac{4}{15}" /> |
+| grün | <InlineMath math="\tfrac14" /> | <InlineMath math="2,\ 2,\ 2" /> | <InlineMath math="1+1+1=3" /> | <InlineMath math="\tfrac{3}{15}" /> |
+
+Im roten Fall zum Beispiel ergeben drei rote Kugeln <InlineMath math="\binom32=3" /> Paare, zwei blaue Kugeln <InlineMath math="1" /> Paar, und eine einzelne grüne Kugel bildet kein Paar.
+
+# Die drei Fälle zusammenfassen
+
+Multipliziere die Wahrscheinlichkeit jedes Falls mit der Wahrscheinlichkeit für gleiche Farbe in diesem Fall und addiere:
+
+<BlockMath math="\begin{aligned}
+P&=\tfrac12\cdot\tfrac{4}{15}+\tfrac14\cdot\tfrac{4}{15}+\tfrac14\cdot\tfrac{3}{15} \\
+&=\tfrac{8}{60}+\tfrac{4}{60}+\tfrac{3}{60}=\tfrac{15}{60}=\tfrac14
+\end{aligned}" />
+
+Prüf den roten Fall mit geordnetem Zählen: <InlineMath math="\frac{3\cdot2+2\cdot1}{6\cdot5}=\frac{8}{30}=\frac{4}{15}" />. **Das stimmt mit der Paarzählung überein**, die Tabelle ist also richtig.
+
+Die Wahrscheinlichkeit, dass die beiden aus Kiste B gezogenen Kugeln dieselbe Farbe haben, beträgt also <InlineMath math="\frac14" />.
+
+# Warum die anderen Optionen falsch sind
+
+- <InlineMath math="\frac15" /> übersieht das Umlegen und rechnet mit der ursprünglichen Kiste B, <InlineMath math="\frac{1+1}{10}" />.
+- <InlineMath math="\frac{11}{45}" /> behandelt die drei Farben der umgelegten Kugel als **gleich wahrscheinlich**, je <InlineMath math="\tfrac13" />, obwohl Kiste A zwei rote Kugeln hat.
+- <InlineMath math="\frac{4}{15}" /> nimmt an, die umgelegte Kugel sei sicher rot, weil Rot am wahrscheinlichsten ist. Die Fälle Blau und Grün fehlen.
+- <InlineMath math="\frac38" /> zieht mit Zurücklegen, zum Beispiel <InlineMath math="\frac{9+4+1}{36}" /> im roten Fall, obwohl ohne Zurücklegen gezogen wird.

@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "run-times",
+  stimulus: "klub",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$27$$ menit",
-        },
-        {
-          correct: false,
-          label: "$$28$$ menit",
-        },
-        {
           correct: true,
-          label: "$$28{,}5$$ menit",
+          label: "$$15\\%$$",
         },
         {
           correct: false,
-          label: "$$29$$ menit",
+          label: "$$17{,}5\\%$$",
         },
         {
           correct: false,
-          label: "$$29{,}5$$ menit",
+          label: "$$20\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$35\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$60\\%$$",
         },
       ],
     },

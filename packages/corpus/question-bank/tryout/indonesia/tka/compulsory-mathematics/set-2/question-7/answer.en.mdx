@@ -1,19 +1,37 @@
-You need the **length of the time interval** in which <InlineMath math="h(t)>34" />. Set up the inequality and bring it to standard form.
+# Area as a quadratic function
+
+The question asks for the largest area of the pen. Two details are easy to miss: **the gate gap saves wire**, and the side along the wall **can't be longer than <InlineMath math="20\text{ m}" />**.
+
+Let each side perpendicular to the wall be <InlineMath math="x" /> metres and the side parallel to the wall be <InlineMath math="y" /> metres. Wire goes on both <InlineMath math="x" /> sides and on the <InlineMath math="y" /> side except for the <InlineMath math="2\text{ m}" /> gap:
 
 <BlockMath math="\begin{aligned}
--2t^2+16t+10&>34 \\
--2t^2+16t-24&>0 \\
-t^2-8t+12&<0 \\
-(t-2)(t-6)&<0
+2x+(y-2)&=46 \\
+y&=48-2x \\
+L(x)&=x(48-2x)=-2x^2+48x=-2(x-12)^2+288
 \end{aligned}" />
 
-Dividing by <InlineMath math="-2" /> reverses the inequality sign. The product is negative when the factors have opposite signs, that is, for <InlineMath math="2<t<6" />. The interval lasts <InlineMath math="6-2=4" /> seconds.
+# The vertex isn't allowed
 
-As a check, <InlineMath math="h(2)=-8+32+10=34" /> and <InlineMath math="h(4)=-32+64+10=42>34" />.
+The last form shows the vertex at <InlineMath math="x=12" /> with area <InlineMath math="288" />. But for <InlineMath math="x=12" /> the side along the wall is <InlineMath math="y=48-24=24\text{ m}" />, longer than the wall. So that vertex **doesn't meet the condition**.
 
-So the drone is higher than <InlineMath math="34" /> metres for <InlineMath math="4" /> seconds.
+The wall limits the values of <InlineMath math="x" />:
 
-- <InlineMath math="2" /> seconds is the moment the drone reaches <InlineMath math="34" /> metres, not the duration.
-- <InlineMath math="6" /> seconds is the moment it drops below <InlineMath math="34" /> metres again.
-- <InlineMath math="8" /> seconds adds the two moments instead of subtracting them.
-- <InlineMath math="5" /> seconds comes from not reversing the inequality when dividing by <InlineMath math="-2" />, which gives <InlineMath math="t<2" /> or <InlineMath math="t>6" />, and then adding <InlineMath math="2+3" /> seconds within <InlineMath math="0\le t\le9" />.
+<BlockMath math="\begin{aligned}
+48-2x&\le20 \\
+x&\ge14
+\end{aligned}" />
+
+For <InlineMath math="x\ge14" /> you're already to the right of the vertex, where <InlineMath math="L(x)" /> keeps falling as <InlineMath math="x" /> grows. So the largest area is at the boundary, <InlineMath math="x=14" />:
+
+<BlockMath math="L(14)=14\cdot(48-28)=14\cdot20=280" />
+
+Check: the wire used is <InlineMath math="2\cdot14+(20-2)=46\text{ m}" />, and the <InlineMath math="20\text{ m}" /> side fits the wall exactly. For comparison, <InlineMath math="x=15" /> gives <InlineMath math="15\cdot18=270" />, which is smaller.
+
+So the largest area of the pen is <InlineMath math="280\text{ m}^2" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="288\text{ m}^2" /> is the area at the vertex. Its size is <InlineMath math="12\times24" />, but **a <InlineMath math="24\text{ m}" /> side doesn't fit along a <InlineMath math="20\text{ m}" /> wall**.
+- <InlineMath math="264.5\text{ m}^2" /> forgets the gate gap and the wall limit. From <InlineMath math="2x+y=46" /> the vertex is <InlineMath math="11.5\times23" />.
+- <InlineMath math="260\text{ m}^2" /> uses the wall limit but forgets the gap. From <InlineMath math="2x+20=46" /> you get <InlineMath math="x=13" />, so the area is <InlineMath math="13\cdot20" />.
+- <InlineMath math="252\text{ m}^2" /> takes the gap off the side length, so the side along the wall becomes <InlineMath math="18\text{ m}" />. The gap reduces the wire you need, not the length of the pen's side.

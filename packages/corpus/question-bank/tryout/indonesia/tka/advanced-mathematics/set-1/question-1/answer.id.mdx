@@ -1,29 +1,49 @@
-Persamaan ini membandingkan dua determinan, jadi langkah pertamanya adalah **mengubah setiap determinan menjadi bentuk aljabar dalam** <InlineMath math="x" />. Setelah itu, persamaan determinan berubah menjadi persamaan kuadrat biasa.
+Soal ini meminta jumlah keempat entri matriks <InlineMath math="X" /> yang memenuhi <InlineMath math="AX=B+2X" />. Ada dua hal yang menentukan: cara mengumpulkan suku-suku <InlineMath math="X" />, dan **sisi mana yang dikalikan invers**.
 
-Determinan matriks berordo <InlineMath math="2\times2" /> adalah hasil kali diagonal utama dikurangi hasil kali diagonal sekunder.
+# Pindahkan semua suku ke kiri
 
-<BlockMath math="\begin{vmatrix} x & 2 \\ 3 & x-1 \end{vmatrix}=x(x-1)-2\cdot3=x^2-x-6" />
-
-Determinan berordo <InlineMath math="3\times3" /> diekspansi menurut baris pertama. Elemen tengah baris itu adalah <InlineMath math="0" />, sehingga hanya dua kofaktor yang perlu dihitung. Tanda kofaktor pada baris pertama berurutan positif, negatif, positif.
+Pindahkan <InlineMath math="2X" /> ke ruas kiri. Angka <InlineMath math="2" /> tidak bisa langsung dikurangkan dari matriks <InlineMath math="A" />, jadi tulis dulu <InlineMath math="2X=2IX" />, dengan <InlineMath math="I" /> matriks identitas. Karena <InlineMath math="X" /> berada di **sebelah kanan** <InlineMath math="A" />, faktor <InlineMath math="X" /> juga keluar ke kanan.
 
 <BlockMath math="\begin{aligned}
-\begin{vmatrix} 1 & 0 & 2 \\ 0 & x & 1 \\ 1 & 1 & 3 \end{vmatrix}&=1\begin{vmatrix} x & 1 \\ 1 & 3 \end{vmatrix}-0\begin{vmatrix} 0 & 1 \\ 1 & 3 \end{vmatrix}+2\begin{vmatrix} 0 & x \\ 1 & 1 \end{vmatrix} \\
-&=1(3x-1)-0+2(0\cdot1-x\cdot1) \\
-&=3x-1-2x=x-1
+AX-2IX&=B \\
+(A-2I)X&=B
 \end{aligned}" />
 
-Samakan kedua hasil itu, lalu pindahkan semua suku ke ruas kiri.
+Sekarang hitung <InlineMath math="A-2I" />. Yang dikurangi <InlineMath math="2" /> hanya entri diagonal utama, karena <InlineMath math="2I" /> punya angka <InlineMath math="2" /> di diagonal dan <InlineMath math="0" /> di tempat lain.
+
+<BlockMath math="A-2I=\begin{pmatrix}5-2&2\\1&3-2\end{pmatrix}=\begin{pmatrix}3&2\\1&1\end{pmatrix}" />
+
+# Kalikan invers dari kiri
+
+Sebut <InlineMath math="M=A-2I" />. Determinannya <InlineMath math="3\cdot1-2\cdot1=1" />, jadi <InlineMath math="M" /> punya invers. Untuk matriks <InlineMath math="2\times2" />, invers didapat dengan **menukar dua entri diagonal**, mengubah tanda dua entri lainnya, lalu membagi dengan determinan.
+
+<BlockMath math="M^{-1}=\frac{1}{1}\begin{pmatrix}1&-2\\-1&3\end{pmatrix}=\begin{pmatrix}1&-2\\-1&3\end{pmatrix}" />
+
+Persamaannya <InlineMath math="MX=B" />, dengan <InlineMath math="M" /> di kiri <InlineMath math="X" />. Supaya <InlineMath math="M" /> hilang, kalikan kedua ruas dengan <InlineMath math="M^{-1}" /> dari kiri juga.
 
 <BlockMath math="\begin{aligned}
-x^2-x-6&=x-1 \\
-x^2-2x-5&=0
+X&=M^{-1}B=\begin{pmatrix}1&-2\\-1&3\end{pmatrix}\begin{pmatrix}2&3\\-1&-1\end{pmatrix} \\
+&=\begin{pmatrix}2+2&3+2\\-2-3&-3-3\end{pmatrix}=\begin{pmatrix}4&5\\-5&-6\end{pmatrix}
 \end{aligned}" />
 
-Diskriminan persamaan kuadrat ini adalah <InlineMath math="D=(-2)^2-4(1)(-5)=24" />. Karena <InlineMath math="D>0" />, ada dua nilai real <InlineMath math="x" /> yang berbeda, yaitu <InlineMath math="x=1+\sqrt6" /> dan <InlineMath math="x=1-\sqrt6" />. Rumus jumlah akar memberi <InlineMath math="-\frac{b}{a}=-\frac{-2}{1}=2" />, dan penjumlahan langsung memberi hasil yang sama, <InlineMath math="(1+\sqrt6)+(1-\sqrt6)=2" />.
+Jumlah semua entrinya <InlineMath math="4+5+(-5)+(-6)=-2" />.
 
-Jadi, jumlah semua nilai real <InlineMath math="x" /> yang memenuhi persamaan tersebut adalah <InlineMath math="2" />.
+# Cek ke persamaan awal
 
-- <InlineMath math="-5" /> adalah **hasil kali** kedua akar, yaitu <InlineMath math="\frac{c}{a}" />, bukan jumlahnya.
-- <InlineMath math="-2" /> muncul jika tanda negatif pada rumus <InlineMath math="-\frac{b}{a}" /> terlupa.
-- <InlineMath math="1" /> diperoleh jika hanya <InlineMath math="x^2-x-6=0" /> yang diselesaikan, seolah-olah ruas kanan bernilai nol. Padahal determinan berordo <InlineMath math="3\times3" /> itu bernilai <InlineMath math="x-1" />.
-- <InlineMath math="6" /> muncul jika minor elemen ketiga dihitung sebagai <InlineMath math="x\cdot1-0\cdot1=x" />, bukan <InlineMath math="0\cdot1-x\cdot1=-x" />. Determinan kanan lalu menjadi <InlineMath math="5x-1" />, dan persamaan <InlineMath math="x^2-6x-5=0" /> memiliki jumlah akar <InlineMath math="6" />.
+Masukkan <InlineMath math="X" /> ke kedua ruas <InlineMath math="AX=B+2X" />. Kalau hasilnya sama, **matriks yang kamu dapat sudah benar**.
+
+<BlockMath math="\begin{aligned}
+AX&=\begin{pmatrix}5&2\\1&3\end{pmatrix}\begin{pmatrix}4&5\\-5&-6\end{pmatrix}=\begin{pmatrix}10&13\\-11&-13\end{pmatrix} \\
+B+2X&=\begin{pmatrix}2+8&3+10\\-1-10&-1-12\end{pmatrix}=\begin{pmatrix}10&13\\-11&-13\end{pmatrix}
+\end{aligned}" />
+
+# Kenapa pilihan lain salah
+
+Setiap pilihan yang salah berasal dari **satu langkah yang meleset**.
+
+- <InlineMath math="\frac{4}{3}" /> muncul kalau <InlineMath math="2" /> dikurangkan dari keempat entri <InlineMath math="A" />, sehingga matriksnya menjadi <InlineMath math="\begin{pmatrix}3&0\\-1&1\end{pmatrix}" />. Padahal <InlineMath math="2X=2IX" /> hanya mengubah diagonal.
+- <InlineMath math="2" /> muncul kalau tanda terbalik saat memindahkan ruas, menjadi <InlineMath math="(2I-A)X=B" />. Hasilnya tepat lawan dari <InlineMath math="X" /> yang benar.
+- <InlineMath math="3" /> muncul kalau invers dikalikan dari kanan, <InlineMath math="X=BM^{-1}=\begin{pmatrix}-1&5\\0&-1\end{pmatrix}" />. Perkalian matriks tidak komutatif, jadi matriks ini tidak memenuhi <InlineMath math="MX=B" />.
+- <InlineMath math="12" /> muncul kalau invers dibuat tanpa menukar entri diagonal, yaitu memakai <InlineMath math="\begin{pmatrix}3&-2\\-1&1\end{pmatrix}" /> sebagai <InlineMath math="M^{-1}" />.
+
+Jadi, jumlah semua entri matriks <InlineMath math="X" /> adalah <InlineMath math="-2" />.

@@ -13,20 +13,16 @@ const item: ItemSource = {
       statements: [
         {
           column: 2,
-          label: "$$\\det(3A)=-6$$",
+          label: "$$(AB)^T=A^TB^T$$",
         },
         {
           column: 1,
-          label: "$$A-B=\\begin{pmatrix} 2 & -6 \\\\ 8 & -4 \\end{pmatrix}$$",
+          label: "$$\\det(A+B)=\\det A+\\det B$$",
         },
         {
           column: 2,
           label:
-            "$$A^{-1}=\\frac12\\begin{pmatrix} -4 & 2 \\\\ -5 & 3 \\end{pmatrix}$$",
-        },
-        {
-          column: 1,
-          label: "$$\\det(AB)=-24$$",
+            "Untuk setiap bilangan real $$k$$ berlaku $$\\det(A+kB)=\\det A+k\\det B$$.",
         },
       ],
     },

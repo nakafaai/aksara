@@ -1,15 +1,73 @@
-Setiap kawat, tiang, dan tanah membentuk segitiga siku-siku dengan **kawat sebagai sisi miring** dan tiang sebagai sisi di depan sudut <InlineMath math="\alpha" />. Jadi <InlineMath math="\sin\alpha" /> adalah tinggi tiang dibagi panjang kawat.
+Soal ini menanyakan seberapa jauh ujung atas tangga turun. Panjang tangga tidak diberikan, tetapi **panjangnya sama pada kedua posisi**. Jadi pakai pergeseran kaki tangga untuk mencari panjang tangga dulu, baru hitung turunnya ujung atas.
+
+# Panjang tangga
+
+Sebut panjang tangga <InlineMath math="L" />. Tangga, dinding, dan lantai membentuk segitiga siku-siku dengan sudut <InlineMath math="\theta" /> di kaki tangga. Jarak kaki ke dinding adalah sisi di samping sudut, yaitu <InlineMath math="L\cos\theta" />, dan tinggi ujung atas adalah sisi di depan sudut, yaitu <InlineMath math="L\sin\theta" />.
+
+<MathVisual
+  title={<>Dua posisi tangga</>}
+  description={<>Dinding tegak dan lantai mendatar. Posisi pertama: kaki tangga di <InlineMath math="K" /> dan ujung atas di <InlineMath math="T" />, dengan sudut <InlineMath math="60^\circ" /> terhadap lantai. Posisi kedua: kaki tangga di <InlineMath math="K'" /> yang <InlineMath math="1\text{ m}" /> lebih jauh dari dinding dan ujung atas di <InlineMath math="T'" /> yang lebih rendah, dengan sudut <InlineMath math="45^\circ" />. Kedua tangga sama panjang.</>}
+  labels={{
+    k: <InlineMath math="K" />,
+    "k-new": <InlineMath math="K'" />,
+    t: <InlineMath math="T" />,
+    "t-new": <InlineMath math="T'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 5 },
+      y: { min: -1, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 4.8 } },
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 4.6, y: 0 } },
+      { id: "ladder-before", kind: "segment", appearance: "secondary", from: { x: 1 + Math.sqrt(2), y: 0 }, to: { x: 0, y: (1 + Math.sqrt(2)) * Math.sqrt(3) } },
+      { id: "ladder-after", kind: "segment", appearance: "primary", from: { x: 2 + Math.sqrt(2), y: 0 }, to: { x: 0, y: 2 + Math.sqrt(2) } },
+      { id: "point-k", kind: "point", appearance: "reference", at: { x: 1 + Math.sqrt(2), y: 0 } },
+      { id: "point-k-new", kind: "point", appearance: "reference", at: { x: 2 + Math.sqrt(2), y: 0 } },
+      { id: "point-t", kind: "point", appearance: "reference", at: { x: 0, y: (1 + Math.sqrt(2)) * Math.sqrt(3) } },
+      { id: "point-t-new", kind: "point", appearance: "reference", at: { x: 0, y: 2 + Math.sqrt(2) } },
+    ],
+    labels: [
+      { key: "k", objectId: "point-k", at: { x: 1 + Math.sqrt(2), y: 0 }, placement: "below" },
+      { key: "k-new", objectId: "point-k-new", at: { x: 2 + Math.sqrt(2), y: 0 }, placement: "below" },
+      { key: "t", objectId: "point-t", at: { x: 0, y: (1 + Math.sqrt(2)) * Math.sqrt(3) }, placement: "left" },
+      { key: "t-new", objectId: "point-t-new", at: { x: 0, y: 2 + Math.sqrt(2) }, placement: "left" },
+    ],
+  }}
+/>
+
+Kaki tangga bergeser <InlineMath math="1\text{ m}" />, jadi selisih jarak kaki ke dinding pada kedua posisi adalah <InlineMath math="1" />.
 
 <BlockMath math="\begin{aligned}
-\sin\alpha=\frac{9}{s}=0{,}6\ &\Rightarrow\ s=\frac{9}{0{,}6}=15\text{ m} \\
-3s&=45\text{ m}
+L\cos45^\circ-L\cos60^\circ&=1 \\
+L\left(\frac{\sqrt{2}}{2}-\frac{1}{2}\right)&=1 \\
+L&=\frac{2}{\sqrt{2}-1}\cdot\frac{\sqrt{2}+1}{\sqrt{2}+1}=\frac{2\left(\sqrt{2}+1\right)}{2-1}=2\sqrt{2}+2
 \end{aligned}" />
 
-Cek: jarak kaki kawat ke kaki tiang <InlineMath math="\sqrt{15^2-9^2}=12" /> m, jadi sisi-sisinya <InlineMath math="9" />, <InlineMath math="12" />, dan <InlineMath math="15" />.
+Pada langkah terakhir, **penyebut <InlineMath math="\sqrt{2}-1" /> dirasionalkan dengan sekawannya**, <InlineMath math="\sqrt{2}+1" />, karena <InlineMath math="\left(\sqrt{2}-1\right)\left(\sqrt{2}+1\right)=2-1=1" />.
 
-Jadi, panjang total ketiga kawat adalah <InlineMath math="45" /> m.
+# Turunnya ujung atas
 
-- <InlineMath math="15" /> m adalah panjang satu kawat saja.
-- <InlineMath math="16{,}2" /> m mengalikan tinggi tiang dengan <InlineMath math="\sin\alpha" />, padahal tinggi tiang harus dibagi <InlineMath math="\sin\alpha" />.
-- <InlineMath math="27" /> m menganggap setiap kawat sepanjang tiang.
-- <InlineMath math="36" /> m menjumlahkan jarak mendatar <InlineMath math="12" /> m untuk ketiga kawat, bukan panjang kawatnya.
+Ujung atas turun dari <InlineMath math="L\sin60^\circ" /> ke <InlineMath math="L\sin45^\circ" />. **Panjang <InlineMath math="L" /> dari langkah tadi dipakai lagi di sini**.
+
+<BlockMath math="\begin{aligned}
+L\sin60^\circ-L\sin45^\circ&=L\cdot\frac{\sqrt{3}-\sqrt{2}}{2} \\
+&=\left(\sqrt{2}+1\right)\left(\sqrt{3}-\sqrt{2}\right) \\
+&=\sqrt{6}-2+\sqrt{3}-\sqrt{2} \\
+&=\sqrt{6}+\sqrt{3}-\sqrt{2}-2
+\end{aligned}" />
+
+Cek dengan angka kira-kira: <InlineMath math="2{,}449+1{,}732-1{,}414-2\approx0{,}77\text{ m}" />. Tingginya berubah dari sekitar <InlineMath math="4{,}18\text{ m}" /> menjadi sekitar <InlineMath math="3{,}41\text{ m}" />, dan selisihnya memang sekitar <InlineMath math="0{,}77\text{ m}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\left(\sqrt{6}-\sqrt{3}+\sqrt{2}-2\right)\text{ m}" /> muncul dari <InlineMath math="L=2\left(\sqrt{2}-1\right)" />. Itu terjadi kalau <InlineMath math="\sqrt{2}-1" /> dikalikan, padahal seharusnya membagi.
+- <InlineMath math="\left(\sqrt{3}-\sqrt{2}\right)\text{ m}" /> muncul kalau <InlineMath math="1\text{ m}" /> dibaca sebagai jarak awal kaki tangga ke dinding, sehingga <InlineMath math="L=2" />. Angka <InlineMath math="1\text{ m}" /> adalah **besar pergeseran**, bukan jarak awal.
+- <InlineMath math="\left(\sqrt{6}-\sqrt{3}-\sqrt{2}+2\right)\text{ m}" /> muncul kalau sinus dan kosinus tertukar, yaitu jarak kaki dihitung dengan <InlineMath math="L\sin\theta" /> dan tinggi dengan <InlineMath math="L\cos\theta" />.
+- <InlineMath math="\left(2\sqrt{2}+2\right)\text{ m}" /> adalah panjang tangga. Perhitungannya berhenti satu langkah sebelum jarak turun.
+
+Jadi, ujung atas tangga turun sejauh <InlineMath math="\left(\sqrt{6}+\sqrt{3}-\sqrt{2}-2\right)\text{ m}" />.

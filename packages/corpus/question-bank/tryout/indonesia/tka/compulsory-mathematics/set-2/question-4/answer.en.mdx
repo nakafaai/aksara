@@ -1,17 +1,53 @@
-Let <InlineMath math="t" /> be the fixed charge and <InlineMath math="p" /> the charge per kilometre, in rupiah. A trip of <InlineMath math="x" /> km costs <InlineMath math="t+px" />, so the two trips give a **system of two linear equations in two variables**.
+# The cost of each plan
+
+The question asks how many whole weights <InlineMath math="u" /> from <InlineMath math="1" /> to <InlineMath math="40" /> make Paket Kuota **strictly cheaper**, not equally priced. Each plan has an allowance, so its cost formula changes at <InlineMath math="u=3" /> and at <InlineMath math="u=12" />. That's why you compare the plans piece by piece.
+
+Write the costs in thousands of rupiah. Hemat charges <InlineMath math="6" /> thousand only for each kg above <InlineMath math="3" />, and Kuota charges <InlineMath math="10" /> thousand only for each kg above <InlineMath math="12" />:
 
 <BlockMath math="\begin{aligned}
-t+6p&=21{,}000 \\
-t+10p&=31{,}000 \\
-4p&=10{,}000\ \Rightarrow\ p=2{,}500,\quad t=21{,}000-15{,}000=6{,}000 \\
-t+15p&=6{,}000+37{,}500=43{,}500
+H(u)&=\begin{cases}30, & u\le3 \\ 30+6(u-3)=6u+12, & u>3\end{cases} \\
+K(u)&=\begin{cases}60, & u\le12 \\ 60+10(u-12)=10u-60, & u>12\end{cases}
 \end{aligned}" />
 
-As a check, from <InlineMath math="10" /> km to <InlineMath math="15" /> km the fare rises by <InlineMath math="5\cdot2{,}500=12{,}500" />, and <InlineMath math="31{,}000+12{,}500=43{,}500" />.
+# Comparing piece by piece
 
-So a trip of <InlineMath math="15\text{ km}" /> costs <InlineMath math="\text{Rp}43{,}500" />.
+**First piece**, <InlineMath math="1\le u\le3" />: Hemat is <InlineMath math="30" /> and Kuota is <InlineMath math="60" />, so Kuota costs more.
 
-- <InlineMath math="\text{Rp}37{,}500" /> counts only <InlineMath math="15\cdot2{,}500" /> and forgets the fixed charge.
-- <InlineMath math="\text{Rp}46{,}500" /> treats the fare as proportional to distance from the second trip, <InlineMath math="\frac{31{,}000}{10}\cdot15" />.
-- <InlineMath math="\text{Rp}49{,}500" /> adds the two fares for <InlineMath math="16" /> km and subtracts <InlineMath math="2{,}500" />, which counts the fixed charge twice.
-- <InlineMath math="\text{Rp}52{,}500" /> treats the fare as proportional to distance from the first trip, <InlineMath math="\frac{21{,}000}{6}\cdot15" />.
+**Second piece**, <InlineMath math="3<u\le12" />: Hemat already pays for extra kilograms, while Kuota is still a flat <InlineMath math="60" />.
+
+<BlockMath math="\begin{aligned}
+60&<6u+12 \\
+6u&>48 \\
+u&>8
+\end{aligned}" />
+
+At <InlineMath math="u=8" /> both cost <InlineMath math="60" /> thousand. So Kuota is cheaper for <InlineMath math="u=9,10,11,12" />.
+
+**Third piece**, <InlineMath math="12<u\le40" />: both plans are past their allowance.
+
+<BlockMath math="\begin{aligned}
+10u-60&<6u+12 \\
+4u&<72 \\
+u&<18
+\end{aligned}" />
+
+At <InlineMath math="u=18" /> both cost <InlineMath math="120" /> thousand. So Kuota is cheaper for <InlineMath math="u=13,14,\ldots,17" />. After <InlineMath math="18" />, Hemat wins again because its extra rate is lower.
+
+| Weight | Cheaper plan |
+| --- | --- |
+| <InlineMath math="1\le u\le7" /> | Hemat |
+| <InlineMath math="u=8" /> | equal |
+| <InlineMath math="9\le u\le17" /> | Kuota |
+| <InlineMath math="u=18" /> | equal |
+| <InlineMath math="19\le u\le40" /> | Hemat |
+
+Check one value: for <InlineMath math="u=17" />, Hemat costs <InlineMath math="30+6\cdot14=114" /> thousand and Kuota costs <InlineMath math="60+10\cdot5=110" /> thousand, so Kuota really is cheaper.
+
+So the number of values of <InlineMath math="u" /> is <InlineMath math="17-9+1=9" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="32" /> assumes Kuota stays cheaper for every <InlineMath math="u>8" />. It forgets that **once the <InlineMath math="12\text{ kg}" /> allowance runs out, Kuota climbs faster** and gets caught again at <InlineMath math="u=18" />.
+- <InlineMath math="29" /> counts the weights where Hemat is cheaper, <InlineMath math="7+22" />, which is the opposite of what's asked.
+- <InlineMath math="17" /> forgets Hemat's <InlineMath math="3\text{ kg}" /> allowance and charges Hemat <InlineMath math="30+6u" /> from the first kilogram.
+- <InlineMath math="11" /> also counts <InlineMath math="u=8" /> and <InlineMath math="u=18" />. At those two weights the costs are equal, so Kuota isn't cheaper.

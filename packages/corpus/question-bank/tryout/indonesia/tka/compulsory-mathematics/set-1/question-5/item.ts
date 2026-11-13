@@ -8,28 +8,29 @@ const item: ItemSource = {
   },
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: true,
           label:
-            "Keuntungan maksimum diperoleh dengan menyiapkan $$84$$ nampan cabai dan $$24$$ nampan tomat.",
+            "Untuk $$k=10$$, banyak bilangan bulat $$x$$ yang memenuhi pertidaksamaan itu adalah $$7$$.",
         },
         {
-          column: 2,
-          label:
-            "Pada keuntungan maksimum, dana bahan masih tersisa $$\\text{Rp}300{.}000$$.",
+          correct: true,
+          label: "Pertidaksamaan itu mempunyai penyelesaian jika dan hanya jika $$k\\ge4$$.",
         },
         {
-          column: 2,
-          label:
-            "Keuntungan maksimum yang dapat diperoleh adalah $$\\text{Rp}2{.}500{.}000$$.",
+          correct: false,
+          label: "Untuk $$k=10$$, himpunan penyelesaiannya simetris terhadap $$x=1$$.",
         },
         {
-          column: 1,
+          correct: true,
+          label: "Untuk $$k=4$$, tepat satu bilangan real $$x$$ memenuhi pertidaksamaan itu.",
+        },
+        {
+          correct: false,
           label:
-            "Jika keuntungan satu nampan tomat naik menjadi $$\\text{Rp}45{.}000$$, keuntungan maksimum diperoleh dengan hanya menyiapkan nampan tomat.",
+            "Untuk $$k=6$$, nilai $$x$$ terbesar yang memenuhi pertidaksamaan itu adalah $$\\frac{7}{3}$$.",
         },
       ],
     },

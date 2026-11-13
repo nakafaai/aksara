@@ -1,16 +1,93 @@
-Eine Streckung mit Faktor <InlineMath math="2" /> und Zentrum <InlineMath math="O" /> bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(2x,2y)" /> ab. Also **ist der Urpunkt eines Bildpunkts <InlineMath math="(x,y)" /> der Punkt <InlineMath math="\left(\frac x2,\frac y2\right)" />**, den setzt du in die ursprüngliche Gleichung ein.
+Das Streckzentrum und der Verschiebungsvektor sind unbekannt, also kannst du <InlineMath math="T" /> nicht Schritt für Schritt ausführen. Der Schlüssel: **Eine Streckung mit anschließender Verschiebung ist wieder eine einzige Streckung mit demselben Faktor**, nur um ein anderes Zentrum. Der Plan: <InlineMath math="k" /> bestimmen, das neue Zentrum aus dem Paar <InlineMath math="A" /> und <InlineMath math="A'" /> finden und dieses Zentrum dann für <InlineMath math="B" /> verwenden.
+
+# Die allgemeine Form der Abbildung
+
+Nenne das Streckzentrum <InlineMath math="P" /> und den Verschiebungsvektor <InlineMath math="\vec v" />. Ein Punkt <InlineMath math="X" /> geht zuerst nach <InlineMath math="P+k(X-P)" /> und wird dann um <InlineMath math="\vec v" /> verschoben:
 
 <BlockMath math="\begin{aligned}
-2\cdot\frac x2+3\cdot\frac y2&=6 \\
-x+\frac32y&=6 \\
-2x+3y&=12
+T(X)&=P+k(X-P)+\vec v \\
+&=kX+\big((1-k)P+\vec v\big)=kX+\vec c
 \end{aligned}" />
 
-Probe mit den Achsenschnittpunkten: Die ursprüngliche Gerade schneidet die Achsen in <InlineMath math="(3,0)" /> und <InlineMath math="(0,2)" />. Die Bilder sind <InlineMath math="(6,0)" /> und <InlineMath math="(0,4)" />, und beide erfüllen <InlineMath math="2x+3y=12" />.
+Daraus folgen zwei Dinge. Erstens gilt für zwei beliebige Punkte <InlineMath math="T(X)-T(Y)=k(X-Y)" />, also **wird jede Strecke mit <InlineMath math="k" /> multipliziert**, und die Verschiebung ändert ihre Richtung nicht. Zweitens gibt es für <InlineMath math="k\ne1" /> genau einen Punkt <InlineMath math="Q" />, der sich nicht bewegt, und <InlineMath math="T" /> ist die Streckung mit Faktor <InlineMath math="k" /> an <InlineMath math="Q" />.
 
-Die Bildgerade lautet also <InlineMath math="2x+3y=12" />.
+# Der Streckfaktor aus Fläche und Lage eines Punktes
 
-- <InlineMath math="2x+3y=3" /> ersetzt <InlineMath math="x" /> durch <InlineMath math="2x" /> und <InlineMath math="y" /> durch <InlineMath math="2y" />, also in der falschen Richtung.
-- <InlineMath math="3x+2y=12" /> vertauscht die Koeffizienten von <InlineMath math="x" /> und <InlineMath math="y" />.
-- <InlineMath math="2x+3y=24" /> multipliziert die Konstante mit <InlineMath math="4" />, wie den Faktor für Flächen.
-- <InlineMath math="4x+6y=12" /> verdoppelt jeden Koeffizienten und lässt die Gerade damit, wo sie war.
+Eine Streckung mit Faktor <InlineMath math="k" /> multipliziert Flächen mit <InlineMath math="k^2" />. Also ist <InlineMath math="k^2=9" />, und es gibt **zwei Möglichkeiten**, <InlineMath math="k=3" /> oder <InlineMath math="k=-3" />. Der Punkt <InlineMath math="C" /> entscheidet. Wegen <InlineMath math="C-A=(0,3)" /> gilt:
+
+<BlockMath math="\begin{aligned}
+C'&=A'+k(0,3)=(-2,\ 9+3k) \\
+k=3&\ \Rightarrow\ C'=(-2,18),\ \text{über } A' \\
+k=-3&\ \Rightarrow\ C'=(-2,0),\ \text{unter } A'
+\end{aligned}" />
+
+Laut Aufgabe liegt <InlineMath math="C'" /> unter <InlineMath math="A'" />, also ist <InlineMath math="k=-3" />.
+
+# Das einzige Streckzentrum
+
+Das Zentrum <InlineMath math="Q" /> ist der Punkt, der sich nicht bewegt. Die Streckung mit Faktor <InlineMath math="-3" /> an <InlineMath math="Q" /> bringt <InlineMath math="A" /> nach <InlineMath math="A'" />, also gilt <InlineMath math="A'-Q=-3(A-Q)" />:
+
+<BlockMath math="\begin{aligned}
+A'-Q&=-3A+3Q \\
+4Q&=A'+3A=(-2,9)+(6,3)=(4,12) \\
+Q&=(1,3)
+\end{aligned}" />
+
+Probe: <InlineMath math="A-Q=(1,-2)" /> und <InlineMath math="A'-Q=(-3,6)" />, genau das <InlineMath math="-3" />-Fache. **Der Punkt <InlineMath math="Q" /> liegt zwischen <InlineMath math="A" /> und <InlineMath math="A'" />**, wie es bei einem negativen Faktor sein muss.
+
+# Das Bild des gesuchten Punktes
+
+Strecke jetzt <InlineMath math="B" /> an <InlineMath math="Q" /> mit Faktor <InlineMath math="-3" />:
+
+<BlockMath math="\begin{aligned}
+B-Q&=(4,0)-(1,3)=(3,-3) \\
+B'&=Q-3(B-Q)=(1,3)+(-9,9)=(-8,12)
+\end{aligned}" />
+
+Probe mit der Streckenregel: <InlineMath math="B'-A'=(-6,3)" /> und <InlineMath math="-3(B-A)=-3(2,-1)=(-6,3)" />. **Das passt**.
+
+<MathVisual
+  title={<>Eine einzige Streckung um ein neues Zentrum</>}
+  description={<>Der Punkt <InlineMath math="Q(1,3)" /> ist das Zentrum der einzigen Streckung mit Faktor <InlineMath math="-3" />. Die Strecke von <InlineMath math="A(2,1)" /> nach <InlineMath math="A'(-2,9)" /> geht durch <InlineMath math="Q" />, und der Abstand <InlineMath math="QA'" /> ist dreimal so groß wie der Abstand <InlineMath math="QA" />. Dasselbe gilt für <InlineMath math="B(4,0)" /> und sein Bild <InlineMath math="B'(-8,12)" />, das auf der anderen Seite von <InlineMath math="Q" /> liegt.</>}
+  labels={{
+    q: <InlineMath math="Q" />,
+    a: <InlineMath math="A" />,
+    a2: <InlineMath math="A'" />,
+    b: <InlineMath math="B" />,
+    b2: <InlineMath math="B'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 6 },
+      y: { min: -2, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ray-a", kind: "segment", appearance: "construction", from: { x: 2, y: 1 }, to: { x: -2, y: 9 } },
+      { id: "ray-b", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: -8, y: 12 } },
+      { id: "point-q", kind: "point", appearance: "highlight", at: { x: 1, y: 3 } },
+      { id: "point-a", kind: "point", appearance: "primary", at: { x: 2, y: 1 } },
+      { id: "point-a2", kind: "point", appearance: "secondary", at: { x: -2, y: 9 } },
+      { id: "point-b", kind: "point", appearance: "primary", at: { x: 4, y: 0 } },
+      { id: "point-b2", kind: "point", appearance: "answer", at: { x: -8, y: 12 } },
+    ],
+    labels: [
+      { key: "q", objectId: "point-q", at: { x: 1, y: 3 }, placement: "right" },
+      { key: "a", objectId: "point-a", at: { x: 2, y: 1 }, placement: "below-left" },
+      { key: "a2", objectId: "point-a2", at: { x: -2, y: 9 }, placement: "right" },
+      { key: "b", objectId: "point-b", at: { x: 4, y: 0 }, placement: "above-right" },
+      { key: "b2", objectId: "point-b2", at: { x: -8, y: 12 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="(-4,4)" /> streckt <InlineMath math="B" /> an <InlineMath math="A" /> mit Faktor <InlineMath math="-3" />, als wäre <InlineMath math="A" /> ein festes Zentrum. Aber <InlineMath math="A" /> **bewegt sich mit**, nämlich nach <InlineMath math="A'" />.
+- <InlineMath math="(0,8)" /> hält <InlineMath math="T" /> für eine reine Verschiebung um <InlineMath math="A'-A=(-4,8)" />. Eine Verschiebung ändert die Fläche nicht, hier wird sie aber <InlineMath math="9" />-mal so groß.
+- <InlineMath math="(4,6)" /> verwendet <InlineMath math="k=3" />. Mit diesem Faktor liegt <InlineMath math="C'=(-2,18)" /> über <InlineMath math="A'" />, im Widerspruch zur dritten Angabe.
+- <InlineMath math="(10,-6)" /> findet das Zentrum <InlineMath math="Q(1,3)" /> richtig, verliert aber beim Strecken von <InlineMath math="B" /> das Minuszeichen und rechnet <InlineMath math="Q+3(B-Q)" />.
+
+Das Bild von <InlineMath math="B(4,0)" /> unter <InlineMath math="T" /> ist also <InlineMath math="(-8,12)" />.

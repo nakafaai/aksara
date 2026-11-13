@@ -1,12 +1,43 @@
-This series has first term <InlineMath math="a=2" /> and **common difference <InlineMath math="b=3" />**. Use <InlineMath math="S_n=\frac n2\big(2a+(n-1)b\big)" />.
+The question asks for the largest number of the arithmetic sequence **before it was changed**. Two things decide it: the geometric condition gives two possible common differences, and the word naik (increasing) throws one of them out.
 
-<BlockMath math="S_{20}=\frac{20}{2}\big(2\cdot2+19\cdot3\big)=10\cdot61=610" />
+# Writing the three numbers
 
-Check with the last term: <InlineMath math="U_{20}=2+19\cdot3=59" />, and <InlineMath math="S_{20}=\frac{20}{2}(2+59)=610" />.
+In an arithmetic sequence, **the middle term is the average of the three terms**. The sum is <InlineMath math="45" />, so the middle term is <InlineMath math="15" />. Write the three numbers with common difference <InlineMath math="d" />.
 
-So the sum of the first <InlineMath math="20" /> terms is <InlineMath math="610" />.
+<BlockMath math="\begin{aligned}
+\text{original}&:\ 15-d,\ \ 15,\ \ 15+d \\
+\text{after the change}&:\ 12-d,\ \ 15,\ \ 22+d
+\end{aligned}" />
 
-- <InlineMath math="59" /> is the <InlineMath math="20" />th term, not the sum.
-- <InlineMath math="305" /> halves the correct result once more.
-- <InlineMath math="590" /> uses <InlineMath math="a+19b" /> inside the brackets, but it should be <InlineMath math="2a+19b" />.
-- <InlineMath math="1{,}220" /> forgets to divide <InlineMath math="n" /> by <InlineMath math="2" />.
+# The geometric condition
+
+Three numbers form a geometric sequence when **the square of the middle term equals the product of the two outer terms**, because the ratio of the second term to the first equals the ratio of the third to the second.
+
+<BlockMath math="\begin{aligned}
+15^2&=(12-d)(22+d) \\
+225&=264-10d-d^2 \\
+d^2+10d-39&=0 \\
+(d+13)(d-3)&=0
+\end{aligned}" />
+
+So <InlineMath math="d=3" /> or <InlineMath math="d=-13" />.
+
+# Choosing the right difference
+
+Try both.
+
+| Difference | Arithmetic sequence | Geometric sequence | Ratio |
+| --- | --- | --- | --- |
+| <InlineMath math="d=3" /> | <InlineMath math="12,\ 15,\ 18" /> | <InlineMath math="9,\ 15,\ 25" /> | <InlineMath math="\tfrac{5}{3}" /> |
+| <InlineMath math="d=-13" /> | <InlineMath math="28,\ 15,\ 2" /> | <InlineMath math="25,\ 15,\ 9" /> | <InlineMath math="\tfrac{3}{5}" /> |
+
+Both satisfy the geometric condition, but the question says the arithmetic sequence is **increasing**. The sequence <InlineMath math="28,\ 15,\ 2" /> goes down, so <InlineMath math="d=-13" /> is out. The original sequence is <InlineMath math="12,\ 15,\ 18" />, and its largest number is <InlineMath math="18" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="25" /> is the largest term of the geometric sequence. That's a number **after the change**, so the added <InlineMath math="7" /> hasn't been taken back.
+- <InlineMath math="32" /> comes from undoing the added <InlineMath math="7" /> the wrong way, <InlineMath math="25+7" />. You get the original third term by subtracting <InlineMath math="7" />.
+- <InlineMath math="28" /> is the largest number of the decreasing sequence <InlineMath math="28,\ 15,\ 2" />, which the word increasing rules out.
+- <InlineMath math="22" /> comes from using the decreasing geometric sequence <InlineMath math="25,\ 15,\ 9" /> and then undoing its first term the wrong way, <InlineMath math="25-3" />. That sequence is already ruled out, and its original first term would be <InlineMath math="25+3=28" />.
+
+So the largest number of the original arithmetic sequence is <InlineMath math="18" />.

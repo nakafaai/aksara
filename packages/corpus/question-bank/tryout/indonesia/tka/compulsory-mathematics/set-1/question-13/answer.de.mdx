@@ -1,15 +1,66 @@
-Bei einer Verkettung zählt die **Reihenfolge**: zuerst spiegeln, dann verschieben. Bei der Spiegelung an der waagerechten Geraden <InlineMath math="y=3" /> bleibt die <InlineMath math="x" />-Koordinate gleich, und die <InlineMath math="y" />-Koordinate wird zu <InlineMath math="2\cdot3-y" />.
+# Die Form von APQB
 
-<BlockMath math="\begin{aligned}
-P(5,-2)&\xrightarrow{\ y=3\ }P'(5,\ 6-(-2))=P'(5,8) \\
-P'(5,8)&\xrightarrow{\ T\ }P''(5-4,\ 8+1)=P''(1,9)
-\end{aligned}" />
+Ein Radius zum Berührpunkt steht immer **senkrecht auf der Tangente**. Also stehen <InlineMath math="AP" /> und <InlineMath math="BQ" /> beide senkrecht auf <InlineMath math="PQ" /> und sind deshalb parallel. Das Viereck <InlineMath math="APQB" /> ist ein rechtwinkliges Trapez mit den parallelen Seiten <InlineMath math="9" /> und <InlineMath math="4" />, und seine Höhe ist <InlineMath math="PQ" />.
 
-Zur Kontrolle: <InlineMath math="P" /> und <InlineMath math="P'" /> liegen beide <InlineMath math="5" /> Einheiten von der Geraden <InlineMath math="y=3" /> entfernt, der eine darunter, der andere darüber.
+<MathVisual
+  title="Ein Trapez aus zwei Kreisen"
+  description={<>Der große Kreis mit Mittelpunkt <InlineMath math="A" /> berührt eine waagerechte Gerade in <InlineMath math="P" />. Der kleine Kreis mit Mittelpunkt <InlineMath math="B" /> berührt dieselbe Gerade in <InlineMath math="Q" />. Die beiden Kreise berühren sich von außen. Die Strecken <InlineMath math="AP" /> und <InlineMath math="BQ" /> stehen senkrecht auf der Tangente, und die Strecke <InlineMath math="AB" /> geht durch den Berührpunkt der Kreise.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    "radius-a": <InlineMath math="9" />,
+    "radius-b": <InlineMath math="4" />,
+    "tangent-length": <InlineMath math="12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 17 },
+      y: { min: -2, max: 19 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle-a", kind: "circle", appearance: "primary", center: { x: 0, y: 9 }, radius: 9 },
+      { id: "circle-b", kind: "circle", appearance: "primary", center: { x: 2 * Math.sqrt(9 * 4), y: 4 }, radius: 4 },
+      { id: "tangent", kind: "line", appearance: "reference", through: [{ x: 0, y: 0 }, { x: 2 * Math.sqrt(9 * 4), y: 0 }] },
+      { id: "radius-a", kind: "segment", appearance: "highlight", from: { x: 0, y: 9 }, to: { x: 0, y: 0 } },
+      { id: "radius-b", kind: "segment", appearance: "highlight", from: { x: 2 * Math.sqrt(9 * 4), y: 4 }, to: { x: 2 * Math.sqrt(9 * 4), y: 0 } },
+      { id: "centres", kind: "segment", appearance: "secondary", from: { x: 0, y: 9 }, to: { x: 2 * Math.sqrt(9 * 4), y: 4 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 9 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(9 * 4), y: 4 } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(9 * 4), y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 9 }, placement: "above-left" },
+      { key: "b", objectId: "point-b", at: { x: 2 * Math.sqrt(9 * 4), y: 4 }, placement: "above-right" },
+      { key: "p", objectId: "point-p", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "q", objectId: "point-q", at: { x: 2 * Math.sqrt(9 * 4), y: 0 }, placement: "below" },
+      { key: "radius-a", objectId: "radius-a", at: { x: 0, y: 4.5 }, placement: "left" },
+      { key: "radius-b", objectId: "radius-b", at: { x: 2 * Math.sqrt(9 * 4), y: 2 }, placement: "right" },
+      { key: "tangent-length", objectId: "tangent", at: { x: Math.sqrt(9 * 4), y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
-Der Endbildpunkt ist also <InlineMath math="(1,9)" />.
+# Die Länge der Tangentenstrecke PQ
 
-- <InlineMath math="(5,8)" /> ist nur das Spiegelbild. Die Verschiebung fehlt.
-- <InlineMath math="(1,7)" /> entsteht mit der falschen Reihenfolge: erst verschieben zu <InlineMath math="(1,-1)" />, dann spiegeln.
-- <InlineMath math="(1,3)" /> spiegelt an der <InlineMath math="x" />-Achse statt an <InlineMath math="y=3" /> und verschiebt dann.
-- <InlineMath math="(-3,-1)" /> spiegelt an der senkrechten Geraden <InlineMath math="x=3" /> und verschiebt dann.
+Die Kreise berühren sich von außen, also **ist der Abstand der Mittelpunkte die Summe der Radien**, <InlineMath math="AB=9+4=13\text{ cm}" />. Zieh von <InlineMath math="B" /> eine Parallele zu <InlineMath math="PQ" /> bis zur Strecke <InlineMath math="AP" />. So entsteht ein rechtwinkliges Dreieck mit Hypotenuse <InlineMath math="13" /> und einer Kathete <InlineMath math="9-4=5" />:
+
+<BlockMath math="PQ=\sqrt{13^2-5^2}=\sqrt{169-25}=\sqrt{144}=12\text{ cm}" />
+
+# Der Flächeninhalt des Trapezes
+
+<BlockMath math="\text{Fläche}=\frac{AP+BQ}{2}\cdot PQ=\frac{9+4}{2}\cdot12=78\text{ cm}^2" />
+
+Das Viereck <InlineMath math="APQB" /> **hat also den Flächeninhalt <InlineMath math="78\text{ cm}^2" />**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="156\text{ cm}^2" /> vergisst das Halbieren in der Trapezformel.
+- <InlineMath math="65\text{ cm}^2" /> ist <InlineMath math="13\cdot5" />, das Produkt zweier Seiten des Hilfsdreiecks. **Die Fläche des Vierecks ist nicht das Produkt zweier beliebiger Strecken**.
+- <InlineMath math="54\text{ cm}^2" /> ist nur das Dreieck <InlineMath math="\frac12\cdot9\cdot12" />. Der Teil unter <InlineMath math="B" /> fehlt.
+- <InlineMath math="84{,}5\text{ cm}^2" /> nimmt <InlineMath math="AB=13" /> als Höhe. Die Höhe des Trapezes ist <InlineMath math="PQ" />, die senkrecht auf beiden parallelen Seiten steht.

@@ -12,28 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "Pernyataan (1) SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan (2) SAJA tidak cukup.",
+          label: "$$(240\\pi-180\\sqrt{3})$$ liter",
+        },
+        {
+          correct: false,
+          label: "$$(480\\pi-180\\sqrt{3})$$ liter",
+        },
+        {
+          correct: false,
+          label: "$$480\\pi$$ liter",
+        },
+        {
+          correct: false,
+          label: "$$540\\pi$$ liter",
         },
         {
           correct: true,
-          label:
-            "Pernyataan (2) SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan (1) SAJA tidak cukup.",
-        },
-        {
-          correct: false,
-          label:
-            "DUA pernyataan BERSAMA-SAMA cukup untuk menjawab pertanyaan, tetapi SATU pernyataan SAJA tidak cukup.",
-        },
-        {
-          correct: false,
-          label:
-            "Pernyataan (1) SAJA cukup untuk menjawab pertanyaan dan pernyataan (2) SAJA cukup.",
-        },
-        {
-          correct: false,
-          label:
-            "Pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.",
+          label: "$$(480\\pi+180\\sqrt{3})$$ liter",
         },
       ],
     },

@@ -6,30 +6,23 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  stimulus: "liquid-fertilizer",
+  stimulus: "bunyi",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label:
-            "Harga per mL pupuk dalam kemasan besar $$12{,}5\\,\\%$$ lebih murah daripada harga per mL dalam kemasan kecil.",
+          column: 2,
+          label: "Menambah satu bedug besar ke dalam sekelompok bedug besar yang sedang dipukul bersamaan selalu menaikkan taraf intensitas di suatu titik sebesar $$3\\text{ dB}$$, berapa pun banyak bedug semula.",
         },
         {
           column: 2,
-          label: "Satu kemasan kecil cukup untuk lebih dari $$100$$ liter air.",
+          label: "Jika taraf intensitas bunyi panggung A di titik Q $$10\\text{ dB}$$ lebih kecil daripada di titik P, jarak Q ke panggung A sama dengan $$10$$ kali jarak P ke panggung A.",
         },
         {
           column: 1,
-          label:
-            "Jika takarannya dinaikkan menjadi $$20$$ mL pupuk untuk setiap $$4$$ liter air, satu kemasan besar cukup untuk $$200$$ liter air.",
-        },
-        {
-          column: 2,
-          label:
-            "Dengan kemasan kecil, biaya pupuk untuk setiap liter air lebih dari $$\\text{Rp}250$$.",
+          label: "Untuk setiap jarak $$d$$ dan setiap bilangan asli $$k$$, taraf intensitas bunyi $$k$$ bedug besar yang didengar dari jarak $$d$$ sama dengan taraf intensitas bunyi $$16k$$ bedug kecil yang didengar dari jarak $$2d$$.",
         },
       ],
     },

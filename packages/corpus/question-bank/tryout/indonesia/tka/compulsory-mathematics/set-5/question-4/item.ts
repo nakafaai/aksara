@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$11{,}25$$ kg",
+          label: "$$2$$",
+        },
+        {
+          correct: false,
+          label: "$$3$$",
+        },
+        {
+          correct: false,
+          label: "$$5$$",
+        },
+        {
+          correct: false,
+          label: "$$8$$",
         },
         {
           correct: true,
-          label: "$$12$$ kg",
-        },
-        {
-          correct: false,
-          label: "$$15$$ kg",
-        },
-        {
-          correct: false,
-          label: "$$18$$ kg",
-        },
-        {
-          correct: false,
-          label: "$$22{,}8$$ kg",
+          label: "$$9$$",
         },
       ],
     },

@@ -1,20 +1,42 @@
-Berechne zuerst **die benötigte Düngermenge** und wähle dann die günstigste Kombination ganzer Packungen, die reicht.
+# Die Grenze als Intensität
 
-<BlockMath math="\frac{2{.}600}{4}\cdot10=650\cdot10=6{.}500\text{ mL}=6{,}5\text{ Liter}" />
+Gesucht ist die größte Zahl großer Trommeln, bei der die vordere Zuschauerreihe nicht zu laut beschallt wird. Die Grenze steht in Dezibel, addieren kannst du aber nur Intensitäten. Also **rechne zuerst die Grenze <InlineMath math="90\text{ dB}" /> in eine Intensitätsgrenze um**.
 
-Die große Packung ist pro mL günstiger, <InlineMath math="\text{Rp}84" /> gegenüber <InlineMath math="\text{Rp}96" /> bei der kleinen. Nimm also so viele große Packungen wie möglich und deck den Rest am günstigsten ab.
+<BlockMath math="\begin{aligned}
+10\log\frac{I}{10^{-12}}&<90 \\
+\frac{I}{10^{-12}}&<10^{9} \\
+I&<10^{-3}\ \text{W/m}^2
+\end{aligned}" />
 
-| Wahl | Inhalt | Kosten |
-| --- | --- | --- |
-| <InlineMath math="6" /> große | <InlineMath math="6" /> Liter | zu wenig |
-| <InlineMath math="6" /> große und <InlineMath math="1" /> kleine | <InlineMath math="6{,}25" /> Liter | zu wenig |
-| <InlineMath math="6" /> große und <InlineMath math="2" /> kleine | <InlineMath math="6{,}5" /> Liter | <InlineMath math="504{.}000+48{.}000=552{.}000" /> |
-| <InlineMath math="7" /> große | <InlineMath math="7" /> Liter | <InlineMath math="588{.}000" /> |
-| <InlineMath math="5" /> große und <InlineMath math="6" /> kleine | <InlineMath math="6{,}5" /> Liter | <InlineMath math="420{.}000+144{.}000=564{.}000" /> |
+# Der Beitrag jeder Trommel
 
-Der günstigste ausreichende Kauf kostet also <InlineMath math="\text{Rp}552{.}000" />.
+Laut Text hat eine große Trommel in <InlineMath math="1\text{ m}" /> Abstand die Intensität <InlineMath math="10^{-2}\ \text{W/m}^2" />, denn <InlineMath math="10\log(10^{-2}/10^{-12})=100" />. Eine kleine Trommel hat ein Viertel davon. Teile jetzt durch das Quadrat des Abstands zur vorderen Reihe.
 
-- <InlineMath math="\text{Rp}504{.}000" /> kauft nur <InlineMath math="6" /> Liter, es fehlen <InlineMath math="0{,}5" /> Liter.
-- <InlineMath math="\text{Rp}528{.}000" /> kauft <InlineMath math="6{,}25" /> Liter, es fehlen noch <InlineMath math="0{,}25" /> Liter.
-- <InlineMath math="\text{Rp}546{.}000" /> rechnet <InlineMath math="6{,}5\cdot84{.}000" />, als könnte man eine halbe große Packung kaufen.
-- <InlineMath math="\text{Rp}588{.}000" /> reicht, ist aber <InlineMath math="\text{Rp}36{.}000" /> teurer als <InlineMath math="6" /> große und <InlineMath math="2" /> kleine.
+<BlockMath math="\begin{aligned}
+\text{eine große Trommel in }20\text{ m}&:\ \frac{10^{-2}}{20^2}=2{,}5\cdot10^{-5}\ \text{W/m}^2 \\
+\text{eine kleine Trommel in }40\text{ m}&:\ \frac{\tfrac14\cdot10^{-2}}{40^2}=1{,}5625\cdot10^{-6}\ \text{W/m}^2 \\
+\text{32 kleine Trommeln}&:\ 32\cdot1{,}5625\cdot10^{-6}=5\cdot10^{-5}\ \text{W/m}^2
+\end{aligned}" />
+
+Das geht auch kürzer. Eine kleine Trommel ist ein Viertel einer großen, und sie ist doppelt so weit weg, also wird ihre Intensität noch einmal durch <InlineMath math="2^2=4" /> geteilt. Damit ist **eine kleine Trommel auf Bühne B so viel wert wie <InlineMath math="\tfrac1{16}" /> einer großen Trommel auf Bühne A**, und <InlineMath math="32" /> kleine Trommeln sind so viel wert wie <InlineMath math="2" /> große.
+
+# Die größte Zahl großer Trommeln
+
+Addiere die Intensitäten beider Bühnen und benutze die strenge Grenze.
+
+<BlockMath math="\begin{aligned}
+n\cdot2{,}5\cdot10^{-5}+5\cdot10^{-5}&<10^{-3} \\
+2{,}5n+5&<100 \\
+n&<38
+\end{aligned}" />
+
+Weil die Bedingung **kleiner als** lautet, ist <InlineMath math="n=38" /> nicht erlaubt. Bei <InlineMath math="n=38" /> ist die Intensität genau <InlineMath math="40\cdot2{,}5\cdot10^{-5}=10^{-3}" />, also genau <InlineMath math="90\text{ dB}" />. Bei <InlineMath math="n=37" /> ist sie <InlineMath math="39\cdot2{,}5\cdot10^{-5}=9{,}75\cdot10^{-4}" />, noch unter der Grenze.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="31" /> entsteht, wenn du die kleinen Trommeln so rechnest, als wären sie auch <InlineMath math="20\text{ m}" /> entfernt, oder wenn du den Faktor <InlineMath math="\tfrac14" /> vergisst. Beides macht die <InlineMath math="32" /> kleinen Trommeln so stark wie <InlineMath math="8" /> große.
+- <InlineMath math="35" /> entsteht, wenn du das Abstandsverhältnis <InlineMath math="\tfrac{20}{40}" /> nicht quadrierst. **Die Intensität hängt vom Quadrat des Abstands ab**, der Faktor ist also <InlineMath math="\tfrac14\cdot\tfrac14" /> und nicht <InlineMath math="\tfrac14\cdot\tfrac12" />.
+- <InlineMath math="38" /> benutzt kleiner oder gleich. Bei <InlineMath math="n=38" /> ist der Pegel genau <InlineMath math="90\text{ dB}" />, und das ist nicht kleiner als <InlineMath math="90\text{ dB}" />.
+- <InlineMath math="39" /> vergisst die <InlineMath math="32" /> kleinen Trommeln, die gleichzeitig gespielt werden.
+
+Das größte mögliche <InlineMath math="n" /> ist also <InlineMath math="37" />.

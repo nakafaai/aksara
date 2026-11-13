@@ -1,15 +1,40 @@
-Hitung dulu **mentega yang diperlukan untuk <InlineMath math="60" /> kue**, lalu cari banyak bungkus <InlineMath math="200" /> g paling sedikit yang cukup.
+Soal ini meminta pemeriksaan pertama yang hasilnya **kurang dari** <InlineMath math="35\text{ mg}" />. Untuk itu kamu perlu dua hal: banyak zat aktif tepat setelah tablet terakhir, lalu nilainya di setiap jam pemeriksaan.
+
+# Isi darah setelah tablet terakhir
+
+Setiap <InlineMath math="6" /> jam, semua zat aktif di darah tinggal setengah, lalu tablet berikutnya menambah <InlineMath math="160\text{ mg}" />. **Tablet lama tidak hilang**, sisanya ikut terbawa.
 
 <BlockMath math="\begin{aligned}
-\frac{60}{24}\cdot150&=2{,}5\cdot150=375\text{ g} \\
-1\text{ bungkus}&=200\text{ g}<375\text{ g} \\
-2\text{ bungkus}&=400\text{ g}\ge375\text{ g} \\
-\text{sisa}&=400-375=25\text{ g}
+\text{pukul 06.00}&:\ 160 \\
+\text{pukul 12.00}&:\ \tfrac{1}{2}\cdot160+160=240 \\
+\text{pukul 18.00}&:\ \tfrac{1}{2}\cdot240+160=280
 \end{aligned}" />
 
-Jadi, Rina membeli <InlineMath math="2" /> bungkus mentega dan sisanya <InlineMath math="25" /> g.
+Setelah pukul 18.00 tidak ada tablet lagi. Jadi, mulai dari <InlineMath math="280\text{ mg}" />, isi darah hanya berkurang.
 
-- <InlineMath math="1" /> bungkus dengan sisa <InlineMath math="50" /> g memakai <InlineMath math="150" /> g mentega, yaitu takaran untuk <InlineMath math="24" /> kue saja.
-- <InlineMath math="2" /> bungkus dengan sisa <InlineMath math="100" /> g memakai faktor <InlineMath math="2" />, yaitu takaran untuk <InlineMath math="48" /> kue.
-- <InlineMath math="3" /> bungkus dengan sisa <InlineMath math="150" /> g memakai faktor <InlineMath math="3" />, yaitu takaran untuk <InlineMath math="72" /> kue.
-- <InlineMath math="3" /> bungkus dengan sisa <InlineMath math="225" /> g memakai <InlineMath math="375" /> g dengan benar, tetapi membeli satu bungkus lebih banyak dari yang perlu.
+# Hasil setiap pemeriksaan
+
+Jarak antarpemeriksaan <InlineMath math="3" /> jam, yaitu setengah dari <InlineMath math="6" /> jam. Jadi, setiap pemeriksaan **mengalikan isi darah dengan** <InlineMath math="\left(\tfrac{1}{2}\right)^{1/2}=\tfrac{1}{2}\sqrt{2}" />, dan dua pemeriksaan berturut-turut mengalikannya dengan <InlineMath math="\tfrac{1}{2}" />.
+
+<BlockMath math="M=280\left(\tfrac{1}{2}\right)^{t/6},\qquad t=3,\ 6,\ 9,\ \ldots" />
+
+| Pemeriksaan | <InlineMath math="t" /> (jam) | Banyak zat aktif (mg) |
+| --- | --- | --- |
+| Senin 21.00 | <InlineMath math="3" /> | <InlineMath math="140\sqrt{2}\approx197{,}4" /> |
+| Selasa 00.00 | <InlineMath math="6" /> | <InlineMath math="140" /> |
+| Selasa 03.00 | <InlineMath math="9" /> | <InlineMath math="70\sqrt{2}\approx98{,}7" /> |
+| Selasa 06.00 | <InlineMath math="12" /> | <InlineMath math="70" /> |
+| Selasa 09.00 | <InlineMath math="15" /> | <InlineMath math="35\sqrt{2}\approx49{,}4" /> |
+| Selasa 12.00 | <InlineMath math="18" /> | <InlineMath math="35" /> |
+| Selasa 15.00 | <InlineMath math="21" /> | <InlineMath math="17{,}5\sqrt{2}\approx24{,}7" /> |
+
+Pada pukul 12.00, isi darah tepat <InlineMath math="35\text{ mg}" />. Angka <InlineMath math="35" /> tidak kurang dari <InlineMath math="35" />, jadi pemeriksaan ini **belum memenuhi syarat**. Pemeriksaan berikutnya, pukul 15.00, menunjukkan sekitar <InlineMath math="24{,}7\text{ mg}" />, dan ini sudah kurang dari <InlineMath math="35\text{ mg}" />.
+
+# Kenapa pilihan lain salah
+
+- Pukul 06.00 muncul kalau kamu lupa menambahkan tablet pukul 18.00 dan memakai <InlineMath math="120\text{ mg}" />, yaitu isi darah sesaat sebelum tablet itu. Dari <InlineMath math="120" />, pukul 06.00 tinggal <InlineMath math="30" />.
+- Pukul 09.00 muncul kalau kamu **hanya menghitung tablet terakhir**. Dari <InlineMath math="160" />, pukul 09.00 tinggal <InlineMath math="20\sqrt{2}\approx28{,}2" />. Padahal pada pukul 18.00 dua tablet sebelumnya masih menyisakan <InlineMath math="120\text{ mg}" />, jadi perkiraan itu terlalu rendah.
+- Pukul 12.00 adalah saat isi darah tepat <InlineMath math="35\text{ mg}" />. Syaratnya kurang dari <InlineMath math="35" />, bukan kurang dari atau sama dengan.
+- Pukul 18.00 muncul kalau kamu menganggap isi darah hanya turun pada kelipatan <InlineMath math="6" /> jam, sehingga pukul 15.00 masih <InlineMath math="35" />. Pilihan ini juga muncul kalau ketiga tablet dijumlahkan tanpa pengurangan menjadi <InlineMath math="480\text{ mg}" />. Zat aktif berkurang terus-menerus, jadi pukul 15.00 isinya sudah di bawah <InlineMath math="35" />.
+
+Jadi, pasien paling cepat boleh diberi obat jenis lain pada hari Selasa pukul 15.00.

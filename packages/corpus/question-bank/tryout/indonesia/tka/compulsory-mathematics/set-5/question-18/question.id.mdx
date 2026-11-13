@@ -1,3 +1,47 @@
-Sebuah jendela terdiri atas persegi panjang dengan lebar <InlineMath math="1{,}4\text{ m}" /> dan tinggi <InlineMath math="1\text{ m}" />, serta setengah lingkaran di atasnya. Diameter setengah lingkaran itu sama dengan lebar persegi panjang. Seluruh jendela ditutup kaca seharga <InlineMath math="\text{Rp}350{.}000" /> per <InlineMath math="\text{m}^2" />. Gunakan <InlineMath math="\pi=\frac{22}{7}" />.
+Sebuah pelat logam dibuat dari persegi panjang <InlineMath math="ABCD" /> dengan <InlineMath math="AB=28\text{ cm}" />. Titik <InlineMath math="M" /> adalah titik tengah <InlineMath math="DC" />. Pada sisi <InlineMath math="DC" /> ditambahkan dua setengah lingkaran ke arah luar dengan diameter <InlineMath math="DM" /> dan <InlineMath math="MC" />. Dari sisi <InlineMath math="AB" /> dipotong setengah lingkaran berdiameter <InlineMath math="AB" /> ke arah dalam. Bentuk pelat ditunjukkan oleh garis tebal pada gambar, sedangkan garis bantu menunjukkan sisi <InlineMath math="AB" /> dan <InlineMath math="DC" /> dari persegi panjang semula.
 
-Biaya kaca untuk jendela itu adalah ....
+<MathVisual
+  title={<>Pelat logam dari persegi panjang <InlineMath math="ABCD" /></>}
+  description={<>Persegi panjang <InlineMath math="ABCD" /> dengan <InlineMath math="A" /> dan <InlineMath math="B" /> di bawah serta <InlineMath math="C" /> dan <InlineMath math="D" /> di atas. Di atas sisi <InlineMath math="DC" /> menempel dua setengah lingkaran kecil berdiameter <InlineMath math="DM" /> dan <InlineMath math="MC" />. Dari sisi <InlineMath math="AB" /> ada lengkungan setengah lingkaran berdiameter <InlineMath math="AB=28\text{ cm}" /> yang masuk ke dalam persegi panjang. Batas pelat terdiri atas sisi <InlineMath math="AD" />, sisi <InlineMath math="BC" />, dan ketiga busur. Sisi <InlineMath math="AB" /> dan <InlineMath math="DC" /> hanya garis bantu.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    m: <InlineMath math="M" />,
+    width: <InlineMath math="28\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 33 },
+      y: { min: -5, max: 51 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "side-ad", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 40 } },
+      { id: "side-bc", kind: "segment", appearance: "primary", from: { x: 28, y: 0 }, to: { x: 28, y: 40 } },
+      { id: "arc-left", kind: "arc", appearance: "primary", center: { x: 7, y: 40 }, radius: 7, startDegrees: 0, sweepDegrees: 180 },
+      { id: "arc-right", kind: "arc", appearance: "primary", center: { x: 21, y: 40 }, radius: 7, startDegrees: 0, sweepDegrees: 180 },
+      { id: "arc-bottom", kind: "arc", appearance: "primary", center: { x: 14, y: 0 }, radius: 14, startDegrees: 0, sweepDegrees: 180 },
+      { id: "helper-ab", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 28, y: 0 } },
+      { id: "helper-dc", kind: "segment", appearance: "construction", from: { x: 0, y: 40 }, to: { x: 28, y: 40 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 28, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 28, y: 40 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 40 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 14, y: 40 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 28, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 28, y: 40 }, placement: "right" },
+      { key: "d", objectId: "point-d", at: { x: 0, y: 40 }, placement: "left" },
+      { key: "m", objectId: "point-m", at: { x: 14, y: 40 }, placement: "below" },
+      { key: "width", objectId: "helper-ab", at: { x: 14, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Luas pelat itu <InlineMath math="(1{.}120-49\pi)\text{ cm}^2" />. Keliling pelat adalah ....

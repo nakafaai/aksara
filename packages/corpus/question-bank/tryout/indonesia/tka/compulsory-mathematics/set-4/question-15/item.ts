@@ -12,27 +12,27 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "dilatasi dengan pusat $$O$$ dan faktor skala $$-2$$",
-        },
-        {
-          correct: false,
           label:
-            "pencerminan terhadap sumbu $$y$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$2$$",
+            "Luas segitiga $$D'E'F'$$ sama dengan $$4$$ kali luas segitiga $$DEF$$.",
         },
         {
           correct: true,
           label:
-            "rotasi $$180^\\circ$$ dengan pusat $$O$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$2$$",
+            "Bayangan garis $$3x-4y=1$$ oleh $$T$$ sejajar dengan garis $$3x+4y=0$$.",
         },
         {
           correct: false,
           label:
-            "pencerminan terhadap garis $$y=x$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$-2$$",
+            "Titik $$D$$, $$E$$, $$F$$ berurutan berlawanan arah jarum jam, dan titik $$D'$$, $$E'$$, $$F'$$ juga berurutan berlawanan arah jarum jam.",
+        },
+        {
+          correct: false,
+          label:
+            "Pusat dilatasi, titik $$P(2,1)$$, dipetakan oleh $$T$$ ke dirinya sendiri.",
         },
         {
           correct: true,
-          label:
-            "dilatasi dengan pusat $$O$$ dan faktor skala $$2$$, dilanjutkan pencerminan terhadap titik $$O$$",
+          label: "Garis $$x=2$$ dipetakan oleh $$T$$ ke dirinya sendiri.",
         },
       ],
     },

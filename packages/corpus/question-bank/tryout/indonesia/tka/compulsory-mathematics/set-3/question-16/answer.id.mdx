@@ -1,12 +1,109 @@
-Lilin besar berbentuk tabung, jadi volumenya **luas alas dikali tinggi**, <InlineMath math="V=\pi r^2t" />. Jari-jarinya setengah diameter, <InlineMath math="r=3{,}5\text{ cm}" />.
+Soal ini menanyakan volume beton seluruh tangga. Karena tangga pejal, setiap anak tangga dan bordes adalah balok yang berdiri di lantai garasi. Jadi **volume tangga sama dengan jumlah volume semua balok itu**. Untuk itu kamu perlu tinggi satu tanjakan dulu.
 
-<BlockMath math="V=\frac{22}{7}\cdot3{,}5^2\cdot12=\frac{22}{7}\cdot12{,}25\cdot12=38{,}5\cdot12=462\text{ cm}^3" />
+# Tinggi satu tanjakan
 
-Sebagai pemeriksaan, luas alasnya <InlineMath math="38{,}5\text{ cm}^2" />, dan <InlineMath math="38{,}5\cdot12=462" />.
+Hitung semua tanjakan dari lantai garasi sampai lantai teras. Hati-hati, **tanjakan terakhir ke lantai teras ikut dihitung**.
 
-Jadi, volume satu lilin besar <InlineMath math="462\text{ cm}^3" />.
+| Bagian | Banyak tanjakan |
+| --- | --- |
+| lantai garasi ke anak tangga ke-<InlineMath math="1" />, lalu sampai ke-<InlineMath math="5" /> | <InlineMath math="5" /> |
+| anak tangga ke-<InlineMath math="5" /> ke bordes | <InlineMath math="1" /> |
+| bordes ke anak tangga ke-<InlineMath math="6" /> | <InlineMath math="1" /> |
+| anak tangga ke-<InlineMath math="6" /> sampai ke-<InlineMath math="9" /> | <InlineMath math="3" /> |
+| anak tangga ke-<InlineMath math="9" /> ke lantai teras | <InlineMath math="1" /> |
 
-- <InlineMath math="132\text{ cm}^3" /> menghitung <InlineMath math="\pi rt" />, jari-jarinya tidak dikuadratkan.
-- <InlineMath math="154\text{ cm}^3" /> memakai rumus kerucut, <InlineMath math="\frac13\pi r^2t" />.
-- <InlineMath math="264\text{ cm}^3" /> menghitung luas selimut <InlineMath math="2\pi rt" />, bukan volume.
-- <InlineMath math="1{.}848\text{ cm}^3" /> memakai diameter <InlineMath math="7\text{ cm}" /> sebagai jari-jari.
+Totalnya <InlineMath math="11" /> tanjakan yang sama tinggi untuk naik <InlineMath math="220\text{ cm}" />:
+
+<BlockMath math="\text{tinggi tanjakan}=\frac{220\text{ cm}}{11}=20\text{ cm}" />
+
+# Tinggi setiap balok
+
+Tinggi setiap balok sama dengan tinggi permukaan atasnya. Anak tangga ke-<InlineMath math="k" /> di bagian bawah setinggi <InlineMath math="20k\text{ cm}" />. Bordes satu tanjakan di atas anak tangga ke-<InlineMath math="5" />, jadi setinggi <InlineMath math="120\text{ cm}" />. Anak tangga bagian atas juga berdiri di lantai garasi, jadi **tingginya melanjutkan dari <InlineMath math="120\text{ cm}" />**, bukan mulai dari nol lagi.
+
+<BlockMath math="\begin{aligned}
+\text{anak tangga ke-}1\text{ sampai ke-}5&:\ 20,\ 40,\ 60,\ 80,\ 100\text{ cm} \\
+\text{bordes}&:\ 120\text{ cm} \\
+\text{anak tangga ke-}6\text{ sampai ke-}9&:\ 140,\ 160,\ 180,\ 200\text{ cm}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Penampang samping tangga</>}
+  description={<>Penampang samping tangga pejal dalam sentimeter. Lima anak tangga pertama mempunyai permukaan atas setinggi <InlineMath math="20" />, <InlineMath math="40" />, <InlineMath math="60" />, <InlineMath math="80" />, dan <InlineMath math="100" />, masing-masing dengan injakan <InlineMath math="30" />. Bordes sepanjang <InlineMath math="100" /> setinggi <InlineMath math="120" />. Empat anak tangga berikutnya setinggi <InlineMath math="140" />, <InlineMath math="160" />, <InlineMath math="180" />, dan <InlineMath math="200" />. Lantai teras setinggi <InlineMath math="220" />. Seluruh bagian di bawah permukaan tangga terisi beton sampai lantai garasi.</>}
+  labels={{
+    step: <InlineMath math="100" />,
+    landing: <InlineMath math="120" />,
+    top: <InlineMath math="200" />,
+    terrace: <InlineMath math="220" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -20, max: 420 },
+      y: { min: -20, max: 260 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      {
+        id: "stair",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 0 },
+          { x: 0, y: 20 },
+          { x: 30, y: 20 },
+          { x: 30, y: 40 },
+          { x: 60, y: 40 },
+          { x: 60, y: 60 },
+          { x: 90, y: 60 },
+          { x: 90, y: 80 },
+          { x: 120, y: 80 },
+          { x: 120, y: 100 },
+          { x: 150, y: 100 },
+          { x: 150, y: 120 },
+          { x: 250, y: 120 },
+          { x: 250, y: 140 },
+          { x: 280, y: 140 },
+          { x: 280, y: 160 },
+          { x: 310, y: 160 },
+          { x: 310, y: 180 },
+          { x: 340, y: 180 },
+          { x: 340, y: 200 },
+          { x: 370, y: 200 },
+          { x: 370, y: 0 },
+        ],
+      },
+      { id: "garage", kind: "segment", appearance: "reference", from: { x: -20, y: 0 }, to: { x: 420, y: 0 } },
+      { id: "terrace", kind: "segment", appearance: "reference", from: { x: 370, y: 220 }, to: { x: 420, y: 220 } },
+    ],
+    labels: [
+      { key: "step", objectId: "stair", at: { x: 135, y: 100 }, placement: "above" },
+      { key: "landing", objectId: "stair", at: { x: 200, y: 120 }, placement: "above" },
+      { key: "top", objectId: "stair", at: { x: 355, y: 200 }, placement: "above" },
+      { key: "terrace", objectId: "terrace", at: { x: 400, y: 220 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Volume semua balok
+
+Setiap anak tangga adalah balok dengan panjang <InlineMath math="30\text{ cm}" />, lebar <InlineMath math="100\text{ cm}" />, dan tinggi masing-masing. Jumlahkan dulu tinggi kesembilan anak tangga, lalu tambahkan balok bordes yang panjangnya <InlineMath math="100\text{ cm}" />:
+
+<BlockMath math="\begin{aligned}
+\text{jumlah tinggi anak tangga}&=(20+40+60+80+100)+(140+160+180+200) \\
+&=300+680=980\text{ cm} \\
+V_{\text{anak tangga}}&=30\cdot100\cdot980=2{.}940{.}000\text{ cm}^3 \\
+V_{\text{bordes}}&=100\cdot100\cdot120=1{.}200{.}000\text{ cm}^3 \\
+V&=2{.}940{.}000+1{.}200{.}000=4{.}140{.}000\text{ cm}^3
+\end{aligned}" />
+
+Karena <InlineMath math="1\text{ m}^3=1{.}000{.}000\text{ cm}^3" />, volumenya <InlineMath math="4{,}14\text{ m}^3" />. **Cek bagian per tahap**: tahap I berisi <InlineMath math="0{,}9+1{,}2=2{,}1\text{ m}^3" /> dan tahap II <InlineMath math="2{,}04\text{ m}^3" />, jumlahnya tetap <InlineMath math="4{,}14\text{ m}^3" />.
+
+Jadi, volume beton seluruh tangga tanpa kelebihan adukan adalah <InlineMath math="4{,}14\text{ m}^3" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="4{,}554\text{ m}^3" /> muncul kalau kamu menghitung hanya <InlineMath math="10" /> tanjakan, sehingga tingginya <InlineMath math="22\text{ cm}" />. Tanjakan dari anak tangga ke-<InlineMath math="9" /> ke lantai teras **juga bagian dari** <InlineMath math="220\text{ cm}" />.
+- <InlineMath math="3{,}3\text{ m}^3" /> menganggap bordes seperti anak tangga biasa dengan panjang <InlineMath math="30\text{ cm}" />. Bordes panjangnya <InlineMath math="100\text{ cm}" />, jadi baloknya <InlineMath math="1{,}2\text{ m}^3" />, bukan <InlineMath math="0{,}36\text{ m}^3" />.
+- <InlineMath math="2{,}94\text{ m}^3" /> hanya volume sembilan anak tangga. Balok bordes <InlineMath math="1{,}2\text{ m}^3" /> terlupa.
+- <InlineMath math="2{,}7\text{ m}^3" /> mengukur anak tangga atas dari permukaan bordes, yaitu <InlineMath math="20" />, <InlineMath math="40" />, <InlineMath math="60" />, dan <InlineMath math="80\text{ cm}" />. Padahal tangga pejal, jadi beton di bawahnya turun sampai lantai garasi.

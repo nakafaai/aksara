@@ -1,17 +1,19 @@
-The order of selection does not matter, so count with **binomial coefficients**. At least two girls means exactly two or exactly three.
+# The intersection first
+
+Almost every statement depends on <InlineMath math="P(A\cap B)" />, so **work out the intersection first** from the union rule:
 
 <BlockMath math="\begin{aligned}
-\text{all selections}&=\binom93=84 \\
-\text{exactly 2 girls}&=\binom42\binom51=6\cdot5=30 \\
-\text{exactly 3 girls}&=\binom43=4 \\
-P&=\frac{30+4}{84}=\frac{34}{84}=\frac{17}{42}
+P(A\cup B)&=P(A)+P(B)-P(A\cap B) \\
+0.7&=0.5+0.4-P(A\cap B) \\
+P(A\cap B)&=0.2
 \end{aligned}" />
 
-As a check, no girl or exactly one girl gives <InlineMath math="\binom53+\binom41\binom52=10+40=50" /> selections, and <InlineMath math="34+50=84" />.
+# Judging each statement
 
-So the probability is <InlineMath math="\frac{17}{42}" />.
+- **False**: mutually exclusive means <InlineMath math="A" /> and <InlineMath math="B" /> can't happen together, so <InlineMath math="P(A\cap B)=0" />. Here the intersection is <InlineMath math="0.2" />.
+- **True**: independent means <InlineMath math="P(A\cap B)=P(A)\cdot P(B)" />. Indeed <InlineMath math="0.5\cdot0.4=0.2" />, which equals the intersection.
+- **False**: <InlineMath math="P(A\mid B)=\frac{P(A\cap B)}{P(B)}=\frac{0.2}{0.4}=0.5" />. The value <InlineMath math="0.4" /> is <InlineMath math="P(B)" />, not that conditional probability.
+- **True**: neither happening is the opposite of "at least one happens", so <InlineMath math="1-P(A\cup B)=1-0.7=0.3" />.
+- **True**: "exactly one" is the union minus the part where both happen, <InlineMath math="0.7-0.2=0.5" />. Check another way: <InlineMath math="(0.5-0.2)+(0.4-0.2)=0.3+0.2=0.5" />.
 
-- <InlineMath math="\frac{1}{21}=\frac{4}{84}" /> counts only the selection with three girls.
-- <InlineMath math="\frac{5}{14}=\frac{30}{84}" /> counts only exactly two girls and forgets the case with three.
-- <InlineMath math="\frac12" /> would need <InlineMath math="42" /> favourable selections, but there are <InlineMath math="34" />.
-- <InlineMath math="\frac{25}{42}=\frac{50}{84}" /> is the complement, at most one girl.
+So the true statements are: the events are independent, the probability that neither happens is <InlineMath math="0.3" />, and the probability that exactly one happens is <InlineMath math="0.5" />.

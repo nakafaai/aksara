@@ -1,15 +1,52 @@
-Das Gummi überstreicht das Gebiet zwischen zwei Bögen mit demselben Mittelpunkt: **den Kreissektor mit Radius <InlineMath math="42\text{ cm}" /> ohne den Sektor mit Radius <InlineMath math="14\text{ cm}" />**, beide mit dem Winkel <InlineMath math="135^\circ" />.
+Gesucht ist die größte Höhe der Schachteln. Entscheidend ist der Satz **das Band einer Schachtel muss ein ganzes Stück von einer Rolle sein**. Ein Rest am Ende einer Rolle, der für eine Schachtel zu kurz ist, ist unbrauchbar. Du darfst die insgesamt <InlineMath math="8\text{ m}" /> Band also nicht einfach gleichmäßig aufteilen.
+
+# Band für eine Schachtel
+
+Die Schlaufe in Längsrichtung läuft über den Deckel (<InlineMath math="20" />), an einer senkrechten Seite hinunter (<InlineMath math="t" />), unter dem Boden durch (<InlineMath math="20" />) und an der gegenüberliegenden Seite wieder hinauf (<InlineMath math="t" />). Die Schlaufe in Breitenrichtung ist genauso, nur mit <InlineMath math="10" />. Die Höhe kommt also **viermal** vor.
 
 <BlockMath math="\begin{aligned}
-\frac{135^\circ}{360^\circ}&=\frac38 \\
-A&=\frac38\cdot\frac{22}{7}\cdot\big(42^2-14^2\big)=\frac38\cdot\frac{22}{7}\cdot1{.}568=\frac38\cdot4{.}928=1{.}848\text{ cm}^2
+\text{Längsrichtung}&=2\cdot20+2t \\
+\text{Breitenrichtung}&=2\cdot10+2t \\
+p&=40+20+4t+15=75+4t
 \end{aligned}" />
 
-Zur Kontrolle: Der große Sektor hat <InlineMath math="\frac38\cdot5{.}544=2{.}079" />, der kleine <InlineMath math="\frac38\cdot616=231" />, und <InlineMath math="2{.}079-231=1{.}848" />.
+Dabei ist <InlineMath math="p" /> die Länge eines Stücks in cm.
 
-Die überstrichene Fläche beträgt also <InlineMath math="1{.}848\text{ cm}^2" />.
+# Stücke aus jeder Rolle
 
-- <InlineMath math="231\text{ cm}^2" /> ist der kleine Sektor, der nicht überstrichen wird.
-- <InlineMath math="924\text{ cm}^2" /> nimmt die Gummilänge <InlineMath math="28\text{ cm}" /> als Radius eines Sektors, <InlineMath math="\frac38\cdot\frac{22}{7}\cdot28^2" />.
-- <InlineMath math="2{.}079\text{ cm}^2" /> ist der große Sektor, ohne den Teil nahe der Achse abzuziehen.
-- <InlineMath math="3{.}696\text{ cm}^2" /> nimmt den Bruch <InlineMath math="\frac{135}{180}" /> statt <InlineMath math="\frac{135}{360}" />.
+Die <InlineMath math="500\text{ cm}" />-Rolle liefert höchstens <InlineMath math="\lfloor 500/p\rfloor" /> Stücke, die <InlineMath math="300\text{ cm}" />-Rolle höchstens <InlineMath math="\lfloor 300/p\rfloor" />. Zusammen müssen es mindestens <InlineMath math="6" /> sein. Probiere die möglichen Aufteilungen aus.
+
+| Grenze für <InlineMath math="p" /> | Rolle <InlineMath math="5\text{ m}" /> | Rolle <InlineMath math="3\text{ m}" /> | Stücke gesamt |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="p\le125" /> | <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="6" /> |
+| <InlineMath math="125<p\le150" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="5" /> |
+
+Sobald <InlineMath math="p" /> größer als <InlineMath math="125" /> ist, liefert die lange Rolle nur noch <InlineMath math="3" /> Stücke und die kurze <InlineMath math="2" />, also weniger als <InlineMath math="6" />. Die Bedingung lautet daher **<InlineMath math="p\le125\text{ cm}" />**.
+
+# Die größte Höhe
+
+Setze jetzt <InlineMath math="p=75+4t" /> in diese Bedingung ein und löse nach <InlineMath math="t" /> auf.
+
+<BlockMath math="\begin{aligned}
+75+4t&\le125 \\
+4t&\le50 \\
+t&\le12{,}5
+\end{aligned}" />
+
+Da <InlineMath math="t" /> ganzzahlig ist, **rundest du ab** auf <InlineMath math="t=12" />. Prüfe die zwei Werte an dieser Grenze.
+
+<BlockMath math="\begin{aligned}
+t=12&:\ p=123,\quad 4\cdot123=492\le500,\quad 2\cdot123=246\le300 \\
+t=13&:\ p=127,\quad 4\cdot127=508>500
+\end{aligned}" />
+
+Bei <InlineMath math="t=13" /> liefert die <InlineMath math="5\text{ m}" />-Rolle nur <InlineMath math="3" /> Stücke, insgesamt sind es dann nur <InlineMath math="5" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="25\text{ cm}" /> zählt die Höhe nur zweimal, <InlineMath math="75+2t\le125" />. Jede Schlaufe hat zwei senkrechte Seiten, zusammen also <InlineMath math="4t" />.
+- <InlineMath math="16\text{ cm}" /> vergisst die <InlineMath math="15\text{ cm}" /> für die Schleife, also <InlineMath math="60+4t\le125" />.
+- <InlineMath math="14\text{ cm}" /> legt beide Rollen zu <InlineMath math="800\text{ cm}" /> zusammen und teilt das auf <InlineMath math="6" /> Schachteln auf. Bei <InlineMath math="t=14" /> ist ein Stück <InlineMath math="131\text{ cm}" /> lang, und **die beiden Rollen liefern nur <InlineMath math="3+2=5" /> ganze Stücke**.
+- <InlineMath math="6\text{ cm}" /> verteilt die Schachteln gleichmäßig, drei aus jeder Rolle. Dann erzwingt die <InlineMath math="3\text{ m}" />-Rolle <InlineMath math="p\le100" />, obwohl die lange Rolle vier Stücke liefern kann.
+
+Der größte Wert von <InlineMath math="t" /> ist also <InlineMath math="12\text{ cm}" />.

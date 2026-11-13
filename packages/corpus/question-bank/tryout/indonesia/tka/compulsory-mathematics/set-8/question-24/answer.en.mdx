@@ -1,12 +1,34 @@
-**The empirical probability is how often the event happened divided by the number of trials**. Point down happened <InlineMath math="200-74=126" /> times.
+The question asks for the probability of **three conditions at once**: alternating, Andi at an end, and Bela not next to Andi. Count the orders that meet all three, then divide by the number of all orders.
 
-<BlockMath math="P(\text{point down})=\frac{126}{200}=0.63" />
+# All orders and the alternating patterns
 
-Check: point up has empirical probability <InlineMath math="\frac{74}{200}=0.37" />, and <InlineMath math="0.37+0.63=1" />.
+Eight different students can be lined up in <InlineMath math="8!=40{,}320" /> ways, and the question says all of these orders are equally likely. An alternating line has **two patterns**: boys in positions <InlineMath math="1,3,5,7" />, or boys in positions <InlineMath math="2,4,6,8" />. In the first pattern, the left end (position <InlineMath math="1" />) belongs to a boy and the right end (position <InlineMath math="8" />) belongs to a girl. The second pattern is the other way round. So in each pattern, **only one end is available to Andi**.
 
-So the empirical probability of the drawing pin landing point down is <InlineMath math="0.63" />.
+# Counting the matching orders
 
-- <InlineMath math="0.37" /> is the empirical probability of point up.
-- <InlineMath math="0.5" /> assumes both positions are equally likely, but a drawing pin isn't symmetric and the data say otherwise.
-- <InlineMath math="0.74" /> divides <InlineMath math="74" /> by <InlineMath math="100" /> instead of <InlineMath math="200" />, and uses the wrong event.
-- <InlineMath math="1.26" /> divides <InlineMath math="126" /> by <InlineMath math="100" />. A probability can't be more than <InlineMath math="1" />.
+Take the first pattern. Andi has to be in position <InlineMath math="1" />, and his only neighbour is in position <InlineMath math="2" />, which is a girl's spot. Bela can't be in position <InlineMath math="2" />, so **Bela picks one of the other three girls' positions**. The other three girls fill the remaining three girls' positions, and the other three boys fill the remaining three boys' positions:
+
+<BlockMath math="\begin{aligned}
+\text{first pattern}&=1\cdot3\cdot3!\cdot3!=1\cdot3\cdot6\cdot6=108 \\
+\text{second pattern}&=108\quad(\text{Andi in position }8,\ \text{Bela not in position }7) \\
+\text{total}&=216
+\end{aligned}" />
+
+# The probability
+
+<BlockMath math="P=\frac{216}{40{,}320}=\frac{3}{560}" />
+
+Check with **step-by-step probabilities**. The chance of alternating is <InlineMath math="\frac{2\cdot4!\cdot4!}{8!}=\frac{1}{35}" />. In an alternating line, Andi takes one of the four boys' positions and only one of those is at an end, so that chance is <InlineMath math="\frac14" />. Andi's neighbour is one of the four girls, and the chance that this neighbour isn't Bela is <InlineMath math="\frac34" />:
+
+<BlockMath math="\frac{1}{35}\cdot\frac14\cdot\frac34=\frac{3}{560}" />
+
+Same result.
+
+# Why the other options are wrong
+
+- <InlineMath math="\frac{3}{1{,}120}" /> counts only the pattern that starts with a boy on the left. **The pattern that starts with a girl alternates too**.
+- <InlineMath math="\frac{1}{140}" /> forgets the condition on Bela, giving <InlineMath math="\frac{288}{40{,}320}" />.
+- <InlineMath math="\frac{3}{280}" /> lets Andi stand at either end in each pattern, but one end always belongs to a girl.
+- <InlineMath math="\frac{3}{14}" /> forgets the alternating condition: <InlineMath math="\frac28\cdot\frac67" /> is the chance that Andi is at an end and Bela isn't his neighbour in any line at all.
+
+So the probability asked for is <InlineMath math="\frac{3}{560}" />.

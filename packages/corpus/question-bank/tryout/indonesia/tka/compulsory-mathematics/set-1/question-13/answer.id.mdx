@@ -1,15 +1,66 @@
-Pada komposisi transformasi, **urutan** menentukan hasil: cerminkan dulu, baru translasikan. Pencerminan terhadap garis mendatar <InlineMath math="y=3" /> mempertahankan koordinat <InlineMath math="x" /> dan mengubah koordinat <InlineMath math="y" /> menjadi <InlineMath math="2\cdot3-y" />.
+# Bentuk segi empat APQB
 
-<BlockMath math="\begin{aligned}
-P(5,-2)&\xrightarrow{\ y=3\ }P'(5,\ 6-(-2))=P'(5,8) \\
-P'(5,8)&\xrightarrow{\ T\ }P''(5-4,\ 8+1)=P''(1,9)
-\end{aligned}" />
+Jari-jari yang ditarik ke titik singgung selalu **tegak lurus garis singgung**. Jadi <InlineMath math="AP" /> dan <InlineMath math="BQ" /> sama-sama tegak lurus <InlineMath math="PQ" />, sehingga keduanya sejajar. Segi empat <InlineMath math="APQB" /> adalah trapesium siku-siku dengan sisi sejajar <InlineMath math="9" /> dan <InlineMath math="4" />, dan tingginya adalah <InlineMath math="PQ" />.
 
-Sebagai pemeriksaan, <InlineMath math="P" /> dan <InlineMath math="P'" /> sama-sama berjarak <InlineMath math="5" /> satuan dari garis <InlineMath math="y=3" />, satu di bawah dan satu di atas.
+<MathVisual
+  title="Trapesium dari dua lingkaran"
+  description={<>Lingkaran besar berpusat <InlineMath math="A" /> menyinggung garis mendatar di <InlineMath math="P" />. Lingkaran kecil berpusat <InlineMath math="B" /> menyinggung garis yang sama di <InlineMath math="Q" />. Kedua lingkaran bersinggungan di luar. Ruas <InlineMath math="AP" /> dan <InlineMath math="BQ" /> tegak lurus garis singgung, dan ruas <InlineMath math="AB" /> melewati titik singgung kedua lingkaran.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    "radius-a": <InlineMath math="9" />,
+    "radius-b": <InlineMath math="4" />,
+    "tangent-length": <InlineMath math="12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 17 },
+      y: { min: -2, max: 19 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle-a", kind: "circle", appearance: "primary", center: { x: 0, y: 9 }, radius: 9 },
+      { id: "circle-b", kind: "circle", appearance: "primary", center: { x: 2 * Math.sqrt(9 * 4), y: 4 }, radius: 4 },
+      { id: "tangent", kind: "line", appearance: "reference", through: [{ x: 0, y: 0 }, { x: 2 * Math.sqrt(9 * 4), y: 0 }] },
+      { id: "radius-a", kind: "segment", appearance: "highlight", from: { x: 0, y: 9 }, to: { x: 0, y: 0 } },
+      { id: "radius-b", kind: "segment", appearance: "highlight", from: { x: 2 * Math.sqrt(9 * 4), y: 4 }, to: { x: 2 * Math.sqrt(9 * 4), y: 0 } },
+      { id: "centres", kind: "segment", appearance: "secondary", from: { x: 0, y: 9 }, to: { x: 2 * Math.sqrt(9 * 4), y: 4 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 9 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(9 * 4), y: 4 } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(9 * 4), y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 9 }, placement: "above-left" },
+      { key: "b", objectId: "point-b", at: { x: 2 * Math.sqrt(9 * 4), y: 4 }, placement: "above-right" },
+      { key: "p", objectId: "point-p", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "q", objectId: "point-q", at: { x: 2 * Math.sqrt(9 * 4), y: 0 }, placement: "below" },
+      { key: "radius-a", objectId: "radius-a", at: { x: 0, y: 4.5 }, placement: "left" },
+      { key: "radius-b", objectId: "radius-b", at: { x: 2 * Math.sqrt(9 * 4), y: 2 }, placement: "right" },
+      { key: "tangent-length", objectId: "tangent", at: { x: Math.sqrt(9 * 4), y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
-Jadi, bayangan akhir titik <InlineMath math="P" /> adalah <InlineMath math="(1,9)" />.
+# Panjang garis singgung PQ
 
-- <InlineMath math="(5,8)" /> hanya hasil pencerminan. Translasinya belum dilakukan.
-- <InlineMath math="(1,7)" /> muncul karena urutannya terbalik: translasi dulu menjadi <InlineMath math="(1,-1)" />, lalu dicerminkan.
-- <InlineMath math="(1,3)" /> mencerminkan terhadap sumbu <InlineMath math="x" />, bukan terhadap <InlineMath math="y=3" />, lalu mentranslasikan.
-- <InlineMath math="(-3,-1)" /> mencerminkan terhadap garis tegak <InlineMath math="x=3" />, lalu mentranslasikan.
+Karena kedua lingkaran bersinggungan di luar, **jarak kedua pusat adalah jumlah jari-jarinya**, <InlineMath math="AB=9+4=13\text{ cm}" />. Tarik garis dari <InlineMath math="B" /> sejajar <InlineMath math="PQ" /> sampai mengenai <InlineMath math="AP" />. Terbentuk segitiga siku-siku dengan sisi miring <InlineMath math="13" /> dan satu sisi tegak <InlineMath math="9-4=5" />:
+
+<BlockMath math="PQ=\sqrt{13^2-5^2}=\sqrt{169-25}=\sqrt{144}=12\text{ cm}" />
+
+# Luas trapesium
+
+<BlockMath math="\text{luas}=\frac{AP+BQ}{2}\cdot PQ=\frac{9+4}{2}\cdot12=78\text{ cm}^2" />
+
+Jadi, **luas segi empat <InlineMath math="APQB" /> adalah <InlineMath math="78\text{ cm}^2" />**.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="156\text{ cm}^2" /> lupa membagi dua pada rumus luas trapesium.
+- <InlineMath math="65\text{ cm}^2" /> adalah <InlineMath math="13\cdot5" />, hasil kali dua sisi segitiga bantu. **Luas segi empat itu bukan hasil kali dua ruas sembarang**.
+- <InlineMath math="54\text{ cm}^2" /> hanya luas segitiga <InlineMath math="\frac12\cdot9\cdot12" />. Bagian di bawah <InlineMath math="B" /> ikut terlupa.
+- <InlineMath math="84{,}5\text{ cm}^2" /> memakai <InlineMath math="AB=13" /> sebagai tinggi. Tinggi trapesium adalah <InlineMath math="PQ" />, yang tegak lurus kedua sisi sejajar.

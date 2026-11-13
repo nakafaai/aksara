@@ -1,16 +1,39 @@
-Jumlah dua bilangan genap jika **keduanya genap atau keduanya ganjil**. Dari <InlineMath math="1" /> sampai <InlineMath math="20" /> ada <InlineMath math="10" /> bilangan genap dan <InlineMath math="10" /> bilangan ganjil. Kartu diambil sekaligus, jadi pakai kombinasi.
+Soal ini adalah peluang bersyarat: kita sudah tahu juru bicaranya perempuan, lalu bertanya seberapa mungkin panitianya berisi tepat <InlineMath math="2" /> perempuan. Hati-hati, informasi ini **tidak sama dengan "panitia memuat paling sedikit satu perempuan"**. Panitia yang perempuannya lebih banyak lebih mudah menghasilkan juru bicara perempuan, jadi setiap susunan perlu diberi bobot.
+
+# Bobot setiap susunan panitia
+
+Banyak cara memilih panitia seluruhnya <InlineMath math="\binom93=84" />. Kelompokkan menurut banyak perempuan, lalu kalikan dengan peluang juru bicaranya perempuan. Kalau ada <InlineMath math="k" /> perempuan di antara <InlineMath math="3" /> anggota, peluang itu <InlineMath math="\frac k3" />:
+
+| Perempuan | Banyak panitia | Peluang juru bicara perempuan | Hasil kali |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="\binom53=10" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="\binom41\binom52=40" /> | <InlineMath math="\frac13" /> | <InlineMath math="\frac{40}{3}" /> |
+| <InlineMath math="2" /> | <InlineMath math="\binom42\binom51=30" /> | <InlineMath math="\frac23" /> | <InlineMath math="20" /> |
+| <InlineMath math="3" /> | <InlineMath math="\binom43=4" /> | <InlineMath math="1" /> | <InlineMath math="4" /> |
+
+Kolom terakhir sudah memperhitungkan **siapa yang terpilih sebagai juru bicara**, bukan hanya siapa yang masuk panitia.
+
+# Peluang bersyarat
+
+Bagi bobot susunan yang diminta dengan bobot semua susunan yang juru bicaranya perempuan. Di sini "jubir" singkatan dari juru bicara:
 
 <BlockMath math="\begin{aligned}
-n(S)&=\binom{20}{2}=190 \\
-n(A)&=\binom{10}{2}+\binom{10}{2}=45+45=90 \\
-P(A)&=\frac{90}{190}=\frac{9}{19}
+P(\text{jubir perempuan})&=\frac{\frac{40}{3}+20+4}{84}=\frac{112/3}{84}=\frac49 \\
+P(\text{tepat 2 perempuan dan jubir perempuan})&=\frac{20}{84}=\frac{5}{21} \\
+P(\text{tepat 2 perempuan}\mid\text{jubir perempuan})&=\frac{5/21}{4/9}=\frac{45}{84}=\frac{15}{28}
 \end{aligned}" />
 
-Peluangnya sedikit kurang dari <InlineMath math="\frac12" />, karena sepasang kartu tidak mungkin bernomor sama. Ada lebih banyak pasangan genap-ganjil, yaitu <InlineMath math="10\cdot10=100" />, daripada pasangan sejenis.
+Cek dengan cara singkat. Juru bicara adalah satu perempuan tertentu, dan dua anggota lain adalah pasangan acak dari <InlineMath math="8" /> siswa sisanya, yaitu <InlineMath math="5" /> laki-laki dan <InlineMath math="3" /> perempuan. Panitia berisi tepat <InlineMath math="2" /> perempuan kalau **tepat satu dari dua anggota lain itu perempuan**:
 
-Jadi, peluang jumlah nomor kedua kartu genap adalah <InlineMath math="\frac{9}{19}" />.
+<BlockMath math="\frac{3\cdot5}{\binom82}=\frac{15}{28}" />
 
-- <InlineMath math="\frac{9}{38}" /> hanya menghitung pasangan yang keduanya genap.
-- <InlineMath math="\frac14" /> memakai <InlineMath math="\frac12\cdot\frac12" />, seolah kartu pertama dikembalikan dan hanya kasus genap-genap yang dihitung.
-- <InlineMath math="\frac12" /> menganggap jumlah genap dan ganjil sama mungkin.
-- <InlineMath math="\frac{10}{19}" /> adalah peluang jumlahnya ganjil.
+Hasilnya sama.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\frac{3}{28}" /> menghitung kedua anggota lain perempuan, padahal itu membuat panitia berisi <InlineMath math="3" /> perempuan.
+- <InlineMath math="\frac{5}{21}" /> adalah peluang bersama "tepat <InlineMath math="2" /> perempuan dan juru bicara perempuan". **Kamu lupa membaginya** dengan <InlineMath math="\frac49" />.
+- <InlineMath math="\frac{5}{14}=\frac{30}{84}" /> mengabaikan informasi tentang juru bicara sama sekali.
+- <InlineMath math="\frac{15}{37}=\frac{30}{74}" /> memperlakukan informasi itu sebagai "paling sedikit satu perempuan", sehingga setiap panitia yang memuat perempuan diberi bobot yang sama.
+
+Jadi, peluang panitia itu beranggotakan tepat <InlineMath math="2" /> siswa perempuan adalah <InlineMath math="\frac{15}{28}" />.

@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "$$q>p$$",
-        },
-        {
-          correct: true,
-          label: "$$p>r$$",
-        },
-        {
           correct: false,
-          label: "$$r>q$$",
+          label: "Harga jaket pada bulan Februari $$5\\%$$ lebih tinggi daripada $$h$$.",
         },
         {
           correct: true,
-          label: "Bilangan $$p\\cdot r$$ terdiri atas $$29$$ angka.",
+          label: "Besar penurunan harga pada bulan Februari, dalam rupiah, sama dengan besar kenaikan harga pada bulan Januari.",
         },
         {
-          correct: false,
-          label: "$$q<10^{15}$$",
+          correct: true,
+          label: "Cara I dan Cara II menghasilkan harga bayar yang sama, berapa pun nilai $$h$$.",
+        },
+        {
+          correct: true,
+          label: "Harga bayar dengan Cara I $$23{,}5\\%$$ lebih rendah daripada $$h$$.",
+        },
+        {
+          correct: true,
+          label: "Agar kembali sama dengan $$h$$, harga bayar dengan Cara II harus dinaikkan lebih dari $$30\\%$$.",
         },
       ],
     },

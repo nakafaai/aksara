@@ -1,14 +1,41 @@
-Jede Bandschlaufe ist **der Umfang eines Querschnitts der Schachtel**. Die Schlaufe in Längsrichtung läuft je zweimal über die Länge <InlineMath math="30\text{ cm}" /> und die Höhe <InlineMath math="10\text{ cm}" />. Die Schlaufe in Querrichtung läuft je zweimal über die Breite <InlineMath math="20\text{ cm}" /> und die Höhe <InlineMath math="10\text{ cm}" />.
+Gefragt ist die kleinste Anzahl Kartons für <InlineMath math="1{.}000" /> Bälle. Der Weg hat drei Schritte: Bälle in Dosen umrechnen, **die Dosenrichtung mit den meisten Dosen pro Karton** finden, dann teilen und aufrunden.
+
+# Anzahl der Dosen
+
+Eine Dose fasst höchstens <InlineMath math="3" /> Bälle. Auch eine nur teilweise gefüllte Dose braucht im Karton einen ganzen Platz, also **rundest du den Quotienten auf**. Die letzte Dose enthält hier nur einen Ball:
+
+<BlockMath math="\frac{1{.}000}{3}=333{,}3\ldots\quad\Rightarrow\quad334\text{ Dosen}" />
+
+# Fassungsvermögen eines Kartons
+
+Die Maße der Dose folgen aus den Bällen: Durchmesser <InlineMath math="6{,}5\text{ cm}" />, Länge <InlineMath math="3\cdot6{,}5=19{,}5\text{ cm}" />. Entlang jeder Kartonkante passen so viele Dosen, wie die Kantenlänge geteilt durch das Dosenmaß in dieser Richtung ergibt, **abgerundet**, denn keine Dose darf herausragen. Zum Beispiel ist <InlineMath math="7\cdot6{,}5=45{,}5\le50" />, aber <InlineMath math="8\cdot6{,}5=52>50" />, also fasst die Kante von <InlineMath math="50\text{ cm}" /> genau <InlineMath math="7" /> Durchmesser. Für die Achse der Dose gibt es drei Richtungen:
+
+| Dosenachse parallel zu | Entlang der Achse | Andere zwei Richtungen | Dosen pro Karton |
+| :---: | :---: | :---: | :---: |
+| Höhe <InlineMath math="30" /> (stehend) | <InlineMath math="1" /> | <InlineMath math="7" /> und <InlineMath math="6" /> | <InlineMath math="42" /> |
+| Länge <InlineMath math="50" /> | <InlineMath math="2" /> | <InlineMath math="6" /> und <InlineMath math="4" /> | <InlineMath math="48" /> |
+| Breite <InlineMath math="40" /> | <InlineMath math="2" /> | <InlineMath math="7" /> und <InlineMath math="4" /> | <InlineMath math="56" /> |
+
+Die letzte Zeile gewinnt. Die Dosen liegen parallel zur Kante von <InlineMath math="40\text{ cm}" />: Zwei Dosen hintereinander brauchen <InlineMath math="39\text{ cm}" />, sieben Reihen brauchen <InlineMath math="45{,}5\text{ cm}" /> der Kante von <InlineMath math="50\text{ cm}" />, und vier Lagen brauchen <InlineMath math="26\text{ cm}" /> der Höhe von <InlineMath math="30\text{ cm}" />.
+
+<BlockMath math="2\cdot7\cdot4=56\text{ Dosen pro Karton}" />
+
+# Anzahl der Kartons
+
+Teile die Dosen durch das größte Fassungsvermögen und runde auf, denn auch ein nicht voller letzter Karton wird gebraucht:
 
 <BlockMath math="\begin{aligned}
-\text{Schlaufe längs}&=2(30+10)=80 \\
-\text{Schlaufe quer}&=2(20+10)=60 \\
-\text{Band}&=80+60+40=180
+\frac{334}{56}&=5{,}96\ldots\quad\Rightarrow\quad6\text{ Kartons} \\
+5\cdot56&=280<334,\qquad 6\cdot56=336\ge334
 \end{aligned}" />
 
-Das Band muss also <InlineMath math="180\text{ cm}" /> lang sein.
+Fünf Kartons reichen nicht, sechs reichen. Einfach Volumen durch Volumen zu teilen geht nicht, denn **Platz am Ende einer Kante, der für eine weitere Dose zu kurz ist, bleibt leer**.
 
-- <InlineMath math="140\text{ cm}" /> vergisst die zusätzlichen <InlineMath math="40\text{ cm}" /> für die Schleife.
-- <InlineMath math="200\text{ cm}" /> nimmt den Umfang des Deckels, <InlineMath math="2(30+20)=100" />, als Längsschlaufe, doch diese läuft senkrecht über die Höhe der Schachtel.
-- <InlineMath math="220\text{ cm}" /> nimmt den Deckelumfang und die Längsschlaufe, die Querschlaufe fehlt also.
-- <InlineMath math="280\text{ cm}" /> lässt jede Schlaufe über Länge, Breite und Höhe laufen, also <InlineMath math="2(30+20+10)" /> pro Schlaufe.
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="7" /> entsteht, wenn du die Dosen entlang der längsten Kante von <InlineMath math="50\text{ cm}" /> legst. **Die längste Kante ist nicht automatisch die beste Richtung**: Dann passen nur <InlineMath math="48" /> hinein, und <InlineMath math="334:48=6{,}96\ldots" /> wird zu <InlineMath math="7" /> aufgerundet.
+- <InlineMath math="8" /> entsteht, wenn du nur stehende Dosen ausprobierst. Dann passen <InlineMath math="42" /> hinein, und <InlineMath math="334:42=7{,}95\ldots" /> wird zu <InlineMath math="8" /> aufgerundet.
+- <InlineMath math="18" /> entsteht, wenn du <InlineMath math="1{.}000" /> Bälle direkt durch <InlineMath math="56" /> teilst, als bräuchte jeder Ball eine eigene Dose.
+- <InlineMath math="24" /> entsteht, wenn du liegende Dosen nur in einer Lage stapelst, also <InlineMath math="2\cdot7=14" /> Dosen pro Karton, und <InlineMath math="334:14=23{,}86\ldots" /> wird zu <InlineMath math="24" /> aufgerundet.
+
+Man braucht also mindestens <InlineMath math="6" /> Kartons.

@@ -1,21 +1,35 @@
-The daily lengths form an **arithmetic sequence** with <InlineMath math="u_1=24" /> and <InlineMath math="d=4" />. The length of the whole road is the sum over all days. Use it to find the number of working days <InlineMath math="n" /> first.
+# The middle term from the first condition
+
+The terms <InlineMath math="u_3" /> and <InlineMath math="u_7" /> are equally far from <InlineMath math="u_5" />. In an arithmetic sequence, **two terms equally far from a term average to that term**:
+
+<BlockMath math="u_3+u_7=2u_5=34\quad\Rightarrow\quad u_5=17" />
+
+# Finding the common difference from the second condition
+
+Write the other terms with the common difference <InlineMath math="b" />: <InlineMath math="u_2=17-3b" /> and <InlineMath math="u_4=17-b" />.
 
 <BlockMath math="\begin{aligned}
-S_n=\frac n2\bigl(2\cdot24+(n-1)\cdot4\bigr)&=1{,}240 \\
-n(2n+22)&=1{,}240 \\
-n^2+11n-620&=0 \\
-(n-20)(n+31)&=0
+(17-3b)(17-b)&=112 \\
+289-68b+3b^2&=112 \\
+3b^2-68b+177&=0 \\
+(b-3)(3b-59)&=0
 \end{aligned}" />
 
-A number of days is positive, so <InlineMath math="n=20" />. The last day is the twentieth.
+So <InlineMath math="b=3" /> or <InlineMath math="b=\frac{59}{3}" />. The problem says **every term is a whole number**, so <InlineMath math="b=\frac{59}{3}" /> is out and <InlineMath math="b=3" />.
 
-<BlockMath math="u_{20}=24+19\cdot4=100" />
+# Adding ten terms
 
-As a check, <InlineMath math="S_{20}=\frac{20}{2}(24+100)=10\cdot124=1{,}240" />.
+The first term is <InlineMath math="a=u_5-4b=17-12=5" />. The sequence is <InlineMath math="5,8,11,14,17,20,23,26,29,32" />.
 
-So <InlineMath math="100\text{ m}" /> of paving was laid on the last day.
+<BlockMath math="S_{10}=\frac{10}{2}\,(2\cdot5+9\cdot3)=5\cdot37=185" />
 
-- <InlineMath math="20\text{ m}" /> confuses the number of days with a length.
-- <InlineMath math="96\text{ m}" /> is <InlineMath math="u_{19}" />, the length on the second-to-last day.
-- <InlineMath math="104\text{ m}" /> computes <InlineMath math="24+20\cdot4" />. Up to the twentieth day there are only <InlineMath math="19" /> increases.
-- <InlineMath math="124\text{ m}" /> is <InlineMath math="u_1+u_{20}" /> from <InlineMath math="S_{20}=\frac{20}{2}(u_1+u_{20})" />. You still have to subtract <InlineMath math="u_1=24" />.
+Check the conditions: <InlineMath math="u_3+u_7=11+23=34" /> and <InlineMath math="u_2\cdot u_4=8\cdot14=112" />. **Both fit**.
+
+So the sum of the first <InlineMath math="10" /> terms is <InlineMath math="185" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\frac{805}{3}" /> comes from <InlineMath math="b=\frac{59}{3}" />, whose **terms aren't whole numbers**.
+- <InlineMath math="200" /> uses <InlineMath math="10b" /> in the sum formula. The term <InlineMath math="u_{10}" /> is <InlineMath math="a+9b" />, so it should be <InlineMath math="9b" />.
+- <InlineMath math="153" /> is the sum of the first <InlineMath math="9" /> terms.
+- <InlineMath math="32" /> is the term <InlineMath math="u_{10}" />, not the sum.

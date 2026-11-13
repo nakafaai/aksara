@@ -12,25 +12,25 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "Jika $$k=3$$, grafik $$f$$ menyinggung sumbu $$x$$.",
-        },
-        {
-          correct: false,
-          label: "Sumbu simetri grafik $$f$$ adalah garis $$x=-k$$.",
+          label:
+            "Bilangan bulat positif terkecil $$x$$ yang memenuhi $$f(x)>g(x)$$ adalah $$7$$.",
         },
         {
           correct: true,
-          label:
-            "Untuk setiap $$k$$ dengan $$-2<k<3$$, nilai $$f(x)$$ positif untuk setiap bilangan real $$x$$.",
+          label: "Untuk setiap bilangan bulat $$x\\ge7$$, berlaku $$f(x)>g(x)$$.",
         },
         {
           correct: false,
-          label: "Jika $$k=-2$$, nilai minimum $$f$$ adalah $$4$$.",
+          label:
+            "Banyak bilangan bulat $$x$$ yang memenuhi $$f(x)<g(x)$$ adalah $$6$$.",
+        },
+        {
+          correct: false,
+          label: "Untuk setiap bilangan bulat $$x\\ge3$$, berlaku $$f(x)\\ge h(x)$$.",
         },
         {
           correct: true,
-          label:
-            "Jika $$k=4$$, persamaan $$f(x)=0$$ mempunyai dua akar real berbeda yang keduanya positif.",
+          label: "Ada bilangan bulat $$x$$ yang memenuhi $$g(x)<h(x)<f(x)$$.",
         },
       ],
     },

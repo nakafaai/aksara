@@ -1,0 +1,39 @@
+Ini ialah kebarangkalian bersyarat: kamu sudah tahu jurucakapnya perempuan, dan kamu ditanya berapa mungkin jawatankuasa itu ada tepat <InlineMath math="2" /> orang perempuan. Berhati-hati, maklumat ini **tidak sama dengan "jawatankuasa ada sekurang-kurangnya seorang perempuan"**. Jawatankuasa yang lebih ramai perempuan lebih mudah menghasilkan jurucakap perempuan, jadi setiap susunan jawatankuasa perlu diberi pemberat.
+
+# Pemberat bagi setiap susunan jawatankuasa
+
+Bilangan semua jawatankuasa yang mungkin ialah <InlineMath math="\binom93=84" />. Kumpulkan mengikut bilangan perempuan, kemudian darabkan dengan kebarangkalian jurucakapnya perempuan. Jika ada <InlineMath math="k" /> perempuan dalam <InlineMath math="3" /> ahli, kebarangkalian itu ialah <InlineMath math="\frac k3" />:
+
+| Perempuan | Bilangan jawatankuasa | Kebarangkalian jurucakap perempuan | Hasil darab |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="\binom53=10" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="\binom41\binom52=40" /> | <InlineMath math="\frac13" /> | <InlineMath math="\frac{40}{3}" /> |
+| <InlineMath math="2" /> | <InlineMath math="\binom42\binom51=30" /> | <InlineMath math="\frac23" /> | <InlineMath math="20" /> |
+| <InlineMath math="3" /> | <InlineMath math="\binom43=4" /> | <InlineMath math="1" /> | <InlineMath math="4" /> |
+
+Lajur terakhir sudah mengambil kira **siapa yang dipilih sebagai jurucakap**, bukan sahaja siapa yang masuk jawatankuasa.
+
+# Kebarangkalian bersyarat
+
+Bahagikan pemberat susunan yang diminta dengan pemberat semua susunan yang jurucakapnya perempuan:
+
+<BlockMath math="\begin{aligned}
+P(\text{jurucakap perempuan})&=\frac{\frac{40}{3}+20+4}{84}=\frac{112/3}{84}=\frac49 \\
+P(\text{tepat 2 perempuan dan jurucakap perempuan})&=\frac{20}{84}=\frac{5}{21} \\
+P(\text{tepat 2 perempuan}\mid\text{jurucakap perempuan})&=\frac{5/21}{4/9}=\frac{45}{84}=\frac{15}{28}
+\end{aligned}" />
+
+Semak dengan cara ringkas. Jurucakap ialah seorang perempuan tertentu, dan dua ahli lain ialah pasangan rawak daripada <InlineMath math="8" /> murid yang tinggal, iaitu <InlineMath math="5" /> lelaki dan <InlineMath math="3" /> perempuan. Jawatankuasa ada tepat <InlineMath math="2" /> perempuan jika **tepat seorang daripada dua ahli lain itu perempuan**:
+
+<BlockMath math="\frac{3\cdot5}{\binom82}=\frac{15}{28}" />
+
+Hasilnya sama.
+
+# Mengapa jawapan lain salah
+
+- <InlineMath math="\frac{3}{28}" /> mengira kedua-dua ahli lain perempuan, sedangkan itu menjadikan jawatankuasa ada <InlineMath math="3" /> perempuan.
+- <InlineMath math="\frac{5}{21}" /> ialah kebarangkalian bersama "tepat <InlineMath math="2" /> perempuan dan jurucakap perempuan". **Kamu terlupa membahaginya** dengan <InlineMath math="\frac49" />.
+- <InlineMath math="\frac{5}{14}=\frac{30}{84}" /> mengabaikan maklumat tentang jurucakap sama sekali.
+- <InlineMath math="\frac{15}{37}=\frac{30}{74}" /> menganggap maklumat itu sebagai "sekurang-kurangnya seorang perempuan", jadi setiap jawatankuasa yang ada perempuan diberi pemberat yang sama.
+
+Jadi, kebarangkalian jawatankuasa itu ada tepat <InlineMath math="2" /> orang murid perempuan ialah <InlineMath math="\frac{15}{28}" />.

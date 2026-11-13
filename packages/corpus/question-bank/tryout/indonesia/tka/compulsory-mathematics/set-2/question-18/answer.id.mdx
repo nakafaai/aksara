@@ -1,15 +1,52 @@
-Karet wiper menyapu daerah di antara dua busur yang sepusat, yaitu **juring berjari-jari <InlineMath math="42\text{ cm}" /> dikurangi juring berjari-jari <InlineMath math="14\text{ cm}" />** dengan sudut <InlineMath math="135^\circ" /> yang sama.
+Soal ini menanyakan tinggi kotak terbesar. Kuncinya ada di kalimat **pita satu kotak harus satu potongan utuh dari satu gulungan**. Sisa pita di ujung gulungan yang terlalu pendek untuk satu kotak tidak bisa dipakai, jadi total <InlineMath math="8\text{ m}" /> pita tidak bisa dibagi rata begitu saja.
+
+# Panjang pita untuk satu kotak
+
+Lilitan searah panjang melewati tutup (<InlineMath math="20" />), turun di satu sisi tegak (<InlineMath math="t" />), lewat alas (<InlineMath math="20" />), lalu naik di sisi tegak seberangnya (<InlineMath math="t" />). Lilitan searah lebar sama, hanya dengan <InlineMath math="10" />. Jadi tinggi kotak terpakai **empat kali**.
 
 <BlockMath math="\begin{aligned}
-\frac{135^\circ}{360^\circ}&=\frac38 \\
-L&=\frac38\cdot\frac{22}{7}\cdot\big(42^2-14^2\big)=\frac38\cdot\frac{22}{7}\cdot1{.}568=\frac38\cdot4{.}928=1{.}848\text{ cm}^2
+\text{searah panjang}&=2\cdot20+2t \\
+\text{searah lebar}&=2\cdot10+2t \\
+p&=40+20+4t+15=75+4t
 \end{aligned}" />
 
-Sebagai pemeriksaan, juring besar luasnya <InlineMath math="\frac38\cdot5{.}544=2{.}079" /> dan juring kecil <InlineMath math="\frac38\cdot616=231" />, dan <InlineMath math="2{.}079-231=1{.}848" />.
+Di sini <InlineMath math="p" /> adalah panjang satu potongan dalam cm.
 
-Jadi, luas daerah yang tersapu <InlineMath math="1{.}848\text{ cm}^2" />.
+# Berapa potongan dari setiap gulungan
 
-- <InlineMath math="231\text{ cm}^2" /> adalah juring kecil yang tidak tersapu.
-- <InlineMath math="924\text{ cm}^2" /> memakai panjang karet <InlineMath math="28\text{ cm}" /> sebagai jari-jari satu juring, <InlineMath math="\frac38\cdot\frac{22}{7}\cdot28^2" />.
-- <InlineMath math="2{.}079\text{ cm}^2" /> adalah juring besar tanpa mengurangkan bagian dekat poros.
-- <InlineMath math="3{.}696\text{ cm}^2" /> memakai pecahan <InlineMath math="\frac{135}{180}" />, bukan <InlineMath math="\frac{135}{360}" />.
+Gulungan <InlineMath math="500\text{ cm}" /> menghasilkan paling banyak <InlineMath math="\lfloor 500/p\rfloor" /> potongan, dan gulungan <InlineMath math="300\text{ cm}" /> paling banyak <InlineMath math="\lfloor 300/p\rfloor" />. Jumlahnya harus paling sedikit <InlineMath math="6" />. Coba kemungkinan pembagiannya.
+
+| Batas <InlineMath math="p" /> | Gulungan <InlineMath math="5\text{ m}" /> | Gulungan <InlineMath math="3\text{ m}" /> | Total potongan |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="p\le125" /> | <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="6" /> |
+| <InlineMath math="125<p\le150" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="5" /> |
+
+Begitu <InlineMath math="p" /> lebih dari <InlineMath math="125" />, gulungan panjang hanya memberi <InlineMath math="3" /> potongan dan gulungan pendek <InlineMath math="2" />, kurang dari <InlineMath math="6" />. Jadi syaratnya **<InlineMath math="p\le125\text{ cm}" />**.
+
+# Tinggi terbesar
+
+Sekarang masukkan <InlineMath math="p=75+4t" /> ke syarat itu dan selesaikan untuk <InlineMath math="t" />.
+
+<BlockMath math="\begin{aligned}
+75+4t&\le125 \\
+4t&\le50 \\
+t&\le12{,}5
+\end{aligned}" />
+
+Karena <InlineMath math="t" /> bulat, **bulatkan ke bawah** menjadi <InlineMath math="t=12" />. Cek dua nilai di sekitar batas ini.
+
+<BlockMath math="\begin{aligned}
+t=12&:\ p=123,\quad 4\cdot123=492\le500,\quad 2\cdot123=246\le300 \\
+t=13&:\ p=127,\quad 4\cdot127=508>500
+\end{aligned}" />
+
+Untuk <InlineMath math="t=13" />, gulungan <InlineMath math="5\text{ m}" /> hanya memberi <InlineMath math="3" /> potongan, dan total potongan tinggal <InlineMath math="5" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="25\text{ cm}" /> menghitung tinggi hanya dua kali, <InlineMath math="75+2t\le125" />. Setiap lilitan punya dua sisi tegak, jadi totalnya <InlineMath math="4t" />.
+- <InlineMath math="16\text{ cm}" /> lupa <InlineMath math="15\text{ cm}" /> pita untuk simpul, sehingga <InlineMath math="60+4t\le125" />.
+- <InlineMath math="14\text{ cm}" /> menjumlahkan kedua gulungan menjadi <InlineMath math="800\text{ cm}" /> lalu membaginya untuk <InlineMath math="6" /> kotak. Pada <InlineMath math="t=14" />, satu potongan <InlineMath math="131\text{ cm}" />, dan **kedua gulungan hanya memberi <InlineMath math="3+2=5" /> potongan utuh**.
+- <InlineMath math="6\text{ cm}" /> membagi kotak sama rata, tiga dari setiap gulungan. Gulungan <InlineMath math="3\text{ m}" /> lalu memaksa <InlineMath math="p\le100" />, padahal gulungan yang panjang bisa memberi empat potongan.
+
+Jadi, nilai <InlineMath math="t" /> terbesar adalah <InlineMath math="12\text{ cm}" />.

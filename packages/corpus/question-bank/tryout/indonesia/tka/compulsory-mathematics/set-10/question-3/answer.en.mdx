@@ -1,12 +1,46 @@
-Two discounts in a row mean **two multiplications**, by <InlineMath math="0.8" /> and by <InlineMath math="0.9" />. Work out the combined factor and the final prices you need.
+# A general formula with the principal
+
+All three statements talk about any down payment, so checking one example isn't enough. Write everything with the principal <InlineMath math="p" />. The down payment is at least <InlineMath math="1{,}800{,}000" /> and less than the normal price, so **<InlineMath math="p" /> can be any value with <InlineMath math="0<p\le7{,}200{,}000" />**.
+
+For a term of <InlineMath math="n" /> months at a rate <InlineMath math="r" /> per month, the installment is <InlineMath math="\frac{p(1+nr)}{n}" />. The total payment is the down payment, the admin fee, and all the installments:
+
+<BlockMath math="\text{total}=(9{,}000{,}000-p)+0.01p+p(1+nr)=9{,}000{,}000+(0.01+nr)\,p" />
+
+| Term | All interest <InlineMath math="nr" /> | Monthly installment | Total payment |
+| --- | --- | --- | --- |
+| <InlineMath math="6" /> months | <InlineMath math="0.15" /> | <InlineMath math="\frac{1.15p}{6}" /> | <InlineMath math="9{,}000{,}000+0.16p" /> |
+| <InlineMath math="12" /> months | <InlineMath math="0.18" /> | <InlineMath math="\frac{1.18p}{12}" /> | <InlineMath math="9{,}000{,}000+0.19p" /> |
+| <InlineMath math="18" /> months | <InlineMath math="0.225" /> | <InlineMath math="\frac{1.225p}{18}" /> | <InlineMath math="9{,}000{,}000+0.235p" /> |
+
+# First statement
+
+Half of the <InlineMath math="6" />-month installment is <InlineMath math="\frac{1.15p}{12}" />. Compare it with the <InlineMath math="12" />-month installment.
+
+<BlockMath math="\frac{1.18p}{12}>\frac{1.15p}{12}" />
+
+The term really is twice as long, but **all the interest grows from <InlineMath math="15\%" /> to <InlineMath math="18\%" /> of the principal**, so the installment doesn't drop all the way to half. For example, with the minimum down payment the installment is <InlineMath math="708{,}000" />, while half of <InlineMath math="1{,}380{,}000" /> is only <InlineMath math="690{,}000" />. This statement is **False**.
+
+# Second statement
+
+The admin fee is the same for the same down payment, so the difference in totals comes only from the interest.
 
 <BlockMath math="\begin{aligned}
-0.8\cdot0.9&=0.72=1-0.28 \\
-240{,}000\cdot0.8&=192{,}000 \\
-270{,}000\cdot0.72&=194{,}400
+\text{difference}&=(9{,}000{,}000+0.235p)-(9{,}000{,}000+0.19p)=0.045p \\
+0.045p&\le0.045\cdot7{,}200{,}000=324{,}000
 \end{aligned}" />
 
-- The final price is <InlineMath math="0.72" /> times the item's price, the same as a single <InlineMath math="28\,\%" /> discount. This statement is true.
-- A non-member gets only the <InlineMath math="20\,\%" /> discount, so the price is <InlineMath math="\text{Rp}192{,}000" />, below <InlineMath math="\text{Rp}200{,}000" />. Shipping is still charged. This statement is false.
-- The order of multiplication doesn't change the result, since <InlineMath math="0.9\cdot0.8=0.8\cdot0.9" />. This statement is true.
-- The final price is <InlineMath math="\text{Rp}194{,}400" />, which doesn't reach <InlineMath math="\text{Rp}200{,}000" />. This statement is false.
+Since <InlineMath math="p>0" />, the difference is always positive. It's **largest when the principal is largest**, which happens with the minimum down payment, and then it's exactly <InlineMath math="324{,}000" />. So the difference is never more than <InlineMath math="\text{Rp}324{,}000" />. This statement is **True**.
+
+# Third statement
+
+The cash price is <InlineMath math="8{,}640{,}000" />, so <InlineMath math="10\%" /> above it is <InlineMath math="9{,}504{,}000" />. Find when the <InlineMath math="6" />-month total goes past that line.
+
+<BlockMath math="\begin{aligned}
+9{,}000{,}000+0.16p&>9{,}504{,}000 \\
+0.16p&>504{,}000 \\
+p&>3{,}150{,}000
+\end{aligned}" />
+
+That means the statement only holds when the down payment is less than <InlineMath math="5{,}850{,}000" />. With the minimum down payment the total really is <InlineMath math="17.5\%" /> above the cash price, and that's the trap. **A large down payment is allowed too**. For example, a down payment of <InlineMath math="70\%" />, or <InlineMath math="6{,}300{,}000" />, gives <InlineMath math="p=2{,}700{,}000" /> and a total of <InlineMath math="9{,}432{,}000" />, which is less than <InlineMath math="9{,}504{,}000" />. This statement is **False**.
+
+So the answers are: False, True, False.

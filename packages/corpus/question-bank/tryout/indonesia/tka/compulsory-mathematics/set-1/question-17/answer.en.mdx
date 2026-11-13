@@ -1,18 +1,17 @@
-The problem has three steps: the area is exact, while the tiles and the boxes are rounded up: **find the area, count the tiles, count the boxes**. The tiled area is the rectangle without the quarter circle.
+# How to test each transformation
 
-<BlockMath math="\begin{aligned}
-A&=6\cdot5-\frac14\cdot\frac{22}{7}\cdot1.4^2=30-1.54=28.46\text{ m}^2 \\
-\text{tiles}&=\frac{28.46}{0.4\cdot0.4}=\frac{28.46}{0.16}=177.875\ \to\ 178 \\
-\text{boxes}&=\frac{178}{12}\approx14.83\ \to\ 15
-\end{aligned}" />
+A transformation maps the square onto itself when **the images of the four corners are exactly the set <InlineMath math="\{A,B,C,D\}" />**, even if they swap places. Write each transformation as one rule first, then test the four corners.
 
-Only whole boxes are sold, so you round up here too. The cost is <InlineMath math="15\cdot95{,}000=1{,}425{,}000" />.
+# Judging each option
 
-As a check, <InlineMath math="14" /> boxes hold only <InlineMath math="168" /> tiles, too few for <InlineMath math="178" />.
+**Reflection in the <InlineMath math="y" />-axis, then translation by <InlineMath math="(6,0)" />**. The rule is <InlineMath math="(x,y)\mapsto(-x+6,\,y)" />. The images are <InlineMath math="A\mapsto(5,1)=B" />, <InlineMath math="B\mapsto(1,1)=A" />, <InlineMath math="C\mapsto(1,5)=D" />, and <InlineMath math="D\mapsto(5,5)=C" />. This is the same as reflecting in the line <InlineMath math="x=3" />, an axis of symmetry of the square. Correct.
 
-So the minimum cost is <InlineMath math="\text{Rp}1{,}425{,}000" />.
+**Rotation, then translation by <InlineMath math="(6,0)" />**. The rule is <InlineMath math="(x,y)\mapsto(-y+6,\,x)" />. The images are <InlineMath math="A\mapsto(5,1)=B" />, <InlineMath math="B\mapsto(5,5)=C" />, <InlineMath math="C\mapsto(1,5)=D" />, and <InlineMath math="D\mapsto(1,1)=A" />. This is the same as a <InlineMath math="90^\circ" /> rotation about the square's centre <InlineMath math="(3,3)" />. Correct.
 
-- <InlineMath math="\text{Rp}1{,}235{,}000" /> subtracts a whole circle instead of a quarter circle. That leaves <InlineMath math="23.84\text{ m}^2" />, so <InlineMath math="149" /> tiles and <InlineMath math="13" /> boxes.
-- <InlineMath math="\text{Rp}1{,}330{,}000" /> rounds <InlineMath math="14.83" /> boxes down. With <InlineMath math="14" /> boxes, <InlineMath math="10" /> tiles are missing.
-- <InlineMath math="\text{Rp}1{,}520{,}000" /> forgets the planter: <InlineMath math="\frac{30}{0.16}=187.5" /> gives <InlineMath math="188" /> tiles and <InlineMath math="16" /> boxes.
-- <InlineMath math="\text{Rp}1{,}615{,}000" /> lays a full grid over the whole floor, <InlineMath math="15" /> by <InlineMath math="13" /> tiles, so <InlineMath math="195" /> tiles and <InlineMath math="17" /> boxes. That ignores the counting rule given in the problem.
+**Reflection in <InlineMath math="y=x" />, then translation by <InlineMath math="(2,-2)" />**. The rule is <InlineMath math="(x,y)\mapsto(y+2,\,x-2)" />. <InlineMath math="A" /> goes to <InlineMath math="(3,-1)" />, which isn't a corner of the square. Wrong. Reflecting in <InlineMath math="y=x" /> alone already maps the square onto itself, so the extra translation pushes it away.
+
+**Dilation with factor <InlineMath math="-1" />, then translation by <InlineMath math="(6,6)" />**. The rule is <InlineMath math="(x,y)\mapsto(-x+6,\,-y+6)" />. The images are <InlineMath math="A\mapsto C" />, <InlineMath math="B\mapsto D" />, <InlineMath math="C\mapsto A" />, and <InlineMath math="D\mapsto B" />. This is a point reflection through the centre <InlineMath math="(3,3)" />. Correct.
+
+**Rotation, then translation by <InlineMath math="(0,6)" />**. The rule is <InlineMath math="(x,y)\mapsto(-y,\,x+6)" />. <InlineMath math="A" /> goes to <InlineMath math="(-1,7)" />. Wrong.
+
+So the right transformations are the reflection in the <InlineMath math="y" />-axis then translation by <InlineMath math="(6,0)" />, the <InlineMath math="90^\circ" /> rotation then translation by <InlineMath math="(6,0)" />, and the dilation with factor <InlineMath math="-1" /> then translation by <InlineMath math="(6,6)" />.

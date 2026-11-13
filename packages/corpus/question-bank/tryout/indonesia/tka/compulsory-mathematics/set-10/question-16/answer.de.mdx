@@ -1,10 +1,73 @@
-Das Volumen eines Zylinders ist **Kreisgrundfläche mal Höhe**. Der Radius ist der halbe Durchmesser, <InlineMath math="3\text{ m}" />.
+# Die Tiefe des Kanals
 
-<BlockMath math="V=\pi r^2t=3{,}14\cdot3^2\cdot10=3{,}14\cdot90=282{,}6" />
+Gefragt ist der größte Durchfluss, wenn die Wasseroberfläche **mindestens <InlineMath math="20\text{ cm}" /> unter dem Rand** bleibt. Der Durchfluss ist die Querschnittsfläche des Wassers mal die Geschwindigkeit, also brauchst du diese Fläche beim höchsten erlaubten Wasserstand.
 
-Der zylindrische Teil fasst also <InlineMath math="282{,}6\text{ m}^3" />.
+Der Text nennt nicht die Tiefe des Kanals, sondern nur die Länge der schrägen Wände. Jede Wand weicht seitlich um die halbe Differenz der beiden Breiten aus, und die Tiefe folgt dann mit Pythagoras aus dem rechtwinkligen Dreieck unter der Wand:
 
-- <InlineMath math="28{,}26\text{ m}^3" /> ist nur die Grundfläche, noch nicht mal Höhe.
-- <InlineMath math="37{,}68\text{ m}^3" /> ist das Volumen des Kegeldachs, <InlineMath math="\tfrac13\cdot3{,}14\cdot9\cdot4" />.
-- <InlineMath math="94{,}2\text{ m}^3" /> nimmt für den Zylinder die Kegelformel <InlineMath math="\tfrac13\pi r^2t" />.
-- <InlineMath math="188{,}4" /> ist die Mantelfläche des Zylinders, <InlineMath math="2\pi rt" />, kein Volumen.
+<BlockMath math="\begin{aligned}
+\text{seitlicher Versatz je Seite}&=\frac{180-60}{2}=60\text{ cm} \\
+\text{Tiefe des Kanals}&=\sqrt{100^2-60^2}=\sqrt{6{.}400}=80\text{ cm}
+\end{aligned}" />
+
+# Die Breite der Wasseroberfläche
+
+Das Wasser darf höchstens <InlineMath math="80-20=60\text{ cm}" /> über dem Boden stehen. Die Wände sind gerade, also wächst der seitliche Versatz proportional zur Höhe (ähnliche Dreiecke). Jede Wand weicht auf <InlineMath math="80\text{ cm}" /> Höhe um <InlineMath math="60\text{ cm}" /> aus, also bei <InlineMath math="60\text{ cm}" /> Wasserhöhe:
+
+<BlockMath math="\begin{aligned}
+\text{Versatz je Seite}&=\frac{60}{80}\cdot60=45\text{ cm} \\
+\text{Breite der Wasseroberfläche}&=60+2\cdot45=150\text{ cm}
+\end{aligned}" />
+
+Beachte: **Die Wasseroberfläche ist schmaler als der Rand**, weil das Wasser den Rand nicht erreicht.
+
+# Querschnittsfläche und Durchfluss
+
+Der Wasserquerschnitt ist ein Trapez mit den parallelen Seiten <InlineMath math="60\text{ cm}" /> und <InlineMath math="150\text{ cm}" /> und der Höhe <InlineMath math="60\text{ cm}" />. Rechne in Quadratmeter um, multipliziere mit der Geschwindigkeit und rechne dann mit <InlineMath math="1\text{ m}^3=1{.}000" /> Litern in Liter um:
+
+<BlockMath math="\begin{aligned}
+L&=\frac{60+150}{2}\cdot60=6{.}300\text{ cm}^2=0{,}63\text{ m}^2 \\
+Q&=0{,}63\cdot0{,}5=0{,}315\text{ m}^3\text{/s}=315\text{ Liter pro Sekunde}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Querschnitt des Kanals mit <InlineMath math="60\text{ cm}" /> Wasserhöhe</>}
+  description={<>Ein gleichschenkliges Trapez mit Boden <InlineMath math="60\text{ cm}" />, Rand <InlineMath math="180\text{ cm}" />, schrägen Wänden von <InlineMath math="100\text{ cm}" /> und Tiefe <InlineMath math="80\text{ cm}" />. Wasser füllt den unteren Teil bis zur Höhe <InlineMath math="60\text{ cm}" />, wo die Wasseroberfläche <InlineMath math="150\text{ cm}" /> breit ist. Über dem Wasser bleiben <InlineMath math="20\text{ cm}" /> bis zum Rand.</>}
+  labels={{
+    bottom: <InlineMath math="60\text{ cm}" />,
+    rim: <InlineMath math="180\text{ cm}" />,
+    wall: <InlineMath math="100\text{ cm}" />,
+    surface: <InlineMath math="150\text{ cm}" />,
+    depth: <InlineMath math="60\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -20, max: 200 },
+      y: { min: -20, max: 100 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "water", kind: "polygon", appearance: "highlight", vertices: [{ x: 60, y: 0 }, { x: 120, y: 0 }, { x: 165, y: 60 }, { x: 15, y: 60 }] },
+      { id: "channel", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 80 }, { x: 60, y: 0 }, { x: 120, y: 0 }, { x: 180, y: 80 }] },
+      { id: "rim", kind: "segment", appearance: "reference", from: { x: 0, y: 80 }, to: { x: 180, y: 80 } },
+      { id: "depth", kind: "segment", appearance: "construction", from: { x: 90, y: 0 }, to: { x: 90, y: 60 } },
+    ],
+    labels: [
+      { key: "bottom", objectId: "channel", at: { x: 90, y: 0 }, placement: "below" },
+      { key: "rim", objectId: "rim", at: { x: 90, y: 80 }, placement: "above" },
+      { key: "wall", objectId: "channel", at: { x: 30, y: 40 }, placement: "left" },
+      { key: "surface", objectId: "water", at: { x: 130, y: 60 }, placement: "above" },
+      { key: "depth", objectId: "depth", at: { x: 90, y: 30 }, placement: "right" },
+    ],
+  }}
+/>
+
+**Der größte noch erlaubte Durchfluss beträgt also <InlineMath math="315" /> Liter pro Sekunde**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="360" /> Liter pro Sekunde entstehen, wenn du die Wasseroberfläche so breit wie den Rand nimmst, also <InlineMath math="180\text{ cm}" />. Das Wasser steht nur <InlineMath math="60\text{ cm}" /> hoch, also ist **seine Oberfläche nur <InlineMath math="150\text{ cm}" /> breit**.
+- <InlineMath math="432" /> Liter pro Sekunde entstehen, wenn du die <InlineMath math="100\text{ cm}" /> lange Wand als Tiefe des Kanals nimmst. Die Wand ist die schräge Seite eines Dreiecks, die Tiefe beträgt <InlineMath math="80\text{ cm}" />.
+- <InlineMath math="450" /> Liter pro Sekunde entstehen, wenn du den Querschnitt als Rechteck <InlineMath math="150\cdot60" /> rechnest. Unten ist der Querschnitt nur <InlineMath math="60\text{ cm}" /> breit, es ist also ein Trapez.
+- <InlineMath math="480" /> Liter pro Sekunde sind der Durchfluss bei randvollem Kanal. Das verletzt die Regel mit den <InlineMath math="20\text{ cm}" />.

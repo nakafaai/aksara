@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  stimulus: "water-tariff",
+  stimulus: "online-taxi",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$\\text{Rp}72{.}500$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}78{.}000$$",
+          label: "$$\\text{Rp}52{.}300$$",
         },
         {
           correct: true,
-          label: "$$\\text{Rp}90{.}500$$",
+          label: "$$\\text{Rp}53{.}300$$",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}97{.}500$$",
+          label: "$$\\text{Rp}51{.}300$$",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}115{.}500$$",
+          label: "$$\\text{Rp}62{.}300$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}56{.}000$$",
         },
       ],
     },

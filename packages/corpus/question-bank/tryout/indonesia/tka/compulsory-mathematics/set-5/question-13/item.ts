@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$(-5,-3)$$",
-        },
-        {
-          correct: false,
-          label: "$$(-5,3)$$",
-        },
-        {
-          correct: false,
-          label: "$$(-3,-5)$$",
-        },
-        {
-          correct: false,
-          label: "$$(5,-3)$$",
+          label: "$$6$$ satuan luas",
         },
         {
           correct: true,
-          label: "$$(5,3)$$",
+          label: "$$24$$ satuan luas",
+        },
+        {
+          correct: false,
+          label: "$$27$$ satuan luas",
+        },
+        {
+          correct: false,
+          label: "$$48$$ satuan luas",
+        },
+        {
+          correct: false,
+          label: "$$78$$ satuan luas",
         },
       ],
     },

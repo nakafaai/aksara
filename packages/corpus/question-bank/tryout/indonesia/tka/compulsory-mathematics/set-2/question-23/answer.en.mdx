@@ -1,10 +1,37 @@
-Only one value changes, from <InlineMath math="36" /> to <InlineMath math="30" />. Check **how each statistic responds to that change**. In order, the corrected data are:
+All three statements are about means and medians, while the table gives only five values per class. A statement is **true only if it holds for every data set that fits the table**. One data set that fits but breaks the statement is enough to make it false.
 
-<BlockMath math="30,\ 30,\ 31,\ 31,\ 32,\ 32,\ 32,\ 32,\ 33,\ 33,\ 34,\ 34" />
+# Where the quartiles sit in the sorted data
 
-- **Mean**: the sum drops by <InlineMath math="6" />, so the mean drops by <InlineMath math="\frac{6}{12}=0.5" /> to <InlineMath math="32^\circ\text{C}" />. The statement is true.
-- **Median**: the <InlineMath math="6" />th and <InlineMath math="7" />th values are still <InlineMath math="32" /> and <InlineMath math="32" />, so the median stays <InlineMath math="32^\circ\text{C}" />. The statement is false.
-- **Range**: the largest value is now <InlineMath math="34" /> and the smallest <InlineMath math="30" />, so <InlineMath math="34-30=4^\circ\text{C}" />. The statement is true.
-- **Mode**: <InlineMath math="32" /> still occurs four times, <InlineMath math="30" /> only twice. The mode stays <InlineMath math="32^\circ\text{C}" />. The statement is false.
+Sort class A's scores as <InlineMath math="a_1\le\dots\le a_{31}" /> and class B's as <InlineMath math="b_1\le\dots\le b_{27}" />. Class A's median is **the <InlineMath math="16" />th value**. Its lower quartile is the middle of the first <InlineMath math="15" /> values, the <InlineMath math="8" />th, and its upper quartile is the <InlineMath math="24" />th. In the same way, class B uses the <InlineMath math="7" />th, <InlineMath math="14" />th and <InlineMath math="21" />st values.
 
-So the statements about the mean and the range are true.
+<BlockMath math="\begin{aligned}
+\text{Class A}&:\ a_1=40,\quad a_8=56,\quad a_{16}=70,\quad a_{24}=82,\quad a_{31}=98 \\
+\text{Class B}&:\ b_1=50,\quad b_7=62,\quad b_{14}=68,\quad b_{21}=76,\quad b_{27}=92
+\end{aligned}" />
+
+# Smallest and largest possible means
+
+A value between two known positions can be anything between those two known values, including equal to either one. So **the smallest total** comes from setting every unknown value equal to the known value just below it, and the largest total from setting it equal to the known value just above it.
+
+<BlockMath math="\begin{aligned}
+\text{smallest A}&=7\cdot40+8\cdot56+8\cdot70+7\cdot82+98=1{,}960,\quad \bar a=\tfrac{1{,}960}{31}\approx63.23 \\
+\text{largest B}&=50+6\cdot62+7\cdot68+7\cdot76+6\cdot92=1{,}982,\quad \bar b=\tfrac{1{,}982}{27}\approx73.41
+\end{aligned}" />
+
+In the smallest A data, for example, <InlineMath math="a_1" /> to <InlineMath math="a_7" /> are <InlineMath math="40" /> and <InlineMath math="a_8" /> to <InlineMath math="a_{15}" /> are <InlineMath math="56" />. This still gives <InlineMath math="Q_1=a_8=56" />, median <InlineMath math="a_{16}=70" /> and so on, so it fits the table.
+
+# Judging each statement
+
+**False**. First statement: class A can have the smallest A data with a mean of about <InlineMath math="63.23" />, while class B has the largest B data with a mean of about <InlineMath math="73.41" />. Both fit the table, and here A's mean is **smaller**. A higher median and higher quartiles don't guarantee a higher mean.
+
+**False**. Second statement: with the new student, class B has <InlineMath math="28" /> students, so the median is the mean of the <InlineMath math="14" />th and <InlineMath math="15" />th values. The <InlineMath math="100" /> goes at the top end, so the <InlineMath math="14" />th value is still <InlineMath math="b_{14}=68" /> and the <InlineMath math="15" />th is <InlineMath math="b_{15}" />, which can be anything from <InlineMath math="68" /> to <InlineMath math="76" />.
+
+<BlockMath math="\text{if } b_{15}=76:\quad \text{new median}=\frac{68+76}{2}=72\ne68" />
+
+The new median stays <InlineMath math="68" /> only if <InlineMath math="b_{15}=68" />, and that isn't certain.
+
+**True**. Third statement: every <InlineMath math="a_i" /> is at least the value used in the smallest A data, because that value is the known value at the same position or an earlier one. So the total of class A is always at least <InlineMath math="1{,}960" />.
+
+<BlockMath math="\bar a\ge\frac{1{,}960}{31}\approx63.23>63" />
+
+So the first statement is false, the second is false and the third is true.

@@ -12,26 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Tarif A selalu lebih murah daripada tarif B.",
+          label: "Pukul $$07.40$$",
         },
         {
           correct: false,
-          label: "Tarif A dan tarif B sama untuk lama parkir $$3$$ jam.",
-        },
-        {
-          correct: false,
-          label:
-            "Tarif B lebih murah tepat untuk lama parkir lebih dari $$3$$ jam.",
+          label: "Pukul $$07.55$$",
         },
         {
           correct: true,
-          label:
-            "Tarif A lebih murah tepat untuk lama parkir lebih dari $$2$$ jam.",
+          label: "Pukul $$08.10$$",
         },
         {
           correct: false,
-          label:
-            "Tarif A lebih murah tepat untuk lama parkir paling sedikit $$2$$ jam.",
+          label: "Pukul $$08.15$$",
+        },
+        {
+          correct: false,
+          label: "Pukul $$08.40$$",
         },
       ],
     },

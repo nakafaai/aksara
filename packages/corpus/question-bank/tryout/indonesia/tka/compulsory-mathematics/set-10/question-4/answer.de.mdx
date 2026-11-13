@@ -1,16 +1,45 @@
-Sei <InlineMath math="a" /> die Zehnerziffer und <InlineMath math="b" /> die Einerziffer, dann **hat die Zahl den Wert <InlineMath math="10a+b" />**, nicht <InlineMath math="a+b" />. Mit vertauschten Ziffern ist sie <InlineMath math="10b+a" />.
+# Eine Variable behalten
+
+Gefragt ist, wie viele Zusammensetzungen möglich sind, nicht eine einzelne. Es gibt drei Unbekannte, aber nur zwei Gleichungen. Also **schreibst du alles mit einer Variablen und filterst dann mit den Bedingungen**.
+
+Seien <InlineMath math="x" />, <InlineMath math="y" /> und <InlineMath math="z" /> die Anzahlen der Scheine zu <InlineMath math="\text{Rp}1{.}000" />, <InlineMath math="\text{Rp}2{.}000" /> und <InlineMath math="\text{Rp}5{.}000" />. Rechne den Geldwert in Tausend Rupiah.
 
 <BlockMath math="\begin{aligned}
-a+b&=11 \\
-(10b+a)-(10a+b)&=27\ \Rightarrow\ 9(b-a)=27\ \Rightarrow\ b-a=3 \\
-b&=7,\qquad a=4
+x+y+z&=50 \\
+x+2y+5z&=110
 \end{aligned}" />
 
-Probe: <InlineMath math="4+7=11" /> und <InlineMath math="74-47=27" />.
+Zieh die erste Gleichung von der zweiten ab und setz das Ergebnis in die erste ein.
 
-Die ursprüngliche Zahl ist also <InlineMath math="47" />.
+<BlockMath math="\begin{aligned}
+y+4z&=60 \quad\Rightarrow\quad y=60-4z \\
+x&=50-y-z=50-(60-4z)-z=3z-10
+\end{aligned}" />
 
-- <InlineMath math="29" /> hat die Quersumme <InlineMath math="11" />, aber <InlineMath math="92-29=63" />, nicht <InlineMath math="27" />.
-- <InlineMath math="38" /> hat die Quersumme <InlineMath math="11" />, aber <InlineMath math="83-38=45" />.
-- <InlineMath math="56" /> hat die Quersumme <InlineMath math="11" />, aber <InlineMath math="65-56=9" />.
-- <InlineMath math="74" /> ist die Zahl nach dem Vertauschen der Ziffern.
+# Mit den Bedingungen filtern
+
+Jetzt hängen <InlineMath math="x" /> und <InlineMath math="y" /> von <InlineMath math="z" /> ab, und <InlineMath math="z" /> muss eine ganze Zahl sein. Jede Scheinart kommt mindestens einmal vor, und <InlineMath math="y" /> muss größer als <InlineMath math="2z" /> sein.
+
+<BlockMath math="\begin{aligned}
+x\ge1&:\quad 3z-10\ge1 \;\Rightarrow\; z\ge\tfrac{11}{3} \;\Rightarrow\; z\ge4 \\
+y>2z&:\quad 60-4z>2z \;\Rightarrow\; z<10 \;\Rightarrow\; z\le9 \\
+y\ge1&:\quad 60-4z\ge1 \;\Rightarrow\; z\le14
+\end{aligned}" />
+
+Die Bedingung <InlineMath math="y\ge1" /> ist durch <InlineMath math="z\le9" /> schon erfüllt. Also **kommen für <InlineMath math="z" /> nur <InlineMath math="4,5,6,7,8,9" /> in Frage**, sechs Werte.
+
+| <InlineMath math="z" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> |
+| --- | --- | --- | --- | --- | --- | --- |
+| <InlineMath math="y=60-4z" /> | <InlineMath math="44" /> | <InlineMath math="40" /> | <InlineMath math="36" /> | <InlineMath math="32" /> | <InlineMath math="28" /> | <InlineMath math="24" /> |
+| <InlineMath math="x=3z-10" /> | <InlineMath math="2" /> | <InlineMath math="5" /> | <InlineMath math="8" /> | <InlineMath math="11" /> | <InlineMath math="14" /> | <InlineMath math="17" /> |
+
+Prüf eine Spalte, etwa <InlineMath math="(2,44,4)" />: Das sind <InlineMath math="2+44+4=50" /> Scheine im Wert von <InlineMath math="2+88+20=110" /> Tausend. Der Wert <InlineMath math="z=10" /> ergibt <InlineMath math="y=20" />, also genau <InlineMath math="2z" />, und erfüllt damit "lebih dari" (mehr als) nicht.
+
+Es gibt also <InlineMath math="6" /> mögliche Zusammensetzungen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="14" /> zählt <InlineMath math="z=1" /> bis <InlineMath math="14" />. Hier fehlen sowohl <InlineMath math="x\ge1" /> als auch die Bedingung "mehr als doppelt so viele".
+- <InlineMath math="11" /> zählt <InlineMath math="z=4" /> bis <InlineMath math="14" /> und vergisst damit die Bedingung <InlineMath math="y>2z" />.
+- <InlineMath math="9" /> zählt <InlineMath math="z=1" /> bis <InlineMath math="9" />. **Für <InlineMath math="z=1,2,3" /> wird die Anzahl der Scheine zu <InlineMath math="\text{Rp}1{.}000" /> negativ**, nämlich <InlineMath math="-7" />, <InlineMath math="-4" /> und <InlineMath math="-1" />.
+- <InlineMath math="7" /> zählt auch <InlineMath math="z=10" /> mit, aber dort ist <InlineMath math="y=2z" /> und nicht größer als <InlineMath math="2z" />.

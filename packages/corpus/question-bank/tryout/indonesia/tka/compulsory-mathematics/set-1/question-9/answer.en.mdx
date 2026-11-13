@@ -1,11 +1,52 @@
-Many properties of a rational function like this one can be read from **splitting it into a number plus a simple fraction**.
+# When a power equals one
 
-<BlockMath math="f(x)=\frac{2x+1}{x-1}=\frac{2(x-1)+3}{x-1}=2+\frac{3}{x-1}" />
+The question asks for the sum of all solutions, so you have to find **every** value of <InlineMath math="x" />, with nothing missing and nothing extra. Call the base <InlineMath math="B=x^2-7x+11" /> and the exponent <InlineMath math="E=x-1" />.
 
-- **Domain**: only <InlineMath math="x=1" /> makes the denominator zero. The statement is true.
-- **Range**: the fraction <InlineMath math="\frac{3}{x-1}" /> takes every value except <InlineMath math="0" />, so <InlineMath math="f" /> takes every value except <InlineMath math="2" />. Solving <InlineMath math="y=\frac{2x+1}{x-1}" /> for <InlineMath math="x" /> gives <InlineMath math="x=\frac{y+1}{y-2}" />, which exists for every <InlineMath math="y\neq2" />. The statement is true.
-- **Zero**: <InlineMath math="2x+1=0" /> gives <InlineMath math="x=-\frac12" />, not <InlineMath math="\frac12" />. The statement is false.
-- **<InlineMath math="y" />-intercept**: <InlineMath math="f(0)=\frac{1}{-1}=-1" />. The statement is true.
-- **Monotonicity**: for <InlineMath math="x>1" />, <InlineMath math="x-1" /> grows, so <InlineMath math="\frac{3}{x-1}" /> shrinks. For example, <InlineMath math="f(2)=5" /> and <InlineMath math="f(4)=3" />. The function decreases there, so the statement is false.
+A power <InlineMath math="B^E" /> equals <InlineMath math="1" /> in only three ways:
 
-So the true statements are the ones about the domain, the range and the intercept <InlineMath math="(0,-1)" />.
+| Case | Condition | Example |
+| :---: | :---: | :---: |
+| base one | <InlineMath math="B=1" />, any exponent | <InlineMath math="1^4=1" /> |
+| exponent zero | <InlineMath math="E=0" /> and <InlineMath math="B\ne0" /> | <InlineMath math="5^0=1" /> |
+| base minus one | <InlineMath math="B=-1" /> and <InlineMath math="E" /> even | <InlineMath math="(-1)^2=1" /> |
+
+If <InlineMath math="B" /> is positive and not <InlineMath math="1" />, the exponent has to be <InlineMath math="0" />. If <InlineMath math="B" /> is negative, the rule in the question only allows whole-number exponents, and a whole-number power of a negative number other than <InlineMath math="-1" /> never equals <InlineMath math="1" /> unless the exponent is zero. So **the three cases in the table cover everything**.
+
+# Base one
+
+<BlockMath math="\begin{aligned}
+x^2-7x+11&=1 \\
+x^2-7x+10&=0 \\
+(x-2)(x-5)&=0
+\end{aligned}" />
+
+You get <InlineMath math="x=2" /> and <InlineMath math="x=5" />. The exponents are <InlineMath math="1" /> and <InlineMath math="4" />, and <InlineMath math="1" /> to any power is still <InlineMath math="1" />. Both are **accepted**.
+
+# Exponent zero
+
+<BlockMath math="x-1=0\iff x=1,\qquad B(1)=1-7+11=5\ne0" />
+
+That gives <InlineMath math="5^0=1" />, so <InlineMath math="x=1" /> is **accepted**. You need the check <InlineMath math="B\ne0" /> because <InlineMath math="0^0" /> isn't defined.
+
+# Base minus one
+
+<BlockMath math="\begin{aligned}
+x^2-7x+11&=-1 \\
+x^2-7x+12&=0 \\
+(x-3)(x-4)&=0
+\end{aligned}" />
+
+Now the exponent has to be even. For <InlineMath math="x=3" /> the exponent is <InlineMath math="2" />, so <InlineMath math="(-1)^2=1" />. For <InlineMath math="x=4" /> the exponent is <InlineMath math="3" />, so <InlineMath math="(-1)^3=-1" />. **The value <InlineMath math="x=4" /> is rejected**.
+
+The solutions are <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, and <InlineMath math="5" />, so
+
+<BlockMath math="1+2+3+5=11" />
+
+# Why the other options are wrong
+
+- <InlineMath math="7" /> uses only the base-one case, <InlineMath math="2+5" />.
+- <InlineMath math="8" /> uses base one and exponent zero, but **forgets the base <InlineMath math="-1" /> case**.
+- <InlineMath math="10" /> forgets the exponent-zero case, giving <InlineMath math="2+5+3" />.
+- <InlineMath math="15" /> also counts <InlineMath math="x=4" />, but its exponent is odd, so the result is <InlineMath math="-1" />.
+
+So the sum of all values of <InlineMath math="x" /> that work is <InlineMath math="11" />.

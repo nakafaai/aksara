@@ -1,17 +1,36 @@
-The volume of a cylinder is **base area times height**. The base area depends on the radius, which is half the diameter.
+# How the point and its image are linked
+
+The question asks for the largest possible distance between point <InlineMath math="P" /> and its image <InlineMath math="Q" /> while <InlineMath math="P" /> moves around the circle. There are two steps: turn <InlineMath math="PQ" /> into a distance that's easier to handle, then find the point on the circle that makes it largest.
+
+A dilation with centre <InlineMath math="C" /> and factor <InlineMath math="-2" /> means the vector from <InlineMath math="C" /> to <InlineMath math="Q" /> is <InlineMath math="-2" /> times the vector from <InlineMath math="C" /> to <InlineMath math="P" />. The minus sign puts <InlineMath math="Q" /> **on the far side of <InlineMath math="C" />**, on the same line as <InlineMath math="P" />.
 
 <BlockMath math="\begin{aligned}
-r&=\frac{1.4}{2}=0.7\text{ m} \\
-V&=\pi r^2h=\frac{22}{7}\cdot0.49\cdot2=3.08\text{ m}^3
+Q-C&=-2\,(P-C) \\
+P-Q&=(P-C)-(Q-C)=(P-C)+2\,(P-C)=3\,(P-C) \\
+PQ&=3\cdot CP
 \end{aligned}" />
 
-One cubic metre holds <InlineMath math="1{,}000" /> litres, because <InlineMath math="1\text{ m}^3=1{,}000\text{ dm}^3" />. So <InlineMath math="3.08\text{ m}^3=3{,}080" /> litres.
+In other words, <InlineMath math="PQ=PC+CQ=CP+2\,CP" />. So <InlineMath math="PQ" /> is largest exactly when <InlineMath math="CP" /> is largest.
 
-As a check, <InlineMath math="\frac{22}{7}\cdot0.49=1.54" />, and <InlineMath math="1.54\cdot2=3.08" />.
+# The farthest point of the circle
 
-So the tank holds <InlineMath math="3{,}080" /> litres.
+First find the distance from the centre of the circle to <InlineMath math="C" />. Since <InlineMath math="OC=13" /> is bigger than the radius <InlineMath math="3" />, point <InlineMath math="C" /> is outside the circle. By the triangle inequality, <InlineMath math="CP\le CO+OP" />, with equality when <InlineMath math="P" /> lies on line <InlineMath math="CO" /> extended past <InlineMath math="O" />. So **the farthest point from <InlineMath math="C" /> is <InlineMath math="OC" /> plus the radius away**.
 
-- <InlineMath math="308" /> litres uses <InlineMath math="1\text{ m}^3=100" /> litres.
-- <InlineMath math="4{,}400" /> litres forgets to square the radius: <InlineMath math="\frac{22}{7}\cdot0.7\cdot2=4.4" />.
-- <InlineMath math="12{,}320" /> litres uses the diameter <InlineMath math="1.4\text{ m}" /> as the radius.
-- <InlineMath math="30{,}800" /> litres uses <InlineMath math="1\text{ m}^3=10{,}000" /> litres.
+<BlockMath math="\begin{aligned}
+OC&=\sqrt{5^2+12^2}=\sqrt{169}=13 \\
+CP_{\text{max}}&=OC+3=16 \\
+PQ_{\text{max}}&=3\cdot16=48
+\end{aligned}" />
+
+For comparison, the point of the circle nearest to <InlineMath math="C" /> is <InlineMath math="13-3=10" /> away, so the smallest <InlineMath math="PQ" /> is <InlineMath math="3\cdot10=30" />. So <InlineMath math="PQ" /> always lies between <InlineMath math="30" /> and <InlineMath math="48" />.
+
+# Why the other options are wrong
+
+Each wrong option comes from one slipped step, either in reading the dilation or in picking the farthest point. **The factor <InlineMath math="3" /> and the added radius** are the two things that most often go missing.
+
+- <InlineMath math="39" /> uses <InlineMath math="OC=13" />, the distance to the centre of the circle, instead of the farthest point on it. The radius <InlineMath math="3" /> was never added.
+- <InlineMath math="32" /> is <InlineMath math="2\cdot16" />, the length <InlineMath math="CQ" />. The question wants <InlineMath math="PQ=CP+CQ" />.
+- <InlineMath math="30" /> is the smallest distance, not the largest.
+- <InlineMath math="16" /> comes from ignoring the minus sign, so <InlineMath math="Q" /> lands on the same side as <InlineMath math="P" />. Then <InlineMath math="PQ=2\,CP-CP=CP" />.
+
+So the largest possible distance between <InlineMath math="P" /> and <InlineMath math="Q" /> is <InlineMath math="48" />.

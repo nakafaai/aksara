@@ -1,16 +1,37 @@
-Misalkan banyak jawaban benar <InlineMath math="b" /> dan banyak jawaban salah <InlineMath math="s" />. Rani menjawab <InlineMath math="35" /> soal, jadi **hanya <InlineMath math="35" /> soal yang dibagi menjadi benar atau salah**, sedangkan <InlineMath math="5" /> soal lainnya bernilai <InlineMath math="0" />.
+# Menyusun persamaannya
+
+Misalkan angka ratusan, puluhan, dan satuan bilangan itu <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" />. Bilangan semula <InlineMath math="100a+10b+c" />, dan bilangan hasil pembalikan <InlineMath math="100c+10b+a" />. Kata **selisih** tidak menyebut bilangan mana yang lebih besar, jadi tanda selisihnya belum diketahui.
 
 <BlockMath math="\begin{aligned}
-b+s&=35 \\
-4b-s&=105 \\
-5b&=140\ \Rightarrow\ b=28,\ s=7
+(100a+10b+c)-(100c+10b+a)&=99(a-c) \\
+|99(a-c)|=396 \Rightarrow |a-c|&=4
 \end{aligned}" />
 
-Cek: <InlineMath math="4\cdot28-7=105" />.
+Dua syarat lainnya digabung. Angka puluhan <InlineMath math="b=2a+1" />, lalu masukkan ke jumlah angka.
 
-Jadi, Rani menjawab benar <InlineMath math="28" /> soal.
+<BlockMath math="\begin{aligned}
+a+(2a+1)+c&=13 \\
+3a+c&=12
+\end{aligned}" />
 
-- <InlineMath math="7" /> adalah banyak jawaban yang salah.
-- <InlineMath math="26" /> membagi skor <InlineMath math="105" /> dengan <InlineMath math="4" /> dan mengabaikan pengurangan skor dari jawaban salah.
-- <InlineMath math="29" /> menghitung <InlineMath math="5" /> soal yang tidak dijawab sebagai jawaban salah, sehingga persamaannya menjadi <InlineMath math="4b-(40-b)=105" />.
-- <InlineMath math="35" /> menganggap semua soal yang dijawab benar, padahal skornya akan menjadi <InlineMath math="140" />.
+# Memeriksa kedua kasus
+
+Sekarang selesaikan untuk setiap tanda selisih.
+
+<BlockMath math="\begin{aligned}
+a-c=4&:\quad c=a-4,\ 4a-4=12 \Rightarrow a=4,\ c=0,\ b=9 \\
+c-a=4&:\quad c=a+4,\ 4a+4=12 \Rightarrow a=2,\ c=6,\ b=5
+\end{aligned}" />
+
+Kasus pertama memberi <InlineMath math="490" />. Kalau urutannya dibalik, hasilnya <InlineMath math="094" />, yaitu <InlineMath math="94" />, dan itu **bukan bilangan tiga angka**. Syarat soal menolak kasus ini. Kasus kedua memberi <InlineMath math="256" /> dengan pembalikan <InlineMath math="652" />.
+
+Cek bilangan <InlineMath math="256" />: <InlineMath math="2+5+6=13" />, <InlineMath math="5=2(2)+1" />, dan <InlineMath math="652-256=396" />. Semua syarat terpenuhi.
+
+Jadi, hasil kali angka ratusan dan angka puluhannya adalah <InlineMath math="2\times5=10" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="36" /> berasal dari <InlineMath math="490" />. Ini terjadi kalau kamu **langsung menganggap bilangan semula lebih besar** dan tidak mengecek bahwa pembalikannya harus bilangan tiga angka.
+- <InlineMath math="21" /> berasal dari <InlineMath math="733" />, hasil membalik arah kalimat "dua kali", yaitu memakai <InlineMath math="a=2b+1" />.
+- <InlineMath math="30" /> berasal dari <InlineMath math="652" />, hasil mengaitkan angka puluhan dengan angka satuan, <InlineMath math="b=2c+1" />. Bilangan ini justru hasil pembalikan, bukan bilangan semula.
+- <InlineMath math="9" /> berasal dari <InlineMath math="337" />, hasil menaruh syarat pada angka satuan, <InlineMath math="c=2a+1" />, padahal syaratnya tentang angka puluhan.

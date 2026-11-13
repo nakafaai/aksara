@@ -1,0 +1,93 @@
+Pusat pembesaran dan vektor translasinya tidak diketahui, jadi kamu tidak boleh menjalankan <InlineMath math="T" /> langkah demi langkah. Kuncinya: **pembesaran diikuti translasi tetap merupakan satu pembesaran dengan faktor yang sama**, cuma pusatnya berpindah. Rancangannya: tentukan <InlineMath math="k" />, cari pusat baharu daripada pasangan <InlineMath math="A" /> dan <InlineMath math="A'" />, kemudian guna pusat itu untuk <InlineMath math="B" />.
+
+# Bentuk umum transformasi itu
+
+Katakan pusat pembesaran ialah <InlineMath math="P" /> dan vektor translasinya <InlineMath math="\vec v" />. Titik <InlineMath math="X" /> dibawa dahulu ke <InlineMath math="P+k(X-P)" />, kemudian dianjakkan sejauh <InlineMath math="\vec v" />:
+
+<BlockMath math="\begin{aligned}
+T(X)&=P+k(X-P)+\vec v \\
+&=kX+\big((1-k)P+\vec v\big)=kX+\vec c
+\end{aligned}" />
+
+Ada dua akibat penting. Pertama, bagi mana-mana dua titik, <InlineMath math="T(X)-T(Y)=k(X-Y)" />, jadi **setiap tembereng didarab dengan <InlineMath math="k" />** dan translasi tidak mengubah arahnya. Kedua, jika <InlineMath math="k\ne1" />, ada satu titik <InlineMath math="Q" /> yang tidak bergerak, dan <InlineMath math="T" /> sama dengan pembesaran berfaktor <InlineMath math="k" /> pada pusat <InlineMath math="Q" />.
+
+# Faktor skala daripada luas dan kedudukan titik
+
+Pembesaran berfaktor <InlineMath math="k" /> mendarabkan luas dengan <InlineMath math="k^2" />. Jadi <InlineMath math="k^2=9" />, dan ada **dua kemungkinan**, <InlineMath math="k=3" /> atau <InlineMath math="k=-3" />. Titik <InlineMath math="C" /> yang menentukan. Oleh sebab <InlineMath math="C-A=(0,3)" />:
+
+<BlockMath math="\begin{aligned}
+C'&=A'+k(0,3)=(-2,\ 9+3k) \\
+k=3&\ \Rightarrow\ C'=(-2,18),\ \text{di atas } A' \\
+k=-3&\ \Rightarrow\ C'=(-2,0),\ \text{di bawah } A'
+\end{aligned}" />
+
+Soalan menyatakan <InlineMath math="C'" /> di bawah <InlineMath math="A'" />, jadi <InlineMath math="k=-3" />.
+
+# Pusat pembesaran tunggal
+
+Pusat <InlineMath math="Q" /> ialah titik yang tidak bergerak. Pembesaran berfaktor <InlineMath math="-3" /> pada pusat <InlineMath math="Q" /> membawa <InlineMath math="A" /> ke <InlineMath math="A'" />, jadi <InlineMath math="A'-Q=-3(A-Q)" />:
+
+<BlockMath math="\begin{aligned}
+A'-Q&=-3A+3Q \\
+4Q&=A'+3A=(-2,9)+(6,3)=(4,12) \\
+Q&=(1,3)
+\end{aligned}" />
+
+Semak: <InlineMath math="A-Q=(1,-2)" /> dan <InlineMath math="A'-Q=(-3,6)" />, tepat <InlineMath math="-3" /> kali ganda. **Titik <InlineMath math="Q" /> terletak di antara <InlineMath math="A" /> dan <InlineMath math="A'" />**, seperti yang sepatutnya bagi faktor negatif.
+
+# Imej titik yang ditanya
+
+Sekarang besarkan <InlineMath math="B" /> pada pusat <InlineMath math="Q" /> dengan faktor <InlineMath math="-3" />:
+
+<BlockMath math="\begin{aligned}
+B-Q&=(4,0)-(1,3)=(3,-3) \\
+B'&=Q-3(B-Q)=(1,3)+(-9,9)=(-8,12)
+\end{aligned}" />
+
+Semak dengan sifat tembereng: <InlineMath math="B'-A'=(-6,3)" />, dan <InlineMath math="-3(B-A)=-3(2,-1)=(-6,3)" />. **Hasilnya sepadan**.
+
+<MathVisual
+  title={<>Satu pembesaran pada pusat baharu</>}
+  description={<>Titik <InlineMath math="Q(1,3)" /> ialah pusat pembesaran tunggal dengan faktor <InlineMath math="-3" />. Tembereng dari <InlineMath math="A(2,1)" /> ke <InlineMath math="A'(-2,9)" /> melalui <InlineMath math="Q" />, dan jarak <InlineMath math="QA'" /> ialah tiga kali jarak <InlineMath math="QA" />. Perkara yang sama berlaku bagi <InlineMath math="B(4,0)" /> dan imejnya <InlineMath math="B'(-8,12)" />, yang berada di sebelah lain <InlineMath math="Q" />.</>}
+  labels={{
+    q: <InlineMath math="Q" />,
+    a: <InlineMath math="A" />,
+    a2: <InlineMath math="A'" />,
+    b: <InlineMath math="B" />,
+    b2: <InlineMath math="B'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 6 },
+      y: { min: -2, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ray-a", kind: "segment", appearance: "construction", from: { x: 2, y: 1 }, to: { x: -2, y: 9 } },
+      { id: "ray-b", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: -8, y: 12 } },
+      { id: "point-q", kind: "point", appearance: "highlight", at: { x: 1, y: 3 } },
+      { id: "point-a", kind: "point", appearance: "primary", at: { x: 2, y: 1 } },
+      { id: "point-a2", kind: "point", appearance: "secondary", at: { x: -2, y: 9 } },
+      { id: "point-b", kind: "point", appearance: "primary", at: { x: 4, y: 0 } },
+      { id: "point-b2", kind: "point", appearance: "answer", at: { x: -8, y: 12 } },
+    ],
+    labels: [
+      { key: "q", objectId: "point-q", at: { x: 1, y: 3 }, placement: "right" },
+      { key: "a", objectId: "point-a", at: { x: 2, y: 1 }, placement: "below-left" },
+      { key: "a2", objectId: "point-a2", at: { x: -2, y: 9 }, placement: "right" },
+      { key: "b", objectId: "point-b", at: { x: 4, y: 0 }, placement: "above-right" },
+      { key: "b2", objectId: "point-b2", at: { x: -8, y: 12 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Mengapa jawapan lain salah
+
+- <InlineMath math="(-4,4)" /> membesarkan <InlineMath math="B" /> pada pusat <InlineMath math="A" /> dengan faktor <InlineMath math="-3" />, seolah-olah <InlineMath math="A" /> ialah pusat yang tidak bergerak. Sebenarnya <InlineMath math="A" /> **turut bergerak** ke <InlineMath math="A'" />.
+- <InlineMath math="(0,8)" /> menganggap <InlineMath math="T" /> hanya translasi sejauh <InlineMath math="A'-A=(-4,8)" />. Translasi tidak mengubah luas, sedangkan di sini luasnya menjadi <InlineMath math="9" /> kali ganda.
+- <InlineMath math="(4,6)" /> menggunakan <InlineMath math="k=3" />. Dengan faktor itu, <InlineMath math="C'=(-2,18)" /> berada di atas <InlineMath math="A'" />, bercanggah dengan fakta ketiga.
+- <InlineMath math="(10,-6)" /> sudah menemui pusat <InlineMath math="Q(1,3)" /> dengan betul, tetapi terlupa tanda negatif semasa membesarkan <InlineMath math="B" />, jadi menggunakan <InlineMath math="Q+3(B-Q)" />.
+
+Jadi, imej titik <InlineMath math="B(4,0)" /> di bawah <InlineMath math="T" /> ialah <InlineMath math="(-8,12)" />.

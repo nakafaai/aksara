@@ -1,15 +1,54 @@
-First turn kelvin into Celsius, then Celsius into Fahrenheit. That is **the composition <InlineMath math="(f\circ g)(K)=f\big(g(K)\big)" />**, with <InlineMath math="g" /> applied first.
+# Finding the quadratic
+
+This question has two parts. First, find <InlineMath math="a" />, <InlineMath math="b" /> and <InlineMath math="c" /> from the three points. Second, find **every real <InlineMath math="x" />** that makes one of the factors zero, then multiply them.
+
+Substitute the three points into <InlineMath math="f(x)=ax^2+bx+c" />.
 
 <BlockMath math="\begin{aligned}
-g(302)&=302-273=29 \\
-f(29)&=\frac95\cdot29+32=52.2+32=84.2
+f(-1)=19:&\quad a-b+c=19 \\
+f(1)=-5:&\quad a+b+c=-5 \\
+f(4)=-11:&\quad 16a+4b+c=-11
 \end{aligned}" />
 
-As a check, the composite is <InlineMath math="(f\circ g)(K)=\frac95\,(K-273)+32" />, and at <InlineMath math="K=302" /> it still gives <InlineMath math="84.2" />.
+Subtract the first equation from the second to get <InlineMath math="2b=-24" />, so <InlineMath math="b=-12" /> and <InlineMath math="a+c=7" />. Put <InlineMath math="b=-12" /> into the third equation.
 
-So the room is at <InlineMath math="84.2^\circ\text{F}" />.
+<BlockMath math="\begin{aligned}
+16a-48+c&=-11 \\
+16a+c&=37 \\
+(16a+c)-(a+c)&=37-7 \\
+15a=30,\quad a=2,\quad c&=5
+\end{aligned}" />
 
-- <InlineMath math="1{,}067^\circ\text{F}" /> adds <InlineMath math="273" /> instead of subtracting, so it uses <InlineMath math="575^\circ\text{C}" />.
-- <InlineMath math="575.6^\circ\text{F}" /> puts <InlineMath math="302" /> straight into <InlineMath math="f" /> without turning kelvin into Celsius.
-- <InlineMath math="357.2^\circ\text{F}" /> adds <InlineMath math="273" /> again to the correct result.
-- <InlineMath math="109.8^\circ\text{F}" /> adds <InlineMath math="32" /> before multiplying by <InlineMath math="\frac95" />.
+So <InlineMath math="f(x)=2x^2-12x+5=2(x-3)^2-13" />. The smallest value of <InlineMath math="f" /> is <InlineMath math="-13" />, at <InlineMath math="x=3" />.
+
+# Two cases from a zero product
+
+A product of two factors is zero when one of the factors is zero. So there are **two cases**: <InlineMath math="f(x)=-7" /> or <InlineMath math="f(x)=-15" />.
+
+The case <InlineMath math="f(x)=-15" /> has no real solution, because the smallest value of <InlineMath math="f" /> is <InlineMath math="-13" />. Check it with the discriminant. For <InlineMath math="px^2+qx+r=0" /> the discriminant is <InlineMath math="D=q^2-4pr" />, and there are real roots only when <InlineMath math="D\ge0" />.
+
+<BlockMath math="\begin{aligned}
+2x^2-12x+20=0 &\iff x^2-6x+10=0 \\
+D&=(-6)^2-4\cdot1\cdot10=-4<0
+\end{aligned}" />
+
+The case <InlineMath math="f(x)=-7" /> gives a new equation whose **constant term has changed**:
+
+<BlockMath math="\begin{aligned}
+2x^2-12x+5&=-7 \\
+2x^2-12x+12&=0 \\
+x^2-6x+6&=0,\qquad D=(-6)^2-4\cdot1\cdot6=12>0
+\end{aligned}" />
+
+There are two real roots, <InlineMath math="x=3\pm\sqrt3" />. By Vieta, the product of the roots of <InlineMath math="px^2+qx+r=0" /> is <InlineMath math="\frac{r}{p}" />, here <InlineMath math="\frac{6}{1}=6" />. Direct check: <InlineMath math="(3+\sqrt3)(3-\sqrt3)=9-3=6" />.
+
+# The tempting options
+
+Each of the other options **slips on one Vieta step or one case**.
+
+- <InlineMath math="-6" /> comes from carrying the minus sign of the sum formula, <InlineMath math="-\frac{q}{p}" />, over to the product. The product of the roots is <InlineMath math="\frac{r}{p}" />, with no minus sign.
+- <InlineMath math="\frac52" /> uses the original constant <InlineMath math="c=5" /> from <InlineMath math="f(x)=0" />. The equation is <InlineMath math="f(x)=-7" />, so the constant becomes <InlineMath math="5+7=12" />.
+- <InlineMath math="10" /> is the product from the case <InlineMath math="f(x)=-15" />, <InlineMath math="\frac{20}{2}" />. That case has no real roots at all.
+- <InlineMath math="60" /> multiplies the products of both cases, <InlineMath math="6\cdot10" />. The roots of the second case aren't real, so they can't be included.
+
+So the product of all real <InlineMath math="x" /> that satisfy the equation is <InlineMath math="6" />.

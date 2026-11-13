@@ -1,17 +1,42 @@
-<InlineMath math="U" /> is a quadratic with a negative coefficient of <InlineMath math="x^2" />, so its graph opens downward. **The largest value is at the vertex** <InlineMath math="x=-\frac{b}{2a}" />.
+The given formula is the value of <InlineMath math="f" /> at the point <InlineMath math="2x-1" />, **not the formula for <InlineMath math="f(x)" />**. So you can't just replace <InlineMath math="x" /> with <InlineMath math="a" /> or <InlineMath math="1-a" />. First find the real formula for <InlineMath math="f" />, then use it twice: to find <InlineMath math="a" />, and then to work out <InlineMath math="f(1-a)" />.
+
+# The real formula for f
+
+Let <InlineMath math="u=2x-1" />. Then <InlineMath math="x=\frac{u+1}{2}" />, so <InlineMath math="4x^2=(u+1)^2" /> and <InlineMath math="2x=u+1" />.
 
 <BlockMath math="\begin{aligned}
-x&=-\frac{350}{2\cdot(-25)}=7 \\
-U(7)&=-25\cdot49+350\cdot7-600=-1{,}225+2{,}450-600=625
+f(u)&=(u+1)^2-(u+1)+6 \\
+&=u^2+2u+1-u-1+6 \\
+&=u^2+u+6
 \end{aligned}" />
 
-The largest profit, <InlineMath math="625" /> thousand rupiah, comes at a price of <InlineMath math="\text{Rp}7{,}000" /> per glass.
+Check it backwards: <InlineMath math="(2x-1)^2+(2x-1)+6=4x^2-4x+1+2x-1+6=4x^2-2x+6" />. It matches, so **<InlineMath math="f(x)=x^2+x+6" />**.
 
-As a check, <InlineMath math="U(6)=-900+2{,}100-600=600" /> and <InlineMath math="U(8)=-1{,}600+2{,}800-600=600" />, both smaller and equal on either side of <InlineMath math="x=7" />.
+# Finding a
 
-So the largest daily profit is <InlineMath math="\text{Rp}625{,}000" />.
+Now use the formula for <InlineMath math="f" /> on <InlineMath math="f(a)=26" />.
 
-- <InlineMath math="\text{Rp}1{,}225{,}000" /> forgets the constant term <InlineMath math="-600" />.
-- <InlineMath math="\text{Rp}1{,}850{,}000" /> adds <InlineMath math="600" /> instead of subtracting it.
-- <InlineMath math="\text{Rp}2{,}450{,}000" /> counts only the term <InlineMath math="350x" /> at <InlineMath math="x=7" />.
-- <InlineMath math="\text{Rp}3{,}075{,}000" /> takes <InlineMath math="-25\cdot49" /> as <InlineMath math="+1{,}225" />.
+<BlockMath math="\begin{aligned}
+a^2+a+6&=26 \\
+a^2+a-20&=0 \\
+(a+5)(a-4)&=0
+\end{aligned}" />
+
+There are two roots, <InlineMath math="a=-5" /> and <InlineMath math="a=4" />. **The condition <InlineMath math="a<0" /> rules out <InlineMath math="a=4" />**, so <InlineMath math="a=-5" />.
+
+# The value asked for
+
+With <InlineMath math="a=-5" />, you get <InlineMath math="1-a=6" />.
+
+<BlockMath math="f(6)=6^2+6+6=48" />
+
+A quick check with the original formula: <InlineMath math="f(6)" /> is <InlineMath math="f(2x-1)" /> at <InlineMath math="x=3.5" />, and <InlineMath math="4(3.5)^2-2(3.5)+6=49-7+6=48" />. **The results agree**.
+
+# Why the other options are wrong
+
+- <InlineMath math="138" /> uses the correct <InlineMath math="a=-5" /> but puts <InlineMath math="6" /> into <InlineMath math="4x^2-2x+6" />. That's actually **the value <InlineMath math="f(11)" />, not <InlineMath math="f(6)" />**.
+- <InlineMath math="36" /> treats <InlineMath math="f(x)=4x^2-2x+6" /> all the way through. From <InlineMath math="4a^2-2a+6=26" /> it gets <InlineMath math="a=-2" />, and the same formula then gives <InlineMath math="36" /> at <InlineMath math="x=3" />.
+- <InlineMath math="18" /> finds <InlineMath math="a=-2" /> with that wrong formula, then works out <InlineMath math="f(3)" /> with the right one.
+- <InlineMath math="12" /> uses <InlineMath math="a=4" /> and ignores <InlineMath math="a<0" />, so it computes <InlineMath math="f(-3)=9-3+6=12" />.
+
+So <InlineMath math="f(1-a)=48" />.

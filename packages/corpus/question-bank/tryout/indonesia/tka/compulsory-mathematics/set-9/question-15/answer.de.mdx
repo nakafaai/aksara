@@ -1,14 +1,74 @@
-Eine Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um <InlineMath math="O" /> bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(-y,x)" /> ab: **Vertausche die Koordinaten und setz vor die erste ein Minus**. Wende diese Regel auf jede Ecke an.
+Gefragt ist, welche einzelne Abbildung <InlineMath math="A" /> auf <InlineMath math="A'" /> **und gleichzeitig** <InlineMath math="B" /> auf <InlineMath math="B'" /> abbildet. Vorsicht: Jede Abbildung in der ersten und dritten Aussage bildet <InlineMath math="A" /> tatsächlich auf <InlineMath math="A'" /> ab. Den Ausschlag gibt also der Punkt <InlineMath math="B" />.
+
+# Ein Hinweis aus der Richtung der Strecke
+
+Der schnelle Trick: Schau dir die Strecke von <InlineMath math="A" /> nach <InlineMath math="B" /> an. Jede Art von Abbildung verändert den Vektor <InlineMath math="\overrightarrow{AB}" /> auf eine feste Weise, **egal wo ihr Zentrum oder ihre Spiegelachse liegt**:
 
 <BlockMath math="\begin{aligned}
-P(1,1)&\to P'(-1,1),\qquad Q(5,1)\to Q'(-1,5) \\
-R(5,3)&\to R'(-3,5),\qquad S(1,3)\to S'(-3,1)
+\overrightarrow{AB}&=(3-1,\ 6-4)=(2,2) \\
+\overrightarrow{A'B'}&=(5-7,\ 6-4)=(-2,2)
 \end{aligned}" />
 
-- <InlineMath math="P'=(-1,1)" />, wie berechnet. Die Aussage ist richtig.
-- <InlineMath math="R'=(-3,5)" />. Der Punkt <InlineMath math="(3,-5)" /> entsteht bei einer Drehung im Uhrzeigersinn. Die Aussage ist falsch.
-- <InlineMath math="P'(-1,1)" /> und <InlineMath math="Q'(-1,5)" /> haben dieselbe <InlineMath math="x" />-Koordinate, also ist <InlineMath math="P'Q'" /> senkrecht. Die waagerechte Seite <InlineMath math="PQ" /> dreht sich um <InlineMath math="90^\circ" /> und wird senkrecht. Die Aussage ist richtig.
-- Alle Bildpunkte haben <InlineMath math="x<0" /> und <InlineMath math="y>0" />, das Rechteck liegt also im II. Quadranten. Die Aussage ist falsch.
-- Eine Drehung ändert die Größe nicht, die Fläche bleibt also <InlineMath math="4\cdot2=8" /> Flächeneinheiten. Die Aussage ist richtig.
+| Abbildung | Aus <InlineMath math="(2,2)" /> wird | Passt zu <InlineMath math="(-2,2)" />? |
+| :---: | :---: | :---: |
+| Verschiebung | <InlineMath math="(2,2)" /> | nein |
+| Streckung mit Faktor <InlineMath math="-1" /> | <InlineMath math="(-2,-2)" /> | nein |
+| Drehung um <InlineMath math="90^\circ" /> im Uhrzeigersinn | <InlineMath math="(2,-2)" /> | nein |
+| Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn | <InlineMath math="(-2,2)" /> | ja |
+| Spiegelung an einer senkrechten Geraden | <InlineMath math="(-2,2)" /> | ja |
 
-Richtig sind also die Aussagen zu <InlineMath math="P'(-1,1)" />, zur senkrechten Seite <InlineMath math="P'Q'" /> und zur Fläche von <InlineMath math="8" /> Flächeneinheiten.
+Diese Tabelle siebt die Arten aus. Danach prüfst du, ob auch Zentrum oder Spiegelachse passen.
+
+<MathVisual
+  title={<>Die Strecke und ihr Bild</>}
+  description={<>Die Strecke von <InlineMath math="A(1,4)" /> nach <InlineMath math="B(3,6)" /> zeigt nach rechts oben. Ihr Bild von <InlineMath math="A'(7,4)" /> nach <InlineMath math="B'(5,6)" /> zeigt nach links oben. Die Gerade <InlineMath math="x=4" /> liegt genau in der Mitte zwischen beiden Strecken, und der Punkt <InlineMath math="(4,7)" /> ist das Zentrum der Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn, die die erste Strecke auf die zweite bringt.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    a2: <InlineMath math="A'" />,
+    b2: <InlineMath math="B'" />,
+    center: <InlineMath math="(4,7)" />,
+    mirror: <InlineMath math="x=4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 10 },
+      y: { min: 0, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: 4, y: 9 } },
+      { id: "ab", kind: "vector", appearance: "primary", from: { x: 1, y: 4 }, to: { x: 3, y: 6 } },
+      { id: "ab2", kind: "vector", appearance: "secondary", from: { x: 7, y: 4 }, to: { x: 5, y: 6 } },
+      { id: "center", kind: "point", appearance: "highlight", at: { x: 4, y: 7 } },
+    ],
+    labels: [
+      { key: "a", objectId: "ab", at: { x: 1, y: 4 }, placement: "left" },
+      { key: "b", objectId: "ab", at: { x: 3, y: 6 }, placement: "above-left" },
+      { key: "a2", objectId: "ab2", at: { x: 7, y: 4 }, placement: "right" },
+      { key: "b2", objectId: "ab2", at: { x: 5, y: 6 }, placement: "above-right" },
+      { key: "center", objectId: "center", at: { x: 4, y: 7 }, placement: "above-right" },
+      { key: "mirror", objectId: "mirror", at: { x: 4, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Jede Aussage einzeln prüfen
+
+1. **Falsch**. Die Verschiebung um <InlineMath math="(6,0)" /> bringt <InlineMath math="A(1,4)" /> nach <InlineMath math="(7,4)" />, aber <InlineMath math="B(3,6)" /> nach <InlineMath math="(9,6)" /> statt nach <InlineMath math="(5,6)" />. Eine Verschiebung ändert die Richtung einer Strecke nie.
+2. **Falsch**. Eine Drehung um <InlineMath math="90^\circ" /> im Uhrzeigersinn macht aus <InlineMath math="(2,2)" /> immer <InlineMath math="(2,-2)" />, gebraucht wird aber <InlineMath math="(-2,2)" />. Also scheitert jedes Zentrum. Das Zentrum <InlineMath math="(4,1)" /> bringt zum Beispiel <InlineMath math="A" /> nach <InlineMath math="(7,4)" />, aber <InlineMath math="B" /> nach <InlineMath math="(9,2)" />.
+3. **Falsch**. Die Streckung mit Zentrum <InlineMath math="(4,4)" /> und Faktor <InlineMath math="-1" /> bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(8-x,\ 8-y)" /> ab. Damit stimmt <InlineMath math="A\mapsto(7,4)" />, aber <InlineMath math="B\mapsto(5,2)" /> nicht.
+4. **Richtig**. Die Spiegelung an <InlineMath math="x=4" /> bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(8-x,\ y)" /> ab, also <InlineMath math="A\mapsto(7,4)" /> und <InlineMath math="B\mapsto(5,6)" />. Beides passt.
+5. **Richtig**. Die Art hat das Sieb überstanden, jetzt fehlt nur das Zentrum. Eine Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um <InlineMath math="(a,b)" /> bildet <InlineMath math="(x,y)" /> auf <InlineMath math="\big(a-(y-b),\ b+(x-a)\big)" /> ab. Setz <InlineMath math="A\mapsto A'" /> ein:
+
+<BlockMath math="\begin{aligned}
+a-(4-b)=7\ &\Rightarrow\ a+b=11 \\
+b+(1-a)=4\ &\Rightarrow\ b-a=3 \\
+a=4,\ b&=7
+\end{aligned}" />
+
+Teste jetzt <InlineMath math="B(3,6)" /> mit dem Zentrum <InlineMath math="(4,7)" />: Das Bild ist <InlineMath math="\big(4-(6-7),\ 7+(3-4)\big)=(5,6)=B'" />. **Dieses Zentrum gibt es**, also ist die fünfte Aussage richtig.
+
+Richtig sind also die vierte und die fünfte Aussage: die Spiegelung an <InlineMath math="x=4" /> und die Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um <InlineMath math="(4,7)" />.

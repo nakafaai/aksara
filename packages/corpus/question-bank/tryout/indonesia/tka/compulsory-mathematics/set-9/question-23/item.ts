@@ -6,28 +6,26 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "reading-books",
+  stimulus: "saudara",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label: "Median banyak buku yang dibaca menjadi $$2{,}5$$.",
+          column: 2,
+          label:
+            "Jika $$4$$ siswa baru yang masing-masing mempunyai $$3$$ saudara kandung bergabung ke kelas itu, rata-rata banyak saudara kandung seluruh siswa naik dan rata-rata banyak saudara kandung siswa yang bukan anak tunggal juga naik.",
         },
         {
           column: 1,
           label:
-            "Rata-rata banyak buku yang dibaca menjadi lebih dari $$2{,}5$$.",
+            "Berapa pun banyak siswa baru yang masing-masing mempunyai $$3$$ saudara kandung bergabung ke kelas itu, rata-rata banyak saudara kandung seluruh siswa tetap kurang dari $$3$$.",
         },
         {
           column: 2,
-          label: "Data $$30$$ siswa itu mempunyai tepat satu modus.",
-        },
-        {
-          column: 2,
-          label: "Jangkauan data bertambah.",
+          label:
+            "Jika setiap siswa yang tercatat mempunyai $$5$$ saudara kandung ternyata hanya mempunyai $$4$$ saudara kandung, rata-rata banyak saudara kandung seluruh siswa turun lebih dari $$0{,}25$$.",
         },
       ],
     },

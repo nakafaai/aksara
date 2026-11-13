@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  stimulus: "streaming-plans",
+  stimulus: "tiket",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$\\text{Rp}1{.}910{.}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}1{.}820{.}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}2{.}205{.}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}1{.}785{.}000$$",
+        },
+        {
           correct: true,
-          label: "$$70\\,\\%$$",
-        },
-        {
-          correct: false,
-          label: "$$42\\,\\%$$",
-        },
-        {
-          correct: false,
-          label: "$$30\\,\\%$$",
-        },
-        {
-          correct: false,
-          label: "$$25\\,\\%$$",
-        },
-        {
-          correct: false,
-          label: "$$18\\,\\%$$",
+          label: "$$\\text{Rp}1{.}845{.}000$$",
         },
       ],
     },

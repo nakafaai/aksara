@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$10$$ tahun",
+          label: "$$64$$",
         },
         {
           correct: false,
-          label: "$$24$$ tahun",
+          label: "$$107$$",
         },
         {
           correct: false,
-          label: "$$28$$ tahun",
+          label: "$$120$$",
         },
         {
           correct: true,
-          label: "$$34$$ tahun",
+          label: "$$121$$",
         },
         {
           correct: false,
-          label: "$$42$$ tahun",
+          label: "$$147$$",
         },
       ],
     },

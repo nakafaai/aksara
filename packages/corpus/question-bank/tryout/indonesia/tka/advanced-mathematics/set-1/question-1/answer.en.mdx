@@ -1,29 +1,49 @@
-The equation compares two determinants, so the first step is to **turn each determinant into an algebraic expression in** <InlineMath math="x" />. After that, the determinant equation becomes an ordinary quadratic equation.
+The question wants the sum of the four entries of the matrix <InlineMath math="X" /> that satisfies <InlineMath math="AX=B+2X" />. Two things decide it: how you gather the <InlineMath math="X" /> terms, and **which side you multiply the inverse on**.
 
-The determinant of a <InlineMath math="2\times2" /> matrix is the product of the main diagonal minus the product of the other diagonal.
+# Move every term to the left
 
-<BlockMath math="\begin{vmatrix} x & 2 \\ 3 & x-1 \end{vmatrix}=x(x-1)-2\cdot3=x^2-x-6" />
-
-Expand the <InlineMath math="3\times3" /> determinant along its first row. The middle entry of that row is <InlineMath math="0" />, so only two cofactors need to be calculated. The cofactor signs along the first row are positive, negative, positive.
+Bring <InlineMath math="2X" /> over to the left side. You can't subtract the number <InlineMath math="2" /> straight from the matrix <InlineMath math="A" />, so first write <InlineMath math="2X=2IX" />, where <InlineMath math="I" /> is the identity matrix. Since <InlineMath math="X" /> sits **to the right of** <InlineMath math="A" />, you factor <InlineMath math="X" /> out to the right as well.
 
 <BlockMath math="\begin{aligned}
-\begin{vmatrix} 1 & 0 & 2 \\ 0 & x & 1 \\ 1 & 1 & 3 \end{vmatrix}&=1\begin{vmatrix} x & 1 \\ 1 & 3 \end{vmatrix}-0\begin{vmatrix} 0 & 1 \\ 1 & 3 \end{vmatrix}+2\begin{vmatrix} 0 & x \\ 1 & 1 \end{vmatrix} \\
-&=1(3x-1)-0+2(0\cdot1-x\cdot1) \\
-&=3x-1-2x=x-1
+AX-2IX&=B \\
+(A-2I)X&=B
 \end{aligned}" />
 
-Set the two results equal and move every term to the left side.
+Now work out <InlineMath math="A-2I" />. Only the main diagonal loses <InlineMath math="2" />, because <InlineMath math="2I" /> has <InlineMath math="2" /> on the diagonal and <InlineMath math="0" /> everywhere else.
+
+<BlockMath math="A-2I=\begin{pmatrix}5-2&2\\1&3-2\end{pmatrix}=\begin{pmatrix}3&2\\1&1\end{pmatrix}" />
+
+# Multiply by the inverse from the left
+
+Call <InlineMath math="M=A-2I" />. Its determinant is <InlineMath math="3\cdot1-2\cdot1=1" />, so <InlineMath math="M" /> has an inverse. For a <InlineMath math="2\times2" /> matrix you get the inverse by **swapping the two diagonal entries**, flipping the signs of the other two, and dividing by the determinant.
+
+<BlockMath math="M^{-1}=\frac{1}{1}\begin{pmatrix}1&-2\\-1&3\end{pmatrix}=\begin{pmatrix}1&-2\\-1&3\end{pmatrix}" />
+
+The equation is <InlineMath math="MX=B" />, with <InlineMath math="M" /> on the left of <InlineMath math="X" />. To get rid of <InlineMath math="M" />, multiply both sides by <InlineMath math="M^{-1}" /> from the left too.
 
 <BlockMath math="\begin{aligned}
-x^2-x-6&=x-1 \\
-x^2-2x-5&=0
+X&=M^{-1}B=\begin{pmatrix}1&-2\\-1&3\end{pmatrix}\begin{pmatrix}2&3\\-1&-1\end{pmatrix} \\
+&=\begin{pmatrix}2+2&3+2\\-2-3&-3-3\end{pmatrix}=\begin{pmatrix}4&5\\-5&-6\end{pmatrix}
 \end{aligned}" />
 
-The discriminant of this quadratic is <InlineMath math="D=(-2)^2-4(1)(-5)=24" />. Since <InlineMath math="D>0" />, there are two different real values of <InlineMath math="x" />, namely <InlineMath math="x=1+\sqrt6" /> and <InlineMath math="x=1-\sqrt6" />. The sum-of-roots formula gives <InlineMath math="-\frac{b}{a}=-\frac{-2}{1}=2" />, and adding the roots directly gives the same value, <InlineMath math="(1+\sqrt6)+(1-\sqrt6)=2" />.
+The sum of its entries is <InlineMath math="4+5+(-5)+(-6)=-2" />.
 
-So the sum of all real values of <InlineMath math="x" /> that satisfy the equation is <InlineMath math="2" />.
+# Check with the original equation
 
-- <InlineMath math="-5" /> is the **product** of the two roots, <InlineMath math="\frac{c}{a}" />, not their sum.
-- <InlineMath math="-2" /> comes from dropping the minus sign in the formula <InlineMath math="-\frac{b}{a}" />.
-- <InlineMath math="1" /> comes from solving only <InlineMath math="x^2-x-6=0" />, as if the right side were zero. The <InlineMath math="3\times3" /> determinant equals <InlineMath math="x-1" />, not zero.
-- <InlineMath math="6" /> appears if the minor of the third entry is computed as <InlineMath math="x\cdot1-0\cdot1=x" /> instead of <InlineMath math="0\cdot1-x\cdot1=-x" />. The right-hand determinant then becomes <InlineMath math="5x-1" />, and the equation <InlineMath math="x^2-6x-5=0" /> has root sum <InlineMath math="6" />.
+Put <InlineMath math="X" /> into both sides of <InlineMath math="AX=B+2X" />. If the two sides match, **the matrix you found is right**.
+
+<BlockMath math="\begin{aligned}
+AX&=\begin{pmatrix}5&2\\1&3\end{pmatrix}\begin{pmatrix}4&5\\-5&-6\end{pmatrix}=\begin{pmatrix}10&13\\-11&-13\end{pmatrix} \\
+B+2X&=\begin{pmatrix}2+8&3+10\\-1-10&-1-12\end{pmatrix}=\begin{pmatrix}10&13\\-11&-13\end{pmatrix}
+\end{aligned}" />
+
+# Why the other options are wrong
+
+Each wrong option comes from **one step that slipped**.
+
+- <InlineMath math="\frac{4}{3}" /> comes from subtracting <InlineMath math="2" /> from all four entries of <InlineMath math="A" />, which gives <InlineMath math="\begin{pmatrix}3&0\\-1&1\end{pmatrix}" />. But <InlineMath math="2X=2IX" /> only changes the diagonal.
+- <InlineMath math="2" /> comes from a sign flip while moving terms, giving <InlineMath math="(2I-A)X=B" />. That produces exactly the negative of the correct <InlineMath math="X" />.
+- <InlineMath math="3" /> comes from multiplying the inverse on the right, <InlineMath math="X=BM^{-1}=\begin{pmatrix}-1&5\\0&-1\end{pmatrix}" />. Matrix multiplication isn't commutative, so this matrix doesn't satisfy <InlineMath math="MX=B" />.
+- <InlineMath math="12" /> comes from building the inverse without swapping the diagonal entries, that is, using <InlineMath math="\begin{pmatrix}3&-2\\-1&1\end{pmatrix}" /> as <InlineMath math="M^{-1}" />.
+
+So the sum of all entries of <InlineMath math="X" /> is <InlineMath math="-2" />.

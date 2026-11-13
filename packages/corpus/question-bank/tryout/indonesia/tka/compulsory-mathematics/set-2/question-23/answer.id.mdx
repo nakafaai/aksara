@@ -1,10 +1,37 @@
-Hanya satu data yang berubah, dari <InlineMath math="36" /> menjadi <InlineMath math="30" />. Periksa **bagaimana setiap ukuran menanggapi perubahan itu**. Setelah diurutkan, data yang sudah diperbaiki adalah:
+Ketiga pernyataan menyangkut rata-rata dan median, padahal tabel hanya memberi lima nilai per kelas. Sebuah pernyataan **benar hanya jika berlaku untuk semua data yang cocok dengan tabel**. Satu contoh data yang cocok tetapi melanggar pernyataan sudah cukup untuk membuatnya salah.
 
-<BlockMath math="30,\ 30,\ 31,\ 31,\ 32,\ 32,\ 32,\ 32,\ 33,\ 33,\ 34,\ 34" />
+# Posisi kuartil dalam data terurut
 
-- **Rata-rata**: jumlah data turun <InlineMath math="6" />, jadi rata-rata turun <InlineMath math="\frac{6}{12}=0{,}5" /> menjadi <InlineMath math="32^\circ\text{C}" />. Pernyataan ini benar.
-- **Median**: data ke-<InlineMath math="6" /> dan ke-<InlineMath math="7" /> tetap <InlineMath math="32" /> dan <InlineMath math="32" />, jadi median tetap <InlineMath math="32^\circ\text{C}" />. Pernyataan ini salah.
-- **Jangkauan**: data terbesar sekarang <InlineMath math="34" /> dan data terkecil <InlineMath math="30" />, jadi <InlineMath math="34-30=4^\circ\text{C}" />. Pernyataan ini benar.
-- **Modus**: <InlineMath math="32" /> tetap muncul empat kali, sedangkan <InlineMath math="30" /> hanya dua kali. Modus tetap <InlineMath math="32^\circ\text{C}" />. Pernyataan ini salah.
+Urutkan nilai kelas A sebagai <InlineMath math="a_1\le\dots\le a_{31}" /> dan kelas B sebagai <InlineMath math="b_1\le\dots\le b_{27}" />. Median kelas A adalah **data ke-<InlineMath math="16" />**. Kuartil bawahnya adalah tengah dari <InlineMath math="15" /> data pertama, yaitu data ke-<InlineMath math="8" />, dan kuartil atasnya data ke-<InlineMath math="24" />. Dengan cara yang sama, kelas B memakai data ke-<InlineMath math="7" />, ke-<InlineMath math="14" />, dan ke-<InlineMath math="21" />.
 
-Jadi, pernyataan yang benar adalah pernyataan tentang rata-rata dan jangkauan.
+<BlockMath math="\begin{aligned}
+\text{Kelas A}&:\ a_1=40,\quad a_8=56,\quad a_{16}=70,\quad a_{24}=82,\quad a_{31}=98 \\
+\text{Kelas B}&:\ b_1=50,\quad b_7=62,\quad b_{14}=68,\quad b_{21}=76,\quad b_{27}=92
+\end{aligned}" />
+
+# Rata-rata terkecil dan terbesar
+
+Data di antara dua posisi yang diketahui boleh bernilai berapa saja di antara kedua nilai itu, termasuk sama dengan salah satunya. Jadi **jumlah terkecil** didapat kalau setiap data yang tidak diketahui sama dengan nilai yang diketahui tepat di bawahnya, dan jumlah terbesar kalau sama dengan nilai yang diketahui tepat di atasnya.
+
+<BlockMath math="\begin{aligned}
+\text{A terkecil}&=7\cdot40+8\cdot56+8\cdot70+7\cdot82+98=1{.}960,\quad \bar a=\tfrac{1{.}960}{31}\approx63{,}23 \\
+\text{B terbesar}&=50+6\cdot62+7\cdot68+7\cdot76+6\cdot92=1{.}982,\quad \bar b=\tfrac{1{.}982}{27}\approx73{,}41
+\end{aligned}" />
+
+Pada data A terkecil, misalnya, <InlineMath math="a_1" /> sampai <InlineMath math="a_7" /> bernilai <InlineMath math="40" /> dan <InlineMath math="a_8" /> sampai <InlineMath math="a_{15}" /> bernilai <InlineMath math="56" />. Data ini tetap memberi <InlineMath math="Q_1=a_8=56" />, median <InlineMath math="a_{16}=70" />, dan seterusnya, jadi cocok dengan tabel.
+
+# Menilai setiap pernyataan
+
+**Salah**. Pernyataan pertama: kelas A bisa punya data A terkecil dengan rata-rata sekitar <InlineMath math="63{,}23" />, sementara kelas B punya data B terbesar dengan rata-rata sekitar <InlineMath math="73{,}41" />. Kedua data cocok dengan tabel, dan di sini rata-rata A **lebih kecil**. Median dan kuartil A yang lebih tinggi tidak menjamin rata-ratanya juga lebih tinggi.
+
+**Salah**. Pernyataan kedua: dengan siswa baru, kelas B berisi <InlineMath math="28" /> siswa, jadi median adalah rata-rata data ke-<InlineMath math="14" /> dan ke-<InlineMath math="15" />. Nilai <InlineMath math="100" /> masuk di ujung atas, sehingga data ke-<InlineMath math="14" /> tetap <InlineMath math="b_{14}=68" /> dan data ke-<InlineMath math="15" /> adalah <InlineMath math="b_{15}" />, yang boleh bernilai berapa saja dari <InlineMath math="68" /> sampai <InlineMath math="76" />.
+
+<BlockMath math="\text{jika } b_{15}=76:\quad \text{median baru}=\frac{68+76}{2}=72\ne68" />
+
+Median baru tetap <InlineMath math="68" /> hanya jika <InlineMath math="b_{15}=68" />, dan itu tidak pasti.
+
+**Benar**. Pernyataan ketiga: setiap <InlineMath math="a_i" /> paling sedikit sama dengan nilai yang dipakai pada data A terkecil, karena nilai itu adalah nilai diketahui di posisi yang sama atau sebelumnya. Jadi jumlah nilai kelas A selalu paling sedikit <InlineMath math="1{.}960" />.
+
+<BlockMath math="\bar a\ge\frac{1{.}960}{31}\approx63{,}23>63" />
+
+Jadi, pernyataan pertama salah, pernyataan kedua salah, dan pernyataan ketiga benar.

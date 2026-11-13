@@ -1,9 +1,49 @@
-Translation, Spiegelung und Drehung sind **Kongruenzabbildungen**: Sie erhalten alle Längen und damit auch Winkel und Flächen. Eine zentrische Streckung mit dem Faktor <InlineMath math="k" /> multipliziert Längen mit <InlineMath math="|k|" /> und Flächen mit <InlineMath math="k^2" />.
+Eine Drehung um <InlineMath math="180^\circ" /> um <InlineMath math="O" /> schickt jeden Punkt <InlineMath math="(x,y)" /> nach <InlineMath math="(-x,-y)" />. Berechne deshalb für jede Verkettung **das Bild eines allgemeinen Punktes <InlineMath math="(x,y)" />** und vergleiche es mit <InlineMath math="(-x,-y)" />. Ein oder zwei Testpunkte reichen nicht, denn zwei verschiedene Abbildungen können in einzelnen Punkten zufällig übereinstimmen.
 
-- Eine Translation verschiebt alle Punkte um denselben Vektor, jede Seite behält ihre Länge. Die Aussage ist richtig.
-- Eine Spiegelung ist eine Kongruenzabbildung, das Bild ist deckungsgleich und hat dieselbe Fläche. Die Aussage ist richtig.
-- Bei <InlineMath math="k=-2" /> wird jede Länge verdoppelt, die Fläche also mit <InlineMath math="(-2)^2=4" /> multipliziert, nicht mit <InlineMath math="2" />. Die Aussage ist falsch.
-- Die Drehung um <InlineMath math="180^\circ" /> bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(-x,-y)" /> ab, genau wie die Streckung mit <InlineMath math="k=-1" />. Die Aussage ist richtig.
-- Die Spiegelung an der <InlineMath math="x" />-Achse gibt <InlineMath math="(x,-y)" />, danach die Spiegelung an der <InlineMath math="y" />-Achse <InlineMath math="(-x,-y)" />. Das ist die Drehung um <InlineMath math="180^\circ" />. Eine Translation würde jeden Punkt um denselben Vektor verschieben, hier wird aber zum Beispiel <InlineMath math="(1,0)" /> um <InlineMath math="(-2,0)" /> verschoben und <InlineMath math="(2,0)" /> um <InlineMath math="(-4,0)" />. Die Aussage ist falsch.
+# Die nötigen Regeln
 
-Richtig sind also die Aussagen über die Translation, die Spiegelung und die Drehung um <InlineMath math="180^\circ" />.
+Bei einem Zentrum <InlineMath math="P(a,b)" /> startest du mit dem Vektor <InlineMath math="(x-a,\ y-b)" />: Drehe den Vektor und addiere danach <InlineMath math="(a,b)" /> wieder.
+
+<BlockMath math="\begin{aligned}
+R_{P,90^\circ}:&\ (x,y)\mapsto\big(a-(y-b),\ b+(x-a)\big) \\
+R_{P,180^\circ}:&\ (x,y)\mapsto(2a-x,\ 2b-y) \\
+\text{Spiegelung an } x=h:&\ (x,y)\mapsto(2h-x,\ y) \\
+\text{Spiegelung an } y=k:&\ (x,y)\mapsto(x,\ 2k-y)
+\end{aligned}" />
+
+Eine weitere Tatsache hilft. Zwei Drehungen um <InlineMath math="90^\circ" /> hintereinander ergeben immer **eine Drehung um <InlineMath math="180^\circ" /> um irgendein Zentrum**, aber dieses Zentrum muss nicht <InlineMath math="O" /> sein. Dass sich die Winkel zu <InlineMath math="180^\circ" /> addieren, reicht also allein nicht. Du musst auch das Zentrum prüfen.
+
+# Jede Verkettung prüfen
+
+**Falsch**. Bei der ersten Verkettung liefert die Drehung um <InlineMath math="(1,0)" /> den Punkt <InlineMath math="(1-y,\ x-1)" />. Die Drehung um <InlineMath math="(0,1)" /> schickt <InlineMath math="(u,v)" /> nach <InlineMath math="(1-v,\ 1+u)" />.
+
+<BlockMath math="(x,y)\mapsto(1-y,\ x-1)\mapsto\big(1-(x-1),\ 1+(1-y)\big)=(2-x,\ 2-y)" />
+
+Das ist eine Drehung um <InlineMath math="180^\circ" /> um <InlineMath math="(1,1)" />. Der Punkt <InlineMath math="O" /> selbst wandert nach <InlineMath math="(2,2)" />, während eine Drehung um <InlineMath math="O" /> den Punkt <InlineMath math="O" /> nie bewegt.
+
+**Richtig**. Bei der zweiten Verkettung führst du die beiden Spiegelungen und dann die Verschiebung der Reihe nach aus.
+
+<BlockMath math="(x,y)\mapsto(6-x,\ y)\mapsto(6-x,\ -2-y)\mapsto(6-x-6,\ -2-y+2)=(-x,-y)" />
+
+Die zwei Spiegelungen an senkrechten Geraden ergeben eine Drehung um <InlineMath math="180^\circ" /> um <InlineMath math="(3,-1)" />, und die Verschiebung setzt das Zentrum genau auf <InlineMath math="O" />.
+
+**Richtig**. Bei der dritten Verkettung hat die Gerade <InlineMath math="y=2x" /> die Steigung <InlineMath math="2" /> und die Gerade <InlineMath math="x+2y=0" /> die Steigung <InlineMath math="-\tfrac12" />. Das Produkt der Steigungen ist <InlineMath math="-1" />, die Geraden stehen also senkrecht aufeinander und schneiden sich in <InlineMath math="O" />. Zwei Spiegelungen an Geraden, die sich unter <InlineMath math="90^\circ" /> schneiden, ergeben eine Drehung um <InlineMath math="2\cdot90^\circ=180^\circ" /> um den Schnittpunkt. Prüfe das mit zwei Punkten, die nicht mit <InlineMath math="O" /> auf einer Geraden liegen.
+
+<BlockMath math="\begin{aligned}
+(1,2)&\mapsto(1,2)\mapsto(-1,-2) \\
+(2,-1)&\mapsto(-2,1)\mapsto(-2,1)
+\end{aligned}" />
+
+Der Punkt <InlineMath math="(1,2)" /> liegt auf der ersten Geraden, bleibt also liegen, und wird dann senkrecht über die zweite Gerade gespiegelt. Der Punkt <InlineMath math="(2,-1)" /> wird zuerst gespiegelt und landet dann genau auf der zweiten Geraden. Beide enden bei <InlineMath math="(-x,-y)" />.
+
+**Richtig**. Bei der vierten Verkettung ist die erste Drehung dieselbe wie oben, <InlineMath math="(1-y,\ x-1)" />. Die Drehung um <InlineMath math="(0,-1)" /> schickt <InlineMath math="(u,v)" /> nach <InlineMath math="(-(v+1),\ -1+u)" />.
+
+<BlockMath math="(x,y)\mapsto(1-y,\ x-1)\mapsto\big(-(x-1+1),\ -1+1-y\big)=(-x,-y)" />
+
+Vergleiche mit der ersten Verkettung: Die Winkel sind gleich, nur das zweite Zentrum ist anders, und **genau dieses andere Zentrum entscheidet**.
+
+**Richtig**. Bei der fünften Verkettung kommt zuerst die Verschiebung, dann die Drehung um <InlineMath math="180^\circ" /> um <InlineMath math="(2,1)" />.
+
+<BlockMath math="(x,y)\mapsto(x+4,\ y+2)\mapsto\big(4-(x+4),\ 2-(y+2)\big)=(-x,-y)" />
+
+Gleich der Drehung um <InlineMath math="180^\circ" /> um <InlineMath math="O" /> sind also die zweite, dritte, vierte und fünfte Verkettung.

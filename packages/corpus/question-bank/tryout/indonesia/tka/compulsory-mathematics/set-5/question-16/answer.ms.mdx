@@ -1,0 +1,69 @@
+# Unit yang memudahkan
+
+Soalan ini bertanya berapa banyak air yang masih perlu dimasukkan, bermula daripada permukaan air <InlineMath math="0.3\text{ m}" /> di atas hujung kon sehingga garis had selamat. Air itu mengisi dua bahagian: **baki ruang kon di atas air yang sedia ada**, kemudian silinder sehingga garis had selamat.
+
+Kira dalam desimeter, kerana <InlineMath math="1\text{ dm}^3=1" /> liter. Jejarinya <InlineMath math="r=7\text{ dm}" />, tinggi kon <InlineMath math="6\text{ dm}" />, tinggi silinder <InlineMath math="15\text{ dm}" />, dan garis had selamat terletak <InlineMath math="3\text{ dm}" /> di bawah bibir atas. Silinder dan kon berkongsi luas tapak yang sama:
+
+<BlockMath math="\pi r^2=\frac{22}{7}\cdot7^2=154\text{ dm}^2" />
+
+# Bahagian kon yang masih kosong
+
+Kon yang penuh memuatkan <InlineMath math="\tfrac13\cdot154\cdot6=308" /> liter. Air yang sedia ada membentuk kon kecil setinggi <InlineMath math="3\text{ dm}" />, iaitu separuh tinggi kon besar. Kon kecil itu serupa dengan kon besar, jadi jejarinya juga separuh, iaitu <InlineMath math="3.5\text{ dm}" />. Oleh kerana tinggi dan jejari kedua-duanya didarab dengan <InlineMath math="\tfrac12" />, **isi padunya didarab dengan <InlineMath math="\left(\tfrac12\right)^3=\tfrac18" />**, bukan dengan <InlineMath math="\tfrac12" />.
+
+<BlockMath math="\begin{aligned}
+V_{\text{air awal}}&=\tfrac18\cdot308=38.5\text{ liter} \\
+\text{semak}&:\ \tfrac13\cdot\tfrac{22}{7}\cdot3.5^2\cdot3=38.5\text{ liter} \\
+V_{\text{baki kon}}&=308-38.5=269.5\text{ liter}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Air awal di dalam kon</>}
+  description={<>Keratan rentas tangki seperti dalam rajah soalan. Air awal mengisi segi tiga kecil di hujung kon setinggi <InlineMath math="0.3\text{ m}" />, iaitu separuh tinggi kon, dengan lebar permukaan <InlineMath math="0.7\text{ m}" />. Garis had selamat terletak <InlineMath math="0.3\text{ m}" /> di bawah bibir atas silinder.</>}
+  labels={{
+    water: <InlineMath math="0.3\text{ m}" />,
+    surface: <InlineMath math="0.7\text{ m}" />,
+    safe: <>garis had selamat</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -16, max: 20 },
+      y: { min: -2, max: 24 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tank", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 7, y: 6 }, { x: 7, y: 21 }, { x: -7, y: 21 }, { x: -7, y: 6 }] },
+      { id: "water", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3.5, y: 3 }, { x: -3.5, y: 3 }] },
+      { id: "junction", kind: "segment", appearance: "construction", from: { x: -7, y: 6 }, to: { x: 7, y: 6 } },
+      { id: "water-height", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "safe-line", kind: "segment", appearance: "warning", from: { x: -7, y: 18 }, to: { x: 7, y: 18 } },
+    ],
+    labels: [
+      { key: "water", objectId: "water-height", at: { x: 0, y: 1.5 }, placement: "right" },
+      { key: "surface", objectId: "water", at: { x: -3.5, y: 3 }, placement: "left" },
+      { key: "safe", objectId: "safe-line", at: { x: 7, y: 18 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Silinder sehingga garis had selamat
+
+Di dalam silinder, air naik dari dasar silinder hingga <InlineMath math="3\text{ dm}" /> di bawah bibir atas. **Tinggi air dalam silinder hanya <InlineMath math="15-3=12\text{ dm}" />**, bukan seluruh tinggi silinder.
+
+<BlockMath math="V_{\text{silinder}}=154\cdot12=1{,}848\text{ liter}" />
+
+# Jumlah air yang perlu dipam
+
+<BlockMath math="269.5+1{,}848=2{,}117.5\text{ liter}" />
+
+Semak sama ada jawapan ini munasabah. Tangki yang penuh sehingga garis had selamat memuatkan <InlineMath math="308+1{,}848=2{,}156" /> liter, dan isi awalnya <InlineMath math="38.5" /> liter. Bezanya <InlineMath math="2{,}156-38.5=2{,}117.5" /> liter, **sama dengan hasil tadi**.
+
+Jadi, banyak air yang perlu dipam masuk ialah <InlineMath math="2{,}117.5" /> liter.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="2{,}002" /> liter menganggap air setinggi separuh kon memenuhi separuh isi padu kon, iaitu <InlineMath math="154" /> liter. Bagi bentuk serupa, **isi padu berubah mengikut kuasa tiga nisbah tinggi**.
+- <InlineMath math="2{,}156" /> liter terlupa menolak <InlineMath math="38.5" /> liter air yang sudah ada di dalam kon.
+- <InlineMath math="2{,}579.5" /> liter mengisi silinder sehingga bibir atas, <InlineMath math="154\cdot15=2{,}310" /> liter, sedangkan air hanya boleh sampai garis had selamat.
+- <InlineMath math="2{,}656.5" /> liter terlupa faktor <InlineMath math="\tfrac13" /> dalam isi padu kon, jadi kon dikira <InlineMath math="924" /> liter dan bahagian kosongnya <InlineMath math="924-115.5=808.5" /> liter.

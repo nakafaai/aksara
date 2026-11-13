@@ -1,19 +1,26 @@
-There are <InlineMath math="99-10+1=90" /> equally likely numbers. For an **or** between two events, count both sets and subtract the numbers that lie in both, otherwise they are counted twice.
+# Picture a thousand products
 
-<BlockMath math="\begin{aligned}
-\text{divisible by 4}&:\ 12,16,\dots,96\ \Rightarrow\ \frac{96-12}{4}+1=22 \\
-\text{divisible by 6}&:\ 12,18,\dots,96\ \Rightarrow\ \frac{96-12}{6}+1=15 \\
-\text{divisible by 12}&:\ 12,24,\dots,96\ \Rightarrow\ 8 \\
-P&=\frac{22+15-8}{90}=\frac{29}{90}
-\end{aligned}" />
+**Percentages are easier to follow as numbers of items**. Suppose the factory makes <InlineMath math="1{,}000" /> products.
 
-A number is divisible by both <InlineMath math="4" /> and <InlineMath math="6" /> exactly when it is divisible by their least common multiple <InlineMath math="12" />.
+| Machine | Products | Defective |
+| :---: | :---: | :---: |
+| A | <InlineMath math="600" /> | <InlineMath math="3\%\cdot600=18" /> |
+| B | <InlineMath math="400" /> | <InlineMath math="5\%\cdot400=20" /> |
+| Total | <InlineMath math="1{,}000" /> | <InlineMath math="38" /> |
 
-As a check, <InlineMath math="29" /> is less than <InlineMath math="22+15=37" />, because the eight multiples of <InlineMath math="12" /> may count only once.
+# Probability given a defect
 
-So the probability is <InlineMath math="\frac{29}{90}" />.
+You're told the product is defective. So **only the <InlineMath math="38" /> defective products count**, not all <InlineMath math="1{,}000" />. Of those <InlineMath math="38" />, <InlineMath math="20" /> come from machine B:
 
-- <InlineMath math="\frac{4}{45}=\frac{8}{90}" /> counts only the numbers divisible by both, an and instead of an or.
-- <InlineMath math="\frac16=\frac{15}{90}" /> counts only the multiples of <InlineMath math="6" />.
-- <InlineMath math="\frac{11}{45}=\frac{22}{90}" /> counts only the multiples of <InlineMath math="4" />.
-- <InlineMath math="\frac{37}{90}" /> adds both sets without subtracting the multiples of <InlineMath math="12" /> once.
+<BlockMath math="P(\text{B}\mid\text{defective})=\frac{20}{38}=\frac{10}{19}\approx0.53" />
+
+Check: the probability for machine A is <InlineMath math="\frac{18}{38}=\frac9{19}" />, and <InlineMath math="\frac9{19}+\frac{10}{19}=1" />. It also makes sense that machine B is a little more likely even though it makes fewer products, because its defect rate is higher.
+
+So the probability that the product came from machine B is <InlineMath math="\frac{10}{19}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\frac25" /> is the probability that a product comes from machine B **before** you know it's defective. The defect information isn't used.
+- <InlineMath math="\frac1{20}" /> is the probability that a product from machine B is defective, which is the condition the wrong way round.
+- <InlineMath math="\frac1{50}" /> is <InlineMath math="\frac{20}{1{,}000}" />, the probability that a product comes from B **and** is defective, counted out of all products.
+- <InlineMath math="\frac9{19}" /> is the probability that the defective product came from machine A.

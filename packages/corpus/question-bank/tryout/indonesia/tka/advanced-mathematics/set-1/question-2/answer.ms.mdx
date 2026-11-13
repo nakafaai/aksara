@@ -1,0 +1,43 @@
+Soalan ini bertanya hasil tambah nilai <InlineMath math="k" /> yang **berbeza** supaya <InlineMath math="M" /> tidak mempunyai songsang. Matriks segi empat sama tidak mempunyai songsang tepat apabila penentunya sifar, jadi kamu perlu menyelesaikan <InlineMath math="\det M=0" />.
+
+# Kira penentu dengan petua Sarrus
+
+Bagi matriks <InlineMath math="3\times3" />, petua Sarrus menambah tiga hasil darab pepenjuru ke kanan bawah, kemudian **menolak tiga hasil darab pepenjuru ke kiri bawah**.
+
+<BlockMath math="\begin{aligned}
+\text{ke kanan}&=(k+1)\cdot k\cdot(k+2)+(-2)(-2)(6)+2(-3)(-4) \\
+&=k^3+3k^2+2k+24+24 \\
+\text{ke kiri}&=2\cdot k\cdot6+(k+1)(-2)(-4)+(-2)(-3)(k+2) \\
+&=12k+8k+8+6k+12=26k+20 \\
+\det M&=k^3+3k^2+2k+48-(26k+20) \\
+&=k^3+3k^2-24k+28
+\end{aligned}" />
+
+# Faktorkan polinomial kubik
+
+Cuba faktor bagi <InlineMath math="28" />. Apabila <InlineMath math="k=2" />, nilainya ialah <InlineMath math="8+12-48+28=0" />, jadi <InlineMath math="k-2" /> ialah satu faktor. Bahagikan dengan pembahagian sintetik, kemudian **faktorkan juga hasil bahaginya**.
+
+<BlockMath math="\begin{aligned}
+k^3+3k^2-24k+28&=(k-2)(k^2+5k-14) \\
+&=(k-2)(k-2)(k+7) \\
+&=(k-2)^2(k+7)
+\end{aligned}" />
+
+Penentu menjadi sifar apabila <InlineMath math="k=2" /> atau <InlineMath math="k=-7" />. Punca <InlineMath math="k=2" /> muncul dua kali dalam pemfaktoran, tetapi sebagai **nilai** <InlineMath math="k" /> ia tetap satu nilai sahaja. Jadi nilai yang berbeza hanyalah <InlineMath math="2" /> dan <InlineMath math="-7" />.
+
+<BlockMath math="2+(-7)=-5" />
+
+# Semak kedua-dua nilai
+
+Apabila <InlineMath math="k=2" />, baris pertama <InlineMath math="(3,-2,2)" /> dan baris kedua <InlineMath math="(-3,2,-2)" /> ialah negatif antara satu sama lain, jadi penentunya mesti sifar. Apabila <InlineMath math="k=-7" />, penggantian ke dalam <InlineMath math="(k-2)^2(k+7)" /> memberi <InlineMath math="81\cdot0=0" />. Kedua-duanya betul, dan **tiada nilai lain** kerana pemfaktoran sudah lengkap.
+
+# Mengapa pilihan lain salah
+
+Perangkap utama ialah **punca berulang yang terkira dua kali**.
+
+- <InlineMath math="-3" /> muncul jika kamu menggunakan rumus hasil tambah punca <InlineMath math="-\frac{b}{a}=-3" /> pada kubik itu. Rumus ini mengira punca berulang <InlineMath math="k=2" /> sebanyak dua kali, iaitu <InlineMath math="2+2+(-7)" />. Nilai yang sama muncul jika kamu menambah <InlineMath math="k=2" /> daripada cubaan dengan kedua-dua punca <InlineMath math="k^2+5k-14" />, sedangkan salah satu punca itu juga <InlineMath math="2" />.
+- <InlineMath math="2" /> muncul jika kamu berhenti selepas menjumpai <InlineMath math="k=2" /> melalui cubaan dan tidak memfaktorkan bakinya.
+- <InlineMath math="3" /> muncul daripada rumus hasil tambah punca tanpa tanda negatif, iaitu <InlineMath math="\frac{b}{a}" />, di samping punca berulang yang terkira dua kali.
+- <InlineMath math="9" /> muncul jika <InlineMath math="k+7=0" /> diselesaikan sebagai <InlineMath math="k=7" />. Punca yang betul ialah <InlineMath math="k=-7" />.
+
+Jadi, hasil tambah semua nilai <InlineMath math="k" /> yang berbeza supaya <InlineMath math="M" /> tidak mempunyai songsang ialah <InlineMath math="-5" />.

@@ -1,12 +1,76 @@
-<InlineMath math="\angle AOB" /> adalah sudut pusat dan <InlineMath math="\angle ACB" /> adalah sudut keliling. Karena <InlineMath math="C" /> berada pada busur besar, keduanya **menghadap busur kecil <InlineMath math="AB" /> yang sama**, sehingga sudut keliling besarnya setengah sudut pusat.
+Misalkan kedua sisi siku-sikunya <InlineMath math="p" /> dan <InlineMath math="q" />, dan sisi miringnya <InlineMath math="c" />. Ada tiga hal yang diketahui tentang tiga bilangan ini, jadi kamu perlu **dua sifat lingkaran dalam** ditambah luas segitiga.
 
-<BlockMath math="\angle ACB=\frac12\cdot\angle AOB=\frac12\cdot124^\circ=62^\circ" />
+# Keliling dari luas
 
-Sebagai pemeriksaan, sudut keliling yang menghadap busur besar <InlineMath math="AB" /> besarnya <InlineMath math="\frac12\,(360^\circ-124^\circ)=118^\circ" />, dan <InlineMath math="62^\circ+118^\circ=180^\circ" />, seperti sudut-sudut yang berhadapan pada segi empat tali busur.
+Hubungkan pusat lingkaran dalam ke ketiga titik sudut. Segitiga terbagi menjadi tiga segitiga kecil yang alasnya <InlineMath math="p" />, <InlineMath math="q" />, <InlineMath math="c" /> dan tingginya sama-sama jari-jari <InlineMath math="r=5" />. Jumlahkan luasnya untuk mendapat luas seluruh segitiga <InlineMath math="L" />, lalu tulis <InlineMath math="s" /> untuk setengah keliling.
 
-Jadi, <InlineMath math="\angle ACB=62^\circ" />.
+<BlockMath math="\begin{aligned}
+L&=\tfrac12 r p+\tfrac12 r q+\tfrac12 r c=r\cdot s \\
+210&=5s\ \Rightarrow\ s=42 \\
+p+q+c&=84
+\end{aligned}" />
 
-- <InlineMath math="28^\circ" /> adalah <InlineMath math="90^\circ-62^\circ" />, penyiku sudut yang dicari.
-- <InlineMath math="118^\circ" /> adalah sudut keliling yang menghadap busur besar, yaitu sudut di titik pada busur kecil.
-- <InlineMath math="124^\circ" /> menyamakan sudut keliling dengan sudut pusat.
-- <InlineMath math="248^\circ" /> mengalikan sudut pusat dengan dua, bukan membaginya.
+Jadi **luas sama dengan jari-jari kali setengah keliling**, dan kelilingnya <InlineMath math="84\text{ cm}" />.
+
+# Sisi miring dari jari-jari
+
+Di sudut siku-siku, dua jari-jari ke titik singgung membentuk persegi bersisi <InlineMath math="r" />. Jadi dari titik sudut siku-siku, panjang garis singgung ke lingkaran adalah <InlineMath math="r" />. Dari dua titik sudut lainnya, panjang garis singgungnya <InlineMath math="p-r" /> dan <InlineMath math="q-r" />, dan **dua potongan itu tepat membentuk sisi miring**.
+
+<BlockMath math="\begin{aligned}
+c&=(p-r)+(q-r)\ \Rightarrow\ p+q-c=2r=10 \\
+c&=\frac{84-10}{2}=37,\qquad p+q=47
+\end{aligned}" />
+
+<MathVisual
+  title={<>Segitiga siku-siku dan lingkaran dalamnya</>}
+  description={<>Segitiga siku-siku dengan titik sudut siku-siku di <InlineMath math="(0,0)" />, sisi siku-siku <InlineMath math="35" /> mendatar dan <InlineMath math="12" /> tegak, serta sisi miring <InlineMath math="37" />. Lingkaran dalam berpusat di <InlineMath math="(5,5)" /> dengan jari-jari <InlineMath math="5" />. Titik singgung pada sisi miring membaginya menjadi bagian <InlineMath math="30" /> di dekat sudut bawah kanan dan <InlineMath math="7" /> di dekat sudut atas.</>}
+  labels={{
+    long: <InlineMath math="35" />,
+    short: <InlineMath math="12" />,
+    hypotenuse: <InlineMath math="37" />,
+    radius: <InlineMath math="r=5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 37 },
+      y: { min: -3, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 35, y: 0 }, { x: 0, y: 12 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 5, y: 5 }, radius: 5 },
+      { id: "radius-segment", kind: "segment", appearance: "highlight", from: { x: 5, y: 5 }, to: { x: 5, y: 0 } },
+      { id: "center", kind: "point", appearance: "reference", at: { x: 5, y: 5 } },
+      { id: "touch-point", kind: "point", appearance: "reference", at: { x: 245 / 37, y: 360 / 37 } },
+    ],
+    labels: [
+      { key: "long", objectId: "triangle", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "short", objectId: "triangle", at: { x: 0, y: 6 }, placement: "left" },
+      { key: "hypotenuse", objectId: "triangle", at: { x: 17.5, y: 6 }, placement: "above-right" },
+      { key: "radius", objectId: "radius-segment", at: { x: 5, y: 2.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Kedua sisi siku-siku
+
+Dari luas, <InlineMath math="\tfrac12pq=210" />, jadi <InlineMath math="pq=420" />. Dua bilangan dengan jumlah <InlineMath math="47" /> dan hasil kali <InlineMath math="420" /> adalah akar persamaan kuadrat berikut.
+
+<BlockMath math="\begin{aligned}
+t^2-47t+420&=0 \\
+t&=\frac{47\pm\sqrt{2209-1680}}{2}=\frac{47\pm23}{2} \\
+t&=35\ \text{ atau }\ t=12
+\end{aligned}" />
+
+Cek: <InlineMath math="12^2+35^2=144+1225=1369=37^2" />, dan <InlineMath math="\frac{12+35-37}{2}=5" />. **Semua data terpenuhi**, jadi sisi siku-siku yang lebih panjang adalah <InlineMath math="35\text{ cm}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="12\text{ cm}" /> adalah sisi siku-siku yang lebih pendek, akar lain dari persamaan kuadrat.
+- <InlineMath math="30\text{ cm}" /> adalah potongan sisi miring dari titik singgung ke sudut bawah kanan. **Sisi siku-sikunya masih harus ditambah <InlineMath math="r=5" />**.
+- <InlineMath math="37\text{ cm}" /> adalah sisi miring, bukan sisi siku-siku.
+- <InlineMath math="84\text{ cm}" /> muncul kalau luas ditulis <InlineMath math="\tfrac12 r s" />. Maka <InlineMath math="s=84" />, <InlineMath math="c=79" />, <InlineMath math="p+q=89" />, dan akarnya <InlineMath math="84" /> dan <InlineMath math="5" />. Padahal setengahnya sudah ada di dalam <InlineMath math="s" />.
+
+Jadi, panjang sisi siku-siku yang lebih panjang adalah <InlineMath math="35\text{ cm}" />.

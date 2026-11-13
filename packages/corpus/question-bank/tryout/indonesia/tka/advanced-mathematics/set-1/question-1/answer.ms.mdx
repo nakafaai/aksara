@@ -1,0 +1,49 @@
+Soalan ini mahu jumlah keempat-empat unsur matriks <InlineMath math="X" /> yang memenuhi <InlineMath math="AX=B+2X" />. Ada dua perkara yang menentukan jawapan: cara kamu mengumpulkan sebutan <InlineMath math="X" />, dan **di sebelah mana matriks songsang didarab**.
+
+# Bawa semua sebutan ke kiri
+
+Pindahkan <InlineMath math="2X" /> ke sebelah kiri persamaan. Nombor <InlineMath math="2" /> tidak boleh ditolak terus daripada matriks <InlineMath math="A" />, jadi tulis dahulu <InlineMath math="2X=2IX" />, dengan <InlineMath math="I" /> ialah matriks identiti. Oleh kerana <InlineMath math="X" /> berada **di sebelah kanan** <InlineMath math="A" />, faktor <InlineMath math="X" /> juga dikeluarkan ke kanan.
+
+<BlockMath math="\begin{aligned}
+AX-2IX&=B \\
+(A-2I)X&=B
+\end{aligned}" />
+
+Sekarang kira <InlineMath math="A-2I" />. Hanya pepenjuru utama yang ditolak <InlineMath math="2" />, kerana <InlineMath math="2I" /> mempunyai <InlineMath math="2" /> pada pepenjuru dan <InlineMath math="0" /> di tempat lain.
+
+<BlockMath math="A-2I=\begin{pmatrix}5-2&2\\1&3-2\end{pmatrix}=\begin{pmatrix}3&2\\1&1\end{pmatrix}" />
+
+# Darab songsang dari kiri
+
+Namakan <InlineMath math="M=A-2I" />. Penentunya ialah <InlineMath math="3\cdot1-2\cdot1=1" />, jadi <InlineMath math="M" /> mempunyai songsang. Bagi matriks <InlineMath math="2\times2" />, songsang diperoleh dengan **menukar dua unsur pepenjuru**, menukar tanda dua unsur yang lain, kemudian membahagi dengan penentu.
+
+<BlockMath math="M^{-1}=\frac{1}{1}\begin{pmatrix}1&-2\\-1&3\end{pmatrix}=\begin{pmatrix}1&-2\\-1&3\end{pmatrix}" />
+
+Persamaannya ialah <InlineMath math="MX=B" />, dengan <InlineMath math="M" /> di sebelah kiri <InlineMath math="X" />. Untuk menghapuskan <InlineMath math="M" />, darab kedua-dua belah dengan <InlineMath math="M^{-1}" /> dari kiri juga.
+
+<BlockMath math="\begin{aligned}
+X&=M^{-1}B=\begin{pmatrix}1&-2\\-1&3\end{pmatrix}\begin{pmatrix}2&3\\-1&-1\end{pmatrix} \\
+&=\begin{pmatrix}2+2&3+2\\-2-3&-3-3\end{pmatrix}=\begin{pmatrix}4&5\\-5&-6\end{pmatrix}
+\end{aligned}" />
+
+Jumlah semua unsurnya ialah <InlineMath math="4+5+(-5)+(-6)=-2" />.
+
+# Semak dengan persamaan asal
+
+Gantikan <InlineMath math="X" /> ke dalam kedua-dua belah <InlineMath math="AX=B+2X" />. Jika kedua-duanya sama, **matriks yang kamu peroleh adalah betul**.
+
+<BlockMath math="\begin{aligned}
+AX&=\begin{pmatrix}5&2\\1&3\end{pmatrix}\begin{pmatrix}4&5\\-5&-6\end{pmatrix}=\begin{pmatrix}10&13\\-11&-13\end{pmatrix} \\
+B+2X&=\begin{pmatrix}2+8&3+10\\-1-10&-1-12\end{pmatrix}=\begin{pmatrix}10&13\\-11&-13\end{pmatrix}
+\end{aligned}" />
+
+# Mengapa pilihan lain salah
+
+Setiap pilihan yang salah datang daripada **satu langkah yang tersasar**.
+
+- <InlineMath math="\frac{4}{3}" /> muncul jika <InlineMath math="2" /> ditolak daripada keempat-empat unsur <InlineMath math="A" />, menjadi <InlineMath math="\begin{pmatrix}3&0\\-1&1\end{pmatrix}" />. Sebenarnya <InlineMath math="2X=2IX" /> hanya mengubah pepenjuru.
+- <InlineMath math="2" /> muncul jika tanda terbalik semasa memindahkan sebutan, menjadi <InlineMath math="(2I-A)X=B" />. Hasilnya ialah negatif bagi <InlineMath math="X" /> yang betul.
+- <InlineMath math="3" /> muncul jika songsang didarab dari kanan, <InlineMath math="X=BM^{-1}=\begin{pmatrix}-1&5\\0&-1\end{pmatrix}" />. Pendaraban matriks tidak kalis tukar tertib, jadi matriks ini tidak memenuhi <InlineMath math="MX=B" />.
+- <InlineMath math="12" /> muncul jika songsang dibina tanpa menukar unsur pepenjuru, iaitu menggunakan <InlineMath math="\begin{pmatrix}3&-2\\-1&1\end{pmatrix}" /> sebagai <InlineMath math="M^{-1}" />.
+
+Jadi, jumlah semua unsur matriks <InlineMath math="X" /> ialah <InlineMath math="-2" />.

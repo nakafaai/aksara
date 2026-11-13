@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$5$$ lilitan",
-        },
-        {
-          correct: false,
-          label: "$$25$$ lilitan",
+          label: "$$397\\pi\\text{ gram}$$",
         },
         {
           correct: true,
-          label: "$$50$$ lilitan",
+          label: "$$728\\pi\\text{ gram}$$",
         },
         {
           correct: false,
-          label: "$$100$$ lilitan",
+          label: "$$864\\pi\\text{ gram}$$",
         },
         {
           correct: false,
-          label: "$$500$$ lilitan",
+          label: "$$1{.}216\\pi\\text{ gram}$$",
+        },
+        {
+          correct: false,
+          label: "$$1{.}728\\pi\\text{ gram}$$",
         },
       ],
     },

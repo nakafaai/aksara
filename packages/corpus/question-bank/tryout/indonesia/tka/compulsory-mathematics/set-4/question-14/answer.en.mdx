@@ -1,15 +1,84 @@
-A rotation of <InlineMath math="90^\circ" /> anticlockwise about <InlineMath math="O" /> maps <InlineMath math="(x,y)" /> to <InlineMath math="(x',y')=(-y,x)" />. **Express the original point through its image**, <InlineMath math="x=y'" /> and <InlineMath math="y=-x'" />, and substitute into the equation of the line.
+You're given the image <InlineMath math="P'(2,5)" /> and asked for the point <InlineMath math="P" /> it came from. That takes two moves: **work out the rule of <InlineMath math="T" /> from the picture first**, then run that rule backwards.
+
+# The type of transformation
+
+Compare the directions of the sides before and after the map. Side <InlineMath math="AB" /> has length <InlineMath math="4" /> and points right. Side <InlineMath math="A'B'" /> also has length <InlineMath math="4" />, but it points up. Side <InlineMath math="AC" /> has length <InlineMath math="3" /> and points up, while <InlineMath math="A'C'" /> has length <InlineMath math="3" /> and points left.
+
+Right became up, and up became left. Both sides turned the same way, by <InlineMath math="90^\circ" /> counterclockwise, and kept their lengths. That's the signature of a **<InlineMath math="90^\circ" /> counterclockwise rotation**.
+
+Watch out for a reflection here. Reflecting in the line <InlineMath math="y=x+2" /> does send <InlineMath math="A" /> to <InlineMath math="A'" /> and <InlineMath math="B" /> to <InlineMath math="B'" />. But it would send <InlineMath math="C(1,4)" /> to <InlineMath math="(2,3)" />, to the right of <InlineMath math="A'" />, while <InlineMath math="C'" /> sits at <InlineMath math="(-4,3)" />, to the left. A reflection reverses the turning order of the vertices, and in the picture that order stays the same. So matching just two points isn't enough.
+
+# The rule of T
+
+A <InlineMath math="90^\circ" /> counterclockwise rotation turns the direction <InlineMath math="(x,y)" /> into <InlineMath math="(-y,x)" />. The centre might not be <InlineMath math="O" />, so write the rule as that turn plus a shift, and find the shift with point <InlineMath math="A" />.
 
 <BlockMath math="\begin{aligned}
--x'&=2y'+4 \\
-y'&=-\frac12x'-2
+T(x,y)&=(-y+a,\;x+b) \\
+T(1,1)&=(-1+a,\;1+b)=(-1,3) \\
+a&=0,\quad b=2 \\
+T(x,y)&=(-y,\;x+2)
 \end{aligned}" />
 
-As a check with two points, <InlineMath math="(0,4)" /> goes to <InlineMath math="(-4,0)" /> and <InlineMath math="(-2,0)" /> goes to <InlineMath math="(0,-2)" />. Both images satisfy <InlineMath math="y=-\frac12x-2" />.
+Check the other two vertices: <InlineMath math="T(5,1)=(-1,7)=B'" /> and <InlineMath math="T(1,4)=(-4,3)=C'" />. Both fit. The point that doesn't move satisfies <InlineMath math="-y=x" /> and <InlineMath math="x+2=y" />, which gives <InlineMath math="K(-1,1)" />. So <InlineMath math="T" /> is a <InlineMath math="90^\circ" /> counterclockwise rotation with **centre <InlineMath math="K(-1,1)" />, not centre <InlineMath math="O" />**.
 
-So the image of the line is <InlineMath math="y=-\frac12x-2" />.
+# Finding the original point P
 
-- <InlineMath math="y=-2x-4" /> is the reflection in the <InlineMath math="x" />-axis.
-- <InlineMath math="y=-2x+4" /> is the reflection in the <InlineMath math="y" />-axis.
-- <InlineMath math="y=2x-4" /> is the rotation by <InlineMath math="180^\circ" />.
-- <InlineMath math="y=-\frac12x+2" /> is the rotation by <InlineMath math="90^\circ" /> clockwise.
+Let <InlineMath math="P=(x,y)" />. Its image has to be <InlineMath math="(2,5)" />, so match each coordinate:
+
+<BlockMath math="\begin{aligned}
+-y&=2 &&\Rightarrow\; y=-2 \\
+x+2&=5 &&\Rightarrow\; x=3
+\end{aligned}" />
+
+Check: <InlineMath math="T(3,-2)=(2,\;3+2)=(2,5)" />. The result is **exactly <InlineMath math="P'" />**, so the point you're after really is <InlineMath math="(3,-2)" />.
+
+<MathVisual
+  title={<>Rotation about <InlineMath math="K" /></>}
+  description={<>Triangle <InlineMath math="ABC" /> with <InlineMath math="A(1,1)" />, <InlineMath math="B(5,1)" />, <InlineMath math="C(1,4)" /> is turned <InlineMath math="90^\circ" /> counterclockwise about <InlineMath math="K(-1,1)" /> into triangle <InlineMath math="A'(-1,3)" />, <InlineMath math="B'(-1,7)" />, <InlineMath math="C'(-4,3)" />. The same rotation takes <InlineMath math="P(3,-2)" /> to <InlineMath math="P'(2,5)" />.</>}
+  labels={{
+    "label-k": <InlineMath math="K(-1,1)" />,
+    "label-p": <InlineMath math="P(3,-2)" />,
+    "label-p-image": <InlineMath math="P'(2,5)" />,
+    "label-a": <InlineMath math="A" />,
+    "label-a-image": <InlineMath math="A'" />,
+    "label-c-image": <InlineMath math="C'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 7 },
+      y: { min: -4, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 1 }, { x: 5, y: 1 }, { x: 1, y: 4 }] },
+      { id: "triangle-image", kind: "polygon", appearance: "secondary", vertices: [{ x: -1, y: 3 }, { x: -1, y: 7 }, { x: -4, y: 3 }] },
+      { id: "arm-p", kind: "segment", appearance: "construction", from: { x: -1, y: 1 }, to: { x: 3, y: -2 } },
+      { id: "arm-p-image", kind: "segment", appearance: "construction", from: { x: -1, y: 1 }, to: { x: 2, y: 5 } },
+      { id: "point-k", kind: "point", appearance: "highlight", at: { x: -1, y: 1 } },
+      { id: "point-p", kind: "point", appearance: "answer", at: { x: 3, y: -2 } },
+      { id: "point-p-image", kind: "point", appearance: "reference", at: { x: 2, y: 5 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+      { id: "point-a-image", kind: "point", appearance: "reference", at: { x: -1, y: 3 } },
+      { id: "point-c-image", kind: "point", appearance: "reference", at: { x: -4, y: 3 } },
+    ],
+    labels: [
+      { key: "label-k", objectId: "point-k", at: { x: -1, y: 1 }, placement: "left" },
+      { key: "label-p", objectId: "point-p", at: { x: 3, y: -2 }, placement: "right" },
+      { key: "label-p-image", objectId: "point-p-image", at: { x: 2, y: 5 }, placement: "above-right" },
+      { key: "label-a", objectId: "point-a", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "label-a-image", objectId: "point-a-image", at: { x: -1, y: 3 }, placement: "above-right" },
+      { key: "label-c-image", objectId: "point-c-image", at: { x: -4, y: 3 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Why the other options are wrong
+
+- <InlineMath math="(-5,4)" /> is <InlineMath math="T(2,5)" />, the image of <InlineMath math="P'" />. The question asks for the point that **gets sent to** <InlineMath math="P'" />, so the rule has to run backwards.
+- <InlineMath math="(3,4)" /> comes from taking <InlineMath math="T" /> as the reflection in <InlineMath math="y=x+2" /> after checking only <InlineMath math="A" /> and <InlineMath math="B" />. Vertex <InlineMath math="C" /> shows it isn't a reflection.
+- <InlineMath math="(4,3)" /> treats <InlineMath math="T" /> as a translation by <InlineMath math="\overrightarrow{AA'}=(-2,2)" />. The triangle turns, so other points don't shift by that vector.
+- <InlineMath math="(5,-2)" /> assumes the rotation is centred at <InlineMath math="O" />. A rotation about <InlineMath math="O" /> takes <InlineMath math="A(1,1)" /> to <InlineMath math="(-1,1)" />, not to <InlineMath math="A'(-1,3)" />.
+
+So the coordinates of point <InlineMath math="P" /> are <InlineMath math="(3,-2)" />.

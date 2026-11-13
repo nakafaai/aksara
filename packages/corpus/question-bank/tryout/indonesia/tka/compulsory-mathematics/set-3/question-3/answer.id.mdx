@@ -1,16 +1,40 @@
-Untuk membandingkan bilangan berpangkat dengan basis yang berbeda, ubah semuanya ke **pangkat yang sama**. Setelah itu, cukup bandingkan basisnya.
+Soal ini berisi rantai persen. Kuncinya: **setiap persen dihitung dari harga tepat sebelumnya**, bukan dari <InlineMath math="h" />. Jadi persen tidak boleh dijumlahkan begitu saja. Cara paling aman adalah mengubah setiap perubahan menjadi faktor pengali.
+
+# Harga setiap bulan
+
+Naik <InlineMath math="25\%" /> berarti dikali <InlineMath math="1{,}25" />, dan turun <InlineMath math="20\%" /> berarti dikali <InlineMath math="0{,}8" />.
 
 <BlockMath math="\begin{aligned}
-p&=2^{48}=\left(2^{3}\right)^{16}=8^{16}, & q&=3^{32}=\left(3^{2}\right)^{16}=9^{16} \\
-p&=2^{48}=\left(2^{12}\right)^{4}=4{.}096^{4}, & r&=5^{20}=\left(5^{5}\right)^{4}=3{.}125^{4}
+\text{harga Januari}&=1{,}25h \\
+\text{harga Februari}&=0{,}8\cdot1{,}25h=h
 \end{aligned}" />
 
-Dari sini diperoleh <InlineMath math="r<p<q" />.
+**Harga Februari kembali tepat sama dengan harga awal**.
 
-- Karena <InlineMath math="9^{16}>8^{16}" />, berlaku <InlineMath math="q>p" />. Pernyataan ini benar.
-- Karena <InlineMath math="4{.}096^{4}>3{.}125^{4}" />, berlaku <InlineMath math="p>r" />. Pernyataan ini benar.
-- Dari <InlineMath math="r<p<q" /> diperoleh <InlineMath math="r<q" />. Pernyataan ini salah.
-- Pasangkan setiap faktor <InlineMath math="2" /> dengan satu faktor <InlineMath math="5" /> menjadi <InlineMath math="10" />, sehingga <InlineMath math="p\cdot r=2^{28}\cdot10^{20}" />. Karena <InlineMath math="2^{28}=2^{20}\cdot2^{8}=1{.}048{.}576\cdot256=268{.}435{.}456" />, bilangan itu terdiri atas <InlineMath math="9+20=29" /> angka. Pernyataan ini benar.
-- <InlineMath math="q=9^{16}=81^{8}>80^{8}=8^{8}\cdot10^{8}=16{.}777{.}216\cdot10^{8}" />, dan bilangan ini lebih besar daripada <InlineMath math="10^{15}" />. Pernyataan ini salah.
+# Dua cara bayar
 
-Jadi, pernyataan yang benar adalah <InlineMath math="q>p" />, <InlineMath math="p>r" />, dan pernyataan tentang <InlineMath math="29" /> angka.
+Kedua cara dihitung dari harga Februari, yaitu <InlineMath math="h" />. Potongan <InlineMath math="15\%" /> berarti dikali <InlineMath math="0{,}85" />, potongan <InlineMath math="10\%" /> berarti dikali <InlineMath math="0{,}9" />, potongan <InlineMath math="25\%" /> berarti dikali <InlineMath math="0{,}75" />, dan tambahan <InlineMath math="2\%" /> berarti dikali <InlineMath math="1{,}02" />.
+
+<BlockMath math="\begin{aligned}
+\text{Cara I}&=0{,}85\cdot0{,}9\cdot h=0{,}765h \\
+\text{Cara II}&=0{,}75\cdot1{,}02\cdot h=0{,}765h
+\end{aligned}" />
+
+Kedua hasil hanya bergantung pada faktor pengalinya, jadi **sama untuk setiap nilai <InlineMath math="h" />**.
+
+# Menilai setiap pernyataan
+
+1. **Salah**. Harga Februari sama dengan <InlineMath math="h" />, bukan <InlineMath math="1{,}05h" />. Angka <InlineMath math="5\%" /> muncul dari <InlineMath math="25\%-20\%" />, padahal <InlineMath math="25\%" /> dihitung dari <InlineMath math="h" /> dan <InlineMath math="20\%" /> dihitung dari harga Januari yang lebih besar.
+2. **Benar**. Kenaikan Januari adalah <InlineMath math="0{,}25h" />. Penurunan Februari adalah <InlineMath math="20\%" /> dari <InlineMath math="1{,}25h" />, yaitu <InlineMath math="0{,}2\cdot1{,}25h=0{,}25h" />. Persennya lebih kecil, tetapi dasarnya lebih besar, sehingga besarnya dalam rupiah sama.
+3. **Benar**. Kedua cara menghasilkan <InlineMath math="0{,}765h" />, berapa pun <InlineMath math="h" />. Jangan tertipu oleh <InlineMath math="15\%+10\%=25\%" />: potongan kedua di Cara I dihitung dari harga yang sudah dipotong, jadi totalnya hanya <InlineMath math="23{,}5\%" />.
+4. **Benar**. Harga bayar Cara I adalah <InlineMath math="0{,}765h" />, jadi lebih rendah <InlineMath math="h-0{,}765h=0{,}235h" />, yaitu <InlineMath math="23{,}5\%" /> dari <InlineMath math="h" />. Pernyataan ini bergantung pada hasil bahwa harga Februari sama dengan <InlineMath math="h" />.
+5. **Benar**. Kalau harga bayar dinaikkan <InlineMath math="x" /> (dalam bentuk desimal), kita butuh <InlineMath math="0{,}765h(1+x)=h" />.
+
+<BlockMath math="\begin{aligned}
+1+x&=\frac{1}{0{,}765} \\
+x&=\frac{0{,}235}{0{,}765}=\frac{47}{153}\approx0{,}307
+\end{aligned}" />
+
+Cara cepat mengeceknya tanpa membagi: naik <InlineMath math="30\%" /> menghasilkan <InlineMath math="0{,}765h\cdot1{,}3=0{,}9945h" />, masih kurang dari <InlineMath math="h" />. Jadi kenaikannya harus lebih dari <InlineMath math="30\%" />, sekitar <InlineMath math="30{,}7\%" />. Kenaikan <InlineMath math="23{,}5\%" /> jelas tidak cukup karena dasarnya sudah lebih kecil dari <InlineMath math="h" />.
+
+Jadi, pernyataan yang benar adalah pernyataan 2, 3, 4, dan 5.

@@ -1,14 +1,41 @@
-Each loop of ribbon is **the perimeter of one cross-section of the box**. The loop along the length runs over the <InlineMath math="30\text{ cm}" /> length and the <InlineMath math="10\text{ cm}" /> height twice each. The loop along the width runs over the <InlineMath math="20\text{ cm}" /> width and the <InlineMath math="10\text{ cm}" /> height twice each.
+The question asks for the fewest boxes for <InlineMath math="1{,}000" /> balls. The path has three steps: turn balls into tubes, find **the tube direction that fits the most tubes in one box**, then divide and round up.
+
+# Number of tubes
+
+One tube holds at most <InlineMath math="3" /> balls. A tube that's only partly filled still takes a full spot in the box, so **round the quotient up**. Here the last tube holds just one ball:
+
+<BlockMath math="\frac{1{,}000}{3}=333.3\ldots\quad\Rightarrow\quad334\text{ tubes}" />
+
+# Capacity of one box
+
+The tube's size follows the balls: its diameter is <InlineMath math="6.5\text{ cm}" /> and its length is <InlineMath math="3\cdot6.5=19.5\text{ cm}" />. Along each edge of the box, the number of tubes that fit is the edge length divided by the tube's size in that direction, **rounded down**, because no tube may stick out. For example, <InlineMath math="7\cdot6.5=45.5\le50" /> but <InlineMath math="8\cdot6.5=52>50" />, so the <InlineMath math="50\text{ cm}" /> edge holds <InlineMath math="7" /> diameters. There are three possible directions for the tube's axis:
+
+| Tube axis parallel to | Along the axis | Other two directions | Tubes per box |
+| :---: | :---: | :---: | :---: |
+| height <InlineMath math="30" /> (standing) | <InlineMath math="1" /> | <InlineMath math="7" /> and <InlineMath math="6" /> | <InlineMath math="42" /> |
+| length <InlineMath math="50" /> | <InlineMath math="2" /> | <InlineMath math="6" /> and <InlineMath math="4" /> | <InlineMath math="48" /> |
+| width <InlineMath math="40" /> | <InlineMath math="2" /> | <InlineMath math="7" /> and <InlineMath math="4" /> | <InlineMath math="56" /> |
+
+The last row wins. The tubes lie parallel to the <InlineMath math="40\text{ cm}" /> edge: two tubes end to end use <InlineMath math="39\text{ cm}" />, seven rows use <InlineMath math="45.5\text{ cm}" /> of the <InlineMath math="50\text{ cm}" /> edge, and four layers use <InlineMath math="26\text{ cm}" /> of the <InlineMath math="30\text{ cm}" /> height.
+
+<BlockMath math="2\cdot7\cdot4=56\text{ tubes per box}" />
+
+# Number of boxes
+
+Divide the tubes by the largest capacity and round up, because the last box is still used even if it isn't full:
 
 <BlockMath math="\begin{aligned}
-\text{loop along the length}&=2(30+10)=80 \\
-\text{loop along the width}&=2(20+10)=60 \\
-\text{ribbon}&=80+60+40=180
+\frac{334}{56}&=5.96\ldots\quad\Rightarrow\quad6\text{ boxes} \\
+5\cdot56&=280<334,\qquad 6\cdot56=336\ge334
 \end{aligned}" />
 
-So the ribbon needs to be <InlineMath math="180\text{ cm}" /> long.
+Five boxes aren't enough, and six are. You can't simply divide volumes, because **space at the end of an edge that's too short for one more tube stays empty**.
 
-- <InlineMath math="140\text{ cm}" /> forgets the extra <InlineMath math="40\text{ cm}" /> for the bow.
-- <InlineMath math="200\text{ cm}" /> uses the perimeter of the lid, <InlineMath math="2(30+20)=100" />, as the loop along the length, but that loop goes up and over the box's height.
-- <InlineMath math="220\text{ cm}" /> uses the lid's perimeter and the loop along the length, so the loop along the width is missing.
-- <InlineMath math="280\text{ cm}" /> assumes each loop runs over the length, width, and height, <InlineMath math="2(30+20+10)" /> per loop.
+# Why the other options are wrong
+
+- <InlineMath math="7" /> comes from laying the tubes along the longest edge, <InlineMath math="50\text{ cm}" />. **The longest edge isn't always the best direction**: that holds only <InlineMath math="48" />, and <InlineMath math="334\div48=6.96\ldots" /> rounds up to <InlineMath math="7" />.
+- <InlineMath math="8" /> comes from trying only standing tubes. That holds <InlineMath math="42" />, and <InlineMath math="334\div42=7.95\ldots" /> rounds up to <InlineMath math="8" />.
+- <InlineMath math="18" /> comes from dividing <InlineMath math="1{,}000" /> balls straight by <InlineMath math="56" />, as if every ball needed its own tube.
+- <InlineMath math="24" /> comes from laying the tubes in a single layer only, <InlineMath math="2\cdot7=14" /> tubes per box, so <InlineMath math="334\div14=23.86\ldots" /> rounds up to <InlineMath math="24" />.
+
+So the fewest boxes needed is <InlineMath math="6" />.

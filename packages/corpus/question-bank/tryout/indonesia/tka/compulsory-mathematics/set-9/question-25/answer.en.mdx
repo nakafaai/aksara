@@ -1,16 +1,39 @@
-A sum of two numbers is even when **both are even or both are odd**. From <InlineMath math="1" /> to <InlineMath math="20" /> there are <InlineMath math="10" /> even and <InlineMath math="10" /> odd numbers. The two cards are drawn together, so use combinations.
+This is a conditional probability: you already know the spokesperson is a girl, and you're asked how likely it is that the committee has exactly <InlineMath math="2" /> girls. Careful, this information **isn't the same as "the committee has at least one girl"**. A committee with more girls is more likely to produce a girl as spokesperson, so each make-up of the committee needs a weight.
+
+# A weight for each committee make-up
+
+There are <InlineMath math="\binom93=84" /> possible committees. Group them by the number of girls, then multiply by the chance that the spokesperson is a girl. With <InlineMath math="k" /> girls among the <InlineMath math="3" /> members, that chance is <InlineMath math="\frac k3" />:
+
+| Girls | Committees | Chance of a girl spokesperson | Product |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="\binom53=10" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="\binom41\binom52=40" /> | <InlineMath math="\frac13" /> | <InlineMath math="\frac{40}{3}" /> |
+| <InlineMath math="2" /> | <InlineMath math="\binom42\binom51=30" /> | <InlineMath math="\frac23" /> | <InlineMath math="20" /> |
+| <InlineMath math="3" /> | <InlineMath math="\binom43=4" /> | <InlineMath math="1" /> | <InlineMath math="4" /> |
+
+The last column already accounts for **who gets picked as spokesperson**, not just who's on the committee.
+
+# The conditional probability
+
+Divide the weight of the make-up you want by the weight of every make-up with a girl spokesperson. Here "spk" is short for spokesperson:
 
 <BlockMath math="\begin{aligned}
-n(S)&=\binom{20}{2}=190 \\
-n(A)&=\binom{10}{2}+\binom{10}{2}=45+45=90 \\
-P(A)&=\frac{90}{190}=\frac{9}{19}
+P(\text{girl spk})&=\frac{\frac{40}{3}+20+4}{84}=\frac{112/3}{84}=\frac49 \\
+P(\text{exactly 2 girls and girl spk})&=\frac{20}{84}=\frac{5}{21} \\
+P(\text{exactly 2 girls}\mid\text{girl spk})&=\frac{5/21}{4/9}=\frac{45}{84}=\frac{15}{28}
 \end{aligned}" />
 
-The probability is a little below <InlineMath math="\frac12" />, because two cards can't carry the same number. There are more even-odd pairs, <InlineMath math="10\cdot10=100" />, than matching pairs.
+Check with a shortcut. The spokesperson is one particular girl, and the other two members are a random pair from the remaining <InlineMath math="8" /> students: <InlineMath math="5" /> boys and <InlineMath math="3" /> girls. The committee has exactly <InlineMath math="2" /> girls when **exactly one of the other two is a girl**:
 
-So the probability that the sum is even is <InlineMath math="\frac{9}{19}" />.
+<BlockMath math="\frac{3\cdot5}{\binom82}=\frac{15}{28}" />
 
-- <InlineMath math="\frac{9}{38}" /> counts only the pairs where both numbers are even.
-- <InlineMath math="\frac14" /> uses <InlineMath math="\frac12\cdot\frac12" />, as if the first card went back and only the even-even case counted.
-- <InlineMath math="\frac12" /> assumes even and odd sums are equally likely.
-- <InlineMath math="\frac{10}{19}" /> is the probability that the sum is odd.
+It's the same result.
+
+# Why the other options are wrong
+
+- <InlineMath math="\frac{3}{28}" /> counts the other two members both being girls, but that gives a committee with <InlineMath math="3" /> girls.
+- <InlineMath math="\frac{5}{21}" /> is the joint probability of "exactly <InlineMath math="2" /> girls and a girl spokesperson". **You forgot to divide** by <InlineMath math="\frac49" />.
+- <InlineMath math="\frac{5}{14}=\frac{30}{84}" /> ignores the information about the spokesperson completely.
+- <InlineMath math="\frac{15}{37}=\frac{30}{74}" /> treats the information as "at least one girl", giving every committee with a girl the same weight.
+
+So the probability that the committee has exactly <InlineMath math="2" /> girls is <InlineMath math="\frac{15}{28}" />.

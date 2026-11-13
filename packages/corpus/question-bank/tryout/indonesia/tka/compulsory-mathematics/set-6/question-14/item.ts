@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$2{,}5$$",
+        },
+        {
+          correct: false,
+          label: "$$4$$",
+        },
+        {
           correct: true,
-          label: "$$y=x^2+4$$",
+          label: "$$5{,}5$$",
         },
         {
           correct: false,
-          label: "$$y=x^2-1$$",
+          label: "$$10{,}5$$",
         },
         {
           correct: false,
-          label: "$$y=x^2-4x+8$$",
-        },
-        {
-          correct: false,
-          label: "$$y=x^2-8x+20$$",
-        },
-        {
-          correct: false,
-          label: "$$y=x^2-6$$",
+          label: "$$16$$",
         },
       ],
     },

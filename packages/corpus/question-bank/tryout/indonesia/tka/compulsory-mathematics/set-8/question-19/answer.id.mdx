@@ -1,15 +1,47 @@
-Panjang setengah lingkaran adalah **setengah keliling lingkaran**, yaitu <InlineMath math="\tfrac12\pi d" />. Bandingkan kedua jalur dengan rumus itu.
+Soal ini meminta luas tanam yang paling besar. Ada tiga syarat yang bekerja bersama: keliling tetap <InlineMath math="50\text{ m}" />, sisi bilangan bulat, dan luas kebun **kurang dari** <InlineMath math="150\text{ m}^2" />, yang berarti tepat <InlineMath math="150" /> tidak boleh.
+
+# Hubungan panjang dan lebar
+
+Sebut panjang kebun <InlineMath math="p" /> dan lebarnya <InlineMath math="l" />, dengan <InlineMath math="p\ge l" />. **Seluruh pagar dipakai untuk keliling**, jadi
+
+<BlockMath math="2(p+l)=50\quad\Rightarrow\quad p+l=25" />
+
+Jadi setiap pilihan panjang langsung menentukan lebarnya, dan yang perlu dicari hanyalah pasangan bilangan bulat yang jumlahnya <InlineMath math="25" />.
+
+# Luas bagian tanam
+
+Jalan selebar <InlineMath math="1\text{ m}" /> ada di keempat sisi, jadi panjang bagian tanam berkurang <InlineMath math="1" /> meter di ujung kiri dan <InlineMath math="1" /> meter di ujung kanan, dan lebarnya juga berkurang dua kali. Bagian tanam adalah persegi panjang <InlineMath math="(p-2)\times(l-2)" />:
 
 <BlockMath math="\begin{aligned}
-\text{jalur I}&=\tfrac12\cdot\tfrac{22}{7}\cdot28=44 \\
-\text{jalur II}&=2\cdot\tfrac12\cdot\tfrac{22}{7}\cdot14=44
+L_\text{tanam}&=(p-2)(l-2)=pl-2(p+l)+4 \\
+&=pl-2\cdot25+4=pl-46
 \end{aligned}" />
 
-Hasil ini bukan kebetulan. Diameter setiap setengah lingkaran pada jalur II hanya separuh, tetapi jumlahnya dua, jadi panjangnya sama dengan <InlineMath math="\tfrac12\pi\cdot28" />. Berapa pun banyak setengah lingkaran sama besar yang menyusun <InlineMath math="AB" />, panjang jalurnya tetap sama.
+Ternyata untuk keliling ini, **luas tanam selalu sama dengan luas kebun dikurangi** <InlineMath math="46" />. Jadi luas tanam terbesar didapat dari luas kebun terbesar yang masih diizinkan.
 
-Jadi, kedua jalur sama panjang, yaitu <InlineMath math="44\text{ m}" />.
+# Luas kebun terbesar yang diizinkan
 
-- Jalur I tidak lebih panjang, karena kedua jalur sama-sama <InlineMath math="44\text{ m}" />.
-- Jalur II yang berkelok tidak lebih panjang, karena kedua setengah lingkarannya masing-masing hanya <InlineMath math="22\text{ m}" />.
-- <InlineMath math="88\text{ m}" /> adalah keliling lingkaran penuh, bukan setengah lingkaran.
-- Jalur II bukan setengah jalur I, karena diameter yang separuh diimbangi oleh banyak setengah lingkaran yang dua kali lipat.
+Untuk jumlah <InlineMath math="p+l" /> yang tetap, **luas kebun makin besar saat panjang dan lebar makin dekat**. Daftar pasangan bilangan bulat yang jumlahnya <InlineMath math="25" />, mulai dari yang paling dekat:
+
+| <InlineMath math="p" /> | <InlineMath math="l" /> | Luas kebun | Kurang dari <InlineMath math="150" />? |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="13" /> | <InlineMath math="12" /> | <InlineMath math="156" /> | tidak |
+| <InlineMath math="14" /> | <InlineMath math="11" /> | <InlineMath math="154" /> | tidak |
+| <InlineMath math="15" /> | <InlineMath math="10" /> | <InlineMath math="150" /> | tidak, sama dengan batas |
+| <InlineMath math="16" /> | <InlineMath math="9" /> | <InlineMath math="144" /> | ya |
+| <InlineMath math="17" /> | <InlineMath math="8" /> | <InlineMath math="136" /> | ya |
+
+Pasangan berikutnya makin kecil luasnya, jadi luas kebun terbesar yang diizinkan adalah <InlineMath math="144\text{ m}^2" />, yaitu kebun <InlineMath math="16\text{ m}\times9\text{ m}" />.
+
+<BlockMath math="L_\text{tanam}=(16-2)(9-2)=14\cdot7=98\text{ m}^2" />
+
+Cek dengan rumus tadi: <InlineMath math="144-46=98" />. Cocok.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="104\text{ m}^2" /> berasal dari kebun <InlineMath math="15\times10" />. Luasnya tepat <InlineMath math="150" />, padahal **aturannya kurang dari** <InlineMath math="150" />.
+- <InlineMath math="110\text{ m}^2" /> berasal dari kebun <InlineMath math="13\times12" /> yang luasnya <InlineMath math="156" />. Aturan desa diabaikan.
+- <InlineMath math="120\text{ m}^2" /> muncul kalau jalan hanya dikurangkan sekali dari setiap ukuran, yaitu <InlineMath math="15\times8" />. Jalan ada di kedua ujung, jadi setiap ukuran berkurang <InlineMath math="2" /> meter.
+- <InlineMath math="144\text{ m}^2" /> adalah luas seluruh kebun, termasuk jalan.
+
+Jadi, luas terbesar bagian kebun yang dapat ditanami sayuran adalah <InlineMath math="98\text{ m}^2" />.

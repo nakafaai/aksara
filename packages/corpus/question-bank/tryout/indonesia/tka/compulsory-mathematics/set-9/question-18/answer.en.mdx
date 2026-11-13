@@ -1,14 +1,72 @@
-In one turn without slipping, the wheel travels **exactly its circumference**. Put the distance and the circumference in centimetres.
+The question asks how long it takes until the water at the deep end is <InlineMath math="1.2\text{ m}" /> deep. The trap is the shape of the water: the bottom slopes, so at that moment **the water doesn't cover the whole bottom yet**. The water isn't a cuboid.
+
+# Flow rate from the pipe
+
+The flow rate is the volume of water coming out each second: the pipe's cross-section area times the water speed. The pipe's radius is <InlineMath math="3.5\text{ cm}" /> and the speed is <InlineMath math="2\text{ m/s}=200\text{ cm/s}" />:
 
 <BlockMath math="\begin{aligned}
-K&=\pi d=\frac{22}{7}\cdot70=220\text{ cm} \\
-1.1\text{ km}&=110{,}000\text{ cm} \\
-n&=\frac{110{,}000}{220}=500
+A&=\frac{22}{7}\cdot3.5^2=38.5\text{ cm}^2 \\
+Q&=38.5\cdot200=7{,}700\text{ cm}^3/\text{s}=7.7\text{ litres/s}
 \end{aligned}" />
 
-So the wheel turns <InlineMath math="500" /> times.
+Notice that **you square the radius**, which is half of the <InlineMath math="7\text{ cm}" /> diameter.
 
-- <InlineMath math="250" /> uses <InlineMath math="2\pi d" /> as the circumference, but <InlineMath math="2\pi" /> goes with the radius, not the diameter.
-- <InlineMath math="1{,}000" /> uses <InlineMath math="\pi r" /> as the circumference.
-- <InlineMath math="5{,}000" /> converts <InlineMath math="1.1" /> km into <InlineMath math="1{,}100{,}000" /> cm.
-- <InlineMath math="50{,}000" /> converts <InlineMath math="1.1" /> km into <InlineMath math="11{,}000{,}000" /> cm.
+# The shape of the water in the pool
+
+The bottom drops <InlineMath math="2.0-0.4=1.6\text{ m}" /> over <InlineMath math="11\text{ m}" />. The water at the deep end is only <InlineMath math="1.2\text{ m}" />, less than <InlineMath math="1.6\text{ m}" />, so the surface hasn't reached the shallow end yet. Seen from the side, the water forms a **right triangle similar** to the triangle of the bottom's drop (base <InlineMath math="11" />, height <InlineMath math="1.6" />).
+
+<MathVisual
+  title={<>Side view of the pool</>}
+  description={<>The pool seen from the side. The rim is the top line, <InlineMath math="11" /> metres long. The bottom runs straight from a depth of <InlineMath math="0.4" /> metres at the shallow end to <InlineMath math="2.0" /> metres at the deep end. The water is a triangle at the deep end: <InlineMath math="1.2" /> metres high with a surface length of <InlineMath math="\ell=8.25" /> metres.</>}
+  labels={{
+    shallow: <InlineMath math="0.4\text{ m}" />,
+    depth: <InlineMath math="1.2\text{ m}" />,
+    surface: <InlineMath math="\ell" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 13 },
+      y: { min: -2.6, max: 0.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rim", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 11, y: 0 } },
+      { id: "pool", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 0, y: -0.4 }, { x: 11, y: -2 }, { x: 11, y: 0 }] },
+      { id: "water", kind: "polygon", appearance: "highlight", vertices: [{ x: 2.75, y: -0.8 }, { x: 11, y: -0.8 }, { x: 11, y: -2 }] },
+    ],
+    labels: [
+      { key: "shallow", objectId: "pool", at: { x: 0, y: -0.2 }, placement: "left" },
+      { key: "depth", objectId: "water", at: { x: 11, y: -1.4 }, placement: "right" },
+      { key: "surface", objectId: "water", at: { x: 6.875, y: -0.8 }, placement: "above" },
+    ],
+  }}
+/>
+
+Similar triangles give the surface length <InlineMath math="\ell" />, and the water's volume is the triangle's area times the pool's width:
+
+<BlockMath math="\begin{aligned}
+\frac{\ell}{11}&=\frac{1.2}{1.6}\ \Rightarrow\ \ell=8.25\text{ m} \\
+V&=\tfrac12\cdot8.25\cdot1.2\cdot7=34.65\text{ m}^3=34{,}650\text{ litres}
+\end{aligned}" />
+
+# Filling time
+
+**Divide the volume by the flow rate**:
+
+<BlockMath math="\begin{aligned}
+t&=\frac{34{,}650}{7.7}=4{,}500\text{ s} \\
+&=75\text{ minutes}=1\text{ hour }15\text{ minutes}
+\end{aligned}" />
+
+Check: in <InlineMath math="4{,}500" /> seconds the pipe delivers <InlineMath math="7.7\cdot4{,}500=34{,}650" /> litres, exactly the volume of the water triangle.
+
+# Why the other options are wrong
+
+- <InlineMath math="18" /> minutes <InlineMath math="45" /> seconds comes from using the <InlineMath math="7\text{ cm}" /> diameter as the radius. The cross-section becomes four times as big, so the time is a quarter.
+- <InlineMath math="1" /> hour comes from using the deep-end depth <InlineMath math="2.0\text{ m}" /> in the similar triangles, when the bottom only drops <InlineMath math="1.6\text{ m}" />. That gives <InlineMath math="\ell=6.6\text{ m}" />, which is too short.
+- <InlineMath math="1" /> hour <InlineMath math="40" /> minutes comes from stretching the water triangle over the whole <InlineMath math="11\text{ m}" />. That's only true at the moment the water reaches the shallow end.
+- <InlineMath math="3" /> hours <InlineMath math="20" /> minutes comes from treating the water as an <InlineMath math="11\times7\times1.2" /> cuboid, as if **the bottom were flat**.
+
+So the time needed is <InlineMath math="1" /> hour <InlineMath math="15" /> minutes.

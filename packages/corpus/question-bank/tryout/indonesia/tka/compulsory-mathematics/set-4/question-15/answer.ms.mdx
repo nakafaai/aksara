@@ -1,0 +1,96 @@
+Kelima-lima pernyataan bertanya tentang sifat yang berubah atau kekal selepas dua transformasi berturutan. Cara paling selamat ialah **menulis <InlineMath math="T" /> sebagai satu peraturan koordinat**, kemudian menguji setiap pernyataan dengan peraturan itu.
+
+# Peraturan T dan imej segi tiga
+
+Pembesaran dengan pusat <InlineMath math="P(2,1)" /> dan faktor skala <InlineMath math="-2" /> mendarab setiap anjakan dari <InlineMath math="P" /> dengan <InlineMath math="-2" />. Selepas itu, pantulan pada paksi-<InlineMath math="x" /> menukar tanda koordinat-<InlineMath math="y" />.
+
+<BlockMath math="\begin{aligned}
+\text{pembesaran: }(x,y)&\mapsto\bigl(2-2(x-2),\;1-2(y-1)\bigr)=(6-2x,\;3-2y) \\
+\text{pantulan: }(6-2x,\;3-2y)&\mapsto(6-2x,\;2y-3) \\
+T(x,y)&=(6-2x,\;2y-3)
+\end{aligned}" />
+
+**Imej ketiga-tiga bucu** ialah <InlineMath math="D'(6,-3)" />, <InlineMath math="E'(-2,-3)" />, dan <InlineMath math="F'(6,3)" />.
+
+<MathVisual
+  title={<>Segi tiga <InlineMath math="DEF" /> dan imejnya</>}
+  description={<>Segi tiga <InlineMath math="D(0,0)" />, <InlineMath math="E(4,0)" />, <InlineMath math="F(0,3)" /> dan imejnya <InlineMath math="D'(6,-3)" />, <InlineMath math="E'(-2,-3)" />, <InlineMath math="F'(6,3)" />. Titik <InlineMath math="P(2,1)" /> dan titik tetap <InlineMath math="(2,3)" /> kedua-duanya terletak pada garis <InlineMath math="x=2" />.</>}
+  labels={{
+    "label-d": <InlineMath math="D" />,
+    "label-e": <InlineMath math="E" />,
+    "label-f": <InlineMath math="F" />,
+    "label-d-image": <InlineMath math="D'" />,
+    "label-e-image": <InlineMath math="E'" />,
+    "label-f-image": <InlineMath math="F'" />,
+    "label-p": <InlineMath math="P(2,1)" />,
+    "label-fixed": <InlineMath math="(2,3)" />,
+    "label-line": <InlineMath math="x=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 8 },
+      y: { min: -5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line-two", kind: "line", appearance: "construction", through: [{ x: 2, y: -4 }, { x: 2, y: 4 }] },
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 0, y: 3 }] },
+      { id: "triangle-image", kind: "polygon", appearance: "secondary", vertices: [{ x: 6, y: -3 }, { x: -2, y: -3 }, { x: 6, y: 3 }] },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+      { id: "point-f", kind: "point", appearance: "reference", at: { x: 0, y: 3 } },
+      { id: "point-d-image", kind: "point", appearance: "reference", at: { x: 6, y: -3 } },
+      { id: "point-e-image", kind: "point", appearance: "reference", at: { x: -2, y: -3 } },
+      { id: "point-f-image", kind: "point", appearance: "reference", at: { x: 6, y: 3 } },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 2, y: 1 } },
+      { id: "point-fixed", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+    ],
+    labels: [
+      { key: "label-d", objectId: "point-d", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "label-e", objectId: "point-e", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "label-f", objectId: "point-f", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "label-d-image", objectId: "point-d-image", at: { x: 6, y: -3 }, placement: "right" },
+      { key: "label-e-image", objectId: "point-e-image", at: { x: -2, y: -3 }, placement: "left" },
+      { key: "label-f-image", objectId: "point-f-image", at: { x: 6, y: 3 }, placement: "right" },
+      { key: "label-p", objectId: "point-p", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "label-fixed", objectId: "point-fixed", at: { x: 2, y: 3 }, placement: "above-right" },
+      { key: "label-line", objectId: "line-two", at: { x: 2, y: -4 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Menilai setiap pernyataan
+
+**Betul**. Pernyataan 1 tentang luas. Luas segi tiga <InlineMath math="DEF" /> ialah <InlineMath math="\tfrac12\cdot4\cdot3=6" />. Segi tiga <InlineMath math="D'E'F'" /> bersudut tegak di <InlineMath math="D'" />, dengan <InlineMath math="D'E'=6-(-2)=8" /> dan <InlineMath math="D'F'=3-(-3)=6" />:
+
+<BlockMath math="L_{D'E'F'}=\tfrac12\cdot8\cdot6=24=4\cdot6" />
+
+Hasil ini sepadan dengan peraturan umum: pembesaran dengan faktor skala <InlineMath math="k" /> mendarab luas dengan <InlineMath math="k^2=(-2)^2=4" />, dan pantulan tidak mengubah luas. Tanda negatif pada faktor skala **tidak menjadikan luas negatif**.
+
+**Betul**. Pernyataan 2 tentang arah garis. Tulis titik imej sebagai <InlineMath math="(X,Y)=(6-2x,\;2y-3)" />, jadi <InlineMath math="x=\tfrac{6-X}{2}" /> dan <InlineMath math="y=\tfrac{Y+3}{2}" />. Gantikan ke dalam garis asal:
+
+<BlockMath math="\begin{aligned}
+3\cdot\frac{6-X}{2}-4\cdot\frac{Y+3}{2}&=1 \\
+18-3X-4Y-12&=2 \\
+3X+4Y&=4
+\end{aligned}" />
+
+Garis <InlineMath math="3x+4y=4" /> selari dengan <InlineMath math="3x+4y=0" /> kerana kecerunan kedua-duanya ialah <InlineMath math="-\tfrac34" />. Pembesaran mengekalkan arah garis, tetapi pantulan pada paksi-<InlineMath math="x" /> menukar kecerunan <InlineMath math="\tfrac34" /> menjadi <InlineMath math="-\tfrac34" />. Jadi imej itu **tidak selari dengan garis asal**.
+
+**Salah**. Pernyataan 3 tentang urutan bucu. Urutan <InlineMath math="D\to E\to F" /> memang lawan arah jam: dari <InlineMath math="D" /> ke kanan menuju <InlineMath math="E" />, kemudian naik ke kiri menuju <InlineMath math="F" />. Pada imejnya, kamu bergerak dari <InlineMath math="D'(6,-3)" /> ke kiri menuju <InlineMath math="E'(-2,-3)" />, kemudian naik ke kanan menuju <InlineMath math="F'(6,3)" />. Itu ikut arah jam. Pembesaran dengan faktor negatif sama dengan putaran <InlineMath math="180^\circ" /> yang digabungkan dengan pembesaran berfaktor <InlineMath math="2" />, jadi **pembesaran itu tidak menterbalikkan urutan**. Hanya pantulan yang menterbalikkannya, dan satu kali terbalik menjadikan imej ikut arah jam. Perangkapnya ialah menyangka faktor negatif dan pantulan saling membatalkan.
+
+**Salah**. Pernyataan 4 tentang pusat pembesaran. Pembesaran memang tidak menggerakkan pusatnya sendiri, tetapi pantulan selepas itu memindahkan titik tersebut:
+
+<BlockMath math="T(2,1)=(6-4,\;2-3)=(2,-1)\neq(2,1)" />
+
+Titik yang benar-benar tidak bergerak memenuhi <InlineMath math="6-2x=x" /> dan <InlineMath math="2y-3=y" />, iaitu <InlineMath math="(2,3)" />. Jadi pusat pembesaran **bukan titik tetap bagi gubahan ini**.
+
+**Betul**. Pernyataan 5 tentang garis <InlineMath math="x=2" />. Setiap titik <InlineMath math="(2,y)" /> pada garis itu dipetakan kepada
+
+<BlockMath math="T(2,y)=(6-4,\;2y-3)=(2,\;2y-3)" />
+
+Koordinat-<InlineMath math="x" /> kekal <InlineMath math="2" />, jadi setiap imej kekal pada garis <InlineMath math="x=2" />. Sebaliknya, mana-mana titik <InlineMath math="(2,t)" /> ialah imej bagi <InlineMath math="\bigl(2,\tfrac{t+3}{2}\bigr)" />. Jadi imej garis itu **tepat garis <InlineMath math="x=2" /> semula**, walaupun titik-titiknya beranjak di sepanjang garis, kecuali titik tetap <InlineMath math="(2,3)" />.
+
+Jadi, pernyataan yang betul ialah pernyataan 1, 2, dan 5.

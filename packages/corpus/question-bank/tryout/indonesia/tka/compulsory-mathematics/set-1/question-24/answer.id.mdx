@@ -1,19 +1,26 @@
-Ada <InlineMath math="99-10+1=90" /> bilangan yang sama peluangnya. Untuk kejadian dengan kata **atau**, hitung kedua himpunan lalu kurangkan bilangan yang termasuk keduanya, agar tidak terhitung dua kali.
+# Bayangkan seribu produk
 
-<BlockMath math="\begin{aligned}
-\text{habis dibagi 4}&:\ 12,16,\dots,96\ \Rightarrow\ \frac{96-12}{4}+1=22 \\
-\text{habis dibagi 6}&:\ 12,18,\dots,96\ \Rightarrow\ \frac{96-12}{6}+1=15 \\
-\text{habis dibagi 12}&:\ 12,24,\dots,96\ \Rightarrow\ 8 \\
-P&=\frac{22+15-8}{90}=\frac{29}{90}
-\end{aligned}" />
+**Persentase lebih mudah dipahami kalau diubah menjadi banyak barang**. Misalkan pabrik membuat <InlineMath math="1{.}000" /> produk.
 
-Sebuah bilangan habis dibagi <InlineMath math="4" /> dan <InlineMath math="6" /> sekaligus tepat ketika bilangan itu habis dibagi KPK-nya, yaitu <InlineMath math="12" />.
+| Mesin | Banyak produk | Banyak yang cacat |
+| :---: | :---: | :---: |
+| A | <InlineMath math="600" /> | <InlineMath math="3\%\cdot600=18" /> |
+| B | <InlineMath math="400" /> | <InlineMath math="5\%\cdot400=20" /> |
+| Jumlah | <InlineMath math="1{.}000" /> | <InlineMath math="38" /> |
 
-Sebagai pemeriksaan, <InlineMath math="29" /> lebih kecil daripada <InlineMath math="22+15=37" />, karena delapan kelipatan <InlineMath math="12" /> hanya boleh dihitung sekali.
+# Peluang dengan syarat cacat
 
-Jadi, peluangnya adalah <InlineMath math="\frac{29}{90}" />.
+Soal sudah memberi tahu bahwa produknya cacat. Jadi **yang diperhitungkan hanya <InlineMath math="38" /> produk cacat**, bukan semua <InlineMath math="1{.}000" /> produk. Dari <InlineMath math="38" /> produk cacat itu, <InlineMath math="20" /> berasal dari mesin B:
 
-- <InlineMath math="\frac{4}{45}=\frac{8}{90}" /> hanya menghitung bilangan yang habis dibagi keduanya, yaitu memakai dan, bukan atau.
-- <InlineMath math="\frac16=\frac{15}{90}" /> hanya menghitung kelipatan <InlineMath math="6" />.
-- <InlineMath math="\frac{11}{45}=\frac{22}{90}" /> hanya menghitung kelipatan <InlineMath math="4" />.
-- <InlineMath math="\frac{37}{90}" /> menjumlahkan kedua himpunan tanpa mengurangkan kelipatan <InlineMath math="12" /> satu kali.
+<BlockMath math="P(\text{B}\mid\text{cacat})=\frac{20}{38}=\frac{10}{19}\approx0{,}53" />
+
+Cek: peluang dari mesin A adalah <InlineMath math="\frac{18}{38}=\frac9{19}" />, dan <InlineMath math="\frac9{19}+\frac{10}{19}=1" />. Masuk akal juga bahwa mesin B sedikit lebih mungkin, walaupun produksinya lebih sedikit, karena persentase cacatnya lebih tinggi.
+
+Jadi, peluang produk itu berasal dari mesin B adalah <InlineMath math="\frac{10}{19}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\frac25" /> adalah peluang sebuah produk berasal dari mesin B **sebelum** diketahui cacat. Informasi bahwa produknya cacat belum dipakai.
+- <InlineMath math="\frac1{20}" /> adalah peluang produk mesin B cacat, yaitu arah syarat yang terbalik.
+- <InlineMath math="\frac1{50}" /> adalah <InlineMath math="\frac{20}{1{.}000}" />, peluang produk berasal dari B **dan** cacat, dihitung dari semua produk.
+- <InlineMath math="\frac9{19}" /> adalah peluang produk cacat itu berasal dari mesin A.

@@ -1,24 +1,73 @@
-Zwei Sätze tragen die ganze Aufgabe. Ein **Umfangswinkel über einem Durchmesser** ist ein rechter Winkel (Satz des Thales). Und alle Umfangswinkel über demselben Bogen sind gleich groß, der Mittelpunktswinkel ist doppelt so groß.
+# Der Aufnahmebereich der Kamera
 
-Weil <InlineMath math="AC" /> ein Durchmesser ist, gilt <InlineMath math="\angle ABC=\angle ADC=90^\circ" />. Mit der Winkelsumme im Dreieck folgt:
+Gefragt ist die Länge des Wegstücks, auf dem die Person vollständig aufgenommen wird, von den Fußsohlen bis zum Scheitel. Zwei Bedingungen müssen gleichzeitig gelten: Die Füße müssen im Bild sein, und der Kopf muss im Bild sein. Jede Bedingung liefert einen eigenen Bereich von Abständen, und du nimmst den gemeinsamen Teil.
+
+Leg den Fußpunkt des Mastes in den Ursprung und die Kamera <InlineMath math="K" /> auf die Höhe <InlineMath math="6" />. Eine Sichtlinie mit dem Tiefenwinkel <InlineMath math="\theta" /> fällt pro Meter in der Waagerechten um <InlineMath math="\tan\theta" /> Meter. Im waagerechten Abstand <InlineMath math="x" /> vom Mast liegt diese Linie also auf der Höhe <InlineMath math="6-x\tan\theta" />. Ein Punkt auf der Höhe <InlineMath math="y" /> wird aufgenommen, wenn er zwischen den beiden Sichtlinien liegt.
+
+<BlockMath math="6-x\tan60^\circ\le y\le 6-x\tan30^\circ,\qquad\tan60^\circ=\sqrt{3},\quad\tan30^\circ=\tfrac{1}{\sqrt{3}}" />
+
+Der Körper der Person ist eine senkrechte Strecke. Der Aufnahmebereich wird von zwei Geraden begrenzt, also liegt eine Strecke, deren beide Enden im Bereich liegen, ganz darin. Deshalb **ist der ganze Körper genau dann im Bild, wenn Füße und Kopf im Bild sind**.
+
+# Die Bedingungen für Füße und Kopf
+
+Für die Füße setzt du <InlineMath math="y=0" /> ein, für den Kopf <InlineMath math="y=1{,}5" />. Jede Ungleichung liefert eine Grenze für den Abstand.
 
 <BlockMath math="\begin{aligned}
-\angle ACB&=180^\circ-90^\circ-28^\circ=62^\circ \\
-\angle ACD&=180^\circ-90^\circ-46^\circ=44^\circ \\
-\angle BCD&=62^\circ+44^\circ=106^\circ
+\text{Füße: }&0\ge6-x\sqrt{3}\Rightarrow x\ge\frac{6}{\sqrt{3}}=2\sqrt{3}, & 0&\le6-\frac{x}{\sqrt{3}}\Rightarrow x\le6\sqrt{3} \\
+\text{Kopf: }&1{,}5\ge6-x\sqrt{3}\Rightarrow x\ge\frac{4{,}5}{\sqrt{3}}=\tfrac32\sqrt{3}, & 1{,}5&\le6-\frac{x}{\sqrt{3}}\Rightarrow x\le\tfrac92\sqrt{3}
 \end{aligned}" />
 
-Über dem Bogen <InlineMath math="BC" /> stehen der Umfangswinkel <InlineMath math="\angle BAC" /> und der Mittelpunktswinkel <InlineMath math="\angle BOC" />. Über dem Bogen <InlineMath math="AB" /> stehen <InlineMath math="\angle ACB" /> und <InlineMath math="\angle ADB" />.
+| Körperteil | Kleinster Abstand | Größter Abstand |
+| :---: | :---: | :---: |
+| Füße | <InlineMath math="2\sqrt{3}" /> | <InlineMath math="6\sqrt{3}" /> |
+| Kopf | <InlineMath math="\tfrac32\sqrt{3}" /> | <InlineMath math="\tfrac92\sqrt{3}" /> |
+| Ganzer Körper | <InlineMath math="2\sqrt{3}" /> | <InlineMath math="\tfrac92\sqrt{3}" /> |
 
-<BlockMath math="\begin{aligned}
-\angle BOC&=2\cdot28^\circ=56^\circ \\
-\angle BDC&=\angle BAC=28^\circ \\
-\angle ADB&=\angle ACB=62^\circ
-\end{aligned}" />
+Nah am Mast **verlassen die Füße zuerst das Bild**, also bestimmen die Füße die nahe Grenze. Weit vom Mast entfernt verlässt der Kopf zuerst das Bild, also bestimmt der Kopf die ferne Grenze.
 
-Zur Kontrolle: Im Sehnenviereck ergänzen sich gegenüberliegende Winkel zu <InlineMath math="180^\circ" />, und tatsächlich ist <InlineMath math="\angle BAD+\angle BCD=74^\circ+106^\circ=180^\circ" />.
+<MathVisual
+  title={<>Aufnahmebereich der Kamera und die beiden Grenzpositionen</>}
+  description={<>Ein senkrechter Mast, <InlineMath math="6" /> m hoch, mit der Kamera <InlineMath math="K" /> an der Spitze. Die Sichtlinie mit <InlineMath math="60^\circ" /> Tiefenwinkel trifft den Boden <InlineMath math="2\sqrt{3}" /> m vom Mastfuß entfernt, die Linie mit <InlineMath math="30^\circ" /> trifft ihn in <InlineMath math="6\sqrt{3}" /> m Entfernung. Eine <InlineMath math="1{,}5" /> m große Person ist an den beiden Grenzpositionen gezeichnet: Bei <InlineMath math="2\sqrt{3}" /> m stehen die Füße genau auf der <InlineMath math="60^\circ" />-Linie, bei <InlineMath math="\tfrac{9}{2}\sqrt{3}" /> m berührt der Kopf genau die <InlineMath math="30^\circ" />-Linie. Das Bodenstück zwischen den beiden Positionen ist der gesuchte Weg.</>}
+  labels={{
+    camera: <InlineMath math="K" />,
+    near: <InlineMath math="x=2\sqrt{3}" />,
+    far: <InlineMath math="x=\tfrac{9}{2}\sqrt{3}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 12 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -1, y: 0 }, to: { x: 11.5, y: 0 } },
+      { id: "pole", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 6 } },
+      { id: "steep", kind: "segment", appearance: "secondary", from: { x: 0, y: 6 }, to: { x: 2 * Math.sqrt(3), y: 0 } },
+      { id: "shallow", kind: "segment", appearance: "secondary", from: { x: 0, y: 6 }, to: { x: 6 * Math.sqrt(3), y: 0 } },
+      { id: "near-person", kind: "segment", appearance: "primary", from: { x: 2 * Math.sqrt(3), y: 0 }, to: { x: 2 * Math.sqrt(3), y: 1.5 } },
+      { id: "far-person", kind: "segment", appearance: "primary", from: { x: 4.5 * Math.sqrt(3), y: 0 }, to: { x: 4.5 * Math.sqrt(3), y: 1.5 } },
+      { id: "stretch", kind: "segment", appearance: "answer", from: { x: 2 * Math.sqrt(3), y: 0 }, to: { x: 4.5 * Math.sqrt(3), y: 0 } },
+      { id: "camera", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
+    ],
+    labels: [
+      { key: "camera", objectId: "camera", at: { x: 0, y: 6 }, placement: "left" },
+      { key: "near", objectId: "near-person", at: { x: 2 * Math.sqrt(3), y: 1.5 }, placement: "above-left" },
+      { key: "far", objectId: "far-person", at: { x: 4.5 * Math.sqrt(3), y: 1.5 }, placement: "above-right" },
+    ],
+  }}
+/>
 
-- <InlineMath math="\angle BCD=106^\circ" /> ist richtig.
-- <InlineMath math="\angle BOC" /> ist als Mittelpunktswinkel doppelt so groß wie <InlineMath math="\angle BAC" />, also <InlineMath math="56^\circ" />. Die Aussage ist falsch.
-- <InlineMath math="\angle BDC" /> steht über demselben Bogen wie <InlineMath math="\angle BAC" /> und misst <InlineMath math="28^\circ" />. Der Wert <InlineMath math="46^\circ" /> gehört zu <InlineMath math="\angle CAD" />. Die Aussage ist falsch.
-- <InlineMath math="\angle ADB=62^\circ" /> ist richtig.
+<BlockMath math="\text{Länge des Wegstücks}=\tfrac92\sqrt{3}-2\sqrt{3}=\tfrac52\sqrt{3}\approx4{,}33\text{ m}" />
+
+# Warum die anderen Antworten falsch sind
+
+Die falschen Antworten entstehen, wenn du nur einen Körperteil prüfst oder etwas anderes als die Länge des Wegstücks angibst. Denk daran: **Beide Bedingungen müssen gleichzeitig gelten**.
+
+- <InlineMath math="2\sqrt{3}\text{ m}" /> ist der Abstand der nächsten Position vom Mast, nicht die Länge des Wegstücks.
+- <InlineMath math="3\sqrt{3}\text{ m}" /> verwendet nur die Bedingung für den Kopf, <InlineMath math="\tfrac92\sqrt{3}-\tfrac32\sqrt{3}" />. Zwischen <InlineMath math="\tfrac32\sqrt{3}" /> und <InlineMath math="2\sqrt{3}" /> sind die Füße noch nicht im Bild.
+- <InlineMath math="4\sqrt{3}\text{ m}" /> verwendet nur die Bedingung für die Füße, <InlineMath math="6\sqrt{3}-2\sqrt{3}" />. Jenseits von <InlineMath math="\tfrac92\sqrt{3}" /> ist der Kopf schon aus dem Bild.
+- <InlineMath math="\tfrac92\sqrt{3}\text{ m}" /> ist das Wegstück, auf dem wenigstens ein Teil des Körpers im Bild ist, von <InlineMath math="\tfrac32\sqrt{3}" /> bis <InlineMath math="6\sqrt{3}" />. Gefragt ist der ganze Körper.
+
+Das Wegstück, auf dem der ganze Körper aufgenommen wird, ist also <InlineMath math="\tfrac52\sqrt{3}\text{ m}" /> lang.

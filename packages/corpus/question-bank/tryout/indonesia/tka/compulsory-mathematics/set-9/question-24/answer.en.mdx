@@ -1,10 +1,37 @@
-The sample space is **all ten letters of the word**, repeats included: M, A, T, E, M, A, T, I, K, A. The letter A appears <InlineMath math="3" /> times.
+The question asks for an expected frequency: the number of rounds times the probability of winning one round. Winning has two stages: **the coin is only tossed if the card total is even**, so a win only counts after the first stage succeeds.
 
-<BlockMath math="P(\text{A})=\frac{3}{10}" />
+# The card stage
 
-So the probability that the chosen letter is A is <InlineMath math="\frac{3}{10}" />.
+Two cards are taken at once, so order doesn't matter and the two cards are different. There are <InlineMath math="\binom52=10" /> possible pairs. A total is even when both numbers are odd or both are even:
 
-- <InlineMath math="\frac{1}{10}" /> counts only one A.
-- <InlineMath math="\frac16" /> uses the <InlineMath math="6" /> different letters, M, A, T, E, I, K, as the sample space, but repeated letters can be chosen too.
-- <InlineMath math="\frac15" /> finds only <InlineMath math="2" /> letters A.
-- <InlineMath math="\frac13" /> miscounts the letters as <InlineMath math="9" />.
+<BlockMath math="\begin{aligned}
+\text{both odd}&:\ \{1,3\},\{1,5\},\{3,5\}\ \to\ 3 \\
+\text{both even}&:\ \{2,4\}\ \to\ 1 \\
+P(\text{even total})&=\frac{3+1}{10}=\frac25
+\end{aligned}" />
+
+Notice the probability **isn't <InlineMath math="\frac12" />**. There are three odd cards but only two even ones, and the same card can't be taken twice.
+
+# The coin stage
+
+Three tosses have <InlineMath math="2^3=8" /> equally likely outcomes. At least two number sides (the Indonesian coin's "angka" side) means **exactly two or exactly three**:
+
+<BlockMath math="P(\text{at least 2 number sides})=\frac{\binom32+\binom33}{8}=\frac{3+1}{8}=\frac12" />
+
+# Expected frequency
+
+A win needs both stages to succeed, so **you multiply the probabilities**:
+
+<BlockMath math="\begin{aligned}
+P(\text{win})&=\frac25\cdot\frac12=\frac15 \\
+F_e&=60\cdot\frac15=12\text{ rounds}
+\end{aligned}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="15" /> rounds assumes an even total has probability <InlineMath math="\frac12" />: <InlineMath math="60\cdot\frac12\cdot\frac12" />.
+- <InlineMath math="21" /> rounds reads **at least two** as at least one, with probability <InlineMath math="\frac78" />: <InlineMath math="60\cdot\frac25\cdot\frac78" />.
+- <InlineMath math="24" /> rounds forgets the coin stage and counts every even total as a win: <InlineMath math="60\cdot\frac25" />.
+- <InlineMath math="30" /> rounds forgets the card stage and uses only the coin's probability: <InlineMath math="60\cdot\frac12" />.
+
+So the expected number of rounds won is <InlineMath math="12" />.

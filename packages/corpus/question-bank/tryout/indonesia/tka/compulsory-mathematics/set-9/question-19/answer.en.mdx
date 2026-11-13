@@ -1,17 +1,40 @@
-The ball touches the bottom, the lid, and the wall, so **the cylinder has radius <InlineMath math="r" /> and height <InlineMath math="2r" />**. The sand fills the cylinder minus the ball.
+The question asks for the water height in the cylinder after part of the funnel's water flows into it. The key: the water left in the funnel is still a small cone that's **similar** to the funnel, and **volumes of similar cones scale with the cube** of the height ratio, not in direct proportion.
+
+# Water left in the funnel
+
+The funnel's mouth has radius <InlineMath math="6\text{ cm}" /> and its height is <InlineMath math="12\text{ cm}" />. The starting volume of water is the full cone:
+
+<BlockMath math="V=\frac13\pi\cdot6^2\cdot12=144\pi\text{ cm}^3" />
+
+When the hole is closed, the water in the funnel is a cone <InlineMath math="6\text{ cm}" /> tall, half the funnel's height. This small cone is similar to the funnel with factor <InlineMath math="\frac12" />, so the radius of its surface is also half, <InlineMath math="3\text{ cm}" />. Its volume is:
 
 <BlockMath math="\begin{aligned}
-V_{\text{cylinder}}&=\pi r^2\cdot2r=2\pi r^3 \\
-V_{\text{ball}}&=\tfrac43\pi r^3 \\
-V_{\text{sand}}&=2\pi r^3-\tfrac43\pi r^3=\tfrac23\pi r^3 \\
-V_{\text{sand}}:V_{\text{ball}}&=\tfrac23:\tfrac43=1:2
+V_{\text{left}}&=\frac13\pi\cdot3^2\cdot6=18\pi\text{ cm}^3 \\
+&=\left(\tfrac12\right)^3\cdot144\pi
 \end{aligned}" />
 
-The factor <InlineMath math="\pi r^3" /> cancels, so the ratio holds for a ball of any size.
+So only <InlineMath math="\frac18" /> of the water is left. **Half the height holds just an eighth of the volume**, because the wide part of the funnel is at the top.
 
-So the volume of sand to the volume of the ball is <InlineMath math="1:2" />.
+# Water that went into the cylinder
 
-- <InlineMath math="1:1" /> assumes the sand fills half the cylinder.
-- <InlineMath math="1:3" /> is the ratio of sand to cylinder.
-- <InlineMath math="2:1" /> turns the ratio upside down.
-- <InlineMath math="2:3" /> is the ratio of ball to cylinder.
+The water that moved to the cylinder is the difference:
+
+<BlockMath math="V_{\text{moved}}=144\pi-18\pi=126\pi\text{ cm}^3" />
+
+The cylinder's diameter is <InlineMath math="6\text{ cm}" />, so its radius is <InlineMath math="3\text{ cm}" /> and its base area is <InlineMath math="9\pi\text{ cm}^2" />. The water in the cylinder is the base area times the water height <InlineMath math="t" />:
+
+<BlockMath math="\begin{aligned}
+9\pi\cdot t&=126\pi \\
+t&=14\text{ cm}
+\end{aligned}" />
+
+Check: the water in the cylinder, <InlineMath math="9\pi\cdot14=126\pi" />, plus the water in the funnel, <InlineMath math="18\pi" />, adds up to <InlineMath math="144\pi" />, the starting volume. **No water goes missing**.
+
+# Why the other options are wrong
+
+- <InlineMath math="2\text{ cm}" /> uses the water left in the funnel, <InlineMath math="18\pi" />, instead of the water that moved.
+- <InlineMath math="3.5\text{ cm}" /> comes from using the cylinder's <InlineMath math="6\text{ cm}" /> diameter as its radius, which makes the base area <InlineMath math="36\pi" />.
+- <InlineMath math="8\text{ cm}" /> comes from thinking **half the height means half the volume**, so <InlineMath math="72\pi" /> moves.
+- <InlineMath math="12\text{ cm}" /> comes from scaling the volume with the square of the height, so <InlineMath math="\frac14" /> is left and <InlineMath math="108\pi" /> moves.
+
+So the water in the cylinder is <InlineMath math="14\text{ cm}" /> high.

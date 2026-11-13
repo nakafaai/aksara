@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "bank-queue",
+  stimulus: "belajar",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$5$$ menit",
+          label: "$$85$$",
         },
         {
           correct: true,
-          label: "$$5{,}5$$ menit",
+          label: "$$80$$",
         },
         {
           correct: false,
-          label: "$$6$$ menit",
+          label: "$$76$$",
         },
         {
           correct: false,
-          label: "$$8$$ menit",
+          label: "$$72$$",
         },
         {
           correct: false,
-          label: "$$31$$ menit",
+          label: "$$70$$",
         },
       ],
     },

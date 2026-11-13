@@ -1,16 +1,37 @@
-**Tepat satu mesin rusak** terjadi dalam dua kasus yang saling lepas: A rusak dan B tidak, atau A tidak dan B rusak. Karena kedua mesin saling bebas, peluang setiap kasus adalah hasil kali peluangnya.
+# Pakai komplemen
+
+Ruang sampelnya adalah semua pasangan dua kartu, <InlineMath math="\binom{20}{2}=190" /> pasangan, dan semuanya sama mungkin. Kejadian "hasil kali genap atau jumlah kelipatan <InlineMath math="3" />" punya banyak pasangan, jadi lebih mudah menghitung kebalikannya: **kedua syarat sama-sama gagal**.
+
+Hasil kali dua nomor bernilai ganjil hanya jika kedua nomornya ganjil. Jadi komplemennya adalah pasangan yang kedua nomornya ganjil dan jumlahnya bukan kelipatan <InlineMath math="3" />. Nomor ganjil ada <InlineMath math="10" />, yaitu <InlineMath math="1,3,5,\dots,19" />, sehingga pasangan ganjil ada <InlineMath math="\binom{10}{2}=45" />.
+
+# Pasangan ganjil yang jumlahnya kelipatan tiga
+
+Jumlah dua bilangan kelipatan <InlineMath math="3" /> ditentukan oleh sisa pembagiannya oleh <InlineMath math="3" />. Kelompokkan kesepuluh nomor ganjil menurut sisanya:
+
+| Sisa dibagi <InlineMath math="3" /> | Nomor ganjil | Banyak |
+| :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="3,\ 9,\ 15" /> | <InlineMath math="3" /> |
+| <InlineMath math="1" /> | <InlineMath math="1,\ 7,\ 13,\ 19" /> | <InlineMath math="4" /> |
+| <InlineMath math="2" /> | <InlineMath math="5,\ 11,\ 17" /> | <InlineMath math="3" /> |
+
+Jumlahnya kelipatan <InlineMath math="3" /> kalau kedua sisanya <InlineMath math="0" /> dan <InlineMath math="0" />, atau **satu bersisa <InlineMath math="1" /> dan yang lain bersisa <InlineMath math="2" />**, misalnya <InlineMath math="1+5=6" />.
 
 <BlockMath math="\begin{aligned}
-P(\text{A rusak, B tidak})&=0{,}1\cdot0{,}8=0{,}08 \\
-P(\text{A tidak, B rusak})&=0{,}9\cdot0{,}2=0{,}18 \\
-P(\text{tepat satu rusak})&=0{,}08+0{,}18=0{,}26
+\text{pasangan ganjil, jumlah kelipatan }3&=\binom32+4\cdot3=3+12=15 \\
+\text{pasangan ganjil, jumlah bukan kelipatan }3&=45-15=30
 \end{aligned}" />
 
-Pemeriksaan: peluang keduanya rusak <InlineMath math="0{,}02" /> dan peluang keduanya tidak rusak <InlineMath math="0{,}72" />, sehingga <InlineMath math="0{,}26+0{,}02+0{,}72=1" />.
+# Peluang gabungan
 
-Jadi, peluang tepat satu mesin rusak adalah <InlineMath math="0{,}26" />.
+<BlockMath math="P=1-\frac{30}{190}=\frac{160}{190}=\frac{16}{19}" />
 
-- <InlineMath math="0{,}02" /> adalah peluang kedua mesin rusak.
-- <InlineMath math="0{,}28" /> adalah peluang paling sedikit satu mesin rusak, yang ikut menghitung kasus keduanya rusak.
-- <InlineMath math="0{,}30" /> menjumlahkan <InlineMath math="0{,}1" /> dan <InlineMath math="0{,}2" /> begitu saja, sehingga kasus keduanya rusak terhitung dua kali.
-- <InlineMath math="0{,}72" /> adalah peluang tidak ada mesin yang rusak.
+Cek dengan aturan penjumlahan peluang. Pasangan dengan hasil kali genap ada <InlineMath math="190-45=145" />. Dari <InlineMath math="1" /> sampai <InlineMath math="20" />, nomor bersisa <InlineMath math="0" />, <InlineMath math="1" />, dan <InlineMath math="2" /> ada <InlineMath math="6" />, <InlineMath math="7" />, dan <InlineMath math="7" />, jadi pasangan berjumlah kelipatan <InlineMath math="3" /> ada <InlineMath math="\binom62+7\cdot7=64" />. **Irisannya harus dikurangkan sekali**: <InlineMath math="64-15=49" /> pasangan memenuhi keduanya. Hasilnya <InlineMath math="145+64-49=160" />, sama dengan cara komplemen.
+
+Jadi, peluangnya adalah <InlineMath math="\frac{16}{19}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\frac{29}{38}" /> adalah <InlineMath math="\frac{145}{190}" />, peluang hasil kali genap saja. Syarat jumlah kelipatan <InlineMath math="3" /> belum dipakai.
+- <InlineMath math="\frac56" /> menganggap kedua kejadian saling bebas dengan peluang kasar <InlineMath math="\tfrac34" /> dan <InlineMath math="\tfrac13" />, yaitu <InlineMath math="\tfrac34+\tfrac13-\tfrac14" />. Padahal kartu diambil tanpa pengembalian dan banyak nomor per sisa tidak sama.
+- <InlineMath math="\frac{169}{190}" /> **memperlakukan jumlah seperti hasil kali**, seakan-akan jumlah hanya kelipatan <InlineMath math="3" /> kalau salah satu nomornya kelipatan <InlineMath math="3" />. Komplemennya lalu dihitung sebagai pasangan dari tujuh nomor ganjil yang bukan kelipatan <InlineMath math="3" />, <InlineMath math="\binom72=21" />.
+- <InlineMath math="\frac{86}{95}" /> menghitung pasangan bersisa <InlineMath math="1" /> dan <InlineMath math="2" /> dua kali, seolah-olah urutan penting, sehingga pasangan ganjil berjumlah kelipatan <InlineMath math="3" /> menjadi <InlineMath math="3+24=27" /> dan komplemennya <InlineMath math="18" />.

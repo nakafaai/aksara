@@ -1,17 +1,34 @@
-Tentukan dulu **tiga ukuran pemusatan dan jangkauan**, lalu setiap pernyataan dapat diperiksa langsung. Setelah diurutkan, <InlineMath math="12" /> data itu adalah:
+Tabel hanya memberi lima nilai untuk setiap kelas, jadi banyak sekali susunan data yang cocok. Sebuah pernyataan **pasti benar hanya jika berlaku untuk semua susunan itu**. Untuk menunjukkan pernyataan salah, cukup satu contoh data yang cocok dengan tabel tetapi melanggar pernyataan itu.
 
-<BlockMath math="30,\ 31,\ 31,\ 32,\ 32,\ 32,\ 32,\ 33,\ 33,\ 34,\ 34,\ 36" />
+# Posisi kuartil dalam data terurut
+
+Urutkan nilai kelas A sebagai <InlineMath math="a_1\le a_2\le\dots\le a_{31}" /> dan nilai kelas B sebagai <InlineMath math="b_1\le\dots\le b_{27}" />. Di kelas A, median adalah data ke-<InlineMath math="16" />, dengan <InlineMath math="15" /> data di kiri dan <InlineMath math="15" /> data di kanan. Tengah dari <InlineMath math="a_1" /> sampai <InlineMath math="a_{15}" /> adalah <InlineMath math="a_8" />, dan tengah dari <InlineMath math="a_{17}" /> sampai <InlineMath math="a_{31}" /> adalah <InlineMath math="a_{24}" />. Kelas B dikerjakan dengan cara yang sama.
 
 <BlockMath math="\begin{aligned}
-\bar x&=\frac{390}{12}=32{,}5 \\
-\text{median}&=\frac{32+32}{2}=32,\qquad \text{modus}=32 \\
-\text{jangkauan}&=36-30=6
+\text{Kelas A}&:\ a_1=40,\quad a_8=56,\quad a_{16}=70,\quad a_{24}=82,\quad a_{31}=98 \\
+\text{Kelas B}&:\ b_1=50,\quad b_7=62,\quad b_{14}=68,\quad b_{21}=76,\quad b_{27}=92
 \end{aligned}" />
 
-- Hari bersuhu <InlineMath math="33" />, <InlineMath math="34" />, dan <InlineMath math="36^\circ\text{C}" /> berada di atas <InlineMath math="32{,}5" />, seluruhnya <InlineMath math="5" /> dari <InlineMath math="12" /> hari, sekitar <InlineMath math="41{,}7\,\%" />. Pernyataan ini benar.
-- Median dan modus sama-sama <InlineMath math="32^\circ\text{C}" />. Pernyataan ini benar.
-- Rata-rata <InlineMath math="32{,}5" /> lebih besar daripada median <InlineMath math="32" />, bukan lebih kecil. Satu data <InlineMath math="36" /> menarik rata-rata ke atas. Pernyataan ini salah.
-- Hari bersuhu di bawah <InlineMath math="32^\circ\text{C}" /> ada <InlineMath math="1+2=3" />. Pernyataan ini benar.
-- Jangkauannya <InlineMath math="6^\circ\text{C}" />, bukan <InlineMath math="5^\circ\text{C}" />. Pernyataan ini salah.
+Karena datanya terurut, kalau <InlineMath math="a_k=v" />, **semua data dari posisi <InlineMath math="k" /> ke atas paling sedikit <InlineMath math="v" />**, dan hanya data sebelum posisi <InlineMath math="k" /> yang bisa lebih kecil dari <InlineMath math="v" />. Tetapi data lain boleh sama dengan <InlineMath math="v" />, dan nilai kembar seperti ini yang membuat sebagian hitungan tidak pasti.
 
-Jadi, pernyataan yang benar adalah pernyataan tentang persentase hari di atas rata-rata, tentang median dan modus, dan tentang tiga hari di bawah <InlineMath math="32^\circ\text{C}" />.
+# Menilai setiap pernyataan
+
+**Benar**. Pernyataan pertama: <InlineMath math="a_{24}=82" />, jadi <InlineMath math="a_{24},a_{25},\dots,a_{31}" /> semuanya paling sedikit <InlineMath math="82" />. Banyaknya <InlineMath math="31-24+1=8" /> siswa, apa pun nilai yang lain.
+
+**Salah**. Pernyataan kedua: data <InlineMath math="b_{15}" /> sampai <InlineMath math="b_{27}" /> memang <InlineMath math="13" /> buah dan paling sedikit <InlineMath math="68" />, tetapi bisa ada yang **tepat <InlineMath math="68" />**, bukan lebih dari <InlineMath math="68" />. Contoh data kelas B yang cocok dengan tabel:
+
+<BlockMath math="50,\ \underbrace{55,\dots,55}_{5},\ 62,\ \underbrace{65,\dots,65}_{6},\ 68,\ 68,\ \underbrace{70,\dots,70}_{5},\ 76,\ \underbrace{80,\dots,80}_{5},\ 92" />
+
+Di sini <InlineMath math="b_7=62" />, <InlineMath math="b_{14}=68" />, <InlineMath math="b_{21}=76" />, sesuai tabel. Tetapi <InlineMath math="b_{15}=68" />, sehingga yang lebih dari <InlineMath math="68" /> hanya <InlineMath math="5+1+5+1=12" /> siswa.
+
+**Benar**. Pernyataan ketiga: <InlineMath math="b_{21}=76" />, jadi <InlineMath math="b_{21}" /> sampai <InlineMath math="b_{27}" />, yaitu <InlineMath math="7" /> siswa, mendapat paling sedikit <InlineMath math="76" />.
+
+<BlockMath math="\frac{7}{27}\approx25{,}9\%>25\%" />
+
+Anggapan bahwa tepat <InlineMath math="25\%" /> data berada di atas kuartil atas tidak berlaku di sini, karena <InlineMath math="27" /> tidak habis dibagi <InlineMath math="4" />.
+
+**Benar**. Pernyataan keempat: di kelas A, delapan siswa <InlineMath math="a_{24}" /> sampai <InlineMath math="a_{31}" /> mendapat paling sedikit <InlineMath math="82" />, jadi lebih dari <InlineMath math="76" />. Di kelas B, <InlineMath math="b_{21}=76" />, sehingga yang bisa lebih dari <InlineMath math="76" /> hanya <InlineMath math="b_{22}" /> sampai <InlineMath math="b_{27}" />, paling banyak <InlineMath math="6" /> siswa. Paling sedikit <InlineMath math="8" /> selalu lebih besar daripada paling banyak <InlineMath math="6" />.
+
+**Benar**. Pernyataan kelima: <InlineMath math="a_8=56" /> dan <InlineMath math="a_{24}=82" />, jadi semua data dari <InlineMath math="a_8" /> sampai <InlineMath math="a_{24}" /> terletak dari <InlineMath math="56" /> sampai <InlineMath math="82" />. Banyaknya <InlineMath math="24-8+1=17" /> siswa.
+
+Jadi, pernyataan yang pasti benar adalah pernyataan pertama, ketiga, keempat, dan kelima.

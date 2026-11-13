@@ -1,17 +1,19 @@
-Urutan pemilihan tidak berpengaruh, jadi hitunglah dengan **kombinasi**. Paling sedikit dua siswa perempuan berarti tepat dua atau tepat tiga.
+# Peluang irisan dulu
+
+Hampir semua pernyataan bergantung pada <InlineMath math="P(A\cap B)" />, jadi **hitung irisannya dulu** dari rumus gabungan:
 
 <BlockMath math="\begin{aligned}
-\text{seluruh pilihan}&=\binom93=84 \\
-\text{tepat 2 perempuan}&=\binom42\binom51=6\cdot5=30 \\
-\text{tepat 3 perempuan}&=\binom43=4 \\
-P&=\frac{30+4}{84}=\frac{34}{84}=\frac{17}{42}
+P(A\cup B)&=P(A)+P(B)-P(A\cap B) \\
+0{,}7&=0{,}5+0{,}4-P(A\cap B) \\
+P(A\cap B)&=0{,}2
 \end{aligned}" />
 
-Sebagai pemeriksaan, tanpa perempuan atau tepat satu perempuan menghasilkan <InlineMath math="\binom53+\binom41\binom52=10+40=50" /> pilihan, dan <InlineMath math="34+50=84" />.
+# Menilai setiap pernyataan
 
-Jadi, peluangnya adalah <InlineMath math="\frac{17}{42}" />.
+- **Salah**: saling lepas berarti <InlineMath math="A" /> dan <InlineMath math="B" /> tidak bisa terjadi bersamaan, jadi <InlineMath math="P(A\cap B)=0" />. Di sini irisannya <InlineMath math="0{,}2" />.
+- **Benar**: saling bebas berarti <InlineMath math="P(A\cap B)=P(A)\cdot P(B)" />. Ternyata <InlineMath math="0{,}5\cdot0{,}4=0{,}2" />, sama dengan irisannya.
+- **Salah**: <InlineMath math="P(A\mid B)=\frac{P(A\cap B)}{P(B)}=\frac{0{,}2}{0{,}4}=0{,}5" />. Nilai <InlineMath math="0{,}4" /> adalah <InlineMath math="P(B)" />, bukan peluang bersyarat itu.
+- **Benar**: keduanya tidak terjadi adalah kebalikan dari "paling sedikit satu terjadi", jadi <InlineMath math="1-P(A\cup B)=1-0{,}7=0{,}3" />.
+- **Benar**: "tepat satu" adalah gabungan dikurangi bagian yang dua-duanya terjadi, <InlineMath math="0{,}7-0{,}2=0{,}5" />. Cek dengan cara lain: <InlineMath math="(0{,}5-0{,}2)+(0{,}4-0{,}2)=0{,}3+0{,}2=0{,}5" />.
 
-- <InlineMath math="\frac{1}{21}=\frac{4}{84}" /> hanya menghitung pilihan dengan tiga siswa perempuan.
-- <InlineMath math="\frac{5}{14}=\frac{30}{84}" /> hanya menghitung tepat dua siswa perempuan dan melupakan kasus tiga perempuan.
-- <InlineMath math="\frac12" /> memerlukan <InlineMath math="42" /> pilihan yang memenuhi, padahal hanya ada <InlineMath math="34" />.
-- <InlineMath math="\frac{25}{42}=\frac{50}{84}" /> adalah peluang komplemennya, yaitu paling banyak satu siswa perempuan.
+Jadi, pernyataan yang benar adalah: kedua kejadian saling bebas, peluang keduanya tidak terjadi <InlineMath math="0{,}3" />, dan peluang tepat satu terjadi <InlineMath math="0{,}5" />.

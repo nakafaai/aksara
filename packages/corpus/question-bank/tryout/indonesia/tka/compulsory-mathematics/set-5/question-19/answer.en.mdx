@@ -1,15 +1,39 @@
-The scale <InlineMath math="1:50{,}000" /> applies to **lengths**: <InlineMath math="1\text{ cm}" /> on the map stands for <InlineMath math="50{,}000\text{ cm}=0.5\text{ km}" />. Area is length times length, so <InlineMath math="1\text{ cm}^2" /> on the map stands for a square of <InlineMath math="0.5\text{ km}\times0.5\text{ km}" />.
+# The length depends on the width
+
+The question asks for the largest possible perimeter, but only the width was measured. The key is that **the length isn't free, because the area is locked at <InlineMath math="63\text{ m}^2" />**. If the width is <InlineMath math="w" />, the length is <InlineMath math="\frac{63}{w}" />, and the perimeter depends on one quantity only:
+
+<BlockMath math="K(w)=2\left(w+\frac{63}{w}\right),\qquad 3.5\le w<4.5" />
+
+A smaller width makes the length larger. So don't jump straight to the upper bound of the width. First you need to know which way the perimeter moves.
+
+# Which way the perimeter moves
+
+Take two widths <InlineMath math="w_1<w_2" /> in that interval and compare their perimeters:
 
 <BlockMath math="\begin{aligned}
-1\text{ cm}^2\ \text{on the map}&\ \to\ 0.5^2=0.25\text{ km}^2 \\
-6\text{ cm}^2\ \text{on the map}&\ \to\ 6\cdot0.25=1.5\text{ km}^2
+K(w_1)-K(w_2)&=2(w_1-w_2)+2\cdot63\left(\frac{1}{w_1}-\frac{1}{w_2}\right) \\
+&=2(w_2-w_1)\left(\frac{63}{w_1w_2}-1\right)
 \end{aligned}" />
 
-In centimetres the result is the same: <InlineMath math="6\cdot50{,}000^2=1.5\cdot10^{10}\text{ cm}^2" />, and <InlineMath math="1\text{ km}^2=10^{10}\text{ cm}^2" />.
+The factor <InlineMath math="w_2-w_1" /> is positive. Both widths are less than <InlineMath math="4.5" />, so their product is <InlineMath math="w_1w_2<20.25" />, far below <InlineMath math="63" />. So the second factor is positive too, and <InlineMath math="K(w_1)>K(w_2)" />. In other words, **the smaller the width, the larger the perimeter** across this whole interval.
 
-So the real lake covers <InlineMath math="1.5\text{ km}^2" />.
+# The value at the end of the interval
 
-- <InlineMath math="30\text{ m}^2" /> multiplies the area by <InlineMath math="50{,}000" /> only, without squaring the scale.
-- <InlineMath math="0.015\text{ km}^2" /> reads <InlineMath math="1\text{ cm}" /> on the map as <InlineMath math="0.05\text{ km}" />.
-- <InlineMath math="0.15\text{ km}^2" /> converts units wrongly, using <InlineMath math="1\text{ km}^2=10^{11}\text{ cm}^2" />.
-- <InlineMath math="3\text{ km}^2" /> multiplies <InlineMath math="6" /> by <InlineMath math="0.5" /> and forgets that the area scale is the square of the length scale.
+The largest perimeter comes at the smallest width, <InlineMath math="w=3.5" />. This value **is allowed** because of the <InlineMath math="\le" /> in <InlineMath math="3.5\le w" />.
+
+| Width <InlineMath math="w" /> (m) | Length <InlineMath math="\frac{63}{w}" /> (m) | Perimeter (m) |
+| :---: | :---: | :---: |
+| <InlineMath math="3.5" /> | <InlineMath math="18" /> | <InlineMath math="43" /> |
+| <InlineMath math="4" /> | <InlineMath math="15.75" /> | <InlineMath math="39.5" /> |
+| close to <InlineMath math="4.5" /> | close to <InlineMath math="14" /> | close to <InlineMath math="37" /> |
+
+Check the first row: <InlineMath math="3.5\cdot18=63" />, and <InlineMath math="2(3.5+18)=43" />.
+
+So the largest possible perimeter of the plot is <InlineMath math="43\text{ m}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="37\text{ m}" /> uses the upper bound of the width, <InlineMath math="4.5\text{ m}" />. That's where the length is shortest, so the perimeter is smallest. On top of that, **<InlineMath math="w=4.5" /> isn't included** because the sign is <InlineMath math="<" />.
+- <InlineMath math="39.5\text{ m}" /> takes the measured <InlineMath math="4\text{ m}" /> as it is and ignores the rounding.
+- <InlineMath math="41.5\text{ m}" /> adds <InlineMath math="0.5" /> to all four sides of the <InlineMath math="4\times15.75" /> rectangle, as if the length were measured too and could change on its own.
+- <InlineMath math="45\text{ m}" /> combines the length <InlineMath math="18\text{ m}" /> from <InlineMath math="w=3.5" /> with the width <InlineMath math="4.5\text{ m}" />. Those can't happen together, because the length and the width come from the same <InlineMath math="w" />.

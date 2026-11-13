@@ -1,14 +1,71 @@
-Untuk luas trapesium, yang diperlukan adalah **tinggi tegaknya**, bukan panjang dinding miring. Tarik garis tegak dari kedua ujung dasar ke bagian atas. Bagian atas yang lebih lebar terbagi menjadi <InlineMath math="1\text{ m}" /> di tengah dan dua potongan yang sama di kiri dan kanan.
+# Bentuk tanah mengikuti urutan pagar
+
+Soal ini menanyakan luas tanah yang sebenarnya. Ada dua hal yang menentukan. Pertama, **bentuk tanah mengikuti urutan pagar** <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, <InlineMath math="E" />, <InlineMath math="D" />, bukan urutan abjad. Kedua, skala denah berlaku untuk panjang, jadi luas berubah dengan kuadrat skalanya.
+
+Gambar titik-titiknya sesuai urutan pagar. Tanahnya berbentuk segi lima dengan lekukan ke dalam di <InlineMath math="E" />.
+
+<MathVisual
+  title={<>Tanah <InlineMath math="ABCED" /> pada denah</>}
+  description={<>Segi lima dengan titik sudut berurutan <InlineMath math="A(0,0)" />, <InlineMath math="B(10,0)" />, <InlineMath math="C(10,6)" />, <InlineMath math="E(2,4)" />, dan <InlineMath math="D(0,8)" />. Garis tegak <InlineMath math="x=2" /> melalui <InlineMath math="E" /> membagi tanah menjadi dua trapesium: yang kiri antara <InlineMath math="x=0" /> dan <InlineMath math="x=2" />, yang kanan antara <InlineMath math="x=2" /> dan <InlineMath math="x=10" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 12 },
+      y: { min: -2, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "plot", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 6 }, { x: 2, y: 4 }, { x: 0, y: 8 }] },
+      { id: "split", kind: "segment", appearance: "highlight", from: { x: 2, y: 4 }, to: { x: 2, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 10, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 10, y: 6 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 8 } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 10, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 10, y: 6 }, placement: "above-right" },
+      { key: "d", objectId: "point-d", at: { x: 0, y: 8 }, placement: "above-left" },
+      { key: "e", objectId: "point-e", at: { x: 2, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Luas pada denah
+
+Garis tegak <InlineMath math="x=2" /> melalui <InlineMath math="E" /> membagi tanah menjadi **dua trapesium yang sisi sejajarnya tegak**. Trapesium kiri dibatasi <InlineMath math="AD" /> yang panjangnya <InlineMath math="8" /> dan ruas dari <InlineMath math="(2,0)" /> ke <InlineMath math="E" /> yang panjangnya <InlineMath math="4" />. Trapesium kanan dibatasi ruas yang sama, panjangnya <InlineMath math="4" />, dan <InlineMath math="BC" /> yang panjangnya <InlineMath math="6" />.
 
 <BlockMath math="\begin{aligned}
-\text{potongan tepi}&=\frac{2{,}2-1}{2}=0{,}6\text{ m} \\
-t&=\sqrt{1^2-0{,}6^2}=\sqrt{0{,}64}=0{,}8\text{ m} \\
-L&=\frac{1+2{,}2}{2}\cdot0{,}8=1{,}6\cdot0{,}8=1{,}28\text{ m}^2
+L_{\text{kiri}}&=\frac{8+4}{2}\cdot2=12 \\
+L_{\text{kanan}}&=\frac{4+6}{2}\cdot8=40 \\
+L_{\text{denah}}&=12+40=52\text{ cm}^2
 \end{aligned}" />
 
-Jadi, luas penampang saluran itu adalah <InlineMath math="1{,}28\text{ m}^2" />.
+Cek dengan rumus luas poligon dari koordinat, memakai urutan pagar <InlineMath math="A,B,C,E,D" />: <InlineMath math="\tfrac{1}{2}\left|0+60+28+16+0\right|=52" />. Hasilnya sama.
 
-- <InlineMath math="0{,}64\text{ m}^2" /> membagi dua lagi hasil yang sudah benar.
-- <InlineMath math="1{,}6\text{ m}^2" /> memakai panjang dinding miring <InlineMath math="1\text{ m}" /> sebagai tinggi.
-- <InlineMath math="2{,}56\text{ m}^2" /> lupa membagi dua jumlah sisi sejajar.
-- <InlineMath math="3{,}2\text{ m}^2" /> lupa membagi dua dan memakai dinding miring sebagai tinggi.
+# Dari denah ke ukuran sebenarnya
+
+Skala <InlineMath math="1:500" /> berarti <InlineMath math="1\text{ cm}" /> pada denah sama dengan <InlineMath math="500\text{ cm}=5\text{ m}" /> sebenarnya. Satu persegi <InlineMath math="1\text{ cm}\times1\text{ cm}" /> pada denah menjadi <InlineMath math="5\text{ m}\times5\text{ m}" />, jadi **luas dikali <InlineMath math="25" />, bukan <InlineMath math="5" />**:
+
+<BlockMath math="L_{\text{sebenarnya}}=52\cdot25=1{.}300\text{ m}^2" />
+
+# Kenapa pilihan lain salah
+
+Setiap pilihan yang salah **melewatkan salah satu dari dua hal penentu tadi atau satu langkah hitung**.
+
+- <InlineMath math="260\text{ m}^2" /> mengalikan luas denah dengan <InlineMath math="5" /> saja, seolah skala panjang berlaku untuk luas.
+- <InlineMath math="1{.}550\text{ m}^2" /> memakai urutan abjad <InlineMath math="A,B,C,D,E" />. Urutan itu membentuk segi lima lain dengan luas <InlineMath math="62\text{ cm}^2" /> pada denah, jadi <InlineMath math="62\cdot25=1{.}550" />.
+- <InlineMath math="2{.}000\text{ m}^2" /> memakai persegi panjang <InlineMath math="10\times8" /> yang membungkus tanah dan melupakan lekukan di <InlineMath math="E" />.
+- <InlineMath math="2{.}600\text{ m}^2" /> lupa faktor <InlineMath math="\tfrac{1}{2}" /> pada rumus luas poligon: <InlineMath math="104\cdot25=2{.}600" />.
+
+Jadi, luas tanah yang sebenarnya adalah <InlineMath math="1{.}300\text{ m}^2" />.

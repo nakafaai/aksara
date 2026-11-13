@@ -1,13 +1,33 @@
-The painted part of the roof is **the cone's curved surface**, with area <InlineMath math="\pi rs" />. The slant height <InlineMath math="s" /> comes from the radius <InlineMath math="3\text{ m}" /> and the cone's height <InlineMath math="4\text{ m}" />.
+# Cross-section area at two depths
+
+This question compares filling the pond yesterday and today. The flow speed is the same at every depth, so **the ratio of the discharges equals the ratio of the cross-section areas**. What you need are the water's cross-section areas at depths <InlineMath math="20\text{ cm}" /> and <InlineMath math="40\text{ cm}" />.
+
+Start with the shape of the channel. Each wall shifts sideways by <InlineMath math="\frac{180-60}{2}=60\text{ cm}" />, and the sloping wall is <InlineMath math="100\text{ cm}" /> long, so the channel is <InlineMath math="\sqrt{100^2-60^2}=80\text{ cm}" /> deep. The walls are straight, so for every <InlineMath math="1\text{ cm}" /> you go up, each side moves <InlineMath math="\frac{60}{80}=\frac34\text{ cm}" /> outward. At depth <InlineMath math="h" /> the water surface is <InlineMath math="60+2\cdot\frac34h=60+1.5h" /> wide.
 
 <BlockMath math="\begin{aligned}
-s&=\sqrt{3^2+4^2}=5\text{ m} \\
-L&=\pi rs=3.14\cdot3\cdot5=47.1\text{ m}^2
+h=20:&\quad \text{width}=90\text{ cm},\quad L_{20}=\frac{60+90}{2}\cdot20=1{,}500\text{ cm}^2 \\
+h=40:&\quad \text{width}=120\text{ cm},\quad L_{40}=\frac{60+120}{2}\cdot40=3{,}600\text{ cm}^2 \\
+\frac{L_{40}}{L_{20}}&=\frac{3{,}600}{1{,}500}=2.4
 \end{aligned}" />
 
-So <InlineMath math="47.1\text{ m}^2" /> of roof will be painted.
+The depth doubles, but the area becomes <InlineMath math="2.4" /> times as large. That's because the bottom stays <InlineMath math="60\text{ cm}" /> wide and only the sides spread out.
 
-- <InlineMath math="28.26\text{ m}^2" /> is the cone's base, which isn't painted.
-- <InlineMath math="37.68\text{ m}^2" /> uses the <InlineMath math="4\text{ m}" /> height instead of the slant height.
-- <InlineMath math="75.36\text{ m}^2" /> also counts the base.
-- <InlineMath math="94.2\text{ m}^2" /> uses <InlineMath math="2\pi rs" />, twice the curved surface.
+# Filling time
+
+Today's discharge is <InlineMath math="2.4" /> times yesterday's. The pond's volume doesn't change, so the time to fill an empty pond is inversely proportional to the discharge. Today the pond already holds <InlineMath math="\frac13" />, so **only <InlineMath math="\frac23" /> of the volume still has to be filled**:
+
+<BlockMath math="\begin{aligned}
+\text{time from empty to full today}&=\frac{6}{2.4}=2.5\text{ hours} \\
+\text{time for }\tfrac23\text{ of the volume}&=\tfrac23\cdot2.5=\tfrac53\text{ hours}=1\text{ hour }40\text{ minutes}
+\end{aligned}" />
+
+Check with real numbers. Yesterday the discharge was <InlineMath math="0.15\cdot0.5=0.075\text{ m}^3\text{/s}" />, which is <InlineMath math="270\text{ m}^3" /> per hour, so the pond holds <InlineMath math="6\cdot270=1{,}620\text{ m}^3" />. Today the discharge is <InlineMath math="0.36\cdot0.5=0.18\text{ m}^3\text{/s}" />, or <InlineMath math="648\text{ m}^3" /> per hour. The remaining volume is <InlineMath math="\frac23\cdot1{,}620=1{,}080\text{ m}^3" />, and <InlineMath math="\frac{1{,}080}{648}=\frac53" /> hours. Same result.
+
+So the time needed until the pond is full is <InlineMath math="1" /> hour <InlineMath math="40" /> minutes.
+
+# Why the other options are wrong
+
+- <InlineMath math="2" /> hours comes from assuming the discharge is proportional to the depth, so twice the depth gives twice the discharge. **The bottom of the channel doesn't widen**, so the area grows <InlineMath math="2.4" /> times, not <InlineMath math="2" /> times.
+- <InlineMath math="1" /> hour comes from assuming the area grows with the square of the depth, as for two similar shapes. The two cross-sections aren't similar, because both have the same <InlineMath math="60\text{ cm}" /> bottom.
+- <InlineMath math="1" /> hour <InlineMath math="30" /> minutes comes from treating each cross-section as a rectangle, surface width times depth: <InlineMath math="90\cdot20" /> and <InlineMath math="120\cdot40" />.
+- <InlineMath math="50" /> minutes comes from reading <InlineMath math="\frac13" /> as the empty part. The pond is already <InlineMath math="\frac13" /> full, so <InlineMath math="\frac23" /> is left.

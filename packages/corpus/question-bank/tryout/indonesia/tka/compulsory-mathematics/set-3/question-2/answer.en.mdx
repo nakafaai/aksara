@@ -1,17 +1,56 @@
-The question counts accounts, not subscriptions. So first find how many subscriptions of each plan there are with a **system of equations**, then convert each subscription into its accounts. Let <InlineMath math="d" /> be the number of Duo subscriptions and <InlineMath math="k" /> the number of Keluarga subscriptions. Amounts in thousands of rupiah:
+The question asks how many tickets are in Fajar's order. Say the order has <InlineMath math="e" /> early-bird tickets and <InlineMath math="r" /> regular tickets. The phrase **it contains both kinds of ticket** means <InlineMath math="e\ge1" /> and <InlineMath math="r\ge1" />, and the order limit gives <InlineMath math="e+r\le9" />.
+
+# The payment equation
+
+Let <InlineMath math="g" /> be the number of group discounts. Fajar pays the ticket prices minus the discounts, plus one service fee. To keep the numbers small, write every amount in thousands of rupiah.
 
 <BlockMath math="\begin{aligned}
-d+k&=1{,}000 \\
-90d+108k&=98{,}640 \\
-98{,}640-90\cdot1{,}000=18k\ &\Rightarrow\ k=480,\quad d=520 \\
-\text{accounts}&=2\cdot520+6\cdot480=1{,}040+2{,}880=3{,}920
+90e+150r-90g+25&=745 \\
+90e+150r-90g&=720
 \end{aligned}" />
 
-As a check, <InlineMath math="90\cdot520+108\cdot480=46{,}800+51{,}840=98{,}640" />.
+Since <InlineMath math="e+r\le9" />, **this order gets at most one discount**. So <InlineMath math="g=0" /> when <InlineMath math="e+r\le4" />, and <InlineMath math="g=1" /> when <InlineMath math="5\le e+r\le9" />. You have to check both cases.
 
-So there are <InlineMath math="3{,}920" /> accounts.
+# The case without a discount
 
-- <InlineMath math="2{,}880" /> counts only the accounts of the Keluarga subscriptions.
-- <InlineMath math="4{,}000" /> skips the system and assumes an average of <InlineMath math="4" /> accounts per subscription, the mean of <InlineMath math="2" /> and <InlineMath math="6" />.
-- <InlineMath math="4{,}080" /> swaps the two solutions, taking <InlineMath math="520" /> Keluarga and <InlineMath math="480" /> Duo subscriptions.
-- <InlineMath math="6{,}000" /> treats all <InlineMath math="1{,}000" /> subscriptions as Keluarga plans.
+If <InlineMath math="g=0" />, divide both sides by <InlineMath math="30" />.
+
+<BlockMath math="\begin{aligned}
+90e+150r&=720 \\
+3e+5r&=24
+\end{aligned}" />
+
+With <InlineMath math="e,r\ge1" />, the only whole-number pair is <InlineMath math="e=3" /> and <InlineMath math="r=3" />, which makes <InlineMath math="6" /> tickets. But this case needs at most <InlineMath math="4" /> tickets. **The case contradicts itself**, so you drop it.
+
+# The case with one discount
+
+If <InlineMath math="g=1" />, move the discount to the right-hand side and divide by <InlineMath math="30" />.
+
+<BlockMath math="\begin{aligned}
+90e+150r&=810 \\
+3e+5r&=27 \\
+3e&=27-5r
+\end{aligned}" />
+
+The left side is a multiple of <InlineMath math="3" />, so <InlineMath math="5r" /> must be a multiple of <InlineMath math="3" /> too. That means **<InlineMath math="r" /> has to be a multiple of <InlineMath math="3" />**.
+
+| <InlineMath math="r" /> | <InlineMath math="e=\frac{27-5r}{3}" /> | Tickets | Verdict |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="9" /> | <InlineMath math="9" /> | rejected, no regular ticket |
+| <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="7" /> | meets every condition |
+| <InlineMath math="6" /> | <InlineMath math="-1" /> | none | rejected, <InlineMath math="e" /> is negative |
+
+So Fajar's order has <InlineMath math="4" /> early-bird tickets and <InlineMath math="3" /> regular tickets, <InlineMath math="7" /> tickets in total. That's between <InlineMath math="5" /> and <InlineMath math="9" />, so it really does get one discount.
+
+Check by working out the payment again:
+
+<BlockMath math="4\cdot90{,}000+3\cdot150{,}000-90{,}000+25{,}000=360{,}000+450{,}000-65{,}000=745{,}000" />
+
+# Why the other options are wrong
+
+- <InlineMath math="3" /> is only the number of regular tickets, without the early-bird ones.
+- <InlineMath math="4" /> is only the number of early-bird tickets, without the regular ones.
+- <InlineMath math="6" /> comes from forgetting the group discount. An order of <InlineMath math="6" /> tickets **does qualify for one discount**, so the pair <InlineMath math="(3,3)" /> actually pays <InlineMath math="\text{Rp}655{,}000" />.
+- <InlineMath math="9" /> comes from <InlineMath math="9" /> early-bird tickets only. The amount matches, but that order has no regular ticket, while the question says both kinds are in it.
+
+So Fajar's order contains <InlineMath math="7" /> tickets.

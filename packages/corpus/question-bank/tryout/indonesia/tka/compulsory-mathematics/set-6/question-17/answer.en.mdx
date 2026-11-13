@@ -1,15 +1,41 @@
-The fabric is made of **two slanted rectangles** and **two triangles** at the front and the back. The width of each slanted rectangle is the triangle's slanted side, which comes from Pythagoras with half the base, <InlineMath math="1.5\text{ m}" />, and the height, <InlineMath math="2\text{ m}" />.
+The question asks for the cheapest way to buy ceiling paint in whole cans. You need two things: **the real area of the ceiling**, and then a comparison of every can combination that holds enough.
 
-<BlockMath math="\begin{aligned}
-s&=\sqrt{1.5^2+2^2}=\sqrt{6.25}=2.5\text{ m} \\
-L_{\text{slanted sides}}&=2\cdot(2.5\cdot4)=20\text{ m}^2 \\
-L_{\text{triangles}}&=2\cdot\left(\tfrac12\cdot3\cdot2\right)=6\text{ m}^2 \\
-L&=20+6=26\text{ m}^2
-\end{aligned}" />
+# The ceiling area
 
-So the tent needs <InlineMath math="26\text{ m}^2" /> of fabric.
+The ceiling covers the bedroom floor, so it's L-shaped too. The storeroom corner doesn't change the perimeter of the plan, but **it does reduce the area**. The storeroom's sides are <InlineMath math="6-3=3\text{ m}" /> and <InlineMath math="5-3=2\text{ m}" />.
 
-- <InlineMath math="16\text{ m}^2" /> counts only one slanted side and the two triangles.
-- <InlineMath math="20\text{ m}^2" /> counts only the two slanted sides, without the front and the back.
-- <InlineMath math="22\text{ m}^2" /> uses the triangle's <InlineMath math="2\text{ m}" /> height as the width of the slanted sides.
-- <InlineMath math="23\text{ m}^2" /> counts only one triangle.
+<BlockMath math="\text{ceiling area}=6\cdot5-3\cdot2=30-6=24\text{ m}^2" />
+
+# Paint needed
+
+The ceiling gets two coats, and one litre covers <InlineMath math="9\text{ m}^2" /> per coat:
+
+<BlockMath math="\text{paint}=\frac{2\cdot24}{9}=\frac{48}{9}=\frac{16}{3}\approx5.33\text{ litres}" />
+
+So the cans you buy must hold **at least <InlineMath math="\frac{16}{3}" /> litres**.
+
+# Comparing can combinations
+
+For each number of <InlineMath math="2.5" />-litre cans, add as few <InlineMath math="1" />-litre cans as possible until there's enough.
+
+| <InlineMath math="2.5\text{ L}" /> cans | <InlineMath math="1\text{ L}" /> cans | Total | Cost |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="6" /> | <InlineMath math="6\text{ L}" /> | <InlineMath math="\text{Rp}270{,}000" /> |
+| <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="5.5\text{ L}" /> | <InlineMath math="\text{Rp}240{,}000" /> |
+| <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="6\text{ L}" /> | <InlineMath math="\text{Rp}255{,}000" /> |
+| <InlineMath math="3" /> | <InlineMath math="0" /> | <InlineMath math="7.5\text{ L}" /> | <InlineMath math="\text{Rp}315{,}000" /> |
+
+Two big cans alone hold only <InlineMath math="5" /> litres, which isn't enough, so you still need one small can. The cost in the second row is
+
+<BlockMath math="1\cdot105{,}000+3\cdot45{,}000=105{,}000+135{,}000=240{,}000" />
+
+The big can is cheaper per litre, <InlineMath math="\text{Rp}42{,}000" /> against <InlineMath math="\text{Rp}45{,}000" />. But you also pay for the paint left over, so **a lower price per litre doesn't guarantee a lower total**.
+
+# Why the other options are wrong
+
+- <InlineMath math="\text{Rp}255{,}000" /> comes from **taking as many big cans as possible first** and topping up with small ones. That leaves <InlineMath math="\frac23" /> of a litre over.
+- <InlineMath math="\text{Rp}270{,}000" /> comes from buying only <InlineMath math="1" />-litre cans to keep the leftover small. Every litre costs more that way.
+- <InlineMath math="\text{Rp}300{,}000" /> uses an area of <InlineMath math="30\text{ m}^2" />, the full <InlineMath math="6\times5" /> rectangle without taking away the storeroom. The need becomes <InlineMath math="\frac{20}{3}" /> litres, and the cheapest mix for that is two big cans and two small ones.
+- <InlineMath math="\text{Rp}315{,}000" /> comes from buying only big cans because they're cheaper per litre. That's <InlineMath math="7.5" /> litres, with more than <InlineMath math="2" /> litres left over.
+
+So the lowest cost for the ceiling paint is <InlineMath math="\text{Rp}240{,}000" />.

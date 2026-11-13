@@ -2,33 +2,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
+    cognitiveLevel: "application",
     contentDomain: "geometry-measurement",
-    topic: "measurement",
+    topic: "geometry-transformations",
   },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$308$$ liter",
-        },
-        {
           correct: true,
-          label: "$$3{.}080$$ liter",
+          label: "$$48$$",
         },
         {
           correct: false,
-          label: "$$4{.}400$$ liter",
+          label: "$$39$$",
         },
         {
           correct: false,
-          label: "$$12{.}320$$ liter",
+          label: "$$32$$",
         },
         {
           correct: false,
-          label: "$$30{.}800$$ liter",
+          label: "$$30$$",
+        },
+        {
+          correct: false,
+          label: "$$16$$",
         },
       ],
     },

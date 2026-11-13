@@ -6,31 +6,26 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  stimulus: "money-changer",
+  stimulus: "cetak",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label:
-            "Jika dihitung sebagai persentase dari kurs jualnya, selisih kurs jual dan kurs beli dolar Singapura lebih kecil daripada selisih kurs ringgit.",
-        },
-        {
           column: 2,
           label:
-            "Seseorang yang menjual $$1$$ dolar Singapura ke tempat itu, lalu memakai seluruh rupiahnya untuk membeli ringgit, memperoleh lebih dari $$3{,}5$$ ringgit.",
+            "Jika dua pesanan yang masing-masing kurang dari $$500$$ lembar digabung menjadi satu pesanan tanpa lembar tambahan, total biaya cetaknya pasti lebih murah daripada jika keduanya dipesan terpisah.",
         },
         {
           column: 1,
           label:
-            "Menukar $$\\text{Rp}12{.}000{.}000$$ menjadi dolar Singapura, lalu langsung menjual kembali seluruh dolar itu, membuat pelanggan rugi $$\\text{Rp}200{.}000$$.",
+            "Di antara kebutuhan $$n=1,2,\\ldots,499$$ lembar, tepat ada $$163$$ nilai $$n$$ yang biaya termurahnya lebih kecil daripada biaya memesan tepat $$n$$ lembar.",
         },
         {
-          column: 2,
+          column: 1,
           label:
-            "Jika kurs jual ringgit naik $$4\\,\\%$$, kurs jual ringgit menjadi lebih dari $$\\text{Rp}3{.}650$$.",
+            "Biaya termurah untuk kebutuhan berapa pun yang kurang dari $$500$$ lembar tidak pernah melebihi $$\\text{Rp}150{.}000$$.",
         },
       ],
     },

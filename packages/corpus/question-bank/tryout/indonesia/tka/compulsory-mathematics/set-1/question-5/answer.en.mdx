@@ -1,66 +1,53 @@
-Let <InlineMath math="x" /> be the number of chilli trays and <InlineMath math="y" /> the number of tomato trays. The two limits are **working hours and the materials budget**. Divide the budget by <InlineMath math="10{,}000" /> to keep the numbers small.
+# Removing the absolute values
+
+Call the left side <InlineMath math="g(x)=|x-3|+2\,|x+1|" />. The absolute values change form at <InlineMath math="x=-1" /> and <InlineMath math="x=3" />, so the number line splits into three parts. **On each part, <InlineMath math="g" /> is an ordinary linear function**:
+
+<BlockMath math="g(x)=\begin{cases}(3-x)+(-2x-2)=1-3x, & x\le-1 \\ (3-x)+(2x+2)=x+5, & -1\le x\le3 \\ (x-3)+(2x+2)=3x-1, & x\ge3\end{cases}" />
+
+The slopes are <InlineMath math="-3" />, then <InlineMath math="1" />, then <InlineMath math="3" />. So <InlineMath math="g" /> falls until <InlineMath math="x=-1" /> and rises after that. Its smallest value is <InlineMath math="g(-1)=4" />.
+
+Every statement is solved part by part, and **each part's result has to be intersected with that part's own condition**.
+
+# Statement one
+
+For <InlineMath math="k=10" />:
 
 <BlockMath math="\begin{aligned}
-2x+3y&\le240 \\
-30{,}000x+20{,}000y\le3{,}000{,}000\iff 3x+2y&\le300 \\
-x\ge0,\quad y&\ge0
+x\le-1:&\quad 1-3x\le10\iff x\ge-3 \\
+-1\le x\le3:&\quad x+5\le10\iff x\le5,\ \text{the whole part works} \\
+x\ge3:&\quad 3x-1\le10\iff x\le\tfrac{11}{3}
 \end{aligned}" />
 
-The corner where both limits are used up at once comes from the system of equations.
+Together that's <InlineMath math="-3\le x\le\frac{11}{3}" />. The integers are <InlineMath math="-3,-2,-1,0,1,2,3" />, which makes <InlineMath math="7" />. This statement is **True**.
+
+# Statement two
+
+Since the smallest value of <InlineMath math="g" /> is <InlineMath math="4" />, the inequality <InlineMath math="g(x)\le k" /> has a solution **exactly when <InlineMath math="k\ge4" />**. For <InlineMath math="k<4" /> no <InlineMath math="x" /> makes <InlineMath math="g(x)" /> that small. This statement is **True**.
+
+# Statement three
+
+The solution set for <InlineMath math="k=10" /> is <InlineMath math="\left[-3,\frac{11}{3}\right]" />. Its midpoint is
+
+<BlockMath math="\frac{-3+\frac{11}{3}}{2}=\frac{1}{3}\ne1" />
+
+Symmetry about <InlineMath math="x=1" /> only shows up when both absolute values have the same weight. **The weight <InlineMath math="2" /> on <InlineMath math="|x+1|" /> makes the graph slope differently** on the left and on the right. This statement is **False**.
+
+# Statement four
+
+For <InlineMath math="k=4" /> you need <InlineMath math="g(x)\le4" />, but <InlineMath math="g(x)\ge4" /> for every <InlineMath math="x" />. So only points with <InlineMath math="g(x)=4" /> work. Left of <InlineMath math="-1" /> the graph falls, right of <InlineMath math="-1" /> it rises with slope <InlineMath math="1" />, so the value <InlineMath math="4" /> **is reached only at <InlineMath math="x=-1" />**.
+
+Compare this with <InlineMath math="|x-3|+|x+1|\le4" /> without the weight. There the middle part is flat, so the whole interval <InlineMath math="-1\le x\le3" /> works. The weight <InlineMath math="2" /> tilts the middle part upward. This statement is **True**.
+
+# Statement five
+
+For <InlineMath math="k=6" />:
 
 <BlockMath math="\begin{aligned}
-2\cdot(2x+3y)=4x+6y&=480 \\
-3\cdot(3x+2y)=9x+6y&=900 \\
-5x&=420\ \Rightarrow\ x=84,\quad y=\frac{240-168}{3}=24
+x\le-1:&\quad 1-3x\le6\iff x\ge-\tfrac{5}{3} \\
+-1\le x\le3:&\quad x+5\le6\iff x\le1 \\
+x\ge3:&\quad 3x-1\le6\iff x\le\tfrac{7}{3},\ \text{which contradicts } x\ge3
 \end{aligned}" />
 
-<MathVisual
-  title="Feasible region"
-  description={<>The feasible region is the quadrilateral with corners <InlineMath math="(0,0)" />, <InlineMath math="(100,0)" />, <InlineMath math="(84,24)" /> and <InlineMath math="(0,80)" />. It lies below the line <InlineMath math="2x+3y=240" /> and below the line <InlineMath math="3x+2y=300" />.</>}
-  labels={{
-    optimum: <InlineMath math="(84,24)" />,
-    "corner-x": <InlineMath math="(100,0)" />,
-    "corner-y": <InlineMath math="(0,80)" />,
-    labour: <InlineMath math="2x+3y=240" />,
-    budget: <InlineMath math="3x+2y=300" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -10, max: 130 },
-      y: { min: -10, max: 160 },
-    },
-    view: { kind: "fit", padding: 0.08 },
-    objects: [
-      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 100, y: 0 }, { x: 84, y: 24 }, { x: 0, y: 80 }] },
-      { id: "labour-line", kind: "segment", appearance: "primary", from: { x: 0, y: 80 }, to: { x: 120, y: 0 } },
-      { id: "budget-line", kind: "segment", appearance: "secondary", from: { x: 0, y: 150 }, to: { x: 100, y: 0 } },
-      { id: "optimum-point", kind: "point", appearance: "answer", at: { x: 84, y: 24 } },
-      { id: "corner-x-point", kind: "point", appearance: "reference", at: { x: 100, y: 0 } },
-      { id: "corner-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 80 } },
-    ],
-    labels: [
-      { key: "optimum", objectId: "optimum-point", at: { x: 84, y: 24 }, placement: "above-right" },
-      { key: "corner-x", objectId: "corner-x-point", at: { x: 100, y: 0 }, placement: "below" },
-      { key: "corner-y", objectId: "corner-y-point", at: { x: 0, y: 80 }, placement: "left" },
-      { key: "labour", objectId: "labour-line", at: { x: 105, y: 10 }, placement: "above-right" },
-      { key: "budget", objectId: "budget-line", at: { x: 30, y: 105 }, placement: "right" },
-    ],
-  }}
-/>
+The right part gives no solutions. The solution set is <InlineMath math="-\frac{5}{3}\le x\le1" />, so the largest value is <InlineMath math="1" />. The number <InlineMath math="\frac{7}{3}" /> comes from **forgetting the condition <InlineMath math="x\ge3" /> on the right part**. This statement is **False**.
 
-Substitute the corners into the profit <InlineMath math="P=25{,}000x+30{,}000y" />.
-
-<BlockMath math="\begin{aligned}
-P(100,0)&=2{,}500{,}000 \\
-P(0,80)&=2{,}400{,}000 \\
-P(84,24)&=2{,}100{,}000+720{,}000=2{,}820{,}000
-\end{aligned}" />
-
-The largest profit comes from <InlineMath math="84" /> chilli trays and <InlineMath math="24" /> tomato trays.
-
-- <InlineMath math="84" /> chilli trays and <InlineMath math="24" /> tomato trays give the largest profit. The statement is true.
-- At the optimum the materials cost <InlineMath math="30{,}000\cdot84+20{,}000\cdot24=3{,}000{,}000" />, so the budget is used up. The statement is false.
-- The largest profit is <InlineMath math="\text{Rp}2{,}820{,}000" />. The amount <InlineMath math="\text{Rp}2{,}500{,}000" /> belongs to the corner <InlineMath math="(100,0)" />. The statement is false.
-- With <InlineMath math="P=25{,}000x+45{,}000y" />, <InlineMath math="80" /> tomato trays and no chilli trays give <InlineMath math="P(0,80)=3{,}600{,}000" />, which beats <InlineMath math="P(84,24)=3{,}180{,}000" /> and <InlineMath math="P(100,0)=2{,}500{,}000" />. The statement is true.
+So the true statements are the first, the second, and the fourth.

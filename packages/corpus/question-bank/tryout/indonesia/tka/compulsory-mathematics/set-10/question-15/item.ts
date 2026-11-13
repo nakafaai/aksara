@@ -12,28 +12,25 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label:
-            "Dilatasi dengan pusat $$O(0,0)$$ dan faktor skala $$2$$, dilanjutkan dilatasi dengan pusat $$O(0,0)$$ dan faktor skala $$-3$$, sama dengan dilatasi dengan pusat $$O(0,0)$$ dan faktor skala $$-6$$.",
+          label: "Titik $$P$$, $$C$$, dan $$C'$$ segaris, dan $$P$$ terletak di antara $$C$$ dan $$C'$$.",
+        },
+        {
+          correct: true,
+          label: "Luas segitiga $$A'B'C'$$ adalah $$12$$ satuan luas.",
+        },
+        {
+          correct: true,
+          label: "Bayangan garis $$x-2y=4$$ oleh $$D$$ adalah garis $$x-2y=-8$$.",
         },
         {
           correct: false,
           label:
-            "Dilatasi dengan pusat $$O(0,0)$$ dan faktor skala $$2$$, dilanjutkan dilatasi dengan pusat $$O(0,0)$$ dan faktor skala $$3$$, membuat luas setiap bangun menjadi $$6$$ kali luas semula.",
+            "Titik sudut $$A$$, $$B$$, $$C$$ berurutan searah jarum jam, sedangkan $$A'$$, $$B'$$, $$C'$$ berurutan berlawanan arah jarum jam.",
         },
         {
           correct: true,
           label:
-            "Dilatasi dengan pusat $$O(0,0)$$ dan faktor skala $$3$$, dilanjutkan pencerminan terhadap sumbu $$x$$, sama dengan pencerminan terhadap sumbu $$x$$, dilanjutkan dilatasi dengan pusat $$O(0,0)$$ dan faktor skala $$3$$.",
-        },
-        {
-          correct: true,
-          label:
-            "Dilatasi dengan pusat $$(1,0)$$ dan faktor skala $$2$$, dilanjutkan dilatasi dengan pusat $$O(0,0)$$ dan faktor skala $$\\frac12$$, sama dengan translasi oleh $$\\begin{pmatrix}-\\frac12\\\\0\\end{pmatrix}$$.",
-        },
-        {
-          correct: false,
-          label:
-            "Dua dilatasi berurutan selalu dapat diganti dengan satu dilatasi yang berpusat di $$O(0,0)$$.",
+            "Jarak antara garis $$BC$$ dan bayangannya sama dengan tiga kali jarak titik $$P$$ ke garis $$BC$$.",
         },
       ],
     },

@@ -1,15 +1,78 @@
-Die Glasfläche ist **das Rechteck plus der Halbkreis**. Der Radius des Halbkreises ist die halbe Fensterbreite, <InlineMath math="0{,}7\text{ m}" />.
+# Die senkrechte Seite aus dem Flächeninhalt
+
+Für den Umfang brauchst du die Länge <InlineMath math="AD" />, gegeben sind aber nur <InlineMath math="AB" /> und der Flächeninhalt der Platte. Bestimme also zuerst <InlineMath math="AD" /> aus dem Flächeninhalt und setze danach den Umfang zusammen.
+
+Der Flächeninhalt der Platte ist der des Rechtecks, **plus die zwei kleinen angesetzten Halbkreise, minus den großen herausgeschnittenen Halbkreis**. Die kleinen Halbkreise haben den Radius <InlineMath math="7" />, der große den Radius <InlineMath math="14" />.
 
 <BlockMath math="\begin{aligned}
-L_{\text{Rechteck}}&=1{,}4\cdot1=1{,}4\text{ m}^2 \\
-L_{\text{Halbkreis}}&=\tfrac12\cdot\tfrac{22}{7}\cdot0{,}7^2=0{,}77\text{ m}^2 \\
-L&=1{,}4+0{,}77=2{,}17\text{ m}^2 \\
-\text{Kosten}&=2{,}17\cdot350{.}000=759{.}500
+\text{Fläche}&=28\cdot AD+2\cdot\tfrac12\pi\cdot7^2-\tfrac12\pi\cdot14^2 \\
+&=28\cdot AD+49\pi-98\pi=28\cdot AD-49\pi \\
+28\cdot AD-49\pi&=1{.}120-49\pi\quad\Rightarrow\quad AD=40\text{ cm}
 \end{aligned}" />
 
-Das Glas für das Fenster kostet also <InlineMath math="\text{Rp}759{.}500" />.
+Prüf die Form. Der herausgeschnittene Halbkreis reicht <InlineMath math="14\text{ cm}" /> in die Platte hinein, deutlich weniger als <InlineMath math="40\text{ cm}" />. Der Ausschnitt bricht also nicht durch die obere Seite.
 
-- <InlineMath math="\text{Rp}269{.}500" /> zählt nur den Halbkreis.
-- <InlineMath math="\text{Rp}490{.}000" /> zählt nur das Rechteck.
-- <InlineMath math="\text{Rp}1{.}029{.}000" /> nimmt einen ganzen Kreis statt eines Halbkreises.
-- <InlineMath math="\text{Rp}1{.}568{.}000" /> nimmt <InlineMath math="1{,}4\text{ m}" /> als Radius, doch <InlineMath math="1{,}4\text{ m}" /> ist der Durchmesser.
+# Welche Teile den Rand bilden
+
+Der Umfang ist nur die Länge des äußeren Randes der Platte. Die Seite <InlineMath math="DC" /> wird von den zwei angesetzten Halbkreisen bedeckt und liegt daher im Inneren der Platte. Die Seite <InlineMath math="AB" /> ist mit dem Ausschnitt weggefallen. **Keine der beiden gehört zum Rand**, also zählen sie nicht mit.
+
+<MathVisual
+  title={<>Die Randstücke, die zählen</>}
+  description={<>Dieselbe Platte. Zum Rand gehören die Seiten <InlineMath math="AD" /> und <InlineMath math="BC" /> mit je <InlineMath math="40\text{ cm}" />, die zwei kleinen Bögen mit Radius <InlineMath math="7\text{ cm}" /> oben und der große Bogen mit Radius <InlineMath math="14\text{ cm}" /> unten. Die Seiten <InlineMath math="AB" /> und <InlineMath math="DC" /> bleiben Hilfslinien.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    ad: <InlineMath math="40" />,
+    bc: <InlineMath math="40" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 33 },
+      y: { min: -5, max: 51 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "side-ad", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 0, y: 40 } },
+      { id: "side-bc", kind: "segment", appearance: "highlight", from: { x: 28, y: 0 }, to: { x: 28, y: 40 } },
+      { id: "arc-left", kind: "arc", appearance: "highlight", center: { x: 7, y: 40 }, radius: 7, startDegrees: 0, sweepDegrees: 180 },
+      { id: "arc-right", kind: "arc", appearance: "highlight", center: { x: 21, y: 40 }, radius: 7, startDegrees: 0, sweepDegrees: 180 },
+      { id: "arc-bottom", kind: "arc", appearance: "highlight", center: { x: 14, y: 0 }, radius: 14, startDegrees: 0, sweepDegrees: 180 },
+      { id: "helper-ab", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 28, y: 0 } },
+      { id: "helper-dc", kind: "segment", appearance: "construction", from: { x: 0, y: 40 }, to: { x: 28, y: 40 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 28, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 28, y: 40 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 40 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 28, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 28, y: 40 }, placement: "right" },
+      { key: "d", objectId: "point-d", at: { x: 0, y: 40 }, placement: "left" },
+      { key: "ad", objectId: "side-ad", at: { x: 0, y: 20 }, placement: "left" },
+      { key: "bc", objectId: "side-bc", at: { x: 28, y: 20 }, placement: "right" },
+    ],
+  }}
+/>
+
+Ein halber Kreisumfang ist <InlineMath math="\pi r" />. Addiere alle Randstücke:
+
+<BlockMath math="\begin{aligned}
+AD+BC&=40+40=80 \\
+\text{zwei kleine Bögen}&=2\cdot\pi\cdot7=14\pi \\
+\text{großer Bogen}&=\pi\cdot14=14\pi \\
+\text{Umfang}&=80+14\pi+14\pi=80+28\pi
+\end{aligned}" />
+
+Der Umfang der Platte beträgt also <InlineMath math="(80+28\pi)\text{ cm}" />.
+
+# Warum die anderen Optionen falsch sind
+
+- <InlineMath math="136\text{ cm}" /> nimmt an, dass Ansetzen und Herausschneiden von Halbkreisen den Umfang nicht ändert, sodass er gleich dem Rechtecksumfang <InlineMath math="2(28+40)" /> wäre. Tatsächlich **ersetzen die Bögen gerade Strecken**, und die Bögen sind <InlineMath math="28\pi\approx88" /> lang, mehr als <InlineMath math="56" />.
+- <InlineMath math="(80+21\pi)\text{ cm}" /> vertauscht die Vorzeichen beim Flächeninhalt: Der herausgeschnittene Halbkreis wird addiert und die angesetzten werden abgezogen. Das ergibt <InlineMath math="28\cdot AD=1{.}120-98\pi" />, also <InlineMath math="AD=40-3{,}5\pi" />.
+- <InlineMath math="\left(80+\tfrac{49}{2}\pi\right)\text{ cm}" /> setzt den Flächeninhalt der Platte gleich dem des Rechtecks, <InlineMath math="28\cdot AD=1{.}120-49\pi" />, also <InlineMath math="AD=40-1{,}75\pi" />.
+- <InlineMath math="(136+28\pi)\text{ cm}" /> zählt auch die Seiten <InlineMath math="AB" /> und <InlineMath math="DC" /> mit, obwohl die eine innerhalb und die andere außerhalb der Platte liegt, nicht auf ihrem Rand.

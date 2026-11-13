@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$5$$ detik",
+          label: "$$2\\pi$$ cm",
         },
         {
           correct: false,
-          label: "$$5{,}5$$ detik",
-        },
-        {
-          correct: false,
-          label: "$$7$$ detik",
-        },
-        {
-          correct: false,
-          label: "$$12{,}5$$ detik",
+          label: "$$\\frac{77}{6}\\pi$$ cm",
         },
         {
           correct: true,
-          label: "$$18$$ detik",
+          label: "$$14\\pi$$ cm",
+        },
+        {
+          correct: false,
+          label: "$$26\\pi$$ cm",
+        },
+        {
+          correct: false,
+          label: "$$28\\pi$$ cm",
         },
       ],
     },

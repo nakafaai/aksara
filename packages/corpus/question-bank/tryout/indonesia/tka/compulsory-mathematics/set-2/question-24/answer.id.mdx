@@ -1,16 +1,44 @@
-Kedua telur diambil **sekaligus**, jadi tanpa pengembalian dan tanpa memperhatikan urutan. Hitung banyak pasangan yang memenuhi dan seluruh pasangan dengan kombinasi.
+Soal ini menghitung banyak panitia <InlineMath math="4" /> orang. Karena kedudukan semua anggota sama, urutan memilih tidak penting, jadi yang dipakai adalah **kombinasi**. Rani tidak ikut, sehingga calon anggota tinggal <InlineMath math="10" /> orang: <InlineMath math="5" /> laki-laki dan <InlineMath math="5" /> perempuan.
+
+# Syarat laki-laki dan perempuan
+
+Cara paling cepat adalah komplemen: hitung semua panitia dari <InlineMath math="10" /> orang, lalu buang panitia yang **semuanya laki-laki** atau **semuanya perempuan**.
 
 <BlockMath math="\begin{aligned}
-\text{seluruh pasangan}&=\binom{12}{2}=66 \\
-\text{pasangan telur utuh}&=\binom92=36 \\
-P&=\frac{36}{66}=\frac{6}{11}
+\binom{10}{4}&=210 \\
+\text{semua laki-laki}&=\binom54=5,\qquad\text{semua perempuan}=\binom54=5 \\
+210-5-5&=200
 \end{aligned}" />
 
-Sebagai pemeriksaan dengan pengambilan satu per satu, <InlineMath math="\frac{9}{12}\cdot\frac{8}{11}=\frac{72}{132}=\frac{6}{11}" />.
+# Syarat Andi dan Budi
 
-Jadi, peluangnya adalah <InlineMath math="\frac{6}{11}" />.
+Dari <InlineMath math="200" /> panitia itu, buang yang memuat Andi dan Budi sekaligus. Kalau keduanya masuk, dua kursi lain diisi dari <InlineMath math="8" /> orang sisanya, yaitu <InlineMath math="3" /> laki-laki dan <InlineMath math="5" /> perempuan.
 
-- <InlineMath math="\frac{1}{22}=\frac{3}{66}" /> adalah peluang kedua telur retak.
-- <InlineMath math="\frac{9}{22}=\frac{27}{66}" /> adalah peluang tepat satu telur retak.
-- <InlineMath math="\frac{9}{16}=\left(\frac34\right)^2" /> menghitung dengan pengembalian, seolah-olah telur pertama dikembalikan ke wadah.
-- <InlineMath math="\frac34" /> adalah peluang terambilnya satu telur utuh.
+| Dua anggota lainnya | Banyak cara | Sudah terbuang sebelumnya? |
+| :---: | :---: | :---: |
+| <InlineMath math="2" /> perempuan | <InlineMath math="\binom52=10" /> | tidak |
+| <InlineMath math="1" /> laki-laki, <InlineMath math="1" /> perempuan | <InlineMath math="3\cdot5=15" /> | tidak |
+| <InlineMath math="2" /> laki-laki | <InlineMath math="\binom32=3" /> | ya, semuanya laki-laki |
+
+Tiga panitia terakhir sudah ikut terbuang sebagai panitia yang semuanya laki-laki, jadi **jangan dibuang dua kali**. Yang masih perlu dibuang hanya <InlineMath math="10+15=25" />.
+
+<BlockMath math="200-25=175" />
+
+Cek dengan cara lain, berdasarkan berapa banyak dari Andi dan Budi yang masuk.
+
+<BlockMath math="\begin{aligned}
+\text{tanpa Andi dan Budi}&:\ \binom84-\binom54=70-5=65 \\
+\text{tepat satu dari mereka}&:\ 2\cdot\left[\binom83-\binom33\right]=2\cdot(56-1)=110 \\
+\text{total}&=65+110=175
+\end{aligned}" />
+
+Pada baris pertama, calon tinggal <InlineMath math="3" /> laki-laki dan <InlineMath math="5" /> perempuan, dan panitia semua perempuan harus dibuang. Pada baris kedua, sudah ada satu laki-laki, jadi tiga anggota lain cukup tidak semuanya laki-laki.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="172" /> membuang semua <InlineMath math="\binom82=28" /> panitia yang memuat Andi dan Budi. Tiga di antaranya sudah terbuang sebagai panitia semua laki-laki, jadi **terbuang dua kali**.
+- <InlineMath math="180" /> hanya membuang satu kelompok satu jenis kelamin, <InlineMath math="210-5-25" />. Panitia semua laki-laki dan panitia semua perempuan sama-sama dilarang.
+- <InlineMath math="200" /> lupa syarat Andi dan Budi.
+- <InlineMath math="277" /> masih mengikutkan Rani, sehingga calonnya <InlineMath math="11" /> orang.
+
+Jadi, banyak cara membentuk panitia itu adalah <InlineMath math="175" />.

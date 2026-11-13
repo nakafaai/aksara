@@ -1,16 +1,40 @@
-Pada tarif bertingkat, **setiap tingkat memiliki harganya sendiri**: <InlineMath math="10\text{ m}^3" /> pertama dihitung dengan tarif pertama, dan hanya <InlineMath math="5\text{ m}^3" /> sisanya dengan tarif kedua. Biaya beban tetap ditambahkan di akhir.
+# Jarak perjalanan aslinya
+
+Tarifnya lebih dari <InlineMath math="\text{Rp}10{.}000" />, jadi jaraknya lebih dari <InlineMath math="2\text{ km}" />. **Cari jaraknya dulu dari tarif yang dibayar**:
 
 <BlockMath math="\begin{aligned}
-\text{tingkat pertama}&=10\cdot4{.}000=40{.}000 \\
-\text{tingkat kedua}&=5\cdot6{.}500=32{.}500 \\
-\text{tagihan}&=40{.}000+32{.}500+18{.}000=90{.}500
+10{.}000+4{.}500(d-2)&=52{.}300 \\
+4{.}500(d-2)&=42{.}300 \\
+d&=11{,}4
 \end{aligned}" />
 
-Sebagai pemeriksaan, pemakaiannya di bawah <InlineMath math="20\text{ m}^3" />, jadi tingkat ketiga tidak terpakai.
+Jaraknya <InlineMath math="11{,}4\text{ km}" />, masih di bawah <InlineMath math="12\text{ km}" />, jadi semua bagiannya memakai tarif <InlineMath math="\text{Rp}4{.}500" /> per km.
 
-Jadi, tagihan keluarga itu adalah <InlineMath math="\text{Rp}90{.}500" />.
+# Apa yang berubah kalau dipecah
 
-- <InlineMath math="\text{Rp}72{.}500" /> melupakan biaya beban.
-- <InlineMath math="\text{Rp}78{.}000" /> menghitung seluruh <InlineMath math="15\text{ m}^3" /> dengan tarif pertama: <InlineMath math="60{.}000+18{.}000" />.
-- <InlineMath math="\text{Rp}97{.}500" /> menghitung seluruh <InlineMath math="15\text{ m}^3" /> dengan tarif kedua dan melupakan biaya beban.
-- <InlineMath math="\text{Rp}115{.}500" /> menghitung seluruh <InlineMath math="15\text{ m}^3" /> dengan tarif kedua: <InlineMath math="97{.}500+18{.}000" />.
+Misalkan perjalanan dipecah menjadi <InlineMath math="a" /> km dan <InlineMath math="b" /> km dengan <InlineMath math="a+b=11{,}4" />. Kalau keduanya paling sedikit <InlineMath math="2\text{ km}" />, setiap pesanan membayar tarif buka pintu sendiri dan mendapat <InlineMath math="2\text{ km}" /> pertamanya sendiri:
+
+<BlockMath math="\begin{aligned}
+\text{total}&=\left[10{.}000+4{.}500(a-2)\right]+\left[10{.}000+4{.}500(b-2)\right] \\
+&=20{.}000+4{.}500(a+b-4) \\
+&=20{.}000+4{.}500\cdot7{,}4=53{.}300
+\end{aligned}" />
+
+**Hasilnya tidak bergantung pada titik pemecahannya**. Dibandingkan satu perjalanan, kamu membayar satu tarif buka pintu lagi, yaitu <InlineMath math="+10{.}000" />, tetapi mendapat <InlineMath math="2\text{ km}" /> tanpa biaya per km lagi, yaitu <InlineMath math="-9{.}000" />. Jadi selalu lebih mahal <InlineMath math="\text{Rp}1{.}000" />.
+
+# Kalau satu bagian pendek sekali
+
+Kalau bagian pertama <InlineMath math="a\le2" />, pesanan itu tetap membayar <InlineMath math="\text{Rp}10{.}000" /> penuh, tetapi jarak gratisnya tidak terpakai semua:
+
+<BlockMath math="\text{total}=10{.}000+\left[10{.}000+4{.}500(11{,}4-a-2)\right]=62{.}300-4{.}500a\ge62{.}300-9{.}000=53{.}300" />
+
+**Bagian yang terlalu pendek justru membuang jarak gratis**, misalnya <InlineMath math="a=1{,}4" /> memberi <InlineMath math="\text{Rp}56{.}000" />. Total paling kecil tetap <InlineMath math="\text{Rp}53{.}300" />.
+
+Jadi, total tarif paling sedikit adalah <InlineMath math="\text{Rp}53{.}300" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\text{Rp}52{.}300" /> menganggap memecah perjalanan tidak mengubah apa pun. Padahal ada tarif buka pintu kedua.
+- <InlineMath math="\text{Rp}51{.}300" /> menganggap memecah perjalanan lebih hemat. **Jarak gratis tambahan hanya bernilai <InlineMath math="\text{Rp}9{.}000" />**, kurang dari tarif buka pintu.
+- <InlineMath math="\text{Rp}62{.}300" /> menambahkan tarif buka pintu kedua tetapi lupa bahwa pesanan kedua juga mendapat <InlineMath math="2\text{ km}" /> pertama tanpa biaya per km.
+- <InlineMath math="\text{Rp}56{.}000" /> adalah total untuk satu cara memecah tertentu, misalnya <InlineMath math="1{,}4\text{ km}" /> lalu <InlineMath math="10\text{ km}" />, bukan total paling sedikit.

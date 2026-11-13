@@ -1,16 +1,44 @@
-Zwei Eier werden **gleichzeitig** gezogen, also ohne Zurücklegen und ohne Reihenfolge. Zähle die günstigen und alle möglichen Paare mit Binomialkoeffizienten.
+Gezählt werden Ausschüsse aus <InlineMath math="4" /> Personen. Alle Mitglieder sind gleichberechtigt, die Reihenfolge der Auswahl spielt also keine Rolle, und du rechnest mit **Kombinationen**. Rani kann nicht mitmachen, also bleiben <InlineMath math="10" /> Kandidaten: <InlineMath math="5" /> Jungen und <InlineMath math="5" /> Mädchen.
+
+# Die Bedingung zu Jungen und Mädchen
+
+Am schnellsten geht es über das Gegenereignis: Zähle alle Ausschüsse aus den <InlineMath math="10" /> Personen und streiche die, die **nur aus Jungen** oder **nur aus Mädchen** bestehen.
 
 <BlockMath math="\begin{aligned}
-\text{alle Paare}&=\binom{12}{2}=66 \\
-\text{Paare aus heilen Eiern}&=\binom92=36 \\
-P&=\frac{36}{66}=\frac{6}{11}
+\binom{10}{4}&=210 \\
+\text{nur Jungen}&=\binom54=5,\qquad\text{nur Mädchen}=\binom54=5 \\
+210-5-5&=200
 \end{aligned}" />
 
-Zur Kontrolle nacheinander gezogen: <InlineMath math="\frac{9}{12}\cdot\frac{8}{11}=\frac{72}{132}=\frac{6}{11}" />.
+# Die Bedingung zu Andi und Budi
 
-Die Wahrscheinlichkeit ist also <InlineMath math="\frac{6}{11}" />.
+Streiche von diesen <InlineMath math="200" /> Ausschüssen die, in denen Andi und Budi beide sitzen. Sind beide dabei, werden die zwei übrigen Plätze aus den restlichen <InlineMath math="8" /> Personen besetzt, also aus <InlineMath math="3" /> Jungen und <InlineMath math="5" /> Mädchen.
 
-- <InlineMath math="\frac{1}{22}=\frac{3}{66}" /> ist die Wahrscheinlichkeit, dass beide Eier gesprungen sind.
-- <InlineMath math="\frac{9}{22}=\frac{27}{66}" /> ist die Wahrscheinlichkeit für genau ein gesprungenes Ei.
-- <InlineMath math="\frac{9}{16}=\left(\frac34\right)^2" /> rechnet mit Zurücklegen, als würde das erste Ei wieder in den Behälter gelegt.
-- <InlineMath math="\frac34" /> ist die Wahrscheinlichkeit für ein einzelnes heiles Ei.
+| Die zwei übrigen Mitglieder | Anzahl | Schon gestrichen? |
+| :---: | :---: | :---: |
+| <InlineMath math="2" /> Mädchen | <InlineMath math="\binom52=10" /> | nein |
+| <InlineMath math="1" /> Junge, <InlineMath math="1" /> Mädchen | <InlineMath math="3\cdot5=15" /> | nein |
+| <InlineMath math="2" /> Jungen | <InlineMath math="\binom32=3" /> | ja, nur Jungen |
+
+Die letzten drei Ausschüsse wurden schon als reine Jungenausschüsse gestrichen, **streiche sie also nicht doppelt**. Wegfallen müssen nur noch <InlineMath math="10+15=25" />.
+
+<BlockMath math="200-25=175" />
+
+Prüfe das auf einem zweiten Weg, danach, wie viele von Andi und Budi dabei sind.
+
+<BlockMath math="\begin{aligned}
+\text{weder Andi noch Budi}&:\ \binom84-\binom54=70-5=65 \\
+\text{genau einer von beiden}&:\ 2\cdot\left[\binom83-\binom33\right]=2\cdot(56-1)=110 \\
+\text{gesamt}&=65+110=175
+\end{aligned}" />
+
+In der ersten Zeile bleiben <InlineMath math="3" /> Jungen und <InlineMath math="5" /> Mädchen, und die reinen Mädchenausschüsse fallen weg. In der zweiten Zeile ist schon ein Junge dabei, die anderen drei dürfen also nur nicht alle Jungen sein.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="172" /> streicht alle <InlineMath math="\binom82=28" /> Ausschüsse mit Andi und Budi. Drei davon waren als reine Jungenausschüsse schon gestrichen und werden so **doppelt abgezogen**.
+- <InlineMath math="180" /> streicht nur eine der beiden einseitigen Gruppen, <InlineMath math="210-5-25" />. Reine Jungen- und reine Mädchenausschüsse sind aber beide verboten.
+- <InlineMath math="200" /> vergisst die Bedingung zu Andi und Budi.
+- <InlineMath math="277" /> zählt Rani noch mit, also <InlineMath math="11" /> Kandidaten.
+
+Es gibt also <InlineMath math="175" /> Möglichkeiten, den Ausschuss zu bilden.

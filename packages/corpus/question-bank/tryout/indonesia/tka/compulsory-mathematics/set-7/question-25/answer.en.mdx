@@ -1,16 +1,38 @@
-The students who do both are counted in basketball and again in futsal, so **the number doing at least one activity comes from inclusion-exclusion**.
+The PIN is picked from **valid PINs only**, so the sample space is every PIN that meets both rules, not every four-digit number. The probability is the number of valid PINs with all digits different divided by the number of all valid PINs.
+
+# Number of valid PINs
+
+Fill in the digits from left to right and count the choices at each position. The first digit can be <InlineMath math="1" /> to <InlineMath math="9" />. From the second digit on, **<InlineMath math="0" /> is allowed again**, and the only ban is repeating the digit right before it.
 
 <BlockMath math="\begin{aligned}
-n(B\cup F)&=20+15-8=27 \\
-n(\text{neither})&=36-27=9 \\
-P&=\frac{9}{36}=\frac14
+\text{first digit}&:\ 9 \text{ choices} \\
+\text{second, third, fourth digit}&:\ 10-1=9 \text{ choices each} \\
+n(S)&=9\cdot9\cdot9\cdot9=6{,}561
 \end{aligned}" />
 
-Check with a Venn diagram: basketball only <InlineMath math="12" />, futsal only <InlineMath math="7" />, both <InlineMath math="8" />, neither <InlineMath math="9" />, and <InlineMath math="12+7+8+9=36" />.
+# Valid PINs with all digits different
 
-So the probability is <InlineMath math="\frac14" />.
+If all four digits are different, neighbouring digits can't be equal. So **every PIN with four different digits that doesn't start with <InlineMath math="0" /> is automatically valid**, and you only have to count those.
 
-- <InlineMath math="\frac{1}{36}" /> forgets to subtract the <InlineMath math="8" /> students counted twice, so only <InlineMath math="36-35=1" /> is left.
-- <InlineMath math="\frac29" /> is the probability of doing both, <InlineMath math="\frac{8}{36}" />.
-- <InlineMath math="\frac{19}{36}" /> is the probability of doing exactly one activity.
-- <InlineMath math="\frac34" /> is the probability of doing at least one activity.
+<BlockMath math="\begin{aligned}
+\text{first digit}&:\ 9 \text{ choices } (1 \text{ to } 9) \\
+\text{second digit}&:\ 9 \text{ choices } (0 \text{ allowed, but not the first digit}) \\
+\text{third digit}&:\ 8 \text{ choices} \\
+\text{fourth digit}&:\ 7 \text{ choices} \\
+n(A)&=9\cdot9\cdot8\cdot7=4{,}536
+\end{aligned}" />
+
+# The probability
+
+Divide the two counts, then simplify by dividing top and bottom by <InlineMath math="81" />. The example in the question, <InlineMath math="1213" />, shows that some valid PINs repeat a digit, so **the probability has to be less than <InlineMath math="1" />**.
+
+<BlockMath math="P(A)=\frac{n(A)}{n(S)}=\frac{4{,}536}{6{,}561}=\frac{56}{81}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="\frac{28}{45}" /> uses the sample space <InlineMath math="10\cdot9\cdot9\cdot9=7{,}290" />, which forgets that the first digit can't be <InlineMath math="0" /> when counting valid PINs.
+- <InlineMath math="\frac{63}{125}" /> uses the sample space <InlineMath math="9{,}000" />, all four-digit numbers. **The PIN is picked from valid PINs**, not from all four-digit numbers.
+- <InlineMath math="\frac{112}{243}" /> uses <InlineMath math="9\cdot8\cdot7\cdot6=3{,}024" /> on top, as if <InlineMath math="0" /> were banned everywhere. That ban only applies to the first digit.
+- <InlineMath math="\frac{25}{81}" /> is <InlineMath math="1-\frac{56}{81}" />, the probability that some digit repeats. That's the opposite of what the question asks.
+
+So the probability that the chosen PIN has four different digits is <InlineMath math="\frac{56}{81}" />.

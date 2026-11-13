@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "knowledge-understanding",
     contentDomain: "data-probability",
     topic: "probability",
   },
@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\frac{1}{21}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{5}{14}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac12$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{25}{42}$$",
+          label: "Kejadian $$A$$ dan $$B$$ saling lepas.",
         },
         {
           correct: true,
-          label: "$$\\frac{17}{42}$$",
+          label: "Kejadian $$A$$ dan $$B$$ saling bebas.",
+        },
+        {
+          correct: false,
+          label: "$$P(A\\mid B)=0{,}4$$",
+        },
+        {
+          correct: true,
+          label: "Peluang kejadian $$A$$ dan kejadian $$B$$ sama-sama tidak terjadi adalah $$0{,}3$$.",
+        },
+        {
+          correct: true,
+          label: "Peluang tepat satu dari kejadian $$A$$ dan $$B$$ terjadi adalah $$0{,}5$$.",
         },
       ],
     },

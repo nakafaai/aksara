@@ -1,12 +1,47 @@
-Skuter listrik memakai <InlineMath math="4\text{ kWh}" /> untuk <InlineMath math="100\text{ km}" />, jadi **biayanya adalah banyak kWh dikali harga per kWh**.
+# Emas yang dibeli
 
-<BlockMath math="4\cdot1{.}500=6{.}000" />
+Soal ini menanyakan sisa emas Rina setelah dua kali membeli, sekali menjual, lalu membeli lagi. Untuk pembelian, berat emas sama dengan nominal dibagi **harga beli** bulan itu, dan hasilnya tidak dibulatkan.
 
-Sebagai pemeriksaan, biaya per kilometer <InlineMath math="\frac{6{.}000}{100}=60" /> rupiah, dan <InlineMath math="60\cdot100=6{.}000" />.
+<BlockMath math="\begin{aligned}
+\text{Januari: } \frac{2{.}950{.}000}{1{.}250{.}000}&=2{,}36\text{ gram} \\
+\text{Februari: } \frac{2{.}220{.}000}{1{.}200{.}000}&=1{,}85\text{ gram} \\
+\text{saldo akhir Februari}&=2{,}36+1{,}85=4{,}21\text{ gram}
+\end{aligned}" />
 
-Jadi, biaya energi skuter listrik untuk <InlineMath math="100\text{ km}" /> adalah <InlineMath math="\text{Rp}6{.}000" />.
+# Penjualan pada bulan Maret
 
-- <InlineMath math="\text{Rp}375" /> membagi harga per kWh dengan <InlineMath math="4" />, bukan mengalikannya.
-- <InlineMath math="\text{Rp}1{.}500" /> hanya harga satu kWh.
-- <InlineMath math="\text{Rp}30{.}000" /> adalah biaya skuter bensin untuk <InlineMath math="100\text{ km}" />.
-- <InlineMath math="\text{Rp}60{.}000" /> memakai angka <InlineMath math="40" /> dari baris bensin sebagai banyak kWh.
+Saat menjual, Rina dibayar dengan **harga buyback**, bukan harga beli. Dari uang itu masih dipotong biaya <InlineMath math="\text{Rp}25{.}000" />. Jadi kalau Rina menjual <InlineMath math="m" /> gram, uang yang ia terima harus paling sedikit <InlineMath math="\text{Rp}3{.}540{.}000" />:
+
+<BlockMath math="\begin{aligned}
+1{.}180{.}000\,m-25{.}000&\ge 3{.}540{.}000 \\
+m&\ge \frac{3{.}565{.}000}{1{.}180{.}000}\approx 3{,}021
+\end{aligned}" />
+
+Berat yang dijual harus kelipatan <InlineMath math="0{,}1" /> gram. Bilangan kelipatan <InlineMath math="0{,}1" /> terkecil yang tidak kurang dari <InlineMath math="3{,}021" /> adalah <InlineMath math="3{,}1" />. Coba cek dua pilihan terdekat:
+
+| Berat dijual | Uang diterima | Cukup? |
+| --- | --- | --- |
+| <InlineMath math="3{,}0" /> gram | <InlineMath math="3{.}540{.}000-25{.}000=3{.}515{.}000" /> | tidak |
+| <InlineMath math="3{,}1" /> gram | <InlineMath math="3{.}658{.}000-25{.}000=3{.}633{.}000" /> | ya |
+
+Menjual <InlineMath math="3{,}0" /> gram kurang <InlineMath math="\text{Rp}25{.}000" />, persis sebesar biaya administrasi. Jadi Rina **harus menjual <InlineMath math="3{,}1" /> gram**, dan sisanya <InlineMath math="4{,}21-3{,}1=1{,}11" /> gram.
+
+# Pembelian bulan April
+
+Pembelian April memakai **harga beli April**. Hasilnya ditambahkan ke sisa emas setelah penjualan Maret.
+
+<BlockMath math="\begin{aligned}
+\frac{2{.}227{.}500}{1{.}350{.}000}&=1{,}65\text{ gram} \\
+\text{saldo akhir April}&=1{,}11+1{,}65=2{,}76\text{ gram}
+\end{aligned}" />
+
+# Pilihan yang menjebak
+
+Setiap pilihan lain berasal dari **satu langkah yang salah**.
+
+- <InlineMath math="1{,}11" /> gram adalah saldo sebelum pembelian April. Langkah terakhir terlewat.
+- <InlineMath math="2{,}60" /> gram muncul kalau setiap hasil pembelian dibulatkan ke bawah menjadi <InlineMath math="2{,}3" />, <InlineMath math="1{,}8" />, dan <InlineMath math="1{,}6" />. Aturan kelipatan <InlineMath math="0{,}1" /> gram hanya berlaku untuk penjualan, pembelian tidak dibulatkan.
+- <InlineMath math="2{,}86" /> gram muncul kalau biaya administrasi dilupakan, karena <InlineMath math="\frac{3{.}540{.}000}{1{.}180{.}000}=3" /> tepat. Padahal <InlineMath math="3" /> gram hanya menghasilkan <InlineMath math="\text{Rp}3{.}515{.}000" />. Nilai yang sama juga muncul kalau <InlineMath math="3{,}021" /> dibulatkan ke bawah.
+- <InlineMath math="3{,}06" /> gram muncul kalau penjualan dihitung dengan harga beli Maret, <InlineMath math="\frac{3{.}565{.}000}{1{.}280{.}000}\approx2{,}79" />, sehingga yang dijual hanya <InlineMath math="2{,}8" /> gram.
+
+Jadi, saldo emas Rina pada akhir April adalah <InlineMath math="2{,}76" /> gram.

@@ -1,10 +1,37 @@
-Ruang sampelnya adalah **kesepuluh huruf pada kata itu**, termasuk huruf yang berulang: M, A, T, E, M, A, T, I, K, A. Huruf A muncul <InlineMath math="3" /> kali.
+Soal ini meminta frekuensi harapan, yaitu banyak percobaan dikali peluang menang dalam satu putaran. Peluang menang punya dua tahap: **koin baru dilempar kalau jumlah kartunya genap**, jadi kemenangan hanya dihitung setelah tahap pertama berhasil.
 
-<BlockMath math="P(\text{A})=\frac{3}{10}" />
+# Tahap pertama kartu
 
-Jadi, peluang huruf yang terpilih adalah A adalah <InlineMath math="\frac{3}{10}" />.
+Dua kartu diambil sekaligus, jadi urutan tidak penting dan kartu tidak bisa sama. Banyak pasangan seluruhnya <InlineMath math="\binom52=10" />. Jumlah dua bilangan genap kalau keduanya ganjil atau keduanya genap:
 
-- <InlineMath math="\frac{1}{10}" /> hanya menghitung satu huruf A.
-- <InlineMath math="\frac16" /> memakai <InlineMath math="6" /> huruf yang berbeda, yaitu M, A, T, E, I, K, sebagai ruang sampel, padahal huruf yang berulang juga dapat terpilih.
-- <InlineMath math="\frac15" /> hanya menemukan <InlineMath math="2" /> huruf A.
-- <InlineMath math="\frac13" /> salah menghitung banyak huruf menjadi <InlineMath math="9" />.
+<BlockMath math="\begin{aligned}
+\text{keduanya ganjil}&:\ \{1,3\},\{1,5\},\{3,5\}\ \to\ 3 \\
+\text{keduanya genap}&:\ \{2,4\}\ \to\ 1 \\
+P(\text{jumlah genap})&=\frac{3+1}{10}=\frac25
+\end{aligned}" />
+
+Perhatikan, peluangnya **bukan <InlineMath math="\frac12" />**. Kartu ganjil ada tiga dan genap hanya dua, dan kartu yang sama tidak bisa diambil dua kali.
+
+# Tahap kedua koin
+
+Tiga lemparan koin punya <InlineMath math="2^3=8" /> hasil yang sama mungkin. Paling sedikit dua angka berarti **tepat dua angka atau tepat tiga angka**:
+
+<BlockMath math="P(\text{paling sedikit 2 angka})=\frac{\binom32+\binom33}{8}=\frac{3+1}{8}=\frac12" />
+
+# Frekuensi harapan
+
+Menang berarti kedua tahap berhasil, jadi **peluangnya dikalikan**:
+
+<BlockMath math="\begin{aligned}
+P(\text{menang})&=\frac25\cdot\frac12=\frac15 \\
+F_h&=60\cdot\frac15=12\text{ putaran}
+\end{aligned}" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="15" /> putaran menganggap peluang jumlah genap <InlineMath math="\frac12" />: <InlineMath math="60\cdot\frac12\cdot\frac12" />.
+- <InlineMath math="21" /> putaran membaca **paling sedikit dua** sebagai paling sedikit satu, dengan peluang <InlineMath math="\frac78" />: <InlineMath math="60\cdot\frac25\cdot\frac78" />.
+- <InlineMath math="24" /> putaran melupakan tahap koin dan menghitung setiap jumlah genap sebagai menang: <InlineMath math="60\cdot\frac25" />.
+- <InlineMath math="30" /> putaran melupakan tahap kartu dan hanya memakai peluang koin: <InlineMath math="60\cdot\frac12" />.
+
+Jadi, frekuensi harapan banyak putaran yang dimenangkan adalah <InlineMath math="12" /> putaran.

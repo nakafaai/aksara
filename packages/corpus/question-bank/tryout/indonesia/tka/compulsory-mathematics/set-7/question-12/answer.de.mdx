@@ -1,13 +1,77 @@
-Die Fläche des Dreiecks <InlineMath math="DEF" /> bekommst du am leichtesten als **Quadrat minus drei rechtwinklige Eckdreiecke**: <InlineMath math="ADE" />, <InlineMath math="EBF" /> und <InlineMath math="FCD" />. Die Seitenlängen liefert der Satz des Pythagoras.
+# Das Prisma am Netz erkennen
+
+Die zwei kongruenten Fünfecke sind Grund- und Deckfläche des Prismas. Die fünf Rechtecke sind die Seitenflächen: Ihre Breiten <InlineMath math="6" />, <InlineMath math="4" />, <InlineMath math="4" />, <InlineMath math="5" /> und <InlineMath math="5" /> passen zu den fünf Seiten des Fünfecks, und die Länge <InlineMath math="10\text{ cm}" /> ist die Höhe des Prismas. Es ist also **ein fünfseitiges Prisma der Höhe <InlineMath math="10\text{ cm}" />**.
+
+Das Fünfeck sieht aus wie ein Haus. Wegen <InlineMath math="\angle A=\angle B=90^\circ" /> und <InlineMath math="BC=EA=4" /> ist sein unterer Teil das Rechteck <InlineMath math="ABCE" /> mit <InlineMath math="6\times4" />. Darauf sitzt das gleichschenklige Dreieck <InlineMath math="CDE" /> mit Grundseite <InlineMath math="CE=6" /> und Schenkeln <InlineMath math="5" />. Seine Höhe bekommst du mit Pythagoras über der halben Grundseite:
 
 <BlockMath math="\begin{aligned}
-L_{DEF}&=100-\tfrac12\cdot10\cdot5-\tfrac12\cdot5\cdot5-\tfrac12\cdot5\cdot10=100-25-12{,}5-25=37{,}5 \\
-DE&=\sqrt{10^2+5^2}=\sqrt{125}\approx11{,}18 \\
-DF&=\sqrt{5^2+10^2}=\sqrt{125}\approx11{,}18 \\
-EF&=\sqrt{5^2+5^2}=\sqrt{50}\approx7{,}07
+t&=\sqrt{5^2-3^2}=\sqrt{16}=4\text{ cm} \\
+G&=6\cdot4+\tfrac12\cdot6\cdot4=24+12=36\text{ cm}^2
 \end{aligned}" />
 
-- <InlineMath math="DE" /> und <InlineMath math="DF" /> sind beide <InlineMath math="\sqrt{125}\text{ cm}" /> lang, weil die Dreiecke <InlineMath math="ADE" /> und <InlineMath math="CDF" /> kongruent sind. Die Aussage ist richtig.
-- Die Fläche beträgt <InlineMath math="37{,}5\text{ cm}^2" />. Die Aussage ist richtig.
-- Ein rechter Winkel bei <InlineMath math="E" /> würde <InlineMath math="DE^2+EF^2=DF^2" /> verlangen. Doch <InlineMath math="125+50=175" />, nicht <InlineMath math="125" />. Die Aussage ist falsch.
-- Der Umfang beträgt etwa <InlineMath math="11{,}18+11{,}18+7{,}07=29{,}43\text{ cm}" />, weniger als <InlineMath math="30\text{ cm}" />. Die Aussage ist richtig.
+<MathVisual
+  title={<>Das Fünfeck <InlineMath math="ABCDE" /></>}
+  description={<>Ein Fünfeck mit den Ecken <InlineMath math="A(0,0)" />, <InlineMath math="B(6,0)" />, <InlineMath math="C(6,4)" />, <InlineMath math="D(3,8)" /> und <InlineMath math="E(0,4)" />. Die Strecke <InlineMath math="CE" /> teilt es in ein Rechteck <InlineMath math="6\times4" /> und ein gleichschenkliges Dreieck der Höhe <InlineMath math="4" />, also liegt <InlineMath math="D" /> genau <InlineMath math="8" /> über <InlineMath math="AB" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    height: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 8 },
+      y: { min: -1.5, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pentagon", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 4 }, { x: 3, y: 8 }, { x: 0, y: 4 }] },
+      { id: "split", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 6, y: 4 } },
+      { id: "roof-height", kind: "segment", appearance: "highlight", from: { x: 3, y: 4 }, to: { x: 3, y: 8 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 6, y: 4 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 3, y: 8 } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: 0, y: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 6, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "d", objectId: "point-d", at: { x: 3, y: 8 }, placement: "above" },
+      { key: "e", objectId: "point-e", at: { x: 0, y: 4 }, placement: "left" },
+      { key: "height", objectId: "roof-height", at: { x: 3, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Die erste Aussage
+
+**Richtig**. Ein fünfseitiges Prisma hat <InlineMath math="5" /> Kanten an der Grundfläche, <InlineMath math="5" /> an der Deckfläche und <InlineMath math="5" /> Seitenkanten, also <InlineMath math="15" /> Kanten. Die Kanten von Grund- und Deckfläche ergeben jeweils den Umfang des Fünfecks, und jede Seitenkante ist <InlineMath math="10\text{ cm}" /> lang.
+
+<BlockMath math="\begin{aligned}
+\text{Umfang des Fünfecks}&=6+4+4+5+5=24\text{ cm} \\
+\text{Summe aller Kanten}&=2\cdot24+5\cdot10=98\text{ cm}
+\end{aligned}" />
+
+Pass auf, wenn du die Umfänge aller Flächen im Netz addierst. Dann kommst du auf <InlineMath math="196\text{ cm}" />, das Doppelte, denn **jede Kante gehört zu zwei Flächen**.
+
+# Die zweite Aussage
+
+**Falsch**. Das Volumen eines Prismas ist Grundfläche mal Höhe.
+
+<BlockMath math="V=36\cdot10=360\text{ cm}^3" />
+
+Das ist weniger als <InlineMath math="375\text{ cm}^3" />. Richtig wirkt die Aussage nur, wenn du den Schenkel <InlineMath math="5" /> als Dreieckshöhe nimmst: Dann wäre die Grundfläche <InlineMath math="24+15=39" /> und das Volumen <InlineMath math="390\text{ cm}^3" />. **Die Höhe eines Dreiecks steht senkrecht auf seiner Grundseite**, und hier ist sie <InlineMath math="4" />, nicht <InlineMath math="5" />.
+
+# Die dritte Aussage
+
+**Richtig**. Die Fläche <InlineMath math="6\times10" /> gehört zur Kante <InlineMath math="AB" />. Liegt das Prisma auf dieser Fläche, stehen beide Fünfecke senkrecht mit <InlineMath math="AB" /> unten. Die höchsten Punkte liegen auf der Kante durch <InlineMath math="D" />. Ihre Höhe ist Rechteckhöhe plus Dreieckshöhe:
+
+<BlockMath math="BC+t=4+4=8\text{ cm}" />
+
+Die erste Aussage ist also richtig, die zweite falsch und die dritte richtig.

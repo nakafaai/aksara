@@ -6,33 +6,33 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "exam-summary",
+  stimulus: "ogif",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Taksiran median lama membaca adalah $$35$$ menit.",
+        },
+        {
           correct: true,
-          label:
-            "Jangkauan nilai kelas XI-2 lebih kecil daripada jangkauan nilai kelas XI-1.",
+          label: "Taksiran kuartil bawah lama membaca adalah $$25$$ menit.",
         },
         {
           correct: true,
           label:
-            "Median nilai kelas XI-1 lebih tinggi daripada median nilai kelas XI-2.",
+            "Taksiran jangkauan antarkuartil lama membaca adalah $$20$$ menit.",
+        },
+        {
+          correct: true,
+          label:
+            "Taksiran rata-rata lama membaca lebih besar daripada taksiran mediannya.",
         },
         {
           correct: false,
-          label: "Rata-rata nilai kelas XI-1 adalah $$74$$.",
-        },
-        {
-          correct: true,
           label:
-            "Tepat $$16$$ siswa kelas XI-1 mendapat nilai lebih dari $$74$$.",
-        },
-        {
-          correct: false,
-          label: "Ada siswa kelas XI-2 yang mendapat nilai kurang dari $$50$$.",
+            "Taksiran persentil ke-$$80$$ lama membaca adalah $$50$$ menit.",
         },
       ],
     },

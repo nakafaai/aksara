@@ -1,16 +1,95 @@
-Write each transformation as **a rule for a general point <InlineMath math="(x,y)" />**, then compose the rules in order.
+# The scale factor and the image triangle
+
+All five statements are about the dilation <InlineMath math="D" />, so start by finding its scale factor. A dilation with center <InlineMath math="P" /> and factor <InlineMath math="k" /> sends a point <InlineMath math="X" /> to <InlineMath math="X'" /> by the rule <InlineMath math="X'-P=k\,(X-P)" />. Use the pair <InlineMath math="A" /> and <InlineMath math="A'" />:
 
 <BlockMath math="\begin{aligned}
-(x,y)&\xrightarrow{\ [O,2]\ }(2x,2y)\xrightarrow{\ [O,-3]\ }(-6x,-6y) \\
-(x,y)&\xrightarrow{\ [O,3]\ }(3x,3y)\xrightarrow{\ x\text{-axis}\ }(3x,-3y) \\
-(x,y)&\xrightarrow{\ x\text{-axis}\ }(x,-y)\xrightarrow{\ [O,3]\ }(3x,-3y) \\
-(x,y)&\xrightarrow{\ [(1,0),2]\ }(2x-1,\,2y)\xrightarrow{\ [O,\frac12]\ }\left(x-\tfrac12,\,y\right)
+A'-P&=(0-2,\ -3-1)=(-2,-4) \\
+A-P&=(3-2,\ 3-1)=(1,2) \\
+(-2,-4)&=k\,(1,2)\ \Rightarrow\ k=-2
 \end{aligned}" />
 
-- The scale factors multiply, <InlineMath math="2\cdot(-3)=-6" />, and the centre stays <InlineMath math="O" />. This statement is true.
-- The combined factor is <InlineMath math="6" />, so areas are multiplied by <InlineMath math="6^2=36" />, not <InlineMath math="6" />. This statement is false.
-- Both orders give <InlineMath math="(3x,-3y)" />. This statement is true.
-- The final rule is <InlineMath math="\left(x-\tfrac12,\,y\right)" />, a translation of <InlineMath math="\tfrac12" /> to the left. This statement is true.
-- The previous statement is an example of two dilations that make a translation, not a dilation. This statement is false.
+**The scale factor is negative**: <InlineMath math="k=-2" />. With the rule <InlineMath math="X'=P-2\,(X-P)" />, the other two vertices go to:
 
-So the true statements are the ones about the factor <InlineMath math="-6" />, the dilation and reflection that can swap order, and the translation by <InlineMath math="\begin{pmatrix}-\frac12\\0\end{pmatrix}" />.
+<BlockMath math="\begin{aligned}
+B'&=(2,1)-2\,(3,0)=(-4,1) \\
+C'&=(2,1)-2\,(2,-2)=(-2,5)
+\end{aligned}" />
+
+<MathVisual
+  title={<>A triangle and its image under a dilation with factor <InlineMath math="-2" /></>}
+  description={<>Triangle <InlineMath math="ABC" /> with <InlineMath math="A(3,3)" />, <InlineMath math="B(5,1)" />, <InlineMath math="C(4,-1)" /> and its image <InlineMath math="A'(0,-3)" />, <InlineMath math="B'(-4,1)" />, <InlineMath math="C'(-2,5)" />. Segment <InlineMath math="CC'" /> passes through the center <InlineMath math="P(2,1)" />. The image lies on the other side of <InlineMath math="P" />, twice as far away, and both triangles run clockwise.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    a2: <InlineMath math="A'" />,
+    b2: <InlineMath math="B'" />,
+    c2: <InlineMath math="C'" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 7 },
+      y: { min: -5, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "original", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 3 }, { x: 5, y: 1 }, { x: 4, y: -1 }] },
+      { id: "image", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: -3 }, { x: -4, y: 1 }, { x: -2, y: 5 }] },
+      { id: "ray-c", kind: "segment", appearance: "construction", from: { x: 4, y: -1 }, to: { x: -2, y: 5 } },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 2, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "original", at: { x: 3, y: 3 }, placement: "above" },
+      { key: "b", objectId: "original", at: { x: 5, y: 1 }, placement: "right" },
+      { key: "c", objectId: "original", at: { x: 4, y: -1 }, placement: "below" },
+      { key: "a2", objectId: "image", at: { x: 0, y: -3 }, placement: "below" },
+      { key: "b2", objectId: "image", at: { x: -4, y: 1 }, placement: "left" },
+      { key: "c2", objectId: "image", at: { x: -2, y: 5 }, placement: "above" },
+      { key: "p", objectId: "point-p", at: { x: 2, y: 1 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+# Checking each statement
+
+**Statement 1**. From the work above, <InlineMath math="C'-P=(-4,4)=-2\,(2,-2)=-2\,(C-P)" />. The vector <InlineMath math="C'-P" /> is a negative multiple of <InlineMath math="C-P" />, so the three points lie on one line and <InlineMath math="C" /> and <InlineMath math="C'" /> sit on opposite sides of <InlineMath math="P" />. That happens for every point because <InlineMath math="k<0" />. **True**.
+
+**Statement 2**. Find the area of <InlineMath math="ABC" /> with the coordinate formula (the shoelace formula):
+
+<BlockMath math="\begin{aligned}
+L_{ABC}&=\tfrac12\left|3(1-(-1))+5(-1-3)+4(3-1)\right| \\
+&=\tfrac12\left|6-20+8\right|=3
+\end{aligned}" />
+
+The dilation multiplies every length by <InlineMath math="|k|=2" />, so **the area is multiplied by <InlineMath math="k^2=4" />**, not by <InlineMath math="2" />, and never by a negative number. The area of <InlineMath math="A'B'C'" /> is <InlineMath math="4\cdot3=12" /> square units. **True**.
+
+**Statement 3**. A dilation sends a line to a parallel line, so the image has the form <InlineMath math="x-2y=c" />. Take one point of the original line, say <InlineMath math="(4,0)" />, find its image, and put it into that form:
+
+<BlockMath math="\begin{aligned}
+(4,0)'&=(2,1)-2\,(2,-1)=(-2,3) \\
+c&=-2-2\cdot3=-8
+\end{aligned}" />
+
+The image is the line <InlineMath math="x-2y=-8" />. **True**.
+
+**Statement 4**. The sign inside the shoelace formula tells you the direction of the vertex order: negative means clockwise. For <InlineMath math="ABC" /> it's <InlineMath math="-6" />, and for <InlineMath math="A'B'C'" />:
+
+<BlockMath math="0(1-5)+(-4)(5-(-3))+(-2)(-3-1)=-32+8=-24" />
+
+Both are negative, so **both triangles run clockwise**. Here's why: a dilation with factor <InlineMath math="-2" /> is the same as a <InlineMath math="180^\circ" /> rotation about <InlineMath math="P" /> followed by a dilation with factor <InlineMath math="2" />. A rotation doesn't flip the vertex order the way a reflection does. **False**.
+
+**Statement 5**. Line <InlineMath math="BC" /> has gradient <InlineMath math="\frac{-1-1}{4-5}=2" />, and its image is parallel and passes through <InlineMath math="B'(-4,1)" /> and <InlineMath math="C'(-2,5)" />:
+
+<BlockMath math="\begin{aligned}
+BC&:\ 2x-y=9 \\
+B'C'&:\ 2x-y=-9 \\
+\text{distance from } P \text{ to } BC&=\frac{|2\cdot2-1-9|}{\sqrt{2^2+1^2}}=\frac{6}{\sqrt5} \\
+\text{distance from } BC \text{ to } B'C'&=\frac{|9-(-9)|}{\sqrt5}=\frac{18}{\sqrt5}
+\end{aligned}" />
+
+The ratio is <InlineMath math="18:6=3" />. The image line is on the far side of <InlineMath math="P" /> at twice the distance, so the total gap is <InlineMath math="1+2=3" /> times as large. **True**.
+
+So the true statements are statements 1, 2, 3, and 5.

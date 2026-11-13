@@ -1,16 +1,91 @@
-Rotasi dengan pusat <InlineMath math="P" /> yang bukan titik asal dikerjakan dalam tiga langkah: **bentuk vektor dari <InlineMath math="P" /> ke <InlineMath math="A" />, rotasikan vektor itu, lalu tempelkan hasilnya kembali di <InlineMath math="P" />**.
+Soal ini meminta titik sudut persegi panjang gabungan yang letaknya **berseberangan dengan titik <InlineMath math="A" />**. Untuk sampai ke sana, kamu perlu tiga hal berurutan: titik <InlineMath math="C" /> dan <InlineMath math="D" />, bayangan persegi setelah rotasi, lalu bentuk persegi panjang gabungannya.
+
+# Dua titik sudut yang belum diketahui
+
+Hanya <InlineMath math="A" /> dan <InlineMath math="B" /> yang diketahui. Karena urutan <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, <InlineMath math="D" /> berlawanan arah jarum jam, dari sisi <InlineMath math="AB" /> ke sisi <InlineMath math="BC" /> kamu **berbelok ke kiri sebesar <InlineMath math="90^\circ" />**. Memutar vektor <InlineMath math="(a,b)" /> sejauh <InlineMath math="90^\circ" /> berlawanan arah jarum jam menghasilkan <InlineMath math="(-b,a)" />.
 
 <BlockMath math="\begin{aligned}
-\overrightarrow{PA}&=(1-(-1),\ 5-2)=(2,3) \\
-\text{dirotasi}&:\ (2,3)\mapsto(-3,2) \\
-A'&=P+(-3,2)=(-1-3,\ 2+2)=(-4,4)
+\overrightarrow{AB}&=B-A=(-5+1,\ 2+1)=(-4,3) \\
+\overrightarrow{BC}&=(-3,-4) \\
+C&=B+\overrightarrow{BC}=(-5-3,\ 2-4)=(-8,-2) \\
+D&=A+\overrightarrow{BC}=(-1-3,\ -1-4)=(-4,-5)
 \end{aligned}" />
 
-Sebagai pemeriksaan, <InlineMath math="PA=\sqrt{2^2+3^2}=\sqrt{13}" /> dan <InlineMath math="PA'=\sqrt{(-3)^2+2^2}=\sqrt{13}" />. Selain itu, <InlineMath math="(2,3)\cdot(-3,2)=-6+6=0" />, jadi kedua vektor saling tegak lurus.
+Panjang <InlineMath math="\overrightarrow{AB}" /> dan <InlineMath math="\overrightarrow{BC}" /> sama-sama <InlineMath math="\sqrt{9+16}=5" />, jadi sisi persegi ini <InlineMath math="5" />.
 
-Jadi, bayangan titik <InlineMath math="A" /> adalah <InlineMath math="(-4,4)" />.
+# Rotasi terhadap titik pusat
 
-- <InlineMath math="(-5,1)" /> merotasi terhadap titik asal, bukan terhadap <InlineMath math="P" />.
-- <InlineMath math="(-3,2)" /> hanya vektor hasil rotasi. Vektor itu belum ditempelkan kembali di <InlineMath math="P" />.
-- <InlineMath math="(-4,0)" /> merotasi vektor menjadi <InlineMath math="(-3,-2)" />, dengan tanda koordinat kedua yang salah.
-- <InlineMath math="(2,0)" /> merotasi searah jarum jam: <InlineMath math="(2,3)\mapsto(3,-2)" />.
+Rotasi dengan pusat yang bukan titik asal dikerjakan dalam tiga langkah: ambil vektor dari pusat ke titik, putar vektor itu, lalu **tambahkan kembali koordinat pusatnya**. Pusatnya <InlineMath math="C(-8,-2)" />, dan titik <InlineMath math="C" /> sendiri tidak berpindah.
+
+<BlockMath math="\begin{aligned}
+A-C&=(7,1)&&\to(-1,7)&&\to A'=(-9,5) \\
+B-C&=(3,4)&&\to(-4,3)&&\to B'=(-12,1) \\
+D-C&=(4,-3)&&\to(3,4)&&\to D'=(-5,2)
+\end{aligned}" />
+
+Perhatikan bahwa <InlineMath math="D'=(-5,2)" /> tepat sama dengan <InlineMath math="B" />. Artinya, persegi bayangan **menempel pada sisi <InlineMath math="CB" />** milik persegi semula. Kedua persegi berbagi satu sisi, sehingga gabungannya persegi panjang berukuran <InlineMath math="5\times10" />.
+
+# Persegi panjang gabungan
+
+Titik <InlineMath math="C" /> dan <InlineMath math="B" /> ada di sisi bersama, jadi keduanya hanya titik tengah sisi panjang, bukan titik sudut gabungan. Titik sudut persegi panjang adalah titik yang hanya dimiliki satu persegi: <InlineMath math="A" /> dan <InlineMath math="D" /> dari persegi semula, <InlineMath math="A'" /> dan <InlineMath math="B'" /> dari bayangannya. Urutannya keliling <InlineMath math="A\to A'\to B'\to D" />.
+
+<BlockMath math="\begin{aligned}
+\overrightarrow{AA'}&=(-8,6),&\quad |AA'|&=10 \\
+\overrightarrow{A'B'}&=(-3,-4),&\quad |A'B'|&=5
+\end{aligned}" />
+
+Jadi <InlineMath math="AA'" /> adalah sisi panjang dan <InlineMath math="A'" /> hanya tetangga <InlineMath math="A" />. **Titik yang berseberangan dengan <InlineMath math="A" /> adalah <InlineMath math="B'(-12,1)" />**.
+
+<MathVisual
+  title={<>Persegi, bayangannya, dan diagonal gabungan</>}
+  description={<>Persegi <InlineMath math="ABCD" /> dengan <InlineMath math="A(-1,-1)" />, <InlineMath math="B(-5,2)" />, <InlineMath math="C(-8,-2)" />, <InlineMath math="D(-4,-5)" />. Bayangannya setelah rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam dengan pusat <InlineMath math="C" /> mempunyai titik sudut <InlineMath math="A'(-9,5)" />, <InlineMath math="B'(-12,1)" />, <InlineMath math="C" />, dan <InlineMath math="B" />. Kedua persegi berbagi sisi <InlineMath math="CB" />. Diagonal persegi panjang gabungan menghubungkan <InlineMath math="A" /> dengan <InlineMath math="B'" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    "a-image": <InlineMath math="A'" />,
+    "b-image": <InlineMath math="B'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -14, max: 2 },
+      y: { min: -7, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "primary", vertices: [{ x: -1, y: -1 }, { x: -5, y: 2 }, { x: -8, y: -2 }, { x: -4, y: -5 }] },
+      { id: "image", kind: "polygon", appearance: "secondary", vertices: [{ x: -9, y: 5 }, { x: -12, y: 1 }, { x: -8, y: -2 }, { x: -5, y: 2 }] },
+      { id: "diagonal", kind: "segment", appearance: "answer", from: { x: -1, y: -1 }, to: { x: -12, y: 1 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: -1, y: -1 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: -5, y: 2 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: -8, y: -2 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: -4, y: -5 } },
+      { id: "point-a-image", kind: "point", appearance: "reference", at: { x: -9, y: 5 } },
+      { id: "point-b-image", kind: "point", appearance: "answer", at: { x: -12, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: -1, y: -1 }, placement: "right" },
+      { key: "b", objectId: "point-b", at: { x: -5, y: 2 }, placement: "above-right" },
+      { key: "c", objectId: "point-c", at: { x: -8, y: -2 }, placement: "below-left" },
+      { key: "d", objectId: "point-d", at: { x: -4, y: -5 }, placement: "below" },
+      { key: "a-image", objectId: "point-a-image", at: { x: -9, y: 5 }, placement: "above" },
+      { key: "b-image", objectId: "point-b-image", at: { x: -12, y: 1 }, placement: "left" },
+    ],
+  }}
+/>
+
+Sebagai cek, titik tengah <InlineMath math="AB'" /> harus sama dengan titik tengah diagonal lainnya, <InlineMath math="A'D" />, karena diagonal persegi panjang saling membagi dua.
+
+<BlockMath math="\left(\tfrac{-1-12}{2},\tfrac{-1+1}{2}\right)=\left(-\tfrac{13}{2},0\right)=\left(\tfrac{-9-4}{2},\tfrac{5-5}{2}\right)" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="(-9,5)" /> adalah <InlineMath math="A'" />, bayangan <InlineMath math="A" />. Titik ini ada di ujung sisi panjang <InlineMath math="AA'" />, jadi **bersebelahan dengan <InlineMath math="A" />**, bukan berseberangan.
+- <InlineMath math="(-11,-6)" /> muncul kalau persegi diputar searah jarum jam. Dengan arah itu bayangan menempel pada sisi <InlineMath math="CD" />, dan titik seberang <InlineMath math="A" /> berubah.
+- <InlineMath math="(-4,3)" /> adalah vektor <InlineMath math="B-C" /> yang sudah diputar, tetapi koordinat pusat <InlineMath math="C" /> lupa ditambahkan kembali.
+- <InlineMath math="(1,10)" /> muncul kalau <InlineMath math="C" /> dicari dengan belokan ke kanan, seolah-olah titik sudutnya berurutan searah jarum jam. Hasilnya <InlineMath math="C(-2,6)" />, persegi yang salah.
+
+Jadi, ujung lain diagonal persegi panjang gabungan yang melalui <InlineMath math="A" /> adalah <InlineMath math="(-12,1)" />.

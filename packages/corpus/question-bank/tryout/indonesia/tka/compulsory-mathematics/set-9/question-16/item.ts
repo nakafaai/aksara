@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "aquarium",
+  stimulus: "peta",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$11{,}2$$ liter",
-        },
-        {
-          correct: false,
-          label: "$$48$$ liter",
-        },
-        {
           correct: true,
-          label: "$$112$$ liter",
+          label: "$$4$$ hektare",
         },
         {
           correct: false,
-          label: "$$160$$ liter",
+          label: "$$5$$ hektare",
         },
         {
           correct: false,
-          label: "$$1{.}120$$ liter",
+          label: "$$8$$ hektare",
+        },
+        {
+          correct: false,
+          label: "$$40$$ hektare",
+        },
+        {
+          correct: false,
+          label: "$$64$$ hektare",
         },
       ],
     },

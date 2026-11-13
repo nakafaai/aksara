@@ -1,15 +1,69 @@
-The angle of elevation is measured from the observer's eye. So the right triangle has a horizontal side of <InlineMath math="30" /> m at eye level, and **its vertical side is the part of the building above the eye**. The vertical side is opposite the angle and the horizontal side is next to it, so use <InlineMath math="\tan60^\circ=\sqrt3" />.
+The question asks for the height of a pole standing on a slope. The distance is measured along the slope, but **the angle of elevation is measured from the horizontal**, not from the slope. So you need two right triangles that share one horizontal side.
+
+# Where the foot of the pole is
+
+Call the foot of the pole <InlineMath math="F" />, its top <InlineMath math="T" />, and let <InlineMath math="Q" /> be the point directly below <InlineMath math="F" /> at the same level as <InlineMath math="P" />. Triangle <InlineMath math="PQF" /> has its right angle at <InlineMath math="Q" />, hypotenuse <InlineMath math="PF=16" /> m, and the angle at <InlineMath math="P" /> is the slope angle <InlineMath math="30^\circ" />:
 
 <BlockMath math="\begin{aligned}
-h_{\text{above eye}}&=30\tan60^\circ=30\sqrt3 \\
-h&=30\sqrt3+1.6
+PQ&=16\cos30^\circ=16\cdot\tfrac12\sqrt3=8\sqrt3\text{ m} \\
+QF&=16\sin30^\circ=16\cdot\tfrac12=8\text{ m}
 \end{aligned}" />
 
-That is about <InlineMath math="30\cdot1.732+1.6\approx53.6" /> m.
+That means the foot of the pole is **already <InlineMath math="8" /> m higher** than <InlineMath math="P" />.
 
-So the building is <InlineMath math="(30\sqrt3+1.6)" /> m tall.
+<MathVisual
+  title={<>A pole on a slope</>}
+  description={<>Point <InlineMath math="P" /> is on a slope rising at <InlineMath math="30^\circ" />. The foot of the pole <InlineMath math="F" /> is <InlineMath math="16" /> metres from <InlineMath math="P" /> along the slope. Point <InlineMath math="Q" /> is directly below <InlineMath math="F" />, level with <InlineMath math="P" />, with <InlineMath math="PQ=8\sqrt3" /> metres and <InlineMath math="QF=8" /> metres. The line of sight from <InlineMath math="P" /> to the top <InlineMath math="T" /> makes <InlineMath math="60^\circ" /> with the horizontal, so <InlineMath math="QT=24" /> metres and the pole <InlineMath math="FT=16" /> metres.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    f: <InlineMath math="F" />,
+    t: <InlineMath math="T" />,
+    q: <InlineMath math="Q" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 22 },
+      y: { min: -2, max: 26 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "slope", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 20, y: 11.547005383792516 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 13.856406460551018, y: 0 } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 13.856406460551018, y: 0 }, to: { x: 13.856406460551018, y: 8 } },
+      { id: "pole", kind: "segment", appearance: "primary", from: { x: 13.856406460551018, y: 8 }, to: { x: 13.856406460551018, y: 24 } },
+      { id: "sight", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 13.856406460551018, y: 24 } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-f", kind: "point", appearance: "primary", at: { x: 13.856406460551018, y: 8 } },
+      { id: "point-t", kind: "point", appearance: "answer", at: { x: 13.856406460551018, y: 24 } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 13.856406460551018, y: 0 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point-p", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "f", objectId: "point-f", at: { x: 13.856406460551018, y: 8 }, placement: "right" },
+      { key: "t", objectId: "point-t", at: { x: 13.856406460551018, y: 24 }, placement: "right" },
+      { key: "q", objectId: "point-q", at: { x: 13.856406460551018, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
-- <InlineMath math="(10\sqrt3+1.6)" /> m uses <InlineMath math="\tan30^\circ=\frac{\sqrt3}{3}" />, the wrong angle.
-- <InlineMath math="30\sqrt3" /> m forgets to add the observer's eye height.
-- <InlineMath math="(15+1.6)" /> m uses <InlineMath math="30\cos60^\circ" />, but <InlineMath math="30" /> m is the horizontal side, not the hypotenuse.
-- <InlineMath math="(60+1.6)" /> m uses <InlineMath math="\frac{30}{\cos60^\circ}" />, the length of the line of sight, not a height.
+# The height of the top and of the pole
+
+Triangle <InlineMath math="PQT" /> also has its right angle at <InlineMath math="Q" />, with the same horizontal side <InlineMath math="PQ=8\sqrt3" /> and the <InlineMath math="60^\circ" /> angle of elevation at <InlineMath math="P" />. The top is <InlineMath math="QT" /> above <InlineMath math="P" />, and the pole is the part from <InlineMath math="F" /> to <InlineMath math="T" />:
+
+<BlockMath math="\begin{aligned}
+QT&=PQ\cdot\tan60^\circ=8\sqrt3\cdot\sqrt3=24\text{ m} \\
+FT&=QT-QF=24-8=16\text{ m}
+\end{aligned}" />
+
+Check with triangle <InlineMath math="PFT" />. The angle at <InlineMath math="P" /> is <InlineMath math="60^\circ-30^\circ=30^\circ" />. The angle at <InlineMath math="F" />, between the slope going down to <InlineMath math="P" /> and the pole going up, is <InlineMath math="90^\circ+30^\circ=120^\circ" />. That leaves <InlineMath math="30^\circ" /> at <InlineMath math="T" /> too. The triangle is isosceles, so <InlineMath math="FT=FP=16" /> m. **It matches**.
+
+# Why the other options are wrong
+
+- <InlineMath math="8\text{ m}" /> comes from taking the angle at the foot of the pole as <InlineMath math="60^\circ" />. The pole is vertical and the slope goes down towards <InlineMath math="P" />, so that angle is <InlineMath math="120^\circ" />.
+- <InlineMath math="\frac{16}{3}\sqrt3\text{ m}" /> comes from treating the pole as perpendicular to the slope, so <InlineMath math="FT=16\tan30^\circ" />.
+- <InlineMath math="24\text{ m}" /> is the height of the top above <InlineMath math="P" />. **It stops one step early** by forgetting to subtract the <InlineMath math="8" /> m rise of the foot.
+- <InlineMath math="16\sqrt3\text{ m}" /> comes from treating the ground as flat and using <InlineMath math="16" /> m as a horizontal distance.
+
+So the pole is <InlineMath math="16\text{ m}" /> tall.

@@ -1,0 +1,88 @@
+# Sudut pusat daripada jarak perentas
+
+Ketiga-tiga pernyataan bergantung pada satu fakta: saiz sudut pusat <InlineMath math="AOB" />. Jadi cari sudut itu dahulu daripada jejari dan jarak perentas ke pusat.
+
+Lukis garis dari <InlineMath math="O" /> yang berserenjang dengan <InlineMath math="AB" /> di titik <InlineMath math="M" />. Garis ini **membahagi perentas kepada dua bahagian sama panjang**, jadi segi tiga <InlineMath math="OMA" /> bersudut tegak di <InlineMath math="M" /> dengan <InlineMath math="OA=10" /> dan <InlineMath math="OM=5" />:
+
+<BlockMath math="\begin{aligned}
+AM&=\sqrt{10^2-5^2}=5\sqrt3,\qquad AB=10\sqrt3 \\
+\cos\angle AOM&=\frac{OM}{OA}=\frac{5}{10}=\frac12\ \Rightarrow\ \angle AOM=60^\circ \\
+\angle AOB&=2\cdot60^\circ=120^\circ
+\end{aligned}" />
+
+<MathVisual
+  title={<>Perentas <InlineMath math="AB" /> dan titik-titik penting</>}
+  description={<>Bulatan berpusat <InlineMath math="O" /> dengan jejari <InlineMath math="10" />. Perentas <InlineMath math="AB" /> mengufuk di bawah pusat, pada jarak <InlineMath math="OM=5" />. Tangen di <InlineMath math="A" /> dan di <InlineMath math="B" /> bertemu di <InlineMath math="P" /> pada sambungan <InlineMath math="OM" />. Titik <InlineMath math="C_1" /> di puncak bulatan dan titik <InlineMath math="C_2" /> di bahagian bawah bulatan sama jauh dari <InlineMath math="A" /> dan <InlineMath math="B" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    m: <InlineMath math="M" />,
+    p: <InlineMath math="P" />,
+    c1: <InlineMath math="C_1" />,
+    c2: <InlineMath math="C_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -13, max: 13 },
+      y: { min: -23, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 10 },
+      { id: "chord", kind: "segment", appearance: "highlight", from: { x: -5 * Math.sqrt(3), y: -5 }, to: { x: 5 * Math.sqrt(3), y: -5 } },
+      { id: "radius-a", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -5 * Math.sqrt(3), y: -5 } },
+      { id: "radius-b", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 5 * Math.sqrt(3), y: -5 } },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 0, y: 10 }, to: { x: 0, y: -20 } },
+      { id: "tangent-a", kind: "segment", appearance: "reference", from: { x: -5 * Math.sqrt(3), y: -5 }, to: { x: 0, y: -20 } },
+      { id: "tangent-b", kind: "segment", appearance: "reference", from: { x: 5 * Math.sqrt(3), y: -5 }, to: { x: 0, y: -20 } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: -5 * Math.sqrt(3), y: -5 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 5 * Math.sqrt(3), y: -5 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 0, y: -5 } },
+      { id: "point-p", kind: "point", appearance: "answer", at: { x: 0, y: -20 } },
+      { id: "point-c1", kind: "point", appearance: "highlight", at: { x: 0, y: 10 } },
+      { id: "point-c2", kind: "point", appearance: "highlight", at: { x: 0, y: -10 } },
+    ],
+    labels: [
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "a", objectId: "point-a", at: { x: -5 * Math.sqrt(3), y: -5 }, placement: "left" },
+      { key: "b", objectId: "point-b", at: { x: 5 * Math.sqrt(3), y: -5 }, placement: "right" },
+      { key: "m", objectId: "point-m", at: { x: 0, y: -5 }, placement: "above-right" },
+      { key: "p", objectId: "point-p", at: { x: 0, y: -20 }, placement: "below" },
+      { key: "c1", objectId: "point-c1", at: { x: 0, y: 10 }, placement: "above" },
+      { key: "c2", objectId: "point-c2", at: { x: 0, y: -10 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Pernyataan pertama
+
+Tangen sentiasa berserenjang dengan jejari pada titik sentuhannya, jadi segi tiga <InlineMath math="OAP" /> bersudut tegak di <InlineMath math="A" />. Rajah ini simetri, jadi <InlineMath math="P" /> terletak pada sambungan <InlineMath math="OM" /> dan <InlineMath math="\angle AOP=\angle AOM=60^\circ" />:
+
+<BlockMath math="OP=\frac{OA}{\cos60^\circ}=\frac{10}{\frac12}=20\text{ cm}" />
+
+Jika sudut pusat tersilap dikira <InlineMath math="60^\circ" />, hasilnya <InlineMath math="\frac{10}{\cos30^\circ}\approx11.5" />. Dengan sudut yang betul, **<InlineMath math="OP" /> tepat <InlineMath math="20\text{ cm}" />**. Pernyataan ini **Betul**.
+
+# Pernyataan kedua
+
+Lengkok minor <InlineMath math="AB" /> sepadan dengan sudut pusat <InlineMath math="120^\circ" />, iaitu satu pertiga bulatan:
+
+<BlockMath math="\text{lengkok minor }AB=\frac{120}{360}\cdot2\pi\cdot10=\frac{20\pi}{3}" />
+
+Oleh sebab <InlineMath math="\pi>3" />, kita dapat <InlineMath math="\frac{20\pi}{3}>\frac{20\cdot3}{3}=20" />. Panjangnya kira-kira <InlineMath math="20.9\text{ cm}" />, **lebih daripada** <InlineMath math="20\text{ cm}" />, walaupun perentasnya hanya <InlineMath math="10\sqrt3\approx17.3\text{ cm}" />. Pernyataan ini **Salah**.
+
+# Pernyataan ketiga
+
+Titik <InlineMath math="C" /> dengan <InlineMath math="CA=CB" /> terletak pada pembahagi dua sama serenjang bagi <InlineMath math="AB" />, iaitu garis <InlineMath math="OM" />. Garis ini memotong bulatan pada **dua titik**: <InlineMath math="C_1" /> di sebelah jauh perentas dan <InlineMath math="C_2" /> di sebelah dekat. Tinggi segi tiga terhadap tapak <InlineMath math="AB" /> berbeza bagi kedua-duanya:
+
+<BlockMath math="\begin{aligned}
+C_1&:\ \text{tinggi}=10+5=15,\quad \text{luas}=\tfrac12\cdot10\sqrt3\cdot15=75\sqrt3 \\
+C_2&:\ \text{tinggi}=10-5=5,\quad \text{luas}=\tfrac12\cdot10\sqrt3\cdot5=25\sqrt3
+\end{aligned}" />
+
+Luasnya boleh jadi <InlineMath math="75\sqrt3" /> atau <InlineMath math="25\sqrt3\text{ cm}^2" />, jadi perkataan pasti tidak tepat. Pernyataan ini **Salah**.
+
+Jadi, jawapannya ialah Betul, Salah, Salah.

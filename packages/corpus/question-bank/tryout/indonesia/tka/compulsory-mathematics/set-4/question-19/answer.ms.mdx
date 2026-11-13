@@ -1,0 +1,72 @@
+Kubus daripada setiap batang kayu dihadkan oleh dua perkara: **keratan rentas bulatan dan panjang batang itu**. Sisi kubus terbesar ialah had yang lebih kecil antara kedua-duanya. Kira untuk setiap batang, kemudian bandingkan isi padunya.
+
+# Had daripada keratan rentas
+
+Satu sisi kubus selari dengan paksi, jadi satu muka kubus ialah segi empat sama yang berserenjang dengan paksi, dan muka itu mesti muat di dalam bulatan keratan rentas. Segi empat sama terbesar di dalam bulatan mempunyai keempat-empat bucu pada bulatan, jadi **pepenjurunya sama dengan diameter**. Untuk sisi <InlineMath math="s" /> dan diameter <InlineMath math="d" />:
+
+<BlockMath math="\begin{aligned}
+s\sqrt2&\le d\;\Rightarrow\;s\le\frac{d}{\sqrt2} \\
+\text{batang }P:\;s&\le\frac{50}{\sqrt2}=25\sqrt2\approx35.4\text{ cm} \\
+\text{batang }Q:\;s&\le\frac{40}{\sqrt2}=20\sqrt2\approx28.3\text{ cm}
+\end{aligned}" />
+
+# Had daripada panjang batang
+
+Sisi yang selari dengan paksi tidak boleh lebih panjang daripada batangnya. Jadi <InlineMath math="s\le30" /> untuk batang <InlineMath math="P" /> dan <InlineMath math="s\le80" /> untuk batang <InlineMath math="Q" />. Ambil had yang lebih kecil bagi setiap batang:
+
+| Batang | Had keratan rentas | Had panjang | Sisi terbesar |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="P" /> | <InlineMath math="25\sqrt2\approx35.4" /> | <InlineMath math="30" /> | <InlineMath math="30" /> |
+| <InlineMath math="Q" /> | <InlineMath math="20\sqrt2\approx28.3" /> | <InlineMath math="80" /> | <InlineMath math="20\sqrt2" /> |
+
+Bagi batang <InlineMath math="P" />, **panjang batang yang menghadkan kubus**, bukan bulatannya. Segi empat sama bersisi <InlineMath math="30" /> tetap muat kerana pepenjurunya <InlineMath math="30\sqrt2\approx42.4" />, masih kurang daripada diameter <InlineMath math="50" />.
+
+<MathVisual
+  title={<>Keratan rentas batang <InlineMath math="P" /></>}
+  description={<>Bulatan berdiameter <InlineMath math="50" /> memuatkan segi empat sama terbesar bersisi <InlineMath math="25\sqrt2" /> yang bucunya menyentuh bulatan. Segi empat sama bersisi <InlineMath math="30" /> yang digunakan berada di dalamnya dan tidak menyentuh bulatan.</>}
+  labels={{
+    "label-big": <InlineMath math="25\sqrt2" />,
+    "label-used": <InlineMath math="30" />,
+    "label-diameter": <InlineMath math="d=50" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -30, max: 30 },
+      y: { min: -30, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 25 },
+      { id: "square-big", kind: "polygon", appearance: "construction", vertices: [{ x: 25, y: 0 }, { x: 0, y: 25 }, { x: -25, y: 0 }, { x: 0, y: -25 }] },
+      { id: "square-used", kind: "polygon", appearance: "answer", vertices: [{ x: -15, y: -15 }, { x: 15, y: -15 }, { x: 15, y: 15 }, { x: -15, y: 15 }] },
+      { id: "diameter", kind: "segment", appearance: "reference", from: { x: -25, y: 0 }, to: { x: 25, y: 0 } },
+    ],
+    labels: [
+      { key: "label-big", objectId: "square-big", at: { x: 12.5, y: 12.5 }, placement: "above-right" },
+      { key: "label-used", objectId: "square-used", at: { x: 0, y: -15 }, placement: "below" },
+      { key: "label-diameter", objectId: "diameter", at: { x: -20, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Membandingkan dua kubus
+
+Sekarang kira isi padu kubus terbesar daripada setiap batang dengan sisi dalam jadual tadi.
+
+<BlockMath math="\begin{aligned}
+V_P&=30^3=27{,}000\text{ cm}^3 \\
+V_Q&=\left(20\sqrt2\right)^3=8{,}000\cdot2\sqrt2=16{,}000\sqrt2\approx22{,}627\text{ cm}^3
+\end{aligned}" />
+
+Batang <InlineMath math="Q" /> lebih panjang, tetapi keratan rentasnya lebih kecil, jadi kubusnya lebih kecil. **Kubus terbesar datang daripada batang <InlineMath math="P" />**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="15{,}625\text{ cm}^3" /> menggunakan sisi yang sama dengan jejari, <InlineMath math="25" />. Segi empat sama bersisi jejari jauh lebih kecil daripada segi empat sama terbesar di dalam bulatan.
+- <InlineMath math="16{,}000\sqrt2\text{ cm}^3" /> ialah kubus daripada batang <InlineMath math="Q" />. Pilihan ini muncul jika batang <InlineMath math="P" /> ditolak kerana kubus bersisi <InlineMath math="25\sqrt2" /> tidak muat, sedangkan kubus itu cukup dikecilkan menjadi bersisi <InlineMath math="30" />.
+- <InlineMath math="31{,}250\sqrt2\text{ cm}^3" /> menggunakan sisi <InlineMath math="25\sqrt2\approx35.4" /> pada batang <InlineMath math="P" /> tanpa **menyemak panjang batang** <InlineMath math="30\text{ cm}" />.
+- <InlineMath math="64{,}000\text{ cm}^3" /> menggunakan sisi yang sama dengan diameter batang <InlineMath math="Q" />, <InlineMath math="40" />. Segi empat sama bersisi diameter tidak muat, kerana pepenjurunya <InlineMath math="40\sqrt2" /> lebih panjang daripada diameter.
+
+Jadi, isi padu kubus terbesar yang boleh dibuat ialah <InlineMath math="27{,}000\text{ cm}^3" />, daripada batang <InlineMath math="P" />.

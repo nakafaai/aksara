@@ -1,15 +1,39 @@
-Skala <InlineMath math="1:50{.}000" /> berlaku untuk **panjang**: <InlineMath math="1\text{ cm}" /> pada peta mewakili <InlineMath math="50{.}000\text{ cm}=0{,}5\text{ km}" />. Luas adalah panjang kali panjang, jadi <InlineMath math="1\text{ cm}^2" /> pada peta mewakili persegi <InlineMath math="0{,}5\text{ km}\times0{,}5\text{ km}" />.
+# Panjang bergantung pada lebar
+
+Soal ini meminta keliling terbesar yang mungkin, padahal hanya lebarnya yang diukur. Kuncinya, **panjang lahan tidak bebas, karena luasnya terkunci di <InlineMath math="63\text{ m}^2" />**. Kalau lebarnya <InlineMath math="w" />, panjangnya <InlineMath math="\frac{63}{w}" />, dan kelilingnya bergantung pada satu besaran saja:
+
+<BlockMath math="K(w)=2\left(w+\frac{63}{w}\right),\qquad 3{,}5\le w<4{,}5" />
+
+Lebar yang lebih kecil membuat panjangnya lebih besar. Jadi jangan langsung memakai batas atas lebar. Kamu perlu tahu dulu ke arah mana keliling berubah.
+
+# Arah perubahan keliling
+
+Ambil dua lebar <InlineMath math="w_1<w_2" /> di dalam selang itu, lalu bandingkan kelilingnya:
 
 <BlockMath math="\begin{aligned}
-1\text{ cm}^2\ \text{di peta}&\ \to\ 0{,}5^2=0{,}25\text{ km}^2 \\
-6\text{ cm}^2\ \text{di peta}&\ \to\ 6\cdot0{,}25=1{,}5\text{ km}^2
+K(w_1)-K(w_2)&=2(w_1-w_2)+2\cdot63\left(\frac{1}{w_1}-\frac{1}{w_2}\right) \\
+&=2(w_2-w_1)\left(\frac{63}{w_1w_2}-1\right)
 \end{aligned}" />
 
-Dengan satuan sentimeter hasilnya sama: <InlineMath math="6\cdot50{.}000^2=1{,}5\cdot10^{10}\text{ cm}^2" />, dan <InlineMath math="1\text{ km}^2=10^{10}\text{ cm}^2" />.
+Faktor <InlineMath math="w_2-w_1" /> positif. Karena kedua lebar kurang dari <InlineMath math="4{,}5" />, hasil kalinya <InlineMath math="w_1w_2<20{,}25" />, jauh di bawah <InlineMath math="63" />. Jadi faktor kedua juga positif, dan <InlineMath math="K(w_1)>K(w_2)" />. Artinya, **makin kecil lebarnya, makin besar kelilingnya** di seluruh selang ini.
 
-Jadi, luas danau yang sebenarnya adalah <InlineMath math="1{,}5\text{ km}^2" />.
+# Nilai di ujung selang
 
-- <InlineMath math="30\text{ m}^2" /> mengalikan luas dengan <InlineMath math="50{.}000" /> saja, tanpa mengkuadratkan skala.
-- <InlineMath math="0{,}015\text{ km}^2" /> membaca <InlineMath math="1\text{ cm}" /> pada peta sebagai <InlineMath math="0{,}05\text{ km}" />.
-- <InlineMath math="0{,}15\text{ km}^2" /> salah mengubah satuan, karena memakai <InlineMath math="1\text{ km}^2=10^{11}\text{ cm}^2" />.
-- <InlineMath math="3\text{ km}^2" /> mengalikan <InlineMath math="6" /> dengan <InlineMath math="0{,}5" /> dan lupa bahwa skala luas adalah kuadrat skala panjang.
+Keliling terbesar ada di lebar terkecil, yaitu <InlineMath math="w=3{,}5" />. Nilai ini **boleh dipakai** karena tanda <InlineMath math="\le" /> pada <InlineMath math="3{,}5\le w" />.
+
+| Lebar <InlineMath math="w" /> (m) | Panjang <InlineMath math="\frac{63}{w}" /> (m) | Keliling (m) |
+| :---: | :---: | :---: |
+| <InlineMath math="3{,}5" /> | <InlineMath math="18" /> | <InlineMath math="43" /> |
+| <InlineMath math="4" /> | <InlineMath math="15{,}75" /> | <InlineMath math="39{,}5" /> |
+| mendekati <InlineMath math="4{,}5" /> | mendekati <InlineMath math="14" /> | mendekati <InlineMath math="37" /> |
+
+Cek baris pertama: <InlineMath math="3{,}5\cdot18=63" />, dan <InlineMath math="2(3{,}5+18)=43" />.
+
+Jadi, keliling lahan yang terbesar yang mungkin adalah <InlineMath math="43\text{ m}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="37\text{ m}" /> memakai batas atas lebar, <InlineMath math="4{,}5\text{ m}" />. Di situ panjangnya justru terpendek, jadi kelilingnya paling kecil. Lagi pula **<InlineMath math="w=4{,}5" /> tidak termasuk** karena tandanya <InlineMath math="<" />.
+- <InlineMath math="39{,}5\text{ m}" /> memakai hasil ukur <InlineMath math="4\text{ m}" /> apa adanya, tanpa memperhitungkan pembulatan.
+- <InlineMath math="41{,}5\text{ m}" /> menambahkan <InlineMath math="0{,}5" /> pada keempat sisi persegi panjang <InlineMath math="4\times15{,}75" />, seakan-akan panjangnya juga diukur dan bisa berubah sendiri.
+- <InlineMath math="45\text{ m}" /> menggabungkan panjang <InlineMath math="18\text{ m}" /> dari <InlineMath math="w=3{,}5" /> dengan lebar <InlineMath math="4{,}5\text{ m}" />. Keduanya tidak bisa terjadi bersamaan karena panjang dan lebar berasal dari <InlineMath math="w" /> yang sama.

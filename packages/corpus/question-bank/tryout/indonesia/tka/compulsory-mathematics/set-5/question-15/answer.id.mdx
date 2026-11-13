@@ -1,16 +1,42 @@
-Cara paling aman adalah **mengikuti satu titik umum <InlineMath math="(x,y)" />** melewati setiap komposisi, lalu membandingkan rumus akhirnya.
+# Kapan garis kembali ke dirinya sendiri
+
+Kamu perlu memeriksa lima transformasi satu per satu. Pertanyaannya selalu sama: apakah **setiap titik <InlineMath math="g" /> tetap mendarat di <InlineMath math="g" />**? Untuk itu, catat dulu dua hal tentang <InlineMath math="g: 2x-y=4" />, yaitu <InlineMath math="y=2x-4" />.
+
+- Gradiennya <InlineMath math="2" />, jadi arah garisnya searah vektor <InlineMath math="\begin{pmatrix}1\\2\end{pmatrix}" />.
+- Beberapa titik pada <InlineMath math="g" />: <InlineMath math="(2,0)" />, <InlineMath math="(3,2)" />, <InlineMath math="(1,-2)" />, dan <InlineMath math="(4,4)" />. Sebuah titik ada di <InlineMath math="g" /> kalau <InlineMath math="2x-y" /> bernilai tepat <InlineMath math="4" />.
+
+Dari situ ada empat aturan yang bisa kamu pakai. Translasi menjaga <InlineMath math="g" /> kalau vektornya searah <InlineMath math="g" />. Rotasi <InlineMath math="180^\circ" /> dan dilatasi menjaga <InlineMath math="g" /> kalau pusatnya ada di <InlineMath math="g" />. Pencerminan menjaga <InlineMath math="g" /> kalau cerminnya adalah <InlineMath math="g" /> sendiri atau tegak lurus <InlineMath math="g" />. Untuk komposisi, jangan menilai langkah terakhirnya saja. Gabungkan dulu menjadi satu transformasi.
+
+# Menilai setiap pernyataan
+
+Sekarang nilai kelima pernyataan sesuai urutannya. Setiap putusan memakai salah satu aturan di atas, lalu dicek dengan satu titik contoh. **Titik contoh hanya pengecekan**, bukan bukti, karena buktinya datang dari aturan umum.
+
+## Pencerminan terhadap garis tegak lurus
+
+Pernyataan 1. **Benar**. Garis <InlineMath math="x+2y=12" /> bergradien <InlineMath math="-\tfrac12" />, dan <InlineMath math="2\cdot\left(-\tfrac12\right)=-1" />, jadi cermin itu tegak lurus <InlineMath math="g" />. Pada pencerminan, setiap titik bergerak tegak lurus cermin, artinya bergerak sepanjang <InlineMath math="g" /> sendiri. Jadi bayangannya tetap di <InlineMath math="g" />. Contohnya, titik <InlineMath math="(2,0)" /> dipetakan ke <InlineMath math="(6,8)" />, dan <InlineMath math="2\cdot6-8=4" />.
+
+## Rotasi lalu translasi searah garis
+
+Pernyataan 2. **Salah**. Ikuti titik <InlineMath math="(x,y)" /> melewati kedua langkah, lalu cari persamaan bayangannya:
 
 <BlockMath math="\begin{aligned}
-(x,y)&\xrightarrow{\ x=1\ }(2-x,\,y)\xrightarrow{\ x=4\ }(8-(2-x),\,y)=(x+6,\,y) \\
-(x,y)&\xrightarrow{\ y=x\ }(y,\,x)\xrightarrow{\text{ sumbu }x\ }(y,\,-x) \\
-(x,y)&\xrightarrow{\ [O,\,-2]\ }(-2x,\,-2y) \\
-(x,y)&\xrightarrow{\ R(O,\,180^\circ)\ }(-x,\,-y)
+(x,y)\ \xrightarrow{\ 180^\circ,\ O\ }\ (-x,-y)\ &\xrightarrow{\ \text{translasi}\ }\ (2-x,\ 4-y) \\
+x=2-x',\quad y=4-y'\quad&\Rightarrow\quad 2(2-x')-(4-y')=4 \\
+&\Rightarrow\quad 2x-y=-4
 \end{aligned}" />
 
-- Dua pencerminan terhadap garis sejajar menghasilkan <InlineMath math="(x+6,y)" />, yaitu translasi sejauh dua kali jarak kedua garis, <InlineMath math="2\cdot3=6" />, ke kanan. Pernyataan ini benar.
-- Komposisinya memberi <InlineMath math="(y,-x)" />. Rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam memberi <InlineMath math="(-y,x)" />, jadi komposisi ini adalah rotasi <InlineMath math="90^\circ" /> **searah** jarum jam. Pernyataan ini salah.
-- Faktor skala <InlineMath math="-2" /> memperbesar setiap panjang <InlineMath math="|-2|=2" /> kali, sehingga luas menjadi <InlineMath math="2^2=4" /> kali. Tanda negatif hanya membalik letak bangun. Pernyataan ini benar.
-- Rotasi <InlineMath math="180^\circ" /> dan dilatasi faktor <InlineMath math="-1" /> sama-sama memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(-x,-y)" />. Pernyataan ini benar.
-- Kedua translasi saling meniadakan karena <InlineMath math="3+(-3)=0" /> dan <InlineMath math="-1+1=0" />, jadi setiap titik kembali ke posisi awalnya. Pernyataan ini salah.
+Bayangannya sejajar <InlineMath math="g" /> tetapi bukan <InlineMath math="g" />. Jebakannya ada di vektor <InlineMath math="\begin{pmatrix}2\\4\end{pmatrix}" /> yang memang searah <InlineMath math="g" />. Translasi itu hanya menggeser garis sepanjang dirinya, padahal garisnya sudah dipindah ke <InlineMath math="2x-y=-4" /> oleh rotasi. Gabungan kedua langkah adalah rotasi <InlineMath math="180^\circ" /> dengan pusat <InlineMath math="(1,2)" />, dan <InlineMath math="2\cdot1-2=0\ne4" />, jadi pusatnya tidak di <InlineMath math="g" />.
 
-Jadi, pernyataan yang benar adalah pernyataan tentang dua pencerminan sejajar, tentang luas pada dilatasi faktor <InlineMath math="-2" />, dan tentang rotasi <InlineMath math="180^\circ" />.
+## Dua pencerminan yang saling tegak lurus
+
+Pernyataan 3. **Benar**. Pencerminan terhadap <InlineMath math="x=3" /> mengirim <InlineMath math="(x,y)" /> ke <InlineMath math="(6-x,y)" />, lalu pencerminan terhadap <InlineMath math="y=2" /> mengirimnya ke <InlineMath math="(6-x,4-y)" />. Itu sama dengan rotasi <InlineMath math="180^\circ" /> dengan pusat <InlineMath math="(3,2)" />, dan pusat ini ada di <InlineMath math="g" /> karena <InlineMath math="2\cdot3-2=4" />. Menariknya, langkah pertama saja memindahkan <InlineMath math="g" /> ke <InlineMath math="2x+y=8" />. Langkah kedua yang mengembalikannya ke <InlineMath math="g" />.
+
+## Dilatasi dengan faktor negatif
+
+Pernyataan 4. **Benar**. Pusat <InlineMath math="(1,-2)" /> ada di <InlineMath math="g" /> karena <InlineMath math="2\cdot1-(-2)=4" />. Dilatasi memindahkan setiap titik <InlineMath math="P" /> sepanjang garis yang melalui pusat dan <InlineMath math="P" />, dan untuk <InlineMath math="P" /> di <InlineMath math="g" /> garis itu adalah <InlineMath math="g" /> sendiri. Faktor negatif hanya melempar titik ke sisi lain pusat, tetap di garis yang sama. Contohnya, <InlineMath math="(2,0)" /> dipetakan ke <InlineMath math="(1,-2)-3\cdot(1,2)=(-2,-8)" />, dan <InlineMath math="2\cdot(-2)-(-8)=4" />.
+
+## Translasi dari dua titik
+
+Pernyataan 5. **Benar**. Vektor translasinya <InlineMath math="(4-1,\ 9-3)=(3,6)=3\cdot(1,2)" />, searah <InlineMath math="g" />. Titik <InlineMath math="(1,3)" /> memang tidak ada di <InlineMath math="g" />, tapi itu tidak masalah. Translasi menggeser semua titik dengan vektor yang sama, jadi yang menentukan hanya vektornya. Contohnya, <InlineMath math="(2,0)" /> bergeser ke <InlineMath math="(5,6)" />, dan <InlineMath math="2\cdot5-6=4" />.
+
+Jadi, pernyataan yang benar adalah pernyataan 1, 3, 4, dan 5.

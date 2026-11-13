@@ -1,14 +1,59 @@
-Gradien grafik <InlineMath math="f" /> adalah <InlineMath math="k-2" /> dan titik potongnya dengan sumbu <InlineMath math="y" /> adalah <InlineMath math="(0,k)" />. **Setiap pernyataan diperiksa dengan salah satu dari dua besaran itu**, atau dengan menghitung nilai <InlineMath math="f" /> secara langsung.
+# Fakta yang benar-benar diketahui
+
+Sketsa hanya satu contoh. Pernyataan yang **pasti benar** harus berlaku untuk setiap parabola dengan <InlineMath math="a<0" />, <InlineMath math="-1<p<0" />, dan <InlineMath math="1<q<2" />. Jadi, ubah setiap pernyataan menjadi fakta tentang grafik, lalu periksa apakah fakta itu selalu terjadi.
+
+Ada dua alat. Pertama, karena <InlineMath math="a<0" />, nilai <InlineMath math="g(x)" /> positif di antara kedua titik potong dan negatif di luar keduanya. Kedua, absis titik puncak, sebut saja <InlineMath math="h" />, adalah titik tengah kedua titik potong:
 
 <BlockMath math="\begin{aligned}
-f(-1)&=-(k-2)+k=2 \\
-f(1)&=(k-2)+k=2k-2
+h&=-\frac{b}{2a}=\frac{p+q}{2} \\
+-1+1<p+q&<0+2 \\
+0<h&<1
 \end{aligned}" />
 
-- <InlineMath math="f(-1)=2" /> untuk setiap <InlineMath math="k" />, karena suku <InlineMath math="k" /> saling menghapus. Semua grafik <InlineMath math="f" /> melalui <InlineMath math="(-1,2)" />. Pernyataan ini benar.
-- Grafik naik hanya jika gradiennya positif, yaitu <InlineMath math="k>2" />. Untuk <InlineMath math="k=1" />, gradiennya <InlineMath math="-1" /> dan grafiknya turun. Pernyataan ini salah.
-- Sejajar dengan <InlineMath math="y=3x+1" /> berarti gradiennya <InlineMath math="3" />, jadi <InlineMath math="k-2=3" /> dan <InlineMath math="k=5" />. Grafiknya <InlineMath math="y=3x+5" />, sejajar dan tidak berimpit. Pernyataan ini benar.
-- Untuk <InlineMath math="k=2" />, <InlineMath math="f(x)=2" />, garis mendatar yang melalui <InlineMath math="(0,2)" />, bukan <InlineMath math="(0,0)" />. Pernyataan ini salah.
-- <InlineMath math="f(1)=2k-2=0" /> memberi <InlineMath math="k=1" />. Pernyataan ini benar.
+Selain itu, <InlineMath math="g(0)=c" />, <InlineMath math="g(1)=a+b+c" />, dan <InlineMath math="g(-1)=a-b+c" />.
 
-Jadi, pernyataan yang benar adalah pernyataan tentang titik <InlineMath math="(-1,2)" />, tentang garis sejajar dengan <InlineMath math="k=5" />, dan tentang <InlineMath math="f(1)=0" /> dengan <InlineMath math="k=1" />.
+# Menilai setiap pernyataan
+
+1. **Salah**. Pernyataan <InlineMath math="a+b>0" /> tidak pasti. Perhatikan bahwa <InlineMath math="a+b=g(1)-g(0)" />. Tandanya bergantung pada letak puncak: kalau <InlineMath math="h>\tfrac12" />, titik <InlineMath math="x=1" /> lebih dekat ke puncak sehingga <InlineMath math="g(1)>g(0)" />. Kalau <InlineMath math="h<\tfrac12" />, kebalikannya. Dua contoh yang sama-sama memenuhi syarat soal:
+
+<BlockMath math="\begin{aligned}
+p=-0{,}4,\ q=1{,}6:&\quad g(x)=-x^2+1{,}2x+0{,}64,\quad a+b=0{,}2>0 \\
+p=-0{,}9,\ q=1{,}2:&\quad g(x)=-x^2+0{,}3x+1{,}08,\quad a+b=-0{,}7<0
+\end{aligned}" />
+
+<MathVisual
+  title={<>Dua parabola yang sama-sama memenuhi syarat</>}
+  description={<>Parabola pertama <InlineMath math="-x^2+1{,}2x+0{,}64" /> memotong sumbu <InlineMath math="x" /> di <InlineMath math="-0{,}4" /> dan <InlineMath math="1{,}6" />, dengan <InlineMath math="g(0)=0{,}64" /> dan <InlineMath math="g(1)=0{,}84" />. Parabola kedua <InlineMath math="-x^2+0{,}3x+1{,}08" /> memotong sumbu <InlineMath math="x" /> di <InlineMath math="-0{,}9" /> dan <InlineMath math="1{,}2" />, dengan <InlineMath math="g(0)=1{,}08" /> dan <InlineMath math="g(1)=0{,}38" />. Pada parabola pertama nilai di <InlineMath math="x=1" /> lebih besar, pada parabola kedua lebih kecil.</>}
+  labels={{
+    first: <InlineMath math="g_1" />,
+    second: <InlineMath math="g_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 2.5 },
+      y: { min: -1.5, max: 1.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-graph", kind: "quadratic", appearance: "primary", coefficients: { a: -1, b: 1.2, c: 0.64 }, domain: { min: -0.8, max: 2 }, inputAxis: "x" },
+      { id: "second-graph", kind: "quadratic", appearance: "secondary", coefficients: { a: -1, b: 0.3, c: 1.08 }, domain: { min: -1.1, max: 1.4 }, inputAxis: "x" },
+      { id: "first-at-zero", kind: "point", appearance: "reference", at: { x: 0, y: 0.64 } },
+      { id: "first-at-one", kind: "point", appearance: "highlight", at: { x: 1, y: 0.84 } },
+      { id: "second-at-zero", kind: "point", appearance: "reference", at: { x: 0, y: 1.08 } },
+      { id: "second-at-one", kind: "point", appearance: "highlight", at: { x: 1, y: 0.38 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first-graph", at: { x: 1.5, y: 0.19 }, placement: "right" },
+      { key: "second", objectId: "second-graph", at: { x: -1, y: -0.22 }, placement: "left" },
+    ],
+  }}
+/>
+
+2. **Benar**. Dari <InlineMath math="h=-\frac{b}{2a}" /> diperoleh <InlineMath math="b=-2a\,h" />. Karena <InlineMath math="a<0" />, bilangan <InlineMath math="-2a" /> positif, dan <InlineMath math="h>0" />. Jadi <InlineMath math="b>0" /> untuk setiap parabola yang memenuhi syarat.
+3. **Benar**. Nilai <InlineMath math="a-b+c" /> adalah <InlineMath math="g(-1)" />. Karena <InlineMath math="-1<p" />, titik <InlineMath math="x=-1" /> berada di kiri kedua titik potong, tempat grafik berada di bawah sumbu <InlineMath math="x" />. Jadi <InlineMath math="a-b+c<0" />.
+4. **Benar**. Ganti <InlineMath math="b=-2a\,h" />, sehingga <InlineMath math="2a+b=2a\,(1-h)" />. Faktor <InlineMath math="2a" /> negatif, sedangkan <InlineMath math="1-h" /> positif karena <InlineMath math="h<1" />. **Hasil kali bilangan negatif dan positif selalu negatif**, jadi <InlineMath math="2a+b<0" />.
+5. **Benar**. Titik <InlineMath math="x=0" /> dan <InlineMath math="x=1" /> sama-sama berada di antara <InlineMath math="p" /> dan <InlineMath math="q" />, jadi <InlineMath math="c=g(0)>0" /> dan <InlineMath math="a+b+c=g(1)>0" />. Hasil kali dua bilangan positif juga positif.
+
+Jadi, pernyataan yang pasti benar adalah <InlineMath math="b>0" />, <InlineMath math="a-b+c<0" />, <InlineMath math="2a+b<0" />, dan <InlineMath math="c\,(a+b+c)>0" />.

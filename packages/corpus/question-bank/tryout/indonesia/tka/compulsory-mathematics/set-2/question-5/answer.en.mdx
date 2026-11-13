@@ -1,12 +1,51 @@
-Here you only judge whether the information is **enough for a definite answer**, not what the answer is. Test each statement on its own first, then both together. A statement is enough when it answers the question the same way in every possible case.
+# Eliminate without dropping a factor
 
-- **Statement (1) alone**: the positive integer solutions of <InlineMath math="3x+2y=24" /> are <InlineMath math="(2,9)" />, <InlineMath math="(4,6)" /> and <InlineMath math="(6,3)" />. In the first two, <InlineMath math="x<y" />, and in the third, <InlineMath math="x>y" />. The statement is not enough.
-- **Statement (2) alone**: for example, <InlineMath math="(1,8)" /> and <InlineMath math="(8,1)" /> satisfy the equation with opposite answers. This statement is not enough either.
-- **Both together**: subtracting twice the second equation from the first leaves <InlineMath math="x=24-18=6" />, so <InlineMath math="y=3" />. Then certainly <InlineMath math="x>y" />.
+The question has two conditions: the system must have **exactly one** solution, and that solution must satisfy <InlineMath math="x>0" /> and <InlineMath math="y>0" />. The safest route is to eliminate one variable while keeping every factor that contains <InlineMath math="k" /> in plain view.
 
-So only both statements together are enough, and neither one alone is.
+From the second equation, <InlineMath math="2x=(k+1)-(k+1)y=(k+1)(1-y)" />. Multiply the first equation by <InlineMath math="2" /> and replace <InlineMath math="2x" />:
 
-- The option that statement (1) alone is enough is wrong, because statement (1) alone allows two different answers.
-- The option that statement (2) alone is enough is wrong, because statement (2) alone allows two different answers.
-- The option that each statement alone is enough is wrong, because statement (1) alone allows two different answers.
-- The option that even both together are not enough is wrong, because both statements together answer the question definitely.
+<BlockMath math="\begin{aligned}
+(k+3)\cdot2x+8y&=4(k+1) \\
+(k+3)(k+1)(1-y)+8y&=4(k+1) \\
+\left[8-(k+3)(k+1)\right]y&=4(k+1)-(k+3)(k+1) \\
+-(k+5)(k-1)\,y&=-(k+1)(k-1) \\
+(k+5)(k-1)\,y&=(k+1)(k-1)
+\end{aligned}" />
+
+In the third line, <InlineMath math="8-(k^2+4k+3)=-(k^2+4k-5)=-(k+5)(k-1)" /> and <InlineMath math="(k+1)(4-k-3)=-(k+1)(k-1)" />.
+
+# Three possibilities
+
+The last equation has the form <InlineMath math="ay=b" />, so there are three cases.
+
+- If <InlineMath math="k=1" />, it becomes <InlineMath math="0\cdot y=0" />. Every <InlineMath math="y" /> works, so the system has **infinitely many** solutions. Indeed, for <InlineMath math="k=1" /> both equations turn into <InlineMath math="x+y=1" />.
+- If <InlineMath math="k=-5" />, it becomes <InlineMath math="0\cdot y=24" />, so there's no solution.
+- For every other <InlineMath math="k" />, the solution is unique:
+
+<BlockMath math="\begin{aligned}
+y&=\frac{k+1}{k+5} \\
+x&=\frac{(k+1)(1-y)}{2}=\frac{(k+1)}{2}\cdot\frac{4}{k+5}=\frac{2(k+1)}{k+5}
+\end{aligned}" />
+
+# The positive condition
+
+Since <InlineMath math="x=2y" />, you only need <InlineMath math="y>0" />. The numerator <InlineMath math="k+1" /> and the denominator <InlineMath math="k+5" /> must have the same sign:
+
+| Interval | <InlineMath math="k+1" /> | <InlineMath math="k+5" /> | <InlineMath math="y" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="k<-5" /> | negative | negative | positive |
+| <InlineMath math="-5<k<-1" /> | negative | positive | negative |
+| <InlineMath math="k>-1" /> | positive | positive | positive |
+
+So <InlineMath math="y>0" /> when <InlineMath math="k<-5" /> or <InlineMath math="k>-1" />. Now remember the case <InlineMath math="k=1" />. It sits inside <InlineMath math="k>-1" />, but there the system has infinitely many solutions, not exactly one. So **<InlineMath math="k=1" /> has to be removed**.
+
+Check <InlineMath math="k=-6" />: <InlineMath math="y=\frac{-5}{-1}=5" /> and <InlineMath math="x=10" />. Substituting: <InlineMath math="-3\cdot10+4\cdot5=-10=2(-6)+2" /> and <InlineMath math="2\cdot10-5\cdot5=-5=-6+1" />.
+
+So the set is <InlineMath math="k<-5" /> or <InlineMath math="-1<k<1" /> or <InlineMath math="k>1" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="-1<k<1" /> or <InlineMath math="k>1" /> drops the branch <InlineMath math="k<-5" />. A fraction is also positive when **the numerator and the denominator are both negative**.
+- <InlineMath math="k<-5" /> or <InlineMath math="k>-1" /> forgets to remove <InlineMath math="k=1" />. That happens when you cancel the factor <InlineMath math="k-1" /> on both sides, which hides the case with infinitely many solutions.
+- <InlineMath math="-5<k<-1" /> flips the sign table. On that interval <InlineMath math="y" /> is actually negative.
+- <InlineMath math="k\neq-5" /> and <InlineMath math="k\neq1" /> only makes the solution unique. It never uses the conditions <InlineMath math="x>0" /> and <InlineMath math="y>0" />.

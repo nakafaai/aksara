@@ -1,0 +1,31 @@
+# Mengenal pola penyebut
+
+Sebelum menjumlahkan, kamu perlu tahu bentuk am sebutannya dan dari mana hingga mana siri ini berjalan. Lihat penyebutnya.
+
+<BlockMath math="35=5\cdot7,\quad 63=7\cdot9,\quad 99=9\cdot11,\quad 143=11\cdot13,\quad 2499=49\cdot51" />
+
+Setiap penyebut ialah hasil darab dua nombor ganjil berturutan, <InlineMath math="(2k-1)(2k+1)" />. Penyebut <InlineMath math="2499" /> boleh dikenal daripada <InlineMath math="2499=50^2-1=49\cdot51" />. Jadi sebutan pertama menggunakan <InlineMath math="k=3" /> dan sebutan terakhir menggunakan <InlineMath math="k=25" />, iaitu <InlineMath math="25-3+1=23" /> sebutan. **Siri ini tidak bermula dengan <InlineMath math="\frac{1}{1\cdot3}" />**.
+
+# Memecahkan sebutan supaya terhapus
+
+Setiap sebutan boleh dipecahkan menjadi beza dua pecahan.
+
+<BlockMath math="\frac{1}{(2k-1)(2k+1)}=\frac{1}{2}\left(\frac{1}{2k-1}-\frac{1}{2k+1}\right)" />
+
+Semak dengan menyamakan penyebut: <InlineMath math="\frac{1}{2}\cdot\frac{(2k+1)-(2k-1)}{(2k-1)(2k+1)}=\frac{1}{2}\cdot\frac{2}{(2k-1)(2k+1)}" />, sama. Apabila semua sebutan ditulis berderet, **setiap pecahan di tengah muncul sekali positif dan sekali negatif**, jadi ia saling menghapuskan.
+
+<BlockMath math="\begin{aligned}
+\text{hasil tambah}&=\frac{1}{2}\left[\left(\frac{1}{5}-\frac{1}{7}\right)+\left(\frac{1}{7}-\frac{1}{9}\right)+\cdots+\left(\frac{1}{49}-\frac{1}{51}\right)\right] \\
+&=\frac{1}{2}\left(\frac{1}{5}-\frac{1}{51}\right)=\frac{1}{2}\cdot\frac{46}{255}=\frac{23}{255}
+\end{aligned}" />
+
+Semak dengan cara lain. Hasil tambah dari <InlineMath math="k=1" /> hingga <InlineMath math="n" /> ialah <InlineMath math="S_n=\frac{n}{2n+1}" />. Siri kita ialah <InlineMath math="S_{25}" /> tanpa dua sebutan pertama, iaitu <InlineMath math="S_{25}-S_2=\frac{25}{51}-\frac{2}{5}=\frac{125-102}{255}=\frac{23}{255}" />.
+
+Jadi, hasil tambah siri itu ialah <InlineMath math="\frac{23}{255}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\frac{25}{51}" /> ialah <InlineMath math="S_{25}" />, yang turut mengira <InlineMath math="\frac{1}{3}" /> dan <InlineMath math="\frac{1}{15}" />. Kedua-dua sebutan itu tiada dalam siri ini.
+- <InlineMath math="\frac{23}{47}" /> memasukkan bilangan sebutan, <InlineMath math="23" />, ke dalam rumus <InlineMath math="\frac{n}{2n+1}" />. **Rumus itu hanya sah jika siri bermula dengan <InlineMath math="\frac{1}{1\cdot3}" />**.
+- <InlineMath math="\frac{46}{255}" /> terlupa faktor <InlineMath math="\frac{1}{2}" /> semasa memecahkan sebutan.
+- <InlineMath math="\frac{22}{357}" /> ialah <InlineMath math="S_{25}-S_3" />. Satu sebutan terlebih ditolak, kerana <InlineMath math="S_3" /> sudah mengandungi <InlineMath math="\frac{1}{35}" />, sebutan pertama siri ini.

@@ -1,12 +1,34 @@
-**Die empirische Wahrscheinlichkeit ist die Häufigkeit des Ereignisses geteilt durch die Zahl der Versuche**. Spitze nach unten kam <InlineMath math="200-74=126" />-mal vor.
+Gefragt ist die Wahrscheinlichkeit für **drei Bedingungen zugleich**: abwechselnd, Andi an einem Ende, und Bela nicht direkt neben Andi. Zähle die Reihenfolgen, die alle drei erfüllen, und teile durch die Anzahl aller Reihenfolgen.
 
-<BlockMath math="P(\text{Spitze unten})=\frac{126}{200}=0{,}63" />
+# Alle Reihenfolgen und die abwechselnden Muster
 
-Probe: Spitze oben hat die empirische Wahrscheinlichkeit <InlineMath math="\frac{74}{200}=0{,}37" />, und <InlineMath math="0{,}37+0{,}63=1" />.
+Acht verschiedene Schüler lassen sich auf <InlineMath math="8!=40{.}320" /> Arten aufstellen, und laut Aufgabe sind alle diese Reihenfolgen gleich wahrscheinlich. Eine abwechselnde Reihe hat **zwei Muster**: Jungen auf den Plätzen <InlineMath math="1,3,5,7" /> oder Jungen auf den Plätzen <InlineMath math="2,4,6,8" />. Im ersten Muster gehört das linke Ende (Platz <InlineMath math="1" />) einem Jungen und das rechte Ende (Platz <InlineMath math="8" />) einem Mädchen. Im zweiten Muster ist es umgekehrt. In jedem Muster **steht Andi also nur ein Ende zur Verfügung**.
 
-Die empirische Wahrscheinlichkeit für Spitze nach unten ist also <InlineMath math="0{,}63" />.
+# Die passenden Reihenfolgen zählen
 
-- <InlineMath math="0{,}37" /> ist die empirische Wahrscheinlichkeit für Spitze nach oben.
-- <InlineMath math="0{,}5" /> nimmt beide Lagen als gleich wahrscheinlich an, doch eine Reißzwecke ist nicht symmetrisch, und die Daten zeigen etwas anderes.
-- <InlineMath math="0{,}74" /> teilt <InlineMath math="74" /> durch <InlineMath math="100" /> statt durch <InlineMath math="200" /> und nimmt das falsche Ereignis.
-- <InlineMath math="1{,}26" /> teilt <InlineMath math="126" /> durch <InlineMath math="100" />. Eine Wahrscheinlichkeit kann nicht größer als <InlineMath math="1" /> sein.
+Nimm das erste Muster. Andi muss auf Platz <InlineMath math="1" /> stehen, und sein einziger Nachbar steht auf Platz <InlineMath math="2" />, einem Mädchenplatz. Bela darf nicht auf Platz <InlineMath math="2" />, also **wählt Bela einen der drei anderen Mädchenplätze**. Die übrigen drei Mädchen besetzen die restlichen drei Mädchenplätze, und die übrigen drei Jungen die restlichen drei Jungenplätze:
+
+<BlockMath math="\begin{aligned}
+\text{erstes Muster}&=1\cdot3\cdot3!\cdot3!=1\cdot3\cdot6\cdot6=108 \\
+\text{zweites Muster}&=108\quad(\text{Andi auf Platz }8,\ \text{Bela nicht auf Platz }7) \\
+\text{zusammen}&=216
+\end{aligned}" />
+
+# Die Wahrscheinlichkeit
+
+<BlockMath math="P=\frac{216}{40{.}320}=\frac{3}{560}" />
+
+Probe mit **schrittweisen Wahrscheinlichkeiten**. Die Wahrscheinlichkeit für abwechselnd ist <InlineMath math="\frac{2\cdot4!\cdot4!}{8!}=\frac{1}{35}" />. In einer abwechselnden Reihe besetzt Andi einen der vier Jungenplätze, und nur einer davon liegt am Ende, also ist diese Wahrscheinlichkeit <InlineMath math="\frac14" />. Andis Nachbarin ist eines der vier Mädchen, und die Wahrscheinlichkeit, dass sie nicht Bela ist, beträgt <InlineMath math="\frac34" />:
+
+<BlockMath math="\frac{1}{35}\cdot\frac14\cdot\frac34=\frac{3}{560}" />
+
+Dasselbe Ergebnis.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac{3}{1{.}120}" /> zählt nur das Muster, das links mit einem Jungen beginnt. **Das Muster, das mit einem Mädchen beginnt, ist auch abwechselnd**.
+- <InlineMath math="\frac{1}{140}" /> vergisst die Bedingung für Bela und ergibt <InlineMath math="\frac{288}{40{.}320}" />.
+- <InlineMath math="\frac{3}{280}" /> lässt Andi in jedem Muster an beiden Enden zu, obwohl ein Ende immer einem Mädchen gehört.
+- <InlineMath math="\frac{3}{14}" /> vergisst die Bedingung abwechselnd: <InlineMath math="\frac28\cdot\frac67" /> ist die Wahrscheinlichkeit, dass Andi in irgendeiner Reihe am Ende steht und Bela nicht neben ihm.
+
+Die gesuchte Wahrscheinlichkeit ist also <InlineMath math="\frac{3}{560}" />.

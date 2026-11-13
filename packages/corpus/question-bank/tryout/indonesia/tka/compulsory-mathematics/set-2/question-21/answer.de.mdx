@@ -1,16 +1,38 @@
-Beim Mittelwert aus einer Häufigkeitstabelle zählt **jeder Wert so oft, wie er vorkommt**. Multipliziere jede Temperatur mit ihrer Anzahl Tage, addiere und teile durch die <InlineMath math="12" /> Tage.
+Gesucht sind alle ganzen Zahlen <InlineMath math="x" />, die zwei Bedingungen zugleich erfüllen: **Ausreißer für Klasse B, aber kein Ausreißer für Klasse A**. Jede Klasse hat ihre eigenen Ausreißergrenzen, berechnet aus ihrem Interquartilsabstand <InlineMath math="Q_3-Q_1" />. Achte auch auf die Ungleichheitszeichen: Ein Ausreißer muss **kleiner als** die untere oder **größer als** die obere Grenze sein. Ein Wert genau auf einer Grenze ist also kein Ausreißer.
+
+# Ausreißergrenzen beider Klassen
+
+Bestimme für jede Klasse den Interquartilsabstand, **multipliziere ihn mit <InlineMath math="1{,}5" />**, ziehe das Ergebnis von <InlineMath math="Q_1" /> ab und addiere es zu <InlineMath math="Q_3" />.
 
 <BlockMath math="\begin{aligned}
-\text{Summe}&=30\cdot1+31\cdot2+32\cdot4+33\cdot2+34\cdot2+36\cdot1 \\
-&=30+62+128+66+68+36=390 \\
-\bar x&=\frac{390}{12}=32{,}5
+\text{Klasse A}&:\ Q_3-Q_1=82-56=26,\quad 1{,}5\cdot26=39 \\
+&\quad\ \text{untere Grenze }56-39=17,\quad\text{obere Grenze }82+39=121 \\
+\text{Klasse B}&:\ Q_3-Q_1=76-62=14,\quad 1{,}5\cdot14=21 \\
+&\quad\ \text{untere Grenze }62-21=41,\quad\text{obere Grenze }76+21=97
 \end{aligned}" />
 
-Zur Kontrolle: Die Häufigkeiten ergeben <InlineMath math="1+2+4+2+2+1=12" />.
+# Werte für beide Bedingungen
 
-Der Mittelwert beträgt also <InlineMath math="32{,}5^\circ\text{C}" />.
+Für Klasse B ist <InlineMath math="x" /> ein Ausreißer, wenn <InlineMath math="x<41" /> oder <InlineMath math="x>97" /> gilt. Da <InlineMath math="x" /> eine ganze Zahl von <InlineMath math="0" /> bis <InlineMath math="100" /> ist, heißt das <InlineMath math="0\le x\le40" /> oder <InlineMath math="98\le x\le100" />.
 
-- <InlineMath math="32^\circ\text{C}" /> ist der Median und zugleich der Modalwert, nicht der Mittelwert.
-- <InlineMath math="32{,}7^\circ\text{C}" /> ist der Mittelwert der sechs verschiedenen Temperaturen, ohne Gewichtung mit den Tagen.
-- <InlineMath math="33^\circ\text{C}" /> ist die Mitte zwischen dem kleinsten und dem größten Wert, <InlineMath math="\frac{30+36}{2}" />.
-- <InlineMath math="32{,}2^\circ\text{C}" /> lässt die höchste Temperatur <InlineMath math="36^\circ\text{C}" /> als vermeintlichen Ausreißer weg und teilt <InlineMath math="390-36=354" /> durch <InlineMath math="11" />. Jeder Wert zählt aber mit.
+Für Klasse A ist <InlineMath math="x" /> ein Ausreißer, wenn <InlineMath math="x<17" /> oder <InlineMath math="x>121" /> gilt. Die obere Grenze <InlineMath math="121" /> kann keine Note überschreiten. Also ist <InlineMath math="x" /> **genau dann kein Ausreißer für Klasse A, wenn <InlineMath math="x\ge17" /> ist**.
+
+Nimm jetzt die Überschneidung beider Bedingungen.
+
+| Wertebereich | Ausreißer für B? | Ausreißer für A? | Passt? |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0\le x\le16" /> | ja | ja | nein |
+| <InlineMath math="17\le x\le40" /> | ja | nein | ja |
+| <InlineMath math="41\le x\le97" /> | nein | nein | nein |
+| <InlineMath math="98\le x\le100" /> | ja | nein | ja |
+
+Prüfe die Ränder: <InlineMath math="x=17" /> ist nicht kleiner als <InlineMath math="17" />, also kein Ausreißer für A, während <InlineMath math="17<41" /> den Wert zum Ausreißer für B macht. Die Werte <InlineMath math="x=41" /> und <InlineMath math="x=97" /> liegen genau auf den Grenzen von Klasse B und sind deshalb keine Ausreißer für B.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="18\le x\le41" /> oder <InlineMath math="97\le x\le100" /> zählt Werte genau auf einer Grenze als Ausreißer. Die Definition sagt **kleiner als** und **größer als**, nicht „kleiner oder gleich“.
+- <InlineMath math="0\le x\le40" /> oder <InlineMath math="98\le x\le100" /> prüft nur Klasse B. Die Werte <InlineMath math="0" /> bis <InlineMath math="16" /> sind auch für Klasse A Ausreißer und fallen deshalb weg.
+- <InlineMath math="30\le x\le47" /> oder <InlineMath math="91\le x\le100" /> vergisst, den Interquartilsabstand mit <InlineMath math="1{,}5" /> zu multiplizieren.
+- „Kein Wert passt“ entsteht, wenn du die Klassen vertauschst und Ausreißer für A suchst, die für B keine sind. Jeder Wert unter <InlineMath math="17" /> liegt auch unter <InlineMath math="41" />, diese Menge ist also wirklich leer, aber danach ist nicht gefragt.
+
+Möglich sind also genau die Werte <InlineMath math="17\le x\le40" /> oder <InlineMath math="98\le x\le100" />.

@@ -1,14 +1,33 @@
-First convert the pool's volume to litres. The full pool holds <InlineMath math="\frac{1+2}{2}\cdot25\cdot10=375\text{ m}^3" />, and <InlineMath math="1\text{ m}^3=1{,}000" /> litres. **The two pumps' rates add up** because they run at the same time.
+# The volume that drains and refills
 
-<BlockMath math="\begin{aligned}
-V&=375\cdot1{,}000=375{,}000\text{ litres} \\
-Q&=2\cdot125=250\text{ litres per minute} \\
-t&=\frac{375{,}000}{250}=1{,}500\text{ minutes}=\frac{1{,}500}{60}\text{ hours}=25\text{ hours}
-\end{aligned}" />
+This question has two stages. First water only flows out, then the pump switches on and water flows in while it keeps flowing out. You need the volume for each stage and the net flow rate.
 
-So the pool is empty after <InlineMath math="25" /> hours.
+The water drops from the safety line to the boundary between the cone and the cylinder, then rises back to the safety line. So **both stages use the same volume, the part of the cylinder below the safety line**. The cone stays full the whole time, so it doesn't count. In decimetres, the cylinder's base area is <InlineMath math="\tfrac{22}{7}\cdot7^2=154\text{ dm}^2" /> and that part is <InlineMath math="15-3=12\text{ dm}" /> tall:
 
-- <InlineMath math="33" /> hours <InlineMath math="20" /> minutes treats the whole pool as <InlineMath math="2\text{ m}" /> deep, a volume of <InlineMath math="500\text{ m}^3" />.
-- <InlineMath math="50" /> hours uses only one pump.
-- <InlineMath math="66" /> hours <InlineMath math="40" /> minutes uses one pump and a depth of <InlineMath math="2\text{ m}" /> everywhere.
-- <InlineMath math="100" /> hours uses one pump and adds the two depths without halving them.
+<BlockMath math="V=154\cdot12=1{,}848\text{ dm}^3=1{,}848\text{ litres}" />
+
+# The pump rate in litres per minute
+
+The pump rate is given in cubic metres per hour, but the outflow is in litres per minute. **Put them in the same unit first**, before you subtract.
+
+<BlockMath math="3.96\ \frac{\text{m}^3}{\text{hour}}=\frac{3{,}960\text{ litres}}{60\text{ minutes}}=66\text{ litres per minute}" />
+
+# The two time stages
+
+In the first stage, water only flows out. In the second stage, the pump pushes in <InlineMath math="66" /> litres per minute, but the pipe still lets out <InlineMath math="22" /> litres per minute. So **the water level only rises at the net rate of <InlineMath math="66-22=44" /> litres per minute**.
+
+| Stage | Rate that changes the volume | Time |
+| :---: | :---: | :---: |
+| Level falls, pump off | <InlineMath math="22" /> litres per minute out | <InlineMath math="\frac{1{,}848}{22}=84" /> minutes |
+| Level rises, pump on | <InlineMath math="44" /> litres per minute in | <InlineMath math="\frac{1{,}848}{44}=42" /> minutes |
+
+The pump switches on <InlineMath math="84" /> minutes after <InlineMath math="16{:}00" />, at <InlineMath math="17{:}24" />. It switches off <InlineMath math="42" /> minutes later, at <InlineMath math="18{:}06" />. The outlet pipe stays open until <InlineMath math="20{:}00" />, so the net rate of <InlineMath math="44" /> litres per minute really holds for the whole second stage.
+
+So the pump switches off again at <InlineMath math="18{:}06" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="16{:}42" /> counts only the refilling stage, <InlineMath math="42" /> minutes, straight from <InlineMath math="16{:}00" />. It skips the <InlineMath math="84" /> minutes while the level falls.
+- <InlineMath math="17{:}24" /> is when the pump **switches on**, not when it switches off again. It stops one stage too early.
+- <InlineMath math="17{:}45" /> adds the rates, <InlineMath math="66+22=88" /> litres per minute, so the second stage takes only <InlineMath math="21" /> minutes. The water leaving through the pipe takes water away from the tank.
+- <InlineMath math="17{:}52" /> ignores the pipe that stays open while the pump runs, so the second stage becomes <InlineMath math="\frac{1{,}848}{66}=28" /> minutes.

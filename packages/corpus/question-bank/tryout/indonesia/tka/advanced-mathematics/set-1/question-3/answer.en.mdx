@@ -1,20 +1,42 @@
-The four statements test **rules for <InlineMath math="2\times2" /> matrices**: the determinant of a multiple, a difference, the inverse and the determinant of a product. Compute the two determinants first, because they are used more than once.
+All three statements are about the matrices <InlineMath math="A" /> and <InlineMath math="B" /> **given in the question**, not about any matrices at all. So a general rule isn't enough: a statement that's usually false can hold for one particular pair, and the other way round. First work out the pieces you'll use more than once.
 
 <BlockMath math="\begin{aligned}
-\det A&=3\cdot(-4)-(-2)\cdot5=-12+10=-2 \\
-\det B&=1\cdot0-4\cdot(-3)=12
+AB&=\begin{pmatrix}2&1\\3&4\end{pmatrix}\begin{pmatrix}1&2\\2&2\end{pmatrix}=\begin{pmatrix}4&6\\11&14\end{pmatrix} \\
+BA&=\begin{pmatrix}1&2\\2&2\end{pmatrix}\begin{pmatrix}2&1\\3&4\end{pmatrix}=\begin{pmatrix}8&9\\10&10\end{pmatrix} \\
+\det A&=2\cdot4-1\cdot3=5,\qquad \det B=1\cdot2-2\cdot2=-2
 \end{aligned}" />
 
-1. The statement <InlineMath math="\det(3A)=-6" /> is false. Multiplying by <InlineMath math="3" /> only once gives <InlineMath math="3\det A=-6" />. The factor <InlineMath math="3" /> sits in both rows, though, so <InlineMath math="\det(3A)=3^2\det A=9\cdot(-2)=-18" />.
-2. The statement about <InlineMath math="A-B" /> is true, because matrices are subtracted entry by entry.
-3. The statement about <InlineMath math="A^{-1}" /> is false. For the inverse, you swap the entries on the main diagonal, change the sign of the entries on the other diagonal, and divide by <InlineMath math="\det A=-2" />. The statement divides by <InlineMath math="2" /> instead of <InlineMath math="-2" />, so the sign of the determinant is missing.
-4. The statement <InlineMath math="\det(AB)=-24" /> is true, because <InlineMath math="\det(AB)=\det A\cdot\det B=(-2)\cdot12=-24" />.
+# Transpose of a product
 
-The inverse and the product as a check:
+First statement: **False**. The rule that always holds is <InlineMath math="(AB)^T=B^TA^T" />, with the order reversed. The right side of the statement, <InlineMath math="A^TB^T" />, equals <InlineMath math="(BA)^T" />. So the statement is only true when <InlineMath math="AB=BA" />, and the products above show <InlineMath math="AB\neq BA" />.
+
+<BlockMath math="(AB)^T=\begin{pmatrix}4&11\\6&14\end{pmatrix},\qquad A^TB^T=(BA)^T=\begin{pmatrix}8&10\\9&10\end{pmatrix}" />
+
+# Determinant of a sum
+
+Second statement: **True**. In general a determinant doesn't split over a sum, but for these two matrices the equality happens to hold. Just compute both sides.
 
 <BlockMath math="\begin{aligned}
-A^{-1}&=\frac{1}{-2}\begin{pmatrix} -4 & 2 \\ -5 & 3 \end{pmatrix}=\begin{pmatrix} 2 & -1 \\ \frac52 & -\frac32 \end{pmatrix} \\
-AB&=\begin{pmatrix} 3\cdot1+(-2)\cdot(-3) & 3\cdot4+(-2)\cdot0 \\ 5\cdot1+(-4)\cdot(-3) & 5\cdot4+(-4)\cdot0 \end{pmatrix}=\begin{pmatrix} 9 & 12 \\ 17 & 20 \end{pmatrix},\qquad \det(AB)=180-204=-24
+A+B&=\begin{pmatrix}3&3\\5&6\end{pmatrix} \\
+\det(A+B)&=3\cdot6-3\cdot5=3 \\
+\det A+\det B&=5+(-2)=3
 \end{aligned}" />
 
-So the statements about <InlineMath math="A-B" /> and <InlineMath math="\det(AB)" /> are true, and the statements about <InlineMath math="\det(3A)" /> and <InlineMath math="A^{-1}" /> are false.
+Both sides equal <InlineMath math="3" />. If you answered false straight away because you remembered the general rule, you missed that **the question is about these exact matrices**.
+
+# True for every real number
+
+Third statement: **False**. The words **for every** mean one failing example is enough to knock it down. Work out <InlineMath math="\det(A+kB)" /> as a function of <InlineMath math="k" />.
+
+<BlockMath math="\begin{aligned}
+A+kB&=\begin{pmatrix}2+k&1+2k\\3+2k&4+2k\end{pmatrix} \\
+\det(A+kB)&=(2+k)(4+2k)-(1+2k)(3+2k) \\
+&=(8+8k+2k^2)-(3+8k+4k^2) \\
+&=5-2k^2
+\end{aligned}" />
+
+The right side of the statement is <InlineMath math="\det A+k\det B=5-2k" />. The two agree only when <InlineMath math="2k^2=2k" />, that is, <InlineMath math="k=0" /> or <InlineMath math="k=1" />. The value <InlineMath math="k=1" /> is exactly the second statement, so its truth doesn't carry over to every <InlineMath math="k" />. A counterexample is <InlineMath math="k=2" />:
+
+<BlockMath math="\det(A+2B)=5-8=-3,\qquad \det A+2\det B=5-4=1" />
+
+So the first statement is false, the second is true, and the third is false.

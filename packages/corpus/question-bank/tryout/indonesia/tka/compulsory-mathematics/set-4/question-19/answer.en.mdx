@@ -1,15 +1,72 @@
-A sphere's volume is proportional to the cube of its radius, <InlineMath math="V=\frac43\pi r^3" />. If the diameter, and so the radius, is multiplied by <InlineMath math="1.5" />, then **the volume is multiplied by <InlineMath math="1.5^3" />**.
+The cube from each log is limited by two things: **the circular cross-section and the length of the log**. The largest edge is the smaller of those two limits. Work it out for each log, then compare the volumes.
+
+# The limit from the cross-section
+
+One edge of the cube is parallel to the axis, so one face of the cube is a square perpendicular to the axis, and it has to fit inside the circular cross-section. The largest square inside a circle has all four corners on the circle, so **its diagonal equals the diameter**. For edge <InlineMath math="s" /> and diameter <InlineMath math="d" />:
 
 <BlockMath math="\begin{aligned}
-1.5^3&=3.375 \\
-\text{increase}&=3.375-1=2.375=237.5\,\%
+s\sqrt2&\le d\;\Rightarrow\;s\le\frac{d}{\sqrt2} \\
+\text{log }P:\;s&\le\frac{50}{\sqrt2}=25\sqrt2\approx35.4\text{ cm} \\
+\text{log }Q:\;s&\le\frac{40}{\sqrt2}=20\sqrt2\approx28.3\text{ cm}
 \end{aligned}" />
 
-As a check with numbers, a sphere of radius <InlineMath math="2" /> becomes one of radius <InlineMath math="3" />, and <InlineMath math="\frac{3^3}{2^3}=\frac{27}{8}=3.375" />.
+# The limit from the length
 
-So the volume of air grows by <InlineMath math="237.5\,\%" />.
+The edge that runs along the axis can't be longer than the log. So <InlineMath math="s\le30" /> for log <InlineMath math="P" /> and <InlineMath math="s\le80" /> for log <InlineMath math="Q" />. Take the smaller limit for each log:
 
-- <InlineMath math="50\,\%" /> assumes the volume grows by the same percentage as the diameter.
-- <InlineMath math="100\,\%" /> doubles the growth of the diameter.
-- <InlineMath math="125\,\%" /> uses <InlineMath math="1.5^2-1" />, the growth of the surface area.
-- <InlineMath math="150\,\%" /> multiplies the <InlineMath math="50\,\%" /> growth by <InlineMath math="3" /> instead of cubing <InlineMath math="1.5" />.
+| Log | Cross-section limit | Length limit | Largest edge |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="P" /> | <InlineMath math="25\sqrt2\approx35.4" /> | <InlineMath math="30" /> | <InlineMath math="30" /> |
+| <InlineMath math="Q" /> | <InlineMath math="20\sqrt2\approx28.3" /> | <InlineMath math="80" /> | <InlineMath math="20\sqrt2" /> |
+
+For log <InlineMath math="P" />, **the length is what limits the cube**, not the circle. A square with side <InlineMath math="30" /> still fits, because its diagonal is <InlineMath math="30\sqrt2\approx42.4" />, which is less than the diameter <InlineMath math="50" />.
+
+<MathVisual
+  title={<>Cross-section of log <InlineMath math="P" /></>}
+  description={<>A circle with diameter <InlineMath math="50" /> holds the largest square, with side <InlineMath math="25\sqrt2" />, whose corners touch the circle. The square with side <InlineMath math="30" /> that is actually used sits inside it and doesn't touch the circle.</>}
+  labels={{
+    "label-big": <InlineMath math="25\sqrt2" />,
+    "label-used": <InlineMath math="30" />,
+    "label-diameter": <InlineMath math="d=50" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -30, max: 30 },
+      y: { min: -30, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 25 },
+      { id: "square-big", kind: "polygon", appearance: "construction", vertices: [{ x: 25, y: 0 }, { x: 0, y: 25 }, { x: -25, y: 0 }, { x: 0, y: -25 }] },
+      { id: "square-used", kind: "polygon", appearance: "answer", vertices: [{ x: -15, y: -15 }, { x: 15, y: -15 }, { x: 15, y: 15 }, { x: -15, y: 15 }] },
+      { id: "diameter", kind: "segment", appearance: "reference", from: { x: -25, y: 0 }, to: { x: 25, y: 0 } },
+    ],
+    labels: [
+      { key: "label-big", objectId: "square-big", at: { x: 12.5, y: 12.5 }, placement: "above-right" },
+      { key: "label-used", objectId: "square-used", at: { x: 0, y: -15 }, placement: "below" },
+      { key: "label-diameter", objectId: "diameter", at: { x: -20, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Comparing the two cubes
+
+Now find the volume of the largest cube from each log, using the edges in the table.
+
+<BlockMath math="\begin{aligned}
+V_P&=30^3=27{,}000\text{ cm}^3 \\
+V_Q&=\left(20\sqrt2\right)^3=8{,}000\cdot2\sqrt2=16{,}000\sqrt2\approx22{,}627\text{ cm}^3
+\end{aligned}" />
+
+Log <InlineMath math="Q" /> is longer, but its cross-section is smaller, so its cube comes out smaller. **The largest cube comes from log <InlineMath math="P" />**.
+
+# Why the other options are wrong
+
+- <InlineMath math="15{,}625\text{ cm}^3" /> uses an edge equal to the radius, <InlineMath math="25" />. A square with the radius as its side is much smaller than the largest square inside the circle.
+- <InlineMath math="16{,}000\sqrt2\text{ cm}^3" /> is the cube from log <InlineMath math="Q" />. It shows up if you cross out log <InlineMath math="P" /> because a cube with edge <InlineMath math="25\sqrt2" /> doesn't fit, when you only need to shrink that cube to edge <InlineMath math="30" />.
+- <InlineMath math="31{,}250\sqrt2\text{ cm}^3" /> uses the edge <InlineMath math="25\sqrt2\approx35.4" /> on log <InlineMath math="P" /> without **checking the log's length** of <InlineMath math="30\text{ cm}" />.
+- <InlineMath math="64{,}000\text{ cm}^3" /> uses an edge equal to the diameter of log <InlineMath math="Q" />, <InlineMath math="40" />. A square with the diameter as its side doesn't fit, because its diagonal <InlineMath math="40\sqrt2" /> is longer than the diameter.
+
+So the largest cube has a volume of <InlineMath math="27{,}000\text{ cm}^3" />, and it comes from log <InlineMath math="P" />.

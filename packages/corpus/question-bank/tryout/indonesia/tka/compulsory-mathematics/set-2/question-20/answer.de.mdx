@@ -1,16 +1,75 @@
-Ein Senkungswinkel von der Turmspitze ist gleich groß wie der Erhebungswinkel vom Boot zur Spitze, denn die beiden Winkel sind Wechselwinkel an parallelen Geraden. So entstehen **zwei rechtwinklige Dreiecke** mit der gemeinsamen Kathete <InlineMath math="30\text{ m}" />. Den waagerechten Abstand jedes Boots vom Turmfuß liefert der Tangens.
+Gesucht ist die Höhe <InlineMath math="h" /> des Turms. Die Falle steckt in seiner Lage: Der Fußpunkt <InlineMath math="F" /> liegt neben der Straße, nicht auf ihr. Weil <InlineMath math="B" /> der Punkt der Straße ist, der <InlineMath math="F" /> am nächsten liegt, **steht die Strecke <InlineMath math="FB" /> senkrecht auf der Straße**. Auf dem Boden entsteht also ein Dreieck <InlineMath math="FBA" /> mit rechtem Winkel bei <InlineMath math="B" />.
+
+# Waagerechte Abstände zum Fußpunkt
+
+Turm, Sichtlinie und waagerechter Abstand bilden ein senkrecht stehendes rechtwinkliges Dreieck mit dem rechten Winkel bei <InlineMath math="F" />. In so einem Dreieck gilt <InlineMath math="\tan(\text{Höhenwinkel})=\frac{h}{\text{waagerechter Abstand}}" />. Nutze das, **um beide Abstände durch <InlineMath math="h" /> auszudrücken**.
 
 <BlockMath math="\begin{aligned}
-\tan45^\circ=\frac{30}{d_1}\ &\Rightarrow\ d_1=30\text{ m} \\
-\tan30^\circ=\frac{30}{d_2}\ &\Rightarrow\ d_2=\frac{30}{\frac{1}{\sqrt3}}=30\sqrt3\text{ m} \\
-d_2-d_1&=30\sqrt3-30=30(\sqrt3-1)\text{ m}
+\tan60^\circ&=\frac{h}{FB}&&\Rightarrow\ FB=\frac{h}{\sqrt3} \\
+\tan30^\circ&=\frac{h}{FA}&&\Rightarrow\ FA=\frac{h}{1/\sqrt3}=h\sqrt3
 \end{aligned}" />
 
-Zur Kontrolle: <InlineMath math="30(\sqrt3-1)\approx30\cdot0{,}732\approx22\text{ m}" />. Das weiter entfernte Boot liegt etwa <InlineMath math="52\text{ m}" /> vom Turm, das nähere <InlineMath math="30\text{ m}" />.
+# Das Dreieck auf dem Boden
 
-Die Boote liegen also <InlineMath math="30(\sqrt3-1)\text{ m}" /> auseinander.
+Schau jetzt von oben. Die Strecke <InlineMath math="FB" /> steht senkrecht auf der Straße, also ist im Dreieck <InlineMath math="FBA" /> **die Hypotenuse <InlineMath math="FA" />**, die Seite gegenüber dem rechten Winkel bei <InlineMath math="B" />.
 
-- <InlineMath math="10(3-\sqrt3)\text{ m}" /> multipliziert die Höhe mit dem Tangens jedes Tiefenwinkels, <InlineMath math="d_1=30\cdot\tan45^\circ=30" /> und <InlineMath math="d_2=30\cdot\tan30^\circ=10\sqrt3" />, obwohl ein waagrechter Abstand die Höhe geteilt durch den Tangens ist, und bildet dann <InlineMath math="30-10\sqrt3" />.
-- <InlineMath math="30\text{ m}" /> ist der Abstand des näheren Boots vom Turm, nicht der Abstand der Boote voneinander.
-- <InlineMath math="30\sqrt3\text{ m}" /> ist der Abstand des weiter entfernten Boots vom Turm, nicht der Abstand der Boote voneinander.
-- <InlineMath math="30(2-\sqrt2)\text{ m}" /> zieht die Sichtlinien voneinander ab, <InlineMath math="\frac{30}{\sin30^\circ}=60" /> und <InlineMath math="\frac{30}{\sin45^\circ}=30\sqrt2" />, statt der waagrechten Abstände der Boote vom Fuß des Turms.
+<MathVisual
+  title={<>Draufsicht auf Straße und Fußpunkt</>}
+  description={<>Eine gerade, ebene Straße verläuft durch <InlineMath math="B" /> und <InlineMath math="A" />. Der Fußpunkt <InlineMath math="F" /> des Turms liegt neben der Straße, und <InlineMath math="FB" /> steht senkrecht auf ihr. Die Längen sind <InlineMath math="FB=\frac{h}{\sqrt3}" />, <InlineMath math="AB=20\sqrt6" /> und <InlineMath math="FA=h\sqrt3" />. Das Dreieck <InlineMath math="FBA" /> hat bei <InlineMath math="B" /> einen rechten Winkel.</>}
+  labels={{
+    f: <InlineMath math="F" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    fb: <InlineMath math="\tfrac{h}{\sqrt3}" />,
+    fa: <InlineMath math="h\sqrt3" />,
+    ab: <InlineMath math="20\sqrt6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 56 },
+      y: { min: -6, max: 24 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "road", kind: "segment", appearance: "reference", from: { x: -6, y: 0 }, to: { x: 54, y: 0 } },
+      { id: "segment-fb", kind: "segment", appearance: "secondary", from: { x: 0, y: 10 * Math.sqrt(3) }, to: { x: 0, y: 0 } },
+      { id: "segment-fa", kind: "segment", appearance: "highlight", from: { x: 0, y: 10 * Math.sqrt(3) }, to: { x: 20 * Math.sqrt(6), y: 0 } },
+      { id: "segment-ab", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 20 * Math.sqrt(6), y: 0 } },
+      { id: "point-f", kind: "point", appearance: "answer", at: { x: 0, y: 10 * Math.sqrt(3) } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 20 * Math.sqrt(6), y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "f", objectId: "point-f", at: { x: 0, y: 10 * Math.sqrt(3) }, placement: "above" },
+      { key: "a", objectId: "point-a", at: { x: 20 * Math.sqrt(6), y: 0 }, placement: "below" },
+      { key: "b", objectId: "point-b", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "fb", objectId: "segment-fb", at: { x: 0, y: 5 * Math.sqrt(3) }, placement: "left" },
+      { key: "fa", objectId: "segment-fa", at: { x: 10 * Math.sqrt(6), y: 5 * Math.sqrt(3) }, placement: "above-right" },
+      { key: "ab", objectId: "segment-ab", at: { x: 10 * Math.sqrt(6), y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Der Satz des Pythagoras in diesem Dreieck liefert eine Gleichung für <InlineMath math="h" />.
+
+<BlockMath math="\begin{aligned}
+FA^2&=FB^2+AB^2 \\
+3h^2&=\frac{h^2}{3}+\left(20\sqrt6\right)^2 \\
+3h^2-\frac{h^2}{3}&=2{.}400 \\
+\frac{8h^2}{3}&=2{.}400 \\
+h^2&=900 \\
+h&=30\text{ m}
+\end{aligned}" />
+
+Kontrolle: Mit <InlineMath math="h=30" /> ist <InlineMath math="FB=10\sqrt3" /> und <InlineMath math="FA=30\sqrt3" />. Dann gilt <InlineMath math="FB^2+AB^2=300+2{.}400=2{.}700=FA^2" />, es passt.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="12\sqrt5\text{ m}" /> setzt den rechten Winkel an den Fußpunkt, <InlineMath math="FA^2+FB^2=AB^2" />. Der rechte Winkel liegt aber bei <InlineMath math="B" />, weil <InlineMath math="B" /> der nächstgelegene Punkt zum Fußpunkt ist.
+- <InlineMath math="20\sqrt2\text{ m}" /> nimmt <InlineMath math="AB" /> als waagerechten Abstand von <InlineMath math="A" /> zum Fußpunkt, <InlineMath math="h=20\sqrt6\cdot\tan30^\circ" />. Doch <InlineMath math="B" /> ist nicht der Fußpunkt.
+- <InlineMath math="30\sqrt2\text{ m}" /> geht davon aus, dass der Fußpunkt auf der Straße liegt, sodass <InlineMath math="FA-FB=AB" /> gilt. Laut Aufgabe liegt er **nicht** auf der Straße.
+- <InlineMath math="30\sqrt3\text{ m}" /> ist <InlineMath math="FA" />, der waagerechte Abstand von <InlineMath math="A" /> zum Fußpunkt, nicht die Höhe.
+
+Der Turm ist also <InlineMath math="30\text{ m}" /> hoch.

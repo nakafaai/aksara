@@ -11,25 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: true,
+          label: "$$f(a)+f(b)=f(ab+2a+2b+2)$$ untuk setiap $$a>-2$$ dan $$b>-2$$.",
+        },
+        {
+          correct: true,
+          label: "$$f^{-1}\\big(f(5)+1\\big)=19$$.",
+        },
+        {
+          correct: true,
+          label: "Persamaan $$f(x)=f\\left(\\frac{1}{x}\\right)$$ mempunyai tepat dua penyelesaian real.",
+        },
+        {
+          correct: true,
+          label: "$$f(x)+f(-x)\\le2f(0)$$ untuk setiap $$x$$ dengan $$-2<x<2$$.",
+        },
+        {
           correct: false,
-          label: "Nilai minimum $$f$$ adalah $$-2$$.",
-        },
-        {
-          correct: true,
-          label: "$$f(x)=(x-4)\\cdot g(x)$$ untuk setiap bilangan real $$x$$.",
-        },
-        {
-          correct: false,
-          label: "$$f(x)\\ge g(x)$$ untuk setiap bilangan real $$x$$.",
-        },
-        {
-          correct: true,
-          label:
-            "Grafik $$f$$ dan grafik $$g$$ berpotongan di tepat dua titik.",
-        },
-        {
-          correct: true,
-          label: "$$f(x)<0$$ tepat untuk $$2<x<4$$.",
+          label: "Nilai $$f(2x)-f(x)$$ sama untuk setiap $$x>-1$$.",
         },
       ],
     },

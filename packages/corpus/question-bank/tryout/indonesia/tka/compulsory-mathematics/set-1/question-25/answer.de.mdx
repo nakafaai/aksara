@@ -1,17 +1,19 @@
-Die Reihenfolge der Auswahl spielt keine Rolle, also zählst du mit **Binomialkoeffizienten**. Mindestens zwei Schülerinnen heißt: genau zwei oder genau drei.
+# Zuerst die Schnittmenge
+
+Fast jede Aussage hängt von <InlineMath math="P(A\cap B)" /> ab, also **berechnest du zuerst die Schnittmenge** über die Formel für die Vereinigung:
 
 <BlockMath math="\begin{aligned}
-\text{alle Auswahlen}&=\binom93=84 \\
-\text{genau 2 Schülerinnen}&=\binom42\binom51=6\cdot5=30 \\
-\text{genau 3 Schülerinnen}&=\binom43=4 \\
-P&=\frac{30+4}{84}=\frac{34}{84}=\frac{17}{42}
+P(A\cup B)&=P(A)+P(B)-P(A\cap B) \\
+0{,}7&=0{,}5+0{,}4-P(A\cap B) \\
+P(A\cap B)&=0{,}2
 \end{aligned}" />
 
-Zur Kontrolle: Keine oder genau eine Schülerin ergeben <InlineMath math="\binom53+\binom41\binom52=10+40=50" /> Auswahlen, und <InlineMath math="34+50=84" />.
+# Jede Aussage prüfen
 
-Die Wahrscheinlichkeit ist also <InlineMath math="\frac{17}{42}" />.
+- **Falsch**: Unvereinbar heißt, dass <InlineMath math="A" /> und <InlineMath math="B" /> nicht zusammen eintreten können, also <InlineMath math="P(A\cap B)=0" />. Hier ist die Schnittmenge <InlineMath math="0{,}2" />.
+- **Wahr**: Unabhängig heißt <InlineMath math="P(A\cap B)=P(A)\cdot P(B)" />. Tatsächlich ist <InlineMath math="0{,}5\cdot0{,}4=0{,}2" />, genau die Schnittmenge.
+- **Falsch**: <InlineMath math="P(A\mid B)=\frac{P(A\cap B)}{P(B)}=\frac{0{,}2}{0{,}4}=0{,}5" />. Der Wert <InlineMath math="0{,}4" /> ist <InlineMath math="P(B)" />, nicht diese bedingte Wahrscheinlichkeit.
+- **Wahr**: Dass keines eintritt, ist das Gegenteil von „mindestens eines tritt ein“, also <InlineMath math="1-P(A\cup B)=1-0{,}7=0{,}3" />.
+- **Wahr**: „Genau eines“ ist die Vereinigung minus der Teil, in dem beide eintreten, <InlineMath math="0{,}7-0{,}2=0{,}5" />. Probe auf einem zweiten Weg: <InlineMath math="(0{,}5-0{,}2)+(0{,}4-0{,}2)=0{,}3+0{,}2=0{,}5" />.
 
-- <InlineMath math="\frac{1}{21}=\frac{4}{84}" /> zählt nur die Auswahl mit drei Schülerinnen.
-- <InlineMath math="\frac{5}{14}=\frac{30}{84}" /> zählt nur genau zwei Schülerinnen und vergisst den Fall mit drei.
-- <InlineMath math="\frac12" /> bräuchte <InlineMath math="42" /> günstige Auswahlen, es sind aber <InlineMath math="34" />.
-- <InlineMath math="\frac{25}{42}=\frac{50}{84}" /> ist die Gegenwahrscheinlichkeit, also höchstens eine Schülerin.
+Richtig sind also: Die Ereignisse sind unabhängig, die Wahrscheinlichkeit, dass keines eintritt, ist <InlineMath math="0{,}3" />, und die Wahrscheinlichkeit, dass genau eines eintritt, ist <InlineMath math="0{,}5" />.

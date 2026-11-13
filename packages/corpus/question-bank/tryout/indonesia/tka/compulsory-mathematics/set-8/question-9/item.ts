@@ -11,25 +11,28 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "$$T(2{,}5)=18{.}000$$",
-        },
-        {
-          correct: true,
-          label: "$$T(3)=T(2{,}1)$$",
-        },
-        {
           correct: false,
-          label: "$$T(1{,}5)=12{.}000$$",
+          label:
+            "Persamaan $$(g\\circ f)(x)=x$$ hanya dipenuhi oleh dua anggota $$A$$.",
         },
         {
           correct: true,
           label:
-            "Dengan uang $$\\text{Rp}30{.}000$$, berat paket paling besar yang dapat dikirim adalah $$6$$ kg.",
+            "Persamaan $$(f\\circ g)(x)=(g\\circ f)(x)$$ dipenuhi oleh tepat satu anggota $$A$$.",
         },
         {
           correct: false,
-          label: "$$T(4)=2\\cdot T(2)$$",
+          label:
+            "Karena $$f$$ mempunyai fungsi invers, fungsi $$g\\circ f$$ juga mempunyai fungsi invers.",
+        },
+        {
+          correct: true,
+          label: "$$f^{-1}\\big(g(2)\\big)=4$$",
+        },
+        {
+          correct: true,
+          label:
+            "Tidak ada anggota $$A$$ yang memenuhi $$(g\\circ f)(x)=4$$.",
         },
       ],
     },

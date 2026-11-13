@@ -11,25 +11,29 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "Luas segitiga $$A'B'C'$$ adalah $$16$$ satuan luas.",
-        },
-        {
-          correct: true,
-          label: "Koordinat titik $$B'$$ adalah $$(0,8)$$.",
-        },
-        {
           correct: false,
-          label: "Segitiga $$A'B'C'$$ kongruen dengan segitiga $$ABC$$.",
+          label:
+            "Rotasi $$180^\\circ$$ dengan pusat $$O$$ dan rotasi $$180^\\circ$$ dengan pusat $$(2,0)$$ dapat dipertukarkan.",
         },
         {
           correct: true,
           label:
-            "Keliling segitiga $$A'B'C'$$ sama dengan dua kali keliling segitiga $$ABC$$.",
+            "Pencerminan terhadap garis $$y=x$$ dan translasi oleh $$\\begin{pmatrix}2\\\\2\\end{pmatrix}$$ dapat dipertukarkan.",
         },
         {
           correct: false,
-          label: "Titik $$C'$$ terletak pada sumbu $$y$$.",
+          label:
+            "Dilatasi dengan pusat $$O$$ dan faktor skala $$2$$ serta dilatasi dengan pusat $$(2,0)$$ dan faktor skala $$3$$ dapat dipertukarkan.",
+        },
+        {
+          correct: false,
+          label:
+            "Rotasi $$90^\\circ$$ berlawanan arah jarum jam dengan pusat $$O$$ dan pencerminan terhadap sumbu $$x$$ dapat dipertukarkan.",
+        },
+        {
+          correct: true,
+          label:
+            "Rotasi $$180^\\circ$$ dengan pusat $$O$$ dan pencerminan terhadap garis $$y=-x$$ dapat dipertukarkan.",
         },
       ],
     },

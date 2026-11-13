@@ -1,21 +1,35 @@
-Panjang paving setiap hari membentuk **barisan aritmetika** dengan <InlineMath math="u_1=24" /> dan <InlineMath math="b=4" />. Panjang seluruh jalan adalah jumlah semua hari. Gunakan jumlah itu untuk menentukan banyak hari kerja <InlineMath math="n" /> lebih dulu.
+# Suku tengah dari syarat pertama
+
+Suku ke-<InlineMath math="3" /> dan suku ke-<InlineMath math="7" /> sama jauhnya dari suku ke-<InlineMath math="5" />. Pada barisan aritmetika, **dua suku yang sama jauh dari suatu suku rata-ratanya sama dengan suku itu**:
+
+<BlockMath math="u_3+u_7=2u_5=34\quad\Rightarrow\quad u_5=17" />
+
+# Mencari beda dari syarat kedua
+
+Tulis suku-suku lain dengan beda <InlineMath math="b" />: <InlineMath math="u_2=17-3b" /> dan <InlineMath math="u_4=17-b" />.
 
 <BlockMath math="\begin{aligned}
-S_n=\frac n2\bigl(2\cdot24+(n-1)\cdot4\bigr)&=1{.}240 \\
-n(2n+22)&=1{.}240 \\
-n^2+11n-620&=0 \\
-(n-20)(n+31)&=0
+(17-3b)(17-b)&=112 \\
+289-68b+3b^2&=112 \\
+3b^2-68b+177&=0 \\
+(b-3)(3b-59)&=0
 \end{aligned}" />
 
-Banyak hari pasti positif, jadi <InlineMath math="n=20" />. Hari terakhir adalah hari ke-20.
+Jadi <InlineMath math="b=3" /> atau <InlineMath math="b=\frac{59}{3}" />. Soal bilang **semua suku bilangan bulat**, jadi <InlineMath math="b=\frac{59}{3}" /> ditolak dan <InlineMath math="b=3" />.
 
-<BlockMath math="u_{20}=24+19\cdot4=100" />
+# Menjumlahkan sepuluh suku
 
-Sebagai pemeriksaan, <InlineMath math="S_{20}=\frac{20}{2}(24+100)=10\cdot124=1{.}240" />.
+Suku pertama <InlineMath math="a=u_5-4b=17-12=5" />. Barisannya <InlineMath math="5,8,11,14,17,20,23,26,29,32" />.
 
-Jadi, panjang paving yang dipasang pada hari terakhir adalah <InlineMath math="100\text{ m}" />.
+<BlockMath math="S_{10}=\frac{10}{2}\,(2\cdot5+9\cdot3)=5\cdot37=185" />
 
-- <InlineMath math="20\text{ m}" /> mencampuradukkan banyak hari dengan panjang.
-- <InlineMath math="96\text{ m}" /> adalah <InlineMath math="u_{19}" />, panjang paving pada hari sebelum terakhir.
-- <InlineMath math="104\text{ m}" /> menghitung <InlineMath math="24+20\cdot4" />. Padahal sampai hari ke-20 hanya ada <InlineMath math="19" /> kali penambahan.
-- <InlineMath math="124\text{ m}" /> adalah <InlineMath math="u_1+u_{20}" /> dari <InlineMath math="S_{20}=\frac{20}{2}(u_1+u_{20})" />. Nilai <InlineMath math="u_1=24" /> masih harus dikurangkan.
+Cek syaratnya: <InlineMath math="u_3+u_7=11+23=34" /> dan <InlineMath math="u_2\cdot u_4=8\cdot14=112" />. **Keduanya cocok**.
+
+Jadi, jumlah <InlineMath math="10" /> suku pertama adalah <InlineMath math="185" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\frac{805}{3}" /> berasal dari <InlineMath math="b=\frac{59}{3}" />, yang **suku-sukunya bukan bilangan bulat**.
+- <InlineMath math="200" /> memakai <InlineMath math="10b" /> di rumus jumlah. Suku ke-<InlineMath math="10" /> adalah <InlineMath math="a+9b" />, jadi yang benar <InlineMath math="9b" />.
+- <InlineMath math="153" /> adalah jumlah <InlineMath math="9" /> suku pertama.
+- <InlineMath math="32" /> adalah suku ke-<InlineMath math="10" />, bukan jumlahnya.

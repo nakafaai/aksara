@@ -1,13 +1,44 @@
-The edge of a sector is **one arc and two radii**. The arc is the share of the full circumference given by the central angle, <InlineMath math="\frac{120^\circ}{360^\circ}=\frac13" />.
+The question asks how many cans of undiluted paint to buy. The chain is long: the curved wall area, minus the door and windows, times two coats, then litres of diluted paint, then litres of pure paint, and only then cans. The slipperiest step is that **the water is <InlineMath math="25\%" /> of the paint's volume, not of the mixture's volume**.
+
+# The painted area
+
+The curved surface of a cylinder is the circumference of the base times the height, <InlineMath math="\pi d t" />. The diameter is <InlineMath math="3.5\text{ m}" />, so the radius is <InlineMath math="1.75\text{ m}" />. Careful: **<InlineMath math="3.5" /> is the diameter, not the radius**.
 
 <BlockMath math="\begin{aligned}
-\text{arc}&=\frac13\cdot2\cdot\frac{22}{7}\cdot21=44\text{ m} \\
-\text{fence}&=44+21+21=86\text{ m}
+\text{curved surface}&=\frac{22}{7}\cdot3.5\cdot6=66\text{ m}^2 \\
+\text{door and windows}&=1\cdot2+4\cdot(1\cdot1)=6\text{ m}^2 \\
+\text{painted area}&=66-6=60\text{ m}^2 \\
+\text{for two coats}&=2\cdot60=120\text{ m}^2
 \end{aligned}" />
 
-So the fence needs to be <InlineMath math="86\text{ m}" /> long.
+# From diluted paint to pure paint
 
-- <InlineMath math="44\text{ m}" /> is the arc alone, without the two radii.
-- <InlineMath math="65\text{ m}" /> adds only one radius to the arc.
-- <InlineMath math="132\text{ m}" /> is the circumference of the whole circle.
-- <InlineMath math="462" /> is the sector's area in <InlineMath math="\text{m}^2" />, not the length of the fence.
+One litre of diluted paint covers <InlineMath math="6\text{ m}^2" />, so the diluted paint needed is
+
+<BlockMath math="\frac{120}{6}=20\text{ litres of diluted paint}" />
+
+Say the pure paint is <InlineMath math="c" /> litres. The water added is <InlineMath math="25\%" /> **of the paint's volume**, which is <InlineMath math="0.25c" />. The mixture is <InlineMath math="c+0.25c=1.25c" />:
+
+<BlockMath math="\begin{aligned}
+1.25c&=20 \\
+c&=\frac{20}{1.25}=16\text{ litres}
+\end{aligned}" />
+
+Check: <InlineMath math="16" /> litres of paint plus <InlineMath math="25\%\cdot16=4" /> litres of water gives <InlineMath math="20" /> litres of mixture. It fits.
+
+# Number of cans
+
+Each can holds <InlineMath math="2.5" /> litres of pure paint:
+
+<BlockMath math="\frac{16}{2.5}=6.4" />
+
+Six cans hold only <InlineMath math="15" /> litres, less than <InlineMath math="16" /> litres. So **you round up** to <InlineMath math="7" /> cans.
+
+# Why the other options are wrong
+
+- <InlineMath math="6" /> cans comes from **treating the water as <InlineMath math="25\%" /> of the mixture**, so the pure paint becomes <InlineMath math="75\%\cdot20=15" /> litres. You also get it by rounding <InlineMath math="6.4" /> down.
+- <InlineMath math="8" /> cans comes from buying all <InlineMath math="20" /> litres of mixture as paint, forgetting that <InlineMath math="4" /> litres of it is water. Forgetting to subtract the door and windows also gives <InlineMath math="8" /> cans.
+- <InlineMath math="10" /> cans comes from multiplying <InlineMath math="20" /> litres by <InlineMath math="1.25" /> instead of dividing. The ratio is applied the wrong way round.
+- <InlineMath math="14" /> cans comes from using <InlineMath math="3.5\text{ m}" /> as the radius. The curved surface then doubles to <InlineMath math="132\text{ m}^2" />.
+
+So the smallest number of cans to buy is <InlineMath math="7" />.

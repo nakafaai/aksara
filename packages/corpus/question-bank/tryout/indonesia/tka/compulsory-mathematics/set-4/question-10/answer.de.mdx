@@ -1,15 +1,38 @@
-Die Innenwinkel eines <InlineMath math="n" />-Ecks ergeben zusammen <InlineMath math="(n-2)\cdot180^\circ" />. Im regelmäßigen Vieleck **verteilt sich diese Summe gleichmäßig auf die <InlineMath math="n" /> Winkel**.
+# Die Maße des Kegels aus dem Sektor
+
+Gefragt ist die Wasserhöhe im Zylinder. Dafür brauchst du das Volumen des Kegels, und dafür seinen Grundkreisradius und seine Höhe. Aufgerollt wird **der übrig gebliebene Karton**, nicht der weggeworfene Sektor.
+
+Der übrige Karton hat den Winkel <InlineMath math="360^\circ-144^\circ=216^\circ" />. Beim Aufrollen wird der Kartonradius <InlineMath math="15\text{ cm}" /> zur Mantellinie des Kegels, also zum Abstand von der Spitze zum Rand des Grundkreises. Der Kartonbogen wird zum Umfang des Grundkreises.
 
 <BlockMath math="\begin{aligned}
-(12-2)\cdot180^\circ&=1{.}800^\circ \\
-\frac{1{.}800^\circ}{12}&=150^\circ
+2\pi r&=\frac{216^\circ}{360^\circ}\cdot2\pi\cdot15 \\
+r&=\frac{216}{360}\cdot15=9\text{ cm}
 \end{aligned}" />
 
-Zur Kontrolle mit dem Außenwinkel: Jeder Außenwinkel misst <InlineMath math="\frac{360^\circ}{12}=30^\circ" />, und <InlineMath math="180^\circ-30^\circ=150^\circ" />.
+Höhe, Mantellinie und Grundkreisradius bilden ein rechtwinkliges Dreieck. **Die Mantellinie ist die Hypotenuse**, die Höhe ist also nicht <InlineMath math="15" />.
 
-Jeder Innenwinkel misst also <InlineMath math="150^\circ" />.
+<BlockMath math="t=\sqrt{15^2-9^2}=\sqrt{225-81}=\sqrt{144}=12\text{ cm}" />
 
-- <InlineMath math="30^\circ" /> ist der Außenwinkel, nicht der Innenwinkel.
-- <InlineMath math="135^\circ" /> nimmt das <InlineMath math="(n-3)" /> aus der Formel für die Diagonalen, <InlineMath math="\frac{9\cdot180^\circ}{12}" />.
-- <InlineMath math="165^\circ" /> nimmt den Außenwinkel <InlineMath math="\frac{360^\circ}{24}" />, als hätte das Vieleck <InlineMath math="24" /> Seiten.
-- <InlineMath math="1{.}800^\circ" /> ist die Summe aller Innenwinkel, noch nicht durch <InlineMath math="12" /> geteilt.
+# Vom Kegel in den Zylinder
+
+Das Wasservolumen ist das Kegelvolumen.
+
+<BlockMath math="V=\frac13\pi r^2t=\frac13\pi\cdot9^2\cdot12=324\pi\text{ cm}^3" />
+
+Ein Zylinder mit Durchmesser <InlineMath math="12\text{ cm}" /> hat den **Radius <InlineMath math="6\text{ cm}" />**. Steht das Wasser darin <InlineMath math="h" /> hoch, ist sein Volumen auch <InlineMath math="\pi\cdot6^2\cdot h" />.
+
+<BlockMath math="\begin{aligned}
+36\pi h&=324\pi \\
+h&=9\text{ cm}
+\end{aligned}" />
+
+# Die verlockenden Antworten
+
+Jede andere Antwort entsteht aus **einer vertauschten Größe**.
+
+- <InlineMath math="2{,}25\text{ cm}" /> entsteht, wenn du den Durchmesser <InlineMath math="12" /> als Zylinderradius nimmst, <InlineMath math="\frac{324\pi}{144\pi}" />.
+- <InlineMath math="4\text{ cm}" /> ist ein Drittel der Kegelhöhe. Die Regel "ein Kegel fasst ein Drittel des Zylinders" gilt nur bei gleicher Grundfläche und gleicher Höhe, der Zylinderradius ist aber <InlineMath math="6" />, nicht <InlineMath math="9" />.
+- <InlineMath math="\sqrt{21}\text{ cm}" /> entsteht, wenn du den weggeworfenen <InlineMath math="144^\circ" />-Sektor aufrollst. Dieser Kegel hat den Radius <InlineMath math="6" /> und die Höhe <InlineMath math="\sqrt{189}=3\sqrt{21}" />, also das Volumen <InlineMath math="36\sqrt{21}\,\pi" />, und geteilt durch <InlineMath math="36\pi" /> ergibt das <InlineMath math="\sqrt{21}" />.
+- <InlineMath math="11{,}25\text{ cm}" /> entsteht, wenn du den Kartonradius <InlineMath math="15" /> als Kegelhöhe nimmst. Dann ist das Volumen <InlineMath math="405\pi" />.
+
+Das Wasser im Zylinder steht also <InlineMath math="9\text{ cm}" /> hoch.

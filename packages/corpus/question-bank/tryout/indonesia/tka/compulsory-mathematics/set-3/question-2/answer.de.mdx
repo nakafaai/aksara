@@ -1,17 +1,56 @@
-Gefragt ist nach Konten, nicht nach Abos. Bestimme deshalb zuerst mit einem **Gleichungssystem**, wie viele Abos jedes Pakets es gibt, und rechne dann jedes Abo in seine Konten um. Sei <InlineMath math="d" /> die Zahl der Abos Duo und <InlineMath math="k" /> die Zahl der Abos Keluarga. Beträge in Tausend Rupiah:
+Gefragt ist, wie viele Tickets in Fajars Bestellung sind. Nimm an, sie enthält <InlineMath math="e" /> Early-Bird-Tickets und <InlineMath math="r" /> reguläre Tickets. Die Angabe **beide Ticketarten sind dabei** heißt <InlineMath math="e\ge1" /> und <InlineMath math="r\ge1" />, und die Bestellgrenze liefert <InlineMath math="e+r\le9" />.
+
+# Die Zahlungsgleichung
+
+Sei <InlineMath math="g" /> die Zahl der Gruppenrabatte. Fajar zahlt die Ticketpreise minus die Rabatte plus eine Servicegebühr. Damit die Zahlen klein bleiben, rechnest du alle Beträge in Tausend Rupiah.
 
 <BlockMath math="\begin{aligned}
-d+k&=1{.}000 \\
-90d+108k&=98{.}640 \\
-98{.}640-90\cdot1{.}000=18k\ &\Rightarrow\ k=480,\quad d=520 \\
-\text{Konten}&=2\cdot520+6\cdot480=1{.}040+2{.}880=3{.}920
+90e+150r-90g+25&=745 \\
+90e+150r-90g&=720
 \end{aligned}" />
 
-Zur Kontrolle: <InlineMath math="90\cdot520+108\cdot480=46{.}800+51{.}840=98{.}640" />.
+Wegen <InlineMath math="e+r\le9" /> **bekommt diese Bestellung höchstens einen Rabatt**. Also ist <InlineMath math="g=0" /> bei <InlineMath math="e+r\le4" /> und <InlineMath math="g=1" /> bei <InlineMath math="5\le e+r\le9" />. Beide Fälle musst du prüfen.
 
-Es gibt also <InlineMath math="3{.}920" /> Konten.
+# Der Fall ohne Rabatt
 
-- <InlineMath math="2{.}880" /> zählt nur die Konten der Abos Keluarga.
-- <InlineMath math="4{.}000" /> rechnet ohne Gleichungssystem mit durchschnittlich <InlineMath math="4" /> Konten pro Abo, dem Mittel aus <InlineMath math="2" /> und <InlineMath math="6" />.
-- <InlineMath math="4{.}080" /> vertauscht die beiden Lösungen und nimmt <InlineMath math="520" /> Abos Keluarga und <InlineMath math="480" /> Abos Duo an.
-- <InlineMath math="6{.}000" /> behandelt alle <InlineMath math="1{.}000" /> Abos als Paket Keluarga.
+Bei <InlineMath math="g=0" /> teilst du beide Seiten durch <InlineMath math="30" />.
+
+<BlockMath math="\begin{aligned}
+90e+150r&=720 \\
+3e+5r&=24
+\end{aligned}" />
+
+Mit <InlineMath math="e,r\ge1" /> ist das einzige ganzzahlige Paar <InlineMath math="e=3" /> und <InlineMath math="r=3" />, also <InlineMath math="6" /> Tickets. Dieser Fall verlangt aber höchstens <InlineMath math="4" /> Tickets. **Der Fall widerspricht sich selbst**, du streichst ihn.
+
+# Der Fall mit einem Rabatt
+
+Bei <InlineMath math="g=1" /> bringst du den Rabatt auf die rechte Seite und teilst durch <InlineMath math="30" />.
+
+<BlockMath math="\begin{aligned}
+90e+150r&=810 \\
+3e+5r&=27 \\
+3e&=27-5r
+\end{aligned}" />
+
+Die linke Seite ist ein Vielfaches von <InlineMath math="3" />, also muss auch <InlineMath math="5r" /> eines sein. Das heißt, **<InlineMath math="r" /> muss ein Vielfaches von <InlineMath math="3" /> sein**.
+
+| <InlineMath math="r" /> | <InlineMath math="e=\frac{27-5r}{3}" /> | Tickets | Urteil |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="9" /> | <InlineMath math="9" /> | verworfen, kein reguläres Ticket |
+| <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="7" /> | erfüllt alle Bedingungen |
+| <InlineMath math="6" /> | <InlineMath math="-1" /> | keine | verworfen, <InlineMath math="e" /> ist negativ |
+
+Fajars Bestellung enthält also <InlineMath math="4" /> Early-Bird-Tickets und <InlineMath math="3" /> reguläre Tickets, zusammen <InlineMath math="7" /> Tickets. Das liegt zwischen <InlineMath math="5" /> und <InlineMath math="9" />, sie bekommt also wirklich einen Rabatt.
+
+Zur Kontrolle rechnest du die Zahlung nach:
+
+<BlockMath math="4\cdot90{.}000+3\cdot150{.}000-90{.}000+25{.}000=360{.}000+450{.}000-65{.}000=745{.}000" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="3" /> ist nur die Zahl der regulären Tickets, ohne die Early-Bird-Tickets.
+- <InlineMath math="4" /> ist nur die Zahl der Early-Bird-Tickets, ohne die regulären.
+- <InlineMath math="6" /> entsteht, wenn du den Gruppenrabatt vergisst. Eine Bestellung mit <InlineMath math="6" /> Tickets **hat Anspruch auf einen Rabatt**, das Paar <InlineMath math="(3,3)" /> zahlt also in Wahrheit <InlineMath math="\text{Rp}655{.}000" />.
+- <InlineMath math="9" /> kommt von <InlineMath math="9" /> Early-Bird-Tickets allein. Der Betrag passt, aber dann fehlt das reguläre Ticket, obwohl laut Aufgabe beide Arten dabei sind.
+
+Fajars Bestellung enthält also <InlineMath math="7" /> Tickets.

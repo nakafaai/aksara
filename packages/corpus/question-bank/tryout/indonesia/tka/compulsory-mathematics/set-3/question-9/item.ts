@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "$$f(1)=0$$",
+          correct: false,
+          label: "$$f$$ mempunyai invers, dan rumusnya $$f^{-1}(x)=2+\\sqrt{x-3}$$.",
         },
         {
           correct: false,
-          label: "Fungsi $$f$$ turun untuk setiap $$x$$.",
+          label: "Daerah asal $$f^{-1}$$ adalah $$\\{x\\mid x\\ge3\\}$$.",
         },
         {
           correct: true,
-          label: "Grafik $$f$$ memotong sumbu $$y$$ di titik $$(0,-2)$$.",
-        },
-        {
-          correct: true,
-          label: "$$f(x)>-4$$ untuk setiap bilangan real $$x$$.",
+          label: "$$f^{-1}(12)=-1$$.",
         },
         {
           correct: false,
-          label: "$$f(3)=2\\cdot f(2)$$",
+          label: "$$f^{-1}(g(a))=a$$ untuk setiap bilangan real $$a\\le2$$.",
+        },
+        {
+          correct: true,
+          label: "$$f^{-1}(g(a))=4-a$$ untuk setiap bilangan real $$a\\ge3$$.",
         },
       ],
     },

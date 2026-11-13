@@ -1,22 +1,63 @@
-Mulailah dari **paritas**. Satu-satunya bilangan prima genap adalah <InlineMath math="2" />. Jika salah satu bilangan itu <InlineMath math="2" />, yang lain <InlineMath math="28" />, padahal <InlineMath math="28" /> bukan prima. Jadi <InlineMath math="p" /> dan <InlineMath math="q" /> keduanya ganjil. Sekarang periksa setiap bilangan prima ganjil di bawah <InlineMath math="15" /> sebagai bilangan yang lebih kecil.
+# Dua fungsi tarif
+
+Keempat pernyataan membandingkan dua fungsi: tarif di luar jam sibuk <InlineMath math="F(d)" /> dan tarif jam sibuk <InlineMath math="P(d)" />, dengan <InlineMath math="d" /> jarak dalam km. Supaya rapi, sebut <InlineMath math="K(d)" /> sebagai bagian tarif yang dihitung per km di luar jam sibuk:
+
+<BlockMath math="K(d)=\begin{cases}0, & 0<d\le2 \\ 4{.}500\,(d-2), & 2<d\le12 \\ 45{.}000+3{.}500\,(d-12), & d>12\end{cases}" />
+
+Tarif buka pintu tidak ikut dikali, jadi
+
+<BlockMath math="F(d)=10{.}000+K(d),\qquad P(d)=10{.}000+1{,}2\,K(d)." />
+
+**Semua pernyataan bisa dinilai dari dua rumus ini**, asal setiap bagian jarak dicek.
+
+# Pernyataan pertama
+
+Dari rumus <InlineMath math="F" />, bagian per km adalah <InlineMath math="K=F-10{.}000" />. Masukkan ke rumus <InlineMath math="P" />:
 
 <BlockMath math="\begin{aligned}
-3+27&:\quad 27=3^3\text{ bukan prima} \\
-5+25&:\quad 25=5^2\text{ bukan prima} \\
-7+23,\ 11+19,\ 13+17&:\quad \text{semuanya prima}
+P&=10{.}000+1{,}2\,(F-10{.}000) \\
+&=10{.}000+1{,}2F-12{.}000 \\
+&=1{,}2F-2{.}000
 \end{aligned}" />
 
-Jadi ada tepat tiga pasangan. Untuk setiap pasangan, hitung besaran yang disebut dalam pernyataan.
+Langkah ini berlaku di setiap bagian jarak, termasuk <InlineMath math="d\le2" />. Di sana <InlineMath math="F=10{.}000" /> dan <InlineMath math="1{,}2\cdot10{.}000-2{.}000=10{.}000" />, sama dengan <InlineMath math="P" />. Jadi **tarif jam sibuk bukan <InlineMath math="1{,}2F" />, melainkan <InlineMath math="1{,}2F" /> dikurangi <InlineMath math="2{.}000" />**, karena tarif buka pintu tidak ikut naik. Pernyataan ini **Benar**.
+
+# Pernyataan kedua
+
+Untuk jarak sampai <InlineMath math="2\text{ km}" />, penumpang hanya membayar tarif buka pintu. Contohnya perjalanan <InlineMath math="1\text{ km}" /> dan <InlineMath math="2\text{ km}" />:
+
+<BlockMath math="F(1)=F(2)=10{.}000" />
+
+Dua jarak berbeda memberi tarif yang sama, jadi **fungsi <InlineMath math="F" /> tidak satu-satu** di awal perjalanan. Satu contoh penyangkal sudah cukup. Pernyataan ini **Salah**.
+
+# Pernyataan ketiga
+
+Bandingkan tambahan tarif untuk setiap km. Pada jam sibuk setelah km ke-<InlineMath math="12" />, satu km tambahan dikenai <InlineMath math="1{,}2\cdot3{.}500" />. Di luar jam sibuk antara km ke-<InlineMath math="2" /> dan km ke-<InlineMath math="12" />, satu km tambahan dikenai <InlineMath math="4{.}500" />.
+
+<BlockMath math="1{,}2\cdot3{.}500=4{.}200<4{.}500" />
+
+Jam sibuk memang lebih mahal untuk **jarak yang sama**, tetapi di sini yang dibandingkan adalah laju kenaikan pada dua bagian jarak yang berbeda. Tambahannya justru lebih kecil. Pernyataan ini **Salah**.
+
+# Pernyataan keempat
+
+Syarat <InlineMath math="P(d)=F(d+3)" /> sama dengan <InlineMath math="1{,}2\,K(d)=K(d+3)" />. Rumus <InlineMath math="K" /> berganti di km ke-<InlineMath math="2" /> dan km ke-<InlineMath math="12" />, jadi **periksa setiap kasus dan buang akar yang jatuh di luar kasusnya**.
+
+| Kasus | Persamaan | Akar | Keputusan |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="d\le2" /> | <InlineMath math="10{.}000=F(d+3)" /> | tidak ada | <InlineMath math="F(d+3)\ge F(3)=14{.}500" /> |
+| <InlineMath math="2<d\le9" /> | <InlineMath math="5{.}400(d-2)=4{.}500(d+1)" /> | <InlineMath math="d=17" /> | ditolak, <InlineMath math="17>9" /> |
+| <InlineMath math="9<d\le12" /> | <InlineMath math="5{.}400(d-2)=45{.}000+3{.}500(d-9)" /> | <InlineMath math="d=\frac{243}{19}\approx12{,}79" /> | ditolak, lebih dari <InlineMath math="12" /> |
+| <InlineMath math="d>12" /> | <InlineMath math="1{,}2\,[45{.}000+3{.}500(d-12)]=45{.}000+3{.}500(d-9)" /> | <InlineMath math="d=\frac{99}{7}\approx14{,}14" /> | diterima |
+
+Kasus terakhir dikerjakan begini:
 
 <BlockMath math="\begin{aligned}
-pq&:\quad 161,\ 209,\ 221 \\
-p^2+q^2&:\quad 578,\ 482,\ 458 \\
-|p-q|&:\quad 16,\ 8,\ 4
+54{.}000+4{.}200(d-12)&=45{.}000+3{.}500(d-9) \\
+3{.}600+4{.}200d&=13{.}500+3{.}500d \\
+700d&=9{.}900 \\
+d&=\tfrac{99}{7}
 \end{aligned}" />
 
-Selisih yang selalu habis dibagi <InlineMath math="4" /> bukan kebetulan. Bilangan ganjil bersisa <InlineMath math="1" /> atau <InlineMath math="3" /> jika dibagi <InlineMath math="4" />. Karena <InlineMath math="30" /> bersisa <InlineMath math="2" />, sisa <InlineMath math="p" /> dan <InlineMath math="q" /> pasti sama, sehingga selisihnya kelipatan <InlineMath math="4" />.
+Cek: bagian per km untuk <InlineMath math="\frac{99}{7}\text{ km}" /> adalah <InlineMath math="45{.}000+3{.}500\cdot\frac{15}{7}=52{.}500" />, jadi <InlineMath math="P=10{.}000+1{,}2\cdot52{.}500=73{.}000" />. Untuk <InlineMath math="\frac{120}{7}\text{ km}" />, bagian per km adalah <InlineMath math="45{.}000+3{.}500\cdot\frac{36}{7}=63{.}000" />, jadi <InlineMath math="F=73{.}000" />. Kalau kamu hanya mencoba rumus <InlineMath math="4{.}500" /> per km, kamu mendapat <InlineMath math="d=17" /> yang ditolak lalu mengira tidak ada jawaban. Pernyataan ini **Benar**.
 
-Jadi, pernyataan yang benar adalah bahwa kedua bilangan ganjil, bahwa <InlineMath math="221" /> adalah hasil kali terbesar, dan bahwa selisihnya selalu kelipatan <InlineMath math="4" />.
-
-- Empat pasangan muncul jika <InlineMath math="1+29" /> ikut dihitung. Padahal <InlineMath math="1" /> bukan bilangan prima, sehingga hanya ada tiga pasangan.
-- <InlineMath math="p^2+q^2" /> tidak selalu habis dibagi <InlineMath math="10" />, misalnya <InlineMath math="49+529=578" />.
+Jadi, urutannya: Benar, Salah, Salah, Benar.

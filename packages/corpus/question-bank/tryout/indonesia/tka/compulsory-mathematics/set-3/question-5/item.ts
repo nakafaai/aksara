@@ -13,23 +13,15 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label:
-            "Perahu dapat mengangkut $$12$$ karung beras dan $$14$$ karung gula sekaligus.",
+          label: "Titik $$(4,2)$$ terletak pada daerah itu, sedangkan titik $$(4,3)$$ tidak.",
         },
         {
           column: 2,
-          label:
-            "Jika perahu hanya mengangkut karung beras, paling banyak $$23$$ karung dapat diangkut sekaligus.",
+          label: "Banyak titik berkoordinat bilangan bulat pada daerah itu yang memenuhi $$3\\le x\\le5$$ adalah $$10$$.",
         },
         {
           column: 1,
-          label:
-            "Jika perahu mengangkut tepat $$28$$ karung, paling banyak $$10$$ di antaranya karung beras.",
-        },
-        {
-          column: 2,
-          label:
-            "Berat seluruh karung dalam satu kali angkut dapat mencapai tepat $$1{.}136\\text{ kg}$$.",
+          label: "Di antara titik-titik berkoordinat bilangan bulat pada daerah itu, nilai maksimum $$2x+3y$$ adalah $$15$$.",
         },
       ],
     },

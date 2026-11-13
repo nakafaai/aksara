@@ -1,15 +1,77 @@
-Daerah asal alami memuat semua <InlineMath math="x" /> yang membuat rumus bermakna. Ada **dua syarat**: bilangan di bawah akar tidak negatif, dan penyebut tidak nol.
+# Daerah asal dari nilai mutlak
+
+Daerah hasil adalah kumpulan semua nilai <InlineMath math="f(x)" /> untuk <InlineMath math="x" /> yang boleh dipakai. Jadi kamu perlu tahu dulu **<InlineMath math="x" /> mana saja yang boleh**. Pertidaksamaan <InlineMath math="2\le|x-1|\le5" /> berisi dua syarat sekaligus.
+
+Syarat <InlineMath math="|x-1|\le5" /> berarti jarak <InlineMath math="x" /> ke <InlineMath math="1" /> paling jauh <InlineMath math="5" />. Syarat <InlineMath math="|x-1|\ge2" /> berarti jarak itu paling dekat <InlineMath math="2" />, dan ini punya **dua cabang**, ke kiri dan ke kanan.
 
 <BlockMath math="\begin{aligned}
-12-3x\ge0\ &\Rightarrow\ x\le4 \\
-x+1\ne0\ &\Rightarrow\ x\ne-1
+|x-1|\le5 &\iff -4\le x\le 6 \\
+|x-1|\ge2 &\iff x-1\le-2 \ \text{ atau } \ x-1\ge2 \\
+&\iff x\le-1 \ \text{ atau } \ x\ge3
 \end{aligned}" />
 
-Sebagai pemeriksaan, <InlineMath math="f(4)=\frac{0}{5}=0" /> terdefinisi, sedangkan <InlineMath math="x=-1" /> membuat penyebut nol dan <InlineMath math="x=5" /> membuat bilangan di bawah akar negatif.
+Gabungkan keduanya. Daerah asal <InlineMath math="f" /> terdiri atas dua selang, <InlineMath math="-4\le x\le-1" /> dan <InlineMath math="3\le x\le6" />. Selang <InlineMath math="-1<x<3" /> tidak ikut.
 
-Jadi, daerah asal alaminya <InlineMath math="\{x\mid x\le4,\ x\ne-1\}" />.
+# Nilai fungsi di setiap selang
 
-- <InlineMath math="\{x\mid x\le4\}" /> melupakan syarat penyebut tidak nol.
-- <InlineMath math="\{x\mid x<4,\ x\ne-1\}" /> membuang <InlineMath math="x=4" />, padahal akar dari nol terdefinisi.
-- <InlineMath math="\{x\mid x\ge4\}" /> tidak membalik tanda ketaksamaan saat membagi dengan <InlineMath math="-3" />.
-- <InlineMath math="\{x\mid x\ge-4,\ x\ne-1\}" /> salah tanda saat memindahkan <InlineMath math="12" />, sehingga memperoleh <InlineMath math="3x\ge-12" />.
+Lengkapkan kuadratnya supaya terlihat titik puncaknya.
+
+<BlockMath math="f(x)=x^2-4x+1=(x-2)^2-3" />
+
+Titik puncak ada di <InlineMath math="x=2" /> dengan nilai <InlineMath math="-3" />. Tapi <InlineMath math="x=2" /> berada di celah <InlineMath math="-1<x<3" />, jadi **nilai <InlineMath math="-3" /> tidak pernah tercapai**. Pada setiap selang, <InlineMath math="f" /> hanya naik atau hanya turun, sehingga nilai terkecil dan terbesarnya ada di ujung selang.
+
+<BlockMath math="\begin{aligned}
+-4\le x\le-1:&\quad f(-1)=6,\ \ f(-4)=33,\ \text{ nilai } 6\le y\le 33 \\
+3\le x\le 6:&\quad f(3)=-2,\ \ f(6)=13,\ \text{ nilai } -2\le y\le 13
+\end{aligned}" />
+
+Kedua selang nilai itu bertumpuk, karena <InlineMath math="6" /> sampai <InlineMath math="13" /> ada di keduanya. Gabungannya adalah <InlineMath math="-2\le y\le33" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="f(x)=(x-2)^2-3" /> pada daerah asalnya</>}
+  description={<>Parabola terbuka ke atas dengan titik puncak <InlineMath math="(2,-3)" />. Bagian yang dipakai hanya untuk <InlineMath math="-4\le x\le-1" />, dari <InlineMath math="(-4,33)" /> turun ke <InlineMath math="(-1,6)" />, dan untuk <InlineMath math="3\le x\le6" />, dari <InlineMath math="(3,-2)" /> naik ke <InlineMath math="(6,13)" />. Titik puncak berada di celah yang tidak termasuk daerah asal.</>}
+  labels={{
+    vertex: <InlineMath math="(2,-3)" />,
+    "low-end": <InlineMath math="(3,-2)" />,
+    "high-end": <InlineMath math="(-4,33)" />,
+    "left-end": <InlineMath math="(-1,6)" />,
+    "right-end": <InlineMath math="(6,13)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 9 },
+      y: { min: -6, max: 37 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "whole", kind: "quadratic", appearance: "construction", coefficients: { a: 1, b: -4, c: 1 }, domain: { min: -4, max: 6 }, inputAxis: "x" },
+      { id: "left-piece", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 1 }, domain: { min: -4, max: -1 }, inputAxis: "x" },
+      { id: "right-piece", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 1 }, domain: { min: 3, max: 6 }, inputAxis: "x" },
+      { id: "vertex-point", kind: "point", appearance: "warning", at: { x: 2, y: -3 } },
+      { id: "low-point", kind: "point", appearance: "answer", at: { x: 3, y: -2 } },
+      { id: "high-point", kind: "point", appearance: "answer", at: { x: -4, y: 33 } },
+      { id: "left-point", kind: "point", appearance: "reference", at: { x: -1, y: 6 } },
+      { id: "right-point", kind: "point", appearance: "reference", at: { x: 6, y: 13 } },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex-point", at: { x: 2, y: -3 }, placement: "below-left" },
+      { key: "low-end", objectId: "low-point", at: { x: 3, y: -2 }, placement: "right" },
+      { key: "high-end", objectId: "high-point", at: { x: -4, y: 33 }, placement: "right" },
+      { key: "left-end", objectId: "left-point", at: { x: -1, y: 6 }, placement: "left" },
+      { key: "right-end", objectId: "right-point", at: { x: 6, y: 13 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Pilihan yang menjebak
+
+Setiap pilihan lain **melupakan satu bagian dari daerah asal**.
+
+- <InlineMath math="\{y\mid -3\le y\le33\}" /> memakai nilai titik puncak <InlineMath math="-3" />, padahal <InlineMath math="x=2" /> tidak termasuk daerah asal.
+- <InlineMath math="\{y\mid y\ge-3\}" /> adalah daerah hasil kalau <InlineMath math="x" /> boleh bilangan real berapa pun. Syarat nilai mutlak diabaikan.
+- <InlineMath math="\{y\mid -2\le y\le13\}" /> hanya memakai cabang <InlineMath math="x\ge3" /> dan kehilangan cabang <InlineMath math="x\le-1" />.
+- <InlineMath math="\{y\mid 6\le y\le33\}" /> hanya memakai cabang <InlineMath math="x\le-1" />.
+
+Jadi, daerah hasil fungsi <InlineMath math="f" /> adalah <InlineMath math="\{y\mid -2\le y\le33\}" />.

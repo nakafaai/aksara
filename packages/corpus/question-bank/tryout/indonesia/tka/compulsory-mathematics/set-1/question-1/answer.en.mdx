@@ -1,16 +1,40 @@
-With a tiered tariff, **each tier has its own price**: the first <InlineMath math="10\text{ m}^3" /> are charged at the first rate, and only the remaining <InlineMath math="5\text{ m}^3" /> at the second. The fixed charge comes on top.
+# The distance of the original trip
+
+The fare is more than <InlineMath math="\text{Rp}10{,}000" />, so the trip is longer than <InlineMath math="2\text{ km}" />. **First find the distance from the fare that was paid**:
 
 <BlockMath math="\begin{aligned}
-\text{first tier}&=10\cdot4{,}000=40{,}000 \\
-\text{second tier}&=5\cdot6{,}500=32{,}500 \\
-\text{bill}&=40{,}000+32{,}500+18{,}000=90{,}500
+10{,}000+4{,}500(d-2)&=52{,}300 \\
+4{,}500(d-2)&=42{,}300 \\
+d&=11.4
 \end{aligned}" />
 
-As a check, the usage is below <InlineMath math="20\text{ m}^3" />, so the third tier does not apply.
+The trip is <InlineMath math="11.4\text{ km}" />, still below <InlineMath math="12\text{ km}" />, so every part of it uses the rate of <InlineMath math="\text{Rp}4{,}500" /> per km.
 
-So the bill is <InlineMath math="\text{Rp}90{,}500" />.
+# What changes when you split it
 
-- <InlineMath math="\text{Rp}72{,}500" /> forgets the fixed charge.
-- <InlineMath math="\text{Rp}78{,}000" /> charges all <InlineMath math="15\text{ m}^3" /> at the first rate: <InlineMath math="60{,}000+18{,}000" />.
-- <InlineMath math="\text{Rp}97{,}500" /> charges all <InlineMath math="15\text{ m}^3" /> at the second rate and forgets the fixed charge.
-- <InlineMath math="\text{Rp}115{,}500" /> charges all <InlineMath math="15\text{ m}^3" /> at the second rate: <InlineMath math="97{,}500+18{,}000" />.
+Say the trip is split into <InlineMath math="a" /> km and <InlineMath math="b" /> km with <InlineMath math="a+b=11.4" />. If both parts are at least <InlineMath math="2\text{ km}" />, each order pays its own flag fare and gets its own first <InlineMath math="2\text{ km}" />:
+
+<BlockMath math="\begin{aligned}
+\text{total}&=\left[10{,}000+4{,}500(a-2)\right]+\left[10{,}000+4{,}500(b-2)\right] \\
+&=20{,}000+4{,}500(a+b-4) \\
+&=20{,}000+4{,}500\cdot7.4=53{,}300
+\end{aligned}" />
+
+**The result doesn't depend on where you split**. Compared with one trip, you pay one more flag fare, <InlineMath math="+10{,}000" />, but get another <InlineMath math="2\text{ km}" /> with no per-km charge, <InlineMath math="-9{,}000" />. So it's always <InlineMath math="\text{Rp}1{,}000" /> more.
+
+# When one part is very short
+
+If the first part is <InlineMath math="a\le2" />, that order still pays the full <InlineMath math="\text{Rp}10{,}000" />, but its free distance isn't fully used:
+
+<BlockMath math="\text{total}=10{,}000+\left[10{,}000+4{,}500(11.4-a-2)\right]=62{,}300-4{,}500a\ge62{,}300-9{,}000=53{,}300" />
+
+**A part that's too short wastes free distance**. For example, <InlineMath math="a=1.4" /> gives <InlineMath math="\text{Rp}56{,}000" />. The smallest total is still <InlineMath math="\text{Rp}53{,}300" />.
+
+So the smallest possible total is <InlineMath math="\text{Rp}53{,}300" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\text{Rp}52{,}300" /> assumes splitting changes nothing. But there's a second flag fare.
+- <InlineMath math="\text{Rp}51{,}300" /> assumes splitting saves money. **The extra free distance is only worth <InlineMath math="\text{Rp}9{,}000" />**, which is less than a flag fare.
+- <InlineMath math="\text{Rp}62{,}300" /> adds the second flag fare but forgets that the second order also gets its first <InlineMath math="2\text{ km}" /> with no per-km charge.
+- <InlineMath math="\text{Rp}56{,}000" /> is the total for one particular split, such as <InlineMath math="1.4\text{ km}" /> then <InlineMath math="10\text{ km}" />, not the smallest total.

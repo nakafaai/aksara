@@ -1,15 +1,85 @@
-Luas kebun dikurangi luas jalan. Kedua jalan **berpotongan pada sebuah persegi <InlineMath math="1\text{ m}\times1\text{ m}" />** yang termasuk ke dalam kedua jalan, jadi persegi itu hanya boleh dikurangkan sekali.
+Soal ini menanyakan luas halaman yang terkena air. Tanpa dinding, daerahnya berupa lingkaran berjari-jari <InlineMath math="6\text{ m}" />. Dinding memotong lingkaran itu, jadi **bagian lingkaran di balik dinding harus dibuang**. Bagian yang dibuang adalah tembereng, yaitu daerah di antara tali busur dan busur lingkaran.
+
+# Sudut pusat tembereng
+
+Tarik garis tegak lurus dari <InlineMath math="S" /> ke dinding dan sebut kakinya <InlineMath math="M" />, jadi <InlineMath math="SM=3" />. Dinding memotong lingkaran di <InlineMath math="P" /> dan <InlineMath math="Q" />, dan keduanya berjarak <InlineMath math="6" /> dari <InlineMath math="S" /> karena terletak pada lingkaran. Segitiga <InlineMath math="SMP" /> siku-siku di <InlineMath math="M" />.
+
+<MathVisual
+  title={<>Lingkaran semprotan yang terpotong dinding</>}
+  description={<>Lingkaran berpusat <InlineMath math="S" /> dengan jari-jari <InlineMath math="6" />. Dinding adalah garis tegak berjarak <InlineMath math="3" /> dari <InlineMath math="S" />, dengan kaki tegak lurus <InlineMath math="M" />. Dinding memotong lingkaran di <InlineMath math="P" /> dan <InlineMath math="Q" />, dan jari-jari <InlineMath math="SP" /> serta <InlineMath math="SQ" /> membentuk segitiga <InlineMath math="SPQ" />.</>}
+  labels={{
+    s: <InlineMath math="S" />,
+    m: <InlineMath math="M" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    radius: <InlineMath math="6" />,
+    distance: <InlineMath math="3" />,
+    wall: <>dinding</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 8 },
+      y: { min: -7, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "spray", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 6 },
+      { id: "wall-line", kind: "line", appearance: "warning", through: [{ x: 3, y: -7 }, { x: 3, y: 7 }] },
+      { id: "radius-p", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 3, y: 3 * Math.sqrt(3) } },
+      { id: "radius-q", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 3, y: -3 * Math.sqrt(3) } },
+      { id: "foot", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "point-s", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 3, y: 3 * Math.sqrt(3) } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 3, y: -3 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "s", objectId: "point-s", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "m", objectId: "point-m", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "p", objectId: "point-p", at: { x: 3, y: 3 * Math.sqrt(3) }, placement: "right" },
+      { key: "q", objectId: "point-q", at: { x: 3, y: -3 * Math.sqrt(3) }, placement: "right" },
+      { key: "radius", objectId: "radius-p", at: { x: 1.5, y: 1.5 * Math.sqrt(3) }, placement: "above-left" },
+      { key: "distance", objectId: "foot", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "wall", objectId: "wall-line", at: { x: 3, y: 6.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Pakai perbandingan kosinus di segitiga siku-siku itu.
 
 <BlockMath math="\begin{aligned}
-L_{\text{jalan}}&=20\cdot1+15\cdot1-1\cdot1=34\text{ m}^2 \\
-L_{\text{sayur}}&=20\cdot15-34=300-34=266\text{ m}^2
+\cos\angle PSM&=\frac{SM}{SP}=\frac{3}{6}=\frac{1}{2} \\
+\angle PSM&=60^\circ \\
+\angle PSQ&=2\cdot60^\circ=120^\circ
 \end{aligned}" />
 
-Cek dengan menggeser kedua jalan ke tepi kebun: sisa kebun menjadi satu persegi panjang <InlineMath math="19\text{ m}\times14\text{ m}" />, dan <InlineMath math="19\cdot14=266" />.
+Segitiga <InlineMath math="SMQ" /> sama persis dengan segitiga <InlineMath math="SMP" />, dicerminkan terhadap <InlineMath math="SM" />. Itu sebabnya **sudut pusat tembereng adalah dua kali <InlineMath math="60^\circ" />**.
 
-Jadi, luas bagian yang ditanami sayur adalah <InlineMath math="266\text{ m}^2" />.
+# Luas tembereng
 
-- <InlineMath math="265\text{ m}^2" /> mengurangkan kedua jalan secara penuh, sehingga persegi perpotongannya terkurangkan dua kali.
-- <InlineMath math="267\text{ m}^2" /> mengurangkan persegi perpotongan dari kedua jalan, sehingga persegi itu tidak terkurangkan sama sekali.
-- <InlineMath math="280\text{ m}^2" /> hanya mengurangkan jalan yang sejajar sisi panjang.
-- <InlineMath math="285\text{ m}^2" /> hanya mengurangkan jalan yang sejajar sisi lebar.
+Juring adalah daerah yang dibatasi dua jari-jari dan busur di antaranya. Tembereng sama dengan juring <InlineMath math="120^\circ" /> dikurangi segitiga <InlineMath math="SPQ" />. Segitiga itu ada di sisi <InlineMath math="S" />, jadi **segitiga tetap terkena air**, hanya tembereng yang hilang.
+
+<BlockMath math="\begin{aligned}
+L_{\text{juring}}&=\frac{120^\circ}{360^\circ}\cdot\pi\cdot6^2=12\pi \\
+L_{\triangle SPQ}&=\frac{1}{2}\cdot6\cdot6\cdot\sin120^\circ=18\cdot\frac{\sqrt{3}}{2}=9\sqrt{3} \\
+L_{\text{tembereng}}&=12\pi-9\sqrt{3}
+\end{aligned}" />
+
+# Luas yang terkena air
+
+Kurangkan tembereng dari luas lingkaran penuh <InlineMath math="\pi\cdot6^2=36\pi" />. Perhatikan tanda kurungnya, karena **mengurangkan selisih berarti segitiganya ikut ditambahkan kembali**.
+
+<BlockMath math="36\pi-\left(12\pi-9\sqrt{3}\right)=24\pi+9\sqrt{3}\approx75{,}4+15{,}6=91{,}0\text{ m}^2" />
+
+Cek kewajarannya: dinding ada di balik pusat <InlineMath math="S" />, jadi daerah yang basah harus lebih dari setengah lingkaran, <InlineMath math="18\pi\approx56{,}5" />, dan kurang dari lingkaran penuh, <InlineMath math="36\pi\approx113{,}1" />. Hasil <InlineMath math="91{,}0" /> memang ada di antaranya.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\left(30\pi+9\sqrt{3}\right)\text{ m}^2" /> memakai <InlineMath math="60^\circ" /> sebagai sudut pusat tembereng. Sudut <InlineMath math="60^\circ" /> hanya separuhnya, yaitu sudut <InlineMath math="PSM" />.
+- <InlineMath math="24\pi\text{ m}^2" /> membuang seluruh juring <InlineMath math="120^\circ" />. **Segitiga <InlineMath math="SPQ" /> ada di depan dinding**, jadi ikut basah.
+- <InlineMath math="\left(24\pi-9\sqrt{3}\right)\text{ m}^2" /> salah tanda saat mengurangkan tembereng, sehingga juring dan segitiga sama-sama terbuang.
+- <InlineMath math="\left(12\pi-9\sqrt{3}\right)\text{ m}^2" /> adalah luas tembereng di balik dinding. Itu bagian yang kering, bukan yang ditanyakan.
+
+Jadi, luas daerah halaman yang terkena air adalah <InlineMath math="\left(24\pi+9\sqrt{3}\right)\text{ m}^2" />.

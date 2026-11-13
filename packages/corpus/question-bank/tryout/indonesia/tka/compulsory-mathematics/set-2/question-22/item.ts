@@ -6,32 +6,32 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "daily-temperature",
+  stimulus: "nilai",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label:
-            "Lebih dari $$40\\,\\%$$ hari bersuhu maksimum di atas rata-rata.",
-        },
-        {
-          correct: true,
-          label: "Median data sama dengan modusnya.",
+          label: "Paling sedikit $$8$$ siswa kelas A mendapat nilai $$82$$ atau lebih.",
         },
         {
           correct: false,
-          label: "Rata-rata data lebih kecil daripada mediannya.",
+          label: "Tepat $$13$$ siswa kelas B mendapat nilai lebih dari $$68$$.",
+        },
+        {
+          correct: true,
+          label: "Lebih dari $$25\\%$$ siswa kelas B mendapat nilai $$76$$ atau lebih.",
         },
         {
           correct: true,
           label:
-            "Ada tepat $$3$$ hari yang suhu maksimumnya di bawah $$32^\\circ\\text{C}$$.",
+            "Banyak siswa kelas A yang nilainya lebih dari $$76$$ lebih besar daripada banyak siswa kelas B yang nilainya lebih dari $$76$$.",
         },
         {
-          correct: false,
-          label: "Jangkauan data adalah $$5^\\circ\\text{C}$$.",
+          correct: true,
+          label:
+            "Paling sedikit $$17$$ siswa kelas A mendapat nilai dari $$56$$ sampai dengan $$82$$.",
         },
       ],
     },

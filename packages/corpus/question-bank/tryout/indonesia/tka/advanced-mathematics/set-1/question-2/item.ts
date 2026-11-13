@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$\\begin{pmatrix} 3 & -1 \\\\ 2 & -1 \\end{pmatrix}$$",
+          label: "$$-5$$",
         },
         {
           correct: false,
-          label: "$$\\begin{pmatrix} 7 & 2 \\\\ -17 & -5 \\end{pmatrix}$$",
+          label: "$$-3$$",
         },
         {
           correct: false,
-          label: "$$\\begin{pmatrix} 2 & -1 \\\\ -5 & 3 \\end{pmatrix}$$",
+          label: "$$2$$",
         },
         {
           correct: false,
-          label: "$$\\begin{pmatrix} 13 & 7 \\\\ 2 & 1 \\end{pmatrix}$$",
+          label: "$$3$$",
         },
         {
           correct: false,
-          label: "$$\\begin{pmatrix} 17 & 6 \\\\ 3 & 1 \\end{pmatrix}$$",
+          label: "$$9$$",
         },
       ],
     },

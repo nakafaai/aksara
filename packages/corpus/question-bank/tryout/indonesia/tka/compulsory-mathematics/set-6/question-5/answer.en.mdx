@@ -1,10 +1,45 @@
-Compare the two equations as two lines. The second equation is <InlineMath math="3(x+2y)=b" />. If the first equation also has the form <InlineMath math="x+2y=\ldots" />, which happens when <InlineMath math="a=1" />, **the two lines are parallel or the same line**. If <InlineMath math="a\ne1" />, the slopes differ, so the lines cross at exactly one point.
+# The second purchase adds no new equation
+
+Let the normal price of one notebook be <InlineMath math="b" /> rupiah and of one pen <InlineMath math="p" /> rupiah. Rina's purchase gives one equation. Sari's purchase has a <InlineMath math="10\%" /> discount, so she pays <InlineMath math="90\%" /> of the normal price:
 
 <BlockMath math="\begin{aligned}
-a=1:\quad x+2y=4\ &\iff\ 3x+6y=12
+2b+3p&=26{,}000 \\
+0.9\,(6b+9p)&=70{,}200 \quad\Rightarrow\quad 6b+9p=78{,}000 \quad\Rightarrow\quad 2b+3p=26{,}000
 \end{aligned}" />
 
-- For <InlineMath math="a=2" /> the first line has slope <InlineMath math="-1" /> and the second has slope <InlineMath math="-\frac12" />. They always cross, whatever <InlineMath math="b" /> is. This statement is false.
-- For <InlineMath math="a=1" /> and <InlineMath math="b=12" /> the second equation is three times the first. The lines coincide, so there are infinitely many solutions. This statement is true.
-- For <InlineMath math="a=3" /> and <InlineMath math="b=6" />, subtract the first equation from the second: <InlineMath math="4y=2" />, so <InlineMath math="y=\frac12" /> and <InlineMath math="3x=4-1" />, giving <InlineMath math="x=1" />. Then <InlineMath math="x+y=\frac32" />, not <InlineMath math="1" />. This statement is false.
-- For <InlineMath math="a=1" /> and <InlineMath math="b=10" /> the second equation becomes <InlineMath math="x+2y=\frac{10}{3}" />, while the first is <InlineMath math="x+2y=4" />. The lines are parallel and distinct, so there is no solution. This statement is true.
+The second equation is just the first one times <InlineMath math="3" />. **The two pieces of information are really one equation**, so the prices aren't fixed. The word pasti (certainly) in each statement has to be checked against every possible pair of prices.
+
+# Every possible pair of prices
+
+Write <InlineMath math="b" /> in terms of <InlineMath math="p" />, then use the two extra conditions from the question.
+
+<BlockMath math="\begin{aligned}
+b&=\frac{26{,}000-3p}{2} \\
+b>p \;&\Rightarrow\; 26{,}000-3p>2p \;\Rightarrow\; p<5{,}200
+\end{aligned}" />
+
+The price <InlineMath math="b" /> also has to be a multiple of <InlineMath math="500" />, so <InlineMath math="26{,}000-3p" /> has to be a multiple of <InlineMath math="1{,}000" />. Since <InlineMath math="p" /> is a multiple of <InlineMath math="500" />, that only happens when <InlineMath math="p" /> is a multiple of <InlineMath math="1{,}000" />. With <InlineMath math="0<p<5{,}200" />, **there are only five pairs**:
+
+| <InlineMath math="p" /> | <InlineMath math="b" /> | <InlineMath math="3b+2p" /> |
+| --- | --- | --- |
+| <InlineMath math="1{,}000" /> | <InlineMath math="11{,}500" /> | <InlineMath math="36{,}500" /> |
+| <InlineMath math="2{,}000" /> | <InlineMath math="10{,}000" /> | <InlineMath math="34{,}000" /> |
+| <InlineMath math="3{,}000" /> | <InlineMath math="8{,}500" /> | <InlineMath math="31{,}500" /> |
+| <InlineMath math="4{,}000" /> | <InlineMath math="7{,}000" /> | <InlineMath math="29{,}000" /> |
+| <InlineMath math="5{,}000" /> | <InlineMath math="5{,}500" /> | <InlineMath math="26{,}500" /> |
+
+Every row satisfies <InlineMath math="2b+3p=26{,}000" />, <InlineMath math="b>p" />, and the multiple-of-<InlineMath math="500" /> rule.
+
+# Statement one
+
+From <InlineMath math="p<5{,}200" /> you get <InlineMath math="3p<15{,}600" />, so <InlineMath math="2b=26{,}000-3p>10{,}400" />, that is, <InlineMath math="b>5{,}200" />. The smallest multiple of <InlineMath math="500" /> above <InlineMath math="5{,}200" /> is <InlineMath math="5{,}500" />, and the table shows the same smallest notebook price, <InlineMath math="\text{Rp}5{,}500" />. **The notebook never costs less than <InlineMath math="\text{Rp}5{,}500" />**, so this statement is **True**.
+
+# Statement two
+
+The condition <InlineMath math="b>p" /> gives <InlineMath math="p<5{,}200" />, not <InlineMath math="p<5{,}000" />. The pair <InlineMath math="p=5{,}000" /> and <InlineMath math="b=5{,}500" /> meets every condition: <InlineMath math="2\cdot5{,}500+3\cdot5{,}000=26{,}000" />, the notebook is dearer, and both are multiples of <InlineMath math="500" />. **A pen can cost exactly <InlineMath math="\text{Rp}5{,}000" />**, so this statement is **False**.
+
+# Statement three
+
+The value of <InlineMath math="3b+2p" /> changes from row to row, and it's largest when the pen is cheapest. At <InlineMath math="p=1{,}000" /> and <InlineMath math="b=11{,}500" /> it's <InlineMath math="36{,}500" />, which is more than <InlineMath math="35{,}000" />. **One pair that breaks the claim is enough** to rule out certainly, so this statement is **False**. If you only try one pair from the middle, say <InlineMath math="p=3{,}000" />, you get <InlineMath math="31{,}500" /> and might wrongly call it true.
+
+So the answers are True, False, False.

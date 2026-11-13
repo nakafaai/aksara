@@ -1,20 +1,42 @@
-Keempat pernyataan menguji **sifat-sifat matriks <InlineMath math="2\times2" />**: determinan kelipatan matriks, pengurangan, invers, dan determinan hasil kali. Hitung dulu kedua determinan, karena keduanya dipakai berulang.
+Ketiga pernyataan ini membicarakan matriks <InlineMath math="A" /> dan <InlineMath math="B" /> yang **sudah diberikan**, bukan sembarang matriks. Jadi sifat umum saja belum cukup: sebuah pernyataan yang biasanya salah bisa benar untuk pasangan matriks tertentu, dan sebaliknya. Hitung dulu bahan yang dipakai berulang.
 
 <BlockMath math="\begin{aligned}
-\det A&=3\cdot(-4)-(-2)\cdot5=-12+10=-2 \\
-\det B&=1\cdot0-4\cdot(-3)=12
+AB&=\begin{pmatrix}2&1\\3&4\end{pmatrix}\begin{pmatrix}1&2\\2&2\end{pmatrix}=\begin{pmatrix}4&6\\11&14\end{pmatrix} \\
+BA&=\begin{pmatrix}1&2\\2&2\end{pmatrix}\begin{pmatrix}2&1\\3&4\end{pmatrix}=\begin{pmatrix}8&9\\10&10\end{pmatrix} \\
+\det A&=2\cdot4-1\cdot3=5,\qquad \det B=1\cdot2-2\cdot2=-2
 \end{aligned}" />
 
-1. Pernyataan <InlineMath math="\det(3A)=-6" /> salah. Jika hanya dikalikan <InlineMath math="3" /> sekali, diperoleh <InlineMath math="3\det A=-6" />. Padahal faktor <InlineMath math="3" /> ada di kedua baris, sehingga <InlineMath math="\det(3A)=3^2\det A=9\cdot(-2)=-18" />.
-2. Pernyataan tentang <InlineMath math="A-B" /> benar, karena matriks dikurangkan elemen demi elemen.
-3. Pernyataan tentang <InlineMath math="A^{-1}" /> salah. Untuk invers, kamu menukar elemen diagonal utama, mengganti tanda elemen diagonal sekunder, lalu membagi dengan <InlineMath math="\det A=-2" />. Pernyataan itu membagi dengan <InlineMath math="2" />, bukan <InlineMath math="-2" />, jadi tanda determinannya hilang.
-4. Pernyataan <InlineMath math="\det(AB)=-24" /> benar, karena <InlineMath math="\det(AB)=\det A\cdot\det B=(-2)\cdot12=-24" />.
+# Transpos hasil kali
 
-Invers dan hasil kali sebagai pemeriksaan:
+Pernyataan pertama: **Salah**. Aturan yang selalu berlaku adalah <InlineMath math="(AB)^T=B^TA^T" />, dengan urutan terbalik. Ruas kanan pernyataan, <InlineMath math="A^TB^T" />, sama dengan <InlineMath math="(BA)^T" />. Jadi pernyataan ini hanya benar kalau <InlineMath math="AB=BA" />, padahal hasil di atas menunjukkan <InlineMath math="AB\neq BA" />.
+
+<BlockMath math="(AB)^T=\begin{pmatrix}4&11\\6&14\end{pmatrix},\qquad A^TB^T=(BA)^T=\begin{pmatrix}8&10\\9&10\end{pmatrix}" />
+
+# Determinan jumlah dua matriks
+
+Pernyataan kedua: **Benar**. Secara umum determinan tidak bisa dipecah pada penjumlahan, tapi untuk dua matriks ini kesamaannya kebetulan terpenuhi. Hitung saja kedua ruasnya.
 
 <BlockMath math="\begin{aligned}
-A^{-1}&=\frac{1}{-2}\begin{pmatrix} -4 & 2 \\ -5 & 3 \end{pmatrix}=\begin{pmatrix} 2 & -1 \\ \frac52 & -\frac32 \end{pmatrix} \\
-AB&=\begin{pmatrix} 3\cdot1+(-2)\cdot(-3) & 3\cdot4+(-2)\cdot0 \\ 5\cdot1+(-4)\cdot(-3) & 5\cdot4+(-4)\cdot0 \end{pmatrix}=\begin{pmatrix} 9 & 12 \\ 17 & 20 \end{pmatrix},\qquad \det(AB)=180-204=-24
+A+B&=\begin{pmatrix}3&3\\5&6\end{pmatrix} \\
+\det(A+B)&=3\cdot6-3\cdot5=3 \\
+\det A+\det B&=5+(-2)=3
 \end{aligned}" />
 
-Jadi, pernyataan tentang <InlineMath math="A-B" /> dan <InlineMath math="\det(AB)" /> benar, sedangkan pernyataan tentang <InlineMath math="\det(3A)" /> dan <InlineMath math="A^{-1}" /> salah.
+Kedua ruas bernilai <InlineMath math="3" />. Kalau kamu langsung menjawab salah karena ingat sifat umumnya, kamu melewatkan bahwa **soal menanyakan matriks yang ini**.
+
+# Berlaku untuk setiap bilangan real
+
+Pernyataan ketiga: **Salah**. Kata **untuk setiap** berarti satu contoh gagal sudah cukup untuk menjatuhkannya. Hitung <InlineMath math="\det(A+kB)" /> sebagai fungsi <InlineMath math="k" />.
+
+<BlockMath math="\begin{aligned}
+A+kB&=\begin{pmatrix}2+k&1+2k\\3+2k&4+2k\end{pmatrix} \\
+\det(A+kB)&=(2+k)(4+2k)-(1+2k)(3+2k) \\
+&=(8+8k+2k^2)-(3+8k+4k^2) \\
+&=5-2k^2
+\end{aligned}" />
+
+Ruas kanan pernyataan adalah <InlineMath math="\det A+k\det B=5-2k" />. Keduanya sama hanya jika <InlineMath math="2k^2=2k" />, yaitu <InlineMath math="k=0" /> atau <InlineMath math="k=1" />. Nilai <InlineMath math="k=1" /> adalah pernyataan kedua, jadi kebenaran pernyataan kedua tidak menular ke semua <InlineMath math="k" />. Contoh penyangkal <InlineMath math="k=2" />:
+
+<BlockMath math="\det(A+2B)=5-8=-3,\qquad \det A+2\det B=5-4=1" />
+
+Jadi, pernyataan pertama salah, pernyataan kedua benar, dan pernyataan ketiga salah.

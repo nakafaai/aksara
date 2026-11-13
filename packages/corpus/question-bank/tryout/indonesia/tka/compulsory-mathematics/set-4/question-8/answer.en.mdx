@@ -1,15 +1,42 @@
-The numbers of users form a **geometric sequence** with <InlineMath math="a=1{,}600" /> and ratio <InlineMath math="r=1.5" />. From the first to the fifth month there are four multiplications, so <InlineMath math="U_5=ar^4" />.
+# The difference and the first term
+
+Write the profit on day <InlineMath math="n" />, in thousands of rupiah, as <InlineMath math="U_n=a-(n-1)d" />, where <InlineMath math="a" /> is the first day's profit and <InlineMath math="d" /> is the drop per day. The question asks for the first day with <InlineMath math="U_n<0" />, **truly negative, not zero**.
+
+Start with the gap between day <InlineMath math="4" /> and day <InlineMath math="9" />. Going from day <InlineMath math="4" /> to day <InlineMath math="9" /> takes <InlineMath math="9-4=5" /> drops, not <InlineMath math="4" /> or <InlineMath math="6" />.
 
 <BlockMath math="\begin{aligned}
-r^4&=1.5^4=5.0625 \\
-U_5&=1{,}600\cdot5.0625=8{,}100
+U_4-U_9&=5d=60 \\
+d&=12
 \end{aligned}" />
 
-As a check month by month, <InlineMath math="1{,}600\to2{,}400\to3{,}600\to5{,}400\to8{,}100" />.
+Day <InlineMath math="3" /> and day <InlineMath math="11" /> are equally far from day <InlineMath math="7" />, so their sum equals <InlineMath math="2U_7" />.
 
-So in the fifth month there are <InlineMath math="8{,}100" /> users.
+<BlockMath math="\begin{aligned}
+U_3+U_{11}&=2U_7=432 \\
+U_7&=216 \\
+a=U_7+6d&=216+72=288
+\end{aligned}" />
 
-- <InlineMath math="9{,}600" /> multiplies the ratio by <InlineMath math="4" />, <InlineMath math="1{,}600\cdot1.5\cdot4" />, instead of raising it to a power.
-- <InlineMath math="12{,}000" /> works out <InlineMath math="1{,}600\cdot1.5\cdot5" />.
-- <InlineMath math="12{,}150" /> uses <InlineMath math="r^5" />, as if there were five multiplications.
-- <InlineMath math="18{,}225" /> uses <InlineMath math="r^6" />.
+So <InlineMath math="U_n=288-12(n-1)=300-12n" />.
+
+# The first day with a loss
+
+Now find the smallest <InlineMath math="n" /> with a negative profit.
+
+<BlockMath math="\begin{aligned}
+300-12n&<0 \\
+n&>25
+\end{aligned}" />
+
+On day <InlineMath math="25" /> the profit is <InlineMath math="300-300=0" />. That's **not a loss yet**, just breaking even. On day <InlineMath math="26" /> the profit is <InlineMath math="300-312=-12" />, a loss of <InlineMath math="\text{Rp}12{,}000" />. So the stall first makes a loss on day <InlineMath math="26" />.
+
+# The tempting options
+
+Each of the other options comes from **one step that's off**.
+
+- Day <InlineMath math="22" /> comes from counting <InlineMath math="4" /> drops from day <InlineMath math="4" /> to day <InlineMath math="9" />, which gives <InlineMath math="d=15" /> and <InlineMath math="U_n=321-15n" />.
+- Day <InlineMath math="25" /> is the day the profit is exactly zero. A zero profit isn't a loss.
+- Day <InlineMath math="29" /> comes from counting <InlineMath math="6" /> drops because there are six days from day <InlineMath math="4" /> to day <InlineMath math="9" />, which gives <InlineMath math="d=10" /> and <InlineMath math="U_n=286-10n" />.
+- Day <InlineMath math="50" /> is the first day the **total** profit since day one turns negative. That total is <InlineMath math="S_n=n(294-6n)" />, which is exactly zero at <InlineMath math="n=49" />. The question is about the daily profit, not the total.
+
+So the stall first makes a loss on day <InlineMath math="26" />.

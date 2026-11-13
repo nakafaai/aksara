@@ -1,12 +1,51 @@
-Bei dieser Aufgabe beurteilst du nur, ob die Angaben **für eine eindeutige Antwort ausreichen**, nicht welche Antwort herauskommt. Prüfe jede Aussage zuerst allein, dann beide zusammen. Eine Aussage reicht aus, wenn sie die Frage für jeden möglichen Fall gleich beantwortet.
+# Eliminieren ohne einen Faktor zu verlieren
 
-- **Aussage (1) allein**: Die positiven ganzzahligen Lösungen von <InlineMath math="3x+2y=24" /> sind <InlineMath math="(2,9)" />, <InlineMath math="(4,6)" /> und <InlineMath math="(6,3)" />. Bei den ersten beiden ist <InlineMath math="x<y" />, beim dritten <InlineMath math="x>y" />. Die Aussage reicht nicht.
-- **Aussage (2) allein**: Zum Beispiel erfüllen <InlineMath math="(1,8)" /> und <InlineMath math="(8,1)" /> die Gleichung, mit entgegengesetzter Antwort. Auch diese Aussage reicht nicht.
-- **Beide zusammen**: Ziehst du das Doppelte der zweiten Gleichung von der ersten ab, bleibt <InlineMath math="x=24-18=6" />, also <InlineMath math="y=3" />. Dann ist sicher <InlineMath math="x>y" />.
+Die Aufgabe hat zwei Bedingungen: Das System muss **genau eine** Lösung haben, und diese Lösung muss <InlineMath math="x>0" /> und <InlineMath math="y>0" /> erfüllen. Am sichersten eliminierst du eine Variable und lässt dabei jeden Faktor, der <InlineMath math="k" /> enthält, sichtbar stehen.
 
-Erst beide Aussagen zusammen reichen also aus, jede einzelne nicht.
+Aus der zweiten Gleichung folgt <InlineMath math="2x=(k+1)-(k+1)y=(k+1)(1-y)" />. Multipliziere die erste Gleichung mit <InlineMath math="2" /> und ersetze <InlineMath math="2x" />:
 
-- Die Auswahl, nach der nur Aussage (1) allein ausreicht, ist falsch, weil Aussage (1) allein zwei verschiedene Antworten zulässt.
-- Die Auswahl, nach der nur Aussage (2) allein ausreicht, ist falsch, weil Aussage (2) allein zwei verschiedene Antworten zulässt.
-- Die Auswahl, nach der jede Aussage allein ausreicht, ist falsch, weil Aussage (1) allein zwei verschiedene Antworten zulässt.
-- Die Auswahl, nach der auch beide zusammen nicht ausreichen, ist falsch, weil beide Aussagen zusammen die Frage eindeutig beantworten.
+<BlockMath math="\begin{aligned}
+(k+3)\cdot2x+8y&=4(k+1) \\
+(k+3)(k+1)(1-y)+8y&=4(k+1) \\
+\left[8-(k+3)(k+1)\right]y&=4(k+1)-(k+3)(k+1) \\
+-(k+5)(k-1)\,y&=-(k+1)(k-1) \\
+(k+5)(k-1)\,y&=(k+1)(k-1)
+\end{aligned}" />
+
+In der dritten Zeile gilt <InlineMath math="8-(k^2+4k+3)=-(k^2+4k-5)=-(k+5)(k-1)" /> und <InlineMath math="(k+1)(4-k-3)=-(k+1)(k-1)" />.
+
+# Drei Möglichkeiten
+
+Die letzte Gleichung hat die Form <InlineMath math="ay=b" />, also gibt es drei Fälle.
+
+- Für <InlineMath math="k=1" /> wird sie zu <InlineMath math="0\cdot y=0" />. Jedes <InlineMath math="y" /> passt, das System hat also **unendlich viele** Lösungen. Tatsächlich werden für <InlineMath math="k=1" /> beide Gleichungen zu <InlineMath math="x+y=1" />.
+- Für <InlineMath math="k=-5" /> wird sie zu <InlineMath math="0\cdot y=24" />, also gibt es keine Lösung.
+- Für jedes andere <InlineMath math="k" /> ist die Lösung eindeutig:
+
+<BlockMath math="\begin{aligned}
+y&=\frac{k+1}{k+5} \\
+x&=\frac{(k+1)(1-y)}{2}=\frac{(k+1)}{2}\cdot\frac{4}{k+5}=\frac{2(k+1)}{k+5}
+\end{aligned}" />
+
+# Die Bedingung positiv
+
+Weil <InlineMath math="x=2y" /> ist, reicht <InlineMath math="y>0" />. Zähler <InlineMath math="k+1" /> und Nenner <InlineMath math="k+5" /> müssen dasselbe Vorzeichen haben:
+
+| Intervall | <InlineMath math="k+1" /> | <InlineMath math="k+5" /> | <InlineMath math="y" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="k<-5" /> | negativ | negativ | positiv |
+| <InlineMath math="-5<k<-1" /> | negativ | positiv | negativ |
+| <InlineMath math="k>-1" /> | positiv | positiv | positiv |
+
+Also ist <InlineMath math="y>0" /> für <InlineMath math="k<-5" /> oder <InlineMath math="k>-1" />. Denk jetzt an den Fall <InlineMath math="k=1" />. Er liegt in <InlineMath math="k>-1" />, aber dort hat das System unendlich viele Lösungen, nicht genau eine. Also **muss <InlineMath math="k=1" /> heraus**.
+
+Probe mit <InlineMath math="k=-6" />: <InlineMath math="y=\frac{-5}{-1}=5" /> und <InlineMath math="x=10" />. Eingesetzt: <InlineMath math="-3\cdot10+4\cdot5=-10=2(-6)+2" /> und <InlineMath math="2\cdot10-5\cdot5=-5=-6+1" />.
+
+Die gesuchte Menge ist also <InlineMath math="k<-5" /> oder <InlineMath math="-1<k<1" /> oder <InlineMath math="k>1" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="-1<k<1" /> oder <InlineMath math="k>1" /> lässt den Zweig <InlineMath math="k<-5" /> weg. Ein Bruch ist auch positiv, wenn **Zähler und Nenner beide negativ** sind.
+- <InlineMath math="k<-5" /> oder <InlineMath math="k>-1" /> vergisst, <InlineMath math="k=1" /> zu entfernen. Das passiert, wenn du den Faktor <InlineMath math="k-1" /> auf beiden Seiten kürzt und so den Fall mit unendlich vielen Lösungen versteckst.
+- <InlineMath math="-5<k<-1" /> dreht die Vorzeichentabelle um. Auf diesem Intervall ist <InlineMath math="y" /> gerade negativ.
+- <InlineMath math="k\neq-5" /> und <InlineMath math="k\neq1" /> sorgt nur für eine eindeutige Lösung, nutzt aber die Bedingungen <InlineMath math="x>0" /> und <InlineMath math="y>0" /> gar nicht.

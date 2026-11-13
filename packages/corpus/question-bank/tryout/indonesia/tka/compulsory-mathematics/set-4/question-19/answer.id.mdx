@@ -1,15 +1,72 @@
-Volume bola sebanding dengan pangkat tiga jari-jarinya, <InlineMath math="V=\frac43\pi r^3" />. Jika diameter, dan jadi juga jari-jari, dikalikan <InlineMath math="1{,}5" />, maka **volume dikalikan <InlineMath math="1{,}5^3" />**.
+Kubus dari setiap batang dibatasi oleh dua hal: **penampang lingkaran batang dan panjang batang**. Rusuk kubus terbesar adalah batas yang lebih kecil dari keduanya. Hitung untuk setiap batang, lalu bandingkan volumenya.
+
+# Batas dari penampang
+
+Karena satu rusuk kubus sejajar sumbu, satu sisi kubus berupa persegi yang tegak lurus sumbu dan harus muat di dalam lingkaran penampang. Persegi terbesar di dalam lingkaran adalah persegi yang keempat titik sudutnya ada di lingkaran, jadi **diagonalnya sama dengan diameter**. Untuk rusuk <InlineMath math="s" /> dan diameter <InlineMath math="d" />:
 
 <BlockMath math="\begin{aligned}
-1{,}5^3&=3{,}375 \\
-\text{pertambahan}&=3{,}375-1=2{,}375=237{,}5\,\%
+s\sqrt2&\le d\;\Rightarrow\;s\le\frac{d}{\sqrt2} \\
+\text{batang }P:\;s&\le\frac{50}{\sqrt2}=25\sqrt2\approx35{,}4\text{ cm} \\
+\text{batang }Q:\;s&\le\frac{40}{\sqrt2}=20\sqrt2\approx28{,}3\text{ cm}
 \end{aligned}" />
 
-Sebagai pemeriksaan dengan bilangan, bola berjari-jari <InlineMath math="2" /> menjadi berjari-jari <InlineMath math="3" />, dan <InlineMath math="\frac{3^3}{2^3}=\frac{27}{8}=3{,}375" />.
+# Batas dari panjang batang
 
-Jadi, volume udara bertambah <InlineMath math="237{,}5\,\%" />.
+Rusuk yang sejajar sumbu tidak boleh lebih panjang dari batangnya. Jadi <InlineMath math="s\le30" /> untuk batang <InlineMath math="P" /> dan <InlineMath math="s\le80" /> untuk batang <InlineMath math="Q" />. Ambil batas yang lebih kecil pada setiap batang:
 
-- <InlineMath math="50\,\%" /> menganggap volume bertambah dengan persentase yang sama seperti diameter.
-- <InlineMath math="100\,\%" /> menggandakan pertambahan diameter.
-- <InlineMath math="125\,\%" /> memakai <InlineMath math="1{,}5^2-1" />, yaitu pertambahan luas permukaan.
-- <InlineMath math="150\,\%" /> mengalikan pertambahan <InlineMath math="50\,\%" /> dengan <InlineMath math="3" />, bukan memangkatkan <InlineMath math="1{,}5" /> tiga kali.
+| Batang | Batas penampang | Batas panjang | Rusuk terbesar |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="P" /> | <InlineMath math="25\sqrt2\approx35{,}4" /> | <InlineMath math="30" /> | <InlineMath math="30" /> |
+| <InlineMath math="Q" /> | <InlineMath math="20\sqrt2\approx28{,}3" /> | <InlineMath math="80" /> | <InlineMath math="20\sqrt2" /> |
+
+Pada batang <InlineMath math="P" />, **yang membatasi adalah panjangnya**, bukan lingkarannya. Persegi bersisi <InlineMath math="30" /> tetap muat karena diagonalnya <InlineMath math="30\sqrt2\approx42{,}4" />, masih kurang dari diameter <InlineMath math="50" />.
+
+<MathVisual
+  title={<>Penampang batang <InlineMath math="P" /></>}
+  description={<>Lingkaran berdiameter <InlineMath math="50" /> memuat persegi terbesar bersisi <InlineMath math="25\sqrt2" /> yang titik sudutnya menyentuh lingkaran. Persegi bersisi <InlineMath math="30" /> yang dipakai ada di dalamnya dan tidak menyentuh lingkaran.</>}
+  labels={{
+    "label-big": <InlineMath math="25\sqrt2" />,
+    "label-used": <InlineMath math="30" />,
+    "label-diameter": <InlineMath math="d=50" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -30, max: 30 },
+      y: { min: -30, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 25 },
+      { id: "square-big", kind: "polygon", appearance: "construction", vertices: [{ x: 25, y: 0 }, { x: 0, y: 25 }, { x: -25, y: 0 }, { x: 0, y: -25 }] },
+      { id: "square-used", kind: "polygon", appearance: "answer", vertices: [{ x: -15, y: -15 }, { x: 15, y: -15 }, { x: 15, y: 15 }, { x: -15, y: 15 }] },
+      { id: "diameter", kind: "segment", appearance: "reference", from: { x: -25, y: 0 }, to: { x: 25, y: 0 } },
+    ],
+    labels: [
+      { key: "label-big", objectId: "square-big", at: { x: 12.5, y: 12.5 }, placement: "above-right" },
+      { key: "label-used", objectId: "square-used", at: { x: 0, y: -15 }, placement: "below" },
+      { key: "label-diameter", objectId: "diameter", at: { x: -20, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Membandingkan kedua kubus
+
+Sekarang hitung volume kubus terbesar dari setiap batang dengan rusuk pada tabel tadi.
+
+<BlockMath math="\begin{aligned}
+V_P&=30^3=27{.}000\text{ cm}^3 \\
+V_Q&=\left(20\sqrt2\right)^3=8{.}000\cdot2\sqrt2=16{.}000\sqrt2\approx22{.}627\text{ cm}^3
+\end{aligned}" />
+
+Batang <InlineMath math="Q" /> lebih panjang, tetapi penampangnya lebih kecil, jadi kubusnya kalah besar. **Kubus terbesar berasal dari batang <InlineMath math="P" />**.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="15{.}625\text{ cm}^3" /> memakai rusuk sama dengan jari-jari, <InlineMath math="25" />. Persegi bersisi jari-jari jauh lebih kecil dari persegi terbesar di dalam lingkaran.
+- <InlineMath math="16{.}000\sqrt2\text{ cm}^3" /> adalah kubus batang <InlineMath math="Q" />. Pilihan ini muncul kalau batang <InlineMath math="P" /> dicoret karena kubus bersisi <InlineMath math="25\sqrt2" /> tidak muat, padahal kubusnya cukup diperkecil menjadi bersisi <InlineMath math="30" />.
+- <InlineMath math="31{.}250\sqrt2\text{ cm}^3" /> memakai rusuk <InlineMath math="25\sqrt2\approx35{,}4" /> pada batang <InlineMath math="P" /> tanpa **mengecek panjang batang** <InlineMath math="30\text{ cm}" />.
+- <InlineMath math="64{.}000\text{ cm}^3" /> memakai rusuk sama dengan diameter batang <InlineMath math="Q" />, <InlineMath math="40" />. Persegi bersisi diameter tidak muat, karena diagonalnya <InlineMath math="40\sqrt2" /> lebih panjang dari diameter.
+
+Jadi, volume kubus terbesar yang dapat dibuat adalah <InlineMath math="27{.}000\text{ cm}^3" />, dari batang <InlineMath math="P" />.

@@ -12,23 +12,26 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "Translasi oleh $$\\begin{pmatrix}1\\\\2\\end{pmatrix}$$",
-        },
-        {
-          correct: false,
-          label: "Translasi oleh $$\\begin{pmatrix}2\\\\1\\end{pmatrix}$$",
+          label: "Dilatasi dengan pusat $$(2,2)$$ dan faktor skala $$-\\frac{1}{2}$$",
         },
         {
           correct: true,
-          label: "Rotasi $$180^\\circ$$ dengan pusat $$(0,1)$$",
+          label:
+            "Rotasi $$180^\\circ$$ dengan pusat $$\\left(\\frac{3}{2},\\frac{3}{2}\\right)$$, dilanjutkan dilatasi dengan pusat $$(3,3)$$ dan faktor skala $$\\frac{1}{2}$$",
         },
         {
           correct: false,
-          label: "Rotasi $$180^\\circ$$ dengan pusat $$O(0,0)$$",
+          label:
+            "Dilatasi dengan pusat $$O(0,0)$$ dan faktor skala $$-2$$, dilanjutkan translasi oleh $$\\begin{pmatrix}3\\\\3\\end{pmatrix}$$",
+        },
+        {
+          correct: false,
+          label: "Dilatasi dengan pusat $$(3,3)$$ dan faktor skala $$-\\frac{1}{2}$$",
         },
         {
           correct: true,
-          label: "Dilatasi dengan pusat $$(0,1)$$ dan faktor skala $$3$$",
+          label:
+            "Translasi oleh $$\\begin{pmatrix}-6\\\\-6\\end{pmatrix}$$, dilanjutkan dilatasi dengan pusat $$O(0,0)$$ dan faktor skala $$-\\frac{1}{2}$$",
         },
       ],
     },

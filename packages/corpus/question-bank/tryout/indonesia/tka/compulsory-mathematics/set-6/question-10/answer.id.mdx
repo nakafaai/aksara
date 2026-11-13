@@ -1,17 +1,44 @@
-Menurut **kebalikan teorema Pythagoras**, segitiga itu siku-siku tepat jika kuadrat sisi terpanjang sama dengan jumlah kuadrat dua sisi lainnya. Bandingkan <InlineMath math="a^2+b^2" /> dengan <InlineMath math="c^2" /> untuk setiap pilihan.
+# Sudut antara sisi tegak dan alas
 
-| Sisi | <InlineMath math="a^2+b^2" /> | <InlineMath math="c^2" /> |
-| --- | --- | --- |
-| <InlineMath math="4" />, <InlineMath math="7" />, <InlineMath math="9" /> | <InlineMath math="16+49=65" /> | <InlineMath math="81" /> |
-| <InlineMath math="5" />, <InlineMath math="11" />, <InlineMath math="12" /> | <InlineMath math="25+121=146" /> | <InlineMath math="144" /> |
-| <InlineMath math="6" />, <InlineMath math="9" />, <InlineMath math="11" /> | <InlineMath math="36+81=117" /> | <InlineMath math="121" /> |
-| <InlineMath math="7" />, <InlineMath math="24" />, <InlineMath math="26" /> | <InlineMath math="49+576=625" /> | <InlineMath math="676" /> |
-| <InlineMath math="8" />, <InlineMath math="15" />, <InlineMath math="17" /> | <InlineMath math="64+225=289" /> | <InlineMath math="289" /> |
+Soal ini menanyakan volume limas, padahal yang diketahui hanya luas permukaan dan sebuah sudut. Jadi **sudut itu harus diubah dulu menjadi hubungan antarpanjang**.
 
-Hanya pada <InlineMath math="8" />, <InlineMath math="15" />, dan <InlineMath math="17" /> kedua nilai itu sama.
+Misalkan panjang rusuk alas <InlineMath math="s" />, <InlineMath math="M" /> titik tengah alas, dan <InlineMath math="N" /> titik tengah rusuk <InlineMath math="BC" />. Ruas <InlineMath math="TN" /> dan <InlineMath math="MN" /> sama-sama tegak lurus <InlineMath math="BC" />, jadi sudut antara bidang <InlineMath math="TBC" /> dan alas adalah sudut <InlineMath math="TNM" />. Segitiga <InlineMath math="TMN" /> siku-siku di <InlineMath math="M" />, dengan <InlineMath math="MN=\tfrac{s}{2}" />.
 
-Jadi, batang <InlineMath math="8\text{ cm}" />, <InlineMath math="15\text{ cm}" />, dan <InlineMath math="17\text{ cm}" /> membentuk segitiga siku-siku.
+<BlockMath math="\begin{aligned}
+\cos60^\circ=\frac{MN}{TN} \;&\Rightarrow\; TN=\frac{s/2}{1/2}=s \\
+\tan60^\circ=\frac{TM}{MN} \;&\Rightarrow\; TM=\frac{s}{2}\sqrt{3}
+\end{aligned}" />
 
-- Pada <InlineMath math="4" />, <InlineMath math="7" />, <InlineMath math="9" /> dan <InlineMath math="6" />, <InlineMath math="9" />, <InlineMath math="11" />, nilai <InlineMath math="c^2" /> lebih besar, jadi segitiganya tumpul.
-- Pada <InlineMath math="5" />, <InlineMath math="11" />, <InlineMath math="12" />, selisihnya hanya <InlineMath math="2" />, tetapi <InlineMath math="146\ne144" />, jadi segitiganya lancip.
-- <InlineMath math="7" />, <InlineMath math="24" />, <InlineMath math="26" /> mirip tripel <InlineMath math="7" />, <InlineMath math="24" />, <InlineMath math="25" />, tetapi sisi terpanjangnya <InlineMath math="26" />, bukan <InlineMath math="25" />.
+Ruas <InlineMath math="TN" /> adalah tinggi segitiga sisi tegak, sedangkan <InlineMath math="TM" /> adalah tinggi limas. Keduanya berbeda, dan yang dipakai untuk volume adalah <InlineMath math="TM" />.
+
+# Panjang rusuk alas dari luas permukaan
+
+Luas permukaan terdiri atas satu persegi dan empat segitiga yang alasnya <InlineMath math="s" /> dan tingginya <InlineMath math="TN=s" />. **Tinggi segitiga sisi tegak sudah diketahui dalam <InlineMath math="s" />**, jadi luasnya hanya bergantung pada <InlineMath math="s" />:
+
+<BlockMath math="\begin{aligned}
+s^{2}+4\cdot\tfrac{1}{2}\cdot s\cdot s&=144 \\
+3s^{2}&=144 \\
+s^{2}&=48 \quad\Rightarrow\quad s=4\sqrt{3}
+\end{aligned}" />
+
+# Tinggi dan volume
+
+Masukkan <InlineMath math="s=4\sqrt{3}" /> ke rumus tinggi limas, lalu hitung volumenya:
+
+<BlockMath math="\begin{aligned}
+TM&=\frac{4\sqrt{3}}{2}\cdot\sqrt{3}=6\text{ cm} \\
+V&=\tfrac{1}{3}\cdot s^{2}\cdot TM=\tfrac{1}{3}\cdot48\cdot6=96\text{ cm}^3
+\end{aligned}" />
+
+Cek dengan teorema Pythagoras pada segitiga <InlineMath math="TMN" />: <InlineMath math="TM^{2}+MN^{2}=36+12=48=TN^{2}" />. **Ketiga panjang itu konsisten**.
+
+# Kenapa pilihan lain salah
+
+Setiap pilihan yang salah **memakai panjang yang keliru sebagai tinggi atau salah membaca luas**.
+
+- <InlineMath math="288\text{ cm}^3" /> lupa faktor <InlineMath math="\tfrac{1}{3}" />: <InlineMath math="48\cdot6=288" />.
+- <InlineMath math="72\sqrt{6}\text{ cm}^3" /> menganggap <InlineMath math="144\text{ cm}^2" /> hanya luas keempat sisi tegak: <InlineMath math="2s^{2}=144" /> memberi <InlineMath math="s^{2}=72" /> dan tinggi <InlineMath math="3\sqrt{6}" />.
+- <InlineMath math="32\sqrt{15}\text{ cm}^3" /> memakai rusuk tegak <InlineMath math="TB=\sqrt{36+24}=2\sqrt{15}" /> sebagai tinggi.
+- <InlineMath math="64\sqrt{3}\text{ cm}^3" /> memakai tinggi sisi tegak <InlineMath math="TN=4\sqrt{3}" /> sebagai tinggi limas.
+
+Jadi, volume limas itu adalah <InlineMath math="96\text{ cm}^3" />.

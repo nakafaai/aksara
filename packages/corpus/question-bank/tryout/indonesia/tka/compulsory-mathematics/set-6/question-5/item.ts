@@ -12,24 +12,18 @@ const item: ItemSource = {
       kind: "matrix",
       statements: [
         {
-          column: 2,
-          label:
-            "Jika $$a=2$$, ada nilai $$b$$ yang membuat sistem tidak mempunyai penyelesaian.",
-        },
-        {
           column: 1,
           label:
-            "Jika $$a=1$$ dan $$b=12$$, sistem mempunyai tak hingga banyak penyelesaian.",
+            "Harga normal satu buku tulis pasti paling sedikit $$\\text{Rp}5{.}500$$.",
         },
         {
           column: 2,
-          label:
-            "Jika $$a=3$$ dan $$b=6$$, penyelesaian sistem memenuhi $$x+y=1$$.",
+          label: "Harga normal satu pulpen pasti kurang dari $$\\text{Rp}5{.}000$$.",
         },
         {
-          column: 1,
+          column: 2,
           label:
-            "Jika $$a=1$$ dan $$b=10$$, sistem tidak mempunyai penyelesaian.",
+            "Harga normal $$3$$ buku tulis dan $$2$$ pulpen pasti kurang dari $$\\text{Rp}35{.}000$$.",
         },
       ],
     },

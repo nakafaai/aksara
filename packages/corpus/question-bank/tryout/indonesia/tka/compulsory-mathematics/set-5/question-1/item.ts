@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  stimulus: "money-changer",
+  stimulus: "cetak",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$\\text{Rp}30{.}000$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}510{.}000$$",
-        },
-        {
           correct: true,
-          label: "$$\\text{Rp}1{.}770{.}000$$",
+          label: "$$\\text{Rp}271{.}200$$",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}1{.}785{.}000$$",
+          label: "$$\\text{Rp}315{.}600$$",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}1{.}800{.}000$$",
+          label: "$$\\text{Rp}321{.}600$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}341{.}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}413{.}400$$",
         },
       ],
     },

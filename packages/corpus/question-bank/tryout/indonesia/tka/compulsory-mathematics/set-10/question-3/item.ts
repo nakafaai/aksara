@@ -6,31 +6,23 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  stimulus: "store-promo",
+  stimulus: "cicilan",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label:
-            "Bagi pemegang kartu anggota, kedua diskon sama dengan satu diskon sebesar $$28\\,\\%$$ dari harga barang.",
-        },
-        {
           column: 2,
-          label:
-            "Pembeli yang bukan pemegang kartu anggota dan membeli barang seharga $$\\text{Rp}240{.}000$$ mendapat gratis ongkos kirim.",
+          label: "Untuk besar uang muka yang sama, cicilan per bulan tenor $$12$$ bulan kurang dari setengah cicilan per bulan tenor $$6$$ bulan.",
         },
         {
           column: 1,
-          label:
-            "Jika diskon $$10\\,\\%$$ diberikan lebih dulu, lalu diskon $$20\\,\\%$$ dari harga baru, harga akhirnya sama dengan urutan promo.",
+          label: "Untuk besar uang muka yang sama, total pembayaran kredit tenor $$18$$ bulan selalu lebih besar daripada tenor $$12$$ bulan, tetapi selisihnya tidak pernah lebih dari $$\\text{Rp}324{.}000$$.",
         },
         {
           column: 2,
-          label:
-            "Pemegang kartu anggota yang membeli barang seharga $$\\text{Rp}270{.}000$$ mendapat gratis ongkos kirim.",
+          label: "Untuk setiap besar uang muka yang diizinkan, total pembayaran kredit tenor $$6$$ bulan lebih dari $$10\\%$$ di atas harga tunai.",
         },
       ],
     },
