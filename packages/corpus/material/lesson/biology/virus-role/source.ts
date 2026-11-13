@@ -9,6 +9,7 @@ export const lessonBiologyVirusRoleMaterial = defineLessonMaterial({
     de: "viren-und-ihre-rolle",
     en: "virus-role",
     id: "virus-dan-peranannya",
+    ms: "virus-dan-peranannya",
   },
   sections: [
     {
@@ -20,6 +21,7 @@ export const lessonBiologyVirusRoleMaterial = defineLessonMaterial({
         de: "wie-viren-sich-vermehren",
         en: "how-virus-reproduce",
         id: "bagaimana-virus-bereproduksi",
+        ms: "cara-virus-membiak",
       },
       slug: "how-virus-reproduce",
     },
@@ -35,6 +37,7 @@ export const lessonBiologyVirusRoleMaterial = defineLessonMaterial({
         de: "ausbreitung-von-viren-verhindern",
         en: "prevent-virus-spread",
         id: "cara-mencegah-penyebaran-virus",
+        ms: "cara-mencegah-penularan-virus",
       },
       slug: "prevent-virus-spread",
     },
@@ -45,7 +48,12 @@ export const lessonBiologyVirusRoleMaterial = defineLessonMaterial({
         "https://www.nhlbi.nih.gov/health/genetic-therapies/types",
         "https://openstax.org/books/biology-2e/pages/21-2-virus-infections-and-hosts",
       ],
-      routeSlugs: { de: "rolle", en: "role", id: "peranan-virus" },
+      routeSlugs: {
+        de: "rolle",
+        en: "role",
+        id: "peranan-virus",
+        ms: "kesan-virus",
+      },
       slug: "role",
     },
     {
@@ -59,6 +67,7 @@ export const lessonBiologyVirusRoleMaterial = defineLessonMaterial({
         de: "was-ist-ein-virus",
         en: "what-is-virus",
         id: "apa-itu-virus",
+        ms: "apakah-itu-virus",
       },
       slug: "what-is-virus",
     },
@@ -75,6 +84,10 @@ export const lessonBiologyVirusRoleMaterial = defineLessonMaterial({
     },
     id: {
       description: "Ikuti cara virus menggandakan diri di dalam sel inang.",
+      title: "Virus dan Peranannya",
+    },
+    ms: {
+      description: "Ikuti cara virus membiak di dalam sel perumah.",
       title: "Virus dan Peranannya",
     },
   },

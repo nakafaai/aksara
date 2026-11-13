@@ -103,15 +103,18 @@ layer(NodeServices.layer)("material registry", (it) => {
           "faecher/biologie/vielfalt-der-lebewesen/bakterien",
           "subjects/biology/biodiversity/bacteria",
           "materi/biologi/keanekaragaman-makhluk-hidup/bakteri",
+          "subjek/biologi/biodiversiti/bakteria",
           "faecher/chemie/atombau/elektronenhuelle",
           "subjects/chemistry/structure-matter/atom-shell",
           "materi/kimia/struktur-atom/kulit-atom",
+          "subjek/kimia/struktur-atom/petala-atom",
           "faecher/mathematik/funktionskomposition-und-umkehrfunktion/funktionsbegriff",
           "subjects/mathematics/function-composition-inverse-function/function-concept",
           "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
           "faecher/physik/kinematik/beschleunigung",
           "subjects/physics/kinematics/acceleration",
           "materi/fisika/kinematika/percepatan",
+          "subjek/fizik/kinematik/pecutan",
         ]);
       })
   );

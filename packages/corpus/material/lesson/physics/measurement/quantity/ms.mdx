@@ -1,0 +1,165 @@
+export const metadata = {
+  title: "Kuantiti Fizik",
+  description:
+    "Kuantiti fizik menggabungkan nilai yang diukur dengan unit, manakala kuantiti asas dan kuantiti terbitan menghubungkan pengukuran itu dengan unit S.I. dan dimensi.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-04-25",
+  dateModified: "2026-09-12",
+  subject: "Pengukuran dalam Kerja Saintifik",
+};
+
+## Membaca Kuantiti daripada Pengukuran
+
+Apabila kita menulis nilai kuantiti seperti <InlineMath math="0.60 \text{ m}" />, ada <InlineMath math="2" /> bahagian yang sedang bekerjasama.
+
+Nilai kuantiti ialah <Highlight>nilai berangka yang didarab dengan unit</Highlight>.
+
+Dalam <InlineMath math="0.60 \text{ m}" />, <InlineMath math="0.60" /> ialah nilai berangka dan <InlineMath math="\text{m}" /> ialah unit rujukan. Kuantiti pula ialah sifat objek atau peristiwa yang diukur, seperti panjang, jisim, masa, suhu atau laju. Hasil pengukuran yang lengkap juga boleh membawa ketidakpastian dan maklumat lain yang berkaitan.
+
+> Tanpa kuantiti yang dinamakan, sesuatu nombor tiada makna fizik. Tanpa unit, skalanya tidak dapat dibandingkan.
+
+## Kuantiti Asas dan Kuantiti Terbitan
+
+S.I. menetapkan <InlineMath math="7" /> kuantiti asas. Kuantiti fizik yang lain diterbitkan daripada **gabungan kuantiti asas itu**.
+
+| Kuantiti asas | Simbol lazim | Unit S.I. | Dimensi |
+| :------------ | :------------- | :------ | :-------- |
+| Panjang | <InlineMath math="\ell,\ x,\ r" /> | <InlineMath math="\text{m}" /> | <InlineMath math="\mathrm{L}" /> |
+| Jisim | <InlineMath math="m" /> | <InlineMath math="\text{kg}" /> | <InlineMath math="\mathrm{M}" /> |
+| Masa | <InlineMath math="t" /> | <InlineMath math="\text{s}" /> | <InlineMath math="\mathrm{T}" /> |
+| Arus elektrik | <InlineMath math="I" /> | <InlineMath math="\text{A}" /> | <InlineMath math="\mathrm{I}" /> |
+| Suhu termodinamik | <InlineMath math="T" /> | <InlineMath math="\text{K}" /> | <InlineMath math="\Theta" /> |
+| Kuantiti bahan | <InlineMath math="n" /> | <InlineMath math="\text{mol}" /> | <InlineMath math="\mathrm{N}" /> |
+| Keamatan berluminositi | <InlineMath math="I_v" /> | <InlineMath math="\text{cd}" /> | <InlineMath math="\mathrm{J}" /> |
+
+Kuantiti terbitan muncul apabila kuantiti asas digabungkan. Contohnya, luas diperoleh daripada panjang yang didarab dengan lebar.
+
+<BlockMath math="\begin{aligned}
+A &= l \times w \\
+\text{unit bagi } A &= \text{m} \times \text{m} = \text{m}^2 \\
+\dim A &= \mathrm{L} \times \mathrm{L} = \mathrm{L}^2
+\end{aligned}" />
+
+Laju juga ialah kuantiti terbitan kerana laju diperoleh daripada jarak yang dibahagi dengan masa.
+
+<BlockMath math="\begin{aligned}
+v &= \frac{s}{t} \\
+\text{unit bagi } v &= \frac{\text{m}}{\text{s}} = \text{m s}^{-1} \\
+\dim v &= \frac{\mathrm{L}}{\mathrm{T}} = \mathrm{L}\mathrm{T}^{-1}
+\end{aligned}" />
+
+Laju dibina daripada dua kuantiti asas, <InlineMath math="v=s/t" />, jadi unitnya ialah <InlineMath math="\text{m/s}=\text{m s}^{-1}" /> dan dimensinya ialah <InlineMath math="\mathrm{LT^{-1}}" />. Pada graf jarak-masa, laju ialah kecerunan graf itu. Zum masuk pada setiap segi tiga kecil.
+
+<MathVisual
+  title={<>Laju Dibina daripada Kuantiti Asas</>}
+  description={<>Jarak melawan masa pada 2 m/s (ungu) dan 5 m/s (oren). Paksi mengufuk: saat. Paksi menegak: satu petak grid ialah 2 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "slow", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "fast", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2, y: 5 } },
+      { id: "slow-step", kind: "polyline", appearance: "secondary", vertices: [{ x: 2, y: 2 }, { x: 3, y: 2 }, { x: 3, y: 3 }] },
+      { id: "fast-step", kind: "polyline", appearance: "primary", vertices: [{ x: 1, y: 2.5 }, { x: 1.4, y: 2.5 }, { x: 1.4, y: 3.5 }] },
+    ],
+    labels: [
+      { key: "slow", objectId: "slow-step", at: { x: 3, y: 2.5 }, placement: "right" },
+      { key: "fast", objectId: "fast-step", at: { x: 1.4, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    slow: <InlineMath math="v=\frac{2\text{ m}}{1\text{ s}}=2\text{ m/s}" />,
+    fast: <InlineMath math="v=\frac{2\text{ m}}{0.4\text{ s}}=5\text{ m/s}" />,
+  }}
+/>
+
+## Dimensi dan Semakan Rumus
+
+Dimensi merekodkan <Highlight>kuantiti asas dan kuasa yang membentuk sesuatu kuantiti lain</Highlight>. Unit memberikan rujukan bagi nilai yang diukur, manakala dimensi menguji sama ada kuantiti di kedua-dua belah rumus serasi.
+
+<Mermaid
+  title="Cara menyemak sesuatu kuantiti"
+  description="Mulakan daripada kuantiti yang diukur, kemudian hubungkan kuantiti asasnya dengan unit S.I. dan dimensi."
+  chart={`flowchart TD
+    A["Panjang × lebar"] --> B["Luas"]
+    B --> C["Unit: m × m = m²"]
+    B --> D["Dimensi: L × L = L²"]`}/>
+
+Contohnya, luas sebuah meja dan luas sehelai kertas boleh mempunyai nilai yang berbeza, tetapi kedua-duanya kuantiti yang sama jenis. Kedua-duanya ialah luas, menggunakan unit S.I. <InlineMath math="\text{m}^2" /> dan mempunyai dimensi <InlineMath math="\mathrm{L}^2" />.
+
+Sebaliknya, panjang, lebar, tinggi, diameter, jejari, jarak dan sesaran semuanya boleh menggunakan unit panjang. Semuanya mempunyai dimensi <InlineMath math="\mathrm{L}" />.
+
+Kuantiti terbitan dibina daripada kuantiti asas. Isi padu mendarab tiga panjang, <InlineMath math="V=lwh" />, jadi dimensinya ialah <InlineMath math="\mathrm{L^3}" />. Kotak ini memuatkan enam kiub yang setiap sisinya <InlineMath math="0.10\text{ m}" />: tiga ke arah panjang, dua ke arah lebar dan satu ke atas, seperti barisan tiga kiub hijau kebiruan yang diletakkan di atasnya. Putar kotak ini.
+
+<MathVisual
+  title={<>Isi Padu daripada Tiga Panjang</>}
+  description={<>Kotak berukuran 0.30 m kali 0.20 m kali 0.10 m (oren) dan satu barisan kiub 0.10 m di atasnya (hijau kebiruan).</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: 0, max: 2.5 }, z: { min: -0.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 6, y: 4, z: 6 }, target: { x: 1.5, y: 0.8, z: 1 } },
+    objects: [
+      { id: "box", kind: "cuboid", appearance: "primary", center: { x: 1.5, y: 0.5, z: 1 }, size: { length: 3, height: 1, width: 2 } },
+      { id: "cube-0", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 1.5, z: 0.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "cube-1", kind: "cuboid", appearance: "construction", center: { x: 1.5, y: 1.5, z: 0.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "cube-2", kind: "cuboid", appearance: "construction", center: { x: 2.5, y: 1.5, z: 0.5 }, size: { length: 1, height: 1, width: 1 } },
+    ],
+    labels: [
+      { key: "l", objectId: "box", at: { x: 1.5, y: 0, z: 2 }, placement: "below" },
+      { key: "w", objectId: "box", at: { x: 3, y: 0, z: 1 }, placement: "right" },
+      { key: "h", objectId: "box", at: { x: 3, y: 0.5, z: 2 }, placement: "right" },
+      { key: "v", objectId: "cube-1", at: { x: 1.5, y: 2, z: 0.5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    l: <InlineMath math="l=0.30\text{ m}" />,
+    w: <InlineMath math="w=0.20\text{ m}" />,
+    h: <InlineMath math="h=0.10\text{ m}" />,
+    v: <InlineMath math="V=lwh=0.006\text{ m}^3:\ \mathrm{L^3}" />,
+  }}
+/>
+
+## Mengira Luas Sehelai Kertas
+
+Sehelai kertas mempunyai panjang <InlineMath math="0.30 \text{ m}" /> dan lebar <InlineMath math="0.20 \text{ m}" />. Luasnya ialah:
+
+<BlockMath math="\begin{aligned}
+A &= l \times w \\
+&= 0.30 \text{ m} \times 0.20 \text{ m} \\
+&= 0.060 \text{ m}^2
+\end{aligned}" />
+
+Rajah di bawah melukis kertas itu dengan satu petak grid bagi setiap <InlineMath math="0.10\text{ m}" />. Kira petak kecilnya: <InlineMath math="3" /> di sepanjang sisi panjang dan <InlineMath math="2" /> di sepanjang sisi lebar menghasilkan <InlineMath math="6" /> petak. Setiap petak ialah <InlineMath math="0.10\text{ m}\times0.10\text{ m}=0.010\text{ m}^2" />, jadi enam petak memberikan <InlineMath math="0.060\text{ m}^2" />, iaitu luas yang sama dengan hasil rumus tadi. Itulah sebabnya luas ialah kuantiti yang dibina daripada dua panjang.
+
+<MathVisual
+  title={<>Luas Dikira dalam Petak</>}
+  description={<>Kertas itu dilukis dengan satu petak grid bagi setiap 0.10 m. Setiap petak kecil mempunyai luas <InlineMath math="0.010\text{ m}^2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 2.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "sheet", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 0, y: 2 }] },
+      { id: "col-1", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 2 } },
+      { id: "col-2", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 2 } },
+      { id: "row-1", kind: "segment", appearance: "reference", from: { x: 0, y: 1 }, to: { x: 3, y: 1 } },
+    ],
+    labels: [
+      { key: "length", objectId: "sheet", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "width", objectId: "sheet", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "count", objectId: "sheet", at: { x: 1.5, y: 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    length: <InlineMath math="l=0.30\text{ m}" />,
+    width: <InlineMath math="w=0.20\text{ m}" />,
+    count: <InlineMath math="3\times2=6\text{ petak}" />,
+  }}
+/>
+
+Nilai <InlineMath math="0.060 \text{ m}^2" /> ialah nilai kuantiti bagi luas. Oleh sebab luas dibina daripada <InlineMath math="2" /> kuantiti panjang, luas ialah **kuantiti terbitan**.
+
+Kuantiti terbitan ditakrifkan dengan menggabungkan kuantiti asas, dan unitnya dibina daripada unit asas. Bandingkan dimensi di kedua-dua belah rumus untuk menguji sama ada kuantitinya serasi.
+
+Istilah [nilai kuantiti](https://jcgm.bipm.org/vim/en/1.19.html) yang digunakan di sini mengikut Perbendaharaan Kata Metrologi Antarabangsa.
