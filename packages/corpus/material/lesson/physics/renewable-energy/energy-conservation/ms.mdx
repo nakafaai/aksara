@@ -1,0 +1,200 @@
+export const metadata = {
+  title: "Prinsip Keabadian Tenaga",
+  description:
+    "Prinsip keabadian tenaga mengaitkan tenaga input, output berguna dan tenaga yang dipindahkan ke persekitaran.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-05-01",
+  dateModified: "2026-09-13",
+  subject: "Tenaga Boleh Baharu",
+};
+
+## Tenaga Dipindahkan atau Ditukar
+
+Prinsip keabadian tenaga menyatakan bahawa <Highlight>tenaga tidak boleh dicipta atau dimusnahkan</Highlight>. Tenaga boleh dipindahkan daripada satu objek atau sistem kepada objek atau sistem lain, dan ditukar daripada satu bentuk kepada bentuk lain.
+
+Dalam Sistem Unit Antarabangsa (S.I.), setiap bentuk tenaga tetap boleh dinyatakan dalam joule dengan simbol <InlineMath math="\text{J}" />.
+
+Jika kita memasukkan sistem dan persekitarannya dalam satu sempadan luar, jumlah tenaga di dalamnya kekal malar **selagi tiada tenaga yang merentasi sempadan luar itu**.
+
+Jika sesuatu alat membekalkan tenaga elektrik yang kurang daripada tenaga yang diterimanya, bezanya dipindahkan ke persekitaran atau disimpan dalam alat itu sebagai tenaga dalam. Tenaga itu mungkin muncul sebagai pemanasan, bunyi, getaran atau sinaran yang tidak diingini.
+
+Prinsip keabadian tenaga terpakai pada setiap pemindahan dan penukaran tenaga dalam sesuatu sistem.
+
+## Pilih Sistem Dahulu
+
+**Sistem** ialah bahagian yang kita pilih untuk dianalisis. Semua yang berada di luar sistem dipanggil **persekitaran**. Nyatakan sempadan sistem sebelum menggunakan prinsip keabadian tenaga, kerana sempadan itulah yang menentukan pemindahan tenaga mana yang masuk ke dalam atau keluar daripada pengiraan.
+
+<Mermaid
+  title="Sempadan Sistem Menentukan Kiraan Tenaga"
+  description="Pilih sempadan sistem dahulu supaya tenaga yang masuk, keluar dan tersimpan dapat diasingkan."
+  chart={`flowchart TD
+    A["Tenaga input"] --> B["Sistem"]
+    B --> C["Tenaga berguna"]
+    B --> D["Tenaga ke persekitaran"]
+    D --> E["Haba, bunyi, getaran"]`}/>
+
+Rajah ini menjejaki setiap output. Sesuatu sistem boleh membekalkan tenaga berguna sambil memindahkan tenaga ke persekitaran sebagai haba, bunyi atau getaran.
+
+| Sistem yang dipilih | Tenaga yang memasuki sistem | Tenaga yang meninggalkan sistem |
+| :------------ | :------------------------- | :------------------------ |
+| Air dan Bumi, tanpa rintangan udara atau pemindahan tenaga ke luar | tiada | tiada. Tenaga keupayaan bertukar menjadi tenaga kinetik di dalam sistem |
+| Turbin dan penjana | tenaga kinetik putaran | tenaga elektrik, haba, bunyi |
+| Panel suria | tenaga sinaran daripada cahaya matahari | tenaga elektrik, haba, cahaya yang dipantulkan |
+
+Dalam baris pertama, Bumi ialah sebahagian daripada sistem kerana tenaga keupayaan graviti dimiliki oleh interaksi antara air dan Bumi. Perubahan bentuk tenaga di dalam sistem berbeza daripada pemindahan tenaga merentasi sempadannya.
+
+## Apabila Geseran Diabaikan
+
+Banyak soalan asas **mengabaikan geseran dan rintangan udara** supaya hanya tenaga kinetik dan tenaga keupayaan graviti yang tinggal dalam model. Tenaga mekanik kemudian ditulis sebagai:
+
+<BlockMath math="\begin{aligned}
+E_m &= E_k+E_p \\
+&= \frac{1}{2}mv^2+mgh
+\end{aligned}" />
+
+Jika tiada geseran, tiada rintangan udara dan tiada kerja luar, tenaga mekanik kekal malar.
+
+<BlockMath math="\frac{1}{2}mv_i^2+mgh_i=\frac{1}{2}mv_f^2+mgh_f" />
+
+Subskrip <InlineMath math="i" /> bermaksud keadaan awal, manakala subskrip <InlineMath math="f" /> bermaksud keadaan akhir.
+
+Katakan air berjisim <InlineMath math="1 \text{ kg}" /> jatuh dari ketinggian <InlineMath math="12 \text{ m}" />. Jika kita guna <InlineMath math="g=10 \text{ m/s}^2" /> dan anggap air itu pegun pada mulanya, tenaga keupayaan graviti awalnya ialah:
+
+<BlockMath math="\begin{aligned}
+E_p &= mgh \\
+&= (1 \text{ kg})(10 \text{ m/s}^2)(12 \text{ m}) \\
+&= 120 \text{ J}
+\end{aligned}" />
+
+Jika tiada tenaga yang merentas ke persekitaran, <InlineMath math="120 \text{ J}" /> itu bertukar menjadi tenaga kinetik air. Dalam alat sebenar, sebahagian tenaga berpindah ke persekitaran sebagai haba, bunyi dan getaran.
+
+Ikuti air yang jatuh pada graf di bawah, dari <InlineMath math="h=12\text{ m}" /> di sebelah kanan hingga ke tanah di sebelah kiri. Tenaga keupayaan berwarna oren berkurang tepat sebanyak tenaga kinetik berwarna hijau kebiruan bertambah, jadi garis ungu bagi jumlah kedua-duanya tidak pernah berganjak daripada <InlineMath math="120\text{ J}" />. Di separuh jalan, pada <InlineMath math="6\text{ m}" />, kedua-dua bentuk tenaga berkongsi tenaga itu sama banyak.
+
+<MathVisual
+  title={<>Tenaga Keupayaan Bertukar Menjadi Tenaga Kinetik</>}
+  description={<>Air berjisim 1 kg jatuh dari ketinggian 12 m dengan <InlineMath math="g=10\text{ m/s}^2" /> tanpa kehilangan tenaga. Mengufuk: ketinggian dalam unit 2 m. Menegak: tenaga dalam unit 20 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.8, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 6 } },
+      { id: "kinetic", kind: "segment", appearance: "construction", from: { x: 0, y: 6 }, to: { x: 6, y: 0 } },
+      { id: "mechanical", kind: "segment", appearance: "secondary", from: { x: 0, y: 6 }, to: { x: 6, y: 6 } },
+      { id: "half", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "ep", objectId: "potential", at: { x: 5, y: 5 }, placement: "below-right" },
+      { key: "ek", objectId: "kinetic", at: { x: 1, y: 5 }, placement: "above-right" },
+      { key: "em", objectId: "mechanical", at: { x: 3, y: 6 }, placement: "above" },
+      { key: "half", objectId: "half", at: { x: 3, y: 3 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    ep: <InlineMath math="E_p=mgh" />,
+    ek: <InlineMath math="E_k=mg(12\text{ m}-h)" />,
+    em: <InlineMath math="E_m=120\text{ J}" />,
+    half: <InlineMath math="h=6\text{ m}:\ E_p=E_k=60\text{ J}" />,
+  }}
+/>
+
+Tanpa geseran, setiap joule tenaga keupayaan menjadi tenaga kinetik: <InlineMath math="mgh=\tfrac12mv^2" />, jadi <InlineMath math="v=\sqrt{2gh}" /> dan jisimnya terbatal. Ketinggian empat kali ganda hanya memberikan laju dua kali ganda. Ikuti lengkung itu dari <InlineMath math="5\text{ m}" /> hingga <InlineMath math="20\text{ m}" />.
+
+<MathVisual
+  title={<>Ketinggian Menjadi Laju</>}
+  description={<>Laju di bahagian bawah melawan tinggi jatuhan dengan <InlineMath math="g=10\text{ m/s}^2" />. Mengufuk: satu petak grid ialah 2 m. Menegak: satu petak grid ialah 4 m/s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11 }, y: { min: -0.5, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "speed", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 0.5, y: Math.sqrt(2 * 10 * 1) / 4 }, { x: 1, y: Math.sqrt(2 * 10 * 2) / 4 }, { x: 1.5, y: Math.sqrt(2 * 10 * 3) / 4 }, { x: 2, y: Math.sqrt(2 * 10 * 4) / 4 }, { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 }, { x: 3, y: Math.sqrt(2 * 10 * 6) / 4 }, { x: 3.5, y: Math.sqrt(2 * 10 * 7) / 4 }, { x: 4, y: Math.sqrt(2 * 10 * 8) / 4 }, { x: 4.5, y: Math.sqrt(2 * 10 * 9) / 4 }, { x: 5, y: Math.sqrt(2 * 10 * 10) / 4 }, { x: 5.5, y: Math.sqrt(2 * 10 * 11) / 4 }, { x: 6, y: Math.sqrt(2 * 10 * 12) / 4 }, { x: 6.5, y: Math.sqrt(2 * 10 * 13) / 4 }, { x: 7, y: Math.sqrt(2 * 10 * 14) / 4 }, { x: 7.5, y: Math.sqrt(2 * 10 * 15) / 4 }, { x: 8, y: Math.sqrt(2 * 10 * 16) / 4 }, { x: 8.5, y: Math.sqrt(2 * 10 * 17) / 4 }, { x: 9, y: Math.sqrt(2 * 10 * 18) / 4 }, { x: 9.5, y: Math.sqrt(2 * 10 * 19) / 4 }, { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 }] },
+      { id: "five", kind: "point", appearance: "secondary", at: { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 } },
+      { id: "twenty", kind: "point", appearance: "answer", at: { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 } },
+    ],
+    labels: [
+      { key: "five", objectId: "five", at: { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 }, placement: "below-right" },
+      { key: "twenty", objectId: "twenty", at: { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    five: <InlineMath math="h=5\text{ m}:\ v=10\text{ m/s}" />,
+    twenty: <InlineMath math="h=20\text{ m}:\ v=20\text{ m/s}" />,
+  }}
+/>
+
+## Tenaga Berguna Bergantung pada Tujuan Alat
+
+Dalam teknologi tenaga boleh baharu, output yang dikehendaki biasanya ialah **tenaga berguna**, seperti tenaga elektrik. Prinsip keabadian tenaga tetap terpakai, tetapi bukan semua tenaga input menjadi elektrik.
+
+<BlockMath math="\begin{aligned} E_{\text{input}} &amp;=E_{\text{berguna}} +E_{\text{persekitaran}} \\ &amp;\quad{}+\Delta E_{\text{tersimpan}} \end{aligned}" />
+
+Dalam contoh berikut, tenaga yang tersimpan dalam alat tidak berubah, jadi <InlineMath math="\Delta E_{\text{tersimpan}}=0" />. Air yang mengalir membawa <InlineMath math="120 \text{ J}" /> tenaga ke arah sebuah turbin kecil. Penjana menghasilkan <InlineMath math="90 \text{ J}" /> tenaga elektrik. Tenaga yang dipindahkan ke persekitaran ialah:
+
+<BlockMath math="\begin{aligned}
+E_{\text{persekitaran}}
+&= E_{\text{input}}-E_{\text{berguna}} \\
+&= 120 \text{ J}-90 \text{ J} \\
+&= 30 \text{ J}
+\end{aligned}" />
+
+Jadi, <InlineMath math="30 \text{ J}" /> itu tidak lenyap. Tenaga itu mungkin keluar melalui pemindahan haba daripada aci, bunyi yang dibawa pergi melalui udara atau getaran yang dipindahkan kepada struktur di sekelilingnya.
+
+[Stesen janakuasa hidroelektrik](https://www.energy.gov/cmei/water/how-hydropower-works) menggunakan perbezaan ketinggian air untuk memacu turbin dan penjana.
+
+Putar lajur-lajur itu: semua tenaga yang masuk ke dalam turbin keluar semula. Jumlah tenaga elektrik berguna dan bahagian yang hilang sebagai haba, bunyi dan getaran sama dengan tenaga input.
+
+<MathVisual
+  title={<>Imbangan Tenaga Turbin</>}
+  description={<>Tenaga yang masuk ke turbin dan penjana (kelabu) serta yang keluar sebagai elektrik (hijau kebiruan) dan ke persekitaran (merah jambu). Satu petak grid ke atas ialah 20 J.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 7 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 6, y: 5, z: 10 }, target: { x: 1.5, y: 3, z: 0 } },
+    objects: [
+      { id: "input", kind: "cuboid", appearance: "reference", center: { x: 0, y: 3, z: 0 }, size: { length: 1.6, height: 6, width: 1.6 } },
+      { id: "useful", kind: "cuboid", appearance: "construction", center: { x: 3, y: 2.25, z: 0 }, size: { length: 1.6, height: 4.5, width: 1.6 } },
+      { id: "lost", kind: "cuboid", appearance: "warning", center: { x: 3, y: 5.25, z: 0 }, size: { length: 1.6, height: 1.5, width: 1.6 } },
+    ],
+    labels: [
+      { key: "input", objectId: "input", at: { x: 0, y: 6, z: 0 }, placement: "above" },
+      { key: "useful", objectId: "useful", at: { x: 3, y: 2.25, z: 0.85 }, placement: "right" },
+      { key: "lost", objectId: "lost", at: { x: 3, y: 6, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    input: <InlineMath math="120\text{ J}" />,
+    useful: <InlineMath math="90\text{ J},\ \eta=\tfrac{90}{120}=75\%" />,
+    lost: <InlineMath math="120-90=30\text{ J}" />,
+  }}
+/>
+
+## Menguji Dakwaan Tenaga dengan Prinsip Keabadian
+
+Prinsip keabadian tenaga boleh menguji sesuatu dakwaan tentang tenaga dengan mengambil kira setiap pemindahan dan penukaran.
+
+Bagi tiga dakwaan di bawah, anggap **tenaga tersimpan tidak berubah** sepanjang pemerhatian.
+
+| Dakwaan | Semakan dengan prinsip keabadian tenaga |
+| :---- | :----------------------------- |
+| Sebuah panel menerima <InlineMath math="500 \text{ J}" /> sinaran dan menghasilkan <InlineMath math="500 \text{ J}" /> elektrik | Dakwaan ini tidak realistik bagi panel sebenar. Mengikut prinsip keabadian tenaga, dakwaan ini hanya mungkin jika tiada tenaga yang dipantulkan atau ditukar menjadi haba. |
+| Sebuah turbin menerima <InlineMath math="120 \text{ J}" /> dan menghasilkan <InlineMath math="90 \text{ J}" /> elektrik | Dakwaan ini munasabah jika baki <InlineMath math="30 \text{ J}" /> berpindah ke persekitaran. |
+| Sebuah mesin menghasilkan <InlineMath math="150 \text{ J}" /> elektrik daripada <InlineMath math="120 \text{ J}" /> input tanpa sumber lain | Dakwaan ini melanggar prinsip keabadian tenaga. |
+
+[Sel fotovolta](https://www.energy.gov/cmei/systems/solar-performance-and-efficiency) tidak menukar semua cahaya yang jatuh padanya kepada elektrik. Sebahagian cahaya dipantulkan, dan sebahagian lagi menjadi haba.
+
+Alat yang cekap menukar bahagian input yang lebih besar kepada tenaga berguna dan memindahkan bahagian yang lebih kecil ke persekitaran. Untuk menyebut sesuatu alat itu *bersih*, kamu perlukan bukti tambahan tentang pelepasan, bahan, penggunaan tanah atau air, dan sisa.
+
+## Prinsip Keabadian Tenaga Terpakai pada Tenaga Boleh Baharu
+
+Sumber tenaga boleh baharu tetap mematuhi **prinsip keabadian tenaga**. Cahaya matahari, angin, air, haba geoterma dan biojisim membekalkan tenaga input. Teknologi membantu menukar input itu kepada tenaga yang kita perlukan.
+
+Ikuti tenaga dari sumbernya ke alat penukar. Sebahagian menjadi output berguna, manakala sebahagian lagi dipindahkan ke persekitaran.
+
+Untuk menyemak keabadian tenaga dalam sesuatu teknologi tenaga boleh baharu, jawab tiga soalan ini:
+
+- Dari mana datangnya tenaga input?
+- Ke manakah tenaga dipindahkan apabila tenaga itu tidak menjadi output berguna?
+- Berapakah pecahan tenaga input yang menjadi output berguna?
+
+Ketiga-tiga jawapan ini menunjukkan tenaga input, setiap pemindahan keluar daripada sistem dan pecahan output yang berguna.

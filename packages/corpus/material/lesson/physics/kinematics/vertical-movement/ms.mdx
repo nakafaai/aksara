@@ -1,0 +1,261 @@
+export const metadata = {
+  title: "Gerakan Menegak dan Jatuh Bebas",
+  description: "Gerakan menegak ialah gerakan ke atas atau ke bawah dengan pecutan graviti yang malar. Cari masa, tinggi maksimum dan halaju objek yang dilontar dan dijatuhkan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-06-06",
+  dateModified: "2026-11-08",
+  subject: "Kinematik",
+};
+
+## Gerakan Menegak dan Pecutan Graviti
+
+Gerakan menegak ialah gerakan objek yang bergerak ke atas atau ke bawah di sepanjang **satu garis menegak**, dengan graviti sebagai satu-satunya perkara yang mengubah halajunya. Pecutannya malar, dengan magnitud <InlineMath math="g" /> dan arahnya sentiasa ke bawah. Jika arah ke atas dipilih sebagai positif, kedudukan <InlineMath math="y" /> dan halaju <InlineMath math="v_y" /> pada masa <InlineMath math="t" /> mengikut tiga persamaan:
+
+<MathContainer>
+  <BlockMath math="y=y_0+v_0t-\frac{1}{2}gt^2" />
+  <BlockMath math="v_y=v_0-gt" />
+  <BlockMath math="v_y^2=v_0^2-2g(y-y_0)" />
+</MathContainer>
+
+Di sini, <InlineMath math="y_0" /> ialah kedudukan permulaan dan <InlineMath math="v_0" /> ialah halaju awal. Gerakan menegak ialah [gerakan dengan pecutan malar](/ms/subjek/fizik/kinematik/gerakan-linear-pecutan-seragam) yang pecutannya <InlineMath math="-g" />, jadi persamaannya sama.
+
+> Persamaan ini sah berhampiran permukaan Bumi dengan <InlineMath math="g" /> yang malar dan tanpa rintangan udara. [Nilai piawai pecutan graviti](https://physics.nist.gov/cuu/pdf/sp811.pdf) ialah <InlineMath math="g_n=9.80665\text{ m/s}^2" />. Pengiraan dalam halaman ini menggunakan <InlineMath math="g=10\text{ m/s}^2" /> supaya nombornya bulat.
+
+Simulasi bola menunjukkan kedua-dua cara bola boleh mula bergerak. Pilih dilontar ke atas atau dijatuhkan, kemudian perhatikan cara tinggi dan halajunya berubah.
+
+<VerticalMovementLab
+  title={<>Bola dalam Gerakan Menegak</>}
+  description={
+    <>
+      Pilih cara bola mula bergerak untuk melihat cara graviti mengubah tingginya
+      dan halajunya.
+    </>
+  }
+  labels={{
+    condition: "Keadaan awal",
+    modeLabels: {
+      throw: <>Dilontar ke Atas</>,
+      drop: <>Dijatuhkan</>,
+    },
+    initialCondition: <>Keadaan awal</>,
+    maxHeight: <>Titik tertinggi</>,
+    time: <>Masa gerakan</>,
+    finalVelocity: <>Halaju akhir</>,
+    viewLabel: "Visual bola dalam gerakan menegak",
+  }}
+/>
+
+## Tiga Cara Objek Bergerak Menegak
+
+Ketiga-tiga jenis gerakan menegak menggunakan persamaan yang sama. Hanya **tanda dan magnitud halaju awal** <InlineMath math="v_0" /> yang berbeza.
+
+| Jenis gerakan | Halaju awal | Contoh |
+| --- | --- | --- |
+| Dilontar ke atas | <InlineMath math="v_0 > 0" /> | Bola yang dilontar tegak ke atas |
+| Jatuh bebas | <InlineMath math="v_0 = 0" /> | Buah yang gugur dari tangkainya |
+| Dilontar ke bawah | <InlineMath math="v_0 < 0" /> | Batu yang dilontar ke bawah dari jambatan |
+
+Dalam ketiga-tiga kes, pecutan kekal <InlineMath math="-g" /> sepanjang gerakan, termasuk di titik tertinggi. Tanda negatif datang daripada pilihan arah ke atas sebagai positif, bukan kerana graviti bertukar arah.
+
+<Mermaid
+  title="Memilih jenis gerakan menegak"
+  description="Arah halaju awal menentukan jenis gerakan, tetapi persamaannya kekal sama."
+  chart={`flowchart TD
+  A{"Arah halaju awal?"} -->|"atas"| B["Dilontar ke atas, v₀ positif"]
+  A -->|"sifar"| C["Jatuh bebas, v₀ = 0"]
+  A -->|"bawah"| D["Dilontar ke bawah, v₀ negatif"]
+  B --> E["v = v₀ - gt dan y = v₀t - ½gt²"]
+  C --> E
+  D --> E`}
+/>
+
+## Objek Dilontar ke Atas
+
+Apabila objek dilontar ke atas, halajunya bermula positif dan **terus berkurang kerana graviti** sehingga menjadi sifar di titik tertinggi. Dengan menetapkan <InlineMath math="v_y = 0" />, kita memperoleh masa naik dan tinggi maksimum di atas titik lontaran:
+
+<MathContainer>
+  <BlockMath math="t_{\text{naik}} = \frac{v_0}{g}" />
+  <BlockMath math="h_{\text{maks}} = \frac{v_0^2}{2g}" />
+</MathContainer>
+
+Katakan sebiji bola dilontar ke atas dengan <InlineMath math="v_0 = 20\text{ m/s}" />. Masa naiknya ialah <InlineMath math="\frac{20}{10} = 2\text{ s}" />, dan tinggi maksimumnya ialah <InlineMath math="\frac{20^2}{2 \times 10} = 20\text{ m}" />. Persamaan kedudukan memberikan hasil yang sama:
+
+<BlockMath math="y = 20(2) - \frac{1}{2}(10)(2^2) = 40 - 20 = 20\text{ m}" />
+
+Di titik tertinggi, halaju bola sifar buat seketika, tetapi pecutannya masih <InlineMath math="-g" />. Gantikan beberapa nilai <InlineMath math="t" /> ke dalam <InlineMath math="y = 20t - 5t^2" /> dan <InlineMath math="v_y = 20 - 10t" /> untuk menjejak perjalanan naik dan turun:
+
+| Masa | Tinggi | Halaju | Arah |
+| --- | --- | --- | --- |
+| <InlineMath math="0\text{ s}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="20\text{ m/s}" /> | Naik |
+| <InlineMath math="1\text{ s}" /> | <InlineMath math="15\text{ m}" /> | <InlineMath math="10\text{ m/s}" /> | Naik |
+| <InlineMath math="2\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="0\text{ m/s}" /> | Berhenti seketika |
+| <InlineMath math="3\text{ s}" /> | <InlineMath math="15\text{ m}" /> | <InlineMath math="-10\text{ m/s}" /> | Jatuh |
+| <InlineMath math="4\text{ s}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="-20\text{ m/s}" /> | Kembali ke titik lontaran |
+
+Gerakan ini bersimetri. Bola berada pada ketinggian <InlineMath math="15\text{ m}" /> pada <InlineMath math="1\text{ s}" /> dan pada <InlineMath math="3\text{ s}" />, dengan laju yang sama tetapi arah yang bertentangan, dan bola itu kembali ke titik lontaran dengan laju asalnya.
+
+Gerakkan gelangsar masa bagi bola yang dilontar ke atas pada <InlineMath math="20\text{ m/s}" />. Anak panah ungu ialah halajunya, dilukis sebagai jarak yang dilalui bola dalam satu saat: anak panah itu memendek semasa bola naik, hilang pada <InlineMath math="t=2\text{ s}" /> di puncak, dan menghala ke bawah semasa bola turun semula.
+
+<MathVisual
+  title={<>Lihat Halaju Bertukar Arah</>}
+  description={<>Bola yang dilontar tegak ke atas pada <InlineMath math="20\text{ m/s}" />, kedudukannya pada masa yang dipilih (magenta) dan halajunya (ungu). Satu petak grid ialah 5 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -4.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "track", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "ball", kind: "marker", appearance: "answer", x: "0", y: "4s - s^2" },
+      { id: "velocity", kind: "path", appearance: "secondary", points: [{ x: "0", y: "4s - s^2" }, { x: "0", y: "4s - s^2 + (20 - 10 s)/5" }] },
+    ],
+    labels: [
+      { key: "ball", objectId: "ball", at: { x: "0", y: "4s - s^2" }, placement: "right" },
+    ],
+    parameters: [
+      { name: "s", min: 0, max: 4, value: 1, step: 0.01, label: "time" },
+    ],
+    readouts: [
+      { key: "height", formula: "20 s - 5 s^2" },
+      { key: "vy", formula: "20 - 10 s" },
+    ],
+  }}
+  labels={{
+    time: <InlineMath math="t\ (\text{s})" />,
+    ball: <InlineMath math="h" />,
+    height: <InlineMath math="h=v_0t-\tfrac12gt^2\ (\text{m})" />,
+    vy: <InlineMath math="v=v_0-gt\ (\text{m/s})" />,
+  }}
+/>
+
+## Objek Jatuh Bebas
+
+Dalam fizik sekolah, jatuh bebas bermaksud objek yang dilepaskan **tanpa halaju awal**, jadi <InlineMath math="v_0 = 0" />. Sesetengah buku menganggap sebarang gerakan di bawah pengaruh graviti sahaja sebagai jatuh bebas, termasuk lontaran, tetapi halaman ini menggunakan maksud yang pertama. Bagi objek yang jatuh melalui ketinggian <InlineMath math="h" />, masa jatuh dan laju ketika sampai ke tanah ialah:
+
+<MathContainer>
+  <BlockMath math="t = \sqrt{\frac{2h}{g}}" />
+  <BlockMath math="v = \sqrt{2gh}" />
+</MathContainer>
+
+Bola yang dijatuhkan dari ketinggian <InlineMath math="20\text{ m}" /> sampai ke tanah selepas <InlineMath math="t = \sqrt{\frac{2 \times 20}{10}} = 2\text{ s}" />. Halajunya pada ketika itu ialah:
+
+<BlockMath math="v_y = 0 - 10(2) = -20\text{ m/s}" />
+
+Tanda negatif bermaksud bola sedang bergerak ke bawah. Semak lajunya dengan rumus kedua: <InlineMath math="v = \sqrt{2 \times 10 \times 20} = 20\text{ m/s}" />. Laju ini sama dengan laju bola yang dilontar ke atas pada <InlineMath math="20\text{ m/s}" /> ketika bola itu kembali ke titik lontarannya, kerana kedua-dua bola jatuh sejauh <InlineMath math="20\text{ m}" /> bermula dari keadaan pegun seketika.
+
+## Objek Dilontar ke Bawah
+
+Objek yang dilontar ke bawah sudah mempunyai halaju awal ke bawah, jadi **halaju awalnya negatif**. Graviti menambah lajunya sejak awal lagi, dan objek itu sampai ke tanah lebih cepat daripada objek yang dijatuhkan dari ketinggian yang sama.
+
+Katakan sebiji batu dilontar ke bawah pada <InlineMath math="5\text{ m/s}" /> dari ketinggian <InlineMath math="30\text{ m}" />. Dengan <InlineMath math="y_0 = 30" /> dan <InlineMath math="v_0 = -5" />, batu itu sampai ke tanah apabila <InlineMath math="y = 0" />:
+
+<MathContainer>
+  <BlockMath math="0 = 30 - 5t - 5t^2" />
+  <BlockMath math="t^2 + t - 6 = 0 \quad\Longrightarrow\quad (t + 3)(t - 2) = 0" />
+  <BlockMath math="v_y = -5 - 10(2) = -25\text{ m/s}" />
+</MathContainer>
+
+Nilai <InlineMath math="t = -3" /> bermaksud tiga saat sebelum batu itu dilontar, jadi nilai itu ditolak, dan batu itu mendarat selepas <InlineMath math="2\text{ s}" />. Semak dengan persamaan ketiga: <InlineMath math="v_y^2 = (-5)^2 + 2(10)(30) = 625" />, jadi lajunya ialah <InlineMath math="25\text{ m/s}" />.
+
+## Gerakan Menegak dalam Gerakan Projektil
+
+Tanpa rintangan udara, persamaan yang sama menerangkan bahagian menegak bagi bola yang dilontar pada satu sudut. Dalam [gerakan projektil](/ms/subjek/fizik/kinematik/gerakan-projektil), **halaju mengufuk kekal malar**, manakala halaju menegak berubah tepat seperti objek yang dilontar ke atas.
+
+Itulah sebabnya masa projektil berada di udara ditentukan oleh gerakan menegaknya sahaja. Bola yang ditendang pada satu sudut dengan halaju menegak awal <InlineMath math="20\text{ m/s}" /> masih naik selama <InlineMath math="2\text{ s}" /> dan mendarat selepas <InlineMath math="4\text{ s}" /> di atas tanah rata, sama seperti bola yang dilontar tegak ke atas pada <InlineMath math="20\text{ m/s}" />.
+
+<MathVisual
+  title={<>Dua Bola dengan Halaju Menegak Awal yang Sama</>}
+  description={<>Satu petak grid mewakili 5 m. Bola hijau kebiruan ditendang dengan <InlineMath math="v_x=10\text{ m/s}" /> dan <InlineMath math="v_{0y}=20\text{ m/s}" />, dan bola oren dilontar tegak ke atas pada 20 m/s. Garis kelabu menyambungkan kedudukan kedua-dua bola pada saat yang sama, dan tingginya sentiasa sepadan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 9 }, y: { min: -0.5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "kicked", kind: "parametric", appearance: "construction", x: "2t", y: "4t - t^2", parameter: { min: 0, max: 4 } },
+      { id: "up-0", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "up-1", kind: "point", appearance: "primary", at: { x: 0, y: 3 } },
+      { id: "up-2", kind: "point", appearance: "primary", at: { x: 0, y: 4 } },
+      { id: "t1", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 2, y: 3 } },
+      { id: "t2", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 4, y: 4 } },
+      { id: "t3", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 6, y: 3 } },
+    ],
+    labels: [
+      { key: "kicked", objectId: "kicked", at: { x: 8, y: 0 }, placement: "above-left" },
+      { key: "up", objectId: "up-2", at: { x: 0, y: 4 }, placement: "left" },
+      { key: "t1", objectId: "t1", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "t2", objectId: "t2", at: { x: 4, y: 4 }, placement: "right" },
+      { key: "t3", objectId: "t3", at: { x: 6, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    kicked: <InlineMath math="\text{ditendang pada satu sudut}" />,
+    up: <InlineMath math="\text{dilontar tegak ke atas}" />,
+    t1: <InlineMath math="t=1\text{ s}" />,
+    t2: <InlineMath math="t=2\text{ s}" />,
+    t3: <InlineMath math="t=3\text{ s}" />,
+  }}
+/>
+
+## Kesilapan Lazim
+
+Sebelum kamu mengira, tetapkan **arah positif** dan gunakannya sepanjang pengiraan.
+
+| Kesilapan | Mengapa ia salah | Cara menyemak |
+| --- | --- | --- |
+| Menganggap pecutan sifar di titik tertinggi | Hanya halaju yang sifar, graviti masih bertindak | Pecutan ialah <InlineMath math="-g" /> sepanjang gerakan |
+| Menggunakan <InlineMath math="h = \frac{1}{2}gt^2" /> untuk objek yang dilontar ke atas | Rumus itu hanya sah untuk jatuh bebas dengan <InlineMath math="v_0 = 0" /> | Semak sama ada terdapat halaju awal |
+| Menulis halaju awal positif untuk lontaran ke bawah | Arah bawah ialah negatif apabila arah atas dipilih sebagai positif | Tanda <InlineMath math="v_0" /> mesti sepadan dengan arah lontaran |
+| Mencampuradukkan halaju dengan laju | Halaju mempunyai tanda, laju sentiasa positif | Halaju semasa jatuh mesti negatif |
+
+Kesilapan tanda paling mudah dikesan pada akhir pengiraan. Objek yang bergerak ke bawah mesti mempunyai <InlineMath math="v_y" /> yang negatif, dan masa yang negatif sentiasa ditolak.
+
+## Latihan Gerakan Menegak
+
+Gunakan <InlineMath math="g = 10\text{ m/s}^2" /> dan ambil arah ke atas sebagai positif. Bagi setiap soalan, tentukan dahulu **tanda halaju awal** dan kedudukan permulaannya.
+
+1. Sebiji bola dilontar tegak ke atas pada <InlineMath math="15\text{ m/s}" />. Cari masa naik dan tinggi maksimumnya.
+
+2. Sebiji kelapa gugur dari pokok setinggi <InlineMath math="45\text{ m}" />. Cari masa jatuh dan lajunya ketika menghentam tanah.
+
+3. Sebiji bola dilontar ke atas pada <InlineMath math="20\text{ m/s}" /> dari bumbung sebuah bangunan setinggi <InlineMath math="25\text{ m}" />. Bilakah bola itu menghentam tanah, dan berapakah halajunya ketika itu?
+
+4. Sebiji batu dilontar ke bawah pada <InlineMath math="10\text{ m/s}" /> dari jambatan setinggi <InlineMath math="15\text{ m}" />. Cari masa untuk batu itu sampai ke permukaan air dan lajunya.
+
+### Penyelesaian
+
+**Soalan 1**. Di titik tertinggi **halajunya sifar**, jadi:
+
+<MathContainer>
+  <BlockMath math="t_{\text{naik}} = \frac{15}{10} = 1.5\text{ s}" />
+  <BlockMath math="h_{\text{maks}} = \frac{15^2}{2 \times 10} = 11.25\text{ m}" />
+</MathContainer>
+
+Semak dengan persamaan kedudukan: <InlineMath math="15(1.5) - 5(1.5)^2 = 22.5 - 11.25 = 11.25\text{ m}" />.
+
+**Soalan 2**. Kelapa itu jatuh **tanpa halaju awal**:
+
+<MathContainer>
+  <BlockMath math="t = \sqrt{\frac{2 \times 45}{10}} = 3\text{ s}" />
+  <BlockMath math="v = \sqrt{2 \times 10 \times 45} = 30\text{ m/s}" />
+</MathContainer>
+
+Semak: <InlineMath math="v_y = 0 - 10(3) = -30\text{ m/s}" />, jadi lajunya ialah <InlineMath math="30\text{ m/s}" />.
+
+**Soalan 3**. Ambil bumbung sebagai <InlineMath math="y_0 = 25" />, jadi tanah ialah <InlineMath math="y = 0" />. Persamaan kedudukan memberikan **persamaan kuadratik dalam** <InlineMath math="t" />:
+
+<MathContainer>
+  <BlockMath math="0 = 25 + 20t - 5t^2" />
+  <BlockMath math="t^2 - 4t - 5 = 0 \quad\Longrightarrow\quad (t - 5)(t + 1) = 0" />
+  <BlockMath math="v_y = 20 - 10(5) = -30\text{ m/s}" />
+</MathContainer>
+
+Masa yang negatif ditolak, jadi bola menghentam tanah selepas <InlineMath math="5\text{ s}" /> pada <InlineMath math="30\text{ m/s}" /> ke bawah. Semak: <InlineMath math="v_y^2 = 20^2 + 2(10)(25) = 900" />.
+
+**Soalan 4**. Halaju awalnya **negatif**, iaitu <InlineMath math="v_0 = -10" />, dan <InlineMath math="y_0 = 15" />:
+
+<MathContainer>
+  <BlockMath math="0 = 15 - 10t - 5t^2" />
+  <BlockMath math="t^2 + 2t - 3 = 0 \quad\Longrightarrow\quad (t + 3)(t - 1) = 0" />
+  <BlockMath math="v_y = -10 - 10(1) = -20\text{ m/s}" />
+</MathContainer>
+
+Batu itu sampai ke permukaan air selepas <InlineMath math="1\text{ s}" /> dengan laju <InlineMath math="20\text{ m/s}" />. Semak: <InlineMath math="(-10)^2 + 2(10)(15) = 400 = 20^2" />.

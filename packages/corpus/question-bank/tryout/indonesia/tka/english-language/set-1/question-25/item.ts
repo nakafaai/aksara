@@ -2,36 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
-    topic: "fact-opinion",
+    topic: "supporting-detail",
   },
-  stimulus: "later-start",
+  stimulus: "weekend",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "The proposed trial would last one term.",
-        },
-        {
-          correct: false,
-          label: "The school would compare five named outcomes.",
-        },
-        {
-          correct: false,
-          label:
-            "The proposal includes a route back if the costs outweigh the benefits.",
-        },
-        {
-          correct: false,
-          label: "One example concerns collecting a younger sibling.",
-        },
-        {
           correct: true,
-          label:
-            "A reversible trial is the fairest timetable policy for every school.",
+          label: "I and II only",
+        },
+        {
+          correct: false,
+          label: "I only",
+        },
+        {
+          correct: false,
+          label: "I, II, and III only",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, and IV only",
         },
       ],
     },
