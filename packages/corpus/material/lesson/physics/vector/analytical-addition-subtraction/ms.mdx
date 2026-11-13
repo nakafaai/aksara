@@ -1,0 +1,202 @@
+export const metadata = {
+  title: "Penambahan dan Penolakan Vektor secara Analitik",
+  description:
+    "Tambah dan tolak vektor menggunakan komponen x dan y, kemudian tentukan magnitud dan arah vektor paduan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-06-06",
+  dateModified: "2026-09-01",
+  subject: "Vektor",
+};
+
+## Mengira Vektor Paduan dengan Komponen
+
+Kaedah grafik menunjukkan arah vektor paduan, tetapi kejituan nilainya bergantung pada lukisan. Kaedah analitik pula mengira komponen, jadi kaedah ini <Highlight>memberikan hasil berangka yang sama setiap kali dikira</Highlight>.
+
+Caranya, leraikan setiap vektor kepada [komponen vektor](/ms/subjek/fizik/vektor/komponen-vektor) di sepanjang paksi <InlineMath math="x" /> dan <InlineMath math="y" />, tambahkan komponen pada setiap paksi, kemudian bina semula vektor paduan.
+
+<MathContainer>
+  <BlockMath math="R_x=\sum F_x" />
+  <BlockMath math="R_y=\sum F_y" />
+</MathContainer>
+
+> Dalam kaedah analitik, tambahkan komponen vektor pada setiap paksi. Panjang anak panah sahaja tidak memberikan hasil tambahnya.
+
+Leraikan setiap vektor kepada bahagian x dan y, tambahkan bahagian pada setiap paksi, kemudian bina semula vektor paduan. Komponen hasil tambah yang berwarna hijau kebiruan hanyalah bahagian x yang dicampurkan dan bahagian y yang dicampurkan. Zum pada setiap langkah.
+
+<MathVisual
+  title={<>Kaedah Komponen dalam Empat Langkah</>}
+  description={<>Dua vektor yang disambung hujung ke pangkal (jingga, ungu), komponen hasil tambahnya (hijau kebiruan) dan vektor paduan (magenta).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.8, max: 4.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 1 } },
+      { id: "a-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 1 }, { x: 3 - (0.25 * 3) / Math.hypot(3, 1) + ((0.25 / 2) * -1) / Math.hypot(3, 1), y: 1 - (0.25 * 1) / Math.hypot(3, 1) + ((0.25 / 2) * 3) / Math.hypot(3, 1) }, { x: 3 - (0.25 * 3) / Math.hypot(3, 1) - ((0.25 / 2) * -1) / Math.hypot(3, 1), y: 1 - (0.25 * 1) / Math.hypot(3, 1) - ((0.25 / 2) * 3) / Math.hypot(3, 1) }] },
+      { id: "b", kind: "segment", appearance: "secondary", from: { x: 3, y: 1 }, to: { x: 4, y: 4 } },
+      { id: "b-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 4 }, { x: 4 - (0.25 * 1) / Math.hypot(1, 3) + ((0.25 / 2) * -3) / Math.hypot(1, 3), y: 4 - (0.25 * 3) / Math.hypot(1, 3) + ((0.25 / 2) * 1) / Math.hypot(1, 3) }, { x: 4 - (0.25 * 1) / Math.hypot(1, 3) - ((0.25 / 2) * -3) / Math.hypot(1, 3), y: 4 - (0.25 * 3) / Math.hypot(1, 3) - ((0.25 / 2) * 1) / Math.hypot(1, 3) }] },
+      { id: "rx", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "rx-head", kind: "polygon", appearance: "construction", vertices: [{ x: 4, y: 0 }, { x: 3.75, y: 0.125 }, { x: 3.75, y: -0.125 }] },
+      { id: "ry", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "ry-head", kind: "polygon", appearance: "construction", vertices: [{ x: 4, y: 4 }, { x: 4.125, y: 3.75 }, { x: 3.875, y: 3.75 }] },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "r-head", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 4 }, { x: 4 - (0.25 * 4) / Math.hypot(4, 4) + ((0.25 / 2) * -4) / Math.hypot(4, 4), y: 4 - (0.25 * 4) / Math.hypot(4, 4) + ((0.25 / 2) * 4) / Math.hypot(4, 4) }, { x: 4 - (0.25 * 4) / Math.hypot(4, 4) - ((0.25 / 2) * -4) / Math.hypot(4, 4), y: 4 - (0.25 * 4) / Math.hypot(4, 4) - ((0.25 / 2) * 4) / Math.hypot(4, 4) }] },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1.5, y: 0.5 }, placement: "below-right" },
+      { key: "b", objectId: "b", at: { x: 3.5, y: 2.5 }, placement: "left" },
+      { key: "rx", objectId: "rx", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "ry", objectId: "ry", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 2, y: 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="\vec A=(3,1)" />,
+    b: <InlineMath math="\vec B=(1,3)" />,
+    rx: <InlineMath math="R_x=3+1=4" />,
+    ry: <InlineMath math="R_y=1+3=4" />,
+    r: <InlineMath math="R=\sqrt{4^2+4^2}\approx5.66,\ \theta=45^\circ" />,
+  }}
+/>
+
+## Langkah Penambahan Vektor
+
+Katakan beberapa daya <InlineMath math="\vec{F}_1" />, <InlineMath math="\vec{F}_2" /> dan <InlineMath math="\vec{F}_3" /> bertindak pada suatu objek. Setiap daya dileraikan dahulu kepada **komponen mengufuk dan komponen menegak**.
+
+Selepas semua komponen diketahui, komponen vektor paduan ialah:
+
+<MathContainer>
+  <BlockMath math="R_x=F_{1x}+F_{2x}+F_{3x}+\cdots" />
+  <BlockMath math="R_y=F_{1y}+F_{2y}+F_{3y}+\cdots" />
+</MathContainer>
+
+Magnitud vektor paduan ialah:
+
+<BlockMath math="R=\sqrt{R_x^2+R_y^2}" />
+
+Gunakan fungsi tangen songsang dua argumen untuk mencari arah vektor paduan relatif kepada paksi <InlineMath math="x" /> positif:
+
+<BlockMath math="\theta=\operatorname{atan2}(R_y,R_x)" />
+
+Berbeza dengan <InlineMath math="\tan^{-1}(R_y/R_x)" />, fungsi <InlineMath math="\operatorname{atan2}" /> menggunakan tanda kedua-dua komponen untuk meletakkan arah dalam sukuan yang betul.
+
+Jika kedua-dua komponen bernilai sifar, vektor paduan ialah vektor sifar dan **arahnya tidak tertakrif**. Jangan berikan arah fizik kepada output kalkulator atau atur cara bagi <InlineMath math="\operatorname{atan2}(0,0)" />.
+
+### Sesaran Dua Peringkat
+
+Seseorang berjalan dalam dua peringkat. Peringkat pertama setara dengan <InlineMath math="80\text{ m}" /> ke timur dan <InlineMath math="60\text{ m}" /> ke utara. Peringkat kedua setara dengan <InlineMath math="120\text{ m}" /> ke timur dan <InlineMath math="90\text{ m}" /> ke utara.
+
+| Vektor sesaran | Komponen <InlineMath math="x" /> | Komponen <InlineMath math="y" /> |
+| :------------------ | :-------------------------------- | :-------------------------------- |
+| <InlineMath math="\vec{s}_1" /> | <InlineMath math="80\text{ m}" /> | <InlineMath math="60\text{ m}" /> |
+| <InlineMath math="\vec{s}_2" /> | <InlineMath math="120\text{ m}" /> | <InlineMath math="90\text{ m}" /> |
+| <InlineMath math="\vec{R}" /> | <InlineMath math="200\text{ m}" /> | <InlineMath math="150\text{ m}" /> |
+
+Tambahkan **komponen pada paksi yang sama** untuk mendapatkan komponen vektor paduan:
+
+<MathContainer>
+  <BlockMath math="R_x=80+120=200\text{ m}" />
+  <BlockMath math="R_y=60+90=150\text{ m}" />
+</MathContainer>
+
+Magnitud sesaran keseluruhan ialah:
+
+<BlockMath math="\begin{aligned}
+R&=\sqrt{200^2+150^2} \\
+&=\sqrt{40\,000+22\,500} \\
+&=\sqrt{62\,500} \\
+&=250\text{ m}
+\end{aligned}" />
+
+Arah vektor paduan ialah:
+
+<BlockMath math="\tan\theta=\frac{150}{200}=0.75\quad\Rightarrow\quad\theta=\tan^{-1}(0.75)\approx36.9^\circ" />
+
+Sesaran keseluruhan ialah <InlineMath math="250\text{ m}" /> pada <InlineMath math="36.9^\circ" /> dari timur ke arah utara.
+
+Tambahkan kedua-dua peringkat itu komponen demi komponen, dan vektor paduan terus diperoleh: <InlineMath math="R_x=80+120=200\text{ m}" /> dan <InlineMath math="R_y=60+90=150\text{ m}" />. Anak panah magenta ialah hasil tambah itu, iaitu <InlineMath math="250\text{ m}" /> pada kira-kira <InlineMath math="36.9^\circ" /> dari timur ke arah utara.
+
+<MathVisual
+  title={<>Dua Peringkat Ditambah melalui Komponen</>}
+  description={<>Sesaran peringkat (80, 60) m dan (120, 90) m diletakkan hujung ke pangkal. Satu petak grid ialah 50 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "first", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1.6, y: 1.2 } },
+      { id: "first-head", kind: "polygon", appearance: "primary", vertices: [{ x: 1.6, y: 1.2 }, { x: 1.6 - (0.25 * 1.6) / Math.hypot(1.6, 1.2) + ((0.25 / 2) * -1.2) / Math.hypot(1.6, 1.2), y: 1.2 - (0.25 * 1.2) / Math.hypot(1.6, 1.2) + ((0.25 / 2) * 1.6) / Math.hypot(1.6, 1.2) }, { x: 1.6 - (0.25 * 1.6) / Math.hypot(1.6, 1.2) - ((0.25 / 2) * -1.2) / Math.hypot(1.6, 1.2), y: 1.2 - (0.25 * 1.2) / Math.hypot(1.6, 1.2) - ((0.25 / 2) * 1.6) / Math.hypot(1.6, 1.2) }] },
+      { id: "second", kind: "segment", appearance: "secondary", from: { x: 1.6, y: 1.2 }, to: { x: 4, y: 3 } },
+      { id: "second-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 3 }, { x: 4 - (0.25 * 2.4) / Math.hypot(2.4, 1.8) + ((0.25 / 2) * -1.8) / Math.hypot(2.4, 1.8), y: 3 - (0.25 * 1.8) / Math.hypot(2.4, 1.8) + ((0.25 / 2) * 2.4) / Math.hypot(2.4, 1.8) }, { x: 4 - (0.25 * 2.4) / Math.hypot(2.4, 1.8) - ((0.25 / 2) * -1.8) / Math.hypot(2.4, 1.8), y: 3 - (0.25 * 1.8) / Math.hypot(2.4, 1.8) - ((0.25 / 2) * 2.4) / Math.hypot(2.4, 1.8) }] },
+      { id: "result", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
+      { id: "result-head", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 3 }, { x: 4 - (0.25 * 4) / Math.hypot(4, 3) + ((0.25 / 2) * -3) / Math.hypot(4, 3), y: 3 - (0.25 * 3) / Math.hypot(4, 3) + ((0.25 / 2) * 4) / Math.hypot(4, 3) }, { x: 4 - (0.25 * 4) / Math.hypot(4, 3) - ((0.25 / 2) * -3) / Math.hypot(4, 3), y: 3 - (0.25 * 3) / Math.hypot(4, 3) - ((0.25 / 2) * 4) / Math.hypot(4, 3) }] },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 0.8, y: 0.6 }, placement: "below-right" },
+      { key: "second", objectId: "second", at: { x: 2.8, y: 2.1 }, placement: "below-right" },
+      { key: "result", objectId: "result", at: { x: 2, y: 1.5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="(80,60)" />,
+    second: <InlineMath math="(120,90)" />,
+    result: <InlineMath math="R=\sqrt{200^2+150^2}=250\text{ m}" />,
+  }}
+/>
+
+## Penolakan dengan Komponen
+
+Tolak vektor **komponen demi komponen pada paksi yang sama**. Jika <InlineMath math="\vec{C}=\vec{A}-\vec{B}" />, maka:
+
+<MathContainer>
+  <BlockMath math="C_x=A_x-B_x" />
+  <BlockMath math="C_y=A_y-B_y" />
+</MathContainer>
+
+Contohnya, katakan <InlineMath math="\vec{A}=7\hat{i}+4\hat{j}" /> dan <InlineMath math="\vec{B}=2\hat{i}+6\hat{j}" />.
+
+<BlockMath math="\begin{aligned}
+\vec{C}&=(7-2)\hat{i}+(4-6)\hat{j} \\
+&=5\hat{i}-2\hat{j}
+\end{aligned}" />
+
+Tanda negatif dalam <InlineMath math="-2\hat{j}" /> bermaksud komponen <InlineMath math="y" /> yang terhasil menghala ke bawah.
+
+<MathVisual
+  title={<>Beza Dua Vektor</>}
+  description={<>Anak panah <InlineMath math="\vec{C}" /> dari hujung <InlineMath math="\vec{B}" /> ke hujung <InlineMath math="\vec{A}" /> mempunyai komponen <InlineMath math="(5,-2)" />. Anak panah ungu yang bermula di asalan ialah vektor yang sama selepas ditranslasikan.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="C" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -3, max: 7 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.55 * ((7) - (0)), y: (0) + 0.55 * ((4) - (0)) }, { x: 7, y: 4 }], appearance: "primary" },
+      { id: "s1-head", kind: "vector", from: { x: 3.85, y: 2.2 }, to: { x: 7, y: 4 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((6) - (0)) }, { x: 2, y: 6 }], appearance: "secondary" },
+      { id: "s2-head", kind: "vector", from: { x: 1, y: 3 }, to: { x: 2, y: 6 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 2, y: 6 }, { x: (2) + 0.5 * ((7) - (2)), y: (6) + 0.5 * ((4) - (6)) }, { x: 7, y: 4 }], appearance: "answer" },
+      { id: "s3-head", kind: "vector", from: { x: 4.5, y: 5 }, to: { x: 7, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((5) - (0)), y: (0) + 0.5 * ((-2) - (0)) }, { x: 5, y: -2 }], appearance: "answer" },
+      { id: "s4-head", kind: "vector", from: { x: 2.5, y: -1 }, to: { x: 5, y: -2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3.85, y: 2.2 }, placement: "below" },
+      { key: "l2", objectId: "s2", at: { x: 1, y: 3 }, placement: "left" },
+      { key: "l3", objectId: "s3", at: { x: 4.5, y: 5 }, placement: "above" },
+      { key: "l4", objectId: "s4", at: { x: 2.5, y: -1 }, placement: "below" },
+    ],
+  }}
+/>
+
+Tanda komponen memberikan arah ke kanan dan ke bawah. Untuk mencari panjang anak panah, tambahkan kuasa dua setiap komponen. Kuasa dua sesuatu nombor negatif sentiasa positif, jadi tanda negatif hilang.
+
+<BlockMath math="\lvert\vec{C}\rvert=\sqrt{5^2+(-2)^2}=\sqrt{25+4}=\sqrt{29}" />
+
+
+Jadi, penolakan tidak memerlukan petua baharu. Kekalkan paksi yang sama, tolak komponen yang sepadan, kemudian baca tandanya untuk mendapatkan semula arah hasil penolakan.
