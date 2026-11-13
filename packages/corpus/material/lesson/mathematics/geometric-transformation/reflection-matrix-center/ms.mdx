@@ -1,0 +1,199 @@
+
+export const metadata = {
+  title: "Matriks Pantulan pada Titik Pusat",
+  description: "Terbitkan matriks pantulan pada asalan dan gunakannya pada titik tunggal dan pada segi tiga yang lengkap.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-10",
+  dateModified: "2026-11-08",
+  subject: "Transformasi Geometri",
+};
+
+## Menyongsangkan Tanda Setiap Koordinat dengan Matriks
+
+Memantulkan titik <InlineMath math="(x,y)" /> pada asalan <InlineMath math="O(0,0)" /> menghasilkan imej <InlineMath math="(-x,-y)" />. Pantulan ini setara dengan putaran <InlineMath math="180^\circ" /> pada asalan.
+
+Untuk mencari matriks <InlineMath math="2 \times 2" /> bagi transformasi ini, mulakan dengan unsur yang belum diketahui:
+
+<BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" />
+
+Kita mahu mencari <InlineMath math="r, s, t, u" /> supaya:
+
+<BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} -x \\ -y \end{pmatrix}" />
+
+Daripada pendaraban matriks, kita boleh menulis:
+
+<BlockMath math="\begin{pmatrix} rx + sy \\ tx + uy \end{pmatrix} = \begin{pmatrix} -1x + 0y \\ 0x - 1y \end{pmatrix}" />
+
+Dengan menyamakan <Highlight>pekali yang sepadan</Highlight>, kita dapat:
+
+- Bagi baris pertama: <InlineMath math="rx + sy = -1x + 0y" />. Maksudnya, <InlineMath math="r = -1" /> dan <InlineMath math="s = 0" />.
+- Bagi baris kedua: <InlineMath math="tx + uy = 0x - 1y" />. Maksudnya, <InlineMath math="t = 0" /> dan <InlineMath math="u = -1" />.
+
+### Matriks Pantulan pada Asalan
+
+Matriks ini ialah **negatif matriks identiti**. Memantulkan dua kali menyongsangkan kedua-dua tanda sebanyak dua kali dan mengembalikan titik asal:
+
+<BlockMath math="M=-I=\begin{pmatrix}-1&0\\0&-1\end{pmatrix},\qquad M^2=\begin{pmatrix}1&0\\0&1\end{pmatrix}=I" />
+
+Gunakan <InlineMath math="M" /> pada <InlineMath math="P(2, 1)" /> dan kamu dapat <InlineMath math="P'(-2, -1)" />. Gunakan <InlineMath math="M" /> sekali lagi dan tandanya kembali menjadi <InlineMath math="(2, 1)" />, jadi dua pantulan pada asalan mengembalikan setiap titik ke tempat asalnya, dan itulah maksud <InlineMath math="M^2 = I" />.
+
+<MathVisual
+  title={<>Memantulkan dua kali mengembalikan titik</>}
+  description={<><InlineMath math="P(2, 1)" /> dan imejnya <InlineMath math="P'(-2, -1)" /> pada asalan. Memantulkan <InlineMath math="P'" /> sekali lagi memberikan <InlineMath math="P" /> semula.</>}
+  labels={{
+    p: <InlineMath math="P(2, 1)" />,
+    image: <InlineMath math="P'(-2, -1)" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 2.6 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "join", kind: "segment", from: { x: 2, y: 1 }, to: { x: -2, y: -1 }, appearance: "construction" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "p", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: -2, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 2, y: 1 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: -2, y: -1 }, placement: "below" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+## Menggunakan Matriks Pantulan pada Asalan
+
+Satu pendaraban matriks boleh bertindak pada **beberapa lajur serentak**. Setiap lajur menyimpan satu titik, jadi tertib lajur menentukan tertib bucu dalam rajah.
+
+<BlockMath math="M\begin{pmatrix}x_A&x_B\\y_A&y_B\end{pmatrix}=\begin{pmatrix}-x_A&-x_B\\-y_A&-y_B\end{pmatrix}" />
+
+Letakkan bucu <InlineMath math="A(1, 1)" />, <InlineMath math="B(3, 1)" /> dan <InlineMath math="C(2, 3)" /> dalam tiga lajur dan darab sekali dengan <InlineMath math="M" />. Lajur imej <InlineMath math="(-1, -1)" />, <InlineMath math="(-3, -1)" /> dan <InlineMath math="(-2, -3)" /> memberikan <InlineMath math="A'B'C'" /> dalam tertib bucu yang sama, iaitu dipusingkan setengah pusingan pada <InlineMath math="O" />.
+
+<MathVisual
+  title={<>Satu pendaraban menggerakkan seluruh segi tiga</>}
+  description={<>Segi tiga <InlineMath math="ABC" /> dan imejnya <InlineMath math="A'B'C'" /> selepas pantulan pada asalan.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    "a-image": <InlineMath math="A'" />,
+    "b-image": <InlineMath math="B'" />,
+    "c-image": <InlineMath math="C'" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "tri", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: 3, y: 1 }, { x: 2, y: 3 }], appearance: "primary" },
+      { id: "image", kind: "polygon", vertices: [{ x: -1, y: -1 }, { x: -3, y: -1 }, { x: -2, y: -3 }], appearance: "secondary" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "tri", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "b", objectId: "tri", at: { x: 3, y: 1 }, placement: "below" },
+      { key: "c", objectId: "tri", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "a-image", objectId: "image", at: { x: -1, y: -1 }, placement: "above" },
+      { key: "b-image", objectId: "image", at: { x: -3, y: -1 }, placement: "above" },
+      { key: "c-image", objectId: "image", at: { x: -2, y: -3 }, placement: "below" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
+
+### Memantulkan Dua Titik
+
+Tentukan imej bagi titik <InlineMath math="A(-1,1)" /> dan <InlineMath math="B(3,-2)" /> apabila dipantulkan pada asalan.
+
+**Penyelesaian**:
+
+Gunakan **baris pertama untuk koordinat mengufuk** dan baris kedua untuk koordinat mencancang:
+
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+Bagi titik <InlineMath math="A(-1,1)" />:
+
+<BlockMath math="\begin{aligned} \begin{pmatrix} x'_A \\ y'_A \end{pmatrix} &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} -1 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} (-1)(-1) + (0)(1) \\ (0)(-1) + (-1)(1) \end{pmatrix} \\ &amp;= \begin{pmatrix} 1 \\ -1 \end{pmatrix} \end{aligned}" />
+
+Imej bagi titik <InlineMath math="A" /> ialah <InlineMath math="A'(1,-1)" />.
+
+Bagi titik <InlineMath math="B(3,-2)" />:
+
+<BlockMath math="\begin{aligned} \begin{pmatrix} x'_B \\ y'_B \end{pmatrix} &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 3 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} (-1)(3) + (0)(-2) \\ (0)(3) + (-1)(-2) \end{pmatrix} \\ &amp;= \begin{pmatrix} -3 \\ 2 \end{pmatrix} \end{aligned}" />
+
+Imej bagi titik <InlineMath math="B" /> ialah <InlineMath math="B'(-3,2)" />.
+
+<MathVisual
+  title={<>Dua titik yang dipantulkan pada asalan</>}
+  description={<><InlineMath math="A(-1, 1)" /> dan <InlineMath math="B(3, -2)" /> dengan imejnya <InlineMath math="A'(1, -1)" /> dan <InlineMath math="B'(-3, 2)" />, dan setiap pasangan disambungkan melalui <InlineMath math="O" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    a: <InlineMath math="A(-1, 1)" />,
+    b: <InlineMath math="B(3, -2)" />,
+    "a-image": <InlineMath math="A'(1, -1)" />,
+    "b-image": <InlineMath math="B'(-3, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ja", kind: "segment", from: { x: -1, y: 1 }, to: { x: 1, y: -1 }, appearance: "construction" },
+      { id: "jb", kind: "segment", from: { x: 3, y: -2 }, to: { x: -3, y: 2 }, appearance: "construction" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "a", kind: "point", at: { x: -1, y: 1 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "a-image", kind: "point", at: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "b-image", kind: "point", at: { x: -3, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: -1, y: 1 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 3, y: -2 }, placement: "below" },
+      { key: "a-image", objectId: "a-image", at: { x: 1, y: -1 }, placement: "below-right" },
+      { key: "b-image", objectId: "b-image", at: { x: -3, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Kedua-dua soalan memantulkan titik pada asalan. Soalan kedua menggunakan matriks pantulan pada **setiap bucu segi tiga**.
+
+1.  Tentukan imej bagi titik <InlineMath math="A(1,-7)" /> dan <InlineMath math="B(-7,-2)" /> apabila dipantulkan pada asalan.
+2.  Segi tiga <InlineMath math="PQR" /> mempunyai bucu <InlineMath math="P(2,2)" />, <InlineMath math="Q(5,2)" />, dan <InlineMath math="R(3,5)" />. Tentukan koordinat segi tiga imej <InlineMath math="P'Q'R'" /> selepas pantulan pada asalan menggunakan pendaraban matriks.
+
+### Penyelesaian
+
+Kekalkan **lajur titik dalam tertib yang sama** semasa pendaraban. Matriks pepenjuru ini menukar tanda setiap unsur tanpa menukar tempat kedudukan mengufuk dan mencancang.
+
+**Penyelesaian 1**
+
+Matriks pantulan pada asalan ialah:
+
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+Bagi <InlineMath math="A(1,-7)" />:
+
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 1 \\ -7 \end{pmatrix} = \begin{pmatrix} -1 \\ 7 \end{pmatrix}" />
+
+Imej <InlineMath math="A'(-1,7)" />. Bagi <InlineMath math="B(-7,-2)" />:
+
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} -7 \\ -2 \end{pmatrix} = \begin{pmatrix} 7 \\ 2 \end{pmatrix}" />
+
+Imej <InlineMath math="B'(7,2)" />.
+
+**Penyelesaian 2**
+
+Matriks bucu <InlineMath math="PQR" />:
+
+<MathContainer>
+  <BlockMath math="\begin{pmatrix} 2 & 5 & 3 \\ 2 & 2 & 5 \end{pmatrix}" />
+
+  <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 2 &amp; 5 &amp; 3 \\ 2 &amp; 2 &amp; 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 &amp; -5 &amp; -3 \\ -2 &amp; -2 &amp; -5 \end{pmatrix} \end{aligned}" />
+</MathContainer>
+
+Imej: <InlineMath math="P'(-2,-2)" />, <InlineMath math="Q'(-5,-2)" />, <InlineMath math="R'(-3,-5)" />.

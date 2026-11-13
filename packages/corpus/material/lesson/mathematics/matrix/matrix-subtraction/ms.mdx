@@ -1,0 +1,366 @@
+export const metadata = {
+  title: "Penolakan Matriks",
+  description: "Tolak unsur matriks yang sepadan, semak peringkat yang diperlukan, dan gunakan operasi itu dalam contoh dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-06",
+  dateModified: "2026-11-08",
+  subject: "Matriks",
+};
+
+## Menolak Unsur pada Kedudukan yang Sepadan
+
+Penolakan matriks mencari **beza antara unsur-unsur sepadan** dua matriks. Sama seperti [penambahan matriks](/ms/subjek/matematik/matriks/penambahan-matriks), operasi penolakan hanya boleh dilakukan kalau kedua-dua matriks yang terlibat ada saiz atau peringkat yang sama.
+
+Hasil penolakan matriks ialah matriks baharu yang juga sama peringkat, dengan setiap unsurnya ialah hasil tolak unsur-unsur sepadan daripada dua matriks asal.
+
+## Takrif Formal Penolakan Matriks
+
+Ada dua cara biasa untuk mentakrifkan penolakan matriks, dan kedua-duanya membawa kepada hasil yang sama.
+
+**Penolakan sebagai Penambahan dengan Lawannya**
+
+Penolakan matriks <InlineMath math="B" /> daripada matriks <InlineMath math="A" /> boleh ditakrifkan sebagai penambahan matriks <InlineMath math="A" /> dengan matriks lawan bagi <InlineMath math="B" /> (iaitu <InlineMath math="-B" />).
+
+<BlockMath math="A - B = A + (-B)" />
+
+Matriks <InlineMath math="-B" /> ialah matriks yang diperoleh dengan mendarab setiap unsur matriks <InlineMath math="B" /> dengan <InlineMath math="-1" />. Jadi, kalau <InlineMath math="B = [b_{ij}]" />, maka <InlineMath math="-B = [-b_{ij}]" />.
+
+**Penolakan Unsur Sepadan**
+
+Kalau matriks <InlineMath math="A = [a_{ij}]" /> dan matriks <InlineMath math="B = [b_{ij}]" /> kedua-duanya berperingkat <InlineMath math="m \times n" />, maka hasil penolakan <InlineMath math="C = A - B" /> juga berperingkat <InlineMath math="m \times n" />.
+
+Setiap unsur <InlineMath math="c_{ij}" /> bagi matriks <InlineMath math="C" /> dihitung dengan menolak unsur sepadan matriks <InlineMath math="B" /> daripada unsur sepadan matriks <InlineMath math="A" />:
+
+<BlockMath math="c_{ij} = a_{ij} - b_{ij}" />
+
+Maksudnya, kita tolak unsur-unsur yang berada pada kedudukan baris dan lajur yang sama.
+
+Kedua-dua takrif itu setara dan akan menghasilkan matriks beza yang sama.
+
+## Cara Melakukan Penolakan Matriks
+
+Untuk menolak dua matriks, ikut langkah berikut:
+
+1.  **Pastikan Peringkat Sama**: Semak bahawa kedua-dua matriks ada bilangan baris dan lajur yang sama. Kalau peringkatnya berbeza, penolakan tidak tertakrif.
+2.  **Tolak Unsur Sepadan**: Kalau peringkatnya sama, tolak setiap unsur matriks kedua daripada unsur sepadan matriks pertama.
+3.  **Bentuk Matriks Hasil**: Susun hasil-hasil penolakan itu menjadi matriks baharu. Matriks baharu ini sama peringkat dengan matriks asal.
+
+### Contoh Penolakan Matriks
+
+Katakan kita ada dua matriks, <InlineMath math="P" /> dan <InlineMath math="Q" />, seperti berikut:
+
+<MathContainer>
+  <BlockMath math="P = \begin{bmatrix} 8 & 5 \\ 3 & 7 \end{bmatrix}" />
+  <BlockMath math="Q = \begin{bmatrix} 2 & 1 \\ -1 & 4 \end{bmatrix}" />
+</MathContainer>
+
+Kedua-dua matriks berperingkat <InlineMath math="2 \times 2" />, jadi kedua-duanya boleh ditolak.
+
+Dengan kaedah **menolak unsur sepadan**:
+
+<MathContainer>
+  <BlockMath math="P - Q = \begin{bmatrix} 8 & 5 \\ 3 & 7 \end{bmatrix} - \begin{bmatrix} 2 & 1 \\ -1 & 4 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 8-2 & 5-1 \\ 3-(-1) & 7-4 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 6 & 4 \\ 3+1 & 3 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 6 & 4 \\ 4 & 3 \end{bmatrix}" />
+</MathContainer>
+
+Dengan kaedah penambahan dengan lawannya (<InlineMath math="P + (-Q)" />):
+
+Mula-mula, tentukan <InlineMath math="-Q" />:
+
+<BlockMath math="-Q = \begin{bmatrix} -2 & -1 \\ -(-1) & -4 \end{bmatrix} = \begin{bmatrix} -2 & -1 \\ 1 & -4 \end{bmatrix}" />
+
+Kemudian, tambah <InlineMath math="P" /> kepada <InlineMath math="-Q" />:
+
+<MathContainer>
+  <BlockMath math="P + (-Q) = \begin{bmatrix} 8 & 5 \\ 3 & 7 \end{bmatrix} + \begin{bmatrix} -2 & -1 \\ 1 & -4 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 8+(-2) & 5+(-1) \\ 3+1 & 7+(-4) \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 6 & 4 \\ 4 & 3 \end{bmatrix}" />
+</MathContainer>
+
+Kedua-dua kaedah menghasilkan matriks yang sama.
+
+Baca setiap baris sebagai satu titik untuk melihat apa yang diukur oleh beza itu. Baris <InlineMath math="1" /> bagi <InlineMath math="P" /> ialah <InlineMath math="P_1(8, 5)" /> dan baris <InlineMath math="1" /> bagi <InlineMath math="Q" /> ialah <InlineMath math="Q_1(2, 1)" />. Baris <InlineMath math="1" /> bagi <InlineMath math="P-Q" />, iaitu <InlineMath math="(6, 4)" />, ialah langkah dari <InlineMath math="Q_1" /> ke <InlineMath math="P_1" />: <InlineMath math="6" /> ke kanan dan <InlineMath math="4" /> ke atas. Baris <InlineMath math="2" /> berfungsi dengan cara yang sama. <InlineMath math="Q-P" /> ialah langkah yang sama tetapi berjalan ke belakang, <InlineMath math="(-6, -4)" />, dan sebab itulah penolakan tidak bersifat kalis tukar tertib.
+
+<MathVisual
+  title={<><InlineMath math="P - Q" /> ialah langkah dari setiap baris <InlineMath math="Q" /> ke <InlineMath math="P" /></>}
+  description={<>Baris <InlineMath math="P" /> dan <InlineMath math="Q" /> dilukis sebagai titik. Setiap segmen menyambungkan <InlineMath math="Q_i" /> ke <InlineMath math="P_i" /> dan dilabel dengan baris <InlineMath math="i" /> bagi <InlineMath math="P-Q" />.</>}
+  labels={{
+    p1: <InlineMath math="P_1(8, 5)" />,
+    p2: <InlineMath math="P_2(3, 7)" />,
+    q1: <InlineMath math="Q_1(2, 1)" />,
+    q2: <InlineMath math="Q_2(-1, 4)" />,
+    d1: <InlineMath math="(6, 4)" />,
+    d2: <InlineMath math="(4, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 9 }, y: { min: 0, max: 8 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "p1", kind: "point", at: { x: 8, y: 5 }, appearance: "primary" },
+      { id: "p2", kind: "point", at: { x: 3, y: 7 }, appearance: "primary" },
+      { id: "q1", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "q2", kind: "point", at: { x: -1, y: 4 }, appearance: "secondary" },
+      { id: "d1", kind: "segment", from: { x: 2, y: 1 }, to: { x: 8, y: 5 }, appearance: "answer" },
+      { id: "d2", kind: "segment", from: { x: -1, y: 4 }, to: { x: 3, y: 7 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p1", objectId: "p1", at: { x: 8, y: 5 }, placement: "right" },
+      { key: "p2", objectId: "p2", at: { x: 3, y: 7 }, placement: "above" },
+      { key: "q1", objectId: "q1", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "q2", objectId: "q2", at: { x: -1, y: 4 }, placement: "left" },
+      { key: "d1", objectId: "d1", at: { x: 5, y: 3 }, placement: "below-right" },
+      { key: "d2", objectId: "d2", at: { x: 1, y: 5.5 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Menolak <InlineMath math="Q" /> sama dengan menambah <InlineMath math="-Q" />. Baris <InlineMath math="1" /> bagi <InlineMath math="-Q" /> ialah <InlineMath math="(-2, -1)" />. Apabila ditambah kepada <InlineMath math="(8, 5)" />, hasilnya jatuh pada <InlineMath math="(6, 4)" />, iaitu baris yang sama yang diberikan oleh penolakan unsur demi unsur.
+
+<MathVisual
+  title={<><InlineMath math="P - Q" /> ialah <InlineMath math="P + (-Q)" /></>}
+  description={<>Baris <InlineMath math="1" /> bagi <InlineMath math="P" /> ditambah baris <InlineMath math="1" /> bagi <InlineMath math="-Q" /> memberikan titik <InlineMath math="(6, 4)" />.</>}
+  labels={{
+    p: <InlineMath math="(8, 5)" />,
+    negq: <InlineMath math="(-2, -1)" />,
+    diff: <InlineMath math="(6, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 9 }, y: { min: -2, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 8, y: 5 }, appearance: "primary" },
+      { id: "negq", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2, y: -1 }, appearance: "secondary" },
+      { id: "s1", kind: "segment", from: { x: 8, y: 5 }, to: { x: 6, y: 4 }, appearance: "construction" },
+      { id: "s2", kind: "segment", from: { x: -2, y: -1 }, to: { x: 6, y: 4 }, appearance: "construction" },
+      { id: "diff", kind: "point", at: { x: 6, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 8, y: 5 }, placement: "right" },
+      { key: "negq", objectId: "negq", at: { x: -2, y: -1 }, placement: "below" },
+      { key: "diff", objectId: "diff", at: { x: 6, y: 4 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Tukar tertibnya dan langkah itu menjadi terbalik. Baris <InlineMath math="1" /> bagi <InlineMath math="P - Q" /> ialah <InlineMath math="(6, 4)" />, dan baris <InlineMath math="1" /> bagi <InlineMath math="Q - P" /> ialah <InlineMath math="(-6, -4)" />: panjangnya sama, tetapi arahnya bertentangan. Sebab itulah <InlineMath math="P - Q = -(Q - P)" />, dan bukan <InlineMath math="Q - P" />.
+
+<MathVisual
+  title={<><InlineMath math="P - Q" /> dan <InlineMath math="Q - P" /> menghala ke arah bertentangan</>}
+  description={<>Baris <InlineMath math="(6, 4)" /> bagi <InlineMath math="P - Q" /> dan <InlineMath math="(-6, -4)" /> bagi <InlineMath math="Q - P" /> dilukis dari asalan.</>}
+  labels={{
+    pq: <InlineMath math="P - Q" />,
+    qp: <InlineMath math="Q - P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 7 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "pq", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 4 }, appearance: "primary" },
+      { id: "qp", kind: "segment", from: { x: 0, y: 0 }, to: { x: -6, y: -4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "pq", objectId: "pq", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "qp", objectId: "qp", at: { x: -6, y: -4 }, placement: "left" },
+    ],
+  }}
+/>
+
+### Contoh Matriks yang Tidak Boleh Ditolak
+
+Dua matriks ini tidak **sama peringkat**:
+
+<MathContainer>
+  <BlockMath math="K = \begin{bmatrix} 1 & 0 \\ -2 & 5 \\ 3 & 1 \end{bmatrix}" />
+  <BlockMath math="L = \begin{bmatrix} 4 & 2 \\ 0 & 7 \end{bmatrix}" />
+</MathContainer>
+
+Matriks <InlineMath math="K" /> berperingkat <InlineMath math="3 \times 2" />, manakala matriks <InlineMath math="L" /> berperingkat <InlineMath math="2 \times 2" />. Oleh sebab peringkat dua matriks ini berbeza, penolakan <InlineMath math="K-L" /> (atau <InlineMath math="L-K" />) tidak boleh dilakukan atau tidak tertakrif.
+## Sifat-sifat Penolakan Matriks
+
+Penambahan matriks bersifat kalis tukar tertib dan kalis sekutuan, tetapi <Highlight>penolakan matriks secara amnya tidak ada kedua-dua sifat itu</Highlight>.
+
+Perhatikan **tanda tolak di hadapan sesuatu matriks**. Tanda itu dikenakan pada setiap unsur. Menukar tertib atau membuang kurungan boleh mengubah unsur mana yang ditolak.
+
+### Tidak Kalis Tukar Tertib
+
+Secara amnya, **tertib penolakan matriks** sangat mempengaruhi hasilnya. Maksudnya, <InlineMath math="A - B" /> tidak sama dengan <InlineMath math="B - A" />, kecuali dalam kes khas (contohnya kalau <InlineMath math="A=B" />).
+
+Secara amnya:
+
+<BlockMath math="A - B \neq B - A" />
+
+Contohnya, daripada matriks <InlineMath math="P" /> dan <InlineMath math="Q" /> di atas:
+
+<BlockMath math="P-Q = \begin{bmatrix} 6 & 4 \\ 4 & 3 \end{bmatrix}" />
+
+Manakala,
+
+<MathContainer>
+  <BlockMath math="Q-P = \begin{bmatrix} 2 & 1 \\ -1 & 4 \end{bmatrix} - \begin{bmatrix} 8 & 5 \\ 3 & 7 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 2-8 & 1-5 \\ -1-3 & 4-7 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} -6 & -4 \\ -4 & -3 \end{bmatrix}" />
+</MathContainer>
+
+Jadi, <InlineMath math="P-Q \neq Q-P" />.
+### Tidak Kalis Sekutuan
+
+**Kumpulan** dalam penolakan tiga atau lebih matriks juga mempengaruhi hasil akhir. Secara amnya, <InlineMath math="(A - B) - C" /> tidak sama dengan <InlineMath math="A - (B - C)" />.
+
+Secara amnya:
+
+<BlockMath math="(A - B) - C \neq A - (B - C)" />
+
+Ini kerana <InlineMath math="(A - B) - C = A - B - C" />, manakala <InlineMath math="A - (B - C) = A - B + C" />.
+
+Penolakan matriks boleh ditulis sebagai penambahan matriks lawan: <InlineMath math="A - B = A + (-B)" />.
+
+Dengan menukar penolakan kepada penambahan dengan matriks lawan, kita boleh gunakan sifat-sifat penambahan apabila perlu.
+## Latihan
+
+**Soalan 1**
+
+Diberi matriks-matriks berikut:
+
+<MathContainer>
+  <BlockMath math="M = \begin{bmatrix} 4 & -2 & 0 \\ 1 & 5 & 3 \end{bmatrix}" />
+  <BlockMath math="N = \begin{bmatrix} -1 & 1 & -2 \\ 6 & 0 & 7 \end{bmatrix}" />
+</MathContainer>
+
+Tentukan hasil <InlineMath math="M-N" />.
+
+**Soalan 2**
+
+Tentukan nilai <InlineMath math="x, y," /> dan <InlineMath math="z" /> daripada **persamaan matriks** berikut:
+
+<BlockMath math="\begin{aligned} &amp;\begin{bmatrix} 2x &amp; 7 \\ y-1 &amp; 5 \end{bmatrix} - \begin{bmatrix} 3 &amp; z \\ 4 &amp; -2x \end{bmatrix} \\ &amp;= \begin{bmatrix} 5 &amp; 10 \\ -3 &amp; 13 \end{bmatrix} \end{aligned}" />
+
+**Soalan 3**
+
+Diberi tiga matriks:
+
+<MathContainer>
+  <BlockMath math="A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
+  <BlockMath math="B = \begin{bmatrix} 3 & -2 \\ 5 & 1 \end{bmatrix}" />
+  <BlockMath math="C = \begin{bmatrix} -4 & 0 \\ 2 & -3 \end{bmatrix}" />
+</MathContainer>
+
+Hitung <InlineMath math="(A-B)-C" /> dan <InlineMath math="A-(B-C)" />. Adakah **hasilnya sama**?
+
+### Penyelesaian
+
+**Soalan 1**
+
+Diberi:
+
+<MathContainer>
+  <BlockMath math="M = \begin{bmatrix} 4 & -2 & 0 \\ 1 & 5 & 3 \end{bmatrix}" />
+  <BlockMath math="N = \begin{bmatrix} -1 & 1 & -2 \\ 6 & 0 & 7 \end{bmatrix}" />
+</MathContainer>
+
+Kemudian, <InlineMath math="M-N" /> ialah:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} M -N &amp;= \begin{bmatrix} 4 &amp; -2 &amp; 0 \\ 1 &amp; 5 &amp; 3 \end{bmatrix} \\ &amp;\quad{}- \begin{bmatrix} -1 &amp; 1 &amp; -2 \\ 6 &amp; 0 &amp; 7 \end{bmatrix} \end{aligned}" />
+  <BlockMath math="= \begin{bmatrix} 4-(-1) & -2-1 & 0-(-2) \\ 1-6 & 5-0 & 3-7 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 4+1 & -3 & 0+2 \\ -5 & 5 & -4 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 5 & -3 & 2 \\ -5 & 5 & -4 \end{bmatrix}" />
+</MathContainer>
+
+**Soalan 2**
+
+Diberi persamaan matriks:
+
+<BlockMath math="\begin{aligned} &amp;\begin{bmatrix} 2x &amp; 7 \\ y-1 &amp; 5 \end{bmatrix} - \begin{bmatrix} 3 &amp; z \\ 4 &amp; -2x \end{bmatrix} \\ &amp;= \begin{bmatrix} 5 &amp; 10 \\ -3 &amp; 13 \end{bmatrix} \end{aligned}" />
+
+Lakukan operasi penolakan di sebelah kiri:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;\begin{bmatrix} 2x-3 &amp; 7-z \\ (y-1)-4 &amp; 5-(-2x) \end{bmatrix} \\ &amp;= \begin{bmatrix} 5 &amp; 10 \\ -3 &amp; 13 \end{bmatrix} \end{aligned}" />
+  <BlockMath math="\begin{bmatrix} 2x-3 & 7-z \\ y-5 & 5+2x \end{bmatrix} = \begin{bmatrix} 5 & 10 \\ -3 & 13 \end{bmatrix}" />
+</MathContainer>
+
+Berdasarkan kesamaan dua matriks, **unsur-unsur sepadan** mesti sama:
+
+Daripada unsur pada baris <InlineMath math="1" />, lajur <InlineMath math="1" />: <InlineMath math="2x-3 = 5" />
+
+<MathContainer>
+  <BlockMath math="2x = 5+3" />
+  <BlockMath math="2x = 8" />
+  <BlockMath math="x = 4" />
+</MathContainer>
+
+Daripada unsur pada baris <InlineMath math="1" />, lajur <InlineMath math="2" />: <InlineMath math="7-z = 10" />
+
+<MathContainer>
+  <BlockMath math="-z = 10-7" />
+  <BlockMath math="-z = 3" />
+  <BlockMath math="z = -3" />
+</MathContainer>
+
+Daripada unsur pada baris <InlineMath math="2" />, lajur <InlineMath math="1" />: <InlineMath math="y-5 = -3" />
+
+<MathContainer>
+  <BlockMath math="y = -3+5" />
+  <BlockMath math="y = 2" />
+</MathContainer>
+
+Daripada unsur pada baris <InlineMath math="2" />, lajur <InlineMath math="2" />: <InlineMath math="5+2x = 13" />.
+
+Menggantikan <InlineMath math="x=4" /> daripada persamaan pertama memberikan <InlineMath math="5+2(4) = 13" />.
+
+Nilai <InlineMath math="13" /> di penjuru kanan bawah mengesahkan nilai <InlineMath math="x" />. Nilai itu tidak menambah anu baharu untuk diselesaikan.
+
+Penyelesaiannya ialah <InlineMath math="x=4" />, <InlineMath math="y=2" />, dan <InlineMath math="z=-3" />.
+
+Menggantikan nilai-nilai ini ke dalam persamaan asal mengesahkan keempat-empat unsur sepadan.
+
+**Soalan 3**
+
+Diberi:
+
+<MathContainer>
+  <BlockMath math="A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
+  <BlockMath math="B = \begin{bmatrix} 3 & -2 \\ 5 & 1 \end{bmatrix}" />
+  <BlockMath math="C = \begin{bmatrix} -4 & 0 \\ 2 & -3 \end{bmatrix}" />
+</MathContainer>
+
+Hitung <InlineMath math="(A-B)-C" />:
+
+Mula-mula, <InlineMath math="A-B" />:
+
+<MathContainer>
+  <BlockMath math="A-B = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} - \begin{bmatrix} 3 & -2 \\ 5 & 1 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 1-3 & 0-(-2) \\ 0-5 & 1-1 \end{bmatrix} = \begin{bmatrix} -2 & 2 \\ -5 & 0 \end{bmatrix}" />
+</MathContainer>
+
+Kemudian, <InlineMath math="(A-B)-C" />:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} (A-B) -C &amp;= \begin{bmatrix} -2 &amp; 2 \\ -5 &amp; 0 \end{bmatrix} \\ &amp;\quad{}- \begin{bmatrix} -4 &amp; 0 \\ 2 &amp; -3 \end{bmatrix} \end{aligned}" />
+  <BlockMath math="\begin{aligned}  &amp;= \begin{bmatrix} -2-(-4) &amp; 2-0 \\ -5-2 &amp; 0-(-3) \end{bmatrix} \\ &amp;= \begin{bmatrix} -2+4 &amp; 2 \\ -7 &amp; 0+3 \end{bmatrix} \\ &amp;= \begin{bmatrix} 2 &amp; 2 \\ -7 &amp; 3 \end{bmatrix} \end{aligned}" />
+</MathContainer>
+
+Hitung <InlineMath math="A-(B-C)" />:
+
+Mula-mula, <InlineMath math="B-C" />:
+
+<MathContainer>
+  <BlockMath math="B-C = \begin{bmatrix} 3 & -2 \\ 5 & 1 \end{bmatrix} - \begin{bmatrix} -4 & 0 \\ 2 & -3 \end{bmatrix}" />
+  <BlockMath math="\begin{aligned}  &amp;= \begin{bmatrix} 3-(-4) &amp; -2-0 \\ 5-2 &amp; 1-(-3) \end{bmatrix} \\ &amp;= \begin{bmatrix} 3+4 &amp; -2 \\ 3 &amp; 1+3 \end{bmatrix} \\ &amp;= \begin{bmatrix} 7 &amp; -2 \\ 3 &amp; 4 \end{bmatrix} \end{aligned}" />
+</MathContainer>
+
+Kemudian, <InlineMath math="A-(B-C)" />:
+
+<MathContainer>
+  <BlockMath math="A-(B-C) = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} - \begin{bmatrix} 7 & -2 \\ 3 & 4 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 1-7 & 0-(-2) \\ 0-3 & 1-4 \end{bmatrix} = \begin{bmatrix} -6 & 2 \\ -3 & -3 \end{bmatrix}" />
+</MathContainer>
+
+Dua hasil itu berbeza: <InlineMath math="(A-B)-C \neq A-(B-C)" />.
+
+Jadi penolakan matriks **tidak kalis sekutuan**.
