@@ -5,6 +5,7 @@ import {
   ACTIVE_APP_LOCALES,
   ActiveAppLocaleListSchema,
   ActiveAppLocaleSchema,
+  APP_LOCALE_CODES,
 } from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Effect, FileSystem, HashSet, Order, Path } from "effect";
 
@@ -52,7 +53,7 @@ layer(NodeServices.layer)("material registry", (it) => {
         );
         const authoredPaths = Arr.sort(
           Arr.filter(lessonPaths, (sourcePath) =>
-            Arr.some(ACTIVE_APP_LOCALES, (locale) =>
+            Arr.some(APP_LOCALE_CODES, (locale) =>
               sourcePath.endsWith(`/${locale}.mdx`)
             )
           ),
@@ -63,7 +64,7 @@ layer(NodeServices.layer)("material registry", (it) => {
           Order.String
         );
 
-        expect(entries).toHaveLength(1149);
+        expect(entries).toHaveLength(authoredPaths.length);
         expect(
           HashSet.size(
             HashSet.fromIterable(
@@ -76,7 +77,9 @@ layer(NodeServices.layer)("material registry", (it) => {
             Arr.filter(entries, ({ route }) => route.appLocale === locale)
           ).toHaveLength(383);
         }
-        expect(HashSet.size(HashSet.fromIterable(projectedPaths))).toBe(1149);
+        expect(HashSet.size(HashSet.fromIterable(projectedPaths))).toBe(
+          authoredPaths.length
+        );
         expect(projectedPaths).toEqual(authoredPaths);
 
         const representativeKeys = HashSet.fromIterable<string>([
