@@ -1,20 +1,34 @@
-Two unknowns, the number of small tables with <InlineMath math="4" /> seats and the number of large tables with <InlineMath math="6" /> seats, are fixed by **two conditions**: the total number of tables and the total number of seats. Let <InlineMath math="g" /> be the number of tables with <InlineMath math="6" /> seats. Then <InlineMath math="14-g" /> tables have <InlineMath math="4" /> seats each.
+# One base for everything
 
-The seats at both kinds of table add up to <InlineMath math="68" />:
+You have logarithms in base <InlineMath math="2" /> and base <InlineMath math="3" />, but the question is in base <InlineMath math="15" />. **Move everything to base <InlineMath math="2" />**:
+
+<BlockMath math="\log_{15}20=\frac{\log_2 20}{\log_2 15}" />
+
+# Chaining two logarithms
+
+The number <InlineMath math="5" /> only shows up in <InlineMath math="b=\log_3 5" />, which is in base <InlineMath math="3" />. **Chaining the bases links <InlineMath math="2" /> to <InlineMath math="5" /> through <InlineMath math="3" />**:
+
+<BlockMath math="\log_2 5=\log_2 3\cdot\log_3 5=ab" />
+
+Now split <InlineMath math="20=4\cdot5" /> and <InlineMath math="15=3\cdot5" />:
 
 <BlockMath math="\begin{aligned}
-4(14-g)+6g&=68 \\
-56-4g+6g&=68 \\
-2g&=12 \\
-g&=6
+\log_2 20&=\log_2 4+\log_2 5=2+ab \\
+\log_2 15&=\log_2 3+\log_2 5=a+ab
 \end{aligned}" />
 
-As a check, <InlineMath math="6" /> large tables give <InlineMath math="36" /> seats and the other <InlineMath math="8" /> small tables give <InlineMath math="32" /> seats, together <InlineMath math="68" />.
+# The result
 
-So the restaurant has <InlineMath math="6" /> tables with <InlineMath math="6" /> seats.
+<BlockMath math="\log_{15}20=\frac{2+ab}{a+ab}" />
 
-- <InlineMath math="3" /> large tables would give only <InlineMath math="18+44=62" /> seats.
-- <InlineMath math="4" /> large tables would give only <InlineMath math="24+40=64" /> seats.
-- <InlineMath math="5" /> large tables would give <InlineMath math="30+36=66" /> seats, two too few.
-- <InlineMath math="7" /> large tables would give <InlineMath math="42+28=70" /> seats, two too many.
-- <InlineMath math="8" /> is the number of tables with <InlineMath math="4" /> seats. It also appears if the seat numbers are swapped, that is, if <InlineMath math="6(14-g)+4g=68" /> is solved.
+Check with numbers: <InlineMath math="a\approx1.585" /> and <InlineMath math="b\approx1.465" /> give <InlineMath math="\frac{4.322}{3.907}\approx1.106" />. **That value makes sense**, because <InlineMath math="20" /> is a bit more than <InlineMath math="15" />.
+
+So <InlineMath math="\log_{15}20=\frac{2+ab}{a+ab}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\frac{2+b}{a+b}" /> uses <InlineMath math="b" /> as <InlineMath math="\log_2 5" />. **But <InlineMath math="b" /> is in base <InlineMath math="3" />**, so it has to be multiplied by <InlineMath math="a" /> first.
+- <InlineMath math="\frac{2+ab}{a+b}" /> chains the bases in the numerator only and forgets the denominator.
+- <InlineMath math="\frac{2ab}{a+ab}" /> writes <InlineMath math="\log_2(4\cdot5)" /> as <InlineMath math="\log_2 4\cdot\log_2 5" />. The logarithm of a product is a sum, not a product.
+- <InlineMath math="\frac{2+ab}{a^2b}" /> makes the same slip in the denominator, <InlineMath math="\log_2 3\cdot\log_2 5=a\cdot ab" />.
+- <InlineMath math="\frac{a+ab}{2+ab}" /> swaps the numerator and the denominator. That's <InlineMath math="\log_{20}15" />.
