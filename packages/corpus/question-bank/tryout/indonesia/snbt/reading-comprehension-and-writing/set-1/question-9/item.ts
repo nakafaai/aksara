@@ -13,7 +13,7 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Pada bulan ketiga, sekitar sepertiga pendaftar aplikasi justru merupakan pasien lansia yang memakai ponsel pintarnya sendiri.",
+          label: "Pada bulan ketiga, tepat sepertiga pendaftar aplikasi justru merupakan pasien lansia yang memakai ponsel pintarnya sendiri.",
         },
         {
           correct: false,
