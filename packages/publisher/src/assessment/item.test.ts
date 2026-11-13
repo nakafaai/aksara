@@ -8,6 +8,7 @@ import {
   CorpusSourcePathSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { ACTIVE_APP_LOCALE_CODES } from "@nakafa/aksara-contracts/locale";
 import { ItemSourceSchema } from "@nakafa/aksara-corpus/question-bank/item";
 import { SetPathSchema } from "@nakafa/aksara-corpus/question-bank/path";
 import { Array as Arr, Effect, Layer, Option, Path, Schema } from "effect";
@@ -34,6 +35,7 @@ function files(prompt: string) {
 /** One authored question of the virtual checkout. */
 function question(item: unknown) {
   return {
+    explanations: ACTIVE_APP_LOCALE_CODES,
     item: Schema.decodeUnknownSync(ItemSourceSchema)(item),
     number: 1,
     set: SetPathSchema.make(SET),

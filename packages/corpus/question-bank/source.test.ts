@@ -45,6 +45,7 @@ describe("readQuestionSets", () => {
           1, 2, 3,
         ]);
         expect(set.questions[0]).toEqual({
+          explanations: ["en", "id", "de"],
           item: onReading,
           number: 1,
           set: TEST_SET,
@@ -124,6 +125,7 @@ describe("readQuestionSets", () => {
     "carries a declared locale that is not served yet when every question of the set explains in it",
     () =>
       Effect.gen(function* () {
+        /** The Malay explanation of one question. */
         const malay = (number: number) =>
           [
             setSourcePath(TEST_SET, `question-${number}`, "answer.ms.mdx"),

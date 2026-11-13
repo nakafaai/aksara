@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Exit, Schema } from "effect";
-import { AppLocaleSchema } from "#contracts/locale";
+import { APP_LOCALE_CODES, AppLocaleSchema } from "#contracts/locale";
 import {
   canonicalizeMaterialProjection,
   MaterialKeySchema,
@@ -224,12 +224,11 @@ describe("material projection", () => {
   });
 
   it("owns the exact public namespace for every application locale", () => {
-    expect([
-      materialPublicNamespace(Schema.decodeSync(AppLocaleSchema)("en")),
-      materialPublicNamespace(Schema.decodeSync(AppLocaleSchema)("id")),
-      materialPublicNamespace(Schema.decodeSync(AppLocaleSchema)("de")),
-      materialPublicNamespace(Schema.decodeSync(AppLocaleSchema)("ms")),
-    ]).toEqual(["subjects", "materi", "faecher", "subjek"]);
+    expect(
+      Arr.map(APP_LOCALE_CODES, (code) =>
+        materialPublicNamespace(Schema.decodeSync(AppLocaleSchema)(code))
+      )
+    ).toEqual(["subjects", "materi", "faecher", "subjek"]);
 
     const germanRoute = Schema.decodeSync(MaterialLessonRouteSchema)({
       ...projection,

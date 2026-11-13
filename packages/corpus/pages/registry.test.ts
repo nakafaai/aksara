@@ -1,5 +1,5 @@
 import { NodeServices } from "@effect/platform-node";
-import { describe, expect, it, layer } from "@effect/vitest";
+import { describe, expect, it } from "@effect/vitest";
 import {
   ActiveAppLocaleListSchema,
   ActiveAppLocaleSchema,
@@ -197,9 +197,7 @@ describe("public page registry", () => {
         );
       })
   );
-});
 
-layer(NodeServices.layer)("public page sources", (it) => {
   it.effect("projects exactly the locale bodies checked in", () =>
     Effect.gen(function* () {
       const fileSystem = yield* FileSystem.FileSystem;
@@ -223,6 +221,6 @@ layer(NodeServices.layer)("public page sources", (it) => {
           Order.String
         )
       );
-    })
+    }).pipe(Effect.provide(NodeServices.layer))
   );
 });

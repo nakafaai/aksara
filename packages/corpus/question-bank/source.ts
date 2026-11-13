@@ -210,6 +210,7 @@ const readSet = Effect.fn("AksaraCorpus.readSet")(function* (
   ) {
     return yield* new QuestionSequenceError({ numbers, set });
   }
+  /** The files of one question folder of this set. */
   const filesOf = (number: number) =>
     Arr.map(
       Arr.filter(questionEntries, (entry) => entry.number === number),
