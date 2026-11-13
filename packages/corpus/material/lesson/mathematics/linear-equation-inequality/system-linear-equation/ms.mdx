@@ -197,103 +197,73 @@ Untuk tiga atau lebih satah, persilangan sepunyanya boleh jadi satu titik, satu 
 Paparan di bawah menunjukkan tiga susunan garis dan bagaimana bilangan **titik sepunya** menentukan bilangan penyelesaian.
 
 <ContentStack>
-  <LineEquation
-    showZAxis={false}
+  <MathVisual
     title={<>Sistem Persamaan Linear dengan Satu Penyelesaian</>}
     description={<>Dua garis yang bersilang pada satu titik.</>}
-    data={[
-      {
-        points: [
-          { x: -3, y: 9, z: 0 },
-          { x: 3, y: 5, z: 0 },
-          { x: 9, y: 1, z: 0 },
-        ],
-        smooth: false,
-        labels: [{ text: <InlineMath math="2x+3y=21" />, offset: [1.5, 1.2, 0] }],
-        color: "#ea580c",
-      },
-      {
-        points: [
-          { x: -5, y: 15, z: 0 },
-          { x: 5, y: 5, z: 0 },
-          { x: 15, y: -5, z: 0 },
-        ],
-        smooth: false,
-        labels: [{ text: <InlineMath math="x+y=10" />, offset: [5, 0, 0] }],
-        color: "#9333ea",
-      },
-    ]}
-    cameraTarget={[7, 2.5, 0]}
-    cameraPosition={[7, 2.5, 13]}
+    labels={{
+      "l1": <InlineMath math="2x+3y=21" />,
+      "l2": <InlineMath math="x+y=10" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -7, max: 17 }, y: { min: -7, max: 17 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: [{ x: -3, y: 9 }, { x: 3, y: 5 }, { x: 9, y: 1 }], appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: -5, y: 15 }, { x: 5, y: 5 }, { x: 15, y: -5 }], appearance: "secondary" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 3, y: 5 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 5, y: 5 }, placement: "right" },
+      ],
+    }}
   />
-  <LineEquation
-    showZAxis={false}
+  <MathVisual
     title={<>Sistem Persamaan Linear tanpa Penyelesaian</>}
     description={<>Dua garis selari (tiada persilangan).</>}
-    data={[
-      {
-        points: [
-          { x: -3, y: -4, z: 0 },
-          { x: 1, y: 2, z: 0 },
-          { x: 5, y: 8, z: 0 },
-        ],
-        smooth: false,
-        labels: [{ text: <InlineMath math="3x-2y=-1" />, offset: [-2, 0, 0] }],
-        color: "#db2777",
-      },
-      {
-        points: [
-          { x: -3, y: -5, z: 0 },
-          { x: 1, y: 1, z: 0 },
-          { x: 5, y: 7, z: 0 },
-        ],
-        smooth: false,
-        labels: [{ text: <InlineMath math="6x-4y=2" />, offset: [2, 0, 0] }],
-        color: "#ca8a04",
-      },
-    ]}
+    labels={{
+      "l1": <InlineMath math="3x-2y=-1" />,
+      "l2": <InlineMath math="6x-4y=2" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -4, max: 6 }, y: { min: -6.5, max: 9.5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: [{ x: -3, y: -4 }, { x: 1, y: 2 }, { x: 5, y: 8 }], appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: -3, y: -5 }, { x: 1, y: 1 }, { x: 5, y: 7 }], appearance: "secondary" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 1, y: 2 }, placement: "left" },
+        { key: "l2", objectId: "s2", at: { x: 1, y: 1 }, placement: "right" },
+      ],
+    }}
   />
-  <LineEquation
-    showZAxis={false}
+  <MathVisual
     title={<>Sistem Persamaan Linear dengan Penyelesaian Tak Terhingga</>}
     description={
-      <>
-        Persamaan kedua ialah <InlineMath math="2" /> kali persamaan pertama, jadi
-        kedua-dua graf bertindih dan kelihatan sebagai satu garis. Garis bagi persamaan
-        pertama dilukis lebih tebal supaya kedua-dua persamaan tetap kelihatan pada laluan yang sama.
-      </>
-    }
-    data={[
-      {
-        points: [
-          { x: -1, y: 1, z: 0 },
-          { x: 2, y: -1, z: 0 },
-          { x: 5, y: -3, z: 0 },
-        ],
-        smooth: false,
-        labels: [{ text: <InlineMath math="2x+3y=1" />, offset: [-2, -1, 0] }],
-        color: "#7c3aed",
-        lineWidth: 6,
-      },
-      {
-        points: [
-          { x: -1, y: 1, z: 0 },
-          { x: 2, y: -1, z: 0 },
-          { x: 5, y: -3, z: 0 },
-        ],
-        smooth: false,
-        labels: [
-          {
-            text: <InlineMath math="4x+6y=2" />,
-            at: 0,
-            offset: [2, 0, 0],
-          },
-        ],
-        color: "#0891b2",
-        lineWidth: 2,
-      },
-    ]}
-    cameraPosition={[2, -1, 9]}
-    cameraTarget={[2, -1, 0]}
+        <>
+          Persamaan kedua ialah <InlineMath math="2" /> kali persamaan pertama, jadi
+          kedua-dua graf bertindih dan kelihatan sebagai satu garis. Garis bagi persamaan
+          pertama dilukis lebih tebal supaya kedua-dua persamaan tetap kelihatan pada laluan yang sama.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="2x+3y=1" />,
+      "l2": <InlineMath math="4x+6y=2" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -2, max: 6 }, y: { min: -3.5, max: 1.5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: [{ x: -1, y: 1 }, { x: 2, y: -1 }, { x: 5, y: -3 }], appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: -1, y: 1 }, { x: 2, y: -1 }, { x: 5, y: -3 }], appearance: "secondary" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 2, y: -1 }, placement: "below-left" },
+        { key: "l2", objectId: "s2", at: { x: -1, y: 1 }, placement: "right" },
+      ],
+    }}
   />
 </ContentStack>
