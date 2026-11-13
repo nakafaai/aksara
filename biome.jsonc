@@ -34,7 +34,24 @@
   ],
   "linter": {
     "rules": {
+      "complexity": {
+        // Ultracite 8.2 turns this off for a deliberately floating promise.
+        // Aksara starts every effect through Effect and floats none.
+        "noVoid": "error"
+      },
+      "performance": {
+        // Ultracite 8.2 turns this off for package entry points. Every Aksara
+        // module is imported by its own path, so no module re-exports another.
+        "noBarrelFile": "error",
+        // Ultracite 8.2 turns this off for libraries that document `import * as`.
+        // Aksara imports every module member by name.
+        "noNamespaceImport": "error"
+      },
       "style": {
+        // Ultracite 8.2 allows one class per file. An Effect-native module
+        // declares the Schema.TaggedError classes of its capability beside it,
+        // so several classes in one module are the rule here, not a smell.
+        "noExcessiveClassesPerFile": "off",
         "noRestrictedImports": {
           "level": "error",
           "options": {
