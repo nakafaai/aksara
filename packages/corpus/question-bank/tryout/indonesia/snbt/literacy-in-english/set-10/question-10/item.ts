@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "point-of-view",
   },
-  stimulus: "machine-pictures",
+  stimulus: "homeschooling",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "A user who typed a one-line prompt and posted the first picture unchanged",
-        },
-        {
-          correct: false,
-          label:
-            "A buyer who commissioned a portrait and described what it should show",
+            "By arguing that the family's success is probably down to chance and is likely to fade as the children grow older.",
         },
         {
           correct: true,
           label:
-            "A comic artist who redrew AI backgrounds and laid out every panel by hand",
+            "By granting that the success may be real but noting that happy families share their stories most, so it says little in general.",
         },
         {
           correct: false,
           label:
-            "A company that owns the computers on which the image generator runs",
+            "By agreeing with it, since the survey figures show that a great many other families made the same choice in 2020.",
         },
         {
           correct: false,
           label:
-            "A website that stores and displays the picture after a user uploads it",
+            "By treating it as strong evidence, because it follows children who moved from attending school to learning at home.",
+        },
+        {
+          correct: false,
+          label:
+            "By replying that the parent lacks the training she would need to judge her own children's progress fairly.",
         },
       ],
     },

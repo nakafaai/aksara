@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "tone-attitude",
+    topic: "text-structure",
   },
-  stimulus: "mangrove-carbon",
+  stimulus: "wolbachia-mosquito",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Menolak semua program penanaman karena mangrove dapat pulih sendiri.",
+            "Paragraf ketiga mengakui kelemahan rancangan uji, lalu paragraf kelima membantah kelemahan itu dengan data efikasi.",
         },
         {
           correct: false,
           label:
-            "Mendukung semua program penanaman tanpa syarat karena mangrove menyimpan banyak karbon.",
+            "Paragraf kelima menunjukkan bahwa pengacakan per klaster gagal, sehingga angka efikasi perlu dikoreksi menjadi lebih kecil.",
         },
         {
           correct: true,
           label:
-            "Mendukung pemulihan, tetapi kritis terhadap penanaman yang mengabaikan lokasi dan jenis.",
+            "Keduanya bersumber pada gerak bebas nyamuk, yang memaksa pengacakan per wilayah dan sekaligus dapat memperkecil selisih antarkelompok.",
         },
         {
           correct: false,
           label:
-            "Tidak peduli terhadap berhasil atau gagalnya program penanaman mangrove.",
+            "Keduanya menjelaskan mengapa uji ini tidak terpengaruh oleh naik turunnya kasus demam berdarah dari tahun ke tahun.",
         },
         {
           correct: false,
           label:
-            "Lebih mengutamakan simpanan karbon daripada fungsi mangrove sebagai penahan abrasi.",
+            "Paragraf ketiga memberi alasan etis untuk tidak memilih warga satu per satu, sedangkan paragraf kelima menunjukkan akibatnya bagi biaya.",
         },
       ],
     },

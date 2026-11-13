@@ -4,32 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "word-meaning",
+    topic: "figurative-language",
   },
-  stimulus: "octopus-arms",
+  stimulus: "mantis-shrimp",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "spoken aloud.",
+          label:
+            "It detects movement whenever prey crosses in front of the shrimp's eye.",
         },
         {
           correct: false,
-          label: "recorded.",
+          label:
+            "It is so sensitive that the shrimp often reacts to colours that are not there.",
         },
         {
           correct: true,
-          label: "commanded.",
+          label:
+            "It signals only whether light in its own band has arrived, and that signal is not weighed against the others.",
         },
         {
           correct: false,
-          label: "predicted.",
+          label:
+            "It must be set off in a fixed order, so a colour is recognised only once the eye has finished scanning.",
         },
         {
           correct: false,
-          label: "interrupted.",
+          label:
+            "It works like a human cone but responds to a narrower band of wavelengths.",
         },
       ],
     },

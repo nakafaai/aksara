@@ -4,33 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "point-of-view",
   },
-  stimulus: "slime-mould",
+  stimulus: "crow-tools",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "It would grow thicker to attract more food towards it.",
-        },
-        {
-          correct: true,
-          label: "It would shrink and eventually disappear from the network.",
-        },
-        {
-          correct: false,
-          label: "It would turn into a trail of slime that marks the route.",
-        },
-        {
-          correct: false,
+          column: 2,
           label:
-            "It would stay the same size as the other tubes in the network.",
+            "How fast an animal solves a problem tells us nothing at all about whether it planned.",
         },
         {
-          correct: false,
-          label: "It would split into several new tubes that search for food.",
+          column: 1,
+          label:
+            "Knowing why a behaviour pays off is different from knowing what an animal foresees.",
+        },
+        {
+          column: 1,
+          label:
+            "A quick success on a first attempt can come from rules a bird has already learned rather than from foresight.",
+        },
+        {
+          column: 2,
+          label:
+            "Once bending is known to be natural for the species, Betty's result tells us nothing about her abilities.",
+        },
+        {
+          column: 1,
+          label:
+            "A result from a captive bird can be misjudged if researchers do not know what the species does in the wild.",
         },
       ],
     },

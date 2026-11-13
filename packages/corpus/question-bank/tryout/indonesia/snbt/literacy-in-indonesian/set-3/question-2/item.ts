@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "conclusion",
+    topic: "research-design",
   },
-  stimulus: "mangrove-carbon",
+  stimulus: "wolbachia-mosquito",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Sebagian besar karbon di ekosistem mangrove tersimpan di dalam tanah.",
+            "Proporsi pasien demam yang positif dengue di klaster pembanding naik, sehingga efikasi tampak lebih besar daripada sebenarnya.",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "Mengubah hutan mangrove menjadi tambak hanya menghilangkan karbon yang tersimpan di batang dan daun.",
+            "Perbandingan jumlah kasus tercatat akan melebih-lebihkan manfaat pelepasan, sedangkan perbandingan proporsi pasien positif relatif tidak terganggu.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Menanam bibit sebanyak-banyaknya di dataran lumpur yang hampir selalu tergenang menjamin keberhasilan pemulihan mangrove.",
+            "Perbandingan jumlah kasus tercatat akan meremehkan manfaat pelepasan, karena klaster pembanding kini lebih cepat menangani pasien.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Akar mangrove membantu menahan endapan sehingga garis pantai tidak mudah terkikis.",
+            "Perbandingan proporsi pasien positif menjadi tidak sah, karena pasien dari kedua kelompok klaster tidak lagi sebanding.",
+        },
+        {
+          correct: false,
+          label:
+            "Perubahan itu tidak memengaruhi perbandingan apa pun, karena pengacakan klaster sudah menyamakan kedua kelompok sejak awal.",
         },
       ],
     },

@@ -2,34 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "inference",
   },
-  stimulus: "half-sleep",
+  stimulus: "dog-pointing",
   versions: {
     en: {
-      columns: ["True", "False"],
+      columns: ["Yes", "No"],
       kind: "matrix",
       statements: [
         {
-          column: 2,
-          label:
-            "Ducks in the middle of the row kept one eye open more often than ducks at the ends.",
-        },
-        {
           column: 1,
           label:
-            "Fur seals usually sleep with both hemispheres when they are on land.",
-        },
-        {
-          column: 1,
-          label: "Frigatebirds slept for less than an hour a day while flying.",
+            "The 2021 results count against explaining the dog pups' success by a general advantage in memory or self-control.",
         },
         {
           column: 2,
           label:
-            "Humans can sleep with one hemisphere fully awake, as dolphins do.",
+            "The Bray study shows that roughly $$60\\%$$ of a puppy's skill at following a point comes from what it has learned.",
+        },
+        {
+          column: 1,
+          label:
+            "The dog pups' advantage in 2021 cannot be put down to their having had more human contact than the wolf pups.",
+        },
+        {
+          column: 1,
+          label:
+            "The 2008 wolf results and the 2021 wolf results can both be accurate even if a wolf's experience with people shapes how well it follows a point.",
         },
       ],
     },

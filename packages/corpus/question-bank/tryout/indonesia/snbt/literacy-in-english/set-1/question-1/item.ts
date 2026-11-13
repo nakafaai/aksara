@@ -6,35 +6,35 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "main-idea",
   },
-  stimulus: "octopus-arms",
+  stimulus: "mantis-shrimp",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "showing that octopuses have more neurons than any other invertebrate.",
-        },
-        {
           correct: true,
           label:
-            "explaining how an octopus shares control of movement between brain and arms.",
+            "It assumes the shrimp combines receptor signals as people do, and the tests undercut that without showing how rich its colour world is.",
         },
         {
           correct: false,
           label:
-            "arguing that octopus arms can survive and act as independent animals.",
+            "It is false, because the tests show that mantis shrimp perceive fewer colours than people, honeybees and butterflies do.",
         },
         {
           correct: false,
           label:
-            "describing laboratory methods for separating an octopus arm from its body.",
+            "It holds for colours people can see, but the extra receptors matter mainly for detecting ultraviolet light.",
         },
         {
           correct: false,
           label:
-            "proposing that engineers should build robots shaped like octopuses.",
+            "It would be right if the shrimp used opponent coding, which the tests suggest it does for most colours.",
+        },
+        {
+          correct: false,
+          label:
+            "It is premature only because a single species was tested, so other mantis shrimp may still see unimaginable colours.",
         },
       ],
     },

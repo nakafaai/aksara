@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "author-reasoning",
+    topic: "paraphrase",
   },
-  stimulus: "basic-income",
+  stimulus: "nuclear-power",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "A series of four reactors would produce electricity cheaply enough to match new wind and solar when the two are compared plant by plant.",
+        },
+        {
+          correct: false,
+          label:
+            "Whether the country goes on to build a fourth reactor should depend on whether the first three are finished on time and on budget.",
+        },
+        {
           correct: true,
           label:
-            "To show a response to a national payment that a small pilot cannot reveal",
+            "A later reactor can avoid the delays and costs of the first only if the country keeps building, so that its crews gain the experience they lack.",
         },
         {
           correct: false,
           label:
-            "To argue that landlords should be the first group to receive the payment",
+            "Nobody can know what a fourth reactor would cost until the first one has been finished and the size of its overrun has been measured.",
         },
         {
           correct: false,
           label:
-            "To report that prices rose sharply during the Finnish pilot programme",
-        },
-        {
-          correct: false,
-          label:
-            "To suggest that most shopkeepers would vote in favour of a basic income",
-        },
-        {
-          correct: false,
-          label:
-            "To claim that prices would certainly double under any universal scheme",
+            "Countries that stopped building reactors for a generation cannot win back the lost skills, however many new reactors they decide to build.",
         },
       ],
     },

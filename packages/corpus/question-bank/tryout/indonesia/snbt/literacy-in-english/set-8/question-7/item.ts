@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "text-relation",
   },
-  stimulus: "cultivated-meat",
+  stimulus: "driverless-liability",
   versions: {
     en: {
-      columns: ["Yes", "No"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Cultivated meat is already cheaper than farmed meat.",
+          correct: false,
+          label:
+            "The comparison fails because a lift, unlike a car, is used every day by people who never bought it.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Singapore was the first country to approve the sale of cultivated meat.",
+            "The comparison shows that victims should be able to claim directly from the company that made the faulty product.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "A ban prevents evidence about the product from being collected.",
+            "The comparison fits crashes caused by a design fault, but not crashes in which the owner ignored warnings or used the system where it was not approved.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Labelling cultivated meat would force consumers to stop buying farmed meat.",
+            "The comparison is sound, so an owner's insurance premium should not depend on how the owner uses the system.",
+        },
+        {
+          correct: false,
+          label:
+            "The comparison fails because the homeowner, like the car owner, chose to buy the product and so accepted its risks.",
         },
       ],
     },

@@ -2,39 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "paraphrase",
   },
-  stimulus: "slime-mould",
+  stimulus: "crow-tools",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "The slime mould stores the trail inside its millions of nuclei.",
+            "Most of the crows in the 2018 study built tools from $$3$$ or more pieces.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "The trail helps the slime mould remember the layout of Tokyo.",
+            "Half of the wild-caught crows in the 2018 study joined pieces into a tool long enough to reach the food.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "The trail is made of nerve cells that the slime mould leaves behind.",
+            "Betty's 2002 result was read as invention partly because bending was believed to be new to her species.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The trail allows the slime mould to remember food from years ago.",
+            "The 2021 laboratory study found that the crows bent tools mainly through sudden insight rather than repeated attempts.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "The trail records where it has been, but outside its own body.",
+            "The researchers behind the 2018 study did not claim to know how the birds reasoned their way to a solution.",
         },
       ],
     },

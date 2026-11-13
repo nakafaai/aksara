@@ -2,38 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "research-design",
   },
-  stimulus: "gut-bacteria",
+  stimulus: "bat-echolocation",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Ngengat yang organ bunyinya dilumpuhkan lebih sering tertangkap daripada ngengat yang organ bunyinya utuh.",
+        },
+        {
+          correct: false,
+          label:
+            "Pengaruh klik tidak memudar walaupun kelelawar sudah berkali-kali mendengarnya dalam serangan sebelumnya.",
+        },
+        {
           correct: true,
           label:
-            "Memfermentasinya menjadi asam lemak yang memberi energi bagi sel usus besar.",
+            "Kelelawar yang belum pernah memakan ngengat itu sudah meleset sejak serangan pertamanya terhadap ngengat bersuara.",
         },
         {
           correct: false,
           label:
-            "Mengubah serat menjadi gula yang langsung diserap oleh lambung.",
+            "Ngengat utuh mulai berbunyi ketika kelelawar masih jauh dan panggilan kelelawar itu masih jarang.",
         },
         {
           correct: false,
           label:
-            "Menghancurkan serat di usus halus sebelum serat itu sempat sampai ke usus besar.",
-        },
-        {
-          correct: false,
-          label: "Mengeluarkan serat dari tubuh tanpa mengubahnya sedikit pun.",
-        },
-        {
-          correct: false,
-          label:
-            "Menyimpan serat di dinding usus sebagai cadangan makanan tubuh.",
+            "Kelelawar yang meleset dari ngengat bersuara tetap tepat menangkap ngengat bisu pada malam yang sama.",
         },
       ],
     },

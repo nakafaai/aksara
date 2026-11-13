@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "author-purpose",
   },
-  stimulus: "tempe-mold",
+  stimulus: "noise-hearing",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Membuktikan bahwa penonton konser yang merasa pulih keesokan harinya sudah kehilangan separuh sinapsnya.",
+        },
+        {
           correct: true,
           label:
-            "Benang-benang miselium kapang yang menjalar di antara butir kedelai.",
+            "Menunjukkan bahwa ambang dengar yang pulih belum menjamin tidak ada kerusakan, meski belum pasti berlaku pada manusia.",
         },
         {
           correct: false,
           label:
-            "Air rebusan yang mengering dan menjadi lengket di sekitar butir kedelai.",
+            "Menunjukkan bahwa sel rambut dapat tumbuh kembali setelah paparan bising asalkan ambang dengarnya sudah pulih.",
         },
         {
           correct: false,
           label:
-            "Daun pisang yang menekan butir-butir kedelai selama satu sampai dua hari.",
+            "Membuktikan bahwa audiogram tidak berguna untuk mendeteksi kerusakan telinga yang disebabkan oleh bising.",
         },
         {
           correct: false,
           label:
-            "Bakteri penghasil vitamin B12 yang menempel pada kulit kedelai.",
-        },
-        {
-          correct: false,
-          label:
-            "Enzim dari kedelai sendiri yang mungkin keluar ketika kedelai direndam.",
+            "Menjelaskan mengapa dosis bising dihitung dari gabungan tingkat kebisingan dan lamanya paparan.",
         },
       ],
     },

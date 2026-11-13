@@ -2,38 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "author-purpose",
   },
-  stimulus: "coral-bleaching",
+  stimulus: "shorebird-flyway",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "membuktikan bahwa burung pantai sanggup melewati persinggahan yang hilang, sehingga hilangnya dataran lumpur tidak terlalu mengancam",
+        },
+        {
+          correct: false,
+          label:
+            "menunjukkan bahwa Jalur Terbang Asia Timur-Australasia lebih panjang daripada jalur migrasi burung lain di dunia",
+        },
+        {
+          correct: false,
+          label:
+            "menjelaskan mengapa burung yang singgah di Indonesia memerlukan tempat bertengger yang dekat dengan hamparan lumpur",
+        },
+        {
           correct: true,
           label:
-            "Karang melepaskan alga, sehingga kerangka kapur yang putih terlihat.",
-        },
-        {
-          correct: false,
-          label: "Suhu air yang panas melarutkan warna kerangka kapur karang.",
+            "menegaskan bahwa kemampuan luar biasa satu jenis tidak dapat dijadikan dasar untuk mengandaikan burung lain sanggup melompati persinggahan yang hilang",
         },
         {
           correct: false,
           label:
-            "Alga lain tumbuh menutupi permukaan karang yang sedang sakit.",
-        },
-        {
-          correct: false,
-          label:
-            "Karang mengeluarkan lendir putih yang tebal untuk melindungi diri dari panas.",
-        },
-        {
-          correct: false,
-          label:
-            "Jaringan karang menebal dan menutupi alga yang memberi warna.",
+            "menunjukkan bahwa burung muda lebih tahan menempuh perjalanan panjang daripada burung dewasa dari jenis yang sama",
         },
       ],
     },

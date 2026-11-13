@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "application",
   },
-  stimulus: "gut-bacteria",
+  stimulus: "bat-echolocation",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Tikus tanpa bakteri tidak dapat menjadi gemuk walaupun diberi banyak makanan.",
-        },
-        {
-          correct: false,
-          label:
-            "Tikus tanpa bakteri jauh lebih murah dipelihara daripada tikus yang memiliki bakteri.",
-        },
-        {
-          correct: false,
-          label:
-            "Peneliti ingin mengetahui jenis makanan yang paling disukai tikus kurus.",
+            "Katak berkulit merah menyala yang beracun membuat burung yang pernah mencicipinya enggan menyerang katak sejenis.",
         },
         {
           correct: true,
           label:
-            "Tikus itu dipakai untuk menguji apakah bakteri sendiri mengubah tubuh.",
+            "Kapal menebar serpihan logam pemantul tepat ketika rudal berpemandu radar memasuki tahap akhir pengejarannya.",
         },
         {
           correct: false,
           label:
-            "Tikus tanpa bakteri mungkin lebih jarang terkena infeksi *C. difficile*.",
+            "Kupu-kupu tiba-tiba membuka sayap bercorak mata besar sehingga burung yang belum pernah melihatnya mundur sejenak.",
+        },
+        {
+          correct: false,
+          label:
+            "Ikan pemangsa mendekati kawanan ikan kecil dengan gerakan sangat pelan agar kehadirannya terlambat diketahui.",
+        },
+        {
+          correct: false,
+          label:
+            "Stasiun radio memancarkan derau terus-menerus sepanjang hari sehingga semua siaran di sekitarnya terganggu.",
         },
       ],
     },

@@ -2,37 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "paraphrase",
   },
-  stimulus: "coral-bleaching",
+  stimulus: "shorebird-flyway",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Jeda yang pendek membuat alga lain tidak sempat tumbuh di terumbu.",
+            "Lebih dari separuh dataran pasang surut Laut Kuning yang ada pada 1980-an telah hilang pada akhir 2000-an.",
         },
         {
-          correct: true,
-          label: "Karang belum sempat pulih sebelum panas berikutnya datang.",
-        },
-        {
-          correct: false,
-          label: "Jeda yang pendek menurunkan suhu air laut secara mendadak.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Karang membutuhkan pemutihan berulang agar dapat bertahan hidup.",
+            "Angka $$28\\%$$ dan $$65\\%$$ dapat sama-sama benar karena keduanya menghitung kehilangan dalam kurun waktu yang berbeda.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Anak karang tumbuh terlalu cepat sehingga terumbu menjadi rapuh.",
+            "Burung yang tidak pernah singgah di pesisir Indonesia tetap dapat dirugikan oleh hilangnya dataran lumpur di Laut Kuning.",
+        },
+        {
+          column: 2,
+          label:
+            "Penulis menolak anggapan pegiat karena dataran lumpur yang tersisa terlalu sempit untuk didarati burung yang pindah.",
         },
       ],
     },

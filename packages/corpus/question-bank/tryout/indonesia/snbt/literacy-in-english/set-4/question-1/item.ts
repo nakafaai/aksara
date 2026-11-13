@@ -6,35 +6,35 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "main-idea",
   },
-  stimulus: "deep-vents",
+  stimulus: "otter-kelp",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Both of its claims hold, although the early island evidence behind them was weaker than textbooks admit.",
+        },
+        {
+          correct: false,
+          label:
+            "It should be set aside, because researchers still disagree about what removed the Aleutian otters.",
+        },
+        {
+          correct: false,
+          label:
+            "Its claim about returning otters is well supported, while its claim about losing them rests on one comparison.",
+        },
+        {
           correct: true,
           label:
-            "Vent life runs on chemical energy from bacteria yet still depends on the sun indirectly.",
+            "Its claim about losing otters holds up, but its promise that returning otters bring back the forest is doubtful once barrens exist.",
         },
         {
           correct: false,
           label:
-            "The vents were discovered by accident while scientists were searching for shipwrecks.",
-        },
-        {
-          correct: false,
-          label:
-            "Tube worms are the only animals that can survive at the bottom of the Pacific Ocean.",
-        },
-        {
-          correct: false,
-          label:
-            "Hydrogen sulphide is harmless to animals that live near the vents.",
-        },
-        {
-          correct: false,
-          label:
-            "Life on Europa has probably developed in the same way as life around vents.",
+            "It exaggerates the role of otters, since heatwaves and disease, not predators, now cause most of the kelp loss.",
         },
       ],
     },

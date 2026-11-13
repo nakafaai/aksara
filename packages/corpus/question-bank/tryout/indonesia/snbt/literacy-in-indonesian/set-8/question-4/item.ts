@@ -2,39 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "conclusion",
   },
-  stimulus: "tempe-mold",
+  stimulus: "noise-hearing",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Tempe jadi lebih cepat karena kapang tumbuh jauh lebih subur tanpa udara.",
+            "Dalam percobaan tikus itu, bising merusak sel rambut luar sehingga ambang dengar tikus sempat naik tajam.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Tempe mengandung lebih banyak vitamin B12 karena kapangnya murni.",
+            "Seseorang yang audiogramnya normal sepekan setelah konser belum tentu terbebas dari kerusakan akibat konser itu.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Butir kedelai merekat lebih kuat karena airnya membantu miselium.",
+            "Berada $$15$$ menit di tempat $$100$$ dBA memberi dosis yang lebih kecil daripada bekerja $$4$$ jam di tempat $$88$$ dBA.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Bakteri lain tumbuh lebih cepat daripada kapang sehingga tempe busuk.",
-        },
-        {
-          correct: false,
-          label:
-            "Tempe mungkin lebih mudah dicerna karena kedelainya masih basah.",
+            "Tinitus pada orang yang audiogramnya normal membuktikan bahwa sebagian sinaps di kokleanya telah rusak.",
         },
       ],
     },

@@ -2,39 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "data-interpretation",
   },
-  stimulus: "antibiotic-resistance",
+  stimulus: "land-subsidence",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Menunda pengobatan infeksi sampai antibiotik golongan baru tersedia.",
+            "Stasiun pasang surut di dermaga pelabuhan mencatat air naik sekitar $$6{,}4$$ cm per tahun terhadap dermaga.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Memberikan antibiotik dalam takaran rendah kepada semua hewan ternak agar tumbuh cepat.",
+            "Selisih laju penurunan antara pelabuhan dan pantai timur membuktikan bahwa setiap rumah tangga di sekitar pelabuhan memompa lebih banyak air.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Meminum antibiotik setiap kali terkena pilek agar tidak menjadi parah.",
+            "Seandainya tanah di pelabuhan berhenti turun sama sekali, pasang tertinggi di sana tetap makin tinggi terhadap dermaga, hanya jauh lebih lambat.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Berhenti memakai antibiotik untuk penyakit virus dan pemacu pertumbuhan ternak.",
-        },
-        {
-          correct: false,
-          label:
-            "Menyimpan semua antibiotik sebagai cadangan dan tidak memakainya sama sekali.",
+            "Di pantai timur, kenaikan permukaan laut menyumbang lebih dari separuh kenaikan muka laut relatif.",
         },
       ],
     },

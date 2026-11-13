@@ -4,37 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "word-meaning",
+    topic: "application",
   },
-  stimulus: "tardigrade-survival",
+  stimulus: "waggle-dance",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "At the feeder, because the waggle run gives the distance in metres whatever route the recruit takes.",
+        },
+        {
+          correct: false,
+          label:
+            "Short of the feeder, because the tunnel made the forager's flight feel longer than it really was.",
+        },
+        {
+          correct: false,
+          label:
+            "Off to one side, because the tunnel walls hid the sun that the dance uses to give its bearing.",
+        },
+        {
+          correct: false,
+          label:
+            "At the feeder, because a recruit reads the distance with the same flexible ruler as the dancer.",
+        },
+        {
           correct: true,
           label:
-            "survive by going inactive until conditions improve, not by withstanding them.",
-        },
-        {
-          correct: false,
-          label:
-            "move away from harsh conditions as soon as they detect a change in moisture.",
-        },
-        {
-          correct: false,
-          label:
-            "become stronger the longer they are exposed to harsh conditions in the wild.",
-        },
-        {
-          correct: false,
-          label:
-            "avoid harsh conditions by living only in deep lakes and oceans.",
-        },
-        {
-          correct: false,
-          label:
-            "fight harsh conditions by producing large amounts of trehalose in their cells.",
+            "Beyond the feeder, because open fields give her less registered distance per metre than the tunnel did.",
         },
       ],
     },

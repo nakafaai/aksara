@@ -2,32 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "text-comparison",
   },
-  stimulus: "classroom-points",
+  stimulus: "attendance-rules",
   versions: {
     en: {
       columns: ["Yes", "No"],
       kind: "matrix",
       statements: [
         {
+          column: 2,
+          label:
+            "Raising attendance would raise grades, because attendance predicts grades so well.",
+        },
+        {
           column: 1,
-          label: "Pupils often work harder when points are on offer.",
+          label:
+            "An attendance rule can fill seats without making the students in them pay attention.",
         },
         {
           column: 2,
           label:
-            "In the 1973 experiment, every child was promised a certificate.",
-        },
-        {
-          column: 2,
-          label: "Leaderboards mainly help pupils who are near the bottom.",
+            "Watching a recorded lecture is a poor substitute for being in the room.",
         },
         {
           column: 1,
-          label: "Good games let players fail and try again without penalty.",
+          label:
+            "First-year students should be required to attend at least some of their teaching.",
+        },
+        {
+          column: 2,
+          label:
+            "One department's attendance and mark figures from before and after a rule can show whether the rule works.",
         },
       ],
     },

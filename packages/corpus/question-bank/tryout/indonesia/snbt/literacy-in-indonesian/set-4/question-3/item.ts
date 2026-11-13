@@ -2,37 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "argument-evaluation",
   },
-  stimulus: "antibiotic-resistance",
+  stimulus: "land-subsidence",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Bakteri yang tidak berbahaya dapat berubah menjadi virus.",
+          label:
+            "Ketinggian tanah akan pulih begitu muka air sumur naik kembali, sehingga hasil satu tahun belum menggambarkan keadaan akhir.",
         },
         {
           correct: false,
-          label: "Bakteri yang tidak berbahaya membuat antibiotik cepat rusak.",
+          label:
+            "Angka GPS di pelabuhan ikut memuat kenaikan permukaan laut, sehingga penurunan tanah yang sebenarnya lebih kecil daripada $$4$$ cm.",
+        },
+        {
+          correct: false,
+          label:
+            "Sumur rumah tangga menyedot lebih banyak air daripada sumur dalam, sehingga penurunan yang tersisa berasal dari sumur rumah tangga.",
         },
         {
           correct: true,
           label:
-            "Gen kekebalannya dapat berpindah ke bakteri penyebab penyakit berat.",
+            "Lempung yang telah kehilangan tekanan air terus memampat bertahun-tahun, jadi penurunan yang berlanjut dengan laju lebih kecil sesuai dengan penutupan yang mulai bekerja.",
         },
         {
           correct: false,
           label:
-            "Bakteri yang tidak berbahaya berkembang biak lebih cepat daripada bakteri lain.",
-        },
-        {
-          correct: false,
-          label:
-            "Bakteri yang tidak berbahaya menghasilkan racun ketika diberi antibiotik.",
+            "Tanah di pantai timur hanya turun sekitar $$1$$ cm per tahun, sehingga penurunan rata-rata seluruh kota sudah membaik.",
         },
       ],
     },

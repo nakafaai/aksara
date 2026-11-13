@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "figurative-language",
+    topic: "assumption",
   },
-  stimulus: "urban-heat",
+  stimulus: "wallace-line",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +14,26 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pendingin ruangan rusak lebih cepat jika dipakai terus-menerus.",
-        },
-        {
-          correct: false,
-          label: "Pendingin ruangan membuat udara di dalam gedung makin panas.",
-        },
-        {
-          correct: false,
-          label:
-            "Pemakaian pendingin ruangan memaksa kota membangun lebih banyak jalan.",
+            "Selat Sunda lebih dalam daripada Selat Lombok sehingga keduanya layak dibandingkan.",
         },
         {
           correct: true,
-          label:
-            "Kota yang makin panas mendorong pemakaian alat yang membuang panas ke luar.",
+          label: "Selat Sunda tidak jauh lebih sempit daripada Selat Lombok.",
         },
         {
           correct: false,
           label:
-            "Warga cenderung berhenti memakai pendingin ruangan ketika listrik mahal.",
+            "Harimau dan badak di Sumatra dan di Jawa termasuk jenis yang persis sama.",
+        },
+        {
+          correct: false,
+          label:
+            "Mamalia darat sama sekali tidak mampu berenang menyeberangi sebuah selat.",
+        },
+        {
+          correct: false,
+          label:
+            "Muka laut di sekitar Selat Sunda turun lebih jauh daripada di sekitar Selat Lombok.",
         },
       ],
     },

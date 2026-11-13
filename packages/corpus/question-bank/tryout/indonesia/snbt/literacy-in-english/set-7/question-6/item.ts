@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-view",
+    topic: "text-relation",
   },
-  stimulus: "classroom-points",
+  stimulus: "attendance-rules",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Schools should ban all games because they distract pupils from learning.",
+            "By questioning the review's numbers, on the grounds that motivated students make the link between attendance and grades look stronger than it is",
         },
         {
           correct: false,
           label:
-            "Points and badges are the most effective way to keep pupils reading for years.",
+            "By accepting the review but answering it with department figures that, in the writer's view, prove a rule leaves marks unchanged",
         },
         {
           correct: true,
           label:
-            "Schools should borrow games' feedback and challenge, not just their points.",
+            "By accepting the link the review found but arguing that it describes students who chose to attend, not what a rule would do to the rest",
         },
         {
           correct: false,
           label:
-            "Leaderboards should show every pupil's rank so that all try harder.",
+            "By setting the review aside because it studied lectures, whereas the writer thinks attendance matters only in small tutorials",
         },
         {
           correct: false,
           label:
-            "Pupils would learn more if teachers gave certificates for every task.",
+            "By accepting the review and agreeing that a rule would raise marks, though only for new students in first-year tutorials",
         },
       ],
     },

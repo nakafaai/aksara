@@ -2,33 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "figurative-language",
   },
-  stimulus: "slime-mould",
+  stimulus: "crow-tools",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "The slime mould is a kind of fungus.",
-        },
-        {
-          column: 1,
+          correct: true,
           label:
-            "In the maze experiment, food was placed at the entrance and at the exit.",
+            "One bird's results with the wire were made to support a large claim about animal reasoning, more than they could later bear.",
         },
         {
-          column: 2,
-          label: "Tubes that carry more nutrients gradually become thinner.",
-        },
-        {
-          column: 1,
+          correct: false,
           label:
-            "The slime mould's network around Tokyo kept working well when one link was cut.",
+            "The wire had to be stiff enough to lift a bucket of food that was heavy for a bird of Betty's size.",
+        },
+        {
+          correct: false,
+          label:
+            "The wire result was so solid that it has supported nearly every later study of tool use in crows.",
+        },
+        {
+          correct: false,
+          label:
+            "Betty's results were treated as a fluke at first, and later work showed that the doubters were right.",
+        },
+        {
+          correct: false,
+          label:
+            "Betty had to reuse the same short wire in trial after trial, which put a strain on the equipment.",
         },
       ],
     },

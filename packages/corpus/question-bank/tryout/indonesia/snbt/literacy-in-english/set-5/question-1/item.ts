@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "main-idea",
   },
-  stimulus: "placebo-effect",
+  stimulus: "continental-drift",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Placebo effects are smaller than once claimed, yet some of them are real and measurable.",
+            "The critics were right to demand a mechanism but wrong to treat its absence as disproof, and the seafloor later confirmed drift while ruling out the ploughing Wegener had proposed.",
         },
         {
           correct: false,
           label:
-            "Beecher's 1955 figure showed that a third of all illnesses exist only in patients' minds.",
+            "Geologists dismissed Wegener's fossils and coastlines because he was a meteorologist, and the seafloor findings of the 1950s and 1960s finally exposed that professional bias.",
         },
         {
           correct: false,
           label:
-            "Placebos can only work when patients are deceived about what they are being given.",
+            "Seafloor spreading supplied the driving force that Wegener had lacked, which is why his theory won acceptance soon after Hess published his idea in 1962.",
         },
         {
           correct: false,
           label:
-            "Drug trials should stop comparing new medicines with dummy treatments of any kind.",
+            "Until the 1950s the land-bridge explanation was better supported than Wegener's evidence, and only new measurements of the seafloor reversed the balance between the two.",
         },
         {
           correct: false,
           label:
-            "Naloxone is the most effective treatment for pain after dental surgery.",
+            "The critics were right that a continent cannot plough through solid rock, so the later evidence showed that the continents have stayed roughly where they formed.",
         },
       ],
     },

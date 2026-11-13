@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "point-of-view",
   },
-  stimulus: "gut-bacteria",
+  stimulus: "bat-echolocation",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Perhitungan pada 2016 menunjukkan jumlah sel bakteri kira-kira sebanding dengan jumlah sel manusia.",
+            "Penulis menolak premisnya, sebab barbastel menunjukkan bahwa ngengat tidak mampu mendengar kelelawar dari jauh.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Butirat menjadi sumber energi utama bagi sel-sel dinding usus besar.",
+            "Penulis menerima premis dan kesimpulannya, lalu menjadikan Bertholdia trigona bukti bahwa ngengat selalu unggul.",
         },
         {
-          column: 2,
-          label: "Antibiotik hanya membunuh bakteri yang menyebabkan penyakit.",
+          correct: false,
+          label:
+            "Penulis menolak kesimpulannya, sebab barbastel mampu mendeteksi ngengat dari jarak yang lebih jauh daripada kelelawar lain.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Pemindahan bakteri usus sudah terbukti mengobati obesitas pada manusia.",
+            "Penulis tidak menilai pendapat itu dan hanya melaporkannya sebagai salah satu cara pandang tentang kelelawar.",
+        },
+        {
+          correct: true,
+          label:
+            "Penulis menerima premisnya, tetapi membantah kesimpulannya dengan kelelawar yang rela memperpendek jarak deteksinya agar tidak terdengar.",
         },
       ],
     },

@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-purpose",
+    topic: "text-relation",
   },
-  stimulus: "parking-minimums",
+  stimulus: "homework-limits",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "To explain how planners calculate the number of parking spaces a building needs",
+            "It rejects the limit as too strict, arguing that homework raises achievement at every age.",
         },
         {
           correct: false,
           label:
-            "To argue that cities should ban the construction of new parking garages",
-        },
-        {
-          correct: false,
-          label:
-            "To describe the traffic problems caused by drivers searching for parking",
-        },
-        {
-          correct: false,
-          label:
-            "To compare the travel habits of people in suburbs and in city centres",
+            "It agrees that homework should be dropped at every age but doubts that the pilot measured the right outcomes.",
         },
         {
           correct: true,
           label:
-            "To argue that most parking requirements should go, letting parking follow local demand",
+            "It backs the change for the youngest pupils but questions whether the pilot can justify scrapping homework for older ones.",
+        },
+        {
+          correct: false,
+          label:
+            "It disputes the figures on bedtimes and family arguments as too short-term to be trusted.",
+        },
+        {
+          correct: false,
+          label:
+            "It defends the limit against critics who find it too generous, while agreeing that test scores are the best guide.",
         },
       ],
     },

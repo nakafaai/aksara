@@ -2,37 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "argument-evaluation",
   },
-  stimulus: "glacier-flow",
+  stimulus: "ant-foraging",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "The ice crystals harden in the heat and push one another forward.",
+            "Had the scent on the long branch faded faster, colonies in the delayed test would probably have been more likely to take up the shortcut.",
         },
         {
-          correct: false,
-          label: "More snow falls in summer, which adds weight to the ice.",
-        },
-        {
-          correct: false,
+          column: 2,
           label:
-            "Friction with the valley walls increases sharply in warmer weather.",
+            "Studies of real species have shown that ants whose food sources move often lay trails that fade faster.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "More meltwater collects at the base, and the glacier slides on it.",
+            "Evaporation matters less to a colony's first choice between two routes offered together than to its ability to drop a route it already uses.",
         },
         {
-          correct: false,
-          label: "The melting snout pulls the rest of the glacier downhill.",
+          column: 1,
+          label:
+            "By the author's reasoning, a slow-fading trail serves a colony better when its food sources stay put than when they keep moving.",
         },
       ],
     },

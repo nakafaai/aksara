@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "vocabulary-in-context",
   },
-  stimulus: "placebo-effect",
+  stimulus: "continental-drift",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The sugar pills in his studies secretly contained small doses of real medicine.",
-        },
-        {
-          correct: false,
-          label:
-            "Patients exaggerated their symptoms in order to be given stronger drugs.",
-        },
-        {
-          correct: false,
-          label:
-            "Most of the illnesses he studied could not be cured by any medicine.",
+            "The popular version praises the scientists who later confirmed drift far more warmly than it praises Wegener, who first proposed the idea.",
         },
         {
           correct: true,
           label:
-            "Many of the patients would have improved even without any treatment.",
+            "The popular version judges the debate by what was learned decades afterwards, and so passes over objections that were sound when they were raised.",
         },
         {
           correct: false,
-          label: "The 2001 review included far more patients than he did.",
+          label:
+            "The popular version overstates how much evidence Wegener had gathered, since his fossils and rock layers were weaker than the story suggests.",
+        },
+        {
+          correct: false,
+          label:
+            "The popular version hides the fact that Wegener's critics had measured the drift of Greenland far more accurately than he had.",
+        },
+        {
+          correct: false,
+          label:
+            "The popular version blames critics for rejecting a theory that physicists had already confirmed by the time of the New York symposium.",
         },
       ],
     },

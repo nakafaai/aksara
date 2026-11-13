@@ -2,38 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "main-idea",
+    topic: "paraphrase",
   },
-  stimulus: "city-birdsong",
+  stimulus: "ocean-acidification",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "City birds have stopped singing because traffic makes their songs useless.",
-        },
-        {
-          correct: false,
-          label:
-            "Street lighting is the main reason why city robins sing at night.",
-        },
-        {
           correct: true,
           label:
-            "Birds adjust their songs to city noise, but these changes may carry costs.",
+            "It turns some of the water's carbonate into bicarbonate, and scarcer carbonate raises the energy an animal must spend on building, even before shells start to dissolve.",
         },
         {
           correct: false,
           label:
-            "Great tits in quiet woods sing louder than great tits in noisy cities.",
+            "The hydrogen ions it releases dissolve unprotected shell material, so animals must keep rebuilding what they lose.",
         },
         {
           correct: false,
-          label: "Lockdowns permanently changed the way that city birds sing.",
+          label:
+            "It pushes the saturation state below $$1$$ every night in coastal water, when algae release carbon dioxide in darkness.",
+        },
+        {
+          correct: false,
+          label:
+            "It turns the calcite in adult shells into aragonite, the form of calcium carbonate that dissolves more readily.",
+        },
+        {
+          correct: false,
+          label:
+            "It forces larvae to switch from aragonite to calcite earlier than usual, and the early switch costs them energy.",
         },
       ],
     },

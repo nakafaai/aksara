@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "author-purpose",
   },
-  stimulus: "liquefaction",
+  stimulus: "el-nino-drought",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Air hujan yang turun selama gempa mengubah tanah menjadi lumpur.",
-        },
-        {
           correct: true,
           label:
-            "Tekanan air di rongga naik sehingga butir pasir tidak lagi saling bertumpu.",
+            "Menunjukkan bahwa El Nino bukan satu-satunya jalan menuju kemarau parah sekaligus mengantar pembaca ke pembahasan Dipole Samudra Hindia.",
         },
         {
           correct: false,
           label:
-            "Butir-butir pasir hancur menjadi debu halus ketika diguncang gempa yang kuat.",
+            "Membuktikan bahwa pengaruh El Nino terhadap hujan di Indonesia terlalu lemah untuk diperhitungkan dalam perencanaan daerah.",
         },
         {
           correct: false,
           label:
-            "Tanah liat melekat pada butir pasir dan membuat butiran itu licin.",
+            "Menjelaskan mengapa pengaruh El Nino melemah pada puncak musim hujan, ketika angin monsun membawa banyak uap air.",
         },
         {
           correct: false,
           label:
-            "Bangunan di atasnya mungkin terlalu berat sehingga tanah ambles.",
+            "Menunjukkan bahwa prakiraan peluang El Nino sering meleset sehingga sebaiknya tidak dijadikan dasar persiapan.",
+        },
+        {
+          correct: false,
+          label:
+            "Menegaskan bahwa kemarau parah lebih sering terjadi pada tahun tanpa El Nino daripada pada tahun El Nino.",
         },
       ],
     },

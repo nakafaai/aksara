@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "conclusion",
+    topic: "assumption",
   },
-  stimulus: "liquefaction",
+  stimulus: "el-nino-drought",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Likuefaksi dapat dihentikan dengan alat yang meredam getaran gempa di permukiman.",
+            "Prakiraan musim yang menyebut peluang tinggi jarang meleset, sehingga persiapan hampir tidak pernah sia-sia.",
         },
         {
           correct: false,
           label:
-            "Pondasi yang dalam selalu lebih murah daripada memilih lahan yang aman untuk dihuni.",
+            "Keputusan apa pun untuk menghadapi kemarau, termasuk mengganti tanaman di seluruh lahan, sebaiknya diambil sedini mungkin.",
         },
         {
           correct: false,
           label:
-            "Setelah 2018, warga boleh membangun kembali di semua bekas lokasi likuefaksi.",
+            "Kemarau parah di Indonesia hampir selalu didahului oleh pernyataan resmi bahwa El Nino sedang berlangsung.",
+        },
+        {
+          correct: false,
+          label:
+            "Pejabat daerah dapat mengetahui dengan pasti apakah El Nino akan terjadi sebelum musim kemarau dimulai.",
         },
         {
           correct: true,
           label:
-            "Kerugian likuefaksi dapat dikurangi, antara lain dengan memilih lahan yang tepat.",
-        },
-        {
-          correct: false,
-          label:
-            "Mengeringkan tanah sebelum dibangun mungkin justru memperparah likuefaksi.",
+            "Biaya persiapan yang tetap berguna saat kemarau normal lebih kecil daripada kerugian bila persiapan baru dimulai setelah kemarau kering datang.",
         },
       ],
     },

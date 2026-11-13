@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "figurative-language",
   },
-  stimulus: "zoo-purpose",
+  stimulus: "open-offices",
   versions: {
     en: {
       kind: "choice",
@@ -14,25 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Build a much larger enclosure in order to add a second herd of elephants.",
+            "The companies later put partitions back on the open floors because employees complained about the lack of privacy.",
         },
         {
           correct: false,
           label:
-            "Replace its breeding programmes with more shows for visitors.",
-        },
-        {
-          correct: false,
-          label:
-            "Release all of its penguins into the nearest park to free up space.",
+            "Employees missed their old cubicles so much that they asked for private offices to be built for them again.",
         },
         {
           correct: true,
-          label: "Rehome its polar bears and breed a threatened local frog.",
+          label:
+            "Employees find other ways to keep the privacy the partitions once gave them, and those ways cut down their talk in person.",
         },
         {
           correct: false,
-          label: "Buy more famous animals so that visitor numbers keep rising.",
+          label:
+            "The real barriers to conversation were always people's habits, so removing the partitions made no difference to talk.",
+        },
+        {
+          correct: false,
+          label:
+            "The badges missed many conversations because headphones and screens hid talk that was still going on between colleagues.",
         },
       ],
     },

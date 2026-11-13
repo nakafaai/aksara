@@ -4,37 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-purpose",
+    topic: "inference",
   },
-  stimulus: "octopus-arms",
+  stimulus: "mantis-shrimp",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "show that octopuses feel pain in the same way that humans do.",
+            "Under the model described in paragraph 2, the shrimp's colour receptors should have let it separate similar colours more finely than a person can.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "contrast fast human reflexes with the slower responses of octopus arms.",
+            "The shrimp's failure at a gap of about $$15$$ nanometres shows that it perceives fewer distinct colours than a person does.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "argue that human arms are more independent than octopus arms.",
+            "If the shrimp's colour receptors covered the whole eye instead of a narrow strip, scanning would matter less for building up a colour picture.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "illustrate a response that can begin before the central brain is involved.",
-        },
-        {
-          correct: false,
-          label:
-            "warn readers about the risks of handling octopuses in laboratories.",
+            "The honeybee results suggest that the number of receptor types does not by itself decide how finely an animal can separate colours.",
         },
       ],
     },

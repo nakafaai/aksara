@@ -4,34 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "conclusion",
   },
-  stimulus: "city-birdsong",
+  stimulus: "ocean-acidification",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Sparrows in San Francisco had stopped defending their territories.",
+            "Seagrass is more common near the vents because the acidic water has removed the animals that would otherwise eat it.",
         },
         {
-          correct: false,
-          label: "Lockdowns made sparrows less attractive to potential mates.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Sparrows can only hear songs from about twice their usual distance.",
+            "Oyster larvae are likely to be more vulnerable to the loss of carbonate than adult oysters are.",
         },
         {
-          correct: false,
-          label: "The sparrows left the city during the lockdowns.",
+          column: 1,
+          label:
+            "A population living near a vent may look less harmed than one that spent its whole life cycle in equally acidic water.",
         },
         {
-          correct: true,
-          label: "Traffic noise had been making the birds sing more loudly.",
+          column: 2,
+          label:
+            "Species that grew faster in some tank experiments can be expected to benefit from acidification in the open sea.",
         },
       ],
     },

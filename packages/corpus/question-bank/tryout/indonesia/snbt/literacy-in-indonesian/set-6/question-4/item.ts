@@ -2,39 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-purpose",
+    topic: "conclusion",
   },
-  stimulus: "liquefaction",
+  stimulus: "el-nino-drought",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 2,
           label:
-            "menunjukkan bahwa perlakuan manusia dapat ikut menentukan kerawanan lahan",
+            "Adanya tahun El Nino dengan kemarau yang biasa saja melemahkan pernyataan bahwa El Nino menaikkan peluang kemarau kering.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "membuktikan bahwa saluran irigasi menjadi penyebab gempa pada 2018",
+            "Pada tahun El Nino, wilayah dekat khatulistiwa di Sumatra bagian utara cenderung kehilangan hujan lebih banyak daripada Nusa Tenggara.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "menyalahkan para petani yang mengairi sawah di lereng-lereng Palu",
+            "Bila El Nino dan IOD positif berlangsung bersamaan, kekeringan paling mungkin bertambah parah pada paruh kedua tahun, bukan pada puncak musim hujan.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "menjelaskan mengapa tanah liat lebih tahan terhadap likuefaksi",
-        },
-        {
-          correct: false,
-          label:
-            "menyarankan agar semua saluran irigasi di Indonesia mungkin perlu ditutup",
+            "Teks menunjukkan bahwa IOD positif lebih sering menjadi penyebab kemarau parah di Indonesia daripada El Nino.",
         },
       ],
     },

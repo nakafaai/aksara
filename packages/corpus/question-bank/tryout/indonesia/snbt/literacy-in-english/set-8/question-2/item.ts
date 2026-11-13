@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "inference",
   },
-  stimulus: "city-birdsong",
+  stimulus: "ocean-acidification",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Traffic noise is concentrated at low frequencies.",
+          correct: false,
+          label:
+            "The generous feeding of the animals and the lack of time for populations to adapt over generations",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Singing louder or at night uses time that could be spent feeding.",
+            "The abrupt rise in carbon dioxide and the steady level at which the tank is then held",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "In the robin study, street lighting predicted night singing better than daytime noise.",
+            "The abrupt rise in carbon dioxide and the testing of one factor at a time",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "During the 2020 lockdowns, white-crowned sparrows in San Francisco sang more loudly.",
+            "The generous feeding of the animals and the steady level at which the tank is then held",
+        },
+        {
+          correct: false,
+          label:
+            "The testing of one factor at a time and the drifting in of larvae from normal water",
         },
       ],
     },

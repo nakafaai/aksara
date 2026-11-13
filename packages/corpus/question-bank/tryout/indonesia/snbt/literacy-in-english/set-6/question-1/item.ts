@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "main-idea",
+    topic: "research-design",
   },
-  stimulus: "half-sleep",
+  stimulus: "dog-pointing",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "The wolf pups had had less contact with people than the dog pups, so the comparison was tilted in the dogs' favour.",
+        },
+        {
+          correct: false,
+          label:
+            "The pups were too young for learning to have played any part, so the test could not show what experience adds.",
+        },
+        {
+          correct: false,
+          label:
+            "The dog pups also beat the wolf pups on memory and self-control, so a general gap in ability may explain the result.",
+        },
+        {
+          correct: false,
+          label:
+            "Only about half of the dog pups chose the right bowl consistently, so the dogs' advantage was too small to interpret.",
+        },
+        {
           correct: true,
           label:
-            "Some animals sleep with half the brain at a time, which keeps them safe or moving.",
-        },
-        {
-          correct: false,
-          label:
-            "Dolphins are the only animals that are able to sleep while they keep swimming.",
-        },
-        {
-          correct: false,
-          label:
-            "Humans sleep badly in hotels because half of the brain stays fully awake all night.",
-        },
-        {
-          correct: false,
-          label:
-            "Frigatebirds sleep for more hours in the air than they do when resting on land.",
-        },
-        {
-          correct: false,
-          label:
-            "Sleep matters less for birds than for mammals, since birds can fly while resting.",
+            "The pups differed in how readily they approached people, and a pup wary of the person pointing could fail without misreading the gesture.",
         },
       ],
     },

@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "point-of-view",
   },
-  stimulus: "city-birdsong",
+  stimulus: "ocean-acidification",
   versions: {
     en: {
       kind: "choice",
@@ -14,24 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The birds will begin singing only during the noisiest middle part of the day.",
-        },
-        {
-          correct: true,
-          label: "The lowest notes of their songs will tend to rise in pitch.",
+            "It makes the same prediction as the headlines but rests on stronger evidence than the commentators' reading.",
         },
         {
           correct: false,
           label:
-            "The lowest notes of their songs will become lower than before.",
+            "It covers fewer species than the headlines mention but more species than the commentators are willing to include.",
+        },
+        {
+          correct: true,
+          label:
+            "It claims less than the headlines about what will happen to particular populations, yet stands on better grounds than the view that varied results mean little danger.",
         },
         {
           correct: false,
-          label: "The birds will stop singing completely within a few weeks.",
+          label:
+            "It is less certain than the headlines and also less certain than the commentators' reading of the tank results.",
         },
         {
           correct: false,
-          label: "Females will become more attracted to the males' new songs.",
+          label:
+            "It agrees with the commentators that the danger is smaller than feared, but it states that agreement more firmly than they do.",
         },
       ],
     },

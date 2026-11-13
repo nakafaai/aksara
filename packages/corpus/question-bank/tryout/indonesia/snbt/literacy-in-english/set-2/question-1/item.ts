@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "main-idea",
+    topic: "research-design",
   },
-  stimulus: "tardigrade-survival",
+  stimulus: "waggle-dance",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Tardigrades thrive in extreme environments such as outer space because their active bodies are exceptionally strong.",
+            "Released recruits reached the feeder sooner than the others, which showed that the dance gives an exact spot rather than a rough area.",
+        },
+        {
+          correct: false,
+          label:
+            "Released recruits no longer had the dancer's scent to follow, so every flight they made must have been guided by the dance alone.",
+        },
+        {
+          correct: false,
+          label:
+            "Released recruits searched near the feeder for a long time, and that delay is something only von Frisch's explanation predicts.",
         },
         {
           correct: true,
           label:
-            "Tardigrades survive extremes mainly by drying into an inactive state, aided by proteins still being studied.",
+            "A scent-follower and a dance-reader could both reach the feeder from the hive, but only a dance-reader would fly the given bearing and miss it.",
         },
         {
           correct: false,
           label:
-            "Tardigrades and brine shrimp use the same sugar to protect their cells from drying out.",
-        },
-        {
-          correct: false,
-          label:
-            "Tardigrade proteins are already being used to store vaccines without refrigeration.",
-        },
-        {
-          correct: false,
-          label:
-            "Tardigrades are the only animals that can survive for years without any water at all.",
+            "Released recruits flew the same bearing as the recruits in Gould's experiment, so the radar study simply repeated his result with new tools.",
         },
       ],
     },

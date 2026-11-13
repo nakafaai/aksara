@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "argument-evaluation",
   },
-  stimulus: "lichen-air",
+  stimulus: "mercury-gold",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: true,
           label:
-            "Ketika udara memburuk, lumut kerak berbentuk semak berumbai umumnya hilang lebih dulu daripada lumut kerak berbentuk kerak tipis.",
+            "menjadikan kadar merkuri total dalam air sebagai ukuran bahaya, padahal bahaya bagi warga bergantung pada metilmerkuri yang sampai ke daging ikan.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Kawasan yang hanya ditumbuhi lumut kerak berbentuk kerak tipis kemungkinan berudara lebih bersih daripada kawasan yang juga ditumbuhi lumut berbentuk semak berumbai.",
+            "salah membaca data air, sebab kadar merkuri total di rawa hilir sebenarnya lebih tinggi daripada di titik dekat tambang.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Keadaan lumut kerak di suatu pohon menunjukkan kualitas udara pada hari survei dilakukan.",
+            "hanya memperhatikan ikan pemangsa, padahal ikan pemakan tumbuhan di hilir juga sudah melampaui batas yang dipakai tim.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Membandingkan lumut kerak hanya pada pohon sejenis membantu mengurangi pengaruh perbedaan kulit kayu terhadap hasil survei.",
+            "mengabaikan bahwa ikan hanya ditangkap pada satu musim kemarau sehingga data tim belum mewakili musim hujan.",
+        },
+        {
+          correct: false,
+          label:
+            "melupakan bahwa memasak dan menggoreng ikan tidak menurunkan kadar metilmerkuri yang terikat pada protein daging.",
         },
       ],
     },

@@ -2,35 +2,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "calculation",
   },
-  stimulus: "tempe-mold",
+  stimulus: "noise-hearing",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
-        {
-          column: 1,
-          label:
-            "Kedelai untuk tempe direbus, dikupas, dan direndam sebelum ditaburi ragi.",
-        },
-        {
-          column: 1,
-          label:
-            "Enzim dari kapang memecah protein dan lemak kedelai menjadi bagian yang lebih sederhana.",
-        },
-        {
-          column: 2,
-          label: "Vitamin B12 dalam tempe dihasilkan oleh kapang *Rhizopus*.",
-        },
-        {
-          column: 2,
-          label:
-            "Kantong plastik untuk tempe harus tertutup rapat agar tidak dimasuki udara.",
-        },
+      kind: "choice",
+      options: [
+        { correct: false, label: "$$15$$ menit" },
+        { correct: false, label: "$$30$$ menit" },
+        { correct: false, label: "$$3{,}75$$ menit" },
+        { correct: false, label: "$$2$$ jam" },
+        { correct: true, label: "$$7{,}5$$ menit" },
       ],
     },
   },

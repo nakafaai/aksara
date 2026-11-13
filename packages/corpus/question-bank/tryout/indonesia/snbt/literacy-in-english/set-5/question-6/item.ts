@@ -4,37 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-view",
+    topic: "text-relation",
   },
-  stimulus: "basic-income",
+  stimulus: "nuclear-power",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Basic income pilots have proved that a universal scheme would succeed.",
-        },
-        {
           correct: true,
           label:
-            "Pilots are useful but cannot show what a permanent universal scheme would do.",
+            "It grants Text 1's facts about overruns and the value of early cuts but disputes that money for reactors must come at the expense of wind and solar.",
         },
         {
           correct: false,
           label:
-            "A basic income should be rejected because recipients stop working.",
+            "It rejects Text 1's account of overruns, arguing that critics have exaggerated how late and costly the recent reactor projects really were.",
         },
         {
           correct: false,
           label:
-            "Pilots waste public money and should be ended as soon as possible.",
+            "It agrees with Text 1 that new reactors should wait until storage has been given a fair trial, but argues that the trial will take longer.",
         },
         {
           correct: false,
           label:
-            "A universal scheme would work better if charities paid for it instead of taxes.",
+            "It accepts Text 1's reasoning in full and adds only that the country's existing reactors should keep running for as long as they are safe.",
+        },
+        {
+          correct: false,
+          label:
+            "It concedes that reactors cost more than wind and solar, but argues that their low emissions justify the delays that Text 1 objects to.",
         },
       ],
     },

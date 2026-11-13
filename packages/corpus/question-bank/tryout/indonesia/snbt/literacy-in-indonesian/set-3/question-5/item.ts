@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "paragraph-relation",
+    topic: "argument-evaluation",
   },
-  stimulus: "mangrove-carbon",
+  stimulus: "wolbachia-mosquito",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "paragraf ketiga membantah temuan paragraf kedua tentang simpanan karbon",
+            "ia mengabaikan kemungkinan bahwa angka efikasi di Yogyakarta terlalu tinggi akibat nyamuk yang menyeberang batas klaster",
         },
         {
           correct: false,
           label:
-            "paragraf ketiga mengulang penjelasan paragraf kedua dengan contoh yang berbeda",
+            "ia lupa bahwa penurunan kasus di Yogyakarta mungkin hanya kebetulan jatuh pada tahun yang sepi demam berdarah",
         },
         {
           correct: false,
           label:
-            "paragraf ketiga memperkenalkan peran mangrove yang sama sekali baru",
-        },
-        {
-          correct: false,
-          label:
-            "paragraf ketiga menyimpulkan seluruh isi bacaan tentang mangrove",
+            "ia tidak menyadari bahwa Wolbachia baru bekerja setelah populasi nyamuk lokal dimusnahkan lebih dulu",
         },
         {
           correct: true,
           label:
-            "paragraf ketiga menjelaskan akibat jika simpanan karbon dalam paragraf kedua terganggu",
+            "ia menganggap perlindungan muncul sejak pelepasan dimulai dan cukup untuk menggantikan cara lama, padahal keduanya tidak didukung uji itu",
+        },
+        {
+          correct: false,
+          label:
+            "ia benar soal manfaat Wolbachia, tetapi keliru soal biaya karena pelepasan nyamuk harus terus diulang tanpa henti",
         },
       ],
     },

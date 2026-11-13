@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "paraphrase",
   },
-  stimulus: "parking-minimums",
+  stimulus: "homework-limits",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "The pilot pupils' scores were in fact lower than last year's, but the way the tests were set up hid the difference.",
+        },
+        {
           correct: true,
           label:
-            "If most buyers there want two spaces per home, developers should be free to build them.",
+            "Matching last year's scores proves little, because the pupils were different and the tests had no stakes, so a small decline cannot be ruled out.",
         },
         {
           correct: false,
           label:
-            "The town should keep its parking minimums permanently, whatever buyers want.",
+            "The scores would have been convincing if the tests had counted towards the pupils' grades.",
         },
         {
           correct: false,
           label:
-            "The town should ban new parking in order to make residents use public transport.",
+            "Test scores cannot show what homework does, so the pilot told the school nothing useful.",
         },
         {
           correct: false,
           label:
-            "The town should copy the parking rules of large cities that have removed their minimums.",
-        },
-        {
-          correct: false,
-          label:
-            "The town should require developers to build no more than one space per home.",
+            "The pilot pupils scored lower than expected because the tests did not count and so they made less effort.",
         },
       ],
     },

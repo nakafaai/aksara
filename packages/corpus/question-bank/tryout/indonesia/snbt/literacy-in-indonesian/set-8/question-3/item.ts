@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "strengthen-weaken",
   },
-  stimulus: "tempe-mold",
+  stimulus: "noise-hearing",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kapang *Rhizopus* menghasilkan B12 jauh lebih banyak di tempat pembuatan yang dingin.",
+            "Pekerja yang sudah bekerja lebih dari $$10$$ tahun rata-rata memiliki ambang dengar yang lebih buruk daripada pekerja baru.",
         },
         {
           correct: false,
           label:
-            "Kedelai impor mengandung B12 lebih banyak daripada kedelai lokal.",
+            "Setelah cuti $$2$$ pekan, pekerja yang merasa sudah terbiasa kembali merasa terganggu oleh bising yang sama.",
         },
         {
           correct: false,
           label:
-            "Daun jati menambahkan B12 ke dalam tempe selama proses fermentasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Tempe yang terlalu basah mungkin menghasilkan B12 dua kali lipat.",
+            "Pekerja yang memakai penyumbat telinga lebih jarang mengeluhkan bising daripada pekerja yang tidak memakainya.",
         },
         {
           correct: true,
           label:
-            "B12 berasal dari bakteri yang ikut tumbuh, dan jumlahnya tidak selalu sama.",
+            "Di antara pekerja dengan masa kerja sama, yang merasa terbiasa punya ambang dengar frekuensi tinggi lebih buruk daripada yang masih terganggu.",
+        },
+        {
+          correct: false,
+          label:
+            "Pekerja penggilingan yang merasa terbiasa lebih sering melaporkan tinitus daripada pegawai kantor di pabrik yang sama.",
         },
       ],
     },

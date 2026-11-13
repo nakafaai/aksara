@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "author-reasoning",
+    topic: "alternative-explanation",
   },
-  stimulus: "zoo-purpose",
+  stimulus: "open-offices",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "To illustrate that much of what visitors see is not conservation work",
+            "After the move, many members of the same team sat farther apart than they had in their cubicles, some of them on different floors.",
         },
         {
           correct: false,
           label:
-            "To show that meerkats and penguins are among the most endangered animals",
+            "After the move, the employees who wore headphones most often were also the ones with the fewest face-to-face conversations.",
         },
         {
           correct: false,
           label:
-            "To argue that families should stop visiting zoos at the weekend",
+            "After the move, the rise in email was largest between colleagues whose desks were closest together on the open floor.",
         },
         {
           correct: false,
           label:
-            "To prove that small animals suffer more in captivity than large ones",
+            "After the move, a share of the conversations that disappeared turned out to have been about matters unrelated to work.",
         },
         {
           correct: false,
           label:
-            "To suggest that zoos should keep only meerkats and penguins in future",
+            "After the move, face-to-face interaction fell by a similar amount at each of the two companies that were studied.",
         },
       ],
     },

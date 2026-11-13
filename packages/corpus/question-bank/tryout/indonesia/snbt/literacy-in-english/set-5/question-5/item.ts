@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "figurative-language",
+    topic: "author-purpose",
   },
-  stimulus: "placebo-effect",
+  stimulus: "continental-drift",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Hiding the real symptoms of a disease from patients so that they stay calm",
+            "To show that the continents were in fact standing still in Wegener's lifetime, just as most of his critics at the time had claimed.",
         },
         {
           correct: false,
           label:
-            "Teaching patients to imagine pleasant images whenever they feel any pain",
+            "To explain why physicists concluded that the push caused by the Earth's spin was far too weak to move an entire continent.",
         },
         {
           correct: false,
           label:
-            "Giving patients a drug that slowly changes the way their brain works",
+            "To point out that Wegener's critics had measured the drift of Greenland much more accurately than Wegener himself had managed to.",
         },
         {
           correct: false,
           label:
-            "Writing down every symptom so that doctors can study it later on",
+            "To suggest that a rate of a few centimetres a year is too slow ever to have separated South America from Africa.",
         },
         {
           correct: true,
           label:
-            "Making patients expect side effects so strongly that they begin to feel them",
+            "To show that some doubt about drift had a fair basis in Wegener's own data, which weakens the story of critics who dismissed him unthinkingly.",
         },
       ],
     },

@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "research-design",
   },
-  stimulus: "deep-vents",
+  stimulus: "otter-kelp",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "It catches small animals that drift past in the current.",
-        },
-        {
-          correct: false,
-          label: "It produces the food that the worm's bacteria later digest.",
+          label:
+            "It was a planned experiment in which otters were removed from chosen reefs and the results recorded.",
         },
         {
           correct: true,
           label:
-            "It takes in the chemicals the bacteria need and passes them on.",
+            "It followed the same reefs before and after the otters vanished, so differences between islands could not explain the change.",
         },
         {
           correct: false,
-          label: "It warns other animals that the worm's body is poisonous.",
+          label:
+            "It identified killer whales as the cause of the otter decline, which completed the chain of causes down to the kelp.",
         },
         {
           correct: false,
-          label: "It allows the worm to swim between vents when one closes.",
+          label:
+            "It showed the kelp thinning within a few years, which is too fast for any cause other than urchins to have acted.",
+        },
+        {
+          correct: false,
+          label:
+            "It measured urchins by biomass rather than by number, which gave a more precise picture of how much they grazed.",
         },
       ],
     },

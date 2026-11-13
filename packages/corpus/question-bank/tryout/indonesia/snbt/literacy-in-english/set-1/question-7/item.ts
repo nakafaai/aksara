@@ -4,33 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "shared-view",
   },
-  stimulus: "parking-minimums",
+  stimulus: "homework-limits",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "is usually exempt from paying for parking.",
-        },
-        {
-          correct: true,
-          label: "helps pay for parking spaces it does not use.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "receives a discount on rent in exchange for giving up a space.",
+            "Pupils of the pilot's age can go without set homework, apart from reading, at little cost to their learning.",
         },
         {
-          correct: false,
-          label: "is eventually encouraged to buy a car.",
+          column: 2,
+          label:
+            "The link between homework and achievement differs between younger and older pupils.",
         },
         {
-          correct: false,
-          label: "pays lower housing costs than households with cars.",
+          column: 1,
+          label:
+            "Pupils with little support at home should weigh heavily in decisions about homework.",
+        },
+        {
+          column: 2,
+          label:
+            "Removing homework would do most to help pupils who have little support at home.",
         },
       ],
     },

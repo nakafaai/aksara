@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "research-design",
   },
-  stimulus: "city-birdsong",
+  stimulus: "ocean-acidification",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "It proves that street lights have no effect on any bird species.",
+            "Collect adult pteropods near a volcanic vent and compare their shells with those of adults from normal water nearby.",
         },
         {
           correct: false,
           label:
-            "It shows that robins can see better at night than during the day.",
+            "Hold larvae at a steady late-century level for a few weeks, as most studies do, but repeat the experiment many times to settle the disagreement.",
         },
         {
           correct: false,
           label:
-            "It means that robins sing only at night in every British city.",
+            "Measure the carbon dioxide in the bay every hour for a year to find how often it already rises above the late-century level.",
+        },
+        {
+          correct: false,
+          label:
+            "Raise pteropods through their whole life cycle at a steady late-century level, feeding them generously so that hunger cannot hide the effect of acidity.",
         },
         {
           correct: true,
           label:
-            "It challenges the common explanation that lighting causes night singing.",
-        },
-        {
-          correct: false,
-          label:
-            "It suggests that daytime noise might be louder in Britain than elsewhere.",
+            "Raise several generations of pteropods in warmer tanks where carbon dioxide rises and falls each day around a higher average and food stays at the bay's natural level.",
         },
       ],
     },

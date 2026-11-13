@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "paraphrase",
   },
-  stimulus: "lichen-air",
+  stimulus: "mercury-gold",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Lumut kerak membutuhkan lebih banyak cahaya matahari daripada pohon untuk bertahan hidup.",
-        },
-        {
-          correct: false,
-          label:
-            "Jamur dalam lumut kerak tidak dapat menahan air hujan sehingga zat pencemar mudah masuk.",
+            "Merkuri paling berbahaya di tempat yang paling dekat dengan tambang, karena di sanalah merkuri pertama kali mengendap.",
         },
         {
           correct: true,
           label:
-            "Lumut kerak menyerap zat langsung lewat seluruh permukaan tubuh dan tidak dapat menggugurkan daun.",
+            "Kondisi tempat merkuri mengendap, seperti lumpur rawa yang miskin oksigen, ikut menentukan seberapa banyak merkuri berubah menjadi bentuk yang masuk ke rantai makanan.",
         },
         {
           correct: false,
           label:
-            "Lumut kerak hanya dapat tumbuh di batang pohon yang kulit kayunya asam dan lembap.",
+            "Banyaknya merkuri di sungai tidak berpengaruh pada kadar ikan selama merkuri itu mengendap di lumpur dan tidak terlarut di air.",
         },
         {
           correct: false,
           label:
-            "Ganggang dalam lumut kerak berhenti berfotosintesis ketika udara mengandung nitrogen.",
+            "Kadar metilmerkuri dalam ikan lebih ditentukan oleh bagian tubuh ikan tempat merkuri menumpuk daripada oleh jumlah merkuri di air.",
+        },
+        {
+          correct: false,
+          label:
+            "Merkuri yang mengendap di rawa hilir lebih banyak daripada merkuri yang terbawa air di dekat tambang, sehingga ikan hilir lebih tercemar.",
         },
       ],
     },
