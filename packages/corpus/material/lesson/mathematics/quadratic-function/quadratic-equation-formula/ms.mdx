@@ -1,0 +1,386 @@
+export const metadata = {
+  title: "Rumus Kuadratik",
+  description: "Terbitkan dan gunakan rumus kuadratik, gunakan pembezalayan untuk mengira bilangan punca nyata, dan bina persamaan daripada punca yang diketahui atau diubah.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-19",
+  dateModified: "2026-11-08",
+  subject: "Fungsi Kuadratik",
+};
+
+## Mengira Punca daripada Pekali Kuadratik
+
+Pekali <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" /> di sini ialah nombor nyata.
+
+Persamaan kuadratik ada bentuk <InlineMath math="ax^2 + bx + c = 0" />, dengan <InlineMath math="a \neq 0" />, dan pekalinya ialah:
+
+- <InlineMath math="a" /> ialah pekali bagi <InlineMath math="x^2" />
+- <InlineMath math="b" /> ialah pekali bagi <InlineMath math="x" />
+- <InlineMath math="c" /> ialah sebutan pemalar
+
+Untuk menyelesaikan persamaan kuadratik <InlineMath math="ax^2 + bx + c = 0" />, kita boleh gunakan rumus:
+
+<BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
+
+Dalam nombor nyata sahaja, persamaan dengan pembezalayan negatif tiada punca. Tetapi dalam nombor kompleks, dua tanda itu memberikan dua punca. Apabila pembezalayan sifar, kedua-dua ungkapan di bawah memberikan punca berulang yang sama, dan kita kira punca berulang itu dua kali:
+
+- <InlineMath math="x_1 = \frac{-b + \sqrt{b^2 - 4ac}}{2a}" /> (menggunakan tanda tambah)
+- <InlineMath math="x_2 = \frac{-b - \sqrt{b^2 - 4ac}}{2a}" /> (menggunakan tanda tolak)
+
+Bahagian <InlineMath math="b^2 - 4ac" /> dipanggil <Highlight>pembezalayan</Highlight> dan menentukan jenis punca:
+
+- Kalau <InlineMath math="b^2 - 4ac > 0" />: Dua punca nyata yang berbeza
+- Kalau <InlineMath math="b^2 - 4ac = 0" />: Satu punca nyata (punca berulang)
+- Kalau <InlineMath math="b^2 - 4ac < 0" />: Tiada punca nyata, tetapi ada dua punca kompleks konjugat yang tidak nyata
+
+## Menerbitkan Rumus Kuadratik
+
+Untuk menerbitkan rumus kuadratik, [sempurnakan kuasa dua](/ms/subjek/matematik/fungsi-kuadratik/penyempurnaan-kuasa-dua) pada bentuk am di bawah:
+
+<BlockMath math="ax^2 + bx + c = 0" />
+
+**Langkah 1**: Bahagikan semua sebutan dengan <InlineMath math="a" /> (pekali bagi <InlineMath math="x^2" />):
+
+<BlockMath math="x^2 + \frac{b}{a}x + \frac{c}{a} = 0" />
+
+**Langkah 2**: Pindahkan sebutan pemalar ke sebelah kanan:
+
+<BlockMath math="x^2 + \frac{b}{a}x = -\frac{c}{a}" />
+
+**Langkah 3**: Tambahkan kuasa dua separuh pekali <InlineMath math="x" /> pada kedua-dua belah:
+
+<BlockMath math="x^2 + \frac{b}{a}x + \frac{b^2}{4a^2} = -\frac{c}{a} + \frac{b^2}{4a^2}" />
+
+**Langkah 4**: Sebelah kiri kini membentuk kuasa dua sempurna:
+
+<BlockMath math="\left(x + \frac{b}{2a}\right)^2 = \frac{b^2}{4a^2} - \frac{c}{a}" />
+
+**Langkah 5**: Permudahkan sebelah kanan:
+
+<BlockMath math="\left(x + \frac{b}{2a}\right)^2 = \frac{b^2 - 4ac}{4a^2}" />
+
+**Langkah 6**: Ambil punca kuasa dua kedua-dua belah:
+
+<BlockMath math="x + \frac{b}{2a} = \pm\frac{\sqrt{b^2 - 4ac}}{2a}" />
+
+Untuk pembezalayan yang tidak negatif, <InlineMath math="\sqrt{4a^2}=2|a|" />. Oleh sebab kita gunakan <Highlight>kedua-dua tanda punca kuasa dua</Highlight>, menggantikan <InlineMath math="2|a|" /> dengan <InlineMath math="2a" /> hanya menukar tempat dua penyelesaian itu apabila <InlineMath math="a<0" />. Pembezalayan negatif diselesaikan dalam nombor kompleks.
+
+**Langkah 7**: Selesaikan untuk <InlineMath math="x" />:
+
+<BlockMath math="\begin{aligned} x &amp;= -\frac{b}{2a} \pm \frac{\sqrt{b^2 - 4ac}}{2a} \\ &amp;= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \end{aligned}" />
+
+Kita dapat rumus kuadratik:
+
+<BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
+
+### Menyelesaikan dengan Rumus Kuadratik
+
+**Contoh 1**: Selesaikan persamaan <InlineMath math="x^2 + 5x + 6 = 0" />
+
+Kenal pasti nilainya: <InlineMath math="a = 1" />, <InlineMath math="b = 5" />, dan <InlineMath math="c = 6" />
+
+Gantikan ke dalam rumus:
+
+<BlockMath math="\begin{aligned} x &amp;= \frac{-5 \pm \sqrt{5^2 - 4 \cdot 1 \cdot 6}}{2 \cdot 1} \\ &amp;= \frac{-5 \pm \sqrt{25 - 24}}{2} \\ &amp;= \frac{-5 \pm \sqrt{1}}{2} \\ &amp;= \frac{-5 \pm 1}{2} \end{aligned}" />
+
+Untuk <InlineMath math="x_1" />, ambil **tanda positif**:
+
+<BlockMath math="x_1 = \frac{-5 + 1}{2} = \frac{-4}{2} = -2" />
+
+Untuk <InlineMath math="x_2" />, ambil **tanda negatif**:
+
+<BlockMath math="x_2 = \frac{-5 - 1}{2} = \frac{-6}{2} = -3" />
+
+Punca persamaan itu ialah <InlineMath math="x_1 = -2" /> dan <InlineMath math="x_2 = -3" />
+
+**Contoh 2**: Selesaikan persamaan <InlineMath math="2x^2 - 7x + 3 = 0" />
+
+Kenal pasti nilainya: <InlineMath math="a = 2" />, <InlineMath math="b = -7" />, dan <InlineMath math="c = 3" />
+
+Gantikan ke dalam rumus:
+
+<BlockMath math="\begin{aligned}x &= \frac{-(-7) \pm \sqrt{(-7)^2 - 4 \cdot 2 \cdot 3}}{2 \cdot 2} \\ &= \frac{7 \pm \sqrt{49 - 24}}{4} \\ &= \frac{7 \pm \sqrt{25}}{4} \\ &= \frac{7 \pm 5}{4}\end{aligned}" />
+
+Untuk <InlineMath math="x_1" />, ambil **tanda positif**:
+
+<BlockMath math="x_1 = \frac{7 + 5}{4} = \frac{12}{4} = 3" />
+
+Untuk <InlineMath math="x_2" />, ambil **tanda negatif**:
+
+<BlockMath math="x_2 = \frac{7 - 5}{4} = \frac{2}{4} = \frac{1}{2}" />
+
+Punca persamaan itu ialah <InlineMath math="x_1 = 3" /> dan <InlineMath math="x_2 = \frac{1}{2}" />
+
+Contoh 2 pada graf: <InlineMath math="y = 2x^2 - 7x + 3" /> memotong paksi-x pada <InlineMath math="x = \tfrac12" /> dan <InlineMath math="x = 3" />, iaitu dua nilai yang diberikan oleh rumus sebagai <InlineMath math="\frac{7 \pm 5}{4}" />.
+
+<MathVisual
+  title={<>Punca <InlineMath math="2x^2 - 7x + 3 = 0" /></>}
+  description={<>Parabola <InlineMath math="y = 2x^2 - 7x + 3" />, yang memotong paksi-x pada <InlineMath math="\tfrac12" /> dan 3.</>}
+  labels={{
+    curve: <InlineMath math="y = 2x^2 - 7x + 3" />,
+    r1: <InlineMath math="\tfrac12" />,
+    r2: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -7, c: 3 }, domain: { min: 0, max: 7 / 2 }, appearance: "primary" },
+      { id: "r1", kind: "point", at: { x: 1 / 2, y: 0 }, appearance: "answer" },
+      { id: "r2", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 7 / 2, y: 3 }, placement: "left" },
+      { key: "r1", objectId: "r1", at: { x: 1 / 2, y: 0 }, placement: "above-left" },
+      { key: "r2", objectId: "r2", at: { x: 3, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Pembezalayan Persamaan Kuadratik
+
+Nilai <InlineMath math="D" /> menentukan <Highlight>bilangan pintasan pada paksi mengufuk</Highlight>. Hanya pemalar yang berubah antara tiga persamaan ini. Apabila pemalar bertambah, verteks bergerak ke atas.
+
+| Persamaan | Pembezalayan | Punca nyata |
+| --- | --- | --- |
+| <InlineMath math="x^2+5x+6=0" /> | <InlineMath math="25-24=1" /> | <InlineMath math="-3,-2" /> |
+| <InlineMath math="x^2+5x+6.25=0" /> | <InlineMath math="25-25=0" /> | <InlineMath math="-2.5" /> |
+| <InlineMath math="x^2+5x+7=0" /> | <InlineMath math="25-28=-3" /> | Tiada |
+
+Untuk persamaan pertama, rumus memberikan <InlineMath math="-3" /> dan <InlineMath math="-2" />. Graf menunjukkan nilai-nilai itu sebagai koordinat mengufuk tempat fungsi bernilai sifar. Verteksnya berada di bawah paksi mengufuk.
+
+<MathVisual
+  title={<>Dua punca sebagai pintasan</>}
+  description={<>Parabola <InlineMath math="x^2 + 5x + 6" /> memotong paksi mengufuk pada -3 dan -2. Verteksnya ialah (-2.5, -0.25).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.2, max: -0.8 }, y: { min: -0.75, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 6 }, domain: { min: -4, max: -1 }, appearance: "primary" },
+      { id: "left", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "right", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "right", objectId: "right", at: { x: -2, y: 0 }, placement: "above-right" },
+    ],
+  }}
+  labels={{ left: <InlineMath math="(-3,0)" />, right: <InlineMath math="(-2,0)" /> }}
+/>
+
+Naikkan sebutan pemalar dan parabola itu akan bergerak ke atas. Dengan <InlineMath math="c = 6" /> ia memotong paksi-x dua kali (<InlineMath math="D = 1" />), dengan <InlineMath math="c = 6.25" /> ia hanya menyentuhnya pada <InlineMath math="-2.5" /> (<InlineMath math="D = 0" />), dan dengan <InlineMath math="c = 7" /> ia kekal di atasnya (<InlineMath math="D = -3" />).
+
+<MathVisual
+  title={<>Pembezalayan sebagai anjakan</>}
+  description={<>Parabola <InlineMath math="y = x^2 + 5x + c" /> untuk <InlineMath math="c = 6" />, <InlineMath math="6.25" /> dan 7, dengan dua titik persilangan, satu titik sentuhan dan tiada titik persilangan.</>}
+  labels={{
+    c6: <InlineMath math="c = 6" />,
+    c625: <InlineMath math="c = 6.25" />,
+    c7: <InlineMath math="c = 7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.3, max: -0.7 }, y: { min: -0.6, max: 3.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c6", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 6 }, domain: { min: -4, max: -1 }, appearance: "primary" },
+      { id: "c625", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 25 / 4 }, domain: { min: -4, max: -1 }, appearance: "highlight" },
+      { id: "c7", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 7 }, domain: { min: -4, max: -1 }, appearance: "secondary" },
+      { id: "r1", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "r2", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+      { id: "touch", kind: "point", at: { x: -5 / 2, y: 0 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "c6", objectId: "c6", at: { x: -1, y: 2 }, placement: "right" },
+      { key: "c625", objectId: "c625", at: { x: -4, y: 9 / 4 }, placement: "left" },
+      { key: "c7", objectId: "c7", at: { x: -1, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Hubungan antara Punca dan Pekali
+
+**Hasil tambah dan hasil darab** dua punca boleh dibaca terus daripada pekali tanpa menyelesaikan persamaan dahulu. Cara ini memberi kamu semakan pantas untuk satu penyelesaian, atau cara mencari nilai yang tidak diketahui.
+
+Kalau <InlineMath math="x_1" /> dan <InlineMath math="x_2" /> ialah punca persamaan kuadratik <InlineMath math="ax^2 + bx + c = 0" />, maka:
+
+1. Hasil tambah punca: <InlineMath math="x_1 + x_2 = -\frac{b}{a}" />
+2. Hasil darab punca: <InlineMath math="x_1 \cdot x_2 = \frac{c}{a}" />
+
+### Membuktikan Hubungan Itu
+
+Daripada rumus kuadratik, kita tahu bahawa:
+
+<BlockMath math="\begin{aligned} &amp;x_1 = \frac{-b + \sqrt{b^2 - 4ac}}{2a} \\ &amp;\text{dan} \\ &amp;x_2 = \frac{-b - \sqrt{b^2 - 4ac}}{2a} \end{aligned}" />
+
+Apabila kita tambah, <Highlight>sebutan punca kuasa dua saling membatalkan</Highlight>:
+
+<BlockMath math="\begin{aligned} x_1+x_2 &amp;= \frac{-b + \sqrt{b^2 - 4ac}}{2a} \\ &amp;\quad+ \frac{-b - \sqrt{b^2 - 4ac}}{2a} \\ &amp;= \frac{-2b}{2a} \\ &amp;= -\frac{b}{a} \end{aligned}" />
+
+Darab punca-punca itu:
+
+<BlockMath math="\begin{aligned} x_1x_2 &amp;= \frac{-b + \sqrt{b^2 - 4ac}}{2a} \\ &amp;\quad{}\cdot \frac{-b - \sqrt{b^2 - 4ac}}{2a} \\ &amp;= \frac{b^2 - (\sqrt{b^2 - 4ac})^2}{4a^2} \\ &amp;= \frac{b^2 - (b^2 - 4ac)}{4a^2} \\ &amp;= \frac{4ac}{4a^2} \\ &amp;= \frac{c}{a} \end{aligned}" />
+
+## Membina Persamaan Kuadratik Baharu daripada Punca yang Diketahui
+
+Kalau <InlineMath math="p" /> dan <InlineMath math="q" /> ialah <Highlight>punca yang diketahui</Highlight>, satu persamaan kuadratik monik yang ada punca itu ialah:
+
+<BlockMath math="(x - p)(x - q) = 0" />
+
+Atau dalam bentuk am:
+
+<BlockMath math="x^2 - (p+q)x + pq = 0" />
+
+### Mengubah Punca Persamaan Kuadratik
+
+**Soalan 1**
+
+Persamaan kuadratik <InlineMath math="x^2 + 4x + 3 = 0" /> ada punca <InlineMath math="p" /> dan <InlineMath math="q" />.
+
+Cari persamaan kuadratik yang puncanya <InlineMath math="2p" /> dan <InlineMath math="2q" />.
+
+**Langkah 1**: Cari nilai <InlineMath math="p + q" /> dan <InlineMath math="p \cdot q" />
+
+<MathContainer>
+  <BlockMath math="p + q = -\frac{b}{a} = -\frac{4}{1} = -4" />
+  <BlockMath math="p \cdot q = \frac{c}{a} = \frac{3}{1} = 3" />
+</MathContainer>
+
+**Langkah 2**: Kira hasil tambah dan hasil darab punca baharu
+
+<MathContainer>
+  <BlockMath math="2p + 2q = 2(p + q) = 2(-4) = -8" />
+  <BlockMath math="2p \cdot 2q = 4(p \cdot q) = 4 \cdot 3 = 12" />
+</MathContainer>
+
+**Langkah 3**: Bina persamaan kuadratik baharu
+
+<MathContainer>
+  <BlockMath math="x^2 - (-8)x + 12 = 0" />
+  <BlockMath math="x^2 + 8x + 12 = 0" />
+</MathContainer>
+
+**Soalan 2**
+
+Persamaan kuadratik <InlineMath math="x^2 + 4x - 21 = 0" /> ada punca <InlineMath math="p" /> dan <InlineMath math="q" />.
+
+Cari persamaan kuadratik yang puncanya <InlineMath math="\frac{1}{2p}" /> dan <InlineMath math="\frac{1}{2q}" />.
+
+**Langkah 1**: Cari nilai <InlineMath math="p + q" /> dan <InlineMath math="p \cdot q" />
+
+<MathContainer>
+  <BlockMath math="p + q = -\frac{b}{a} = -\frac{4}{1} = -4" />
+  <BlockMath math="p \cdot q = \frac{c}{a} = \frac{-21}{1} = -21" />
+</MathContainer>
+
+Hasil darab <InlineMath math="pq=-21" /> bukan sifar. Jadi <Highlight>kedua-dua punca bukan sifar</Highlight>, maka salingan berikut tertakrif.
+
+**Langkah 2**: Kira hasil tambah dan hasil darab punca baharu
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} \frac{1}{2p} + \frac{1}{2q} &amp;= \frac{1}{2} \left(\frac{q + p}{pq}\right) \\ &amp;= \frac{1}{2} \cdot \frac{-4}{-21} \\ &amp;= \frac{1}{2} \cdot \frac{4}{21} \\ &amp;= \frac{4}{42} \\ &amp;= \frac{2}{21} \end{aligned}" />
+  <BlockMath math="\begin{aligned} \frac{1}{2p} \cdot \frac{1}{2q} &amp;= \frac{1}{4pq} \\ &amp;= \frac{1}{4 \cdot (-21)} \\ &amp;= \frac{1}{-84} \\ &amp;= -\frac{1}{84} \end{aligned}" />
+</MathContainer>
+
+**Langkah 3**: Bina persamaan kuadratik baharu
+
+<BlockMath math="x^2 - \frac{2}{21}x - \frac{1}{84} = 0" />
+
+## Soalan Latihan
+
+Setiap persamaan sudah dalam bentuk am, jadi baca **pekali bersama tandanya** sebelum kamu gantikan ke dalam rumus. Semak nilai di bawah punca kuasa dua dahulu untuk melihat berapa banyak penyelesaian nyata yang dijangka.
+
+Selesaikan persamaan kuadratik berikut dengan rumus kuadratik:
+
+1. <InlineMath math="x^2 + 5x + 6 = 0" />
+2. <InlineMath math="2x^2 + 6x + 3 = 0" />
+3. <InlineMath math="6x^2 + 2x + \frac{1}{6} = 0" />
+4. <InlineMath math="\frac{1}{2}x^2 + 4x + 6 = 0" />
+5. <InlineMath math="\frac{2}{3}x^2 + 2x - 12 = 0" />
+
+### Skema Jawapan
+
+**Soalan 1**
+
+Penyelesaian persamaan kuadratik <InlineMath math="x^2 + 5x + 6 = 0" />
+
+Identify: <InlineMath math="a = 1" />, <InlineMath math="b = 5" />, <InlineMath math="c = 6" />
+
+<BlockMath math="\begin{aligned} x_{1,2} &amp;= \frac{-5 \pm \sqrt{5^2 - 4 \cdot 1 \cdot 6}}{2 \cdot 1} \\ &amp;= \frac{-5 \pm \sqrt{25 - 24}}{2} \\ &amp;= \frac{-5 \pm \sqrt{1}}{2} \\ &amp;= \frac{-5 \pm 1}{2} \end{aligned}" />
+
+For <InlineMath math="x_1" />:
+
+<BlockMath math="x_1 = \frac{-5 + 1}{2} = \frac{-4}{2} = -2" />
+
+For <InlineMath math="x_2" />:
+
+<BlockMath math="x_2 = \frac{-5 - 1}{2} = \frac{-6}{2} = -3" />
+
+Jadi punca persamaan itu ialah <InlineMath math="x_1 = -2" /> dan <InlineMath math="x_2 = -3" />.
+
+**Soalan 2**
+
+Penyelesaian persamaan kuadratik <InlineMath math="2x^2 + 6x + 3 = 0" />
+
+Identify: <InlineMath math="a = 2" />, <InlineMath math="b = 6" />, <InlineMath math="c = 3" />
+
+<BlockMath math="\begin{aligned} x_{1,2} &amp;= \frac{-6 \pm \sqrt{6^2 - 4 \cdot 2 \cdot 3}}{2 \cdot 2} \\ &amp;= \frac{-6 \pm \sqrt{36 - 24}}{4} \\ &amp;= \frac{-6 \pm \sqrt{12}}{4} \\ &amp;= \frac{-6 \pm 2\sqrt{3}}{4} \\ &amp;= \frac{-3 \pm \sqrt{3}}{2} \end{aligned}" />
+
+For <InlineMath math="x_1" />:
+
+<BlockMath math="x_1 = \frac{-3 + \sqrt{3}}{2}" />
+
+For <InlineMath math="x_2" />:
+
+<BlockMath math="x_2 = \frac{-3 - \sqrt{3}}{2}" />
+
+Jadi punca persamaan itu ialah <InlineMath math="x_1 = \frac{-3 + \sqrt{3}}{2}" /> dan <InlineMath math="x_2 = \frac{-3 - \sqrt{3}}{2}" />.
+
+**Soalan 3**
+
+Penyelesaian persamaan kuadratik <InlineMath math="6x^2 + 2x + \frac{1}{6} = 0" />
+
+Identify: <InlineMath math="a = 6" />, <InlineMath math="b = 2" />, <InlineMath math="c = \frac{1}{6}" />
+
+<BlockMath math="\begin{aligned} x_{1,2} &amp;= \frac{-2 \pm \sqrt{2^2 - 4 \cdot 6 \cdot \frac{1}{6}}}{2 \cdot 6} \\ &amp;= \frac{-2 \pm \sqrt{4 - 4}}{12} \\ &amp;= \frac{-2 \pm 0}{12} \\ &amp;= \frac{-2}{12} = -\frac{1}{6} \end{aligned}" />
+
+Oleh sebab pembezalayan <InlineMath math="b^2 - 4ac = 0" />, persamaan ini ada satu punca (**punca berulang**).
+
+Persamaan ini ada **punca berulang** <InlineMath math="x_1 = x_2 = -\frac{1}{6}" />.
+
+**Soalan 4**
+
+Penyelesaian persamaan kuadratik <InlineMath math="\frac{1}{2}x^2 + 4x + 6 = 0" />
+
+Identify: <InlineMath math="a = \frac{1}{2}" />, <InlineMath math="b = 4" />, <InlineMath math="c = 6" />
+
+<BlockMath math="\begin{aligned} x_{1,2} &amp;= \frac{-4 \pm \sqrt{4^2 - 4 \cdot \frac{1}{2} \cdot 6}}{2 \cdot \frac{1}{2}} \\ &amp;= \frac{-4 \pm \sqrt{16 - 12}}{1} \\ &amp;= \frac{-4 \pm \sqrt{4}}{1} \\ &amp;= -4 \pm 2 \end{aligned}" />
+
+For <InlineMath math="x_1" />:
+
+<BlockMath math="x_1 = -4 + 2 = -2" />
+
+For <InlineMath math="x_2" />:
+
+<BlockMath math="x_2 = -4 - 2 = -6" />
+
+Punca persamaan itu ialah <InlineMath math="x_1 = -2" /> dan <InlineMath math="x_2 = -6" />.
+
+**Soalan 5**
+
+Penyelesaian persamaan kuadratik <InlineMath math="\frac{2}{3}x^2 + 2x - 12 = 0" />
+
+Identify: <InlineMath math="a = \frac{2}{3}" />, <InlineMath math="b = 2" />, <InlineMath math="c = -12" />
+
+<BlockMath math="\begin{aligned} x_{1,2} &amp;= \frac{-2 \pm \sqrt{2^2 - 4 \cdot \frac{2}{3} \cdot (-12)}}{2 \cdot \frac{2}{3}} \\ &amp;= \frac{-2 \pm \sqrt{4 + 32}}{4/3} \\ &amp;= \frac{-2 \pm \sqrt{36}}{4/3} \\ &amp;= \frac{-2 \pm 6}{4/3} \\ &amp;= \frac{3(-2 \pm 6)}{4} \end{aligned}" />
+
+For <InlineMath math="x_1" />:
+
+<BlockMath math="x_1 = \frac{3(-2 + 6)}{4} = \frac{3 \cdot 4}{4} = 3" />
+
+For <InlineMath math="x_2" />:
+
+<BlockMath math="x_2 = \frac{3(-2 - 6)}{4} = \frac{3 \cdot (-8)}{4} = -6" />
+
+Punca persamaan itu ialah <InlineMath math="x_1 = 3" /> dan <InlineMath math="x_2 = -6" />.

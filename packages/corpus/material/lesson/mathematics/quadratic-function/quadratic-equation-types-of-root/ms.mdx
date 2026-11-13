@@ -1,0 +1,220 @@
+export const metadata = {
+  title: "Jenis Punca Persamaan Kuadratik",
+  description: "Baca jenis punca persamaan kuadratik daripada pembezalayannya, kemudian cari tanda punca daripada hasil tambah dan hasil darabnya.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-19",
+  dateModified: "2026-11-08",
+  subject: "Fungsi Kuadratik",
+};
+
+## Membaca Jenis Punca daripada Pembezalayan
+
+Jenis punca persamaan kuadratik <InlineMath math="ax^2 + bx + c = 0" /> dengan pekali nyata dan <InlineMath math="a \ne 0" /> ditentukan oleh **pembezalayan** <InlineMath math="D = b^2 - 4ac" />. Kamu hanya perlu kira <InlineMath math="D" /> dan baca tandanya, tanpa menyelesaikan persamaan itu sepenuhnya:
+
+| Pembezalayan | Jenis punca | Graf <InlineMath math="y = ax^2 + bx + c" /> |
+| --- | --- | --- |
+| <InlineMath math="D > 0" /> | Dua punca nyata yang berbeza | Memotong paksi-<InlineMath math="x" /> pada dua titik |
+| <InlineMath math="D = 0" /> | Satu punca nyata berulang | Menyentuh paksi-<InlineMath math="x" /> pada verteksnya |
+| <InlineMath math="D < 0" /> | Dua punca kompleks yang tidak nyata | Tidak pernah bertemu paksi-<InlineMath math="x" /> |
+
+Pembezalayan ialah bahagian di bawah punca kuasa dua dalam [rumus kuadratik](/ms/subjek/matematik/fungsi-kuadratik/rumus-kuadratik):
+
+<BlockMath math="x = \frac{-b \pm \sqrt{D}}{2a}" />
+
+Tanda <InlineMath math="\pm" /> memberikan dua nilai berbeza apabila <InlineMath math="\sqrt{D}" /> positif, satu nilai apabila <InlineMath math="\sqrt{D} = 0" />, dan nombor khayalan apabila <InlineMath math="D" /> negatif.
+
+<MathVisual
+  title={<>Pembezalayan dan pintasan-x</>}
+  description={<>Parabola bagi <InlineMath math="x^2 - 5x + 6" />, <InlineMath math="x^2 - 6x + 9" />, dan <InlineMath math="x^2 + 2x + 5" />. Ikut setiap lengkung daripada label persamaannya ke paksi-x dan kira pintasannya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 5.5 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "distinct", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: -5, c: 6 }, domain: { min: 0, max: 5 }, appearance: "primary" },
+      { id: "repeated", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: -6, c: 9 }, domain: { min: 0, max: 5 }, appearance: "secondary" },
+      { id: "nonreal", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 2, c: 5 }, domain: { min: -3, max: 1 }, appearance: "warning" }
+    ],
+    labels: [
+      { key: "distinct", objectId: "distinct", at: { x: 0, y: 6 }, placement: "right" },
+      { key: "repeated", objectId: "repeated", at: { x: 5, y: 4 }, placement: "above-left" },
+      { key: "nonreal", objectId: "nonreal", at: { x: -3, y: 8 }, placement: "above-right" }
+    ]
+  }}
+  labels={{
+    distinct: <InlineMath math="y=x^2-5x+6" />,
+    repeated: <InlineMath math="y=x^2-6x+9" />,
+    nonreal: <InlineMath math="y=x^2+2x+5" />
+  }}
+/>
+
+## Dua Punca Nyata yang Berbeza
+
+Kalau <InlineMath math="D > 0" />, persamaan itu ada **dua punca nyata yang berbeza**:
+
+<BlockMath math="x_1 = \frac{-b + \sqrt{D}}{2a}, \qquad x_2 = \frac{-b - \sqrt{D}}{2a}" />
+
+Untuk <InlineMath math="x^2 - 5x + 6 = 0" />, pembezalayannya <InlineMath math="D = (-5)^2 - 4 \cdot 1 \cdot 6 = 1" />, jadi <InlineMath math="x = \frac{5 \pm 1}{2}" />, iaitu <InlineMath math="3" /> dan <InlineMath math="2" />. Semak dengan pemfaktoran: <InlineMath math="(x - 2)(x - 3) = x^2 - 5x + 6" />.
+
+Untuk persamaan dengan pekali integer, <InlineMath math="D" /> juga memberitahu kamu **sama ada punca itu nisbah**. Kalau <InlineMath math="D" /> kuasa dua sempurna seperti <InlineMath math="1" />, puncanya nisbah dan persamaan itu boleh difaktorkan. Kalau <InlineMath math="D > 0" /> bukan kuasa dua sempurna, puncanya tak nisbah. Contohnya, <InlineMath math="x^2 - 4x + 1 = 0" /> ada <InlineMath math="D = 12" />, jadi <InlineMath math="x = \frac{4 \pm 2\sqrt{3}}{2} = 2 \pm \sqrt{3}" />.
+
+## Satu Punca Nyata Berulang
+
+Kalau <InlineMath math="D = 0" />, tanda <InlineMath math="\pm" /> tidak mengubah apa-apa, jadi persamaan itu ada **satu punca nyata berulang**:
+
+<BlockMath math="x_1 = x_2 = -\frac{b}{2a}" />
+
+Untuk <InlineMath math="x^2 - 6x + 9 = 0" />, pembezalayannya <InlineMath math="(-6)^2 - 4 \cdot 1 \cdot 9 = 0" /> dan puncanya <InlineMath math="x = \frac{6}{2} = 3" />. Semak: sebelah kiri ialah kuasa dua sempurna <InlineMath math="(x - 3)^2" />, jadi graf menyentuh paksi-<InlineMath math="x" /> tepat pada verteks <InlineMath math="(3, 0)" />.
+
+Syarat <InlineMath math="D = 0" /> selalu digunakan untuk mencari parameter. Katakan <InlineMath math="x^2 + (m - 2)x + 4 = 0" /> mesti ada punca berulang:
+
+<MathContainer>
+  <BlockMath math="D = (m - 2)^2 - 4 \cdot 1 \cdot 4 = 0" />
+  <BlockMath math="(m - 2)^2 = 16 \quad\Longrightarrow\quad m - 2 = \pm 4" />
+  <BlockMath math="m = 6 \quad \text{atau} \quad m = -2" />
+</MathContainer>
+
+<MathVisual
+  title={<>Dua nilai m yang memberikan punca berulang</>}
+  description={<>Untuk <InlineMath math="m = 6" /> persamaannya ialah <InlineMath math="x^2 + 4x + 4 = 0" />, dan untuk <InlineMath math="m = -2" /> persamaannya ialah <InlineMath math="x^2 - 4x + 4 = 0" />. Kedua-dua parabola menyentuh paksi-x.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 4 }, domain: { min: -5, max: 1 }, appearance: "primary" },
+      { id: "right", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: -4, c: 4 }, domain: { min: -1, max: 5 }, appearance: "secondary" },
+      { id: "left-root", kind: "point", at: { x: -2, y: 0 }, appearance: "primary" },
+      { id: "right-root", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -5, y: 9 }, placement: "right" },
+      { key: "right", objectId: "right", at: { x: 5, y: 9 }, placement: "left" },
+      { key: "left-root", objectId: "left-root", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "right-root", objectId: "right-root", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    left: <InlineMath math="m = 6" />,
+    right: <InlineMath math="m = -2" />,
+    "left-root": <InlineMath math="-2" />,
+    "right-root": <InlineMath math="2" />,
+  }}
+/>
+
+Semak kedua-dua nilai. Untuk <InlineMath math="m = 6" />, <InlineMath math="x^2 + 4x + 4 = (x + 2)^2" />, dengan punca berulang <InlineMath math="-2" />. Untuk <InlineMath math="m = -2" />, <InlineMath math="x^2 - 4x + 4 = (x - 2)^2" />, dengan punca berulang <InlineMath math="2" />.
+
+## Dua Punca Kompleks yang Tidak Nyata
+
+Kalau <InlineMath math="D < 0" />, punca kuasa dua bagi <InlineMath math="D" /> bukan nombor nyata. Kedua-dua punca ialah **nombor kompleks yang tidak nyata**, dan kedua-duanya sentiasa membentuk pasangan konjugat:
+
+<BlockMath math="x = \frac{-b \pm i\sqrt{|D|}}{2a}, \qquad i^2 = -1" />
+
+Untuk <InlineMath math="x^2 + 2x + 5 = 0" />, pembezalayannya <InlineMath math="2^2 - 4 \cdot 1 \cdot 5 = -16" />, jadi <InlineMath math="x = \frac{-2 \pm 4i}{2} = -1 \pm 2i" />. Semak dengan hasil tambah dan hasil darab: <InlineMath math="(-1 + 2i) + (-1 - 2i) = -2 = -\frac{b}{a}" /> dan <InlineMath math="(-1)^2 + 2^2 = 5 = \frac{c}{a}" />. Bahagian nyata <InlineMath math="-1" /> sama dengan koordinat-x verteks bagi <InlineMath math="(x + 1)^2 + 4" />, iaitu kaitan utama dalam [punca khayalan persamaan kuadratik](/ms/subjek/matematik/fungsi-kuadratik/punca-tidak-nyata).
+
+## Tanda Punca daripada Hasil Tambah dan Hasil Darab
+
+Bentuk faktor <InlineMath math="a(x - x_1)(x - x_2)" /> mesti sama dengan <InlineMath math="ax^2 + bx + c" />. Padankan pekali bagi kuasa yang sama:
+
+<BlockMath math="\begin{aligned}a(x-x_1)(x-x_2)&amp;=a[x^2-(x_1+x_2)x+x_1x_2]\\b&amp;=-a(x_1+x_2)\\c&amp;=ax_1x_2\end{aligned}" />
+
+Jadi **hasil tambah punca** ialah <InlineMath math="x_1 + x_2 = -\frac{b}{a}" /> dan **hasil darab punca** ialah <InlineMath math="x_1 x_2 = \frac{c}{a}" />. Untuk punca nyata (<InlineMath math="D \ge 0" />), dua nilai ini menentukan tanda punca tanpa perlu mengiranya:
+
+| Syarat (dengan <InlineMath math="D \ge 0" />) | Tanda punca |
+| --- | --- |
+| <InlineMath math="x_1 x_2 > 0" /> dan <InlineMath math="x_1 + x_2 > 0" /> | Kedua-duanya positif |
+| <InlineMath math="x_1 x_2 > 0" /> dan <InlineMath math="x_1 + x_2 < 0" /> | Kedua-duanya negatif |
+| <InlineMath math="x_1 x_2 < 0" /> | Berlawanan tanda |
+| <InlineMath math="x_1 x_2 = 0" /> | Satu punca sifar, punca lagi satu ialah <InlineMath math="-\frac{b}{a}" /> |
+
+Hasil darab yang positif bermaksud kedua-dua punca sama tanda, jadi **hasil tambah yang menentukan tanda itu**.
+
+<MathVisual
+  title={<>Hasil darab punca yang negatif</>}
+  description={<>Graf <InlineMath math="y = x^2 + x - 6" /> bertemu paksi-y pada <InlineMath math="-6" />, di bawah paksi-x, jadi puncanya terletak di kedua-dua belah asalan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 3.5 }, y: { min: -7, max: 7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 1, c: -6 }, domain: { min: -4, max: 3 }, appearance: "primary" },
+      { id: "negative-root", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "positive-root", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+      { id: "intercept", kind: "point", at: { x: 0, y: -6 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "negative-root", objectId: "negative-root", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "positive-root", objectId: "positive-root", at: { x: 2, y: 0 }, placement: "above-right" },
+      { key: "intercept", objectId: "intercept", at: { x: 0, y: -6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "negative-root": <InlineMath math="-3" />,
+    "positive-root": <InlineMath math="2" />,
+    intercept: <InlineMath math="(0, -6)" />,
+  }}
+/>
+
+Untuk <InlineMath math="x^2 + x - 6 = 0" />, hasil darab punca ialah <InlineMath math="\frac{c}{a} = -6 < 0" />, jadi punca-punca itu berlawanan tanda. Semak: <InlineMath math="x^2 + x - 6 = (x + 3)(x - 2)" />, dengan punca <InlineMath math="-3" /> dan <InlineMath math="2" />. Graf menunjukkan sebabnya: untuk <InlineMath math="a > 0" />, <InlineMath math="f(0) = c" /> yang negatif meletakkan parabola di bawah paksi pada <InlineMath math="x = 0" />, jadi ia mesti memotong paksi sekali di kiri asalan dan sekali di kanan. Kes <InlineMath math="a < 0" /> dengan <InlineMath math="c > 0" /> sama sahaja, cuma parabolanya terbalik.
+
+## Contoh Syarat untuk Dua Punca Nyata yang Berbeza
+
+Cari nilai <InlineMath math="k" /> yang menjadikan <InlineMath math="kx^2 + 4x + 1 = 0" /> ada dua punca nyata yang berbeza.
+
+Ada **dua syarat**. Persamaan itu mesti kuadratik, jadi <InlineMath math="k \ne 0" />, dan pembezalayan mesti positif:
+
+<MathContainer>
+  <BlockMath math="D = 4^2 - 4 \cdot k \cdot 1 = 16 - 4k > 0" />
+  <BlockMath math="k < 4" />
+</MathContainer>
+
+Jadi <InlineMath math="k < 4" /> dan <InlineMath math="k \ne 0" />. Semak dengan <InlineMath math="k = 3" />: persamaan <InlineMath math="3x^2 + 4x + 1 = (3x + 1)(x + 1)" /> ada punca <InlineMath math="-\frac13" /> dan <InlineMath math="-1" />. Untuk <InlineMath math="k = 0" />, persamaan itu menjadi <InlineMath math="4x + 1 = 0" />, yang hanya ada satu punca, jadi nilai itu mesti dikeluarkan.
+
+## Kesilapan Lazim
+
+| Kesilapan | Sebab ia salah | Cara menyemak |
+| --- | --- | --- |
+| Mengira <InlineMath math="(-5)^2" /> sebagai <InlineMath math="-25" /> | Kuasa dua nombor negatif sentiasa positif | <InlineMath math="(-5)^2 = 25" />, jadi <InlineMath math="D" /> bagi <InlineMath math="x^2 - 5x + 6" /> ialah <InlineMath math="1" /> |
+| Terlupa syarat <InlineMath math="a \ne 0" /> | Untuk <InlineMath math="a = 0" /> persamaan itu linear dan pengelasan punca daripada <InlineMath math="D" /> tidak terpakai | Tulis syarat pekali utama sebelum mengira <InlineMath math="D" /> |
+| Menganggap <InlineMath math="D = 0" /> bermaksud tiada punca | Punca itu wujud dan berulang, iaitu <InlineMath math="-\frac{b}{2a}" /> | Graf menyentuh paksi pada verteksnya |
+| Menentukan tanda daripada hasil tambah sahaja | Hasil tambah yang positif boleh datang daripada satu punca besar dan satu punca negatif | Semak hasil darab dahulu |
+| Menggunakan peraturan tanda apabila <InlineMath math="D < 0" /> | Punca kompleks yang tidak nyata bukan positif dan bukan negatif | Pastikan <InlineMath math="D \ge 0" /> dahulu |
+
+Semakan paling cepat selepas mengira punca ialah **memadankan hasil tambah dan hasil darabnya** dengan <InlineMath math="-\frac{b}{a}" /> dan <InlineMath math="\frac{c}{a}" />.
+
+## Soalan Latihan
+
+Kira pembezalayan dahulu, kemudian **tentukan jenis punca sebelum menyelesaikan persamaan**.
+
+1. Cari jenis punca bagi <InlineMath math="3x^2 - 7x + 2 = 0" />, kemudian selesaikannya.
+
+2. Cari jenis punca bagi <InlineMath math="2x^2 - 4x + 5 = 0" />, kemudian selesaikannya dan semak dengan hasil tambah dan hasil darab punca.
+
+3. Cari nilai <InlineMath math="p" /> yang menjadikan <InlineMath math="x^2 - 2px + 9 = 0" /> ada punca berulang, kemudian cari punca itu.
+
+4. Tanpa menyelesaikan persamaan, cari tanda kedua-dua punca bagi <InlineMath math="x^2 - 8x + 12 = 0" />.
+
+### Penyelesaian
+
+**Soalan 1**. Pembezalayannya <InlineMath math="D = (-7)^2 - 4 \cdot 3 \cdot 2 = 49 - 24 = 25" />. Oleh sebab <InlineMath math="D > 0" /> dan <InlineMath math="25 = 5^2" />, puncanya ialah **dua nombor nyata nisbah yang berbeza**:
+
+<BlockMath math="x = \frac{7 \pm 5}{6} \quad\Longrightarrow\quad x_1 = 2, \quad x_2 = \frac13" />
+
+Check: <InlineMath math="(3x - 1)(x - 2) = 3x^2 - 7x + 2" />.
+
+**Soalan 2**. Pembezalayannya <InlineMath math="D = (-4)^2 - 4 \cdot 2 \cdot 5 = -24" />, jadi puncanya ialah **dua nombor kompleks yang tidak nyata**. Dengan <InlineMath math="\sqrt{-24} = 2i\sqrt{6}" />:
+
+<BlockMath math="x = \frac{4 \pm 2i\sqrt{6}}{4} = 1 \pm \frac{\sqrt{6}}{2}\,i" />
+
+Semak: hasil tambahnya <InlineMath math="2 = -\frac{b}{a}" />, dan hasil darabnya <InlineMath math="1 + \frac{6}{4} = \frac52 = \frac{c}{a}" />.
+
+**Soalan 3**. Punca berulang bermaksud <InlineMath math="D = 0" />:
+
+<MathContainer>
+  <BlockMath math="D = (-2p)^2 - 4 \cdot 1 \cdot 9 = 4p^2 - 36 = 0" />
+  <BlockMath math="p^2 = 9 \quad\Longrightarrow\quad p = 3 \quad \text{atau} \quad p = -3" />
+</MathContainer>
+
+Puncanya <InlineMath math="x = -\frac{b}{2a} = p" />, jadi nilainya <InlineMath math="3" /> untuk <InlineMath math="p = 3" /> dan <InlineMath math="-3" /> untuk <InlineMath math="p = -3" />. Semak: <InlineMath math="x^2 - 6x + 9 = (x - 3)^2" /> dan <InlineMath math="x^2 + 6x + 9 = (x + 3)^2" />.
+
+**Soalan 4**. Pembezalayannya <InlineMath math="64 - 48 = 16 > 0" />, jadi kedua-dua punca nyata. Hasil darabnya <InlineMath math="12 > 0" />, jadi punca-punca itu sama tanda, dan hasil tambahnya <InlineMath math="8 > 0" />, jadi **kedua-duanya positif**. Semak: <InlineMath math="x^2 - 8x + 12 = (x - 2)(x - 6)" />, dengan punca <InlineMath math="2" /> dan <InlineMath math="6" />.

@@ -1,0 +1,212 @@
+export const metadata = {
+  title: "Menentukan Luas Maksimum",
+  description: "Bina model luas kuadratik daripada kekangan geometri, cari nilai maksimumnya, dan tafsirkan jawapannya dalam masalah asal.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-19",
+  dateModified: "2026-11-08",
+  subject: "Fungsi Kuadratik",
+};
+
+## Segi Empat Tepat yang Dikelilingi Pagar dengan Panjang Tetap
+
+Masalah pengoptimuman meminta **nilai terbaik yang dibenarkan oleh kekangan**. Contohnya, pagar dengan panjang tetap boleh mengelilingi banyak segi empat tepat, tetapi luas semua segi empat tepat itu tidak sama. Fungsi kuadratik memodelkan luas setiap segi empat tepat yang dibenarkan dalam sebutan satu panjang sisi.
+
+Ungkapkan satu ukuran dalam sebutan ukuran yang lain, gantikan hubungan itu ke dalam rumus luas, kemudian tafsirkan verteks parabola yang terhasil. Cara ini boleh digunakan untuk mana-mana masalah pagar segi empat tepat yang ada jenis kekangan yang sama.
+
+## Mengapa kuadratik yang terbuka ke bawah ada maksimum
+
+Fungsi kuadratik ada bentuk
+
+<BlockMath math="f(x)=ax^2+bx+c,\qquad a\neq0" />
+
+Apabila <InlineMath math="a<0" />, grafnya terbuka ke bawah. Jadi verteksnya ialah titik paling tinggi pada graf. Kalau verteks itu <Highlight>berada dalam domain masalah yang dibenarkan</Highlight>, nilai fungsinya ialah nilai maksimum.
+
+### Mencari kedudukan verteks
+
+Untuk <InlineMath math="f(x)=ax^2+bx+c" />, koordinat verteks diperoleh daripada
+
+<MathContainer>
+  <BlockMath math="x_v=-\frac{b}{2a}" />
+  <BlockMath math="y_v=f(x_v)" />
+</MathContainer>
+
+**Bentuk pembezalayan** yang setara ialah
+
+<MathContainer>
+  <BlockMath math="\Delta=b^2-4ac" />
+  <BlockMath math="y_v=-\frac{\Delta}{4a}" />
+</MathContainer>
+
+Algebra memberitahu kamu di mana verteksnya, tetapi konteks yang menentukan sama ada verteks itu boleh digunakan. Panjang tidak boleh negatif, bilangan barang yang dihasilkan mungkin mesti integer, dan masa tidak boleh terkeluar daripada selang yang diterangkan oleh model.
+
+## Luas Maksimum Reban Ayam Segi Empat Tepat
+
+Seorang petani ada pagar sepanjang <InlineMath math="20\text{ m}" /> dan mahu memagar reban ayam berbentuk segi empat tepat. Ukuran apakah yang menghasilkan luas paling besar?
+
+**Langkah 1**: Namakan ukurannya. Biar panjangnya <InlineMath math="p\text{ m}" /> dan lebarnya <InlineMath math="l\text{ m}" />.
+**Langkah 2**: Terjemahkan kekangan perimeter.
+
+<MathContainer>
+  <BlockMath math="2p+2l=20" />
+  <BlockMath math="p+l=10" />
+  <BlockMath math="p=10-l" />
+</MathContainer>
+
+**Langkah 3**: Bina fungsi luas dalam satu pemboleh ubah.
+
+<MathContainer>
+  <BlockMath math="A=p\cdot l" />
+  <BlockMath math="A(l)=(10-l)l" />
+  <BlockMath math="A(l)=10l-l^2" />
+  <BlockMath math="A(l)=-l^2+10l" />
+</MathContainer>
+
+**Langkah 4**: Nyatakan domain yang dibenarkan. Kedua-dua panjang sisi mesti positif, jadi <InlineMath math="0<l<10" />. Pekali <InlineMath math="a=-1" /> negatif, maksudnya graf luas terbuka ke bawah.
+**Langkah 5**: Cari kedudukan verteks.
+
+<BlockMath math="l_v=-\frac{b}{2a}=-\frac{10}{2(-1)}=\frac{-10}{-2}=5" />
+
+**Langkah 6**: Dapatkan ukuran yang satu lagi dan kira luasnya.
+
+<MathContainer>
+  <BlockMath math="p=10-l=10-5=5" />
+  <BlockMath math="A(5)=5\cdot5=25" />
+</MathContainer>
+
+**Langkah 7**: Pastikan verteks memberikan luas maksimum. Verteks berada dalam <InlineMath math="0<l<10" />. Pada nilai sempadan, segi empat tepat itu menjadi leper dan luasnya menghampiri <InlineMath math="0" />, jadi verteks di bahagian dalam memberikan maksimum global.
+
+Penyempurnaan kuasa dua menerangkan sebab nilai ini maksimum. Kita tolak satu **kuasa dua yang tidak negatif** daripada 25. Nilai yang ditolak itu sifar tepat apabila lebarnya lima:
+
+<BlockMath math="A(l)=25-(l-5)^2\le25" />
+
+<MathVisual
+  title={<>Luas Melawan Ukuran yang Dipilih</>}
+  description={<>Paksi mengufuk menunjukkan lebar dalam meter, paksi mencancang menunjukkan luas dalam meter persegi. Titik (5,25) ialah maksimum.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -3, max: 28 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "area", kind: "quadratic", inputAxis: "x", coefficients: { a: -1, b: 10, c: 0 }, domain: { min: 0, max: 10 }, appearance: "primary" },
+      { id: "vertex", kind: "point", at: { x: 5, y: 25 }, appearance: "answer" }
+    ],
+    labels: [{ key: "vertex", objectId: "vertex", at: { x: 5, y: 25 }, placement: "above" }]
+  }}
+  labels={{ vertex: <InlineMath math="(5,25)" /> }}
+/>
+
+Hujung graf menunjukkan kes had. Sifar dan sepuluh dikecualikan apabila kedua-dua panjang sisi mesti positif.
+
+Jadi luas paling besar ialah <InlineMath math="25\text{ m}^2" />, iaitu daripada segi empat sama <InlineMath math="5\text{ m}\times5\text{ m}" />.
+
+## Kekangan Model Domain dan Verteks
+
+Jadual ini mengumpulkan empat bahagian yang menukar masalah pagar kepada **satu pemboleh ubah**. Setiap baris meletakkan satu bahagian masalah di sebelah bentuk matematiknya.
+
+| Bahagian masalah | Pernyataan matematik | Maksud |
+| ---------------- | -------------------- | ------ |
+| Perimeter tetap | <InlineMath math="2p+2l=20" /> | Setiap segi empat tepat yang dibenarkan menggunakan semua <InlineMath math="20\text{ m}" /> pagar. |
+| Model satu pemboleh ubah | <InlineMath math="A(l)=-l^2+10l" /> | Setiap lebar yang dibenarkan ada tepat satu luas yang sepadan. |
+| Domain yang dibenarkan | <InlineMath math="0<l<10" /> | Kedua-dua panjang sisi kekal positif. |
+| Verteks | <InlineMath math="(5,25)" /> | Lebar <InlineMath math="5\text{ m}" /> menghasilkan luas <InlineMath math="25\text{ m}^2" />. |
+
+## Menggunakan Cara yang Sama untuk Keuntungan
+
+Cara yang sama boleh digunakan setiap kali satu kuantiti mengikut **parabola yang terbuka ke bawah**. Fungsi keuntungan ialah salah satu contohnya, dan verteksnya memberikan kuantiti yang menghasilkan keuntungan paling besar.
+
+### Keuntungan pengeluaran
+
+Katakan keuntungan daripada menjual <InlineMath math="x" /> mainan, diukur dalam **ribu rupiah**, ialah
+
+<BlockMath math="P(x)=-2x^2+100x" />
+
+Oleh sebab <InlineMath math="a=-2<0" />, model ini ada maksimum:
+
+<MathContainer>
+  <BlockMath math="x_v=-\frac{100}{2(-2)}=25" />
+  <BlockMath math="\begin{aligned} P(25) &amp;=-2(25)^2+100(25) \\ &amp;=-2(625)+2500 \\ &amp;=1250 \end{aligned}" />
+</MathContainer>
+
+Model ini meramalkan keuntungan maksimum <InlineMath math="\text{IDR }1\,250\,000" /> apabila <InlineMath math="25" /> mainan dijual. Di sini verteksnya sudah integer, jadi kamu tidak perlu membandingkan nilai selepas dibundarkan.
+
+Jadualkan keuntungan <InlineMath math="P(x) = -2x^2 + 100x" />: nilainya naik kepada 1250 ribu rupiah pada <InlineMath math="x = 25" /> dan turun semula secara simetri, 1200 pada 20 dan 30, serta 800 pada 10 dan 40.
+
+<BarChart
+  title={<>Keuntungan di sekitar verteks</>}
+  description={<>Bar <InlineMath math="P(x) = -2x^2 + 100x" /> dalam ribu rupiah untuk <InlineMath math="x = 0, 10, 20, 25, 30, 40, 50" />.</>}
+  yAxisLabel="Keuntungan (ribu rupiah)"
+  data={[0, 10, 20, 25, 30, 40, 50].map((x) => ({ name: String(x), value: -2 * x ** 2 + 100 * x }))}
+  chartConfig={{ value: { label: "Keuntungan (ribu rupiah)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Tinggi projektil
+
+Katakan tinggi sebuah roket mainan selepas <InlineMath math="t\text{ s}" /> ialah
+
+<BlockMath math="h(t)=-5t^2+40t" />
+
+**Selang yang bermakna secara fizikal** datang daripada masa apabila tingginya sifar:
+
+<MathContainer>
+  <BlockMath math="-5t^2+40t=-5t(t-8)=0" />
+  <BlockMath math="t=0\text{ s}\quad\text{atau}\quad t=8\text{ s}" />
+</MathContainer>
+
+Jadi model ini bermula di aras tanah apabila <InlineMath math="t=0" /> dan kembali ke aras tanah apabila <InlineMath math="t=8" />, maka domain masa fizikalnya ialah <InlineMath math="0\le t\le8" />. Dalam selang itu, maksimum berlaku pada
+
+<MathContainer>
+  <BlockMath math="t_v=-\frac{40}{2(-5)}=\frac{-40}{-10}=4\text{ s}" />
+  <BlockMath math="\begin{aligned} h(4) &amp;=-5(4)^2+40(4) \\ &amp;=-80+160 \\ &amp;=80\text{ m} \end{aligned}" />
+</MathContainer>
+
+Roket itu mencapai tinggi maksimum <InlineMath math="80\text{ m}" /> selepas <InlineMath math="4\text{ s}" />.
+
+Tinggi pada setiap saat penuh simetri pada <InlineMath math="t = 4" />: 35 m pada 1 s dan 7 s, 60 m pada 2 s dan 6 s, 75 m pada 3 s dan 5 s, dan puncaknya, 80 m, pada 4 s.
+
+<BarChart
+  title={<>Tinggi roket saat demi saat</>}
+  description={<>Bar <InlineMath math="h(t) = -5t^2 + 40t" /> dalam meter untuk <InlineMath math="t = 0" /> hingga 8 saat.</>}
+  yAxisLabel="Tinggi (m)"
+  data={[0, 1, 2, 3, 4, 5, 6, 7, 8].map((t) => ({ name: String(t), value: -5 * t ** 2 + 40 * t }))}
+  chartConfig={{ value: { label: "Tinggi (m)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Latihan
+
+Masalah ini menetapkan perimeter dan meminta segi empat tepat yang paling besar, jadi kekangan itu perlu **menggantikan pemboleh ubah kedua**. Tulis luas sebagai fungsi satu pemboleh ubah dahulu.
+
+Sebuah segi empat tepat ada perimeter <InlineMath math="60\text{ cm}" />. Tentukan panjang dan lebar yang memaksimumkan luasnya, dan cari luas maksimum itu.
+
+### Jalan kerja
+
+1. Biar panjangnya <InlineMath math="p\text{ cm}" /> dan lebarnya <InlineMath math="l\text{ cm}" />.
+2. Tukarkan **kekangan perimeter** kepada ungkapan bagi panjang.
+
+   <MathContainer>
+     <BlockMath math="2p+2l=60" />
+     <BlockMath math="p+l=30" />
+     <BlockMath math="p=30-l" />
+   </MathContainer>
+
+3. Gantikan ke dalam rumus luas.
+
+   <MathContainer>
+     <BlockMath math="A(l)=p\cdot l" />
+     <BlockMath math="A(l)=(30-l)l" />
+     <BlockMath math="A(l)=30l-l^2" />
+     <BlockMath math="A(l)=-l^2+30l" />
+   </MathContainer>
+
+4. Domain yang dibenarkan ialah <InlineMath math="0<l<30" />, dan <InlineMath math="a=-1<0" />, jadi verteks memberikan nilai maksimum.
+5. Cari lebar pada verteks.
+
+   <BlockMath math="l_v=-\frac{30}{2(-1)}=\frac{-30}{-2}=15\text{ cm}" />
+
+6. Cari panjang dan luas yang sepadan.
+
+   <MathContainer>
+     <BlockMath math="p=30-l=30-15=15\text{ cm}" />
+     <BlockMath math="A(15)=15\cdot15=225\text{ cm}^2" />
+   </MathContainer>
+
+Luas maksimum ialah <InlineMath math="225\text{ cm}^2" />, iaitu daripada segi empat sama <InlineMath math="15\text{ cm}\times15\text{ cm}" />.
