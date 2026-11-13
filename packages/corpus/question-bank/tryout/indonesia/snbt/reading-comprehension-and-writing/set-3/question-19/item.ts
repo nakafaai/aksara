@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "reading",
-    topic: "sentence-relation",
+    topic: "main-idea",
   },
-  stimulus: "night-watch",
+  stimulus: "angkutan",
   versions: {
     id: {
       kind: "choice",
@@ -14,24 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "kalimat (3) menyatakan hal yang bertentangan dengan kalimat (2)",
+            "Jadwal pulang bus yang lebih awal daripada akhir kegiatan ekstrakurikuler membuat siswa yang mengikuti kegiatan itu harus kembali naik ojek.",
         },
         {
           correct: false,
-          label: "kalimat (3) menyatakan akibat dari kalimat (2)",
-        },
-        {
-          correct: false,
-          label: "kalimat (3) memerinci isi kalimat (2)",
+          label:
+            "Siswa dari keluarga kurang mampu kini kurang berminat mengikuti kegiatan ekstrakurikuler.",
         },
         {
           correct: true,
           label:
-            "kalimat (3) menambahkan perubahan lain selain yang disebut kalimat (2)",
+            "Jadwal pulang bus yang lebih awal daripada akhir kegiatan ekstrakurikuler membuat siswa dari keluarga kurang mampu sulit mengikuti kegiatan itu.",
         },
         {
           correct: false,
-          label: "kalimat (3) menegaskan ulang isi kalimat (2)",
+          label:
+            "Program bus sekolah gratis gagal meringankan pengeluaran keluarga siswa di desa-desa perbukitan.",
+        },
+        {
+          correct: false,
+          label:
+            "Kegiatan ekstrakurikuler di sekolah-sekolah itu kini lebih banyak diikuti oleh siswa dari keluarga mampu.",
         },
       ],
     },

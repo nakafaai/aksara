@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "reading",
-    topic: "word-meaning",
+    topic: "main-idea",
   },
-  stimulus: "stingless-bees",
+  stimulus: "tenun",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "menindih",
+          label:
+            "Urutan belajar yang dimulai dari karya kecil membuat kelas menenun menarik lebih banyak remaja karena karyanya cepat selesai.",
         },
         {
           correct: true,
-          label: "mengurangi",
+          label:
+            "Urutan belajar yang dimulai dari karya kecil membuat lebih banyak peserta bertahan, meskipun karya kecil itu belum melatih peserta membaca motif yang rumit.",
         },
         {
           correct: false,
-          label: "memaksa",
+          label:
+            "Karya kecil melatih peserta membaca motif yang rumit lebih cepat sehingga dua pertiga peserta angkatan kedua bertahan hingga akhir tahun.",
         },
         {
           correct: false,
-          label: "menaikkan",
+          label:
+            "Dua pertiga peserta angkatan kedua berhasil menyelesaikan selendang karena mereka belajar mulai dari karya kecil.",
         },
         {
           correct: false,
-          label: "mendesak",
+          label:
+            "Peserta lebih menyukai karya kecil sehingga selendang tidak lagi menjadi tujuan kelas menenun di sanggar itu.",
         },
       ],
     },
