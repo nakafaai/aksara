@@ -19,8 +19,8 @@ layer(NodeServices.layer)("Quran source integrity", (it) => {
         const surahs = yield* verified.source.pipe(Stream.runCollect);
 
         expect(verified.summary).toMatchObject({
-          byteCount: 20_600_641,
-          fileCount: 121,
+          byteCount: 26_462_642,
+          fileCount: 236,
         });
         expect(surahs).toHaveLength(QURAN_SURAH_COUNT);
         expect(

@@ -37,9 +37,9 @@ describe("Quran source catalog", () => {
           records,
         });
 
-        expect(attribution.sources).toHaveLength(10);
+        expect(attribution.sources).toHaveLength(13);
         expect(
-          Arr.every(attribution.sources, ({ copy }) => copy.length === 3)
+          Arr.every(attribution.sources, ({ copy }) => copy.length === 4)
         ).toBe(true);
         expect(attribution.tafsirAccess).toMatchObject([
           {
@@ -53,8 +53,13 @@ describe("Quran source catalog", () => {
             kind: "external",
             sourceId: "mokhtasar-german",
           },
+          {
+            appLocale: "ms",
+            kind: "external",
+            sourceId: "mokhtasar-indonesian",
+          },
         ]);
-        expect(records).toHaveLength(11);
+        expect(records).toHaveLength(14);
         expect(manifest.status).toBe("approved");
       })
   );
@@ -84,7 +89,7 @@ describe("Quran source catalog", () => {
           { appLocale: "id", bookId: 219, completed: true, version: 6 },
           { appLocale: "de", bookId: 336, completed: true, version: 6 },
         ]);
-        expect(external).toHaveLength(2);
+        expect(external).toHaveLength(3);
         expect(
           Arr.every(
             external,

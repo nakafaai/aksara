@@ -35,9 +35,10 @@ const pinnedSourcePaths = [
   ),
   ...Arr.map(Record.values(QURAN_SOURCE_POLICY.evidence), ({ path }) => path),
   ...Arr.map(Record.values(QURAN_SOURCE_POLICY.terms), ({ path }) => path),
-  ...Array.from(
-    { length: 114 },
-    (_, index) => `${QURAN_SOURCE_POLICY.tafsir.directory}/${index + 1}.json`
+  ...Arr.flatMap(
+    [QURAN_SOURCE_POLICY.tafsir, QURAN_SOURCE_POLICY.malayTranslation],
+    ({ directory }) =>
+      Array.from({ length: 114 }, (_, index) => `${directory}/${index + 1}.json`)
   ),
 ] as const;
 
