@@ -134,14 +134,17 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
         );
         expect(selected.article).toEqual(
           Arr.sort(
-            Arr.filter(articles, ({ route }) =>
-              Arr.contains(
-                [
-                  "articles/politics/merah-putih-cabinet-analysis",
-                  "articles/politics/regional-elections-turmoil",
-                ],
-                route.contentKey
-              )
+            Arr.filter(
+              articles,
+              ({ route }) =>
+                Arr.contains(ACTIVE_APP_LOCALES, route.artifactLocale) &&
+                Arr.contains(
+                  [
+                    "articles/politics/merah-putih-cabinet-analysis",
+                    "articles/politics/regional-elections-turmoil",
+                  ],
+                  route.contentKey
+                )
             ),
             Order.make((left: ArticleEntry, right: ArticleEntry) =>
               compareContentHeads(left.route, right.route)
