@@ -1,16 +1,40 @@
-Vergleiche, was **eine Person im Monat zahlt**, in beiden Fällen. Die Ersparnis in Prozent bezieht sich auf den bisherigen Betrag, also auf den Preis des Pakets Individu.
+Gesucht ist der günstigste Weg, genau <InlineMath math="16" /> Tickets zu kaufen. Halte zwei Dinge auseinander: **Der Ticketpreis hängt an der laufenden Nummer**, die Rabatte und die Servicegebühren hängen davon ab, wie du den Kauf auf Bestellungen aufteilst.
+
+# Preis der sechzehn Tickets
+
+Es sind schon <InlineMath math="294" /> Tickets verkauft, also bekommt die Gruppe die Nummern <InlineMath math="295" /> bis <InlineMath math="310" />. Die Nummern <InlineMath math="295" /> bis <InlineMath math="300" /> sind noch Early-Bird-Tickets, das sind <InlineMath math="300-294=6" /> Stück. Die übrigen <InlineMath math="16-6=10" /> Tickets kosten den regulären Preis.
 
 <BlockMath math="\begin{aligned}
-\text{Anteil pro Person}&=\frac{108{.}000}{6}=18{.}000 \\
-\text{Ersparnis}&=60{.}000-18{.}000=42{.}000 \\
-\text{Ersparnis in Prozent}&=\frac{42{.}000}{60{.}000}\cdot100\,\%=70\,\%
+\text{Ticketpreis}&=6\cdot90{.}000+10\cdot150{.}000 \\
+&=540{.}000+1{.}500{.}000=2{.}040{.}000
 \end{aligned}" />
 
-Zur Kontrolle: <InlineMath math="30\,\%" /> von <InlineMath math="\text{Rp}60{.}000" /> sind <InlineMath math="\text{Rp}18{.}000" />, also genau der neue Anteil.
+Diese Nummern ändern sich nicht, egal auf wie viele Bestellungen du aufteilst. Also **sparen kannst du nur über die Gruppenrabatte und die Servicegebühren**.
 
-Jede Person spart also <InlineMath math="70\,\%" />.
+# Die günstigste Zahl an Bestellungen
 
-- <InlineMath math="42\,\%" /> schreibt den gesparten Betrag von <InlineMath math="\text{Rp}42{.}000" /> als Prozentzahl, ohne ihn durch <InlineMath math="\text{Rp}60{.}000" /> zu teilen.
-- <InlineMath math="30\,\%" /> ist der Anteil, den jede Person weiterhin zahlt, nicht der Anteil, den sie spart.
-- <InlineMath math="25\,\%" /> ist die Ersparnis pro Person beim Paket Duo, denn <InlineMath math="90{.}000:2=45{.}000" /> ist <InlineMath math="25\,\%" /> weniger als <InlineMath math="60{.}000" />.
-- <InlineMath math="18\,\%" /> schreibt den neuen Monatsbetrag von <InlineMath math="\text{Rp}18{.}000" /> als Prozentzahl.
+Eine Bestellung umfasst höchstens <InlineMath math="9" /> Tickets. Zwei vollständige Gruppen bräuchten <InlineMath math="10" /> Tickets, also **bekommt eine Bestellung höchstens einen Rabatt**. Damit gibt es nie mehr Rabatte als Bestellungen und auch nie mehr als <InlineMath math="\left\lfloor \frac{16}{5} \right\rfloor=3" />. Wegen <InlineMath math="16>9" /> brauchst du mindestens zwei Bestellungen.
+
+| Bestellungen | Beispiel | Rabatte | Servicegebühren | Änderung der Kosten |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="2" /> | <InlineMath math="9+7" /> | <InlineMath math="2\cdot90{.}000" /> | <InlineMath math="2\cdot25{.}000" /> | <InlineMath math="-130{.}000" /> |
+| <InlineMath math="3" /> | <InlineMath math="5+5+6" /> | <InlineMath math="3\cdot90{.}000" /> | <InlineMath math="3\cdot25{.}000" /> | <InlineMath math="-195{.}000" /> |
+| <InlineMath math="4" /> | <InlineMath math="5+5+5+1" /> | <InlineMath math="3\cdot90{.}000" /> | <InlineMath math="4\cdot25{.}000" /> | <InlineMath math="-170{.}000" /> |
+
+Eine dritte Bestellung kostet <InlineMath math="\text{Rp}25{.}000" /> Gebühr, bringt aber einen neuen Rabatt von <InlineMath math="\text{Rp}90{.}000" />, sie lohnt sich also. Eine vierte Bestellung bringt nur noch Gebühren, weil die Rabatte schon bei drei gedeckelt sind. Am besten sind also drei Bestellungen, zum Beispiel mit <InlineMath math="5" />, <InlineMath math="5" /> und <InlineMath math="6" /> Tickets.
+
+<BlockMath math="\begin{aligned}
+\text{Gesamtkosten}&=2{.}040{.}000-3\cdot90{.}000+3\cdot25{.}000 \\
+&=2{.}040{.}000-270{.}000+75{.}000=1{.}845{.}000
+\end{aligned}" />
+
+Prüf die Grenzen: Jede Bestellung hat höchstens <InlineMath math="9" /> Tickets, und jede enthält eine vollständige Gruppe. Alle Regeln sind erfüllt.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\text{Rp}1{.}910{.}000" /> nimmt so wenige Bestellungen wie möglich, also zwei mit zwei Rabatten. **Weniger Bestellungen sind nicht automatisch billiger**.
+- <InlineMath math="\text{Rp}1{.}820{.}000" /> zählt drei Rabatte aus <InlineMath math="\left\lfloor \frac{16}{5} \right\rfloor" />, aber nur zwei Bestellungen. Bei zwei Bestellungen passt in jede nur eine vollständige Gruppe.
+- <InlineMath math="\text{Rp}1{.}785{.}000" /> zählt sieben Early-Bird-Tickets, als gehörte Ticket <InlineMath math="294" /> zum Kauf. Das ist schon verkauft, es sind also nur noch sechs übrig.
+- <InlineMath math="\text{Rp}2{.}205{.}000" /> rechnet alle Tickets zum regulären Preis und vergisst die sechs noch freien Early-Bird-Tickets.
+
+Die geringsten Gesamtkosten betragen also <InlineMath math="\text{Rp}1{.}845{.}000" />.

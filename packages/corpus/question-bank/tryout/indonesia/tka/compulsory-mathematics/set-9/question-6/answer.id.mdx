@@ -1,15 +1,43 @@
-Fungsi linear berbentuk <InlineMath math="f(x)=mx+n" />. **Gradien <InlineMath math="m" /> adalah perubahan nilai fungsi dibagi perubahan <InlineMath math="x" />**, lalu <InlineMath math="n" /> dicari dari salah satu nilai yang diketahui.
+Soal ini meminta hasil kali semua nilai <InlineMath math="m" /> yang membuat grafik <InlineMath math="f" /> menyinggung sumbu <InlineMath math="x" />. Ada dua syarat yang harus dipegang bersamaan: **diskriminannya nol**, dan <InlineMath math="f" /> benar-benar fungsi kuadrat.
+
+# Syarat menyinggung
+
+Diskriminan <InlineMath math="D=b^2-4ac" /> adalah bilangan yang menentukan banyak titik potong grafik dengan sumbu <InlineMath math="x" />. Grafik menyinggung sumbu <InlineMath math="x" /> kalau **tepat ada satu titik persekutuan**, yaitu saat <InlineMath math="D=0" />. Karena <InlineMath math="b" /> memuat faktor <InlineMath math="2" />, lebih ringkas memakai <InlineMath math="\tfrac{D}{4}=\left(\tfrac{b}{2}\right)^2-ac" />.
+
+<BlockMath math="a=m+2,\qquad \tfrac{b}{2}=-(m+2),\qquad c=m^2-7m+17" />
+
+# Nilai parameter yang mungkin
+
+Perhatikan bahwa <InlineMath math="m+2" /> muncul di dua suku, jadi **keluarkan sebagai faktor** dan jangan dibuang.
 
 <BlockMath math="\begin{aligned}
-m&=\frac{f(4)-f(1)}{4-1}=\frac{-1-5}{3}=-2 \\
-f(1)&=-2\cdot1+n=5\ \Rightarrow\ n=7
+\tfrac{D}{4}&=(m+2)^2-(m+2)\left(m^2-7m+17\right) \\
+&=(m+2)\left[(m+2)-\left(m^2-7m+17\right)\right] \\
+&=(m+2)\left(-m^2+8m-15\right) \\
+&=-(m+2)(m-3)(m-5)
 \end{aligned}" />
 
-Cek: <InlineMath math="f(4)=-8+7=-1" />.
+Jadi <InlineMath math="D=0" /> untuk <InlineMath math="m=-2" />, <InlineMath math="m=3" />, atau <InlineMath math="m=5" />.
 
-Jadi, <InlineMath math="f(x)=-2x+7" />.
+# Memeriksa setiap nilai
 
-- <InlineMath math="f(x)=2x+3" /> salah tanda pada gradien, padahal nilai fungsi turun dari <InlineMath math="5" /> ke <InlineMath math="-1" />.
-- <InlineMath math="f(x)=-2x+3" /> mengurangkan <InlineMath math="2" /> dari <InlineMath math="5" />, padahal <InlineMath math="-2\cdot1" /> harus dipindahkan ke ruas kanan sebagai <InlineMath math="+2" />.
-- <InlineMath math="f(x)=-6x+11" /> memakai selisih nilai <InlineMath math="-6" /> sebagai gradien tanpa membaginya dengan <InlineMath math="3" />.
-- <InlineMath math="f(x)=-\frac12x+\frac{11}{2}" /> membalik pembagian, yaitu memakai <InlineMath math="\frac{3}{-6}" />.
+Sekarang periksa apakah setiap nilai benar-benar memberi parabola yang menyinggung sumbu <InlineMath math="x" />.
+
+<BlockMath math="\begin{aligned}
+m=-2&:\ f(x)=0\cdot x^2-0\cdot x+35=35 \\
+m=3&:\ f(x)=5x^2-10x+5=5(x-1)^2 \\
+m=5&:\ f(x)=7x^2-14x+7=7(x-1)^2
+\end{aligned}" />
+
+Untuk <InlineMath math="m=-2" />, koefisien <InlineMath math="x^2" /> menjadi nol, jadi <InlineMath math="f" /> **bukan lagi fungsi kuadrat**. Grafiknya garis mendatar <InlineMath math="y=35" /> yang tidak pernah menyentuh sumbu <InlineMath math="x" />. Nilai ini harus dibuang. Dua nilai lainnya memberi parabola yang menyinggung sumbu <InlineMath math="x" /> di titik <InlineMath math="(1,0)" />.
+
+<BlockMath math="3\cdot5=15" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="-30" /> adalah <InlineMath math="(-2)\cdot3\cdot5" />. Nilai ini juga muncul kalau kamu memakai rumus hasil kali akar pada bentuk pangkat tiga <InlineMath math="-m^3+6m^2+m-30" />. Keduanya **ikut memasukkan** <InlineMath math="m=-2" />.
+- <InlineMath math="-15" /> muncul dari <InlineMath math="-m^2+8m-15=0" /> kalau hasil kali akarnya diambil <InlineMath math="-15" /> tanpa membagi dengan koefisien <InlineMath math="-1" />. Hasil kali yang benar <InlineMath math="\tfrac{-15}{-1}=15" />.
+- <InlineMath math="9" /> muncul kalau <InlineMath math="b=-2(m+2)" /> dipakai utuh di rumus <InlineMath math="\tfrac{D}{4}" />. Hasilnya <InlineMath math="(m+2)\left(-m^2+11m-9\right)" />, yang hasil kali akarnya <InlineMath math="9" />. Rumus <InlineMath math="\tfrac{D}{4}" /> memakai <InlineMath math="\tfrac{b}{2}" />.
+- <InlineMath math="30" /> memasukkan <InlineMath math="m=-2" /> dan sekaligus salah tanda pada rumus hasil kali akar bentuk pangkat tiga.
+
+Jadi, hasil kali semua nilai <InlineMath math="m" /> yang memenuhi adalah <InlineMath math="15" />.

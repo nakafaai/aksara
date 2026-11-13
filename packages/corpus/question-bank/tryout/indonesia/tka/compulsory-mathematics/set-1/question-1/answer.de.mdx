@@ -1,16 +1,40 @@
-Beim gestaffelten Tarif kostet **jede Stufe ihren eigenen Preis**: Die ersten <InlineMath math="10\text{ m}^3" /> werden zum ersten Satz abgerechnet, nur die übrigen <InlineMath math="5\text{ m}^3" /> zum zweiten. Dazu kommt die feste Grundgebühr.
+# Die Länge der ursprünglichen Fahrt
+
+Der Preis liegt über <InlineMath math="\text{Rp}10{.}000" />, also ist die Fahrt länger als <InlineMath math="2\text{ km}" />. **Bestimm zuerst die Strecke aus dem bezahlten Preis**:
 
 <BlockMath math="\begin{aligned}
-\text{erste Stufe}&=10\cdot4{.}000=40{.}000 \\
-\text{zweite Stufe}&=5\cdot6{.}500=32{.}500 \\
-\text{Rechnung}&=40{.}000+32{.}500+18{.}000=90{.}500
+10{.}000+4{.}500(d-2)&=52{.}300 \\
+4{.}500(d-2)&=42{.}300 \\
+d&=11{,}4
 \end{aligned}" />
 
-Zur Kontrolle: Der Verbrauch liegt unter <InlineMath math="20\text{ m}^3" />, die dritte Stufe kommt also nicht vor.
+Die Fahrt ist <InlineMath math="11{,}4\text{ km}" /> lang, also unter <InlineMath math="12\text{ km}" />, und jeder Teil kostet <InlineMath math="\text{Rp}4{.}500" /> pro km.
 
-Die Rechnung beträgt also <InlineMath math="\text{Rp}90{.}500" />.
+# Was sich beim Aufteilen ändert
 
-- <InlineMath math="\text{Rp}72{.}500" /> vergisst die Grundgebühr.
-- <InlineMath math="\text{Rp}78{.}000" /> rechnet alle <InlineMath math="15\text{ m}^3" /> zum ersten Satz ab: <InlineMath math="60{.}000+18{.}000" />.
-- <InlineMath math="\text{Rp}97{.}500" /> rechnet alle <InlineMath math="15\text{ m}^3" /> zum zweiten Satz ab und vergisst die Grundgebühr.
-- <InlineMath math="\text{Rp}115{.}500" /> rechnet alle <InlineMath math="15\text{ m}^3" /> zum zweiten Satz ab: <InlineMath math="97{.}500+18{.}000" />.
+Angenommen, die Fahrt wird in <InlineMath math="a" /> km und <InlineMath math="b" /> km aufgeteilt, mit <InlineMath math="a+b=11{,}4" />. Sind beide Teile mindestens <InlineMath math="2\text{ km}" /> lang, zahlt jede Bestellung ihren eigenen Grundpreis und bekommt ihre eigenen ersten <InlineMath math="2\text{ km}" />:
+
+<BlockMath math="\begin{aligned}
+\text{Summe}&=\left[10{.}000+4{.}500(a-2)\right]+\left[10{.}000+4{.}500(b-2)\right] \\
+&=20{.}000+4{.}500(a+b-4) \\
+&=20{.}000+4{.}500\cdot7{,}4=53{.}300
+\end{aligned}" />
+
+**Das Ergebnis hängt nicht davon ab, wo du teilst**. Verglichen mit einer Fahrt zahlst du einen Grundpreis mehr, <InlineMath math="+10{.}000" />, bekommst aber noch einmal <InlineMath math="2\text{ km}" /> ohne Kilometerpreis, <InlineMath math="-9{.}000" />. Es kostet also immer <InlineMath math="\text{Rp}1{.}000" /> mehr.
+
+# Wenn ein Teil sehr kurz ist
+
+Ist der erste Teil <InlineMath math="a\le2" />, zahlt diese Bestellung trotzdem die vollen <InlineMath math="\text{Rp}10{.}000" />, nutzt ihre freie Strecke aber nicht ganz:
+
+<BlockMath math="\text{Summe}=10{.}000+\left[10{.}000+4{.}500(11{,}4-a-2)\right]=62{.}300-4{.}500a\ge62{.}300-9{.}000=53{.}300" />
+
+**Ein zu kurzer Teil verschenkt freie Strecke**. Zum Beispiel ergibt <InlineMath math="a=1{,}4" /> den Betrag <InlineMath math="\text{Rp}56{.}000" />. Der kleinste Gesamtpreis bleibt <InlineMath math="\text{Rp}53{.}300" />.
+
+Der kleinstmögliche Gesamtpreis ist also <InlineMath math="\text{Rp}53{.}300" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\text{Rp}52{.}300" /> nimmt an, dass sich beim Aufteilen nichts ändert. Es kommt aber ein zweiter Grundpreis dazu.
+- <InlineMath math="\text{Rp}51{.}300" /> nimmt an, dass Aufteilen spart. **Die zusätzliche freie Strecke ist nur <InlineMath math="\text{Rp}9{.}000" /> wert**, weniger als ein Grundpreis.
+- <InlineMath math="\text{Rp}62{.}300" /> rechnet den zweiten Grundpreis dazu, vergisst aber, dass auch die zweite Bestellung ihre ersten <InlineMath math="2\text{ km}" /> ohne Kilometerpreis bekommt.
+- <InlineMath math="\text{Rp}56{.}000" /> ist der Preis für eine bestimmte Aufteilung, etwa <InlineMath math="1{,}4\text{ km}" /> und dann <InlineMath math="10\text{ km}" />, nicht der kleinste.

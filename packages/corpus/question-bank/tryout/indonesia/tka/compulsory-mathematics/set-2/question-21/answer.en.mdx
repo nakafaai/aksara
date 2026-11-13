@@ -1,16 +1,38 @@
-For the mean from a frequency table, **each value counts as often as it occurs**. Multiply each temperature by its number of days, add, and divide by the <InlineMath math="12" /> days.
+The question asks for every whole number <InlineMath math="x" /> that meets two conditions at once: **an outlier for class B, but not an outlier for class A**. Each class has its own outlier limits, worked out from that class's interquartile range <InlineMath math="Q_3-Q_1" />. Watch the inequality signs too: an outlier has to be **less than** the lower limit or **greater than** the upper limit, so a value sitting exactly on a limit isn't an outlier.
+
+# Outlier limits for both classes
+
+Find each class's interquartile range, **multiply it by <InlineMath math="1.5" />**, then subtract that from <InlineMath math="Q_1" /> and add it to <InlineMath math="Q_3" />.
 
 <BlockMath math="\begin{aligned}
-\text{sum}&=30\cdot1+31\cdot2+32\cdot4+33\cdot2+34\cdot2+36\cdot1 \\
-&=30+62+128+66+68+36=390 \\
-\bar x&=\frac{390}{12}=32.5
+\text{Class A}&:\ Q_3-Q_1=82-56=26,\quad 1.5\cdot26=39 \\
+&\quad\ \text{lower limit }56-39=17,\quad\text{upper limit }82+39=121 \\
+\text{Class B}&:\ Q_3-Q_1=76-62=14,\quad 1.5\cdot14=21 \\
+&\quad\ \text{lower limit }62-21=41,\quad\text{upper limit }76+21=97
 \end{aligned}" />
 
-As a check, the frequencies add to <InlineMath math="1+2+4+2+2+1=12" />.
+# Values that meet both conditions
 
-So the mean is <InlineMath math="32.5^\circ\text{C}" />.
+For class B, <InlineMath math="x" /> is an outlier if <InlineMath math="x<41" /> or <InlineMath math="x>97" />. With <InlineMath math="x" /> a whole number from <InlineMath math="0" /> to <InlineMath math="100" />, that means <InlineMath math="0\le x\le40" /> or <InlineMath math="98\le x\le100" />.
 
-- <InlineMath math="32^\circ\text{C}" /> is the median and also the mode, not the mean.
-- <InlineMath math="32.7^\circ\text{C}" /> is the mean of the six different temperatures, without weighting by the days.
-- <InlineMath math="33^\circ\text{C}" /> is halfway between the smallest and largest values, <InlineMath math="\frac{30+36}{2}" />.
-- <InlineMath math="32.2^\circ\text{C}" /> drops the highest temperature <InlineMath math="36^\circ\text{C}" /> as if it were an outlier and divides <InlineMath math="390-36=354" /> by <InlineMath math="11" />. Every value still counts.
+For class A, <InlineMath math="x" /> is an outlier if <InlineMath math="x<17" /> or <InlineMath math="x>121" />. No test score can pass the upper limit <InlineMath math="121" />. So <InlineMath math="x" /> **isn't an outlier for class A exactly when <InlineMath math="x\ge17" />**.
+
+Now take the overlap of the two conditions.
+
+| Range of values | Outlier for B? | Outlier for A? | Fits? |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0\le x\le16" /> | yes | yes | no |
+| <InlineMath math="17\le x\le40" /> | yes | no | yes |
+| <InlineMath math="41\le x\le97" /> | no | no | no |
+| <InlineMath math="98\le x\le100" /> | yes | no | yes |
+
+Check the edges: <InlineMath math="x=17" /> isn't less than <InlineMath math="17" />, so it's not an outlier for A, while <InlineMath math="17<41" /> makes it an outlier for B. The values <InlineMath math="x=41" /> and <InlineMath math="x=97" /> sit exactly on class B's limits, so they're not outliers for B.
+
+# Why the other options are wrong
+
+- <InlineMath math="18\le x\le41" /> or <InlineMath math="97\le x\le100" /> treats values exactly on a limit as outliers. The definition says **less than** and **greater than**, not "less than or equal to".
+- <InlineMath math="0\le x\le40" /> or <InlineMath math="98\le x\le100" /> only checks class B. The values <InlineMath math="0" /> to <InlineMath math="16" /> are outliers for class A as well, so they have to go.
+- <InlineMath math="30\le x\le47" /> or <InlineMath math="91\le x\le100" /> forgets to multiply the interquartile range by <InlineMath math="1.5" />.
+- "No value fits" comes from swapping the classes, that is, looking for outliers for A that aren't outliers for B. Every value below <InlineMath math="17" /> is also below <InlineMath math="41" />, so that set really is empty, but it's not what the question asks.
+
+So the possible values are <InlineMath math="17\le x\le40" /> or <InlineMath math="98\le x\le100" />.

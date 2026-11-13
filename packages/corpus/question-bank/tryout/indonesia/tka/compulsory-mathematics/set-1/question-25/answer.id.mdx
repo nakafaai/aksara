@@ -1,17 +1,22 @@
-Urutan pemilihan tidak berpengaruh, jadi hitunglah dengan **kombinasi**. Paling sedikit dua siswa perempuan berarti tepat dua atau tepat tiga.
+# Peluang dalam bentuk r
+
+Karena <InlineMath math="r" /> tidak diketahui, **tulis setiap peluang sebagai rumus dalam <InlineMath math="r" />**. Bola kedua bisa merah setelah bola pertama merah atau setelah bola pertama putih.
 
 <BlockMath math="\begin{aligned}
-\text{seluruh pilihan}&=\binom93=84 \\
-\text{tepat 2 perempuan}&=\binom42\binom51=6\cdot5=30 \\
-\text{tepat 3 perempuan}&=\binom43=4 \\
-P&=\frac{30+4}{84}=\frac{34}{84}=\frac{17}{42}
+P(A)&=\frac{r}{8} \\
+P(A\cap B)&=\frac{r}{8}\cdot\frac{r-1}{7}=\frac{r(r-1)}{56} \\
+P(B)&=\frac{r(r-1)}{56}+\frac{8-r}{8}\cdot\frac{r}{7}=\frac{7r}{56}=\frac{r}{8} \\
+P(B\mid A)&=\frac{r-1}{7}
 \end{aligned}" />
 
-Sebagai pemeriksaan, tanpa perempuan atau tepat satu perempuan menghasilkan <InlineMath math="\binom53+\binom41\binom52=10+40=50" /> pilihan, dan <InlineMath math="34+50=84" />.
+Hasilnya **<InlineMath math="P(B)" /> sama dengan <InlineMath math="P(A)" />**. Masuk akal, karena sebelum apa pun dilihat, bola kedua sama acaknya dengan bola pertama.
 
-Jadi, peluangnya adalah <InlineMath math="\frac{17}{42}" />.
+# Menilai setiap pernyataan
 
-- <InlineMath math="\frac{1}{21}=\frac{4}{84}" /> hanya menghitung pilihan dengan tiga siswa perempuan.
-- <InlineMath math="\frac{5}{14}=\frac{30}{84}" /> hanya menghitung tepat dua siswa perempuan dan melupakan kasus tiga perempuan.
-- <InlineMath math="\frac12" /> memerlukan <InlineMath math="42" /> pilihan yang memenuhi, padahal hanya ada <InlineMath math="34" />.
-- <InlineMath math="\frac{25}{42}=\frac{50}{84}" /> adalah peluang komplemennya, yaitu paling banyak satu siswa perempuan.
+1. **Salah**. Kedua peluang sama, <InlineMath math="P(B)=P(A)=\frac r8" />.
+2. **Benar**. <InlineMath math="\frac{r-1}{7}<\frac r8" /> sama dengan <InlineMath math="8r-8<7r" />, yaitu <InlineMath math="r<8" />. Ini selalu terpenuhi.
+3. **Salah**. Peluang sewarna adalah <InlineMath math="\frac{r(r-1)+(8-r)(7-r)}{56}" />. Untuk <InlineMath math="r=4" /> nilainya <InlineMath math="\frac{24}{56}=\frac37" />, sedangkan untuk <InlineMath math="r=1" /> nilainya <InlineMath math="\frac{42}{56}=\frac34" />. Justru <InlineMath math="r=4" /> memberi peluang paling kecil.
+4. **Benar**. Saling bebas berarti <InlineMath math="P(B\mid A)=P(B)" />. Tetapi <InlineMath math="\frac{r-1}{7}" /> selalu lebih kecil daripada <InlineMath math="\frac r8" />, seperti di pernyataan kedua.
+5. **Benar**. <InlineMath math="P(A\mid B)=\frac{P(A\cap B)}{P(B)}" /> dan <InlineMath math="P(B\mid A)=\frac{P(A\cap B)}{P(A)}" />. Pembilangnya sama dan penyebutnya juga sama, karena <InlineMath math="P(A)=P(B)" />.
+
+Jadi, pernyataan yang benar adalah pernyataan kedua, keempat, dan kelima.

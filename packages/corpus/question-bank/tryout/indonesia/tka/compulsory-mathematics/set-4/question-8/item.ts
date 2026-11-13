@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "hari ke-$$22$$",
+        },
+        {
+          correct: false,
+          label: "hari ke-$$25$$",
+        },
+        {
           correct: true,
-          label: "$$8{.}100$$ orang",
+          label: "hari ke-$$26$$",
         },
         {
           correct: false,
-          label: "$$9{.}600$$ orang",
+          label: "hari ke-$$29$$",
         },
         {
           correct: false,
-          label: "$$12{.}000$$ orang",
-        },
-        {
-          correct: false,
-          label: "$$12{.}150$$ orang",
-        },
-        {
-          correct: false,
-          label: "$$18{.}225$$ orang",
+          label: "hari ke-$$50$$",
         },
       ],
     },

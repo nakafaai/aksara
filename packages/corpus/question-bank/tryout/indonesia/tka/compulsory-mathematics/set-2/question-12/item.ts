@@ -12,20 +12,17 @@ const item: ItemSource = {
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label: "Ada tepat $$13$$ nilai $$x$$ yang mungkin.",
-        },
-        {
           column: 2,
-          label: "Jika $$x=12$$, segitiga itu tumpul.",
+          label: "Ketiga sudut segitiga itu lancip.",
         },
         {
           column: 1,
-          label: "Jika $$x=13$$, segitiga itu tumpul.",
+          label: "Salah satu sudut segitiga itu besarnya $$60^\\circ$$.",
         },
         {
-          column: 2,
-          label: "Nilai $$x=17$$ mungkin.",
+          column: 1,
+          label:
+            "Tinggi segitiga terhadap sisi yang panjangnya $$8$$ cm adalah $$\\frac{3}{2}\\sqrt{3}$$ cm.",
         },
       ],
     },

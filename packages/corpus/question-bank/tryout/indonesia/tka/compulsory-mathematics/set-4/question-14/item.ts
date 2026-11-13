@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$y=-2x-4$$",
-        },
-        {
-          correct: false,
-          label: "$$y=-2x+4$$",
-        },
-        {
-          correct: false,
-          label: "$$y=2x-4$$",
+          label: "$$(-5,4)$$",
         },
         {
           correct: true,
-          label: "$$y=-\\frac12x-2$$",
+          label: "$$(3,-2)$$",
         },
         {
           correct: false,
-          label: "$$y=-\\frac12x+2$$",
+          label: "$$(3,4)$$",
+        },
+        {
+          correct: false,
+          label: "$$(4,3)$$",
+        },
+        {
+          correct: false,
+          label: "$$(5,-2)$$",
         },
       ],
     },

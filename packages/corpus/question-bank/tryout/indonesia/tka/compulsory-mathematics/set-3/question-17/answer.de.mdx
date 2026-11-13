@@ -1,15 +1,33 @@
-Abgewickelt ist das Etikett ein Rechteck. Seine Breite ist die Höhe der Kerze, **seine Länge der Umfang der Grundfläche plus die Überlappung** von <InlineMath math="1\text{ cm}" />.
+Gefragt ist die kleinste Zahl an Zementsäcken für beide Bauabschnitte. Entscheidend ist die Regel, dass **jeder Abschnitt seinen Zement getrennt in ganzen Säcken kauft**: Du rundest in jedem Abschnitt auf, nicht erst bei der Gesamtmenge.
+
+# Das Betonvolumen jedes Abschnitts
+
+Vom Garagenboden bis zur Terrasse gibt es <InlineMath math="11" /> Steigungen, die letzte auf die Terrasse mitgezählt. Eine Steigung ist also <InlineMath math="\frac{220}{11}=20\text{ cm}" /> hoch. Jeder Quader steht auf dem Garagenboden, seine Höhe ist also die Höhe seiner Oberfläche. **Die oberen Stufen misst du weiter vom Garagenboden aus**, nicht vom Podest.
 
 <BlockMath math="\begin{aligned}
-U&=2\pi r=2\cdot\frac{22}{7}\cdot3{,}5=22\text{ cm} \\
-A&=(22+1)\cdot12=23\cdot12=276\text{ cm}^2
+\text{Abschnitt I, Stufen}&:\ 30\cdot100\cdot(20+40+60+80+100)=900{.}000\text{ cm}^3=0{,}9\text{ m}^3 \\
+\text{Abschnitt I, Podest}&:\ 100\cdot100\cdot120=1{.}200{.}000\text{ cm}^3=1{,}2\text{ m}^3 \\
+V_{\text{I}}&=0{,}9+1{,}2=2{,}1\text{ m}^3 \\
+V_{\text{II}}&=30\cdot100\cdot(140+160+180+200)=2{.}040{.}000\text{ cm}^3=2{,}04\text{ m}^3
 \end{aligned}" />
 
-Zur Kontrolle: Der Mantel hat <InlineMath math="22\cdot12=264\text{ cm}^2" />, und die Überlappung fügt <InlineMath math="1\cdot12=12\text{ cm}^2" /> hinzu.
+# Der Zement für jeden Abschnitt
 
-Ein Etikett hat also <InlineMath math="276\text{ cm}^2" />.
+Ein Kubikmeter Mischung braucht <InlineMath math="360\text{ kg}" /> Zement, das sind <InlineMath math="\frac{360}{40}=9" /> Säcke. Angemischt werden <InlineMath math="10\%" /> mehr als das Volumen des Abschnitts, also multiplizierst du mit <InlineMath math="1{,}1" />:
 
-- <InlineMath math="264\text{ cm}^2" /> ist nur der Mantel und vergisst die Überlappung.
-- <InlineMath math="288\text{ cm}^2" /> rechnet an beiden Enden <InlineMath math="1\text{ cm}" /> Überlappung, obwohl beide Enden zusammen eine Überlappung bilden.
-- <InlineMath math="302{,}5\text{ cm}^2" /> deckt auch die Oberseite ab, <InlineMath math="264+38{,}5" />.
-- <InlineMath math="540\text{ cm}^2" /> nimmt den Durchmesser <InlineMath math="7\text{ cm}" /> als Radius, die Länge wird so <InlineMath math="44+1=45\text{ cm}" />.
+<BlockMath math="\begin{aligned}
+\text{Abschnitt I}&:\ 1{,}1\cdot2{,}1\cdot9=20{,}79\text{ Säcke}\ \Rightarrow\ 21\text{ Säcke} \\
+\text{Abschnitt II}&:\ 1{,}1\cdot2{,}04\cdot9=20{,}196\text{ Säcke}\ \Rightarrow\ 21\text{ Säcke} \\
+\text{Gesamt}&=21+21=42\text{ Säcke}
+\end{aligned}" />
+
+Jeder Abschnitt wird aufgerundet, weil Säcke nur ganz verkauft werden. Zwanzig Säcke reichen für Abschnitt I nicht, und der Rest aus Abschnitt I darf in Abschnitt II nicht verwendet werden. **Würdest du alles auf einmal kaufen**, bräuchtest du <InlineMath math="20{,}79+20{,}196=40{,}986" /> Säcke, also kämen <InlineMath math="41" /> aus. Der getrennte Kauf macht aber einen Sack mehr unvermeidbar.
+
+Pak Darmo muss also mindestens <InlineMath math="42" /> Säcke Zement kaufen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="41" /> Säcke rundet beide Abschnitte zusammen. Das verletzt die Regel, dass jeder Abschnitt getrennt kauft und **Reste nicht weiterverwendet werden**.
+- <InlineMath math="38" /> Säcke vergisst die <InlineMath math="10\%" /> Mehrmenge: <InlineMath math="2{,}1\cdot9=18{,}9" /> wird zu <InlineMath math="19" />, und <InlineMath math="2{,}04\cdot9=18{,}36" /> wird zu <InlineMath math="19" />.
+- <InlineMath math="30" /> Säcke vergisst den Podestquader in Abschnitt I. Dann hat Abschnitt I nur <InlineMath math="0{,}9\text{ m}^3" />, und <InlineMath math="0{,}9\cdot9{,}9=8{,}91" /> wird zu <InlineMath math="9" /> Säcken.
+- <InlineMath math="27" /> Säcke misst die oberen Stufen ab der Podestoberfläche, sodass Abschnitt II nur <InlineMath math="30\cdot100\cdot(20+40+60+80)=0{,}6\text{ m}^3" /> hat und <InlineMath math="6" /> Säcke braucht. Die Treppe ist massiv, der Beton unter den oberen Stufen reicht bis zum Garagenboden.

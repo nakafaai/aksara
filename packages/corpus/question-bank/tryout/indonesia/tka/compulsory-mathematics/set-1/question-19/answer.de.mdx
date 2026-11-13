@@ -1,18 +1,42 @@
-Bei dieser Aufgabe beurteilst du nur, ob die Angaben **für eine eindeutige Antwort ausreichen**, nicht welche Antwort herauskommt. Prüfe jede Aussage zuerst allein, dann beide zusammen. Eine Aussage reicht aus, wenn sie die Frage für jeden möglichen Fall gleich beantwortet.
+# Die Form des Dieselquerschnitts
 
-- **Aussage (1) allein**: Mit <InlineMath math="r=5" /> ist <InlineMath math="V=\frac{22}{7}\cdot25\cdot h=\frac{550}{7}h" />. Für <InlineMath math="h=7" /> ist <InlineMath math="V=550" />, für <InlineMath math="h=14" /> ist <InlineMath math="V=1{.}100" />. Ohne die Höhe bleibt die Frage offen, die Aussage reicht nicht.
-- **Aussage (2) allein**: Aus dem Mantel <InlineMath math="2\pi rh=440" /> mit <InlineMath math="h=14" /> folgt der Radius, und damit das Volumen.
+Gefragt ist das Volumen des leeren Raums im Tank. Der Plan: Berechne das Volumen des Diesels, der schon drin ist, und zieh es vom vollen Tank ab. Damit du gleich Liter erhältst, rechne in Dezimetern, denn <InlineMath math="1\text{ dm}^3=1" /> Liter. Der Radius ist <InlineMath math="6\text{ dm}" />, der Tank ist <InlineMath math="20\text{ dm}" /> lang, und der Diesel steht <InlineMath math="3\text{ dm}" /> hoch.
+
+Weil der Tank liegt, ist sein senkrechter Querschnitt ein Kreis mit Radius <InlineMath math="6" />. Der Diesel füllt den unteren Teil des Kreises, den eine waagerechte Sehne abschneidet, also einen **Kreisabschnitt**. Seine Fläche ist die Fläche des Kreisausschnitts minus die Fläche des Dreiecks aus dem Mittelpunkt und den beiden Sehnenenden.
+
+Der Abstand vom Mittelpunkt zur Dieseloberfläche ist <InlineMath math="6-3=3" />. Zeichne einen Radius vom Mittelpunkt zu einem Ende der Sehne. Es entsteht ein rechtwinkliges Dreieck mit Hypotenuse <InlineMath math="6" /> und Ankathete <InlineMath math="3" />. Der halbe Mittelpunktswinkel <InlineMath math="\alpha" /> erfüllt also <InlineMath math="\cos\alpha=\tfrac12" />.
 
 <BlockMath math="\begin{aligned}
-2\cdot\frac{22}{7}\cdot r\cdot14&=440\ \Rightarrow\ 88r=440\ \Rightarrow\ r=5 \\
-V&=\frac{22}{7}\cdot25\cdot14=1{.}100>1{.}000
+\cos\alpha&=\frac{3}{6}=\frac12\;\Rightarrow\;\alpha=60^\circ,\quad\text{Mittelpunktswinkel}=120^\circ \\
+\text{halbe Sehne}&=6\sin60^\circ=3\sqrt{3},\quad\text{Sehne}=6\sqrt{3} \\
+L_{\text{Ausschnitt}}&=\frac{120^\circ}{360^\circ}\cdot\pi\cdot6^2=12\pi \\
+L_{\text{Dreieck}}&=\tfrac12\cdot6\sqrt{3}\cdot3=9\sqrt{3} \\
+L_{\text{Abschnitt}}&=12\pi-9\sqrt{3}\text{ dm}^2
 \end{aligned}" />
 
-Aussage (2) beantwortet die Frage also eindeutig mit Ja.
+Das Dieselvolumen ist die Fläche des Kreisabschnitts mal die Länge des Tanks.
 
-Aussage (2) allein reicht also aus, Aussage (1) allein nicht.
+<BlockMath math="V_{\text{Diesel}}=20\,(12\pi-9\sqrt{3})=240\pi-180\sqrt{3}\text{ Liter}" />
 
-- Die Auswahl, nach der nur Aussage (1) allein ausreicht, ist falsch, weil Aussage (1) allein zwei verschiedene Antworten zulässt.
-- Die Auswahl, nach der erst beide Aussagen zusammen ausreichen, ist falsch, weil schon Aussage (2) allein die Frage eindeutig beantwortet.
-- Die Auswahl, nach der jede Aussage allein ausreicht, ist falsch, weil Aussage (1) allein zwei verschiedene Antworten zulässt.
-- Die Auswahl, nach der auch beide zusammen nicht ausreichen, ist falsch, weil schon Aussage (2) allein die Frage eindeutig beantwortet.
+# Der noch leere Raum
+
+Der volle Tank fasst die Kreisfläche mal die Länge. **Der leere Raum ist das volle Volumen minus der Diesel**.
+
+<BlockMath math="\begin{aligned}
+V_{\text{voll}}&=\pi\cdot6^2\cdot20=720\pi\text{ Liter} \\
+V_{\text{leer}}&=720\pi-(240\pi-180\sqrt{3}) \\
+&=480\pi+180\sqrt{3}\text{ Liter}
+\end{aligned}" />
+
+Prüf, ob das plausibel ist. Im Tank sind etwa <InlineMath math="754-312=442" /> Liter Diesel, ein Viertel des Tanks wären etwa <InlineMath math="565" /> Liter. Eine Füllhöhe von einem Viertel des Durchmessers bedeutet also **nicht**, dass der Tank zu einem Viertel voll ist. Das passt, denn der Kreis ist unten schmal und wird zur Mitte hin breiter.
+
+# Warum die anderen Antworten falsch sind
+
+Jede falsche Antwort entsteht aus einem Fehler beim Kreisabschnitt oder im letzten Schritt. Achte auf **das Vorzeichen des Dreiecks und die gefragte Größe**.
+
+- <InlineMath math="(240\pi-180\sqrt{3})" /> Liter ist der Diesel, der schon im Tank ist, nicht der leere Raum.
+- <InlineMath math="(480\pi-180\sqrt{3})" /> Liter entsteht, wenn du den Kreisabschnitt als Ausschnitt plus Dreieck rechnest. Das Dreieck liegt über der Dieseloberfläche und muss abgezogen werden.
+- <InlineMath math="480\pi" /> Liter entsteht, wenn du nur den Kreisausschnitt nimmst und das Dreieck nicht abziehst.
+- <InlineMath math="540\pi" /> Liter entsteht, wenn du eine Füllhöhe von <InlineMath math="\tfrac14" /> des Durchmessers als <InlineMath math="\tfrac14" /> des Volumens liest. Der Querschnitt eines liegenden Tanks ist kein Rechteck, das Verhältnis der Höhen ist also nicht das Verhältnis der Volumen.
+
+Es passen also noch <InlineMath math="(480\pi+180\sqrt{3})" /> Liter Diesel hinein, etwa <InlineMath math="1{.}820" /> Liter.

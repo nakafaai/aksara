@@ -1,0 +1,37 @@
+Soalan ini meminta kekerapan jangkaan, iaitu bilangan pusingan didarab dengan kebarangkalian menang dalam satu pusingan. Kemenangan ada dua peringkat: **syiling hanya dilambung jika jumlah nombor kad genap**, jadi kemenangan hanya dikira selepas peringkat pertama berjaya.
+
+# Peringkat kad
+
+Dua kad diambil serentak, jadi susunan tidak penting dan kedua-dua kad berbeza. Bilangan semua pasangan ialah <InlineMath math="\binom52=10" />. Jumlah dua nombor genap jika kedua-duanya ganjil atau kedua-duanya genap:
+
+<BlockMath math="\begin{aligned}
+\text{kedua-dua ganjil}&:\ \{1,3\},\{1,5\},\{3,5\}\ \to\ 3 \\
+\text{kedua-dua genap}&:\ \{2,4\}\ \to\ 1 \\
+P(\text{jumlah genap})&=\frac{3+1}{10}=\frac25
+\end{aligned}" />
+
+Perhatikan, kebarangkaliannya **bukan <InlineMath math="\frac12" />**. Kad ganjil ada tiga dan kad genap hanya dua, dan kad yang sama tidak boleh diambil dua kali.
+
+# Peringkat syiling
+
+Tiga lambungan mempunyai <InlineMath math="2^3=8" /> kesudahan yang sama mungkin. Sekurang-kurangnya dua kali sisi angka bermaksud **tepat dua kali atau tepat tiga kali**:
+
+<BlockMath math="P(\text{sekurang-kurangnya 2 angka})=\frac{\binom32+\binom33}{8}=\frac{3+1}{8}=\frac12" />
+
+# Kekerapan jangkaan
+
+Menang bermaksud kedua-dua peringkat berjaya, jadi **kebarangkaliannya didarabkan**:
+
+<BlockMath math="\begin{aligned}
+P(\text{menang})&=\frac25\cdot\frac12=\frac15 \\
+F_j&=60\cdot\frac15=12\text{ pusingan}
+\end{aligned}" />
+
+# Mengapa jawapan lain salah
+
+- <InlineMath math="15" /> pusingan menganggap kebarangkalian jumlah genap ialah <InlineMath math="\frac12" />: <InlineMath math="60\cdot\frac12\cdot\frac12" />.
+- <InlineMath math="21" /> pusingan membaca **sekurang-kurangnya dua** sebagai sekurang-kurangnya satu, dengan kebarangkalian <InlineMath math="\frac78" />: <InlineMath math="60\cdot\frac25\cdot\frac78" />.
+- <InlineMath math="24" /> pusingan terlupa peringkat syiling dan mengira setiap jumlah genap sebagai menang: <InlineMath math="60\cdot\frac25" />.
+- <InlineMath math="30" /> pusingan terlupa peringkat kad dan hanya menggunakan kebarangkalian syiling: <InlineMath math="60\cdot\frac12" />.
+
+Jadi, kekerapan jangkaan bilangan pusingan yang dimenangi ialah <InlineMath math="12" /> pusingan.

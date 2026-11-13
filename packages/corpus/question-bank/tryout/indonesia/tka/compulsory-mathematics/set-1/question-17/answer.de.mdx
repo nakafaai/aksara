@@ -1,18 +1,17 @@
-Die Aufgabe hat drei Schritte, die Fläche wird genau berechnet, Fliesen und Kartons werden aufgerundet: **Fläche berechnen, Fliesen zählen, Kartons zählen**. Die zu fliesende Fläche ist das Rechteck ohne den Viertelkreis.
+# Wie du jede Abbildung prüfst
 
-<BlockMath math="\begin{aligned}
-A&=6\cdot5-\frac14\cdot\frac{22}{7}\cdot1{,}4^2=30-1{,}54=28{,}46\text{ m}^2 \\
-\text{Fliesen}&=\frac{28{,}46}{0{,}4\cdot0{,}4}=\frac{28{,}46}{0{,}16}=177{,}875\ \to\ 178 \\
-\text{Kartons}&=\frac{178}{12}\approx14{,}83\ \to\ 15
-\end{aligned}" />
+Eine Abbildung bildet das Quadrat auf sich selbst ab, wenn **die Bilder der vier Ecken genau die Menge <InlineMath math="\{A,B,C,D\}" /> sind**, auch wenn sie die Plätze tauschen. Schreib jede Abbildung zuerst als eine Regel und prüf dann die vier Ecken.
 
-Weil nur ganze Kartons verkauft werden, rundest du auch hier auf. Die Kosten betragen <InlineMath math="15\cdot95{.}000=1{.}425{.}000" />.
+# Jede Möglichkeit prüfen
 
-Zur Kontrolle: <InlineMath math="14" /> Kartons enthalten nur <InlineMath math="168" /> Fliesen, zu wenig für <InlineMath math="178" />.
+**Spiegelung an der <InlineMath math="y" />-Achse, dann Verschiebung um <InlineMath math="(6,0)" />**. Die Regel ist <InlineMath math="(x,y)\mapsto(-x+6,\,y)" />. Die Bilder sind <InlineMath math="A\mapsto(5,1)=B" />, <InlineMath math="B\mapsto(1,1)=A" />, <InlineMath math="C\mapsto(1,5)=D" /> und <InlineMath math="D\mapsto(5,5)=C" />. Das ist dasselbe wie die Spiegelung an der Geraden <InlineMath math="x=3" />, einer Symmetrieachse des Quadrats. Richtig.
 
-Die geringsten Kosten betragen also <InlineMath math="\text{Rp}1{.}425{.}000" />.
+**Drehung, dann Verschiebung um <InlineMath math="(6,0)" />**. Die Regel ist <InlineMath math="(x,y)\mapsto(-y+6,\,x)" />. Die Bilder sind <InlineMath math="A\mapsto(5,1)=B" />, <InlineMath math="B\mapsto(5,5)=C" />, <InlineMath math="C\mapsto(1,5)=D" /> und <InlineMath math="D\mapsto(1,1)=A" />. Das ist dasselbe wie eine Drehung um <InlineMath math="90^\circ" /> um den Mittelpunkt <InlineMath math="(3,3)" /> des Quadrats. Richtig.
 
-- <InlineMath math="\text{Rp}1{.}235{.}000" /> zieht einen ganzen Kreis ab statt eines Viertelkreises. Dann bleiben <InlineMath math="23{,}84\text{ m}^2" />, also <InlineMath math="149" /> Fliesen und <InlineMath math="13" /> Kartons.
-- <InlineMath math="\text{Rp}1{.}330{.}000" /> rundet <InlineMath math="14{,}83" /> Kartons ab. Mit <InlineMath math="14" /> Kartons fehlen <InlineMath math="10" /> Fliesen.
-- <InlineMath math="\text{Rp}1{.}520{.}000" /> vergisst das Pflanzbeet: <InlineMath math="\frac{30}{0{,}16}=187{,}5" /> ergibt <InlineMath math="188" /> Fliesen und <InlineMath math="16" /> Kartons.
-- <InlineMath math="\text{Rp}1{.}615{.}000" /> legt ein volles Raster über den ganzen Boden, <InlineMath math="15" /> mal <InlineMath math="13" /> Fliesen, also <InlineMath math="195" /> Fliesen und <InlineMath math="17" /> Kartons. Das widerspricht der vorgegebenen Zählregel.
+**Spiegelung an <InlineMath math="y=x" />, dann Verschiebung um <InlineMath math="(2,-2)" />**. Die Regel ist <InlineMath math="(x,y)\mapsto(y+2,\,x-2)" />. <InlineMath math="A" /> geht nach <InlineMath math="(3,-1)" />, und das ist keine Ecke des Quadrats. Falsch. Die Spiegelung an <InlineMath math="y=x" /> allein bildet das Quadrat schon auf sich ab, die zusätzliche Verschiebung schiebt es also weg.
+
+**Streckung mit Faktor <InlineMath math="-1" />, dann Verschiebung um <InlineMath math="(6,6)" />**. Die Regel ist <InlineMath math="(x,y)\mapsto(-x+6,\,-y+6)" />. Die Bilder sind <InlineMath math="A\mapsto C" />, <InlineMath math="B\mapsto D" />, <InlineMath math="C\mapsto A" /> und <InlineMath math="D\mapsto B" />. Das ist eine Punktspiegelung am Mittelpunkt <InlineMath math="(3,3)" />. Richtig.
+
+**Drehung, dann Verschiebung um <InlineMath math="(0,6)" />**. Die Regel ist <InlineMath math="(x,y)\mapsto(-y,\,x+6)" />. <InlineMath math="A" /> geht nach <InlineMath math="(-1,7)" />. Falsch.
+
+Richtig sind also die Spiegelung an der <InlineMath math="y" />-Achse mit Verschiebung um <InlineMath math="(6,0)" />, die Drehung um <InlineMath math="90^\circ" /> mit Verschiebung um <InlineMath math="(6,0)" /> und die Streckung mit Faktor <InlineMath math="-1" /> mit Verschiebung um <InlineMath math="(6,6)" />.

@@ -1,19 +1,40 @@
-Es sei <InlineMath math="n" /> die Zahl der Erhöhungen um <InlineMath math="\text{Rp}100{.}000" />. Die Einnahmen sind **Miete pro Zimmer mal Zahl der vermieteten Zimmer**, also eine quadratische Funktion von <InlineMath math="n" />.
+# Abstand als Funktion der Zeit
+
+Gefragt ist der kleinste Abstand zweier Autos, die ständig weiterfahren. Der Abstand ändert sich mit der Zeit, also **schreib ihn zuerst als Funktion der Zeit** und such dann seinen kleinsten Wert.
+
+Leg ein Koordinatensystem mit <InlineMath math="O" /> im Ursprung, Osten als positiver <InlineMath math="x" />-Achse und Norden als positiver <InlineMath math="y" />-Achse an. Sei <InlineMath math="t" /> die Zeit in Stunden nach <InlineMath math="07.00" /> Uhr.
+
+<BlockMath math="A=(0,\ 30-40t),\qquad B=(-5+30t,\ 0)" />
+
+Die Formeln gelten auch, nachdem ein Auto <InlineMath math="O" /> passiert hat. Eine negative <InlineMath math="y" />-Koordinate von Auto A heißt einfach, dass A südlich von <InlineMath math="O" /> ist. Die Straßen stehen senkrecht aufeinander, also liefert Pythagoras den Abstand <InlineMath math="AB" />:
 
 <BlockMath math="\begin{aligned}
-E(n)&=(1{.}200{.}000+100{.}000n)(40-2n) \\
-&=200{.}000\,(12+n)(20-n)
+d^2&=(-5+30t)^2+(30-40t)^2 \\
+&=(25-300t+900t^2)+(900-2{.}400t+1{.}600t^2) \\
+&=2{.}500t^2-2{.}700t+925
 \end{aligned}" />
 
-Die Nullstellen sind <InlineMath math="n=-12" /> und <InlineMath math="n=20" />. Der Scheitel der nach unten geöffneten Parabel liegt genau in der Mitte, bei <InlineMath math="n=\frac{-12+20}{2}=4" />. Dann beträgt die Miete <InlineMath math="1{.}200{.}000+4\cdot100{.}000=1{.}600{.}000" />, und <InlineMath math="40-8=32" /> Zimmer sind vermietet.
+# Der Scheitel der quadratischen Funktion
 
-<BlockMath math="E(4)=1{.}600{.}000\cdot32=51{.}200{.}000" />
+Der Abstand <InlineMath math="d" /> ist nie negativ, also ist <InlineMath math="d" /> genau dann am kleinsten, wenn <InlineMath math="d^2" /> am kleinsten ist. <InlineMath math="d^2" /> ist quadratisch mit positivem Koeffizienten vor <InlineMath math="t^2" />, also **liegt der kleinste Wert im Scheitel**:
 
-Zur Kontrolle: Bei <InlineMath math="n=3" /> und <InlineMath math="n=5" /> ergibt sich jeweils <InlineMath math="1{.}500{.}000\cdot34=1{.}700{.}000\cdot30=51{.}000{.}000" />, also weniger.
+<BlockMath math="\begin{aligned}
+t&=\frac{2{.}700}{2\cdot2{.}500}=0{,}54\text{ Stunden} \\
+d^2_{\min}&=925-\frac{2{.}700^2}{4\cdot2{.}500}=925-729=196 \\
+d_{\min}&=14
+\end{aligned}" />
 
-Die höchsten Einnahmen bringt also eine Miete von <InlineMath math="\text{Rp}1{.}600{.}000" />.
+Prüf das mit den Positionen bei <InlineMath math="t=0{,}54" />, also gegen <InlineMath math="07.32" /> Uhr. Auto A ist <InlineMath math="30-21{,}6=8{,}4\text{ km}" /> nördlich von <InlineMath math="O" />, Auto B ist <InlineMath math="-5+16{,}2=11{,}2\text{ km}" /> östlich von <InlineMath math="O" />.
 
-- <InlineMath math="\text{Rp}1{.}200{.}000" /> ist die Ausgangsmiete mit <InlineMath math="48{.}000{.}000" /> Einnahmen.
-- <InlineMath math="\text{Rp}1{.}400{.}000" /> bringt <InlineMath math="1{.}400{.}000\cdot36=50{.}400{.}000" />.
-- <InlineMath math="\text{Rp}1{.}500{.}000" /> bringt <InlineMath math="51{.}000{.}000" />, knapp weniger als der Scheitel.
-- <InlineMath math="\text{Rp}2{.}200{.}000" /> entsteht, wenn der Scheitel bei <InlineMath math="n=10" /> gesucht wird, also nur die Nullstelle <InlineMath math="n=20" /> halbiert wird. Dann sind nur <InlineMath math="20" /> Zimmer vermietet, und die Einnahmen betragen <InlineMath math="44{.}000{.}000" />.
+<BlockMath math="\sqrt{8{,}4^2+11{,}2^2}=\sqrt{70{,}56+125{,}44}=\sqrt{196}=14" />
+
+In diesem Moment hat B die Kreuzung schon passiert, A noch nicht. Der nächste Moment ist also **nicht der, in dem ein Auto genau an der Kreuzung steht**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="10\sqrt{2}\text{ km}" /> entsteht, wenn du annimmst, die Autos seien am nächsten, wenn beide gleich weit von <InlineMath math="O" /> entfernt sind, also bei <InlineMath math="t=0{,}5" />. Dieser Abstand ist <InlineMath math="\sqrt{10^2+10^2}\approx14{,}14" />, **etwas mehr als <InlineMath math="14" />**.
+- <InlineMath math="17{,}5\text{ km}" /> ist der Abstand, wenn A bei <InlineMath math="O" /> ankommt, bei <InlineMath math="t=0{,}75" />. Dann ist B schon <InlineMath math="17{,}5\text{ km}" /> östlich von <InlineMath math="O" />.
+- <InlineMath math="18\text{ km}" /> entsteht, wenn B bei <InlineMath math="O" /> startet und seine <InlineMath math="5\text{ km}" /> nach Westen vergessen werden.
+- <InlineMath math="22\text{ km}" /> entsteht, wenn B <InlineMath math="5\text{ km}" /> östlich von <InlineMath math="O" /> gesetzt wird, das Vorzeichen seiner Position also vertauscht ist.
+
+Der kleinste Abstand der beiden Autos ist also <InlineMath math="14\text{ km}" />.

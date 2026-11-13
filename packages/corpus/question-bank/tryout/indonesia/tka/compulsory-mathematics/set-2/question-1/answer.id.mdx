@@ -1,16 +1,51 @@
-Harga per GB adalah **harga paket dibagi besar kuota**. Masa aktif tidak berpengaruh pada nilai ini. Hitung nilainya untuk setiap paket.
+# Impor dan ekspor dalam satu hari
+
+Soal ini meminta jumlah tagihan Oktober dan tagihan November. Ada dua hal yang menentukan: impor dan ekspor dihitung **per hari**, lalu kredit ekspor dibatasi **setiap bulan sendiri-sendiri**.
+
+Mulai dari satu hari. Listrik panel siang hari dipakai dulu untuk pemakaian siang <InlineMath math="4\text{ kWh}" />. Sisanya diekspor. Kalau kurang, kekurangannya diimpor. Pemakaian malam <InlineMath math="4\text{ kWh}" /> selalu diimpor.
+
+| Jenis hari | Ekspor | Impor |
+| --- | --- | --- |
+| Cerah | <InlineMath math="14-4=10\text{ kWh}" /> | <InlineMath math="4\text{ kWh}" /> (malam) |
+| Mendung | <InlineMath math="0\text{ kWh}" /> | <InlineMath math="(4-2)+4=6\text{ kWh}" /> |
+
+Pada hari mendung, panel hanya menghasilkan <InlineMath math="2\text{ kWh}" />, jadi pemakaian siangnya masih kurang <InlineMath math="2\text{ kWh}" />. Kekurangan ini ikut diimpor.
+
+# Tagihan Oktober
+
+Oktober punya <InlineMath math="29" /> hari cerah dan <InlineMath math="2" /> hari mendung. Hitung energi sebulan, lalu biaya impor dan kreditnya.
 
 <BlockMath math="\begin{aligned}
-\text{Hemat}&:\ \frac{75{.}000}{25}=3{.}000 \\
-\text{Jumbo}&:\ \frac{110{.}000}{40}=2{.}750 \\
-\text{Harian}&:\ \frac{8{.}000}{2}=4{.}000
+\text{impor}&=29\cdot4+2\cdot6=128\text{ kWh} \\
+\text{ekspor}&=29\cdot10=290\text{ kWh} \\
+\text{biaya impor}&=128\cdot1{.}500=192{.}000 \\
+\text{kredit}&=290\cdot800=232{.}000
 \end{aligned}" />
 
-Sebagai pemeriksaan, <InlineMath math="40\cdot2{.}750=110{.}000" />.
+Kreditnya lebih besar daripada biaya impor. Menurut aturannya, **tagihan Oktober tetap sebesar biaya tetap**, yaitu <InlineMath math="\text{Rp}30{.}000" />. Kelebihan kredit <InlineMath math="\text{Rp}40{.}000" /> hangus dan tidak boleh dipakai di November.
 
-Jadi, harga per GB yang paling murah adalah <InlineMath math="\text{Rp}2{.}750" />, yaitu pada paket Jumbo.
+# Tagihan November
 
-- <InlineMath math="\text{Rp}2{.}500" /> membagi harga paket Hemat dengan <InlineMath math="30" /> hari. Itu harga per hari, bukan per GB.
-- <InlineMath math="\text{Rp}3{.}000" /> adalah harga per GB paket Hemat, lebih mahal daripada paket Jumbo.
-- <InlineMath math="\text{Rp}4{.}000" /> adalah harga per GB paket Harian, yang termahal di antara ketiganya.
-- <InlineMath math="\text{Rp}8{.}000" /> adalah harga satu paket harian utuh berisi <InlineMath math="2\text{ GB}" />.
+November punya <InlineMath math="15" /> hari cerah dan <InlineMath math="15" /> hari mendung.
+
+<BlockMath math="\begin{aligned}
+\text{impor}&=15\cdot4+15\cdot6=150\text{ kWh} \\
+\text{ekspor}&=15\cdot10=150\text{ kWh} \\
+\text{tagihan}&=30{.}000+150\cdot1{.}500-150\cdot800 \\
+&=30{.}000+225{.}000-120{.}000=135{.}000
+\end{aligned}" />
+
+Di sini kredit lebih kecil daripada biaya impor, jadi **kredit dipakai seluruhnya** dan tagihannya <InlineMath math="\text{Rp}135{.}000" />.
+
+Totalnya:
+
+<BlockMath math="30{.}000+135{.}000=165{.}000" />
+
+Jadi, total tagihan Oktober dan November adalah <InlineMath math="\text{Rp}165{.}000" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\text{Rp}144{.}000" /> muncul kalau kamu menjumlahkan produksi dan pemakaian sebulan dulu. Cara itu menganggap kelebihan listrik hari cerah bisa menutup kekurangan hari mendung, padahal **impor dan ekspor tercatat per hari**.
+- <InlineMath math="\text{Rp}135{.}000" /> menganggap tagihan Oktober <InlineMath math="\text{Rp}0" />. Kredit hanya mengurangi biaya energi impor, bukan biaya tetap.
+- <InlineMath math="\text{Rp}125{.}000" /> membawa kelebihan kredit Oktober <InlineMath math="\text{Rp}40{.}000" /> ke November. Aturannya bilang kelebihan itu hangus.
+- <InlineMath math="\text{Rp}120{.}000" /> lupa bahwa hari mendung juga mengimpor <InlineMath math="2\text{ kWh}" /> untuk pemakaian siang, sehingga impor tiap hari mendung hanya dihitung <InlineMath math="4\text{ kWh}" />.

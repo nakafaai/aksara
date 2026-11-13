@@ -1,17 +1,22 @@
-Die Reihenfolge der Auswahl spielt keine Rolle, also zählst du mit **Binomialkoeffizienten**. Mindestens zwei Schülerinnen heißt: genau zwei oder genau drei.
+# Wahrscheinlichkeiten in r
+
+Weil <InlineMath math="r" /> unbekannt ist, **schreibst du jede Wahrscheinlichkeit als Formel in <InlineMath math="r" />**. Die zweite Kugel kann nach einer roten oder nach einer weißen ersten Kugel rot sein.
 
 <BlockMath math="\begin{aligned}
-\text{alle Auswahlen}&=\binom93=84 \\
-\text{genau 2 Schülerinnen}&=\binom42\binom51=6\cdot5=30 \\
-\text{genau 3 Schülerinnen}&=\binom43=4 \\
-P&=\frac{30+4}{84}=\frac{34}{84}=\frac{17}{42}
+P(A)&=\frac{r}{8} \\
+P(A\cap B)&=\frac{r}{8}\cdot\frac{r-1}{7}=\frac{r(r-1)}{56} \\
+P(B)&=\frac{r(r-1)}{56}+\frac{8-r}{8}\cdot\frac{r}{7}=\frac{7r}{56}=\frac{r}{8} \\
+P(B\mid A)&=\frac{r-1}{7}
 \end{aligned}" />
 
-Zur Kontrolle: Keine oder genau eine Schülerin ergeben <InlineMath math="\binom53+\binom41\binom52=10+40=50" /> Auswahlen, und <InlineMath math="34+50=84" />.
+Also ist **<InlineMath math="P(B)" /> gleich <InlineMath math="P(A)" />**. Das passt: Bevor du etwas siehst, ist die zweite Kugel genauso zufällig wie die erste.
 
-Die Wahrscheinlichkeit ist also <InlineMath math="\frac{17}{42}" />.
+# Jede Aussage prüfen
 
-- <InlineMath math="\frac{1}{21}=\frac{4}{84}" /> zählt nur die Auswahl mit drei Schülerinnen.
-- <InlineMath math="\frac{5}{14}=\frac{30}{84}" /> zählt nur genau zwei Schülerinnen und vergisst den Fall mit drei.
-- <InlineMath math="\frac12" /> bräuchte <InlineMath math="42" /> günstige Auswahlen, es sind aber <InlineMath math="34" />.
-- <InlineMath math="\frac{25}{42}=\frac{50}{84}" /> ist die Gegenwahrscheinlichkeit, also höchstens eine Schülerin.
+1. **Falsch**. Beide Wahrscheinlichkeiten sind gleich, <InlineMath math="P(B)=P(A)=\frac r8" />.
+2. **Richtig**. <InlineMath math="\frac{r-1}{7}<\frac r8" /> bedeutet <InlineMath math="8r-8<7r" />, also <InlineMath math="r<8" />. Das gilt immer.
+3. **Falsch**. Die Wahrscheinlichkeit für gleiche Farben ist <InlineMath math="\frac{r(r-1)+(8-r)(7-r)}{56}" />. Für <InlineMath math="r=4" /> ist sie <InlineMath math="\frac{24}{56}=\frac37" />, für <InlineMath math="r=1" /> aber <InlineMath math="\frac{42}{56}=\frac34" />. Gerade <InlineMath math="r=4" /> liefert die kleinste Wahrscheinlichkeit.
+4. **Richtig**. Unabhängig hieße <InlineMath math="P(B\mid A)=P(B)" />. Aber <InlineMath math="\frac{r-1}{7}" /> ist immer kleiner als <InlineMath math="\frac r8" />, wie bei der zweiten Aussage.
+5. **Richtig**. <InlineMath math="P(A\mid B)=\frac{P(A\cap B)}{P(B)}" /> und <InlineMath math="P(B\mid A)=\frac{P(A\cap B)}{P(A)}" />. Die Zähler stimmen überein und die Nenner auch, weil <InlineMath math="P(A)=P(B)" /> ist.
+
+Richtig sind also die zweite, die vierte und die fünfte Aussage.

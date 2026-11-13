@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  stimulus: "cookie-recipe",
+  stimulus: "obat",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$120$$ g",
-        },
-        {
-          correct: false,
-          label: "$$336$$ g",
-        },
-        {
-          correct: false,
-          label: "$$600$$ g",
+          label: "$$80\\sqrt{2}\\text{ mg}$$",
         },
         {
           correct: true,
-          label: "$$750$$ g",
+          label: "$$140\\sqrt{2}\\text{ mg}$$",
         },
         {
           correct: false,
-          label: "$$900$$ g",
+          label: "$$210\\text{ mg}$$",
+        },
+        {
+          correct: false,
+          label: "$$160\\sqrt{2}\\text{ mg}$$",
+        },
+        {
+          correct: false,
+          label: "$$240\\sqrt{2}\\text{ mg}$$",
         },
       ],
     },

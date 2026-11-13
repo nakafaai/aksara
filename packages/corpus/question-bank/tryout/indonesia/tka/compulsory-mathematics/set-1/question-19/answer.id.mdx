@@ -1,18 +1,42 @@
-Pada soal ini, kamu hanya menilai apakah keterangan yang diberikan **cukup untuk jawaban yang pasti**, bukan apa jawabannya. Periksa setiap pernyataan sendiri-sendiri lebih dulu, lalu keduanya bersama-sama. Sebuah pernyataan cukup jika menjawab pertanyaan dengan cara yang sama untuk setiap kemungkinan.
+# Bentuk penampang solar
 
-- **Pernyataan (1) saja**: dengan <InlineMath math="r=5" />, <InlineMath math="V=\frac{22}{7}\cdot25\cdot t=\frac{550}{7}t" />. Untuk <InlineMath math="t=7" />, <InlineMath math="V=550" />, dan untuk <InlineMath math="t=14" />, <InlineMath math="V=1{.}100" />. Tanpa tinggi, pertanyaan itu tidak terjawab, jadi pernyataan ini tidak cukup.
-- **Pernyataan (2) saja**: dari luas selimut <InlineMath math="2\pi rt=440" /> dengan <InlineMath math="t=14" /> diperoleh jari-jari, lalu volumenya.
+Soal ini menanyakan volume ruang yang masih kosong di dalam tangki. Rencananya: hitung volume solar yang sudah ada, lalu kurangkan dari volume tangki penuh. Supaya hasilnya langsung dalam liter, pakai satuan desimeter, karena <InlineMath math="1\text{ dm}^3=1" /> liter. Jari-jarinya <InlineMath math="6\text{ dm}" />, panjang tangki <InlineMath math="20\text{ dm}" />, dan tinggi solar <InlineMath math="3\text{ dm}" />.
+
+Karena tangki mendatar, penampang tegaknya lingkaran berjari-jari <InlineMath math="6" />. Solar mengisi bagian bawah lingkaran yang dibatasi tali busur mendatar, yaitu sebuah **tembereng**. Luas tembereng sama dengan luas juring dikurangi luas segitiga yang dibentuk pusat dan kedua ujung tali busur.
+
+Jarak pusat ke permukaan solar adalah <InlineMath math="6-3=3" />. Tarik jari-jari dari pusat ke salah satu ujung tali busur. Terbentuk segitiga siku-siku dengan sisi miring <InlineMath math="6" /> dan sisi tegak <InlineMath math="3" />, jadi setengah sudut pusatnya <InlineMath math="\alpha" /> memenuhi <InlineMath math="\cos\alpha=\tfrac12" />.
 
 <BlockMath math="\begin{aligned}
-2\cdot\frac{22}{7}\cdot r\cdot14&=440\ \Rightarrow\ 88r=440\ \Rightarrow\ r=5 \\
-V&=\frac{22}{7}\cdot25\cdot14=1{.}100>1{.}000
+\cos\alpha&=\frac{3}{6}=\frac12\;\Rightarrow\;\alpha=60^\circ,\quad\text{sudut pusat}=120^\circ \\
+\text{setengah tali busur}&=6\sin60^\circ=3\sqrt{3},\quad\text{tali busur}=6\sqrt{3} \\
+L_{\text{juring}}&=\frac{120^\circ}{360^\circ}\cdot\pi\cdot6^2=12\pi \\
+L_{\text{segitiga}}&=\tfrac12\cdot6\sqrt{3}\cdot3=9\sqrt{3} \\
+L_{\text{tembereng}}&=12\pi-9\sqrt{3}\text{ dm}^2
 \end{aligned}" />
 
-Jadi, pernyataan (2) menjawab pertanyaan itu dengan pasti, yaitu ya.
+Volume solar adalah luas tembereng dikali panjang tangki.
 
-Jadi, pernyataan (2) saja cukup, tetapi pernyataan (1) saja tidak cukup.
+<BlockMath math="V_{\text{solar}}=20\,(12\pi-9\sqrt{3})=240\pi-180\sqrt{3}\text{ liter}" />
 
-- Pilihan bahwa pernyataan (1) saja cukup salah, karena pernyataan (1) saja masih memungkinkan dua jawaban yang berbeda.
-- Pilihan bahwa hanya kedua pernyataan bersama-sama yang cukup salah, karena pernyataan (2) saja sudah menjawab pertanyaan dengan pasti.
-- Pilihan bahwa setiap pernyataan saja sudah cukup salah, karena pernyataan (1) saja masih memungkinkan dua jawaban yang berbeda.
-- Pilihan bahwa kedua pernyataan bersama-sama pun tidak cukup salah, karena pernyataan (2) saja sudah menjawab pertanyaan dengan pasti.
+# Ruang yang masih kosong
+
+Volume tangki penuh adalah luas lingkaran dikali panjang tangki. **Ruang kosong sama dengan volume penuh dikurangi volume solar**.
+
+<BlockMath math="\begin{aligned}
+V_{\text{penuh}}&=\pi\cdot6^2\cdot20=720\pi\text{ liter} \\
+V_{\text{kosong}}&=720\pi-(240\pi-180\sqrt{3}) \\
+&=480\pi+180\sqrt{3}\text{ liter}
+\end{aligned}" />
+
+Cek kewajarannya. Solar yang ada sekitar <InlineMath math="754-312=442" /> liter, padahal seperempat tangki sekitar <InlineMath math="565" /> liter. Jadi tinggi seperempat diameter **tidak** berarti isi seperempat tangki. Itu wajar, karena bagian bawah lingkaran sempit dan makin ke tengah makin lebar.
+
+# Kenapa pilihan lain keliru
+
+Setiap pilihan yang salah berasal dari satu langkah tembereng atau satu langkah akhir yang meleset. Perhatikan **tanda pada luas segitiga dan besaran yang ditanya**.
+
+- <InlineMath math="(240\pi-180\sqrt{3})" /> liter adalah volume solar yang sudah ada, bukan ruang yang masih kosong.
+- <InlineMath math="(480\pi-180\sqrt{3})" /> liter muncul kalau tembereng dihitung sebagai juring ditambah segitiga. Segitiganya ada di atas permukaan solar, jadi harus dikurangkan.
+- <InlineMath math="480\pi" /> liter muncul kalau hanya juring yang dipakai dan segitiga lupa dikurangkan.
+- <InlineMath math="540\pi" /> liter muncul kalau tinggi <InlineMath math="\tfrac14" /> diameter dianggap berarti isi <InlineMath math="\tfrac14" /> tangki. Penampang tangki mendatar bukan persegi panjang, jadi perbandingan tinggi tidak sama dengan perbandingan volume.
+
+Jadi, volume solar yang masih dapat ditambahkan adalah <InlineMath math="(480\pi+180\sqrt{3})" /> liter, sekitar <InlineMath math="1{.}820" /> liter.

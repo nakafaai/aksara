@@ -1,0 +1,81 @@
+Rajah hanya memberikan dua garis lurus dan satu rantau berlorek. Jadi langkah pertama ialah **membina sistem ketaksamaan daripada rajah itu**. Selepas itu, setiap pernyataan disemak dengan sistem tersebut, bukan dengan anggaran mata.
+
+# Sistem daripada rajah
+
+Garis lurus yang memotong paksi pada <InlineMath math="(a,0)" /> dan <InlineMath math="(0,b)" /> mempunyai persamaan <InlineMath math="\frac{x}{a}+\frac{y}{b}=1" />. Darabkan dengan penyebutnya supaya semua pekali menjadi nombor bulat.
+
+<BlockMath math="\begin{aligned}
+\frac{x}{6}+\frac{y}{9}=1\ &\Rightarrow\ 3x+2y=18 \\
+\frac{x}{12}+\frac{y}{4}=1\ &\Rightarrow\ x+3y=12
+\end{aligned}" />
+
+Titik <InlineMath math="(0,0)" /> berada dalam rantau berlorek, dan <InlineMath math="0\le18" /> serta <InlineMath math="0\le12" />. Jadi rantau itu berada di sebelah "kurang daripada atau sama dengan" bagi kedua-dua garis.
+
+<BlockMath math="3x+2y\le18,\qquad x+3y\le12,\qquad x\ge0,\qquad y\ge0" />
+
+Bucu tempat kedua-dua garis bersilang diperoleh dengan menggantikan <InlineMath math="x=12-3y" />.
+
+<BlockMath math="\begin{aligned}
+3(12-3y)+2y&=18 \\
+36-7y&=18\ \Rightarrow\ y=\tfrac{18}{7},\quad x=12-\tfrac{54}{7}=\tfrac{30}{7}
+\end{aligned}" />
+
+Titik persilangannya ialah <InlineMath math="\left(\tfrac{30}{7},\tfrac{18}{7}\right)\approx(4.29,\ 2.57)" />. **Di sebelah kiri titik persilangan, garis <InlineMath math="x+3y=12" /> lebih rendah**, manakala di sebelah kanannya garis <InlineMath math="3x+2y=18" /> pula yang lebih rendah. Sempadan atas rantau sentiasa garis yang lebih rendah.
+
+<MathVisual
+  title={<>Rantau penyelesaian dan titik persilangan</>}
+  description={<>Rantau berlorek ialah sisi empat dengan bucu <InlineMath math="(0,0)" />, <InlineMath math="(6,0)" />, <InlineMath math="\left(\tfrac{30}{7},\tfrac{18}{7}\right)" /> dan <InlineMath math="(0,4)" />. Garis <InlineMath math="3x+2y=18" /> melalui <InlineMath math="(0,9)" /> dan <InlineMath math="(6,0)" />. Garis <InlineMath math="x+3y=12" /> melalui <InlineMath math="(0,4)" /> dan <InlineMath math="(12,0)" />. Titik <InlineMath math="(3,3)" /> terletak pada garis <InlineMath math="x+3y=12" />, di dalam rantau.</>}
+  labels={{
+    "first-line": <InlineMath math="3x+2y=18" />,
+    "second-line": <InlineMath math="x+3y=12" />,
+    corner: <InlineMath math="\left(\tfrac{30}{7},\tfrac{18}{7}\right)" />,
+    best: <InlineMath math="(3,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 13 },
+      y: { min: -1, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 30 / 7, y: 18 / 7 }, { x: 0, y: 4 }] },
+      { id: "first-line", kind: "segment", appearance: "primary", from: { x: 0, y: 9 }, to: { x: 6, y: 0 } },
+      { id: "second-line", kind: "segment", appearance: "secondary", from: { x: 0, y: 4 }, to: { x: 12, y: 0 } },
+      { id: "corner-point", kind: "point", appearance: "reference", at: { x: 30 / 7, y: 18 / 7 } },
+      { id: "best-point", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "first-line", objectId: "first-line", at: { x: 1.5, y: 6.75 }, placement: "right" },
+      { key: "second-line", objectId: "second-line", at: { x: 9, y: 1 }, placement: "above" },
+      { key: "corner", objectId: "corner-point", at: { x: 30 / 7, y: 18 / 7 }, placement: "right" },
+      { key: "best", objectId: "best-point", at: { x: 3, y: 3 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+# Menilai setiap pernyataan
+
+1. **Betul**. Untuk <InlineMath math="(4,2)" />: <InlineMath math="3\cdot4+2\cdot2=16\le18" /> dan <InlineMath math="4+3\cdot2=10\le12" />, jadi titik itu di dalam rantau. Untuk <InlineMath math="(4,3)" />: <InlineMath math="3\cdot4+2\cdot3=18\le18" />, tetapi <InlineMath math="4+3\cdot3=13>12" />. Titik <InlineMath math="(4,3)" /> terletak tepat pada garis pertama, tetapi di atas garis kedua, jadi di luar rantau.
+2. **Salah**. Bagi setiap <InlineMath math="x" />, nilai <InlineMath math="y" /> terbesar ditentukan oleh garis yang lebih rendah, iaitu nilai yang lebih kecil antara <InlineMath math="\frac{18-3x}{2}" /> dan <InlineMath math="\frac{12-x}{3}" />.
+
+| <InlineMath math="x" /> | <InlineMath math="\frac{18-3x}{2}" /> | <InlineMath math="\frac{12-x}{3}" /> | Nilai <InlineMath math="y" /> bulat yang dibenarkan | Bilangan titik |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="3" /> | <InlineMath math="4.5" /> | <InlineMath math="3" /> | <InlineMath math="0,1,2,3" /> | <InlineMath math="4" /> |
+| <InlineMath math="4" /> | <InlineMath math="3" /> | <InlineMath math="2\tfrac{2}{3}" /> | <InlineMath math="0,1,2" /> | <InlineMath math="3" /> |
+| <InlineMath math="5" /> | <InlineMath math="1.5" /> | <InlineMath math="2\tfrac{1}{3}" /> | <InlineMath math="0,1" /> | <InlineMath math="2" /> |
+
+Jumlahnya <InlineMath math="4+3+2=9" />, bukan <InlineMath math="10" />. Nilai <InlineMath math="10" /> muncul jika kamu menggunakan garis <InlineMath math="x+3y=12" /> untuk seluruh jalur, sedangkan **pada <InlineMath math="x=5" /> sempadannya sudah beralih kepada garis <InlineMath math="3x+2y=18" />**.
+
+3. **Betul**. Pada titik persilangan, nilainya <InlineMath math="2\cdot\tfrac{30}{7}+3\cdot\tfrac{18}{7}=\tfrac{114}{7}\approx16.3" />, tetapi titik itu bukan titik nombor bulat. Jadi titik nombor bulat memberi paling besar <InlineMath math="16" />. Semak sama ada <InlineMath math="16" /> boleh dicapai: persamaan <InlineMath math="2x+3y=16" /> dengan <InlineMath math="x,y\ge0" /> bulat hanya dipenuhi oleh <InlineMath math="(8,0)" />, <InlineMath math="(5,2)" /> dan <InlineMath math="(2,4)" />.
+
+<BlockMath math="\begin{aligned}
+(8,0)&:\ 3\cdot8+2\cdot0=24>18 \\
+(5,2)&:\ 3\cdot5+2\cdot2=19>18 \\
+(2,4)&:\ 2+3\cdot4=14>12
+\end{aligned}" />
+
+Ketiga-tiganya di luar rantau. Nilai <InlineMath math="15" /> dicapai pada <InlineMath math="(3,3)" />, kerana <InlineMath math="9+6=15\le18" /> dan <InlineMath math="3+9=12\le12" />. Membundarkan titik persilangan kepada <InlineMath math="(4,3)" /> membawa kamu keluar dari rantau, dan <InlineMath math="(4,2)" /> hanya memberi <InlineMath math="14" />.
+
+Jadi, pernyataan 1 betul, pernyataan 2 salah dan pernyataan 3 betul.

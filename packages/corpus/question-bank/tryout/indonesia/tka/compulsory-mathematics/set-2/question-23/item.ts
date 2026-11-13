@@ -6,27 +6,25 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "daily-temperature",
+  stimulus: "nilai",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label: "Rata-ratanya turun $$0{,}5^\\circ\\text{C}$$.",
+          column: 2,
+          label:
+            "Rata-rata nilai kelas A lebih besar daripada rata-rata nilai kelas B.",
         },
         {
           column: 2,
-          label: "Mediannya berubah.",
+          label:
+            "Jika seorang siswa baru dengan nilai $$100$$ bergabung ke kelas B, median nilai kelas B tetap $$68$$.",
         },
         {
           column: 1,
-          label: "Jangkauannya menjadi $$4^\\circ\\text{C}$$.",
-        },
-        {
-          column: 2,
-          label: "Modusnya berubah menjadi $$30^\\circ\\text{C}$$.",
+          label: "Rata-rata nilai kelas A lebih dari $$63$$.",
         },
       ],
     },

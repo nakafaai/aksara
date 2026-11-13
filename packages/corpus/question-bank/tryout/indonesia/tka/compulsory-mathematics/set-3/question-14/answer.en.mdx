@@ -1,16 +1,47 @@
-A rotation about a centre other than the origin takes three steps: **move the centre to the origin, rotate, then move back**. A rotation of <InlineMath math="90^\circ" /> anticlockwise about the origin maps <InlineMath math="(a,b)" /> to <InlineMath math="(-b,a)" />.
+The question asks for the image of point <InlineMath math="C" />, but you don't know the scale factor <InlineMath math="k" /> or the translation vector yet. So first find <InlineMath math="k" />, <InlineMath math="a" />, and <InlineMath math="b" /> from points <InlineMath math="A" /> and <InlineMath math="B" /> and the condition that **<InlineMath math="B'" /> lies in quadrant III**.
+
+# The rule of the transformation
+
+A dilation centred at <InlineMath math="O" /> with factor <InlineMath math="k" /> multiplies both coordinates by <InlineMath math="k" />. Then the translation adds <InlineMath math="a" /> to the x-coordinate and <InlineMath math="b" /> to the y-coordinate. So **the dilation comes first**, then the translation:
+
+<BlockMath math="T(x,y)=(kx+a,\ ky+b)" />
+
+# Two possible scale factors
+
+A dilation makes every length <InlineMath math="|k|" /> times as long, and a translation doesn't change lengths at all. Work out <InlineMath math="AB" />, then compare it with <InlineMath math="A'B'=10" />:
 
 <BlockMath math="\begin{aligned}
-B-C&=(7-2,\ 3-(-1))=(5,4) \\
-(5,4)&\to(-4,5) \\
-B'&=(-4+2,\ 5+(-1))=(-2,4)
+AB&=\sqrt{(4-1)^2+(6-2)^2}=\sqrt{9+16}=5 \\
+A'B'&=|k|\cdot AB \\
+10&=|k|\cdot5 \\
+|k|&=2
 \end{aligned}" />
 
-As a check, <InlineMath math="CB=\sqrt{5^2+4^2}=\sqrt{41}" /> and <InlineMath math="CB'=\sqrt{(-4)^2+5^2}=\sqrt{41}" />, while <InlineMath math="(5,4)\cdot(-4,5)=-20+20=0" />, so the two segments are perpendicular.
+So <InlineMath math="k=2" /> or <InlineMath math="k=-2" />. **The length alone can't tell you the sign of <InlineMath math="k" />**, so you have to test both. For each <InlineMath math="k" />, find <InlineMath math="(a,b)" /> from <InlineMath math="T(1,2)=(k+a,\ 2k+b)=(3,1)" />, then compute <InlineMath math="B'=T(4,6)=(4k+a,\ 6k+b)" />.
 
-So the image of <InlineMath math="B" /> is <InlineMath math="(-2,4)" />.
+| <InlineMath math="k" /> | <InlineMath math="(a,b)" /> | <InlineMath math="B'" /> | Where <InlineMath math="B'" /> is |
+| --- | --- | --- | --- |
+| <InlineMath math="2" /> | <InlineMath math="(1,-3)" /> | <InlineMath math="(9,9)" /> | quadrant I |
+| <InlineMath math="-2" /> | <InlineMath math="(5,5)" /> | <InlineMath math="(-3,-7)" /> | quadrant III |
 
-- <InlineMath math="(-4,5)" /> forgets to move the rotated point back to the centre <InlineMath math="C" />.
-- <InlineMath math="(-3,7)" /> rotates about the origin instead of <InlineMath math="C" />.
-- <InlineMath math="(6,4)" /> swaps the coordinates of <InlineMath math="(5,4)" /> without changing a sign.
-- <InlineMath math="(6,-6)" /> rotates clockwise, <InlineMath math="(5,4)\to(4,-5)" />.
+Only <InlineMath math="k=-2" /> puts <InlineMath math="B'" /> in quadrant III. So the scale factor is <InlineMath math="-2" /> and the translation vector is <InlineMath math="(5,5)" />.
+
+# The image of point C
+
+Now the rule is complete. **Plug in <InlineMath math="C(2,-1)" />**:
+
+<BlockMath math="\begin{aligned}
+T(x,y)&=(-2x+5,\ -2y+5) \\
+T(2,-1)&=(-4+5,\ 2+5)=(1,7)
+\end{aligned}" />
+
+Check against the data: <InlineMath math="T(1,2)=(-2+5,\ -4+5)=(3,1)" />, which is <InlineMath math="A'" />. And <InlineMath math="B'=(-3,-7)" />, so <InlineMath math="A'B'=\sqrt{6^2+8^2}=10" />. Every condition holds.
+
+So the image of point <InlineMath math="C" /> under <InlineMath math="T" /> is <InlineMath math="(1,7)" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="(5,-5)" /> comes from using <InlineMath math="k=2" /> straight away. **The quadrant III condition rules out <InlineMath math="k=2" />**, because with <InlineMath math="k=2" /> you get <InlineMath math="B'=(9,9)" /> in quadrant I.
+- <InlineMath math="(-14,-8)" /> comes from translating <InlineMath math="C" /> first and dilating afterwards: <InlineMath math="-2\,(2+5,\ -1+5)=(-14,-8)" />. The question says the dilation comes first.
+- <InlineMath math="(-4,2)" /> is only the dilation <InlineMath math="-2\cdot(2,-1)" />. The translation <InlineMath math="(5,5)" /> was never added.
+- <InlineMath math="(-9,-3)" /> uses the translation vector with the wrong sign. From <InlineMath math="A'=kA+(a,b)" />, the translation is <InlineMath math="A'-kA=(5,5)" />, not <InlineMath math="kA-A'=(-5,-5)" />.

@@ -14,20 +14,17 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Jarak titik $$O$$ ke tali busur $$AB$$ adalah $$12\\text{ cm}$$.",
+            "Diagonal $$AC$$ membagi sudut $$BAD$$ menjadi dua sudut yang sama besar.",
         },
         {
           column: 2,
           label:
-            "Tali busur lain yang panjangnya $$24\\text{ cm}$$ berjarak $$34\\text{ cm}$$ dari $$O$$.",
-        },
-        {
-          column: 2,
-          label: "Luas segitiga $$OAB$$ adalah $$1{.}295\\text{ cm}^2$$.",
+            "Luas segi empat $$ABCD$$ pasti kurang dari $$100\\text{ cm}^2$$.",
         },
         {
           column: 1,
-          label: "Besar $$\\angle AOB$$ lebih dari $$120^\\circ$$.",
+          label:
+            "Jika luas segi empat $$ABCD$$ adalah $$96\\text{ cm}^2$$, maka $$AC+BD=28\\text{ cm}$$.",
         },
       ],
     },

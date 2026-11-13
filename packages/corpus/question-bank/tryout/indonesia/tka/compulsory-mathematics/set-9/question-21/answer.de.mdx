@@ -1,16 +1,40 @@
-Es sind <InlineMath math="25" /> Werte, eine ungerade Anzahl, also **ist der Median der <InlineMath math="13" />. Wert** in geordneter Reihenfolge. Fang bei <InlineMath math="0" /> Büchern an und addiere die Schüler kumulativ.
+Gesucht ist, wie viele Schülerinnen und Schüler mehr Geschwister haben als der Mittelwert **aller** Schüler. Der Haken: Der Mittelwert <InlineMath math="3{,}2" /> im Text ist nicht der Mittelwert aller Schüler. Er ist **der Mittelwert nur der Schüler, die keine Einzelkinder sind**. Du brauchst also drei Schritte: <InlineMath math="x" /> bestimmen, den Mittelwert aller Schüler berechnen und dann zählen, wer darüber liegt.
 
-| Bücher | Schüler | Kumuliert |
-| --- | --- | --- |
-| <InlineMath math="0" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
-| <InlineMath math="1" /> | <InlineMath math="5" /> | <InlineMath math="7" /> |
-| <InlineMath math="2" /> | <InlineMath math="8" /> | <InlineMath math="15" /> |
+# Die fehlende Häufigkeit
 
-Die Werte <InlineMath math="8" /> bis <InlineMath math="15" /> sind alle <InlineMath math="2" />, also ist auch der <InlineMath math="13" />. Wert <InlineMath math="2" />.
+Die Schüler, die keine Einzelkinder sind, stehen in allen Zeilen außer der Zeile mit <InlineMath math="0" /> Geschwistern. Es sind <InlineMath math="6+4+11+x+9=30+x" />. Ihre Geschwisterzahl insgesamt ist **die Summe aus Geschwisterzahl mal Schülerzahl**:
 
-Der Median der gelesenen Bücher ist also <InlineMath math="2" />.
+<BlockMath math="\begin{aligned}
+1\cdot6+2\cdot4+3\cdot11+4x+5\cdot9&=92+4x \\
+\frac{92+4x}{30+x}&=3{,}2 \\
+92+4x&=96+3{,}2x \\
+0{,}8x&=4 \\
+x&=5
+\end{aligned}" />
 
-- <InlineMath math="2{,}24" /> ist der Mittelwert, <InlineMath math="\frac{56}{25}" />.
-- <InlineMath math="2{,}5" /> liegt in der Mitte zwischen <InlineMath math="0" /> und <InlineMath math="5" /> Büchern, ohne die Schülerzahlen zu beachten.
-- <InlineMath math="4" /> ist der Median der Schülerzahlen pro Kategorie, nicht der Bücher.
-- <InlineMath math="8" /> ist die Schülerzahl in der größten Kategorie, keine Bücheranzahl.
+# Der Mittelwert aller Schüler
+
+Jetzt kommen die Einzelkinder dazu. Sie erhöhen die Schülerzahl um <InlineMath math="5" />, aber nicht die Geschwisterzahl, denn jedes von ihnen hat <InlineMath math="0" /> Geschwister:
+
+<BlockMath math="\begin{aligned}
+n&=5+6+4+11+5+9=40 \\
+\text{Geschwister insgesamt}&=92+4\cdot5=112 \\
+\bar x&=\frac{112}{40}=2{,}8
+\end{aligned}" />
+
+Der Mittelwert aller Schüler ist <InlineMath math="2{,}8" />, also **kleiner als <InlineMath math="3{,}2" />**, weil die Einzelkinder den Mittelwert nach unten ziehen.
+
+# Schüler über dem Mittelwert
+
+Eine Geschwisterzahl ist immer ganzzahlig, also bedeutet „mehr als <InlineMath math="2{,}8" />“ **mindestens <InlineMath math="3" /> Geschwister**:
+
+<BlockMath math="11+5+9=25\text{ Schüler}" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="14" /> Schüler nehmen <InlineMath math="3{,}2" /> als Grenze und zählen nur die Schüler mit <InlineMath math="4" /> oder <InlineMath math="5" /> Geschwistern. Das ist **der Mittelwert der falschen Gruppe**.
+- <InlineMath math="20" /> Schüler vergessen die <InlineMath math="x=5" /> Schüler mit <InlineMath math="4" /> Geschwistern.
+- <InlineMath math="29" /> Schüler verwenden den einfachen Durchschnitt <InlineMath math="\frac{0+3{,}2}{2}=1{,}6" />, als wären beide Gruppen gleich groß. Die Grenze rutscht dann auf <InlineMath math="2" /> Geschwister.
+- <InlineMath math="34" /> Schüler halten <InlineMath math="3{,}2" /> für den Mittelwert aller Schüler. Die Gleichung lautet dann <InlineMath math="\frac{92+4x}{35+x}=3{,}2" />, also <InlineMath math="x=25" />, und wer mehr als <InlineMath math="3{,}2" /> Geschwister hat, sind dann <InlineMath math="25+9=34" /> Schüler.
+
+Es haben also <InlineMath math="25" /> Schüler mehr Geschwister als der Mittelwert aller Schüler.

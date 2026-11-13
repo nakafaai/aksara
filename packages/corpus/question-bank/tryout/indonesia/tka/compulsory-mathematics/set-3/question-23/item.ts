@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "travel-time",
+  stimulus: "lari",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -14,23 +14,17 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label:
-            "Jika kelima siswa pada kelas $$25$$ sampai $$29$$ ternyata salah dicatat dan seharusnya masuk kelas $$5$$ sampai $$9$$, median tetap terletak pada kelas $$15$$ sampai $$19$$.",
+          label: "Rata-rata waktu kelas XI A lebih dari $$14{,}3$$ detik.",
         },
         {
           column: 2,
           label:
-            "Jika kelima siswa pada kelas $$25$$ sampai $$29$$ ternyata salah dicatat dan seharusnya masuk kelas $$5$$ sampai $$9$$, rata-rata yang dihitung dengan titik tengah kelas turun lebih dari $$3$$ menit.",
-        },
-        {
-          column: 2,
-          label:
-            "Jika kelima siswa pada kelas $$25$$ sampai $$29$$ tidak diikutkan, rata-rata yang dihitung dengan titik tengah kelas menjadi kurang dari $$16$$ menit (tanpa pembulatan).",
+            "Pasti ada sedikitnya satu siswa kelas XI B yang berlari lebih cepat daripada Raka.",
         },
         {
           column: 1,
           label:
-            "Banyak siswa yang lama perjalanan tercatatnya paling sedikit $$10$$ menit dan kurang dari $$25$$ menit adalah $$31$$.",
+            "Pasti ada sedikitnya satu siswa kelas XI B yang waktunya lebih kecil daripada median waktu kelas XI A.",
         },
       ],
     },

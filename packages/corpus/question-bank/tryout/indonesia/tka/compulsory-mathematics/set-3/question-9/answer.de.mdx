@@ -1,14 +1,39 @@
-Schreibe <InlineMath math="f(x)=2\cdot2^x-4" />: Der Graph von <InlineMath math="y=2^x" /> wird **senkrecht mit <InlineMath math="2" /> gestreckt und um <InlineMath math="4" /> nach unten verschoben**. Prüfe jede Aussage mit Funktionswerten oder mit den Eigenschaften von <InlineMath math="2^x" />.
+Die Funktionen <InlineMath math="f" /> und <InlineMath math="g" /> haben dieselbe Gleichung, aber **der Definitionsbereich von <InlineMath math="f" /> ist auf <InlineMath math="x\le1" /> beschränkt**. Diese Einschränkung entscheidet über das Vorzeichen in der Umkehrfunktion, über ihren Definitionsbereich und darüber, wann <InlineMath math="f^{-1}" /> die Funktion <InlineMath math="g" /> rückgängig macht.
+
+# Die Wertemenge von f
+
+Ergänze quadratisch: <InlineMath math="x^2-4x+7=(x-2)^2+3" />. Der Scheitel liegt bei <InlineMath math="x=2" />, also fällt der Graph auf <InlineMath math="x\le1" /> von links nach rechts ständig. Eine ständig fallende Funktion nimmt keinen Wert zweimal an, also hat <InlineMath math="f" /> eine Umkehrfunktion.
+
+Den kleinsten Wert hat <InlineMath math="f" /> am rechten Rand des Definitionsbereichs, <InlineMath math="f(1)=1-4+7=4" />. Weiter links werden die Werte größer. Die Wertemenge von <InlineMath math="f" /> ist also <InlineMath math="y\ge4" />, und **der Definitionsbereich von <InlineMath math="f^{-1}" /> ist <InlineMath math="\{x\mid x\ge4\}" />**.
+
+# Die Gleichung der Umkehrfunktion
+
+Schreib <InlineMath math="y=f(x)" /> und löse nach <InlineMath math="x" /> auf.
 
 <BlockMath math="\begin{aligned}
-f(0)&=2-4=-2,\quad f(1)=4-4=0 \\
-f(2)&=8-4=4,\quad f(3)=16-4=12
+y&=(x-2)^2+3 \\
+(x-2)^2&=y-3 \\
+x-2&=\pm\sqrt{y-3}
 \end{aligned}" />
 
-- <InlineMath math="f(1)=0" /> ist richtig.
-- Die Aussage, <InlineMath math="f" /> sei fallend, ist falsch. Die Basis ist <InlineMath math="2>1" />, also wächst <InlineMath math="2^{x+1}" /> und damit auch <InlineMath math="f" />, wie <InlineMath math="-2,0,4,12" /> zeigt.
-- Der Schnittpunkt mit der <InlineMath math="y" />-Achse ist <InlineMath math="(0,f(0))=(0,-2)" />, die Aussage ist also richtig.
-- <InlineMath math="2^{x+1}>0" /> für jedes <InlineMath math="x" />, also ist <InlineMath math="f(x)>-4" />. Die Aussage ist richtig. Die Gerade <InlineMath math="y=-4" /> ist eine waagrechte Asymptote, die nie erreicht wird.
-- <InlineMath math="f(3)=12" />, aber <InlineMath math="2\cdot f(2)=8" />. Die Aussage ist falsch, denn die abgezogene <InlineMath math="4" /> verdoppelt sich nicht mit.
+Wegen <InlineMath math="x\le1" /> ist <InlineMath math="x-2" /> immer negativ, also **nimmst du das Minuszeichen**.
 
-Richtig sind also <InlineMath math="f(1)=0" />, der Schnittpunkt <InlineMath math="(0,-2)" /> und <InlineMath math="f(x)>-4" />.
+<BlockMath math="f^{-1}(x)=2-\sqrt{x-3},\qquad x\ge4" />
+
+# Jede Aussage einzeln
+
+1. **Falsch**. Die Umkehrfunktion gibt es, aber das Vorzeichen stimmt nicht. Die Formel <InlineMath math="2+\sqrt{x-3}" /> liefert immer mindestens <InlineMath math="2" />, zum Beispiel <InlineMath math="4" /> bei <InlineMath math="x=7" />, dabei muss jeder Wert der Umkehrfunktion im Definitionsbereich von <InlineMath math="f" /> liegen, also bei <InlineMath math="x\le1" />.
+2. **Falsch**. Die Formel <InlineMath math="2-\sqrt{x-3}" /> ist zwar für <InlineMath math="x\ge3" /> definiert, aber der Definitionsbereich der Umkehrfunktion ist die Wertemenge von <InlineMath math="f" />, also <InlineMath math="x\ge4" />. Nimm <InlineMath math="3{,}25" />: Die Gleichung <InlineMath math="(x-2)^2=0{,}25" /> liefert <InlineMath math="x=1{,}5" /> oder <InlineMath math="x=2{,}5" />, und beide liegen außerhalb von <InlineMath math="x\le1" />.
+3. **Richtig**. <InlineMath math="f^{-1}(12)=2-\sqrt{9}=-1" />. Probe: <InlineMath math="-1\le1" /> und <InlineMath math="f(-1)=1+4+7=12" />.
+4. **Falsch**. Für <InlineMath math="a\le1" /> stimmt es, aber nicht für jedes <InlineMath math="a\le2" />. Nimm <InlineMath math="a=1{,}5" />: <InlineMath math="g(1{,}5)=3{,}25" />, und <InlineMath math="3{,}25" /> liegt nicht im Definitionsbereich von <InlineMath math="f^{-1}" />, also ist <InlineMath math="f^{-1}(g(1{,}5))" /> gar nicht definiert.
+5. **Richtig**. Für <InlineMath math="a\ge3" /> ist <InlineMath math="g(a)=(a-2)^2+3\ge4" />, liegt also im Definitionsbereich von <InlineMath math="f^{-1}" />.
+
+<BlockMath math="\begin{aligned}
+f^{-1}(g(a))&=2-\sqrt{(a-2)^2} \\
+&=2-|a-2| \\
+&=2-(a-2)=4-a
+\end{aligned}" />
+
+Die letzte Zeile nutzt <InlineMath math="|a-2|=a-2" />, weil <InlineMath math="a-2>0" /> ist. Beispiel: <InlineMath math="g(5)=12" /> und <InlineMath math="f^{-1}(12)=-1=4-5" />. Also gilt: **<InlineMath math="f^{-1}" /> macht <InlineMath math="g" /> nur auf dem Definitionsbereich von <InlineMath math="f" /> rückgängig**.
+
+Richtig sind also die Aussagen 3 und 5.

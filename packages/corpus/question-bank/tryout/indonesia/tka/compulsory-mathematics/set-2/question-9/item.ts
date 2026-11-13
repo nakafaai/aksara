@@ -11,24 +11,26 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "$$a+b+c=-4$$",
+          correct: false,
+          label:
+            "Nilai maksimum $$f$$ adalah $$6$$ dan hanya dicapai pada satu nilai $$x$$.",
         },
         {
           correct: true,
-          label: "$$f(4)=5$$",
-        },
-        {
-          correct: true,
-          label: "Sumbu simetri grafik $$f$$ adalah garis $$x=1$$.",
+          label: "Persamaan $$f(x)=3$$ mempunyai tepat satu penyelesaian.",
         },
         {
           correct: false,
-          label: "Nilai minimum $$f$$ adalah $$-3$$.",
+          label: "Persamaan $$f(x)=-6$$ mempunyai tepat dua penyelesaian.",
         },
         {
           correct: false,
-          label: "$$b>0$$",
+          label: "$$f(x)<0$$ untuk setiap $$x>0$$.",
+        },
+        {
+          correct: true,
+          label:
+            "Banyak bilangan bulat $$x$$ yang memenuhi $$-4\\le f(x)\\le4$$ adalah $$5$$.",
         },
       ],
     },

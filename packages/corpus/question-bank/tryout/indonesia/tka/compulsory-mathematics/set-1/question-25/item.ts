@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "knowledge-understanding",
     contentDomain: "data-probability",
     topic: "probability",
   },
@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\frac{1}{21}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{5}{14}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac12$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{25}{42}$$",
+          label: "$$P(B)<P(A)$$",
         },
         {
           correct: true,
-          label: "$$\\frac{17}{42}$$",
+          label: "$$P(B\\mid A)<P(A)$$",
+        },
+        {
+          correct: false,
+          label: "Peluang kedua bola berwarna sama paling besar jika $$r=4$$.",
+        },
+        {
+          correct: true,
+          label: "Kejadian $$A$$ dan $$B$$ tidak saling bebas.",
+        },
+        {
+          correct: true,
+          label: "$$P(A\\mid B)=P(B\\mid A)$$",
         },
       ],
     },

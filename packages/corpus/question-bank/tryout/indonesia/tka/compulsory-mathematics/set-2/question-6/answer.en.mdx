@@ -1,16 +1,39 @@
-The inverse reverses the mapping: **<InlineMath math="f^{-1}(2)=a" /> means <InlineMath math="f(a)=2" />**. So you do not need the whole inverse function, only the solution of <InlineMath math="f(a)=2" />.
+# What the inverse value means
+
+The question asks for <InlineMath math="f^{-1}(2)" />, which is **the input of <InlineMath math="f" /> that gives the output <InlineMath math="2" />**. So you're looking for a number <InlineMath math="t" /> with <InlineMath math="f(t)=2" />. That number isn't <InlineMath math="1/f(2)" /> and it isn't <InlineMath math="f(2)" />.
+
+The given rule isn't written as <InlineMath math="f(t)" /> directly. The input of <InlineMath math="f" /> there is <InlineMath math="2x-1" />, and the output is <InlineMath math="\frac{5x}{2x+2}" />. So there are two steps: find the <InlineMath math="x" /> that makes the output <InlineMath math="2" />, then turn that <InlineMath math="x" /> into the input <InlineMath math="2x-1" />.
+
+# Finding the right input
+
+Set the output equal to <InlineMath math="2" />:
 
 <BlockMath math="\begin{aligned}
-\frac{3a-2}{a+4}&=2 \\
-3a-2&=2a+8 \\
-a&=10
+\frac{5x}{2x+2}&=2 \\
+5x&=4x+4 \\
+x&=4
 \end{aligned}" />
 
-As a check, <InlineMath math="f(10)=\frac{30-2}{14}=\frac{28}{14}=2" />.
+The value <InlineMath math="x=4" /> is allowed because <InlineMath math="x\neq-1" />. But <InlineMath math="4" /> **isn't the answer yet**. For <InlineMath math="x=4" />, the input of <InlineMath math="f" /> is:
 
-So <InlineMath math="f^{-1}(2)=10" />.
+<BlockMath math="2x-1=2\cdot4-1=7" />
 
-- <InlineMath math="-10" /> has the right number with the wrong sign.
-- <InlineMath math="-6" /> expands <InlineMath math="2(a+4)" /> as <InlineMath math="2a-8" />.
-- <InlineMath math="\frac23" /> computes <InlineMath math="f(2)" /> instead of <InlineMath math="f^{-1}(2)" />.
-- <InlineMath math="6" /> loses the sign of <InlineMath math="-2" /> in the numerator and solves <InlineMath math="3a+2=2a+8" />.
+So <InlineMath math="f(7)=2" />, which means <InlineMath math="f^{-1}(2)=7" />.
+
+# Checking with the formula
+
+To be sure, find the formula for <InlineMath math="f(t)" /> directly. Write <InlineMath math="t=2x-1" />, so <InlineMath math="x=\frac{t+1}{2}" />:
+
+<BlockMath math="\begin{aligned}
+f(t)&=\frac{5\cdot\frac{t+1}{2}}{2\cdot\frac{t+1}{2}+2}=\frac{\frac{5(t+1)}{2}}{t+3}=\frac{5t+5}{2t+6} \\
+f(7)&=\frac{35+5}{14+6}=\frac{40}{20}=2
+\end{aligned}" />
+
+**The result matches the output we wanted**. So the value of <InlineMath math="f^{-1}(2)" /> is <InlineMath math="7" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\frac{2}{3}" /> is <InlineMath math="\frac{1}{f(2)}" />. The <InlineMath math="-1" /> in <InlineMath math="f^{-1}" /> **isn't a negative power**, so the inverse isn't the reciprocal.
+- <InlineMath math="\frac{3}{2}" /> is <InlineMath math="f(2)=\frac{5\cdot2+5}{2\cdot2+6}" />. It feeds <InlineMath math="2" /> in as an input, but <InlineMath math="2" /> is supposed to be the output.
+- <InlineMath math="4" /> stops at the value of <InlineMath math="x" /> and forgets that the input of <InlineMath math="f" /> is <InlineMath math="2x-1" />.
+- <InlineMath math="9" /> comes from a sign slip when changing variables, <InlineMath math="x=\frac{t-1}{2}" />. From <InlineMath math="t=2x-1" /> you get <InlineMath math="x=\frac{t+1}{2}" />.

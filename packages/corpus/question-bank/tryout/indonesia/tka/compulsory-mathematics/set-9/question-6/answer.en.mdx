@@ -1,15 +1,43 @@
-A linear function has the form <InlineMath math="f(x)=mx+n" />. **The slope <InlineMath math="m" /> is the change in the function's value divided by the change in <InlineMath math="x" />**, then <InlineMath math="n" /> comes from one of the given values.
+The question asks for the product of all values of <InlineMath math="m" /> that make the graph of <InlineMath math="f" /> touch the <InlineMath math="x" />-axis. Two conditions have to hold together: **the discriminant is zero**, and <InlineMath math="f" /> really is a quadratic function.
+
+# The touching condition
+
+The discriminant <InlineMath math="D=b^2-4ac" /> is the number that decides how many times the graph meets the <InlineMath math="x" />-axis. The graph touches the axis when there is **exactly one common point**, that is, when <InlineMath math="D=0" />. Since <InlineMath math="b" /> has a factor <InlineMath math="2" />, it's shorter to use <InlineMath math="\tfrac{D}{4}=\left(\tfrac{b}{2}\right)^2-ac" />.
+
+<BlockMath math="a=m+2,\qquad \tfrac{b}{2}=-(m+2),\qquad c=m^2-7m+17" />
+
+# The possible parameter values
+
+Notice that <InlineMath math="m+2" /> shows up in two terms, so **take it out as a factor** and don't throw it away.
 
 <BlockMath math="\begin{aligned}
-m&=\frac{f(4)-f(1)}{4-1}=\frac{-1-5}{3}=-2 \\
-f(1)&=-2\cdot1+n=5\ \Rightarrow\ n=7
+\tfrac{D}{4}&=(m+2)^2-(m+2)\left(m^2-7m+17\right) \\
+&=(m+2)\left[(m+2)-\left(m^2-7m+17\right)\right] \\
+&=(m+2)\left(-m^2+8m-15\right) \\
+&=-(m+2)(m-3)(m-5)
 \end{aligned}" />
 
-Check: <InlineMath math="f(4)=-8+7=-1" />.
+So <InlineMath math="D=0" /> for <InlineMath math="m=-2" />, <InlineMath math="m=3" />, or <InlineMath math="m=5" />.
 
-So <InlineMath math="f(x)=-2x+7" />.
+# Checking each value
 
-- <InlineMath math="f(x)=2x+3" /> has the wrong sign on the slope, but the value falls from <InlineMath math="5" /> to <InlineMath math="-1" />.
-- <InlineMath math="f(x)=-2x+3" /> subtracts <InlineMath math="2" /> from <InlineMath math="5" />, but <InlineMath math="-2\cdot1" /> has to move to the right side as <InlineMath math="+2" />.
-- <InlineMath math="f(x)=-6x+11" /> uses the change <InlineMath math="-6" /> as the slope without dividing by <InlineMath math="3" />.
-- <InlineMath math="f(x)=-\frac12x+\frac{11}{2}" /> turns the division upside down, using <InlineMath math="\frac{3}{-6}" />.
+Now check whether each value really gives a parabola that touches the <InlineMath math="x" />-axis.
+
+<BlockMath math="\begin{aligned}
+m=-2&:\ f(x)=0\cdot x^2-0\cdot x+35=35 \\
+m=3&:\ f(x)=5x^2-10x+5=5(x-1)^2 \\
+m=5&:\ f(x)=7x^2-14x+7=7(x-1)^2
+\end{aligned}" />
+
+For <InlineMath math="m=-2" />, the coefficient of <InlineMath math="x^2" /> becomes zero, so <InlineMath math="f" /> **isn't a quadratic function anymore**. Its graph is the horizontal line <InlineMath math="y=35" />, which never reaches the <InlineMath math="x" />-axis. Throw this value out. The other two values give parabolas that touch the <InlineMath math="x" />-axis at <InlineMath math="(1,0)" />.
+
+<BlockMath math="3\cdot5=15" />
+
+# Why the other options are wrong
+
+- <InlineMath math="-30" /> is <InlineMath math="(-2)\cdot3\cdot5" />. You also get it from the product-of-roots rule on the cubic <InlineMath math="-m^3+6m^2+m-30" />. Both ways **wrongly include** <InlineMath math="m=-2" />.
+- <InlineMath math="-15" /> comes from <InlineMath math="-m^2+8m-15=0" /> if you take the product of the roots as <InlineMath math="-15" /> without dividing by the leading coefficient <InlineMath math="-1" />. The right product is <InlineMath math="\tfrac{-15}{-1}=15" />.
+- <InlineMath math="9" /> comes from putting the whole <InlineMath math="b=-2(m+2)" /> into the <InlineMath math="\tfrac{D}{4}" /> formula. That gives <InlineMath math="(m+2)\left(-m^2+11m-9\right)" />, whose roots multiply to <InlineMath math="9" />. The <InlineMath math="\tfrac{D}{4}" /> formula uses <InlineMath math="\tfrac{b}{2}" />.
+- <InlineMath math="30" /> keeps <InlineMath math="m=-2" /> and also gets the sign wrong in the product-of-roots rule for the cubic.
+
+So the product of all the values of <InlineMath math="m" /> that work is <InlineMath math="15" />.

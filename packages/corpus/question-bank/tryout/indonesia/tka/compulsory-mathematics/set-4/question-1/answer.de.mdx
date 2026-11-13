@@ -1,12 +1,47 @@
-Der Elektroroller braucht <InlineMath math="4\text{ kWh}" /> auf <InlineMath math="100\text{ km}" />, also sind **die Kosten die Zahl der kWh mal der Preis pro kWh**.
+# Gekauftes Gold
 
-<BlockMath math="4\cdot1{.}500=6{.}000" />
+Gefragt ist, wie viel Gold Rina nach zwei Käufen, einem Verkauf und einem weiteren Kauf noch hat. Beim Kauf ist das Gewicht der Geldbetrag geteilt durch den **Kaufpreis** des Monats, und das Ergebnis wird nicht gerundet.
 
-Zur Kontrolle: Pro Kilometer kostet es <InlineMath math="\frac{6{.}000}{100}=60" /> Rupiah, und <InlineMath math="60\cdot100=6{.}000" />.
+<BlockMath math="\begin{aligned}
+\text{Januar: } \frac{2{.}950{.}000}{1{.}250{.}000}&=2{,}36\text{ Gramm} \\
+\text{Februar: } \frac{2{.}220{.}000}{1{.}200{.}000}&=1{,}85\text{ Gramm} \\
+\text{Bestand Ende Februar}&=2{,}36+1{,}85=4{,}21\text{ Gramm}
+\end{aligned}" />
 
-Die Energie des Elektrorollers für <InlineMath math="100\text{ km}" /> kostet also <InlineMath math="\text{Rp}6{.}000" />.
+# Der Verkauf im März
 
-- <InlineMath math="\text{Rp}375" /> teilt den Preis pro kWh durch <InlineMath math="4" />, statt zu multiplizieren.
-- <InlineMath math="\text{Rp}1{.}500" /> ist nur der Preis einer kWh.
-- <InlineMath math="\text{Rp}30{.}000" /> sind die Kosten des Benzinrollers für <InlineMath math="100\text{ km}" />.
-- <InlineMath math="\text{Rp}60{.}000" /> nimmt die <InlineMath math="40" /> aus der Benzinzeile als Zahl der kWh.
+Beim Verkauf bekommt Rina den **Rückkaufpreis**, nicht den Kaufpreis. Davon geht noch die Gebühr von <InlineMath math="\text{Rp}25{.}000" /> ab. Wenn sie also <InlineMath math="m" /> Gramm verkauft, muss sie mindestens <InlineMath math="\text{Rp}3{.}540{.}000" /> erhalten:
+
+<BlockMath math="\begin{aligned}
+1{.}180{.}000\,m-25{.}000&\ge 3{.}540{.}000 \\
+m&\ge \frac{3{.}565{.}000}{1{.}180{.}000}\approx 3{,}021
+\end{aligned}" />
+
+Verkauft werden darf nur ein Vielfaches von <InlineMath math="0{,}1" /> Gramm. Das kleinste Vielfache von <InlineMath math="0{,}1" />, das nicht unter <InlineMath math="3{,}021" /> liegt, ist <InlineMath math="3{,}1" />. Prüf die beiden nächsten Möglichkeiten:
+
+| Verkauftes Gewicht | Erhaltenes Geld | Reicht es? |
+| --- | --- | --- |
+| <InlineMath math="3{,}0" /> Gramm | <InlineMath math="3{.}540{.}000-25{.}000=3{.}515{.}000" /> | nein |
+| <InlineMath math="3{,}1" /> Gramm | <InlineMath math="3{.}658{.}000-25{.}000=3{.}633{.}000" /> | ja |
+
+Mit <InlineMath math="3{,}0" /> Gramm fehlen genau <InlineMath math="\text{Rp}25{.}000" />, also die Gebühr. Rina **muss also <InlineMath math="3{,}1" /> Gramm verkaufen**, und ihr bleiben <InlineMath math="4{,}21-3{,}1=1{,}11" /> Gramm.
+
+# Der Kauf im April
+
+Der Kauf im April läuft zum **Kaufpreis im April**. Das Ergebnis kommt zu dem Gold dazu, das nach dem Verkauf übrig war.
+
+<BlockMath math="\begin{aligned}
+\frac{2{.}227{.}500}{1{.}350{.}000}&=1{,}65\text{ Gramm} \\
+\text{Bestand Ende April}&=1{,}11+1{,}65=2{,}76\text{ Gramm}
+\end{aligned}" />
+
+# Die verlockenden Antworten
+
+Jede andere Antwort entsteht aus **genau einem falschen Schritt**.
+
+- <InlineMath math="1{,}11" /> Gramm ist der Bestand vor dem Kauf im April. Der letzte Schritt fehlt.
+- <InlineMath math="2{,}60" /> Gramm entsteht, wenn du jeden Kauf auf <InlineMath math="2{,}3" />, <InlineMath math="1{,}8" /> und <InlineMath math="1{,}6" /> abrundest. Die Regel mit dem Vielfachen von <InlineMath math="0{,}1" /> Gramm gilt nur für Verkäufe, Käufe werden nicht gerundet.
+- <InlineMath math="2{,}86" /> Gramm entsteht, wenn du die Gebühr vergisst, denn <InlineMath math="\frac{3{.}540{.}000}{1{.}180{.}000}=3" /> genau. Aber <InlineMath math="3" /> Gramm bringen nur <InlineMath math="\text{Rp}3{.}515{.}000" />. Derselbe Wert kommt heraus, wenn du <InlineMath math="3{,}021" /> abrundest.
+- <InlineMath math="3{,}06" /> Gramm entsteht, wenn du den Verkauf mit dem Kaufpreis im März rechnest, <InlineMath math="\frac{3{.}565{.}000}{1{.}280{.}000}\approx2{,}79" />, sodass nur <InlineMath math="2{,}8" /> Gramm verkauft würden.
+
+Rinas Goldbestand Ende April beträgt also <InlineMath math="2{,}76" /> Gramm.

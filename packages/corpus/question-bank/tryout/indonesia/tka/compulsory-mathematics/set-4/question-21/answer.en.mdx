@@ -1,12 +1,53 @@
-The question is only about grade X, so **the divisor is the number of grade X students**, <InlineMath math="80" />, not all <InlineMath math="200" /> students.
+The question asks how many days have an income close to the mean, at a distance of **less than** one standard deviation. Plan two moves: find the mean and standard deviation of the new income, then translate that condition back into cups in the table.
 
-<BlockMath math="\frac{20}{80}\cdot100\,\%=25\,\%" />
+# Mean and standard deviation of the income
 
-As a check, a quarter of <InlineMath math="80" /> students is <InlineMath math="20" /> students.
+The price rises by <InlineMath math="20\%" />, so the new price is <InlineMath math="1.2\cdot\text{Rp}5{,}000=\text{Rp}6{,}000" />. On a day with <InlineMath math="x" /> cups sold, the income is <InlineMath math="P=6{,}000x+30{,}000" />.
 
-So the percentage is <InlineMath math="25\,\%" />.
+Every value is multiplied by <InlineMath math="6{,}000" /> and then increased by <InlineMath math="30{,}000" />. The mean gets both the multiplication and the addition. The standard deviation only gets the multiplication, because **adding the same number to every value doesn't change how spread out the data are**.
 
-- <InlineMath math="20\,\%" /> is the share of all cyclists in every grade, <InlineMath math="\frac{40}{200}" />.
-- <InlineMath math="40\,\%" /> is grade X's share of all students, <InlineMath math="\frac{80}{200}" />.
-- <InlineMath math="50\,\%" /> is grade X's share among the cyclists, <InlineMath math="\frac{20}{40}" />.
-- <InlineMath math="75\,\%" /> is the share of grade X students who do not cycle, <InlineMath math="\frac{60}{80}" />.
+<BlockMath math="\begin{aligned}
+\bar{P}&=6{,}000\cdot40+30{,}000=270{,}000 \\
+S_P&=6{,}000\cdot6=36{,}000
+\end{aligned}" />
+
+# Back to cups
+
+The condition is that the income differs from the mean by less than <InlineMath math="36{,}000" />. Rewrite it in terms of <InlineMath math="x" />:
+
+<BlockMath math="\begin{aligned}
+\left|6{,}000x+30{,}000-270{,}000\right|&<36{,}000 \\
+\left|6{,}000x-240{,}000\right|&<36{,}000 \\
+|x-40|&<6 \\
+34<x&<46
+\end{aligned}" />
+
+That's the same as **less than one standard deviation in the cup data**, with mean <InlineMath math="40" /> and standard deviation <InlineMath math="6" />. Multiplying by a positive number and adding a fixed amount doesn't move any day's position when you measure it in standard deviations.
+
+# Counting the days
+
+Check each day in the table against <InlineMath math="34<x<46" />:
+
+| Day | Cups <InlineMath math="x" /> | <InlineMath math="\lvert x-40\rvert" /> | Counts |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="41" /> | <InlineMath math="1" /> | yes |
+| <InlineMath math="2" /> | <InlineMath math="33" /> | <InlineMath math="7" /> | no |
+| <InlineMath math="3" /> | <InlineMath math="46" /> | <InlineMath math="6" /> | no |
+| <InlineMath math="4" /> | <InlineMath math="38" /> | <InlineMath math="2" /> | yes |
+| <InlineMath math="5" /> | <InlineMath math="31" /> | <InlineMath math="9" /> | no |
+| <InlineMath math="6" /> | <InlineMath math="45" /> | <InlineMath math="5" /> | yes |
+| <InlineMath math="7" /> | <InlineMath math="40" /> | <InlineMath math="0" /> | yes |
+| <InlineMath math="8" /> | <InlineMath math="48" /> | <InlineMath math="8" /> | no |
+| <InlineMath math="9" /> | <InlineMath math="32" /> | <InlineMath math="8" /> | no |
+| <InlineMath math="10" /> | <InlineMath math="46" /> | <InlineMath math="6" /> | no |
+
+The two days with <InlineMath math="46" /> cups are exactly one standard deviation away, not less than one, so they **don't count**. Only the days with <InlineMath math="41" />, <InlineMath math="38" />, <InlineMath math="45" />, and <InlineMath math="40" /> cups qualify.
+
+# Why the other options are wrong
+
+- <InlineMath math="5" /> days comes from taking the mean income as <InlineMath math="6{,}000\cdot40=240{,}000" /> without the fixed amount, even though each day's income includes it. The condition shifts to <InlineMath math="29<x<41" />.
+- <InlineMath math="6" /> days also counts the two days with <InlineMath math="46" /> cups. Their gap is exactly one standard deviation, and the question asks for **less than**.
+- <InlineMath math="7" /> days uses a standard deviation of <InlineMath math="1.2^2\cdot30{,}000=43{,}200" />, as if the factor <InlineMath math="1.2" /> were applied twice. The condition widens to <InlineMath math="|x-40|<7.2" />.
+- <InlineMath math="10" /> days adds <InlineMath math="30{,}000" /> to the standard deviation, so <InlineMath math="S_P=66{,}000" /> and the condition becomes <InlineMath math="|x-40|<11" />. The same extra amount every day doesn't widen the spread.
+
+So the number of days whose income is less than one standard deviation from the mean is <InlineMath math="4" />.

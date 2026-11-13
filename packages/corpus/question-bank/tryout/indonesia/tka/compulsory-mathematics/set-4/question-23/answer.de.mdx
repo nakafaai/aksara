@@ -1,13 +1,36 @@
-Jede Aussage **beschränkt die Daten auf eine bestimmte Gruppe**, lies also vor dem Rechnen die richtige Zeile oder Spalte.
+# Was der Lesetext liefert
 
-<BlockMath math="\begin{aligned}
-\frac{24}{80}&=0{,}3 \\
-20+6&=26<28 \\
-12:9:9&=4:3:3 \\
-\frac{60-28}{60}&=\frac{32}{60}\approx53{,}3\,\%
-\end{aligned}" />
+Die zehn Tage geordnet: <InlineMath math="31,32,33,38,40,41,45,46,46,48" />. Der Mittelwert ist <InlineMath math="40" /> und die Standardabweichung <InlineMath math="6" />, also ist **die Summe der quadrierten Abweichungen von <InlineMath math="40" /> gleich <InlineMath math="10\cdot36=360" />**.
 
-- Von den <InlineMath math="80" />, die öffentliche Verkehrsmittel nutzen, sind <InlineMath math="24" /> aus Stufe XI, die Wahrscheinlichkeit ist also <InlineMath math="0{,}3" />. Die Aussage ist richtig.
-- In Stufe X fahren dann <InlineMath math="26" /> Rad, immer noch weniger als die <InlineMath math="28" /> mit öffentlichen Verkehrsmitteln. Die Aussage ist falsch.
-- <InlineMath math="12:9:9" /> geteilt durch <InlineMath math="3" /> ergibt <InlineMath math="4:3:3" />. Die Aussage ist richtig.
-- Etwa <InlineMath math="53{,}3\,\%" /> der Stufe XII nutzen keine öffentlichen Verkehrsmittel, nicht mehr als <InlineMath math="55\,\%" />. Die Aussage ist falsch.
+Für die neue Varianz hilft diese Eigenschaft: Die Varianz ist der Mittelwert der quadrierten Abweichungen von einem beliebigen Bezugspunkt, minus das Quadrat des Abstands des Mittelwerts von diesem Punkt. Der bequemste Bezugspunkt ist <InlineMath math="40" />.
+
+<BlockMath math="S^2=\frac{\sum(x_i-40)^2}{n}-(\bar x-40)^2" />
+
+# Erste Aussage
+
+Bei <InlineMath math="11" /> Werten ist der Median der <InlineMath math="6" />. Wert nach dem Ordnen. Der Wert <InlineMath math="v" /> kann überall liegen.
+
+| Wert von <InlineMath math="v" /> | 6. Wert |
+| :---: | :---: |
+| <InlineMath math="v\le40" /> | <InlineMath math="40" /> |
+| <InlineMath math="v\ge41" /> | <InlineMath math="41" /> |
+
+In jedem Fall ist der Median **immer <InlineMath math="40" /> oder <InlineMath math="41" />**. Die Aussage ist **Richtig**.
+
+# Zweite Aussage
+
+Für <InlineMath math="v=46" /> ist die Abweichung von <InlineMath math="40" /> gleich <InlineMath math="6" />, und der neue Mittelwert <InlineMath math="\tfrac{446}{11}" /> liegt <InlineMath math="\tfrac{6}{11}" /> von <InlineMath math="40" /> entfernt.
+
+<BlockMath math="S^2=\frac{360+36}{11}-\left(\tfrac{6}{11}\right)^2=36-\tfrac{36}{121}<36" />
+
+Die Varianz ist etwas **kleiner als** <InlineMath math="36" />, also ist die Standardabweichung kleiner als <InlineMath math="6" />. Die Aussage ist **Falsch**.
+
+# Dritte Aussage
+
+Ein Mittelwert von <InlineMath math="41" /> heißt Summe <InlineMath math="11\cdot41=451" />, also <InlineMath math="v=451-400=51" />. Die Abweichung von <InlineMath math="40" /> ist <InlineMath math="11" />.
+
+<BlockMath math="S^2=\frac{360+121}{11}-(41-40)^2=\frac{481}{11}-1=\frac{470}{11}\approx42{,}7>36" />
+
+Die Standardabweichung ist **größer als** <InlineMath math="6" />. Die Aussage ist **Richtig**.
+
+Die Reihenfolge ist also Richtig, Falsch, Richtig.

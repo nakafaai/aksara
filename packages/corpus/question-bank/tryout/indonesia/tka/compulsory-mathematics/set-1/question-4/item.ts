@@ -8,26 +8,27 @@ const item: ItemSource = {
   },
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Mesin $$A$$ adalah mesin yang paling cepat.",
+          correct: true,
+          label: "$$32$$",
         },
         {
-          column: 2,
-          label: "Mesin $$B$$ mencetak $$30$$ lembar per menit.",
+          correct: false,
+          label: "$$30$$",
         },
         {
-          column: 1,
-          label:
-            "Mesin $$C$$ sendiri memerlukan $$40$$ menit untuk mencetak $$1{.}200$$ lembar.",
+          correct: false,
+          label: "$$2$$",
         },
         {
-          column: 1,
-          label:
-            "Ketiga mesin bersama-sama mencetak $$2{.}700$$ lembar dalam $$30$$ menit.",
+          correct: false,
+          label: "$$46$$",
+        },
+        {
+          correct: false,
+          label: "$$58$$",
         },
       ],
     },

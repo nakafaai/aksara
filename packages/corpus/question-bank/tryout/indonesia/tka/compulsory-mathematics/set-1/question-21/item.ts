@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "coffee-sales",
+  stimulus: "call-duration",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$11\\,\\%$$",
+          label: "$$12$$",
+        },
+        {
+          correct: false,
+          label: "$$13$$",
+        },
+        {
+          correct: false,
+          label: "$$24$$",
         },
         {
           correct: true,
-          label: "sekitar $$36{,}7\\,\\%$$",
+          label: "$$25$$",
         },
         {
           correct: false,
-          label: "$$40\\,\\%$$",
-        },
-        {
-          correct: false,
-          label: "sekitar $$63{,}3\\,\\%$$",
-        },
-        {
-          correct: false,
-          label: "sekitar $$66{,}7\\,\\%$$",
+          label: "$$53$$",
         },
       ],
     },
