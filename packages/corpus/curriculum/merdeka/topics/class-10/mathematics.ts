@@ -1,3 +1,7 @@
+import {
+  merdekaClass10ProbabilityUnit,
+  merdekaClass10StatisticsFoundationsUnit,
+} from "#corpus/curriculum/merdeka/topics/class-10/statistics";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 export const merdekaClass10MathematicsTopicNodes = [
@@ -43,10 +47,7 @@ export const merdekaClass10MathematicsTopicNodes = [
         routeSlug: "eksponen-dan-logaritma",
         title: "Eksponen dan Logaritma",
       },
-      ms: {
-        routeSlug: "indeks-dan-logaritma",
-        title: "Indeks dan Logaritma",
-      },
+      ms: { routeSlug: "indeks-dan-logaritma", title: "Indeks dan Logaritma" },
     },
   }),
   unitNode({
@@ -97,42 +98,7 @@ export const merdekaClass10MathematicsTopicNodes = [
       },
     },
   }),
-  unitNode({
-    children: [
-      materialNode({
-        key: "class-10-mathematics-probability-material",
-        level: "lesson",
-        materialKeys: ["lesson.mathematics.probability"],
-        order: 10,
-      }),
-    ],
-    key: "class-10-mathematics-probability",
-    materialCard: {
-      de: {
-        description: "Nutze die Additionsregel für Wahrscheinlichkeiten.",
-        title: "Wahrscheinlichkeit",
-      },
-      en: {
-        description: "Use addition rules for chance.",
-        title: "Probability",
-      },
-      id: {
-        description: "Gunakan aturan penjumlahan peluang.",
-        title: "Peluang",
-      },
-      ms: {
-        description: "Guna hukum penambahan untuk kebarangkalian.",
-        title: "Kebarangkalian",
-      },
-    },
-    order: 30,
-    translations: {
-      de: { routeSlug: "wahrscheinlichkeit", title: "Wahrscheinlichkeit" },
-      en: { routeSlug: "probability", title: "Probability" },
-      id: { routeSlug: "peluang", title: "Peluang" },
-      ms: { routeSlug: "kebarangkalian", title: "Kebarangkalian" },
-    },
-  }),
+  merdekaClass10ProbabilityUnit,
   unitNode({
     children: [
       materialNode({
@@ -172,10 +138,7 @@ export const merdekaClass10MathematicsTopicNodes = [
         routeSlug: "persamaan-dan-fungsi-kuadrat",
         title: "Fungsi Kuadrat",
       },
-      ms: {
-        routeSlug: "fungsi-kuadratik",
-        title: "Fungsi Kuadratik",
-      },
+      ms: { routeSlug: "fungsi-kuadratik", title: "Fungsi Kuadratik" },
     },
   }),
   unitNode({
@@ -214,42 +177,7 @@ export const merdekaClass10MathematicsTopicNodes = [
       ms: { routeSlug: "jujukan-dan-siri", title: "Jujukan dan Siri" },
     },
   }),
-  unitNode({
-    children: [
-      materialNode({
-        key: "class-10-mathematics-statistics-foundations-material",
-        level: "lesson",
-        materialKeys: ["lesson.mathematics.statistics-foundations"],
-        order: 10,
-      }),
-    ],
-    key: "class-10-mathematics-statistics-foundations",
-    materialCard: {
-      de: {
-        description: "Wähle passende Lageparameter für einen Datensatz.",
-        title: "Statistik",
-      },
-      en: {
-        description: "Choose the right center for data.",
-        title: "Statistics",
-      },
-      id: {
-        description: "Pilih ukuran pusat data yang tepat.",
-        title: "Statistika",
-      },
-      ms: {
-        description: "Pilih sukatan kecenderungan memusat yang sesuai.",
-        title: "Statistik",
-      },
-    },
-    order: 60,
-    translations: {
-      de: { routeSlug: "grundlagen-der-statistik", title: "Statistik" },
-      en: { routeSlug: "statistics-foundations", title: "Statistics" },
-      id: { routeSlug: "statistika-dasar", title: "Statistika" },
-      ms: { routeSlug: "statistik", title: "Statistik" },
-    },
-  }),
+  merdekaClass10StatisticsFoundationsUnit,
   unitNode({
     children: [
       materialNode({

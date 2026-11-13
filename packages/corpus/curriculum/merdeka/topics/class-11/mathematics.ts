@@ -1,3 +1,4 @@
+import { merdekaClass11StatisticsRegressionUnit } from "#corpus/curriculum/merdeka/topics/class-11/statistics";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 export const merdekaClass11MathematicsTopicNodes = [
@@ -229,14 +230,8 @@ export const merdekaClass11MathematicsTopicNodes = [
         description: "Compute determinants from minors.",
         title: "Matrices",
       },
-      id: {
-        description: "Hitung determinan dari minor.",
-        title: "Matriks",
-      },
-      ms: {
-        description: "Kira penentu daripada minor.",
-        title: "Matriks",
-      },
+      id: { description: "Hitung determinan dari minor.", title: "Matriks" },
+      ms: { description: "Kira penentu daripada minor.", title: "Matriks" },
     },
     order: 60,
     translations: {
@@ -282,43 +277,5 @@ export const merdekaClass11MathematicsTopicNodes = [
       ms: { routeSlug: "polinomial", title: "Polinomial" },
     },
   }),
-  unitNode({
-    children: [
-      materialNode({
-        key: "class-11-mathematics-statistics-regression-material",
-        level: "lesson",
-        materialKeys: ["lesson.mathematics.statistics-regression"],
-        order: 10,
-      }),
-    ],
-    key: "class-11-mathematics-statistics-regression",
-    materialCard: {
-      de: {
-        description: "Lies ab, welchen Anteil der Streuung ein Modell erklärt.",
-        title: "Regressionsanalyse",
-      },
-      en: {
-        description: "Read how models explain variation.",
-        title: "Regression Statistics",
-      },
-      id: {
-        description: "Baca cara model menjelaskan variasi.",
-        title: "Statistika Regresi",
-      },
-      ms: {
-        description: "Baca cara model menerangkan variasi.",
-        title: "Statistik Regresi",
-      },
-    },
-    order: 80,
-    translations: {
-      de: { routeSlug: "regressionsanalyse", title: "Regressionsanalyse" },
-      en: {
-        routeSlug: "statistics-regression",
-        title: "Regression Statistics",
-      },
-      id: { routeSlug: "regresi-statistik", title: "Statistika Regresi" },
-      ms: { routeSlug: "statistik-regresi", title: "Statistik Regresi" },
-    },
-  }),
+  merdekaClass11StatisticsRegressionUnit,
 ];

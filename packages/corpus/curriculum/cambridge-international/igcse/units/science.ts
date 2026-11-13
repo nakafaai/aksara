@@ -32,18 +32,9 @@ export const igcseBiologyUnitNodes = [
     order: 10,
     translations: {
       de: { routeSlug: "lebewesen", title: "Lebewesen" },
-      en: {
-        routeSlug: "living-organisms",
-        title: "Living organisms",
-      },
-      id: {
-        routeSlug: "makhluk-hidup",
-        title: "Makhluk hidup",
-      },
-      ms: {
-        routeSlug: "organisma-hidup",
-        title: "Organisma hidup",
-      },
+      en: { routeSlug: "living-organisms", title: "Living organisms" },
+      id: { routeSlug: "makhluk-hidup", title: "Makhluk hidup" },
+      ms: { routeSlug: "organisma-hidup", title: "Organisma hidup" },
     },
   }),
   unitNode({
@@ -143,14 +134,8 @@ export const igcseChemistryUnitNodes = [
         routeSlug: "stoffe-und-reaktionen",
         title: "Stoffe und Reaktionen",
       },
-      en: {
-        routeSlug: "matter-and-reactions",
-        title: "Matter and reactions",
-      },
-      id: {
-        routeSlug: "materi-dan-reaksi",
-        title: "Materi dan reaksi",
-      },
+      en: { routeSlug: "matter-and-reactions", title: "Matter and reactions" },
+      id: { routeSlug: "materi-dan-reaksi", title: "Materi dan reaksi" },
       ms: {
         routeSlug: "jirim-dan-tindak-balas",
         title: "Jirim dan tindak balas",
@@ -192,14 +177,8 @@ export const igcseChemistryUnitNodes = [
         routeSlug: "environmental-chemistry",
         title: "Environmental chemistry",
       },
-      id: {
-        routeSlug: "kimia-lingkungan",
-        title: "Kimia lingkungan",
-      },
-      ms: {
-        routeSlug: "kimia-alam-sekitar",
-        title: "Kimia alam sekitar",
-      },
+      id: { routeSlug: "kimia-lingkungan", title: "Kimia lingkungan" },
+      ms: { routeSlug: "kimia-alam-sekitar", title: "Kimia alam sekitar" },
     },
   }),
 ];
@@ -296,18 +275,9 @@ export const igcsePhysicsUnitNodes = [
     order: 20,
     translations: {
       de: { routeSlug: "energie", title: "Energie" },
-      en: {
-        routeSlug: "energy",
-        title: "Energy",
-      },
-      id: {
-        routeSlug: "energi",
-        title: "Energi",
-      },
-      ms: {
-        routeSlug: "tenaga",
-        title: "Tenaga",
-      },
+      en: { routeSlug: "energy", title: "Energy" },
+      id: { routeSlug: "energi", title: "Energi" },
+      ms: { routeSlug: "tenaga", title: "Tenaga" },
     },
   }),
 ];

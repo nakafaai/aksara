@@ -45,18 +45,12 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
       order: 10,
       translations: {
         de: { routeSlug: "zahlen-und-groessen", title: "Zahlen und Größen" },
-        en: {
-          routeSlug: "number-and-quantity",
-          title: "Number and Quantity",
-        },
+        en: { routeSlug: "number-and-quantity", title: "Number and Quantity" },
         id: {
           routeSlug: "bilangan-dan-kuantitas",
           title: "Bilangan dan Kuantitas",
         },
-        ms: {
-          routeSlug: "nombor-dan-kuantiti",
-          title: "Nombor dan Kuantiti",
-        },
+        ms: { routeSlug: "nombor-dan-kuantiti", title: "Nombor dan Kuantiti" },
       },
     }),
     unitNode({
@@ -108,18 +102,9 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
       order: 20,
       translations: {
         de: { routeSlug: "algebra", title: "Algebra" },
-        en: {
-          routeSlug: "algebra",
-          title: "Algebra",
-        },
-        id: {
-          routeSlug: "aljabar",
-          title: "Aljabar",
-        },
-        ms: {
-          routeSlug: "algebra",
-          title: "Algebra",
-        },
+        en: { routeSlug: "algebra", title: "Algebra" },
+        id: { routeSlug: "aljabar", title: "Aljabar" },
+        ms: { routeSlug: "algebra", title: "Algebra" },
       },
     }),
     unitNode({
@@ -167,18 +152,9 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
       order: 30,
       translations: {
         de: { routeSlug: "funktionen", title: "Funktionen" },
-        en: {
-          routeSlug: "functions",
-          title: "Functions",
-        },
-        id: {
-          routeSlug: "fungsi",
-          title: "Fungsi",
-        },
-        ms: {
-          routeSlug: "fungsi",
-          title: "Fungsi",
-        },
+        en: { routeSlug: "functions", title: "Functions" },
+        id: { routeSlug: "fungsi", title: "Fungsi" },
+        ms: { routeSlug: "fungsi", title: "Fungsi" },
       },
     }),
     unitNode({
@@ -224,18 +200,9 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
       order: 40,
       translations: {
         de: { routeSlug: "geometrie", title: "Geometrie" },
-        en: {
-          routeSlug: "geometry",
-          title: "Geometry",
-        },
-        id: {
-          routeSlug: "geometri",
-          title: "Geometri",
-        },
-        ms: {
-          routeSlug: "geometri",
-          title: "Geometri",
-        },
+        en: { routeSlug: "geometry", title: "Geometry" },
+        id: { routeSlug: "geometri", title: "Geometri" },
+        ms: { routeSlug: "geometri", title: "Geometri" },
       },
     }),
     unitNode({
@@ -305,17 +272,8 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
   order: 10,
   translations: {
     de: { routeSlug: "mathematik", title: "Mathematik" },
-    en: {
-      routeSlug: "mathematics",
-      title: "Mathematics",
-    },
-    id: {
-      routeSlug: "matematika",
-      title: "Matematika",
-    },
-    ms: {
-      routeSlug: "matematik",
-      title: "Matematik",
-    },
+    en: { routeSlug: "mathematics", title: "Mathematics" },
+    id: { routeSlug: "matematika", title: "Matematika" },
+    ms: { routeSlug: "matematik", title: "Matematik" },
   },
 });

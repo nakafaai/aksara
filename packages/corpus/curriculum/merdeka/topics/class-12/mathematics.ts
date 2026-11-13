@@ -1,3 +1,7 @@
+import {
+  merdekaClass12CombinatoricsUnit,
+  merdekaClass12DataAnalysisProbabilityUnit,
+} from "#corpus/curriculum/merdeka/topics/class-12/statistics";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 export const merdekaClass12MathematicsTopicNodes = [
@@ -79,96 +83,11 @@ export const merdekaClass12MathematicsTopicNodes = [
         routeSlug: "busur-dan-juring-lingkaran",
         title: "Busur dan Juring",
       },
-      ms: {
-        routeSlug: "lengkok-dan-sektor",
-        title: "Lengkok dan Sektor",
-      },
+      ms: { routeSlug: "lengkok-dan-sektor", title: "Lengkok dan Sektor" },
     },
   }),
-  unitNode({
-    children: [
-      materialNode({
-        key: "class-12-mathematics-combinatorics-material",
-        level: "lesson",
-        materialKeys: ["lesson.mathematics.combinatorics"],
-        order: 10,
-      }),
-    ],
-    key: "class-12-mathematics-combinatorics",
-    materialCard: {
-      de: {
-        description: "Entwickle Potenzen mit Binomialkoeffizienten.",
-        title: "Kombinatorik",
-      },
-      en: {
-        description: "Expand powers with binomial coefficients.",
-        title: "Combinatorics",
-      },
-      id: {
-        description: "Kembangkan pangkat dengan koefisien binomial.",
-        title: "Kombinatorika",
-      },
-      ms: {
-        description: "Kembangkan kuasa dengan pekali binomial.",
-        title: "Kombinatorik",
-      },
-    },
-    order: 30,
-    translations: {
-      de: { routeSlug: "kombinatorik", title: "Kombinatorik" },
-      en: { routeSlug: "combinatorics", title: "Combinatorics" },
-      id: { routeSlug: "kombinatorik", title: "Kombinatorika" },
-      ms: { routeSlug: "kombinatorik", title: "Kombinatorik" },
-    },
-  }),
-  unitNode({
-    children: [
-      materialNode({
-        key: "class-12-mathematics-data-analysis-probability-material",
-        level: "lesson",
-        materialKeys: ["lesson.mathematics.data-analysis-probability"],
-        order: 10,
-      }),
-    ],
-    key: "class-12-mathematics-data-analysis-probability",
-    materialCard: {
-      de: {
-        description: "Modelliere wiederholte Erfolge mit Wahrscheinlichkeiten.",
-        title: "Datenanalyse und Wahrscheinlichkeit",
-      },
-      en: {
-        description: "Model repeated success with probability.",
-        title: "Data Analysis and Probability",
-      },
-      id: {
-        description: "Modelkan keberhasilan berulang dengan peluang.",
-        title: "Analisis Data dan Peluang",
-      },
-      ms: {
-        description: "Modelkan kejayaan berulang dengan kebarangkalian.",
-        title: "Analisis Data dan Kebarangkalian",
-      },
-    },
-    order: 40,
-    translations: {
-      de: {
-        routeSlug: "datenanalyse-und-wahrscheinlichkeit",
-        title: "Datenanalyse und Wahrscheinlichkeit",
-      },
-      en: {
-        routeSlug: "data-analysis-probability",
-        title: "Data Analysis and Probability",
-      },
-      id: {
-        routeSlug: "analisis-data-dan-peluang",
-        title: "Analisis Data dan Peluang",
-      },
-      ms: {
-        routeSlug: "analisis-data-dan-kebarangkalian",
-        title: "Analisis Data dan Kebarangkalian",
-      },
-    },
-  }),
+  merdekaClass12CombinatoricsUnit,
+  merdekaClass12DataAnalysisProbabilityUnit,
   unitNode({
     children: [
       materialNode({
@@ -266,10 +185,7 @@ export const merdekaClass12MathematicsTopicNodes = [
         description: "Find areas from definite integrals.",
         title: "Integrals",
       },
-      id: {
-        description: "Cari luas dari integral tentu.",
-        title: "Integral",
-      },
+      id: { description: "Cari luas dari integral tentu.", title: "Integral" },
       ms: {
         description: "Cari luas daripada kamiran tentu.",
         title: "Kamiran",
@@ -298,18 +214,12 @@ export const merdekaClass12MathematicsTopicNodes = [
         description: "Untersuche Veränderungen mithilfe von Grenzwerten.",
         title: "Grenzwerte",
       },
-      en: {
-        description: "Use limits to read change.",
-        title: "Limits",
-      },
+      en: { description: "Use limits to read change.", title: "Limits" },
       id: {
         description: "Gunakan limit untuk membaca perubahan.",
         title: "Limit",
       },
-      ms: {
-        description: "Guna had untuk membaca perubahan.",
-        title: "Had",
-      },
+      ms: { description: "Guna had untuk membaca perubahan.", title: "Had" },
     },
     order: 80,
     translations: {
