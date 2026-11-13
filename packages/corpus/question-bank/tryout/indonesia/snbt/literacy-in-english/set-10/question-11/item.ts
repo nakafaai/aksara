@@ -4,32 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "calculation",
   },
-  stimulus: "app-reminders",
+  stimulus: "subscription-churn",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "6",
+          column: 1,
+          label:
+            "At the end of September, Lumen had only about $$10$$ thousand more paying subscribers than at the end of June.",
         },
         {
-          correct: true,
-          label: "300",
+          column: 2,
+          label:
+            "Lumen's subscriber count grew by a larger share in October to December than in July to September.",
         },
         {
-          correct: false,
-          label: "600",
+          column: 1,
+          label:
+            "More subscribers were paying at the end of December than at the end of September.",
         },
         {
-          correct: false,
-          label: "1,200",
+          column: 2,
+          label:
+            "The churn rate in October to December was higher than in July to September.",
         },
         {
-          correct: false,
-          label: "2,100",
+          column: 1,
+          label:
+            "Lumen's number of paying subscribers rose by more in October to December than in January to June combined.",
         },
       ],
     },

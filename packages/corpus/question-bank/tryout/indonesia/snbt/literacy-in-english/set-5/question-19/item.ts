@@ -2,39 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-purpose",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "theme",
   },
-  stimulus: "great-stink",
+  stimulus: "night-orchard",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "To show that he planned for a city larger than the one he served",
+            "The list in the coat pocket was most likely meant for someone other than the grandfather himself.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "To criticise him for spending more of the board's money than necessary",
+            "The grandfather had begun to forget how to protect the orchard.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "To explain why the river smelled so strongly in the summer of 1858",
+            "The ending suggests that the grandfather expected the narrator might one day have to protect the orchard without him.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "To prove that the sewers have never been too small at any time since",
-        },
-        {
-          correct: false,
-          label:
-            "To suggest that he had probably miscalculated the original sizes",
+            "The narrator blames the Hallers for not watering their trees.",
         },
       ],
     },
