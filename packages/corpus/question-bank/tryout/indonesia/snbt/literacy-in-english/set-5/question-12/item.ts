@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "argument-evaluation",
   },
-  stimulus: "screens-sleep",
+  stimulus: "measles-coverage",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            'More students in the "more than 3 hours" group than in the "1 to 2 hours" group often felt sleepy.',
+            "It relies on clinic records, which may count doses that were given to children living outside the province.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "The survey measured screen time with tracking apps on students' phones.",
+            "It measures the province against a target that is set too high for a disease as easily spread as measles.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "The largest group of students reported 1 to 2 hours of screen time after 8 p.m.",
+            "It ignores that measles is spread mainly by adults, who are not counted in the coverage figures for children and so are missing from the newspaper's comparison altogether.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "On average, students with more than 3 hours slept 1.7 hours less than those with less than 1 hour.",
+            "It treats the provincial average as if it described every community, though most cases came from places where coverage was far lower.",
+        },
+        {
+          correct: false,
+          label:
+            "It assumes that two doses protect a child completely, though the passage gives no figure for how well the vaccine works.",
         },
       ],
     },
