@@ -13,27 +13,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "They were given in metres and later checked by the boatman.",
+          label: "Grandmother was $$12$$ when the valley filled with water.",
         },
         {
           correct: false,
           label:
-            "They put the mosque nearer to the well than the school gate was.",
+            "The steps were counted about two years before Grandmother's family was moved out.",
         },
         {
           correct: false,
           label:
-            "They were correct on Laras's map because she drew each step at her own stride.",
+            "The tamarind seed had been in Grandmother's keeping since the year she started school.",
         },
         {
           correct: false,
           label:
-            "They prove that the minaret stood exactly $$90$$ of Laras's steps from the well.",
+            "Grandmother started school in the same year that the dam gates were closed.",
         },
         {
           correct: true,
           label:
-            "They were counted in a young child's steps, so the distances on Laras's map came out too long.",
+            "Grandmother was at least $$14$$ when the valley filled, and the steps had been counted about five years before her family moved.",
         },
       ],
     },

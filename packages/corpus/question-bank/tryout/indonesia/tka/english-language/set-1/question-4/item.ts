@@ -15,22 +15,22 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "A pencil line on Laras's map shifts overnight to curve around an empty space, although nobody erased it.",
-        },
-        {
-          column: 2,
-          label:
-            "A heron standing on the minaret calls Grandmother by the name only her mother had used.",
+            "A pencil line that Laras had ruled straight curves around an empty space the next morning, although nobody erased or redrew it.",
         },
         {
           column: 1,
           label:
-            "Grandmother can recall who lived in a house only when she is on the water above the spot where it stood.",
+            "A heron standing on the minaret calls out as the boat drifts closer.",
+        },
+        {
+          column: 1,
+          label:
+            "Grandmother can name the family of a drowned house only when she floats above the spot where it stood.",
         },
         {
           column: 2,
           label:
-            "A tamarind seed planted at night has a shoot as tall as a girl's knee by the next morning.",
+            "Within one night, a seed that had been carried for decades grows a shoot as tall as a girl's knee.",
         },
       ],
     },

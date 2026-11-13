@@ -23,7 +23,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "To give a sign that the soil holds no air, which explains why the grass must carry air down to its roots",
+            "To show that the soil has no air in it, which explains what the hollow channels in the grass stems are for",
         },
         {
           correct: false,

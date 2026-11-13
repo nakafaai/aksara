@@ -13,24 +13,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Why Glasswort Swells After Every Flood",
+          label: "After the first sentence of the second paragraph",
         },
         {
           correct: true,
           label:
-            "Three Marshes on One Short Walk: How the Tide Shapes What Grows",
+            "Between the sentence about the salt pans and the sentence about sea lavender in the second paragraph",
         },
         {
           correct: false,
-          label: "The Saltiest Place on the Coast",
+          label:
+            "At the end of the third paragraph, after the glasswort stems shrivel",
         },
         {
           correct: false,
-          label: "How to Read the Tide from a Line of Dried Seaweed",
+          label:
+            "At the end of the fourth paragraph, after the leaves glitter with crystals",
         },
         {
           correct: false,
-          label: "Plants That Keep Salt Out of Their Roots",
+          label:
+            "In the last paragraph, right after the sentence about the shifting mud",
         },
       ],
     },

@@ -19,12 +19,12 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Even he agrees with Ms Hartono, though, that short, regular practice beats one long session.",
+            "\"I would rather he did a little each evening, but if nothing is due, he will not open a book until Monday.\"",
         },
         {
           correct: false,
           label:
-            "Every Friday at SMA Tunas Bangsa, students leave with graded assignments due on Monday morning.",
+            "Students who missed a weekend deadline had, on average, the same end-of-unit test scores as students who met it.",
         },
         {
           correct: true,
@@ -32,8 +32,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "Students who missed a weekend deadline had, on average, the same end-of-unit test scores as students who met it.",
+          label: "\"A skill you use once a week fades between lessons.\"",
         },
       ],
     },

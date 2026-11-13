@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pak Hadi's knock, the final rehearsal, the office painting, the repeated announcement, the classroom check",
+            "the four minutes on the club's recording, Rina's microphone test, Pak Hadi's knock, the cable found, Dimas's message",
         },
         {
           correct: false,
           label:
-            "the office painting, the final rehearsal, Pak Hadi's knock, the repeated announcement, the classroom check",
+            "Rina's microphone test, Pak Hadi's knock, the four minutes on the club's recording, the cable found, Dimas's message",
         },
         {
           correct: false,
           label:
-            "the final rehearsal, the office painting, Pak Hadi's knock, the classroom check, the repeated announcement",
+            "Rina's microphone test, the four minutes on the club's recording, the cable found, Pak Hadi's knock, Dimas's message",
         },
         {
           correct: false,
           label:
-            "the final rehearsal, the office painting, the repeated announcement, Pak Hadi's knock, the classroom check",
+            "Dimas's message, Rina's microphone test, the four minutes on the club's recording, Pak Hadi's knock, the cable found",
         },
         {
           correct: true,
           label:
-            "the final rehearsal, the office painting, Pak Hadi's knock, the repeated announcement, the classroom check",
+            "Rina's microphone test, the four minutes on the club's recording, Pak Hadi's knock, the cable found, Dimas's message",
         },
       ],
     },

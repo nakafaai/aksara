@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "She loses interest after the boat trip and leaves the last houses for Laras to guess.",
+            "She answers in steps rather than metres, and later she points east when Laras draws the mosque west of the school.",
         },
         {
           correct: true,
           label:
-            "She moves from refusing to talk about the drowned village to drawing on the map herself and naming houses from the water.",
+            "She turns up the radio when the map is first mentioned, and later she asks for the pencil and draws the tamarind herself.",
         },
         {
           correct: false,
           label:
-            "She stays unwilling throughout and answers only because Laras asks one small question at a time.",
+            "She laughs and then cries when the heron speaks, and later she plants the tamarind seed she has carried since 1987.",
         },
         {
           correct: false,
           label:
-            "She starts to help only after the heron calls her by her childhood name in August.",
+            "She says there is nothing to map because it is all water, and later she can name a house only from the spot where it stood.",
         },
         {
           correct: false,
           label:
-            "She comes to trust the map more than her own memory once the road line moves.",
+            "She turns up the radio when the map is first mentioned, and she joins in only after the heron calls her by her childhood name.",
         },
       ],
     },

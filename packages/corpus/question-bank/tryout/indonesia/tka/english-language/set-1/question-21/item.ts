@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Practice matters, but a grade on work done at home measures home conditions, and the school's records show that weekend lateness says little about learning.",
+            "Practice matters, but grading home work rewards home conditions, and the records suggest that late weekend work does not mean lower learning.",
         },
         {
           correct: false,
           label:
-            "Practice matters, and a mathematics teacher warns that skills used only once a week fade between lessons.",
+            "Practice matters, and the records show that students who hand in weekend work late learn less by the end of the unit.",
         },
         {
           correct: false,
           label:
-            "Weekend work is often late, which shows that students who hand it in late learn less than the others.",
+            "Grading home work rewards home conditions, so students should stop practising at weekends.",
         },
         {
           correct: false,
           label:
-            "Grades measure learning fairly, as long as students are given the whole weekend to finish their work.",
+            "Practice matters, and the records show that weekend work is late more often because students care less at weekends.",
         },
         {
           correct: false,
           label:
-            "Students who share a phone or work on Saturdays should be excused from all homework.",
+            "Grading home work is unfair, and the records show that weekday deadlines lead to better test scores.",
         },
       ],
     },

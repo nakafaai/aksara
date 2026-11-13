@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Grading weekend work is unfair because it rewards home conditions rather than learning.",
+            "Grading work done at home is unfair because the grade reflects home conditions as much as learning.",
         },
         {
           correct: false,
@@ -23,17 +23,18 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Mathematics skills fade when they are used only once a week.",
+          label:
+            "Short daily practice keeps a skill from fading between lessons.",
         },
         {
           correct: false,
           label:
-            "Students who work in a family shop should not be given any homework.",
+            "Students who work in a family shop or share a phone should be excused from homework.",
         },
         {
           correct: false,
           label:
-            "Weekend practice should be replaced by longer practice sessions on weekdays.",
+            "Tests should be taken at school, where conditions are the same for everyone.",
         },
       ],
     },

@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Its reading shows how hard the rain was falling at the moment it is read.",
+            "$$7.5$$ mm of rain fell between Monday's and Tuesday's readings.",
         },
         {
           correct: false,
           label:
-            "Any gauge made from a $$2$$-litre bottle will have marks $$2$$ mm apart for each millimetre of rain.",
+            "$$9$$ mm of rain fell between Monday's and Tuesday's readings.",
         },
         {
           correct: false,
           label:
-            "Water standing $$10$$ mm above the zero line means that $$10$$ mm of rain fell.",
+            "The rain fell harder on Monday night than it did before Monday's reading.",
         },
         {
           correct: false,
           label:
-            "A gauge placed close to a wall will always give readings that are too high.",
+            "Tuesday's reading would have been the same if the gauge had been emptied on Monday.",
         },
         {
           correct: true,
           label:
-            "Water standing $$15$$ mm above the zero line one morning means $$7.5$$ mm of rain fell since the last emptying.",
+            "$$4.5$$ mm of rain fell between Monday's and Tuesday's readings.",
         },
       ],
     },

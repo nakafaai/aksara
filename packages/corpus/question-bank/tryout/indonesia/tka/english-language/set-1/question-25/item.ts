@@ -24,17 +24,17 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Ms Hartono's remark that a skill used once a week fades between lessons",
+            "Ms Hartono's remark that ten minutes a day keeps a skill from fading",
         },
         {
           correct: false,
           label:
-            "Pak Darmawan's warning that many students will not open a book until Monday",
+            "Pak Darmawan's report that his son forgets half of a Sunday-night session by Wednesday",
         },
         {
           correct: false,
           label:
-            "The example of a student who shares one phone with three siblings",
+            "The plan to check an optional weekend task in class on Monday without a mark",
         },
       ],
     },

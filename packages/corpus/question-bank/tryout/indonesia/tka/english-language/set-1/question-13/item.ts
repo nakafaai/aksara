@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The caretaker moved the cable before the club's final rehearsal.",
+            "The cable was pushed into AUX 2 between Rina's microphone test and the start of the broadcast.",
         },
         {
           correct: true,
           label:
-            "The cable was already in the wrong socket when Rina tested her microphone on Monday.",
+            "The fault that silenced the classrooms already existed when Rina tested her microphone.",
         },
         {
           correct: false,
           label:
-            "Rina realised at two minutes past seven that the speakers had gone silent.",
+            "Holding the final rehearsal after the painting would have revealed the fault before Monday.",
         },
         {
           correct: false,
           label:
-            "The club recorded that Monday's broadcast only after the cable had been fixed.",
+            "Pak Hadi reached the studio window within a minute of the speakers going silent.",
         },
         {
           correct: false,
-          label: "The classroom check began with the Monday broadcast.",
+          label:
+            "The club first checked the sound from a classroom on the Monday it went live.",
         },
       ],
     },

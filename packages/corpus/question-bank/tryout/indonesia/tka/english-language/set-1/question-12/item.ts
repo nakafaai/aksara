@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The caretaker was careless, and the failed broadcast was his fault.",
+            "Two weeks of rehearsal were too few, so the club should have practised for longer.",
         },
         {
           correct: false,
           label:
-            "Rina would have noticed the silence at once if she had been paying attention.",
+            "The club should have held a full rehearsal on Monday morning instead of only testing the microphone.",
         },
         {
           correct: false,
           label:
-            "The club should give up live broadcasts and play recordings instead.",
+            "The caretaker should have asked the club before touching the amplifier.",
         },
         {
           correct: false,
           label:
-            "The failure shows that the school's equipment was too old to be trusted.",
+            "Rina should have listened more carefully to her headphones during the broadcast.",
         },
         {
           correct: true,
           label:
-            "The club had checked what it was sending but not what listeners received, and its new routine checks exactly that.",
+            "Every check the club ran listened at the studio end, so none of them could catch a fault on the way to the classrooms, which is the gap Dimas's message now covers.",
         },
       ],
     },

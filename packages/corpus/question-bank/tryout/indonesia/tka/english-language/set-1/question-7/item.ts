@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Some of the water evaporated while the group was still pouring.",
+            "Some of the water evaporated while the pours were being made.",
         },
         {
           correct: false,
@@ -29,12 +29,12 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Each pour held less water than intended because the cylinder was read from above.",
+            "Dimas stood over the cylinder, so each pour he measured held less water than it should have.",
         },
         {
           correct: false,
           label:
-            "The funnel opening was smaller than $$80\\text{ cm}^2$$, so it caught too little water.",
+            "Dimas knelt beside the table, so he could not see the lines on the cylinder clearly.",
         },
       ],
     },

@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "(1) why the scale must be tested, (2) the test pours and the table, (3) setting the zero line, (4) the failed first trial and its cause, (5) rules for daily use",
+            "The third paragraph reports the trial that failed, and the fourth explains how the group repaired a leak.",
         },
         {
           correct: false,
           label:
-            "(1) why the scale must be tested, (2) setting the zero line, (3) the test pours and the table, (4) rules for daily use, (5) the failed first trial and its cause",
+            "The third paragraph gives the method and the results of the first trial, and the fourth explains why those results were too low.",
         },
         {
           correct: true,
           label:
-            "(1) why the scale must be tested, (2) setting the zero line, (3) the test pours and the table, (4) the failed first trial and its cause, (5) rules for daily use",
+            "The third paragraph gives the method and the results of the trial that worked, and the fourth goes back to an earlier trial and points to its cause.",
         },
         {
           correct: false,
           label:
-            "(1) why rain is measured in millilitres, (2) setting the zero line, (3) the test pours and the table, (4) the failed first trial and its cause, (5) rules for daily use",
+            "The third paragraph sets the zero line, and the fourth gives the rules for using the gauge outdoors.",
         },
         {
           correct: false,
           label:
-            "(1) why the scale must be tested, (2) setting the zero line, (3) the test pours and the table, (4) the failed first trial, traced to a leak, (5) rules for daily use",
+            "The third paragraph gives the method and the results of the trial that worked, and the fourth explains that the earlier trial failed because of evaporation.",
         },
       ],
     },

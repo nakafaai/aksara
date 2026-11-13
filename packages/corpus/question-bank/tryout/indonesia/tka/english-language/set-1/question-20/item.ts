@@ -14,19 +14,22 @@ const item: ItemSource = {
       statements: [
         {
           column: 2,
-          label: "The ground where glasswort grows",
+          label:
+            "The ground where the plant that stores salt in its fleshy stems grows",
         },
         {
           column: 1,
-          label: "The ground where the tall, stiff grass grows",
+          label:
+            "The ground where the plant with hollow channels in its stems grows",
         },
         {
           column: 1,
-          label: "The bare mud where the boardwalk ends",
+          label: "The ground beyond the last plants, where the boardwalk ends",
         },
         {
           column: 2,
-          label: "The ground around the edges of the salt pans",
+          label:
+            "The ground where a plant that pushes salt out through its leaves grows beside white-crusted patches",
         },
       ],
     },

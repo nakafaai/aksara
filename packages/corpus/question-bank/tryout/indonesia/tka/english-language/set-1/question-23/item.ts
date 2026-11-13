@@ -25,12 +25,12 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Short, regular practice works better than one long session.",
+          label:
+            "A little practice spread over many days works better than one long session.",
         },
         {
           correct: false,
-          label:
-            "Weekend assignments arrive late more often than weekday ones.",
+          label: "Ten minutes a day is enough to keep any skill fresh.",
         },
       ],
     },

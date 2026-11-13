@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "It is flooded far less often, yet in dry months its salt pans can be saltier than the sea.",
+            "It is flooded far less often, yet in dry months parts of it can be saltier than the sea.",
         },
         {
           correct: false,
@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "It is waterlogged and airless, while the low-marsh soil is dry and crusted with salt.",
+            "It stays soaked and airless, while the low-marsh soil is dry and crusted with salt.",
         },
         {
           correct: false,
