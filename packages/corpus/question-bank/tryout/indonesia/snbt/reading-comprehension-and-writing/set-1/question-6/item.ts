@@ -2,35 +2,31 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "reading",
-    topic: "referent",
+    cognitiveLevel: "reasoning",
+    contentDomain: "writing",
+    topic: "revision",
   },
-  stimulus: "rooftop-garden",
+  stimulus: "antrean",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Tepat", "Tidak tepat"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "menanam bibit dalam gelas plastik berisi sabut kelapa",
+          column: 2,
+          label: "Menghapus kedua tanda koma pada kalimat (4).",
         },
         {
-          correct: false,
-          label: "menyiram tanaman setiap hari",
+          column: 2,
+          label: "Mengganti kata *membuat* pada kalimat (10) dengan *menjadikan*.",
         },
         {
-          correct: false,
-          label: "memeriksa keasaman larutan dua kali seminggu",
+          column: 1,
+          label: "Menghapus kedua tanda koma pada kalimat (12).",
         },
         {
-          correct: false,
-          label: "menjual hasil panen kepada guru dan orang tua siswa",
-        },
-        {
-          correct: true,
-          label:
-            "mengalirkan larutan nutrisi terus-menerus melalui pipa dengan pompa dan kemiringan pipa",
+          column: 1,
+          label: "Menghapus kata *tidak* sebelum *bergeming* pada kalimat (13).",
         },
       ],
     },

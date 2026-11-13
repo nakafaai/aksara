@@ -2,34 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "writing",
-    topic: "coherence",
+    topic: "concision",
   },
-  stimulus: "rooftop-garden",
+  stimulus: "antrean",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "sesudah kalimat (2)",
+          label: "Pada bulan ketiga, tepat sepertiga pendaftar aplikasi justru merupakan pasien lansia yang memakai ponsel pintarnya sendiri.",
+        },
+        {
+          correct: false,
+          label: "Pada bulan ketiga, hampir sepertiga pasien lansia justru mendaftar lewat aplikasi dengan ponsel pintarnya sendiri.",
+        },
+        {
+          correct: false,
+          label: "Pada bulan ketiga, hampir sepertiga pendaftar aplikasi merupakan pasien lansia yang memakai ponsel pintarnya sendiri.",
+        },
+        {
+          correct: false,
+          label: "Pada bulan ketiga, hampir sepertiga pendaftar aplikasi justru merupakan pasien lansia yang memakai ponsel pintar.",
         },
         {
           correct: true,
-          label: "sesudah kalimat (3)",
-        },
-        {
-          correct: false,
-          label: "sesudah kalimat (5)",
-        },
-        {
-          correct: false,
-          label: "sesudah kalimat (6)",
-        },
-        {
-          correct: false,
-          label: "sesudah kalimat (8)",
+          label: "Pada bulan ketiga, hampir sepertiga pendaftar aplikasi justru merupakan pasien lansia yang memakai ponsel pintarnya sendiri.",
         },
       ],
     },
