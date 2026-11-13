@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "It extends Parsons's explanation, adding the calendar to feedback and pay as a cause of the climb in the relay room.",
+            "It extends Parsons's explanation by adding the calendar to feedback and pay as a third dull cause of the steady climb in output in the relay room.",
         },
         {
           correct: false,

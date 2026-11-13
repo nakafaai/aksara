@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "After the move, the employees who wore headphones most often were also the ones with the fewest face-to-face conversations.",
+            "After the move, the employees who wore headphones most often were also the ones who had the fewest face-to-face conversations each day.",
         },
         {
           correct: false,

@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The studies at the plant were flawed from the start because the electrical industry paid for tests meant to favour brighter lighting.",
+            "The studies at the plant were flawed from the start, because the electrical industry paid for tests that were meant to show that brighter lighting raised output.",
         },
       ],
     },

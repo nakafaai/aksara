@@ -9,32 +9,32 @@ const item: ItemSource = {
   stimulus: "open-offices",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "The companies later put partitions back on the open floors because employees complained about the lack of privacy.",
+            "Part of the privacy that the partitions used to give is recreated by what employees do.",
         },
         {
-          correct: false,
-          label:
-            "Employees missed their old cubicles so much that they asked for private offices to be built for them again.",
+          column: 2,
+          label: "The employees rebuilt physical barriers on the open floor.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Employees find other ways to keep the privacy the partitions once gave them, and those ways cut down their talk in person.",
+            "The rise in email and instant messaging fits the writer's claim.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The real barriers to conversation were always people's habits, so removing the partitions made no difference to talk.",
+            "The claim implies that the badges undercounted the employees' face-to-face talk.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "The badges missed many conversations because headphones and screens hid talk that was still going on between colleagues.",
+            "On this view, a team whose members do not mind being overheard would lose less face-to-face talk after a move to an open plan.",
         },
       ],
     },
