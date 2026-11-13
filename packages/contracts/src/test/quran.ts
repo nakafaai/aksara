@@ -52,7 +52,11 @@ function quranSourceAttribution(id: ReturnType<typeof quranSourceIds>[number]) {
     updateUrl: `https://example.test/update/${id}`,
     version: "test-source",
   } as const;
-  if (id === "mokhtasar-english" || id === "mokhtasar-german") {
+  if (
+    id === "mokhtasar-english" ||
+    id === "mokhtasar-german" ||
+    id === "mokhtasar-indonesian"
+  ) {
     return QuranExternalSourceAttributionSchema.make({
       ...common,
       id,
@@ -68,7 +72,10 @@ function quranSourceAttribution(id: ReturnType<typeof quranSourceIds>[number]) {
     artifact: {
       byteCount: 1,
       digest: sourceHash,
-      fileCount: id === "quranenc-tafsir" ? QURAN_SURAH_COUNT : 1,
+      fileCount:
+        id === "quranenc-tafsir" || id === "quranenc-malay"
+          ? QURAN_SURAH_COUNT
+          : 1,
     },
     id,
     kind: "embedded",
@@ -191,6 +198,7 @@ export function quranTestPayloads() {
             de: `Technische Sure ${surahNumber}`,
             en: `Test Surah ${surahNumber}`,
             id: `Surah Teknis ${surahNumber}`,
+            ms: `Surah Teknikal ${surahNumber}`,
           },
           transliteration: `Test-Surah-${surahNumber}`,
         },
@@ -265,6 +273,7 @@ export function quranRepresentativePayloads() {
           de: "Technische Sure 1",
           en: "Test Surah 1",
           id: "Surah Teknis 1",
+          ms: "Surah Teknikal 1",
         },
         transliteration: "Test-Surah-1",
       },

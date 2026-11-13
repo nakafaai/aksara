@@ -22,13 +22,13 @@ describe("locale", () => {
     expect(artifactLocaleCode(ArtifactLocaleSchema.make("de"))).toBe("de");
   });
 
-  it("declares Malay while only English, Indonesian, and German are active", () => {
+  it("serves Malay after English, Indonesian, and German", () => {
     expect(Schema.is(AppLocaleCodeSchema)("ms")).toBe(true);
-    expect(Schema.is(ActiveAppLocaleCodeSchema)("ms")).toBe(false);
-    expect(ACTIVE_APP_LOCALE_CODES).toEqual(["en", "id", "de"]);
-    expect(
-      Exit.isFailure(Schema.decodeUnknownExit(ActiveAppLocaleSchema)("ms"))
-    ).toBe(true);
+    expect(Schema.is(ActiveAppLocaleCodeSchema)("ms")).toBe(true);
+    expect(ACTIVE_APP_LOCALE_CODES).toEqual(["en", "id", "de", "ms"]);
+    expect(Exit.isSuccess(Schema.decodeExit(ActiveAppLocaleSchema)("ms"))).toBe(
+      true
+    );
   });
 
   it("accepts a well-formed canonical tag of any language as a content language", () => {

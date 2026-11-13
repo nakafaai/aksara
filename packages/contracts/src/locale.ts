@@ -94,6 +94,7 @@ export const ActiveAppLocaleCodeSchema = AppLocaleCodeSchema.pick([
   ENGLISH_APP_LOCALE_CODE,
   INDONESIAN_APP_LOCALE_CODE,
   GERMAN_APP_LOCALE_CODE,
+  MALAY_APP_LOCALE_CODE,
 ]);
 export type ActiveAppLocaleCode = typeof ActiveAppLocaleCodeSchema.Type;
 

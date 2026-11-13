@@ -46,6 +46,11 @@ function source(id: ReturnType<typeof quranSourceIds>[number]) {
         notice: "Technischer deutscher Quellenhinweis.",
         title: "Technische deutsche Quelle",
       },
+      {
+        appLocale: AppLocaleSchema.make("ms"),
+        notice: "Catatan atribusi teknikal bahasa Melayu.",
+        title: "Sumber teknikal bahasa Melayu",
+      },
     ],
     publisher: "Technical publisher",
     retrievedAt: "2026-07-24T17:57:50Z",
@@ -53,7 +58,11 @@ function source(id: ReturnType<typeof quranSourceIds>[number]) {
     updateUrl: `https://example.test/update/${id}`,
     version: "test-source",
   } as const;
-  if (id === "mokhtasar-english" || id === "mokhtasar-german") {
+  if (
+    id === "mokhtasar-english" ||
+    id === "mokhtasar-german" ||
+    id === "mokhtasar-indonesian"
+  ) {
     return QuranExternalSourceAttributionSchema.make({
       ...common,
       id,

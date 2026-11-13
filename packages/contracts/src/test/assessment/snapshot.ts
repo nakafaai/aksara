@@ -43,7 +43,12 @@ export const TEST_FAMILY =
 
 /** A plain text in every active app locale. */
 function everyLocale(value: string) {
-  return { de: `${value} de`, en: `${value} en`, id: `${value} id` };
+  return {
+    de: `${value} de`,
+    en: `${value} en`,
+    id: `${value} id`,
+    ms: `${value} ms`,
+  };
 }
 
 /** The test-only profile: one section of one choice item, scored raw. */

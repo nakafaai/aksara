@@ -4,6 +4,7 @@ import {
   ENGLISH_APP_LOCALE_CODE,
   GERMAN_APP_LOCALE_CODE,
   INDONESIAN_APP_LOCALE_CODE,
+  MALAY_APP_LOCALE_CODE,
 } from "#contracts/locale";
 import { QuranMeaningfulTextSchema } from "#contracts/quran/text";
 
@@ -16,6 +17,7 @@ export const QuranTafsirLocaleSchema = Schema.Literal(
 export const QuranExternalTafsirLocaleSchema = Schema.Literals([
   ENGLISH_APP_LOCALE_CODE,
   GERMAN_APP_LOCALE_CODE,
+  MALAY_APP_LOCALE_CODE,
 ]);
 
 /** Exact number of reviewed surahs in the authored Quran source. */

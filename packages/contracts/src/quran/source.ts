@@ -164,11 +164,21 @@ const QuranGermanTafsirAccessSchema = Schema.Struct({
   ),
 });
 
+const QuranMalayTafsirAccessSchema = Schema.Struct({
+  appLocale: appLocaleLiteral(QuranExternalTafsirLocaleSchema.literals[2]),
+  kind: Schema.Literal("external"),
+  notice: Schema.Trimmed.check(Schema.isNonEmpty()),
+  sourceId: Schema.Literal(
+    quranTafsirSourceId(QuranExternalTafsirLocaleSchema.literals[2])
+  ),
+});
+
 /** Signed locale-specific access to embedded or official external Tafsir. */
 export const QuranTafsirAccessSchema = Schema.Union([
   QuranEnglishTafsirAccessSchema,
   QuranIndonesianTafsirAccessSchema,
   QuranGermanTafsirAccessSchema,
+  QuranMalayTafsirAccessSchema,
 ]);
 export type QuranTafsirAccess = typeof QuranTafsirAccessSchema.Type;
 
