@@ -92,7 +92,11 @@ itself.
 ## Development
 
 Run the local quality gate on each pull request's exact head. It runs the checks
-that GitHub Actions CI used to run. The contract archive identity,
+that GitHub Actions CI used to run. The same gate runs on demand on GitHub's free
+runners, in parallel parts, and posts the `gate` statuses on that head:
+`gh workflow run gate.yml --repo nakafaai/aksara -f sha=<full head sha>`, then
+`gh run watch` on the run it starts. It reads no secret and publishes nothing, and
+no ruleset requires it. The contract archive identity,
 `packages/contracts/scripts/release/command.ts describe` and `decide`, needs
 GitHub release data, so `contracts.yml` checks it on `main` instead.
 
