@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Rina did not realise for four minutes that anything was wrong.",
+            "Rina could hear herself clearly in her headphones throughout the broadcast.",
         },
         {
           correct: true,

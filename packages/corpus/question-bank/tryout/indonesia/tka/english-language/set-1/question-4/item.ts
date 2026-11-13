@@ -25,7 +25,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Grandmother can name the family of a drowned house only when she floats above the spot where it stood.",
+            "A drought lowers the reservoir until the top of a drowned minaret rises out of the water.",
         },
         {
           column: 2,
