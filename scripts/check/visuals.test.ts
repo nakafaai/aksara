@@ -73,6 +73,19 @@ describe("visualFindings", () => {
       })
   );
 
+  it.effect("reports a card whose description only repeats its title", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* visualFindings(
+          "c.mdx",
+          '<Card title="Tempe" description="Tempe." />\n'
+        )
+      ).toEqual([
+        { file: "c.mdx", finding: "1:1 Card description repeats its title" },
+      ]);
+    })
+  );
+
   it.effect("reports a source-level finding by its reason", () =>
     Effect.gen(function* () {
       const findings = yield* visualFindings("b.mdx", SPREAD);
