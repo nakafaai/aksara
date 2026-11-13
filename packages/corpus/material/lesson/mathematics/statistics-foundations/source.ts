@@ -19,12 +19,16 @@ export const lessonMathematicsStatisticsFoundationsMaterial =
           en: "central-tendency-usage",
           id: "penggunaan-ukuran-pemusatan",
           ms: "penggunaan-sukatan-kecenderungan-memusat",
-          ms: "histogram",
         },
         slug: "central-tendency-usage",
       },
       {
-        routeSlugs: { de: "histogramme", en: "histogram", id: "histogram" },
+        routeSlugs: {
+          de: "histogramme",
+          en: "histogram",
+          id: "histogram",
+          ms: "histogram",
+        },
         slug: "histogram",
       },
       {

@@ -5,7 +5,12 @@ export const lessonMathematicsProbabilityMaterial = defineLessonMaterial({
   domain: "mathematics",
   key: "lesson.mathematics.probability",
   kind: "lesson",
-  routeSlugs: { de: "wahrscheinlichkeit", en: "probability", id: "peluang", ms: "kebarangkalian" },
+  routeSlugs: {
+    de: "wahrscheinlichkeit",
+    en: "probability",
+    id: "peluang",
+    ms: "kebarangkalian",
+  },
   sections: [
     {
       routeSlugs: {

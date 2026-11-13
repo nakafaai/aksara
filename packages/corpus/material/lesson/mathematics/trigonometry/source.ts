@@ -5,7 +5,12 @@ export const lessonMathematicsTrigonometryMaterial = defineLessonMaterial({
   domain: "mathematics",
   key: "lesson.mathematics.trigonometry",
   kind: "lesson",
-  routeSlugs: { de: "trigonometrie", en: "trigonometry", id: "trigonometri", ms: "trigonometri" },
+  routeSlugs: {
+    de: "trigonometrie",
+    en: "trigonometry",
+    id: "trigonometri",
+    ms: "trigonometri",
+  },
   sections: [
     {
       routeSlugs: {
