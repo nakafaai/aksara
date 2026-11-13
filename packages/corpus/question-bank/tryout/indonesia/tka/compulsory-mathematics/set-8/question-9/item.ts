@@ -31,8 +31,7 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label:
-            "Tidak ada anggota $$A$$ yang memenuhi $$(g\\circ f)(x)=4$$.",
+          label: "Tidak ada anggota $$A$$ yang memenuhi $$(g\\circ f)(x)=4$$.",
         },
       ],
     },

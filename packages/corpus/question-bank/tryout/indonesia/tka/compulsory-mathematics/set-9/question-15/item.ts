@@ -12,7 +12,8 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Transformasi itu dapat berupa translasi oleh vektor $$(6,0)$$.",
+          label:
+            "Transformasi itu dapat berupa translasi oleh vektor $$(6,0)$$.",
         },
         {
           correct: false,
@@ -26,7 +27,8 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Transformasi itu dapat berupa pencerminan terhadap garis $$x=4$$.",
+          label:
+            "Transformasi itu dapat berupa pencerminan terhadap garis $$x=4$$.",
         },
         {
           correct: true,

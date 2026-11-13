@@ -17,15 +17,18 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Pertidaksamaan itu mempunyai penyelesaian jika dan hanya jika $$k\\ge4$$.",
+          label:
+            "Pertidaksamaan itu mempunyai penyelesaian jika dan hanya jika $$k\\ge4$$.",
         },
         {
           correct: false,
-          label: "Untuk $$k=10$$, himpunan penyelesaiannya simetris terhadap $$x=1$$.",
+          label:
+            "Untuk $$k=10$$, himpunan penyelesaiannya simetris terhadap $$x=1$$.",
         },
         {
           correct: true,
-          label: "Untuk $$k=4$$, tepat satu bilangan real $$x$$ memenuhi pertidaksamaan itu.",
+          label:
+            "Untuk $$k=4$$, tepat satu bilangan real $$x$$ memenuhi pertidaksamaan itu.",
         },
         {
           correct: false,

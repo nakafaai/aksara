@@ -18,7 +18,8 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Jangkauan antarkuartil data banyak saudara kandung adalah $$3$$.",
+          label:
+            "Jangkauan antarkuartil data banyak saudara kandung adalah $$3$$.",
         },
         {
           correct: true,

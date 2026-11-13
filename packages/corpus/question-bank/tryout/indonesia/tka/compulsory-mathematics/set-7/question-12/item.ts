@@ -13,7 +13,8 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "Prisma itu mempunyai $$15$$ rusuk, dan jumlah panjang seluruh rusuknya $$98\\text{ cm}$$.",
+          label:
+            "Prisma itu mempunyai $$15$$ rusuk, dan jumlah panjang seluruh rusuknya $$98\\text{ cm}$$.",
         },
         {
           column: 2,
@@ -21,7 +22,8 @@ const item: ItemSource = {
         },
         {
           column: 1,
-          label: "Jika prisma itu diletakkan dengan sisi persegi panjang berukuran $$6\\text{ cm}\\times10\\text{ cm}$$ sebagai alas, titik tertinggi prisma berada $$8\\text{ cm}$$ di atas alas.",
+          label:
+            "Jika prisma itu diletakkan dengan sisi persegi panjang berukuran $$6\\text{ cm}\\times10\\text{ cm}$$ sebagai alas, titik tertinggi prisma berada $$8\\text{ cm}$$ di atas alas.",
         },
       ],
     },

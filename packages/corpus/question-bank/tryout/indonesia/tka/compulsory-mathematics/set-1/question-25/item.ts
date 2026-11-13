@@ -24,11 +24,13 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Peluang kejadian $$A$$ dan kejadian $$B$$ sama-sama tidak terjadi adalah $$0{,}3$$.",
+          label:
+            "Peluang kejadian $$A$$ dan kejadian $$B$$ sama-sama tidak terjadi adalah $$0{,}3$$.",
         },
         {
           correct: true,
-          label: "Peluang tepat satu dari kejadian $$A$$ dan $$B$$ terjadi adalah $$0{,}5$$.",
+          label:
+            "Peluang tepat satu dari kejadian $$A$$ dan $$B$$ terjadi adalah $$0{,}5$$.",
         },
       ],
     },

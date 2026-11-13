@@ -12,7 +12,8 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Daerah asal $$f\\circ g$$ adalah himpunan semua bilangan real $$x\\ge0$$.",
+          label:
+            "Daerah asal $$f\\circ g$$ adalah himpunan semua bilangan real $$x\\ge0$$.",
         },
         {
           correct: false,

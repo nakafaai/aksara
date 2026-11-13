@@ -13,7 +13,8 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "Paling sedikit $$8$$ siswa kelas A mendapat nilai $$82$$ atau lebih.",
+          label:
+            "Paling sedikit $$8$$ siswa kelas A mendapat nilai $$82$$ atau lebih.",
         },
         {
           correct: false,
@@ -21,7 +22,8 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Lebih dari $$25\\%$$ siswa kelas B mendapat nilai $$76$$ atau lebih.",
+          label:
+            "Lebih dari $$25\\%$$ siswa kelas B mendapat nilai $$76$$ atau lebih.",
         },
         {
           correct: true,

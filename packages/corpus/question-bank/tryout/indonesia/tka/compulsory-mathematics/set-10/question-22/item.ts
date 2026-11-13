@@ -18,7 +18,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Jika nilai Asri dikoreksi dari $$72$$ menjadi $$80$$, median nilai naik.",
+          label:
+            "Jika nilai Asri dikoreksi dari $$72$$ menjadi $$80$$, median nilai naik.",
         },
         {
           correct: true,
@@ -27,7 +28,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Jika Dani keluar dari kelas, median nilai naik, sedangkan rata-rata nilai tetap.",
+          label:
+            "Jika Dani keluar dari kelas, median nilai naik, sedangkan rata-rata nilai tetap.",
         },
         {
           correct: false,

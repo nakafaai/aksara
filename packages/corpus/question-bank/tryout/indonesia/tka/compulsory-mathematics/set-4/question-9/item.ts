@@ -24,11 +24,13 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Terdapat tepat dua bilangan real $$c$$ sehingga persamaan $$f(x)=c$$ mempunyai tepat $$3$$ penyelesaian.",
+          label:
+            "Terdapat tepat dua bilangan real $$c$$ sehingga persamaan $$f(x)=c$$ mempunyai tepat $$3$$ penyelesaian.",
         },
         {
           correct: true,
-          label: "Penyelesaian terbesar persamaan $$f(f(x))=0$$ adalah $$x=4$$.",
+          label:
+            "Penyelesaian terbesar persamaan $$f(f(x))=0$$ adalah $$x=4$$.",
         },
       ],
     },

@@ -13,7 +13,8 @@ const item: ItemSource = {
       statements: [
         {
           column: 2,
-          label: "Bilangan $$\\sqrt{9-4\\sqrt{5}}+\\sqrt{5}$$ adalah bilangan rasional.",
+          label:
+            "Bilangan $$\\sqrt{9-4\\sqrt{5}}+\\sqrt{5}$$ adalah bilangan rasional.",
         },
         {
           column: 1,
@@ -22,7 +23,8 @@ const item: ItemSource = {
         },
         {
           column: 1,
-          label: "Bilangan $$\\left(\\sqrt{3}+\\sqrt{12}\\right)^{\\frac{2}{3}}$$ adalah bilangan rasional.",
+          label:
+            "Bilangan $$\\left(\\sqrt{3}+\\sqrt{12}\\right)^{\\frac{2}{3}}$$ adalah bilangan rasional.",
         },
       ],
     },

@@ -13,8 +13,7 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label:
-            "Ada tepat $$11$$ nilai $$c$$ yang mungkin.",
+          label: "Ada tepat $$11$$ nilai $$c$$ yang mungkin.",
         },
         {
           column: 2,

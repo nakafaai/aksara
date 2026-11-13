@@ -12,7 +12,8 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$f(a)+f(b)=f(ab+2a+2b+2)$$ untuk setiap $$a>-2$$ dan $$b>-2$$.",
+          label:
+            "$$f(a)+f(b)=f(ab+2a+2b+2)$$ untuk setiap $$a>-2$$ dan $$b>-2$$.",
         },
         {
           correct: true,
@@ -20,11 +21,13 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Persamaan $$f(x)=f\\left(\\frac{1}{x}\\right)$$ mempunyai tepat dua penyelesaian real.",
+          label:
+            "Persamaan $$f(x)=f\\left(\\frac{1}{x}\\right)$$ mempunyai tepat dua penyelesaian real.",
         },
         {
           correct: true,
-          label: "$$f(x)+f(-x)\\le2f(0)$$ untuk setiap $$x$$ dengan $$-2<x<2$$.",
+          label:
+            "$$f(x)+f(-x)\\le2f(0)$$ untuk setiap $$x$$ dengan $$-2<x<2$$.",
         },
         {
           correct: false,

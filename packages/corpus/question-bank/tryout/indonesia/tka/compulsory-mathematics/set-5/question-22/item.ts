@@ -14,11 +14,13 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "Tepat setengah dari seluruh anggota klub Futsal adalah siswa kelas X.",
+          label:
+            "Tepat setengah dari seluruh anggota klub Futsal adalah siswa kelas X.",
         },
         {
           column: 2,
-          label: "Lebih dari $$30\\%$$ anggota klub Robotik adalah siswa kelas XII.",
+          label:
+            "Lebih dari $$30\\%$$ anggota klub Robotik adalah siswa kelas XII.",
         },
         {
           column: 2,

@@ -18,7 +18,8 @@ const item: ItemSource = {
         },
         {
           column: 2,
-          label: "Harga normal satu pulpen pasti kurang dari $$\\text{Rp}5{.}000$$.",
+          label:
+            "Harga normal satu pulpen pasti kurang dari $$\\text{Rp}5{.}000$$.",
         },
         {
           column: 2,

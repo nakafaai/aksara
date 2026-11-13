@@ -12,7 +12,8 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "Titik $$P$$, $$C$$, dan $$C'$$ segaris, dan $$P$$ terletak di antara $$C$$ dan $$C'$$.",
+          label:
+            "Titik $$P$$, $$C$$, dan $$C'$$ segaris, dan $$P$$ terletak di antara $$C$$ dan $$C'$$.",
         },
         {
           correct: true,
@@ -20,7 +21,8 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Bayangan garis $$x-2y=4$$ oleh $$D$$ adalah garis $$x-2y=-8$$.",
+          label:
+            "Bayangan garis $$x-2y=4$$ oleh $$D$$ adalah garis $$x-2y=-8$$.",
         },
         {
           correct: false,

@@ -14,7 +14,8 @@ const item: ItemSource = {
       statements: [
         {
           column: 2,
-          label: "Rata-rata nilai kelas A lebih besar daripada rata-rata nilai kelas B.",
+          label:
+            "Rata-rata nilai kelas A lebih besar daripada rata-rata nilai kelas B.",
         },
         {
           column: 2,

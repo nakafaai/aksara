@@ -17,7 +17,8 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Untuk setiap bilangan bulat $$x\\ge7$$, berlaku $$f(x)>g(x)$$.",
+          label:
+            "Untuk setiap bilangan bulat $$x\\ge7$$, berlaku $$f(x)>g(x)$$.",
         },
         {
           correct: false,
@@ -26,7 +27,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Untuk setiap bilangan bulat $$x\\ge3$$, berlaku $$f(x)\\ge h(x)$$.",
+          label:
+            "Untuk setiap bilangan bulat $$x\\ge3$$, berlaku $$f(x)\\ge h(x)$$.",
         },
         {
           correct: true,

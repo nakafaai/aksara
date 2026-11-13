@@ -12,7 +12,8 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "Dilatasi dengan pusat $$(2,2)$$ dan faktor skala $$-\\frac{1}{2}$$",
+          label:
+            "Dilatasi dengan pusat $$(2,2)$$ dan faktor skala $$-\\frac{1}{2}$$",
         },
         {
           correct: true,
@@ -26,7 +27,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Dilatasi dengan pusat $$(3,3)$$ dan faktor skala $$-\\frac{1}{2}$$",
+          label:
+            "Dilatasi dengan pusat $$(3,3)$$ dan faktor skala $$-\\frac{1}{2}$$",
         },
         {
           correct: true,

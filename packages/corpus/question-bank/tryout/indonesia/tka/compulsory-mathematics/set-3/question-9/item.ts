@@ -12,7 +12,8 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$f$$ mempunyai invers, dan rumusnya $$f^{-1}(x)=2+\\sqrt{x-3}$$.",
+          label:
+            "$$f$$ mempunyai invers, dan rumusnya $$f^{-1}(x)=2+\\sqrt{x-3}$$.",
         },
         {
           correct: false,

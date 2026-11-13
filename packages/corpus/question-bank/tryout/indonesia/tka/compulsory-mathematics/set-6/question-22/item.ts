@@ -13,7 +13,8 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "Jangkauan curah hujan Kota P lebih dari dua kali jangkauan curah hujan Kota Q.",
+          label:
+            "Jangkauan curah hujan Kota P lebih dari dua kali jangkauan curah hujan Kota Q.",
         },
         {
           correct: true,
@@ -22,11 +23,13 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Pada bulan Mei, curah hujan Kota Q $$60\\%$$ lebih tinggi daripada curah hujan Kota P.",
+          label:
+            "Pada bulan Mei, curah hujan Kota Q $$60\\%$$ lebih tinggi daripada curah hujan Kota P.",
         },
         {
           correct: true,
-          label: "Selisih curah hujan kedua kota paling besar terjadi pada bulan Juni.",
+          label:
+            "Selisih curah hujan kedua kota paling besar terjadi pada bulan Juni.",
         },
         {
           correct: true,
