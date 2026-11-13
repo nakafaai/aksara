@@ -18,8 +18,8 @@ Das Bohrsche Modell nutzt diskrete Energieniveaus, um das Linienspektrum von Was
 **Diskret** bedeutet, dass nur bestimmte Energiewerte möglich sind. Eine Treppe liefert das passende Bild: Man kann auf der ersten, zweiten oder dritten Stufe stehen. Zwischen den Stufen gibt es keinen Standplatz. Auch Elektronen dürfen im Atom nur bestimmte Energieniveaus einnehmen.
 
 <Mermaid
-  title="Flammenfarbe weist auf Elektronenenergie hin"
-  description="Die Anregung von Elektronen und das ausgesandte Licht mit der beobachteten Flammenfarbe verbinden."
+  title={<>Flammenfarbe weist auf Elektronenenergie hin</>}
+  description={<>Die Anregung von Elektronen und das ausgesandte Licht mit der beobachteten Flammenfarbe verbinden.</>}
   chart={`flowchart LR
     A["Energie wird zugeführt"] --> B["Elektron wird angeregt"]
     B --> C["Elektron kehrt zurück"]
@@ -244,6 +244,25 @@ Füll die Schalen der Reihe nach für die ersten 20 Elemente, von Wasserstoff mi
   }}
 />
 
+### Formen der s p und d Orbitale
+
+Die Reihenfolge der Besetzung nutzt Unterschalen wie <InlineMath math="2s" />, <InlineMath math="2p" /> und <InlineMath math="3d" />. Jeder Name hat seine eigene Wolkenform. **Ein s Orbital ist eine Kugel, ein p Orbital sieht aus wie zwei Ballons, und ein d Orbital hat vier Keulen** oder einen Ring. Die zwei Farben markieren Teile der Wolke, in denen die Wellenfunktion entgegengesetzte Vorzeichen hat.
+
+<OrbitalCloudLab
+  title={<>Die s, p und d Orbitale</>}
+  description={<>Wähl ein Orbital und dreh die Wolke, um Keulen und Knotenebenen zu sehen.</>}
+  orbitals={["2s", "2pz", "3dz2", "3dxy"]}
+  labels={{
+    angular: <>Winkelknoten</>,
+    choose: "Orbital wählen",
+    numbers: <>Quantenzahlen</>,
+    orbital: <>Orbital</>,
+    radial: <>Radialknoten</>,
+    view: "Elektronenwolke eines Orbitals",
+  }}
+/>
+
+
 ## Konfiguration und Spektrum verbinden
 
 Die Konfigurationen im Schalenmodell zeigen die Anordnung der Elektronen im Grundzustand, also <Highlight>im Zustand mit der niedrigsten Energie</Highlight>. Ein Linienspektrum entsteht, wenn ein Elektron Energie erhält und dann auf ein niedrigeres Energieniveau zurückkehrt.
@@ -264,6 +283,25 @@ E&=\frac{hc}{\lambda}\\
 \end{aligned}" />
 
 Elektronen besetzen bestimmte Energieniveaus. Ein Übergang zu einem niedrigeren Energieniveau kann Licht mit einer bestimmten Energie frei. Die Elektronenkonfiguration beschreibt dagegen die Anordnung der Elektronen im Grundzustand.
+
+### Unsichtbare Linien
+
+Nicht jeder Elektronensprung ergibt sichtbares Licht. Ein Sprung auf die erste Schale setzt ein energiereiches ultraviolettes Photon frei, ein Sprung auf die dritte Schale ein infrarotes. **Je größer der Energieunterschied, desto kürzer die Wellenlänge**. Vergleiche unten auf der Karte die Photonenenergie jedes Sprungs.
+
+<BohrEmissionLab
+  title={<>Ultraviolette und infrarote Serien</>}
+  description={<>Sprünge auf die erste und dritte Schale des Wasserstoffs.</>}
+  falls={[{ from: 2, to: 1 }, { from: 3, to: 1 }, { from: 4, to: 3 }, { from: 5, to: 3 }]}
+  labels={{
+    choose: "Elektronensprung wählen",
+    energy: <>Photonenenergie</>,
+    frequency: <>Photonenfrequenz</>,
+    transition: <>Elektronensprung</>,
+    view: "Bohrsches Wasserstoffatom",
+    wavelength: <>Wellenlänge</>,
+  }}
+/>
+
 
 ## Elektronenzahl aus der Ordnungszahl
 
