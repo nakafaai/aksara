@@ -5,7 +5,7 @@ export const metadata = {
     "Den Anhalteweg als Summe aus Reaktionsweg und Bremsweg verstehen und mit einer konstanten Bremsverzögerung berechnen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Kinematik",
 };
 
@@ -69,6 +69,39 @@ Die Fläche unter der Geschwindigkeit ist die Strecke. Während der Reaktionszei
   }}
 />
 
+### Miss deine eigene Reaktionszeit
+
+Die Reaktionszeit ist keine feste Zahl, und am deutlichsten merkst du das, wenn du deine eigene misst. Auf dieser Karte fährst du mit <InlineMath math="20\text{ m/s}" />, also <InlineMath math="72\text{ km/h}" />, zwei Sekunden hinter einem anderen Auto. Drück **Start** und dann **Bremsen**, sobald die Bremslichter des Autos vor dir aufleuchten.
+
+<ReactionTimeLab
+  title={<>Teste deine Reaktionszeit</>}
+  description={
+    <>
+      Drück Bremsen, sobald die Bremslichter vor dir aufleuchten. Die Karte
+      misst deine Reaktionszeit und den Weg, den du bei{" "}
+      <InlineMath math="20\text{ m/s}" /> noch zurücklegst.
+    </>
+  }
+  labels={{
+    start: "Start",
+    brake: "Bremsen",
+    early: <>Zu früh, warte auf die Bremslichter</>,
+    lastTime: <>Deine Reaktionszeit</>,
+    reactionDistance: (
+      <>
+        Reaktionsweg bei <InlineMath math="20\text{ m/s}" />
+      </>
+    ),
+    best: <>Schnellste</>,
+    average: <>Mittel deiner letzten fünf Versuche</>,
+    viewLabel: "Blick vom Fahrersitz",
+  }}
+/>
+
+Die gemessene Zeit wird über <InlineMath math="d_{\text{Reaktion}}=vt_r" /> direkt zu einem Weg. Liegt deine Zeit bei <InlineMath math="0{,}3\text{ s}" />, rollt das Auto noch <InlineMath math="20\cdot0{,}3=6\text{ m}" />, bevor die Bremsen greifen. Sobald du bremst, halten beide Autos mit derselben Verzögerung an, also schrumpft die Lücke zwischen ihnen **genau um deinen Reaktionsweg**.
+
+Auf der echten Straße sind die Zahlen größer als am Bildschirm. Du musst die Gefahr sehen, dich fürs Bremsen entscheiden und den Fuß aufs Pedal setzen. [Marc Greens Zusammenfassung der Forschung zur Reaktionszeit von Fahrern](https://www.visualexpert.com/Resources/reactiontime.html) nennt etwa <InlineMath math="0{,}7\text{ s}" /> für jemanden, der schon bremsbereit ist, <InlineMath math="1{,}25\text{ s}" /> für Bremslichter vorn, mit denen niemand gerechnet hat, und <InlineMath math="1{,}5\text{ s}" /> für etwas, das plötzlich von der Seite auf die Straße kommt.
+
 ## Der Bremsweg folgt aus einer konstanten Verzögerung
 
 Während die Bremsen wirken, wird das Fahrzeug langsamer. Nehmen wir eine **konstante Verzögerung** und die Endgeschwindigkeit null an, lässt sich der Bremsweg mit einer Gleichung der gleichmäßig beschleunigten Bewegung bestimmen.
@@ -82,6 +115,62 @@ Während die Bremsen wirken, wird das Fahrzeug langsamer. Nehmen wir eine **kons
 Die Größe <InlineMath math="b" /> ist der Betrag der Bremsverzögerung und wird deshalb positiv eingesetzt.
 
 Die Formel setzt eine gerade Strecke, eine konstante Bremsverzögerung und ein Fahrzeug ohne Schleudern voraus. Ändern sich Fahrbahn oder Reifenhaftung, ändert sich auch der Wert von <InlineMath math="b" />.
+
+### Die Fahrbahn bestimmt die Verzögerung
+
+Die Bahn bleibt gerade, aber wenn ein Auto ohne ABS mit voller Kraft bremst, blockieren die Räder und die Reifen rutschen geradeaus über die Straße. Dann bremst nur noch die Reibung zwischen Reifen und Straße das Auto. Sie hat den Betrag <InlineMath math="\mu mg" />, wobei <InlineMath math="\mu" /> die Reibungszahl ist. Die Masse des Autos steht auf beiden Seiten, also **hängt die Verzögerung nur von der Fahrbahn ab**.
+
+<MathContainer>
+  <BlockMath math="mb=\mu mg" />
+  <BlockMath math="b=\mu g" />
+  <BlockMath math="d_{\text{Bremse}}=\frac{v^2}{2\mu g}" />
+</MathContainer>
+
+Die Gleitreibungszahlen in dieser Tabelle stammen aus [der Übersichtsarbeit von Soica und Gheorghe aus dem Jahr 2025 zum Kontakt zwischen Reifen und Straße](https://www.mdpi.com/2075-1702/13/11/1005). Für nassen Asphalt gibt sie einen Bereich von <InlineMath math="0{,}45" /> bis <InlineMath math="0{,}6" /> an, und die Tabelle nimmt das untere Ende. Die letzte Spalte gilt für <InlineMath math="20\text{ m/s}" /> mit <InlineMath math="g=9{,}8\text{ m/s}^2" />.
+
+| Fahrbahn | Reibungszahl | Verzögerung | Bremsweg |
+| --- | --- | --- | --- |
+| Trockener Asphalt | <InlineMath math="0{,}75" /> | <InlineMath math="7{,}35\text{ m/s}^2" /> | <InlineMath math="27{,}2\text{ m}" /> |
+| Nasser Asphalt | <InlineMath math="0{,}45" /> | <InlineMath math="4{,}41\text{ m/s}^2" /> | <InlineMath math="45{,}4\text{ m}" /> |
+| Schotter | <InlineMath math="0{,}55" /> | <InlineMath math="5{,}39\text{ m/s}^2" /> | <InlineMath math="37{,}1\text{ m}" /> |
+| Festgefahrener Schnee | <InlineMath math="0{,}15" /> | <InlineMath math="1{,}47\text{ m/s}^2" /> | <InlineMath math="136{,}1\text{ m}" /> |
+| Eis | <InlineMath math="0{,}07" /> | <InlineMath math="0{,}686\text{ m/s}^2" /> | <InlineMath math="291{,}5\text{ m}" /> |
+
+<BrakingSurfaceLab
+  title={<>Fahrbahn und Bremsweg</>}
+  description={
+    <>
+      Das Auto fährt <InlineMath math="20\text{ m/s}" />, und seine Räder
+      blockieren genau an der weißen Linie. Wähl eine Fahrbahn und spiel die
+      Bremsung ab, dann siehst du die Bremsspuren und die Leitpfosten.
+    </>
+  }
+  labels={{
+    chooseSurface: "Fahrbahn wählen",
+    surfaces: {
+      dry: "Trocken",
+      wet: "Nass",
+      gravel: "Schotter",
+      snow: "Schnee",
+      ice: "Eis",
+    },
+    friction: (
+      <>
+        Reibungszahl <InlineMath math="\mu" />
+      </>
+    ),
+    deceleration: (
+      <>
+        Verzögerung <InlineMath math="b" />
+      </>
+    ),
+    brakingDistance: <>Bremsweg</>,
+    brakingTime: <>Bremszeit</>,
+    viewLabel: "Ein Auto bremst auf verschiedenen Fahrbahnen",
+  }}
+/>
+
+Vergleich trockenen und nassen Asphalt. Die Reibungszahl sinkt von <InlineMath math="0{,}75" /> auf <InlineMath math="0{,}45" />, also wird der Bremsweg <InlineMath math="0{,}75/0{,}45\approx1{,}67" />-mal so lang, von <InlineMath math="27{,}2\text{ m}" /> auf <InlineMath math="45{,}4\text{ m}" />. Auf Eis steht dasselbe Auto erst nach fast <InlineMath math="300\text{ m}" />. Achte auch auf die Bremsspuren: Ihre Länge ist der Bremsweg, den du an den Pfosten abliest.
 
 ## Mit der Geschwindigkeit wächst der Bremsweg quadratisch
 
@@ -125,6 +214,72 @@ Das Diagramm unten addiert beide Teile für jedes Tempo bis <InlineMath math="30
     at: <InlineMath math="v=20\text{ m/s}:\ 60\text{ m}" />,
   }}
 />
+
+### Bewegungsenergie wird in der Bremse zu Wärme
+
+Warum folgt der Bremsweg <InlineMath math="v^2" />? Die Bremsen müssen die kinetische Energie des Autos aufbrauchen, <InlineMath math="E_{\text{kin}}=\tfrac{1}{2}mv^2" />. Die Reibung zwischen Belägen und Scheibe wandelt diese Energie in **Wärme** um, und die Scheibe wird warm. Bei konstanter Bremskraft ist die aufgebrauchte Energie Kraft mal Weg, also wächst auch der Bremsweg mit <InlineMath math="v^2" />.
+
+Die Karte unten nimmt ein Auto mit <InlineMath math="1200\text{ kg}" /> und vier Eisenscheiben zu je <InlineMath math="8\text{ kg}" />, die sich die Wärme gleichmäßig teilen. Die spezifische Wärmekapazität von Eisen ist <InlineMath math="449\text{ J/(kg K)}" /> aus dem CRC Handbook of Chemistry and Physics, und die Scheiben starten bei <InlineMath math="30^\circ\text{C}" />.
+
+<MathContainer>
+  <BlockMath math="Q=E_{\text{kin}}=\tfrac{1}{2}mv^2" />
+  <BlockMath math="\Delta T=\frac{Q}{4m_{\text{Scheibe}}c}" />
+</MathContainer>
+
+<BrakeHeatLab
+  title={<>Wärme in der Bremsscheibe</>}
+  description={
+    <>
+      Wähl eine Geschwindigkeit und spiel die Bremsung bis zum Stillstand mit{" "}
+      <InlineMath math="5\text{ m/s}^2" /> ab. Die Wärmebildkamera färbt jedes
+      Teil des Rads nach seiner Temperatur.
+    </>
+  }
+  labels={{
+    chooseSpeed: "Anfangsgeschwindigkeit wählen",
+    thermal: "Wärmebild",
+    kineticEnergy: <>Kinetische Energie</>,
+    temperatureRise: <>Erwärmung der Scheibe</>,
+    discTemperature: <>Scheibentemperatur nach dem Halt</>,
+    viewLabel: "Vorderrad mit Bremsscheibe und Bremssattel",
+  }}
+/>
+
+Mit bloßem Auge siehst du an der Scheibe keine Veränderung, aber die Wärmebildkamera zeigt sie als heißestes Teil. Ab <InlineMath math="20\text{ m/s}" /> sind es <InlineMath math="\tfrac{1}{2}\cdot1200\cdot20^2=240\text{ kJ}" />, und die Scheibe erwärmt sich um etwa <InlineMath math="16{,}7\text{ K}" />. Ab <InlineMath math="10\text{ m/s}" /> sind es nur etwa <InlineMath math="4{,}2\text{ K}" />. Die doppelte Geschwindigkeit bringt **die vierfache Wärme**.
+
+## Sicherer Abstand zum Vordermann
+
+Wenn das Auto vor dir stark bremst, musst du nur vor ihm anhalten, und es rollt beim Bremsen selbst noch weiter. Bremsen beide Autos gleich stark, sind ihre Bremswege gleich lang. Der einzige Unterschied ist dein Reaktionsweg: Während <InlineMath math="t_r" /> fährst du noch mit voller Geschwindigkeit, während das Auto vor dir schon langsamer wird.
+
+Angenommen, du hältst einen zeitlichen Abstand <InlineMath math="h" /> zu diesem Auto. Bei der Geschwindigkeit <InlineMath math="v" /> ist der Anfangsabstand <InlineMath math="vh" />, und wenn beide stehen, bleibt
+
+<BlockMath math="d_{\text{Rest}}=vh-vt_r=v\,(h-t_r)" />
+
+Die Lücke ist also genau dann aufgebraucht, wenn <InlineMath math="h<t_r" /> gilt, **egal wie schnell ihr fahrt**. Deshalb verlangt [der britische Highway Code in Regel 126](https://www.gov.uk/guidance/the-highway-code/general-rules-techniques-and-advice-for-all-drivers-and-riders-103-to-158) auf schnellen Straßen mindestens zwei Sekunden Abstand, auf nasser Fahrbahn mindestens das Doppelte und auf Eis bis zum Zehnfachen.
+
+<FollowingDistanceLab
+  title={<>Zeitlicher Abstand zum Vordermann</>}
+  description={
+    <>
+      Beide Autos fahren <InlineMath math="25\text{ m/s}" /> und bremsen mit{" "}
+      <InlineMath math="5\text{ m/s}^2" />. Wähl den zeitlichen Abstand und die
+      Reaktionszeit und spiel die Bremsung ab.
+    </>
+  }
+  labels={{
+    chooseHeadway: "Zeitlichen Abstand wählen",
+    reactionTime: "Reaktionszeit",
+    initialGap: <>Anfangsabstand</>,
+    reactionDistance: <>Reaktionsweg</>,
+    finalGap: <>Restabstand</>,
+    safe: <>sicher</>,
+    impactSpeed: <>Geschwindigkeitsunterschied beim Aufprall</>,
+    crash: <>Auffahrunfall</>,
+    viewLabel: "Zwei Autos auf einer Autobahnspur",
+  }}
+/>
+
+Probier einen zeitlichen Abstand von <InlineMath math="1\text{ s}" /> mit einer Reaktionszeit von <InlineMath math="1{,}5\text{ s}" />. Der Anfangsabstand ist <InlineMath math="25\text{ m}" /> und damit kürzer als der Reaktionsweg von <InlineMath math="37{,}5\text{ m}" />, also fährst du mit einem Geschwindigkeitsunterschied von <InlineMath math="5\cdot1{,}5=7{,}5\text{ m/s}" /> auf. Bei <InlineMath math="2\text{ s}" /> Abstand bleiben <InlineMath math="25\,(2-1{,}5)=12{,}5\text{ m}" />.
 
 ## Berechnung des Anhaltewegs
 

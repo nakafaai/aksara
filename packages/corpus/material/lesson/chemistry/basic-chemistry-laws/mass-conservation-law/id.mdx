@@ -5,7 +5,7 @@ export const metadata = {
     "Massa dalam reaksi kimia tetap sama jika seluruh sistem dihitung, termasuk produk, sisa reaktan, dan gas yang mungkin keluar.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-03",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Hukum Dasar Kimia",
 };
 
@@ -17,9 +17,69 @@ Saat reaksi kimia terjadi, atom tidak hilang dan tidak muncul dari ketiadaan. At
 
 Batas sistem menentukan zat mana yang ikut dihitung. Dalam wadah tertutup, semua zat tetap berada di bagian yang ditimbang. Dalam wadah terbuka, gas dapat keluar melewati batas tersebut. Neraca lalu menunjukkan massa yang lebih kecil karena gas itu tidak lagi berada di atas neraca. Materi tetap ada meskipun gas keluar dari wadah. Jika seluruh zat dihitung dalam satu sistem tertutup, <Highlight>jumlah total materi tetap sama</Highlight> selama perubahan kimia maupun fisika.
 
+### Endapan Baru dengan Massa yang Sama
+
+Reaksi bisa membuat zat yang sama sekali baru tanpa mengubah massa. Larutan perak nitrat dan larutan garam dapur sama-sama bening. Saat dicampur, ion perak dan ion klorida bergabung menjadi perak klorida yang tidak larut, sehingga muncul **endapan putih** seperti awan.
+
+<BlockMath math="\mathrm{AgNO_3(aq)} + \mathrm{NaCl(aq)} \rightarrow \mathrm{AgCl(s)} + \mathrm{NaNO_3(aq)}" />
+
+Setiap gelas berisi <InlineMath math="50{,}00\ \mathrm{g}" /> air dengan <InlineMath math="0{,}0050\ \mathrm{mol}" /> garamnya, yaitu <InlineMath math="0{,}85\ \mathrm{g}" /> perak nitrat dan <InlineMath math="0{,}29\ \mathrm{g}" /> natrium klorida. Kedua gelas berdiri di atas neraca yang sama sebelum dan sesudah dituang.
+
+<PrecipitateLab
+  title={<>Endapan Putih di Atas Neraca</>}
+  description={
+    <>
+      Putar untuk menuang larutan perak nitrat ke larutan garam dapur. Awan
+      perak klorida muncul, dan angka neraca tetap.
+    </>
+  }
+  labels={{
+    readingBefore: <>Neraca sebelum dituang</>,
+    readingAfter: <>Neraca sesudah dituang</>,
+    precipitate: (
+      <>
+        Endapan <InlineMath math="\mathrm{AgCl}" /> yang terbentuk
+      </>
+    ),
+    viewLabel: "Dua gelas kimia di atas neraca",
+  }}
+/>
+
+Neraca membaca <InlineMath math="101{,}14\ \mathrm{g}" /> sebelum dan sesudah dituang. Sekitar <InlineMath math="0{,}72\ \mathrm{g}" /> perak klorida padat terbentuk, tetapi atomnya berasal dari zat yang sudah ada di gelas. Tidak ada gas yang masuk atau keluar, jadi gelas terbuka pun tetap menunjukkan massa yang sama.
+
 ## Penimbangan oleh Lavoisier
 
 Sebelum kimia modern, pembakaran sering dijelaskan dengan gagasan flogiston, seolah-olah ada sesuatu yang lepas dari benda saat terbakar. Antoine Lavoisier menantangnya lewat penimbangan yang teliti. Ia mencatat massa pereaksi dan hasil reaksi, **termasuk gas**, lalu menunjukkan bahwa pembakaran melibatkan reaksi dengan oksigen.
+
+Percobaan paling terkenalnya tercatat dalam [buku Elements of Chemistry karya Lavoisier](https://www.gutenberg.org/ebooks/30775). Ia memanaskan empat ons raksa di dalam labu kaca selama dua belas hari. Leher labu itu masuk ke udara di bawah sungkup kaca yang berdiri di atas bak raksa. Butir merah, yang ia sebut kalx raksa, terbentuk di permukaan raksa, dan udara di bawah sungkup menyusut dari sekitar <InlineMath math="50" /> menjadi antara <InlineMath math="42" /> dan <InlineMath math="43" /> inci kubik.
+
+<LavoisierCalxLab
+  title={<>Dua Belas Hari Pemanasan Raksa oleh Lavoisier</>}
+  description={
+    <>
+      Geser atau putar hari pemanasan. Butir merah tumbuh di atas raksa,
+      sementara raksa di dalam sungkup naik karena udaranya berkurang.
+    </>
+  }
+  labels={{
+    day: "Hari pemanasan",
+    air: <>Udara di bawah sungkup</>,
+    airUnit: "inci kubik",
+    calx: <>Kalx merah yang terbentuk</>,
+    calxUnit: "grain",
+    reverseLabel: <>Saat kalx dipanaskan lebih kuat</>,
+    reverse: (
+      <>
+        <InlineMath math="45" /> grain kalx menjadi{" "}
+        <InlineMath math="41{,}5" /> grain raksa dan{" "}
+        <InlineMath math="7" /> sampai <InlineMath math="8" /> inci kubik gas
+      </>
+    ),
+    viewLabel: "Tungku, labu raksa, dan sungkup kaca Lavoisier",
+  }}
+/>
+
+Lavoisier mengumpulkan <InlineMath math="45" /> grain kalx. Saat kalx itu dipanaskan lebih kuat, ia kembali menjadi <InlineMath math="41{,}5" /> grain raksa dan <InlineMath math="7" /> sampai <InlineMath math="8" /> inci kubik gas. Selisih <InlineMath math="45-41{,}5=3{,}5" /> grain adalah massa gas yang tadi diambil raksa dari udara. **Massa tidak muncul dari ketiadaan**: kalx lebih berat karena oksigen dari udara ikut bergabung.
 
 Lavoisier membantu menetapkan hukum kekekalan massa dan mengaitkan pembakaran dengan oksigen.
 
@@ -123,6 +183,73 @@ Tiga kolom di bawah adalah angka yang dibaca neraca, dengan satu kotak grid untu
     open: <InlineMath math="11{,}00\ \mathrm{g}" />,
   }}
 />
+
+Gas bisa keluar dari sistem terbuka, tetapi gas dari udara juga bisa masuk dan ikut bereaksi. Dua percobaan berikut memperlihatkan kedua arah itu pada neraca yang sama.
+
+### Gas Keluar dari Labu Terbuka
+
+Soda kue, natrium bikarbonat, bereaksi dengan asam asetat dalam cuka dan menghasilkan gas karbon dioksida.
+
+<BlockMath math="\mathrm{NaHCO_3} + \mathrm{CH_3COOH} \rightarrow \mathrm{CH_3COONa} + \mathrm{H_2O} + \mathrm{CO_2}" />
+
+Setiap mol soda kue menghasilkan **satu mol karbon dioksida**. Dari <InlineMath math="2{,}00\ \mathrm{g}" /> soda kue terbentuk <InlineMath math="2{,}00\times\frac{44{,}01}{84{,}01}\approx1{,}05\ \mathrm{g}" /> gas. Neraca ditara terhadap labu dan cawan kosong, jadi angka awalnya adalah <InlineMath math="100{,}00\ \mathrm{g}" /> cuka ditambah soda kue.
+
+<FizzBalanceLab
+  title={<>Soda Kue dan Cuka di Atas Neraca</>}
+  description={
+    <>
+      Putar untuk menuang soda kue ke cuka. Bandingkan labu terbuka dengan
+      labu yang ditutup sumbat.
+    </>
+  }
+  labels={{
+    chooseSeal: "Pilih labu",
+    seals: { open: "Terbuka", closed: "Tertutup" },
+    readingBefore: <>Neraca sebelum bereaksi</>,
+    readingAfter: <>Neraca sesudah bereaksi</>,
+    gasFormed: (
+      <>
+        <InlineMath math="\mathrm{CO_2}" /> yang terbentuk
+      </>
+    ),
+    gasEscaped: (
+      <>
+        <InlineMath math="\mathrm{CO_2}" /> yang keluar
+      </>
+    ),
+    viewLabel: "Labu cuka dan cawan soda kue di atas neraca",
+  }}
+/>
+
+Pada labu terbuka, angka neraca turun dari <InlineMath math="102{,}00\ \mathrm{g}" /> ke <InlineMath math="100{,}95\ \mathrm{g}" /> karena gas keluar lewat leher labu. Pada labu yang disumbat, gas tetap di dalam dan neraca tetap <InlineMath math="102{,}00\ \mathrm{g}" />. Perhitungan ini menganggap semua gas lepas dari cairan. Kenyataannya, sedikit karbon dioksida tetap larut, sehingga penurunan yang terukur bisa sedikit lebih kecil.
+
+### Oksigen dari Udara Ikut Bereaksi
+
+Wol baja yang terbakar justru menjadi **lebih berat**. Besi bereaksi dengan oksigen dari udara dan membentuk oksida besi berwarna hitam kebiruan.
+
+<BlockMath math="3\mathrm{Fe} + 2\mathrm{O_2} \rightarrow \mathrm{Fe_3O_4}" />
+
+Setiap <InlineMath math="3\times55{,}845=167{,}535\ \mathrm{g}" /> besi mengikat <InlineMath math="4\times15{,}999=63{,}996\ \mathrm{g}" /> oksigen. Kalau seluruh <InlineMath math="1{,}50\ \mathrm{g}" /> wol baja terbakar, oksigen yang ikut bergabung adalah <InlineMath math="1{,}50\times\frac{63{,}996}{167{,}535}\approx0{,}57\ \mathrm{g}" />. [Percobaan pembakaran wol besi dari Royal Society of Chemistry](https://edu.rsc.org/experiments/the-combustion-of-iron-wool/717.article) memperlihatkan kenaikan massa ini pada neraca sederhana.
+
+<SteelWoolLab
+  title={<>Wol Baja yang Terbakar Menjadi Lebih Berat</>}
+  description={
+    <>
+      Putar untuk menyulut wol baja dengan baterai. Bandingkan pembakaran di
+      udara terbuka dengan pembakaran di dalam toples tertutup berisi udara.
+    </>
+  }
+  labels={{
+    chooseSeal: "Pilih tempat",
+    seals: { open: "Udara terbuka", closed: "Toples tertutup" },
+    readingBefore: <>Neraca sebelum dibakar</>,
+    readingAfter: <>Neraca sesudah dibakar</>,
+    oxygenJoined: <>Oksigen yang ikut bergabung</>,
+    viewLabel: "Wol baja terbakar di atas neraca",
+  }}
+/>
+
+Di udara terbuka, oksigen datang dari luar sistem yang ditimbang, jadi neraca naik dari <InlineMath math="1{,}50\ \mathrm{g}" /> ke <InlineMath math="2{,}07\ \mathrm{g}" />. Di dalam toples tertutup, oksigen itu sudah ikut ditimbang sejak awal, sehingga angkanya tetap. Pada percobaan sungguhan, biasanya hanya sebagian wol yang habis terbakar, jadi kenaikannya lebih kecil daripada perhitungan pembakaran sempurna ini.
 
 ## Contoh Seng dan Belerang
 
