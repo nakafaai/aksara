@@ -1,15 +1,40 @@
-Der Weg ist eine Diagonale des Rechtecks. Sie teilt das Rechteck in zwei rechtwinklige Dreiecke, deren Katheten die Seiten <InlineMath math="21\text{ m}" /> und <InlineMath math="20\text{ m}" /> sind. Die Diagonale ist die **Hypotenuse**, also hilft der Satz des Pythagoras.
+# Beide Seiten quadrieren
+
+Du kennst <InlineMath math="\sin x" /> und <InlineMath math="\cos x" /> noch nicht einzeln. **Quadriere beide Seiten**, denn dann entsteht <InlineMath math="\sin^2x+\cos^2x" />, und das ist immer <InlineMath math="1" />:
 
 <BlockMath math="\begin{aligned}
-d^2&=21^2+20^2=441+400=841 \\
-d&=\sqrt{841}=29\text{ m}
+(\sin x+\cos x)^2&=\frac{289}{169} \\
+\sin^2x+2\sin x\cos x+\cos^2x&=\frac{289}{169} \\
+1+2\sin x\cos x&=\frac{289}{169} \\
+\sin x\cos x&=\frac{60}{169}
 \end{aligned}" />
 
-Zur Kontrolle: <InlineMath math="29^2=841" />, und die Hypotenuse ist länger als jede Kathete, aber kürzer als ihre Summe <InlineMath math="41\text{ m}" />.
+# Zwei Zahlen aus Summe und Produkt
 
-Der Weg ist also <InlineMath math="29\text{ m}" /> lang.
+Jetzt kennst du die Summe <InlineMath math="\sin x+\cos x=\frac{17}{13}" /> und das Produkt <InlineMath math="\sin x\cos x=\frac{60}{169}" />. **Zwei Zahlen mit dieser Summe und diesem Produkt sind die Lösungen der folgenden quadratischen Gleichung**:
 
-- <InlineMath math="\sqrt{41}\text{ m}" /> entsteht aus <InlineMath math="21^2-20^2=41" />. Für die Hypotenuse werden die Quadrate der Katheten aber addiert.
-- <InlineMath math="21\text{ m}" /> ist nur die längere Seite. Eine Diagonale ist immer länger als jede Seite.
-- <InlineMath math="25\text{ m}" /> und <InlineMath math="27\text{ m}" /> passen nicht, denn <InlineMath math="25^2=625" /> und <InlineMath math="27^2=729" /> sind kleiner als <InlineMath math="841" />.
-- <InlineMath math="41\text{ m}" /> ist die Summe der Seiten, also der Weg entlang zweier Ränder statt quer über das Grundstück.
+<BlockMath math="\begin{aligned}
+t^2-\frac{17}{13}t+\frac{60}{169}&=0 \\
+169t^2-221t+60&=0 \\
+(13t-5)(13t-12)&=0
+\end{aligned}" />
+
+Die beiden Zahlen sind also <InlineMath math="\frac{5}{13}" /> und <InlineMath math="\frac{12}{13}" />. Bleibt nur zu klären, welche der Sinus und welche der Kosinus ist.
+
+# Den Winkelbereich nutzen
+
+Für <InlineMath math="0^\circ<x<45^\circ" /> liegt der Winkel näher an <InlineMath math="0^\circ" />, also **ist sein Sinus kleiner als sein Kosinus**. Deshalb gilt:
+
+<BlockMath math="\sin x=\frac{5}{13},\qquad\cos x=\frac{12}{13},\qquad\tan x=\frac{\sin x}{\cos x}=\frac{5}{12}" />
+
+Probe: <InlineMath math="\frac{5}{13}+\frac{12}{13}=\frac{17}{13}" />, und <InlineMath math="\tan x=\frac{5}{12}<1" /> passt zu einem Winkel unter <InlineMath math="45^\circ" />.
+
+Also ist <InlineMath math="\tan x=\frac{5}{12}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac{12}{5}" /> **vertauscht Sinus und Kosinus**. Ein Tangens über <InlineMath math="1" /> gehört zu einem Winkel über <InlineMath math="45^\circ" />.
+- <InlineMath math="\frac{60}{169}" /> ist <InlineMath math="\sin x\cos x" />, der Zwischenschritt, nicht der Tangens.
+- <InlineMath math="\frac{5}{12}" /> oder <InlineMath math="\frac{12}{5}" /> übersieht den Winkelbereich. Ohne ihn wären beide Werte möglich, hier gilt aber nur einer.
+- <InlineMath math="\frac{120}{169}" /> ist <InlineMath math="2\sin x\cos x=\sin2x" />.
+- „Keinen solchen Winkel“ erhält man, wenn man ohne den mittleren Summanden quadriert. Dann steht da <InlineMath math="1=\frac{289}{169}" />, was unmöglich aussieht, aber nur, weil <InlineMath math="2\sin x\cos x" /> fehlt.

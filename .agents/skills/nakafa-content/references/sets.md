@@ -71,9 +71,10 @@ test description and the rules that govern it.
   reused from another set. Rewrite a near duplicate as an original item. A
   shared question stem over a different passage is not a duplicate.
 - Each set follows its readiness blueprint for cognitive levels, content
-  domains, topics, and response kinds. Difficulty comes from linked decisions,
-  constraints, and plausible distractors, never from obscure wording or
-  oversized arithmetic ([question bank](questions.md#assessment-review)).
+  domains, topics, and response kinds, and every item meets the bar in
+  [try-out difficulty](difficulty.md): at or above the hardest items of the
+  real exam, built from linked decisions, constraints, and plausible
+  distractors, never from obscure wording or oversized arithmetic.
 
 ## Passages and rights
 
