@@ -1,0 +1,134 @@
+export const metadata = {
+  title: "Aplikasi Sukatan Kecenderungan Memusat",
+  description: "Pilih min, median, atau mod berdasarkan jenis data dan kesan nilai yang luar biasa besar atau kecil.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-22",
+  dateModified: "2026-11-08",
+  subject: "Statistik",
+};
+
+## Sukatan Berbeza Menjawab Soalan Berbeza tentang Data yang Sama
+
+**Min, median, dan mod** menerangkan pusat satu set data dengan cara yang berbeza. Min menggunakan setiap nilai, median menggunakan kedudukan tengah, dan mod menggunakan kekerapan paling tinggi. Jadi ketiga-tiganya boleh menjawab soalan yang berbeza tentang data yang sama.
+
+Pilih sukatan itu berdasarkan jenis data, bentuk taburan, dan soalan yang ditanya. Min berubah apabila nilai ekstrem berubah, median menggunakan kedudukan tanpa mengukur jarak antara nilai, dan mod hanya mengenal pasti nilai atau kategori yang paling kerap.
+
+Ini markah <InlineMath math="7, 8, 8, 9, 10" /> dalam bentuk titik. Min <InlineMath math="8.4" /> ialah titik keseimbangan, median ialah titik tengah pada <InlineMath math="8" />, dan mod <InlineMath math="8" /> ialah longgokan paling tinggi. Untuk data yang sekata begini, ketiga-tiga sukatan berada dekat antara satu sama lain.
+
+<MathVisual
+  title={<>Tiga pusat bagi markah yang sama</>}
+  description={<>Titik bagi lima markah dengan min 8.4 sebagai penyokong, serta median dan mod kedua-duanya pada 8.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} = 8.4" />,
+    median: <InlineMath math="\operatorname{Me} = 8" />,
+    mode: <InlineMath math="\operatorname{Mo} = 8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 6, max: 11 }, y: { min: -0.6, max: 1.8 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 6, y: 0 }, to: { x: 11, y: 0 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 7, y: 0.6 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 8, y: 0.6 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 8, y: 1.2 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 9, y: 0.6 }, appearance: "primary" },
+      { id: "d4", kind: "point", at: { x: 10, y: 0.6 }, appearance: "primary" },
+      { id: "mean", kind: "polygon", vertices: [{ x: 42 / 5, y: 0 }, { x: 42 / 5 - 0.5, y: -0.5 }, { x: 42 / 5 + 0.5, y: -0.5 }], appearance: "answer" },
+      { id: "median", kind: "segment", from: { x: 8, y: 0 }, to: { x: 8, y: 1.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 42 / 5 - 0.5, y: -0.5 }, placement: "left" },
+      { key: "median", objectId: "median", at: { x: 8, y: 1.6 }, placement: "above-right" },
+      { key: "mode", objectId: "median", at: { x: 8, y: 1.6 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+## Bagaimana Min, Median, dan Mod Bertindak balas terhadap Data
+
+Jadual ini mengumpulkan perbandingan itu di satu tempat. Setiap baris menggunakan markah <InlineMath math="7, 8, 9, 8, 10" /> dan kemudian **markah yang sama dengan satu tambahan** <InlineMath math="1" />.
+
+| Sukatan | Apa yang digunakan | Nilai selepas markah <InlineMath math="1" /> ditambah |
+| --- | --- | --- |
+| Min | Setiap nilai dalam hasil tambah | Berubah daripada <InlineMath math="8.4" /> turun kepada <InlineMath math="7.17" /> |
+| Median | Kedudukan tengah data yang sudah disusun | Kekal pada <InlineMath math="8" /> |
+| Mod | Nilai dengan kekerapan paling tinggi | Kekal pada <InlineMath math="8" /> |
+
+> Menambah satu nilai tidak semestinya mengubah setiap sukatan pusat. Untuk data ini, min berubah manakala median dan mod kekal sama.
+### Min atau Purata
+
+Tambah setiap nilai dan bahagikan hasil tambahnya dengan bilangan nilai. Oleh sebab setiap nilai masuk ke dalam hasil tambah, min <Highlight>sangat peka terhadap nilai ekstrem</Highlight>, dan satu nilai yang luar biasa besar atau kecil boleh mengalihkannya jauh. Untuk markah <InlineMath math="7, 8, 9, 8, 10" />, minnya ialah <InlineMath math="8.4" />. Menambah markah rendah <InlineMath math="1" /> memberikan <InlineMath math="(7+8+9+8+10+1)/6 \approx 7.17" />, jadi min jatuh lebih daripada satu mata.
+
+<MathContainer>
+  <BlockMath math="\bar x_{\text{sebelum}}=\frac{7+8+9+8+10}{5}=\frac{42}{5}=8.4" />
+  <BlockMath math="\bar x_{\text{selepas}}=\frac{42+1}{6}=\frac{43}{6}\approx7.17" />
+</MathContainer>
+
+Tambahkan markah ekstrem <InlineMath math="1" />. Titik keseimbangan bergerak ke kiri ke <InlineMath math="43 / 6 \approx 7.17" /> kerana titik yang jauh itu menariknya. Median dan mod kekal pada <InlineMath math="8" />: titik tengah dan longgokan paling tinggi tidak berganjak.
+
+<MathVisual
+  title={<>Satu markah ekstrem hanya menggerakkan min</>}
+  description={<>Enam markah dengan markah tambahan 1. Penyokong min bergerak ke kira-kira 7.17, manakala median dan mod kekal pada 8.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} \approx 7.17" />,
+    median: <InlineMath math="\operatorname{Me} = 8" />,
+    mode: <InlineMath math="\operatorname{Mo} = 8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: -0.6, max: 1.8 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 0, y: 0 }, to: { x: 11, y: 0 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 1, y: 0.6 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 7, y: 0.6 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 8, y: 0.6 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 8, y: 1.2 }, appearance: "primary" },
+      { id: "d4", kind: "point", at: { x: 9, y: 0.6 }, appearance: "primary" },
+      { id: "d5", kind: "point", at: { x: 10, y: 0.6 }, appearance: "primary" },
+      { id: "mean", kind: "polygon", vertices: [{ x: 43 / 6, y: 0 }, { x: 43 / 6 - 0.5, y: -0.5 }, { x: 43 / 6 + 0.5, y: -0.5 }], appearance: "answer" },
+      { id: "median", kind: "segment", from: { x: 8, y: 0 }, to: { x: 8, y: 1.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 43 / 6 - 0.5, y: -0.5 }, placement: "left" },
+      { key: "median", objectId: "median", at: { x: 8, y: 1.6 }, placement: "above-right" },
+      { key: "mode", objectId: "median", at: { x: 8, y: 1.6 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+### Median sebagai Nilai Tengah
+
+Susun data itu dan ambil nilai pada kedudukan tengah. Median bergantung pada **kedudukan tengah dalam data yang sudah disusun**. Mengubah nilai hujung tanpa mengubah susunan atau nilai tengah tidak mengubah median. Menambah cerapan baharu boleh mengubah kedudukan tengah, jadi kira semula median. Untuk <InlineMath math="7, 8, 9, 8, 10" />, data yang sudah disusun ialah <InlineMath math="7, 8, 8, 9, 10" /> dengan median <InlineMath math="8" />. Menambah markah <InlineMath math="1" /> memberikan <InlineMath math="1, 7, 8, 8, 9, 10" />, dan dua nilai tengahnya kedua-duanya <InlineMath math="8" />, jadi median kekal pada <InlineMath math="8" />.
+
+### Mod sebagai Nilai yang Paling Kerap
+
+Cari nilai yang paling kerap muncul. Satu nilai ekstrem yang terpencil biasanya tidak mengubah mod, dan mod ialah satu-satunya sukatan di sini yang juga berfungsi untuk <Highlight>kategori</Highlight>. Untuk <InlineMath math="7, 8, 9, 8, 10" />, modnya ialah <InlineMath math="8" />, dan mod itu kekal <InlineMath math="8" /> selepas markah <InlineMath math="1" /> ditambah. Kalau data itu senarai warna kegemaran seperti merah, biru, merah, hijau, modnya ialah merah.
+
+## Panduan Penggunaan
+
+Berikut panduan ringkas tentang bila menggunakan setiap sukatan:
+
+| Sukatan    | Jenis Data Terbaik         | Pengaruh Nilai Ekstrem | Bila Digunakan?                                                                                             |
+| :--------- | :------------------------- | :---------------- | :---------------------------------------------------------------------------------------------------------- |
+| **Min**    | Kuantitatif (Nombor)       | Tinggi | Apabila setiap magnitud patut menyumbang dan nilai ekstrem tidak menjadikan hasilnya mengelirukan.           |
+| **Median** | Kuantitatif (Nombor)       | Rendah  | Apabila taburannya pencong atau ada nilai hujung yang luar biasa dan pusat berasaskan kedudukan yang stabil berguna. |
+| **Mod**    | Kualitatif & Kuantitatif   | Rendah untuk satu nilai terpencil | Apabila kamu mahu tahu **nilai atau kategori yang paling popular** atau kejadian yang paling kerap.        |
+
+**Contoh Situasi**:
+
+- **Mengira purata markah kelas**: Kalau markah murid tersebar agak sekata tanpa markah yang sangat tinggi atau rendah, **min** sesuai digunakan.
+- **Menerangkan pendapatan biasa di satu kawasan**: Beberapa pendapatan yang sangat tinggi boleh menarik **min** ke atas. **Median** pula kekal lebih dekat dengan pendapatan seseorang di tengah data yang sudah disusun.
+- **Menentukan saiz kasut paling laris di sebuah kedai**: Kita mahu tahu saiz yang paling kerap dibeli, jadi **mod** ialah pilihan yang tepat.
+- **Mencari warna kegemaran dalam kalangan murid**: Oleh sebab datanya data kategori (warna), satu-satunya sukatan yang boleh digunakan ialah **mod**.
+
+Kira berapa kerap setiap markah muncul dalam <InlineMath math="7, 8, 9, 8, 10" />. Bar paling tinggi milik <InlineMath math="8" />, yang muncul dua kali, jadi modnya ialah <InlineMath math="8" />. Mod boleh dibaca terus daripada carta ini, malah untuk kategori yang tiada nombor.
+
+<BarChart
+  title={<>Berapa kerap setiap markah muncul</>}
+  description={<>Kekerapan setiap markah antara 7, 8, 9, 8 dan 10. Markah 8 muncul dua kali.</>}
+  yAxisLabel="Kekerapan"
+  data={[["7", 1], ["8", 2], ["9", 1], ["10", 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Kekerapan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
