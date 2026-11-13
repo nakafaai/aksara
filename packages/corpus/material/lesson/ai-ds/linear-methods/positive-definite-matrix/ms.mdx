@@ -1,0 +1,230 @@
+export const metadata = {
+  title: "Matriks Tentu Positif",
+  description: "Kelaskan matriks simetri dan Hermitian melalui bentuk kuadratik, nilai eigen, minor utama, faktor Cholesky dan geometri pengoptimuman.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-13",
+  dateModified: "2026-09-12",
+  subject: "Kaedah Linear AI",
+};
+
+## Definisi melalui Bentuk Kuadratik
+
+Untuk matriks simetri nyata <InlineMath math="A\in\mathbb{R}^{n\times n}" />, pertimbangkan bentuk kuadratik
+
+<BlockMath math="q(x)=x^TAx" />
+
+Versi kompleksnya menggunakan matriks Hermitian dan <InlineMath math="q(x)=x^HAx" />. Tanda bagi skalar ini menentukan kelas matriks tersebut:
+
+| Kelas | Syarat tanda |
+| --- | --- |
+| Tentu positif | <InlineMath math="x^TAx>0" /> |
+| Separa tentu positif | <InlineMath math="x^TAx\ge0" /> |
+| Tentu negatif | <InlineMath math="x^TAx<0" /> |
+| Separa tentu negatif | <InlineMath math="x^TAx\le0" /> |
+| Tak tentu | bentuk kuadratik mengambil nilai positif dan juga nilai negatif |
+
+Untuk empat kelas tentu atau separa tentu, ketaksamaan itu mesti benar untuk **setiap vektor bukan sifar**. Tak tentu bermaksud sekurang-kurangnya satu vektor memberikan nilai positif dan satu vektor lain memberikan nilai negatif.
+
+**Kesimetrian** ialah sebahagian daripada definisi yang biasa digunakan. Untuk matriks nyata yang tidak simetri,
+
+<BlockMath math="x^TAx=x^T\left(\frac{A+A^T}{2}\right)x" />
+
+Identiti ini menunjukkan bahawa bentuk kuadratik hanya bergantung pada bahagian simetri bagi <InlineMath math="A" />.
+
+Bentuk kuadratik <InlineMath math="q(x)=x_1^2+2bx_1x_2+x_2^2" /> sepadan dengan <InlineMath math="A=\begin{pmatrix}1&b\\b&1\end{pmatrix}" />, yang nilai eigennya <InlineMath math="1\pm b" />. Bentuk ini tentu positif tepat apabila <InlineMath math="|b|<1" />, dan ketika itu set aras <InlineMath math="q=1" /> ialah elips. Pada <InlineMath math="|b|=1" />, set aras itu merosot menjadi dua garis, dan melepasi nilai itu, set aras itu terbuka menjadi hiperbola.
+
+<MathVisual
+  title={<>Set aras <InlineMath math="q(x)=1" /> untuk <InlineMath math="A=\begin{pmatrix}1&b\\b&1\end{pmatrix}" /></>}
+  description={<>Gerakkan <InlineMath math="b" />. Selagi bacaan <InlineMath math="\det A=1-b^2" /> positif, lengkung ungu ialah elips tertutup. Apabila bacaan itu menjadi negatif, lengkung itu terbuka menjadi hiperbola, jadi <InlineMath math="A" /> tidak lagi tentu positif.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "b", min: -1.5, max: 1.5, value: 0.5, step: 0.01, label: "b" },
+    ],
+    objects: [
+      { id: "level", kind: "implicit", equation: "x^2 + 2*b*x*y + y^2 = 1", appearance: "secondary" },
+    ],
+    readouts: [
+      { key: "det", formula: "1 - b^2" },
+    ],
+  }}
+  labels={{
+    "b": <InlineMath math="b" />,
+    "det": <InlineMath math="\det\begin{pmatrix}1&b\\b&1\end{pmatrix}" />,
+  }}
+/>
+
+## Kriteria Spektrum
+
+Teorem spektrum menulis matriks simetri nyata sebagai
+
+<BlockMath math="A=Q\Lambda Q^T" />
+
+Dalam penguraian ini, <InlineMath math="Q" /> ialah matriks ortogon dan <InlineMath math="\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)" /> ialah matriks pepenjuru nyata. Gantikan <InlineMath math="y=Q^Tx" />, dan kita dapat
+
+<BlockMath math="x^TAx=\sum_{i=1}^n\lambda_i y_i^2" />
+
+Pengiraan ini memberikan:
+
+- <InlineMath math="A" /> tentu positif tepat apabila setiap <InlineMath math="\lambda_i>0" />.
+- <InlineMath math="A" /> separa tentu positif tepat apabila setiap <InlineMath math="\lambda_i\ge0" />.
+- <InlineMath math="A" /> tak tentu tepat apabila matriks itu mempunyai nilai eigen positif dan juga nilai eigen negatif.
+
+Setiap unsur pepenjuru bagi matriks tentu positif bernilai positif kerana
+
+<BlockMath math="a_{ii}=e_i^TAe_i>0" />
+
+Matriks boleh mempunyai unsur pepenjuru yang positif tetapi masih tidak tentu positif, kerana **sebutan silang** juga mempengaruhi <InlineMath math="x^TAx" />.
+
+## Geometri Elipsoid
+
+Jika <InlineMath math="A" /> tentu positif, maka
+
+<BlockMath math="E=\{x\in\mathbb{R}^n:x^TAx=1\}" />
+
+Set <InlineMath math="E" /> ialah elipsoid yang berpusat di asalan. Dalam koordinat vektor eigen, persamaannya menjadi
+
+<BlockMath math="\sum_{i=1}^n\lambda_i y_i^2=1" />
+
+Persamaan ini menunjukkan bahawa **paksi utama** elipsoid mengikut arah vektor eigen bagi <InlineMath math="A" />. Separuh paksi ke-<InlineMath math="i" /> mempunyai panjang <InlineMath math="1/\sqrt{\lambda_i}" />. Nilai eigen yang kecil menghasilkan separuh paksi yang lebih panjang, manakala nilai eigen yang besar menghasilkan separuh paksi yang lebih pendek.
+
+
+Untuk <InlineMath math="A=\operatorname{diag}(1,1/4,1/9)" />, tiga nilai eigen ini memberikan panjang separuh paksi <InlineMath math="1,2,3" />. Putar model ini untuk membandingkan tiga arah itu. Lengkung yang kelihatan ialah keratan rentas bagi elipsoid yang sama, bukan permukaan yang berbeza.
+
+<BlockMath math="x^2+\frac{y^2}{4}+\frac{z^2}{9}=1" />
+
+<MathVisual
+  title={<>Elipsoid <InlineMath math="x^2+\tfrac{y^2}4+\tfrac{z^2}9=1" /></>}
+  description={<>Permukaan hijau kebiruan ialah <InlineMath math="x^TAx=1" /> untuk <InlineMath math="A=\operatorname{diag}(1,\tfrac14,\tfrac19)" />. Segmen ungu, oren dan magenta ialah separuh paksi <InlineMath math="1" />, <InlineMath math="2" /> dan <InlineMath math="3" />, iaitu nilai <InlineMath math="1/\sqrt{\lambda_i}" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -2.5, max: 2.5 }, z: { min: -3.5, max: 3.5 } },
+    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
+    objects: [
+      { id: "ellipsoid", kind: "surface", x: "sin(u)*cos(v)", y: "2*sin(u)*sin(v)", z: "3*cos(u)", u: { min: 0, max: Math.PI }, v: { min: 0, max: 2 * Math.PI }, appearance: "construction" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 0, z: 0 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 2, z: 0 }, appearance: "primary" },
+      { id: "third", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 3 }, appearance: "answer" },
+    ],
+  }}
+/>
+
+## Ujian Minor Utama
+
+Katakan <InlineMath math="A_k" /> ialah blok <InlineMath math="k\times k" /> di penjuru kiri atas bagi matriks simetri nyata atau matriks Hermitian kompleks. Kriteria Sylvester menyatakan
+
+<InlineMath math="A" /> tentu positif jika dan hanya jika setiap penentu utama pendahulu bernilai positif:
+
+<BlockMath math="\det(A_k)>0,\quad k=1,\ldots,n" />
+
+Ujian minor utama pendahulu ini tidak boleh dilanjutkan dengan sekadar menggantikan <InlineMath math=">" /> dengan <InlineMath math="\ge" />. Untuk separa tentu positif, **setiap minor utama** mesti bukan negatif. Menyemak minor utama pendahulu sahaja tidak mencukupi.
+
+## Semakan Lengkap untuk Matriks Dua Kali Dua
+
+Pertimbangkan
+
+<BlockMath math="A=\begin{pmatrix}5&1\\1&4\end{pmatrix}" />
+
+Minor utama pendahulunya ialah
+
+<MathContainer>
+<BlockMath math="\det(A_1)=5>0" />
+<BlockMath math="\det(A)=20-1=19>0" />
+</MathContainer>
+
+Kedua-dua **minor utama pendahulu bernilai positif**, jadi <InlineMath math="A" /> tentu positif. Kedua-dua nilai eigennya juga positif:
+
+<BlockMath math="\begin{aligned} &amp;\lambda_1=\frac{9+\sqrt5}{2}\approx5.61803, \\ &amp;\lambda_2=\frac{9-\sqrt5}{2}\approx3.38197 \end{aligned}" />
+
+Sekarang bandingkan dengan
+
+<BlockMath math="B=\begin{pmatrix}1&5\\5&4\end{pmatrix}" />
+
+Walaupun kedua-dua unsur pepenjurunya positif,
+
+<BlockMath math="\det(B)=4-25=-21<0" />
+
+Penentu yang negatif ini menunjukkan bahawa dua nilai eigen bagi <InlineMath math="B" /> berlawanan tanda. Oleh itu, <InlineMath math="B" /> tak tentu.
+
+## Pencirian Cholesky
+
+Sesuatu matriks simetri nyata tentu positif <Highlight>tepat apabila matriks itu mempunyai pemfaktoran Cholesky</Highlight>:
+
+<BlockMath math="A=LL^T" />
+
+Dalam pemfaktoran ini, <InlineMath math="L" /> ialah matriks segi tiga bawah dengan unsur pepenjuru yang positif secara tegas. Maka
+
+<BlockMath math="\begin{aligned} &amp;x^TAx=x^TLL^Tx=\|L^Tx\|_2^2>0 \\ &amp;(x\ne0) \end{aligned}" />
+
+Sebaliknya, untuk setiap matriks tentu positif, algoritma Cholesky selesai tanpa menemui pangsi yang bukan positif. Untuk input simetri dalam aritmetik tepat, sama ada algoritma ini selesai atau tidak menjadi ujian sifat tentu positif. Sebaik sahaja <InlineMath math="A=LL^T" /> diperoleh, selesaikan <InlineMath math="Ly=b" /> dan kemudian <InlineMath math="L^Tx=y" />.
+
+## Hasil Darab dengan Baris dan Lajur yang Ditukar
+
+Untuk setiap matriks nyata <InlineMath math="M\in\mathbb{R}^{m\times n}" />,
+
+<BlockMath math="x^TM^TMx=\|Mx\|_2^2\ge0" />
+
+Persamaan ini menunjukkan bahawa <InlineMath math="M^TM" /> sentiasa separa tentu positif. Matriks <InlineMath math="M^TM" /> tentu positif tepat apabila
+
+<BlockMath math="\begin{aligned} &amp;\ker(M)=\{0\} \\ &amp;\Longleftrightarrow \\ &amp;\operatorname{rank}(M)=n \end{aligned}" />
+
+Pangkat lajur penuh secara automatik membawa maksud <InlineMath math="m\ge n" />. Syarat ini tidak perlu diandaikan sebelum pernyataan separa tentu tadi.
+
+Secara lebih umum, matriks Gram <InlineMath math="G_{ij}=\langle v_i,v_j\rangle" /> sentiasa separa tentu positif dan menjadi tentu positif tepat apabila vektor <InlineMath math="v_i" /> **tak bersandar linear**.
+
+## Peminimum Unik bagi Fungsi Objektif Kuadratik
+
+Pertimbangkan fungsi objektif kuadratik
+
+<BlockMath math="F(x)=\frac12x^TAx-b^Tx+c" />
+
+Kecerunan dan Hessiannya ialah
+
+<MathContainer>
+<BlockMath math="\nabla F(x)=Ax-b" />
+<BlockMath math="\nabla^2F(x)=A" />
+</MathContainer>
+
+Jika <InlineMath math="A" /> tentu positif, <InlineMath math="F" /> ialah fungsi **cembung tegas** dan mempunyai peminimum unik
+
+<BlockMath math="x_*=A^{-1}b" />
+
+Kesukaran berangka juga bergantung pada nombor syarat, iaitu nisbah nilai eigen terbesar kepada nilai eigen terkecil:
+
+<BlockMath math="\kappa_2(A)=\frac{\lambda_{\max}(A)}{\lambda_{\min}(A)}" />
+
+Nombor syarat yang besar menghasilkan kontur yang memanjang. Algoritma berangka mungkin berjalan perlahan atau menjadi sensitif terhadap ralat pembundaran.
+
+Untuk <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> dan <InlineMath math="b=(1,1)" />, fungsi objektif <InlineMath math="f(x)=\tfrac12x^TAx-b^Tx=x_1^2+x_1x_2+x_2^2-x_1-x_2" /> mempunyai peminimum unik <InlineMath math="x^*=A^{-1}b=(\tfrac13,\tfrac13)" />, dengan <InlineMath math="f(x^*)=-\tfrac13" />. Setiap set aras di sekelilingnya ialah elips tertutup kerana <InlineMath math="A" /> tentu positif.
+
+<MathVisual
+  title={<>Set aras bagi <InlineMath math="f(x)=\tfrac12x^TAx-b^Tx" /></>}
+  description={<>Elips hijau kebiruan, ungu dan oren ialah <InlineMath math="f=-\tfrac14" />, <InlineMath math="0" /> dan <InlineMath math="1" />. Elips-elips ini bersarang di sekeliling peminimum magenta <InlineMath math="x^*=(\tfrac13,\tfrac13)" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 2 }, y: { min: -1.5, max: 2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "inner", kind: "implicit", equation: "x^2 + x*y + y^2 - x - y = -1/4", appearance: "construction" },
+      { id: "middle", kind: "implicit", equation: "x^2 + x*y + y^2 - x - y = 0", appearance: "secondary" },
+      { id: "outer", kind: "implicit", equation: "x^2 + x*y + y^2 - x - y = 1", appearance: "primary" },
+      { id: "minimum", kind: "point", at: { x: 1 / 3, y: 1 / 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "minimum", objectId: "minimum", at: { x: 1 / 3, y: 1 / 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "minimum": <InlineMath math="x^*" />,
+  }}
+/>
+
+## Anjakan Spektrum dan Songsangan
+
+Untuk matriks Hermitian <InlineMath math="A" />, nilai eigen bagi <InlineMath math="A-tI" /> ialah <InlineMath math="\lambda_i(A)-t" />. Oleh itu
+
+<BlockMath math="A-tI\succ0\quad\Longleftrightarrow\quad t<\lambda_{\min}(A)" />
+
+Jika <InlineMath math="A\succ0" />, maka <InlineMath math="A^{-1}\succ0" /> juga, dengan nilai eigen <InlineMath math="1/\lambda_i(A)" />. Dalam algoritma berangka, **selesaikan sistem linear secara terus**, kerana membentuk songsangan secara eksplisit memerlukan lebih banyak operasi dan boleh membesarkan ralat pembundaran.

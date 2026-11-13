@@ -1,0 +1,195 @@
+export const metadata = {
+  title: "Regularisasi Tikhonov",
+  description: "Stabilkan kuasa dua terkecil yang bersyarat buruk dengan regularisasi Tikhonov, penapisan spektrum, pilihan parameter yang wajar dan penyelesaian berangka yang stabil.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-15",
+  dateModified: "2026-09-13",
+  subject: "Kaedah Linear AI",
+};
+
+## Kenapa Kuasa Dua Terkecil Boleh Jadi Tidak Stabil
+
+Bagi <InlineMath math="A\in\mathbb{R}^{m\times n}" /> dan <InlineMath math="b\in\mathbb{R}^m" />, kuasa dua terkecil biasa menyelesaikan
+
+<BlockMath math="\min_x\|Ax-b\|_2^2" />
+
+Peminimum sentiasa wujud, walaupun persamaan <InlineMath math="Ax=b" /> tidak konsisten. Jika <InlineMath math="A" /> kekurangan pangkat, peminimum itu mungkin tidak unik. Jika <InlineMath math="A" /> hampir kekurangan pangkat, usikan kecil pada <InlineMath math="b" /> boleh menyebabkan perubahan besar pada parameter yang disuaikan.
+
+**Penguraian nilai singular** menerangkan pembesaran ini. Dalam penyelesaian kuasa dua terkecil bernorma minimum, setiap komponen data dibahagi dengan **nilai singular positif** yang sepadan dengannya. Nilai singular sifar menyumbang sifar melalui songsangan pseudo. Oleh itu, nilai singular positif yang sangat kecil membesarkan ralat pada arah datanya.
+
+## Masalah Tikhonov
+
+Regularisasi Tikhonov mengimbangkan **kesuaian data** dengan satu gambaran yang kita pilih tentang parameter yang munasabah:
+
+Bagi <InlineMath math="\alpha>0" />, minimumkan:
+
+<BlockMath math="\min_x\left(\|Ax-b\|_2^2+\alpha^2\|L(x-x_0)\|_2^2\right)" />
+
+Di sini <InlineMath math="x_0" /> ialah anggaran rujukan, <InlineMath math="L" /> menentukan apa yang patut kekal kecil atau licin, dan <InlineMath math="\alpha" /> menetapkan sejauh mana penyelesaian mengikut data berbanding kekangan yang ditentukan oleh <InlineMath math="L" />.
+
+- <InlineMath math="L=I" /> mengenakan penalti pada jarak dari <InlineMath math="x_0" />.
+- Matriks beza pertama mengenakan penalti pada perubahan mendadak antara parameter yang bersebelahan.
+- Matriks beza kedua mengenakan penalti pada kelengkungan dan memihak kepada profil yang lebih licin.
+
+Penalti ini menambah satu andaian pemodelan yang jelas tentang penyelesaian dan boleh memperbaik kesyaratan berangka (conditioning) masalah pengoptimuman. Cerapan itu sendiri masih mengandungi maklumat yang sama.
+
+## Bentuk Imbuhan Kuasa Dua Terkecil
+
+Masalah yang diregularisasi boleh ditulis sebagai masalah kuasa dua terkecil berikut:
+
+<BlockMath math="\min_x\left\|\begin{pmatrix}A\\\alpha L\end{pmatrix}x-\begin{pmatrix}b\\\alpha Lx_0\end{pmatrix}\right\|_2^2" />
+
+Apabila fungsi objektif ini dibezakan terhadap <InlineMath math="x" />, kita dapat persamaan normal:
+
+<BlockMath math="(A^TA+\alpha^2L^TL)x =A^Tb +\alpha^2L^TLx_0" />
+
+Persamaan normal ini mempunyai **penyelesaian unik** tepat apabila syarat berikut dipenuhi:
+
+<BlockMath math="\operatorname{null}(A)\cap\operatorname{null}(L)=\{0\}" />
+
+Bagi regularisasi ridge piawai dengan <InlineMath math="L=I" />, syarat ini dipenuhi untuk setiap <InlineMath math="\alpha>0" /> kerana <InlineMath math="A^TA+\alpha^2I" /> ialah matriks tentu positif.
+
+## Penapisan Spektrum
+
+Bagi <InlineMath math="L=I" /> dan <InlineMath math="x_0=0" />, tulis <InlineMath math="A=U\Sigma V^T" />. Maka
+
+<MathContainer>
+<BlockMath math="x_\alpha=\sum_i\frac{\sigma_i}{\sigma_i^2+\alpha^2}(u_i^Tb)v_i" />
+<BlockMath math="\phi_i(\alpha)=\frac{\sigma_i^2}{\sigma_i^2+\alpha^2}" />
+</MathContainer>
+
+Apabila <InlineMath math="\sigma_i" /> jauh lebih besar daripada <InlineMath math="\alpha" />, faktor <InlineMath math="\phi_i(\alpha)" /> hampir <InlineMath math="1" />, jadi regularisasi hanya sedikit mengubah **komponen penyelesaian yang sepadan**. Apabila <InlineMath math="\sigma_i" /> jauh lebih kecil daripada <InlineMath math="\alpha" />, faktor itu hampir <InlineMath math="0" />, jadi komponen itu menjadi lebih kecil. Inilah yang menghalang ralat pengukuran yang kecil daripada menyebabkan perubahan besar pada penyelesaian yang disuaikan.
+
+Faktor <InlineMath math="\phi_i(\alpha)" /> menentukan berapa banyak komponen <InlineMath math="i" /> yang kekal. Bagi <InlineMath math="\sigma_2=0.1" />, faktor itu tepat <InlineMath math="\tfrac12" /> pada <InlineMath math="\alpha=0.1" />, jadi <InlineMath math="\alpha" /> menentukan berapa banyak arah lemah itu yang kekal.
+
+<BarChart
+  title={<>Faktor penapis <InlineMath math="\phi_2(\alpha)" /> bagi <InlineMath math="\sigma_2=0.1" /></>}
+  description={<>Setiap bar ialah <InlineMath math="\phi_2(\alpha)=\sigma_2^2/(\sigma_2^2+\alpha^2)" /> bagi nilai singular kecil <InlineMath math="A=\operatorname{diag}(1,0.1)" />, dengan nilai <InlineMath math="\alpha" /> ditulis di bawahnya. Faktor itu jatuh daripada hampir <InlineMath math="1" /> kepada hampir <InlineMath math="0" /> apabila <InlineMath math="\alpha" /> melepasi <InlineMath math="\sigma_2" />.</>}
+  yAxisLabel="Faktor penapis"
+  data={[
+    { name: "0.01", value: 0.1 ** 2 / (0.1 ** 2 + 0.01 ** 2) },
+    { name: "0.05", value: 0.1 ** 2 / (0.1 ** 2 + 0.05 ** 2) },
+    { name: "0.1", value: 0.1 ** 2 / (0.1 ** 2 + 0.1 ** 2) },
+    { name: "0.2", value: 0.1 ** 2 / (0.1 ** 2 + 0.2 ** 2) },
+    { name: "0.5", value: 0.1 ** 2 / (0.1 ** 2 + 0.5 ** 2) },
+  ]}
+  chartConfig={{ value: { label: "Faktor penapis", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+## Contoh Lengkap Kepekaan
+
+Perhatikan
+
+<MathContainer>
+<BlockMath math="A=\begin{pmatrix}1&0\\0&0.1\end{pmatrix},\qquad b=\begin{pmatrix}1\\0.2\end{pmatrix}" />
+<BlockMath math="x_{\mathrm{LS}}=A^{-1}b=\begin{pmatrix}1\\2\end{pmatrix}" />
+</MathContainer>
+
+Nilai singular kedua hanya <InlineMath math="0.1" />. Jika cerapan kedua berubah sebanyak <InlineMath math="0.01" />, parameter kedua tanpa regularisasi berubah sebanyak <InlineMath math="0.1" />.
+
+Dengan <InlineMath math="L=I" />, <InlineMath math="x_0=0" /> dan <InlineMath math="\alpha=0.2" />,
+
+<MathContainer>
+<BlockMath math="(A^TA+0.2^2I)x=A^Tb" />
+<BlockMath math="x_{0.2}=\begin{pmatrix}1/1.04\\0.02/0.05\end{pmatrix}=\begin{pmatrix}25/26\\0.4\end{pmatrix}" />
+</MathContainer>
+
+Usikan <InlineMath math="0.01" /> yang sama kini hanya mengubah parameter kedua sebanyak <InlineMath math="0.02" />. Anggaran ini <Highlight>kurang peka terhadap usikan ini</Highlight>, manakala penalti mengecutkan parameter kedua ke arah nilai rujukan sifar. Perbezaan daripada anggaran tanpa regularisasi sahaja tidak memberitahu kita anggaran mana yang lebih dekat dengan parameter sebenar yang tidak diketahui.
+
+Bandingkan parameter kedua sebelum dan selepas perubahan data yang sama. Parameter pertama tidak berubah oleh usikan khusus ini.
+
+| Kaedah | Sebelum | Selepas | Perubahan |
+| --- | --- | --- | --- |
+| Tanpa regularisasi | <InlineMath math="2" /> | <InlineMath math="21/10" /> | <InlineMath math="1/10" /> |
+| <InlineMath math="\alpha=1/5" /> | <InlineMath math="2/5" /> | <InlineMath math="21/50" /> | <InlineMath math="1/50" /> |
+
+<BlockMath math="\Delta x_2=\frac{(1/10)(1/100)}{(1/10)^2+(1/5)^2}=\frac{1/1000}{1/20}=\frac1{50}" />
+
+Dalam contoh ini, setiap komponen mengecut secara berasingan: <InlineMath math="x_{\alpha,1}=\frac{1}{1+\alpha^2}" /> dan <InlineMath math="x_{\alpha,2}=\frac{0.02}{0.01+\alpha^2}" />. Ikut titik magenta ke bawah dari <InlineMath math="x_{\mathrm{LS}}=(1,2)^T" />: sebaik sahaja <InlineMath math="\alpha" /> mencapai <InlineMath math="0.1" />, komponen kedua sudah jatuh separuh, sedangkan komponen pertama hampir tidak bergerak. Hal ini berlaku kerana <InlineMath math="\sigma_2=0.1" /> kecil, jadi arah yang tidak stabil ditarik dahulu ke arah rujukan <InlineMath math="x_0=0" />. Bulatan ambar mempunyai jejari sepanjang <InlineMath math="x_{0.2}=(25/26,0.4)^T" />, dan ini menunjukkan sejauh mana penalti sudah memendekkan penyelesaian.
+
+<MathVisual
+  title={<>Penyelesaian Tikhonov <InlineMath math="x_\alpha" /> bagi beberapa nilai <InlineMath math="\alpha" /></>}
+  description={<>Titik magenta ialah <InlineMath math="x_\alpha" /> bagi <InlineMath math="\alpha=0,\ 0.1,\ 0.2,\ 0.5,\ 2" />. Bulatan ambar melalui <InlineMath math="x_{0.2}" />, dan titik ungu ialah rujukan <InlineMath math="x_0=0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 1.4 }, y: { min: -1.2, max: 2.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "norm", kind: "circle", center: { x: 0, y: 0 }, radius: Math.hypot(25 / 26, 2 / 5), appearance: "highlight" },
+      { id: "origin", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "ls", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+      { id: "tenth", kind: "point", at: { x: 100 / 101, y: 1 }, appearance: "answer" },
+      { id: "fifth", kind: "point", at: { x: 25 / 26, y: 2 / 5 }, appearance: "answer" },
+      { id: "half", kind: "point", at: { x: 4 / 5, y: 1 / 13 }, appearance: "answer" },
+      { id: "two", kind: "point", at: { x: 1 / 5, y: 2 / 401 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "norm", objectId: "norm", at: { x: -Math.hypot(25 / 26, 2 / 5) * Math.SQRT1_2, y: Math.hypot(25 / 26, 2 / 5) * Math.SQRT1_2 }, placement: "above-left" },
+      { key: "origin", objectId: "origin", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "ls", objectId: "ls", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "tenth", objectId: "tenth", at: { x: 100 / 101, y: 1 }, placement: "right" },
+      { key: "fifth", objectId: "fifth", at: { x: 25 / 26, y: 2 / 5 }, placement: "right" },
+      { key: "half", objectId: "half", at: { x: 4 / 5, y: 1 / 13 }, placement: "above" },
+      { key: "two", objectId: "two", at: { x: 1 / 5, y: 2 / 401 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "norm": <InlineMath math="\|x\|=\|x_{0.2}\|" />,
+    "origin": <InlineMath math="x_0" />,
+    "ls": <InlineMath math="x_{\mathrm{LS}}" />,
+    "tenth": <InlineMath math="\alpha=0.1" />,
+    "fifth": <InlineMath math="x_{0.2}" />,
+    "half": <InlineMath math="\alpha=0.5" />,
+    "two": <InlineMath math="\alpha=2" />,
+  }}
+/>
+
+## Memilih Parameter Regularisasi
+
+**Tiada nilai terbaik sejagat** bagi <InlineMath math="\alpha" />. Nilainya bergantung pada aras hingar, penskalaan parameter, penalti dan tujuan model.
+
+| Kaedah | Bukti yang sesuai | Keputusan |
+| --- | --- | --- |
+| Pengesahan atau pengesahan silang | Pemodelan ramalan dengan cerapan yang diasingkan | Pilih nilai dengan prestasi luar sampel yang terbaik |
+| Prinsip percanggahan | Anggaran yang boleh dipercayai bagi norma hingar cerapan | Padankan norma reja dengan aras hingar yang dijangka |
+| Pengesahan silang teritlak | Masalah songsang linear tanpa set pengesahan berasingan | Minimumkan skor ramalan yang dikira daripada sistem yang disuaikan |
+| Lengkung L | Analisis penerokaan masalah songsang | Teliti sudut lengkung norma reja melawan norma penalti |
+
+Nilai <InlineMath math="\alpha" /> yang kecil mengutamakan kesuaian data, jadi hingar masih boleh dibesarkan. Nilai <InlineMath math="\alpha" /> yang besar mengutamakan penalti, dan ini boleh menjadikan penyelesaian terlalu licin atau mengecutkannya terlalu kuat. Skalakan lajur parameter dan baris penalti secara konsisten supaya nilai berangka <InlineMath math="\alpha" /> mempunyai makna yang jelas.
+
+Bagi <InlineMath math="A=\operatorname{diag}(1,0.1)" /> dan <InlineMath math="b=(1,0.2)" />, penyelesaiannya ialah <InlineMath math="x_\alpha=\bigl(\tfrac1{1+\alpha^2},\tfrac{0.02}{0.01+\alpha^2}\bigr)" />. Apabila <InlineMath math="\alpha" /> bertambah, <InlineMath math="x_\alpha" /> mengecut dan reja meningkat, jadi setiap pilihan ialah tukar ganti antara kedua-duanya.
+
+<ScatterDiagram
+  title={<>Reja melawan saiz penyelesaian</>}
+  description={<>Setiap titik mewakili satu nilai <InlineMath math="\alpha" /> dari <InlineMath math="0.05" /> hingga <InlineMath math="1" />, dengan <InlineMath math="\|Ax_\alpha-b\|_2" /> pada paksi mendatar dan <InlineMath math="\|x_\alpha\|_2" /> pada paksi menegak. Nilai <InlineMath math="\alpha" /> yang kecil berada di kiri atas, manakala <InlineMath math="\alpha" /> yang besar di kanan bawah.</>}
+  xAxisLabel="Norma reja"
+  yAxisLabel="Norma penyelesaian"
+  datasets={[
+    {
+      name: "Nilai parameter",
+      color: "var(--chart-3)",
+      points: [
+        { x: Math.sqrt((0.05 ** 2 / (1 + 0.05 ** 2)) ** 2 + (0.2 * 0.05 ** 2 / (0.01 + 0.05 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.05 ** 2)) ** 2 + (0.02 / (0.01 + 0.05 ** 2)) ** 2) },
+        { x: Math.sqrt((0.1 ** 2 / (1 + 0.1 ** 2)) ** 2 + (0.2 * 0.1 ** 2 / (0.01 + 0.1 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.1 ** 2)) ** 2 + (0.02 / (0.01 + 0.1 ** 2)) ** 2) },
+        { x: Math.sqrt((0.2 ** 2 / (1 + 0.2 ** 2)) ** 2 + (0.2 * 0.2 ** 2 / (0.01 + 0.2 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.2 ** 2)) ** 2 + (0.02 / (0.01 + 0.2 ** 2)) ** 2) },
+        { x: Math.sqrt((0.3 ** 2 / (1 + 0.3 ** 2)) ** 2 + (0.2 * 0.3 ** 2 / (0.01 + 0.3 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.3 ** 2)) ** 2 + (0.02 / (0.01 + 0.3 ** 2)) ** 2) },
+        { x: Math.sqrt((0.5 ** 2 / (1 + 0.5 ** 2)) ** 2 + (0.2 * 0.5 ** 2 / (0.01 + 0.5 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.5 ** 2)) ** 2 + (0.02 / (0.01 + 0.5 ** 2)) ** 2) },
+        { x: Math.sqrt((1 ** 2 / (1 + 1 ** 2)) ** 2 + (0.2 * 1 ** 2 / (0.01 + 1 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 1 ** 2)) ** 2 + (0.02 / (0.01 + 1 ** 2)) ** 2) },
+      ],
+    },
+  ]}
+/>
+
+## Pemberat dan Kekangan Am
+
+Matriks pepenjuru <InlineMath math="L=\operatorname{diag}(\omega_1,\ldots,\omega_n)" /> memberikan penalti khusus bagi setiap parameter:
+
+<BlockMath math="\|L(x-x_0)\|_2^2=\sum_{i=1}^n\omega_i^2(x_i-x_{0i})^2" />
+
+Nilai <InlineMath math="\omega_i" /> yang lebih besar bermaksud pengecutan yang lebih kuat ke arah <InlineMath math="x_{0i}" />. Pilih pemberat berdasarkan unit dan pengetahuan awal, contohnya skala munasabah setiap parameter atau perubahan licin yang dijangka antara parameter yang bersebelahan. Kesukaran menganggar sesuatu pekali tidak cukup untuk menentukan pemberatnya.
+
+Kesamaan seperti <InlineMath math="x_i=c" /> patut dimodelkan sebagai **kekangan kesamaan yang eksplisit** apabila kesamaan itu mesti dipenuhi dengan tepat. Batas seperti <InlineMath math="l_i\le x_i\le u_i" /> memerlukan kuasa dua terkecil berkekangan. Penalti yang sangat besar boleh menghampiri kesamaan, tetapi penalti itu bukan pengganti kekangan yang tepat dan boleh memburukkan penskalaan berangka.
+
+## Menyelesaikan Sistem Lanjutan dengan Stabil
+
+Gunakan persamaan normal untuk menerbitkan penganggar yang diregularisasi dan untuk melihat cara <InlineMath math="\alpha" /> dan <InlineMath math="L" /> mengubahnya. Untuk pengiraan berangka, elakkan membentuk <InlineMath math="A^TA" /> kerana langkah itu menjadikan nombor syaratnya kuasa dua nombor syarat asal. Sebaliknya, selesaikan **sistem kuasa dua terkecil imbuhan** dengan <InlineMath math="\mathrm{QR}" /> atau <InlineMath math="\mathrm{SVD}" />. Laporkan <InlineMath math="\alpha" />, <InlineMath math="L" />, penskalaan parameter, norma reja dan norma penalti supaya pembaca lain boleh mengulang pengiraan dan meneliti tukar ganti antara kesuaian data dengan penalti.

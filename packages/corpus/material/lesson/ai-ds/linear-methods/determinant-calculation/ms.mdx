@@ -1,0 +1,273 @@
+export const metadata = {
+    title: "Pengiraan Penentu",
+    description: "Kira penentu dengan kembangan kofaktor, penghapusan Gauss dan sifat matriks segi tiga.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-07-10",
+    dateModified: "2026-09-24",
+    subject: "Kaedah Linear AI",
+};
+
+## Memilih Kaedah Mengikut Saiz Matriks
+
+[Definisi penentu](/ms/subjek/ai-ds/kaedah-linear-ai/definisi-penentu) membawa kepada beberapa kaedah pengiraan. <Highlight>Rumus langsung</Highlight> sudah cukup untuk matriks kecil. Bagi matriks padat yang besar, penghapusan atau pemfaktoran <InlineMath math="\mathrm{LU}" /> menukar matriks itu kepada bentuk segi tiga. Cara ini mengelakkan pertumbuhan faktorial yang berlaku pada kembangan kofaktor rekursif.
+
+## Kes Asas bagi Matriks Berperingkat Satu
+
+Bagi matriks bersaiz <InlineMath math="1 \times 1" />, penentunya sangat mudah. Jika <InlineMath math="A \in \mathbb{R}^{1 \times 1}" /> dengan <InlineMath math="A = (a_{11})" />, maka:
+
+<BlockMath math="\det A = a_{11}" />
+
+Bagi matriks <InlineMath math="1\times1" />, penentunya ialah **satu-satunya unsur** dalam matriks itu. Penentu matriks yang lebih besar pula dikurangkan kepada kes yang lebih kecil melalui kembangan atau penghapusan.
+
+## Konsep Submatriks
+
+Sebelum kita bincangkan kaedah kembangan kofaktor, kita perlu faham konsep **submatriks** dahulu. Bagi matriks <InlineMath math="A \in \mathbb{R}^{n \times n}" /> dan indeks <InlineMath math="i, j \in \{1, 2, \ldots, n\}" />, submatriks <InlineMath math="A_{ij}" /> ialah matriks bersaiz <InlineMath math="(n-1) \times (n-1)" /> yang terhasil apabila baris <InlineMath math="i" /> dan lajur <InlineMath math="j" /> dibuang daripada matriks <InlineMath math="A" />.
+
+Lihat contoh bagi matriks <InlineMath math="3 \times 3" />. Katakan kita ada:
+
+<BlockMath math="A = \begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{pmatrix}" />
+
+Untuk mendapatkan submatriks <InlineMath math="A_{12}" />, kita buang baris <InlineMath math="1" /> dan lajur <InlineMath math="2" />:
+
+<MathContainer>
+<BlockMath math="A_{12} = \begin{pmatrix} \cancel{a_{11}} & \cancel{a_{12}} & \cancel{a_{13}} \\ a_{21} & \cancel{a_{22}} & a_{23} \\ a_{31} & \cancel{a_{32}} & a_{33} \end{pmatrix}" />
+<BlockMath math="= \begin{pmatrix} a_{21} & a_{23} \\ a_{31} & a_{33} \end{pmatrix}" />
+</MathContainer>
+
+Untuk submatriks <InlineMath math="A_{23}" />, kita buang baris <InlineMath math="2" /> dan lajur <InlineMath math="3" />:
+
+<MathContainer>
+<BlockMath math="A_{23} = \begin{pmatrix} a_{11} & a_{12} & \cancel{a_{13}} \\ \cancel{a_{21}} & \cancel{a_{22}} & \cancel{a_{23}} \\ a_{31} & a_{32} & \cancel{a_{33}} \end{pmatrix}" />
+<BlockMath math="= \begin{pmatrix} a_{11} & a_{12} \\ a_{31} & a_{32} \end{pmatrix}" />
+</MathContainer>
+
+Proses ini sama untuk setiap gabungan baris dan lajur yang dibuang.
+
+## Kembangan Kofaktor
+
+Kembangan kofaktor mengira penentu daripada minor yang lebih kecil. Kita boleh kembangkan di sepanjang mana-mana baris <InlineMath math="i" /> yang kita tetapkan:
+
+<BlockMath math="\det A = \sum_{j=1}^{n} (-1)^{i+j} a_{ij}\det A_{ij}" />
+
+Kita juga boleh kembangkan di sepanjang mana-mana lajur <InlineMath math="j" /> yang kita tetapkan:
+
+<BlockMath math="\det A = \sum_{i=1}^{n} (-1)^{i+j} a_{ij}\det A_{ij}" />
+
+Sebutan <InlineMath math="(-1)^{i+j}\det A_{ij}" /> ialah **kofaktor** bagi <InlineMath math="a_{ij}" />. Faktor <InlineMath math="(-1)^{i+j}" /> menghasilkan corak tanda yang berselang-seli seperti papan catur. Jika kamu pilih baris atau lajur yang banyak sifarnya, bilangan minor yang perlu dinilai akan berkurang.
+
+### Kembangan Kofaktor bagi Matriks Berperingkat Tiga
+
+Lihat contoh kembangan kofaktor bagi matriks <InlineMath math="3 \times 3" />:
+
+<BlockMath math="A = \begin{pmatrix} 2 & 1 & 3 \\ 0 & 4 & 1 \\ 1 & 2 & 0 \end{pmatrix}" />
+
+Kita pilih **baris pertama** untuk kembangan:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} \det A &amp;= 2 \cdot (-1)^{1+1} \det A_{11} \\ &amp;\quad{}+ 1 \cdot (-1)^{1+2} \det A_{12} \\ &amp;\quad{}+ 3 \cdot (-1)^{1+3} \det A_{13} \end{aligned}" />
+<BlockMath math="\begin{aligned}  &amp;= 2 \cdot \det \begin{pmatrix} 4 &amp; 1 \\ 2 &amp; 0 \end{pmatrix} - 1 \cdot \det \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \\ &amp;\quad{}+ 3 \cdot \det \begin{pmatrix} 0 &amp; 4 \\ 1 &amp; 2 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned}  &amp;= 2 \cdot (4 \cdot 0 - 1 \cdot 2) \\ &amp;\quad{}- 1 \cdot (0 \cdot 0 - 1 \cdot 1) \\ &amp;\quad{}+ 3 \cdot (0 \cdot 2 - 4 \cdot 1) \end{aligned}" />
+<BlockMath math="\begin{aligned}  &amp;= 2 \cdot (-2) - 1 \cdot (-1) + 3 \cdot (-4) \\ &amp;= -4 + 1 - 12 \\ &amp;= -15 \end{aligned}" />
+</MathContainer>
+
+Kembangan boleh dibuat menggunakan mana-mana baris atau lajur. Setiap unsur sifar menjadikan satu sebutan kofaktor bernilai sifar. Jadi, baris atau lajur yang banyak sifarnya meninggalkan lebih sedikit sebutan untuk dikira.
+
+## Matriks Segi Tiga dan Matriks Pepenjuru
+
+Bagi beberapa jenis matriks khas, pengiraan penentu menjadi sangat mudah. Bentuk matriks itu sudah menghapuskan kebanyakan sebutan sebelum kamu mengembangkan apa-apa, jadi kerjanya mengecil kepada **satu hasil darab** sahaja. Yang menjimatkan usaha kamu ialah mengenal pasti bentuk itu dahulu.
+
+Bagi matriks segi tiga atas <InlineMath math="R" />:
+
+<MathContainer>
+<BlockMath math="R = \begin{pmatrix} r_{11} & * & \cdots & * \\ 0 & r_{22} & \cdots & * \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & r_{nn} \end{pmatrix}" />
+</MathContainer>
+
+Penentunya ialah:
+
+<MathContainer>
+<BlockMath math="\det R = r_{11} \cdot r_{22} \cdot \ldots \cdot r_{nn}" />
+</MathContainer>
+
+Bagi matriks segi tiga bawah <InlineMath math="L" />:
+
+<MathContainer>
+<BlockMath math="L = \begin{pmatrix} l_{11} & 0 & \cdots & 0 \\ * & l_{22} & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ * & * & \cdots & l_{nn} \end{pmatrix}" />
+</MathContainer>
+
+Penentunya ialah:
+
+<MathContainer>
+<BlockMath math="\det L = l_{11} \cdot l_{22} \cdot \ldots \cdot l_{nn}" />
+</MathContainer>
+
+Bagi matriks pepenjuru <InlineMath math="D" />:
+
+<MathContainer>
+<BlockMath math="D = \begin{pmatrix} d_{11} & 0 & \cdots & 0 \\ 0 & d_{22} & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & d_{nn} \end{pmatrix}" />
+</MathContainer>
+
+Penentunya ialah:
+
+<MathContainer>
+<BlockMath math="\det D = d_{11} \cdot d_{22} \cdot \ldots \cdot d_{nn}" />
+</MathContainer>
+
+> Bagi ketiga-tiga jenis matriks ini, penentunya sama dengan <Highlight>hasil darab semua unsur pepenjuru utama</Highlight>.
+
+Bagi <InlineMath math="U=\begin{pmatrix}3&3/2\\0&2\end{pmatrix}" />, unsur di atas pepenjuru hanya mencondongkan lajur kedua ke sisi, iaitu satu ricihan. Tapak dan tingginya kekal <InlineMath math="3" /> dan <InlineMath math="2" />, jadi <InlineMath math="\det U=3\cdot2=6" />, iaitu hasil darab unsur pepenjuru.
+
+<MathVisual
+  title={<>Ricihan mengekalkan luas <InlineMath math="3\cdot2=6" /></>}
+  description={<>Segi empat selari ungu direntang oleh lajur <InlineMath math="(3,0)" /> dan lajur hijau kebiruan <InlineMath math="(3/2,2)" /> daripada matriks segi tiga atas <InlineMath math="U" />. Segi empat tepat kelabu datang daripada <InlineMath math="\operatorname{diag}(3,2)" />. Kedua-duanya mempunyai luas <InlineMath math="6" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rectangle", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 0, y: 2 }], appearance: "reference" },
+      { id: "sheared", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 9 / 2, y: 2 }, { x: 3 / 2, y: 2 }], appearance: "secondary" },
+      { id: "column", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / 2, y: 2 }, appearance: "construction" },
+    ],
+  }}
+/>
+
+## Matriks Permulaan
+
+Matriks permulaan ialah matriks yang diperoleh daripada matriks identiti melalui satu operasi baris permulaan. Penentu matriks permulaan mudah dikira:
+
+1. **Matriks penskalaan baris** <InlineMath math="S_i(\lambda)" />, dengan <InlineMath math="\lambda \neq 0" />, yang mendarab baris <InlineMath math="i" /> dengan <InlineMath math="\lambda" />:
+
+    <BlockMath math="\det S_i(\lambda) = \lambda" />
+
+2. **Matriks pertukaran baris** <InlineMath math="Q_i^j" /> yang menukar tempat baris <InlineMath math="i" /> dan <InlineMath math="j" />:
+
+    <BlockMath math="\det Q_i^j = -1" />
+
+3. **Matriks transveksi** <InlineMath math="P_i^j(\lambda)" /> yang melakukan <InlineMath math="R_i \leftarrow R_i + \lambda R_j" />:
+
+    <BlockMath math="\det P_i^j(\lambda) = 1" />
+
+Bagi pertukaran dan transveksi, indeksnya merujuk kepada **dua baris yang berbeza**, jadi <InlineMath math="i\neq j" />. Satu pertukaran baris menukar tanda penentu, manakala menambah gandaan satu baris kepada baris lain tidak mengubah nilai penentu.
+
+Ambil baris-baris bagi <InlineMath math="A=\begin{pmatrix}2&1\\1&3\end{pmatrix}" />, yang penentunya <InlineMath math="2\cdot3-1\cdot1=5" />. Apabila kita tolak separuh baris pertama daripada baris kedua, baris kedua bergerak di sepanjang garis yang selari dengan baris pertama. Jadi, segi empat selari itu mengekalkan tapak dan tingginya.
+
+<MathVisual
+  title={<>Transveksi menggelongsorkan satu baris tanpa mengubah luas</>}
+  description={<>Segi empat selari ungu menggunakan baris <InlineMath math="(2,1)" /> dan <InlineMath math="(1,3)" />. Selepas <InlineMath math="R_2\leftarrow R_2-\tfrac12R_1" />, baris kedua menjadi <InlineMath math="(0,5/2)" /> dan menghasilkan segi empat selari hijau kebiruan. Tembereng oren menunjukkan gelongsoran itu, yang selari dengan baris pertama. Kedua-dua luasnya sama dengan <InlineMath math="5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "before", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 1 }, { x: 3, y: 4 }, { x: 1, y: 3 }], appearance: "secondary" },
+      { id: "after", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 1 }, { x: 2, y: 7 / 2 }, { x: 0, y: 5 / 2 }], appearance: "construction" },
+      { id: "slide", kind: "segment", from: { x: 1, y: 3 }, to: { x: 0, y: 5 / 2 }, appearance: "primary" },
+    ],
+  }}
+/>
+
+## Penghapusan Gauss untuk Mengira Penentu
+
+Penghapusan Gauss, atau secara setara pemfaktoran <InlineMath math="\mathrm{LU}" />, mengubah matriks padat kepada **bentuk segi tiga atas**. Penentunya kemudian diperoleh daripada unsur pepenjuru dan operasi baris yang direkodkan.
+
+Katakan kita hanya menggunakan penambahan baris dan pertukaran baris untuk menukar <InlineMath math="A" /> kepada matriks segi tiga atas <InlineMath math="R" />. Jika terdapat <InlineMath math="p" /> pertukaran baris, maka:
+
+<BlockMath math="\det A = (-1)^p \cdot \det R" />
+
+Oleh sebab <InlineMath math="R" /> ialah matriks segi tiga atas:
+
+<BlockMath math="\det R = r_{11} \cdot r_{22} \cdot \ldots \cdot r_{nn}" />
+
+Pengiraannya memberikan:
+
+<MathContainer>
+<BlockMath math="\det A = (-1)^p \cdot r_{11} \cdot r_{22} \cdot \ldots \cdot r_{nn}" />
+</MathContainer>
+
+Jika sesuatu algoritma menskalakan baris semasa penghapusan, faktor skala itu juga mesti direkodkan dan dikeluarkan daripada hasil darab akhir. Dalam pengiraan berangka, kaedah pangsi separa (partial pivoting) biasanya digunakan untuk mengelakkan pangsi sifar dan mengurangkan kesan ralat pembundaran.
+
+### Bilangan Operasi
+
+Bagi matriks padat <InlineMath math="n \times n" />, penghapusan atau pemfaktoran <InlineMath math="\mathrm{LU}" /> memerlukan kira-kira <InlineMath math="\frac{2}{3}n^3 + O(n^2)" /> operasi titik apungan. Mendarab unsur pepenjuru yang terhasil hanya memerlukan kerja tambahan <InlineMath math="O(n)" />. Kembangan kofaktor rekursif yang naif pula boleh membesar seperti <InlineMath math="O(n!)" />.
+
+Bagi matriks besar yang tidak berstruktur, bilangan operasi **kubik** bagi penghapusan lebih rendah daripada pertumbuhan faktorial kembangan kofaktor rekursif.
+
+## Mengira Penentu Matriks Berperingkat Tiga dengan Penghapusan
+
+Contoh berikut mengira penentu menggunakan penghapusan Gauss:
+
+<BlockMath math="A = \begin{pmatrix} 0 & 3 & 3 \\ 2 & 2 & 0 \\ 1 & 0 & 1 \end{pmatrix}" />
+
+**Langkah 1**: Tukar tempat baris <InlineMath math="1" /> dan <InlineMath math="3" /> supaya kita dapat **pangsi bukan sifar**:
+
+<BlockMath math="\begin{pmatrix} 1 & 0 & 1 \\ 2 & 2 & 0 \\ 0 & 3 & 3 \end{pmatrix}" />
+
+**Langkah 2**: Hapuskan lajur pertama dengan menolak <InlineMath math="2" /> kali baris <InlineMath math="1" /> daripada baris <InlineMath math="2" />:
+
+<BlockMath math="\begin{pmatrix} 1 & 0 & 1 \\ 0 & 2 & -2 \\ 0 & 3 & 3 \end{pmatrix}" />
+
+**Langkah 3**: Hapuskan lajur kedua dengan menolak <InlineMath math="1.5" /> kali baris <InlineMath math="2" /> daripada baris <InlineMath math="3" />:
+
+<BlockMath math="\begin{pmatrix} 1 & 0 & 1 \\ 0 & 2 & -2 \\ 0 & 0 & 6 \end{pmatrix} = R" />
+
+Oleh sebab ada **satu pertukaran baris** (<InlineMath math="p = 1" />):
+
+<MathContainer>
+<BlockMath math="\det A = (-1)^1 \cdot \det R" />
+<BlockMath math="= (-1)^1 \cdot 1 \cdot 2 \cdot 6" />
+<BlockMath math="= -12" />
+</MathContainer>
+
+Putar dua kotak condong di bawah. Kotak kanan direntang oleh lajur-lajur <InlineMath math="A" />, manakala kotak kiri oleh lajur-lajur <InlineMath math="R" />, dan lajur yang sepadan diberi warna yang sama. Setiap langkah penghapusan menambah gandaan satu baris kepada baris lain, dan langkah ini mencondongkan kotak secara ricihan tanpa mengubah isi padunya. Satu-satunya pertukaran baris hanya menterbalikkan orientasi, jadi tandanya menjadi negatif. Oleh itu, kedua-dua kotak mempunyai isi padu <InlineMath math="12" />, dan pada kotak kiri kamu boleh membacanya sebagai tapak <InlineMath math="1\cdot2" /> darab tinggi <InlineMath math="6" />.
+
+<MathVisual
+  title={<>Isi padu yang sama sebelum dan selepas penghapusan</>}
+  description={<>Kotak kanan direntang oleh lajur-lajur <InlineMath math="A" />, manakala kotak kiri oleh lajur-lajur <InlineMath math="R" />. Kedua-duanya mempunyai isi padu <InlineMath math="12=|\det A|" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 6.5 }, y: { min: -2.5, max: 4.5 }, z: { min: -0.5, max: 6.5 } },
+    view: { kind: "isometric", target: { x: -1, y: 1, z: 2 } },
+    objects: [
+      { id: "a-edge-a", kind: "segment", from: { x: 0, y: 2, z: 1 }, to: { x: 3, y: 4, z: 1 }, appearance: "reference" },
+      { id: "a-edge-b", kind: "segment", from: { x: 0, y: 2, z: 1 }, to: { x: 3, y: 2, z: 2 }, appearance: "reference" },
+      { id: "a-edge-c", kind: "segment", from: { x: 3, y: 2, z: 0 }, to: { x: 3, y: 4, z: 1 }, appearance: "reference" },
+      { id: "a-edge-d", kind: "segment", from: { x: 3, y: 2, z: 0 }, to: { x: 6, y: 2, z: 1 }, appearance: "reference" },
+      { id: "a-edge-e", kind: "segment", from: { x: 3, y: 0, z: 1 }, to: { x: 3, y: 2, z: 2 }, appearance: "reference" },
+      { id: "a-edge-f", kind: "segment", from: { x: 3, y: 0, z: 1 }, to: { x: 6, y: 2, z: 1 }, appearance: "reference" },
+      { id: "a-edge-g", kind: "segment", from: { x: 3, y: 4, z: 1 }, to: { x: 6, y: 4, z: 2 }, appearance: "reference" },
+      { id: "a-edge-h", kind: "segment", from: { x: 3, y: 2, z: 2 }, to: { x: 6, y: 4, z: 2 }, appearance: "reference" },
+      { id: "a-edge-i", kind: "segment", from: { x: 6, y: 2, z: 1 }, to: { x: 6, y: 4, z: 2 }, appearance: "reference" },
+      { id: "r-edge-a", kind: "segment", from: { x: -4, y: 0, z: 0 }, to: { x: -4, y: 2, z: 0 }, appearance: "reference" },
+      { id: "r-edge-b", kind: "segment", from: { x: -4, y: 0, z: 0 }, to: { x: -3, y: -2, z: 6 }, appearance: "reference" },
+      { id: "r-edge-c", kind: "segment", from: { x: -5, y: 2, z: 0 }, to: { x: -4, y: 2, z: 0 }, appearance: "reference" },
+      { id: "r-edge-d", kind: "segment", from: { x: -5, y: 2, z: 0 }, to: { x: -4, y: 0, z: 6 }, appearance: "reference" },
+      { id: "r-edge-e", kind: "segment", from: { x: -4, y: -2, z: 6 }, to: { x: -3, y: -2, z: 6 }, appearance: "reference" },
+      { id: "r-edge-f", kind: "segment", from: { x: -4, y: -2, z: 6 }, to: { x: -4, y: 0, z: 6 }, appearance: "reference" },
+      { id: "r-edge-g", kind: "segment", from: { x: -4, y: 2, z: 0 }, to: { x: -3, y: 0, z: 6 }, appearance: "reference" },
+      { id: "r-edge-h", kind: "segment", from: { x: -3, y: -2, z: 6 }, to: { x: -3, y: 0, z: 6 }, appearance: "reference" },
+      { id: "r-edge-i", kind: "segment", from: { x: -4, y: 0, z: 6 }, to: { x: -3, y: 0, z: 6 }, appearance: "reference" },
+      { id: "a-col-1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 2, z: 1 }, appearance: "secondary" },
+      { id: "a-col-2", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 2, z: 0 }, appearance: "construction" },
+      { id: "a-col-3", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 0, z: 1 }, appearance: "answer" },
+      { id: "r-col-1", kind: "segment", from: { x: -5, y: 0, z: 0 }, to: { x: -4, y: 0, z: 0 }, appearance: "secondary" },
+      { id: "r-col-2", kind: "segment", from: { x: -5, y: 0, z: 0 }, to: { x: -5, y: 2, z: 0 }, appearance: "construction" },
+      { id: "r-col-3", kind: "segment", from: { x: -5, y: 0, z: 0 }, to: { x: -4, y: -2, z: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a-col-1", objectId: "a-col-1", at: { x: 0, y: 2, z: 1 }, placement: "above-right" },
+      { key: "a-col-2", objectId: "a-col-2", at: { x: 3, y: 2, z: 0 }, placement: "above-right" },
+      { key: "a-col-3", objectId: "a-col-3", at: { x: 3, y: 0, z: 1 }, placement: "above-right" },
+      { key: "r-col-1", objectId: "r-col-1", at: { x: -4, y: 0, z: 0 }, placement: "above-right" },
+      { key: "r-col-2", objectId: "r-col-2", at: { x: -5, y: 2, z: 0 }, placement: "above-right" },
+      { key: "r-col-3", objectId: "r-col-3", at: { x: -4, y: -2, z: 6 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "a-col-1": <InlineMath math="a^1" />,
+    "a-col-2": <InlineMath math="a^2" />,
+    "a-col-3": <InlineMath math="a^3" />,
+    "r-col-1": <InlineMath math="r^1" />,
+    "r-col-2": <InlineMath math="r^2" />,
+    "r-col-3": <InlineMath math="r^3" />,
+  }}
+/>

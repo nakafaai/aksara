@@ -1,0 +1,215 @@
+export const metadata = {
+  title: "Polinomial Ortogon",
+  description: "Asas polinomial Chebyshev dan Legendre terhasil daripada hasil darab dalam berpemberat. Asas ini membantu unjuran fungsi, penukaran selang dan kuadratur Gauss.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-16",
+  dateModified: "2026-09-13",
+  subject: "Kaedah Linear AI",
+};
+
+## Keortogonan untuk Fungsi
+
+Gunakan fungsi selanjar nyata pada selang terhingga <InlineMath math="a&lt;b" /> dan pemberat boleh kamir yang positif di bahagian dalam selang itu. Kesingularan di titik hujung yang boleh dikamir dibenarkan, seperti pemberat Chebyshev di bawah.
+
+Hasil darab dalam berpemberat dan norma yang terhasil daripadanya ialah
+
+<MathContainer>
+<BlockMath math="\langle f,g\rangle_w=\int_a^b f(x)g(x)w(x)\,dx" />
+<BlockMath math="\|f\|_w=\sqrt{\langle f,f\rangle_w}" />
+</MathContainer>
+
+Dua fungsi ortogon apabila <InlineMath math="\langle f,g\rangle_w=0" />. Geometri <InlineMath math="L^2" /> berpemberat ini mengukur ralat kuasa dua berpemberat di sepanjang selang.
+
+<BlockMath math="\begin{aligned} &amp;\|f-g\|_w^2 \\ &amp;=\int_a^b|f(x)-g(x)|^2w(x)\,dx \end{aligned}" />
+
+Sebaliknya, norma maksimum mengukur <Highlight>ralat titik demi titik yang paling besar</Highlight>.
+
+<BlockMath math="\|f-g\|_\infty=\max_{x\in[a,b]}|f(x)-g(x)|" />
+
+Unjuran ortogon meminimumkan ralat <InlineMath math="L^2" /> berpemberat. Polinomial Chebyshev juga mempunyai sifat minimaks yang berasingan. Hasil darab dalam berpemberat dan norma maksimum mengukur ralat yang berbeza.
+
+## Unjuran pada Asas Ortogon
+
+Andaikan <InlineMath math="p_0,\ldots,p_n" /> saling ortogon. Unjuran darjah <InlineMath math="n" /> bagi <InlineMath math="f" /> ialah
+
+<MathContainer>
+<BlockMath math="\Pi_n f(x)=\sum_{k=0}^n c_kp_k(x)" />
+<BlockMath math="c_k=\frac{\langle f,p_k\rangle_w}{\langle p_k,p_k\rangle_w}" />
+</MathContainer>
+
+Oleh sebab sebutan silang lenyap, <Highlight>setiap pekali boleh dikira secara berasingan</Highlight>. Inilah analog fungsi bagi meleraikan vektor di sepanjang paksi koordinat yang saling berserenjang.
+
+## Membina Jujukan Langkah demi Langkah
+
+Apabila proses Gram-Schmidt dikenakan pada <InlineMath math="1,x,x^2,\ldots" />, kita dapat jujukan ortogon monik <InlineMath math="\pi_k" />. Di bawah hasil darab dalam yang positif, jujukan ini memenuhi
+
+<MathContainer>
+<BlockMath math="\pi_0(x)=1" />
+<BlockMath math="\pi_1(x)=x-\alpha_0" />
+<BlockMath math="\begin{aligned} \pi_{k+1}(x) &amp;=(x-\alpha_k)\pi_k(x) \\ &amp;\quad{}-\beta_k\pi_{k-1}(x) \end{aligned}" />
+</MathContainer>
+
+Pekali hubungan jadi semula (recurrence) ini ialah
+
+<MathContainer>
+<BlockMath math="\alpha_k=\frac{\langle x\pi_k,\pi_k\rangle_w}{\|\pi_k\|_w^2}" />
+<BlockMath math="\beta_k=\frac{\|\pi_k\|_w^2}{\|\pi_{k-1}\|_w^2}>0" />
+</MathContainer>
+
+Hubungan jadi semula tiga sebutan dan <InlineMath math="\beta_k" /> digunakan untuk <InlineMath math="k\ge1" />.
+
+Pendaraban dengan <InlineMath math="x" /> menaikkan darjah sebanyak satu. Keortogonan menghapuskan setiap komponen di bawah <InlineMath math="\pi_{k-1}" />, jadi hubungan jadi semula itu hanya perlukan **tiga sebutan**.
+
+## Polinomial Chebyshev Jenis Pertama
+
+Pada <InlineMath math="[-1,1]" />, pilih
+
+<BlockMath math="w(x)=\frac{1}{\sqrt{1-x^2}}" />
+
+<MathContainer>
+<BlockMath math="T_0(x)=1,\qquad T_1(x)=x" />
+<BlockMath math="T_{k+1}(x)=2xT_k(x)-T_{k-1}(x)" />
+<BlockMath math="T_k(x)=\cos\bigl(k\arccos x\bigr)" />
+</MathContainer>
+
+Keortogonan berpemberatnya ialah
+
+<BlockMath math="\begin{aligned} &amp;\int_{-1}^{1}\frac{T_j(x)T_k(x)}{\sqrt{1-x^2}}\,dx \\ &amp;=\begin{cases}\pi,&amp;j=k=0,\\\frac{\pi}{2},&amp;j=k>0,\\0,&amp;j\ne k.\end{cases} \end{aligned}" />
+
+Oleh sebab <InlineMath math="|T_k(x)|\le1" /> pada <InlineMath math="[-1,1]" /> dan pekali utamanya ialah <InlineMath math="2^{k-1}" /> untuk <InlineMath math="k\ge1" />, polinomial monik <InlineMath math="2^{1-k}T_k" /> mempunyai **norma maksimum yang paling kecil** antara semua polinomial monik berdarjah <InlineMath math="k" />. Jadi, polinomial ini menyelesaikan masalah penghampiran minimaks untuk polinomial monik berdarjah <InlineMath math="k" />.
+
+<MathVisual
+  title={<>Empat polinomial Chebyshev pertama <InlineMath math="T_0,T_1,T_2,T_3" /></>}
+  description={<>Lengkung kelabu, hijau kebiruan, ungu dan oren ialah <InlineMath math="T_0=1" />, <InlineMath math="T_1=x" />, <InlineMath math="T_2=2x^2-1" /> dan <InlineMath math="T_3=4x^3-3x" />. Gerakkan <InlineMath math="\theta" />: titik magenta <InlineMath math="(\cos\theta,\cos3\theta)" /> sentiasa berada pada <InlineMath math="T_3" />. Oleh sebab <InlineMath math="T_k(\cos\theta)=\cos k\theta" />, setiap <InlineMath math="T_k" /> kekal di antara <InlineMath math="-1" /> dan <InlineMath math="1" /> pada <InlineMath math="[-1,1]" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 1.2 }, y: { min: -1.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "a", min: 0, max: Math.PI, value: 1, step: 0.01, label: "angle" },
+    ],
+    objects: [
+      { id: "t0", kind: "function", formula: "1", domain: { min: -1, max: 1 }, appearance: "reference" },
+      { id: "t1", kind: "function", formula: "x", domain: { min: -1, max: 1 }, appearance: "construction" },
+      { id: "t2", kind: "function", formula: "2*x^2 - 1", domain: { min: -1, max: 1 }, appearance: "secondary" },
+      { id: "t3", kind: "function", formula: "4*x^3 - 3*x", domain: { min: -1, max: 1 }, appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a)", y: "cos(3*a)", appearance: "answer" },
+    ],
+    labels: [
+      { key: "point", objectId: "point", at: { x: "cos(a)", y: "cos(3*a)" }, placement: "above" },
+    ],
+    readouts: [
+      { key: "value", formula: "cos(3*a)" },
+    ],
+  }}
+  labels={{
+    "angle": <InlineMath math="\theta" />,
+    "value": <InlineMath math="T_3(\cos\theta)=\cos3\theta" />,
+    "point": <InlineMath math="(\cos\theta,\cos3\theta)" />,
+  }}
+/>
+
+## Polinomial Legendre
+
+Untuk hasil darab dalam tanpa pemberat pada <InlineMath math="[-1,1]" />,
+
+<BlockMath math="\langle f,g\rangle=\int_{-1}^{1}f(x)g(x)\,dx" />
+
+Bagi hasil darab dalam ini, polinomial Legendre piawai memenuhi
+
+<MathContainer>
+<BlockMath math="P_0(x)=1,\qquad P_1(x)=x" />
+<BlockMath math="\begin{aligned} (k+1)P_{k+1}(x) &amp;=(2k+1)xP_k(x) \\ &amp;\quad{}-kP_{k-1}(x) \end{aligned}" />
+</MathContainer>
+
+Keortogonan dan penormalannya ialah
+
+<MathContainer>
+<BlockMath math="\int_{-1}^{1}P_j(x)P_k(x)\,dx=\frac{2}{2k+1}\delta_{jk}" />
+<BlockMath math="\varphi_k(x)=\sqrt{\frac{2k+1}{2}}P_k(x)" />
+<BlockMath math="\langle\varphi_j,\varphi_k\rangle=\delta_{jk}" />
+</MathContainer>
+
+Sebagai contoh,
+
+<MathContainer>
+<BlockMath math="P_2(x)=\frac12(3x^2-1)" />
+<BlockMath math="x^2=\frac13P_0(x)+\frac23P_2(x)" />
+</MathContainer>
+
+Identiti kedua memberi **kembangan ortogon yang tepat**.
+
+Dengan pemberat <InlineMath math="1" /> pada <InlineMath math="[-1,1]" />, proses Gram-Schmidt pada <InlineMath math="1,x,x^2,x^3" /> memberi polinomial Legendre <InlineMath math="P_0=1" />, <InlineMath math="P_1=x" />, <InlineMath math="P_2=\tfrac12(3x^2-1)" /> dan <InlineMath math="P_3=\tfrac12(5x^3-3x)" />, yang diskalakan supaya <InlineMath math="P_k(1)=1" />.
+
+<MathVisual
+  title={<>Empat polinomial Legendre pertama <InlineMath math="P_0,P_1,P_2,P_3" /></>}
+  description={<>Lengkung kelabu, hijau kebiruan, ungu dan oren ialah <InlineMath math="P_0" /> hingga <InlineMath math="P_3" />. Setiap lengkung melalui <InlineMath math="(1,1)" />, dan <InlineMath math="P_k" /> mempunyai <InlineMath math="k" /> punca di dalam <InlineMath math="[-1,1]" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 1.2 }, y: { min: -1.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p0", kind: "function", formula: "1", domain: { min: -1, max: 1 }, appearance: "reference" },
+      { id: "p1", kind: "function", formula: "x", domain: { min: -1, max: 1 }, appearance: "construction" },
+      { id: "p2", kind: "function", formula: "(3*x^2 - 1)/2", domain: { min: -1, max: 1 }, appearance: "secondary" },
+      { id: "p3", kind: "function", formula: "(5*x^3 - 3*x)/2", domain: { min: -1, max: 1 }, appearance: "primary" },
+    ],
+  }}
+/>
+
+## Menukar Selang Polinomial Ortogon
+
+Untuk memetakan selang <InlineMath math="[-1,1]" /> kepada <InlineMath math="[a,b]" />, gunakan **penukaran pemboleh ubah afin** berikut.
+
+<MathContainer>
+<BlockMath math="x=\frac{a+b}{2}+\frac{b-a}{2}t" />
+<BlockMath math="t=\frac{2x-a-b}{b-a}" />
+<BlockMath math="dx=\frac{b-a}{2}\,dt" />
+</MathContainer>
+
+Jika <InlineMath math="\varphi_k" /> ortonormal pada <InlineMath math="[-1,1]" />, maka
+
+<BlockMath math="\widetilde{\varphi}_k(x)=\sqrt{\frac{2}{b-a}}\,\varphi_k\left(\frac{2x-a-b}{b-a}\right)" />
+
+Fungsi <InlineMath math="\widetilde{\varphi}_k" /> ortonormal pada <InlineMath math="[a,b]" /> kerana
+
+<BlockMath math="\begin{aligned} &amp;\int_a^b\widetilde{\varphi}_j(x)\widetilde{\varphi}_k(x)\,dx \\ &amp;=\int_{-1}^{1}\varphi_j(t)\varphi_k(t)\,dt \\ &amp;=\delta_{jk} \end{aligned}" />
+
+## Kaitan dengan Kuadratur Gauss
+
+Katakan <InlineMath math="p_n" /> ialah polinomial berdarjah <InlineMath math="n" /> yang ortogon terhadap pemberat positif dan selang yang sama dengan kamiran itu. Kesemua <InlineMath math="n" /> puncanya ialah nod kuadratur Gauss. Kemudian, pemberat positif <InlineMath math="w_i" /> yang sesuai memberi
+
+<BlockMath math="\int_a^b f(x)w(x)\,dx\approx\sum_{i=1}^n w_i f(x_i)" />
+
+Petua ini **tepat untuk setiap polinomial** berdarjah paling tinggi <InlineMath math="2n-1" />. Punca Legendre menghasilkan kuadratur Gauss-Legendre untuk pemberat <InlineMath math="w(x)=1" />. Punca Chebyshev menghasilkan kuadratur Gauss-Chebyshev untuk <InlineMath math="w(x)=1/\sqrt{1-x^2}" />.
+
+Untuk dua nod Gauss-Legendre, <InlineMath math="P_2(x)=0" /> memberi <InlineMath math="x=\pm1/\sqrt3" /> dan kedua-dua pemberatnya ialah <InlineMath math="1" />. Semak kamiran kuadratik itu secara terus:
+
+<BlockMath math="\int_{-1}^1x^2\,dx=\frac23=1\left(-\frac1{\sqrt3}\right)^2+1\left(\frac1{\sqrt3}\right)^2" />
+
+| Asas | Pemberat pada <InlineMath math="[-1,1]" /> | Paling sesuai untuk |
+| --- | --- | --- |
+| Chebyshev <InlineMath math="T_k" /> | <InlineMath math="1/\sqrt{1-x^2}" /> | grid interpolasi yang stabil, penghampiran hampir minimaks, kaedah spektrum |
+| Legendre <InlineMath math="P_k" /> | <InlineMath math="1" /> | unjuran <InlineMath math="L^2" /> tanpa pemberat dan kuadratur Gauss-Legendre |
+
+Sentiasa padankan keluarga polinomial, hasil darab dalam, matlamat penghampiran dan pemberat kuadratur. Jika satu daripadanya berubah, masalah yang sedang diselesaikan juga berubah.
+
+Petua Gauss dua titik menggunakan punca <InlineMath math="\pm\tfrac1{\sqrt3}" /> bagi <InlineMath math="P_2" /> sebagai nod, kedua-duanya dengan pemberat <InlineMath math="1" />. Petua ini mengamir setiap polinomial kubik dengan tepat: untuk <InlineMath math="f(x)=x^3+x^2" />, <InlineMath math="f(\tfrac1{\sqrt3})+f(-\tfrac1{\sqrt3})=\tfrac23=\int_{-1}^1f(x)\,dx" />.
+
+<MathVisual
+  title={<>Nod Gauss pada punca <InlineMath math="P_2" /></>}
+  description={<>Lengkung hijau kebiruan ialah <InlineMath math="P_2" />, dengan punca magenta <InlineMath math="\pm\tfrac1{\sqrt3}" />. Lengkung ungu ialah <InlineMath math="f(x)=x^3+x^2" />, dan titik oren ialah nilainya pada nod, yang jumlahnya <InlineMath math="\tfrac23" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 1.2 }, y: { min: -0.7, max: 2.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p2", kind: "function", formula: "(3*x^2 - 1)/2", domain: { min: -1, max: 1 }, appearance: "construction" },
+      { id: "cubic", kind: "function", formula: "x^3 + x^2", domain: { min: -1, max: 1 }, appearance: "secondary" },
+      { id: "left-node", kind: "point", at: { x: -1 / Math.sqrt(3), y: 0 }, appearance: "answer" },
+      { id: "right-node", kind: "point", at: { x: 1 / Math.sqrt(3), y: 0 }, appearance: "answer" },
+      { id: "left-value", kind: "point", at: { x: -1 / Math.sqrt(3), y: -1 / (3 * Math.sqrt(3)) + 1 / 3 }, appearance: "primary" },
+      { id: "right-value", kind: "point", at: { x: 1 / Math.sqrt(3), y: 1 / (3 * Math.sqrt(3)) + 1 / 3 }, appearance: "primary" },
+    ],
+  }}
+/>

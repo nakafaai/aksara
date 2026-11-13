@@ -1,0 +1,295 @@
+export const metadata = {
+    title: "Polinomial Ciri",
+   description: "Gunakan polinomial ciri untuk mencari nilai eigen, menentukan kegandaan algebra dan mengaitkan pekalinya dengan surih matriks.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-07-12",
+    dateModified: "2026-09-19",
+    subject: "Kaedah Linear AI",
+};
+
+## Menerbitkan Polinomial daripada Persamaan Matriks
+
+Nilai eigen <InlineMath math="\lambda" /> bagi matriks segi empat sama <InlineMath math="A" /> mempunyai vektor eigen bukan sifar <InlineMath math="v" /> yang memenuhi
+
+<BlockMath math="Av=\lambda v" />
+
+Susun semula persamaan ini dan kamu dapat <InlineMath math="(A-\lambda I)v=0" />. Penyelesaian bukan sifar wujud tepat apabila <InlineMath math="A-\lambda I" /> singular, jadi <Highlight>penentunya mesti sifar</Highlight>. Polinomial ciri merekodkan syarat ini untuk setiap skalar yang mungkin, sekali gus.
+
+Katakan <InlineMath math="A \in \mathbb{K}^{n \times n}" />. Kita boleh membina satu fungsi khas:
+
+<MathContainer>
+<BlockMath math="\chi_A(t) = \det(A - t \cdot I)" />
+<BlockMath math="\begin{aligned} \chi_A(t) &amp;= a_n \cdot t^n + a_{n-1} \cdot t^{n-1} \\ &amp;\quad{}+ \cdots + a_1 t + a_0 \end{aligned}" />
+</MathContainer>
+
+Polinomial berdarjah <InlineMath math="n" /> dalam <InlineMath math="t" /> ini, dengan pekali <InlineMath math="a_0,\ldots,a_n\in\mathbb{K}" />, ialah **polinomial ciri** bagi <InlineMath math="A" />. Di sini, <InlineMath math="\chi_A(t)" /> menggunakan konvensyen <InlineMath math="\det(A-tI)" />. Konvensyen lain yang juga lazim, <InlineMath math="\det(tI-A)" />, berbeza dengan faktor <InlineMath math="(-1)^n" />, tetapi puncanya tetap sama.
+
+## Surih Matriks dan Pekali Polinomial
+
+Katakan <InlineMath math="A \in \mathbb{K}^{n \times n}" /> ialah matriks segi empat sama. **Surih** bagi <InlineMath math="A" /> ialah hasil tambah unsur pepenjurunya:
+
+<BlockMath math="\operatorname{tr}(A) = \sum_{i=1}^n a_{ii}" />
+
+Surih matriks berkait rapat dengan pekali polinomial ciri.
+
+### Kaitan Pekali dengan Surih dan Penentu
+
+Dalam polinomial ciri <InlineMath math="\chi_A(t)" /> bagi <InlineMath math="A" />, pekalinya membawa makna khas:
+
+<BlockMath math="\begin{aligned} &amp;a_n = (-1)^n, \\ &amp;a_{n-1} = (-1)^{n-1}\operatorname{tr}(A), \\ &amp;a_0 = \det A \end{aligned}" />
+
+Maksudnya:
+- Pekali tertinggi sentiasa <InlineMath math="(-1)^n" />
+- Pekali kedua tertinggi berkait dengan surih matriks
+- **Sebutan pemalar** ialah penentu matriks itu
+
+Untuk matriks <InlineMath math="2\times2" />, <InlineMath math="\chi_A(t)=t^2-(\operatorname{tr}A)\,t+\det A" />. Dengan <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />, surihnya <InlineMath math="4" /> dan penentunya <InlineMath math="3" />, jadi <InlineMath math="\chi_A(t)=t^2-4t+3=(t-1)(t-3)" />.
+
+<MathVisual
+  title={<>Parabola <InlineMath math="\chi_A(t)=t^2-4t+3" /></>}
+  description={<>Titik magenta ialah punca <InlineMath math="1" /> dan <InlineMath math="3" />, iaitu nilai eigen bagi <InlineMath math="A" />. Titik ambar ialah <InlineMath math="\chi_A(0)=\det A=3" />, dan titik pusingan kelabu terletak pada <InlineMath math="t=\operatorname{tr}A/2=2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "polynomial", kind: "quadratic", coefficients: { a: 1, b: -4, c: 3 }, domain: { min: -0.5, max: 4.5 }, inputAxis: "x", appearance: "secondary" },
+      { id: "small", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "large", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "intercept", kind: "point", at: { x: 0, y: 3 }, appearance: "highlight" },
+      { id: "vertex", kind: "point", at: { x: 2, y: -1 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "intercept", objectId: "intercept", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "vertex", objectId: "vertex", at: { x: 2, y: -1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "intercept": <InlineMath math="\det A=3" />,
+    "vertex": <InlineMath math="t=\tfrac{\operatorname{tr}A}2" />,
+  }}
+/>
+
+## Nilai Eigen sebagai Punca Polinomial
+
+Nilai <InlineMath math="\lambda \in \mathbb{K}" /> ialah nilai eigen bagi <InlineMath math="A" /> jika dan hanya jika <InlineMath math="\det(A - \lambda \cdot I) = 0" />.
+
+Jadi, nilai eigen ialah **punca polinomial ciri**.
+
+Untuk <InlineMath math="t \in \mathbb{K}" />, lihat persamaan berikut.
+
+<BlockMath math="\det(A - t \cdot I) = 0" />
+
+Persamaan ini ialah **persamaan ciri** bagi <InlineMath math="A" />.
+
+## Kegandaan Algebra
+
+Sekarang, apa yang berlaku jika satu nilai eigen muncul beberapa kali sebagai punca polinomial ciri? Katakan <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dan <InlineMath math="\lambda \in \mathbb{K}" />. Kegandaan punca <InlineMath math="t = \lambda" /> bagi polinomial ciri <InlineMath math="\chi_A(t)" /> dipanggil **kegandaan algebra** <InlineMath math="\mu_A(\lambda)" /> bagi nilai eigen <InlineMath math="\lambda" /> untuk <InlineMath math="A" />. Kita katakan <InlineMath math="\lambda" /> ialah nilai eigen berkegandaan <InlineMath math="\mu_A(\lambda)" /> bagi <InlineMath math="A" />.
+
+### Batas Kegandaan
+
+Untuk setiap nilai eigen <InlineMath math="\lambda" />, **kegandaan algebranya memenuhi**
+
+<BlockMath math="1 \leq \mu_A(\lambda) \leq n" />
+
+Tiga matriks <InlineMath math="2\times2" /> dengan surih <InlineMath math="4" /> tetapi penentu <InlineMath math="3" />, <InlineMath math="4" /> dan <InlineMath math="5" /> memberi tiga jenis punca. <InlineMath math="\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> mempunyai dua punca tunggal, <InlineMath math="\begin{pmatrix}2&1\\0&2\end{pmatrix}" /> mempunyai punca <InlineMath math="2" /> dengan kegandaan algebra <InlineMath math="2" />, dan <InlineMath math="\begin{pmatrix}2&-1\\1&2\end{pmatrix}" /> mempunyai punca kompleks <InlineMath math="2\pm i" />.
+
+<MathVisual
+  title={<>Punca tunggal, punca berganda dua dan tiada punca nyata</>}
+  description={<>Parabola kelabu <InlineMath math="t^2-4t+3" /> memotong paksi dua kali. Parabola hijau kebiruan <InlineMath math="(t-2)^2" /> hanya menyentuh paksi pada titik magenta <InlineMath math="t=2" />, jadi punca itu dikira dua kali. Parabola jingga <InlineMath math="t^2-4t+5" /> tidak pernah sampai ke paksi.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "two-roots", kind: "quadratic", coefficients: { a: 1, b: -4, c: 3 }, domain: { min: 0, max: 4 }, inputAxis: "x", appearance: "reference" },
+      { id: "double-root", kind: "quadratic", coefficients: { a: 1, b: -4, c: 4 }, domain: { min: 0, max: 4 }, inputAxis: "x", appearance: "construction" },
+      { id: "no-root", kind: "quadratic", coefficients: { a: 1, b: -4, c: 5 }, domain: { min: 0, max: 4 }, inputAxis: "x", appearance: "primary" },
+      { id: "touch", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "touch", objectId: "touch", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "touch": <InlineMath math="t=2" />,
+  }}
+/>
+
+## Kaitan antara Kegandaan Geometri dan Kegandaan Algebra
+
+Kegandaan geometri dan kegandaan algebra memenuhi batas berikut.
+
+Untuk nilai eigen <InlineMath math="\lambda" /> bagi <InlineMath math="A \in \mathbb{K}^{n \times n}" />, kegandaan geometri dan kegandaan algebranya memenuhi
+
+<BlockMath math="1 \leq \dim \operatorname{Eig}_A(\lambda) \leq \mu_A(\lambda) \leq n" />
+
+> Kegandaan geometri setiap nilai eigen sentiasa kurang daripada atau sama dengan kegandaan algebranya.
+
+Kegandaan geometri **mengira vektor eigen yang tak bersandar** dalam ruang eigen, manakala kegandaan algebra mengira berapa kali punca itu muncul dalam polinomial ciri. Bentuk Jordan menunjukkan bahawa setiap vektor eigen yang tak bersandar memerlukan sekurang-kurangnya satu blok Jordan, jadi kiraan geometri tidak boleh melebihi kiraan algebra.
+
+## Mengira Polinomial Ciri
+
+Sekarang kita gunakan definisi ini pada matriks yang konkrit, dan **identiti pekali** menjadi semakan untuk kembangan itu. Ikuti setiap penentu langkah demi langkah, kemudian bandingkan punca dengan surih dan penentu untuk memastikan polinomial itu betul.
+
+### Matriks Peringkat Tiga
+
+Matriks peringkat tiga ini menghasilkan polinomial ciri **berdarjah tiga**:
+
+<BlockMath math="A = \begin{pmatrix} 3 & 2 & -1 \\ 1 & 0 & -4 \\ 3 & 0 & 1 \end{pmatrix} \in \mathbb{K}^{3 \times 3}" />
+
+Polinomial cirinya ialah:
+
+<MathContainer>
+<BlockMath math="\chi_A(t) = \det \begin{pmatrix} 3-t & 2 & -1 \\ 1 & -t & -4 \\ 3 & 0 & 1-t \end{pmatrix}" />
+<BlockMath math="= (3-t)(-t)(1-t) - 2(13-t) - 3t" />
+<BlockMath math="\begin{aligned}  &amp;= -3t + 3t^2 + t^2 \\ &amp;\quad{}- t^3 - 2 + 2t - 24 - 3t \end{aligned}" />
+<BlockMath math="= -t^3 + 4t^2 - 4t - 26" />
+</MathContainer>
+
+Untuk <InlineMath math="\mathbb{K} = \mathbb{R}" />, <InlineMath math="\chi_A(t)" /> hanya mempunyai punca <InlineMath math="\lambda_1 \approx -1.8003" /> dengan kegandaan algebra <InlineMath math="\mu_A(\lambda_1) = 1" />.
+
+Untuk <InlineMath math="\mathbb{K} = \mathbb{C}" />, <InlineMath math="\chi_A(t)" /> mempunyai punca <InlineMath math="\lambda_1 \approx -1.8003" />, <InlineMath math="\lambda_2 \approx 2.9001 + 2.4559i" /> dan <InlineMath math="\lambda_3 \approx 2.9001 - 2.4559i" />, dengan kegandaan algebra masing-masing <InlineMath math="\mu_A(\lambda_1) = \mu_A(\lambda_2) = \mu_A(\lambda_3) = 1" />.
+
+Punca-punca ini lulus dua semakan yang berguna: hasil tambahnya ialah surih, dan hasil darabnya ialah penentu.
+
+<MathContainer>
+<BlockMath math="\lambda_1+\lambda_2+\lambda_3=4=\operatorname{tr}(A)" />
+<BlockMath math="\lambda_1\lambda_2\lambda_3=-26=\det(A)" />
+</MathContainer>
+
+### Nilai Eigen Berulang dalam Matriks Segi Tiga Atas
+
+Matriks ini mempunyai **unsur pepenjuru yang sama sebanyak dua kali**, iaitu <InlineMath math="1" />:
+
+<BlockMath math="A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
+
+Polinomial cirinya ialah:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} \chi_A(t) &amp;= \det(A - t \cdot I) \\ &amp;= \det \begin{pmatrix} 1-t &amp; 2 \\ 0 &amp; 1-t \end{pmatrix} \end{aligned}" />
+<BlockMath math="= (1-t) \cdot (1-t) - 0 \cdot 2 = (1-t)^2" />
+<BlockMath math="= t^2 - 2 \cdot t + 1" />
+</MathContainer>
+
+Matriks ini mempunyai punca <InlineMath math="\lambda = 1" /> dengan kegandaan algebra <InlineMath math="\mu_A(1) = 2" />. <InlineMath math="\lambda = 1" /> ialah satu-satunya nilai eigen bagi <InlineMath math="A" />.
+
+<BlockMath math="(A-I)\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}2y\\0\end{pmatrix}=0\iff y=0,\qquad E_A(1)=\operatorname{span}\left\{\begin{pmatrix}1\\0\end{pmatrix}\right\}" />
+
+Ruang eigen ini **berdimensi <InlineMath math="1" />**, walaupun punca polinomial itu muncul dua kali.
+
+## Polinomial Ciri bagi Transformasi Geometri
+
+Sekarang pengiraan ini dijalankan pada pemetaan <InlineMath math="\mathbb{R}^2" /> yang sudah kamu kenal, jadi hasil algebra dan **makna geometrinya** muncul bersama. Putaran, pantulan, penskalaan dan ricihan masing-masing menghasilkan polinomial yang puncanya menerangkan kesan pemetaan itu terhadap arah.
+
+### Putaran
+
+Putaran diwakili oleh matriks:
+
+<BlockMath math="A = \begin{pmatrix} \cos(\alpha) & -\sin(\alpha) \\ \sin(\alpha) & \cos(\alpha) \end{pmatrix}" />
+
+Polinomial cirinya ialah:
+
+<BlockMath math="\begin{aligned} \chi_A(t) &amp;= (\cos(\alpha) - t)^2 + \sin(\alpha)^2 \\ &amp;= t^2 - 2 \cdot \cos(\alpha) \cdot t + 1 \end{aligned}" />
+
+**Pembeza layannya** ialah <InlineMath math="-4\sin^2(\alpha)" />. Punca-puncanya nyata tepat apabila <InlineMath math="\sin(\alpha)=0" />, jadi, modulo satu pusingan penuh, <InlineMath math="\alpha\equiv0" /> atau <InlineMath math="\alpha\equiv\pi\pmod{2\pi}" />.
+
+### Pantulan
+
+**Pantulan pada** paksi-<InlineMath math="x" /> mempunyai matriks:
+
+<BlockMath math="A = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+Polinomial cirinya ialah:
+
+<BlockMath math="\chi_A(t) = (1-t) \cdot (-1-t) = t^2 - 1" />
+
+Nilai eigennya ialah <InlineMath math="\lambda_1 = 1" /> dan <InlineMath math="\lambda_2 = -1" /> dengan <InlineMath math="\mu_A(1) = \mu_A(-1) = 1" />.
+
+### Penskalaan
+
+**Penskalaan mempunyai** matriks:
+
+<BlockMath math="A = \begin{pmatrix} s & 0 \\ 0 & s \end{pmatrix}" />
+
+Polinomial cirinya ialah:
+
+<BlockMath math="\chi_A(t) = (s-t)^2 = t^2 - 2 \cdot s \cdot t + s^2" />
+
+Nilai eigennya ialah <InlineMath math="\lambda = s" /> dengan <InlineMath math="\mu_A(s) = 2" />.
+
+### Ricihan
+
+**Untuk ricihan** dengan <InlineMath math="s \neq 0" />, matriksnya ialah:
+
+<BlockMath math="A = \begin{pmatrix} 1 & s \\ 0 & 1 \end{pmatrix}" />
+
+Polinomial cirinya ialah:
+
+<BlockMath math="\chi_A(t) = (1-t)^2 = t^2 - 2 \cdot t + 1" />
+
+Nilai eigennya ialah <InlineMath math="\lambda = 1" /> dengan <InlineMath math="\mu_A(1) = 2" />.
+
+Bandingkan lima parabola di bawah, satu untuk setiap sudut putaran. Titik terendah setiap parabola terletak pada <InlineMath math="t=\cos\alpha" /> dengan nilai <InlineMath math="1-\cos^2\alpha=\sin^2\alpha" />. Hanya untuk <InlineMath math="\alpha=0" /> dan <InlineMath math="\alpha=\pi" /> nilai itu sifar, jadi parabola menyentuh paksi-<InlineMath math="t" /> pada <InlineMath math="t=1" /> atau <InlineMath math="t=-1" />. Untuk setiap sudut lain, parabola terapung di atas paksi, puncanya kompleks dan putaran itu tidak mengekalkan sebarang arah langsung.
+
+<MathVisual
+  title={<>Polinomial ciri bagi putaran <InlineMath math="t^2-2t\cos\alpha+1" /></>}
+  description={<>Satu parabola untuk setiap sudut <InlineMath math="\alpha" />. Titik terendahnya terletak pada <InlineMath math="t=\cos\alpha" /> dengan nilai <InlineMath math="\sin^2\alpha" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.3, max: 3.3 }, y: { min: -0.6, max: 5.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "zero", kind: "quadratic", coefficients: { a: 1, b: -2 * (1), c: 1 }, domain: { min: -1, max: 3 }, inputAxis: "x", appearance: "secondary" },
+      { id: "third", kind: "quadratic", coefficients: { a: 1, b: -2 * (1 / 2), c: 1 }, domain: { min: -3 / 2, max: 5 / 2 }, inputAxis: "x", appearance: "construction" },
+      { id: "half", kind: "quadratic", coefficients: { a: 1, b: -2 * (0), c: 1 }, domain: { min: -7 / 4, max: 7 / 4 }, inputAxis: "x", appearance: "highlight" },
+      { id: "twothirds", kind: "quadratic", coefficients: { a: 1, b: -2 * (-1 / 2), c: 1 }, domain: { min: -5 / 2, max: 3 / 2 }, inputAxis: "x", appearance: "primary" },
+      { id: "full", kind: "quadratic", coefficients: { a: 1, b: -2 * (-1), c: 1 }, domain: { min: -3, max: 1 }, inputAxis: "x", appearance: "answer" },
+      { id: "root-plus", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "root-minus", kind: "point", at: { x: -1, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "zero", objectId: "zero", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "third", objectId: "third", at: { x: -3 / 2, y: 19 / 4 }, placement: "above-left" },
+      { key: "half", objectId: "half", at: { x: 7 / 4, y: 65 / 16 }, placement: "above-right" },
+      { key: "twothirds", objectId: "twothirds", at: { x: -5 / 2, y: 19 / 4 }, placement: "above-left" },
+      { key: "full", objectId: "full", at: { x: 1, y: 4 }, placement: "above-right" },
+      { key: "root-plus", objectId: "root-plus", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "root-minus", objectId: "root-minus", at: { x: -1, y: 0 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "zero": <InlineMath math="\alpha=0" />,
+    "third": <InlineMath math="\alpha=\tfrac\pi3" />,
+    "half": <InlineMath math="\alpha=\tfrac\pi2" />,
+    "twothirds": <InlineMath math="\alpha=\tfrac{2\pi}3" />,
+    "full": <InlineMath math="\alpha=\pi" />,
+    "root-plus": <InlineMath math="t=1" />,
+    "root-minus": <InlineMath math="t=-1" />,
+  }}
+/>
+
+## Sifat Matriks Serupa
+
+Matriks serupa menerangkan **transformasi linear yang sama** dalam asas yang berbeza. Oleh itu, matriks-matriks ini mempunyai polinomial ciri, nilai eigen, surih dan penentu yang sama.
+
+Katakan <InlineMath math="S \in \mathbb{K}^{n \times n}" /> boleh disongsangkan dan <InlineMath math="B = S^{-1} \cdot A \cdot S" />. Maka:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\chi_B(t) \\ &amp;= \det(B - t \cdot I) \\ &amp;= \det(S^{-1} \cdot A \cdot S - t \cdot S^{-1} \cdot I \cdot S) \end{aligned}" />
+<BlockMath math="= \det(S^{-1} \cdot (A - t \cdot I) \cdot S)" />
+<BlockMath math="\begin{aligned}  &amp;= \det S^{-1} \cdot \det(A - t \cdot I) \cdot \det S \\ &amp;= \chi_A(t) \end{aligned}" />
+</MathContainer>
+
+### Sifat Vektor Eigen bagi Matriks Serupa
+
+Vektor eigen berubah mengikut asas. Jika <InlineMath math="v \in \mathbb{K}^n" /> ialah vektor eigen bagi <InlineMath math="A" /> untuk <InlineMath math="\lambda" />, maka <InlineMath math="w = S^{-1}v" /> ialah vektor eigen bagi <InlineMath math="B" /> untuk nilai eigen yang sama.
+
+Memang begitu: dengan menggunakan <InlineMath math="Av=\lambda v" /> dan <InlineMath math="w=S^{-1}v" />, kita dapat
+
+<MathContainer>
+<BlockMath math="\begin{aligned} B \cdot w &amp;= S^{-1} \cdot A \cdot S \cdot S^{-1} \cdot v \\ &amp;= S^{-1} \cdot A \cdot v \end{aligned}" />
+<BlockMath math="= S^{-1} \cdot \lambda \cdot v = \lambda \cdot S^{-1} \cdot v = \lambda \cdot w" />
+</MathContainer>
+
+Keserupaan mengekalkan nilai eigen, manakala **perubahan asas songsang** menukar vektor eigen yang sepadan.
