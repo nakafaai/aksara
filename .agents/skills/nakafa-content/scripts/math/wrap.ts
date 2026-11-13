@@ -19,7 +19,8 @@ interface Edit {
 export interface WrapResult {
   /**
    * Source offsets of the numbers left as text: ambiguous separators, a
-   * string prop, or a number alone on its line.
+   * string prop, an operand of a plain-text expression, or a number alone on
+   * its line.
    */
   readonly left: readonly number[];
   readonly source: string;
@@ -29,6 +30,12 @@ export interface WrapResult {
 const SPACE = '{" "}';
 const LINE_BREAK_BEFORE_PATTERN = /\S[^\S\n]*\n\s*$/u;
 const LINE_BREAK_AFTER_PATTERN = /^\s*\n\s*\S/u;
+const OPERATOR_BEFORE_PATTERN =
+  /(?:[+×*÷/=<>^±]|[\p{N})\]][^\S\n]*[-−])[^\S\n]*$/u;
+const OPERATOR_AFTER_PATTERN =
+  /^[^\S\n]*(?:[+×*÷/=<>^±]|[-−][^\S\n]*[\p{N}\p{L}(])/u;
+const SIGN_PATTERN = /^[-−]/u;
+const OPERAND_BEFORE_PATTERN = /[\p{N})\]][^\S\n]*$/u;
 const LINE_START_PATTERN = /^[\t >]*(?:[-*+]|\d+[.)])?[\t ]*$/u;
 const LINE_END_PATTERN = /^[\t ]*(?:\n|$)/u;
 
@@ -41,6 +48,19 @@ function fillsLine(source: string, start: number, end: number): boolean {
   return (
     LINE_START_PATTERN.test(source.slice(lineStart, start)) &&
     LINE_END_PATTERN.test(source.slice(end))
+  );
+}
+
+/**
+ * Whether an arithmetic operator touches a number, so the number is one
+ * operand of a plain-text expression such as `3 + 2i` or `10 - 4`, which a
+ * person must write as one math expression.
+ */
+function isOperand(raw: string, before: string, after: string): boolean {
+  return (
+    OPERATOR_BEFORE_PATTERN.test(before) ||
+    OPERATOR_AFTER_PATTERN.test(after) ||
+    (SIGN_PATTERN.test(raw) && OPERAND_BEFORE_PATTERN.test(before))
   );
 }
 
@@ -78,13 +98,16 @@ function rangeEdits(
   const edits: Edit[] = [];
   const left: number[] = [];
   for (const match of findNumbers(text)) {
+    const raw = text.slice(match.start, match.end);
     const before = text.slice(0, match.start);
+    const after = text.slice(match.end);
     const math =
       kind === "string" ||
+      isOperand(raw, before, after) ||
       (kind === "markdown" &&
         fillsLine(source, start + match.start, start + match.end))
         ? undefined
-        : quantityMath(text.slice(match.start, match.end), locale, before);
+        : quantityMath(raw, locale, before);
     if (math === undefined) {
       left.push(range.rendered?.offsets[match.start] ?? start + match.start);
       continue;
@@ -92,7 +115,7 @@ function rangeEdits(
     edits.push({
       end: start + match.end,
       start: start + match.start,
-      text: element(math, kind, before, text.slice(match.end)),
+      text: element(math, kind, before, after),
     });
   }
   return { edits, left };

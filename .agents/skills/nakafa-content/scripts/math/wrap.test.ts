@@ -81,6 +81,30 @@ it("leaves ambiguous separators, string props, and lone numbers for a person", (
   });
 });
 
+it("leaves every operand of a plain-text expression for a person", () => {
+  const source =
+    "Bagian real dari 3 + 2i, lalu 10 - 4, 2×3, x = 5, 7 −1 dan 8/ 2, tetapi suku ke-3 dan 6 bola.";
+  assert.deepEqual(wrap(source), {
+    left: [
+      "3 + ",
+      "10 -",
+      "4, 2",
+      "2×3,",
+      "3, x",
+      "5, 7",
+      "7 −1",
+      "−1 d",
+      "8/ 2",
+      "2, t",
+    ],
+    source: source.replace(
+      "suku ke-3 dan 6 bola",
+      'suku ke-<InlineMath math="3" /> dan <InlineMath math="6" /> bola'
+    ),
+    wrapped: 2,
+  });
+});
+
 it("reads separators in the locale of the file", () => {
   assert.equal(
     wrap("It costs $1,250.50 for 3,5 units.", "en").source,
