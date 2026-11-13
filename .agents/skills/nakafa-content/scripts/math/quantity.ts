@@ -26,8 +26,13 @@ const SUPERSCRIPTS: Record<string, string> = {
   "⁻¹": "{-1}",
 };
 
-/** The locales that write `5.000,5`; the others write `5,000.5`. */
-const DECIMAL_COMMA_LOCALES = new Set<AppLocaleCode>(["de", "id"]);
+/**
+ * Whether a locale writes a decimal comma and a thousands point (`5.000,5`),
+ * as Intl formats it, instead of `5,000.5`.
+ */
+function writesDecimalComma(locale: AppLocaleCode): boolean {
+  return new Intl.NumberFormat(locale).format(1.5) === "1,5";
+}
 
 /** Writes a number's separators the way the corpus writes them in math. */
 function numberLatex(
@@ -45,7 +50,7 @@ function numberLatex(
   if (RATIO_PATTERN.test(number)) {
     return number;
   }
-  if (DECIMAL_COMMA_LOCALES.has(locale)) {
+  if (writesDecimalComma(locale)) {
     return DOT_THOUSANDS_PATTERN.test(number) || DOT_PLAIN_PATTERN.test(number)
       ? number.replaceAll(".", "{.}").replaceAll(",", "{,}")
       : undefined;

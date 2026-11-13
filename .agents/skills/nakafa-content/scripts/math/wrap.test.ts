@@ -1,9 +1,10 @@
 import { assert, it } from "@effect/vitest";
+import type { AppLocaleCode } from "@nakafa/aksara-contracts/locale";
 import { wrapNumbers } from "#nakafa-content/math/wrap";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 
-/** Wraps one Indonesian source and returns its output and what it left. */
-function wrap(source: string, locale: "en" | "id" = "id") {
+/** Wraps one source, Indonesian by default, and returns what it left. */
+function wrap(source: string, locale: AppLocaleCode = "id") {
   const result = wrapNumbers(source, parseLessonMdx(source), locale);
   return {
     left: result.left.map((offset) => source.slice(offset, offset + 4)),
