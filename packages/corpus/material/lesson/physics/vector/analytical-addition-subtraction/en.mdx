@@ -162,65 +162,36 @@ For example, let <InlineMath math="\vec{A}=7\hat{i}+4\hat{j}" /> and <InlineMath
 
 The negative sign in <InlineMath math="-2\hat{j}" /> means the resulting <InlineMath math="y" /> component points downward.
 
-<LineEquation
-  cameraPosition={[3.5, 1.8, 12]}
-  cameraTarget={[3.5, 1.8, 0]}
+<MathVisual
   title={<>The Difference of Two Vectors</>}
   description={<>Arrow <InlineMath math="\vec{C}" /> from the tip of <InlineMath math="\vec{B}" /> to the tip of <InlineMath math="\vec{A}" /> has components <InlineMath math="(5,-2)" />. The purple arrow starting at the origin is the same vector, translated.</>}
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.55 * ((7) - (0)), y: (0) + 0.55 * ((4) - (0)), z: (0) + 0.55 * ((0) - (0)) }, { x: 7, y: 4, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="A" />,
-        at: 1,
-        offset: [0, -0.4, 0],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((6) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 2, y: 6, z: 0 }],
-      color: "#d97706",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="B" />,
-        at: 1,
-        offset: [-0.5, 0, 0],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 2, y: 6, z: 0 }, { x: (2) + 0.5 * ((7) - (2)), y: (6) + 0.5 * ((4) - (6)), z: (0) + 0.5 * ((0) - (0)) }, { x: 7, y: 4, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="C" />,
-        at: 1,
-        offset: [0, 0.4, 0],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((5) - (0)), y: (0) + 0.5 * ((-2) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 5, y: -2, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="C" />,
-        at: 1,
-        offset: [0, -0.4, 0],
-        anchorX: "left",
-      }],
-    }
-  ]}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="C" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -3, max: 7 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.55 * ((7) - (0)), y: (0) + 0.55 * ((4) - (0)) }, { x: 7, y: 4 }], appearance: "primary" },
+      { id: "s1-head", kind: "vector", from: { x: 3.85, y: 2.2 }, to: { x: 7, y: 4 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((6) - (0)) }, { x: 2, y: 6 }], appearance: "secondary" },
+      { id: "s2-head", kind: "vector", from: { x: 1, y: 3 }, to: { x: 2, y: 6 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 2, y: 6 }, { x: (2) + 0.5 * ((7) - (2)), y: (6) + 0.5 * ((4) - (6)) }, { x: 7, y: 4 }], appearance: "answer" },
+      { id: "s3-head", kind: "vector", from: { x: 4.5, y: 5 }, to: { x: 7, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((5) - (0)), y: (0) + 0.5 * ((-2) - (0)) }, { x: 5, y: -2 }], appearance: "answer" },
+      { id: "s4-head", kind: "vector", from: { x: 2.5, y: -1 }, to: { x: 5, y: -2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3.85, y: 2.2 }, placement: "below" },
+      { key: "l2", objectId: "s2", at: { x: 1, y: 3 }, placement: "left" },
+      { key: "l3", objectId: "s3", at: { x: 4.5, y: 5 }, placement: "above" },
+      { key: "l4", objectId: "s4", at: { x: 2.5, y: -1 }, placement: "below" },
+    ],
+  }}
 />
 
 The component signs give a rightward and downward direction. To find the arrow length, add the squared components. Squaring removes the negative sign.

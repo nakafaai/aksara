@@ -22,9 +22,7 @@ Bei der grafischen Methode entsteht die Resultierende in einer maßstäblichen Z
 
 Mit der Dreiecksmethode werden zwei Vektoren addiert. Zeichne den ersten Vektor und setze den Fußpunkt des zweiten an seine Spitze. Die Resultierende führt vom ursprünglichen Fußpunkt direkt zur letzten Pfeilspitze.
 
-<LineEquation
-  cameraPosition={[3, 2, 9]}
-  cameraTarget={[3, 2, 0]}
+<MathVisual
   title={<>Spitze-an-Fußpunkt-Addition</>}
   description={
     <>
@@ -33,53 +31,29 @@ Mit der Dreiecksmethode werden zwei Vektoren addiert. Zeichne den ersten Vektor 
       direkt mit dem Endpunkt.
     </>
   }
-  data={(() => {
-    const a = [4, 1, 0];
-    const b = [2, 3, 0];
-    const resultant = a.map((component, index) => component + b.at(index));
-
-    return [
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * (((a)[0]) - (0)), y: (0) + 0.5 * (((a)[1]) - (0)), z: (0) + 0.5 * (((a)[2]) - (0)) }, { x: (a)[0], y: (a)[1], z: (a)[2] }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a" />,
-        at: 1,
-        offset: [0, -0.45, 0],
-        anchorX: "center",
-      }],
-    },
-      {
-      points: [{ x: (a)[0], y: (a)[1], z: (a)[2] }, { x: ((a)[0]) + 0.5 * (((resultant)[0]) - ((a)[0])), y: ((a)[1]) + 0.5 * (((resultant)[1]) - ((a)[1])), z: ((a)[2]) + 0.5 * (((resultant)[2]) - ((a)[2])) }, { x: (resultant)[0], y: (resultant)[1], z: (resultant)[2] }],
-      color: "#d97706",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="b" />,
-        at: 1,
-        offset: [0.35, 0.45, 0.2],
-        anchorX: "center",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.6 * (((resultant)[0]) - (0)), y: (0) + 0.6 * (((resultant)[1]) - (0)), z: (0) + 0.6 * (((resultant)[2]) - (0)) }, { x: (resultant)[0], y: (resultant)[1], z: (resultant)[2] }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="R" />,
-        at: 1,
-        offset: [0.25, 0.75, 0.35],
-        anchorX: "center",
-      }],
-    },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="a" />,
+    "l2": <InlineMath math="b" />,
+    "l3": <InlineMath math="R" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0.5 }, { x: 4, y: 1 }], appearance: "primary" },
+      { id: "s1-head", kind: "vector", from: { x: 2, y: 0.5 }, to: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 1 }, { x: 5, y: 2.5 }, { x: 6, y: 4 }], appearance: "secondary" },
+      { id: "s2-head", kind: "vector", from: { x: 5, y: 2.5 }, to: { x: 6, y: 4 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3.6, y: 2.4 }, { x: 6, y: 4 }], appearance: "answer" },
+      { id: "s3-head", kind: "vector", from: { x: 3.6, y: 2.4 }, to: { x: 6, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 0.5 }, placement: "below" },
+      { key: "l2", objectId: "s2", at: { x: 5, y: 2.5 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 3.6, y: 2.4 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Setze den **Fußpunkt des zweiten Vektors an die Spitze des ersten**. Die Koordinateneinheit im Modell ist Meter: Auf die Verschiebung <InlineMath math="(4,1)" /> folgt <InlineMath math="(2,3)" />. Der Endpunkt liegt bei <InlineMath math="(6,4)" />, weil du die Ortsänderungen entlang jeder Achse addierst.
@@ -90,78 +64,40 @@ Setze den **Fußpunkt des zweiten Vektors an die Spitze des ersten**. Die Koordi
 
 Zwei Kräfte, die an einem Punkt angreifen, lassen sich mit einem **gemeinsamen Fußpunkt** zeichnen. Zum Beispiel ziehen zwei Seile an einem Ring. Die verschobenen Vektoren im Modell behalten Länge und Richtung der ursprünglichen Pfeile. Ob du erst der unteren und dann der rechten Seite folgst oder erst der linken und dann der oberen: Beide Wege enden am selben Punkt.
 
-<LineEquation
-  cameraPosition={[3, 2, 9]}
-  cameraTarget={[3, 2, 0]}
+<MathVisual
   title={<>Die Diagonale des Parallelogramms</>}
   description={<>Der violette Pfeil verbindet den gemeinsamen Fußpunkt mit dem Endpunkt beider Wege. Die Vektoren <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> stimmen mit ihren parallel verschobenen Kopien überein.</>}
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((4) - (0)), y: (0) + 0.5 * ((1) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 4, y: 1, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a" />,
-        at: 1,
-        offset: [0, -0.4, 0],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((3) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 2, y: 3, z: 0 }],
-      color: "#d97706",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="b" />,
-        at: 1,
-        offset: [-0.5, 0, 0],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 2, y: 3, z: 0 }, { x: (2) + 0.5 * ((6) - (2)), y: (3) + 0.5 * ((4) - (3)), z: (0) + 0.5 * ((0) - (0)) }, { x: 6, y: 4, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a" />,
-        at: 1,
-        offset: [0, 0.4, 0],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 4, y: 1, z: 0 }, { x: (4) + 0.5 * ((6) - (4)), y: (1) + 0.5 * ((4) - (1)), z: (0) + 0.5 * ((0) - (0)) }, { x: 6, y: 4, z: 0 }],
-      color: "#d97706",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="b" />,
-        at: 1,
-        offset: [0.5, 0, 0],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((6) - (0)), y: (0) + 0.5 * ((4) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 6, y: 4, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="R" />,
-        at: 1,
-        offset: [-0.4, 0.35, 0],
-        anchorX: "left",
-      }],
-    }
-  ]}
+  labels={{
+    "l1": <InlineMath math="a" />,
+    "l2": <InlineMath math="b" />,
+    "l3": <InlineMath math="a" />,
+    "l4": <InlineMath math="b" />,
+    "l5": <InlineMath math="R" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((4) - (0)), y: (0) + 0.5 * ((1) - (0)) }, { x: 4, y: 1 }], appearance: "primary" },
+      { id: "s1-head", kind: "vector", from: { x: 2, y: 0.5 }, to: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((3) - (0)) }, { x: 2, y: 3 }], appearance: "secondary" },
+      { id: "s2-head", kind: "vector", from: { x: 1, y: 1.5 }, to: { x: 2, y: 3 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 2, y: 3 }, { x: (2) + 0.5 * ((6) - (2)), y: (3) + 0.5 * ((4) - (3)) }, { x: 6, y: 4 }], appearance: "primary" },
+      { id: "s3-head", kind: "vector", from: { x: 4, y: 3.5 }, to: { x: 6, y: 4 }, appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 1 }, { x: (4) + 0.5 * ((6) - (4)), y: (1) + 0.5 * ((4) - (1)) }, { x: 6, y: 4 }], appearance: "secondary" },
+      { id: "s4-head", kind: "vector", from: { x: 5, y: 2.5 }, to: { x: 6, y: 4 }, appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((6) - (0)), y: (0) + 0.5 * ((4) - (0)) }, { x: 6, y: 4 }], appearance: "answer" },
+      { id: "s5-head", kind: "vector", from: { x: 3, y: 2 }, to: { x: 6, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 0.5 }, placement: "below" },
+      { key: "l2", objectId: "s2", at: { x: 1, y: 1.5 }, placement: "left" },
+      { key: "l3", objectId: "s3", at: { x: 4, y: 3.5 }, placement: "above" },
+      { key: "l4", objectId: "s4", at: { x: 5, y: 2.5 }, placement: "right" },
+      { key: "l5", objectId: "s5", at: { x: 3, y: 2 }, placement: "above-left" },
+    ],
+  }}
 />
 
 ### Polygonverfahren für viele Vektoren
@@ -185,51 +121,31 @@ Für die Subtraktion **kehrst du den abzuziehenden Vektor um**. Beim selben Vekt
 <ContentStack>
   <BlockMath math="\vec{a}-\vec{b}=(4,1)+(-2,-3)=(2,-2)" />
 
-  <LineEquation
-    cameraPosition={[2, -0.5, 7]}
-    cameraTarget={[2, -0.5, 0]}
+  <MathVisual
     title={<>Den Gegenvektor addieren</>}
     description={<>Gehe von der Spitze von <InlineMath math="\vec{a}" /> bei <InlineMath math="(4,1)" /> zwei Einheiten nach links und drei nach unten. Die Resultierende endet bei <InlineMath math="(2,-2)" />.</>}
-    data={[
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((4) - (0)), y: (0) + 0.5 * ((1) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 4, y: 1, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a" />,
-        at: 1,
-        offset: [0, 0.4, 0],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 4, y: 1, z: 0 }, { x: (4) + 0.5 * ((2) - (4)), y: (1) + 0.5 * ((-2) - (1)), z: (0) + 0.5 * ((0) - (0)) }, { x: 2, y: -2, z: 0 }],
-      color: "#d97706",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="-b" />,
-        at: 1,
-        offset: [0.5, 0, 0],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((-2) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 2, y: -2, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a-b" />,
-        at: 1,
-        offset: [-0.5, -0.2, 0],
-        anchorX: "left",
-      }],
-    }
-    ]}
+    labels={{
+      "l1": <InlineMath math="a" />,
+      "l2": <InlineMath math="-b" />,
+      "l3": <InlineMath math="a-b" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -2.5, max: 1.5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((4) - (0)), y: (0) + 0.5 * ((1) - (0)) }, { x: 4, y: 1 }], appearance: "primary" },
+        { id: "s1-head", kind: "vector", from: { x: 2, y: 0.5 }, to: { x: 4, y: 1 }, appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 1 }, { x: (4) + 0.5 * ((2) - (4)), y: (1) + 0.5 * ((-2) - (1)) }, { x: 2, y: -2 }], appearance: "secondary" },
+        { id: "s2-head", kind: "vector", from: { x: 3, y: -0.5 }, to: { x: 2, y: -2 }, appearance: "secondary" },
+        { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((-2) - (0)) }, { x: 2, y: -2 }], appearance: "answer" },
+        { id: "s3-head", kind: "vector", from: { x: 1, y: -1 }, to: { x: 2, y: -2 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 2, y: 0.5 }, placement: "above" },
+        { key: "l2", objectId: "s2", at: { x: 3, y: -0.5 }, placement: "right" },
+        { key: "l3", objectId: "s3", at: { x: 1, y: -1 }, placement: "below-left" },
+      ],
+    }}
   />
 </ContentStack>

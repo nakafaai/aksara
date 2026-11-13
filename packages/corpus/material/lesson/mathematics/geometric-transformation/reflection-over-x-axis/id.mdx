@@ -21,7 +21,7 @@ Secara matematis, jika titik awal adalah <InlineMath math="P(x,y)" />, maka sete
 
 Perhatikan **pasangan titik pada garis vertikal yang sama**. Titik di atas sumbu dipantulkan ke bawah, sedangkan titik di bawah dipantulkan ke atas. Jarak masing-masing titik ke sumbu tetap sama.
 
-<LineEquation
+<MathVisual
   title={<>Bayangan Titik terhadap Sumbu <InlineMath math="x" /></>}
   description={
     <>
@@ -29,35 +29,41 @@ Perhatikan **pasangan titik pada garis vertikal yang sama**. Titik di atas sumbu
       <InlineMath math="A', B', C', D'" /> setelah pencerminan terhadap sumbu <InlineMath math="x" />.
     </>
   }
-  cameraPosition={[0, 0, 15]}
-  data={[
-    ...[
-      { x: -5, y: 2, label: <InlineMath math="A" /> },
-      { x: -3, y: 1, label: <InlineMath math="B" /> },
-      { x: 1, y: 2, label: <InlineMath math="C" /> },
-      { x: 4, y: -2, label: <InlineMath math="D" /> },
-    ].map((p) => ({
-      points: [
-        { x: p.x, y: p.y, z: 0 },
-      ],
-      color: "#d97706",
-      labels: [{ text: p.label, at: 0, offset: [0.3, 0.3, 0] }],
-      showPoints: true,
-    })),
-    ...[
-      { x: -5, y: -2, label: <InlineMath math="A'" /> },
-      { x: -3, y: -1, label: <InlineMath math="B'" /> },
-      { x: 1, y: -2, label: <InlineMath math="C'" /> },
-      { x: 4, y: 2, label: <InlineMath math="D'" /> },
-    ].map((p) => ({
-      points: [
-        { x: p.x, y: p.y, z: 0 },
-      ],
-      color: "#0891b2",
-      labels: [{ text: p.label, at: 0, offset: [0.3, 0.3, 0] }],
-      showPoints: true,
-    })),
-  ]}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <InlineMath math="A'" />,
+    "l6": <InlineMath math="B'" />,
+    "l7": <InlineMath math="C'" />,
+    "l8": <InlineMath math="D'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 5 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "point", at: { x: -5, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: -3, y: 1 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 1, y: 2 }, appearance: "primary" },
+      { id: "s4", kind: "point", at: { x: 4, y: -2 }, appearance: "primary" },
+      { id: "s5", kind: "point", at: { x: -5, y: -2 }, appearance: "secondary" },
+      { id: "s6", kind: "point", at: { x: -3, y: -1 }, appearance: "secondary" },
+      { id: "s7", kind: "point", at: { x: 1, y: -2 }, appearance: "secondary" },
+      { id: "s8", kind: "point", at: { x: 4, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -5, y: 2 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: -3, y: 1 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 1, y: 2 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 4, y: -2 }, placement: "above-right" },
+      { key: "l5", objectId: "s5", at: { x: -5, y: -2 }, placement: "above-right" },
+      { key: "l6", objectId: "s6", at: { x: -3, y: -1 }, placement: "above-right" },
+      { key: "l7", objectId: "s7", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "l8", objectId: "s8", at: { x: 4, y: 2 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Setiap pasangan pada grafik memuat titik asal dan titik hasil pencerminannya:
@@ -97,7 +103,7 @@ Untuk menentukan bayangan segitiga <InlineMath math="ABC" />, kita gunakan sifat
 
 Akibatnya, bayangan segitiga <InlineMath math="ABC" /> adalah segitiga <InlineMath math="A'B'C'" /> dengan titik sudut <InlineMath math="A'(-1,-4)" />, <InlineMath math="B'(2,-1)" />, dan <InlineMath math="C'(-2,1)" />.
 
-<LineEquation
+<MathVisual
   title={
     <>
       Pencerminan Segitiga <InlineMath math="ABC" /> terhadap Sumbu <InlineMath math="x" />
@@ -109,66 +115,47 @@ Akibatnya, bayangan segitiga <InlineMath math="ABC" /> adalah segitiga <InlineMa
       <InlineMath math="A'B'C'" /> setelah pencerminan terhadap sumbu <InlineMath math="x" />.
     </>
   }
-  cameraPosition={[0, 0, 11.8]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    // Segitiga ABC (Original)
-    ...[
-      {
-        from: { x: -1, y: 4, z: 0, label: <InlineMath math="A" /> },
-        to: { x: 2, y: 1, z: 0, label: <InlineMath math="B" /> },
-      },
-      {
-        from: { x: 2, y: 1, z: 0, label: <InlineMath math="B" /> },
-        to: { x: -2, y: -1, z: 0, label: <InlineMath math="C" /> },
-      },
-      {
-        from: { x: -2, y: -1, z: 0, label: <InlineMath math="C" /> },
-        to: { x: -1, y: 4, z: 0, label: <InlineMath math="A" /> },
-      },
-    ].map((segment) => ({
-      points: [segment.from, segment.to],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        {
-          text: segment.from.label,
-          at: 0,
-          offset: segment.from.x === -1 && segment.from.y === 4 ? [-0.3, 0.6, 0] : segment.from.x === 2 && segment.from.y === 1 ? [0.4, 0.35, 0] : [-0.6, -0.6, 0],
-        },
-        { text: segment.to.label, at: 1, offset: segment.to.x === 2 && segment.to.y === 1 ? [0.4, 0.35, 0] : segment.to.x === -2 && segment.to.y === -1 ? [-0.6, -0.6, 0] : [-0.3, 0.6, 0] },
-      ],
-    })),
-    // Segitiga A'B'C' (Reflected)
-    ...[
-      {
-        from: { x: -1, y: -4, z: 0, label: <InlineMath math="A'" /> },
-        to: { x: 2, y: -1, z: 0, label: <InlineMath math="B'" /> },
-      },
-      {
-        from: { x: 2, y: -1, z: 0, label: <InlineMath math="B'" /> },
-        to: { x: -2, y: 1, z: 0, label: <InlineMath math="C'" /> },
-      },
-      {
-        from: { x: -2, y: 1, z: 0, label: <InlineMath math="C'" /> },
-        to: { x: -1, y: -4, z: 0, label: <InlineMath math="A'" /> },
-      },
-    ].map((segment) => ({
-      points: [segment.from, segment.to],
-      smooth: false,
-      color: "#9333ea",
-      showPoints: true,
-      labels: [
-        {
-          text: segment.from.label,
-          at: 0,
-          offset: segment.from.x === -1 && segment.from.y === -4 ? [-0.3, -0.6, 0] : segment.from.x === 2 && segment.from.y === -1 ? [0.4, -0.35, 0] : [-0.6, 0.6, 0],
-        },
-        { text: segment.to.label, at: 1, offset: segment.to.x === 2 && segment.to.y === -1 ? [0.4, -0.35, 0] : segment.to.x === -2 && segment.to.y === 1 ? [-0.6, 0.6, 0] : [-0.3, -0.6, 0] },
-      ],
-    })),
-  ]}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="C" />,
+    "l6": <InlineMath math="A" />,
+    "l7": <InlineMath math="A'" />,
+    "l8": <InlineMath math="B'" />,
+    "l9": <InlineMath math="B'" />,
+    "l10": <InlineMath math="C'" />,
+    "l11": <InlineMath math="C'" />,
+    "l12": <InlineMath math="A'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: -1, y: 4 }, { x: 2, y: 1 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 2, y: 1 }, { x: -2, y: -1 }], appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -2, y: -1 }, { x: -1, y: 4 }], appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -1, y: -4 }, { x: 2, y: -1 }], appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 2, y: -1 }, { x: -2, y: 1 }], appearance: "secondary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -2, y: 1 }, { x: -1, y: -4 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1, y: 4 }, placement: "above-left" },
+      { key: "l2", objectId: "s1", at: { x: 2, y: 1 }, placement: "above-right" },
+      { key: "l3", objectId: "s2", at: { x: 2, y: 1 }, placement: "above-right" },
+      { key: "l4", objectId: "s2", at: { x: -2, y: -1 }, placement: "below-left" },
+      { key: "l5", objectId: "s3", at: { x: -2, y: -1 }, placement: "below-left" },
+      { key: "l6", objectId: "s3", at: { x: -1, y: 4 }, placement: "above-left" },
+      { key: "l7", objectId: "s4", at: { x: -1, y: -4 }, placement: "below-left" },
+      { key: "l8", objectId: "s4", at: { x: 2, y: -1 }, placement: "below-right" },
+      { key: "l9", objectId: "s5", at: { x: 2, y: -1 }, placement: "below-right" },
+      { key: "l10", objectId: "s5", at: { x: -2, y: 1 }, placement: "above-left" },
+      { key: "l11", objectId: "s6", at: { x: -2, y: 1 }, placement: "above-left" },
+      { key: "l12", objectId: "s6", at: { x: -1, y: -4 }, placement: "below-left" },
+    ],
+  }}
 />
 
 ### Mencerminkan Garis
@@ -202,42 +189,36 @@ Jadi, persamaan garis bayangannya adalah:
 
   <BlockMath math="2x + 3y = 0" />
 
-  <LineEquation
+  <MathVisual
     title={
-      <>
-        Pencerminan Garis <InlineMath math="2x - 3y = 0" /> terhadap Sumbu <InlineMath math="x" />
-      </>
-    }
+        <>
+          Pencerminan Garis <InlineMath math="2x - 3y = 0" /> terhadap Sumbu <InlineMath math="x" />
+        </>
+      }
     description={
-      <>
-        Garis asal <InlineMath math="2x - 3y = 0" /> (hijau limau) dan
-        bayangannya <InlineMath math="2x + 3y = 0" /> (magenta) setelah
-        pencerminan.
-      </>
-    }
-    cameraPosition={[0, 0, 15]}
-    data={[
-      {
-        // Garis Asal: 2x - 3y = 0  => y = (2/3)x
-        points: [
-          { x: -6, y: (2 / 3) * -6, z: 0 },
-          { x: 6, y: (2 / 3) * 6, z: 0 },
-        ],
-        smooth: false,
-        color: "#65a30d",
-        labels: [{ text: <InlineMath math="2x-3y=0" />, at: 1, offset: [-2.5, 0.6, 0] }],
-      },
-      {
-        // Garis Bayangan: 2x + 3y = 0 => y = -(2/3)x
-        points: [
-          { x: -6, y: -(2 / 3) * -6, z: 0 },
-          { x: 6, y: -(2 / 3) * 6, z: 0 },
-        ],
-        smooth: false,
-        color: "#c026d3",
-        labels: [{ text: <InlineMath math="2x+3y=0" />, at: 1, offset: [-2.5, -0.6, 0] }],
-      },
-    ]}
+        <>
+          Garis asal <InlineMath math="2x - 3y = 0" /> (hijau limau) dan
+          bayangannya <InlineMath math="2x + 3y = 0" /> (magenta) setelah
+          pencerminan.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="2x-3y=0" />,
+      "l2": <InlineMath math="2x+3y=0" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -5, max: 5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: [{ x: -6, y: (2 / 3) * -6 }, { x: 6, y: (2 / 3) * 6 }], appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: -6, y: -(2 / 3) * -6 }, { x: 6, y: -(2 / 3) * 6 }], appearance: "secondary" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 6, y: 4 }, placement: "above-left" },
+        { key: "l2", objectId: "s2", at: { x: 6, y: -4 }, placement: "below-left" },
+      ],
+    }}
   />
 </ContentStack>
 

@@ -12,82 +12,39 @@ export const metadata = {
 
 Tali busur adalah <Highlight>ruas garis dengan kedua ujung pada lingkaran</Highlight>. Diameter merupakan tali busur khusus yang melewati pusat. Tali busur lain tidak harus melewati pusat.
 
-<LineEquation
-  title="Tali Busur pada Lingkaran"
-  description="Dua tali busur yang sama panjang menghadap sudut tiga puluh derajat dan tali busur yang lebih panjang menghadap sudut enam puluh derajat."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-    {
-      points: (() => {
-        const angle1 = Math.PI / 6;
-        const angle2 = Math.PI / 3;
-        return [
-          { x: 3 * Math.cos(angle1), y: 3 * Math.sin(angle1), z: 0 },
-          { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.3, 0.3, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
-        const angle1 = (2 * Math.PI) / 3;
-        const angle2 = (5 * Math.PI) / 6;
-        return [
-          { x: 3 * Math.cos(angle1), y: 3 * Math.sin(angle1), z: 0 },
-          { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="C" />, at: 0, offset: [-0.3, 0.3, 0] },
-        { text: <InlineMath math="D" />, at: 1, offset: [-0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
-        const angle1 = (7 * Math.PI) / 6;
-        const angle2 = (3 * Math.PI) / 2;
-        return [
-          { x: 3 * Math.cos(angle1), y: 3 * Math.sin(angle1), z: 0 },
-          { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#db2777",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="E" />, at: 0, offset: [-0.3, -0.3, 0] },
-        { text: <InlineMath math="F" />, at: 1, offset: [0, -0.5, 0] },
-      ],
-    },
-  ]}
-  cameraPosition={[0, 0, 10]}
+<MathVisual
+  title={<>Tali Busur pada Lingkaran</>}
+  description={<>Dua tali busur yang sama panjang menghadap sudut tiga puluh derajat dan tali busur yang lebih panjang menghadap sudut enam puluh derajat.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="D" />,
+    "l6": <InlineMath math="E" />,
+    "l7": <InlineMath math="F" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 2.6, y: 1.5 }, { x: 1.5, y: 2.6 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -1.5, y: 2.6 }, { x: -2.6, y: 1.5 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -2.6, y: -1.5 }, { x: 0, y: -3 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 2.6, y: 1.5 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 1.5, y: 2.6 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: -1.5, y: 2.6 }, placement: "above-left" },
+      { key: "l5", objectId: "s4", at: { x: -2.6, y: 1.5 }, placement: "above-left" },
+      { key: "l6", objectId: "s5", at: { x: -2.6, y: -1.5 }, placement: "below-left" },
+      { key: "l7", objectId: "s5", at: { x: 0, y: -3 }, placement: "below" },
+    ],
+  }}
 />
 
 Tali busur <InlineMath math="AB" /> dan <InlineMath math="CD" /> menghadap sudut pusat yang sama, sehingga panjangnya sama. Tali busur <InlineMath math="EF" /> menghadap sudut pusat yang lebih besar dan lebih panjang.
@@ -100,85 +57,40 @@ Dalam **lingkaran yang sama**, panjang tali busur dan jarak tegak lurus dari pus
 
 Dua tali busur yang sama panjang <Highlight>memiliki jarak yang sama dari pusat lingkaran</Highlight>. Sebaliknya, dua tali busur yang berjarak sama dari pusat memiliki panjang yang sama.
 
-<LineEquation
-  title="Tali Busur Sama Panjang"
-  description="Dua tali busur dengan panjang sama memiliki jarak sama dari pusat."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-    {
-      points: (() => {
-        const y = 2;
-        const x = Math.sqrt(16 - y * y);
-        return [
-          { x: -x, y: y, z: 0 },
-          { x: x, y: y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P" />, at: 0, offset: [-0.3, 0.3, 0] },
-        { text: <InlineMath math="Q" />, at: 1, offset: [0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
-        const y = -2;
-        const x = Math.sqrt(16 - y * y);
-        return [
-          { x: -x, y: y, z: 0 },
-          { x: x, y: y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="R" />, at: 0, offset: [-0.3, -0.3, 0] },
-        { text: <InlineMath math="S" />, at: 1, offset: [0.3, -0.3, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 2, z: 0 },
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="d_1" />, at: 1, offset: [0.5, 0, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: -2, z: 0 },
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="d_2" />, at: 1, offset: [0.5, 0, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Tali Busur Sama Panjang</>}
+  description={<>Dua tali busur dengan panjang sama memiliki jarak sama dari pusat.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <InlineMath math="Q" />,
+    "l4": <InlineMath math="R" />,
+    "l5": <InlineMath math="S" />,
+    "l6": <InlineMath math="d_1" />,
+    "l7": <InlineMath math="d_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3.46, y: 2 }, { x: 3.46, y: 2 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3.46, y: -2 }, { x: 3.46, y: -2 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 2 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: -2 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -3.46, y: 2 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 3.46, y: 2 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: -3.46, y: -2 }, placement: "below-left" },
+      { key: "l5", objectId: "s4", at: { x: 3.46, y: -2 }, placement: "below-right" },
+      { key: "l6", objectId: "s5", at: { x: 0, y: 2 }, placement: "right" },
+      { key: "l7", objectId: "s6", at: { x: 0, y: -2 }, placement: "right" },
+    ],
+  }}
 />
 
 Jika <InlineMath math="PQ = RS" />, maka jarak dari pusat <InlineMath math="O" /> ke tali busur <InlineMath math="PQ" /> sama dengan jarak dari <InlineMath math="O" /> ke tali busur <InlineMath math="RS" />, yaitu <InlineMath math="d_1 = d_2" />.
@@ -187,80 +99,33 @@ Jika <InlineMath math="PQ = RS" />, maka jarak dari pusat <InlineMath math="O" /
 
 Garis yang ditarik dari pusat lingkaran tegak lurus terhadap tali busur akan membagi tali busur tersebut menjadi **dua bagian yang sama panjang**.
 
-<LineEquation
-  title="Garis Tegak Lurus dari Pusat"
-  description="Garis dari pusat yang tegak lurus tali busur membaginya sama panjang."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 5 * Math.cos(angle),
-          y: 5 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-    {
-      points: (() => {
-        const angle1 = Math.PI / 4;
-        const angle2 = (3 * Math.PI) / 4;
-        return [
-          { x: 5 * Math.cos(angle1), y: 5 * Math.sin(angle1), z: 0 },
-          { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.3, 0.3, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [-0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
-        const chordMidX =
-          (5 * Math.cos(Math.PI / 4) + 5 * Math.cos((3 * Math.PI) / 4)) / 2;
-        const chordMidY =
-          (5 * Math.sin(Math.PI / 4) + 5 * Math.sin((3 * Math.PI) / 4)) / 2;
-        return [
-          { x: 0, y: 0, z: 0 },
-          { x: chordMidX, y: chordMidY, z: 0 },
-        ];
-      })(),
-      color: "#db2777",
-      showPoints: true,
-      smooth: false,
-      labels: [{ text: <InlineMath math="M" />, at: 1, offset: [0, 0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const chordMidX =
-          (5 * Math.cos(Math.PI / 4) + 5 * Math.cos((3 * Math.PI) / 4)) / 2;
-        const chordMidY =
-          (5 * Math.sin(Math.PI / 4) + 5 * Math.sin((3 * Math.PI) / 4)) / 2;
-        return [
-          { x: chordMidX - 0.3, y: chordMidY, z: 0 },
-          { x: chordMidX - 0.3, y: chordMidY - 0.3, z: 0 },
-          { x: chordMidX, y: chordMidY - 0.3, z: 0 },
-        ];
-      })(),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 15]}
+<MathVisual
+  title={<>Garis Tegak Lurus dari Pusat</>}
+  description={<>Garis dari pusat yang tegak lurus tali busur membaginya sama panjang.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="M" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(5 * cos(((t * pi) / 180)))", y: "(5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 3.54, y: 3.54 }, { x: -3.54, y: 3.54 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 3.54 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -0.3, y: 3.54 }, { x: -0.3, y: 3.24 }, { x: 0, y: 3.24 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3.54, y: 3.54 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -3.54, y: 3.54 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: 3.54 }, placement: "above" },
+    ],
+  }}
 />
 
 Pada diagram di atas, <InlineMath math="OM \perp AB" /> dan <InlineMath math="M" /> adalah titik tengah tali busur <InlineMath math="AB" />, sehingga <InlineMath math="AM = MB" />.
@@ -280,91 +145,34 @@ Keterangan:
 
 Ketika sudut pusat terkecil <InlineMath math="\theta" /> bertambah dari <InlineMath math="0" /> sampai <InlineMath math="180^\circ" />, nilai <InlineMath math="\sin(\theta/2)" /> bertambah dari <InlineMath math="0" /> sampai <InlineMath math="1" />. Panjang tali busur pun bertambah dari <InlineMath math="0" /> sampai sebesar diameter <InlineMath math="2r" />.
 
-<LineEquation
-  title="Sudut Pusat dan Tali Busur"
-  description="Tali busur memanjang ketika sudut pusat terkecil bertambah menuju seratus delapan puluh derajat."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-    {
-      points: (() => {
-        const angle1 = Math.PI / 6;
-        const angle2 = (2 * Math.PI) / 3;
-        return [
-          { x: 4 * Math.cos(angle1), y: 4 * Math.sin(angle1), z: 0 },
-          { x: 4 * Math.cos(angle2), y: 4 * Math.sin(angle2), z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P" />, at: 0, offset: [0.3, 0.3, 0] },
-        { text: <InlineMath math="Q" />, at: 1, offset: [-0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
-        const angle1 = Math.PI / 6;
-        return [
-          { x: 0, y: 0, z: 0 },
-          { x: 4 * Math.cos(angle1), y: 4 * Math.sin(angle1), z: 0 },
-        ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: (() => {
-        const angle2 = (2 * Math.PI) / 3;
-        return [
-          { x: 0, y: 0, z: 0 },
-          { x: 4 * Math.cos(angle2), y: 4 * Math.sin(angle2), z: 0 },
-        ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const startAngle = Math.PI / 6;
-        const endAngle = (2 * Math.PI) / 3;
-        const numPoints = 20;
-        return Array.from({ length: numPoints + 1 }, (_, i) => {
-          const angle = startAngle + (endAngle - startAngle) * (i / numPoints);
-          return {
-            x: 1.5 * Math.cos(angle),
-            y: 1.5 * Math.sin(angle),
-            z: 0,
-          };
-        });
-      })(),
-      color: "#d97706",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\theta" />, at: 10, offset: [0, -0.5, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Sudut Pusat dan Tali Busur</>}
+  description={<>Tali busur memanjang ketika sudut pusat terkecil bertambah menuju seratus delapan puluh derajat.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <InlineMath math="Q" />,
+    "l4": <InlineMath math="\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 3.46, y: 2 }, { x: -2, y: 3.46 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3.46, y: 2 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: -2, y: 3.46 }], appearance: "highlight" },
+      { id: "s6", kind: "parametric", x: "(1.5 * cos(((pi / 6) + ((((2 * pi) / 3) - (pi / 6)) * (t / 20)))))", y: "(1.5 * sin(((pi / 6) + ((((2 * pi) / 3) - (pi / 6)) * (t / 20)))))", parameter: { min: 0, max: 20 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3.46, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -2, y: 3.46 }, placement: "above-left" },
+      { key: "l4", objectId: "s6", at: { x: 0.39, y: 1.45 }, placement: "below" },
+    ],
+  }}
 />
 
 ### Jarak Tali Busur dari Pusat
@@ -381,23 +189,38 @@ Jika panjang tali busur <InlineMath math="l" /> diketahui, gunakan **setengah pa
 
 Jika dua tali busur berpotongan di dalam lingkaran, maka hasil kali segmen-segmen dari satu tali busur sama dengan hasil kali segmen-segmen dari tali busur lainnya.
 
-<LineEquation
-  title="Perpotongan Dua Tali Busur"
-  description="Perpotongan tali busur yang tidak berada di pusat lingkaran."
-  cameraPosition={[0, 0, 15]}
-  showZAxis={false}
-  data={[
-    { kind: "circle-outline", radius: 5, color: "#9333ea" },
-    { points: [{ x: 5, y: 0, z: 0 }, { x: -5, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: true, labels: [
-      { text: <InlineMath math="A" />, at: 0, offset: [0.4, 0.3, 0] },
-      { text: <InlineMath math="B" />, at: 1, offset: [-0.4, 0.3, 0] },
-    ] },
-    { points: [{ x: 1, y: Math.sqrt(24), z: 0 }, { x: 1, y: -Math.sqrt(24), z: 0 }], smooth: false, color: "#0d9488", showPoints: true, labels: [
-      { text: <InlineMath math="C" />, at: 0, offset: [0.4, 0.3, 0] },
-      { text: <InlineMath math="D" />, at: 1, offset: [0.4, -0.3, 0] },
-    ] },
-    { points: [{ x: 1, y: 0, z: 0 }], color: "#db2777", showPoints: true, labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.4, 0.3, 0] }] },
-  ]}
+<MathVisual
+  title={<>Perpotongan Dua Tali Busur</>}
+  description={<>Perpotongan tali busur yang tidak berada di pusat lingkaran.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 5, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 5, y: 0 }, { x: -5, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 5, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: -5, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 1, y: Math.sqrt(24) }, { x: 1, y: -Math.sqrt(24) }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: 1, y: 4.9 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 1, y: -4.9 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 1, y: 0 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 5, y: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: -5, y: 0 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 1, y: 4.9 }, placement: "above-right" },
+      { key: "l4", objectId: "s3", at: { x: 1, y: -4.9 }, placement: "below-right" },
+      { key: "l5", objectId: "s4", at: { x: 1, y: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Pada diagram, lingkaran berjari-jari <InlineMath math="5" /> memiliki titik potong <InlineMath math="P(1,0)" />. Panjang potongan horizontal berbeda, tetapi **hasil kali kedua potongan** sama dengan hasil kali potongan vertikal.
@@ -412,81 +235,39 @@ Pada diagram, lingkaran berjari-jari <InlineMath math="5" /> memiliki titik poto
 
 Sudut-sudut keliling yang menghadap tali busur yang sama memiliki besar yang sama jika titik sudutnya berada pada **sisi yang sama** terhadap tali busur tersebut.
 
-<LineEquation
-  title="Sudut Keliling dalam Segmen yang Sama"
+<MathVisual
+  title={<>Sudut Keliling dalam Segmen yang Sama</>}
   description={
     <>
       Kedua sudut keliling menghadap tali busur <InlineMath math="AB" /> dari
       sisi yang sama, sehingga besarnya sama.
     </>
   }
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: (() => {
-        const angleA = 0;
-        const angleB = Math.PI / 2;
-        return [
-          { x: 4 * Math.cos(angleA), y: 4 * Math.sin(angleA), z: 0 },
-          { x: 4 * Math.cos(angleB), y: 4 * Math.sin(angleB), z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0, 0.5, 0] },
-      ],
-    },
-    {
-      points: (() => {
-        const angleC = (3 * Math.PI) / 4;
-        const angleA = 0;
-        const angleB = Math.PI / 2;
-        return [
-          { x: 4 * Math.cos(angleC), y: 4 * Math.sin(angleC), z: 0 },
-          { x: 4 * Math.cos(angleA), y: 4 * Math.sin(angleA), z: 0 },
-          { x: 4 * Math.cos(angleB), y: 4 * Math.sin(angleB), z: 0 },
-          { x: 4 * Math.cos(angleC), y: 4 * Math.sin(angleC), z: 0 },
-        ];
-      })(),
-      color: "#db2777",
-      showPoints: true,
-      smooth: false,
-      labels: [{ text: <InlineMath math="C" />, at: 0, offset: [-0.3, 0.3, 0] }],
-    },
-    {
-      points: (() => {
-        const angleD = (5 * Math.PI) / 4;
-        const angleA = 0;
-        const angleB = Math.PI / 2;
-        return [
-          { x: 4 * Math.cos(angleD), y: 4 * Math.sin(angleD), z: 0 },
-          { x: 4 * Math.cos(angleA), y: 4 * Math.sin(angleA), z: 0 },
-          { x: 4 * Math.cos(angleB), y: 4 * Math.sin(angleB), z: 0 },
-          { x: 4 * Math.cos(angleD), y: 4 * Math.sin(angleD), z: 0 },
-        ];
-      })(),
-      color: "#d97706",
-      showPoints: true,
-      smooth: false,
-      labels: [{ text: <InlineMath math="D" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 0, y: 4 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -2.83, y: 2.83 }, { x: 4, y: 0 }, { x: 0, y: 4 }], appearance: "answer" },
+      { id: "s3-close", kind: "segment", from: { x: 0, y: 4 }, to: { x: -2.83, y: 2.83 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -2.83, y: -2.83 }, { x: 4, y: 0 }, { x: 0, y: 4 }], appearance: "highlight" },
+      { id: "s4-close", kind: "segment", from: { x: 0, y: 4 }, to: { x: -2.83, y: -2.83 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "l3", objectId: "s3", at: { x: -2.83, y: 2.83 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+    ],
+  }}
 />
 
 Pada diagram di atas, <InlineMath math="\angle ACB = \angle ADB" /> karena kedua titik sudut berada pada sisi yang sama terhadap tali busur <InlineMath math="AB" /> dan kedua sudut menghadap tali busur tersebut.
@@ -495,71 +276,37 @@ Pada diagram di atas, <InlineMath math="\angle ACB = \angle ADB" /> karena kedua
 
 Apotema tali busur adalah ruas garis yang ditarik tegak lurus dari pusat lingkaran ke tali busur. Panjangnya merupakan **jarak terpendek** antara pusat dan tali busur.
 
-<LineEquation
-  title="Apotema pada Tali Busur"
-  description="Apotema tegak lurus terhadap tali busur dan menyatakan jaraknya dari pusat lingkaran."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 5 * Math.cos(angle),
-          y: 5 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-    {
-      points: (() => {
-        const y = 3;
-        const x = Math.sqrt(25 - y * y);
-        return [
-          { x: -x, y: y, z: 0 },
-          { x: x, y: y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P" />, at: 0, offset: [-0.3, 0.3, 0] },
-        { text: <InlineMath math="Q" />, at: 1, offset: [0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 3, z: 0 },
-      ],
-      color: "#db2777",
-      showPoints: true,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="M" />, at: 1, offset: [0.5, 0, 0] },
-        { text: "apotema", at: 0, offset: [1.2, 1.5, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: -0.3, y: 3, z: 0 },
-        { x: -0.3, y: 2.7, z: 0 },
-        { x: 0, y: 2.7, z: 0 },
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 15]}
+<MathVisual
+  title={<>Apotema pada Tali Busur</>}
+  description={<>Apotema tegak lurus terhadap tali busur dan menyatakan jaraknya dari pusat lingkaran.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <InlineMath math="Q" />,
+    "l4": <InlineMath math="M" />,
+    "l5": <>apotema</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(5 * cos(((t * pi) / 180)))", y: "(5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 3 }, { x: 4, y: 3 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 3 }], appearance: "highlight" },
+      { id: "s4-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "s4-p1", kind: "point", at: { x: 0, y: 3 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -0.3, y: 3 }, { x: -0.3, y: 2.7 }, { x: 0, y: 2.7 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -4, y: 3 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 4, y: 3 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: 3 }, placement: "right" },
+      { key: "l5", objectId: "s4", at: { x: 0, y: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Panjang apotema dapat dihitung dengan rumus:
@@ -577,103 +324,33 @@ Keterangan:
 
 Dua tali busur sejajar memotong **busur penghubung yang sama panjang** pada kedua sisi lingkaran. Bandingkan busur kecil di kiri dan kanan, bukan busur panjang yang melewati sisi lain lingkaran.
 
-<LineEquation
-  title="Tali Busur Sejajar"
-  description="Busur di antara tali busur sejajar memiliki panjang yang sama."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: (() => {
-        const y = 2;
-        const x = Math.sqrt(16 - y * y);
-        return [
-          { x: -x, y: y, z: 0 },
-          { x: x, y: y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [-0.3, 0.3, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
-        const y = -2;
-        const x = Math.sqrt(16 - y * y);
-        return [
-          { x: -x, y: y, z: 0 },
-          { x: x, y: y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="C" />, at: 0, offset: [-0.3, -0.3, 0] },
-        { text: <InlineMath math="D" />, at: 1, offset: [0.3, -0.3, 0] },
-      ],
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const y1 = 2;
-        const x1 = Math.sqrt(16 - y1 * y1);
-        const angle1 = Math.atan2(y1, -x1);
-        const y2 = -2;
-        const x2 = Math.sqrt(16 - y2 * y2);
-        const angle2 = Math.atan2(y2, -x2) + 2 * Math.PI;
-        const numPoints = 20;
-        return Array.from({ length: numPoints + 1 }, (_, i) => {
-          const angle = angle1 + (angle2 - angle1) * (i / numPoints);
-          return {
-            x: 4 * Math.cos(angle),
-            y: 4 * Math.sin(angle),
-            z: 0,
-          };
-        });
-      })(),
-      color: "#db2777",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const y1 = 2;
-        const x1 = Math.sqrt(16 - y1 * y1);
-        const angle1 = Math.atan2(y1, x1);
-        const y2 = -2;
-        const x2 = Math.sqrt(16 - y2 * y2);
-        const angle2 = Math.atan2(y2, x2);
-        const numPoints = 20;
-        return Array.from({ length: numPoints + 1 }, (_, i) => {
-          const angle = angle1 + (angle2 - angle1) * (i / numPoints);
-          return {
-            x: 4 * Math.cos(angle),
-            y: 4 * Math.sin(angle),
-            z: 0,
-          };
-        });
-      })(),
-      color: "#d97706",
-      showPoints: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Tali Busur Sejajar</>}
+  description={<>Busur di antara tali busur sejajar memiliki panjang yang sama.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -3.46, y: 2 }, { x: 3.46, y: 2 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3.46, y: -2 }, { x: 3.46, y: -2 }], appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(4 * cos(((2 * atan((2) / (sqrt(((-sqrt((16 - (2 * 2)))))^2 + (2)^2) + ((-sqrt((16 - (2 * 2)))))))) + ((((2 * atan(((-2)) / (sqrt(((-sqrt((16 - ((-2) * (-2))))))^2 + ((-2))^2) + ((-sqrt((16 - ((-2) * (-2))))))))) + (2 * pi)) - (2 * atan((2) / (sqrt(((-sqrt((16 - (2 * 2)))))^2 + (2)^2) + ((-sqrt((16 - (2 * 2))))))))) * (t / 20)))))", y: "(4 * sin(((2 * atan((2) / (sqrt(((-sqrt((16 - (2 * 2)))))^2 + (2)^2) + ((-sqrt((16 - (2 * 2)))))))) + ((((2 * atan(((-2)) / (sqrt(((-sqrt((16 - ((-2) * (-2))))))^2 + ((-2))^2) + ((-sqrt((16 - ((-2) * (-2))))))))) + (2 * pi)) - (2 * atan((2) / (sqrt(((-sqrt((16 - (2 * 2)))))^2 + (2)^2) + ((-sqrt((16 - (2 * 2))))))))) * (t / 20)))))", parameter: { min: 0, max: 20 }, appearance: "highlight" },
+      { id: "s5", kind: "parametric", x: "(4 * cos(((2 * atan((2) / (sqrt((sqrt((16 - (2 * 2))))^2 + (2)^2) + (sqrt((16 - (2 * 2))))))) + (((2 * atan(((-2)) / (sqrt((sqrt((16 - ((-2) * (-2)))))^2 + ((-2))^2) + (sqrt((16 - ((-2) * (-2)))))))) - (2 * atan((2) / (sqrt((sqrt((16 - (2 * 2))))^2 + (2)^2) + (sqrt((16 - (2 * 2)))))))) * (t / 20)))))", y: "(4 * sin(((2 * atan((2) / (sqrt((sqrt((16 - (2 * 2))))^2 + (2)^2) + (sqrt((16 - (2 * 2))))))) + (((2 * atan(((-2)) / (sqrt((sqrt((16 - ((-2) * (-2)))))^2 + ((-2))^2) + (sqrt((16 - ((-2) * (-2)))))))) - (2 * atan((2) / (sqrt((sqrt((16 - (2 * 2))))^2 + (2)^2) + (sqrt((16 - (2 * 2)))))))) * (t / 20)))))", parameter: { min: 0, max: 20 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -3.46, y: 2 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 3.46, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -3.46, y: -2 }, placement: "below-left" },
+      { key: "l4", objectId: "s3", at: { x: 3.46, y: -2 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Jika <InlineMath math="AB \parallel CD" />, maka busur <InlineMath math="AC" /> sama panjang dengan busur <InlineMath math="BD" />.

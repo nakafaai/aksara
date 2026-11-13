@@ -19,90 +19,35 @@ Sudut pusat juring adalah sudut di pusat lingkaran yang dibentuk oleh **dua jari
 
 Pada kedua rumus, <InlineMath math="L" /> adalah luas juring, <InlineMath math="s" /> panjang busur, dan <InlineMath math="r" /> jari-jari. Diagram juring di bawah berjari-jari <InlineMath math="4" />, dengan kaki <InlineMath math="OA" /> dan <InlineMath math="OB" /> yang membentuk sudut pusat <InlineMath math="\alpha = 120^\circ" />.
 
-<LineEquation
-  title="Sudut Pusat yang Membentuk Juring"
+<MathVisual
+  title={<>Sudut Pusat yang Membentuk Juring</>}
   description={<>Jari-jari <InlineMath math="OA" /> dan <InlineMath math="OB" /> membentuk sudut pusat <InlineMath math="\alpha = 120^\circ" />, jadi juring mengambil sepertiga lingkaran.</>}
-  data={[
-    {
-      points: Array.from({ length: 201 }, (_, sampleIndex) => {
-        const i = sampleIndex / 2;
-        const angle = (i / 100) * 2 * Math.PI;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0
-        };
-      }),
-      color: "#0891b2",
-      showPoints: false,
-      smooth: false
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6), z: 0 }
-      ],
-      smooth: false,
-      color: "#9333ea",
-      showPoints: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.4, -0.4, 0] },
-        { text: <InlineMath math="A" />, at: 1, offset: [0.3, 0.2, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(5 * Math.PI / 6), y: 4 * Math.sin(5 * Math.PI / 6), z: 0 }
-      ],
-      smooth: false,
-      color: "#9333ea",
-      showPoints: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="B" />, at: 1, offset: [-0.3, 0.2, 0] }
-      ]
-    },
-    {
-      points: Array.from({ length: 201 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = Math.PI / 6 + (i / 40) * (2 * Math.PI / 3);
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0
-        };
-      }),
-      color: "#ea580c",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 4,
-      labels: [
-        { text: "Busur", at: 100, offset: [-0.8, 0.6, 0] }
-      ]
-    },
-    {
-      points: Array.from({ length: 201 }, (_, sampleIndex) => {
-        const i = sampleIndex / 10;
-        const angle = Math.PI / 6 + (i / 20) * (2 * Math.PI / 3);
-        const radius = 1.5;
-        return {
-          x: radius * Math.cos(angle),
-          y: radius * Math.sin(angle),
-          z: 0
-        };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 2,
-      labels: [
-        { text: <InlineMath math="\alpha" />, at: 100, offset: [0.5, 0.5, 0] }
-      ]
-    }
-  ]}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <>Busur</>,
+    "l5": <InlineMath math="\alpha" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((((t / 2) / 100) * 2) * pi)))", y: "(4 * sin(((((t / 2) / 100) * 2) * pi)))", parameter: { min: 0, max: 200 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6) }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(5 * Math.PI / 6), y: 4 * Math.sin(5 * Math.PI / 6) }], appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(4 * cos(((pi / 6) + (((t / 5) / 40) * ((2 * pi) / 3)))))", y: "(4 * sin(((pi / 6) + (((t / 5) / 40) * ((2 * pi) / 3)))))", parameter: { min: 0, max: 200 }, appearance: "answer" },
+      { id: "s5", kind: "parametric", x: "(1.5 * cos(((pi / 6) + (((t / 10) / 20) * ((2 * pi) / 3)))))", y: "(1.5 * sin(((pi / 6) + (((t / 10) / 20) * ((2 * pi) / 3)))))", parameter: { min: 0, max: 200 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 3.46, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -3.46, y: 2 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: 4 }, placement: "above-left" },
+      { key: "l5", objectId: "s5", at: { x: 0, y: 1.5 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Sudut <InlineMath math="120^\circ" /> adalah sepertiga putaran penuh, jadi juring itu mengambil sepertiga luas lingkaran. Luasnya <InlineMath math="\frac{1}{3} \times \pi \times 4^2 = \frac{16\pi}{3}" />, dan busurnya <InlineMath math="\frac{1}{3} \times 8\pi = \frac{8\pi}{3}" />.
@@ -111,17 +56,34 @@ Sudut <InlineMath math="120^\circ" /> adalah sepertiga putaran penuh, jadi jurin
 
 Pada lingkaran yang sama, luas juring **sebanding dengan sudut pusatnya**. Sudut dua kali lebih besar memberi juring dua kali lebih luas. Diagram juring bersebelahan menempatkan juring <InlineMath math="45^\circ" />, <InlineMath math="90^\circ" />, dan <InlineMath math="135^\circ" /> pada satu lingkaran.
 
-<LineEquation
-  title="Juring Bersebelahan pada Satu Lingkaran"
+<MathVisual
+  title={<>Juring Bersebelahan pada Satu Lingkaran</>}
   description={<>Juring <InlineMath math="45^\circ" />, <InlineMath math="90^\circ" />, dan <InlineMath math="135^\circ" /> berjari-jari sama, jadi luasnya berbanding <InlineMath math="1:2:3" />.</>}
-  data={[
-    { kind: "circle-outline", radius: 3.5, color: "#0d9488", showPoints: false },
-    ...[0, 45, 135, 270].map((degrees) => ({ kind: "circle-radius", radius: 3.5, degrees, color: "#7c3aed", showPoints: false })),
-    { kind: "circle-arc", radius: 3.5, startDegrees: 0, sweepDegrees: 45, color: "#d97706", lineWidth: 4, label: { text: <InlineMath math="45^\circ" />, offset: [0.4, 0.2, 0] } },
-    { kind: "circle-arc", radius: 3.5, startDegrees: 45, sweepDegrees: 90, color: "#65a30d", lineWidth: 4, label: { text: <InlineMath math="90^\circ" />, offset: [0, 0.4, 0] } },
-    { kind: "circle-arc", radius: 3.5, startDegrees: 135, sweepDegrees: 135, color: "#c026d3", lineWidth: 4, label: { text: <InlineMath math="135^\circ" />, offset: [-0.4, -0.2, 0] } },
-  ]}
-  cameraPosition={[0, 0, 11]}
+  labels={{
+    "l1": <InlineMath math="45^\circ" />,
+    "l2": <InlineMath math="90^\circ" />,
+    "l3": <InlineMath math="135^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 3.5, appearance: "primary" },
+      { id: "s2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3.5, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2.47, y: 2.47 }, appearance: "secondary" },
+      { id: "s4", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2.47, y: 2.47 }, appearance: "secondary" },
+      { id: "s5", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: -3.5 }, appearance: "secondary" },
+      { id: "s6", kind: "arc", center: { x: 0, y: 0 }, radius: 3.5, startDegrees: 0, sweepDegrees: 45, appearance: "answer" },
+      { id: "s7", kind: "arc", center: { x: 0, y: 0 }, radius: 3.5, startDegrees: 45, sweepDegrees: 90, appearance: "highlight" },
+      { id: "s8", kind: "arc", center: { x: 0, y: 0 }, radius: 3.5, startDegrees: 135, sweepDegrees: 135, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s6", at: { x: 3.23, y: 1.34 }, placement: "above-right" },
+      { key: "l2", objectId: "s7", at: { x: 0, y: 3.5 }, placement: "above" },
+      { key: "l3", objectId: "s8", at: { x: -3.23, y: -1.34 }, placement: "below-left" },
+    ],
+  }}
 />
 
 Setiap juring pada diagram mengambil bagian lingkaran yang berbeda. Luasnya ditulis sebagai kelipatan <InlineMath math="\frac{\pi r^2}{8}" />, sehingga perbandingannya langsung terlihat.
@@ -140,86 +102,31 @@ Dua juring bersebelahan yang tidak bertumpang tindih bisa digabung dengan menjum
 
 Rumus sudut pusat berasal dari rumus luas juring dan panjang busur yang **disusun ulang**. Bagian lingkaran ditulis dua kali, sekali dari luas dan sekali dari busur, lalu dikalikan <InlineMath math="360^\circ" />. Diagram parameter memperlihatkan juring berjari-jari <InlineMath math="4" /> dengan busur <InlineMath math="s" /> dan sudut pusat <InlineMath math="72^\circ" />.
 
-<LineEquation
-  title="Parameter Juring"
+<MathVisual
+  title={<>Parameter Juring</>}
   description={<>Juring berjari-jari <InlineMath math="r = 4" /> dengan sudut pusat <InlineMath math="72^\circ" /> punya busur <InlineMath math="s = \frac{8\pi}{5}" />.</>}
-  data={[
-    {
-      points: Array.from({ length: 201 }, (_, sampleIndex) => {
-        const i = sampleIndex / 2;
-        const angle = (i / 100) * 2 * Math.PI;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0
-        };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 }
-      ],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="r" />, at: 1, offset: [-1.5, -0.5, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(2 * Math.PI / 5), y: 4 * Math.sin(2 * Math.PI / 5), z: 0 }
-      ],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      lineWidth: 3
-    },
-    {
-      points: Array.from({ length: 225 }, (_, sampleIndex) => {
-        const i = sampleIndex / 8;
-        const angle = (i / 28) * (2 * Math.PI / 5);
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0
-        };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 4,
-      labels: [
-        { text: <InlineMath math="s" />, at: 112, offset: [0.4, 0.3, 0] }
-      ]
-    },
-    {
-      points: Array.from({ length: 295 }, (_, sampleIndex) => {
-        const i = sampleIndex / 21;
-        const angle = (i / 14) * (2 * Math.PI / 5);
-        const radius = 1.5;
-        return {
-          x: radius * Math.cos(angle),
-          y: radius * Math.sin(angle),
-          z: 0
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 2,
-      labels: [
-        { text: <InlineMath math="72^\circ" />, at: 147, offset: [0.6, 1, 0] }
-      ]
-    }
-  ]}
-  cameraPosition={[0, 0, 11]}
+  labels={{
+    "l1": <InlineMath math="r" />,
+    "l2": <InlineMath math="s" />,
+    "l3": <InlineMath math="72^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((((t / 2) / 100) * 2) * pi)))", y: "(4 * sin(((((t / 2) / 100) * 2) * pi)))", parameter: { min: 0, max: 200 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(2 * Math.PI / 5), y: 4 * Math.sin(2 * Math.PI / 5) }], appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(4 * cos((((t / 8) / 28) * ((2 * pi) / 5))))", y: "(4 * sin((((t / 8) / 28) * ((2 * pi) / 5))))", parameter: { min: 0, max: 224 }, appearance: "answer" },
+      { id: "s5", kind: "parametric", x: "(1.5 * cos((((t / 21) / 14) * ((2 * pi) / 5))))", y: "(1.5 * sin((((t / 21) / 14) * ((2 * pi) / 5))))", parameter: { min: 0, max: 294 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 3.24, y: 2.35 }, placement: "above-right" },
+      { key: "l3", objectId: "s5", at: { x: 1.21, y: 0.88 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Misalkan luas juring itu diketahui <InlineMath math="\frac{16\pi}{5}" /> satuan persegi. Bagian lingkarannya adalah luas juring dibagi luas lingkaran:
@@ -256,86 +163,31 @@ Kalau lingkaran dibagi menjadi <InlineMath math="n" /> juring sama besar, setiap
 
 Kue bundar yang dipotong menjadi <InlineMath math="6" /> juring sama besar menghasilkan sudut <InlineMath math="\frac{360^\circ}{6} = 60^\circ" /> per potong. Diagram pengukuran memperlihatkan satu juring <InlineMath math="60^\circ" /> seperti itu.
 
-<LineEquation
-  title="Mengukur Sudut Pusat"
+<MathVisual
+  title={<>Mengukur Sudut Pusat</>}
   description={<>Kedua jari-jari membatasi sudut pusat <InlineMath math="60^\circ" />, yaitu seperenam putaran penuh.</>}
-  data={[
-    {
-      points: Array.from({ length: 201 }, (_, sampleIndex) => {
-        const i = sampleIndex / 2;
-        const angle = (i / 100) * 2 * Math.PI;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0
-        };
-      }),
-      color: "#0891b2",
-      showPoints: false,
-      smooth: false
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 }
-      ],
-      smooth: false,
-      color: "#9333ea",
-      showPoints: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3 * Math.cos(Math.PI / 3), y: 3 * Math.sin(Math.PI / 3), z: 0 }
-      ],
-      smooth: false,
-      color: "#9333ea",
-      showPoints: false,
-      lineWidth: 3
-    },
-    {
-      points: Array.from({ length: 201 }, (_, sampleIndex) => {
-        const i = sampleIndex / 10;
-        const angle = (i / 20) * (Math.PI / 3);
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0
-        };
-      }),
-      color: "#ea580c",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 4,
-      labels: [
-        { text: "Busur", at: 100, offset: [0.4, 0.6, 0] }
-      ]
-    },
-    {
-      points: Array.from({ length: 201 }, (_, sampleIndex) => {
-        const i = sampleIndex / 20;
-        const angle = (i / 10) * (Math.PI / 3);
-        const radius = 1.2;
-        return {
-          x: radius * Math.cos(angle),
-          y: radius * Math.sin(angle),
-          z: 0
-        };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 2,
-      labels: [
-        { text: <InlineMath math="60^\circ" />, at: 100, offset: [0.5, 0.5, 0] }
-      ]
-    }
-  ]}
-  cameraPosition={[0, 0, 9]}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <>Busur</>,
+    "l3": <InlineMath math="60^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((((t / 2) / 100) * 2) * pi)))", y: "(3 * sin(((((t / 2) / 100) * 2) * pi)))", parameter: { min: 0, max: 200 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3 * Math.cos(Math.PI / 3), y: 3 * Math.sin(Math.PI / 3) }], appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(3 * cos((((t / 10) / 20) * (pi / 3))))", y: "(3 * sin((((t / 10) / 20) * (pi / 3))))", parameter: { min: 0, max: 200 }, appearance: "answer" },
+      { id: "s5", kind: "parametric", x: "(1.2 * cos((((t / 20) / 10) * (pi / 3))))", y: "(1.2 * sin((((t / 20) / 10) * (pi / 3))))", parameter: { min: 0, max: 200 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 2.6, y: 1.5 }, placement: "above-right" },
+      { key: "l3", objectId: "s5", at: { x: 1.04, y: 0.6 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Untuk mengukur sudut pusat dengan busur derajat, letakkan titik tengah busur derajat tepat di pusat lingkaran dan garis dasarnya pada salah satu jari-jari. Bacaan skala pada jari-jari kedua adalah sudut pusatnya. Pada diagram, bacaan itu <InlineMath math="60^\circ" />, sama dengan hasil pembagian <InlineMath math="360^\circ" /> oleh <InlineMath math="6" />.

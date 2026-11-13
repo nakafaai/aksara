@@ -42,38 +42,29 @@ Tiga titik sampel yang paling sering dipakai, untuk <InlineMath math="i = 1, 2, 
 
 **Soal**: Tentukan jumlahan Riemann untuk <InlineMath math="f(x) = x" /> pada <InlineMath math="[0, 7]" /> dengan <InlineMath math="7" /> subinterval sama lebar, memakai **titik ujung kiri** setiap subinterval sebagai titik sampel.
 
-<LineEquation
-  showZAxis={false}
-  title="Visualisasi Jumlahan Riemann"
+<MathVisual
+  title={<>Visualisasi Jumlahan Riemann</>}
   description={<>Grafik fungsi <InlineMath math="f(x)=x" /> dengan <InlineMath math="7" /> partisi persegi panjang menggunakan titik ujung kiri.</>}
-  data={[
-    {
-      points: Array.from({ length: 8 }).map((_, i) => ({ x: i, y: i, z: 0 })),
-      smooth: false,
-      color: "#9333ea",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="f(x)=x" />, at: 4, offset: [-1.5, 0.8, 0] }],
-    },
-    ...Array.from({ length: 7 }).map((_, i) => {
-        const x_left = i;
-        const x_right = i + 1;
-        const y_height = x_left; // f(x) = x, jadi tinggi diambil dari x_left
-        return {
-            points: [
-                {x: x_left, y: 0, z: 0},
-                {x: x_right, y: 0, z: 0},
-                {x: x_right, y: y_height, z: 0},
-                {x: x_left, y: y_height, z: 0},
-                {x: x_left, y: 0, z: 0},
-            ],
-            color: "#0284c7",
-            smooth: false,
-            showPoints: false,
-        }
-    })
-  ]}
-  cameraTarget={[3.5, 3.5, 0]}
-  cameraPosition={[3.5, 3.5, 10]}
+  labels={{
+    "l1": <InlineMath math="f(x)=x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "line", kind: "function", formula: "x", domain: { min: 0, max: 7 }, appearance: "primary" },
+      { id: "r1", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1 }, { x: 1, y: 1 }], appearance: "secondary" },
+      { id: "r2", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 2, y: 2 }], appearance: "secondary" },
+      { id: "r3", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 3, y: 3 }], appearance: "secondary" },
+      { id: "r4", kind: "polygon", vertices: [{ x: 4, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 4 }, { x: 4, y: 4 }], appearance: "secondary" },
+      { id: "r5", kind: "polygon", vertices: [{ x: 5, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 5 }, { x: 5, y: 5 }], appearance: "secondary" },
+      { id: "r6", kind: "polygon", vertices: [{ x: 6, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 6 }, { x: 6, y: 6 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "line", at: { x: 4, y: 4 }, placement: "above-left" },
+    ],
+  }}
 />
 
 **Langkah 1**: Tentukan lebar dan titik sampel.
@@ -109,39 +100,31 @@ Lebarnya <InlineMath math="\Delta x=\frac{4-0}{4}=1" />, jadi setiap jumlahan cu
 
 Luas eksaknya diperoleh dari [teorema dasar kalkulus](/id/materi/matematika/integral/teorema-dasar-kalkulus): <InlineMath math="\int_0^4 \frac{x^2}{4}\,dx = \frac{4^3}{12} = \frac{16}{3} \approx 5{,}333" />. Jumlahan kiri meleset sekitar <InlineMath math="1{,}83" /> dan jumlahan kanan sekitar <InlineMath math="2{,}17" />, tetapi jumlahan titik tengah hanya meleset <InlineMath math="0{,}083" />. Di setiap pita, persegi panjang titik tengah menonjol melewati kurva di satu sisi dan menyisakan celah di sisi lain, dan keduanya hampir sama besar.
 
-<LineEquation
-  showZAxis={false}
-  title="Persegi panjang titik tengah di bawah parabola"
+<MathVisual
+  title={<>Persegi panjang titik tengah di bawah parabola</>}
   description={<>Kurva <InlineMath math="f(x)=\frac{x^2}{4}" /> pada <InlineMath math="[0,4]" /> dengan empat persegi panjang yang tingginya diambil dari titik tengah setiap pita. Totalnya <InlineMath math="5{,}25" />, dekat dengan luas eksak <InlineMath math="\frac{16}{3}" />.</>}
-  cameraPosition={[2, 2, 10]}
-  cameraTarget={[2, 2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, index) => {
-        const x = (4 * index) / 400;
-        return { x, y: x ** 2 / 4, z: 0 };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="f(x)=\frac{x^2}{4}" />, at: 340, offset: [-1.4, 0.6, 0] }],
-    },
-    ...Array.from({ length: 4 }, (_, i) => {
-      const height = (i + 0.5) ** 2 / 4;
-      return {
-        points: [
-          { x: i, y: 0, z: 0 },
-          { x: i + 1, y: 0, z: 0 },
-          { x: i + 1, y: height, z: 0 },
-          { x: i, y: height, z: 0 },
-          { x: i, y: 0, z: 0 },
-        ],
-        color: "#7c3aed",
-        showPoints: false,
-        smooth: false,
-      };
-    }),
-  ]}
+  labels={{
+    "l1": <InlineMath math="f(x)=\frac{x^2}{4}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((4 * t) / 400)", y: "((((4 * t) / 400))^(2) / 4)", parameter: { min: 0, max: 400 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 0.06 }, { x: 0, y: 0.06 }], appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 0, y: 0.06 }, to: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 0.56 }, { x: 1, y: 0.56 }], appearance: "secondary" },
+      { id: "s3-close", kind: "segment", from: { x: 1, y: 0.56 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 1.56 }, { x: 2, y: 1.56 }], appearance: "secondary" },
+      { id: "s4-close", kind: "segment", from: { x: 2, y: 1.56 }, to: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3.06 }, { x: 3, y: 3.06 }], appearance: "secondary" },
+      { id: "s5-close", kind: "segment", from: { x: 3, y: 3.06 }, to: { x: 3, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3.4, y: 2.89 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Bandingkan kedua jumlahan ujung ini. Keduanya berbagi tiga tinggi dan hanya berbeda di ujung, sehingga <InlineMath math="R_4 - L_4 = \big(f(4)-f(0)\big)\Delta x = 4" />, dan memang <InlineMath math="7{,}5 - 3{,}5 = 4" />.
@@ -229,42 +212,31 @@ Setiap soal meminta persegi panjang di bawah kurva, jadi tetapkan dulu banyak su
 
 1. Lebarnya <InlineMath math="\Delta x = \frac{4-0}{4} = 1" />, dan **titik ujung kanannya** <InlineMath math="1, 2, 3, 4" />.
 
-<LineEquation
-  showZAxis={false}
-title="Visualisasi Latihan Jumlahan Riemann"
-description={<>Grafik fungsi <InlineMath math="f(x)=x^2+1" /> dengan <InlineMath math="4" /> partisi persegi panjang menggunakan titik ujung kanan.</>}
-cameraPosition={[2, 8.5, 21.5]}
-cameraTarget={[2, 8.5, 0]}
-data={[
-    {
-    smooth: false,
-    points: Array.from({ length: 41 }).map((_, i) => {
-        const x = i * 0.1;
-        const y = x * x + 1;
-        return { x, y, z: 0 };
-    }),
-    color: "#d97706",
-    showPoints: false,
-    labels: [{ text: <InlineMath math="f(x)=x^2+1" />, at: 20, offset: [-5.2, 6, 0] }],
-    },
-    ...Array.from({ length: 4 }).map((_, i) => {
-        const x_left = i;
-        const x_right = i + 1;
-        const y_height = x_right * x_right + 1; // f(x) = x² + 1, ujung kanan
-        return {
-            points: [
-                {x: x_left, y: 0, z: 0},
-                {x: x_right, y: 0, z: 0},
-                {x: x_right, y: y_height, z: 0},
-                {x: x_left, y: y_height, z: 0},
-                {x: x_left, y: 0, z: 0},
-            ],
-            color: "#0891b2",
-            smooth: false,
-            showPoints: false,
-        }
-    })
-]}
+<MathVisual
+  title={<>Visualisasi Latihan Jumlahan Riemann</>}
+  description={<>Grafik fungsi <InlineMath math="f(x)=x^2+1" /> dengan <InlineMath math="4" /> partisi persegi panjang menggunakan titik ujung kanan.</>}
+  labels={{
+    "l1": <InlineMath math="f(x)=x^2+1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -2, max: 19 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(t * 0.1)", y: "(((t * 0.1) * (t * 0.1)) + 1)", parameter: { min: 0, max: 40 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 2 }, { x: 0, y: 2 }], appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 0, y: 2 }, to: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 5 }, { x: 1, y: 5 }], appearance: "secondary" },
+      { id: "s3-close", kind: "segment", from: { x: 1, y: 5 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 10 }, { x: 2, y: 10 }], appearance: "secondary" },
+      { id: "s4-close", kind: "segment", from: { x: 2, y: 10 }, to: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 17 }, { x: 3, y: 17 }], appearance: "secondary" },
+      { id: "s5-close", kind: "segment", from: { x: 3, y: 17 }, to: { x: 3, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 5 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Tingginya <InlineMath math="f(1)=2" />, <InlineMath math="f(2)=5" />, <InlineMath math="f(3)=10" />, dan <InlineMath math="f(4)=17" />, sehingga

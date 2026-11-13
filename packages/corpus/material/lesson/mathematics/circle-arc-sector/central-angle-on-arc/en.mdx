@@ -15,7 +15,7 @@ A central angle is formed by two radii and has its vertex <Highlight>at the cent
 
 In a circle with center <InlineMath math="O" />, let <InlineMath math="A" /> and <InlineMath math="B" /> lie on the circumference. Then <InlineMath math="\angle AOB" /> is a central angle, and it subtends the arc <InlineMath math="AB" /> between those two points.
 
-<LineEquation
+<MathVisual
   title={<>Central Angle Visualization <InlineMath math="\angle AOB" /></>}
   description={
     <>
@@ -24,76 +24,36 @@ In a circle with center <InlineMath math="O" />, let <InlineMath math="A" /> and
       <InlineMath math="O" />.
     </>
   }
-  data={[
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 1.5 * Math.cos(Math.PI / 6), y: 1.5 * Math.sin(Math.PI / 6), z: 0 },
-        { x: 3 * Math.cos(Math.PI / 6), y: 3 * Math.sin(Math.PI / 6), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="OA" />, at: 1, offset: [0.3, 0.3, 0] }],
-      showPoints: true,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 1.5 * Math.cos(5 * Math.PI / 6), y: 1.5 * Math.sin(5 * Math.PI / 6), z: 0 },
-        { x: 3 * Math.cos(5 * Math.PI / 6), y: 3 * Math.sin(5 * Math.PI / 6), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="OB" />, at: 1, offset: [-0.3, 0.3, 0] }],
-      showPoints: true,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = (Math.PI / 6) + (i * (2 * Math.PI / 3) / 20);
-        return {
-          x: 1.5 * Math.cos(angle),
-          y: 1.5 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      lineWidth: 2,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\theta=120^\circ" />, at: 50, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 61 }, (_, i) => {
-        const angle = (Math.PI / 6) + (i * (2 * Math.PI / 3) / 60);
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#7c3aed",
-      lineWidth: 3,
-      showPoints: false,
-      labels: [{ text: <>Arc <InlineMath math="AB" /></>, at: 30, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 101 }, (_, i) => {
-        const angle = i * (2 * Math.PI / 100);
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#0891b2",
-      lineWidth: 1,
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 10]}
+  labels={{
+    "l1": <InlineMath math="OA" />,
+    "l2": <InlineMath math="OB" />,
+    "l3": <InlineMath math="\theta=120^\circ" />,
+    "l4": <>Arc <InlineMath math="AB" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1.5 * Math.cos(Math.PI / 6), y: 1.5 * Math.sin(Math.PI / 6) }, { x: 3 * Math.cos(Math.PI / 6), y: 3 * Math.sin(Math.PI / 6) }], appearance: "primary" },
+      { id: "s1-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s1-p1", kind: "point", at: { x: 1.3, y: 0.75 }, appearance: "primary" },
+      { id: "s1-p2", kind: "point", at: { x: 2.6, y: 1.5 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1.5 * Math.cos(5 * Math.PI / 6), y: 1.5 * Math.sin(5 * Math.PI / 6) }, { x: 3 * Math.cos(5 * Math.PI / 6), y: 3 * Math.sin(5 * Math.PI / 6) }], appearance: "primary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s2-p1", kind: "point", at: { x: -1.3, y: 0.75 }, appearance: "primary" },
+      { id: "s2-p2", kind: "point", at: { x: -2.6, y: 1.5 }, appearance: "primary" },
+      { id: "s3", kind: "parametric", x: "(1.5 * cos(((pi / 6) + (((t / 5) * ((2 * pi) / 3)) / 20))))", y: "(1.5 * sin(((pi / 6) + (((t / 5) * ((2 * pi) / 3)) / 20))))", parameter: { min: 0, max: 100 }, appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(3 * cos(((pi / 6) + ((t * ((2 * pi) / 3)) / 60))))", y: "(3 * sin(((pi / 6) + ((t * ((2 * pi) / 3)) / 60))))", parameter: { min: 0, max: 60 }, appearance: "answer" },
+      { id: "s5", kind: "parametric", x: "(3 * cos((t * ((2 * pi) / 100))))", y: "(3 * sin((t * ((2 * pi) / 100))))", parameter: { min: 0, max: 100 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.3, y: 0.75 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: -1.3, y: 0.75 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 1.5 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: 3 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Relationship Between Central Angle and Arc
@@ -120,17 +80,29 @@ A major arc is subtended by a **reflex central angle** greater than <InlineMath 
 
 <BlockMath math="\theta_{\mathrm{major}}=360^\circ-60^\circ=300^\circ" />
 
-<LineEquation
-  title="Minor and Major Arcs with Shared Endpoints"
-  description="The 60-degree minor arc and the 300-degree major arc complete one circumference."
-  data={[
-    { kind: "circle-outline", radius: 4, color: "#0d9488", showPoints: false },
-    { kind: "circle-radius", radius: 4, degrees: 0, color: "#ea580c", showPoints: false },
-    { kind: "circle-radius", radius: 4, degrees: 60, color: "#ea580c", showPoints: false },
-    { kind: "circle-arc", radius: 4, startDegrees: 0, sweepDegrees: 60, color: "#65a30d", lineWidth: 4, label: { text: <InlineMath math="60^\circ" />, offset: [0.3, 0.4, 0] } },
-    { kind: "circle-arc", radius: 4, startDegrees: 60, sweepDegrees: 300, color: "#c026d3", lineWidth: 4, label: { text: <InlineMath math="300^\circ" />, offset: [-0.3, -0.4, 0] } },
-  ]}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Minor and Major Arcs with Shared Endpoints</>}
+  description={<>The 60-degree minor arc and the 300-degree major arc complete one circumference.</>}
+  labels={{
+    "l1": <InlineMath math="60^\circ" />,
+    "l2": <InlineMath math="300^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 3.46 }, appearance: "secondary" },
+      { id: "s4", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 0, sweepDegrees: 60, appearance: "answer" },
+      { id: "s5", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 60, sweepDegrees: 300, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s4", at: { x: 3.46, y: 2 }, placement: "above-right" },
+      { key: "l2", objectId: "s5", at: { x: -3.46, y: -2 }, placement: "below-left" },
+    ],
+  }}
 />
 
 
@@ -165,78 +137,39 @@ This angle covers **one third of a turn**, so take one third of the circumferenc
 
 The arc corresponding to the central angle <InlineMath math="120^\circ" /> is therefore <InlineMath math="4\pi \text{ cm}" /> long, or approximately <InlineMath math="12.57 \text{ cm}" />.
 
-<LineEquation
+<MathVisual
   title={<>Central Angle Example <InlineMath math="120^\circ" /></>}
   description={<>The <InlineMath math="120^\circ" /> arc between the two radii, whose length the calculation gives.</>}
-  data={[
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-        { x: 6, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="r=6\,\mathrm{cm}" />, at: 1, offset: [0, -0.5, 0] }],
-      showPoints: true,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3 * Math.cos(2 * Math.PI / 3), y: 3 * Math.sin(2 * Math.PI / 3), z: 0 },
-        { x: 6 * Math.cos(2 * Math.PI / 3), y: 6 * Math.sin(2 * Math.PI / 3), z: 0 },
-      ],
-      smooth: false,
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="r=6\,\mathrm{cm}" />, at: 1, offset: [-0.5, 0.3, 0] }],
-      showPoints: true,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 25 }, (_, i) => {
-        const angle = i * (2 * Math.PI / 3) / 24;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#ea580c",
-      lineWidth: 2,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\theta=120^\circ" />, at: 12, offset: [0.8, 0.8, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const angle = i * (2 * Math.PI / 3) / 40;
-        return {
-          x: 6 * Math.cos(angle),
-          y: 6 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#e11d48",
-      lineWidth: 4,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="s=4\pi\,\mathrm{cm}" />, at: 20, offset: [-1, -1, 0] }],
-    },
-    {
-      points: Array.from({ length: 101 }, (_, i) => {
-        const angle = i * (2 * Math.PI / 100);
-        return {
-          x: 6 * Math.cos(angle),
-          y: 6 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#4f46e5",
-      lineWidth: 1,
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 15]}
+  labels={{
+    "l1": <InlineMath math="r=6\,\mathrm{cm}" />,
+    "l2": <InlineMath math="r=6\,\mathrm{cm}" />,
+    "l3": <InlineMath math="\theta=120^\circ" />,
+    "l4": <InlineMath math="s=4\pi\,\mathrm{cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -7.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 6, y: 0 }], appearance: "primary" },
+      { id: "s1-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s1-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s1-p2", kind: "point", at: { x: 6, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3 * Math.cos(2 * Math.PI / 3), y: 3 * Math.sin(2 * Math.PI / 3) }, { x: 6 * Math.cos(2 * Math.PI / 3), y: 6 * Math.sin(2 * Math.PI / 3) }], appearance: "primary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s2-p1", kind: "point", at: { x: -1.5, y: 2.6 }, appearance: "primary" },
+      { id: "s2-p2", kind: "point", at: { x: -3, y: 5.2 }, appearance: "primary" },
+      { id: "s3", kind: "parametric", x: "(3 * cos(((t * ((2 * pi) / 3)) / 24)))", y: "(3 * sin(((t * ((2 * pi) / 3)) / 24)))", parameter: { min: 0, max: 24 }, appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(6 * cos(((t * ((2 * pi) / 3)) / 40)))", y: "(6 * sin(((t * ((2 * pi) / 3)) / 40)))", parameter: { min: 0, max: 40 }, appearance: "answer" },
+      { id: "s5", kind: "parametric", x: "(6 * cos((t * ((2 * pi) / 100))))", y: "(6 * sin((t * ((2 * pi) / 100))))", parameter: { min: 0, max: 100 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "l2", objectId: "s2", at: { x: -1.5, y: 2.6 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 1.5, y: 2.6 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 3, y: 5.2 }, placement: "below-left" },
+    ],
+  }}
 />
 
 ## Examples of Central Angles
