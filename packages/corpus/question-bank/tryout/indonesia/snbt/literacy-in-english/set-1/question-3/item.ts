@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "strengthen-weaken",
   },
-  stimulus: "octopus-arms",
+  stimulus: "mantis-shrimp",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "To position a hand, the human brain needs to coordinate fewer angles than would be needed for an octopus arm.",
+            "Shrimp tested with the mixed colours of real reef surfaces separated them as poorly as they separated single wavelengths.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "The author claims that octopus brains are too small to plan any arm movements.",
+            "The lights in the tank were dimmer than daylight on a shallow reef, which may have made small differences harder to detect.",
         },
         {
-          column: 1,
-          label: "An octopus can detect chemicals through its suckers.",
+          correct: false,
+          label:
+            "A second species of mantis shrimp failed at the same small wavelength gaps as Haptosquilla trispinosa did.",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "The passage states that severed octopus arms can solve mazes.",
+            "Cells in the shrimp's brain respond most strongly to the difference between signals from neighbouring receptor types.",
+        },
+        {
+          correct: false,
+          label:
+            "Mantis shrimp identify a coloured target faster than reef fish whose eyes have far fewer receptor types.",
         },
       ],
     },

@@ -2,37 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "recount",
-    topic: "summary",
+    cognitiveLevel: "inferential",
+    contentDomain: "procedure",
+    topic: "cause-effect",
   },
-  stimulus: "repair-workshop",
+  stimulus: "gauge",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "A workshop focuses on stocking spare chains before asking owners about recurring faults.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "A child teaches Sari how to repair a rear wheel.",
+          label: "IV only",
+        },
+        {
+          correct: false,
+          label: "II, III, and IV only",
         },
         {
           correct: true,
-          label:
-            "A volunteer learns that careful diagnosis matters more than replacing parts quickly.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label: "The writer spends a week buying new bicycles.",
-        },
-        {
-          correct: false,
-          label:
-            "The workshop measures successful learning by the number of new components installed.",
+          label: "I, III, and IV only",
         },
       ],
     },

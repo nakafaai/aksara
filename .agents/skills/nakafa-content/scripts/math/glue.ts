@@ -167,12 +167,8 @@ function commandOwningGroups(
   value: string,
   close: number
 ): CommandAtom | undefined {
-  let cursor = close;
-  for (;;) {
-    const open = matchingBrace(value, cursor);
-    if (open === undefined) {
-      return undefined;
-    }
+  let open = matchingBrace(value, close);
+  while (open !== undefined) {
     let nameStart = open - 1;
     let name = "";
     let character = value[nameStart];
@@ -188,8 +184,9 @@ function commandOwningGroups(
     if (previous !== "}" && previous !== "]") {
       return undefined;
     }
-    cursor = open - 1;
+    open = matchingBrace(value, open - 1);
   }
+  return undefined;
 }
 
 /** Reads the atom that ends at one index, ignoring trailing whitespace. */

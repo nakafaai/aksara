@@ -1,11 +1,15 @@
 import { describe, expect, it, test } from "@effect/vitest";
 import {
+  ACTIVE_APP_LOCALES,
+  ActiveAppLocaleListSchema,
+  ActiveAppLocaleSchema,
   APP_LOCALE_CODES,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { Effect, Schema, Struct } from "effect";
 
 import {
+  carriedAppLocales,
   localizedSourceMapSchema,
   mapLocalizedSource,
   requireSourceLocale,
@@ -99,4 +103,18 @@ describe("localized source maps", () => {
       ).toEqual({ en: "en:English" });
     })
   );
+
+  test("carries a declared locale that is not served yet only where a source writes it", () => {
+    const german = ActiveAppLocaleListSchema.make([
+      ActiveAppLocaleSchema.make("de"),
+    ]);
+
+    expect(carriedAppLocales(german, (code) => code === "ms")).toEqual([
+      "de",
+      "ms",
+    ]);
+    expect(carriedAppLocales(ACTIVE_APP_LOCALES, () => false)).toEqual(
+      ACTIVE_APP_LOCALES
+    );
+  });
 });
