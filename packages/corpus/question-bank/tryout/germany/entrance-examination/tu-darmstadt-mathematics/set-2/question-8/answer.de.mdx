@@ -1,23 +1,29 @@
-Keine Seite des Dreiecks verläuft parallel zu einer Achse. Lege deshalb **ein achsenparalleles Rechteck um das Dreieck** und ziehe die drei rechtwinkligen Dreiecke ab, die übrig bleiben. Rechne zuerst in Koordinateneinheiten und rechne erst am Ende in Quadratmeter um.
+# Eine Substitution mit versteckter Bedingung
 
-Das Rechteck reicht von <InlineMath math="x=-10" /> bis <InlineMath math="x=13" /> und von <InlineMath math="y=-11" /> bis <InlineMath math="y=14" />.
+Setze <InlineMath math="t=3^x" />. Dann ist <InlineMath math="9^x=\left(3^x\right)^2=t^2" />, und die Gleichung wird zu:
 
-<BlockMath math="\begin{aligned}
-A_{\text{Rechteck}}&=23\cdot25=575 \\
-\text{Ecke an }AB&:\ \tfrac12\cdot23\cdot1=11{,}5 \\
-\text{Ecke an }BC&:\ \tfrac12\cdot22\cdot25=275 \\
-\text{Ecke an }CA&:\ \tfrac12\cdot1\cdot24=12 \\
-A_{ABC}&=575-11{,}5-275-12=276{,}5
-\end{aligned}" />
+<BlockMath math="t^2-6t+a=0" />
 
-Eine Einheit entspricht <InlineMath math="10\text{ m}" />, eine Flächeneinheit also <InlineMath math="10\cdot10=100\text{ m}^2" />. Damit ist die Fläche <InlineMath math="276{,}5\cdot100=27{.}650\text{ m}^2" />.
+Entscheidend ist: <InlineMath math="3^x" /> ist immer positiv. **Jede Lösung <InlineMath math="t>0" /> liefert genau ein <InlineMath math="x" />, eine Lösung <InlineMath math="t\le0" /> liefert keines**. Du zählst also die positiven Lösungen <InlineMath math="t" />.
 
-Zur Kontrolle mit der Determinantenformel: <InlineMath math="\frac12\,|23\cdot24-1\cdot(-1)|=\frac12\cdot553=276{,}5" />.
+# Positive Lösungen zählen
 
-Die Schwimmzone ist also <InlineMath math="27{.}650\text{ m}^2" /> groß.
+Die beiden Lösungen haben die Summe <InlineMath math="6" />, das Produkt <InlineMath math="a" />, und die Diskriminante ist <InlineMath math="36-4a" />. **Geh alle Fälle für <InlineMath math="a" /> durch**:
 
-- <InlineMath math="2{.}765\text{ m}^2" /> rechnet die Flächeneinheit mit dem Faktor <InlineMath math="10" /> statt <InlineMath math="100" /> um.
-- <InlineMath math="28{.}750\text{ m}^2" /> nimmt die Hälfte des umgebenden Rechtecks.
-- <InlineMath math="28{.}800\text{ m}^2" /> zieht nur zwei der drei Eckdreiecke ab und vergisst das Dreieck an <InlineMath math="AB" />.
-- <InlineMath math="55{.}300\text{ m}^2" /> vergisst in der Determinantenformel den Faktor <InlineMath math="\frac12" />.
-- <InlineMath math="57{.}500\text{ m}^2" /> ist das ganze Rechteck.
+- <InlineMath math="a>9" />: Diskriminante negativ, kein <InlineMath math="t" />, also kein <InlineMath math="x" />.
+- <InlineMath math="a=9" />: doppelte Lösung <InlineMath math="t=3>0" />, also genau ein <InlineMath math="x" />.
+- <InlineMath math="0<a<9" />: zwei verschiedene Lösungen mit positiver Summe und positivem Produkt, also beide positiv. Das ergibt zwei Werte für <InlineMath math="x" />.
+- <InlineMath math="a=0" />: <InlineMath math="t(t-6)=0" />. Die Lösung <InlineMath math="t=0" /> fällt weg, <InlineMath math="t=6" /> bleibt, also genau ein <InlineMath math="x" />.
+- <InlineMath math="a<0" />: negatives Produkt, also eine positive und eine negative Lösung. Genau ein <InlineMath math="x" />.
+
+Probe mit <InlineMath math="a=-7" />: <InlineMath math="(t-7)(t+1)=0" />, nur <InlineMath math="t=7" /> ist positiv, also nur <InlineMath math="x=\log_37" />.
+
+Genau eine Lösung gibt es also für <InlineMath math="a\le0" /> oder <InlineMath math="a=9" />.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur <InlineMath math="a=9" /> **denkt nur an die doppelte Lösung** und vergisst den Fall einer positiven neben einer nicht positiven Lösung.
+- <InlineMath math="a<0" /> oder <InlineMath math="a=9" /> vergisst <InlineMath math="a=0" />. Die Lösung <InlineMath math="t=0" /> fällt zwar weg, aber <InlineMath math="t=6" /> liefert noch eine Lösung.
+- <InlineMath math="a\le0" /> vergisst die doppelte Lösung bei <InlineMath math="a=9" />.
+- <InlineMath math="0<a<9" /> liefert sogar zwei Lösungen.
+- <InlineMath math="a<0" /> vergisst beide Randfälle, <InlineMath math="a=0" /> und <InlineMath math="a=9" />.
