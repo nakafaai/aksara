@@ -1,18 +1,75 @@
-Weil <InlineMath math="\overline{AA'}" /> und <InlineMath math="\overline{BB'}" /> parallel sind, gilt der **zweite Strahlensatz**: Die parallelen Strecken stehen im selben Verhältnis wie ihre Abstände von <InlineMath math="S" />, jeweils **vom Scheitel <InlineMath math="S" /> aus gemessen**.
+# Was die Faltung bedeutet
 
-Den Abstand von <InlineMath math="S" /> zu <InlineMath math="B" /> erhältst du aus den beiden gegebenen Teilstrecken: <InlineMath math="\overline{SB}=\overline{SA}+\overline{AB}=4+6=10\text{ cm}" />.
+Nenn das Rechteck <InlineMath math="ABCD" /> mit <InlineMath math="AB=8" /> und <InlineMath math="BC=6" />, und falte es so, dass <InlineMath math="A" /> genau auf <InlineMath math="C" /> liegt. Jeder Punkt der Faltkante ist gleich weit von <InlineMath math="A" /> und <InlineMath math="C" /> entfernt, weil die beiden Punkte beim Falten aufeinandertreffen. **Die Faltkante ist also die Mittelsenkrechte von <InlineMath math="AC" />**: die Gerade senkrecht zu <InlineMath math="AC" /> durch ihren Mittelpunkt <InlineMath math="M" />.
+
+<MathVisual
+  title="Eine Faltung, die gegenüberliegende Ecken zusammenbringt"
+  description={<>Das Rechteck <InlineMath math="ABCD" /> misst <InlineMath math="8" /> mal <InlineMath math="6" />. Die Diagonale <InlineMath math="AC" /> ist eingezeichnet, und die Faltkante <InlineMath math="EF" /> kreuzt sie im rechten Winkel in ihrem Mittelpunkt <InlineMath math="M" />. <InlineMath math="E" /> liegt auf der Seite <InlineMath math="AB" />, <InlineMath math="F" /> auf der Seite <InlineMath math="CD" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    f: <InlineMath math="F" />,
+    m: <InlineMath math="M" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 9 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "sheet", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 6 }, { x: 0, y: 6 }] },
+      { id: "diagonal", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8, y: 6 } },
+      { id: "crease", kind: "segment", appearance: "highlight", from: { x: (8 * 8 + 6 * 6) / (2 * 8), y: 0 }, to: { x: 8 - (8 * 8 + 6 * 6) / (2 * 8), y: 6 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 8, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 8, y: 6 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
+      { id: "point-e", kind: "point", appearance: "answer", at: { x: (8 * 8 + 6 * 6) / (2 * 8), y: 0 } },
+      { id: "point-f", kind: "point", appearance: "answer", at: { x: 8 - (8 * 8 + 6 * 6) / (2 * 8), y: 6 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 8, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 8, y: 6 }, placement: "above-right" },
+      { key: "d", objectId: "point-d", at: { x: 0, y: 6 }, placement: "above-left" },
+      { key: "e", objectId: "point-e", at: { x: (8 * 8 + 6 * 6) / (2 * 8), y: 0 }, placement: "below" },
+      { key: "f", objectId: "point-f", at: { x: 8 - (8 * 8 + 6 * 6) / (2 * 8), y: 6 }, placement: "above" },
+      { key: "m", objectId: "point-m", at: { x: 4, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Wo die Faltkante die Seiten trifft
+
+Die Faltkante treffe <InlineMath math="AB" /> in <InlineMath math="E" /> mit <InlineMath math="AE=x" />. Weil <InlineMath math="E" /> auf der Mittelsenkrechten von <InlineMath math="AC" /> liegt, **ist <InlineMath math="E" /> gleich weit von <InlineMath math="A" /> und <InlineMath math="C" /> entfernt**. <InlineMath math="EC" /> bekommst du aus dem rechtwinkligen Dreieck <InlineMath math="EBC" />:
 
 <BlockMath math="\begin{aligned}
-\frac{\overline{BB'}}{\overline{AA'}}&=\frac{\overline{SB}}{\overline{SA}} \\
-\overline{BB'}&=3\cdot\frac{10}{4}=7{,}5\text{ cm}
+AE^2&=EB^2+BC^2 \\
+x^2&=(8-x)^2+6^2 \\
+0&=64-16x+36 \\
+x&=6{,}25
 \end{aligned}" />
 
-Das Ergebnis ist plausibel. <InlineMath math="B" /> ist <InlineMath math="2{,}5" />-mal so weit von <InlineMath math="S" /> entfernt wie <InlineMath math="A" />, also ist auch <InlineMath math="\overline{BB'}" /> <InlineMath math="2{,}5" />-mal so lang wie <InlineMath math="\overline{AA'}" />.
+# Die Länge der Faltkante
 
-Die Strecke <InlineMath math="\overline{BB'}" /> ist also <InlineMath math="7{,}5\text{ cm}" /> lang.
+Die Diagonale ist <InlineMath math="AC=\sqrt{8^2+6^2}=10" />, also <InlineMath math="AM=5" />. Das Dreieck <InlineMath math="AME" /> hat bei <InlineMath math="M" /> einen rechten Winkel, weil **die Faltkante senkrecht auf der Diagonale steht**:
 
-- <InlineMath math="1{,}2\text{ cm}" /> entsteht aus <InlineMath math="3\cdot\frac{4}{10}" />, also mit dem umgedrehten Verhältnis. Die Strecke weiter von <InlineMath math="S" /> entfernt muss aber länger sein, nicht kürzer.
-- <InlineMath math="4{,}5\text{ cm}" /> entsteht aus <InlineMath math="3\cdot\frac{6}{4}" />. Hier wird die Teilstrecke <InlineMath math="\overline{AB}" /> statt der Strecke <InlineMath math="\overline{SB}" /> verwendet, aber der Strahlensatz misst beide Strecken von <InlineMath math="S" /> aus.
-- <InlineMath math="6\text{ cm}" /> ist die Länge von <InlineMath math="\overline{AB}" />, keine Länge auf der Parallelen.
-- <InlineMath math="9\text{ cm}" /> entsteht durch Addieren, <InlineMath math="3+6" />. Der Strahlensatz verlangt ein Verhältnis.
-- <InlineMath math="10\text{ cm}" /> ist die Länge von <InlineMath math="\overline{SB}" />, keine Länge auf der Parallelen.
+<BlockMath math="ME=\sqrt{AE^2-AM^2}=\sqrt{39{,}0625-25}=\sqrt{14{,}0625}=3{,}75" />
+
+Die Figur ist symmetrisch zu <InlineMath math="M" />, also <InlineMath math="MF=ME" /> und <InlineMath math="EF=2\cdot3{,}75=7{,}5\text{ cm}" />.
+
+Die Faltkante ist also <InlineMath math="7{,}5\text{ cm}" /> lang.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="10\text{ cm}" /> ist die Diagonale <InlineMath math="AC" />. **Die Faltkante kreuzt die Diagonale im rechten Winkel**, sie liegt nicht auf ihr.
+- <InlineMath math="5\text{ cm}" /> ist die halbe Diagonale, <InlineMath math="AM" />.
+- <InlineMath math="6{,}25\text{ cm}" /> ist <InlineMath math="AE" />, der Abstand der Ecke zum Ende der Faltkante.
+- <InlineMath math="6\text{ cm}" /> und <InlineMath math="8\text{ cm}" /> sind Breite und Länge des Blatts, also Faltkanten parallel zu einer Seite. So eine Faltung bringt keine gegenüberliegenden Ecken zusammen.

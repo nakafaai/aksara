@@ -1,0 +1,75 @@
+# Maksud lipatan itu
+
+Namakan segi empat tepat itu <InlineMath math="ABCD" /> dengan <InlineMath math="AB=8" /> dan <InlineMath math="BC=6" />, kemudian lipat supaya <InlineMath math="A" /> jatuh tepat di atas <InlineMath math="C" />. Setiap titik pada garis lipatan sama jauh dari <InlineMath math="A" /> dan dari <InlineMath math="C" />, kerana kedua-dua titik itu bertemu apabila dilipat. Jadi **garis lipatan ialah pembahagi dua sama serenjang bagi <InlineMath math="AC" />**: garis yang berserenjang dengan <InlineMath math="AC" /> dan melalui titik tengahnya, <InlineMath math="M" />.
+
+<MathVisual
+  title="Lipatan yang mempertemukan dua bucu bertentangan"
+  description={<>Segi empat tepat <InlineMath math="ABCD" /> berukuran <InlineMath math="8" /> dengan <InlineMath math="6" />. Pepenjuru <InlineMath math="AC" /> dilukis, dan garis lipatan <InlineMath math="EF" /> memotongnya secara serenjang di titik tengahnya, <InlineMath math="M" />. Titik <InlineMath math="E" /> berada pada sisi <InlineMath math="AB" /> dan titik <InlineMath math="F" /> pada sisi <InlineMath math="CD" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    f: <InlineMath math="F" />,
+    m: <InlineMath math="M" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 9 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "sheet", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 6 }, { x: 0, y: 6 }] },
+      { id: "diagonal", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8, y: 6 } },
+      { id: "crease", kind: "segment", appearance: "highlight", from: { x: (8 * 8 + 6 * 6) / (2 * 8), y: 0 }, to: { x: 8 - (8 * 8 + 6 * 6) / (2 * 8), y: 6 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 8, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 8, y: 6 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
+      { id: "point-e", kind: "point", appearance: "answer", at: { x: (8 * 8 + 6 * 6) / (2 * 8), y: 0 } },
+      { id: "point-f", kind: "point", appearance: "answer", at: { x: 8 - (8 * 8 + 6 * 6) / (2 * 8), y: 6 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 8, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 8, y: 6 }, placement: "above-right" },
+      { key: "d", objectId: "point-d", at: { x: 0, y: 6 }, placement: "above-left" },
+      { key: "e", objectId: "point-e", at: { x: (8 * 8 + 6 * 6) / (2 * 8), y: 0 }, placement: "below" },
+      { key: "f", objectId: "point-f", at: { x: 8 - (8 * 8 + 6 * 6) / (2 * 8), y: 6 }, placement: "above" },
+      { key: "m", objectId: "point-m", at: { x: 4, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Di mana lipatan memotong sisi
+
+Katakan lipatan memotong <InlineMath math="AB" /> di <InlineMath math="E" /> dengan <InlineMath math="AE=x" />. Oleh sebab <InlineMath math="E" /> berada pada pembahagi dua sama serenjang bagi <InlineMath math="AC" />, **<InlineMath math="E" /> sama jauh dari <InlineMath math="A" /> dan dari <InlineMath math="C" />**. Panjang <InlineMath math="EC" /> diperoleh daripada segi tiga bersudut tegak <InlineMath math="EBC" />:
+
+<BlockMath math="\begin{aligned}
+AE^2&=EB^2+BC^2 \\
+x^2&=(8-x)^2+6^2 \\
+0&=64-16x+36 \\
+x&=6.25
+\end{aligned}" />
+
+# Panjang lipatan
+
+Pepenjuru <InlineMath math="AC=\sqrt{8^2+6^2}=10" />, jadi <InlineMath math="AM=5" />. Segi tiga <InlineMath math="AME" /> bersudut tegak di <InlineMath math="M" />, kerana **lipatan berserenjang dengan pepenjuru**:
+
+<BlockMath math="ME=\sqrt{AE^2-AM^2}=\sqrt{39.0625-25}=\sqrt{14.0625}=3.75" />
+
+Rajah itu simetri terhadap <InlineMath math="M" />, jadi <InlineMath math="MF=ME" /> dan <InlineMath math="EF=2\cdot3.75=7.5\text{ cm}" />.
+
+Jadi, panjang garis lipatan ialah <InlineMath math="7.5\text{ cm}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="10\text{ cm}" /> ialah pepenjuru <InlineMath math="AC" />. **Lipatan memotong pepenjuru secara serenjang**, bukan terletak di atasnya.
+- <InlineMath math="5\text{ cm}" /> ialah separuh pepenjuru, <InlineMath math="AM" />.
+- <InlineMath math="6.25\text{ cm}" /> ialah <InlineMath math="AE" />, jarak dari bucu ke hujung lipatan.
+- <InlineMath math="6\text{ cm}" /> dan <InlineMath math="8\text{ cm}" /> ialah lebar dan panjang kertas, iaitu panjang lipatan jika kamu melipat selari dengan satu sisi. Lipatan begitu tidak mempertemukan dua bucu yang bertentangan.
