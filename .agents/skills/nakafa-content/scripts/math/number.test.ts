@@ -56,6 +56,13 @@ it("joins a dashed range into one quantity unless an operator makes it a subtrac
   );
 });
 
+it("joins a point or tuple into one quantity unless it holds a year", () => {
+  assert.deepEqual(
+    quantities("titik (4, 1), (-1, 0, 2), (2,5; 3), (2019, 2020), P(1, 2)"),
+    ["(4, 1)", "(-1, 0, 2)", "(2,5; 3)", "(1, 2)"]
+  );
+});
+
 it("keeps a unit symbol that starts a word, and a word unit, as prose", () => {
   assert.deepEqual(quantities("5 menit, 3 meter, 2 jam, 4 mangga, 6 sisi"), [
     "5",

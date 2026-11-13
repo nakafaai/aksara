@@ -39,6 +39,12 @@ it("writes a range with a text hyphen, in the locale of each bound", () => {
   assert.equal(quantityMath("2-3.5", "id", ""), undefined);
 });
 
+it("writes a point or tuple with each element in the locale", () => {
+  assert.equal(quantityMath("(4, −1)", "en", ""), "(4, -1)");
+  assert.equal(quantityMath("(2,5; 3)", "id", ""), "(2{,}5; 3)");
+  assert.equal(quantityMath("(3.5, 1)", "id", ""), undefined);
+});
+
 it("writes signs, currencies, and percent signs", () => {
   assert.equal(quantityMath("-5", "en", ""), "-5");
   assert.equal(quantityMath("−3", "en", ""), "-3");

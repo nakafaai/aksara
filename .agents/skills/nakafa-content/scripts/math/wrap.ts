@@ -35,6 +35,7 @@ const OPERATOR_BEFORE_PATTERN =
 const OPERATOR_AFTER_PATTERN =
   /^[^\S\n]*(?:[+×*÷/=<>^±]|[-−][^\S\n]*[\p{N}\p{L}(])/u;
 const SIGN_PATTERN = /^[-−]/u;
+const CALL_BEFORE_PATTERN = /[\p{L}\p{N}_]\($/u;
 const OPERAND_BEFORE_PATTERN = /[\p{N})\]][^\S\n]*$/u;
 const LINE_START_PATTERN = /^[\t >]*(?:[-*+]|\d+[.)])?[\t ]*$/u;
 const LINE_END_PATTERN = /^[\t ]*(?:\n|$)/u;
@@ -53,11 +54,15 @@ function fillsLine(source: string, start: number, end: number): boolean {
 
 /**
  * Whether an arithmetic operator touches a number, so the number is one
- * operand of a plain-text expression such as `3 + 2i` or `10 - 4`, which a
- * person must write as one math expression.
+ * operand of a plain-text expression such as `3 + 2i` or `10 - 4`, or a
+ * comma number fills a parenthesis, where `(5,5)` may be a point or a
+ * decimal, or the number is an argument such as `f(1, 2)`. A person must
+ * write each as one math expression.
  */
 function isOperand(raw: string, before: string, after: string): boolean {
   return (
+    (raw.includes(",") && before.endsWith("(") && after.startsWith(")")) ||
+    CALL_BEFORE_PATTERN.test(raw.startsWith("(") ? `${before}(` : before) ||
     OPERATOR_BEFORE_PATTERN.test(before) ||
     OPERATOR_AFTER_PATTERN.test(after) ||
     (SIGN_PATTERN.test(raw) && OPERAND_BEFORE_PATTERN.test(before))

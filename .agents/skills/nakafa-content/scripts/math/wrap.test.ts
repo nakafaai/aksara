@@ -106,6 +106,15 @@ it("leaves every operand of a plain-text expression for a person", () => {
   });
 });
 
+it("wraps a point as one expression and leaves pairs a person must read", () => {
+  assert.deepEqual(wrap("Titik (4, 1), lalu (5,5) dan f(1, 2) serta g(3)."), {
+    left: ["5,5)", "(1, ", "3)."],
+    source:
+      'Titik <InlineMath math="(4, 1)" />, lalu (5,5) dan f(1, 2) serta g(3).',
+    wrapped: 1,
+  });
+});
+
 it("reads separators in the locale of the file", () => {
   assert.equal(
     wrap("It costs $1,250.50 for 3,5 units.", "en").source,

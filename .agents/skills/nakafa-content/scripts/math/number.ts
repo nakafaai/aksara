@@ -116,6 +116,33 @@ function joinRanges(text: string, matches: NumberMatch[]): NumberMatch[] {
   return joined;
 }
 
+/** A point or tuple of plain numbers: `(4, 1)`, `(-1, 0, 2)`, `(2,5; 3)`. */
+const TUPLE_PATTERN =
+  /\((?:\s*[-−]?\d+(?:[.,]\d+)*\s*[,;]\s+)+[-−]?\d+(?:[.,]\d+)*\s*\)/gu;
+
+/**
+ * Joins the numbers of a point or tuple such as `(4, 1)` into one quantity,
+ * because the corpus writes a point as one expression. A tuple that holds a
+ * year or a label stays as it is.
+ */
+function joinTuples(text: string, matches: NumberMatch[]): NumberMatch[] {
+  let joined = matches;
+  for (const tuple of text.matchAll(TUPLE_PATTERN)) {
+    const start = tuple.index;
+    const end = start + tuple[0].length;
+    const isInside = (match: NumberMatch) =>
+      match.start > start && match.end < end;
+    const numbers = [...tuple[0].matchAll(NUMBER_PATTERN)].length;
+    if (joined.filter(isInside).length === numbers) {
+      joined = [
+        ...joined.filter((match) => !isInside(match)),
+        { end, start },
+      ].sort((left, right) => left.start - right.start);
+    }
+  }
+  return joined;
+}
+
 /**
  * Returns every plain number in one text that a learner reads as a quantity:
  * a count, a measurement, an amount, a percentage, or a value. Years, dates,
@@ -145,7 +172,7 @@ export function findNumbers(text: string): NumberMatch[] {
       matches.push({ end, start: quantity });
     }
   }
-  return joinRanges(text, matches);
+  return joinTuples(text, joinRanges(text, matches));
 }
 
 /** The scan of learner text for a plain number used as a quantity. */

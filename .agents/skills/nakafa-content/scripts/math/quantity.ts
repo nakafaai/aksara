@@ -107,6 +107,33 @@ function suffixLatex(suffix: string): string | undefined {
   return `${unitText(groups.unit)}${exponent ? `^${exponent}` : ""}`;
 }
 
+const TUPLE_SEPARATOR_PATTERN = /\s*[,;]\s+/u;
+const SIGNED_PATTERN = /^(?<sign>[-−]?)(?<number>.+)$/su;
+
+/**
+ * Writes a point or tuple such as `(4, -1)` or `(2,5; 3)` with each element
+ * in the locale's separators, or `undefined` when one element is ambiguous.
+ */
+function tupleLatex(
+  raw: string,
+  locale: AppLocaleCode,
+  before: string
+): string | undefined {
+  const inner = raw.slice(1, -1).trim();
+  const separator = inner.includes(";") ? "; " : ", ";
+  const elements: string[] = [];
+  for (const element of inner.split(TUPLE_SEPARATOR_PATTERN)) {
+    const groups = SIGNED_PATTERN.exec(element)?.groups;
+    assert.ok(groups?.number !== undefined);
+    const number = numberLatex(groups.number, locale, before);
+    if (number === undefined) {
+      return;
+    }
+    elements.push(`${groups.sign ? "-" : ""}${number}`);
+  }
+  return `(${elements.join(separator)})`;
+}
+
 /**
  * Returns the `math` value for one plain quantity in the corpus convention
  * (`5\text{ cm}`, `\text{ m/s}^2`, `30^\circ\text{C}`, `25\%`, `2\text{-}3`,
@@ -120,6 +147,9 @@ export function quantityMath(
   locale: AppLocaleCode,
   before: string
 ): string | undefined {
+  if (raw.startsWith("(")) {
+    return tupleLatex(raw, locale, before);
+  }
   const groups = QUANTITY_PATTERN.exec(raw)?.groups;
   if (!groups?.number) {
     return;
