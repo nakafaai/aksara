@@ -1,19 +1,22 @@
-The form **"P only if Q"** means Q is a condition that must hold for P to happen. So "P only if Q" is equivalent to "if P, then Q", not the other way around.
+You're looking for the conclusion that must be true in every situation that fits all three premises. Two words decide everything: *hanya* ("only") in premise 1 and *sebagian* ("some", meaning at least one) in premise 3.
 
-Translate both statements:
+Start with premise 1. "Only students who have passed the swimming test may join the rafting trip" means anyone allowed to join **must have passed the swimming test**. It runs from "allowed to join" to "passed", not the other way. Passing is a requirement, but it isn't necessarily enough.
 
-<BlockMath math="\begin{aligned}
-\text{the meeting starts} &\Rightarrow \text{the chair is present} \\
-\text{the chair is present} &\Rightarrow \text{there is no official visit}
-\end{aligned}" />
+Now build the chain.
 
-The meeting started today. Applying modus ponens twice, the chair is present, and then there is no official visit today.
+- The contrapositive of premise 1: a student who hasn't passed the swimming test may not join the rafting trip. A contrapositive flips the direction and negates both sides, and it always means the same as the original.
+- Premise 2: no class X (grade 10) student has passed the swimming test. Combined with the step above, no class X student may join the rafting trip.
+- Premise 3: at least one member of the nature club is also a class X student. That member may not join the rafting trip.
 
-The other options are wrong:
+<BlockMath math="\text{club member in class X} \Rightarrow \text{hasn't passed} \Rightarrow \text{may not join}" />
 
-- "Whenever the chair is present, the meeting surely starts" reverses the first statement. The chair being present is only a condition, not a guarantee.
-- "There is an official visit, but the chair is still present" contradicts the second statement.
-- The premises only describe **today**. Nothing is known about an official visit yesterday.
-- "The chair is absent" contradicts the conclusion that the chair must be present.
+So at least one person is both a nature club member and not allowed to join the rafting trip. A sentence "some <InlineMath math="A" /> are <InlineMath math="B" />" only says someone belongs to both groups, so you can swap the two groups. That gives: some students who may not join the rafting trip are members of the nature club.
 
-So the conclusion that must be true is that there is no official visit today.
+The other options aren't guaranteed, and each one fails in a situation that still fits all three premises.
+
+- "No club member may join" turns "some" into "all". A club member who isn't in class X may well have passed the swimming test and been allowed to join.
+- "Everyone who passed the swimming test may join" reverses the direction of "only". A student could pass and still not be allowed, say for another reason.
+- "Some club members may join" reads "some" as "some yes, some no". Every club member could be in class X, and then nobody in the club may join.
+- "Every club member not in class X may join" negates premise 2 and reverses premise 1 at once. Not being in class X doesn't mean passing the swimming test, and passing still doesn't guarantee permission.
+
+So the valid conclusion is that some students who may not join the rafting trip are members of the nature club.

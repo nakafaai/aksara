@@ -1,23 +1,29 @@
-Suche alle möglichen Anordnungen. Beginne mit der strengsten Bedingung: **Ana und Doni belegen eine ganze Spalte**, Ana oben und Doni unten.
+Jede Antwort nennt nur zwei Posten. Der dritte, der Logistikposten, bekommt die drei Freiwilligen, die nicht genannt werden. Dein erster Schritt ist also, **den Logistikposten zuerst aufzufüllen**, und erst danach prüfst du die sechs Bedingungen. Viele Verstöße verstecken sich genau in dem Posten, der nicht dasteht.
 
-Caca ist in Spalte 1, also können Ana und Doni Spalte 1 nicht nutzen. Ihre Spalte ist Spalte 2 oder Spalte 3. Danach ist eine Spalte noch ganz frei, und in Spalte 1 ist neben Caca noch ein Fach frei.
+Bei allen fünf Antworten gehst du gleich vor. Schreib alle drei Posten aus und prüf dann die Bedingungen 1 bis 6 nacheinander. Ein einziger Verstoß reicht, um eine Einteilung zu streichen.
 
-Beni und Eli müssen in derselben Reihe sein, Eli rechts von Beni. Fajar darf nicht in Spalte 1. Deshalb muss das freie Fach in Spalte 1 an Beni gehen, und Eli und Fajar füllen die freie Spalte.
+| Anmeldung | Sanität | Logistik (der Rest) | Ergebnis der Prüfung |
+| --- | --- | --- | --- |
+| Indra, Kurnia, Putri | Jihan, Nanda | Fikri, Galih, Hana | Verletzt Bedingung 6 |
+| Fikri, Galih, Indra | Hana, Jihan | Kurnia, Nanda, Putri | Verletzt Bedingung 3 |
+| Hana, Kurnia, Putri | Indra, Jihan | Fikri, Galih, Nanda | Verletzt Bedingung 5 |
+| Indra, Nanda, Putri | Hana, Jihan | Fikri, Galih, Kurnia | Erfüllt alle Bedingungen |
+| Fikri, Indra, Putri | Jihan, Kurnia | Galih, Hana, Nanda | Verletzt Bedingung 1 |
 
-| Anordnung | Obere Reihe (Spalten 1, 2, 3) | Untere Reihe (Spalten 1, 2, 3) |
-| --- | --- | --- |
-| I | Beni, Ana, Eli | Caca, Doni, Fajar |
-| II | Caca, Ana, Fajar | Beni, Doni, Eli |
-| III | Beni, Eli, Ana | Caca, Fajar, Doni |
-| IV | Caca, Fajar, Ana | Beni, Eli, Doni |
+Prüf jetzt die Einteilung, die übrig bleibt, ganz genau. In der Anmeldung stehen Indra, Nanda und Putri, in der Sanität Hana und Jihan, in der Logistik Fikri, Galih und Kurnia.
 
-In allen vier Anordnungen **ist Beni immer in Spalte 1**. Diese Aussage stimmt sicher.
+- Bedingung 1: Fikri und Galih sind beide in der Logistik.
+- Bedingung 2: Hana ist in der Sanität und Indra in der Anmeldung, also sind sie getrennt.
+- Bedingung 3: Putri ist mit Indra in der Anmeldung.
+- Bedingung 4: Jihan ist in der Sanität.
+- Bedingung 5: Nanda ist in der Anmeldung, Fikri in der Logistik.
+- Bedingung 6: Kurnia ist in der Logistik, nicht in der Anmeldung. Der "Wenn"-Teil tritt nicht ein, also verlangt diese Bedingung nichts.
 
-Die anderen Aussagen gelten nur in manchen Anordnungen:
+Die anderen vier Einteilungen fallen durch, und jede stellt eine andere Falle.
 
-- Eli ist in I und III oben, in II und IV aber unten.
-- Fajar ist in I und II in Spalte 3, in III und IV aber in Spalte 2.
-- Ana ist in I und II in Spalte 2, in III und IV aber in Spalte 3.
-- Caca ist in I und III unten, in II und IV aber oben.
+- Indra, Kurnia, Putri in der Anmeldung mit Jihan, Nanda in der Sanität wirkt sauber, wenn du nur die Bedingungen zu "zusammen" und "getrennt" prüfst. Kurnia steht aber in der Anmeldung, also verlangt Bedingung 6 Nanda in der Logistik, und Nanda ist in der Sanität.
+- Fikri, Galih, Indra in der Anmeldung mit Hana, Jihan in der Sanität sieht in den zwei sichtbaren Posten harmlos aus. Die Logistik enthält dann aber Kurnia, Nanda und Putri, und Putri ist weder bei Hana noch bei Indra.
+- Hana, Kurnia, Putri in der Anmeldung mit Indra, Jihan in der Sanität erfüllt Bedingung 6, weil Nanda tatsächlich in der Logistik ist. Genau dort sind aber auch Fikri und Galih, also arbeitet Nanda mit Fikri zusammen. Die Falle ist, **nach der erfüllten Wenn-Bedingung aufzuhören**.
+- Fikri, Indra, Putri in der Anmeldung mit Jihan, Kurnia in der Sanität übersieht, dass Galih, der nicht genannt wird, automatisch in der Logistik landet. Damit sind Fikri und Galih getrennt.
 
-Sicher stimmt also, dass Benis Fach in Spalte 1 liegt.
+Möglich ist also die Einteilung mit Indra, Nanda und Putri am Anmeldeposten, Hana und Jihan am Sanitätsposten und Fikri, Galih und Kurnia am Logistikposten.

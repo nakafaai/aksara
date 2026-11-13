@@ -1,16 +1,36 @@
-Misalkan Rina membeli <InlineMath math="x" /> prangko <InlineMath math="\text{Rp}3{.}000" /> dan <InlineMath math="y" /> prangko <InlineMath math="\text{Rp}5{.}000" />. Dalam ribuan rupiah, syaratnya adalah
+Kedua jenis parsel saling berebut bahan dengan cara yang berlawanan. Parsel Sirup hemat kue tetapi boros sirup, sedangkan Parsel Kue hemat sirup tetapi boros kue. Jadi, memperbanyak satu jenis saja akan menghabiskan satu bahan dan menyisakan bahan lain. Jumlah terbanyak biasanya ada di **campuran yang membuat kedua bahan hampir habis**, dan karena banyak parsel harus bulat, campuran itu perlu dicek satu per satu.
 
-<BlockMath math="3x+5y=100,\qquad x\ge1,\ y\ge1" />
+Misalkan <InlineMath math="x" /> banyak Parsel Sirup dan <InlineMath math="y" /> banyak Parsel Kue. Syaratnya:
 
-Ubah persamaan menjadi <InlineMath math="3x=100-5y" />. Agar <InlineMath math="x" /> bulat, **<InlineMath math="100-5y" /> harus habis dibagi <InlineMath math="3" />**. Coba nilai <InlineMath math="y" /> dari kecil: <InlineMath math="y=2" /> memberi <InlineMath math="90" />, yang habis dibagi <InlineMath math="3" />. Setiap kali <InlineMath math="y" /> naik <InlineMath math="3" />, nilai <InlineMath math="100-5y" /> turun <InlineMath math="15" />, sehingga tetap habis dibagi <InlineMath math="3" />.
+<BlockMath math="\begin{aligned}
+\text{toples kue} &: x+4y\le44 \\
+\text{botol sirup} &: 2x+y\le28 \\
+\text{minimal} &: x\ge3,\ y\ge3
+\end{aligned}" />
 
-| <InlineMath math="y" /> | <InlineMath math="100-5y" /> | <InlineMath math="x" /> |
-| --- | --- | --- |
-| <InlineMath math="2" /> | <InlineMath math="90" /> | <InlineMath math="30" /> |
-| <InlineMath math="5" /> | <InlineMath math="75" /> | <InlineMath math="25" /> |
-| <InlineMath math="8" /> | <InlineMath math="60" /> | <InlineMath math="20" /> |
-| <InlineMath math="11" /> | <InlineMath math="45" /> | <InlineMath math="15" /> |
-| <InlineMath math="14" /> | <InlineMath math="30" /> | <InlineMath math="10" /> |
-| <InlineMath math="17" /> | <InlineMath math="15" /> | <InlineMath math="5" /> |
+Cara paling jelas adalah menguji target jumlah parsel <InlineMath math="T=x+y" />. Ganti <InlineMath math="y" /> dengan <InlineMath math="T-x" /> di kedua syarat bahan.
 
-Nilai berikutnya, <InlineMath math="y=20" />, memberi <InlineMath math="x=0" />, padahal Rina ingin paling sedikit satu prangko dari setiap jenis. Jadi, ada <InlineMath math="6" /> pasangan jumlah prangko yang dapat diperoleh.
+<BlockMath math="\begin{aligned}
+\text{sirup} &: 2x+(T-x)\le28 \quad\Rightarrow\quad x\le28-T \\
+\text{kue} &: x+4(T-x)\le44 \quad\Rightarrow\quad x\ge\frac{4T-44}{3}
+\end{aligned}" />
+
+Coba <InlineMath math="T=19" />. Syarat sirup meminta <InlineMath math="x\le9" />, tetapi syarat kue meminta <InlineMath math="x\ge\frac{32}{3}\approx10{,}7" />. Tidak ada bilangan yang memenuhi keduanya, jadi <InlineMath math="19" /> parsel mustahil. Untuk <InlineMath math="T" /> yang lebih besar, batas atas makin turun dan batas bawah makin naik, jadi juga mustahil.
+
+Coba <InlineMath math="T=18" />. Syarat sirup meminta <InlineMath math="x\le10" />, dan syarat kue meminta <InlineMath math="x\ge\frac{28}{3}\approx9{,}3" />. Satu-satunya bilangan bulat di antaranya adalah <InlineMath math="x=10" />, sehingga <InlineMath math="y=8" />.
+
+<BlockMath math="\begin{aligned}
+\text{toples kue} &: 10+4(8) = 42 \le 44 \\
+\text{botol sirup} &: 2(10)+8 = 28 \le 28
+\end{aligned}" />
+
+Kedua jenis juga sudah paling sedikit <InlineMath math="3" />. Jadi, <InlineMath math="10" /> Parsel Sirup dan <InlineMath math="8" /> Parsel Kue memberi <InlineMath math="18" /> parsel, dan tidak ada susunan yang memberi lebih.
+
+Pilihan lain muncul dari strategi yang terlalu cepat:
+
+- <InlineMath math="13" /> muncul kalau kamu membuat <InlineMath math="3" /> Parsel Sirup lalu Parsel Kue sebanyak mungkin. Kue hanya cukup untuk <InlineMath math="10" /> Parsel Kue, padahal sirupnya masih banyak tersisa.
+- <InlineMath math="15" /> muncul kalau kamu membuat <InlineMath math="3" /> Parsel Kue lalu Parsel Sirup sebanyak mungkin karena isinya lebih sedikit. Sirup hanya cukup untuk <InlineMath math="12" /> Parsel Sirup, padahal kuenya masih tersisa <InlineMath math="20" /> toples.
+- <InlineMath math="17" /> muncul dari titik potong <InlineMath math="x+4y=44" /> dan <InlineMath math="2x+y=28" />, yaitu <InlineMath math="x\approx9{,}7" /> dan <InlineMath math="y\approx8{,}6" />, yang dibulatkan ke bawah menjadi <InlineMath math="9+8" /> tanpa mengecek susunan bulat di sekitarnya.
+- <InlineMath math="19" /> membulatkan titik potong itu ke terdekat menjadi <InlineMath math="10+9" />, padahal susunan itu butuh <InlineMath math="29" /> botol sirup dan <InlineMath math="46" /> toples kue.
+
+Jadi, toko itu dapat membuat paling banyak <InlineMath math="18" /> parsel.

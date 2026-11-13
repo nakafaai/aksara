@@ -1,18 +1,35 @@
-Eine Aussage ist Benar (richtig) nur, wenn sie in **allen vier Anordnungen** gilt, die die Bedingungen erfüllen. Sonst ist sie Salah (falsch).
+Eine Aussage ist Benar (wahr), wenn sie in **jeder Einteilung gilt, die alle sieben Bedingungen erfüllt**, also die sechs alten Bedingungen plus "Kurnia ist nicht in der Logistik". Am sichersten listest du alle gültigen Einteilungen auf und beurteilst dann die vier Aussagen.
 
-| Anordnung | Obere Reihe (Spalten 1, 2, 3) | Untere Reihe (Spalten 1, 2, 3) |
-| --- | --- | --- |
-| I | Beni, Ana, Eli | Caca, Doni, Fajar |
-| II | Caca, Ana, Fajar | Beni, Doni, Eli |
-| III | Beni, Eli, Ana | Caca, Fajar, Doni |
-| IV | Caca, Fajar, Ana | Beni, Eli, Doni |
+Drei Tatsachen gelten in jedem Fall.
 
-**Aussage 1** ist richtig. Ana und Doni füllen eine Spalte, Caca und Beni füllen Spalte 1, also füllen Eli und Fajar immer gemeinsam die übrige Spalte. In I und II sind beide in Spalte 3, in III und IV beide in Spalte 2.
+- Fikri und Galih können nicht in der Sanität sein. Dieser Posten hat nur zwei Plätze, und einen belegt Jihan (Bedingung 4).
+- Putri kann nicht im Posten von Fikri und Galih sein. Dort ist nur noch ein Platz frei, also wäre Putri von Hana und Indra getrennt (Bedingung 3).
+- Auch Nanda kann nicht im Posten von Fikri und Galih sein (Bedingung 5).
 
-**Aussage 2** ist richtig. Caca und Beni sind beide in Spalte 1, also sicher in verschiedenen Reihen.
+Fikri und Galih sind also in der Anmeldung oder in der Logistik. Teil die Fälle nach ihrem Posten auf.
 
-**Aussage 3** ist falsch. In den Anordnungen I und II ist Doni in Spalte 2.
+**Fall 1: Fikri und Galih in der Anmeldung**. Der dritte Platz in der Anmeldung geht nicht an Nanda, Putri oder Jihan, also gehört er Hana, Indra oder Kurnia.
 
-**Aussage 4** ist falsch. Ana ist immer oben, Eli aber in den Anordnungen II und IV unten.
+- Nimmt Hana ihn, muss Putri bei Indra sein. In der Sanität ist nur ein Platz frei, also gehen Indra und Putri in die Logistik. Der letzte Logistikplatz darf nicht an Kurnia gehen (neue Bedingung), also kommt Nanda in die Logistik und Kurnia in die Sanität.
+- Nimmt Indra ihn, läuft alles genauso, nur mit Hana und Indra vertauscht.
+- Nimmt Kurnia ihn, verlangt Bedingung 6 Nanda in der Logistik. Putri darf nicht allein mit Jihan in der Sanität sein, also ist Putri ebenfalls in der Logistik. Hana und Indra trennen sich dann, eine Person in der Logistik, eine in der Sanität. Das ergibt zwei Einteilungen.
 
-Die Aussagen 1 und 2 sind also richtig, die Aussagen 3 und 4 falsch.
+**Fall 2: Fikri und Galih in der Logistik**. Nanda darf nicht in die Logistik. Nutz jetzt die Kontraposition von Bedingung 6, also die Form "Wenn Nanda nicht in der Logistik ist, ist Kurnia nicht in der Anmeldung", die genau dasselbe sagt wie die ursprüngliche Bedingung. Kurnia ist also nicht in der Anmeldung, und die neue Bedingung verbietet die Logistik. Kurnia muss mit Jihan in der Sanität sein. Den dritten Logistikplatz bekommt Hana oder Indra, und in der Anmeldung stehen Nanda, Putri und die übrige Person aus Hana und Indra.
+
+| Fall | Anmeldung | Logistik | Sanität |
+| --- | --- | --- | --- |
+| 1 | Fikri, Galih, Hana | Indra, Nanda, Putri | Jihan, Kurnia |
+| 1 | Fikri, Galih, Indra | Hana, Nanda, Putri | Jihan, Kurnia |
+| 1 | Fikri, Galih, Kurnia | Hana, Nanda, Putri | Indra, Jihan |
+| 1 | Fikri, Galih, Kurnia | Indra, Nanda, Putri | Hana, Jihan |
+| 2 | Hana, Nanda, Putri | Fikri, Galih, Indra | Jihan, Kurnia |
+| 2 | Indra, Nanda, Putri | Fikri, Galih, Hana | Jihan, Kurnia |
+
+Mit dieser Tabelle beurteilst du die Aussagen der Reihe nach.
+
+- "Nanda und Putri sind im selben Posten" ist Benar. In allen sechs Einteilungen teilen sie sich einen Posten, in Fall 1 die Logistik und in Fall 2 die Anmeldung.
+- "Kurnia ist am Sanitätsposten" ist Salah (falsch). In der dritten und vierten Zeile steht Kurnia in der Anmeldung. Bedingung 6 erlaubt das, solange Nanda in der Logistik ist.
+- "Putri ist am Logistikposten" ist Salah. In Fall 2 steht Putri in der Anmeldung. Sicher wirkt diese Aussage nur, wenn du vergisst, dass Fikri und Galih auch in der Logistik sein können.
+- "Wenn Fikri am Logistikposten ist, ist Kurnia am Sanitätsposten" ist Benar. Der Wenn-Teil bedeutet Fall 2, und dort ist Kurnia immer in der Sanität. Die Kette: Fikri in der Logistik, also ist Nanda nicht in der Logistik (Bedingung 5), also ist Kurnia nicht in der Anmeldung (Kontraposition von Bedingung 6), und die neue Bedingung streicht die Logistik.
+
+Die erste und die vierte Aussage sind also Benar, die zweite und die dritte Salah.

@@ -2,35 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "inference",
+    topic: "data-inference",
   },
-  stimulus: "sekolah",
+  stimulus: "pesepeda",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
+      columns: ["Dapat disimpulkan", "Tidak dapat disimpulkan"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
+          column: 2,
           label:
-            "Selisih jam masuk kedua kelompok sekolah adalah $$45$$ menit.",
+            "Jumlah perjalanan sepeda di keempat koridor naik $$150\\%$$, lebih tinggi daripada kenaikan perjalanan sepeda di seluruh Kota Sagara pada periode yang sama.",
         },
         {
           column: 1,
           label:
-            "Angka keterlambatan di sekolah yang memundurkan jam masuk turun lebih dari separuhnya.",
+            "Pada 2025, sedikitnya $$48$$ kecelakaan di persimpangan tidak menimbulkan korban luka berat.",
+        },
+        {
+          column: 1,
+          label:
+            "Risiko kecelakaan dengan korban luka berat per perjalanan pada 2025 kurang dari separuh risiko pada 2024.",
         },
         {
           column: 2,
           label:
-            "Siswa di sekolah yang tetap masuk pukul $$06.30$$ tidur lebih lama daripada tahun sebelumnya.",
-        },
-        {
-          column: 2,
-          label:
-            "Perubahan jam masuk membuat semua kegiatan di sekolah tersebut berakhir menjelang magrib.",
+            "Pada 2025, risiko kecelakaan per perjalanan di keempat koridor lebih rendah daripada di jalan-jalan Kota Sagara yang tidak diberi pembatas.",
         },
       ],
     },

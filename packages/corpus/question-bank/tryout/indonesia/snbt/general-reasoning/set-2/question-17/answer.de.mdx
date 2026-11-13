@@ -1,15 +1,45 @@
-Ein Fach direkt über Fajars Fach gibt es nur, wenn **Fajar in der unteren Reihe ist**. Von den vier Anordnungen ist Fajar in I und III unten.
+Gefragt ist die Anzahl aller gültigen Einteilungen. Du musst also jede finden, ohne eine zu vergessen oder doppelt zu zählen. Am saubersten geht das, wenn du **die Fälle nach dem Posten von Fikri und Galih aufteilst**, denn dieses Paar belegt auf einmal zwei Plätze.
 
-- Anordnung I: Fajar ist unten in Spalte 3, darüber Eli.
-- Anordnung III: Fajar ist unten in Spalte 2, darüber Eli.
+Zuerst drei Tatsachen, die du in jedem Fall brauchst.
 
-In beiden Anordnungen ist Eli direkt über Fajar. Das passt zu der zuvor gefundenen Eigenschaft: Eli und Fajar teilen immer eine Spalte.
+- Fikri und Galih können nicht in der Sanität sein. Dieser Posten hat nur zwei Plätze, und einen belegt schon Jihan (Bedingung 4).
+- Putri kann nicht im Posten von Fikri und Galih sein. Dort ist nur noch ein Platz frei, also wäre Putri von Hana und Indra getrennt (Bedingung 3).
+- Auch Nanda kann nicht im Posten von Fikri und Galih sein (Bedingung 5).
 
-Kein anderer Schüler ist möglich:
+Den dritten Platz im Posten von Fikri und Galih bekommt also Hana, Indra oder Kurnia.
 
-- Ana ist immer direkt über Doni, nicht über Fajar.
-- Beni ist immer in Spalte 1, und Fajar ist nie in Spalte 1.
-- Caca ist ebenfalls immer in Spalte 1.
-- Doni ist immer in der unteren Reihe und kann daher über keinem Fach sein.
+**Fall 1: Fikri und Galih in der Anmeldung**.
 
-Direkt über Fajars Fach kann also nur Elis Fach liegen.
+- Dritter Platz für Hana. Putri muss bei Indra sein, und in der Sanität ist nur ein Platz frei, also gehen Indra und Putri in die Logistik. Den letzten Logistikplatz bekommt Kurnia oder Nanda, die andere Person geht in die Sanität. Bedingung 6 greift nicht, weil Kurnia nicht in der Anmeldung ist. Das sind <InlineMath math="2" /> Einteilungen.
+- Dritter Platz für Indra. Gleiches Muster, nur mit Hana und Indra vertauscht. Das sind <InlineMath math="2" /> Einteilungen.
+- Dritter Platz für Kurnia. Bedingung 6 verlangt Nanda in der Logistik. Putri darf nicht allein mit Jihan in der Sanität sein, also ist Putri ebenfalls in der Logistik. Hana und Indra müssen sich trennen, eine Person in der Logistik, eine in der Sanität. Das sind <InlineMath math="2" /> Einteilungen.
+
+**Fall 2: Fikri und Galih in der Logistik**. Nanda darf nicht in die Logistik. Die Kontraposition von Bedingung 6, "Wenn Nanda nicht in der Logistik ist, ist Kurnia nicht in der Anmeldung", sagt genau dasselbe wie die ursprüngliche Bedingung. Kurnia kann also nur in der Logistik oder in der Sanität sein.
+
+- Kurnia in der Logistik. Hana, Indra, Nanda und Putri füllen die Anmeldung und den freien Platz in der Sanität. Hana und Indra müssen sich trennen, also geht eine Person in die Anmeldung und eine in die Sanität. Nanda und Putri kommen in die Anmeldung, und Putri ist dort bei Hana oder Indra. Das sind <InlineMath math="2" /> Einteilungen.
+- Kurnia mit Jihan in der Sanität. Den dritten Logistikplatz bekommt Hana oder Indra, und in der Anmeldung stehen Nanda, Putri und die übrige Person. Das sind <InlineMath math="2" /> Einteilungen.
+
+Zähl beide Fälle zusammen.
+
+<BlockMath math="\underbrace{2+2+2}_{\text{Fall 1}}+\underbrace{2+2}_{\text{Fall 2}}=10" />
+
+Hier sind alle zehn Einteilungen.
+
+| Nr. | Anmeldung | Logistik | Sanität |
+| --- | --- | --- | --- |
+| 1 | Fikri, Galih, Hana | Indra, Kurnia, Putri | Jihan, Nanda |
+| 2 | Fikri, Galih, Hana | Indra, Nanda, Putri | Jihan, Kurnia |
+| 3 | Fikri, Galih, Indra | Hana, Kurnia, Putri | Jihan, Nanda |
+| 4 | Fikri, Galih, Indra | Hana, Nanda, Putri | Jihan, Kurnia |
+| 5 | Fikri, Galih, Kurnia | Hana, Nanda, Putri | Indra, Jihan |
+| 6 | Fikri, Galih, Kurnia | Indra, Nanda, Putri | Hana, Jihan |
+| 7 | Hana, Nanda, Putri | Fikri, Galih, Kurnia | Indra, Jihan |
+| 8 | Indra, Nanda, Putri | Fikri, Galih, Kurnia | Hana, Jihan |
+| 9 | Hana, Nanda, Putri | Fikri, Galih, Indra | Jihan, Kurnia |
+| 10 | Indra, Nanda, Putri | Fikri, Galih, Hana | Jihan, Kurnia |
+
+Ein kurzer Test an der Tabelle: Kurnia steht nur in den Zeilen 5 und 6 in der Anmeldung, und in beiden ist Nanda tatsächlich in der Logistik. In jeder Zeile ist Putri bei Hana oder Indra, und Nanda ist nie bei Fikri.
+
+Zwei falsche Zählungen kommen oft vor. Wenn du nur den Fall mit Fikri und Galih in der Anmeldung durchgehst, bleibst du bei <InlineMath math="6" /> stehen. Wenn du vergisst, **die Kontraposition von Bedingung 6 zu nutzen**, zählst du in Fall 2 zwei Einteilungen mit Kurnia in der Anmeldung und Nanda in der Sanität mit und kommst auf <InlineMath math="12" />.
+
+Die Anzahl der Einteilungen, die alle sechs Bedingungen erfüllen, ist also <InlineMath math="10" />.
