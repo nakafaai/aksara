@@ -1,0 +1,751 @@
+export const metadata = {
+    title: "Semuanya Objek dalam Python",
+  description: "Nombor, rentetan, senarai dan fungsi ialah objek Python yang mempunyai atribut dan kaedah tersendiri.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-07-26",
+    dateModified: "2026-09-19",
+    subject: "Pengaturcaraan AI",
+};
+
+## Cara Python Menyusun Data dan Tingkah Laku
+
+Python menyokong beberapa cara untuk menyusun atur cara. Kod prosedural mengikut satu urutan langkah. Kod fungsian mengubah data menggunakan fungsi. Kod berorientasikan objek mengumpulkan data dan tingkah laku yang berkaitan. Satu atur cara boleh menggabungkan ketiga-tiga gaya ini.
+
+Semasa atur cara berjalan, <Highlight>setiap nilai Python ialah objek</Highlight>. Nombor, fungsi, kelas dan modul masing-masing mempunyai jenis, identiti yang membezakan objek itu daripada objek lain, dan nilai yang disimpan.
+
+Jenis sesuatu objek menentukan atribut dan kaedah (method) yang tersedia padanya. Oleh sebab peraturan ini terpakai pada setiap objek, fungsi boleh disimpan dalam senarai, kelas boleh dihantar kepada fungsi lain, dan nombor boleh mempunyai kaedah. Model objek Python boleh digunakan dalam struktur atur cara prosedural, fungsian dan berorientasikan objek.
+
+## Membandingkan Cara Menyusun Atur Cara
+
+Model objek yang sama menyokong beberapa cara untuk menyusun atur cara. Gaya prosedural menyusun langkah demi langkah dan menghantar data antara langkah itu, gaya fungsian membina pengiraan daripada gabungan fungsi, dan gaya berorientasikan objek **menyimpan data bersama operasi** yang menggunakannya. Apabila kamu tahu gaya yang diikuti oleh sesuatu fail, aliran fail itu lebih mudah dibaca.
+
+### Gaya Prosedural
+
+Dalam gaya prosedural, atur cara disusun berdasarkan **operasi dan aliran data yang jelas**. Struktur data dan fungsi yang menerimanya boleh kekal berasingan, walaupun dalam bahasa yang turut menyokong kelas.
+
+<CodeBlock
+  data={[{
+    language: "c",
+    filename: "procedural_parking.c",
+    code: `#include <stdio.h>
+
+// Contoh pendekatan prosedural dalam bahasa C
+struct ParkSystem {
+    int max;
+    int occ;
+};
+
+int occupy(struct ParkSystem* ps) {
+    if (ps->max <= ps->occ) {
+        return -1;
+    }
+    ps->occ++;
+    return 0;
+}
+
+void leave(struct ParkSystem* ps) {
+    if (ps->occ > 0) {
+        ps->occ--;
+    }
+}
+
+int main() {
+    struct ParkSystem ps = {100, 0};
+    occupy(&ps);
+    printf("%d %d", ps.max, ps.occ);
+    return 0;
+}`
+  }]}
+/>
+
+Di sini, `struct` dalam C menyimpan keadaan tempat letak kereta, dan setiap fungsi menerima penuding kepada keadaan itu. Fungsi prosedural boleh membaca sesuatu input dan membiarkan input itu tidak berubah.
+
+### Bahasa Berorientasikan Objek
+
+Dalam gaya berorientasikan objek, kelas boleh **mengumpulkan keadaan dan tingkah laku yang berkaitan** di sebalik satu antara muka. Atribut mewakili keadaan objek, manakala kaedah mentakrifkan operasi yang menggunakan atau mengemas kini keadaan itu.
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "oop_parking.py",
+    code: `# Contoh pendekatan berorientasikan objek dalam Python
+class ParkSystem:
+    def __init__(self, max_capacity):
+        self.max = max_capacity
+        self.occ = 0
+
+    def occupy(self):
+        if self.max <= self.occ:
+            return -1
+        self.occ += 1
+        return 0
+
+    def leave(self):
+        if self.occ > 0:
+            self.occ -= 1
+
+# Penggunaan
+ps = ParkSystem(100)
+ps.occupy()
+print(f"Maks: {ps.max}, Diisi: {ps.occ}")`
+  }]}
+/>
+
+Versi Python menyimpan peraturan dan operasi tempat letak kereta dalam satu kelas. Kaedah `occupy` menyemak baki kapasiti setiap kali kaedah itu dipanggil, tetapi kod di luar kelas masih boleh mengubah atribut awam `max` dan `occ` secara terus. Jadi, contoh ringkas ini belum melindungi keadaan objek sepenuhnya.
+
+### Gaya Fungsian
+
+Fungsi tulen mengira **hasil daripada input tanpa mengubah keadaan**. Di sini, kapasiti dan bilangan kenderaan ialah argumen, dan fungsi itu memulangkan bilangan ruang yang masih kosong.
+
+<CodeBlock data={[{ language: "python", filename: "functional_parking.py", code: `def available_spaces(capacity, occupied):
+    return capacity - occupied
+
+print(available_spaces(100, 1))
+# Output: 99` }]} />
+
+## Sistem Tempat Letak Kereta sebagai Contoh
+
+Dalam contoh ini, sistem tempat letak kereta ialah objek yang mempunyai keadaan dan tingkah laku. Keadaannya merekodkan **kapasiti maksimum dan bilangan ruang yang sudah diisi**. Kaedahnya membenarkan kereta masuk atau merekodkan kereta yang keluar.
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "parking_system_detailed.py",
+    code: `class ParkingSystem:
+    def __init__(self, capacity):
+        """Mulakan sistem tempat letak kereta dengan kapasiti tertentu"""
+        if type(capacity) is not int or capacity <= 0:
+            raise ValueError("Kapasiti mesti integer positif")
+        self.capacity = capacity
+        self.vehicles = []  # Senarai kenderaan yang sedang diletakkan
+
+    def park_vehicle(self, vehicle_plate):
+        """Kaedah untuk meletakkan kenderaan"""
+        if vehicle_plate in self.vehicles:
+            return f"Kenderaan {vehicle_plate} sudah diletakkan"
+        if len(self.vehicles) >= self.capacity:
+            return f"Tempat letak kereta penuh! Tidak boleh meletakkan {vehicle_plate}"
+
+        self.vehicles.append(vehicle_plate)
+        return f"Kenderaan {vehicle_plate} berjaya diletakkan"
+
+    def exit_vehicle(self, vehicle_plate):
+        """Kaedah untuk keluar dari tempat letak kereta"""
+        if vehicle_plate in self.vehicles:
+            self.vehicles.remove(vehicle_plate)
+            return f"Kenderaan {vehicle_plate} sudah keluar"
+        else:
+            return f"Kenderaan {vehicle_plate} tidak dijumpai"
+
+    def get_status(self):
+        """Kaedah untuk melihat status tempat letak kereta"""
+        occupied = len(self.vehicles)
+        available = self.capacity - occupied
+        return {
+            'capacity': self.capacity,
+            'occupied': occupied,
+            'available': available,
+            'vehicles': tuple(self.vehicles)
+        }
+
+    def is_full(self):
+        """Kaedah untuk menyemak sama ada tempat letak kereta penuh"""
+        return len(self.vehicles) >= self.capacity
+
+# Contoh penggunaan
+parking = ParkingSystem(5)
+print(parking.park_vehicle("B 1234 CD"))
+print(parking.park_vehicle("B 5678 EF"))
+print(parking.get_status())
+print(parking.is_full())`
+  }]}
+/>
+
+## Konsep Objek dalam Jenis Data
+
+Kenyataan bahawa semuanya objek bermaksud Python mengendalikan setiap nilai semasa atur cara berjalan melalui satu model objek, jadi nombor, rentetan dan senarai semuanya ialah tika (instance) bagi sesuatu kelas. Yang berbeza ialah set atribut dan kaedah yang disediakan oleh kelas itu, kerana <Highlight>jenis yang menentukan alat yang tersedia</Highlight>, bukan model objek itu sendiri.
+
+### Nombor sebagai Objek
+
+Integer ialah **objek yang mempunyai kaedah**. Contoh ini memanggil `bit_length()` pada `42` dan mencetak hasilnya.
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "numbers_as_objects.py",
+    code: `# Nombor dalam Python ialah objek
+number = 42
+
+# Nombor mempunyai kaedah
+print(number.bit_length())  # Kaedah untuk mengira panjang bit
+print(number.__add__(8))    # Kaedah untuk penambahan (sama seperti number + 8)
+
+# Nombor titik apungan juga objek
+price = 15.75
+print(price.is_integer())   # Kaedah untuk menyemak sama ada nilainya nombor bulat
+print(price.as_integer_ratio())  # Kaedah untuk menukar kepada nisbah
+
+# Malah hasil operasi matematik juga objek
+result = 10 + 5
+print(type(result))         # <class 'int'>
+print(dir(result))          # Teroka nama-nama atribut`
+  }]}
+/>
+
+### Rentetan sebagai Objek
+
+Rentetan ialah objek dengan kaedah yang **membina nilai baharu**. Contoh ini memanggil beberapa kaedah rentetan pada satu mesej.
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "strings_as_objects.py",
+    code: `# Rentetan dalam Python ialah objek dengan kaedah terbina dalam
+message = "Learning Python is Fun"
+
+# Rentetan mempunyai banyak kaedah yang berguna
+print(message.upper())              # LEARNING PYTHON IS FUN
+print(message.lower())              # learning python is fun
+print(message.title())              # Learning Python Is Fun
+print(message.count('n'))           # Kira huruf 'n'
+print(message.replace('Python', 'Programming'))  # Ganti perkataan
+
+# Kaedah untuk menyemak
+email = "user@example.com"
+print(email.endswith('.com'))       # True
+print(email.startswith('user'))     # True
+print(email.find('@'))              # Kedudukan aksara '@'
+
+# Kaedah untuk pemformatan
+name = "alice"
+age = 25
+formatted = "Nama: {}, Umur: {}".format(name.title(), age)
+print(formatted)
+
+# Pisah dan gabung rentetan
+words = message.split()             # Pisahkan kepada senarai perkataan
+print(words)
+rejoined = " ".join(words)          # Gabungkan semula
+print(rejoined)`
+  }]}
+/>
+
+### Senarai sebagai Objek
+
+Senarai menyediakan **kaedah yang mengubah kandungannya**, seperti `append()`, di samping kaedah yang hanya membaca seperti `count()`. Contoh ini bermula dengan senarai buah-buahan, kemudian memanggil kaedah-kaedah senarai.
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "lists_as_objects.py",
+    code: `# Senarai dalam Python ialah objek dinamik
+fruits = ["apple", "orange", "mango"]
+
+# Senarai mempunyai kaedah untuk memanipulasi data
+fruits.append("banana")             # Tambah di hujung
+print(fruits)
+
+fruits.insert(1, "strawberry")      # Tambah pada kedudukan tertentu
+print(fruits)
+
+fruits.remove("orange")             # Buang item tertentu
+print(fruits)
+
+# Kaedah untuk mencari dan mengisih
+numbers = [3, 1, 4, 1, 5, 9, 2, 6]
+print(numbers.count(1))             # Kira bilangan kemunculan
+print(numbers.index(4))             # Cari kedudukan
+
+numbers.sort()                      # Isih
+print(numbers)
+
+numbers.reverse()                   # Terbalikkan susunan
+print(numbers)
+
+# List comprehension - cara yang pythonic
+squares = [x**2 for x in range(1, 6)]
+print(squares)                      # [1, 4, 9, 16, 25]
+
+# Kaedah untuk operasi lanjutan
+original = [1, 2, 3]
+copy_list = original.copy()         # Cipta salinan
+original.extend([4, 5])             # Tambah beberapa item
+print(f"Asal: {original}")
+print(f"Salinan: {copy_list}")`
+  }]}
+/>
+
+### Kamus sebagai Objek
+
+Kamus ialah objek dengan kaedah untuk **membaca dan mengemas kini** pasangannya. Contoh ini menggunakan rekod seorang pelajar untuk memanggil kaedah-kaedah itu.
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "dicts_as_objects.py",
+    code: `# Kamus dalam Python ialah objek yang fleksibel
+student = {
+    "name": "Alice",
+    "age": 22,
+    "major": "Computer Science",
+    "gpa": 3.8
+}
+
+# Kamus mempunyai kaedah untuk memanipulasi data
+print(student.get("name"))          # Dapatkan nilai dengan selamat
+print(student.get("height", "Unknown"))  # Nilai lalai jika kunci tidak wujud
+
+# Kaedah untuk melihat kandungan kamus
+print(student.keys())               # Semua kunci
+print(student.values())             # Semua nilai
+print(student.items())              # Pasangan kunci-nilai
+
+# Kaedah untuk mengemas kini dan memanipulasi
+student.update({"semester": 6, "age": 23})  # Kemas kini beberapa nilai
+print(student)
+
+# Kaedah pop untuk mendapatkan dan membuang
+gpa = student.pop("gpa")
+print(f"GPA yang dibuang: {gpa}")
+print(student)
+
+# Dictionary comprehension
+grades = {"Math": 85, "Physics": 92, "Chemistry": 78}
+passed = {subject: grade for subject, grade in grades.items() if grade >= 80}
+print(passed)
+
+# Kamus bersarang
+university = {
+    "students": {
+        "CS": ["Alice", "Bob"],
+        "Math": ["Charlie", "Diana"]
+    },
+    "location": "Jakarta"
+}
+print(university["students"]["CS"])`
+  }]}
+/>
+
+## Fungsi Juga Objek
+
+Kamu boleh **menghantar fungsi sebagai argumen**, menyimpannya dalam bekas, dan mengumpukkannya kepada pemboleh ubah sama seperti nilai lain.
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "functions_as_objects.py",
+    code: `# Fungsi dalam Python ialah objek kelas pertama
+def greet(name):
+    return f"Hello, {name}!"
+
+def farewell(name):
+    return f"Goodbye, {name}!"
+
+# Fungsi mempunyai atribut
+print(greet.__name__)               # Nama fungsi
+print(type(greet))                  # <class 'function'>
+
+# Fungsi boleh disimpan dalam pemboleh ubah
+my_function = greet
+print(my_function("Alice"))         # Hello, Alice!
+
+# Fungsi boleh disimpan dalam senarai
+functions = [greet, farewell]
+for func in functions:
+    print(func("Bob"))
+
+# Fungsi boleh digunakan sebagai parameter
+def call_function(func, name):
+    return func(name)
+
+result = call_function(greet, "Charlie")
+print(result)
+
+# Fungsi boleh dipulangkan daripada fungsi lain
+def get_greeting_function(language):
+    def english_greet(name):
+        return f"Hello, {name}!"
+
+    def indonesian_greet(name):
+        return f"Halo, {name}!"
+
+    if language == "english":
+        return english_greet
+    if language == "indonesian":
+        return indonesian_greet
+    raise ValueError(f"Bahasa tidak disokong: {language}")
+
+# Guna fungsi yang dipulangkan
+greet_func = get_greeting_function("indonesian")
+print(greet_func("Diana"))          # Halo, Diana!
+
+# Fungsi lambda juga objek
+square = lambda x: x ** 2
+print(type(square))                 # <class 'function'>
+print(square(5))                    # 25`
+  }]}
+/>
+
+Oleh sebab fungsi ialah objek, kamu boleh menyerahkannya kepada fungsi lain seperti nilai biasa. `list(map(square, [1, 2, 3, 4]))` menerima objek fungsi `square` tanpa tanda kurung, memanggilnya untuk setiap unsur, dan menghasilkan `[1, 4, 9, 16]`.
+
+<BarChart
+  title={<><code>map(square, [1, 2, 3, 4])</code></>}
+  description={<>Setiap palang ialah <code>square(n)</code> untuk input <InlineMath math="n" /> yang tertulis di bawahnya. Nilai ini dikira oleh <code>map</code>, yang menerima fungsi itu sebagai argumen.</>}
+  yAxisLabel="Hasil square"
+  data={[
+    { name: "1", value: 1 ** 2 },
+    { name: "2", value: 2 ** 2 },
+    { name: "3", value: 3 ** 2 },
+    { name: "4", value: 4 ** 2 },
+  ]}
+  chartConfig={{ value: { label: "Hasil square", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Kelas dan Tika sebagai Objek
+
+Kelas mentakrifkan cara tikanya dibina dan cara Python mencari tingkah laku yang dikongsi oleh tika-tika itu. Kelas itu sendiri juga objek, dan **setiap tika membawa keadaan tikanya sendiri**.
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "class_and_instances.py",
+    code: `# Mencipta kelas sebagai acuan
+class Student:
+    # Atribut kelas (dikongsi oleh semua tika)
+    university = "University of Indonesia"
+
+    def __init__(self, name, major, semester):
+        # Atribut tika (unik bagi setiap tika)
+        self.name = name
+        self.major = major
+        self.semester = semester
+        self.courses = []
+
+    def add_course(self, course):
+        """Kaedah untuk menambah kursus"""
+        self.courses.append(course)
+        return f"{self.name} mengambil kursus {course}"
+
+    def get_info(self):
+        """Kaedah untuk mendapatkan maklumat pelajar"""
+        return {
+            'name': self.name,
+            'major': self.major,
+            'semester': self.semester,
+            'courses': tuple(self.courses),
+            'university': self.university
+        }
+
+    def __str__(self):
+        """Kaedah khas untuk perwakilan rentetan"""
+        return f"Student({self.name}, {self.major})"
+
+    def __len__(self):
+        """Kaedah khas untuk mendapatkan bilangan kursus"""
+        return len(self.courses)
+
+# Mencipta tika (objek) daripada kelas
+student1 = Student("Alice", "Computer Science", 4)
+student2 = Student("Bob", "Mathematics", 6)
+
+# Setiap tika ialah objek yang mempunyai atribut dan kaedah
+print(student1.add_course("Python Programming"))
+print(student1.add_course("Data Structures"))
+
+print(student2.add_course("Calculus"))
+print(student2.add_course("Linear Algebra"))
+
+# Guna kaedah
+print(student1.get_info())
+print(student2.get_info())
+
+# Kaedah khas (__str__ dan __len__)
+print(student1)                     # Student(Alice, Computer Science)
+print(len(student1))                # 2 (bilangan kursus)
+
+# Atribut tika boleh dicapai
+print(f"Nama: {student1.name}")
+print(f"Bidang: {student1.major}")
+print(f"Universiti: {student1.university}")
+
+# Kelas juga objek
+print(type(Student))                # <class 'type'>
+print(Student.__name__)             # Student
+print(Student.university)           # University of Indonesia`
+  }]}
+/>
+
+Satu kelas `Point` boleh mencipta banyak tika, dan setiap tika menyimpan atributnya sendiri. `p1 = Point(1, 2)` dan `p2 = Point(4, 1)` mempunyai `x` dan `y` yang berbeza, tetapi kedua-duanya berkongsi kaedah yang sama, seperti `p1.distance(p2)`, yang memberikan <InlineMath math="\sqrt{3^2+1^2}=\sqrt{10}" />.
+
+<MathVisual
+  title={<>Dua tika bagi satu kelas <code>Point</code></>}
+  description={<>Titik ungu ialah <code>p1</code> dan titik hijau kebiruan ialah <code>p2</code>, masing-masing pada koordinat atributnya sendiri. Segmen kelabu ialah jarak <InlineMath math="\sqrt{10}" /> yang dikira oleh kaedah <code>distance</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "distance", kind: "segment", from: { x: 1, y: 2 }, to: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "first", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "second", kind: "point", at: { x: 4, y: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: 4, y: 1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "first": <code>p1 = Point(1, 2)</code>,
+    "second": <code>p2 = Point(4, 1)</code>,
+  }}
+/>
+
+## Kaedah Khas
+
+Kaedah khas bermula dan berakhir dengan **dua garis bawah**. Python memanggilnya melalui sintaks dan fungsi terbina dalam seperti `+`, `abs()`, `repr()` dan ujian kebenaran. Tulis kaedah khas hanya apabila maknanya memang semula jadi bagi domain itu.
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "magic_methods.py",
+    code: `from math import hypot
+
+class Vector2D:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __str__(self):
+        """Perwakilan yang mudah dibaca oleh manusia."""
+        return f"({self.x}, {self.y})"
+
+    def __repr__(self):
+        """Perwakilan yang tidak samar untuk nyahpepijat."""
+        return f"Vector2D(x={self.x!r}, y={self.y!r})"
+
+    def __abs__(self):
+        """Pulangkan magnitud vektor."""
+        return hypot(self.x, self.y)
+
+    def __eq__(self, other):
+        """Bandingkan koordinat apabila nilai yang satu lagi ialah Vector2D."""
+        if not isinstance(other, Vector2D):
+            return NotImplemented
+        return self.x == other.x and self.y == other.y
+
+    def __add__(self, other):
+        """Pulangkan vektor baharu yang berisi hasil tambah setiap koordinat."""
+        if not isinstance(other, Vector2D):
+            return NotImplemented
+        return Vector2D(self.x + other.x, self.y + other.y)
+
+    def __bool__(self):
+        """Pulangkan False untuk vektor sifar dan True untuk setiap vektor lain."""
+        return bool(self.x or self.y)
+
+first = Vector2D(3, 4)
+second = Vector2D(1, -2)
+
+print(first)                         # (3, 4) melalui __str__
+print(repr(first))                   # Vector2D(x=3, y=4)
+print(abs(first))                    # 5.0 melalui __abs__
+print(first == Vector2D(3, 4))       # True melalui __eq__
+
+combined = first + second            # __add__ memulangkan vektor baharu
+print(combined)                      # (4, 2)
+print(first)                         # (3, 4), tidak berubah
+
+zero = Vector2D(0, 0)
+print(bool(first))                   # True
+print(bool(zero))                    # False`
+  }]}
+/>
+
+Katakan kelas `Vector` mempunyai kaedah khas `__add__` yang menambah komponen-komponennya. Apabila kamu menulis `v + w`, Python sebenarnya memanggil `v.__add__(w)`. Rajah ini menunjukkan hasilnya untuk `Vector(2, 1)` dan `Vector(1, 2)`: segmen `w` disambung pada hujung `v`, dan segmen magenta dari titik mula hingga titik akhir ialah objek baharu `Vector(3, 3)`. Begitulah operator `+` mendapat makna untuk objek kamu sendiri.
+
+<MathVisual
+  title={<>Kaedah khas <code>__add__</code> di sebalik <code>v + w</code></>}
+  description={<>Segmen ungu ialah <code>v</code>, segmen hijau kebiruan ialah <code>w</code> yang disambung pada hujung <code>v</code>, dan segmen magenta ialah hasil <code>v + w</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "v", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "w", kind: "segment", from: { x: 2, y: 1 }, to: { x: 3, y: 3 }, appearance: "construction" },
+      { id: "sum", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "w", objectId: "w", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "sum", objectId: "sum", at: { x: 3 / 2, y: 3 / 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "v": "v = Vector(2, 1)",
+    "w": "w = Vector(1, 2)",
+    "sum": "v + w = Vector(3, 3)",
+  }}
+/>
+
+## Latihan Pengaturcaraan Berorientasikan Objek
+
+Contoh berikut menggabungkan beberapa kelas untuk memodelkan **buku, ahli dan pinjaman perpustakaan**.
+
+| Peringkat | Buku pertama | Pinjaman Alice |
+| --- | --- | --- |
+| Sebelum meminjam | Tersedia, tiada peminjam | Kosong |
+| Selepas `borrow_book()` | Dipinjam oleh Alice | Berisi buku pertama |
+| Selepas `return_book()` | Tersedia semula | Kosong |
+
+Tajuk buku, nama pengarang dan pengecam dalam contoh ini ialah data sampel. Senarai buku dan senarai ahli kekal sebagai atribut awam. Contoh ini mengajar hubungan antara objek, bukan storan untuk ramai pengguna.
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "library_management.py",
+    code: `class Book:
+    def __init__(self, title, author, isbn):
+        self.title = title
+        self.author = author
+        self.isbn = isbn
+        self.is_borrowed = False
+        self.borrower = None
+
+    def __str__(self):
+        status = "Dipinjam" if self.is_borrowed else "Tersedia"
+        return f"{self.title} oleh {self.author} - {status}"
+
+class Member:
+    def __init__(self, name, member_id):
+        self.name = name
+        self.member_id = member_id
+        self.borrowed_books = []
+
+    def __str__(self):
+        return f"Ahli: {self.name} (ID: {self.member_id})"
+
+class Library:
+    def __init__(self, name):
+        self.name = name
+        self.books = []
+        self.members = []
+
+    def add_book(self, book):
+        """Tambah buku ke perpustakaan"""
+        self.books.append(book)
+        return f"Buku '{book.title}' berjaya ditambah"
+
+    def register_member(self, member):
+        """Daftar ahli baharu"""
+        self.members.append(member)
+        return f"Ahli {member.name} berjaya didaftarkan"
+
+    def borrow_book(self, member_id, isbn):
+        """Pinjam buku"""
+        # Cari ahli
+        member = None
+        for m in self.members:
+            if m.member_id == member_id:
+                member = m
+                break
+
+        if member is None:
+            return "Ahli tidak dijumpai"
+
+        # Cari buku
+        book = None
+        for b in self.books:
+            if b.isbn == isbn and not b.is_borrowed:
+                book = b
+                break
+
+        if book is None:
+            return "Buku tidak tersedia"
+
+        # Proses peminjaman
+        book.is_borrowed = True
+        book.borrower = member
+        member.borrowed_books.append(book)
+
+        return f"{member.name} berjaya meminjam '{book.title}'"
+
+    def return_book(self, member_id, isbn):
+        """Pulangkan buku"""
+        member = None
+        for m in self.members:
+            if m.member_id == member_id:
+                member = m
+                break
+
+        if member is None:
+            return "Ahli tidak dijumpai"
+
+        book = None
+        for b in member.borrowed_books:
+            if b.isbn == isbn:
+                book = b
+                break
+
+        if book is None:
+            return "Buku tiada dalam senarai pinjaman"
+
+        # Proses pemulangan
+        book.is_borrowed = False
+        book.borrower = None
+        member.borrowed_books.remove(book)
+
+        return f"{member.name} berjaya memulangkan '{book.title}'"
+
+    def get_available_books(self):
+        """Dapatkan senarai buku yang tersedia"""
+        available = [book for book in self.books if not book.is_borrowed]
+        return available
+
+    def get_member_books(self, member_id):
+        """Dapatkan senarai buku yang dipinjam oleh ahli"""
+        for member in self.members:
+            if member.member_id == member_id:
+                return list(member.borrowed_books)
+        return []
+
+# Contoh penggunaan sistem perpustakaan
+library = Library("Perpustakaan Pusat")
+
+# Menambah buku
+book1 = Book("Python Programming", "John Smith", "978-1234567890")
+book2 = Book("Data Science Basics", "Jane Doe", "978-0987654321")
+book3 = Book("Machine Learning", "Bob Johnson", "978-1122334455")
+
+print(library.add_book(book1))
+print(library.add_book(book2))
+print(library.add_book(book3))
+
+# Mendaftarkan ahli
+member1 = Member("Alice Cooper", "M001")
+member2 = Member("Bob Wilson", "M002")
+
+print(library.register_member(member1))
+print(library.register_member(member2))
+
+# Meminjam buku
+print(library.borrow_book("M001", "978-1234567890"))
+print(library.borrow_book("M002", "978-0987654321"))
+
+# Melihat status buku
+print("\\nSenarai semua buku:")
+for book in library.books:
+    print(book)
+
+print("\\nBuku yang tersedia:")
+for book in library.get_available_books():
+    print(book)
+
+print(f"\\nBuku yang dipinjam oleh Alice: {len(library.get_member_books('M001'))} buah")
+
+# Memulangkan buku
+print(library.return_book("M001", "978-1234567890"))`
+  }]}
+/>
+
+Model objek Python menerangkan sebab nilai, fungsi dan kelas boleh melalui mekanisme bahasa yang sama. Gunakan komposisi berorientasikan objek apabila keadaan dan tingkah laku yang berkaitan perlu diurus bersama. Gunakan reka bentuk prosedural atau fungsian apabila urutan langkah atau aliran data lebih mudah diterangkan secara terus.

@@ -1,0 +1,746 @@
+export const metadata = {
+  title: "Pengindeksan dan Penghirisan dengan NumPy",
+  description: "Pilih data daripada tatasusunan NumPy satu dimensi dan dua dimensi menggunakan indeks, hirisan, topeng Boolean dan tatasusunan indeks.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-09-20",
+  dateModified: "2026-09-12",
+  subject: "Pengaturcaraan AI",
+};
+
+## Konsep Asas Pengindeksan dan Penghirisan
+
+Pengindeksan (indexing) memilih nilai pada kedudukan tertentu, manakala penghirisan (slicing) memilih satu julat di sepanjang satu atau lebih paksi. Hirisan pada senarai Python menghasilkan senarai baharu. Penghirisan asas pada `ndarray` pula menghasilkan **pandangan (view) yang berkongsi data asal**, manakala bacaan melalui pengindeksan lanjutan dengan tatasusunan integer atau Boolean menghasilkan salinan.
+
+[Pandangan](https://numpy.org/doc/stable/user/basics.indexing.html) tidak menyalin data, tetapi apabila kamu menulis melalui pandangan, nilai yang sepadan dalam tatasusunan asal turut berubah.
+
+## Operasi Tatasusunan Satu Dimensi
+
+Tatasusunan satu dimensi menggunakan sintaks pengindeksan Python yang sudah kamu kenal. Hirisan asas seperti `a[1:4]` memulangkan pandangan, jadi **mengubah pandangan itu turut mengubah unsur yang sama** dalam `a`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "indexing_1d.py",
+      code: `import numpy as np
+
+# Cipta tatasusunan 1D
+a = np.linspace(0, 7, 8)
+print("Tatasusunan asal:", a)  # Output: Tatasusunan asal: [0. 1. 2. 3. 4. 5. 6. 7.]
+
+# Pengindeksan satu unsur
+print("Unsur pada indeks 3:", a[3])  # Output: Unsur pada indeks 3: 3.0
+print("Unsur terakhir:", a[-1])  # Output: Unsur terakhir: 7.0
+
+# Penghirisan asas
+print("Hirisan [2:6]:", a[2:6])  # Output: Hirisan [2:6]: [2. 3. 4. 5.]
+print("Hirisan [3:-2]:", a[3:-2])  # Output: Hirisan [3:-2]: [3. 4. 5.]
+
+# Ubah suai melalui hirisan (mengubah tatasusunan asal)
+a[:3] = 0
+print("Selepas a[:3] = 0:", a)  # Output: Selepas a[:3] = 0: [0. 0. 0. 3. 4. 5. 6. 7.]`
+    }
+  ]}
+/>
+
+Contoh seterusnya mengubah pandangan dan salinan secara berasingan. Pandangan berkongsi storan dengan tatasusunan asal, manakala `.copy()` memperuntukkan data baharu yang berdiri sendiri.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "view_vs_copy.py",
+      code: `import numpy as np
+
+# Tatasusunan asal
+original = np.array([1, 2, 3, 4, 5])
+print("Asal:", original)  # Output: Asal: [1 2 3 4 5]
+
+# Cipta pandangan melalui hirisan
+view = original[1:4]
+print("Pandangan:", view)  # Output: Pandangan: [2 3 4]
+
+# Ubah pandangan (memberi kesan kepada tatasusunan asal)
+view[0] = 999
+print("Selepas mengubah pandangan:")
+print("Asal:", original)  # Output: Asal: [  1 999   3   4   5]
+print("Pandangan:", view)  # Output: Pandangan: [999   3   4]
+
+# Cipta salinan secara eksplisit
+copy_array = original[1:4].copy()
+copy_array[0] = 777
+print("Selepas mengubah salinan:")
+print("Asal:", original)  # Output: Asal: [  1 999   3   4   5]
+print("Salinan:", copy_array)  # Output: Salinan: [777   3   4]`
+    }
+  ]}
+/>
+
+## Operasi Tatasusunan Multidimensi
+
+Dalam pemilihan multidimensi, setiap entri yang dipisahkan oleh koma merujuk kepada satu dimensi tatasusunan, bermula dengan dimensi pertama. Indeks integer **membuang dimensi itu** daripada tatasusunan hasil, manakala hirisan seperti `:` mengekalkannya. Contohnya, pada tatasusunan dua dimensi `a`, `a[1, :]` menghasilkan tatasusunan satu dimensi yang mengandungi baris kedua, manakala `a[1:2, :]` masih menghasilkan tatasusunan dua dimensi yang mengandungi satu baris.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "indexing_2d.py",
+      code: `import numpy as np
+
+# Cipta tatasusunan 2D
+a = np.array([[1., 2., 3.],
+              [4., 5., 6.],
+              [7., 8., 9.],
+              [10., 11., 12.]])
+print("Tatasusunan 2D:")
+print(a)
+# Output:
+# [[ 1.  2.  3.]
+#  [ 4.  5.  6.]
+#  [ 7.  8.  9.]
+#  [10. 11. 12.]]
+
+# Pengindeksan unsur tertentu
+print("a[2,1]:", a[2,1])  # Output: a[2,1]: 8.0
+
+# Penghirisan baris
+print("a[1,:]:", a[1,:])  # Output: a[1,:]: [4. 5. 6.]
+
+# Penghirisan lajur
+print("a[:,2]:", a[:,2])  # Output: a[:,2]: [ 3.  6.  9. 12.]`
+    }
+  ]}
+/>
+
+Gabungan hirisan merentasi beberapa paksi memilih subtatasusunan berbentuk segi empat tepat atau berlangkah tanpa perlu menulis gelung:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "advanced_slicing_2d.py",
+      code: `import numpy as np
+
+# Tatasusunan 2D untuk demonstrasi
+a = np.array([[1., 2., 3.],
+              [4., 5., 6.],
+              [7., 8., 9.],
+              [10., 11., 12.]])
+
+# Penghirisan subtatasusunan
+print("a[1:3, 0:2]:")
+print(a[1:3, 0:2])
+# Output:
+# [[4. 5.]
+#  [7. 8.]]
+
+# Penghirisan dengan langkah
+print("a[::2, :]:")
+print(a[::2, :])
+# Output:
+# [[1. 2. 3.]
+#  [7. 8. 9.]]
+
+# Penghirisan lajur dengan langkah
+print("a[:, ::2]:")
+print(a[:, ::2])
+# Output:
+# [[ 1.  3.]
+#  [ 4.  6.]
+#  [ 7.  9.]
+#  [10. 12.]]`
+    }
+  ]}
+/>
+
+### Ringkasan Operasi Dua Dimensi
+
+Jadual ini mengumpulkan cara-cara pengindeksan dan penghirisan untuk tatasusunan dua dimensi di satu tempat, bersama **bentuk (shape) setiap hasil**.
+
+| Operasi | Penerangan | Contoh Hasil |
+|-----------|-------------|----------------|
+| `a[2,1]` | Unsur pada baris <InlineMath math="2" />, lajur <InlineMath math="1" /> | Satu nilai: `8.0` |
+| `a[1,:]` | Seluruh baris <InlineMath math="1" /> | Tatasusunan satu dimensi: `[4. 5. 6.]` |
+| `a[:,2]` | Seluruh lajur <InlineMath math="2" /> | Tatasusunan satu dimensi: `[3. 6. 9. 12.]` |
+| `a[1:3, 0:2]` | Subtatasusunan baris <InlineMath math="1\text{-}2" />, lajur <InlineMath math="0\text{-}1" /> | Tatasusunan dua dimensi: `[[4. 5.], [7. 8.]]` |
+| `a[::2, :]` | Selang satu baris | Tatasusunan dua dimensi dengan baris <InlineMath math="0, 2" /> |
+| `a[:, ::2]` | Selang satu lajur | Tatasusunan dua dimensi dengan lajur <InlineMath math="0, 2" /> |
+
+Gambar ini menyusun `a = np.arange(20).reshape(4, 5)` sebagai empat baris dan lima lajur. Hirisan pertama `1:3` memilih baris `1` dan `2`, hirisan kedua `2:5` memilih lajur `2`, `3` dan `4`, dan kedua-duanya berhenti sebelum had atasnya. Hasilnya ialah kotak magenta berbentuk `(2, 3)` yang mengandungi `7, 8, 9, 12, 13, 14`. Setiap koma di dalam kurungan memisahkan satu paksi.
+
+<MathVisual
+  title={<>Hirisan dua dimensi <code>a[1:3, 2:5]</code></>}
+  description={<>Grid ini ialah <code>a = np.arange(20).reshape(4, 5)</code>. Unsur magenta di dalam kotak ialah hasil <code>a[1:3, 2:5]</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.8 }, y: { min: -3.6, max: 0.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cell-0", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "cell-1", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "cell-2", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "cell-3", kind: "point", at: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "cell-4", kind: "point", at: { x: 4, y: 0 }, appearance: "reference" },
+      { id: "cell-5", kind: "point", at: { x: 0, y: -1 }, appearance: "reference" },
+      { id: "cell-6", kind: "point", at: { x: 1, y: -1 }, appearance: "reference" },
+      { id: "cell-7", kind: "point", at: { x: 2, y: -1 }, appearance: "answer" },
+      { id: "cell-8", kind: "point", at: { x: 3, y: -1 }, appearance: "answer" },
+      { id: "cell-9", kind: "point", at: { x: 4, y: -1 }, appearance: "answer" },
+      { id: "cell-10", kind: "point", at: { x: 0, y: -2 }, appearance: "reference" },
+      { id: "cell-11", kind: "point", at: { x: 1, y: -2 }, appearance: "reference" },
+      { id: "cell-12", kind: "point", at: { x: 2, y: -2 }, appearance: "answer" },
+      { id: "cell-13", kind: "point", at: { x: 3, y: -2 }, appearance: "answer" },
+      { id: "cell-14", kind: "point", at: { x: 4, y: -2 }, appearance: "answer" },
+      { id: "cell-15", kind: "point", at: { x: 0, y: -3 }, appearance: "reference" },
+      { id: "cell-16", kind: "point", at: { x: 1, y: -3 }, appearance: "reference" },
+      { id: "cell-17", kind: "point", at: { x: 2, y: -3 }, appearance: "reference" },
+      { id: "cell-18", kind: "point", at: { x: 3, y: -3 }, appearance: "reference" },
+      { id: "cell-19", kind: "point", at: { x: 4, y: -3 }, appearance: "reference" },
+      { id: "box", kind: "polygon", vertices: [{ x: 1.6, y: -0.6 }, { x: 4.4, y: -0.6 }, { x: 4.4, y: -2.4 }, { x: 1.6, y: -2.4 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "cell-0", objectId: "cell-0", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "cell-1", objectId: "cell-1", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "cell-2", objectId: "cell-2", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "cell-3", objectId: "cell-3", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "cell-4", objectId: "cell-4", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "cell-5", objectId: "cell-5", at: { x: 0, y: -1 }, placement: "above" },
+      { key: "cell-6", objectId: "cell-6", at: { x: 1, y: -1 }, placement: "above" },
+      { key: "cell-7", objectId: "cell-7", at: { x: 2, y: -1 }, placement: "above" },
+      { key: "cell-8", objectId: "cell-8", at: { x: 3, y: -1 }, placement: "above" },
+      { key: "cell-9", objectId: "cell-9", at: { x: 4, y: -1 }, placement: "above" },
+      { key: "cell-10", objectId: "cell-10", at: { x: 0, y: -2 }, placement: "above" },
+      { key: "cell-11", objectId: "cell-11", at: { x: 1, y: -2 }, placement: "above" },
+      { key: "cell-12", objectId: "cell-12", at: { x: 2, y: -2 }, placement: "above" },
+      { key: "cell-13", objectId: "cell-13", at: { x: 3, y: -2 }, placement: "above" },
+      { key: "cell-14", objectId: "cell-14", at: { x: 4, y: -2 }, placement: "above" },
+      { key: "cell-15", objectId: "cell-15", at: { x: 0, y: -3 }, placement: "above" },
+      { key: "cell-16", objectId: "cell-16", at: { x: 1, y: -3 }, placement: "above" },
+      { key: "cell-17", objectId: "cell-17", at: { x: 2, y: -3 }, placement: "above" },
+      { key: "cell-18", objectId: "cell-18", at: { x: 3, y: -3 }, placement: "above" },
+      { key: "cell-19", objectId: "cell-19", at: { x: 4, y: -3 }, placement: "above" },
+      { key: "box", objectId: "box", at: { x: 4.4, y: -0.6 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "cell-0": "0",
+    "cell-1": "1",
+    "cell-2": "2",
+    "cell-3": "3",
+    "cell-4": "4",
+    "cell-5": "5",
+    "cell-6": "6",
+    "cell-7": "7",
+    "cell-8": "8",
+    "cell-9": "9",
+    "cell-10": "10",
+    "cell-11": "11",
+    "cell-12": "12",
+    "cell-13": "13",
+    "cell-14": "14",
+    "cell-15": "15",
+    "cell-16": "16",
+    "cell-17": "17",
+    "cell-18": "18",
+    "cell-19": "19",
+    "box": "a[1:3, 2:5]",
+  }}
+/>
+
+## Pengindeksan Lanjutan
+
+Pengindeksan lanjutan menggunakan tatasusunan integer atau Boolean untuk memilih apa-apa unsur yang kamu mahu, dan hasilnya sentiasa salinan. Untuk sumber satu dimensi, **tatasusunan indeks integer menentukan bentuk hasilnya**. Untuk sumber multidimensi pula, NumPy melakukan broadcasting (penyiaran) pada tatasusunan indeks itu, kemudian menggabungkan bentuk tersebut dengan mana-mana dimensi yang ditinggalkan oleh hirisan asas.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "integer_array_indexing.py",
+      code: `import numpy as np
+
+# Tatasusunan untuk demonstrasi
+a = np.array([0, 1, 2, 3, 4])
+print("Tatasusunan asal:", a)  # Output: Tatasusunan asal: [0 1 2 3 4]
+
+# Pengindeksan dengan senarai indeks
+i = [1, 3, 2, 1, 4]
+print("Tatasusunan indeks:", i)  # Output: Tatasusunan indeks: [1, 3, 2, 1, 4]
+print("a[i]:", a[i])  # Output: a[i]: [1 3 2 1 4]
+
+# Pengindeksan dan pembentukan semula dengan tatasusunan indeks 2D
+i = np.array([[1, 2], [3, 4]])
+print("Tatasusunan indeks 2D:")
+print(i)
+# Output:
+# [[1 2]
+#  [3 4]]
+print("a[i]:")
+print(a[i])
+# Output:
+# [[1 2]
+#  [3 4]]`
+    }
+  ]}
+/>
+
+Topeng Boolean (boolean mask) memilih kedudukan yang nilai topengnya `True`. Apabila topeng itu sama bentuk dengan tatasusunan sumber, nilai yang terpilih dipulangkan sebagai salinan satu dimensi.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "boolean_mask_indexing.py",
+      code: `import numpy as np
+
+# Tatasusunan untuk demonstrasi
+a = np.linspace(0, 5, 6)
+print("Tatasusunan:", a)  # Output: Tatasusunan: [0. 1. 2. 3. 4. 5.]
+
+# Cipta topeng Boolean
+mask = np.array([True, False, True, False, True, False])
+print("Topeng Boolean:", mask)  # Output: Topeng Boolean: [ True False  True False  True False]
+print("a[mask]:", a[mask])  # Output: a[mask]: [0. 2. 4.]
+
+# Topeng Boolean daripada syarat
+condition_mask = a % 2 == 0
+print("Topeng syarat (a % 2 == 0):", condition_mask)  # Output: Topeng syarat (a % 2 == 0): [ True False  True False  True False]
+print("a[condition_mask]:", a[condition_mask])  # Output: a[condition_mask]: [0. 2. 4.]
+
+# Topeng Boolean dengan syarat majmuk
+complex_mask = (a > 1) & (a < 4)
+print("Topeng majmuk (a > 1) & (a < 4):", complex_mask)  # Output: Topeng majmuk (a > 1) & (a < 4): [False False  True  True False False]
+print("a[complex_mask]:", a[complex_mask])  # Output: a[complex_mask]: [2. 3.]`
+    }
+  ]}
+/>
+
+Indeks lanjutan dan hirisan asas boleh muncul dalam pemilihan yang sama. Bahagian lanjutan itu tetap menjadikan hasilnya salinan:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "combined_indexing.py",
+      code: `import numpy as np
+
+# Tatasusunan 2D untuk demonstrasi
+a = np.arange(24).reshape(4, 6)
+print("Tatasusunan 2D:")
+print(a)
+# Output:
+# [[ 0  1  2  3  4  5]
+#  [ 6  7  8  9 10 11]
+#  [12 13 14 15 16 17]
+#  [18 19 20 21 22 23]]
+
+# Gabungan penghirisan dan pengindeksan
+print("a[1:3, [0, 2, 5]]:")
+print(a[1:3, [0, 2, 5]])
+# Output:
+# [[ 6  8 11]
+#  [12 14 17]]
+
+# Pengindeksan Boolean pada baris, penghirisan pada lajur
+row_mask = np.array([True, False, True, False])
+print("a[row_mask, 2:5]:")
+print(a[row_mask, 2:5])
+# Output:
+# [[ 2  3  4]
+#  [14 15 16]]`
+    }
+  ]}
+/>
+
+## Teknik Lanjutan
+
+Medan ketiga dalam hirisan ialah langkah. Langkah memilih unsur pada **selang yang tetap**, menerima nilai negatif untuk bergerak ke belakang, dan berfungsi secara berasingan pada setiap paksi.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "step_slicing.py",
+      code: `import numpy as np
+
+# Tatasusunan untuk demonstrasi
+a = np.arange(20)
+print("Tatasusunan:", a)  # Output: Tatasusunan: [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+
+# Penghirisan dengan langkah
+print("a[::2] (selang satu unsur):", a[::2])  # Output: a[::2] (selang satu unsur): [ 0  2  4  6  8 10 12 14 16 18]
+print("a[1::3] (mula di indeks 1, selang dua unsur):", a[1::3])  # Output: a[1::3] (mula di indeks 1, selang dua unsur): [ 1  4  7 10 13 16 19]
+print("a[::-1] (tatasusunan terbalik):", a[::-1])  # Output: a[::-1] (tatasusunan terbalik): [19 18 17 16 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0]
+
+# Langkah pada tatasusunan 2D
+b = np.arange(12).reshape(3, 4)
+print("Tatasusunan 2D:")
+print(b)
+# Output:
+# [[ 0  1  2  3]
+#  [ 4  5  6  7]
+#  [ 8  9 10 11]]
+
+print("b[::2, ::2] (selang satu baris dan selang satu lajur):")
+print(b[::2, ::2])
+# Output:
+# [[ 0  2]
+#  [ 8 10]]`
+    }
+  ]}
+/>
+
+Elipsis (`...`) mengisi seberapa banyak hirisan penuh yang diperlukan untuk dimensi yang tidak dinyatakan. Dengan elipsis, pemilihan berdimensi tinggi kekal mudah dibaca.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "ellipsis_slicing.py",
+      code: `import numpy as np
+
+# Tatasusunan 3D untuk demonstrasi
+a = np.arange(24).reshape(2, 3, 4)
+print("Bentuk tatasusunan 3D:", a.shape)  # Output: Bentuk tatasusunan 3D: (2, 3, 4)
+
+# Menggunakan elipsis
+print("a[0, ...] (sama dengan a[0, :, :]):")
+print(a[0, ...])
+# Output:
+# [[ 0  1  2  3]
+#  [ 4  5  6  7]
+#  [ 8  9 10 11]]
+
+print("a[..., 2] (sama dengan a[:, :, 2]):")
+print(a[..., 2])
+# Output:
+# [[ 2  6 10]
+#  [14 18 22]]
+
+print("a[1, ..., ::2] (sama dengan a[1, :, ::2]):")
+print(a[1, ..., ::2])
+# Output:
+# [[12 14]
+#  [16 18]
+#  [20 22]]`
+    }
+  ]}
+/>
+
+## Pengindeksan Boolean
+
+Pengindeksan Boolean menilai topeng pada setiap kedudukan yang berkaitan. **`True` memilih nilai itu**, manakala `False` meninggalkannya.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "boolean_operations.py",
+      code: `import numpy as np
+
+# Tatasusunan untuk demonstrasi
+a = np.linspace(0, 5, 6)
+print("Tatasusunan:", a)  # Output: Tatasusunan: [0. 1. 2. 3. 4. 5.]
+
+# Topeng Boolean yang ditulis sendiri
+mask = np.array([True, False, True, False, True, False], dtype=bool)
+print("Topeng manual:", mask)  # Output: Topeng manual: [ True False  True False  True False]
+print("a[mask]:", a[mask])  # Output: a[mask]: [0. 2. 4.]
+
+# Topeng Boolean daripada perbandingan
+greater_than_2 = a > 2
+print("a > 2:", greater_than_2)  # Output: a > 2: [False False False  True  True  True]
+print("a[a > 2]:", a[a > 2])  # Output: a[a > 2]: [3. 4. 5.]
+
+# Topeng Boolean dengan syarat majmuk
+even_and_greater_than_1 = (a % 2 == 0) & (a > 1)
+print("(a % 2 == 0) & (a > 1):", even_and_greater_than_1)  # Output: (a % 2 == 0) & (a > 1): [False False  True False  True False]
+print("a[even_and_greater_than_1]:", a[even_and_greater_than_1])  # Output: a[even_and_greater_than_1]: [2. 4.]`
+    }
+  ]}
+/>
+
+Topeng Boolean yang sama bentuk memilih unsur yang sepadan daripada tatasusunan dua dimensi, lalu memulangkannya dalam hasil satu dimensi:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "boolean_2d.py",
+      code: `import numpy as np
+
+# Tatasusunan 2D untuk demonstrasi
+a = np.arange(12).reshape(3, 4)
+print("Tatasusunan 2D:")
+print(a)
+# Output:
+# [[ 0  1  2  3]
+#  [ 4  5  6  7]
+#  [ 8  9 10 11]]
+
+# Topeng Boolean untuk unsur tertentu
+mask = a > 5
+print("Topeng a > 5:")
+print(mask)
+# Output:
+# [[False False False False]
+#  [False False  True  True]
+#  [ True  True  True  True]]
+
+print("a[mask]:", a[mask])  # Output: a[mask]: [ 6  7  8  9 10 11]
+
+# Pengindeksan Boolean dengan umpukan
+a[a < 5] = 0
+print("Selepas a[a < 5] = 0:")
+print(a)
+# Output:
+# [[ 0  0  0  0]
+#  [ 0  5  6  7]
+#  [ 8  9 10 11]]`
+    }
+  ]}
+/>
+
+Bezakan **membaca hasil pilihan daripada membuat umpukan**. `selected = a[mask]` menghasilkan salinan, tetapi `a[a < 5] = 0` menulis terus ke kedudukan terpilih dalam `a`. Nilai `5` kekal kerana syaratnya ialah `< 5`, bukan `<= 5`.
+
+Untuk `a = np.array([5, 12, 8, 15, 20, 3])`, perbandingan `a > 10` menghasilkan topeng `[False, True, False, True, True, False]`. Kemudian, `a[a > 10]` mengambil unsur pada kedudukan `True` sahaja, iaitu `[12, 15, 20]`.
+
+<MathVisual
+  title={<>Topeng Boolean untuk unsur yang melebihi <InlineMath math="10" /></>}
+  description={<>Setiap titik ialah satu unsur pada indeksnya, dan garis kelabu ialah nilai ambang <InlineMath math="10" />. Titik magenta di atas garis ialah <code>True</code> dalam topeng dan masuk ke dalam hasil, manakala titik hijau kebiruan tidak.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: 0, max: 22 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "threshold", kind: "segment", from: { x: -0.3, y: 10 }, to: { x: 5.3, y: 10 }, appearance: "reference" },
+      { id: "value-0", kind: "point", at: { x: 0, y: 5 }, appearance: "construction" },
+      { id: "value-1", kind: "point", at: { x: 1, y: 12 }, appearance: "answer" },
+      { id: "value-2", kind: "point", at: { x: 2, y: 8 }, appearance: "construction" },
+      { id: "value-3", kind: "point", at: { x: 3, y: 15 }, appearance: "answer" },
+      { id: "value-4", kind: "point", at: { x: 4, y: 20 }, appearance: "answer" },
+      { id: "value-5", kind: "point", at: { x: 5, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "value-0", objectId: "value-0", at: { x: 0, y: 5 }, placement: "right" },
+      { key: "value-1", objectId: "value-1", at: { x: 1, y: 12 }, placement: "right" },
+      { key: "value-2", objectId: "value-2", at: { x: 2, y: 8 }, placement: "right" },
+      { key: "value-3", objectId: "value-3", at: { x: 3, y: 15 }, placement: "right" },
+      { key: "value-4", objectId: "value-4", at: { x: 4, y: 20 }, placement: "right" },
+      { key: "value-5", objectId: "value-5", at: { x: 5, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "value-0": <InlineMath math="5" />,
+    "value-1": <InlineMath math="12" />,
+    "value-2": <InlineMath math="8" />,
+    "value-3": <InlineMath math="15" />,
+    "value-4": <InlineMath math="20" />,
+    "value-5": <InlineMath math="3" />,
+  }}
+/>
+
+## Pengindeksan Fancy
+
+Pengindeksan fancy (fancy indexing) ialah nama yang biasa digunakan untuk pengindeksan lanjutan dengan integer. Cara ini boleh **menyusun semula kedudukan, mengulanginya**, atau menyusun hasil mengikut tatasusunan indeks.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "fancy_indexing_1d.py",
+      code: `import numpy as np
+
+# Tatasusunan untuk demonstrasi
+a = np.array([10, 20, 30, 40, 50, 60])
+print("Tatasusunan:", a)  # Output: Tatasusunan: [10 20 30 40 50 60]
+
+# Pengindeksan fancy dengan senarai indeks
+indices = [0, 2, 4, 1]
+print("Indeks:", indices)  # Output: Indeks: [0, 2, 4, 1]
+print("a[indices]:", a[indices])  # Output: a[indices]: [10 30 50 20]
+
+# Pengindeksan fancy dengan tatasusunan NumPy
+np_indices = np.array([5, 1, 3, 1, 0])
+print("Indeks NumPy:", np_indices)  # Output: Indeks NumPy: [5 1 3 1 0]
+print("a[np_indices]:", a[np_indices])  # Output: a[np_indices]: [60 20 40 20 10]
+
+# Pengindeksan fancy dengan tatasusunan indeks 2D
+indices_2d = np.array([[0, 1], [2, 3]])
+print("Indeks 2D:")
+print(indices_2d)
+# Output:
+# [[0 1]
+#  [2 3]]
+print("a[indices_2d]:")
+print(a[indices_2d])
+# Output:
+# [[10 20]
+#  [30 40]]`
+    }
+  ]}
+/>
+
+Pada tatasusunan dua dimensi, indeks integer boleh memilih seluruh baris, atau memasangkan koordinat baris dengan koordinat lajur, unsur demi unsur:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "fancy_indexing_2d.py",
+      code: `import numpy as np
+
+# Tatasusunan 2D untuk demonstrasi
+a = np.arange(24).reshape(4, 6)
+print("Tatasusunan 2D:")
+print(a)
+# Output:
+# [[ 0  1  2  3  4  5]
+#  [ 6  7  8  9 10 11]
+#  [12 13 14 15 16 17]
+#  [18 19 20 21 22 23]]
+
+# Pengindeksan fancy untuk baris tertentu
+row_indices = [0, 2, 3]
+print("a[row_indices, :]:")
+print(a[row_indices, :])
+# Output:
+# [[ 0  1  2  3  4  5]
+#  [12 13 14 15 16 17]
+#  [18 19 20 21 22 23]]
+
+# Pengindeksan fancy untuk unsur tertentu
+row_idx = [0, 1, 2, 3]
+col_idx = [1, 2, 3, 4]
+print("a[row_idx, col_idx]:", a[row_idx, col_idx])  # Output: a[row_idx, col_idx]: [ 1  8 15 22]
+
+# Gabungan pengindeksan fancy dengan penghirisan
+print("a[[0, 2], 1:4]:")
+print(a[[0, 2], 1:4])
+# Output:
+# [[ 1  2  3]
+#  [13 14 15]]`
+    }
+  ]}
+/>
+
+Pengindeksan fancy menggunakan senarai indeks, dan susunan senarai itu menjadi susunan hasil. Pada tatasusunan yang sama, `a[[4, 0, 2]]` memberikan `[20, 5, 8]`. Hasilnya sentiasa salinan baharu, bukan pandangan, jadi mengubahnya tidak mengusik `a`.
+
+<MathVisual
+  title={<><code>a[[4, 0, 2]]</code> menyusun semula unsur</>}
+  description={<>Baris atas berwarna ungu ialah <code>a</code>. Setiap garis kelabu membawa unsur pada indeks <InlineMath math="4" />, <InlineMath math="0" /> dan <InlineMath math="2" /> ke baris bawah berwarna magenta, mengikut susunan yang ditulis dalam senarai indeks.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.7, max: 0.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pick-0", kind: "segment", from: { x: 4, y: 0 }, to: { x: 0, y: -1.2 }, appearance: "reference" },
+      { id: "pick-1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -1.2 }, appearance: "reference" },
+      { id: "pick-2", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: -1.2 }, appearance: "reference" },
+      { id: "source-0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "source-1", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "source-2", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "source-3", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "source-4", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "source-5", kind: "point", at: { x: 5, y: 0 }, appearance: "secondary" },
+      { id: "result-0", kind: "point", at: { x: 0, y: -1.2 }, appearance: "answer" },
+      { id: "result-1", kind: "point", at: { x: 1, y: -1.2 }, appearance: "answer" },
+      { id: "result-2", kind: "point", at: { x: 2, y: -1.2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "source-0", objectId: "source-0", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "source-1", objectId: "source-1", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "source-2", objectId: "source-2", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "source-3", objectId: "source-3", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "source-4", objectId: "source-4", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "source-5", objectId: "source-5", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "result-0", objectId: "result-0", at: { x: 0, y: -1.2 }, placement: "below" },
+      { key: "result-1", objectId: "result-1", at: { x: 1, y: -1.2 }, placement: "below" },
+      { key: "result-2", objectId: "result-2", at: { x: 2, y: -1.2 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "source-0": <InlineMath math="5" />,
+    "source-1": <InlineMath math="12" />,
+    "source-2": <InlineMath math="8" />,
+    "source-3": <InlineMath math="15" />,
+    "source-4": <InlineMath math="20" />,
+    "source-5": <InlineMath math="3" />,
+    "result-0": <InlineMath math="20" />,
+    "result-1": <InlineMath math="5" />,
+    "result-2": <InlineMath math="8" />,
+  }}
+/>
+
+## Memilih dan Menyusun Semula Data Tatasusunan
+
+Kamu boleh menggunakan peraturan pemilihan yang sama untuk **menapis baris, mengambil sampel**, dan menyusun semula data tanpa menulis gelung.
+
+Contoh ini menunjukkan topeng dan umpukan. Dalam analisis sebenar, konteks pengukuran itulah yang mesti menentukan nilai ambang suhu dan peraturan penggantiannya:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "data_filtering.py",
+      code: `import numpy as np
+
+# Simulasi data penderia suhu
+temperatures = np.array([22.5, 25.1, 19.8, 30.2, 18.5, 27.3, 31.1, 24.8])
+print("Data suhu:", temperatures)  # Output: Data suhu: [22.5 25.1 19.8 30.2 18.5 27.3 31.1 24.8]
+
+# Tapis suhu normal (20-28 darjah)
+normal_temp_mask = (temperatures >= 20) & (temperatures <= 28)
+normal_temps = temperatures[normal_temp_mask]
+print("Suhu normal:", normal_temps)  # Output: Suhu normal: [22.5 25.1 27.3 24.8]
+
+# Tapis suhu ekstrem
+extreme_temp_mask = (temperatures < 20) | (temperatures > 30)
+extreme_temps = temperatures[extreme_temp_mask]
+print("Suhu ekstrem:", extreme_temps)  # Output: Suhu ekstrem: [19.8 30.2 18.5 31.1]
+
+# Ganti nilai ekstrem dengan purata
+mean_temp = temperatures[normal_temp_mask].mean()
+temperatures_cleaned = temperatures.copy()
+temperatures_cleaned[extreme_temp_mask] = mean_temp
+print("Data selepas dibersihkan:", temperatures_cleaned)  # Output: Data selepas dibersihkan: [22.5   25.1   24.925 24.925 24.925 27.3   24.925 24.8  ]`
+    }
+  ]}
+/>
+
+Untuk mengulang sampel yang sama dengan penjana dan versi NumPy yang sama, berikan benih (seed) tetap kepada penjana setempat:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "data_sampling.py",
+      code: `import numpy as np
+
+# Set data simulasi
+data = np.arange(100).reshape(10, 10)
+print("Bentuk set data:", data.shape)  # Output: Bentuk set data: (10, 10)
+
+# Pensampelan baris secara rawak dengan penjana setempat
+rng = np.random.default_rng(42)
+sample_indices = rng.choice(10, size=5, replace=False)
+sample_indices.sort()
+print("Indeks sampel:", sample_indices)  # Output: Indeks sampel: [0 3 4 5 7]
+
+sampled_data = data[sample_indices, :]
+print("Bentuk data sampel:", sampled_data.shape)  # Output: Bentuk data sampel: (5, 10)
+print("3 lajur pertama data sampel:")
+print(sampled_data[:, :3])
+# Output:
+# [[ 0  1  2]
+#  [30 31 32]
+#  [40 41 42]
+#  [50 51 52]
+#  [70 71 72]]
+
+# Penyusunan semula lajur
+column_order = [9, 0, 5, 2, 7, 1, 8, 3, 6, 4]
+reorganized_data = data[:, column_order]
+print("Baris pertama selepas disusun semula:", reorganized_data[0, :])  # Output: Baris pertama selepas disusun semula: [9 0 5 2 7 1 8 3 6 4]`
+    }
+  ]}
+/>
