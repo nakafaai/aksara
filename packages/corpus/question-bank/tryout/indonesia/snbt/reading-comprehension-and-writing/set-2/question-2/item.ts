@@ -2,34 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "writing",
-    topic: "spelling",
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "referent",
   },
-  stimulus: "weaving-class",
+  stimulus: "perahu",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "penandaan setiap peti dengan pita berwarna agar peti tidak tertukar",
+        },
+        {
           correct: true,
-          label: "kalimat (1)",
+          label:
+            "penyusunan isi peti yang berbeda untuk kampung hilir dan kampung hulu sesuai dengan buku yang paling banyak dipinjam di masing-masing wilayah",
         },
         {
           correct: false,
-          label: "kalimat (2)",
+          label:
+            "pencatatan setiap judul yang dipinjam di setiap kampung selama tiga bulan pertama",
         },
         {
           correct: false,
-          label: "kalimat (3)",
+          label:
+            "pengiriman lebih banyak komik sains ke semua kampung di sepanjang sungai",
         },
         {
           correct: false,
-          label: "kalimat (7)",
-        },
-        {
-          correct: false,
-          label: "kalimat (8)",
+          label: "pengurangan jumlah buku yang dimuat ke perahu setiap Sabtu",
         },
       ],
     },
