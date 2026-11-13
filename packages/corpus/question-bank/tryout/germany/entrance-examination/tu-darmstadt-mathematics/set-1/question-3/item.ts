@@ -7,7 +7,8 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$x=0$$, $$x=4-\\sqrt6$$, $$x=4+\\sqrt6$$ oder $$x=\\frac{20}{3}$$",
+          label:
+            "$$x=0$$, $$x=4-\\sqrt6$$, $$x=4+\\sqrt6$$ oder $$x=\\frac{20}{3}$$",
         },
         {
           correct: false,
@@ -19,7 +20,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$x=0$$, $$x=4-\\sqrt6$$, $$x=4+\\sqrt6$$ oder $$x=\\frac{22}{3}$$",
+          label:
+            "$$x=0$$, $$x=4-\\sqrt6$$, $$x=4+\\sqrt6$$ oder $$x=\\frac{22}{3}$$",
         },
         {
           correct: false,
@@ -27,7 +29,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$x=2$$, $$x=4-\\sqrt6$$, $$x=4+\\sqrt6$$ oder $$x=\\frac{20}{3}$$",
+          label:
+            "$$x=2$$, $$x=4-\\sqrt6$$, $$x=4+\\sqrt6$$ oder $$x=\\frac{20}{3}$$",
         },
       ],
     },
