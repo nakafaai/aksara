@@ -30,13 +30,10 @@ type TestServices = FileSystem.FileSystem | Scope.Scope;
 /** Registers one scoped filesystem-backed checker test with live services. */
 const checkTest = (
   name: string,
-  self: Effect.Effect<void, LessonVoiceCheckError, TestServices>,
-  timeout?: number
+  self: Effect.Effect<void, LessonVoiceCheckError, TestServices>
 ): void =>
-  it.effect(
-    name,
-    () => Effect.scoped(Effect.provide(self, NodeFileSystem.layer)),
-    timeout
+  it.effect(name, () =>
+    Effect.scoped(Effect.provide(self, NodeFileSystem.layer))
   );
 
 /** Creates a temporary lesson root and removes it afterwards. */
@@ -57,26 +54,6 @@ const temporaryRoot = (
     }),
     (root) => Effect.sync(() => rmSync(root, { force: true, recursive: true }))
   );
-
-/** The corpus whose every root must pass the gate, one test per root. */
-const CORPUS = join(process.cwd(), "packages/corpus");
-
-for (const [root, minimum] of [
-  ["material/lesson", 1149],
-  ["articles", 21],
-  ["pages", 18],
-  ["question-bank", 7300],
-] as const) {
-  checkTest(
-    `checks every current document in ${root}`,
-    Effect.gen(function* () {
-      const report = yield* checkLessonRoot(join(CORPUS, root));
-      assert.ok(report.fileCount >= minimum);
-      assert.deepEqual(report.issues, []);
-    }),
-    180_000
-  );
-}
 
 checkTest(
   "scans every locale sibling below a lesson root",

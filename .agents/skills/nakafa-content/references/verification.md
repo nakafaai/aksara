@@ -30,19 +30,18 @@ voice suite has its own root command:
 
 ```sh
 bun run test:lesson-voice
-node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts
-node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --strict-review
+bun run voice
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/articles
-node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/articles --strict-review
-node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/question-bank --strict-review
-node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/pages --strict-review
 ```
 
-Run that suite before the corpus gate when changing a voice rule. The
+Run that suite before the corpus gate when changing a voice rule.
+`bun run voice` is the corpus gate: it runs the checker with `--strict-review`
+over the lessons, articles, question bank and pages, and the gate's policies
+job runs it, so a growing corpus never meets a test timeout. Point the checker
+at one directory with `--root`, without `--strict-review`, while editing. The
 `aksara-source` condition resolves the tracked locale contract in a clean
-checkout. `bun run test` includes the suite and default corpus gate through Turbo;
-checks must never depend on an ignored `packages/contracts/dist` left by an
-older task.
+checkout. `bun run test` includes the suite through Turbo; checks must never
+depend on an ignored `packages/contracts/dist` left by an older task.
 
 Format changed files, then run the repository gates appropriate to the change:
 
@@ -85,16 +84,15 @@ an editorial audit. Inspect each match with its complete paragraph, subject
 terminology, and locale siblings. Rerun after corrections and account for every
 remaining match. Do not rewrite valid prose to obtain a zero count.
 
-The corpus suites assert an empty issue list for all three authored scopes at every
-tier, so a `review` candidate fails the repository suite exactly as a blocking
-rule does. The CLI default mode is a debugging filter for a focused run, not a
+`bun run voice` checks every authored scope with `--strict-review`, so a
+`review` candidate fails the corpus gate exactly as a blocking rule does. The CLI default mode is a debugging filter for a focused run, not a
 release exception: narrow or repair the rule and the sentence before landing a
 change that leaves any finding.
 
 The gate owns four authored scopes: lessons in
 `packages/corpus/material/lesson`, articles in `packages/corpus/articles`,
 assessed questions with worked answers in `packages/corpus/question-bank`, and
-public pages in `packages/corpus/pages`. All four suites assert zero findings. Keep each document's locale siblings
+public pages in `packages/corpus/pages`. All four must report zero findings. Keep each document's locale siblings
 clean, and point the command at one directory with `--root` while editing.
 Question prompts and worked answers use separate profiles and parity groups,
 as defined in [checker limits and gate scope](checker.md#deterministic-gate-scope).

@@ -185,7 +185,8 @@ completeness of every worked solution. The
 [worked-solution review](solutions.md) still owns those decisions.
 
 A **review candidate** is a finding the gate emits at the `review` tier, so only
-`--strict-review` fails it while the repository suite still rejects it. A
+`--strict-review` fails it, and the corpus gate (`bun run voice`) runs with that
+flag, so it still rejects it. A
 **manual review item** has no deterministic rule. The optional pedagogy
 inventory can locate structural signals, but the complete contextual read owns
 the decision. Only a review candidate appears in the gate's issue list.
@@ -365,7 +366,7 @@ review may fail on
 all candidates during an editorial audit, but a match still requires the full
 paragraph, subject terminology, and locale siblings before any edit. The
 [verification](verification.md#lesson-voice-gate) reference owns how each tier
-fails, including the review candidate in the repository suite.
+fails, including the review candidate in the corpus gate.
 
 Teacher-led narrative quality remains a contextual review. A deterministic
 checker may flag a proven empty transition, ambiguous reference, or rhetorical

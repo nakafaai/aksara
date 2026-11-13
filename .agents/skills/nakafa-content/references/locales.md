@@ -70,7 +70,7 @@ not replace the full lesson context.
   aloud by itself as a Malaysian learner would.
 - Malay is not Indonesian with a few words changed. Write each sentence in
   Malaysian Malay from the verified meaning, never by editing the Indonesian
-  sibling. `bun run test:lesson-voice` refuses the forms below that the
+  sibling. `bun run voice` refuses the forms below that the
   deterministic rules can see; the rest is the reviewer's work.
 
 ### Register
