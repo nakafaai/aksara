@@ -1,0 +1,30 @@
+# What each view demands
+
+The question asks for the **fewest** cubes, so you're looking for an arrangement that matches all three views with as few cubes as possible. Each view sets its own condition:
+
+- Top view: the seven squares marked ■ must hold at least one cube, and the two squares marked □ are empty.
+- Front view: the left column must have a stack of height <InlineMath math="3" />, the middle column one of height <InlineMath math="2" />, and the right column one of height <InlineMath math="3" />.
+- Side view: the front row must have a stack of height <InlineMath math="3" />, the middle row one of height <InlineMath math="3" />, and the back row one of height <InlineMath math="2" />.
+
+Also, no stack can be taller than its column view or its row view allows.
+
+# One stack for two conditions
+
+The trick is that **one tall stack can meet a column condition and a row condition at the same time**. A stack of <InlineMath math="3" /> on the front-right square meets the right column and the front row. A stack of <InlineMath math="3" /> on the middle-left square meets the left column and the middle row. A stack of <InlineMath math="2" /> on the back-middle square meets the middle column and the back row. Every other ■ square only needs one cube.
+
+| Row | Left | Middle | Right |
+| :---: | :---: | :---: | :---: |
+| Back | empty | <InlineMath math="2" /> | <InlineMath math="1" /> |
+| Middle | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| Front | <InlineMath math="1" /> | empty | <InlineMath math="3" /> |
+
+<BlockMath math="3+3+2+1+1+1+1=12" />
+
+You can't do it with fewer. Those three tall stacks have to be there, and no other square can cover two such conditions at once, because the front-middle and back-left squares are empty. The other four ■ squares each need at least one cube.
+
+So the fewest cubes possible is <InlineMath math="12" />.
+
+- <InlineMath math="8" /> ignores the top view, so four ■ squares are treated as if they could be empty.
+- <InlineMath math="16" /> adds the numbers of the front view and the side view, as if no stack could count twice.
+- <InlineMath math="18" /> is the **largest** possible number of cubes, with every stack as tall as its column and row views allow.
+- <InlineMath math="21" /> assumes all seven ■ squares hold stacks of height <InlineMath math="3" />.

@@ -1,0 +1,30 @@
+# Apa yang dituntut setiap tampak
+
+Soal ini meminta banyak kubus **paling sedikit**, jadi kamu mencari susunan yang memenuhi ketiga tampak dengan kubus sehemat mungkin. Setiap tampak memberi syarat sendiri:
+
+- Tampak atas: tujuh petak bertanda ■ harus berisi paling sedikit satu kubus, dan dua petak bertanda □ kosong.
+- Tampak depan: di kolom kiri harus ada tumpukan setinggi <InlineMath math="3" />, di kolom tengah setinggi <InlineMath math="2" />, dan di kolom kanan setinggi <InlineMath math="3" />.
+- Tampak samping: di baris depan harus ada tumpukan setinggi <InlineMath math="3" />, di baris tengah setinggi <InlineMath math="3" />, dan di baris belakang setinggi <InlineMath math="2" />.
+
+Selain itu, tinggi sebuah tumpukan tidak boleh melebihi tampak kolomnya maupun tampak barisnya.
+
+# Satu tumpukan untuk dua syarat
+
+Triknya, **satu tumpukan tinggi bisa memenuhi syarat kolom dan syarat baris sekaligus**. Tumpukan setinggi <InlineMath math="3" /> di petak depan-kanan memenuhi kolom kanan dan baris depan. Tumpukan setinggi <InlineMath math="3" /> di petak tengah-kiri memenuhi kolom kiri dan baris tengah. Tumpukan setinggi <InlineMath math="2" /> di petak belakang-tengah memenuhi kolom tengah dan baris belakang. Petak bertanda ■ lainnya cukup diisi satu kubus.
+
+| Baris | Kiri | Tengah | Kanan |
+| :---: | :---: | :---: | :---: |
+| Belakang | kosong | <InlineMath math="2" /> | <InlineMath math="1" /> |
+| Tengah | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| Depan | <InlineMath math="1" /> | kosong | <InlineMath math="3" /> |
+
+<BlockMath math="3+3+2+1+1+1+1=12" />
+
+Lebih hemat dari ini tidak mungkin. Ketiga tumpukan tinggi itu wajib ada, dan tidak ada petak lain yang bisa memenuhi dua syarat setinggi itu sekaligus, karena petak depan-tengah dan belakang-kiri kosong. Sisa empat petak bertanda ■ masing-masing butuh paling sedikit satu kubus.
+
+Jadi, banyak kubus paling sedikit adalah <InlineMath math="12" />.
+
+- <InlineMath math="8" /> mengabaikan tampak atas, sehingga empat petak bertanda ■ dianggap boleh kosong.
+- <InlineMath math="16" /> menjumlahkan angka tampak depan dan tampak samping, seolah tidak ada tumpukan yang dipakai dua kali.
+- <InlineMath math="18" /> adalah banyak kubus **paling banyak**, yaitu setiap tumpukan setinggi yang diizinkan tampak kolom dan barisnya.
+- <InlineMath math="21" /> menganggap ketujuh petak bertanda ■ berisi tumpukan setinggi <InlineMath math="3" />.

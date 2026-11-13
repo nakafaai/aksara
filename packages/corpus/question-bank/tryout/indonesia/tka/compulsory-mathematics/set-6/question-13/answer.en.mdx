@@ -1,0 +1,30 @@
+# Two reflections make one translation
+
+The question asks where the point ends up after <InlineMath math="15" /> reflections. You could do them one by one, but that's slow. It's quicker once you notice that **two reflections in two parallel lines make one translation**.
+
+Reflecting in the vertical line <InlineMath math="x=a" /> turns <InlineMath math="x" /> into <InlineMath math="2a-x" /> and leaves <InlineMath math="y" /> alone. Reflect first in <InlineMath math="x=4" />, then in <InlineMath math="x=2" />:
+
+<BlockMath math="\begin{aligned}
+x&\longmapsto 8-x \\
+8-x&\longmapsto 2\cdot2-(8-x)=x-4
+\end{aligned}" />
+
+So each pair of reflections moves the point <InlineMath math="4" /> units **to the left**: twice the distance from the first line to the second, in the direction from <InlineMath math="x=4" /> towards <InlineMath math="x=2" />.
+
+# Fifteen reflections
+
+Fifteen reflections means <InlineMath math="7" /> full pairs, then **one leftover reflection** in <InlineMath math="x=4" />, because every odd-numbered reflection is in <InlineMath math="x=4" />.
+
+<BlockMath math="\begin{aligned}
+\text{after } 7 \text{ pairs:}\quad x&=37-7\cdot4=9 \\
+\text{15th reflection:}\quad x&=2\cdot4-9=-1
+\end{aligned}" />
+
+The <InlineMath math="y" />-coordinate stays <InlineMath math="2" /> the whole time, because every mirror line is vertical.
+
+So after <InlineMath math="15" /> reflections, the image of <InlineMath math="P" /> is <InlineMath math="(-1,2)" />.
+
+- <InlineMath math="(9,2)" /> stops after <InlineMath math="7" /> pairs and forgets the <InlineMath math="15" />th reflection.
+- <InlineMath math="(-5,2)" /> does the last reflection in <InlineMath math="x=2" />, but odd-numbered reflections are in <InlineMath math="x=4" />.
+- <InlineMath math="(-15,2)" /> shifts by <InlineMath math="2" /> units per pair, forgetting that the distance is doubled.
+- <InlineMath math="(-57,2)" /> shifts to the right, the reverse of the direction from the first line to the second.
