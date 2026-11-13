@@ -351,6 +351,6 @@ At step <InlineMath math="i" />, the new diagonal entry is <InlineMath math="\pm
 
 After the factorization, matching signs in one column of <InlineMath math="Q" /> and one row of <InlineMath math="R" /> can be flipped to make the diagonal of <InlineMath math="R" /> positive. If <InlineMath math="\|\widetilde a_i\|_2=0" />, the matrix lacks full column rank and this uniqueness condition no longer applies. A column-pivoted, rank-revealing <InlineMath math="\mathrm{QR}" /> decomposition is more informative when numerical rank matters.
 
-A compact implementation rescales the Householder vector so its first active entry is 1. Its remaining entries fit below the diagonal of the working matrix, while a separate scalar stores the reflector strength. The diagonal and upper triangle retain <InlineMath math="R" />. Apply the stored reflectors without constructing <InlineMath math="Q" /> explicitly.
+A compact implementation rescales the Householder vector so its first active entry is <InlineMath math="1" />. Its remaining entries fit below the diagonal of the working matrix, while a separate scalar stores the reflector strength. The diagonal and upper triangle retain <InlineMath math="R" />. Apply the stored reflectors without constructing <InlineMath math="Q" /> explicitly.
 
 The reduced factorization keeps the first <InlineMath math="n" /> columns of <InlineMath math="Q" /> and the first <InlineMath math="n" /> rows of <InlineMath math="R" />.
