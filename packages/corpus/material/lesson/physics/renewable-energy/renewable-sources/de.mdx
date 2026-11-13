@@ -91,6 +91,21 @@ Wähle eine erneuerbare Energiequelle anhand der **physikalischen Bedingungen am
 
 Nutze diese Bedingungen, um eine Quelle mit dem Standort zu vergleichen. Bei Solarmodulen werden Sonneneinstrahlung, verfügbare Fläche, Wetter, Wartung und Strombedarf gemeinsam geprüft.
 
+Das Sonnenlicht an einem Standort hängt auch vom Einfallswinkel ab. Strahlen senkrecht auf eine Fläche bringen etwa <InlineMath math="1\,000\text{ W/m}^2" />. Ist die Fläche um den Winkel <InlineMath math="\theta" /> weggedreht, verteilen sich dieselben Strahlen, und jeder Quadratmeter fängt <InlineMath math="1\,000\cos\theta\text{ W/m}^2" />. Steht die Sonne <InlineMath math="30^\circ" /> hoch, fängt ein flaches Modul <InlineMath math="500\text{ W/m}^2" />. Kippst du es <InlineMath math="60^\circ" /> zur Sonne, fängt es die vollen <InlineMath math="1\,000\text{ W/m}^2" />. Zähl beim Kippen die Strahlen, die auf das Modul treffen.
+
+<SolarPanelAngleLab
+  title={<>Ein Modul zur Sonne kippen</>}
+  description={<>Parallele Sonnenstrahlen fallen auf ein Modul mit <InlineMath math="1{,}6\text{ m}^2" />. Bewege die Sonne und kippe das Modul, und vergleiche dann den Winkel zwischen Strahlen und Flächennormale mit dem Licht und der Leistung, die es einfängt.</>}
+  labels={{
+    incidence: <>Winkel zwischen Strahlen und Normale</>,
+    irradiance: <>Licht pro Quadratmeter</>,
+    power: <>Modulleistung bei <InlineMath math="20\%" /> Wirkungsgrad</>,
+    sunControl: "Sonnenhöhe",
+    tiltControl: "Neigung des Moduls",
+    viewLabel: "Solarmodul auf einem Gestell unter parallelen Sonnenstrahlen",
+  }}
+/>
+
 ## Jede Quelle hat eine Umwandlungskette
 
 Jede erneuerbare Quelle sollte als Energieumwandlungspfad erklärbar sein. Wenn der Weg unklar ist, ist die Behauptung schwer zu überprüfen.
@@ -148,6 +163,21 @@ Erdwärme, Biogas und Meeresenergie erfordern jeweils bestimmte örtliche Beding
 | Erdwärme | Die Wärmequelle kann Tag und Nacht stabil sein, Bohrungen und Geologie müssen jedoch geeignet sein. |
 | Biogas | Organische Abfälle können zu Brennstoff werden, doch Rohstoffversorgung und Anlagenwartung müssen dauerhaft gesichert sein. |
 | Ozean | Wellen, Strömungen und Gezeiten können Umwandlungsanlagen antreiben, doch Standortzugang, Korrosion und Sicherheit auf See müssen berücksichtigt werden. |
+
+Deshalb braucht Geothermie ein ausreichend heißes Reservoir. In diesem Kraftwerk steigen jede Sekunde <InlineMath math="100\text{ kg}" /> Wasser auf, geben Wärme ab, bis sie auf <InlineMath math="70^\circ\text{C}" /> abgekühlt sind, und fließen wieder hinab. Eine Wärmekraftmaschine zwischen diesem Wasser und <InlineMath math="27^\circ\text{C}" /> warmer Luft kann <InlineMath math="\eta=1-T_c/T_h" /> nie überschreiten, und ein echtes Kraftwerk erreicht etwa <InlineMath math="40\%" /> dieser Grenze. Bei <InlineMath math="200^\circ\text{C}" /> liefert das Wasser <InlineMath math="54{,}6\text{ MW}" /> Wärme, und das Kraftwerk erzeugt etwa <InlineMath math="8\text{ MW}" />. Heißeres Wasser liefert mehr Wärme und wandelt einen größeren Anteil davon um.
+
+<GeothermalLoopLab
+  title={<>Ein Geothermiekreislauf im Untergrund</>}
+  description={<>Heißes Wasser steigt in der Förderbohrung auf, gibt seine Wärme an das Kraftwerk ab und kehrt mit <InlineMath math="70^\circ\text{C}" /> zurück. Ändere die Reservoirtemperatur und vergleiche entnommene Wärme, ideale Grenze, realen Wirkungsgrad und Strom.</>}
+  labels={{
+    electric: <>Strom</>,
+    heat: <>Dem Wasser entnommene Wärme</>,
+    ideal: <>Ideale Grenze</>,
+    real: <>Wirkungsgrad eines echten Kraftwerks</>,
+    reservoirControl: "Reservoirtemperatur",
+    viewLabel: "Geothermiekraftwerk im Querschnitt mit Förder- und Injektionsbohrung",
+  }}
+/>
 
 ## Indonesischer Kontext
 

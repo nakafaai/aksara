@@ -91,6 +91,21 @@ Pilih sumber terbarukan dengan memeriksa **kondisi fisik lokasi**. Setiap sumber
 
 Gunakan kondisi fisik untuk membandingkan setiap sumber dengan lokasi yang dinilai. Untuk panel surya, periksa sinar Matahari, ruang yang tersedia, cuaca, perawatan, dan kebutuhan listrik.
 
+Cahaya matahari di suatu lokasi juga bergantung pada sudut datangnya. Sinar yang tegak lurus permukaan membawa sekitar <InlineMath math="1\,000\text{ W/m}^2" />. Kalau permukaan itu diputar menjauh sebesar sudut <InlineMath math="\theta" />, sinar yang sama menyebar sehingga tiap meter persegi hanya menangkap <InlineMath math="1\,000\cos\theta\text{ W/m}^2" />. Saat matahari setinggi <InlineMath math="30^\circ" />, panel datar menangkap <InlineMath math="500\text{ W/m}^2" />. Miringkan <InlineMath math="60^\circ" /> ke arah matahari, dan panel menangkap penuh <InlineMath math="1\,000\text{ W/m}^2" />. Hitung sinar yang mengenai panel sambil kamu memiringkannya.
+
+<SolarPanelAngleLab
+  title={<>Miringkan Panel ke Arah Matahari</>}
+  description={<>Sinar matahari sejajar jatuh pada panel <InlineMath math="1{,}6\text{ m}^2" />. Geser matahari dan miringkan panel, lalu bandingkan sudut antara sinar dan garis normal panel dengan cahaya dan daya yang ditangkapnya.</>}
+  labels={{
+    incidence: <>Sudut sinar terhadap normal</>,
+    irradiance: <>Cahaya per meter persegi</>,
+    power: <>Daya panel dengan efisiensi <InlineMath math="20\%" /></>,
+    sunControl: "Tinggi matahari",
+    tiltControl: "Kemiringan panel",
+    viewLabel: "Panel surya pada penyangga di bawah sinar matahari sejajar",
+  }}
+/>
+
 ## Setiap Sumber Memiliki Jalur Konversi
 
 Urutan konversi menunjukkan bagaimana energi dari sumber alam berubah menjadi listrik, kalor, atau gerak yang dapat digunakan.
@@ -148,6 +163,21 @@ Panas bumi memerlukan reservoir panas yang dapat dimanfaatkan, biogas memerlukan
 | Panas bumi | Panas dari reservoir dapat tersedia siang dan malam, tetapi kondisi geologi harus sesuai dan pengeboran harus aman. |
 | Biogas | Limbah organik bisa menjadi bahan bakar, tetapi pasokan limbah harus teratur dan unit pengolah harus dirawat secara rutin. |
 | Laut | Gelombang, arus, dan pasang surut dapat menggerakkan alat konversi, tetapi lokasi, korosi, dan keselamatan laut tetap harus diperhitungkan. |
+
+Inilah alasan pembangkit panas bumi butuh reservoir yang cukup panas. Di pembangkit ini, <InlineMath math="100\text{ kg}" /> air naik setiap detik, melepas kalor sampai suhunya turun ke <InlineMath math="70^\circ\text{C}" />, lalu dikembalikan ke bawah. Mesin kalor antara air itu dan udara <InlineMath math="27^\circ\text{C}" /> tidak mungkin melewati <InlineMath math="\eta=1-T_c/T_h" />, dan pembangkit nyata mencapai sekitar <InlineMath math="40\%" /> dari batas itu. Pada <InlineMath math="200^\circ\text{C}" />, air memberi kalor <InlineMath math="54{,}6\text{ MW}" /> dan pembangkit menghasilkan sekitar <InlineMath math="8\text{ MW}" />. Air yang lebih panas memberi kalor lebih banyak sekaligus diubah dengan bagian yang lebih besar.
+
+<GeothermalLoopLab
+  title={<>Sirkulasi Panas Bumi di Bawah Tanah</>}
+  description={<>Air panas naik lewat sumur produksi, menyerahkan kalornya ke pembangkit, lalu kembali pada <InlineMath math="70^\circ\text{C}" />. Ubah suhu reservoir, lalu bandingkan kalor yang diambil, batas ideal, efisiensi nyata, dan listriknya.</>}
+  labels={{
+    electric: <>Listrik</>,
+    heat: <>Kalor yang diambil dari air</>,
+    ideal: <>Batas ideal</>,
+    real: <>Efisiensi pembangkit nyata</>,
+    reservoirControl: "Suhu reservoir",
+    viewLabel: "Penampang pembangkit panas bumi dengan sumur produksi dan sumur injeksi",
+  }}
+/>
 
 ## Konteks Indonesia
 

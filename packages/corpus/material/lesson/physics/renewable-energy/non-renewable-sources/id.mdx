@@ -106,6 +106,28 @@ Pada pembangkit uap, pembakaran dan fisi menghasilkan kalor melalui proses berbe
 
 Hasil akhirnya sama-sama berupa listrik, sedangkan tahap awal konversinya berbeda. Setiap jalur memakai alat untuk mengubah energi awal menjadi energi yang dapat digunakan.
 
+Ganti sumber kalornya dan lihat semua tahap setelah boiler tetap sama. Pembangkit ini menerima kalor <InlineMath math="1\,000\text{ MW}" />. Dengan batu bara, uap mencapai sekitar <InlineMath math="540^\circ\text{C}" /> dan <InlineMath math="380\text{ MW}" /> keluar sebagai listrik, sedangkan kondensor menyerahkan <InlineMath math="620\text{ MW}" /> ke menara pendingin. Reaktor nuklir memakai uap yang lebih dingin, sekitar <InlineMath math="285^\circ\text{C}" />, sehingga listriknya <InlineMath math="330\text{ MW}" />. Bandingkan juga bahan bakarnya: <InlineMath math="150\,000\text{ kg}" /> batu bara per jam dibandingkan kurang dari <InlineMath math="1\text{ kg}" /> bahan bakar uranium.
+
+<SteamPlantCycleLab
+  title={<>Satu Siklus Uap, Tiga Sumber Kalor</>}
+  description={<>Pembangkit listrik tenaga uap menerima kalor <InlineMath math="1\,000\text{ MW}" /> dari batu bara, gas, atau uranium. Pilih bahan bakarnya, lalu bandingkan listrik, kalor buangan, suhu uap, batas idealnya, dan bahan bakar yang dipakai tiap jam.</>}
+  labels={{
+    chooseFuel: "Bahan bakar",
+    electric: <>Listrik</>,
+    fuelUse: <>Bahan bakar per jam</>,
+    fuels: {
+      coal: <>Batu bara</>,
+      gas: <>Gas alam</>,
+      uranium: <>Uranium</>,
+    },
+    heat: <>Kalor masuk</>,
+    ideal: <>Batas ideal</>,
+    steam: <>Suhu uap</>,
+    viewLabel: "Pembangkit listrik tenaga uap dengan sumber kalor, turbin, generator, dan menara pendingin",
+    waste: <>Kalor buangan</>,
+  }}
+/>
+
 ## Peran Berbeda dalam Jaringan Listrik
 
 Setiap jenis pembangkit memasok listrik dengan cara yang berbeda. Pembangkit nuklir biasanya beroperasi terus dengan daya yang stabil. Pembangkit gas alam siklus gabungan dapat **menaikkan atau menurunkan daya** ketika kebutuhan listrik berubah. Saat kebutuhan mencapai puncak, turbin berbahan bakar gas alam atau minyak dapat menambah pasokan selama beberapa jam.
@@ -155,3 +177,24 @@ Karbon dioksida ditulis sebagai <InlineMath math="\text{CO}_2" />. Gas alam bany
 > Pemakaian sumber tak terbarukan mengurangi persediaan yang terbentuk sangat lambat. Keputusan untuk memakainya perlu mempertimbangkan kebutuhan energi, dampaknya terhadap manusia dan lingkungan, serta sumber lain yang tersedia.
 
 Bandingkan setiap sumber berdasarkan persediaan, urutan perubahan energi, energi yang dapat digunakan, limbah, serta dampaknya terhadap masyarakat dan ekosistem.
+
+Inilah alasan pembakaran bahan bakar menambah begitu banyak karbon dioksida. Setiap atom karbon bergabung dengan dua atom oksigen dari udara, <InlineMath math="\mathrm{C}+\mathrm{O_2}\rightarrow\mathrm{CO_2}" />, jadi <InlineMath math="12\text{ g}" /> karbon menjadi <InlineMath math="44\text{ g}" /> gas. Membakar <InlineMath math="1\text{ kg}" /> batu bara yang mengandung sekitar <InlineMath math="70\%" /> karbon menghasilkan <InlineMath math="2{,}57\text{ kg}" /> <InlineMath math="\mathrm{CO_2}" />, lebih berat dari bahan bakarnya sendiri, karena <InlineMath math="1{,}87\text{ kg}" /> di antaranya oksigen dari udara.
+
+<FuelCombustionCarbonLab
+  title={<>Membakar <InlineMath math="1\text{ kg}" /> Bahan Bakar</>}
+  description={<><InlineMath math="1\text{ kg}" /> batu bara, solar, atau metana dibakar, dan balon menampung karbon dioksidanya. Pilih bahan bakarnya, lalu bandingkan karbon, oksigen yang diambil dari udara, dan gas yang terbentuk.</>}
+  labels={{
+    carbon: <>Karbon dalam bahan bakar</>,
+    chooseFuel: "Bahan bakar",
+    dioxide: <>Karbon dioksida yang terbentuk</>,
+    fuels: {
+      coal: <>Batu bara</>,
+      diesel: <>Solar</>,
+      methane: <>Metana</>,
+    },
+    oxygen: <>Oksigen dari udara</>,
+    perEnergy: <>Karbon dioksida per megajoule kalor</>,
+    viewLabel: "Bahan bakar terbakar di bawah tudung sementara balon menampung karbon dioksida",
+    volume: <>Volume gas pada <InlineMath math="25^\circ\text{C}" /></>,
+  }}
+/>

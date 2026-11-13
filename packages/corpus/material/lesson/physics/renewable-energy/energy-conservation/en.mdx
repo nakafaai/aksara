@@ -20,6 +20,26 @@ If a device supplies less electrical energy than it receives, the difference is 
 
 Energy conservation applies to each transfer and transformation in a system.
 
+Watch it happen in a swinging bob. A <InlineMath math="1\text{ kg}" /> bob on a <InlineMath math="2\text{ m}" /> string starts at <InlineMath math="40^\circ" /> with <InlineMath math="4.59\text{ J}" /> of potential energy. Without drag, that energy only trades between potential and kinetic. With air drag, part of it moves to the surroundings as heat, yet the three bands always stack to the same <InlineMath math="4.59\text{ J}" />.
+
+<PendulumEnergyLab
+  title={<>A Swing That Keeps Its Energy Total</>}
+  description={<>A <InlineMath math="1\text{ kg}" /> bob on a <InlineMath math="2\text{ m}" /> string swings from <InlineMath math="40^\circ" />. Choose the drag and watch potential energy, kinetic energy and heat share one constant total.</>}
+  labels={{
+    chooseDrag: "Air drag",
+    drags: {
+      light: <>Light drag</>,
+      none: <>No drag</>,
+      strong: <>Strong drag</>,
+    },
+    heat: <>Heat after <InlineMath math="10\text{ s}" /></>,
+    kinetic: <>Kinetic energy after <InlineMath math="10\text{ s}" /></>,
+    potential: <>Potential energy after <InlineMath math="10\text{ s}" /></>,
+    start: <>Starting energy</>,
+    viewLabel: "Pendulum swinging beside a chart of its energy stores",
+  }}
+/>
+
 ## Choose the System First
 
 A **system** is the part we choose to analyze. Everything outside the system is called the **surroundings**. State the system boundary before applying energy conservation, because that boundary determines which energy transfers cross into or out of the calculation.
@@ -198,3 +218,20 @@ To check energy conservation in a renewable-energy technology, answer three ques
 - What fraction of the input energy becomes useful output?
 
 These answers identify the energy input, every transfer out of the system, and the useful fraction of the output.
+
+Try those three questions on a solar panel. In full sun, <InlineMath math="1\,000\text{ W/m}^2" /> falls on a <InlineMath math="1.6\text{ m}^2" /> panel, so <InlineMath math="1\,600\text{ W}" /> comes in. About <InlineMath math="64\text{ W}" /> bounces off the glass, <InlineMath math="274\text{ W}" /> leaves as electricity, and the remaining <InlineMath math="1\,262\text{ W}" /> heats the panel to about <InlineMath math="61^\circ\text{C}" />. Weaken the sunlight and check that the three outputs still add back to the input.
+
+<SolarPanelHeatLab
+  title={<>Where the Sunlight on a Panel Goes</>}
+  description={<>A <InlineMath math="1.6\text{ m}^2" /> panel on a <InlineMath math="30^\circ\text{C}" /> day. Change the sunlight, follow its split into electricity, reflection and heat, and see a hotter cell convert a smaller share.</>}
+  labels={{
+    efficiency: <>Efficiency</>,
+    electric: <>Electricity</>,
+    heat: <>Heat to the surroundings</>,
+    input: <>Sunlight in</>,
+    irradianceControl: "Sunlight on each square metre",
+    reflected: <>Reflected light</>,
+    temperature: <>Cell temperature</>,
+    viewLabel: "Solar panel on a roof with its flows of light, heat and electricity",
+  }}
+/>

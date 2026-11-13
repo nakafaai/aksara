@@ -173,6 +173,25 @@ Eine Zahl zum Energiebedarf reicht allein nicht aus. Prüfe auch, wer die Energi
 
 Ist die tägliche Versorgung zu klein, fehlt die benötigte Energiemenge. Laufen viele Geräte gleichzeitig, kann die Spitzenleistung zu niedrig sein. Die übrigen Fragen prüfen, ob Quelle, Netz oder Speicher die Versorgung begrenzen und welche Folgen ein Ausfall hätte.
 
+So sieht die Frage nach der Spitzenleistung in einem echten Dorf aus. Hundert Haushalte an einem Mini-Netz mit <InlineMath math="50\text{ kW}" /> verbrauchen <InlineMath math="330\text{ kWh}" /> am Tag, und jeder Haushalt betreibt eine Stunde lang einen Reiskocher mit <InlineMath math="0{,}4\text{ kW}" />. Kochen alle um 18:00 Uhr, springt der Bedarf auf <InlineMath math="65\text{ kW}" />, und für diese Stunde geht das Licht aus. Verteile das Kochen auf 16:00 bis 20:00 Uhr, und die Spitze sinkt auf <InlineMath math="35\text{ kW}" />, bei genau derselben Tagesenergie.
+
+<GridLoadCurveLab
+  title={<>Die Abendspitze eines Dorfs</>}
+  description={<>Hundert Haushalte an einem Mini-Netz mit <InlineMath math="50\text{ kW}" /> über einen Tag. Wähle, wann das Dorf kocht, und vergleiche den Spitzenbedarf mit dem, was das Netz liefern kann.</>}
+  labels={{
+    capacity: <>Netzkapazität</>,
+    chooseSchedule: "Wann das Dorf kocht",
+    energy: <>Tagesverbrauch</>,
+    hours: <>Stunden über der Kapazität</>,
+    peak: <>Spitzenbedarf</>,
+    schedules: {
+      spread: <>Verteilt von 16:00 bis 20:00 Uhr</>,
+      together: <>Alle um 18:00 Uhr</>,
+    },
+    viewLabel: "Dorf über einen Tag über seinem stündlichen Bedarfsdiagramm",
+  }}
+/>
+
 ## Erneuerbare Quellen müssen zum Standort passen
 
 Eine erneuerbare Energiequelle eignet sich für einen Standort, wenn örtliche Ressource, Technik, Netz, Speicher und Umweltschutz **den örtlichen Bedarf erfüllen** können. Die Tabelle nennt erste Prüfpunkte für mehrere Ressourcen.
@@ -186,3 +205,23 @@ Eine erneuerbare Energiequelle eignet sich für einen Standort, wenn örtliche R
 | In der Nähe eines Geothermiegebiets | Geothermie | geologische Untersuchung, Bohrungen und Umweltauswirkungen |
 
 Das Energiesystem muss daher zum Energiebedarf, zu den Umweltbedingungen und zu den Bedürfnissen der örtlichen Gemeinschaft passen.
+
+Am Wind sieht man, wie viel der Standort ausmacht. Die Leistung des Winds durch einen Rotor ist <InlineMath math="P=\tfrac12\rho Av^3" />, also liefert dieselbe Anlage mit einem Rotorradius von <InlineMath math="40\text{ m}" /> in einem Tal mit <InlineMath math="4\text{ m/s}" /> etwa <InlineMath math="79\text{ kW}" />, an einer Küste mit <InlineMath math="8\text{ m/s}" /> aber etwa <InlineMath math="631\text{ kW}" />: achtmal so viel bei doppelter Geschwindigkeit. Diese Windgeschwindigkeiten sind beispielhafte, gleichbleibende Mittelwerte. Ein echter Standort braucht ein Jahr gemessener Winddaten.
+
+<WindRotorLab
+  title={<>Eine Anlage an drei Standorten</>}
+  description={<>Dieselbe Windkraftanlage steht in einem Tal, auf einem Hügel und an einer Küste. Wähle den Standort und vergleiche die Windgeschwindigkeit mit der Leistung im Wind und dem erzeugten Strom.</>}
+  labels={{
+    chooseSite: "Standort",
+    daily: <>Energie an einem Tag mit gleichmäßigem Wind</>,
+    electric: <>Strom</>,
+    sites: {
+      coast: <>Küste</>,
+      hill: <>Hügel</>,
+      valley: <>Tal</>,
+    },
+    speed: <>Mittlere Windgeschwindigkeit</>,
+    viewLabel: "Windkraftanlage dreht sich in einem Tal, auf einem Hügel oder an einer Küste",
+    wind: <>Leistung im Wind durch den Rotor</>,
+  }}
+/>

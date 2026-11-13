@@ -129,6 +129,21 @@ Energy demand can also be met by reducing waste. Efficiency is the ratio of **us
 
 A complete plan combines equipment suited to the location, efficient use, a safe network, storage when needed, regular maintenance, and impact management.
 
+Storage is where a plan meets the night. A village health post has a <InlineMath math="3\text{ kWp}" /> solar roof that collects about <InlineMath math="22.9\text{ kWh}" /> a day, more than the <InlineMath math="13.6\text{ kWh}" /> it uses. But the vaccine fridge and the evening lights keep running after sunset. With a <InlineMath math="5\text{ kWh}" /> battery, <InlineMath math="4.3\text{ kWh}" /> of the night's need goes unsupplied. A <InlineMath math="10\text{ kWh}" /> battery gets through to morning.
+
+<SolarBatteryStorageLab
+  title={<>Getting a Solar Health Post through the Night</>}
+  description={<>A health post on a <InlineMath math="3\text{ kWp}" /> solar roof with a battery, through one day. Choose the battery size and watch whether its charge lasts until the sun returns.</>}
+  labels={{
+    chooseSize: "Battery size",
+    demand: <>Energy used in a day</>,
+    size: <>Battery capacity</>,
+    solar: <>Solar energy in a day</>,
+    unmet: <>Energy not supplied</>,
+    viewLabel: "Solar health post with a battery beside a chart of sunlight, demand and charge",
+  }}
+/>
+
 ## Four Conditions for Energy Access
 
 The [Sustainable Development Goals](https://sdgs.un.org/2030agenda) are a global agenda agreed by United Nations member states to improve human well-being and protect the environment. The <InlineMath math="2030" /> Agenda contains <InlineMath math="17" /> connected goals.
@@ -184,3 +199,17 @@ For a hamlet that needs electricity for night lighting, phone charging, a small 
 | What impact must be reduced? | An energy solution still needs to protect water, soil, and nearby residents. |
 
 A testable plan states which demand must be met, which source is available, which device converts the energy, what impact must be limited, and who keeps the system working.
+
+Try the plan's source question with a small stream. A microhydro plant leads part of the stream through a pipe down to a turbine, and its usable power is <InlineMath math="P\approx\rho gQh\eta" />. With <InlineMath math="Q=20\text{ L/s}" />, <InlineMath math="h=10\text{ m}" /> and <InlineMath math="\eta=0.7" />, it gives <InlineMath math="1\,400\text{ W}" />, enough for <InlineMath math="5" /> of the hamlet's <InlineMath math="16" /> homes if each needs <InlineMath math="250\text{ W}" /> in the evening. Find a flow and head that light every home.
+
+<MicrohydroLab
+  title={<>How Many Homes a Stream Can Light</>}
+  description={<>A microhydro plant on a hillside at dusk. Change the flow and the head and count the homes its power can light at <InlineMath math="250\text{ W}" /> each.</>}
+  labels={{
+    flowControl: "Water flow",
+    headControl: "Head",
+    homes: <>Homes lit</>,
+    power: <>Usable power</>,
+    viewLabel: "Microhydro plant on a hillside with a pipe to a powerhouse and a row of homes",
+  }}
+/>

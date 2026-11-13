@@ -20,6 +20,26 @@ Gibt ein Gerät weniger elektrische Energie ab, als ihm zugeführt wurde, wird d
 
 Die Energieerhaltung gilt für jede Übertragung und Umwandlung innerhalb eines Systems.
 
+Sieh es dir an einem schwingenden Pendel an. Ein <InlineMath math="1\text{ kg}" /> schwerer Pendelkörper an einer <InlineMath math="2\text{ m}" /> langen Schnur startet bei <InlineMath math="40^\circ" /> mit <InlineMath math="4{,}59\text{ J}" /> potenzieller Energie. Ohne Luftwiderstand wechselt diese Energie nur zwischen potenzieller und kinetischer Energie. Mit Luftwiderstand geht ein Teil als Wärme an die Umgebung, und trotzdem ergeben die drei Bänder immer dieselben <InlineMath math="4{,}59\text{ J}" />.
+
+<PendulumEnergyLab
+  title={<>Eine Schwingung mit gleicher Gesamtenergie</>}
+  description={<>Ein <InlineMath math="1\text{ kg}" /> schwerer Pendelkörper an einer <InlineMath math="2\text{ m}" /> langen Schnur schwingt ab <InlineMath math="40^\circ" />. Wähle den Luftwiderstand und sieh, wie potenzielle Energie, kinetische Energie und Wärme eine konstante Summe teilen.</>}
+  labels={{
+    chooseDrag: "Luftwiderstand",
+    drags: {
+      light: <>Geringer Widerstand</>,
+      none: <>Kein Widerstand</>,
+      strong: <>Starker Widerstand</>,
+    },
+    heat: <>Wärme nach <InlineMath math="10\text{ s}" /></>,
+    kinetic: <>Kinetische Energie nach <InlineMath math="10\text{ s}" /></>,
+    potential: <>Potenzielle Energie nach <InlineMath math="10\text{ s}" /></>,
+    start: <>Anfangsenergie</>,
+    viewLabel: "Schwingendes Pendel neben einem Diagramm seiner Energiespeicher",
+  }}
+/>
+
 ## Zuerst die Systemgrenze festlegen
 
 Ein **System** ist der Teil, den wir analysieren möchten. Alles außerhalb des Systems wird **Umgebung** genannt. Lege die Systemgrenze vor der Energiebilanz fest, denn sie bestimmt, welche Energieübertragungen in die Rechnung hineinführen oder sie verlassen.
@@ -198,3 +218,20 @@ Um die Energieerhaltung bei einer Technik für erneuerbare Energie zu prüfen, b
 - Welcher Anteil der zugeführten Energie wird als Nutzenergie abgegeben?
 
 Die Antworten zeigen die Energiequelle, alle Energieübertragungen aus dem System und den nutzbaren Anteil der Ausgabe.
+
+Probier die drei Fragen an einem Solarmodul aus. Bei voller Sonne fallen <InlineMath math="1\,000\text{ W/m}^2" /> auf ein Modul mit <InlineMath math="1{,}6\text{ m}^2" />, es kommen also <InlineMath math="1\,600\text{ W}" /> an. Etwa <InlineMath math="64\text{ W}" /> werden am Glas reflektiert, <InlineMath math="274\text{ W}" /> gehen als Strom hinaus, und die übrigen <InlineMath math="1\,262\text{ W}" /> erwärmen das Modul auf etwa <InlineMath math="61^\circ\text{C}" />. Schwäche das Sonnenlicht ab und prüfe, dass die drei Ausgänge zusammen immer noch den Eingang ergeben.
+
+<SolarPanelHeatLab
+  title={<>Wohin das Sonnenlicht auf einem Modul geht</>}
+  description={<>Ein Modul mit <InlineMath math="1{,}6\text{ m}^2" /> an einem <InlineMath math="30^\circ\text{C}" /> warmen Tag. Ändere das Sonnenlicht, verfolge die Aufteilung in Strom, Reflexion und Wärme und sieh, dass eine heißere Zelle einen kleineren Anteil umwandelt.</>}
+  labels={{
+    efficiency: <>Wirkungsgrad</>,
+    electric: <>Strom</>,
+    heat: <>Wärme an die Umgebung</>,
+    input: <>Einfallendes Sonnenlicht</>,
+    irradianceControl: "Sonnenlicht pro Quadratmeter",
+    reflected: <>Reflektiertes Licht</>,
+    temperature: <>Zelltemperatur</>,
+    viewLabel: "Solarmodul auf einem Dach mit seinen Licht-, Wärme- und Stromflüssen",
+  }}
+/>
