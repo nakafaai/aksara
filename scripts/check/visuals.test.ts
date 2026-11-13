@@ -31,6 +31,12 @@ const EXACT = scene("3.85");
 const ROUNDED = scene("(0) + 0.55 * ((7) - (0))");
 const SPREAD = "<MathVisual {...props} />\n";
 
+/** A scene finding: line, column, the scene path ending in x, then its message. */
+const SCENE_FINDING = /^\d+:\d+ \S+\.x \S/u;
+
+/** A source finding: line, column, then its reason. */
+const SOURCE_FINDING = /^\d+:\d+ [a-z-]+$/u;
+
 describe("corpusSources", () => {
   it("keeps only the MDX sources of the corpus", () => {
     expect(
@@ -63,7 +69,7 @@ describe("visualFindings", () => {
 
         expect(findings.length).toBeGreaterThan(0);
         expect(findings[0]?.file).toBe("a.mdx");
-        expect(findings[0]?.finding).toMatch(/^\d+:\d+ \S+\.x \S/u);
+        expect(findings[0]?.finding).toMatch(SCENE_FINDING);
       })
   );
 
@@ -72,7 +78,7 @@ describe("visualFindings", () => {
       const findings = yield* visualFindings("b.mdx", SPREAD);
 
       expect(findings.length).toBeGreaterThan(0);
-      expect(findings[0]?.finding).toMatch(/^\d+:\d+ [a-z-]+$/u);
+      expect(findings[0]?.finding).toMatch(SOURCE_FINDING);
     })
   );
 });
