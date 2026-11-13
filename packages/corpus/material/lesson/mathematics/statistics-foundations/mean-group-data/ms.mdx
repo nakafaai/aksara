@@ -1,0 +1,113 @@
+export const metadata = {
+  title: "Min bagi Data Terkumpul",
+  description: "Anggarkan min bagi data terkumpul daripada titik tengah kelas dan kekerapan melalui satu contoh lengkap.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-22",
+  dateModified: "2026-11-08",
+  subject: "Statistik",
+};
+
+## Apabila Nilai Data Individu Tersembunyi dalam Selang
+
+Untuk data tak terkumpul, kita kira min dengan menambah semua nilai dan membahagikannya dengan bilangan nilai.
+
+<BlockMath math="\bar{x} = \frac{\sum x_i}{n}" />
+
+Tetapi dalam taburan kekerapan, nilai-nilai mungkin dipersembahkan sebagai **kumpulan** atau **selang**. Markah ujian mungkin dikumpulkan menjadi <InlineMath math="70\text{-}79" />, <InlineMath math="80\text{-}89" />, dan <InlineMath math="90\text{-}99" />.
+
+Apabila data sudah dikumpulkan, kita **tidak lagi tahu setiap nilai yang tepat**. Contohnya, kalau <InlineMath math="5" /> orang murid berada dalam selang <InlineMath math="70\text{-}79" />, kita tidak dapat tahu sama ada markah mereka <InlineMath math="70" />, <InlineMath math="72" />, <InlineMath math="75" />, atau nilai lain dalam selang itu.
+
+## Menggunakan Titik Tengah Kelas
+
+Oleh sebab nilai yang tepat tidak ada, kita buat **anggaran**: titik tengah setiap kelas **mewakili setiap nilai** dalam selang itu.
+
+Biar <InlineMath math="L_i" /> dan <InlineMath math="U_i" /> ialah had bawah dan had atas kelas <InlineMath math="i" />:
+
+<BlockMath math="x_i=\frac{L_i+U_i}{2}" />
+
+## Rumus Min bagi Data Terkumpul
+
+Selepas mencari setiap titik tengah, kira **min anggaran** dengan:
+
+<BlockMath math="\bar{x} \approx \frac{\sum (f_i \times x_i)}{\sum f_i}" />
+
+Kuantiti dalam rumus ini ialah:
+
+- <InlineMath math="\bar{x}" /> ialah min anggaran bagi data terkumpul itu.
+- <InlineMath math="f_i" /> ialah kekerapan kelas <InlineMath math="i" />.
+- <InlineMath math="x_i" /> ialah titik tengah kelas <InlineMath math="i" />.
+- <InlineMath math="\sum (f_i \times x_i)" /> ialah hasil tambah kekerapan setiap kelas yang didarab dengan titik tengahnya.
+- <InlineMath math="\sum f_i" /> ialah hasil tambah semua kekerapan, sama dengan jumlah bilangan nilai <InlineMath math="n" />.
+
+Setiap kelas menyumbang titik tengahnya didarab dengan kekerapannya. Bar-barnya ialah <InlineMath math="76, 451, 704, 47" />, jumlahnya <InlineMath math="1278" />, dan apabila dibahagi dengan <InlineMath math="30" /> orang murid, kita dapat min data terkumpul <InlineMath math="42.6" />.
+
+<BarChart
+  title={<>Kekerapan didarab titik tengah bagi setiap kelas</>}
+  description={<>Bar bagi setiap kelas saiz kasut yang menunjukkan <InlineMath math="f_i x_i" />, yang jumlahnya 1278.</>}
+  yAxisLabel="Kekerapan didarab titik tengah"
+  data={[["37-39", 2 * 38], ["40-42", 11 * 41], ["43-45", 16 * 44], ["46-48", 1 * 47]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Kekerapan didarab titik tengah", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Purata Saiz Kasut daripada Data Terkumpul
+
+Pertimbangkan data terkumpul bagi jualan kasut di Kedai A:
+
+| Saiz Kasut (Selang Kelas)  | Kekerapan (<InlineMath math="f_i" />) |
+| :------------------------- | :------------------------------------ |
+| <InlineMath math="37\text{-}39" /> | <InlineMath math="2" />               |
+| <InlineMath math="40\text{-}42" /> | <InlineMath math="11" />              |
+| <InlineMath math="43\text{-}45" /> | <InlineMath math="16" />              |
+| <InlineMath math="46\text{-}48" /> | <InlineMath math="1" />               |
+| **Jumlah**                 | <InlineMath math="n=30" />        |
+
+Untuk setiap kelas, kira **titik tengah** daripada dua had kelasnya. Darab titik tengah itu dengan kekerapan untuk mengambil kira bilangan cerapan yang diwakili oleh kelas itu.
+
+| Kelas | Titik tengah | Kekerapan didarab titik tengah |
+| --- | --- | --- |
+| <InlineMath math="37\text{-}39" /> | <InlineMath math="(37+39)/2=38" /> | <InlineMath math="2\times38=76" /> |
+| <InlineMath math="40\text{-}42" /> | <InlineMath math="(40+42)/2=41" /> | <InlineMath math="11\times41=451" /> |
+| <InlineMath math="43\text{-}45" /> | <InlineMath math="(43+45)/2=44" /> | <InlineMath math="16\times44=704" /> |
+| <InlineMath math="46\text{-}48" /> | <InlineMath math="(46+48)/2=47" /> | <InlineMath math="1\times47=47" /> |
+
+Hasil tambah hasil darab itu menganggarkan hasil tambah semua saiz kasut. Bahagikan dengan **jumlah kekerapan** untuk mendapat min anggaran.
+
+<MathContainer>
+  <BlockMath math="\sum f_ix_i=76+451+704+47=1278" />
+  <BlockMath math="\sum f_i=2+11+16+1=30" />
+  <BlockMath math="\bar x\approx\frac{1278}{30}=42.6" />
+</MathContainer>
+
+Hasil ini ialah **anggaran** kerana <Highlight>titik tengah menggantikan setiap nilai</Highlight> dalam kelasnya. Inilah anggaran yang biasa digunakan apabila hanya kekerapan terkumpul yang ada.
+
+Histogram menunjukkan sebab saiz kasut tidak boleh disenaraikan satu per satu: kita hanya tahu berapa ramai yang berada dalam setiap kelas. Kebanyakan daripada <InlineMath math="30" /> orang murid berada dalam kelas <InlineMath math="40\text{-}42" /> dan <InlineMath math="43\text{-}45" />.
+
+<HistogramChart
+  title={<>Saiz kasut 30 orang murid</>}
+  description={<>Bilangan murid dalam setiap kelas saiz kasut.</>}
+  yAxisLabel="Murid"
+  data={[{ name: "37-39", value: 2 }, { name: "40-42", value: 11 }, { name: "43-45", value: 16 }, { name: "46-48", value: 1 }]}
+  chartConfig={{ value: { label: "Murid", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Setiap kelas kini diletakkan pada titik tengahnya dengan kekerapan sebagai ketinggian. Min data terkumpul <InlineMath math="1278 / 30 = 42.6" /> ialah titik keseimbangan bagi titik tengah berpemberat ini: titik berat pada <InlineMath math="44" /> dengan kekerapan <InlineMath math="16" /> menariknya ke kanan <InlineMath math="41" />.
+
+<MathVisual
+  title={<>Titik tengah yang diberi pemberat mengikut kekerapan</>}
+  description={<>Poligon kekerapan melalui titik tengah 38, 41, 44 dan 47, dengan min data terkumpul <InlineMath math="42.6" /> ditanda.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} = 42.6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 36, max: 49 }, y: { min: -0.5, max: 18 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "poly", kind: "polyline", vertices: [{ x: 38, y: 2 }, { x: 41, y: 11 }, { x: 44, y: 16 }, { x: 47, y: 1 }], appearance: "secondary" },
+      { id: "mean", kind: "segment", from: { x: 1278 / 30, y: 0 }, to: { x: 1278 / 30, y: 17 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 1278 / 30, y: 17 }, placement: "above" },
+    ],
+  }}
+/>

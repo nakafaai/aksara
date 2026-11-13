@@ -1,0 +1,137 @@
+export const metadata = {
+  title: "Kekerapan Relatif",
+  description: "Kira kekerapan relatif untuk mencari perkadaran dan peratus data. Belajar membandingkan kumpulan dan mentafsir keputusan statistik dengan contoh yang jelas.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   datePublished: "2025-04-22",
+  dateModified: "2026-11-08",
+  subject: "Statistik",
+};
+
+## Menyatakan Satu Kiraan sebagai Perkadaran
+
+Kekerapan mutlak memberitahu kita **berapa kali** satu nilai muncul dalam satu set data.
+
+Contohnya, kalau kita tanya <InlineMath math="30 \text{ orang murid}" /> tentang jenama telefon mereka, dan <InlineMath math="12 \text{ orang murid}" /> menjawab "Apple", maka kekerapan bagi jenama "Apple" ialah <InlineMath math="12" />.
+
+**Kekerapan relatif** ialah bilangan cerapan dalam satu nilai atau kumpulan dibahagi dengan jumlah bilangan cerapan. Ia memberikan **perkadaran daripada keseluruhan** yang tergolong dalam nilai atau kumpulan itu.
+
+### Kegunaan Kekerapan Relatif
+
+Kekerapan relatif membantu dua jenis perbandingan:
+
+1. **Bandingkan Perkadaran**: Kita boleh bandingkan sebesar mana perkadaran satu kumpulan data berbanding kumpulan lain dalam set data yang sama. Contohnya, sebesar mana perkadaran pengguna Apple berbanding pengguna Samsung dalam satu kumpulan responden.
+2. **Bandingkan Kumpulan yang Berbeza Saiz**: Kita boleh bandingkan peratus murid yang suka matematik dalam kumpulan <InlineMath math="30 \text{ orang murid}" /> dengan peratus dalam kumpulan <InlineMath math="40 \text{ orang murid}" />. Kiraan mutlak sahaja tidak mengambil kira saiz kumpulan yang berbeza.
+
+Kalau <InlineMath math="12" /> daripada <InlineMath math="30" /> orang murid dalam satu kumpulan dan <InlineMath math="16" /> daripada <InlineMath math="40" /> dalam kumpulan lain suka matematik, perkadarannya sama walaupun kiraannya berbeza:
+
+<BlockMath math="\frac{12}{30}=\frac{16}{40}=\frac25=0.4=40\%" />
+
+## Rumus Kekerapan Relatif
+
+Bahagikan kekerapan kumpulan itu dengan jumlah kekerapan:
+
+Biar <InlineMath math="f" /> ialah kekerapan kumpulan, <InlineMath math="n" /> ialah jumlah bilangan cerapan, dan <InlineMath math="h" /> ialah kekerapan relatif. **Bahagikan dengan semua cerapan**:
+
+<BlockMath math="h=\frac{f}{n}" />
+
+Dengan:
+
+- **Kekerapan Kumpulan**: bilangan cerapan dalam kumpulan yang dipilih.
+- **Jumlah Kekerapan**: bilangan semua cerapan dalam set data.
+
+Kekerapan relatif biasanya dinyatakan dalam bentuk:
+
+- **Pecahan**: Nisbah kekerapan kumpulan kepada jumlah kekerapan.
+- **Perpuluhan**: Hasil pembahagian pecahan itu.
+- **Peratus**: Bentuk perpuluhan didarab dengan <InlineMath math="100\%" />. Bentuk ini menyatakan berapa banyak cerapan berlaku bagi setiap seratus.
+
+Kekerapan relatif membahagikan satu keseluruhan. Apabila disusun bersebelahan pada satu jalur sepanjang <InlineMath math="1" />, bahagian <InlineMath math="\frac{12}{30}" />, <InlineMath math="\frac{10}{30}" /> dan <InlineMath math="\frac{8}{30}" /> mengisinya dengan tepat, tanpa ruang dan tanpa pertindihan.
+
+<MathVisual
+  title={<>Tiga bahagian yang mengisi satu keseluruhan</>}
+  description={<>Jalur sepanjang 1 yang dibahagikan kepada bahagian Apple, Samsung dan Xiaomi.</>}
+  labels={{
+    apple: <>Apple</>,
+    samsung: <>Samsung</>,
+    xiaomi: <>Xiaomi</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 1.05 }, y: { min: -0.15, max: 0.35 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "apple", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 12 / 30, y: 0 }, { x: 12 / 30, y: 0.2 }, { x: 0, y: 0.2 }], appearance: "primary" },
+      { id: "samsung", kind: "polygon", vertices: [{ x: 12 / 30, y: 0 }, { x: 22 / 30, y: 0 }, { x: 22 / 30, y: 0.2 }, { x: 12 / 30, y: 0.2 }], appearance: "secondary" },
+      { id: "xiaomi", kind: "polygon", vertices: [{ x: 22 / 30, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 0.2 }, { x: 22 / 30, y: 0.2 }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "apple", objectId: "apple", at: { x: (0 + 12 / 30) / 2, y: 0.2 }, placement: "above" },
+      { key: "samsung", objectId: "samsung", at: { x: (12 / 30 + 22 / 30) / 2, y: 0.2 }, placement: "above" },
+      { key: "xiaomi", objectId: "xiaomi", at: { x: (22 / 30 + 1) / 2, y: 0.2 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Contoh Mengira Kekerapan Relatif
+
+Pertimbangkan data jenama telefon daripada <InlineMath math="30 \text{ orang murid}" /> di atas:
+
+| Jenama Telefon | Kekerapan (Bilangan Murid)  |
+| :---------- | :----------------------------- |
+| Apple       | <InlineMath math="12" />       |
+| Samsung     | <InlineMath math="10" />       |
+| Xiaomi      | <InlineMath math="8" />        |
+| **Jumlah**  | <InlineMath math="30" />       |
+
+Jumlah kekerapan ialah <InlineMath math="12 + 10 + 8 = 30" /> orang murid.
+
+Kira setiap peratus terus daripada pecahan supaya pembundaran perpuluhan terlebih dahulu tidak mengubah keputusan. **Bundarkan hanya pada langkah akhir** mengikut kejituan yang kamu mahu paparkan. Di sini, <InlineMath math="p" /> mewakili peratus.
+
+<MathContainer>
+  <BlockMath math="h_{\text{Apple}}=\frac{12}{30}=0.4,\quad p_{\text{Apple}}=\frac{12}{30}\cdot100\%=40\%" />
+  <BlockMath math="h_{\text{Samsung}}=\frac{10}{30}=\frac13,\quad p_{\text{Samsung}}=\frac13\cdot100\%\approx33\%" />
+  <BlockMath math="h_{\text{Xiaomi}}=\frac8{30}=\frac4{15},\quad p_{\text{Xiaomi}}=\frac4{15}\cdot100\%\approx27\%" />
+</MathContainer>
+
+**Jadual Kekerapan Relatif**:
+
+| Jenama Telefon | Kekerapan             | Kekerapan Relatif (Perpuluhan) | Kekerapan Relatif (Peratus) |
+| :---------- | :----------------------- | :--------------------------- | :--------------------------- |
+| Apple       | <InlineMath math="12" /> | <InlineMath math="0.40" />   | <InlineMath math="40\%" />   |
+| Samsung     | <InlineMath math="10" /> | <InlineMath math="0.33" />   | <InlineMath math="33\%" />   |
+| Xiaomi      | <InlineMath math="8" />  | <InlineMath math="0.27" />   | <InlineMath math="27\%" />   |
+| **Jumlah**  | <InlineMath math="30" /> | <InlineMath math="1.00" />   | <InlineMath math="100\%" />  |
+
+Hasil tambah kekerapan relatif (dalam bentuk perpuluhan) sepatutnya sentiasa <InlineMath math="1" />, dan dalam bentuk peratus sepatutnya <InlineMath math="100\%" />. Mungkin ada sedikit perbezaan akibat pembundaran, tetapi nilainya sepatutnya sangat hampir dengan <InlineMath math="1" /> atau <InlineMath math="100\%" />.
+
+Mula-mula lihat kiraan mentah. Apple ada bar paling tinggi dengan <InlineMath math="12" /> daripada <InlineMath math="30" /> orang murid, diikuti Samsung dengan <InlineMath math="10" /> dan Xiaomi dengan <InlineMath math="8" />. Kiraan menjawab "berapa banyak", tetapi kiraan berubah apabila saiz kumpulan berubah.
+
+<BarChart
+  title={<>Berapa ramai murid yang menggunakan setiap jenama</>}
+  description={<>Bilangan murid yang menggunakan setiap jenama telefon, daripada 30 orang murid.</>}
+  yAxisLabel="Murid"
+  data={[["Apple", 12], ["Samsung", 10], ["Xiaomi", 8]].map(([name, count]) => ({ name, value: count }))}
+  chartConfig={{ value: { label: "Murid", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Mentafsir Kekerapan Relatif
+
+Daripada jadual kekerapan relatif di atas, kita boleh katakan:
+
+- <InlineMath math="40\%" /> daripada murid dalam kumpulan itu menggunakan telefon jenama Apple.
+- Kira-kira <InlineMath math="33\%" /> orang murid menggunakan Samsung.
+- Bakinya, kira-kira <InlineMath math="27\%" />, menggunakan Xiaomi.
+
+Jadual itu menunjukkan dengan sekali pandang bagaimana <InlineMath math="30 \text{ orang murid}" /> itu bertaburan antara tiga jenama.
+
+Kekerapan relatif <Highlight>menjadikan kiraan mutlak boleh dibandingkan</Highlight> dengan mengaitkan setiap kiraan dengan saiz keseluruhan set data.
+
+Bahagikan setiap kiraan dengan jumlah <InlineMath math="30" /> dan kamu dapat kekerapan relatif <InlineMath math="0.40" />, <InlineMath math="0.33" /> dan <InlineMath math="0.27" />, dibundarkan kepada dua tempat perpuluhan. Bentuk bar kekal sama, tetapi kini bar itu menunjukkan bahagian daripada keseluruhan dan jumlahnya <InlineMath math="1" />, jadi kamu boleh bandingkannya dengan kelas yang saiznya apa-apa pun.
+
+<BarChart
+  title={<>Bahagian murid bagi setiap jenama</>}
+  description={<>Setiap bar ialah kiraan dibahagi dengan 30: <InlineMath math="12/30" />, <InlineMath math="10/30" /> dan <InlineMath math="8/30" />, yang jumlahnya 1.</>}
+  yAxisLabel="Kekerapan relatif"
+  data={[["Apple", 12], ["Samsung", 10], ["Xiaomi", 8]].map(([name, count]) => ({ name, value: count / 30 }))}
+  chartConfig={{ value: { label: "Kekerapan relatif", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

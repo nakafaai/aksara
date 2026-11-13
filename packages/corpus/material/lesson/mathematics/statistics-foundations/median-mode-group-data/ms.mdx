@@ -1,0 +1,133 @@
+export const metadata = {
+  title: "Median dan Kelas Mod bagi Data Terkumpul",
+  description: "Cari kelas mod dan anggarkan median bagi data terkumpul daripada jadual kekerapan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-22",
+  dateModified: "2026-11-08",
+  subject: "Statistik",
+};
+
+## Kelas Mod bagi Data Terkumpul
+
+Apabila data dikumpulkan dalam selang, jadual itu tidak lagi mengandungi setiap cerapan asal. Kita masih boleh mengenal pasti **kelas mod**, tetapi jadual itu mungkin tidak dapat menunjukkan satu mod yang tepat.
+
+**Kelas mod** ialah selang kelas dengan **kekerapan paling tinggi**, jadi kelas itu mengandungi <Highlight>lebih banyak cerapan daripada mana-mana selang lain</Highlight>.
+
+**Contoh lengkap**:
+
+Data saiz kasut Kedai A:
+
+| Saiz Kasut (Selang Kelas)  | Kekerapan (<InlineMath math="f_i" />) |
+| :------------------------- | :------------------------------------ |
+| <InlineMath math="37\text{-}39" /> | <InlineMath math="2" />               |
+| <InlineMath math="40\text{-}42" /> | <InlineMath math="11" />              |
+| <InlineMath math="43\text{-}45" /> | <InlineMath math="16" /> (Kekerapan Paling Tinggi) |
+| <InlineMath math="46\text{-}48" /> | <InlineMath math="1" />               |
+| **Jumlah**                 | <InlineMath math="30" />              |
+
+Kekerapan paling tinggi ialah <InlineMath math="16" />, jadi kelas modnya ialah <InlineMath math="43\text{-}45" />.
+
+Selang itu mengandungi **jualan paling banyak sebagai satu kelas**. Saiz individu yang paling kerap tidak semestinya berada dalam selang itu. Contohnya, <InlineMath math="16" /> jualan itu mungkin tersebar merentas tiga saiz, manakala <InlineMath math="11" /> jualan dalam kelas lain mungkin semuanya satu saiz. Jadual data terkumpul tidak memberikan butiran itu.
+
+Dalam histogram, kelas mod hanyalah bar yang paling tinggi: <InlineMath math="43\text{-}45" /> dengan <InlineMath math="16" /> orang murid. Tiada kelas lain yang hampir, jadi saiz kasut yang paling biasa berada dalam selang itu.
+
+<HistogramChart
+  title={<>Kelas mod ialah bar yang paling tinggi</>}
+  description={<>Bilangan murid dalam setiap kelas saiz kasut. Kelas 43 hingga 45 ada bar paling tinggi.</>}
+  yAxisLabel="Murid"
+  data={[{ name: "37-39", value: 2 }, { name: "40-42", value: 11 }, { name: "43-45", value: 16 }, { name: "46-48", value: 1 }]}
+  chartConfig={{ value: { label: "Murid", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Median bagi Data Terkumpul
+
+Median membahagikan data yang sudah disusun kepada dua bahagian sama banyak. Jadual data terkumpul menyenaraikan selang bersama kekerapannya. Jadi kita cari kelas median dan **anggarkan kedudukan median** dalam kelas itu.
+
+Tambah kekerapan kelas demi kelas untuk mendapat kekerapan longgokan <InlineMath math="2, 13, 29, 30" />. Bar terakhir sentiasa jumlahnya, <InlineMath math="30" />, dan kelas tempat bar mula-mula melepasi kedudukan sasaran ialah kelas yang perlu diinterpolasi.
+
+<BarChart
+  title={<>Kekerapan longgokan bagi setiap kelas</>}
+  description={<>Bar bagi setiap kelas yang menunjukkan berapa banyak nilai yang berada pada atau di bawah sempadan atasnya, sehingga 30.</>}
+  yAxisLabel="Kekerapan longgokan"
+  data={[["37-39", 2], ["40-42", 2 + 11], ["43-45", 2 + 11 + 16], ["46-48", 2 + 11 + 16 + 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Kekerapan longgokan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Mencari Kelas dan Kedudukan Median
+
+Kira **kekerapan longgokan** dengan menambah kekerapan kelas daripada kelas pertama hingga kelas semasa. Cari kelas pertama yang kekerapan longgokannya mencapai <InlineMath math="n/2" />. Dalam kelas itu, anggarkan median secara interpolasi:
+
+<BlockMath math="\operatorname{Me}=L+\frac{n/2-F}{f_{\mathrm{Me}}}\,c" />
+
+| Simbol | Maksud |
+| --- | --- |
+| <InlineMath math="\operatorname{Me}" /> | Median anggaran |
+| <InlineMath math="L" /> | Sempadan bawah kelas median |
+| <InlineMath math="n" /> | Jumlah kekerapan |
+| <InlineMath math="F" /> | Kekerapan longgokan sebelum kelas median |
+| <InlineMath math="f_{\mathrm{Me}}" /> | Kekerapan kelas median |
+| <InlineMath math="c" /> | Saiz selang kelas |
+
+Untuk saiz yang direkodkan sebagai integer berturutan, sempadan kelas terletak setengah unit di luar had kelas. Jadi kelas <InlineMath math="43\text{-}45" /> menggunakan sempadan <InlineMath math="42.5" /> dan <InlineMath math="45.5" />. **Interpolasi menganggap nilai tersebar sekata** antara sempadan ini. Oleh sebab nilai asal tidak diketahui, hasilnya ialah anggaran.
+
+**Contoh lengkap**:
+
+Gunakan data saiz kasut Kedai A daripada jadual di bawah.
+
+| Saiz Kasut | Kekerapan (<InlineMath math="f_i" />) | Kekerapan Longgokan (<InlineMath math="F_k" />) |
+| :-------- | :------------------------------------ | :----------------------------------------------- |
+| <InlineMath math="37\text{-}39" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
+| <InlineMath math="40\text{-}42" /> | <InlineMath math="11" /> | <InlineMath math="2 + 11 = 13" /> |
+| <InlineMath math="43\text{-}45" /> | <InlineMath math="16" /> (<InlineMath math="f_{\mathrm{Me}}" />) | <InlineMath math="13 + 16 = 29" /> |
+| <InlineMath math="46\text{-}48" /> | <InlineMath math="1" /> | <InlineMath math="29 + 1 = 30" /> |
+| Jumlah    | <InlineMath math="n = 30" />          |                                                  |
+
+Kedudukan median ialah <InlineMath math="n/2=30/2=15" />. Kekerapan longgokan ialah <InlineMath math="13" /> selepas kelas kedua dan <InlineMath math="29" /> selepas kelas ketiga. Jadi **kelas median** ialah <InlineMath math="43\text{-}45" />. Jadual memberikan:
+
+| Kuantiti | Nilai |
+| --- | --- |
+| <InlineMath math="L" /> | <InlineMath math="43-0.5=42.5" /> |
+| <InlineMath math="n/2" /> | <InlineMath math="30/2=15" /> |
+| <InlineMath math="F" /> | <InlineMath math="13" /> |
+| <InlineMath math="f_{\mathrm{Me}}" /> | <InlineMath math="16" /> |
+
+Saiz selang kelas ialah beza antara dua sempadannya:
+
+<BlockMath math="\begin{aligned} c &amp;= (45 + 0.5) - (43 - 0.5) \\ &amp;= 45.5 - 42.5 \\ &amp;= 3 \end{aligned}" />
+
+**Gantikan ke dalam rumus median**:
+
+<MathContainer>
+  <BlockMath math="\operatorname{Me} = 42.5 + \left( \frac{15 - 13}{16} \right) \times 3" />
+  <BlockMath math="\operatorname{Me} = 42.5 + \left( \frac{2}{16} \right) \times 3" />
+  <BlockMath math="\operatorname{Me} = 42.5 + \left( \frac{1}{8} \right) \times 3" />
+  <BlockMath math="\operatorname{Me} = 42.5 + \frac{3}{8}" />
+  <BlockMath math="\operatorname{Me} = 42.5 + 0.375" />
+  <BlockMath math="\operatorname{Me} = 42.875" />
+</MathContainer>
+
+Saiz kasut median anggaran ialah <InlineMath math="42.875" />. Nilai ini terletak antara sempadan kelas <InlineMath math="42.5" /> dan <InlineMath math="45.5" /> yang digunakan untuk interpolasi.
+
+Hasil ini ialah **anggaran**. Nilai tepat dalam setiap selang tidak diketahui, jadi cerapan tengah yang asal tidak dapat diperoleh semula. [Min bagi data terkumpul](/ms/subjek/matematik/statistik-asas/min-data-terkumpul) ada batasan yang sama.
+
+Kamu boleh baca median terus daripada garis kekerapan longgokan pada separuh daripada data. Garis itu naik melalui sempadan kelas <InlineMath math="36.5, 39.5, 42.5, 45.5, 48.5" />. Ia mencapai <InlineMath math="n/2 = 15" /> di dalam kelas <InlineMath math="43\text{-}45" />, pada <InlineMath math="42.5 + \frac{15 - 13}{16} \cdot 3 = 42.875" />, nilai yang sama seperti rumus.
+
+<MathVisual
+  title={<>Membaca median daripada kekerapan longgokan</>}
+  description={<>Garis kekerapan longgokan bagi saiz kasut. Aras 15 bertemu garis itu di atas <InlineMath math="42.875" />, iaitu median anggaran.</>}
+  labels={{
+    me: <InlineMath math="\operatorname{Me}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 36, max: 49 }, y: { min: -2, max: 31 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ogive", kind: "polyline", vertices: [{ x: 36.5, y: 0 }, { x: 39.5, y: 2 }, { x: 42.5, y: 13 }, { x: 45.5, y: 29 }, { x: 48.5, y: 30 }], appearance: "secondary" },
+      { id: "me", kind: "polyline", vertices: [{ x: 36.5, y: 15 }, { x: 42.5 + ((15 - 13) / 16) * 3, y: 15 }, { x: 42.5 + ((15 - 13) / 16) * 3, y: 0 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "me", objectId: "me", at: { x: 42.5 + ((15 - 13) / 16) * 3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>

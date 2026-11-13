@@ -1,0 +1,135 @@
+
+export const metadata = {
+  title: "Histogram",
+  description: "Bezakan histogram daripada carta bar, baca pola kekerapan, dan pilih carta yang sepadan dengan jenis data.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-22",
+  dateModified: "2026-11-08",
+  subject: "Statistik",
+};
+
+## Memaparkan Data Berangka dalam Selang yang Bersebelahan
+
+Histogram menunjukkan **taburan data berangka merentas selang**. Histogram dan carta bar sama-sama menggunakan bar segi empat tepat, tetapi kedua-duanya menjawab soalan yang berbeza. Carta bar membandingkan kategori, manakala histogram menunjukkan bagaimana cerapan berangka bertaburan merentas selang yang bersambungan.
+
+## Carta Bar Berbanding Histogram
+
+Mula-mula tentukan sama ada paksi mengufuk mengandungi **kategori yang berasingan** atau selang bagi satu kuantiti berangka. Pilihan itu menentukan apa yang diwakili oleh setiap bar dan sama ada lebar bar turut membawa maklumat kekerapan.
+
+### Membandingkan Kategori
+
+Carta bar digunakan untuk data kategori (seperti jenama telefon atau sukan kegemaran):
+
+<BarChart
+  title={<>Carta Bar Jenama Telefon yang Digunakan oleh Murid Sekolah Menengah</>}
+  description={<>Menunjukkan bilangan murid bagi setiap jenama telefon.</>}
+  data={[
+    { name: "Apple", value: 12 },
+    { name: "Samsung", value: 10 },
+    { name: "Xiaomi", value: 8 },
+    { name: "Oppo", value: 5 },
+    { name: "Lenovo", value: 5 },
+  ]}
+  chartConfig={{
+    value: {
+      label: "Bilangan Murid",
+      colors: {
+        light: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"],
+        dark: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"],
+      },
+    },
+  }}
+  yAxisLabel="Bilangan Murid"
+/>
+
+Dalam carta bar di atas:
+
+- Apple ialah jenama yang paling banyak digunakan (<InlineMath math="12" /> orang murid)
+- Samsung berada di tempat kedua (<InlineMath math="10" /> orang murid)
+- Xiaomi berada di tempat ketiga (<InlineMath math="8" /> orang murid)
+- Oppo dan Lenovo masing-masing digunakan oleh <InlineMath math="5" /> orang murid
+
+Perhatikan bahawa setiap bar **dipisahkan** daripada bar yang lain kerana bar-bar itu mewakili kategori yang berbeza.
+
+### Mengumpulkan Masa kepada Selang
+
+Histogram pula digunakan untuk data berangka yang dikumpulkan dalam selang, seperti tempoh masa atau ketinggian. Bar-barnya bersentuhan kerana <Highlight>selang nilai itu selanjar</Highlight>.
+
+Data tempoh ini mengandungi <InlineMath math="90" /> cerapan. Supaya sempadan kelas tidak dikira dua kali, **masukkan titik hujung kiri dan kecualikan titik hujung kanan**, contohnya <InlineMath math="0\le t<2" /> dan <InlineMath math="2\le t<4" />. Kelas terakhir merangkumi <InlineMath math="8\le t\le10" />. Pemboleh ubah <InlineMath math="t" /> ialah tempoh dalam jam.
+
+<HistogramChart
+  title={<>Histogram Penggunaan Telefon Bimbit oleh Murid Sekolah Menengah</>}
+  description={<>Menunjukkan taburan masa yang dihabiskan murid dengan telefon mereka setiap hari.</>}
+  data={[
+    { name: "0-2", value: 10 },
+    { name: "2-4", value: 12 },
+    { name: "4-6", value: 32 },
+    { name: "6-8", value: 28 },
+    { name: "8-10", value: 8 },
+  ]}
+  chartConfig={{
+    value: {
+      label: "Kekerapan",
+      colors: {
+        light: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"],
+        dark: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"],
+      },
+    },
+  }}
+  yAxisLabel="Kekerapan"
+/>
+
+Histogram di atas menunjukkan pola penggunaan telefon berikut dalam kalangan murid sekolah menengah:
+
+- <InlineMath math="10" /> orang murid menggunakan telefon selama <InlineMath math="0\text{-}2 \text{ jam}" /> sehari
+- <InlineMath math="12" /> orang murid menggunakan telefon selama <InlineMath math="2\text{-}4 \text{ jam}" /> sehari
+- Bilangan paling tinggi ialah <InlineMath math="32" /> orang murid yang menggunakan telefon selama <InlineMath math="4\text{-}6 \text{ jam}" /> sehari
+- <InlineMath math="28" /> orang murid menggunakan telefon selama <InlineMath math="6\text{-}8 \text{ jam}" /> sehari
+- <InlineMath math="8" /> orang murid menggunakan telefon selama <InlineMath math="8\text{-}10 \text{ jam}" /> sehari
+
+Secara keseluruhan, <InlineMath math="32+28=60" /> daripada <InlineMath math="90" /> cerapan berada antara <InlineMath math="4\text{-}8 \text{ jam}" /> sehari, jadi julat ini mengandungi majoriti. Selang tunggal yang paling kerap ialah <InlineMath math="4\text{-}6 \text{ jam}" />.
+
+Bahagikan setiap kekerapan dengan 90 cerapan untuk membandingkan kelas sebagai bahagian. Kelas 4-6 dan 6-8 memegang <InlineMath math="\frac{32}{90} \approx 35.6\%" /> dan <InlineMath math="\frac{28}{90} \approx 31.1\%" />, bersama-sama dua pertiga daripada murid.
+
+<HistogramChart
+  title={<>Penggunaan telefon dalam peratus</>}
+  description={<>Bar <InlineMath math="\frac{f}{90} \times 100\%" /> bagi kelas 0-2, 2-4, 4-6, 6-8 dan 8-10 jam.</>}
+  data={[["0-2", 10], ["2-4", 12], ["4-6", 32], ["6-8", 28], ["8-10", 8]].map(([name, f]) => ({ name, value: (100 * f) / 90 }))}
+  chartConfig={{
+    value: {
+      label: "Peratus murid",
+      colors: {
+        light: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"],
+        dark: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"],
+      },
+    },
+  }}
+  yAxisLabel="Peratus murid"
+/>
+
+## Perbezaan Jenis Data dan Bentuk Bar
+
+Histogram dan carta bar sama-sama menggunakan bar, tetapi kedua-duanya menjawab soalan yang berbeza. Jadual ini membandingkan **apa yang diperlukan oleh setiap carta daripada data** dan cara bar dilukis.
+
+| Perbezaan    | Histogram                            | Carta Bar                                   |
+| ------------ | ------------------------------------ | ------------------------------------------- |
+| Jenis data   | Kuantitatif, dikumpulkan dalam selang | Kategori, setiap bar untuk satu kategori   |
+| Bentuk bar   | Bar bersentuhan, tiada ruang         | Ada ruang antara bar                        |
+| Paparan kekerapan | Untuk kelas yang sama lebar, tinggi menunjukkan kekerapan. Untuk lebar yang berbeza, luas mesti mewakili kekerapan | Tinggi bar menunjukkan kuantiti atau perkadaran |
+## Bila Menggunakan Histogram
+
+Gunakan **histogram** apabila:
+
+1. Data terdiri daripada nombor yang boleh diukur
+2. Soalannya membandingkan bagaimana cerapan bertaburan merentas selang nilai
+3. Nilai-nilai itu boleh dikumpulkan dalam selang yang bermakna
+
+Contoh data yang sesuai untuk histogram:
+
+- Ketinggian murid
+- Markah ujian
+- Masa perjalanan ke sekolah
+- Berat badan
+- Masa penggunaan peranti
+
+Histogram menunjukkan selang nilai mana yang mengandungi banyak atau sedikit cerapan. Membandingkan ketinggian atau luas bar menerangkan bentuk taburan, serakannya, dan kemungkinan kepencongannya. Untuk kategori yang berasingan tanpa paksi berangka yang semula jadi, gunakan carta bar.
