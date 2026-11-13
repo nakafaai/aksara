@@ -1,12 +1,30 @@
-Banyak bakteri setiap <InlineMath math="20" /> menit membentuk **barisan geometri** dengan rasio <InlineMath math="3" />. Dua jam sama dengan <InlineMath math="120" /> menit, jadi terjadi <InlineMath math="\frac{120}{20}=6" /> kali pelipatan tiga.
+# Memecah menjadi tiga kelompok
 
-<BlockMath math="N=200\cdot3^6=200\cdot729=145{.}800" />
+Bilangan yang dipilih habis dibagi <InlineMath math="4" /> saja atau habis dibagi <InlineMath math="6" /> saja. Bilangan yang habis dibagi keduanya adalah kelipatan <InlineMath math="12" />, karena <InlineMath math="12" /> adalah **kelipatan persekutuan terkecil** dari <InlineMath math="4" /> dan <InlineMath math="6" />. Jadi hitung tiga jumlah: kelipatan <InlineMath math="4" />, kelipatan <InlineMath math="6" />, dan kelipatan <InlineMath math="12" />.
 
-Sebagai pemeriksaan langkah demi langkah, <InlineMath math="200\to600\to1{.}800\to5{.}400\to16{.}200\to48{.}600\to145{.}800" />, tepat enam langkah.
+# Tiga deret aritmetika
 
-Jadi, setelah dua jam terdapat <InlineMath math="145{.}800" /> bakteri.
+Setiap kelompok adalah deret aritmetika. **Jumlahnya sama dengan banyak suku dikali rata-rata suku pertama dan terakhir**.
 
-- <InlineMath math="1{.}400" /> menghitung secara aritmetika dan menambahkan <InlineMath math="200" /> pada setiap langkah.
-- <InlineMath math="3{.}600" /> mengalikan dengan <InlineMath math="3\cdot6" />, bukan <InlineMath math="3^6" />.
-- <InlineMath math="48{.}600" /> hanya menghitung lima kali pelipatan tiga.
-- <InlineMath math="437{.}400" /> menghitung tujuh kali pelipatan tiga, seolah-olah nilai awal sudah termasuk langkah pertama.
+<BlockMath math="\begin{aligned}
+4+8+\dots+100&=\tfrac{25}{2}(4+100)=1{.}300 \\
+6+12+\dots+96&=\tfrac{16}{2}(6+96)=816 \\
+12+24+\dots+96&=\tfrac{8}{2}(12+96)=432
+\end{aligned}" />
+
+# Membuang kelipatan dua belas dua kali
+
+Kelipatan <InlineMath math="12" /> ikut terhitung di jumlah kelipatan <InlineMath math="4" /> dan juga di jumlah kelipatan <InlineMath math="6" />. Karena bilangan itu tidak boleh dipilih sama sekali, **kurangkan jumlahnya dua kali**, bukan sekali.
+
+<BlockMath math="1{.}300+816-2\cdot432=1{.}252" />
+
+Jadi, jumlah semua bilangan yang dipilih adalah <InlineMath math="1{.}252" />.
+
+# Kenapa pilihan lain salah
+
+Kebanyakan pilihan salah muncul dari **cara menangani bilangan yang habis dibagi keduanya**.
+
+- <InlineMath math="2{.}116" /> tidak membuang kelipatan <InlineMath math="12" /> sama sekali, sehingga bilangan itu terhitung dua kali.
+- <InlineMath math="1{.}684" /> membuang kelipatan <InlineMath math="12" /> hanya sekali. Itu jumlah bilangan yang habis dibagi <InlineMath math="4" /> atau <InlineMath math="6" />, termasuk yang habis dibagi keduanya.
+- <InlineMath math="1{.}636" /> mengira bilangan yang habis dibagi keduanya adalah kelipatan <InlineMath math="4\cdot6=24" />. Padahal <InlineMath math="12" /> dan <InlineMath math="36" /> juga habis dibagi <InlineMath math="4" /> dan <InlineMath math="6" />.
+- <InlineMath math="868" /> hanya menghitung bilangan yang habis dibagi <InlineMath math="4" /> tetapi tidak habis dibagi <InlineMath math="6" />, dan melupakan kelompok sebaliknya.

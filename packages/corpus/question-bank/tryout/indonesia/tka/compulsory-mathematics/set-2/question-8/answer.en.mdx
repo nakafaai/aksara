@@ -1,12 +1,30 @@
-The bacteria counts after every <InlineMath math="20" /> minutes form a **geometric sequence** with ratio <InlineMath math="3" />. Two hours are <InlineMath math="120" /> minutes, so there are <InlineMath math="\frac{120}{20}=6" /> triplings.
+# Splitting into three groups
 
-<BlockMath math="N=200\cdot3^6=200\cdot729=145{,}800" />
+The chosen numbers are divisible by <InlineMath math="4" /> only or by <InlineMath math="6" /> only. The numbers divisible by both are the multiples of <InlineMath math="12" />, because <InlineMath math="12" /> is the **least common multiple** of <InlineMath math="4" /> and <InlineMath math="6" />. So you need three sums: multiples of <InlineMath math="4" />, multiples of <InlineMath math="6" />, and multiples of <InlineMath math="12" />.
 
-As a check step by step, <InlineMath math="200\to600\to1{,}800\to5{,}400\to16{,}200\to48{,}600\to145{,}800" />, which is six steps.
+# Three arithmetic series
 
-So after two hours there are <InlineMath math="145{,}800" /> bacteria.
+Each group is an arithmetic series. **Its sum is the number of terms times the average of the first and last terms**.
 
-- <InlineMath math="1{,}400" /> works arithmetically and adds <InlineMath math="200" /> at each step.
-- <InlineMath math="3{,}600" /> multiplies by <InlineMath math="3\cdot6" /> instead of <InlineMath math="3^6" />.
-- <InlineMath math="48{,}600" /> counts only five triplings.
-- <InlineMath math="437{,}400" /> counts seven triplings, as if the starting value were already the first step.
+<BlockMath math="\begin{aligned}
+4+8+\dots+100&=\tfrac{25}{2}(4+100)=1{,}300 \\
+6+12+\dots+96&=\tfrac{16}{2}(6+96)=816 \\
+12+24+\dots+96&=\tfrac{8}{2}(12+96)=432
+\end{aligned}" />
+
+# Removing the multiples of twelve twice
+
+The multiples of <InlineMath math="12" /> show up in the sum for <InlineMath math="4" /> and again in the sum for <InlineMath math="6" />. Since they mustn't be chosen at all, **subtract their sum twice**, not once.
+
+<BlockMath math="1{,}300+816-2\cdot432=1{,}252" />
+
+So the sum of all the chosen numbers is <InlineMath math="1{,}252" />.
+
+# Why the other options are wrong
+
+Most wrong options come from **how the numbers divisible by both are handled**.
+
+- <InlineMath math="2{,}116" /> doesn't remove the multiples of <InlineMath math="12" /> at all, so they're counted twice.
+- <InlineMath math="1{,}684" /> removes the multiples of <InlineMath math="12" /> only once. That's the sum of numbers divisible by <InlineMath math="4" /> or <InlineMath math="6" />, including those divisible by both.
+- <InlineMath math="1{,}636" /> assumes the numbers divisible by both are the multiples of <InlineMath math="4\cdot6=24" />. But <InlineMath math="12" /> and <InlineMath math="36" /> are divisible by both <InlineMath math="4" /> and <InlineMath math="6" /> too.
+- <InlineMath math="868" /> counts only the numbers divisible by <InlineMath math="4" /> but not by <InlineMath math="6" />, and forgets the opposite group.
