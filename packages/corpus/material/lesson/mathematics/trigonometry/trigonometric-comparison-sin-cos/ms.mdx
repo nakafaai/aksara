@@ -1,0 +1,277 @@
+
+export const metadata = {
+  title: "Nisbah Sinus dan Kosinus",
+  description: "Bandingkan sinus dan kosinus dalam segi tiga bersudut tegak, kira sisi yang tidak diketahui, dan semak setiap model dengan geometri yang diwakilinya.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-14",
+  dateModified: "2026-09-24",
+  subject: "Trigonometri",
+};
+
+## Nisbah Sinus
+
+Sinus bagi sudut <InlineMath math="\theta" /> dalam segi tiga bersudut tegak ialah <Highlight>nisbah antara panjang sisi bertentangan</Highlight> dengan hipotenus.
+
+<BlockMath math="\sin \theta = \frac{\text{sisi bertentangan}}{\text{hipotenus}}" />
+
+<ContentBlock>
+  <MathVisual
+    title={
+        <>
+          Visualisasi Sinus (<InlineMath math="\sin \theta" />)
+        </>
+      }
+    description={<>Ubah sudut dalam input di bawah untuk melihat bagaimana <InlineMath math="\sin" /> berubah apabila sudut berubah.</>}
+    labels={{
+      angle: <InlineMath math="\theta" />,
+      opposite: <>Sisi Bertentangan</>,
+      adjacent: <>Sisi Bersebelahan</>,
+      hypotenuse: <>Hipotenus</>,
+      sine: <InlineMath math="\sin\theta" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 30, label: "sudut" }],
+      objects: [
+        { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+        { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+        { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [
+        { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+        { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+        { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+      ],
+      readouts: [
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+## Nisbah Kosinus
+
+Kosinus bagi sudut <InlineMath math="\theta" /> dalam segi tiga bersudut tegak ialah **nisbah sisi bersebelahan kepada hipotenus**.
+
+<BlockMath math="\cos \theta = \frac{\text{sisi bersebelahan}}{\text{hipotenus}}" />
+
+<ContentBlock>
+  <MathVisual
+    title={
+        <>
+          Visualisasi Kosinus (<InlineMath math="\cos \theta" />)
+        </>
+      }
+    description={<>Ubah sudut dalam input di bawah untuk melihat bagaimana <InlineMath math="\cos" /> berubah apabila sudut berubah.</>}
+    labels={{
+      angle: <InlineMath math="\theta" />,
+      opposite: <>Sisi Bertentangan</>,
+      adjacent: <>Sisi Bersebelahan</>,
+      hypotenuse: <>Hipotenus</>,
+      sine: <InlineMath math="\sin\theta" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 60, label: "sudut" }],
+      objects: [
+        { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+        { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+        { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [
+        { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+        { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+        { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+      ],
+      readouts: [
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+## Nilai Sinus dan Kosinus bagi Sudut Lazim
+
+Lajur perpuluhan mengandungi **nilai anggaran**. Kekalkan pecahan atau surd dalam pengiraan yang tepat, kemudian bundarkan jawapan akhir kalau nilai perpuluhan diminta.
+
+| Sudut                     | Nilai Sinus <InlineMath math="\sin \theta" /> | Nilai Perpuluhan           | Nilai Kosinus <InlineMath math="\cos \theta" /> | Nilai Perpuluhan           |
+| ------------------------- | ---------------------------------------- | -------------------------- | ---------------------------------------- | -------------------------- |
+| <InlineMath math="0^\circ" />  | <InlineMath math="0" />                  | <InlineMath math="0" />    | <InlineMath math="1" />                  | <InlineMath math="1" />    |
+| <InlineMath math="30^\circ" /> | <InlineMath math="\frac{1}{2}" />        | <InlineMath math="0.5" />  | <InlineMath math="\frac{\sqrt{3}}{2}" /> | <InlineMath math="0.87" /> |
+| <InlineMath math="45^\circ" /> | <InlineMath math="\frac{\sqrt{2}}{2}" /> | <InlineMath math="0.71" /> | <InlineMath math="\frac{\sqrt{2}}{2}" /> | <InlineMath math="0.71" /> |
+| <InlineMath math="60^\circ" /> | <InlineMath math="\frac{\sqrt{3}}{2}" /> | <InlineMath math="0.87" /> | <InlineMath math="\frac{1}{2}" />        | <InlineMath math="0.5" />  |
+| <InlineMath math="90^\circ" /> | <InlineMath math="1" />                  | <InlineMath math="1" />    | <InlineMath math="0" />                  | <InlineMath math="0" />    |
+
+## Kuantiti yang Dicari dengan Sinus dan Kosinus
+
+Pilih nisbah berdasarkan **dua sisi yang diketahui atau yang dicari**. Nama sisi bergantung pada sudut rujukan, jadi peraturan yang sama digunakan untuk ukuran bangunan, komponen sesaran, dan keratan rentas struktur.
+
+| Kuantiti yang dicari | Sisi yang diketahui | Hubungan |
+| --- | --- | --- |
+| Tinggi atau komponen mencancang | Hipotenus | <InlineMath math="h=c\sin\theta" /> |
+| Jarak mengufuk atau komponen mengufuk | Hipotenus | <InlineMath math="d=c\cos\theta" /> |
+| Panjang kabel atau hipotenus | Tinggi | <InlineMath math="c=h/\sin\theta" /> |
+
+Dalam navigasi, satu sesaran boleh dileraikan kepada komponen mengufuk dan mencancang dalam satah yang dipilih. Dalam keratan rentas bumbung atau piramid, sudut rujukan mengenal pasti tinggi, jarak mengufuk, dan hipotenus yang digunakan dalam nisbah itu.
+
+## Model Segi Tiga Bersudut Tegak bagi Piramid
+
+Pertimbangkan keratan rentas tengah sebuah piramid sekata yang melalui puncaknya dan titik tengah satu sisi tapak. Separuh daripada keratan rentas ini ialah segi tiga bersudut tegak. Kaki mencancangnya ialah tinggi piramid, kaki mengufuknya ialah **separuh lebar tapak**, dan hipotenusnya ialah tinggi condong dari titik tengah sisi tapak ke puncak.
+
+### Menggunakan Sinus untuk Mengira Tinggi Piramid
+
+Katakan tinggi condongnya <InlineMath math="600 \text{ m}" /> dan membentuk sudut <InlineMath math="41^\circ" /> dengan tapak. Tinggi piramid **bertentangan dengan sudut itu**.
+
+<MathVisual
+  title={<>Mengira Tinggi Piramid dengan Sinus</>}
+  description={<>Segi tiga bersudut tegak daripada keratan rentas itu, dengan sudut 41 darjah di tapak, tinggi piramid bertentangan dengannya, separuh lebar tapak bersebelahan, dan tinggi condong sebagai hipotenus.</>}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    opposite: <>Tinggi Piramid</>,
+    adjacent: <>Separuh Lebar Tapak</>,
+    hypotenuse: <>Tinggi Condong</>,
+    sine: <InlineMath math="\sin\theta" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 41, label: "sudut" }],
+    objects: [
+      { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+      { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+      { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [
+      { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+      { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+      { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
+/>
+
+Untuk mengira tinggi piramid, kita gunakan nisbah sinus:
+
+<MathContainer>
+  <BlockMath math="\sin 41^\circ = \frac{\text{tinggi piramid}}{\text{tinggi condong}}" />
+  <BlockMath math="\sin 41^\circ = \frac{x}{600}" />
+  <BlockMath math="\sin 41^\circ \approx 0.65606" />
+  <BlockMath math="x = 600\sin 41^\circ \text{ m} \approx 393.6 \text{ m}" />
+</MathContainer>
+
+Tinggi piramid dalam model ini ialah kira-kira <InlineMath math="393.6 \text{ m}" />.
+
+### Menggunakan Kosinus untuk Mengira Separuh Lebar Tapak
+
+Kaki mengufuk **bersebelahan** dengan sudut <InlineMath math="41^\circ" />, jadi kosinus memberikan separuh lebar tapak:
+
+<MathContainer>
+  <BlockMath math="\cos 41^\circ = \frac{\text{separuh lebar tapak}}{\text{tinggi condong}}" />
+  <BlockMath math="\cos 41^\circ = \frac{y}{600}" />
+  <BlockMath math="\cos 41^\circ \approx 0.75471" />
+  <BlockMath math="y = 600\cos 41^\circ \text{ m} \approx 452.8 \text{ m}" />
+</MathContainer>
+
+Lebar penuh tapak dalam keratan rentas ini ialah kira-kira <InlineMath math="2y = 905.7 \text{ m}" />.
+
+## Perbezaan dan Persamaan antara Sin Kos dan Tan
+
+Tiga nisbah ini menggunakan tiga sisi yang sama dalam segi tiga bersudut tegak, tetapi setiap satu membandingkan **pasangan yang berbeza**. Dengan memisahkan pasangan yang digunakan oleh setiap nisbah daripada sifat yang dikongsi ketiga-tiganya, kamu boleh membezakan sinus, kosinus, dan tangen dalam ingatan.
+
+### Perbezaan
+
+Setiap baris menamakan pasangan sisi yang dibandingkan oleh satu nisbah, ditulis sebagai pecahan dua sisi daripada segi tiga yang sama.
+
+1. **Sinus** <InlineMath math="\sin \theta" /> membandingkan sisi bertentangan dengan hipotenus.
+2. **Kosinus** <InlineMath math="\cos \theta" /> membandingkan sisi bersebelahan dengan hipotenus.
+3. **Tangen** <InlineMath math="\tan \theta" /> membandingkan sisi bertentangan dengan sisi bersebelahan.
+
+### Persamaan
+
+Ketiga-tiga nisbah ditakrifkan pada segi tiga bersudut tegak yang sama, jadi ketiga-tiganya berkongsi beberapa sifat. Setiap satu **hanya bergantung pada sudut**, maksudnya segi tiga yang berlainan saiz memberikan nilai yang sama. Sifat yang dikongsi itu datang daripada takrif yang sama, dan pembahagian yang menghubungkan ketiga-tiga nisbah memerlukan kosinus yang bukan sifar.
+
+1. Ketiga-tiganya ialah nisbah trigonometri dalam segi tiga bersudut tegak.
+2. Nilai ketiga-tiganya berubah mengikut sudut.
+3. Tiga nisbah ini ada hubungan matematik:
+
+   <BlockMath math="\tan \theta = \frac{\sin \theta}{\cos \theta},\qquad \cos \theta \ne 0" />
+
+## Soalan Latihan
+
+Seorang kanak-kanak menerbangkan layang-layang pada ketinggian <InlineMath math="3.5 \text{ m}" /> di atas tanah rata dan memegang hujung tali yang tegang dan lurus <InlineMath math="60 \text{ cm}" /> di atas tanah. Kalau tali itu membentuk sudut <InlineMath math="25^\circ" /> dengan garis mengufuk, berapakah panjangnya?
+
+<MathVisual
+  title={<>Masalah Layang-layang</>}
+  description={<>Kaki mencancang mengukur beza tinggi antara layang-layang dengan tangan yang memegang tali.</>}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    opposite: <>Beza Tinggi</>,
+    adjacent: <>Jarak Mengufuk</>,
+    hypotenuse: <>Panjang Tali</>,
+    sine: <InlineMath math="\sin\theta" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 25, label: "sudut" }],
+    objects: [
+      { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+      { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+      { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [
+      { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+      { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+      { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
+/>
+
+Untuk menyelesaikan masalah ini, nisbah trigonometri manakah yang patut kita gunakan?
+
+**Penyelesaian yang Betul**:
+
+1. Kita perlu mengira panjang tali (hipotenus)
+2. Kita tahu tinggi berkesan layang-layang itu, iaitu <InlineMath math="3.5 \text{ m} - 0.6 \text{ m} = 2.9 \text{ m}" />.
+3. Kita tahu sudut dongaknya, <InlineMath math="25^\circ" />.
+4. Oleh sebab kita mencari hipotenus dan kita tahu sisi bertentangan (tinggi berkesan), kita gunakan nisbah sinus:
+
+   <MathContainer>
+     <BlockMath math="\sin 25^\circ = \frac{\text{tinggi berkesan}}{\text{panjang tali}}" />
+     <BlockMath math="\sin 25^\circ = \frac{2.9}{x}" />
+     <BlockMath math="\sin 25^\circ \approx 0.42262" />
+     <BlockMath math="x = \frac{2.9}{\sin 25^\circ}\text{ m} \approx 6.86 \text{ m}" />
+   </MathContainer>
+
+Dibundarkan kepada persepuluh meter yang terdekat, panjang tali itu kira-kira <InlineMath math="6.9 \text{ m}" />.

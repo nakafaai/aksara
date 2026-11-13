@@ -1,0 +1,360 @@
+
+export const metadata = {
+  title: "Tiga Nisbah Trigonometri Utama",
+  description: "Kaitkan nisbah sinus, kosinus, dan tangen dalam segi tiga bersudut tegak dengan koordinat pada bulatan unit.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-14",
+  dateModified: "2026-09-12",
+  subject: "Trigonometri",
+};
+
+## Nisbah Sisi bagi Sudut Tirus yang Tetap
+
+Untuk **sudut tirus yang tetap** dalam segi tiga bersudut tegak, panjang sisi yang sepadan sentiasa ada nisbah yang sama. Tiga nisbah utama ialah sinus (<InlineMath math="\sin" />), kosinus (<InlineMath math="\cos" />), dan tangen (<InlineMath math="\tan" />).
+
+<MathContainer>
+  <BlockMath math="\sin \theta = \frac{\text{sisi bertentangan}}{\text{hipotenus}}" />
+  <BlockMath math="\cos \theta = \frac{\text{sisi bersebelahan}}{\text{hipotenus}}" />
+  <BlockMath math="\tan \theta = \frac{\text{sisi bertentangan}}{\text{sisi bersebelahan}}" />
+</MathContainer>
+
+### Sisi Segi Tiga Bersudut Tegak
+
+Nisbah trigonometri menggunakan istilah berikut:
+
+1. **Hipotenus**: Sisi paling panjang dalam segi tiga bersudut tegak, sentiasa bertentangan dengan sudut tegak <InlineMath math="90^\circ" />.
+2. **Sisi bertentangan**: Sisi yang bertentangan dengan sudut <InlineMath math="\theta" /> yang sedang kita kaji.
+3. **Sisi bersebelahan**: Kaki segi tiga yang menyentuh sudut <InlineMath math="\theta" /> yang sedang kita kaji.
+
+<ContentBlock>
+  <MathVisual
+    title={<>Visualisasi Sisi Segi Tiga</>}
+    description={<>Ubah sudut dalam input di bawah untuk melihat bagaimana kedudukan sisi berubah mengikut sudut.</>}
+    labels={{
+      angle: <InlineMath math="\theta" />,
+      opposite: <>Sisi Bertentangan</>,
+      adjacent: <>Sisi Bersebelahan</>,
+      hypotenuse: <>Hipotenus</>,
+      sine: <InlineMath math="\sin\theta" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 30, label: "sudut" }],
+      objects: [
+        { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+        { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+        { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [
+        { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+        { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+        { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+      ],
+      readouts: [
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+## Sinus
+
+Sinus bagi sudut <InlineMath math="\theta" /> ialah **nisbah sisi bertentangan kepada hipotenus**.
+
+<BlockMath math="\sin \theta = \frac{\text{sisi bertentangan}}{\text{hipotenus}}" />
+
+<ContentBlock>
+  <MathVisual
+    title={
+        <>
+          Visualisasi Sinus (<InlineMath math="\sin \theta" />)
+        </>
+      }
+    description={<>Perhatikan bagaimana nilai <InlineMath math="\sin" /> berubah apabila sudut berubah.</>}
+    labels={{
+      angle: <InlineMath math="\theta" />,
+      opposite: <>Sisi Bertentangan</>,
+      adjacent: <>Sisi Bersebelahan</>,
+      hypotenuse: <>Hipotenus</>,
+      sine: <InlineMath math="\sin\theta" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 30, label: "sudut" }],
+      objects: [
+        { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+        { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+        { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [
+        { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+        { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+        { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+      ],
+      readouts: [
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+### Contoh Nilai Sinus
+
+Jadual ini menyenaraikan sinus bagi sudut piawai dalam **bentuk tepat** dan sebagai perpuluhan, jadi kamu boleh semak satu nilai dalam mana-mana bentuk.
+
+| Sudut                     | Nilai Sinus Tepat                        | Perpuluhan Anggaran        |
+| ------------------------- | ---------------------------------------- | -------------------------- |
+| <InlineMath math="0^\circ" />  | <InlineMath math="0" />                  | <InlineMath math="0" />    |
+| <InlineMath math="30^\circ" /> | <InlineMath math="\frac{1}{2}" />        | <InlineMath math="0.5" />  |
+| <InlineMath math="45^\circ" /> | <InlineMath math="\frac{\sqrt{2}}{2}" /> | <InlineMath math="0.71" /> |
+| <InlineMath math="60^\circ" /> | <InlineMath math="\frac{\sqrt{3}}{2}" /> | <InlineMath math="0.87" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="1" />                  | <InlineMath math="1" />    |
+
+## Kosinus
+
+Kosinus bagi sudut <InlineMath math="\theta" /> ialah **nisbah sisi bersebelahan kepada hipotenus**.
+
+<BlockMath math="\cos \theta = \frac{\text{sisi bersebelahan}}{\text{hipotenus}}" />
+
+<ContentBlock>
+  <MathVisual
+    title={
+        <>
+          Visualisasi Kosinus (<InlineMath math="\cos \theta" />)
+        </>
+      }
+    description={<>Perhatikan bagaimana nilai <InlineMath math="\cos" /> berubah apabila sudut berubah.</>}
+    labels={{
+      angle: <InlineMath math="\theta" />,
+      opposite: <>Sisi Bertentangan</>,
+      adjacent: <>Sisi Bersebelahan</>,
+      hypotenuse: <>Hipotenus</>,
+      sine: <InlineMath math="\sin\theta" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 60, label: "sudut" }],
+      objects: [
+        { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+        { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+        { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [
+        { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+        { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+        { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+      ],
+      readouts: [
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+### Contoh Nilai Kosinus
+
+Sudut piawai yang sama muncul di sini dengan nilai kosinusnya, dan lajur perpuluhan memberikan **nilai yang dibundarkan** di sebelah setiap nilai tepat.
+
+| Sudut                     | Nilai Kosinus Tepat                      | Perpuluhan Anggaran        |
+| ------------------------- | ---------------------------------------- | -------------------------- |
+| <InlineMath math="0^\circ" />  | <InlineMath math="1" />                  | <InlineMath math="1" />    |
+| <InlineMath math="30^\circ" /> | <InlineMath math="\frac{\sqrt{3}}{2}" /> | <InlineMath math="0.87" /> |
+| <InlineMath math="45^\circ" /> | <InlineMath math="\frac{\sqrt{2}}{2}" /> | <InlineMath math="0.71" /> |
+| <InlineMath math="60^\circ" /> | <InlineMath math="\frac{1}{2}" />        | <InlineMath math="0.5" />  |
+| <InlineMath math="90^\circ" /> | <InlineMath math="0" />                  | <InlineMath math="0" />    |
+
+## Tangen
+
+Tangen bagi sudut <InlineMath math="\theta" /> ialah <Highlight>nisbah antara sisi bertentangan dengan sisi bersebelahan</Highlight>. Tangen juga ialah hasil bahagi sinus dengan kosinus setiap kali <InlineMath math="\cos \theta\ne0" />.
+
+<BlockMath math="\begin{aligned} &amp;\tan \theta = \frac{\text{sisi bertentangan}}{\text{sisi bersebelahan}} = \frac{\sin \theta}{\cos \theta}, \\ &amp;\cos \theta\ne0 \end{aligned}" />
+
+<ContentBlock>
+  <MathVisual
+    title={
+        <>
+          Visualisasi Tangen (<InlineMath math="\tan \theta" />)
+        </>
+      }
+    description={<>Perhatikan bagaimana nilai <InlineMath math="\tan" /> berubah apabila sudut berubah.</>}
+    labels={{
+      angle: <InlineMath math="\theta" />,
+      opposite: <>Sisi Bertentangan</>,
+      adjacent: <>Sisi Bersebelahan</>,
+      hypotenuse: <>Hipotenus</>,
+      sine: <InlineMath math="\sin\theta" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 45, label: "sudut" }],
+      objects: [
+        { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+        { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+        { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [
+        { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+        { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+        { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+      ],
+      readouts: [
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+### Contoh Nilai Tangen
+
+Jadual ini melengkapkan tiga nisbah utama dengan **nilai tangen** bagi sudut piawai yang sama.
+
+| Sudut                     | Nilai Tangen Tepat                       | Perpuluhan Anggaran        |
+| ------------------------- | ---------------------------------------- | -------------------------- |
+| <InlineMath math="0^\circ" />  | <InlineMath math="0" />                  | <InlineMath math="0" />    |
+| <InlineMath math="30^\circ" /> | <InlineMath math="\frac{1}{\sqrt{3}}" /> | <InlineMath math="0.58" /> |
+| <InlineMath math="45^\circ" /> | <InlineMath math="1" />                  | <InlineMath math="1" />    |
+| <InlineMath math="60^\circ" /> | <InlineMath math="\sqrt{3}" />           | <InlineMath math="1.73" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="\text{tidak tertakrif}" /> | <InlineMath math="\text{tidak tertakrif}" /> |
+
+## Hubungan antara Sin Kos dan Tan dalam Bulatan Unit
+
+Untuk memahami bagaimana nisbah trigonometri ini berfungsi bagi semua sudut, kita boleh gunakan konsep **bulatan unit** (bulatan dengan jejari <InlineMath math="1" />).
+
+<MathVisual
+  title={<>Bulatan Unit dan Nisbah Trigonometri</>}
+  description={<>Ubah sudut dalam input di bawah untuk melihat bagaimana nilai <InlineMath math="\sin" />, <InlineMath math="\cos" />, dan <InlineMath math="\tan" /> berubah pada bulatan unit.</>}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 45, label: "sudut" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
+/>
+
+Dalam bulatan unit:
+
+- Koordinat-<InlineMath math="x" /> pada bulatan unit ialah <InlineMath math="\cos \theta" />.
+- Koordinat-<InlineMath math="y" /> pada bulatan unit ialah <InlineMath math="\sin \theta" />.
+- Apabila <InlineMath math="\cos \theta\ne0" />, <InlineMath math="\tan \theta" /> ialah kecerunan garis dari pusat ke titik pada bulatan unit. Pada <InlineMath math="90^\circ" />, garis itu mencancang, jadi kecerunan dan tangennya tidak tertakrif.
+
+## Hubungan antara Tiga Nisbah Trigonometri
+
+Pada bulatan unit, segi tiga bersudut tegak ada kaki <InlineMath math="\cos\theta" /> dan <InlineMath math="\sin\theta" /> bagi sudut tirus, dan hipotenus <InlineMath math="1" />. **Teorem Pythagoras** terus mengaitkan kuasa dua kedua-dua nisbah itu:
+
+<BlockMath math="(\cos\theta)^2+(\sin\theta)^2=1^2=1" />
+
+Di luar sukuan pertama, koordinat boleh jadi negatif, tetapi persamaan bulatan <InlineMath math="x^2+y^2=1" /> tetap benar. Jadi identiti itu benar untuk setiap sudut.
+
+Tangen membahagikan sisi bertentangan dengan sisi bersebelahan. Biar <InlineMath math="a" /> ialah sisi bertentangan, <InlineMath math="b" /> ialah sisi bersebelahan, dan <InlineMath math="c" /> ialah hipotenus. Membahagikan sinus dengan kosinus membatalkan faktor hipotenus:
+
+<BlockMath math="\frac{\sin\theta}{\cos\theta}=\frac{a/c}{b/c}=\frac{a}{c}\cdot\frac{c}{b}=\frac{a}{b}=\tan\theta" />
+
+**Penyebutnya mesti bukan sifar**. Pada bulatan unit, hubungan tangen ini benar tepat apabila <InlineMath math="\cos\theta\ne0" />.
+
+## Latihan
+
+Segi tiga bersudut tegak berikut ada sudut <InlineMath math="30^\circ" /> dan hipotenus <InlineMath math="1" />. Tentukan **panjang tepat sisi bertentangan dan sisi bersebelahan**, kemudian cari <InlineMath math="\sin 30^\circ" />, <InlineMath math="\cos 30^\circ" />, dan <InlineMath math="\tan 30^\circ" />.
+
+<MathVisual
+  title={
+    <>
+      Segi Tiga dengan Sudut <InlineMath math="30^\circ" />
+    </>
+  }
+  description={
+    <>
+      Segi tiga bersudut tegak dengan sudut <InlineMath math="30^\circ" />
+    </>
+  }
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    opposite: <>Sisi Bertentangan</>,
+    adjacent: <>Sisi Bersebelahan</>,
+    hypotenuse: <>Hipotenus</>,
+    sine: <InlineMath math="\sin\theta" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 1.3 }, y: { min: -0.3, max: 1.2 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 30, label: "sudut" }],
+    objects: [
+      { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "1 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "opposite", kind: "path", points: [{ x: "1 cos(a pi / 180)", y: "0" }, { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }], appearance: "answer" },
+      { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }], appearance: "primary" },
+      { id: "vertex", kind: "marker", x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [
+      { key: "adjacent", objectId: "adjacent", at: { x: "0.5 cos(a pi / 180)", y: "0" }, placement: "below" },
+      { key: "opposite", objectId: "opposite", at: { x: "1 cos(a pi / 180)", y: "0.5 sin(a pi / 180)" }, placement: "right" },
+      { key: "hypotenuse", objectId: "hypotenuse", at: { x: "0.5 cos(a pi / 180)", y: "0.5 sin(a pi / 180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
+/>
+
+### Penyelesaian
+
+Nisbah sudut khas yang tepat terus memberikan panjang dua kaki itu:
+
+<MathContainer>
+  <BlockMath math="\text{sisi bertentangan}=1\cdot\sin 30^\circ=\frac{1}{2}" />
+  <BlockMath math="\text{sisi bersebelahan}=1\cdot\cos 30^\circ=\frac{\sqrt{3}}{2}" />
+  <BlockMath math="\begin{aligned} \tan 30^\circ &amp;=\frac{1/2}{\sqrt{3}/2} \\ &amp;=\frac{1}{\sqrt{3}} \\ &amp;=\frac{\sqrt{3}}{3} \\ &amp;\approx0.577 \end{aligned}" />
+</MathContainer>
+
+Menggunakan **nilai tepat sebelum pembundaran** mengekalkan identiti <InlineMath math="\tan \theta=\sin \theta/\cos \theta" /> dan mengelakkan ralat daripada membahagikan nombor perpuluhan yang sudah dibundarkan.
