@@ -1,13 +1,21 @@
-Pertanyaan ini memuat dua syarat: **persentase terlambat kelompok itu harus lebih rendah** daripada kelompok kereta yang 27 persen, tetapi **jumlah mahasiswa yang terlambat harus lebih banyak**. Persentase saja tidak cukup, jadi ubah setiap persentase menjadi jumlah mahasiswa.
+Kerjakan dalam tiga langkah: cari porsi Saltmarsh, berikan porsi itu pada setiap ladang di jalur North, lalu jumlahkan energi yang terselamatkan. Ladang di jalur South tidak berubah.
 
-Kelompok kereta: <InlineMath math="0{,}27 \times 144 \approx 39" /> mahasiswa terlambat. Sekarang periksa kelompok yang persentasenya di bawah 27 persen:
+Saltmarsh kehilangan <InlineMath math="40" /> dari <InlineMath math="800" /> GWh:
 
-<BlockMath math="\begin{aligned} \text{Jalan kaki: } 0{,}09 \times 264 &\approx 24 \\ \text{Sepeda: } 0{,}11 \times 216 &\approx 24 \\ \text{Mobil atau motor: } 0{,}21 \times 204 &\approx 43 \end{aligned}" />
+<BlockMath math="\frac{40}{800} = 5\%" />
 
-Hanya kelompok *car or motorbike* yang jumlah terlambatnya lebih banyak, sekitar 43 dibanding 39, padahal persentasenya, 21 persen, lebih rendah. Kelompok itu jauh lebih besar, sehingga persentase yang lebih kecil tetap menghasilkan lebih banyak mahasiswa terlambat.
+Sekarang berikan setiap ladang North **porsi yang sama dari potensinya sendiri**, bukan jumlah yang sama:
 
-- Kelompok jalan kaki dan sepeda masing-masing hanya sekitar 24 mahasiswa terlambat, lebih sedikit daripada 39.
-- Kelompok bus memang lebih banyak yang terlambat, tetapi persentasenya 34 persen, lebih tinggi, sehingga tidak memenuhi syarat kedua.
-- *None of the other groups* keliru karena kelompok mobil atau motor memenuhi kedua syarat.
+<BlockMath math="\begin{aligned}
+\text{Fellside: } 5\% \times 200 &= 10 \text{ GWh hilang, jadi } 50 - 10 = 40 \text{ GWh terselamatkan} \\
+\text{Brackenmoor: } 5\% \times 800 &= 40 \text{ GWh hilang, jadi } 160 - 40 = 120 \text{ GWh terselamatkan}
+\end{aligned}" />
 
-Jadi, jawabannya adalah kelompok *car or motorbike*.
+Setiap GWh yang terselamatkan ikut tersalurkan, jadi keempat ladang menyalurkan <InlineMath math="40 + 120 = 160" /> GWh lebih banyak.
+
+- <InlineMath math="120" /> GWh memakai porsi seluruh jalur South, <InlineMath math="90 \div 1000 = 9\%" />, bukan porsi Saltmarsh.
+- <InlineMath math="130" /> GWh memberi setiap ladang North **jumlah** milik Saltmarsh, <InlineMath math="40" /> GWh, bukan porsinya.
+- <InlineMath math="210" /> GWh menganggap ladang North tidak kehilangan apa pun.
+- <InlineMath math="60" /> GWh memakai porsi seluruh wilayah, <InlineMath math="15\%" />, yang masih memuat kehilangan ladang North sendiri.
+
+Keempat ladang akan menyalurkan <InlineMath math="160" /> GWh lebih banyak.

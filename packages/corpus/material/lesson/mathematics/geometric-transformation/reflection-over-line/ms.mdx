@@ -1,0 +1,141 @@
+
+export const metadata = {
+  title: "Pantulan pada Garis",
+    description: "Bina pantulan pada sebarang garis dengan pembahagi dua sama serenjang dan jarak yang sama.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-10",
+  dateModified: "2026-11-08",
+  subject: "Transformasi Geometri",
+};
+
+## Cara Garis Cermin Memasangkan Titik
+
+Dalam pantulan pada garis, **garis cermin** ialah sempadan simetri antara sesuatu titik dengan imejnya. Titik pada cermin kekal di tempatnya. Titik di luar cermin dipetakan ke sisi bertentangan pada jarak serenjang yang sama.
+
+Kalau <InlineMath math="P" /> terletak pada cermin, <InlineMath math="P'=P" />. Kalau tidak, lukis garis serenjang dari <InlineMath math="P" /> ke cermin dan namakan kakinya <InlineMath math="M" />. Panjangkan tembereng itu sejauh yang sama melepasi cermin untuk menentukan kedudukan imej <InlineMath math="P'" />:
+
+<BlockMath math="PM=MP',\qquad PP'\perp m" />
+
+Uji kedua-dua kes pada cermin <InlineMath math="m: y = \tfrac12 x + 1" />. Titik <InlineMath math="Q(4, 3)" /> terletak pada <InlineMath math="m" />, kerana <InlineMath math="\tfrac12 \cdot 4 + 1 = 3" />, jadi imejnya ialah <InlineMath math="Q" /> sendiri. Titik <InlineMath math="R(0, 6)" /> tidak terletak pada cermin, dan imejnya <InlineMath math="R'(4, -2)" /> mendarat di sisi yang satu lagi pada jarak yang sama, dengan titik tengah <InlineMath math="(2, 2)" /> pada <InlineMath math="m" /> dan <InlineMath math="RR'" /> berserenjang dengan <InlineMath math="m" />.
+
+<MathVisual
+  title={<>Titik tetap dan titik yang dicerminkan</>}
+  description={<>Cermin <InlineMath math="m" /> dengan titik tetap <InlineMath math="Q(4, 3)" /> padanya, serta <InlineMath math="R(0, 6)" /> dengan imejnya <InlineMath math="R'(4, -2)" />, yang titik tengahnya <InlineMath math="(2, 2)" /> terletak pada <InlineMath math="m" />.</>}
+  labels={{
+    mirror: <InlineMath math="m" />,
+    q: <InlineMath math="Q = Q'" />,
+    r: <InlineMath math="R(0, 6)" />,
+    image: <InlineMath math="R'(4, -2)" />,
+    mid: <InlineMath math="(2, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5.5 }, y: { min: -2.6, max: 6.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 1 }, { x: 4, y: 3 }], appearance: "reference" },
+      { id: "join", kind: "segment", from: { x: 0, y: 6 }, to: { x: 4, y: -2 }, appearance: "construction" },
+      { id: "q", kind: "point", at: { x: 4, y: 3 }, appearance: "answer" },
+      { id: "r", kind: "point", at: { x: 0, y: 6 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: 4, y: -2 }, appearance: "secondary" },
+      { id: "mid", kind: "point", at: { x: 2, y: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 5, y: 7 / 2 }, placement: "above" },
+      { key: "q", objectId: "q", at: { x: 4, y: 3 }, placement: "above-left" },
+      { key: "r", objectId: "r", at: { x: 0, y: 6 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 4, y: -2 }, placement: "right" },
+      { key: "mid", objectId: "mid", at: { x: 2, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Memantulkan Titik pada Garis Condong
+
+Pantulkan <InlineMath math="P(2,4)" /> pada <InlineMath math="m:y=\frac12x+1" />. **Titik tengah** <InlineMath math="M" /> terletak pada cermin, manakala tembereng yang menyambungkan titik itu dengan imejnya berserenjang dengan cermin.
+
+<MathVisual
+  title={<>Memantulkan <InlineMath math="P(2, 4)" /> pada <InlineMath math="m" /></>}
+  description={<>Cermin <InlineMath math="m: y = \tfrac12 x + 1" />, titik <InlineMath math="P(2, 4)" />, titik tengah <InlineMath math="M\left(\tfrac{14}{5}, \tfrac{12}{5}\right)" /> pada cermin, dan imej <InlineMath math="P'\left(\tfrac{18}{5}, \tfrac45\right)" />.</>}
+  labels={{
+    mirror: <InlineMath math="m" />,
+    p: <InlineMath math="P(2, 4)" />,
+    mid: <InlineMath math="M" />,
+    image: <InlineMath math="P'\left(\tfrac{18}{5}, \tfrac45\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 1 }, { x: 4, y: 3 }], appearance: "reference" },
+      { id: "join", kind: "segment", from: { x: 2, y: 4 }, to: { x: 18 / 5, y: 4 / 5 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "mid", kind: "point", at: { x: 14 / 5, y: 12 / 5 }, appearance: "construction" },
+      { id: "image", kind: "point", at: { x: 18 / 5, y: 4 / 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 5, y: 7 / 2 }, placement: "above" },
+      { key: "p", objectId: "p", at: { x: 2, y: 4 }, placement: "above-left" },
+      { key: "mid", objectId: "mid", at: { x: 14 / 5, y: 12 / 5 }, placement: "above-right" },
+      { key: "image", objectId: "image", at: { x: 18 / 5, y: 4 / 5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+### Mencari Kaki Garis Serenjang
+
+Kecerunan cermin ialah <InlineMath math="\frac12" />. Oleh itu, **kecerunan garis serenjang** ialah <InlineMath math="-2" />, kerana hasil darab kedua-duanya <InlineMath math="-1" />. Garis serenjang yang melalui <InlineMath math="P(2,4)" /> mempunyai persamaan:
+
+<BlockMath math="y-4=-2(x-2)\quad\Longrightarrow\quad y=-2x+8" />
+
+Di titik persilangan, kedua-dua persamaan memberikan koordinat mencancang yang sama:
+
+<MathContainer>
+  <BlockMath math="\frac12x+1=-2x+8\quad\Longrightarrow\quad\frac52x=7\quad\Longrightarrow\quad x=\frac{14}{5}" />
+  <BlockMath math="y=\frac12\cdot\frac{14}{5}+1=\frac75+\frac55=\frac{12}{5},\qquad M\left(\frac{14}{5},\frac{12}{5}\right)" />
+</MathContainer>
+
+Garis serenjang yang melalui <InlineMath math="P" /> mempunyai kecerunan <InlineMath math="-2" />, jadi persamaannya <InlineMath math="y = -2x + 8" />. Garis itu bertemu cermin di kaki <InlineMath math="M\left(\tfrac{14}{5}, \tfrac{12}{5}\right)" />, dan segi empat sama kecil di <InlineMath math="M" /> menandakan sudut tegak antara dua garis itu.
+
+<MathVisual
+  title={<>Garis serenjang dari <InlineMath math="P" /> bertemu cermin di <InlineMath math="M" /></>}
+  description={<>Cermin <InlineMath math="m" />, garis serenjang <InlineMath math="y = -2x + 8" /> yang melalui <InlineMath math="P(2, 4)" />, dan titik persilangannya <InlineMath math="M\left(\tfrac{14}{5}, \tfrac{12}{5}\right)" /> dengan tanda sudut tegak.</>}
+  labels={{
+    mirror: <InlineMath math="m" />,
+    perp: <InlineMath math="y = -2x + 8" />,
+    p: <InlineMath math="P(2, 4)" />,
+    mid: <InlineMath math="M\left(\tfrac{14}{5}, \tfrac{12}{5}\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 1 }, { x: 4, y: 3 }], appearance: "reference" },
+      { id: "perp", kind: "line", through: [{ x: 2, y: 4 }, { x: 4, y: 0 }], appearance: "construction" },
+      { id: "angle", kind: "polygon", vertices: [{ x: 14 / 5, y: 12 / 5 }, { x: (14 / 5) + (3 / 5 / Math.sqrt(5)), y: (12 / 5) + (3 / 10 / Math.sqrt(5)) }, { x: (14 / 5) + (3 / 5 / Math.sqrt(5)) + (-3 / 10 / Math.sqrt(5)), y: (12 / 5) + (3 / 10 / Math.sqrt(5)) + (3 / 5 / Math.sqrt(5)) }, { x: (14 / 5) + (-3 / 10 / Math.sqrt(5)), y: (12 / 5) + (3 / 5 / Math.sqrt(5)) }], appearance: "highlight" },
+      { id: "p", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "mid", kind: "point", at: { x: 14 / 5, y: 12 / 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 5, y: 7 / 2 }, placement: "above" },
+      { key: "perp", objectId: "perp", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: 2, y: 4 }, placement: "left" },
+      { key: "mid", objectId: "mid", at: { x: 14 / 5, y: 12 / 5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+### Mencari dan Menyemak Imej
+
+Oleh sebab <InlineMath math="M" /> ialah **titik tengah tembereng**, gandakan koordinatnya dan tolak koordinat <InlineMath math="P" /> untuk mencari imej:
+
+<BlockMath math="P'=2M-P=\left(2\cdot\frac{14}{5}-2,2\cdot\frac{12}{5}-4\right)=\left(\frac{18}{5},\frac45\right)" />
+
+Jarak ke cermin ialah panjang tembereng ke <InlineMath math="M" />. Pengiraan ini menyemak panjang sama yang kelihatan dalam rajah:
+
+<MathContainer>
+  <BlockMath math="PM=\sqrt{\left(\frac{14}{5}-2\right)^2+\left(\frac{12}{5}-4\right)^2}=\sqrt{\frac{16+64}{25}}=\frac{4\sqrt5}{5}" />
+  <BlockMath math="MP'=\sqrt{\left(\frac{18}{5}-\frac{14}{5}\right)^2+\left(\frac45-\frac{12}{5}\right)^2}=\frac{4\sqrt5}{5}" />
+</MathContainer>

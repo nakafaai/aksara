@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-purpose",
+    topic: "text-relation",
   },
-  stimulus: "parking-minimums",
+  stimulus: "homework-limits",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "To explain how planners calculate the number of parking spaces a building needs",
+            "Text 1 treats them as proof that homework harms attainment, and Text 2 rejects them because the pilot lasted only one term.",
         },
         {
           correct: false,
           label:
-            "To argue that cities should ban the construction of new parking garages",
-        },
-        {
-          correct: false,
-          label:
-            "To describe the traffic problems caused by drivers searching for parking",
-        },
-        {
-          correct: false,
-          label:
-            "To compare the travel habits of people in suburbs and in city centres",
+            "Text 1 treats them as decisive only for Years 3 to 6, and Text 2 agrees but adds that the bedtime figures say more.",
         },
         {
           correct: true,
           label:
-            "To argue that most parking requirements should go, letting parking follow local demand",
+            "Text 1 treats them as settling the debate for every age, while Text 2 says they tell less than they seem, though it still backs the change for the youngest on other grounds.",
+        },
+        {
+          correct: false,
+          label:
+            "Text 1 gives them the same weight as the bedtime figures, and Text 2 questions the bedtime figures but accepts the scores.",
+        },
+        {
+          correct: false,
+          label:
+            "Text 1 treats them as settling the debate for every age, and Text 2 rejects them outright as showing nothing about homework.",
         },
       ],
     },
