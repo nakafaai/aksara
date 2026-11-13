@@ -1,16 +1,21 @@
-Dua pernyataan memerlukan tabel dan dua lagi memerlukan teks. Periksa satu per satu dan **perhatikan besaran yang diwakili setiap angka**.
+Mulai dari apa yang diramalkan penjelasan operator. Jalur North "is often full on windy evenings" (sering penuh pada malam berangin), jadi ladang di jalur North seharusnya kehilangan banyak. Ladang di jalur South seharusnya kehilangan sedikit, kecuali saat permintaan rendah, dan permintaan rendah mengenai **semua ladang di wilayah itu**, jalur mana pun yang dipakainya.
 
-Pernyataan pertama menjumlahkan dua kelompok: <InlineMath math="372 + 144 = 516" /> mahasiswa. Separuh dari <InlineMath math="1{.}200" /> adalah <InlineMath math="600" />, dan <InlineMath math="516" /> kurang dari <InlineMath math="600" />, jadi pernyataan ini salah.
+Sekarang hitung porsi setiap ladang:
 
-Pernyataan kedua membandingkan lama perjalanan rata-rata: 17 menit dengan sepeda dan 26 menit dengan mobil atau motor, jadi benar.
+| Ladang | Jalur | Porsi yang dibatasi |
+| --- | --- | --- |
+| Fellside | North | <InlineMath math="50 \div 200 = 25\%" /> |
+| Brackenmoor | North | <InlineMath math="160 \div 800 = 20\%" /> |
+| Saltmarsh | South | <InlineMath math="40 \div 800 = 5\%" /> |
+| Gullrock | South | <InlineMath math="50 \div 200 = 25\%" /> |
 
-Pernyataan ketiga salah membaca angka 40 persen. Angka itu adalah porsi **mahasiswa yang belum bersepeda dan mau mempertimbangkannya**, bukan penurunan keterlambatan.
+Gullrock berada di jalur South, sama seperti Saltmarsh, tetapi kehilangan <InlineMath math="25\%" />, persis sebanyak Fellside di jalur North yang padat. Jalur tidak bisa menjelaskannya, dan permintaan rendah juga tidak, karena Saltmarsh menghadapi malam-malam yang sama dan hanya kehilangan <InlineMath math="5\%" />.
 
-Pernyataan keempat benar karena paragraf terakhir menyebut keterlambatan yang dilaporkan sendiri "may not match attendance records" (mungkin tidak sesuai dengan catatan kehadiran).
+Angka lain cocok dengan penjelasan operator:
 
-| Pernyataan | Jawaban |
-| --- | --- |
-| Lebih dari separuh naik bus atau kereta | False |
-| Pesepeda menempuh perjalanan lebih singkat daripada pengguna mobil atau motor | True |
-| Parkir sepeda mengurangi keterlambatan 40 persen | False |
-| Data keterlambatan mungkin tidak sesuai dengan catatan kehadiran | True |
+- Fellside kehilangan seperempat, cocok untuk ladang di jalur North yang penuh.
+- Total Brackenmoor yang besar cocok untuk ladang besar di jalur North.
+- North kehilangan porsi lebih besar daripada South, persis seperti yang diramalkan.
+- Kehilangan Saltmarsh yang kecil cocok untuk ladang di jalur South yang lebih lega.
+
+Angka yang tidak bisa dijelaskan penjelasan operator saja adalah Gullrock yang kehilangan porsi yang sama dengan Fellside.

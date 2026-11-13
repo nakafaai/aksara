@@ -4,37 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "research-design",
   },
-  stimulus: "octopus-arms",
+  stimulus: "mantis-shrimp",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Count the colour receptor types in several other species of mantis shrimp.",
+        },
+        {
+          correct: false,
+          label:
+            "Test the same shrimp with the glowing fibres on many more target colours, spread across the whole range of their receptors.",
+        },
+        {
+          correct: false,
+          label:
+            "Run the same fibre task with honeybees and butterflies and compare the scores.",
+        },
+        {
           correct: true,
           label:
-            "A soft robot with control spread along its body outperformed an identical robot with one central processor.",
+            "Use moving, prey-like targets in the two colours and see whether much smaller gaps are then separated.",
         },
         {
           correct: false,
           label:
-            "Octopuses learned to open jars faster than any other invertebrate tested in the same laboratory.",
-        },
-        {
-          correct: false,
-          label:
-            "Prosthetic human arms with more joints were harder for users to control than simpler designs.",
-        },
-        {
-          correct: false,
-          label:
-            "Severed octopus arms stopped responding to touch after about an hour, even when kept in seawater.",
-        },
-        {
-          correct: false,
-          label:
-            "Robots with a single central processor were cheaper to build than robots with many controllers.",
+            "Time how quickly the shrimp strike when the two colours are very different.",
         },
       ],
     },

@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "point-of-view",
   },
-  stimulus: "parking-minimums",
+  stimulus: "homework-limits",
   versions: {
     en: {
-      columns: ["Yes", "No"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: true,
           label:
-            "Parking minimums were first meant to prevent congestion caused by drivers looking for spaces.",
+            "The length of the limit matters less than whether the work set within it, such as recall practice, is worth doing.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Removing parking minimums would mean that no new parking spaces are built.",
+            "The claim is right, because the pilot showed that scores hold steady once homework is removed.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Parking formulas are sometimes borrowed from places with different travel patterns.",
+            "Cutting older pupils' homework to nothing could hurt most the pupils who have the least help at home.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Every city that removed its minimums saw housing prices fall.",
+            "A limit of $$40$$ minutes is too little for pupils facing exams, so for those pupils it should be raised rather than cut.",
+        },
+        {
+          correct: false,
+          label:
+            "A limit of any length is a mistake, because it teaches pupils that learning stops when a timer rings.",
         },
       ],
     },

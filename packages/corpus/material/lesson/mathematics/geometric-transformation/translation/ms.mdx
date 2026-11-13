@@ -1,0 +1,238 @@
+
+export const metadata = {
+  title: "Translasi",
+  description: "Translasikan titik, garis, dan segi tiga dengan vektor, kemudian sahkan setiap imej melalui contoh lengkap dan graf.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-10",
+  dateModified: "2026-09-13",
+  subject: "Transformasi Geometri",
+};
+
+## Menggerakkan Setiap Titik dengan Vektor yang Sama
+
+Translasi, juga dikenali sebagai anjakan atau gelongsoran, ialah sejenis transformasi geometri yang menggerakkan setiap titik pada sesuatu objek sejauh jarak tertentu dalam arah yang ditetapkan. Transformasi ini <Highlight>tidak mengubah orientasi, saiz, atau bentuk</Highlight> objek. Hanya kedudukannya yang berubah.
+
+### Takrif Translasi
+
+Setiap translasi menggunakan **vektor sesaran** yang sama bagi setiap titik:
+
+<BlockMath math="\begin{pmatrix} a \\ b \end{pmatrix}" />
+
+Bagi sebarang titik <InlineMath math="P(x,y)" />, translasi ini ditulis sebagai <InlineMath math="T_{(a,b)}(x,y)" /> atau <InlineMath math="\tau_{(a,b)}(x,y)" /> dan ditakrifkan oleh:
+
+<BlockMath math="P'(x',y') = (x+a, y+b)" />
+
+Maksudnya:
+
+<MathContainer>
+  <BlockMath math="x' = x + a" />
+  <BlockMath math="y' = y + b" />
+</MathContainer>
+
+Di sini, <InlineMath math="a" /> ialah anjakan mengufuk (positif ke kanan, negatif ke kiri) dan <InlineMath math="b" /> ialah anjakan mencancang (positif ke atas, negatif ke bawah).
+
+## Mentranslasikan Satu Titik
+
+Translasikan titik <InlineMath math="(3,2)" /> dengan vektor berikut dan tentukan imejnya:
+
+<BlockMath math="\begin{pmatrix} -2 \\ 3 \end{pmatrix}" />
+
+Di sini, <InlineMath math="x=3" />, <InlineMath math="y=2" />, <InlineMath math="a=-2" />, dan <InlineMath math="b=3" />.
+
+Gerak **dua unit ke kiri dan tiga unit ke atas**. Tambah komponen mengufuk dan mencancang secara berasingan:
+
+<MathContainer>
+  <BlockMath math="x' = x + a = 3 + (-2) = 1" />
+  <BlockMath math="y' = y + b = 2 + 3 = 5" />
+</MathContainer>
+
+Imej bagi titik <InlineMath math="(3,2)" /> ialah <InlineMath math="(1,5)" />.
+
+<MathVisual
+  title={
+    <>
+      Translasi dari <InlineMath math="P(3,2)" /> ke{" "}
+      <InlineMath math="P'(1,5)" />
+    </>
+  }
+  description={
+    <>
+      Visualisasi translasi titik <InlineMath math="P(3,2)" /> ke{" "}
+      <InlineMath math="P'(1,5)" /> menggunakan vektor translasi.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="P(3,2)" />,
+    "l2": <InlineMath math="P'(1,5)" />,
+    "l3": <>vektor <InlineMath math="(-2,3)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 3.5 }, y: { min: 1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "point", at: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 1, y: 5 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 3, y: 2 }, { x: 1, y: 5 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 2 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 1, y: 5 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 3, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+## Mentranslasikan Garis
+
+Tentukan imej bagi garis <InlineMath math="l \equiv 2x + 3y - 1 = 0" /> di bawah translasi berikut:
+
+<BlockMath math="\begin{pmatrix} -1 \\ 1 \end{pmatrix}" />
+
+Biar <InlineMath math="P(x,y)" /> ialah sebarang titik pada garis <InlineMath math="l" />. Di bawah translasi ini, imejnya ialah <InlineMath math="P'(x',y')" /> dengan:
+
+<MathContainer>
+  <BlockMath math="x'=x-1\quad\Longrightarrow\quad x=x'+1" />
+  <BlockMath math="y' = y + 1 \implies y = y' - 1" />
+</MathContainer>
+
+Gunakan **koordinat asal** dalam persamaan garis. Gantikan nilai <InlineMath math="x" /> dan <InlineMath math="y" /> ini ke dalam persamaan garis <InlineMath math="l" />:
+
+<MathContainer>
+  <BlockMath math="2(x' + 1) + 3(y' - 1) - 1 = 0" />
+  <BlockMath math="2x' + 2 + 3y' - 3 - 1 = 0" />
+  <BlockMath math="2x' + 3y' - 2 = 0" />
+</MathContainer>
+
+Dengan menukar <InlineMath math="x'" /> dan <InlineMath math="y'" /> kembali kepada <InlineMath math="x" /> dan <InlineMath math="y" />, persamaan garis imej <InlineMath math="l'" /> ialah:
+
+<ContentStack>
+
+  <BlockMath math="2x + 3y - 2 = 0" />
+
+  <MathVisual
+    title={
+        <>
+          Translasi Garis <InlineMath math="2x+3y-1=0" />
+        </>
+      }
+    description={
+        <>
+          Garis asal <InlineMath math="2x+3y-1=0" /> yang ditranslasikan menghasilkan
+          garis imej <InlineMath math="2x+3y-2=0" />.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="2x+3y-1=0" />,
+      "l2": <InlineMath math="2x+3y-2=0" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -3, max: 4 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "parametric", x: "(t - 4)", y: "((((-2) / 3) * (t - 4)) + (1 / 3))", parameter: { min: 0, max: 8 }, appearance: "primary" },
+        { id: "s2", kind: "parametric", x: "(t - 4)", y: "((((-2) / 3) * (t - 4)) + (2 / 3))", parameter: { min: 0, max: 8 }, appearance: "secondary" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: -1, y: 1 }, placement: "below-left" },
+        { key: "l2", objectId: "s2", at: { x: 1, y: 0 }, placement: "above-right" },
+      ],
+    }}
+  />
+</ContentStack>
+
+## Latihan
+
+Gunakan **vektor yang sama** pada setiap titik. Bagi persamaan garis, nyatakan dahulu koordinat asal dalam sebutan koordinat imej. Bagi segi tiga, semak ketiga-tiga bucu supaya bentuknya kekal.
+
+1.  Translasikan titik <InlineMath math="(-4,4)" /> dengan vektor berikut dan tentukan imejnya:
+
+    <BlockMath math="\begin{pmatrix} -2 \\ -3 \end{pmatrix}" />
+
+2.  Tentukan imej bagi garis <InlineMath math="l \equiv 5x - 2y + 3 = 0" /> di bawah translasi berikut:
+
+    <BlockMath math="\begin{pmatrix} 2 \\ -1 \end{pmatrix}" />
+
+3.  Sebuah segi tiga mempunyai bucu <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" />, dan <InlineMath math="C(1,5)" />. Translasikan segi tiga itu dengan vektor berikut dan tentukan koordinat <InlineMath math="A'B'C'" />:
+
+    <BlockMath math="\begin{pmatrix} 2 \\ 3 \end{pmatrix}" />
+
+### Penyelesaian
+
+Tanda negatif bermaksud anjakan ke kiri atau ke bawah. Dalam persamaan garis, gunakan **penggantian songsang** kerana persamaan asal menerangkan koordinat sebelum translasi.
+
+**Penyelesaian 1**
+
+Bagi titik <InlineMath math="(-4,4)" />, gunakan <InlineMath math="x=-4, y=4, a=-2, b=-3" />.
+
+<MathContainer>
+<BlockMath math="x' = -4 + (-2) = -6" />
+<BlockMath math="y' = 4 + (-3) = 1" />
+</MathContainer>
+
+Jadi, titik imejnya ialah <InlineMath math="(-6,1)" />.
+
+**Penyelesaian 2**
+
+Bagi garis <InlineMath math="5x - 2y + 3 = 0" />, gunakan <InlineMath math="a=2, b=-1" />.
+
+<MathContainer>
+<BlockMath math="x' = x + 2 \implies x = x' - 2" />
+<BlockMath math="y' = y - 1 \implies y = y' + 1" />
+</MathContainer>
+
+Gantikan ke dalam persamaan garis:
+
+<MathContainer>
+<BlockMath math="5(x' - 2) - 2(y' + 1) + 3 = 0" />
+<BlockMath math="5x' - 10 - 2y' - 2 + 3 = 0" />
+<BlockMath math="5x' - 2y' - 9 = 0" />
+</MathContainer>
+
+Persamaan garis imej: <InlineMath math="5x - 2y - 9 = 0" />.
+
+**Penyelesaian 3**
+
+Translasikan setiap bucu <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" />, dan <InlineMath math="C(1,5)" /> menggunakan <InlineMath math="a=2, b=3" />.
+
+<MathContainer>
+<BlockMath math="A'(1+2, 1+3) = A'(3,4)" />
+<BlockMath math="B'(4+2, 1+3) = B'(6,4)" />
+<BlockMath math="C'(1+2, 5+3) = C'(3,8)" />
+</MathContainer>
+
+Koordinat segi tiga imej ialah <InlineMath math="A'(3,4)" />, <InlineMath math="B'(6,4)" />, dan <InlineMath math="C'(3,8)" />.
+
+<MathVisual
+  title={<>Segi Tiga Sebelum dan Selepas Translasi</>}
+  description={<>Ketiga-tiga bucu bergerak dengan vektor yang sama. Panjang sisi dan luas segi tiga kekal.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="A'" />,
+    "l5": <InlineMath math="B'" />,
+    "l6": <InlineMath math="C'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 6.5 }, y: { min: 0, max: 9 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 4, y: 1 }, { x: 1, y: 5 }], appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 1, y: 5 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 3, y: 4 }, { x: 6, y: 4 }, { x: 3, y: 8 }], appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 3, y: 8 }, to: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 1, y: 1 }, to: { x: 3, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "l2", objectId: "s1", at: { x: 4, y: 1 }, placement: "below-right" },
+      { key: "l3", objectId: "s1", at: { x: 1, y: 5 }, placement: "above-left" },
+      { key: "l4", objectId: "s2", at: { x: 3, y: 4 }, placement: "below-left" },
+      { key: "l5", objectId: "s2", at: { x: 6, y: 4 }, placement: "below-right" },
+      { key: "l6", objectId: "s2", at: { x: 3, y: 8 }, placement: "above-left" },
+    ],
+  }}
+/>
