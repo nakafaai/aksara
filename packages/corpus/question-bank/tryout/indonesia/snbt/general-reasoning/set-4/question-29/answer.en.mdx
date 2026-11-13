@@ -1,0 +1,25 @@
+There are two conditions, so use two steps: first count the lineups that keep Ayu and Banu together, then **remove the lineups with Candra at an end**.
+
+Step 1. Treat Ayu and Banu as one block. Now there are <InlineMath math="5" /> units: the AB block, Candra, Dewi, Eko and Fajar. Inside the block, the order can be AB or BA.
+
+<BlockMath math="5! \times 2 = 120 \times 2 = 240" />
+
+Step 2. Count the step 1 lineups with Candra at the left end. The other <InlineMath math="5" /> places hold the AB block, Dewi, Eko and Fajar, which is <InlineMath math="4" /> units.
+
+<BlockMath math="4! \times 2 = 24 \times 2 = 48" />
+
+The right end gives <InlineMath math="48" /> lineups too, so <InlineMath math="96" /> lineups have Candra at an end.
+
+Step 3. Subtract.
+
+<BlockMath math="240 - 96 = 144" />
+
+Check another way: Candra may stand in position <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" /> or <InlineMath math="5" />. Counting all those cases one by one also gives <InlineMath math="144" />.
+
+Common wrong answers:
+
+- <InlineMath math="240" /> forgets Candra's condition.
+- <InlineMath math="72" /> forgets to multiply by <InlineMath math="2" /> for the order inside the block, AB or BA.
+- <InlineMath math="192" /> removes only one end of the line.
+
+So there are <InlineMath math="144" /> possible lineups.
