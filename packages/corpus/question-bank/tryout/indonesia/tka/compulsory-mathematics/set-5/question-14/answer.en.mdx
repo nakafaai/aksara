@@ -1,21 +1,80 @@
-To find the image of a line, write the original point in terms of the image coordinates, then **substitute into the original equation**.
+# The equation of the image line
 
-The translation by <InlineMath math="T" /> maps <InlineMath math="(x,y)" /> to <InlineMath math="(x+1,y-2)" />. So if the image is <InlineMath math="(x,y)" />, the original point is <InlineMath math="(x-1,y+2)" />.
+The question asks for the area of a triangle bounded by three lines: the line <InlineMath math="g" />, its image <InlineMath math="g'" />, and the <InlineMath math="y" />-axis. So you need the equation of <InlineMath math="g'" /> first, then the three corners of the triangle.
+
+A <InlineMath math="90^\circ" /> rotation **clockwise** about <InlineMath math="O" /> sends the point <InlineMath math="(x,y)" /> to <InlineMath math="(y,-x)" />. For example, the point <InlineMath math="(1,0)" /> on the positive <InlineMath math="x" />-axis moves down to <InlineMath math="(0,-1)" />. To get the image equation, write the old coordinates in terms of the new ones, then substitute them into the equation of <InlineMath math="g" />:
 
 <BlockMath math="\begin{aligned}
-2(x-1)-(y+2)+3&=0 \\
-2x-y-1&=0
+x'=y,\quad y'=-x\quad&\Rightarrow\quad x=-y',\quad y=x' \\
+x+2y=10\quad&\Rightarrow\quad -y'+2x'=10 \\
+g'&: 2x-y=10
 \end{aligned}" />
 
-Reflecting in the <InlineMath math="x" />-axis maps <InlineMath math="(x,y)" /> to <InlineMath math="(x,-y)" />, so replace <InlineMath math="y" /> with <InlineMath math="-y" />.
+Check it with one point. The point <InlineMath math="(10,0)" /> lies on <InlineMath math="g" />, and its image <InlineMath math="(0,-10)" /> satisfies <InlineMath math="2\cdot0-(-10)=10" />. The equation fits.
 
-<BlockMath math="2x-(-y)-1=0\ \Rightarrow\ 2x+y-1=0" />
+# The three corners
 
-Check with the point <InlineMath math="(0,3)" /> on <InlineMath math="g" />: the translation gives <InlineMath math="(1,1)" />, and the reflection gives <InlineMath math="(1,-1)" />. That point satisfies <InlineMath math="2(1)+(-1)-1=0" />.
+Two corners sit on the <InlineMath math="y" />-axis, where <InlineMath math="g" /> and <InlineMath math="g'" /> cross it. The third corner is **the point where <InlineMath math="g" /> and <InlineMath math="g'" /> meet**.
 
-So the final image has the equation <InlineMath math="2x+y-1=0" />.
+<BlockMath math="\begin{aligned}
+g\text{ with }x=0&: 2y=10\Rightarrow P(0,5) \\
+g'\text{ with }x=0&: -y=10\Rightarrow Q(0,-10) \\
+y=2x-10\text{ into }g&: x+2(2x-10)=10\Rightarrow x=6,\ y=2\Rightarrow R(6,2)
+\end{aligned}" />
 
-- <InlineMath math="2x-y-1=0" /> is only the translated line, the reflection hasn't been done.
-- <InlineMath math="2x+y+1=0" /> gets the sign of the constant wrong when replacing <InlineMath math="y" /> with <InlineMath math="-y" />.
-- <InlineMath math="2x+y+3=0" /> reflects first and translates afterwards.
-- <InlineMath math="2x+y+7=0" /> translates the opposite way, replacing <InlineMath math="x" /> with <InlineMath math="x+1" /> and <InlineMath math="y" /> with <InlineMath math="y-2" />.
+<MathVisual
+  title={<>The triangle between <InlineMath math="g" />, <InlineMath math="g'" />, and the <InlineMath math="y" />-axis</>}
+  description={<>The line <InlineMath math="g" /> passes through <InlineMath math="(0,5)" /> and <InlineMath math="(10,0)" />. The line <InlineMath math="g'" /> passes through <InlineMath math="(0,-10)" /> and <InlineMath math="(5,0)" />. The shaded triangle <InlineMath math="PQR" /> has <InlineMath math="P(0,5)" /> and <InlineMath math="Q(0,-10)" /> on the <InlineMath math="y" />-axis and <InlineMath math="R(6,2)" /> where the two lines meet.</>}
+  labels={{
+    g: <InlineMath math="g" />,
+    "g-image": <InlineMath math="g'" />,
+    p: <InlineMath math="P(0,5)" />,
+    q: <InlineMath math="Q(0,-10)" />,
+    r: <InlineMath math="R(6,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 13 },
+      y: { min: -13, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 5 }, { x: 0, y: -10 }, { x: 6, y: 2 }] },
+      { id: "line-g", kind: "line", appearance: "primary", through: [{ x: 0, y: 5 }, { x: 10, y: 0 }] },
+      { id: "line-g-image", kind: "line", appearance: "secondary", through: [{ x: 0, y: -10 }, { x: 5, y: 0 }] },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 0, y: 5 } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 0, y: -10 } },
+      { id: "point-r", kind: "point", appearance: "reference", at: { x: 6, y: 2 } },
+    ],
+    labels: [
+      { key: "g", objectId: "line-g", at: { x: -2, y: 6 }, placement: "above" },
+      { key: "g-image", objectId: "line-g-image", at: { x: 8.5, y: 7 }, placement: "left" },
+      { key: "p", objectId: "point-p", at: { x: 0, y: 5 }, placement: "left" },
+      { key: "q", objectId: "point-q", at: { x: 0, y: -10 }, placement: "right" },
+      { key: "r", objectId: "point-r", at: { x: 6, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+# The area
+
+The base of the triangle is <InlineMath math="PQ" />, which lies along the <InlineMath math="y" />-axis. Because the base is vertical, **the height is the horizontal distance from <InlineMath math="R" /> to the <InlineMath math="y" />-axis**, which is the <InlineMath math="x" />-coordinate of <InlineMath math="R" />.
+
+<BlockMath math="\begin{aligned}
+PQ&=5-(-10)=15 \\
+\text{height}&=6 \\
+\text{area}&=\tfrac12\cdot15\cdot6=45
+\end{aligned}" />
+
+Here's a neat check. A <InlineMath math="90^\circ" /> rotation makes <InlineMath math="g'" /> perpendicular to <InlineMath math="g" /> (their gradients are <InlineMath math="-\tfrac12" /> and <InlineMath math="2" />), so the angle at <InlineMath math="R" /> is a right angle. With <InlineMath math="RP=\sqrt{45}" /> and <InlineMath math="RQ=\sqrt{180}" />, the area is <InlineMath math="\tfrac12\sqrt{45\cdot180}=\tfrac12\cdot90=45" />. Same result.
+
+So the area of the triangle bounded by <InlineMath math="g" />, <InlineMath math="g'" />, and the <InlineMath math="y" />-axis is <InlineMath math="45" /> square units.
+
+# Why the other options are wrong
+
+- <InlineMath math="5" /> comes from the **counterclockwise** rule <InlineMath math="(x,y)\mapsto(-y,x)" />, or from plugging <InlineMath math="y" /> for <InlineMath math="x" /> and <InlineMath math="-x" /> for <InlineMath math="y" /> straight into the equation of <InlineMath math="g" />. The image becomes <InlineMath math="-2x+y=10" />, the lines meet at <InlineMath math="(-2,6)" />, the base is <InlineMath math="10-5=5" />, and the area is <InlineMath math="5" />.
+- <InlineMath math="15" /> uses the <InlineMath math="y" />-coordinate of <InlineMath math="R" />, which is <InlineMath math="2" />, as the height. The base is vertical, so the height has to be horizontal.
+- <InlineMath math="25" /> is the area of the triangle that <InlineMath math="g'" /> makes with both axes, <InlineMath math="\tfrac12\cdot5\cdot10" />. That's not the triangle the question asks about.
+- <InlineMath math="90" /> forgets the <InlineMath math="\tfrac12" /> in the triangle area formula.

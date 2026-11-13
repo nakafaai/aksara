@@ -12,21 +12,18 @@ const item: ItemSource = {
       kind: "matrix",
       statements: [
         {
-          column: 2,
-          label: "$$AD=6{,}4\\text{ cm}$$",
-        },
-        {
-          column: 1,
-          label: "$$CD=4{,}8\\text{ cm}$$",
-        },
-        {
-          column: 2,
-          label: "Keliling segitiga $$BCD$$ adalah $$18\\text{ cm}$$.",
-        },
-        {
           column: 1,
           label:
-            "Perbandingan luas segitiga $$ACD$$ dan luas segitiga $$BCD$$ adalah $$9:16$$.",
+            "Garis singgung lingkaran di $$A$$ dan garis singgung lingkaran di $$B$$ berpotongan di titik $$P$$ dengan $$OP=20\\text{ cm}$$.",
+        },
+        {
+          column: 2,
+          label: "Panjang busur kecil $$AB$$ kurang dari $$20\\text{ cm}$$.",
+        },
+        {
+          column: 2,
+          label:
+            "Jika $$C$$ adalah titik pada lingkaran dengan $$CA=CB$$, luas segitiga $$ABC$$ pasti $$75\\sqrt{3}\\text{ cm}^2$$.",
         },
       ],
     },

@@ -1,14 +1,54 @@
-Faktorkan <InlineMath math="f" /> lebih dulu, karena **salah satu faktornya adalah <InlineMath math="g(x)" />**.
+# Bekal yang dipakai
+
+Setiap pernyataan perlu bukti sendiri atau satu contoh penyangkal. Ingat bahwa <InlineMath math="f" /> menambah <InlineMath math="2" /> dulu, baru mengambil logaritma basis <InlineMath math="3" />. Jadi <InlineMath math="f(\text{sesuatu})={}^{3}\log(\text{sesuatu}+2)" />, dan **nilai di dalam logaritma harus positif**.
+
+Invers <InlineMath math="f" /> didapat dengan membalik langkahnya: pangkatkan <InlineMath math="3" />, lalu kurangi <InlineMath math="2" />.
+
+<BlockMath math="y={}^{3}\log(x+2) \;\Longleftrightarrow\; x+2=3^y \;\Longleftrightarrow\; f^{-1}(y)=3^y-2" />
+
+# Pernyataan pertama
 
 <BlockMath math="\begin{aligned}
-f(x)&=x^2-6x+8=(x-2)(x-4)=(x-4)\cdot g(x) \\
-f(x)-g(x)&=(x-2)(x-4)-(x-2)=(x-2)(x-5)
+f(a)+f(b)&={}^{3}\log\big((a+2)(b+2)\big)={}^{3}\log(ab+2a+2b+4) \\
+&={}^{3}\log\big((ab+2a+2b+2)+2\big)=f(ab+2a+2b+2)
 \end{aligned}" />
 
-- Puncak <InlineMath math="f" /> ada di <InlineMath math="x=3" />, dan <InlineMath math="f(3)=9-18+8=-1" />. Nilai minimumnya <InlineMath math="-1" />, bukan <InlineMath math="-2" />. Pernyataan ini salah.
-- Pemfaktoran di atas menunjukkan <InlineMath math="f(x)=(x-4)\cdot g(x)" /> untuk setiap <InlineMath math="x" />. Pernyataan ini benar.
-- Untuk <InlineMath math="x=3" />, <InlineMath math="f(3)=-1" /> sedangkan <InlineMath math="g(3)=1" />, jadi <InlineMath math="f(x)\ge g(x)" /> tidak berlaku untuk setiap <InlineMath math="x" />. Pernyataan ini salah.
-- <InlineMath math="f(x)=g(x)" /> tepat saat <InlineMath math="(x-2)(x-5)=0" />, yaitu <InlineMath math="x=2" /> atau <InlineMath math="x=5" />. Titik potongnya <InlineMath math="(2,0)" /> dan <InlineMath math="(5,3)" />. Pernyataan ini benar.
-- <InlineMath math="(x-2)(x-4)<0" /> tepat saat <InlineMath math="x" /> berada di antara kedua akarnya, yaitu <InlineMath math="2<x<4" />. Pernyataan ini benar.
+Untuk <InlineMath math="a>-2" /> dan <InlineMath math="b>-2" />, hasil kali <InlineMath math="(a+2)(b+2)" /> positif, jadi **bilangan <InlineMath math="ab+2a+2b+2" /> selalu berada di daerah asal**. Pernyataan ini **Benar**.
 
-Jadi, pernyataan yang benar adalah <InlineMath math="f(x)=(x-4)\cdot g(x)" />, dua titik potong, dan <InlineMath math="f(x)<0" /> tepat untuk <InlineMath math="2<x<4" />.
+# Pernyataan kedua
+
+Kerjakan dari dalam ke luar. Angka <InlineMath math="1" /> ditambahkan di dalam, sebelum invers dipakai.
+
+<BlockMath math="\begin{aligned}
+f(5)+1&={}^{3}\log7+{}^{3}\log3={}^{3}\log21 \\
+f^{-1}\big({}^{3}\log21\big)&=3^{{}^{3}\log21}-2=21-2=19
+\end{aligned}" />
+
+Jebakannya adalah menghitung <InlineMath math="f^{-1}(f(5))+1=6" />. **Angka <InlineMath math="1" /> ada di dalam kurung**, jadi ikut dibalik oleh <InlineMath math="f^{-1}" />. Pernyataan ini **Benar**.
+
+# Pernyataan ketiga
+
+Fungsi logaritma basis <InlineMath math="3" /> selalu naik, jadi dua nilainya sama hanya jika isinya sama.
+
+<BlockMath math="x+2=\frac{1}{x}+2 \;\Longrightarrow\; x^2=1 \;\Longrightarrow\; x=1 \;\text{atau}\; x=-1" />
+
+Sekarang cek daerah asal. Untuk <InlineMath math="x=1" />, kedua isinya <InlineMath math="1" /> dan sah. Untuk <InlineMath math="x=-1" />, nilai <InlineMath math="x" /> dan <InlineMath math="\frac{1}{x}" /> sama-sama <InlineMath math="-1" />, yang lebih dari <InlineMath math="-2" />, dan <InlineMath math="f(-1)={}^{3}\log1=0" />. **Bilangan negatif <InlineMath math="-1" /> tetap sah**, karena yang harus positif adalah <InlineMath math="x+2" />, bukan <InlineMath math="x" />. Ada tepat dua penyelesaian, jadi pernyataan ini **Benar**.
+
+# Pernyataan keempat
+
+Untuk <InlineMath math="-2<x<2" />, bilangan <InlineMath math="x" /> dan <InlineMath math="-x" /> sama-sama di daerah asal.
+
+<BlockMath math="\begin{aligned}
+f(x)+f(-x)&={}^{3}\log\big((2+x)(2-x)\big)={}^{3}\log(4-x^2) \\
+&\le{}^{3}\log4={}^{3}\log2^2=2\cdot{}^{3}\log2=2f(0)
+\end{aligned}" />
+
+Ketidaksamaannya berlaku karena <InlineMath math="4-x^2\le4" /> dan logaritma basis <InlineMath math="3" /> naik. **Kesamaan hanya terjadi di <InlineMath math="x=0" />**. Pernyataan ini **Benar**.
+
+# Pernyataan kelima
+
+<BlockMath math="f(2x)-f(x)={}^{3}\log\frac{2x+2}{x+2}" />
+
+Coba dua nilai. Untuk <InlineMath math="x=0" /> hasilnya <InlineMath math="{}^{3}\log1=0" />. Untuk <InlineMath math="x=1" /> hasilnya <InlineMath math="{}^{3}\log\frac{4}{3}\ne0" />. Nilainya berubah, jadi pernyataan ini **Salah**. Sifat <InlineMath math="{}^{3}\log(2x)-{}^{3}\log x={}^{3}\log2" /> hanya berlaku kalau tidak ada tambahan <InlineMath math="2" /> di dalam logaritma.
+
+Jadi, pernyataan yang benar adalah pernyataan pertama, kedua, ketiga, dan keempat.

@@ -1,13 +1,47 @@
-Der Graph von <InlineMath math="f" /> ist eine nach oben geöffnete Parabel, also lässt sich jede Aussage über **ihren Scheitel** prüfen. Die Symmetrieachse ist <InlineMath math="x=-\frac{-2k}{2}=k" />, und der kleinste Wert ist <InlineMath math="f(k)" />.
+# Eine Wertetabelle der drei Funktionen
+
+Die fünf Aussagen vergleichen die Exponentialfunktion <InlineMath math="f(x)=2^x" />, die lineare Funktion <InlineMath math="g(x)=10x+5" /> und die quadratische Funktion <InlineMath math="h(x)=x^2" /> an ganzen Zahlen. Beginne mit einer Tabelle und **suche bei jeder Aussage mit für jedes einen allgemeinen Grund oder ein Gegenbeispiel**.
+
+| <InlineMath math="x" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="10" /> | <InlineMath math="11" /> |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| <InlineMath math="f(x)" /> | <InlineMath math="\frac12" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="8" /> | <InlineMath math="16" /> | <InlineMath math="32" /> | <InlineMath math="64" /> | <InlineMath math="128" /> | <InlineMath math="1{.}024" /> | <InlineMath math="2{.}048" /> |
+| <InlineMath math="g(x)" /> | <InlineMath math="-5" /> | <InlineMath math="5" /> | <InlineMath math="15" /> | <InlineMath math="25" /> | <InlineMath math="35" /> | <InlineMath math="45" /> | <InlineMath math="55" /> | <InlineMath math="65" /> | <InlineMath math="75" /> | <InlineMath math="105" /> | <InlineMath math="115" /> |
+| <InlineMath math="h(x)" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="4" /> | <InlineMath math="9" /> | <InlineMath math="16" /> | <InlineMath math="25" /> | <InlineMath math="36" /> | <InlineMath math="49" /> | <InlineMath math="100" /> | <InlineMath math="121" /> |
+
+# Die erste Aussage
+
+Für <InlineMath math="x=1" /> bis <InlineMath math="6" /> bleibt <InlineMath math="f" /> immer unter <InlineMath math="g" />. Am knappsten ist <InlineMath math="x=6" />: <InlineMath math="64<65" />, **der Abstand ist nur <InlineMath math="1" />**, also passt <InlineMath math="6" /> noch nicht. Bei <InlineMath math="x=7" /> gilt <InlineMath math="128>75" />. Die Aussage ist **Richtig**.
+
+# Die zweite Aussage
+
+Schau, was passiert, wenn <InlineMath math="x" /> um <InlineMath math="1" /> wächst:
 
 <BlockMath math="\begin{aligned}
-f(k)&=k^2-2k^2+k+6=-k^2+k+6=-(k-3)(k+2)
+f(x+1)-f(x)&=2^{x+1}-2^x=2^x \\
+g(x+1)-g(x)&=10
 \end{aligned}" />
 
-- Für <InlineMath math="k=3" /> ist der kleinste Wert <InlineMath math="-(0)(5)=0" />. Der Scheitel liegt auf der <InlineMath math="x" />-Achse, der Graph berührt sie also. Die Aussage ist richtig.
-- Die Symmetrieachse ist <InlineMath math="x=k" />, nicht <InlineMath math="x=-k" />. Die Aussage ist falsch.
-- Für <InlineMath math="-2<k<3" /> ist der Faktor <InlineMath math="k-3" /> negativ und <InlineMath math="k+2" /> positiv, also gilt <InlineMath math="f(k)=-(k-3)(k+2)>0" />. Schon der kleinste Wert von <InlineMath math="f" /> ist positiv, also auch jeder Wert <InlineMath math="f(x)" />. Die Aussage ist richtig.
-- Für <InlineMath math="k=-2" /> ist <InlineMath math="f(x)=x^2+4x+4=(x+2)^2" />, der kleinste Wert ist also <InlineMath math="0" />, nicht <InlineMath math="4" />. Die Aussage ist falsch.
-- Für <InlineMath math="k=4" /> ist <InlineMath math="f(x)=x^2-8x+10" />. Die Diskriminante ist <InlineMath math="64-40=24>0" />, also gibt es zwei verschiedene reelle Nullstellen, <InlineMath math="4\pm\sqrt6\approx1{,}55" /> und <InlineMath math="6{,}45" />. Beide sind positiv. Die Aussage ist richtig.
+Für <InlineMath math="x\ge7" /> wächst <InlineMath math="f" /> pro Schritt um mindestens <InlineMath math="2^7=128" />, viel mehr als die <InlineMath math="10" />, die <InlineMath math="g" /> jedes Mal dazubekommt. Bei <InlineMath math="x=7" /> liegt <InlineMath math="f" /> schon <InlineMath math="128-75=53" /> vorn, und **jeder weitere Schritt vergrößert diesen Vorsprung**. Die Aussage ist **Richtig**.
 
-Richtig sind also die Aussagen zu <InlineMath math="k=3" />, zu <InlineMath math="-2<k<3" /> und zu <InlineMath math="k=4" />.
+# Die dritte Aussage
+
+Prüfe alle ganzen Zahlen, auch die negativen. Für <InlineMath math="x\le-1" /> ist <InlineMath math="2^x" /> immer positiv, während <InlineMath math="10x+5\le-5" /> ist, also gilt <InlineMath math="f(x)>g(x)" />. Für <InlineMath math="x\ge7" /> hat die zweite Aussage schon <InlineMath math="f(x)>g(x)" /> gezeigt. Übrig bleiben <InlineMath math="x=0,1,2,3,4,5,6" />, und die Tabelle zeigt <InlineMath math="f(x)<g(x)" /> für alle sieben, auch für <InlineMath math="x=0" />, denn <InlineMath math="1<5" />.
+
+Es sind **sieben, nicht sechs**. Die Aussage ist **Falsch**.
+
+# Die vierte Aussage
+
+Ein Gegenbeispiel genügt. Bei <InlineMath math="x=3" /> ist <InlineMath math="f(3)=8" /> und <InlineMath math="h(3)=9" />, also <InlineMath math="f(3)<h(3)" />. Bei <InlineMath math="x=4" /> sind beide gleich, <InlineMath math="16=16" />, und erst ab <InlineMath math="x=5" /> ist <InlineMath math="2^x" /> größer. **Die Aussage scheitert bei <InlineMath math="x=3" />**, sie ist also **Falsch**.
+
+# Die fünfte Aussage
+
+Der schwierige Teil ist <InlineMath math="g(x)<h(x)" />, also <InlineMath math="x^2>10x+5" />. Die quadratische Funktion überholt die lineare erst nach <InlineMath math="x=10" />:
+
+<BlockMath math="\begin{aligned}
+x=10&:\ 100<105 \\
+x=11&:\ 121>115
+\end{aligned}" />
+
+Bei <InlineMath math="x=11" /> stehen die drei Werte in der Reihenfolge <InlineMath math="115<121<2{.}048" />, also <InlineMath math="g(11)<h(11)<f(11)" />. Für das Wort es gibt reicht ein Beispiel. Die Aussage ist **Richtig**.
+
+Richtig sind also die erste, die zweite und die fünfte Aussage.

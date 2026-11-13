@@ -1,12 +1,46 @@
-Zwei Rabatte nacheinander sind **zwei Multiplikationen**, mit <InlineMath math="0{,}8" /> und mit <InlineMath math="0{,}9" />. Berechne den Gesamtfaktor und die nötigen Endpreise.
+# Eine allgemeine Formel mit dem Kreditbetrag
+
+Alle drei Aussagen gelten für jede beliebige Anzahlung, also reicht ein einzelnes Beispiel nicht. Schreib alles mit dem Kreditbetrag <InlineMath math="p" />. Die Anzahlung ist mindestens <InlineMath math="1{.}800{.}000" /> und kleiner als der Normalpreis, also **kann <InlineMath math="p" /> jeden Wert mit <InlineMath math="0<p\le7{.}200{.}000" /> annehmen**.
+
+Bei einer Laufzeit von <InlineMath math="n" /> Monaten und dem Zinssatz <InlineMath math="r" /> pro Monat ist die Rate <InlineMath math="\frac{p(1+nr)}{n}" />. Die Gesamtzahlung besteht aus Anzahlung, Gebühr und allen Raten:
+
+<BlockMath math="\text{Summe}=(9{.}000{.}000-p)+0{,}01p+p(1+nr)=9{.}000{.}000+(0{,}01+nr)\,p" />
+
+| Laufzeit | Alle Zinsen <InlineMath math="nr" /> | Monatsrate | Gesamtzahlung |
+| --- | --- | --- | --- |
+| <InlineMath math="6" /> Monate | <InlineMath math="0{,}15" /> | <InlineMath math="\frac{1{,}15p}{6}" /> | <InlineMath math="9{.}000{.}000+0{,}16p" /> |
+| <InlineMath math="12" /> Monate | <InlineMath math="0{,}18" /> | <InlineMath math="\frac{1{,}18p}{12}" /> | <InlineMath math="9{.}000{.}000+0{,}19p" /> |
+| <InlineMath math="18" /> Monate | <InlineMath math="0{,}225" /> | <InlineMath math="\frac{1{,}225p}{18}" /> | <InlineMath math="9{.}000{.}000+0{,}235p" /> |
+
+# Erste Aussage
+
+Die Hälfte der Rate bei <InlineMath math="6" /> Monaten ist <InlineMath math="\frac{1{,}15p}{12}" />. Vergleich sie mit der Rate bei <InlineMath math="12" /> Monaten.
+
+<BlockMath math="\frac{1{,}18p}{12}>\frac{1{,}15p}{12}" />
+
+Die Laufzeit ist zwar doppelt so lang, aber **die gesamten Zinsen steigen von <InlineMath math="15\%" /> auf <InlineMath math="18\%" /> des Kreditbetrags**, also sinkt die Rate nicht bis auf die Hälfte. Bei der kleinsten Anzahlung ist die Rate zum Beispiel <InlineMath math="708{.}000" />, die Hälfte von <InlineMath math="1{.}380{.}000" /> ist aber nur <InlineMath math="690{.}000" />. Diese Aussage ist **Falsch**.
+
+# Zweite Aussage
+
+Bei gleicher Anzahlung ist auch die Gebühr gleich, also kommt die Differenz der Summen nur aus den Zinsen.
 
 <BlockMath math="\begin{aligned}
-0{,}8\cdot0{,}9&=0{,}72=1-0{,}28 \\
-240{.}000\cdot0{,}8&=192{.}000 \\
-270{.}000\cdot0{,}72&=194{.}400
+\text{Differenz}&=(9{.}000{.}000+0{,}235p)-(9{.}000{.}000+0{,}19p)=0{,}045p \\
+0{,}045p&\le0{,}045\cdot7{.}200{.}000=324{.}000
 \end{aligned}" />
 
-- Der Endpreis ist das <InlineMath math="0{,}72" />-Fache des Warenpreises, wie ein einziger Rabatt von <InlineMath math="28\,\%" />. Die Aussage ist richtig.
-- Nichtmitglieder bekommen nur <InlineMath math="20\,\%" />, der Preis ist also <InlineMath math="\text{Rp}192{.}000" />, weniger als <InlineMath math="\text{Rp}200{.}000" />. Der Versand kostet weiter. Die Aussage ist falsch.
-- Die Reihenfolge der Multiplikation ändert nichts, denn <InlineMath math="0{,}9\cdot0{,}8=0{,}8\cdot0{,}9" />. Die Aussage ist richtig.
-- Der Endpreis ist <InlineMath math="\text{Rp}194{.}400" /> und erreicht <InlineMath math="\text{Rp}200{.}000" /> nicht. Die Aussage ist falsch.
+Wegen <InlineMath math="p>0" /> ist die Differenz immer positiv. Sie ist **am größten, wenn der Kreditbetrag am größten ist**, also bei der kleinsten Anzahlung, und dann beträgt sie genau <InlineMath math="324{.}000" />. Die Differenz ist also nie größer als <InlineMath math="\text{Rp}324{.}000" />. Diese Aussage ist **Richtig**.
+
+# Dritte Aussage
+
+Der Barpreis ist <InlineMath math="8{.}640{.}000" />, also liegt die Grenze <InlineMath math="10\%" /> darüber bei <InlineMath math="9{.}504{.}000" />. Bestimm, wann die Summe bei <InlineMath math="6" /> Monaten diese Grenze überschreitet.
+
+<BlockMath math="\begin{aligned}
+9{.}000{.}000+0{,}16p&>9{.}504{.}000 \\
+0{,}16p&>504{.}000 \\
+p&>3{.}150{.}000
+\end{aligned}" />
+
+Die Aussage stimmt also nur, wenn die Anzahlung kleiner als <InlineMath math="5{.}850{.}000" /> ist. Bei der kleinsten Anzahlung liegt die Summe tatsächlich <InlineMath math="17{,}5\%" /> über dem Barpreis, und genau das ist die Falle. **Eine große Anzahlung ist ebenfalls erlaubt**. Eine Anzahlung von <InlineMath math="70\%" />, also <InlineMath math="6{.}300{.}000" />, ergibt zum Beispiel <InlineMath math="p=2{.}700{.}000" /> und die Summe <InlineMath math="9{.}432{.}000" />, und das ist weniger als <InlineMath math="9{.}504{.}000" />. Diese Aussage ist **Falsch**.
+
+Die Reihenfolge ist also: Falsch, Richtig, Falsch.

@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "run-times",
+  stimulus: "klub",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -14,23 +14,16 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label:
-            "Rata-rata waktu tempuh kelompok A sama dengan rata-rata waktu tempuh kelompok B.",
+          label: "Tepat setengah dari seluruh anggota klub Futsal adalah siswa kelas X.",
+        },
+        {
+          column: 2,
+          label: "Lebih dari $$30\\%$$ anggota klub Robotik adalah siswa kelas XII.",
         },
         {
           column: 2,
           label:
-            "Jangkauan waktu tempuh kelompok B lebih kecil daripada jangkauan waktu tempuh kelompok A.",
-        },
-        {
-          column: 1,
-          label:
-            "Lebih dari separuh anggota kelompok B menempuh $$5\\text{ km}$$ dalam waktu kurang dari $$30$$ menit.",
-        },
-        {
-          column: 2,
-          label:
-            "Modus waktu tempuh kelompok A lebih besar daripada modus waktu tempuh kelompok B.",
+            "Banyak anggota Jurnalistik dari kelas XII $$20\\%$$ lebih sedikit daripada banyak anggota Jurnalistik dari kelas XI.",
         },
       ],
     },

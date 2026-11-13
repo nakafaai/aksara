@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "bank-queue",
+  stimulus: "belajar",
   versions: {
     id: {
       kind: "choice",
@@ -14,23 +14,25 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Rata-rata waktu tunggu lebih besar daripada median waktu tunggu.",
+            "Jika dua siswa baru dengan nilai $$69$$ dan $$71$$ bergabung, median nilai naik, sedangkan rata-rata nilai tetap.",
         },
         {
           correct: false,
-          label: "Rata-rata waktu tunggu adalah $$7$$ menit.",
+          label: "Jika nilai Asri dikoreksi dari $$72$$ menjadi $$80$$, median nilai naik.",
+        },
+        {
+          correct: true,
+          label:
+            "Jika nilai Indra seharusnya $$74$$ dan nilai Bima seharusnya $$82$$, rata-rata nilai tetap, sedangkan median nilai naik tepat $$2$$.",
         },
         {
           correct: false,
-          label: "Lebih dari separuh nasabah menunggu lebih dari $$8$$ menit.",
+          label: "Jika Dani keluar dari kelas, median nilai naik, sedangkan rata-rata nilai tetap.",
         },
         {
-          correct: true,
-          label: "Modus waktu tunggu adalah $$5$$ menit.",
-        },
-        {
-          correct: true,
-          label: "Jangkauan waktu tunggu adalah $$31$$ menit.",
+          correct: false,
+          label:
+            "Jika siswa dengan jam belajar paling sedikit dan siswa dengan jam belajar paling banyak sama-sama keluar, rata-rata nilai tidak berubah.",
         },
       ],
     },

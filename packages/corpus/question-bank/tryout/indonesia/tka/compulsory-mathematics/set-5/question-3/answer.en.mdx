@@ -1,14 +1,48 @@
-Each statement uses the rate that matches the direction of the deal: a customer **buys** at the selling rate and **sells** at the buying rate.
+# The cheapest cost for every need
+
+All three statements talk about every possible number of sheets, so one example isn't enough. Build the full picture first. Ordering **exactly** <InlineMath math="n" /> sheets costs <InlineMath math="500n" /> for <InlineMath math="n\le199" />, <InlineMath math="400n" /> for <InlineMath math="200\le n\le499" />, and <InlineMath math="300n" /> for <InlineMath math="n\ge500" />.
+
+Blank sheets only help if they lift the order to a tier boundary, which is <InlineMath math="200" /> or <InlineMath math="500" /> sheets. Going past a boundary just adds sheets at the same price. So you only need these two numbers:
 
 <BlockMath math="\begin{aligned}
-\frac{12{,}000-11{,}800}{12{,}000}&=\frac{200}{12{,}000}\approx1.67\,\% \\
-\frac{3{,}500-3{,}400}{3{,}500}&=\frac{100}{3{,}500}\approx2.86\,\% \\
-\frac{11{,}800}{3{,}500}&\approx3.37 \\
-\frac{12{,}000{,}000}{12{,}000}\cdot11{,}800&=1{,}000\cdot11{,}800=11{,}800{,}000 \\
-1.04\cdot3{,}500&=3{,}640
+\text{cost of }200\text{ sheets}&=200\cdot400=80{,}000 \\
+\text{cost of }500\text{ sheets}&=500\cdot300=150{,}000
 \end{aligned}" />
 
-- The Singapore dollar gap is about <InlineMath math="1.67\,\%" />, smaller than the ringgit gap of about <InlineMath math="2.86\,\%" />. This statement is true.
-- Selling <InlineMath math="1" /> Singapore dollar gives <InlineMath math="\text{Rp}11{,}800" />, which buys only about <InlineMath math="3.37" /> ringgit. This statement is false.
-- <InlineMath math="\text{Rp}12{,}000{,}000" /> becomes <InlineMath math="1{,}000" /> dollars, which sell back for <InlineMath math="\text{Rp}11{,}800{,}000" />. The loss is exactly <InlineMath math="\text{Rp}200{,}000" />. This statement is true.
-- The ringgit selling rate rises to <InlineMath math="\text{Rp}3{,}640" />, which is not more than <InlineMath math="\text{Rp}3{,}650" />. This statement is false.
+Topping up to <InlineMath math="200" /> sheets is cheaper when <InlineMath math="500n>80{,}000" />, that is <InlineMath math="n>160" />. Topping up to <InlineMath math="500" /> sheets is cheaper when <InlineMath math="400n>150{,}000" />, that is <InlineMath math="n>375" />. For <InlineMath math="n\le199" />, ordering <InlineMath math="500" /> sheets never helps, because <InlineMath math="150{,}000" /> is more than <InlineMath math="500\cdot199=99{,}500" />. The result:
+
+| Need <InlineMath math="n" /> | Cheapest way | Cheapest cost |
+| --- | --- | --- |
+| <InlineMath math="1" /> to <InlineMath math="160" /> | exactly <InlineMath math="n" /> sheets | <InlineMath math="500n" /> |
+| <InlineMath math="161" /> to <InlineMath math="199" /> | <InlineMath math="200" /> sheets | <InlineMath math="80{,}000" /> |
+| <InlineMath math="200" /> to <InlineMath math="375" /> | exactly <InlineMath math="n" /> sheets | <InlineMath math="400n" /> |
+| <InlineMath math="376" /> to <InlineMath math="499" /> | <InlineMath math="500" /> sheets | <InlineMath math="150{,}000" /> |
+
+Look at <InlineMath math="n=160" /> and <InlineMath math="n=375" />: there the top-up costs **exactly the same**, not less.
+
+# The first statement
+
+The combined order has more sheets, so its price per sheet is never higher than the price of either order. That means combining is never more expensive. But **always cheaper** fails when the combined order stays in the same tier. Take orders of <InlineMath math="100" /> and <InlineMath math="50" /> sheets:
+
+<BlockMath math="\begin{aligned}
+\text{separate}&=100\cdot500+50\cdot500=75{,}000 \\
+\text{combined}&=150\cdot500=75{,}000
+\end{aligned}" />
+
+The costs are equal, so the statement is **False**.
+
+# The second statement
+
+From the table, extra sheets make the cost **strictly smaller** exactly for <InlineMath math="n=161" /> to <InlineMath math="199" /> and <InlineMath math="n=376" /> to <InlineMath math="499" />:
+
+<BlockMath math="(199-161+1)+(499-376+1)=39+124=163" />
+
+If you also count <InlineMath math="n=160" /> and <InlineMath math="n=375" />, you get <InlineMath math="165" />, but at those two values the costs are only equal. If you forget the <InlineMath math="200" />-sheet boundary, you get <InlineMath math="124" />. The count is exactly <InlineMath math="163" />, so the statement is **True**.
+
+# The third statement
+
+Find the largest cheapest cost in each row of the table. Row one reaches at most <InlineMath math="500\cdot160=80{,}000" />, row two is <InlineMath math="80{,}000" />, row three reaches at most <InlineMath math="400\cdot375=150{,}000" />, and row four is <InlineMath math="150{,}000" />. So **the cheapest cost is never more than <InlineMath math="\text{Rp}150{,}000" />**.
+
+Ordering exactly <InlineMath math="499" /> sheets does cost <InlineMath math="499\cdot400=199{,}600" />, but that isn't the cheapest cost, since <InlineMath math="500" /> sheets cost only <InlineMath math="150{,}000" />. The statement is **True**.
+
+So the answers are False, True, True.

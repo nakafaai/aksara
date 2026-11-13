@@ -1,13 +1,44 @@
-Der ganze Zug ist draußen, wenn sein Ende den Tunnel verlässt. Also **legt die Zugspitze Tunnellänge plus Zuglänge zurück**. Rechne die Geschwindigkeit zuerst in Meter pro Sekunde um.
+# Wann die Zeiger senkrecht stehen
+
+Gefragt ist die Bogenlänge, die die Spitze des Minutenzeigers zurücklegt, aber der Endzeitpunkt ist nicht angegeben. Bestimme also zuerst, wann die beiden Zeiger nach 04.00 Uhr zum zweiten Mal einen Winkel von <InlineMath math="90^\circ" /> bilden.
+
+Miss die Winkel von der 12 aus im Uhrzeigersinn. Der Minutenzeiger dreht sich in <InlineMath math="60" /> Minuten um <InlineMath math="360^\circ" />, also <InlineMath math="6^\circ" /> pro Minute. Der Stundenzeiger dreht sich in <InlineMath math="60" /> Minuten um <InlineMath math="30^\circ" />, also <InlineMath math="0{,}5^\circ" /> pro Minute. Um 04.00 Uhr steht der Minutenzeiger bei <InlineMath math="0^\circ" /> und der Stundenzeiger bei <InlineMath math="120^\circ" />. Nach <InlineMath math="t" /> Minuten gilt:
 
 <BlockMath math="\begin{aligned}
-72\text{ km pro Stunde}&=\frac{72{.}000\text{ m}}{3{.}600\text{ s}}=20\text{ m pro s} \\
-t&=\frac{250+110}{20}=\frac{360}{20}=18\text{ s}
+\text{Lage des Minutenzeigers}&=6t \\
+\text{Lage des Stundenzeigers}&=120+0{,}5t
 \end{aligned}" />
 
-Es dauert also <InlineMath math="18" /> Sekunden.
+Denk daran: **Der Stundenzeiger bewegt sich mit**, also holt der Minutenzeiger nur <InlineMath math="6-0{,}5=5{,}5^\circ" /> pro Minute auf. Ein rechter Winkel entsteht in zwei Lagen:
 
-- <InlineMath math="5" /> Sekunden teilt <InlineMath math="360" /> durch <InlineMath math="72" />, ohne die Geschwindigkeit umzurechnen.
-- <InlineMath math="5{,}5" /> Sekunden nimmt nur die Zuglänge.
-- <InlineMath math="7" /> Sekunden zieht die Zuglänge von der Tunnellänge ab.
-- <InlineMath math="12{,}5" /> Sekunden nimmt nur die Tunnellänge, das Zugende ist dann noch drin.
+| Lage | Gleichung | Zeit |
+| :--- | :---: | :---: |
+| Minutenzeiger <InlineMath math="90^\circ" /> hinter dem Stundenzeiger | <InlineMath math="120+0{,}5t-6t=90" /> | <InlineMath math="t=\frac{60}{11}\approx5{,}45" /> Minuten |
+| Minutenzeiger <InlineMath math="90^\circ" /> vor dem Stundenzeiger | <InlineMath math="6t-(120+0{,}5t)=90" /> | <InlineMath math="t=\frac{420}{11}\approx38{,}18" /> Minuten |
+
+Der erste rechte Winkel kommt gegen 04.05 Uhr, bevor der Minutenzeiger den Stundenzeiger eingeholt hat. Der zweite kommt bei <InlineMath math="t=\frac{420}{11}" /> Minuten, gegen 04.38 Uhr.
+
+# Die Bogenlänge
+
+In <InlineMath math="\frac{420}{11}" /> Minuten dreht sich der Minutenzeiger um:
+
+<BlockMath math="\theta=6\cdot\frac{420}{11}=\frac{2{.}520}{11}\text{ Grad}" />
+
+Die Spitze läuft auf einem Kreis mit Radius <InlineMath math="11\text{ cm}" />, also ist **die Bogenlänge der Anteil an einer vollen Drehung mal der Umfang**:
+
+<BlockMath math="\begin{aligned}
+\text{Bogenlänge}&=\frac{\theta}{360^\circ}\cdot2\pi r \\
+&=\frac{2{.}520}{11\cdot360}\cdot2\pi\cdot11 \\
+&=7\cdot2\pi=14\pi\text{ cm}
+\end{aligned}" />
+
+Probe: <InlineMath math="\frac{2{.}520}{11}\approx229^\circ" /> ist etwas mehr als eine halbe Drehung, das passt zu etwa <InlineMath math="38" /> Minuten.
+
+Die Spitze des Minutenzeigers legt also <InlineMath math="14\pi" /> cm zurück.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="2\pi" /> cm ist der Bogen bis zum **ersten** rechten Winkel bei <InlineMath math="t=\frac{60}{11}" /> Minuten. Gefragt ist der zweite.
+- <InlineMath math="\frac{77}{6}\pi" /> cm entsteht, wenn du den Stundenzeiger auf der 4 festhältst. Dann müsste sich der Minutenzeiger nur um <InlineMath math="120^\circ+90^\circ=210^\circ" /> drehen, aber der Stundenzeiger ist bis dahin um etwa <InlineMath math="19^\circ" /> weitergewandert.
+- <InlineMath math="26\pi" /> cm entsteht, wenn du den rechten Winkel um 04.05 Uhr übersiehst und den um etwa 05.11 Uhr als zweiten zählst.
+- <InlineMath math="28\pi" /> cm entsteht, wenn du in der Umfangsformel den Durchmesser <InlineMath math="22\text{ cm}" /> statt des Radius einsetzt.

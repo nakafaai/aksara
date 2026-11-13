@@ -1,0 +1,71 @@
+# Kecerunan garis daripada titik tengah
+
+Garis itu tidak diberikan, jadi cari kecerunannya dahulu, kemudian barulah panjang <InlineMath math="AB" />. Titik tengah <InlineMath math="AB" /> terletak pada garis <InlineMath math="AB" />, jadi garis itu melalui <InlineMath math="P(2,-3)" />. Garis menegak <InlineMath math="x=2" /> hanya bersilang dengan parabola pada satu titik, jadi garis itu mempunyai kecerunan <InlineMath math="m" />.
+
+<BlockMath math="y=m(x-2)-3" />
+
+Koordinat-<InlineMath math="x" /> bagi titik persilangan ialah punca persamaan yang diperoleh apabila kedua-dua rumus <InlineMath math="y" /> disamakan.
+
+<BlockMath math="\begin{aligned}
+x^2-3x-4&=m(x-2)-3 \\
+x^2-(3+m)x+(2m-1)&=0
+\end{aligned}" />
+
+Katakan puncanya <InlineMath math="x_1" /> dan <InlineMath math="x_2" />. Menurut Vieta, <InlineMath math="x_1+x_2=3+m" />. **Koordinat-<InlineMath math="x" /> titik tengah ialah purata kedua-dua punca**, dan nilainya mesti <InlineMath math="2" />.
+
+<BlockMath math="\frac{x_1+x_2}{2}=\frac{3+m}{2}=2 \quad\Rightarrow\quad m=1" />
+
+Jadi garis itu ialah <InlineMath math="y=x-5" />, dan persamaan titik persilangan menjadi <InlineMath math="x^2-4x+1=0" />.
+
+# Panjang perentas
+
+Daripada <InlineMath math="x^2-4x+1=0" />, Vieta memberi <InlineMath math="x_1+x_2=4" /> dan <InlineMath math="x_1x_2=1" />. Kedua-dua titik berada pada garis dengan kecerunan <InlineMath math="1" />, jadi **beza koordinat-<InlineMath math="y" /> ialah <InlineMath math="m" /> kali beza koordinat-<InlineMath math="x" />**.
+
+<BlockMath math="\begin{aligned}
+(x_1-x_2)^2&=(x_1+x_2)^2-4x_1x_2=16-4=12 \\
+AB^2&=(x_1-x_2)^2+(y_1-y_2)^2=(1+m^2)(x_1-x_2)^2=2\cdot12=24 \\
+AB&=\sqrt{24}=2\sqrt{6}
+\end{aligned}" />
+
+Semakan terus: puncanya <InlineMath math="x=2\pm\sqrt{3}" />, jadi <InlineMath math="A(2-\sqrt{3},\,-3-\sqrt{3})" /> dan <InlineMath math="B(2+\sqrt{3},\,-3+\sqrt{3})" />. Titik tengahnya memang <InlineMath math="(2,-3)" />.
+
+<MathVisual
+  title={<>Perentas <InlineMath math="AB" /> dengan titik tengah <InlineMath math="P" /></>}
+  description={<>Parabola <InlineMath math="y=x^2-3x-4" /> dan garis <InlineMath math="y=x-5" />. Garis itu bersilang dengan parabola di <InlineMath math="A(2-\sqrt{3},-3-\sqrt{3})" /> dan <InlineMath math="B(2+\sqrt{3},-3+\sqrt{3})" />. Titik <InlineMath math="P(2,-3)" /> terletak tepat di tengah-tengah <InlineMath math="AB" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 6 },
+      y: { min: -7, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -3, c: -4 }, domain: { min: -1.5, max: 4.5 }, inputAxis: "x" },
+      { id: "line", kind: "segment", appearance: "secondary", from: { x: -1, y: -6 }, to: { x: 5, y: 0 } },
+      { id: "chord", kind: "segment", appearance: "highlight", from: { x: 2 - Math.sqrt(3), y: -3 - Math.sqrt(3) }, to: { x: 2 + Math.sqrt(3), y: -3 + Math.sqrt(3) } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 2 - Math.sqrt(3), y: -3 - Math.sqrt(3) } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 2 + Math.sqrt(3), y: -3 + Math.sqrt(3) } },
+      { id: "point-p", kind: "point", appearance: "answer", at: { x: 2, y: -3 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 2 - Math.sqrt(3), y: -3 - Math.sqrt(3) }, placement: "left" },
+      { key: "b", objectId: "point-b", at: { x: 2 + Math.sqrt(3), y: -3 + Math.sqrt(3) }, placement: "right" },
+      { key: "p", objectId: "point-p", at: { x: 2, y: -3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Jadi, panjang <InlineMath math="AB" /> ialah <InlineMath math="2\sqrt{6}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="2\sqrt{3}" /> hanyalah beza mengufuk <InlineMath math="|x_1-x_2|" />. Garis itu condong, jadi panjang <InlineMath math="AB" /> masih perlu didarab dengan <InlineMath math="\sqrt{1+m^2}=\sqrt{2}" />.
+- <InlineMath math="5" /> ialah jarak antara pintasan-<InlineMath math="x" /> parabola, iaitu <InlineMath math="x=-1" /> dan <InlineMath math="x=4" />. **<InlineMath math="A" /> dan <InlineMath math="B" /> ialah titik persilangan dengan garis, bukan dengan paksi-<InlineMath math="x" />**.
+- <InlineMath math="2\sqrt{7}" /> menggunakan rumus yang salah, <InlineMath math="(x_1-x_2)^2=(x_1+x_2)^2-2x_1x_2=14" />. Rumus yang betul menolak <InlineMath math="4x_1x_2" />.
+- <InlineMath math="4\sqrt{2}" /> menggunakan <InlineMath math="x_1+x_2=2" />, iaitu terlupa membahagi dua untuk titik tengah. Hasilnya <InlineMath math="m=-1" />, dan garis <InlineMath math="y=-x-1" /> bersilang dengan parabola pada <InlineMath math="x=-1" /> dan <InlineMath math="x=3" />, yang titik tengahnya <InlineMath math="(1,-2)" />, bukan <InlineMath math="P" />.

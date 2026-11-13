@@ -1,16 +1,71 @@
-Untung berarti <InlineMath math="R(x)>C(x)" />. **Setiap bungkus menyumbang selisih harga jual dan biaya per bungkus**, yaitu <InlineMath math="\text{Rp}5{.}000" />, untuk menutup biaya tetap.
+# Kemiringan garis dari titik tengah
+
+Garisnya belum diketahui, jadi cari dulu kemiringannya, baru hitung panjang <InlineMath math="AB" />. Titik tengah <InlineMath math="AB" /> terletak pada garis <InlineMath math="AB" />, jadi garis itu melewati <InlineMath math="P(2,-3)" />. Garis tegak <InlineMath math="x=2" /> hanya memotong parabola di satu titik, jadi garisnya punya kemiringan <InlineMath math="m" />.
+
+<BlockMath math="y=m(x-2)-3" />
+
+Absis titik potong adalah akar persamaan yang muncul saat kedua rumus <InlineMath math="y" /> disamakan.
 
 <BlockMath math="\begin{aligned}
-12{.}000x&>7{.}000x+600{.}000 \\
-5{.}000x&>600{.}000 \\
-x&>120
+x^2-3x-4&=m(x-2)-3 \\
+x^2-(3+m)x+(2m-1)&=0
 \end{aligned}" />
 
-Pada <InlineMath math="x=120" />, pendapatan dan biaya sama-sama <InlineMath math="\text{Rp}1{.}440{.}000" />, jadi usaha itu baru impas. Bilangan bulat terkecil yang lebih dari <InlineMath math="120" /> adalah <InlineMath math="121" />.
+Misalkan akarnya <InlineMath math="x_1" /> dan <InlineMath math="x_2" />. Menurut Vieta, <InlineMath math="x_1+x_2=3+m" />. **Absis titik tengah adalah rata-rata kedua akar**, dan nilainya harus <InlineMath math="2" />.
 
-Jadi, paling sedikit <InlineMath math="121" /> bungkus harus terjual.
+<BlockMath math="\frac{x_1+x_2}{2}=\frac{3+m}{2}=2 \quad\Rightarrow\quad m=1" />
 
-- <InlineMath math="32" /> membagi biaya tetap dengan jumlah harga jual dan biaya per bungkus, yaitu <InlineMath math="19{.}000" />, lalu membulatkan ke atas.
-- <InlineMath math="50" /> membagi biaya tetap dengan harga jual saja.
-- <InlineMath math="86" /> membagi biaya tetap dengan biaya per bungkus, lalu membulatkan ke atas.
-- <InlineMath math="120" /> adalah titik impas. Pada penjualan itu usaha belum untung.
+Jadi garisnya <InlineMath math="y=x-5" />, dan persamaan titik potongnya menjadi <InlineMath math="x^2-4x+1=0" />.
+
+# Panjang tali busur
+
+Dari <InlineMath math="x^2-4x+1=0" />, Vieta memberi <InlineMath math="x_1+x_2=4" /> dan <InlineMath math="x_1x_2=1" />. Kedua titik ada pada garis dengan kemiringan <InlineMath math="1" />, jadi **selisih ordinatnya sama dengan <InlineMath math="m" /> kali selisih absisnya**.
+
+<BlockMath math="\begin{aligned}
+(x_1-x_2)^2&=(x_1+x_2)^2-4x_1x_2=16-4=12 \\
+AB^2&=(x_1-x_2)^2+(y_1-y_2)^2=(1+m^2)(x_1-x_2)^2=2\cdot12=24 \\
+AB&=\sqrt{24}=2\sqrt{6}
+\end{aligned}" />
+
+Cek langsung: akarnya <InlineMath math="x=2\pm\sqrt{3}" />, jadi <InlineMath math="A(2-\sqrt{3},\,-3-\sqrt{3})" /> dan <InlineMath math="B(2+\sqrt{3},\,-3+\sqrt{3})" />. Titik tengahnya memang <InlineMath math="(2,-3)" />.
+
+<MathVisual
+  title={<>Tali busur <InlineMath math="AB" /> dengan titik tengah <InlineMath math="P" /></>}
+  description={<>Parabola <InlineMath math="y=x^2-3x-4" /> dan garis <InlineMath math="y=x-5" />. Garis memotong parabola di <InlineMath math="A(2-\sqrt{3},-3-\sqrt{3})" /> dan <InlineMath math="B(2+\sqrt{3},-3+\sqrt{3})" />. Titik <InlineMath math="P(2,-3)" /> berada tepat di tengah ruas <InlineMath math="AB" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 6 },
+      y: { min: -7, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -3, c: -4 }, domain: { min: -1.5, max: 4.5 }, inputAxis: "x" },
+      { id: "line", kind: "segment", appearance: "secondary", from: { x: -1, y: -6 }, to: { x: 5, y: 0 } },
+      { id: "chord", kind: "segment", appearance: "highlight", from: { x: 2 - Math.sqrt(3), y: -3 - Math.sqrt(3) }, to: { x: 2 + Math.sqrt(3), y: -3 + Math.sqrt(3) } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 2 - Math.sqrt(3), y: -3 - Math.sqrt(3) } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 2 + Math.sqrt(3), y: -3 + Math.sqrt(3) } },
+      { id: "point-p", kind: "point", appearance: "answer", at: { x: 2, y: -3 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 2 - Math.sqrt(3), y: -3 - Math.sqrt(3) }, placement: "left" },
+      { key: "b", objectId: "point-b", at: { x: 2 + Math.sqrt(3), y: -3 + Math.sqrt(3) }, placement: "right" },
+      { key: "p", objectId: "point-p", at: { x: 2, y: -3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Jadi, panjang ruas garis <InlineMath math="AB" /> adalah <InlineMath math="2\sqrt{6}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="2\sqrt{3}" /> hanya selisih absis <InlineMath math="|x_1-x_2|" />. Garisnya miring, jadi panjang <InlineMath math="AB" /> masih harus dikali <InlineMath math="\sqrt{1+m^2}=\sqrt{2}" />.
+- <InlineMath math="5" /> adalah jarak kedua titik potong parabola dengan sumbu-<InlineMath math="x" />, yaitu <InlineMath math="x=-1" /> dan <InlineMath math="x=4" />. **Titik <InlineMath math="A" /> dan <InlineMath math="B" /> adalah titik potong dengan garis, bukan dengan sumbu-<InlineMath math="x" />**.
+- <InlineMath math="2\sqrt{7}" /> memakai rumus keliru <InlineMath math="(x_1-x_2)^2=(x_1+x_2)^2-2x_1x_2=14" />. Rumus yang benar mengurangkan <InlineMath math="4x_1x_2" />.
+- <InlineMath math="4\sqrt{2}" /> memakai <InlineMath math="x_1+x_2=2" />, yaitu lupa membagi dua untuk titik tengah. Hasilnya <InlineMath math="m=-1" />, dan garis <InlineMath math="y=-x-1" /> memotong parabola di <InlineMath math="x=-1" /> dan <InlineMath math="x=3" />, yang titik tengahnya <InlineMath math="(1,-2)" />, bukan <InlineMath math="P" />.

@@ -1,12 +1,34 @@
-Write <InlineMath math="2^{a+1}" /> as <InlineMath math="2\cdot2^a" />, then **take out the common factor <InlineMath math="2^a" />**.
+# The order for undoing a composition
 
-<BlockMath math="f(a+1)-f(a)=2^{a+1}-2^a=2\cdot2^a-2^a=2^a(2-1)=2^a" />
+The value <InlineMath math="(f\circ g)^{-1}(21)" /> is the number <InlineMath math="x" /> with <InlineMath math="f(g(x))=21" />. In <InlineMath math="f\circ g" />, the number <InlineMath math="x" /> goes into <InlineMath math="g" /> first, and the result goes into <InlineMath math="f" />. To undo it, **undo the last step first**: invert <InlineMath math="f" />, then invert <InlineMath math="g" />.
 
-Check with <InlineMath math="a=3" />: <InlineMath math="f(4)-f(3)=16-8=8=2^3" />.
+<BlockMath math="(f\circ g)^{-1}(21)=g^{-1}\big(f^{-1}(21)\big)" />
 
-So <InlineMath math="f(a+1)-f(a)=2^a" />.
+# Inverting the quadratic
 
-- <InlineMath math="1" /> subtracts the exponents, <InlineMath math="(a+1)-a" />, but exponents are subtracted only when dividing.
-- <InlineMath math="2" /> is the quotient <InlineMath math="\frac{f(a+1)}{f(a)}" />, not the difference.
-- <InlineMath math="2^{a+1}" /> forgets to subtract <InlineMath math="f(a)" />.
-- <InlineMath math="2^{2a+1}" /> multiplies <InlineMath math="2^{a+1}" /> by <InlineMath math="2^a" /> instead of subtracting.
+Find <InlineMath math="t" /> with <InlineMath math="f(t)=21" />.
+
+<BlockMath math="\begin{aligned}
+t^2+8t+21&=21 \\
+t^2+8t&=0 \\
+t(t+8)&=0 \quad\Rightarrow\quad t=0 \;\text{or}\; t=-8
+\end{aligned}" />
+
+The quadratic equation gives two roots, but **the domain of <InlineMath math="f" /> is only <InlineMath math="t\ge-4" />**. On that domain <InlineMath math="f" /> keeps increasing, so it has an inverse, and the root <InlineMath math="t=-8" /> is thrown out. So <InlineMath math="f^{-1}(21)=0" />, which means <InlineMath math="g(x)" /> must equal <InlineMath math="0" />.
+
+# Inverting the linear function
+
+Now find the <InlineMath math="x" /> that makes <InlineMath math="g(x)=0" />. **The function <InlineMath math="g" /> works for every real number**, so there's no root to throw out in this step.
+
+<BlockMath math="\frac{x-12}{2}=0 \quad\Rightarrow\quad x=12" />
+
+Check: <InlineMath math="g(12)=0" /> lies in the domain of <InlineMath math="f" />, and <InlineMath math="f(0)=21" />. So <InlineMath math="(f\circ g)(12)=21" />.
+
+So the value of <InlineMath math="(f\circ g)^{-1}(21)" /> is <InlineMath math="12" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="-6" /> inverts <InlineMath math="f" /> correctly but then uses <InlineMath math="g(0)=-6" /> instead of <InlineMath math="g^{-1}(0)" />.
+- <InlineMath math="-4" /> uses the root <InlineMath math="t=-8" />, which gives <InlineMath math="g^{-1}(-8)=-4" />. **The value <InlineMath math="-8" /> is outside the domain of <InlineMath math="f" />**, so <InlineMath math="f(g(-4))" /> isn't defined.
+- <InlineMath math="0" /> stops at <InlineMath math="f^{-1}(21)" />. That's the value of <InlineMath math="g(x)" />, not of <InlineMath math="x" />.
+- <InlineMath math="3" /> uses the reversed order, <InlineMath math="f^{-1}\big(g^{-1}(21)\big)=f^{-1}(54)=3" />. But <InlineMath math="g(3)=-\frac{9}{2}" /> is outside the domain of <InlineMath math="f" />.

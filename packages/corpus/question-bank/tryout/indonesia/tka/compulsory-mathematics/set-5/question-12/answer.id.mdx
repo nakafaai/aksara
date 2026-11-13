@@ -1,13 +1,88 @@
-Mulai dari sisi miring dan luas. Luas segitiga <InlineMath math="ABC" /> bisa dihitung dengan dua pasang alas dan tinggi, jadi **<InlineMath math="CD" /> adalah tinggi terhadap sisi miring <InlineMath math="AB" />**. Segitiga <InlineMath math="ACD" /> sebangun dengan segitiga <InlineMath math="ABC" /> karena keduanya siku-siku dan berbagi <InlineMath math="\angle A" />.
+# Sudut pusat dari jarak tali busur
+
+Ketiga pernyataan bergantung pada satu fakta: besar sudut pusat <InlineMath math="AOB" />. Jadi cari sudut itu dulu dari jari-jari dan jarak tali busur ke pusat.
+
+Tarik garis dari <InlineMath math="O" /> tegak lurus <InlineMath math="AB" /> di titik <InlineMath math="M" />. Garis ini **membagi tali busur sama panjang**, jadi segitiga <InlineMath math="OMA" /> siku-siku di <InlineMath math="M" /> dengan <InlineMath math="OA=10" /> dan <InlineMath math="OM=5" />:
 
 <BlockMath math="\begin{aligned}
-AB&=\sqrt{6^2+8^2}=10 \\
-\tfrac12\cdot AC\cdot BC=\tfrac12\cdot AB\cdot CD\ &\Rightarrow\ CD=\frac{6\cdot8}{10}=4{,}8 \\
-\frac{AD}{AC}=\frac{AC}{AB}\ &\Rightarrow\ AD=\frac{6^2}{10}=3{,}6 \\
-BD&=10-3{,}6=6{,}4
+AM&=\sqrt{10^2-5^2}=5\sqrt3,\qquad AB=10\sqrt3 \\
+\cos\angle AOM&=\frac{OM}{OA}=\frac{5}{10}=\frac12\ \Rightarrow\ \angle AOM=60^\circ \\
+\angle AOB&=2\cdot60^\circ=120^\circ
 \end{aligned}" />
 
-- <InlineMath math="AD=3{,}6\text{ cm}" />. Nilai <InlineMath math="6{,}4\text{ cm}" /> adalah panjang <InlineMath math="BD" />. Pernyataan ini salah.
-- <InlineMath math="CD=4{,}8\text{ cm}" /> sesuai perhitungan luas. Pernyataan ini benar.
-- Keliling segitiga <InlineMath math="BCD" /> adalah <InlineMath math="8+4{,}8+6{,}4=19{,}2\text{ cm}" />, bukan <InlineMath math="18\text{ cm}" />. Pernyataan ini salah.
-- Segitiga <InlineMath math="ACD" /> dan <InlineMath math="BCD" /> mempunyai tinggi yang sama, yaitu <InlineMath math="CD" />, jadi perbandingan luasnya sama dengan <InlineMath math="AD:BD=3{,}6:6{,}4=9:16" />. Pernyataan ini benar.
+<MathVisual
+  title={<>Tali busur <InlineMath math="AB" /> dan titik-titik penting</>}
+  description={<>Lingkaran berpusat <InlineMath math="O" /> berjari-jari <InlineMath math="10" />. Tali busur <InlineMath math="AB" /> mendatar di bawah pusat, berjarak <InlineMath math="OM=5" />. Garis singgung di <InlineMath math="A" /> dan di <InlineMath math="B" /> bertemu di <InlineMath math="P" /> pada perpanjangan <InlineMath math="OM" />. Titik <InlineMath math="C_1" /> di puncak lingkaran dan titik <InlineMath math="C_2" /> di dasar lingkaran sama-sama berjarak sama dari <InlineMath math="A" /> dan <InlineMath math="B" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    m: <InlineMath math="M" />,
+    p: <InlineMath math="P" />,
+    c1: <InlineMath math="C_1" />,
+    c2: <InlineMath math="C_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -13, max: 13 },
+      y: { min: -23, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 10 },
+      { id: "chord", kind: "segment", appearance: "highlight", from: { x: -5 * Math.sqrt(3), y: -5 }, to: { x: 5 * Math.sqrt(3), y: -5 } },
+      { id: "radius-a", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -5 * Math.sqrt(3), y: -5 } },
+      { id: "radius-b", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 5 * Math.sqrt(3), y: -5 } },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 0, y: 10 }, to: { x: 0, y: -20 } },
+      { id: "tangent-a", kind: "segment", appearance: "reference", from: { x: -5 * Math.sqrt(3), y: -5 }, to: { x: 0, y: -20 } },
+      { id: "tangent-b", kind: "segment", appearance: "reference", from: { x: 5 * Math.sqrt(3), y: -5 }, to: { x: 0, y: -20 } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: -5 * Math.sqrt(3), y: -5 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 5 * Math.sqrt(3), y: -5 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 0, y: -5 } },
+      { id: "point-p", kind: "point", appearance: "answer", at: { x: 0, y: -20 } },
+      { id: "point-c1", kind: "point", appearance: "highlight", at: { x: 0, y: 10 } },
+      { id: "point-c2", kind: "point", appearance: "highlight", at: { x: 0, y: -10 } },
+    ],
+    labels: [
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "a", objectId: "point-a", at: { x: -5 * Math.sqrt(3), y: -5 }, placement: "left" },
+      { key: "b", objectId: "point-b", at: { x: 5 * Math.sqrt(3), y: -5 }, placement: "right" },
+      { key: "m", objectId: "point-m", at: { x: 0, y: -5 }, placement: "above-right" },
+      { key: "p", objectId: "point-p", at: { x: 0, y: -20 }, placement: "below" },
+      { key: "c1", objectId: "point-c1", at: { x: 0, y: 10 }, placement: "above" },
+      { key: "c2", objectId: "point-c2", at: { x: 0, y: -10 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Pernyataan pertama
+
+Garis singgung selalu tegak lurus jari-jari di titik singgungnya, jadi segitiga <InlineMath math="OAP" /> siku-siku di <InlineMath math="A" />. Karena gambarnya simetris, <InlineMath math="P" /> ada pada perpanjangan <InlineMath math="OM" />, sehingga <InlineMath math="\angle AOP=\angle AOM=60^\circ" />:
+
+<BlockMath math="OP=\frac{OA}{\cos60^\circ}=\frac{10}{\frac12}=20\text{ cm}" />
+
+Kalau sudut pusatnya keliru dikira <InlineMath math="60^\circ" />, hasilnya <InlineMath math="\frac{10}{\cos30^\circ}\approx11{,}5" />. Dengan sudut yang benar, **<InlineMath math="OP" /> tepat <InlineMath math="20\text{ cm}" />**. Pernyataan ini **Benar**.
+
+# Pernyataan kedua
+
+Busur kecil <InlineMath math="AB" /> menghadap sudut pusat <InlineMath math="120^\circ" />, yaitu sepertiga lingkaran:
+
+<BlockMath math="\text{busur kecil }AB=\frac{120}{360}\cdot2\pi\cdot10=\frac{20\pi}{3}" />
+
+Karena <InlineMath math="\pi>3" />, berlaku <InlineMath math="\frac{20\pi}{3}>\frac{20\cdot3}{3}=20" />. Panjangnya sekitar <InlineMath math="20{,}9\text{ cm}" />, **lebih dari** <InlineMath math="20\text{ cm}" />, walaupun tali busurnya hanya <InlineMath math="10\sqrt3\approx17{,}3\text{ cm}" />. Pernyataan ini **Salah**.
+
+# Pernyataan ketiga
+
+Titik <InlineMath math="C" /> dengan <InlineMath math="CA=CB" /> terletak pada garis sumbu <InlineMath math="AB" />, yaitu garis <InlineMath math="OM" />. Garis ini memotong lingkaran di **dua titik**, <InlineMath math="C_1" /> di sisi jauh dan <InlineMath math="C_2" /> di sisi dekat tali busur. Tinggi segitiga terhadap alas <InlineMath math="AB" /> berbeda untuk keduanya:
+
+<BlockMath math="\begin{aligned}
+C_1&:\ \text{tinggi}=10+5=15,\quad \text{luas}=\tfrac12\cdot10\sqrt3\cdot15=75\sqrt3 \\
+C_2&:\ \text{tinggi}=10-5=5,\quad \text{luas}=\tfrac12\cdot10\sqrt3\cdot5=25\sqrt3
+\end{aligned}" />
+
+Luasnya bisa <InlineMath math="75\sqrt3" /> atau <InlineMath math="25\sqrt3\text{ cm}^2" />, jadi kata pasti tidak tepat. Pernyataan ini **Salah**.
+
+Jadi, urutan jawabannya adalah Benar, Salah, Salah.

@@ -1,18 +1,37 @@
-The sample space has <InlineMath math="6\cdot6=36" /> equally likely ordered pairs, because both dice are fair and the first die is told apart from the second. The sum can be anything from <InlineMath math="2" /> to <InlineMath math="12" />, and **the prime sums are <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="5" />, <InlineMath math="7" />, and <InlineMath math="11" />**.
+# Three possible balls to move
 
-| Sum | Pairs | Count |
-| --- | --- | --- |
-| <InlineMath math="2" /> | <InlineMath math="(1,1)" /> | <InlineMath math="1" /> |
-| <InlineMath math="3" /> | <InlineMath math="(1,2),(2,1)" /> | <InlineMath math="2" /> |
-| <InlineMath math="5" /> | <InlineMath math="(1,4),(4,1),(2,3),(3,2)" /> | <InlineMath math="4" /> |
-| <InlineMath math="7" /> | <InlineMath math="(1,6),(6,1),(2,5),(5,2),(3,4),(4,3)" /> | <InlineMath math="6" /> |
-| <InlineMath math="11" /> | <InlineMath math="(5,6),(6,5)" /> | <InlineMath math="2" /> |
+What's in box B when the two balls are drawn depends on the colour of the ball moved from box A, and that colour is unknown. So **split into cases by the colour of the moved ball**, find the chance of a matching pair in each case, then combine them.
 
-<BlockMath math="P=\frac{1+2+4+6+2}{36}=\frac{15}{36}=\frac{5}{12}" />
+Box A holds <InlineMath math="4" /> balls, so the moved ball is red, blue, or green with probabilities <InlineMath math="\tfrac24=\tfrac12" />, <InlineMath math="\tfrac14" />, and <InlineMath math="\tfrac14" />. They aren't equal because there are two red balls.
 
-So the probability that the sum is prime is <InlineMath math="\frac{5}{12}" />.
+# The chance of a matching pair in each case
 
-- <InlineMath math="\frac{8}{21}" /> counts pairs without order, but <InlineMath math="(1,2)" /> and <InlineMath math="(2,1)" /> are two different outcomes.
-- <InlineMath math="\frac{7}{18}" /> forgets that <InlineMath math="2" /> is a prime number.
-- <InlineMath math="\frac{5}{11}" /> treats all eleven sums as equally likely, but a sum of <InlineMath math="7" /> is far more likely than a sum of <InlineMath math="2" />.
-- <InlineMath math="\frac{7}{12}" /> is the probability that the sum is **not** prime.
+After the move, box B holds <InlineMath math="6" /> balls. Two balls drawn one at a time without replacement form one pair, and the order doesn't affect whether the colours match. There are <InlineMath math="\binom62=15" /> possible pairs. **A matching pair can only come from a colour with at least two balls**.
+
+| Ball moved | Probability | Box B (red, blue, green) | Matching pairs | Chance of a match |
+| :---: | :---: | :---: | :---: | :---: |
+| red | <InlineMath math="\tfrac12" /> | <InlineMath math="3,\ 2,\ 1" /> | <InlineMath math="3+1+0=4" /> | <InlineMath math="\tfrac{4}{15}" /> |
+| blue | <InlineMath math="\tfrac14" /> | <InlineMath math="2,\ 3,\ 1" /> | <InlineMath math="1+3+0=4" /> | <InlineMath math="\tfrac{4}{15}" /> |
+| green | <InlineMath math="\tfrac14" /> | <InlineMath math="2,\ 2,\ 2" /> | <InlineMath math="1+1+1=3" /> | <InlineMath math="\tfrac{3}{15}" /> |
+
+For example, in the red case, three red balls give <InlineMath math="\binom32=3" /> pairs, two blue balls give <InlineMath math="1" /> pair, and a single green ball can't form a pair.
+
+# Combining the three cases
+
+Multiply the probability of each case by the chance of a match in that case, then add:
+
+<BlockMath math="\begin{aligned}
+P&=\tfrac12\cdot\tfrac{4}{15}+\tfrac14\cdot\tfrac{4}{15}+\tfrac14\cdot\tfrac{3}{15} \\
+&=\tfrac{8}{60}+\tfrac{4}{60}+\tfrac{3}{60}=\tfrac{15}{60}=\tfrac14
+\end{aligned}" />
+
+Check the red case by counting in order: <InlineMath math="\frac{3\cdot2+2\cdot1}{6\cdot5}=\frac{8}{30}=\frac{4}{15}" />. **It matches the pair count**, so the table is right.
+
+So the probability that the two balls drawn from box B have the same colour is <InlineMath math="\frac14" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\frac15" /> ignores the move and uses the original box B, <InlineMath math="\frac{1+1}{10}" />.
+- <InlineMath math="\frac{11}{45}" /> treats the three colours of the moved ball as **equally likely**, <InlineMath math="\tfrac13" /> each, but box A has two red balls.
+- <InlineMath math="\frac{4}{15}" /> assumes the moved ball must be red because red is the most likely. The blue and green cases get lost.
+- <InlineMath math="\frac38" /> draws with replacement, for example <InlineMath math="\frac{9+4+1}{36}" /> in the red case, but the balls are drawn without replacement.

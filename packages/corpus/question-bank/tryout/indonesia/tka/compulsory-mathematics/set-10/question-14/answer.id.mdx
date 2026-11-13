@@ -1,15 +1,96 @@
-Ikuti titik <InlineMath math="A" /> **sesuai urutan transformasinya**: dilatasi mengalikan koordinat dengan <InlineMath math="3" />, lalu translasi menambahkan vektornya.
+# Bayangan titik lewat titik kaki
+
+Soal ini meminta titik <InlineMath math="B" /> pada garis <InlineMath math="g" /> yang membuat sudut <InlineMath math="ABA'" /> siku-siku, dengan <InlineMath math="B" /> di kuadran I. Jadi ada dua tugas: cari bayangan <InlineMath math="A'" /> dulu, lalu cari titik di <InlineMath math="g" /> yang melihat ruas <InlineMath math="AA'" /> dengan sudut siku-siku.
+
+Pencerminan terhadap garis miring paling aman dikerjakan lewat **titik kaki tegak lurus**, yaitu titik <InlineMath math="M" /> di <InlineMath math="g" /> yang paling dekat ke <InlineMath math="A" />. Garis <InlineMath math="g" /> punya vektor normal <InlineMath math="(2,-1)" />, jadi setiap titik pada garis tegak lurus dari <InlineMath math="A" /> berbentuk <InlineMath math="(6+2t,\ 1-t)" />. Titik kaki adalah titik yang juga memenuhi persamaan <InlineMath math="g" />:
 
 <BlockMath math="\begin{aligned}
-(2,k)&\xrightarrow{\ [O,\,3]\ }(6,\,3k)\xrightarrow{\ T\ }(6-1,\,3k+4)=(5,\,3k+4) \\
-3k+4&=10\ \Rightarrow\ k=2
+2(6+2t)-(1-t)&=1 \\
+11+5t&=1 \\
+t&=-2 \\
+M&=(6-4,\ 1+2)=(2,3)
 \end{aligned}" />
 
-Koordinat <InlineMath math="x" /> memeriksa urutannya: <InlineMath math="6-1=5" />, sesuai bayangan akhir.
+Titik <InlineMath math="M" /> adalah titik tengah <InlineMath math="AA'" />, jadi <InlineMath math="A'=2M-A" />:
 
-Jadi, <InlineMath math="k=2" />.
+<BlockMath math="A'=(2\cdot2-6,\ 2\cdot3-1)=(-2,5)" />
 
-- <InlineMath math="-\frac23" /> mentranslasikan lebih dulu, lalu mendilatasi, sehingga persamaannya <InlineMath math="3(k+4)=10" />.
-- <InlineMath math="\frac{10}{3}" /> lupa translasi.
-- <InlineMath math="\frac{14}{3}" /> salah tanda saat memindahkan <InlineMath math="4" />, sehingga <InlineMath math="3k=14" />.
-- <InlineMath math="6" /> lupa membagi dengan <InlineMath math="3" />.
+# Titik siku-siku pada garis cermin
+
+Garis cermin <InlineMath math="g" /> tegak lurus <InlineMath math="AA'" /> dan melewati titik tengahnya <InlineMath math="M" />. Sudut <InlineMath math="ABA'" /> siku-siku artinya **<InlineMath math="B" /> terletak pada lingkaran berdiameter <InlineMath math="AA'" />** (teorema Thales). Pusat lingkaran itu <InlineMath math="M" />, dan jari-jarinya sama dengan <InlineMath math="MA" />:
+
+<BlockMath math="MA=\sqrt{(6-2)^2+(1-3)^2}=\sqrt{20}=2\sqrt5" />
+
+Titik <InlineMath math="B" /> ada di <InlineMath math="g" />, jadi tulis <InlineMath math="B=(t,\ 2t-1)" />. Sekarang pakai syarat <InlineMath math="MB=2\sqrt5" />:
+
+<BlockMath math="\begin{aligned}
+(t-2)^2+(2t-1-3)^2&=20 \\
+(t-2)^2+4(t-2)^2&=20 \\
+5(t-2)^2&=20 \\
+(t-2)^2&=4
+\end{aligned}" />
+
+Dari sini <InlineMath math="t-2=2" /> atau <InlineMath math="t-2=-2" />. Ada dua calon, yaitu <InlineMath math="t=4" /> yang memberi <InlineMath math="B=(4,7)" />, dan <InlineMath math="t=0" /> yang memberi <InlineMath math="B=(0,-1)" />.
+
+# Syarat kuadran
+
+Calon <InlineMath math="(0,-1)" /> terletak di sumbu <InlineMath math="y" />, jadi **tidak berada di kuadran I** dan harus dibuang. Yang tersisa adalah <InlineMath math="B=(4,7)" />.
+
+Cek sudutnya dengan gradien. Dua garis tegak lurus kalau hasil kali gradiennya <InlineMath math="-1" />:
+
+<BlockMath math="\begin{aligned}
+m_{BA}&=\frac{1-7}{6-4}=-3 \\
+m_{BA'}&=\frac{5-7}{-2-4}=\frac13 \\
+m_{BA}\cdot m_{BA'}&=-3\cdot\frac13=-1
+\end{aligned}" />
+
+<MathVisual
+  title={<>Lingkaran Thales pada garis cermin</>}
+  description={<>Garis <InlineMath math="g:\ 2x-y=1" /> melewati <InlineMath math="(0,-1)" />, <InlineMath math="M(2,3)" />, dan <InlineMath math="(4,7)" />. Titik <InlineMath math="A(6,1)" /> dan bayangannya <InlineMath math="A'(-2,5)" /> simetris terhadap <InlineMath math="g" />. Lingkaran berpusat <InlineMath math="M" /> dengan jari-jari <InlineMath math="2\sqrt5" /> memotong <InlineMath math="g" /> di <InlineMath math="(4,7)" /> dan <InlineMath math="(0,-1)" />, dan hanya <InlineMath math="(4,7)" /> yang berada di kuadran I.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    image: <InlineMath math="A'" />,
+    m: <InlineMath math="M" />,
+    b: <InlineMath math="B(4,7)" />,
+    other: <InlineMath math="(0,-1)" />,
+    mirror: <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 8 },
+      y: { min: -3, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "line", appearance: "reference", through: [{ x: 0, y: -1 }, { x: 4, y: 7 }] },
+      { id: "thales", kind: "circle", appearance: "construction", center: { x: 2, y: 3 }, radius: Math.sqrt(20) },
+      { id: "diameter", kind: "segment", appearance: "secondary", from: { x: 6, y: 1 }, to: { x: -2, y: 5 } },
+      { id: "leg-a", kind: "segment", appearance: "highlight", from: { x: 4, y: 7 }, to: { x: 6, y: 1 } },
+      { id: "leg-image", kind: "segment", appearance: "highlight", from: { x: 4, y: 7 }, to: { x: -2, y: 5 } },
+      { id: "point-a", kind: "point", appearance: "primary", at: { x: 6, y: 1 } },
+      { id: "point-image", kind: "point", appearance: "primary", at: { x: -2, y: 5 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 2, y: 3 } },
+      { id: "point-b", kind: "point", appearance: "answer", at: { x: 4, y: 7 } },
+      { id: "point-other", kind: "point", appearance: "warning", at: { x: 0, y: -1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 6, y: 1 }, placement: "right" },
+      { key: "image", objectId: "point-image", at: { x: -2, y: 5 }, placement: "left" },
+      { key: "m", objectId: "point-m", at: { x: 2, y: 3 }, placement: "below-right" },
+      { key: "b", objectId: "point-b", at: { x: 4, y: 7 }, placement: "above-left" },
+      { key: "other", objectId: "point-other", at: { x: 0, y: -1 }, placement: "left" },
+      { key: "mirror", objectId: "mirror", at: { x: 4.5, y: 8 }, placement: "right" },
+    ],
+  }}
+/>
+
+Jadi, koordinat titik <InlineMath math="B" /> adalah <InlineMath math="(4,7)" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="(6,11)" /> muncul kalau kamu bergeser dari <InlineMath math="M" /> sejauh seluruh panjang <InlineMath math="AA'=4\sqrt5" />. Padahal jari-jari lingkaran Thales hanya **setengah diameter**, yaitu <InlineMath math="2\sqrt5" />.
+- <InlineMath math="(3,5)" /> muncul kalau kamu menganggap <InlineMath math="AA'" /> sama dengan jarak <InlineMath math="A" /> ke garis <InlineMath math="g" />, yaitu <InlineMath math="2\sqrt5" />, lalu membaginya dua. Bayangan berjarak dua kali jarak titik ke cermin, jadi <InlineMath math="AA'=4\sqrt5" />.
+- <InlineMath math="(2,3)" /> adalah titik kaki <InlineMath math="M" />. Di sana <InlineMath math="A" />, <InlineMath math="M" />, dan <InlineMath math="A'" /> segaris, jadi sudutnya <InlineMath math="180^\circ" />, bukan <InlineMath math="90^\circ" />.
+- <InlineMath math="(0,-1)" /> memang membuat sudut siku-siku, tetapi titik itu tidak berada di kuadran I.

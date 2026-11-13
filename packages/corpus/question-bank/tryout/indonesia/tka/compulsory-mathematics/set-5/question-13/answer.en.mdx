@@ -1,10 +1,89 @@
-Do the two reflections **in the order the question gives**. Reflecting in the line <InlineMath math="y=x" /> swaps the two coordinates, and reflecting in the <InlineMath math="y" />-axis changes only the sign of the <InlineMath math="x" />-coordinate.
+# The result of the dilation
 
-<BlockMath math="P(3,-5)\xrightarrow{\ y=x\ }P'(-5,3)\xrightarrow{\ y\text{-axis}\ }P''(5,3)" />
+The question asks for the area of the part of the final triangle that the original triangle doesn't cover. So you need two things: **the area of the final triangle**, and **where the original triangle sits** relative to it.
 
-So the final image of <InlineMath math="P" /> is <InlineMath math="(5,3)" />.
+A dilation with centre <InlineMath math="A" /> and factor <InlineMath math="-3" /> multiplies every vector from <InlineMath math="A" /> by <InlineMath math="-3" />. The point <InlineMath math="A" /> itself doesn't move:
 
-- <InlineMath math="(-5,-3)" /> comes from reversing the order: the <InlineMath math="y" />-axis first gives <InlineMath math="(-3,-5)" />, then <InlineMath math="y=x" />.
-- <InlineMath math="(-5,3)" /> is only the result of the first reflection.
-- <InlineMath math="(-3,-5)" /> reflects <InlineMath math="P" /> in the <InlineMath math="y" />-axis only.
-- <InlineMath math="(5,-3)" /> changes the sign of both coordinates in the second step, but a reflection in the <InlineMath math="y" />-axis leaves the <InlineMath math="y" />-coordinate alone.
+<BlockMath math="\begin{aligned}
+\vec{AB}=(2,0)&\ \Rightarrow\ -3(2,0)=(-6,0),\quad B'=(-5,1) \\
+\vec{AC}=(0,3)&\ \Rightarrow\ -3(0,3)=(0,-9),\quad C'=(1,-8)
+\end{aligned}" />
+
+The minus sign puts triangle <InlineMath math="AB'C'" /> on the opposite side of <InlineMath math="A" />. At this stage it only touches <InlineMath math="ABC" /> at the point <InlineMath math="A" />.
+
+# The result of the rotation
+
+A <InlineMath math="180^\circ" /> rotation about <InlineMath math="A" /> reverses every vector from <InlineMath math="A" />:
+
+<BlockMath math="\begin{aligned}
+(-6,0)&\ \Rightarrow\ (6,0),\quad B''=(7,1) \\
+(0,-9)&\ \Rightarrow\ (0,9),\quad C''=(1,10)
+\end{aligned}" />
+
+This rotation **reverses again the direction that the negative factor reversed**. The end result is the same as a dilation about <InlineMath math="A" /> with factor <InlineMath math="+3" />, so the final triangle is back on the same side as <InlineMath math="ABC" />.
+
+<MathVisual
+  title={<>The original triangle, the dilated one, and the final one</>}
+  description={<>The original triangle <InlineMath math="ABC" /> has <InlineMath math="A(1,1)" />, <InlineMath math="B(3,1)" />, <InlineMath math="C(1,4)" />. The dilated triangle <InlineMath math="AB'C'" /> with <InlineMath math="B'(-5,1)" /> and <InlineMath math="C'(1,-8)" /> lies on the opposite side of <InlineMath math="A" />. The final triangle <InlineMath math="AB''C''" /> with <InlineMath math="B''(7,1)" /> and <InlineMath math="C''(1,10)" /> contains the whole triangle <InlineMath math="ABC" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    "b-first": <InlineMath math="B'" />,
+    "c-first": <InlineMath math="C'" />,
+    "b-final": <InlineMath math="B''" />,
+    "c-final": <InlineMath math="C''" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 9 },
+      y: { min: -10, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "final", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 1 }, { x: 7, y: 1 }, { x: 1, y: 10 }] },
+      { id: "first", kind: "polygon", appearance: "construction", vertices: [{ x: 1, y: 1 }, { x: -5, y: 1 }, { x: 1, y: -8 }] },
+      { id: "original", kind: "polygon", appearance: "highlight", vertices: [{ x: 1, y: 1 }, { x: 3, y: 1 }, { x: 1, y: 4 }] },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 3, y: 1 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 1, y: 4 } },
+      { id: "point-b-first", kind: "point", appearance: "reference", at: { x: -5, y: 1 } },
+      { id: "point-c-first", kind: "point", appearance: "reference", at: { x: 1, y: -8 } },
+      { id: "point-b-final", kind: "point", appearance: "reference", at: { x: 7, y: 1 } },
+      { id: "point-c-final", kind: "point", appearance: "reference", at: { x: 1, y: 10 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 3, y: 1 }, placement: "below" },
+      { key: "c", objectId: "point-c", at: { x: 1, y: 4 }, placement: "left" },
+      { key: "b-first", objectId: "point-b-first", at: { x: -5, y: 1 }, placement: "above" },
+      { key: "c-first", objectId: "point-c-first", at: { x: 1, y: -8 }, placement: "right" },
+      { key: "b-final", objectId: "point-b-final", at: { x: 7, y: 1 }, placement: "below" },
+      { key: "c-final", objectId: "point-c-final", at: { x: 1, y: 10 }, placement: "left" },
+    ],
+  }}
+/>
+
+# The area you want
+
+Triangle <InlineMath math="ABC" /> has a right angle at <InlineMath math="A" /> with legs <InlineMath math="2" /> and <InlineMath math="3" />. Every side is multiplied by <InlineMath math="3" />, so **the area is multiplied by <InlineMath math="3^2=9" />**:
+
+<BlockMath math="\begin{aligned}
+\text{area }ABC&=\tfrac12\cdot2\cdot3=3 \\
+\text{area }A''B''C''&=\tfrac12\cdot6\cdot9=27=9\cdot3
+\end{aligned}" />
+
+Both triangles share the right angle at <InlineMath math="A" /> with legs pointing the same way, and <InlineMath math="ABC" /> is smaller. Check with the hypotenuse of the final triangle, the line <InlineMath math="3x+2y=23" />: the points <InlineMath math="B" /> and <InlineMath math="C" /> both give <InlineMath math="11\le23" />, so both are inside. The whole of <InlineMath math="ABC" /> is covered by the final triangle:
+
+<BlockMath math="27-3=24" />
+
+So the area inside triangle <InlineMath math="A''B''C''" /> not covered by triangle <InlineMath math="ABC" /> is <InlineMath math="24" /> square units.
+
+# Why the other options are wrong
+
+- <InlineMath math="27" /> is the whole area of the final triangle. You get it if you think the factor <InlineMath math="-3" /> leaves the final triangle **on the opposite side** of <InlineMath math="ABC" />, but the <InlineMath math="180^\circ" /> rotation brings it back, so <InlineMath math="ABC" /> is covered.
+- <InlineMath math="6" /> multiplies the area by <InlineMath math="3" />, giving <InlineMath math="9-3" />. Area changes by the square of the scale factor.
+- <InlineMath math="48" /> forgets the <InlineMath math="\frac12" /> in the triangle area: <InlineMath math="6\cdot9-2\cdot3" />.
+- <InlineMath math="78" /> multiplies the area by <InlineMath math="3^3=27" />, giving <InlineMath math="81-3" />. The cube is for volume, not area.

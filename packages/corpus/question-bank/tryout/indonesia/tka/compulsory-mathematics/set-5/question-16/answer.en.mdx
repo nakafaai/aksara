@@ -1,15 +1,69 @@
-Seen from the side, along the <InlineMath math="25\text{ m}" /> length, the water forms a **right trapezium** with parallel sides <InlineMath math="1\text{ m}" /> and <InlineMath math="2\text{ m}" />. That cross-section is the same across the whole width, so the water is a prism with a trapezium base and a prism length of <InlineMath math="10\text{ m}" />.
+# A handy unit
+
+The question asks how much water still has to go in, from a water surface <InlineMath math="0.3\text{ m}" /> above the tip of the cone up to the safety line. That water fills two parts: **the rest of the cone above the water already there**, and then the cylinder up to the safety line.
+
+Work in decimetres, because <InlineMath math="1\text{ dm}^3=1" /> litre. The radius is <InlineMath math="r=7\text{ dm}" />, the cone is <InlineMath math="6\text{ dm}" /> tall, the cylinder is <InlineMath math="15\text{ dm}" /> tall, and the safety line sits <InlineMath math="3\text{ dm}" /> below the top rim. The cylinder and the cone share the same base area:
+
+<BlockMath math="\pi r^2=\frac{22}{7}\cdot7^2=154\text{ dm}^2" />
+
+# The empty part of the cone
+
+The full cone holds <InlineMath math="\tfrac13\cdot154\cdot6=308" /> litres. The water already there forms a small cone <InlineMath math="3\text{ dm}" /> tall, half the height of the big cone. The small cone is similar to the big one, so its radius is also half, <InlineMath math="3.5\text{ dm}" />. Because the height and the radius are both multiplied by <InlineMath math="\tfrac12" />, **the volume is multiplied by <InlineMath math="\left(\tfrac12\right)^3=\tfrac18" />**, not by <InlineMath math="\tfrac12" />.
 
 <BlockMath math="\begin{aligned}
-L_{\text{trapezium}}&=\frac{1+2}{2}\cdot25=37.5\text{ m}^2 \\
-V&=37.5\cdot10=375\text{ m}^3
+V_{\text{water at start}}&=\tfrac18\cdot308=38.5\text{ litres} \\
+\text{check}&:\ \tfrac13\cdot\tfrac{22}{7}\cdot3.5^2\cdot3=38.5\text{ litres} \\
+V_{\text{rest of cone}}&=308-38.5=269.5\text{ litres}
 \end{aligned}" />
 
-This is the same as using the average depth, <InlineMath math="1.5\text{ m}" />, over the whole surface of <InlineMath math="25\cdot10=250\text{ m}^2" />.
+<MathVisual
+  title={<>The water at the start, inside the cone</>}
+  description={<>The cross-section of the tank, as in the question's figure. The starting water fills a small triangle at the tip of the cone, <InlineMath math="0.3\text{ m}" /> tall, which is half the height of the cone, with a surface <InlineMath math="0.7\text{ m}" /> wide. The safety line is <InlineMath math="0.3\text{ m}" /> below the top rim of the cylinder.</>}
+  labels={{
+    water: <InlineMath math="0.3\text{ m}" />,
+    surface: <InlineMath math="0.7\text{ m}" />,
+    safe: <>safety line</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -16, max: 20 },
+      y: { min: -2, max: 24 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tank", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 7, y: 6 }, { x: 7, y: 21 }, { x: -7, y: 21 }, { x: -7, y: 6 }] },
+      { id: "water", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3.5, y: 3 }, { x: -3.5, y: 3 }] },
+      { id: "junction", kind: "segment", appearance: "construction", from: { x: -7, y: 6 }, to: { x: 7, y: 6 } },
+      { id: "water-height", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "safe-line", kind: "segment", appearance: "warning", from: { x: -7, y: 18 }, to: { x: 7, y: 18 } },
+    ],
+    labels: [
+      { key: "water", objectId: "water-height", at: { x: 0, y: 1.5 }, placement: "right" },
+      { key: "surface", objectId: "water", at: { x: -3.5, y: 3 }, placement: "left" },
+      { key: "safe", objectId: "safe-line", at: { x: 7, y: 18 }, placement: "right" },
+    ],
+  }}
+/>
 
-So the full pool holds <InlineMath math="375\text{ m}^3" /> of water.
+# The cylinder up to the safety line
 
-- <InlineMath math="125\text{ m}^3" /> counts only the water deeper than <InlineMath math="1\text{ m}" />, the triangular prism <InlineMath math="\tfrac12\cdot25\cdot1\cdot10" />.
-- <InlineMath math="187.5\text{ m}^3" /> halves the trapezium area a second time.
-- <InlineMath math="250\text{ m}^3" /> treats the whole pool as <InlineMath math="1\text{ m}" /> deep.
-- <InlineMath math="500\text{ m}^3" /> treats the whole pool as <InlineMath math="2\text{ m}" /> deep.
+Inside the cylinder, the water rises from the bottom of the cylinder to <InlineMath math="3\text{ dm}" /> below the top rim. **The water in the cylinder is only <InlineMath math="15-3=12\text{ dm}" /> deep**, not the full height of the cylinder.
+
+<BlockMath math="V_{\text{cylinder}}=154\cdot12=1{,}848\text{ litres}" />
+
+# The total to pump in
+
+<BlockMath math="269.5+1{,}848=2{,}117.5\text{ litres}" />
+
+Check that it makes sense. A tank filled up to the safety line holds <InlineMath math="308+1{,}848=2{,}156" /> litres, and it started with <InlineMath math="38.5" /> litres. The difference is <InlineMath math="2{,}156-38.5=2{,}117.5" /> litres, **the same result**.
+
+So the amount of water that has to be pumped in is <InlineMath math="2{,}117.5" /> litres.
+
+# Why the other options are wrong
+
+- <InlineMath math="2{,}002" /> litres assumes that water up to half the cone's height fills half the cone's volume, <InlineMath math="154" /> litres. For similar solids, **the volume changes with the cube of the height ratio**.
+- <InlineMath math="2{,}156" /> litres forgets to subtract the <InlineMath math="38.5" /> litres already in the cone.
+- <InlineMath math="2{,}579.5" /> litres fills the cylinder to the top rim, <InlineMath math="154\cdot15=2{,}310" /> litres, but the water may only reach the safety line.
+- <InlineMath math="2{,}656.5" /> litres forgets the <InlineMath math="\tfrac13" /> in the cone volume, so the cone counts as <InlineMath math="924" /> litres and the empty part as <InlineMath math="924-115.5=808.5" /> litres.

@@ -1,10 +1,89 @@
-Kerjakan kedua pencerminan **sesuai urutan soal**. Pencerminan terhadap garis <InlineMath math="y=x" /> menukar kedua koordinat, sedangkan pencerminan terhadap sumbu <InlineMath math="y" /> hanya mengubah tanda koordinat <InlineMath math="x" />.
+# Hasil dilatasi
 
-<BlockMath math="P(3,-5)\xrightarrow{\ y=x\ }P'(-5,3)\xrightarrow{\text{ sumbu }y\ }P''(5,3)" />
+Soal ini menanyakan luas bagian segitiga akhir yang tidak tertutup segitiga semula. Jadi kamu perlu tahu dua hal: **luas segitiga akhir**, dan **di mana segitiga semula berada** terhadap segitiga akhir.
 
-Jadi, bayangan akhir titik <InlineMath math="P" /> adalah <InlineMath math="(5,3)" />.
+Dilatasi dengan pusat <InlineMath math="A" /> dan faktor <InlineMath math="-3" /> mengalikan setiap vektor dari <InlineMath math="A" /> dengan <InlineMath math="-3" />. Titik <InlineMath math="A" /> sendiri tidak bergerak:
 
-- <InlineMath math="(-5,-3)" /> muncul jika urutannya dibalik: sumbu <InlineMath math="y" /> dulu menjadi <InlineMath math="(-3,-5)" />, lalu <InlineMath math="y=x" />.
-- <InlineMath math="(-5,3)" /> baru hasil pencerminan pertama.
-- <InlineMath math="(-3,-5)" /> hanya mencerminkan <InlineMath math="P" /> terhadap sumbu <InlineMath math="y" />.
-- <InlineMath math="(5,-3)" /> mengubah tanda kedua koordinat pada langkah kedua, padahal pencerminan terhadap sumbu <InlineMath math="y" /> tidak mengubah koordinat <InlineMath math="y" />.
+<BlockMath math="\begin{aligned}
+\vec{AB}=(2,0)&\ \Rightarrow\ -3(2,0)=(-6,0),\quad B'=(-5,1) \\
+\vec{AC}=(0,3)&\ \Rightarrow\ -3(0,3)=(0,-9),\quad C'=(1,-8)
+\end{aligned}" />
+
+Tanda negatif membuat segitiga <InlineMath math="AB'C'" /> berada di seberang <InlineMath math="A" />. Pada tahap ini, segitiga itu hanya bersentuhan dengan <InlineMath math="ABC" /> di titik <InlineMath math="A" />.
+
+# Hasil rotasi
+
+Rotasi <InlineMath math="180^\circ" /> dengan pusat <InlineMath math="A" /> membalik setiap vektor dari <InlineMath math="A" />:
+
+<BlockMath math="\begin{aligned}
+(-6,0)&\ \Rightarrow\ (6,0),\quad B''=(7,1) \\
+(0,-9)&\ \Rightarrow\ (0,9),\quad C''=(1,10)
+\end{aligned}" />
+
+Rotasi ini **membalik lagi arah yang dibalik oleh faktor negatif**. Hasil akhirnya sama dengan dilatasi berpusat <InlineMath math="A" /> dengan faktor <InlineMath math="+3" />, jadi segitiga akhir kembali ke sisi yang sama dengan <InlineMath math="ABC" />.
+
+<MathVisual
+  title={<>Segitiga semula, hasil dilatasi, dan hasil akhir</>}
+  description={<>Segitiga semula <InlineMath math="ABC" /> dengan <InlineMath math="A(1,1)" />, <InlineMath math="B(3,1)" />, <InlineMath math="C(1,4)" />. Hasil dilatasi <InlineMath math="AB'C'" /> dengan <InlineMath math="B'(-5,1)" /> dan <InlineMath math="C'(1,-8)" /> berada di seberang <InlineMath math="A" />. Hasil akhir <InlineMath math="AB''C''" /> dengan <InlineMath math="B''(7,1)" /> dan <InlineMath math="C''(1,10)" /> memuat seluruh segitiga <InlineMath math="ABC" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    "b-first": <InlineMath math="B'" />,
+    "c-first": <InlineMath math="C'" />,
+    "b-final": <InlineMath math="B''" />,
+    "c-final": <InlineMath math="C''" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 9 },
+      y: { min: -10, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "final", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 1 }, { x: 7, y: 1 }, { x: 1, y: 10 }] },
+      { id: "first", kind: "polygon", appearance: "construction", vertices: [{ x: 1, y: 1 }, { x: -5, y: 1 }, { x: 1, y: -8 }] },
+      { id: "original", kind: "polygon", appearance: "highlight", vertices: [{ x: 1, y: 1 }, { x: 3, y: 1 }, { x: 1, y: 4 }] },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 3, y: 1 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 1, y: 4 } },
+      { id: "point-b-first", kind: "point", appearance: "reference", at: { x: -5, y: 1 } },
+      { id: "point-c-first", kind: "point", appearance: "reference", at: { x: 1, y: -8 } },
+      { id: "point-b-final", kind: "point", appearance: "reference", at: { x: 7, y: 1 } },
+      { id: "point-c-final", kind: "point", appearance: "reference", at: { x: 1, y: 10 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 3, y: 1 }, placement: "below" },
+      { key: "c", objectId: "point-c", at: { x: 1, y: 4 }, placement: "left" },
+      { key: "b-first", objectId: "point-b-first", at: { x: -5, y: 1 }, placement: "above" },
+      { key: "c-first", objectId: "point-c-first", at: { x: 1, y: -8 }, placement: "right" },
+      { key: "b-final", objectId: "point-b-final", at: { x: 7, y: 1 }, placement: "below" },
+      { key: "c-final", objectId: "point-c-final", at: { x: 1, y: 10 }, placement: "left" },
+    ],
+  }}
+/>
+
+# Luas yang ditanyakan
+
+Segitiga <InlineMath math="ABC" /> siku-siku di <InlineMath math="A" /> dengan kaki <InlineMath math="2" /> dan <InlineMath math="3" />. Panjang setiap sisi dikali <InlineMath math="3" />, jadi **luas dikali <InlineMath math="3^2=9" />**:
+
+<BlockMath math="\begin{aligned}
+\text{luas }ABC&=\tfrac12\cdot2\cdot3=3 \\
+\text{luas }A''B''C''&=\tfrac12\cdot6\cdot9=27=9\cdot3
+\end{aligned}" />
+
+Kedua segitiga berbagi sudut siku-siku di <InlineMath math="A" /> dengan kaki yang searah, dan <InlineMath math="ABC" /> lebih kecil. Cek dengan sisi miring segitiga akhir, garis <InlineMath math="3x+2y=23" />: titik <InlineMath math="B" /> dan <InlineMath math="C" /> sama-sama memberi <InlineMath math="11\le23" />, jadi keduanya ada di dalam. Seluruh <InlineMath math="ABC" /> tertutup oleh segitiga akhir:
+
+<BlockMath math="27-3=24" />
+
+Jadi, luas daerah di dalam segitiga <InlineMath math="A''B''C''" /> yang tidak tertutup segitiga <InlineMath math="ABC" /> adalah <InlineMath math="24" /> satuan luas.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="27" /> adalah seluruh luas segitiga akhir. Jawaban ini muncul kalau kamu mengira faktor <InlineMath math="-3" /> membuat segitiga akhir **berada di seberang** <InlineMath math="ABC" />, padahal rotasi <InlineMath math="180^\circ" /> membawanya kembali sehingga <InlineMath math="ABC" /> tertutup.
+- <InlineMath math="6" /> mengalikan luas dengan <InlineMath math="3" />, sehingga mendapat <InlineMath math="9-3" />. Luas berubah sebesar kuadrat faktor skala.
+- <InlineMath math="48" /> lupa faktor <InlineMath math="\frac12" /> pada luas segitiga: <InlineMath math="6\cdot9-2\cdot3" />.
+- <InlineMath math="78" /> mengalikan luas dengan <InlineMath math="3^3=27" />, sehingga mendapat <InlineMath math="81-3" />. Pangkat tiga dipakai untuk volume, bukan luas.
