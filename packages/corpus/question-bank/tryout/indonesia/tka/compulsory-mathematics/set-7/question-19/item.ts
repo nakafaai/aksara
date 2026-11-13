@@ -12,26 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "Ketiga rancangan memerlukan bahan yang sama banyak karena volumenya sama.",
-        },
-        {
-          correct: false,
-          label: "Rancangan Q memerlukan bahan paling sedikit.",
-        },
-        {
-          correct: false,
-          label:
-            "Rancangan P memerlukan bahan $$100\\text{ cm}^2$$ lebih sedikit daripada rancangan R.",
+          label: "$$1:8$$",
         },
         {
           correct: true,
-          label: "Rancangan R memerlukan bahan paling sedikit.",
+          label: "$$1:5$$",
         },
         {
           correct: false,
-          label:
-            "Rancangan Q memerlukan bahan $$30\\text{ cm}^2$$ lebih sedikit daripada rancangan P.",
+          label: "$$1:4$$",
+        },
+        {
+          correct: false,
+          label: "$$1:\\sqrt{5}$$",
+        },
+        {
+          correct: false,
+          label: "$$1:2$$",
         },
       ],
     },

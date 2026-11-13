@@ -1,16 +1,47 @@
-A mean of <InlineMath math="78" /> over four tests means **a total of <InlineMath math="4\cdot78=312" />**. Let the fifth score be <InlineMath math="x" />. The condition that the mean of five tests is at least <InlineMath math="80" /> becomes a linear inequality.
+# How fast each pump works
+
+The question asks for the earliest time pump A can be switched off so the pond is still empty by 17:00 (5 p.m.) at the latest. What you can add up is **the fraction of the pond emptied per hour**, not the times themselves.
+
+Say pump A empties <InlineMath math="u" /> of the pond per hour and pump B empties <InlineMath math="v" /> per hour. The two situations in the question give two equations:
 
 <BlockMath math="\begin{aligned}
-\frac{312+x}{5}&\ge80 \\
-312+x&\ge400 \\
-x&\ge88
+8u+8v&=1 \quad\Rightarrow\quad u+v=\tfrac{1}{8} \\
+4u+16v&=1
 \end{aligned}" />
 
-Check: with <InlineMath math="x=88" /> the mean is <InlineMath math="\frac{400}{5}=80" />, exactly meeting the condition.
+Multiply the first equation by <InlineMath math="4" /> to get <InlineMath math="4u+4v=\tfrac{1}{2}" />, then subtract it from the second:
 
-So the smallest possible fifth score is <InlineMath math="88" />.
+<BlockMath math="\begin{aligned}
+12v&=1-\tfrac{1}{2}=\tfrac{1}{2} \\
+v&=\tfrac{1}{24} \\
+u&=\tfrac{1}{8}-\tfrac{1}{24}=\tfrac{1}{12}
+\end{aligned}" />
 
-- <InlineMath math="80" /> just copies the target mean, but the first four scores are still below <InlineMath math="80" />.
-- <InlineMath math="82" /> makes up the shortfall of only one test, <InlineMath math="80-78=2" />.
-- <InlineMath math="84" /> adds <InlineMath math="1" /> point for each earlier test.
-- <InlineMath math="90" /> counts a shortfall of <InlineMath math="2" /> points for five tests, but only the four earlier tests fall short.
+So pump A alone needs <InlineMath math="12" /> hours and pump B alone needs <InlineMath math="24" /> hours.
+
+# The condition for finishing on time
+
+From 06:00 to 17:00 there are <InlineMath math="11" /> hours. Pump B runs for all <InlineMath math="11" /> hours, while pump A runs for <InlineMath math="k" /> hours and is then switched off. The pond is empty on time when **the fractions emptied add up to at least one whole pond**:
+
+<BlockMath math="\begin{aligned}
+\frac{k}{12}+\frac{11}{24}&\ge1 \\
+\frac{k}{12}&\ge\frac{13}{24} \\
+k&\ge6.5
+\end{aligned}" />
+
+Pump A can only be switched off exactly on the hour, so <InlineMath math="k" /> has to be a whole number. The smallest whole number with <InlineMath math="k\ge6.5" /> is <InlineMath math="k=7" />, which is 13:00.
+
+# Checking both sides of the limit
+
+If A is switched off at 13:00, the two pumps have already emptied <InlineMath math="\tfrac{7}{8}" /> of the pond. B empties the remaining <InlineMath math="\tfrac{1}{8}" /> in <InlineMath math="\tfrac{1}{8}\div\tfrac{1}{24}=3" /> hours, so the pond is empty at 16:00, before 17:00. If A is switched off at 12:00, a quarter of the pond is left and B needs <InlineMath math="6" /> hours, so the pond is only empty at 18:00. **13:00 really is the earliest whole hour that works**.
+
+# Why the other options are wrong
+
+Each wrong option comes from **one swapped or skipped step**.
+
+- 08:00 comes from swapping the speeds, so A takes <InlineMath math="24" /> hours and B takes <InlineMath math="12" />. Then <InlineMath math="\tfrac{k}{24}+\tfrac{11}{12}\ge1" /> gives <InlineMath math="k\ge2" />.
+- 11:00 comes from letting B work another <InlineMath math="11" /> hours after the joint phase: <InlineMath math="\tfrac{k}{8}+\tfrac{11}{24}\ge1" /> gives <InlineMath math="k\ge4\tfrac{1}{3}" />. That counts B's work during the joint phase twice.
+- 12:00 comes from rounding <InlineMath math="6.5" /> down. With <InlineMath math="k=6" />, the pond is only empty at 18:00.
+- 12:30 is the answer without the whole-hour rule. Pump A can't be switched off at 12:30.
+
+So the earliest time pump A can be switched off is 13:00.

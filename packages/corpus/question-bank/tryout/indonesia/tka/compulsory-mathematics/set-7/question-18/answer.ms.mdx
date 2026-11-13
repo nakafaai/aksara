@@ -1,0 +1,85 @@
+Soalan ini bertanya luas kawasan halaman yang terkena air. Tanpa dinding, kawasannya ialah bulatan berjejari <InlineMath math="6\text{ m}" />. Dinding memotong bulatan itu, jadi **bahagian bulatan di sebalik dinding mesti dibuang**. Bahagian itu ialah tembereng, iaitu kawasan di antara perentas dengan lengkok bulatan.
+
+# Sudut di pusat tembereng
+
+Lukis garis serenjang dari <InlineMath math="S" /> ke dinding dan namakan kakinya <InlineMath math="M" />, jadi <InlineMath math="SM=3" />. Dinding memotong bulatan di <InlineMath math="P" /> dan <InlineMath math="Q" />, dan kedua-duanya berjarak <InlineMath math="6" /> dari <InlineMath math="S" /> kerana terletak pada bulatan. Segi tiga <InlineMath math="SMP" /> bersudut tegak di <InlineMath math="M" />.
+
+<MathVisual
+  title={<>Bulatan semburan yang dipotong dinding</>}
+  description={<>Bulatan berpusat <InlineMath math="S" /> dengan jejari <InlineMath math="6" />. Dinding ialah garis mencancang yang berjarak <InlineMath math="3" /> dari <InlineMath math="S" />, dengan kaki serenjang <InlineMath math="M" />. Dinding memotong bulatan di <InlineMath math="P" /> dan <InlineMath math="Q" />, dan jejari <InlineMath math="SP" /> serta <InlineMath math="SQ" /> membentuk segi tiga <InlineMath math="SPQ" />.</>}
+  labels={{
+    s: <InlineMath math="S" />,
+    m: <InlineMath math="M" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    radius: <InlineMath math="6" />,
+    distance: <InlineMath math="3" />,
+    wall: <>dinding</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 8 },
+      y: { min: -7, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "spray", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 6 },
+      { id: "wall-line", kind: "line", appearance: "warning", through: [{ x: 3, y: -7 }, { x: 3, y: 7 }] },
+      { id: "radius-p", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 3, y: 3 * Math.sqrt(3) } },
+      { id: "radius-q", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 3, y: -3 * Math.sqrt(3) } },
+      { id: "foot", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "point-s", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 3, y: 3 * Math.sqrt(3) } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 3, y: -3 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "s", objectId: "point-s", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "m", objectId: "point-m", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "p", objectId: "point-p", at: { x: 3, y: 3 * Math.sqrt(3) }, placement: "right" },
+      { key: "q", objectId: "point-q", at: { x: 3, y: -3 * Math.sqrt(3) }, placement: "right" },
+      { key: "radius", objectId: "radius-p", at: { x: 1.5, y: 1.5 * Math.sqrt(3) }, placement: "above-left" },
+      { key: "distance", objectId: "foot", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "wall", objectId: "wall-line", at: { x: 3, y: 6.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Gunakan nisbah kosinus dalam segi tiga bersudut tegak itu.
+
+<BlockMath math="\begin{aligned}
+\cos\angle PSM&=\frac{SM}{SP}=\frac{3}{6}=\frac{1}{2} \\
+\angle PSM&=60^\circ \\
+\angle PSQ&=2\cdot60^\circ=120^\circ
+\end{aligned}" />
+
+Segi tiga <InlineMath math="SMQ" /> ialah imej pantulan tepat bagi segi tiga <InlineMath math="SMP" /> pada garis <InlineMath math="SM" />. Itulah sebabnya **sudut di pusat tembereng ialah dua kali <InlineMath math="60^\circ" />**.
+
+# Luas tembereng
+
+Sektor ialah kawasan yang dibatasi oleh dua jejari dan lengkok di antaranya. Tembereng sama dengan sektor <InlineMath math="120^\circ" /> ditolak segi tiga <InlineMath math="SPQ" />. Segi tiga itu berada di sebelah <InlineMath math="S" />, jadi **segi tiga itu tetap terkena air**, dan hanya tembereng yang hilang.
+
+<BlockMath math="\begin{aligned}
+L_{\text{sektor}}&=\frac{120^\circ}{360^\circ}\cdot\pi\cdot6^2=12\pi \\
+L_{\triangle SPQ}&=\frac{1}{2}\cdot6\cdot6\cdot\sin120^\circ=18\cdot\frac{\sqrt{3}}{2}=9\sqrt{3} \\
+L_{\text{tembereng}}&=12\pi-9\sqrt{3}
+\end{aligned}" />
+
+# Luas yang terkena air
+
+Tolak tembereng daripada luas bulatan penuh, <InlineMath math="\pi\cdot6^2=36\pi" />. Perhatikan tanda kurungnya, kerana **menolak suatu beza bermaksud segi tiga itu ditambah semula**.
+
+<BlockMath math="36\pi-\left(12\pi-9\sqrt{3}\right)=24\pi+9\sqrt{3}\approx75.4+15.6=91.0\text{ m}^2" />
+
+Semak sama ada jawapan ini munasabah: dinding terletak di seberang pusat <InlineMath math="S" />, jadi kawasan yang basah mesti lebih daripada separuh bulatan, <InlineMath math="18\pi\approx56.5" />, dan kurang daripada bulatan penuh, <InlineMath math="36\pi\approx113.1" />. Hasil <InlineMath math="91.0" /> memang berada di antaranya.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\left(30\pi+9\sqrt{3}\right)\text{ m}^2" /> menggunakan <InlineMath math="60^\circ" /> sebagai sudut di pusat tembereng. Sudut <InlineMath math="60^\circ" /> itu hanya separuh, iaitu sudut <InlineMath math="PSM" />.
+- <InlineMath math="24\pi\text{ m}^2" /> membuang seluruh sektor <InlineMath math="120^\circ" />. **Segi tiga <InlineMath math="SPQ" /> berada di hadapan dinding**, jadi turut basah.
+- <InlineMath math="\left(24\pi-9\sqrt{3}\right)\text{ m}^2" /> ialah kesilapan tanda semasa menolak tembereng, jadi sektor dan segi tiga kedua-duanya terbuang.
+- <InlineMath math="\left(12\pi-9\sqrt{3}\right)\text{ m}^2" /> ialah luas tembereng di sebalik dinding. Itu bahagian yang kering, bukan yang ditanya.
+
+Jadi, luas kawasan halaman yang terkena air ialah <InlineMath math="\left(24\pi+9\sqrt{3}\right)\text{ m}^2" />.

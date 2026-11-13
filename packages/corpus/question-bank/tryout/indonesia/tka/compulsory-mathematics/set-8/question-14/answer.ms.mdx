@@ -1,0 +1,101 @@
+Soalan ini mahu tahu **bucu mana yang berada di kedudukan paling atas** selepas putaran ke-<InlineMath math="2026" />. Itu tidak sama dengan soalan ke mana bucu <InlineMath math="A" /> pergi, jadi jejak dahulu berapa jauh papan itu berputar, kemudian cari bucu yang tiba di atas.
+
+# Putaran bersih bagi setiap dua langkah
+
+Semua putaran menggunakan pusat yang sama, jadi sudutnya boleh dijumlahkan. Beri tanda positif kepada putaran lawan arah jam dan tanda negatif kepada putaran ikut arah jam. Satu putaran ganjil yang terus diikuti satu putaran genap menghasilkan
+
+<BlockMath math="(+72^\circ)+(-144^\circ)=-72^\circ" />
+
+Maksudnya, **setiap pasangan putaran sama dengan satu putaran ikut arah jam sebanyak** <InlineMath math="72^\circ" />. Putaran ke-<InlineMath math="2026" /> ialah putaran genap, jadi <InlineMath math="2026" /> putaran itu terbahagi tepat kepada pasangan:
+
+<BlockMath math="\begin{aligned}
+\text{bilangan pasangan}&=\frac{2026}{2}=1013 \\
+\text{jumlah putaran}&=1013\cdot(-72^\circ)
+\end{aligned}" />
+
+# Membuang putaran lengkap
+
+Lima pasangan memberi <InlineMath math="5\cdot(-72^\circ)=-360^\circ" />, iaitu satu putaran lengkap, dan papan kembali sama seperti asal. Oleh itu, yang penting hanyalah baki apabila <InlineMath math="1013" /> dibahagi dengan <InlineMath math="5" />:
+
+<BlockMath math="\begin{aligned}
+1013&=5\cdot202+3 \\
+1013\cdot(-72^\circ)&=202\cdot(-360^\circ)+3\cdot(-72^\circ) \\
+3\cdot(-72^\circ)&=-216^\circ
+\end{aligned}" />
+
+Putaran <InlineMath math="216^\circ" /> ikut arah jam meninggalkan papan dalam keadaan yang sama seperti putaran <InlineMath math="360^\circ-216^\circ=144^\circ" /> lawan arah jam. Jadi **kesan akhirnya ialah satu putaran lawan arah jam sebanyak** <InlineMath math="144^\circ" />, dan setiap bucu beralih dua tempat ke arah itu.
+
+# Bucu yang tiba di atas
+
+Ukur kedudukan setiap bucu sebagai sudut dari kedudukan paling atas, lawan arah jam. Pada mulanya <InlineMath math="A" /> di <InlineMath math="0^\circ" />, <InlineMath math="B" /> di <InlineMath math="72^\circ" />, dan seterusnya. Tambah <InlineMath math="144^\circ" /> kepada setiap kedudukan, kemudian buang gandaan <InlineMath math="360^\circ" />.
+
+| Bucu | Kedudukan awal | Kedudukan akhir |
+| :---: | :---: | :---: |
+| <InlineMath math="A" /> | <InlineMath math="0^\circ" /> | <InlineMath math="144^\circ" /> |
+| <InlineMath math="B" /> | <InlineMath math="72^\circ" /> | <InlineMath math="216^\circ" /> |
+| <InlineMath math="C" /> | <InlineMath math="144^\circ" /> | <InlineMath math="288^\circ" /> |
+| <InlineMath math="D" /> | <InlineMath math="216^\circ" /> | <InlineMath math="360^\circ=0^\circ" /> |
+| <InlineMath math="E" /> | <InlineMath math="288^\circ" /> | <InlineMath math="432^\circ=72^\circ" /> |
+
+Hanya <InlineMath math="D" /> yang berakhir di <InlineMath math="0^\circ" />, iaitu **kedudukan paling atas**. Rajah di bawah menunjukkan tempat setiap label selepas putaran terakhir.
+
+<MathVisual
+  title={<>Label selepas putaran terakhir</>}
+  description={<>Sebuah pentagon sekata berpusat di asalan. Bucu <InlineMath math="D" /> berada di atas, di tempat yang ditunjuk anak panah. Lawan arah jam dari <InlineMath math="D" /> terdapat <InlineMath math="E" />, <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" />. Bucu <InlineMath math="A" /> kini berada di tempat asal <InlineMath math="C" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    top: "kedudukan paling atas",
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 6 },
+      y: { min: -5, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      {
+        id: "pentagon",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 4 },
+          { x: 4 * Math.cos((162 * Math.PI) / 180), y: 4 * Math.sin((162 * Math.PI) / 180) },
+          { x: 4 * Math.cos((234 * Math.PI) / 180), y: 4 * Math.sin((234 * Math.PI) / 180) },
+          { x: 4 * Math.cos((306 * Math.PI) / 180), y: 4 * Math.sin((306 * Math.PI) / 180) },
+          { x: 4 * Math.cos((18 * Math.PI) / 180), y: 4 * Math.sin((18 * Math.PI) / 180) },
+        ],
+      },
+      { id: "point-d", kind: "point", appearance: "answer", at: { x: 0, y: 4 } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: 4 * Math.cos((162 * Math.PI) / 180), y: 4 * Math.sin((162 * Math.PI) / 180) } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 4 * Math.cos((234 * Math.PI) / 180), y: 4 * Math.sin((234 * Math.PI) / 180) } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 4 * Math.cos((306 * Math.PI) / 180), y: 4 * Math.sin((306 * Math.PI) / 180) } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 4 * Math.cos((18 * Math.PI) / 180), y: 4 * Math.sin((18 * Math.PI) / 180) } },
+      { id: "pointer", kind: "vector", appearance: "highlight", from: { x: 0, y: 6 }, to: { x: 0, y: 4.5 } },
+    ],
+    labels: [
+      { key: "d", objectId: "point-d", at: { x: 0, y: 4 }, placement: "right" },
+      { key: "e", objectId: "point-e", at: { x: 4 * Math.cos((162 * Math.PI) / 180), y: 4 * Math.sin((162 * Math.PI) / 180) }, placement: "left" },
+      { key: "a", objectId: "point-a", at: { x: 4 * Math.cos((234 * Math.PI) / 180), y: 4 * Math.sin((234 * Math.PI) / 180) }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 4 * Math.cos((306 * Math.PI) / 180), y: 4 * Math.sin((306 * Math.PI) / 180) }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 4 * Math.cos((18 * Math.PI) / 180), y: 4 * Math.sin((18 * Math.PI) / 180) }, placement: "right" },
+      { key: "top", objectId: "pointer", at: { x: 0, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
+
+Semakan ringkas: jika kamu bergerak ikut arah jam dari <InlineMath math="A" />, kamu bertemu <InlineMath math="E" /> dan kemudian <InlineMath math="D" />. Jadi <InlineMath math="D" /> bermula dua tempat ikut arah jam dari puncak, dan anjakan dua tempat lawan arah jam membawanya tepat ke puncak.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="C" /> ialah tempat asal yang kini diduduki oleh <InlineMath math="A" />. Itu menjawab ke mana <InlineMath math="A" /> pergi, **bukan bucu yang berada di atas**.
+- <InlineMath math="E" /> muncul jika semua putaran dianggap <InlineMath math="72^\circ" /> lawan arah jam. Jumlahnya <InlineMath math="2026\cdot72^\circ" />, dan kerana <InlineMath math="2026=5\cdot405+1" />, bakinya hanya <InlineMath math="72^\circ" />, jadi <InlineMath math="E" /> yang naik ke atas.
+- <InlineMath math="B" /> muncul jika putaran <InlineMath math="144^\circ" /> juga dianggap lawan arah jam. Setiap pasangan menjadi <InlineMath math="216^\circ" />, bakinya <InlineMath math="3\cdot216^\circ=648^\circ" />, iaitu <InlineMath math="288^\circ" />, jadi <InlineMath math="B" /> yang naik ke atas.
+- <InlineMath math="A" /> muncul jika kamu menyangka label tidak beralih kerana setiap gandaan <InlineMath math="72^\circ" /> memetakan pentagon kepada dirinya sendiri. Bentuknya memang menutup tempat yang sama, tetapi labelnya berpindah.
+
+Jadi, bucu yang berada di kedudukan paling atas selepas putaran ke-<InlineMath math="2026" /> ialah <InlineMath math="D" />.

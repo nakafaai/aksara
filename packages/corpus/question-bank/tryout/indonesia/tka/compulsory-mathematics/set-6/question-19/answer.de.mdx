@@ -1,16 +1,35 @@
-Acht gleiche kleine Würfel liegen <InlineMath math="2\times2\times2" /> zusammen, also ist **jede Kante eines kleinen Würfels halb so lang wie die ursprüngliche**. Sei <InlineMath math="s" /> die ursprüngliche Kante.
+Gefragt ist der geringste Materialbedarf für eine Kiste, aber **nur unter den Vorschlägen, die mindestens <InlineMath math="10\text{ cm}" /> hoch sind**. Das Volumen ist fest, also musst du zuerst die Höhe jedes Vorschlags aus dem Volumen bestimmen.
+
+# Die Höhe jedes Vorschlags
+
+Das Volumen eines Quaders ist Grundfläche mal Höhe, also ist seine Höhe <InlineMath math="t=\frac{V}{p\cdot l}" />:
 
 <BlockMath math="\begin{aligned}
-L_{\text{ursprünglich}}&=6s^2 \\
-L_{\text{8 kleine Würfel}}&=8\cdot6\left(\frac s2\right)^2=8\cdot\frac{6s^2}{4}=12s^2 \\
-\frac{12s^2}{6s^2}&=2
+P&: t=\frac{4{.}000}{25\cdot20}=\frac{4{.}000}{500}=8\text{ cm} \\
+Q&: t=\frac{4{.}000}{25\cdot10}=\frac{4{.}000}{250}=16\text{ cm} \\
+R&: t=\frac{4{.}000}{20\cdot10}=\frac{4{.}000}{200}=20\text{ cm}
 \end{aligned}" />
 
-Den Grund siehst du auch an den Schnitten. Jede der drei Schnittebenen legt zwei neue Flächen von je <InlineMath math="s^2" /> frei, die Oberfläche wächst also um <InlineMath math="3\cdot2s^2=6s^2" />, so viel wie die ursprüngliche Oberfläche.
+Vorschlag P ist nur <InlineMath math="8\text{ cm}" /> hoch, also **fällt P weg**: Die Flaschen passen nicht aufrecht hinein. Übrig bleiben Q und R.
 
-Die acht kleinen Würfel haben zusammen also <InlineMath math="2" />-mal so viel Oberfläche wie der ursprüngliche Würfel.
+# Material für eine Kiste ohne Deckel
 
-- <InlineMath math="\frac12" /> dreht das Verhältnis um.
-- <InlineMath math="1" /> nimmt an, die Oberfläche bleibe gleich, weil das Volumen gleich bleibt.
-- <InlineMath math="1\frac12" /> nimmt an, jeder Schnitt lege nur eine neue Fläche frei.
-- <InlineMath math="8" /> setzt das Verhältnis gleich der Anzahl der Würfel, doch jeder kleine Würfel hat nur ein Viertel der ursprünglichen Oberfläche.
+Eine Kiste ohne Deckel besteht aus einem Boden und vier senkrechten Seiten. Nur die Oberseite fehlt, **der Boden zählt also mit**:
+
+<BlockMath math="L=p\cdot l+2\cdot t\cdot(p+l)" />
+
+<BlockMath math="\begin{aligned}
+Q&: L=25\cdot10+2\cdot16\cdot(25+10)=250+1{.}120=1{.}370\text{ cm}^2 \\
+R&: L=20\cdot10+2\cdot20\cdot(20+10)=200+1{.}200=1{.}400\text{ cm}^2
+\end{aligned}" />
+
+Vorschlag Q braucht weniger. Interessant: Mit Deckel dreht sich die Reihenfolge um, Q bräuchte <InlineMath math="1{.}370+250=1{.}620" /> und R <InlineMath math="1{.}400+200=1{.}600" />. Eine Kiste ohne Deckel bezahlt keine zweite Grundfläche, deshalb lohnt sich ein breiter Boden. **Die würfelähnlichste Form ist nicht immer die sparsamste**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="1{.}120\text{ cm}^2" /> sind nur die vier senkrechten Seiten von Q. Der Boden wurde vergessen, dabei fehlt nur der Deckel.
+- <InlineMath math="1{.}220\text{ cm}^2" /> ist der Bedarf von Vorschlag P, der tatsächlich am kleinsten ist. Aber **P ist nur <InlineMath math="8\text{ cm}" /> hoch** und erfüllt die Bedingung nicht.
+- <InlineMath math="1{.}400\text{ cm}^2" /> ist Vorschlag R. Diesen Wert wählst du, wenn du annimmst, dass die würfelähnlichste Kiste immer am wenigsten Material braucht.
+- <InlineMath math="1{.}600\text{ cm}^2" /> entsteht, wenn du mit Deckel rechnest. Mit Deckel wäre R mit <InlineMath math="1{.}600\text{ cm}^2" /> am günstigsten, aber diese Kiste hat keinen Deckel.
+
+Der geringste Materialbedarf unter den zulässigen Vorschlägen beträgt also <InlineMath math="1{.}370\text{ cm}^2" />, nämlich bei Vorschlag Q.

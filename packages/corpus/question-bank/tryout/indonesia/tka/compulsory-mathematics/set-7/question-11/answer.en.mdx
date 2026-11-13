@@ -1,14 +1,68 @@
-Points <InlineMath math="P" />, <InlineMath math="B" />, and <InlineMath math="D" /> are in line, so **triangles <InlineMath math="PAB" /> and <InlineMath math="DCB" /> are similar**: both have a right angle, at <InlineMath math="A" /> and at <InlineMath math="C" />, and their angles at <InlineMath math="B" /> are vertically opposite. The matching sides are <InlineMath math="AP" /> with <InlineMath math="CD" />, and <InlineMath math="AB" /> with <InlineMath math="CB" />.
+# The radius of the first ball
+
+This question has two stages: first the radius of the first ball, then the second ball. Cut the cone exactly through its axis. The cross-section is an isosceles triangle with base <InlineMath math="12" />, height <InlineMath math="8" />, and slant side <InlineMath math="\sqrt{6^2+8^2}=10" />. Both balls show up as circles centred on the axis.
+
+Call the apex <InlineMath math="T" />, the centre of the base <InlineMath math="C" />, one end of the base <InlineMath math="D" />, the centre of the first ball <InlineMath math="M" />, and the point where the ball touches the slant side <InlineMath math="K" />. The ball touches the base, so <InlineMath math="MC=r" /> and <InlineMath math="TM=8-r" />. Triangles <InlineMath math="TKM" /> and <InlineMath math="TCD" /> both have a right angle and share the angle at <InlineMath math="T" />, so **they're similar**.
 
 <BlockMath math="\begin{aligned}
-\frac{AP}{AB}&=\frac{CD}{CB} \\
-\frac{AP}{12}&=\frac{3}{4} \\
-AP&=9
+\frac{MK}{TM}&=\frac{CD}{TD} \\
+\frac{r}{8-r}&=\frac{6}{10} \\
+10r&=48-6r \\
+r&=3\text{ cm}
 \end{aligned}" />
 
-So the river is <InlineMath math="9" /> m wide.
+# The small cone above the first ball
 
-- <InlineMath math="12" /> m is the distance from <InlineMath math="A" /> to <InlineMath math="B" /> along the bank, not the river's width.
-- <InlineMath math="16" /> m turns the ratio upside down, using <InlineMath math="\frac{12\cdot4}{3}" />.
-- <InlineMath math="36" /> m multiplies <InlineMath math="12" /> by <InlineMath math="3" /> without dividing by <InlineMath math="4" />.
-- <InlineMath math="48" /> m multiplies <InlineMath math="12" /> by <InlineMath math="4" />, pairing sides that don't match.
+The top of the first ball is at height <InlineMath math="2r=6\text{ cm}" /> above the base. Picture the horizontal plane that touches the first ball at its highest point. The second ball touches the first ball exactly at that point, because both centres lie on the axis. So the second ball touches that plane and the side of the cone.
+
+That means the second ball plays the role of the first ball for **the small cone above that plane**. This small cone is similar to the big one:
+
+<BlockMath math="\begin{aligned}
+\text{height of the small cone}&=8-6=2\text{ cm} \\
+\text{scale factor}&=\frac{2}{8}=\frac14 \\
+r_2&=\frac14\cdot3=\frac34\text{ cm}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Cross-section of the cone and both balls</>}
+  description={<>An isosceles triangle with base from <InlineMath math="(-6,0)" /> to <InlineMath math="(6,0)" /> and apex <InlineMath math="(0,8)" />. The first ball appears as a circle centred at <InlineMath math="(0,3)" /> with radius <InlineMath math="3" />. A horizontal line at height <InlineMath math="6" /> touches the top of the first ball and cuts off a small cone of height <InlineMath math="2" />. The second ball appears as a small circle centred on the axis at height <InlineMath math="6.75" />, with radius <InlineMath math="0.75" />.</>}
+  labels={{
+    apex: <InlineMath math="T" />,
+    first: <InlineMath math="r=3" />,
+    second: <InlineMath math="r_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 8 },
+      y: { min: -1, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cone", kind: "polygon", appearance: "reference", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }, { x: 0, y: 8 }] },
+      { id: "first-ball", kind: "circle", appearance: "primary", center: { x: 0, y: 3 }, radius: 3 },
+      { id: "second-ball", kind: "circle", appearance: "answer", center: { x: 0, y: 6.75 }, radius: 0.75 },
+      { id: "tangent-plane", kind: "segment", appearance: "secondary", from: { x: -1.5, y: 6 }, to: { x: 1.5, y: 6 } },
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 8 } },
+      { id: "apex-point", kind: "point", appearance: "reference", at: { x: 0, y: 8 } },
+      { id: "first-radius", kind: "segment", appearance: "highlight", from: { x: 0, y: 3 }, to: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "apex", objectId: "apex-point", at: { x: 0, y: 8 }, placement: "above" },
+      { key: "first", objectId: "first-radius", at: { x: 0, y: 1.5 }, placement: "right" },
+      { key: "second", objectId: "second-ball", at: { x: 0.75, y: 6.75 }, placement: "right" },
+    ],
+  }}
+/>
+
+As a check, the centre of the second ball is <InlineMath math="8-6.75=1.25\text{ cm}" /> from the apex. Its distance to the slant side is <InlineMath math="1.25\cdot\frac{6}{10}=0.75\text{ cm}" />, exactly its radius. **The second ball really does touch the side**.
+
+# Why the other options are wrong
+
+- <InlineMath math="\frac{3}{16}\text{ cm}" /> multiplies by <InlineMath math="\left(\tfrac14\right)^2" />. The squared scale factor is for areas. **A radius is a length**, so the factor is just <InlineMath math="\tfrac14" />.
+- <InlineMath math="\frac{3}{5}\text{ cm}" /> divides the small cone's height by the big cone's slant side, <InlineMath math="\tfrac{2}{10}" />. A scale factor has to compare matching lengths, height with height.
+- <InlineMath math="1\text{ cm}" /> assumes the second ball fills the <InlineMath math="2\text{ cm}" /> gap all the way to the apex, so its diameter is <InlineMath math="2" />. The cone narrows near the apex, so the ball is stopped by the sides before it reaches the tip.
+- <InlineMath math="\frac{3}{2}\text{ cm}" /> is the base radius of the small cone, <InlineMath math="\tfrac14\cdot6" />, not the radius of the ball inside it.
+
+So the radius of the second ball is <InlineMath math="\frac34\text{ cm}" />.

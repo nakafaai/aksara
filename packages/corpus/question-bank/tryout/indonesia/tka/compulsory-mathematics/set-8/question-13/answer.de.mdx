@@ -1,12 +1,29 @@
-Jede Verschiebung addiert ihren Vektor zu den Koordinaten, also **sind zwei Verschiebungen nacheinander eine Verschiebung um die Summe der beiden Vektoren**.
+# Die Spiegelachse finden
 
-<BlockMath math="\begin{pmatrix}2\\-3\end{pmatrix}+\begin{pmatrix}-5\\4\end{pmatrix}=\begin{pmatrix}-3\\1\end{pmatrix}" />
+Die Gleichung der Spiegelachse ist nicht gegeben, also besteht der erste Schritt darin, **die Gerade <InlineMath math="g" /> aus einem Punkt und seinem Bild zu bestimmen**. Erst danach spiegelst du <InlineMath math="B" />.
 
-Probe mit <InlineMath math="K(0,0)" />: Die erste Verschiebung ergibt <InlineMath math="(2,-3)" />, die zweite <InlineMath math="(-3,1)" />.
+Die Spiegelachse ist immer die Mittelsenkrechte von <InlineMath math="AA'" />, also die Gerade durch den Mittelpunkt, die senkrecht auf <InlineMath math="AA'" /> steht. Der Mittelpunkt von <InlineMath math="AA'" /> ist <InlineMath math="M(4,2)" />. Die Gerade <InlineMath math="g" /> geht durch <InlineMath math="O" /> und <InlineMath math="M" />, also hat sie die Steigung <InlineMath math="\tfrac{2}{4}=\tfrac12" />.
 
-Beide Verschiebungen lassen sich also durch die Verschiebung um <InlineMath math="\begin{pmatrix}-3\\1\end{pmatrix}" /> ersetzen.
+<BlockMath math="g:\ y=\tfrac12x" />
 
-- <InlineMath math="\begin{pmatrix}7\\-7\end{pmatrix}" /> zieht den zweiten Vektor vom ersten ab.
-- <InlineMath math="\begin{pmatrix}3\\-1\end{pmatrix}" /> ist das Gegenteil der richtigen Antwort.
-- <InlineMath math="\begin{pmatrix}-10\\-12\end{pmatrix}" /> multipliziert einander entsprechende Komponenten.
-- <InlineMath math="\begin{pmatrix}-3\\-1\end{pmatrix}" /> hat das Vorzeichen der zweiten Komponente falsch, denn <InlineMath math="-3+4=1" />.
+Kontrolle: Die Steigung von <InlineMath math="AA'" /> ist <InlineMath math="\tfrac{4-0}{3-5}=-2" />, und <InlineMath math="\tfrac12\cdot(-2)=-1" />, also stehen sie wirklich senkrecht aufeinander.
+
+# B spiegeln
+
+Das Bild <InlineMath math="B'" /> muss zwei Bedingungen erfüllen: Der Mittelpunkt von <InlineMath math="BB'" /> liegt auf <InlineMath math="g" />, und <InlineMath math="BB'" /> steht **senkrecht auf der Geraden <InlineMath math="g" />**. Eine Richtung senkrecht zu <InlineMath math="g" /> ist <InlineMath math="(1,-2)" />, also schreibst du <InlineMath math="B'=(0,5)+t(1,-2)=(t,\ 5-2t)" />.
+
+<BlockMath math="\begin{aligned}
+\text{Mittelpunkt}&=\left(\tfrac{t}{2},\ \tfrac{10-2t}{2}\right)=\left(\tfrac{t}{2},\ 5-t\right) \\
+5-t&=\tfrac12\cdot\tfrac{t}{2} \\
+20-4t&=t \\
+t&=4
+\end{aligned}" />
+
+Also ist <InlineMath math="B'=(4,\ 5-8)=(4,-3)" />. Zur Kontrolle: <InlineMath math="|OB'|=\sqrt{16+9}=5=|OB|" />. Das passt, denn eine Spiegelung an einer Geraden durch <InlineMath math="O" /> erhält den Abstand zu <InlineMath math="O" />.
+
+Das Bild von <InlineMath math="B" /> ist also <InlineMath math="(4,-3)" />.
+
+- <InlineMath math="(-4,3)" /> nimmt die Drehung um <InlineMath math="O" />, die <InlineMath math="A" /> auf <InlineMath math="A'" /> bringt, obwohl es eine Spiegelung ist.
+- <InlineMath math="(4,3)" /> nimmt die Gerade <InlineMath math="y=2x" />, also den Kehrwert der Steigung.
+- <InlineMath math="(4,7)" /> hält die Gerade <InlineMath math="AA'" /> für die Spiegelachse.
+- <InlineMath math="(5,0)" /> vertauscht die Koordinaten, als wäre <InlineMath math="y=x" /> die Achse.

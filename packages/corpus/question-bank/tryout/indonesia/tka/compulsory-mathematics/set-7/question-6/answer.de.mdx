@@ -1,16 +1,37 @@
-<InlineMath math="(f\circ g)(x)" /> heißt, dass <InlineMath math="f" /> **auf das Ergebnis <InlineMath math="g(x)" />** wirkt. Setz also <InlineMath math="g(x)" /> in die Vorschrift von <InlineMath math="f" /> ein und löse nach <InlineMath math="g(x)" /> auf.
+# Die ersten Schritte an den Grenzen
+
+Du sollst <InlineMath math="f" /> ab dem Startwert <InlineMath math="2" /> insgesamt <InlineMath math="2026" />-mal anwenden. Das rechnest du nicht Schritt für Schritt. Berechne die ersten Schritte, bis **sich die Werte wiederholen**, und nutze dann das Muster.
+
+Pass an den Grenzstellen auf. Der Wert <InlineMath math="x=2" /> gehört zum Zweig <InlineMath math="x\ge2" />, nicht zum mittleren Zweig, denn der mittlere Zweig gilt nur für <InlineMath math="x<2" />. Der Wert <InlineMath math="x=0" /> gehört zum mittleren Zweig <InlineMath math="0\le x<2" />, nicht zu <InlineMath math="x<0" />.
+
+| <InlineMath math="n" /> | Eingabe | Benutzter Zweig | <InlineMath math="f^{(n)}(2)" /> |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="x\ge2" /> | <InlineMath math="2-4=-2" /> |
+| <InlineMath math="2" /> | <InlineMath math="-2" /> | <InlineMath math="x<0" /> | <InlineMath math="-2+1=-1" /> |
+| <InlineMath math="3" /> | <InlineMath math="-1" /> | <InlineMath math="x<0" /> | <InlineMath math="-1+1=0" /> |
+| <InlineMath math="4" /> | <InlineMath math="0" /> | <InlineMath math="0\le x<2" /> | <InlineMath math="3-0=3" /> |
+| <InlineMath math="5" /> | <InlineMath math="3" /> | <InlineMath math="x\ge2" /> | <InlineMath math="3-4=-1" /> |
+| <InlineMath math="6" /> | <InlineMath math="-1" /> | <InlineMath math="x<0" /> | <InlineMath math="0" /> |
+| <InlineMath math="7" /> | <InlineMath math="0" /> | <InlineMath math="0\le x<2" /> | <InlineMath math="3" /> |
+
+# Das wiederkehrende Muster
+
+Ab <InlineMath math="n=2" /> laufen die Werte im Kreis <InlineMath math="-1,\ 0,\ 3,\ -1,\ 0,\ 3,\ \dots" /> mit der Periode <InlineMath math="3" />. **Der Wert <InlineMath math="-2" /> kommt nur einmal am Anfang vor** und gehört nicht zum Kreislauf.
+
+Der Wert <InlineMath math="3" /> erscheint bei <InlineMath math="n=4,7,10,\dots" />, also wenn <InlineMath math="n" /> bei Division durch <InlineMath math="3" /> den Rest <InlineMath math="1" /> lässt und <InlineMath math="n\ge4" /> ist. Prüfe jetzt <InlineMath math="2026" />:
 
 <BlockMath math="\begin{aligned}
-f(g(x))&=2g(x)-3=4x^2+6x-1 \\
-2g(x)&=4x^2+6x+2 \\
-g(x)&=2x^2+3x+1
+2026&=3\cdot675+1 \\
+2026&=4+3\cdot674
 \end{aligned}" />
 
-Probe: <InlineMath math="f(2x^2+3x+1)=4x^2+6x+2-3=4x^2+6x-1" />.
+Also steht <InlineMath math="n=2026" /> an derselben Stelle im Kreislauf wie <InlineMath math="n=4" />, und es gilt <InlineMath math="f^{(2026)}(2)=3" />.
 
-Also ist <InlineMath math="g(x)=2x^2+3x+1" />.
+# Warum die anderen Antworten falsch sind
 
-- <InlineMath math="8x^2+12x-5" /> ist <InlineMath math="f(4x^2+6x-1)" />, setzt also die Verkettung noch einmal in <InlineMath math="f" /> ein.
-- <InlineMath math="4x^2+6x+2" /> vergisst, beide Seiten durch <InlineMath math="2" /> zu teilen.
-- <InlineMath math="2x^2+3x-2" /> zieht <InlineMath math="3" /> ab, dabei muss die <InlineMath math="3" /> als <InlineMath math="+3" /> auf die rechte Seite.
-- <InlineMath math="2x^2+3x-1" /> halbiert nur die Terme mit <InlineMath math="x" /> und vergisst, <InlineMath math="3" /> zu addieren.
+- <InlineMath math="-2" /> entsteht, wenn du <InlineMath math="x=0" /> in den Zweig <InlineMath math="x+1" /> steckst. Dann lautet die Folge <InlineMath math="-2,-1,0,1,2" /> und wiederholt sich mit Periode <InlineMath math="5" />, und <InlineMath math="2026" /> lässt bei Division durch <InlineMath math="5" /> den Rest <InlineMath math="1" />.
+- <InlineMath math="-1" /> entsteht, wenn du annimmst, der Kreislauf <InlineMath math="-1,0,3" /> beginne schon bei <InlineMath math="n=1" />. **Der erste Wert <InlineMath math="-2" /> verschiebt die ganze Folge um einen Schritt**.
+- <InlineMath math="0" /> entsteht, wenn du den Startwert <InlineMath math="2" /> als ersten Schritt mitzählst. Das ist dasselbe wie <InlineMath math="f^{(2025)}(2)" />.
+- <InlineMath math="2" /> entsteht, wenn du <InlineMath math="x=2" /> in den mittleren Zweig steckst. Dann wechseln die Werte <InlineMath math="1,2,1,2,\dots" />, und für gerades <InlineMath math="n" /> kommt <InlineMath math="2" /> heraus.
+
+Also ist <InlineMath math="f^{(2026)}(2)=3" />.

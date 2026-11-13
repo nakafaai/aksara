@@ -1,16 +1,41 @@
-Say the two vehicles meet <InlineMath math="t" /> hours after <InlineMath math="07.00" />. By then the car has been driving for <InlineMath math="t" /> hours, but the motorbike **has only been riding for <InlineMath math="t-0.5" /> hours**, because it left half an hour later. When they meet, their two distances add up to the distance from P to Q.
+# The boat's speed and the current
+
+The question asks how long a round trip takes when the engine dies on the way back. First you need two speeds: the boat's speed in still water <InlineMath math="v" /> and the speed of the current <InlineMath math="a" />. **Downstream the speed is <InlineMath math="v+a" />. Upstream it's <InlineMath math="v-a" />**.
 
 <BlockMath math="\begin{aligned}
-60t+40(t-0.5)&=180 \\
-100t-20&=180 \\
-t&=2
+v+a&=\frac{40}{2.5}=16 \\
+v-a&=\frac{20}{2.5}=8 \\
+v&=12\text{ km/h},\quad a=4\text{ km/h}
 \end{aligned}" />
 
-Check: the car covers <InlineMath math="60\cdot2=120" /> km and the motorbike <InlineMath math="40\cdot1.5=60" /> km, together <InlineMath math="180" /> km.
+# The trip upstream
 
-So the two vehicles meet at <InlineMath math="09.00" />.
+From P to Q the boat goes **against the current**, so its speed is <InlineMath math="8\text{ km/h}" />.
 
-- <InlineMath math="08.48" /> assumes both left at <InlineMath math="07.00" />, so <InlineMath math="t=\frac{180}{100}=1.8" /> hours.
-- <InlineMath math="09.06" /> gives the half-hour delay to the car instead of the motorbike.
-- <InlineMath math="09.30" /> counts <InlineMath math="2" /> hours from the motorbike's start, not the car's.
-- <InlineMath math="10.00" /> is when the car would reach Q, not when the two meet.
+<BlockMath math="t_{\text{out}}=\frac{24}{8}=3\text{ h}" />
+
+# The trip back
+
+The way back goes with the current, so the speed is <InlineMath math="16\text{ km/h}" /> while the engine runs. This part splits into three pieces.
+
+1. From Q to the midpoint, <InlineMath math="12\text{ km}" />, with the engine on.
+2. The engine is off for <InlineMath math="1" /> hour. The boat doesn't stand still. **It drifts at the speed of the current, <InlineMath math="4\text{ km/h}" /> towards P**, so it moves <InlineMath math="4\text{ km}" />.
+3. The rest of the way to P is <InlineMath math="12-4=8\text{ km}" />, with the engine on again.
+
+<BlockMath math="\begin{aligned}
+t_{\text{back}}&=\frac{12}{16}+1+\frac{8}{16} \\
+&=\tfrac34+1+\tfrac12=2\tfrac14\text{ h}=2\text{ h }15\text{ min}
+\end{aligned}" />
+
+The total time is <InlineMath math="3\text{ h}+2\text{ h }15\text{ min}=5\text{ h }15\text{ min}" />.
+
+As a check, without the breakdown the way back takes <InlineMath math="\tfrac{24}{16}=1.5" /> hours. The breakdown adds <InlineMath math="1" /> hour, but the boat covers <InlineMath math="4\text{ km}" /> by drifting, which saves <InlineMath math="\tfrac4{16}" /> hour, or <InlineMath math="15" /> minutes. That gives <InlineMath math="1.5" /> hours plus <InlineMath math="45" /> minutes, which is <InlineMath math="2" /> hours <InlineMath math="15" /> minutes.
+
+# Why the other options are wrong
+
+- <InlineMath math="4" /> hours <InlineMath math="15" /> minutes uses the <InlineMath math="4\text{ km}" /> of drifting but forgets to add the hour the engine was off.
+- <InlineMath math="4" /> hours <InlineMath math="30" /> minutes ignores the breakdown completely.
+- <InlineMath math="5" /> hours uses the average speed <InlineMath math="12\text{ km/h}" /> both ways and then adds the hour. **The speeds out and back are different, so you can't average them**. The boat spends more time at the slow speed.
+- <InlineMath math="5" /> hours <InlineMath math="30" /> minutes treats the boat as standing still while the engine is off. The current still carries it <InlineMath math="4\text{ km}" /> closer to P.
+
+So the whole trip takes <InlineMath math="5" /> hours <InlineMath math="15" /> minutes.

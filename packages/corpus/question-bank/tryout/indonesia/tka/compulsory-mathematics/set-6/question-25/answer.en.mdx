@@ -1,15 +1,23 @@
-The sample space is every seating order of the five students, <InlineMath math="5!=120" /> orders. To count the orders where Ani and Budi sit together, **treat Ani and Budi as one block**. That block and the other three students can be ordered in <InlineMath math="4!" /> ways, and inside the block Ani and Budi can swap in <InlineMath math="2!" /> ways.
+# The sample space of triangles
+
+The words **given that they form a triangle** mean the sample space isn't every set of three points, only the sets that aren't collinear.
+
+There are <InlineMath math="\binom93=84" /> ways to choose three of the nine points. On this grid, three points in a line sit on <InlineMath math="3" /> rows, <InlineMath math="3" /> columns and <InlineMath math="2" /> diagonals, so <InlineMath math="8" /> sets are collinear.
+
+<BlockMath math="\text{triangles}=84-8=76" />
+
+# Triangles that use the centre
+
+If <InlineMath math="(1,1)" /> is chosen, the other two points come from the remaining eight, in <InlineMath math="\binom82=28" /> ways. But some pairs are in line with <InlineMath math="(1,1)" />: one on the middle row, one on the middle column and one on each diagonal. So **<InlineMath math="4" /> pairs have to be thrown out**.
 
 <BlockMath math="\begin{aligned}
-n(A)&=4!\cdot2!=24\cdot2=48 \\
-P(A)&=\frac{48}{120}=\frac25
+\text{triangles with } (1,1)&=28-4=24 \\
+P&=\frac{24}{76}=\frac{6}{19}
 \end{aligned}" />
 
-Check another way: of the <InlineMath math="\binom52=10" /> pairs of seats Ani and Budi could take, <InlineMath math="4" /> pairs are next to each other, and <InlineMath math="\frac{4}{10}=\frac25" />.
+So the probability is <InlineMath math="\tfrac{6}{19}" />.
 
-So the probability that Ani and Budi sit next to each other is <InlineMath math="\frac25" />.
-
-- <InlineMath math="\frac{1}{10}" /> counts only one adjacent pair of seats out of the <InlineMath math="10" /> pairs.
-- <InlineMath math="\frac15" /> forgets that Ani and Budi can swap places inside their block.
-- <InlineMath math="\frac12" /> assumes sitting together and sitting apart are equally likely.
-- <InlineMath math="\frac35" /> is the probability that Ani and Budi do **not** sit next to each other.
+- <InlineMath math="\tfrac13" /> doesn't remove collinear sets at all, <InlineMath math="\tfrac{28}{84}" />.
+- <InlineMath math="\tfrac{7}{19}" /> removes the collinear sets from the denominator but forgets the <InlineMath math="4" /> collinear pairs in the numerator, <InlineMath math="\tfrac{28}{76}" />.
+- <InlineMath math="\tfrac{13}{19}" /> is the opposite event: <InlineMath math="(1,1)" /> is **not** a vertex.
+- <InlineMath math="\tfrac{19}{21}" /> stops at the probability of getting a triangle, <InlineMath math="\tfrac{76}{84}" />.

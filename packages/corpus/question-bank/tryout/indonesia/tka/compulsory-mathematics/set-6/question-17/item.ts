@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "camp-tent",
+  stimulus: "kamar",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$16\\text{ m}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$20\\text{ m}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$22\\text{ m}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$23\\text{ m}^2$$",
-        },
-        {
           correct: true,
-          label: "$$26\\text{ m}^2$$",
+          label: "$$\\text{Rp}240{.}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}255{.}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}270{.}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}300{.}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}315{.}000$$",
         },
       ],
     },

@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$15$$ m",
+          label: "$$\\left(\\sqrt{6}-\\sqrt{3}+\\sqrt{2}-2\\right)\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$16{,}2$$ m",
-        },
-        {
-          correct: false,
-          label: "$$27$$ m",
-        },
-        {
-          correct: false,
-          label: "$$36$$ m",
+          label: "$$\\left(\\sqrt{3}-\\sqrt{2}\\right)\\text{ m}$$",
         },
         {
           correct: true,
-          label: "$$45$$ m",
+          label: "$$\\left(\\sqrt{6}+\\sqrt{3}-\\sqrt{2}-2\\right)\\text{ m}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\left(\\sqrt{6}-\\sqrt{3}-\\sqrt{2}+2\\right)\\text{ m}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\left(2\\sqrt{2}+2\\right)\\text{ m}$$",
         },
       ],
     },

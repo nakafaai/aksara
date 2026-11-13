@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\frac13$$",
+          label: "$$-2<x<3$$",
         },
         {
           correct: false,
-          label: "$$3$$",
+          label: "$$3<x<5$$ dengan $$x\\neq4$$",
         },
         {
           correct: false,
-          label: "$$7$$",
+          label: "$$x<-2$$ atau $$3<x<5$$",
         },
         {
           correct: true,
-          label: "$$8$$",
+          label: "$$x<-2$$ atau $$3<x<5$$, dengan $$x\\neq4$$",
         },
         {
           correct: false,
-          label: "$$14$$",
+          label: "$$x<-2$$ atau $$x>3$$, dengan $$x\\neq4$$",
         },
       ],
     },

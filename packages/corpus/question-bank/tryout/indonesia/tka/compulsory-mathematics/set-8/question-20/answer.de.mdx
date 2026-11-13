@@ -1,15 +1,100 @@
-Rolltreppe, waagerechter Abstand und Höhenunterschied bilden ein rechtwinkliges Dreieck mit **der Rolltreppe als Hypotenuse**. Der Höhenunterschied liegt gegenüber <InlineMath math="\alpha" />, also brauchst du <InlineMath math="\sin\alpha" />. Aus <InlineMath math="\cos\alpha=0{,}8=\frac45" /> ist die Ankathete <InlineMath math="4" /> und die Hypotenuse <InlineMath math="5" />, die Gegenkathete also <InlineMath math="3" />.
+Gefragt ist die Bodenfläche, über der **das Dach mindestens** <InlineMath math="1{,}5\text{ m}" /> **hoch ist**, nicht der ganze Boden. Du brauchst also zwei Dinge: die Maße des dreieckigen Querschnitts und die Bodenpunkte, über denen das Dach genau <InlineMath math="1{,}5\text{ m}" /> hoch ist.
+
+# Höhe und Grundseite des Querschnitts
+
+Fälle das Lot von <InlineMath math="A" /> auf die Grundseite und nenne den Fußpunkt <InlineMath math="M" />. Weil das Dreieck gleichschenklig ist, ist <InlineMath math="M" /> der Mittelpunkt von <InlineMath math="BC" />. Im rechtwinkligen Dreieck <InlineMath math="ABM" /> ist die Hypotenuse <InlineMath math="AB=6" />, und der Winkel bei <InlineMath math="B" /> beträgt <InlineMath math="30^\circ" />:
 
 <BlockMath math="\begin{aligned}
-\sin\alpha&=\frac35=0{,}6 \\
-h&=15\cdot0{,}6=9\text{ m}
+AM&=AB\sin30^\circ=6\cdot\tfrac12=3\text{ m} \\
+BM&=AB\cos30^\circ=6\cdot\tfrac12\sqrt3=3\sqrt3\text{ m} \\
+BC&=2\cdot BM=6\sqrt3\text{ m}
 \end{aligned}" />
 
-Probe: Der waagerechte Abstand ist <InlineMath math="15\cdot0{,}8=12" /> m, und <InlineMath math="9^2+12^2=225=15^2" />.
+Der Sinus liefert die Höhe, weil sie dem Winkel von <InlineMath math="30^\circ" /> gegenüberliegt, und **der Kosinus liefert die halbe Grundseite**, weil sie an diesem Winkel anliegt.
 
-Die beiden Stockwerke liegen also <InlineMath math="9" /> m übereinander.
+# Wo man stehen kann
 
-- <InlineMath math="11{,}25" /> m multipliziert die Länge mit <InlineMath math="\tan\alpha=0{,}75" />.
-- <InlineMath math="12" /> m ist der waagerechte Abstand, die Länge mal <InlineMath math="\cos\alpha" />.
-- <InlineMath math="18{,}75" /> m teilt die Länge durch <InlineMath math="\cos\alpha" />, als wären <InlineMath math="15" /> m der waagerechte Abstand.
-- <InlineMath math="25" /> m teilt die Länge durch <InlineMath math="\sin\alpha" /> und ergibt mehr als die Rolltreppe selbst.
+Nimm einen Bodenpunkt <InlineMath math="P" />, der <InlineMath math="x" /> Meter von <InlineMath math="B" /> entfernt ist, mit <InlineMath math="x\le3\sqrt3" />. Die Senkrechte von <InlineMath math="P" /> zum Dach, die Strecke <InlineMath math="BP" /> und das Dach <InlineMath math="AB" /> bilden ein rechtwinkliges Dreieck mit dem Winkel <InlineMath math="30^\circ" /> bei <InlineMath math="B" />. Die Dachhöhe über <InlineMath math="P" /> liegt diesem Winkel gegenüber und <InlineMath math="BP" /> liegt an, also nimmst du den Tangens:
+
+<BlockMath math="\begin{aligned}
+\text{Dachhöhe über }P&=x\tan30^\circ=\frac{x}{\sqrt3} \\
+\frac{x}{\sqrt3}\ge1{,}5\quad&\Leftrightarrow\quad x\ge1{,}5\sqrt3
+\end{aligned}" />
+
+Von der Seite <InlineMath math="C" /> aus gilt dasselbe. **Ein Streifen von** <InlineMath math="1{,}5\sqrt3" /> **Metern an jedem Ende ist zu niedrig zum Stehen**, und die nutzbare Breite ist
+
+<BlockMath math="6\sqrt3-2\cdot1{,}5\sqrt3=3\sqrt3\text{ m}" />
+
+Probe mit Ähnlichkeit: Der Teil des Dreiecks oberhalb der Höhe <InlineMath math="1{,}5" /> ist ähnlich zum Dreieck <InlineMath math="ABC" />, und seine Höhe ist <InlineMath math="3-1{,}5=1{,}5" />, die Hälfte von <InlineMath math="3" />. Also ist auch seine Grundseite halb so lang, <InlineMath math="\tfrac12\cdot6\sqrt3=3\sqrt3" />. Passt.
+
+<MathVisual
+  title={<>Querschnitt des Dachbodens</>}
+  description={<>Ein gleichschenkliges Dreieck <InlineMath math="ABC" /> mit Grundseite <InlineMath math="BC=6\sqrt3" /> auf dem Boden, Schenkeln <InlineMath math="AB=AC=6" /> und Höhe <InlineMath math="AM=3" />. Eine waagerechte Strecke in der Höhe <InlineMath math="1{,}5" /> schneidet beide Schenkel in ihren Mittelpunkten. Der Boden direkt darunter, <InlineMath math="3\sqrt3" /> breit, ist die Fläche zum Stehen.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    m: <InlineMath math="M" />,
+    side: <InlineMath math="6" />,
+    height: <InlineMath math="3" />,
+    cut: <InlineMath math="1{,}5" />,
+    floor: <InlineMath math="3\sqrt{3}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 7 },
+      y: { min: -2, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      {
+        id: "roof",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: -3 * Math.sqrt(3), y: 0 },
+          { x: 3 * Math.sqrt(3), y: 0 },
+          { x: 0, y: 3 },
+        ],
+      },
+      { id: "altitude", kind: "segment", appearance: "construction", from: { x: 0, y: 3 }, to: { x: 0, y: 0 } },
+      { id: "cut-line", kind: "segment", appearance: "reference", from: { x: -1.5 * Math.sqrt(3), y: 1.5 }, to: { x: 1.5 * Math.sqrt(3), y: 1.5 } },
+      { id: "left-wall", kind: "segment", appearance: "construction", from: { x: -1.5 * Math.sqrt(3), y: 1.5 }, to: { x: -1.5 * Math.sqrt(3), y: 0 } },
+      { id: "right-wall", kind: "segment", appearance: "construction", from: { x: 1.5 * Math.sqrt(3), y: 1.5 }, to: { x: 1.5 * Math.sqrt(3), y: 0 } },
+      { id: "usable", kind: "segment", appearance: "answer", from: { x: -1.5 * Math.sqrt(3), y: 0 }, to: { x: 1.5 * Math.sqrt(3), y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 3 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: -3 * Math.sqrt(3), y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 3 * Math.sqrt(3), y: 0 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 3 }, placement: "above" },
+      { key: "b", objectId: "point-b", at: { x: -3 * Math.sqrt(3), y: 0 }, placement: "below-left" },
+      { key: "c", objectId: "point-c", at: { x: 3 * Math.sqrt(3), y: 0 }, placement: "below-right" },
+      { key: "m", objectId: "point-m", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "side", objectId: "roof", at: { x: -2.25 * Math.sqrt(3), y: 0.75 }, placement: "above-left" },
+      { key: "height", objectId: "altitude", at: { x: 0, y: 2.25 }, placement: "right" },
+      { key: "cut", objectId: "right-wall", at: { x: 1.5 * Math.sqrt(3), y: 0.75 }, placement: "right" },
+      { key: "floor", objectId: "usable", at: { x: 1.3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Fläche des nutzbaren Bodens
+
+Der nutzbare Boden ist ein Rechteck von <InlineMath math="3\sqrt3\text{ m}" /> Breite über die ganze Länge des Dachbodens von <InlineMath math="10\text{ m}" />. **Seine Fläche ist Breite mal Länge des Dachbodens**:
+
+<BlockMath math="3\sqrt3\cdot10=30\sqrt3\approx51{,}96\text{ m}^2" />
+
+Das ist genau die Hälfte des ganzen Bodens, passend dazu, dass die nutzbare Breite die halbe Grundseite ist.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="60\sqrt3\text{ m}^2" /> ist der ganze Boden, <InlineMath math="6\sqrt3\cdot10" />. **Die Bedingung mit der Höhe** <InlineMath math="1{,}5\text{ m}" /> **wird übersehen**.
+- <InlineMath math="50\sqrt3\text{ m}^2" /> entsteht, wenn du den Tangens umdrehst: <InlineMath math="x=1{,}5\tan30^\circ=\tfrac12\sqrt3" />, richtig wäre <InlineMath math="x=1{,}5:\tan30^\circ=1{,}5\sqrt3" />.
+- <InlineMath math="\left(60\sqrt3-60\right)\text{ m}^2" /> entsteht, wenn du die Länge entlang des Dachs bis zur Höhe <InlineMath math="1{,}5" /> abziehst, also <InlineMath math="1{,}5:\sin30^\circ=3\text{ m}" />. Diese Strecke liegt schräg auf dem Dach, nicht waagerecht auf dem Boden.
+- <InlineMath math="\left(60-10\sqrt3\right)\text{ m}^2" /> entsteht, wenn du Sinus und Kosinus vertauschst. Dann ist die Höhe <InlineMath math="3\sqrt3" /> und die Grundseite <InlineMath math="6" />, und das Dach verhält sich, als wäre es um <InlineMath math="60^\circ" /> geneigt.
+
+Die Bodenfläche, auf der man stehen kann, beträgt also <InlineMath math="30\sqrt3\text{ m}^2" />.

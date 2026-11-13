@@ -1,14 +1,68 @@
-Titik <InlineMath math="P" />, <InlineMath math="B" />, dan <InlineMath math="D" /> segaris, jadi **segitiga <InlineMath math="PAB" /> dan segitiga <InlineMath math="DCB" /> sebangun**: keduanya siku-siku, di <InlineMath math="A" /> dan di <InlineMath math="C" />, dan sudut di <InlineMath math="B" /> adalah sepasang sudut bertolak belakang. Sisi yang bersesuaian adalah <InlineMath math="AP" /> dengan <InlineMath math="CD" />, serta <InlineMath math="AB" /> dengan <InlineMath math="CB" />.
+# Jari-jari bola pertama
+
+Soal ini punya dua tahap: jari-jari bola pertama dulu, lalu bola kedua. Potong kerucut tepat melalui sumbunya. Penampangnya segitiga sama kaki dengan alas <InlineMath math="12" />, tinggi <InlineMath math="8" />, dan sisi miring <InlineMath math="\sqrt{6^2+8^2}=10" />. Kedua bola terlihat sebagai lingkaran yang pusatnya di sumbu.
+
+Misalkan puncak kerucut <InlineMath math="T" />, pusat alas <InlineMath math="C" />, satu titik ujung alas <InlineMath math="D" />, pusat bola pertama <InlineMath math="M" />, dan titik singgung bola dengan sisi miring <InlineMath math="K" />. Bola menyinggung alas, jadi <InlineMath math="MC=r" /> dan <InlineMath math="TM=8-r" />. Segitiga <InlineMath math="TKM" /> dan <InlineMath math="TCD" /> sama-sama siku-siku dan berbagi sudut di <InlineMath math="T" />, jadi **keduanya sebangun**.
 
 <BlockMath math="\begin{aligned}
-\frac{AP}{AB}&=\frac{CD}{CB} \\
-\frac{AP}{12}&=\frac{3}{4} \\
-AP&=9
+\frac{MK}{TM}&=\frac{CD}{TD} \\
+\frac{r}{8-r}&=\frac{6}{10} \\
+10r&=48-6r \\
+r&=3\text{ cm}
 \end{aligned}" />
 
-Jadi, lebar sungai itu <InlineMath math="9" /> m.
+# Kerucut kecil di atas bola pertama
 
-- <InlineMath math="12" /> m adalah jarak <InlineMath math="A" /> ke <InlineMath math="B" /> di tepi sungai, bukan lebar sungai.
-- <InlineMath math="16" /> m membalik perbandingannya, yaitu memakai <InlineMath math="\frac{12\cdot4}{3}" />.
-- <InlineMath math="36" /> m mengalikan <InlineMath math="12" /> dengan <InlineMath math="3" /> tanpa membagi dengan <InlineMath math="4" />.
-- <InlineMath math="48" /> m mengalikan <InlineMath math="12" /> dengan <InlineMath math="4" />, yaitu memasangkan sisi yang tidak bersesuaian.
+Puncak bola pertama berada pada tinggi <InlineMath math="2r=6\text{ cm}" /> dari alas. Bayangkan bidang mendatar yang menyinggung bola pertama di titik teratasnya. Bola kedua menyentuh bola pertama tepat di titik itu, karena kedua pusatnya terletak pada sumbu. Jadi, bola kedua menyinggung bidang itu dan selimut kerucut.
+
+Artinya, bola kedua berperan sebagai bola pertama untuk **kerucut kecil di atas bidang itu**. Kerucut kecil ini sebangun dengan kerucut besar:
+
+<BlockMath math="\begin{aligned}
+\text{tinggi kerucut kecil}&=8-6=2\text{ cm} \\
+\text{faktor skala}&=\frac{2}{8}=\frac14 \\
+r_2&=\frac14\cdot3=\frac34\text{ cm}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Penampang kerucut dan kedua bola</>}
+  description={<>Segitiga sama kaki dengan alas dari <InlineMath math="(-6,0)" /> sampai <InlineMath math="(6,0)" /> dan puncak <InlineMath math="(0,8)" />. Bola pertama tampak sebagai lingkaran berpusat <InlineMath math="(0,3)" /> dengan jari-jari <InlineMath math="3" />. Garis mendatar pada tinggi <InlineMath math="6" /> menyinggung puncak bola pertama dan memotong kerucut kecil setinggi <InlineMath math="2" />. Bola kedua tampak sebagai lingkaran kecil yang pusatnya di sumbu pada tinggi <InlineMath math="6{,}75" />, dengan jari-jari <InlineMath math="0{,}75" />.</>}
+  labels={{
+    apex: <InlineMath math="T" />,
+    first: <InlineMath math="r=3" />,
+    second: <InlineMath math="r_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 8 },
+      y: { min: -1, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cone", kind: "polygon", appearance: "reference", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }, { x: 0, y: 8 }] },
+      { id: "first-ball", kind: "circle", appearance: "primary", center: { x: 0, y: 3 }, radius: 3 },
+      { id: "second-ball", kind: "circle", appearance: "answer", center: { x: 0, y: 6.75 }, radius: 0.75 },
+      { id: "tangent-plane", kind: "segment", appearance: "secondary", from: { x: -1.5, y: 6 }, to: { x: 1.5, y: 6 } },
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 8 } },
+      { id: "apex-point", kind: "point", appearance: "reference", at: { x: 0, y: 8 } },
+      { id: "first-radius", kind: "segment", appearance: "highlight", from: { x: 0, y: 3 }, to: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "apex", objectId: "apex-point", at: { x: 0, y: 8 }, placement: "above" },
+      { key: "first", objectId: "first-radius", at: { x: 0, y: 1.5 }, placement: "right" },
+      { key: "second", objectId: "second-ball", at: { x: 0.75, y: 6.75 }, placement: "right" },
+    ],
+  }}
+/>
+
+Sebagai pemeriksaan, pusat bola kedua berjarak <InlineMath math="8-6{,}75=1{,}25\text{ cm}" /> dari puncak. Jaraknya ke sisi miring adalah <InlineMath math="1{,}25\cdot\frac{6}{10}=0{,}75\text{ cm}" />, tepat sama dengan jari-jarinya. **Bola kedua benar-benar menyinggung selimut**.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\frac{3}{16}\text{ cm}" /> mengalikan dengan <InlineMath math="\left(\tfrac14\right)^2" />. Kuadrat faktor skala dipakai untuk luas. **Jari-jari adalah panjang**, jadi faktornya cukup <InlineMath math="\tfrac14" />.
+- <InlineMath math="\frac{3}{5}\text{ cm}" /> membagi tinggi kerucut kecil dengan sisi miring kerucut besar, <InlineMath math="\tfrac{2}{10}" />. Faktor skala harus membandingkan besaran yang bersesuaian, tinggi dengan tinggi.
+- <InlineMath math="1\text{ cm}" /> menganggap bola kedua mengisi celah setinggi <InlineMath math="2\text{ cm}" /> sampai ke puncak, sehingga diameternya <InlineMath math="2" />. Di dekat puncak kerucut menyempit, jadi bola kedua tertahan selimut sebelum menyentuh puncak.
+- <InlineMath math="\frac{3}{2}\text{ cm}" /> adalah jari-jari alas kerucut kecil, <InlineMath math="\tfrac14\cdot6" />, bukan jari-jari bola di dalamnya.
+
+Jadi, jari-jari bola kedua adalah <InlineMath math="\frac34\text{ cm}" />.

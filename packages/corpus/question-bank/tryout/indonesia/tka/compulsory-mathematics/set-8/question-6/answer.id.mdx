@@ -1,16 +1,38 @@
-<InlineMath math="f^{-1}(5)" /> adalah **nilai <InlineMath math="x" /> yang membuat <InlineMath math="f(x)=5" />**. Jadi selesaikan persamaan itu, atau cari rumus invers lebih dulu.
+# Tiga syarat logaritma
+
+Soal ini menanyakan kapan <InlineMath math="{}^{5-x}\log\left(x^2-x-6\right)" /> punya arti. Bentuk <InlineMath math="{}^{a}\log b" /> terdefinisi hanya jika numerusnya positif, <InlineMath math="b>0" />, dan basisnya positif tetapi **bukan <InlineMath math="1" />**, yaitu <InlineMath math="a>0" /> dan <InlineMath math="a\neq1" />. Di sini basisnya juga memuat <InlineMath math="x" />, jadi ketiga syarat harus dipenuhi bersama.
+
+# Syarat numerus
+
+Faktorkan bentuk kuadratnya, lalu cari kapan hasilnya positif.
 
 <BlockMath math="\begin{aligned}
-\frac{2x-1}{3}&=5 \\
-2x-1&=15 \\
-x&=8
+x^2-x-6&>0 \\
+(x-3)(x+2)&>0
 \end{aligned}" />
 
-Dengan rumus invers yang sama, <InlineMath math="f^{-1}(x)=\frac{3x+1}{2}" />, dan <InlineMath math="f^{-1}(5)=\frac{16}{2}=8" />. Cek: <InlineMath math="f(8)=\frac{15}{3}=5" />.
+Hasil kali dua faktor positif saat kedua faktor sama tanda, yaitu **di luar kedua akar**. Jadi <InlineMath math="x<-2" /> atau <InlineMath math="x>3" />. Ambil contoh <InlineMath math="x=0" />: <InlineMath math="0-0-6=-6" />, negatif, jadi bagian di antara <InlineMath math="-2" /> dan <InlineMath math="3" /> memang tidak termasuk.
 
-Jadi, <InlineMath math="f^{-1}(5)=8" />.
+# Syarat basis
 
-- <InlineMath math="\frac13" /> adalah kebalikan dari <InlineMath math="f(5)" />, padahal invers fungsi bukan kebalikan nilai.
-- <InlineMath math="3" /> adalah <InlineMath math="f(5)" />, bukan <InlineMath math="f^{-1}(5)" />.
-- <InlineMath math="7" /> membalik urutan operasi tetapi lupa membalik tanda, yaitu memakai <InlineMath math="\frac{3\cdot5-1}{2}" />.
-- <InlineMath math="14" /> menghitung <InlineMath math="3\cdot5-1" /> dan lupa membagi <InlineMath math="2" />.
+Basisnya <InlineMath math="5-x" />, dan **basis harus positif sekaligus tidak sama dengan satu**.
+
+<BlockMath math="\begin{aligned}
+5-x>0 &\Rightarrow x<5 \\
+5-x\neq1 &\Rightarrow x\neq4
+\end{aligned}" />
+
+Syarat pertama membuang semua <InlineMath math="x" /> yang lebih dari atau sama dengan <InlineMath math="5" />, karena di sana basisnya nol atau negatif. Syarat kedua hanya membuang satu titik, yaitu <InlineMath math="x=4" />.
+
+# Menggabungkan semuanya
+
+Irisan <InlineMath math="x<-2" /> atau <InlineMath math="x>3" /> dengan <InlineMath math="x<5" /> adalah <InlineMath math="x<-2" /> atau <InlineMath math="3<x<5" />. Titik <InlineMath math="x=4" /> **ada di dalam selang <InlineMath math="3<x<5" />**, jadi harus dibuang. Cek: untuk <InlineMath math="x=4" />, basisnya <InlineMath math="1" />, dan logaritma berbasis <InlineMath math="1" /> tidak terdefinisi. Untuk <InlineMath math="x=-3" />, numerusnya <InlineMath math="6" /> dan basisnya <InlineMath math="8" />, keduanya sah.
+
+Jadi, <InlineMath math="f(x)" /> terdefinisi untuk <InlineMath math="x<-2" /> atau <InlineMath math="3<x<5" />, dengan <InlineMath math="x\neq4" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="-2<x<3" /> muncul kalau tanda pertidaksamaan kuadrat terbalik. Daerah positifnya ada di luar akar, bukan di antara akar.
+- <InlineMath math="3<x<5" /> dengan <InlineMath math="x\neq4" /> membuang bagian <InlineMath math="x<-2" />. Di bagian itu numerus dan basis sama-sama positif, dan basisnya lebih dari <InlineMath math="1" />.
+- <InlineMath math="x<-2" /> atau <InlineMath math="3<x<5" /> lupa bahwa **basis tidak boleh sama dengan <InlineMath math="1" />**.
+- <InlineMath math="x<-2" /> atau <InlineMath math="x>3" />, dengan <InlineMath math="x\neq4" />, lupa bahwa basis harus positif. Untuk <InlineMath math="x\ge5" />, basis <InlineMath math="5-x" /> bernilai nol atau negatif.

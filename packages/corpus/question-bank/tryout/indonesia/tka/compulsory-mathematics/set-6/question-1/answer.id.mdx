@@ -1,15 +1,42 @@
-Hitung dulu **sisa memori dalam MB**, karena ukuran foto dinyatakan dalam MB.
+# Semua debit dalam liter per menit
+
+Soal ini menanyakan berapa bagian tandon yang sudah terisi pada pukul 06.30. Debit keran Q dan kebocoran ditulis sebagai bagian dari kapasitas, sedangkan debit keran P ditulis dalam liter. Jadi **ubah dulu semuanya ke liter per menit** supaya bisa dijumlahkan.
 
 <BlockMath math="\begin{aligned}
-\text{sisa memori}&=128-83{,}5=44{,}5\text{ GB}=44{.}500\text{ MB} \\
-\frac{44{.}500}{4{,}5}&=9{.}888{,}8\ldots
+\text{debit Q}&=\tfrac{1}{75}\cdot1{.}200=16\text{ liter per menit} \\
+\text{kebocoran}&=\tfrac{1}{150}\cdot1{.}200=8\text{ liter per menit} \\
+\text{isi setinggi lubang}&=\tfrac{2}{5}\cdot1{.}200=480\text{ liter}
 \end{aligned}" />
 
-Banyak foto harus bilangan bulat, dan foto ke-<InlineMath math="9{.}889" /> sudah tidak muat karena <InlineMath math="9{.}889\cdot4{,}5=44{.}500{,}5" /> MB, lebih dari sisa memori. Jadi hasil bagi **dibulatkan ke bawah**.
+Baris terakhir boleh dihitung begitu karena tandonnya tabung tegak. Pada tabung tegak, isi air sebanding dengan tinggi permukaannya, jadi lubang pada <InlineMath math="\tfrac{2}{5}" /> tinggi berarti air mulai bocor setelah isinya lebih dari <InlineMath math="480" /> liter.
 
-Jadi, paling banyak <InlineMath math="9{.}888" /> foto masih dapat disimpan.
+# Tiga tahap pengisian
 
-- <InlineMath math="9{.}889" /> membulatkan ke atas, padahal foto terakhir itu melebihi sisa memori.
-- <InlineMath math="18{.}555" /> memakai memori yang sudah terpakai, <InlineMath math="83{.}500" /> MB.
-- <InlineMath math="28{.}444" /> memakai seluruh kapasitas <InlineMath math="128{.}000" /> MB, seolah memori masih kosong.
-- <InlineMath math="98{.}888" /> salah mengubah <InlineMath math="44{,}5\text{ GB}" /> menjadi <InlineMath math="445{.}000" /> MB.
+Debit bersih berubah setiap kali terjadi salah satu dari dua peristiwa: air mencapai lubang, atau keran Q dibuka. Kebocoran baru mulai ketika air melewati lubang, jadi **cari dulu kapan air mencapai lubang**.
+
+<BlockMath math="\text{waktu sampai lubang}=\frac{480}{24}=20\text{ menit}" />
+
+Air mencapai lubang pukul 06.20, yaitu lima menit sebelum keran Q dibuka. Sekarang hitung isi tandon tahap demi tahap.
+
+| Selang waktu | Yang bekerja | Debit bersih | Tambahan isi | Isi di akhir |
+| --- | --- | --- | --- | --- |
+| 06.00 sampai 06.20 | keran P | <InlineMath math="24" /> liter per menit | <InlineMath math="480" /> liter | <InlineMath math="480" /> liter |
+| 06.20 sampai 06.25 | keran P dan kebocoran | <InlineMath math="24-8=16" /> liter per menit | <InlineMath math="80" /> liter | <InlineMath math="560" /> liter |
+| 06.25 sampai 06.30 | keran P, keran Q, dan kebocoran | <InlineMath math="24+16-8=32" /> liter per menit | <InlineMath math="160" /> liter | <InlineMath math="720" /> liter |
+
+Bagian tandon yang terisi adalah isi dibagi kapasitas:
+
+<BlockMath math="\frac{720}{1{.}200}=\frac{3}{5}" />
+
+Cek kewajarannya: <InlineMath math="720" /> liter memang di atas <InlineMath math="480" /> liter, jadi kebocoran benar sedang berjalan, dan <InlineMath math="720" /> liter masih di bawah kapasitas, jadi tandon belum penuh.
+
+# Kenapa pilihan lain salah
+
+Setiap pilihan yang salah muncul dari **salah menentukan kapan sebuah debit mulai berlaku**.
+
+- <InlineMath math="\tfrac{22}{25}" /> muncul kalau keran Q dianggap sudah dibuka pukul 06.00. Air lalu mencapai lubang setelah <InlineMath math="12" /> menit dan isinya menjadi <InlineMath math="480+32\cdot18=1{.}056" /> liter. Keran Q baru dibuka pukul 06.25.
+- <InlineMath math="\tfrac{2}{3}" /> muncul kalau kebocoran dilupakan: <InlineMath math="24\cdot25+40\cdot5=800" /> liter.
+- <InlineMath math="\tfrac{19}{30}" /> muncul kalau kebocoran dianggap baru mulai saat keran Q dibuka: <InlineMath math="24\cdot25+32\cdot5=760" /> liter. Padahal air sudah di atas lubang sejak pukul 06.20.
+- <InlineMath math="\tfrac{7}{15}" /> muncul kalau air dianggap bocor sejak pukul 06.00: <InlineMath math="16\cdot25+32\cdot5=560" /> liter. Padahal selama air belum mencapai lubang, tidak ada yang bocor.
+
+Jadi, pada pukul 06.30 tandon sudah terisi <InlineMath math="\tfrac{3}{5}" /> bagian.

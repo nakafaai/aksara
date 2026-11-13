@@ -1,12 +1,43 @@
-Jeder Lohn baut auf dem normalen Stundensatz von <InlineMath math="\text{Rp}25{.}000" /> auf, und **der Überstundensatz ist immer das <InlineMath math="1{,}5" />-Fache davon**. Berechne die Größe, die jede Aussage vergleicht.
+# Die erste Aussage
+
+Du musst alle Einkäufe mit mindestens <InlineMath math="35" /> Flaschen vergleichen. Zuerst: Ein Karton liefert <InlineMath math="12" /> Flaschen für <InlineMath math="\text{Rp}168{.}000" />, während für <InlineMath math="12" /> Einzelflaschen <InlineMath math="9" /> bezahlt werden, also <InlineMath math="\text{Rp}180{.}000" />. Prüfe jetzt jede Kartonzahl <InlineMath math="d" /> mit gerade so vielen Einzelflaschen, dass du <InlineMath math="35" /> erreichst.
 
 <BlockMath math="\begin{aligned}
-1{,}5\cdot25{.}000&=37{.}500 \\
-\frac{1{.}000{.}000+8\cdot37{.}500}{1{.}000{.}000}&=\frac{1{.}300{.}000}{1{.}000{.}000}=1{,}3 \\
-2\,\%\cdot(1{.}000{.}000+10\cdot37{.}500)&=0{,}02\cdot1{.}375{.}000=27{.}500
+d=3&:\quad 3(168{.}000)=504{.}000 \\
+d=2&:\quad \text{mindestens } 11 \text{ einzeln, bezahlt } 9 \Rightarrow 336{.}000+180{.}000=516{.}000 \\
+d=1&:\quad \text{mindestens } 23 \text{ einzeln, bezahlt } 18 \Rightarrow 168{.}000+360{.}000=528{.}000 \\
+d=0&:\quad \text{mindestens } 35 \text{ einzeln, bezahlt } 27 \Rightarrow 540{.}000
 \end{aligned}" />
 
-- Eine Überstunde bringt <InlineMath math="\text{Rp}37{.}500" />, so viel wie <InlineMath math="1{,}5" /> Stunden, also <InlineMath math="1" /> Stunde <InlineMath math="30" /> Minuten normale Arbeit. Die Aussage ist richtig.
-- Der Bruttolohn für <InlineMath math="48" /> Stunden ist das <InlineMath math="1{,}3" />-Fache des Lohns für <InlineMath math="40" /> Stunden, mehr als das <InlineMath math="1{,}2" />-Fache. Die Aussage ist richtig.
-- Normaler Lohn und Überstundenlohn steigen beide um <InlineMath math="10\,\%" />, weil der Überstundensatz immer das <InlineMath math="1{,}5" />-Fache bleibt. Der ganze Bruttolohn steigt um genau <InlineMath math="10\,\%" />, nicht mehr. Die Aussage ist falsch.
-- Der Abzug für <InlineMath math="50" /> Stunden beträgt <InlineMath math="\text{Rp}27{.}500" />, nicht mehr als <InlineMath math="\text{Rp}30{.}000" />. Die Aussage ist falsch.
+Noch mehr Flaschen oder Kartons erhöhen den Betrag nur. Für Nichtmitglieder ist also **der Kauf von <InlineMath math="3" /> Kartons am billigsten**, obwohl das <InlineMath math="36" /> Flaschen sind. Für Mitglieder liegt jeder Betrag oben bei mindestens <InlineMath math="\text{Rp}400{.}000" />, also bekommt jeder <InlineMath math="5\%" /> Rabatt und die Reihenfolge bleibt gleich. Die billigste Rechnung ist <InlineMath math="0{,}95(504{.}000)=478{.}800" />, wieder mit <InlineMath math="3" /> Kartons.
+
+Diese Aussage ist **Richtig**.
+
+# Die zweite Aussage
+
+Kauft ein Mitglied <InlineMath math="N" /> Einzelflaschen, gibt es höchstens <InlineMath math="\tfrac{N}{4}" /> volle Gruppen. Bezahlt werden also mindestens <InlineMath math="N-\tfrac{N}{4}=\tfrac{3N}{4}" /> Flaschen. Der Mitgliederrabatt beträgt höchstens <InlineMath math="5\%" />. **Die beiden Ersparnisse werden multipliziert, nicht addiert**.
+
+<BlockMath math="\begin{aligned}
+\text{Rechnung}&\ge0{,}95\cdot20{.}000\cdot\tfrac{3N}{4} \\
+&=14{.}250\,N \\
+\frac{\text{Rechnung}}{N}&\ge14{.}250
+\end{aligned}" />
+
+Die Grenze wird tatsächlich erreicht, zum Beispiel bei <InlineMath math="28" /> Flaschen: Bezahlt werden <InlineMath math="21" />, der Betrag ist <InlineMath math="\text{Rp}420{.}000" />, die Rechnung <InlineMath math="\text{Rp}399{.}000" />, und <InlineMath math="399{.}000:28=14{.}250" />. Addierst du <InlineMath math="25\%" /> und <InlineMath math="5\%" /> zu <InlineMath math="30\%" />, kommst du auf <InlineMath math="\text{Rp}14{.}000" /> und hältst einen billigeren Durchschnitt für möglich. Den gibt es nie.
+
+Diese Aussage ist **Richtig**.
+
+# Die dritte Aussage
+
+Eine zusätzliche Einzelflasche erhöht den Betrag nach der Aktion um <InlineMath math="0" /> oder um <InlineMath math="\text{Rp}20{.}000" />. Der Haken: Dieser Anstieg kann den Betrag über <InlineMath math="\text{Rp}400{.}000" /> heben. Nimm einen Einkauf aus <InlineMath math="2" /> Kartons und <InlineMath math="4" /> Einzelflaschen und leg eine Einzelflasche dazu.
+
+<BlockMath math="\begin{aligned}
+2\text{ Kartons}+4\text{ einzeln}&:\quad 336{.}000+3(20{.}000)=396{.}000 \Rightarrow \text{Rechnung } 396{.}000 \\
+2\text{ Kartons}+5\text{ einzeln}&:\quad 336{.}000+4(20{.}000)=416{.}000 \Rightarrow \text{Rechnung } 0{,}95(416{.}000)=395{.}200
+\end{aligned}" />
+
+Die Rechnung sinkt um <InlineMath math="\text{Rp}800" />, obwohl eine Flasche mehr dabei ist. Probierst du nur Einkäufe aus Einzelflaschen, findest du dieses Beispiel nicht, denn deren Beträge sind immer Vielfache von <InlineMath math="\text{Rp}20{.}000" />, und der Sprung von <InlineMath math="380{.}000" /> auf <InlineMath math="400{.}000" /> ergibt dieselbe Rechnung. **Ein Gegenbeispiel reicht**.
+
+Diese Aussage ist **Falsch**.
+
+Die Antworten lauten also: Richtig, Richtig, Falsch.

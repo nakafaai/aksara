@@ -1,16 +1,18 @@
-Kunci soal ini adalah **jumlah data**: menambah satu data mengubah jumlah dan banyak data sekaligus. Jumlah pengunjung <InlineMath math="10" /> hari adalah <InlineMath math="210+225=435" />. Misalkan pengunjung hari Sabtu <InlineMath math="x" /> orang.
+Kata **pasti** berarti pernyataan itu harus benar untuk setiap susunan gaji yang cocok dengan tabel, bukan hanya untuk satu contoh. Untuk menolak sebuah pernyataan, cukup satu contoh gaji yang cocok dengan tabel tetapi membuat pernyataan itu salah. Untuk menerimanya, kamu perlu alasan yang berlaku untuk semua kemungkinan. Semua angka di bawah dalam juta rupiah.
 
-<BlockMath math="\begin{aligned}
-\bar x_{10}&=\frac{435}{10}=43{,}5 \\
-\frac{435+x}{11}\ge45\ &\iff\ 435+x\ge495\ \iff\ x\ge60 \\
-\frac{435+45}{11}&=\frac{480}{11}\approx43{,}64 \\
-\frac{435+43}{11}&=\frac{478}{11}\approx43{,}45
-\end{aligned}" />
+# Fakta yang selalu berlaku
 
-- Rata-rata <InlineMath math="10" /> hari adalah <InlineMath math="43{,}5" />. Pernyataan ini benar.
-- Syarat rata-rata paling sedikit <InlineMath math="45" /> memberi <InlineMath math="x\ge60" />. Pernyataan ini benar.
-- Data baru <InlineMath math="45" /> lebih besar daripada rata-rata <InlineMath math="43{,}5" />, jadi rata-ratanya naik menjadi sekitar <InlineMath math="43{,}64" />. Pernyataan ini salah.
-- Data baru <InlineMath math="43" /> lebih kecil daripada rata-rata <InlineMath math="43{,}5" />, jadi rata-ratanya turun menjadi sekitar <InlineMath math="43{,}45" />. Pernyataan ini benar.
-- Data terbesar <InlineMath math="55" /> dan terkecil <InlineMath math="30" />, jadi jangkauannya <InlineMath math="25" />, bukan <InlineMath math="20" />. Pernyataan ini salah.
+Jumlah gaji jahit <InlineMath math="15\cdot4{,}8=72" />, jumlah gaji desain <InlineMath math="5\cdot7{,}2=36" />, dan rata-rata seluruh karyawan <InlineMath math="\frac{108}{20}=5{,}4" />. Dua fakta tentang rata-rata dipakai berulang kali:
 
-Jadi, pernyataan yang benar adalah pernyataan tentang rata-rata <InlineMath math="43{,}5" />, syarat paling sedikit <InlineMath math="60" /> pengunjung, dan rata-rata yang turun jika Sabtu <InlineMath math="43" /> pengunjung.
+- **Dalam setiap kelompok, gaji terendah tidak lebih dari rata-rata dan gaji tertinggi tidak kurang dari rata-rata**. Tidak mungkin semua gaji berada di bawah rata-rata, karena rata-ratanya sendiri lalu ikut lebih kecil.
+- Membuang satu nilai di bawah rata-rata membuat rata-rata naik, membuang nilai di atas rata-rata membuatnya turun, dan menambah nilai di atas rata-rata membuatnya naik.
+
+# Menilai setiap pernyataan
+
+1. **Benar**. Ada karyawan desain yang bergaji paling sedikit <InlineMath math="7{,}2" />, jadi gaji tertinggi di perusahaan paling sedikit <InlineMath math="7{,}2" />. Ada karyawan jahit yang bergaji paling banyak <InlineMath math="4{,}8" />, jadi gaji terendah paling banyak <InlineMath math="4{,}8" />. Selisihnya paling sedikit <InlineMath math="7{,}2-4{,}8=2{,}4" />, apa pun susunan gajinya.
+2. **Salah**. Contoh yang cocok dengan tabel: gaji desain <InlineMath math="3" />, <InlineMath math="8{,}25" />, <InlineMath math="8{,}25" />, <InlineMath math="8{,}25" />, <InlineMath math="8{,}25" />, yang jumlahnya <InlineMath math="36" />. Kalau orang bergaji <InlineMath math="3" /> keluar, rata-rata yang tersisa menjadi <InlineMath math="\frac{108-3}{19}\approx5{,}53" />, yang justru naik dari <InlineMath math="5{,}4" />. Hasilnya bergantung pada gaji orang yang keluar dibandingkan <InlineMath math="5{,}4" />.
+3. **Salah**. Kalau setiap orang bergaji tepat rata-rata bagiannya, mediannya <InlineMath math="4{,}8" />, dan pernyataan ini tampak benar. Tetapi coba gaji jahit enam orang <InlineMath math="3" /> dan sembilan orang <InlineMath math="6" />, jumlahnya <InlineMath math="18+54=72" />, dan kelima karyawan desain bergaji <InlineMath math="7{,}2" />. Setelah diurutkan, data ke-<InlineMath math="10" /> dan ke-<InlineMath math="11" /> sama-sama <InlineMath math="6" />, jadi mediannya <InlineMath math="6" />, tidak kurang dari <InlineMath math="5{,}4" />.
+4. **Benar**. Sebut gajinya <InlineMath math="s" /> dengan <InlineMath math="4{,}8<s<7{,}2" />. Rata-rata jahit menjadi <InlineMath math="\frac{72+s}{16}" />, dan ini lebih dari <InlineMath math="4{,}8" /> tepat ketika <InlineMath math="72+s>76{,}8" />, yaitu <InlineMath math="s>4{,}8" />. Rata-rata desain menjadi <InlineMath math="\frac{36-s}{4}" />, dan ini lebih dari <InlineMath math="7{,}2" /> tepat ketika <InlineMath math="36-s>28{,}8" />, yaitu <InlineMath math="s<7{,}2" />. Kedua syarat terpenuhi untuk setiap <InlineMath math="s" /> seperti itu.
+5. **Benar**. Gaji terendah di jahit, sebut <InlineMath math="m" />, paling banyak <InlineMath math="4{,}8" />. Rata-rata jahit setelah ia keluar adalah <InlineMath math="\frac{72-m}{14}\ge\frac{72-4{,}8}{14}=\frac{67{,}2}{14}=4{,}8" />. Rata-ratanya naik, atau tetap <InlineMath math="4{,}8" /> kalau semua orang jahit bergaji sama, tetapi tidak pernah turun.
+
+Jadi, pernyataan yang pasti benar adalah pernyataan pertama, keempat, dan kelima.

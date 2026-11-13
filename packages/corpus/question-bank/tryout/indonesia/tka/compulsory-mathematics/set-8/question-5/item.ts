@@ -11,27 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$\\text{Rp}4{.}500{.}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}4{.}600{.}000$$",
+        },
+        {
           correct: true,
-          label:
-            "Harga satu buku tulis $$\\text{Rp}500$$ lebih mahal daripada harga satu pensil.",
+          label: "$$\\text{Rp}4{.}700{.}000$$",
         },
         {
           correct: false,
-          label: "Harga satu buku tulis adalah $$\\text{Rp}500$$.",
+          label: "$$\\text{Rp}4{.}800{.}000$$",
         },
         {
           correct: false,
-          label: "Harga satu buku tulis dua kali harga satu pensil.",
-        },
-        {
-          correct: false,
-          label:
-            "Harga satu pensil $$\\text{Rp}500$$ lebih mahal daripada harga satu buku tulis.",
-        },
-        {
-          correct: false,
-          label:
-            "Harga $$1$$ buku tulis dan $$1$$ pensil adalah $$\\text{Rp}2{.}500$$.",
+          label: "$$\\text{Rp}4{.}960{.}000$$",
         },
       ],
     },

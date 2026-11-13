@@ -1,15 +1,44 @@
-Tulis informasinya sebagai satu persamaan. **Satu persamaan dengan dua variabel tidak menentukan nilai <InlineMath math="x" /> dan <InlineMath math="y" />**, tetapi bisa menentukan hubungan di antara keduanya.
+# Model dan titik pojoknya
+
+Misalkan <InlineMath math="x" /> banyak lemari kecil dan <InlineMath math="y" /> banyak rak buku. Keuntungan dalam ratusan ribu rupiah adalah <InlineMath math="P=6x+5y" />. Ketiga persediaan memberi tiga pertidaksamaan.
 
 <BlockMath math="\begin{aligned}
-3x+2y&=2x+3y+500 \\
-x-y&=500
+4x+3y&\le32 \quad \text{(papan)} \\
+4x+2y&\le31 \quad \text{(perakitan)} \\
+x+2y&\le12 \quad \text{(pengecatan)}
 \end{aligned}" />
 
-Yang pasti hanyalah selisihnya: buku tulis selalu <InlineMath math="\text{Rp}500" /> lebih mahal daripada pensil. Contohnya, <InlineMath math="x=3{.}000" /> dan <InlineMath math="y=2{.}500" /> memenuhi persamaan, begitu juga <InlineMath math="x=5{.}000" /> dan <InlineMath math="y=4{.}500" />.
+Titik pojok daerah ini, selain <InlineMath math="(0,0)" />, adalah <InlineMath math="(0,6)" />, perpotongan garis papan dengan garis pengecatan, perpotongan garis papan dengan garis perakitan, dan <InlineMath math="(7{,}75;\ 0)" />.
 
-Jadi, yang pasti benar adalah harga satu buku tulis <InlineMath math="\text{Rp}500" /> lebih mahal daripada harga satu pensil.
+<BlockMath math="\begin{aligned}
+\text{papan dan pengecatan}&:\ x=12-2y,\ 4(12-2y)+3y=32 \Rightarrow (5{,}6;\ 3{,}2),\ P=49{,}6 \\
+\text{papan dan perakitan}&:\ (4x+3y)-(4x+2y)=32-31 \Rightarrow (7{,}25;\ 1),\ P=48{,}5 \\
+\text{titik lain}&:\ P(0,6)=30,\quad P(7{,}75;\ 0)=46{,}5
+\end{aligned}" />
 
-- Harga buku tulis tidak dapat ditentukan, karena <InlineMath math="x=3{.}000" /> dan <InlineMath math="x=5{.}000" /> sama-sama mungkin.
-- Buku tulis dua kali harga pensil hanya terjadi untuk <InlineMath math="x=1{.}000" /> dan <InlineMath math="y=500" />, bukan untuk semua kemungkinan.
-- Selisihnya terbalik. Dari <InlineMath math="x-y=500" />, buku tulis yang lebih mahal.
-- Jumlah <InlineMath math="x+y" /> tidak dapat ditentukan. Untuk kedua contoh di atas, jumlahnya <InlineMath math="\text{Rp}5{.}500" /> dan <InlineMath math="\text{Rp}9{.}500" />.
+Pojok terbaik adalah <InlineMath math="(5{,}6;\ 3{,}2)" />, dan titik itu **bukan pasangan bilangan cacah**, jadi keuntungan <InlineMath math="\text{Rp}4{.}960{.}000" /> tidak bisa dicapai. Kamu harus mencari titik bulat terbaik di dalam daerah itu.
+
+# Mencari titik bulat terbaik
+
+Untuk setiap nilai <InlineMath math="y" />, ambil <InlineMath math="x" /> terbesar yang memenuhi **ketiga** pertidaksamaan, karena <InlineMath math="x" /> yang lebih besar selalu menambah keuntungan.
+
+| <InlineMath math="y" /> | Batas <InlineMath math="x" /> dari papan, perakitan, pengecatan | <InlineMath math="x" /> terbesar | <InlineMath math="P" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="8;\ 7{,}75;\ 12" /> | <InlineMath math="7" /> | <InlineMath math="42" /> |
+| <InlineMath math="1" /> | <InlineMath math="7{,}25;\ 7{,}25;\ 10" /> | <InlineMath math="7" /> | <InlineMath math="47" /> |
+| <InlineMath math="2" /> | <InlineMath math="6{,}5;\ 6{,}75;\ 8" /> | <InlineMath math="6" /> | <InlineMath math="46" /> |
+| <InlineMath math="3" /> | <InlineMath math="5{,}75;\ 6{,}25;\ 6" /> | <InlineMath math="5" /> | <InlineMath math="45" /> |
+| <InlineMath math="4" /> | <InlineMath math="5;\ 5{,}75;\ 4" /> | <InlineMath math="4" /> | <InlineMath math="44" /> |
+| <InlineMath math="5" /> | <InlineMath math="4{,}25;\ 5{,}25;\ 2" /> | <InlineMath math="2" /> | <InlineMath math="37" /> |
+| <InlineMath math="6" /> | <InlineMath math="3{,}5;\ 4{,}75;\ 0" /> | <InlineMath math="0" /> | <InlineMath math="30" /> |
+
+Nilai terbesar adalah <InlineMath math="47" /> di titik <InlineMath math="(7,1)" />. Cek: papan <InlineMath math="28+3=31\le32" />, perakitan <InlineMath math="28+2=30\le31" />, pengecatan <InlineMath math="7+2=9\le12" />. Titik ini jauh dari pojok <InlineMath math="(5{,}6;\ 3{,}2)" />, jadi membulatkan pojok tidak akan menemukannya.
+
+Jadi, keuntungan maksimum adalah <InlineMath math="\text{Rp}4{.}700{.}000" /> per minggu, dengan <InlineMath math="7" /> lemari kecil dan <InlineMath math="1" /> rak buku.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\text{Rp}4{.}960{.}000" /> adalah keuntungan di pojok <InlineMath math="(5{,}6;\ 3{,}2)" />. Barang tidak bisa dibuat pecahan.
+- <InlineMath math="\text{Rp}4{.}800{.}000" /> berasal dari <InlineMath math="(8,0)" />. Titik ini lolos syarat papan dan pengecatan, tetapi butuh <InlineMath math="32" /> jam perakitan, **lebih dari <InlineMath math="31" /> jam**.
+- <InlineMath math="\text{Rp}4{.}600{.}000" /> berasal dari <InlineMath math="(6,2)" />, titik bulat terbaik di sekitar pojok. Pencarian berhenti terlalu dekat dengan pojok.
+- <InlineMath math="\text{Rp}4{.}500{.}000" /> berasal dari membulatkan pojok ke bawah menjadi <InlineMath math="(5,3)" />.

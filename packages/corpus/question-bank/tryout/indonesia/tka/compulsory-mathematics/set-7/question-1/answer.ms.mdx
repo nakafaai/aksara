@@ -1,0 +1,42 @@
+# Keamatan daripada setiap pentas
+
+Soalan ini mahu tahu aras keamatan bunyi di khemah tetamu apabila dua kumpulan beduk dipukul serentak. Mengikut peraturan pertama dalam bacaan, **yang dijumlahkan ialah keamatan, bukan desibel**. Jadi, tukar desibel kepada keamatan dahulu, kira setiap pentas, kemudian barulah jumlahkan.
+
+Satu beduk besar pada jarak <InlineMath math="1\text{ m}" /> mempunyai aras <InlineMath math="100\text{ dB}" />. Rumus dalam bacaan memberikan keamatannya:
+
+<BlockMath math="\begin{aligned}
+10\log\frac{I}{10^{-12}}&=100 \\
+\frac{I}{10^{-12}}&=10^{10} \\
+I_{\text{besar}}&=10^{-2}\ \text{W/m}^2 \\
+I_{\text{kecil}}&=\tfrac14\cdot10^{-2}=2.5\cdot10^{-3}\ \text{W/m}^2
+\end{aligned}" />
+
+Itu keamatan pada jarak <InlineMath math="1\text{ m}" />. Mengikut peraturan kedua, pada jarak <InlineMath math="r" /> keamatan itu dibahagi dengan <InlineMath math="r^2" />. Khemah berada <InlineMath math="20\text{ m}" /> dari pentas A, jadi bahagi dengan <InlineMath math="400" />. Khemah berada <InlineMath math="5\text{ m}" /> dari pentas B, jadi bahagi dengan <InlineMath math="25" />.
+
+<BlockMath math="\begin{aligned}
+I_A&=8\cdot\frac{10^{-2}}{400}=2\cdot10^{-4}\ \text{W/m}^2 \\
+I_B&=4\cdot\frac{2.5\cdot10^{-3}}{25}=4\cdot10^{-4}\ \text{W/m}^2
+\end{aligned}" />
+
+Lihat bahawa pentas B menyumbang dua kali ganda pentas A. Beduknya lebih kecil dan lebih sedikit, tetapi jauh lebih dekat dengan khemah.
+
+# Aras keamatan keseluruhan
+
+Jumlahkan kedua-dua keamatan, kemudian tukar semula kepada desibel dengan <InlineMath math="\log6=\log2+\log3=0.78" />.
+
+<BlockMath math="\begin{aligned}
+I&=2\cdot10^{-4}+4\cdot10^{-4}=6\cdot10^{-4}\ \text{W/m}^2 \\
+\mathrm{TI}&=10\log\frac{6\cdot10^{-4}}{10^{-12}}=10\log\left(6\cdot10^{8}\right) \\
+&=10\,(0.78+8)=87.8\text{ dB}
+\end{aligned}" />
+
+Untuk semakan, pentas B seorang diri memberikan <InlineMath math="10\log(4\cdot10^8)=86\text{ dB}" />. Pentas A hanya menambah separuh keamatan B, jadi **hasilnya mesti melebihi <InlineMath math="86\text{ dB}" /> tetapi kurang daripada <InlineMath math="89\text{ dB}" />**. Nilai <InlineMath math="87.8\text{ dB}" /> memang sesuai.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="83\text{ dB}" /> ialah aras pentas A sahaja, <InlineMath math="10\log(2\cdot10^8)" />. Ini berlaku jika kamu menganggap beduk besar pasti paling berpengaruh lalu terlupa pentas B.
+- <InlineMath math="84.5\text{ dB}" /> ialah purata <InlineMath math="83" /> dan <InlineMath math="86" />. **Desibel tidak boleh dipuratakan atau dijumlahkan terus**, kerana skalanya logaritma.
+- <InlineMath math="86\text{ dB}" /> ialah aras pentas B sahaja. Pentas A tetap menambah keamatan walaupun sumbangannya lebih kecil.
+- <InlineMath math="89\text{ dB}" /> menambah <InlineMath math="3\text{ dB}" /> seolah-olah kedua-dua pentas sama kuat. Tambahan <InlineMath math="3\text{ dB}" /> hanya berlaku apabila keamatan menjadi dua kali ganda, sedangkan di sini keamatan hanya menjadi <InlineMath math="1.5" /> kali.
+
+Jadi, aras keamatan bunyi di khemah tetamu ialah <InlineMath math="87.8\text{ dB}" />.

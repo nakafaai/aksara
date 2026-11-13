@@ -1,13 +1,24 @@
-**The expected frequency is the probability of the event times the number of trials**. The primes from <InlineMath math="1" /> to <InlineMath math="10" /> are <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="5" />, and <InlineMath math="7" />. Remember that <InlineMath math="1" /> is not a prime. So the non-prime numbers are <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="8" />, <InlineMath math="9" />, and <InlineMath math="10" />, which is <InlineMath math="6" /> numbers.
+# The new sample space
 
-<BlockMath math="\begin{aligned}
-P(\text{not prime})&=\frac{6}{10} \\
-F_h&=\frac{6}{10}\cdot150=90
-\end{aligned}" />
+The phrase **given that the product is even** changes the sample space. You no longer count from all <InlineMath math="216" /> outcomes, only from the outcomes whose product is even.
 
-So the expected frequency is <InlineMath math="90" /> times.
+A product of three numbers is odd only when all three are odd. Each die has <InlineMath math="3" /> odd faces, so <InlineMath math="3^3=27" /> outcomes have an odd product.
 
-- <InlineMath math="15" /> times is the expected frequency for a single number.
-- <InlineMath math="60" /> times is the expected frequency for a prime number.
-- <InlineMath math="75" /> times treats <InlineMath math="1" /> as a prime, which leaves only <InlineMath math="5" /> non-prime numbers.
-- <InlineMath math="105" /> times treats <InlineMath math="2" /> as not prime, which gives <InlineMath math="7" /> non-prime numbers.
+<BlockMath math="\text{even product}=216-27=189" />
+
+# Counting outcomes with a six
+
+First count the outcomes **without** a <InlineMath math="6" />: each die has <InlineMath math="5" /> choices, so there are <InlineMath math="5^3=125" />. The rest, <InlineMath math="216-125=91" /> outcomes, have at least one <InlineMath math="6" />.
+
+All <InlineMath math="91" /> of those automatically have an even product, because <InlineMath math="6" /> is even. So they're all inside the new sample space.
+
+<BlockMath math="P=\frac{91}{189}=\frac{13}{27}" />
+
+That makes sense: it's bigger than <InlineMath math="\tfrac{91}{216}" />, because knowing the product is even throws away outcomes that certainly have no <InlineMath math="6" />.
+
+So the probability is <InlineMath math="\tfrac{13}{27}" />.
+
+- <InlineMath math="\tfrac{91}{216}" /> ignores the "even" information and still divides by <InlineMath math="216" />.
+- <InlineMath math="\tfrac{25}{63}" /> counts only outcomes with **exactly** one <InlineMath math="6" />, which is <InlineMath math="\tfrac{75}{189}" />.
+- <InlineMath math="\tfrac12" /> adds <InlineMath math="\tfrac16+\tfrac16+\tfrac16" />, but the three events aren't mutually exclusive.
+- <InlineMath math="\tfrac{19}{27}" /> thinks an even product means all three faces are even, so the sample space shrinks to <InlineMath math="27" /> outcomes.

@@ -1,12 +1,34 @@
-**Peluang empiris adalah frekuensi kejadian dibagi banyak percobaan**. Ujung menghadap ke bawah terjadi <InlineMath math="200-74=126" /> kali.
+Soal ini meminta peluang **tiga syarat sekaligus**: berselang-seling, Andi di ujung, dan Bela tidak bersebelahan dengan Andi. Hitung banyak urutan yang memenuhi ketiganya, lalu bagi dengan banyak semua urutan.
 
-<BlockMath math="P(\text{ujung ke bawah})=\frac{126}{200}=0{,}63" />
+# Semua urutan dan pola berselang-seling
 
-Cek: peluang empiris ujung ke atas <InlineMath math="\frac{74}{200}=0{,}37" />, dan <InlineMath math="0{,}37+0{,}63=1" />.
+Delapan siswa yang berbeda dapat diurutkan dalam <InlineMath math="8!=40{.}320" /> cara, dan menurut soal semua urutan itu sama mungkin. Barisan berselang-seling punya **dua pola**: putra di posisi <InlineMath math="1,3,5,7" />, atau putra di posisi <InlineMath math="2,4,6,8" />. Pada pola pertama, ujung kiri (posisi <InlineMath math="1" />) milik putra dan ujung kanan (posisi <InlineMath math="8" />) milik putri. Pada pola kedua kebalikannya. Jadi di setiap pola, **hanya satu ujung yang bisa ditempati Andi**.
 
-Jadi, peluang empiris paku jatuh dengan ujung ke bawah adalah <InlineMath math="0{,}63" />.
+# Menghitung urutan yang cocok
 
-- <InlineMath math="0{,}37" /> adalah peluang empiris ujung menghadap ke atas.
-- <InlineMath math="0{,}5" /> menganggap kedua posisi sama mungkin, padahal paku payung tidak simetris dan datanya menunjukkan hal lain.
-- <InlineMath math="0{,}74" /> membagi <InlineMath math="74" /> dengan <InlineMath math="100" />, bukan dengan <InlineMath math="200" />, dan memakai kejadian yang salah.
-- <InlineMath math="1{,}26" /> membagi <InlineMath math="126" /> dengan <InlineMath math="100" />. Peluang tidak mungkin lebih dari <InlineMath math="1" />.
+Ambil pola pertama. Andi harus di posisi <InlineMath math="1" />, dan tetangganya satu-satunya ada di posisi <InlineMath math="2" />, tempat seorang putri. Bela tidak boleh di posisi <InlineMath math="2" />, jadi **Bela memilih salah satu dari tiga posisi putri lainnya**. Sisa tiga putri mengisi tiga posisi putri yang tersisa, dan sisa tiga putra mengisi tiga posisi putra yang tersisa:
+
+<BlockMath math="\begin{aligned}
+\text{pola pertama}&=1\cdot3\cdot3!\cdot3!=1\cdot3\cdot6\cdot6=108 \\
+\text{pola kedua}&=108\quad(\text{Andi di posisi }8,\ \text{Bela bukan di posisi }7) \\
+\text{total}&=216
+\end{aligned}" />
+
+# Peluangnya
+
+<BlockMath math="P=\frac{216}{40{.}320}=\frac{3}{560}" />
+
+Cek dengan **perkalian peluang bertahap**. Peluang berselang-seling adalah <InlineMath math="\frac{2\cdot4!\cdot4!}{8!}=\frac{1}{35}" />. Dalam barisan berselang-seling, Andi menempati satu dari empat posisi putra dan hanya satu yang di ujung, jadi peluangnya <InlineMath math="\frac14" />. Tetangga Andi satu dari empat putri, dan peluang tetangga itu bukan Bela adalah <InlineMath math="\frac34" />:
+
+<BlockMath math="\frac{1}{35}\cdot\frac14\cdot\frac34=\frac{3}{560}" />
+
+Hasilnya sama.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\frac{3}{1{.}120}" /> hanya menghitung pola yang diawali putra di kiri. **Pola yang diawali putri juga berselang-seling**.
+- <InlineMath math="\frac{1}{140}" /> melupakan syarat Bela, yaitu <InlineMath math="\frac{288}{40{.}320}" />.
+- <InlineMath math="\frac{3}{280}" /> membolehkan Andi di kedua ujung pada setiap pola, padahal satu ujung selalu milik putri.
+- <InlineMath math="\frac{3}{14}" /> melupakan syarat berselang-seling: <InlineMath math="\frac28\cdot\frac67" />, yaitu peluang Andi di ujung dan Bela bukan tetangganya pada barisan sembarang.
+
+Jadi, peluang yang ditanyakan adalah <InlineMath math="\frac{3}{560}" />.

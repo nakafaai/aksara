@@ -1,17 +1,68 @@
-Satu es krim cone lengkap memerlukan **es krim kerucut ditambah es krim setengah bola**. Jari-jari keduanya <InlineMath math="3\text{ cm}" />, dan <InlineMath math="1" /> liter sama dengan <InlineMath math="1{.}000\text{ cm}^3" />.
+Soal ini punya dua bagian yang dikalikan di akhir: **berapa batang pipa dalam satu ikatan** dan berapa massa satu batang pipa. Bagian pertama soal membilang, bagian kedua soal volume dan massa jenis.
+
+# Banyak pipa dalam satu ikatan
+
+Bayangkan penampang ikatan sebagai baris-baris lingkaran yang mendatar. Sisi atas memuat <InlineMath math="3" /> pipa. Setiap baris berikutnya bertambah satu sampai baris tengah, lalu berkurang lagi, sehingga barisnya berisi <InlineMath math="3,4,5,4,3" /> pipa.
+
+<BlockMath math="3+4+5+4+3=19\text{ pipa}" />
+
+Kamu juga bisa menghitung per lapisan. Pipa tengah <InlineMath math="1" />, lapisan pertama <InlineMath math="6" />, dan lapisan luar <InlineMath math="6\cdot3-6=12" />. **Pipa di setiap pojok dimiliki dua sisi sekaligus**, jadi enam pipa pojok dikurangkan sekali. Hasilnya sama, <InlineMath math="1+6+12=19" />.
+
+<MathVisual
+  title={<>Penampang satu ikatan pipa</>}
+  description={<>Sembilan belas lingkaran sama besar yang saling bersinggungan membentuk segi enam beraturan. Baris-barisnya berisi <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="5" />, <InlineMath math="4" />, dan <InlineMath math="3" /> lingkaran. Satu lingkaran di tengah, <InlineMath math="6" /> lingkaran di lapisan pertama, dan <InlineMath math="12" /> lingkaran di lapisan luar, dengan <InlineMath math="3" /> lingkaran pada setiap sisi luar.</>}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 5.5 },
+      y: { min: -5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pipe-center", kind: "circle", appearance: "highlight", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "pipe-inner-1", kind: "circle", appearance: "primary", center: { x: 2, y: 0 }, radius: 1 },
+      { id: "pipe-inner-2", kind: "circle", appearance: "primary", center: { x: -2, y: 0 }, radius: 1 },
+      { id: "pipe-inner-3", kind: "circle", appearance: "primary", center: { x: 1, y: Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-inner-4", kind: "circle", appearance: "primary", center: { x: -1, y: Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-inner-5", kind: "circle", appearance: "primary", center: { x: 1, y: -Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-inner-6", kind: "circle", appearance: "primary", center: { x: -1, y: -Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-1", kind: "circle", appearance: "secondary", center: { x: 4, y: 0 }, radius: 1 },
+      { id: "pipe-outer-2", kind: "circle", appearance: "secondary", center: { x: -4, y: 0 }, radius: 1 },
+      { id: "pipe-outer-3", kind: "circle", appearance: "secondary", center: { x: 3, y: Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-4", kind: "circle", appearance: "secondary", center: { x: -3, y: Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-5", kind: "circle", appearance: "secondary", center: { x: 3, y: -Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-6", kind: "circle", appearance: "secondary", center: { x: -3, y: -Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-7", kind: "circle", appearance: "secondary", center: { x: 2, y: 2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-8", kind: "circle", appearance: "secondary", center: { x: 0, y: 2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-9", kind: "circle", appearance: "secondary", center: { x: -2, y: 2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-10", kind: "circle", appearance: "secondary", center: { x: 2, y: -2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-11", kind: "circle", appearance: "secondary", center: { x: 0, y: -2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-12", kind: "circle", appearance: "secondary", center: { x: -2, y: -2 * Math.sqrt(3) }, radius: 1 },
+    ],
+  }}
+/>
+
+# Massa satu batang pipa
+
+Jari-jari luar <InlineMath math="R=5\text{ cm}" />. Dinding <InlineMath math="1\text{ cm}" /> ada di kedua sisi rongga, jadi jari-jari dalam <InlineMath math="r=4\text{ cm}" />. Panjang pipa <InlineMath math="5\text{ m}=500\text{ cm}" />. Volume besi adalah luas cincin dikali panjang, lalu **massa sama dengan massa jenis dikali volume**.
 
 <BlockMath math="\begin{aligned}
-V_{\text{kerucut}}&=\tfrac13\cdot3{,}14\cdot3^2\cdot12=113{,}04 \\
-V_{\text{setengah bola}}&=\tfrac23\cdot3{,}14\cdot3^3=56{,}52 \\
-V_{\text{satu cone}}&=113{,}04+56{,}52=169{,}56\text{ cm}^3 \\
-\frac{1{.}000}{169{,}56}&\approx5{,}9
+V&=\frac{22}{7}\,(5^2-4^2)\cdot500=\frac{22}{7}\cdot9\cdot500=\frac{99{.}000}{7}\text{ cm}^3 \\
+m&=7\cdot\frac{99{.}000}{7}=99{.}000\text{ g}=99\text{ kg}
 \end{aligned}" />
 
-Es krim cone keenam tidak dapat dibuat lengkap, karena <InlineMath math="6\cdot169{,}56=1{.}017{,}36\text{ cm}^3" />, lebih dari <InlineMath math="1{.}000\text{ cm}^3" />. Jadi hasilnya **dibulatkan ke bawah**.
+# Massa satu ikatan
 
-Jadi, paling banyak <InlineMath math="5" /> es krim cone lengkap dapat dibuat.
+Satu ikatan berisi <InlineMath math="19" /> pipa yang sama persis, dan massa tali pengikatnya diabaikan. Karena semua pipa berukuran sama, **massa ikatan adalah banyak pipa dikali massa satu pipa**.
 
-- <InlineMath math="4" /> memakai satu bola penuh di atas cone, bukan setengah bola.
-- <InlineMath math="6" /> membulatkan <InlineMath math="5{,}9" /> ke atas, padahal es krimnya tidak cukup untuk cone keenam.
-- <InlineMath math="8" /> hanya menghitung es krim di dalam cone.
-- <InlineMath math="17" /> hanya menghitung es krim setengah bola.
+<BlockMath math="19\cdot99\text{ kg}=1{.}881\text{ kg}" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="2{.}475\text{ kg}" /> adalah <InlineMath math="25\cdot99" />. Lapisan luar dihitung <InlineMath math="6\cdot3=18" /> tanpa mengurangi pipa pojok yang terhitung dua kali.
+- <InlineMath math="3{.}663\text{ kg}" /> adalah <InlineMath math="37\cdot99" />. Kalimat "<InlineMath math="3" /> pipa pada setiap sisi" dibaca sebagai tiga lapisan di sekeliling pipa tengah, <InlineMath math="1+6+12+18=37" />.
+- <InlineMath math="5{.}225\text{ kg}" /> adalah <InlineMath math="19\cdot275" />. Pipa dianggap pejal, padahal **rongga di dalam pipa tidak berisi besi**.
+- <InlineMath math="7{.}524\text{ kg}" /> adalah <InlineMath math="19\cdot396" />. Diameter <InlineMath math="10" /> dan <InlineMath math="8" /> dipakai sebagai jari-jari, sehingga luas cincin menjadi empat kali terlalu besar.
+
+Jadi, massa satu ikatan pipa adalah <InlineMath math="1{.}881\text{ kg}" />.

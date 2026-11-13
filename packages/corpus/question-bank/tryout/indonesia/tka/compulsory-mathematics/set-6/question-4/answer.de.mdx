@@ -1,16 +1,47 @@
-Ein Mittelwert von <InlineMath math="78" /> über vier Tests bedeutet **eine Summe von <InlineMath math="4\cdot78=312" />**. Sei <InlineMath math="x" /> die Note im fünften Test. Die Bedingung, dass der Mittelwert der fünf Tests mindestens <InlineMath math="80" /> ist, wird zu einer linearen Ungleichung.
+# Wie schnell jede Pumpe arbeitet
+
+Gefragt ist die früheste Uhrzeit, zu der Pumpe A abgeschaltet werden darf, damit der Teich trotzdem spätestens um 17:00 Uhr leer ist. Addieren darfst du **den Anteil des Teichs, der pro Stunde geleert wird**, nicht die Zeiten selbst.
+
+Pumpe A leert pro Stunde <InlineMath math="u" /> des Teichs, Pumpe B leert <InlineMath math="v" />. Die zwei Situationen aus der Aufgabe liefern zwei Gleichungen:
 
 <BlockMath math="\begin{aligned}
-\frac{312+x}{5}&\ge80 \\
-312+x&\ge400 \\
-x&\ge88
+8u+8v&=1 \quad\Rightarrow\quad u+v=\tfrac{1}{8} \\
+4u+16v&=1
 \end{aligned}" />
 
-Probe: Mit <InlineMath math="x=88" /> ist der Mittelwert <InlineMath math="\frac{400}{5}=80" />, die Bedingung ist genau erfüllt.
+Multiplizier die erste Gleichung mit <InlineMath math="4" /> zu <InlineMath math="4u+4v=\tfrac{1}{2}" /> und zieh sie von der zweiten ab:
 
-Im fünften Test braucht Dimas also mindestens <InlineMath math="88" /> Punkte.
+<BlockMath math="\begin{aligned}
+12v&=1-\tfrac{1}{2}=\tfrac{1}{2} \\
+v&=\tfrac{1}{24} \\
+u&=\tfrac{1}{8}-\tfrac{1}{24}=\tfrac{1}{12}
+\end{aligned}" />
 
-- <InlineMath math="80" /> übernimmt nur den Zielwert, doch die vier bisherigen Noten liegen noch unter <InlineMath math="80" />.
-- <InlineMath math="82" /> gleicht nur den Rückstand eines Tests aus, <InlineMath math="80-78=2" />.
-- <InlineMath math="84" /> rechnet <InlineMath math="1" /> Punkt pro bisherigem Test dazu.
-- <InlineMath math="90" /> rechnet <InlineMath math="2" /> Punkte Rückstand für fünf Tests, zurück liegen aber nur die vier bisherigen.
+Pumpe A braucht allein also <InlineMath math="12" /> Stunden und Pumpe B allein <InlineMath math="24" /> Stunden.
+
+# Die Bedingung für rechtzeitiges Leeren
+
+Von 6:00 bis 17:00 Uhr sind es <InlineMath math="11" /> Stunden. Pumpe B läuft die ganzen <InlineMath math="11" /> Stunden, Pumpe A läuft <InlineMath math="k" /> Stunden und wird dann abgeschaltet. Der Teich ist rechtzeitig leer, wenn **die geleerten Anteile zusammen mindestens einen ganzen Teich ergeben**:
+
+<BlockMath math="\begin{aligned}
+\frac{k}{12}+\frac{11}{24}&\ge1 \\
+\frac{k}{12}&\ge\frac{13}{24} \\
+k&\ge6{,}5
+\end{aligned}" />
+
+Pumpe A kann nur genau zur vollen Stunde abgeschaltet werden, also muss <InlineMath math="k" /> ganzzahlig sein. Die kleinste ganze Zahl mit <InlineMath math="k\ge6{,}5" /> ist <InlineMath math="k=7" />, also 13:00 Uhr.
+
+# Beide Seiten der Grenze prüfen
+
+Schaltest du A um 13:00 Uhr ab, haben beide Pumpen schon <InlineMath math="\tfrac{7}{8}" /> des Teichs geleert. Den Rest <InlineMath math="\tfrac{1}{8}" /> schafft B in <InlineMath math="\tfrac{1}{8}:\tfrac{1}{24}=3" /> Stunden, der Teich ist also um 16:00 Uhr leer, vor 17:00 Uhr. Schaltest du A um 12:00 Uhr ab, bleibt ein Viertel übrig und B braucht <InlineMath math="6" /> Stunden, der Teich ist dann erst um 18:00 Uhr leer. **13:00 Uhr ist wirklich die früheste volle Stunde, die reicht**.
+
+# Warum die anderen Antworten falsch sind
+
+Jede falsche Antwort entsteht aus **einem vertauschten oder übersprungenen Schritt**.
+
+- 8:00 Uhr entsteht, wenn die Geschwindigkeiten vertauscht werden, also A <InlineMath math="24" /> Stunden und B <InlineMath math="12" /> Stunden braucht. Aus <InlineMath math="\tfrac{k}{24}+\tfrac{11}{12}\ge1" /> folgt dann <InlineMath math="k\ge2" />.
+- 11:00 Uhr entsteht, wenn B nach der gemeinsamen Phase noch einmal <InlineMath math="11" /> Stunden arbeitet: <InlineMath math="\tfrac{k}{8}+\tfrac{11}{24}\ge1" /> ergibt <InlineMath math="k\ge4\tfrac{1}{3}" />. Die Arbeit von B in der gemeinsamen Phase wird so doppelt gezählt.
+- 12:00 Uhr entsteht, wenn <InlineMath math="6{,}5" /> abgerundet wird. Mit <InlineMath math="k=6" /> ist der Teich erst um 18:00 Uhr leer.
+- 12:30 Uhr ist das Ergebnis ohne die Regel der vollen Stunde. Um 12:30 Uhr kann Pumpe A nicht abgeschaltet werden.
+
+Pumpe A kann also frühestens um 13:00 Uhr abgeschaltet werden.

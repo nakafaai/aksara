@@ -1,16 +1,43 @@
-Warna kelereng kedua bergantung pada kelereng pertama, jadi **bagi menjadi dua kasus menurut warna kelereng pertama**, lalu jumlahkan peluang kedua kasus.
+Soal ini memberi hasil akhirnya, yaitu dua bola merah, lalu bertanya **dari kantong mana bola itu kemungkinan besar berasal**. Itu peluang bersyarat yang arahnya dibalik: dari hasil kembali ke penyebab. Jalurnya tiga langkah: peluang tiap kantong terpilih, peluang dua merah dari tiap kantong, lalu membandingkan keduanya.
+
+# Peluang setiap kantong terpilih
+
+Mata dadu kelipatan <InlineMath math="3" /> hanya <InlineMath math="3" /> dan <InlineMath math="6" />, jadi **kantong I terpilih dengan peluang** <InlineMath math="\tfrac26" />:
+
+<BlockMath math="P(\text{I})=\frac26=\frac13,\qquad P(\text{II})=1-\frac13=\frac23" />
+
+Kantong II lebih sering terpilih, jadi sebelum warna bola dilihat, kantong II justru lebih mungkin. Informasi warna nanti yang menggeser perbandingan ini.
+
+# Peluang dua merah dari setiap kantong
+
+Dua bola diambil sekaligus, jadi **bola pertama tidak dikembalikan**. Pakai kombinasi: banyak cara memilih dua merah dibagi banyak cara memilih dua bola sembarang. Setiap kantong berisi <InlineMath math="5" /> bola, sehingga <InlineMath math="C(5,2)=10" />.
 
 <BlockMath math="\begin{aligned}
-P(\text{M lalu M})&=\frac35\cdot\frac24=\frac{6}{20} \\
-P(\text{B lalu M})&=\frac25\cdot\frac34=\frac{6}{20} \\
-P(\text{kedua merah})&=\frac{6}{20}+\frac{6}{20}=\frac{12}{20}=\frac35
+P(\text{MM}\mid\text{I})&=\frac{C(3,2)}{C(5,2)}=\frac{3}{10} \\
+P(\text{MM}\mid\text{II})&=\frac{C(2,2)}{C(5,2)}=\frac{1}{10}
 \end{aligned}" />
 
-Hasilnya sama dengan peluang kelereng pertama merah. Sebelum warna kelereng pertama dilihat, setiap kelereng sama mungkin berada di urutan kedua.
+# Membalik arah syarat
 
-Jadi, peluang kelereng kedua berwarna merah adalah <InlineMath math="\frac35" />.
+Hitung peluang dua jalur yang berakhir dengan dua merah, lalu jumlahkan:
 
-- <InlineMath math="\frac{3}{10}" /> adalah peluang kedua kelereng merah, bukan hanya kelereng kedua.
-- <InlineMath math="\frac25" /> adalah peluang kelereng kedua berwarna biru.
-- <InlineMath math="\frac12" /> menganggap kelereng pertama pasti merah, sehingga tersisa <InlineMath math="2" /> merah dari <InlineMath math="4" />.
-- <InlineMath math="\frac34" /> menganggap kelereng pertama pasti biru, sehingga tersisa <InlineMath math="3" /> merah dari <InlineMath math="4" />.
+<BlockMath math="\begin{aligned}
+P(\text{I dan MM})&=\frac13\cdot\frac{3}{10}=\frac{1}{10}=\frac{3}{30} \\
+P(\text{II dan MM})&=\frac23\cdot\frac{1}{10}=\frac{2}{30} \\
+P(\text{MM})&=\frac{3}{30}+\frac{2}{30}=\frac{5}{30}
+\end{aligned}" />
+
+Dari semua kejadian dua merah, **bagian yang lewat kantong I** adalah
+
+<BlockMath math="P(\text{I}\mid\text{MM})=\frac{3/30}{5/30}=\frac35" />
+
+Cek dengan membayangkan percobaan diulang <InlineMath math="30" /> kali. Kira-kira <InlineMath math="10" /> kali kantong I terpilih, dan <InlineMath math="3" /> di antaranya menghasilkan dua merah. Kira-kira <InlineMath math="20" /> kali kantong II terpilih, dan <InlineMath math="2" /> di antaranya menghasilkan dua merah. Dari <InlineMath math="5" /> kejadian dua merah, <InlineMath math="3" /> berasal dari kantong I.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\frac{1}{10}" /> adalah peluang kantong I terpilih **dan** dua merah. Hasil itu belum dibagi peluang dua merah.
+- <InlineMath math="\frac{3}{10}" /> adalah peluang dua merah jika sudah diketahui kantong I. Arah syaratnya terbalik.
+- <InlineMath math="\frac13" /> hanya peluang awal kantong I terpilih. Informasi bahwa kedua bola merah belum dipakai.
+- <InlineMath math="\frac{9}{17}" /> muncul kalau pengambilan dianggap dengan pengembalian, yaitu <InlineMath math="\left(\frac35\right)^2" /> dan <InlineMath math="\left(\frac25\right)^2" />. Bola diambil sekaligus, jadi bola pertama tidak kembali ke kantong.
+
+Jadi, peluang bahwa kedua bola merah itu berasal dari kantong I adalah <InlineMath math="\frac35" />.

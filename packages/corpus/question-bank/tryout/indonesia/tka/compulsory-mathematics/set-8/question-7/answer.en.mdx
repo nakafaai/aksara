@@ -1,16 +1,32 @@
-Write the candle's height as <InlineMath math="h(t)=h_0-vt" />, with <InlineMath math="t" /> hours since it was lit. **The burning rate comes from the two data points**, then the starting height comes from running time back to <InlineMath math="t=0" />.
+# The range of the inner function
+
+The function <InlineMath math="g\circ f" /> means <InlineMath math="g\big(f(x)\big)" />: work out <InlineMath math="f(x)" /> first, then feed the result into <InlineMath math="g" />. So <InlineMath math="g" /> only ever receives values that <InlineMath math="f" /> actually produces. **First find the range of <InlineMath math="f" /> on its domain**.
+
+Complete the square so the vertex shows.
 
 <BlockMath math="\begin{aligned}
-v&=\frac{18-12}{5-2}=2\text{ cm per hour} \\
-h_0&=18+2\cdot2=22\text{ cm} \\
-h(t)&=22-2t=0\ \Rightarrow\ t=11
+f(x)&=(x-2)^2-1 \\
+f(2)&=-1,\quad f(0)=3,\quad f(5)=8
 \end{aligned}" />
 
-Check: <InlineMath math="h(5)=22-10=12" />, as given.
+The vertex <InlineMath math="x=2" /> lies inside the domain <InlineMath math="0\le x\le5" />, so the smallest value of <InlineMath math="f" /> is <InlineMath math="-1" />. The largest value is at the end farther from the vertex, <InlineMath math="x=5" />. The range of <InlineMath math="f" /> is <InlineMath math="-1\le f(x)\le8" />.
 
-So the candle burns out <InlineMath math="11" /> hours after it is lit.
+# The outer function on that interval
 
-- <InlineMath math="9" /> hours counts from the <InlineMath math="2" />-hour mark, <InlineMath math="\frac{18}{2}" />, without adding the first <InlineMath math="2" /> hours.
-- <InlineMath math="13" /> hours adds the first <InlineMath math="2" /> hours again to the right answer.
-- <InlineMath math="17" /> hours divides the height difference by <InlineMath math="5" /> hours instead of the <InlineMath math="3" />-hour gap.
-- <InlineMath math="22" /> is the candle's starting height in centimetres, not a time.
+Now let <InlineMath math="t=f(x)" /> with <InlineMath math="-1\le t\le8" />. Write <InlineMath math="g" /> in vertex form.
+
+<BlockMath math="\begin{aligned}
+g(t)&=(t-2)^2-6 \\
+g(2)&=-6,\quad g(-1)=3,\quad g(8)=30
+\end{aligned}" />
+
+The vertex of <InlineMath math="g" /> at <InlineMath math="t=2" /> **lies inside <InlineMath math="-1\le t\le8" />**, so its smallest value is <InlineMath math="-6" />. The value <InlineMath math="t=2" /> really is reached, because <InlineMath math="f(x)=2" /> gives <InlineMath math="x=2\pm\sqrt3" />, and both lie between <InlineMath math="0" /> and <InlineMath math="5" />. The largest value is at the end farther from <InlineMath math="t=2" />, which is <InlineMath math="t=8" />, with <InlineMath math="g(8)=30" />.
+
+So the range of <InlineMath math="g\circ f" /> is <InlineMath math="-6\le y\le30" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="y\ge-6" /> is the range of <InlineMath math="g" /> over all real numbers. It forgets that <InlineMath math="g" /> only receives values <InlineMath math="t" /> from <InlineMath math="-1" /> to <InlineMath math="8" />.
+- <InlineMath math="-5\le y\le30" /> comes from taking the range of <InlineMath math="f" /> from the domain ends only, <InlineMath math="3\le t\le8" />. It misses the vertex of <InlineMath math="f" /> at <InlineMath math="x=2" />.
+- <InlineMath math="-1\le y\le8" /> is the range of <InlineMath math="f" />. That's **stopping one step too early**.
+- <InlineMath math="3\le y\le30" /> comes from evaluating <InlineMath math="g" /> only at the ends <InlineMath math="t=-1" /> and <InlineMath math="t=8" />. It misses the vertex of <InlineMath math="g" /> inside the interval.

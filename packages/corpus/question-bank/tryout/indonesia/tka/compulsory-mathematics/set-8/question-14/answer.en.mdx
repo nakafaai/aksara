@@ -1,15 +1,101 @@
-The final image is known, so **undo both transformations in reverse order**: undo the translation first, then the reflection.
+The question asks for **the vertex that ends up at the top** after turn <InlineMath math="2026" />. That's not the same as asking where <InlineMath math="A" /> goes, so first track how far the board turns, then find the vertex that lands at the top.
+
+# Net turn per two steps
+
+All turns use the same centre, so you can add the angles. Count counterclockwise turns as positive and clockwise turns as negative. One odd turn followed right away by one even turn gives
+
+<BlockMath math="(+72^\circ)+(-144^\circ)=-72^\circ" />
+
+So **every pair of turns works like one clockwise turn of** <InlineMath math="72^\circ" />. Turn <InlineMath math="2026" /> is an even turn, so the <InlineMath math="2026" /> turns split exactly into pairs:
 
 <BlockMath math="\begin{aligned}
-(5,2)-(3,-1)&=(2,3) \\
-(2,3)&\xrightarrow{\ y=x\ }(3,2)
+\text{number of pairs}&=\frac{2026}{2}=1013 \\
+\text{total turn}&=1013\cdot(-72^\circ)
 \end{aligned}" />
 
-A reflection in <InlineMath math="y=x" /> swaps the coordinates, and swapping again undoes it. Forward check: <InlineMath math="(3,2)" /> reflects to <InlineMath math="(2,3)" />, which translates to <InlineMath math="(5,2)" />.
+# Removing full turns
 
-So point <InlineMath math="A" /> is <InlineMath math="(3,2)" />.
+Five pairs give <InlineMath math="5\cdot(-72^\circ)=-360^\circ" />, a full turn, and the board looks exactly as it did before. So only the remainder of <InlineMath math="1013" /> divided by <InlineMath math="5" /> matters:
 
-- <InlineMath math="(2,3)" /> only undoes the translation, not the reflection.
-- <InlineMath math="(8,1)" /> adds the translation vector again instead of subtracting it, and doesn't undo the reflection.
-- <InlineMath math="(1,8)" /> adds the translation vector again, then swaps the coordinates.
-- <InlineMath math="(-1,6)" /> undoes the reflection first and then subtracts the vector, which reverses the order.
+<BlockMath math="\begin{aligned}
+1013&=5\cdot202+3 \\
+1013\cdot(-72^\circ)&=202\cdot(-360^\circ)+3\cdot(-72^\circ) \\
+3\cdot(-72^\circ)&=-216^\circ
+\end{aligned}" />
+
+A clockwise turn of <InlineMath math="216^\circ" /> leaves the board in the same state as a counterclockwise turn of <InlineMath math="360^\circ-216^\circ=144^\circ" />. So **the end result is one counterclockwise turn of** <InlineMath math="144^\circ" />, which moves every vertex two places that way.
+
+# The vertex at the top
+
+Measure each vertex's position as an angle counterclockwise from the top. At the start <InlineMath math="A" /> is at <InlineMath math="0^\circ" />, <InlineMath math="B" /> at <InlineMath math="72^\circ" />, and so on. Add <InlineMath math="144^\circ" /> to each position, then drop multiples of <InlineMath math="360^\circ" />.
+
+| Vertex | Start position | End position |
+| :---: | :---: | :---: |
+| <InlineMath math="A" /> | <InlineMath math="0^\circ" /> | <InlineMath math="144^\circ" /> |
+| <InlineMath math="B" /> | <InlineMath math="72^\circ" /> | <InlineMath math="216^\circ" /> |
+| <InlineMath math="C" /> | <InlineMath math="144^\circ" /> | <InlineMath math="288^\circ" /> |
+| <InlineMath math="D" /> | <InlineMath math="216^\circ" /> | <InlineMath math="360^\circ=0^\circ" /> |
+| <InlineMath math="E" /> | <InlineMath math="288^\circ" /> | <InlineMath math="432^\circ=72^\circ" /> |
+
+Only <InlineMath math="D" /> ends at <InlineMath math="0^\circ" />, which is **the top position**. The figure shows where every label sits after the last turn.
+
+<MathVisual
+  title={<>Labels after the last turn</>}
+  description={<>A regular pentagon centred at the origin. Vertex <InlineMath math="D" /> is at the top, where the arrow points. Going counterclockwise from <InlineMath math="D" /> come <InlineMath math="E" />, <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" />. Vertex <InlineMath math="A" /> now sits where <InlineMath math="C" /> started.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    top: "top position",
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 6 },
+      y: { min: -5, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      {
+        id: "pentagon",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 4 },
+          { x: 4 * Math.cos((162 * Math.PI) / 180), y: 4 * Math.sin((162 * Math.PI) / 180) },
+          { x: 4 * Math.cos((234 * Math.PI) / 180), y: 4 * Math.sin((234 * Math.PI) / 180) },
+          { x: 4 * Math.cos((306 * Math.PI) / 180), y: 4 * Math.sin((306 * Math.PI) / 180) },
+          { x: 4 * Math.cos((18 * Math.PI) / 180), y: 4 * Math.sin((18 * Math.PI) / 180) },
+        ],
+      },
+      { id: "point-d", kind: "point", appearance: "answer", at: { x: 0, y: 4 } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: 4 * Math.cos((162 * Math.PI) / 180), y: 4 * Math.sin((162 * Math.PI) / 180) } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 4 * Math.cos((234 * Math.PI) / 180), y: 4 * Math.sin((234 * Math.PI) / 180) } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 4 * Math.cos((306 * Math.PI) / 180), y: 4 * Math.sin((306 * Math.PI) / 180) } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 4 * Math.cos((18 * Math.PI) / 180), y: 4 * Math.sin((18 * Math.PI) / 180) } },
+      { id: "pointer", kind: "vector", appearance: "highlight", from: { x: 0, y: 6 }, to: { x: 0, y: 4.5 } },
+    ],
+    labels: [
+      { key: "d", objectId: "point-d", at: { x: 0, y: 4 }, placement: "right" },
+      { key: "e", objectId: "point-e", at: { x: 4 * Math.cos((162 * Math.PI) / 180), y: 4 * Math.sin((162 * Math.PI) / 180) }, placement: "left" },
+      { key: "a", objectId: "point-a", at: { x: 4 * Math.cos((234 * Math.PI) / 180), y: 4 * Math.sin((234 * Math.PI) / 180) }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 4 * Math.cos((306 * Math.PI) / 180), y: 4 * Math.sin((306 * Math.PI) / 180) }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 4 * Math.cos((18 * Math.PI) / 180), y: 4 * Math.sin((18 * Math.PI) / 180) }, placement: "right" },
+      { key: "top", objectId: "pointer", at: { x: 0, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
+
+Quick check: walking clockwise from <InlineMath math="A" />, you meet <InlineMath math="E" /> and then <InlineMath math="D" />. So <InlineMath math="D" /> started two places clockwise from the top, and a shift of two places counterclockwise brings it exactly to the top.
+
+# Why the other options are wrong
+
+- <InlineMath math="C" /> is the starting place that <InlineMath math="A" /> now occupies. It answers where <InlineMath math="A" /> went, **not which vertex is at the top**.
+- <InlineMath math="E" /> comes from treating every turn as <InlineMath math="72^\circ" /> counterclockwise. The total is <InlineMath math="2026\cdot72^\circ" />, and since <InlineMath math="2026=5\cdot405+1" />, only <InlineMath math="72^\circ" /> is left, so <InlineMath math="E" /> rises to the top.
+- <InlineMath math="B" /> comes from also treating the <InlineMath math="144^\circ" /> turns as counterclockwise. Each pair is then <InlineMath math="216^\circ" />, the remainder is <InlineMath math="3\cdot216^\circ=648^\circ" />, or <InlineMath math="288^\circ" />, so <InlineMath math="B" /> rises to the top.
+- <InlineMath math="A" /> comes from thinking the labels stay put because every multiple of <InlineMath math="72^\circ" /> maps the pentagon onto itself. The shape does cover the same place, but the labels move.
+
+So the vertex at the top after turn <InlineMath math="2026" /> is <InlineMath math="D" />.

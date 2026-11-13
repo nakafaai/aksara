@@ -1,14 +1,32 @@
-Split the <InlineMath math="46" /> hours into **<InlineMath math="40" /> regular hours and <InlineMath math="6" /> overtime hours**, because they are paid at different rates. One overtime hour pays <InlineMath math="1.5\cdot25{,}000=37{,}500" />.
+# The possible baskets
+
+The question asks for the cheapest bill for exactly <InlineMath math="28" /> bottles on one receipt. The number of cartons can only be <InlineMath math="0" />, <InlineMath math="1" />, or <InlineMath math="2" />, because <InlineMath math="3" /> cartons already hold <InlineMath math="36" /> bottles. The rest are loose bottles. **Work out all three baskets one by one**, because the member discount only applies once the total after the promo reaches <InlineMath math="\text{Rp}400{,}000" />.
+
+For loose bottles, each complete group of <InlineMath math="4" /> bottles costs only <InlineMath math="3" /> bottles. So <InlineMath math="4" /> loose bottles are paid as <InlineMath math="3" />, <InlineMath math="16" /> loose bottles as <InlineMath math="12" />, and <InlineMath math="28" /> loose bottles as <InlineMath math="21" />.
 
 <BlockMath math="\begin{aligned}
-\text{regular pay}&=40\cdot25{,}000=1{,}000{,}000 \\
-\text{overtime pay}&=6\cdot37{,}500=225{,}000 \\
-\text{gross pay}&=1{,}000{,}000+225{,}000=1{,}225{,}000
+2\text{ cartons}+4\text{ loose}&:\quad 2(168{,}000)+3(20{,}000)=396{,}000 \\
+1\text{ carton}+16\text{ loose}&:\quad 168{,}000+12(20{,}000)=408{,}000 \\
+0\text{ cartons}+28\text{ loose}&:\quad 21(20{,}000)=420{,}000
 \end{aligned}" />
 
-So Budi's gross pay that week is <InlineMath math="\text{Rp}1{,}225{,}000" />.
+# The discount changes the order
 
-- <InlineMath math="\text{Rp}1{,}075{,}000" /> adds only the overtime bonus, <InlineMath math="6\cdot12{,}500" />, without the base pay for those hours.
-- <InlineMath math="\text{Rp}1{,}150{,}000" /> pays all <InlineMath math="46" /> hours at the regular rate.
-- <InlineMath math="\text{Rp}1{,}375{,}000" /> pays <InlineMath math="46" /> hours at the regular rate and then adds full overtime pay, so the <InlineMath math="6" /> overtime hours are paid twice.
-- <InlineMath math="\text{Rp}1{,}725{,}000" /> pays all <InlineMath math="46" /> hours at the overtime rate.
+Now check the discount rule for each total. The total <InlineMath math="\text{Rp}396{,}000" /> **doesn't reach <InlineMath math="\text{Rp}400{,}000" />**, so it gets no discount. The other two totals get <InlineMath math="5\%" /> off.
+
+<BlockMath math="\begin{aligned}
+2\text{ cartons}+4\text{ loose}&:\quad 396{,}000 \\
+1\text{ carton}+16\text{ loose}&:\quad 408{,}000-0.05(408{,}000)=387{,}600 \\
+0\text{ cartons}+28\text{ loose}&:\quad 420{,}000-0.05(420{,}000)=399{,}000
+\end{aligned}" />
+
+The smallest bill comes from <InlineMath math="1" /> carton and <InlineMath math="16" /> loose bottles. Swapping one carton for <InlineMath math="12" /> loose bottles raises the total by only <InlineMath math="\text{Rp}12{,}000" />, but that small rise pushes the total past <InlineMath math="\text{Rp}400{,}000" />, so a discount of <InlineMath math="\text{Rp}20{,}400" /> kicks in.
+
+So the smallest possible bill is <InlineMath math="\text{Rp}387{,}600" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\text{Rp}376{,}200" /> comes from giving <InlineMath math="5\%" /> off <InlineMath math="\text{Rp}396{,}000" />. The rule is checked on the total after the promo, and that total is below <InlineMath math="\text{Rp}400{,}000" />. The price before the promo, <InlineMath math="\text{Rp}416{,}000" />, doesn't count for the rule.
+- <InlineMath math="\text{Rp}383{,}600" /> comes from taking the discount on the price before the promo, which is <InlineMath math="5\%" /> of <InlineMath math="\text{Rp}488{,}000" />. The reading says the discount is taken from the total after the promo.
+- <InlineMath math="\text{Rp}396{,}000" /> is what you get if you **grab as many cartons as possible** without checking the discount rule.
+- <InlineMath math="\text{Rp}399{,}000" /> is the bill when every bottle is bought loose. To cross the discount line you only need to swap one carton, not two.

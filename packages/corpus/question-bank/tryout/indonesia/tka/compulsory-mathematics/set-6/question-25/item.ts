@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$\\frac{1}{10}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac15$$",
-        },
-        {
           correct: true,
-          label: "$$\\frac25$$",
+          label: "$$\\frac{6}{19}$$",
         },
         {
           correct: false,
-          label: "$$\\frac12$$",
+          label: "$$\\frac{1}{3}$$",
         },
         {
           correct: false,
-          label: "$$\\frac35$$",
+          label: "$$\\frac{7}{19}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\frac{13}{19}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\frac{19}{21}$$",
         },
       ],
     },

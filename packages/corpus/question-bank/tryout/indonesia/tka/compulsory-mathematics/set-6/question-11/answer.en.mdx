@@ -1,14 +1,71 @@
-The area of a trapezium needs **its vertical height**, not the length of the sloping wall. Drop vertical lines from both ends of the base to the top. The wider top splits into <InlineMath math="1\text{ m}" /> in the middle and two equal pieces on the left and right.
+# The plot follows the fence order
+
+The question asks for the real area of the plot. Two things decide it. First, **the shape follows the fence order** <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, <InlineMath math="E" />, <InlineMath math="D" />, not alphabetical order. Second, the map scale applies to lengths, so areas change with the square of the scale.
+
+Plot the points in fence order. The plot is a pentagon with an inward dent at <InlineMath math="E" />.
+
+<MathVisual
+  title={<>Plot <InlineMath math="ABCED" /> on the map</>}
+  description={<>A pentagon with corners in order <InlineMath math="A(0,0)" />, <InlineMath math="B(10,0)" />, <InlineMath math="C(10,6)" />, <InlineMath math="E(2,4)" /> and <InlineMath math="D(0,8)" />. The vertical line <InlineMath math="x=2" /> through <InlineMath math="E" /> splits the plot into two trapezoids: the left one between <InlineMath math="x=0" /> and <InlineMath math="x=2" />, the right one between <InlineMath math="x=2" /> and <InlineMath math="x=10" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 12 },
+      y: { min: -2, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "plot", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 6 }, { x: 2, y: 4 }, { x: 0, y: 8 }] },
+      { id: "split", kind: "segment", appearance: "highlight", from: { x: 2, y: 4 }, to: { x: 2, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 10, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 10, y: 6 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 8 } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 10, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 10, y: 6 }, placement: "above-right" },
+      { key: "d", objectId: "point-d", at: { x: 0, y: 8 }, placement: "above-left" },
+      { key: "e", objectId: "point-e", at: { x: 2, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
+# The area on the map
+
+The vertical line <InlineMath math="x=2" /> through <InlineMath math="E" /> splits the plot into **two trapezoids with vertical parallel sides**. The left one is bounded by <InlineMath math="AD" />, of length <InlineMath math="8" />, and the segment from <InlineMath math="(2,0)" /> to <InlineMath math="E" />, of length <InlineMath math="4" />. The right one is bounded by that same segment, of length <InlineMath math="4" />, and <InlineMath math="BC" />, of length <InlineMath math="6" />.
 
 <BlockMath math="\begin{aligned}
-\text{edge piece}&=\frac{2.2-1}{2}=0.6\text{ m} \\
-t&=\sqrt{1^2-0.6^2}=\sqrt{0.64}=0.8\text{ m} \\
-L&=\frac{1+2.2}{2}\cdot0.8=1.6\cdot0.8=1.28\text{ m}^2
+A_{\text{left}}&=\frac{8+4}{2}\cdot2=12 \\
+A_{\text{right}}&=\frac{4+6}{2}\cdot8=40 \\
+A_{\text{map}}&=12+40=52\text{ cm}^2
 \end{aligned}" />
 
-So the cross-section of the channel is <InlineMath math="1.28\text{ m}^2" />.
+Check with the polygon area formula from coordinates, using the fence order <InlineMath math="A,B,C,E,D" />: <InlineMath math="\tfrac{1}{2}\left|0+60+28+16+0\right|=52" />. Same result.
 
-- <InlineMath math="0.64\text{ m}^2" /> halves the correct result a second time.
-- <InlineMath math="1.6\text{ m}^2" /> uses the <InlineMath math="1\text{ m}" /> sloping wall as the height.
-- <InlineMath math="2.56\text{ m}^2" /> forgets to halve the sum of the parallel sides.
-- <InlineMath math="3.2\text{ m}^2" /> forgets to halve and uses the sloping wall as the height.
+# From the map to real size
+
+A scale of <InlineMath math="1:500" /> means <InlineMath math="1\text{ cm}" /> on the map stands for <InlineMath math="500\text{ cm}=5\text{ m}" /> in real life. A <InlineMath math="1\text{ cm}\times1\text{ cm}" /> square on the map becomes <InlineMath math="5\text{ m}\times5\text{ m}" />, so **the area is multiplied by <InlineMath math="25" />, not by <InlineMath math="5" />**:
+
+<BlockMath math="A_{\text{real}}=52\cdot25=1{,}300\text{ m}^2" />
+
+# Why the other options are wrong
+
+Each wrong option **misses one of the two deciding points or one calculation step**.
+
+- <InlineMath math="260\text{ m}^2" /> multiplies the map area by <InlineMath math="5" /> only, as if the length scale applied to area.
+- <InlineMath math="1{,}550\text{ m}^2" /> uses alphabetical order <InlineMath math="A,B,C,D,E" />. That order makes a different pentagon with a map area of <InlineMath math="62\text{ cm}^2" />, so <InlineMath math="62\cdot25=1{,}550" />.
+- <InlineMath math="2{,}000\text{ m}^2" /> uses the <InlineMath math="10\times8" /> rectangle around the plot and forgets the dent at <InlineMath math="E" />.
+- <InlineMath math="2{,}600\text{ m}^2" /> forgets the factor <InlineMath math="\tfrac{1}{2}" /> in the polygon area formula: <InlineMath math="104\cdot25=2{,}600" />.
+
+So the real area of the plot is <InlineMath math="1{,}300\text{ m}^2" />.

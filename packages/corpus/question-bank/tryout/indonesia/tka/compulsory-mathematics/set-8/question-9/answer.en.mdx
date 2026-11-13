@@ -1,18 +1,20 @@
-This tariff **rises in steps**: the weight above <InlineMath math="1" /> kg is rounded up to the next whole kilogram before it is multiplied by <InlineMath math="\text{Rp}4{,}000" />. So <InlineMath math="T" /> is not a linear function. Work out each value with that rule.
+# Tables for both compositions
 
-| Weight <InlineMath math="w" /> | Extra weight | Charged | <InlineMath math="T(w)" /> |
-| --- | --- | --- | --- |
-| <InlineMath math="1.5" /> kg | <InlineMath math="0.5" /> kg | <InlineMath math="1" /> kg | <InlineMath math="14{,}000" /> |
-| <InlineMath math="2" /> kg | <InlineMath math="1" /> kg | <InlineMath math="1" /> kg | <InlineMath math="14{,}000" /> |
-| <InlineMath math="2.1" /> kg | <InlineMath math="1.1" /> kg | <InlineMath math="2" /> kg | <InlineMath math="18{,}000" /> |
-| <InlineMath math="2.5" /> kg | <InlineMath math="1.5" /> kg | <InlineMath math="2" /> kg | <InlineMath math="18{,}000" /> |
-| <InlineMath math="3" /> kg | <InlineMath math="2" /> kg | <InlineMath math="2" /> kg | <InlineMath math="18{,}000" /> |
-| <InlineMath math="4" /> kg | <InlineMath math="3" /> kg | <InlineMath math="3" /> kg | <InlineMath math="22{,}000" /> |
+Every statement uses a composition, so first build the full tables of <InlineMath math="g\circ f" /> and <InlineMath math="f\circ g" />. Mind the order: <InlineMath math="(g\circ f)(x)=g\big(f(x)\big)" />, so **<InlineMath math="f" /> goes first**. For example, <InlineMath math="(g\circ f)(1)=g(4)=1" /> and <InlineMath math="(f\circ g)(1)=f(3)=2" />.
 
-- <InlineMath math="T(2.5)=18{,}000" />, as in the table. This statement is true.
-- <InlineMath math="T(3)" /> and <InlineMath math="T(2.1)" /> are both <InlineMath math="18{,}000" />, because both extra weights are charged as <InlineMath math="2" /> kg. This statement is true.
-- An extra <InlineMath math="0.5" /> kg is charged as a full <InlineMath math="1" /> kg, so <InlineMath math="T(1.5)=14{,}000" />, not <InlineMath math="12{,}000" />. This statement is false.
-- With <InlineMath math="\text{Rp}30{,}000" /> the extra charge can be at most <InlineMath math="\text{Rp}20{,}000" />, enough for <InlineMath math="5" /> extra kg. The heaviest parcel is <InlineMath math="1+5=6" /> kg, and <InlineMath math="T(6)=30{,}000" />. This statement is true.
-- <InlineMath math="T(4)=22{,}000" />, but <InlineMath math="2\cdot T(2)=28{,}000" />. The base charge of <InlineMath math="\text{Rp}10{,}000" /> is paid only once. This statement is false.
+| <InlineMath math="x" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
+| --- | --- | --- | --- | --- | --- | --- |
+| <InlineMath math="(g\circ f)(x)" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="5" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="6" /> |
+| <InlineMath math="(f\circ g)(x)" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="6" /> |
 
-So the true statements are <InlineMath math="T(2.5)=18{,}000" />, <InlineMath math="T(3)=T(2.1)" />, and the <InlineMath math="6" /> kg limit for <InlineMath math="\text{Rp}30{,}000" />.
+Now you can judge each statement by reading this table, one column at a time.
+
+# Judging each statement
+
+1. **False**. The row for <InlineMath math="g\circ f" /> equals <InlineMath math="x" /> at <InlineMath math="x=1" />, <InlineMath math="x=2" />, and <InlineMath math="x=6" />. That's three elements, not two. If you stop after the first two, you miss <InlineMath math="x=6" />.
+2. **True**. Compare the two rows column by column: only at <InlineMath math="x=6" /> do they match, both giving <InlineMath math="6" />. Every other column differs.
+3. **False**. The function <InlineMath math="g\circ f" /> gives <InlineMath math="2" /> for <InlineMath math="x=2" /> and also for <InlineMath math="x=4" />. A function that sends two different elements to the same value has no inverse. The cause is <InlineMath math="g" />, since <InlineMath math="g(5)=g(6)=2" />. An inverse for <InlineMath math="f" /> alone isn't enough.
+4. **True**. From the table, <InlineMath math="g(2)=5" />. Then find the <InlineMath math="x" /> with <InlineMath math="f(x)=5" />, which is <InlineMath math="x=4" />. So <InlineMath math="f^{-1}\big(g(2)\big)=f^{-1}(5)=4" />.
+5. **True**. The row for <InlineMath math="g\circ f" /> holds <InlineMath math="1,2,5,2,3,6" />, with no <InlineMath math="4" />. The reason is that <InlineMath math="g" /> itself never outputs <InlineMath math="4" />, so whatever goes in, <InlineMath math="g\big(f(x)\big)\neq4" />.
+
+So the true statements are the second, the fourth, and the fifth.

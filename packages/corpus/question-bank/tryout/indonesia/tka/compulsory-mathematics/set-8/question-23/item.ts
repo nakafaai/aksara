@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "exam-summary",
+  stimulus: "ogif",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -15,22 +15,17 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Paling sedikit $$75\\,\\%$$ siswa kelas XI-2 mendapat nilai lebih dari $$64$$.",
+            "Rata-rata lama membaca yang sebenarnya pasti kurang dari $$41$$ menit.",
         },
         {
           column: 2,
           label:
-            "Siswa dengan nilai tertinggi di antara kedua kelas berada di kelas XI-2.",
-        },
-        {
-          column: 1,
-          label:
-            "Seorang siswa kelas XI-2 yang mendapat nilai $$80$$ termasuk $$8$$ siswa dengan nilai tertinggi di kelasnya.",
+            "Median lama membaca yang sebenarnya pasti lebih dari $$32$$ menit.",
         },
         {
           column: 2,
           label:
-            "Setengah data di tengah, yaitu nilai di antara kuartil bawah dan kuartil atas, lebih menyebar di kelas XI-2 daripada di kelas XI-1.",
+            "Pasti ada paling sedikit $$20$$ siswa yang membaca selama $$45$$ menit atau lebih.",
         },
       ],
     },

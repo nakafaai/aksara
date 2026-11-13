@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  stimulus: "phone-storage",
+  stimulus: "tandon",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -15,21 +15,17 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Memori yang sudah terpakai lebih dari $$65\\,\\%$$ kapasitas memori ponsel.",
+            "Jika kedua keran ditutup tepat ketika tandon penuh, isi tandon berhenti berkurang pada pukul 08.15.",
+        },
+        {
+          column: 2,
+          label:
+            "Seandainya keran Q dibuka pada jam lain, asalkan sebelum tandon penuh, tandon pasti sudah penuh paling lambat pukul 07.00.",
         },
         {
           column: 1,
           label:
-            "Satu menit video 4K memakai memori lebih dari $$4$$ kali memori satu menit video HD.",
-        },
-        {
-          column: 2,
-          label: "Sisa memori cukup untuk merekam video 4K selama $$2$$ jam.",
-        },
-        {
-          column: 2,
-          label:
-            "Jika Lala menghapus $$2{.}000$$ foto, memori yang terpakai menjadi kurang dari $$70\\text{ GB}$$.",
+            "Seandainya keran P berhenti mengalir tepat pukul 06.25, saat keran Q dibuka, tandon tetap akan penuh, yaitu pada pukul 07.45.",
         },
       ],
     },

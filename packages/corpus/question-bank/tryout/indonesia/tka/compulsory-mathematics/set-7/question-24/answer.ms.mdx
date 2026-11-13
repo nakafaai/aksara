@@ -1,0 +1,37 @@
+Soalan ini ada dua syarat serentak: penghantar **mesti melalui <InlineMath math="C" />** dan **tidak boleh melalui <InlineMath math="X" />**. Cara yang kemas ialah memotong setiap laluan di <InlineMath math="C" />, mengira setiap bahagian, kemudian mendarabkannya.
+
+# Cara mengira laluan pada grid
+
+Laluan yang hanya bergerak ke timur dan ke utara ialah susunan langkah. Contohnya, dari <InlineMath math="(0,0)" /> ke <InlineMath math="(4,2)" /> memerlukan <InlineMath math="4" /> langkah ke timur dan <InlineMath math="2" /> langkah ke utara, jumlahnya <InlineMath math="6" /> langkah. **Satu laluan ditentukan oleh kedudukan langkah ke utara di antara enam langkah itu**, jadi bilangan laluannya <InlineMath math="\binom{6}{2}" />.
+
+Setiap laluan dari <InlineMath math="A" /> ke <InlineMath math="B" /> melalui <InlineMath math="C" /> terdiri daripada bahagian <InlineMath math="A\to C" /> diikuti bahagian <InlineMath math="C\to B" />. Setiap bahagian pertama boleh dipadankan dengan setiap bahagian kedua, jadi bilangannya didarab.
+
+# Dari A ke C tanpa melalui X
+
+Dari <InlineMath math="A" /> ke <InlineMath math="C" /> ada <InlineMath math="\binom{6}{2}" /> laluan. Tolak laluan yang melalui <InlineMath math="X" />, iaitu laluan <InlineMath math="A\to X" /> didarab laluan <InlineMath math="X\to C" />. Simpang <InlineMath math="X" /> hanya terletak dalam bahagian ini, jadi **penolakan dibuat pada bahagian pertama sahaja**.
+
+<BlockMath math="\begin{aligned}
+A\to C&:\ \binom{6}{2}=15 \\
+A\to X\to C&:\ \binom{3}{1}\cdot\binom{3}{1}=3\cdot3=9 \\
+A\to C \text{ tanpa } X&:\ 15-9=6
+\end{aligned}" />
+
+Semak dengan cara lain. Laluan yang mengelakkan <InlineMath math="X" /> merentasi garis <InlineMath math="x=2" /> hanya pada <InlineMath math="y=0" /> atau hanya pada <InlineMath math="y=2" />. Melalui bawah, laluan itu pergi ke <InlineMath math="(3,0)" /> kemudian ke <InlineMath math="C" />, iaitu <InlineMath math="\binom{3}{1}=3" /> laluan. Melalui atas, laluan itu pergi ke <InlineMath math="(1,2)" /> dahulu, iaitu <InlineMath math="\binom{3}{1}=3" /> laluan, kemudian terus ke <InlineMath math="C" />. Jumlahnya <InlineMath math="3+3=6" />, sepadan.
+
+# Dari C ke B dan jumlahnya
+
+Dari <InlineMath math="C(4,2)" /> ke <InlineMath math="B(6,4)" /> memerlukan <InlineMath math="2" /> langkah ke timur dan <InlineMath math="2" /> langkah ke utara. Simpang <InlineMath math="X" /> berada di luar bahagian grid ini, jadi tiada apa yang ditolak. **Setiap bahagian pertama boleh disambung dengan setiap bahagian kedua**, jadi hasilnya didarab.
+
+<BlockMath math="\begin{aligned}
+C\to B&:\ \binom{4}{2}=6 \\
+\text{bilangan laluan}&=6\cdot6=36
+\end{aligned}" />
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="105" /> mengelakkan <InlineMath math="X" /> tetapi terlupa singgah di <InlineMath math="C" />: <InlineMath math="\binom{10}{4}-\binom{3}{1}\binom{7}{3}=210-105=105" />.
+- <InlineMath math="90" /> singgah di <InlineMath math="C" /> tetapi terlupa simpang yang ditutup: <InlineMath math="15\cdot6" />.
+- <InlineMath math="72" /> hanya menolak <InlineMath math="3" /> laluan <InlineMath math="A\to X" />, sedangkan setiap laluan itu masih bercabang <InlineMath math="3" /> cara ke <InlineMath math="C" />: <InlineMath math="(15-3)\cdot6" />.
+- <InlineMath math="54" /> ialah bilangan laluan yang **memang melalui** <InlineMath math="X" />: <InlineMath math="9\cdot6" />. Itulah laluan yang perlu dibuang, bukan yang dicari.
+
+Jadi, bilangan laluan berbeza yang boleh dilalui penghantar ialah <InlineMath math="36" />.
