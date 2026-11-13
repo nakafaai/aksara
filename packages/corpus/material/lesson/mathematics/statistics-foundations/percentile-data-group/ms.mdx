@@ -1,0 +1,183 @@
+export const metadata = {
+  title: "Persentil bagi Data Terkumpul",
+  description: "Anggarkan persentil data terkumpul daripada jadual kekerapan longgokan, kemudian terangkan kedudukan persentil itu dalam taburan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-22",
+  dateModified: "2026-11-08",
+  subject: "Statistik",
+};
+
+## Membahagikan Pangkat Data kepada Seratus Bahagian
+
+Kamu sudah tahu bahawa [kuartil](/ms/subjek/matematik/statistik-asas/kuartil-data-terkumpul) membahagikan data tersusun kepada empat bahagian mengikut pangkat. **Persentil** meluaskan idea yang sama.
+
+Persentil menandakan **pangkat dalam perseratus** bagi data tersusun. Set data yang terhingga atau nilai yang berulang tidak semestinya menghasilkan 100 kumpulan berbeza yang mengandungi bilangan cerapan yang sama. Julat nilai antara pangkat juga tidak semestinya sama lebar.
+
+<InlineMath math="99" /> titik potong di bahagian dalam biasanya ditulis <InlineMath math="P_1" />, <InlineMath math="P_2" />, <InlineMath math="P_3" />, ..., hingga <InlineMath math="P_{99}" />. Nilai berangka yang tepat boleh berubah mengikut konvensyen persentil, terutamanya bagi sampel yang kecil.
+
+- <InlineMath math="P_{10}" /> (persentil ke-<InlineMath math="10" />) menandakan titik yang pada atau di bawahnya
+  terletak kira-kira <InlineMath math="10\%" /> daripada cerapan. Baki <InlineMath math="90\%" /> terletak di atasnya.
+- <InlineMath math="P_{50}" /> (persentil ke-<InlineMath math="50" />) ialah **median**
+  atau **kuartil kedua (<InlineMath math="Q_2" />
+  )**. Ia menandakan pangkat separuh jalan bagi taburan. Nilai yang sama boleh menghalang tepat separuh daripada nilai cerapan terletak di setiap sisi.
+- <InlineMath math="P_{85}" /> (persentil ke-<InlineMath math="85" />) menandakan titik yang pada atau di bawahnya
+  terletak kira-kira <InlineMath math="85\%" /> daripada cerapan. Kira-kira <InlineMath math="15\%" /> terletak di atasnya.
+
+Persentil menerangkan <Highlight>kedudukan relatif satu nilai dalam taburan</Highlight>. Persentil digunakan, contohnya, untuk membandingkan satu markah ujian dengan markah murid lain dalam kohort yang sama, atau ukuran pertumbuhan seorang kanak-kanak dengan kumpulan rujukan yang sesuai.
+
+## Cara Mencari Nilai Persentil bagi Data Terkumpul
+
+Seperti kuartil, data terkumpul memerlukan **interpolasi** untuk menganggarkan nilai persentil <InlineMath math="P_i" /> dalam selang kelasnya. Kaedahnya ada dua peringkat: cari kelas yang mengandungi pangkat yang kamu mahu, kemudian buat interpolasi di dalam kelas itu. Jadual contoh di bawah menggunakan kedua-dua peringkat pada set data yang sama.
+
+Tambah kekerapan kelas demi kelas untuk mendapat kekerapan longgokan <InlineMath math="4, 14, 30, 40" />. Bar terakhir sentiasa jumlahnya, <InlineMath math="40" />, dan kelas tempat bar mula-mula melepasi kedudukan sasaran ialah kelas yang perlu diinterpolasi.
+
+<BarChart
+  title={<>Kekerapan longgokan bagi setiap kelas</>}
+  description={<>Bar bagi setiap kelas yang menunjukkan berapa banyak nilai yang berada pada atau di bawah sempadan atasnya, sehingga 40.</>}
+  yAxisLabel="Kekerapan longgokan"
+  data={[["61-70", 4], ["71-80", 4 + 10], ["81-90", 4 + 10 + 16], ["91-100", 4 + 10 + 16 + 10]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Kekerapan longgokan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Cari Kedudukan Kelas Persentil
+
+Mula-mula, cari **kedudukan** yang dikaitkan dengan persentil ke-<InlineMath math="i" />:
+
+<BlockMath math="\text{Kedudukan } P_i = \frac{i}{100} \times n" />
+
+- <InlineMath math="i" /> = nombor persentil, seperti <InlineMath math="10, 50, 85" />
+- <InlineMath math="n" /> = jumlah kekerapan
+
+Kemudian gunakan lajur kekerapan longgokan <InlineMath math="F_k" /> untuk mencari selang kelas yang mengandungi kedudukan itu.
+### Kira Nilai Persentil dengan Rumus Interpolasi
+
+Apabila kelas persentil sudah diketahui, buat interpolasi di dalamnya:
+
+<BlockMath math="P_i = T_b + \left( \frac{\frac{i}{100}n - F_{\text{cum}}}{f_i} \right) p" />
+
+Kuantiti dalam rumus ini ialah:
+
+- <InlineMath math="P_i" /> = nilai anggaran bagi persentil yang dikehendaki
+- <InlineMath math="T_b" /> = sempadan bawah kelas persentil
+- <InlineMath math="i" /> = nombor persentil, seperti <InlineMath math="10, 85" />
+- <InlineMath math="n" /> = jumlah kekerapan
+- <InlineMath math="F_{\text{cum}}" /> = kekerapan longgokan **sebelum** kelas
+  persentil
+- <InlineMath math="f_i" /> = kekerapan kelas persentil
+- <InlineMath math="p" /> = saiz selang kelas
+
+Ini ialah rumus interpolasi kuartil dengan <InlineMath math="\frac{i}{100}n" /> menggantikan <InlineMath math="\frac{i}{4}n" />.
+
+Interpolasi ini menganggap bahawa cerapan tersebar sekata dalam kelas yang dipilih. Ia menganggarkan persentil daripada model data terkumpul. Ia tidak membina semula cerapan asal.
+
+## Mencari Markah Ujian Matematik
+
+Jadual berikut mengumpulkan markah ujian matematik <InlineMath math="40 \text{ orang murid}" />:
+
+| Markah Ujian | Kekerapan (<InlineMath math="f" />) | Kekerapan Longgokan (<InlineMath math="F_k" />) | Sempadan Bawah (<InlineMath math="T_b" />) | Saiz Selang Kelas (<InlineMath math="p" />) |
+| :--------: | :---------------------------------: | :----------------------------------------------: | :----------------------------------------: | :-----------------------------------: |
+| <InlineMath math="61\text{-}70" />  | <InlineMath math="4" />  | <InlineMath math="4" />  | <InlineMath math="60.5" /> | <InlineMath math="10" /> |
+| <InlineMath math="71\text{-}80" />  | <InlineMath math="10" /> | <InlineMath math="14" /> | <InlineMath math="70.5" /> | <InlineMath math="10" /> |
+| <InlineMath math="81\text{-}90" />  | <InlineMath math="16" /> | <InlineMath math="30" /> | <InlineMath math="80.5" /> | <InlineMath math="10" /> |
+| <InlineMath math="91\text{-}100" /> | <InlineMath math="10" /> | <InlineMath math="40" /> | <InlineMath math="90.5" /> | <InlineMath math="10" /> |
+| **Jumlah**  | <InlineMath math="40" /> |                                                  |                                            |                                       |
+
+Kita akan anggarkan persentil ke-<InlineMath math="85" />, <InlineMath math="P_{85}" />.
+
+**Cari Kedudukan <InlineMath math="P_{85}" />**:
+
+Kedudukan <InlineMath math="P_{85}" /> ialah data ke-<InlineMath math="\frac{85}{100} \times 40 = \frac{3400}{100} = 34" />.
+
+**Tentukan Kelas <InlineMath math="P_{85}" />**:
+
+Kekerapan longgokan ialah <InlineMath math="F_k = 30" /> sehingga kelas <InlineMath math="81\text{-}90" /> dan <InlineMath math="F_k = 40" /> sehingga <InlineMath math="91\text{-}100" />. Jadi kedudukan <InlineMath math="31" /> hingga <InlineMath math="40" /> terletak dalam kelas terakhir, maka kelas <InlineMath math="P_{85}" /> ialah <InlineMath math="91\text{-}100" />.
+
+**Nilai yang perlu digantikan**
+
+| Kuantiti | Nilai |
+| --- | --- |
+| <InlineMath math="T_b" /> | <InlineMath math="90.5" /> |
+| <InlineMath math="n" /> | <InlineMath math="40" /> |
+| <InlineMath math="F_{\mathrm{cum}}" /> | <InlineMath math="30" /> |
+| <InlineMath math="f_i" /> | <InlineMath math="10" /> |
+| <InlineMath math="p" /> | <InlineMath math="10" /> |
+Kira <InlineMath math="P_{85}" />:
+
+<MathContainer>
+  <BlockMath math="P_{85} = T_b + \left( \frac{\frac{85}{100}n - F_{\text{cum}}}{f_{85}} \right) p" />
+  <BlockMath math="P_{85} = 90.5 + \left( \frac{34 - 30}{10} \right) 10" />
+  <BlockMath math="P_{85} = 90.5 + \left( \frac{4}{10} \right) 10" />
+  <BlockMath math="P_{85} = 90.5 + 4" />
+  <BlockMath math="P_{85} = 94.5" />
+</MathContainer>
+
+Persentil ke-<InlineMath math="85" /> anggaran ialah <InlineMath math="94.5" />. Dalam model data terkumpul yang diinterpolasi, kira-kira <InlineMath math="85\%" /> markah berada pada atau di bawah <InlineMath math="94.5" />, manakala kira-kira <InlineMath math="15\%" /> berada di atasnya.
+
+Markah ujian matematik dalam bentuk histogram: kelas <InlineMath math="81\text{-}90" /> memegang paling ramai murid, iaitu <InlineMath math="16" /> daripada <InlineMath math="40" />.
+
+<HistogramChart
+  title={<>Markah ujian matematik mengikut kelas</>}
+  description={<>Bilangan murid dalam setiap kelas markah ujian.</>}
+  yAxisLabel="Murid"
+  data={[{ name: "61-70", value: 4 }, { name: "71-80", value: 10 }, { name: "81-90", value: 16 }, { name: "91-100", value: 10 }]}
+  chartConfig={{ value: { label: "Murid", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Persentil ialah satu aras pada garis kekerapan longgokan. <InlineMath math="20\%" /> daripada <InlineMath math="40" /> orang murid ialah aras <InlineMath math="8" />, yang dicapai oleh garis itu di atas <InlineMath math="P_{20} = 74.5" />. <InlineMath math="85\%" /> ialah aras <InlineMath math="34" />, yang dicapai di atas <InlineMath math="P_{85} = 94.5" />.
+
+<MathVisual
+  title={<>Persentil pada garis kekerapan longgokan</>}
+  description={<>Garis kekerapan longgokan bagi markah ujian, dibaca pada 8 untuk <InlineMath math="P_{20} = 74.5" /> dan pada 34 untuk <InlineMath math="P_{85} = 94.5" />.</>}
+  labels={{
+    p20: <InlineMath math="P_{20}" />,
+    p85: <InlineMath math="P_{85}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 60, max: 101 }, y: { min: -2, max: 41 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ogive", kind: "polyline", vertices: [{ x: 60.5, y: 0 }, { x: 70.5, y: 4 }, { x: 80.5, y: 14 }, { x: 90.5, y: 30 }, { x: 100.5, y: 40 }], appearance: "secondary" },
+      { id: "p20", kind: "polyline", vertices: [{ x: 60.5, y: 8 }, { x: 70.5 + ((0.2 * 40 - 4) / 10) * 10, y: 8 }, { x: 70.5 + ((0.2 * 40 - 4) / 10) * 10, y: 0 }], appearance: "primary" },
+      { id: "p85", kind: "polyline", vertices: [{ x: 60.5, y: 34 }, { x: 90.5 + ((0.85 * 40 - 30) / 10) * 10, y: 34 }, { x: 90.5 + ((0.85 * 40 - 30) / 10) * 10, y: 0 }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "p20", objectId: "p20", at: { x: 70.5 + ((0.2 * 40 - 4) / 10) * 10, y: 0 }, placement: "below" },
+      { key: "p85", objectId: "p85", at: { x: 90.5 + ((0.85 * 40 - 30) / 10) * 10, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Sebelum membaca penyelesaiannya, anggarkan persentil ke-<InlineMath math="20" />, <InlineMath math="P_{20}" />, daripada jadual yang sama. Tulis kelas yang kamu pilih dan dua sempadan yang kamu **interpolasikan** antaranya, supaya kamu boleh mencari kedudukan persentil itu dalam kelasnya dengan kekerapan longgokan.
+### Penyelesaian
+
+**Kedudukan <InlineMath math="P_{20}" />**:
+
+Kedudukan <InlineMath math="P_{20}" /> ialah data ke-<InlineMath math="\frac{20}{100} \times 40 = \frac{800}{100} = 8" />.
+
+**Kelas <InlineMath math="P_{20}" />**:
+
+Lihat <InlineMath math="F_k" />. Data ke-<InlineMath math="8" /> berada dalam kelas <InlineMath math="71\text{-}80" /> (kerana <InlineMath math="F_k" /> kelas sebelumnya ialah <InlineMath math="4" />, dan <InlineMath math="F_k" /> kelas ini ialah <InlineMath math="14" />).
+
+**Nilai yang perlu digantikan**
+
+| Kuantiti | Nilai |
+| --- | --- |
+| <InlineMath math="T_b" /> | <InlineMath math="70.5" /> |
+| <InlineMath math="n" /> | <InlineMath math="40" /> |
+| <InlineMath math="F_{\mathrm{cum}}" /> | <InlineMath math="4" /> |
+| <InlineMath math="f_i" /> | <InlineMath math="10" /> |
+| <InlineMath math="p" /> | <InlineMath math="10" /> |
+Kira <InlineMath math="P_{20}" />:
+
+<MathContainer>
+  <BlockMath math="P_{20} = T_b + \left( \frac{\frac{20}{100}n - F_{\text{cum}}}{f_{20}} \right) p" />
+  <BlockMath math="P_{20} = 70.5 + \left( \frac{8 - 4}{10} \right) 10" />
+  <BlockMath math="P_{20} = 70.5 + \left( \frac{4}{10} \right) 10" />
+  <BlockMath math="P_{20} = 70.5 + 4" />
+  <BlockMath math="P_{20} = 74.5" />
+</MathContainer>
+
+Persentil ke-<InlineMath math="20" /> anggaran ialah <InlineMath math="74.5" />. Nilai itu terletak dalam kelas <InlineMath math="71\text{-}80" />, seperti yang dijangka.

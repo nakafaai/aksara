@@ -1,0 +1,235 @@
+export const metadata = {
+  title: "Varians dan Sisihan Piawai bagi Data Tak Terkumpul",
+  description: "Kira dan tafsirkan varians dan sisihan piawai populasi bagi data tak terkumpul.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-22",
+  dateModified: "2026-11-08",
+  subject: "Statistik",
+};
+
+## Mengukur Serakan dengan Varians dan Sisihan Piawai
+
+Varians mempuratakan jarak **kuasa dua** dari min. Sisihan piawai mengambil punca kuasa dua bagi purata itu, jadi sukatan itu kembali kepada unit asal data.
+
+- Varians atau sisihan piawai yang **kecil** bermaksud cerapan berkumpul **dekat** dengan min.
+- Nilai yang **besar** bermaksud cerapan tersebar **lebih jauh** dari min.
+
+## Rumus Varians dan Sisihan Piawai
+
+Kita anggap cerapan ini sebagai **populasi lengkap**. Varians menggunakan unit kuasa dua, manakala punca kuasa duanya mengembalikan unit asal. Jadi sisihan piawai boleh dibandingkan terus dengan nilai cerapan.
+
+Kuasaduakan setiap sisihan Kumpulan Satu dari minnya, <InlineMath math="16" />. Bar-barnya ialah <InlineMath math="9, 4, 1, 1, 0, 0, 1, 1, 1, 1, 1, 4" />, jumlahnya <InlineMath math="24" />, dan purata <InlineMath math="\frac{24}{12} = 2" /> ialah varians.
+
+<BarChart
+  title={<>Sisihan kuasa dua Kumpulan Satu</>}
+  description={<>Bar <InlineMath math="i" /> menunjukkan <InlineMath math="(x_i - 16)^2" /> bagi dua belas umur dalam Kumpulan Satu.</>}
+  yAxisLabel="Sisihan kuasa dua"
+  data={[["1", (13 - 16) ** 2], ["2", (14 - 16) ** 2], ["3", (15 - 16) ** 2], ["4", (15 - 16) ** 2], ["5", (16 - 16) ** 2], ["6", (16 - 16) ** 2], ["7", (17 - 16) ** 2], ["8", (17 - 16) ** 2], ["9", (17 - 16) ** 2], ["10", (17 - 16) ** 2], ["11", (17 - 16) ** 2], ["12", (18 - 16) ** 2]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Sisihan kuasa dua", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Varians
+
+Tolak min daripada setiap cerapan, **kuasaduakan setiap beza**, dan puratakan beza kuasa dua itu.
+
+Rumusnya ialah:
+
+<BlockMath math="\sigma^2 = \frac{\sum_{i=1}^{n}(x_i - \bar{x})^2}{n}" />
+
+Maksud simbolnya:
+
+- <InlineMath math="\sigma^2" /> = varians populasi
+- <InlineMath math="x_i" /> = nilai cerapan
+- <InlineMath math="\bar{x}" /> = min aritmetik
+- <InlineMath math="n" /> = bilangan cerapan
+- <InlineMath math="\sum" /> = hasil tambah semua sebutan yang ditunjukkan
+### Sisihan Piawai
+
+Sisihan piawai ialah <Highlight>punca kuasa dua bagi varians</Highlight>. Tidak seperti varians, sisihan piawai ada unit yang sama dengan data asal.
+
+Rumusnya ialah:
+
+<BlockMath math="\sigma = \sqrt{\sigma^2} = \sqrt{\frac{\sum_{i=1}^{n}(x_i - \bar{x})^2}{n}}" />
+
+Rumus ini menggunakan simbol populasi dan membahagi dengan bilangan penuh. Satu sampel memerlukan rumus varians sampel yang sepadan.
+
+## Membandingkan Varians dalam Dua Kumpulan Umur
+
+Pertimbangkan dua kumpulan cerapan umur. Kedua-duanya ada **min (<InlineMath math="\bar{x}" />) yang sama, iaitu <InlineMath math="16" />**, tetapi serakannya sangat berbeza.
+
+- **Kumpulan Satu (<InlineMath math="n=12" />)**: <InlineMath math="13" />, <InlineMath math="14" />, <InlineMath math="15" />, <InlineMath math="15" />, <InlineMath math="16" />, <InlineMath math="16" />, <InlineMath math="17" />, <InlineMath math="17" />, <InlineMath math="17" />, <InlineMath math="17" />, <InlineMath math="17" />, <InlineMath math="18" />
+- **Kumpulan Dua (<InlineMath math="n=12" />)**: <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="5" />, <InlineMath math="7" />, <InlineMath math="8" />, <InlineMath math="12" />, <InlineMath math="27" />, <InlineMath math="28" />, <InlineMath math="29" />, <InlineMath math="32" />, <InlineMath math="36" />
+
+Kita akan kira varians dan sisihan piawai populasi bagi setiap kumpulan.
+
+Setiap baris di bawah ialah seorang ahli Kumpulan Satu, dan setiap bar hijau kebiruan ialah sisihan umur itu dari min <InlineMath math="16" />. Bar-barnya pendek: yang paling panjang ialah <InlineMath math="3" />. Apabila dikuasaduakan dan dipuratakan, kita dapat <InlineMath math="\sigma^2 = 24 / 12 = 2" />.
+
+<MathVisual
+  title={<>Kumpulan Satu kekal dekat dengan minnya</>}
+  description={<>Dua belas umur Kumpulan Satu, satu bagi setiap baris, dengan bar dari min 16 ke setiap umur.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} = 16" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 12, max: 20 }, y: { min: 0, max: 13.5 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "mean", kind: "segment", from: { x: 16, y: 0.5 }, to: { x: 16, y: 12 + 0.5 }, appearance: "answer" },
+      { id: "a0", kind: "point", at: { x: 13, y: 1 }, appearance: "primary" },
+      { id: "ad0", kind: "segment", from: { x: 16, y: 1 }, to: { x: 13, y: 1 }, appearance: "construction" },
+      { id: "a1", kind: "point", at: { x: 14, y: 2 }, appearance: "primary" },
+      { id: "ad1", kind: "segment", from: { x: 16, y: 2 }, to: { x: 14, y: 2 }, appearance: "construction" },
+      { id: "a2", kind: "point", at: { x: 15, y: 3 }, appearance: "primary" },
+      { id: "ad2", kind: "segment", from: { x: 16, y: 3 }, to: { x: 15, y: 3 }, appearance: "construction" },
+      { id: "a3", kind: "point", at: { x: 15, y: 4 }, appearance: "primary" },
+      { id: "ad3", kind: "segment", from: { x: 16, y: 4 }, to: { x: 15, y: 4 }, appearance: "construction" },
+      { id: "a4", kind: "point", at: { x: 16, y: 5 }, appearance: "primary" },
+      { id: "a5", kind: "point", at: { x: 16, y: 6 }, appearance: "primary" },
+      { id: "a6", kind: "point", at: { x: 17, y: 7 }, appearance: "primary" },
+      { id: "ad6", kind: "segment", from: { x: 16, y: 7 }, to: { x: 17, y: 7 }, appearance: "construction" },
+      { id: "a7", kind: "point", at: { x: 17, y: 8 }, appearance: "primary" },
+      { id: "ad7", kind: "segment", from: { x: 16, y: 8 }, to: { x: 17, y: 8 }, appearance: "construction" },
+      { id: "a8", kind: "point", at: { x: 17, y: 9 }, appearance: "primary" },
+      { id: "ad8", kind: "segment", from: { x: 16, y: 9 }, to: { x: 17, y: 9 }, appearance: "construction" },
+      { id: "a9", kind: "point", at: { x: 17, y: 10 }, appearance: "primary" },
+      { id: "ad9", kind: "segment", from: { x: 16, y: 10 }, to: { x: 17, y: 10 }, appearance: "construction" },
+      { id: "a10", kind: "point", at: { x: 17, y: 11 }, appearance: "primary" },
+      { id: "ad10", kind: "segment", from: { x: 16, y: 11 }, to: { x: 17, y: 11 }, appearance: "construction" },
+      { id: "a11", kind: "point", at: { x: 18, y: 12 }, appearance: "primary" },
+      { id: "ad11", kind: "segment", from: { x: 16, y: 12 }, to: { x: 18, y: 12 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 16, y: 12 + 0.5 }, placement: "above" },
+    ],
+  }}
+/>
+
+Kumpulan Dua ada min yang sama, <InlineMath math="16" />, tetapi bar sisihannya panjang, sehingga <InlineMath math="20" />. Kuasa duanya berjumlah <InlineMath math="1910" />, jadi <InlineMath math="\sigma^2 = 1910 / 12 \approx 159.17" /> dan <InlineMath math="\sigma \approx 12.62" />. Semakin panjang bar, semakin besar sisihan piawai.
+
+<MathVisual
+  title={<>Kumpulan Dua tersebar jauh dari minnya</>}
+  description={<>Dua belas umur Kumpulan Dua, satu bagi setiap baris, dengan bar dari min 16 ke setiap umur.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} = 16" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 37 }, y: { min: 0, max: 13.5 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "mean", kind: "segment", from: { x: 16, y: 0.5 }, to: { x: 16, y: 12 + 0.5 }, appearance: "answer" },
+      { id: "b0", kind: "point", at: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "bd0", kind: "segment", from: { x: 16, y: 1 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "b1", kind: "point", at: { x: 3, y: 2 }, appearance: "secondary" },
+      { id: "bd1", kind: "segment", from: { x: 16, y: 2 }, to: { x: 3, y: 2 }, appearance: "construction" },
+      { id: "b2", kind: "point", at: { x: 4, y: 3 }, appearance: "secondary" },
+      { id: "bd2", kind: "segment", from: { x: 16, y: 3 }, to: { x: 4, y: 3 }, appearance: "construction" },
+      { id: "b3", kind: "point", at: { x: 5, y: 4 }, appearance: "secondary" },
+      { id: "bd3", kind: "segment", from: { x: 16, y: 4 }, to: { x: 5, y: 4 }, appearance: "construction" },
+      { id: "b4", kind: "point", at: { x: 7, y: 5 }, appearance: "secondary" },
+      { id: "bd4", kind: "segment", from: { x: 16, y: 5 }, to: { x: 7, y: 5 }, appearance: "construction" },
+      { id: "b5", kind: "point", at: { x: 8, y: 6 }, appearance: "secondary" },
+      { id: "bd5", kind: "segment", from: { x: 16, y: 6 }, to: { x: 8, y: 6 }, appearance: "construction" },
+      { id: "b6", kind: "point", at: { x: 12, y: 7 }, appearance: "secondary" },
+      { id: "bd6", kind: "segment", from: { x: 16, y: 7 }, to: { x: 12, y: 7 }, appearance: "construction" },
+      { id: "b7", kind: "point", at: { x: 27, y: 8 }, appearance: "secondary" },
+      { id: "bd7", kind: "segment", from: { x: 16, y: 8 }, to: { x: 27, y: 8 }, appearance: "construction" },
+      { id: "b8", kind: "point", at: { x: 28, y: 9 }, appearance: "secondary" },
+      { id: "bd8", kind: "segment", from: { x: 16, y: 9 }, to: { x: 28, y: 9 }, appearance: "construction" },
+      { id: "b9", kind: "point", at: { x: 29, y: 10 }, appearance: "secondary" },
+      { id: "bd9", kind: "segment", from: { x: 16, y: 10 }, to: { x: 29, y: 10 }, appearance: "construction" },
+      { id: "b10", kind: "point", at: { x: 32, y: 11 }, appearance: "secondary" },
+      { id: "bd10", kind: "segment", from: { x: 16, y: 11 }, to: { x: 32, y: 11 }, appearance: "construction" },
+      { id: "b11", kind: "point", at: { x: 36, y: 12 }, appearance: "secondary" },
+      { id: "bd11", kind: "segment", from: { x: 16, y: 12 }, to: { x: 36, y: 12 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 16, y: 12 + 0.5 }, placement: "above" },
+    ],
+  }}
+/>
+
+### Pengiraan bagi Kumpulan Satu
+
+Kira <InlineMath math="(x_i - \bar{x})^2" /> bagi **setiap cerapan** dalam Kumpulan 1, dengan <InlineMath math="\bar{x}=16" />:
+
+| Umur (tahun) | Kekerapan | Beza kuasa dua | Sumbangan kepada hasil tambah |
+| --- | --- | --- | --- |
+| 13 | 1 | <InlineMath math="(13-16)^2=9" /> | <InlineMath math="1 \times 9=9" /> |
+| 14 | 1 | <InlineMath math="(14-16)^2=4" /> | <InlineMath math="1 \times 4=4" /> |
+| 15 | 2 | <InlineMath math="(15-16)^2=1" /> | <InlineMath math="2 \times 1=2" /> |
+| 16 | 2 | <InlineMath math="(16-16)^2=0" /> | <InlineMath math="2 \times 0=0" /> |
+| 17 | 5 | <InlineMath math="(17-16)^2=1" /> | <InlineMath math="5 \times 1=5" /> |
+| 18 | 1 | <InlineMath math="(18-16)^2=4" /> | <InlineMath math="1 \times 4=4" /> |
+
+Tambah beza kuasa dua <InlineMath math="\sum(x_i - \bar{x})^2" />:
+
+<BlockMath math="9 + 4 + (1 \times 2) + (0 \times 2) + (1 \times 5) + 4 = 9 + 4 + 2 + 0 + 5 + 4 = 24" />
+
+Kira varians:
+
+<BlockMath math="\sigma^2_{\text{Kumpulan 1}} = \frac{\sum(x_i - \bar{x})^2}{n} = \frac{24}{12} = 2" />
+
+Kira sisihan piawai:
+
+<BlockMath math="\sigma_{\text{Kumpulan 1}} = \sqrt{2} \approx 1.41" />
+### Pengiraan bagi Kumpulan Dua
+
+Ulang pengiraan <InlineMath math="(x_i - \bar{x})^2" /> bagi **Kumpulan 2**, sekali lagi dengan <InlineMath math="\bar{x}=16" />:
+
+| Umur (tahun) | Kekerapan | Beza kuasa dua | Sumbangan kepada hasil tambah |
+| --- | --- | --- | --- |
+| 1 | 1 | <InlineMath math="(1-16)^2=225" /> | <InlineMath math="1 \times 225=225" /> |
+| 3 | 1 | <InlineMath math="(3-16)^2=169" /> | <InlineMath math="1 \times 169=169" /> |
+| 4 | 1 | <InlineMath math="(4-16)^2=144" /> | <InlineMath math="1 \times 144=144" /> |
+| 5 | 1 | <InlineMath math="(5-16)^2=121" /> | <InlineMath math="1 \times 121=121" /> |
+| 7 | 1 | <InlineMath math="(7-16)^2=81" /> | <InlineMath math="1 \times 81=81" /> |
+| 8 | 1 | <InlineMath math="(8-16)^2=64" /> | <InlineMath math="1 \times 64=64" /> |
+| 12 | 1 | <InlineMath math="(12-16)^2=16" /> | <InlineMath math="1 \times 16=16" /> |
+| 27 | 1 | <InlineMath math="(27-16)^2=121" /> | <InlineMath math="1 \times 121=121" /> |
+| 28 | 1 | <InlineMath math="(28-16)^2=144" /> | <InlineMath math="1 \times 144=144" /> |
+| 29 | 1 | <InlineMath math="(29-16)^2=169" /> | <InlineMath math="1 \times 169=169" /> |
+| 32 | 1 | <InlineMath math="(32-16)^2=256" /> | <InlineMath math="1 \times 256=256" /> |
+| 36 | 1 | <InlineMath math="(36-16)^2=400" /> | <InlineMath math="1 \times 400=400" /> |
+
+Tambah beza kuasa dua <InlineMath math="\sum(x_i - \bar{x})^2" />:
+
+<BlockMath math="225 + 169 + 144 + 121 + 81 + 64 + 16 + 121 + 144 + 169 + 256 + 400 = 1910" />
+
+Kira varians:
+
+<BlockMath math="\sigma^2_{\text{Kumpulan 2}} = \frac{\sum(x_i - \bar{x})^2}{n} = \frac{1910}{12} \approx 159.17" />
+
+Kira sisihan piawai:
+
+<BlockMath math="\sigma_{\text{Kumpulan 2}} = \sqrt{\frac{1910}{12}} \approx 12.62" />
+### Mentafsir Keputusan
+
+- Varians Kumpulan 1 (<InlineMath math="\sigma^2 = 2" />) **jauh lebih kecil** daripada varians Kumpulan 2 (<InlineMath math="\sigma^2 \approx 159.17" />).
+- Sisihan piawai Kumpulan 1 (<InlineMath math="\sigma \approx 1.41" />) juga **jauh lebih kecil** daripada sisihan piawai Kumpulan 2 (<InlineMath math="\sigma \approx 12.62" />).
+
+Cerapan dalam **Kumpulan 1 berkumpul rapat** di sekitar min <InlineMath math="16" />. Cerapan dalam **Kumpulan 2 tersebar jauh lebih luas** di sekitar min yang sama, iaitu <InlineMath math="16" />.
+
+## Rumus Alternatif bagi Varians
+
+Rumus setara berikut menggunakan dua hasil tambah <InlineMath math="\sum x_i" /> dan <InlineMath math="\sum x_i^2" />, yang boleh dikumpul terus oleh kalkulator atau program:
+
+<BlockMath math="\sigma^2 = \frac{\sum x_i^2}{n} - \left( \frac{\sum x_i}{n} \right)^2" />
+
+Mula-mula puratakan kuasa dua cerapan <InlineMath math="\sum x_i^2" /> dengan membahagikan hasil tambahnya dengan <InlineMath math="n" />. Kemudian tolak kuasa dua min <InlineMath math="(\bar{x})^2 = (\frac{\sum x_i}{n})^2" />.
+
+Gunakan rumus ini untuk mengira semula varians Kumpulan 1:
+
+Gunakan **kekerapan setiap umur** supaya cerapan yang berulang turut dikira. Ada dua nilai 15, dua nilai 16, dan lima nilai 17.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}\sum x_i^2 &= 13^2+14^2+2(15^2)+2(16^2)+5(17^2)+18^2 \\ &=169+196+450+512+1445+324 \\ &=3096\end{aligned}" />
+  <BlockMath math="\begin{aligned}\sum x_i &=13+14+2(15)+2(16)+5(17)+18 \\ &=13+14+30+32+85+18 \\ &=192\end{aligned}" />
+</MathContainer>
+
+Dengan <InlineMath math="n=12" />, gantikan kedua-dua hasil tambah itu.
+
+<BlockMath math="\begin{aligned}\sigma^2 &=\frac{3096}{12}-\left(\frac{192}{12}\right)^2 \\ &=258-16^2 \\ &=258-256 \\ &=2\end{aligned}" />
+
+Varians masih <InlineMath math="2" /> tahun persegi, sama dengan kaedah beza kuasa dua. Sisihan piawai diukur dalam tahun.
