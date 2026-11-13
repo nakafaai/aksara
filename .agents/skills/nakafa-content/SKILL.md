@@ -78,6 +78,7 @@ Read only what the task needs. Each reference owns one concern.
 | Representation research basis | [Evidence basis](references/research.md) |
 | Questions and response items | [Question bank](references/questions.md) |
 | Building try-out sets from any source material | [Try-out sets](references/sets.md) |
+| How hard a try-out item must be, per section | [Try-out difficulty](references/difficulty.md) |
 | Worked answer explanations | [Worked solutions](references/solutions.md) |
 | Verification commands and acceptance | [Verification](references/verification.md) |
 

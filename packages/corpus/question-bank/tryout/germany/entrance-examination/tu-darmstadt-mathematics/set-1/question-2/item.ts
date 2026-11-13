@@ -6,28 +6,28 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$-2<x\\le0$$",
+        },
+        {
+          correct: false,
+          label: "$$-2\\le x\\le0$$ oder $$x=3$$",
+        },
+        {
+          correct: false,
+          label: "$$x\\le0$$ oder $$x=3$$",
+        },
+        {
+          correct: false,
+          label: "$$-2<x\\le0$$ oder $$x\\ge3$$",
+        },
+        {
           correct: true,
-          label: "$$x<-\\frac45$$",
+          label: "$$-2<x\\le0$$ oder $$x=3$$",
         },
         {
           correct: false,
-          label: "$$x>-\\frac45$$",
-        },
-        {
-          correct: false,
-          label: "$$x<\\frac45$$",
-        },
-        {
-          correct: false,
-          label: "$$x>\\frac45$$",
-        },
-        {
-          correct: false,
-          label: "$$x<-2$$",
-        },
-        {
-          correct: false,
-          label: "$$x>2$$",
+          label: "$$x<-2$$ oder $$x\\ge0$$",
         },
       ],
     },

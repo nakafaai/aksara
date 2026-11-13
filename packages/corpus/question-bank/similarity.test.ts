@@ -135,7 +135,7 @@ describe("scanQuestionSimilarity", () => {
         [root(1, 1), root(3, 1)],
         [root(2, 1), root(3, 1)],
       ]);
-      expect(outside).toEqual({ items: [], passages: [] });
+      expect(outside).toEqual({ formulas: [], items: [], passages: [] });
     })
   );
 
@@ -195,7 +195,7 @@ describe("scanQuestionSimilarity", () => {
         set(2)
       );
 
-      expect(report).toEqual({ items: [], passages: [] });
+      expect(report).toEqual({ formulas: [], items: [], passages: [] });
     })
   );
 
@@ -225,5 +225,50 @@ describe("scanQuestionSimilarity", () => {
         },
       ]);
     })
+  );
+  it.effect(
+    "flags a task asked again in another language with new numbers",
+    () =>
+      Effect.gen(function* () {
+        const german: ItemSource = {
+          versions: {
+            de: {
+              kind: "choice",
+              options: [
+                { correct: true, label: "$$50$$" },
+                { correct: false, label: "$$125$$" },
+              ],
+            },
+          },
+        };
+        const report = yield* scan(
+          [
+            [
+              {
+                prompt:
+                  'Bilangan real <InlineMath math="x" /> dan <InlineMath math="y" /> memenuhi <InlineMath math="x+y=7" /> dan <InlineMath math="x^2+y^2=29" />. Nilai <InlineMath math="x^3+y^3" /> adalah ....',
+              },
+            ],
+            [
+              {
+                item: german,
+                prompt:
+                  'Für zwei reelle Zahlen gilt\n\n<BlockMath math="x+y=5\\qquad\\text{und}\\qquad x^2+y^2=15." />\n\nWelchen Wert hat <InlineMath math="x^3+y^3" />?',
+              },
+            ],
+          ],
+          set(2)
+        );
+
+        expect(report.items).toEqual([]);
+        expect(report.formulas).toEqual([
+          {
+            first: root(1, 1),
+            score: 1,
+            second: root(2, 1),
+            shared: ["x+y=#", "x^#+y^#", "x^#+y^#=#"],
+          },
+        ]);
+      })
   );
 });

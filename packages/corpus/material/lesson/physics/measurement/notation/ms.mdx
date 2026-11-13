@@ -1,0 +1,206 @@
+export const metadata = {
+  title: "Bentuk Piawai",
+  description:
+    "Tulis nilai yang sangat besar atau sangat kecil dalam bentuk piawai, kekalkan angka bererti dan tukar unit tanpa mengubah maknanya.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-04-25",
+  dateModified: "2026-09-12",
+  subject: "Pengukuran dalam Kerja Saintifik",
+};
+
+## Menulis Nombor yang Banyak Sifarnya
+
+Fizik selalu menggunakan nilai yang terlalu besar atau terlalu kecil untuk ditulis dengan selesa. Luas <InlineMath math="0.000764 \text{ m}^2" /> masih senang dibaca. Menulis anggaran jisim elektron dalam kilogram lebih susah: selepas titik perpuluhan, kamu perlu menulis <InlineMath math="30" /> sifar, kemudian digit <InlineMath math="911" />. Kamu mudah tersilap kira.
+
+**Bentuk piawai** menulis sesuatu nilai sebagai pekali yang didarab dengan kuasa <InlineMath math="10" />.
+
+<BlockMath math="a \times 10^n" />
+
+Bagi nilai positif, bentuk piawai mesti memenuhi syarat ini:
+
+<BlockMath math="1 \le a < 10 \quad \text{dan} \quad n \in \mathbb{Z}" />
+
+Pekali <InlineMath math="a" /> mengandungi angka bererti. Indeks <InlineMath math="n" /> pula menentukan tertib magnitud.
+
+Jisim elektron tadi kini boleh ditulis dengan lebih ringkas:
+
+<BlockMath math="9.11 \times 10^{-31} \text{ kg}" />
+
+## Mengalihkan Titik Perpuluhan tanpa Mengubah Nilai
+
+Alihkan titik perpuluhan sehingga pekali berada antara <InlineMath math="1" /> dan <InlineMath math="10" />. Bilangan dan arah alihan itu menentukan indeksnya.
+
+| Nilai biasa | Alihan titik perpuluhan | Bentuk piawai |
+| :------------- | :--------------- | :------------------ |
+| <InlineMath math="7\,640\,000 \text{ m}" /> | <InlineMath math="6" /> tempat ke kiri | <InlineMath math="7.64 \times 10^6 \text{ m}" /> |
+| <InlineMath math="0.000764 \text{ m}^2" /> | <InlineMath math="4" /> tempat ke kanan | <InlineMath math="7.64 \times 10^{-4} \text{ m}^2" /> |
+| <InlineMath math="0.000000911 \text{ kg}" /> | <InlineMath math="7" /> tempat ke kanan | <InlineMath math="9.11 \times 10^{-7} \text{ kg}" /> |
+
+Jika <Highlight>titik perpuluhan bergerak ke kiri</Highlight>, indeksnya positif. Jika titik perpuluhan bergerak ke kanan, indeksnya negatif.
+
+<BlockMath math="\begin{aligned}
+7\,640\,000 &= 7.64 \times 10^6 \\
+0.000764 &= 7.64 \times 10^{-4}
+\end{aligned}" />
+
+Di sini, setiap nilai diletakkan pada indeksnya <InlineMath math="n" /> secara melintang dan pada pekalinya <InlineMath math="a" /> secara menegak. Nilai dalam bentuk piawai mendarat di antara dua garis kelabu, kerana <InlineMath math="1 \le a < 10" />. Sekarang cari anak panah fuchsia: <InlineMath math="10.0\times10^{-13}" /> daripada pendaraban di hujung pelajaran ini terletak pada garis atas, di luar jalur itu, dan satu alihan titik perpuluhan membawanya masuk sebagai <InlineMath math="1.0\times10^{-12}" />.
+
+<MathVisual
+  title={<>Setiap Nilai dalam Bentuk Piawai</>}
+  description={<>Setiap titik ialah nilai yang ditulis sebagai <InlineMath math="a\times10^n" />, diletakkan pada indeks n secara melintang dan pekali a secara menegak. Garis kelabu menandakan <InlineMath math="a=1" /> dan <InlineMath math="a=10" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 9 }, y: { min: 0, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "band-1", kind: "segment", appearance: "reference", from: { x: -14, y: 1 }, to: { x: 7, y: 1 } },
+      { id: "band-10", kind: "segment", appearance: "reference", from: { x: -14, y: 10 }, to: { x: 7, y: 10 } },
+      { id: "big", kind: "point", appearance: "primary", at: { x: 6, y: 7.64 } },
+      { id: "small", kind: "point", appearance: "secondary", at: { x: -4, y: 7.64 } },
+      { id: "tiny", kind: "point", appearance: "construction", at: { x: -7, y: 9.11 } },
+      { id: "fix", kind: "segment", appearance: "answer", from: { x: -13, y: 10 }, to: { x: -12, y: 1 } },
+      { id: "fix-head", kind: "polygon", appearance: "answer", vertices: [{ x: -12, y: 1 }, { x: -12 - (0.3 * 1) / Math.hypot(1, -9) + ((0.3 / 2) * 9) / Math.hypot(1, -9), y: 1 - (0.3 * -9) / Math.hypot(1, -9) + ((0.3 / 2) * 1) / Math.hypot(1, -9) }, { x: -12 - (0.3 * 1) / Math.hypot(1, -9) - ((0.3 / 2) * 9) / Math.hypot(1, -9), y: 1 - (0.3 * -9) / Math.hypot(1, -9) - ((0.3 / 2) * 1) / Math.hypot(1, -9) }] },
+    ],
+    labels: [
+      { key: "one", objectId: "band-1", at: { x: 7, y: 1 }, placement: "right" },
+      { key: "ten", objectId: "band-10", at: { x: 7, y: 10 }, placement: "right" },
+      { key: "big", objectId: "big", at: { x: 6, y: 7.64 }, placement: "above" },
+      { key: "small", objectId: "small", at: { x: -4, y: 7.64 }, placement: "below" },
+      { key: "tiny", objectId: "tiny", at: { x: -7, y: 9.11 }, placement: "above" },
+      { key: "raw", objectId: "fix", at: { x: -13, y: 10 }, placement: "above" },
+      { key: "fixed", objectId: "fix", at: { x: -12, y: 1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    one: <InlineMath math="a=1" />,
+    ten: <InlineMath math="a=10" />,
+    big: <InlineMath math="7.64\times10^{6}" />,
+    small: <InlineMath math="7.64\times10^{-4}" />,
+    tiny: <InlineMath math="9.11\times10^{-7}" />,
+    raw: <InlineMath math="10.0\times10^{-13}" />,
+    fixed: <InlineMath math="1.0\times10^{-12}" />,
+  }}
+/>
+
+## Angka Bererti dalam Pekali
+
+Dalam bentuk piawai, baca **angka bererti daripada pekali**. Kuasa <InlineMath math="10" /> pula menentukan skala.
+
+| Bentuk piawai | Angka bererti | Sebab |
+| :------------------ | :------------------ | :----- |
+| <InlineMath math="7.64 \times 10^{-4} \text{ m}^2" /> | <InlineMath math="3" /> | Pekalinya ialah <InlineMath math="7.64" /> |
+| <InlineMath math="1.0 \times 10^{-7} \text{ m}" /> | <InlineMath math="2" /> | Sifar selepas titik perpuluhan dalam <InlineMath math="1.0" /> ditulis dengan sengaja |
+| <InlineMath math="1 \times 10^3 \text{ m}" /> | <InlineMath math="1" /> | Pekalinya hanya <InlineMath math="1" /> |
+| <InlineMath math="1.000 \times 10^3 \text{ m}" /> | <InlineMath math="4" /> | Sifar dalam <InlineMath math="1.000" /> menunjukkan kepersisan |
+
+Bentuk piawai merekodkan kepersisan yang dimaksudkan bagi sesuatu pengukuran. Nilai <InlineMath math="1000 \text{ m}" /> tidak memberitahu sama ada sifar di hujungnya bererti, manakala <InlineMath math="1.000 \times 10^3 \text{ m}" /> jelas mempunyai <InlineMath math="4" /> angka bererti.
+
+## Simpan Digit Tambahan hingga Laporan Akhir
+
+Bentuk piawai tidak sepatutnya memaksa kamu membundarkan nilai terlalu awal. Kira dan tukar unit dengan digit tambahan, kemudian **bundarkan nilai akhir yang dilaporkan sekali sahaja**.
+
+Contohnya, penutup botol yang diameternya <InlineMath math="3.12 \text{ cm}" /> mempunyai luas terkira seperti berikut apabila nilai <InlineMath math="\pi" /> daripada kalkulator dikekalkan:
+
+<BlockMath math="A=\frac{1}{4}\pi(3.12 \text{ cm})^2=7.645379881\ldots \text{ cm}^2" />
+
+Gunakan penukaran kuasa sepuluh yang tepat kepada Sistem Unit Antarabangsa (S.I.) sebelum kamu membuang digit tambahan itu.
+
+<BlockMath math="\begin{aligned}
+1 \text{ cm} &= 10^{-2} \text{ m} \\
+1 \text{ cm}^2 &= (10^{-2} \text{ m})^2 = 10^{-4} \text{ m}^2 \\
+7.645379881\ldots \text{ cm}^2 &= 7.645379881\ldots \times 10^{-4} \text{ m}^2
+\end{aligned}" />
+
+Diameter yang diukur menyokong <InlineMath math="3" /> angka bererti, jadi hasil akhir dalam S.I. ialah <InlineMath math="7.65 \times 10^{-4} \text{ m}^2" />.
+
+> Berhati-hati dengan unit yang dikuasakan. Faktor penukarannya juga perlu dikuasakan. Daripada <InlineMath math="\text{cm}" /> kepada <InlineMath math="\text{m}" />, faktornya ialah <InlineMath math="10^{-2}" />, tetapi daripada <InlineMath math="\text{cm}^2" /> kepada <InlineMath math="\text{m}^2" />, faktornya ialah <InlineMath math="10^{-4}" />.
+
+Unit yang dikuasakan turut mengenakan kuasa yang sama pada faktor penukarannya. Satu sentimeter ialah <InlineMath math="10\text{ mm}" />, jadi satu sentimeter persegi memuatkan <InlineMath math="10\times10=100" /> milimeter persegi, dan dengan cara yang sama <InlineMath math="1\text{ cm}^2=10^{-4}\text{ m}^2" />. Zum masuk dan kira satu baris.
+
+<MathVisual
+  title={<>Menukar Unit yang Dikuasakan</>}
+  description={<>Satu sentimeter persegi dibahagikan kepada milimeter persegi.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1.5, max: 11.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 10 }, { x: 0, y: 10 }] },
+      { id: "v1", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 10 } },
+      { id: "v2", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 10 } },
+      { id: "v3", kind: "segment", appearance: "reference", from: { x: 3, y: 0 }, to: { x: 3, y: 10 } },
+      { id: "v4", kind: "segment", appearance: "reference", from: { x: 4, y: 0 }, to: { x: 4, y: 10 } },
+      { id: "v5", kind: "segment", appearance: "reference", from: { x: 5, y: 0 }, to: { x: 5, y: 10 } },
+      { id: "v6", kind: "segment", appearance: "reference", from: { x: 6, y: 0 }, to: { x: 6, y: 10 } },
+      { id: "v7", kind: "segment", appearance: "reference", from: { x: 7, y: 0 }, to: { x: 7, y: 10 } },
+      { id: "v8", kind: "segment", appearance: "reference", from: { x: 8, y: 0 }, to: { x: 8, y: 10 } },
+      { id: "v9", kind: "segment", appearance: "reference", from: { x: 9, y: 0 }, to: { x: 9, y: 10 } },
+      { id: "h1", kind: "segment", appearance: "reference", from: { x: 0, y: 1 }, to: { x: 10, y: 1 } },
+      { id: "h2", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 10, y: 2 } },
+      { id: "h3", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 10, y: 3 } },
+      { id: "h4", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 10, y: 4 } },
+      { id: "h5", kind: "segment", appearance: "reference", from: { x: 0, y: 5 }, to: { x: 10, y: 5 } },
+      { id: "h6", kind: "segment", appearance: "reference", from: { x: 0, y: 6 }, to: { x: 10, y: 6 } },
+      { id: "h7", kind: "segment", appearance: "reference", from: { x: 0, y: 7 }, to: { x: 10, y: 7 } },
+      { id: "h8", kind: "segment", appearance: "reference", from: { x: 0, y: 8 }, to: { x: 10, y: 8 } },
+      { id: "h9", kind: "segment", appearance: "reference", from: { x: 0, y: 9 }, to: { x: 10, y: 9 } },
+    ],
+    labels: [
+      { key: "side", objectId: "square", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "area", objectId: "square", at: { x: 5, y: 10 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    side: <InlineMath math="1\text{ cm}=10\text{ mm}" />,
+    area: <InlineMath math="1\text{ cm}^2=(10\text{ mm})^2=100\text{ mm}^2" />,
+  }}
+/>
+
+## Pengiraan dengan Bentuk Piawai
+
+Dalam bentuk piawai, **darabkan pekali dan tambahkan indeks** bagi <InlineMath math="10" /> secara berasingan.
+
+Katakan suatu objek yang sangat kecil mempunyai panjang <InlineMath math="2.5 \times 10^{-6} \text{ m}" /> dan lebar <InlineMath math="4.0 \times 10^{-7} \text{ m}" />.
+
+<BlockMath math="\begin{aligned}
+A &= (2.5 \times 10^{-6})(4.0 \times 10^{-7}) \text{ m}^2 \\
+&= (2.5 \times 4.0) \times 10^{-6+(-7)} \text{ m}^2 \\
+&= 10.0 \times 10^{-13} \text{ m}^2 \\
+&= 1.0 \times 10^{-12} \text{ m}^2
+\end{aligned}" />
+
+Langkah terakhir melakukan dua perkara. Pekali <InlineMath math="10.0" /> tidak dalam bentuk piawai kerana nilainya tidak kurang daripada <InlineMath math="10" />, dan kedua-dua panjang yang diukur hanya membawa <InlineMath math="2" /> angka bererti. Oleh itu, kita laporkan <InlineMath math="1.0 \times 10^{-12}" />.
+
+NIST menerbitkan peraturan rasmi untuk menulis nilai dalam [SP 811 Bab 7](https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values) dan faktor penukaran unit dalam [SP 811 Lampiran B](https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors).
+
+Darabkan nombor di hadapan dan tambahkan indeksnya: <InlineMath math="2.5\times4.0=10.0" /> dan <InlineMath math="-6+(-7)=-13" />. Oleh sebab <InlineMath math="10.0" /> tidak berada antara 1 dan 10, alihkan satu kuasa sepuluh untuk mendapat <InlineMath math="1.0\times10^{-12}" />. Zum di sepanjang garis indeks.
+
+<MathVisual
+  title={<>Pendaraban dalam Bentuk Piawai</>}
+  description={<>Indeks bagi sepuluh pada garis nombor: dua faktor (oren, ungu) dan alihan ke bentuk piawai (fuchsia).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 2 }, y: { min: -1.2, max: 2.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -14, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "zero", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "first", kind: "segment", appearance: "primary", from: { x: 0, y: 0.6 }, to: { x: -6, y: 0.6 } },
+      { id: "first-head", kind: "polygon", appearance: "primary", vertices: [{ x: -6, y: 0.6 }, { x: -5.6, y: 0.8 }, { x: -5.6, y: 0.4 }] },
+      { id: "second", kind: "segment", appearance: "secondary", from: { x: -6, y: 1.2 }, to: { x: -13, y: 1.2 } },
+      { id: "second-head", kind: "polygon", appearance: "secondary", vertices: [{ x: -13, y: 1.2 }, { x: -12.6, y: 1.4 }, { x: -12.6, y: 1 }] },
+      { id: "fix", kind: "segment", appearance: "answer", from: { x: -13, y: 0 }, to: { x: -12, y: 0 } },
+      { id: "fix-head", kind: "polygon", appearance: "answer", vertices: [{ x: -12, y: 0 }, { x: -12.4, y: 0.2 }, { x: -12.4, y: -0.2 }] },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: -3, y: 0.6 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: -9.5, y: 1.2 }, placement: "above" },
+      { key: "fix", objectId: "fix", at: { x: -12.5, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="10^{-6}" />,
+    second: <InlineMath math="\cdot10^{-7}:\ -6+(-7)=-13" />,
+    fix: <InlineMath math="10.0\times10^{-13}=1.0\times10^{-12}" />,
+  }}
+/>
