@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "That parents know their own children's habits and gaps better than any trained teacher could.",
+            "That parents know their own children's habits and gaps better than any trained teacher could, however experienced that teacher might be.",
         },
         {
           correct: false,

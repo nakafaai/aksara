@@ -30,7 +30,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "By the author's reasoning, a slow-fading trail serves a colony better when its food sources stay put than when they keep moving.",
+            "A colony whose trail scent vanished too quickly might never hold a route long enough to recruit foragers to it.",
         },
       ],
     },

@@ -15,11 +15,12 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Homeschooling has stayed far more common than it was before the pandemic.",
+            "Household surveys can show how many of the families who began homeschooling in 2020 are still doing it.",
         },
         {
           column: 1,
-          label: "Many homeschooled children reach a high level of achievement.",
+          label:
+            "Many homeschooled children reach a high level of achievement.",
         },
         {
           column: 2,

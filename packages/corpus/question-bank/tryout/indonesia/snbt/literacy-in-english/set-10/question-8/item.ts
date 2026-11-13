@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Children who spend their days at home and are rarely seen at co-op classes, sports clubs or other public places.",
+            "Children who spend their days at home and are rarely seen at co-op classes, sports clubs, libraries or the other public places where children meet.",
         },
         {
           correct: false,

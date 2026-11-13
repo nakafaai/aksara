@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "By arguing that the family's success is probably down to chance and is likely to fade as the children grow older.",
+            "By arguing that the family's success is probably down to chance, and that it is likely to fade as the two children grow older and their work gets harder.",
         },
         {
           correct: true,

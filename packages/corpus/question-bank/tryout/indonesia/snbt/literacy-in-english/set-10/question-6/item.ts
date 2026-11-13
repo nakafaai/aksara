@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "It questions only how homeschooling is counted, since state rules make national figures unreliable, and leaves her claims about results alone.",
+            "It questions only how homeschooling is counted, since state rules make national figures unreliable, and it leaves all of her claims about results entirely alone.",
         },
         {
           correct: false,

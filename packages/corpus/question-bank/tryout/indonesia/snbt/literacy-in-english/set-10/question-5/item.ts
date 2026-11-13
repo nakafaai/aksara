@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "A hiker compares two trails on a map, misreads the scale, picks the longer trail, and then stays on it out of pride even after noticing the mistake.",
+            "A hiker compares two trails on a map, misreads the scale, picks the longer trail, and then stays on it out of pride even after noticing the mistake halfway along.",
         },
         {
           correct: false,
