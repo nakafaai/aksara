@@ -24,12 +24,17 @@ export const merdekaClass11MathematicsTopicNodes = [
         description: "Hubungkan sudut pusat dan keliling.",
         title: "Lingkaran",
       },
+      ms: {
+        description: "Kaitkan sudut di pusat dengan sudut di lilitan.",
+        title: "Bulatan",
+      },
     },
     order: 10,
     translations: {
       de: { routeSlug: "kreis", title: "Kreis" },
       en: { routeSlug: "circle", title: "Circles" },
       id: { routeSlug: "lingkaran", title: "Lingkaran" },
+      ms: { routeSlug: "bulatan", title: "Bulatan" },
     },
   }),
   unitNode({
@@ -55,12 +60,17 @@ export const merdekaClass11MathematicsTopicNodes = [
         description: "Jumlahkan bilangan kompleks lewat geometri.",
         title: "Bilangan Kompleks",
       },
+      ms: {
+        description: "Tambah nombor kompleks secara geometri.",
+        title: "Nombor Kompleks",
+      },
     },
     order: 20,
     translations: {
       de: { routeSlug: "komplexe-zahlen", title: "Komplexe Zahlen" },
       en: { routeSlug: "complex-number", title: "Complex Numbers" },
       id: { routeSlug: "bilangan-kompleks", title: "Bilangan Kompleks" },
+      ms: { routeSlug: "nombor-kompleks", title: "Nombor Kompleks" },
     },
   }),
   unitNode({
@@ -88,6 +98,10 @@ export const merdekaClass11MathematicsTopicNodes = [
         description: "Operasikan fungsi dan domainnya.",
         title: "Komposisi dan Invers Fungsi",
       },
+      ms: {
+        description: "Lakukan operasi pada fungsi dan domainnya.",
+        title: "Fungsi Gubahan dan Fungsi Songsang",
+      },
     },
     order: 30,
     translations: {
@@ -102,6 +116,10 @@ export const merdekaClass11MathematicsTopicNodes = [
       id: {
         routeSlug: "fungsi-komposisi-dan-fungsi-invers",
         title: "Komposisi dan Invers Fungsi",
+      },
+      ms: {
+        routeSlug: "fungsi-gubahan-dan-fungsi-songsang",
+        title: "Fungsi Gubahan dan Fungsi Songsang",
       },
     },
   }),
@@ -128,6 +146,10 @@ export const merdekaClass11MathematicsTopicNodes = [
         description: "Modelkan perilaku nilai mutlak.",
         title: "Pemodelan Fungsi",
       },
+      ms: {
+        description: "Modelkan kelakuan nilai mutlak.",
+        title: "Pemodelan Fungsi",
+      },
     },
     order: 40,
     translations: {
@@ -137,6 +159,7 @@ export const merdekaClass11MathematicsTopicNodes = [
       },
       en: { routeSlug: "function-modeling", title: "Function Modeling" },
       id: { routeSlug: "fungsi-dan-pemodelannya", title: "Pemodelan Fungsi" },
+      ms: { routeSlug: "pemodelan-fungsi", title: "Pemodelan Fungsi" },
     },
   }),
   unitNode({
@@ -162,6 +185,10 @@ export const merdekaClass11MathematicsTopicNodes = [
         description: "Gabungkan transformasi dengan matriks.",
         title: "Transformasi Geometri",
       },
+      ms: {
+        description: "Gabungkan transformasi dengan matriks.",
+        title: "Transformasi Geometri",
+      },
     },
     order: 50,
     translations: {
@@ -174,6 +201,10 @@ export const merdekaClass11MathematicsTopicNodes = [
         title: "Geometric Transformations",
       },
       id: {
+        routeSlug: "transformasi-geometri",
+        title: "Transformasi Geometri",
+      },
+      ms: {
         routeSlug: "transformasi-geometri",
         title: "Transformasi Geometri",
       },
@@ -202,12 +233,17 @@ export const merdekaClass11MathematicsTopicNodes = [
         description: "Hitung determinan dari minor.",
         title: "Matriks",
       },
+      ms: {
+        description: "Kira penentu daripada minor.",
+        title: "Matriks",
+      },
     },
     order: 60,
     translations: {
       de: { routeSlug: "matrizen", title: "Matrizen" },
       en: { routeSlug: "matrix", title: "Matrices" },
       id: { routeSlug: "matriks", title: "Matriks" },
+      ms: { routeSlug: "matriks", title: "Matriks" },
     },
   }),
   unitNode({
@@ -233,12 +269,17 @@ export const merdekaClass11MathematicsTopicNodes = [
         description: "Gabungkan suku sejenis polinomial.",
         title: "Polinomial",
       },
+      ms: {
+        description: "Gabungkan sebutan serupa dalam polinomial.",
+        title: "Polinomial",
+      },
     },
     order: 70,
     translations: {
       de: { routeSlug: "polynome", title: "Polynome" },
       en: { routeSlug: "polynomial", title: "Polynomials" },
       id: { routeSlug: "polinomial", title: "Polinomial" },
+      ms: { routeSlug: "polinomial", title: "Polinomial" },
     },
   }),
   unitNode({
@@ -264,6 +305,10 @@ export const merdekaClass11MathematicsTopicNodes = [
         description: "Baca cara model menjelaskan variasi.",
         title: "Statistika Regresi",
       },
+      ms: {
+        description: "Baca cara model menerangkan variasi.",
+        title: "Statistik Regresi",
+      },
     },
     order: 80,
     translations: {
@@ -273,6 +318,7 @@ export const merdekaClass11MathematicsTopicNodes = [
         title: "Regression Statistics",
       },
       id: { routeSlug: "regresi-statistik", title: "Statistika Regresi" },
+      ms: { routeSlug: "statistik-regresi", title: "Statistik Regresi" },
     },
   }),
 ];

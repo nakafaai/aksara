@@ -37,6 +37,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           description: "Gunakan bilangan kompleks, vektor, dan matriks.",
           title: "Bilangan dan Kuantitas",
         },
+        ms: {
+          description: "Guna nombor kompleks, vektor dan matriks.",
+          title: "Nombor dan Kuantiti",
+        },
       },
       order: 10,
       translations: {
@@ -48,6 +52,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
         id: {
           routeSlug: "bilangan-dan-kuantitas",
           title: "Bilangan dan Kuantitas",
+        },
+        ms: {
+          routeSlug: "nombor-dan-kuantiti",
+          title: "Nombor dan Kuantiti",
         },
       },
     }),
@@ -92,6 +100,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           description: "Selesaikan persamaan, polinom, dan eksponen.",
           title: "Aljabar",
         },
+        ms: {
+          description: "Selesaikan persamaan, polinomial dan eksponen.",
+          title: "Algebra",
+        },
       },
       order: 20,
       translations: {
@@ -103,6 +115,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
         id: {
           routeSlug: "aljabar",
           title: "Aljabar",
+        },
+        ms: {
+          routeSlug: "algebra",
+          title: "Algebra",
         },
       },
     }),
@@ -143,6 +159,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           description: "Modelkan, susun, dan ubah fungsi.",
           title: "Fungsi",
         },
+        ms: {
+          description: "Modelkan, gubah dan transformasikan fungsi.",
+          title: "Fungsi",
+        },
       },
       order: 30,
       translations: {
@@ -152,6 +172,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           title: "Functions",
         },
         id: {
+          routeSlug: "fungsi",
+          title: "Fungsi",
+        },
+        ms: {
           routeSlug: "fungsi",
           title: "Fungsi",
         },
@@ -192,6 +216,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           description: "Gunakan lingkaran, koordinat, dan trigonometri.",
           title: "Geometri",
         },
+        ms: {
+          description: "Guna bulatan, koordinat dan trigonometri.",
+          title: "Geometri",
+        },
       },
       order: 40,
       translations: {
@@ -201,6 +229,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           title: "Geometry",
         },
         id: {
+          routeSlug: "geometri",
+          title: "Geometri",
+        },
+        ms: {
           routeSlug: "geometri",
           title: "Geometri",
         },
@@ -241,6 +273,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           description: "Baca data, peluang, dan model regresi.",
           title: "Statistika dan Peluang",
         },
+        ms: {
+          description: "Baca data, kebarangkalian dan model regresi.",
+          title: "Statistik dan Kebarangkalian",
+        },
       },
       order: 50,
       translations: {
@@ -255,6 +291,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
         id: {
           routeSlug: "statistika-dan-peluang",
           title: "Statistika dan Peluang",
+        },
+        ms: {
+          routeSlug: "statistik-dan-kebarangkalian",
+          title: "Statistik dan Kebarangkalian",
         },
       },
     }),
@@ -272,6 +312,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
     id: {
       routeSlug: "matematika",
       title: "Matematika",
+    },
+    ms: {
+      routeSlug: "matematik",
+      title: "Matematik",
     },
   },
 });

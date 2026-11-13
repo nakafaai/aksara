@@ -24,6 +24,10 @@ export const merdekaClass10MathematicsTopicNodes = [
         description: "Hubungkan perkalian berulang dan eksponen.",
         title: "Eksponen dan Logaritma",
       },
+      ms: {
+        description: "Kaitkan pendaraban berulang dengan indeks.",
+        title: "Indeks dan Logaritma",
+      },
     },
     order: 10,
     translations: {
@@ -38,6 +42,10 @@ export const merdekaClass10MathematicsTopicNodes = [
       id: {
         routeSlug: "eksponen-dan-logaritma",
         title: "Eksponen dan Logaritma",
+      },
+      ms: {
+        routeSlug: "indeks-dan-logaritma",
+        title: "Indeks dan Logaritma",
       },
     },
   }),
@@ -64,6 +72,10 @@ export const merdekaClass10MathematicsTopicNodes = [
         description: "Selesaikan relasi linear dengan aljabar.",
         title: "Persamaan dan Pertidaksamaan Linear",
       },
+      ms: {
+        description: "Selesaikan hubungan linear dengan algebra.",
+        title: "Persamaan dan Ketaksamaan Linear",
+      },
     },
     order: 20,
     translations: {
@@ -78,6 +90,10 @@ export const merdekaClass10MathematicsTopicNodes = [
       id: {
         routeSlug: "sistem-persamaan-dan-pertidaksamaan-linear",
         title: "Persamaan dan Pertidaksamaan Linear",
+      },
+      ms: {
+        routeSlug: "persamaan-dan-ketaksamaan-linear",
+        title: "Persamaan dan Ketaksamaan Linear",
       },
     },
   }),
@@ -104,12 +120,17 @@ export const merdekaClass10MathematicsTopicNodes = [
         description: "Gunakan aturan penjumlahan peluang.",
         title: "Peluang",
       },
+      ms: {
+        description: "Guna hukum penambahan untuk kebarangkalian.",
+        title: "Kebarangkalian",
+      },
     },
     order: 30,
     translations: {
       de: { routeSlug: "wahrscheinlichkeit", title: "Wahrscheinlichkeit" },
       en: { routeSlug: "probability", title: "Probability" },
       id: { routeSlug: "peluang", title: "Peluang" },
+      ms: { routeSlug: "kebarangkalian", title: "Kebarangkalian" },
     },
   }),
   unitNode({
@@ -135,6 +156,10 @@ export const merdekaClass10MathematicsTopicNodes = [
         description: "Baca grafik, akar, dan perubahan kuadrat.",
         title: "Fungsi Kuadrat",
       },
+      ms: {
+        description: "Baca graf, punca dan perubahan kuadratik.",
+        title: "Fungsi Kuadratik",
+      },
     },
     order: 40,
     translations: {
@@ -146,6 +171,10 @@ export const merdekaClass10MathematicsTopicNodes = [
       id: {
         routeSlug: "persamaan-dan-fungsi-kuadrat",
         title: "Fungsi Kuadrat",
+      },
+      ms: {
+        routeSlug: "fungsi-kuadratik",
+        title: "Fungsi Kuadratik",
       },
     },
   }),
@@ -172,12 +201,17 @@ export const merdekaClass10MathematicsTopicNodes = [
         description: "Temukan pola, suku, dan jumlah.",
         title: "Barisan dan Deret",
       },
+      ms: {
+        description: "Cari pola, sebutan dan hasil tambah.",
+        title: "Jujukan dan Siri",
+      },
     },
     order: 50,
     translations: {
       de: { routeSlug: "folgen-und-reihen", title: "Folgen und Reihen" },
       en: { routeSlug: "sequence-series", title: "Sequences and Series" },
       id: { routeSlug: "barisan-dan-deret", title: "Barisan dan Deret" },
+      ms: { routeSlug: "jujukan-dan-siri", title: "Jujukan dan Siri" },
     },
   }),
   unitNode({
@@ -203,12 +237,17 @@ export const merdekaClass10MathematicsTopicNodes = [
         description: "Pilih ukuran pusat data yang tepat.",
         title: "Statistika",
       },
+      ms: {
+        description: "Pilih sukatan kecenderungan memusat yang sesuai.",
+        title: "Statistik",
+      },
     },
     order: 60,
     translations: {
       de: { routeSlug: "grundlagen-der-statistik", title: "Statistik" },
       en: { routeSlug: "statistics-foundations", title: "Statistics" },
       id: { routeSlug: "statistika-dasar", title: "Statistika" },
+      ms: { routeSlug: "statistik", title: "Statistik" },
     },
   }),
   unitNode({
@@ -234,12 +273,17 @@ export const merdekaClass10MathematicsTopicNodes = [
         description: "Cocokkan sisi segitiga dengan rasio.",
         title: "Trigonometri",
       },
+      ms: {
+        description: "Padankan sisi segi tiga dengan nisbahnya.",
+        title: "Trigonometri",
+      },
     },
     order: 70,
     translations: {
       de: { routeSlug: "trigonometrie", title: "Trigonometrie" },
       en: { routeSlug: "trigonometry", title: "Trigonometry" },
       id: { routeSlug: "trigonometri", title: "Trigonometri" },
+      ms: { routeSlug: "trigonometri", title: "Trigonometri" },
     },
   }),
   unitNode({
@@ -265,12 +309,17 @@ export const merdekaClass10MathematicsTopicNodes = [
         description: "Olah notasi dan arah vektor.",
         title: "Operasi Vektor",
       },
+      ms: {
+        description: "Guna tatatanda dan arah vektor.",
+        title: "Operasi Vektor",
+      },
     },
     order: 80,
     translations: {
       de: { routeSlug: "vektorrechnung", title: "Vektorrechnung" },
       en: { routeSlug: "vector-operations", title: "Vector Operations" },
       id: { routeSlug: "vektor-dan-operasinya", title: "Operasi Vektor" },
+      ms: { routeSlug: "operasi-vektor", title: "Operasi Vektor" },
     },
   }),
 ];

@@ -11,6 +11,7 @@ export const merdekaClassNodes = [
       de: { title: "Grundschule (SD)" },
       en: { title: "Primary School" },
       id: { title: "SD" },
+      ms: { title: "Sekolah Rendah (SD)" },
     },
     displayGroupIconKey: "primary-school",
     iconKey: "grade-1",
@@ -26,6 +27,10 @@ export const merdekaClassNodes = [
         routeSlug: "kelas-1",
         title: "Kelas 1",
       },
+      ms: {
+        routeSlug: "kelas-1",
+        title: "Kelas 1",
+      },
     },
   }),
   classNode({
@@ -33,6 +38,7 @@ export const merdekaClassNodes = [
       de: { title: "Grundschule (SD)" },
       en: { title: "Primary School" },
       id: { title: "SD" },
+      ms: { title: "Sekolah Rendah (SD)" },
     },
     displayGroupIconKey: "primary-school",
     iconKey: "grade-2",
@@ -48,6 +54,10 @@ export const merdekaClassNodes = [
         routeSlug: "kelas-2",
         title: "Kelas 2",
       },
+      ms: {
+        routeSlug: "kelas-2",
+        title: "Kelas 2",
+      },
     },
   }),
   classNode({
@@ -55,6 +65,7 @@ export const merdekaClassNodes = [
       de: { title: "Grundschule (SD)" },
       en: { title: "Primary School" },
       id: { title: "SD" },
+      ms: { title: "Sekolah Rendah (SD)" },
     },
     displayGroupIconKey: "primary-school",
     iconKey: "grade-3",
@@ -70,6 +81,10 @@ export const merdekaClassNodes = [
         routeSlug: "kelas-3",
         title: "Kelas 3",
       },
+      ms: {
+        routeSlug: "kelas-3",
+        title: "Kelas 3",
+      },
     },
   }),
   classNode({
@@ -77,6 +92,7 @@ export const merdekaClassNodes = [
       de: { title: "Grundschule (SD)" },
       en: { title: "Primary School" },
       id: { title: "SD" },
+      ms: { title: "Sekolah Rendah (SD)" },
     },
     displayGroupIconKey: "primary-school",
     iconKey: "grade-4",
@@ -92,6 +108,10 @@ export const merdekaClassNodes = [
         routeSlug: "kelas-4",
         title: "Kelas 4",
       },
+      ms: {
+        routeSlug: "kelas-4",
+        title: "Kelas 4",
+      },
     },
   }),
   classNode({
@@ -99,6 +119,7 @@ export const merdekaClassNodes = [
       de: { title: "Grundschule (SD)" },
       en: { title: "Primary School" },
       id: { title: "SD" },
+      ms: { title: "Sekolah Rendah (SD)" },
     },
     displayGroupIconKey: "primary-school",
     iconKey: "grade-5",
@@ -114,6 +135,10 @@ export const merdekaClassNodes = [
         routeSlug: "kelas-5",
         title: "Kelas 5",
       },
+      ms: {
+        routeSlug: "kelas-5",
+        title: "Kelas 5",
+      },
     },
   }),
   classNode({
@@ -121,6 +146,7 @@ export const merdekaClassNodes = [
       de: { title: "Grundschule (SD)" },
       en: { title: "Primary School" },
       id: { title: "SD" },
+      ms: { title: "Sekolah Rendah (SD)" },
     },
     displayGroupIconKey: "primary-school",
     iconKey: "grade-6",
@@ -136,6 +162,10 @@ export const merdekaClassNodes = [
         routeSlug: "kelas-6",
         title: "Kelas 6",
       },
+      ms: {
+        routeSlug: "kelas-6",
+        title: "Kelas 6",
+      },
     },
   }),
   classNode({
@@ -143,6 +173,7 @@ export const merdekaClassNodes = [
       de: { title: "Sekundarstufe I (SMP)" },
       en: { title: "Lower Secondary" },
       id: { title: "SMP" },
+      ms: { title: "Menengah Rendah (SMP)" },
     },
     displayGroupIconKey: "middle-school",
     iconKey: "grade-7",
@@ -158,6 +189,10 @@ export const merdekaClassNodes = [
         routeSlug: "kelas-7",
         title: "Kelas 7",
       },
+      ms: {
+        routeSlug: "kelas-7",
+        title: "Kelas 7",
+      },
     },
   }),
   classNode({
@@ -165,6 +200,7 @@ export const merdekaClassNodes = [
       de: { title: "Sekundarstufe I (SMP)" },
       en: { title: "Lower Secondary" },
       id: { title: "SMP" },
+      ms: { title: "Menengah Rendah (SMP)" },
     },
     displayGroupIconKey: "middle-school",
     iconKey: "grade-8",
@@ -180,6 +216,10 @@ export const merdekaClassNodes = [
         routeSlug: "kelas-8",
         title: "Kelas 8",
       },
+      ms: {
+        routeSlug: "kelas-8",
+        title: "Kelas 8",
+      },
     },
   }),
   classNode({
@@ -187,6 +227,7 @@ export const merdekaClassNodes = [
       de: { title: "Sekundarstufe I (SMP)" },
       en: { title: "Lower Secondary" },
       id: { title: "SMP" },
+      ms: { title: "Menengah Rendah (SMP)" },
     },
     displayGroupIconKey: "middle-school",
     iconKey: "grade-9",
@@ -202,6 +243,10 @@ export const merdekaClassNodes = [
         routeSlug: "kelas-9",
         title: "Kelas 9",
       },
+      ms: {
+        routeSlug: "kelas-9",
+        title: "Kelas 9",
+      },
     },
   }),
   classNode({
@@ -210,6 +255,7 @@ export const merdekaClassNodes = [
       de: { title: "Sekundarstufe II (SMA)" },
       en: { title: "Upper Secondary" },
       id: { title: "SMA" },
+      ms: { title: "Menengah Atas (SMA)" },
     },
     displayGroupIconKey: "high-school",
     iconKey: "grade-10",
@@ -225,6 +271,10 @@ export const merdekaClassNodes = [
         routeSlug: "kelas-10",
         title: "Kelas 10",
       },
+      ms: {
+        routeSlug: "kelas-10",
+        title: "Kelas 10",
+      },
     },
   }),
   classNode({
@@ -233,6 +283,7 @@ export const merdekaClassNodes = [
       de: { title: "Sekundarstufe II (SMA)" },
       en: { title: "Upper Secondary" },
       id: { title: "SMA" },
+      ms: { title: "Menengah Atas (SMA)" },
     },
     displayGroupIconKey: "high-school",
     iconKey: "grade-11",
@@ -248,6 +299,10 @@ export const merdekaClassNodes = [
         routeSlug: "kelas-11",
         title: "Kelas 11",
       },
+      ms: {
+        routeSlug: "kelas-11",
+        title: "Kelas 11",
+      },
     },
   }),
   classNode({
@@ -256,6 +311,7 @@ export const merdekaClassNodes = [
       de: { title: "Sekundarstufe II (SMA)" },
       en: { title: "Upper Secondary" },
       id: { title: "SMA" },
+      ms: { title: "Menengah Atas (SMA)" },
     },
     displayGroupIconKey: "high-school",
     iconKey: "grade-12",
@@ -268,6 +324,10 @@ export const merdekaClassNodes = [
         title: "Class 12",
       },
       id: {
+        routeSlug: "kelas-12",
+        title: "Kelas 12",
+      },
+      ms: {
         routeSlug: "kelas-12",
         title: "Kelas 12",
       },

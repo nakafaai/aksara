@@ -24,6 +24,10 @@ export const igcseBiologyUnitNodes = [
         description: "Klasifikasi makhluk hidup dan sistemnya.",
         title: "Makhluk hidup",
       },
+      ms: {
+        description: "Kelaskan organisma dan bandingkan sistem hidupan.",
+        title: "Organisma hidup",
+      },
     },
     order: 10,
     translations: {
@@ -35,6 +39,10 @@ export const igcseBiologyUnitNodes = [
       id: {
         routeSlug: "makhluk-hidup",
         title: "Makhluk hidup",
+      },
+      ms: {
+        routeSlug: "organisma-hidup",
+        title: "Organisma hidup",
       },
     },
   }),
@@ -67,6 +75,10 @@ export const igcseBiologyUnitNodes = [
         description: "Hubungkan virus, ekosistem, dan iklim.",
         title: "Penyakit dan ekosistem",
       },
+      ms: {
+        description: "Kaitkan virus, ekosistem dan kesan iklim.",
+        title: "Penyakit dan ekosistem",
+      },
     },
     order: 20,
     translations: {
@@ -79,6 +91,10 @@ export const igcseBiologyUnitNodes = [
         title: "Disease and ecosystems",
       },
       id: {
+        routeSlug: "penyakit-dan-ekosistem",
+        title: "Penyakit dan ekosistem",
+      },
+      ms: {
         routeSlug: "penyakit-dan-ekosistem",
         title: "Penyakit dan ekosistem",
       },
@@ -116,6 +132,10 @@ export const igcseChemistryUnitNodes = [
         description: "Modelkan atom, reaksi, dan hukum kimia.",
         title: "Materi dan reaksi",
       },
+      ms: {
+        description: "Bina model atom, tindak balas dan hukum kimia.",
+        title: "Jirim dan tindak balas",
+      },
     },
     order: 10,
     translations: {
@@ -130,6 +150,10 @@ export const igcseChemistryUnitNodes = [
       id: {
         routeSlug: "materi-dan-reaksi",
         title: "Materi dan reaksi",
+      },
+      ms: {
+        routeSlug: "jirim-dan-tindak-balas",
+        title: "Jirim dan tindak balas",
       },
     },
   }),
@@ -156,6 +180,10 @@ export const igcseChemistryUnitNodes = [
         description: "Nilai reaksi dengan pilihan kimia hijau.",
         title: "Kimia lingkungan",
       },
+      ms: {
+        description: "Nilai tindak balas dengan pilihan kimia lebih hijau.",
+        title: "Kimia alam sekitar",
+      },
     },
     order: 20,
     translations: {
@@ -167,6 +195,10 @@ export const igcseChemistryUnitNodes = [
       id: {
         routeSlug: "kimia-lingkungan",
         title: "Kimia lingkungan",
+      },
+      ms: {
+        routeSlug: "kimia-alam-sekitar",
+        title: "Kimia alam sekitar",
       },
     },
   }),
@@ -208,6 +240,10 @@ export const igcsePhysicsUnitNodes = [
         description: "Ukur gerak, vektor, dan gaya dengan jelas.",
         title: "Pengukuran, gerak, dan gaya",
       },
+      ms: {
+        description: "Ukur gerakan, vektor dan daya dengan jelas.",
+        title: "Pengukuran, gerakan dan daya",
+      },
     },
     order: 10,
     translations: {
@@ -222,6 +258,10 @@ export const igcsePhysicsUnitNodes = [
       id: {
         routeSlug: "pengukuran-gerak-dan-gaya",
         title: "Pengukuran, gerak, dan gaya",
+      },
+      ms: {
+        routeSlug: "pengukuran-gerakan-dan-daya",
+        title: "Pengukuran, gerakan dan daya",
       },
     },
   }),
@@ -248,6 +288,10 @@ export const igcsePhysicsUnitNodes = [
         description: "Bandingkan sumber energi dan dampaknya.",
         title: "Energi",
       },
+      ms: {
+        description: "Timbang kelebihan dan kekurangan setiap sumber tenaga.",
+        title: "Tenaga",
+      },
     },
     order: 20,
     translations: {
@@ -259,6 +303,10 @@ export const igcsePhysicsUnitNodes = [
       id: {
         routeSlug: "energi",
         title: "Energi",
+      },
+      ms: {
+        routeSlug: "tenaga",
+        title: "Tenaga",
       },
     },
   }),
