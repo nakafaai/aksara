@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, FileSystem } from "effect";
+import { Array as Arr, Effect, FileSystem, Schema } from "effect";
 import {
   corpusSources,
   VisualPolicyError,
@@ -110,8 +110,10 @@ describe("visualReport", () => {
         ])
       );
 
-      expect(failure).toBeInstanceOf(VisualPolicyError);
-      expect(failure.findings.map(({ file }) => file)).toContain(
+      if (!Schema.is(VisualPolicyError)(failure)) {
+        return yield* Effect.die(failure);
+      }
+      expect(Arr.map(failure.findings, (finding) => finding.file)).toContain(
         "packages/corpus/material/lesson/b/en.mdx"
       );
     }).pipe(

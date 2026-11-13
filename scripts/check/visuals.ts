@@ -50,7 +50,7 @@ export const visualFindings = Effect.fn("AksaraPolicy.visualFindings")(
       file,
       finding:
         "path" in violation
-          ? `${violation.line}:${violation.column} ${Arr.join(violation.path, ".")} ${violation.message}`
+          ? `${violation.line}:${violation.column} ${Arr.join(Arr.map(violation.path, String), ".")} ${violation.message}`
           : `${violation.line}:${violation.column} ${violation.reason}`,
     }));
   }
