@@ -98,12 +98,8 @@ function alignedBlocks(value: string): AlignedBlock[] {
   for (const name of ALIGNED_ENVIRONMENT_NAMES) {
     const open = `\\begin{${name}}`;
     const close = `\\end{${name}}`;
-    let from = 0;
-    for (;;) {
-      const start = value.indexOf(open, from);
-      if (start === -1) {
-        break;
-      }
+    let start = value.indexOf(open);
+    while (start !== -1) {
       const end = value.indexOf(close, start);
       if (end === -1) {
         break;
@@ -113,7 +109,7 @@ function alignedBlocks(value: string): AlignedBlock[] {
         rows: alignedRows(body),
         start,
       });
-      from = end + close.length;
+      start = value.indexOf(open, end + close.length);
     }
   }
   return blocks;
