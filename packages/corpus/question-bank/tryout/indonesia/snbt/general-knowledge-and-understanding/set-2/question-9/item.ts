@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Sekolah itu menerapkan aturan seragam yang *ketat*, tanpa pengecualian bagi siapa pun.",
+            "Persaingan memperebutkan gelar juara musim ini sangat *ketat* hingga laga terakhir.",
         },
         {
           correct: true,
