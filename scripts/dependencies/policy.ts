@@ -29,7 +29,7 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     cohort: "Effect",
     dependency: "effect",
     reason:
-      "The contracts and both consumers share one exact Effect v4 peer cohort, and the contracts lead it (docs/adr/compiler.md): a contracts release peers one exact Effect version, and nakafa.com moves to it when it adopts that release. Effect 4.1.0 replaced effect/Crypto with the effect/crypto services. 4.1.3 and 4.1.4 are patch releases: Rational, CLI completion and validation fixes, cluster workflow retries, and a TestClock finalizer fix; Alchemy 2.0.0-beta.87 peers effect ^4.1.4. Contracts 6.3.1 peers 4.1.4.",
+      "The contracts and both consumers share one exact Effect v4 peer cohort, and the contracts lead it (docs/adr/compiler.md): a contracts release peers one exact Effect version, and nakafa.com moves to it when it adopts that release. Effect 4.1.0 replaced effect/Crypto with the effect/crypto services. 4.1.3 and 4.1.4 are patch releases: Rational, CLI completion and validation fixes, cluster workflow retries, and a TestClock finalizer fix; Alchemy 2.0.0-beta.87 peers effect ^4.1.4. Contracts 6.4.0 peers 4.1.4.",
     registry: "effect@latest",
     reviewedLatest: "4.1.4",
     source: "catalog",
