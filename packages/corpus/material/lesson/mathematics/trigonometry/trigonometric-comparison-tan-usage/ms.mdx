@@ -1,0 +1,201 @@
+
+export const metadata = {
+  title: "Aplikasi Nisbah Tangen",
+  description: "Gunakan tangen untuk mengukur tinggi bangunan dengan bayang. Pelajari segi tiga serupa dan sudut dongak untuk pengiraan jarak dan tinggi dalam dunia sebenar.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-14",
+  dateModified: "2026-09-12",
+  subject: "Trigonometri",
+};
+
+## Tangen
+
+Dalam segi tiga bersudut tegak, tangen bagi sudut <InlineMath math="\theta" /> ialah <Highlight>nisbah antara panjang sisi bertentangan</Highlight> dengan sisi bersebelahan. Ini sangat berbeza daripada sinus, yang membandingkan sisi bertentangan dengan hipotenus, atau kosinus, yang membandingkan sisi bersebelahan dengan hipotenus.
+
+<MathVisual
+  title={
+    <>
+      Visualisasi Tangen (<InlineMath math="\tan \theta" />)
+    </>
+  }
+  description={<>Ubah sudut dalam input di bawah untuk melihat bagaimana <InlineMath math="\tan" /> berubah apabila sudut berubah.</>}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    opposite: <>Sisi Bertentangan</>,
+    adjacent: <>Sisi Bersebelahan</>,
+    hypotenuse: <>Hipotenus</>,
+    sine: <InlineMath math="\sin\theta" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 30, label: "sudut" }],
+    objects: [
+      { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+      { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+      { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [
+      { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+      { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+      { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
+/>
+
+Contohnya, kalau kita ada segi tiga bersudut tegak dengan sudut <InlineMath math="\theta" />, maka:
+
+<BlockMath math="\tan \theta = \frac{\text{sisi bertentangan}}{\text{sisi bersebelahan}}" />
+
+Nilai tangen berubah mengikut sudut. Contohnya, <InlineMath math="\tan 30^\circ = \frac{1}{\sqrt{3}} \approx 0.577" />.
+
+## Tinggi Jarak Bayang dan Kecerunan
+
+Gunakan nisbah tangen apabila satu segi tiga bersudut tegak mengaitkan satu sudut dengan **sisi bertentangan dan sisi bersebelahannya**. Kuantiti yang biasa termasuk:
+
+1. Tinggi objek yang susah diukur secara terus
+2. Jarak antara dua titik yang tidak boleh dicapai
+3. Panjang bayang sesuatu objek
+4. Kecerunan sesuatu permukaan
+
+### Mengukur Tinggi melalui Bayang
+
+Katakan kita mahu mengukur tinggi sebatang pokok atau bangunan yang tegak di atas tanah rata. Apabila **cahaya matahari dianggap selari**, objek itu, bayangnya, dan satu sinar matahari membentuk segi tiga bersudut tegak. Kita kemudian boleh:
+
+1. Mengukur panjang bayang mengufuk, iaitu sisi bersebelahan.
+2. Mengukur atau mendapatkan sudut dongak matahari <InlineMath math="\theta" />.
+3. Menggunakan <InlineMath math="\tan \theta" /> untuk mengira tinggi mencancang, iaitu sisi bertentangan.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;\text{tinggi objek} \\ &amp;= \text{panjang bayang} \times \tan \theta \end{aligned}" />
+</MathContainer>
+
+<ContentBlock>
+  <MathVisual
+    title={<>Aplikasi Tangen dalam Pengukuran</>}
+    description={<>Contoh segi tiga yang terbentuk apabila mengukur tinggi dengan bayang.</>}
+    labels={{
+      angle: <InlineMath math="\theta" />,
+      opposite: <>Tinggi Objek</>,
+      adjacent: <>Panjang Bayang</>,
+      hypotenuse: <>Hipotenus</>,
+      sine: <InlineMath math="\sin\theta" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 30, label: "sudut" }],
+      objects: [
+        { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+        { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+        { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [
+        { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+        { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+        { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+      ],
+      readouts: [
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+## Kaedah Mengira dengan Tangen
+
+Ada dua cara menggunakan tangen untuk menyelesaikan masalah. Cara pertama bermula daripada **satu sisi dan satu sudut yang diketahui** dan mencari sisi yang satu lagi, manakala cara kedua bermula daripada dua sisi yang diketahui dan mencari sudutnya.
+
+### Perbandingan Segi Tiga Serupa
+
+Kita boleh gunakan prinsip segi tiga serupa untuk menyelesaikan masalah. Kalau kita ada dua segi tiga yang sama bentuk (serupa), maka nisbah sisinya juga sama.
+
+Contohnya, kalau kita ada bayang daripada tiga orang yang berlainan tinggi (kanak-kanak, remaja, dan orang dewasa), kita boleh bina persamaan:
+
+Biar <InlineMath math="h_1" />, <InlineMath math="h_2" />, dan <InlineMath math="h_3" /> masing-masing ialah tinggi kanak-kanak, remaja, dan orang dewasa itu. Tulis <InlineMath math="s_1" />, <InlineMath math="s_2" />, dan <InlineMath math="s_3" /> untuk panjang bayang mereka yang sepadan.
+
+<BlockMath math="\frac{h_1}{s_1}=\frac{h_2}{s_2}=\frac{h_3}{s_3}" />
+
+Kalau seorang kanak-kanak dan seorang remaja berdiri di atas **tanah rata yang sama pada masa yang sama**, cahaya matahari memberikan segi tiga tinggi dan bayang mereka sudut tirus yang sama. Katakan tinggi kanak-kanak itu <InlineMath math="114 \text{ cm}" />, bayangnya <InlineMath math="200 \text{ cm}" />, dan tinggi remaja itu <InlineMath math="148 \text{ cm}" />. Maka:
+
+<MathContainer>
+  <BlockMath math="\frac{114 \text{ cm}}{200 \text{ cm}} = \frac{148 \text{ cm}}{x \text{ cm}}" />
+  <BlockMath math="x = \frac{148\times200}{114}\text{ cm} \approx 259.65 \text{ cm}" />
+</MathContainer>
+
+Segi tiga rujukan yang diukur ada <InlineMath math="\tan \theta=114/200=0.57" />, jadi sudut dongak matahari yang tersirat ialah <InlineMath math="\theta=\arctan(0.57)\approx29.68^\circ" />.
+
+### Panjang Bayang daripada Nisbah Tangen
+
+Nisbah tangen mengaitkan tinggi dengan panjang bayang:
+
+<BlockMath math="\tan \theta = \frac{\text{sisi bertentangan}}{\text{sisi bersebelahan}}" />
+
+Apabila sudut dongak matahari <InlineMath math="30^\circ" /> dan tinggi remaja itu <InlineMath math="148 \text{ cm}" />, nisbah tangen memberikan panjang bayangnya:
+
+<MathContainer>
+  <BlockMath math="\tan\theta=\frac{h_2}{s_2}" />
+  <BlockMath math="\tan 30^\circ = \frac{148 \text{ cm}}{x \text{ cm}}" />
+  <BlockMath math="\frac{1}{\sqrt{3}} = \frac{148}{x}" />
+  <BlockMath math="x = 148\sqrt{3}\text{ cm} \approx 256.34 \text{ cm}" />
+</MathContainer>
+
+Hasil ini sedikit lebih pendek daripada <InlineMath math="259.65 \text{ cm}" /> kerana <InlineMath math="30^\circ" /> sedikit lebih besar daripada sudut rujukan yang diukur, <InlineMath math="29.68^\circ" />. **Sudut dongak yang lebih besar** menghasilkan bayang yang lebih pendek bagi tinggi yang sama.
+
+<ContentBlock>
+  <MathVisual
+    title={<>Sudut <InlineMath math="30^\circ" /> dengan Tangen <InlineMath math="1/\sqrt{3}" /></>}
+    description={
+        <>
+          Visualisasi segi tiga dengan sudut <InlineMath math="30^\circ" /> seperti dalam
+          contoh pengiraan.
+        </>
+      }
+    labels={{
+      angle: <InlineMath math="\theta" />,
+      opposite: <>Tinggi</>,
+      adjacent: <>Panjang bayang</>,
+      hypotenuse: <>Hipotenus</>,
+      sine: <InlineMath math="\sin\theta" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 30, label: "sudut" }],
+      objects: [
+        { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+        { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+        { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [
+        { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+        { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+        { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+      ],
+      readouts: [
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
+    }}
+  />
+</ContentBlock>

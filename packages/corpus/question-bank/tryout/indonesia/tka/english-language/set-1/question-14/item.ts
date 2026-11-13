@@ -2,36 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "narrative",
-    topic: "character",
+    cognitiveLevel: "textual",
+    contentDomain: "recount",
+    topic: "outline",
   },
-  stimulus: "weather-notebook",
+  stimulus: "broadcast",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "She refuses to work with Arif again.",
+          label: "I and III only",
         },
         {
           correct: false,
-          label: "She values speed more than fairness.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "She remains confident that her first explanation was reasonable despite the later evidence.",
+          label: "III and IV only",
+        },
+        {
+          correct: false,
+          label: "II, III, and IV only",
         },
         {
           correct: true,
-          label: "She can reflect on a mistake and revise her judgment.",
-        },
-        {
-          correct: false,
-          label:
-            "She values preserving the recovered notebook more than revising her first judgment.",
+          label: "I, III, and IV only",
         },
       ],
     },
