@@ -54,8 +54,8 @@ const TEXT_PATTERNS = [
   /(?:Number|Nummer|Nr\.)\s*\d+/gu,
   // (1), [12], and (2019) markers and citations
   /(?<![\p{L}\p{N}])\(\d{1,2}\)|\[\d{1,3}(?:[,–-]\s*\d{1,3})*\]|\(\p{L}[^()]*?,?\s*\d{4}[a-z]?\)|\(\d{4}[a-z]?\)/gu,
-  // 1.2 or 2.3.1 section numbers that open a text
-  /^\s*\d+(?:\.\d+)+(?=\s)/gu,
+  // 1.2 or 2.3.1 section numbers that open a title, not 10.00 g of zinc
+  /^\s*\d+(?:\.\d+)+(?=\s+\p{Lu})/gu,
 ];
 
 /** Returns every range of one text whose numbers stay text. */
