@@ -107,6 +107,7 @@ layer(NodeServices.layer)("material registry", (it) => {
           "faecher/mathematik/funktionskomposition-und-umkehrfunktion/funktionsbegriff",
           "subjects/mathematics/function-composition-inverse-function/function-concept",
           "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
+          "subjek/matematik/fungsi-gubahan-dan-fungsi-songsang/konsep-fungsi",
           "faecher/physik/kinematik/beschleunigung",
           "subjects/physics/kinematics/acceleration",
           "materi/fisika/kinematika/percepatan",
