@@ -11,6 +11,7 @@ export const tkaEnglishTrack = {
       de: { title: "TKA Englisch" },
       en: { title: "TKA English" },
       id: { title: "TKA Bahasa Inggris" },
+      ms: { title: "TKA Bahasa Inggeris" },
     },
     report: { sections: false, standardError: false, total: true },
     scoring: { kind: "raw" },
@@ -25,6 +26,7 @@ export const tkaEnglishTrack = {
           de: { title: "Englisch" },
           en: { title: "English" },
           id: { title: "Bahasa Inggris" },
+          ms: { title: "Bahasa Inggeris" },
         },
         visibility: "internal-entry",
       },
@@ -34,6 +36,7 @@ export const tkaEnglishTrack = {
     de: "englisch",
     en: "english",
     id: "bahasa-inggris",
+    ms: "bahasa-inggeris",
   },
   sets: Arr.map([1, 2, 3, 4], (setNumber) => {
     const setKey = `set-${setNumber}`;
@@ -44,11 +47,13 @@ export const tkaEnglishTrack = {
         de: `aufgabensatz-${setNumber}`,
         en: setKey,
         id: setKey,
+        ms: setKey,
       },
       translations: {
         de: { title: `Aufgabensatz ${setNumber}` },
         en: { title: `Set ${setNumber}` },
         id: { title: `Set ${setNumber}` },
+        ms: { title: `Set ${setNumber}` },
       },
     };
   }),
@@ -56,5 +61,6 @@ export const tkaEnglishTrack = {
     de: { title: "Englisch" },
     en: { title: "English" },
     id: { title: "Bahasa Inggris" },
+    ms: { title: "Bahasa Inggeris" },
   },
 } satisfies TrackSourceInput;

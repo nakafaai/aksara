@@ -11,6 +11,7 @@ export const tkaIndonesianTrack = {
       de: { title: "TKA Indonesisch" },
       en: { title: "TKA Indonesian" },
       id: { title: "TKA Bahasa Indonesia" },
+      ms: { title: "TKA Bahasa Indonesia" },
     },
     report: { sections: false, standardError: false, total: true },
     scoring: { kind: "raw" },
@@ -25,6 +26,7 @@ export const tkaIndonesianTrack = {
           de: { title: "Indonesisch" },
           en: { title: "Indonesian" },
           id: { title: "Bahasa Indonesia" },
+          ms: { title: "Bahasa Indonesia" },
         },
         visibility: "internal-entry",
       },
@@ -34,6 +36,7 @@ export const tkaIndonesianTrack = {
     de: "indonesisch",
     en: "indonesian",
     id: "bahasa-indonesia",
+    ms: "bahasa-indonesia",
   },
   sets: Arr.map([1, 2, 3], (setNumber) => {
     const setKey = `set-${setNumber}`;
@@ -44,11 +47,13 @@ export const tkaIndonesianTrack = {
         de: `aufgabensatz-${setNumber}`,
         en: setKey,
         id: setKey,
+        ms: setKey,
       },
       translations: {
         de: { title: `Aufgabensatz ${setNumber}` },
         en: { title: `Set ${setNumber}` },
         id: { title: `Set ${setNumber}` },
+        ms: { title: `Set ${setNumber}` },
       },
     };
   }),
@@ -56,5 +61,6 @@ export const tkaIndonesianTrack = {
     de: { title: "Indonesisch" },
     en: { title: "Indonesian" },
     id: { title: "Bahasa Indonesia" },
+    ms: { title: "Bahasa Indonesia" },
   },
 } satisfies TrackSourceInput;

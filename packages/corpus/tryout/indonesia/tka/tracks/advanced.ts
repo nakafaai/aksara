@@ -11,6 +11,7 @@ export const tkaAdvancedMathematicsTrack = {
       de: { title: "TKA Fortgeschrittene Mathematik" },
       en: { title: "TKA Advanced Mathematics" },
       id: { title: "TKA Matematika Tingkat Lanjut" },
+      ms: { title: "TKA Matematik Lanjutan" },
     },
     report: { sections: false, standardError: false, total: true },
     scoring: { kind: "raw" },
@@ -25,6 +26,7 @@ export const tkaAdvancedMathematicsTrack = {
           de: { title: "Fortgeschrittene Mathematik" },
           en: { title: "Advanced Mathematics" },
           id: { title: "Matematika Tingkat Lanjut" },
+          ms: { title: "Matematik Lanjutan" },
         },
         visibility: "internal-entry",
       },
@@ -34,6 +36,7 @@ export const tkaAdvancedMathematicsTrack = {
     de: "fortgeschrittene-mathematik",
     en: "advanced-mathematics",
     id: "matematika-tingkat-lanjut",
+    ms: "matematik-lanjutan",
   },
   sets: Arr.map([1], (setNumber) => {
     const setKey = `set-${setNumber}`;
@@ -44,11 +47,13 @@ export const tkaAdvancedMathematicsTrack = {
         de: `aufgabensatz-${setNumber}`,
         en: setKey,
         id: setKey,
+        ms: setKey,
       },
       translations: {
         de: { title: `Aufgabensatz ${setNumber}` },
         en: { title: `Set ${setNumber}` },
         id: { title: `Set ${setNumber}` },
+        ms: { title: `Set ${setNumber}` },
       },
     };
   }),
@@ -56,5 +61,6 @@ export const tkaAdvancedMathematicsTrack = {
     de: { title: "Fortgeschrittene Mathematik" },
     en: { title: "Advanced Mathematics" },
     id: { title: "Matematika Tingkat Lanjut" },
+    ms: { title: "Matematik Lanjutan" },
   },
 } satisfies TrackSourceInput;

@@ -18,6 +18,7 @@ export const tuDarmstadtEntranceTrack = {
         title: "Mathematics test of the TU Darmstadt Aufnahmeverfahren",
       },
       id: { title: "Tes Matematika Aufnahmeverfahren TU Darmstadt" },
+      ms: { title: "Ujian Matematik Aufnahmeverfahren TU Darmstadt" },
     },
     report: { sections: false, standardError: false, total: true },
     scoring: { kind: "raw" },
@@ -32,6 +33,7 @@ export const tuDarmstadtEntranceTrack = {
           de: { title: "Mathematik" },
           en: { title: "Mathematics" },
           id: { title: "Matematika" },
+          ms: { title: "Matematik" },
         },
         visibility: "internal-entry",
       },
@@ -41,6 +43,7 @@ export const tuDarmstadtEntranceTrack = {
     de: "mathematik",
     en: "mathematics",
     id: "matematika",
+    ms: "matematik",
   },
   sets: Arr.map([1, 2, 3], (setNumber) => {
     const setKey = `set-${setNumber}`;
@@ -51,11 +54,13 @@ export const tuDarmstadtEntranceTrack = {
         de: `aufgabensatz-${setNumber}`,
         en: setKey,
         id: setKey,
+        ms: setKey,
       },
       translations: {
         de: { title: `Aufgabensatz ${setNumber}` },
         en: { title: `Set ${setNumber}` },
         id: { title: `Set ${setNumber}` },
+        ms: { title: `Set ${setNumber}` },
       },
     };
   }),
@@ -63,5 +68,6 @@ export const tuDarmstadtEntranceTrack = {
     de: { title: "Mathematik" },
     en: { title: "Mathematics" },
     id: { title: "Matematika" },
+    ms: { title: "Matematik" },
   },
 } satisfies TrackSourceInput;
