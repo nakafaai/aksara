@@ -1,0 +1,420 @@
+export const metadata = {
+  title: "Asimptot",
+  description: "Cari asimptot mencancang, mengufuk, dan serong melalui contoh berserta jalan kerja dan visualisasi interaktif. Pelajari teknik melukis graf fungsi rasional.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-09-23",
+  subject: "Fungsi dan Pemodelannya",
+};
+
+## Garis yang Dihampiri oleh Graf
+
+Asimptot ialah <Highlight>garis yang dihampiri oleh graf</Highlight> dalam satu proses had tertentu. Berhampiran asimptot mencancang, magnitud fungsi membesar tanpa batas. Berhampiran asimptot mengufuk atau serong, jarak antara graf dengan garis itu menghampiri sifar apabila magnitud input semakin besar.
+
+Graf boleh memotong asimptot mengufuk atau serong pada input yang terhingga. Kedua-dua jenis ini menerangkan graf apabila magnitud input besar. Asimptot seperti ini tidak bertindak sebagai dinding.
+
+## Jenis-jenis Asimptot
+
+**Arah garis** itulah yang membezakan tiga jenis asimptot.
+
+Asimptot terbahagi kepada tiga jenis. Jenisnya bergantung pada cara graf menghampiri garis itu, jadi setiap jenis ada ciri pengenalnya sendiri. Ketiga-tiga jenis ini dinamakan mengikut arah garis yang dihampiri oleh graf.
+
+### Asimptot Mencancang
+
+Asimptot mencancang ialah garis mencancang yang dihampiri oleh graf apabila nilai fungsi menghampiri ketakterhinggaan positif atau negatif.
+
+**Takrif**: Garis <InlineMath math="x = a" /> ialah asimptot mencancang jika sekurang-kurangnya satu daripada had satu sisi ini tak terhingga:
+
+- Apabila <InlineMath math="x" /> menghampiri <InlineMath math="a" /> dari kiri, <InlineMath math="f(x) \to \pm\infty" />
+- Apabila <InlineMath math="x" /> menghampiri <InlineMath math="a" /> dari kanan, <InlineMath math="f(x) \to \pm\infty" />
+
+**Cara mencari**: Mula-mula, batalkan sebarang faktor polinomial sepunya. Dalam fungsi rasional yang sudah dipermudahkan, asimptot mencancang berlaku apabila <InlineMath math="Q(x) = 0" /> sedangkan <InlineMath math="P(x) \neq 0" />. Input yang dikecualikan menjadi lubang hanya jika **setiap faktor penyebut yang menjadi sifar** terbatal sepenuhnya. Jika faktor itu masih tinggal dalam penyebut, input itu kekal sebagai asimptot mencancang.
+
+| Ungkapan asal | Ungkapan yang dipermudahkan | Kelakuan pada input satu |
+| --- | --- | --- |
+| <InlineMath math="\frac{x-1}{x-1}" /> | <InlineMath math="1,\quad x\neq1" /> | Lubang |
+| <InlineMath math="\frac{x-1}{(x-1)^2}" /> | <InlineMath math="\frac1{x-1},\quad x\neq1" /> | Asimptot mencancang |
+
+### Asimptot Mengufuk
+
+Asimptot mengufuk ialah garis mengufuk yang dihampiri oleh graf apabila <InlineMath math="x" /> menuju ketakterhinggaan positif, ketakterhinggaan negatif, atau kedua-duanya.
+
+**Takrif**: Garis <InlineMath math="y = b" /> ialah asimptot mengufuk pada setiap arah yang had sepadannya berlaku:
+
+- <InlineMath math="\lim_{x \to \infty} f(x) = b" />
+- <InlineMath math="\lim_{x \to -\infty} f(x) = b" />
+
+### Asimptot Serong
+
+Istilah **serong** memerlukan kecerunan yang bukan sifar. Jika kecerunannya sifar, garis itu ialah asimptot mengufuk.
+
+<BlockMath math="m\neq0" />
+
+Asimptot serong ialah garis condong yang dihampiri oleh graf apabila <InlineMath math="x" /> menuju ketakterhinggaan positif, ketakterhinggaan negatif, atau kedua-duanya.
+
+**Takrif**: Garis <InlineMath math="y = mx + c" /> ialah asimptot serong pada arah yang menjadikan beza ini menghampiri sifar:
+
+<MathContainer>
+
+<BlockMath math="\lim_{x \to \infty} [f(x) - (mx + c)] = 0" />
+
+<BlockMath math="\lim_{x \to -\infty} [f(x) - (mx + c)] = 0" />
+</MathContainer>
+
+## Asimptot dalam Fungsi Rasional
+
+**Darjah polinomial** menentukan kelakuan hujung bagi fungsi rasional.
+
+Pertimbangkan fungsi rasional <InlineMath math="f(x) = \frac{P(x)}{Q(x)}" />, dengan <InlineMath math="P(x)" /> dan <InlineMath math="Q(x)" /> ialah polinomial. Bagi fungsi seperti ini, asimptotnya terus diperoleh daripada pensifar penyebut dan daripada darjah kedua-dua polinomial itu.
+
+### Mencari Asimptot Mencancang
+
+**Batalkan faktor sepunya dahulu**, tetapi kekalkan domain asal. Kemudian, gunakan pengangka dan penyebut ungkapan yang sudah dipermudahkan dalam langkah-langkah di bawah.
+
+**Langkah**:
+
+1. Cari nilai <InlineMath math="x" /> yang menjadikan <InlineMath math="Q(x) = 0" />
+2. Semak sama ada <InlineMath math="P(x) \neq 0" /> pada nilai itu
+3. Jika ya, maka ada asimptot mencancang pada <InlineMath math="x = a" />
+
+**Contoh**: Tentukan asimptot mencancang bagi <InlineMath math="f(x) = \frac{x + 3}{x - 2}" />
+
+**Penyelesaian**:
+
+- Penyebut menjadi sifar apabila: <InlineMath math="x - 2 = 0" />, jadi <InlineMath math="x = 2" />
+- Apabila <InlineMath math="x = 2" />, pengangka ialah <InlineMath math="2 + 3 = 5 \neq 0" />
+- Oleh itu, asimptot mencancang: <InlineMath math="x = 2" />
+
+Nilai-nilai berikut menunjukkan kelakuan fungsi di sekitar asimptot mencancang:
+
+| <InlineMath math="x" />    | <InlineMath math="f(x) = \frac{x + 3}{x - 2}" />                       | Keterangan                               |
+| -------------------------- | ---------------------------------------------------------------------- | ---------------------------------------- |
+| <InlineMath math="1.9" />  | <InlineMath math="\frac{1.9 + 3}{1.9 - 2} = \frac{4.9}{-0.1} = -49" /> | Menghampiri <InlineMath math="-\infty" /> |
+| <InlineMath math="1.99" /> | <InlineMath math="\frac{4.99}{-0.01} = -499" />                        | Semakin negatif                          |
+| <InlineMath math="2.01" /> | <InlineMath math="\frac{5.01}{0.01} = 501" />                          | Menghampiri <InlineMath math="+\infty" /> |
+| <InlineMath math="2.1" />  | <InlineMath math="\frac{5.1}{0.1} = 51" />                             | Nilai di sebelah kanan asimptot          |
+
+<MathVisual
+  title={
+    <>
+      Graf <InlineMath math="f(x) = \frac{x + 3}{x - 2}" /> dengan Asimptot
+      Mencancang
+    </>
+  }
+  description={
+    <>
+      Perhatikan cara graf menghampiri garis mencancang{" "}
+      <InlineMath math="x = 2" /> tanpa pernah menyentuhnya.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="x \to 2^{-}" />,
+    "l2": <InlineMath math="x \to 2^{+}" />,
+    "l3": <InlineMath math="x=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -13, max: 17 }, y: { min: -44, max: 46 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(2 - exp(t))", y: "(((2 - exp(t)) + 3) / ((2 - exp(t)) - 2))", parameter: { min: -2, max: 2.5 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2 + exp(t))", y: "(((2 + exp(t)) + 3) / ((2 + exp(t)) - 2))", parameter: { min: -2, max: 2.5 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 2, y: -12 }, { x: 2, y: 0 }, { x: 2, y: 12 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1, y: -0.67 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 6, y: 2.25 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 2, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+### Mencari Asimptot Mengufuk
+
+**Petua untuk fungsi rasional**:
+
+Katakan darjah pengangka ialah <InlineMath math="m" /> dan darjah penyebut ialah <InlineMath math="n" />
+
+1. Jika <InlineMath math="m < n" />: Asimptot mengufuk ialah <InlineMath math="y = 0" />
+2. Jika <InlineMath math="m = n" />: Asimptot mengufuk ialah <InlineMath math="y = \frac{a}{b}" /> (nisbah pekali pelopor)
+3. Jika <InlineMath math="m > n" />: Tiada asimptot mengufuk (tetapi mungkin ada asimptot serong)
+
+**Contoh**: Tentukan asimptot mengufuk bagi:
+
+1. <InlineMath math="f(x) = \frac{2x + 1}{x^2 - 4}" />
+
+   **Penyelesaian**:
+
+   Darjah pengangka <InlineMath math="= 1" /> dan darjah penyebut <InlineMath math="= 2" />. Oleh sebab <InlineMath math="1 < 2" />, asimptot mengufuknya ialah <InlineMath math="y = 0" />.
+
+2. <InlineMath math="g(x) = \frac{3x^2 - 1}{2x^2 + 5}" />
+
+   **Penyelesaian**:
+
+   Darjah pengangka <InlineMath math="= 2" /> dan darjah penyebut <InlineMath math="= 2" />. Oleh sebab darjahnya sama, asimptot mengufuknya ialah <InlineMath math="y = \frac{3}{2}" />.
+
+Nilai-nilai berikut menunjukkan cara fungsi menghampiri asimptot mengufuk:
+
+| <InlineMath math="x" />    | <InlineMath math="g(x) = \frac{3x^2 - 1}{2x^2 + 5}" />                              | Menghampiri               |
+| -------------------------- | ----------------------------------------------------------------------------------- | ------------------------- |
+| <InlineMath math="10" />   | <InlineMath math="\frac{3(100) - 1}{2(100) + 5} = \frac{299}{205} \approx 1.459" /> | <InlineMath math="1.5" /> |
+| <InlineMath math="100" />  | <InlineMath math="\frac{29999}{20005} \approx 1.4996" />                            | <InlineMath math="1.5" /> |
+| <InlineMath math="1000" /> | <InlineMath math="\frac{2999999}{2000005} \approx 1.499996" />                      | <InlineMath math="1.5" /> |
+
+<MathVisual
+  title={
+    <>
+      Graf <InlineMath math="g(x) = \frac{3x^2 - 1}{2x^2 + 5}" /> dengan
+      Asimptot Mengufuk
+    </>
+  }
+  description={
+    <>
+      Graf menghampiri <InlineMath math="y = 1.5" /> apabila{" "}
+      <InlineMath math="x \to \pm\infty" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="y=1.5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -13, max: 13 }, y: { min: -0.5, max: 2 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "sinh(t)", y: "((((3 * sinh(t)) * sinh(t)) - 1) / (((2 * sinh(t)) * sinh(t)) + 5))", parameter: { min: -3, max: 3 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -10, y: 1.5 }, { x: 0, y: 1.5 }, { x: 10, y: 1.5 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 1.5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+### Mencari Asimptot Serong
+
+Asimptot serong muncul apabila <InlineMath math="\text{darjah pengangka} = \text{darjah penyebut} + 1" />.
+
+**Cara mencari**: Lakukan pembahagian polinomial.
+
+**Contoh**: Tentukan asimptot serong bagi <InlineMath math="f(x) = \frac{x^2 + 2x - 1}{x - 1}" />
+
+**Penyelesaian**:
+Dengan pembahagian polinomial:
+
+Pembahagian polinomial ini menggunakan **dua penolakan**. Setiap baris membuang sebutan berdarjah tertinggi daripada baki sebelumnya.
+
+| Sebutan hasil bahagi | Hasil darab dengan pembahagi | Baki |
+| --- | --- | --- |
+| <InlineMath math="x" /> | <InlineMath math="x(x-1)=x^2-x" /> | <InlineMath math="(x^2+2x-1)-(x^2-x)=3x-1" /> |
+| <InlineMath math="3" /> | <InlineMath math="3(x-1)=3x-3" /> | <InlineMath math="(3x-1)-(3x-3)=2" /> |
+
+<BlockMath math="\begin{aligned} f(x) &amp;= \frac{x^2 + 2x - 1}{x - 1} \\ &amp;= x + 3 + \frac{2}{x - 1} \end{aligned}" />
+
+Apabila <InlineMath math="x \to \pm\infty" />, sebutan <InlineMath math="\frac{2}{x - 1} \to 0" />
+
+Asimptot serong: <InlineMath math="y = x + 3" />
+
+<MathVisual
+  title={
+    <>
+      Graf <InlineMath math="f(x) = \frac{x^2 + 2x - 1}{x - 1}" /> dengan
+      Asimptot Serong
+    </>
+  }
+  description={
+    <>
+      Graf menghampiri garis <InlineMath math="y = x + 3" /> apabila{" "}
+      <InlineMath math="x \to \pm\infty" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="y=x+3" />,
+    "l2": <InlineMath math="x=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -14, max: 16 }, y: { min: -14, max: 22 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(1 - exp(t))", y: "(((((1 - exp(t)) * (1 - exp(t))) + (2 * (1 - exp(t)))) - 1) / ((1 - exp(t)) - 1))", parameter: { min: -2, max: 2.5 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(1 + exp(t))", y: "(((((1 + exp(t)) * (1 + exp(t))) + (2 * (1 + exp(t)))) - 1) / ((1 + exp(t)) - 1))", parameter: { min: -2, max: 2.5 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -8, y: -5 }, { x: 0, y: 3 }, { x: 10, y: 13 }], appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 1, y: -10 }, { x: 1, y: 0 }, { x: 1, y: 15 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 0, y: 3 }, placement: "above-right" },
+      { key: "l2", objectId: "s4", at: { x: 1, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+## Melukis Graf dengan Asimptot
+
+Lukis asimptot dahulu. Asimptot mencancang menandakan nilai input yang dihampiri apabila magnitud output fungsi membesar tanpa batas. Asimptot mengufuk atau serong menerangkan kelakuan hujung graf apabila magnitud input semakin besar. Kemudian, ikut langkah-langkah berikut:
+
+1. **Tentukan semua asimptot** (mencancang, mengufuk, atau serong)
+2. **Lukis asimptot dengan garis putus-putus**
+3. **Cari pintasan** pada paksi
+4. **Tentukan beberapa titik tambahan**
+5. **Lukis lengkung** yang menghampiri asimptot
+
+**Contoh Lengkap**: Lukis graf <InlineMath math="f(x) = \frac{x + 1}{x - 2}" />
+
+**Langkah 1**: Cari asimptot
+
+- Asimptot mencancang: <InlineMath math="x = 2" /> (<InlineMath math="\text{penyebut} = 0" />)
+- Asimptot mengufuk: <InlineMath math="y = 1" /> (darjah sama, nisbah pekali <InlineMath math="= 1/1" />)
+
+**Langkah 2**: Pintasan
+
+- Paksi-<InlineMath math="y" />: <InlineMath math="f(0) = \frac{0 + 1}{0 - 2} = -\frac{1}{2}" />
+- Paksi-<InlineMath math="x" />: <InlineMath math="0 = \frac{x + 1}{x - 2}" />, jadi <InlineMath math="x = -1" />
+
+**Langkah 3**: Kelakuan di sekitar asimptot
+
+- Apabila <InlineMath math="x \to 2^-" />: <InlineMath math="f(x) \to -\infty" />
+- Apabila <InlineMath math="x \to 2^+" />: <InlineMath math="f(x) \to +\infty" />
+- Apabila <InlineMath math="x \to \pm\infty" />: <InlineMath math="f(x) \to 1" />
+
+**Langkah 4**: Jadual nilai untuk membantu kamu melukis
+
+| <InlineMath math="x" />  | <InlineMath math="f(x) = \frac{x + 1}{x - 2}" />                  | Keterangan                       |
+| ------------------------ | ----------------------------------------------------------------- | -------------------------------- |
+| <InlineMath math="-3" /> | <InlineMath math="\frac{-3 + 1}{-3 - 2} = \frac{-2}{-5} = 0.4" /> | Titik dalam sukuan II            |
+| <InlineMath math="-1" /> | <InlineMath math="\frac{-1 + 1}{-1 - 2} = \frac{0}{-3} = 0" />    | Pintasan paksi-<InlineMath math="x" /> |
+| <InlineMath math="0" />  | <InlineMath math="\frac{0 + 1}{0 - 2} = \frac{1}{-2} = -0.5" />   | Pintasan paksi-<InlineMath math="y" /> |
+| <InlineMath math="1" />  | <InlineMath math="\frac{1 + 1}{1 - 2} = \frac{2}{-1} = -2" />     | Menghampiri asimptot mencancang  |
+| <InlineMath math="3" />  | <InlineMath math="\frac{3 + 1}{3 - 2} = \frac{4}{1} = 4" />       | Di sebelah kanan asimptot        |
+| <InlineMath math="5" />  | <InlineMath math="\frac{5 + 1}{5 - 2} = \frac{6}{3} = 2" />       | Menghampiri asimptot mengufuk    |
+
+<MathVisual
+  title={
+    <>
+      Graf Lengkap <InlineMath math="f(x) = \frac{x + 1}{x - 2}" />
+    </>
+  }
+  description={
+    <>
+      Graf dengan asimptot mencancang <InlineMath math="x = 2" /> dan asimptot
+      mengufuk <InlineMath math="y = 1" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="x=2" />,
+    "l2": <InlineMath math="y=1" />,
+    "l3": <InlineMath math="(-1,0)" />,
+    "l4": <InlineMath math="(0,-0.5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -13, max: 17 }, y: { min: -26, max: 28 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(2 - exp(t))", y: "(((2 - exp(t)) + 1) / ((2 - exp(t)) - 2))", parameter: { min: -2, max: 2.5 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2 + exp(t))", y: "(((2 + exp(t)) + 1) / ((2 + exp(t)) - 2))", parameter: { min: -2, max: 2.5 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 2, y: -12 }, { x: 2, y: 0 }, { x: 2, y: 12 }], appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -5, y: 1 }, { x: 0, y: 1 }, { x: 9, y: 1 }], appearance: "answer" },
+      { id: "s5", kind: "point", at: { x: -1, y: 0 }, appearance: "primary" },
+      { id: "s6", kind: "point", at: { x: 0, y: -0.5 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 2, y: 0 }, placement: "below-right" },
+      { key: "l2", objectId: "s4", at: { x: 0, y: 1 }, placement: "above-right" },
+      { key: "l3", objectId: "s5", at: { x: -1, y: 0 }, placement: "below-left" },
+      { key: "l4", objectId: "s6", at: { x: 0, y: -0.5 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+## Soalan Latihan
+
+Semak **faktor penyebut dan beza darjah** bagi setiap fungsi. Semua fungsi dalam latihan ini ialah fungsi rasional.
+
+1. Tentukan semua asimptot bagi <InlineMath math="f(x) = \frac{2x^2 - 3x + 1}{x - 3}" />
+
+2. Tentukan asimptot bagi <InlineMath math="g(x) = \frac{x^2 - 4}{x^2 - 9}" />
+
+3. Fungsi kos purata bagi suatu produk ialah <InlineMath math="C(x) = \frac{500 + 3x}{x}" />. Tentukan nilai had bagi kos seunit apabila pengeluaran meningkat tanpa batas.
+
+4. Lakar graf <InlineMath math="h(x) = \frac{x}{x^2 - 1}" /> lengkap dengan asimptotnya.
+
+### Jalan Kerja
+
+**Soalan 1**. Penyebut menjadi sifar pada <InlineMath math="x = 3" />, manakala nilai **pengangka** di situ ialah <InlineMath math="2(3)^2 - 3(3) + 1 = 10" />. Oleh sebab pengangka tidak menjadi sifar, <InlineMath math="x = 3" /> ialah asimptot mencancang.
+
+Pembahagian polinomial memisahkan kelakuan linear jangka panjang daripada bakinya:
+
+<BlockMath math="\frac{2x^2 - 3x + 1}{x - 3} = 2x + 3 + \frac{10}{x - 3}" />
+
+Apabila <InlineMath math="x \to \pm\infty" />, sebutan baki <InlineMath math="\frac{10}{x - 3} \to 0" />. Oleh itu, asimptot serongnya ialah <InlineMath math="y = 2x + 3" />.
+
+**Soalan 2**. Faktorkan kedua-dua polinomial sebelum mengelaskan pensifarnya:
+
+<MathContainer>
+
+<BlockMath math="x^2 - 4 = (x - 2)(x + 2)" />
+
+<BlockMath math="x^2 - 9 = (x - 3)(x + 3)" />
+</MathContainer>
+
+Tiada **faktor sepunya** yang boleh dibatalkan. Jadi pensifar penyebut, <InlineMath math="x = -3" /> dan <InlineMath math="x = 3" />, ialah asimptot mencancang. Pensifar pengangka, <InlineMath math="x = -2" /> dan <InlineMath math="x = 2" />, ialah pintasan-<InlineMath math="x" />. Oleh sebab pengangka dan penyebut ada darjah yang sama dan kedua-dua pekali pelopornya ialah <InlineMath math="1" />, asimptot mengufuknya ialah <InlineMath math="y = 1" />.
+
+**Soalan 3**. Pisahkan kos purata kepada satu sebutan yang bergantung pada jumlah pengeluaran dan satu sebutan pemalar.
+
+<BlockMath math="C(x) = \frac{500 + 3x}{x} = \frac{500}{x} + 3" />
+
+Apabila <InlineMath math="x \to \infty" />, <InlineMath math="\frac{500}{x} \to 0" />. Oleh itu, <InlineMath math="C(x) \to 3" />. Kos itu menghampiri <InlineMath math="3" /> seunit tetapi tidak sama dengan nilai itu bagi sebarang <InlineMath math="x" /> **positif yang terhingga**.
+
+**Soalan 4**. Faktorkan penyebut sebagai <InlineMath math="x^2 - 1 = (x - 1)(x + 1)" />. Tiada satu pun faktor itu yang terbatal dengan **pengangka**, jadi asimptot mencancangnya ialah <InlineMath math="x = -1" /> dan <InlineMath math="x = 1" />. Oleh sebab darjah pengangka lebih kecil daripada darjah penyebut, <InlineMath math="h(x) \to 0" /> apabila <InlineMath math="x \to \pm\infty" />. Jadi asimptot mengufuknya ialah <InlineMath math="y = 0" />.
+
+Asimptot-asimptot itu membahagikan domain kepada tiga selang. Tanda <InlineMath math="h(x)" /> ialah negatif pada <InlineMath math="x < -1" />, positif pada <InlineMath math="-1 < x < 0" />, negatif pada <InlineMath math="0 < x < 1" />, dan positif pada <InlineMath math="x > 1" />. Tanda-tanda ini, bersama pintasan <InlineMath math="(0,0)" />, menentukan kedudukan ketiga-tiga cabang graf.
+
+Jadual nilai bagi <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
+
+| <InlineMath math="x" />    | <InlineMath math="h(x)" />                              | Keterangan  |
+| -------------------------- | ------------------------------------------------------- | ----------- |
+| <InlineMath math="-2" />   | <InlineMath math="\frac{-2}{4-1} = -\frac{2}{3}" />     | Bahagian kiri   |
+| <InlineMath math="-0.5" /> | <InlineMath math="\frac{-0.5}{0.25-1} = \frac{2}{3}" /> | Bahagian tengah |
+| <InlineMath math="0" />    | <InlineMath math="\frac{0}{0-1} = 0" />                 | Pintasan    |
+| <InlineMath math="0.5" />  | <InlineMath math="\frac{0.5}{0.25-1} = -\frac{2}{3}" /> | Bahagian tengah |
+| <InlineMath math="2" />    | <InlineMath math="\frac{2}{4-1} = \frac{2}{3}" />       | Bahagian kanan  |
+
+<MathVisual
+  title={
+    <>
+      Graf <InlineMath math="h(x) = \frac{x}{x^2 - 1}" /> dengan Dua Asimptot
+      Mencancang
+    </>
+  }
+  description={
+    <>
+      Graf dengan asimptot mencancang pada <InlineMath math="x = -1" /> dan{" "}
+      <InlineMath math="x = 1" />, serta asimptot mengufuk{" "}
+      <InlineMath math="y = 0" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="x=-1" />,
+    "l2": <InlineMath math="x=1" />,
+    "l3": <InlineMath math="y=0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -16, max: 16 }, y: { min: -12, max: 12 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-1) - exp(t))", y: "(((-1) - exp(t)) / ((((-1) - exp(t)) * ((-1) - exp(t))) - 1))", parameter: { min: -2, max: 2.5 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "tanh(t)", y: "(tanh(t) / ((tanh(t) * tanh(t)) - 1))", parameter: { min: -1.6, max: 1.6 }, appearance: "primary" },
+      { id: "s3", kind: "parametric", x: "(1 + exp(t))", y: "((1 + exp(t)) / (((1 + exp(t)) * (1 + exp(t))) - 1))", parameter: { min: -2, max: 2.5 }, appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -1, y: -10 }, { x: -1, y: 0 }, { x: -1, y: 10 }], appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 1, y: -10 }, { x: 1, y: 0 }, { x: 1, y: 10 }], appearance: "secondary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s4", at: { x: -1, y: 0 }, placement: "above-left" },
+      { key: "l2", objectId: "s5", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s6", at: { x: 0, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>

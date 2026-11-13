@@ -1,0 +1,477 @@
+
+export const metadata = {
+  title: "Graf Fungsi Trigonometri",
+  description: "Baca graf sinus, kosinus, dan tangen melalui visualisasi interaktif tentang radian, amplitud, kala, dan penjelmaan graf.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-09-23",
+  subject: "Fungsi dan Pemodelannya",
+};
+
+## Gerakan Berulang dan Ukuran Sudut
+
+Gerakan yang **berulang secara teratur** boleh dimodelkan dengan sinus atau kosinus. Model seperti ini menerangkan gelombang yang ideal, bukan setiap perubahan pada air laut.
+
+Sebelum mempelajari graf fungsi trigonometri, kita perlu faham ukuran sudut dalam radian. Dalam kehidupan seharian, kita sudah biasa menggunakan darjah. Tetapi dalam matematik lanjutan, radian lebih kerap digunakan.
+
+## Menukar Darjah dan Radian
+
+**Satu putaran lengkap** bulatan ialah <InlineMath math="360^\circ" /> atau <InlineMath math="2\pi" /> radian. Hubungan ini memberikan kita rumus penukaran:
+
+<MathContainer>
+
+<BlockMath math="180^\circ = \pi \text{ radian}" />
+
+<BlockMath math="1^\circ = \frac{\pi}{180} \text{ radian}" />
+
+<BlockMath math="1 \text{ radian} = \frac{180^\circ}{\pi} \approx 57.3^\circ" />
+</MathContainer>
+
+### Contoh Penukaran
+
+Menukar **darjah kepada radian**:
+
+<MathContainer>
+
+<BlockMath math="90^\circ = 90 \times \frac{\pi}{180} = \frac{\pi}{2} \text{ radian}" />
+
+<BlockMath math="60^\circ = 60 \times \frac{\pi}{180} = \frac{\pi}{3} \text{ radian}" />
+
+<BlockMath math="45^\circ = 45 \times \frac{\pi}{180} = \frac{\pi}{4} \text{ radian}" />
+</MathContainer>
+
+Menukar radian kepada darjah:
+
+<MathContainer>
+
+<BlockMath math="\frac{\pi}{6} \text{ radian} = \frac{\pi}{6} \times \frac{180}{\pi} = 30^\circ" />
+
+<BlockMath math="\frac{3\pi}{4} \text{ radian} = \frac{3\pi}{4} \times \frac{180}{\pi} = 135^\circ" />
+</MathContainer>
+
+## Amplitud dan Kala Graf Sinus
+
+Dua kuantiti menerangkan bentuk asas graf trigonometri: **amplitud** dan **kala**. Amplitud memberitahu kamu sejauh mana lengkung itu naik di atas dan turun di bawah garis tengahnya, manakala kala memberitahu kamu jarak mengufuk yang diperlukan untuk satu ulangan penuh.
+
+### Amplitud
+
+Amplitud ialah <Highlight>jarak mencancang maksimum dari garis tengah lengkung sinusoid</Highlight> ke puncak atau lembah. Dalam fungsi tanpa translasi <InlineMath math="y = A \sin x" /> dan <InlineMath math="y = A \cos x" />, garis tengah itu ialah paksi-<InlineMath math="x" /> dan amplitudnya ialah <InlineMath math="|A|" />.
+
+<MathVisual
+  title={<>Konsep Amplitud</>}
+  description={<>Amplitud menentukan 'tinggi' gelombang. Perhatikan jarak dari paksi-<InlineMath math="x" /> ke puncak.</>}
+  labels={{
+    "l1": <>Amplitud = <InlineMath math="2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "2 sin(x)", domain: { min: 0, max: 2 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: Math.PI / 2, y: 0 }, { x: Math.PI / 2, y: 2 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.59, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
+### Kala
+
+**Kala** ialah panjang selang yang diperlukan untuk satu kitaran lengkap. Untuk fungsi <InlineMath math="y = \sin(Bx)" /> atau <InlineMath math="y = \cos(Bx)" />, kalanya ialah <InlineMath math="\frac{2\pi}{|B|}" />.
+
+<MathVisual
+  title={<>Konsep Kala</>}
+  description={<>Kala ialah jarak mengufuk bagi satu gelombang lengkap.</>}
+  labels={{
+    "l1": <>Kala = <InlineMath math="2\pi" /></>,
+    "l2": <InlineMath math="\longleftarrow\;2\pi\;\longrightarrow" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 14 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: 0, max: 4 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "line", through: [{ x: 0, y: -1.2 }, { x: 6.28, y: -1.2 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3.17, y: -0.03 }, placement: "above" },
+      { key: "l2", objectId: "s2", at: { x: 6.28, y: -1.2 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+### Amplitud dan Kala daripada Pekali
+
+Untuk rumus di bawah, ambil <InlineMath math="A\neq0" /> dan <InlineMath math="B\neq0" />. Amplitud menggunakan **nilai mutlak**, manakala kala asas ialah jarak ulangan positif yang paling kecil. Jika salah satu pekali ialah sifar dalam sinus atau kosinus, fungsi itu menjadi fungsi malar dan tiada kala positif yang paling kecil.
+
+| Fungsi | Amplitud | Kala |
+| --- | --- | --- |
+| <InlineMath math="A\sin(Bx)" /> | <InlineMath math="\lvert A\rvert" /> | <InlineMath math="2\pi/\lvert B\rvert" /> |
+| <InlineMath math="A\cos(Bx)" /> | <InlineMath math="\lvert A\rvert" /> | <InlineMath math="2\pi/\lvert B\rvert" /> |
+| <InlineMath math="A\tan(Bx)" /> | Tidak tertakrif | <InlineMath math="\pi/\lvert B\rvert" /> |
+
+## Graf Fungsi Sinus
+
+Fungsi <InlineMath math="y = \sin x" /> ialah fungsi berkala dengan kala <InlineMath math="2\pi" />. Jadi corak grafnya berulang pada setiap selang yang panjangnya <InlineMath math="2\pi" />.
+
+<MathVisual
+  title={
+    <>
+      Graf <InlineMath math="y = \sin x" />
+    </>
+  }
+  description={<>Perhatikan bagaimana graf itu membentuk gelombang yang berulang secara teratur.</>}
+  labels={{
+    "l1": <InlineMath math="y=\sin x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.11, y: -0.9 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+**Ciri-ciri graf**: <InlineMath math="y = \sin x" />
+
+- **Kala**: <InlineMath math="2\pi" /> (graf berulang setiap <InlineMath math="2\pi \text{ unit}" />)
+- **Amplitud**: <InlineMath math="1" /> (nilai maksimum tolak nilai minimum, kemudian dibahagi dengan <InlineMath math="2" />)
+- **Domain**: Semua nombor nyata
+- **Julat**: <InlineMath math="[-1, 1]" />
+- Pintasan pada paksi-<InlineMath math="x" />: <InlineMath math="x = n\pi" /> dengan keadaan <InlineMath math="n" /> ialah integer
+- **Nilai maksimum**: <InlineMath math="1" /> pada <InlineMath math="x = \frac{\pi}{2} + 2n\pi" />
+- **Nilai minimum**: <InlineMath math="-1" /> pada <InlineMath math="x = \frac{3\pi}{2} + 2n\pi" />
+
+## Graf Fungsi Kosinus
+
+Fungsi <InlineMath math="y = \cos x" /> ada bentuk yang serupa dengan sinus, tetapi beralih <InlineMath math="\frac{\pi}{2}" /> ke kiri.
+
+<MathVisual
+  title={
+    <>
+      Graf <InlineMath math="y = \cos x" />
+    </>
+  }
+  description={<>Bandingkan dengan graf <InlineMath math="\sin" />. Perhatikan translasinya.</>}
+  labels={{
+    "l1": <InlineMath math="y=\cos x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "cos(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.11, y: 0.44 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+**Ciri-ciri graf**: <InlineMath math="y = \cos x" />
+
+- **Kala**: <InlineMath math="2\pi" />
+- **Amplitud**: <InlineMath math="1" />
+- **Domain**: Semua nombor nyata
+- **Julat**: <InlineMath math="[-1, 1]" />
+- Pintasan pada paksi-<InlineMath math="x" />: <InlineMath math="x = \frac{\pi}{2} + n\pi" />
+- **Nilai maksimum**: <InlineMath math="1" /> pada <InlineMath math="x = 2n\pi" />
+- **Nilai minimum**: <InlineMath math="-1" /> pada <InlineMath math="x = \pi + 2n\pi" />
+
+### Perbandingan Sinus dan Kosinus
+
+Kedua-dua lengkung berulang selepas satu putaran penuh dan hanya berbeza dengan satu **translasi mengufuk**. Bandingkan puncak dan titik sifar kedua-dua lengkung dalam paparan yang sama.
+
+<MathVisual
+  title={<>Perbandingan Graf <InlineMath math="\sin" /> dan <InlineMath math="\cos" /></>}
+  description={
+    <>
+      Perhatikan bahawa <InlineMath math="\cos x = \sin(x + \frac{\pi}{2})" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="y=\sin x" />,
+    "l2": <InlineMath math="y=\cos x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "cos(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.11, y: -0.9 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 1.16, y: 0.4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Graf Fungsi Tangen
+
+Fungsi <InlineMath math="y = \tan x" /> berbeza daripada <InlineMath math="\sin" /> dan <InlineMath math="\cos" /> kerana fungsi ini ada asimptot mencancang.
+
+<MathVisual
+  title={
+    <>
+      Graf <InlineMath math="y = \tan x" />
+    </>
+  }
+  description={<>Garis mencancang berwarna merah menandakan asimptot.</>}
+  labels={{
+    "l1": <InlineMath math="y=\tan x" />,
+    "l2": <InlineMath math="x=\frac{\pi}{2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -7.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "tan(x)", domain: { min: -4.55, max: -1.73 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "tan(x)", domain: { min: -1.41, max: 1.41 }, appearance: "primary" },
+      { id: "s3", kind: "function", formula: "tan(x)", domain: { min: 1.73, max: 4.55 }, appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -4.71, y: -6 }, { x: -4.71, y: 5 }, { x: -4.71, y: 6 }], appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -1.57, y: -6 }, { x: -1.57, y: 5 }, { x: -1.57, y: 6 }], appearance: "secondary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 1.57, y: -6 }, { x: 1.57, y: 5 }, { x: 1.57, y: 6 }], appearance: "secondary" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 4.71, y: -6 }, { x: 4.71, y: 5 }, { x: 4.71, y: 6 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0.01, y: 0.01 }, placement: "above-right" },
+      { key: "l2", objectId: "s6", at: { x: 1.57, y: 5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+**Ciri-ciri graf**: <InlineMath math="y = \tan x" />
+
+- **Kala**: <InlineMath math="\pi" /> (lebih pendek daripada <InlineMath math="\sin" /> dan <InlineMath math="\cos" />)
+- **Amplitud**: Tidak tertakrif
+- **Domain**: <InlineMath math="x \neq \frac{\pi}{2} + n\pi" />
+- **Julat**: Semua nombor nyata
+- **Asimptot mencancang**: <InlineMath math="x = \frac{\pi}{2} + n\pi" />
+- Pintasan pada paksi-<InlineMath math="x" />: <InlineMath math="x = n\pi" />
+
+## Penjelmaan Fungsi Trigonometri
+
+Perubahan pada **amplitud, kala, dan kedudukan garis tengah** boleh dibaca daripada pekali. Apabila kamu mengubah satu pekali, bandingkan puncak dan titik sifar untuk melihat kesannya pada lengkung.
+
+### Perubahan Amplitud
+
+Fungsi <InlineMath math="y = A \sin x" /> mengubah **amplitud** kepada <InlineMath math="|A|" />.
+
+<MathVisual
+  title={<>Kesan Amplitud</>}
+  description={
+    <>
+      Perhatikan bagaimana nilai <InlineMath math="A" /> mempengaruhi tinggi gelombang.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="y=\sin x" />,
+    "l2": <InlineMath math="y=2\sin x" />,
+    "l3": <InlineMath math="y=0.5\sin x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "2 sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "secondary" },
+      { id: "s3", kind: "function", formula: "0.5 sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.11, y: -0.9 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: -1.11, y: -1.79 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -1.11, y: -0.45 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+### Perubahan Kala
+
+Fungsi <InlineMath math="y = \sin(Bx)" /> mengubah **kala** kepada <InlineMath math="\frac{2\pi}{|B|}" />.
+
+<MathVisual
+  title={<>Kesan Kala</>}
+  description={
+    <>
+      Nilai <InlineMath math="B" /> mempengaruhi berapa cepat fungsi itu berulang.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="y=\sin x" />,
+    "l2": <InlineMath math="y=\sin 2x" />,
+    "l3": <InlineMath math="y=\sin 0.5x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "sin(2 x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "secondary" },
+      { id: "s3", kind: "function", formula: "sin(0.5 x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.11, y: -0.9 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 0.48, y: 0.81 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -1.11, y: -0.53 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+### Translasi Mencancang dan Mengufuk
+
+Bentuk ini memisahkan **translasi di dalam dan di luar fungsi**. Garis tengahnya ialah <InlineMath math="y=D" />, dan garis itu tidak semestinya paksi mengufuk.
+
+Bentuk am:
+
+<BlockMath math="y = A \sin(B(x - C)) + D" />
+
+- <InlineMath math="|A|" />: Amplitud
+- <InlineMath math="B" />: Mempengaruhi kala (
+  <InlineMath math="\text{kala} = \frac{2\pi}{|B|}" />)
+- <InlineMath math="C" />: Translasi mengufuk (fasa)
+- <InlineMath math="D" />: Translasi mencancang
+
+Perhatikan translasi mengufuk dan mencancang pada graf:
+
+<MathVisual
+  title={<>Penjelmaan Lengkap</>}
+  description={
+    <>
+      Graf <InlineMath math="y = 2\sin(x - \frac{\pi}{4}) + 1" /> menunjukkan semua
+      penjelmaan.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="y=\sin x" />,
+    "l2": <InlineMath math="y=2\sin(x-\frac{\pi}{4})+1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -1.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "2 sin(x - 0.7853981633974483) + 1", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.11, y: -0.9 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: -1.11, y: -0.89 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Lima soalan di bawah menggunakan petua **kala**, amplitud, dan translasi pada graf yang kamu lakar sendiri. Selesaikan setiap soalan sebelum melihat skema jawapan, kemudian semak sejauh mana lakaran dan persamaan kamu sepadan dengan jawapan yang diberikan.
+
+1. Tukarkan sudut berikut:
+
+   - <InlineMath math="120^\circ" /> kepada radian
+   - <InlineMath math="\frac{5\pi}{6}" /> radian kepada darjah
+
+2. Tentukan kala dan amplitud bagi:
+
+   - <InlineMath math="y = 3 \sin(2x)" />
+   - <InlineMath math="y = -2 \cos(\frac{x}{3})" />
+
+3. Lakarkan graf <InlineMath math="y = 2 \sin(x + \frac{\pi}{3}) - 1" />. Tentukan:
+
+   - Amplitud
+   - Kala
+   - Anjakan fasa
+   - Translasi mencancang
+
+4. Jika tinggi air pasang surut dimodelkan oleh <InlineMath math="h(t) = 2 \sin(\frac{\pi t}{6}) + 5 \text{ meter}" />, dengan <InlineMath math="t" /> diukur dalam jam:
+
+   - Berapakah tinggi air maksimum dan minimum?
+   - Berapakah kala pasang surut itu?
+
+5. Tentukan persamaan fungsi trigonometri yang ada:
+
+   - Amplitud <InlineMath math="3" />
+   - Kala <InlineMath math="\pi" />
+   - Translasi <InlineMath math="\frac{\pi}{4}" /> ke kanan
+   - Translasi <InlineMath math="2 \text{ unit}" /> ke atas
+
+### Jalan Kerja
+
+**Soalan 1**. Tukar unit menggunakan **faktor penukaran** yang sesuai.
+
+- <InlineMath math="120^\circ\cdot\frac{\pi\,\mathrm{rad}}{180^\circ}=\frac{2\pi}{3}\,\mathrm{rad}" />
+- <InlineMath math="\frac{5\pi}{6}\,\mathrm{rad}\cdot\frac{180^\circ}{\pi\,\mathrm{rad}}=150^\circ" />
+
+Satu putaran penuh ialah tiga ratus enam puluh darjah atau dua pi radian. Nisbah kedua-duanya sama dengan satu, jadi pendaraban dengan faktor penukaran menukar unit tanpa mengubah sudut itu.
+
+**Soalan 2**. Gunakan **nilai mutlak pekali** untuk amplitud. Tanda negatif memantulkan lengkung kosinus. Tanda itu tidak menjadikan amplitudnya negatif.
+
+- <InlineMath math="y = 3 \sin(2x)" />: amplitud <InlineMath math="3" />, kala <InlineMath math="\frac{2\pi}{2} = \pi" />
+- <InlineMath math="y = -2 \cos(\frac{x}{3})" />: amplitud <InlineMath math="2" />, kala <InlineMath math="\frac{2\pi}{1/3} = 6\pi" />
+
+Untuk lengkung kedua, pekali input ialah satu pertiga. Input perlu bertambah sebanyak enam pi supaya sudut dalam kosinus bertambah dua pi, jadi kalanya ialah tiga kali kala kosinus asas.
+
+<BlockMath math="\frac{T}{3}=2\pi \quad\Rightarrow\quad T=6\pi" />
+
+**Soalan 3**. Menulis <InlineMath math="x+\pi/3=x-(-\pi/3)" /> menunjukkan **translasi ke kiri**. Lima titik ini menentukan satu kitaran lengkap:
+
+- Amplitud: <InlineMath math="2" />
+- Kala: <InlineMath math="2\pi" />
+- Anjakan fasa: <InlineMath math="\frac{\pi}{3}" /> ke kiri
+- Translasi mencancang: <InlineMath math="1 \text{ unit}" /> ke bawah
+
+| <InlineMath math="x" /> | <InlineMath math="-\pi/3" /> | <InlineMath math="\pi/6" /> | <InlineMath math="2\pi/3" /> | <InlineMath math="7\pi/6" /> | <InlineMath math="5\pi/3" /> |
+| --- | --- | --- | --- | --- | --- |
+| <InlineMath math="y" /> | <InlineMath math="-1" /> | <InlineMath math="1" /> | <InlineMath math="-1" /> | <InlineMath math="-3" /> | <InlineMath math="-1" /> |
+
+<MathVisual
+  title={<>Melakar Satu Kitaran</>}
+  description={<>Titik yang ditanda menunjukkan garis tengah, puncak, dan lembah selepas translasi.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 6 }, y: { min: -3.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "2 sin(x + 1.0471975511965976) - 1", domain: { min: -Math.PI / 3, max: 5 * Math.PI / 3 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: -1.05, y: -1 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 0.52, y: 1 }, appearance: "secondary" },
+      { id: "s4", kind: "point", at: { x: 2.09, y: -1 }, appearance: "secondary" },
+      { id: "s5", kind: "point", at: { x: 3.67, y: -3 }, appearance: "secondary" },
+      { id: "s6", kind: "point", at: { x: 5.24, y: -1 }, appearance: "secondary" },
+    ],
+  }}
+/>
+
+**Soalan 4**. Paras air berayun di sekitar **garis tengah** lima meter, dengan sesaran maksimum dua meter.
+
+- Tinggi maksimum: <InlineMath math="5 + 2 = 7 \text{ meter}" />
+- Tinggi minimum: <InlineMath math="5 - 2 = 3 \text{ meter}" />
+- Kala: <InlineMath math="\frac{2\pi}{\pi/6} = 12 \text{ jam}" />
+
+Sinus terletak antara negatif satu dengan satu, jadi model ini sentiasa memberikan tinggi antara tiga dengan tujuh meter. Kala ialah masa yang diperlukan supaya sudut dalam sinus bertambah sebanyak dua pi.
+
+<BlockMath math="\frac{\pi}{6}T=2\pi \quad\Rightarrow\quad T=12" />
+
+**Soalan 5**. Cari pekali frekuensi daripada **kala yang diberi**, kemudian letakkan translasi mengufuk di dalam kurungan.
+
+<MathContainer>
+<BlockMath math="2\pi/B=\pi\;\Rightarrow\;B=2" />
+
+<BlockMath math="y = 3 \sin(2(x - \frac{\pi}{4})) + 2" />
+</MathContainer>
+
+Apabila sudut dalam kurungan dikembangkan, kita dapat bentuk yang setara:
+
+<BlockMath math="y = 3 \sin(2x - \frac{\pi}{2}) + 2" />

@@ -1,0 +1,437 @@
+
+export const metadata = {
+  title: "Identiti Trigonometri",
+    description: "Buktikan identiti Pythagoras, identiti salingan, dan identiti hasil bahagi, kemudian gunakan identiti itu untuk mempermudahkan ungkapan trigonometri.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-09-23",
+  subject: "Fungsi dan Pemodelannya",
+};
+
+## Persamaan yang Benar bagi Setiap Sudut yang Dibenarkan
+
+Sesetengah persamaan benar untuk setiap nilai pemboleh ubahnya yang dibenarkan. Contohnya, <InlineMath math="(a + b)^2 = a^2 + 2ab + b^2" /> benar untuk semua nilai <InlineMath math="a" /> dan <InlineMath math="b" />. Persamaan seperti ini dipanggil identiti.
+
+Dalam trigonometri, persamaan yang <Highlight>benar untuk setiap sudut dalam domainnya</Highlight> ialah **identiti trigonometri**. Identiti menulis semula satu ungkapan dalam bentuk yang setara tanpa mengubah nilainya. Cara ini berguna apabila kamu mahu membuktikan identiti lain atau menyelesaikan persamaan.
+
+## Identiti Trigonometri Asas
+
+Identiti menghubungkan **dua bentuk yang sama nilainya** pada domain sepunya kedua-duanya. Kamu boleh menukar satu bentuk dengan bentuk yang lain asalkan setiap penyebut kekal tertakrif. Penulisan semula tidak boleh meluaskan domain secara diam-diam.
+
+### Identiti Pythagoras
+
+Lihat bulatan unit dengan titik <InlineMath math="P(x, y)" /> yang membentuk sudut <InlineMath math="\theta" /> dengan paksi-<InlineMath math="x" /> positif.
+
+<MathVisual
+  title={<>Bulatan Unit dan Identiti Pythagoras</>}
+  description={
+    <>
+      Perhatikan bagaimana koordinat titik <InlineMath math="P" /> berubah apabila
+      sudut berubah. Koordinat ini ialah nilai{" "}
+      <InlineMath math="\cos\theta" /> dan <InlineMath math="\sin\theta" />.
+    </>
+  }
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 45, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
+/>
+
+Pada bulatan unit:
+
+- Jejari: <InlineMath math="r = 1" />
+- Koordinat-<InlineMath math="x" /> ialah <InlineMath math="\cos \theta" />
+- Koordinat-<InlineMath math="y" /> ialah <InlineMath math="\sin \theta" />
+
+Gunakan teorem Pythagoras untuk titik <InlineMath math="P" />:
+
+<BlockMath math="x^2 + y^2 = 1^2" />
+
+Gantikan nilai <InlineMath math="x" /> dan <InlineMath math="y" />:
+
+<BlockMath math="(\cos \theta)^2 + (\sin \theta)^2 = 1" />
+
+Atau boleh ditulis sebagai:
+
+<BlockMath math="\sin^2 \theta + \cos^2 \theta = 1" />
+
+Persamaan ini ialah **identiti Pythagoras**.
+
+**Bentuk Lain Identiti Pythagoras**:
+
+Daripada identiti asas di atas, kita boleh menerbitkan dua bentuk lain:
+
+**Bentuk kedua**: Bahagikan kedua-dua belah dengan <InlineMath math="\cos^2 \theta" /> (untuk <InlineMath math="\cos \theta \neq 0" />)
+
+<MathContainer>
+
+<BlockMath math="\frac{\sin^2 \theta}{\cos^2 \theta} + \frac{\cos^2 \theta}{\cos^2 \theta} = \frac{1}{\cos^2 \theta}" />
+
+<BlockMath math="\tan^2 \theta + 1 = \sec^2 \theta" />
+</MathContainer>
+
+**Bentuk ketiga**: Bahagikan kedua-dua belah dengan <InlineMath math="\sin^2 \theta" /> (untuk <InlineMath math="\sin \theta \neq 0" />)
+
+<MathContainer>
+
+<BlockMath math="\frac{\sin^2 \theta}{\sin^2 \theta} + \frac{\cos^2 \theta}{\sin^2 \theta} = \frac{1}{\sin^2 \theta}" />
+
+<BlockMath math="1 + \cot^2 \theta = \csc^2 \theta" />
+</MathContainer>
+
+### Identiti Salingan
+
+Setiap fungsi trigonometri ada salingannya. Hubungan ini membentuk identiti salingan:
+
+<MathContainer>
+
+<BlockMath math="\sin \theta = \frac{1}{\csc \theta}" />
+
+<BlockMath math="\cos \theta = \frac{1}{\sec \theta}" />
+
+<BlockMath math="\tan \theta = \frac{1}{\cot \theta}" />
+</MathContainer>
+
+Secara setara:
+
+<MathContainer>
+
+<BlockMath math="\csc \theta = \frac{1}{\sin \theta}" />
+
+<BlockMath math="\sec \theta = \frac{1}{\cos \theta}" />
+
+<BlockMath math="\cot \theta = \frac{1}{\tan \theta}" />
+</MathContainer>
+
+Setiap identiti salingan berlaku di mana-mana sahaja kedua-dua belahnya tertakrif.
+
+Semak **penyebut yang bukan sifar** dalam setiap pasangan. Salingan pendaraban berbeza daripada fungsi songsang seperti sin songsang.
+
+| Hubungan | Syarat pada kedua-dua belah |
+| --- | --- |
+| <InlineMath math="\sin\theta=1/\csc\theta" /> | <InlineMath math="\sin\theta\neq0" /> |
+| <InlineMath math="\cos\theta=1/\sec\theta" /> | <InlineMath math="\cos\theta\neq0" /> |
+| <InlineMath math="\tan\theta=1/\cot\theta" /> | <InlineMath math="\sin\theta\neq0,\ \cos\theta\neq0" /> |
+
+### Identiti Hasil Bahagi
+
+Identiti hasil bahagi mengaitkan tangen dan kotangen dengan sinus dan kosinus:
+
+<ContentStack>
+
+  <MathContainer>
+
+<BlockMath math="\tan \theta = \frac{\sin \theta}{\cos \theta}" />
+
+<BlockMath math="\cot \theta = \frac{\cos \theta}{\sin \theta}" />
+</MathContainer>
+
+Bentuk hasil bahagi juga memerlukan penyebut yang bukan sifar.
+
+  <MathVisual
+    title={<>Visualisasi Fungsi Trigonometri</>}
+    description={<>Perhatikan bagaimana nisbah sisi segi tiga memberikan nilai <InlineMath math="\sin" />, <InlineMath math="\cos" />, dan <InlineMath math="\tan" />. Perhatikan juga bagaimana nilai ini berubah apabila sudut berubah.</>}
+    labels={{
+      angle: <InlineMath math="\theta" />,
+      opposite: <>Sisi Bertentangan</>,
+      adjacent: <>Sisi Bersebelahan</>,
+      hypotenuse: <>Hipotenus</>,
+      sine: <InlineMath math="\sin\theta" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 30, label: "angle" }],
+      objects: [
+        { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+        { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+        { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [
+        { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+        { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+        { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+      ],
+      readouts: [
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
+    }}
+  />
+</ContentStack>
+
+Kedua-dua identiti hasil bahagi datang terus daripada takrif fungsi trigonometri pada **bulatan unit**.
+
+### Identiti Fungsi Genap dan Fungsi Ganjil
+
+Apabila sudut negatif, fungsi trigonometri ada sifat khas:
+
+Fungsi genap (simetri pada paksi-<InlineMath math="y" />):
+
+<BlockMath math="\cos(-\theta) = \cos \theta" />
+
+**Fungsi ganjil (simetri pada asalan)**:
+
+<ContentStack>
+
+  <MathContainer>
+
+<BlockMath math="\sin(-\theta) = -\sin \theta" />
+
+<BlockMath math="\tan(-\theta) = -\tan \theta" />
+</MathContainer>
+
+  <MathVisual
+    title={<>Meneroka Sifat Genap dan Ganjil</>}
+    description={<>Masukkan sudut negatif dan positif. Perhatikan bagaimana nilai <InlineMath math="\cos" />, <InlineMath math="\sin" />, dan <InlineMath math="\tan" /> berubah bagi sudut yang berlawanan.</>}
+    labels={{
+      angle: <InlineMath math="\theta" />,
+      point: <InlineMath math="P" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      sine: <InlineMath math="\sin\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 60, label: "angle" }],
+      objects: [
+        { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+        { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+        { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+        { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+      readouts: [
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
+    }}
+  />
+</ContentStack>
+
+## Menggunakan Identiti dalam Pembuktian
+
+Mulakan dari **satu belah** dan tulis semula belah itu menggunakan identiti yang sudah diketahui sehingga sama dengan belah yang satu lagi. Setiap langkah mengekalkan nilai dan syarat domain.
+
+### Mempermudahkan Ungkapan
+
+Permudahkan <InlineMath math="\frac{\sin^2 \theta}{\cos \theta} + \cos \theta" />
+
+**Penyelesaian**:
+
+<MathContainer>
+
+<BlockMath math="\frac{\sin^2 \theta}{\cos \theta} + \cos \theta = \frac{\sin^2 \theta}{\cos \theta} + \frac{\cos^2 \theta}{\cos \theta}" />
+
+<BlockMath math="\frac{\sin^2 \theta}{\cos \theta} + \cos \theta = \frac{\sin^2 \theta + \cos^2 \theta}{\cos \theta}" />
+</MathContainer>
+  Gunakan identiti Pythagoras:
+
+<MathContainer>
+
+<BlockMath math="\frac{\sin^2 \theta}{\cos \theta} + \cos \theta = \frac{1}{\cos \theta}" />
+
+<BlockMath math="\frac{\sin^2 \theta}{\cos \theta} + \cos \theta = \sec \theta" />
+</MathContainer>
+
+### Membuktikan Identiti
+
+Buktikan bahawa <InlineMath math="\frac{1 + \tan^2 \theta}{\sec \theta} = \sec \theta" />
+
+**Penyelesaian**:
+
+Kita mulakan dari sebelah kiri:
+
+Gunakan <InlineMath math="1+\tan^2\theta=\sec^2\theta" />:
+
+<MathContainer>
+
+<BlockMath math="\frac{1 + \tan^2 \theta}{\sec \theta} = \frac{\sec^2 \theta}{\sec \theta}" />
+
+<BlockMath math="\frac{1 + \tan^2 \theta}{\sec \theta} = \sec \theta" />
+</MathContainer>
+
+Sebelah kiri sudah menjadi sebelah kanan, jadi identiti itu benar pada domain sepunya kedua-duanya.
+
+## Menentukan Nilai Fungsi Trigonometri
+
+**Sukuan menentukan tanda** apabila sesuatu identiti memberikan dua kemungkinan punca kuasa dua. Contohnya, kuasa dua kosinus menentukan magnitud kosinus, manakala sukuan memilih sama ada punca yang positif atau negatif.
+
+### Aplikasi Identiti
+
+Jika <InlineMath math="\sin \theta = \frac{3}{5}" /> dan <InlineMath math="90^\circ < \theta < 180^\circ" /> (sukuan II), tentukan nilai fungsi trigonometri yang lain.
+
+**Penyelesaian**:
+
+Gunakan identiti Pythagoras untuk mencari <InlineMath math="\cos \theta" />:
+
+<MathContainer>
+
+<BlockMath math="\sin^2 \theta + \cos^2 \theta = 1" />
+
+<BlockMath math="\left(\frac{3}{5}\right)^2 + \cos^2 \theta = 1" />
+
+<BlockMath math="\frac{9}{25} + \cos^2 \theta = 1" />
+
+<BlockMath math="\cos^2 \theta = 1 - \frac{9}{25} = \frac{16}{25}" />
+
+<BlockMath math="\cos \theta = \pm \frac{4}{5}" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="\theta" /> berada dalam sukuan II, maka <InlineMath math="\cos \theta < 0" />.
+<InlineMath math="\cos \theta = -\frac{4}{5}" />
+
+Seterusnya, kira nilai fungsi trigonometri yang lain:
+
+<MathContainer>
+
+<BlockMath math="\tan \theta = \frac{\sin \theta}{\cos \theta} = \frac{3/5}{-4/5} = -\frac{3}{4}" />
+
+<BlockMath math="\csc \theta = \frac{1}{\sin \theta} = \frac{5}{3}" />
+
+<BlockMath math="\sec \theta = \frac{1}{\cos \theta} = -\frac{5}{4}" />
+
+<BlockMath math="\cot \theta = \frac{1}{\tan \theta} = -\frac{4}{3}" />
+</MathContainer>
+
+## Latihan
+
+Setiap soalan meminta kamu mempermudahkan ungkapan atau membuktikan identiti. Tukarkan setiap fungsi kepada **sinus dan kosinus** dahulu, kemudian permudahkan.
+
+1. Permudahkan ungkapan <InlineMath math="\frac{\tan \theta \cdot \cos \theta}{\sin \theta}" />
+
+2. Buktikan identiti <InlineMath math="\frac{\sin \theta}{1 + \cos \theta} = \frac{1 - \cos \theta}{\sin \theta}" />
+
+3. Jika <InlineMath math="\cos \theta = \frac{5}{13}" /> dan <InlineMath math="270^\circ < \theta < 360^\circ" />, tentukan nilai semua fungsi trigonometri.
+
+4. Permudahkan <InlineMath math="\sin^4 \theta - \cos^4 \theta" />
+
+5. Jika <InlineMath math="\tan \theta = \frac{4}{3}" /> dan <InlineMath math="\sin \theta < 0" />, tentukan nilai <InlineMath math="\sin \theta" /> dan <InlineMath math="\cos \theta" />.
+
+### Jalan Kerja
+
+**Soalan 1**. Permudahkan ungkapan itu langkah demi langkah:
+
+<MathContainer>
+
+<BlockMath math="\frac{\tan \theta \cdot \cos \theta}{\sin \theta} = \frac{\frac{\sin \theta}{\cos \theta} \cdot \cos \theta}{\sin \theta}" />
+
+<BlockMath math="\frac{\tan \theta \cdot \cos \theta}{\sin \theta} = \frac{\sin \theta}{\sin \theta} = 1" />
+</MathContainer>
+
+Hasil ini sah pada **domain ungkapan asal**, iaitu apabila <InlineMath math="\sin\theta \neq 0" /> dan <InlineMath math="\cos\theta \neq 0" />.
+
+**Soalan 2**. Untuk membuktikan identiti ini, kita akan mengubah bentuk **sebelah kiri**:
+
+<MathContainer>
+
+<BlockMath math="\frac{\sin \theta}{1 + \cos \theta} = \frac{\sin \theta}{1 + \cos \theta} \cdot \frac{1 - \cos \theta}{1 - \cos \theta}" />
+
+<BlockMath math="\frac{\sin \theta}{1 + \cos \theta} = \frac{\sin \theta (1 - \cos \theta)}{(1 + \cos \theta)(1 - \cos \theta)}" />
+
+<BlockMath math="\frac{\sin \theta}{1 + \cos \theta} = \frac{\sin \theta (1 - \cos \theta)}{1 - \cos^2 \theta}" />
+
+<BlockMath math="\frac{\sin \theta}{1 + \cos \theta} = \frac{\sin \theta (1 - \cos \theta)}{\sin^2 \theta}" />
+
+<BlockMath math="\frac{\sin \theta}{1 + \cos \theta} = \frac{1 - \cos \theta}{\sin \theta}" />
+</MathContainer>
+
+Ini membuktikan kesamaan itu di mana-mana sahaja kedua-dua belah asal tertakrif.
+
+**Soalan 3**. Diberi <InlineMath math="\cos \theta = \frac{5}{13}" /> dalam **sukuan** IV.
+
+Mencari <InlineMath math="\sin \theta" />:
+
+<BlockMath math="\begin{aligned} \sin^2 \theta &amp;= 1 - \cos^2 \theta \\ &amp;= 1 - \frac{25}{169} \\ &amp;= \frac{144}{169} \end{aligned}" />
+Nilainya negatif dalam sukuan IV:
+
+<BlockMath math="\sin\theta=-\frac{12}{13}" />
+
+Fungsi trigonometri yang lain:
+
+<MathContainer>
+
+<BlockMath math="\tan \theta = \frac{-12/13}{5/13} = -\frac{12}{5}" />
+
+<BlockMath math="\csc \theta = -\frac{13}{12}" />
+
+<BlockMath math="\sec \theta = \frac{13}{5}" />
+
+<BlockMath math="\cot \theta = -\frac{5}{12}" />
+</MathContainer>
+
+**Soalan 4**. Gunakan pemfaktoran **beza dua kuasa dua**:
+
+<MathContainer>
+
+<BlockMath math="\begin{aligned} &amp;\sin^4\theta-\cos^4\theta \\ &amp;=(\sin^2\theta)^2-(\cos^2\theta)^2 \end{aligned}" />
+
+<BlockMath math="\sin^4\theta-\cos^4\theta = (\sin^2 \theta + \cos^2 \theta)(\sin^2 \theta - \cos^2 \theta)" />
+
+<BlockMath math="\sin^4\theta-\cos^4\theta = 1 \cdot (\sin^2 \theta - \cos^2 \theta)" />
+
+<BlockMath math="\sin^4\theta-\cos^4\theta = \sin^2 \theta - \cos^2 \theta" />
+</MathContainer>
+
+**Soalan 5**. Diberi <InlineMath math="\tan \theta = \frac{4}{3}" /> dan <InlineMath math="\sin \theta < 0" />.
+
+Oleh sebab <InlineMath math="\tan \theta > 0" /> dan <InlineMath math="\sin \theta < 0" />, maka <InlineMath math="\cos \theta < 0" /> (**sukuan** III).
+
+Gunakan identiti <InlineMath math="1 + \tan^2 \theta = \sec^2 \theta" />:
+
+<MathContainer>
+
+<BlockMath math="1 + \frac{16}{9} = \sec^2 \theta" />
+
+<BlockMath math="\sec^2 \theta = \frac{25}{9}" />
+</MathContainer>
+Nilainya negatif dalam sukuan III:
+
+<MathContainer>
+
+<BlockMath math="\sec\theta=-\frac53" />
+
+<BlockMath math="\cos \theta = -\frac{3}{5}" />
+</MathContainer>
+
+Untuk <InlineMath math="\sin \theta" />:
+
+<MathContainer>
+
+<BlockMath math="\tan \theta = \frac{\sin \theta}{\cos \theta}" />
+
+<BlockMath math="\frac{4}{3} = \frac{\sin \theta}{-3/5}" />
+
+<BlockMath math="\sin \theta = \frac{4}{3} \cdot \left(-\frac{3}{5}\right) = -\frac{4}{5}" />
+</MathContainer>

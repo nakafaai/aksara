@@ -1,0 +1,516 @@
+export const metadata = {
+  title: "Regangan Mengufuk Fungsi",
+  description: "Darabkan input fungsi dengan satu nombor untuk meregangkan atau memampatkan grafnya secara mengufuk, lihat sebab faktor yang lebih besar daripada satu menyempitkan graf, dan cari persamaan yang baharu.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-10-02",
+  subject: "Penjelmaan Fungsi",
+};
+
+## Mendarab Input dengan Satu Nombor
+
+**Regangan mengufuk**, iaitu regangan atau mampatan pada arah mengufuk, menukar <InlineMath math="y = f(x)" /> kepada <InlineMath math="y = f(bx)" /> dengan <InlineMath math="b > 0" />. Pengganda input <InlineMath math="b" /> mendarab <InlineMath math="x" /> sebelum petua <InlineMath math="f" /> bertindak, jadi setiap titik pada graf <InlineMath math="f" /> bergerak ke tepi:
+
+<BlockMath math="(x_0, y_0) \longmapsto \left(\frac{x_0}{b},\ y_0\right)" />
+
+Tinggi kekal sama, dan hanya jarak ke paksi-<InlineMath math="y" /> yang dibahagi dengan <InlineMath math="b" />. Untuk <InlineMath math="b > 1" />, graf **dimampatkan ke arah paksi-<InlineMath math="y" />** sehingga lebarnya tinggal <InlineMath math="\frac{1}{b}" /> daripada lebar asal, dan untuk <InlineMath math="0 < b < 1" />, graf diregangkan menjauhi paksi-<InlineMath math="y" /> dengan faktor <InlineMath math="\frac{1}{b}" />. Dalam paparan lapisan 3D, kamu boleh memutarkan timbunan graf <InlineMath math="f(bx)" /> dan melihat lebarnya mengecil apabila <InlineMath math="b" /> bertambah besar.
+
+Titik pada paksi-<InlineMath math="y" /> kekal di tempatnya kerana <InlineMath math="\frac{0}{b} = 0" />, dan pengganda negatif menambah pantulan pada paksi-<InlineMath math="y" />. Sesetengah soalan memberikan faktor skala <InlineMath math="s" /> dan bukan <InlineMath math="b" />: setiap koordinat-<InlineMath math="x" /> didarab dengan <InlineMath math="s" />, jadi persamaannya ialah <InlineMath math="y = f\left(\frac{x}{s}\right)" /> dengan <InlineMath math="b = \frac{1}{s}" />.
+
+Gunakan petua ini pada parabola <InlineMath math="f(x) = x^2" /> dengan <InlineMath math="b = 2" /> dan <InlineMath math="b = \frac{1}{2}" />.
+
+<MathVisual
+  title={<>Graf <InlineMath math="f(x) = x^2" />, <InlineMath math="g(x) = f(2x)" /> dan <InlineMath math="h(x) = f\left(\tfrac{x}{2}\right)" /></>}
+  description={<>Dari titik <InlineMath math="(2, 4)" /> pada <InlineMath math="f" />, satu anak panah pergi ke <InlineMath math="(1, 4)" /> pada <InlineMath math="g" /> dan satu lagi ke <InlineMath math="(4, 4)" /> pada <InlineMath math="h" />. Tingginya kekal <InlineMath math="4" />.</>}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+    "l3": <InlineMath math="h" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 8.5 }, y: { min: -1.5, max: 13.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(((t - 140) / 40) / 1)", y: "((1 * (((t - 140) / 40) / 1)) * (1 * (((t - 140) / 40) / 1)))", parameter: { min: 0, max: 280 }, appearance: "primary" },
+      { id: "s1-p220", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(((t - 140) / 40) / 2)", y: "((2 * (((t - 140) / 40) / 2)) * (2 * (((t - 140) / 40) / 2)))", parameter: { min: 0, max: 280 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "(((t - 140) / 40) / (1 / 2))", y: "(((1 / 2) * (((t - 140) / 40) / (1 / 2))) * ((1 / 2) * (((t - 140) / 40) / (1 / 2))))", parameter: { min: 0, max: 280 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 2, y: 4 }, to: { x: 1, y: 4 }, appearance: "highlight" },
+      { id: "s5", kind: "vector", from: { x: 2, y: 4 }, to: { x: 4, y: 4 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -2.5, y: 6.25 }, placement: "left" },
+      { key: "l2", objectId: "s2", at: { x: 1.45, y: 8.41 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 4.4, y: 4.84 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Ketiga-tiga parabola berkongsi verteks <InlineMath math="(0, 0)" />, kerana titik itu terletak pada paksi-<InlineMath math="y" />. Ikut tinggi <InlineMath math="4" />: koordinat-<InlineMath math="x" /> <InlineMath math="2" /> yang dibahagi dengan <InlineMath math="2" /> menjadi <InlineMath math="1" />, dan apabila dibahagi dengan <InlineMath math="\frac{1}{2}" />, ia menjadi <InlineMath math="4" />.
+
+## Mengapa Pengganda yang Lebih Besar Menyempitkan Graf
+
+Ambil satu titik <InlineMath math="(x_0, y_0)" /> pada graf <InlineMath math="f" />, jadi <InlineMath math="f(x_0) = y_0" />. Fungsi baharu <InlineMath math="g(x) = f(bx)" /> mendarab inputnya dengan <InlineMath math="b" /> dahulu. Supaya <InlineMath math="g" /> menghasilkan output yang sama, hasil darab <InlineMath math="bx" /> mesti sama dengan <InlineMath math="x_0" />, maksudnya <InlineMath math="x = \frac{x_0}{b}" />.
+
+<BlockMath math="g\left(\frac{x_0}{b}\right) = f\left(b \cdot \frac{x_0}{b}\right) = f(x_0) = y_0" />
+
+Dengan <InlineMath math="b = 2" />, output yang dicapai oleh <InlineMath math="f" /> pada <InlineMath math="x = 6" /> sudah dicapai oleh <InlineMath math="g" /> pada <InlineMath math="x = 3" />. **Setiap output muncul pada separuh jarak dari paksi-<InlineMath math="y" />**, jadi lebar graf <InlineMath math="g" /> hanya separuh daripada lebar graf <InlineMath math="f" />.
+
+Sekarang gunakan <InlineMath math="b = 2" /> pada <InlineMath math="f(x) = x^2 - 4x" />. Fungsi ini ada pensifar pada <InlineMath math="x = 0" /> dan <InlineMath math="x = 4" />, dan verteksnya di <InlineMath math="(2, -4)" />. Gantikan setiap <InlineMath math="x" /> dengan <InlineMath math="2x" />:
+
+<BlockMath math="\begin{aligned} g(x) &= f(2x) \\ &= (2x)^2 - 4(2x) \\ &= 4x^2 - 8x \end{aligned}" />
+
+Faktorkan <InlineMath math="4x^2 - 8x = 4x(x - 2)" />, dan kamu dapat pensifar <InlineMath math="x = 0" /> dan <InlineMath math="x = 2" />, iaitu pensifar <InlineMath math="f" /> yang dibahagi dengan <InlineMath math="2" />. Verteks <InlineMath math="g" /> berada pada <InlineMath math="x = \frac{8}{2 \cdot 4} = 1" />, dan di situ <InlineMath math="g(1) = 4 - 8 = -4" />. Jadi verteks <InlineMath math="(2, -4)" /> bergerak ke <InlineMath math="(1, -4)" />: **tingginya kekal**, dan **jaraknya ke paksi-<InlineMath math="y" /> menjadi separuh**.
+
+<MathVisual
+  title={<>Parabola <InlineMath math="f(x) = x^2 - 4x" /> dan <InlineMath math="g(x) = f(2x)" /></>}
+  description={<>Setiap anak panah bermula pada satu titik pada <InlineMath math="f" /> dan berakhir pada titik yang sepadan pada <InlineMath math="g" />. Kedua-dua titik itu sama tinggi, dan titik kedua hanya separuh jauh dari paksi-<InlineMath math="y" />.</>}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 7 }, y: { min: -6, max: 14 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + (t / 40))", y: "((((-2) + (t / 40)) * ((-2) + (t / 40))) - (4 * ((-2) + (t / 40))))", parameter: { min: 0, max: 320 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(((-2) + (t / 40)) / 2)", y: "(((2 * (((-2) + (t / 40)) / 2)) * (2 * (((-2) + (t / 40)) / 2))) - (4 * (2 * (((-2) + (t / 40)) / 2))))", parameter: { min: 0, max: 320 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 5, y: 5 }, to: { x: 2.5, y: 5 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: -1, y: 5 }, to: { x: -0.5, y: 5 }, appearance: "answer" },
+      { id: "s5", kind: "vector", from: { x: 2, y: -4 }, to: { x: 1, y: -4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: -4 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 1, y: -4 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Dua anak panah pada tinggi <InlineMath math="5" /> membawa <InlineMath math="(5, 5)" /> ke <InlineMath math="\left(\frac{5}{2}, 5\right)" /> dan <InlineMath math="(-1, 5)" /> ke <InlineMath math="\left(-\frac{1}{2}, 5\right)" />. Kedua-duanya menghala ke paksi-<InlineMath math="y" />, kerana pembahagian dengan <InlineMath math="2" /> menjadikan jarak setiap titik ke paksi-<InlineMath math="y" /> separuh.
+
+## Cara Lebar Bergantung pada Pengganda
+
+Apakah yang berlaku kepada lebar graf <InlineMath math="f(bx)" /> apabila <InlineMath math="b" /> menjadi dua kali ganda? Kamu boleh membandingkan beberapa nilai <InlineMath math="b" /> serentak dalam paparan lapisan 3D, yang menyusun graf <InlineMath math="g(x) = f(bx)" /> untuk <InlineMath math="f(x) = 4(x - 1)^2" /> dan <InlineMath math="b = \frac{1}{2}" />, <InlineMath math="1" />, <InlineMath math="2" /> dan <InlineMath math="4" />. Lapisan bagi setiap nilai <InlineMath math="b" /> terletak pada kedalaman <InlineMath math="z = b" />, jadi **bergerak di sepanjang paksi-<InlineMath math="z" /> bermaksud nilai <InlineMath math="b" /> bertambah**.
+
+Graf <InlineMath math="f" /> bermula dari pintasan-<InlineMath math="y" /> <InlineMath math="(0, 4)" />, turun ke verteks <InlineMath math="(1, 0)" />, dan naik semula ke <InlineMath math="(2, 4)" />. Pada lapisan <InlineMath math="b" />, tiga titik itu menjadi <InlineMath math="(0, 4)" />, <InlineMath math="\left(\frac{1}{b}, 0\right)" /> dan <InlineMath math="\left(\frac{2}{b}, 4\right)" />. Tiga jejak menyambungkan titik yang sepadan merentasi semua lapisan.
+
+<MathVisual
+  title={<>Lapisan <InlineMath math="f(bx)" /> untuk <InlineMath math="f(x) = 4(x - 1)^2" /></>}
+  description={<>Lapisan bagi <InlineMath math="b" /> terletak pada <InlineMath math="z = b" />. Putarkan paparan sehingga kamu melihat dari atas, kemudian ikut jejak hujung kanan, <InlineMath math="x = \tfrac{2}{b}" />.</>}
+  labels={{
+    "l1": <InlineMath math="b = \tfrac{1}{2}" />,
+    "l2": <InlineMath math="b = 1" />,
+    "l3": <InlineMath math="b = 2" />,
+    "l4": <InlineMath math="b = 4" />,
+    "l5": <InlineMath math="x = \tfrac{2}{b}" />,
+    "l6": <InlineMath math="x = \tfrac{1}{b}" />,
+    "l7": <InlineMath math="(0, 4)" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 }, z: { min: 0, max: 4.5 } },
+    view: { kind: "camera", position: { x: 4.7, y: 8.88, z: 10.72 }, target: { x: 1.6, y: 1.8, z: 2.2 } },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((t / 100) / (1 / 2))", y: "(4 * ((((1 / 2) * ((t / 100) / (1 / 2))) - 1))^(2))", z: "(1 / 2)", parameter: { min: 0, max: 200 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((t / 100) / 1)", y: "(4 * (((1 * ((t / 100) / 1)) - 1))^(2))", z: "1", parameter: { min: 0, max: 200 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((t / 100) / 2)", y: "(4 * (((2 * ((t / 100) / 2)) - 1))^(2))", z: "2", parameter: { min: 0, max: 200 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "((t / 100) / 4)", y: "(4 * (((4 * ((t / 100) / 4)) - 1))^(2))", z: "4", parameter: { min: 0, max: 200 }, appearance: "highlight" },
+      { id: "s5", kind: "parametric", x: "(2 / (2)^(((-1) + (t / 40))))", y: "(4 * ((2 - 1))^(2))", z: "(2)^(((-1) + (t / 40)))", parameter: { min: 0, max: 120 }, appearance: "reference" },
+      { id: "s6", kind: "parametric", x: "(1 / (2)^(((-1) + (t / 40))))", y: "(4 * ((1 - 1))^(2))", z: "(2)^(((-1) + (t / 40)))", parameter: { min: 0, max: 120 }, appearance: "reference" },
+      { id: "s7", kind: "parametric", x: "(0 / (2)^(((-1) + (t / 40))))", y: "(4 * ((0 - 1))^(2))", z: "(2)^(((-1) + (t / 40)))", parameter: { min: 0, max: 120 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3.66, y: 2.76, z: 0.5 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 4, z: 1 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 0.59, y: 0.12, z: 2 }, placement: "below-right" },
+      { key: "l4", objectId: "s4", at: { x: 0.04, y: 2.76, z: 4 }, placement: "below-left" },
+      { key: "l5", objectId: "s5", at: { x: 4, y: 4, z: 0.5 }, placement: "above-right" },
+      { key: "l6", objectId: "s6", at: { x: 0.25, y: 0, z: 4 }, placement: "above-left" },
+      { key: "l7", objectId: "s7", at: { x: 0, y: 4, z: 3.36 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Seret paparan sehingga kamu melihat timbunan itu dari atas, dengan paksi-<InlineMath math="y" /> menghala terus ke arah kamu. Jejak hujung kanan membentuk lengkung <InlineMath math="x = \frac{2}{b}" />: **apabila <InlineMath math="b" /> menjadi dua kali ganda, lebar lapisan menjadi separuh**. Hasil darab <InlineMath math="b" /> dan lebar sentiasa <InlineMath math="2" />, jadi lebar berkadar songsang dengan pengganda input.
+
+Melalui <InlineMath math="(0, 4)" />, jejak kekal sebagai garis lurus pada <InlineMath math="x = 0" />, kerana titik pada paksi-<InlineMath math="y" /> tidak bergerak. Pada setiap lapisan, verteks berada pada <InlineMath math="x = \frac{1}{b}" />, tepat di tengah-tengah antara jejak lurus itu dan hujung kanan <InlineMath math="x = \frac{2}{b}" />, kerana <InlineMath math="\frac{1}{b}" /> ialah separuh daripada <InlineMath math="\frac{2}{b}" />.
+
+Setiap lapisan masih menjangkau dari tinggi <InlineMath math="0" /> hingga tinggi <InlineMath math="4" />. Jejak verteks terletak dalam satah <InlineMath math="y = 0" />, manakala jejak hujung kanan dan jejak lurus kekal pada tinggi <InlineMath math="4" />. Jadi **regangan mengufuk langsung tidak mengubah tinggi**, dan julat bahagian yang dilukis kekal <InlineMath math="[0, 4]" />.
+
+Pada setiap lapisan, koordinat-<InlineMath math="x" /> bagi verteks dan hujung kanan ialah <InlineMath math="1" /> dan <InlineMath math="2" /> yang dibahagi dengan <InlineMath math="b" />.
+
+| <InlineMath math="b" /> | Verteks | Hujung kanan | Lebar |
+| --- | --- | --- | --- |
+| <InlineMath math="\frac{1}{2}" /> | <InlineMath math="(2, 0)" /> | <InlineMath math="(4, 4)" /> | <InlineMath math="4" /> |
+| <InlineMath math="1" /> | <InlineMath math="(1, 0)" /> | <InlineMath math="(2, 4)" /> | <InlineMath math="2" /> |
+| <InlineMath math="2" /> | <InlineMath math="\left(\frac{1}{2}, 0\right)" /> | <InlineMath math="(1, 4)" /> | <InlineMath math="1" /> |
+| <InlineMath math="4" /> | <InlineMath math="\left(\frac{1}{4}, 0\right)" /> | <InlineMath math="\left(\frac{1}{2}, 4\right)" /> | <InlineMath math="\frac{1}{2}" /> |
+
+Dalam [regangan mencancang](/ms/subjek/matematik/penjelmaan-fungsi/regangan-mencancang), tinggi sesuatu titik berkadar dengan faktor, jadi jejak satu titik merentasi lapisan yang serupa ialah garis lurus. Dalam regangan mengufuk, koordinat-<InlineMath math="x" /> dibahagi dengan <InlineMath math="b" />, dan pembahagian itulah yang membengkokkan jejak.
+
+## Faktor Skala dan Pengganda Input
+
+Bukan semua soalan menyatakan pengganda input. Sesetengahnya memberikan **faktor skala** <InlineMath math="s" />: setiap koordinat-<InlineMath math="x" /> didarab dengan <InlineMath math="s" />, manakala koordinat-<InlineMath math="y" /> kekal. Titik <InlineMath math="(x_0, y_0)" /> pada graf <InlineMath math="f" /> bergerak ke <InlineMath math="(s x_0, y_0)" />.
+
+Untuk mencari persamaannya, tulis koordinat lama dalam sebutan koordinat baharu. Daripada <InlineMath math="x = s x_0" />, kamu dapat <InlineMath math="x_0 = \frac{x}{s}" />, kemudian gantikan ke dalam <InlineMath math="y = f(x_0)" />:
+
+<BlockMath math="y = f\left(\frac{x}{s}\right)" />
+
+Ini ialah <InlineMath math="y = f(bx)" /> dengan <InlineMath math="b = \frac{1}{s}" />. Jadi **mendarab koordinat dengan <InlineMath math="s" /> sama seperti membahagi input dengan <InlineMath math="s" />**. Faktor skala <InlineMath math="3" /> menjadikan graf tiga kali lebih lebar, dengan persamaan <InlineMath math="y = f\left(\frac{x}{3}\right)" />.
+
+Contohnya, darabkan setiap koordinat-<InlineMath math="x" /> pada graf <InlineMath math="y = \sqrt{x}" /> dengan <InlineMath math="3" />. Gantikan <InlineMath math="x" /> dengan <InlineMath math="\frac{x}{3}" />:
+
+<BlockMath math="g(x) = \sqrt{\frac{x}{3}}" />
+
+Semak dengan titik <InlineMath math="(4, 2)" /> pada <InlineMath math="y = \sqrt{x}" />. Titik itu bergerak ke <InlineMath math="(12, 2)" />, dan memang <InlineMath math="g(12) = \sqrt{\frac{12}{3}} = \sqrt{4} = 2" />. Domainnya kekal <InlineMath math="[0, \infty)" /> kerana <InlineMath math="\frac{x}{3} \ge 0" /> tepat apabila <InlineMath math="x \ge 0" />.
+
+Dalam paparan lapisan 3D, graf <InlineMath math="y = \sqrt{\frac{x}{s}}" /> untuk <InlineMath math="s = 1" />, <InlineMath math="2" /> dan <InlineMath math="3" /> terletak pada kedalaman <InlineMath math="z = s" />. Pada lapisan <InlineMath math="s" />, titik pada tinggi <InlineMath math="2" /> terletak pada <InlineMath math="x = 4s" />, jadi pada lapisan <InlineMath math="s = 3" /> kamu akan jumpa titik <InlineMath math="(12, 2)" /> yang baru sahaja kamu semak.
+
+<MathVisual
+  title={<>Lapisan <InlineMath math="y = \sqrt{\tfrac{x}{s}}" /> untuk faktor skala <InlineMath math="s" /></>}
+  description={<>Lapisan bagi <InlineMath math="s" /> terletak pada <InlineMath math="z = s" />. Jejak titik pada tinggi <InlineMath math="2" /> dan pada tinggi <InlineMath math="1" /> ialah garis lurus.</>}
+  labels={{
+    "l1": <InlineMath math="s = 1" />,
+    "l2": <InlineMath math="s = 2" />,
+    "l3": <InlineMath math="s = 3" />,
+    "l4": <InlineMath math="x = 4s" />,
+    "l5": <InlineMath math="x = s" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: -0.5, max: 2.5 }, z: { min: -0.5, max: 3.5 } },
+    view: { kind: "camera", position: { x: -1.71, y: 9.39, z: 11.56 }, target: { x: 5.6, y: 1, z: 1.5 } },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((1 * (t / 100)) * (t / 100))", y: "sqrt((((1 * (t / 100)) * (t / 100)) / 1))", z: "1", parameter: { min: 0, max: 200 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((2 * (t / 100)) * (t / 100))", y: "sqrt((((2 * (t / 100)) * (t / 100)) / 2))", z: "2", parameter: { min: 0, max: 200 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((3 * (t / 100)) * (t / 100))", y: "sqrt((((3 * (t / 100)) * (t / 100)) / 3))", z: "3", parameter: { min: 0, max: 200 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 2, z: 0 }, { x: 4, y: 2, z: 1 }, { x: 8, y: 2, z: 2 }, { x: 12, y: 2, z: 3 }], appearance: "highlight" },
+      { id: "s4-p1", kind: "point", at: { x: 4, y: 2, z: 1 }, appearance: "highlight" },
+      { id: "s4-p2", kind: "point", at: { x: 8, y: 2, z: 2 }, appearance: "highlight" },
+      { id: "s4-p3", kind: "point", at: { x: 12, y: 2, z: 3 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 1, z: 0 }, { x: 1, y: 1, z: 1 }, { x: 2, y: 1, z: 2 }, { x: 3, y: 1, z: 3 }], appearance: "highlight" },
+      { id: "s5-p1", kind: "point", at: { x: 1, y: 1, z: 1 }, appearance: "highlight" },
+      { id: "s5-p2", kind: "point", at: { x: 2, y: 1, z: 2 }, appearance: "highlight" },
+      { id: "s5-p3", kind: "point", at: { x: 3, y: 1, z: 3 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 4, y: 2, z: 1 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 8, y: 2, z: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 0.33, y: 0.33, z: 3 }, placement: "below-right" },
+      { key: "l4", objectId: "s4", at: { x: 12, y: 2, z: 3 }, placement: "above" },
+      { key: "l5", objectId: "s5", at: { x: 3, y: 1, z: 3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Kedua-dua jejak itu lurus kerana setiap koordinat-<InlineMath math="x" /> didarab dengan <InlineMath math="s" />: **lebar graf berkadar terus dengan faktor skala**. Bandingkan dengan jejak melengkung <InlineMath math="x = \frac{2}{b}" /> bagi lapisan <InlineMath math="f(bx)" />. Di situ, koordinat-<InlineMath math="x" /> dibahagi dengan pengganda input <InlineMath math="b = \frac{1}{s}" />.
+
+[Pembesaran](/ms/subjek/matematik/transformasi-geometri/pembesaran) dengan pusat di asalan mendarab kedua-dua koordinat dengan faktor yang sama, jadi setiap sudut kekal saiznya dan imejnya serupa dengan bentuk asal. Regangan mengufuk hanya mendarab koordinat-<InlineMath math="x" />, jadi **sudut pada graf boleh berubah**. Dua kaki graf <InlineMath math="y = |x|" /> berserenjang, manakala kaki graf <InlineMath math="y = |2x| = 2|x|" /> ada kecerunan <InlineMath math="2" /> dan <InlineMath math="-2" />, jadi sudut di verteks mengecil kepada lebih kurang <InlineMath math="53^\circ" />.
+
+## Ciri yang Bergerak dan Ciri yang Kekal
+
+Untuk <InlineMath math="b > 0" />, **setiap ciri yang ditentukan oleh nilai <InlineMath math="x" /> dibahagi dengan <InlineMath math="b" />**, manakala setiap ciri yang ditentukan oleh tinggi kekal sama.
+
+| Ciri | Dalam <InlineMath math="f(bx)" /> | Sebab |
+| --- | --- | --- |
+| Titik <InlineMath math="(x_0, y_0)" /> | <InlineMath math="\left(\frac{x_0}{b}, y_0\right)" /> | tinggi kekal, <InlineMath math="x" /> dibahagi dengan <InlineMath math="b" /> |
+| Pensifar <InlineMath math="x_0" /> | <InlineMath math="\frac{x_0}{b}" /> | pensifar ialah nilai <InlineMath math="x" /> |
+| Domain <InlineMath math="[c, d]" /> | <InlineMath math="\left[\frac{c}{b}, \frac{d}{b}\right]" /> | domain mengandungi nilai <InlineMath math="x" /> |
+| Asimptot mencancang <InlineMath math="x = x_1" /> | <InlineMath math="x = \frac{x_1}{b}" /> | garis mencancang ditentukan oleh nilai <InlineMath math="x" /> |
+| Julat | tidak berubah | julat mengandungi tinggi |
+| Pintasan-<InlineMath math="y" /> | kekal pada <InlineMath math="(0, f(0))" /> | <InlineMath math="\frac{0}{b} = 0" /> |
+| Asimptot mengufuk <InlineMath math="y = y_1" /> | tidak berubah | garis mengufuk ditentukan oleh tinggi |
+
+Garis <InlineMath math="f(x) = x + 2" /> menunjukkan dua baris jadual itu serentak. Pensifarnya, <InlineMath math="-2" />, bergerak ke <InlineMath math="\frac{-2}{2} = -1" /> untuk <InlineMath math="b = 2" /> dan ke <InlineMath math="\frac{-2}{1/2} = -4" /> untuk <InlineMath math="b = \frac{1}{2}" />. Pintasan-<InlineMath math="y" /> <InlineMath math="(0, 2)" /> tidak bergerak, manakala kecerunan garis <InlineMath math="f(bx) = bx + 2" /> menjadi <InlineMath math="b" />.
+
+<MathVisual
+  title={<>Garis <InlineMath math="f(x) = x + 2" />, <InlineMath math="g(x) = f(2x)" /> dan <InlineMath math="h(x) = f\left(\tfrac{x}{2}\right)" /></>}
+  description={<>Ketiga-tiga garis melalui titik tetap <InlineMath math="(0, 2)" />. Pensifar <InlineMath math="f" />, <InlineMath math="g" /> dan <InlineMath math="h" /> masing-masing ialah <InlineMath math="-2" />, <InlineMath math="-1" /> dan <InlineMath math="-4" />.</>}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+    "l3": <InlineMath math="h" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 13 }, y: { min: -8, max: 12 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: -8, y: -6 }, { x: -2, y: 0 }, { x: 0, y: 2 }, { x: 2.5, y: 4.5 }, { x: 8, y: 10 }], appearance: "primary" },
+      { id: "s1-p1", kind: "point", at: { x: -2, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -4, y: -6 }, { x: -1, y: 0 }, { x: 0, y: 2 }, { x: 1.75, y: 5.5 }, { x: 4, y: 10 }], appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: -1, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -12, y: -4 }, { x: -4, y: 0 }, { x: 0, y: 2 }, { x: 3, y: 3.5 }, { x: 10, y: 7 }], appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: -4, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 0, y: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.5, y: 4.5 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 1.75, y: 5.5 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 3, y: 3.5 }, placement: "below" },
+    ],
+  }}
+/>
+
+Graf <InlineMath math="y = 2^x" /> melalui <InlineMath math="(3, 8)" />. Graf <InlineMath math="y = 2^{3x}" /> melalui <InlineMath math="(1, 8)" /> kerana <InlineMath math="2^{3 \cdot 1} = 8" />, manakala pintasan <InlineMath math="(0, 1)" /> dan asimptot <InlineMath math="y = 0" /> kekal. Untuk [fungsi eksponen](/ms/subjek/matematik/fungsi-dan-pemodelannya/fungsi-eksponen) yang menokok, mampatan dengan <InlineMath math="b > 1" /> menjadikan lengkung lebih curam pada setiap tinggi tanpa menggerakkan pintasan-<InlineMath math="y" /> lengkung itu.
+
+<MathVisual
+  title={<>Lengkung <InlineMath math="f(x) = 2^x" /> dan <InlineMath math="y = f(3x) = 2^{3x}" /></>}
+  description={<>Anak panah membawa <InlineMath math="(3, 8)" /> ke <InlineMath math="(1, 8)" />. Kedua-dua lengkung melalui titik tetap <InlineMath math="(0, 1)" /> dan menghampiri asimptot <InlineMath math="y = 0" /> di sebelah kiri.</>}
+  labels={{
+    "l1": <InlineMath math="2^x" />,
+    "l2": <InlineMath math="2^{3x}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -14, max: 6 }, y: { min: -2, max: 18 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-12) + (t * (1 / 16)))", y: "(2)^(((-12) + (t * (1 / 16))))", parameter: { min: 0, max: 256 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(((-36) + (t * (1 / 8))) / 3)", y: "(2)^((3 * (((-36) + (t * (1 / 8))) / 3)))", parameter: { min: 0, max: 320 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 3, y: 8 }, to: { x: 1, y: 8 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 0, y: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.5, y: 5.66 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 0.92, y: 6.73 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Lengkung <InlineMath math="2^{3x}" /> mencapai tinggi <InlineMath math="8" /> pada jarak yang hanya satu pertiga daripada jarak asal ke paksi-<InlineMath math="y" />, manakala titik <InlineMath math="(0, 1)" /> kekal di tempatnya.
+
+Fungsi <InlineMath math="f(x) = \frac{1}{x - 4}" /> ada [asimptot mencancang](/ms/subjek/matematik/fungsi-dan-pemodelannya/asimptot) <InlineMath math="x = 4" />. Dalam <InlineMath math="f(2x) = \frac{1}{2x - 4}" />, penyebutnya sifar pada <InlineMath math="x = 2" />, jadi asimptot itu bergerak ke <InlineMath math="x = \frac{4}{2} = 2" />.
+
+<MathVisual
+  title={<>Graf <InlineMath math="f(x) = \frac{1}{x - 4}" /> dan <InlineMath math="g(x) = f(2x)" /></>}
+  description={<>Garis nipis menandakan asimptot mencancang <InlineMath math="x = 4" /> dan <InlineMath math="x = 2" />. Anak panah membawa <InlineMath math="(5, 1)" /> ke <InlineMath math="\left(\tfrac{5}{2}, 1\right)" />.</>}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+    "l3": <InlineMath math="x = 4" />,
+    "l4": <InlineMath math="x = 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12, max: 18 }, y: { min: -10, max: 10 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 - (13 * (((1 / 8) / 13))^((t / 200))))", y: "(1 / ((4 - (13 * (((1 / 8) / 13))^((t / 200)))) - 4))", parameter: { min: 0, max: 200 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(4 + ((1 / 8) * ((11 / (1 / 8)))^((t / 200))))", y: "(1 / ((4 + ((1 / 8) * ((11 / (1 / 8)))^((t / 200)))) - 4))", parameter: { min: 0, max: 200 }, appearance: "primary" },
+      { id: "s3", kind: "parametric", x: "(2 - (11 * (((1 / 16) / 11))^((t / 200))))", y: "(1 / ((2 * (2 - (11 * (((1 / 16) / 11))^((t / 200))))) - 4))", parameter: { min: 0, max: 200 }, appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(2 + ((1 / 16) * ((13 / (1 / 16)))^((t / 200))))", y: "(1 / ((2 * (2 + ((1 / 16) * ((13 / (1 / 16)))^((t / 200))))) - 4))", parameter: { min: 0, max: 200 }, appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 4, y: -8 }, { x: 4, y: 8 }], appearance: "primary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 2, y: -8 }, { x: 2, y: 8 }], appearance: "secondary" },
+      { id: "s7", kind: "vector", from: { x: 5, y: 1 }, to: { x: 2.5, y: 1 }, appearance: "answer" },
+      { id: "s8", kind: "point", at: { x: 0, y: -0.25 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 5.5, y: 0.67 }, placement: "above-right" },
+      { key: "l2", objectId: "s4", at: { x: 2.5, y: 1 }, placement: "above-right" },
+      { key: "l3", objectId: "s5", at: { x: 4, y: -8 }, placement: "above-right" },
+      { key: "l4", objectId: "s6", at: { x: 2, y: -8 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Dua cabang setiap graf dipisahkan oleh asimptotnya, dan asimptot itu juga dibahagi dengan <InlineMath math="2" />. Asimptot mengufuk <InlineMath math="y = 0" /> kekal kerana ia ditentukan oleh tinggi, dan pintasan-<InlineMath math="y" /> <InlineMath math="\left(0, -\frac{1}{4}\right)" /> kekal kerana ia terletak pada paksi-<InlineMath math="y" />.
+
+Bandingkan ini dengan [translasi mengufuk](/ms/subjek/matematik/penjelmaan-fungsi/translasi-mengufuk), yang menambah nombor yang sama pada setiap koordinat-<InlineMath math="x" />. Translasi menggerakkan titik <InlineMath math="(0, f(0))" />, manakala regangan mengufuk membiarkan titik itu di tempatnya, kerana sifar yang dibahagi dengan sebarang nombor bukan sifar tetap sifar.
+
+## Pengganda Negatif Menambah Pantulan
+
+Petua <InlineMath math="(x_0, y_0) \longmapsto \left(\frac{x_0}{b}, y_0\right)" /> masih berlaku apabila <InlineMath math="b < 0" />. Pembahagian dengan nombor negatif menukar tanda koordinat-<InlineMath math="x" />, jadi graf diregangkan atau dimampatkan dengan faktor <InlineMath math="\frac{1}{|b|}" /> dan kemudian **dipantulkan pada paksi-<InlineMath math="y" />**. Untuk <InlineMath math="b = -1" />, yang tinggal hanyalah [pantulan mengufuk](/ms/subjek/matematik/penjelmaan-fungsi/pantulan-pada-paksi-y) <InlineMath math="y = f(-x)" />.
+
+Bagi fungsi genap, pantulan itu tidak kelihatan. Untuk <InlineMath math="f(x) = x^2 + 1" /> dan <InlineMath math="b = -2" />, <InlineMath math="f(-2x) = 4x^2 + 1 = f(2x)" />, jadi grafnya sama seperti selepas mampatan sahaja. Titik <InlineMath math="(2, 5)" /> tetap bergerak ke sebelah kiri, iaitu ke <InlineMath math="(-1, 5)" />, dan titik <InlineMath math="(-1, 2)" /> bergerak ke sebelah kanan, iaitu ke <InlineMath math="\left(\frac{1}{2}, 2\right)" />.
+
+<MathVisual
+  title={<>Graf <InlineMath math="f(x) = x^2 + 1" /> dan <InlineMath math="g(x) = f(-2x)" /></>}
+  description={<>Kedua-dua anak panah melintasi paksi-<InlineMath math="y" />, tetapi setiap imej jatuh pada parabola yang simetri, jadi <InlineMath math="g" /> sama dengan <InlineMath math="f(2x)" />.</>}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: 0, max: 11 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (t / 40))", y: "((((-3) + (t / 40)) * ((-3) + (t / 40))) + 1)", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(((-3) + (t / 40)) / (-2))", y: "((((-2) * (((-3) + (t / 40)) / (-2))) * ((-2) * (((-3) + (t / 40)) / (-2)))) + 1)", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 2, y: 5 }, to: { x: -1, y: 5 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: -1, y: 2 }, to: { x: 0.5, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.5, y: 7.25 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: 1.25, y: 7.25 }, placement: "right" },
+    ],
+  }}
+/>
+
+Satu-satunya nilai yang tidak boleh kamu gunakan ialah <InlineMath math="b = 0" />. Dengan <InlineMath math="b = 0" />, setiap input menjadi <InlineMath math="0" />, jadi <InlineMath math="f(0 \cdot x) = f(0)" /> untuk setiap <InlineMath math="x" />, dan seluruh graf menjadi garis mengufuk <InlineMath math="y = f(0)" /> asalkan <InlineMath math="f(0)" /> tertakrif. Petua <InlineMath math="\frac{x_0}{b}" /> juga gagal, kerana pembahagian dengan sifar tidak tertakrif.
+
+Pantulan untuk <InlineMath math="b < 0" /> juga menukar susunan titik hujung domain. Jika <InlineMath math="f" /> ada domain <InlineMath math="[c, d]" /> dan <InlineMath math="b < 0" />, titik hujung kiri domain baharu datang daripada titik hujung kanan domain lama:
+
+<BlockMath math="[c, d] \longmapsto \left[\frac{d}{b},\ \frac{c}{b}\right]" />
+
+Ambil <InlineMath math="h(x) = |x - 2|" /> dengan verteks <InlineMath math="(2, 0)" />, dan gunakan <InlineMath math="b = -2" />:
+
+<BlockMath math="\begin{aligned} H(x) &= h(-2x) \\ &= |-2x - 2| \\ &= 2\,|x + 1| \end{aligned}" />
+
+Langkah terakhir menggunakan <InlineMath math="-2x - 2 = -2(x + 1)" /> dan <InlineMath math="|-2| = 2" />. Verteks bergerak ke <InlineMath math="\left(\frac{2}{-2}, 0\right) = (-1, 0)" />, dan memang <InlineMath math="H(-1) = 0" />. Titik <InlineMath math="(4, 2)" /> bergerak ke <InlineMath math="(-2, 2)" />: jaraknya ke paksi-<InlineMath math="y" /> menjadi separuh, dan titik itu kini berada di sebelah yang bertentangan. Pintasan-<InlineMath math="y" /> <InlineMath math="(0, 2)" /> kekal kerana <InlineMath math="H(0) = 2 = h(0)" />.
+
+Sebagai perbandingan, <InlineMath math="b = -1" /> memberikan <InlineMath math="h(-x) = |-x - 2| = |x + 2|" /> dengan verteks <InlineMath math="(-2, 0)" />. Graf itu hanya dipantulkan, jadi lebarnya kekal sama.
+
+<MathVisual
+  title={<>Graf <InlineMath math="h(x) = |x - 2|" />, <InlineMath math="y = h(-x)" /> dan <InlineMath math="H(x) = h(-2x)" /></>}
+  description={<>Anak panah membawa <InlineMath math="(4, 2)" /> ke <InlineMath math="(-2, 2)" />, melalui titik tetap <InlineMath math="(0, 2)" /> pada paksi-<InlineMath math="y" />. Verteks <InlineMath math="(2, 0)" /> bergerak ke <InlineMath math="(-2, 0)" /> untuk <InlineMath math="b = -1" /> dan ke <InlineMath math="(-1, 0)" /> untuk <InlineMath math="b = -2" />.</>}
+  labels={{
+    "l1": <InlineMath math="h" />,
+    "l2": <InlineMath math="h(-x)" />,
+    "l3": <InlineMath math="H" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -14, max: 14 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: -7, y: 9 }, { x: 0, y: 2 }, { x: 2, y: 0 }, { x: 4, y: 2 }, { x: 11, y: 9 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 7, y: 9 }, { x: 0, y: 2 }, { x: -2, y: 0 }, { x: -4, y: 2 }, { x: -11, y: 9 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 3.5, y: 9 }, { x: 0, y: 2 }, { x: -1, y: 0 }, { x: -2, y: 2 }, { x: -5.5, y: 9 }], appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 4, y: 2 }, to: { x: -2, y: 2 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 0, y: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 0 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: -2, y: 0 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: -1, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+## Kesilapan Semasa Membaca Pengganda
+
+Untuk mengesan kesilapan seperti dalam jadual ini, ambil satu titik yang kamu sudah tahu, **kira imejnya pada graf <InlineMath math="f(bx)" />**, dan semak imej itu dengan jawapan kamu.
+
+| Kesilapan | Sebab ia salah | Cara menyemak |
+| --- | --- | --- |
+| Membaca <InlineMath math="f(2x)" /> sebagai graf yang dua kali lebih lebar | Input menjadi dua kali ganda, jadi setiap output muncul pada separuh jarak | Pensifar <InlineMath math="x_0" /> mesti menjadi <InlineMath math="\frac{x_0}{2}" /> |
+| Membahagi tinggi, seperti <InlineMath math="\left(x_0, \frac{y_0}{b}\right)" /> | Pengganda di dalam <InlineMath math="f" /> hanya mengubah input | Gantikan <InlineMath math="x = \frac{x_0}{b}" /> dan pastikan outputnya <InlineMath math="y_0" /> |
+| Menulis <InlineMath math="f(3x)" /> untuk faktor skala <InlineMath math="3" /> | Faktor skala <InlineMath math="s" /> bermaksud <InlineMath math="b = \frac{1}{s}" /> | Titik <InlineMath math="(x_0, y_0)" /> mesti menjadi <InlineMath math="(3x_0, y_0)" /> |
+| Membaca <InlineMath math="f(2x - 6)" /> sebagai translasi sejauh <InlineMath math="6" /> unit | <InlineMath math="2x - 6 = 2(x - 3)" />, jadi translasinya <InlineMath math="3" /> unit | Keluarkan pengganda daripada kurungan sebagai faktor dahulu |
+| Mengekalkan susunan domain apabila <InlineMath math="b < 0" /> | Pembahagian dengan nombor negatif menterbalikkan susunan | Titik hujung kiri domain baharu mesti nombor yang lebih kecil |
+
+Persamaan <InlineMath math="f(2x - 6) = f(2(x - 3))" /> bermaksud graf dimampatkan dengan faktor <InlineMath math="\frac{1}{2}" />, kemudian digerakkan <InlineMath math="3" /> unit ke kanan, jadi titik <InlineMath math="(x_0, y_0)" /> berakhir di <InlineMath math="\left(\frac{x_0}{2} + 3, y_0\right)" />. Jika kamu gerakkan graf <InlineMath math="3" /> unit ke kanan dahulu dan mampatkan selepas itu, persamaannya menjadi <InlineMath math="f(2x - 3)" />, dan titik yang sama berakhir di <InlineMath math="\left(\frac{x_0 + 3}{2}, y_0\right)" />. Dalam [gabungan penjelmaan fungsi](/ms/subjek/matematik/penjelmaan-fungsi/gabungan-penjelmaan-fungsi), kamu membaca susunan langkah daripada bentuk persamaan, sama seperti semasa kamu memfaktorkan <InlineMath math="f(2x - 6)" />.
+
+## Latihan
+
+Mulakan setiap soalan dengan **mencari <InlineMath math="b" />**, kerana pengganda itulah yang membahagi koordinat-<InlineMath math="x" />. Soalan 1 hanya meminta kamu menggantikan <InlineMath math="x" /> dengan <InlineMath math="3x" />, manakala dalam soalan 4 kamu mencari <InlineMath math="b" /> daripada satu titik pada graf.
+
+1. Diberi <InlineMath math="f(x) = x^2 - 2x - 3" />, cari <InlineMath math="f(3x)" /> dan pensifarnya.
+2. Setiap titik <InlineMath math="(x, y)" /> pada graf <InlineMath math="y = \sqrt{x}" /> bergerak ke <InlineMath math="(4x, y)" />. Cari persamaan graf baharu itu, kemudian semak dengan satu titik.
+3. Fungsi <InlineMath math="f" /> ada domain <InlineMath math="[-2, 8]" />. Cari domain bagi <InlineMath math="g(x) = f\left(-\frac{x}{2}\right)" />.
+4. Graf <InlineMath math="g(x) = 2^{bx}" /> melalui <InlineMath math="(6, 8)" />. Cari <InlineMath math="b" />, kemudian huraikan regangan atau mampatan yang menukar <InlineMath math="y = 2^x" /> kepada graf <InlineMath math="g" />.
+
+### Jalan Kerja
+
+**Soalan 1**. Pengganda input ialah <InlineMath math="b = 3" />, jadi gantikan setiap <InlineMath math="x" /> dalam <InlineMath math="f" /> dengan <InlineMath math="3x" />:
+
+<BlockMath math="\begin{aligned} f(3x) &= (3x)^2 - 2(3x) - 3 \\ &= 9x^2 - 6x - 3 \\ &= 3(3x + 1)(x - 1) \end{aligned}" />
+
+Daripada bentuk berfaktor, pensifarnya ialah <InlineMath math="x = -\frac{1}{3}" /> dan <InlineMath math="x = 1" />. Semakan kedua datang daripada pensifar <InlineMath math="f" />: <InlineMath math="f(x) = (x + 1)(x - 3)" /> ada pensifar <InlineMath math="-1" /> dan <InlineMath math="3" />, dan apabila **kedua-duanya dibahagi dengan <InlineMath math="3" />**, kamu dapat tepat <InlineMath math="-\frac{1}{3}" /> dan <InlineMath math="1" />.
+
+<MathVisual
+  title={<>Parabola <InlineMath math="f(x) = x^2 - 2x - 3" /> dan <InlineMath math="F(x) = f(3x)" /></>}
+  description={<>Titik pada setiap parabola menandakan pensifarnya. Anak panah membawa verteks <InlineMath math="(1, -4)" /> ke <InlineMath math="\left(\tfrac{1}{3}, -4\right)" />.</>}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="F" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 6 }, y: { min: -6, max: 14 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (t / 30))", y: "(((((-3) + (t / 30)) * ((-3) + (t / 30))) - (2 * ((-3) + (t / 30)))) - 3)", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s1-p60", kind: "point", at: { x: -1, y: 0 }, appearance: "primary" },
+      { id: "s1-p180", kind: "point", at: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(((-3) + (t / 30)) / 3)", y: "((((3 * (((-3) + (t / 30)) / 3)) * (3 * (((-3) + (t / 30)) / 3))) - (2 * (3 * (((-3) + (t / 30)) / 3)))) - 3)", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s2-p60", kind: "point", at: { x: -0.33, y: 0 }, appearance: "secondary" },
+      { id: "s2-p180", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 1, y: -4 }, to: { x: 0.33, y: -4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 4, y: 5 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: 1.17, y: 2.25 }, placement: "right" },
+    ],
+  }}
+/>
+
+**Soalan 2**. Setiap koordinat-<InlineMath math="x" /> didarab dengan <InlineMath math="4" />, jadi **faktor skalanya ialah <InlineMath math="s = 4" />** dan <InlineMath math="b = \frac{1}{4}" />. Gantikan <InlineMath math="x" /> dengan <InlineMath math="\frac{x}{4}" />:
+
+<BlockMath math="y = \sqrt{\frac{x}{4}} = \frac{\sqrt{x}}{2}" />
+
+Bentuk kedua itu benar kerana <InlineMath math="\sqrt{\frac{x}{4}} = \frac{\sqrt{x}}{\sqrt{4}}" /> untuk <InlineMath math="x \ge 0" />. Semak dengan <InlineMath math="(1, 1)" /> pada <InlineMath math="y = \sqrt{x}" />: titik itu bergerak ke <InlineMath math="(4, 1)" />, dan <InlineMath math="\frac{\sqrt{4}}{2} = 1" />. Bentuk <InlineMath math="\frac{\sqrt{x}}{2}" /> juga boleh dibaca sebagai mampatan mencancang dengan faktor <InlineMath math="\frac{1}{2}" />: titik <InlineMath math="(4, 2)" /> turun terus ke <InlineMath math="(4, 1)" />. Jadi bagi fungsi punca kuasa dua, kedua-dua penjelmaan memberikan graf yang sama.
+
+<MathVisual
+  title={<>Lengkung <InlineMath math="y = \sqrt{x}" /> dan <InlineMath math="y = \sqrt{\tfrac{x}{4}}" /></>}
+  description={<>Anak panah mengufuk membawa <InlineMath math="(1, 1)" /> ke <InlineMath math="(4, 1)" />, dan anak panah mencancang membawa <InlineMath math="(4, 2)" /> ke titik yang sama.</>}
+  labels={{
+    "l1": <InlineMath math="\sqrt{x}" />,
+    "l2": <InlineMath math="\sqrt{\tfrac{x}{4}}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 10 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((t / 80) * (t / 80))", y: "sqrt(((t / 80) * (t / 80)))", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((4 * (t / 200)) * (t / 200))", y: "sqrt((((4 * (t / 200)) * (t / 200)) / 4))", parameter: { min: 0, max: 300 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 1, y: 1 }, to: { x: 4, y: 1 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 4, y: 2 }, to: { x: 4, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 4.84, y: 2.2 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 5.29, y: 1.15 }, placement: "below" },
+    ],
+  }}
+/>
+
+**Soalan 3**. Penggandanya ialah <InlineMath math="b = -\frac{1}{2}" />, jadi titik hujung domain akan bertukar tempat. Nilai <InlineMath math="g(x)" /> tertakrif apabila input <InlineMath math="-\frac{x}{2}" /> terletak dalam domain <InlineMath math="f" />. Darabkan ketaksamaan dengan <InlineMath math="-2" /> dan **terbalikkan kedua-dua tanda ketaksamaan**:
+
+<BlockMath math="\begin{aligned} -2 &\le -\frac{x}{2} \le 8 \\ 4 &\ge x \ge -16 \end{aligned}" />
+
+Petua <InlineMath math="\left[\frac{d}{b}, \frac{c}{b}\right] = \left[\frac{8}{-1/2}, \frac{-2}{-1/2}\right] = [-16, 4]" /> memberikan selang yang sama. Semak kedua-dua titik hujung: <InlineMath math="x = -16" /> memberikan input <InlineMath math="8" />, dan <InlineMath math="x = 4" /> memberikan input <InlineMath math="-2" />. Kedua-duanya tepat titik hujung domain <InlineMath math="f" />, jadi domain <InlineMath math="g" /> ialah <InlineMath math="[-16, 4]" />.
+
+**Soalan 4**. Gantikan titik <InlineMath math="(6, 8)" /> ke dalam <InlineMath math="g(x) = 2^{bx}" />:
+
+<BlockMath math="\begin{aligned} 2^{6b} &= 8 = 2^3 \\ 6b &= 3 \\ b &= \tfrac{1}{2} \end{aligned}" />
+
+Fungsi <InlineMath math="2^t" /> menokok, jadi <InlineMath math="2^{6b} = 2^3" /> hanya benar apabila <InlineMath math="6b = 3" />. Oleh sebab <InlineMath math="0 < b < 1" />, graf <InlineMath math="y = 2^x" /> diregangkan menjauhi paksi-<InlineMath math="y" /> dengan faktor <InlineMath math="\frac{1}{b} = 2" />: **setiap jarak ke paksi-<InlineMath math="y" /> menjadi dua kali ganda**. Semak: titik <InlineMath math="(3, 8)" /> pada <InlineMath math="y = 2^x" /> bergerak ke <InlineMath math="\left(\frac{3}{1/2}, 8\right) = (6, 8)" />, iaitu tepat titik yang diberi. Pintasan <InlineMath math="(0, 1)" /> dan asimptot <InlineMath math="y = 0" /> kekal di tempatnya.
+
+<MathVisual
+  title={<>Lengkung <InlineMath math="y = 2^x" /> dan <InlineMath math="g(x) = 2^{x/2}" /></>}
+  description={<>Anak panah membawa <InlineMath math="(3, 8)" /> ke <InlineMath math="(6, 8)" />, jadi jaraknya ke paksi-<InlineMath math="y" /> menjadi dua kali ganda, manakala <InlineMath math="(0, 1)" /> kekal.</>}
+  labels={{
+    "l1": <InlineMath math="2^x" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12, max: 10 }, y: { min: -2, max: 18 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-10) + (t / 32))", y: "(2)^(((-10) + (t / 32)))", parameter: { min: 0, max: 448 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2 * ((-10) + ((t + 160) / 32)))", y: "(2)^(((2 * ((-10) + ((t + 160) / 32))) / 2))", parameter: { min: 0, max: 288 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 3, y: 8 }, to: { x: 6, y: 8 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 0, y: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 8 }, placement: "left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 4 }, placement: "below-right" },
+    ],
+  }}
+/>
