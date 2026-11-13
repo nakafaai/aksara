@@ -1,0 +1,239 @@
+export const metadata = {
+  title: "Hujah Utama Nombor Kompleks",
+  description: "Hujah utama nombor kompleks ialah satu-satunya sudut arahnya antara negatif pi dan pi. Cari hujah utama daripada komponen atau dengan membawa suatu sudut ke dalam julat utama.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-01",
+  dateModified: "2026-11-08",
+  subject: "Nombor Kompleks",
+};
+
+## Satu Sudut Wakil bagi Setiap Arah
+
+Hujah utama bagi nombor kompleks <InlineMath math="z \ne 0" />, yang ditulis <InlineMath math="\operatorname{Arg} z" />, ialah **satu-satunya hujah dalam julat <InlineMath math="(-\pi, \pi]" />**, atau <InlineMath math="(-180^\circ, 180^\circ]" /> dalam darjah. Setiap hujah lain berbeza daripada hujah utama sebanyak beberapa pusingan penuh:
+
+<MathContainer>
+  <BlockMath math="-\pi < \operatorname{Arg} z \le \pi" />
+  <BlockMath math="\arg z = \operatorname{Arg} z + 2\pi k, \qquad k \in \mathbb{Z}" />
+</MathContainer>
+
+Untuk <InlineMath math="z = 1 + i" />, sudut <InlineMath math="45^\circ" />, <InlineMath math="405^\circ" /> dan <InlineMath math="-315^\circ" /> menghala ke arah yang sama, tetapi hanya <InlineMath math="45^\circ" /> yang terletak dalam julat utama, jadi <InlineMath math="\operatorname{Arg}(1 + i) = 45^\circ = \frac{\pi}{4}" />. Graf interaktif ini menunjukkan sudut bagi <InlineMath math="1 + i" /> dan <InlineMath math="\sqrt{3} + i" />, kedua-duanya diukur dari paksi nyata positif.
+
+<MathVisual
+  title={<>Sudut dari paksi nyata positif</>}
+  description={<>Dua vektor dalam sukuan I membentuk sudut <InlineMath math="45" /> dan <InlineMath math="30" /> darjah dengan paksi nyata positif. Lengkok menunjukkan sudut yang sedang diukur.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.25, max: 2.2 }, y: { min: -0.25, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.sqrt(3), y: 1 }, appearance: "secondary" },
+      { id: "first-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.45, startDegrees: 0, sweepDegrees: 45, appearance: "primary" },
+      { id: "second-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.9, startDegrees: 0, sweepDegrees: 30, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "second", objectId: "second", at: { x: Math.sqrt(3), y: 1 }, placement: "above" },
+      { key: "first-angle", objectId: "first-angle", at: { x: 0.45 * Math.cos((22.5 * Math.PI) / 180), y: 0.45 * Math.sin((22.5 * Math.PI) / 180) }, placement: "right" },
+      { key: "second-angle", objectId: "second-angle", at: { x: 0.87, y: 0.23 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="1+i" />,
+    second: <InlineMath math="\sqrt{3}+i" />,
+    "first-angle": <InlineMath math="45^\circ" />,
+    "second-angle": <InlineMath math="30^\circ" />,
+  }}
+/>
+
+Hujung kiri julat itu tidak termasuk, manakala hujung kanannya termasuk. Sebab itulah nombor pada paksi nyata negatif, seperti <InlineMath math="-4" />, ada hujah utama <InlineMath math="180^\circ" />, bukan <InlineMath math="-180^\circ" />. Sifar tiada hujah, kerana vektor sifar tiada arah.
+
+## Banyak Sudut bagi Satu Arah
+
+Menambah satu pusingan penuh, <InlineMath math="360^\circ" /> atau <InlineMath math="2\pi" />, membawa vektor kembali ke arah yang sama. Akibatnya, setiap nombor kompleks bukan sifar ada **hujah yang banyaknya tak terhingga**, iaitu <InlineMath math="\theta + 2\pi k" />. Hujah utama memilih satu wakil daripada semua hujah itu, jadi arah yang sama sentiasa ditulis dengan nombor yang sama.
+
+Sudut rujukan dan petua sukuan untuk [modulus dan hujah nombor kompleks](/ms/subjek/matematik/nombor-kompleks/modulus-dan-hujah-nombor-kompleks) terus memberikan sudut dalam julat ini. Sudut di luar julat muncul apabila kamu menambah hujah, contohnya apabila kamu mendarab dua nombor kompleks, atau apabila soalan memberikan sudut seperti <InlineMath math="750^\circ" />.
+
+## Membawa Sudut ke dalam Julat Utama
+
+Untuk mendapatkan hujah utama daripada sebarang sudut, **tambah atau tolak pusingan penuh** sehingga sudut itu terletak dalam <InlineMath math="(-180^\circ, 180^\circ]" />:
+
+| Sudut asal | Pengiraan | Hujah utama |
+| --- | --- | --- |
+| <InlineMath math="300^\circ" /> | <InlineMath math="300^\circ - 360^\circ" /> | <InlineMath math="-60^\circ" /> |
+| <InlineMath math="405^\circ" /> | <InlineMath math="405^\circ - 360^\circ" /> | <InlineMath math="45^\circ" /> |
+| <InlineMath math="-315^\circ" /> | <InlineMath math="-315^\circ + 360^\circ" /> | <InlineMath math="45^\circ" /> |
+| <InlineMath math="-180^\circ" /> | <InlineMath math="-180^\circ + 360^\circ" /> | <InlineMath math="180^\circ" /> |
+
+Sudut yang besar memerlukan beberapa pusingan sekali gus. Untuk <InlineMath math="1000^\circ" />, tiga pusingan membawa sudut itu ke dalam julat:
+
+<BlockMath math="1000^\circ - 3 \cdot 360^\circ = -80^\circ" />
+
+Semak: <InlineMath math="-80^\circ" /> terletak antara <InlineMath math="-180^\circ" /> dan <InlineMath math="180^\circ" />, dan <InlineMath math="-80^\circ + 3 \cdot 360^\circ = 1000^\circ" />, jadi kedua-dua sudut menghala ke arah yang sama.
+
+<Mermaid
+  title={<>Membawa sudut ke dalam selang utama</>}
+  description={<>Tambah atau tolak satu pusingan penuh sehingga sudut itu terletak dalam (<InlineMath math="-180^\circ" />, <InlineMath math="180^\circ" />].</>}
+  chart={`flowchart TD
+  A["Sudut θ"] --> B{"Adakah θ lebih daripada 180°?"}
+  B -->|"ya"| C["Tolak 360°"]
+  C --> B
+  B -->|"tidak"| D{"Adakah θ sama dengan atau kurang daripada -180°?"}
+  D -->|"ya"| E["Tambah 360°"]
+  E --> D
+  D -->|"tidak"| F["θ ialah hujah utama"]`}
+/>
+
+## Hujah Utama daripada Komponen x dan y
+
+Jika <InlineMath math="z = x + iy" /> diberi dalam bentuk Cartesan, hujah utama diperoleh daripada <InlineMath math="\arctan\frac{y}{x}" /> **ditambah pembetulan setengah pusingan untuk titik di sebelah kiri paksi khayalan**:
+
+<BlockMath math="\operatorname{Arg} z = \begin{cases} \arctan\frac{y}{x}, &amp; x > 0 \\ \arctan\frac{y}{x} + 180^\circ, &amp; x < 0,\ y \ge 0 \\ \arctan\frac{y}{x} - 180^\circ, &amp; x < 0,\ y < 0 \\ 90^\circ, &amp; x = 0,\ y > 0 \\ -90^\circ, &amp; x = 0,\ y < 0 \end{cases}" />
+
+Fungsi <InlineMath math="\operatorname{atan2}(y, x)" /> dalam bahasa pengaturcaraan mengikut petua yang sama dan memberikan sudut dalam <InlineMath math="(-\pi, \pi]" /> untuk setiap <InlineMath math="z \ne 0" />. Banyak kalkulator saintifik tiada kekunci atan2, tetapi fungsi Pol atau `R→P` pada kalkulator itu memberikan sudut yang sama.
+
+**Contoh 1**. Untuk <InlineMath math="z = -1 + i" />, nilainya ialah <InlineMath math="\arctan\frac{1}{-1} = -45^\circ" />. Titik itu terletak di sebelah kiri paksi khayalan dengan <InlineMath math="y \ge 0" />, jadi tambah setengah pusingan:
+
+<BlockMath math="\operatorname{Arg}(-1 + i) = -45^\circ + 180^\circ = 135^\circ" />
+
+Semak dengan modulus <InlineMath math="\sqrt{2}" />: <InlineMath math="\sqrt{2}\cos 135^\circ = -1" /> dan <InlineMath math="\sqrt{2}\sin 135^\circ = 1" />.
+
+**Contoh 2**. Untuk <InlineMath math="z = -1 - i" />, nilainya ialah <InlineMath math="\arctan\frac{-1}{-1} = 45^\circ" />, sama seperti untuk <InlineMath math="1 + i" />. Titik itu terletak di sebelah kiri paksi khayalan dengan <InlineMath math="y < 0" />, jadi tolak setengah pusingan:
+
+<BlockMath math="\operatorname{Arg}(-1 - i) = 45^\circ - 180^\circ = -135^\circ" />
+
+Semak: <InlineMath math="\sqrt{2}\cos(-135^\circ) = -1" /> dan <InlineMath math="\sqrt{2}\sin(-135^\circ) = -1" />. Nombor <InlineMath math="1 + i" /> dan <InlineMath math="-1 - i" /> ada nilai tangen yang sama, tetapi kedua-duanya menghala ke arah yang bertentangan.
+
+<MathVisual
+  title={<>Tangen sama, arah berbeza</>}
+  description={<>Nombor <InlineMath math="1 + i" /> dan <InlineMath math="-1 - i" /> kedua-duanya memberikan <InlineMath math="\arctan 1 = 45^\circ" />, tetapi lengkoknya menghala ke arah yang bertentangan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 1.6 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "secondary" },
+      { id: "third", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: -1 }, appearance: "answer" },
+      { id: "first-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.35, startDegrees: 0, sweepDegrees: 45, appearance: "primary" },
+      { id: "second-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.6, startDegrees: 0, sweepDegrees: 135, appearance: "secondary" },
+      { id: "third-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.85, startDegrees: 0, sweepDegrees: -135, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: -1, y: 1 }, placement: "left" },
+      { key: "third", objectId: "third", at: { x: -1, y: -1 }, placement: "left" },
+      { key: "first-angle", objectId: "first-angle", at: { x: 0.35 * Math.cos((22.5 * Math.PI) / 180), y: 0.35 * Math.sin((22.5 * Math.PI) / 180) }, placement: "right" },
+      { key: "second-angle", objectId: "second-angle", at: { x: 0.6 * Math.cos((67.5 * Math.PI) / 180), y: 0.6 * Math.sin((67.5 * Math.PI) / 180) }, placement: "above-right" },
+      { key: "third-angle", objectId: "third-angle", at: { x: 0.85 * Math.cos((-67.5 * Math.PI) / 180), y: 0.85 * Math.sin((-67.5 * Math.PI) / 180) }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="1+i" />,
+    second: <InlineMath math="-1+i" />,
+    third: <InlineMath math="-1-i" />,
+    "first-angle": <InlineMath math="45^\circ" />,
+    "second-angle": <InlineMath math="135^\circ" />,
+    "third-angle": <InlineMath math="-135^\circ" />,
+  }}
+/>
+
+## Konvensyen Sifar hingga Dua Pi
+
+Sesetengah buku memilih hujah utama daripada <InlineMath math="[0, 2\pi)" />, atau <InlineMath math="[0^\circ, 360^\circ)" />. Kedua-dua konvensyen memilih satu wakil bagi setiap arah, dan **kedua-duanya hanya berbeza untuk sudut negatif**. Jika hujah utama dalam <InlineMath math="(-180^\circ, 180^\circ]" /> negatif, tambah <InlineMath math="360^\circ" /> untuk mendapatkan wakil dalam <InlineMath math="[0^\circ, 360^\circ)" />.
+
+Untuk <InlineMath math="-1 - i" />, hujah <InlineMath math="-135^\circ" /> menjadi <InlineMath math="225^\circ" />, manakala <InlineMath math="135^\circ" /> bagi <InlineMath math="-1 + i" /> kekal sama. Semak: <InlineMath math="\cos 225^\circ = \cos(-135^\circ)" /> dan <InlineMath math="\sin 225^\circ = \sin(-135^\circ)" />, jadi kedua-dua sudut menghala ke arah yang sama. Sentiasa nyatakan konvensyen yang kamu gunakan, kerana <InlineMath math="225^\circ" /> salah untuk soalan yang meminta <InlineMath math="(-180^\circ, 180^\circ]" />.
+
+## Kesamaan Dua Nombor Kompleks dalam Bentuk Polar
+
+Ambil dua nombor kompleks bukan sifar <InlineMath math="z_1 = r_1(\cos \theta_1 + i\sin \theta_1)" /> dan <InlineMath math="z_2 = r_2(\cos \theta_2 + i\sin \theta_2)" />, dengan <InlineMath math="r_1 > 0" /> dan <InlineMath math="r_2 > 0" />. Kedua-duanya sama jika dan hanya jika **modulusnya sama dan hujahnya berbeza sebanyak beberapa pusingan penuh**:
+
+<BlockMath math="r_1 = r_2 \quad\text{dan}\quad \theta_1 - \theta_2 = 2\pi k \text{ bagi suatu } k \in \mathbb{Z}" />
+
+Dengan hujah utama, syarat kedua menjadi lebih mudah: <InlineMath math="\operatorname{Arg} z_1 = \operatorname{Arg} z_2" />. Modulus yang sama tidak mencukupi apabila dua vektor itu menghala ke arah yang berbeza:
+
+| Pasangan | Modulus | Beza sudut | Kesimpulan |
+| --- | --- | --- | --- |
+| <InlineMath math="\sqrt{2}(\cos45^\circ+i\sin45^\circ)" />, <InlineMath math="\sqrt{2}(\cos95^\circ+i\sin95^\circ)" /> | <InlineMath math="\sqrt{2}=\sqrt{2}" /> | <InlineMath math="45^\circ-95^\circ=-50^\circ" /> | Berbeza |
+| <InlineMath math="\cos30^\circ+i\sin30^\circ" />, <InlineMath math="\cos390^\circ+i\sin390^\circ" /> | <InlineMath math="1=1" /> | <InlineMath math="30^\circ-390^\circ=-360^\circ" /> | Sama |
+
+## Kesilapan Lazim
+
+| Kesilapan | Mengapa salah | Cara menyemak |
+| --- | --- | --- |
+| Menulis <InlineMath math="-180^\circ" /> untuk paksi nyata negatif | Hujung kiri julat itu tidak termasuk | Hujah utama bagi <InlineMath math="-4" /> ialah <InlineMath math="180^\circ" /> |
+| Menggunakan <InlineMath math="\arctan\frac{y}{x}" /> untuk titik dengan <InlineMath math="x < 0" /> | Jawapannya menghala ke arah yang bertentangan | Bina semula <InlineMath math="r\cos\theta" />, tandanya mesti sepadan dengan <InlineMath math="x" /> |
+| Berhenti selepas satu pusingan bagi sudut yang besar | <InlineMath math="1000^\circ - 360^\circ = 640^\circ" /> masih di luar julat | Jawapan akhir mesti terletak antara <InlineMath math="-180^\circ" /> dan <InlineMath math="180^\circ" /> |
+| Mencampurkan dua konvensyen | <InlineMath math="(-\pi, \pi]" /> dan <InlineMath math="[0, 2\pi)" /> berbeza untuk sudut negatif | Baca julat yang diminta oleh soalan sebelum kamu menjawab |
+| Menganggap modulus yang sama bermakna nombornya sama | Arahnya juga mesti sepadan | Bandingkan hujah utama kedua-dua nombor |
+
+Satu semakan dapat mengesan hampir semua kesilapan ini: **pastikan jawapan kamu terletak dalam julat yang diminta dan menghala ke sukuan yang betul**.
+
+## Latihan
+
+Dua soalan pertama mencari hujah utama daripada komponen, soalan ketiga membawa sudut yang besar ke dalam julat, dan soalan keempat membandingkan dua konvensyen itu. **Tentukan sukuan atau paksi dahulu**, kemudian semak jawapan kamu sebelum membaca penyelesaiannya.
+
+1. Cari hujah utama bagi <InlineMath math="z = 1 + \sqrt{3}i" /> dalam darjah.
+
+2. Cari hujah utama bagi <InlineMath math="z = -i" /> dalam darjah.
+
+3. Cari hujah utama bagi sudut <InlineMath math="750^\circ" /> dan <InlineMath math="-510^\circ" />.
+
+4. Cari hujah utama bagi <InlineMath math="z = -2 - 2i" /> dalam <InlineMath math="(-180^\circ, 180^\circ]" />, kemudian dalam <InlineMath math="[0^\circ, 360^\circ)" />.
+
+### Jalan Kerja
+
+**Soalan 1**. Titik <InlineMath math="(1, \sqrt{3})" /> terletak dalam sukuan I, jadi tiada pembetulan diperlukan:
+
+<BlockMath math="\operatorname{Arg} z = \arctan\sqrt{3} = 60^\circ" />
+
+Semak dengan modulus <InlineMath math="2" />: <InlineMath math="2\cos 60^\circ = 1" /> dan <InlineMath math="2\sin 60^\circ = \sqrt{3}" />, jadi **sudut itu membina semula kedua-dua komponen**.
+
+**Soalan 2**. Nombor <InlineMath math="-i = 0 - 1i" /> terletak pada paksi khayalan negatif, jadi hasil bahagi <InlineMath math="\frac{y}{x}" /> tidak diperlukan:
+
+<BlockMath math="\operatorname{Arg}(-i) = -90^\circ" />
+
+Semak: <InlineMath math="\cos(-90^\circ) = 0" /> dan <InlineMath math="\sin(-90^\circ) = -1" />, jadi **vektor itu menghala terus ke bawah**.
+
+**Soalan 3**. Tolak atau tambah pusingan penuh sehingga sudut itu masuk ke dalam julat utama:
+
+<MathContainer>
+  <BlockMath math="750^\circ - 2 \cdot 360^\circ = 30^\circ" />
+  <BlockMath math="-510^\circ + 360^\circ = -150^\circ" />
+</MathContainer>
+
+Semak: <InlineMath math="30^\circ + 2 \cdot 360^\circ = 750^\circ" /> dan <InlineMath math="-150^\circ - 360^\circ = -510^\circ" />, jadi setiap jawapan kembali kepada sudut asalnya, dan kedua-duanya terletak dalam <InlineMath math="(-180^\circ, 180^\circ]" />. Untuk <InlineMath math="-510^\circ" />, menambah dua pusingan memberikan <InlineMath math="210^\circ" />, yang **sudah melepasi hujung kanan julat**.
+
+**Soalan 4**. Titik <InlineMath math="(-2, -2)" /> terletak di sebelah kiri paksi khayalan dengan <InlineMath math="y < 0" />:
+
+<BlockMath math="\operatorname{Arg} z = \arctan\frac{-2}{-2} - 180^\circ = 45^\circ - 180^\circ = -135^\circ" />
+
+Dalam <InlineMath math="[0^\circ, 360^\circ)" />, tambah satu pusingan: <InlineMath math="-135^\circ + 360^\circ = 225^\circ" />. Semak dengan modulus <InlineMath math="2\sqrt{2}" />: <InlineMath math="2\sqrt{2}\cos 225^\circ = -2" /> dan <InlineMath math="2\sqrt{2}\sin 225^\circ = -2" />, jadi **kedua-dua jawapan menghala ke sukuan III**.
+
+Soalan 4 menunjukkan kedua-dua konvensyen serentak. Anak panah ke <InlineMath math="-2 - 2i" /> menghala ke sukuan III. Apabila diukur ikut arah jam, sudutnya ialah <InlineMath math="-135^\circ" />, iaitu wakil dalam <InlineMath math="(-180^\circ, 180^\circ]" />, dan apabila diukur lawan arah jam, sudutnya ialah <InlineMath math="225^\circ" />, iaitu wakil dalam <InlineMath math="[0^\circ, 360^\circ)" />.
+
+<MathVisual
+  title={<>Dua nama bagi arah <InlineMath math="-2 - 2i" /></>}
+  description={<>Anak panah ke <InlineMath math="-2 - 2i" /> dengan lengkok ikut arah jam sebanyak <InlineMath math="-135^\circ" /> dan lengkok lawan arah jam sebanyak <InlineMath math="225^\circ" />.</>}
+  labels={{
+    z: <InlineMath math="-2 - 2i" />,
+    neg: <InlineMath math="-135^\circ" />,
+    pos: <InlineMath math="225^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 1.4 }, y: { min: -2.6, max: 1.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "neg", kind: "arc", center: { x: 0, y: 0 }, radius: 1 / 2, startDegrees: 0, sweepDegrees: -135, appearance: "answer" },
+      { id: "pos", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 225, appearance: "construction" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2, y: -2 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: -2, y: -2 }, { x: (-2) + (1 / 2 / Math.sqrt(8)) + (1 / 5 / Math.sqrt(8)), y: (-2) + (1 / 2 / Math.sqrt(8)) + (-1 / 5 / Math.sqrt(8)) }, { x: (-2) + (1 / 2 / Math.sqrt(8)) + (-1 / 5 / Math.sqrt(8)), y: (-2) + (1 / 2 / Math.sqrt(8)) + (1 / 5 / Math.sqrt(8)) }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: -2, y: -2 }, placement: "left" },
+      { key: "neg", objectId: "neg", at: { x: 0.5 * Math.cos(-3 * Math.PI / 8), y: 0.5 * Math.sin(-3 * Math.PI / 8) }, placement: "below-right" },
+      { key: "pos", objectId: "pos", at: { x: 0, y: 1 }, placement: "above" },
+    ],
+  }}
+/>

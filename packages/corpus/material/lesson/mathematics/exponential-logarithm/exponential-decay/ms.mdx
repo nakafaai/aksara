@@ -1,0 +1,163 @@
+export const metadata = {
+  title: "Susutan Eksponen",
+  description:
+    "Modelkan pengurangan berkadar yang berulang, baca graf susutan, dan selesaikan contoh dengan jalan kerja tentang setengah hayat, reputan radioaktif dan tinggi lantunan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-04",
+  dateModified: "2026-11-08",
+  subject: "Indeks dan Logaritma",
+};
+
+## Pengurangan Berulang dengan Faktor yang Sama
+
+Susutan eksponen berlaku apabila satu kuantiti positif didarab dengan faktor yang sama, iaitu antara <InlineMath math="0" /> dengan <InlineMath math="1" />, dalam setiap selang yang sama panjang. Model susutan diskret berbentuk:
+
+<BlockMath math="f(x)=C\,a^x" />
+
+Kuantiti dalam model ini ialah:
+
+- <InlineMath math="C>0" />, nilai awal
+- <InlineMath math="0<a<1" />, faktor susutan bagi setiap selang
+- <InlineMath math="x" />, bilangan selang
+
+Faktor itu <Highlight>menerangkan bahagian yang tinggal</Highlight>. Contohnya, pengurangan <InlineMath math="15\%" /> meninggalkan <InlineMath math="85\%" />, jadi faktor susutannya ialah <InlineMath math="a=0.85" />.
+
+## Membaca Graf Susutan Eksponen
+
+Apabila <InlineMath math="x" /> bertambah, <InlineMath math="a^x" /> menjadi semakin kecil. Graf itu jatuh dengan cepat pada mulanya, kemudian menjadi semakin landai kerana setiap pengurangan ialah **kadaran yang sama** daripada jumlah yang semakin kecil.
+
+Untuk <InlineMath math="f(x)=50\left(\frac12\right)^x" />, nilai awalnya ialah <InlineMath math="50" /> dan setiap selang meninggalkan separuh daripada nilai sebelumnya:
+
+<BlockMath math="f(x)=50\left(\frac12\right)^x" />
+
+<ContentBlock>
+  <FunctionChart
+    a={0.5}
+    p={50}
+    title={<>Susutan Eksponen</>}
+    description={
+      <>
+        Setiap selang meninggalkan <InlineMath math="\frac12" /> daripada nilai sebelumnya.
+      </>
+    }
+  />
+</ContentBlock>
+
+Graf itu menghampiri asimptot mengufuk <InlineMath math="y=0" /> tetapi tidak pernah mencapainya untuk sebarang nilai nyata <InlineMath math="x" /> yang terhingga.
+
+## Model Susutan untuk Ubat Keradioaktifan dan Lantunan
+
+Model susutan mendarab dengan **faktor antara sifar dengan satu** pada setiap selang. Faktor itu membuang bahagian yang tetap daripada baki yang ada, jadi setiap langkah menyimpan kadaran yang sama daripada nilai semasa, dan nilai itu menghampiri sifar tanpa mencapainya.
+
+### Model Setengah Hayat
+
+Dalam model yang dipermudahkan ini, badan pada mulanya mengandungi <InlineMath math="50\,\mu\text{g}" /> sejenis ubat dan menyingkirkan **separuh daripada jumlah yang tinggal** setiap jam. Jika <InlineMath math="x" /> diukur dalam jam, maka:
+
+<BlockMath math="f(x)=50\left(\frac12\right)^x" />
+
+Beberapa nilai pertama menunjukkan bahawa model ini sentiasa mengurangkan jumlah semasa kepada separuh:
+
+- <InlineMath math="f(0)=50\,\mu\text{g}" />
+- <InlineMath math="f(1)=25\,\mu\text{g}" />
+- <InlineMath math="f(2)=12.5\,\mu\text{g}" />
+- <InlineMath math="f(3)=6.25\,\mu\text{g}" />
+
+Selepas <InlineMath math="9" /> jam, <InlineMath math="f(9)=50\left(\frac12\right)^9\approx0.0977\,\mu\text{g}" />, iaitu di bawah <InlineMath math="0.1\,\mu\text{g}" />.
+
+### Reputan Radioaktif
+
+Jika pecahan <InlineMath math="r" /> daripada nukleus radioaktif mereput dalam setiap selang masa, **pecahan nukleus yang belum mereput** ialah <InlineMath math="1-r" />. Untuk <InlineMath math="0<r<1" />:
+
+<BlockMath math="M(t)=M_0(1-r)^t" />
+
+Di sini, <InlineMath math="M_0" /> ialah jisim awal isotop radioaktif itu dan <InlineMath math="M(t)" /> ialah jisim isotop itu yang belum mereput. Hasil reputan tidak dikira dalam <InlineMath math="M(t)" />. Pemboleh ubah <InlineMath math="t" /> membilang selang masa yang sama panjang. Model ini menganggap kadar berkadar yang dinyatakan itu kekal tetap sepanjang selang yang dikaji.
+
+### Tinggi Lantunan
+
+Katakan sebiji bola dijatuhkan dari ketinggian <InlineMath math="h_0" /> dan setiap lantunan mencapai **kadaran tetap** <InlineMath math="0<p<1" /> daripada tinggi sebelumnya. Tinggi selepas lantunan <InlineMath math="n" /> ialah:
+
+<BlockMath math="h_n=h_0p^n" />
+
+Untuk <InlineMath math="h_0=300\text{ cm}" /> dan <InlineMath math="p=\frac35" />:
+
+- <InlineMath math="h_0=300\text{ cm}" />
+- <InlineMath math="h_1=300\left(\frac35\right)=180\text{ cm}" />
+- <InlineMath math="h_2=300\left(\frac35\right)^2=108\text{ cm}" />
+- <InlineMath math="h_3=300\left(\frac35\right)^3=64.8\text{ cm}" />
+
+Model matematik ini tidak pernah mencapai sifar. Jadi pernyataan berhenti yang praktikal memerlukan nilai ambang, seperti “di bawah <InlineMath math="1\text{ cm}" />.”
+
+Setiap lantunan mengekalkan <InlineMath math="\tfrac35" /> daripada tinggi sebelumnya: <InlineMath math="300\text{ cm}" />, kemudian <InlineMath math="180\text{ cm}" />, <InlineMath math="108\text{ cm}" />, <InlineMath math="64.8\text{ cm}" /> dan <InlineMath math="38.88\text{ cm}" />. Penurunannya semakin kecil setiap kali, tetapi setiap palang ialah <InlineMath math="\tfrac35" /> daripada palang sebelumnya.
+
+<BarChart
+  title={<>Tinggi lantunan</>}
+  description={<>Palang <InlineMath math="h_n = 300\left(\tfrac35\right)^n" /> dalam sentimeter untuk <InlineMath math="n = 0" /> hingga <InlineMath math="4" />.</>}
+  yAxisLabel="Tinggi (cm)"
+  data={[0, 1, 2, 3, 4].map((x) => ({ name: String(x), value: 300 * (3 / 5) ** x }))}
+  chartConfig={{ value: { label: "Tinggi (cm)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Latihan
+
+Setiap soalan memberikan jumlah awal dan pecahan yang tinggal selepas satu selang. Kira jumlah yang tinggal pada selang yang diminta.
+
+1. Satu bahan bermula dengan <InlineMath math="200\text{ mg}" /> dan separuh daripada jumlah yang tinggal disingkirkan setiap jam. Berapakah jumlah yang tinggal selepas <InlineMath math="5" /> jam?
+
+2. Satu sampel radioaktif berjisim <InlineMath math="0.3\text{ kg}" /> pada awal pemerhatian. Setiap jam, <InlineMath math="15\%" /> daripada nukleus isotop itu mereput. Berapakah jisim isotop yang belum mereput selepas <InlineMath math="8" /> jam?
+
+3. Sebiji bola dijatuhkan dari ketinggian <InlineMath math="3\text{ m}" /> dan setiap lantunan mencapai <InlineMath math="\frac35" /> daripada tinggi sebelumnya.
+
+   Lukis graf diskret bagi tinggi lantunan. Anggap bola itu berhenti sebaik sahaja lantunannya **di bawah satu sentimeter**. Cari lantunan pertama yang memenuhi nilai ambang ini.
+
+### Jalan Kerja
+
+1. **Faktor susutan** ialah <InlineMath math="\frac12" />. Selepas lima selang sejam:
+
+   <MathContainer>
+     <BlockMath math="f(x)=200\left(\frac12\right)^x" />
+     <BlockMath math="\begin{aligned} f(5) &amp;=200\left(\frac12\right)^5 \\ &amp;=200\left(\frac1{32}\right) \\ &amp;=6.25 \end{aligned}" />
+   </MathContainer>
+
+   Jadi, yang tinggal ialah <InlineMath math="6.25\text{ mg}" />.
+
+2. Kehilangan <InlineMath math="15\%" /> meninggalkan faktor <InlineMath math="0.85" />:
+
+   <MathContainer>
+     <BlockMath math="M(t)=0.3(0.85)^t" />
+     <BlockMath math="M(8)=0.3(0.85)^8\approx0.08175\text{ kg}" />
+     <BlockMath math="0.08175\text{ kg}\approx81.75\text{ g}" />
+   </MathContainer>
+
+3. Dengan tinggi diukur dalam sentimeter, modelnya ialah:
+
+   <BlockMath math="h_n=300\left(\frac35\right)^n" />
+
+   <ContentBlock>
+     <FunctionChart
+       a={3 / 5}
+       p={300}
+       mode="discrete"
+       n={13}
+       title={<>Tinggi Lantunan</>}
+       description={
+         <>
+           Tinggi diskret dengan nisbah <InlineMath math="\frac35" />.
+         </>
+       }
+     />
+   </ContentBlock>
+
+   Nilai-nilai berhampiran nilai ambang ialah:
+
+   | Lantunan | Tinggi dalam sentimeter |
+   | ------- | --------------------- |
+   | <InlineMath math="n=9" /> | <InlineMath math="3.023309" /> |
+   | <InlineMath math="n=10" /> | <InlineMath math="1.813985" /> |
+   | <InlineMath math="n=11" /> | <InlineMath math="1.088391" /> |
+   | <InlineMath math="n=12" /> | <InlineMath math="0.653035" /> |
+
+   Lantunan <InlineMath math="11" /> masih di atas <InlineMath math="1\text{ cm}" />, manakala lantunan <InlineMath math="12" /> di bawahnya. Oleh itu, lantunan pertama yang memenuhi syarat berhenti yang dinyatakan ialah <InlineMath math="n=12" />.
+
+## Batasan Model
+
+Susutan eksponen digunakan untuk fenomena seperti reputan radioaktif, susut nilai, anggaran penyejukan dan model penyingkiran. Dalam setiap aplikasi, kenal pasti selangnya, faktor bagi bahagian yang tinggal, dan syarat yang membolehkan faktor itu **dianggap tetap**. Model ini berfungsi selagi syarat itu dipenuhi. Jika syarat berubah, coraknya juga mungkin berubah.

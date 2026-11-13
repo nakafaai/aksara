@@ -1,0 +1,134 @@
+export const metadata = {
+  title: "Pendaraban Nombor Kompleks",
+  description: "Darabkan nombor kompleks dengan sifat kalis agihan dan permudahkan hasilnya melalui contoh binomial berserta jalan kerja.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-01",
+  dateModified: "2026-11-08",
+  subject: "Nombor Kompleks",
+};
+
+## Mengagihkan Pendaraban kepada Sebutan Nyata dan Sebutan Khayalan
+
+Mendarab dua nombor kompleks serupa dengan mendarab dua ungkapan algebra binomial. Kita boleh menggunakan <Highlight>sifat kalis agihan pendaraban</Highlight> terhadap penambahan.
+
+Mulakan dengan <InlineMath math="z_1 = x_1 + iy_1" /> dan <InlineMath math="z_2 = x_2 + iy_2" />, kemudian agihkan setiap sebutan faktor pertama kepada faktor kedua.
+
+Gantikan **kuasa dua unit khayalan** dengan negatif satu, kemudian kumpulkan sebutan nyata dan sebutan khayalan. Hasil darab dua sebutan khayalan menyumbang kepada bahagian nyata, bukan bahagian khayalan:
+
+<BlockMath math="\begin{aligned}z_1z_2&amp;=(x_1+iy_1)(x_2+iy_2) \\ &amp;=x_1x_2+ix_1y_2+ix_2y_1+i^2y_1y_2 \\ &amp;=x_1x_2-y_1y_2+i(x_1y_2+x_2y_1)\end{aligned}" />
+
+Pendaraban dengan <InlineMath math="i" /> ialah satu suku pusingan. Untuk <InlineMath math="z = 2 + i" />, hukum kalis agihan memberikan <InlineMath math="i(2 + i) = 2i + i^2 = -1 + 2i" />, iaitu anak panah yang sama diputar <InlineMath math="90^\circ" /> lawan arah jam, dan panjangnya tetap sama.
+
+<MathVisual
+  title={<>Pendaraban dengan <InlineMath math="i" /> ialah putaran sebanyak <InlineMath math="90^\circ" /></>}
+  description={<>Anak panah ke <InlineMath math="2 + i" /> dan anak panah ke <InlineMath math="i(2 + i) = -1 + 2i" />, kedua-duanya sepanjang <InlineMath math="\sqrt5" />, terpisah sejauh suku pusingan.</>}
+  labels={{
+    z: <InlineMath math="2 + i" />,
+    iz: <InlineMath math="-1 + 2i" />,
+    turn: <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 2.6 }, y: { min: -0.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "turn", kind: "arc", center: { x: 0, y: 0 }, radius: 4 / 5, startDegrees: Math.atan2(1, 2) * 180 / Math.PI, sweepDegrees: 90, appearance: "highlight" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 2, y: 1 }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)), y: (1) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)) }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)), y: (1) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)) }], appearance: "primary" },
+      { id: "iz", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 2 }, appearance: "secondary" },
+      { id: "iz-head", kind: "polygon", vertices: [{ x: -1, y: 2 }, { x: (-1) + (1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)), y: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)) }, { x: (-1) + (1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)), y: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)) }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "iz", objectId: "iz", at: { x: -1, y: 2 }, placement: "left" },
+      { key: "turn", objectId: "turn", at: { x: 0.8 * Math.cos(Math.atan2(1, 2) + Math.PI / 4), y: 0.8 * Math.sin(Math.atan2(1, 2) + Math.PI / 4) }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Dua Cara Mengira Hasil Darab yang Sama
+
+Katakan <InlineMath math="z_1 = 2+i" /> dan <InlineMath math="z_2 = 1-2i" />. Cari <InlineMath math="z_1 \times z_2" />.
+
+**Penyelesaian**:
+
+Dengan menggunakan **sifat kalis agihan**:
+
+<BlockMath math="\begin{aligned}z_1z_2&amp;=(2+i)(1-2i) \\ &amp;=2-4i+i-2i^2 \\ &amp;=2+2+(-4+1)i=4-3i\end{aligned}" />
+
+Hasil darab itu terletak di <InlineMath math="(4,-3)" /> pada satah kompleks. **Jangan darab koordinat secara berasingan**. Pengiraan <InlineMath math="(2\cdot1,1\cdot(-2))=(2,-2)" /> bukan pendaraban kompleks, kerana pengiraan itu meninggalkan sebutan silang dan perubahan tanda yang datang daripada kuasa dua unit khayalan.
+
+<BlockMath math="z_1z_2=(2\cdot1-1\cdot(-2))+i(2\cdot(-2)+1\cdot1)=4-3i" />
+
+<MathVisual
+  title={<><InlineMath math="z_1 = 2 + i" />, <InlineMath math="z_2 = 1 - 2i" /> dan hasil darabnya</>}
+  description={<>Hasil darab <InlineMath math="z_1z_2 = 4 - 3i" /> ada modulus <InlineMath math="5 = \sqrt5 \cdot \sqrt5" />, iaitu hasil darab modulus <InlineMath math="z_1" /> dan modulus <InlineMath math="z_2" />.</>}
+  labels={{
+    z1: <InlineMath math="z_1 = 2 + i" />,
+    z2: <InlineMath math="z_2 = 1 - 2i" />,
+    p: <InlineMath math="z_1z_2 = 4 - 3i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 5 }, y: { min: -3.6, max: 1.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "z1-head", kind: "polygon", vertices: [{ x: 2, y: 1 }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)), y: (1) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)) }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)), y: (1) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)) }], appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -2 }, appearance: "secondary" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: 1, y: -2 }, { x: (1) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)), y: (-2) + (1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)) }, { x: (1) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)), y: (-2) + (1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)) }], appearance: "secondary" },
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: -3 }, appearance: "answer" },
+      { id: "p-head", kind: "polygon", vertices: [{ x: 4, y: -3 }, { x: 193 / 50, y: -277 / 100 }, { x: 187 / 50, y: -293 / 100 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "z2", objectId: "z2", at: { x: 1, y: -2 }, placement: "left" },
+      { key: "p", objectId: "p", at: { x: 4, y: -3 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Soalan ini mendarab dua nombor kompleks, satu ditulis dalam bentuk segi empat tepat dan satu lagi dengan bahagian nyata berbentuk pecahan. Kembangkan hasil darab itu dengan **hukum kalis agihan**, gantikan <InlineMath math="i^2" /> dengan <InlineMath math="-1" />, kemudian kumpulkan bahagian nyata dan bahagian khayalan.
+
+Katakan <InlineMath math="z_1 = 1+i" /> dan <InlineMath math="z_2 = \frac{1}{2} - 2i" />. Cari <InlineMath math="z_1 \times z_2" />.
+
+### Jalan Kerja
+
+Dengan menggunakan **sifat kalis agihan**:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}(1+i)\left(\frac12-2i\right)&amp;=\frac12-2i+\frac12i-2i^2 \\ &amp;=\left(\frac12+2\right)+\left(-2+\frac12\right)i \\ &amp;=\left(\frac12+\frac42\right)+\left(-\frac42+\frac12\right)i \\ &amp;=\frac52-\frac32i\end{aligned}" />
+  <BlockMath math="z_1z_2=\left(1\cdot\frac12-1\cdot(-2)\right)+i\left(1\cdot(-2)+\frac12\cdot1\right)=\frac52-\frac32i" />
+</MathContainer>
+
+Hasil darab daripada jalan kerja ini, dilukis pada satah: <InlineMath math="z_1 = 1 + i" />, <InlineMath math="z_2 = \tfrac12 - 2i" /> dan <InlineMath math="z_1z_2 = \tfrac52 - \tfrac32 i" />. Modulus hasil darab itu, <InlineMath math="\sqrt{\tfrac{17}{2}}" />, sama dengan <InlineMath math="\sqrt2 \cdot \tfrac{\sqrt{17}}{2}" />, iaitu hasil darab kedua-dua modulus.
+
+<MathVisual
+  title={<><InlineMath math="(1 + i)\left(\tfrac12 - 2i\right) = \tfrac52 - \tfrac32 i" /></>}
+  description={<>Faktor <InlineMath math="1 + i" /> dan <InlineMath math="\tfrac12 - 2i" /> serta hasil darabnya, <InlineMath math="\tfrac52 - \tfrac32 i" />.</>}
+  labels={{
+    z1: <InlineMath math="1 + i" />,
+    z2: <InlineMath math="\tfrac12 - 2i" />,
+    p: <InlineMath math="\tfrac52 - \tfrac32 i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 3.2 }, y: { min: -2.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "z1-head", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: (1) + (-1 / 5 / Math.sqrt(2)) + (-2 / 25 / Math.sqrt(2)), y: (1) + (-1 / 5 / Math.sqrt(2)) + (2 / 25 / Math.sqrt(2)) }, { x: (1) + (-1 / 5 / Math.sqrt(2)) + (2 / 25 / Math.sqrt(2)), y: (1) + (-1 / 5 / Math.sqrt(2)) + (-2 / 25 / Math.sqrt(2)) }], appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1 / 2, y: -2 }, appearance: "secondary" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: 1 / 2, y: -2 }, { x: (1 / 2) + (-1 / 10 / Math.sqrt(17 / 4)) + (4 / 25 / Math.sqrt(17 / 4)), y: (-2) + (2 / 5 / Math.sqrt(17 / 4)) + (1 / 25 / Math.sqrt(17 / 4)) }, { x: (1 / 2) + (-1 / 10 / Math.sqrt(17 / 4)) + (-4 / 25 / Math.sqrt(17 / 4)), y: (-2) + (2 / 5 / Math.sqrt(17 / 4)) + (-1 / 25 / Math.sqrt(17 / 4)) }], appearance: "secondary" },
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5 / 2, y: -3 / 2 }, appearance: "answer" },
+      { id: "p-head", kind: "polygon", vertices: [{ x: 5 / 2, y: -3 / 2 }, { x: (5 / 2) + (-1 / 2 / Math.sqrt(17 / 2)) + (3 / 25 / Math.sqrt(17 / 2)), y: (-3 / 2) + (3 / 10 / Math.sqrt(17 / 2)) + (1 / 5 / Math.sqrt(17 / 2)) }, { x: (5 / 2) + (-1 / 2 / Math.sqrt(17 / 2)) + (-3 / 25 / Math.sqrt(17 / 2)), y: (-3 / 2) + (3 / 10 / Math.sqrt(17 / 2)) + (-1 / 5 / Math.sqrt(17 / 2)) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "z2", objectId: "z2", at: { x: 1 / 2, y: -2 }, placement: "left" },
+      { key: "p", objectId: "p", at: { x: 5 / 2, y: -3 / 2 }, placement: "right" },
+    ],
+  }}
+/>

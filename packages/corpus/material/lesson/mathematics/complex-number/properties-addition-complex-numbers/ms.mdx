@@ -1,0 +1,144 @@
+export const metadata = {
+  title: "Sifat Penambahan Nombor Kompleks",
+  description: "Gunakan sifat kalis tukar tertib, kalis sekutuan, identiti, songsangan dan kalis agihan untuk mempermudahkan ungkapan nombor kompleks.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-01",
+  dateModified: "2026-11-08",
+  subject: "Nombor Kompleks",
+};
+
+## Menyusun Semula Ungkapan Kompleks tanpa Mengubah Nilainya
+
+Penambahan dan pendaraban skalar nombor kompleks mengikut <Highlight>peraturan algebra biasa yang sama</Highlight> seperti nombor nyata. Dengan peraturan itu, kamu boleh menyusun semula dan mempermudahkan ungkapan tanpa mengubah nilainya.
+
+Katakan <InlineMath math="z_1" />, <InlineMath math="z_2" />, dan <InlineMath math="z_3" /> ialah sebarang nombor kompleks, manakala <InlineMath math="c" /> dan <InlineMath math="d" /> ialah sebarang skalar (nombor nyata).
+
+## Sifat Penambahan
+
+Penambahan nombor kompleks dibuat **secara berasingan pada bahagian nyata dan bahagian khayalan**. Penambahan nombor nyata membenarkan kita menukar tertib dan mengumpul semula sebutan, jadi kedua-dua peraturan itu berlaku pada setiap komponen nombor kompleks. Contohnya, kamu boleh semak terus apa yang berlaku apabila tertibnya ditukar:
+
+<BlockMath math="\begin{aligned}(x_1+iy_1)+(x_2+iy_2)&amp;=(x_1+x_2)+i(y_1+y_2) \\ &amp;=(x_2+x_1)+i(y_2+y_1) \\ &amp;=(x_2+iy_2)+(x_1+iy_1)\end{aligned}" />
+
+| Sifat | Peraturan | Contoh pengiraan |
+| --- | --- | --- |
+| Kalis tukar tertib | <InlineMath math="z_1+z_2=z_2+z_1" /> | <InlineMath math="(2+i)+(1-3i)=3-2i=(1-3i)+(2+i)" /> |
+| Kalis sekutuan | <InlineMath math="(z_1+z_2)+z_3=z_1+(z_2+z_3)" /> | <InlineMath math="((2+i)+(1-3i))+(-1+2i)=2=(2+i)+((1-3i)+(-1+2i))" /> |
+| Identiti | <InlineMath math="z+0=z" /> | <InlineMath math="(2+i)+(0+0i)=2+i" /> |
+| Songsangan | <InlineMath math="z+(-z)=0" /> | <InlineMath math="(5-2i)+(-5+2i)=(5-5)+(-2+2)i=0" /> |
+
+Menambah nombor kompleks bermaksud menambah anak panahnya. Ambil <InlineMath math="z_1 = 2 + i" /> dan <InlineMath math="z_2 = 1 + 3i" />. Ikut <InlineMath math="z_1" /> dahulu, kemudian <InlineMath math="z_2" />, atau sebaliknya: kedua-dua laluan berakhir di <InlineMath math="z_1 + z_2 = 3 + 4i" />, iaitu bucu paling jauh bagi segi empat selari itu. Itulah sifat kalis tukar tertib dalam bentuk gambar.
+
+<MathVisual
+  title={<>Segi empat selari bagi hasil tambah nombor kompleks</>}
+  description={<>Anak panah <InlineMath math="2 + i" /> dan <InlineMath math="1 + 3i" /> serta hasil tambahnya <InlineMath math="3 + 4i" /> di bucu paling jauh bagi segi empat selari itu.</>}
+  labels={{
+    z1: <InlineMath math="z_1 = 2 + i" />,
+    z2: <InlineMath math="z_2 = 1 + 3i" />,
+    sum: <InlineMath math="3 + 4i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "c1", kind: "segment", from: { x: 2, y: 1 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "c2", kind: "segment", from: { x: 1, y: 3 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "sum", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "z2", objectId: "z2", at: { x: 1, y: 3 }, placement: "left" },
+      { key: "sum", objectId: "sum", at: { x: 3, y: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Pendaraban Skalar
+
+Pendaraban skalar bermaksud **mendarab kedua-dua komponen dengan faktor yang sama**. Untuk <InlineMath math="z=x+iy" />, hasilnya ialah <InlineMath math="cz=cx+i(cy)" />. Setiap peraturan di bawah berlaku pada kedua-dua komponen melalui sifat kalis sekutuan dan kalis agihan nombor nyata.
+
+| Sifat | Peraturan | Contoh pengiraan |
+| --- | --- | --- |
+| Kalis sekutuan | <InlineMath math="c(dz)=(cd)z" /> | <InlineMath math="2(3(1+i))=2(3+3i)=6+6i=6(1+i)" /> |
+| Kalis agihan terhadap skalar | <InlineMath math="(c+d)z=cz+dz" /> | <InlineMath math="(2+3)(1+i)=5+5i=(2+2i)+(3+3i)" /> |
+| Kalis agihan terhadap nombor kompleks | <InlineMath math="c(z_1+z_2)=cz_1+cz_2" /> | <InlineMath math="2((1+i)+(2-i))=6=(2+2i)+(4-2i)" /> |
+| Identiti | <InlineMath math="1z=z" /> | <InlineMath math="1(1+i)=1+i" /> |
+| Skalar sifar | <InlineMath math="0z=0" /> | <InlineMath math="0(1+i)=0+0i=0" /> |
+
+Cara mengumpulkan sebutan juga tidak mengubah hasil tambah. Bergerak mengikut <InlineMath math="z_1 = 2 + i" />, kemudian <InlineMath math="z_2 = 1 + 3i" />, kemudian <InlineMath math="z_3 = -2 + i" />: laluan itu berakhir di <InlineMath math="1 + 5i" />. Kalau kamu tambah <InlineMath math="z_2 + z_3" /> dahulu, kamu hanya memintas langkah kedua dan ketiga, dan titik akhirnya kekal sama.
+
+<MathVisual
+  title={<>Tiga nombor kompleks ditambah hujung ke pangkal</>}
+  description={<>Laluan <InlineMath math="2 + i" />, kemudian <InlineMath math="1 + 3i" />, kemudian <InlineMath math="-2 + i" />, yang berakhir di <InlineMath math="1 + 5i" />.</>}
+  labels={{
+    z1: <InlineMath math="z_1" />,
+    z2: <InlineMath math="z_2" />,
+    z3: <InlineMath math="z_3" />,
+    end: <InlineMath math="1 + 5i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 2, y: 1 }, to: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "z3", kind: "segment", from: { x: 3, y: 4 }, to: { x: 1, y: 5 }, appearance: "construction" },
+      { id: "short", kind: "segment", from: { x: 2, y: 1 }, to: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "end", kind: "point", at: { x: 1, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 1, y: 0.5 }, placement: "below-right" },
+      { key: "z2", objectId: "z2", at: { x: 2.5, y: 2.5 }, placement: "right" },
+      { key: "z3", objectId: "z3", at: { x: 2, y: 4.5 }, placement: "above-right" },
+      { key: "end", objectId: "end", at: { x: 1, y: 5 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+## Mempermudahkan Ungkapan dengan Sifat Penambahan
+
+**Sifat kalis agihan** membawa skalar masuk ke dalam hasil tambah, sebutan demi sebutan, kemudian pekali yang sama besar tetapi berlawanan tanda saling membatalkan. Kedua-dua langkah ini tidak mengubah bahagian nyata dan bahagian khayalan, jadi sebarang identiti yang dibina daripadanya benar untuk setiap nombor kompleks.
+
+### Mengesahkan Songsangan Penambahan
+
+**Sifat kalis agihan** menggabungkan dua sebutan yang mengandungi nombor kompleks yang sama. Apabila pekalinya yang berlawanan ditambah, yang tinggal ialah skalar sifar:
+
+<BlockMath math="4z+(-4)z=(4+(-4))z=0z=0" />
+
+Songsangan penambahan menghala ke arah yang bertentangan. <InlineMath math="z = 3 + 2i" /> dan <InlineMath math="-z = -3 - 2i" /> terletak pada satu garis yang melalui asalan, pada jarak yang sama dari asalan. Jadi kalau kamu bergerak mengikut satu anak panah, kemudian mengikut yang satu lagi, kamu kembali ke <InlineMath math="0" />: <InlineMath math="z + (-z) = 0" />.
+
+<MathVisual
+  title={<>Satu nombor dan songsangan penambahannya</>}
+  description={<>Anak panah <InlineMath math="3 + 2i" /> dan <InlineMath math="-3 - 2i" />, sama panjang dan berlawanan arah, yang hasil tambahnya <InlineMath math="0" />.</>}
+  labels={{
+    z: <InlineMath math="z = 3 + 2i" />,
+    neg: <InlineMath math="-z = -3 - 2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "neg", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: -2 }, appearance: "secondary" },
+      { id: "origin", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 3, y: 2 }, placement: "above" },
+      { key: "neg", objectId: "neg", at: { x: -3, y: -2 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Dengan menggunakan **sifat penambahan**, buktikan bahawa <InlineMath math="3z - \frac{1}{2}(2z) = 2z" /> untuk sebarang nombor kompleks <InlineMath math="z" />. Kerjakan bahagian kiri sahaja, dan namakan sifat yang kamu gunakan pada setiap langkah, supaya bukti itu berlaku untuk setiap nombor kompleks.
+
+### Jalan Kerja
+
+Tulis penolakan sebagai **penambahan dengan nilai berlawanan**, gunakan sifat kalis sekutuan untuk mengumpul semula skalar, kemudian gunakan sifat kalis agihan untuk menggabungkan pekalinya:
+
+<BlockMath math="\begin{aligned}3z-\frac12(2z)&amp;=3z+\left(-\frac12\right)(2z) \\ &amp;=3z+\left(\left(-\frac12\right)2\right)z \\ &amp;=3z+(-1)z \\ &amp;=(3-1)z=2z\end{aligned}" />

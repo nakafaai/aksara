@@ -1,0 +1,463 @@
+
+export const metadata = {
+  title: "Sudut di Pusat dan Sudut di Lilitan",
+  description: "Sudut di lilitan ialah separuh sudut di pusat yang dicangkum oleh lengkok yang sama. Ikuti buktinya, sudut yang dicangkum oleh diameter, contoh berserta jalan kerja, dan latihan dengan jawapan lengkap.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-11-08",
+  subject: "Bulatan",
+};
+
+## Sudut di Pusat Dua Kali Sudut di Lilitan
+
+Bucu sudut di pusat terletak di pusat bulatan. Bucu sudut di lilitan pula terletak pada lilitan bulatan itu sendiri. Apabila kedua-dua sudut dicangkum oleh **lengkok yang sama**, sudut di pusat sentiasa dua kali sudut di lilitan.
+
+<BlockMath math="\angle AOB = 2 \times \angle ACB" />
+
+Dalam gambar rajah hubungan, lengan sudut di pusat <InlineMath math="\angle AOB" /> dan lengan sudut di lilitan <InlineMath math="\angle ACB" /> berakhir pada dua titik yang sama, iaitu <InlineMath math="A" /> dan <InlineMath math="B" />. Dua titik itu ialah titik hujung lengkok <InlineMath math="AB" />. Ikut setiap lengan hingga ke hujung lengkok, kemudian bandingkan kedua-dua sudut itu.
+
+<MathVisual
+  title={<>Hubungan antara Sudut di Pusat dan Sudut di Lilitan</>}
+  description={<>Sudut di pusat <InlineMath math="45^\circ" /> dan <InlineMath math="\angle ACB" /> kedua-duanya dicangkum oleh lengkok <InlineMath math="AB" />, jadi <InlineMath math="\angle ACB = 22.5^\circ" />.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <>Lengkok <InlineMath math="AB" /></>,
+    "l6": <InlineMath math="\alpha" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 2.83, y: 2.83 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s4-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
+      { id: "s4-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s6", kind: "parametric", x: "(4 * cos((((t / 5) * pi) / 180)))", y: "(4 * sin((((t / 5) * pi) / 180)))", parameter: { min: 0, max: 225 }, appearance: "highlight" },
+      { id: "s7", kind: "parametric", x: "(1.2 * cos((((t / 5) * pi) / 180)))", y: "(1.2 * sin((((t / 5) * pi) / 180)))", parameter: { min: 0, max: 225 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+      { key: "l5", objectId: "s6", at: { x: 3.71, y: 1.5 }, placement: "above" },
+      { key: "l6", objectId: "s7", at: { x: 1.11, y: 0.45 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Sudut di pusat dalam gambar rajah itu berukuran <InlineMath math="45^\circ" />. Sudut di lilitan yang dicangkum oleh lengkok minor <InlineMath math="AB" /> ialah separuh daripadanya:
+
+<BlockMath math="\angle ACB=\frac12\angle AOB=\frac12(45^\circ)=22.5^\circ" />
+
+## Membezakan Sudut di Pusat dan Sudut di Lilitan
+
+Kamu boleh membezakan dua sudut ini melalui **kedudukan bucunya** dan tembereng garis yang membentuk lengannya. Lengkok yang mencangkum sesuatu sudut ialah [lengkok bulatan](/ms/subjek/matematik/bulatan/bahagian-bulatan-dan-lengkok) yang terletak di dalam sudut itu, di antara dua titik tempat lengannya bertemu bulatan. Lengkok itulah yang menghubungkan kedua-dua jenis sudut, jadi cari lengkok itu dahulu sebelum kamu mengira apa-apa.
+
+### Sudut di Pusat
+
+Sudut di pusat dibentuk oleh dua jejari, jadi bucunya terletak **tepat di pusat**. Dalam gambar rajah sudut di pusat, titik <InlineMath math="O" /> ialah pusat, tembereng garis <InlineMath math="OA" /> dan <InlineMath math="OB" /> ialah jejari, dan <InlineMath math="\angle AOB" /> ialah sudut di pusat dengan ukuran <InlineMath math="\alpha" />.
+
+<MathVisual
+  title={<>Sudut di Pusat</>}
+  description={<>Lengan <InlineMath math="OA" /> dan <InlineMath math="OB" /> ialah jejari, jadi bucu <InlineMath math="\angle AOB" /> terletak di pusat <InlineMath math="O" />.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="\alpha" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 2.83, y: 2.83 }, appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(1.2 * cos((((t / 5) * pi) / 180)))", y: "(1.2 * sin((((t / 5) * pi) / 180)))", parameter: { min: 0, max: 225 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 1.11, y: 0.45 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Sudut di pusat <InlineMath math="\angle AOB" /> dicangkum oleh lengkok <InlineMath math="AB" />, yang terletak di antara dua lengannya. Semakin besar sudut di pusat, semakin panjang lengkok yang mencangkumnya.
+
+### Sudut di Lilitan
+
+Sudut di lilitan dibentuk oleh dua [perentas](/ms/subjek/matematik/bulatan/perentas-bulatan) yang bertemu pada satu titik **pada lilitan**. Dalam gambar rajah sudut di lilitan, titik <InlineMath math="C" /> terletak pada lilitan, tembereng garis <InlineMath math="CA" /> dan <InlineMath math="CB" /> ialah perentas, dan <InlineMath math="\angle ACB" /> ialah sudut di lilitan.
+
+<MathVisual
+  title={<>Sudut di Lilitan</>}
+  description={<>Lengan <InlineMath math="CA" /> dan <InlineMath math="CB" /> ialah perentas yang bertemu di titik <InlineMath math="C" /> pada lilitan.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="C" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 2.83, y: 2.83 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "secondary" },
+      { id: "s4", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Pusat <InlineMath math="O" /> bukan bucu <InlineMath math="\angle ACB" />. Sudut di lilitan ini dicangkum oleh lengkok <InlineMath math="AB" />, yang berada di sebelah bulatan yang bertentangan dengan titik <InlineMath math="C" />.
+
+## Mengapa Sudut di Pusat Dua Kali Sudut di Lilitan
+
+Bukti ini menggunakan satu garis bantu, iaitu diameter yang melalui titik <InlineMath math="C" /> dan pusat <InlineMath math="O" />. Diameter ini membahagikan rajah itu kepada dua **segi tiga sama kaki**, kerana dua sisi bagi setiap segi tiga itu ialah jejari.
+
+<MathVisual
+  title={<>Bukti dengan Garis Bantu</>}
+  description={
+    <>
+      Diameter yang melalui <InlineMath math="C" /> dan <InlineMath math="O" /> membahagikan rajah itu kepada dua segi tiga sama kaki.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 4 * Math.sin(Math.PI / 2) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 0, y: 4 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s4-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
+      { id: "s4-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 4 * Math.sin(Math.PI / 2) }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }, { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }], appearance: "highlight" },
+      { id: "s6-p0", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "highlight" },
+      { id: "s6-p1", kind: "point", at: { x: 2.83, y: 2.83 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 4 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+      { key: "l5", objectId: "s6", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Dalam kes pertama, pusat <InlineMath math="O" /> terletak di dalam <InlineMath math="\angle ACB" />, seperti dalam gambar rajah garis bantu.
+
+1. Lukis diameter <InlineMath math="CD" /> yang melalui pusat <InlineMath math="O" />.
+2. Tembereng garis <InlineMath math="OA" />, <InlineMath math="OB" />, <InlineMath math="OC" />, dan <InlineMath math="OD" /> sama panjang kerana semuanya jejari.
+3. Segi tiga <InlineMath math="AOC" /> ialah segi tiga sama kaki, jadi sudut tapaknya sama. Namakan kedua-dua sudut itu <InlineMath math="\angle OCA = \angle OAC = x" />.
+4. Atas sebab yang sama, dalam segi tiga <InlineMath math="BOC" />, namakan sudut tapaknya <InlineMath math="\angle OCB = \angle OBC = y" />.
+5. Sudut peluaran sesebuah segi tiga sama dengan hasil tambah dua sudut pedalaman yang bertentangan dengannya, jadi <InlineMath math="\angle AOD = 2x" /> dan <InlineMath math="\angle BOD = 2y" />.
+6. Tambahkan kedua-dua sudut peluaran itu. Kamu dapat <InlineMath math="\angle AOB = 2x + 2y = 2(x + y)" />, dan <InlineMath math="x + y" /> tepat sama dengan <InlineMath math="\angle ACB" />.
+
+Kes kedua berlaku apabila diameter <InlineMath math="CD" /> terletak **di luar sudut di lilitan**. Kali ini <InlineMath math="\angle ACB" /> ialah beza dua sudut, bukan hasil tambahnya.
+
+<MathVisual
+  title={<>Pusat di Luar Sudut di Lilitan</>}
+  description={<>Diameter <InlineMath math="CD" /> terletak di luar <InlineMath math="\angle ACB" />, jadi <InlineMath math="\angle ACB" /> ialah beza antara <InlineMath math="\angle DCB" /> dan <InlineMath math="\angle DCA" />.</>}
+  labels={{
+    "l1": <InlineMath math="C" />,
+    "l2": <InlineMath math="D" />,
+    "l3": <InlineMath math="A" />,
+    "l4": <InlineMath math="B" />,
+    "l5": <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -(4 * Math.cos((20 * Math.PI) / 180)), y: 4 * Math.sin((20 * Math.PI) / 180) }, { x: 4 * Math.cos((340 * Math.PI) / 180), y: -(4 * Math.sin((20 * Math.PI) / 180)) }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: -3.76, y: 1.37 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 3.76, y: -1.37 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -(4 * Math.cos((20 * Math.PI) / 180)), y: 4 * Math.sin((20 * Math.PI) / 180) }, { x: 4 * Math.cos((20 * Math.PI) / 180), y: 4 * Math.sin((20 * Math.PI) / 180) }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: -3.76, y: 1.37 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 3.76, y: 1.37 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -(4 * Math.cos((20 * Math.PI) / 180)), y: 4 * Math.sin((20 * Math.PI) / 180) }, { x: 4 * Math.sin((20 * Math.PI) / 180), y: 4 * Math.cos((20 * Math.PI) / 180) }], appearance: "answer" },
+      { id: "s4-p0", kind: "point", at: { x: -3.76, y: 1.37 }, appearance: "answer" },
+      { id: "s4-p1", kind: "point", at: { x: 1.37, y: 3.76 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos((20 * Math.PI) / 180), y: 4 * Math.sin((20 * Math.PI) / 180) }], appearance: "highlight" },
+      { id: "s5-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "s5-p1", kind: "point", at: { x: 3.76, y: 1.37 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.sin((20 * Math.PI) / 180), y: 4 * Math.cos((20 * Math.PI) / 180) }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -3.76, y: 1.37 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 3.76, y: -1.37 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 3.76, y: 1.37 }, placement: "right" },
+      { key: "l4", objectId: "s4", at: { x: 1.37, y: 3.76 }, placement: "above-right" },
+      { key: "l5", objectId: "s5", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Dengan label yang sama, <InlineMath math="\angle ACB = y - x" />. Sudut peluarannya masih <InlineMath math="\angle AOD = 2x" /> dan <InlineMath math="\angle BOD = 2y" />, tetapi kali ini kamu tolak satu daripada yang lain:
+
+<BlockMath math="\angle AOB = \angle BOD - \angle AOD = 2y - 2x = 2(y - x) = 2 \times \angle ACB" />
+
+Dalam gambar rajah kes kedua, <InlineMath math="x = 20^\circ" /> dan <InlineMath math="y = 45^\circ" />, jadi <InlineMath math="\angle ACB = 25^\circ" /> dan <InlineMath math="\angle AOB = 50^\circ" />. Kes ketiga, iaitu apabila diameter terletak di sepanjang satu lengan, hanya memerlukan satu segi tiga sama kaki. Ketiga-tiga kes memberikan hasil yang sama, asalkan kedua-dua sudut dicangkum oleh lengkok yang sama.
+
+## Sudut di Lilitan yang Dicangkum oleh Diameter
+
+Diameter membahagikan bulatan kepada dua semibulatan, dan sudut di pusat bagi semibulatan ialah sudut lurus, iaitu <InlineMath math="180^\circ" />. Jadi setiap sudut di lilitan yang **dicangkum oleh diameter** berukuran <InlineMath math="90^\circ" />. Fakta ini dikenali sebagai teorem Thales.
+
+<MathVisual
+  title={<>Sudut di Lilitan yang Dicangkum oleh Diameter</>}
+  description={<>Diameter <InlineMath math="AB" /> memberikan sudut di pusat <InlineMath math="180^\circ" />, jadi <InlineMath math="\angle ACB = 90^\circ" />.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="O" />,
+    "l5": <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 0, y: 4 }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 0, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 0, y: 4 }], appearance: "answer" },
+      { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "s6", kind: "parametric", x: "(0 + (0.8 * cos(((2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0))))) + (((t / 14) / 15) * ((2 * atan(((0 - 4)) / (sqrt(((4 - 0))^2 + ((0 - 4))^2) + ((4 - 0))))) - (2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0)))))))))))", y: "(4 + (0.8 * sin(((2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0))))) + (((t / 14) / 15) * ((2 * atan(((0 - 4)) / (sqrt(((4 - 0))^2 + ((0 - 4))^2) + ((4 - 0))))) - (2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0)))))))))))", parameter: { min: 0, max: 210 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -4, y: 0 }, placement: "left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "l4", objectId: "s5", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "l5", objectId: "s6", at: { x: -0.04, y: 3.2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Dalam gambar rajah diameter, tembereng garis <InlineMath math="AB" /> ialah diameter dan titik <InlineMath math="C" /> terletak pada lilitan. Pengiraannya datang terus daripada hubungan sudut di pusat:
+
+<BlockMath math="\angle ACB=\frac12(180^\circ)=90^\circ" />
+
+Hasil ini tidak bergantung pada kedudukan <InlineMath math="C" />. Asalkan <InlineMath math="C" /> terletak pada lilitan dan bukan titik hujung diameter, segi tiga <InlineMath math="ABC" /> ada sudut tegak di <InlineMath math="C" />. Soalan 3 dalam set latihan menggunakan fakta ini untuk mencari sudut segi tiga yang belum diketahui.
+
+## Sudut di Lilitan yang Dicangkum oleh Lengkok yang Sama
+
+Sudut di lilitan bergantung pada lengkok yang mencangkumnya, bukan pada kedudukan bucunya. Sebab itulah sudut di lilitan yang dicangkum oleh lengkok yang sama **sentiasa sama besar**. Dalam gambar rajah lengkok yang sama, kalau kamu gerakkan titik <InlineMath math="C" /> ke <InlineMath math="D" /> di sepanjang lengkok major, sudut itu tidak berubah.
+
+<MathVisual
+  title={<>Sudut di Lilitan yang Dicangkum oleh Lengkok yang Sama</>}
+  description={<>Titik <InlineMath math="C" /> dan <InlineMath math="D" /> terletak pada lengkok major yang sama, jadi <InlineMath math="\angle ACB = \angle ADB" />.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <>Lengkok <InlineMath math="AB" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 2.83, y: 2.83 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: -(4 * Math.cos(Math.PI / 4)), y: 4 * Math.sin((3 * Math.PI) / 4) }], appearance: "highlight" },
+      { id: "s5-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "highlight" },
+      { id: "s5-p1", kind: "point", at: { x: -2.83, y: 2.83 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }, { x: -(4 * Math.cos(Math.PI / 4)), y: 4 * Math.sin((3 * Math.PI) / 4) }], appearance: "highlight" },
+      { id: "s7", kind: "parametric", x: "(4 * cos((((t / 5) * pi) / 180)))", y: "(4 * sin((((t / 5) * pi) / 180)))", parameter: { min: 0, max: 225 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+      { key: "l4", objectId: "s5", at: { x: -2.83, y: 2.83 }, placement: "above-left" },
+      { key: "l5", objectId: "s7", at: { x: 3.71, y: 1.5 }, placement: "above" },
+    ],
+  }}
+/>
+
+Titik <InlineMath math="C" /> dan <InlineMath math="D" /> kedua-duanya terletak pada lengkok major, jadi kedua-dua sudut dicangkum oleh lengkok minor <InlineMath math="AB" />, yang sudut di pusatnya ialah <InlineMath math="45^\circ" />:
+
+<BlockMath math="\angle ACB=\angle ADB=\frac12(45^\circ)=22.5^\circ" />
+
+Sifat ini hanya berlaku apabila kedua-dua bucu terletak pada lengkok yang sama. Sudut yang bucunya beralih ke lengkok minor akan dicangkum oleh lengkok major pula, jadi ukurannya berubah. Contoh 3 mengira kes itu.
+
+## Contoh Pengiraan Sudut di Pusat dan Sudut di Lilitan
+
+Setiap contoh bermula dengan **mencari lengkok** yang mencangkum kedua-dua sudut. Apabila lengkok itu sudah jelas, kamu hanya perlu bahagi dua atau darab dua.
+
+**Contoh 1**. Sudut di pusat ialah <InlineMath math="\angle AOB = 80^\circ" />. Titik <InlineMath math="C" /> terletak pada lengkok major, jadi <InlineMath math="\angle ACB" /> dan sudut di pusat itu dicangkum oleh lengkok minor <InlineMath math="AB" /> yang sama. Cari <InlineMath math="\angle ACB" />.
+
+<MathVisual
+  title={<>Sudut di Pusat <InlineMath math="80^\circ" /></>}
+  description={<>Titik <InlineMath math="C" /> terletak pada lengkok major, jadi <InlineMath math="\angle ACB" /> dan sudut di pusat dicangkum oleh lengkok <InlineMath math="AB" /> yang sama.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="80^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos((80 * Math.PI) / 180), y: 4 * Math.sin((80 * Math.PI) / 180) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 0.69, y: 3.94 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s4-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
+      { id: "s4-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 4 * Math.cos((80 * Math.PI) / 180), y: 4 * Math.sin((80 * Math.PI) / 180) }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s6", kind: "parametric", x: "(1.2 * cos((((((t / 12) * 80) / 17) * pi) / 180)))", y: "(1.2 * sin((((((t / 12) * 80) / 17) * pi) / 180)))", parameter: { min: 0, max: 204 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 0.69, y: 3.94 }, placement: "above" },
+      { key: "l4", objectId: "s4", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+      { key: "l5", objectId: "s6", at: { x: 0.82, y: 0.88 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Sudut di lilitan ialah separuh daripada sudut di pusat yang dicangkum oleh lengkok yang sama:
+
+<MathContainer>
+  <BlockMath math="\angle ACB = \frac{1}{2} \times \angle AOB" />
+  <BlockMath math="\angle ACB = \frac{1}{2} \times 80^\circ = 40^\circ" />
+</MathContainer>
+
+Semak dari arah sebaliknya. Dua kali <InlineMath math="40^\circ" /> ialah <InlineMath math="80^\circ" />, iaitu sama dengan sudut di pusat yang diberikan.
+
+**Contoh 2**. Sudut di lilitan <InlineMath math="\angle ACB = 35^\circ" /> dicangkum oleh lengkok <InlineMath math="AB" />. Cari sudut di pusat <InlineMath math="\angle AOB" /> yang dicangkum oleh lengkok yang sama.
+
+<MathContainer>
+  <BlockMath math="\angle AOB = 2 \times \angle ACB" />
+  <BlockMath math="\angle AOB = 2 \times 35^\circ = 70^\circ" />
+</MathContainer>
+
+Semak dari arah sebaliknya: separuh daripada <InlineMath math="70^\circ" /> ialah <InlineMath math="35^\circ" />, iaitu sudut di lilitan yang diberikan.
+
+**Contoh 3**. Sudut di pusat ialah <InlineMath math="\angle AOB = 100^\circ" />, tetapi titik <InlineMath math="C" /> terletak pada lengkok minor <InlineMath math="AB" />. Cari <InlineMath math="\angle ACB" />.
+
+Sudut yang bucunya pada lengkok minor dicangkum oleh **lengkok major** <InlineMath math="AB" />. Sudut di pusat bagi lengkok major ialah baki daripada satu putaran penuh:
+
+<MathContainer>
+  <BlockMath math="\text{sudut di pusat bagi lengkok major} = 360^\circ - 100^\circ = 260^\circ" />
+  <BlockMath math="\angle ACB = \frac{1}{2} \times 260^\circ = 130^\circ" />
+</MathContainer>
+
+Semak dengan titik <InlineMath math="D" /> pada lengkok major. Sudutnya ialah <InlineMath math="\angle ADB = \frac12(100^\circ) = 50^\circ" />, dan <InlineMath math="130^\circ + 50^\circ = 180^\circ" />. Hasil tambah ini ialah petua sudut bertentangan dalam sisi empat kitaran <InlineMath math="ACBD" />, salah satu [sifat sudut dalam bulatan](/ms/subjek/matematik/bulatan/teorem-sudut-dalam-bulatan).
+
+## Kesilapan Lazim
+
+Sebelum mengira, pastikan kamu tahu **lengkok mana yang mencangkum setiap sudut**.
+
+| Kesilapan | Sebab salah | Cara menyemak |
+| --- | --- | --- |
+| Membandingkan sudut yang dicangkum oleh lengkok berbeza | Faktor dua hanya berlaku untuk lengkok yang sama | Pastikan lengan kedua-dua sudut berakhir pada dua titik yang sama |
+| Membahagi dua sedangkan yang kamu perlukan ialah sudut di pusat | Sudut di pusatlah yang besarnya dua kali ganda | Sudut di pusat sentiasa lebih besar daripada sudut di lilitan |
+| Menggunakan lengkok minor apabila bucu terletak pada lengkok minor | Sudut yang bucunya pada lengkok minor dicangkum oleh lengkok major | Hasil tambah dua sudut di lilitan pada sisi yang bertentangan ialah <InlineMath math="180^\circ" /> |
+| Menganggap sudut yang bucunya di dalam bulatan sebagai sudut di lilitan | Bucu sudut di lilitan mesti tepat pada lilitan | Semak sama ada bucu terletak pada lilitan |
+
+Kesilapan lengkok minor ini mudah dikesan daripada jawapan. Sudut yang bucunya pada lengkok minor dicangkum oleh lengkok major yang sudut di pusatnya lebih daripada <InlineMath math="180^\circ" />, jadi sudut di lilitan itu mesti lebih daripada <InlineMath math="90^\circ" />. Kalau jawapan kamu sudut tirus dalam keadaan ini, maksudnya kamu tersalah pilih lengkok.
+
+## Latihan Sudut di Pusat dan Sudut di Lilitan
+
+Untuk setiap soalan, cari **bucu sudut dan lengkok yang mencangkumnya** dahulu. Soalan 3 dan 4 juga memerlukan hasil tambah sudut dalam segi tiga, iaitu <InlineMath math="180^\circ" />.
+
+1. Satu sudut di pusat sebuah bulatan berukuran <InlineMath math="120^\circ" />. Berapakah sudut di lilitan yang dicangkum oleh lengkok yang sama?
+
+2. Sudut di lilitan <InlineMath math="\angle ACB = 45^\circ" />. Cari sudut di pusat <InlineMath math="\angle AOB" /> yang dicangkum oleh lengkok yang sama.
+
+3. Tembereng garis <InlineMath math="AB" /> ialah diameter sebuah bulatan dan titik <InlineMath math="C" /> terletak pada lilitan. Jika <InlineMath math="\angle CAB = 35^\circ" />, cari <InlineMath math="\angle ABC" />.
+
+4. Titik <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" /> terletak pada bulatan berpusat <InlineMath math="O" />, dan <InlineMath math="C" /> berada pada lengkok major <InlineMath math="AB" />. Jika <InlineMath math="\angle OAB = 25^\circ" />, cari <InlineMath math="\angle ACB" />.
+
+### Jawapan
+
+**Soalan 1**. Sudut di lilitan yang dicangkum oleh lengkok yang sama ialah **separuh daripada sudut di pusat**, jadi ukurannya <InlineMath math="\frac{1}{2} \times 120^\circ = 60^\circ" />. Semak dengan mendarab dua: <InlineMath math="2 \times 60^\circ = 120^\circ" />.
+
+**Soalan 2**. Sudut di pusat dan <InlineMath math="\angle ACB" /> kedua-duanya dicangkum oleh lengkok <InlineMath math="AB" />, dan sudut di pusat ialah **dua kali sudut di lilitan**:
+
+<BlockMath math="\angle AOB=2\angle ACB=2(45^\circ)=90^\circ" />
+
+**Soalan 3**. Sudut <InlineMath math="\angle ACB" /> dicangkum oleh diameter <InlineMath math="AB" />, jadi ukurannya <InlineMath math="90^\circ" />. Hasil tambah sudut dalam segi tiga <InlineMath math="ABC" /> ialah <InlineMath math="180^\circ" />, jadi:
+
+<BlockMath math="\angle ABC = 180^\circ - 90^\circ - 35^\circ = 55^\circ" />
+
+Semak hasil tambahnya: <InlineMath math="35^\circ + 90^\circ + 55^\circ = 180^\circ" />.
+
+**Soalan 4**. Segi tiga <InlineMath math="OAB" /> ialah segi tiga sama kaki kerana <InlineMath math="OA" /> dan <InlineMath math="OB" /> kedua-duanya jejari, jadi **sudut tapaknya sama**: <InlineMath math="\angle OAB = \angle OBA = 25^\circ" />. Sudut di pusat ialah baki daripada hasil tambah sudut segi tiga itu:
+
+<MathContainer>
+  <BlockMath math="\angle AOB = 180^\circ - 25^\circ - 25^\circ = 130^\circ" />
+  <BlockMath math="\angle ACB = \frac{1}{2} \times 130^\circ = 65^\circ" />
+</MathContainer>
+
+Titik <InlineMath math="C" /> terletak pada lengkok major, jadi <InlineMath math="\angle ACB" /> memang dicangkum oleh lengkok minor yang sudut di pusatnya <InlineMath math="130^\circ" />. Jawapan ini betul, kerana <InlineMath math="2 \times 65^\circ = 130^\circ" />.

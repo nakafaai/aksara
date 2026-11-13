@@ -1,0 +1,487 @@
+export const metadata = {
+  title: "Teorem Sudut dalam Bulatan",
+  description: "Guna gambar rajah dan soalan berserta jalan kerja untuk mengaitkan sudut di lilitan, teorem Thales, dan sudut bertentangan dalam sisi empat kitaran.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-09-12",
+  subject: "Bulatan",
+};
+
+
+
+## Sudut di Lilitan yang Dicangkum oleh Lengkok yang Sama
+
+Sudut di lilitan yang dicangkum oleh **lengkok yang sama** mempunyai ukuran yang sama apabila bucunya terletak pada baki lengkok yang sama, atau dengan kata lain, dalam tembereng bulatan yang sama.
+
+<MathVisual
+  title={<>Sudut di Lilitan yang Dicangkum oleh Lengkok yang Sama</>}
+  description={<>Sudut di lilitan dalam tembereng yang sama dan dicangkum oleh lengkok yang sama mempunyai ukuran yang sama.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <>Lengkok <InlineMath math="AB" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 2.83, y: 2.83 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: -(4 * Math.cos(Math.PI / 4)), y: 4 * Math.sin((3 * Math.PI) / 4) }], appearance: "highlight" },
+      { id: "s5-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "highlight" },
+      { id: "s5-p1", kind: "point", at: { x: -2.83, y: 2.83 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }, { x: -(4 * Math.cos(Math.PI / 4)), y: 4 * Math.sin((3 * Math.PI) / 4) }], appearance: "highlight" },
+      { id: "s7", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 45 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+      { key: "l4", objectId: "s5", at: { x: -2.83, y: 2.83 }, placement: "above-left" },
+      { key: "l5", objectId: "s7", at: { x: 3.71, y: 1.5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+**Sifat**: <InlineMath math="\angle ACB = \angle ADB" />
+
+Bucu <InlineMath math="C" /> dan <InlineMath math="D" /> kedua-duanya terletak pada sisi perentas <InlineMath math="AB" /> yang sama. Jadi sudut <InlineMath math="\angle ACB" /> dan <InlineMath math="\angle ADB" /> dicangkum oleh lengkok yang sama dari tembereng yang sama, maka ukurannya sama.
+
+## Sudut di Pusat dan Sudut di Lilitan
+
+[Sudut di pusat](/ms/subjek/matematik/bulatan/sudut-di-pusat-dan-sudut-di-lilitan) ialah **dua kali sudut di lilitan** yang dicangkum oleh lengkok yang sama.
+
+<MathVisual
+  title={<>Hubungan antara Sudut di Pusat dan Sudut di Lilitan</>}
+  description={
+    <>
+      Sudut di pusat <InlineMath math="= 2 \times" /> sudut di lilitan bagi
+      lengkok yang sama.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="2\theta" />,
+    "l6": <InlineMath math="\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 2.83, y: 2.83 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s4-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
+      { id: "s4-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s6", kind: "parametric", x: "(1.2 * cos((((((t / 7) * 45) / 15) * pi) / 180)))", y: "(1.2 * sin((((((t / 7) * 45) / 15) * pi) / 180)))", parameter: { min: 0, max: 105 }, appearance: "highlight" },
+      { id: "s7", kind: "parametric", x: "((4 * cos(((5 * pi) / 4))) + (0.8 * cos(((2 * atan(((0 - (4 * sin(((5 * pi) / 4))))) / (sqrt(((4 - (4 * cos(((5 * pi) / 4)))))^2 + ((0 - (4 * sin(((5 * pi) / 4)))))^2) + ((4 - (4 * cos(((5 * pi) / 4)))))))) + ((t / 15) * ((2 * atan((((4 * sin((pi / 4))) - (4 * sin(((5 * pi) / 4))))) / (sqrt((((4 * cos((pi / 4))) - (4 * cos(((5 * pi) / 4)))))^2 + (((4 * sin((pi / 4))) - (4 * sin(((5 * pi) / 4)))))^2) + (((4 * cos((pi / 4))) - (4 * cos(((5 * pi) / 4)))))))) - (2 * atan(((0 - (4 * sin(((5 * pi) / 4))))) / (sqrt(((4 - (4 * cos(((5 * pi) / 4)))))^2 + ((0 - (4 * sin(((5 * pi) / 4)))))^2) + ((4 - (4 * cos(((5 * pi) / 4))))))))))))))", y: "((4 * sin(((5 * pi) / 4))) + (0.8 * sin(((2 * atan(((0 - (4 * sin(((5 * pi) / 4))))) / (sqrt(((4 - (4 * cos(((5 * pi) / 4)))))^2 + ((0 - (4 * sin(((5 * pi) / 4)))))^2) + ((4 - (4 * cos(((5 * pi) / 4)))))))) + ((t / 15) * ((2 * atan((((4 * sin((pi / 4))) - (4 * sin(((5 * pi) / 4))))) / (sqrt((((4 * cos((pi / 4))) - (4 * cos(((5 * pi) / 4)))))^2 + (((4 * sin((pi / 4))) - (4 * sin(((5 * pi) / 4)))))^2) + (((4 * cos((pi / 4))) - (4 * cos(((5 * pi) / 4)))))))) - (2 * atan(((0 - (4 * sin(((5 * pi) / 4))))) / (sqrt(((4 - (4 * cos(((5 * pi) / 4)))))^2 + ((0 - (4 * sin(((5 * pi) / 4)))))^2) + ((4 - (4 * cos(((5 * pi) / 4))))))))))))))", parameter: { min: 0, max: 15 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+      { key: "l5", objectId: "s6", at: { x: 1.12, y: 0.43 }, placement: "above-right" },
+      { key: "l6", objectId: "s7", at: { x: -2.16, y: -2.39 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+**Sifat**: <InlineMath math="\angle AOB = 2 \times \angle ACB" />
+
+## Sudut di Lilitan yang Dicangkum oleh Diameter
+
+Setiap sudut di lilitan yang dicangkum oleh <Highlight>diameter</Highlight> bulatan sentiasa merupakan sudut tegak (<InlineMath math="90^\circ" />).
+
+<MathVisual
+  title={<>Sudut di Lilitan yang Dicangkum oleh Diameter</>}
+  description={<>Sudut di lilitan yang dicangkum oleh diameter sentiasa <InlineMath math="90^\circ" />.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="O" />,
+    "l5": <InlineMath math="90^\circ" />,
+    "l6": <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 0, y: 4 }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 0, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 0, y: 4 }], appearance: "answer" },
+      { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "s6", kind: "parametric", x: "(0 + (0.8 * cos(((2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0))))) + ((t / 15) * ((2 * atan(((0 - 4)) / (sqrt(((4 - 0))^2 + ((0 - 4))^2) + ((4 - 0))))) - (2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0)))))))))))", y: "(4 + (0.8 * sin(((2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0))))) + ((t / 15) * ((2 * atan(((0 - 4)) / (sqrt(((4 - 0))^2 + ((0 - 4))^2) + ((4 - 0))))) - (2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0)))))))))))", parameter: { min: 0, max: 15 }, appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "warning" },
+      { id: "s7-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "warning" },
+      { id: "s7-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "warning" },
+      { id: "s8", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -4, y: 0 }, placement: "left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "l4", objectId: "s5", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "l5", objectId: "s6", at: { x: -0.04, y: 3.2 }, placement: "below-left" },
+      { key: "l6", objectId: "s7", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+**Sifat**: Kalau <InlineMath math="AB" /> ialah diameter, maka <InlineMath math="\angle ACB = \angle ADB = 90^\circ" />
+
+Sifat ini dikenali sebagai **Teorem Thales**.
+
+## Sudut dalam Sisi Empat Kitaran
+
+Sisi empat kitaran mempunyai empat bucu pada bulatan. Dua **sudut bertentangan** dicangkum oleh dua lengkok yang bersama-sama membentuk bulatan penuh. Setiap sudut di lilitan ialah separuh daripada ukuran lengkok yang mencangkumnya, jadi:
+
+<BlockMath math="\alpha+\gamma=\frac{1}{2}\times360^\circ=180^\circ" />
+
+<MathVisual
+  title={<>Sisi Empat dengan Sudut Bertentangan</>}
+  description={<>Dua sudut bertentangan dicangkum oleh lengkok yang bersama-sama melengkapkan bulatan.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <InlineMath math="\alpha" />,
+    "l6": <InlineMath math="\gamma" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 0.69, y: 3.94 }, { x: -3.76, y: -1.37 }, { x: 0.69, y: -3.94 }], appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 0.69, y: -3.94 }, to: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((4 * cos(((0 * pi) / 180))) + (0.65 * cos(((2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))))) + (((((2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))))) - (2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180))))))))) - (2 * pi)) * t) / 30)))))", y: "((4 * sin(((0 * pi) / 180))) + (0.65 * sin(((2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))))) + (((((2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))))) - (2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180))))))))) - (2 * pi)) * t) / 30)))))", parameter: { min: 0, max: 30 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "((4 * cos(((200 * pi) / 180))) + (0.65 * cos(((2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))))) + ((((2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))))) - (2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180))))))))) * t) / 30)))))", y: "((4 * sin(((200 * pi) / 180))) + (0.65 * sin(((2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))))) + ((((2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))))) - (2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180))))))))) * t) / 30)))))", parameter: { min: 0, max: 30 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0.69, y: 3.94 }, placement: "above" },
+      { key: "l3", objectId: "s2", at: { x: -3.76, y: -1.37 }, placement: "left" },
+      { key: "l4", objectId: "s2", at: { x: 0.69, y: -3.94 }, placement: "below" },
+      { key: "l5", objectId: "s3", at: { x: 3.35, y: 0 }, placement: "below" },
+      { key: "l6", objectId: "s4", at: { x: -3.12, y: -1.26 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Dalam gambar rajah, sudut <InlineMath math="A" /> ialah <InlineMath math="100^\circ" /> dan sudut <InlineMath math="C" /> ialah <InlineMath math="80^\circ" />. Tiada satu pun antara dua sudut ini yang semestinya sudut tegak.
+
+<BlockMath math="100^\circ+80^\circ=180^\circ" />
+
+## Sudut Peluaran Sama dengan Sudut Pedalaman yang Bertentangan
+
+Panjangkan sisi <InlineMath math="BA" /> hingga ke <InlineMath math="E" />. Sudut peluaran <InlineMath math="DAE" /> membentuk **sudut lurus** dengan sudut pedalaman di <InlineMath math="A" />. Sudut pedalaman di <InlineMath math="C" /> pula, apabila ditambah dengan sudut <InlineMath math="A" />, juga memberikan <InlineMath math="180^\circ" />.
+
+<BlockMath math="\varepsilon=180^\circ-\alpha=\gamma" />
+
+<MathVisual
+  title={<>Sudut Peluaran dan Sudut Pedalaman yang Bertentangan</>}
+  description={<>Apabila satu sisi dipanjangkan, terbentuk sudut peluaran yang sama dengan sudut pedalaman yang bertentangan.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <InlineMath math="\varepsilon" />,
+    "l6": <InlineMath math="\gamma" />,
+    "l7": <InlineMath math="E" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 6.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 0.69, y: 3.94 }, { x: -3.76, y: -1.37 }, { x: 0.69, y: -3.94 }], appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 0.69, y: -3.94 }, to: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((4 * cos(((0 * pi) / 180))) + (0.65 * cos(((2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))))) + ((((2 * atan(((((4 * sin(((0 * pi) / 180))) + (0.4 * ((4 * sin(((0 * pi) / 180))) - (4 * sin(((80 * pi) / 180)))))) - (4 * sin(((0 * pi) / 180))))) / (sqrt(((((4 * cos(((0 * pi) / 180))) + (0.4 * ((4 * cos(((0 * pi) / 180))) - (4 * cos(((80 * pi) / 180)))))) - (4 * cos(((0 * pi) / 180)))))^2 + ((((4 * sin(((0 * pi) / 180))) + (0.4 * ((4 * sin(((0 * pi) / 180))) - (4 * sin(((80 * pi) / 180)))))) - (4 * sin(((0 * pi) / 180)))))^2) + ((((4 * cos(((0 * pi) / 180))) + (0.4 * ((4 * cos(((0 * pi) / 180))) - (4 * cos(((80 * pi) / 180)))))) - (4 * cos(((0 * pi) / 180)))))))) - (2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180))))))))) * t) / 30)))))", y: "((4 * sin(((0 * pi) / 180))) + (0.65 * sin(((2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))))) + ((((2 * atan(((((4 * sin(((0 * pi) / 180))) + (0.4 * ((4 * sin(((0 * pi) / 180))) - (4 * sin(((80 * pi) / 180)))))) - (4 * sin(((0 * pi) / 180))))) / (sqrt(((((4 * cos(((0 * pi) / 180))) + (0.4 * ((4 * cos(((0 * pi) / 180))) - (4 * cos(((80 * pi) / 180)))))) - (4 * cos(((0 * pi) / 180)))))^2 + ((((4 * sin(((0 * pi) / 180))) + (0.4 * ((4 * sin(((0 * pi) / 180))) - (4 * sin(((80 * pi) / 180)))))) - (4 * sin(((0 * pi) / 180)))))^2) + ((((4 * cos(((0 * pi) / 180))) + (0.4 * ((4 * cos(((0 * pi) / 180))) - (4 * cos(((80 * pi) / 180)))))) - (4 * cos(((0 * pi) / 180)))))))) - (2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180))))))))) * t) / 30)))))", parameter: { min: 0, max: 30 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "((4 * cos(((200 * pi) / 180))) + (0.65 * cos(((2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))))) + ((((2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))))) - (2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180))))))))) * t) / 30)))))", y: "((4 * sin(((200 * pi) / 180))) + (0.65 * sin(((2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))))) + ((((2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))))) - (2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180))))))))) * t) / 30)))))", parameter: { min: 0, max: 30 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 5.32, y: -1.58 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0.69, y: 3.94 }, placement: "above" },
+      { key: "l3", objectId: "s2", at: { x: -3.76, y: -1.37 }, placement: "left" },
+      { key: "l4", objectId: "s2", at: { x: 0.69, y: -3.94 }, placement: "below" },
+      { key: "l5", objectId: "s3", at: { x: 4, y: -0.65 }, placement: "below" },
+      { key: "l6", objectId: "s4", at: { x: -3.12, y: -1.26 }, placement: "above-right" },
+      { key: "l7", objectId: "s5", at: { x: 5.32, y: -1.58 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Mencari Ukuran Sudut dengan Teorem Bulatan
+
+Setiap contoh menggunakan satu teorem bulatan pada situasi yang sudah dilabel. Kenal pasti **sudut dan lengkok** yang dikaitkan oleh teorem itu sebelum mengira. Tulis hubungannya dahulu sebelum menggantikan nombor, kerana hubungan itu menunjukkan kuantiti mana yang belum diketahui.
+
+### Menentukan Ukuran Sudut
+
+Dalam bulatan berpusat <InlineMath math="O" />, sudut di pusat ialah <InlineMath math="\angle AOB = 100^\circ" />. Cari sudut di lilitan <InlineMath math="\angle ACB" /> yang dicangkum oleh lengkok minor yang sama.
+
+**Penyelesaian**:
+
+Sudut di lilitan itu dicangkum oleh **lengkok yang sama**, jadi nilainya separuh daripada sudut di pusat:
+
+<MathContainer>
+  <BlockMath math="\angle ACB = \frac{1}{2} \times \angle AOB" />
+  <BlockMath math="\angle ACB = \frac{1}{2} \times 100^\circ" />
+  <BlockMath math="\angle ACB = 50^\circ" />
+</MathContainer>
+
+### Mencari Sudut Bertentangan
+
+Dalam sisi empat kitaran <InlineMath math="ABCD" />, diberi <InlineMath math="\angle A = 75^\circ" />. Cari ukuran <InlineMath math="\angle C" />.
+
+**Penyelesaian**:
+
+Hasil tambah **sudut bertentangan** dalam sisi empat kitaran ialah satu sudut lurus:
+
+<MathContainer>
+  <BlockMath math="\angle A + \angle C = 180^\circ" />
+  <BlockMath math="75^\circ + \angle C = 180^\circ" />
+  <BlockMath math="\angle C = 180^\circ - 75^\circ" />
+  <BlockMath math="\angle C = 105^\circ" />
+</MathContainer>
+
+### Menggunakan Teorem Thales
+
+Titik <InlineMath math="C" /> terletak pada bulatan dengan <InlineMath math="AB" /> sebagai diameter. Cari ukuran <InlineMath math="\angle ACB" />.
+
+**Penyelesaian**:
+
+Oleh sebab <InlineMath math="AB" /> ialah diameter dan <InlineMath math="C" /> terletak pada bulatan, mengikut **teorem Thales**:
+
+<BlockMath math="\angle ACB = 90^\circ" />
+
+## Soalan Latihan
+
+Kenal pasti **lengkok yang mencangkum sudut** atau pasangan sudut bertentangan sebelum mengira. Dalam soalan yang melibatkan diameter, bucu ketiga mesti berbeza daripada kedua-dua hujung diameter supaya segi tiga terbentuk.
+
+1. Dalam bulatan berpusat <InlineMath math="O" />, sudut di pusat <InlineMath math="\angle AOB = 140^\circ" /> dicangkum oleh lengkok minor <InlineMath math="AB" />. Titik <InlineMath math="C" /> dan <InlineMath math="D" /> terletak pada lengkok major <InlineMath math="AB" />. Cari ukuran <InlineMath math="\angle ACB" /> dan <InlineMath math="\angle ADB" />.
+
+2. Dalam sisi empat kitaran <InlineMath math="PQRS" />, diberi:
+
+   <MathContainer>
+     <BlockMath math="\angle P = 85^\circ" />
+     <BlockMath math="\angle Q = 110^\circ" />
+   </MathContainer>
+
+   Cari ukuran <InlineMath math="\angle R" /> dan <InlineMath math="\angle S" />.
+
+3. Titik <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" /> terletak pada bulatan. Kalau <InlineMath math="AB" /> ialah diameter dan <InlineMath math="BC = AC" />, cari ukuran <InlineMath math="\angle BAC" />.
+
+4. Dalam satu bulatan, sudut di lilitan <InlineMath math="\angle APB = 35^\circ" />. Cari ukuran sudut di pusat <InlineMath math="\angle AOB" /> yang dicangkum oleh lengkok yang sama.
+
+5. Dalam sisi empat kitaran <InlineMath math="KLMN" />, sudut peluaran di bucu <InlineMath math="K" /> ialah <InlineMath math="65^\circ" />. Cari ukuran sudut pedalaman di bucu <InlineMath math="M" />.
+
+### Jalan Kerja
+
+**Penyelesaian 1**: Mencari sudut di lilitan yang dicangkum oleh lengkok yang sama
+
+<MathVisual
+  title={<>Visualisasi</>}
+  description={<>Sudut di pusat <InlineMath math="\angle AOB = 140^\circ" /> dan sudut-sudut di lilitan dicangkum oleh lengkok <InlineMath math="AB" /> yang sama.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="D" />,
+    "l6": <InlineMath math="140^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos((140 * Math.PI) / 180), y: 4 * Math.sin((140 * Math.PI) / 180) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: -3.06, y: 2.57 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s4-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
+      { id: "s4-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 4 * Math.cos((140 * Math.PI) / 180), y: 4 * Math.sin((140 * Math.PI) / 180) }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 4 * Math.cos(Math.PI / 4), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "highlight" },
+      { id: "s6-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "highlight" },
+      { id: "s6-p1", kind: "point", at: { x: 2.83, y: -2.83 }, appearance: "highlight" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 4 * Math.cos((140 * Math.PI) / 180), y: 4 * Math.sin((140 * Math.PI) / 180) }, { x: 4 * Math.cos(Math.PI / 4), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "highlight" },
+      { id: "s8", kind: "parametric", x: "(1.2 * cos((((((t / 7) * 140) / 15) * pi) / 180)))", y: "(1.2 * sin((((((t / 7) * 140) / 15) * pi) / 180)))", parameter: { min: 0, max: 105 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: -3.06, y: 2.57 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+      { key: "l5", objectId: "s6", at: { x: 2.83, y: -2.83 }, placement: "below-right" },
+      { key: "l6", objectId: "s8", at: { x: 0.5, y: 1.09 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+**Penyelesaian**:
+
+Gunakan hubungan antara sudut di pusat dan sudut di lilitan:
+
+<MathContainer>
+  <BlockMath math="\text{Sudut di lilitan} = \frac{1}{2} \times \text{Sudut di pusat}" />
+  <BlockMath math="\angle ACB = \frac{1}{2} \times \angle AOB" />
+  <BlockMath math="\angle ACB = \frac{1}{2} \times 140^\circ" />
+  <BlockMath math="\angle ACB = 70^\circ" />
+</MathContainer>
+
+Oleh sebab sudut di lilitan yang dicangkum oleh lengkok yang sama mempunyai ukuran yang sama:
+
+<BlockMath math="\angle ADB = \angle ACB = 70^\circ" />
+
+**Penyelesaian 2**: Mencari sudut dalam sisi empat kitaran
+
+**Penyelesaian**:
+
+Dalam sisi empat kitaran, hasil tambah sudut bertentangan ialah <InlineMath math="180^\circ" />.
+
+Untuk sudut <InlineMath math="R" /> (bertentangan dengan <InlineMath math="P" />):
+
+<MathContainer>
+  <BlockMath math="\angle P + \angle R = 180^\circ" />
+  <BlockMath math="85^\circ + \angle R = 180^\circ" />
+  <BlockMath math="\angle R = 180^\circ - 85^\circ" />
+  <BlockMath math="\angle R = 95^\circ" />
+</MathContainer>
+
+Untuk sudut <InlineMath math="S" /> (bertentangan dengan <InlineMath math="Q" />):
+
+<MathContainer>
+  <BlockMath math="\angle Q + \angle S = 180^\circ" />
+  <BlockMath math="110^\circ + \angle S = 180^\circ" />
+  <BlockMath math="\angle S = 180^\circ - 110^\circ" />
+  <BlockMath math="\angle S = 70^\circ" />
+</MathContainer>
+
+**Penyelesaian 3**: Mencari sudut dalam segi tiga sama kaki dengan diameter
+
+<MathVisual
+  title={<>Visualisasi</>}
+  description={
+    <>
+      <InlineMath math="AB" /> ialah diameter,{" "}
+      <InlineMath math="BC = AC" /> (segi tiga sama kaki).
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="O" />,
+    "l5": <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 0, y: 4 }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 0, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 0, y: 4 }], appearance: "answer" },
+      { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "s6", kind: "parametric", x: "(0 + (0.8 * cos(((2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0))))) + ((t / 15) * ((2 * atan(((0 - 4)) / (sqrt(((4 - 0))^2 + ((0 - 4))^2) + ((4 - 0))))) - (2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0)))))))))))", y: "(4 + (0.8 * sin(((2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0))))) + ((t / 15) * ((2 * atan(((0 - 4)) / (sqrt(((4 - 0))^2 + ((0 - 4))^2) + ((4 - 0))))) - (2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0)))))))))))", parameter: { min: 0, max: 15 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -4, y: 0 }, placement: "left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "l4", objectId: "s5", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "l5", objectId: "s6", at: { x: -0.04, y: 3.2 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+**Penyelesaian**:
+
+Oleh sebab <InlineMath math="AB" /> ialah diameter, mengikut Teorem Thales:
+
+<BlockMath math="\angle ACB = 90^\circ" />
+
+Oleh sebab <InlineMath math="BC = AC" />, segi tiga <InlineMath math="ABC" /> ialah
+segi tiga sama kaki bersudut tegak.
+
+Dalam segi tiga sama kaki bersudut tegak, kedua-dua sudut tapaknya sama:
+
+<MathContainer>
+  <BlockMath math="\angle BAC + \angle ABC + \angle ACB = 180^\circ" />
+  <BlockMath math="\angle BAC + \angle ABC + 90^\circ = 180^\circ" />
+  <BlockMath math="\angle BAC + \angle ABC = 90^\circ" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="\angle BAC = \angle ABC" /> (sudut tapak segi tiga sama kaki):
+
+<MathContainer>
+  <BlockMath math="2 \times \angle BAC = 90^\circ" />
+  <BlockMath math="\angle BAC = 45^\circ" />
+</MathContainer>
+
+**Penyelesaian 4**: Mencari sudut di pusat daripada sudut di lilitan
+
+**Penyelesaian**:
+
+Gunakan hubungan antara sudut di pusat dan sudut di lilitan:
+
+<MathContainer>
+  <BlockMath math="\text{Sudut di pusat} = 2 \times \text{Sudut di lilitan}" />
+  <BlockMath math="\angle AOB = 2 \times \angle APB" />
+  <BlockMath math="\angle AOB = 2 \times 35^\circ" />
+  <BlockMath math="\angle AOB = 70^\circ" />
+</MathContainer>
+
+**Penyelesaian 5**: Mencari sudut pedalaman daripada sudut peluaran dalam sisi empat kitaran
+
+**Penyelesaian**:
+
+Dalam sisi empat kitaran, sudut peluaran di satu bucu sama dengan sudut pedalaman di bucu yang bertentangan.
+
+Kalau sudut peluaran di <InlineMath math="K" /> ialah <InlineMath math="65^\circ" />, maka:
+
+<BlockMath math="\angle M = 65^\circ" />
+
+Ini kerana bucu <InlineMath math="K" /> dan <InlineMath math="M" /> bertentangan dalam sisi empat kitaran <InlineMath math="KLMN" />.
