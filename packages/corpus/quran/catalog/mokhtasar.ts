@@ -1,5 +1,6 @@
 import {
   ACTIVE_APP_LOCALE_CODES,
+  ActiveAppLocaleCodeSchema,
   AppLocaleCodeSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
@@ -16,25 +17,27 @@ const MokhtasarEditionSchema = Schema.Struct({
   version: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
 });
 
-/** Checks that the official catalog covers every active application locale once. */
-function hasCompleteLocaleCoverage(
+const MokhtasarBookIdSchema = Schema.Int.pipe(
+  Schema.check(Schema.isGreaterThan(0))
+);
+
+/** Checks that each official edition is listed once, for its own language. */
+function hasDistinctEditions(
   editions: readonly (typeof MokhtasarEditionSchema.Type)[]
 ) {
   return (
-    editions.length === ACTIVE_APP_LOCALE_CODES.length &&
-    Arr.every(
-      editions,
-      ({ appLocale }, index) => appLocale === ACTIVE_APP_LOCALE_CODES[index]
-    )
+    new Set(Arr.map(editions, ({ appLocale }) => appLocale)).size ===
+    editions.length
   );
 }
 
-const MokhtasarCatalogSchema = Schema.Struct({
+const MokhtasarCatalogFieldsSchema = Schema.Struct({
+  /** The listed edition that readers of each active locale are linked to. */
+  access: Schema.Record(ActiveAppLocaleCodeSchema, MokhtasarBookIdSchema),
   editions: Schema.NonEmptyArray(MokhtasarEditionSchema).pipe(
     Schema.check(
-      Schema.makeFilter(hasCompleteLocaleCoverage, {
-        message:
-          "Expected one official Mokhtasar edition for every active app locale.",
+      Schema.makeFilter(hasDistinctEditions, {
+        message: "Expected each official Mokhtasar edition once.",
       })
     )
   ),
@@ -48,6 +51,24 @@ const MokhtasarCatalogSchema = Schema.Struct({
     url: Schema.Trimmed.check(Schema.isNonEmpty()),
   }),
 });
+
+/** Checks that every active locale links to one listed official edition. */
+function hasEditionForEveryLocale(
+  catalog: typeof MokhtasarCatalogFieldsSchema.Type
+) {
+  return Arr.every(ACTIVE_APP_LOCALE_CODES, (code) =>
+    Arr.some(catalog.editions, ({ bookId }) => bookId === catalog.access[code])
+  );
+}
+
+const MokhtasarCatalogSchema = MokhtasarCatalogFieldsSchema.pipe(
+  Schema.check(
+    Schema.makeFilter(hasEditionForEveryLocale, {
+      message:
+        "Expected every active app locale to link one listed Mokhtasar edition.",
+    })
+  )
+);
 
 export const mokhtasarEnglishEdition = MokhtasarEditionSchema.make({
   appLocale: "en",
@@ -81,6 +102,13 @@ export const mokhtasarGermanEdition = MokhtasarEditionSchema.make({
 
 /** Reviewed official catalog metadata without copied Tafsir content. */
 export const mokhtasarCatalog = MokhtasarCatalogSchema.make({
+  access: {
+    de: mokhtasarGermanEdition.bookId,
+    en: mokhtasarEnglishEdition.bookId,
+    id: mokhtasarIndonesianEdition.bookId,
+    // No Malay edition exists; Malay readers are linked to the Indonesian one.
+    ms: mokhtasarIndonesianEdition.bookId,
+  },
   editions: [
     mokhtasarEnglishEdition,
     mokhtasarIndonesianEdition,

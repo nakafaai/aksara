@@ -78,13 +78,14 @@ describe("locale", () => {
     }
   });
 
-  it("rejects empty, duplicate, unordered, and not yet active locale lists", () => {
+  it("rejects empty, duplicate, unordered, and unknown locale lists", () => {
     for (const locales of [
       [],
       ["en", "en"],
       ["id", "en"],
       ["de", "id"],
-      ["en", "id", "de", "ms"],
+      ["en", "id", "ms", "de"],
+      ["en", "id", "de", "ms", "fr"],
     ] as const) {
       const result = Schema.decodeUnknownExit(ActiveAppLocaleListSchema)(
         locales
@@ -94,7 +95,7 @@ describe("locale", () => {
     expect(
       String(Schema.decodeExit(ActiveAppLocaleListSchema)(["en", "en"]))
     ).toContain(
-      "Active app locales must be unique and follow en, id, de order."
+      "Active app locales must be unique and follow en, id, de, ms order."
     );
   });
 });

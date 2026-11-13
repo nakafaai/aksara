@@ -7,6 +7,7 @@ import {
   ENGLISH_APP_LOCALE_CODE,
   GERMAN_APP_LOCALE_CODE,
   INDONESIAN_APP_LOCALE_CODE,
+  MALAY_APP_LOCALE_CODE,
   makeAppLocale,
 } from "#contracts/locale";
 import {
@@ -30,6 +31,7 @@ const snapshotId = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 const english = makeAppLocale(ENGLISH_APP_LOCALE_CODE);
 const indonesian = makeAppLocale(INDONESIAN_APP_LOCALE_CODE);
 const german = makeAppLocale(GERMAN_APP_LOCALE_CODE);
+const malay = makeAppLocale(MALAY_APP_LOCALE_CODE);
 
 /** Builds one honest technical source attribution for signed-row tests. */
 function quranSourceAttribution(id: ReturnType<typeof quranSourceIds>[number]) {
@@ -111,6 +113,12 @@ function quranTafsirAccess() {
       notice: "Technischer deutscher externer Tafsirhinweis.",
       sourceId: "mokhtasar-german",
     }),
+    QuranTafsirAccessSchema.make({
+      appLocale: malay,
+      kind: "external",
+      notice: "Catatan teknikal tafsir luar bahasa Melayu.",
+      sourceId: "mokhtasar-indonesian",
+    }),
   ] as const;
 }
 
@@ -146,6 +154,10 @@ export function quranVerse(inSurah: number, inQuran: number) {
       {
         appLocale: german,
         value: { footnotes: "", text: "Technischer Text" },
+      },
+      {
+        appLocale: malay,
+        value: { footnotes: "", text: "Teks teknikal" },
       },
     ],
   });

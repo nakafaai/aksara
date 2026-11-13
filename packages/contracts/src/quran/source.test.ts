@@ -8,6 +8,7 @@ import {
   ENGLISH_APP_LOCALE_CODE,
   GERMAN_APP_LOCALE_CODE,
   INDONESIAN_APP_LOCALE_CODE,
+  MALAY_APP_LOCALE_CODE,
   makeAppLocale,
 } from "#contracts/locale";
 import type {
@@ -90,6 +91,7 @@ function tafsirAccess() {
   const english = makeAppLocale(ENGLISH_APP_LOCALE_CODE);
   const indonesian = makeAppLocale(INDONESIAN_APP_LOCALE_CODE);
   const german = makeAppLocale(GERMAN_APP_LOCALE_CODE);
+  const malay = makeAppLocale(MALAY_APP_LOCALE_CODE);
   return [
     QuranTafsirAccessSchema.make({
       appLocale: english,
@@ -108,6 +110,12 @@ function tafsirAccess() {
       kind: "external",
       notice: "Technischer deutscher Tafsirhinweis.",
       sourceId: "mokhtasar-german",
+    }),
+    QuranTafsirAccessSchema.make({
+      appLocale: malay,
+      kind: "external",
+      notice: "Catatan teknikal tafsir bahasa Melayu.",
+      sourceId: "mokhtasar-indonesian",
     }),
   ] as const;
 }
@@ -197,6 +205,7 @@ describe("Quran source contracts", () => {
       "en",
       "id",
       "de",
+      "ms",
     ]);
     const sources = Arr.map(quranSourceIds(active), source);
     const access = tafsirAccess();
@@ -209,7 +218,9 @@ describe("Quran source contracts", () => {
     expect(Arr.map(row.sources, ({ id }) => id)).toEqual(
       quranSourceIds(active)
     );
-    expect(quranSourceFileCount(active)).toBe(121);
+    // Arabic and metadata, one XML per en/id/de translation and 114 Malay
+    // responses, the id/de/ms name records, and 114 Indonesian Tafsir responses.
+    expect(quranSourceFileCount(active)).toBe(2 + 3 + 114 + 3 + 114);
     expect(hasRequiredQuranSources(row.sources, active)).toBe(true);
     expect(hasRequiredQuranSources(Arr.dropRight(row.sources, 1), active)).toBe(
       false
