@@ -25,7 +25,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Rata-rata banyak kemasan minuman tinggi gula yang dibeli setiap pembelinya sama pada kedua minggu.",
+            "Rata-rata banyak kemasan minuman tinggi gula yang dibeli setiap pembeli minuman tinggi gula sama pada kedua minggu.",
         },
         {
           column: 2,
