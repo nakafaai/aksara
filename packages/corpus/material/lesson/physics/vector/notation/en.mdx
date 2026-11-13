@@ -16,6 +16,26 @@ If a force arrow is longer, the force is larger on the same drawing scale. If th
 
 > A complete vector notation shows both magnitude and direction.
 
+### Arrows on a Wind Map
+
+Each arrow on this map is drawn from a place, its tail, toward where the wind blows, its head, and **its length grows with the speed**. Slide the speed from <InlineMath math="8\text{ m/s}" /> up and watch only the length change.
+
+<WindMapVectorLab
+  title={<>Length and Direction of the Wind</>}
+  description={<>Wind of <InlineMath math="8\text{ m/s}" /> toward <InlineMath math="45^\circ" /> from east.</>}
+  angle={45}
+  speed={8}
+  labels={{
+    angle: <>Direction from east</>,
+    angleName: "Direction from east",
+    east: <>East component <InlineMath math="v_x" /></>,
+    north: <>North component <InlineMath math="v_y" /></>,
+    speed: <>Wind speed</>,
+    speedName: "Wind speed",
+    viewLabel: "Weather map of wind over islands",
+  }}
+/>
+
 ## Two Point Notation
 
 A vector can be written from a starting point to an ending point. For example, <InlineMath math="\overrightarrow{AB}" /> means the vector from point <InlineMath math="A" /> to point <InlineMath math="B" />.
@@ -63,6 +83,35 @@ Both arrows below have the same length, but the order of the letters flips the d
   }}
 />
 
+### Checkpoints on a Park Map
+
+On an orienteering map, <InlineMath math="\overrightarrow{AB}" /> runs from checkpoint <InlineMath math="A" /> in the teal ring to <InlineMath math="B" /> in the amber ring: <InlineMath math="60\text{ m}" /> east and <InlineMath math="80\text{ m}" /> north, <InlineMath math="100\text{ m}" /> long. Switch to <InlineMath math="\overrightarrow{BA}" /> and **the length stays while the direction turns around**.
+
+<OrienteeringMapVectorLab
+  title={<>From <InlineMath math="A" /> to <InlineMath math="B" /> and Back</>}
+  description={<>The start <InlineMath math="O" /> is the fuchsia triangle. Choose which vector the map shows.</>}
+  marks={{
+    a: { east: 40, north: 30 },
+    b: { east: 100, north: 110 },
+    c: { east: 150, north: -10 },
+  }}
+  views={["forward", "back"]}
+  labels={{
+    angle: <>Direction from east</>,
+    chooseView: "Choose which vector to show",
+    east: <>East part</>,
+    north: <>North part</>,
+    size: <>Length</>,
+    viewLabel: "Orienteering map of a park",
+    views: {
+      back: <><InlineMath math="B" /> to <InlineMath math="A" /></>,
+      copy: <>Same vector from <InlineMath math="C" /></>,
+      difference: <><InlineMath math="\vec b-\vec a" /></>,
+      forward: <><InlineMath math="A" /> to <InlineMath math="B" /></>,
+    },
+  }}
+/>
+
 ## Single Letter Notation
 
 In calculations, vectors are often named with **one letter carrying an arrow** such as <InlineMath math="\vec{a}" />, <InlineMath math="\vec{v}" />, or <InlineMath math="\vec{F}" />. The letter helps identify the physical quantity.
@@ -76,6 +125,25 @@ For example, <InlineMath math="\vec{F}" /> is often used for force, <InlineMath 
 
 The first line still includes direction. The second line states only the force magnitude.
 
+### One Letter for a Ferry Leg
+
+Call the ferry's displacement <InlineMath math="\vec s" />. **One letter carries everything**: <InlineMath math="10\text{ km}" /> on a bearing of <InlineMath math="60^\circ" />, which the card also writes as <InlineMath math="8.66\text{ km}" /> east and <InlineMath math="5\text{ km}" /> north. Turn the bearing and <InlineMath math="\vec s" /> still names the whole arrow.
+
+<ShipBearingComponentLab
+  title={<>The Ferry's Vector <InlineMath math="\vec s" /></>}
+  description={<>A ferry sails <InlineMath math="10\text{ km}" /> from the harbour. The bearing is measured clockwise from north.</>}
+  courses={[{ bearing: 60, distance: 10 }]}
+  labels={{
+    bearing: <>Bearing of the last leg</>,
+    bearingName: "Bearing of the last leg",
+    direction: <>Bearing from the harbour</>,
+    distance: <>Distance from the harbour</>,
+    east: <>East component</>,
+    north: <>North component</>,
+    viewLabel: "Ferry sailing from a harbour",
+  }}
+/>
+
 ## Zero Vectors and Unit Vectors
 
 When calculating components, you need to distinguish a vector with no length from a vector used to specify direction. **Zero vectors** and **unit vectors** serve these two different roles.
@@ -87,6 +155,27 @@ A **zero vector** has magnitude <InlineMath math="0" />. Its tail and tip coinci
 For example, take right as the positive direction. Forces of <InlineMath math="20\text{ N}" /> to the right and to the left add to:
 
 <BlockMath math="\begin{aligned}\vec{F}_1+\vec{F}_2 &= 20\hat{i}\text{ N}-20\hat{i}\text{ N} \\ &= (20-20)\hat{i}\text{ N} \\ &= \vec{0}\text{ N}\end{aligned}" />
+
+On this force table, three strings pull one ring. Turn the third pulley from <InlineMath math="200^\circ" /> toward <InlineMath math="233^\circ" />: the resultant shrinks until it is almost <InlineMath math="0\text{ N}" />, the zero vector, and the ring rests on the pin.
+
+<ForceTableResultantLab
+  title={<>Balance the Ring</>}
+  description={<>Masses of <InlineMath math="300\text{ g}" />, <InlineMath math="400\text{ g}" /> and <InlineMath math="500\text{ g}" /> hang at <InlineMath math="0^\circ" />, <InlineMath math="90^\circ" /> and the angle you choose.</>}
+  pulls={[
+    { angle: 0, mass: 300 },
+    { angle: 90, mass: 400 },
+    { angle: 200, mass: 500 },
+  ]}
+  labels={{
+    angle: <>Angle of the last string</>,
+    angleName: "Angle of the last string",
+    direction: <>Direction of <InlineMath math="\vec R" /></>,
+    resultant: <>Resultant <InlineMath math="R" /></>,
+    sumX: <>Sum along <InlineMath math="0^\circ" /></>,
+    sumY: <>Sum along <InlineMath math="90^\circ" /></>,
+    viewLabel: "Force table with hanging masses",
+  }}
+/>
 
 ### A Vector That Specifies Direction
 
@@ -155,6 +244,25 @@ Place the two forces head to tail. The second arrow ends exactly where the first
     f1: <InlineMath math="\vec F_1=20\hat i\text{ N}" />,
     f2: <InlineMath math="\vec F_2=-20\hat i\text{ N}" />,
     sum: <InlineMath math="\vec F_1+\vec F_2=\vec 0" />,
+  }}
+/>
+
+The three short arrows at the pad are the unit vectors <InlineMath math="\hat\imath" />, <InlineMath math="\hat\jmath" /> and <InlineMath math="\hat k" />, each <InlineMath math="1\text{ m}" /> long, east, north and up. The drone's displacement is <InlineMath math="3\,\hat\imath+4\,\hat\jmath+12\,\hat k" /> metres, <InlineMath math="13\text{ m}" /> long.
+
+<DroneDisplacementLab
+  title={<>Unit Vectors at the Pad</>}
+  description={<>The drone climbs <InlineMath math="12\text{ m}" />, then flies <InlineMath math="3\text{ m}" /> east and <InlineMath math="4\text{ m}" /> north at once.</>}
+  hops={[
+    { east: 0, north: 0, up: 12 },
+    { east: 3, north: 4, up: 0 },
+  ]}
+  units
+  labels={{
+    chooseFactor: "Multiply the flight plan by k",
+    displacement: <>Displacement</>,
+    path: <>Path flown</>,
+    size: <>Distance from the pad</>,
+    viewLabel: "Drone flying from its pad",
   }}
 />
 

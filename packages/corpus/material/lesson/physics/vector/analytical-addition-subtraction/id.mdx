@@ -59,6 +59,28 @@ Pecah setiap vektor menjadi bagian x dan y, jumlahkan bagian di tiap sumbu, lalu
   }}
 />
 
+### Komponen pada Meja Gaya
+
+Dua tali menarik dengan <InlineMath math="1{,}96\text{ N}" /> pada <InlineMath math="30^\circ" /> dan <InlineMath math="2{,}94\text{ N}" /> pada <InlineMath math="120^\circ" />. Kartu **menjumlahkan komponennya** sepanjang <InlineMath math="0^\circ" /> dan <InlineMath math="90^\circ" />, yaitu <InlineMath math="0{,}23\text{ N}" /> dan <InlineMath math="3{,}53\text{ N}" />, lalu menyusun kembali resultannya, <InlineMath math="3{,}53\text{ N}" /> pada <InlineMath math="86{,}3^\circ" />. Putar katrol kedua, lalu hitung ulang jumlahnya.
+
+<ForceTableResultantLab
+  title={<>Menjumlahkan Tarikan per Komponen</>}
+  description={<>Gantungan <InlineMath math="200\text{ g}" /> dan <InlineMath math="300\text{ g}" />. Putar katrol kedua.</>}
+  pulls={[
+    { angle: 30, mass: 200 },
+    { angle: 120, mass: 300 },
+  ]}
+  labels={{
+    angle: <>Sudut tali terakhir</>,
+    angleName: "Sudut tali terakhir",
+    direction: <>Arah <InlineMath math="\vec R" /></>,
+    resultant: <>Resultan <InlineMath math="R" /></>,
+    sumX: <>Jumlah sepanjang <InlineMath math="0^\circ" /></>,
+    sumY: <>Jumlah sepanjang <InlineMath math="90^\circ" /></>,
+    viewLabel: "Meja gaya dengan beban tergantung",
+  }}
+/>
+
 ## Langkah Penjumlahan Vektor
 
 Misalnya ada beberapa gaya <InlineMath math="\vec{F}_1" />, <InlineMath math="\vec{F}_2" />, dan <InlineMath math="\vec{F}_3" />. Setiap gaya dipecah menjadi **komponen horizontal dan vertikal**.
@@ -81,6 +103,28 @@ Gunakan arctangent dua argumen untuk mencari arah resultan terhadap sumbu <Inlin
 Berbeda dari <InlineMath math="\tan^{-1}(R_y/R_x)" />, <InlineMath math="\operatorname{atan2}" /> memakai tanda kedua komponen untuk menempatkan arah pada kuadran yang benar.
 
 Jika kedua komponen nol, resultannya adalah vektor nol dan **arahnya tidak terdefinisi**. Jangan memberikan sudut fisik pada keluaran <InlineMath math="\operatorname{atan2}(0,0)" /> dari kalkulator atau program.
+
+### Rencana Terbang saat Angin Samping
+
+Pilot **menjumlahkan vektor per komponen setiap hari**. Dengan hidung pesawat pada <InlineMath math="30^\circ" /> dan kecepatan <InlineMath math="400\text{ km/h}" />, serta angin <InlineMath math="300\text{ km/h}" /> ke timur, komponen-komponennya menghasilkan kelajuan terhadap tanah <InlineMath math="608\text{ km/h}" /> dengan arah lintasan <InlineMath math="55{,}3^\circ" />.
+
+<AircraftCrosswindLab
+  title={<>Kecepatan terhadap Tanah per Komponen</>}
+  description={<>Kecepatan udara <InlineMath math="400\text{ km/h}" />, angin <InlineMath math="300\text{ km/h}" /> ke timur. Putar hidung pesawat.</>}
+  airspeed={400}
+  heading={30}
+  toward={90}
+  wind={300}
+  labels={{
+    between: <>Sudut antara kecepatan udara dan angin</>,
+    drift: <>Sudut hanyut</>,
+    groundSpeed: <>Kelajuan terhadap tanah</>,
+    heading: <>Arah hidung pesawat</>,
+    headingName: "Arah hidung pesawat",
+    track: <>Arah lintasan di atas tanah</>,
+    viewLabel: "Pesawat di atas sawah saat angin samping",
+  }}
+/>
 
 ### Contoh Perpindahan Dua Tahap
 
@@ -144,6 +188,46 @@ Jumlahkan kedua tahap komponen demi komponen dan resultannya langsung muncul: <I
   }}
 />
 
+Kapal feri melakukan perjalanan dua tahap yang serupa: <InlineMath math="6\text{ km}" /> lurus ke timur, lalu <InlineMath math="10\text{ km}" /> dengan arah kompas <InlineMath math="30^\circ" />. Komponen timurnya berjumlah <InlineMath math="11\text{ km}" /> dan komponen utaranya <InlineMath math="8{,}66\text{ km}" />, jadi feri berakhir <InlineMath math="14\text{ km}" /> dari pelabuhan.
+
+<ShipBearingComponentLab
+  title={<>Feri dalam Dua Tahap</>}
+  description={<>Tahap pertama <InlineMath math="6\text{ km}" /> ke timur, tahap kedua <InlineMath math="10\text{ km}" />. Putar arah kompas tahap kedua.</>}
+  courses={[
+    { bearing: 90, distance: 6 },
+    { bearing: 30, distance: 10 },
+  ]}
+  labels={{
+    bearing: <>Arah kompas tahap terakhir</>,
+    bearingName: "Arah kompas tahap terakhir",
+    direction: <>Arah kompas dari pelabuhan</>,
+    distance: <>Jarak dari pelabuhan</>,
+    east: <>Komponen timur</>,
+    north: <>Komponen utara</>,
+    viewLabel: "Kapal feri berlayar dari pelabuhan",
+  }}
+/>
+
+### Dua Tahap di Ruang
+
+Langkah yang sama berlaku di ruang **dengan komponen ketiga**. Drone naik ke <InlineMath math="3\text{ m}" /> sambil terbang <InlineMath math="4\text{ m}" /> ke timur, lalu terbang <InlineMath math="12\text{ m}" /> ke utara: jumlahnya <InlineMath math="4\text{ m}" />, <InlineMath math="12\text{ m}" />, dan <InlineMath math="3\text{ m}" />, jadi perpindahannya <InlineMath math="13\text{ m}" />.
+
+<DroneDisplacementLab
+  title={<>Menjumlahkan Dua Tahap Terbang</>}
+  description={<>Tahap satu naik <InlineMath math="3\text{ m}" /> sambil ke timur <InlineMath math="4\text{ m}" />. Tahap dua ke utara <InlineMath math="12\text{ m}" />.</>}
+  hops={[
+    { east: 4, north: 0, up: 3 },
+    { east: 0, north: 12, up: 0 },
+  ]}
+  labels={{
+    chooseFactor: "Kalikan rencana terbang dengan k",
+    displacement: <>Perpindahan</>,
+    path: <>Panjang lintasan terbang</>,
+    size: <>Jarak dari landasan</>,
+    viewLabel: "Drone terbang dari landasannya",
+  }}
+/>
+
 ## Pengurangan dengan Komponen
 
 Pengurangan vektor juga dilakukan **per komponen pada sumbu yang sama**. Jika <InlineMath math="\vec{C}=\vec{A}-\vec{B}" />, maka:
@@ -200,3 +284,32 @@ Tanda komponen memberi arah kanan dan bawah. Untuk mendapatkan panjang panah, gu
 
 
 Jadi, pengurangan tidak memerlukan aturan baru. Gunakan sumbu yang sama, kurangi komponen yang sejenis, lalu tentukan arah setiap komponen resultan dari tandanya.
+
+### Mengurangkan Posisi di Peta
+
+Pos <InlineMath math="A" /> berada <InlineMath math="60\text{ m}" /> di timur dan <InlineMath math="20\text{ m}" /> di utara titik awal, sedangkan <InlineMath math="B" /> berada <InlineMath math="20\text{ m}" /> di timur dan <InlineMath math="50\text{ m}" /> di utara. **Kurangkan per komponen**: <InlineMath math="\vec b-\vec a" /> adalah <InlineMath math="-40\text{ m}" /> ke timur dan <InlineMath math="30\text{ m}" /> ke utara, panjangnya <InlineMath math="50\text{ m}" />.
+
+<OrienteeringMapVectorLab
+  title={<>Selisih Dua Posisi</>}
+  description={<>Titik awal <InlineMath math="O" /> adalah segitiga magenta. Bandingkan <InlineMath math="\vec b-\vec a" /> dengan rute dari <InlineMath math="B" /> ke <InlineMath math="A" />.</>}
+  marks={{
+    a: { east: 60, north: 20 },
+    b: { east: 20, north: 50 },
+    c: { east: 110, north: 70 },
+  }}
+  views={["difference", "back"]}
+  labels={{
+    angle: <>Arah dari timur</>,
+    chooseView: "Pilih vektor yang ditampilkan",
+    east: <>Bagian timur</>,
+    north: <>Bagian utara</>,
+    size: <>Panjang</>,
+    viewLabel: "Peta orienteering sebuah taman",
+    views: {
+      back: <><InlineMath math="B" /> ke <InlineMath math="A" /></>,
+      copy: <>Vektor sama dari <InlineMath math="C" /></>,
+      difference: <><InlineMath math="\vec b-\vec a" /></>,
+      forward: <><InlineMath math="A" /> ke <InlineMath math="B" /></>,
+    },
+  }}
+/>

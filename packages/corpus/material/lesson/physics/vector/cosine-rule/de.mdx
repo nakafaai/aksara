@@ -18,6 +18,28 @@ Der Kosinussatz eignet sich, wenn die Beträge der beiden Vektoren <InlineMath m
 
 > Der Winkel <InlineMath math="\theta" /> ist der Winkel zwischen den beiden Vektoren, wenn ihre Anfangspunkte zusammenliegen.
 
+### Zwei Schnüre im Winkel
+
+Züge von <InlineMath math="2{,}94\text{ N}" /> und <InlineMath math="3{,}92\text{ N}" /> mit <InlineMath math="60^\circ" /> dazwischen ergeben eine Resultierende von <InlineMath math="5{,}96\text{ N}" />, **weniger als ihre einfache Summe** von <InlineMath math="6{,}86\text{ N}" />. Öffne den Winkel und sieh, wie die Resultierende schrumpft.
+
+<ForceTableResultantLab
+  title={<>Der Winkel verkleinert die Summe</>}
+  description={<>Massestücke von <InlineMath math="300\text{ g}" /> bei <InlineMath math="0^\circ" /> und <InlineMath math="400\text{ g}" /> bei dem Winkel, den du wählst.</>}
+  pulls={[
+    { angle: 0, mass: 300 },
+    { angle: 60, mass: 400 },
+  ]}
+  labels={{
+    angle: <>Winkel der letzten Schnur</>,
+    angleName: "Winkel der letzten Schnur",
+    direction: <>Richtung von <InlineMath math="\vec R" /></>,
+    resultant: <>Resultierende <InlineMath math="R" /></>,
+    sumX: <>Summe entlang <InlineMath math="0^\circ" /></>,
+    sumY: <>Summe entlang <InlineMath math="90^\circ" /></>,
+    viewLabel: "Kräftetisch mit Massestücken",
+  }}
+/>
+
 ## Der Kosinus in der Dreiecksformel
 
 Der Kosinussatz kommt ins Spiel, weil die beiden Vektoren und ihre Resultierende ein Dreieck mit zwei bekannten Seiten bilden. Bei einem kleinen Zwischenwinkel verstärken sich die Vektoren stark. Nähert sich der Winkel <InlineMath math="180^\circ" />, heben sich ihre Wirkungen zunehmend auf.
@@ -70,6 +92,28 @@ Die folgende Tabelle zeigt, wie sich <InlineMath math="\cos\theta" /> mit dem Wi
 
 Für <InlineMath math="\theta=90^\circ" /> geht der Kosinussatz in den Satz des Pythagoras über, weil <InlineMath math="\cos90^\circ=0" /> gilt.
 
+### Ein Flugzeug gegen Seitenwind
+
+Mit der Nase auf <InlineMath math="330^\circ" /> liegen die Eigengeschwindigkeit von <InlineMath math="400\text{ km/h}" /> und der Wind von <InlineMath math="300\text{ km/h}" /> <InlineMath math="120^\circ" /> auseinander, also ist **die Geschwindigkeit über Grund** <InlineMath math="\sqrt{400^2+300^2+2(400)(300)\cos120^\circ}" />, etwa <InlineMath math="361\text{ km/h}" />. Dreh die Nase und vergleich die Karte mit der Formel.
+
+<AircraftCrosswindLab
+  title={<>Geschwindigkeit über Grund mit dem Kosinussatz</>}
+  description={<>Eigengeschwindigkeit <InlineMath math="400\text{ km/h}" />, Wind <InlineMath math="300\text{ km/h}" /> nach Osten. Dreh die Nase.</>}
+  airspeed={400}
+  heading={330}
+  toward={90}
+  wind={300}
+  labels={{
+    between: <>Winkel zwischen Eigengeschwindigkeit und Wind</>,
+    drift: <>Abdriftwinkel</>,
+    groundSpeed: <>Geschwindigkeit über Grund</>,
+    heading: <>Steuerkurs der Nase</>,
+    headingName: "Steuerkurs der Nase",
+    track: <>Kurs über Grund</>,
+    viewLabel: "Verkehrsflugzeug über Feldern bei Seitenwind",
+  }}
+/>
+
 ## Resultierende zweier Kräfte
 
 An einem Punkt wirken zwei Kräfte. Die erste hat den Betrag <InlineMath math="10\text{ N}" />, die zweite den Betrag <InlineMath math="8\text{ N}" />. Der Winkel zwischen ihnen beträgt <InlineMath math="60^\circ" />. Gesucht ist der Betrag der Resultierenden.
@@ -121,6 +165,26 @@ R&=\sqrt{A^2+B^2+2AB\cos\theta} \\
 \end{aligned}" />
 
 Die Resultierende ist kleiner als <InlineMath math="18\text{ N}" />, weil die beiden Kräfte nicht genau gleichgerichtet sind. Sie ist aber größer als jede einzelne Kraft, da beide noch in hinreichend ähnliche Richtungen zeigen. Probe mit den Grenzen: <InlineMath math="15{,}6" /> liegt zwischen <InlineMath math="10 - 8 = 2" /> und <InlineMath math="10 + 8 = 18" />. Die Richtung der Resultierenden zur ersten Kraft liefert der [Sinussatz](/de/faecher/physik/vektoren/sinussatz): <InlineMath math="\sin\varphi = \frac{8\sin 60^\circ}{\sqrt{244}}" />, also <InlineMath math="\varphi \approx 26{,}3^\circ" />.
+
+### Zwei Schlepper an einem Schiff
+
+Hier sind dieselben Zahlen im Hafen: Schlepper, die mit <InlineMath math="10\text{ kN}" /> und <InlineMath math="8\text{ kN}" /> bei <InlineMath math="60^\circ" /> zwischen den Trossen ziehen, ergeben <InlineMath math="15{,}6\text{ kN}" />, **die Diagonale des gestrichelten Parallelogramms**.
+
+<TugboatResultantLab
+  title={<>Resultierende zweier Schlepper</>}
+  description={<>Züge von <InlineMath math="10\text{ kN}" /> und <InlineMath math="8\text{ kN}" />. Öffne oder schließe die Trossen.</>}
+  between={60}
+  first={10}
+  second={8}
+  labels={{
+    between: <>Winkel zwischen den Seilen</>,
+    betweenName: "Winkel zwischen den Seilen",
+    fromFirst: <>Winkel von <InlineMath math="\vec R" /> zu <InlineMath math="\vec F_1" /></>,
+    fromLine: <>Winkel zur Schiffslinie</>,
+    resultant: <>Resultierende <InlineMath math="R" /></>,
+    viewLabel: "Zwei Schlepper ziehen ein Schiff",
+  }}
+/>
 
 ## Beispiel zum Zwischenwinkel aus der Resultierenden
 
@@ -179,6 +243,28 @@ Prüf jede Antwort an den Enden dieser Kurve. <InlineMath math="R=\sqrt{A^2+B^2+
   }}
 />
 
+### Das Seil als Grenzfall
+
+Beim Tauziehen liegen die beiden Kräfte <InlineMath math="180^\circ" /> auseinander, also ist <InlineMath math="\cos180^\circ=-1" /> und **vom Satz bleibt** <InlineMath math="R=|F_R-F_L|" />: <InlineMath math="900\text{ N}" /> gegen <InlineMath math="600\text{ N}" /> ergibt <InlineMath math="300\text{ N}" />. Mach die Teams gleich groß, und die Resultierende wird null.
+
+<TugOfWarForceLab
+  title={<>Kräfte in Gegenrichtung</>}
+  description={<>Jede Person zieht mit <InlineMath math="300\text{ N}" />. Ändere die Teams.</>}
+  left={2}
+  pull={300}
+  right={3}
+  labels={{
+    left: <>Linkes Team <InlineMath math="\vec F_L" /></>,
+    leftCount: <>Ziehende links</>,
+    leftName: "Ziehende links",
+    net: <>Gesamtkraft <InlineMath math="\Sigma F" /></>,
+    right: <>Rechtes Team <InlineMath math="\vec F_R" /></>,
+    rightCount: <>Ziehende rechts</>,
+    rightName: "Ziehende rechts",
+    viewLabel: "Tauziehen bei Sonnenuntergang",
+  }}
+/>
+
 ## Der passende Einsatz des Kosinussatzes
 
 Der Kosinussatz ist geeignet, wenn:
@@ -198,6 +284,27 @@ Bei mehr als zwei Vektoren werden alle Vektoren in Koordinatenkomponenten zerleg
   A -->|"Betrag der Resultierenden bekannt, Richtung gesucht"| C["Sinussatz"]
   A -->|"mehr als zwei Vektoren"| D["In x- und y-Komponenten zerlegen"]
   B -->|"Richtung auch gesucht"| C`}
+/>
+
+### Ein rechter Winkel am Fluss
+
+Fährt das Boot genau quer, liegen seine <InlineMath math="4\text{ m/s}" /> und die <InlineMath math="3\text{ m/s}" /> der Strömung <InlineMath math="90^\circ" /> auseinander, <InlineMath math="\cos90^\circ=0" />, und **der Kosinussatz schrumpft zu Pythagoras**: <InlineMath math="5\text{ m/s}" />. Dreh den Kurs, und du brauchst wieder den ganzen Satz.
+
+<RiverBoatCrossingLab
+  title={<>Pythagoras als Spezialfall</>}
+  description={<>Ein <InlineMath math="60\text{ m}" /> breiter Fluss mit <InlineMath math="3\text{ m/s}" /> Strömung.</>}
+  boatSpeed={4}
+  current={3}
+  width={60}
+  labels={{
+    angle: <>Winkel zur Querrichtung</>,
+    drift: <>Abdrift flussabwärts</>,
+    groundSpeed: <>Geschwindigkeit über Grund</>,
+    heading: <>Kurs des Boots</>,
+    headingName: "Kurs des Boots",
+    time: <>Überfahrtszeit</>,
+    viewLabel: "Boot überquert einen Fluss",
+  }}
 />
 
 ## Typische Fehler

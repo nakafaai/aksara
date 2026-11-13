@@ -89,6 +89,26 @@ Ask whether the quantity needs a direction. These two carts have the same speed,
   }}
 />
 
+### Wind on a Weather Map
+
+A weather map **needs a vector for the wind**: <InlineMath math="12\text{ m/s}" /> alone does not tell a sailor where the boat drifts. Turn the direction and watch every arrow on the map turn with it, while the speed only sets their length.
+
+<WindMapVectorLab
+  title={<>Wind over the Islands</>}
+  description={<>A steady wind of <InlineMath math="12\text{ m/s}" /> blows toward <InlineMath math="30^\circ" /> from east. Change its speed and direction.</>}
+  angle={30}
+  speed={12}
+  labels={{
+    angle: <>Direction from east</>,
+    angleName: "Direction from east",
+    east: <>East component <InlineMath math="v_x" /></>,
+    north: <>North component <InlineMath math="v_y" /></>,
+    speed: <>Wind speed</>,
+    speedName: "Wind speed",
+    viewLabel: "Weather map of wind over islands",
+  }}
+/>
+
 ## Reading a Vector Arrow
 
 Vectors are often drawn as arrows. The **tail** shows where the vector starts, the **head** shows the direction, and the **length** represents the vector magnitude.
@@ -101,6 +121,27 @@ A vector can also be written from one point to another, such as <InlineMath math
 
 The absolute value bars around a vector denote its magnitude. Direction is not part of that value.
 
+### A Drone Leaves Its Pad
+
+The violet arrow starts at the pad, its tail, and ends at the drone, its head. Its length is **the straight distance from the pad**, <InlineMath math="10.8\text{ m}" />, even though the drone flew <InlineMath math="18\text{ m}" /> along its path. Press play to watch it fly.
+
+<DroneDisplacementLab
+  title={<>Tail at the Pad, Head at the Drone</>}
+  description={<>The drone climbs <InlineMath math="4\text{ m}" />, flies <InlineMath math="6\text{ m}" /> east, then <InlineMath math="8\text{ m}" /> north.</>}
+  hops={[
+    { east: 0, north: 0, up: 4 },
+    { east: 6, north: 0, up: 0 },
+    { east: 0, north: 8, up: 0 },
+  ]}
+  labels={{
+    chooseFactor: "Multiply the flight plan by k",
+    displacement: <>Displacement</>,
+    path: <>Path flown</>,
+    size: <>Distance from the pad</>,
+    viewLabel: "Drone flying from its pad",
+  }}
+/>
+
 ## Vector Equality Depends on Magnitude and Direction
 
 Two vectors are equal if they have <Highlight>the same magnitude and the same direction</Highlight>. Their locations may be different.
@@ -108,6 +149,28 @@ Two vectors are equal if they have <Highlight>the same magnitude and the same di
 Two forces of <InlineMath math="15 \text{ N}" /> directed to the right have equal vector values, even when the arrows are drawn at different locations. The point where a force acts affects the torque on a rigid body. Moving that point can change the torque even when the magnitude and direction stay the same.
 
 By contrast, a force of <InlineMath math="15 \text{ N}" /> to the right and a force of <InlineMath math="15 \text{ N}" /> to the left are not equal vectors. Their magnitudes are equal, but their directions are opposite.
+
+### Two Teams on One Rope
+
+Both teams start with three pullers of <InlineMath math="400\text{ N}" /> each, so both forces are <InlineMath math="1200\text{ N}" /> big. They still are not equal vectors, because **they point opposite ways**, and together they give a net force of <InlineMath math="0\text{ N}" />. Add one puller to a side and see the rope move.
+
+<TugOfWarForceLab
+  title={<>Same Size, Opposite Pull</>}
+  description={<>Each puller pulls with <InlineMath math="400\text{ N}" />. Change the size of each team.</>}
+  left={3}
+  pull={400}
+  right={3}
+  labels={{
+    left: <>Left team <InlineMath math="\vec F_L" /></>,
+    leftCount: <>Pullers on the left</>,
+    leftName: "Pullers on the left",
+    net: <>Net force <InlineMath math="\Sigma F" /></>,
+    right: <>Right team <InlineMath math="\vec F_R" /></>,
+    rightCount: <>Pullers on the right</>,
+    rightName: "Pullers on the right",
+    viewLabel: "Tug of war at sunset",
+  }}
+/>
 
 ## Distance and Displacement Measure Different Quantities
 
@@ -155,5 +218,27 @@ The path below is <InlineMath math="7\text{ m}" /> of walking, but the fuchsia a
     east: <InlineMath math="4\text{ m}" />,
     north: <InlineMath math="3\text{ m}" />,
     walk: <InlineMath math="5\text{ m}" />,
+  }}
+/>
+
+### A Walk Through Town
+
+The walker follows the streets <InlineMath math="300\text{ m}" /> east and then <InlineMath math="400\text{ m}" /> north, so the distance is <InlineMath math="700\text{ m}" />. The displacement is **the straight violet arrow from start to finish**, only <InlineMath math="500\text{ m}" /> long.
+
+<CityWalkDisplacementLab
+  title={<>Distance Walked and Displacement</>}
+  description={<>A walk at <InlineMath math="1.25\text{ m/s}" /> along two streets of the town.</>}
+  legs={[
+    { east: 300, north: 0 },
+    { east: 0, north: 400 },
+  ]}
+  pace={1.25}
+  labels={{
+    averageSpeed: <>Average speed</>,
+    averageVelocity: <>Average velocity</>,
+    displacement: <>Displacement</>,
+    distance: <>Distance walked</>,
+    time: <>Time</>,
+    viewLabel: "Walk through a town seen from above",
   }}
 />

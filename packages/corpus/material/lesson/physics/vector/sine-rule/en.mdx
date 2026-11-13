@@ -23,6 +23,27 @@ Use this triangle for **two nonzero vectors that are not collinear**, with <Inli
 
 > The sine rule is usually used after the resultant magnitude is known.
 
+### Where the Boat Really Goes
+
+Knowing the boat moves at <InlineMath math="5\text{ m/s}" /> is not enough to land it: **you also need the angle from straight across**, <InlineMath math="36.9^\circ" />, where <InlineMath math="\sin\alpha=3/5" />. That angle decides it lands <InlineMath math="45\text{ m}" /> downstream.
+
+<RiverBoatCrossingLab
+  title={<>Speed Alone Does Not Land the Boat</>}
+  description={<>Boat <InlineMath math="4\text{ m/s}" />, current <InlineMath math="3\text{ m/s}" />, river <InlineMath math="60\text{ m}" /> wide.</>}
+  boatSpeed={4}
+  current={3}
+  width={60}
+  labels={{
+    angle: <>Angle from straight across</>,
+    drift: <>Drift downstream</>,
+    groundSpeed: <>Speed over the ground</>,
+    heading: <>Boat heading</>,
+    headingName: "Boat heading",
+    time: <>Crossing time</>,
+    viewLabel: "Boat crossing a flowing river",
+  }}
+/>
+
 ## Reading the Angle Being Asked For
 
 Before calculating, decide the **reference direction**. If the question asks for the resultant direction relative to <InlineMath math="\vec{A}" />, the required angle is from <InlineMath math="\vec{A}" /> toward <InlineMath math="\vec{R}" />.
@@ -39,6 +60,28 @@ A common relationship is:
 The value <InlineMath math="\phi_0" /> is an **acute or right-angle candidate**. Check the resultant components to choose between <InlineMath math="\phi=\phi_0" /> and <InlineMath math="\phi=180^\circ-\phi_0" />.
 
 This formula finds the resultant angle relative to vector <InlineMath math="\vec{A}" />. Because the side opposite angle <InlineMath math="\phi" /> has magnitude <InlineMath math="B" />, <InlineMath math="B" /> appears in the numerator.
+
+### Drift Angle of a Plane
+
+Pilots ask for the angle between where the nose points and where the plane goes, **the drift**. Here it sits between the air velocity and the ground velocity, opposite the wind side: <InlineMath math="\sin\delta=300\sin60^\circ/608" />, so <InlineMath math="25.3^\circ" />.
+
+<AircraftCrosswindLab
+  title={<>Which Angle Is the Drift</>}
+  description={<>Airspeed <InlineMath math="400\text{ km/h}" />, wind <InlineMath math="300\text{ km/h}" /> toward the east. Turn the nose.</>}
+  airspeed={400}
+  heading={30}
+  toward={90}
+  wind={300}
+  labels={{
+    between: <>Angle between airspeed and wind</>,
+    drift: <>Drift angle</>,
+    groundSpeed: <>Speed over the ground</>,
+    heading: <>Heading of the nose</>,
+    headingName: "Heading of the nose",
+    track: <>Track over the ground</>,
+    viewLabel: "Airliner over farmland in a crosswind",
+  }}
+/>
 
 ## Resultant Force Direction
 
@@ -87,6 +130,26 @@ Here are the two forces with their parallelogram. The fuchsia resultant leans to
     a: <InlineMath math="A=10\text{ N}" />,
     b: <InlineMath math="B=8\text{ N}" />,
     r: <InlineMath math="R\approx15.62\text{ N},\ \phi\approx26.3^\circ" />,
+  }}
+/>
+
+### Direction of a Tow
+
+Tugs pulling <InlineMath math="10\text{ kN}" /> and <InlineMath math="8\text{ kN}" /> with <InlineMath math="60^\circ" /> between their cables give <InlineMath math="15.6\text{ kN}" />. **Its angle from the first cable** is <InlineMath math="26.3^\circ" />, the same <InlineMath math="\phi" /> as above, so the ship moves only <InlineMath math="3.7^\circ" /> off its own line.
+
+<TugboatResultantLab
+  title={<>The Sine Rule in a Harbour</>}
+  description={<>Pulls of <InlineMath math="10\text{ kN}" /> and <InlineMath math="8\text{ kN}" />. Open or close the cables.</>}
+  between={60}
+  first={10}
+  second={8}
+  labels={{
+    between: <>Angle between the cables</>,
+    betweenName: "Angle between the cables",
+    fromFirst: <>Angle of <InlineMath math="\vec R" /> from <InlineMath math="\vec F_1" /></>,
+    fromLine: <>Angle from the ship's line</>,
+    resultant: <>Resultant <InlineMath math="R" /></>,
+    viewLabel: "Two tugboats towing a ship",
   }}
 />
 
@@ -193,8 +256,51 @@ Join the vectors head to tail and you get a triangle. The cosine rule gives the 
   }}
 />
 
+A weak pull of <InlineMath math="0.98\text{ N}" /> at <InlineMath math="0^\circ" /> and a strong one of <InlineMath math="3.92\text{ N}" /> at <InlineMath math="150^\circ" /> give a resultant at <InlineMath math="140.9^\circ" />. The sine rule alone says <InlineMath math="39.1^\circ" />, but the components show the obtuse answer, <InlineMath math="180^\circ-39.1^\circ" />.
+
+<ForceTableResultantLab
+  title={<>An Obtuse Resultant</>}
+  description={<>Hangers of <InlineMath math="100\text{ g}" /> at <InlineMath math="0^\circ" /> and <InlineMath math="400\text{ g}" /> at the angle you choose.</>}
+  pulls={[
+    { angle: 0, mass: 100 },
+    { angle: 150, mass: 400 },
+  ]}
+  labels={{
+    angle: <>Angle of the last string</>,
+    angleName: "Angle of the last string",
+    direction: <>Direction of <InlineMath math="\vec R" /></>,
+    resultant: <>Resultant <InlineMath math="R" /></>,
+    sumX: <>Sum along <InlineMath math="0^\circ" /></>,
+    sumY: <>Sum along <InlineMath math="90^\circ" /></>,
+    viewLabel: "Force table with hanging masses",
+  }}
+/>
+
 ## Component Methods for More than Two Vectors
 
 When there are more than two vectors, the component method puts every vector on the same <InlineMath math="x" /> and <InlineMath math="y" /> axes and then adds the components. This avoids constructing several triangles and deciding which triangle angle belongs in each sine-rule equation. The same component method also fits directions already measured from the coordinate axes.
 
 Use the sine rule when the problem is clear: two vectors, a known included angle, a known resultant magnitude, and a requested resultant direction relative to one of the vectors. Always <Highlight>resolve the inverse-sine ambiguity</Highlight> before stating the direction.
+
+### A Voyage of Three Legs
+
+With three legs, triangles get messy, so **add components**. The legs give <InlineMath math="2.46\text{ km}" /> east and <InlineMath math="7.54\text{ km}" /> north, so the ferry ends <InlineMath math="7.93\text{ km}" /> away on a bearing of <InlineMath math="18.1^\circ" />. Turn the last leg and the sums update at once.
+
+<ShipBearingComponentLab
+  title={<>Three Legs Added by Components</>}
+  description={<>Legs of <InlineMath math="6\text{ km}" /> east, <InlineMath math="4\text{ km}" /> north and <InlineMath math="5\text{ km}" /> on a bearing you choose.</>}
+  courses={[
+    { bearing: 90, distance: 6 },
+    { bearing: 0, distance: 4 },
+    { bearing: 315, distance: 5 },
+  ]}
+  labels={{
+    bearing: <>Bearing of the last leg</>,
+    bearingName: "Bearing of the last leg",
+    direction: <>Bearing from the harbour</>,
+    distance: <>Distance from the harbour</>,
+    east: <>East component</>,
+    north: <>North component</>,
+    viewLabel: "Ferry sailing from a harbour",
+  }}
+/>

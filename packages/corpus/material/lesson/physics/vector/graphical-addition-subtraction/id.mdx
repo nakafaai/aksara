@@ -18,6 +18,27 @@ Metode grafis mencari resultan dengan sketsa berskala. Panjang panah dibuat seba
 
 > Dalam metode grafis, ketelitian hasil bergantung pada skala sketsa, penggaris, dan pengukuran sudut.
 
+### Perahu Menyeberangi Sungai
+
+Kecepatan perahu sendiri <InlineMath math="4\text{ m/s}" /> (hijau toska) dan arus <InlineMath math="3\text{ m/s}" /> (kuning) **digambar ujung ke pangkal**, dan panah dari pangkal pertama ke ujung terakhir (ungu) adalah jumlahnya, <InlineMath math="5\text{ m/s}" />. Putar arah haluan, maka segitiganya berubah bentuk.
+
+<RiverBoatCrossingLab
+  title={<>Perahu dan Arus Dijumlahkan</>}
+  description={<>Sungai selebar <InlineMath math="60\text{ m}" /> yang mengalir <InlineMath math="3\text{ m/s}" />.</>}
+  boatSpeed={4}
+  current={3}
+  width={60}
+  labels={{
+    angle: <>Sudut dari arah tegak lurus tepi</>,
+    drift: <>Hanyut ke hilir</>,
+    groundSpeed: <>Kelajuan terhadap tepi</>,
+    heading: <>Arah haluan perahu</>,
+    headingName: "Arah haluan perahu",
+    time: <>Waktu menyeberang</>,
+    viewLabel: "Perahu menyeberangi sungai berarus",
+  }}
+/>
+
 ### Metode Segitiga Kepala ke Ekor
 
 Metode segitiga dipakai untuk menjumlahkan dua vektor. Buat panah vektor pertama, lalu letakkan pangkal vektor kedua di ujung vektor pertama. Resultan ditarik dari pangkal vektor pertama ke ujung vektor kedua.
@@ -60,6 +81,25 @@ Letakkan **pangkal vektor kedua di ujung vektor pertama**. Pada model, satuan ko
 
 <BlockMath math="\vec{R}=(4+2,1+3)\text{ m}=(6,4)\text{ m}" />
 
+Sebuah pesawat menghadap utara dengan <InlineMath math="400\text{ km/h}" /> sementara angin <InlineMath math="300\text{ km/h}" /> bertiup ke timur. Letakkan pangkal angin di ujung kecepatan udara: sisi ketiga segitiga adalah kecepatan terhadap tanah, <InlineMath math="500\text{ km/h}" /> dengan arah lintasan <InlineMath math="36{,}9^\circ" />.
+
+<AircraftCrosswindLab
+  title={<>Segitiga Angin Samping</>}
+  description={<>Kecepatan udara <InlineMath math="400\text{ km/h}" />, angin <InlineMath math="300\text{ km/h}" /> ke timur. Putar hidung pesawat.</>}
+  airspeed={400}
+  toward={90}
+  wind={300}
+  labels={{
+    between: <>Sudut antara kecepatan udara dan angin</>,
+    drift: <>Sudut hanyut</>,
+    groundSpeed: <>Kelajuan terhadap tanah</>,
+    heading: <>Arah hidung pesawat</>,
+    headingName: "Arah hidung pesawat",
+    track: <>Arah lintasan di atas tanah</>,
+    viewLabel: "Pesawat di atas sawah saat angin samping",
+  }}
+/>
+
 ### Metode Jajargenjang untuk Dua Vektor Satu Pangkal
 
 Dua gaya yang bekerja pada satu titik dapat digambar dari **pangkal yang sama**. Contohnya, dua tali menarik sebuah cincin. Pada model, salinan vektor mempertahankan panjang dan arah panah asli. Ikuti sisi bawah lalu sisi kanan, atau sisi kiri lalu sisi atas: kedua jalur berakhir pada titik yang sama.
@@ -100,6 +140,24 @@ Dua gaya yang bekerja pada satu titik dapat digambar dari **pangkal yang sama**.
   }}
 />
 
+Kedua tali kapal tunda berpangkal di haluan kapal, satu pangkal. Tarikan <InlineMath math="40\text{ kN}" /> dan <InlineMath math="30\text{ kN}" /> membentuk jajargenjang (putus-putus), dan diagonalnya dari haluan adalah resultan, <InlineMath math="50\text{ kN}" /> saat kedua tali saling tegak lurus.
+
+<TugboatResultantLab
+  title={<>Dua Kapal Tunda, Satu Diagonal</>}
+  description={<>Tarikan kapal tunda <InlineMath math="40\text{ kN}" /> dan <InlineMath math="30\text{ kN}" />. Buka atau tutup sudut talinya.</>}
+  between={90}
+  first={40}
+  second={30}
+  labels={{
+    between: <>Sudut antara kedua tali</>,
+    betweenName: "Sudut antara kedua tali",
+    fromFirst: <>Sudut <InlineMath math="\vec R" /> dari <InlineMath math="\vec F_1" /></>,
+    fromLine: <>Sudut dari garis kapal</>,
+    resultant: <>Resultan <InlineMath math="R" /></>,
+    viewLabel: "Dua kapal tunda menarik sebuah kapal",
+  }}
+/>
+
 ### Metode Poligon untuk Banyak Vektor
 
 Urutan menggambar boleh diatur ulang selama <Highlight>besar dan arah tiap vektor tidak berubah</Highlight>. Resultan selalu ditarik dari pangkal vektor pertama yang dipilih ke ujung vektor terakhir.
@@ -111,6 +169,28 @@ Jika poligon vektor kembali ke titik awal, jumlah vektornya nol. Untuk gaya, res
 Sebagai contoh, tambahkan <InlineMath math="\vec{c}=(-6,-4)" /> setelah dua perpindahan pada model. Panah ketiga mengikuti diagonal kembali ke titik awal. Perjalanan tetap memiliki panjang, tetapi perpindahan total nol.
 
 <BlockMath math="\vec{a}+\vec{b}+\vec{c}=(4+2-6,1+3-4)=(0,0)" />
+
+Jalan kaki empat bagian adalah poligon dari empat vektor, masing-masing berpangkal di ujung vektor sebelumnya. Panah ungu menutup poligon dari awal ke akhir: <InlineMath math="200\text{ m}" /> ke timur dan <InlineMath math="300\text{ m}" /> ke utara, panjangnya <InlineMath math="360{,}6\text{ m}" />.
+
+<CityWalkDisplacementLab
+  title={<>Empat Bagian, Satu Resultan</>}
+  description={<>Jalan kaki <InlineMath math="1{,}25\text{ m/s}" /> menyusuri empat jalan.</>}
+  legs={[
+    { east: 300, north: 0 },
+    { east: 0, north: 200 },
+    { east: -100, north: 0 },
+    { east: 0, north: 100 },
+  ]}
+  pace={1.25}
+  labels={{
+    averageSpeed: <>Kelajuan rata-rata</>,
+    averageVelocity: <>Kecepatan rata-rata</>,
+    displacement: <>Perpindahan</>,
+    distance: <>Jarak tempuh</>,
+    time: <>Waktu</>,
+    viewLabel: "Jalan kaki di kota dilihat dari atas",
+  }}
+/>
 
 ## Pengurangan Vektor secara Grafis
 
@@ -147,3 +227,32 @@ Untuk pengurangan, **balik arah vektor yang dikurangkan**. Pada pasangan yang sa
     }}
   />
 </ContentStack>
+
+### Dari Posisi Awal ke Satu Rute
+
+Dari titik awal <InlineMath math="O" />, panah hijau toska <InlineMath math="\vec a" /> menuju pos <InlineMath math="A" /> dan panah kuning <InlineMath math="\vec b" /> menuju <InlineMath math="B" />. **Selisihnya** <InlineMath math="\vec b-\vec a" /> adalah panah dari ujung <InlineMath math="\vec a" /> ke ujung <InlineMath math="\vec b" />: rute dari <InlineMath math="A" /> ke <InlineMath math="B" />, panjangnya <InlineMath math="100\text{ m}" />.
+
+<OrienteeringMapVectorLab
+  title={<>Mengurangkan Posisi <InlineMath math="\vec b-\vec a" /></>}
+  description={<>Titik awal <InlineMath math="O" /> adalah segitiga magenta. Ganti antara selisih dan rutenya.</>}
+  marks={{
+    a: { east: 40, north: 30 },
+    b: { east: 100, north: 110 },
+    c: { east: 150, north: -10 },
+  }}
+  views={["difference", "forward"]}
+  labels={{
+    angle: <>Arah dari timur</>,
+    chooseView: "Pilih vektor yang ditampilkan",
+    east: <>Bagian timur</>,
+    north: <>Bagian utara</>,
+    size: <>Panjang</>,
+    viewLabel: "Peta orienteering sebuah taman",
+    views: {
+      back: <><InlineMath math="B" /> ke <InlineMath math="A" /></>,
+      copy: <>Vektor sama dari <InlineMath math="C" /></>,
+      difference: <><InlineMath math="\vec b-\vec a" /></>,
+      forward: <><InlineMath math="A" /> ke <InlineMath math="B" /></>,
+    },
+  }}
+/>

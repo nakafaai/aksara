@@ -89,6 +89,26 @@ Frag dich, ob die Größe eine Richtung braucht. Diese zwei Wagen haben dasselbe
   }}
 />
 
+### Wind auf der Wetterkarte
+
+Eine Wetterkarte **braucht für den Wind einen Vektor**: <InlineMath math="12\text{ m/s}" /> allein sagt einer Seglerin nicht, wohin ihr Boot treibt. Dreh die Richtung und schau, wie sich jeder Pfeil auf der Karte mitdreht, während die Geschwindigkeit nur seine Länge bestimmt.
+
+<WindMapVectorLab
+  title={<>Wind über den Inseln</>}
+  description={<>Ein gleichmäßiger Wind mit <InlineMath math="12\text{ m/s}" /> weht in Richtung <InlineMath math="30^\circ" /> ab Osten. Ändere Geschwindigkeit und Richtung.</>}
+  angle={30}
+  speed={12}
+  labels={{
+    angle: <>Richtung ab Osten</>,
+    angleName: "Richtung ab Osten",
+    east: <>Ostkomponente <InlineMath math="v_x" /></>,
+    north: <>Nordkomponente <InlineMath math="v_y" /></>,
+    speed: <>Windgeschwindigkeit</>,
+    speedName: "Windgeschwindigkeit",
+    viewLabel: "Wetterkarte mit Wind über Inseln",
+  }}
+/>
+
 ## Lesen eines Vektorpfeils
 
 Vektoren werden oft als Pfeile gezeichnet. Der **Fußpunkt** markiert den Anfang, die **Spitze** zeigt die Richtung und die **Pfeillänge** stellt den Betrag dar.
@@ -101,6 +121,27 @@ Ein Vektor kann auch von einem Punkt zum anderen geschrieben werden, beispielswe
 
 Die Betragsstriche um einen Vektor bezeichnen seinen Betrag. Die Richtung gehört nicht zu diesem Wert.
 
+### Eine Drohne verlässt ihren Startplatz
+
+Der violette Pfeil beginnt am Startplatz, seinem Fuß, und endet an der Drohne, seiner Spitze. Seine Länge ist **der gerade Abstand vom Startplatz**, <InlineMath math="10{,}8\text{ m}" />, obwohl die Drohne entlang ihres Wegs <InlineMath math="18\text{ m}" /> geflogen ist. Drück auf Abspielen und sieh ihr beim Fliegen zu.
+
+<DroneDisplacementLab
+  title={<>Fuß am Startplatz, Spitze an der Drohne</>}
+  description={<>Die Drohne steigt <InlineMath math="4\text{ m}" />, fliegt <InlineMath math="6\text{ m}" /> nach Osten und dann <InlineMath math="8\text{ m}" /> nach Norden.</>}
+  hops={[
+    { east: 0, north: 0, up: 4 },
+    { east: 6, north: 0, up: 0 },
+    { east: 0, north: 8, up: 0 },
+  ]}
+  labels={{
+    chooseFactor: "Flugplan mit k multiplizieren",
+    displacement: <>Verschiebung</>,
+    path: <>Geflogene Strecke</>,
+    size: <>Abstand vom Startplatz</>,
+    viewLabel: "Drohne fliegt von ihrem Startplatz",
+  }}
+/>
+
 ## Vektorgleichheit hängt von Betrag und Richtung ab
 
 Zwei Vektoren sind gleich, <Highlight>wenn Betrag und Richtung übereinstimmen</Highlight>. Sie müssen nicht am selben Ort eingezeichnet sein.
@@ -108,6 +149,28 @@ Zwei Vektoren sind gleich, <Highlight>wenn Betrag und Richtung übereinstimmen</
 Zwei nach rechts gerichtete Kräfte mit jeweils <InlineMath math="15 \text{ N}" /> haben denselben Vektorwert, auch wenn die Pfeile an verschiedenen Stellen eingezeichnet sind. Bei einem starren Körper bleibt der Angriffspunkt wichtig, weil er das Drehmoment verändern kann.
 
 Eine Kraft von <InlineMath math="15 \text{ N}" /> nach rechts und eine Kraft von <InlineMath math="15 \text{ N}" /> nach links sind dagegen nicht gleich. Ihre Beträge stimmen überein, ihre Richtungen sind entgegengesetzt.
+
+### Zwei Teams an einem Seil
+
+Beide Teams beginnen mit drei Ziehenden zu je <InlineMath math="400\text{ N}" />, also sind beide Kräfte <InlineMath math="1200\text{ N}" /> groß. Gleiche Vektoren sind sie trotzdem nicht, weil sie **in entgegengesetzte Richtungen zeigen**, und zusammen ergeben sie eine Gesamtkraft von <InlineMath math="0\text{ N}" />. Gib einer Seite eine Person dazu und sieh, wie das Seil wandert.
+
+<TugOfWarForceLab
+  title={<>Gleich groß, entgegengesetzt</>}
+  description={<>Jede Person zieht mit <InlineMath math="400\text{ N}" />. Ändere die Größe der Teams.</>}
+  left={3}
+  pull={400}
+  right={3}
+  labels={{
+    left: <>Linkes Team <InlineMath math="\vec F_L" /></>,
+    leftCount: <>Ziehende links</>,
+    leftName: "Ziehende links",
+    net: <>Gesamtkraft <InlineMath math="\Sigma F" /></>,
+    right: <>Rechtes Team <InlineMath math="\vec F_R" /></>,
+    rightCount: <>Ziehende rechts</>,
+    rightName: "Ziehende rechts",
+    viewLabel: "Tauziehen bei Sonnenuntergang",
+  }}
+/>
 
 ## Strecke und Verschiebung messen unterschiedliche Größen
 
@@ -155,5 +218,27 @@ Der Weg unten umfasst <InlineMath math="7\text{ m}" /> Gehen, aber der fuchsiafa
     east: <InlineMath math="4\text{ m}" />,
     north: <InlineMath math="3\text{ m}" />,
     walk: <InlineMath math="5\text{ m}" />,
+  }}
+/>
+
+### Ein Spaziergang durch die Stadt
+
+Die Person läuft die Straßen entlang, <InlineMath math="300\text{ m}" /> nach Osten und dann <InlineMath math="400\text{ m}" /> nach Norden, also ist die Strecke <InlineMath math="700\text{ m}" /> lang. Die Verschiebung ist **der gerade violette Pfeil vom Start zum Ziel**, nur <InlineMath math="500\text{ m}" /> lang.
+
+<CityWalkDisplacementLab
+  title={<>Strecke und Verschiebung</>}
+  description={<>Ein Spaziergang mit <InlineMath math="1{,}25\text{ m/s}" /> entlang zweier Straßen der Stadt.</>}
+  legs={[
+    { east: 300, north: 0 },
+    { east: 0, north: 400 },
+  ]}
+  pace={1.25}
+  labels={{
+    averageSpeed: <>Durchschnittliches Tempo</>,
+    averageVelocity: <>Mittlere Geschwindigkeit</>,
+    displacement: <>Verschiebung</>,
+    distance: <>Zurückgelegte Strecke</>,
+    time: <>Zeit</>,
+    viewLabel: "Spaziergang durch eine Stadt von oben",
   }}
 />

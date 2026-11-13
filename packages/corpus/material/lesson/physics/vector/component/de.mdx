@@ -16,6 +16,26 @@ Die horizontale Komponente gibt den Anteil des Vektors entlang der <InlineMath m
 
 > Ein Vektor ist die Summe seiner Komponenten entlang der Koordinatenachsen.
 
+### Ein Klotz auf einer Rampe
+
+Die Gewichtskraft eines <InlineMath math="2\text{ kg}" /> schweren Klotzes zeigt senkrecht nach unten, <InlineMath math="19{,}6\text{ N}" />, aber **rutschen kann der Klotz nur entlang des Bretts**. Zerlegst du sie, siehst du, worauf es ankommt: <InlineMath math="9{,}8\text{ N}" /> hangabwärts bei <InlineMath math="30^\circ" /> und <InlineMath math="16{,}97\text{ N}" /> senkrecht in die Ebene. Kipp das Brett, bis der Hanganteil gewinnt und der Klotz rutscht.
+
+<RampBlockComponentLab
+  title={<>Gewichtskraft an der Rampe zerlegt</>}
+  description={<>Ein <InlineMath math="2\text{ kg}" /> schwerer Eichenklotz auf einem Kiefernbrett. Er rutscht, sobald <InlineMath math="\tan\theta" /> größer als <InlineMath math="0{,}7" /> ist.</>}
+  angle={30}
+  friction={0.7}
+  mass={2}
+  labels={{
+    along: <>Hangabwärts <InlineMath math="W\sin\theta" /></>,
+    angle: <>Neigungswinkel</>,
+    angleName: "Neigungswinkel",
+    into: <>Senkrecht zur Ebene <InlineMath math="W\cos\theta" /></>,
+    viewLabel: "Holzklotz auf einem schrägen Brett",
+    weight: <>Gewichtskraft <InlineMath math="W" /></>,
+  }}
+/>
+
 ## Komponenten in der Ebene lesen
 
 In einer Ebene lässt sich der Vektor <InlineMath math="\vec{A}" /> als Summe seiner <InlineMath math="x" />- und <InlineMath math="y" />-Komponente schreiben.
@@ -23,6 +43,28 @@ In einer Ebene lässt sich der Vektor <InlineMath math="\vec{A}" /> als Summe se
 <BlockMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" />
 
 Dabei ist <InlineMath math="\hat{i}" /> der **Einheitsvektor** in <InlineMath math="x" />-Richtung und <InlineMath math="\hat{j}" /> der Einheitsvektor in <InlineMath math="y" />-Richtung. Die vorzeichenbehafteten Skalare <InlineMath math="A_x" /> und <InlineMath math="A_y" /> geben die Komponenten entlang der beiden Achsen an. Ihr Vorzeichen kennzeichnet die jeweilige Achsenrichtung.
+
+### Ein Schlitten am Seil
+
+Das Seil zieht den Schlitten mit <InlineMath math="80\text{ N}" /> unter <InlineMath math="30^\circ" /> über dem Schnee. Auf den Achsen sind das <InlineMath math="69{,}3\text{ N}" /> entlang dem Schnee und <InlineMath math="40\text{ N}" /> nach oben, **Spitze an Fuß unter dem Seil gezeichnet**.
+
+<SledPullWorkLab
+  title={<>Der Seilzug auf zwei Achsen</>}
+  description={<>Ein <InlineMath math="25\text{ kg}" /> schwerer Schlitten wird mit <InlineMath math="80\text{ N}" /> über <InlineMath math="5\text{ m}" /> gezogen. Heb oder senk das Seil.</>}
+  angle={30}
+  distance={5}
+  force={80}
+  mass={25}
+  labels={{
+    along: <>Entlang dem Schnee <InlineMath math="F\cos\theta" /></>,
+    angle: <>Seilwinkel über dem Schnee</>,
+    angleName: "Seilwinkel über dem Schnee",
+    normal: <>Normalkraft des Schnees</>,
+    up: <>Anteil nach oben <InlineMath math="F\sin\theta" /></>,
+    viewLabel: "Schlitten mit Brennholz wird über Schnee gezogen",
+    work: <>Arbeit auf <InlineMath math="5\text{ m}" /></>,
+  }}
+/>
 
 ### Den Betrag aus zwei Komponenten berechnen
 
@@ -116,6 +158,25 @@ Drehe das Modell, um zu sehen, dass die <InlineMath math="z" />-Komponente **sen
 
 <BlockMath math="\begin{aligned}\lvert\vec{A}\rvert &= \sqrt{4^2+3^2+2^2} \\ &= \sqrt{16+9+4} \\ &= \sqrt{29}\end{aligned}" />
 
+Die Drohne landet <InlineMath math="2\text{ m}" /> östlich, <InlineMath math="3\text{ m}" /> nördlich und <InlineMath math="6\text{ m}" /> über ihrem Startplatz. Die drei farbigen Pfeile sind diese Komponenten, Spitze an Fuß, und der violette Pfeil ist ihre Summe, <InlineMath math="\sqrt{2^2+3^2+6^2}=7" /> Meter lang.
+
+<DroneDisplacementLab
+  title={<>Drei Komponenten eines Flugs</>}
+  description={<>Die Drohne steigt <InlineMath math="6\text{ m}" /> und fliegt dann <InlineMath math="2\text{ m}" /> nach Osten und <InlineMath math="3\text{ m}" /> nach Norden.</>}
+  hops={[
+    { east: 0, north: 0, up: 6 },
+    { east: 2, north: 0, up: 0 },
+    { east: 0, north: 3, up: 0 },
+  ]}
+  labels={{
+    chooseFactor: "Flugplan mit k multiplizieren",
+    displacement: <>Verschiebung</>,
+    path: <>Geflogene Strecke</>,
+    size: <>Abstand vom Startplatz</>,
+    viewLabel: "Drohne fliegt von ihrem Startplatz",
+  }}
+/>
+
 
 ## Positive und negative Vorzeichen
 
@@ -128,6 +189,25 @@ Komponenten können positiv oder negativ sein. Das Vorzeichen zeigt <Highlight>d
 | <InlineMath math="A_z" /> | in positiver <InlineMath math="z" />-Richtung | in negativer <InlineMath math="z" />-Richtung |
 
 Für <InlineMath math="\vec{B}=-5\hat{i}+2\hat{j}" /> zeigt die Komponente mit dem Betrag <InlineMath math="5" /> in negativer <InlineMath math="x" />-Richtung. Die Komponente mit dem Betrag <InlineMath math="2" /> zeigt dagegen in positiver <InlineMath math="y" />-Richtung.
+
+### Eine Fähre nach Südwesten
+
+Mit dem Kurswinkel <InlineMath math="225^\circ" /> fährt die Fähre nach Südwesten, also sind **beide Komponenten negativ**: <InlineMath math="-5{,}66\text{ km}" /> nach Osten und <InlineMath math="-5{,}66\text{ km}" /> nach Norden. Dreh den Kurs durch jeden Quadranten und sieh, wie die Vorzeichen wechseln.
+
+<ShipBearingComponentLab
+  title={<>Vorzeichen vom Kompass</>}
+  description={<>Eine Fähre fährt <InlineMath math="8\text{ km}" /> aus dem Hafen. Dreh ihren Kurs.</>}
+  courses={[{ bearing: 225, distance: 8 }]}
+  labels={{
+    bearing: <>Kurswinkel der letzten Etappe</>,
+    bearingName: "Kurswinkel der letzten Etappe",
+    direction: <>Kurswinkel vom Hafen aus</>,
+    distance: <>Abstand vom Hafen</>,
+    east: <>Ostkomponente</>,
+    north: <>Nordkomponente</>,
+    viewLabel: "Fähre fährt aus einem Hafen",
+  }}
+/>
 
 ## Eine Verschiebung in Komponenten schreiben
 
@@ -175,5 +255,28 @@ Hier ist der Weg als Komponenten. Der Teil nach Osten und der nach Norden sind d
     east: <InlineMath math="3\text{ m}" />,
     north: <InlineMath math="4\text{ m}" />,
     walk: <InlineMath math="5\text{ m},\ 53{,}1^\circ" />,
+  }}
+/>
+
+### Ein Weg in drei Etappen
+
+Der Weg führt <InlineMath math="400\text{ m}" /> nach Osten, <InlineMath math="300\text{ m}" /> nach Norden und <InlineMath math="100\text{ m}" /> zurück nach Westen. **Addier die Komponenten**: <InlineMath math="300\text{ m}" /> nach Osten und <InlineMath math="300\text{ m}" /> nach Norden, also ist die Verschiebung <InlineMath math="424{,}3\text{ m}" />, obwohl der Weg <InlineMath math="800\text{ m}" /> lang ist.
+
+<CityWalkDisplacementLab
+  title={<>Die Etappen eines Wegs addieren</>}
+  description={<>Ein Spaziergang mit <InlineMath math="1{,}25\text{ m/s}" /> durch die Straßen der Stadt.</>}
+  legs={[
+    { east: 400, north: 0 },
+    { east: 0, north: 300 },
+    { east: -100, north: 0 },
+  ]}
+  pace={1.25}
+  labels={{
+    averageSpeed: <>Durchschnittliches Tempo</>,
+    averageVelocity: <>Mittlere Geschwindigkeit</>,
+    displacement: <>Verschiebung</>,
+    distance: <>Zurückgelegte Strecke</>,
+    time: <>Zeit</>,
+    viewLabel: "Spaziergang durch eine Stadt von oben",
   }}
 />

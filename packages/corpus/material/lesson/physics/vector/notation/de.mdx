@@ -16,6 +16,26 @@ Ist ein Kraftpfeil bei gleichem Maßstab länger, besitzt die Kraft einen größ
 
 > Eine vollständige Vektornotation zeigt Betrag und Richtung.
 
+### Pfeile auf einer Windkarte
+
+Jeder Pfeil auf dieser Karte beginnt an einem Ort, seinem Fuß, und zeigt dorthin, wohin der Wind weht, seine Spitze, und **er wird mit der Geschwindigkeit länger**. Schieb die Geschwindigkeit von <InlineMath math="8\text{ m/s}" /> nach oben und achte darauf, dass sich nur die Länge ändert.
+
+<WindMapVectorLab
+  title={<>Länge und Richtung des Windes</>}
+  description={<>Wind mit <InlineMath math="8\text{ m/s}" /> in Richtung <InlineMath math="45^\circ" /> ab Osten.</>}
+  angle={45}
+  speed={8}
+  labels={{
+    angle: <>Richtung ab Osten</>,
+    angleName: "Richtung ab Osten",
+    east: <>Ostkomponente <InlineMath math="v_x" /></>,
+    north: <>Nordkomponente <InlineMath math="v_y" /></>,
+    speed: <>Windgeschwindigkeit</>,
+    speedName: "Windgeschwindigkeit",
+    viewLabel: "Wetterkarte mit Wind über Inseln",
+  }}
+/>
+
 ## Zweipunktnotation
 
 Ein Vektor kann durch seinen Anfangs- und Endpunkt bezeichnet werden. So steht <InlineMath math="\overrightarrow{AB}" /> für den Vektor vom Punkt <InlineMath math="A" /> zum Punkt <InlineMath math="B" />.
@@ -63,6 +83,35 @@ Beide Pfeile unten sind gleich lang, aber die Reihenfolge der Buchstaben dreht d
   }}
 />
 
+### Posten auf einer Parkkarte
+
+Auf einer Orientierungslaufkarte führt <InlineMath math="\overrightarrow{AB}" /> vom Posten <InlineMath math="A" /> im türkisen Ring zum Posten <InlineMath math="B" /> im bernsteinfarbenen Ring: <InlineMath math="60\text{ m}" /> nach Osten und <InlineMath math="80\text{ m}" /> nach Norden, <InlineMath math="100\text{ m}" /> lang. Wechsle zu <InlineMath math="\overrightarrow{BA}" />, dann **bleibt die Länge gleich und die Richtung kehrt sich um**.
+
+<OrienteeringMapVectorLab
+  title={<>Von <InlineMath math="A" /> nach <InlineMath math="B" /> und zurück</>}
+  description={<>Der Start <InlineMath math="O" /> ist das magentafarbene Dreieck. Wähle, welchen Vektor die Karte zeigt.</>}
+  marks={{
+    a: { east: 40, north: 30 },
+    b: { east: 100, north: 110 },
+    c: { east: 150, north: -10 },
+  }}
+  views={["forward", "back"]}
+  labels={{
+    angle: <>Richtung ab Osten</>,
+    chooseView: "Wähle den gezeigten Vektor",
+    east: <>Ostanteil</>,
+    north: <>Nordanteil</>,
+    size: <>Länge</>,
+    viewLabel: "Orientierungslaufkarte eines Parks",
+    views: {
+      back: <><InlineMath math="B" /> nach <InlineMath math="A" /></>,
+      copy: <>Gleicher Vektor ab <InlineMath math="C" /></>,
+      difference: <><InlineMath math="\vec b-\vec a" /></>,
+      forward: <><InlineMath math="A" /> nach <InlineMath math="B" /></>,
+    },
+  }}
+/>
+
 ## Notation mit einem Buchstaben
 
 In Rechnungen werden Vektoren häufig mit **einem Buchstaben mit Vektorpfeil** bezeichnet, etwa <InlineMath math="\vec{a}" />, <InlineMath math="\vec{v}" /> oder <InlineMath math="\vec{F}" />. Der Buchstabe verweist auf die jeweilige physikalische Größe.
@@ -76,6 +125,25 @@ So steht <InlineMath math="\vec{F}" /> häufig für eine Kraft, <InlineMath math
 
 Die erste Zeile enthält Betrag und Richtung. Die zweite Zeile nennt nur den Betrag der Kraft.
 
+### Ein Buchstabe für eine Fährstrecke
+
+Nenn die Verschiebung der Fähre <InlineMath math="\vec s" />. **Der eine Buchstabe trägt alles**: <InlineMath math="10\text{ km}" /> mit dem Kurswinkel <InlineMath math="60^\circ" />, was die Karte auch als <InlineMath math="8{,}66\text{ km}" /> nach Osten und <InlineMath math="5\text{ km}" /> nach Norden schreibt. Dreh den Kurs, und <InlineMath math="\vec s" /> benennt weiter den ganzen Pfeil.
+
+<ShipBearingComponentLab
+  title={<>Der Vektor <InlineMath math="\vec s" /> der Fähre</>}
+  description={<>Eine Fähre fährt <InlineMath math="10\text{ km}" /> weit aus dem Hafen. Der Kurswinkel wird im Uhrzeigersinn ab Norden gemessen.</>}
+  courses={[{ bearing: 60, distance: 10 }]}
+  labels={{
+    bearing: <>Kurswinkel der letzten Etappe</>,
+    bearingName: "Kurswinkel der letzten Etappe",
+    direction: <>Kurswinkel vom Hafen aus</>,
+    distance: <>Abstand vom Hafen</>,
+    east: <>Ostkomponente</>,
+    north: <>Nordkomponente</>,
+    viewLabel: "Fähre fährt aus einem Hafen",
+  }}
+/>
+
 ## Nullvektoren und Einheitsvektoren
 
 Bei Komponentenrechnungen brauchst du zwei Sonderfälle: Der **Nullvektor** beschreibt keine Verschiebung. Ein **Einheitsvektor** legt dagegen eine Richtung fest und hat den Betrag eins, unabhängig von der gewählten Richtung.
@@ -87,6 +155,27 @@ Ein **Nullvektor** hat den Betrag <InlineMath math="0" />. Sein Fußpunkt und se
 Lege zum Beispiel rechts als positive Richtung fest. Zwei Kräfte von jeweils <InlineMath math="20\text{ N}" /> nach rechts und nach links ergeben zusammen:
 
 <BlockMath math="\begin{aligned}\vec{F}_1+\vec{F}_2 &= 20\hat{i}\text{ N}-20\hat{i}\text{ N} \\ &= (20-20)\hat{i}\text{ N} \\ &= \vec{0}\text{ N}\end{aligned}" />
+
+Auf diesem Kräftetisch ziehen drei Schnüre an einem Ring. Dreh die dritte Rolle von <InlineMath math="200^\circ" /> in Richtung <InlineMath math="233^\circ" />: Die Resultierende schrumpft, bis sie fast <InlineMath math="0\text{ N}" /> ist, der Nullvektor, und der Ring sitzt am Stift.
+
+<ForceTableResultantLab
+  title={<>Bring den Ring ins Gleichgewicht</>}
+  description={<>Massen von <InlineMath math="300\text{ g}" />, <InlineMath math="400\text{ g}" /> und <InlineMath math="500\text{ g}" /> hängen bei <InlineMath math="0^\circ" />, <InlineMath math="90^\circ" /> und dem Winkel, den du wählst.</>}
+  pulls={[
+    { angle: 0, mass: 300 },
+    { angle: 90, mass: 400 },
+    { angle: 200, mass: 500 },
+  ]}
+  labels={{
+    angle: <>Winkel der letzten Schnur</>,
+    angleName: "Winkel der letzten Schnur",
+    direction: <>Richtung von <InlineMath math="\vec R" /></>,
+    resultant: <>Resultierende <InlineMath math="R" /></>,
+    sumX: <>Summe entlang <InlineMath math="0^\circ" /></>,
+    sumY: <>Summe entlang <InlineMath math="90^\circ" /></>,
+    viewLabel: "Kräftetisch mit Massestücken",
+  }}
+/>
 
 ### Ein Vektor zur Angabe einer Richtung
 
@@ -155,6 +244,25 @@ Leg die beiden Kräfte Spitze an Fuß. Der zweite Pfeil endet genau dort, wo der
     f1: <InlineMath math="\vec F_1=20\hat i\text{ N}" />,
     f2: <InlineMath math="\vec F_2=-20\hat i\text{ N}" />,
     sum: <InlineMath math="\vec F_1+\vec F_2=\vec 0" />,
+  }}
+/>
+
+Die drei kurzen Pfeile am Startplatz sind die Einheitsvektoren <InlineMath math="\hat\imath" />, <InlineMath math="\hat\jmath" /> und <InlineMath math="\hat k" />, jeder <InlineMath math="1\text{ m}" /> lang, nach Osten, Norden und oben. Die Verschiebung der Drohne ist <InlineMath math="3\,\hat\imath+4\,\hat\jmath+12\,\hat k" /> Meter, <InlineMath math="13\text{ m}" /> lang.
+
+<DroneDisplacementLab
+  title={<>Einheitsvektoren am Startplatz</>}
+  description={<>Die Drohne steigt <InlineMath math="12\text{ m}" /> und fliegt dann gleichzeitig <InlineMath math="3\text{ m}" /> nach Osten und <InlineMath math="4\text{ m}" /> nach Norden.</>}
+  hops={[
+    { east: 0, north: 0, up: 12 },
+    { east: 3, north: 4, up: 0 },
+  ]}
+  units
+  labels={{
+    chooseFactor: "Flugplan mit k multiplizieren",
+    displacement: <>Verschiebung</>,
+    path: <>Geflogene Strecke</>,
+    size: <>Abstand vom Startplatz</>,
+    viewLabel: "Drohne fliegt von ihrem Startplatz",
   }}
 />
 

@@ -23,6 +23,27 @@ Gunakan segitiga ini untuk **dua vektor tak nol yang tidak segaris**. Sudut apit
 
 > Rumus sinus biasanya dipakai setelah besar resultan sudah diketahui.
 
+### Ke Mana Perahu Sebenarnya Bergerak
+
+Tahu bahwa perahu bergerak <InlineMath math="5\text{ m/s}" /> belum cukup untuk menentukan tempat mendaratnya: **kamu juga butuh sudut dari arah tegak lurus tepi**, <InlineMath math="36{,}9^\circ" />, dengan <InlineMath math="\sin\alpha=3/5" />. Sudut itulah yang membuat perahu mendarat <InlineMath math="45\text{ m}" /> ke hilir.
+
+<RiverBoatCrossingLab
+  title={<>Kelajuan Saja Tidak Cukup</>}
+  description={<>Perahu <InlineMath math="4\text{ m/s}" />, arus <InlineMath math="3\text{ m/s}" />, sungai selebar <InlineMath math="60\text{ m}" />.</>}
+  boatSpeed={4}
+  current={3}
+  width={60}
+  labels={{
+    angle: <>Sudut dari arah tegak lurus tepi</>,
+    drift: <>Hanyut ke hilir</>,
+    groundSpeed: <>Kelajuan terhadap tepi</>,
+    heading: <>Arah haluan perahu</>,
+    headingName: "Arah haluan perahu",
+    time: <>Waktu menyeberang</>,
+    viewLabel: "Perahu menyeberangi sungai berarus",
+  }}
+/>
+
 ## Membaca Sudut yang Dicari
 
 Sebelum menghitung, tentukan dulu **arah acuan**. Jika ditanya arah resultan terhadap <InlineMath math="\vec{A}" />, maka sudut yang dicari adalah sudut dari <InlineMath math="\vec{A}" /> menuju <InlineMath math="\vec{R}" />.
@@ -39,6 +60,28 @@ Hubungan yang sering dipakai:
 Nilai <InlineMath math="\phi_0" /> adalah **calon sudut lancip atau siku-siku**. Untuk memilih <InlineMath math="\phi=\phi_0" /> atau <InlineMath math="\phi=180^\circ-\phi_0" />, periksa arah komponen resultan. Jangan langsung menganggap hasil invers sinus sebagai sudut final.
 
 Rumus ini mencari sudut resultan terhadap vektor <InlineMath math="\vec{A}" />. Karena sisi yang berhadapan dengan sudut <InlineMath math="\phi" /> adalah besar vektor <InlineMath math="B" />, maka <InlineMath math="B" /> muncul di pembilang.
+
+### Sudut Hanyut Pesawat
+
+Pilot menanyakan sudut antara arah hidung pesawat dan arah gerak pesawat, yaitu **sudut hanyut**. Di sini sudut itu berada di antara kecepatan udara dan kecepatan terhadap tanah, berhadapan dengan sisi angin: <InlineMath math="\sin\delta=300\sin60^\circ/608" />, jadi <InlineMath math="25{,}3^\circ" />.
+
+<AircraftCrosswindLab
+  title={<>Sudut Mana yang Disebut Hanyut</>}
+  description={<>Kecepatan udara <InlineMath math="400\text{ km/h}" />, angin <InlineMath math="300\text{ km/h}" /> ke timur. Putar hidung pesawat.</>}
+  airspeed={400}
+  heading={30}
+  toward={90}
+  wind={300}
+  labels={{
+    between: <>Sudut antara kecepatan udara dan angin</>,
+    drift: <>Sudut hanyut</>,
+    groundSpeed: <>Kelajuan terhadap tanah</>,
+    heading: <>Arah hidung pesawat</>,
+    headingName: "Arah hidung pesawat",
+    track: <>Arah lintasan di atas tanah</>,
+    viewLabel: "Pesawat di atas sawah saat angin samping",
+  }}
+/>
 
 ## Contoh Arah Resultan Dua Gaya
 
@@ -87,6 +130,26 @@ Inilah kedua gaya dengan jajargenjangnya. Resultan fuchsia condong ke gaya yang 
     a: <InlineMath math="A=10\text{ N}" />,
     b: <InlineMath math="B=8\text{ N}" />,
     r: <InlineMath math="R\approx15{,}62\text{ N},\ \phi\approx26{,}3^\circ" />,
+  }}
+/>
+
+### Arah Tarikan Kapal Tunda
+
+Kapal tunda yang menarik <InlineMath math="10\text{ kN}" /> dan <InlineMath math="8\text{ kN}" /> dengan sudut <InlineMath math="60^\circ" /> di antara talinya menghasilkan <InlineMath math="15{,}6\text{ kN}" />. **Sudutnya dari tali pertama** adalah <InlineMath math="26{,}3^\circ" />, sama dengan <InlineMath math="\phi" /> di atas, jadi kapal hanya bergeser <InlineMath math="3{,}7^\circ" /> dari garisnya sendiri.
+
+<TugboatResultantLab
+  title={<>Rumus Sinus di Pelabuhan</>}
+  description={<>Tarikan <InlineMath math="10\text{ kN}" /> dan <InlineMath math="8\text{ kN}" />. Buka atau tutup sudut talinya.</>}
+  between={60}
+  first={10}
+  second={8}
+  labels={{
+    between: <>Sudut antara kedua tali</>,
+    betweenName: "Sudut antara kedua tali",
+    fromFirst: <>Sudut <InlineMath math="\vec R" /> dari <InlineMath math="\vec F_1" /></>,
+    fromLine: <>Sudut dari garis kapal</>,
+    resultant: <>Resultan <InlineMath math="R" /></>,
+    viewLabel: "Dua kapal tunda menarik sebuah kapal",
   }}
 />
 
@@ -193,8 +256,51 @@ Sambungkan vektor-vektornya ujung ke pangkal, maka kamu mendapat segitiga. Atura
   }}
 />
 
+Tarikan lemah <InlineMath math="0{,}98\text{ N}" /> pada <InlineMath math="0^\circ" /> dan tarikan kuat <InlineMath math="3{,}92\text{ N}" /> pada <InlineMath math="150^\circ" /> menghasilkan resultan pada <InlineMath math="140{,}9^\circ" />. Rumus sinus saja memberi <InlineMath math="39{,}1^\circ" />, tetapi komponennya menunjukkan jawaban tumpul, <InlineMath math="180^\circ-39{,}1^\circ" />.
+
+<ForceTableResultantLab
+  title={<>Resultan dengan Sudut Tumpul</>}
+  description={<>Gantungan <InlineMath math="100\text{ g}" /> pada <InlineMath math="0^\circ" /> dan <InlineMath math="400\text{ g}" /> pada sudut pilihanmu.</>}
+  pulls={[
+    { angle: 0, mass: 100 },
+    { angle: 150, mass: 400 },
+  ]}
+  labels={{
+    angle: <>Sudut tali terakhir</>,
+    angleName: "Sudut tali terakhir",
+    direction: <>Arah <InlineMath math="\vec R" /></>,
+    resultant: <>Resultan <InlineMath math="R" /></>,
+    sumX: <>Jumlah sepanjang <InlineMath math="0^\circ" /></>,
+    sumY: <>Jumlah sepanjang <InlineMath math="90^\circ" /></>,
+    viewLabel: "Meja gaya dengan beban tergantung",
+  }}
+/>
+
 ## Metode Komponen untuk Lebih dari Dua Vektor
 
 Jika vektornya lebih dari dua, **metode komponen** menempatkan semua vektor pada sumbu <InlineMath math="x" /> dan <InlineMath math="y" /> yang sama, lalu menjumlahkan komponennya. Kita tidak perlu membuat beberapa segitiga dan menentukan sudut mana yang masuk ke setiap persamaan rumus sinus. Metode komponen juga langsung cocok saat arah vektor sudah diukur dari sumbu koordinat.
 
 Rumus sinus dapat dipakai ketika ada dua vektor, sudut apit dan besar resultan sudah diketahui, lalu arah resultan terhadap salah satu vektor perlu dicari. Sebelum menuliskan arah, periksa geometri atau gunakan <InlineMath math="\operatorname{atan2}" /> agar kuadran sudutnya benar.
+
+### Pelayaran Tiga Tahap
+
+Dengan tiga tahap, segitiga jadi rumit, jadi **jumlahkan komponennya**. Ketiga tahap memberi <InlineMath math="2{,}46\text{ km}" /> ke timur dan <InlineMath math="7{,}54\text{ km}" /> ke utara, sehingga feri berakhir sejauh <InlineMath math="7{,}93\text{ km}" /> dengan arah kompas <InlineMath math="18{,}1^\circ" />. Putar tahap terakhir, maka jumlahnya langsung berubah.
+
+<ShipBearingComponentLab
+  title={<>Tiga Tahap Dijumlahkan per Komponen</>}
+  description={<>Tahap <InlineMath math="6\text{ km}" /> ke timur, <InlineMath math="4\text{ km}" /> ke utara, dan <InlineMath math="5\text{ km}" /> dengan arah kompas pilihanmu.</>}
+  courses={[
+    { bearing: 90, distance: 6 },
+    { bearing: 0, distance: 4 },
+    { bearing: 315, distance: 5 },
+  ]}
+  labels={{
+    bearing: <>Arah kompas tahap terakhir</>,
+    bearingName: "Arah kompas tahap terakhir",
+    direction: <>Arah kompas dari pelabuhan</>,
+    distance: <>Jarak dari pelabuhan</>,
+    east: <>Komponen timur</>,
+    north: <>Komponen utara</>,
+    viewLabel: "Kapal feri berlayar dari pelabuhan",
+  }}
+/>

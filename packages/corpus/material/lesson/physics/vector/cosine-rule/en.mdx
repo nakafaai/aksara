@@ -18,6 +18,28 @@ This rule is used when the magnitudes of two vectors <InlineMath math="\vec{A}" 
 
 > Angle <InlineMath math="\theta" /> in the cosine rule is the angle between the two vectors when their tails are placed together.
 
+### Two Strings at an Angle
+
+Pulls of <InlineMath math="2.94\text{ N}" /> and <InlineMath math="3.92\text{ N}" /> with <InlineMath math="60^\circ" /> between them give a resultant of <InlineMath math="5.96\text{ N}" />, **less than their plain sum** of <InlineMath math="6.86\text{ N}" />. Open the angle and watch the resultant shrink.
+
+<ForceTableResultantLab
+  title={<>The Angle Shrinks the Sum</>}
+  description={<>Hangers of <InlineMath math="300\text{ g}" /> at <InlineMath math="0^\circ" /> and <InlineMath math="400\text{ g}" /> at the angle you choose.</>}
+  pulls={[
+    { angle: 0, mass: 300 },
+    { angle: 60, mass: 400 },
+  ]}
+  labels={{
+    angle: <>Angle of the last string</>,
+    angleName: "Angle of the last string",
+    direction: <>Direction of <InlineMath math="\vec R" /></>,
+    resultant: <>Resultant <InlineMath math="R" /></>,
+    sumX: <>Sum along <InlineMath math="0^\circ" /></>,
+    sumY: <>Sum along <InlineMath math="90^\circ" /></>,
+    viewLabel: "Force table with hanging masses",
+  }}
+/>
+
 ## The Cosine in the Triangle Formula
 
 The cosine rule appears because the resultant of two vectors forms a triangle with two known sides. If the angle between the vectors is small, the vectors reinforce each other more strongly. If the angle approaches <InlineMath math="180^\circ" />, they cancel each other more.
@@ -70,6 +92,28 @@ The table below shows how <InlineMath math="\cos\theta" /> changes with the angl
 
 When <InlineMath math="\theta=90^\circ" />, the cosine rule becomes the Pythagorean form because <InlineMath math="\cos90^\circ=0" />.
 
+### A Plane against a Side Wind
+
+With the nose on <InlineMath math="330^\circ" />, the air velocity of <InlineMath math="400\text{ km/h}" /> and the <InlineMath math="300\text{ km/h}" /> wind are <InlineMath math="120^\circ" /> apart, so **the ground speed is** <InlineMath math="\sqrt{400^2+300^2+2(400)(300)\cos120^\circ}" />, about <InlineMath math="361\text{ km/h}" />. Turn the nose and compare the card with the formula.
+
+<AircraftCrosswindLab
+  title={<>Ground Speed by the Cosine Rule</>}
+  description={<>Airspeed <InlineMath math="400\text{ km/h}" />, wind <InlineMath math="300\text{ km/h}" /> toward the east. Turn the nose.</>}
+  airspeed={400}
+  heading={330}
+  toward={90}
+  wind={300}
+  labels={{
+    between: <>Angle between airspeed and wind</>,
+    drift: <>Drift angle</>,
+    groundSpeed: <>Speed over the ground</>,
+    heading: <>Heading of the nose</>,
+    headingName: "Heading of the nose",
+    track: <>Track over the ground</>,
+    viewLabel: "Airliner over farmland in a crosswind",
+  }}
+/>
+
 ## Resultant of Two Forces
 
 Two forces act at one point. The first force is <InlineMath math="10\text{ N}" />, the second force is <InlineMath math="8\text{ N}" />, and the angle between them is <InlineMath math="60^\circ" />. Find the resultant magnitude.
@@ -121,6 +165,26 @@ R&=\sqrt{A^2+B^2+2AB\cos\theta} \\
 \end{aligned}" />
 
 The angle between the two forces makes the resultant less than <InlineMath math="18\text{ N}" />. Since the forces still point in fairly similar directions, the resultant is greater than either force on its own. Check the bounds: <InlineMath math="15.6" /> lies between <InlineMath math="10 - 8 = 2" /> and <InlineMath math="10 + 8 = 18" />. The direction of the resultant relative to the first force comes from the [sine rule](/en/subjects/physics/vector/sine-rule): <InlineMath math="\sin\varphi = \frac{8\sin 60^\circ}{\sqrt{244}}" />, so <InlineMath math="\varphi \approx 26.3^\circ" />.
+
+### Two Tugs on One Ship
+
+Here are the same numbers in a harbour: tugs pulling <InlineMath math="10\text{ kN}" /> and <InlineMath math="8\text{ kN}" /> with <InlineMath math="60^\circ" /> between their cables give <InlineMath math="15.6\text{ kN}" />, **the diagonal of the dashed parallelogram**.
+
+<TugboatResultantLab
+  title={<>Resultant of Two Tugs</>}
+  description={<>Pulls of <InlineMath math="10\text{ kN}" /> and <InlineMath math="8\text{ kN}" />. Open or close the cables.</>}
+  between={60}
+  first={10}
+  second={8}
+  labels={{
+    between: <>Angle between the cables</>,
+    betweenName: "Angle between the cables",
+    fromFirst: <>Angle of <InlineMath math="\vec R" /> from <InlineMath math="\vec F_1" /></>,
+    fromLine: <>Angle from the ship's line</>,
+    resultant: <>Resultant <InlineMath math="R" /></>,
+    viewLabel: "Two tugboats towing a ship",
+  }}
+/>
 
 ## Example of Finding the Included Angle from the Resultant
 
@@ -179,6 +243,28 @@ Check any answer against the ends of this curve. <InlineMath math="R=\sqrt{A^2+B
   }}
 />
 
+### The Rope as a Boundary Case
+
+In a tug of war the two forces are <InlineMath math="180^\circ" /> apart, so <InlineMath math="\cos180^\circ=-1" /> and **the rule leaves** <InlineMath math="R=|F_R-F_L|" />: <InlineMath math="900\text{ N}" /> against <InlineMath math="600\text{ N}" /> gives <InlineMath math="300\text{ N}" />. Make the teams equal and the resultant reaches zero.
+
+<TugOfWarForceLab
+  title={<>Forces in Opposite Directions</>}
+  description={<>Each puller pulls with <InlineMath math="300\text{ N}" />. Change the teams.</>}
+  left={2}
+  pull={300}
+  right={3}
+  labels={{
+    left: <>Left team <InlineMath math="\vec F_L" /></>,
+    leftCount: <>Pullers on the left</>,
+    leftName: "Pullers on the left",
+    net: <>Net force <InlineMath math="\Sigma F" /></>,
+    right: <>Right team <InlineMath math="\vec F_R" /></>,
+    rightCount: <>Pullers on the right</>,
+    rightName: "Pullers on the right",
+    viewLabel: "Tug of war at sunset",
+  }}
+/>
+
 ## When to Choose the Cosine Rule
 
 All of the following must hold:
@@ -198,6 +284,27 @@ For more than two vectors, resolve every vector into coordinate components and a
   A -->|"size of the resultant known, find the direction"| C["Sine rule"]
   A -->|"more than two vectors"| D["Split into x and y components"]
   B -->|"direction asked too"| C`}
+/>
+
+### A Right Angle on the River
+
+Heading straight across, the boat's <InlineMath math="4\text{ m/s}" /> and the current's <InlineMath math="3\text{ m/s}" /> are <InlineMath math="90^\circ" /> apart, <InlineMath math="\cos90^\circ=0" />, and **the cosine rule shrinks to Pythagoras**: <InlineMath math="5\text{ m/s}" />. Turn the heading and you need the full rule again.
+
+<RiverBoatCrossingLab
+  title={<>Pythagoras as a Special Case</>}
+  description={<>A river <InlineMath math="60\text{ m}" /> wide flowing at <InlineMath math="3\text{ m/s}" />.</>}
+  boatSpeed={4}
+  current={3}
+  width={60}
+  labels={{
+    angle: <>Angle from straight across</>,
+    drift: <>Drift downstream</>,
+    groundSpeed: <>Speed over the ground</>,
+    heading: <>Boat heading</>,
+    headingName: "Boat heading",
+    time: <>Crossing time</>,
+    viewLabel: "Boat crossing a flowing river",
+  }}
 />
 
 ## Common Mistakes

@@ -23,6 +23,26 @@ For a vector in quadrant I, measure <InlineMath math="\theta" /> from the positi
 
 > Identify the side adjacent to the reference angle before assigning <InlineMath math="\cos" /> and the opposite side before assigning <InlineMath math="\sin" />.
 
+### Tilting a Ramp
+
+On a ramp at <InlineMath math="37^\circ" />, the <InlineMath math="19.6\text{ N}" /> weight splits into <InlineMath math="W\sin\theta" />, about <InlineMath math="11.8\text{ N}" /> down the slope, and <InlineMath math="W\cos\theta" />, about <InlineMath math="15.65\text{ N}" /> into it. Change the angle and the two parts trade size, while **the weight itself never changes**.
+
+<RampBlockComponentLab
+  title={<>Sine and Cosine on a Ramp</>}
+  description={<>A <InlineMath math="2\text{ kg}" /> block on a plank. It slips once <InlineMath math="\tan\theta" /> passes <InlineMath math="0.8" />.</>}
+  angle={37}
+  friction={0.8}
+  mass={2}
+  labels={{
+    along: <>Down the slope <InlineMath math="W\sin\theta" /></>,
+    angle: <>Ramp angle</>,
+    angleName: "Ramp angle",
+    into: <>Into the slope <InlineMath math="W\cos\theta" /></>,
+    viewLabel: "Wooden block on a tilted plank",
+    weight: <>Weight <InlineMath math="W" /></>,
+  }}
+/>
+
 ## A Slanted Force on Coordinate Axes
 
 Imagine a rope pulling a box with force <InlineMath math="\vec{F}" /> up and to the right. The pull has **rightward and upward force components**. An upward component does not necessarily lift the box: its motion also depends on its weight and the normal force from the floor.
@@ -116,6 +136,26 @@ Here is the rope force split onto the axes. The cosine gives the horizontal part
   }}
 />
 
+Here is the same <InlineMath math="50\text{ N}" /> pull at <InlineMath math="37^\circ" /> on a real sled. The card computes without early rounding, so it reads <InlineMath math="39.9\text{ N}" /> along the snow and <InlineMath math="30.1\text{ N}" /> up, close to the <InlineMath math="40\text{ N}" /> and <InlineMath math="30\text{ N}" /> above.
+
+<SledPullWorkLab
+  title={<>Pulling a Sled at an Angle</>}
+  description={<>A <InlineMath math="20\text{ kg}" /> sled of firewood, pulled <InlineMath math="10\text{ m}" /> with <InlineMath math="50\text{ N}" />.</>}
+  angle={37}
+  distance={10}
+  force={50}
+  mass={20}
+  labels={{
+    along: <>Along the snow <InlineMath math="F\cos\theta" /></>,
+    angle: <>Rope angle above the snow</>,
+    angleName: "Rope angle above the snow",
+    normal: <>Normal force from the snow</>,
+    up: <>Upward part <InlineMath math="F\sin\theta" /></>,
+    viewLabel: "Sled of firewood pulled across snow",
+    work: <>Work over <InlineMath math="10\text{ m}" /></>,
+  }}
+/>
+
 ## Angle from Vertical Axis
 
 Keep the force in quadrant I, but measure the **angle from the positive vertical axis** toward the force. The component adjacent to <InlineMath math="\theta" /> is now <InlineMath math="F_y" />, while <InlineMath math="F_x" /> is opposite the angle.
@@ -126,6 +166,44 @@ Keep the force in quadrant I, but measure the **angle from the positive vertical
 </MathContainer>
 
 Before using a formula, always ask: from which axis is the angle measured? This small check prevents a common error when resolving vectors.
+
+### A Kite String
+
+A kite string pulls its stake with <InlineMath math="40\text{ N}" /> at <InlineMath math="60^\circ" /> from the vertical. Measured from that axis, **the vertical part takes the cosine**, <InlineMath math="20\text{ N}" />, and the horizontal part the sine, <InlineMath math="34.6\text{ N}" />.
+
+<KiteStringTensionLab
+  title={<>Angle Measured from the Vertical</>}
+  description={<>A <InlineMath math="30\text{ m}" /> string with a tension of <InlineMath math="40\text{ N}" />. Tilt it away from the vertical.</>}
+  angle={60}
+  length={30}
+  tension={40}
+  labels={{
+    across: <>Horizontal part <InlineMath math="T\sin\theta" /></>,
+    angle: <>Angle from the vertical</>,
+    angleName: "Angle from the vertical",
+    up: <>Vertical part <InlineMath math="T\cos\theta" /></>,
+    viewLabel: "Kite tied to a stake on the beach",
+  }}
+/>
+
+### A Bearing from North
+
+A ship's bearing is **also an angle from the vertical axis**, north. On a bearing of <InlineMath math="30^\circ" />, <InlineMath math="10\text{ km}" /> of sailing becomes <InlineMath math="10\cos30^\circ" />, about <InlineMath math="8.66\text{ km}" />, north and <InlineMath math="10\sin30^\circ" />, <InlineMath math="5\text{ km}" />, east.
+
+<ShipBearingComponentLab
+  title={<>Cosine North, Sine East</>}
+  description={<>A ferry sails <InlineMath math="10\text{ km}" />. Turn its bearing, measured clockwise from north.</>}
+  courses={[{ bearing: 30, distance: 10 }]}
+  labels={{
+    bearing: <>Bearing of the last leg</>,
+    bearingName: "Bearing of the last leg",
+    direction: <>Bearing from the harbour</>,
+    distance: <>Distance from the harbour</>,
+    east: <>East component</>,
+    north: <>North component</>,
+    viewLabel: "Ferry sailing from a harbour",
+  }}
+/>
 
 ## Component Signs Follow the Quadrant
 
@@ -173,5 +251,25 @@ Measure the angle from the positive x axis, counterclockwise, and the quadrant g
     q150: <InlineMath math="F_x<0,\ F_y>0" />,
     q210: <InlineMath math="F_x<0,\ F_y<0" />,
     q330: <InlineMath math="F_x>0,\ F_y<0" />,
+  }}
+/>
+
+### Wind from Every Quadrant
+
+Wind of <InlineMath math="10\text{ m/s}" /> toward <InlineMath math="210^\circ" /> blows into the third quadrant, so **the cosine and the sine are both negative**: <InlineMath math="-8.66\text{ m/s}" /> east and <InlineMath math="-5\text{ m/s}" /> north. Turn the direction through all four quadrants and read the signs.
+
+<WindMapVectorLab
+  title={<>Signs of the Wind Components</>}
+  description={<>Wind of <InlineMath math="10\text{ m/s}" />. Its direction is measured counterclockwise from east.</>}
+  angle={210}
+  speed={10}
+  labels={{
+    angle: <>Direction from east</>,
+    angleName: "Direction from east",
+    east: <>East component <InlineMath math="v_x" /></>,
+    north: <>North component <InlineMath math="v_y" /></>,
+    speed: <>Wind speed</>,
+    speedName: "Wind speed",
+    viewLabel: "Weather map of wind over islands",
   }}
 />
