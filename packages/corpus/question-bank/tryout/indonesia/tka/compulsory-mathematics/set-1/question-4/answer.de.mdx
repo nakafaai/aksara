@@ -1,22 +1,47 @@
-Arbeite mit **Blatt pro Minute**. Es seien <InlineMath math="a" />, <InlineMath math="b" /> und <InlineMath math="c" /> die Geschwindigkeiten der drei Geräte. In <InlineMath math="30" /> Minuten drucken zwei Geräte zusammen das <InlineMath math="30" />-Fache ihrer gemeinsamen Geschwindigkeit, also gilt:
+# Zwei Gleichungen für drei Zahlen
+
+Seien <InlineMath math="a" />, <InlineMath math="b" /> und <InlineMath math="c" /> die Anzahlen der verkauften Gutscheine A, B und C. Die Aufgabe liefert zwei Gleichungen, aber es gibt drei Zahlen. **Zwei Gleichungen allein legen keine eindeutige Lösung fest**, also müssen die übrigen Bedingungen sie auswählen.
+
+Schreib beide Gleichungen mit Preisen in Tausend Rupiah und zieh von der zweiten Gleichung das <InlineMath math="20" />-Fache der ersten ab, damit <InlineMath math="c" /> verschwindet:
 
 <BlockMath math="\begin{aligned}
-a+b&=\frac{1{.}800}{30}=60 \\
-b+c&=\frac{1{.}500}{30}=50 \\
-a+c&=\frac{2{.}100}{30}=70
+a+b+c&=120 \\
+50a+30b+20c&=4{.}200 \\
+30a+10b&=4{.}200-2{.}400=1{.}800 \\
+b&=180-3a
 \end{aligned}" />
 
-Addierst du alle drei Gleichungen, zählst du jede Geschwindigkeit zweimal.
+Setz das in die erste Gleichung ein, dann bekommst du <InlineMath math="c" />:
+
+<BlockMath math="c=120-a-(180-3a)=2a-60" />
+
+Jetzt hängen <InlineMath math="b" /> und <InlineMath math="c" /> nur noch von <InlineMath math="a" /> ab.
+
+# Bedingungen für die Anzahl der A-Gutscheine
+
+Es gibt drei Bedingungen. Von jeder Sorte wird mindestens ein Gutschein verkauft, und es gibt **mehr** A-Gutscheine als B-Gutscheine. Außerdem müssen alle Zahlen ganzzahlig sein.
 
 <BlockMath math="\begin{aligned}
-2(a+b+c)&=180 \\
-a+b+c&=90 \\
-c&=90-60=30,\quad a=90-50=40,\quad b=90-70=20
+b\ge1&\iff 180-3a\ge1\iff a\le59 \\
+c\ge1&\iff 2a-60\ge1\iff a\ge31 \\
+a>b&\iff a>180-3a\iff 4a>180\iff a>45
 \end{aligned}" />
 
-Zur Kontrolle: <InlineMath math="40+20=60" />, <InlineMath math="20+30=50" /> und <InlineMath math="40+30=70" />.
+Die letzte Ungleichung ist **streng**. Für <InlineMath math="a=45" /> ist <InlineMath math="b=45" />, es gibt also nicht mehr A-Gutscheine, sondern gleich viele. Die kleinste ganze Zahl, die alle Bedingungen erfüllt, ist <InlineMath math="a=46" />.
 
-- Gerät <InlineMath math="A" /> ist mit <InlineMath math="40" /> Blatt pro Minute am schnellsten. Die Aussage ist richtig.
-- Gerät <InlineMath math="B" /> druckt <InlineMath math="20" /> Blatt pro Minute, nicht <InlineMath math="30" />. Die Aussage ist falsch.
-- Gerät <InlineMath math="C" /> braucht allein <InlineMath math="\frac{1{.}200}{30}=40" /> Minuten. Die Aussage ist richtig.
-- Alle drei zusammen drucken in <InlineMath math="30" /> Minuten <InlineMath math="90\cdot30=2{.}700" /> Blatt. Die Aussage ist richtig.
+# Die wenigsten C-Gutscheine
+
+Die Formel <InlineMath math="c=2a-60" /> wächst mit <InlineMath math="a" />, also ist <InlineMath math="c" /> am kleinsten, wenn <InlineMath math="a" /> am kleinsten ist, bei <InlineMath math="a=46" />:
+
+<BlockMath math="b=180-138=42,\qquad c=2\cdot46-60=32" />
+
+Probe: <InlineMath math="46+42+32=120" /> und <InlineMath math="50\cdot46+30\cdot42+20\cdot32=2{.}300+1{.}260+640=4{.}200" /> Tausend Rupiah. Auch <InlineMath math="46>42" /> stimmt, also **ist dieser Verkauf tatsächlich möglich**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="30" /> entsteht aus <InlineMath math="a=45" />. Dann ist <InlineMath math="a=b=45" />, aber es müssen **mehr** A-Gutscheine sein, nicht gleich viele.
+- <InlineMath math="2" /> entsteht, wenn du die Bedingung <InlineMath math="a>b" /> vergisst, sodass <InlineMath math="a" /> bis <InlineMath math="31" /> sinken darf.
+- <InlineMath math="46" /> ist die Anzahl der A-Gutscheine, nicht der C-Gutscheine.
+- <InlineMath math="58" /> ist die **größte** mögliche Anzahl von C-Gutscheinen, bei <InlineMath math="a=59" />, gefragt ist aber die kleinste.
+
+Es wurden also mindestens <InlineMath math="32" /> C-Gutscheine verkauft.

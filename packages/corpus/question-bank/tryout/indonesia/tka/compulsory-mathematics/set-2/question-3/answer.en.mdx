@@ -1,8 +1,39 @@
-Both numbers are negative, and <InlineMath math="a" /> lies further left on the number line. Check each statement with **a general argument** and test it on an example such as <InlineMath math="a=-3" />, <InlineMath math="b=-2" />.
+# The first statement
 
-- <InlineMath math="a^2>b^2" /> is true. Because <InlineMath math="a" /> is further from <InlineMath math="0" />, <InlineMath math="|a|>|b|" />, and squares compare absolute values. In the example, <InlineMath math="9>4" />.
-- <InlineMath math="\frac1a>\frac1b" /> is true. Dividing <InlineMath math="a<b" /> by the positive number <InlineMath math="ab" /> gives <InlineMath math="\frac1b<\frac1a" />. In the example, <InlineMath math="-\frac13>-\frac12" />.
-- <InlineMath math="a-b>0" /> is false, because <InlineMath math="a<b" /> gives <InlineMath math="a-b<0" />. In the example, <InlineMath math="-3-(-2)=-1" />.
-- <InlineMath math="ab<b^2" /> is false. We have <InlineMath math="ab-b^2=b(a-b)" />, a product of two negative numbers, so it is positive. In the example, <InlineMath math="6>4" />.
+You can simplify <InlineMath math="\sqrt{9-4\sqrt{5}}" /> if <InlineMath math="9-4\sqrt{5}" /> turns out to be the square of something like <InlineMath math="p-q" />. Try <InlineMath math="p=\sqrt{5}" /> and <InlineMath math="q=2" />:
 
-So the statements about <InlineMath math="a^2" /> and about the reciprocals are true.
+<BlockMath math="\left(\sqrt{5}-2\right)^2=5-4\sqrt{5}+4=9-4\sqrt{5}" />
+
+Careful: <InlineMath math="\left(2-\sqrt{5}\right)^2" /> is also <InlineMath math="9-4\sqrt{5}" />. The root sign always gives a **non-negative** result, so you take the positive one. Since <InlineMath math="\sqrt{5}\approx2.24" /> is more than <InlineMath math="2" />, the positive one is <InlineMath math="\sqrt{5}-2" />.
+
+<BlockMath math="\sqrt{9-4\sqrt{5}}+\sqrt{5}=\left(\sqrt{5}-2\right)+\sqrt{5}=2\sqrt{5}-2" />
+
+**False**. The result is <InlineMath math="2\sqrt{5}-2" />, and <InlineMath math="2\sqrt{5}" /> is irrational, so the result is irrational. If you use <InlineMath math="2-\sqrt{5}" />, which is actually negative, you get <InlineMath math="2" /> and think the statement is true.
+
+# The second statement
+
+The power of a power rule gives <InlineMath math="\left(2^m\right)^n=2^{mn}" />. The right side is <InlineMath math="2^{\left(m^n\right)}" />, which is <InlineMath math="2" /> raised to the number <InlineMath math="m^n" />. Two powers of <InlineMath math="2" /> are equal only when their exponents are equal, so the condition is:
+
+<BlockMath math="\begin{aligned}
+mn&=m^n \\
+n&=m^{n-1}
+\end{aligned}" />
+
+Now check every value of <InlineMath math="n" />. For <InlineMath math="n=2" /> the condition reads <InlineMath math="2=m" />, so the pair <InlineMath math="(2,2)" /> works. Check: <InlineMath math="\left(2^2\right)^2=16" /> and <InlineMath math="2^{\left(2^2\right)}=2^4=16" />.
+
+For <InlineMath math="n\ge3" />, the right side is smallest when <InlineMath math="m=2" />, giving <InlineMath math="2^{n-1}" />. But <InlineMath math="2^{n-1}" /> is already bigger than <InlineMath math="n" />: <InlineMath math="2^2=4>3" />, <InlineMath math="2^3=8>4" />, and each time <InlineMath math="n" /> goes up by one, the left side grows by only <InlineMath math="1" /> while <InlineMath math="2^{n-1}" /> doubles. So for <InlineMath math="n\ge3" /> **there's no other pair**.
+
+**True**. Only <InlineMath math="(m,n)=(2,2)" /> works. Thinking the two forms are never equal, or equal for many pairs, are both wrong.
+
+# The third statement
+
+Simplify what's inside the brackets first. <InlineMath math="\sqrt{12}=\sqrt{4\cdot3}=2\sqrt{3}" />, so the inside can be written as a single power of <InlineMath math="3" />:
+
+<BlockMath math="\begin{aligned}
+\sqrt{3}+\sqrt{12}&=\sqrt{3}+2\sqrt{3}=3\sqrt{3}=3^{\frac{3}{2}} \\
+\left(3^{\frac{3}{2}}\right)^{\frac{2}{3}}&=3^{\frac{3}{2}\cdot\frac{2}{3}}=3^1=3
+\end{aligned}" />
+
+**True**. The result is <InlineMath math="3" />, a rational number. The trap is **spreading the power over each term**, as if <InlineMath math="(a+b)^{\frac{2}{3}}=a^{\frac{2}{3}}+b^{\frac{2}{3}}" />. That gives <InlineMath math="\sqrt[3]{3}+\sqrt[3]{12}" />, which is irrational, but the power rules don't work across a sum.
+
+So the first statement is false, the second is true, and the third is true.

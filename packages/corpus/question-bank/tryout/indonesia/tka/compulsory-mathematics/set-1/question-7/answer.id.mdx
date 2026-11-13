@@ -1,19 +1,40 @@
-Misalkan <InlineMath math="n" /> adalah banyak kenaikan tarif sebesar <InlineMath math="\text{Rp}100{.}000" />. Pendapatan adalah **tarif per kamar dikali banyak kamar yang terisi**, yaitu fungsi kuadrat dalam <InlineMath math="n" />.
+# Jarak sebagai fungsi waktu
+
+Soal ini menanyakan jarak paling kecil antara dua mobil yang terus bergerak. Jaraknya berubah setiap saat, jadi **tulis dulu jarak itu sebagai fungsi waktu**, lalu cari nilai terkecilnya.
+
+Pasang sumbu koordinat dengan <InlineMath math="O" /> di titik asal, arah timur sebagai sumbu <InlineMath math="x" /> positif, dan arah utara sebagai sumbu <InlineMath math="y" /> positif. Misalkan <InlineMath math="t" /> adalah waktu dalam jam sejak pukul <InlineMath math="07.00" />.
+
+<BlockMath math="A=(0,\ 30-40t),\qquad B=(-5+30t,\ 0)" />
+
+Rumus ini tetap berlaku setelah mobil melewati <InlineMath math="O" />. Misalnya koordinat <InlineMath math="y" /> mobil A menjadi negatif, artinya A sudah berada di selatan <InlineMath math="O" />. Kedua jalan saling tegak lurus, jadi jarak <InlineMath math="AB" /> dihitung dengan Pythagoras:
 
 <BlockMath math="\begin{aligned}
-P(n)&=(1{.}200{.}000+100{.}000n)(40-2n) \\
-&=200{.}000\,(12+n)(20-n)
+d^2&=(-5+30t)^2+(30-40t)^2 \\
+&=(25-300t+900t^2)+(900-2{.}400t+1{.}600t^2) \\
+&=2{.}500t^2-2{.}700t+925
 \end{aligned}" />
 
-Pembuat nolnya <InlineMath math="n=-12" /> dan <InlineMath math="n=20" />. Puncak parabola yang terbuka ke bawah ini tepat di tengah keduanya, yaitu <InlineMath math="n=\frac{-12+20}{2}=4" />. Tarifnya menjadi <InlineMath math="1{.}200{.}000+4\cdot100{.}000=1{.}600{.}000" />, dan kamar yang terisi <InlineMath math="40-8=32" />.
+# Titik puncak fungsi kuadrat
 
-<BlockMath math="P(4)=1{.}600{.}000\cdot32=51{.}200{.}000" />
+Jarak <InlineMath math="d" /> tidak negatif, jadi <InlineMath math="d" /> paling kecil tepat ketika <InlineMath math="d^2" /> paling kecil. Fungsi <InlineMath math="d^2" /> adalah fungsi kuadrat dengan koefisien <InlineMath math="t^2" /> positif, jadi **nilai terkecilnya ada di titik puncak**:
 
-Sebagai pemeriksaan, <InlineMath math="n=3" /> dan <InlineMath math="n=5" /> sama-sama menghasilkan <InlineMath math="1{.}500{.}000\cdot34=1{.}700{.}000\cdot30=51{.}000{.}000" />, lebih kecil.
+<BlockMath math="\begin{aligned}
+t&=\frac{2{.}700}{2\cdot2{.}500}=0{,}54\text{ jam} \\
+d^2_{\min}&=925-\frac{2{.}700^2}{4\cdot2{.}500}=925-729=196 \\
+d_{\min}&=14
+\end{aligned}" />
 
-Jadi, pendapatan terbesar diperoleh dengan tarif <InlineMath math="\text{Rp}1{.}600{.}000" />.
+Cek dengan posisi kedua mobil pada <InlineMath math="t=0{,}54" />, yaitu sekitar pukul <InlineMath math="07.32" />. Mobil A berada <InlineMath math="30-21{,}6=8{,}4\text{ km}" /> di utara <InlineMath math="O" />, dan mobil B berada <InlineMath math="-5+16{,}2=11{,}2\text{ km}" /> di timur <InlineMath math="O" />.
 
-- <InlineMath math="\text{Rp}1{.}200{.}000" /> adalah tarif awal dengan pendapatan <InlineMath math="48{.}000{.}000" />.
-- <InlineMath math="\text{Rp}1{.}400{.}000" /> menghasilkan <InlineMath math="1{.}400{.}000\cdot36=50{.}400{.}000" />.
-- <InlineMath math="\text{Rp}1{.}500{.}000" /> menghasilkan <InlineMath math="51{.}000{.}000" />, sedikit di bawah puncak.
-- <InlineMath math="\text{Rp}2{.}200{.}000" /> muncul jika puncak dianggap di <InlineMath math="n=10" />, yaitu hanya membagi dua pembuat nol <InlineMath math="n=20" />. Pada tarif itu hanya <InlineMath math="20" /> kamar terisi, dan pendapatannya <InlineMath math="44{.}000{.}000" />.
+<BlockMath math="\sqrt{8{,}4^2+11{,}2^2}=\sqrt{70{,}56+125{,}44}=\sqrt{196}=14" />
+
+Saat itu B sudah melewati persimpangan, sedangkan A belum. Jadi saat terdekat **tidak terjadi ketika salah satu mobil tepat di persimpangan**.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="10\sqrt{2}\text{ km}" /> muncul kalau kamu menganggap jarak terdekat terjadi saat kedua mobil sama jauh dari <InlineMath math="O" />, yaitu <InlineMath math="t=0{,}5" />. Jaraknya <InlineMath math="\sqrt{10^2+10^2}\approx14{,}14" />, **sedikit lebih besar daripada <InlineMath math="14" />**.
+- <InlineMath math="17{,}5\text{ km}" /> adalah jarak saat A tepat tiba di <InlineMath math="O" />, yaitu <InlineMath math="t=0{,}75" />. Saat itu B sudah <InlineMath math="17{,}5\text{ km}" /> di timur <InlineMath math="O" />.
+- <InlineMath math="18\text{ km}" /> muncul kalau posisi awal B dianggap tepat di <InlineMath math="O" />, sehingga jarak awal <InlineMath math="5\text{ km}" /> ke arah barat terlupa.
+- <InlineMath math="22\text{ km}" /> muncul kalau B dianggap berada <InlineMath math="5\text{ km}" /> di timur <InlineMath math="O" />, yaitu tanda posisinya terbalik.
+
+Jadi, jarak terdekat antara kedua mobil adalah <InlineMath math="14\text{ km}" />.

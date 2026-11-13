@@ -1,17 +1,34 @@
-Bestimme zuerst die **drei Lagemaße und die Spannweite**, dann lässt sich jede Aussage direkt prüfen. Der Größe nach geordnet lauten die <InlineMath math="12" /> Werte:
+Die Tabelle nennt nur fünf Werte pro Klasse, also passen sehr viele Datensätze dazu. Eine Aussage ist **nur dann sicher wahr, wenn sie für jeden dieser Datensätze gilt**. Um eine Aussage zu widerlegen, reicht ein einziger Datensatz, der zur Tabelle passt, die Aussage aber verletzt.
 
-<BlockMath math="30,\ 31,\ 31,\ 32,\ 32,\ 32,\ 32,\ 33,\ 33,\ 34,\ 34,\ 36" />
+# Wo die Quartile in den sortierten Daten liegen
+
+Sortiere die Noten von Klasse A als <InlineMath math="a_1\le a_2\le\dots\le a_{31}" /> und die von Klasse B als <InlineMath math="b_1\le\dots\le b_{27}" />. In Klasse A ist der Median der <InlineMath math="16" />. Wert, mit je <InlineMath math="15" /> Werten links und rechts. Die Mitte von <InlineMath math="a_1" /> bis <InlineMath math="a_{15}" /> ist <InlineMath math="a_8" />, die Mitte von <InlineMath math="a_{17}" /> bis <InlineMath math="a_{31}" /> ist <InlineMath math="a_{24}" />. Klasse B funktioniert genauso.
 
 <BlockMath math="\begin{aligned}
-\bar x&=\frac{390}{12}=32{,}5 \\
-\text{Median}&=\frac{32+32}{2}=32,\qquad \text{Modalwert}=32 \\
-\text{Spannweite}&=36-30=6
+\text{Klasse A}&:\ a_1=40,\quad a_8=56,\quad a_{16}=70,\quad a_{24}=82,\quad a_{31}=98 \\
+\text{Klasse B}&:\ b_1=50,\quad b_7=62,\quad b_{14}=68,\quad b_{21}=76,\quad b_{27}=92
 \end{aligned}" />
 
-- Über <InlineMath math="32{,}5" /> liegen die Tage mit <InlineMath math="33" />, <InlineMath math="34" /> und <InlineMath math="36^\circ\text{C}" />, zusammen <InlineMath math="5" /> von <InlineMath math="12" />, also etwa <InlineMath math="41{,}7\,\%" />. Die Aussage ist richtig.
-- Median und Modalwert sind beide <InlineMath math="32^\circ\text{C}" />. Die Aussage ist richtig.
-- Der Mittelwert <InlineMath math="32{,}5" /> ist größer als der Median <InlineMath math="32" />, nicht kleiner. Der einzelne Wert <InlineMath math="36" /> zieht den Mittelwert nach oben. Die Aussage ist falsch.
-- Unter <InlineMath math="32^\circ\text{C}" /> liegen <InlineMath math="1+2=3" /> Tage. Die Aussage ist richtig.
-- Die Spannweite ist <InlineMath math="6^\circ\text{C}" />, nicht <InlineMath math="5^\circ\text{C}" />. Die Aussage ist falsch.
+Weil die Daten sortiert sind, gilt: Ist <InlineMath math="a_k=v" />, dann ist **jeder Wert ab Position <InlineMath math="k" /> mindestens <InlineMath math="v" />**, und nur Werte vor Position <InlineMath math="k" /> können kleiner als <InlineMath math="v" /> sein. Andere Werte dürfen aber gleich <InlineMath math="v" /> sein, und genau solche gleichen Werte machen manche Anzahlen unsicher.
 
-Richtig sind also die Aussagen über den Anteil über dem Mittelwert, über Median und Modalwert und über die drei Tage unter <InlineMath math="32^\circ\text{C}" />.
+# Jede Aussage prüfen
+
+**Richtig**. Erste Aussage: <InlineMath math="a_{24}=82" />, also sind <InlineMath math="a_{24},a_{25},\dots,a_{31}" /> alle mindestens <InlineMath math="82" />. Das sind <InlineMath math="31-24+1=8" /> Schüler, egal wie die übrigen Noten aussehen.
+
+**Falsch**. Zweite Aussage: Die Werte <InlineMath math="b_{15}" /> bis <InlineMath math="b_{27}" /> sind zwar <InlineMath math="13" /> Noten von mindestens <InlineMath math="68" />, aber einige können **genau <InlineMath math="68" />** sein statt mehr als <InlineMath math="68" />. Ein Datensatz für Klasse B, der zur Tabelle passt:
+
+<BlockMath math="50,\ \underbrace{55,\dots,55}_{5},\ 62,\ \underbrace{65,\dots,65}_{6},\ 68,\ 68,\ \underbrace{70,\dots,70}_{5},\ 76,\ \underbrace{80,\dots,80}_{5},\ 92" />
+
+Hier ist <InlineMath math="b_7=62" />, <InlineMath math="b_{14}=68" /> und <InlineMath math="b_{21}=76" />, wie in der Tabelle. Aber <InlineMath math="b_{15}=68" />, sodass nur <InlineMath math="5+1+5+1=12" /> Schüler mehr als <InlineMath math="68" /> haben.
+
+**Richtig**. Dritte Aussage: <InlineMath math="b_{21}=76" />, also haben <InlineMath math="b_{21}" /> bis <InlineMath math="b_{27}" />, das sind <InlineMath math="7" /> Schüler, mindestens <InlineMath math="76" />.
+
+<BlockMath math="\frac{7}{27}\approx25{,}9\%>25\%" />
+
+Die Vorstellung, dass genau <InlineMath math="25\%" /> der Daten am oder über dem oberen Quartil liegen, stimmt hier nicht, weil <InlineMath math="27" /> nicht durch <InlineMath math="4" /> teilbar ist.
+
+**Richtig**. Vierte Aussage: In Klasse A haben die acht Schüler <InlineMath math="a_{24}" /> bis <InlineMath math="a_{31}" /> mindestens <InlineMath math="82" />, also mehr als <InlineMath math="76" />. In Klasse B ist <InlineMath math="b_{21}=76" />, also können nur <InlineMath math="b_{22}" /> bis <InlineMath math="b_{27}" /> über <InlineMath math="76" /> liegen, höchstens <InlineMath math="6" /> Schüler. Mindestens <InlineMath math="8" /> ist immer mehr als höchstens <InlineMath math="6" />.
+
+**Richtig**. Fünfte Aussage: <InlineMath math="a_8=56" /> und <InlineMath math="a_{24}=82" />, also liegen alle Werte von <InlineMath math="a_8" /> bis <InlineMath math="a_{24}" /> zwischen <InlineMath math="56" /> und <InlineMath math="82" /> einschließlich. Das sind <InlineMath math="24-8+1=17" /> Schüler.
+
+Sicher wahr sind also die erste, dritte, vierte und fünfte Aussage.

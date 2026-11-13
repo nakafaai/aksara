@@ -6,31 +6,35 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "reading-books",
+  stimulus: "saudara",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Jangkauan datanya adalah $$8$$.",
-        },
-        {
-          correct: true,
-          label: "Rata-rata banyak buku yang dibaca adalah $$2{,}24$$.",
-        },
-        {
-          correct: false,
-          label: "Lebih dari separuh siswa membaca paling sedikit $$3$$ buku.",
-        },
-        {
-          correct: true,
-          label: "Modus data sama dengan mediannya.",
+          label:
+            "Banyak siswa yang mempunyai lebih dari $$3$$ saudara kandung sama dengan banyak siswa yang mempunyai kurang dari $$3$$ saudara kandung.",
         },
         {
           correct: true,
           label:
-            "Persentase siswa yang tidak membaca buku sama sekali adalah $$8\\,\\%$$.",
+            "Jangkauan antarkuartil data banyak saudara kandung adalah $$3$$.",
+        },
+        {
+          correct: true,
+          label:
+            "Median data banyak saudara kandung lebih besar daripada rata-rata banyak saudara kandung seluruh siswa.",
+        },
+        {
+          correct: false,
+          label:
+            "Rata-rata banyak saudara kandung siswa yang mempunyai paling sedikit $$3$$ saudara kandung lebih dari $$4$$.",
+        },
+        {
+          correct: true,
+          label:
+            "Jika anak tunggal tidak diikutkan dalam data, median dan modus banyak saudara kandung tidak berubah.",
         },
       ],
     },

@@ -13,19 +13,18 @@ const item: ItemSource = {
       statements: [
         {
           column: 2,
-          label: "$$AC=8\\sqrt2\\text{ cm}$$",
-        },
-        {
-          column: 1,
-          label: "$$AD=16\\text{ cm}$$",
-        },
-        {
-          column: 1,
-          label: "Luas ubin itu $$96\\sqrt3\\text{ cm}^2$$.",
+          label:
+            "Perbandingan luas segitiga $$ADE$$ dan luas trapesium $$DBCE$$ adalah $$4:9$$.",
         },
         {
           column: 2,
-          label: "Luas segitiga $$ACE$$ sama dengan sepertiga luas ubin.",
+          label:
+            "Perbandingan keliling segitiga $$ADE$$ dan keliling trapesium $$DBCE$$ selalu sama, berapa pun panjang $$AB$$ dan $$AC$$.",
+        },
+        {
+          column: 1,
+          label:
+            "Ruas garis di dalam trapesium $$DBCE$$ yang sejajar $$BC$$ dan membagi trapesium itu menjadi dua bagian yang luasnya sama mempunyai panjang $$2\\sqrt{58}$$ cm.",
         },
       ],
     },

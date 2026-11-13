@@ -1,12 +1,38 @@
-All five new values are <InlineMath math="4" />, so **the number of students who read <InlineMath math="4" /> books becomes <InlineMath math="3+5=8" />**. There are now <InlineMath math="30" /> values, so the median is the mean of the <InlineMath math="15" />th and <InlineMath math="16" />th values.
+All three statements are about how a mean shifts when the data change. You need two different means: **the mean of all the students** and the mean of the students who aren't only children. One idea keeps coming back: a new value above the mean pulls the mean up, and a new value below it pulls the mean down.
+
+# Two means from the original data
+
+There are <InlineMath math="30+x" /> students who aren't only children, with <InlineMath math="92+4x" /> siblings in total. Their mean is <InlineMath math="3.2" />:
 
 <BlockMath math="\begin{aligned}
-\text{cumulative}&:\ 2,\ 7,\ 15,\ 21,\ 29,\ 30 \\
-\text{median}&=\frac{x_{15}+x_{16}}{2}=\frac{2+3}{2}=2.5 \\
-\bar x&=\frac{56+5\cdot4}{30}=\frac{76}{30}\approx2.53
+\frac{92+4x}{30+x}&=3.2\ \Rightarrow\ 0.8x=4\ \Rightarrow\ x=5 \\
+\text{not only children}&:\ 35\text{ students},\ \text{total }112,\ \text{mean }3.2 \\
+\text{all students}&:\ 40\text{ students},\ \text{total }112,\ \text{mean }2.8
 \end{aligned}" />
 
-- The <InlineMath math="15" />th value is the last <InlineMath math="2" /> and the <InlineMath math="16" />th is the first <InlineMath math="3" />. The median is <InlineMath math="2.5" />. This statement is true.
-- The mean is about <InlineMath math="2.53" />, more than <InlineMath math="2.5" />. This statement is true.
-- <InlineMath math="8" /> students read <InlineMath math="2" /> books and <InlineMath math="8" /> read <InlineMath math="4" /> books, the most in any category. The data have two modes, <InlineMath math="2" /> and <InlineMath math="4" />. This statement is false.
-- The smallest value is still <InlineMath math="0" /> and the largest still <InlineMath math="5" />, so the range stays <InlineMath math="5" />. This statement is false.
+The number <InlineMath math="3" /> **sits between the two means**, and that's the key to the first two statements.
+
+# Judging each statement
+
+1. **False**. New students with <InlineMath math="3" /> siblings are above <InlineMath math="2.8" /> but below <InlineMath math="3.2" />. So the mean of all the students goes up, while the mean of the students who aren't only children goes down:
+
+<BlockMath math="\begin{aligned}
+\text{all students}&:\ \frac{112+12}{40+4}=\frac{124}{44}\approx2.82>2.8 \\
+\text{not only children}&:\ \frac{112+12}{35+4}=\frac{124}{39}\approx3.18<3.2
+\end{aligned}" />
+
+The second half of the statement is wrong, so the statement is false.
+
+2. **True**. Say <InlineMath math="k" /> new students join, where <InlineMath math="k" /> is any positive whole number. Compare the new mean with <InlineMath math="3" />:
+
+<BlockMath math="3-\frac{112+3k}{40+k}=\frac{120+3k-112-3k}{40+k}=\frac{8}{40+k}>0" />
+
+The difference is always positive, so the mean is **always below <InlineMath math="3" />**. It gets closer to <InlineMath math="3" /> as <InlineMath math="k" /> grows, but it never gets there.
+
+3. **False**. There are <InlineMath math="9" /> students recorded with <InlineMath math="5" /> siblings. If each of them loses <InlineMath math="1" />, the total drops by <InlineMath math="9" />, while the number of students stays <InlineMath math="40" />:
+
+<BlockMath math="\frac{112-9}{40}=\frac{103}{40}=2.575,\qquad 2.8-2.575=0.225<0.25" />
+
+The drop is <InlineMath math="0.225" />, which isn't more than <InlineMath math="0.25" />. If you divide by <InlineMath math="35" /> (forgetting the only children), you get <InlineMath math="\frac{9}{35}\approx0.257" /> and fall into answering true.
+
+So the answers are False, True, False.

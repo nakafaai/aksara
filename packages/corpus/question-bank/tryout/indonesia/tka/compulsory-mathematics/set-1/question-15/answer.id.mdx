@@ -1,14 +1,48 @@
-Pada soal ini, kamu hanya menilai apakah keterangan yang diberikan **cukup untuk jawaban yang pasti**, bukan apa jawabannya. Periksa setiap pernyataan sendiri-sendiri lebih dulu, lalu keduanya bersama-sama. Sebuah pernyataan cukup jika menjawab pertanyaan dengan cara yang sama untuk setiap kemungkinan.
+# Mencari bayangan kedua titik
 
-Rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam dengan pusat titik asal memetakan <InlineMath math="(a,b)" /> ke <InlineMath math="(-b,a)" />. Bayangan itu terletak di kuadran II tepat ketika <InlineMath math="-b<0" /> dan <InlineMath math="a>0" />, yaitu ketika <InlineMath math="a>0" /> **dan** <InlineMath math="b>0" />.
+Soal ini meminta luas segi empat yang dibentuk ruas <InlineMath math="AB" /> dan bayangannya. Pusat rotasinya <InlineMath math="P(1,1)" />, **bukan titik asal**, jadi aturan <InlineMath math="(x,y)\mapsto(-y,x)" /> tidak boleh langsung dipakai pada koordinat <InlineMath math="A" /> dan <InlineMath math="B" />.
 
-- **Pernyataan (1) saja**: dengan <InlineMath math="A(1,1)" />, <InlineMath math="A'(-1,1)" /> berada di kuadran II, tetapi dengan <InlineMath math="A(1,-1)" />, <InlineMath math="A'(1,1)" /> berada di kuadran I. Jawabannya bergantung pada <InlineMath math="b" />, jadi pernyataan ini tidak cukup.
-- **Pernyataan (2) saja**: dengan <InlineMath math="A(1,1)" />, <InlineMath math="A'" /> berada di kuadran II, tetapi dengan <InlineMath math="A(-1,1)" />, <InlineMath math="A'(-1,-1)" /> berada di kuadran III. Pernyataan ini juga tidak cukup.
-- **Keduanya bersama-sama**: dari <InlineMath math="a>0" /> dan <InlineMath math="b>0" /> diperoleh <InlineMath math="-b<0" /> dan <InlineMath math="a>0" />, jadi <InlineMath math="A'" /> pasti berada di kuadran II.
+Caranya tiga langkah. Pertama, hitung posisi titik relatif terhadap <InlineMath math="P" />. Kedua, putar posisi relatif itu dengan aturan <InlineMath math="(u,v)\mapsto(-v,u)" />. Ketiga, tambahkan lagi koordinat <InlineMath math="P" />.
 
-Jadi, kedua pernyataan bersama-sama cukup, tetapi satu pernyataan saja tidak cukup.
+<BlockMath math="\begin{aligned}
+A-P&=(3,1)\;\mapsto\;(-1,3), & A'&=(1-1,\;1+3)=(0,4) \\
+B-P&=(5,3)\;\mapsto\;(-3,5), & B'&=(1-3,\;1+5)=(-2,6)
+\end{aligned}" />
 
-- Pilihan bahwa pernyataan (1) saja cukup salah, karena pernyataan (1) saja masih memungkinkan dua jawaban yang berbeda.
-- Pilihan bahwa pernyataan (2) saja cukup salah, karena pernyataan (2) saja masih memungkinkan dua jawaban yang berbeda.
-- Pilihan bahwa setiap pernyataan saja sudah cukup salah, karena pernyataan (1) saja masih memungkinkan dua jawaban yang berbeda.
-- Pilihan bahwa kedua pernyataan bersama-sama pun tidak cukup salah, karena kedua pernyataan bersama-sama menjawab pertanyaan dengan pasti.
+# Menghitung luas segi empat
+
+Titik sudutnya berurutan <InlineMath math="A(4,2)" />, <InlineMath math="B(6,4)" />, <InlineMath math="B'(-2,6)" />, dan <InlineMath math="A'(0,4)" />. Cara yang aman adalah **persegi panjang pembatas dikurangi segitiga di luar**. Persegi panjang terkecil yang memuat keempat titik itu membentang dari <InlineMath math="x=-2" /> sampai <InlineMath math="x=6" /> dan dari <InlineMath math="y=2" /> sampai <InlineMath math="y=6" />, jadi luasnya <InlineMath math="8\cdot4=32" />.
+
+Bagian persegi panjang di luar segi empat bisa dipotong menjadi empat segitiga yang alas dan tingginya mendatar atau tegak.
+
+| Segitiga | Alas | Tinggi | Luas |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="A,\,(6,2),\,B" /> | <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
+| <InlineMath math="B,\,(6,6),\,B'" /> | <InlineMath math="8" /> | <InlineMath math="2" /> | <InlineMath math="8" /> |
+| <InlineMath math="B',\,(-2,2),\,A'" /> | <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="4" /> |
+| <InlineMath math="(-2,2),\,A,\,A'" /> | <InlineMath math="6" /> | <InlineMath math="2" /> | <InlineMath math="6" /> |
+
+<BlockMath math="\begin{aligned}
+L_{ABB'A'}&=32-(2+8+4+6) \\
+&=12\text{ satuan luas}
+\end{aligned}" />
+
+Ada cara cepat untuk mengecek. Segitiga <InlineMath math="PAA'" /> dan <InlineMath math="PBB'" /> siku-siku sama kaki di <InlineMath math="P" />, karena rotasi <InlineMath math="90^\circ" /> menjaga jarak ke pusat. Segitiga <InlineMath math="PAB" /> dan bayangannya <InlineMath math="PA'B'" /> kongruen, sehingga sumbangan keduanya saling menghapus. Yang tersisa hanya selisih dua segitiga siku-siku itu.
+
+<BlockMath math="\begin{aligned}
+PA^2&=3^2+1^2=10, \qquad PB^2=5^2+3^2=34 \\
+L_{ABB'A'}&=\tfrac12 PB^2-\tfrac12 PA^2=17-5=12
+\end{aligned}" />
+
+Hasilnya sama.
+
+# Kenapa pilihan lain keliru
+
+Pilihan yang salah muncul dari langkah rotasi atau langkah luas yang meleset. **Pusat rotasi dan tanda pengurangan** adalah dua titik rawannya.
+
+- <InlineMath math="22" /> muncul kalau luas segitiga <InlineMath math="PAA'" /> ditambahkan, <InlineMath math="17+5" />. Seharusnya dikurangkan.
+- <InlineMath math="17" /> hanya luas segitiga <InlineMath math="PBB'" />. Segitiga <InlineMath math="PAA'" /> lupa dibuang.
+- <InlineMath math="16" /> muncul kalau rotasi dilakukan terhadap titik asal, sehingga <InlineMath math="A'=(-2,4)" /> dan <InlineMath math="B'=(-4,6)" />. Pusatnya <InlineMath math="P(1,1)" />.
+- <InlineMath math="8" /> muncul kalau <InlineMath math="ABB'A'" /> dianggap persegi bersisi <InlineMath math="AB=2\sqrt{2}" />. Padahal <InlineMath math="AA'=\sqrt{20}" />, tidak sama dengan <InlineMath math="AB" />.
+
+Jadi, luas segi empat <InlineMath math="ABB'A'" /> adalah <InlineMath math="12" /> satuan luas.

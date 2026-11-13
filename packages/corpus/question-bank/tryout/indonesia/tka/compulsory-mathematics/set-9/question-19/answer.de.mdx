@@ -1,17 +1,40 @@
-Die Kugel berührt Boden, Deckel und Wand, also **hat der Zylinder den Radius <InlineMath math="r" /> und die Höhe <InlineMath math="2r" />**. Der Sand füllt den Zylinder ohne die Kugel.
+Gesucht ist die Wasserhöhe im Zylinder, nachdem ein Teil des Wassers aus dem Trichter hineingeflossen ist. Der Schlüssel: Das Wasser, das im Trichter bleibt, ist ein kleiner Kegel, der zum Trichter **ähnlich** ist, und **die Volumina ähnlicher Kegel verhalten sich wie die dritte Potenz** des Höhenverhältnisses, nicht direkt proportional.
+
+# Das Restwasser im Trichter
+
+Die Trichteröffnung hat den Radius <InlineMath math="6\text{ cm}" />, die Höhe ist <InlineMath math="12\text{ cm}" />. Am Anfang ist der ganze Kegel voll:
+
+<BlockMath math="V=\frac13\pi\cdot6^2\cdot12=144\pi\text{ cm}^3" />
+
+Wenn das Loch wieder zu ist, bildet das Wasser im Trichter einen Kegel von <InlineMath math="6\text{ cm}" /> Höhe, also der halben Trichterhöhe. Dieser kleine Kegel ist zum Trichter ähnlich mit Faktor <InlineMath math="\frac12" />, also ist auch der Radius der Wasseroberfläche halb so groß, <InlineMath math="3\text{ cm}" />. Sein Volumen:
 
 <BlockMath math="\begin{aligned}
-V_{\text{Zylinder}}&=\pi r^2\cdot2r=2\pi r^3 \\
-V_{\text{Kugel}}&=\tfrac43\pi r^3 \\
-V_{\text{Sand}}&=2\pi r^3-\tfrac43\pi r^3=\tfrac23\pi r^3 \\
-V_{\text{Sand}}:V_{\text{Kugel}}&=\tfrac23:\tfrac43=1:2
+V_{\text{Rest}}&=\frac13\pi\cdot3^2\cdot6=18\pi\text{ cm}^3 \\
+&=\left(\tfrac12\right)^3\cdot144\pi
 \end{aligned}" />
 
-Der Faktor <InlineMath math="\pi r^3" /> kürzt sich weg, das Verhältnis gilt also für jede Kugelgröße.
+Es bleibt also nur <InlineMath math="\frac18" /> des Wassers übrig. **Die halbe Höhe fasst nur ein Achtel des Volumens**, weil der breite Teil des Trichters oben liegt.
 
-Sand und Kugel stehen also im Volumenverhältnis <InlineMath math="1:2" />.
+# Das Wasser im Zylinder
 
-- <InlineMath math="1:1" /> nimmt an, der Sand fülle den halben Zylinder.
-- <InlineMath math="1:3" /> ist das Verhältnis von Sand zu Zylinder.
-- <InlineMath math="2:1" /> dreht das Verhältnis um.
-- <InlineMath math="2:3" /> ist das Verhältnis von Kugel zu Zylinder.
+In den Zylinder geflossen ist die Differenz:
+
+<BlockMath math="V_{\text{geflossen}}=144\pi-18\pi=126\pi\text{ cm}^3" />
+
+Der Zylinder hat den Durchmesser <InlineMath math="6\text{ cm}" />, also den Radius <InlineMath math="3\text{ cm}" /> und die Grundfläche <InlineMath math="9\pi\text{ cm}^2" />. Das Wasser im Zylinder ist Grundfläche mal Wasserhöhe <InlineMath math="t" />:
+
+<BlockMath math="\begin{aligned}
+9\pi\cdot t&=126\pi \\
+t&=14\text{ cm}
+\end{aligned}" />
+
+Probe: Das Wasser im Zylinder, <InlineMath math="9\pi\cdot14=126\pi" />, plus das Wasser im Trichter, <InlineMath math="18\pi" />, ergibt <InlineMath math="144\pi" />, das Anfangsvolumen. **Es geht kein Wasser verloren**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="2\text{ cm}" /> rechnet mit dem Wasser, das im Trichter bleibt, <InlineMath math="18\pi" />, statt mit dem geflossenen Wasser.
+- <InlineMath math="3{,}5\text{ cm}" /> entsteht, wenn du den Durchmesser <InlineMath math="6\text{ cm}" /> des Zylinders als Radius nimmst. Dann ist die Grundfläche <InlineMath math="36\pi" />.
+- <InlineMath math="8\text{ cm}" /> entsteht, wenn du glaubst, **halbe Höhe heißt halbes Volumen**, sodass <InlineMath math="72\pi" /> fließen.
+- <InlineMath math="12\text{ cm}" /> entsteht, wenn das Volumen mit dem Quadrat der Höhe skaliert wird. Dann bleibt <InlineMath math="\frac14" /> übrig und <InlineMath math="108\pi" /> fließen.
+
+Das Wasser im Zylinder steht also <InlineMath math="14\text{ cm}" /> hoch.

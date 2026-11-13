@@ -1,19 +1,31 @@
-Gestrichen werden nur die vier Wände, und zwar **zweimal dieselbe Fläche**. Berechne zuerst die Wandfläche ohne Tür und Fenster, verdopple sie für die zwei Anstriche und rechne dann in Liter und Dosen um.
+# Die Form des Wassers nach dem Kippen
+
+Gefragt ist, wie viele Liter Wasser aus dem Aquarium laufen. Am Anfang sind <InlineMath math="40\cdot30\cdot15=18{.}000\text{ cm}^3" /> Wasser darin, also <InlineMath math="18" /> Liter. Wenn du weißt, wie viel Wasser bei einer Neigung von <InlineMath math="45^\circ" /> noch hineinpasst, ist der Rest das übergelaufene Wasser.
+
+Schau dir das Aquarium von der Seite an, senkrecht zu der <InlineMath math="30\text{ cm}" /> langen Kante, auf der es steht. Der Querschnitt ist ein Rechteck mit einem <InlineMath math="40\text{ cm}" /> langen Boden und einer <InlineMath math="25\text{ cm}" /> hohen Wand über der Kippkante. Dieser Querschnitt ist entlang der ganzen <InlineMath math="30\text{ cm}" /> langen Kante gleich, also ist das Wasservolumen die Querschnittsfläche des Wassers mal <InlineMath math="30" />.
+
+Die Wasseroberfläche **bleibt immer waagerecht**. Wenn der Boden um <InlineMath math="45^\circ" /> geneigt ist, ist die Wand über der Kippkante um <InlineMath math="45^\circ" /> zur anderen Seite geneigt, weil sie senkrecht auf dem Boden steht. Die Oberkante dieser Wand ist der tiefste Punkt des Randes, dort läuft das Wasser über. Die Oberflächenlinie durch diese Oberkante bildet mit der Wand und mit dem Boden jeweils <InlineMath math="45^\circ" />.
+
+Der Querschnitt des Wassers ist also ein gleichschenklig rechtwinkliges Dreieck. Eine Kathete ist die <InlineMath math="25\text{ cm}" /> hohe Wand, die andere Kathete am Boden ist ebenfalls <InlineMath math="25\text{ cm}" /> lang. Der Boden ist <InlineMath math="40\text{ cm}" /> lang, also mehr als <InlineMath math="25\text{ cm}" />. Die Oberfläche trifft den Boden also wirklich, bevor sie die gegenüberliegende Wand erreicht.
 
 <BlockMath math="\begin{aligned}
-\text{Wände}&=2\cdot(5+4)\cdot2{,}5=45\text{ m}^2 \\
-\text{Öffnungen}&=0{,}8\cdot2+2\cdot1{,}5\cdot1{,}2=1{,}6+3{,}6=5{,}2\text{ m}^2 \\
-\text{zu streichen}&=2\cdot(45-5{,}2)=79{,}6\text{ m}^2 \\
-\text{Farbe}&=\frac{79{,}6}{12}\approx6{,}63\text{ Liter}
+L_{\text{Wasserquerschnitt}}&=\tfrac12\cdot25\cdot25=312{,}5\text{ cm}^2 \\
+V_{\text{Rest}}&=312{,}5\cdot30=9{.}375\text{ cm}^3=9{,}375\text{ Liter}
 \end{aligned}" />
 
-Weil nur ganze Dosen verkauft werden, brauchst du <InlineMath math="7" /> Dosen.
+# Das übergelaufene Wasser
 
-Zur Kontrolle: <InlineMath math="6" /> Dosen reichen für <InlineMath math="72\text{ m}^2" />, zu wenig, <InlineMath math="7" /> Dosen reichen für <InlineMath math="84\text{ m}^2" />.
+Die verbleibenden <InlineMath math="9{,}375" /> Liter sind weniger als die <InlineMath math="18" /> Liter vom Anfang, es läuft also wirklich Wasser über. **Das übergelaufene Wasser ist die Differenz aus Anfangsmenge und Rest**.
 
-Man muss also mindestens <InlineMath math="7" /> Dosen kaufen.
+<BlockMath math="V_{\text{übergelaufen}}=18-9{,}375=8{,}625\text{ Liter}" />
 
-- <InlineMath math="4" /> Dosen reichen nur für einen Anstrich: <InlineMath math="\frac{39{,}8}{12}\approx3{,}32" />.
-- <InlineMath math="6" /> Dosen runden <InlineMath math="6{,}63" /> ab. Dann fehlt Farbe für <InlineMath math="7{,}6\text{ m}^2" />.
-- <InlineMath math="8" /> Dosen vergessen, Tür und Fenster abzuziehen: <InlineMath math="\frac{90}{12}=7{,}5" />. Dieselbe Zahl entsteht, wenn jeder Anstrich einzeln auf <InlineMath math="4" /> Dosen aufgerundet wird, obwohl Reste weiterverwendet werden dürfen.
-- <InlineMath math="10" /> Dosen streichen zusätzlich die Decke mit <InlineMath math="20\text{ m}^2" />: <InlineMath math="\frac{2\cdot59{,}8}{12}\approx9{,}97" />.
+# Warum die anderen Antworten falsch sind
+
+Die falschen Antworten entstehen aus einer falschen Form des Querschnitts oder aus einer anderen Größe als der gefragten. Prüf **die Form des Wassers bei <InlineMath math="45^\circ" />**, bevor du rechnest.
+
+- <InlineMath math="3" /> Liter entstehen, wenn die Oberfläche von der Oberkante der Wand bis zur gegenüberliegenden Bodenecke reicht, also ein Dreieck <InlineMath math="25\times40" />. Das passiert bei einer kleineren Neigung, nicht bei <InlineMath math="45^\circ" />.
+- <InlineMath math="5{,}5" /> Liter entstehen, wenn du den Querschnitt von der falschen Seite nimmst: ein Dreieck <InlineMath math="25\times25" /> mal <InlineMath math="40" />. Die Kippkante ist <InlineMath math="30\text{ cm}" /> lang, also multiplizierst du mit <InlineMath math="30" />.
+- <InlineMath math="9{,}375" /> Liter sind das Wasser, das drin bleibt, nicht das übergelaufene.
+- <InlineMath math="12" /> Liter entstehen mit der Trapezformel und einer Tiefe am anderen Ende von <InlineMath math="25-40=-15\text{ cm}" />. Eine negative Tiefe heißt, dass die Oberfläche den Boden schon trifft, die Form ist also ein Dreieck.
+
+Es laufen also <InlineMath math="8{,}625" /> Liter Wasser über.

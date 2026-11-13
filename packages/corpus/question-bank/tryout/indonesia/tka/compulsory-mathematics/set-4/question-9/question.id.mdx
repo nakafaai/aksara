@@ -1,3 +1,39 @@
-Diketahui fungsi <InlineMath math="f(x)=|2x-6|-4" /> untuk setiap bilangan real <InlineMath math="x" />.
+Fungsi <InlineMath math="f" /> didefinisikan hanya untuk <InlineMath math="-4\le x\le4" />. Grafiknya terdiri atas empat ruas garis lurus yang berturut-turut menghubungkan titik <InlineMath math="(-4,2)" />, <InlineMath math="(-2,-2)" />, <InlineMath math="(0,2)" />, <InlineMath math="(2,0)" />, dan <InlineMath math="(4,2)" />, seperti pada gambar. Kedua titik ujung termasuk grafik.
+
+<MathVisual
+  title={<>Grafik fungsi <InlineMath math="f" /></>}
+  description={<>Grafik patah-patah pada <InlineMath math="-4\le x\le4" />: dari <InlineMath math="(-4,2)" /> turun lurus ke <InlineMath math="(-2,-2)" />, naik lurus ke <InlineMath math="(0,2)" />, turun lurus ke <InlineMath math="(2,0)" />, lalu naik lurus ke <InlineMath math="(4,2)" />. Titik <InlineMath math="(-4,2)" /> dan <InlineMath math="(4,2)" /> adalah ujung grafik dan termasuk grafik.</>}
+  labels={{
+    p1: <InlineMath math="(-4,2)" />,
+    p2: <InlineMath math="(-2,-2)" />,
+    p3: <InlineMath math="(0,2)" />,
+    p4: <InlineMath math="(2,0)" />,
+    p5: <InlineMath math="(4,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -3, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "graph", kind: "polyline", appearance: "primary", vertices: [{ x: -4, y: 2 }, { x: -2, y: -2 }, { x: 0, y: 2 }, { x: 2, y: 0 }, { x: 4, y: 2 }] },
+      { id: "point-1", kind: "point", appearance: "reference", at: { x: -4, y: 2 } },
+      { id: "point-2", kind: "point", appearance: "reference", at: { x: -2, y: -2 } },
+      { id: "point-3", kind: "point", appearance: "reference", at: { x: 0, y: 2 } },
+      { id: "point-4", kind: "point", appearance: "reference", at: { x: 2, y: 0 } },
+      { id: "point-5", kind: "point", appearance: "reference", at: { x: 4, y: 2 } },
+    ],
+    labels: [
+      { key: "p1", objectId: "point-1", at: { x: -4, y: 2 }, placement: "above-right" },
+      { key: "p2", objectId: "point-2", at: { x: -2, y: -2 }, placement: "below" },
+      { key: "p3", objectId: "point-3", at: { x: 0, y: 2 }, placement: "above" },
+      { key: "p4", objectId: "point-4", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "p5", objectId: "point-5", at: { x: 4, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
 
 Pilih semua pernyataan yang benar.

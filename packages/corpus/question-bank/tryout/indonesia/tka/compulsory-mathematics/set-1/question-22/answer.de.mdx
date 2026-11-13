@@ -1,18 +1,40 @@
-Der Interquartilsabstand ist **oberes Quartil minus unteres Quartil**. Bei <InlineMath math="30" /> geordneten Werten teilt der Median die Daten in zwei Hälften zu je <InlineMath math="15" /> Werten. Das untere Quartil ist der Median der unteren Hälfte, also der <InlineMath math="8" />. Wert, und das obere Quartil ist der <InlineMath math="23" />. Wert.
+# Die Gruppe im Nenner
 
-Lies die Positionen an den kumulierten Häufigkeiten ab: bis <InlineMath math="40" /> sind es <InlineMath math="2" /> Werte, bis <InlineMath math="45" /> sind es <InlineMath math="10" />, bis <InlineMath math="50" /> sind es <InlineMath math="19" />, bis <InlineMath math="55" /> sind es <InlineMath math="26" />.
+Gefragt ist ein Anteil, du brauchst also Zähler und Nenner. Die Worte "di antara panggilan yang bukan panggilan singkat" (unter den Anrufen, die keine Kurzanrufe sind) legen den Nenner fest: **Du zählst nur Anrufe von mindestens <InlineMath math="7{,}5" /> Minuten**, nicht alle <InlineMath math="80" /> Anrufe.
+
+Die Grenze <InlineMath math="7{,}5" /> Minuten liegt genau in der Mitte der Klasse <InlineMath math="5\le t<10" />. Weil die Anrufe dieser Klasse gleichmäßig verteilt sind, dauert die Hälfte ihrer <InlineMath math="22" /> Anrufe mindestens <InlineMath math="7{,}5" /> Minuten. Die späteren Klassen zählen vollständig.
 
 <BlockMath math="\begin{aligned}
-Q_1&=x_{(8)}=45 \\
-Q_3&=x_{(23)}=55 \\
-Q_3-Q_1&=55-45=10
+\text{keine Kurzanrufe}&=\tfrac12\cdot22+14+18+12+8 \\
+&=11+52=63
 \end{aligned}" />
 
-Zur Kontrolle: Auch mit den Positionen <InlineMath math="\frac{31}{4}=7{,}75" /> und <InlineMath math="\frac{93}{4}=23{,}25" /> liegen beide Nachbarwerte jeweils in derselben Zeile, die Quartile bleiben also <InlineMath math="45" /> und <InlineMath math="55" />.
+# Die Anrufe im Zähler
 
-Der Interquartilsabstand beträgt also <InlineMath math="10" /> Becher.
+Von diesen <InlineMath math="63" /> Anrufen nimmst du die, die kürzer als <InlineMath math="22{,}5" /> Minuten sind. Die Grenze <InlineMath math="22{,}5" /> Minuten liegt in der Mitte der Klasse <InlineMath math="20\le t<25" />, also **zählt von dieser Klasse nur die Hälfte**.
 
-- <InlineMath math="5" /> ist nur der Abstand vom Median <InlineMath math="50" /> zu einem der Quartile.
-- <InlineMath math="15" /> rechnet <InlineMath math="Q_3" /> minus den kleinsten Wert <InlineMath math="40" />.
-- <InlineMath math="20" /> ist die Spannweite <InlineMath math="60-40" />, nicht der Interquartilsabstand.
-- <InlineMath math="8" /> ist die Zahl der Tage mit <InlineMath math="45" /> Bechern, also eine Häufigkeit und kein Abstand zwischen zwei Werten.
+| Klasse | Anzahl der Anrufe | Anteil im Zähler |
+| :---: | :---: | :---: |
+| <InlineMath math="7{,}5\le t<10" /> | <InlineMath math="11" /> | <InlineMath math="11" /> |
+| <InlineMath math="10\le t<15" /> | <InlineMath math="14" /> | <InlineMath math="14" /> |
+| <InlineMath math="15\le t<20" /> | <InlineMath math="18" /> | <InlineMath math="18" /> |
+| <InlineMath math="20\le t<25" /> | <InlineMath math="12" /> | <InlineMath math="6" /> |
+| <InlineMath math="25\le t<30" /> | <InlineMath math="8" /> | <InlineMath math="0" /> |
+
+<BlockMath math="\begin{aligned}
+\text{Zähler}&=11+14+18+6=49 \\
+\text{Anteil}&=\frac{49}{63}=\frac{7}{9}
+\end{aligned}" />
+
+Prüf das von der anderen Seite. Anrufe, die keine Kurzanrufe sind und mindestens <InlineMath math="22{,}5" /> Minuten dauern, gibt es <InlineMath math="6+8=14" />, und <InlineMath math="49+14=63" />. Der Gegenanteil ist also <InlineMath math="\frac{14}{63}=\frac29" />, und <InlineMath math="\frac79+\frac29=1" />.
+
+# Warum die anderen Antworten falsch sind
+
+Jede falsche Antwort entsteht aus einem falschen Nenner oder aus einer falsch geteilten Klasse. **Beide Grenzen, die mitten in einer Klasse liegen**, musst du halbieren.
+
+- <InlineMath math="\frac{43}{63}" /> lässt die <InlineMath math="6" /> Anrufe mit <InlineMath math="20\le t<22{,}5" /> weg. Der Zähler hört bei <InlineMath math="20" /> Minuten auf.
+- <InlineMath math="\frac{8}{13}" /> verwendet nur ganze Klassen: <InlineMath math="10\le t<20" /> von <InlineMath math="10\le t<30" />, also <InlineMath math="\frac{32}{52}" />. Beide Grenzen in der Klassenmitte werden übergangen.
+- <InlineMath math="\frac{49}{80}" /> teilt durch alle <InlineMath math="80" /> Anrufe. Gefragt ist aber nur unter den Anrufen, die keine Kurzanrufe sind.
+- <InlineMath math="\frac{2}{9}" /> ist der Anteil der Anrufe von mindestens <InlineMath math="22{,}5" /> Minuten, also der Gegenanteil.
+
+Der geschätzte Anteil ist also <InlineMath math="\frac{7}{9}" />.

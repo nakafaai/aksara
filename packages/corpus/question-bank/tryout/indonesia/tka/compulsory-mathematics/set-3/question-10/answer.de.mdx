@@ -1,12 +1,76 @@
-<InlineMath math="\angle AOB" /> ist ein Mittelpunktswinkel und <InlineMath math="\angle ACB" /> ein Umfangswinkel. Da <InlineMath math="C" /> auf dem großen Bogen liegt, **stehen beide über demselben kleinen Bogen <InlineMath math="AB" />**, also ist der Umfangswinkel halb so groß wie der Mittelpunktswinkel.
+Nenn die beiden Katheten <InlineMath math="p" /> und <InlineMath math="q" /> und die Hypotenuse <InlineMath math="c" />. Für diese drei Zahlen brauchst du drei Angaben, also nutzt du **zwei Eigenschaften des Inkreises** und dazu den Flächeninhalt.
 
-<BlockMath math="\angle ACB=\frac12\cdot\angle AOB=\frac12\cdot124^\circ=62^\circ" />
+# Der Umfang aus dem Flächeninhalt
 
-Zur Kontrolle: Ein Umfangswinkel über dem großen Bogen <InlineMath math="AB" /> misst <InlineMath math="\frac12\,(360^\circ-124^\circ)=118^\circ" />, und <InlineMath math="62^\circ+118^\circ=180^\circ" />, wie bei gegenüberliegenden Winkeln eines Sehnenvierecks.
+Verbinde den Mittelpunkt des Inkreises mit den drei Ecken. Das Dreieck zerfällt in drei kleine Dreiecke mit den Grundseiten <InlineMath math="p" />, <InlineMath math="q" />, <InlineMath math="c" />, und jedes hat als Höhe den Radius <InlineMath math="r=5" />. Addiere die Flächen zum ganzen Flächeninhalt <InlineMath math="L" /> und schreib <InlineMath math="s" /> für den halben Umfang.
 
-Also ist <InlineMath math="\angle ACB=62^\circ" />.
+<BlockMath math="\begin{aligned}
+L&=\tfrac12 r p+\tfrac12 r q+\tfrac12 r c=r\cdot s \\
+210&=5s\ \Rightarrow\ s=42 \\
+p+q+c&=84
+\end{aligned}" />
 
-- <InlineMath math="28^\circ" /> ist <InlineMath math="90^\circ-62^\circ" />, der Komplementwinkel.
-- <InlineMath math="118^\circ" /> ist der Umfangswinkel über dem großen Bogen, also der Winkel an einem Punkt des kleinen Bogens.
-- <InlineMath math="124^\circ" /> setzt Umfangswinkel und Mittelpunktswinkel gleich.
-- <InlineMath math="248^\circ" /> verdoppelt den Mittelpunktswinkel, statt ihn zu halbieren.
+Also ist **der Flächeninhalt gleich Radius mal halber Umfang**, und der Umfang beträgt <InlineMath math="84\text{ cm}" />.
+
+# Die Hypotenuse aus dem Radius
+
+Am rechten Winkel bilden die beiden Radien zu den Berührpunkten ein Quadrat mit der Seite <InlineMath math="r" />. Von der Ecke mit dem rechten Winkel ist der Tangentenabschnitt zum Kreis also <InlineMath math="r" /> lang. Von den beiden anderen Ecken sind die Tangentenabschnitte <InlineMath math="p-r" /> und <InlineMath math="q-r" /> lang, und **diese beiden Stücke ergeben genau die Hypotenuse**.
+
+<BlockMath math="\begin{aligned}
+c&=(p-r)+(q-r)\ \Rightarrow\ p+q-c=2r=10 \\
+c&=\frac{84-10}{2}=37,\qquad p+q=47
+\end{aligned}" />
+
+<MathVisual
+  title={<>Rechtwinkliges Dreieck mit Inkreis</>}
+  description={<>Ein rechtwinkliges Dreieck mit dem rechten Winkel bei <InlineMath math="(0,0)" />, einer waagerechten Kathete der Länge <InlineMath math="35" />, einer senkrechten Kathete der Länge <InlineMath math="12" /> und der Hypotenuse <InlineMath math="37" />. Der Inkreis hat den Mittelpunkt <InlineMath math="(5,5)" /> und den Radius <InlineMath math="5" />. Sein Berührpunkt auf der Hypotenuse teilt sie in ein Stück der Länge <InlineMath math="30" /> nahe der Ecke rechts unten und ein Stück der Länge <InlineMath math="7" /> nahe der oberen Ecke.</>}
+  labels={{
+    long: <InlineMath math="35" />,
+    short: <InlineMath math="12" />,
+    hypotenuse: <InlineMath math="37" />,
+    radius: <InlineMath math="r=5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 37 },
+      y: { min: -3, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 35, y: 0 }, { x: 0, y: 12 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 5, y: 5 }, radius: 5 },
+      { id: "radius-segment", kind: "segment", appearance: "highlight", from: { x: 5, y: 5 }, to: { x: 5, y: 0 } },
+      { id: "center", kind: "point", appearance: "reference", at: { x: 5, y: 5 } },
+      { id: "touch-point", kind: "point", appearance: "reference", at: { x: 245 / 37, y: 360 / 37 } },
+    ],
+    labels: [
+      { key: "long", objectId: "triangle", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "short", objectId: "triangle", at: { x: 0, y: 6 }, placement: "left" },
+      { key: "hypotenuse", objectId: "triangle", at: { x: 17.5, y: 6 }, placement: "above-right" },
+      { key: "radius", objectId: "radius-segment", at: { x: 5, y: 2.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Die beiden Katheten
+
+Aus dem Flächeninhalt folgt <InlineMath math="\tfrac12pq=210" />, also <InlineMath math="pq=420" />. Zwei Zahlen mit der Summe <InlineMath math="47" /> und dem Produkt <InlineMath math="420" /> sind die Lösungen dieser quadratischen Gleichung.
+
+<BlockMath math="\begin{aligned}
+t^2-47t+420&=0 \\
+t&=\frac{47\pm\sqrt{2209-1680}}{2}=\frac{47\pm23}{2} \\
+t&=35\ \text{ oder }\ t=12
+\end{aligned}" />
+
+Probe: <InlineMath math="12^2+35^2=144+1225=1369=37^2" />, und <InlineMath math="\frac{12+35-37}{2}=5" />. **Alle Angaben sind erfüllt**, die längere Kathete ist also <InlineMath math="35\text{ cm}" /> lang.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="12\text{ cm}" /> ist die kürzere Kathete, die andere Lösung der quadratischen Gleichung.
+- <InlineMath math="30\text{ cm}" /> ist das Stück der Hypotenuse vom Berührpunkt bis zur Ecke rechts unten. **Für die Kathete musst du noch <InlineMath math="r=5" /> addieren**.
+- <InlineMath math="37\text{ cm}" /> ist die Hypotenuse, keine Kathete.
+- <InlineMath math="84\text{ cm}" /> entsteht, wenn du den Flächeninhalt als <InlineMath math="\tfrac12 r s" /> schreibst. Dann ist <InlineMath math="s=84" />, <InlineMath math="c=79" />, <InlineMath math="p+q=89" />, und die Lösungen sind <InlineMath math="84" /> und <InlineMath math="5" />. Die Hälfte steckt aber schon in <InlineMath math="s" />.
+
+Die längere Kathete ist also <InlineMath math="35\text{ cm}" /> lang.

@@ -1,0 +1,109 @@
+Soalan ini meminta isi padu konkrit bagi seluruh tangga. Tangga itu padu, jadi setiap anak tangga dan pelantar ialah sebuah blok yang berdiri di atas lantai garaj. Maka **isi padu tangga ialah hasil tambah isi padu semua blok itu**. Untuk itu, kamu perlu tinggi satu tanjakan dahulu.
+
+# Tinggi satu tanjakan
+
+Kira semua tanjakan dari lantai garaj hingga lantai teres. Berhati-hati, **tanjakan terakhir ke lantai teres juga dikira**.
+
+| Bahagian | Bilangan tanjakan |
+| --- | --- |
+| lantai garaj ke anak tangga ke-<InlineMath math="1" />, kemudian hingga ke-<InlineMath math="5" /> | <InlineMath math="5" /> |
+| anak tangga ke-<InlineMath math="5" /> ke pelantar | <InlineMath math="1" /> |
+| pelantar ke anak tangga ke-<InlineMath math="6" /> | <InlineMath math="1" /> |
+| anak tangga ke-<InlineMath math="6" /> hingga ke-<InlineMath math="9" /> | <InlineMath math="3" /> |
+| anak tangga ke-<InlineMath math="9" /> ke lantai teres | <InlineMath math="1" /> |
+
+Jumlahnya <InlineMath math="11" /> tanjakan yang sama tinggi untuk naik <InlineMath math="220\text{ cm}" />:
+
+<BlockMath math="\text{tinggi tanjakan}=\frac{220\text{ cm}}{11}=20\text{ cm}" />
+
+# Tinggi setiap blok
+
+Tinggi setiap blok sama dengan tinggi permukaan atasnya. Anak tangga ke-<InlineMath math="k" /> di bahagian bawah setinggi <InlineMath math="20k\text{ cm}" />. Pelantar berada satu tanjakan di atas anak tangga ke-<InlineMath math="5" />, jadi tingginya <InlineMath math="120\text{ cm}" />. Anak tangga bahagian atas juga berdiri di atas lantai garaj, jadi **tingginya bersambung dari <InlineMath math="120\text{ cm}" />**, bukan bermula semula dari sifar.
+
+<BlockMath math="\begin{aligned}
+\text{anak tangga ke-}1\text{ hingga ke-}5&:\ 20,\ 40,\ 60,\ 80,\ 100\text{ cm} \\
+\text{pelantar}&:\ 120\text{ cm} \\
+\text{anak tangga ke-}6\text{ hingga ke-}9&:\ 140,\ 160,\ 180,\ 200\text{ cm}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Keratan sisi tangga</>}
+  description={<>Keratan sisi tangga padu dalam sentimeter. Lima anak tangga pertama mempunyai permukaan atas pada ketinggian <InlineMath math="20" />, <InlineMath math="40" />, <InlineMath math="60" />, <InlineMath math="80" /> dan <InlineMath math="100" />, masing-masing dengan injakan <InlineMath math="30" />. Pelantar sepanjang <InlineMath math="100" /> dan setinggi <InlineMath math="120" />. Empat anak tangga seterusnya setinggi <InlineMath math="140" />, <InlineMath math="160" />, <InlineMath math="180" /> dan <InlineMath math="200" />. Lantai teres berada pada ketinggian <InlineMath math="220" />. Semua bahagian di bawah permukaan tangga dipenuhi konkrit hingga ke lantai garaj.</>}
+  labels={{
+    step: <InlineMath math="100" />,
+    landing: <InlineMath math="120" />,
+    top: <InlineMath math="200" />,
+    terrace: <InlineMath math="220" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -20, max: 420 },
+      y: { min: -20, max: 260 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      {
+        id: "stair",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 0 },
+          { x: 0, y: 20 },
+          { x: 30, y: 20 },
+          { x: 30, y: 40 },
+          { x: 60, y: 40 },
+          { x: 60, y: 60 },
+          { x: 90, y: 60 },
+          { x: 90, y: 80 },
+          { x: 120, y: 80 },
+          { x: 120, y: 100 },
+          { x: 150, y: 100 },
+          { x: 150, y: 120 },
+          { x: 250, y: 120 },
+          { x: 250, y: 140 },
+          { x: 280, y: 140 },
+          { x: 280, y: 160 },
+          { x: 310, y: 160 },
+          { x: 310, y: 180 },
+          { x: 340, y: 180 },
+          { x: 340, y: 200 },
+          { x: 370, y: 200 },
+          { x: 370, y: 0 },
+        ],
+      },
+      { id: "garage", kind: "segment", appearance: "reference", from: { x: -20, y: 0 }, to: { x: 420, y: 0 } },
+      { id: "terrace", kind: "segment", appearance: "reference", from: { x: 370, y: 220 }, to: { x: 420, y: 220 } },
+    ],
+    labels: [
+      { key: "step", objectId: "stair", at: { x: 135, y: 100 }, placement: "above" },
+      { key: "landing", objectId: "stair", at: { x: 200, y: 120 }, placement: "above" },
+      { key: "top", objectId: "stair", at: { x: 355, y: 200 }, placement: "above" },
+      { key: "terrace", objectId: "terrace", at: { x: 400, y: 220 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Isi padu semua blok
+
+Setiap anak tangga ialah blok dengan panjang <InlineMath math="30\text{ cm}" />, lebar <InlineMath math="100\text{ cm}" /> dan tinggi masing-masing. Tambahkan dahulu tinggi kesembilan-sembilan anak tangga, kemudian tambah blok pelantar yang panjangnya <InlineMath math="100\text{ cm}" />:
+
+<BlockMath math="\begin{aligned}
+\text{jumlah tinggi anak tangga}&=(20+40+60+80+100)+(140+160+180+200) \\
+&=300+680=980\text{ cm} \\
+V_{\text{anak tangga}}&=30\cdot100\cdot980=2{,}940{,}000\text{ cm}^3 \\
+V_{\text{pelantar}}&=100\cdot100\cdot120=1{,}200{,}000\text{ cm}^3 \\
+V&=2{,}940{,}000+1{,}200{,}000=4{,}140{,}000\text{ cm}^3
+\end{aligned}" />
+
+Oleh sebab <InlineMath math="1\text{ m}^3=1{,}000{,}000\text{ cm}^3" />, isi padunya <InlineMath math="4.14\text{ m}^3" />. **Semak mengikut peringkat**: peringkat I mengandungi <InlineMath math="0.9+1.2=2.1\text{ m}^3" /> dan peringkat II mengandungi <InlineMath math="2.04\text{ m}^3" />, jumlahnya tetap <InlineMath math="4.14\text{ m}^3" />.
+
+Jadi, isi padu konkrit seluruh tangga tanpa adunan lebihan ialah <InlineMath math="4.14\text{ m}^3" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="4.554\text{ m}^3" /> diperoleh jika kamu mengira <InlineMath math="10" /> tanjakan sahaja, lalu setiap tanjakan menjadi <InlineMath math="22\text{ cm}" />. Tanjakan dari anak tangga ke-<InlineMath math="9" /> ke lantai teres **juga sebahagian daripada** <InlineMath math="220\text{ cm}" />.
+- <InlineMath math="3.3\text{ m}^3" /> menganggap pelantar seperti anak tangga biasa yang panjangnya <InlineMath math="30\text{ cm}" />. Pelantar panjangnya <InlineMath math="100\text{ cm}" />, jadi bloknya <InlineMath math="1.2\text{ m}^3" />, bukan <InlineMath math="0.36\text{ m}^3" />.
+- <InlineMath math="2.94\text{ m}^3" /> hanyalah isi padu sembilan anak tangga. Blok pelantar sebanyak <InlineMath math="1.2\text{ m}^3" /> tertinggal.
+- <InlineMath math="2.7\text{ m}^3" /> mengukur anak tangga atas dari permukaan pelantar, iaitu <InlineMath math="20" />, <InlineMath math="40" />, <InlineMath math="60" /> dan <InlineMath math="80\text{ cm}" />. Sebenarnya tangga itu padu, jadi konkrit di bawahnya turun hingga ke lantai garaj.

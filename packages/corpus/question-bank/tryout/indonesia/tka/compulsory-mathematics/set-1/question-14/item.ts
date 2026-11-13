@@ -2,33 +2,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "knowledge-understanding",
     contentDomain: "geometry-measurement",
-    topic: "geometry-transformations",
+    topic: "geometry-objects",
   },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$2\\sqrt{2}\\,\\pi\\text{ cm}$$",
+        },
+        {
           correct: true,
-          label: "$$B'(1,-4)$$ dan luasnya $$28$$ satuan luas",
+          label: "$$6\\sqrt{2}\\,\\pi\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$B'(1,-4)$$ dan luasnya $$14$$ satuan luas",
+          label: "$$8\\sqrt{2}\\,\\pi\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$B'(1,8)$$ dan luasnya $$28$$ satuan luas",
+          label: "$$12\\pi\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$B'(-2,-10)$$ dan luasnya $$28$$ satuan luas",
-        },
-        {
-          correct: false,
-          label: "$$B'(1,-4)$$ dan luasnya $$7$$ satuan luas",
+          label: "$$12\\sqrt{2}\\,\\pi\\text{ cm}$$",
         },
       ],
     },

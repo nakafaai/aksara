@@ -12,23 +12,24 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$a<0$$",
+          label: "$$f(2{,}5)=f(3)$$",
         },
         {
           correct: false,
-          label: "$$b<0$$",
-        },
-        {
-          correct: true,
-          label: "$$c>0$$",
-        },
-        {
-          correct: true,
-          label: "Persamaan $$f(x)=0$$ mempunyai dua akar real yang berbeda.",
+          label:
+            "$$f$$ selalu naik, yaitu $$f(a)<f(b)$$ untuk setiap $$0<a<b\\le24$$.",
         },
         {
           correct: false,
-          label: "$$abc>0$$",
+          label: "Ada nilai $$t$$ yang memenuhi $$f(t)=18{.}000$$.",
+        },
+        {
+          correct: true,
+          label: "$$f(t)=20{.}000$$ untuk setiap $$6\\le t\\le24$$.",
+        },
+        {
+          correct: false,
+          label: "$$f(2t)=2f(t)$$ untuk setiap $$0<t\\le12$$.",
         },
       ],
     },

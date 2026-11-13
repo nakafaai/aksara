@@ -1,16 +1,86 @@
-The fence goes round the plot, so what is needed is **the perimeter of the triangle**. The hypotenuse is not given and comes from Pythagoras' theorem.
+When the paper is folded, the corner <InlineMath math="A" /> lands on <InlineMath math="P" />. That means **every point on the fold line is the same distance from <InlineMath math="A" /> as from <InlineMath math="P" />**. So <InlineMath math="EA=EP" /> and <InlineMath math="FA=FP" />. Use the coordinates <InlineMath math="A(0,0)" />, <InlineMath math="B(40,0)" />, <InlineMath math="C(40,24)" /> and <InlineMath math="D(0,24)" />.
+
+# Where P is
+
+Since <InlineMath math="BE=15" />, <InlineMath math="AE=40-15=25" />, so <InlineMath math="E(25,0)" />. Let <InlineMath math="P(p,24)" />. From <InlineMath math="EP=EA=25" />, use Pythagoras for the first time.
 
 <BlockMath math="\begin{aligned}
-c&=\sqrt{20^2+21^2}=\sqrt{400+441}=\sqrt{841}=29\text{ m} \\
-P&=20+21+29=70\text{ m} \\
-\text{cost}&=70\cdot45{,}000=3{,}150{,}000
+(p-25)^2+24^2&=25^2 \\
+(p-25)^2&=625-576=49 \\
+p&=32\ \text{ or }\ p=18
 \end{aligned}" />
 
-As a check, <InlineMath math="29^2=841" /> and <InlineMath math="20^2+21^2=400+441=841" />, so the triangle is indeed right-angled with hypotenuse <InlineMath math="29\text{ m}" />.
+**There are two possible places for <InlineMath math="P" />**, and both are on side <InlineMath math="DC" />. The condition on <InlineMath math="F" /> decides.
 
-So the fence costs <InlineMath math="\text{Rp}3{,}150{,}000" />.
+# The case you drop
 
-- <InlineMath math="\text{Rp}1{,}305{,}000" /> fences only the hypotenuse, <InlineMath math="29\cdot45{,}000" />.
-- <InlineMath math="\text{Rp}1{,}845{,}000" /> fences only the two shorter sides, <InlineMath math="41\cdot45{,}000" />.
-- <InlineMath math="\text{Rp}3{,}690{,}000" /> takes the hypotenuse as <InlineMath math="20+21=41\text{ m}" />, so the perimeter becomes <InlineMath math="82\text{ m}" />.
-- <InlineMath math="\text{Rp}9{,}450{,}000" /> uses the area <InlineMath math="210\text{ m}^2" />, but a fence follows the perimeter.
+The point <InlineMath math="F(f,24)" /> is on the line <InlineMath math="DC" /> and satisfies <InlineMath math="FA=FP" />.
+
+<BlockMath math="\begin{aligned}
+f^2+24^2&=(p-f)^2 \\
+576&=p^2-2pf\ \Rightarrow\ f=\frac{p^2-576}{2p}
+\end{aligned}" />
+
+For <InlineMath math="p=32" />: <InlineMath math="f=\frac{1024-576}{64}=7" />, so <InlineMath math="F(7,24)" /> is on side <InlineMath math="DC" />. For <InlineMath math="p=18" />: <InlineMath math="f=\frac{324-576}{36}=-7" />, which is off the paper, to the left of <InlineMath math="D" />. The fold for <InlineMath math="P(18,24)" /> ends on side <InlineMath math="AD" />, not on <InlineMath math="DC" />. **The case <InlineMath math="p=18" /> breaks the condition in the question**, so <InlineMath math="P(32,24)" />.
+
+# The length of the fold
+
+Now <InlineMath math="E(25,0)" /> and <InlineMath math="F(7,24)" />. Use Pythagoras a second time, with a horizontal gap of <InlineMath math="18" /> and a vertical gap of <InlineMath math="24" />.
+
+<BlockMath math="EF=\sqrt{(25-7)^2+24^2}=\sqrt{324+576}=\sqrt{900}=30" />
+
+Check: <InlineMath math="FA=\sqrt{7^2+24^2}=25" /> and <InlineMath math="FP=32-7=25" />. **The distances match**, so <InlineMath math="F" /> really is on the fold line.
+
+<MathVisual
+  title={<>The fold on sheet <InlineMath math="ABCD" /></>}
+  description={<>A rectangle with <InlineMath math="A(0,0)" />, <InlineMath math="B(40,0)" />, <InlineMath math="C(40,24)" /> and <InlineMath math="D(0,24)" />. The point <InlineMath math="E(25,0)" /> is on <InlineMath math="AB" />, and the points <InlineMath math="F(7,24)" /> and <InlineMath math="P(32,24)" /> are on <InlineMath math="DC" />. The segment <InlineMath math="EF" /> is the fold, and the segment <InlineMath math="AP" /> is perpendicular to it.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    f: <InlineMath math="F" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 43 },
+      y: { min: -3, max: 27 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "sheet", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 24 }, { x: 0, y: 24 }] },
+      { id: "crease", kind: "segment", appearance: "answer", from: { x: 25, y: 0 }, to: { x: 7, y: 24 } },
+      { id: "fold-path", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 32, y: 24 } },
+      { id: "edge-ep", kind: "segment", appearance: "secondary", from: { x: 25, y: 0 }, to: { x: 32, y: 24 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 40, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 40, y: 24 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 24 } },
+      { id: "point-e", kind: "point", appearance: "highlight", at: { x: 25, y: 0 } },
+      { id: "point-f", kind: "point", appearance: "highlight", at: { x: 7, y: 24 } },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 32, y: 24 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 40, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 40, y: 24 }, placement: "above-right" },
+      { key: "d", objectId: "point-d", at: { x: 0, y: 24 }, placement: "above-left" },
+      { key: "e", objectId: "point-e", at: { x: 25, y: 0 }, placement: "below" },
+      { key: "f", objectId: "point-f", at: { x: 7, y: 24 }, placement: "above" },
+      { key: "p", objectId: "point-p", at: { x: 32, y: 24 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Why the other options are wrong
+
+- <InlineMath math="26\text{ cm}" /> assumes <InlineMath math="DF=BE=15" />, as if the fold went through the centre of the rectangle, like when <InlineMath math="A" /> is folded onto <InlineMath math="C" />. That gives <InlineMath math="\sqrt{10^2+24^2}=26" />.
+- <InlineMath math="40\text{ cm}" /> uses <InlineMath math="P(18,24)" /> and draws the segment to <InlineMath math="F(-7,24)" />, which is off the paper. It's also the length of <InlineMath math="AP" /> for <InlineMath math="P(32,24)" />, but <InlineMath math="AP" /> isn't the fold.
+- <InlineMath math="25\text{ cm}" /> stops at <InlineMath math="EA=EP" /> and never works out <InlineMath math="EF" />.
+- <InlineMath math="31.25\text{ cm}" /> is the fold length for <InlineMath math="P(18,24)" />, which cuts <InlineMath math="AD" /> at a point <InlineMath math="18.75" /> from <InlineMath math="A" />. **That fold doesn't end on side <InlineMath math="DC" />**, so it doesn't fit the question.
+
+So the fold <InlineMath math="EF" /> is <InlineMath math="30\text{ cm}" /> long.

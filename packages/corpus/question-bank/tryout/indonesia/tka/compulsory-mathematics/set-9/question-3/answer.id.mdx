@@ -1,13 +1,42 @@
-Setiap pernyataan adalah soal **perbandingan atau persentase dari bahan resep**. Hitung besaran yang dibandingkan.
+Ketiga pernyataan memakai aturan yang sama dari bacaan: sisa sebuah tablet setelah <InlineMath math="t" /> jam adalah <InlineMath math="160\left(\tfrac{1}{2}\right)^{t/6}" />, dan sisa semua tablet dijumlahkan. Setiap pernyataan **mengubah satu hal saja**, jadi hitung ulang bagian yang berubah.
+
+# Pernyataan pertama
+
+**Salah**. Misalkan <InlineMath math="A_n" /> adalah banyak zat aktif tepat setelah tablet ke-<InlineMath math="n" />. Dalam <InlineMath math="6" /> jam isinya tinggal setengah, lalu tablet baru menambah <InlineMath math="160" />. Sekarang lihat selisihnya dari <InlineMath math="320" />.
 
 <BlockMath math="\begin{aligned}
-150:300&=1:2 \\
-\frac{90}{300+150+90}&=\frac{90}{540}\approx16{,}7\,\% \\
-\frac{36}{24}\cdot2&=1{,}5\cdot2=3 \\
-\frac{1{.}000}{300}\cdot24&=80
+A_{n+1}&=\tfrac{1}{2}A_n+160 \\
+320-A_{n+1}&=320-\tfrac{1}{2}A_n-160=\tfrac{1}{2}\left(320-A_n\right)
 \end{aligned}" />
 
-- Mentega <InlineMath math="150" /> g dan tepung <InlineMath math="300" /> g, jadi perbandingannya <InlineMath math="1:2" />. Pernyataan ini benar.
-- Gula halus sekitar <InlineMath math="16{,}7\,\%" /> dari jumlah ketiga bahan, lebih dari <InlineMath math="15\,\%" />. Pernyataan ini salah.
-- Faktor untuk <InlineMath math="36" /> kue adalah <InlineMath math="1{,}5" />, jadi telurnya <InlineMath math="1{,}5\cdot2=3" /> butir. Pernyataan ini benar.
-- <InlineMath math="1" /> kg tepung cukup untuk tepat <InlineMath math="80" /> kue, tidak lebih. Pernyataan ini salah.
+Selisih dari <InlineMath math="320" /> **selalu menjadi setengahnya**, tetapi tidak pernah menjadi nol. Selisih awalnya <InlineMath math="320-160=160" />, jadi
+
+<BlockMath math="A_n=320-160\left(\tfrac{1}{2}\right)^{n-1}" />
+
+Barisannya <InlineMath math="160,\ 240,\ 280,\ 300,\ 310,\ 315,\ \ldots" />, selalu naik tetapi selalu di bawah <InlineMath math="320" />. Di antara dua tablet isinya malah turun, jadi kapan pun isi darah tidak pernah melebihi <InlineMath math="320\text{ mg}" />.
+
+# Pernyataan kedua
+
+**Benar**. Tablet pukul 06.00 dan 18.00 tetap, hanya tablet kedua yang pindah ke pukul 15.00. Hitung sisa setiap tablet tepat setelah tablet pukul 18.00 diminum.
+
+<BlockMath math="\begin{aligned}
+\text{tablet pukul 06.00 (12 jam)}&:\ 160\left(\tfrac{1}{2}\right)^{2}=40 \\
+\text{tablet pukul 15.00 (3 jam)}&:\ 160\left(\tfrac{1}{2}\right)^{1/2}=80\sqrt{2} \\
+\text{tablet pukul 18.00 (0 jam)}&:\ 160 \\
+\text{jumlah}&=200+80\sqrt{2}\approx200+112{,}8=312{,}8
+\end{aligned}" />
+
+Hasilnya lebih dari <InlineMath math="300" /> karena <InlineMath math="80\sqrt{2}>100" />, sebab <InlineMath math="\sqrt{2}>1{,}25" />. Ini masuk akal: tablet yang diminum **lebih lambat sempat berkurang lebih sedikit**, jadi isinya melebihi <InlineMath math="280\text{ mg}" /> pada jadwal semula.
+
+# Pernyataan ketiga
+
+**Salah**. Kalau setiap tablet berisi <InlineMath math="320\text{ mg}" />, sisa setiap tablet pada setiap saat menjadi dua kali lipat. Jadi isi darah tepat setelah tablet pukul 18.00 menjadi <InlineMath math="2\cdot280=560\text{ mg}" />. Bandingkan waktu yang dibutuhkan sampai tinggal <InlineMath math="70\text{ mg}" />.
+
+<BlockMath math="\begin{aligned}
+\text{semula: } 280\left(\tfrac{1}{2}\right)^{t/6}=70&\ \Rightarrow\ \left(\tfrac{1}{2}\right)^{t/6}=\tfrac{1}{4}\ \Rightarrow\ t=12 \\
+\text{baru: } 560\left(\tfrac{1}{2}\right)^{t/6}=70&\ \Rightarrow\ \left(\tfrac{1}{2}\right)^{t/6}=\tfrac{1}{8}\ \Rightarrow\ t=18
+\end{aligned}" />
+
+Waktunya berubah dari <InlineMath math="12" /> jam menjadi <InlineMath math="18" /> jam, bukan <InlineMath math="24" /> jam. Isi darah yang dua kali lipat hanya butuh **satu kali waktu paruh tambahan**, yaitu <InlineMath math="6" /> jam untuk berkurang setengah, supaya sama lagi dengan keadaan semula.
+
+Jadi, urutan jawabannya adalah Salah, Benar, Salah.

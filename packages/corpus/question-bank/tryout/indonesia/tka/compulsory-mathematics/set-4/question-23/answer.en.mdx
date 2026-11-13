@@ -1,13 +1,36 @@
-Each statement **narrows the data to a particular group**, so read the right row or column before computing.
+# What the reading gives you
 
-<BlockMath math="\begin{aligned}
-\frac{24}{80}&=0.3 \\
-20+6&=26<28 \\
-12:9:9&=4:3:3 \\
-\frac{60-28}{60}&=\frac{32}{60}\approx53.3\,\%
-\end{aligned}" />
+The ten days in order: <InlineMath math="31,32,33,38,40,41,45,46,46,48" />. The mean is <InlineMath math="40" /> and the standard deviation is <InlineMath math="6" />, so **the sum of squared differences from <InlineMath math="40" /> is <InlineMath math="10\cdot36=360" />**.
 
-- Of the <InlineMath math="80" /> public transport users, <InlineMath math="24" /> are in grade XI, so the probability is <InlineMath math="0.3" />. This statement is true.
-- Grade X cyclists become <InlineMath math="26" />, still fewer than the <InlineMath math="28" /> public transport users. This statement is false.
-- Dividing <InlineMath math="12:9:9" /> by <InlineMath math="3" /> gives <InlineMath math="4:3:3" />. This statement is true.
-- About <InlineMath math="53.3\,\%" /> of grade XII do not use public transport, not more than <InlineMath math="55\,\%" />. This statement is false.
+To get the new variance quickly, use this fact: the variance equals the mean of the squared differences from any reference point, minus the square of the distance from the mean to that point. The easiest reference point is <InlineMath math="40" />.
+
+<BlockMath math="S^2=\frac{\sum(x_i-40)^2}{n}-(\bar x-40)^2" />
+
+# First statement
+
+With <InlineMath math="11" /> values, the median is the <InlineMath math="6" />th value after sorting. The value <InlineMath math="v" /> can land anywhere.
+
+| Value of <InlineMath math="v" /> | 6th value |
+| :---: | :---: |
+| <InlineMath math="v\le40" /> | <InlineMath math="40" /> |
+| <InlineMath math="v\ge41" /> | <InlineMath math="41" /> |
+
+In every case the median is **always <InlineMath math="40" /> or <InlineMath math="41" />**. This statement is **True**.
+
+# Second statement
+
+For <InlineMath math="v=46" />, its difference from <InlineMath math="40" /> is <InlineMath math="6" />, and the new mean <InlineMath math="\tfrac{446}{11}" /> is <InlineMath math="\tfrac{6}{11}" /> away from <InlineMath math="40" />.
+
+<BlockMath math="S^2=\frac{360+36}{11}-\left(\tfrac{6}{11}\right)^2=36-\tfrac{36}{121}<36" />
+
+The variance is slightly **less than** <InlineMath math="36" />, so the standard deviation is less than <InlineMath math="6" />. This statement is **False**.
+
+# Third statement
+
+A mean of <InlineMath math="41" /> means a total of <InlineMath math="11\cdot41=451" />, so <InlineMath math="v=451-400=51" />. Its difference from <InlineMath math="40" /> is <InlineMath math="11" />.
+
+<BlockMath math="S^2=\frac{360+121}{11}-(41-40)^2=\frac{481}{11}-1=\frac{470}{11}\approx42.7>36" />
+
+The standard deviation is **more than** <InlineMath math="6" />. This statement is **True**.
+
+So the answers are True, False, True.

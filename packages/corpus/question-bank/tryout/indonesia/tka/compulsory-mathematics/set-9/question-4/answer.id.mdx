@@ -1,16 +1,50 @@
-Misalkan usia kakak sekarang <InlineMath math="k" /> tahun dan usia adik <InlineMath math="d" /> tahun. **Setiap orang bertambah usia sama banyak**, jadi tiga tahun lalu usia mereka <InlineMath math="k-3" /> dan <InlineMath math="d-3" />, dan empat tahun lagi <InlineMath math="k+4" /> dan <InlineMath math="d+4" />.
+Soal ini meminta banyak kaos paling sedikit supaya keuntungan per kaos **lebih dari** <InlineMath math="20\%" /> dari biaya rata-ratanya. Data yang diberikan berupa biaya rata-rata, padahal yang linear adalah biaya total. Jadi langkah pertama adalah mengubah rata-rata menjadi total.
+
+# Biaya total dari biaya rata-rata
+
+Biaya rata-rata per kaos adalah biaya total dibagi banyak kaos. Jadi **biaya total sama dengan rata-rata dikali banyak kaos**.
 
 <BlockMath math="\begin{aligned}
-k-3&=3(d-3)\ \Rightarrow\ k=3d-6 \\
-k+4&=2(d+4)\ \Rightarrow\ 3d-6+4=2d+8\ \Rightarrow\ d=10 \\
-k&=3\cdot10-6=24
+B(40)&=40\cdot65{.}000=2{.}600{.}000 \\
+B(100)&=100\cdot47{.}000=4{.}700{.}000
 \end{aligned}" />
 
-Cek: tiga tahun lalu <InlineMath math="21=3\cdot7" />, dan empat tahun lagi <InlineMath math="28=2\cdot14" />.
+Biaya total linear, <InlineMath math="B(n)=a+bn" />, dengan <InlineMath math="a" /> biaya tetap dan <InlineMath math="b" /> biaya per kaos. Kemiringannya didapat dari dua titik itu.
 
-Jadi, jumlah usia mereka sekarang <InlineMath math="24+10=34" /> tahun.
+<BlockMath math="\begin{aligned}
+b&=\frac{4{.}700{.}000-2{.}600{.}000}{100-40}=\frac{2{.}100{.}000}{60}=35{.}000 \\
+a&=2{.}600{.}000-40\cdot35{.}000=1{.}200{.}000
+\end{aligned}" />
 
-- <InlineMath math="10" /> tahun hanya usia adik.
-- <InlineMath math="24" /> tahun hanya usia kakak.
-- <InlineMath math="28" /> tahun adalah jumlah usia mereka tiga tahun yang lalu.
-- <InlineMath math="42" /> tahun adalah jumlah usia mereka empat tahun yang akan datang.
+Jadi <InlineMath math="B(n)=1{.}200{.}000+35{.}000n" />, dan biaya rata-ratanya <InlineMath math="R(n)=35{.}000+\dfrac{1{.}200{.}000}{n}" />.
+
+# Batas biaya rata-rata
+
+Keuntungan per kaos adalah harga jual dikurangi biaya rata-rata, <InlineMath math="54{.}000-R" />. Syaratnya, keuntungan itu lebih dari <InlineMath math="20\%" /> **dari biaya rata-rata**, bukan dari harga jual.
+
+<BlockMath math="\begin{aligned}
+54{.}000-R&>0{,}2R \\
+54{.}000&>1{,}2R \\
+R&<45{.}000
+\end{aligned}" />
+
+# Banyak kaos paling sedikit
+
+Sekarang masukkan rumus <InlineMath math="R(n)" />. Karena <InlineMath math="n" /> positif, kedua ruas boleh dikali <InlineMath math="n" /> tanpa membalik tanda.
+
+<BlockMath math="\begin{aligned}
+35{.}000+\frac{1{.}200{.}000}{n}&<45{.}000 \\
+\frac{1{.}200{.}000}{n}&<10{.}000 \\
+n&>120
+\end{aligned}" />
+
+Untuk <InlineMath math="n=120" />, biaya rata-ratanya tepat <InlineMath math="45{.}000" /> dan keuntungannya <InlineMath math="9{.}000" />, yaitu **tepat** <InlineMath math="20\%" />, belum lebih. Untuk <InlineMath math="n=121" />, biaya rata-ratanya <InlineMath math="35{.}000+9{.}917{,}36=44{.}917{,}36" />, sudah di bawah <InlineMath math="45{.}000" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="64" /> hanya meminta keuntungan positif, <InlineMath math="R<54{.}000" />, sehingga <InlineMath math="n>63{,}2" />. Syarat <InlineMath math="20\%" /> terlupa.
+- <InlineMath math="107" /> muncul kalau kamu menarik garis lurus melalui dua biaya rata-rata, yang turun <InlineMath math="300" /> per kaos. Biaya rata-rata tidak linear, karena biaya tetap dibagi <InlineMath math="n" /> dan bagian itu mengecil makin lambat.
+- <InlineMath math="120" /> memberi keuntungan tepat <InlineMath math="20\%" />. Syaratnya **lebih dari** <InlineMath math="20\%" />, jadi angka ini belum memenuhi.
+- <InlineMath math="147" /> memakai <InlineMath math="20\%" /> dari harga jual, sehingga batasnya <InlineMath math="R<43{.}200" />. Soal menyebut <InlineMath math="20\%" /> dari biaya rata-rata.
+
+Jadi, banyak kaos paling sedikit dalam satu pesanan adalah <InlineMath math="121" /> kaos.

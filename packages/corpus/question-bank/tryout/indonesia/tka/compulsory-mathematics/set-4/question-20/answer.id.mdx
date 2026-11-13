@@ -1,15 +1,78 @@
-Benang, garis mendatar setinggi tangan, dan garis tegak ke layang-layang membentuk segitiga siku-siku. Tinggi layang-layang di atas tangan adalah **sisi depan sudut <InlineMath math="\alpha" />**, jadi diperlukan <InlineMath math="\sin\alpha" />, bukan <InlineMath math="\cos\alpha" />.
+Saat kertas dilipat sepanjang <InlineMath math="AC" />, titik <InlineMath math="B" /> dan <InlineMath math="D" /> berputar mengelilingi garis <InlineMath math="AC" />, jadi jarak keduanya berubah. Kuncinya adalah **titik potong diagonal <InlineMath math="O" />**: kamu perlu jarak <InlineMath math="B" /> dan <InlineMath math="D" /> ke <InlineMath math="O" />, lalu sudut di antara keduanya setelah dilipat.
+
+# Setengah diagonal dengan perbandingan trigonometri
+
+Diagonal belah ketupat saling tegak lurus, saling membagi dua, dan membagi dua sudut belah ketupat. Jadi segitiga <InlineMath math="AOB" /> siku-siku di <InlineMath math="O" />, dengan <InlineMath math="\angle OAB=\tfrac12\cdot60^\circ=30^\circ" /> dan sisi miring <InlineMath math="AB=8" />. Sisi <InlineMath math="OB" /> berhadapan dengan sudut <InlineMath math="30^\circ" />, jadi yang dipakai adalah **sinus**:
 
 <BlockMath math="\begin{aligned}
-\sin\alpha&=\sqrt{1-0{,}6^2}=\sqrt{0{,}64}=0{,}8 \\
-h&=50\cdot0{,}8+1{,}2=40+1{,}2=41{,}2\text{ m}
+OB&=AB\sin30^\circ=8\cdot\tfrac12=4\text{ cm} \\
+OA&=AB\cos30^\circ=8\cdot\tfrac{\sqrt3}{2}=4\sqrt3\text{ cm}
 \end{aligned}" />
 
-Sebagai pemeriksaan, jarak mendatar tangan ke titik di bawah layang-layang <InlineMath math="50\cdot0{,}6=30\text{ m}" />, dan <InlineMath math="30^2+40^2=50^2" />.
+Dengan cara yang sama, <InlineMath math="OD=4\text{ cm}" />. Diagonal pendek <InlineMath math="BD" /> sebelum dilipat panjangnya <InlineMath math="8\text{ cm}" />, dan diagonal panjang <InlineMath math="AC" /> panjangnya <InlineMath math="8\sqrt3\text{ cm}" />.
 
-Jadi, tinggi layang-layang dari tanah <InlineMath math="41{,}2\text{ m}" />.
+<MathVisual
+  title={<>Belah ketupat sebelum dilipat</>}
+  description={<>Belah ketupat <InlineMath math="ABCD" /> dengan sisi <InlineMath math="8" /> dan <InlineMath math="\angle BAD=60^\circ" />. Diagonal <InlineMath math="AC" /> mendatar dan diagonal <InlineMath math="BD" /> tegak, berpotongan tegak lurus di <InlineMath math="O" />. Panjang <InlineMath math="OA=4\sqrt3" /> dan <InlineMath math="OB=OD=4" />.</>}
+  labels={{
+    "label-a": <InlineMath math="A" />,
+    "label-b": <InlineMath math="B" />,
+    "label-c": <InlineMath math="C" />,
+    "label-d": <InlineMath math="D" />,
+    "label-o": <InlineMath math="O" />,
+    "label-ob": <InlineMath math="4" />,
+    "label-oa": <InlineMath math="4\sqrt3" />,
+    "label-angle": <InlineMath math="30^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 8 },
+      y: { min: -6, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rhombus", kind: "polygon", appearance: "primary", vertices: [{ x: -4 * Math.sqrt(3), y: 0 }, { x: 0, y: 4 }, { x: 4 * Math.sqrt(3), y: 0 }, { x: 0, y: -4 }] },
+      { id: "diagonal-ac", kind: "segment", appearance: "construction", from: { x: -4 * Math.sqrt(3), y: 0 }, to: { x: 4 * Math.sqrt(3), y: 0 } },
+      { id: "half-ob", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "half-od", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: -4 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: -4 * Math.sqrt(3), y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 0, y: 4 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 4 * Math.sqrt(3), y: 0 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: -4 } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "label-a", objectId: "point-a", at: { x: -4 * Math.sqrt(3), y: 0 }, placement: "left" },
+      { key: "label-b", objectId: "point-b", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "label-c", objectId: "point-c", at: { x: 4 * Math.sqrt(3), y: 0 }, placement: "right" },
+      { key: "label-d", objectId: "point-d", at: { x: 0, y: -4 }, placement: "below" },
+      { key: "label-o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "label-ob", objectId: "half-ob", at: { x: 0, y: 2 }, placement: "right" },
+      { key: "label-oa", objectId: "diagonal-ac", at: { x: -2 * Math.sqrt(3), y: 0 }, placement: "below" },
+      { key: "label-angle", objectId: "point-a", at: { x: -4 * Math.sqrt(3), y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
 
-- <InlineMath math="30\text{ m}" /> memakai <InlineMath math="\cos\alpha" />, sehingga yang dihitung adalah jarak mendatar.
-- <InlineMath math="31{,}2\text{ m}" /> memakai <InlineMath math="\cos\alpha" /> lalu menambahkan tinggi tangan.
-- <InlineMath math="40\text{ m}" /> lupa menambahkan tinggi tangan <InlineMath math="1{,}2\text{ m}" />.
-- <InlineMath math="51{,}2\text{ m}" /> menganggap benang tegak lurus, yaitu panjang benang ditambah tinggi tangan.
+# Sudut antara kedua bidang setelah dilipat
+
+Setelah dilipat, <InlineMath math="OB" /> masih terletak di bidang <InlineMath math="ABC" /> dan tetap tegak lurus <InlineMath math="AC" />. Begitu juga <InlineMath math="OD" /> di bidang <InlineMath math="ADC" />. Dua ruas yang sama-sama tegak lurus garis lipatan di titik yang sama **membentuk sudut antara kedua bidang**. Karena kedua bidang tegak lurus, <InlineMath math="\angle BOD=90^\circ" />.
+
+# Jarak B ke D
+
+Segitiga <InlineMath math="BOD" /> sekarang siku-siku di <InlineMath math="O" /> dengan kaki <InlineMath math="OB=OD=4" />:
+
+<BlockMath math="BD=\sqrt{OB^2+OD^2}=\sqrt{16+16}=\sqrt{32}=4\sqrt2\text{ cm}" />
+
+Cek kewajarannya: <InlineMath math="4\sqrt2\approx5{,}66" />, lebih pendek dari <InlineMath math="8" /> sebelum dilipat. Masuk akal, karena **melipat mendekatkan <InlineMath math="B" /> dan <InlineMath math="D" />**.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="8\text{ cm}" /> adalah panjang <InlineMath math="BD" /> sebelum dilipat. Lipatan **mengubah jarak antara titik yang berada di dua sisi garis lipatan**.
+- <InlineMath math="4\sqrt5\text{ cm}" /> muncul kalau <InlineMath math="B" /> dianggap naik lurus ke atas setinggi <InlineMath math="4" /> dari posisi awalnya, sehingga <InlineMath math="BD=\sqrt{8^2+4^2}" />. Padahal <InlineMath math="B" /> berputar mengelilingi <InlineMath math="AC" /> dan berakhir tepat di atas <InlineMath math="O" />.
+- <InlineMath math="4\sqrt6\text{ cm}" /> tertukar antara sinus dan kosinus, sehingga <InlineMath math="OB" /> dihitung <InlineMath math="8\cos30^\circ=4\sqrt3" />. Itu panjang <InlineMath math="OA" />, bukan <InlineMath math="OB" />.
+- <InlineMath math="8\sqrt2\text{ cm}" /> meletakkan sudut siku-siku di <InlineMath math="A" />, dengan kaki <InlineMath math="AB=AD=8" />. Sudut <InlineMath math="90^\circ" /> antara kedua bidang ada di <InlineMath math="O" />, bukan di <InlineMath math="A" />.
+
+Jadi, jarak titik <InlineMath math="B" /> ke titik <InlineMath math="D" /> setelah dilipat adalah <InlineMath math="4\sqrt2\text{ cm}" />.

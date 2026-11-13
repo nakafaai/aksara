@@ -1,13 +1,42 @@
-Every ingredient is scaled by the same ratio, so **the multiplier is the new number of biscuits divided by the recipe's number**.
+The question asks how much active substance is in the blood at 21:00, which is <InlineMath math="3" /> hours after the last tablet. Keep two things in mind: **the substance from all three tablets adds up**, and <InlineMath math="3" /> hours is only half of the <InlineMath math="6" /> hours.
+
+# The blood right after the last tablet
+
+The tidiest way is to follow the blood from tablet to tablet. The <InlineMath math="6" /> hours is called the half-life, the time it takes for the amount to drop to half. Every time <InlineMath math="6" /> hours pass, **everything that's in the blood at that moment** halves, and then a new tablet adds <InlineMath math="160\text{ mg}" />.
 
 <BlockMath math="\begin{aligned}
-\frac{60}{24}&=2.5 \\
-2.5\cdot300&=750\text{ g}
+\text{06:00}&:\ 160 \\
+\text{12:00}&:\ \tfrac{1}{2}\cdot160+160=240 \\
+\text{18:00}&:\ \tfrac{1}{2}\cdot240+160=280
 \end{aligned}" />
 
-So <InlineMath math="750" /> g of flour is needed.
+So right after the 18:00 tablet, there are <InlineMath math="280\text{ mg}" /> of active substance in the blood.
 
-- <InlineMath math="120" /> g turns the ratio upside down, using <InlineMath math="\frac{24}{60}" />.
-- <InlineMath math="336" /> g adds the difference in biscuits, <InlineMath math="36" />, to <InlineMath math="300" /> g, but ingredients have to be multiplied.
-- <InlineMath math="600" /> g rounds the factor <InlineMath math="2.5" /> down to <InlineMath math="2" />.
-- <InlineMath math="900" /> g rounds the factor <InlineMath math="2.5" /> up to <InlineMath math="3" />.
+# Three hours later
+
+From 18:00 to 21:00, <InlineMath math="t=3" /> hours pass, so the exponent is <InlineMath math="\tfrac{t}{6}=\tfrac{1}{2}" />. That means you multiply by <InlineMath math="\left(\tfrac{1}{2}\right)^{1/2}" />, **not by** <InlineMath math="\tfrac{1}{2}" /> and not by <InlineMath math="\tfrac{3}{4}" />.
+
+<BlockMath math="\begin{aligned}
+M&=280\left(\tfrac{1}{2}\right)^{3/6}=280\left(\tfrac{1}{2}\right)^{1/2} \\
+&=280\cdot\tfrac{1}{2}\sqrt{2}=140\sqrt{2}\approx197.4\text{ mg}
+\end{aligned}" />
+
+Check it by working out what's left of each tablet on its own. The 06:00 tablet has been in the blood for <InlineMath math="15" /> hours, the 12:00 tablet for <InlineMath math="9" /> hours, and the 18:00 tablet for just <InlineMath math="3" /> hours.
+
+<BlockMath math="\begin{aligned}
+160\left(\tfrac{1}{2}\right)^{15/6}&=160\cdot\tfrac{1}{8}\sqrt{2}=20\sqrt{2} \\
+160\left(\tfrac{1}{2}\right)^{9/6}&=160\cdot\tfrac{1}{4}\sqrt{2}=40\sqrt{2} \\
+160\left(\tfrac{1}{2}\right)^{3/6}&=160\cdot\tfrac{1}{2}\sqrt{2}=80\sqrt{2} \\
+20\sqrt{2}+40\sqrt{2}+80\sqrt{2}&=140\sqrt{2}
+\end{aligned}" />
+
+You get the same result, so the two methods back each other up.
+
+# Why the other options are wrong
+
+- <InlineMath math="80\sqrt{2}\text{ mg}" /> counts only the 18:00 tablet. The two earlier tablets **still leave** <InlineMath math="60\sqrt{2}\text{ mg}" /> behind.
+- <InlineMath math="210\text{ mg}" /> comes from assuming the substance drops evenly, so a quarter disappears in <InlineMath math="3" /> hours: <InlineMath math="280\cdot\tfrac{3}{4}" />. The decrease is a multiplication by the same factor every <InlineMath math="3" /> hours. Used twice, that factor has to give one half, and <InlineMath math="\left(\tfrac{3}{4}\right)^2=\tfrac{9}{16}" /> isn't one half.
+- <InlineMath math="160\sqrt{2}\text{ mg}" /> comes from thinking every earlier tablet is down to half, which gives <InlineMath math="80+80+160=320" /> at 18:00. The 06:00 tablet has already gone through two <InlineMath math="6" />-hour periods, so only a quarter of it, <InlineMath math="40" />, is left.
+- <InlineMath math="240\sqrt{2}\text{ mg}" /> adds the three tablets with no decrease at all, <InlineMath math="480\text{ mg}" />, and only then handles the last <InlineMath math="3" /> hours.
+
+So the amount of active substance in the blood on Monday at 21:00 is <InlineMath math="140\sqrt{2}\text{ mg}" />, about <InlineMath math="197.4\text{ mg}" />.

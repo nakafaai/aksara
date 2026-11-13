@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$144\\text{ km}$$",
-        },
-        {
-          correct: false,
-          label: "$$324\\text{ km}$$",
-        },
-        {
           correct: true,
-          label: "$$396\\text{ km}$$",
+          label: "$$-76$$",
         },
         {
           correct: false,
-          label: "$$540\\text{ km}$$",
+          label: "$$-72$$",
         },
         {
           correct: false,
-          label: "$$576\\text{ km}$$",
+          label: "$$-64$$",
+        },
+        {
+          correct: false,
+          label: "$$-4$$",
+        },
+        {
+          correct: false,
+          label: "$$76$$",
         },
       ],
     },

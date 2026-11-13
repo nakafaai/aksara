@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
+    cognitiveLevel: "application",
     contentDomain: "data-probability",
     topic: "probability",
   },
@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$\\frac{8}{21}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\frac{4}{7}$$",
+        },
+        {
           correct: true,
-          label: "$$\\frac{29}{90}$$",
+          label: "$$\\frac{13}{21}$$",
         },
         {
           correct: false,
-          label: "$$\\frac{4}{45}$$",
+          label: "$$\\frac{2}{3}$$",
         },
         {
           correct: false,
-          label: "$$\\frac16$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{11}{45}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{37}{90}$$",
+          label: "$$\\frac{41}{42}$$",
         },
       ],
     },

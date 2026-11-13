@@ -1,13 +1,81 @@
-Terjemahkan keterangan itu menjadi **sistem pertidaksamaan linear**. Berat karung yang boleh dimuat adalah <InlineMath math="1{.}200-64=1{.}136\text{ kg}" />. Misalkan <InlineMath math="x" /> adalah banyak karung beras dan <InlineMath math="y" /> adalah banyak karung gula, keduanya bilangan cacah.
+Gambar hanya memberi dua garis dan daerah arsiran. Jadi langkah pertama adalah **menyusun sistem pertidaksamaannya dari gambar**. Setelah itu, setiap pernyataan dicek dengan sistem itu, bukan dengan perkiraan mata.
+
+# Sistem dari gambar
+
+Garis yang memotong sumbu di <InlineMath math="(a,0)" /> dan <InlineMath math="(0,b)" /> punya persamaan <InlineMath math="\frac{x}{a}+\frac{y}{b}=1" />. Kalikan dengan penyebutnya supaya bilangannya bulat.
 
 <BlockMath math="\begin{aligned}
-50x+35y&\le1{.}136 \\
-x+y&\le28
+\frac{x}{6}+\frac{y}{9}=1\ &\Rightarrow\ 3x+2y=18 \\
+\frac{x}{12}+\frac{y}{4}=1\ &\Rightarrow\ x+3y=12
 \end{aligned}" />
 
-- <InlineMath math="50\cdot12+35\cdot14=600+490=1{.}090\le1{.}136" /> dan <InlineMath math="12+14=26\le28" />. Pernyataan ini benar.
-- Jika hanya beras, <InlineMath math="50x\le1{.}136" />, sehingga <InlineMath math="x\le22{,}72" />. Paling banyak <InlineMath math="22" /> karung dapat diangkut, karena <InlineMath math="23" /> karung beratnya <InlineMath math="1{.}150\text{ kg}" />. Pernyataan ini salah.
-- Dengan <InlineMath math="y=28-x" />, beratnya menjadi <InlineMath math="50x+35(28-x)=980+15x\le1{.}136" />, sehingga <InlineMath math="x\le10{,}4" />. Paling banyak <InlineMath math="10" /> karung beras. Pernyataan ini benar.
-- <InlineMath math="50x+35y=5(10x+7y)" /> selalu merupakan kelipatan <InlineMath math="5" />, sedangkan <InlineMath math="1{.}136" /> bukan kelipatan <InlineMath math="5" />. Berat terbesar yang mungkin adalah <InlineMath math="1{.}135\text{ kg}" />, misalnya dengan <InlineMath math="22" /> karung beras dan <InlineMath math="1" /> karung gula. Pernyataan ini salah.
+Titik <InlineMath math="(0,0)" /> ada di daerah arsiran, dan <InlineMath math="0\le18" /> serta <InlineMath math="0\le12" />. Jadi daerahnya ada di sisi "kurang dari atau sama dengan" kedua garis.
 
-Jadi, pernyataan pertama dan ketiga benar.
+<BlockMath math="3x+2y\le18,\qquad x+3y\le12,\qquad x\ge0,\qquad y\ge0" />
+
+Titik sudut tempat kedua garis berpotongan didapat dengan substitusi <InlineMath math="x=12-3y" />.
+
+<BlockMath math="\begin{aligned}
+3(12-3y)+2y&=18 \\
+36-7y&=18\ \Rightarrow\ y=\tfrac{18}{7},\quad x=12-\tfrac{54}{7}=\tfrac{30}{7}
+\end{aligned}" />
+
+Titik potongnya <InlineMath math="\left(\tfrac{30}{7},\tfrac{18}{7}\right)\approx(4{,}29;\ 2{,}57)" />. **Di kiri titik potong, garis <InlineMath math="x+3y=12" /> yang lebih rendah**, sedangkan di kanannya garis <InlineMath math="3x+2y=18" /> yang lebih rendah. Batas atas daerah selalu garis yang lebih rendah.
+
+<MathVisual
+  title={<>Daerah penyelesaian dan titik potong</>}
+  description={<>Daerah arsiran adalah segi empat dengan titik sudut <InlineMath math="(0,0)" />, <InlineMath math="(6,0)" />, <InlineMath math="\left(\tfrac{30}{7},\tfrac{18}{7}\right)" />, dan <InlineMath math="(0,4)" />. Garis <InlineMath math="3x+2y=18" /> melalui <InlineMath math="(0,9)" /> dan <InlineMath math="(6,0)" />. Garis <InlineMath math="x+3y=12" /> melalui <InlineMath math="(0,4)" /> dan <InlineMath math="(12,0)" />. Titik <InlineMath math="(3,3)" /> terletak pada garis <InlineMath math="x+3y=12" />, di dalam daerah.</>}
+  labels={{
+    "first-line": <InlineMath math="3x+2y=18" />,
+    "second-line": <InlineMath math="x+3y=12" />,
+    corner: <InlineMath math="\left(\tfrac{30}{7},\tfrac{18}{7}\right)" />,
+    best: <InlineMath math="(3,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 13 },
+      y: { min: -1, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 30 / 7, y: 18 / 7 }, { x: 0, y: 4 }] },
+      { id: "first-line", kind: "segment", appearance: "primary", from: { x: 0, y: 9 }, to: { x: 6, y: 0 } },
+      { id: "second-line", kind: "segment", appearance: "secondary", from: { x: 0, y: 4 }, to: { x: 12, y: 0 } },
+      { id: "corner-point", kind: "point", appearance: "reference", at: { x: 30 / 7, y: 18 / 7 } },
+      { id: "best-point", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "first-line", objectId: "first-line", at: { x: 1.5, y: 6.75 }, placement: "right" },
+      { key: "second-line", objectId: "second-line", at: { x: 9, y: 1 }, placement: "above" },
+      { key: "corner", objectId: "corner-point", at: { x: 30 / 7, y: 18 / 7 }, placement: "right" },
+      { key: "best", objectId: "best-point", at: { x: 3, y: 3 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+# Menilai setiap pernyataan
+
+1. **Benar**. Untuk <InlineMath math="(4,2)" />: <InlineMath math="3\cdot4+2\cdot2=16\le18" /> dan <InlineMath math="4+3\cdot2=10\le12" />, jadi termasuk. Untuk <InlineMath math="(4,3)" />: <InlineMath math="3\cdot4+2\cdot3=18\le18" />, tetapi <InlineMath math="4+3\cdot3=13>12" />. Titik <InlineMath math="(4,3)" /> tepat di garis pertama, namun berada di atas garis kedua, jadi tidak termasuk.
+2. **Salah**. Untuk setiap <InlineMath math="x" />, nilai <InlineMath math="y" /> terbesar dibatasi oleh garis yang lebih rendah, yaitu yang lebih kecil di antara <InlineMath math="\frac{18-3x}{2}" /> dan <InlineMath math="\frac{12-x}{3}" />.
+
+| <InlineMath math="x" /> | <InlineMath math="\frac{18-3x}{2}" /> | <InlineMath math="\frac{12-x}{3}" /> | <InlineMath math="y" /> bulat yang boleh | Banyak titik |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="3" /> | <InlineMath math="4{,}5" /> | <InlineMath math="3" /> | <InlineMath math="0,1,2,3" /> | <InlineMath math="4" /> |
+| <InlineMath math="4" /> | <InlineMath math="3" /> | <InlineMath math="2\tfrac{2}{3}" /> | <InlineMath math="0,1,2" /> | <InlineMath math="3" /> |
+| <InlineMath math="5" /> | <InlineMath math="1{,}5" /> | <InlineMath math="2\tfrac{1}{3}" /> | <InlineMath math="0,1" /> | <InlineMath math="2" /> |
+
+Totalnya <InlineMath math="4+3+2=9" />, bukan <InlineMath math="10" />. Angka <InlineMath math="10" /> muncul kalau kamu memakai garis <InlineMath math="x+3y=12" /> untuk seluruh jalur, padahal **di <InlineMath math="x=5" /> batasnya sudah pindah ke garis <InlineMath math="3x+2y=18" />**.
+
+3. **Benar**. Nilai di titik potong adalah <InlineMath math="2\cdot\tfrac{30}{7}+3\cdot\tfrac{18}{7}=\tfrac{114}{7}\approx16{,}3" />, tetapi titik itu tidak bulat. Jadi nilai untuk titik bulat paling besar <InlineMath math="16" />. Cek apakah <InlineMath math="16" /> bisa dicapai: <InlineMath math="2x+3y=16" /> dengan <InlineMath math="x,y\ge0" /> bulat hanya dipenuhi <InlineMath math="(8,0)" />, <InlineMath math="(5,2)" />, dan <InlineMath math="(2,4)" />.
+
+<BlockMath math="\begin{aligned}
+(8,0)&:\ 3\cdot8+2\cdot0=24>18 \\
+(5,2)&:\ 3\cdot5+2\cdot2=19>18 \\
+(2,4)&:\ 2+3\cdot4=14>12
+\end{aligned}" />
+
+Ketiganya di luar daerah. Nilai <InlineMath math="15" /> tercapai di <InlineMath math="(3,3)" />, karena <InlineMath math="9+6=15\le18" /> dan <InlineMath math="3+9=12\le12" />. Membulatkan titik potong ke <InlineMath math="(4,3)" /> keluar dari daerah, dan <InlineMath math="(4,2)" /> hanya memberi <InlineMath math="14" />.
+
+Jadi, pernyataan 1 benar, pernyataan 2 salah, dan pernyataan 3 benar.

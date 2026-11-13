@@ -1,0 +1,75 @@
+Soalan ini bertanya tinggi menara <InlineMath math="h" />. Perangkapnya ialah kedudukan menara: kaki menara <InlineMath math="F" /> berada di tepi jalan, bukan di atas jalan. Oleh sebab <InlineMath math="B" /> ialah titik di jalan yang paling hampir dengan <InlineMath math="F" />, **tembereng <InlineMath math="FB" /> berserenjang dengan jalan**. Jadi di atas tanah terdapat segi tiga <InlineMath math="FBA" /> yang bersudut tegak di <InlineMath math="B" />.
+
+# Jarak mengufuk ke kaki menara
+
+Menara, garis penglihatan dan jarak mengufuk membentuk segi tiga bersudut tegak yang berdiri menegak, dengan sudut tegak di <InlineMath math="F" />. Dalam segi tiga begini, <InlineMath math="\tan(\text{sudut dongak})=\frac{h}{\text{jarak mengufuk}}" />. Gunakan hubungan ini **untuk menulis kedua-dua jarak dalam sebutan <InlineMath math="h" />**.
+
+<BlockMath math="\begin{aligned}
+\tan60^\circ&=\frac{h}{FB}&&\Rightarrow\ FB=\frac{h}{\sqrt3} \\
+\tan30^\circ&=\frac{h}{FA}&&\Rightarrow\ FA=\frac{h}{1/\sqrt3}=h\sqrt3
+\end{aligned}" />
+
+# Segi tiga di atas tanah
+
+Sekarang lihat dari atas. Tembereng <InlineMath math="FB" /> berserenjang dengan jalan, jadi dalam segi tiga <InlineMath math="FBA" />, **hipotenusnya ialah <InlineMath math="FA" />**, iaitu sisi yang bertentangan dengan sudut tegak di <InlineMath math="B" />.
+
+<MathVisual
+  title={<>Pandangan atas jalan dan kaki menara</>}
+  description={<>Sebatang jalan lurus yang rata melalui titik <InlineMath math="B" /> dan <InlineMath math="A" />. Kaki menara <InlineMath math="F" /> berada di tepi jalan, dengan <InlineMath math="FB" /> berserenjang dengan jalan. Panjangnya ialah <InlineMath math="FB=\frac{h}{\sqrt3}" />, <InlineMath math="AB=20\sqrt6" /> dan <InlineMath math="FA=h\sqrt3" />. Segi tiga <InlineMath math="FBA" /> bersudut tegak di <InlineMath math="B" />.</>}
+  labels={{
+    f: <InlineMath math="F" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    fb: <InlineMath math="\tfrac{h}{\sqrt3}" />,
+    fa: <InlineMath math="h\sqrt3" />,
+    ab: <InlineMath math="20\sqrt6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 56 },
+      y: { min: -6, max: 24 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "road", kind: "segment", appearance: "reference", from: { x: -6, y: 0 }, to: { x: 54, y: 0 } },
+      { id: "segment-fb", kind: "segment", appearance: "secondary", from: { x: 0, y: 10 * Math.sqrt(3) }, to: { x: 0, y: 0 } },
+      { id: "segment-fa", kind: "segment", appearance: "highlight", from: { x: 0, y: 10 * Math.sqrt(3) }, to: { x: 20 * Math.sqrt(6), y: 0 } },
+      { id: "segment-ab", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 20 * Math.sqrt(6), y: 0 } },
+      { id: "point-f", kind: "point", appearance: "answer", at: { x: 0, y: 10 * Math.sqrt(3) } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 20 * Math.sqrt(6), y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "f", objectId: "point-f", at: { x: 0, y: 10 * Math.sqrt(3) }, placement: "above" },
+      { key: "a", objectId: "point-a", at: { x: 20 * Math.sqrt(6), y: 0 }, placement: "below" },
+      { key: "b", objectId: "point-b", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "fb", objectId: "segment-fb", at: { x: 0, y: 5 * Math.sqrt(3) }, placement: "left" },
+      { key: "fa", objectId: "segment-fa", at: { x: 10 * Math.sqrt(6), y: 5 * Math.sqrt(3) }, placement: "above-right" },
+      { key: "ab", objectId: "segment-ab", at: { x: 10 * Math.sqrt(6), y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Teorem Pythagoras dalam segi tiga ini memberi persamaan bagi <InlineMath math="h" />.
+
+<BlockMath math="\begin{aligned}
+FA^2&=FB^2+AB^2 \\
+3h^2&=\frac{h^2}{3}+\left(20\sqrt6\right)^2 \\
+3h^2-\frac{h^2}{3}&=2{,}400 \\
+\frac{8h^2}{3}&=2{,}400 \\
+h^2&=900 \\
+h&=30\text{ m}
+\end{aligned}" />
+
+Semakan: dengan <InlineMath math="h=30" />, <InlineMath math="FB=10\sqrt3" /> dan <InlineMath math="FA=30\sqrt3" />. Maka <InlineMath math="FB^2+AB^2=300+2{,}400=2{,}700=FA^2" />, tepat sekali.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="12\sqrt5\text{ m}" /> meletakkan sudut tegak di kaki menara, <InlineMath math="FA^2+FB^2=AB^2" />. Sudut tegak sebenarnya di <InlineMath math="B" />, kerana <InlineMath math="B" /> titik yang paling hampir dengan kaki menara.
+- <InlineMath math="20\sqrt2\text{ m}" /> menggunakan <InlineMath math="AB" /> sebagai jarak mengufuk dari <InlineMath math="A" /> ke kaki menara, <InlineMath math="h=20\sqrt6\cdot\tan30^\circ" />. Sedangkan <InlineMath math="B" /> bukan kaki menara.
+- <InlineMath math="30\sqrt2\text{ m}" /> menganggap kaki menara terletak di atas jalan, jadi <InlineMath math="FA-FB=AB" />. Soalan menyatakan kaki menara **tidak** berada di atas jalan.
+- <InlineMath math="30\sqrt3\text{ m}" /> ialah <InlineMath math="FA" />, jarak mengufuk dari <InlineMath math="A" /> ke kaki menara, bukan tinggi menara.
+
+Jadi, tinggi menara ialah <InlineMath math="30\text{ m}" />.

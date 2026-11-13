@@ -1,12 +1,31 @@
-In an isosceles triangle **the base angles are equal**, and the bisector of the top angle is also an altitude and a median.
+# Three possible points D
+
+The order of the vertices isn't fixed, so **any of <InlineMath math="A" />, <InlineMath math="B" /> and <InlineMath math="C" /> can be the vertex opposite <InlineMath math="D" />**. In a parallelogram the diagonals bisect each other, so the fourth vertex is the sum of the two neighbours minus the opposite vertex.
+
+| Vertex opposite <InlineMath math="D" /> | Formula | Point <InlineMath math="D" /> |
+| :---: | :---: | :---: |
+| <InlineMath math="B" /> | <InlineMath math="A+C-B" /> | <InlineMath math="(7,7)" /> |
+| <InlineMath math="C" /> | <InlineMath math="A+B-C" /> | <InlineMath math="(-5,1)" /> |
+| <InlineMath math="A" /> | <InlineMath math="B+C-A" /> | <InlineMath math="(11,-1)" /> |
+
+# Judging each statement
+
+First statement: the three points <InlineMath math="D" /> are different, so there are exactly three possibilities. This statement is **True**.
+
+Second statement: check the angle at <InlineMath math="B" /> with the dot product.
+
+<BlockMath math="\overrightarrow{BA}\cdot\overrightarrow{BC}=(-2,4)\cdot(6,3)=-12+12=0" />
+
+Angle <InlineMath math="ABC" /> is a right angle, so parallelogram <InlineMath math="ABCD" /> with <InlineMath math="D(7,7)" /> is **a rectangle**. This statement is **True**.
+
+Third statement: each parallelogram uses the two sides of triangle <InlineMath math="ABC" /> that meet at the vertex opposite <InlineMath math="D" />. The triangle's sides are <InlineMath math="AB=\sqrt{20}=2\sqrt5" />, <InlineMath math="BC=\sqrt{45}=3\sqrt5" /> and <InlineMath math="AC=\sqrt{65}" />.
 
 <BlockMath math="\begin{aligned}
-\angle ABC=\angle ACB&=\frac{180^\circ-40^\circ}{2}=70^\circ \\
-\angle BAD=\angle CAD&=\frac{40^\circ}{2}=20^\circ \\
-\angle ADB&=180^\circ-70^\circ-20^\circ=90^\circ
+K_1&=2(AB+BC)=2(2\sqrt5+3\sqrt5)=10\sqrt5 \\
+K_2&=2(CA+CB)=2(\sqrt{65}+3\sqrt5) \\
+K_3&=2(AB+AC)=2(2\sqrt5+\sqrt{65})
 \end{aligned}" />
 
-- <InlineMath math="\angle ABC=70^\circ" />, as worked out. This statement is true.
-- <InlineMath math="\angle ADB=90^\circ" />, so <InlineMath math="AD" /> is perpendicular to <InlineMath math="BC" />. This statement is true.
-- The bisector halves <InlineMath math="40^\circ" />, so <InlineMath math="\angle BAD=20^\circ" />. This statement is false.
-- <InlineMath math="AB=AC" />, <InlineMath math="\angle BAD=\angle CAD" />, and <InlineMath math="AD" /> is shared, so the triangles are congruent by side, angle, side. This statement is true.
+The three perimeters are different. What they do share is the area, twice the area of triangle <InlineMath math="ABC" />. This statement is **False**.
+
+So the answers are True, True, False.

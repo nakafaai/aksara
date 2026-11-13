@@ -1,15 +1,72 @@
-Das Kugelvolumen ist proportional zur dritten Potenz des Radius, <InlineMath math="V=\frac43\pi r^3" />. Wird der Durchmesser, also auch der Radius, mit <InlineMath math="1{,}5" /> multipliziert, dann **wird das Volumen mit <InlineMath math="1{,}5^3" /> multipliziert**.
+Der Würfel aus jedem Stamm wird durch zwei Dinge begrenzt: **den kreisförmigen Querschnitt und die Länge des Stamms**. Die größte Kantenlänge ist die kleinere der beiden Grenzen. Rechne das für jeden Stamm aus und vergleiche dann die Volumen.
+
+# Die Grenze durch den Querschnitt
+
+Eine Würfelkante liegt parallel zur Achse, also ist eine Würfelfläche ein Quadrat senkrecht zur Achse, und dieses Quadrat muss in den Kreisquerschnitt passen. Das größte Quadrat im Kreis hat alle vier Ecken auf dem Kreis, also ist **seine Diagonale gleich dem Durchmesser**. Für die Kante <InlineMath math="s" /> und den Durchmesser <InlineMath math="d" /> gilt:
 
 <BlockMath math="\begin{aligned}
-1{,}5^3&=3{,}375 \\
-\text{Zunahme}&=3{,}375-1=2{,}375=237{,}5\,\%
+s\sqrt2&\le d\;\Rightarrow\;s\le\frac{d}{\sqrt2} \\
+\text{Stamm }P:\;s&\le\frac{50}{\sqrt2}=25\sqrt2\approx35{,}4\text{ cm} \\
+\text{Stamm }Q:\;s&\le\frac{40}{\sqrt2}=20\sqrt2\approx28{,}3\text{ cm}
 \end{aligned}" />
 
-Zur Kontrolle mit Zahlen: Aus einer Kugel mit Radius <InlineMath math="2" /> wird eine mit Radius <InlineMath math="3" />, und <InlineMath math="\frac{3^3}{2^3}=\frac{27}{8}=3{,}375" />.
+# Die Grenze durch die Länge
 
-Das Luftvolumen nimmt also um <InlineMath math="237{,}5\,\%" /> zu.
+Die Kante entlang der Achse darf nicht länger sein als der Stamm. Also gilt <InlineMath math="s\le30" /> für Stamm <InlineMath math="P" /> und <InlineMath math="s\le80" /> für Stamm <InlineMath math="Q" />. Nimm bei jedem Stamm die kleinere Grenze:
 
-- <InlineMath math="50\,\%" /> nimmt an, das Volumen wachse um denselben Prozentsatz wie der Durchmesser.
-- <InlineMath math="100\,\%" /> verdoppelt die Zunahme des Durchmessers.
-- <InlineMath math="125\,\%" /> nimmt <InlineMath math="1{,}5^2-1" />, also die Zunahme der Oberfläche.
-- <InlineMath math="150\,\%" /> multipliziert die Zunahme von <InlineMath math="50\,\%" /> mit <InlineMath math="3" />, statt <InlineMath math="1{,}5" /> hoch drei zu nehmen.
+| Stamm | Grenze Querschnitt | Grenze Länge | Größte Kante |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="P" /> | <InlineMath math="25\sqrt2\approx35{,}4" /> | <InlineMath math="30" /> | <InlineMath math="30" /> |
+| <InlineMath math="Q" /> | <InlineMath math="20\sqrt2\approx28{,}3" /> | <InlineMath math="80" /> | <InlineMath math="20\sqrt2" /> |
+
+Bei Stamm <InlineMath math="P" /> **begrenzt die Länge**, nicht der Kreis. Ein Quadrat mit Seite <InlineMath math="30" /> passt trotzdem, denn seine Diagonale <InlineMath math="30\sqrt2\approx42{,}4" /> ist kürzer als der Durchmesser <InlineMath math="50" />.
+
+<MathVisual
+  title={<>Querschnitt von Stamm <InlineMath math="P" /></>}
+  description={<>Ein Kreis mit Durchmesser <InlineMath math="50" /> enthält das größte Quadrat mit Seite <InlineMath math="25\sqrt2" />, dessen Ecken den Kreis berühren. Das tatsächlich verwendete Quadrat mit Seite <InlineMath math="30" /> liegt darin und berührt den Kreis nicht.</>}
+  labels={{
+    "label-big": <InlineMath math="25\sqrt2" />,
+    "label-used": <InlineMath math="30" />,
+    "label-diameter": <InlineMath math="d=50" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -30, max: 30 },
+      y: { min: -30, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 25 },
+      { id: "square-big", kind: "polygon", appearance: "construction", vertices: [{ x: 25, y: 0 }, { x: 0, y: 25 }, { x: -25, y: 0 }, { x: 0, y: -25 }] },
+      { id: "square-used", kind: "polygon", appearance: "answer", vertices: [{ x: -15, y: -15 }, { x: 15, y: -15 }, { x: 15, y: 15 }, { x: -15, y: 15 }] },
+      { id: "diameter", kind: "segment", appearance: "reference", from: { x: -25, y: 0 }, to: { x: 25, y: 0 } },
+    ],
+    labels: [
+      { key: "label-big", objectId: "square-big", at: { x: 12.5, y: 12.5 }, placement: "above-right" },
+      { key: "label-used", objectId: "square-used", at: { x: 0, y: -15 }, placement: "below" },
+      { key: "label-diameter", objectId: "diameter", at: { x: -20, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Die beiden Würfel im Vergleich
+
+Berechne jetzt mit den Kanten aus der Tabelle das Volumen des größten Würfels aus jedem Stamm.
+
+<BlockMath math="\begin{aligned}
+V_P&=30^3=27{.}000\text{ cm}^3 \\
+V_Q&=\left(20\sqrt2\right)^3=8{.}000\cdot2\sqrt2=16{.}000\sqrt2\approx22{.}627\text{ cm}^3
+\end{aligned}" />
+
+Stamm <InlineMath math="Q" /> ist länger, hat aber den kleineren Querschnitt, deshalb wird sein Würfel kleiner. **Der größte Würfel stammt aus Stamm <InlineMath math="P" />**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="15{.}625\text{ cm}^3" /> nimmt als Kante den Radius, <InlineMath math="25" />. Ein Quadrat mit dem Radius als Seite ist viel kleiner als das größte Quadrat im Kreis.
+- <InlineMath math="16{.}000\sqrt2\text{ cm}^3" /> ist der Würfel aus Stamm <InlineMath math="Q" />. Das kommt heraus, wenn du Stamm <InlineMath math="P" /> streichst, weil ein Würfel mit Kante <InlineMath math="25\sqrt2" /> nicht passt, obwohl du den Würfel nur auf Kante <InlineMath math="30" /> verkleinern musst.
+- <InlineMath math="31{.}250\sqrt2\text{ cm}^3" /> nimmt bei Stamm <InlineMath math="P" /> die Kante <InlineMath math="25\sqrt2\approx35{,}4" />, ohne **die Stammlänge zu prüfen**, die nur <InlineMath math="30\text{ cm}" /> beträgt.
+- <InlineMath math="64{.}000\text{ cm}^3" /> nimmt als Kante den Durchmesser von Stamm <InlineMath math="Q" />, <InlineMath math="40" />. Ein Quadrat mit dem Durchmesser als Seite passt nicht, weil seine Diagonale <InlineMath math="40\sqrt2" /> länger ist als der Durchmesser.
+
+Der größte Würfel hat also das Volumen <InlineMath math="27{.}000\text{ cm}^3" /> und stammt aus Stamm <InlineMath math="P" />.

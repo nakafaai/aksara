@@ -1,15 +1,78 @@
-Schnur, Waagrechte in Handhöhe und Senkrechte zum Drachen bilden ein rechtwinkliges Dreieck. Die Höhe des Drachens über der Hand ist **die Gegenkathete von <InlineMath math="\alpha" />**, gebraucht wird also <InlineMath math="\sin\alpha" />, nicht <InlineMath math="\cos\alpha" />.
+Wenn du das Papier entlang <InlineMath math="AC" /> faltest, drehen sich die Punkte <InlineMath math="B" /> und <InlineMath math="D" /> um die Gerade <InlineMath math="AC" />, und ihr Abstand ändert sich. Der Schlüssel ist **der Diagonalenschnittpunkt <InlineMath math="O" />**: Du brauchst die Abstände von <InlineMath math="B" /> und <InlineMath math="D" /> zu <InlineMath math="O" /> und dann den Winkel zwischen ihnen nach dem Falten.
+
+# Halbe Diagonalen mit trigonometrischen Verhältnissen
+
+Die Diagonalen einer Raute stehen senkrecht aufeinander, halbieren sich gegenseitig und halbieren die Winkel der Raute. Das Dreieck <InlineMath math="AOB" /> ist also bei <InlineMath math="O" /> rechtwinklig, mit <InlineMath math="\angle OAB=\tfrac12\cdot60^\circ=30^\circ" /> und Hypotenuse <InlineMath math="AB=8" />. Die Seite <InlineMath math="OB" /> liegt dem <InlineMath math="30^\circ" />-Winkel gegenüber, also brauchst du den **Sinus**:
 
 <BlockMath math="\begin{aligned}
-\sin\alpha&=\sqrt{1-0{,}6^2}=\sqrt{0{,}64}=0{,}8 \\
-h&=50\cdot0{,}8+1{,}2=40+1{,}2=41{,}2\text{ m}
+OB&=AB\sin30^\circ=8\cdot\tfrac12=4\text{ cm} \\
+OA&=AB\cos30^\circ=8\cdot\tfrac{\sqrt3}{2}=4\sqrt3\text{ cm}
 \end{aligned}" />
 
-Zur Kontrolle: Der waagrechte Abstand von der Hand bis unter den Drachen ist <InlineMath math="50\cdot0{,}6=30\text{ m}" />, und <InlineMath math="30^2+40^2=50^2" />.
+Genauso ist <InlineMath math="OD=4\text{ cm}" />. Vor dem Falten ist die kurze Diagonale <InlineMath math="BD" /> also <InlineMath math="8\text{ cm}" /> lang und die lange Diagonale <InlineMath math="AC" /> <InlineMath math="8\sqrt3\text{ cm}" />.
 
-Der Drachen ist also <InlineMath math="41{,}2\text{ m}" /> über dem Boden.
+<MathVisual
+  title={<>Die Raute vor dem Falten</>}
+  description={<>Raute <InlineMath math="ABCD" /> mit Seite <InlineMath math="8" /> und <InlineMath math="\angle BAD=60^\circ" />. Die Diagonale <InlineMath math="AC" /> liegt waagerecht, die Diagonale <InlineMath math="BD" /> senkrecht, und sie schneiden sich rechtwinklig in <InlineMath math="O" />. Es gilt <InlineMath math="OA=4\sqrt3" /> und <InlineMath math="OB=OD=4" />.</>}
+  labels={{
+    "label-a": <InlineMath math="A" />,
+    "label-b": <InlineMath math="B" />,
+    "label-c": <InlineMath math="C" />,
+    "label-d": <InlineMath math="D" />,
+    "label-o": <InlineMath math="O" />,
+    "label-ob": <InlineMath math="4" />,
+    "label-oa": <InlineMath math="4\sqrt3" />,
+    "label-angle": <InlineMath math="30^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 8 },
+      y: { min: -6, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rhombus", kind: "polygon", appearance: "primary", vertices: [{ x: -4 * Math.sqrt(3), y: 0 }, { x: 0, y: 4 }, { x: 4 * Math.sqrt(3), y: 0 }, { x: 0, y: -4 }] },
+      { id: "diagonal-ac", kind: "segment", appearance: "construction", from: { x: -4 * Math.sqrt(3), y: 0 }, to: { x: 4 * Math.sqrt(3), y: 0 } },
+      { id: "half-ob", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "half-od", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: -4 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: -4 * Math.sqrt(3), y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 0, y: 4 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 4 * Math.sqrt(3), y: 0 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: -4 } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "label-a", objectId: "point-a", at: { x: -4 * Math.sqrt(3), y: 0 }, placement: "left" },
+      { key: "label-b", objectId: "point-b", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "label-c", objectId: "point-c", at: { x: 4 * Math.sqrt(3), y: 0 }, placement: "right" },
+      { key: "label-d", objectId: "point-d", at: { x: 0, y: -4 }, placement: "below" },
+      { key: "label-o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "label-ob", objectId: "half-ob", at: { x: 0, y: 2 }, placement: "right" },
+      { key: "label-oa", objectId: "diagonal-ac", at: { x: -2 * Math.sqrt(3), y: 0 }, placement: "below" },
+      { key: "label-angle", objectId: "point-a", at: { x: -4 * Math.sqrt(3), y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
 
-- <InlineMath math="30\text{ m}" /> nimmt <InlineMath math="\cos\alpha" /> und berechnet so den waagrechten Abstand.
-- <InlineMath math="31{,}2\text{ m}" /> nimmt <InlineMath math="\cos\alpha" /> und addiert dann die Handhöhe.
-- <InlineMath math="40\text{ m}" /> vergisst, die Handhöhe von <InlineMath math="1{,}2\text{ m}" /> zu addieren.
-- <InlineMath math="51{,}2\text{ m}" /> nimmt die Schnur als senkrecht an, also Schnurlänge plus Handhöhe.
+# Der Winkel zwischen den Ebenen nach dem Falten
+
+Nach dem Falten liegt <InlineMath math="OB" /> weiter in der Ebene <InlineMath math="ABC" /> und steht weiter senkrecht auf <InlineMath math="AC" />. Dasselbe gilt für <InlineMath math="OD" /> in der Ebene <InlineMath math="ADC" />. Zwei Strecken, die im selben Punkt senkrecht auf der Faltlinie stehen, **bilden den Winkel zwischen den beiden Ebenen**. Die Ebenen stehen senkrecht aufeinander, also gilt <InlineMath math="\angle BOD=90^\circ" />.
+
+# Der Abstand von B zu D
+
+Das Dreieck <InlineMath math="BOD" /> ist jetzt bei <InlineMath math="O" /> rechtwinklig mit den Katheten <InlineMath math="OB=OD=4" />:
+
+<BlockMath math="BD=\sqrt{OB^2+OD^2}=\sqrt{16+16}=\sqrt{32}=4\sqrt2\text{ cm}" />
+
+Plausibilitätsprobe: <InlineMath math="4\sqrt2\approx5{,}66" /> ist kürzer als die <InlineMath math="8" /> vor dem Falten. Das passt, denn **das Falten bringt <InlineMath math="B" /> und <InlineMath math="D" /> näher zusammen**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="8\text{ cm}" /> ist <InlineMath math="BD" /> vor dem Falten. Das Falten **ändert den Abstand zwischen Punkten auf verschiedenen Seiten der Faltlinie**.
+- <InlineMath math="4\sqrt5\text{ cm}" /> entsteht, wenn du dir vorstellst, dass <InlineMath math="B" /> von seiner Ausgangsstelle aus senkrecht um <InlineMath math="4" /> nach oben steigt, also <InlineMath math="BD=\sqrt{8^2+4^2}" />. Tatsächlich dreht sich <InlineMath math="B" /> um <InlineMath math="AC" /> und landet genau über <InlineMath math="O" />.
+- <InlineMath math="4\sqrt6\text{ cm}" /> vertauscht Sinus und Kosinus und nimmt <InlineMath math="OB=8\cos30^\circ=4\sqrt3" />. Das ist die Länge von <InlineMath math="OA" />, nicht von <InlineMath math="OB" />.
+- <InlineMath math="8\sqrt2\text{ cm}" /> setzt den rechten Winkel nach <InlineMath math="A" />, mit den Katheten <InlineMath math="AB=AD=8" />. Der <InlineMath math="90^\circ" />-Winkel zwischen den Ebenen liegt aber bei <InlineMath math="O" />, nicht bei <InlineMath math="A" />.
+
+Nach dem Falten beträgt der Abstand von <InlineMath math="B" /> zu <InlineMath math="D" /> also <InlineMath math="4\sqrt2\text{ cm}" />.

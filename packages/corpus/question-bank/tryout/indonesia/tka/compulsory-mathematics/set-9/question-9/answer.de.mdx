@@ -1,15 +1,17 @@
-Lies **jedes Merkmal des Graphen als Vorzeichenbedingung** für <InlineMath math="a" />, <InlineMath math="b" /> oder <InlineMath math="c" />.
+# Die Gebührenformel
 
-<BlockMath math="\begin{aligned}
-\text{nach unten geöffnet}&\ \Rightarrow\ a<0 \\
-f(0)=c>0&\ \Rightarrow\ \text{schneidet die }y\text{-Achse über }O \\
-x_p=-\frac{b}{2a}>0\ \text{mit}\ a<0&\ \Rightarrow\ b>0
-\end{aligned}" />
+Jede Aussage muss für jede Parkdauer stimmen, also schreib zuerst eine Formel für <InlineMath math="f" /> auf. Entscheidend ist das Wort **angefangen**: Eine nur teilweise genutzte Stunde zählt voll, die Zahl der Zusatzstunden ist also <InlineMath math="t-1" />, aufgerundet.
 
-- Eine nach unten geöffnete Parabel hat <InlineMath math="a<0" />. Die Aussage ist richtig.
-- Ein Scheitel rechts der <InlineMath math="y" />-Achse heißt <InlineMath math="-\frac{b}{2a}>0" />. Weil <InlineMath math="2a" /> negativ ist, muss <InlineMath math="b" /> positiv sein. Die Aussage ist falsch.
-- Der Graph schneidet die <InlineMath math="y" />-Achse in <InlineMath math="(0,c)" />, oberhalb von <InlineMath math="O" />, also <InlineMath math="c>0" />. Die Aussage ist richtig.
-- Der Graph ist nach unten geöffnet und <InlineMath math="f(0)>0" />, er steigt also von unterhalb der <InlineMath math="x" />-Achse darüber und fällt wieder. Er schneidet die <InlineMath math="x" />-Achse zweimal. Anders gesagt: <InlineMath math="b^2-4ac>0" />, weil <InlineMath math="-4ac>0" />. Die Aussage ist richtig.
-- Mit <InlineMath math="a<0" />, <InlineMath math="b>0" /> und <InlineMath math="c>0" /> ist das Produkt <InlineMath math="abc" /> negativ. Die Aussage ist falsch.
+<BlockMath math="f(t)=\begin{cases}5{.}000, & 0<t\le1\\[2pt] \min\left(5{.}000+3{.}000\cdot\lceil t-1\rceil,\ 20{.}000\right), & 1<t\le24\end{cases}" />
 
-Sicher richtig sind also <InlineMath math="a<0" />, <InlineMath math="c>0" /> und zwei verschiedene reelle Nullstellen.
+Die Obergrenze <InlineMath math="20{.}000" /> ist erreicht, wenn <InlineMath math="5{.}000+3{.}000k\ge20{.}000" />, also bei <InlineMath math="k\ge5" /> Zusatzstunden. Das gilt für jedes <InlineMath math="t>5" />.
+
+# Jede Aussage prüfen
+
+1. **Richtig**. <InlineMath math="\lceil2{,}5-1\rceil=2" /> und <InlineMath math="\lceil3-1\rceil=2" />, also kosten beide <InlineMath math="5{.}000+6{.}000=11{.}000" />.
+2. **Falsch**. Der Graph von <InlineMath math="f" /> ist eine Treppe. Zum Beispiel ist <InlineMath math="f(1{,}2)=f(1{,}5)=8{.}000" />, die Gebühr steigt also nicht immer.
+3. **Falsch**. Vor der Obergrenze ist die Gebühr <InlineMath math="5{.}000+3{.}000k" />, also <InlineMath math="8{.}000, 11{.}000, 14{.}000, 17{.}000" />, danach springt sie direkt auf <InlineMath math="20{.}000" />. Der Wert <InlineMath math="18{.}000" /> kommt nie vor.
+4. **Richtig**. Für <InlineMath math="t\ge6" /> gilt <InlineMath math="t>5" />, die Gebühr hat also schon die Obergrenze <InlineMath math="20{.}000" /> erreicht.
+5. **Falsch**. Für <InlineMath math="t=1" /> ist <InlineMath math="f(2)=8{.}000" />, aber <InlineMath math="2f(1)=10{.}000" />. Ein Gegenbeispiel genügt.
+
+Richtig sind also die erste und die vierte Aussage.

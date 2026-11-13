@@ -1,12 +1,35 @@
-A question that is neither geometry nor statistics is **an algebra or a probability question**. Count them and divide by <InlineMath math="40" />.
+# Counting all arrangements
 
-<BlockMath math="P=\frac{12+10}{40}=\frac{22}{40}=\frac{11}{20}" />
+At a round table, all that matters is who sits next to whom. So **fix one person as the reference point** and arrange the rest around them. For <InlineMath math="7" /> people there are <InlineMath math="(7-1)!=720" /> arrangements.
 
-As a check with the complement, <InlineMath math="10+8=18" /> questions are geometry or statistics, and <InlineMath math="1-\frac{18}{40}=\frac{22}{40}" />.
+# Ana and Budi side by side
 
-So the probability is <InlineMath math="\frac{11}{20}" />.
+To make sure Ana and Budi sit together, **tie them into one block**. Now there are <InlineMath math="6" /> units at the round table, and inside the block Ana and Budi can still swap seats.
 
-- <InlineMath math="\frac15" /> is the probability of a statistics question, <InlineMath math="\frac{8}{40}" />.
-- <InlineMath math="\frac14" /> is the probability of a geometry question, <InlineMath math="\frac{10}{40}" />.
-- <InlineMath math="\frac{9}{20}" /> is the probability of a geometry or statistics question, the opposite of what is asked.
-- <InlineMath math="\frac34" /> leaves out only the geometry questions, <InlineMath math="\frac{30}{40}" />.
+<BlockMath math="(6-1)!\cdot2=120\cdot2=240" />
+
+# Removing Citra and Dimas side by side
+
+Some of those <InlineMath math="240" /> arrangements also put Citra and Dimas together. **Count the ones you don't want and subtract them**. Tie Citra and Dimas into a second block, so there are <InlineMath math="5" /> units, and each block can swap its order.
+
+<BlockMath math="\begin{aligned}
+\text{Citra and Dimas also together}&=(5-1)!\cdot2\cdot2=96 \\
+\text{wanted arrangements}&=240-96=144
+\end{aligned}" />
+
+# The probability
+
+**Divide by the number of all arrangements**:
+
+<BlockMath math="P=\frac{144}{720}=\frac15" />
+
+So the probability is <InlineMath math="\frac15" />.
+
+# Why the other options are wrong
+
+Each wrong option **skips one part of the count**.
+
+- <InlineMath math="\frac29" /> multiplies <InlineMath math="\frac13" /> by <InlineMath math="\frac23" />, as if the two conditions didn't affect each other. But once Ana and Budi sit side by side, the chance that Citra and Dimas sit together changes to <InlineMath math="\frac{96}{240}=\frac25" />.
+- <InlineMath math="\frac{4}{15}" /> forgets that Citra and Dimas can swap seats inside their block, so it removes only <InlineMath math="48" /> arrangements.
+- <InlineMath math="\frac13" /> uses only the Ana and Budi condition, which is <InlineMath math="\frac{240}{720}" />.
+- <InlineMath math="\frac35" /> divides by <InlineMath math="240" /> instead of <InlineMath math="720" />. That's the chance Citra and Dimas aren't together when Ana and Budi are already known to be together.

@@ -1,16 +1,33 @@
-Der Rabatt gilt nur für **das zweite Jumbo-Paket**. Berechne also den Preis des zweiten Pakets nach dem Rabatt und addiere den vollen Preis des ersten.
+# Die Energie im September
+
+Gesucht ist der kleinste Preis für exportierten Strom, bei dem die Septemberrechnung nur noch aus der Grundgebühr besteht. Das heißt: **Die Gutschrift muss die gesamten Importkosten decken**. Die Gutschrift kann die Grundgebühr nicht senken, also gehört die Grundgebühr nicht zu dem, was gedeckt werden muss.
+
+Rechne zuerst die Energie pro Tag aus, denn Import und Export werden täglich erfasst. Ein sonniger Tag exportiert <InlineMath math="14-4=10\text{ kWh}" /> und importiert <InlineMath math="4\text{ kWh}" /> für die Nacht. Ein bewölkter Tag exportiert nichts und importiert <InlineMath math="(4-2)+4=6\text{ kWh}" />, weil beim Tagesverbrauch noch <InlineMath math="2\text{ kWh}" /> fehlen.
+
+Der September hat <InlineMath math="20" /> sonnige und <InlineMath math="10" /> bewölkte Tage:
 
 <BlockMath math="\begin{aligned}
-\text{Rabatt}&=15\,\%\cdot110{.}000=16{.}500 \\
-\text{zweites Paket}&=110{.}000-16{.}500=93{.}500 \\
-\text{Kosten}&=110{.}000+93{.}500=203{.}500
+\text{Export}&=20\cdot10=200\text{ kWh} \\
+\text{Import}&=20\cdot4+10\cdot6=140\text{ kWh} \\
+\text{Importkosten}&=140\cdot1{.}500=210{.}000
 \end{aligned}" />
 
-Zur Kontrolle: Der Rabatt von <InlineMath math="16{.}500" /> sind <InlineMath math="7{,}5\,\%" /> von <InlineMath math="220{.}000" />, weil er nur die Hälfte des Einkaufs betrifft.
+# Wann die Rechnung nur die Grundgebühr ist
 
-Dinda zahlt also <InlineMath math="\text{Rp}203{.}500" />.
+Bei einem Preis von <InlineMath math="\text{Rp}b" /> pro exportierter kWh beträgt die Gutschrift <InlineMath math="200b" /> Rupiah. Die Rechnung sinkt genau dann auf die Grundgebühr, wenn die Gutschrift **mindestens so groß wie** die Importkosten ist. Ist sie größer, verfällt der Rest, und die Rechnung sinkt nicht weiter.
 
-- <InlineMath math="\text{Rp}93{.}500" /> ist nur das zweite Paket und vergisst das erste.
-- <InlineMath math="\text{Rp}187{.}000" /> zieht von beiden Paketen <InlineMath math="15\,\%" /> ab.
-- <InlineMath math="\text{Rp}205{.}000" /> zieht <InlineMath math="\text{Rp}15{.}000" /> ab statt <InlineMath math="15\,\%" /> des Preises.
-- <InlineMath math="\text{Rp}220{.}000" /> rechnet ganz ohne Rabatt.
+<BlockMath math="\begin{aligned}
+200b&\ge210{.}000 \\
+b&\ge1{.}050
+\end{aligned}" />
+
+Probe mit <InlineMath math="b=1{.}050" />: Die Gutschrift ist <InlineMath math="200\cdot1{.}050=210{.}000" />, genau die Importkosten, also beträgt die Rechnung <InlineMath math="\text{Rp}30{.}000" />. Beim heutigen Preis von <InlineMath math="\text{Rp}800" /> liegt sie noch bei <InlineMath math="30{.}000+210{.}000-160{.}000=80{.}000" />.
+
+Der kleinste Wert von <InlineMath math="b" /> ist also <InlineMath math="\text{Rp}1{.}050" /> pro kWh.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\text{Rp}600" /> prüft nur einen sonnigen Tag: <InlineMath math="10b\ge4\cdot1{.}500" />. **Auch bewölkte Tage haben Importkosten**, und die Gutschrift muss sie decken.
+- <InlineMath math="\text{Rp}900" /> vergisst, dass ein bewölkter Tag seine Lücke von <InlineMath math="2\text{ kWh}" /> am Tag importiert. Dann zählt der Import nur <InlineMath math="30\cdot4=120\text{ kWh}" />.
+- <InlineMath math="\text{Rp}1{.}000" /> addiert zuerst die Monatserzeugung (<InlineMath math="300\text{ kWh}" />) und behandelt <InlineMath math="300-120=180\text{ kWh}" /> als Export. Der Überschuss sonniger Tage kann aber die Lücke bewölkter Tage nicht füllen.
+- <InlineMath math="\text{Rp}1{.}200" /> lässt die Gutschrift auch die Grundgebühr decken: <InlineMath math="200b\ge240{.}000" />. Laut Regel senkt die Gutschrift nur die Importkosten.

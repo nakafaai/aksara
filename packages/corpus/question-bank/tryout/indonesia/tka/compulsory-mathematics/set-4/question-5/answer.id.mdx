@@ -1,17 +1,49 @@
-Misalkan ada <InlineMath math="a" /> tim beranggota <InlineMath math="3" /> dan <InlineMath math="b" /> tim beranggota <InlineMath math="5" />. Maka <InlineMath math="3a+5b=41" />, dengan <InlineMath math="a" /> dan <InlineMath math="b" /> **bilangan cacah**. Coba setiap nilai <InlineMath math="b" /> dari <InlineMath math="0" /> sampai <InlineMath math="8" />, karena <InlineMath math="5b\le41" />.
+# Semua cara mendapat tepat seratus dua puluh potong
+
+Misalkan panitia membeli <InlineMath math="x" /> kotak isi <InlineMath math="3" /> dan <InlineMath math="y" /> kotak isi <InlineMath math="5" />. Ada tiga syarat: jumlah kue tepat <InlineMath math="120" />, setiap jenis paling sedikit satu kotak, dan anggaran **masih bersisa**, artinya biaya harus kurang dari <InlineMath math="760{.}000" />, tidak boleh sama.
+
+Mulai dari syarat jumlah kue.
+
+<BlockMath math="3x+5y=120" />
+
+Karena <InlineMath math="3x" /> dan <InlineMath math="120" /> sama-sama kelipatan <InlineMath math="3" />, maka <InlineMath math="5y" /> juga harus kelipatan <InlineMath math="3" />. Itu berarti **<InlineMath math="y" /> harus kelipatan <InlineMath math="3" />**. Tulis <InlineMath math="y=3k" /> untuk bilangan bulat <InlineMath math="k" />:
 
 <BlockMath math="\begin{aligned}
-41-5b&:\ 41,\ 36,\ 31,\ 26,\ 21,\ 16,\ 11,\ 6,\ 1 \\
-\text{habis dibagi }3&:\ 36\ (b=1),\ 21\ (b=4),\ 6\ (b=7)
+3x+15k&=120 \\
+x&=40-5k
 \end{aligned}" />
 
-Pasangan yang mungkin adalah <InlineMath math="(12,1)" />, <InlineMath math="(7,4)" />, dan <InlineMath math="(2,7)" />. Nilai <InlineMath math="b" /> naik <InlineMath math="3" /> setiap kali, karena mengganti tiga tim beranggota <InlineMath math="5" /> dengan lima tim beranggota <InlineMath math="3" /> tetap memakai <InlineMath math="15" /> siswa.
+Syarat paling sedikit satu kotak dari setiap jenis memberi <InlineMath math="y=3k\ge1" /> dan <InlineMath math="x=40-5k\ge1" />, jadi <InlineMath math="k=1,2,\ldots,7" />.
 
-Sebagai pemeriksaan, <InlineMath math="36+5=41" />, <InlineMath math="21+20=41" />, dan <InlineMath math="6+35=41" />.
+# Syarat anggaran
 
-Jadi, ada <InlineMath math="3" /> pasangan yang mungkin.
+Biaya dalam ribu rupiah adalah <InlineMath math="20x+30y" />. Substitusikan <InlineMath math="x=40-5k" /> dan <InlineMath math="y=3k" />.
 
-- <InlineMath math="0" /> menyimpulkan tidak mungkin karena <InlineMath math="41" /> tidak habis dibagi <InlineMath math="3" /> maupun <InlineMath math="5" />, padahal kedua jenis tim boleh dicampur.
-- <InlineMath math="1" /> berhenti pada pasangan pertama yang ditemukan.
-- <InlineMath math="2" /> melewatkan salah satu pasangan, misalnya <InlineMath math="(12,1)" /> yang hanya mempunyai satu tim beranggota <InlineMath math="5" />.
-- <InlineMath math="4" /> ikut menghitung <InlineMath math="b=10" /> dengan <InlineMath math="a=-3" />, padahal banyak tim tidak boleh negatif.
+<BlockMath math="\begin{aligned}
+20(40-5k)+30(3k)&<760 \\
+800-10k&<760 \\
+k&>4
+\end{aligned}" />
+
+Tandanya **lebih dari**, jadi <InlineMath math="k=4" /> tidak ikut. Digabung dengan <InlineMath math="k\le7" />, tersisa <InlineMath math="k=5,6,7" />.
+
+| <InlineMath math="k" /> | <InlineMath math="(x,y)" /> | Biaya |
+| --- | --- | --- |
+| <InlineMath math="4" /> | <InlineMath math="(20,12)" /> | <InlineMath math="760{.}000" />, tidak bersisa |
+| <InlineMath math="5" /> | <InlineMath math="(15,15)" /> | <InlineMath math="750{.}000" /> |
+| <InlineMath math="6" /> | <InlineMath math="(10,18)" /> | <InlineMath math="740{.}000" /> |
+| <InlineMath math="7" /> | <InlineMath math="(5,21)" /> | <InlineMath math="730{.}000" /> |
+| <InlineMath math="8" /> | <InlineMath math="(0,24)" /> | <InlineMath math="720{.}000" />, tapi tidak ada kotak isi <InlineMath math="3" /> |
+
+Ada <InlineMath math="3" /> rencana yang memenuhi semua syarat.
+
+# Pilihan yang menjebak
+
+Setiap pilihan lain **melonggarkan satu syarat**.
+
+- <InlineMath math="4" /> muncul kalau rencana <InlineMath math="(20,12)" /> ikut dihitung padahal biayanya pas <InlineMath math="760{.}000" /> dan anggaran tidak bersisa. Nilai yang sama muncul kalau rencana <InlineMath math="(0,24)" /> dihitung padahal tidak ada kotak isi <InlineMath math="3" />.
+- <InlineMath math="5" /> muncul kalau kedua rencana itu sama-sama ikut dihitung.
+- <InlineMath math="7" /> adalah banyak rencana untuk <InlineMath math="k=1" /> sampai <InlineMath math="7" /> kalau syarat anggaran dilupakan.
+- <InlineMath math="11" /> muncul kalau kamu hanya menyelesaikan pertidaksamaan untuk <InlineMath math="y" />, yaitu <InlineMath math="12<y\le23" />, lalu menghitung semua bilangan bulat <InlineMath math="y=13,\ldots,23" />. Padahal untuk <InlineMath math="y" /> yang bukan kelipatan <InlineMath math="3" />, banyak kotak <InlineMath math="x" /> bukan bilangan bulat.
+
+Jadi, banyak rencana pembelian yang memenuhi semua syarat adalah <InlineMath math="3" />.

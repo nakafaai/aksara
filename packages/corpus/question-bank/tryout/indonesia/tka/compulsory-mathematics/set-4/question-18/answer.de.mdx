@@ -1,15 +1,38 @@
-Jede Windung braucht **ein Kabelstück so lang wie der Umfang der Spule**. Die Zahl der Windungen ist die Kabellänge geteilt durch den Umfang, in derselben Einheit.
+In dieser Aufgabe stecken zwei verschiedene Volumen. Der Anstieg des Wassers verrät das **äußere Volumen der Kugel**, denn der verschlossene Hohlraum verdrängt ebenfalls Wasser. Die Masse des Gewichts kommt aber nur vom **Volumen des Metalls**, also vom äußeren Volumen minus dem Hohlraum.
+
+# Außenradius aus dem Wasseranstieg
+
+Das verdrängte Wasser bildet einen Zylinder mit Radius <InlineMath math="12\text{ cm}" /> und Höhe <InlineMath math="2\text{ cm}" />. Sein Volumen ist **gleich dem Volumen der äußeren Kugel** mit Radius <InlineMath math="R" />.
 
 <BlockMath math="\begin{aligned}
-U&=\pi d=\frac{22}{7}\cdot14=44\text{ cm} \\
-n&=\frac{2{.}200}{44}=50
+\tfrac43\pi R^3&=\pi\cdot12^2\cdot2=288\pi \\
+R^3&=288\cdot\tfrac34=216 \\
+R&=6\text{ cm}
 \end{aligned}" />
 
-Zur Kontrolle: <InlineMath math="50\cdot44=2{.}200\text{ cm}=22\text{ m}" />.
+# Volumen des Metalls
 
-Das Kabel bildet also <InlineMath math="50" /> Windungen.
+Die Wandstärke von <InlineMath math="1\text{ cm}" /> reicht von der Außenfläche bis zur Innenfläche, also ist der **Radius des Hohlraums** <InlineMath math="r=6-1=5\text{ cm}" />. Das Metallvolumen ist die Differenz zweier Kugelvolumen:
 
-- <InlineMath math="5" /> Windungen rechnet <InlineMath math="22\text{ m}" /> in <InlineMath math="220\text{ cm}" /> um, obwohl <InlineMath math="1\text{ m}=100\text{ cm}" />.
-- <InlineMath math="25" /> Windungen nimmt <InlineMath math="2\pi d=88\text{ cm}" /> als Umfang.
-- <InlineMath math="100" /> Windungen setzt den Radius <InlineMath math="7\text{ cm}" /> in <InlineMath math="\pi d" /> ein, der Umfang wird so <InlineMath math="22\text{ cm}" />.
-- <InlineMath math="500" /> Windungen rechnet <InlineMath math="22\text{ m}" /> in <InlineMath math="22{.}000\text{ cm}" /> um.
+<BlockMath math="\begin{aligned}
+V_{\text{Metall}}&=\tfrac43\pi\left(R^3-r^3\right) \\
+&=\tfrac43\pi\,(216-125) \\
+&=\tfrac43\pi\cdot91=\tfrac{364}{3}\pi\text{ cm}^3
+\end{aligned}" />
+
+# Masse des Gewichts
+
+Die Masse ist Dichte mal Metallvolumen:
+
+<BlockMath math="m=6\cdot\tfrac{364}{3}\pi=728\pi\text{ Gramm}" />
+
+Kurze Plausibilitätsprobe: Die mittlere Masse pro äußerem Volumen ist <InlineMath math="\tfrac{728\pi}{288\pi}\approx2{,}5\text{ g/cm}^3" />. Das ist mehr als die Dichte von Wasser, <InlineMath math="1\text{ g/cm}^3" />, das Gewicht **sinkt also tatsächlich**, wie die Aufgabe sagt.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="397\pi\text{ Gramm}" /> zieht die Wandstärke <InlineMath math="1\text{ cm}" /> nur einmal vom Durchmesser <InlineMath math="12" /> ab, dann wird der Radius des Hohlraums <InlineMath math="5{,}5\text{ cm}" />. Die Wand liegt an beiden Enden eines Durchmessers, der Hohlraum hat also den Durchmesser <InlineMath math="12-2\cdot1=10\text{ cm}" />.
+- <InlineMath math="864\pi\text{ Gramm}" /> rechnet Oberfläche mal Wandstärke, <InlineMath math="4\pi\cdot6^2\cdot1" />. Das ist nur eine Näherung für sehr dünne Wände.
+- <InlineMath math="1{.}216\pi\text{ Gramm}" /> zieht die Wandstärke zweimal vom Radius ab und erhält <InlineMath math="r=4\text{ cm}" />. Die doppelte Wandstärke kommt nur vom Durchmesser weg.
+- <InlineMath math="1{.}728\pi\text{ Gramm}" /> nimmt das äußere Volumen <InlineMath math="288\pi" /> als Metallvolumen, als bestünde das verdrängte Wasser ganz aus Metall. Der Hohlraum verdrängt zwar Wasser, aber **der Hohlraum hat keine Masse**.
+
+Das Gewicht hat also eine Masse von <InlineMath math="728\pi" /> Gramm.

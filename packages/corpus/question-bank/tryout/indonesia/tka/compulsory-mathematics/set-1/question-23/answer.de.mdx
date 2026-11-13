@@ -1,11 +1,39 @@
-Prüfe jede Kennzahl einzeln. Fünf neue Werte am **oberen Rand der Daten** verschieben den Mittelwert, aber nicht unbedingt den Median.
+# Die Zahlen für alle Aussagen
 
-- **Mittelwert**: Vorher <InlineMath math="\frac{1{.}515}{30}=50{,}5" />, nachher <InlineMath math="\frac{1{.}515+300}{35}=\frac{1{.}815}{35}\approx51{,}86" />. Er steigt, die Aussage über den gestiegenen Mittelwert ist also richtig.
-- **Mittelwert über 52**: <InlineMath math="51{,}86<52" />, diese Aussage ist falsch.
-- **Median**: Bei <InlineMath math="35" /> Werten ist der Median der <InlineMath math="18" />. Wert. Bis <InlineMath math="45" /> gibt es <InlineMath math="10" /> Werte, bis <InlineMath math="50" /> sind es <InlineMath math="19" />. Der <InlineMath math="18" />. Wert ist also <InlineMath math="50" />, die Aussage ist richtig.
-- **Modalwert**: Jetzt kommen <InlineMath math="50" /> und <InlineMath math="60" /> je <InlineMath math="9" />-mal vor. Die Daten haben zwei Modalwerte, die Aussage über einen einzigen Modalwert <InlineMath math="60" /> ist falsch.
-- **Spannweite**: Kleinster und größter Wert bleiben <InlineMath math="40" /> und <InlineMath math="60" />, die Spannweite bleibt <InlineMath math="20" />. Die Aussage ist richtig.
+Alle vier Aussagen verwenden dieselben zwei Zutaten: die geschätzte Gesamtdauer der Anrufe und den geschätzten Modus. Berechne beide einmal und verwende sie dann mehrfach. **Die geschätzte Gesamtdauer ist die Summe aus Häufigkeit mal Klassenmitte**, und der geschätzte Mittelwert ist diese Summe geteilt durch <InlineMath math="80" />.
 
-Die Summe <InlineMath math="1{.}515" /> stammt aus <InlineMath math="40\cdot2+45\cdot8+50\cdot9+55\cdot7+60\cdot4=80+360+450+385+240" />.
+<BlockMath math="\begin{aligned}
+\sum f\cdot x&=6\cdot2{,}5+22\cdot7{,}5+14\cdot12{,}5+18\cdot17{,}5+12\cdot22{,}5+8\cdot27{,}5 \\
+&=15+165+175+315+270+220=1{.}160 \\
+\bar x&=\frac{1{.}160}{80}=14{,}5\text{ Minuten}
+\end{aligned}" />
 
-Richtig sind also die Aussagen über den gestiegenen Mittelwert, den Median <InlineMath math="50" /> und die unveränderte Spannweite.
+Die Modalklasse ist <InlineMath math="5\le t<10" />, denn ihre Häufigkeit <InlineMath math="22" /> ist die größte. Die Klasse davor hat die Häufigkeit <InlineMath math="6" />, die Klasse danach <InlineMath math="14" />.
+
+<BlockMath math="\begin{aligned}
+d_1&=22-6=16,\qquad d_2=22-14=8 \\
+Mo&=5+\frac{16}{16+8}\cdot5=5+\frac{10}{3}=8\tfrac13\text{ Minuten}
+\end{aligned}" />
+
+# Jede Aussage prüfen
+
+**Erste Aussage.** Es gibt <InlineMath math="12+8=20" /> Anrufe von mindestens <InlineMath math="20" /> Minuten, genau ein Viertel von <InlineMath math="80" />. Ihre geschätzte Gesamtdauer ist <InlineMath math="270+220=490" /> Minuten. Die <InlineMath math="40\%" />-Marke liegt bei <InlineMath math="0{,}4\cdot1{.}160=464" /> Minuten, und <InlineMath math="490>464" />. Ihr Anteil an der Zeit beträgt etwa <InlineMath math="42\%" />, deutlich mehr als ihr Anteil an den Anrufen. Lange Anrufe sind selten, aber jeder dauert lange. Die Aussage ist **Richtig**.
+
+**Zweite Aussage.** Die neue Tabelle hat die Häufigkeiten <InlineMath math="6+22=28" />, <InlineMath math="14+18=32" /> und <InlineMath math="12+8=20" /> mit den Klassenmitten <InlineMath math="5" />, <InlineMath math="15" /> und <InlineMath math="25" />.
+
+<BlockMath math="\bar x_{\text{neu}}=\frac{28\cdot5+32\cdot15+20\cdot25}{80}=\frac{140+480+500}{80}=\frac{1{.}120}{80}=14" />
+
+Die Schätzung sinkt von <InlineMath math="14{,}5" /> auf <InlineMath math="14" />. Der Grund: Jeder Anruf in der unteren Hälfte einer zusammengelegten Klasse zählt jetzt <InlineMath math="2{,}5" /> Minuten mehr, jeder Anruf in der oberen Hälfte <InlineMath math="2{,}5" /> Minuten weniger. In den unteren Hälften liegen <InlineMath math="6+14+12=32" /> Anrufe, in den oberen <InlineMath math="22+18+8=48" />, die Änderung ist also <InlineMath math="2{,}5\cdot\frac{32-48}{80}=-0{,}5" />. Die Daten sind dieselben, aber die Schätzung hängt von der Klasseneinteilung ab. Die Aussage ist **Falsch**.
+
+**Dritte Aussage.** Die Differenz ist <InlineMath math="14{,}5-8\tfrac13=6\tfrac16" /> Minuten, etwas mehr als <InlineMath math="6" />. Der Modus ist also kleiner, und der Abstand beträgt mehr als <InlineMath math="6" /> Minuten. Die Aussage ist **Richtig**.
+
+**Vierte Aussage.** Nach dem Verschieben von <InlineMath math="7" /> Anrufen lauten die Häufigkeiten <InlineMath math="6, 22, 21, 11, 12, 8" />. Die Klasse <InlineMath math="10\le t<15" /> steigt auf <InlineMath math="21" />, bleibt aber unter <InlineMath math="22" />, also bleibt <InlineMath math="5\le t<10" /> die Modalklasse. Nur <InlineMath math="d_2" /> ändert sich.
+
+<BlockMath math="\begin{aligned}
+d_1&=22-6=16,\qquad d_2=22-21=1 \\
+Mo&=5+\frac{16}{17}\cdot5=9\tfrac{12}{17}\approx9{,}71\text{ Minuten}
+\end{aligned}" />
+
+Der Modus steigt, bleibt aber unter <InlineMath math="10" /> Minuten. Die Modalklasse wechselt erst, wenn die Klasse <InlineMath math="10\le t<15" /> mehr als <InlineMath math="22" /> Anrufe hat. Die Aussage ist **Falsch**.
+
+Die Reihenfolge ist also Richtig, Falsch, Richtig, Falsch.

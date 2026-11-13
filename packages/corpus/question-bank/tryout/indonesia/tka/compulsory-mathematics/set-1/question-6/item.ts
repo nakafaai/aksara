@@ -12,23 +12,24 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$5$$",
+          label:
+            "Daerah asal $$f\\circ g$$ adalah himpunan semua bilangan real $$x\\ge0$$.",
         },
         {
           correct: false,
-          label: "$$1$$",
+          label: "Nilai minimum $$g\\circ f$$ adalah $$-4$$.",
         },
         {
           correct: false,
-          label: "$$0$$",
+          label: "Grafik $$y=(f\\circ g)(x)$$ memotong sumbu $$y$$.",
+        },
+        {
+          correct: false,
+          label: "Nilai minimum $$f\\circ g$$ dicapai pada $$x=3$$.",
         },
         {
           correct: true,
-          label: "$$-5$$",
-        },
-        {
-          correct: false,
-          label: "$$-6$$",
+          label: "Nilai minimum $$f\\circ g$$ adalah $$-4$$.",
         },
       ],
     },

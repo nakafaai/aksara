@@ -1,0 +1,17 @@
+# Rumus bayaran letak kereta
+
+Setiap pernyataan mesti diuji untuk semua tempoh meletak kereta, jadi tulis dahulu rumus <InlineMath math="f" />. Perkataan pentingnya ialah **dimulakan**: jam yang hanya digunakan sebahagian tetap dikira penuh, jadi bilangan jam tambahan ialah <InlineMath math="t-1" /> dibundarkan ke atas.
+
+<BlockMath math="f(t)=\begin{cases}5{,}000, & 0<t\le1\\[2pt] \min\left(5{,}000+3{,}000\cdot\lceil t-1\rceil,\ 20{,}000\right), & 1<t\le24\end{cases}" />
+
+Had <InlineMath math="20{,}000" /> dicapai apabila <InlineMath math="5{,}000+3{,}000k\ge20{,}000" />, iaitu <InlineMath math="k\ge5" /> jam tambahan. Ini berlaku untuk setiap <InlineMath math="t>5" />.
+
+# Menilai setiap pernyataan
+
+1. **Betul**. <InlineMath math="\lceil2.5-1\rceil=2" /> dan <InlineMath math="\lceil3-1\rceil=2" />, jadi kedua-duanya <InlineMath math="5{,}000+6{,}000=11{,}000" />.
+2. **Salah**. Graf <InlineMath math="f" /> berbentuk tangga. Contohnya <InlineMath math="f(1.2)=f(1.5)=8{,}000" />, jadi bayarannya tidak sentiasa naik.
+3. **Salah**. Sebelum had, bayarannya <InlineMath math="5{,}000+3{,}000k" />, iaitu <InlineMath math="8{,}000, 11{,}000, 14{,}000, 17{,}000" />, kemudian terus menjadi <InlineMath math="20{,}000" />. Nilai <InlineMath math="18{,}000" /> tidak pernah muncul.
+4. **Betul**. Untuk <InlineMath math="t\ge6" />, <InlineMath math="t>5" />, jadi bayarannya sudah mencapai had <InlineMath math="20{,}000" />.
+5. **Salah**. Untuk <InlineMath math="t=1" />, <InlineMath math="f(2)=8{,}000" />, sedangkan <InlineMath math="2f(1)=10{,}000" />. Satu contoh penyangkal sudah cukup.
+
+Jadi, pernyataan yang betul ialah pernyataan pertama dan keempat.

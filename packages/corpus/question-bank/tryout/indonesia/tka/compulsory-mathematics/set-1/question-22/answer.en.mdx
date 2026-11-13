@@ -1,18 +1,40 @@
-The interquartile range is **upper quartile minus lower quartile**. With <InlineMath math="30" /> ordered values, the median splits the data into two halves of <InlineMath math="15" /> values each. The lower quartile is the median of the lower half, the <InlineMath math="8" />th value, and the upper quartile is the <InlineMath math="23" />rd value.
+# The group in the denominator
 
-Read the positions from the cumulative frequencies: up to <InlineMath math="40" /> there are <InlineMath math="2" /> values, up to <InlineMath math="45" /> there are <InlineMath math="10" />, up to <InlineMath math="50" /> there are <InlineMath math="19" />, and up to <InlineMath math="55" /> there are <InlineMath math="26" />.
+The question asks for a fraction, so you need a numerator and a denominator. The words "di antara panggilan yang bukan panggilan singkat" (among the calls that are not short) set the denominator: **you count only calls of at least <InlineMath math="7.5" /> minutes**, not all <InlineMath math="80" /> calls.
+
+The <InlineMath math="7.5" />-minute cut falls in the middle of class <InlineMath math="5\le t<10" />. Since calls in that class are spread evenly, half of its <InlineMath math="22" /> calls last at least <InlineMath math="7.5" /> minutes. The later classes count in full.
 
 <BlockMath math="\begin{aligned}
-Q_1&=x_{(8)}=45 \\
-Q_3&=x_{(23)}=55 \\
-Q_3-Q_1&=55-45=10
+\text{not short}&=\tfrac12\cdot22+14+18+12+8 \\
+&=11+52=63
 \end{aligned}" />
 
-As a check, with the positions <InlineMath math="\frac{31}{4}=7.75" /> and <InlineMath math="\frac{93}{4}=23.25" /> the two neighbouring values lie in the same row each time, so the quartiles stay <InlineMath math="45" /> and <InlineMath math="55" />.
+# The calls in the numerator
 
-So the interquartile range is <InlineMath math="10" /> cups.
+From those <InlineMath math="63" /> calls, take the ones shorter than <InlineMath math="22.5" /> minutes. The <InlineMath math="22.5" />-minute cut falls in the middle of class <InlineMath math="20\le t<25" />, so **only half of that class counts**.
 
-- <InlineMath math="5" /> is only the distance from the median <InlineMath math="50" /> to one of the quartiles.
-- <InlineMath math="15" /> computes <InlineMath math="Q_3" /> minus the smallest value <InlineMath math="40" />.
-- <InlineMath math="20" /> is the range <InlineMath math="60-40" />, not the interquartile range.
-- <InlineMath math="8" /> is the number of days with <InlineMath math="45" /> cups, a frequency rather than a distance between two values.
+| Class | Number of calls | Part in the numerator |
+| :---: | :---: | :---: |
+| <InlineMath math="7.5\le t<10" /> | <InlineMath math="11" /> | <InlineMath math="11" /> |
+| <InlineMath math="10\le t<15" /> | <InlineMath math="14" /> | <InlineMath math="14" /> |
+| <InlineMath math="15\le t<20" /> | <InlineMath math="18" /> | <InlineMath math="18" /> |
+| <InlineMath math="20\le t<25" /> | <InlineMath math="12" /> | <InlineMath math="6" /> |
+| <InlineMath math="25\le t<30" /> | <InlineMath math="8" /> | <InlineMath math="0" /> |
+
+<BlockMath math="\begin{aligned}
+\text{numerator}&=11+14+18+6=49 \\
+\text{fraction}&=\frac{49}{63}=\frac{7}{9}
+\end{aligned}" />
+
+Check it from the other side. The calls that aren't short but last at least <InlineMath math="22.5" /> minutes number <InlineMath math="6+8=14" />, and <InlineMath math="49+14=63" />. So the complement is <InlineMath math="\frac{14}{63}=\frac29" />, and <InlineMath math="\frac79+\frac29=1" />.
+
+# Why the other options are wrong
+
+Each wrong option comes from the wrong denominator or from cutting a class the wrong way. **Both cuts that fall inside a class** have to be split in half.
+
+- <InlineMath math="\frac{43}{63}" /> leaves out the <InlineMath math="6" /> calls with <InlineMath math="20\le t<22.5" />. The numerator stops at <InlineMath math="20" /> minutes.
+- <InlineMath math="\frac{8}{13}" /> uses whole classes only: <InlineMath math="10\le t<20" /> out of <InlineMath math="10\le t<30" />, which is <InlineMath math="\frac{32}{52}" />. Both cuts inside a class are ignored.
+- <InlineMath math="\frac{49}{80}" /> divides by all <InlineMath math="80" /> calls. The question only asks among the calls that aren't short.
+- <InlineMath math="\frac{2}{9}" /> is the share lasting at least <InlineMath math="22.5" /> minutes, the complement.
+
+So the estimated fraction is <InlineMath math="\frac{7}{9}" />.

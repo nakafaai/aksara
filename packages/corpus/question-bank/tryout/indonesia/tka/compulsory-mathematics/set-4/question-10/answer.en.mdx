@@ -1,15 +1,38 @@
-The interior angles of an <InlineMath math="n" />-gon add up to <InlineMath math="(n-2)\cdot180^\circ" />. In a regular polygon **that sum is shared equally by the <InlineMath math="n" /> angles**.
+# The cone's size from the sector
+
+The question asks for the water height in the cylinder. For that you need the cone's volume, and the volume needs the cone's base radius and height. What gets rolled up is **the card that's left**, not the sector that was thrown away.
+
+The card that's left has an angle of <InlineMath math="360^\circ-144^\circ=216^\circ" />. When it's rolled up, the card's radius <InlineMath math="15\text{ cm}" /> becomes the cone's slant height, the distance from the tip to the edge of the base. The card's arc becomes the circumference of the base.
 
 <BlockMath math="\begin{aligned}
-(12-2)\cdot180^\circ&=1{,}800^\circ \\
-\frac{1{,}800^\circ}{12}&=150^\circ
+2\pi r&=\frac{216^\circ}{360^\circ}\cdot2\pi\cdot15 \\
+r&=\frac{216}{360}\cdot15=9\text{ cm}
 \end{aligned}" />
 
-As a check with the exterior angle, each exterior angle is <InlineMath math="\frac{360^\circ}{12}=30^\circ" />, and <InlineMath math="180^\circ-30^\circ=150^\circ" />.
+The height, the slant height and the base radius form a right triangle. **The slant height is the hypotenuse**, so the height isn't <InlineMath math="15" />.
 
-So each interior angle is <InlineMath math="150^\circ" />.
+<BlockMath math="t=\sqrt{15^2-9^2}=\sqrt{225-81}=\sqrt{144}=12\text{ cm}" />
 
-- <InlineMath math="30^\circ" /> is the exterior angle, not the interior one.
-- <InlineMath math="135^\circ" /> uses the <InlineMath math="(n-3)" /> from the formula for diagonals, <InlineMath math="\frac{9\cdot180^\circ}{12}" />.
-- <InlineMath math="165^\circ" /> uses the exterior angle <InlineMath math="\frac{360^\circ}{24}" />, as if there were <InlineMath math="24" /> sides.
-- <InlineMath math="1{,}800^\circ" /> is the sum of all interior angles, not yet divided by <InlineMath math="12" />.
+# From the cone to the cylinder
+
+The volume of water equals the volume of the cone.
+
+<BlockMath math="V=\frac13\pi r^2t=\frac13\pi\cdot9^2\cdot12=324\pi\text{ cm}^3" />
+
+A cylinder with diameter <InlineMath math="12\text{ cm}" /> has **radius <InlineMath math="6\text{ cm}" />**. If the water in it is <InlineMath math="h" /> high, the water's volume is also <InlineMath math="\pi\cdot6^2\cdot h" />.
+
+<BlockMath math="\begin{aligned}
+36\pi h&=324\pi \\
+h&=9\text{ cm}
+\end{aligned}" />
+
+# The tempting options
+
+Each of the other options comes from **one measurement that got swapped**.
+
+- <InlineMath math="2.25\text{ cm}" /> comes from using the diameter <InlineMath math="12" /> as the cylinder's radius, <InlineMath math="\frac{324\pi}{144\pi}" />.
+- <InlineMath math="4\text{ cm}" /> is a third of the cone's height. The rule "a cone holds a third of a cylinder" only works when the base and height are the same, but the cylinder's radius is <InlineMath math="6" />, not <InlineMath math="9" />.
+- <InlineMath math="\sqrt{21}\text{ cm}" /> comes from rolling the <InlineMath math="144^\circ" /> sector that was thrown away. That cone has radius <InlineMath math="6" /> and height <InlineMath math="\sqrt{189}=3\sqrt{21}" />, volume <InlineMath math="36\sqrt{21}\,\pi" />, and dividing by <InlineMath math="36\pi" /> gives <InlineMath math="\sqrt{21}" />.
+- <InlineMath math="11.25\text{ cm}" /> comes from using the card's radius <InlineMath math="15" /> as the cone's height, which gives a volume of <InlineMath math="405\pi" />.
+
+So the water in the cylinder is <InlineMath math="9\text{ cm}" /> high.

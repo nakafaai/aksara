@@ -1,0 +1,78 @@
+Apabila kertas dilipat di sepanjang <InlineMath math="AC" />, titik <InlineMath math="B" /> dan <InlineMath math="D" /> berpusing mengelilingi garis <InlineMath math="AC" />, jadi jarak antara kedua-duanya berubah. Kuncinya ialah **titik persilangan pepenjuru <InlineMath math="O" />**: kamu perlu jarak <InlineMath math="B" /> dan <InlineMath math="D" /> ke <InlineMath math="O" />, kemudian sudut di antara kedua-duanya selepas dilipat.
+
+# Separuh pepenjuru dengan nisbah trigonometri
+
+Pepenjuru rombus saling berserenjang, saling membahagi dua sama panjang, dan membahagi dua sudut rombus. Jadi segi tiga <InlineMath math="AOB" /> bersudut tegak di <InlineMath math="O" />, dengan <InlineMath math="\angle OAB=\tfrac12\cdot60^\circ=30^\circ" /> dan hipotenus <InlineMath math="AB=8" />. Sisi <InlineMath math="OB" /> bertentangan dengan sudut <InlineMath math="30^\circ" />, jadi yang digunakan ialah **sinus**:
+
+<BlockMath math="\begin{aligned}
+OB&=AB\sin30^\circ=8\cdot\tfrac12=4\text{ cm} \\
+OA&=AB\cos30^\circ=8\cdot\tfrac{\sqrt3}{2}=4\sqrt3\text{ cm}
+\end{aligned}" />
+
+Dengan cara yang sama, <InlineMath math="OD=4\text{ cm}" />. Sebelum dilipat, pepenjuru pendek <InlineMath math="BD" /> panjangnya <InlineMath math="8\text{ cm}" /> dan pepenjuru panjang <InlineMath math="AC" /> panjangnya <InlineMath math="8\sqrt3\text{ cm}" />.
+
+<MathVisual
+  title={<>Rombus sebelum dilipat</>}
+  description={<>Rombus <InlineMath math="ABCD" /> dengan sisi <InlineMath math="8" /> dan <InlineMath math="\angle BAD=60^\circ" />. Pepenjuru <InlineMath math="AC" /> mengufuk dan pepenjuru <InlineMath math="BD" /> menegak, bersilang secara berserenjang di <InlineMath math="O" />. Panjang <InlineMath math="OA=4\sqrt3" /> dan <InlineMath math="OB=OD=4" />.</>}
+  labels={{
+    "label-a": <InlineMath math="A" />,
+    "label-b": <InlineMath math="B" />,
+    "label-c": <InlineMath math="C" />,
+    "label-d": <InlineMath math="D" />,
+    "label-o": <InlineMath math="O" />,
+    "label-ob": <InlineMath math="4" />,
+    "label-oa": <InlineMath math="4\sqrt3" />,
+    "label-angle": <InlineMath math="30^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 8 },
+      y: { min: -6, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rhombus", kind: "polygon", appearance: "primary", vertices: [{ x: -4 * Math.sqrt(3), y: 0 }, { x: 0, y: 4 }, { x: 4 * Math.sqrt(3), y: 0 }, { x: 0, y: -4 }] },
+      { id: "diagonal-ac", kind: "segment", appearance: "construction", from: { x: -4 * Math.sqrt(3), y: 0 }, to: { x: 4 * Math.sqrt(3), y: 0 } },
+      { id: "half-ob", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "half-od", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: -4 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: -4 * Math.sqrt(3), y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 0, y: 4 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 4 * Math.sqrt(3), y: 0 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: -4 } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "label-a", objectId: "point-a", at: { x: -4 * Math.sqrt(3), y: 0 }, placement: "left" },
+      { key: "label-b", objectId: "point-b", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "label-c", objectId: "point-c", at: { x: 4 * Math.sqrt(3), y: 0 }, placement: "right" },
+      { key: "label-d", objectId: "point-d", at: { x: 0, y: -4 }, placement: "below" },
+      { key: "label-o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "label-ob", objectId: "half-ob", at: { x: 0, y: 2 }, placement: "right" },
+      { key: "label-oa", objectId: "diagonal-ac", at: { x: -2 * Math.sqrt(3), y: 0 }, placement: "below" },
+      { key: "label-angle", objectId: "point-a", at: { x: -4 * Math.sqrt(3), y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+# Sudut antara dua satah selepas dilipat
+
+Selepas dilipat, <InlineMath math="OB" /> masih terletak pada satah <InlineMath math="ABC" /> dan masih berserenjang dengan <InlineMath math="AC" />. Begitu juga <InlineMath math="OD" /> pada satah <InlineMath math="ADC" />. Dua ruas yang sama-sama berserenjang dengan garis lipatan pada titik yang sama **membentuk sudut antara dua satah itu**. Kedua-dua satah berserenjang, jadi <InlineMath math="\angle BOD=90^\circ" />.
+
+# Jarak B ke D
+
+Segi tiga <InlineMath math="BOD" /> kini bersudut tegak di <InlineMath math="O" /> dengan sisi <InlineMath math="OB=OD=4" />:
+
+<BlockMath math="BD=\sqrt{OB^2+OD^2}=\sqrt{16+16}=\sqrt{32}=4\sqrt2\text{ cm}" />
+
+Semak kemunasabahannya: <InlineMath math="4\sqrt2\approx5.66" />, lebih pendek daripada <InlineMath math="8" /> sebelum dilipat. Hasil ini munasabah kerana **lipatan mendekatkan <InlineMath math="B" /> dan <InlineMath math="D" />**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="8\text{ cm}" /> ialah panjang <InlineMath math="BD" /> sebelum dilipat. Lipatan **mengubah jarak antara titik yang berada pada dua belah garis lipatan**.
+- <InlineMath math="4\sqrt5\text{ cm}" /> muncul jika <InlineMath math="B" /> dianggap naik tegak setinggi <InlineMath math="4" /> dari kedudukan asalnya, jadi <InlineMath math="BD=\sqrt{8^2+4^2}" />. Sebenarnya <InlineMath math="B" /> berpusing mengelilingi <InlineMath math="AC" /> dan berakhir tepat di atas <InlineMath math="O" />.
+- <InlineMath math="4\sqrt6\text{ cm}" /> tertukar antara sinus dan kosinus, jadi <InlineMath math="OB" /> dikira sebagai <InlineMath math="8\cos30^\circ=4\sqrt3" />. Itu panjang <InlineMath math="OA" />, bukan <InlineMath math="OB" />.
+- <InlineMath math="8\sqrt2\text{ cm}" /> meletakkan sudut tegak di <InlineMath math="A" />, dengan sisi <InlineMath math="AB=AD=8" />. Sudut <InlineMath math="90^\circ" /> antara dua satah itu berada di <InlineMath math="O" />, bukan di <InlineMath math="A" />.
+
+Jadi, jarak titik <InlineMath math="B" /> ke titik <InlineMath math="D" /> selepas dilipat ialah <InlineMath math="4\sqrt2\text{ cm}" />.

@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  stimulus: "internet-packages",
+  stimulus: "panel",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$\\text{Rp}93{.}500$$",
+          label: "$$\\text{Rp}600$$",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}187{.}000$$",
+          label: "$$\\text{Rp}900$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}1{.}000$$",
         },
         {
           correct: true,
-          label: "$$\\text{Rp}203{.}500$$",
+          label: "$$\\text{Rp}1{.}050$$",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}205{.}000$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}220{.}000$$",
+          label: "$$\\text{Rp}1{.}200$$",
         },
       ],
     },

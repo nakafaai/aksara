@@ -1,17 +1,44 @@
-A can standing upright **takes a square cell as wide as its diameter**, <InlineMath math="7\text{ cm}" />, on the floor of the box. Count the cans along each edge, then the layers.
+The tiles go on **row by row**, and a tile that has to be cut still counts as a whole tile. So you can't just divide the roof area by the area of one tile. Count the rows and the tiles in each row first, then add the ridge tiles.
+
+# The size of one roof plane
+
+The sloping length from the wall top to the ridge is the hypotenuse of a right triangle with legs <InlineMath math="4\text{ m}" /> (half the house's width) and <InlineMath math="3\text{ m}" />. The <InlineMath math="80\text{ cm}" /> horizontal overhang has the same slope, so **its sloping length is scaled by the ratio <InlineMath math="5:4" />**.
 
 <BlockMath math="\begin{aligned}
-\frac{42}{7}&=6,\quad\frac{28}{7}=4,\quad\frac{20}{10}=2 \\
-6\cdot4\cdot2&=48
+\sqrt{4^2+3^2}&=5\text{ m} \\
+0.8\cdot\tfrac54&=1\text{ m} \\
+\text{sloping length}&=5+1=6\text{ m}=600\text{ cm} \\
+\text{length along the ridge}&=11+0.5+0.5=12\text{ m}=1{,}200\text{ cm}
 \end{aligned}" />
 
-Dividing the box's volume by a can's volume does not work, because round cans leave empty space between them.
+# The ordinary tiles
 
-As a check, one layer holds <InlineMath math="6\cdot4=24" /> cans, and the box's height of <InlineMath math="20\text{ cm}" /> fits exactly two layers.
+Each row covers <InlineMath math="35\text{ cm}" /> up the slope, and each tile in a row covers <InlineMath math="24\text{ cm}" /> along the ridge. A last row that's only partly filled still needs a full row of tiles, so the quotient is **rounded up**.
 
-So at most <InlineMath math="48" /> cans fit.
+<BlockMath math="\begin{aligned}
+\text{rows}&=\frac{600}{35}=17\tfrac17\;\Rightarrow\;18 \\
+\text{tiles per row}&=\frac{1{,}200}{24}=50 \\
+\text{tiles on both planes}&=2\cdot18\cdot50=1{,}800
+\end{aligned}" />
 
-- <InlineMath math="192" /> cans uses the radius <InlineMath math="3.5\text{ cm}" /> as the width of a can along both floor edges, <InlineMath math="12\cdot8\cdot2" />.
-- <InlineMath math="96" /> cans uses the radius as the width along one edge only, <InlineMath math="12\cdot4\cdot2" />.
-- <InlineMath math="61" /> cans divides the box's volume <InlineMath math="23{,}520\text{ cm}^3" /> by the can's <InlineMath math="385\text{ cm}^3" />, as if there were no empty space.
-- <InlineMath math="24" /> cans counts only one layer.
+Row <InlineMath math="18" /> only uses <InlineMath math="600-17\cdot35=5\text{ cm}" /> of the slope, but every tile in that row still counts as one tile.
+
+# The ridge tiles and the total
+
+The ridge tiles cover the whole ridge, including the parts that stick out:
+
+<BlockMath math="\begin{aligned}
+\text{ridge tiles}&=\frac{1{,}200}{30}=40 \\
+\text{all tiles}&=1{,}800+40=1{,}840
+\end{aligned}" />
+
+If you divide the roof area <InlineMath math="144\text{ m}^2" /> by the area one tile covers, <InlineMath math="0.35\cdot0.24=0.084\text{ m}^2" />, you only get about <InlineMath math="1{,}714.3" />. That shortcut quietly reuses the offcuts from the top row, but the reading says **offcuts aren't used again**.
+
+# Why the other options are wrong
+
+- <InlineMath math="1{,}540" /> uses a sloping length of <InlineMath math="5\text{ m}" /> without the overhang, which gives only <InlineMath math="\lceil 500/35\rceil=15" /> rows.
+- <InlineMath math="1{,}740" /> rounds <InlineMath math="17\tfrac17" /> **down** to <InlineMath math="17" /> rows, which leaves the top <InlineMath math="5\text{ cm}" /> uncovered.
+- <InlineMath math="1{,}755" /> divides the roof area by the area of one tile, <InlineMath math="1{,}714.3\Rightarrow1{,}715" />, and then adds <InlineMath math="40" />. That ignores the cut tiles that still count as whole ones.
+- <InlineMath math="1{,}800" /> forgets the <InlineMath math="40" /> ridge tiles.
+
+So the roof needs <InlineMath math="1{,}840" /> tiles in total.

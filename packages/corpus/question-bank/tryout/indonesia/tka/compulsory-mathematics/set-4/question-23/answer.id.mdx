@@ -1,13 +1,36 @@
-Setiap pernyataan **membatasi data pada kelompok tertentu**, jadi baca baris atau kolom yang tepat sebelum menghitung.
+# Bekal dari bacaan
 
-<BlockMath math="\begin{aligned}
-\frac{24}{80}&=0{,}3 \\
-20+6&=26<28 \\
-12:9:9&=4:3:3 \\
-\frac{60-28}{60}&=\frac{32}{60}\approx53{,}3\,\%
-\end{aligned}" />
+Data sepuluh hari diurutkan: <InlineMath math="31,32,33,38,40,41,45,46,46,48" />. Rata-ratanya <InlineMath math="40" /> dan simpangan bakunya <InlineMath math="6" />, jadi **jumlah kuadrat selisih dari <InlineMath math="40" /> adalah <InlineMath math="10\cdot36=360" />**.
 
-- Di antara <InlineMath math="80" /> pengguna angkutan umum, <InlineMath math="24" /> dari kelas XI, jadi peluangnya <InlineMath math="0{,}3" />. Pernyataan ini benar.
-- Pesepeda kelas X menjadi <InlineMath math="26" />, masih kurang dari <InlineMath math="28" /> pengguna angkutan umum. Pernyataan ini salah.
-- <InlineMath math="12:9:9" /> disederhanakan dengan membagi <InlineMath math="3" /> menjadi <InlineMath math="4:3:3" />. Pernyataan ini benar.
-- Siswa kelas XII yang tidak naik angkutan umum sekitar <InlineMath math="53{,}3\,\%" />, tidak lebih dari <InlineMath math="55\,\%" />. Pernyataan ini salah.
+Untuk menghitung ragam yang baru dengan cepat, pakai sifat ini: ragam sama dengan rata-rata kuadrat selisih dari sembarang titik acuan, dikurangi kuadrat jarak rata-rata ke titik acuan itu. Titik acuan yang paling enak adalah <InlineMath math="40" />.
+
+<BlockMath math="S^2=\frac{\sum(x_i-40)^2}{n}-(\bar x-40)^2" />
+
+# Pernyataan pertama
+
+Dengan <InlineMath math="11" /> data, median adalah data ke-<InlineMath math="6" /> setelah diurutkan. Nilai <InlineMath math="v" /> bisa jatuh di mana saja.
+
+| Nilai <InlineMath math="v" /> | Data ke-6 |
+| :---: | :---: |
+| <InlineMath math="v\le40" /> | <InlineMath math="40" /> |
+| <InlineMath math="v\ge41" /> | <InlineMath math="41" /> |
+
+Di setiap kasus mediannya **selalu <InlineMath math="40" /> atau <InlineMath math="41" />**. Pernyataan ini **Benar**.
+
+# Pernyataan kedua
+
+Untuk <InlineMath math="v=46" />, selisihnya dari <InlineMath math="40" /> adalah <InlineMath math="6" />, dan rata-rata baru <InlineMath math="\tfrac{446}{11}" /> berjarak <InlineMath math="\tfrac{6}{11}" /> dari <InlineMath math="40" />.
+
+<BlockMath math="S^2=\frac{360+36}{11}-\left(\tfrac{6}{11}\right)^2=36-\tfrac{36}{121}<36" />
+
+Ragamnya sedikit **kurang dari** <InlineMath math="36" />, jadi simpangan bakunya kurang dari <InlineMath math="6" />. Pernyataan ini **Salah**.
+
+# Pernyataan ketiga
+
+Rata-rata <InlineMath math="41" /> berarti total <InlineMath math="11\cdot41=451" />, jadi <InlineMath math="v=451-400=51" />. Selisih <InlineMath math="v" /> dari <InlineMath math="40" /> adalah <InlineMath math="11" />.
+
+<BlockMath math="S^2=\frac{360+121}{11}-(41-40)^2=\frac{481}{11}-1=\frac{470}{11}\approx42{,}7>36" />
+
+Simpangan bakunya **lebih dari** <InlineMath math="6" />. Pernyataan ini **Benar**.
+
+Jadi, urutannya Benar, Salah, Benar.

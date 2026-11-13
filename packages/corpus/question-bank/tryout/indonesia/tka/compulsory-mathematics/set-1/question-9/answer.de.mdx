@@ -1,11 +1,52 @@
-Viele Eigenschaften einer gebrochen-linearen Funktion liest du aus der **Zerlegung in eine Zahl und einen einfachen Bruch** ab.
+# Wann eine Potenz gleich eins ist
 
-<BlockMath math="f(x)=\frac{2x+1}{x-1}=\frac{2(x-1)+3}{x-1}=2+\frac{3}{x-1}" />
+Gefragt ist die Summe aller Lösungen, also musst du **jede** Lösung <InlineMath math="x" /> finden, ohne eine zu vergessen und ohne eine zu viel. Nenn die Basis <InlineMath math="B=x^2-7x+11" /> und den Exponenten <InlineMath math="E=x-1" />.
 
-- **Definitionsbereich**: Nur <InlineMath math="x=1" /> macht den Nenner null. Die Aussage ist richtig.
-- **Wertebereich**: Der Bruch <InlineMath math="\frac{3}{x-1}" /> nimmt jeden Wert außer <InlineMath math="0" /> an, also nimmt <InlineMath math="f" /> jeden Wert außer <InlineMath math="2" /> an. Löst du <InlineMath math="y=\frac{2x+1}{x-1}" /> nach <InlineMath math="x" /> auf, erhältst du <InlineMath math="x=\frac{y+1}{y-2}" />, und das ist für jedes <InlineMath math="y\neq2" /> erklärt. Die Aussage ist richtig.
-- **Nullstelle**: <InlineMath math="2x+1=0" /> ergibt <InlineMath math="x=-\frac12" />, nicht <InlineMath math="\frac12" />. Die Aussage ist falsch.
-- **Schnitt mit der <InlineMath math="y" />-Achse**: <InlineMath math="f(0)=\frac{1}{-1}=-1" />. Die Aussage ist richtig.
-- **Monotonie**: Für <InlineMath math="x>1" /> wird <InlineMath math="x-1" /> größer, also <InlineMath math="\frac{3}{x-1}" /> kleiner. Zum Beispiel ist <InlineMath math="f(2)=5" /> und <InlineMath math="f(4)=3" />. Die Funktion fällt dort, die Aussage ist falsch.
+Eine Potenz <InlineMath math="B^E" /> ist nur auf drei Arten gleich <InlineMath math="1" />:
 
-Richtig sind also die Aussagen über den Definitionsbereich, den Wertebereich und den Schnittpunkt <InlineMath math="(0,-1)" />.
+| Fall | Bedingung | Beispiel |
+| :---: | :---: | :---: |
+| Basis eins | <InlineMath math="B=1" />, beliebiger Exponent | <InlineMath math="1^4=1" /> |
+| Exponent null | <InlineMath math="E=0" /> und <InlineMath math="B\ne0" /> | <InlineMath math="5^0=1" /> |
+| Basis minus eins | <InlineMath math="B=-1" /> und <InlineMath math="E" /> gerade | <InlineMath math="(-1)^2=1" /> |
+
+Ist <InlineMath math="B" /> positiv und nicht <InlineMath math="1" />, muss der Exponent <InlineMath math="0" /> sein. Ist <InlineMath math="B" /> negativ, erlaubt die Regel der Aufgabe nur ganzzahlige Exponenten, und eine ganzzahlige Potenz einer negativen Zahl außer <InlineMath math="-1" /> ist nie <InlineMath math="1" />, außer der Exponent ist null. Also **decken die drei Fälle der Tabelle alles ab**.
+
+# Basis eins
+
+<BlockMath math="\begin{aligned}
+x^2-7x+11&=1 \\
+x^2-7x+10&=0 \\
+(x-2)(x-5)&=0
+\end{aligned}" />
+
+Du bekommst <InlineMath math="x=2" /> und <InlineMath math="x=5" />. Die Exponenten sind <InlineMath math="1" /> und <InlineMath math="4" />, und <InlineMath math="1" /> hoch irgendetwas bleibt <InlineMath math="1" />. Beide werden **angenommen**.
+
+# Exponent null
+
+<BlockMath math="x-1=0\iff x=1,\qquad B(1)=1-7+11=5\ne0" />
+
+Das ergibt <InlineMath math="5^0=1" />, also wird <InlineMath math="x=1" /> **angenommen**. Die Probe <InlineMath math="B\ne0" /> brauchst du, weil <InlineMath math="0^0" /> nicht definiert ist.
+
+# Basis minus eins
+
+<BlockMath math="\begin{aligned}
+x^2-7x+11&=-1 \\
+x^2-7x+12&=0 \\
+(x-3)(x-4)&=0
+\end{aligned}" />
+
+Jetzt muss der Exponent gerade sein. Für <InlineMath math="x=3" /> ist er <InlineMath math="2" />, also <InlineMath math="(-1)^2=1" />. Für <InlineMath math="x=4" /> ist er <InlineMath math="3" />, also <InlineMath math="(-1)^3=-1" />. **Der Wert <InlineMath math="x=4" /> wird verworfen**.
+
+Die Lösungen sind <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" /> und <InlineMath math="5" />, also
+
+<BlockMath math="1+2+3+5=11" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="7" /> nutzt nur den Fall Basis eins, <InlineMath math="2+5" />.
+- <InlineMath math="8" /> nutzt Basis eins und Exponent null, **vergisst aber den Fall Basis <InlineMath math="-1" />**.
+- <InlineMath math="10" /> vergisst den Fall Exponent null und rechnet <InlineMath math="2+5+3" />.
+- <InlineMath math="15" /> zählt auch <InlineMath math="x=4" /> mit, obwohl der Exponent dort ungerade ist und das Ergebnis <InlineMath math="-1" /> lautet.
+
+Die Summe aller Lösungen ist also <InlineMath math="11" />.

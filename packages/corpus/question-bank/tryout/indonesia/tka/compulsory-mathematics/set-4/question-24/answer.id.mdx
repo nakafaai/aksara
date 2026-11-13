@@ -1,16 +1,23 @@
-Daftarkan kedua kejadian, lalu periksa apakah ada tanggal yang terhitung dua kali. **Bilangan prima tidak ada yang merupakan kelipatan <InlineMath math="4" />**, jadi kedua kejadian saling lepas dan banyaknya boleh langsung dijumlahkan.
+# Banyak semua bilangan
 
-<BlockMath math="\begin{aligned}
-\text{prima}&:\ 2,3,5,7,11,13,17,19,23\ (9) \\
-\text{kelipatan }4&:\ 4,8,12,16,20,24,28\ (7) \\
-P&=\frac{9+7}{28}=\frac{16}{28}=\frac47
-\end{aligned}" />
+Ruang sampelnya adalah **semua bilangan empat angka berbeda** yang angka pertamanya bukan <InlineMath math="0" />. Isi kotak dari kiri: angka pertama punya <InlineMath math="6" /> pilihan (bukan <InlineMath math="0" />), lalu sisanya <InlineMath math="6" />, <InlineMath math="5" />, dan <InlineMath math="4" /> pilihan.
 
-Sebagai pemeriksaan, satu-satunya bilangan prima genap adalah <InlineMath math="2" />, dan <InlineMath math="2" /> bukan kelipatan <InlineMath math="4" />.
+<BlockMath math="n(S)=6\cdot6\cdot5\cdot4=720" />
 
-Jadi, peluangnya <InlineMath math="\frac47" />.
+# Bilangan genap di atas empat ribu
 
-- <InlineMath math="\frac14" /> hanya menghitung kelipatan <InlineMath math="4" />, <InlineMath math="\frac{7}{28}" />.
-- <InlineMath math="\frac27" /> menghitung bilangan prima sampai <InlineMath math="19" /> saja dan melupakan <InlineMath math="23" />, sehingga mendapat <InlineMath math="\frac{8}{28}" />.
-- <InlineMath math="\frac{9}{28}" /> hanya menghitung bilangan prima.
-- <InlineMath math="\frac{15}{28}" /> tidak menghitung <InlineMath math="2" /> sebagai bilangan prima.
+Dua kotak punya syarat: angka pertama harus <InlineMath math="4" />, <InlineMath math="5" />, atau <InlineMath math="6" />, dan angka terakhir harus genap, yaitu <InlineMath math="0,2,4,6" />. Kedua syarat ini **saling mengganggu**, karena <InlineMath math="4" /> dan <InlineMath math="6" /> genap. Jadi pisahkan kasusnya menurut angka pertama.
+
+| Angka pertama | Pilihan angka terakhir | Dua angka tengah | Banyak bilangan |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="4" /> atau <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="5\cdot4=20" /> | <InlineMath math="2\cdot3\cdot20=120" /> |
+| <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="5\cdot4=20" /> | <InlineMath math="1\cdot4\cdot20=80" /> |
+
+<BlockMath math="P=\frac{120+80}{720}=\frac{200}{720}=\frac{5}{18}" />
+
+Jadi, peluangnya adalah <InlineMath math="\tfrac{5}{18}" />.
+
+- <InlineMath math="\tfrac{1}{4}" /> memberi <InlineMath math="3" /> pilihan angka terakhir di setiap kasus, lupa bahwa angka pertama <InlineMath math="5" /> tidak memakai satu angka genap.
+- <InlineMath math="\tfrac{5}{21}" /> membolehkan angka pertama <InlineMath math="0" /> di ruang sampel, sehingga penyebutnya <InlineMath math="840" />.
+- <InlineMath math="\tfrac{7}{36}" /> tidak menganggap <InlineMath math="0" /> bilangan genap.
+- <InlineMath math="\tfrac{5}{36}" /> menghitung dua angka tengah sebagai kombinasi, padahal urutannya membuat bilangan berbeda.

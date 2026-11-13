@@ -2,9 +2,9 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "geometry-measurement",
-    topic: "measurement",
+    topic: "geometry-transformations",
   },
   versions: {
     id: {
@@ -12,23 +12,28 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$\\text{Rp}1{.}425{.}000$$",
+          label:
+            "Pencerminan terhadap sumbu $$y$$, dilanjutkan translasi oleh $$\\begin{pmatrix}6\\\\0\\end{pmatrix}$$",
+        },
+        {
+          correct: true,
+          label:
+            "Rotasi $$90^\\circ$$ berlawanan arah jarum jam dengan pusat $$O$$, dilanjutkan translasi oleh $$\\begin{pmatrix}6\\\\0\\end{pmatrix}$$",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}1{.}235{.}000$$",
+          label:
+            "Pencerminan terhadap garis $$y=x$$, dilanjutkan translasi oleh $$\\begin{pmatrix}2\\\\-2\\end{pmatrix}$$",
+        },
+        {
+          correct: true,
+          label:
+            "Dilatasi dengan pusat $$O$$ dan faktor skala $$-1$$, dilanjutkan translasi oleh $$\\begin{pmatrix}6\\\\6\\end{pmatrix}$$",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}1{.}330{.}000$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}1{.}520{.}000$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}1{.}615{.}000$$",
+          label:
+            "Rotasi $$90^\\circ$$ berlawanan arah jarum jam dengan pusat $$O$$, dilanjutkan translasi oleh $$\\begin{pmatrix}0\\\\6\\end{pmatrix}$$",
         },
       ],
     },

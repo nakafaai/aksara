@@ -1,0 +1,67 @@
+Setiap satah bumbung berbentuk segi empat tepat. Jadi kamu perlu dua ukurannya: **panjang condong dari tepi bawah hingga ke perabung** dan panjang yang selari dengan perabung. Kedua-dua ukuran mesti merangkumi bahagian yang terjulur melepasi dinding.
+
+# Panjang condong hingga ke dinding
+
+Lihat keratan rentas bumbung. Dari puncak dinding ke titik di bawah perabung jaraknya separuh lebar rumah, <InlineMath math="\tfrac12\cdot8=4\text{ m}" />, dan perabung <InlineMath math="3\text{ m}" /> lebih tinggi. Bahagian bumbung dari puncak dinding ke perabung ialah **hipotenus segi tiga bersudut tegak itu**:
+
+<BlockMath math="s_1=\sqrt{4^2+3^2}=\sqrt{25}=5\text{ m}" />
+
+# Bahagian yang terjulur di tepi bawah
+
+Ukuran <InlineMath math="80\text{ cm}" /> diukur secara **mengufuk**, bukan di sepanjang bumbung. Kecondongannya sama, jadi bahagian yang terjulur membentuk segi tiga kecil yang serupa dengan segi tiga besar tadi. Pada segi tiga besar, setiap <InlineMath math="4\text{ m}" /> mengufuk sepadan dengan <InlineMath math="5\text{ m}" /> di sepanjang bumbung. Nisbah yang sama berlaku pada segi tiga kecil:
+
+<BlockMath math="\begin{aligned}
+s_2&=0.8\cdot\frac{5}{4}=1\text{ m} \\
+\text{panjang condong}&=s_1+s_2=5+1=6\text{ m}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Dua segi tiga serupa pada keratan rentas bumbung</>}
+  description={<>Segi tiga besar mempunyai sisi mengufuk <InlineMath math="4\text{ m}" />, sisi menegak <InlineMath math="3\text{ m}" />, dan sisi condong <InlineMath math="5\text{ m}" />. Di bawah puncak dinding terdapat segi tiga kecil yang serupa, dengan sisi mengufuk <InlineMath math="0.8\text{ m}" /> dan sisi condong <InlineMath math="1\text{ m}" />.</>}
+  labels={{
+    "label-run": <InlineMath math="4\text{ m}" />,
+    "label-rise": <InlineMath math="3\text{ m}" />,
+    "label-rafter": <InlineMath math="5\text{ m}" />,
+    "label-eave": <InlineMath math="1\text{ m}" />,
+    "label-overhang": <InlineMath math="0.8\text{ m}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 6 },
+      y: { min: -2, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rafter", kind: "segment", appearance: "primary", from: { x: 0, y: 3 }, to: { x: 4, y: 0 } },
+      { id: "eave", kind: "segment", appearance: "highlight", from: { x: 4, y: 0 }, to: { x: 4.8, y: -0.6 } },
+      { id: "run", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "rise", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "overhang", kind: "segment", appearance: "construction", from: { x: 4, y: -0.6 }, to: { x: 4.8, y: -0.6 } },
+      { id: "wall", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4, y: -1.5 } },
+    ],
+    labels: [
+      { key: "label-run", objectId: "run", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "label-rise", objectId: "rise", at: { x: 0, y: 1.5 }, placement: "left" },
+      { key: "label-rafter", objectId: "rafter", at: { x: 2, y: 1.5 }, placement: "above-right" },
+      { key: "label-eave", objectId: "eave", at: { x: 4.4, y: -0.3 }, placement: "above-right" },
+      { key: "label-overhang", objectId: "overhang", at: { x: 4.4, y: -0.6 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Panjang selari perabung dan luas
+
+Selari dengan perabung, bumbung terjulur <InlineMath math="50\text{ cm}" /> pada **kedua-dua** hujung, jadi panjangnya <InlineMath math="11+0.5+0.5=12\text{ m}" />. Bumbung terdiri daripada dua segi empat tepat yang sama:
+
+<BlockMath math="L=2\cdot(6\cdot12)=144\text{ m}^2" />
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="115.2\text{ m}^2" /> menggunakan lebar mengufuk <InlineMath math="4+0.8=4.8\text{ m}" /> sebagai lebar satah bumbung. Satah itu condong, jadi **lebarnya diukur di sepanjang kecondongan**.
+- <InlineMath math="120\text{ m}^2" /> terlupa bahagian yang terjulur di tepi bawah dan hanya menggunakan <InlineMath math="5\text{ m}" />.
+- <InlineMath math="132\text{ m}^2" /> terlupa tambahan <InlineMath math="50\text{ cm}" /> pada kedua-dua hujung perabung dan menggunakan panjang <InlineMath math="11\text{ m}" />.
+- <InlineMath math="139.2\text{ m}^2" /> menambah <InlineMath math="0.8\text{ m}" /> terus kepada <InlineMath math="5\text{ m}" />. Nilai <InlineMath math="0.8" /> ialah ukuran mengufuk, manakala panjang condongnya <InlineMath math="1\text{ m}" />.
+
+Jadi, luas seluruh permukaan bumbung ialah <InlineMath math="144\text{ m}^2" />.

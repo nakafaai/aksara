@@ -6,31 +6,26 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  stimulus: "scooter-energy",
+  stimulus: "emas",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label:
-            "Untuk jarak yang sama, biaya energi skuter listrik adalah $$20\\,\\%$$ dari biaya energi skuter bensin.",
-        },
-        {
           column: 2,
           label:
-            "Jika harga bensin turun $$25\\,\\%$$, biaya energi skuter bensin untuk $$100\\text{ km}$$ menjadi $$\\text{Rp}24{.}000$$.",
-        },
-        {
-          column: 2,
-          label:
-            "Dengan biaya energi $$\\text{Rp}90{.}000$$, skuter listrik dapat menempuh $$1{.}800\\text{ km}$$.",
+            "Setiap nasabah yang membeli emas pada bulan Februari, lalu menjual seluruh emas itu pada bulan Mei dalam satu transaksi, pasti untung.",
         },
         {
           column: 1,
           label:
-            "Jika harga listrik naik $$50\\,\\%$$, biaya energi skuter listrik untuk jarak yang sama masih kurang dari sepertiga biaya energi skuter bensin.",
+            "Sari membeli emas senilai $$\\text{Rp}2{.}500{.}000$$ pada Januari dan $$\\text{Rp}2{.}400{.}000$$ pada Februari. Jika Sari menjual seluruh emasnya dalam satu transaksi, bulan pertama dari Maret sampai Mei yang membuat Sari tidak rugi adalah Mei.",
+        },
+        {
+          column: 1,
+          label:
+            "Untuk berat berapa pun yang dijual dalam satu transaksi, persentase kenaikan uang yang diterima jika dijual pada Mei dibandingkan jika dijual pada April lebih besar daripada persentase kenaikan harga buyback dari April ke Mei.",
         },
       ],
     },

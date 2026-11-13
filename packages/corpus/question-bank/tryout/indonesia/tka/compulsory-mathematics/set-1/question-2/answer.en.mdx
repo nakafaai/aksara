@@ -1,19 +1,38 @@
-The bill consists of **a fixed charge and a tiered usage charge**. Subtract the fixed charge first, then spend the rest tier by tier.
+# The shared part
+
+The question asks how much Eka pays. The key is the peak-hour rule: **only the part of the fare charged per km is multiplied by <InlineMath math="1.2" />**, while the door fare stays <InlineMath math="\text{Rp}10{,}000" />.
+
+The cleanest way is to cut the <InlineMath math="22\text{ km}" /> fare into the two parts they agreed on. Start with the first <InlineMath math="8\text{ km}" />. The door fare already covers the first <InlineMath math="2\text{ km}" />, so only km <InlineMath math="2" /> to km <InlineMath math="8" /> are charged per km. That's <InlineMath math="6\text{ km}" /> at <InlineMath math="\text{Rp}4{,}500" /> per km.
 
 <BlockMath math="\begin{aligned}
-\text{usage charge}&=195{,}000-18{,}000=177{,}000 \\
-\text{first }20\text{ m}^3&=10\cdot4{,}000+10\cdot6{,}500=105{,}000 \\
-\text{remainder}&=177{,}000-105{,}000=72{,}000 \\
-\text{usage above }20\text{ m}^3&=\frac{72{,}000}{9{,}000}=8\text{ m}^3
+\text{shared part}&=10{,}000+1.2\cdot4{,}500\cdot6 \\
+&=10{,}000+32{,}400 \\
+&=42{,}400
 \end{aligned}" />
 
-The total usage is <InlineMath math="20+8=28\text{ m}^3" />.
+They split this part equally, so Dina and Eka each pay <InlineMath math="\text{Rp}21{,}200" />.
 
-As a check, <InlineMath math="40{,}000+65{,}000+8\cdot9{,}000+18{,}000=195{,}000" />.
+# The rest of the ride belongs to Eka
 
-So the family used <InlineMath math="28\text{ m}^3" /> of water.
+The rest of the ride, from km <InlineMath math="8" /> to km <InlineMath math="22" />, runs through two price levels. From km <InlineMath math="8" /> to km <InlineMath math="12" /> there are <InlineMath math="4\text{ km}" /> at <InlineMath math="\text{Rp}4{,}500" />, and from km <InlineMath math="12" /> to km <InlineMath math="22" /> there are <InlineMath math="10\text{ km}" /> at <InlineMath math="\text{Rp}3{,}500" />. **Both still get the factor <InlineMath math="1.2" />**, because the ride happens at peak hour.
 
-- <InlineMath math="26\text{ m}^3" /> comes from subtracting the fixed charge twice: <InlineMath math="195{,}000-2\cdot18{,}000=159{,}000" /> is exactly the usage charge for <InlineMath math="26\text{ m}^3" />, because <InlineMath math="40{,}000+65{,}000+6\cdot9{,}000=159{,}000" />.
-- <InlineMath math="27\text{ m}^3" /> comes from a counting slip at the end: the <InlineMath math="8\text{ m}^3" /> above the limit are counted as <InlineMath math="20+8-1=27" />. But <InlineMath math="27\text{ m}^3" /> costs only <InlineMath math="\text{Rp}186{,}000" />.
-- <InlineMath math="30\text{ m}^3" /> appears if the fixed charge is forgotten. Without it, <InlineMath math="30\text{ m}^3" /> costs exactly <InlineMath math="\text{Rp}195{,}000" />.
-- <InlineMath math="32\text{ m}^3" /> gives <InlineMath math="\text{Rp}231{,}000" />.
+<BlockMath math="\begin{aligned}
+\text{rest}&=1.2\,(4{,}500\cdot4+3{,}500\cdot10) \\
+&=1.2\cdot53{,}000 \\
+&=63{,}600
+\end{aligned}" />
+
+Eka pays half of the shared part plus the whole rest:
+
+<BlockMath math="21{,}200+63{,}600=84{,}800" />
+
+Check it against the total fare. A <InlineMath math="22\text{ km}" /> peak-hour ride has a per-km part of <InlineMath math="4{,}500\cdot10+3{,}500\cdot10=80{,}000" />, so the fare is <InlineMath math="10{,}000+1.2\cdot80{,}000=106{,}000" />. Dina pays <InlineMath math="21{,}200" /> and Eka <InlineMath math="84{,}800" />, which add up to exactly <InlineMath math="106{,}000" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\text{Rp}53{,}000" /> comes from splitting the whole <InlineMath math="106{,}000" /> in half. But **only the first <InlineMath math="8\text{ km}" /> are split**.
+- <InlineMath math="\text{Rp}63{,}600" /> is just the rest of the ride. It's what you get if Dina pays the whole shared part alone.
+- <InlineMath math="\text{Rp}71{,}500" /> comes from forgetting the factor <InlineMath math="1.2" />, so every part is priced at the off-peak rate.
+- <InlineMath math="\text{Rp}85{,}800" /> comes from multiplying the door fare by <InlineMath math="1.2" /> too. The rule says the door fare stays <InlineMath math="\text{Rp}10{,}000" />.
+
+So Eka pays <InlineMath math="\text{Rp}84{,}800" />.

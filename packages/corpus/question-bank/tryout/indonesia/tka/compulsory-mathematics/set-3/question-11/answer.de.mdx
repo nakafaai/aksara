@@ -1,16 +1,86 @@
-Der Zaun läuft um das Grundstück, gebraucht wird also **der Umfang des Dreiecks**. Die Hypotenuse ist nicht gegeben und folgt aus dem Satz des Pythagoras.
+Beim Falten landet die Ecke <InlineMath math="A" /> auf <InlineMath math="P" />. Das heißt: **Jeder Punkt der Faltlinie ist von <InlineMath math="A" /> und von <InlineMath math="P" /> gleich weit entfernt**. Also gilt <InlineMath math="EA=EP" /> und <InlineMath math="FA=FP" />. Nimm die Koordinaten <InlineMath math="A(0,0)" />, <InlineMath math="B(40,0)" />, <InlineMath math="C(40,24)" /> und <InlineMath math="D(0,24)" />.
+
+# Wo P liegt
+
+Wegen <InlineMath math="BE=15" /> ist <InlineMath math="AE=40-15=25" />, also <InlineMath math="E(25,0)" />. Sei <InlineMath math="P(p,24)" />. Aus <InlineMath math="EP=EA=25" /> folgt mit dem ersten Pythagoras:
 
 <BlockMath math="\begin{aligned}
-c&=\sqrt{20^2+21^2}=\sqrt{400+441}=\sqrt{841}=29\text{ m} \\
-U&=20+21+29=70\text{ m} \\
-\text{Kosten}&=70\cdot45{.}000=3{.}150{.}000
+(p-25)^2+24^2&=25^2 \\
+(p-25)^2&=625-576=49 \\
+p&=32\ \text{ oder }\ p=18
 \end{aligned}" />
 
-Zur Kontrolle: <InlineMath math="29^2=841" /> und <InlineMath math="20^2+21^2=400+441=841" />, das Dreieck ist also tatsächlich rechtwinklig mit der Hypotenuse <InlineMath math="29\text{ m}" />.
+**Es gibt zwei mögliche Lagen für <InlineMath math="P" />**, und beide liegen auf der Seite <InlineMath math="DC" />. Die Bedingung für <InlineMath math="F" /> entscheidet.
 
-Der Zaun kostet also <InlineMath math="\text{Rp}3{.}150{.}000" />.
+# Der verworfene Fall
 
-- <InlineMath math="\text{Rp}1{.}305{.}000" /> umzäunt nur die Hypotenuse, <InlineMath math="29\cdot45{.}000" />.
-- <InlineMath math="\text{Rp}1{.}845{.}000" /> umzäunt nur die beiden Katheten, <InlineMath math="41\cdot45{.}000" />.
-- <InlineMath math="\text{Rp}3{.}690{.}000" /> nimmt als Hypotenuse <InlineMath math="20+21=41\text{ m}" />, der Umfang wird so <InlineMath math="82\text{ m}" />.
-- <InlineMath math="\text{Rp}9{.}450{.}000" /> rechnet mit der Fläche <InlineMath math="210\text{ m}^2" />, doch ein Zaun folgt dem Umfang.
+Der Punkt <InlineMath math="F(f,24)" /> liegt auf der Geraden <InlineMath math="DC" /> und erfüllt <InlineMath math="FA=FP" />.
+
+<BlockMath math="\begin{aligned}
+f^2+24^2&=(p-f)^2 \\
+576&=p^2-2pf\ \Rightarrow\ f=\frac{p^2-576}{2p}
+\end{aligned}" />
+
+Für <InlineMath math="p=32" />: <InlineMath math="f=\frac{1024-576}{64}=7" />, also liegt <InlineMath math="F(7,24)" /> auf der Seite <InlineMath math="DC" />. Für <InlineMath math="p=18" />: <InlineMath math="f=\frac{324-576}{36}=-7" />, das liegt außerhalb des Papiers, links von <InlineMath math="D" />. Die Faltlinie für <InlineMath math="P(18,24)" /> endet auf der Seite <InlineMath math="AD" />, nicht auf <InlineMath math="DC" />. **Der Fall <InlineMath math="p=18" /> verletzt die Bedingung der Aufgabe**, also ist <InlineMath math="P(32,24)" />.
+
+# Die Länge der Faltlinie
+
+Jetzt ist <InlineMath math="E(25,0)" /> und <InlineMath math="F(7,24)" />. Nimm den zweiten Pythagoras mit dem waagerechten Abstand <InlineMath math="18" /> und dem senkrechten Abstand <InlineMath math="24" />.
+
+<BlockMath math="EF=\sqrt{(25-7)^2+24^2}=\sqrt{324+576}=\sqrt{900}=30" />
+
+Probe: <InlineMath math="FA=\sqrt{7^2+24^2}=25" /> und <InlineMath math="FP=32-7=25" />. **Die Abstände sind gleich**, also liegt <InlineMath math="F" /> wirklich auf der Faltlinie.
+
+<MathVisual
+  title={<>Die Faltlinie im Blatt <InlineMath math="ABCD" /></>}
+  description={<>Ein Rechteck mit <InlineMath math="A(0,0)" />, <InlineMath math="B(40,0)" />, <InlineMath math="C(40,24)" /> und <InlineMath math="D(0,24)" />. Der Punkt <InlineMath math="E(25,0)" /> liegt auf <InlineMath math="AB" />, die Punkte <InlineMath math="F(7,24)" /> und <InlineMath math="P(32,24)" /> liegen auf <InlineMath math="DC" />. Die Strecke <InlineMath math="EF" /> ist die Faltlinie, und die Strecke <InlineMath math="AP" /> steht senkrecht auf ihr.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    f: <InlineMath math="F" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 43 },
+      y: { min: -3, max: 27 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "sheet", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 24 }, { x: 0, y: 24 }] },
+      { id: "crease", kind: "segment", appearance: "answer", from: { x: 25, y: 0 }, to: { x: 7, y: 24 } },
+      { id: "fold-path", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 32, y: 24 } },
+      { id: "edge-ep", kind: "segment", appearance: "secondary", from: { x: 25, y: 0 }, to: { x: 32, y: 24 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 40, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 40, y: 24 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 24 } },
+      { id: "point-e", kind: "point", appearance: "highlight", at: { x: 25, y: 0 } },
+      { id: "point-f", kind: "point", appearance: "highlight", at: { x: 7, y: 24 } },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 32, y: 24 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 40, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 40, y: 24 }, placement: "above-right" },
+      { key: "d", objectId: "point-d", at: { x: 0, y: 24 }, placement: "above-left" },
+      { key: "e", objectId: "point-e", at: { x: 25, y: 0 }, placement: "below" },
+      { key: "f", objectId: "point-f", at: { x: 7, y: 24 }, placement: "above" },
+      { key: "p", objectId: "point-p", at: { x: 32, y: 24 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="26\text{ cm}" /> nimmt <InlineMath math="DF=BE=15" /> an, als ginge die Faltlinie durch den Mittelpunkt des Rechtecks, wie beim Falten von <InlineMath math="A" /> auf <InlineMath math="C" />. Das ergibt <InlineMath math="\sqrt{10^2+24^2}=26" />.
+- <InlineMath math="40\text{ cm}" /> nimmt <InlineMath math="P(18,24)" /> und zieht die Strecke bis <InlineMath math="F(-7,24)" />, also außerhalb des Papiers. Das ist zugleich die Länge von <InlineMath math="AP" /> für <InlineMath math="P(32,24)" />, aber <InlineMath math="AP" /> ist nicht die Faltlinie.
+- <InlineMath math="25\text{ cm}" /> bleibt bei <InlineMath math="EA=EP" /> stehen und berechnet <InlineMath math="EF" /> gar nicht.
+- <InlineMath math="31{,}25\text{ cm}" /> ist die Länge der Faltlinie für <InlineMath math="P(18,24)" />, die <InlineMath math="AD" /> in einem Punkt <InlineMath math="18{,}75" /> von <InlineMath math="A" /> entfernt schneidet. **Diese Faltlinie endet nicht auf der Seite <InlineMath math="DC" />**, passt also nicht zur Aufgabe.
+
+Die Faltlinie <InlineMath math="EF" /> ist also <InlineMath math="30\text{ cm}" /> lang.

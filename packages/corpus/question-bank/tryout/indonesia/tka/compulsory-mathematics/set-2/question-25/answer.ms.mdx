@@ -1,0 +1,35 @@
+Soalan ini tentang kebarangkalian bersyarat. Maklumat "kedua-dua murid daripada kelab yang sama" sudah diketahui, jadi **ruang sampel mengecil** kepada pasangan sekelab sahaja. Lajur kelas X tidak digunakan, kerana yang dipilih hanya seorang murid kelas XI dan seorang murid kelas XII.
+
+# Semua pasangan yang mungkin
+
+Seorang murid kelas XI dipilih daripada <InlineMath math="4+6+2=12" /> orang dan seorang murid kelas XII daripada <InlineMath math="5+2+3=10" /> orang. Kedua-dua pilihan itu bebas, jadi mengikut petua pendaraban **setiap pasangan sama kebarangkaliannya**.
+
+<BlockMath math="12\cdot10=120\text{ pasangan}" />
+
+# Pasangan sekelab
+
+Kira pasangan sekelab bagi setiap kelab, dengan mendarab bilangan murid kelas XI dan kelas XII dalam kelab itu. Ketiga-tiga kelab tidak bertindih, jadi **hasilnya dijumlahkan**.
+
+<BlockMath math="\begin{aligned}
+\text{Robotik}&:\ 4\cdot5=20 \\
+\text{Jurnalistik}&:\ 6\cdot2=12 \\
+\text{Paduan Suara}&:\ 2\cdot3=6 \\
+\text{sekelab}&:\ 20+12+6=38
+\end{aligned}" />
+
+# Kebarangkalian bersyarat
+
+Daripada <InlineMath math="38" /> pasangan yang memenuhi syarat, <InlineMath math="20" /> pasangan ialah ahli Robotik. **Penyebutnya <InlineMath math="38" />**, bukan <InlineMath math="120" />.
+
+<BlockMath math="P(\text{Robotik}\mid\text{sekelab})=\frac{20/120}{38/120}=\frac{20}{38}=\frac{10}{19}" />
+
+Hasil ini munasabah: Robotik mempunyai pasangan sekelab yang paling banyak, jadi kebarangkaliannya melebihi separuh.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\frac16" /> ialah <InlineMath math="\frac{20}{120}" />. Penyebutnya semua pasangan, sedangkan syarat "sekelab" sudah diketahui.
+- <InlineMath math="\frac{19}{60}" /> ialah <InlineMath math="\frac{38}{120}" />, kebarangkalian syarat itu sendiri, bukan kebarangkalian yang ditanya.
+- <InlineMath math="\frac{9}{22}" /> menjumlahkan bilangan murid, <InlineMath math="\frac{4+5}{9+8+5}" />, seolah-olah hanya seorang yang dipilih. Bilangan pasangan diperoleh dengan **mendarab**, bukan menambah.
+- <InlineMath math="\frac{18}{37}" /> memilih mana-mana dua murid kelas XI atau XII dalam satu kelab, <InlineMath math="\frac{\binom92}{\binom92+\binom82+\binom52}=\frac{36}{74}" />. Soalan mensyaratkan tepat seorang murid kelas XI dan seorang murid kelas XII.
+
+Jadi, kebarangkalian kedua-duanya ahli kelab Robotik ialah <InlineMath math="\frac{10}{19}" />.

@@ -1,16 +1,23 @@
-Liste beide Ereignisse auf und prüfe, ob ein Datum doppelt gezählt wird. **Keine Primzahl ist ein Vielfaches von <InlineMath math="4" />**, die Ereignisse schließen sich also aus, und ihre Anzahlen werden einfach addiert.
+# Wie viele Zahlen es insgesamt gibt
 
-<BlockMath math="\begin{aligned}
-\text{prim}&:\ 2,3,5,7,11,13,17,19,23\ (9) \\
-\text{Vielfaches von }4&:\ 4,8,12,16,20,24,28\ (7) \\
-P&=\frac{9+7}{28}=\frac{16}{28}=\frac47
-\end{aligned}" />
+Der Ergebnisraum sind **alle vierstelligen Zahlen mit verschiedenen Ziffern**, deren erste Ziffer nicht <InlineMath math="0" /> ist. Fülle die Stellen von links: Die erste Ziffer hat <InlineMath math="6" /> Möglichkeiten (nicht <InlineMath math="0" />), dann <InlineMath math="6" />, <InlineMath math="5" /> und <InlineMath math="4" />.
 
-Zur Kontrolle: Die einzige gerade Primzahl ist <InlineMath math="2" />, und <InlineMath math="2" /> ist kein Vielfaches von <InlineMath math="4" />.
+<BlockMath math="n(S)=6\cdot6\cdot5\cdot4=720" />
 
-Die Wahrscheinlichkeit ist also <InlineMath math="\frac47" />.
+# Gerade Zahlen über viertausend
 
-- <InlineMath math="\frac14" /> zählt nur die Vielfachen von <InlineMath math="4" />, <InlineMath math="\frac{7}{28}" />.
-- <InlineMath math="\frac27" /> zählt die Primzahlen nur bis <InlineMath math="19" /> und vergisst <InlineMath math="23" />, das ergibt <InlineMath math="\frac{8}{28}" />.
-- <InlineMath math="\frac{9}{28}" /> zählt nur die Primzahlen.
-- <InlineMath math="\frac{15}{28}" /> zählt <InlineMath math="2" /> nicht als Primzahl.
+Zwei Stellen haben Bedingungen: Die erste Ziffer muss <InlineMath math="4" />, <InlineMath math="5" /> oder <InlineMath math="6" /> sein, und die letzte muss gerade sein, also <InlineMath math="0,2,4,6" />. Diese Bedingungen **kommen sich in die Quere**, weil <InlineMath math="4" /> und <InlineMath math="6" /> gerade sind. Teile also nach der ersten Ziffer auf.
+
+| Erste Ziffer | Möglichkeiten für die letzte Ziffer | Zwei mittlere Ziffern | Anzahl |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="4" /> oder <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="5\cdot4=20" /> | <InlineMath math="2\cdot3\cdot20=120" /> |
+| <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="5\cdot4=20" /> | <InlineMath math="1\cdot4\cdot20=80" /> |
+
+<BlockMath math="P=\frac{120+80}{720}=\frac{200}{720}=\frac{5}{18}" />
+
+Die Wahrscheinlichkeit ist also <InlineMath math="\tfrac{5}{18}" />.
+
+- <InlineMath math="\tfrac{1}{4}" /> gibt der letzten Ziffer in jedem Fall <InlineMath math="3" /> Möglichkeiten und übersieht, dass eine erste Ziffer <InlineMath math="5" /> keine gerade Ziffer verbraucht.
+- <InlineMath math="\tfrac{5}{21}" /> lässt im Ergebnisraum eine führende <InlineMath math="0" /> zu, sodass der Nenner <InlineMath math="840" /> wird.
+- <InlineMath math="\tfrac{7}{36}" /> zählt <InlineMath math="0" /> nicht als gerade.
+- <InlineMath math="\tfrac{5}{36}" /> zählt die beiden mittleren Ziffern als Kombination, obwohl ihre Reihenfolge verschiedene Zahlen ergibt.

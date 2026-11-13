@@ -1,12 +1,38 @@
-Alle fünf neuen Werte sind <InlineMath math="4" />, also **wird die Zahl der Schüler mit <InlineMath math="4" /> Büchern <InlineMath math="3+5=8" />**. Jetzt sind es <InlineMath math="30" /> Werte, der Median ist also der Mittelwert des <InlineMath math="15" />. und <InlineMath math="16" />. Werts.
+Alle drei Aussagen drehen sich darum, wie sich ein Mittelwert verschiebt, wenn sich die Daten ändern. Du brauchst zwei verschiedene Mittelwerte: **den Mittelwert aller Schüler** und den Mittelwert der Schüler, die keine Einzelkinder sind. Eine Idee kommt immer wieder: Ein neuer Wert über dem Mittelwert zieht ihn nach oben, ein neuer Wert darunter zieht ihn nach unten.
+
+# Zwei Mittelwerte aus den ursprünglichen Daten
+
+Es gibt <InlineMath math="30+x" /> Schüler, die keine Einzelkinder sind, mit insgesamt <InlineMath math="92+4x" /> Geschwistern. Ihr Mittelwert ist <InlineMath math="3{,}2" />:
 
 <BlockMath math="\begin{aligned}
-\text{kumuliert}&:\ 2,\ 7,\ 15,\ 21,\ 29,\ 30 \\
-\text{Median}&=\frac{x_{15}+x_{16}}{2}=\frac{2+3}{2}=2{,}5 \\
-\bar x&=\frac{56+5\cdot4}{30}=\frac{76}{30}\approx2{,}53
+\frac{92+4x}{30+x}&=3{,}2\ \Rightarrow\ 0{,}8x=4\ \Rightarrow\ x=5 \\
+\text{keine Einzelkinder}&:\ 35\text{ Schüler},\ \text{Summe }112,\ \text{Mittelwert }3{,}2 \\
+\text{alle Schüler}&:\ 40\text{ Schüler},\ \text{Summe }112,\ \text{Mittelwert }2{,}8
 \end{aligned}" />
 
-- Der <InlineMath math="15" />. Wert ist die letzte <InlineMath math="2" />, der <InlineMath math="16" />. die erste <InlineMath math="3" />. Der Median ist <InlineMath math="2{,}5" />. Die Aussage ist richtig.
-- Der Mittelwert ist etwa <InlineMath math="2{,}53" />, also mehr als <InlineMath math="2{,}5" />. Die Aussage ist richtig.
-- <InlineMath math="8" /> Schüler lasen <InlineMath math="2" /> Bücher und <InlineMath math="8" /> lasen <InlineMath math="4" /> Bücher, so viele wie in keiner anderen Kategorie. Die Daten haben zwei Modi, <InlineMath math="2" /> und <InlineMath math="4" />. Die Aussage ist falsch.
-- Der kleinste Wert bleibt <InlineMath math="0" /> und der größte <InlineMath math="5" />, die Spannweite bleibt also <InlineMath math="5" />. Die Aussage ist falsch.
+Die Zahl <InlineMath math="3" /> **liegt zwischen den beiden Mittelwerten**, und das ist der Schlüssel zu den ersten beiden Aussagen.
+
+# Jede Aussage einzeln prüfen
+
+1. **Falsch**. Neue Schüler mit <InlineMath math="3" /> Geschwistern liegen über <InlineMath math="2{,}8" />, aber unter <InlineMath math="3{,}2" />. Der Mittelwert aller Schüler steigt also, der Mittelwert der Schüler ohne Einzelkinder sinkt:
+
+<BlockMath math="\begin{aligned}
+\text{alle Schüler}&:\ \frac{112+12}{40+4}=\frac{124}{44}\approx2{,}82>2{,}8 \\
+\text{keine Einzelkinder}&:\ \frac{112+12}{35+4}=\frac{124}{39}\approx3{,}18<3{,}2
+\end{aligned}" />
+
+Die zweite Hälfte der Aussage stimmt nicht, also ist die Aussage falsch.
+
+2. **Richtig**. Angenommen, <InlineMath math="k" /> neue Schüler kommen dazu, mit irgendeiner positiven ganzen Zahl <InlineMath math="k" />. Vergleiche den neuen Mittelwert mit <InlineMath math="3" />:
+
+<BlockMath math="3-\frac{112+3k}{40+k}=\frac{120+3k-112-3k}{40+k}=\frac{8}{40+k}>0" />
+
+Die Differenz ist immer positiv, also liegt der Mittelwert **immer unter <InlineMath math="3" />**. Er kommt <InlineMath math="3" /> mit wachsendem <InlineMath math="k" /> immer näher, erreicht den Wert aber nie.
+
+3. **Falsch**. <InlineMath math="9" /> Schüler sind mit <InlineMath math="5" /> Geschwistern eingetragen. Verliert jeder von ihnen <InlineMath math="1" />, sinkt die Summe um <InlineMath math="9" />, während die Schülerzahl bei <InlineMath math="40" /> bleibt:
+
+<BlockMath math="\frac{112-9}{40}=\frac{103}{40}=2{,}575,\qquad 2{,}8-2{,}575=0{,}225<0{,}25" />
+
+Der Rückgang beträgt <InlineMath math="0{,}225" />, also nicht mehr als <InlineMath math="0{,}25" />. Wenn du durch <InlineMath math="35" /> teilst (die Einzelkinder vergessen), bekommst du <InlineMath math="\frac{9}{35}\approx0{,}257" /> und tappst in die Falle „richtig“.
+
+Die Antworten lauten also Falsch, Richtig, Falsch.

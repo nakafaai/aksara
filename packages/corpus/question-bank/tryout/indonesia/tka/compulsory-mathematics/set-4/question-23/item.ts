@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "school-transport",
+  stimulus: "harian",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -15,22 +15,17 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Jika dipilih secara acak seorang siswa yang naik angkutan umum, peluang siswa itu dari kelas XI adalah $$0{,}3$$.",
+            "Berapa pun nilai $$v$$, median kesebelas data pasti paling sedikit $$40$$ dan paling banyak $$41$$.",
         },
         {
           column: 2,
           label:
-            "Jika $$6$$ siswa kelas X yang diantar keluarga beralih ke sepeda, bersepeda menjadi cara berangkat yang paling banyak dipilih di kelas X.",
+            "Jika $$v=46$$, simpangan baku kesebelas data tetap $$6$$ gelas.",
         },
         {
           column: 1,
           label:
-            "Perbandingan banyak siswa yang berjalan kaki di kelas X, XI, dan XII adalah $$4:3:3$$.",
-        },
-        {
-          column: 2,
-          label:
-            "Lebih dari $$55\\,\\%$$ siswa kelas XII tidak naik angkutan umum.",
+            "Jika rata-rata kesebelas data adalah $$41$$ gelas, simpangan baku kesebelas data lebih dari $$6$$ gelas.",
         },
       ],
     },

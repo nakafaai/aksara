@@ -1,12 +1,36 @@
-**More than <InlineMath math="50" />** means <InlineMath math="55" /> or <InlineMath math="60" /> cups, and the value <InlineMath math="50" /> itself is not included. Count the days in these two rows and divide by all <InlineMath math="30" /> days.
+# Where the median sits after adding data
 
-<BlockMath math="\frac{7+4}{30}=\frac{11}{30}\approx0.367=36.7\,\%" />
+The question asks how many short calls must be added for the estimated median to drop below <InlineMath math="10" /> minutes. Two things change when you add <InlineMath math="k" /> calls: **the number of data <InlineMath math="n" /> grows, so the position of the median moves too**, and the number of calls under <InlineMath math="10" /> minutes grows.
 
-As a check, the other <InlineMath math="2+8+9=19" /> days together with the <InlineMath math="11" /> days make exactly <InlineMath math="30" />.
+By the reading, the median is estimated at data number <InlineMath math="\frac{n}{2}" />, and calls in each class are spread evenly. Calls shorter than <InlineMath math="10" /> minutes are in classes <InlineMath math="0\le t<5" /> and <InlineMath math="5\le t<10" />, so there are <InlineMath math="(6+k)+22=28+k" /> of them. Data number <InlineMath math="28+k" /> sits exactly at the end of class <InlineMath math="5\le t<10" />, at <InlineMath math="10" /> minutes. So the estimated median is below <InlineMath math="10" /> exactly when the median's position comes **before** data number <InlineMath math="28+k" />.
 
-So more than <InlineMath math="50" /> cups were sold on about <InlineMath math="36.7\,\%" /> of the days.
+<BlockMath math="\begin{aligned}
+n&=80+k,\qquad\text{median position}=\frac{80+k}{2} \\
+\frac{80+k}{2}&<28+k \\
+80+k&<56+2k \\
+k&>24
+\end{aligned}" />
 
-- <InlineMath math="11\,\%" /> takes the number of days, <InlineMath math="11" />, directly as a percentage, as if there were <InlineMath math="100" /> days.
-- <InlineMath math="40\,\%" /> counts rows instead of days: <InlineMath math="2" /> of <InlineMath math="5" /> rows.
-- About <InlineMath math="63.3\,\%" /> is the share of days with at most <InlineMath math="50" /> cups, the opposite.
-- About <InlineMath math="66.7\,\%" /> also counts the <InlineMath math="9" /> days with exactly <InlineMath math="50" /> cups: <InlineMath math="\frac{20}{30}" />.
+# Checking the boundary
+
+The inequality is **strict**, so <InlineMath math="k=24" /> doesn't qualify yet. Work out both values near the boundary with the median estimate inside class <InlineMath math="5\le t<10" />. Before that class there are <InlineMath math="6+k" /> calls.
+
+<BlockMath math="\begin{aligned}
+k=24:&\quad n=104,\ \text{data number }52,\quad 5+\frac{52-30}{22}\cdot5=5+5=10 \\
+k=25:&\quad n=105,\ \text{data number }52.5,\quad 5+\frac{52.5-31}{22}\cdot5\approx9.89
+\end{aligned}" />
+
+For <InlineMath math="k=24" />, the estimate is exactly <InlineMath math="10" /> minutes, so it isn't below <InlineMath math="10" /> yet. For <InlineMath math="k=25" />, the estimate is about <InlineMath math="9.89" /> minutes.
+
+Check it by counting. A median estimate below <InlineMath math="10" /> means more than half of the calls are shorter than <InlineMath math="10" /> minutes. For <InlineMath math="k=25" /> there are <InlineMath math="53" /> such calls out of <InlineMath math="105" />, and <InlineMath math="53>52.5" />. For <InlineMath math="k=24" /> there are <InlineMath math="52" /> out of <InlineMath math="104" />, exactly half.
+
+# Why the other options are wrong
+
+Each wrong option forgets one of the two changes above, or misreads the boundary. **The median's position and the strict "less than"** decide the answer.
+
+- <InlineMath math="12" /> comes from keeping the median at data number <InlineMath math="40" /> and also accepting equality, <InlineMath math="28+k\ge40" />. But <InlineMath math="n" /> grows too.
+- <InlineMath math="13" /> comes from <InlineMath math="28+k>40" />, which still puts the median at data number <InlineMath math="40" />. Same slip: <InlineMath math="n=80+k" />, not <InlineMath math="80" />.
+- <InlineMath math="24" /> makes the median estimate exactly <InlineMath math="10" /> minutes. That isn't less than <InlineMath math="10" />.
+- <InlineMath math="53" /> comes from comparing only the new calls with the <InlineMath math="52" /> calls of at least <InlineMath math="10" /> minutes. It forgets the <InlineMath math="28" /> earlier calls that were already under <InlineMath math="10" /> minutes.
+
+So the smallest value of <InlineMath math="k" /> is <InlineMath math="25" />.

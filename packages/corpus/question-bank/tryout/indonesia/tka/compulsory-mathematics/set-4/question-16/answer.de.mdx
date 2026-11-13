@@ -1,12 +1,67 @@
-Die Dose ist ein Zylinder, ihr Volumen ist also **Grundfläche mal Höhe**, <InlineMath math="V=\pi r^2h" />, mit dem halben Durchmesser als Radius, <InlineMath math="r=3{,}5\text{ cm}" />.
+Jede Dachfläche ist ein Rechteck. Du brauchst also ihre beiden Maße: **die schräge Länge von der Unterkante bis zum First** und die Länge parallel zum First. Beide müssen die überstehenden Teile mitzählen.
 
-<BlockMath math="V=\frac{22}{7}\cdot3{,}5^2\cdot10=38{,}5\cdot10=385\text{ cm}^3" />
+# Schräge Länge bis zur Wand
 
-Zur Kontrolle: Die Grundfläche misst <InlineMath math="\frac{22}{7}\cdot12{,}25=38{,}5\text{ cm}^2" />, und <InlineMath math="38{,}5\cdot10=385" />.
+Schau dir den Querschnitt an. Von der Wandoberkante bis unter den First ist es die halbe Hausbreite, <InlineMath math="\tfrac12\cdot8=4\text{ m}" />, und der First liegt <InlineMath math="3\text{ m}" /> höher. Das Dachstück von der Wandoberkante bis zum First ist die **Hypotenuse dieses rechtwinkligen Dreiecks**:
 
-Eine Dose fasst also <InlineMath math="385\text{ cm}^3" /> Milch.
+<BlockMath math="s_1=\sqrt{4^2+3^2}=\sqrt{25}=5\text{ m}" />
 
-- <InlineMath math="110\text{ cm}^3" /> rechnet <InlineMath math="\pi rh" />, ohne den Radius zu quadrieren.
-- <InlineMath math="220\text{ cm}^3" /> berechnet den Mantel <InlineMath math="2\pi rh" />, nicht das Volumen.
-- <InlineMath math="770\text{ cm}^3" /> nimmt <InlineMath math="2\pi" /> wie in der Formel für den Umfang.
-- <InlineMath math="1{.}540\text{ cm}^3" /> nimmt den Durchmesser <InlineMath math="7\text{ cm}" /> als Radius.
+# Der Überstand an der Unterkante
+
+Die <InlineMath math="80\text{ cm}" /> sind **waagerecht** gemessen, nicht entlang des Dachs. Die Neigung bleibt gleich, also bildet der Überstand ein kleines Dreieck, das zum großen ähnlich ist. Im großen Dreieck gehören zu <InlineMath math="4\text{ m}" /> waagerecht genau <InlineMath math="5\text{ m}" /> entlang des Dachs. Dasselbe Verhältnis gilt im kleinen Dreieck:
+
+<BlockMath math="\begin{aligned}
+s_2&=0{,}8\cdot\frac{5}{4}=1\text{ m} \\
+\text{schräge Länge}&=s_1+s_2=5+1=6\text{ m}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Zwei ähnliche Dreiecke im Dachquerschnitt</>}
+  description={<>Das große Dreieck hat eine waagerechte Seite von <InlineMath math="4\text{ m}" />, eine senkrechte Seite von <InlineMath math="3\text{ m}" /> und eine schräge Seite von <InlineMath math="5\text{ m}" />. Unterhalb der Wandoberkante liegt ein ähnliches kleines Dreieck mit einer waagerechten Seite von <InlineMath math="0{,}8\text{ m}" /> und einer schrägen Seite von <InlineMath math="1\text{ m}" />.</>}
+  labels={{
+    "label-run": <InlineMath math="4\text{ m}" />,
+    "label-rise": <InlineMath math="3\text{ m}" />,
+    "label-rafter": <InlineMath math="5\text{ m}" />,
+    "label-eave": <InlineMath math="1\text{ m}" />,
+    "label-overhang": <InlineMath math="0{,}8\text{ m}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 6 },
+      y: { min: -2, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rafter", kind: "segment", appearance: "primary", from: { x: 0, y: 3 }, to: { x: 4, y: 0 } },
+      { id: "eave", kind: "segment", appearance: "highlight", from: { x: 4, y: 0 }, to: { x: 4.8, y: -0.6 } },
+      { id: "run", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "rise", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "overhang", kind: "segment", appearance: "construction", from: { x: 4, y: -0.6 }, to: { x: 4.8, y: -0.6 } },
+      { id: "wall", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4, y: -1.5 } },
+    ],
+    labels: [
+      { key: "label-run", objectId: "run", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "label-rise", objectId: "rise", at: { x: 0, y: 1.5 }, placement: "left" },
+      { key: "label-rafter", objectId: "rafter", at: { x: 2, y: 1.5 }, placement: "above-right" },
+      { key: "label-eave", objectId: "eave", at: { x: 4.4, y: -0.3 }, placement: "above-right" },
+      { key: "label-overhang", objectId: "overhang", at: { x: 4.4, y: -0.6 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Länge entlang des Firsts und Fläche
+
+Parallel zum First steht das Dach an **beiden** Enden <InlineMath math="50\text{ cm}" /> über, die Länge ist also <InlineMath math="11+0{,}5+0{,}5=12\text{ m}" />. Das Dach besteht aus zwei gleichen Rechtecken:
+
+<BlockMath math="L=2\cdot(6\cdot12)=144\text{ m}^2" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="115{,}2\text{ m}^2" /> nimmt die waagerechte Breite <InlineMath math="4+0{,}8=4{,}8\text{ m}" /> als Breite einer Dachfläche. Die Fläche ist geneigt, also **misst man ihre Breite entlang der Neigung**.
+- <InlineMath math="120\text{ m}^2" /> vergisst den Überstand an der Unterkante und nimmt nur <InlineMath math="5\text{ m}" />.
+- <InlineMath math="132\text{ m}^2" /> vergisst die zusätzlichen <InlineMath math="50\text{ cm}" /> an beiden Firstenden und rechnet mit <InlineMath math="11\text{ m}" />.
+- <InlineMath math="139{,}2\text{ m}^2" /> addiert <InlineMath math="0{,}8\text{ m}" /> direkt zu <InlineMath math="5\text{ m}" />. Die <InlineMath math="0{,}8" /> sind ein waagerechtes Maß, die schräge Länge dazu ist <InlineMath math="1\text{ m}" />.
+
+Die gesamte Dachfläche hat also einen Inhalt von <InlineMath math="144\text{ m}^2" />.

@@ -1,16 +1,40 @@
-Compare what **one person pays per month** in both cases. The saving in percent is measured against the old amount, the price of the Individu plan.
+The question asks for the cheapest way to buy exactly <InlineMath math="16" /> tickets. Keep two things apart: **the ticket prices depend on the ticket numbers**, while the discounts and the service fees depend on how you split the purchase into orders.
+
+# Price of the sixteen tickets
+
+<InlineMath math="294" /> tickets are already sold, so the community gets tickets <InlineMath math="295" /> to <InlineMath math="310" />. Tickets <InlineMath math="295" /> to <InlineMath math="300" /> are still early bird, which is <InlineMath math="300-294=6" /> tickets. The other <InlineMath math="16-6=10" /> tickets are at the regular price.
 
 <BlockMath math="\begin{aligned}
-\text{share per person}&=\frac{108{,}000}{6}=18{,}000 \\
-\text{saving}&=60{,}000-18{,}000=42{,}000 \\
-\text{saving in percent}&=\frac{42{,}000}{60{,}000}\cdot100\,\%=70\,\%
+\text{ticket price}&=6\cdot90{,}000+10\cdot150{,}000 \\
+&=540{,}000+1{,}500{,}000=2{,}040{,}000
 \end{aligned}" />
 
-As a check, <InlineMath math="30\,\%" /> of <InlineMath math="\text{Rp}60{,}000" /> is <InlineMath math="\text{Rp}18{,}000" />, exactly the new share.
+These ticket numbers stay the same however many orders you use. So **you can only save through the group discounts and the service fees**.
 
-So each person saves <InlineMath math="70\,\%" />.
+# The cheapest number of orders
 
-- <InlineMath math="42\,\%" /> writes the saved amount of <InlineMath math="\text{Rp}42{,}000" /> as a percentage without dividing it by <InlineMath math="\text{Rp}60{,}000" />.
-- <InlineMath math="30\,\%" /> is the share each person still pays, not the share they save.
-- <InlineMath math="25\,\%" /> is the saving per person on the Duo plan, because <InlineMath math="90{,}000\div2=45{,}000" /> is <InlineMath math="25\,\%" /> less than <InlineMath math="60{,}000" />.
-- <InlineMath math="18\,\%" /> writes the new monthly amount of <InlineMath math="\text{Rp}18{,}000" /> as a percentage.
+One order holds at most <InlineMath math="9" /> tickets. Two complete groups need <InlineMath math="10" /> tickets, so **one order gets at most one discount**. That means the number of discounts can't be more than the number of orders, and it can't be more than <InlineMath math="\left\lfloor \frac{16}{5} \right\rfloor=3" /> either. Since <InlineMath math="16>9" />, you need at least two orders.
+
+| Orders | Example split | Discounts | Service fees | Change in cost |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="2" /> | <InlineMath math="9+7" /> | <InlineMath math="2\cdot90{,}000" /> | <InlineMath math="2\cdot25{,}000" /> | <InlineMath math="-130{,}000" /> |
+| <InlineMath math="3" /> | <InlineMath math="5+5+6" /> | <InlineMath math="3\cdot90{,}000" /> | <InlineMath math="3\cdot25{,}000" /> | <InlineMath math="-195{,}000" /> |
+| <InlineMath math="4" /> | <InlineMath math="5+5+5+1" /> | <InlineMath math="3\cdot90{,}000" /> | <InlineMath math="4\cdot25{,}000" /> | <InlineMath math="-170{,}000" /> |
+
+A third order adds a <InlineMath math="\text{Rp}25{,}000" /> service fee but brings a new <InlineMath math="\text{Rp}90{,}000" /> discount, so it still pays off. A fourth order only adds a fee, because the discounts are already capped at three. So the best choice is three orders, for example <InlineMath math="5" />, <InlineMath math="5" /> and <InlineMath math="6" /> tickets.
+
+<BlockMath math="\begin{aligned}
+\text{total cost}&=2{,}040{,}000-3\cdot90{,}000+3\cdot25{,}000 \\
+&=2{,}040{,}000-270{,}000+75{,}000=1{,}845{,}000
+\end{aligned}" />
+
+Check the limits: every order has at most <InlineMath math="9" /> tickets, and every order holds one complete group. All the rules are met.
+
+# Why the other options are wrong
+
+- <InlineMath math="\text{Rp}1{,}910{,}000" /> uses as few orders as possible, two orders with two discounts. **Fewer orders isn't always cheaper**.
+- <InlineMath math="\text{Rp}1{,}820{,}000" /> counts three discounts from <InlineMath math="\left\lfloor \frac{16}{5} \right\rfloor" /> but only two orders. With two orders, each order fits only one complete group.
+- <InlineMath math="\text{Rp}1{,}785{,}000" /> counts seven early-bird tickets, as if ticket <InlineMath math="294" /> were part of the purchase. That ticket is already sold, so only six are left.
+- <InlineMath math="\text{Rp}2{,}205{,}000" /> charges every ticket at the regular price and forgets that six early-bird tickets are still available.
+
+So the lowest total cost is <InlineMath math="\text{Rp}1{,}845{,}000" />.

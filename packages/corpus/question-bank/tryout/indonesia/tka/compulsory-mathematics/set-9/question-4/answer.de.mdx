@@ -1,16 +1,50 @@
-Sei das ältere Geschwister jetzt <InlineMath math="k" /> Jahre alt und das jüngere <InlineMath math="d" />. **Beide werden gleich viel älter**, vor drei Jahren waren sie also <InlineMath math="k-3" /> und <InlineMath math="d-3" />, in vier Jahren sind sie <InlineMath math="k+4" /> und <InlineMath math="d+4" />.
+Gesucht ist die kleinste Bestellmenge, bei der der Gewinn pro T-Shirt **mehr als** <InlineMath math="20\%" /> der Durchschnittskosten beträgt. Gegeben sind Durchschnittskosten, linear sind aber die Gesamtkosten. Im ersten Schritt machst du also aus Durchschnitten Gesamtwerte.
+
+# Gesamtkosten aus Durchschnittskosten
+
+Die Durchschnittskosten pro T-Shirt sind die Gesamtkosten geteilt durch die Stückzahl. Also sind **die Gesamtkosten der Durchschnitt mal die Stückzahl**.
 
 <BlockMath math="\begin{aligned}
-k-3&=3(d-3)\ \Rightarrow\ k=3d-6 \\
-k+4&=2(d+4)\ \Rightarrow\ 3d-6+4=2d+8\ \Rightarrow\ d=10 \\
-k&=3\cdot10-6=24
+B(40)&=40\cdot65{.}000=2{.}600{.}000 \\
+B(100)&=100\cdot47{.}000=4{.}700{.}000
 \end{aligned}" />
 
-Probe: Vor drei Jahren <InlineMath math="21=3\cdot7" />, in vier Jahren <InlineMath math="28=2\cdot14" />.
+Die Gesamtkosten sind linear, <InlineMath math="B(n)=a+bn" />, mit den Fixkosten <InlineMath math="a" /> und den Kosten <InlineMath math="b" /> pro T-Shirt. Die Steigung bekommst du aus den beiden Punkten.
 
-Zusammen sind sie jetzt also <InlineMath math="24+10=34" /> Jahre alt.
+<BlockMath math="\begin{aligned}
+b&=\frac{4{.}700{.}000-2{.}600{.}000}{100-40}=\frac{2{.}100{.}000}{60}=35{.}000 \\
+a&=2{.}600{.}000-40\cdot35{.}000=1{.}200{.}000
+\end{aligned}" />
 
-- <InlineMath math="10" /> Jahre ist nur das Alter des jüngeren Geschwisters.
-- <InlineMath math="24" /> Jahre ist nur das Alter des älteren.
-- <InlineMath math="28" /> Jahre ist die Summe ihrer Alter vor drei Jahren.
-- <InlineMath math="42" /> Jahre ist die Summe ihrer Alter in vier Jahren.
+Also ist <InlineMath math="B(n)=1{.}200{.}000+35{.}000n" />, und die Durchschnittskosten sind <InlineMath math="R(n)=35{.}000+\dfrac{1{.}200{.}000}{n}" />.
+
+# Die Grenze für die Durchschnittskosten
+
+Der Gewinn pro T-Shirt ist Verkaufspreis minus Durchschnittskosten, <InlineMath math="54{.}000-R" />. Er muss mehr als <InlineMath math="20\%" /> **der Durchschnittskosten** sein, nicht des Verkaufspreises.
+
+<BlockMath math="\begin{aligned}
+54{.}000-R&>0{,}2R \\
+54{.}000&>1{,}2R \\
+R&<45{.}000
+\end{aligned}" />
+
+# Die kleinste Bestellmenge
+
+Setze jetzt <InlineMath math="R(n)" /> ein. Weil <InlineMath math="n" /> positiv ist, darfst du beide Seiten mit <InlineMath math="n" /> multiplizieren, ohne das Zeichen umzudrehen.
+
+<BlockMath math="\begin{aligned}
+35{.}000+\frac{1{.}200{.}000}{n}&<45{.}000 \\
+\frac{1{.}200{.}000}{n}&<10{.}000 \\
+n&>120
+\end{aligned}" />
+
+Bei <InlineMath math="n=120" /> sind die Durchschnittskosten genau <InlineMath math="45{.}000" /> und der Gewinn <InlineMath math="9{.}000" />, also **genau** <InlineMath math="20\%" /> und nicht mehr. Bei <InlineMath math="n=121" /> sind die Durchschnittskosten <InlineMath math="35{.}000+9{.}917{,}36=44{.}917{,}36" />, schon unter <InlineMath math="45{.}000" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="64" /> verlangt nur einen positiven Gewinn, <InlineMath math="R<54{.}000" />, also <InlineMath math="n>63{,}2" />. Die Bedingung mit <InlineMath math="20\%" /> fehlt.
+- <InlineMath math="107" /> entsteht, wenn du eine Gerade durch die beiden Durchschnittskosten legst, die pro T-Shirt um <InlineMath math="300" /> fällt. Die Durchschnittskosten sind aber nicht linear: Die Fixkosten werden durch <InlineMath math="n" /> geteilt, und dieser Anteil schrumpft immer langsamer.
+- <InlineMath math="120" /> liefert genau <InlineMath math="20\%" /> Gewinn. Verlangt sind **mehr als** <InlineMath math="20\%" />, also reicht diese Zahl noch nicht.
+- <InlineMath math="147" /> nimmt <InlineMath math="20\%" /> vom Verkaufspreis und kommt so auf die Grenze <InlineMath math="R<43{.}200" />. In der Aufgabe sind es <InlineMath math="20\%" /> der Durchschnittskosten.
+
+Die kleinste Bestellmenge ist also <InlineMath math="121" /> T-Shirts.

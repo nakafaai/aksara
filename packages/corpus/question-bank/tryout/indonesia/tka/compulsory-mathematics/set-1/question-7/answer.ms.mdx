@@ -1,0 +1,40 @@
+# Jarak sebagai fungsi masa
+
+Soalan ini bertanya jarak paling kecil antara dua kereta yang terus bergerak. Jaraknya berubah setiap saat, jadi **tulis dahulu jarak itu sebagai fungsi masa**, kemudian cari nilai terkecilnya.
+
+Letakkan paksi koordinat dengan <InlineMath math="O" /> di asalan, arah timur sebagai paksi-<InlineMath math="x" /> positif dan arah utara sebagai paksi-<InlineMath math="y" /> positif. Katakan <InlineMath math="t" /> ialah masa dalam jam selepas pukul <InlineMath math="07.00" />.
+
+<BlockMath math="A=(0,\ 30-40t),\qquad B=(-5+30t,\ 0)" />
+
+Rumus ini masih sah selepas kereta melepasi <InlineMath math="O" />. Contohnya, koordinat-<InlineMath math="y" /> kereta A yang negatif bermaksud A sudah berada di selatan <InlineMath math="O" />. Kedua-dua jalan berserenjang, jadi jarak <InlineMath math="AB" /> dikira dengan teorem Pythagoras:
+
+<BlockMath math="\begin{aligned}
+d^2&=(-5+30t)^2+(30-40t)^2 \\
+&=(25-300t+900t^2)+(900-2{,}400t+1{,}600t^2) \\
+&=2{,}500t^2-2{,}700t+925
+\end{aligned}" />
+
+# Verteks fungsi kuadratik
+
+Jarak <InlineMath math="d" /> tidak pernah negatif, jadi <InlineMath math="d" /> paling kecil tepat apabila <InlineMath math="d^2" /> paling kecil. <InlineMath math="d^2" /> ialah fungsi kuadratik dengan pekali <InlineMath math="t^2" /> yang positif, jadi **nilai terkecilnya berada pada verteks**:
+
+<BlockMath math="\begin{aligned}
+t&=\frac{2{,}700}{2\cdot2{,}500}=0.54\text{ jam} \\
+d^2_{\min}&=925-\frac{2{,}700^2}{4\cdot2{,}500}=925-729=196 \\
+d_{\min}&=14
+\end{aligned}" />
+
+Semak dengan kedudukan kedua-dua kereta pada <InlineMath math="t=0.54" />, iaitu kira-kira pukul <InlineMath math="07.32" />. Kereta A berada <InlineMath math="30-21.6=8.4\text{ km}" /> di utara <InlineMath math="O" />, dan kereta B berada <InlineMath math="-5+16.2=11.2\text{ km}" /> di timur <InlineMath math="O" />.
+
+<BlockMath math="\sqrt{8.4^2+11.2^2}=\sqrt{70.56+125.44}=\sqrt{196}=14" />
+
+Pada saat itu B sudah melepasi persimpangan, manakala A belum. Jadi saat paling dekat **tidak berlaku ketika salah satu kereta tepat di persimpangan**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="10\sqrt{2}\text{ km}" /> muncul jika kamu menganggap jarak terdekat berlaku ketika kedua-dua kereta sama jauh dari <InlineMath math="O" />, iaitu <InlineMath math="t=0.5" />. Jaraknya <InlineMath math="\sqrt{10^2+10^2}\approx14.14" />, **sedikit lebih besar daripada <InlineMath math="14" />**.
+- <InlineMath math="17.5\text{ km}" /> ialah jarak ketika A tiba di <InlineMath math="O" />, iaitu <InlineMath math="t=0.75" />. Pada masa itu B sudah <InlineMath math="17.5\text{ km}" /> di timur <InlineMath math="O" />.
+- <InlineMath math="18\text{ km}" /> muncul jika kedudukan awal B dianggap tepat di <InlineMath math="O" />, sehingga jarak <InlineMath math="5\text{ km}" /> ke arah barat terlupa.
+- <InlineMath math="22\text{ km}" /> muncul jika B dianggap berada <InlineMath math="5\text{ km}" /> di timur <InlineMath math="O" />, iaitu tanda kedudukannya terbalik.
+
+Jadi, jarak terdekat antara kedua-dua kereta ialah <InlineMath math="14\text{ km}" />.

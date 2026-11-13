@@ -1,0 +1,74 @@
+# Mengira penyelesaian dengan garis mengufuk
+
+Bilangan penyelesaian <InlineMath math="f(x)=c" /> sama dengan **bilangan titik persilangan graf dengan garis mengufuk <InlineMath math="y=c" />**. Jadi gerakkan garis mengufuk dari bawah ke atas dan kira titik persilangannya. Ingat bahawa <InlineMath math="x=-4" /> dan <InlineMath math="x=4" /> termasuk dalam graf.
+
+Rumus empat bahagian graf itu:
+
+<BlockMath math="f(x)=\begin{cases}-2x-6, & -4\le x\le-2 \\ 2x+2, & -2\le x\le0 \\ 2-x, & 0\le x\le2 \\ x-2, & 2\le x\le4\end{cases}" />
+
+| Nilai <InlineMath math="c" /> | Bilangan penyelesaian <InlineMath math="f(x)=c" /> |
+| --- | --- |
+| <InlineMath math="c<-2" /> atau <InlineMath math="c>2" /> | <InlineMath math="0" /> |
+| <InlineMath math="c=-2" /> | <InlineMath math="1" />, iaitu <InlineMath math="x=-2" /> |
+| <InlineMath math="-2<c<0" /> | <InlineMath math="2" /> |
+| <InlineMath math="c=0" /> | <InlineMath math="3" />, iaitu <InlineMath math="x=-3,\,-1,\,2" /> |
+| <InlineMath math="0<c<2" /> | <InlineMath math="4" /> |
+| <InlineMath math="c=2" /> | <InlineMath math="3" />, iaitu <InlineMath math="x=-4,\,0,\,4" /> |
+
+<MathVisual
+  title={<>Graf <InlineMath math="f" /> dengan garis <InlineMath math="y=1" /> dan <InlineMath math="y=-1" /></>}
+  description={<>Graf garis patah melalui <InlineMath math="(-4,2)" />, <InlineMath math="(-2,-2)" />, <InlineMath math="(0,2)" />, <InlineMath math="(2,0)" /> dan <InlineMath math="(4,2)" />. Garis <InlineMath math="y=1" /> bersilang dengan graf pada empat titik, iaitu <InlineMath math="x=-3.5" />, <InlineMath math="-0.5" />, <InlineMath math="1" /> dan <InlineMath math="3" />. Garis <InlineMath math="y=-1" /> bersilang dengan graf pada dua titik, iaitu <InlineMath math="x=-2.5" /> dan <InlineMath math="-1.5" />.</>}
+  labels={{
+    p1: <InlineMath math="(-4,2)" />,
+    p2: <InlineMath math="(-2,-2)" />,
+    p3: <InlineMath math="(0,2)" />,
+    p4: <InlineMath math="(2,0)" />,
+    p5: <InlineMath math="(4,2)" />,
+    "level-up": <InlineMath math="y=1" />,
+    "level-down": <InlineMath math="y=-1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -3, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "graph", kind: "polyline", appearance: "primary", vertices: [{ x: -4, y: 2 }, { x: -2, y: -2 }, { x: 0, y: 2 }, { x: 2, y: 0 }, { x: 4, y: 2 }] },
+      { id: "line-up", kind: "segment", appearance: "construction", from: { x: -4.5, y: 1 }, to: { x: 4.5, y: 1 } },
+      { id: "line-down", kind: "segment", appearance: "construction", from: { x: -4.5, y: -1 }, to: { x: 4.5, y: -1 } },
+      { id: "point-1", kind: "point", appearance: "reference", at: { x: -4, y: 2 } },
+      { id: "point-2", kind: "point", appearance: "reference", at: { x: -2, y: -2 } },
+      { id: "point-3", kind: "point", appearance: "reference", at: { x: 0, y: 2 } },
+      { id: "point-4", kind: "point", appearance: "reference", at: { x: 2, y: 0 } },
+      { id: "point-5", kind: "point", appearance: "reference", at: { x: 4, y: 2 } },
+      { id: "cut-1", kind: "point", appearance: "answer", at: { x: -3.5, y: 1 } },
+      { id: "cut-2", kind: "point", appearance: "answer", at: { x: -0.5, y: 1 } },
+      { id: "cut-3", kind: "point", appearance: "answer", at: { x: 1, y: 1 } },
+      { id: "cut-4", kind: "point", appearance: "answer", at: { x: 3, y: 1 } },
+      { id: "cut-5", kind: "point", appearance: "highlight", at: { x: -2.5, y: -1 } },
+      { id: "cut-6", kind: "point", appearance: "highlight", at: { x: -1.5, y: -1 } },
+    ],
+    labels: [
+      { key: "p1", objectId: "point-1", at: { x: -4, y: 2 }, placement: "above-right" },
+      { key: "p2", objectId: "point-2", at: { x: -2, y: -2 }, placement: "below" },
+      { key: "p3", objectId: "point-3", at: { x: 0, y: 2 }, placement: "above" },
+      { key: "p4", objectId: "point-4", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "p5", objectId: "point-5", at: { x: 4, y: 2 }, placement: "above-left" },
+      { key: "level-up", objectId: "line-up", at: { x: 4.5, y: 1 }, placement: "above-left" },
+      { key: "level-down", objectId: "line-down", at: { x: 4.5, y: -1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+# Menilai setiap pernyataan
+
+1. **Salah**. <InlineMath math="f(f(x))=0" /> bermaksud <InlineMath math="f(x)" /> mesti salah satu punca persamaan <InlineMath math="f(x)=0" />, iaitu <InlineMath math="-3" />, <InlineMath math="-1" /> atau <InlineMath math="2" />. Kira setiap kes dengan jadual. <InlineMath math="f(x)=-3" /> tiada penyelesaian kerana nilai terkecil <InlineMath math="f" /> ialah <InlineMath math="-2" />. <InlineMath math="f(x)=-1" /> ada <InlineMath math="2" /> penyelesaian, <InlineMath math="x=-2.5" /> dan <InlineMath math="x=-1.5" />. <InlineMath math="f(x)=2" /> ada <InlineMath math="3" /> penyelesaian, <InlineMath math="x=-4" />, <InlineMath math="0" /> dan <InlineMath math="4" />. Jumlahnya <InlineMath math="0+2+3=5" />, bukan <InlineMath math="3" />. Nombor <InlineMath math="3" /> ialah bilangan penyelesaian <InlineMath math="f(x)=0" />, bukan <InlineMath math="f(f(x))=0" />.
+2. **Betul**. Nilai <InlineMath math="1" /> terletak antara <InlineMath math="0" /> dan <InlineMath math="2" />, jadi ada <InlineMath math="4" /> penyelesaian: <InlineMath math="-2x-6=1" /> memberi <InlineMath math="x=-3.5" />, <InlineMath math="2x+2=1" /> memberi <InlineMath math="x=-0.5" />, <InlineMath math="2-x=1" /> memberi <InlineMath math="x=1" />, dan <InlineMath math="x-2=1" /> memberi <InlineMath math="x=3" />.
+3. **Betul**. Kira dari dalam ke luar: <InlineMath math="f(-3)=0" />, kemudian <InlineMath math="f(0)=2" />, kemudian <InlineMath math="f(2)=0" />.
+4. **Betul**. Menurut jadual, tepat tiga penyelesaian hanya berlaku pada <InlineMath math="c=0" /> dan <InlineMath math="c=2" />. Bagi <InlineMath math="c=2" />, dua daripada tiga penyelesaian ialah titik hujung <InlineMath math="x=-4" /> dan <InlineMath math="x=4" />, yang **mudah tertinggal**.
+5. **Betul**. Daripada pernyataan pertama, penyelesaian <InlineMath math="f(f(x))=0" /> ialah <InlineMath math="-4" />, <InlineMath math="-2.5" />, <InlineMath math="-1.5" />, <InlineMath math="0" /> dan <InlineMath math="4" />. Semak <InlineMath math="x=4" />: <InlineMath math="f(4)=2" /> dan <InlineMath math="f(2)=0" />. Tiada penyelesaian yang lebih besar kerana domain berakhir pada <InlineMath math="4" />.
+
+Jadi, pernyataan yang betul ialah pernyataan kedua, ketiga, keempat dan kelima.

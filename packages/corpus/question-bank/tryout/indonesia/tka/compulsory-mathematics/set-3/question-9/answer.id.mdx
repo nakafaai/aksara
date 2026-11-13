@@ -1,14 +1,39 @@
-Tulis ulang <InlineMath math="f(x)=2\cdot2^x-4" />: grafik <InlineMath math="y=2^x" /> **diregangkan dua kali secara vertikal lalu digeser <InlineMath math="4" /> satuan ke bawah**. Periksa setiap pernyataan dengan nilai fungsi atau dengan sifat <InlineMath math="2^x" />.
+Fungsi <InlineMath math="f" /> dan <InlineMath math="g" /> punya rumus yang sama, tetapi **daerah asal <InlineMath math="f" /> dipotong menjadi <InlineMath math="x\le1" />**. Potongan inilah yang menentukan tanda pada rumus invers, daerah asal invers, dan kapan <InlineMath math="f^{-1}" /> membatalkan <InlineMath math="g" />.
+
+# Daerah hasil f
+
+Lengkapkan kuadratnya: <InlineMath math="x^2-4x+7=(x-2)^2+3" />. Puncak parabola ada di <InlineMath math="x=2" />, jadi di daerah <InlineMath math="x\le1" /> grafiknya terus turun dari kiri ke kanan. Fungsi yang terus turun tidak pernah memberi nilai yang sama dua kali, jadi <InlineMath math="f" /> punya invers.
+
+Nilai terkecil <InlineMath math="f" /> ada di ujung kanan daerah asalnya, yaitu <InlineMath math="f(1)=1-4+7=4" />. Makin ke kiri, nilainya makin besar. Jadi daerah hasil <InlineMath math="f" /> adalah <InlineMath math="y\ge4" />, dan **daerah asal <InlineMath math="f^{-1}" /> adalah <InlineMath math="\{x\mid x\ge4\}" />**.
+
+# Rumus invers
+
+Tulis <InlineMath math="y=f(x)" /> lalu selesaikan untuk <InlineMath math="x" />.
 
 <BlockMath math="\begin{aligned}
-f(0)&=2-4=-2,\quad f(1)=4-4=0 \\
-f(2)&=8-4=4,\quad f(3)=16-4=12
+y&=(x-2)^2+3 \\
+(x-2)^2&=y-3 \\
+x-2&=\pm\sqrt{y-3}
 \end{aligned}" />
 
-- <InlineMath math="f(1)=0" /> benar.
-- Pernyataan bahwa <InlineMath math="f" /> turun salah. Basis <InlineMath math="2>1" />, jadi <InlineMath math="2^{x+1}" /> naik dan <InlineMath math="f" /> juga naik, seperti terlihat dari <InlineMath math="-2,0,4,12" />.
-- Titik potong dengan sumbu <InlineMath math="y" /> adalah <InlineMath math="(0,f(0))=(0,-2)" />, jadi pernyataan ini benar.
-- <InlineMath math="2^{x+1}>0" /> untuk setiap <InlineMath math="x" />, sehingga <InlineMath math="f(x)>-4" />. Pernyataan ini benar. Garis <InlineMath math="y=-4" /> adalah asimtot datar yang tidak pernah dicapai.
-- <InlineMath math="f(3)=12" />, sedangkan <InlineMath math="2\cdot f(2)=8" />. Pernyataan ini salah, karena pengurangan <InlineMath math="4" /> tidak ikut berlipat dua.
+Karena <InlineMath math="x\le1" />, nilai <InlineMath math="x-2" /> selalu negatif, jadi **yang dipakai tanda minus**.
 
-Jadi, pernyataan yang benar adalah <InlineMath math="f(1)=0" />, titik potong <InlineMath math="(0,-2)" />, dan <InlineMath math="f(x)>-4" />.
+<BlockMath math="f^{-1}(x)=2-\sqrt{x-3},\qquad x\ge4" />
+
+# Menilai setiap pernyataan
+
+1. **Salah**. Inversnya memang ada, tetapi tandanya keliru. Rumus <InlineMath math="2+\sqrt{x-3}" /> selalu menghasilkan bilangan paling kecil <InlineMath math="2" />, misalnya <InlineMath math="4" /> untuk <InlineMath math="x=7" />, padahal semua nilai invers harus berada di daerah asal <InlineMath math="f" />, yaitu <InlineMath math="x\le1" />.
+2. **Salah**. Rumus <InlineMath math="2-\sqrt{x-3}" /> memang terdefinisi untuk <InlineMath math="x\ge3" />, tetapi daerah asal invers adalah daerah hasil <InlineMath math="f" />, yaitu <InlineMath math="x\ge4" />. Contohnya <InlineMath math="3{,}25" />: persamaan <InlineMath math="(x-2)^2=0{,}25" /> memberi <InlineMath math="x=1{,}5" /> atau <InlineMath math="x=2{,}5" />, dan keduanya di luar <InlineMath math="x\le1" />.
+3. **Benar**. <InlineMath math="f^{-1}(12)=2-\sqrt{9}=-1" />. Cek: <InlineMath math="-1\le1" /> dan <InlineMath math="f(-1)=1+4+7=12" />.
+4. **Salah**. Untuk <InlineMath math="a\le1" /> memang benar, tetapi tidak untuk semua <InlineMath math="a\le2" />. Ambil <InlineMath math="a=1{,}5" />: <InlineMath math="g(1{,}5)=3{,}25" />, dan <InlineMath math="3{,}25" /> tidak ada di daerah asal <InlineMath math="f^{-1}" />, jadi <InlineMath math="f^{-1}(g(1{,}5))" /> bahkan tidak terdefinisi.
+5. **Benar**. Untuk <InlineMath math="a\ge3" />, <InlineMath math="g(a)=(a-2)^2+3\ge4" />, jadi masuk daerah asal <InlineMath math="f^{-1}" />.
+
+<BlockMath math="\begin{aligned}
+f^{-1}(g(a))&=2-\sqrt{(a-2)^2} \\
+&=2-|a-2| \\
+&=2-(a-2)=4-a
+\end{aligned}" />
+
+Baris terakhir memakai <InlineMath math="|a-2|=a-2" /> karena <InlineMath math="a-2>0" />. Contoh: <InlineMath math="g(5)=12" /> dan <InlineMath math="f^{-1}(12)=-1=4-5" />. Jadi **<InlineMath math="f^{-1}" /> hanya membatalkan <InlineMath math="g" /> di daerah asal <InlineMath math="f" /> sendiri**.
+
+Jadi, pernyataan yang benar adalah pernyataan 3 dan 5.

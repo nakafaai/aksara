@@ -1,16 +1,42 @@
-Bagian tangki baru dapat diubah menjadi liter setelah **kapasitas tangki** diketahui. Bensin <InlineMath math="27" /> liter itu tepat mengisi selisih kedua bagian.
+Soal ini meminta <InlineMath math="8^{x}-8^{-x}" />, bukan nilai <InlineMath math="x" />. Jadi kamu tidak perlu mencari <InlineMath math="x" /> secara langsung. **Ubah semua bilangan pokok menjadi <InlineMath math="2" />**, lalu kerjakan dengan identitas aljabar. Syarat <InlineMath math="x<0" /> akan menentukan tanda di tengah jalan.
+
+# Ubah ke bilangan pokok dua
+
+Misalkan <InlineMath math="a=2^{x}" /> dan <InlineMath math="b=2^{-x}" />. Keduanya positif, dan **hasil kalinya selalu <InlineMath math="1" />**, karena <InlineMath math="ab=2^{x}\cdot2^{-x}=2^{0}=1" />. Sekarang tulis ulang kedua suku di ruas kiri.
 
 <BlockMath math="\begin{aligned}
-\frac{15}{16}-\frac38=\frac{15}{16}-\frac{6}{16}=\frac{9}{16}\ &\Rightarrow\ \text{kapasitas}=27:\frac{9}{16}=48\text{ liter} \\
-\frac{15}{16}-\frac14=\frac{11}{16}\ &\Rightarrow\ \frac{11}{16}\cdot48=33\text{ liter} \\
-33\cdot12&=396\text{ km}
+4^{x+1}&=4\cdot4^{x}=4\left(2^{x}\right)^{2}=4a^{2} \\
+2^{2-2x}&=2^{2}\cdot2^{-2x}=4\left(2^{-x}\right)^{2}=4b^{2} \\
+4a^{2}+4b^{2}&=72\ \Rightarrow\ a^{2}+b^{2}=18
 \end{aligned}" />
 
-Sebagai pemeriksaan, <InlineMath math="\frac38\cdot48=18" /> liter ditambah <InlineMath math="27" /> liter sama dengan <InlineMath math="45=\frac{15}{16}\cdot48" /> liter.
+# Tanda dari syarat x negatif
 
-Jadi, jarak yang ditempuh adalah <InlineMath math="396\text{ km}" />.
+Kuadrat selisihnya bisa dihitung dari <InlineMath math="a^{2}+b^{2}" /> dan <InlineMath math="ab" />.
 
-- <InlineMath math="144\text{ km}" /> memakai <InlineMath math="12" /> liter bensin yang tersisa di tangki pada akhir perjalanan, bukan bensin yang terpakai.
-- <InlineMath math="324\text{ km}" /> hanya memakai <InlineMath math="27" /> liter bensin yang diisi dan mengabaikan bensin yang sudah ada di tangki.
-- <InlineMath math="540\text{ km}" /> menghabiskan bensin sampai tangki kosong, yaitu <InlineMath math="45" /> liter, bukan sampai tinggal seperempat.
-- <InlineMath math="576\text{ km}" /> memakai kapasitas penuh tangki, yaitu <InlineMath math="48" /> liter.
+<BlockMath math="\begin{aligned}
+(a-b)^{2}&=a^{2}+b^{2}-2ab=18-2=16 \\
+a-b&=4\ \text{ atau }\ a-b=-4
+\end{aligned}" />
+
+Ada dua kemungkinan, dan syarat <InlineMath math="x<0" /> yang memilih. Kalau <InlineMath math="x" /> negatif, <InlineMath math="a=2^{x}<1" /> dan <InlineMath math="b=2^{-x}>1" />. Jadi <InlineMath math="a<b" />, sehingga **<InlineMath math="a-b" /> harus negatif**, yaitu <InlineMath math="a-b=-4" />.
+
+# Selisih pangkat tiga
+
+Karena <InlineMath math="8^{x}=\left(2^{x}\right)^{3}=a^{3}" /> dan <InlineMath math="8^{-x}=b^{3}" />, yang dicari adalah <InlineMath math="a^{3}-b^{3}" />. Pakai rumus **selisih dua pangkat tiga**.
+
+<BlockMath math="\begin{aligned}
+a^{3}-b^{3}&=(a-b)\left(a^{2}+ab+b^{2}\right) \\
+&=(-4)(18+1)=-76
+\end{aligned}" />
+
+Cek dengan nilai sebenarnya: dari <InlineMath math="a-b=-4" /> dan <InlineMath math="ab=1" /> didapat <InlineMath math="a=\sqrt5-2" /> dan <InlineMath math="b=\sqrt5+2" />. Hasil kalinya <InlineMath math="5-4=1" />, dan <InlineMath math="a^{2}+b^{2}=(9-4\sqrt5)+(9+4\sqrt5)=18" />. Semua cocok.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="-72" /> lupa suku <InlineMath math="ab" /> pada faktor kedua, jadi menghitung <InlineMath math="(-4)\cdot18" />.
+- <InlineMath math="-64" /> menganggap <InlineMath math="a^{3}-b^{3}" /> sama dengan <InlineMath math="(a-b)^{3}" />. **Pangkat tiga dari selisih tidak sama dengan selisih pangkat tiga**.
+- <InlineMath math="-4" /> berhenti di <InlineMath math="2^{x}-2^{-x}" />, belum dipangkatkan tiga.
+- <InlineMath math="76" /> memakai <InlineMath math="a-b=4" /> dan mengabaikan syarat <InlineMath math="x<0" />.
+
+Jadi, nilai <InlineMath math="8^{x}-8^{-x}" /> adalah <InlineMath math="-76" />.

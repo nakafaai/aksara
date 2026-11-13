@@ -1,16 +1,40 @@
-There are <InlineMath math="25" /> values, an odd number, so **the median is the <InlineMath math="13" />th value** in order. Start from <InlineMath math="0" /> books and add up the students cumulatively.
+The question asks how many students have more siblings than the mean of **all** the students. The catch: the mean <InlineMath math="3.2" /> in the reading isn't the mean of all the students. It's **the mean of the students who aren't only children**. So you need three steps: find <InlineMath math="x" />, work out the mean of all the students, then count who's above it.
 
-| Books | Students | Cumulative |
-| --- | --- | --- |
-| <InlineMath math="0" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
-| <InlineMath math="1" /> | <InlineMath math="5" /> | <InlineMath math="7" /> |
-| <InlineMath math="2" /> | <InlineMath math="8" /> | <InlineMath math="15" /> |
+# The missing frequency
 
-Values <InlineMath math="8" /> to <InlineMath math="15" /> are all <InlineMath math="2" />, so the <InlineMath math="13" />th value is <InlineMath math="2" /> as well.
+The students who aren't only children are every row except the <InlineMath math="0" />-sibling row. There are <InlineMath math="6+4+11+x+9=30+x" /> of them. Their total number of siblings is **the sum of each sibling count times its number of students**:
 
-So the median number of books read is <InlineMath math="2" />.
+<BlockMath math="\begin{aligned}
+1\cdot6+2\cdot4+3\cdot11+4x+5\cdot9&=92+4x \\
+\frac{92+4x}{30+x}&=3.2 \\
+92+4x&=96+3.2x \\
+0.8x&=4 \\
+x&=5
+\end{aligned}" />
 
-- <InlineMath math="2.24" /> is the mean, <InlineMath math="\frac{56}{25}" />.
-- <InlineMath math="2.5" /> is halfway between <InlineMath math="0" /> and <InlineMath math="5" /> books, ignoring how many students are in each.
-- <InlineMath math="4" /> is the median of the student counts per category, not of the books.
-- <InlineMath math="8" /> is the number of students in the biggest category, not a number of books.
+# The mean of all the students
+
+Now the only children join in. They add <InlineMath math="5" /> students but no siblings, because each of them has <InlineMath math="0" />:
+
+<BlockMath math="\begin{aligned}
+n&=5+6+4+11+5+9=40 \\
+\text{total siblings}&=92+4\cdot5=112 \\
+\bar x&=\frac{112}{40}=2.8
+\end{aligned}" />
+
+The mean of all the students is <InlineMath math="2.8" />, **smaller than <InlineMath math="3.2" />**, because the only children pull the mean down.
+
+# Students above the mean
+
+A number of siblings is always a whole number, so "more than <InlineMath math="2.8" />" means **at least <InlineMath math="3" /> siblings**:
+
+<BlockMath math="11+5+9=25\text{ students}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="14" /> students uses <InlineMath math="3.2" /> as the cut-off, so it only counts students with <InlineMath math="4" /> or <InlineMath math="5" /> siblings. That's **the mean of the wrong group**.
+- <InlineMath math="20" /> students forgets to include the <InlineMath math="x=5" /> students with <InlineMath math="4" /> siblings.
+- <InlineMath math="29" /> students uses the plain average <InlineMath math="\frac{0+3.2}{2}=1.6" />, as if both groups were the same size. The cut-off then drops to <InlineMath math="2" /> siblings.
+- <InlineMath math="34" /> students treats <InlineMath math="3.2" /> as the mean of all the students. The equation becomes <InlineMath math="\frac{92+4x}{35+x}=3.2" />, so <InlineMath math="x=25" />, and then counting students with more than <InlineMath math="3.2" /> siblings gives <InlineMath math="25+9=34" />.
+
+So <InlineMath math="25" /> students have more siblings than the mean of all the students.

@@ -6,34 +6,31 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "school-transport",
+  stimulus: "harian",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "Lebih dari $$40\\,\\%$$ siswa kelas XII naik angkutan umum.",
-        },
-        {
-          correct: true,
-          label:
-            "Di antara siswa yang diantar keluarga, $$40\\,\\%$$ adalah siswa kelas X.",
-        },
-        {
           correct: false,
-          label:
-            "Siswa yang berjalan kaki kurang dari $$15\\,\\%$$ dari seluruh siswa.",
+          label: "Median data tidak berubah.",
+        },
+        {
+          correct: true,
+          label: "Rata-rata data menjadi $$42$$ gelas.",
+        },
+        {
+          correct: true,
+          label: "Jangkauan data berkurang $$5$$ gelas.",
+        },
+        {
+          correct: true,
+          label: "Simpangan baku data menjadi $$4$$ gelas.",
         },
         {
           correct: true,
           label:
-            "Di setiap kelas, angkutan umum adalah cara berangkat yang paling banyak dipilih.",
-        },
-        {
-          correct: false,
-          label:
-            "Persentase siswa yang bersepeda di kelas XI lebih besar daripada di kelas X.",
+            "Penjualan paling sedikit setelah perbaikan berselisih lebih dari satu simpangan baku dari rata-rata yang baru.",
         },
       ],
     },

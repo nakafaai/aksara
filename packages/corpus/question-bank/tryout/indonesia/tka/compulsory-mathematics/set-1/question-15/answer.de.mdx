@@ -1,14 +1,48 @@
-Bei dieser Aufgabe beurteilst du nur, ob die Angaben **für eine eindeutige Antwort ausreichen**, nicht welche Antwort herauskommt. Prüfe jede Aussage zuerst allein, dann beide zusammen. Eine Aussage reicht aus, wenn sie die Frage für jeden möglichen Fall gleich beantwortet.
+# Die beiden Bildpunkte finden
 
-Eine Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um den Ursprung bildet <InlineMath math="(a,b)" /> auf <InlineMath math="(-b,a)" /> ab. Der Bildpunkt liegt genau dann im zweiten Quadranten, wenn <InlineMath math="-b<0" /> und <InlineMath math="a>0" /> gilt, also wenn <InlineMath math="a>0" /> **und** <InlineMath math="b>0" /> ist.
+Gefragt ist der Flächeninhalt des Vierecks, das die Strecke <InlineMath math="AB" /> mit ihrem Bild bildet. Das Drehzentrum ist <InlineMath math="P(1,1)" />, **nicht der Ursprung**. Die Regel <InlineMath math="(x,y)\mapsto(-y,x)" /> darfst du also nicht direkt auf die Koordinaten von <InlineMath math="A" /> und <InlineMath math="B" /> anwenden.
 
-- **Aussage (1) allein**: Mit <InlineMath math="A(1,1)" /> ist <InlineMath math="A'(-1,1)" /> im zweiten Quadranten, mit <InlineMath math="A(1,-1)" /> ist <InlineMath math="A'(1,1)" /> im ersten. Die Antwort hängt von <InlineMath math="b" /> ab, die Aussage reicht nicht.
-- **Aussage (2) allein**: Mit <InlineMath math="A(1,1)" /> ist <InlineMath math="A'" /> im zweiten Quadranten, mit <InlineMath math="A(-1,1)" /> ist <InlineMath math="A'(-1,-1)" /> im dritten. Auch diese Aussage reicht nicht.
-- **Beide zusammen**: Aus <InlineMath math="a>0" /> und <InlineMath math="b>0" /> folgt <InlineMath math="-b<0" /> und <InlineMath math="a>0" />, also liegt <InlineMath math="A'" /> sicher im zweiten Quadranten.
+Es geht in drei Schritten. Bestimme zuerst die Lage jedes Punktes relativ zu <InlineMath math="P" />. Dreh dann diese relative Lage mit <InlineMath math="(u,v)\mapsto(-v,u)" />. Addiere zum Schluss die Koordinaten von <InlineMath math="P" /> wieder.
 
-Erst beide Aussagen zusammen reichen also aus, jede einzelne nicht.
+<BlockMath math="\begin{aligned}
+A-P&=(3,1)\;\mapsto\;(-1,3), & A'&=(1-1,\;1+3)=(0,4) \\
+B-P&=(5,3)\;\mapsto\;(-3,5), & B'&=(1-3,\;1+5)=(-2,6)
+\end{aligned}" />
 
-- Die Auswahl, nach der nur Aussage (1) allein ausreicht, ist falsch, weil Aussage (1) allein zwei verschiedene Antworten zulässt.
-- Die Auswahl, nach der nur Aussage (2) allein ausreicht, ist falsch, weil Aussage (2) allein zwei verschiedene Antworten zulässt.
-- Die Auswahl, nach der jede Aussage allein ausreicht, ist falsch, weil Aussage (1) allein zwei verschiedene Antworten zulässt.
-- Die Auswahl, nach der auch beide zusammen nicht ausreichen, ist falsch, weil beide Aussagen zusammen die Frage eindeutig beantworten.
+# Den Flächeninhalt berechnen
+
+Die Ecken sind der Reihe nach <InlineMath math="A(4,2)" />, <InlineMath math="B(6,4)" />, <InlineMath math="B'(-2,6)" /> und <InlineMath math="A'(0,4)" />. Ein sicherer Weg ist **das umschließende Rechteck minus die Dreiecke außen**. Das kleinste Rechteck um die vier Punkte reicht von <InlineMath math="x=-2" /> bis <InlineMath math="x=6" /> und von <InlineMath math="y=2" /> bis <InlineMath math="y=6" />. Sein Flächeninhalt ist <InlineMath math="8\cdot4=32" />.
+
+Der Teil des Rechtecks außerhalb des Vierecks zerfällt in vier Dreiecke, deren Grundseite und Höhe waagerecht oder senkrecht liegen.
+
+| Dreieck | Grundseite | Höhe | Fläche |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="A,\,(6,2),\,B" /> | <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
+| <InlineMath math="B,\,(6,6),\,B'" /> | <InlineMath math="8" /> | <InlineMath math="2" /> | <InlineMath math="8" /> |
+| <InlineMath math="B',\,(-2,2),\,A'" /> | <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="4" /> |
+| <InlineMath math="(-2,2),\,A,\,A'" /> | <InlineMath math="6" /> | <InlineMath math="2" /> | <InlineMath math="6" /> |
+
+<BlockMath math="\begin{aligned}
+L_{ABB'A'}&=32-(2+8+4+6) \\
+&=12\text{ Flächeneinheiten}
+\end{aligned}" />
+
+Es gibt eine schnelle Probe. Die Dreiecke <InlineMath math="PAA'" /> und <InlineMath math="PBB'" /> sind gleichschenklig rechtwinklig mit dem rechten Winkel bei <InlineMath math="P" />, denn eine Drehung um <InlineMath math="90^\circ" /> erhält jeden Abstand zum Zentrum. Das Dreieck <InlineMath math="PAB" /> und sein Bild <InlineMath math="PA'B'" /> sind kongruent, ihre Beiträge heben sich also auf. Übrig bleibt die Differenz der beiden rechtwinkligen Dreiecke.
+
+<BlockMath math="\begin{aligned}
+PA^2&=3^2+1^2=10, \qquad PB^2=5^2+3^2=34 \\
+L_{ABB'A'}&=\tfrac12 PB^2-\tfrac12 PA^2=17-5=12
+\end{aligned}" />
+
+Beide Wege liefern dasselbe Ergebnis.
+
+# Warum die anderen Antworten falsch sind
+
+Jede falsche Antwort entsteht aus einem Fehler bei der Drehung oder bei der Fläche. Die **Lage des Drehzentrums und das Minuszeichen** sind die beiden kritischen Stellen.
+
+- <InlineMath math="22" /> entsteht, wenn du die Fläche des Dreiecks <InlineMath math="PAA'" /> addierst, <InlineMath math="17+5" />. Sie muss abgezogen werden.
+- <InlineMath math="17" /> ist nur die Fläche des Dreiecks <InlineMath math="PBB'" />. Das Dreieck <InlineMath math="PAA'" /> wurde nicht entfernt.
+- <InlineMath math="16" /> entsteht, wenn du um den Ursprung drehst. Dann wäre <InlineMath math="A'=(-2,4)" /> und <InlineMath math="B'=(-4,6)" />. Das Zentrum ist aber <InlineMath math="P(1,1)" />.
+- <InlineMath math="8" /> entsteht, wenn du <InlineMath math="ABB'A'" /> für ein Quadrat mit der Seite <InlineMath math="AB=2\sqrt{2}" /> hältst. Es gilt aber <InlineMath math="AA'=\sqrt{20}" />, und das ist nicht gleich <InlineMath math="AB" />.
+
+Das Viereck <InlineMath math="ABB'A'" /> hat also den Flächeninhalt <InlineMath math="12" /> Flächeneinheiten.

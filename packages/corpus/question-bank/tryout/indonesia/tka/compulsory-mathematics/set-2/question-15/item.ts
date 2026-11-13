@@ -11,28 +11,29 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "Translasi mempertahankan panjang setiap sisi segitiga.",
-        },
-        {
-          correct: true,
-          label:
-            "Pencerminan terhadap suatu garis mempertahankan luas segitiga.",
-        },
-        {
           correct: false,
           label:
-            "Dilatasi dengan faktor skala $$-2$$ menghasilkan segitiga yang luasnya $$2$$ kali luas semula.",
+            "Rotasi $$90^\\circ$$ dengan pusat $$(1,0)$$ dilanjutkan rotasi $$90^\\circ$$ dengan pusat $$(0,1)$$",
         },
         {
           correct: true,
           label:
-            "Rotasi $$180^\\circ$$ dengan pusat $$O(0,0)$$ sama dengan dilatasi berpusat di $$O$$ dengan faktor skala $$-1$$.",
+            "Refleksi terhadap garis $$x=3$$, dilanjutkan refleksi terhadap garis $$y=-1$$, lalu dilanjutkan translasi $$\\begin{pmatrix}-6\\\\2\\end{pmatrix}$$",
         },
         {
-          correct: false,
+          correct: true,
           label:
-            "Pencerminan terhadap sumbu $$x$$ dilanjutkan pencerminan terhadap sumbu $$y$$ sama dengan sebuah translasi.",
+            "Refleksi terhadap garis $$y=2x$$ dilanjutkan refleksi terhadap garis $$x+2y=0$$",
+        },
+        {
+          correct: true,
+          label:
+            "Rotasi $$90^\\circ$$ dengan pusat $$(1,0)$$ dilanjutkan rotasi $$90^\\circ$$ dengan pusat $$(0,-1)$$",
+        },
+        {
+          correct: true,
+          label:
+            "Translasi $$\\begin{pmatrix}4\\\\2\\end{pmatrix}$$ dilanjutkan rotasi $$180^\\circ$$ dengan pusat $$(2,1)$$",
         },
       ],
     },

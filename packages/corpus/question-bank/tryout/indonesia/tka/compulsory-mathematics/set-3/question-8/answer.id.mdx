@@ -1,15 +1,44 @@
-Banyak buku tiap bulan membentuk **barisan aritmetika** dengan <InlineMath math="a=14" /> dan <InlineMath math="b=6" />. Yang ditanyakan adalah jumlah <InlineMath math="12" /> suku pertamanya, <InlineMath math="S_{12}" />.
+Soal ini meminta suku pertama, menurut urutan, yang nilainya lebih dari <InlineMath math="1{.}000" />. Barisannya **geometri**, jadi suku berikutnya didapat dengan mengalikan rasio <InlineMath math="r" />, bukan menambah beda. Tanda negatif pada data akan sangat menentukan.
+
+# Rasio dari dua kelompok suku
+
+Tulis suku ke-<InlineMath math="n" /> sebagai <InlineMath math="u_n=ar^{n-1}" />. Tiga suku berikutnya adalah tiga suku pertama yang masing-masing dikali <InlineMath math="r^3" />.
 
 <BlockMath math="\begin{aligned}
-U_{12}&=a+11b=14+66=80 \\
-S_{12}&=\frac{12}{2}\,(a+U_{12})=6\cdot(14+80)=564
+u_4+u_5+u_6&=ar^3+ar^4+ar^5=r^3\left(a+ar+ar^2\right) \\
+168&=r^3\cdot(-21) \\
+r^3&=-8\ \Rightarrow\ r=-2
 \end{aligned}" />
 
-Sebagai pemeriksaan dengan rumus lain, <InlineMath math="S_{12}=\frac{12}{2}\,(2\cdot14+11\cdot6)=6\cdot94=564" />.
+Bilangan real yang pangkat tiganya <InlineMath math="-8" /> hanya <InlineMath math="-2" />. Jadi **rasionya negatif, dan tanda sukunya berganti-ganti**.
 
-Jadi, selama <InlineMath math="12" /> bulan perpustakaan itu menerima <InlineMath math="564" /> buku.
+# Suku pertama
 
-- <InlineMath math="80" /> buku adalah sumbangan pada bulan ke-<InlineMath math="12" /> saja, yaitu <InlineMath math="U_{12}" />.
-- <InlineMath math="234" /> buku menghitung <InlineMath math="12\cdot14+11\cdot6" />, yaitu menambahkan selisihnya hanya sekali untuk setiap bulan.
-- <InlineMath math="480" /> buku menghitung <InlineMath math="\frac{12}{2}\cdot80" /> dan melupakan suku pertama.
-- <InlineMath math="517" /> buku memakai <InlineMath math="\frac{11}{2}" /> sebagai pengali, bukan <InlineMath math="\frac{12}{2}" />.
+Masukkan <InlineMath math="r=-2" /> ke jumlah tiga suku pertama.
+
+<BlockMath math="\begin{aligned}
+a\left(1+r+r^2\right)&=-21 \\
+a(1-2+4)&=-21 \\
+3a&=-21\ \Rightarrow\ a=-7
+\end{aligned}" />
+
+Cek: <InlineMath math="-7+14-28=-21" /> dan <InlineMath math="56-112+224=168" />. **Kedua jumlah cocok dengan data**.
+
+# Suku pertama yang lebih dari seribu
+
+Rumus sukunya <InlineMath math="u_n=-7(-2)^{n-1}" />. Untuk <InlineMath math="n" /> ganjil, <InlineMath math="(-2)^{n-1}" /> positif, jadi <InlineMath math="u_n" /> negatif. **Hanya suku bernomor genap yang positif**. Sekarang lihat suku-suku menjelang <InlineMath math="1{.}000" />.
+
+| <InlineMath math="n" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> | <InlineMath math="10" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="u_n" /> | <InlineMath math="224" /> | <InlineMath math="-448" /> | <InlineMath math="896" /> | <InlineMath math="-1{.}792" /> | <InlineMath math="3{.}584" /> |
+
+Suku ke-<InlineMath math="8" /> masih <InlineMath math="896" />, dan suku ke-<InlineMath math="9" /> negatif. Jadi suku pertama yang lebih dari <InlineMath math="1{.}000" /> adalah suku ke-<InlineMath math="10" />, yaitu <InlineMath math="3{.}584" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="1{.}792" /> muncul kalau suku pertama diambil <InlineMath math="a=7" />. Dengan itu suku ke-<InlineMath math="9" /> menjadi positif, padahal <InlineMath math="3a=-21" /> memberi <InlineMath math="a" /> negatif.
+- <InlineMath math="1{.}536" /> muncul kalau semua tanda negatif pada data diabaikan, sehingga <InlineMath math="r=2" /> dan <InlineMath math="7a=21" />, atau <InlineMath math="a=3" />. Suku ke-<InlineMath math="10" />-nya <InlineMath math="3\cdot2^{9}=1{.}536" />.
+- <InlineMath math="1{.}001" /> adalah hasil kalau barisan dianggap aritmetika. Dari <InlineMath math="3a+3b=-21" /> dan <InlineMath math="3a+12b=168" /> didapat <InlineMath math="b=21" /> dan <InlineMath math="a=-28" />, lalu suku ke-<InlineMath math="50" /> bernilai <InlineMath math="1{.}001" />. **Soal menyebut barisan geometri**, jadi pola tambah tetap tidak berlaku.
+- <InlineMath math="-1{.}792" /> adalah suku pertama yang ukurannya melewati <InlineMath math="1{.}000" />. Tetapi bilangan negatif tidak lebih dari <InlineMath math="1{.}000" />.
+
+Jadi, suku pertama yang nilainya lebih dari <InlineMath math="1{.}000" /> adalah <InlineMath math="3{.}584" />.

@@ -1,66 +1,53 @@
-Es seien <InlineMath math="x" /> die Zahl der Chilischalen und <InlineMath math="y" /> die Zahl der Tomatenschalen. Die beiden Grenzen sind **Arbeitszeit und Materialbudget**. Das Budget teilst du durch <InlineMath math="10{.}000" />, damit die Zahlen klein bleiben.
+# Betragsstriche auflösen
+
+Nenn die linke Seite <InlineMath math="g(x)=|x-3|+2\,|x+1|" />. Die Beträge wechseln ihre Form bei <InlineMath math="x=-1" /> und <InlineMath math="x=3" />, also zerfällt die Zahlengerade in drei Abschnitte. **Auf jedem Abschnitt ist <InlineMath math="g" /> eine gewöhnliche lineare Funktion**:
+
+<BlockMath math="g(x)=\begin{cases}(3-x)+(-2x-2)=1-3x, & x\le-1 \\ (3-x)+(2x+2)=x+5, & -1\le x\le3 \\ (x-3)+(2x+2)=3x-1, & x\ge3\end{cases}" />
+
+Die Steigungen sind <InlineMath math="-3" />, dann <InlineMath math="1" />, dann <InlineMath math="3" />. Also fällt <InlineMath math="g" /> bis <InlineMath math="x=-1" /> und steigt danach. Der kleinste Wert ist <InlineMath math="g(-1)=4" />.
+
+Jede Aussage löst du abschnittsweise, und **das Ergebnis jedes Abschnitts musst du mit dessen eigener Bedingung schneiden**.
+
+# Erste Aussage
+
+Für <InlineMath math="k=10" />:
 
 <BlockMath math="\begin{aligned}
-2x+3y&\le240 \\
-30{.}000x+20{.}000y\le3{.}000{.}000\iff 3x+2y&\le300 \\
-x\ge0,\quad y&\ge0
+x\le-1:&\quad 1-3x\le10\iff x\ge-3 \\
+-1\le x\le3:&\quad x+5\le10\iff x\le5,\ \text{der ganze Abschnitt passt} \\
+x\ge3:&\quad 3x-1\le10\iff x\le\tfrac{11}{3}
 \end{aligned}" />
 
-Die Ecke, in der beide Grenzen gleichzeitig ausgeschöpft sind, erhältst du aus dem Gleichungssystem.
+Zusammen ergibt das <InlineMath math="-3\le x\le\frac{11}{3}" />. Die ganzen Zahlen darin sind <InlineMath math="-3,-2,-1,0,1,2,3" />, also <InlineMath math="7" /> Stück. Die Aussage ist **Richtig**.
+
+# Zweite Aussage
+
+Weil der kleinste Wert von <InlineMath math="g" /> gleich <InlineMath math="4" /> ist, hat die Ungleichung <InlineMath math="g(x)\le k" /> **genau dann eine Lösung, wenn <InlineMath math="k\ge4" />**. Für <InlineMath math="k<4" /> macht kein <InlineMath math="x" /> den Wert <InlineMath math="g(x)" /> so klein. Die Aussage ist **Richtig**.
+
+# Dritte Aussage
+
+Die Lösungsmenge für <InlineMath math="k=10" /> ist <InlineMath math="\left[-3,\frac{11}{3}\right]" />. Ihr Mittelpunkt ist
+
+<BlockMath math="\frac{-3+\frac{11}{3}}{2}=\frac{1}{3}\ne1" />
+
+Symmetrie um <InlineMath math="x=1" /> gibt es nur, wenn beide Beträge gleich gewichtet sind. **Das Gewicht <InlineMath math="2" /> bei <InlineMath math="|x+1|" /> macht die Steigungen links und rechts verschieden**. Die Aussage ist **Falsch**.
+
+# Vierte Aussage
+
+Für <InlineMath math="k=4" /> brauchst du <InlineMath math="g(x)\le4" />, aber <InlineMath math="g(x)\ge4" /> gilt für jedes <InlineMath math="x" />. Also passen nur Stellen mit <InlineMath math="g(x)=4" />. Links von <InlineMath math="-1" /> fällt der Graph, rechts davon steigt er mit Steigung <InlineMath math="1" />, also wird der Wert <InlineMath math="4" /> **nur bei <InlineMath math="x=-1" /> erreicht**.
+
+Vergleich das mit <InlineMath math="|x-3|+|x+1|\le4" /> ohne Gewicht. Dort ist der mittlere Abschnitt waagerecht, und das ganze Intervall <InlineMath math="-1\le x\le3" /> passt. Das Gewicht <InlineMath math="2" /> kippt den mittleren Abschnitt nach oben. Die Aussage ist **Richtig**.
+
+# Fünfte Aussage
+
+Für <InlineMath math="k=6" />:
 
 <BlockMath math="\begin{aligned}
-2\cdot(2x+3y)=4x+6y&=480 \\
-3\cdot(3x+2y)=9x+6y&=900 \\
-5x&=420\ \Rightarrow\ x=84,\quad y=\frac{240-168}{3}=24
+x\le-1:&\quad 1-3x\le6\iff x\ge-\tfrac{5}{3} \\
+-1\le x\le3:&\quad x+5\le6\iff x\le1 \\
+x\ge3:&\quad 3x-1\le6\iff x\le\tfrac{7}{3},\ \text{Widerspruch zu } x\ge3
 \end{aligned}" />
 
-<MathVisual
-  title="Zulässiger Bereich"
-  description={<>Der zulässige Bereich ist das Viereck mit den Ecken <InlineMath math="(0,0)" />, <InlineMath math="(100,0)" />, <InlineMath math="(84,24)" /> und <InlineMath math="(0,80)" />. Er liegt unter der Geraden <InlineMath math="2x+3y=240" /> und unter der Geraden <InlineMath math="3x+2y=300" />.</>}
-  labels={{
-    optimum: <InlineMath math="(84,24)" />,
-    "corner-x": <InlineMath math="(100,0)" />,
-    "corner-y": <InlineMath math="(0,80)" />,
-    labour: <InlineMath math="2x+3y=240" />,
-    budget: <InlineMath math="3x+2y=300" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -10, max: 130 },
-      y: { min: -10, max: 160 },
-    },
-    view: { kind: "fit", padding: 0.08 },
-    objects: [
-      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 100, y: 0 }, { x: 84, y: 24 }, { x: 0, y: 80 }] },
-      { id: "labour-line", kind: "segment", appearance: "primary", from: { x: 0, y: 80 }, to: { x: 120, y: 0 } },
-      { id: "budget-line", kind: "segment", appearance: "secondary", from: { x: 0, y: 150 }, to: { x: 100, y: 0 } },
-      { id: "optimum-point", kind: "point", appearance: "answer", at: { x: 84, y: 24 } },
-      { id: "corner-x-point", kind: "point", appearance: "reference", at: { x: 100, y: 0 } },
-      { id: "corner-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 80 } },
-    ],
-    labels: [
-      { key: "optimum", objectId: "optimum-point", at: { x: 84, y: 24 }, placement: "above-right" },
-      { key: "corner-x", objectId: "corner-x-point", at: { x: 100, y: 0 }, placement: "below" },
-      { key: "corner-y", objectId: "corner-y-point", at: { x: 0, y: 80 }, placement: "left" },
-      { key: "labour", objectId: "labour-line", at: { x: 105, y: 10 }, placement: "above-right" },
-      { key: "budget", objectId: "budget-line", at: { x: 30, y: 105 }, placement: "right" },
-    ],
-  }}
-/>
+Der rechte Abschnitt liefert keine Lösung. Die Lösungsmenge ist <InlineMath math="-\frac{5}{3}\le x\le1" />, der größte Wert also <InlineMath math="1" />. Die Zahl <InlineMath math="\frac{7}{3}" /> entsteht, wenn du **die Bedingung <InlineMath math="x\ge3" /> für den rechten Abschnitt vergisst**. Die Aussage ist **Falsch**.
 
-Setze die Ecken in den Gewinn <InlineMath math="G=25{.}000x+30{.}000y" /> ein.
-
-<BlockMath math="\begin{aligned}
-G(100,0)&=2{.}500{.}000 \\
-G(0,80)&=2{.}400{.}000 \\
-G(84,24)&=2{.}100{.}000+720{.}000=2{.}820{.}000
-\end{aligned}" />
-
-Der höchste Gewinn liegt bei <InlineMath math="84" /> Chilischalen und <InlineMath math="24" /> Tomatenschalen.
-
-- <InlineMath math="84" /> Chilischalen und <InlineMath math="24" /> Tomatenschalen liefern den höchsten Gewinn. Die Aussage ist richtig.
-- Im Optimum kostet das Material <InlineMath math="30{.}000\cdot84+20{.}000\cdot24=3{.}000{.}000" />, das Budget ist also ganz verbraucht. Die Aussage ist falsch.
-- Der höchste Gewinn ist <InlineMath math="\text{Rp}2{.}820{.}000" />. Der Betrag <InlineMath math="\text{Rp}2{.}500{.}000" /> gehört zur Ecke <InlineMath math="(100,0)" />. Die Aussage ist falsch.
-- Mit <InlineMath math="G=25{.}000x+45{.}000y" /> ergibt sich für <InlineMath math="80" /> Tomatenschalen ohne Chilischalen <InlineMath math="G(0,80)=3{.}600{.}000" />, mehr als <InlineMath math="G(84,24)=3{.}180{.}000" /> und <InlineMath math="G(100,0)=2{.}500{.}000" />. Die Aussage ist richtig.
+Richtig sind also die erste, die zweite und die vierte Aussage.

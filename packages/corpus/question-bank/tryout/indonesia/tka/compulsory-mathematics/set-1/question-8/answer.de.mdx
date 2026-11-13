@@ -1,21 +1,35 @@
-Die Tagesleistungen bilden eine **arithmetische Folge** mit <InlineMath math="u_1=24" /> und <InlineMath math="d=4" />. Die Länge der ganzen Straße ist die Summe aller Tage. Bestimme daraus zuerst die Zahl der Arbeitstage <InlineMath math="n" />.
+# Das mittlere Glied aus der ersten Bedingung
+
+Die Glieder <InlineMath math="u_3" /> und <InlineMath math="u_7" /> sind gleich weit von <InlineMath math="u_5" /> entfernt. In einer arithmetischen Folge gilt: **Zwei Glieder, die gleich weit von einem Glied entfernt sind, haben dieses Glied als Mittelwert**:
+
+<BlockMath math="u_3+u_7=2u_5=34\quad\Rightarrow\quad u_5=17" />
+
+# Die Differenz aus der zweiten Bedingung
+
+Schreib die anderen Glieder mit der Differenz <InlineMath math="b" />: <InlineMath math="u_2=17-3b" /> und <InlineMath math="u_4=17-b" />.
 
 <BlockMath math="\begin{aligned}
-S_n=\frac n2\bigl(2\cdot24+(n-1)\cdot4\bigr)&=1{.}240 \\
-n(2n+22)&=1{.}240 \\
-n^2+11n-620&=0 \\
-(n-20)(n+31)&=0
+(17-3b)(17-b)&=112 \\
+289-68b+3b^2&=112 \\
+3b^2-68b+177&=0 \\
+(b-3)(3b-59)&=0
 \end{aligned}" />
 
-Eine Zahl von Tagen ist positiv, also gilt <InlineMath math="n=20" />. Der letzte Tag ist der zwanzigste.
+Also ist <InlineMath math="b=3" /> oder <InlineMath math="b=\frac{59}{3}" />. In der Aufgabe steht, dass **alle Glieder ganze Zahlen sind**, also fällt <InlineMath math="b=\frac{59}{3}" /> weg und <InlineMath math="b=3" />.
 
-<BlockMath math="u_{20}=24+19\cdot4=100" />
+# Zehn Glieder addieren
 
-Zur Kontrolle: <InlineMath math="S_{20}=\frac{20}{2}(24+100)=10\cdot124=1{.}240" />.
+Das erste Glied ist <InlineMath math="a=u_5-4b=17-12=5" />. Die Folge lautet <InlineMath math="5,8,11,14,17,20,23,26,29,32" />.
 
-Am letzten Tag wurden also <InlineMath math="100\text{ m}" /> gepflastert.
+<BlockMath math="S_{10}=\frac{10}{2}\,(2\cdot5+9\cdot3)=5\cdot37=185" />
 
-- <InlineMath math="20\text{ m}" /> verwechselt die Zahl der Tage mit einer Länge.
-- <InlineMath math="96\text{ m}" /> ist <InlineMath math="u_{19}" />, die Leistung des vorletzten Tages.
-- <InlineMath math="104\text{ m}" /> rechnet <InlineMath math="24+20\cdot4" />. Bis zum zwanzigsten Tag kommen aber nur <InlineMath math="19" /> Steigerungen hinzu.
-- <InlineMath math="124\text{ m}" /> ist <InlineMath math="u_1+u_{20}" /> aus <InlineMath math="S_{20}=\frac{20}{2}(u_1+u_{20})" />. Davon muss <InlineMath math="u_1=24" /> noch abgezogen werden.
+Probe: <InlineMath math="u_3+u_7=11+23=34" /> und <InlineMath math="u_2\cdot u_4=8\cdot14=112" />. **Beides passt**.
+
+Die Summe der ersten <InlineMath math="10" /> Glieder ist also <InlineMath math="185" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac{805}{3}" /> kommt von <InlineMath math="b=\frac{59}{3}" />, deren **Glieder keine ganzen Zahlen sind**.
+- <InlineMath math="200" /> benutzt <InlineMath math="10b" /> in der Summenformel. Das Glied <InlineMath math="u_{10}" /> ist <InlineMath math="a+9b" />, richtig ist also <InlineMath math="9b" />.
+- <InlineMath math="153" /> ist die Summe der ersten <InlineMath math="9" /> Glieder.
+- <InlineMath math="32" /> ist das Glied <InlineMath math="u_{10}" />, nicht die Summe.

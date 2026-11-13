@@ -1,0 +1,36 @@
+# Kedudukan median selepas data bertambah
+
+Soalan ini mahu tahu berapa panggilan pendek yang perlu ditambah supaya anggaran median turun di bawah <InlineMath math="10" /> minit. Dua perkara berubah apabila <InlineMath math="k" /> panggilan ditambah: **bilangan data <InlineMath math="n" /> bertambah, jadi kedudukan median turut beralih**, dan bilangan panggilan di bawah <InlineMath math="10" /> minit juga bertambah.
+
+Menurut bacaan, median dianggar pada data ke-<InlineMath math="\frac{n}{2}" />, dan panggilan dalam setiap kelas dianggap tersebar sekata. Panggilan yang kurang daripada <InlineMath math="10" /> minit berada dalam kelas <InlineMath math="0\le t<5" /> dan <InlineMath math="5\le t<10" />, jadi bilangannya <InlineMath math="(6+k)+22=28+k" />. Data ke-<InlineMath math="(28+k)" /> terletak tepat di hujung kelas <InlineMath math="5\le t<10" />, iaitu pada <InlineMath math="10" /> minit. Jadi anggaran median kurang daripada <InlineMath math="10" /> tepat apabila kedudukan median berada **sebelum** data ke-<InlineMath math="(28+k)" />.
+
+<BlockMath math="\begin{aligned}
+n&=80+k,\qquad\text{kedudukan median}=\frac{80+k}{2} \\
+\frac{80+k}{2}&<28+k \\
+80+k&<56+2k \\
+k&>24
+\end{aligned}" />
+
+# Menyemak hadnya
+
+Ketaksamaan ini **ketat**, jadi <InlineMath math="k=24" /> belum memenuhi syarat. Kira kedua-dua nilai di sekitar had dengan rumus anggaran median dalam kelas <InlineMath math="5\le t<10" />. Sebelum kelas itu ada <InlineMath math="6+k" /> panggilan.
+
+<BlockMath math="\begin{aligned}
+k=24:&\quad n=104,\ \text{data ke-}52,\quad 5+\frac{52-30}{22}\cdot5=5+5=10 \\
+k=25:&\quad n=105,\ \text{data ke-}52.5,\quad 5+\frac{52.5-31}{22}\cdot5\approx9.89
+\end{aligned}" />
+
+Untuk <InlineMath math="k=24" />, anggarannya tepat <InlineMath math="10" /> minit, jadi belum kurang daripada <InlineMath math="10" />. Untuk <InlineMath math="k=25" />, anggarannya lebih kurang <InlineMath math="9.89" /> minit.
+
+Semak dengan cara membilang. Anggaran median di bawah <InlineMath math="10" /> bermakna lebih daripada separuh panggilan kurang daripada <InlineMath math="10" /> minit. Untuk <InlineMath math="k=25" /> ada <InlineMath math="53" /> panggilan sebegitu daripada <InlineMath math="105" />, dan <InlineMath math="53>52.5" />. Untuk <InlineMath math="k=24" /> ada <InlineMath math="52" /> daripada <InlineMath math="104" />, tepat separuh.
+
+# Mengapa pilihan lain salah
+
+Setiap pilihan yang salah terlupa salah satu daripada dua perubahan tadi, atau tersilap membaca hadnya. **Kedudukan median dan tanda kurang daripada** ialah dua perkara yang menentukan jawapan.
+
+- <InlineMath math="12" /> muncul apabila kedudukan median kekal pada data ke-<InlineMath math="40" /> dan kesamaan turut diterima, <InlineMath math="28+k\ge40" />. Sebenarnya <InlineMath math="n" /> turut bertambah.
+- <InlineMath math="13" /> muncul daripada <InlineMath math="28+k>40" />, iaitu median masih pada data ke-<InlineMath math="40" />. Kesilapannya sama: <InlineMath math="n=80+k" />, bukan <InlineMath math="80" />.
+- <InlineMath math="24" /> menjadikan anggaran median tepat <InlineMath math="10" /> minit. Nilai itu tidak kurang daripada <InlineMath math="10" />.
+- <InlineMath math="53" /> muncul apabila hanya panggilan baharu dibandingkan dengan <InlineMath math="52" /> panggilan yang sekurang-kurangnya <InlineMath math="10" /> minit. Sebanyak <InlineMath math="28" /> panggilan lama yang sudah kurang daripada <InlineMath math="10" /> minit terlupa dikira.
+
+Jadi, nilai <InlineMath math="k" /> yang terkecil ialah <InlineMath math="25" />.

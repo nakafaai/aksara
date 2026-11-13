@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "aquarium",
+  stimulus: "peta",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$9$$ gulungan",
+        },
+        {
+          correct: false,
+          label: "$$20$$ gulungan",
+        },
+        {
+          correct: false,
+          label: "$$23$$ gulungan",
+        },
+        {
+          correct: false,
+          label: "$$25$$ gulungan",
+        },
+        {
           correct: true,
-          label: "$$8{.}000\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$80{.}000\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$112{.}000\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$120{.}000\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$160{.}000\\text{ cm}^3$$",
+          label: "$$26$$ gulungan",
         },
       ],
     },

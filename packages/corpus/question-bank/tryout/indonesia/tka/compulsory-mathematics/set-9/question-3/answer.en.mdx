@@ -1,13 +1,42 @@
-Each statement is **a ratio or a percentage of the recipe's ingredients**. Work out the quantities being compared.
+All three statements use the same rule from the reading: what's left of a tablet after <InlineMath math="t" /> hours is <InlineMath math="160\left(\tfrac{1}{2}\right)^{t/6}" />, and the remainders of all tablets add up. Each statement **changes just one thing**, so recompute only the part that changes.
+
+# The first statement
+
+**False**. Let <InlineMath math="A_n" /> be the amount right after tablet number <InlineMath math="n" />. In <InlineMath math="6" /> hours the amount halves, and then a new tablet adds <InlineMath math="160" />. Now look at how far it is from <InlineMath math="320" />.
 
 <BlockMath math="\begin{aligned}
-150:300&=1:2 \\
-\frac{90}{300+150+90}&=\frac{90}{540}\approx16.7\,\% \\
-\frac{36}{24}\cdot2&=1.5\cdot2=3 \\
-\frac{1{,}000}{300}\cdot24&=80
+A_{n+1}&=\tfrac{1}{2}A_n+160 \\
+320-A_{n+1}&=320-\tfrac{1}{2}A_n-160=\tfrac{1}{2}\left(320-A_n\right)
 \end{aligned}" />
 
-- Butter is <InlineMath math="150" /> g and flour <InlineMath math="300" /> g, so the ratio is <InlineMath math="1:2" />. This statement is true.
-- Icing sugar is about <InlineMath math="16.7\,\%" /> of the three ingredients together, more than <InlineMath math="15\,\%" />. This statement is false.
-- The factor for <InlineMath math="36" /> biscuits is <InlineMath math="1.5" />, so the eggs are <InlineMath math="1.5\cdot2=3" />. This statement is true.
-- <InlineMath math="1" /> kg of flour is enough for exactly <InlineMath math="80" /> biscuits, not more. This statement is false.
+The gap to <InlineMath math="320" /> **halves every time**, but it never reaches zero. The first gap is <InlineMath math="320-160=160" />, so
+
+<BlockMath math="A_n=320-160\left(\tfrac{1}{2}\right)^{n-1}" />
+
+The values are <InlineMath math="160,\ 240,\ 280,\ 300,\ 310,\ 315,\ \ldots" />: always rising, yet always below <InlineMath math="320" />. Between two tablets the amount even drops, so at no time does it go above <InlineMath math="320\text{ mg}" />.
+
+# The second statement
+
+**True**. The 06:00 and 18:00 tablets stay where they are, and only the second tablet moves to 15:00. Work out what's left of each tablet right after the 18:00 tablet is taken.
+
+<BlockMath math="\begin{aligned}
+\text{06:00 tablet (12 hours)}&:\ 160\left(\tfrac{1}{2}\right)^{2}=40 \\
+\text{15:00 tablet (3 hours)}&:\ 160\left(\tfrac{1}{2}\right)^{1/2}=80\sqrt{2} \\
+\text{18:00 tablet (0 hours)}&:\ 160 \\
+\text{total}&=200+80\sqrt{2}\approx200+112.8=312.8
+\end{aligned}" />
+
+That's more than <InlineMath math="300" /> because <InlineMath math="80\sqrt{2}>100" />, since <InlineMath math="\sqrt{2}>1.25" />. It makes sense: a tablet taken **later has had less time to shrink**, so the total goes above the <InlineMath math="280\text{ mg}" /> of the original schedule.
+
+# The third statement
+
+**False**. If every tablet holds <InlineMath math="320\text{ mg}" />, what's left of each tablet at any moment doubles. So right after the 18:00 tablet the blood holds <InlineMath math="2\cdot280=560\text{ mg}" />. Compare how long it takes to get down to <InlineMath math="70\text{ mg}" />.
+
+<BlockMath math="\begin{aligned}
+\text{original: } 280\left(\tfrac{1}{2}\right)^{t/6}=70&\ \Rightarrow\ \left(\tfrac{1}{2}\right)^{t/6}=\tfrac{1}{4}\ \Rightarrow\ t=12 \\
+\text{new: } 560\left(\tfrac{1}{2}\right)^{t/6}=70&\ \Rightarrow\ \left(\tfrac{1}{2}\right)^{t/6}=\tfrac{1}{8}\ \Rightarrow\ t=18
+\end{aligned}" />
+
+The time goes from <InlineMath math="12" /> hours to <InlineMath math="18" /> hours, not to <InlineMath math="24" /> hours. A doubled amount needs just **one extra half-life**, the <InlineMath math="6" /> hours it takes to halve, to get back to the original situation.
+
+So the answers are False, True, False.

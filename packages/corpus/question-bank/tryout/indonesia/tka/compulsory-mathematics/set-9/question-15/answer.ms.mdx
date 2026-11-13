@@ -1,0 +1,74 @@
+Soalan ini bertanya transformasi tunggal yang mana memetakan <InlineMath math="A" /> kepada <InlineMath math="A'" /> **dan pada masa yang sama** <InlineMath math="B" /> kepada <InlineMath math="B'" />. Berhati-hati: setiap transformasi dalam pernyataan pertama dan ketiga memang memetakan <InlineMath math="A" /> kepada <InlineMath math="A'" />. Jadi titik <InlineMath math="B" /> yang menjadi penentu.
+
+# Petunjuk daripada arah tembereng
+
+Cara pantasnya, lihat tembereng dari <InlineMath math="A" /> ke <InlineMath math="B" />. Setiap jenis transformasi mengubah vektor <InlineMath math="\overrightarrow{AB}" /> dengan cara yang tetap, **tidak kira di mana pusat atau garis pantulannya**:
+
+<BlockMath math="\begin{aligned}
+\overrightarrow{AB}&=(3-1,\ 6-4)=(2,2) \\
+\overrightarrow{A'B'}&=(5-7,\ 6-4)=(-2,2)
+\end{aligned}" />
+
+| Transformasi | Vektor <InlineMath math="(2,2)" /> menjadi | Sepadan dengan <InlineMath math="(-2,2)" />? |
+| :---: | :---: | :---: |
+| Translasi | <InlineMath math="(2,2)" /> | tidak |
+| Pembesaran dengan faktor <InlineMath math="-1" /> | <InlineMath math="(-2,-2)" /> | tidak |
+| Putaran <InlineMath math="90^\circ" /> ikut arah jam | <InlineMath math="(2,-2)" /> | tidak |
+| Putaran <InlineMath math="90^\circ" /> lawan arah jam | <InlineMath math="(-2,2)" /> | ya |
+| Pantulan pada garis mencancang | <InlineMath math="(-2,2)" /> | ya |
+
+Jadual ini menapis jenisnya. Selepas itu, semak sama ada pusat atau garis pantulannya juga sesuai.
+
+<MathVisual
+  title={<>Tembereng dan imejnya</>}
+  description={<>Tembereng dari <InlineMath math="A(1,4)" /> ke <InlineMath math="B(3,6)" /> menghala ke kanan atas. Imejnya dari <InlineMath math="A'(7,4)" /> ke <InlineMath math="B'(5,6)" /> menghala ke kiri atas. Garis <InlineMath math="x=4" /> terletak tepat di tengah antara kedua-dua tembereng, dan titik <InlineMath math="(4,7)" /> ialah pusat putaran <InlineMath math="90^\circ" /> lawan arah jam yang membawa tembereng pertama kepada tembereng kedua.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    a2: <InlineMath math="A'" />,
+    b2: <InlineMath math="B'" />,
+    center: <InlineMath math="(4,7)" />,
+    mirror: <InlineMath math="x=4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 10 },
+      y: { min: 0, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: 4, y: 9 } },
+      { id: "ab", kind: "vector", appearance: "primary", from: { x: 1, y: 4 }, to: { x: 3, y: 6 } },
+      { id: "ab2", kind: "vector", appearance: "secondary", from: { x: 7, y: 4 }, to: { x: 5, y: 6 } },
+      { id: "center", kind: "point", appearance: "highlight", at: { x: 4, y: 7 } },
+    ],
+    labels: [
+      { key: "a", objectId: "ab", at: { x: 1, y: 4 }, placement: "left" },
+      { key: "b", objectId: "ab", at: { x: 3, y: 6 }, placement: "above-left" },
+      { key: "a2", objectId: "ab2", at: { x: 7, y: 4 }, placement: "right" },
+      { key: "b2", objectId: "ab2", at: { x: 5, y: 6 }, placement: "above-right" },
+      { key: "center", objectId: "center", at: { x: 4, y: 7 }, placement: "above-right" },
+      { key: "mirror", objectId: "mirror", at: { x: 4, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Menilai setiap pernyataan
+
+1. **Salah**. Translasi <InlineMath math="(6,0)" /> membawa <InlineMath math="A(1,4)" /> ke <InlineMath math="(7,4)" />, tetapi membawa <InlineMath math="B(3,6)" /> ke <InlineMath math="(9,6)" />, bukan <InlineMath math="(5,6)" />. Translasi tidak pernah mengubah arah tembereng.
+2. **Salah**. Putaran <InlineMath math="90^\circ" /> ikut arah jam sentiasa menukar <InlineMath math="(2,2)" /> kepada <InlineMath math="(2,-2)" />, sedangkan yang diperlukan ialah <InlineMath math="(-2,2)" />. Jadi semua pusat gagal. Contohnya, pusat <InlineMath math="(4,1)" /> membawa <InlineMath math="A" /> ke <InlineMath math="(7,4)" />, tetapi membawa <InlineMath math="B" /> ke <InlineMath math="(9,2)" />.
+3. **Salah**. Pembesaran dengan pusat <InlineMath math="(4,4)" /> dan faktor <InlineMath math="-1" /> memetakan <InlineMath math="(x,y)" /> kepada <InlineMath math="(8-x,\ 8-y)" />. Hasilnya <InlineMath math="A\mapsto(7,4)" /> betul, tetapi <InlineMath math="B\mapsto(5,2)" /> salah.
+4. **Betul**. Pantulan pada <InlineMath math="x=4" /> memetakan <InlineMath math="(x,y)" /> kepada <InlineMath math="(8-x,\ y)" />, jadi <InlineMath math="A\mapsto(7,4)" /> dan <InlineMath math="B\mapsto(5,6)" />. Kedua-duanya tepat.
+5. **Betul**. Jenisnya sudah lulus tapisan, jadi kita cari pusatnya. Putaran <InlineMath math="90^\circ" /> lawan arah jam pada pusat <InlineMath math="(a,b)" /> memetakan <InlineMath math="(x,y)" /> kepada <InlineMath math="\big(a-(y-b),\ b+(x-a)\big)" />. Guna <InlineMath math="A\mapsto A'" />:
+
+<BlockMath math="\begin{aligned}
+a-(4-b)=7\ &\Rightarrow\ a+b=11 \\
+b+(1-a)=4\ &\Rightarrow\ b-a=3 \\
+a=4,\ b&=7
+\end{aligned}" />
+
+Sekarang uji <InlineMath math="B(3,6)" /> dengan pusat <InlineMath math="(4,7)" />: imejnya ialah <InlineMath math="\big(4-(6-7),\ 7+(3-4)\big)=(5,6)=B'" />. **Pusat itu memang wujud**, jadi pernyataan kelima betul.
+
+Jadi, pernyataan yang betul ialah pernyataan keempat dan kelima: pantulan pada <InlineMath math="x=4" /> dan putaran <InlineMath math="90^\circ" /> lawan arah jam pada pusat <InlineMath math="(4,7)" />.

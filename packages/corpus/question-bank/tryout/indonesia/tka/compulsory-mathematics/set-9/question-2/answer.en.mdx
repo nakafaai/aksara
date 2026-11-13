@@ -1,15 +1,40 @@
-First work out **the butter needed for <InlineMath math="60" /> biscuits**, then find the fewest <InlineMath math="200" /> g packs that cover it.
+The question asks for the first check whose result is **less than** <InlineMath math="35\text{ mg}" />. For that you need two things: the amount of active substance right after the last tablet, and its value at every check time.
+
+# The blood right after the last tablet
+
+Every <InlineMath math="6" /> hours, everything in the blood halves, and then the next tablet adds <InlineMath math="160\text{ mg}" />. **The old tablets don't vanish**: what's left of them carries over.
 
 <BlockMath math="\begin{aligned}
-\frac{60}{24}\cdot150&=2.5\cdot150=375\text{ g} \\
-1\text{ pack}&=200\text{ g}<375\text{ g} \\
-2\text{ packs}&=400\text{ g}\ge375\text{ g} \\
-\text{left over}&=400-375=25\text{ g}
+\text{06:00}&:\ 160 \\
+\text{12:00}&:\ \tfrac{1}{2}\cdot160+160=240 \\
+\text{18:00}&:\ \tfrac{1}{2}\cdot240+160=280
 \end{aligned}" />
 
-So Rina buys <InlineMath math="2" /> packs of butter and has <InlineMath math="25" /> g left.
+After 18:00 there are no more tablets. So starting from <InlineMath math="280\text{ mg}" />, the amount only goes down.
 
-- <InlineMath math="1" /> pack with <InlineMath math="50" /> g left uses <InlineMath math="150" /> g, the amount for only <InlineMath math="24" /> biscuits.
-- <InlineMath math="2" /> packs with <InlineMath math="100" /> g left uses a factor of <InlineMath math="2" />, the amount for <InlineMath math="48" /> biscuits.
-- <InlineMath math="3" /> packs with <InlineMath math="150" /> g left uses a factor of <InlineMath math="3" />, the amount for <InlineMath math="72" /> biscuits.
-- <InlineMath math="3" /> packs with <InlineMath math="225" /> g left uses the right <InlineMath math="375" /> g but buys one more pack than needed.
+# The result of each check
+
+The checks are <InlineMath math="3" /> hours apart, which is half of <InlineMath math="6" /> hours. So each check **multiplies the amount by** <InlineMath math="\left(\tfrac{1}{2}\right)^{1/2}=\tfrac{1}{2}\sqrt{2}" />, and two checks in a row multiply it by <InlineMath math="\tfrac{1}{2}" />.
+
+<BlockMath math="M=280\left(\tfrac{1}{2}\right)^{t/6},\qquad t=3,\ 6,\ 9,\ \ldots" />
+
+| Check | <InlineMath math="t" /> (hours) | Active substance (mg) |
+| --- | --- | --- |
+| Monday 21:00 | <InlineMath math="3" /> | <InlineMath math="140\sqrt{2}\approx197.4" /> |
+| Tuesday 00:00 | <InlineMath math="6" /> | <InlineMath math="140" /> |
+| Tuesday 03:00 | <InlineMath math="9" /> | <InlineMath math="70\sqrt{2}\approx98.7" /> |
+| Tuesday 06:00 | <InlineMath math="12" /> | <InlineMath math="70" /> |
+| Tuesday 09:00 | <InlineMath math="15" /> | <InlineMath math="35\sqrt{2}\approx49.4" /> |
+| Tuesday 12:00 | <InlineMath math="18" /> | <InlineMath math="35" /> |
+| Tuesday 15:00 | <InlineMath math="21" /> | <InlineMath math="17.5\sqrt{2}\approx24.7" /> |
+
+At 12:00 the amount is exactly <InlineMath math="35\text{ mg}" />. The number <InlineMath math="35" /> isn't less than <InlineMath math="35" />, so this check **doesn't meet the condition yet**. The next check, at 15:00, shows about <InlineMath math="24.7\text{ mg}" />, and that's below <InlineMath math="35\text{ mg}" />.
+
+# Why the other options are wrong
+
+- 06:00 comes from forgetting to add the 18:00 tablet and using <InlineMath math="120\text{ mg}" />, the amount just before that tablet. From <InlineMath math="120" />, only <InlineMath math="30" /> is left at 06:00.
+- 09:00 comes from **counting only the last tablet**. From <InlineMath math="160" />, only <InlineMath math="20\sqrt{2}\approx28.2" /> is left at 09:00. But at 18:00 the two earlier tablets still leave <InlineMath math="120\text{ mg}" />, so that estimate is too low.
+- 12:00 is when the amount is exactly <InlineMath math="35\text{ mg}" />. The condition is less than <InlineMath math="35" />, not less than or equal to.
+- 18:00 comes from assuming the amount only drops at multiples of <InlineMath math="6" /> hours, so that it's still <InlineMath math="35" /> at 15:00. You also land here if you add the three tablets with no decrease, giving <InlineMath math="480\text{ mg}" />. The substance decreases continuously, so by 15:00 it's already below <InlineMath math="35" />.
+
+So the earliest time the patient may get the other medicine is Tuesday at 15:00.

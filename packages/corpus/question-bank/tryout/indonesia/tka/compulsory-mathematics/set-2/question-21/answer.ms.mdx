@@ -1,0 +1,38 @@
+Soalan ini mahukan semua nombor bulat <InlineMath math="x" /> yang memenuhi dua syarat serentak: **pencilan bagi kelas B, tetapi bukan pencilan bagi kelas A**. Setiap kelas ada had pencilannya sendiri, yang dikira daripada julat antara kuartil <InlineMath math="Q_3-Q_1" /> kelas itu. Perhatikan juga tanda ketaksamaannya: pencilan mesti **kurang daripada** had bawah atau **lebih daripada** had atas, jadi nilai yang tepat pada had bukan pencilan.
+
+# Had pencilan bagi setiap kelas
+
+Cari julat antara kuartil setiap kelas, **darabkan dengan <InlineMath math="1.5" />**, kemudian tolak hasilnya daripada <InlineMath math="Q_1" /> dan tambah kepada <InlineMath math="Q_3" />.
+
+<BlockMath math="\begin{aligned}
+\text{Kelas A}&:\ Q_3-Q_1=82-56=26,\quad 1.5\cdot26=39 \\
+&\quad\ \text{had bawah }56-39=17,\quad\text{had atas }82+39=121 \\
+\text{Kelas B}&:\ Q_3-Q_1=76-62=14,\quad 1.5\cdot14=21 \\
+&\quad\ \text{had bawah }62-21=41,\quad\text{had atas }76+21=97
+\end{aligned}" />
+
+# Nilai yang memenuhi syarat itu
+
+Bagi kelas B, <InlineMath math="x" /> ialah pencilan jika <InlineMath math="x<41" /> atau <InlineMath math="x>97" />. Oleh sebab <InlineMath math="x" /> nombor bulat dari <InlineMath math="0" /> hingga <InlineMath math="100" />, ini bermaksud <InlineMath math="0\le x\le40" /> atau <InlineMath math="98\le x\le100" />.
+
+Bagi kelas A, <InlineMath math="x" /> ialah pencilan jika <InlineMath math="x<17" /> atau <InlineMath math="x>121" />. Tiada markah ujian yang boleh melepasi had atas <InlineMath math="121" />. Jadi <InlineMath math="x" /> **bukan pencilan bagi kelas A tepat apabila <InlineMath math="x\ge17" />**.
+
+Sekarang ambil persilangan kedua-dua syarat itu.
+
+| Julat nilai | Pencilan bagi B? | Pencilan bagi A? | Memenuhi? |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0\le x\le16" /> | ya | ya | tidak |
+| <InlineMath math="17\le x\le40" /> | ya | tidak | ya |
+| <InlineMath math="41\le x\le97" /> | tidak | tidak | tidak |
+| <InlineMath math="98\le x\le100" /> | ya | tidak | ya |
+
+Semak hujung julat: <InlineMath math="x=17" /> tidak kurang daripada <InlineMath math="17" />, jadi ia bukan pencilan bagi A, manakala <InlineMath math="17<41" /> menjadikannya pencilan bagi B. Nilai <InlineMath math="x=41" /> dan <InlineMath math="x=97" /> tepat pada had kelas B, jadi kedua-duanya bukan pencilan bagi B.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="18\le x\le41" /> atau <InlineMath math="97\le x\le100" /> menganggap nilai yang tepat pada had sebagai pencilan. Takrifnya menggunakan **kurang daripada** dan **lebih daripada**, bukan "kurang daripada atau sama dengan".
+- <InlineMath math="0\le x\le40" /> atau <InlineMath math="98\le x\le100" /> hanya menyemak kelas B. Nilai <InlineMath math="0" /> hingga <InlineMath math="16" /> juga pencilan bagi kelas A, jadi mesti dibuang.
+- <InlineMath math="30\le x\le47" /> atau <InlineMath math="91\le x\le100" /> terlupa mendarab julat antara kuartil dengan <InlineMath math="1.5" />.
+- "Tiada nilai yang memenuhi" terhasil jika peranan kedua-dua kelas tertukar, iaitu mencari pencilan bagi A yang bukan pencilan bagi B. Setiap nilai di bawah <InlineMath math="17" /> juga di bawah <InlineMath math="41" />, jadi set itu memang kosong, tetapi bukan itu yang ditanya.
+
+Jadi, semua nilai yang mungkin ialah <InlineMath math="17\le x\le40" /> atau <InlineMath math="98\le x\le100" />.

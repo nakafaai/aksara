@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "reading-books",
+  stimulus: "saudara",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$14$$ siswa",
+        },
+        {
+          correct: false,
+          label: "$$20$$ siswa",
+        },
+        {
           correct: true,
-          label: "$$2$$",
+          label: "$$25$$ siswa",
         },
         {
           correct: false,
-          label: "$$2{,}24$$",
+          label: "$$29$$ siswa",
         },
         {
           correct: false,
-          label: "$$2{,}5$$",
-        },
-        {
-          correct: false,
-          label: "$$4$$",
-        },
-        {
-          correct: false,
-          label: "$$8$$",
+          label: "$$34$$ siswa",
         },
       ],
     },

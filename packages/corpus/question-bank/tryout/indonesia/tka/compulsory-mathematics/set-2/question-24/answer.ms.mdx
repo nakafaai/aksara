@@ -1,0 +1,44 @@
+Soalan ini mengira bilangan jawatankuasa <InlineMath math="4" /> orang. Semua ahli berkedudukan sama, jadi susunan memilih tidak penting dan kamu menggunakan **gabungan**. Rani tidak boleh menyertai, jadi calon tinggal <InlineMath math="10" /> orang: <InlineMath math="5" /> lelaki dan <InlineMath math="5" /> perempuan.
+
+# Syarat lelaki dan perempuan
+
+Cara paling cepat ialah pelengkap: kira semua jawatankuasa daripada <InlineMath math="10" /> orang, kemudian buang yang **semuanya lelaki** atau **semuanya perempuan**.
+
+<BlockMath math="\begin{aligned}
+\binom{10}{4}&=210 \\
+\text{semua lelaki}&=\binom54=5,\qquad\text{semua perempuan}=\binom54=5 \\
+210-5-5&=200
+\end{aligned}" />
+
+# Syarat Andi dan Budi
+
+Daripada <InlineMath math="200" /> jawatankuasa itu, buang yang mengandungi Andi dan Budi serentak. Jika kedua-duanya masuk, dua tempat lagi diisi daripada <InlineMath math="8" /> orang yang tinggal, iaitu <InlineMath math="3" /> lelaki dan <InlineMath math="5" /> perempuan.
+
+| Dua ahli yang lain | Bilangan cara | Sudah dibuang sebelum ini? |
+| :---: | :---: | :---: |
+| <InlineMath math="2" /> perempuan | <InlineMath math="\binom52=10" /> | tidak |
+| <InlineMath math="1" /> lelaki, <InlineMath math="1" /> perempuan | <InlineMath math="3\cdot5=15" /> | tidak |
+| <InlineMath math="2" /> lelaki | <InlineMath math="\binom32=3" /> | ya, semuanya lelaki |
+
+Tiga jawatankuasa terakhir sudah dibuang sebagai jawatankuasa semua lelaki, jadi **jangan buang dua kali**. Yang masih perlu dibuang hanyalah <InlineMath math="10+15=25" />.
+
+<BlockMath math="200-25=175" />
+
+Semak dengan cara lain, berdasarkan berapa orang antara Andi dan Budi yang masuk.
+
+<BlockMath math="\begin{aligned}
+\text{tanpa Andi dan Budi}&:\ \binom84-\binom54=70-5=65 \\
+\text{tepat seorang daripada mereka}&:\ 2\cdot\left[\binom83-\binom33\right]=2\cdot(56-1)=110 \\
+\text{jumlah}&=65+110=175
+\end{aligned}" />
+
+Pada baris pertama, calon tinggal <InlineMath math="3" /> lelaki dan <InlineMath math="5" /> perempuan, dan jawatankuasa semua perempuan mesti dibuang. Pada baris kedua, sudah ada seorang lelaki, jadi tiga ahli lain cuma tidak boleh semuanya lelaki.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="172" /> membuang kesemua <InlineMath math="\binom82=28" /> jawatankuasa yang mengandungi Andi dan Budi. Tiga daripadanya sudah dibuang sebagai jawatankuasa semua lelaki, jadi **terbuang dua kali**.
+- <InlineMath math="180" /> hanya membuang satu kumpulan sejenis jantina, <InlineMath math="210-5-25" />. Jawatankuasa semua lelaki dan semua perempuan kedua-duanya dilarang.
+- <InlineMath math="200" /> terlupa syarat Andi dan Budi.
+- <InlineMath math="277" /> masih mengira Rani, jadi calonnya <InlineMath math="11" /> orang.
+
+Jadi, bilangan cara membentuk jawatankuasa itu ialah <InlineMath math="175" />.

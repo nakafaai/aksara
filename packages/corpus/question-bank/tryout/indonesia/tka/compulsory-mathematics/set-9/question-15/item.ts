@@ -11,24 +11,29 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "Koordinat titik $$P'$$ adalah $$(-1,1)$$.",
+          correct: false,
+          label:
+            "Transformasi itu dapat berupa translasi oleh vektor $$(6,0)$$.",
         },
         {
           correct: false,
-          label: "Koordinat titik $$R'$$ adalah $$(3,-5)$$.",
-        },
-        {
-          correct: true,
-          label: "Sisi $$P'Q'$$ tegak, sejajar sumbu $$y$$.",
+          label:
+            "Transformasi itu dapat berupa rotasi sebesar $$90^\\circ$$ searah putaran jarum jam terhadap suatu titik pusat.",
         },
         {
           correct: false,
-          label: "Seluruh persegi panjang $$P'Q'R'S'$$ terletak di kuadran I.",
+          label:
+            "Transformasi itu dapat berupa dilatasi dengan pusat $$(4,4)$$ dan faktor skala $$-1$$.",
         },
         {
           correct: true,
-          label: "Luas persegi panjang $$P'Q'R'S'$$ adalah $$8$$ satuan luas.",
+          label:
+            "Transformasi itu dapat berupa pencerminan terhadap garis $$x=4$$.",
+        },
+        {
+          correct: true,
+          label:
+            "Transformasi itu dapat berupa rotasi sebesar $$90^\\circ$$ berlawanan arah putaran jarum jam terhadap suatu titik pusat.",
         },
       ],
     },

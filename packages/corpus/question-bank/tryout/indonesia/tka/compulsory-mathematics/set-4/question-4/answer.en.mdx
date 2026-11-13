@@ -1,16 +1,43 @@
-Let <InlineMath math="a" /> and <InlineMath math="b" /> be the numbers of type A and type B key chains. Wire and beads give **two linear equations**. First convert the wire to centimetres, <InlineMath math="2.24\text{ m}=224\text{ cm}" />.
+# Which receipts got the discount
+
+Call the normal price of one pen (pulpen) <InlineMath math="p" />, of one sketchbook (buku gambar) <InlineMath math="b" /> and of one marker (spidol) <InlineMath math="s" />. The question asks for <InlineMath math="p+b+s" />. The table only shows what each person paid, so you first have to **turn every receipt back into its normal price**.
+
+The rule: the <InlineMath math="10\%" /> discount is given only when the normal price is more than <InlineMath math="60{,}000" />. With a discount, the amount paid is <InlineMath math="90\%" /> of the normal price, so the normal price is the amount paid divided by <InlineMath math="0.9" />. Test each receipt:
+
+| Buyer | Paid | If no discount | If discounted | Conclusion |
+| --- | --- | --- | --- | --- |
+| Ani | <InlineMath math="48{,}000" /> | normal <InlineMath math="48{,}000\le60{,}000" />, fits | normal <InlineMath math="48{,}000\div0.9\approx53{,}333" />, not more than <InlineMath math="60{,}000" /> | no discount |
+| Budi | <InlineMath math="62{,}100" /> | normal <InlineMath math="62{,}100>60{,}000" />, should have had a discount | normal <InlineMath math="69{,}000>60{,}000" />, fits | discounted |
+| Citra | <InlineMath math="54{,}000" /> | normal <InlineMath math="54{,}000\le60{,}000" />, fits | normal exactly <InlineMath math="60{,}000" />, not more than <InlineMath math="60{,}000" /> | no discount |
+
+Citra's receipt is the boundary case. A normal price of <InlineMath math="60{,}000" /> is **not more than** <InlineMath math="60{,}000" />, so there's no discount. Citra's normal price is <InlineMath math="54{,}000" />.
+
+# Adding the three equations
+
+Write the three normal prices as equations.
 
 <BlockMath math="\begin{aligned}
-12a+8b&=224\ \Rightarrow\ 3a+2b=56 \\
-3a+5b&=86 \\
-3b&=30\ \Rightarrow\ b=10,\quad a=\frac{56-20}{3}=12
+2p+b+3s&=48{,}000 \\
+p+3b+2s&=69{,}000 \\
+3p+2b+s&=54{,}000
 \end{aligned}" />
 
-As a check, <InlineMath math="12\cdot12+8\cdot10=144+80=224" /> and <InlineMath math="3\cdot12+5\cdot10=36+50=86" />.
+You don't need each item's price. When you add the three equations, each item appears <InlineMath math="2+1+3=6" /> times. So **just add everything**.
 
-So the craftsperson makes <InlineMath math="10" /> type B key chains.
+<BlockMath math="\begin{aligned}
+6p+6b+6s&=48{,}000+69{,}000+54{,}000=171{,}000 \\
+p+b+s&=\frac{171{,}000}{6}=28{,}500
+\end{aligned}" />
 
-- <InlineMath math="4" /> comes from swapping the wire needs of the two types, <InlineMath math="8a+12b=224" />.
-- <InlineMath math="12" /> is the number of type A key chains.
-- <InlineMath math="22" /> is the number of all key chains.
-- <InlineMath math="28" /> divides all the wire by <InlineMath math="8\text{ cm}" />, as if every key chain were type B, without checking the beads.
+As a check, the system gives <InlineMath math="p=4{,}500" />, <InlineMath math="b=16{,}500" /> and <InlineMath math="s=7{,}500" />, which add up to <InlineMath math="28{,}500" />.
+
+# The tempting options
+
+Each of the other options **goes wrong at one step**.
+
+- <InlineMath math="\text{Rp}9{,}500" /> is <InlineMath math="\frac{171{,}000}{18}" />, the average price of one item. The question asks for three items together, so you'd still need to multiply by <InlineMath math="3" />.
+- <InlineMath math="\text{Rp}27{,}350" /> comes from not undoing the discount on Budi's receipt, <InlineMath math="\frac{48{,}000+62{,}100+54{,}000}{6}" />.
+- <InlineMath math="\text{Rp}28{,}385" /> comes from undoing the discount by adding <InlineMath math="10\%" /> of the amount paid, <InlineMath math="62{,}100\cdot1.1=68{,}310" />. The <InlineMath math="10\%" /> was taken from the normal price, so the right move is dividing by <InlineMath math="0.9" />.
+- <InlineMath math="\text{Rp}29{,}500" /> comes from treating Citra's receipt as discounted too, with a normal price of <InlineMath math="60{,}000" />. The discount is only for normal prices above <InlineMath math="60{,}000" />.
+
+So the total normal price of one pen, one sketchbook and one marker is <InlineMath math="\text{Rp}28{,}500" />.

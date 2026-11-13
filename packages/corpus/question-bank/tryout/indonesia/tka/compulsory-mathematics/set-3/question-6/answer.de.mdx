@@ -1,15 +1,43 @@
-Bei der Verkettung <InlineMath math="(g\circ f)(3)=g\big(f(3)\big)" /> **wirkt die Funktion neben <InlineMath math="x" /> zuerst**. Berechne <InlineMath math="f(3)" /> und setze das Ergebnis in <InlineMath math="g" /> ein.
+Gefragt ist, für wie viele ganze Zahlen <InlineMath math="x" /> der Wert <InlineMath math="f(x)" /> echt zwischen <InlineMath math="-4" /> und <InlineMath math="12" /> liegt. Du brauchst zuerst die Funktionsgleichung von <InlineMath math="f" /> und musst dann **zwei strenge Ungleichheitszeichen** beachten.
+
+# Die Funktionsgleichung
+
+Der Graph einer quadratischen Funktion ist symmetrisch zu seiner Achse. Wegen <InlineMath math="f(-2)=f(8)" /> liegt die Symmetrieachse genau in der Mitte zwischen <InlineMath math="-2" /> und <InlineMath math="8" />, bei <InlineMath math="x=\frac{-2+8}{2}=3" />. Die Wertemenge <InlineMath math="y\ge-6" /> heißt: Die Parabel ist nach oben geöffnet, und **ihr kleinster Wert <InlineMath math="-6" /> liegt im Scheitelpunkt**. Also ist <InlineMath math="f(x)=a(x-3)^2-6" /> mit <InlineMath math="a>0" />.
 
 <BlockMath math="\begin{aligned}
-f(3)&=5-2\cdot3=-1 \\
-g(-1)&=(-1)^2+4\cdot(-1)=1-4=-3
+f(1)&=a(1-3)^2-6=-4 \\
+4a&=2\ \Rightarrow\ a=\tfrac12 \\
+f(x)&=\tfrac12(x-3)^2-6
 \end{aligned}" />
 
-Zur Kontrolle: Die Verkettung lautet <InlineMath math="(g\circ f)(x)=(5-2x)^2+4(5-2x)" />, und für <InlineMath math="x=3" /> ergibt sie <InlineMath math="1-4=-3" />.
+# Die Bedingungen als Abstand zur Achse
 
-Also ist <InlineMath math="(g\circ f)(3)=-3" />.
+Setze <InlineMath math="d=|x-3|" />, den Abstand von <InlineMath math="x" /> zur Symmetrieachse. Weil <InlineMath math="x" /> ganzzahlig ist, ist auch <InlineMath math="d" /> ganzzahlig. Schreib beide Ungleichungen als Bedingungen für <InlineMath math="d" />.
 
-- <InlineMath math="-37" /> berechnet <InlineMath math="(f\circ g)(3)=f(21)=5-42" />, also die umgekehrte Reihenfolge.
-- <InlineMath math="-21" /> multipliziert <InlineMath math="g(3)=21" /> mit <InlineMath math="f(3)=-1" />, doch eine Verkettung ist kein Produkt.
-- <InlineMath math="-5" /> nimmt <InlineMath math="(-1)^2" /> als <InlineMath math="-1" />.
-- <InlineMath math="5" /> nimmt <InlineMath math="4\cdot(-1)" /> als <InlineMath math="4" />.
+<BlockMath math="\begin{aligned}
+-4<\tfrac12d^2-6\ &\Rightarrow\ d^2>4\ \Rightarrow\ d>2 \\
+\tfrac12d^2-6<12\ &\Rightarrow\ d^2<36\ \Rightarrow\ d<6
+\end{aligned}" />
+
+Also gilt <InlineMath math="2<d<6" />, das heißt <InlineMath math="d=3,4,5" />. **Jeder Wert von <InlineMath math="d" /> liefert zwei Werte von <InlineMath math="x" />**, einen links und einen rechts der Achse.
+
+| <InlineMath math="d" /> | <InlineMath math="x" /> | <InlineMath math="f(x)" /> | Passt? |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="3" /> | <InlineMath math="-6" /> | nein |
+| <InlineMath math="1" /> | <InlineMath math="2" /> und <InlineMath math="4" /> | <InlineMath math="-5{,}5" /> | nein |
+| <InlineMath math="2" /> | <InlineMath math="1" /> und <InlineMath math="5" /> | <InlineMath math="-4" /> | nein, muss größer als <InlineMath math="-4" /> sein |
+| <InlineMath math="3" /> | <InlineMath math="0" /> und <InlineMath math="6" /> | <InlineMath math="-1{,}5" /> | ja |
+| <InlineMath math="4" /> | <InlineMath math="-1" /> und <InlineMath math="7" /> | <InlineMath math="2" /> | ja |
+| <InlineMath math="5" /> | <InlineMath math="-2" /> und <InlineMath math="8" /> | <InlineMath math="6{,}5" /> | ja |
+| <InlineMath math="6" /> | <InlineMath math="-3" /> und <InlineMath math="9" /> | <InlineMath math="12" /> | nein, muss kleiner als <InlineMath math="12" /> sein |
+
+Es passen <InlineMath math="-2,-1,0,6,7,8" />, also <InlineMath math="6" /> Zahlen. Beachte, dass <InlineMath math="x=1" /> aus der Aufgabe genau auf der unteren Grenze liegt und deshalb herausfällt.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="11" /> nutzt nur <InlineMath math="f(x)<12" /> und vergisst <InlineMath math="f(x)>-4" />, dadurch werden die Zahlen nahe am Scheitel, <InlineMath math="1" /> bis <InlineMath math="5" />, mitgezählt.
+- <InlineMath math="10" /> behandelt beide Zeichen wie <InlineMath math="\le" />, dadurch zählen <InlineMath math="d=2" /> und <InlineMath math="d=6" /> mit.
+- <InlineMath math="8" /> behandelt eines der Zeichen wie <InlineMath math="\le" />, dadurch zählt ein Randpaar mit.
+- <InlineMath math="3" /> zählt nur die rechte Seite der Achse, <InlineMath math="x=6,7,8" />. **Eine Parabel hat zwei Äste**, die linke Seite gehört also dazu.
+
+Es gibt also <InlineMath math="6" /> ganze Zahlen <InlineMath math="x" />, die die Bedingung erfüllen.

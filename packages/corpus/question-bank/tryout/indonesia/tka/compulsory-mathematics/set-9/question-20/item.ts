@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$8\\text{ m}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\frac{16}{3}\\sqrt{3}\\text{ m}$$",
+        },
+        {
           correct: true,
-          label: "$$(30\\sqrt3+1{,}6)$$ m",
+          label: "$$16\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$(10\\sqrt3+1{,}6)$$ m",
+          label: "$$24\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$30\\sqrt3$$ m",
-        },
-        {
-          correct: false,
-          label: "$$(15+1{,}6)$$ m",
-        },
-        {
-          correct: false,
-          label: "$$(60+1{,}6)$$ m",
+          label: "$$16\\sqrt{3}\\text{ m}$$",
         },
       ],
     },

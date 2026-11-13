@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$3x+y-7=0$$",
+        },
+        {
           correct: true,
-          label: "$$(-4,6)$$",
+          label: "$$3x-y-14=0$$",
         },
         {
           correct: false,
-          label: "$$(4,-6)$$",
+          label: "$$3x-4y-2=0$$",
         },
         {
           correct: false,
-          label: "$$(-6,9)$$",
+          label: "$$x-y-2=0$$",
         },
         {
           correct: false,
-          label: "$$(-12,18)$$",
-        },
-        {
-          correct: false,
-          label: "$$(-4,-6)$$",
+          label: "$$x-5y+14=0$$",
         },
       ],
     },

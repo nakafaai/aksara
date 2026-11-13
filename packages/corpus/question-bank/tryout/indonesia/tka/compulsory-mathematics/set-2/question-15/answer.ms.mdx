@@ -1,0 +1,49 @@
+Putaran <InlineMath math="180^\circ" /> pada pusat <InlineMath math="O" /> memindahkan setiap titik <InlineMath math="(x,y)" /> ke <InlineMath math="(-x,-y)" />. Jadi bagi setiap gubahan, **kira imej bagi titik am <InlineMath math="(x,y)" />** dan bandingkan dengan <InlineMath math="(-x,-y)" />. Menguji satu atau dua titik sahaja tidak memadai, kerana dua transformasi yang berlainan mungkin kebetulan sama pada beberapa titik.
+
+# Rumus yang digunakan
+
+Bagi pusat <InlineMath math="P(a,b)" />, mulakan dengan vektor <InlineMath math="(x-a,\ y-b)" />: putarkan vektor itu, kemudian tambahkan semula <InlineMath math="(a,b)" />.
+
+<BlockMath math="\begin{aligned}
+R_{P,90^\circ}:&\ (x,y)\mapsto\big(a-(y-b),\ b+(x-a)\big) \\
+R_{P,180^\circ}:&\ (x,y)\mapsto(2a-x,\ 2b-y) \\
+\text{pantulan pada } x=h:&\ (x,y)\mapsto(2h-x,\ y) \\
+\text{pantulan pada } y=k:&\ (x,y)\mapsto(x,\ 2k-y)
+\end{aligned}" />
+
+Ada satu fakta lagi yang membantu. Dua putaran <InlineMath math="90^\circ" /> berturut-turut sentiasa menghasilkan **putaran <InlineMath math="180^\circ" /> pada suatu pusat**, tetapi pusat itu tidak semestinya <InlineMath math="O" />. Oleh itu, sudut yang berjumlah <InlineMath math="180^\circ" /> sahaja belum cukup. Pusatnya juga mesti disemak.
+
+# Menyemak setiap gubahan
+
+**Salah**. Dalam gubahan pertama, putaran pada pusat <InlineMath math="(1,0)" /> memberi <InlineMath math="(1-y,\ x-1)" />. Putaran pada pusat <InlineMath math="(0,1)" /> memetakan <InlineMath math="(u,v)" /> kepada <InlineMath math="(1-v,\ 1+u)" />.
+
+<BlockMath math="(x,y)\mapsto(1-y,\ x-1)\mapsto\big(1-(x-1),\ 1+(1-y)\big)=(2-x,\ 2-y)" />
+
+Ini ialah putaran <InlineMath math="180^\circ" /> pada pusat <InlineMath math="(1,1)" />. Titik <InlineMath math="O" /> sendiri berpindah ke <InlineMath math="(2,2)" />, sedangkan putaran pada <InlineMath math="O" /> tidak pernah memindahkan <InlineMath math="O" />.
+
+**Betul**. Dalam gubahan kedua, buat kedua-dua pantulan dan kemudian translasi mengikut urutan.
+
+<BlockMath math="(x,y)\mapsto(6-x,\ y)\mapsto(6-x,\ -2-y)\mapsto(6-x-6,\ -2-y+2)=(-x,-y)" />
+
+Dua pantulan pada garis yang berserenjang menghasilkan putaran <InlineMath math="180^\circ" /> pada pusat <InlineMath math="(3,-1)" />, dan translasi itu menganjakkan hasilnya supaya pusat jatuh tepat di <InlineMath math="O" />.
+
+**Betul**. Dalam gubahan ketiga, garis <InlineMath math="y=2x" /> mempunyai kecerunan <InlineMath math="2" /> dan garis <InlineMath math="x+2y=0" /> mempunyai kecerunan <InlineMath math="-\tfrac12" />. Hasil darab kecerunannya ialah <InlineMath math="-1" />, jadi kedua-dua garis berserenjang dan bersilang di <InlineMath math="O" />. Dua pantulan pada garis yang bersilang pada sudut <InlineMath math="90^\circ" /> sama dengan putaran <InlineMath math="2\cdot90^\circ=180^\circ" /> pada titik persilangan itu. Semak dengan dua titik yang tidak segaris dengan <InlineMath math="O" />.
+
+<BlockMath math="\begin{aligned}
+(1,2)&\mapsto(1,2)\mapsto(-1,-2) \\
+(2,-1)&\mapsto(-2,1)\mapsto(-2,1)
+\end{aligned}" />
+
+Titik <InlineMath math="(1,2)" /> terletak pada garis pertama, jadi ia tidak berganjak, kemudian dipantulkan tegak lurus ke seberang garis kedua. Titik <InlineMath math="(2,-1)" /> dipantulkan dahulu, lalu jatuh tepat pada garis kedua. Kedua-duanya berakhir di <InlineMath math="(-x,-y)" />.
+
+**Betul**. Dalam gubahan keempat, putaran pertama sama seperti tadi, <InlineMath math="(1-y,\ x-1)" />. Putaran pada pusat <InlineMath math="(0,-1)" /> memetakan <InlineMath math="(u,v)" /> kepada <InlineMath math="(-(v+1),\ -1+u)" />.
+
+<BlockMath math="(x,y)\mapsto(1-y,\ x-1)\mapsto\big(-(x-1+1),\ -1+1-y\big)=(-x,-y)" />
+
+Bandingkan dengan gubahan pertama: sudutnya sama, cuma pusat kedua berbeza, dan **pusat yang berbeza itulah yang menentukan jawapannya**.
+
+**Betul**. Dalam gubahan kelima, translasi dibuat dahulu, kemudian putaran <InlineMath math="180^\circ" /> pada pusat <InlineMath math="(2,1)" />.
+
+<BlockMath math="(x,y)\mapsto(x+4,\ y+2)\mapsto\big(4-(x+4),\ 2-(y+2)\big)=(-x,-y)" />
+
+Jadi, gubahan yang sama dengan putaran <InlineMath math="180^\circ" /> pada pusat <InlineMath math="O" /> ialah gubahan kedua, ketiga, keempat dan kelima.

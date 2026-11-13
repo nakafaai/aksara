@@ -1,19 +1,33 @@
-Es gibt <InlineMath math="99-10+1=90" /> gleich wahrscheinliche Zahlen. Für ein **oder** zwischen zwei Ereignissen zählst du beide Mengen und ziehst die Zahlen ab, die in beiden liegen, sonst werden sie doppelt gezählt.
+# Alle Möglichkeiten zu ziehen
+
+Die vier Socken werden gleichzeitig gezogen, die Reihenfolge spielt also keine Rolle. **Die Anzahl der Möglichkeiten, <InlineMath math="4" /> aus <InlineMath math="10" /> zu wählen**, ist:
+
+<BlockMath math="C(10,4)=\frac{10\cdot9\cdot8\cdot7}{4\cdot3\cdot2\cdot1}=210" />
+
+# Über das Gegenereignis
+
+Mindestens ein Paar umfasst genau ein Paar und genau zwei Paare. Einfacher ist es, **das Gegenteil zu zählen**: gar kein Paar, also haben alle vier Socken verschiedene Muster.
+
+Dafür wählst du zuerst <InlineMath math="4" /> der <InlineMath math="5" /> Muster. Dann nimmst du von jedem gewählten Muster eine seiner zwei Socken, links oder rechts.
 
 <BlockMath math="\begin{aligned}
-\text{durch 4 teilbar}&:\ 12,16,\dots,96\ \Rightarrow\ \frac{96-12}{4}+1=22 \\
-\text{durch 6 teilbar}&:\ 12,18,\dots,96\ \Rightarrow\ \frac{96-12}{6}+1=15 \\
-\text{durch 12 teilbar}&:\ 12,24,\dots,96\ \Rightarrow\ 8 \\
-P&=\frac{22+15-8}{90}=\frac{29}{90}
+\text{kein Paar}&=C(5,4)\cdot2^4=5\cdot16=80 \\
+P(\text{kein Paar})&=\frac{80}{210}=\frac{8}{21}
 \end{aligned}" />
 
-Eine Zahl ist genau dann durch <InlineMath math="4" /> und durch <InlineMath math="6" /> teilbar, wenn sie durch das kleinste gemeinsame Vielfache <InlineMath math="12" /> teilbar ist.
+# Die gesuchte Wahrscheinlichkeit
 
-Zur Kontrolle: <InlineMath math="29" /> ist kleiner als <InlineMath math="22+15=37" />, weil die acht Vielfachen von <InlineMath math="12" /> nur einmal zählen dürfen.
+**Ziehe von eins ab**:
 
-Die Wahrscheinlichkeit ist also <InlineMath math="\frac{29}{90}" />.
+<BlockMath math="P(\text{mindestens ein Paar})=1-\frac{8}{21}=\frac{13}{21}" />
 
-- <InlineMath math="\frac{4}{45}=\frac{8}{90}" /> zählt nur die Zahlen, die durch beide teilbar sind, also ein und statt eines oder.
-- <InlineMath math="\frac16=\frac{15}{90}" /> zählt nur die Vielfachen von <InlineMath math="6" />.
-- <InlineMath math="\frac{11}{45}=\frac{22}{90}" /> zählt nur die Vielfachen von <InlineMath math="4" />.
-- <InlineMath math="\frac{37}{90}" /> addiert beide Mengen, ohne die Vielfachen von <InlineMath math="12" /> einmal abzuziehen.
+Die Wahrscheinlichkeit ist also <InlineMath math="\frac{13}{21}" />.
+
+# Warum die anderen Antworten falsch sind
+
+Jede falsche Antwort **hört zu früh auf oder zählt etwas doppelt**.
+
+- <InlineMath math="\frac{8}{21}" /> ist die Wahrscheinlichkeit für kein Paar, noch nicht von eins abgezogen.
+- <InlineMath math="\frac47" /> zählt nur genau ein Paar, also <InlineMath math="120" /> Möglichkeiten, und vergisst die <InlineMath math="10" /> Möglichkeiten mit zwei Paaren.
+- <InlineMath math="\frac23" /> wählt ein Paar und dann zwei beliebige der übrigen <InlineMath math="8" /> Socken, also <InlineMath math="5\cdot28=140" />. Ziehungen mit zwei Paaren werden dabei doppelt gezählt.
+- <InlineMath math="\frac{41}{42}" /> vergisst, dass jedes gewählte Muster zwei Socken zur Auswahl hat, und zählt deshalb nur <InlineMath math="5" /> Möglichkeiten ohne Paar.

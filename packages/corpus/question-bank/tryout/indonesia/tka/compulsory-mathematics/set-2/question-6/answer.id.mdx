@@ -1,16 +1,39 @@
-Invers membalik pemetaan: **<InlineMath math="f^{-1}(2)=a" /> berarti <InlineMath math="f(a)=2" />**. Jadi, kamu tidak perlu mencari seluruh fungsi invers, cukup menyelesaikan persamaan <InlineMath math="f(a)=2" />.
+# Arti nilai invers
+
+Soal ini menanyakan <InlineMath math="f^{-1}(2)" />, yaitu **input <InlineMath math="f" /> yang menghasilkan output <InlineMath math="2" />**. Jadi kita mencari bilangan <InlineMath math="t" /> dengan <InlineMath math="f(t)=2" />. Bilangan itu bukan <InlineMath math="1/f(2)" /> dan bukan <InlineMath math="f(2)" />.
+
+Rumus yang diberikan tidak langsung berbentuk <InlineMath math="f(t)" />. Input fungsi <InlineMath math="f" /> di situ adalah <InlineMath math="2x-1" />, sedangkan outputnya <InlineMath math="\frac{5x}{2x+2}" />. Jadi ada dua langkah: cari <InlineMath math="x" /> yang membuat outputnya <InlineMath math="2" />, lalu ubah <InlineMath math="x" /> itu menjadi input <InlineMath math="2x-1" />.
+
+# Mencari input yang tepat
+
+Samakan outputnya dengan <InlineMath math="2" />:
 
 <BlockMath math="\begin{aligned}
-\frac{3a-2}{a+4}&=2 \\
-3a-2&=2a+8 \\
-a&=10
+\frac{5x}{2x+2}&=2 \\
+5x&=4x+4 \\
+x&=4
 \end{aligned}" />
 
-Sebagai pemeriksaan, <InlineMath math="f(10)=\frac{30-2}{14}=\frac{28}{14}=2" />.
+Nilai <InlineMath math="x=4" /> boleh dipakai karena <InlineMath math="x\neq-1" />. Tapi <InlineMath math="4" /> **belum jawabannya**. Untuk <InlineMath math="x=4" />, input fungsi <InlineMath math="f" /> adalah:
 
-Jadi, <InlineMath math="f^{-1}(2)=10" />.
+<BlockMath math="2x-1=2\cdot4-1=7" />
 
-- <InlineMath math="-10" /> bilangannya benar, tetapi tandanya salah.
-- <InlineMath math="-6" /> menjabarkan <InlineMath math="2(a+4)" /> sebagai <InlineMath math="2a-8" />.
-- <InlineMath math="\frac23" /> menghitung <InlineMath math="f(2)" />, bukan <InlineMath math="f^{-1}(2)" />.
-- <InlineMath math="6" /> kehilangan tanda <InlineMath math="-2" /> pada pembilang dan menyelesaikan <InlineMath math="3a+2=2a+8" />.
+Jadi <InlineMath math="f(7)=2" />, sehingga <InlineMath math="f^{-1}(2)=7" />.
+
+# Cek dengan rumus fungsinya
+
+Untuk memastikan, cari rumus <InlineMath math="f(t)" /> secara langsung. Tulis <InlineMath math="t=2x-1" />, jadi <InlineMath math="x=\frac{t+1}{2}" />:
+
+<BlockMath math="\begin{aligned}
+f(t)&=\frac{5\cdot\frac{t+1}{2}}{2\cdot\frac{t+1}{2}+2}=\frac{\frac{5(t+1)}{2}}{t+3}=\frac{5t+5}{2t+6} \\
+f(7)&=\frac{35+5}{14+6}=\frac{40}{20}=2
+\end{aligned}" />
+
+**Hasilnya cocok dengan output yang diminta**. Jadi, nilai <InlineMath math="f^{-1}(2)" /> adalah <InlineMath math="7" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\frac{2}{3}" /> adalah <InlineMath math="\frac{1}{f(2)}" />. Tanda <InlineMath math="-1" /> pada <InlineMath math="f^{-1}" /> **bukan pangkat negatif**, jadi invers tidak sama dengan kebalikan.
+- <InlineMath math="\frac{3}{2}" /> adalah <InlineMath math="f(2)=\frac{5\cdot2+5}{2\cdot2+6}" />. Ini memasukkan <InlineMath math="2" /> sebagai input, padahal <InlineMath math="2" /> seharusnya output.
+- <InlineMath math="4" /> berhenti di nilai <InlineMath math="x" /> dan lupa bahwa input <InlineMath math="f" /> adalah <InlineMath math="2x-1" />.
+- <InlineMath math="9" /> muncul dari salah tanda saat mengubah variabel, yaitu <InlineMath math="x=\frac{t-1}{2}" />. Dari <InlineMath math="t=2x-1" />, yang benar <InlineMath math="x=\frac{t+1}{2}" />.

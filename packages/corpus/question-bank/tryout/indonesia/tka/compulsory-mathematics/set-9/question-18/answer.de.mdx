@@ -1,14 +1,72 @@
-Bei einer Umdrehung ohne Rutschen legt das Rad **genau seinen Umfang** zurück. Bring Strecke und Umfang auf Zentimeter.
+Gesucht ist die Zeit, bis das Wasser am tiefen Ende <InlineMath math="1{,}2\text{ m}" /> tief steht. Die Falle steckt in der Form des Wassers: Der Boden ist schräg, also **bedeckt das Wasser zu diesem Zeitpunkt noch nicht den ganzen Boden**. Das Wasser ist kein Quader.
+
+# Volumenstrom aus dem Rohr
+
+Der Volumenstrom ist das Wasservolumen pro Sekunde, also Querschnittsfläche des Rohrs mal Fließgeschwindigkeit. Der Radius ist <InlineMath math="3{,}5\text{ cm}" /> und die Geschwindigkeit <InlineMath math="2\text{ m/s}=200\text{ cm/s}" />:
 
 <BlockMath math="\begin{aligned}
-K&=\pi d=\frac{22}{7}\cdot70=220\text{ cm} \\
-1{,}1\text{ km}&=110{.}000\text{ cm} \\
-n&=\frac{110{.}000}{220}=500
+A&=\frac{22}{7}\cdot3{,}5^2=38{,}5\text{ cm}^2 \\
+Q&=38{,}5\cdot200=7{.}700\text{ cm}^3/\text{s}=7{,}7\text{ Liter/s}
 \end{aligned}" />
 
-Das Rad dreht sich also <InlineMath math="500" />-mal.
+Achte darauf, dass **der Radius quadriert wird**, also die Hälfte des Durchmessers von <InlineMath math="7\text{ cm}" />.
 
-- <InlineMath math="250" /> nimmt <InlineMath math="2\pi d" /> als Umfang, doch <InlineMath math="2\pi" /> gehört zum Radius, nicht zum Durchmesser.
-- <InlineMath math="1{.}000" /> nimmt <InlineMath math="\pi r" /> als Umfang.
-- <InlineMath math="5{.}000" /> rechnet <InlineMath math="1{,}1" /> km in <InlineMath math="1{.}100{.}000" /> cm um.
-- <InlineMath math="50{.}000" /> rechnet <InlineMath math="1{,}1" /> km in <InlineMath math="11{.}000{.}000" /> cm um.
+# Die Form des Wassers im Becken
+
+Der Boden fällt auf <InlineMath math="11\text{ m}" /> Länge um <InlineMath math="2{,}0-0{,}4=1{,}6\text{ m}" />. Am tiefen Ende steht das Wasser erst <InlineMath math="1{,}2\text{ m}" /> hoch, weniger als <InlineMath math="1{,}6\text{ m}" />, also hat die Oberfläche das flache Ende noch nicht erreicht. Von der Seite gesehen bildet das Wasser ein **rechtwinkliges Dreieck, das ähnlich** zum Dreieck des Bodengefälles ist (Grundseite <InlineMath math="11" />, Höhe <InlineMath math="1{,}6" />).
+
+<MathVisual
+  title={<>Seitenansicht des Beckens</>}
+  description={<>Das Becken von der Seite. Der Beckenrand ist die obere Linie mit <InlineMath math="11" /> Metern Länge. Der Boden fällt geradlinig von <InlineMath math="0{,}4" /> Metern Tiefe am flachen Ende auf <InlineMath math="2{,}0" /> Meter am tiefen Ende. Das Wasser bildet am tiefen Ende ein Dreieck: <InlineMath math="1{,}2" /> Meter hoch, mit einer Oberfläche von <InlineMath math="\ell=8{,}25" /> Metern Länge.</>}
+  labels={{
+    shallow: <InlineMath math="0{,}4\text{ m}" />,
+    depth: <InlineMath math="1{,}2\text{ m}" />,
+    surface: <InlineMath math="\ell" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 13 },
+      y: { min: -2.6, max: 0.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rim", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 11, y: 0 } },
+      { id: "pool", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 0, y: -0.4 }, { x: 11, y: -2 }, { x: 11, y: 0 }] },
+      { id: "water", kind: "polygon", appearance: "highlight", vertices: [{ x: 2.75, y: -0.8 }, { x: 11, y: -0.8 }, { x: 11, y: -2 }] },
+    ],
+    labels: [
+      { key: "shallow", objectId: "pool", at: { x: 0, y: -0.2 }, placement: "left" },
+      { key: "depth", objectId: "water", at: { x: 11, y: -1.4 }, placement: "right" },
+      { key: "surface", objectId: "water", at: { x: 6.875, y: -0.8 }, placement: "above" },
+    ],
+  }}
+/>
+
+Die Ähnlichkeit liefert die Oberflächenlänge <InlineMath math="\ell" />, und das Wasservolumen ist die Dreiecksfläche mal Beckenbreite:
+
+<BlockMath math="\begin{aligned}
+\frac{\ell}{11}&=\frac{1{,}2}{1{,}6}\ \Rightarrow\ \ell=8{,}25\text{ m} \\
+V&=\tfrac12\cdot8{,}25\cdot1{,}2\cdot7=34{,}65\text{ m}^3=34{.}650\text{ Liter}
+\end{aligned}" />
+
+# Die Füllzeit
+
+**Teile das Volumen durch den Volumenstrom**:
+
+<BlockMath math="\begin{aligned}
+t&=\frac{34{.}650}{7{,}7}=4{.}500\text{ s} \\
+&=75\text{ Minuten}=1\text{ Stunde }15\text{ Minuten}
+\end{aligned}" />
+
+Probe: In <InlineMath math="4{.}500" /> Sekunden liefert das Rohr <InlineMath math="7{,}7\cdot4{.}500=34{.}650" /> Liter, genau das Volumen des Wasserdreiecks.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="18" /> Minuten <InlineMath math="45" /> Sekunden entstehen, wenn du den Durchmesser <InlineMath math="7\text{ cm}" /> als Radius nimmst. Der Querschnitt wird viermal so groß, die Zeit ein Viertel.
+- <InlineMath math="1" /> Stunde entsteht, wenn du bei der Ähnlichkeit die Tiefe <InlineMath math="2{,}0\text{ m}" /> am tiefen Ende nimmst, obwohl der Boden nur um <InlineMath math="1{,}6\text{ m}" /> fällt. Dann ist <InlineMath math="\ell=6{,}6\text{ m}" />, zu kurz.
+- <InlineMath math="1" /> Stunde <InlineMath math="40" /> Minuten entstehen, wenn das Wasserdreieck über die ganzen <InlineMath math="11\text{ m}" /> reicht. Das stimmt erst, wenn das Wasser das flache Ende berührt.
+- <InlineMath math="3" /> Stunden <InlineMath math="20" /> Minuten entstehen, wenn du das Wasser als Quader <InlineMath math="11\times7\times1{,}2" /> rechnest, **als wäre der Boden eben**.
+
+Die gesuchte Zeit beträgt also <InlineMath math="1" /> Stunde <InlineMath math="15" /> Minuten.

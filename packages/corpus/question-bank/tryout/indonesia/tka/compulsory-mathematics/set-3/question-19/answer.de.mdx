@@ -1,15 +1,37 @@
-Bei zwei ähnlichen Körpern stehen alle Längen im selben Verhältnis, hier <InlineMath math="12:8=3:2" />. **Volumina stehen im Verhältnis der dritten Potenz des Längenverhältnisses**, denn das Zylindervolumen enthält zweimal den Radius und einmal die Höhe.
+Gefragt ist die größte Zahl ganzer Kegel. Es geht kein Metall verloren, also steht genau das Metall der Kugel für die Kegel zur Verfügung. Vor dem Teilen lauern zwei Fallen: **Die Kugel ist hohl**, und die Höhe des Kegels ist nicht angegeben.
+
+# Das Volumen des Metalls
+
+Das Metall ist **die große Kugel ohne den Hohlraum darin**. Eine Kugel hat das Volumen <InlineMath math="\frac{4}{3}\pi r^3" />, also:
 
 <BlockMath math="\begin{aligned}
-\frac{V_{\text{groß}}}{V_{\text{klein}}}&=\left(\frac32\right)^3=\frac{27}{8} \\
-V_{\text{groß}}&=320\cdot\frac{27}{8}=40\cdot27=1{.}080\text{ mL}
+V_{\text{Metall}}&=\frac{4}{3}\pi\left(12^3-3^3\right) \\
+&=\frac{4}{3}\pi\,(1{.}728-27) \\
+&=\frac{4}{3}\pi\cdot1{.}701=2{.}268\pi\text{ cm}^3
 \end{aligned}" />
 
-Zur Kontrolle: Radius und Höhe werden beide mit <InlineMath math="\frac32" /> multipliziert, also <InlineMath math="\pi r^2h" /> mit <InlineMath math="\frac32\cdot\frac32\cdot\frac32=\frac{27}{8}" />.
+# Höhe und Volumen eines Kegels
 
-Das große Glas fasst also <InlineMath math="1{.}080\text{ mL}" />.
+Die Mantellinie ist die Hypotenuse eines rechtwinkligen Dreiecks, dessen andere Seiten der Grundkreisradius und die Höhe des Kegels sind. **Bestimme die Höhe mit Pythagoras** und dann das Volumen:
 
-- <InlineMath math="480\text{ mL}" /> multipliziert das Volumen nur mit dem Längenverhältnis <InlineMath math="\frac32" />.
-- <InlineMath math="720\text{ mL}" /> nimmt das Flächenverhältnis <InlineMath math="\frac94" />, als änderte sich nur der Radius.
-- <InlineMath math="1{.}400\text{ mL}" /> addiert den Inhalt des kleinen Glases zum richtigen Ergebnis, <InlineMath math="1{.}080+320" />, obwohl nur das große Glas gefragt ist.
-- <InlineMath math="2{.}560\text{ mL}" /> multipliziert mit <InlineMath math="2^3=8" /> und nimmt damit die falsche Zahl aus dem Verhältnis <InlineMath math="3:2" />.
+<BlockMath math="\begin{aligned}
+h&=\sqrt{10^2-6^2}=\sqrt{64}=8\text{ cm} \\
+V_{\text{Kegel}}&=\frac{1}{3}\pi r^2h=\frac{1}{3}\pi\cdot36\cdot8=96\pi\text{ cm}^3
+\end{aligned}" />
+
+# Die Anzahl der Kegel
+
+Teile das Metallvolumen durch das Volumen eines Kegels:
+
+<BlockMath math="\frac{2{.}268\pi}{96\pi}=23{,}625" />
+
+Die Kegel müssen ganz sein, also **rundest du ab** auf <InlineMath math="23" />. Prüf beide Seiten. Dreiundzwanzig Kegel brauchen <InlineMath math="23\cdot96\pi=2{.}208\pi" />, das reicht, und der Rest <InlineMath math="60\pi" /> ist weniger als ein Kegel. Vierundzwanzig Kegel bräuchten <InlineMath math="2{.}304\pi" />, mehr als vorhanden.
+
+Es lassen sich also höchstens <InlineMath math="23" /> Kegel gießen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="24" /> entsteht, wenn du <InlineMath math="23{,}625" /> aufrundest oder kaufmännisch rundest. Dieselbe Zahl kommt heraus, wenn du den Hohlraum vergisst, denn <InlineMath math="\frac{4}{3}\pi\cdot12^3=2{.}304\pi" /> reicht genau für <InlineMath math="24" /> Kegel. **Für einen 24. Kegel fehlt Metall**.
+- <InlineMath math="18" /> nimmt die Mantellinie <InlineMath math="10" /> als Höhe, sodass ein Kegel <InlineMath math="120\pi" /> hat und <InlineMath math="\frac{2{.}268}{120}=18{,}9" /> herauskommt.
+- <InlineMath math="10" /> rechnet <InlineMath math="(12-3)^3=729" /> statt <InlineMath math="12^3-3^3" />, also <InlineMath math="972\pi" /> Metall. Die Differenz zweier Kubikzahlen ist nicht die Kubikzahl der Differenz.
+- <InlineMath math="7" /> benutzt für den Kegel die Zylinderformel <InlineMath math="\pi r^2h=288\pi" /> und vergisst den Faktor <InlineMath math="\frac{1}{3}" />.

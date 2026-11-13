@@ -1,0 +1,51 @@
+# Tenaga yang keluar dan masuk dalam sehari
+
+Soalan ini meminta jumlah bil Oktober dan bil November. Dua peraturan menentukan jawapannya: tenaga yang diambil daripada grid dan tenaga yang dihantar ke grid dikira **hari demi hari**, dan kredit eksport dihadkan **dalam setiap bulan secara berasingan**.
+
+Mulakan dengan satu hari. Elektrik daripada panel pada waktu siang digunakan dahulu untuk penggunaan siang sebanyak <InlineMath math="4\text{ kWh}" />. Bakinya dieksport. Jika panel tidak cukup, kekurangannya diambil daripada grid. Penggunaan malam sebanyak <InlineMath math="4\text{ kWh}" /> sentiasa diambil daripada grid.
+
+| Jenis hari | Eksport | Import |
+| --- | --- | --- |
+| Cerah | <InlineMath math="14-4=10\text{ kWh}" /> | <InlineMath math="4\text{ kWh}" /> (malam) |
+| Mendung | <InlineMath math="0\text{ kWh}" /> | <InlineMath math="(4-2)+4=6\text{ kWh}" /> |
+
+Pada hari mendung, panel hanya menghasilkan <InlineMath math="2\text{ kWh}" />, jadi penggunaan siang masih kurang <InlineMath math="2\text{ kWh}" />. Kekurangan itu juga diambil daripada grid.
+
+# Bil Oktober
+
+Oktober mempunyai <InlineMath math="29" /> hari cerah dan <InlineMath math="2" /> hari mendung. Kira tenaga sebulan, kemudian kos tenaga yang diambil serta kreditnya.
+
+<BlockMath math="\begin{aligned}
+\text{import}&=29\cdot4+2\cdot6=128\text{ kWh} \\
+\text{eksport}&=29\cdot10=290\text{ kWh} \\
+\text{kos import}&=128\cdot1{,}500=192{,}000 \\
+\text{kredit}&=290\cdot800=232{,}000
+\end{aligned}" />
+
+Kreditnya lebih besar daripada kos import. Mengikut peraturan, **bil Oktober hanyalah caj tetap**, iaitu <InlineMath math="\text{Rp}30{,}000" />. Lebihan kredit sebanyak <InlineMath math="\text{Rp}40{,}000" /> hangus dan tidak boleh digunakan pada bulan November.
+
+# Bil November
+
+November mempunyai <InlineMath math="15" /> hari cerah dan <InlineMath math="15" /> hari mendung, jadi kira tenaga dan bilnya dengan cara yang sama seperti bulan Oktober.
+
+<BlockMath math="\begin{aligned}
+\text{import}&=15\cdot4+15\cdot6=150\text{ kWh} \\
+\text{eksport}&=15\cdot10=150\text{ kWh} \\
+\text{bil}&=30{,}000+150\cdot1{,}500-150\cdot800 \\
+&=30{,}000+225{,}000-120{,}000=135{,}000
+\end{aligned}" />
+
+Kali ini kredit lebih kecil daripada kos import, jadi **seluruh kredit digunakan** dan bilnya <InlineMath math="\text{Rp}135{,}000" />.
+
+Jumlahnya ialah
+
+<BlockMath math="30{,}000+135{,}000=165{,}000" />
+
+Jadi, jumlah bil bagi bulan Oktober dan November ialah <InlineMath math="\text{Rp}165{,}000" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\text{Rp}144{,}000" /> terhasil jika kamu menjumlahkan pengeluaran dan penggunaan sebulan dahulu. Cara itu menganggap lebihan hari cerah boleh menampung kekurangan hari mendung, sedangkan **tenaga keluar dan masuk direkodkan setiap hari**.
+- <InlineMath math="\text{Rp}135{,}000" /> menjadikan bil Oktober <InlineMath math="\text{Rp}0" />. Kredit hanya mengurangkan kos import, bukan caj tetap.
+- <InlineMath math="\text{Rp}125{,}000" /> membawa lebihan kredit Oktober sebanyak <InlineMath math="\text{Rp}40{,}000" /> ke bulan November. Peraturan menyatakan lebihan itu hangus.
+- <InlineMath math="\text{Rp}120{,}000" /> terlupa bahawa hari mendung juga mengambil <InlineMath math="2\text{ kWh}" /> daripada grid untuk penggunaan siang, jadi setiap hari mendung dikira dengan <InlineMath math="4\text{ kWh}" /> sahaja.
