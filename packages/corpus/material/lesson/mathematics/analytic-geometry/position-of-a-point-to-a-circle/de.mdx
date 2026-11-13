@@ -19,113 +19,35 @@ Ein Punkt liegt immer **innerhalb des Kreises**, **genau auf dem Kreis** oder **
 | <InlineMath math="K_A = 0" /> | <InlineMath math="d = r" /> | Auf dem Kreis |
 | <InlineMath math="K_A > 0" /> | <InlineMath math="d > r" /> | Außerhalb des Kreises |
 
-<LineEquation
-  title="Lage eines Punktes relativ zum Kreis"
+<MathVisual
+  title={<>Lage eines Punktes relativ zum Kreis</>}
   description={<>Darstellung der drei möglichen Lagen des Punktes <InlineMath math="A" /> relativ zum Kreis.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 0,
-          y: 0,
-          z: 0,
-        };
-      }),
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P(0,0)" />, at: 0, offset: [-0.5, -0.5, 0] },
-      ],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 1.5,
-          y: 1,
-          z: 0,
-        };
-      }),
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <><InlineMath math="A" /> (innen)</>, at: 0, offset: [0, -0.5, 0] },
-      ],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        const angle = Math.PI / 6;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <><InlineMath math="B" /> (auf)</>, at: 0, offset: [0.5, 0.5, 0] },
-      ],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 4.5,
-          y: 2,
-          z: 0,
-        };
-      }),
-      color: "#e11d48",
-      showPoints: true,
-      labels: [
-        { text: <><InlineMath math="C" /> (außen)</>, at: 0, offset: [-0.8, 1.2, 0] },
-      ],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const xMin = -5;
-        const xMax = 5;
-        const y = 0;
-        return {
-          x: xMin + i * (xMax - xMin),
-          y: y,
-          z: 0,
-        };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const yMin = -4;
-        const yMax = 4;
-        const x = 0;
-        return {
-          x: x,
-          y: yMin + i * (yMax - yMin),
-          z: 0,
-        };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0.7, 0, 12]}
-  cameraTarget={[0.7, 0, 0]}
+  labels={{
+    "l1": <InlineMath math="P(0,0)" />,
+    "l2": <><InlineMath math="A" /> (innen)</>,
+    "l3": <><InlineMath math="B" /> (auf)</>,
+    "l4": <><InlineMath math="C" /> (außen)</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 1.5, y: 1 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 2.6, y: 1.5 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 4.5, y: 2 }, appearance: "reference" },
+      { id: "s6", kind: "parametric", x: "((-5) + (t * (5 - (-5))))", y: "0", parameter: { min: 0, max: 1 }, appearance: "warning" },
+      { id: "s7", kind: "parametric", x: "0", y: "((-4) + (t * (4 - (-4))))", parameter: { min: 0, max: 1 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 1.5, y: 1 }, placement: "below" },
+      { key: "l3", objectId: "s4", at: { x: 2.6, y: 1.5 }, placement: "above-right" },
+      { key: "l4", objectId: "s5", at: { x: 4.5, y: 2 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Im Graphen liegt der Mittelpunkt bei <InlineMath math="(0, 0)" /> und der Radius ist <InlineMath math="3" />, also ist die Potenz jedes Punktes sein Abstandsquadrat zum Mittelpunkt minus neun:

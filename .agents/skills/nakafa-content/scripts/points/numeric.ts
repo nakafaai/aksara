@@ -1,16 +1,16 @@
 import { Predicate } from "effect";
 import {
-  isArrayExpressionNode,
-  isObjectExpressionNode,
-  type ObjectExpressionNode,
-} from "#nakafa-content/line/ast";
-import {
   asEstreeNode,
   type EstreeNode,
   estreeChildren,
   estreeRange,
   staticFieldName,
 } from "#nakafa-content/mdx/parse";
+import {
+  isArrayExpressionNode,
+  isObjectExpressionNode,
+  type ObjectExpressionNode,
+} from "#nakafa-content/points/ast";
 
 /** One number written directly in the source, with where it starts. */
 export interface NumericLiteral {

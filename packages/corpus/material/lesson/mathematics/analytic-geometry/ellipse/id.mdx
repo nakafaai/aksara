@@ -15,118 +15,40 @@ export const metadata = {
 
 Elips adalah himpunan semua titik yang <Highlight>jumlah jaraknya ke dua titik tetap selalu konstan</Highlight>. Kedua titik tetap itu disebut **fokus**. Definisi ini dapat diperagakan dengan dua paku, seutas tali berbentuk lingkaran tertutup, dan sebuah pensil. Ikat tali pada kedua paku, tarik hingga tegang dengan pensil, lalu gerakkan pensil satu putaran penuh. Kurva yang terbentuk adalah elips.
 
-<LineEquation
-  title="Konsep Dasar Elips"
-  description="Elips dengan dua fokus dan beberapa titik yang menunjukkan jumlah jarak yang konstan."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const a = 4;
-        const b = 2.5;
-        return {
-          x: a * Math.cos(angle),
-          y: b * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-    {
-      points: (() => {
-        const a = 4, b = 2.5;
-        const c = Math.sqrt(a*a - b*b);
-        return [
-          { x: -c, y: 0, z: 0 },
-          { x: c, y: 0, z: 0 }
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, -0.5, 0] }
-      ],
-    },
-    {
-      points: (() => {
-        const angle = Math.PI / 3;
-        const a = 4, b = 2.5;
-        return [{
-          x: a * Math.cos(angle),
-          y: b * Math.sin(angle),
-          z: 0,
-        }];
-      })(),
-      color: "#65a30d",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.5, 0.3, 0] }],
-    },
-    {
-      points: (() => {
-        const angle = Math.PI / 3;
-        const a = 4, b = 2.5;
-        const c = Math.sqrt(a*a - b*b);
-        const px = a * Math.cos(angle);
-        const py = b * Math.sin(angle);
-        return [
-          { x: -c, y: 0, z: 0 },
-          { x: px, y: py, z: 0 }
-        ];
-      })(),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="r_1" />, at: 1, offset: [-1, 0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const angle = Math.PI / 3;
-        const a = 4, b = 2.5;
-        const c = Math.sqrt(a*a - b*b);
-        const px = a * Math.cos(angle);
-        const py = b * Math.sin(angle);
-        return [
-          { x: c, y: 0, z: 0 },
-          { x: px, y: py, z: 0 }
-        ];
-      })(),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="r_2" />, at: 0, offset: [0.5, 1, 0] }],
-    },
-    {
-      points: [
-        { x: -6, y: 0, z: 0 },
-        { x: 6, y: 0, z: 0 }
-      ],
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 0, y: -4, z: 0 },
-        { x: 0, y: 4, z: 0 }
-      ],
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Konsep Dasar Elips</>}
+  description={<>Elips dengan dua fokus dan beberapa titik yang menunjukkan jumlah jarak yang konstan.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="F_1" />,
+    "l3": <InlineMath math="F_2" />,
+    "l4": <InlineMath math="P" />,
+    "l5": <InlineMath math="r_1" />,
+    "l6": <InlineMath math="r_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(2.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3.12, y: 0 }, { x: 3.12, y: 0 }], appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 2, y: 2.17 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3.12, y: 0 }, { x: 2, y: 2.17 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 3.12, y: 0 }, { x: 2, y: 2.17 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }], appearance: "warning" },
+      { id: "s8", kind: "polyline", vertices: [{ x: 0, y: -4 }, { x: 0, y: 4 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -3.12, y: 0 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 3.12, y: 0 }, placement: "below-right" },
+      { key: "l4", objectId: "s4", at: { x: 2, y: 2.17 }, placement: "above-right" },
+      { key: "l5", objectId: "s5", at: { x: 2, y: 2.17 }, placement: "above-left" },
+      { key: "l6", objectId: "s6", at: { x: 3.12, y: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Pada visualisasi tersebut, <InlineMath math="P" /> terletak di elips. Jaraknya ke <InlineMath math="F_1" />, yaitu <InlineMath math="r_1" />, ditambah jaraknya ke <InlineMath math="F_2" />, yaitu <InlineMath math="r_2" />, bernilai sama untuk setiap titik pada kurva. Inilah **sifat yang mendefinisikan elips**.
@@ -135,98 +57,49 @@ Pada visualisasi tersebut, <InlineMath math="P" /> terletak di elips. Jaraknya k
 
 Sebelum memakai rumus, kenali bagian-bagian yang menentukan posisi dan bentuk elips.
 
-<LineEquation
-  title="Komponen Elips"
-  description="Pusat, fokus, titik puncak, serta sumbu mayor dan minor pada elips bersumbu mayor horizontal."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const a = 4;
-        const b = 2.8;
-        return {
-          x: a * Math.cos(angle),
-          y: b * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#4f46e5",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: "Pusat", at: 0, offset: [-0.8, -0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const a = 4, b = 2.8;
-        const c = Math.sqrt(a*a - b*b);
-        return [
-          { x: -c, y: 0, z: 0 },
-          { x: c, y: 0, z: 0 }
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, -0.5, 0] }
-      ],
-    },
-    {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 }
-      ],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A_1" />, at: 0, offset: [-0.5, 0.5, 0] },
-        { text: <InlineMath math="A_2" />, at: 1, offset: [0.5, 0.5, 0] }
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: -2.8, z: 0 },
-        { x: 0, y: 2.8, z: 0 }
-      ],
-      smooth: false,
-      color: "#059669",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="B_1" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="B_2" />, at: 1, offset: [-0.5, 0.5, 0] }
-      ],
-    },
-    {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 }
-      ],
-      color: "#ca8a04",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Sumbu Mayor", at: 1, offset: [-1.5, -1, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: -2.8, z: 0 },
-        { x: 0, y: 2.8, z: 0 }
-      ],
-      color: "#db2777",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Sumbu Minor", at: 1, offset: [1.5, -1, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Komponen Elips</>}
+  description={<>Pusat, fokus, titik puncak, serta sumbu mayor dan minor pada elips bersumbu mayor horizontal.</>}
+  labels={{
+    "l1": <>Pusat</>,
+    "l2": <InlineMath math="F_1" />,
+    "l3": <InlineMath math="F_2" />,
+    "l4": <InlineMath math="A_1" />,
+    "l5": <InlineMath math="A_2" />,
+    "l6": <InlineMath math="B_1" />,
+    "l7": <InlineMath math="B_2" />,
+    "l8": <>Sumbu Mayor</>,
+    "l9": <>Sumbu Minor</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(2.8 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -2.86, y: 0 }, { x: 2.86, y: 0 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "highlight" },
+      { id: "s4-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "highlight" },
+      { id: "s4-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: -2.8 }, { x: 0, y: 2.8 }], appearance: "reference" },
+      { id: "s5-p0", kind: "point", at: { x: 0, y: -2.8 }, appearance: "reference" },
+      { id: "s5-p1", kind: "point", at: { x: 0, y: 2.8 }, appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -2.8 }, { x: 0, y: 2.8 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -2.86, y: 0 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 2.86, y: 0 }, placement: "below-right" },
+      { key: "l4", objectId: "s4", at: { x: -4, y: 0 }, placement: "above-left" },
+      { key: "l5", objectId: "s4", at: { x: 4, y: 0 }, placement: "above-right" },
+      { key: "l6", objectId: "s5", at: { x: 0, y: -2.8 }, placement: "below-left" },
+      { key: "l7", objectId: "s5", at: { x: 0, y: 2.8 }, placement: "above-left" },
+      { key: "l8", objectId: "s6", at: { x: 4, y: 0 }, placement: "below-left" },
+      { key: "l9", objectId: "s7", at: { x: 0, y: 2.8 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Komponen utama elips adalah:
@@ -274,90 +147,37 @@ Karena <InlineMath math="a^2-c^2 > 0" />, kita boleh menulis <InlineMath math="b
 
 Kalau pusat elips ada di <InlineMath math="O(0,0)" />, ada dua kemungkinan orientasi:
 
-<LineEquation
-  title="Sumbu Mayor Horizontal"
+<MathVisual
+  title={<>Sumbu Mayor Horizontal</>}
   description={<>Elips <InlineMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" /> dengan <InlineMath math="a > b > 0" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const a = 4.5;
-        const b = 3;
-        return {
-          x: a * Math.cos(angle),
-          y: b * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [-0.8, -0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const a = 4.5, b = 3;
-        const c = Math.sqrt(a*a - b*b);
-        return [
-          { x: -c, y: 0, z: 0 },
-          { x: c, y: 0, z: 0 }
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.5, 0.5, 0] },
-        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, 0.5, 0] }
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4.5, y: 0, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="a" />, at: 1, offset: [0, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 3, z: 0 }
-      ],
-      color: "#059669",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="b" />, at: 1, offset: [0.5, 0, 0] }],
-    },
-    {
-      points: [
-        { x: -6, y: 0, z: 0 },
-        { x: 6, y: 0, z: 0 }
-      ],
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 0, y: -4, z: 0 },
-        { x: 0, y: 4, z: 0 }
-      ],
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="O(0,0)" />,
+    "l2": <InlineMath math="F_1" />,
+    "l3": <InlineMath math="F_2" />,
+    "l4": <InlineMath math="a" />,
+    "l5": <InlineMath math="b" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4.5 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3.35, y: 0 }, { x: 3.35, y: 0 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4.5, y: 0 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 3 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }], appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -4 }, { x: 0, y: 4 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -3.35, y: 0 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 3.35, y: 0 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 4.5, y: 0 }, placement: "below" },
+      { key: "l5", objectId: "s5", at: { x: 0, y: 3 }, placement: "right" },
+    ],
+  }}
 />
 
 Kalau **sumbu mayor sejajar** sumbu <InlineMath math="x" /> (horizontal), persamaan elipsnya:
@@ -366,90 +186,37 @@ Kalau **sumbu mayor sejajar** sumbu <InlineMath math="x" /> (horizontal), persam
 
 Rumus ini berlaku ketika <InlineMath math="a > b > 0" />.
 
-<LineEquation
-  title="Sumbu Mayor Vertikal"
+<MathVisual
+  title={<>Sumbu Mayor Vertikal</>}
   description={<>Elips <InlineMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" /> dengan <InlineMath math="a > b > 0" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const a = 4.5;
-        const b = 3;
-        return {
-          x: b * Math.cos(angle),
-          y: a * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [-0.8, -0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const a = 4.5, b = 3;
-        const c = Math.sqrt(a*a - b*b);
-        return [
-          { x: 0, y: -c, z: 0 },
-          { x: 0, y: c, z: 0 }
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="F_1" />, at: 0, offset: [0.5, -0.5, 0] },
-        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, 0.5, 0] }
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 }
-      ],
-      color: "#059669",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="b" />, at: 1, offset: [0, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 4.5, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="a" />, at: 1, offset: [0.5, 0, 0] }],
-    },
-    {
-      points: [
-        { x: -5, y: 0, z: 0 },
-        { x: 5, y: 0, z: 0 }
-      ],
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 0, y: -6, z: 0 },
-        { x: 0, y: 6, z: 0 }
-      ],
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="O(0,0)" />,
+    "l2": <InlineMath math="F_1" />,
+    "l3": <InlineMath math="F_2" />,
+    "l4": <InlineMath math="b" />,
+    "l5": <InlineMath math="a" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -7.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(4.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: -3.35 }, { x: 0, y: 3.35 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 4.5 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }], appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -6 }, { x: 0, y: 6 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 0, y: -3.35 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 3.35 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "l5", objectId: "s5", at: { x: 0, y: 4.5 }, placement: "right" },
+    ],
+  }}
 />
 
 Kalau sumbu mayor sejajar sumbu <InlineMath math="y" /> (vertikal), persamaan elipsnya:
@@ -471,93 +238,37 @@ Untuk sumbu mayor horizontal:
 
 Visualisasi:
 
-<LineEquation
-  title="Elips dengan Pusat Berpindah"
+<MathVisual
+  title={<>Elips dengan Pusat Berpindah</>}
   description={<>Elips dengan pusat di <InlineMath math="(2, -1)" /> dan sumbu mayor horizontal.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const a = 3.5;
-        const b = 2.5;
-        const h = 2, k = -1;
-        return {
-          x: h + a * Math.cos(angle),
-          y: k + b * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#0284c7",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 2, y: -1, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="(2,-1)" />, at: 0, offset: [-0.8, 0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const a = 3.5, b = 2.5;
-        const c = Math.sqrt(a*a - b*b);
-        const h = 2, k = -1;
-        return [
-          { x: h - c, y: k, z: 0 },
-          { x: h + c, y: k, z: 0 }
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.5, 0.5, 0] },
-        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, 0.5, 0] }
-      ],
-    },
-    {
-      points: [
-        { x: 2, y: -1, z: 0 },
-        { x: 5.5, y: -1, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="a" />, at: 1, offset: [0, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 2, y: -1, z: 0 },
-        { x: 2, y: 1.5, z: 0 }
-      ],
-      color: "#059669",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="b" />, at: 1, offset: [0.5, 0, 0] }],
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 7, y: 0, z: 0 }
-      ],
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 0, y: -5, z: 0 },
-        { x: 0, y: 3, z: 0 }
-      ],
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[2, -1, 12]}
-  cameraTarget={[2, -1, 0]}
+  labels={{
+    "l1": <InlineMath math="(2,-1)" />,
+    "l2": <InlineMath math="F_1" />,
+    "l3": <InlineMath math="F_2" />,
+    "l4": <InlineMath math="a" />,
+    "l5": <InlineMath math="b" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 8 }, y: { min: -6, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(2 + (3.5 * cos(((t * pi) / 180))))", y: "((-1) + (2.5 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -0.45, y: -1 }, { x: 4.45, y: -1 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 2, y: -1 }, { x: 5.5, y: -1 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 2, y: -1 }, { x: 2, y: 1.5 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 7, y: 0 }], appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -5 }, { x: 0, y: 3 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 2, y: -1 }, placement: "above-left" },
+      { key: "l2", objectId: "s3", at: { x: -0.45, y: -1 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 4.45, y: -1 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 5.5, y: -1 }, placement: "below" },
+      { key: "l5", objectId: "s5", at: { x: 2, y: 1.5 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Hubungan Antarpanjang pada Elips

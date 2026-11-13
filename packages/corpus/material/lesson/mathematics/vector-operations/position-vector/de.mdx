@@ -13,44 +13,31 @@ export const metadata = {
 
 Ein Ortsvektor <Highlight>beginnt im Ursprung</Highlight> <InlineMath math="O" /> eines Koordinatensystems und endet am betrachteten Punkt. Er beschreibt damit eindeutig die Lage dieses Punktes im gewählten Koordinatensystem.
 
-<LineEquation
-  cameraPosition={[2, 2.5, 15]}
-  cameraTarget={[2, 2.5, 0]}
-  title="Ortsvektoren in der Koordinatenebene"
+<MathVisual
+  title={<>Ortsvektoren in der Koordinatenebene</>}
   description={
     <>
       Beispiele für Ortsvektoren vom Ursprung <InlineMath math="O" /> zu den Punkten{" "}
       <InlineMath math="A" /> und <InlineMath math="B" />.
     </>
   }
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: -3, y: 2, z: 0 }],
-      color: "#db2777",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="OA" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 7, y: 5, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="OB" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="OA" />,
+    "l2": <InlineMath math="OB" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 8 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: -3, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 7, y: 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -3, y: 2 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 7, y: 5 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ### Eigenschaften von Ortsvektoren
@@ -69,65 +56,32 @@ Hat der Punkt <InlineMath math="P" /> im dreidimensionalen Raum die Koordinaten 
 
 In der folgenden Darstellung bezeichnen <InlineMath math="OA" />, <InlineMath math="OB" />, <InlineMath math="OC" /> und <InlineMath math="OD" /> die Ortsvektoren vom Ursprung <InlineMath math="O" /> zu den Punkten <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" /> und <InlineMath math="D" />.
 
-<LineEquation
-  cameraPosition={[7, 6, -7]}
-  cameraTarget={[1.5, 1.7, 1.5]}
-  title="Ortsvektoren im dreidimensionalen Raum"
-  description="Vier Ortsvektoren zeigen vom Ursprung zu verschiedenen Punkten im dreidimensionalen Raum."
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }],
-      color: "#e11d48",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="OA" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 4, z: 0 }],
-      color: "#9333ea",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="OB" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }],
-      color: "#ea580c",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="OC" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 3, z: 3 }],
-      color: "#ca8a04",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="OD" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-  ]}
+<MathVisual
+  title={<>Ortsvektoren im dreidimensionalen Raum</>}
+  description={<>Vier Ortsvektoren zeigen vom Ursprung zu verschiedenen Punkten im dreidimensionalen Raum.</>}
+  labels={{
+    "l1": <InlineMath math="OA" />,
+    "l2": <InlineMath math="OB" />,
+    "l3": <InlineMath math="OC" />,
+    "l4": <InlineMath math="OD" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 4.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: -7 }, target: { x: 1.5, y: 1.7, z: 1.5 } },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 4, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 4 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 3, z: 3 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 4, y: 0, z: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 4, z: 0 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 0, z: 4 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 3, y: 3, z: 3 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Beispiele für Ortsvektoren
@@ -158,58 +112,36 @@ Der Verschiebungsvektor ergibt sich aus der **Differenz zweier Ortsvektoren**. S
 <BlockMath math="\overrightarrow{AB} = \overrightarrow{OB} - \overrightarrow{OA}" />
 
 <ContentBlock>
-  <LineEquation
-    cameraPosition={[2, 2.5, 15]}
-    cameraTarget={[2, 2.5, 0]}
-    title="Zusammenhang zwischen Ortsvektoren und Verschiebung"
+  <MathVisual
+    title={<>Zusammenhang zwischen Ortsvektoren und Verschiebung</>}
     description={
-      <>
-        Der Verschiebungsvektor <InlineMath math="AB" /> ergibt sich aus der
-        Differenz der Ortsvektoren <InlineMath math="OB" /> und{" "}
-        <InlineMath math="OA" />.
-      </>
-    }
-    data={[
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: -3, y: 2, z: 0 }],
-      color: "#db2777",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="OA" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 7, y: 5, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="OB" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: -3, y: 2, z: 0 }, { x: (-3) + 0.5 * ((7) - (-3)), y: (2) + 0.5 * ((5) - (2)), z: (0) + 0.5 * ((0) - (0)) }, { x: 7, y: 5, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="AB" />,
-        at: 1,
-        offset: [0, 0, 0],
-        anchorX: "left",
-      }],
-    },
-    ]}
+        <>
+          Der Verschiebungsvektor <InlineMath math="AB" /> ergibt sich aus der
+          Differenz der Ortsvektoren <InlineMath math="OB" /> und{" "}
+          <InlineMath math="OA" />.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="OA" />,
+      "l2": <InlineMath math="OB" />,
+      "l3": <InlineMath math="AB" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -4, max: 8 }, y: { min: -0.5, max: 5.5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: -3, y: 2 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 7, y: 5 }, appearance: "secondary" },
+        { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 2 }, { x: (-3) + 0.5 * ((7) - (-3)), y: (2) + 0.5 * ((5) - (2)) }, { x: 7, y: 5 }], appearance: "answer" },
+        { id: "s3-head", kind: "vector", from: { x: 2, y: 3.5 }, to: { x: 7, y: 5 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: -3, y: 2 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 7, y: 5 }, placement: "above-right" },
+        { key: "l3", objectId: "s3", at: { x: 2, y: 3.5 }, placement: "above-right" },
+      ],
+    }}
   />
 </ContentBlock>
 

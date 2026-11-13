@@ -17,56 +17,40 @@ Its shape is also useful in technology. Satellite dishes collect signals, spotli
 
 The key feature is the **reflection** property. Rays arriving parallel to the axis are reflected toward the **focus**. Conversely, rays emitted from the focus leave a parabolic reflector parallel to the axis. This is why parabolic shapes can collect or direct energy effectively.
 
-<LineEquation
+<MathVisual
   title={<>Parabola <InlineMath math="y = ax^2" /> in Real Life</>}
   description={<>Visualization of parabola with focus at <InlineMath math="F(0, \frac{1}{4a})" /> and directrix <InlineMath math="y = -\frac{1}{4a}" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 81 }, (_, pointIndex) => {
-        const x = (pointIndex - 40) / 10;
-        const y = 0.2 * x * x; // parabola y = 0.2x²
-        return { x, y, z: 0 };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-      labels: [{ text: "Parabola", at: 10, offset: [-0.5, 0.5, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 1.25, z: 0 }], // focus at (0, 1/(4*0.2)) = (0, 1.25)
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="F" />, at: 0, offset: [0.65, 0.5, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }], // vertex of parabola
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.8, -0.8, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, pointIndex) => {
-        const x = -5 + pointIndex * 10;
-        const y = -1.25; // directrix at y = -1/(4*0.2) = -1.25
-        return { x, y, z: 0 };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Directrix", at: 1, offset: [-1, -0.6, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 1.25, z: 0 }, { x: 2, y: 0.8, z: 0 }, { x: 2, y: -1.25, z: 0 }],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P" />, at: 1, offset: [0.4, 0.4, 0] },
-        { text: <InlineMath math="Q" />, at: 2, offset: [0.4, -0.4, 0] },
-      ],
-    },
-  ]}
-  cameraPosition={[0, 0, 15]}
+  labels={{
+    "l1": <>Parabola</>,
+    "l2": <InlineMath math="F" />,
+    "l3": <InlineMath math="O" />,
+    "l4": <>Directrix</>,
+    "l5": <InlineMath math="P" />,
+    "l6": <InlineMath math="Q" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -2, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((t - 40) / 10)", y: "((0.2 * ((t - 40) / 10)) * ((t - 40) / 10))", parameter: { min: 0, max: 80 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 1.25 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "((-5) + (t * 10))", y: "(-1.25)", parameter: { min: 0, max: 1 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 1.25 }, { x: 2, y: 0.8 }, { x: 2, y: -1.25 }], appearance: "reference" },
+      { id: "s5-p0", kind: "point", at: { x: 0, y: 1.25 }, appearance: "reference" },
+      { id: "s5-p1", kind: "point", at: { x: 2, y: 0.8 }, appearance: "reference" },
+      { id: "s5-p2", kind: "point", at: { x: 2, y: -1.25 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -3, y: 1.8 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 1.25 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l4", objectId: "s4", at: { x: 5, y: -1.25 }, placement: "below-left" },
+      { key: "l5", objectId: "s5", at: { x: 2, y: 0.8 }, placement: "above-right" },
+      { key: "l6", objectId: "s5", at: { x: 2, y: -1.25 }, placement: "below-right" },
+    ],
+  }}
 />
 
 ## Parabola from a Fixed Point and a Fixed Line
@@ -91,62 +75,35 @@ Swap the coordinate roles to put the focus at <InlineMath math="(0,p)" /> and th
 
 Start with a parabola whose vertex is at the origin <InlineMath math="O(0,0)" />. Its opening direction produces four standard forms.
 
-<LineEquation
+<MathVisual
   title={<>Four Standard Parabola Forms with Vertex <InlineMath math="O(0,0)" /></>}
   description={<>Standard parabolas <InlineMath math="x^2 = 4py" /> (vertical) and <InlineMath math="y^2 = 4px" /> (horizontal).</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 61 }, (_, i) => {
-        const x = (i - 30) / 10; // x from -3 to 3
-        const y = 0.25 * x * x; // parabola x² = 4py with p=1
-        return { x, y, z: 0 };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="x^2=4y" />, at: 0, offset: [-1.3, 2, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 61 }, (_, i) => {
-        const x = (i - 30) / 10; // x from -3 to 3
-        const y = -0.25 * x * x; // parabola x² = -4py with p=1
-        return { x, y, z: 0 };
-      }),
-      color: "#ea580c",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="x^2=-4y" />, at: 60, offset: [1.3, -2, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 61 }, (_, i) => {
-        const y = (i - 30) / 10; // y from -3 to 3
-        const x = 0.25 * y * y; // parabola y² = 4px with p=1
-        return { x, y, z: 0 };
-      }),
-      color: "#0891b2",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y^2=4x" />, at: 60, offset: [2.05, 1, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 61 }, (_, i) => {
-        const y = (i - 30) / 10; // y from -3 to 3
-        const x = -0.25 * y * y; // parabola y² = -4px with p=1
-        return { x, y, z: 0 };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y^2=-4x" />, at: 0, offset: [-2.05, -1, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }], // vertex of all parabolas at O(0,0)
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-1, -1.1, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 15]}
+  labels={{
+    "l1": <InlineMath math="x^2=4y" />,
+    "l2": <InlineMath math="x^2=-4y" />,
+    "l3": <InlineMath math="y^2=4x" />,
+    "l4": <InlineMath math="y^2=-4x" />,
+    "l5": <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((t - 30) / 10)", y: "((0.25 * ((t - 30) / 10)) * ((t - 30) / 10))", parameter: { min: 0, max: 60 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((t - 30) / 10)", y: "(((-0.25) * ((t - 30) / 10)) * ((t - 30) / 10))", parameter: { min: 0, max: 60 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((0.25 * ((t - 30) / 10)) * ((t - 30) / 10))", y: "((t - 30) / 10)", parameter: { min: 0, max: 60 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(((-0.25) * ((t - 30) / 10)) * ((t - 30) / 10))", y: "((t - 30) / 10)", parameter: { min: 0, max: 60 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -3, y: 2.25 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 3, y: -2.25 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 2.25, y: 3 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: -2.25, y: -3 }, placement: "below-left" },
+      { key: "l5", objectId: "s5", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
 />
 
 The two aligned standard equations use a signed parameter <InlineMath math="p" />:
@@ -171,63 +128,35 @@ For example, for the parabola <InlineMath math="y^2 = 4px" /> (opens rightward):
 
 A parabola does not have to lie at the origin. When its vertex is <InlineMath math="(h, k)" />, we use a **shifted standard form**.
 
-<LineEquation
+<MathVisual
   title={<>Parabola <InlineMath math="(x-h)^2 = 4p(y-k)" /> with Vertex <InlineMath math="(h,k)" /></>}
   description={<>Parabola with vertex <InlineMath math="V(2,1)" />, focus <InlineMath math="F(2,1.5)" />, and parameter <InlineMath math="p = 0.5" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 121 }, (_, pointIndex) => {
-        const x = -1 + pointIndex / 20;
-        const h = 2,
-          k = 1,
-          p = 0.5;
-        const y = k + (1 / (4 * p)) * Math.pow(x - h, 2); // parabola with vertex (h,k)
-        return { x, y, z: 0 };
-      }),
-      color: "#4f46e5",
-      showPoints: false,
-      labels: [{ text: "Parabola", at: 10, offset: [-0.4, 0.4, 0] }],
-    },
-    {
-      points: [{ x: 2, y: 1, z: 0 }], // vertex
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="V" />, at: 0, offset: [-0.8, 1.2, 0] }],
-    },
-    {
-      points: [{ x: 2, y: 1.5, z: 0 }], // focus at (h, k+p) = (2, 1+0.5)
-      color: "#65a30d",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="F" />, at: 0, offset: [0.8, 0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, pointIndex) => {
-        const x = -2 + pointIndex * 8;
-        const y = 0.5; // directrix at y = k-p = 1-0.5 = 0.5
-        return { x, y, z: 0 };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="y=0.5" />, at: 1, offset: [-1, -0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const yMin = -1;
-        const yMax = 5;
-        const x = 2; // axis of symmetry
-        return { x, y: yMin + i * (yMax - yMin), z: 0 };
-      }),
-      color: "#db2777",
-      showPoints: false,
-      smooth: false,
-      cone: { position: "both" },
-      labels: [{ text: <InlineMath math="x=2" />, at: 1, offset: [0.5, 0.2, 0] }],
-    },
-  ]}
-  cameraPosition={[2, 2, 12]}
-  cameraTarget={[2, 2, 0]}
+  labels={{
+    "l1": <>Parabola</>,
+    "l2": <InlineMath math="V" />,
+    "l3": <InlineMath math="F" />,
+    "l4": <InlineMath math="y=0.5" />,
+    "l5": <InlineMath math="x=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 7 }, y: { min: -2, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-1) + (t / 20))", y: "(1 + ((1 / (4 * 0.5)) * ((((-1) + (t / 20)) - 2))^(2)))", parameter: { min: 0, max: 120 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 2, y: 1.5 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "((-2) + (t * 8))", y: "0.5", parameter: { min: 0, max: 1 }, appearance: "highlight" },
+      { id: "s5", kind: "line", through: [{ x: 2, y: -1 }, { x: 2, y: 5 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -0.5, y: 4.13 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 1 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 2, y: 1.5 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 6, y: 0.5 }, placement: "below-left" },
+      { key: "l5", objectId: "s5", at: { x: 2, y: 5 }, placement: "above-right" },
+    ],
+  }}
 />
 
 General form of parabola equations with vertex at <InlineMath math="(h, k)" />:
@@ -285,63 +214,35 @@ From the form <InlineMath math="(x-2)^2 = 8(y-1)" />, we identify:
 
 The parabola elements are:
 
-<LineEquation
+<MathVisual
   title={<>Parabola Analysis <InlineMath math="(x-2)^2 = 8(y-1)" /></>}
   description={<>Identifying vertex <InlineMath math="V(2,1)" />, focus <InlineMath math="F(2,3)" />, directrix <InlineMath math="y = -1" />, and <InlineMath math="p = 2" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 121 }, (_, pointIndex) => {
-        const x = -4 + pointIndex / 10;
-        const h = 2,
-          k = 1,
-          p = 2;
-        const y = k + (1 / (4 * p)) * Math.pow(x - h, 2); // (x-h)² = 4p(y-k)
-        return { x, y, z: 0 };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-      labels: [{ text: "Parabola", at: 29, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      points: [{ x: 2, y: 1, z: 0 }], // vertex (h,k)
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="V" />, at: 0, offset: [-0.75, 1.2, 0] }],
-    },
-    {
-      points: [{ x: 2, y: 3, z: 0 }], // focus (h, k+p) = (2, 1+2)
-      color: "#65a30d",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="F" />, at: 0, offset: [1, 0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, pointIndex) => {
-        const x = -5 + pointIndex * 14;
-        const y = -1; // directrix y = k-p = 1-2 = -1
-        return { x, y, z: 0 };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="y=-1" />, at: 1, offset: [-1, -0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const yMin = -2;
-        const yMax = 6;
-        const x = 2; // axis of symmetry x = h = 2
-        return { x, y: yMin + i * (yMax - yMin), z: 0 };
-      }),
-      color: "#db2777",
-      showPoints: false,
-      smooth: false,
-      cone: { position: "both" },
-      labels: [{ text: <InlineMath math="x=2" />, at: 1, offset: [0.5, 0.2, 0] }],
-    },
-  ]}
-  cameraPosition={[1, 1.5, 15]}
-  cameraTarget={[1, 1.5, 0]}
+  labels={{
+    "l1": <>Parabola</>,
+    "l2": <InlineMath math="V" />,
+    "l3": <InlineMath math="F" />,
+    "l4": <InlineMath math="y=-1" />,
+    "l5": <InlineMath math="x=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 10.5 }, y: { min: -3, max: 7 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-4) + (t / 10))", y: "(1 + ((1 / (4 * 2)) * ((((-4) + (t / 10)) - 2))^(2)))", parameter: { min: 0, max: 120 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 2, y: 3 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "((-5) + (t * 14))", y: "(-1)", parameter: { min: 0, max: 1 }, appearance: "highlight" },
+      { id: "s5", kind: "line", through: [{ x: 2, y: -2 }, { x: 2, y: 6 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.1, y: 2.2 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 1 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 2, y: 3 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 9, y: -1 }, placement: "below-left" },
+      { key: "l5", objectId: "s5", at: { x: 2, y: 6 }, placement: "above-right" },
+    ],
+  }}
 />
 
 From this analysis we obtain:

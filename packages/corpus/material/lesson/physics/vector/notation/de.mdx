@@ -99,52 +99,29 @@ Ein **Einheitsvektor** hat den Betrag <InlineMath math="1" /> und kennzeichnet e
     <BlockMath math="\hat{k}=(0,0,1)" />
   </MathContainer>
 
-  <LineEquation
-    cameraPosition={[2, 1.5, 2.2]}
-    cameraTarget={[0.3, 0.35, 0.3]}
-    title="Richtungen dreier Einheitsvektoren"
-    description="Drehe das Modell, um die drei Achsenrichtungen zu unterscheiden. Jeder Pfeil hat die Länge eins, auch wenn die Perspektive unterschiedliche Längen zeigt."
-    data={[
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\hat{i}" />,
-        at: 1,
-        offset: [0.3, 0.15, 0],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 }],
-      color: "#d97706",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\hat{j}" />,
-        at: 1,
-        offset: [0, 0.3, 0.15],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 1 }],
-      color: "#0891b2",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\hat{k}" />,
-        at: 1,
-        offset: [0.15, 0, 0.3],
-        anchorX: "left",
-      }],
-    }
-    ]}
+  <MathVisual
+    title={<>Richtungen dreier Einheitsvektoren</>}
+    description={<>Drehe das Modell, um die drei Achsenrichtungen zu unterscheiden. Jeder Pfeil hat die Länge eins, auch wenn die Perspektive unterschiedliche Längen zeigt.</>}
+    labels={{
+      "l1": <InlineMath math="\hat{i}" />,
+      "l2": <InlineMath math="\hat{j}" />,
+      "l3": <InlineMath math="\hat{k}" />,
+    }}
+    scene={{
+      space: "space",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.5, max: 1.5 }, z: { min: -0.5, max: 1.5 } },
+      view: { kind: "camera", position: { x: 2, y: 1.5, z: 2.2 }, target: { x: 0.3, y: 0.35, z: 0.3 } },
+      objects: [
+        { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 0, z: 0 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 1, z: 0 }, appearance: "secondary" },
+        { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 1 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 1, y: 0, z: 0 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 0, y: 1, z: 0 }, placement: "above" },
+        { key: "l3", objectId: "s3", at: { x: 0, y: 0, z: 1 }, placement: "right" },
+      ],
+    }}
   />
 </ContentStack>
 

@@ -13,44 +13,29 @@ A normal distribution is a probability model for a continuous variable whose val
 
 On the interactive graph, the standard normal curve with <InlineMath math="\mu = 0" /> and <InlineMath math="\sigma = 1" /> peaks at the center. Two vertical segments mark the inflection points at <InlineMath math="\mu - \sigma" /> and <InlineMath math="\mu + \sigma" />, where the curve changes how it bends: concave down between the two points and concave up outside them.
 
-<LineEquation
-  title="Standard Normal Distribution Curve"
+<MathVisual
+  title={<>Standard Normal Distribution Curve</>}
   description={<>The standard normal density is centered at <InlineMath math="\mu = 0" />. The vertical segments mark its inflection points at <InlineMath math="\mu \pm \sigma" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0, 5]}
-  data={[
-    {
-      points: Array.from({ length: 701 }, (_, index) => {
-        const x = (index - 350) / 100;
-        const y = Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
-        return { x, y, z: 0 };
-      }),
-      color: "#9333ea",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\mu = 0" />, at: 350, offset: [0, 0.5, 0] }],
-    },
-    {
-      points: [
-        { x: -1, y: 0, z: 0 },
-        { x: -1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 },
-      ],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\mu - \sigma" />, at: 0, offset: [0, -0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 1, y: 0, z: 0 },
-        { x: 1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 },
-      ],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\mu + \sigma" />, at: 0, offset: [0, -0.3, 0] }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="\mu = 0" />,
+    "l2": <InlineMath math="\mu - \sigma" />,
+    "l3": <InlineMath math="\mu + \sigma" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -0.5, max: 1 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((t - 350) / 100)", y: "(exp((((-0.5) * ((t - 350) / 100)) * ((t - 350) / 100))) / sqrt((2 * pi)))", parameter: { min: 0, max: 700 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -1, y: 0 }, { x: -1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5) }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5) }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 0, y: 0.4 }, placement: "above" },
+      { key: "l2", objectId: "s2", at: { x: -1, y: 0 }, placement: "below" },
+      { key: "l3", objectId: "s3", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 The mean, median, and mode coincide at <InlineMath math="\mu" />, because the curve is symmetric and has a single peak. The curve never touches the <InlineMath math="x" />-axis: its density is positive for every <InlineMath math="x" /> and approaches zero far from the center. Abraham de Moivre derived this curve in <InlineMath math="1733" /> as an approximation to the [binomial distribution](/en/subjects/mathematics/data-analysis-probability/binomial-distribution-function) with <InlineMath math="p = \frac{1}{2}" /> for a large number of trials, and Pierre-Simon Laplace later extended it to other success probabilities.
@@ -69,44 +54,29 @@ A density is not a probability. At the peak of the standard normal curve, <Inlin
 
 The parameter <InlineMath math="\mu" /> **shifts the curve without changing its shape**, while <InlineMath math="\sigma" /> sets its width. The area under the curve is always <InlineMath math="1" />, so a wider curve is also lower, with peak height <InlineMath math="\frac{1}{\sigma\sqrt{2\pi}}" />. The interactive graph draws three curves from the same formula.
 
-<LineEquation
+<MathVisual
   title={<>The curves <InlineMath math="N(0, 1)" />, <InlineMath math="N(2, 1)" />, and <InlineMath math="N(0, 4)" /></>}
   description={<>Changing <InlineMath math="\mu" /> from <InlineMath math="0" /> to <InlineMath math="2" /> shifts the curve to the right. Changing <InlineMath math="\sigma" /> from <InlineMath math="1" /> to <InlineMath math="2" /> widens the curve and halves its peak.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0.2, 9]}
-  cameraTarget={[0, 0.2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 801 }, (_, index) => {
-        const x = -4 + index / 100;
-        return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
-      }),
-      color: "#9333ea",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="N(0, 1)" />, at: 400, offset: [-1, 0.1, 0] }],
-    },
-    {
-      points: Array.from({ length: 801 }, (_, index) => {
-        const x = -2 + index / 100;
-        return { x, y: Math.exp(-0.5 * (x - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 };
-      }),
-      color: "#0d9488",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="N(2, 1)" />, at: 400, offset: [1, 0.1, 0] }],
-    },
-    {
-      points: Array.from({ length: 1201 }, (_, index) => {
-        const x = -6 + index / 100;
-        return { x, y: Math.exp(-0.5 * (x / 2) ** 2) / (2 * Math.sqrt(2 * Math.PI)), z: 0 };
-      }),
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="N(0, 4)" />, at: 300, offset: [-0.5, 0.2, 0] }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="N(0, 1)" />,
+    "l2": <InlineMath math="N(2, 1)" />,
+    "l3": <InlineMath math="N(0, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -0.5, max: 1 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-4) + (t / 100))", y: "(exp((((-0.5) * ((-4) + (t / 100))) * ((-4) + (t / 100)))) / sqrt((2 * pi)))", parameter: { min: 0, max: 800 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2) + (t / 100))", y: "(exp(((-0.5) * ((((-2) + (t / 100)) - 2))^(2))) / sqrt((2 * pi)))", parameter: { min: 0, max: 800 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-6) + (t / 100))", y: "(exp(((-0.5) * ((((-6) + (t / 100)) / 2))^(2))) / (2 * sqrt((2 * pi))))", parameter: { min: 0, max: 1200 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 0, y: 0.4 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 0.4 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -3, y: 0.06 }, placement: "above-left" },
+    ],
+  }}
 />
 
 The curves <InlineMath math="N(0, 1)" /> and <InlineMath math="N(2, 1)" /> have the same shape, with the center moved <InlineMath math="2" /> units to the right. The curve <InlineMath math="N(0, 4)" /> has the same center as <InlineMath math="N(0, 1)" />, but it is twice as wide, and its peak drops from <InlineMath math="0.399" /> to <InlineMath math="0.199" />. The second parameter in <InlineMath math="N(\mu, \sigma^2)" /> is the variance, so <InlineMath math="N(0, 4)" /> means <InlineMath math="\sigma = 2" />.
@@ -155,53 +125,28 @@ A normal probability takes three steps: standardize the bounds, read <InlineMath
 
 The probability is about <InlineMath math="0.5764" />, or <InlineMath math="57.64\%" />. The interactive graph shows this area on the standard normal curve, between <InlineMath math="z = -0.5" /> and <InlineMath math="z = 1.2" />.
 
-<LineEquation
+<MathVisual
   title={<>The area between <InlineMath math="z = -0.5" /> and <InlineMath math="z = 1.2" /></>}
   description={<>The thick arc is the part of the standard normal curve above the standardized interval. The area under that arc equals <InlineMath math="P(45 < X < 62) \approx 0.5764" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0.2, 5.5]}
-  cameraTarget={[0, 0.2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 701 }, (_, index) => {
-        const x = -3.5 + index / 100;
-        return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
-      }),
-      color: "#9333ea",
-      smooth: false,
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 341 }, (_, index) => {
-        const x = -0.5 + index / 200;
-        return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
-      }),
-      color: "#0d9488",
-      lineWidth: 4,
-      smooth: false,
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -0.5, y: 0, z: 0 },
-        { x: -0.5, y: Math.exp(-0.5 * 0.5 ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
-      ],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="-0.5" />, at: 0, offset: [0, -0.2, 0] }],
-    },
-    {
-      points: [
-        { x: 1.2, y: 0, z: 0 },
-        { x: 1.2, y: Math.exp(-0.5 * 1.2 ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
-      ],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="1.2" />, at: 0, offset: [0, -0.2, 0] }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="-0.5" />,
+    "l2": <InlineMath math="1.2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -0.5, max: 1 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3.5) + (t / 100))", y: "(exp((((-0.5) * ((-3.5) + (t / 100))) * ((-3.5) + (t / 100)))) / sqrt((2 * pi)))", parameter: { min: 0, max: 700 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-0.5) + (t / 200))", y: "(exp((((-0.5) * ((-0.5) + (t / 200))) * ((-0.5) + (t / 200)))) / sqrt((2 * pi)))", parameter: { min: 0, max: 340 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -0.5, y: 0 }, { x: -0.5, y: Math.exp(-0.5 * 0.5 ** 2) / Math.sqrt(2 * Math.PI) }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 1.2, y: 0 }, { x: 1.2, y: Math.exp(-0.5 * 1.2 ** 2) / Math.sqrt(2 * Math.PI) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -0.5, y: 0 }, placement: "below" },
+      { key: "l2", objectId: "s4", at: { x: 1.2, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 Check by splitting the interval at the center. The left part is <InlineMath math="P(-0.5 < Z < 0) = 0.5 - 0.3085 = 0.1915" />, and the right part is <InlineMath math="P(0 < Z < 1.2) = 0.8849 - 0.5 = 0.3849" />. Their sum is <InlineMath math="0.1915 + 0.3849 = 0.5764" />, the same as the first result.
