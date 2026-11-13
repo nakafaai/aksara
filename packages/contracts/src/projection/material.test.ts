@@ -228,7 +228,8 @@ describe("material projection", () => {
       materialPublicNamespace(Schema.decodeSync(AppLocaleSchema)("en")),
       materialPublicNamespace(Schema.decodeSync(AppLocaleSchema)("id")),
       materialPublicNamespace(Schema.decodeSync(AppLocaleSchema)("de")),
-    ]).toEqual(["subjects", "materi", "faecher"]);
+      materialPublicNamespace(Schema.decodeSync(AppLocaleSchema)("ms")),
+    ]).toEqual(["subjects", "materi", "faecher", "subjek"]);
 
     const germanRoute = Schema.decodeSync(MaterialLessonRouteSchema)({
       ...projection,

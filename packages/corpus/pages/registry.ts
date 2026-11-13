@@ -24,6 +24,7 @@ import {
 } from "effect";
 import {
   appLocaleCode,
+  carriedAppLocales,
   contentHeadOrder,
   requireSourceLocale,
 } from "#corpus/locale/source";
@@ -94,12 +95,19 @@ export const projectPage = Effect.fn("AksaraCorpus.projectPage")(function* (
   };
 });
 
-/** Expands one reviewed source into its active locale-specific page bodies. */
+/**
+ * Expands one reviewed source into a page body for each active locale and for
+ * each declared locale that the source writes.
+ */
 const expandPage = Effect.fn("AksaraCorpus.expandPage")(function* (
   source: PageSource,
   appLocales: ActiveAppLocaleList
 ) {
-  return yield* Effect.forEach(appLocales, (appLocale) =>
+  const carried = carriedAppLocales(
+    appLocales,
+    (code) => source.publicPaths[code] !== undefined
+  );
+  return yield* Effect.forEach(carried, (appLocale) =>
     projectPage(source, appLocale)
   );
 });

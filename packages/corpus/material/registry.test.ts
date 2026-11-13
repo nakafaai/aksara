@@ -5,6 +5,7 @@ import {
   ACTIVE_APP_LOCALES,
   ActiveAppLocaleListSchema,
   ActiveAppLocaleSchema,
+  APP_LOCALE_CODES,
 } from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Effect, FileSystem, HashSet, Order, Path } from "effect";
 
@@ -52,7 +53,7 @@ layer(NodeServices.layer)("material registry", (it) => {
         );
         const authoredPaths = Arr.sort(
           Arr.filter(lessonPaths, (sourcePath) =>
-            Arr.some(ACTIVE_APP_LOCALES, (locale) =>
+            Arr.some(APP_LOCALE_CODES, (locale) =>
               sourcePath.endsWith(`/${locale}.mdx`)
             )
           ),
@@ -140,6 +141,83 @@ layer(NodeServices.layer)("material registry", (it) => {
             "faecher/mathematik/funktionskomposition-und-umkehrfunktion/funktionsbegriff",
         });
       })
+  );
+
+  it.effect(
+    "publishes a declared locale that is not served yet once a source writes all of it",
+    () =>
+      Effect.gen(function* () {
+        const source = lessonMaterialSource();
+        const entries = yield* decodeMaterialRegistry(
+          [
+            {
+              ...source,
+              routeSlugs: {
+                ...source.routeSlugs,
+                ms: "fungsi-gubahan-dan-fungsi-songsang",
+              },
+              sections: [
+                {
+                  ...source.sections[0],
+                  routeSlugs: {
+                    ...source.sections[0]?.routeSlugs,
+                    ms: "konsep-fungsi",
+                  },
+                },
+              ],
+              translations: {
+                ...source.translations,
+                ms: {
+                  description: "Gubah fungsi dan jaga domain yang dikongsi.",
+                  title: "Fungsi Gubahan dan Fungsi Songsang",
+                },
+              },
+            },
+          ],
+          undefined,
+          ActiveAppLocaleListSchema.make([ActiveAppLocaleSchema.make("de")])
+        );
+
+        expect(
+          Arr.map(entries, ({ route, sourcePath }) => [
+            route.appLocale,
+            route.publicPath,
+            sourcePath,
+          ])
+        ).toEqual([
+          [
+            "de",
+            "faecher/mathematik/funktionskomposition-und-umkehrfunktion/funktionsbegriff",
+            "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/de.mdx",
+          ],
+          [
+            "ms",
+            "subjek/matematik/fungsi-gubahan-dan-fungsi-songsang/konsep-fungsi",
+            "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/ms.mdx",
+          ],
+        ]);
+      })
+  );
+
+  it.effect("refuses a declared locale that a source writes only in part", () =>
+    Effect.gen(function* () {
+      const source = lessonMaterialSource();
+      const failure = yield* rejectRegistry([
+        {
+          ...source,
+          routeSlugs: { ...source.routeSlugs, ms: "fungsi-gubahan" },
+          translations: {
+            ...source.translations,
+            ms: { description: "Gubah fungsi.", title: "Fungsi Gubahan" },
+          },
+        },
+      ]);
+
+      expect(failure).toMatchObject({
+        _tag: "SourceLocaleUnavailableError",
+        appLocale: "ms",
+      });
+    })
   );
 
   it.effect("expands a generic domain through one corpus descriptor", () =>

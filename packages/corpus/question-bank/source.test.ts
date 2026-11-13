@@ -121,6 +121,40 @@ describe("readQuestionSets", () => {
   );
 
   it.effect(
+    "carries a declared locale that is not served yet when every question of the set explains in it",
+    () =>
+      Effect.gen(function* () {
+        const malay = (number: number) =>
+          [
+            setSourcePath(TEST_SET, `question-${number}`, "answer.ms.mdx"),
+            "Penjelasan.",
+          ] as const;
+        const [set] = yield* read([
+          ...questionFiles(1),
+          malay(1),
+          ...questionFiles(2),
+          malay(2),
+        ]);
+        const partial = yield* reject([
+          ...questionFiles(1),
+          malay(1),
+          ...questionFiles(2),
+        ]);
+
+        expect(
+          Arr.map(set?.questions ?? [], ({ explanations }) => explanations)
+        ).toEqual([
+          ["en", "id", "de", "ms"],
+          ["en", "id", "de", "ms"],
+        ]);
+        expect(partial).toMatchObject({
+          _tag: "QuestionFileSetError",
+          sourcePath: setSourcePath(TEST_SET, "question-2"),
+        });
+      })
+  );
+
+  it.effect(
     "requires every named reading to exist in each language and to be used",
     () =>
       Effect.gen(function* () {

@@ -9,6 +9,7 @@ import {
 import { ContentKeySchema, PublicPathSchema } from "#contracts/ids";
 import {
   type AppLocale,
+  type AppLocaleCode,
   AppLocaleSchema,
   ArtifactLocaleSchema,
 } from "#contracts/locale";
@@ -34,20 +35,28 @@ export const MaterialPublicNamespaceSchema = Schema.Literals([
   "subjects",
   "materi",
   "faecher",
+  "subjek",
 ]);
 export type MaterialPublicNamespace = typeof MaterialPublicNamespaceSchema.Type;
+
+/**
+ * The public material namespace of every declared app locale. Declaring a
+ * locale fails to compile until it names its own namespace here.
+ */
+const MATERIAL_PUBLIC_NAMESPACES = {
+  de: "faecher",
+  en: "subjects",
+  id: "materi",
+  ms: "subjek",
+} as const satisfies Record<AppLocaleCode, MaterialPublicNamespace>;
 
 /** Resolves the only public material namespace owned by one app locale. */
 export function materialPublicNamespace(
   appLocale: AppLocale
 ): MaterialPublicNamespace {
-  if (appLocale === AppLocaleSchema.make("en")) {
-    return "subjects";
-  }
-  if (appLocale === AppLocaleSchema.make("id")) {
-    return "materi";
-  }
-  return "faecher";
+  return MATERIAL_PUBLIC_NAMESPACES[
+    Schema.encodeSync(AppLocaleSchema)(appLocale)
+  ];
 }
 
 /** Stable reusable material identity preserved from Nakafa's source registry. */
