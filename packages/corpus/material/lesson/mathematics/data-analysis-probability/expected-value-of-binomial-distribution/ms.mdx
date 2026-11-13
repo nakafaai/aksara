@@ -1,0 +1,204 @@
+export const metadata = {
+  title: "Nilai Jangkaan Taburan Binomial",
+  description: "Nilai jangkaan taburan binomial ialah np. Lihat dari mana rumus ini datang dan apa maksudnya, kemudian gunakannya pada lambungan dadu dan tekaan jawapan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Analisis Data dan Kebarangkalian",
+};
+
+## Bilangan Kejayaan yang Dijangka ialah np
+
+Kalau <InlineMath math="X" /> mengira kejayaan dalam <InlineMath math="n" /> percubaan tak bersandar, dan setiap percubaan ada kebarangkalian kejayaan <InlineMath math="p" />, maka <InlineMath math="X" /> mengikut taburan binomial, ditulis <InlineMath math="X \sim B(n, p)" />, dan nilai jangkaannya ialah:
+
+<BlockMath math="E(X) = np" />
+
+Seorang pemain menjaringkan setiap balingan percuma dengan kebarangkalian <InlineMath math="p = 0.8" /> dan membuat <InlineMath math="n = 10" /> balingan. Nilai jangkaannya ialah <InlineMath math="E(X) = 10 \cdot 0.8 = 8" />. Maksudnya, **purata bilangan jaringan bagi banyak set sepuluh balingan menghampiri <InlineMath math="8" />**. Dalam satu set sahaja, keputusannya boleh jadi <InlineMath math="6" />, <InlineMath math="9" /> atau <InlineMath math="10" />.
+
+Sejauh manakah satu set biasanya menyimpang daripada <InlineMath math="8" />? Ukurannya ialah sisihan piawai, iaitu punca kuasa dua varians <InlineMath math="np(1 - p) = 10 \cdot 0.8 \cdot 0.2 = 1.6" />, yang bernilai <InlineMath math="\sqrt{1.6} \approx 1.26" /> jaringan. Nilai jangkaan juga boleh jadi pecahan, walaupun <InlineMath math="X" /> sendiri hanya mengambil nombor bulat.
+
+## Syarat bagi Eksperimen Binomial
+
+Pemboleh ubah <InlineMath math="X" /> bertaburan binomial apabila **empat syarat dipenuhi serentak**. Setiap percubaan hanya ada dua kesudahan, kejayaan atau kegagalan. Bilangan percubaan <InlineMath math="n" /> ditetapkan sebelum percubaan bermula. Keputusan satu percubaan tidak mempengaruhi percubaan lain, sama seperti [peristiwa tak bersandar](/ms/subjek/matematik/kombinatorik/kebarangkalian-peristiwa-tak-bersandar). Kebarangkalian kejayaan <InlineMath math="p" /> sama dalam setiap percubaan.
+
+Apabila keempat-empat syarat dipenuhi, kebarangkalian mendapat tepat <InlineMath math="k" /> kejayaan datang daripada [rumus taburan binomial](/ms/subjek/matematik/analisis-data-dan-kebarangkalian/fungsi-taburan-binomial):
+
+<BlockMath math="P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k}, \qquad k = 0, 1, \ldots, n" />
+
+Melambung dadu sehingga nombor enam muncul bukan eksperimen binomial, kerana bilangan lambungan tidak tetap. Menjawab soalan-soalan yang kebarangkalian jawapan betulnya berbeza-beza juga bukan binomial, kerana <InlineMath math="p" /> tidak sama dalam setiap percubaan.
+
+<Mermaid
+  title={<>Menyemak syarat binomial</>}
+  description={<>Keempat-empat syarat mesti dipenuhi sebelum X bertaburan binomial.</>}
+  chart={`flowchart TD
+  A{"Hanya kejayaan atau kegagalan dalam setiap percubaan?"} -->|"ya"| B{"Adakah bilangan percubaan n tetap?"}
+  B -->|"ya"| C{"Adakah percubaan-percubaan itu tak bersandar?"}
+  C -->|"ya"| D{"Kebarangkalian kejayaan p sama setiap kali?"}
+  D -->|"ya"| E["Binomial, E(X) = np"]
+  A -->|"tidak"| F["Bukan binomial"]
+  B -->|"tidak"| F
+  C -->|"tidak"| F
+  D -->|"tidak"| F`}
+/>
+
+## Mengira Nilai Jangkaan daripada Jadual Kebarangkalian
+
+Nilai jangkaan bagi pemboleh ubah diskret ialah hasil tambah setiap nilai didarab dengan kebarangkaliannya, sama seperti bagi mana-mana [taburan kebarangkalian](/ms/subjek/matematik/kebarangkalian/taburan-kebarangkalian) yang lain:
+
+<BlockMath math="E(X) = \sum_{k=0}^{n} k \cdot P(X = k)" />
+
+Untuk tiga lambungan syiling adil, <InlineMath math="n = 3" /> dan <InlineMath math="p = \frac{1}{2}" />. Kebarangkalian setiap nilai datang daripada <InlineMath math="\binom{3}{k}\left(\frac{1}{2}\right)^3" />, kemudian setiap nilai **didarab dengan kebarangkaliannya**:
+
+| Bilangan kepala <InlineMath math="k" /> | <InlineMath math="P(X = k)" /> | <InlineMath math="k \cdot P(X = k)" /> |
+| --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="\frac{1}{8}" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="\frac{3}{8}" /> | <InlineMath math="\frac{3}{8}" /> |
+| <InlineMath math="2" /> | <InlineMath math="\frac{3}{8}" /> | <InlineMath math="\frac{6}{8}" /> |
+| <InlineMath math="3" /> | <InlineMath math="\frac{1}{8}" /> | <InlineMath math="\frac{3}{8}" /> |
+
+Hasil tambah lajur terakhir ialah nilai jangkaan:
+
+<BlockMath math="E(X) = 0 + \frac{3}{8} + \frac{6}{8} + \frac{3}{8} = \frac{12}{8} = 1.5" />
+
+Semak dengan rumus ringkas: <InlineMath math="np = 3 \cdot \frac{1}{2} = 1.5" />. Kedua-dua kaedah memberikan jawapan yang sama, tetapi untuk <InlineMath math="n" /> yang besar, jadual seperti ini menjadi terlalu panjang, jadi rumus <InlineMath math="np" /> yang kita gunakan.
+
+<MathVisual
+  title={<>Nilai jangkaan sebagai titik keseimbangan</>}
+  description={<>Tinggi setiap palang ialah kebarangkalian bagi tiga lambungan syiling, dengan satu unit mewakili satu perlapan. Palang-palang itu seimbang tepat pada <InlineMath math="E(X) = 1.5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 3.8 }, y: { min: -1, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "bar0", kind: "polygon", vertices: [{ x: 0 - 0.3, y: 0 }, { x: 0 + 0.3, y: 0 }, { x: 0 + 0.3, y: 1 }, { x: 0 - 0.3, y: 1 }], appearance: "secondary" },
+      { id: "bar1", kind: "polygon", vertices: [{ x: 1 - 0.3, y: 0 }, { x: 1 + 0.3, y: 0 }, { x: 1 + 0.3, y: 3 }, { x: 1 - 0.3, y: 3 }], appearance: "secondary" },
+      { id: "bar2", kind: "polygon", vertices: [{ x: 2 - 0.3, y: 0 }, { x: 2 + 0.3, y: 0 }, { x: 2 + 0.3, y: 3 }, { x: 2 - 0.3, y: 3 }], appearance: "secondary" },
+      { id: "bar3", kind: "polygon", vertices: [{ x: 3 - 0.3, y: 0 }, { x: 3 + 0.3, y: 0 }, { x: 3 + 0.3, y: 1 }, { x: 3 - 0.3, y: 1 }], appearance: "secondary" },
+      { id: "fulcrum", kind: "polygon", vertices: [{ x: 1.5, y: 0 }, { x: 1.2, y: -0.6 }, { x: 1.8, y: -0.6 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "p0", objectId: "bar0", at: { x: 0, y: 1 }, placement: "above" },
+      { key: "p1", objectId: "bar1", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "p2", objectId: "bar2", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "p3", objectId: "bar3", at: { x: 3, y: 1 }, placement: "above" },
+      { key: "balance", objectId: "fulcrum", at: { x: 1.5, y: -0.6 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    p0: <InlineMath math="\frac{1}{8}" />,
+    p1: <InlineMath math="\frac{3}{8}" />,
+    p2: <InlineMath math="\frac{3}{8}" />,
+    p3: <InlineMath math="\frac{1}{8}" />,
+    balance: <InlineMath math="E(X) = 1.5" />,
+  }}
+/>
+
+## Mengapa Rumusnya ialah np
+
+Rumus ini datang daripada **memecahkan <InlineMath math="X" /> kepada satu penunjuk bagi setiap percubaan**. Penunjuk <InlineMath math="I_k" /> bernilai <InlineMath math="1" /> kalau percubaan <InlineMath math="k" /> berjaya dan <InlineMath math="0" /> kalau percubaan itu gagal. Nilai jangkaan bagi satu penunjuk ialah:
+
+<BlockMath math="E(I_k) = 1 \cdot p + 0 \cdot (1 - p) = p" />
+
+Bilangan kejayaan ialah hasil tambah semua penunjuk, kerana setiap kejayaan menyumbang tepat satu. Nilai jangkaan bagi satu hasil tambah ialah hasil tambah nilai-nilai jangkaannya:
+
+<MathContainer>
+  <BlockMath math="X = I_1 + I_2 + \cdots + I_n" />
+  <BlockMath math="E(X) = E(I_1) + E(I_2) + \cdots + E(I_n) = \underbrace{p + p + \cdots + p}_{n \text{ kali}} = np" />
+</MathContainer>
+
+Semak dengan tiga lambungan syiling: tiga penunjuk masing-masing ada nilai jangkaan <InlineMath math="\frac{1}{2}" />, dan hasil tambahnya <InlineMath math="1.5" />, sama dengan hasil tambah <InlineMath math="k \cdot P(X = k)" />. Langkah menambah nilai jangkaan tidak menggunakan ketaksandaran. Ketaksandaran diperlukan untuk rumus kebarangkalian binomial, manakala petua <InlineMath math="np" /> kekal benar selagi setiap percubaan ada kebarangkalian kejayaan <InlineMath math="p" />. Untuk pemboleh ubah selanjar, hasil tambah seperti ini menjadi kamiran, seperti dalam [nilai jangkaan taburan normal](/ms/subjek/matematik/analisis-data-dan-kebarangkalian/nilai-jangkaan-taburan-normal).
+
+## Contoh dengan Tujuh Lambungan Dadu
+
+Sebiji dadu adil dilambung <InlineMath math="7" /> kali, dan <InlineMath math="X" /> mengira berapa kali nombor <InlineMath math="5" /> muncul. Setiap lambungan ada dua kesudahan, bilangan lambungan tetap, lambungan-lambungan itu tak bersandar, dan kebarangkalian kejayaan sentiasa <InlineMath math="p = \frac{1}{6}" />, jadi <InlineMath math="X \sim B\left(7, \frac{1}{6}\right)" />:
+
+<BlockMath math="E(X) = np = 7 \cdot \frac{1}{6} = \frac{7}{6} \approx 1.17" />
+
+Nilai <InlineMath math="1.17" /> tidak boleh berlaku dalam satu set tujuh lambungan, kerana bilangan nombor lima sentiasa nombor bulat dari <InlineMath math="0" /> hingga <InlineMath math="7" />. Kalau kamu ulang tujuh lambungan itu ratusan kali, **purata bilangan nombor lima bagi setiap set menghampiri <InlineMath math="1.17" />**.
+
+Nilai jangkaan juga berbeza daripada keputusan yang paling berkemungkinan. Rumus binomial memberikan <InlineMath math="P(X = 0) \approx 0.279" />, <InlineMath math="P(X = 1) \approx 0.391" /> dan <InlineMath math="P(X = 2) \approx 0.234" />. Keputusan yang paling berkemungkinan ialah satu nombor lima, manakala nilai jangkaannya terletak antara <InlineMath math="1" /> dan <InlineMath math="2" />. Semak dengan takrif nilai jangkaan: <InlineMath math="1(0.3907) + 2(0.2344) + 3(0.0781) + 4(0.0156) + 5(0.0019) + 6(0.0001) \approx 1.166" />, yang sepadan dengan <InlineMath math="\frac{7}{6} \approx 1.167" /> kecuali beza kecil akibat pembundaran.
+
+<BarChart
+  title={<>Berapa kali nombor lima muncul dalam tujuh lambungan</>}
+  description={<>Palang paling tinggi berada pada <InlineMath math="1" />, manakala nilai jangkaan <InlineMath math="\frac{7}{6}" />, lebih kurang <InlineMath math="1.17" />, terletak antara <InlineMath math="1" /> dan <InlineMath math="2" />.</>}
+  data={Array.from({ length: 8 }, (_, k) => {
+    const ways = Array.from({ length: k }, (_, i) => (7 - i) / (i + 1)).reduce((product, factor) => product * factor, 1);
+    const probability = ways * (1 / 6) ** k * (5 / 6) ** (7 - k);
+    return { name: String(k), value: Math.round(1000 * probability) / 10 };
+  })}
+  chartConfig={{ value: { label: "Kebarangkalian (%)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  yAxisLabel="Kebarangkalian (%)"
+/>
+
+## Contoh Meneka dalam Ujian Aneka Pilihan
+
+Seorang murid meneka jawapan bagi kesemua <InlineMath math="20" /> soalan dalam satu ujian aneka pilihan, dan setiap soalan ada <InlineMath math="5" /> pilihan. Bilangan jawapan betul <InlineMath math="X" /> mengikut taburan <InlineMath math="B\left(20, \frac{1}{5}\right)" />, jadi <InlineMath math="E(X) = 20 \cdot \frac{1}{5} = 4" />.
+
+Katakan jawapan betul diberi <InlineMath math="4" /> markah dan jawapan salah ditolak <InlineMath math="1" /> markah. Jumlah markahnya ialah <InlineMath math="S = 4X - (20 - X) = 5X - 20" />, dan **kelinearan nilai jangkaan** memberikan:
+
+<BlockMath math="E(S) = 5 \cdot E(X) - 20 = 5 \cdot 4 - 20 = 0" />
+
+Semak bagi setiap soalan: satu tekaan ada nilai jangkaan <InlineMath math="4 \cdot \frac{1}{5} - 1 \cdot \frac{4}{5} = 0" /> markah, jadi dua puluh tekaan juga ada nilai jangkaan <InlineMath math="0" />. Dengan peraturan ini, meneka tidak menambah markah dalam jangka panjang.
+
+Taburan bilangan tekaan betul daripada <InlineMath math="20" /> soalan dengan <InlineMath math="p = \tfrac15" /> memuncak pada <InlineMath math="4" />, tepat sama dengan nilai jangkaan <InlineMath math="np = 4" />, dan lebih kurang <InlineMath math="98\%" /> daripada kebarangkaliannya terletak antara <InlineMath math="1" /> dan <InlineMath math="8" /> jawapan betul.
+
+<BarChart
+  title={<>Tekaan betul daripada <InlineMath math="20" /> soalan dengan <InlineMath math="p = \tfrac15" /></>}
+  description={<>Palang <InlineMath math="P(X = k)" /> dalam peratus untuk <InlineMath math="k = 0" /> hingga <InlineMath math="10" /> jawapan betul. Bilangan yang lebih tinggi masing-masing ada kebarangkalian kurang daripada <InlineMath math="0.3\%" />.</>}
+  yAxisLabel="Kebarangkalian (%)"
+  data={[1, 20, 190, 1140, 4845, 15504, 38760, 77520, 125970, 167960, 184756].map((c, k) => ({ name: String(k), value: 100 * c * 0.2 ** k * 0.8 ** (20 - k) }))}
+  chartConfig={{ value: { label: "Kebarangkalian (%)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Kesilapan Lazim
+
+| Kesilapan | Mengapa salah | Cara menyemak |
+| --- | --- | --- |
+| Menganggap <InlineMath math="E(X)" /> mesti berlaku | <InlineMath math="E(X)" /> ialah purata bagi banyak ulangan | Untuk dadu tadi, <InlineMath math="\frac{7}{6}" /> tidak boleh berlaku dalam satu set |
+| Membundarkan <InlineMath math="np" /> lalu menyebutnya nilai jangkaan | Pembundaran mengubah nilai | Tulis <InlineMath math="\frac{7}{6}" /> atau <InlineMath math="1.17" />, bukan <InlineMath math="1" /> |
+| Menganggap nilai jangkaan sebagai keputusan yang paling berkemungkinan | Keputusan yang paling berkemungkinan boleh berbeza daripada <InlineMath math="np" /> | Untuk dadu tadi, keputusan yang paling berkemungkinan ialah <InlineMath math="1" />, manakala nilai jangkaannya <InlineMath math="1.17" /> |
+| Menggunakan <InlineMath math="p" /> apabila kegagalan yang dikira | Bilangan kegagalan ada nilai jangkaan <InlineMath math="n(1 - p)" /> | Jangkaan bilangan kejayaan dan kegagalan mesti berjumlah <InlineMath math="n" /> |
+| Menggunakan <InlineMath math="np" /> apabila setiap percubaan ada kebarangkaliannya sendiri | Penunjuk <InlineMath math="k" /> ada nilai jangkaan <InlineMath math="p_k" /> | Tambahkan <InlineMath math="p_1 + p_2 + \cdots + p_n" /> |
+
+Sebelum kamu menggunakan <InlineMath math="np" />, **nyatakan apa yang dikira sebagai kejayaan** dan berapa kebarangkaliannya. Langkah itu mengelakkan dua kesilapan terakhir.
+
+## Latihan
+
+Dua soalan pertama menggunakan rumus secara terus, soalan ketiga menggunakannya secara terbalik, dan soalan keempat menggabungkan nilai jangkaan dengan peraturan pemarkahan. **Cari <InlineMath math="n" /> dan <InlineMath math="p" /> dahulu**, kemudian semak jawapan kamu sebelum membaca penyelesaiannya.
+
+1. Sekeping syiling adil dilambung <InlineMath math="40" /> kali. Cari jangkaan bilangan kepala.
+
+2. Seorang murid meneka <InlineMath math="30" /> soalan yang setiap satunya ada <InlineMath math="4" /> pilihan. Cari jangkaan bilangan jawapan betul dan jangkaan bilangan jawapan salah.
+
+3. Sebuah mesin dijangka menghasilkan <InlineMath math="6" /> barang rosak daripada <InlineMath math="150" />, dan setiap barang ada kebarangkalian yang sama untuk rosak. Cari kebarangkalian itu, kemudian cari jangkaan bilangan barang rosak daripada <InlineMath math="400" />.
+
+4. Satu ujian ada <InlineMath math="25" /> soalan yang setiap satunya ada <InlineMath math="5" /> pilihan. Jawapan betul diberi <InlineMath math="4" /> markah dan jawapan salah ditolak <InlineMath math="0.5" /> markah. Cari jangkaan jumlah markah kalau semua soalan diteka.
+
+### Jalan Kerja
+
+**Soalan 1**. Setiap lambungan menunjukkan kepala dengan kebarangkalian <InlineMath math="\frac{1}{2}" />, jadi <InlineMath math="n = 40" /> dan <InlineMath math="p = \frac{1}{2}" />:
+
+<BlockMath math="E(X) = 40 \cdot \frac{1}{2} = 20" />
+
+Semak: kepala dan ekor sama boleh jadi, jadi **jangkaan bilangan kedua-duanya sama**, masing-masing separuh daripada <InlineMath math="40" />.
+
+**Soalan 2**. Kebarangkalian meneka dengan betul ialah <InlineMath math="\frac{1}{4}" />, dan meneka dengan salah ialah <InlineMath math="\frac{3}{4}" />:
+
+<MathContainer>
+  <BlockMath math="E(\text{betul}) = 30 \cdot \frac{1}{4} = 7.5" />
+  <BlockMath math="E(\text{salah}) = 30 \cdot \frac{3}{4} = 22.5" />
+</MathContainer>
+
+Semak: <InlineMath math="7.5 + 22.5 = 30" />, jadi **jangkaan jawapan betul dan jawapan salah berjumlah sama dengan bilangan soalan**.
+
+**Soalan 3**. Daripada <InlineMath math="np = 6" /> dan <InlineMath math="n = 150" />, kebarangkalian rosak ialah <InlineMath math="p = \frac{6}{150} = 0.04" />. Untuk <InlineMath math="400" /> barang:
+
+<BlockMath math="E(X) = 400 \cdot 0.04 = 16" />
+
+Semak: <InlineMath math="\frac{16}{400} = \frac{6}{150} = 0.04" />, jadi **bahagian barang rosak yang dijangka kekal sama**.
+
+**Soalan 4**. Bilangan jawapan betul ialah <InlineMath math="X \sim B\left(25, \frac{1}{5}\right)" />, jadi <InlineMath math="E(X) = 5" />. Jumlah markahnya ialah <InlineMath math="S = 4X - 0.5(25 - X) = 4.5X - 12.5" />:
+
+<BlockMath math="E(S) = 4.5 \cdot 5 - 12.5 = 22.5 - 12.5 = 10" />
+
+Semak bagi setiap soalan: satu tekaan ada nilai jangkaan <InlineMath math="4 \cdot 0.2 - 0.5 \cdot 0.8 = 0.4" /> markah, dan <InlineMath math="25 \cdot 0.4 = 10" />. Dengan penalti yang kecil, **meneka menaikkan markah dalam jangka panjang**.

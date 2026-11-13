@@ -6,34 +6,30 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "main-idea-purpose",
   },
-  stimulus: "later-start",
+  stimulus: "weekend",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "To argue that the reported outcomes already justify a permanent later start",
-        },
-        {
-          correct: false,
-          label:
-            "To focus on transport objections instead of testing attendance and learning effects",
-        },
-        {
           correct: true,
-          label:
-            "To argue for a careful, measurable, and reversible schedule trial",
+          label: "I, III, and IV only",
         },
         {
           correct: false,
-          label: "To replace attendance records with one survey",
+          label: "I and III only",
         },
         {
           correct: false,
-          label:
-            "To make extracurricular scheduling the main measure of the trial's success",
+          label: "I, II, III, and IV",
+        },
+        {
+          correct: false,
+          label: "II, III, and IV only",
+        },
+        {
+          correct: false,
+          label: "III and IV only",
         },
       ],
     },

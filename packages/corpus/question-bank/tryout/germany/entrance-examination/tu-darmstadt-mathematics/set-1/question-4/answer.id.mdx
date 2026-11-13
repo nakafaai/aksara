@@ -1,17 +1,35 @@
-Dua perubahan persen berturut-turut tidak boleh kamu jumlahkan atau kurangkan begitu saja, karena perubahan kedua mengacu pada **nilai dasar yang berbeda**. Penurunan <InlineMath math="10\,\%" /> dihitung dari jumlah anggota yang lebih besar pada musim panas, bukan dari jumlah pada awal tahun. Karena itu, hitunglah dengan faktor pengali: kenaikan <InlineMath math="10\,\%" /> berarti faktor <InlineMath math="1{,}1" />, dan penurunan <InlineMath math="10\,\%" /> berarti faktor <InlineMath math="0{,}9" />.
+# Berapa sudut alasnya
 
-Misalkan <InlineMath math="n" /> adalah banyak anggota (*Mitglieder*) pada awal tahun. Pada akhir tahun berlaku:
+Prisma dengan alas segi-<InlineMath math="n" /> punya <InlineMath math="n" /> rusuk di alas bawah, <InlineMath math="n" /> di alas atas, dan <InlineMath math="n" /> rusuk tegak. **Jadi banyak rusuknya <InlineMath math="3n" />**:
 
-<BlockMath math="n\cdot1{,}1\cdot0{,}9=n\cdot0{,}99" />
+<BlockMath math="3n=30\quad\Rightarrow\quad n=10" />
 
-Faktor <InlineMath math="0{,}99" /> berarti banyak anggota pada akhir tahun adalah <InlineMath math="99\,\%" /> dari jumlah semula. Jadi, jumlahnya turun <InlineMath math="1\,\%" />.
+Prisma ini punya <InlineMath math="20" /> titik sudut, <InlineMath math="10" /> di atas dan <InlineMath math="10" /> di bawah.
 
-Contoh bilangan menegaskan hal ini. Dengan <InlineMath math="500" /> anggota, sampai musim panas bertambah <InlineMath math="50" /> orang sehingga menjadi <InlineMath math="550" />. Dari jumlah itu, <InlineMath math="10\,\%" /> tepat <InlineMath math="55" /> orang, jadi tersisa <InlineMath math="495" /> anggota. Itu <InlineMath math="5" /> orang lebih sedikit daripada di awal, dan <InlineMath math="5" /> adalah <InlineMath math="1\,\%" /> dari <InlineMath math="500" />.
+# Dari satu titik di atas
 
-Jadi, banyak anggota secara keseluruhan turun <InlineMath math="1\,\%" />.
+Ambil satu titik sudut di alas atas. Semua titik lain di alas atas ada di bidang alas yang sama, jadi tidak ada yang memberi diagonal ruang. Di alas bawah, **titik tepat di bawahnya dan dua tetangganya ada di sisi tegak yang sama dengannya**. Sisanya tinggal <InlineMath math="10-3=7" /> titik.
 
-- Kenaikan <InlineMath math="21\,\%" /> menganggap kedua perubahan sebagai kenaikan, karena <InlineMath math="1{,}1\cdot1{,}1=1{,}21" />.
-- Kenaikan <InlineMath math="1\,\%" /> besarnya benar, tetapi arahnya salah. Faktor <InlineMath math="0{,}99" /> lebih kecil dari <InlineMath math="1" />.
-- Tidak ada perubahan jika persentasenya langsung dikurangkan: <InlineMath math="10\,\%-10\,\%=0\,\%" />. Padahal kedua persentase itu mengacu pada nilai dasar yang berbeda.
-- Penurunan <InlineMath math="0{,}1\,\%" /> salah meletakkan koma. Selisih <InlineMath math="1-0{,}99=0{,}01" /> sama dengan <InlineMath math="1\,\%" />.
-- Penurunan <InlineMath math="10\,\%" /> hanya memperhitungkan perubahan kedua.
+Setiap diagonal ruang menghubungkan satu titik atas dengan satu titik bawah, jadi tidak ada yang terhitung dua kali:
+
+<BlockMath math="10\cdot7=70" />
+
+# Cek dengan cara lain
+
+Ada <InlineMath math="\binom{20}{2}=190" /> ruas di antara dua titik sudut. **Buang semua ruas yang terletak di sebuah sisi**:
+
+- <InlineMath math="30" /> rusuk,
+- diagonal kedua alas, <InlineMath math="2\cdot\frac{10\cdot7}{2}=70" />,
+- diagonal <InlineMath math="10" /> sisi tegak berbentuk persegi panjang, <InlineMath math="10\cdot2=20" />.
+
+<BlockMath math="190-30-70-20=70" />
+
+Jadi, prisma itu punya <InlineMath math="70" /> diagonal ruang.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="90" /> **hanya membuang titik tepat di bawah**, padahal dua tetangganya juga sebidang di sisi tegak. Ini sama dengan lupa diagonal sisi tegak.
+- <InlineMath math="35" /> membagi dua lagi, seolah-olah setiap diagonal dihitung dua kali. Dari atas ke bawah setiap diagonal hanya terhitung sekali.
+- <InlineMath math="80" /> hanya membuang titik di bawah dan satu tetangga.
+- <InlineMath math="140" /> lupa membuang diagonal kedua alas.
+- <InlineMath math="160" /> hanya membuang rusuk dan menganggap semua ruas lain diagonal ruang.

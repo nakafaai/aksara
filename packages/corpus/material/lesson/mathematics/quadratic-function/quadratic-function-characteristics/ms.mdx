@@ -1,0 +1,453 @@
+export const metadata = {
+  title: "Ciri-ciri Fungsi Kuadratik",
+  description: "Baca graf kuadratik daripada pekali utama, verteks, paksi simetri, pintasan, julat, dan contoh melakar graf yang lengkap.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-19",
+  dateModified: "2026-09-23",
+  subject: "Fungsi Kuadratik",
+};
+
+## Bentuk Graf Fungsi Kuadratik
+
+Parabola ada <Highlight>paksi simetri dan verteks</Highlight>. Untuk <InlineMath math="f(x)=ax^2+bx+c" /> dengan <InlineMath math="a\ne0" />, tanda pekali utama menentukan arah bukaan graf. Magnitudnya menentukan kelengkungan, manakala ketiga-tiga pekali menentukan kedudukan graf.
+
+## Kesan Pekali Utama terhadap Bentuk Graf
+
+**Tanda pekali utama** menentukan sama ada parabola terbuka ke atas atau ke bawah. Magnitudnya pula menentukan sejauh mana parabola itu sempit atau lebar, kerana magnitud yang lebih besar menarik kedua-dua cabang lebih dekat kepada paksi simetri.
+
+### Apabila Pekali Utama Positif
+
+Kalau <InlineMath math="a > 0" />, graf fungsi kuadratik akan terbuka ke atas. Maksudnya, graf itu ada titik minimum.
+
+Contoh fungsi dengan <InlineMath math="a > 0" />:
+
+- <InlineMath math="f(x) = x^2" />, contoh paling mudah dengan <InlineMath math="a = 1" />
+- <InlineMath math="f(x) = 2x^2 + 1" />, contoh dengan <InlineMath math="a = 2" />
+
+Tanda <InlineMath math="a" /> <Highlight>mengawal arah bukaan</Highlight>. Magnitudnya mengawal lebar graf: berbanding <InlineMath math="y=x^2" />, graf menjadi lebih sempit apabila <InlineMath math="|a|>1" /> dan lebih lebar apabila <InlineMath math="0<|a|<1" />.
+
+<MathVisual
+  title={<>Lebar parabola</>}
+  description={<>Ketiga-tiga parabola ada verteks <InlineMath math="(0,0)" />. Pekali <InlineMath math="2" /> memberikan lengkung paling sempit, manakala <InlineMath math="0.5" /> memberikan lengkung paling lebar.</>}
+  scene={{
+  "space": "plane",
+  "frame": {
+    "kind": "cartesian",
+    "x": {
+      "min": -2.5,
+      "max": 2.5
+    },
+    "y": {
+      "min": -0.5,
+      "max": 8.5
+    }
+  },
+  "view": {
+    "kind": "fit",
+    "padding": 0.1
+  },
+  "objects": [
+    {
+      "id": "curve0",
+      "kind": "quadratic",
+      "inputAxis": "x",
+      "coefficients": {
+        "a": 0.5,
+        "b": 0,
+        "c": 0
+      },
+      "domain": {
+        "min": -2,
+        "max": 2
+      },
+      "appearance": "primary"
+    },
+    {
+      "id": "curve1",
+      "kind": "quadratic",
+      "inputAxis": "x",
+      "coefficients": {
+        "a": 1,
+        "b": 0,
+        "c": 0
+      },
+      "domain": {
+        "min": -2,
+        "max": 2
+      },
+      "appearance": "secondary"
+    },
+    {
+      "id": "curve2",
+      "kind": "quadratic",
+      "inputAxis": "x",
+      "coefficients": {
+        "a": 2,
+        "b": 0,
+        "c": 0
+      },
+      "domain": {
+        "min": -2,
+        "max": 2
+      },
+      "appearance": "highlight"
+    }
+  ],
+  "labels": [
+    {
+      "key": "c0",
+      "objectId": "curve0",
+      "at": {
+        "x": 1.8,
+        "y": 1.62
+      },
+      "placement": "above-left"
+    },
+    {
+      "key": "c1",
+      "objectId": "curve1",
+      "at": {
+        "x": 1.8,
+        "y": 3.24
+      },
+      "placement": "above-left"
+    },
+    {
+      "key": "c2",
+      "objectId": "curve2",
+      "at": {
+        "x": 1.8,
+        "y": 6.48
+      },
+      "placement": "above-left"
+    }
+  ]
+}}
+  labels={{ c0: <InlineMath math="a=0.5" />, c1: <InlineMath math="a=1" />, c2: <InlineMath math="a=2" /> }}
+/>
+
+### Apabila Pekali Utama Negatif
+
+Kalau <InlineMath math="a < 0" />, graf fungsi kuadratik akan **terbuka ke bawah**. Maksudnya, graf itu ada titik maksimum.
+
+Contoh fungsi dengan <InlineMath math="a < 0" />:
+
+- <InlineMath math="f(x) = -x^2" /> dengan <InlineMath math="a = -1" />
+- <InlineMath math="f(x) = -3x^2 - 12x - 15" /> dengan <InlineMath math="a = -3" />
+
+Untuk contoh kedua, sempurnakan kuasa dua untuk mencari maksimum. Apabila kuasa dua yang tidak negatif didarab dengan nombor negatif, hasilnya tidak positif.
+
+<BlockMath math="-3x^2-12x-15=-3(x+2)^2-3\le-3" />
+
+### Mengapa Pekali Utama Tidak Boleh Sifar
+
+Kalau <InlineMath math="a=0" />, <Highlight>sebutan kuasa dua hilang</Highlight>. Ungkapan <InlineMath math="bx+c" /> menjadi linear apabila <InlineMath math="b\ne0" /> dan menjadi pemalar apabila <InlineMath math="b=0" />. Contohnya, <InlineMath math="2x+3" /> memberikan garis condong, manakala <InlineMath math="3" /> memberikan garis mengufuk.
+
+
+Pada garis lurus, setiap kali input bertambah satu, output sentiasa berubah sebanyak pekali linear yang sama. Tiada titik pusingan seperti pada parabola.
+
+<BlockMath math="f(x+1)-f(x)=b(x+1)+c-(bx+c)=b" />
+
+## Titik dan Garis Penting pada Parabola
+
+Gunakan <Highlight>verteks, paksi simetri, dan pintasan</Highlight> untuk menentukan kedudukan parabola. Bukan semua parabola memotong paksi mengufuk. Pekali utama tetap menentukan lebar graf, terutamanya apabila beberapa ciri bertindih pada satu titik.
+
+### Verteks
+
+Penyempurnaan kuasa dua mendedahkan <Highlight>nilai ekstrem</Highlight> kerana kuasa dua tidak negatif. Untuk <InlineMath math="f(x)=x^2-2x-3" />, minimum berlaku apabila <InlineMath math="x=1" />:
+
+<BlockMath math="f(x)=(x-1)^2-4\ge-4" />
+
+### Paksi Simetri
+
+Dua titik pada <Highlight>jarak yang sama dari paksi simetri</Highlight> ada tinggi yang sama. Untuk <InlineMath math="f(x)=(x-1)^2-4" />, gunakan jarak <InlineMath math="t" /> dari garis <InlineMath math="x=1" />:
+
+<BlockMath math="f(1-t)=(-t)^2-4=t^2-4=f(1+t)" />
+
+### Pintasan Paksi Mencancang
+
+Untuk pintasan mencancang, gunakan <Highlight>input sifar</Highlight>. Setiap sebutan yang ada pemboleh ubah akan hilang. Untuk <InlineMath math="f(x)=2x^2-4x+5" />:
+
+<BlockMath math="f(0)=2(0)^2-4(0)+5=5\quad\Rightarrow\quad(0,5)" />
+
+### Pintasan Paksi Mengufuk
+
+Untuk pintasan mengufuk, cari di mana <Highlight>nilai fungsi ialah sifar</Highlight>. Pemfaktoran <InlineMath math="x^2-2x-3" /> memberikan dua punca. Pembezalayan yang negatif bermaksud tiada pintasan nyata pada paksi mengufuk:
+
+<BlockMath math="(x-3)(x+1)=0\quad\Rightarrow\quad x\in\{-1,3\}" />
+
+## Melakar Graf Fungsi Kuadratik
+
+Contoh di bawah melakar satu parabola yang terbuka ke atas dan satu yang terbuka ke bawah. Setiap **langkah melakar graf** ditulis satu per satu, jadi kamu boleh bandingkan bentuk graf dengan rumusnya.
+
+### Contoh Parabola yang Terbuka ke Atas
+
+Lakarkan graf fungsi <InlineMath math="f(x) = x^2 - 2x - 3" />:
+
+**Langkah 1**: Pekali <InlineMath math="a = 1 > 0" />, jadi parabola **terbuka ke atas**.
+**Langkah 2**: **Verteks**:
+
+<MathContainer>
+  <BlockMath math="x = -\frac{b}{2a} = -\frac{-2}{2 \cdot 1} = 1" />
+  <BlockMath math="\begin{aligned} f(1) &amp;= 1^2 - 2 \cdot 1 - 3 \\ &amp;= 1 - 2 - 3 \\ &amp;= -4 \end{aligned}" />
+</MathContainer>
+
+Jadi **verteks** berada pada <InlineMath math="(1, -4)" />.
+
+**Langkah 3**: Pintasan-<InlineMath math="y" />:
+
+<BlockMath math="f(0) = 0^2 - 2 \cdot 0 - 3 = -3" />
+
+Jadi pintasan-<InlineMath math="y" /> berada pada <InlineMath math="(0, -3)" />.
+
+**Langkah 4**: Pintasan pada paksi-<InlineMath math="x" />: <InlineMath math="f(x) = 0" /> atau <InlineMath math="x^2 - 2x - 3 = 0" />
+
+Menggunakan rumus kuadratik:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} x &amp;= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \\ &amp;= \frac{2 \pm \sqrt{4 + 12}}{2} \\ &amp;= \frac{2 \pm \sqrt{16}}{2} \\ &amp;= \frac{2 \pm 4}{2} \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;x = \frac{2 + 4}{2} = 3 \\ &amp;\text{atau} \\ &amp;x = \frac{2 - 4}{2} = -1 \end{aligned}" />
+</MathContainer>
+
+Jadi pintasan pada paksi-<InlineMath math="x" /> ialah <InlineMath math="(-1, 0)" /> dan <InlineMath math="(3, 0)" />.
+
+**Langkah 5**: Kira beberapa titik tambahan:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} f(-2) &amp;= (-2)^2 - 2 \cdot (-2) - 3 \\ &amp;= 4 + 4 - 3 \\ &amp;= 5 \end{aligned}" />
+  <BlockMath math="\begin{aligned} f(2) &amp;= 2^2 - 2 \cdot 2 - 3 \\ &amp;= 4 - 4 - 3 \\ &amp;= -3 \end{aligned}" />
+</MathContainer>
+
+<MathVisual
+  title={<>Verteks dan pintasan</>}
+  description={<>Parabola <InlineMath math="y = x^2 - 2x - 3" /> dengan verteks <InlineMath math="(1,-4)" /> dan pintasan-x <InlineMath math="(-1,0)" /> serta <InlineMath math="(3,0)" />.</>}
+  scene={{
+  "space": "plane",
+  "frame": {
+ "kind": "cartesian",
+ "x": {
+   "min": -2.5,
+   "max": 4.5
+ },
+ "y": {
+   "min": -5,
+   "max": 6
+ }
+  },
+  "view": {
+ "kind": "fit",
+ "padding": 0.1
+  },
+  "objects": [
+ {
+   "id": "curve0",
+   "kind": "quadratic",
+   "inputAxis": "x",
+   "coefficients": {
+     "a": 1,
+     "b": -2,
+     "c": -3
+   },
+   "domain": {
+     "min": -2,
+     "max": 4
+   },
+   "appearance": "primary"
+ },
+ {
+   "id": "vertex",
+   "kind": "point",
+   "at": {
+     "x": 1,
+     "y": -4
+   },
+   "appearance": "answer"
+ },
+ {
+   "id": "left",
+   "kind": "point",
+   "at": {
+     "x": -1,
+     "y": 0
+   },
+   "appearance": "answer"
+ },
+ {
+   "id": "right",
+   "kind": "point",
+   "at": {
+     "x": 3,
+     "y": 0
+   },
+   "appearance": "answer"
+ }
+  ],
+  "labels": [
+ {
+   "key": "vertex",
+   "objectId": "vertex",
+   "at": {
+     "x": 1,
+     "y": -4
+   },
+   "placement": "below"
+ },
+ {
+   "key": "left",
+   "objectId": "left",
+   "at": {
+     "x": -1,
+     "y": 0
+   },
+   "placement": "above"
+ },
+ {
+   "key": "right",
+   "objectId": "right",
+   "at": {
+     "x": 3,
+     "y": 0
+   },
+   "placement": "above"
+ }
+  ]
+}}
+  labels={{ vertex: <InlineMath math="(1,-4)" />, left: <InlineMath math="(-1,0)" />, right: <InlineMath math="(3,0)" /> }}
+/>
+
+### Contoh Parabola yang Terbuka ke Bawah
+
+Lakarkan graf fungsi <InlineMath math="f(x) = -x^2" />:
+
+**Langkah 1**: Pekali <InlineMath math="a = -1 < 0" />, jadi parabola **terbuka ke bawah**.
+**Langkah 2**: **Verteks**:
+
+<MathContainer>
+  <BlockMath math="x = -\frac{b}{2a} = -\frac{0}{2 \cdot (-1)} = 0" />
+  <BlockMath math="f(0) = -(0)^2 = 0" />
+</MathContainer>
+
+Jadi **verteks** berada pada <InlineMath math="(0, 0)" />.
+
+**Langkah 3**: Pintasan-<InlineMath math="y" />:
+
+<BlockMath math="f(0) = 0" />
+
+Jadi pintasan-<InlineMath math="y" /> berada pada <InlineMath math="(0, 0)" />.
+
+**Langkah 4**: Pintasan pada paksi-<InlineMath math="x" />: <InlineMath math="f(x) = 0" /> atau <InlineMath math="-x^2 = 0" />
+
+<MathContainer>
+  <BlockMath math="x^2 = 0" />
+  <BlockMath math="x = 0" />
+</MathContainer>
+
+Jadi pintasan-<InlineMath math="x" /> berada pada <InlineMath math="(0, 0)" />.
+
+**Langkah 5**: Kira beberapa titik tambahan:
+
+<MathContainer>
+  <BlockMath math="f(-2) = -((-2)^2) = -4" />
+  <BlockMath math="f(-1) = -((-1)^2) = -1" />
+  <BlockMath math="f(1) = -(1^2) = -1" />
+  <BlockMath math="f(2) = -(2^2) = -4" />
+</MathContainer>
+
+<MathVisual
+  title={<>Parabola yang ada maksimum</>}
+  description={<>Parabola <InlineMath math="y = -x^2" /> terbuka ke bawah, dengan nilai maksimum pada verteks <InlineMath math="(0,0)" />.</>}
+  scene={{
+  "space": "plane",
+  "frame": {
+ "kind": "cartesian",
+ "x": {
+   "min": -2.5,
+   "max": 2.5
+ },
+ "y": {
+   "min": -4.5,
+   "max": 1
+ }
+  },
+  "view": {
+ "kind": "fit",
+ "padding": 0.1
+  },
+  "objects": [
+ {
+   "id": "curve0",
+   "kind": "quadratic",
+   "inputAxis": "x",
+   "coefficients": {
+     "a": -1,
+     "b": 0,
+     "c": 0
+   },
+   "domain": {
+     "min": -2,
+     "max": 2
+   },
+   "appearance": "primary"
+ },
+ {
+   "id": "vertex",
+   "kind": "point",
+   "at": {
+     "x": 0,
+     "y": 0
+   },
+   "appearance": "answer"
+ }
+  ],
+  "labels": [
+ {
+   "key": "vertex",
+   "objectId": "vertex",
+   "at": {
+     "x": 0,
+     "y": 0
+   },
+   "placement": "above"
+ }
+  ]
+}}
+  labels={{ vertex: <InlineMath math="(0,0)" /> }}
+/>
+
+## Arah Bukaan Verteks dan Julat
+
+Jadual ini menganggap <Highlight>domain semua nombor nyata</Highlight>. Pada domain yang terhad, nilai ekstrem mungkin tidak tercapai. Tulis verteks sebagai <InlineMath math="(x_v,y_v)" />, dengan <InlineMath math="y_v=f(x_v)" />.
+
+| Syarat                       | Bukaan   | Nilai verteks | Julat                                  |
+| ---------------------------- | -------- | ------------- | -------------------------------------- |
+| <InlineMath math="a > 0" />  | Ke atas  | Minimum       | <InlineMath math="[y_v,\infty)" />    |
+| <InlineMath math="a < 0" />  | Ke bawah | Maksimum      | <InlineMath math="(-\infty,y_v]" />   |
+
+## Soalan Latihan
+
+Soalan ini menjalankan seluruh senarai semak pada satu fungsi, jadi satu jawapan perlu menyebut setiap ciri.
+
+Analisis graf <InlineMath math="g(x)=-2(x+1)^2+8" />. Cari **arah bukaannya**, verteks, paksi simetri, pintasan, dan julatnya.
+
+### Jalan Kerja
+
+Fungsi ini sudah dalam **bentuk verteks** <InlineMath math="a(x-h)^2+k" />. Di sini <InlineMath math="a=-2" />, <InlineMath math="h=-1" />, dan <InlineMath math="k=8" />.
+
+- Oleh sebab <InlineMath math="a<0" />, parabola terbuka ke bawah.
+- Verteksnya ialah <InlineMath math="(-1,8)" />, jadi nilai maksimumnya ialah <InlineMath math="8" />.
+- Paksi simetrinya ialah <InlineMath math="x=-1" />.
+
+Untuk pintasan paksi-<InlineMath math="y" />, tetapkan <InlineMath math="x=0" />:
+
+<BlockMath math="g(0)=-2(0+1)^2+8=6" />
+
+Graf memotong paksi-<InlineMath math="y" /> pada <InlineMath math="(0,6)" />. Untuk pintasan paksi-<InlineMath math="x" />, selesaikan <InlineMath math="g(x)=0" />:
+
+<MathContainer>
+  <BlockMath math="-2(x+1)^2+8=0" />
+  <BlockMath math="(x+1)^2=4" />
+  <BlockMath math="x+1=\pm2" />
+  <BlockMath math="x=-3\quad\text{atau}\quad x=1" />
+</MathContainer>
+
+Pintasannya ialah <InlineMath math="(-3,0)" /> dan <InlineMath math="(1,0)" />. Oleh sebab parabola terbuka ke bawah dari maksimum <InlineMath math="8" />, julatnya ialah <InlineMath math="(-\infty,8]" />.

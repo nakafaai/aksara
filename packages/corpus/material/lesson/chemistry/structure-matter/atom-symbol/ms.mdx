@@ -1,0 +1,198 @@
+
+export const metadata = {
+  title: "Simbol Atom",
+  description:
+    "Simbol atom menunjukkan nombor proton dan nombor nukleon yang kamu gunakan untuk mengira proton, neutron dan elektron dalam atom neutral.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-05-01",
+  dateModified: "2026-09-12",
+  subject: "Struktur Atom",
+};
+
+## Maklumat dalam Simbol Atom
+
+Simbol atom merekodkan tiga maklumat dalam bentuk yang padat, iaitu **simbol unsur**, **nombor proton** dan **nombor nukleon**. Bersama-sama, ketiga-tiganya mengenal pasti unsur itu dan menyatakan bilangan proton dan nukleon dalam atom itu.
+
+Nombor proton ialah bilangan proton. Nombor nukleon ialah <Highlight>bilangan proton ditambah neutron</Highlight>.
+
+Tatatanda yang biasa digunakan dalam kimia asas ialah:
+
+<BlockMath math="{}^{A}_{Z}\mathrm{X}" />
+
+Baca tatatanda ini begini:
+
+- <InlineMath math="\mathrm{X}" /> ialah simbol unsur
+- <InlineMath math="Z" /> ialah nombor proton
+- <InlineMath math="A" /> ialah nombor nukleon
+
+## Membaca Nombor Nukleon dan Nombor Proton
+
+Pilih satu atom di bawah, kemudian padankan dua nombor dalam simbolnya. **Nombor di kiri atas ialah nombor nukleon** <InlineMath math="A" />, manakala nombor di kiri bawah ialah nombor proton <InlineMath math="Z" />. Kedudukan kedua-dua nombor ini menentukan bilangan proton, neutron atau elektron yang perlu dikira.
+
+<AtomSymbolLab
+  title={<>Pembaca Simbol Atom</>}
+  description={
+    <>
+      Tukar contoh atom, kemudian padankan nombor di kiri atas dan kiri bawah
+      dengan bilangan zarah.
+    </>
+  }
+  labels={{
+    chooseAtom: "Pilih contoh atom",
+    massNumber: "Nombor nukleon",
+    atomicNumber: "Nombor proton",
+    elementSymbol: "Simbol unsur",
+    protonCount: "Proton",
+    neutronCount: "Neutron",
+    electronCount: "Elektron",
+    neutralAtom: "dalam atom neutral",
+    samples: {
+      "carbon-12": {
+        tab: "Karbon",
+        ariaName: "Karbon-12",
+        name: <InlineMath math="{}^{12}_{6}\mathrm{C}" />,
+      },
+      "oxygen-16": {
+        tab: "Oksigen",
+        ariaName: "Oksigen-16",
+        name: <InlineMath math="{}^{16}_{8}\mathrm{O}" />,
+      },
+      "sodium-23": {
+        tab: "Natrium",
+        ariaName: "Natrium-23",
+        name: <InlineMath math="{}^{23}_{11}\mathrm{Na}" />,
+      },
+      "chlorine-35": {
+        tab: "Klorin",
+        ariaName: "Klorin-35",
+        name: <InlineMath math="{}^{35}_{17}\mathrm{Cl}" />,
+      },
+    },
+  }}
+/>
+
+## Mengira Proton Elektron dan Neutron
+
+Nombor proton ditulis sebagai <InlineMath math="Z" />. Nombor ini sama dengan bilangan proton dalam nukleus.
+
+<BlockMath math="Z = p^+" />
+
+Bagi **atom neutral**, bilangan elektron sama dengan bilangan proton. Neutral bermaksud jumlah cas positif dan cas negatif adalah seimbang.
+
+<BlockMath math="\text{atom neutral} \Rightarrow e^- = p^+ = Z" />
+
+Nombor nukleon ditulis sebagai <InlineMath math="A" />. Nombor ini ialah jumlah proton dan neutron dalam nukleus.
+
+<BlockMath math="A = p^+ + n^0" />
+
+Apabila nombor nukleon dan nombor proton sudah diketahui, bilangan neutron hanyalah beza antara kedua-duanya:
+
+<BlockMath math="n^0 = A - Z" />
+
+Setiap bilangan zarah datang daripada dua nombor dalam simbol <InlineMath math="^{A}_{Z}\mathrm{X}" />: <InlineMath math="Z" /> proton, <InlineMath math="Z" /> elektron dalam atom neutral, dan <InlineMath math="A-Z" /> neutron. Putar palang bagi tiga atom ini: dalam setiap kumpulan, proton, neutron dan elektron berdiri bersebelahan.
+
+<MathVisual
+  title={<>Daripada A dan Z kepada Bilangan Zarah</>}
+  description={<>Proton (jingga), neutron (kelabu) dan elektron (ungu) dalam atom neutral karbon-12, natrium-23 dan klorin-35. Satu petak grid ke atas mewakili 4 zarah.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -2, max: 11 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 8, z: 13 }, target: { x: 4.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "c-p", kind: "cuboid", appearance: "primary", center: { x: -1.1, y: 0.75, z: 0 }, size: { length: 0.9, height: 1.5, width: 0.9 } },
+      { id: "c-n", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.75, z: 0 }, size: { length: 0.9, height: 1.5, width: 0.9 } },
+      { id: "c-e", kind: "cuboid", appearance: "secondary", center: { x: 1.1, y: 0.75, z: 0 }, size: { length: 0.9, height: 1.5, width: 0.9 } },
+      { id: "na-p", kind: "cuboid", appearance: "primary", center: { x: 3.4, y: 1.375, z: 0 }, size: { length: 0.9, height: 2.75, width: 0.9 } },
+      { id: "na-n", kind: "cuboid", appearance: "reference", center: { x: 4.5, y: 1.5, z: 0 }, size: { length: 0.9, height: 3, width: 0.9 } },
+      { id: "na-e", kind: "cuboid", appearance: "secondary", center: { x: 5.6, y: 1.375, z: 0 }, size: { length: 0.9, height: 2.75, width: 0.9 } },
+      { id: "cl-p", kind: "cuboid", appearance: "primary", center: { x: 7.9, y: 2.125, z: 0 }, size: { length: 0.9, height: 4.25, width: 0.9 } },
+      { id: "cl-n", kind: "cuboid", appearance: "reference", center: { x: 9, y: 2.25, z: 0 }, size: { length: 0.9, height: 4.5, width: 0.9 } },
+      { id: "cl-e", kind: "cuboid", appearance: "secondary", center: { x: 10.1, y: 2.125, z: 0 }, size: { length: 0.9, height: 4.25, width: 0.9 } },
+    ],
+    labels: [
+      { key: "c", objectId: "c-n", at: { x: 0, y: 1.5, z: 0 }, placement: "above" },
+      { key: "na", objectId: "na-n", at: { x: 4.5, y: 3, z: 0 }, placement: "above" },
+      { key: "cl", objectId: "cl-n", at: { x: 9, y: 4.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    c: <InlineMath math="^{12}_{6}\mathrm{C}:\ 6,\ 12-6=6,\ 6" />,
+    na: <InlineMath math="^{23}_{11}\mathrm{Na}:\ 11,\ 23-11=12,\ 11" />,
+    cl: <InlineMath math="^{35}_{17}\mathrm{Cl}:\ 17,\ 35-17=18,\ 17" />,
+  }}
+/>
+
+## Contoh Karbon
+
+Bagi atom karbon dengan nombor nukleon <InlineMath math="12" />, simbolnya ditulis begini:
+
+<BlockMath math="{}^{12}_{6}\mathrm{C}" />
+
+Daripada simbol itu, kita baca:
+
+<BlockMath math="\begin{aligned}
+Z &= 6 \Rightarrow p^+ = 6 \\
+A &= 12 \Rightarrow p^+ + n^0 = 12 \\
+n^0 &= 12 - 6 = 6
+\end{aligned}" />
+
+Jika <InlineMath math="{}^{12}_{6}\mathrm{C}" /> itu **atom yang neutral**, ia juga mempunyai <InlineMath math="6" /> elektron.
+
+Berikut ialah tiga bilangan zarah bagi karbon-12 dalam bentuk turus, dengan satu petak grid mewakili <InlineMath math="2" /> zarah. Ketiga-tiganya bernilai <InlineMath math="6" />, tetapi atas sebab yang berbeza: <InlineMath math="Z=6" />, atom itu neutral, dan <InlineMath math="12-6=6" />.
+
+<MathVisual
+  title={<>Zarah dalam Karbon-12</>}
+  description={<>Proton, neutron dan elektron dalam atom karbon-12 yang neutral. Satu petak grid ke atas mewakili 2 zarah.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 2.5, y: 1.5, z: 0 } },
+    objects: [
+      { id: "protons", kind: "cuboid", appearance: "primary", center: { x: 0, y: (6 / 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 6 / 2, width: 1.2 } },
+      { id: "neutrons", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: ((12 - 6) / 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: (12 - 6) / 2, width: 1.2 } },
+      { id: "electrons", kind: "cuboid", appearance: "secondary", center: { x: 5, y: (6 / 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 6 / 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "protons", objectId: "protons", at: { x: 0, y: 3.5, z: 0 }, placement: "above" },
+      { key: "neutrons", objectId: "neutrons", at: { x: 2.5, y: 3.5, z: 0 }, placement: "above" },
+      { key: "electrons", objectId: "electrons", at: { x: 5, y: 3.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    protons: <InlineMath math="p^+=Z=6" />,
+    neutrons: <InlineMath math="n^0=12-6=6" />,
+    electrons: <InlineMath math="e^-=6" />,
+  }}
+/>
+
+## Nombor Nukleon dan Jisim Atom Relatif
+
+Pada Jadual Berkala Unsur, kamu selalu nampak nilai perpuluhan seperti jisim atom relatif karbon, iaitu kira-kira <InlineMath math="12.01" />. Nilai perpuluhan itu bukan nombor nukleon bagi satu atom karbon yang tertentu.
+
+Jisim atom relatif ialah **nisbah jisim**, jadi ia tidak mempunyai unit. Rujukannya ialah <InlineMath math="\frac{1}{12}" /> daripada jisim satu atom karbon-12 yang neutral dalam keadaan asasnya.
+
+Jisim atom relatif sesuatu unsur bergantung pada [jisim isotop dan komposisi isotopnya](https://www.physics.nist.gov/PhysRefData/Compositions/notes.html). Komposisi itu boleh berubah mengikut asal usul bahan dan cara bahan itu diproses.
+
+Jadi, asingkan dua idea ini:
+
+| Apa yang kamu baca | Bentuk biasa | Maksud |
+| :------------ | :---------- | :------ |
+| Nombor nukleon | Nombor bulat, seperti <InlineMath math="12" /> dalam <InlineMath math="{}^{12}_{6}\mathrm{C}" /> | Bilangan proton ditambah neutron dalam satu atom yang tertentu. |
+| Jisim atom relatif | Selalunya nombor perpuluhan, seperti kira-kira <InlineMath math="12.01" /> bagi karbon | Nisbah jisim purata atom dalam bahan itu kepada satu per dua belas jisim satu atom karbon-12. |
+
+Apabila membaca simbol atom, ingat tiga fakta: simbol atom memberikan bilangan proton dan neutron, ion mengubah bilangan elektron, dan isotop mengubah bilangan neutron. Bilangan proton tetap menentukan identiti unsur itu.
+
+## Huruf Besar dan Huruf Kecil dalam Simbol Unsur
+
+Simbol unsur biasanya terdiri daripada satu atau dua huruf. **Huruf pertama sentiasa huruf besar**, dan huruf kedua, jika ada, ialah huruf kecil.
+
+| Tulisan | Cara membacanya |
+| :------ | :------------- |
+| <InlineMath math="\mathrm{C}" /> | Karbon |
+| <InlineMath math="\mathrm{Cl}" /> | Klorin |
+| <InlineMath math="\mathrm{Co}" /> | Kobalt |
+| <InlineMath math="\mathrm{CO}" /> | Formula kimia karbon monoksida, iaitu sebatian yang terdiri daripada karbon dan oksigen |
+
+Perhatikan dua baris terakhir dengan teliti. Dalam <InlineMath math="\mathrm{Co}" />, huruf kecil <InlineMath math="\mathrm{o}" /> bergabung dengan huruf besar <InlineMath math="\mathrm{C}" /> untuk membentuk satu simbol unsur: kobalt. Jika huruf kedua ditukar menjadi huruf besar, <InlineMath math="\mathrm{CO}" /> dibaca sebagai dua simbol unsur, <InlineMath math="\mathrm{C}" /> dan <InlineMath math="\mathrm{O}" />, dalam formula kimia karbon monoksida. Jadi, huruf besar dan huruf kecil memberitahu kamu bahan yang dinamakan oleh formula itu.
+
+Jika kamu mahu menyemak simbol unsur dan jisim atom relatif yang terkini, buka [Jadual Berkala Unsur IUPAC](https://iupac.org/what-we-do/periodic-table-of-elements/).
