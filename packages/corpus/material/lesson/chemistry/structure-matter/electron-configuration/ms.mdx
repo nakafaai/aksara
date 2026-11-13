@@ -18,8 +18,8 @@ Model Bohr menggunakan aras tenaga yang diskret untuk menerangkan spektrum garis
 Perkataan **diskret** bermaksud tidak semua nilai tenaga dibenarkan. Bayangkan sebuah tangga. Kamu boleh berdiri di anak tangga pertama, kedua atau ketiga, tetapi tidak di ruang kosong antara dua anak tangga. Dalam atom, elektron hanya dibenarkan berada pada aras tenaga tertentu.
 
 <Mermaid
-  title="Warna Nyalaan Menunjukkan Beza Tenaga antara Keadaan Elektron"
-  description="Kaitkan input tenaga, peralihan elektron dan cahaya yang dipancarkan dengan warna yang diperhatikan dalam ujian nyalaan."
+  title={<>Warna Nyalaan Menunjukkan Beza Tenaga antara Keadaan Elektron</>}
+  description={<>Kaitkan input tenaga, peralihan elektron dan cahaya yang dipancarkan dengan warna yang diperhatikan dalam ujian nyalaan.</>}
   chart={`flowchart LR
     A["Tenaga masuk"] --> B["Elektron teruja"]
     B --> C["Elektron kembali"]
@@ -243,6 +243,24 @@ Isi petala mengikut urutan bagi 20 unsur pertama, dari hidrogen dengan <InlineMa
   }}
 />
 
+### Bentuk Orbital s p dan d
+
+Susunan pengisian menggunakan nama subpetala seperti <InlineMath math="2s" />, <InlineMath math="2p" /> dan <InlineMath math="3d" />. Setiap nama itu ada bentuk awannya sendiri. **Orbital s berbentuk sfera, orbital p seperti dua belon, dan orbital d ada empat cuping** atau bentuk cincin. Warna berbeza menandakan bahagian awan yang tanda fungsi gelombangnya bertentangan.
+
+<OrbitalCloudLab
+  title={<>Orbital s, p dan d</>}
+  description={<>Pilih orbital dan putar awannya untuk melihat cuping dan satah nodnya.</>}
+  orbitals={["2s", "2pz", "3dz2", "3dxy"]}
+  labels={{
+    angular: <>Nod sudut</>,
+    choose: "Pilih orbital",
+    numbers: <>Nombor kuantum</>,
+    orbital: <>Orbital</>,
+    radial: <>Nod jejarian</>,
+    view: "Awan elektron orbital",
+  }}
+/>
+
 ## Mengaitkan Susunan Elektron dengan Spektrum
 
 Susunan elektron dalam model petala menunjukkan kedudukan elektron dalam keadaan asas, iaitu <Highlight>keadaan dengan tenaga paling rendah</Highlight>. Spektrum garis terhasil apabila elektron menerima tenaga, kemudian kembali ke aras tenaga yang lebih rendah.
@@ -263,6 +281,24 @@ E&=\frac{hc}{\lambda}\\
 \end{aligned}" />
 
 Elektron berada pada aras tenaga tertentu. Peralihan ke aras tenaga yang lebih rendah boleh membebaskan cahaya dengan tenaga tertentu, manakala susunan elektron menerangkan cara elektron disusun dalam keadaan asas.
+
+### Garis yang Tidak Kelihatan
+
+Bukan semua lompatan elektron menghasilkan cahaya nampak. Lompatan ke petala pertama membebaskan foton ultraungu yang bertenaga tinggi, manakala lompatan ke petala ketiga membebaskan foton inframerah. **Makin besar beza aras tenaga, makin pendek panjang gelombangnya**. Bandingkan tenaga foton setiap lompatan di bahagian bawah kad.
+
+<BohrEmissionLab
+  title={<>Siri Ultraungu dan Inframerah</>}
+  description={<>Lompatan ke petala pertama dan ketiga atom hidrogen.</>}
+  falls={[{ from: 2, to: 1 }, { from: 3, to: 1 }, { from: 4, to: 3 }, { from: 5, to: 3 }]}
+  labels={{
+    choose: "Pilih lompatan elektron",
+    energy: <>Tenaga foton</>,
+    frequency: <>Frekuensi foton</>,
+    transition: <>Lompatan elektron</>,
+    view: "Atom hidrogen model Bohr",
+    wavelength: <>Panjang gelombang</>,
+  }}
+/>
 
 ## Bilangan Elektron daripada Nombor Proton
 
