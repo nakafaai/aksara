@@ -1,0 +1,208 @@
+export const metadata = {
+  title: "Julat Antara Kuartil",
+  description: "Kira julat antara kuartil, bandingkan dengan julat penuh, dan tafsirkan bagaimana separuh tengah satu set data bertaburan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-22",
+  dateModified: "2026-11-08",
+  subject: "Statistik",
+};
+
+## Serakan Separuh Tengah Data
+
+[Min](/ms/subjek/matematik/statistik-asas/min) menerangkan pusat satu set data, tetapi tidak menerangkan serakannya. Dua kumpulan boleh ada purata umur yang sama walaupun umur mereka bertaburan dengan sangat berbeza.
+
+**Julat antara kuartil** (<InlineMath math="\mathrm{IQR}" />) mengukur serakan itu dengan memberi tumpuan kepada **<InlineMath math="50\%" /> bahagian tengah data** selepas data disusun.
+
+Mengapa fokus pada bahagian tengah? Nilai yang sangat kecil atau besar boleh menguasai sukatan seperti julat penuh. Sesetengahnya mungkin dikelaskan sebagai pencilan mengikut peraturan yang dinyatakan atau melalui pertimbangan bidang itu. <InlineMath math="\mathrm{IQR}" /> kurang peka terhadap nilai ekstrem itu.
+
+Rumusnya ialah:
+
+<BlockMath math="\mathrm{IQR} = Q_3 - Q_1" />
+
+- <InlineMath math="Q_3" /> ialah kuartil atas (nilai yang menandakan <InlineMath math="75\%" /> bahagian bawah
+  data).
+- <InlineMath math="Q_1" /> ialah kuartil bawah (nilai yang menandakan <InlineMath math="25\%" /> bahagian bawah
+  data).
+
+Jadi, <InlineMath math="\mathrm{IQR}" /> ialah beza antara kuartil atas dengan kuartil bawah.
+
+Bandingkan kedua-dua serakan untuk kedua-dua kumpulan. Kumpulan Satu ada julat <InlineMath math="5" /> dan julat antara kuartil <InlineMath math="2" />, manakala Kumpulan Dua ada julat <InlineMath math="35" /> dan julat antara kuartil <InlineMath math="24.5" />. Julat antara kuartil mengabaikan nilai ekstrem, jadi ia menerangkan sejauh mana separuh tengah itu rapat.
+
+<BarChart
+  title={<>Julat dan julat antara kuartil bagi kedua-dua kumpulan</>}
+  description={<>Julat dan julat antara kuartil bagi Kumpulan Satu dan Kumpulan Dua.</>}
+  yAxisLabel="Serakan"
+  data={[["julat, satu", 18 - 13], ["IQR, satu", 17 - 15], ["julat, dua", 36 - 1], ["IQR, dua", 28.75 - 4.25]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Serakan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Membandingkan Serakan Umur
+
+Pertimbangkan dua kumpulan yang ada **min yang sama** tetapi serakan yang sangat berbeza.
+
+Jadual ini menyenaraikan <InlineMath math="12 \text{ orang}" /> dalam setiap kumpulan:
+
+| Data Ke- | Kumpulan Satu | Kumpulan Dua |
+| :----------: | :-------: | :-------: |
+| <InlineMath math="1" /> | <InlineMath math="13" /> | <InlineMath math="1" /> |
+| <InlineMath math="2" /> | <InlineMath math="14" /> | <InlineMath math="3" /> |
+| <InlineMath math="3" /> | <InlineMath math="15" /> | <InlineMath math="4" /> |
+| <InlineMath math="4" /> | <InlineMath math="15" /> | <InlineMath math="5" /> |
+| <InlineMath math="5" /> | <InlineMath math="16" /> | <InlineMath math="7" /> |
+| <InlineMath math="6" /> | <InlineMath math="16" /> | <InlineMath math="8" /> |
+| <InlineMath math="7" /> | <InlineMath math="17" /> | <InlineMath math="12" /> |
+| <InlineMath math="8" /> | <InlineMath math="17" /> | <InlineMath math="27" /> |
+| <InlineMath math="9" /> | <InlineMath math="17" /> | <InlineMath math="28" /> |
+| <InlineMath math="10" /> | <InlineMath math="17" /> | <InlineMath math="29" /> |
+| <InlineMath math="11" /> | <InlineMath math="17" /> | <InlineMath math="32" /> |
+| <InlineMath math="12" /> | <InlineMath math="18" /> | <InlineMath math="36" /> |
+
+Kita akan bandingkan min, kuartil, julat, dan julat antara kuartil kedua-dua kumpulan.
+
+Titik-titik itu menceritakan perkara yang sama, nilai demi nilai. Kumpulan Satu berkumpul di sekitar <InlineMath math="16" /> dan <InlineMath math="17" />, manakala Kumpulan Dua terpecah kepada kelompok rendah dan kelompok tinggi dengan jurang yang lebar di tengah. Julat antara kuartil hanya mengukur separuh tengah setiap baris titik.
+
+<MathVisual
+  title={<>Umur kedua-dua kumpulan sebagai titik</>}
+  description={<>Dua belas umur bagi setiap kumpulan pada satu garis nombor, Kumpulan Satu di atas dan Kumpulan Dua di bawah.</>}
+  labels={{
+    g1: <>Kumpulan Satu</>,
+    g2: <>Kumpulan Dua</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 37 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 0, y: 0 }, to: { x: 37, y: 0 }, appearance: "reference" },
+      { id: "a0", kind: "point", at: { x: 13, y: 0.6 }, appearance: "primary" },
+      { id: "a1", kind: "point", at: { x: 14, y: 0.6 }, appearance: "primary" },
+      { id: "a2", kind: "point", at: { x: 15, y: 0.6 }, appearance: "primary" },
+      { id: "a3", kind: "point", at: { x: 15, y: 1.2 }, appearance: "primary" },
+      { id: "a4", kind: "point", at: { x: 16, y: 0.6 }, appearance: "primary" },
+      { id: "a5", kind: "point", at: { x: 16, y: 1.2 }, appearance: "primary" },
+      { id: "a6", kind: "point", at: { x: 17, y: 0.6 }, appearance: "primary" },
+      { id: "a7", kind: "point", at: { x: 17, y: 1.2 }, appearance: "primary" },
+      { id: "a8", kind: "point", at: { x: 17, y: 1.8 }, appearance: "primary" },
+      { id: "a9", kind: "point", at: { x: 17, y: 2.4 }, appearance: "primary" },
+      { id: "a10", kind: "point", at: { x: 17, y: 3 }, appearance: "primary" },
+      { id: "a11", kind: "point", at: { x: 18, y: 0.6 }, appearance: "primary" },
+      { id: "b0", kind: "point", at: { x: 1, y: -2.8 }, appearance: "secondary" },
+      { id: "b1", kind: "point", at: { x: 3, y: -2.8 }, appearance: "secondary" },
+      { id: "b2", kind: "point", at: { x: 4, y: -2.8 }, appearance: "secondary" },
+      { id: "b3", kind: "point", at: { x: 5, y: -2.8 }, appearance: "secondary" },
+      { id: "b4", kind: "point", at: { x: 7, y: -2.8 }, appearance: "secondary" },
+      { id: "b5", kind: "point", at: { x: 8, y: -2.8 }, appearance: "secondary" },
+      { id: "b6", kind: "point", at: { x: 12, y: -2.8 }, appearance: "secondary" },
+      { id: "b7", kind: "point", at: { x: 27, y: -2.8 }, appearance: "secondary" },
+      { id: "b8", kind: "point", at: { x: 28, y: -2.8 }, appearance: "secondary" },
+      { id: "b9", kind: "point", at: { x: 29, y: -2.8 }, appearance: "secondary" },
+      { id: "b10", kind: "point", at: { x: 32, y: -2.8 }, appearance: "secondary" },
+      { id: "b11", kind: "point", at: { x: 36, y: -2.8 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "g1", objectId: "a0", at: { x: 13, y: 0.6 }, placement: "left" },
+      { key: "g2", objectId: "b0", at: { x: 1, y: -2.8 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+### Mengira Min
+
+Kalau kamu kira purata umur kedua-dua kumpulan, hasilnya **tepat sama**, iaitu <InlineMath math="16 \text{ tahun}" />.
+
+Kumpulan 1:
+
+Tambah kesemua dua belas nilai dahulu, kemudian bahagikan dengan dua belas:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;13+14+15+15 \\ &amp;\quad{}+16+16+17+17 \\ &amp;\quad{}+17+17+17+18 \\ &amp;=192 \end{aligned}" />
+
+  <BlockMath math="\frac{192}{12}=16" />
+</MathContainer>
+
+Kumpulan 2:
+
+Tambah kesemua dua belas nilai dahulu, kemudian bahagikan jumlahnya dengan dua belas.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}&amp;1+3+4+5\\&amp;{}+7+8+12+27\\&amp;{}+28+29+32+36=192\end{aligned}" />
+  <BlockMath math="\frac{192}{12}=16" />
+</MathContainer>
+
+### Mencari Kuartil
+
+Kita gunakan **konvensyen interpolasi** <InlineMath math="p(n+1)" />. Di sini <InlineMath math="n=12" />, jadi kedudukan kuartil bawah dan kuartil atas ialah <InlineMath math="3.25" /> dan <InlineMath math="9.75" />.
+
+Selepas data disusun (seperti dalam jadual di atas), kita cari kedudukan kuartil.
+
+**Kumpulan Satu (<InlineMath math="n=12" />)**:
+Kedudukan <InlineMath math="Q_1" /> ialah pada data ke-<InlineMath math="\frac{1}{4}(12+1) = 3.25" />. Maksudnya, <InlineMath math="Q_1" /> terletak antara data ke-<InlineMath math="3" /> (<InlineMath math="15" />) dan ke-<InlineMath math="4" /> (<InlineMath math="15" />). Oleh sebab kedua-dua nilai itu sama, maka
+
+<BlockMath math="Q_1 = 15" />
+
+Kedudukan <InlineMath math="Q_3" /> ialah pada data ke-<InlineMath math="\frac{3}{4}(12+1) = 9.75" />. Maksudnya, <InlineMath math="Q_3" /> terletak antara data ke-<InlineMath math="9" /> (<InlineMath math="17" />) dan ke-<InlineMath math="10" /> (<InlineMath math="17" />). Oleh sebab kedua-dua nilai itu sama, maka
+
+<BlockMath math="Q_3 = 17" />
+
+**Kumpulan Dua (<InlineMath math="n=12" />)**:
+Kedudukan <InlineMath math="Q_1" /> ialah <InlineMath math="3.25" />. Ia terletak satu perempat daripada jarak antara nilai ke-<InlineMath math="3" /> (<InlineMath math="4" />) dengan nilai ke-<InlineMath math="4" /> (<InlineMath math="5" />), jadi kita buat interpolasi dengan pemberat <InlineMath math="0.25" />:
+
+<BlockMath math="Q_1 = 4 + 0.25(5-4) = 4.25" />
+
+Kedudukan <InlineMath math="Q_3" /> ialah <InlineMath math="9.75" />. Ia terletak tiga perempat daripada jarak antara nilai ke-<InlineMath math="9" /> (<InlineMath math="28" />) dengan nilai ke-<InlineMath math="10" /> (<InlineMath math="29" />), jadi pemberat interpolasinya ialah <InlineMath math="0.75" />:
+
+<BlockMath math="Q_3 = 28 + 0.75(29-28) = 28.75" />
+
+### Mengira Julat dan Julat Antara Kuartil
+
+**Julat penuh** menggunakan nilai maksimum dan minimum. **Julat antara kuartil** menggunakan dua sempadan kuartil. Bandingkan pengiraan berikut dalam tahun.
+
+| Kumpulan | Julat | Julat antara kuartil |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="18-13=5" /> | <InlineMath math="17-15=2" /> |
+| <InlineMath math="2" /> | <InlineMath math="36-1=35" /> | <InlineMath math="28.75-4.25=24.5" /> |
+
+### Mentafsir Keputusan
+
+Keputusannya kini boleh dibandingkan dalam satu jadual:
+
+| Kumpulan | Min | <InlineMath math="Q_1"/> | <InlineMath math="Q_3"/> | Julat | Julat Antara Kuartil (<InlineMath math="\mathrm{IQR}" />) |
+| :---: | :--: | :----------------------: | :----------------------: | :---: | :-----------------------: |
+|  Satu  | <InlineMath math="16" /> | <InlineMath math="15" /> | <InlineMath math="17" /> | <InlineMath math="5" /> | <InlineMath math="2" /> |
+|  Dua  | <InlineMath math="16" /> | <InlineMath math="4.25" /> | <InlineMath math="28.75" /> | <InlineMath math="35" /> | <InlineMath math="24.5" /> |
+
+- Kedua-dua kumpulan ada min umur yang sama, <InlineMath math="16" />.
+- Kumpulan Satu ada julat <InlineMath math="5" /> dan <InlineMath math="\mathrm{IQR}" /> sebanyak <InlineMath math="2" />. <InlineMath math="50\%" /> bahagian tengahnya terletak antara <InlineMath math="Q_1=15" /> dan <InlineMath math="Q_3=17" />, jadi umur-umur itu hanya merentangi <InlineMath math="2\text{ tahun}" />.
+- Kumpulan Dua ada julat <InlineMath math="35" /> dan <InlineMath math="\mathrm{IQR}" /> sebanyak <InlineMath math="24.5" />. <InlineMath math="50\%" /> bahagian tengahnya terletak antara <InlineMath math="Q_1=4.25" /> dan <InlineMath math="Q_3=28.75" />, iaitu rentang <InlineMath math="24.5\text{ tahun}" />.
+
+Dua set data boleh ada min yang sama tetapi serakan yang berbeza. <InlineMath math="\mathrm{IQR}" /> mengukur lebar <Highlight>separuh tengah data</Highlight> dan tahan terhadap nilai ekstrem kerana ia tidak menggunakan suku-suku luar.
+
+Letakkan dua kumpulan itu bersebelahan sebagai plot kotak. Kumpulan Satu muat dalam kotak pendek dari <InlineMath math="15" /> hingga <InlineMath math="17" />, jadi julat antara kuartilnya <InlineMath math="2" />. Kumpulan Dua merentang dari <InlineMath math="4.25" /> hingga <InlineMath math="28.75" />, iaitu julat antara kuartil <InlineMath math="24.5" />. Kedua-dua kumpulan ada min <InlineMath math="16" />, tetapi kotak-kotak itu terus menunjukkan betapa berbezanya serakan umur mereka.
+
+<MathVisual
+  title={<>Min yang sama, serakan yang sangat berbeza</>}
+  description={<>Plot kotak bagi kedua-dua kumpulan pada satu paksi. Kumpulan Satu: <InlineMath math="13" />, <InlineMath math="15" />, <InlineMath math="16.5" />, <InlineMath math="17" />, <InlineMath math="18" />. Kumpulan Dua: <InlineMath math="1" />, <InlineMath math="4.25" />, <InlineMath math="10" />, <InlineMath math="28.75" />, <InlineMath math="36" />.</>}
+  labels={{
+    g1: <>Kumpulan Satu</>,
+    g2: <>Kumpulan Dua</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 37 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "alo", kind: "segment", from: { x: 13, y: 1.5 }, to: { x: 15, y: 1.5 }, appearance: "primary" },
+      { id: "ahi", kind: "segment", from: { x: 17, y: 1.5 }, to: { x: 18, y: 1.5 }, appearance: "primary" },
+      { id: "abox", kind: "polygon", vertices: [{ x: 15, y: 1.5 - 0.6 }, { x: 17, y: 1.5 - 0.6 }, { x: 17, y: 1.5 + 0.6 }, { x: 15, y: 1.5 + 0.6 }], appearance: "primary" },
+      { id: "amid", kind: "segment", from: { x: 16.5, y: 1.5 - 0.6 }, to: { x: 16.5, y: 1.5 + 0.6 }, appearance: "answer" },
+      { id: "blo", kind: "segment", from: { x: 1, y: -1.5 }, to: { x: 4.25, y: -1.5 }, appearance: "secondary" },
+      { id: "bhi", kind: "segment", from: { x: 28.75, y: -1.5 }, to: { x: 36, y: -1.5 }, appearance: "secondary" },
+      { id: "bbox", kind: "polygon", vertices: [{ x: 4.25, y: -1.5 - 0.6 }, { x: 28.75, y: -1.5 - 0.6 }, { x: 28.75, y: -1.5 + 0.6 }, { x: 4.25, y: -1.5 + 0.6 }], appearance: "secondary" },
+      { id: "bmid", kind: "segment", from: { x: 10, y: -1.5 - 0.6 }, to: { x: 10, y: -1.5 + 0.6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "g1", objectId: "abox", at: { x: 15, y: 2.1 }, placement: "above-left" },
+      { key: "g2", objectId: "bbox", at: { x: 4.25, y: -0.9 }, placement: "above-left" },
+    ],
+  }}
+/>

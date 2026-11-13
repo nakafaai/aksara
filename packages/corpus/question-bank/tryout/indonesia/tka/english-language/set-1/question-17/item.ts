@@ -3,36 +3,36 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
-    contentDomain: "procedure",
-    topic: "outline",
+    contentDomain: "descriptive",
+    topic: "explicit-information",
   },
-  stimulus: "leak-test",
+  stimulus: "boardwalk",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "Inspect visible pipes, replace the meter, wait, and compare the new reading.",
+            "The plant whose stems swell after a flood is the one that keeps salt inside itself.",
         },
         {
           correct: false,
           label:
-            "Take one photograph and immediately declare the leak's location.",
+            "The mudflat and the low marsh stay under the tide for the same length of time.",
+        },
+        {
+          correct: false,
+          label: "Glasswort keeps its stems swollen through long dry spells.",
         },
         {
           correct: true,
           label:
-            "Prepare the period, record, wait, compare, repeat if needed, and report safely.",
+            "Sea lavender and the low-marsh grass get rid of salt in the same way.",
         },
         {
           correct: false,
-          label: "Run the irrigation system, wait, and ignore the meter.",
-        },
-        {
-          correct: false,
-          label: "Disconnect essential equipment before checking the display.",
+          label: "Salt pans form on ground that the tide covers twice a day.",
         },
       ],
     },

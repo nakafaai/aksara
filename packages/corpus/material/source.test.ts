@@ -142,6 +142,7 @@ layer(NodeServices.layer)("material source", (it) => {
         const corpusRoot = yield* resolveCorpusRoot;
         const { entries, sourceByPath } = yield* loadMaterialFixtures();
         const documents = yield* readSources(entries, sourceByPath);
+
         expect(Arr.map(documents, ({ sourcePath }) => sourcePath)).toEqual(
           Arr.map(entries, ({ sourcePath }) => sourcePath)
         );
