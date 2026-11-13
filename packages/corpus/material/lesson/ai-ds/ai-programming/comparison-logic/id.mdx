@@ -328,11 +328,11 @@ True`
 Python menyediakan fungsi `math.isclose(a, b, rel_tol=1e-09, abs_tol=0.0)` untuk menguji kesetaraan aproksimasi. Fungsi ini menggunakan **toleransi relatif dan absolut** melalui `rel_tol` dan `abs_tol` untuk menentukan apakah dua nilai cukup dekat.
 
 
-Untuk contoh `math.isclose(100, 95, rel_tol=0.05)`, selisih absolut adalah 5. Toleransi relatif memakai nilai absolut yang lebih besar, yaitu 100.
+Untuk contoh `math.isclose(100, 95, rel_tol=0.05)`, selisih absolut adalah <InlineMath math="5" />. Toleransi relatif memakai nilai absolut yang lebih besar, yaitu <InlineMath math="100" />.
 
 <BlockMath math="\begin{aligned} |100-95| &= 5 \\ 0{,}05\max(|100|,|95|) &= 5 \\ 5 &\leq \max(5,0) \end{aligned}" />
 
-Karena selisih tidak melebihi toleransi, hasilnya `True`. Pada `abs_tol=5`, batas absolut 5 juga cukup untuk menerima selisih tersebut.
+Karena selisih tidak melebihi toleransi, hasilnya `True`. Pada `abs_tol=5`, batas absolut <InlineMath math="5" /> juga cukup untuk menerima selisih tersebut.
 
 
 > Gunakan kesetaraan persis hanya jika nilai `float` memang harus identik. Untuk hasil pengukuran atau perhitungan, tentukan toleransi yang sesuai dengan jenis perhitungan lalu gunakan `math.isclose()`. Saat nilai yang dibandingkan mendekati nol, tentukan `abs_tol` karena toleransi relatif juga mengecil.

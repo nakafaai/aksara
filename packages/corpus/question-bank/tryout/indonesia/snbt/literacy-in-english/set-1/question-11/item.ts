@@ -4,32 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "calculation",
   },
-  stimulus: "campus-commute",
+  stimulus: "wind-curtailment",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Walking",
-        },
-        {
-          correct: false,
-          label: "Bicycle",
-        },
-        {
-          correct: false,
-          label: "Public bus",
+          label: "$$120$$ GWh",
         },
         {
           correct: true,
-          label: "Car or motorbike",
+          label: "$$160$$ GWh",
         },
         {
           correct: false,
-          label: "None of the other groups",
+          label: "$$130$$ GWh",
+        },
+        {
+          correct: false,
+          label: "$$210$$ GWh",
+        },
+        {
+          correct: false,
+          label: "$$60$$ GWh",
         },
       ],
     },
