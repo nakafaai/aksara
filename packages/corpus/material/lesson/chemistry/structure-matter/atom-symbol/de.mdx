@@ -25,6 +25,25 @@ Die Zeichen bedeuten:
 - <InlineMath math="Z" /> ist die Ordnungszahl
 - <InlineMath math="A" /> ist die Massenzahl
 
+### Die Ladung in der Ecke
+
+Ein Atomsymbol kann rechts oben auch eine Ladung tragen, wie bei <InlineMath math="\mathrm{Mg^{2+}}" /> und <InlineMath math="\mathrm{O^{2-}}" />. **Diese Ladung zählt die abgegebenen oder aufgenommenen Elektronen**, und hier siehst du sie wandern.
+
+<IonFormationLab
+  title={<>Woher die Ladung eines Ions kommt</>}
+  description={<>Wähle Magnesium mit Sauerstoff oder Kalium mit Chlor und zähle die wandernden Elektronen.</>}
+  pairs={["magnesium-oxygen", "potassium-chlorine"]}
+  labels={{
+    choose: "Atompaar wählen",
+    metalRadius: <>Radius des Metalls</>,
+    metalShells: <>Schalen des Metalls</>,
+    nonmetalRadius: <>Radius des Nichtmetalls</>,
+    nonmetalShells: <>Schalen des Nichtmetalls</>,
+    progress: "Elektronenübergang",
+    view: "Metall- und Nichtmetallatom werden zu Ionen",
+  }}
+/>
+
 ## Massenzahl und Ordnungszahl ablesen
 
 Wähle unten ein Atom und ordne die beiden Zahlen im Symbol zu. **Oben links steht die Massenzahl** <InlineMath math="A" />, unten links die Ordnungszahl <InlineMath math="Z" />. Aus den Positionen ergibt sich, welche Protonen-, Neutronen- oder Elektronenzahl berechnet wird.
@@ -93,7 +112,7 @@ Jede Teilchenzahl kommt aus den zwei Zahlen im Symbol <InlineMath math="^{A}_{Z}
 
 <MathVisual
   title={<>Von A und Z zu den Teilchenzahlen</>}
-  description={<>Protonen (orange), Neutronen (grau) und Elektronen (violett) in neutralem Kohlenstoff-12, Natrium-23 und Chlor-35. Ein Gitterschritt nach oben entspricht 4 Teilchen.</>}
+  description={<>Protonen (orange), Neutronen (grau) und Elektronen (violett) in neutralem Kohlenstoff-12, Natrium-23 und Chlor-35. Ein Gitterschritt nach oben entspricht <InlineMath math="4" /> Teilchen.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -2, max: 11 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -122,6 +141,22 @@ Jede Teilchenzahl kommt aus den zwei Zahlen im Symbol <InlineMath math="^{A}_{Z}
   }}
 />
 
+### Die drei Teilchen unterscheiden
+
+Die Zahlen im Symbol zählen drei verschiedene Teilchen, und **ein Magnetfeld unterscheidet sie nach Ladung und Masse**: Proton und Elektron krümmen sich in entgegengesetzte Richtungen, das Neutron fliegt geradeaus.
+
+<ParticleTrackLab
+  title={<>Protonen, Elektronen und Neutronen im Feld</>}
+  description={<>Dreh das Feld auf und vergleiche, wie eng sich jede Spur krümmt.</>}
+  labels={{
+    electron: <>Bahnradius des Elektrons</>,
+    field: "Magnetische Flussdichte",
+    proton: <>Bahnradius des Protons</>,
+    ratio: <>Verhältnis der Radien</>,
+    view: "Teilchenspuren im Magnetfeld",
+  }}
+/>
+
 ## Beispiel mit Kohlenstoff
 
 Für ein Kohlenstoffatom mit der Massenzahl <InlineMath math="12" /> lautet das Symbol:
@@ -142,7 +177,7 @@ Hier sind die drei Anzahlen für Kohlenstoff-12 als Säulen, ein Gitterschritt f
 
 <MathVisual
   title={<>Teilchen in Kohlenstoff-12</>}
-  description={<>Protonen, Neutronen und Elektronen eines neutralen Kohlenstoff-12-Atoms. Ein Gitterschritt nach oben sind 2 Teilchen.</>}
+  description={<>Protonen, Neutronen und Elektronen eines neutralen Kohlenstoff-12-Atoms. Ein Gitterschritt nach oben sind <InlineMath math="2" /> Teilchen.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },

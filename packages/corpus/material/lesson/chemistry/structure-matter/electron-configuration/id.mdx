@@ -78,6 +78,25 @@ Simbol <InlineMath math="e^-" /> adalah jumlah elektron, sedangkan <InlineMath m
 
 Model kulit sederhana ini dibatasi pada unsur ringan sampai kalsium, yaitu <InlineMath math="Z \le 20" />. Untuk unsur yang lebih berat, kita perlu memakai subkulit dan orbital.
 
+### Konfigurasi di dalam Gelas Kimia
+
+Natrium berkonfigurasi <InlineMath math="2, 8, 1" /> dan magnesium <InlineMath math="2, 8, 2" />: **satu elektron terluar lebih mudah lepas daripada dua**, jadi natrium melesat di atas air sementara magnesium hampir tidak bereaksi.
+
+<AlkaliWaterLab
+  title={<>Elektron Terluar dan Kecepatan Reaksi</>}
+  description={<>Bandingkan natrium, magnesium, dan kalsium, lalu baca energi ionisasinya.</>}
+  metals={["sodium", "magnesium", "calcium"]}
+  labels={{
+    choose: "Pilih logam",
+    density: <>Massa jenis</>,
+    equation: <>Persamaan reaksi</>,
+    ionization: <>Energi ionisasi pertama</>,
+    melting: <>Titik leleh</>,
+    radius: <>Jari-jari atom</>,
+    view: "Logam dalam gelas kimia berisi air",
+  }}
+/>
+
 ## Model Interaktif Kulit Elektron
 
 Pilih atom netral di bawah ini. Mulai dari nomor atomnya, lalu lihat bagaimana elektron tersebar **dari kulit dalam ke kulit luar**.
@@ -165,11 +184,11 @@ e^- &= 17 \\
 \text{konfigurasi} &= 2, 8, 7
 \end{aligned}" />
 
-Isi kulit-kulitnya berurutan untuk 20 unsur pertama, dari hidrogen dengan <InlineMath math="Z=1" /> sampai kalsium dengan <InlineMath math="Z=20" />. Tiap baris adalah satu kulit dan tiap kolom satu unsur, jadi tiap kolom memuat <InlineMath math="Z" /> elektron seluruhnya. Putar adegannya: kulit L penuh di neon, dan mulai kalium elektron berikutnya masuk ke kulit N.
+Isi kulit-kulitnya berurutan untuk <InlineMath math="20" /> unsur pertama, dari hidrogen dengan <InlineMath math="Z=1" /> sampai kalsium dengan <InlineMath math="Z=20" />. Tiap baris adalah satu kulit dan tiap kolom satu unsur, jadi tiap kolom memuat <InlineMath math="Z" /> elektron seluruhnya. Putar adegannya: kulit L penuh di neon, dan mulai kalium elektron berikutnya masuk ke kulit N.
 
 <MathVisual
   title={<>Dua Puluh Atom, Kulit demi Kulit</>}
-  description={<>Elektron di kulit K (abu-abu), L (ungu), M (oranye), dan N (fuchsia) untuk nomor atom 1 sampai 20. Satu kotak grid ke atas berarti 2 elektron.</>}
+  description={<>Elektron di kulit K (abu-abu), L (ungu), M (oranye), dan N (fuchsia) untuk nomor atom <InlineMath math="1" /> sampai <InlineMath math="20" />. Satu kotak grid ke atas berarti <InlineMath math="2" /> elektron.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: 0, max: 4.5 }, z: { min: -0.6, max: 4.2 } },
@@ -240,6 +259,25 @@ Isi kulit-kulitnya berurutan untuk 20 unsur pertama, dari hidrogen dengan <Inlin
     m: <InlineMath math="\mathrm{M}" />,
     n: <InlineMath math="\mathrm{N}" />,
     calcium: <InlineMath math="\mathrm{Ca}:\ 2,8,8,2" />,
+  }}
+/>
+
+### Ion Mencapai Pola Gas Mulia
+
+Setelah perpindahan, <InlineMath math="\mathrm{Na^+}" /> dan <InlineMath math="\mathrm{Cl^-}" /> punya konfigurasi neon dan argon. **Ion berakhir pada pola gas mulia yang penuh**, itulah sebabnya konfigurasi ini sangat sering muncul.
+
+<IonFormationLab
+  title={<>Konfigurasi Sebelum dan Sesudah</>}
+  description={<>Pindahkan elektronnya dan bandingkan kulit setiap atom sebelum dan sesudah.</>}
+  pairs={["sodium-chlorine", "magnesium-oxygen"]}
+  labels={{
+    choose: "Pilih pasangan atom",
+    metalRadius: <>Jari-jari logam</>,
+    metalShells: <>Kulit logam</>,
+    nonmetalRadius: <>Jari-jari nonlogam</>,
+    nonmetalShells: <>Kulit nonlogam</>,
+    progress: "Perpindahan elektron",
+    view: "Atom logam dan nonlogam menjadi ion",
   }}
 />
 

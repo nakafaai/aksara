@@ -106,7 +106,7 @@ Adegan ini menunjukkan inti setiap isotop hidrogen, proton berwarna oranye di be
 
 <MathVisual
   title={<>Tiga Isotop Hidrogen</>}
-  description={<>Proton (oranye, belakang) dan neutron (abu-abu, depan) pada hidrogen-1, hidrogen-2, dan hidrogen-3. Satu kotak grid ke atas sama dengan 1 partikel.</>}
+  description={<>Proton (oranye, belakang) dan neutron (abu-abu, depan) pada hidrogen-1, hidrogen-2, dan hidrogen-3. Satu kotak grid ke atas sama dengan <InlineMath math="1" /> partikel.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -131,6 +131,24 @@ Adegan ini menunjukkan inti setiap isotop hidrogen, proton berwarna oranye di be
   }}
 />
 
+### Satu Awan Elektron untuk Ketiganya
+
+Protium, deuterium, dan tritium hanya berbeda di inti. Masing-masing tetap punya <InlineMath math="1" /> proton dan <InlineMath math="1" /> elektron, jadi **ketiganya memakai awan elektron yang sama** dan bereaksi hampir sama.
+
+<OrbitalCloudLab
+  title={<>Isotop Berbagi Orbital</>}
+  description={<>Ganti orbital hidrogen yang bisa dipakai setiap isotop hidrogen.</>}
+  orbitals={["1s", "2s", "2pz"]}
+  labels={{
+    angular: <>Simpul sudut</>,
+    choose: "Pilih orbital",
+    numbers: <>Bilangan kuantum</>,
+    orbital: <>Orbital</>,
+    radial: <>Simpul radial</>,
+    view: "Awan elektron orbital",
+  }}
+/>
+
 ## Isotop Karbon Berbeda dalam Jumlah Neutron
 
 Karbon selalu memiliki <InlineMath math="6" /> proton. Dari <InlineMath math="{}^{12}_{6}\mathrm{C}" /> sampai <InlineMath math="{}^{14}_{6}\mathrm{C}" />, jumlah neutron bertambah dari <InlineMath math="6" /> menjadi <InlineMath math="8" />.
@@ -152,7 +170,7 @@ Ion terbentuk ketika atom menerima atau melepas elektron. Isotop dari unsur yang
 | Ion | Elektron | Proton |
 | Isotop | Neutron | Proton |
 
-Contohnya, <InlineMath math="\mathrm{C}^{+}" /> adalah ion karbon yang kehilangan satu elektron. Dari 6 proton dan muatan +1, jumlah elektronnya menjadi <InlineMath math="6 - 1 = 5" />. Sebaliknya, <InlineMath math="{}^{14}_{6}\mathrm{C}" /> adalah isotop karbon karena neutronnya berbeda dari <InlineMath math="{}^{12}_{6}\mathrm{C}" />.
+Contohnya, <InlineMath math="\mathrm{C}^{+}" /> adalah ion karbon yang kehilangan satu elektron. Dari <InlineMath math="6" /> proton dan muatan +1, jumlah elektronnya menjadi <InlineMath math="6 - 1 = 5" />. Sebaliknya, <InlineMath math="{}^{14}_{6}\mathrm{C}" /> adalah isotop karbon karena neutronnya berbeda dari <InlineMath math="{}^{12}_{6}\mathrm{C}" />.
 
 Jika atomnya netral, elektron tetap sama dengan proton:
 
@@ -191,6 +209,22 @@ Letakkan tiap inti menurut neutronnya di sumbu mendatar dan protonnya di sumbu t
     c14: <InlineMath math="^{14}\mathrm{C}" />,
     n14: <InlineMath math="^{14}\mathrm{N}" />,
     o16: <InlineMath math="^{16}\mathrm{O}" />,
+  }}
+/>
+
+### Hanya Muatan yang Membelokkan
+
+Ion berbeda dari atomnya karena muatan, isotop karena neutron. Di dalam medan magnet **hanya partikel bermuatan yang melengkung**, sedangkan neutron tetap lurus.
+
+<ParticleTrackLab
+  title={<>Partikel Bermuatan dan Netral</>}
+  description={<>Naikkan medannya dan lihat lintasan mana yang melengkung dan mana yang tetap lurus.</>}
+  labels={{
+    electron: <>Jari-jari lintasan elektron</>,
+    field: "Kuat medan magnet",
+    proton: <>Jari-jari lintasan proton</>,
+    ratio: <>Perbandingan jari-jari</>,
+    view: "Jejak partikel dalam medan magnet",
   }}
 />
 

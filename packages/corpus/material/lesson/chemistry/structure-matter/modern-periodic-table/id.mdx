@@ -80,6 +80,26 @@ Karena jumlah proton menentukan identitas unsur, kenaikan <InlineMath math="Z" /
   }}
 />
 
+### Massa Bukan Urutannya
+
+Spektrometer massa memperlihatkan bahwa satu unsur bisa punya atom dengan massa berbeda. Karena itulah **tabel disusun menurut nomor atom, bukan menurut massa**: setiap isotop sebuah unsur tetap punya jumlah proton yang sama.
+
+<MassSpectrometerLab
+  title={<>Isotop di Balik Setiap Unsur</>}
+  description={<>Pilih boron, karbon, atau neon, lalu baca massa rata-ratanya dari isotop-isotopnya.</>}
+  samples={["boron", "carbon", "neon"]}
+  labels={{
+    average: <>Massa atom relatif rata-rata</>,
+    choose: "Pilih unsur",
+    isotopes: <>Isotop dan kelimpahannya</>,
+    north: "U",
+    radius: <>Jari-jari lintasan</>,
+    ratio: <>Perbandingan jari-jari</>,
+    south: "S",
+    view: "Spektrometer massa",
+  }}
+/>
+
 ## Periode dan Golongan
 
 **Periode** adalah baris mendatar. Periode dibaca dari kiri ke kanan dan bernomor <InlineMath math="1" /> sampai <InlineMath math="7" />. Dalam model kulit sederhana, unsur pada periode yang sama memiliki jumlah kulit utama yang sama.
@@ -92,7 +112,7 @@ Hitung unsur di setiap periode tabel modern, maka muncul pola: <InlineMath math=
 
 <MathVisual
   title={<>Banyak Unsur di Setiap Periode</>}
-  description={<>Banyaknya unsur pada periode 1 sampai 7 tabel periodik modern. Satu kotak grid ke atas sama dengan 4 unsur.</>}
+  description={<>Banyaknya unsur pada periode <InlineMath math="1" /> sampai <InlineMath math="7" /> tabel periodik modern. Satu kotak grid ke atas sama dengan <InlineMath math="4" /> unsur.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
@@ -124,6 +144,25 @@ Hitung unsur di setiap periode tabel modern, maka muncul pola: <InlineMath math=
     p5: <InlineMath math="18" />,
     p6: <InlineMath math="32" />,
     p7: <InlineMath math="32" />,
+  }}
+/>
+
+### Golongan Satu dan Tujuh Belas Berpasangan
+
+Logam golongan <InlineMath math="1" /> dan halogen golongan <InlineMath math="17" /> selalu bertemu satu banding satu, karena **setiap golongan punya muatan ion yang sama**. Setiap kristal di sini punya pola rumus <InlineMath math="\mathrm{MX}" />.
+
+<IonLatticeLab
+  title={<>Kristal dari Dua Golongan</>}
+  description={<>Ganti tiga garam ini dan bandingkan ukuran ion serta panjang rusuk selnya.</>}
+  crystals={["lithium-fluoride", "sodium-fluoride", "potassium-chloride"]}
+  labels={{
+    cells: "Sel satuan per rusuk",
+    choose: "Pilih kristal",
+    count: <>Jumlah ion</>,
+    formula: <>Rumus</>,
+    ions: <>Ion dan jari-jarinya</>,
+    lattice: <>Rusuk sel satuan</>,
+    view: "Kisi kristal ion",
   }}
 />
 
@@ -178,11 +217,11 @@ Gunakan tabel periodik pada kartu interaktif untuk mengecek jawabanmu sendiri.
 
 [Tabel periodik modern](https://iupac.org/what-we-do/periodic-table-of-elements/) memuat nama dan nomor atom setiap unsur. Susunan unsur berdasarkan nomor atom dalam periode dan golongan menunjukkan pola yang berulang.
 
-Ikuti nomor atom dari 1 sampai 18, dan kamu menelusuri tabel baris demi baris. Jalurnya melintasi satu periode, lalu melompat kembali ke kiri untuk memulai periode berikutnya, jadi baris tiap unsur menunjukkan periodenya dan kolomnya menunjukkan golongannya. Perbesar tiga titik fuchsia yang memulai periode baru.
+Ikuti nomor atom dari <InlineMath math="1" /> sampai <InlineMath math="18" />, dan kamu menelusuri tabel baris demi baris. Jalurnya melintasi satu periode, lalu melompat kembali ke kiri untuk memulai periode berikutnya, jadi baris tiap unsur menunjukkan periodenya dan kolomnya menunjukkan golongannya. Perbesar tiga titik fuchsia yang memulai periode baru.
 
 <MathVisual
   title={<>Membaca Tabel Menurut Urutan Nomor Atom</>}
-  description={<>18 unsur pertama menurut urutan nomor atom, diletakkan menurut golongan (mendatar) dan periode (baris).</>}
+  description={<><InlineMath math="18" /> unsur pertama menurut urutan nomor atom, diletakkan menurut golongan (mendatar) dan periode (baris).</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: 0, max: 5 } },

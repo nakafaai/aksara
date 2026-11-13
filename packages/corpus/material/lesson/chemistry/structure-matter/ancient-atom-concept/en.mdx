@@ -59,7 +59,7 @@ Test Democritus's question with numbers. Halve a <InlineMath math="1\ \mathrm{cm
 
 <MathVisual
   title={<>Twenty-Seven Halvings to an Atom</>}
-  description={<>Size of a grain after each halving, starting at 1 cm. Horizontal: one grid step is 3 halvings. Vertical: one grid step down is ten times smaller.</>}
+  description={<>Size of a grain after each halving, starting at <InlineMath math="1\text{ cm}" />. Horizontal: one grid step is <InlineMath math="3" /> halvings. Vertical: one grid step down is ten times smaller.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.5, max: 9.5 } },
@@ -140,7 +140,7 @@ Follow the thought experiment as numbers. Each cut halves the piece, so after <I
 
 <MathVisual
   title={<>Halving a Piece Again and Again</>}
-  description={<>A piece 8 units tall cut in half four times. Each column is half the one before.</>}
+  description={<>A piece <InlineMath math="8" /> units tall cut in half four times. Each column is half the one before.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 11.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
@@ -163,11 +163,50 @@ Follow the thought experiment as numbers. Each cut halves the piece, so after <I
   }}
 />
 
+### Shapes from Tiny Particles
+
+Democritus guessed that **the shape of the tiny pieces decides the shape of what we see**. A salt crystal is a modern check of that hunch: its cube comes from ions stacked in a cubic pattern.
+
+<IonLatticeLab
+  title={<>Salt Cubes from Stacked Particles</>}
+  description={<>Switch between table salt and potassium chloride and grow the crystal cell by cell.</>}
+  crystals={["sodium-chloride", "potassium-chloride"]}
+  labels={{
+    cells: "Unit cells per edge",
+    choose: "Choose a crystal",
+    count: <>Number of ions</>,
+    formula: <>Formula</>,
+    ions: <>Ions and their radii</>,
+    lattice: <>Unit cell edge</>,
+    view: "Ionic crystal lattice",
+  }}
+/>
+
 ## Why the Ancient Atom Idea Was Not Modern Theory
 
 Democritus proposed a philosophical explanation **without experimental measurements**. He argued that matter consists of very small units. Modern chemistry also describes matter with particles, but atoms contain protons and electrons, and usually neutrons. Hydrogen-1 is an example of an atom without neutrons. The word “indivisible” belongs to Democritus's historical model.
 
 In Aristotle's view, dividing matter did not end at a smallest unit. Measurements of atomic structure had not yet settled this disagreement.
+
+### Weighing Atoms Today
+
+Democritus could only reason, but today **a mass spectrometer measures atoms one beam at a time**. Heavier atoms bend less in the magnet, so their paths sort them by mass.
+
+<MassSpectrometerLab
+  title={<>From Guess to Measurement</>}
+  description={<>Choose neon or copper and compare where each isotope lands on the detector.</>}
+  samples={["neon", "copper"]}
+  labels={{
+    average: <>Average relative atomic mass</>,
+    choose: "Choose an element",
+    isotopes: <>Isotopes and abundance</>,
+    north: "N",
+    radius: <>Path radius</>,
+    ratio: <>Ratio of radii</>,
+    south: "S",
+    view: "Mass spectrometer",
+  }}
+/>
 
 ## From Philosophy to Chemistry
 

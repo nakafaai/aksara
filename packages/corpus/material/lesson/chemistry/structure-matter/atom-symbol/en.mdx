@@ -25,6 +25,25 @@ Read it like this:
 - <InlineMath math="Z" /> is the atomic number
 - <InlineMath math="A" /> is the mass number
 
+### Charge in the Corner
+
+An atomic symbol can also carry a charge at its upper right, as in <InlineMath math="\mathrm{Mg^{2+}}" /> and <InlineMath math="\mathrm{O^{2-}}" />. That **charge counts the electrons lost or gained**, which you can watch move here.
+
+<IonFormationLab
+  title={<>Where an Ion's Charge Comes From</>}
+  description={<>Choose magnesium with oxygen or potassium with chlorine and count the electrons that move.</>}
+  pairs={["magnesium-oxygen", "potassium-chlorine"]}
+  labels={{
+    choose: "Choose a pair of atoms",
+    metalRadius: <>Metal radius</>,
+    metalShells: <>Metal shells</>,
+    nonmetalRadius: <>Nonmetal radius</>,
+    nonmetalShells: <>Nonmetal shells</>,
+    progress: "Electron transfer",
+    view: "Metal and nonmetal atoms becoming ions",
+  }}
+/>
+
 ## Reading Mass and Atomic Numbers
 
 Choose an atom below, then match the two numbers in its symbol. The **upper-left number is the mass number** <InlineMath math="A" />, while the lower-left number is the atomic number <InlineMath math="Z" />. Their positions determine which proton, neutron, or electron count to calculate.
@@ -93,7 +112,7 @@ Every particle count comes from the two numbers in the symbol <InlineMath math="
 
 <MathVisual
   title={<>From A and Z to Particle Counts</>}
-  description={<>Protons (orange), neutrons (gray) and electrons (violet) in neutral carbon-12, sodium-23 and chlorine-35. One grid step up is 4 particles.</>}
+  description={<>Protons (orange), neutrons (gray) and electrons (violet) in neutral carbon-12, sodium-23 and chlorine-35. One grid step up is <InlineMath math="4" /> particles.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -2, max: 11 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -122,6 +141,22 @@ Every particle count comes from the two numbers in the symbol <InlineMath math="
   }}
 />
 
+### Telling the Three Particles Apart
+
+The numbers in a symbol count three different particles, and **a magnetic field tells them apart by charge and mass**: the proton and the electron curl opposite ways, the neutron flies straight.
+
+<ParticleTrackLab
+  title={<>Protons, Electrons and Neutrons in a Field</>}
+  description={<>Turn the field up and compare how tightly each track curls.</>}
+  labels={{
+    electron: <>Electron path radius</>,
+    field: "Magnetic field strength",
+    proton: <>Proton path radius</>,
+    ratio: <>Ratio of radii</>,
+    view: "Particle tracks in a magnetic field",
+  }}
+/>
+
 ## Carbon Example
 
 For a carbon atom with mass number <InlineMath math="12" />, the symbol is written:
@@ -142,7 +177,7 @@ Here are the three counts for carbon-12 as columns, one grid step for <InlineMat
 
 <MathVisual
   title={<>Particles in Carbon-12</>}
-  description={<>Protons, neutrons and electrons of a neutral carbon-12 atom. One grid step up is 2 particles.</>}
+  description={<>Protons, neutrons and electrons of a neutral carbon-12 atom. One grid step up is <InlineMath math="2" /> particles.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },

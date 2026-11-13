@@ -59,7 +59,7 @@ Prüf die Frage des Demokrit mit Zahlen. Halbier ein <InlineMath math="1\ \mathr
 
 <MathVisual
   title={<>Siebenundzwanzig Halbierungen bis zum Atom</>}
-  description={<>Größe eines Korns nach jeder Halbierung, ab 1 cm. Waagerecht: Ein Gitterschritt entspricht 3 Halbierungen. Senkrecht: Ein Gitterschritt nach unten ist zehnmal kleiner.</>}
+  description={<>Größe eines Korns nach jeder Halbierung, ab <InlineMath math="1\text{ cm}" />. Waagerecht: Ein Gitterschritt entspricht <InlineMath math="3" /> Halbierungen. Senkrecht: Ein Gitterschritt nach unten ist zehnmal kleiner.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.5, max: 9.5 } },
@@ -140,7 +140,7 @@ Verfolg das Gedankenexperiment in Zahlen. Jeder Schnitt halbiert das Stück, nac
 
 <MathVisual
   title={<>Ein Stück immer wieder halbieren</>}
-  description={<>Ein 8 Einheiten hohes Stück wird viermal halbiert. Jede Säule ist halb so hoch wie die vorige.</>}
+  description={<>Ein <InlineMath math="8" /> Einheiten hohes Stück wird viermal halbiert. Jede Säule ist halb so hoch wie die vorige.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 11.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
@@ -163,11 +163,50 @@ Verfolg das Gedankenexperiment in Zahlen. Jeder Schnitt halbiert das Stück, nac
   }}
 />
 
+### Formen aus winzigen Teilchen
+
+Demokrit vermutete, dass **die Form der winzigen Teilchen die Form dessen bestimmt, was wir sehen**. Ein Salzkristall prüft diese Ahnung heute: Sein Würfel entsteht aus Ionen, die würfelförmig gestapelt sind.
+
+<IonLatticeLab
+  title={<>Salzwürfel aus gestapelten Teilchen</>}
+  description={<>Wechsle zwischen Kochsalz und Kaliumchlorid und lass den Kristall Zelle für Zelle wachsen.</>}
+  crystals={["sodium-chloride", "potassium-chloride"]}
+  labels={{
+    cells: "Elementarzellen pro Kante",
+    choose: "Kristall wählen",
+    count: <>Anzahl der Ionen</>,
+    formula: <>Formel</>,
+    ions: <>Ionen und ihre Radien</>,
+    lattice: <>Kante der Elementarzelle</>,
+    view: "Ionengitter",
+  }}
+/>
+
 ## Warum die Atomidee noch keine moderne Theorie war
 
 Demokrit entwickelte eine philosophische Erklärung **ohne experimentelle Messdaten**. Er nahm an, dass Materie aus sehr kleinen Einheiten besteht. Auch die moderne Chemie beschreibt Materie mit Teilchen, doch Atome enthalten Protonen und Elektronen sowie meistens Neutronen. Wasserstoff-1 ist ein Beispiel für ein Atom ohne Neutronen. Das Wort „unteilbar“ gehört zu Demokrits historischem Modell.
 
 Nach Aristoteles endete die Teilung der Materie nicht bei einer kleinsten Einheit. Messungen der Atomstruktur hatten diese Meinungsverschiedenheit damals noch nicht geklärt.
+
+### Atome heute wiegen
+
+Demokrit konnte nur nachdenken, heute **misst ein Massenspektrometer Atome Strahl für Strahl**. Schwerere Atome werden im Magneten weniger abgelenkt, also sortieren ihre Bahnen sie nach der Masse.
+
+<MassSpectrometerLab
+  title={<>Von der Vermutung zur Messung</>}
+  description={<>Wähle Neon oder Kupfer und vergleiche, wo jedes Isotop auf dem Detektor landet.</>}
+  samples={["neon", "copper"]}
+  labels={{
+    average: <>Mittlere relative Atommasse</>,
+    choose: "Element wählen",
+    isotopes: <>Isotope und Häufigkeit</>,
+    north: "N",
+    radius: <>Bahnradius</>,
+    ratio: <>Verhältnis der Radien</>,
+    south: "S",
+    view: "Massenspektrometer",
+  }}
+/>
 
 ## Von der Philosophie zur Chemie
 

@@ -111,8 +111,8 @@ The ratio <InlineMath math="1:2" /> is a simple whole-number ratio. This pattern
 With carbon fixed at <InlineMath math="12\ \mathrm{g}" />, carbon monoxide holds <InlineMath math="16\ \mathrm{g}" /> of oxygen and carbon dioxide <InlineMath math="32\ \mathrm{g}" />, one grid step for <InlineMath math="8\ \mathrm{g}" />. The second bar is exactly twice the first, which Dalton read as one oxygen atom against two.
 
 <MathVisual
-  title={<>Oxygen per 12 g of Carbon</>}
-  description={<>Oxygen combined with 12 g of carbon in <InlineMath math="\mathrm{CO}" /> and <InlineMath math="\mathrm{CO_2}" />. One grid step up is 8 g.</>}
+  title={<>Oxygen per <InlineMath math="12\text{ g}" /> of Carbon</>}
+  description={<>Oxygen combined with <InlineMath math="12\text{ g}" /> of carbon in <InlineMath math="\mathrm{CO}" /> and <InlineMath math="\mathrm{CO_2}" />. One grid step up is <InlineMath math="8\text{ g}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 5 }, z: { min: -1.5, max: 1.5 } },
@@ -156,7 +156,7 @@ Dalton's solid spheres can't explain alpha particles that bounce back from gold 
 
 <MathVisual
   title={<>Only a Near Miss Bounces Back</>}
-  description={<>Deflection angle of an alpha particle against how far it passes from the nucleus. Horizontal: one grid step is half of the distance <InlineMath math="b_0" />. Vertical: one grid step is 30 degrees.</>}
+  description={<>Deflection angle of an alpha particle against how far it passes from the nucleus. Horizontal: one grid step is half of the distance <InlineMath math="b_0" />. Vertical: one grid step is <InlineMath math="30" /> degrees.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 10.5 }, y: { min: -0.3, max: 5.5 } },
@@ -180,6 +180,22 @@ Dalton's solid spheres can't explain alpha particles that bounce back from gold 
   }}
 />
 
+### Thomson Finds the Electron
+
+The first crack in Dalton's solid atom came from a glowing tube. **The beam bends toward the positive plate**, so it carries negative charge, and Thomson called its particles electrons.
+
+<CathodeRayLab
+  title={<>A Beam That Bends</>}
+  description={<>Raise the plate voltage and watch the spot shift on the screen.</>}
+  labels={{
+    anode: <>Accelerating voltage</>,
+    field: <>Electric field between the plates</>,
+    plates: "Plate voltage",
+    spot: <>Spot shift on the screen</>,
+    view: "Cathode ray tube",
+  }}
+/>
+
 ### Rutherford Finds a Nucleus
 
 Dalton's model treated the atom as a solid ball. Geiger and Marsden fired alpha particles at a thin sheet of gold. Most particles passed almost straight through, but a few turned sharply and some even bounced back. Rutherford concluded that **the atom's mass and positive charge sit in a very small nucleus**, about twenty thousand times smaller than the atom.
@@ -194,6 +210,22 @@ Dalton's model treated the atom as a solid ball. Geiger and Marsden fired alpha 
     nucleus: <>Gold nucleus radius</>,
     ratio: <>Atom versus nucleus</>,
     view: "Alpha particle paths near a gold nucleus",
+  }}
+/>
+
+Rutherford's nucleus left a puzzle: why do electrons not spiral into it? Bohr answered with fixed orbits, and **each jump between orbits gives light of one exact colour**, the lines hydrogen shows.
+
+<BohrEmissionLab
+  title={<>Bohr's Fixed Orbits</>}
+  description={<>Choose a jump down to the second level and read the colour it gives off.</>}
+  falls={[{ from: 3, to: 2 }, { from: 4, to: 2 }, { from: 5, to: 2 }]}
+  labels={{
+    choose: "Choose an electron jump",
+    energy: <>Photon energy</>,
+    frequency: <>Photon frequency</>,
+    transition: <>Electron jump</>,
+    view: "Bohr model of hydrogen",
+    wavelength: <>Wavelength</>,
   }}
 />
 

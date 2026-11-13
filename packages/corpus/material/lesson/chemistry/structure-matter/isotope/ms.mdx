@@ -107,7 +107,7 @@ Paparan ini menunjukkan nukleus setiap isotop hidrogen, dengan proton berwarna j
 
 <MathVisual
   title={<>Tiga Isotop Hidrogen</>}
-  description={<>Proton (jingga, belakang) dan neutron (kelabu, hadapan) dalam hidrogen-1, hidrogen-2 dan hidrogen-3. Satu petak grid ke atas mewakili 1 zarah.</>}
+  description={<>Proton (jingga, belakang) dan neutron (kelabu, hadapan) dalam hidrogen-1, hidrogen-2 dan hidrogen-3. Satu petak grid ke atas mewakili <InlineMath math="1" /> zarah.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -132,6 +132,24 @@ Paparan ini menunjukkan nukleus setiap isotop hidrogen, dengan proton berwarna j
   }}
 />
 
+### Satu Awan Elektron untuk Semua Isotop
+
+Protium, deuterium dan tritium hanya berbeza pada nukleus. Setiap satu masih ada <InlineMath math="1" /> proton dan <InlineMath math="1" /> elektron, jadi **ketiga-tiganya berkongsi awan elektron yang sama** dan bertindak balas hampir serupa.
+
+<OrbitalCloudLab
+  title={<>Isotop Berkongsi Orbital</>}
+  description={<>Tukar antara orbital hidrogen yang boleh digunakan oleh setiap isotop hidrogen.</>}
+  orbitals={["1s", "2s", "2pz"]}
+  labels={{
+    angular: <>Nod sudut</>,
+    choose: "Pilih orbital",
+    numbers: <>Nombor kuantum</>,
+    orbital: <>Orbital</>,
+    radial: <>Nod jejarian</>,
+    view: "Awan elektron orbital",
+  }}
+/>
+
 ## Isotop Karbon Berbeza dari Segi Bilangan Neutron
 
 Karbon sentiasa mempunyai <InlineMath math="6" /> proton. Dalam <InlineMath math="{}^{12}_{6}\mathrm{C}" />, <InlineMath math="{}^{13}_{6}\mathrm{C}" /> dan <InlineMath math="{}^{14}_{6}\mathrm{C}" />, bilangan neutron bertambah.
@@ -153,7 +171,7 @@ Ion terbentuk apabila atom menerima atau kehilangan elektron. Isotop bagi unsur 
 | Ion | Elektron | Proton |
 | Isotop | Neutron | Proton |
 
-Sebagai contoh, <InlineMath math="\mathrm{C}^{+}" /> ialah ion karbon yang telah kehilangan satu elektron. Dengan 6 proton dan cas +1, bilangan elektronnya ialah <InlineMath math="6 - 1 = 5" />. Sebaliknya, <InlineMath math="{}^{14}_{6}\mathrm{C}" /> ialah isotop karbon kerana bilangan neutronnya berbeza daripada <InlineMath math="{}^{12}_{6}\mathrm{C}" />.
+Sebagai contoh, <InlineMath math="\mathrm{C}^{+}" /> ialah ion karbon yang telah kehilangan satu elektron. Dengan <InlineMath math="6" /> proton dan cas +1, bilangan elektronnya ialah <InlineMath math="6 - 1 = 5" />. Sebaliknya, <InlineMath math="{}^{14}_{6}\mathrm{C}" /> ialah isotop karbon kerana bilangan neutronnya berbeza daripada <InlineMath math="{}^{12}_{6}\mathrm{C}" />.
 
 Jika atom itu neutral, bilangan elektron tetap sama dengan bilangan proton:
 
@@ -192,6 +210,22 @@ Letakkan setiap nukleus mengikut bilangan neutronnya secara mengufuk dan bilanga
     c14: <InlineMath math="^{14}\mathrm{C}" />,
     n14: <InlineMath math="^{14}\mathrm{N}" />,
     o16: <InlineMath math="^{16}\mathrm{O}" />,
+  }}
+/>
+
+### Hanya Cas yang Membelokkan
+
+Ion berbeza daripada atomnya kerana cas, isotop pula kerana neutron. Dalam medan magnet **hanya zarah bercas yang melengkung**, manakala neutron kekal lurus.
+
+<ParticleTrackLab
+  title={<>Zarah Bercas dan Neutral</>}
+  description={<>Naikkan medan dan lihat laluan mana yang melengkung dan mana yang kekal lurus.</>}
+  labels={{
+    electron: <>Jejari lintasan elektron</>,
+    field: "Kekuatan medan magnet",
+    proton: <>Jejari lintasan proton</>,
+    ratio: <>Nisbah jejari</>,
+    view: "Jejak zarah dalam medan magnet",
   }}
 />
 

@@ -77,7 +77,7 @@ Sodium shows why position predicts behavior. Its single outer electron, in fuchs
 
 <MathVisual
   title={<>Sodium's Lone Outer Electron</>}
-  description={<>Sodium's 11 electrons in shells K, L and M, with the outer electron in fuchsia.</>}
+  description={<>Sodium's <InlineMath math="11" /> electrons in shells K, L and M, with the outer electron in fuchsia.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
@@ -112,6 +112,24 @@ Sodium shows why position predicts behavior. Its single outer electron, in fuchs
   }}
 />
 
+### Each Shell Reaches Farther
+
+Going down a group adds a shell, and **each new s cloud spreads farther from the nucleus**. That is the picture behind atoms growing larger down a group.
+
+<OrbitalCloudLab
+  title={<>Bigger Clouds Down a Group</>}
+  description={<>Step from the 1s to the 3s cloud and watch the radial nodes appear.</>}
+  orbitals={["1s", "2s", "3s"]}
+  labels={{
+    angular: <>Angular nodes</>,
+    choose: "Choose an orbital",
+    numbers: <>Quantum numbers</>,
+    orbital: <>Orbital</>,
+    radial: <>Radial nodes</>,
+    view: "Electron cloud of an orbital",
+  }}
+/>
+
 ## Four Periodic Properties
 
 Each property describes a different aspect of an atom. The trend arrows describe changes in atomic size, the energy needed to remove an electron, the energy change when an electron is added, and the attraction of shared electrons in a bond.
@@ -122,6 +140,25 @@ Each property describes a different aspect of an atom. The trend arrows describe
 - **Electronegativity** describes how strongly an atom attracts shared electrons in a bond.
 
 The difference between electron affinity and electronegativity lies in the electron's situation. Electron affinity describes the energy change when an electron is added to a gaseous atom. Electronegativity describes the attraction of shared electrons within a bond.
+
+### Radius Changes When Ions Form
+
+Read the radius readouts as the electron moves: **the metal shrinks when it loses its outer shell and the nonmetal swells** when it takes one more electron.
+
+<IonFormationLab
+  title={<>Atomic and Ionic Radii</>}
+  description={<>Choose lithium with fluorine or potassium with chlorine and compare the radii before and after.</>}
+  pairs={["lithium-fluorine", "potassium-chlorine"]}
+  labels={{
+    choose: "Choose a pair of atoms",
+    metalRadius: <>Metal radius</>,
+    metalShells: <>Metal shells</>,
+    nonmetalRadius: <>Nonmetal radius</>,
+    nonmetalShells: <>Nonmetal shells</>,
+    progress: "Electron transfer",
+    view: "Metal and nonmetal atoms becoming ions",
+  }}
+/>
 
 ## Trends Across Periods and Groups
 
@@ -141,7 +178,7 @@ Here are both trends in real data. Across a period the nucleus gains protons whi
 
 <MathVisual
   title={<>Ionization Energy across Two Periods</>}
-  description={<>First ionization energy for atomic numbers 3 to 18, period 2 (violet) and period 3 (orange). Horizontal: one grid step is 2 in atomic number. Vertical: one grid step is <InlineMath math="250\ \mathrm{kJ/mol}" />.</>}
+  description={<>First ionization energy for atomic numbers <InlineMath math="3" /> to <InlineMath math="18" />, period <InlineMath math="2" /> (violet) and period <InlineMath math="3" /> (orange). Horizontal: one grid step is <InlineMath math="2" /> in atomic number. Vertical: one grid step is <InlineMath math="250\ \mathrm{kJ/mol}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 1, max: 9.5 }, y: { min: 1, max: 9 } },
@@ -207,7 +244,7 @@ Compare elements **in the same period or group** so the reason is clear:
 
 | Pair | What changes? | Predicted trend |
 | :--- | :--- | :--- |
-| Na and Cl in period 3 | Both have outer electrons in shell M, but Cl has more protons and stronger effective nuclear attraction. | Cl has a smaller radius. Its first electron is harder to remove. |
+| Na and Cl in period <InlineMath math="3" /> | Both have outer electrons in shell M, but Cl has more protons and stronger effective nuclear attraction. | Cl has a smaller radius. Its first electron is harder to remove. |
 | Li and Na in group 1 | Li's valence electron is in shell L, while Na's is in shell M. Na has an extra inner shell that contributes shielding. | Na has a larger radius. Its first electron is easier to remove. |
 
 These comparisons explain general trends. For electron affinity or pairs such as Mg and Al, check the data and subshell arrangement because the general direction alone is insufficient.

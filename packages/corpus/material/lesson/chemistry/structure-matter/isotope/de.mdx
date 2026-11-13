@@ -107,7 +107,7 @@ Die Szene zeigt den Kern jedes Wasserstoffisotops, Protonen orange hinten, Neutr
 
 <MathVisual
   title={<>Drei Isotope des Wasserstoffs</>}
-  description={<>Protonen (orange, hinten) und Neutronen (grau, vorn) in Wasserstoff-1, -2 und -3. Ein Gitterschritt nach oben ist 1 Teilchen.</>}
+  description={<>Protonen (orange, hinten) und Neutronen (grau, vorn) in Wasserstoff-1, <InlineMath math="-2" /> und <InlineMath math="-3" />. Ein Gitterschritt nach oben ist <InlineMath math="1" /> Teilchen.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -132,6 +132,24 @@ Die Szene zeigt den Kern jedes Wasserstoffisotops, Protonen orange hinten, Neutr
   }}
 />
 
+### Eine Elektronenwolke für alle drei
+
+Protium, Deuterium und Tritium unterscheiden sich nur im Kern. Jedes hat weiter <InlineMath math="1" /> Proton und <InlineMath math="1" /> Elektron, also **teilen alle drei dieselben Elektronenwolken** und reagieren fast gleich.
+
+<OrbitalCloudLab
+  title={<>Isotope teilen ihre Orbitale</>}
+  description={<>Wechsle zwischen den Wasserstofforbitalen, die jedes Isotop des Wasserstoffs nutzen kann.</>}
+  orbitals={["1s", "2s", "2pz"]}
+  labels={{
+    angular: <>Winkelknoten</>,
+    choose: "Orbital wählen",
+    numbers: <>Quantenzahlen</>,
+    orbital: <>Orbital</>,
+    radial: <>Radialknoten</>,
+    view: "Elektronenwolke eines Orbitals",
+  }}
+/>
+
 ## Kohlenstoffisotope unterscheiden sich in der Neutronenzahl
 
 Kohlenstoff hat immer <InlineMath math="6" /> Protonen. In <InlineMath math="{}^{12}_{6}\mathrm{C}" />, <InlineMath math="{}^{13}_{6}\mathrm{C}" /> und <InlineMath math="{}^{14}_{6}\mathrm{C}" /> erhöht sich die Neutronenzahl.
@@ -153,7 +171,7 @@ Eine Ionenladung entsteht, wenn sich die Elektronenzahl ändert. Isotope desselb
 | Ion | Elektronen | Protonen |
 | Isotop | Neutronen | Protonen |
 
-So ist <InlineMath math="\mathrm{C}^{+}" /> ein Kohlenstoffion, das ein Elektron abgegeben hat. Bei 6 Protonen und der Ladung +1 besitzt es <InlineMath math="6 - 1 = 5" /> Elektronen. <InlineMath math="{}^{14}_{6}\mathrm{C}" /> ist dagegen ein Kohlenstoffisotop, weil seine Neutronenzahl von derjenigen in <InlineMath math="{}^{12}_{6}\mathrm{C}" /> abweicht.
+So ist <InlineMath math="\mathrm{C}^{+}" /> ein Kohlenstoffion, das ein Elektron abgegeben hat. Bei <InlineMath math="6" /> Protonen und der Ladung +1 besitzt es <InlineMath math="6 - 1 = 5" /> Elektronen. <InlineMath math="{}^{14}_{6}\mathrm{C}" /> ist dagegen ein Kohlenstoffisotop, weil seine Neutronenzahl von derjenigen in <InlineMath math="{}^{12}_{6}\mathrm{C}" /> abweicht.
 
 Wenn das Atom neutral ist, sind Elektronen immer noch gleich Protonen:
 
@@ -192,6 +210,22 @@ Leg jeden Kern nach seinen Neutronen nach rechts und seinen Protonen nach oben. 
     c14: <InlineMath math="^{14}\mathrm{C}" />,
     n14: <InlineMath math="^{14}\mathrm{N}" />,
     o16: <InlineMath math="^{16}\mathrm{O}" />,
+  }}
+/>
+
+### Nur Ladung lenkt ab
+
+Ein Ion unterscheidet sich von seinem Atom durch die Ladung, ein Isotop durch Neutronen. Im Magnetfeld **krümmen sich nur geladene Teilchen**, das Neutron bleibt auf gerader Linie.
+
+<ParticleTrackLab
+  title={<>Geladene und neutrale Teilchen</>}
+  description={<>Erhöh das Feld und sieh, welche Spuren sich krümmen und welche gerade bleiben.</>}
+  labels={{
+    electron: <>Bahnradius des Elektrons</>,
+    field: "Magnetische Flussdichte",
+    proton: <>Bahnradius des Protons</>,
+    ratio: <>Verhältnis der Radien</>,
+    view: "Teilchenspuren im Magnetfeld",
   }}
 />
 
