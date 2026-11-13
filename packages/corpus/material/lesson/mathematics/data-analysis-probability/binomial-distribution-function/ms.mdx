@@ -1,0 +1,242 @@
+export const metadata = {
+    title: "Fungsi Jisim Kebarangkalian Binomial",
+  description: "Semak andaian model binomial dan kira kebarangkalian tepat dengan fungsi jisim kebarangkaliannya.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-05-26",
+    dateModified: "2026-11-08",
+    subject: "Analisis Data dan Kebarangkalian",
+};
+
+## Sumbangan Jacob Bernoulli kepada Kebarangkalian
+
+Buku *Ars Conjectandi* tulisan Jacob Bernoulli diterbitkan selepas beliau meninggal dunia, pada tahun <InlineMath math="1713" />. Buku itu mengembangkan <Highlight>keputusan asas dalam kebarangkalian, termasuk hukum nombor besar Bernoulli</Highlight>, dan mengkaji percubaan berulang yang berakhir dengan kejayaan atau kegagalan, iaitu percubaan yang kini membawa namanya.
+
+## Gabungan dan Kebarangkalian Asas
+
+Pengiraan binomial menggabungkan langkah **memilih kedudukan kejayaan** dengan langkah mencari kebarangkalian satu jujukan kesudahan. Gabungan mengira kedudukan yang mungkin, manakala petua kebarangkalian memberikan pemberat kepada setiap jujukan.
+
+Pertama, rumus gabungan untuk memilih objek:
+
+<BlockMath math="C_k^n = \binom{n}{k} = \frac{n!}{k!(n-k)!}" />
+
+Kedua, faktorial (pendaraban berturut-turut):
+
+<BlockMath math="n! = n \times (n-1) \times \cdots \times 3 \times 2 \times 1" />
+
+Mengikut takrif, <InlineMath math="0!=1" />.
+
+Dan yang ketiga, hubungan antara kebarangkalian satu peristiwa dengan pelengkapnya:
+
+<BlockMath math="P(A) + P(A^c) = 1" />
+
+Dalam persamaan ini, <InlineMath math="P(A)" /> ialah kebarangkalian satu peristiwa berlaku dan <InlineMath math="P(A^c)" /> ialah kebarangkalian peristiwa itu tidak berlaku.
+## Konsep Taburan Binomial
+
+Pemboleh ubah rawak binomial <Highlight>mengira kejayaan dalam percubaan berulang</Highlight>. Setiap percubaan ada dua kesudahan yang saling eksklusif, seperti kepala atau ekor, dan label **kejayaan** menandakan kesudahan yang sedang dikira.
+
+Model ini hanya sesuai apabila bilangan percubaan tetap, setiap percubaan tak bersandar, dan kebarangkalian kejayaan kekal sama. Tak bersandar bermaksud keputusan percubaan yang lebih awal tidak mengubah kebarangkalian dalam percubaan seterusnya.
+
+**Syarat eksperimen binomial**:
+
+- Hanya ada dua kesudahan yang mungkin: kejayaan atau kegagalan
+
+- Bilangan eksperimen ditentukan lebih awal dan tetap
+
+- Setiap eksperimen tak bersandar antara satu sama lain
+
+- Kebarangkalian kejayaan sama bagi setiap eksperimen
+
+## Fungsi Jisim Kebarangkalian Binomial
+
+Untuk eksperimen binomial dengan kebarangkalian kejayaan <InlineMath math="p" /> dan kebarangkalian kegagalan <InlineMath math="q = 1-p" />, fungsi jisim kebarangkalian memberikan kebarangkalian mendapat tepat <InlineMath math="x" /> kejayaan dalam <InlineMath math="n" /> **percubaan tak bersandar**:
+
+<BlockMath math="\begin{aligned} &amp;P(X=x) = \binom{n}{x}p^xq^{n-x}, \\ &amp;x=0{,}1{,}2{,}\ldots{,}n \end{aligned}" />
+
+Di sini:
+
+- <InlineMath math="n" /> = bilangan percubaan yang tetap
+
+- <InlineMath math="x" /> = bilangan kejayaan yang dikira
+
+- <InlineMath math="p" /> = kebarangkalian kejayaan dalam satu percubaan
+
+- <InlineMath math="q = 1-p" /> = kebarangkalian kegagalan dalam satu percubaan
+
+Sebelum menggunakan rumus ini, semak keempat-empat syarat binomial. Kalau tidak, model kebarangkalian ini mungkin tidak menggambarkan eksperimen itu.
+## Eksperimen Syiling
+
+Mari lihat satu contoh mudah. Katakan kita ada sekeping syiling adil. Ruang sampelnya mengandungi kepala dan ekor:
+
+<BlockMath math="S = \{\text{kepala},\text{ekor}\}" />
+
+Kalau kita anggap mendapat ekor sebagai "kejayaan", maka kebarangkalian kejayaan ialah <InlineMath math="p = \frac{1}{2}" />. Dengan sendirinya, kebarangkalian kegagalan (mendapat kepala) ialah <InlineMath math="q = 1 - \frac{1}{2} = \frac{1}{2}" />.
+
+**Soalan**: Kalau kita lambung syiling ini <InlineMath math="7" /> kali berturut-turut, apakah kebarangkalian mendapat ekor tepat <InlineMath math="5" /> kali?
+
+**Penyelesaian**:
+
+Pertama, kenal pasti parameternya:
+- <InlineMath math="n = 7" /> (bilangan lambungan)
+- <InlineMath math="x = 5" /> (bilangan ekor yang dikehendaki)
+- <InlineMath math="p = \frac{1}{2}" /> (kebarangkalian mendapat ekor)
+- <InlineMath math="q = \frac{1}{2}" /> (kebarangkalian mendapat kepala)
+
+Sekarang gunakan fungsi jisim kebarangkalian binomial:
+
+<MathContainer>
+<BlockMath math="P(X=5) = \binom{7}{5} \left(\frac{1}{2}\right)^5 \left(\frac{1}{2}\right)^{7-5}" />
+<BlockMath math="= \binom{7}{5} \left(\frac{1}{2}\right)^5 \left(\frac{1}{2}\right)^2" />
+<BlockMath math="= \binom{7}{5} \left(\frac{1}{2}\right)^7" />
+</MathContainer>
+
+Kira <InlineMath math="\binom{7}{5}" /> dahulu:
+
+<MathContainer>
+<BlockMath math="\binom{7}{5} = \frac{7!}{5!(7-5)!} = \frac{7!}{5! \cdot 2!}" />
+<BlockMath math="= \frac{7 \times 6 \times 5!}{5! \times 2 \times 1} = \frac{7 \times 6}{2} = \frac{42}{2} = 21" />
+</MathContainer>
+
+Jadi pengiraan lengkapnya ialah:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} P(X=5) &amp;= 21 \times \frac{1}{2^7} \\ &amp;= 21 \times \frac{1}{128} \\ &amp;= \frac{21}{128} \end{aligned}" />
+</MathContainer>
+
+Kebarangkalian mendapat <InlineMath math="5" /> ekor dalam <InlineMath math="7" /> lambungan ialah <InlineMath math="\frac{21}{128}" /> atau lebih kurang <InlineMath math="16.4\%" />.
+
+<BarChart
+  title={<>Kebarangkalian Bilangan Ekor dalam Tujuh Lambungan</>}
+  description={<>Paksi mengufuk mengira bilangan ekor, bukan kedudukan sesuatu lambungan. Setiap palang memberikan kebarangkalian mendapat tepat bilangan itu.</>}
+  yAxisLabel="Kebarangkalian"
+  data={[
+    { name: "0", value: 0.0078125 },
+    { name: "1", value: 0.0546875 },
+    { name: "2", value: 0.1640625 },
+    { name: "3", value: 0.2734375 },
+    { name: "4", value: 0.2734375 },
+    { name: "5", value: 0.1640625 },
+    { name: "6", value: 0.0546875 },
+    { name: "7", value: 0.0078125 },
+  ]}
+  chartConfig={{ value: { label: "Kebarangkalian", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Palang bagi dua ekor dan lima ekor sama tinggi. Untuk syiling adil, **menukar kepala dengan ekor** tidak mengubah kebarangkalian. Kedua-dua peristiwa itu mengandungi <InlineMath math="21" /> jujukan yang sepadan daripada <InlineMath math="128" /> jujukan yang sama boleh jadi.
+
+## Soalan Latihan
+
+Anggap setiap percubaan **tak bersandar** dan kebarangkalian kejayaan tidak berubah. Untuk soalan bola, pilih setiap bola secara rawak selepas bola di dalam beg dicampurkan semula. Dalam peperiksaan itu, setiap soalan ada tepat satu jawapan betul dan setiap pilihan sama berkemungkinan diteka.
+
+Setiap soalan mengulang satu percubaan dengan bilangan kali yang tetap dan bertanya tentang bilangan kejayaan yang tepat, jadi fungsi jisim kebarangkalian binomial boleh terus digunakan. Kenal pasti bilangan percubaan, kebarangkalian kejayaan dan bilangan kejayaan yang dikehendaki sebelum kamu mengira.
+
+1. Di dalam sebuah beg ada <InlineMath math="10" /> biji bola yang sama sepenuhnya kecuali warnanya: <InlineMath math="6" /> biji bola merah dan <InlineMath math="4" /> biji bola biru. Kalau kita keluarkan <InlineMath math="5" /> biji bola satu demi satu dengan pengembalian (setiap bola yang dikeluarkan dimasukkan semula), apakah kebarangkalian mendapat tepat <InlineMath math="3" /> biji bola merah?
+
+2. Seorang pemanah ada kadar ketepatan <InlineMath math="80\%" /> untuk mengenai sasaran. Kalau dia melepaskan <InlineMath math="6" /> anak panah, apakah kebarangkalian dia mengenai sasaran tepat <InlineMath math="4" /> kali?
+
+3. Satu peperiksaan aneka pilihan ada <InlineMath math="4" /> pilihan jawapan bagi setiap soalan. Seorang murid meneka semua jawapan secara rawak untuk <InlineMath math="8" /> soalan. Apakah kebarangkalian dia menjawab tepat <InlineMath math="2" /> soalan dengan betul?
+
+### Skema Jawapan
+
+**Soalan 1**. Cari kebarangkalian mendapat tepat tiga biji bola merah dalam lima cabutan **dengan pengembalian**.
+
+**Langkah 1**: Kenal pasti parameter.
+
+- <InlineMath math="n = 5" /> (bilangan cabutan)
+- <InlineMath math="x = 3" /> (bilangan bola merah yang dikehendaki)
+- <InlineMath math="p = \frac{6}{10} = 0.6" /> (kebarangkalian mendapat **bola merah**)
+- <InlineMath math="q = 1 - 0.6 = 0.4" /> (kebarangkalian mendapat bola biru)
+
+**Langkah 2**: Kira dengan fungsi jisim kebarangkalian binomial.
+
+<MathContainer>
+<BlockMath math="P(X=3) = \binom{5}{3} (0.6)^3 (0.4)^2" />
+</MathContainer>
+
+Kira <InlineMath math="\binom{5}{3}" /> dahulu:
+
+<BlockMath math="\binom{5}{3} = \frac{5!}{3! \cdot 2!} = \frac{5 \times 4}{2 \times 1} = 10" />
+
+Kemudian:
+
+<MathContainer>
+<BlockMath math="= 10 \times (0.6)^3 \times (0.4)^2" />
+<BlockMath math="= 10 \times 0.216 \times 0.16 = 0.3456" />
+</MathContainer>
+
+Jadi, kebarangkalian mendapat tepat <InlineMath math="3" /> biji bola merah ialah <InlineMath math="0.3456" /> atau lebih kurang <InlineMath math="34.6\%" />.
+
+**Soalan 2**. Cari kebarangkalian mengenai sasaran tepat empat kali daripada enam anak panah.
+
+**Langkah 1**: Kenal pasti parameter.
+
+- <InlineMath math="n = 6" /> (bilangan anak panah yang dilepaskan)
+- <InlineMath math="x = 4" /> (bilangan kali mengenai sasaran yang dikehendaki)
+- <InlineMath math="p = 0.8" /> (kebarangkalian **mengenai sasaran**)
+- <InlineMath math="q = 0.2" /> (kebarangkalian tersasar)
+
+**Langkah 2**: Kira dengan fungsi jisim kebarangkalian binomial.
+
+<MathContainer>
+<BlockMath math="P(X=4) = \binom{6}{4} (0.8)^4 (0.2)^2" />
+</MathContainer>
+
+Kira <InlineMath math="\binom{6}{4}" /> dahulu:
+
+<BlockMath math="\binom{6}{4} = \frac{6!}{4! \cdot 2!} = \frac{6 \times 5}{2 \times 1} = 15" />
+
+Kemudian:
+
+<MathContainer>
+<BlockMath math="= 15 \times (0.8)^4 \times (0.2)^2" />
+<BlockMath math="\begin{aligned}  &amp;= 15 \times 0.4096 \times 0.04 \\ &amp;= 0.24576 \\ &amp;\approx 0.2458 \end{aligned}" />
+</MathContainer>
+
+Jadi, kebarangkalian pemanah itu mengenai sasaran tepat <InlineMath math="4" /> kali ialah <InlineMath math="0.2458" /> atau lebih kurang <InlineMath math="24.6\%" />.
+
+**Soalan 3**. Cari kebarangkalian mendapat tepat dua jawapan betul daripada lapan tekaan.
+
+**Langkah 1**: Kenal pasti parameter.
+
+- <InlineMath math="n = 8" /> (bilangan soalan)
+- <InlineMath math="x = 2" /> (bilangan jawapan betul yang dikehendaki)
+- <InlineMath math="p = \frac{1}{4} = 0.25" /> (kebarangkalian **menjawab dengan betul secara meneka**)
+- <InlineMath math="q = \frac{3}{4} = 0.75" /> (kebarangkalian menjawab dengan salah)
+
+**Langkah 2**: Kira dengan fungsi jisim kebarangkalian binomial.
+
+<MathContainer>
+<BlockMath math="P(X=2) = \binom{8}{2} (0.25)^2 (0.75)^6" />
+</MathContainer>
+
+Kira <InlineMath math="\binom{8}{2}" /> dahulu:
+
+<BlockMath math="\binom{8}{2} = \frac{8!}{2! \cdot 6!} = \frac{8 \times 7}{2 \times 1} = 28" />
+
+Kemudian:
+
+<MathContainer>
+<BlockMath math="= 28 \times (0.25)^2 \times (0.75)^6" />
+<BlockMath math="\begin{aligned} &= 28 \times 0.0625 \times 0.177978515625 \\ &= 0.31146240234375 \approx 0.3115\end{aligned}" />
+</MathContainer>
+
+Kebarangkalian murid itu menjawab tepat <InlineMath math="2" /> soalan dengan betul ialah lebih kurang <InlineMath math="0.3115" />, atau <InlineMath math="31.15\%" />.
+
+Taburan penuh bagi pemanah itu untuk <InlineMath math="6" /> anak panah dengan <InlineMath math="p = 0.8" />: palang-palangnya bertimbun di sebelah kanan. Palang pada <InlineMath math="4" /> kali kena sasaran ialah <InlineMath math="0.2458" />, iaitu jawapan Soalan 2, manakala <InlineMath math="5" /> kali kena sasaran ialah bilangan yang paling berkemungkinan, dengan kebarangkalian <InlineMath math="0.3932" />.
+
+<BarChart
+  title={<>Semua kesudahan bagi <InlineMath math="X \sim B(6;\ 0.8)" /></>}
+  description={<>Palang <InlineMath math="P(X = k) = \binom{6}{k} 0.8^k 0.2^{6-k}" /> untuk <InlineMath math="k = 0" /> hingga <InlineMath math="6" /> kali kena sasaran.</>}
+  yAxisLabel="Kebarangkalian"
+  data={[1, 6, 15, 20, 15, 6, 1].map((c, k) => ({ name: String(k), value: c * 0.8 ** k * 0.2 ** (6 - k) }))}
+  chartConfig={{ value: { label: "Kebarangkalian", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Meneka <InlineMath math="8" /> soalan dengan <InlineMath math="p = \tfrac14" />: bilangan yang paling berkemungkinan ialah <InlineMath math="2" /> jawapan betul, dengan kebarangkalian <InlineMath math="0.3115" />, iaitu jawapan Soalan 3. Kalau digabungkan, kebarangkalian mendapat enam atau lebih jawapan betul kurang daripada <InlineMath math="0.005" />.
+
+<BarChart
+  title={<>Semua kesudahan bagi <InlineMath math="X \sim B\left(8,\ \tfrac14\right)" /></>}
+  description={<>Palang <InlineMath math="P(X = k) = \binom{8}{k} 0.25^k 0.75^{8-k}" /> untuk <InlineMath math="k = 0" /> hingga <InlineMath math="8" /> jawapan betul.</>}
+  yAxisLabel="Kebarangkalian"
+  data={[1, 8, 28, 56, 70, 56, 28, 8, 1].map((c, k) => ({ name: String(k), value: c * 0.25 ** k * 0.75 ** (8 - k) }))}
+  chartConfig={{ value: { label: "Kebarangkalian", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
