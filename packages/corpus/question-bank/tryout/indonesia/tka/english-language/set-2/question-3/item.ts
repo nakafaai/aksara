@@ -2,27 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "descriptive",
-    topic: "classification",
+    cognitiveLevel: "inferential",
+    contentDomain: "recount",
+    topic: "cause-effect",
   },
-  stimulus: "library-boat",
+  stimulus: "estuary",
   versions: {
     en: {
-      columns: ["Movement", "Moisture", "Access"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Elastic shelf cords",
+          correct: true,
+          label: "$$1{,}443$$ birds",
         },
         {
-          column: 2,
-          label: "Sealed book boxes",
+          correct: false,
+          label: "$$1{,}468$$ birds",
         },
         {
-          column: 3,
-          label: "A folding ramp with raised edges",
+          correct: false,
+          label: "$$1{,}581$$ birds",
+        },
+        {
+          correct: false,
+          label: "$$1{,}158$$ birds",
+        },
+        {
+          correct: false,
+          label: "$$665$$ birds",
         },
       ],
     },
