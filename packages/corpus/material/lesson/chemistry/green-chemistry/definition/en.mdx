@@ -124,6 +124,30 @@ Compare two electricity supplies for the same reaction. The direct products rema
 | At the generator | Combustion releases carbon dioxide | No fuel combustion during panel operation |
 | Across the life cycle | Mining, materials, construction, operation, waste | Materials, panel manufacture, construction, end of use |
 
+### One Atom Changes the Hazard
+
+A safer process design starts with knowing the substances. Compare <InlineMath math="\mathrm{CO}" /> with <InlineMath math="\mathrm{CO_2}" />. They differ by only one oxygen atom, yet **carbon monoxide is highly toxic** because it binds to the haemoglobin in blood, while carbon dioxide is far less harmful at normal levels. Methanol is also toxic if swallowed, so a process that uses it needs safe containers and procedures.
+
+<MoleculeShapeLab
+  title={<>Substances in the Methanol Process</>}
+  description={<>Compare the shapes of carbon monoxide, carbon dioxide, and methanol.</>}
+  molecules={[
+    { id: "carbon-monoxide", name: "Carbon monoxide" },
+    { id: "carbon-dioxide", name: "Carbon dioxide" },
+    { id: "methanol", name: "Methanol" },
+  ]}
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Choose a molecule",
+    fill: <>Space-filling model</>,
+    formula: <>Molecular formula</>,
+    mass: <>Relative molecular mass</>,
+    shape: <>Bond angle or length</>,
+    view: "Three-dimensional molecular model",
+  }}
+/>
+
+
 ## Methanol from Carbon Dioxide
 
 Methanol is used as an industrial feedstock and fuel. Conventional production often starts from fossil feedstocks. One process under development reacts carbon dioxide with hydrogen over a catalyst.
@@ -170,6 +194,33 @@ The reactor turns carbon dioxide into methanol by <InlineMath math="\mathrm{CO_2
     o: <InlineMath math="\mathrm{O}:\ 2=1+1" />,
   }}
 />
+
+### Two Routes to Methanol
+
+Starting from carbon dioxide, every methanol molecule comes with one water molecule as a by-product. Drag the slider and watch the second oxygen atom of <InlineMath math="\mathrm{CO_2}" /> end up in the water. Then choose the route from carbon monoxide: **every reactant atom enters the methanol**, so its atom economy is <InlineMath math="100\%" /> instead of <InlineMath math="64\%" />.
+
+<ReactionBalanceLab
+  title={<>Atom Economy of Two Methanol Routes</>}
+  description={<>Compare the route from carbon dioxide with the route from carbon monoxide.</>}
+  reactions={[
+    { id: "methanol-synthesis", name: "Methanol from carbon dioxide", tab: <InlineMath math="\mathrm{CO_2}" /> },
+    { id: "carbon-monoxide-methanol", name: "Methanol from carbon monoxide", tab: <InlineMath math="\mathrm{CO}" /> },
+  ]}
+  reading="economy"
+  labels={{
+    atoms: <>Atoms of each element</>,
+    choose: "Choose a reaction",
+    economy: <>Atom economy</>,
+    equation: <>Balanced equation</>,
+    mass: <>Mass of reactants and products</>,
+    molecules: <>Number of molecules</>,
+    products: <>Products</>,
+    progress: "Reaction progress",
+    reactants: <>Reactants</>,
+    view: "Reaction at the level of atoms",
+  }}
+/>
+
 
 ## Checking Green Claims
 

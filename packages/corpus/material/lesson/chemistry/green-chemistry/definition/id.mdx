@@ -126,6 +126,30 @@ Bandingkan dua pasokan listrik untuk reaksi yang sama. Produk langsungnya tetap 
 | Di pembangkit | Pembakaran menghasilkan karbon dioksida | Tidak ada pembakaran bahan bakar saat panel bekerja |
 | Sepanjang daur hidup | Tambang, bahan, konstruksi, operasi, limbah | Bahan, pembuatan panel, konstruksi, akhir pemakaian |
 
+### Satu Atom Mengubah Bahaya
+
+Rancangan proses yang lebih aman dimulai dari mengenali zatnya. Bandingkan <InlineMath math="\mathrm{CO}" /> dan <InlineMath math="\mathrm{CO_2}" />. Selisihnya hanya satu atom oksigen, tetapi **karbon monoksida sangat beracun** karena mengikat hemoglobin dalam darah, sedangkan karbon dioksida jauh kurang berbahaya pada kadar biasa. Metanol juga beracun kalau tertelan, jadi proses yang memakainya perlu wadah dan prosedur yang aman.
+
+<MoleculeShapeLab
+  title={<>Zat dalam Proses Metanol</>}
+  description={<>Bandingkan bentuk karbon monoksida, karbon dioksida, dan metanol.</>}
+  molecules={[
+    { id: "carbon-monoxide", name: "Karbon monoksida" },
+    { id: "carbon-dioxide", name: "Karbon dioksida" },
+    { id: "methanol", name: "Metanol" },
+  ]}
+  labels={{
+    atoms: <>Atom penyusun</>,
+    choose: "Pilih molekul",
+    fill: <>Model ruang</>,
+    formula: <>Rumus molekul</>,
+    mass: <>Massa molekul relatif</>,
+    shape: <>Sudut atau panjang ikatan</>,
+    view: "Model molekul tiga dimensi",
+  }}
+/>
+
+
 ## Metanol dari Karbon Dioksida
 
 Metanol dipakai sebagai bahan baku industri dan bahan bakar. Produksi konvensionalnya sering memakai bahan baku fosil. Salah satu proses yang sedang dikembangkan mereaksikan karbon dioksida dengan hidrogen di atas katalis.
@@ -172,6 +196,33 @@ Reaktor mengubah karbon dioksida menjadi metanol lewat <InlineMath math="\mathrm
     o: <InlineMath math="\mathrm{O}:\ 2=1+1" />,
   }}
 />
+
+### Dua Jalan Menuju Metanol
+
+Dari karbon dioksida, setiap molekul metanol datang bersama satu molekul air sebagai produk samping. Geser slider dan lihat atom oksigen kedua dari <InlineMath math="\mathrm{CO_2}" /> berakhir di air. Lalu pilih jalan dari karbon monoksida: **semua atom pereaksi masuk ke metanol**, jadi ekonomi atomnya <InlineMath math="100\%" />, bukan <InlineMath math="64\%" />.
+
+<ReactionBalanceLab
+  title={<>Ekonomi Atom Dua Rute Metanol</>}
+  description={<>Bandingkan jalan dari karbon dioksida dan dari karbon monoksida.</>}
+  reactions={[
+    { id: "methanol-synthesis", name: "Metanol dari karbon dioksida", tab: <InlineMath math="\mathrm{CO_2}" /> },
+    { id: "carbon-monoxide-methanol", name: "Metanol dari karbon monoksida", tab: <InlineMath math="\mathrm{CO}" /> },
+  ]}
+  reading="economy"
+  labels={{
+    atoms: <>Jumlah atom tiap unsur</>,
+    choose: "Pilih reaksi",
+    economy: <>Ekonomi atom</>,
+    equation: <>Persamaan reaksi</>,
+    mass: <>Massa pereaksi dan produk</>,
+    molecules: <>Jumlah molekul</>,
+    products: <>Produk</>,
+    progress: "Jalannya reaksi",
+    reactants: <>Pereaksi</>,
+    view: "Reaksi pada tingkat atom",
+  }}
+/>
+
 
 ## Memeriksa Klaim Hijau
 
