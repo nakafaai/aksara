@@ -100,6 +100,7 @@ layer(NodeServices.layer)("material registry", (it) => {
           "faecher/ki-und-data-science/ki-programmierung/rechenoperatoren",
           "subjects/ai-ds/ai-programming/arithmetic-operator",
           "materi/ai-ds/pemrograman-ai/operator-aritmatika",
+          "subjek/ai-ds/pengaturcaraan-ai/operator-aritmetik",
           "faecher/biologie/vielfalt-der-lebewesen/bakterien",
           "subjects/biology/biodiversity/bacteria",
           "materi/biologi/keanekaragaman-makhluk-hidup/bakteri",
