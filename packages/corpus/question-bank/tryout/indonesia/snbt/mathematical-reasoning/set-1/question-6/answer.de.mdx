@@ -1,46 +1,22 @@
-Jede Aussage muss einzeln geprüft werden. Damit es schnell geht, **schreibst du die Kosten zuerst als Formel im berechneten Gewicht** <InlineMath math="w" /> und bestimmst dann für jedes Paket das berechnete Gewicht aus dem Volumengewicht und der Regel für den Überschuss von <InlineMath math="0{,}3\text{ kg}" />.
+Das Wasser füllt den Zylinder von unten, seine Höhe ist also **das Wasservolumen geteilt durch die Grundfläche des Tanks**.
 
-# Die Kostenformel je Zone
+# Volumen des einlaufenden Wassers
 
-Die Kosten sind die Bearbeitungsgebühr plus der Tarif für das erste Kilogramm plus der Tarif für die übrigen <InlineMath math="w-1" /> Kilogramm. Diese beiden kurzen Formen **gelten für alle Aussagen**.
+Aus der Dachfläche <InlineMath math="77\text{ m}^2" />, dem Niederschlag 0,025 m und **dem Wirkungsgrad von 80 %** folgt
 
-<BlockMath math="\begin{aligned}
-\text{Java} &: 5{.}000+18{.}000+12{.}000(w-1)=12{.}000w+11{.}000\\
-\text{außerhalb Javas} &: 5{.}000+30{.}000+20{.}000(w-1)=20{.}000w+15{.}000
-\end{aligned}" />
+<BlockMath math="V=77\cdot0{,}025\cdot0{,}8=1{,}54\text{ m}^3" />
 
-# Die erste Aussage zu zwei Paketen nach Java
+# Grundfläche und Wasserhöhe
 
-Der erste Karton hat das Volumengewicht <InlineMath math="\tfrac{50\cdot40\cdot30}{6{.}000}=10\text{ kg}" />, mehr als <InlineMath math="4\text{ kg}" />, also ist sein berechnetes Gewicht <InlineMath math="10\text{ kg}" />. Der zweite Karton hat das Volumengewicht <InlineMath math="\tfrac{30\cdot30\cdot30}{6{.}000}=4{,}5\text{ kg}" />, also ist sein Ausgangsgewicht <InlineMath math="8{,}2\text{ kg}" />. Der Überschuss von <InlineMath math="0{,}2\text{ kg}" /> fällt weg, und das berechnete Gewicht ist <InlineMath math="8\text{ kg}" />.
+Der Radius der Grundfläche ist der halbe Durchmesser, also 0,7 m.
 
 <BlockMath math="\begin{aligned}
-\text{erstes Paket} &= 12{.}000\cdot10+11{.}000=\text{Rp}131{.}000\\
-\text{zweites Paket} &= 12{.}000\cdot8+11{.}000=\text{Rp}107{.}000
+L_{\text{Grund}}&=\tfrac{22}{7}\cdot0{,}7^2=\tfrac{22}{7}\cdot0{,}49=1{,}54\text{ m}^2\\
+t&=\frac{1{,}54}{1{,}54}=1\text{ m}
 \end{aligned}" />
 
-Das leichtere Paket ist sogar teurer, weil **sein Volumengewicht berechnet wird**. Die erste Aussage ist also wahr.
+Diese Höhe ist **kleiner als die Tankhöhe von 2 m**, es läuft also nichts über.
 
-# Die zweite Aussage zu einer Kartongröße
+Die Höhe 1,25 m vergisst, dass nur 80 % des Wassers ankommen. Die Höhe 0,8 m multipliziert zweimal mit 80 %. Der Wert 0,5 ist der gefüllte Anteil des Tanks, nicht die Höhe, und 2 m ist die Tankhöhe.
 
-Dieser Karton hat das Volumengewicht <InlineMath math="\tfrac{40\cdot30\cdot20}{6{.}000}=4\text{ kg}" />. Es gibt zwei Fälle. Wiegt das Paket höchstens <InlineMath math="4\text{ kg}" />, ist das Ausgangsgewicht das Volumengewicht von <InlineMath math="4\text{ kg}" />. Liegt das tatsächliche Gewicht zwischen <InlineMath math="4\text{ kg}" /> und <InlineMath math="4{,}3\text{ kg}" />, ist der Überschuss höchstens <InlineMath math="0{,}3\text{ kg}" /> und fällt weg. In **beiden Fällen bleibt das berechnete Gewicht** bei <InlineMath math="4\text{ kg}" />, also kostet es immer <InlineMath math="20{.}000\cdot4+15{.}000=\text{Rp}95{.}000" />. Die zweite Aussage ist wahr.
-
-# Die dritte Aussage zum niedrigeren Karton
-
-Der alte Karton hat das Volumengewicht <InlineMath math="\tfrac{60\cdot50\cdot40}{6{.}000}=20\text{ kg}" />, also ist sein berechnetes Gewicht <InlineMath math="20\text{ kg}" />. Der neue Karton hat das Volumengewicht <InlineMath math="\tfrac{60\cdot50\cdot25}{6{.}000}=12{,}5\text{ kg}" />. Das ist **immer noch mehr als das tatsächliche Gewicht** von <InlineMath math="12\text{ kg}" />, also ist das Ausgangsgewicht <InlineMath math="12{,}5\text{ kg}" />. Der Überschuss von <InlineMath math="0{,}5\text{ kg}" /> liegt über <InlineMath math="0{,}3\text{ kg}" />, also ist das berechnete Gewicht <InlineMath math="13\text{ kg}" />.
-
-<BlockMath math="\text{Ersparnis}=(20-13)\cdot\text{Rp}20{.}000=\text{Rp}140{.}000" />
-
-Die Ersparnis beträgt <InlineMath math="\text{Rp}140{.}000" /> und nicht <InlineMath math="\text{Rp}160{.}000" />. Der Wert <InlineMath math="\text{Rp}160{.}000" /> entsteht, wenn man das neue berechnete Gewicht mit <InlineMath math="12\text{ kg}" /> ansetzt. Die dritte Aussage ist falsch.
-
-# Die vierte Aussage zu den zwei Zonen
-
-Vergleiche die Kosten außerhalb Javas mit den doppelten Kosten nach Java bei gleichem berechnetem Gewicht <InlineMath math="w" />.
-
-<BlockMath math="\begin{aligned}
-2(12{.}000w+11{.}000)-(20{.}000w+15{.}000) &= 24{.}000w+22{.}000-20{.}000w-15{.}000\\
-&= 4{.}000w+7{.}000
-\end{aligned}" />
-
-Wegen <InlineMath math="w\ge1" /> ist die Differenz <InlineMath math="4{.}000w+7{.}000" /> immer positiv. Also sind **die doppelten Kosten nach Java immer größer** als die Kosten außerhalb Javas. Bei <InlineMath math="w=1" /> zum Beispiel kostet ein Paket außerhalb Javas <InlineMath math="\text{Rp}35{.}000" />, das Doppelte für Java aber <InlineMath math="2\cdot\text{Rp}23{.}000=\text{Rp}46{.}000" />. Die vierte Aussage ist wahr.
-
-Die erste Aussage ist also wahr, die zweite wahr, die dritte falsch und die vierte wahr.
+Das Wasser steht im Tank also **1 m** hoch.

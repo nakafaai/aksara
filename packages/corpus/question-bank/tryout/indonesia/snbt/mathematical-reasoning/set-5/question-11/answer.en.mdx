@@ -1,42 +1,15 @@
-Each statement is tested on its own. A statement with "always" or "never" falls to **one example that breaks it**, and a statement about a specific case is worked out directly. The two rules that decide things most often are rounding down to a multiple of <InlineMath math="0.5\text{ kg}" /> and the <InlineMath math="\text{Rp}6{,}000" /> fee cap per deposit.
+Use the sorted data 13.5, 13.8, 14.0, 14.2, 14.4, 14.6, 15.1, 16.4 with **mean 14.5 seconds and median 14.3 seconds**.
 
-# Cans deposited separately
+# Range and faster students
 
-Because **rounding happens on every deposit**, small deposits can lose more weight.
+The range is <InlineMath math="16.4-13.5=2.9" /> seconds, so the first statement is true.
 
-<BlockMath math="\begin{aligned}
-\text{each } 1.4\text{ kg deposit} &: 1.0 \cdot 12{,}000 = 12{,}000, \text{ balance } 12{,}000-1{,}200=10{,}800 \\
-\text{two deposits} &: 2 \cdot 10{,}800 = 21{,}600 \\
-\text{all } 2.8\text{ kg at once} &: 2.5 \cdot 12{,}000 = 30{,}000, \text{ balance } 30{,}000-3{,}000=27{,}000
-\end{aligned}" />
+Running faster means a time **below 14.5 seconds**. Five students have such times: 13.5, 13.8, 14.0, 14.2 and 14.4. Five of eight is more than half, so the second statement is true.
 
-The separate deposits add <InlineMath math="\text{Rp}21{,}600" />, less than <InlineMath math="\text{Rp}27{,}000" />. This statement is true.
+# Effect of changing the data
 
-# The fee for a combined deposit
+Without Fajar's 16.4 seconds, seven sorted values remain: 13.5, 13.8, 14.0, 14.2, 14.4, 14.6, 15.1. The median is the 4th value, 14.2 seconds, **not 14.3 seconds**. The third statement is false.
 
-Take <InlineMath math="4.2\text{ kg}" /> of cans brought in <InlineMath math="2" /> separate deposits. Each one rounds to <InlineMath math="4.0\text{ kg}" /> worth <InlineMath math="48{,}000" />, so each fee is <InlineMath math="4{,}800" />, and together they're <InlineMath math="9{,}600" />. Combined into <InlineMath math="8.4\text{ kg}" />, the weight rounds to <InlineMath math="8.0\text{ kg}" /> worth <InlineMath math="96{,}000" />. A <InlineMath math="10\%" /> fee would be <InlineMath math="9{,}600" />, but **the <InlineMath math="\text{Rp}6{,}000" /> cap applies to each deposit**, so the fee is only <InlineMath math="6{,}000" />. The fees differ, so this statement is false.
+Taking 0.3 seconds off every time shifts all the data, so the slowest and fastest times drop by the same amount. **The range stays 2.9 seconds**, so the fourth statement is false.
 
-# Wet and dry cardboard
-
-Take <InlineMath math="6\text{ kg}" /> of cardboard. Because **rounding happens after the water cut**, the result isn't exactly <InlineMath math="80\%" /> anymore:
-
-<BlockMath math="\begin{aligned}
-\text{wet} &: 0.8 \cdot 6 = 4.8 \to 4.5\text{ kg} \to 4.5 \cdot 2{,}500 = 11{,}250 \\
-\text{dry} &: 6\text{ kg} \to 6 \cdot 2{,}500 = 15{,}000
-\end{aligned}" />
-
-The wet value is only <InlineMath math="\tfrac{11{,}250}{15{,}000}=75\%" /> of the dry value. This statement is false.
-
-# The share of the value that reaches the balance
-
-The <InlineMath math="10\%" /> fee only applies in full up to a deposit value of <InlineMath math="\text{Rp}60{,}000" />. Above that **the fee stays at <InlineMath math="\text{Rp}6{,}000" />**, so the share that reaches the balance is more than <InlineMath math="90\%" />. For example, <InlineMath math="7\text{ kg}" /> of cans:
-
-<BlockMath math="\begin{aligned}
-\text{deposit value} &= 7 \cdot 12{,}000 = 84{,}000 \\
-\text{added balance} &= 84{,}000 - 6{,}000 = 78{,}000 \\
-90\% \text{ of the value} &= 0.9 \cdot 84{,}000 = 75{,}600
-\end{aligned}" />
-
-An added balance of <InlineMath math="78{,}000" /> is more than <InlineMath math="75{,}600" />. This statement is false.
-
-So the first statement is true, and the second, third, and fourth statements are false.
+So the first statement is **true**, the second is **true**, the third is **false**, and the fourth is **false**.

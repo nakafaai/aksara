@@ -1,46 +1,18 @@
-Du suchst die kleinste Anfangspopulation, die nie erlischt. Die erste Ernte zu überstehen reicht nicht: **Die Population muss auch jede spätere Ernte überstehen**. Der Plan: Stell die Regel für einen Zyklus von <InlineMath math="3" /> Stunden auf und finde dann heraus, wann die Population von Zyklus zu Zyklus wächst.
+Vergleiche jedes Ergebnis mit **der Siegesgrenze von mehr als 120 Stimmen**, also mehr als der Hälfte der 240 gültigen Stimmen.
 
-# Die Regel für einen Zyklus
+# Ergebnis der ersten Runde
 
-Solange der Behälter nicht voll ist, verdoppelt sich die Population <InlineMath math="P" /> vor der Ernte <InlineMath math="3" />-mal und wird zu <InlineMath math="8P" />. Ist <InlineMath math="8P>200" />, **nimmt die Ernte genau <InlineMath math="200" /> und lässt den Rest übrig**.
+Andra erhielt <InlineMath math="\tfrac{96}{240}\times100\%=40\%" />. Selbst das beste Ergebnis überschreitet 120 nicht, es gibt also keinen Sieg in der ersten Runde. Die erste Aussage ist wahr, und die dritte ist falsch, weil **Andra 40 % erhielt, nicht 45 %**.
 
-<BlockMath math="P_{\text{neu}} = 8P-200" />
+Die beiden höchsten Ergebnisse haben Andra mit 96 und Bunga mit 72, beide kommen also in die zweite Runde. Die vierte Aussage ist wahr.
 
-# Wann die Population wächst
-
-Die Population wächst von Zyklus zu Zyklus, wenn <InlineMath math="P_{\text{neu}}>P" /> gilt. **Das ist die entscheidende Bedingung**, denn eine Population, die schrumpft, schrumpft immer weiter, bis sie erlischt.
+# Ein Szenario für die zweite Runde
 
 <BlockMath math="\begin{aligned}
-8P-200 &> P \\
-7P &> 200 \\
-P &> \tfrac{200}{7}
+\text{Andra}&=96+24=120\\
+\text{Bunga}&=72+48=120
 \end{aligned}" />
 
-Der Wert <InlineMath math="\tfrac{200}{7}" /> liegt zwischen <InlineMath math="28" /> und <InlineMath math="29" />, die kleinste passende ganze Zahl ist also <InlineMath math="29" />.
+Beide **erhalten gleich viele Stimmen**, Bunga gewinnt also nicht. Die zweite Aussage ist falsch.
 
-# Beide Seiten der Grenze prüfen
-
-Probier <InlineMath math="28" />, knapp unter der Grenze.
-
-<BlockMath math="\begin{aligned}
-t=3 &: \ 28\cdot8-200=24 \\
-t=6 &: \ 24\cdot8=192\le200
-\end{aligned}" />
-
-Bei <InlineMath math="t=6" /> werden alle <InlineMath math="192" /> genommen, also **erlischt die Anfangspopulation <InlineMath math="28" />**. Kleinere Anfangspopulationen erlöschen ebenfalls, weil auch sie in jedem Zyklus schrumpfen.
-
-Jetzt probier <InlineMath math="29" />.
-
-<BlockMath math="\begin{aligned}
-t=3 &: \ 29\cdot8-200=32 \\
-t=6 &: \ 32\cdot8-200=56 \\
-t=9 &: \ 56\cdot8-200=248
-\end{aligned}" />
-
-Die Population wächst immer weiter. Im nächsten Zyklus gilt <InlineMath math="248\to496\to960" />, weil der Behälter voll ist, und die Ernte lässt <InlineMath math="760" /> übrig. Ab dann wiederholt sich jeder Zyklus von <InlineMath math="760" /> über <InlineMath math="960" /> zurück zu <InlineMath math="760" />, die Kultur erlischt also nie.
-
-# Die Falle der ersten Ernte
-
-Prüfst du nur, dass die erste Ernte die Kultur nicht auslöscht, lautet die Bedingung <InlineMath math="8P>200" />, also <InlineMath math="P\ge26" />. Aber <InlineMath math="26" /> lässt <InlineMath math="8" /> übrig, dann <InlineMath math="64" />, und **erlischt bei der zweiten Ernte**. Auch <InlineMath math="25" /> ist falsch, denn genau <InlineMath math="200" /> werden bei der ersten Ernte komplett genommen.
-
-Die kleinste Anfangspopulation, bei der die Kultur nie erlischt, beträgt also <InlineMath math="29" /> Millionen Zellen.
+Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.

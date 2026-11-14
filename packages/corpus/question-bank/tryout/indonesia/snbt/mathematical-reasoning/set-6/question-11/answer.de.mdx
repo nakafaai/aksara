@@ -1,50 +1,18 @@
-Du musst jede Abfahrt von Bus A prüfen, nicht nur ein Beispiel, und dann die zählen, deren Wartezeit einen kostenlosen Umstieg erlaubt. Drei Regeln entscheiden: **Der Fußweg dauert mindestens <InlineMath math="4\text{ Minuten}" />**, **der Umstieg ist kostenlos bei höchstens <InlineMath math="15\text{ Minuten}" /> Wartezeit**, und der letzte Bus B fährt um 23:52 Uhr.
+Berechne für jeden Karton das Volumengewicht, vergleiche es mit dem tatsächlichen Gewicht und **runde das größere auf**.
 
-# Wie viele Busse A fahren
+# Ein kleiner, schwerer Karton
 
-Bus A fährt von 21:00 bis 23:42 Uhr alle <InlineMath math="18\text{ Minuten}" />. Von 21:00 bis 23:42 Uhr sind es <InlineMath math="162\text{ Minuten}" />.
+Das Buch: Sein Volumengewicht ist <InlineMath math="\tfrac{20\cdot15\cdot5}{6\,000}=0{,}25" /> kg, weit unter dem tatsächlichen Gewicht von 2,3 kg. Berechnet werden 2,3 kg, aufgerundet auf 3 kg, also ist die zweite Aussage wahr.
 
-<BlockMath math="\frac{162}{18}+1=9+1=10" />
+Das Beispiel zeigt auch, dass bei schweren Paketen **das tatsächliche Gewicht die Kosten bestimmt**. Ein kleinerer Karton für das Buch änderte die Kosten nicht, also ist die erste Aussage falsch.
 
-Es gibt also **zehn Abfahrten, und jede muss geprüft werden**.
+# Ein großer Karton und ein Würfel
 
-# Die Wartezeit jeder Abfahrt
+<BlockMath math="\begin{aligned}
+\frac{60\cdot50\cdot40}{6\,000}&=\frac{120\,000}{6\,000}=20\text{ kg}\\
+\frac{30\cdot30\cdot30}{6\,000}&=\frac{27\,000}{6\,000}=4{,}5\text{ kg}
+\end{aligned}" />
 
-Bus A ist <InlineMath math="25\text{ Minuten}" /> nach der Abfahrt an der Halte Pasar. Die Fahrgäste nehmen den ersten Bus B, der mindestens <InlineMath math="4\text{ Minuten}" /> nach der Ankunft von Bus A abfährt. Die Wartezeit reicht **von der Ankunft von Bus A bis zur Abfahrt von Bus B**.
+Der große Karton wird mit 20 kg berechnet, weil 20 kg mehr als 8 kg sind, also ist die dritte Aussage wahr. Das Volumengewicht des Würfels ist 4,5 kg, **nicht 5 kg**. Aufgerundet wird nur das abgerechnete Gewicht, also ist die vierte Aussage falsch.
 
-| Abfahrt Bus A | Ankunft Halte Pasar | Genommener Bus B | Wartezeit | Kostenlos umsteigen |
-| :---: | :---: | :---: | :---: | :---: |
-| 21:00 | 21:25 | 21:52 | <InlineMath math="27\text{ Minuten}" /> | nein |
-| 21:18 | 21:43 | 21:52 | <InlineMath math="9\text{ Minuten}" /> | ja |
-| 21:36 | 22:01 | 22:22 | <InlineMath math="21\text{ Minuten}" /> | nein |
-| 21:54 | 22:19 | 22:52 | <InlineMath math="33\text{ Minuten}" /> | nein |
-| 22:12 | 22:37 | 22:52 | <InlineMath math="15\text{ Minuten}" /> | ja |
-| 22:30 | 22:55 | 23:22 | <InlineMath math="27\text{ Minuten}" /> | nein |
-| 22:48 | 23:13 | 23:22 | <InlineMath math="9\text{ Minuten}" /> | ja |
-| 23:06 | 23:31 | 23:52 | <InlineMath math="21\text{ Minuten}" /> | nein |
-| 23:24 | 23:49 | keiner | keine | nein |
-| 23:42 | 00:07 | keiner | keine | nein |
-
-# Drei Grenzfälle
-
-Drei Zeilen liest man leicht falsch.
-
-- Der Bus A um 22:12 Uhr wartet genau <InlineMath math="15\text{ Minuten}" />. Die Regel sagt **höchstens <InlineMath math="15\text{ Minuten}" />**, also ist genau <InlineMath math="15\text{ Minuten}" /> noch kostenlos.
-- Der Bus A um 21:54 Uhr kommt um 22:19 Uhr an. Der Bus B um 22:22 Uhr fährt nur <InlineMath math="3\text{ Minuten}" /> später, weniger als der Fußweg, also warten seine Fahrgäste auf den Bus um 22:52 Uhr.
-- Der Bus A um 23:24 Uhr kommt um 23:49 Uhr an, nur <InlineMath math="3\text{ Minuten}" /> vor dem letzten Bus B. Der Bus A um 23:42 Uhr kommt um 00:07 Uhr an, nachdem der letzte Bus B weg ist. Die Fahrgäste dieser beiden Busse bekommen gar keinen Bus B.
-
-Kostenlos umsteigen die Fahrgäste der Abfahrten um 21:18, 22:12 und 22:48 Uhr, also bei <InlineMath math="3" /> Abfahrten.
-
-# Kontrolle mit dem wiederkehrenden Muster
-
-Bus A wiederholt sich alle <InlineMath math="18\text{ Minuten}" /> und Bus B alle <InlineMath math="30\text{ Minuten}" />, also wiederholen sich die Wartezeiten alle <InlineMath math="90\text{ Minuten}" />, dem kleinsten gemeinsamen Vielfachen. In den ersten <InlineMath math="90\text{ Minuten}" /> gibt es **zwei kostenlose Umstiege**, um 21:18 und 22:12 Uhr. Die nächsten <InlineMath math="90\text{ Minuten}" /> würden 22:48 und 23:42 Uhr liefern. Der Bus A um 23:42 Uhr bekommt aber keinen Bus B mehr, weil Bus B nicht mehr fährt, also bleibt nur 22:48 Uhr. Zusammen sind es weiterhin <InlineMath math="2+1=3" />.
-
-# Fallen, die du vermeiden solltest
-
-Jede andere Antwort entsteht, wenn du **eine Regel verletzt**.
-
-- Die Antwort <InlineMath math="2" /> zählt genau <InlineMath math="15\text{ Minuten}" /> nicht als kostenlos.
-- Die Antwort <InlineMath math="4" /> setzt das Muster von <InlineMath math="90\text{ Minuten}" /> fort, ohne den letzten Bus B zu prüfen.
-- Die Antwort <InlineMath math="5" /> übersieht den Fußweg, sodass die Busse A um 21:54 und 23:24 Uhr scheinbar nach <InlineMath math="3\text{ Minuten}" /> Wartezeit einen Bus B erreichen.
-
-Bei <InlineMath math="3" /> Abfahrten von Bus A steigen die Fahrgäste also kostenlos um.
+Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **wahr** und die vierte **falsch**.

@@ -1,40 +1,24 @@
-Gesucht ist die größte Anzahl Bücher, bei der die Kosten höchstens <InlineMath math="\text{Rp}170{.}000" /> betragen. Rechne rückwärts: **Das Budget legt das größte berechnete Gewicht fest, und das berechnete Gewicht legt das größte tatsächliche Gewicht fest**, aus dem sich die Anzahl der Bücher ergibt.
+Allen Aussagen liegen zwei Größen zugrunde: **das Fassungsvermögen des Tanks** und **das einlaufende Volumen bei einem bestimmten Niederschlag**. Berechne beide zuerst.
 
-# Das größte berechnete Gewicht
+# Fassungsvermögen und Tagesverbrauch
 
-Für die Zone außerhalb Javas kostet ein Paket mit dem berechneten Gewicht <InlineMath math="w" /> die Bearbeitungsgebühr plus den Tarif für das erste Kilogramm plus den Tarif für die weiteren Kilogramm. **Die Bearbeitungsgebühr zählt** zum Budget.
+<BlockMath math="V_{\text{Tank}}=\tfrac{22}{7}\cdot0{,}7^2\cdot2=1{,}54\cdot2=3{,}08\text{ m}^3" />
 
-<BlockMath math="\begin{aligned}
-5{.}000+30{.}000+20{.}000(w-1) &\le 170{.}000\\
-20{.}000w+15{.}000 &\le 170{.}000\\
-w &\le 7{,}75
-\end{aligned}" />
+Die erste Aussage ist wahr. Bei einem Verbrauch von 0,14 Kubikmetern pro Tag ist ein voller Tank leer nach
 
-Das berechnete Gewicht ist immer ganzzahlig, also ist das größte <InlineMath math="7\text{ kg}" /> mit Kosten von <InlineMath math="\text{Rp}155{.}000" />. Ein berechnetes Gewicht von <InlineMath math="8\text{ kg}" /> kostet schon <InlineMath math="\text{Rp}175{.}000" />.
+<BlockMath math="\frac{3{,}08}{0{,}14}=22\text{ Tagen}" />
 
-# Das größte tatsächliche Gewicht
+Der Tank **reicht nur 22 Tage**, weniger als 25, also ist die vierte Aussage falsch.
 
-Das Volumengewicht des Kartons ist <InlineMath math="\tfrac{40\cdot30\cdot30}{6{.}000}=6\text{ kg}" />. Das berechnete Gewicht bleibt bei <InlineMath math="7\text{ kg}" />, solange das Ausgangsgewicht höchstens <InlineMath math="7{,}3\text{ kg}" /> beträgt, denn **ein Überschuss bis** <InlineMath math="0{,}3\text{ kg}" /> **fällt weg**. Das Volumengewicht von <InlineMath math="6\text{ kg}" /> begrenzt hier nichts, also kommt die Grenze vom tatsächlichen Gewicht: höchstens <InlineMath math="7{,}3\text{ kg}" />.
+# Wasservolumen bei bestimmtem Niederschlag
 
-# Die Anzahl der Bücher
-
-Das tatsächliche Gewicht eines Pakets mit <InlineMath math="n" /> Büchern ist die Masse des Kartons plus die Masse der Bücher. Der leere Karton **wird mitgewogen**.
+Das einlaufende Volumen ist <InlineMath math="77\cdot\text{Niederschlag}\cdot0{,}8" />.
 
 <BlockMath math="\begin{aligned}
-0{,}6+0{,}6n &\le 7{,}3\\
-0{,}6n &\le 6{,}7\\
-n &\le 11\tfrac{1}{6}
+40\text{ mm}&:\quad 77\cdot0{,}04\cdot0{,}8=2{,}464\text{ m}^3\\
+25\text{ mm ohne Verlust}&:\quad 77\cdot0{,}025=1{,}925\text{ m}^3
 \end{aligned}" />
 
-Die Anzahl der Bücher ist ganzzahlig, also ist <InlineMath math="n=11" />. So viele passen auch hinein, denn der Karton fasst bis zu <InlineMath math="20" /> Bücher.
+Das Volumen 2,464 Kubikmeter **erreicht das Fassungsvermögen von 3,08 Kubikmetern nicht**, also ist die zweite Aussage falsch. Die dritte Aussage ist wahr.
 
-# Kontrolle
-
-Mit <InlineMath math="11" /> Büchern wiegt das Paket <InlineMath math="0{,}6+6{,}6=7{,}2\text{ kg}" />. Der Überschuss von <InlineMath math="0{,}2\text{ kg}" /> fällt weg, das berechnete Gewicht ist <InlineMath math="7\text{ kg}" />, und es kostet <InlineMath math="\text{Rp}155{.}000" />. Mit <InlineMath math="12" /> Büchern wiegt es <InlineMath math="7{,}8\text{ kg}" />, und der Überschuss von <InlineMath math="0{,}8\text{ kg}" /> **erzwingt das Aufrunden** auf <InlineMath math="8\text{ kg}" />. Dann kostet es <InlineMath math="\text{Rp}175{.}000" /> und liegt über dem Budget.
-
-# Typische falsche Ergebnisse
-
-- Das Ergebnis <InlineMath math="10" /> entsteht, wenn jeder Überschuss aufgerundet wird, sodass das tatsächliche Gewicht auf <InlineMath math="7\text{ kg}" /> begrenzt wäre. Dieser Kurier **streicht aber einen Überschuss bis** <InlineMath math="0{,}3\text{ kg}" />.
-- Das Ergebnis <InlineMath math="12" /> entsteht, wenn die Bearbeitungsgebühr vergessen wird, sodass ein berechnetes Gewicht von <InlineMath math="8\text{ kg}" /> ins Budget zu passen scheint, oder wenn die Masse des leeren Kartons fehlt.
-
-Im Paket lassen sich also höchstens <InlineMath math="11" /> Bücher verschicken.
+Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **wahr** und die vierte **falsch**.

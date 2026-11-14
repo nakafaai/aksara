@@ -1,50 +1,21 @@
-Kita mencari <InlineMath math="3" /> penerima beasiswa dari <InlineMath math="6" /> calon. Rencananya: hitung <InlineMath math="W" /> dengan aturan dua nilai tertinggi, hitung nilai akhir, saring calon yang tidak memenuhi syarat, lalu urutkan. **Tiga aturan kecil menentukan hasilnya**: cara menghitung <InlineMath math="W" />, syarat setiap komponen, dan aturan nilai seri.
+Banyak penumpang pada suatu ruas adalah **banyak penumpang ketika bus meninggalkan tempat di awal ruas itu**. Hitung untuk kelima ruas.
 
-# Nilai wawancara setiap calon
+# Banyak penumpang pada setiap ruas
 
-Nilai <InlineMath math="W" /> adalah rata-rata dua nilai tertinggi, jadi **nilai terendah dari tiap calon dibuang**:
+Muatan setiap ruas **dihitung berurutan dari terminal awal**.
 
-<BlockMath math="\begin{aligned}
-W_{\text{Ayu}} &= \tfrac{84+78}{2}=81\\
-W_{\text{Bayu}} &= \tfrac{66+64}{2}=65\\
-W_{\text{Citra}} &= \tfrac{90+88}{2}=89\\
-W_{\text{Dimas}} &= \tfrac{90+88}{2}=89\\
-W_{\text{Eka}} &= \tfrac{84+80}{2}=82\\
-W_{\text{Fajar}} &= \tfrac{82+82}{2}=82
-\end{aligned}" />
+| Ruas | Penumpang |
+| :---: | :---: |
+| terminal awal ke Halte A | 25 |
+| Halte A ke Halte B | <InlineMath math="25+12-8=29" /> |
+| Halte B ke Halte C | <InlineMath math="29+6-10=25" /> |
+| Halte C ke Halte D | <InlineMath math="25+9-7=27" /> |
+| Halte D ke terminal akhir | <InlineMath math="27+14-6=35" /> |
 
-# Nilai akhir setiap calon
+# Ruas terpadat
 
-Masukkan setiap nilai ke <InlineMath math="N=0{,}40T+0{,}25W+0{,}20R+0{,}15P" />:
+Nilai terbesar adalah 35, pada ruas Halte D ke terminal akhir. Halte D memiliki penumpang naik terbanyak, tetapi yang menentukan adalah **selisih naik dan turun yang terkumpul sejak awal**.
 
-<BlockMath math="\begin{aligned}
-N_{\text{Ayu}} &= 34{,}4+20{,}25+16+12=82{,}65\\
-N_{\text{Bayu}} &= 36+16{,}25+17{,}6+13{,}5=83{,}35\\
-N_{\text{Citra}} &= 31{,}2+22{,}25+17{,}2+12=82{,}65\\
-N_{\text{Dimas}} &= 38{,}4+22{,}25+18+9{,}3=87{,}95\\
-N_{\text{Eka}} &= 34{,}4+20{,}5+16{,}4+11{,}7=83\\
-N_{\text{Fajar}} &= 33{,}6+20{,}5+17+11{,}4=82{,}5
-\end{aligned}" />
+Ruas Halte A ke Halte B sempat tinggi, yaitu 29, tetapi turun lagi setelah 10 penumpang turun di Halte B.
 
-Semua nilai akhir paling sedikit <InlineMath math="80" />, jadi **syarat nilai akhir belum menyaring siapa pun**. Penyaringnya ada pada syarat komponen.
-
-# Menyaring calon yang tidak memenuhi syarat
-
-Dimas punya nilai akhir tertinggi, tetapi <InlineMath math="P=62" /> di bawah <InlineMath math="65" />. Satu komponen yang kurang sudah cukup untuk **menggugurkan Dimas**.
-
-Bayu punya <InlineMath math="W=65" />. Aturannya berbunyi "paling sedikit <InlineMath math="65" />", jadi nilai tepat <InlineMath math="65" /> masih lolos. Eka menerima satu nilai <InlineMath math="60" /> dari pewawancara, tetapi syarat berlaku untuk <InlineMath math="W" />, bukan untuk setiap nilai pewawancara. Nilai <InlineMath math="W" /> Eka adalah <InlineMath math="82" />, jadi Eka juga lolos.
-
-# Mengurutkan dan memutus nilai seri
-
-Urutan calon yang lolos: Bayu <InlineMath math="83{,}35" />, Eka <InlineMath math="83" />, lalu Ayu dan Citra sama-sama <InlineMath math="82{,}65" />, dan Fajar <InlineMath math="82{,}5" />. Untuk tempat ketiga, **nilai seri diputus dengan nilai** <InlineMath math="T" />: Ayu punya <InlineMath math="86" />, Citra punya <InlineMath math="78" />, jadi Ayu yang didahulukan.
-
-# Mengapa pilihan lain keliru
-
-Setiap pilihan yang salah muncul dari **satu aturan seleksi yang dibaca keliru**.
-
-- Bayu, Dimas, dan Eka muncul kalau syarat komponen paling sedikit <InlineMath math="65" /> diabaikan, sehingga Dimas ikut.
-- Ayu, Citra, dan Fajar muncul kalau <InlineMath math="W" /> dihitung sebagai rata-rata ketiga nilai. Bayu menjadi <InlineMath math="W=63{,}33\ldots" /> dan gugur, nilai akhir Eka turun ke <InlineMath math="N\approx81{,}17" />, sehingga Fajar naik.
-- Bayu, Citra, dan Eka muncul kalau nilai seri Ayu dan Citra diputus terbalik atau tidak memakai nilai <InlineMath math="T" />.
-- Ayu, Citra, dan Eka muncul kalau "paling sedikit <InlineMath math="65" />" dibaca sebagai "lebih dari <InlineMath math="65" />", sehingga Bayu gugur.
-
-Jadi, penerima beasiswa tahun ini adalah Ayu, Bayu, dan Eka.
+Jadi, bus paling penuh pada ruas **Halte D ke terminal akhir**.

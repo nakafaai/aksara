@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "bike-share",
+  stimulus: "paper-folding",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$116\\text{ menit}$$" },
-        { correct: false, label: "$$184\\text{ menit}$$" },
-        { correct: true, label: "$$190\\text{ menit}$$" },
-        { correct: false, label: "$$220\\text{ menit}$$" },
-        { correct: false, label: "$$250\\text{ menit}$$" },
+        { correct: false, label: "$$1{,}5$$" },
+        { correct: false, label: "$$4$$" },
+        { correct: true, label: "$$16$$" },
+        { correct: false, label: "$$32$$" },
+        { correct: false, label: "$$64$$" },
       ],
     },
   },

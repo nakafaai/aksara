@@ -1,42 +1,18 @@
-You're looking for the smallest weight of wet cardboard whose value still reaches <InlineMath math="\text{Rp}16{,}000" />. The rules work in this order: the wet weight loses <InlineMath math="20\%" />, then it's rounded down, then it's multiplied by the price. So **work backwards**: from the value to the counted weight, from the counted weight to the weight after the cut, then to the wet weight.
+The mean is **the sum of all times divided by the number of students**, 8.
 
-# The smallest counted weight
+# Sum of the times
 
-Cardboard pays <InlineMath math="\text{Rp}2{,}500" /> per kg, so the counted weight has to satisfy:
-
-<BlockMath math="2{,}500 \cdot b \ge 16{,}000 \iff b \ge 6.4" />
-
-But **the counted weight is always a multiple of <InlineMath math="0.5\text{ kg}" />**. The smallest multiple of <InlineMath math="0.5" /> that's at least <InlineMath math="6.4" /> is <InlineMath math="6.5" />. A counted weight of <InlineMath math="6.0\text{ kg}" /> is only worth <InlineMath math="\text{Rp}15{,}000" />, which isn't enough.
-
-# The weight after the cut
-
-Rounding down gives <InlineMath math="6.5\text{ kg}" /> when the weight after the cut is **at least <InlineMath math="6.5\text{ kg}" />**. If it's <InlineMath math="6.49\text{ kg}" />, for example, it rounds down to <InlineMath math="6.0\text{ kg}" />.
-
-# The wet cardboard weight
-
-A <InlineMath math="20\%" /> cut leaves <InlineMath math="80\%" /> of the wet weight <InlineMath math="w" />. To get back to the wet weight, you **divide by <InlineMath math="0.8" />**:
+**Pair the values** to make the addition easier.
 
 <BlockMath math="\begin{aligned}
-0.8\,w &\ge 6.5 \\
-w &\ge \frac{6.5}{0.8} = 8.125
+(14.2+13.8)+(15.1+14.0)+(14.6+14.4)+(13.5+16.4)&=28+29.1+29+29.9\\
+&=116
 \end{aligned}" />
 
-Check two weights around this answer:
+# The mean
 
-<BlockMath math="\begin{aligned}
-w = 8.125 &: 0.8 \cdot 8.125 = 6.5 \to 6.5\text{ kg} \to \text{Rp}16{,}250 \\
-w = 8 &: 0.8 \cdot 8 = 6.4 \to 6.0\text{ kg} \to \text{Rp}15{,}000
-\end{aligned}" />
+<BlockMath math="\frac{116}{8}=14.5" />
 
-<InlineMath math="8.125\text{ kg}" /> is enough, and <InlineMath math="8\text{ kg}" /> isn't.
+This lies between the fastest time of 13.5 seconds and the slowest of 16.4 seconds, so it **makes sense**.
 
-# The wrong options
-
-Each other option **mishandles the rounding or the water cut**:
-
-- <InlineMath math="7.5\text{ kg}" /> rounds the needed <InlineMath math="6.4\text{ kg}" /> down to <InlineMath math="6.0\text{ kg}" />, but <InlineMath math="6.0\text{ kg}" /> is only worth <InlineMath math="\text{Rp}15{,}000" />.
-- <InlineMath math="7.68\text{ kg}" /> ignores the rounding and raises <InlineMath math="6.4" /> by <InlineMath math="20\%" /> (multiplying by <InlineMath math="1.2" />).
-- <InlineMath math="7.8\text{ kg}" /> rounds up to <InlineMath math="6.5" /> correctly, then raises it by <InlineMath math="20\%" /> (multiplying by <InlineMath math="1.2" />), but the <InlineMath math="20\%" /> cut is taken from the wet weight, so you have to divide by <InlineMath math="0.8" />.
-- <InlineMath math="8\text{ kg}" /> divides <InlineMath math="6.4" /> by <InlineMath math="0.8" /> without thinking about the rounding, so the counted weight is only <InlineMath math="6.0\text{ kg}" />.
-
-So Pak Rudi has to bring at least <InlineMath math="8.125\text{ kg}" /> of wet cardboard.
+So the mean time is **14.5 seconds**.

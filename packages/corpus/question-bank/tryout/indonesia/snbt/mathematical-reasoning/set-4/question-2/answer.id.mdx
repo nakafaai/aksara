@@ -1,60 +1,15 @@
-Setiap pernyataan perlu diuji sendiri. Rencananya: tulis dulu biaya ketiga paket untuk sewa <InlineMath math="3" /> hari sebagai rumus jarak total <InlineMath math="x" /> km, lalu pakai rumus itu untuk pernyataan pertama, kedua, dan keempat. Pernyataan ketiga membandingkan dua masa sewa, jadi **diskon dan jatah harus dihitung ulang** untuk masing-masing.
+Penerbangan P3 berangkat dalam WIT dan tiba dalam WIB. WIT **lebih cepat 2 jam daripada WIB**, jadi ubah waktu berangkat ke WIB lebih dulu.
 
-# Rumus biaya sewa tiga hari
+# Menyamakan zona waktu
 
-Sewa <InlineMath math="3" /> hari belum mencapai <InlineMath math="5" /> hari, jadi tidak ada diskon. Jatah Paket B adalah <InlineMath math="3\times150=450\text{ km}" />. **Paket B baru dikenai biaya jarak setelah jarak total melewati** <InlineMath math="450\text{ km}" />, jadi rumusnya punya dua bagian:
+Pukul 08.00 WIT sama dengan pukul <InlineMath math="08.00-2\text{ jam}" />, yaitu **pukul 06.00 WIB**.
 
-<BlockMath math="\begin{aligned}
-A(x) &= 3\times200{.}000+1{.}500x=600{.}000+1{.}500x\\
-B(x) &= 1{.}050{.}000 \quad \text{untuk } x\le450\\
-B(x) &= 1{.}050{.}000+3{.}000(x-450)=3{.}000x-300{.}000 \quad \text{untuk } x>450\\
-C(x) &= 3\times500{.}000=1{.}500{.}000
-\end{aligned}" />
+# Menghitung lama penerbangan
 
-# Pernyataan pertama
+Dari pukul 06.00 sampai 10.50 WIB berlalu **4 jam 50 menit**.
 
-Untuk jarak di atas jatah, bandingkan <InlineMath math="A(x)" /> dengan bagian kedua <InlineMath math="B(x)" />:
+Pemeriksaan: pesawat berangkat pukul 08.00 WIT dan terbang 4 jam 50 menit, sehingga tiba pukul 12.50 WIT. Waktu itu sama dengan pukul 10.50 WIB, sesuai jadwal.
 
-<BlockMath math="\begin{aligned}
-600{.}000+1{.}500x &< 3{.}000x-300{.}000\\
-900{.}000 &< 1{.}500x\\
-x &> 600
-\end{aligned}" />
+Lama 2 jam 50 menit mengabaikan zona waktu. Lama 6 jam 50 menit menambahkan 2 jam, padahal seharusnya waktu berangkat dikurangi 2 jam.
 
-Jadi, **untuk jarak lebih dari** <InlineMath math="600\text{ km}" />, Paket A lebih murah daripada Paket B. Contohnya pada <InlineMath math="700\text{ km}" />: Paket A <InlineMath math="600{.}000+1{.}050{.}000=1{.}650{.}000" />, sedangkan Paket B <InlineMath math="1{.}050{.}000+750{.}000=1{.}800{.}000" />. Pernyataan pertama hanya membandingkan Paket A dan Paket B, jadi pernyataan ini **benar** walaupun Paket C lebih murah lagi.
-
-# Pernyataan kedua
-
-Kata "pasti" berarti satu contoh yang gagal sudah cukup untuk menyalahkannya. Ambil <InlineMath math="x=500" />, yang lebih dari <InlineMath math="450" />:
-
-<BlockMath math="\begin{aligned}
-B(500) &= 1{.}050{.}000+3{.}000\times50=1{.}200{.}000\\
-A(500) &= 600{.}000+1{.}500\times500=1{.}350{.}000
-\end{aligned}" />
-
-Paket B <InlineMath math="1{.}200{.}000" /> lebih murah daripada Paket C <InlineMath math="1{.}500{.}000" />. Paket B baru kalah dari Paket C kalau <InlineMath math="3{.}000x-300{.}000>1{.}500{.}000" />, yaitu <InlineMath math="x>600" />. Jadi, **melewati jatah belum membuat Paket C termurah**, dan pernyataan kedua **salah**.
-
-# Pernyataan ketiga
-
-Sewa <InlineMath math="4" /> hari tanpa diskon, dengan jatah <InlineMath math="600\text{ km}" />. Sewa <InlineMath math="5" /> hari mendapat diskon, dengan jatah <InlineMath math="750\text{ km}" />:
-
-<BlockMath math="\begin{aligned}
-B_{4\text{ hari}} &= 4\times350{.}000+3{.}000\times(700-600)=1{.}400{.}000+300{.}000=1{.}700{.}000\\
-B_{5\text{ hari}} &= 0{,}8\times5\times350{.}000+0=1{.}400{.}000
-\end{aligned}" />
-
-Diskon <InlineMath math="20\%" /> membuat tarif harian <InlineMath math="5" /> hari sama dengan tarif <InlineMath math="4" /> hari, karena <InlineMath math="0{,}8\times5=4" />. Hari kelima juga **menambah jatah** <InlineMath math="150\text{ km}" /> sehingga kelebihan jarak hilang. Pernyataan ketiga **benar**.
-
-# Pernyataan keempat
-
-Masukkan <InlineMath math="x=600" /> ke rumus sewa <InlineMath math="3" /> hari:
-
-<BlockMath math="\begin{aligned}
-A(600) &= 600{.}000+900{.}000=1{.}500{.}000\\
-B(600) &= 1{.}050{.}000+3{.}000\times150=1{.}500{.}000\\
-C(600) &= 1{.}500{.}000
-\end{aligned}" />
-
-Ketiganya **tepat sama besar**, jadi pernyataan keempat **benar**. Hasil ini cocok dengan pernyataan pertama dan kedua: tepat di <InlineMath math="600\text{ km}" /> Paket A dan Paket B sama-sama menyamai Paket C.
-
-Jadi, pernyataan pertama benar, pernyataan kedua salah, pernyataan ketiga benar, dan pernyataan keempat benar.
+Jadi, lama penerbangan P3 adalah **4 jam 50 menit**.

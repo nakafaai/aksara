@@ -1,41 +1,20 @@
-Du suchst die kleinste Zahl von Fahrten, bei der das Abo günstiger ist. Vergleiche dazu die Gesamtkosten beider Zahlweisen für jede Zahl von Fahrten. Entscheidend ist **die monatliche Obergrenze der Minutengebühren, durch die das Abo nicht weiter teurer wird**.
+Nach <InlineMath math="n" /> Faltungen hat der Stapel <InlineMath math="2^n" /> Lagen und **eine Dicke von <InlineMath math="0{,}1\cdot2^n" /> mm**. Jede Aussage wird mit dieser Formel geprüft.
 
-# Die Kosten einer Fahrt
+# Fünf und sieben Faltungen
 
-Im Normaltarif zahlt eine Fahrt von <InlineMath math="40\text{ Minuten}" /> die Entsperrgebühr und jede Minute. Im Abo sind die ersten <InlineMath math="20\text{ Minuten}" /> frei, also **werden nur <InlineMath math="20\text{ Minuten}" /> bezahlt**.
+<BlockMath math="\begin{aligned}
+n=5&:\quad 0{,}1\cdot2^5=0{,}1\cdot32=3{,}2\text{ mm}\\
+n=7&:\quad 2^7=128\text{ Lagen}
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned} \text{Normaltarif pro Fahrt} &= 2{.}000+250\cdot 40=12{.}000 \\ \text{Minutengebühr im Abo pro Fahrt} &= 500\cdot(40-20)=10{.}000 \end{aligned}" />
+Die erste Aussage ist wahr. Sieben Faltungen ergeben 128 Lagen, **nicht 64**, also ist die dritte Aussage falsch.
 
-# Das Abo wird nicht weiter teurer
+# Das Verdoppeln und zwanzig Faltungen
 
-Die Minutengebühren steigen pro Fahrt um <InlineMath math="\text{Rp}10{.}000" />, bis sie die Obergrenze von <InlineMath math="\text{Rp}30{.}000" /> erreichen. Das passiert genau bei der dritten Fahrt, denn <InlineMath math="3\cdot 10{.}000=30{.}000" />. **Ab der dritten Fahrt bleibt das Abo bei <InlineMath math="30{.}000+30{.}000=\text{Rp}60{.}000" />**, egal wie viele Fahrten noch folgen.
+Von 1 auf 2 Faltungen steigt die Dicke von 0,2 mm auf 0,4 mm, also um 0,2 mm, nicht um 0,1 mm. Die Zunahme **wird mit jeder Faltung größer**, also ist die zweite Aussage falsch.
 
-| Zahl der Fahrten | Normaltarif | Abo |
-| :---: | :---: | :---: |
-| <InlineMath math="1" /> | <InlineMath math="12{.}000" /> | <InlineMath math="40{.}000" /> |
-| <InlineMath math="2" /> | <InlineMath math="24{.}000" /> | <InlineMath math="50{.}000" /> |
-| <InlineMath math="3" /> | <InlineMath math="36{.}000" /> | <InlineMath math="60{.}000" /> |
-| <InlineMath math="4" /> | <InlineMath math="48{.}000" /> | <InlineMath math="60{.}000" /> |
-| <InlineMath math="5" /> | <InlineMath math="60{.}000" /> | <InlineMath math="60{.}000" /> |
-| <InlineMath math="6" /> | <InlineMath math="72{.}000" /> | <InlineMath math="60{.}000" /> |
+<BlockMath math="0{,}1\cdot2^{20}=0{,}1\cdot1\,048\,576=104\,857{,}6\text{ mm}\approx104{,}9\text{ m}" />
 
-# Die Bedingung für günstiger
+Die Dicke beträgt mehr als 100 m, also ist die vierte Aussage wahr.
 
-Das Abo muss **wirklich günstiger** sein, nicht nur gleich teuer. Für <InlineMath math="n" /> Fahrten mit <InlineMath math="n\ge 3" /> lautet die Bedingung:
-
-<BlockMath math="\begin{aligned} 12{.}000n &> 60{.}000 \\ n &> 5 \end{aligned}" />
-
-Die kleinste ganze Zahl über <InlineMath math="5" /> ist <InlineMath math="6" />. Für <InlineMath math="n" /> unter <InlineMath math="3" /> zeigt die Tabelle, dass der Normaltarif noch viel günstiger ist. Bei <InlineMath math="5" /> Fahrten kosten beide <InlineMath math="\text{Rp}60{.}000" />.
-
-# Kontrolle des Ergebnisses
-
-Bei <InlineMath math="6" /> Fahrten kostet der Normaltarif <InlineMath math="\text{Rp}72{.}000" /> und das Abo <InlineMath math="\text{Rp}60{.}000" />, das Abo ist also <InlineMath math="\text{Rp}12{.}000" /> günstiger. Danach steigt der Normaltarif weiter, während das Abo gleich bleibt, also **bleibt das Abo bei mehr als sechs Fahrten günstiger**.
-
-# Fallen, die du vermeiden solltest
-
-Es gibt **zwei häufige Antworten** aus einem übersprungenen Schritt.
-
-- Die Antwort <InlineMath math="5" /> hält „gleich teuer“ für ausreichend. Bei <InlineMath math="5" /> Fahrten sind die Kosten gleich, nicht günstiger.
-- Die Antwort <InlineMath math="16" /> übersieht die Obergrenze. Ohne sie ist jede Abofahrt nur <InlineMath math="\text{Rp}2{.}000" /> günstiger, also braucht es mehr als <InlineMath math="30{.}000:2{.}000=15" /> Fahrten, um die Abogebühr auszugleichen.
-
-Dita braucht im Dezember also mindestens <InlineMath math="6" /> Fahrten, damit das Abo günstiger ist.
+Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.

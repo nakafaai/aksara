@@ -1,32 +1,15 @@
-You're looking for the latest bus A that still gets Rina to Halte Kampus on time. The safest way is to **work backward from the 22:40 deadline**: first find the last bus B that's still on time, then the last bus A that can still catch that bus B.
+Compare the actual weight with the volumetric weight, take **the larger one**, round it up, then multiply by the rate.
 
-# The last bus B that's still on time
+# Volumetric weight
 
-Bus B takes <InlineMath math="15\text{ minutes}" /> from Halte Pasar to Halte Kampus. So bus B has to leave no later than <InlineMath math="15\text{ minutes}" /> before 22:40, which is 22:25. Bus B leaves at 21:22, 21:52, 22:22, 22:52, and so on. **The last bus B that works is the 22:22 bus**, because the 22:52 bus only arrives at 23:07.
+<BlockMath math="\frac{40\cdot30\cdot25}{6{,}000}=\frac{30{,}000}{6{,}000}=5\text{ kg}" />
 
-# The last bus A that can still make it
+# Charged weight and cost
 
-Rina needs at least <InlineMath math="4\text{ minutes}" /> to walk to the bus B stop. So **bus A has to reach Halte Pasar by 22:18 at the latest**, which is <InlineMath math="4\text{ minutes}" /> before 22:22. Bus A arrives <InlineMath math="25\text{ minutes}" /> after it leaves.
+The volumetric weight of 5 kg **is greater than the actual 4.2 kg**, so 5 kg is charged. The number 5 is already whole.
 
-| Bus A leaves | Reaches Halte Pasar | Can catch the 22:22 bus |
-| :---: | :---: | :---: |
-| 21:18 | 21:43 | yes |
-| 21:36 | 22:01 | yes |
-| 21:54 | 22:19 | no, only <InlineMath math="3\text{ minutes}" /> before 22:22 |
+<BlockMath math="5\cdot9{,}000=45{,}000" />
 
-The last bus A that still makes it is the one leaving at 21:36.
+In thousands of rupiah the cost is 45. Using the actual 4.2 kg rounded up to 5 kg happens to give the same number, but for a different reason.
 
-# Checking it forward
-
-Run Rina's trip from the start. Bus A leaves at 21:36 and reaches Halte Pasar at 22:01. Rina walks over and is ready by 22:05, boards the 22:22 bus B, and reaches Halte Kampus at 22:37. That's **not later than 22:40**. Her wait is <InlineMath math="21\text{ minutes}" />, more than <InlineMath math="15\text{ minutes}" />, so she doesn't get a free transfer. The question only asks about time, so the fare doesn't change the answer.
-
-# Why the other options fail
-
-Each wrong option **uses a wrong rule or skips one travel time**.
-
-- 21:18 comes from treating the free transfer as required. The free transfer is only about the fare, not a condition for changing buses.
-- 21:54 comes from ignoring the <InlineMath math="4\text{-minute}" /> walk. That bus arrives at 22:19, only <InlineMath math="3\text{ minutes}" /> before the 22:22 bus B leaves.
-- 22:12 comes from forgetting the ride on bus B, so Rina only seems to need Halte Pasar by 22:40. The 22:12 bus A gets there at 22:37.
-- 22:30 comes from reading 22:40 as the latest time to board bus A, which drops both travel times.
-
-So the latest bus A that Rina can take leaves at 21:36.
+So shipping the parcel costs **45 thousand rupiah**.

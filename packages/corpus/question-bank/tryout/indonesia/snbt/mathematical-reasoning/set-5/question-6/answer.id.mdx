@@ -1,49 +1,19 @@
-Kamu menghitung semua pertemuan, baik saat Andi menyusul Bima maupun saat Bima menyusul Andi yang sedang minum. Pakai lagi **selisih jarak tempuh** <InlineMath math="g" />, yaitu jarak Andi dikurangi jarak Bima. Keduanya berada di titik yang sama setiap kali <InlineMath math="g" /> sama dengan kelipatan <InlineMath math="400" />, yaitu <InlineMath math="400" /> atau <InlineMath math="800" />. Rencananya: catat <InlineMath math="g" /> di setiap awal dan akhir istirahat, lalu hitung berapa kali <InlineMath math="g" /> melewati kelipatan <InlineMath math="400" />.
+Hitung **sisa memori setelah foto disimpan**, lalu bagi dengan ukuran video 4K per menit. Hasilnya dibulatkan ke bawah, karena video hanya dihitung dalam menit penuh.
 
-# Cara selisihnya berubah
-
-Saat keduanya berlari, <InlineMath math="g" /> **bertambah <InlineMath math="1\text{ m}" /> setiap detik**, karena <InlineMath math="5-4=1" />. Saat Andi minum, <InlineMath math="g" /> **berkurang <InlineMath math="4\text{ m}" /> setiap detik**, karena hanya Bima yang bergerak. Setiap siklus Andi terdiri atas <InlineMath math="320" /> detik lari dan <InlineMath math="50" /> detik minum, jadi panjangnya <InlineMath math="370" /> detik.
+# Sisa memori
 
 <BlockMath math="\begin{aligned}
-\text{selama lari} &: g \text{ naik } 320 \\
-\text{selama minum} &: g \text{ turun } 4 \cdot 50 = 200
+\text{tersedia}&=110\cdot1{.}024=112{.}640\text{ MB}\\
+\text{foto}&=20{.}000\cdot4=80{.}000\text{ MB}\\
+\text{sisa}&=32{.}640\text{ MB}
 \end{aligned}" />
 
-# Selisih di setiap pergantian
+# Durasi video 4K
 
-Mulai dari <InlineMath math="g=0" /> pada start, catat <InlineMath math="g" /> di setiap titik pergantian sampai detik ke-<InlineMath math="1{.}500" />:
+<BlockMath math="\frac{32{.}640}{400}=81{,}6" />
 
-| Detik ke- | Keadaan sesudahnya | Selisih <InlineMath math="g" /> |
-| --- | --- | --- |
-| <InlineMath math="320" /> | Andi mulai minum | <InlineMath math="320" /> |
-| <InlineMath math="370" /> | Andi berlari lagi | <InlineMath math="120" /> |
-| <InlineMath math="690" /> | Andi mulai minum | <InlineMath math="440" /> |
-| <InlineMath math="740" /> | Andi berlari lagi | <InlineMath math="240" /> |
-| <InlineMath math="1{.}060" /> | Andi mulai minum | <InlineMath math="560" /> |
-| <InlineMath math="1{.}110" /> | Andi berlari lagi | <InlineMath math="360" /> |
-| <InlineMath math="1{.}430" /> | Andi mulai minum | <InlineMath math="680" /> |
-| <InlineMath math="1{.}480" /> | Andi berlari lagi | <InlineMath math="480" /> |
-| <InlineMath math="1{.}500" /> | waktu habis | <InlineMath math="500" /> |
+Menit ke-82 memerlukan 32.800 MB, **melebihi sisa memori**, jadi durasi terpanjang adalah 81 menit.
 
-Selisih tidak pernah mencapai <InlineMath math="800" />, jadi yang perlu kamu cari hanya **setiap kali <InlineMath math="g" /> melewati <InlineMath math="400" />**, ke atas maupun ke bawah.
+Nilai 82 menit membulatkan ke atas. Nilai 217 menit memakai ukuran video HD, dan 281 menit melupakan foto yang sudah tersimpan. Nilai 750 menit melakukan kedua kesalahan itu.
 
-# Menghitung setiap pertemuan
-
-Pertemuan terjadi **setiap kali <InlineMath math="g" /> melewati <InlineMath math="400" />**, jadi bandingkan nilai <InlineMath math="g" /> di awal dan akhir setiap bagian:
-
-- Detik ke-<InlineMath math="370" /> sampai <InlineMath math="690" />: <InlineMath math="g" /> naik dari <InlineMath math="120" /> ke <InlineMath math="440" />, melewati <InlineMath math="400" /> pada detik ke-<InlineMath math="370+280=650" />. Andi menyusul Bima.
-- Detik ke-<InlineMath math="690" /> sampai <InlineMath math="740" />: <InlineMath math="g" /> turun dari <InlineMath math="440" /> ke <InlineMath math="240" />, melewati <InlineMath math="400" /> pada detik ke-<InlineMath math="690+10=700" />. Bima menyusul Andi yang sedang minum di <InlineMath math="S" />.
-- Detik ke-<InlineMath math="740" /> sampai <InlineMath math="1{.}060" />: <InlineMath math="g" /> naik dari <InlineMath math="240" /> ke <InlineMath math="560" />, melewati <InlineMath math="400" /> pada detik ke-<InlineMath math="740+160=900" />.
-- Detik ke-<InlineMath math="1{.}060" /> sampai <InlineMath math="1{.}110" />: <InlineMath math="g" /> turun dari <InlineMath math="560" /> ke <InlineMath math="360" />, melewati <InlineMath math="400" /> pada detik ke-<InlineMath math="1{.}060+40=1{.}100" />.
-- Detik ke-<InlineMath math="1{.}110" /> sampai <InlineMath math="1{.}430" />: <InlineMath math="g" /> naik dari <InlineMath math="360" /> ke <InlineMath math="680" />, melewati <InlineMath math="400" /> pada detik ke-<InlineMath math="1{.}110+40=1{.}150" />.
-- Sesudah itu <InlineMath math="g" /> turun ke <InlineMath math="480" /> lalu naik ke <InlineMath math="500" />. Nilainya tetap di atas <InlineMath math="400" /> dan di bawah <InlineMath math="800" />, jadi tidak ada pertemuan lagi.
-
-Totalnya ada <InlineMath math="5" /> pertemuan: <InlineMath math="3" /> kali Andi menyusul Bima dan <InlineMath math="2" /> kali Bima menyusul Andi yang sedang minum.
-
-# Memeriksa jawaban
-
-Cek pertemuan kedua dengan jarak tempuh. Pada detik ke-<InlineMath math="700" />, Andi sudah menyelesaikan <InlineMath math="8" /> putaran (<InlineMath math="3{.}200\text{ m}" />) dan sedang minum di <InlineMath math="S" />, sedangkan Bima menempuh <InlineMath math="4 \cdot 700=2{.}800\text{ m}" />, tepat <InlineMath math="7" /> putaran. Keduanya memang di <InlineMath math="S" />.
-
-Jawaban <InlineMath math="3" /> muncul kalau kamu hanya menghitung <InlineMath math="1{.}500 : 400" /> dengan selisih kecepatan <InlineMath math="1\text{ m/s}" />, atau **hanya menghitung saat Andi menyusul** dan melupakan Bima yang menyusul selama Andi minum.
-
-Jadi, selama <InlineMath math="25" /> menit itu Andi dan Bima bertemu sebanyak <InlineMath math="5" /> kali.
+Jadi, durasi video 4K terpanjang adalah **81 menit**.

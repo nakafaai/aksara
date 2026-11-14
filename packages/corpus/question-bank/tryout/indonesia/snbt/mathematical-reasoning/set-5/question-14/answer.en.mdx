@@ -1,40 +1,13 @@
-You're looking for the first date when the family downloads with no main quota left. The plan: add up only the downloads that **use up main quota**, day by day, until the total reaches <InlineMath math="100\text{ GB}" />, then check what happens right at that limit.
+The roof area needed is **the number of panels times the area of one panel**. So first find the number of panels.
 
-# Downloads that use the quota
+# Number of panels
 
-Night downloads don't use main quota, so the <InlineMath math="3\text{ GB}" /> each night **isn't added in**. Only the <InlineMath math="4\text{ GB}" /> on weekdays and the <InlineMath math="12\text{ GB}" /> on weekend days count. Since date <InlineMath math="1" /> is a Tuesday, the first week runs from Tuesday to Monday:
+One panel makes <InlineMath math="0.2\cdot4.5=0.9" /> kWh a day, so **10 panels are needed**, because <InlineMath math="\tfrac{9}{0.9}=10" />.
 
-| Date | Day | Daytime download | Quota used so far |
-| --- | --- | --- | --- |
-| <InlineMath math="1" /> to <InlineMath math="4" /> | Tuesday to Friday | <InlineMath math="4\text{ GB}" /> a day | <InlineMath math="16\text{ GB}" /> |
-| <InlineMath math="5" /> | Saturday | <InlineMath math="12\text{ GB}" /> | <InlineMath math="28\text{ GB}" /> |
-| <InlineMath math="6" /> | Sunday | <InlineMath math="12\text{ GB}" /> | <InlineMath math="40\text{ GB}" /> |
-| <InlineMath math="7" /> | Monday | <InlineMath math="4\text{ GB}" /> | <InlineMath math="44\text{ GB}" /> |
+# Roof area
 
-Every <InlineMath math="7" /> days the quota used grows by <InlineMath math="44\text{ GB}" />, so at the end of date <InlineMath math="14" /> the total is <InlineMath math="88\text{ GB}" />.
+<BlockMath math="10\cdot1.6=16\text{ m}^2" />
 
-# The date the quota runs out
+This is the net panel area, assuming the panels can be mounted **tightly with no gaps**.
 
-Carry on from date <InlineMath math="15" />, which is a Tuesday:
-
-<BlockMath math="\begin{aligned}
-\text{date } 15 &: 88 + 4 = 92 \\
-\text{date } 16 &: 92 + 4 = 96 \\
-\text{date } 17 &: 96 + 4 = 100
-\end{aligned}" />
-
-The main quota runs out **exactly when the daytime download on date <InlineMath math="17" /> finishes**. So every download on date <InlineMath math="17" /> still runs at <InlineMath math="40\text{ Mbps}" />.
-
-# The first slow download
-
-Date <InlineMath math="18" /> is a Friday. Its night download (00.00 to 06.00) still runs at <InlineMath math="40\text{ Mbps}" />. Its daytime download starts with no main quota left, so **that's the first download at <InlineMath math="8\text{ Mbps}" />**.
-
-# Answers that often come up
-
-Some other answers come from **adding things up the wrong way**:
-
-- Date <InlineMath math="17" /> comes from treating the day the quota runs out as already slow, even though the quota runs out right at the end of that day's download.
-- Date <InlineMath math="12" /> comes from adding in the night downloads: <InlineMath math="7\text{ GB}" /> per weekday and <InlineMath math="15\text{ GB}" /> per weekend day.
-- Date <InlineMath math="16" /> comes from using the average of <InlineMath math="\tfrac{44}{7}\text{ GB}" /> a day: <InlineMath math="100 \div \tfrac{44}{7} \approx 15.9" />, rounded up. The average ignores the order of weekdays and weekend days.
-
-So Pak Dedi's family first downloads at <InlineMath math="8\text{ Mbps}" /> on date <InlineMath math="18" />.
+So the smallest roof area is **16 square metres**.

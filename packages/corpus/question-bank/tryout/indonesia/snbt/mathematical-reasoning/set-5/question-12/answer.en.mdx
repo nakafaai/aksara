@@ -1,52 +1,17 @@
-You're looking for the smallest extra amount of cans that makes the balance after the third week's deposit big enough for a <InlineMath math="\text{Rp}100{,}000" /> withdrawal. The plan: work out the balance after the first <InlineMath math="2" /> weeks, find the balance you need with the **<InlineMath math="\text{Rp}10{,}000" /> minimum left over**, turn that into a value for the third deposit, and then into a weight of cans.
+Only one value changes, so there is no need to add all the times again. Just **correct the old sum by the change in that value**.
 
-# The balance after two weeks
+# The corrected sum
 
-Each week, **the counted weights are rounded down** to a multiple of <InlineMath math="0.5\text{ kg}" />:
+Fajar's time drops by <InlineMath math="16.4-14.8=1.6" /> seconds, so **the sum of all times also drops by 1.6 seconds**.
 
-<BlockMath math="\begin{aligned}
-\text{plastic bottles} &: 3.8 \to 3.5\text{ kg} \to 3.5 \cdot 4{,}000 = 14{,}000 \\
-\text{cans} &: 2.3 \to 2.0\text{ kg} \to 2.0 \cdot 12{,}000 = 24{,}000 \\
-\text{added balance} &= 38{,}000 - 3{,}800 = 34{,}200
-\end{aligned}" />
+<BlockMath math="116-1.6=114.4" />
 
-A value of <InlineMath math="38{,}000" /> is below <InlineMath math="60{,}000" />, so the fee is exactly <InlineMath math="10\%" />. After <InlineMath math="2" /> weeks the balance is <InlineMath math="2 \cdot 34{,}200 = 68{,}400" />.
+# The new mean
 
-# The balance you need
+<BlockMath math="\frac{114.4}{8}=14.3" />
 
-<InlineMath math="\text{Rp}100{,}000" /> is already a multiple of <InlineMath math="\text{Rp}20{,}000" />, but after the withdrawal **at least <InlineMath math="\text{Rp}10{,}000" /> has to stay in the account**. So the balance after the third deposit has to be at least <InlineMath math="110{,}000" />, and the third deposit has to add at least:
+A quick way: the mean **drops by <InlineMath math="\tfrac{1.6}{8}=0.2" /> seconds**, from 14.5 to 14.3.
 
-<BlockMath math="110{,}000 - 68{,}400 = 41{,}600" />
+The value 14.5 seconds is the mean before the correction. The value 14.7 seconds adds 0.2, although the time went down.
 
-# The value of the third deposit
-
-Call the value of the third deposit <InlineMath math="V" />. As long as <InlineMath math="V" /> is at most <InlineMath math="60{,}000" />, it adds <InlineMath math="0.9V" /> to the balance:
-
-<BlockMath math="\begin{aligned}
-0.9V &\ge 41{,}600 \\
-V &\ge 46{,}222.2\ldots
-\end{aligned}" />
-
-The plastic bottles still bring <InlineMath math="14{,}000" />, so the cans have to be worth at least <InlineMath math="32{,}222.2\ldots" />, which means a counted can weight of at least <InlineMath math="2.68\ldots\text{ kg}" />. Since **the counted weight is always a multiple of <InlineMath math="0.5\text{ kg}" />**, the counted can weight has to be <InlineMath math="3.0\text{ kg}" />. Check both options:
-
-<BlockMath math="\begin{aligned}
-2.5\text{ kg} &: V = 14{,}000 + 30{,}000 = 44{,}000, \ 68{,}400 + 39{,}600 = 108{,}000 \\
-3.0\text{ kg} &: V = 14{,}000 + 36{,}000 = 50{,}000, \ 68{,}400 + 45{,}000 = 113{,}400
-\end{aligned}" />
-
-A balance of <InlineMath math="108{,}000" /> is less than <InlineMath math="110{,}000" />, while <InlineMath math="113{,}400" /> is enough. The value <InlineMath math="50{,}000" /> is also still below <InlineMath math="60{,}000" />, so the <InlineMath math="10\%" /> fee really applies.
-
-# The extra weight of cans
-
-A counted weight of <InlineMath math="3.0\text{ kg}" /> needs **all the cans on the scale** to weigh at least <InlineMath math="3.0\text{ kg}" />. Rina already brings <InlineMath math="2.3\text{ kg}" />, so she has to add at least <InlineMath math="3.0-2.3=0.7\text{ kg}" />.
-
-# The wrong options
-
-Each other option **forgets one rule**:
-
-- <InlineMath math="0\text{ kg}" /> forgets the minimum balance: without extra cans the balance is <InlineMath math="102{,}600" />, enough to take out <InlineMath math="100{,}000" /> but leaving only <InlineMath math="2{,}600" />.
-- <InlineMath math="0.2\text{ kg}" /> forgets the handling fee, so <InlineMath math="V \ge 41{,}600" /> and <InlineMath math="2.5\text{ kg}" /> of cans seems enough.
-- <InlineMath math="0.4\text{ kg}" /> brings the cans up to <InlineMath math="2.7\text{ kg}" />, but that weight is rounded down to <InlineMath math="2.5\text{ kg}" />.
-- <InlineMath math="1.0\text{ kg}" /> adds cans in steps of <InlineMath math="0.5\text{ kg}" />, but the rounding applies to the total can weight, not to the extra part.
-
-So Rina needs to add at least <InlineMath math="0.7\text{ kg}" /> of cans to her third week's deposit.
+So the corrected mean is **14.3 seconds**.

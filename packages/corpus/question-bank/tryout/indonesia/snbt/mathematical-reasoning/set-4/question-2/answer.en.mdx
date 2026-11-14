@@ -1,60 +1,15 @@
-Each statement needs its own test. The plan: write the cost of all three packages for a <InlineMath math="3" />-day rental as a formula in the total distance <InlineMath math="x" /> km, then use that formula for the first, second and fourth statements. The third statement compares two rental lengths, so **the discount and the allowance have to be recomputed** for each one.
+Flight P3 departs in WIT and arrives in WIB. WIT **is 2 hours ahead of WIB**, so first convert the departure time to WIB.
 
-# Cost formulas for three days
+# Matching the time zones
 
-A <InlineMath math="3" />-day rental is below <InlineMath math="5" /> days, so there's no discount. Package B's allowance is <InlineMath math="3\times150=450\text{ km}" />. **Package B only charges for distance once the total passes** <InlineMath math="450\text{ km}" />, so its formula has two pieces:
+08:00 WIT equals <InlineMath math="08{:}00-2\text{ hours}" />, which is **06:00 WIB**.
 
-<BlockMath math="\begin{aligned}
-A(x) &= 3\times200{,}000+1{,}500x=600{,}000+1{,}500x\\
-B(x) &= 1{,}050{,}000 \quad \text{for } x\le450\\
-B(x) &= 1{,}050{,}000+3{,}000(x-450)=3{,}000x-300{,}000 \quad \text{for } x>450\\
-C(x) &= 3\times500{,}000=1{,}500{,}000
-\end{aligned}" />
+# Computing the flight time
 
-# The first statement
+From 06:00 to 10:50 WIB, **4 hours 50 minutes** pass.
 
-Above the allowance, compare <InlineMath math="A(x)" /> with the second piece of <InlineMath math="B(x)" />:
+Check: the plane leaves at 08:00 WIT and flies 4 hours 50 minutes, arriving at 12:50 WIT. That is 10:50 WIB, as scheduled.
 
-<BlockMath math="\begin{aligned}
-600{,}000+1{,}500x &< 3{,}000x-300{,}000\\
-900{,}000 &< 1{,}500x\\
-x &> 600
-\end{aligned}" />
+The time 2 hours 50 minutes ignores the time zones. The time 6 hours 50 minutes adds 2 hours, whereas the departure time should be reduced by 2 hours.
 
-So **for distances above** <InlineMath math="600\text{ km}" />, Package A is cheaper than Package B. For example, at <InlineMath math="700\text{ km}" /> Package A costs <InlineMath math="600{,}000+1{,}050{,}000=1{,}650{,}000" /> while Package B costs <InlineMath math="1{,}050{,}000+750{,}000=1{,}800{,}000" />. The first statement only compares Package A with Package B, so it's **true** even though Package C is cheaper still.
-
-# The second statement
-
-The word "pasti" (for sure) means one failing case is enough to reject it. Take <InlineMath math="x=500" />, which is more than <InlineMath math="450" />:
-
-<BlockMath math="\begin{aligned}
-B(500) &= 1{,}050{,}000+3{,}000\times50=1{,}200{,}000\\
-A(500) &= 600{,}000+1{,}500\times500=1{,}350{,}000
-\end{aligned}" />
-
-Package B at <InlineMath math="1{,}200{,}000" /> beats Package C at <InlineMath math="1{,}500{,}000" />. Package B only loses to Package C when <InlineMath math="3{,}000x-300{,}000>1{,}500{,}000" />, that is, when <InlineMath math="x>600" />. So **going past the allowance doesn't yet make Package C the cheapest**, and the second statement is **false**.
-
-# The third statement
-
-A <InlineMath math="4" />-day rental has no discount and an allowance of <InlineMath math="600\text{ km}" />. A <InlineMath math="5" />-day rental gets the discount and an allowance of <InlineMath math="750\text{ km}" />:
-
-<BlockMath math="\begin{aligned}
-B_{4\text{ days}} &= 4\times350{,}000+3{,}000\times(700-600)=1{,}400{,}000+300{,}000=1{,}700{,}000\\
-B_{5\text{ days}} &= 0.8\times5\times350{,}000+0=1{,}400{,}000
-\end{aligned}" />
-
-The <InlineMath math="20\%" /> discount makes the day charge for <InlineMath math="5" /> days equal to the charge for <InlineMath math="4" /> days, because <InlineMath math="0.8\times5=4" />. The fifth day also **adds** <InlineMath math="150\text{ km}" /> **of allowance**, so the excess disappears. The third statement is **true**.
-
-# The fourth statement
-
-Put <InlineMath math="x=600" /> into the <InlineMath math="3" />-day formulas:
-
-<BlockMath math="\begin{aligned}
-A(600) &= 600{,}000+900{,}000=1{,}500{,}000\\
-B(600) &= 1{,}050{,}000+3{,}000\times150=1{,}500{,}000\\
-C(600) &= 1{,}500{,}000
-\end{aligned}" />
-
-All three are **exactly the same**, so the fourth statement is **true**. This fits the first two statements: right at <InlineMath math="600\text{ km}" />, both Package A and Package B catch up with Package C.
-
-So the first statement is true, the second is false, the third is true, and the fourth is true.
+So flight P3 takes **4 hours 50 minutes**.

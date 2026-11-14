@@ -1,51 +1,20 @@
-Kamu mencari total biaya listrik PLN dari pukul 07.00 sampai 22.00. Rencananya begini: **telusuri isi baterai jam demi jam** dengan aturan kapasitas dan cadangan, catat energi yang dibeli sebelum pukul 17.00 dan sesudahnya, lalu kalikan masing-masing dengan tarifnya.
+Tarif bertingkat berarti **setiap bagian pemakaian dikenai tarif bloknya sendiri**, bukan seluruh pemakaian dikenai satu tarif. Pemakaian 250 kWh melewati blok 1 dan berhenti di blok 2.
 
-# Isi baterai jam demi jam
+# Membagi pemakaian ke dalam blok
 
-Pada setiap jam, hitung dulu selisih energi panel dikurangi energi yang dipakai rumah. Selisih positif berarti ada kelebihan yang masuk ke baterai. Selisih negatif berarti ada kekurangan yang diambil dari baterai. Baterai **hanya boleh diisi sampai kapasitas** dan **hanya boleh dikuras sampai cadangan**, jadi yang dihitung adalah isi baterai setelah setiap jam.
+Pemakaian 250 kWh **terbagi menjadi 100 kWh di blok 1 dan 150 kWh di blok 2**.
 
-| Jam | Selisih panel dan pemakaian (kWh) | Isi baterai akhir jam (kWh) | Terbuang (kWh) | Dibeli dari PLN (kWh) |
-| :---: | :---: | :---: | :---: | :---: |
-| 07.00-08.00 | <InlineMath math="-1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
-| 08.00-09.00 | <InlineMath math="+1" /> | <InlineMath math="2" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
-| 09.00-10.00 | <InlineMath math="+2" /> | <InlineMath math="4" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
-| 10.00-11.00 | <InlineMath math="+3" /> | <InlineMath math="6" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
-| 11.00-12.00 | <InlineMath math="+3" /> | <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="0" /> |
-| 12.00-13.00 | <InlineMath math="+2" /> | <InlineMath math="6" /> | <InlineMath math="2" /> | <InlineMath math="0" /> |
-| 13.00-14.00 | <InlineMath math="+3" /> | <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="0" /> |
-| 14.00-15.00 | <InlineMath math="+1" /> | <InlineMath math="6" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
-| 15.00-16.00 | <InlineMath math="-1" /> | <InlineMath math="5" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
-| 16.00-17.00 | <InlineMath math="-1" /> | <InlineMath math="4" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| Bagian | kWh | Biaya |
+| :---: | :---: | :---: |
+| Blok 1 | 100 | <InlineMath math="100\cdot1{.}000=100{.}000" /> |
+| Blok 2 | 150 | <InlineMath math="150\cdot1{.}500=225{.}000" /> |
 
-Perhatikan jam pertama. Isi baterai pukul 07.00 sudah tepat <InlineMath math="1\text{ kWh}" />, yaitu sebesar cadangannya, jadi **kekurangan pada jam pertama langsung dibeli dari PLN**. Mulai pukul 10.00-11.00 baterai penuh, sehingga kelebihan sebesar <InlineMath math="10\text{ kWh}" /> pada siang hari terbuang.
+# Menjumlahkan dengan biaya beban
 
-# Kebutuhan pada malam hari
+<BlockMath math="20{.}000+100{.}000+225{.}000=345{.}000" />
 
-Pukul 17.00 isi baterai <InlineMath math="4\text{ kWh}" />. Dari isi itu, **hanya bagian di atas cadangan yang boleh dipakai**.
+Tagihan ini **selalu memuat biaya beban**, berapa pun pemakaiannya.
 
-<BlockMath math="\begin{aligned}
-\text{energi baterai yang boleh dipakai} &= 4-1=3\text{ kWh}\\
-\text{energi yang dibeli malam hari} &= 11-3=8\text{ kWh}
-\end{aligned}" />
+Tagihan Rp395.000,00 mengenakan tarif blok 2 untuk seluruh 250 kWh, dan Rp520.000,00 mengenakan tarif blok 3 untuk seluruhnya. Tagihan Rp325.000,00 lupa biaya beban, dan Rp270.000,00 mengenakan tarif blok 1 untuk seluruh pemakaian.
 
-# Total biaya listrik
-
-Energi yang dibeli sebelum pukul 17.00 adalah <InlineMath math="1\text{ kWh}" /> dengan tarif siang, dan **energi malam memakai tarif yang lebih mahal**.
-
-<BlockMath math="\begin{aligned}
-\text{biaya} &= 1\cdot\text{Rp}1{.}000+8\cdot\text{Rp}2{.}500\\
-&= \text{Rp}1{.}000+\text{Rp}20{.}000=\text{Rp}21{.}000
-\end{aligned}" />
-
-# Pemeriksaan dengan neraca energi
-
-Energi yang masuk harus sama dengan energi yang keluar. Yang masuk adalah energi panel <InlineMath math="30\text{ kWh}" />, energi dari PLN <InlineMath math="9\text{ kWh}" />, dan isi awal baterai <InlineMath math="1\text{ kWh}" />. Yang keluar adalah pemakaian <InlineMath math="18+11=29\text{ kWh}" />, energi terbuang <InlineMath math="10\text{ kWh}" />, dan isi akhir baterai <InlineMath math="1\text{ kWh}" />. Keduanya berjumlah <InlineMath math="40\text{ kWh}" />, jadi **perhitungan jam demi jam itu konsisten**.
-
-# Pilihan yang keliru
-
-- <InlineMath math="\text{Rp}1{.}000{,}00" /> muncul jika kapasitas <InlineMath math="6\text{ kWh}" /> diabaikan. Baterai seolah berisi <InlineMath math="14\text{ kWh}" /> pada pukul 17.00, padahal **kelebihan siang tidak muat dan terbuang**.
-- <InlineMath math="\text{Rp}17{.}500{,}00" /> muncul jika baterai dianggap boleh kosong. Pembelian pagi hilang dan pembelian malam menjadi <InlineMath math="7\text{ kWh}" />.
-- <InlineMath math="\text{Rp}20{.}000{,}00" /> lupa membayar <InlineMath math="1\text{ kWh}" /> yang dibeli pada pukul 07.00-08.00.
-- <InlineMath math="\text{Rp}22{.}500{,}00" /> memakai tarif malam untuk semua <InlineMath math="9\text{ kWh}" />, termasuk energi yang dibeli pagi hari.
-
-Jadi, total biaya listrik PLN keluarga Pak Hadi pada hari itu adalah <InlineMath math="\text{Rp}21{.}000{,}00" />.
+Jadi, tagihan listrik bulan itu adalah **Rp345.000,00**.

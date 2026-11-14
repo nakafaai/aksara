@@ -1,7 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "scholarship-score",
+  stimulus: "bus-route",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -9,22 +9,19 @@ const item: ItemSource = {
       statements: [
         {
           column: 2,
-          label: "Calon yang nilai akhirnya lebih dari $$90$$ pasti memenuhi syarat.",
-        },
-        {
-          column: 1,
           label:
-            "Jika ketiga pewawancara memberi nilai yang sama, lalu salah satu nilai itu dinaikkan $$8$$ poin, nilai akhir calon naik tepat $$1$$ poin.",
+            "Banyak penumpang yang naik selama satu kali perjalanan adalah 70 orang.",
         },
-        {
-          column: 1,
-          label:
-            "Kenaikan nilai dari salah satu pewawancara bisa saja tidak mengubah nilai akhir calon sama sekali.",
-        },
+        { column: 1, label: "Di terminal akhir, 35 penumpang turun." },
         {
           column: 2,
           label:
-            "Dua calon dengan nilai $$T$$, $$R$$, dan $$P$$ yang sama serta jumlah nilai ketiga pewawancara yang sama pasti memiliki nilai akhir yang sama.",
+            "Banyak penumpang di dalam bus tidak pernah melebihi 32 orang.",
+        },
+        {
+          column: 1,
+          label:
+            "Rata-rata banyak penumpang di dalam bus pada kelima ruas adalah $$28{,}2$$ orang.",
         },
       ],
     },

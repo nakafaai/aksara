@@ -1,48 +1,21 @@
-Du suchst die zwei Zeitpunkte, an denen der Tank genau <InlineMath math="4{.}200\text{ Liter}" /> enthält, und davon den zweiten. Verfolge dazu den Füllstand ab 05:00 Uhr Abschnitt für Abschnitt. Ein neuer Abschnitt beginnt immer dann, wenn ein Gerät an- oder ausgeht. Denk daran, dass **der Füllstand nie über der Kapazität liegt**, also nie über <InlineMath math="6{.}000\text{ Liter}" />.
+Die Punkte einer Mannschaft sind **3 mal die Siege plus die Unentschieden**. Berechne sie für alle fünf Mannschaften und addiere.
 
-# Der Füllstand beim Steigen
+# Punkte jeder Mannschaft
 
-Der Füllstand ändert sich um den Zufluss minus den Abfluss. Diese Differenz heißt Nettozufluss. **Der Nettozufluss ändert sich jedes Mal, wenn ein Gerät startet oder stoppt**, also rechnest du Abschnitt für Abschnitt.
+<BlockMath math="\begin{aligned}
+A&:\quad 3\cdot3+1=10\\
+B&:\quad 3\cdot2+1=7\\
+C&:\quad 3\cdot1+2=5\\
+D&:\quad 3\cdot1+1=4\\
+E&:\quad 3\cdot0+1=1
+\end{aligned}" />
 
-| Abschnitt | Laufende Geräte | Nettozufluss | Füllstand am Ende |
-| :---: | :---: | :---: | :---: |
-| 05:00 bis 05:20 Uhr | P | <InlineMath math="60\text{ Liter/min}" /> | <InlineMath math="1{.}000+60\cdot 20=2{.}200" /> |
-| 05:20 bis 05:40 Uhr | P und K | <InlineMath math="60-50=10\text{ Liter/min}" /> | <InlineMath math="2{.}200+10\cdot 20=2{.}400" /> |
-| ab 05:40 Uhr | P, Q und K | <InlineMath math="60+80-50=90\text{ Liter/min}" /> | steigt weiter |
+**Die Summe der fünf Mannschaften** ist <InlineMath math="10+7+5+4+1=27" />.
 
-Ab 05:40 Uhr steigt der Füllstand um <InlineMath math="90\text{ Liter}" /> pro Minute. Sei <InlineMath math="t" /> die Zahl der Minuten nach 05:40 Uhr, bis <InlineMath math="4{.}200\text{ Liter}" /> erreicht sind.
+# Kontrolle über die Spiele
 
-<BlockMath math="\begin{aligned} 2{.}400+90t &= 4{.}200 \\ 90t &= 1{.}800 \\ t &= 20 \end{aligned}" />
+Es gibt <InlineMath math="\binom52=10" /> Spiele. Die Unentschieden ergeben zusammen 6, und **jedes Unentschieden wird bei zwei Mannschaften gezählt**, also gibt es 3 Unentschieden und 7 Spiele mit Sieger. Ein Spiel mit Sieger bringt 3 Punkte, ein Unentschieden <InlineMath math="1+1=2" /> Punkte.
 
-Der erste Zeitpunkt ist also 06:00 Uhr. Das ist noch nicht die Antwort, denn gefragt ist der zweite Zeitpunkt.
+<BlockMath math="7\cdot3+3\cdot2=27" />
 
-# Der Tank wird voll und bleibt voll
-
-Mit demselben Nettozufluss bestimmst du, wann der Tank <InlineMath math="6{.}000\text{ Liter}" /> erreicht.
-
-<BlockMath math="\begin{aligned} 2{.}400+90t &= 6{.}000 \\ 90t &= 3{.}600 \\ t &= 40 \end{aligned}" />
-
-Um 06:20 Uhr ist der Tank voll. Ab dann fließt das überschüssige Wasser durch das Überlaufrohr ab, deshalb **bleibt der Füllstand bei der Kapazität stehen**. Um 06:40 Uhr geht Pumpe Q aus, aber Pumpe P drückt weiter <InlineMath math="60\text{ Liter/min}" /> hinein, mehr als die <InlineMath math="50\text{ Liter/min}" />, die durch Hahn K abfließen. Der Tank bleibt also voll, bis Pumpe P um 07:00 Uhr ausgeht.
-
-# Der Füllstand beim Sinken
-
-Nach 07:00 Uhr läuft nur noch Hahn K, also **sinkt der Füllstand ab <InlineMath math="6{.}000\text{ Liter}" /> um <InlineMath math="50\text{ Liter}" /> pro Minute**. Sei <InlineMath math="u" /> die Zahl der Minuten nach 07:00 Uhr.
-
-<BlockMath math="\begin{aligned} 6{.}000-50u &= 4{.}200 \\ 50u &= 1{.}800 \\ u &= 36 \end{aligned}" />
-
-Der zweite Zeitpunkt liegt <InlineMath math="36\text{ Minuten}" /> nach 07:00 Uhr, also um 07:36 Uhr.
-
-# Kontrolle des Ergebnisses
-
-Bis 07:36 Uhr hat Hahn K seit Beginn des Sinkens <InlineMath math="50\cdot 36=1{.}800\text{ Liter}" /> abgegeben, und <InlineMath math="6{.}000-1{.}800=4{.}200" />. Das Ergebnis passt auch zeitlich, denn **leer ist der Tank erst um 09:00 Uhr**, also <InlineMath math="6{.}000:50=120\text{ Minuten}" /> nach 07:00 Uhr. Damit liegt 07:36 Uhr mitten in der Phase des Sinkens.
-
-# Warum die anderen Antworten nicht passen
-
-Jede falsche Antwort entsteht durch **einen übersprungenen Schritt**.
-
-- 06:00 Uhr ist der erste Zeitpunkt, an dem der Füllstand noch steigt.
-- 06:56 Uhr entsteht, wenn der Füllstand gleich nach dem Vollwerden um 06:20 Uhr sinken soll, obwohl noch mehr Wasser hinein- als hinausfließt.
-- 07:16 Uhr entsteht, wenn der Füllstand ab dem Abschalten von Pumpe Q um 06:40 Uhr sinken soll, obwohl Pumpe P bis 07:00 Uhr weiterläuft.
-- 08:16 Uhr entsteht, wenn das Überlaufwasser im Tank bleiben soll, sodass der Füllstand um 07:00 Uhr mit <InlineMath math="8{.}000\text{ Liter}" /> angesetzt wird, mehr als der Tank fasst.
-
-Der Tank enthält also um 07:36 Uhr zum zweiten Mal genau <InlineMath math="4{.}200\text{ Liter}" />.
+Alle Mannschaften haben zusammen also **27 Punkte**.

@@ -1,41 +1,23 @@
-Tiket dijual dari depan ke belakang, jadi semua kursi kategori A terjual lebih dulu, lalu kategori B, lalu kategori C. Rencananya: hitung pendapatan setiap kategori yang habis terjual, **cari di kategori mana total pendapatan melewati target**, lalu hitung tiket di kategori itu.
+Tulis biaya setiap paket sebagai fungsi pemakaian <InlineMath math="x" /> GB di atas kuotanya. Untuk <InlineMath math="x>10" />, **biaya Hemat adalah <InlineMath math="50{.}000+9{.}000(x-10)" />**, dan untuk <InlineMath math="x>20" />, biaya Bebas adalah <InlineMath math="95{.}000+5{.}000(x-20)" />.
 
-# Banyak kursi kategori A dan B
-
-Baris ke-<InlineMath math="n" /> punya <InlineMath math="19+2(n-1)=17+2n" /> kursi. Banyak kursi per baris membentuk barisan aritmetika, jadi **jumlah kursi suatu kategori adalah banyak baris kali rata-rata baris pertama dan terakhirnya**.
+# Pemakaian 25 GB dan 12 GB
 
 <BlockMath math="\begin{aligned}
-\text{A, baris ke-}1\text{ sampai ke-}6 &: \tfrac{6(19+29)}{2}=144\text{ kursi}\\
-\text{B, baris ke-}7\text{ sampai ke-}16 &: \tfrac{10(31+49)}{2}=400\text{ kursi}
+\text{Hemat}(25)&=50{.}000+15\cdot9{.}000=185{.}000\\
+\text{Bebas}(25)&=95{.}000+5\cdot5{.}000=120{.}000
 \end{aligned}" />
 
-# Pendapatan setelah kategori A dan B habis
+Selisihnya 65.000, jadi pernyataan pertama benar. Untuk 12 GB, Hemat berbiaya <InlineMath math="50{.}000+2\cdot9{.}000=68{.}000" />, **lebih murah daripada 95.000**. Pernyataan kedua salah.
 
-Kalikan banyak kursi dengan harga kategorinya, karena **harga tiket ditentukan oleh kategori baris**.
+# Laju selisih dan batas anggaran
+
+Di atas 20 GB, setiap GB menambah Hemat Rp9.000,00 dan Bebas Rp5.000,00, jadi selisihnya **bertambah Rp4.000,00 per GB**. Pernyataan ketiga benar.
 
 <BlockMath math="\begin{aligned}
-\text{pendapatan A} &= 144\cdot\text{Rp}250{.}000=\text{Rp}36{.}000{.}000\\
-\text{pendapatan A dan B} &= \text{Rp}36{.}000{.}000+400\cdot\text{Rp}150{.}000=\text{Rp}96{.}000{.}000
+50{.}000+9{.}000(x-10)&\le150{.}000\\
+x-10&\le\tfrac{100}{9}\approx11{,}1
 \end{aligned}" />
 
-Setelah <InlineMath math="144+400=544" /> tiket terjual, pendapatan baru <InlineMath math="\text{Rp}96{.}000{.}000" />. Jadi **kategori B habis sebelum target tercapai**, dan sisa target harus dipenuhi oleh tiket kategori C.
+Pemakaian dihitung dalam GB bulat, jadi paling banyak 21 GB. Pemakaian 22 GB berbiaya 158.000, melebihi anggaran. Pernyataan keempat salah.
 
-# Tiket kategori C yang diperlukan
-
-Sisa target adalah <InlineMath math="\text{Rp}100{.}000{.}000-\text{Rp}96{.}000{.}000=\text{Rp}4{.}000{.}000" />. Setiap tiket kategori C bernilai <InlineMath math="\text{Rp}100{.}000" />.
-
-<BlockMath math="\begin{aligned}
-\text{tiket C} &= \frac{4{.}000{.}000}{100{.}000}=40\\
-\text{total tiket} &= 144+400+40=584
-\end{aligned}" />
-
-# Pemeriksaan
-
-Setelah <InlineMath math="583" /> tiket, pendapatan <InlineMath math="\text{Rp}96{.}000{.}000+39\cdot\text{Rp}100{.}000=\text{Rp}99{.}900{.}000" />, masih **kurang dari target**. Tiket ke-<InlineMath math="584" /> membuat pendapatan tepat <InlineMath math="\text{Rp}100{.}000{.}000" />. Baris ke-<InlineMath math="17" /> punya <InlineMath math="51" /> kursi, jadi <InlineMath math="40" /> tiket kategori C itu semuanya ada di baris ke-<InlineMath math="17" />.
-
-# Jawaban yang sering keliru
-
-- Jawaban <InlineMath math="571" /> menganggap sisa <InlineMath math="\text{Rp}64{.}000{.}000" /> setelah kategori A dipenuhi tiket kategori B, yaitu <InlineMath math="427" /> tiket. Padahal **kategori B hanya punya** <InlineMath math="400" /> **kursi**.
-- Jawaban <InlineMath math="400" /> membagi <InlineMath math="\text{Rp}100{.}000{.}000" /> dengan harga kategori A, seakan-akan semua tiket berharga <InlineMath math="\text{Rp}250{.}000" />.
-
-Jadi, total pendapatan pertama kali mencapai <InlineMath math="\text{Rp}100{.}000{.}000{,}00" /> pada saat <InlineMath math="584" /> tiket sudah terjual.
+Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **benar**, dan keempat **salah**.

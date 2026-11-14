@@ -1,34 +1,15 @@
-You're looking for the amount of the drug in the body just before the 06.00 dose on the second day. The plan: find the size of one dose, follow the amount through the first day, then **count how many times the amount halves during the night without medicine**.
+The median is the value between the 20th and 21st of the 40 sorted values, **the point that splits the data into two equal halves**. For grouped data, find its class and then estimate it by interpolation.
 
-# The size of one dose
+# Finding the median class
 
-By body weight, the child could get <InlineMath math="10\cdot60=600\text{ mg}" />. But **a single dose is capped** at <InlineMath math="400\text{ mg}" />, so only <InlineMath math="400\text{ mg}" /> is allowed. That's <InlineMath math="20\text{ mL}" /> of syrup, already a multiple of <InlineMath math="2.5\text{ mL}" />, so the child takes exactly <InlineMath math="400\text{ mg}" /> each time.
+Add the frequencies from the lowest class: 4, then <InlineMath math="4+10=14" />, then <InlineMath math="14+15=29" />. The 20th value lies **in the class 20-29**, because 14 values come before that class.
 
-# The amount on the first day
+# Interpolating inside the class
 
-There are <InlineMath math="6" /> hours between two doses, so before the next dose the amount has halved, and then it **goes up by the <InlineMath math="400\text{ mg}" /> just taken**.
+The class 20-29 has lower boundary 19.5, width 10 and 15 values. We need <InlineMath math="20-14=6" /> more values from that class.
 
-<BlockMath math="\begin{aligned}
-\text{after the morning dose} &= 400\text{ mg}\\
-\text{after the midday dose} &= \tfrac{1}{2}\cdot400+400=600\text{ mg}\\
-\text{after the evening dose} &= \tfrac{1}{2}\cdot600+400=700\text{ mg}
-\end{aligned}" />
+<BlockMath math="\text{Me}=19.5+\frac{20-14}{15}\cdot10=19.5+4=23.5" />
 
-# The night without medicine
+The result does lie between 19.5 and 29.5, matching the median class.
 
-From 18.00 to 06.00 there are <InlineMath math="12" /> hours with no dose. That's **two periods of** <InlineMath math="6" /> hours each, so the amount halves twice.
-
-<BlockMath math="700\cdot\tfrac{1}{2}\cdot\tfrac{1}{2}=\frac{700}{4}=175\text{ mg}" />
-
-# Checking the answer
-
-At 24.00 the amount is down to <InlineMath math="350\text{ mg}" />, and <InlineMath math="6" /> hours later it's <InlineMath math="175\text{ mg}" />. The result also makes sense because it's **smaller than one dose** of <InlineMath math="400\text{ mg}" />: the long night clears out most of the drug.
-
-# The wrong options
-
-- <InlineMath math="100\text{ mg}" /> counts only the 18.00 dose and forgets what's left from the morning and midday doses.
-- <InlineMath math="262.5\text{ mg}" /> uses a dose of <InlineMath math="600\text{ mg}" />, so **the** <InlineMath math="400\text{ mg}" /> **cap is missed**.
-- <InlineMath math="350\text{ mg}" /> halves only once, as if the night lasted only <InlineMath math="6" /> hours.
-- <InlineMath math="525\text{ mg}" /> combines two slips: a dose of <InlineMath math="600\text{ mg}" /> and only one halving.
-
-So just before the 06.00 dose on the second day, the child's body holds <InlineMath math="175\text{ mg}" /> of the drug.
+So the median travel time is **23.5 minutes**.

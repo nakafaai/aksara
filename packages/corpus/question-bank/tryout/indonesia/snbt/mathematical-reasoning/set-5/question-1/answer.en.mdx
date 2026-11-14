@@ -1,47 +1,16 @@
-You're looking for the smallest number of visits that makes a new membership truly cheaper. Here's the plan: find the cheapest cost without a membership for <InlineMath math="n" /> visits, work out the cost of a new membership, then compare the two with a **strict cheaper-than condition**. To keep the numbers short, every price is written in thousands of rupiah, so <InlineMath math="250" /> means <InlineMath math="\text{Rp}250{,}000" />.
+Fuel use differs on the two kinds of road, so **compute each part of the trip separately**, then add.
 
-# Cheapest cost without a membership
-
-All of Dimas's visits fall inside a single <InlineMath math="30" />-day period. A card bought on the first visit stays valid until the end of that period, so **no visit on the card expires**. One visit on a card costs <InlineMath math="25" />, cheaper than a <InlineMath math="40" /> day ticket.
-
-When <InlineMath math="n" /> is a little above <InlineMath math="10" />, the cheapest way is **<InlineMath math="1" /> card plus day tickets** for the remaining visits. It only loses to <InlineMath math="2" /> cards once its cost goes past <InlineMath math="500" />:
+# Fuel for each part
 
 <BlockMath math="\begin{aligned}
-\text{one card and day tickets} &= 250+40(n-10) \\
-250+40(n-10) > 500 &\iff 40(n-10) > 250 \\
-&\iff n-10 > 6.25
+\text{city roads}&:\quad \frac{60}{10}=6\text{ litres}\\
+\text{toll road}&:\quad \frac{150}{15}=10\text{ litres}
 \end{aligned}" />
 
-So for <InlineMath math="11 \le n \le 16" /> the cheapest cost without a membership is <InlineMath math="250+40(n-10)" />, and from <InlineMath math="n=17" /> on it's <InlineMath math="500" /> (<InlineMath math="2" /> cards).
+# Total fuel
 
-# Cost of a new membership
+<BlockMath math="6+10=16\text{ litres}" />
 
-Dimas has never been a member, so he **has to pay the registration fee** on top of the membership price:
+The amount of fuel is **distance divided by distance per litre**, not distance times distance per litre.
 
-<BlockMath math="350+100=450" />
-
-# Comparing the two costs
-
-The membership is cheaper when the cost without it is more than <InlineMath math="450" />. Solve that inequality:
-
-<BlockMath math="\begin{aligned}
-250+40(n-10) &> 450 \\
-40(n-10) &> 200 \\
-n-10 &> 5 \\
-n &> 15
-\end{aligned}" />
-
-At <InlineMath math="n=15" /> both costs are equal: <InlineMath math="250+40 \cdot 5=450" />. An **equal cost isn't cheaper yet**, so <InlineMath math="n=15" /> doesn't work. At <InlineMath math="n=16" /> the cost without a membership is <InlineMath math="250+40 \cdot 6=490" />, which is <InlineMath math="40" /> more than the membership. From <InlineMath math="n=17" /> on it's <InlineMath math="500" />, still more than <InlineMath math="450" />.
-
-Check from the other side: at <InlineMath math="n=14" /> the cost without a membership is <InlineMath math="250+40 \cdot 4=410" />, still cheaper than the membership. So the switch really happens between <InlineMath math="15" /> and <InlineMath math="16" />.
-
-# The wrong options
-
-Each other option comes from **one skipped step**:
-
-- <InlineMath math="15" /> visits treats an equal cost as already cheaper.
-- <InlineMath math="13" /> visits forgets the registration fee and compares with <InlineMath math="350" />: <InlineMath math="250+40 \cdot 3=370" /> is already above <InlineMath math="350" />.
-- <InlineMath math="12" /> visits only compares with day tickets: <InlineMath math="40 \cdot 12=480" /> is above <InlineMath math="450" />, but cards are much cheaper.
-- <InlineMath math="11" /> visits only uses whole cards, so <InlineMath math="11" /> visits seem to need <InlineMath math="2" /> cards for <InlineMath math="500" />, when <InlineMath math="1" /> card and <InlineMath math="1" /> day ticket cost just <InlineMath math="290" />.
-
-So Dimas needs at least <InlineMath math="16" /> visits in that period for a new membership to be cheaper.
+So the car uses **16 litres** of fuel.

@@ -1,12 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "library-fines",
+  stimulus: "lawn-sprinklers",
   versions: {
     id: {
       kind: "numericEntry",
-      unit: "ribu rupiah",
-      value: "45",
+      unit: "m²",
+      value: "39.48",
     },
   },
 };

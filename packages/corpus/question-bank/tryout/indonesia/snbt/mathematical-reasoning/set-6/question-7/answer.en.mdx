@@ -1,41 +1,20 @@
-You're looking for the smallest number of trips that makes the subscription cheaper. Compare the total cost of both options for each number of trips. What decides it here is **the monthly cap on minute charges, which makes the subscription stop getting more expensive**.
+After <InlineMath math="n" /> folds the stack has <InlineMath math="2^n" /> layers and **a thickness of <InlineMath math="0.1\cdot2^n" /> mm**. Each statement is checked with this formula.
 
-# The cost of one trip
+# Five and seven folds
 
-On the regular tariff, one <InlineMath math="40\text{-minute}" /> trip pays the unlock fee and every minute. On the subscription, the first <InlineMath math="20\text{ minutes}" /> are free, so **only <InlineMath math="20\text{ minutes}" /> are paid**.
+<BlockMath math="\begin{aligned}
+n=5&:\quad 0.1\cdot2^5=0.1\cdot32=3.2\text{ mm}\\
+n=7&:\quad 2^7=128\text{ layers}
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned} \text{regular per trip} &= 2{,}000+250\cdot 40=12{,}000 \\ \text{subscription minute charge per trip} &= 500\cdot(40-20)=10{,}000 \end{aligned}" />
+The first statement is true. Seven folds give 128 layers, **not 64**, so the third statement is false.
 
-# The subscription stops growing
+# The doubling pattern and twenty folds
 
-The minute charges grow by <InlineMath math="\text{Rp}10{,}000" /> per trip until they reach the <InlineMath math="\text{Rp}30{,}000" /> cap. That happens exactly on the third trip, because <InlineMath math="3\cdot 10{,}000=30{,}000" />. **From the third trip on, the subscription total stays at <InlineMath math="30{,}000+30{,}000=\text{Rp}60{,}000" />**, however many more trips she takes.
+From 1 to 2 folds the thickness rises from 0.2 mm to 0.4 mm, an increase of 0.2 mm, not 0.1 mm. The increase **grows with every fold**, so the second statement is false.
 
-| Number of trips | Regular tariff | Subscription |
-| :---: | :---: | :---: |
-| <InlineMath math="1" /> | <InlineMath math="12{,}000" /> | <InlineMath math="40{,}000" /> |
-| <InlineMath math="2" /> | <InlineMath math="24{,}000" /> | <InlineMath math="50{,}000" /> |
-| <InlineMath math="3" /> | <InlineMath math="36{,}000" /> | <InlineMath math="60{,}000" /> |
-| <InlineMath math="4" /> | <InlineMath math="48{,}000" /> | <InlineMath math="60{,}000" /> |
-| <InlineMath math="5" /> | <InlineMath math="60{,}000" /> | <InlineMath math="60{,}000" /> |
-| <InlineMath math="6" /> | <InlineMath math="72{,}000" /> | <InlineMath math="60{,}000" /> |
+<BlockMath math="0.1\cdot2^{20}=0.1\cdot1{,}048{,}576=104{,}857.6\text{ mm}\approx104.9\text{ m}" />
 
-# The condition for cheaper
+The thickness is more than 100 m, so the fourth statement is true.
 
-The subscription has to be **strictly cheaper**, not just equal. For <InlineMath math="n" /> trips with <InlineMath math="n\ge 3" />, the condition is:
-
-<BlockMath math="\begin{aligned} 12{,}000n &> 60{,}000 \\ n &> 5 \end{aligned}" />
-
-The smallest whole number above <InlineMath math="5" /> is <InlineMath math="6" />. For <InlineMath math="n" /> below <InlineMath math="3" />, the table shows the regular tariff is still much cheaper. At <InlineMath math="5" /> trips, both cost <InlineMath math="\text{Rp}60{,}000" />.
-
-# Checking the result
-
-With <InlineMath math="6" /> trips, the regular tariff costs <InlineMath math="\text{Rp}72{,}000" /> and the subscription <InlineMath math="\text{Rp}60{,}000" />, so the subscription is <InlineMath math="\text{Rp}12{,}000" /> cheaper. After that, the regular cost keeps rising while the subscription stays put, so **the subscription stays cheaper for any number above six**.
-
-# Traps to avoid
-
-There are **two answers that come up often** from a skipped step.
-
-- The answer <InlineMath math="5" /> treats "equal" as good enough. At <InlineMath math="5" /> trips the costs are equal, not cheaper.
-- The answer <InlineMath math="16" /> ignores the cap. Without it, each subscription trip is only <InlineMath math="\text{Rp}2{,}000" /> cheaper, so it takes more than <InlineMath math="30{,}000\div 2{,}000=15" /> trips to cover the fee.
-
-So Dita needs at least <InlineMath math="6" /> trips in December for the subscription to be cheaper.
+So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.

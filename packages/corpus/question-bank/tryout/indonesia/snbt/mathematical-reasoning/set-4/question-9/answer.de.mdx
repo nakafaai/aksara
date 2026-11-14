@@ -1,48 +1,14 @@
-Gesucht ist die kleinste Bewertung der dritten Interviewerin oder des dritten Interviewers, mit der Gita die Bedingungen erfüllt. Der Plan: Bestimme zuerst das nötige <InlineMath math="W" />, kläre dann, **welche Bewertungen wirklich zählen**, und suche erst danach eine dritte Bewertung, die reicht.
+Die Zahl der Fahrgäste ändert sich an jeder Haltestelle: **Einsteigende dazu, Aussteigende weg**. Führe diese Zählung ab der Anfangsstation durch.
 
-# Die nötige Interviewnote
-
-Drei Komponenten von Gita sind bekannt. Addiere zuerst ihren Beitrag zur Endnote:
-
-<BlockMath math="0{,}40\times74+0{,}20\times88+0{,}15\times90=29{,}6+17{,}6+13{,}5=60{,}7" />
-
-Die Bedingung <InlineMath math="N\ge80" /> liefert eine Grenze für <InlineMath math="W" />:
+# Haltestelle für Haltestelle zählen
 
 <BlockMath math="\begin{aligned}
-60{,}7+0{,}25W &\ge 80\\
-0{,}25W &\ge 19{,}3\\
-W &\ge 77{,}2
+\text{Anfangsstation}&:\quad 0+25=25\\
+\text{Haltestelle A}&:\quad 25+12-8=29\\
+\text{Haltestelle B}&:\quad 29+6-10=25\\
+\text{Haltestelle C}&:\quad 25+9-7=27
 \end{aligned}" />
 
-Diese Grenze erfüllt schon **die Komponentenbedingung** <InlineMath math="W\ge65" />, also entscheidet <InlineMath math="W\ge77{,}2" />.
+Die Zählung muss **der Reihe nach vom Anfang an** laufen, denn jede Haltestelle hängt von der Fahrgastzahl davor ab.
 
-# Welche Bewertungen zählen
-
-Nenne die dritte Bewertung <InlineMath math="t" />. Für <InlineMath math="W" /> zählen nur **die zwei höchsten Bewertungen**, also gibt es zwei Fälle.
-
-Für <InlineMath math="t\le58" /> sind die zwei höchsten Bewertungen <InlineMath math="84" /> und <InlineMath math="58" />, also <InlineMath math="W=\tfrac{84+58}{2}=71" />. Das liegt unter <InlineMath math="77{,}2" />, dieser Fall scheitert also.
-
-Für <InlineMath math="t>58" /> fällt die <InlineMath math="58" /> weg, und die zwei höchsten Bewertungen sind <InlineMath math="84" /> und <InlineMath math="t" />:
-
-<BlockMath math="\begin{aligned}
-\frac{84+t}{2} &\ge 77{,}2\\
-84+t &\ge 154{,}4\\
-t &\ge 70{,}4
-\end{aligned}" />
-
-Bewertungen sind ganze Zahlen, also ist **die kleinste passende Bewertung** <InlineMath math="71" />. Sie ist größer als <InlineMath math="58" /> und passt damit zum verwendeten Fall.
-
-# Die Grenze prüfen
-
-Prüfe <InlineMath math="t=71" /> und <InlineMath math="t=70" />:
-
-<BlockMath math="\begin{aligned}
-t=71:\quad W &= 77{,}5,\quad N=60{,}7+0{,}25\times77{,}5=80{,}075\ge80\\
-t=70:\quad W &= 77,\quad N=60{,}7+0{,}25\times77=79{,}95<80
-\end{aligned}" />
-
-Mit <InlineMath math="71" /> erfüllt Gita die Bedingungen, mit <InlineMath math="70" /> **verfehlt sie die Grenze knapp**.
-
-Typische Fehler: Wer den Mittelwert aller drei Bewertungen nimmt, erhält <InlineMath math="90" />, wer die dritte Bewertung mit <InlineMath math="58" /> statt mit <InlineMath math="84" /> paart, erhält <InlineMath math="97" />, und wer <InlineMath math="70{,}4" /> abrundet, erhält <InlineMath math="70" />, was nicht reicht.
-
-Die dritte Bewertung für Gita muss also mindestens <InlineMath math="71" /> betragen.
+Beim Verlassen der Haltestelle C sind also **27 Personen** im Bus.

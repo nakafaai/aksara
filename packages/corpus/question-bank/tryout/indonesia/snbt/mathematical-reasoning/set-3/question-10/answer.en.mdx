@@ -1,30 +1,15 @@
-Cells die because the tank is full only when **doubling gives more than <InlineMath math="960" /> million cells**. Exactly <InlineMath math="960" /> doesn't kill any cells yet. The plan: follow the population hour by hour, with a harvest right after the doubling at every <InlineMath math="t" /> that's a multiple of <InlineMath math="3" />.
+Andra wins with **more than half of the valid votes**. Half of 240 is 120, so Andra needs at least 121 votes.
 
-# The first three cycles
+# Setting up the inequality
 
-Start from <InlineMath math="30" />. At a harvest hour, **the doubling comes first and then the harvest**.
+Let <InlineMath math="k" /> voters switch to Andra. **The number of valid votes stays 240**, because the votes only move from other candidates.
 
-<BlockMath math="\begin{aligned}
-t=1,2,3 &: \ 30\to60\to120\to240, \ 240-200=40 \\
-t=4,5,6 &: \ 40\to80\to160\to320, \ 320-200=120 \\
-t=7,8,9 &: \ 120\to240\to480\to960, \ 960-200=760
-\end{aligned}" />
+<BlockMath math="96+k>120\;\Longleftrightarrow\;k>24" />
 
-Each harvest takes <InlineMath math="200" />, because there are more than <InlineMath math="200" /> cells at that moment, so the culture doesn't end.
+# The smallest whole number
 
-# When the tank first overflows
+The number of voters is a whole number, so the smallest value is <InlineMath math="k=25" />, giving Andra 121 votes. For <InlineMath math="k=24" />, Andra has exactly 120 votes, **exactly 50%, not more than 50%**.
 
-At <InlineMath math="t=9" />, the doubling <InlineMath math="480\to960" /> fills the tank exactly. **Exactly full isn't overflowing**, so no cells die yet, and then the harvest brings it down to <InlineMath math="760" />.
+The value 121 is the number of votes Andra needs, not the number of voters who switch. The values 48 and 49 come from treating the switched voters as removing valid votes or from doubling the extra votes.
 
-At <InlineMath math="t=10" />, doubling gives <InlineMath math="760\cdot2=1{,}520" />, which is more than <InlineMath math="960" />. The count becomes <InlineMath math="960" />, and <InlineMath math="1{,}520-960=560" /> million cells die. That's the first time cells die because the tank is full.
-
-# Why the other options are wrong
-
-Each other option **forgets the harvest, misreads the limit or flips the order**.
-
-- <InlineMath math="t=5" /> comes from forgetting the harvest and treating exactly <InlineMath math="960" />, from <InlineMath math="30\cdot2^5=960" />, as if cells already die.
-- <InlineMath math="t=6" /> comes from forgetting the harvest, since <InlineMath math="30\cdot2^6=1{,}920" /> is over capacity.
-- <InlineMath math="t=9" /> comes from treating an exactly full tank as overflowing.
-- The option saying no cells ever die comes from harvesting before the doubling. At <InlineMath math="t=3" /> there would still be <InlineMath math="120" />, which is at most <InlineMath math="200" />, so everything is taken and the culture ends right away.
-
-So cells first die because the tank is full at <InlineMath math="t=10" />.
+So at least **25 voters** must switch.

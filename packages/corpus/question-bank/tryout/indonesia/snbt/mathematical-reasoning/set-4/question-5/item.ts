@@ -1,17 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "fish-pond",
+  stimulus: "cake-recipe",
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: true, label: "$$\\text{Rp}1{.}872{.}000$$" },
-        { correct: false, label: "$$\\text{Rp}2{.}160{.}000$$" },
-        { correct: false, label: "$$\\text{Rp}2{.}400{.}000$$" },
-        { correct: false, label: "$$\\text{Rp}2{.}736{.}000$$" },
-        { correct: false, label: "$$\\text{Rp}3{.}744{.}000$$" },
-      ],
+      kind: "numericEntry",
+      unit: "gram",
+      value: "625",
     },
   },
 };

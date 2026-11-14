@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "arena-seats",
+  stimulus: "data-plans",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$\\text{Rp}188{.}700{.}000{,}00$$" },
-        { correct: false, label: "$$\\text{Rp}199{.}200{.}000{,}00$$" },
-        { correct: true, label: "$$\\text{Rp}203{.}100{.}000{,}00$$" },
-        { correct: false, label: "$$\\text{Rp}207{.}200{.}000{,}00$$" },
-        { correct: false, label: "$$\\text{Rp}229{.}350{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}69{.}000{,}00$$" },
+        { correct: true, label: "$$\\text{Rp}96{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}104{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}122{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}316{.}000{,}00$$" },
       ],
     },
   },

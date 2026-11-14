@@ -1,12 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "warehouse-stock",
+  stimulus: "print-prices",
   versions: {
     id: {
       kind: "numericEntry",
-      unit: "karung",
-      value: "50",
+      unit: "ribu rupiah",
+      value: "180",
     },
   },
 };

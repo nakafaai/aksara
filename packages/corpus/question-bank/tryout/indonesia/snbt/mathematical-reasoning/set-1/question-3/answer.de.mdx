@@ -1,44 +1,23 @@
-Gesucht sind zwei Dinge: die größte Ersparnis, die ein größerer Akku bringen kann, und die kleinste Kapazität, die sie schon erreicht. Entscheidend ist, **die Käufe, die ein Akku ersetzen kann, von denen zu trennen, die er nicht ersetzen kann**.
+Berechne die Rechnung für jeden genannten Verbrauch auf dieselbe Weise: **Grundgebühr plus die Kosten jeder durchlaufenen Stufe**.
 
-# Die Kosten mit dem alten Akku
-
-Mit dem Akku von <InlineMath math="6\text{ kWh}" /> kauft die Familie <InlineMath math="1\text{ kWh}" /> von 07.00 bis 08.00 Uhr und <InlineMath math="8\text{ kWh}" /> am Abend. Um 17.00 Uhr enthält der Akku nur <InlineMath math="4\text{ kWh}" />, weil **der Überschuss am Mittag bei vollem Akku verloren ging**.
-
-<BlockMath math="\text{alte Kosten}=1\cdot\text{Rp}1{.}000+8\cdot\text{Rp}2{.}500=\text{Rp}21{.}000" />
-
-# Der Kauf am Morgen bleibt
-
-Um 07.00 Uhr steht der Akku schon auf der Reserve, und in der ersten Stunde fehlt <InlineMath math="1\text{ kWh}" />. In diesem Moment gibt es noch keinen Solarüberschuss, den man speichern könnte. Also **hilft keine noch so große Kapazität in der ersten Stunde**, und die <InlineMath math="\text{Rp}1{.}000" /> werden weiter bezahlt.
-
-# Die größte Ersparnis
-
-Wegfallen kann nur der Abendkauf von <InlineMath math="8\text{ kWh}" />, also <InlineMath math="8\cdot\text{Rp}2{.}500=\text{Rp}20{.}000" />. Prüfe, ob ein Akku ohne Kapazitätsgrenze ihn wirklich ganz ersetzt. Von 08.00 bis 15.00 Uhr gibt es in jeder Stunde einen Überschuss, und in den letzten zwei Stunden fehlt jeweils <InlineMath math="1\text{ kWh}" />.
+# Rechnungen für 100 kWh und 200 kWh
 
 <BlockMath math="\begin{aligned}
-\text{höchster Stand} &= 1+(1+2+3+3+2+3+1)=16\text{ kWh}\\
-\text{Stand am Ende des Nachmittags} &= 16-1-1=14\text{ kWh}\\
-\text{nutzbarer Teil} &= 14-1=13\text{ kWh}\ge11\text{ kWh}
+T(100)&=20\,000+100\cdot1\,000=120\,000\\
+T(200)&=20\,000+100\,000+100\cdot1\,500=270\,000
 \end{aligned}" />
 
-Die gespeicherte Energie reicht für den ganzen Abend, also ist **die größte Ersparnis** <InlineMath math="\text{Rp}20{.}000" />.
+Die erste Aussage ist wahr. Das Doppelte von <InlineMath math="T(100)" /> ist 240 000, nicht 270 000, weil **die Grundgebühr nur einmal anfällt** und die zweiten 100 kWh in Stufe 2 liegen. Die dritte Aussage ist falsch.
 
-# Die kleinste Kapazität
+# Die 301. kWh und ein Verbrauch von 400 kWh
 
-Von 08.00 bis 15.00 Uhr steigt der Akku nur, also ist ein Akku mit der Kapazität <InlineMath math="C\le16" /> um 15.00 Uhr sicher voll. Danach sinkt er um <InlineMath math="2\text{ kWh}" />. Damit am Abend nichts gekauft wird, **muss die Energie oberhalb der Reserve mindestens** <InlineMath math="11\text{ kWh}" /> betragen.
+Die 301. kWh liegt schon in Stufe 3, also **kostet sie 2 000 Rupiah mehr**, nicht 1 500. Die zweite Aussage ist falsch.
 
 <BlockMath math="\begin{aligned}
-(C-2)-1 &\ge 11\\
-C &\ge 14
+T(400)&=20\,000+100\,000+300\,000+100\cdot2\,000=620\,000\\
+\frac{620\,000}{400}&=1\,550
 \end{aligned}" />
 
-# Kontrolle mit zwei Kapazitäten
+Die vierte Aussage ist wahr.
 
-Mit <InlineMath math="C=14" /> verläuft der Akkustand <InlineMath math="1,2,4,7,10,12,14,14,13,12" />. Der Teil oberhalb der Reserve beträgt genau <InlineMath math="11\text{ kWh}" />, also wird am Abend nichts gekauft. Mit <InlineMath math="C=13" /> liegt der Stand am Ende des Nachmittags nur bei <InlineMath math="11\text{ kWh}" />, und nutzbar sind <InlineMath math="10\text{ kWh}" />. Dann **bleibt ein Kauf von** <InlineMath math="1\text{ kWh}" />, und die Ersparnis beträgt nur <InlineMath math="\text{Rp}17{.}500" />.
-
-# Die falschen Antworten
-
-- Eine Kapazität von <InlineMath math="16\text{ kWh}" /> mit einer Ersparnis von <InlineMath math="\text{Rp}20{.}000{,}00" /> nimmt an, dass keine Energie verloren gehen darf. Tatsächlich **schadet verlorene Energie nicht**, solange der Abend gedeckt ist.
-- Eine Ersparnis von <InlineMath math="\text{Rp}21{.}000{,}00" />, mit <InlineMath math="14" /> oder <InlineMath math="16\text{ kWh}" />, nimmt an, dass auch der Kauf am Morgen wegfällt, obwohl dieser Fehlbetrag vor jedem Solarüberschuss entsteht.
-- Eine Ersparnis von <InlineMath math="\text{Rp}25{.}000{,}00" /> bewertet alle <InlineMath math="10\text{ kWh}" /> verlorene Energie zum Abendtarif, obwohl sich nur der Abendkauf von <InlineMath math="8\text{ kWh}" /> ersetzen lässt.
-
-Die größte Ersparnis beträgt also <InlineMath math="\text{Rp}20{.}000{,}00" /> pro Tag, und die kleinste Kapazität dafür ist <InlineMath math="14\text{ kWh}" />.
+Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.

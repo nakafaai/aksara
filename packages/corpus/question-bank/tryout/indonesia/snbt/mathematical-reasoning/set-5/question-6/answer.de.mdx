@@ -1,49 +1,19 @@
-Du zählst jedes Treffen, also sowohl wenn Andi Bima einholt als auch wenn Bima den trinkenden Andi einholt. Nimm wieder den **Streckenunterschied** <InlineMath math="g" />, also Andis Strecke minus Bimas Strecke. Die beiden sind immer dann am selben Punkt, wenn <InlineMath math="g" /> ein Vielfaches von <InlineMath math="400" /> ist, also <InlineMath math="400" /> oder <InlineMath math="800" />. Der Plan: Notiere <InlineMath math="g" /> am Anfang und Ende jeder Pause und zähle dann, wie oft <InlineMath math="g" /> ein Vielfaches von <InlineMath math="400" /> durchläuft.
+Berechne **den Restspeicher nach den Fotos** und teile durch die Größe einer Minute 4K-Video. Runde ab, denn Video zählt nur in vollen Minuten.
 
-# Wie sich der Unterschied ändert
-
-Solange beide laufen, **wächst <InlineMath math="g" /> um <InlineMath math="1\text{ m}" /> pro Sekunde**, weil <InlineMath math="5-4=1" />. Während Andi trinkt, **sinkt <InlineMath math="g" /> um <InlineMath math="4\text{ m}" /> pro Sekunde**, weil sich nur Bima bewegt. Jeder Zyklus von Andi besteht aus <InlineMath math="320" /> Sekunden Laufen und <InlineMath math="50" /> Sekunden Trinken, dauert also <InlineMath math="370" /> Sekunden.
+# Restspeicher
 
 <BlockMath math="\begin{aligned}
-\text{beim Laufen} &: g \text{ steigt um } 320 \\
-\text{beim Trinken} &: g \text{ sinkt um } 4 \cdot 50 = 200
+\text{frei}&=110\cdot1\,024=112\,640\text{ MB}\\
+\text{Fotos}&=20\,000\cdot4=80\,000\text{ MB}\\
+\text{Rest}&=32\,640\text{ MB}
 \end{aligned}" />
 
-# Der Unterschied an jedem Wechsel
+# Länge des 4K-Videos
 
-Beginne mit <InlineMath math="g=0" /> beim Start und notiere <InlineMath math="g" /> an jedem Wechsel bis Sekunde <InlineMath math="1{.}500" />:
+<BlockMath math="\frac{32\,640}{400}=81{,}6" />
 
-| Sekunde | Was danach passiert | Unterschied <InlineMath math="g" /> |
-| --- | --- | --- |
-| <InlineMath math="320" /> | Andi beginnt zu trinken | <InlineMath math="320" /> |
-| <InlineMath math="370" /> | Andi läuft wieder | <InlineMath math="120" /> |
-| <InlineMath math="690" /> | Andi beginnt zu trinken | <InlineMath math="440" /> |
-| <InlineMath math="740" /> | Andi läuft wieder | <InlineMath math="240" /> |
-| <InlineMath math="1{.}060" /> | Andi beginnt zu trinken | <InlineMath math="560" /> |
-| <InlineMath math="1{.}110" /> | Andi läuft wieder | <InlineMath math="360" /> |
-| <InlineMath math="1{.}430" /> | Andi beginnt zu trinken | <InlineMath math="680" /> |
-| <InlineMath math="1{.}480" /> | Andi läuft wieder | <InlineMath math="480" /> |
-| <InlineMath math="1{.}500" /> | Zeit ist um | <InlineMath math="500" /> |
+Eine 82. Minute bräuchte 32 800 MB, **mehr als der Restspeicher**, also ist das längste Video 81 Minuten lang.
 
-Der Unterschied erreicht nie <InlineMath math="800" />, also musst du nur **jedes Mal finden, wenn <InlineMath math="g" /> die <InlineMath math="400" /> durchläuft**, nach oben oder nach unten.
+Der Wert 82 Minuten rundet auf. Der Wert 217 Minuten verwendet die HD-Größe, und 281 Minuten vergisst die gespeicherten Fotos. Der Wert 750 Minuten macht beide Fehler.
 
-# Jedes Treffen zählen
-
-Ein Treffen passiert **jedes Mal, wenn <InlineMath math="g" /> die <InlineMath math="400" /> durchläuft**, also vergleiche <InlineMath math="g" /> am Anfang und Ende jedes Abschnitts:
-
-- Sekunde <InlineMath math="370" /> bis <InlineMath math="690" />: <InlineMath math="g" /> steigt von <InlineMath math="120" /> auf <InlineMath math="440" /> und durchläuft <InlineMath math="400" /> bei Sekunde <InlineMath math="370+280=650" />. Andi holt Bima ein.
-- Sekunde <InlineMath math="690" /> bis <InlineMath math="740" />: <InlineMath math="g" /> sinkt von <InlineMath math="440" /> auf <InlineMath math="240" /> und durchläuft <InlineMath math="400" /> bei Sekunde <InlineMath math="690+10=700" />. Bima holt Andi ein, der bei <InlineMath math="S" /> trinkt.
-- Sekunde <InlineMath math="740" /> bis <InlineMath math="1{.}060" />: <InlineMath math="g" /> steigt von <InlineMath math="240" /> auf <InlineMath math="560" /> und durchläuft <InlineMath math="400" /> bei Sekunde <InlineMath math="740+160=900" />.
-- Sekunde <InlineMath math="1{.}060" /> bis <InlineMath math="1{.}110" />: <InlineMath math="g" /> sinkt von <InlineMath math="560" /> auf <InlineMath math="360" /> und durchläuft <InlineMath math="400" /> bei Sekunde <InlineMath math="1{.}060+40=1{.}100" />.
-- Sekunde <InlineMath math="1{.}110" /> bis <InlineMath math="1{.}430" />: <InlineMath math="g" /> steigt von <InlineMath math="360" /> auf <InlineMath math="680" /> und durchläuft <InlineMath math="400" /> bei Sekunde <InlineMath math="1{.}110+40=1{.}150" />.
-- Danach sinkt <InlineMath math="g" /> auf <InlineMath math="480" /> und steigt dann auf <InlineMath math="500" />. Der Wert bleibt über <InlineMath math="400" /> und unter <InlineMath math="800" />, also gibt es kein weiteres Treffen.
-
-Das sind <InlineMath math="5" /> Treffen: <InlineMath math="3" />-mal holt Andi Bima ein und <InlineMath math="2" />-mal holt Bima den trinkenden Andi ein.
-
-# Die Antwort prüfen
-
-Prüfe das zweite Treffen mit den Strecken. Bei Sekunde <InlineMath math="700" /> hat Andi <InlineMath math="8" /> Runden (<InlineMath math="3{.}200\text{ m}" />) geschafft und trinkt bei <InlineMath math="S" />, während Bima <InlineMath math="4 \cdot 700=2{.}800\text{ m}" /> gelaufen ist, genau <InlineMath math="7" /> Runden. Beide sind wirklich bei <InlineMath math="S" />.
-
-Die Antwort <InlineMath math="3" /> entsteht, wenn du nur <InlineMath math="1{.}500 : 400" /> mit einem Geschwindigkeitsunterschied von <InlineMath math="1\text{ m/s}" /> rechnest oder **nur die Male zählst, in denen Andi aufholt**, und Bimas Aufholen während Andis Pausen vergisst.
-
-In diesen <InlineMath math="25" /> Minuten treffen sich Andi und Bima also <InlineMath math="5" />-mal.
+Das längste 4K-Video dauert also **81 Minuten**.

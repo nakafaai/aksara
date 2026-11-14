@@ -1,41 +1,15 @@
-Kamu mencari lama unduhan yang melewati dua perubahan kecepatan: kuota utama habis di tengah unduhan, lalu jam malam dimulai pukul 00.00. Rencananya: ubah kecepatan menjadi **detik per GB**, lalu bagi unduhan menjadi tiga bagian menurut kecepatannya.
+Daya puncak bukan energi harian. Energi harian satu panel adalah **daya puncak dikali 4,5 jam**, dan angka inilah yang dibandingkan dengan pemakaian 9 kWh.
 
-# Waktu untuk satu GB
+# Energi harian satu panel
 
-Ukuran <InlineMath math="1\text{ GB}" /> sama dengan <InlineMath math="1{.}000 \cdot 8 = 8{.}000" /> megabit. Jadi, waktu untuk mengunduh <InlineMath math="1\text{ GB}" /> adalah:
+<BlockMath math="0{,}2\text{ kW}\cdot4{,}5\text{ jam}=0{,}9\text{ kWh}" />
 
-<BlockMath math="\begin{aligned}
-\text{pada } 40\text{ Mbps} &: \frac{8{.}000}{40} = 200 \text{ detik} \\
-\text{pada } 8\text{ Mbps} &: \frac{8{.}000}{8} = 1{.}000 \text{ detik}
-\end{aligned}" />
+# Banyak panel
 
-# Bagian cepat dan bagian lambat
+<BlockMath math="\frac{9}{0{,}9}=10" />
 
-Sisa kuota <InlineMath math="6\text{ GB}" /> diunduh cepat dalam <InlineMath math="6 \cdot 200 = 1{.}200" /> detik, yaitu <InlineMath math="20" /> menit, sampai pukul 21.50. Sesudah itu kuota utama habis dan **kecepatan turun ke <InlineMath math="8\text{ Mbps}" />**. Dari pukul 21.50 sampai 00.00 ada <InlineMath math="130" /> menit:
+Sepuluh panel menghasilkan tepat 9 kWh per hari, sedangkan sembilan panel hanya 8,1 kWh, **belum cukup**.
 
-<BlockMath math="\begin{aligned}
-130 \text{ menit} &= 7{.}800 \text{ detik} \\
-\text{unduhan lambat} &= \frac{7{.}800}{1{.}000} = 7{,}8\text{ GB}
-\end{aligned}" />
+Nilai 45 panel membagi 9 dengan daya puncak 0,2 tanpa memperhitungkan 4,5 jam. Nilai 9 panel menganggap setiap panel menghasilkan 1 kWh.
 
-# Bagian sesudah tengah malam
-
-Mulai pukul 00.00, **jam malam membuat kecepatan kembali <InlineMath math="40\text{ Mbps}" />** walaupun kuota utama sudah habis. Sisa berkas dan waktunya:
-
-<BlockMath math="\begin{aligned}
-\text{sisa berkas} &= 15 - 6 - 7{,}8 = 1{,}2\text{ GB} \\
-\text{waktu} &= 1{,}2 \cdot 200 = 240 \text{ detik} = 4 \text{ menit}
-\end{aligned}" />
-
-Jadi, lama seluruh unduhan adalah <InlineMath math="20 + 130 + 4 = 154" /> menit, dan berkas selesai pukul 00.04. Cek jumlah datanya: <InlineMath math="6 + 7{,}8 + 1{,}2 = 15\text{ GB}" />, sesuai ukuran berkas.
-
-# Pilihan yang keliru
-
-Setiap pilihan lain **melewatkan salah satu perubahan kecepatan**:
-
-- <InlineMath math="50" /> menit mengunduh semuanya dengan <InlineMath math="40\text{ Mbps}" />, seolah kuota utama tidak pernah habis.
-- <InlineMath math="170" /> menit lupa jam malam: <InlineMath math="9\text{ GB}" /> sisanya diunduh lambat dalam <InlineMath math="150" /> menit.
-- <InlineMath math="174" /> menit menghitung sisa berkas pada tengah malam sebagai <InlineMath math="15-7{,}8=7{,}2\text{ GB}" />, lupa mengurangkan <InlineMath math="6\text{ GB}" /> yang sudah diunduh cepat.
-- <InlineMath math="250" /> menit mengunduh semuanya dengan <InlineMath math="8\text{ Mbps}" />.
-
-Jadi, Bu Ani memerlukan <InlineMath math="154" /> menit untuk mengunduh berkas itu.
+Jadi, diperlukan paling sedikit **10 panel**.

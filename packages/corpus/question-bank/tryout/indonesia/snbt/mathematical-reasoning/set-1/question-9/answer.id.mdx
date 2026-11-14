@@ -1,34 +1,15 @@
-Kamu mencari jumlah obat di dalam tubuh tepat sebelum minum pukul 06.00 hari kedua. Rencananya: tentukan takaran sekali minum, ikuti jumlah obat sepanjang hari pertama, lalu **hitung berapa kali jumlah obat menjadi setengah selama malam tanpa obat**.
+Median adalah nilai data ke-20 dan ke-21 dari 40 data yang diurutkan, yaitu **titik yang membagi data menjadi dua bagian sama banyak**. Untuk data berkelompok, median dicari di kelasnya lalu ditaksir dengan interpolasi.
 
-# Takaran sekali minum
+# Menemukan kelas median
 
-Menurut berat badan, anak itu boleh menerima <InlineMath math="10\cdot60=600\text{ mg}" />. Namun **takaran sekali minum dibatasi** <InlineMath math="400\text{ mg}" />, jadi yang diizinkan hanya <InlineMath math="400\text{ mg}" />. Takaran ini sama dengan <InlineMath math="20\text{ mL}" /> sirup, yang sudah kelipatan <InlineMath math="2{,}5\text{ mL}" />, jadi ia minum tepat <InlineMath math="400\text{ mg}" /> setiap kali.
+Jumlahkan frekuensi dari kelas terbawah: 4, lalu <InlineMath math="4+10=14" />, lalu <InlineMath math="14+15=29" />. Data ke-20 berada **di kelas 20-29**, karena 14 data sudah terlewati sebelum kelas itu.
 
-# Jumlah obat pada hari pertama
+# Interpolasi di dalam kelas
 
-Antara dua jadwal minum ada <InlineMath math="6" /> jam, jadi sebelum minum berikutnya jumlah obat tinggal setengah, lalu **bertambah <InlineMath math="400\text{ mg}" /> dari obat yang baru diminum**.
+Kelas 20-29 berbatas bawah 19,5, berpanjang 10, dan berisi 15 data. Dibutuhkan <InlineMath math="20-14=6" /> data lagi dari kelas itu.
 
-<BlockMath math="\begin{aligned}
-\text{sesudah minum pagi} &= 400\text{ mg}\\
-\text{sesudah minum siang} &= \tfrac{1}{2}\cdot400+400=600\text{ mg}\\
-\text{sesudah minum sore} &= \tfrac{1}{2}\cdot600+400=700\text{ mg}
-\end{aligned}" />
+<BlockMath math="\text{Me}=19{,}5+\frac{20-14}{15}\cdot10=19{,}5+4=23{,}5" />
 
-# Malam tanpa obat
+Hasilnya memang berada di antara 19,5 dan 29,5, sesuai kelas median.
 
-Dari pukul 18.00 sampai 06.00 ada <InlineMath math="12" /> jam tanpa obat. Itu berarti **dua periode yang masing-masing panjangnya** <InlineMath math="6" /> jam, jadi jumlah obat menjadi setengah sebanyak dua kali.
-
-<BlockMath math="700\cdot\tfrac{1}{2}\cdot\tfrac{1}{2}=\frac{700}{4}=175\text{ mg}" />
-
-# Pemeriksaan
-
-Pada pukul 24.00 jumlah obat tinggal <InlineMath math="350\text{ mg}" />, dan <InlineMath math="6" /> jam kemudian <InlineMath math="175\text{ mg}" />. Hasil ini juga masuk akal karena **lebih kecil daripada satu takaran** <InlineMath math="400\text{ mg}" />, sebab malam yang panjang membuang sebagian besar obat.
-
-# Pilihan yang keliru
-
-- <InlineMath math="100\text{ mg}" /> hanya menghitung obat yang diminum pukul 18.00 dan lupa sisa obat dari pagi dan siang.
-- <InlineMath math="262{,}5\text{ mg}" /> memakai takaran <InlineMath math="600\text{ mg}" />, jadi **batas** <InlineMath math="400\text{ mg}" /> **terlewat**.
-- <InlineMath math="350\text{ mg}" /> hanya membagi dua sekali, seakan-akan malam hanya <InlineMath math="6" /> jam.
-- <InlineMath math="525\text{ mg}" /> menggabungkan dua kesalahan: takaran <InlineMath math="600\text{ mg}" /> dan pembagian dua yang hanya sekali.
-
-Jadi, sesaat sebelum minum pukul 06.00 pada hari kedua, di dalam tubuh anak itu ada <InlineMath math="175\text{ mg}" /> obat.
+Jadi, median waktu tempuh siswa adalah **23,5 menit**.

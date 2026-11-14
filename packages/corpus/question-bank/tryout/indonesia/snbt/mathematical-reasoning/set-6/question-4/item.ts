@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "water-tower",
+  stimulus: "football-league",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "Pukul 06.20" },
-        { correct: false, label: "Pukul 06.25" },
-        { correct: true, label: "Pukul 06.40" },
-        { correct: false, label: "Pukul 07.00" },
-        { correct: false, label: "Pukul 07.40" },
+        { correct: true, label: "$$2{,}4$$" },
+        { correct: false, label: "$$3$$" },
+        { correct: false, label: "$$4$$" },
+        { correct: false, label: "$$4{,}8$$" },
+        { correct: false, label: "$$6$$" },
       ],
     },
   },

@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "scholarship-score",
+  stimulus: "bus-route",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "Bayu, Dimas, dan Eka" },
-        { correct: false, label: "Ayu, Citra, dan Fajar" },
-        { correct: true, label: "Ayu, Bayu, dan Eka" },
-        { correct: false, label: "Bayu, Citra, dan Eka" },
-        { correct: false, label: "Ayu, Citra, dan Eka" },
+        { correct: false, label: "terminal awal ke Halte A" },
+        { correct: false, label: "Halte A ke Halte B" },
+        { correct: false, label: "Halte B ke Halte C" },
+        { correct: false, label: "Halte C ke Halte D" },
+        { correct: true, label: "Halte D ke terminal akhir" },
       ],
     },
   },

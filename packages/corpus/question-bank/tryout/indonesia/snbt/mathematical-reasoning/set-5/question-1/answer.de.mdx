@@ -1,47 +1,16 @@
-Du suchst die kleinste Zahl von Besuchen, bei der eine neue Mitgliedschaft wirklich billiger ist. Der Plan: Bestimme zuerst die billigsten Kosten ohne Mitgliedschaft für <InlineMath math="n" /> Besuche, dann die Kosten einer neuen Mitgliedschaft, und vergleiche beide mit der **strengen Bedingung billiger als**. Damit die Rechnung kurz bleibt, stehen alle Preise in Tausend Rupiah, also bedeutet <InlineMath math="250" /> genau <InlineMath math="\text{Rp}250{.}000" />.
+Der Verbrauch ist auf beiden Straßenarten verschieden, also **berechne jeden Teil der Fahrt einzeln** und addiere dann.
 
-# Billigste Kosten ohne Mitgliedschaft
-
-Alle Besuche von Dimas liegen in einem einzigen Zeitraum von <InlineMath math="30" /> Tagen. Eine Karte, die er beim ersten Besuch kauft, gilt bis zum Ende dieses Zeitraums, also **verfällt kein Besuch auf der Karte**. Ein Besuch mit der Karte kostet <InlineMath math="25" />, weniger als ein Tagesticket für <InlineMath math="40" />.
-
-Wenn <InlineMath math="n" /> etwas über <InlineMath math="10" /> liegt, ist **<InlineMath math="1" /> Karte plus Tagestickets** für die restlichen Besuche am billigsten. Gegen <InlineMath math="2" /> Karten verliert dieser Weg erst, wenn er mehr als <InlineMath math="500" /> kostet:
+# Benzin für jeden Teil
 
 <BlockMath math="\begin{aligned}
-\text{eine Karte und Tagestickets} &= 250+40(n-10) \\
-250+40(n-10) > 500 &\iff 40(n-10) > 250 \\
-&\iff n-10 > 6{,}25
+\text{Stadtstraße}&:\quad \frac{60}{10}=6\text{ Liter}\\
+\text{Mautstraße}&:\quad \frac{150}{15}=10\text{ Liter}
 \end{aligned}" />
 
-Für <InlineMath math="11 \le n \le 16" /> kostet es ohne Mitgliedschaft also am wenigsten <InlineMath math="250+40(n-10)" />, und ab <InlineMath math="n=17" /> sind es <InlineMath math="500" /> (<InlineMath math="2" /> Karten).
+# Benzin insgesamt
 
-# Kosten einer neuen Mitgliedschaft
+<BlockMath math="6+10=16\text{ Liter}" />
 
-Dimas war noch nie Mitglied, also **muss er die Anmeldegebühr zahlen**, zusätzlich zum Preis der Mitgliedschaft:
+Die Benzinmenge ist **Strecke geteilt durch Kilometer pro Liter**, nicht Strecke mal Kilometer pro Liter.
 
-<BlockMath math="350+100=450" />
-
-# Beide Kosten vergleichen
-
-Die Mitgliedschaft ist billiger, wenn die Kosten ohne sie größer als <InlineMath math="450" /> sind. Löse diese Ungleichung:
-
-<BlockMath math="\begin{aligned}
-250+40(n-10) &> 450 \\
-40(n-10) &> 200 \\
-n-10 &> 5 \\
-n &> 15
-\end{aligned}" />
-
-Bei <InlineMath math="n=15" /> sind beide Kosten gleich: <InlineMath math="250+40 \cdot 5=450" />. **Gleich teuer ist noch nicht billiger**, also reicht <InlineMath math="n=15" /> nicht. Bei <InlineMath math="n=16" /> kostet es ohne Mitgliedschaft <InlineMath math="250+40 \cdot 6=490" />, also <InlineMath math="40" /> mehr als die Mitgliedschaft. Ab <InlineMath math="n=17" /> sind es <InlineMath math="500" />, immer noch mehr als <InlineMath math="450" />.
-
-Prüfe von der anderen Seite: Bei <InlineMath math="n=14" /> kostet es ohne Mitgliedschaft <InlineMath math="250+40 \cdot 4=410" />, noch billiger als die Mitgliedschaft. Die Grenze liegt also wirklich zwischen <InlineMath math="15" /> und <InlineMath math="16" />.
-
-# Die falschen Antworten
-
-Jede andere Antwort entsteht aus **einem übersprungenen Schritt**:
-
-- <InlineMath math="15" /> Besuche hält gleich hohe Kosten schon für billiger.
-- <InlineMath math="13" /> Besuche vergisst die Anmeldegebühr und vergleicht mit <InlineMath math="350" />: <InlineMath math="250+40 \cdot 3=370" /> liegt schon über <InlineMath math="350" />.
-- <InlineMath math="12" /> Besuche vergleicht nur mit Tagestickets: <InlineMath math="40 \cdot 12=480" /> liegt über <InlineMath math="450" />, dabei sind Karten viel günstiger.
-- <InlineMath math="11" /> Besuche nimmt nur ganze Karten, sodass <InlineMath math="11" /> Besuche scheinbar <InlineMath math="2" /> Karten für <InlineMath math="500" /> brauchen, obwohl <InlineMath math="1" /> Karte und <InlineMath math="1" /> Tagesticket nur <InlineMath math="290" /> kosten.
-
-Dimas braucht in diesem Zeitraum also mindestens <InlineMath math="16" /> Besuche, damit eine neue Mitgliedschaft billiger ist.
+Das Auto verbraucht also **16 Liter** Benzin.

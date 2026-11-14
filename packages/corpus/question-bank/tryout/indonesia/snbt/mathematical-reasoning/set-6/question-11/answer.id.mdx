@@ -1,50 +1,18 @@
-Kamu perlu memeriksa setiap keberangkatan bus A, bukan hanya satu contoh, lalu menghitung yang waktu tunggunya memenuhi syarat transfer gratis. Ada tiga aturan yang menentukan: **jalan kaki paling sedikit <InlineMath math="4\text{ menit}" />**, **transfer gratis jika waktu tunggu paling lama <InlineMath math="15\text{ menit}" />**, dan bus B terakhir pukul 23.52.
+Untuk setiap kardus, hitung berat volume, bandingkan dengan berat aktual, lalu **bulatkan yang lebih besar ke atas**.
 
-# Banyak keberangkatan bus A
+# Kardus kecil yang berat
 
-Bus A berangkat dari pukul 21.00 sampai 23.42 setiap <InlineMath math="18\text{ menit}" />. Dari 21.00 ke 23.42 ada <InlineMath math="162\text{ menit}" />.
+Buku: berat volumenya <InlineMath math="\tfrac{20\cdot15\cdot5}{6{.}000}=0{,}25" /> kg, jauh di bawah berat aktual 2,3 kg. Yang ditagihkan adalah 2,3 kg yang dibulatkan menjadi 3 kg, jadi pernyataan kedua benar.
 
-<BlockMath math="\frac{162}{18}+1=9+1=10" />
+Contoh ini juga menunjukkan bahwa untuk paket berat, **biaya ditentukan oleh berat aktual**. Memperkecil kardus buku itu tidak mengubah biaya, jadi pernyataan pertama salah.
 
-Jadi ada **sepuluh keberangkatan yang semuanya harus diperiksa**.
+# Kardus besar dan kardus kubus
 
-# Waktu tunggu setiap keberangkatan
+<BlockMath math="\begin{aligned}
+\frac{60\cdot50\cdot40}{6{.}000}&=\frac{120{.}000}{6{.}000}=20\text{ kg}\\
+\frac{30\cdot30\cdot30}{6{.}000}&=\frac{27{.}000}{6{.}000}=4{,}5\text{ kg}
+\end{aligned}" />
 
-Bus A tiba di Halte Pasar <InlineMath math="25\text{ menit}" /> setelah berangkat. Penumpang naik bus B pertama yang berangkat paling sedikit <InlineMath math="4\text{ menit}" /> setelah bus A tiba. Waktu tunggu dihitung **dari saat bus A tiba sampai bus B berangkat**.
+Kardus besar ditagih 20 kg karena 20 kg lebih dari 8 kg, jadi pernyataan ketiga benar. Berat volume kardus kubus adalah 4,5 kg, **bukan 5 kg**. Pembulatan ke atas hanya berlaku pada berat yang ditagihkan, jadi pernyataan keempat salah.
 
-| Bus A berangkat | Tiba di Halte Pasar | Bus B yang dinaiki | Waktu tunggu | Transfer gratis |
-| :---: | :---: | :---: | :---: | :---: |
-| 21.00 | 21.25 | 21.52 | <InlineMath math="27\text{ menit}" /> | tidak |
-| 21.18 | 21.43 | 21.52 | <InlineMath math="9\text{ menit}" /> | ya |
-| 21.36 | 22.01 | 22.22 | <InlineMath math="21\text{ menit}" /> | tidak |
-| 21.54 | 22.19 | 22.52 | <InlineMath math="33\text{ menit}" /> | tidak |
-| 22.12 | 22.37 | 22.52 | <InlineMath math="15\text{ menit}" /> | ya |
-| 22.30 | 22.55 | 23.22 | <InlineMath math="27\text{ menit}" /> | tidak |
-| 22.48 | 23.13 | 23.22 | <InlineMath math="9\text{ menit}" /> | ya |
-| 23.06 | 23.31 | 23.52 | <InlineMath math="21\text{ menit}" /> | tidak |
-| 23.24 | 23.49 | tidak ada | tidak ada | tidak |
-| 23.42 | 00.07 | tidak ada | tidak ada | tidak |
-
-# Tiga kasus batas
-
-Ada tiga baris yang mudah salah dibaca.
-
-- Bus A pukul 22.12 menunggu tepat <InlineMath math="15\text{ menit}" />. Aturannya berbunyi **paling lama <InlineMath math="15\text{ menit}" />**, jadi tepat <InlineMath math="15\text{ menit}" /> masih gratis.
-- Bus A pukul 21.54 tiba pukul 22.19. Bus B pukul 22.22 hanya <InlineMath math="3\text{ menit}" /> kemudian, kurang dari waktu jalan kaki, jadi penumpangnya menunggu bus pukul 22.52.
-- Bus A pukul 23.24 tiba pukul 23.49, hanya <InlineMath math="3\text{ menit}" /> sebelum bus B terakhir. Bus A pukul 23.42 tiba pukul 00.07, setelah bus B terakhir berangkat. Penumpang kedua bus ini tidak mendapat bus B sama sekali.
-
-Keberangkatan dengan transfer gratis adalah 21.18, 22.12, dan 22.48, jadi ada <InlineMath math="3" /> keberangkatan.
-
-# Pemeriksaan dengan pola berulang
-
-Bus A berulang setiap <InlineMath math="18\text{ menit}" /> dan bus B setiap <InlineMath math="30\text{ menit}" />, jadi pola waktu tunggu berulang setiap <InlineMath math="90\text{ menit}" />, kelipatan persekutuan terkecil keduanya. Dalam <InlineMath math="90\text{ menit}" /> pertama ada **dua transfer gratis**, yaitu 21.18 dan 22.12. Dalam <InlineMath math="90\text{ menit}" /> berikutnya pola itu akan memberi 22.48 dan 23.42. Namun bus A pukul 23.42 tidak mendapat bus B karena bus B sudah berhenti, jadi hanya 22.48 yang tersisa. Hasilnya tetap <InlineMath math="2+1=3" />.
-
-# Jebakan yang perlu dihindari
-
-Setiap jawaban lain berasal dari **satu aturan yang dilanggar**.
-
-- Jawaban <InlineMath math="2" /> muncul jika tepat <InlineMath math="15\text{ menit}" /> dianggap tidak gratis.
-- Jawaban <InlineMath math="4" /> muncul jika pola <InlineMath math="90\text{ menit}" /> diteruskan tanpa memeriksa bus B terakhir.
-- Jawaban <InlineMath math="5" /> muncul jika waktu jalan kaki diabaikan, sehingga bus A pukul 21.54 dan 23.24 dianggap sempat naik bus B dengan waktu tunggu <InlineMath math="3\text{ menit}" />.
-
-Jadi, ada <InlineMath math="3" /> keberangkatan bus A yang penumpangnya memperoleh transfer gratis.
+Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **benar**, dan keempat **salah**.

@@ -1,46 +1,18 @@
-You're looking for the smallest starting population that never runs out. Surviving the first harvest isn't enough: **the population has to survive every harvest after that too**. The plan: find the rule for one <InlineMath math="3" />-hour cycle, then find when the population grows from one cycle to the next.
+Compare each result with **the winning threshold of more than 120 votes**, more than half of the 240 valid votes.
 
-# The rule for one cycle
+# First round result
 
-While the tank isn't full, the population <InlineMath math="P" /> doubles <InlineMath math="3" /> times before the harvest, so it becomes <InlineMath math="8P" />. If <InlineMath math="8P>200" />, the harvest **takes exactly <InlineMath math="200" /> and leaves the rest**.
+Andra received <InlineMath math="\tfrac{96}{240}\times100\%=40\%" />. Even the top result does not pass 120, so there is no first-round winner. The first statement is true, and the third is false because **Andra received 40%, not 45%**.
 
-<BlockMath math="P_{\text{new}} = 8P-200" />
+The two largest totals are Andra with 96 and Bunga with 72, so both go to the second round. The fourth statement is true.
 
-# When the population grows
-
-The population grows from cycle to cycle when <InlineMath math="P_{\text{new}}>P" />. **This is the deciding condition**, because a population that shrinks keeps shrinking until it runs out.
+# A second-round scenario
 
 <BlockMath math="\begin{aligned}
-8P-200 &> P \\
-7P &> 200 \\
-P &> \tfrac{200}{7}
+\text{Andra}&=96+24=120\\
+\text{Bunga}&=72+48=120
 \end{aligned}" />
 
-The value <InlineMath math="\tfrac{200}{7}" /> lies between <InlineMath math="28" /> and <InlineMath math="29" />, so the smallest whole number that works is <InlineMath math="29" />.
+The two candidates **receive the same number of votes**, so Bunga does not win. The second statement is false.
 
-# Check both sides of the boundary
-
-Try <InlineMath math="28" />, just below the boundary.
-
-<BlockMath math="\begin{aligned}
-t=3 &: \ 28\cdot8-200=24 \\
-t=6 &: \ 24\cdot8=192\le200
-\end{aligned}" />
-
-At <InlineMath math="t=6" /> all <InlineMath math="192" /> are taken, so **a starting population of <InlineMath math="28" /> runs out**. Smaller starting populations run out as well, because they shrink every cycle too.
-
-Now try <InlineMath math="29" />.
-
-<BlockMath math="\begin{aligned}
-t=3 &: \ 29\cdot8-200=32 \\
-t=6 &: \ 32\cdot8-200=56 \\
-t=9 &: \ 56\cdot8-200=248
-\end{aligned}" />
-
-The population keeps growing. In the next cycle, <InlineMath math="248\to496\to960" /> because the tank is full, and the harvest leaves <InlineMath math="760" />. From then on every cycle repeats from <InlineMath math="760" /> to <InlineMath math="960" /> and back to <InlineMath math="760" />, so the culture never runs out.
-
-# The first harvest trap
-
-If you only check that the first harvest doesn't wipe out the culture, the condition is <InlineMath math="8P>200" />, which means <InlineMath math="P\ge26" />. But <InlineMath math="26" /> leaves <InlineMath math="8" />, then <InlineMath math="64" />, and **runs out at the second harvest**. The answer <InlineMath math="25" /> is wrong too, because exactly <InlineMath math="200" /> at the first harvest is taken completely.
-
-So the smallest starting population that keeps the culture alive forever is <InlineMath math="29" /> million cells.
+So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.

@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "home-battery",
+  stimulus: "electricity-tariff",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$\\text{Rp}22{.}500{,}00$$" },
-        { correct: true, label: "$$\\text{Rp}21{.}000{,}00$$" },
-        { correct: false, label: "$$\\text{Rp}20{.}000{,}00$$" },
-        { correct: false, label: "$$\\text{Rp}17{.}500{,}00$$" },
-        { correct: false, label: "$$\\text{Rp}1{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}270{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}325{.}000{,}00$$" },
+        { correct: true, label: "$$\\text{Rp}345{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}395{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}520{.}000{,}00$$" },
       ],
     },
   },

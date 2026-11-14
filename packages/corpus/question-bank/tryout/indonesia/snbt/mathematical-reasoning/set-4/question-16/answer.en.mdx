@@ -1,40 +1,19 @@
-You're looking for the price with the largest profit on a holiday. The plan: write the holiday demand, then split the prices into two regions, **one where every seat is filled and one where it isn't**, find the best price in each region, and compare.
+An upright can takes a square patch of **diameter by diameter** on the floor of the box, and each layer is as tall as a can. Count the cans in each direction.
 
-# Demand and viewers
+# Cans in each direction
 
-On a regular day the number of viewers is <InlineMath math="280-3.2p" />, with <InlineMath math="p" /> in thousands of rupiah. On a holiday the demand is <InlineMath math="1.5" /> times as large:
-
-<BlockMath math="m=1.5(280-3.2p)=420-4.8p" />
-
-The viewers who actually get in number <InlineMath math="m" />, but **at most** <InlineMath math="200" />. The profit is still <InlineMath math="K=(p+10)\,n-2{,}000" /> thousand.
-
-# The full-house region
-
-Every seat is filled when the demand is at least <InlineMath math="200" />:
+**The diameter of can A is 8 cm** and its height is 10 cm.
 
 <BlockMath math="\begin{aligned}
-420-4.8p &\ge 200\\
-4.8p &\le 220\\
-p &\le 45.83\ldots
+32:8&=4\text{ cans}\\
+24:8&=3\text{ cans}\\
+20:10&=2\text{ layers}
 \end{aligned}" />
 
-In this region <InlineMath math="n=200" /> stays fixed, so <InlineMath math="K=200(p+10)-2{,}000" /> **keeps rising as the price rises**. The highest multiple of <InlineMath math="5\text{ thousand}" /> in this region is <InlineMath math="45\text{ thousand}" />, with a demand of <InlineMath math="420-216=204" /> and <InlineMath math="200" /> viewers:
+# Total number of cans
 
-<BlockMath math="K(45)=55\times200-2{,}000=9{,}000\text{ thousand}" />
+<BlockMath math="4\cdot3\cdot2=24" />
 
-# The region with empty seats
+All three divisions come out exactly, so this row-and-column arrangement fills the box tightly. The value 12 counts only **one layer**, although the box is tall enough for two.
 
-From <InlineMath math="p=50" /> on, the demand is below <InlineMath math="200" />, so <InlineMath math="K=(p+10)(420-4.8p)-2{,}000" />. This formula peaks midway between the roots <InlineMath math="-10" /> and <InlineMath math="87.5" />, at <InlineMath math="38.75" />, so **above the peak the profit keeps falling**. The best price in this region is its lowest one:
-
-<BlockMath math="\begin{aligned}
-K(50) &= 60\times180-2{,}000=8{,}800\text{ thousand}\\
-K(55) &= 65\times156-2{,}000=8{,}140\text{ thousand}
-\end{aligned}" />
-
-Compare the two regions: <InlineMath math="9{,}000\text{ thousand}" /> at <InlineMath math="\text{Rp}45{,}000" /> beats <InlineMath math="8{,}800\text{ thousand}" /> at <InlineMath math="\text{Rp}50{,}000" />.
-
-# Checking the regular-day trap
-
-If you forget the seat limit, the peak stays at <InlineMath math="38.75" /> as on a regular day, because **multiplying the demand by** <InlineMath math="1.5" /> doesn't move the peak. That points to <InlineMath math="\text{Rp}40{,}000" />. But at that price only <InlineMath math="200" /> of the <InlineMath math="228" /> interested people can get in, and the profit is <InlineMath math="50\times200-2{,}000=8{,}000\text{ thousand}" />, less than at <InlineMath math="\text{Rp}45{,}000" />.
-
-So the ticket price with the largest profit on a holiday is <InlineMath math="\text{Rp}45{,}000" />.
+So the largest number of cans that fit is **24**.

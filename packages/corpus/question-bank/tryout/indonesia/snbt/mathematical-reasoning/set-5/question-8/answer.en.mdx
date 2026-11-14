@@ -1,48 +1,19 @@
-You're looking for the shortest drinking break that keeps the two runners from ever being at the same point up to second <InlineMath math="1{,}500" />. Use the **difference in distance** <InlineMath math="g" />, Andi's distance minus Bima's. They meet when <InlineMath math="g" /> reaches <InlineMath math="400" />, or when <InlineMath math="g" /> drops all the way to <InlineMath math="0" />. The plan: write down the peak of <InlineMath math="g" /> in each cycle, then check which cycles still happen before time runs out.
+The free space to keep is **10% of the full 128 GB capacity**, not of the available memory. Subtract that reserve from the user's memory, then divide by the photo size.
 
-# The difference in each cycle
-
-Each of Andi's cycles is <InlineMath math="320" /> seconds of running and <InlineMath math="r" /> seconds of drinking. While he runs, <InlineMath math="g" /> rises by <InlineMath math="320" />. While he drinks, <InlineMath math="g" /> drops by <InlineMath math="4r" />, because only Bima moves. So **each cycle adds <InlineMath math="320-4r" /> to the difference**.
+# Memory that may be used
 
 <BlockMath math="\begin{aligned}
-\text{start of cycle } k &: t=(k-1)(320+r) \\
-\text{peak of cycle } k &: P_k=(k-1)(320-4r)+320
+10\%\cdot128&=12.8\text{ GB}\\
+110-12.8&=97.2\text{ GB}\\
+97.2\cdot1{,}024&=99{,}532.8\text{ MB}
 \end{aligned}" />
 
-The peak comes at the end of the run, right before Andi drinks. As long as <InlineMath math="P_k" /> is less than <InlineMath math="400" />, that cycle gives no meeting.
+# Number of photos
 
-# The condition for each cycle
+<BlockMath math="\frac{99{,}532.8}{4}=24{,}883.2" />
 
-Check the cycles one at a time:
+Photo number 24,884 would leave less than 10% free, so **the result is rounded down** to 24,883.
 
-<BlockMath math="\begin{aligned}
-P_2 = 640-4r < 400 &\iff r > 60 \\
-P_3 = 960-8r < 400 &\iff r > 70 \\
-P_4 = 1{,}280-12r < 400 &\iff r > 73\tfrac{1}{3}
-\end{aligned}" />
+The value 25,344 takes 10% of 110 GB instead of 128 GB. The value 24,300 uses 1 GB as 1,000 MB. The value 28,160 keeps no free space, and 29,491 ignores the system share.
 
-Cycle four starts at second <InlineMath math="3(320+r)" />. For <InlineMath math="r" /> around <InlineMath math="74" /> that's about <InlineMath math="1{,}180" />, **still before second <InlineMath math="1{,}500" />**, so cycle four has to be checked.
-
-For <InlineMath math="r=73" />, cycle four starts at second <InlineMath math="3 \cdot 393=1{,}179" /> with <InlineMath math="g=3(320-292)=84" />. The difference reaches <InlineMath math="400" /> after another <InlineMath math="316" /> seconds, at second <InlineMath math="1{,}495" />, so they still meet.
-
-# Checking the smallest value
-
-For <InlineMath math="r=74" />:
-
-<BlockMath math="\begin{aligned}
-P_4 &= 1{,}280 - 12 \cdot 74 = 392 < 400 \\
-\text{start of cycle } 5 &= 4 \cdot 394 = 1{,}576 > 1{,}500
-\end{aligned}" />
-
-Cycle five only starts after time is up, so you don't need to check it. The difference also never drops to <InlineMath math="0" />, because every cycle still adds <InlineMath math="320-4 \cdot 74=24" />. So with <InlineMath math="r=74" /> the two **never meet**, while <InlineMath math="r=73" /> still gives a meeting.
-
-# The wrong options
-
-Each other option **stops checking at the wrong cycle**:
-
-- <InlineMath math="61" /> seconds only prevents a meeting in cycle two.
-- <InlineMath math="71" /> seconds also prevents cycle three, but cycle four still starts before time runs out.
-- <InlineMath math="76" /> seconds also checks cycle five, even though that cycle starts after second <InlineMath math="1{,}500" />.
-- <InlineMath math="80" /> seconds makes each cycle add zero. It's not only bigger than needed, it actually brings <InlineMath math="g" /> back to <InlineMath math="0" /> at second <InlineMath math="400" />, so Bima catches Andi right at <InlineMath math="S" />.
-
-So the shortest drinking break that keeps Andi and Bima from ever meeting in those <InlineMath math="25" /> minutes is <InlineMath math="74" /> seconds.
+So the largest number of photos is **24,883 photos**.

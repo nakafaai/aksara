@@ -1,41 +1,13 @@
-You need the total cost of all eight trips under both payment options, and then the comparison. The regular tariff is a plain sum. The subscription is trickier because **it has two limits: free minutes on every trip and a monthly cap on minute charges**.
+Each fold doubles the thickness, so after <InlineMath math="n" /> folds the thickness is **<InlineMath math="0.1\cdot2^n" /> mm**. This is exponential growth, not a fixed addition.
 
-# Cost with the regular tariff
+# Layers after 10 folds
 
-Every trip pays the <InlineMath math="\text{Rp}2{,}000" /> unlock fee plus <InlineMath math="\text{Rp}250" /> for every minute. So **every minute counts and the unlock fee is paid eight times**.
+<BlockMath math="2^{10}=1{,}024\text{ layers}" />
 
-<BlockMath math="\begin{aligned} \text{total time} &= 25+6+38+44+15+31+9+27=195 \\ \text{regular cost} &= 8\cdot 2{,}000+250\cdot 195 \\ &= 16{,}000+48{,}750=64{,}750 \end{aligned}" />
+# Thickness of the stack
 
-# Paid minutes on the subscription
+<BlockMath math="0.1\cdot1{,}024=102.4\text{ mm}" />
 
-On the subscription, the paid minutes of a trip are its length minus <InlineMath math="20" />, but **a trip of <InlineMath math="20\text{ minutes}" /> or less adds zero paid minutes**, not a negative number.
+Treating each fold as **adding 0.1 mm** gives only 1.1 mm. That is wrong because a fold doubles the whole stack.
 
-| Trip | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| Length | <InlineMath math="25" /> | <InlineMath math="6" /> | <InlineMath math="38" /> | <InlineMath math="44" /> | <InlineMath math="15" /> | <InlineMath math="31" /> | <InlineMath math="9" /> | <InlineMath math="27" /> |
-| Paid minutes | <InlineMath math="5" /> | <InlineMath math="0" /> | <InlineMath math="18" /> | <InlineMath math="24" /> | <InlineMath math="0" /> | <InlineMath math="11" /> | <InlineMath math="0" /> | <InlineMath math="7" /> |
-
-The paid minutes add up to <InlineMath math="5+18+24+11+7=65" />.
-
-# The monthly cap
-
-Without the cap, the minute charges would be <InlineMath math="65\cdot 500=\text{Rp}32{,}500" />. That's over the monthly cap, so **Dita only pays <InlineMath math="\text{Rp}30{,}000" /> in minute charges**.
-
-<BlockMath math="\text{subscription cost}=30{,}000+30{,}000=60{,}000" />
-
-# The difference between the two
-
-<BlockMath math="64{,}750-60{,}000=4{,}750" />
-
-The subscription is **cheaper by <InlineMath math="\text{Rp}4{,}750" />**. Check it with the upper bound: a month on the subscription never costs more than <InlineMath math="30{,}000+30{,}000=\text{Rp}60{,}000" />. Dita's regular cost of <InlineMath math="\text{Rp}64{,}750" /> is already above that, so the subscription has to be cheaper.
-
-# Why the other options fail
-
-Each wrong option **skips one rule** from the price list.
-
-- Cheaper by <InlineMath math="\text{Rp}2{,}250" /> comes from ignoring the cap, so the subscription is taken as <InlineMath math="30{,}000+32{,}500=62{,}500" />.
-- Cheaper by <InlineMath math="\text{Rp}17{,}250" /> comes from taking the free minutes off the total time, <InlineMath math="195-8\cdot 20=35" />. That lets the short trips add negative minutes.
-- Cheaper by <InlineMath math="\text{Rp}34{,}750" /> comes from forgetting the <InlineMath math="\text{Rp}30{,}000" /> subscription fee.
-- More expensive by <InlineMath math="\text{Rp}11{,}250" /> comes from forgetting the unlock fees on the regular tariff, so the regular cost is only <InlineMath math="\text{Rp}48{,}750" />.
-
-So on the subscription, Dita's November trips cost <InlineMath math="\text{Rp}4{,}750" /> less than on the regular tariff.
+So the stack is **102.4 mm** thick after 10 folds.

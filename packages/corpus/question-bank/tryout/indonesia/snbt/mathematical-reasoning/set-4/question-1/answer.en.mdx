@@ -1,49 +1,15 @@
-You're looking for the cost of the cheapest package for this <InlineMath math="6" />-day rental. The plan: first pin down the rental length and the total distance, then price all three packages with **the discount rule and the allowance rule** applied correctly, and only then pick the smallest.
+The departure and arrival times are in different zones, so **convert both to the same zone** before subtracting.
 
-# Fixing the rental length and the total distance
+# Matching the time zones
 
-On the fourth day the car just sat in the hotel car park. The extra rule on rental days says **a day when the car isn't used still counts**, so the rental lasts <InlineMath math="6" /> days. Since <InlineMath math="6" /> days reaches the <InlineMath math="5" />-day threshold, the <InlineMath math="20\%" /> discount on the day rate applies.
+**WITA is 1 hour ahead of WIB**, so 06:40 WIB is 07:40 WITA.
 
-The total distance is the sum of the daily distances:
+# Computing the flight time
 
-<BlockMath math="120+310+90+0+260+180=960\text{ km}" />
+From 07:40 to 10:05 WITA, 2 hours 25 minutes pass.
 
-# Pricing the three packages
+<BlockMath math="2\cdot60+25=145\text{ minutes}" />
 
-The discount only cuts the day rate. So you multiply the day rate by <InlineMath math="6" /> and then take <InlineMath math="80\%" /> of that. **The distance charge is paid in full** with no discount.
+Ignoring the time zones, the gap between 06:40 and 10:05 is 3 hours 25 minutes or 205 minutes, which is **one hour too long**.
 
-For Package B, the allowance is **measured against the total distance**, not day by day:
-
-<BlockMath math="\begin{aligned}
-\text{B allowance} &= 6\times150=900\text{ km}\\
-\text{excess} &= 960-900=60\text{ km}
-\end{aligned}" />
-
-Now price each package:
-
-<BlockMath math="\begin{aligned}
-\text{A} &= 0.8\times6\times200{,}000+960\times1{,}500=960{,}000+1{,}440{,}000=\text{Rp}2{,}400{,}000\\
-\text{B} &= 0.8\times6\times350{,}000+60\times3{,}000=1{,}680{,}000+180{,}000=\text{Rp}1{,}860{,}000\\
-\text{C} &= 0.8\times6\times500{,}000=\text{Rp}2{,}400{,}000
-\end{aligned}" />
-
-So **the cheapest package is Package B**, at <InlineMath math="\text{Rp}1{,}860{,}000" />.
-
-# Checking the daily allowance trap
-
-Compare this with the wrong method, which counts the excess day by day. Days two, five and six go over <InlineMath math="150\text{ km}" />:
-
-<BlockMath math="(310-150)+(260-150)+(180-150)=160+110+30=300\text{ km}" />
-
-That method throws away the unused allowance from days one, three and four, but **Package B pools its allowance over the whole rental**. The real excess is only <InlineMath math="60\text{ km}" />. Also check Package B against the others: <InlineMath math="1{,}860{,}000" /> really is smaller than the <InlineMath math="2{,}400{,}000" /> of both Package A and Package C.
-
-# Why the other options are wrong
-
-Each wrong option comes from **one rule that was skipped** or applied in the wrong place.
-
-- <InlineMath math="\text{Rp}1{,}824{,}000" /> comes from applying the <InlineMath math="20\%" /> discount to the whole Package B bill, <InlineMath math="0.8\times2{,}280{,}000" />, even though the distance charge isn't discounted.
-- <InlineMath math="\text{Rp}2{,}000{,}000" /> comes from leaving out the parked day, so the rental looks like <InlineMath math="5" /> days and Package C at <InlineMath math="0.8\times5\times500{,}000" /> seems cheapest.
-- <InlineMath math="\text{Rp}2{,}280{,}000" /> comes from forgetting the discount: <InlineMath math="2{,}100{,}000+180{,}000" />.
-- <InlineMath math="\text{Rp}2{,}400{,}000" /> comes from counting the excess day by day, which makes Package B <InlineMath math="1{,}680{,}000+300\times3{,}000=2{,}580{,}000" /> so that Package A or C looks cheaper.
-
-So the Damar family pays <InlineMath math="\text{Rp}1{,}860{,}000" /> with Package B.
+So flight P1 takes **145 minutes**.

@@ -1,41 +1,15 @@
-Alle vier Aussagen hängen davon ab, wie sich der Füllstand über den Tag entwickelt. Stell diesen Verlauf also einmal auf und prüfe dann jede Aussage mit ihrem eigenen Beleg. Entscheidend ist: **Wasser über der Kapazität geht sofort verloren**, deshalb steigt der Füllstand nie über <InlineMath math="6{.}000\text{ Liter}" />.
+Die Spalte der Unentschieden zählt aus der Sicht jeder Mannschaft. Ein Unentschieden **wird doppelt gezählt**, einmal für jede beteiligte Mannschaft.
 
-# Der Füllstand über den Tag
+# Summe der Einträge
 
-Der Füllstand ändert sich um den Zufluss minus den Abfluss, den Nettozufluss. Der Nettozufluss wechselt **jedes Mal, wenn ein Gerät startet oder stoppt**.
+<BlockMath math="1+1+2+1+1=6" />
 
-| Abschnitt | Nettozufluss | Füllstand |
-| :---: | :---: | :---: |
-| 05:00 bis 05:20 Uhr | <InlineMath math="60\text{ Liter/min}" /> | steigt von <InlineMath math="1{.}000" /> auf <InlineMath math="2{.}200" /> |
-| 05:20 bis 05:40 Uhr | <InlineMath math="60-50=10\text{ Liter/min}" /> | steigt von <InlineMath math="2{.}200" /> auf <InlineMath math="2{.}400" /> |
-| 05:40 bis 06:20 Uhr | <InlineMath math="60+80-50=90\text{ Liter/min}" /> | steigt von <InlineMath math="2{.}400" /> auf <InlineMath math="6{.}000" /> |
-| 06:20 bis 07:00 Uhr | weiter positiv | bleibt bei <InlineMath math="6{.}000" /> |
-| ab 07:00 Uhr | <InlineMath math="-50\text{ Liter/min}" /> | sinkt von <InlineMath math="6{.}000" /> |
+# Anzahl der Unentschieden
 
-Voll ist der Tank um 06:20 Uhr, weil <InlineMath math="2{.}400+90\cdot 40=6{.}000" />. Nachdem Pumpe Q um 06:40 Uhr ausgeht, beträgt der Nettozufluss <InlineMath math="60-50=10\text{ Liter/min}" />, also immer noch positiv. Darum bleibt der Tank voll, bis Pumpe P um 07:00 Uhr ausgeht.
+<BlockMath math="\frac{6}{2}=3" />
 
-# Die Aussage über Pumpe Q
+Kontrolle: Die Siege ergeben <InlineMath math="3+2+1+1+0=7" />, gleich den Niederlagen <InlineMath math="0+1+1+2+3=7" />, und <InlineMath math="7+3=10" /> ist die Zahl aller Spiele, <InlineMath math="\binom52" />.
 
-Pumpe Q läuft von 05:40 bis 06:40 Uhr. Von 05:40 bis 06:20 Uhr steigt der Füllstand tatsächlich. Von 06:20 bis 06:40 Uhr aber **ist der Tank schon voll, und der Füllstand bleibt gleich**, weil das überschüssige Wasser durch das Überlaufrohr abfließt. In diesen <InlineMath math="20\text{ Minuten}" /> nimmt der Füllstand nicht zu. Die Aussage ist **falsch**.
+Der Wert 6 ist die Zahl der Einträge vor dem Halbieren. Der Wert 10 ist die Zahl aller Spiele.
 
-# Die Aussage über verlorenes Wasser
-
-Wasser geht verloren, solange der Tank voll und der Nettozufluss positiv ist, also von 06:20 bis 07:00 Uhr. Der Überschuss pro Minute ist **vor und nach dem Abschalten von Pumpe Q verschieden**.
-
-<BlockMath math="\begin{aligned} \text{06:20 bis 06:40 Uhr: } 90\cdot 20 &= 1{.}800 \\ \text{06:40 bis 07:00 Uhr: } 10\cdot 20 &= 200 \\ \text{zusammen: } 1{.}800+200 &= 2{.}000 \end{aligned}" />
-
-Prüf das auf einem zweiten Weg. Bis 07:00 Uhr pumpen die Pumpen <InlineMath math="60\cdot 120+80\cdot 60=12{.}000\text{ Liter}" /> hinein, und Hahn K gibt <InlineMath math="50\cdot 100=5{.}000\text{ Liter}" /> ab. Ohne Überlaufrohr läge der Füllstand bei <InlineMath math="1{.}000+12{.}000-5{.}000=8{.}000\text{ Liter}" />, der Überschuss ist also <InlineMath math="8{.}000-6{.}000=2{.}000\text{ Liter}" />. Die Aussage ist **richtig**.
-
-# Die Aussage über den früher geöffneten Hahn
-
-Öffnet Hahn K schon um 05:00 Uhr, läuft er <InlineMath math="20\text{ Minuten}" /> länger. Dadurch fließen zusätzlich <InlineMath math="50\cdot 20=1{.}000\text{ Liter}" /> ab. **Ohne Überlaufrohr läge der höchste Füllstand bei <InlineMath math="8{.}000-1{.}000=7{.}000\text{ Liter}" />**, also immer noch über der Kapazität. Es gehen also weiterhin <InlineMath math="1{.}000\text{ Liter}" /> verloren. Die Aussage ist **falsch**.
-
-# Die Aussage über acht Uhr
-
-Um 07:00 Uhr enthält der Tank <InlineMath math="6{.}000\text{ Liter}" />, danach läuft <InlineMath math="60\text{ Minuten}" /> lang nur Hahn K.
-
-<BlockMath math="6{.}000-50\cdot 60=3{.}000" />
-
-Die halbe Kapazität beträgt <InlineMath math="3{.}000\text{ Liter}" />. Der Füllstand ist **genau gleich der halben Kapazität**, und „nicht mehr als“ erlaubt Gleichheit. Die Aussage ist **richtig**. Lässt du das Überlaufwasser im Tank, erhältst du <InlineMath math="8{.}000-3{.}000=5{.}000\text{ Liter}" /> und hältst die Aussage fälschlich für falsch.
-
-Die Aussage über Pumpe Q ist also falsch, die Aussage über <InlineMath math="2{.}000\text{ Liter}" /> verlorenes Wasser richtig, die Aussage über das Öffnen von Hahn K um 05:00 Uhr falsch und die Aussage über den Füllstand um 08:00 Uhr richtig.
+Es endeten also **3 Spiele** unentschieden.

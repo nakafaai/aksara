@@ -1,49 +1,11 @@
-Kamu perlu mengikuti stok hari demi hari. Ada tiga hal yang harus dijaga sekaligus: **pesanan dibuat hanya jika stok akhir hari paling banyak <InlineMath math="60" /> dan tidak ada pesanan yang ditunggu**, pesanan baru tiba tiga hari kemudian, dan permintaan yang tidak terlayani hilang begitu saja.
+Pesanan 450 lembar termasuk kelompok 101 sampai 500 lembar, dan harga kelompok itu **dikenakan pada seluruh lembar**, bukan hanya pada lembar setelah ke-100.
 
-# Siklus pertama
+# Biaya pesanan
 
-Stok akhir hari dihitung dengan mengurangkan penjualan dari stok pagi.
+<BlockMath math="450\cdot400=180{.}000" />
 
-<BlockMath math="\begin{aligned}
-\text{hari ke-}1 &: \ 120-20=100 \\
-\text{hari ke-}2 &: \ 100-25=75 \\
-\text{hari ke-}3 &: \ 75-30=45
-\end{aligned}" />
+Dalam ribu rupiah, biayanya 180.
 
-Pada akhir hari ke-<InlineMath math="3" />, stok <InlineMath math="45\le60" />, jadi toko memesan. Pesanan itu **baru tiba pada pagi hari ke-<InlineMath math="6" />**, sehingga hari ke-<InlineMath math="4" /> dan ke-<InlineMath math="5" /> harus dilayani dengan stok <InlineMath math="45" /> saja.
+Jika 100 lembar pertama dihitung Rp500,00 dan sisanya Rp400,00, hasilnya 190.000. Cara itu salah karena aturan percetakan ini **bukan tarif bertingkat per bagian**.
 
-<BlockMath math="\begin{aligned}
-\text{hari ke-}4 &: \ 45-20=25 \\
-\text{hari ke-}5 &: \ \text{permintaan }35,\ \text{terjual }25,\ \text{hilang }10
-\end{aligned}" />
-
-# Siklus kedua
-
-Pada pagi hari ke-<InlineMath math="6" />, stok menjadi <InlineMath math="0+150=150" />.
-
-<BlockMath math="\begin{aligned}
-\text{hari ke-}6 &: \ 150-40=110 \\
-\text{hari ke-}7 &: \ 110-30=80 \\
-\text{hari ke-}8 &: \ 80-25=55
-\end{aligned}" />
-
-Pada akhir hari ke-<InlineMath math="8" />, stok <InlineMath math="55\le60" /> dan tidak ada pesanan yang ditunggu, jadi toko memesan lagi. Pesanan ini **tiba pada pagi hari ke-<InlineMath math="11" />**.
-
-<BlockMath math="\begin{aligned}
-\text{hari ke-}9 &: \ 55-45=10 \\
-\text{hari ke-}10 &: \ \text{permintaan }50,\ \text{terjual }10,\ \text{hilang }40
-\end{aligned}" />
-
-Pada akhir hari ke-<InlineMath math="9" />, stok <InlineMath math="10" /> memang di bawah <InlineMath math="60" />, tetapi toko tidak memesan lagi karena masih ada pesanan yang ditunggu.
-
-# Sisa hari dan total
-
-Pada pagi hari ke-<InlineMath math="11" />, stok menjadi <InlineMath math="150" />. Hari ke-<InlineMath math="11" /> menyisakan <InlineMath math="120" /> dan hari ke-<InlineMath math="12" /> menyisakan <InlineMath math="100" />, jadi **tidak ada penjualan hilang lagi**.
-
-<BlockMath math="\text{total penjualan hilang}=10+40=50\text{ karung}" />
-
-Coba cek dengan cara lain. Total permintaan <InlineMath math="370" /> karung, sedangkan barang yang tersedia <InlineMath math="120+150+150=420" /> karung dan sisa akhirnya <InlineMath math="100" /> karung. Jadi yang terjual <InlineMath math="420-100=320" /> karung, dan <InlineMath math="370-320=50" /> karung hilang, sama dengan hasil di atas.
-
-Kalau kekurangan dianggap bisa dilayani belakangan, kamu akan mendapat <InlineMath math="60" /> karung, dan kalau seluruh permintaan pada hari kekurangan dianggap hilang, kamu akan mendapat <InlineMath math="85" /> karung. Keduanya tidak sesuai aturan penjualan.
-
-Jadi, total penjualan hilang selama <InlineMath math="12" /> hari adalah <InlineMath math="50" /> karung.
+Jadi, biaya cetak 450 lembar adalah **180 ribu rupiah**.

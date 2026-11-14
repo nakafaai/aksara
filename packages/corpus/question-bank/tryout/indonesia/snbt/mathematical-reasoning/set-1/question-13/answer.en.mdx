@@ -1,40 +1,17 @@
-You need to count the odd-numbered seats in each category, then multiply by that category's price. What decides it: **every row has an odd number of seats, so the odd-numbered seats are always one more than half**.
+Compute the cost of each plan for 13 GB. What matters is **the part of the usage above each plan's quota**.
 
-# The number of seats in each row
+# Cost of the Hemat plan
 
-Row <InlineMath math="1" /> has <InlineMath math="19" /> seats and each row after it adds <InlineMath math="2" />. That's an arithmetic sequence, so row <InlineMath math="n" /> has <InlineMath math="19+2(n-1)=17+2n" /> seats. The number <InlineMath math="17+2n" /> is **always odd**.
+Its quota is 10 GB, so **3 GB are charged as extra**, because <InlineMath math="13-10=3" />.
 
-In a row with <InlineMath math="s" /> seats and <InlineMath math="s" /> odd, the odd seat numbers are <InlineMath math="1,3,\ldots,s" />, which makes <InlineMath math="\tfrac{s+1}{2}" /> of them. For row <InlineMath math="n" /> that's <InlineMath math="\tfrac{17+2n+1}{2}=9+n" />.
+<BlockMath math="50{,}000+3\cdot9{,}000=77{,}000" />
 
-# Odd-numbered seats per category
+# Cost of the Bebas plan and the difference
 
-The number of odd seats per row, <InlineMath math="9+n" />, is an arithmetic sequence too. Add it up with **the number of terms times the average of the first and last terms**.
+Its quota is 20 GB, so a usage of 13 GB **stays within the quota** and the cost is still 95,000.
 
-<BlockMath math="\begin{aligned}
-\text{A, rows }1\text{ to }6 &: 10+11+\cdots+15=\tfrac{6(10+15)}{2}=75\\
-\text{B, rows }7\text{ to }16 &: 16+17+\cdots+25=\tfrac{10(16+25)}{2}=205\\
-\text{C, rows }17\text{ to }30 &: 26+27+\cdots+39=\tfrac{14(26+39)}{2}=455
-\end{aligned}" />
+<BlockMath math="95{,}000-77{,}000=18{,}000" />
 
-# The revenue
+A difference of Rp27,000 is only the extra charge of the Hemat plan. The choices saying Bebas is cheaper come from treating 13 GB as above the Bebas quota or from charging Hemat's extras from 0 GB.
 
-Multiply each category's seat count by its price, because **each category has its own price**.
-
-<BlockMath math="\begin{aligned}
-\text{revenue} &= 75\cdot250{,}000+205\cdot150{,}000+455\cdot100{,}000\\
-&= 18{,}750{,}000+30{,}750{,}000+45{,}500{,}000\\
-&= 95{,}000{,}000
-\end{aligned}" />
-
-# Checking the answer
-
-The whole stand has <InlineMath math="\tfrac{30(19+77)}{2}=1{,}440" /> seats. In each row the odd seats are half the seats plus one half, so the total is <InlineMath math="\tfrac{1{,}440+30}{2}=735" />. That **matches** <InlineMath math="75+205+455=735" />.
-
-# The wrong options
-
-- <InlineMath math="\text{Rp}93{,}300{,}000.00" /> adds one extra seat per category, but **the extra seat comes in every row**.
-- <InlineMath math="\text{Rp}92{,}800{,}000.00" /> is half the revenue of a full sale, which ignores that every row has an odd number of seats.
-- <InlineMath math="\text{Rp}91{,}100{,}000.00" /> counts category C as only <InlineMath math="30-17=13" /> rows, so **row <InlineMath math="30" /> gets left out**.
-- <InlineMath math="\text{Rp}90{,}600{,}000.00" /> counts the even-numbered seats, which is <InlineMath math="\tfrac{s-1}{2}" /> per row.
-
-So the organisers' ticket revenue for that event is <InlineMath math="\text{Rp}95{,}000{,}000.00" />.
+So **the Hemat plan is cheaper by Rp18,000** for a usage of 13 GB.

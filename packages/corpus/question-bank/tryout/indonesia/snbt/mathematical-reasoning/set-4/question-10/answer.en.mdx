@@ -1,50 +1,21 @@
-You're looking for the <InlineMath math="3" /> scholarship winners out of <InlineMath math="6" /> candidates. The plan: compute <InlineMath math="W" /> with the two-highest-scores rule, compute the final scores, filter out anyone who doesn't qualify, then rank. **Three small rules decide the result**: how <InlineMath math="W" /> is computed, the condition on every component, and the tie rule.
+The number of passengers on a section is **the number on board when the bus leaves the start of that section**. Compute it for all five sections.
 
-# Each candidate's interview score
+# Passengers on each section
 
-<InlineMath math="W" /> is the mean of the two highest scores, so **each candidate's lowest score is dropped**:
+Each section's load is **computed in order from the first terminal**.
 
-<BlockMath math="\begin{aligned}
-W_{\text{Ayu}} &= \tfrac{84+78}{2}=81\\
-W_{\text{Bayu}} &= \tfrac{66+64}{2}=65\\
-W_{\text{Citra}} &= \tfrac{90+88}{2}=89\\
-W_{\text{Dimas}} &= \tfrac{90+88}{2}=89\\
-W_{\text{Eka}} &= \tfrac{84+80}{2}=82\\
-W_{\text{Fajar}} &= \tfrac{82+82}{2}=82
-\end{aligned}" />
+| Section | Passengers |
+| :---: | :---: |
+| first terminal to Stop A | 25 |
+| Stop A to Stop B | <InlineMath math="25+12-8=29" /> |
+| Stop B to Stop C | <InlineMath math="29+6-10=25" /> |
+| Stop C to Stop D | <InlineMath math="25+9-7=27" /> |
+| Stop D to last terminal | <InlineMath math="27+14-6=35" /> |
 
-# Each candidate's final score
+# The busiest section
 
-Put every value into <InlineMath math="N=0.40T+0.25W+0.20R+0.15P" />:
+The largest value is 35, on the section from Stop D to the last terminal. Stop D has the most boarders, but what decides is **the running balance of boarding and alighting since the start**.
 
-<BlockMath math="\begin{aligned}
-N_{\text{Ayu}} &= 34.4+20.25+16+12=82.65\\
-N_{\text{Bayu}} &= 36+16.25+17.6+13.5=83.35\\
-N_{\text{Citra}} &= 31.2+22.25+17.2+12=82.65\\
-N_{\text{Dimas}} &= 38.4+22.25+18+9.3=87.95\\
-N_{\text{Eka}} &= 34.4+20.5+16.4+11.7=83\\
-N_{\text{Fajar}} &= 33.6+20.5+17+11.4=82.5
-\end{aligned}" />
+The section from Stop A to Stop B was high at 29, but it fell again after 10 passengers left at Stop B.
 
-Every final score is at least <InlineMath math="80" />, so **the final-score condition doesn't rule anyone out**. The filtering happens in the component condition.
-
-# Filtering out candidates who don't qualify
-
-Dimas has the highest final score, but <InlineMath math="P=62" /> is below <InlineMath math="65" />. One weak component is enough to **rule Dimas out**.
-
-Bayu has <InlineMath math="W=65" />. The rule says "at least <InlineMath math="65" />", so exactly <InlineMath math="65" /> still passes. Eka got one score of <InlineMath math="60" /> from an interviewer, but the condition applies to <InlineMath math="W" />, not to each interviewer's score. Eka's <InlineMath math="W" /> is <InlineMath math="82" />, so Eka passes too.
-
-# Ranking and breaking the tie
-
-The qualified candidates rank as Bayu <InlineMath math="83.35" />, Eka <InlineMath math="83" />, then Ayu and Citra both at <InlineMath math="82.65" />, and Fajar <InlineMath math="82.5" />. For third place, **the tie is broken by** <InlineMath math="T" />: Ayu has <InlineMath math="86" /> and Citra has <InlineMath math="78" />, so Ayu goes first.
-
-# Why the other options are wrong
-
-Each wrong option comes from **one selection rule read the wrong way**.
-
-- Bayu, Dimas and Eka comes from ignoring the at-least-<InlineMath math="65" /> condition on components, which lets Dimas in.
-- Ayu, Citra and Fajar comes from computing <InlineMath math="W" /> as the mean of all three scores. Bayu drops to <InlineMath math="W=63.33\ldots" /> and is out, and Eka's final score falls to <InlineMath math="N\approx81.17" />, so Fajar moves up.
-- Bayu, Citra and Eka comes from breaking the Ayu and Citra tie the wrong way or without using <InlineMath math="T" />.
-- Ayu, Citra and Eka comes from reading "at least <InlineMath math="65" />" as "more than <InlineMath math="65" />", which knocks Bayu out.
-
-So this year's scholarship winners are Ayu, Bayu and Eka.
+So the bus is fullest on the section **from Stop D to the last terminal**.

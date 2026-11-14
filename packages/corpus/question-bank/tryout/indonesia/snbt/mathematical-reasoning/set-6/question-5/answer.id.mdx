@@ -1,41 +1,13 @@
-Kamu perlu menghitung total biaya kedelapan perjalanan dengan kedua cara, lalu membandingkannya. Tarif reguler cukup dijumlahkan. Paket langganan lebih rumit karena **ada dua batas, yaitu menit gratis di setiap perjalanan dan batas biaya menit per bulan**.
+Setiap lipatan menggandakan ketebalan, jadi setelah <InlineMath math="n" /> lipatan ketebalannya **<InlineMath math="0{,}1\cdot2^n" /> mm**. Ini adalah pertumbuhan eksponensial, bukan penambahan tetap.
 
-# Biaya dengan tarif reguler
+# Banyak lapisan setelah 10 lipatan
 
-Setiap perjalanan membayar biaya buka kunci <InlineMath math="\text{Rp}2{.}000" /> dan <InlineMath math="\text{Rp}250" /> untuk setiap menit. Jadi **semua menit dihitung dan biaya buka kunci dibayar delapan kali**.
+<BlockMath math="2^{10}=1{.}024\text{ lapisan}" />
 
-<BlockMath math="\begin{aligned} \text{durasi total} &= 25+6+38+44+15+31+9+27=195 \\ \text{biaya reguler} &= 8\cdot 2{.}000+250\cdot 195 \\ &= 16{.}000+48{.}750=64{.}750 \end{aligned}" />
+# Ketebalan tumpukan
 
-# Menit berbayar pada paket langganan
+<BlockMath math="0{,}1\cdot1{.}024=102{,}4\text{ mm}" />
 
-Pada paket langganan, menit yang dibayar dalam satu perjalanan adalah durasinya dikurangi <InlineMath math="20" />, tetapi **perjalanan yang tidak lebih dari <InlineMath math="20\text{ menit}" /> menyumbang nol menit berbayar**, bukan angka negatif.
+Jika setiap lipatan dianggap **menambah 0,1 mm**, hasilnya hanya 1,1 mm. Cara itu salah karena lipatan menggandakan seluruh tumpukan.
 
-| Perjalanan ke- | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| Durasi | <InlineMath math="25" /> | <InlineMath math="6" /> | <InlineMath math="38" /> | <InlineMath math="44" /> | <InlineMath math="15" /> | <InlineMath math="31" /> | <InlineMath math="9" /> | <InlineMath math="27" /> |
-| Menit berbayar | <InlineMath math="5" /> | <InlineMath math="0" /> | <InlineMath math="18" /> | <InlineMath math="24" /> | <InlineMath math="0" /> | <InlineMath math="11" /> | <InlineMath math="0" /> | <InlineMath math="7" /> |
-
-Jumlah menit berbayar adalah <InlineMath math="5+18+24+11+7=65" />.
-
-# Batas biaya menit
-
-Tanpa batas, biaya menitnya <InlineMath math="65\cdot 500=\text{Rp}32{.}500" />. Angka ini melewati batas bulanan, jadi **Dita hanya membayar biaya menit <InlineMath math="\text{Rp}30{.}000" />**.
-
-<BlockMath math="\text{biaya langganan}=30{.}000+30{.}000=60{.}000" />
-
-# Selisih kedua cara
-
-<BlockMath math="64{.}750-60{.}000=4{.}750" />
-
-Paket langganan **lebih murah <InlineMath math="\text{Rp}4{.}750" />**. Coba periksa dengan batas atasnya: biaya paket langganan dalam satu bulan tidak pernah lebih dari <InlineMath math="30{.}000+30{.}000=\text{Rp}60{.}000" />. Biaya reguler Dita, <InlineMath math="\text{Rp}64{.}750" />, sudah di atas angka itu, jadi paket langganan memang pasti lebih murah.
-
-# Jebakan pada pilihan lain
-
-Setiap pilihan yang salah **melewatkan satu aturan** dari tabel tarif.
-
-- Lebih murah <InlineMath math="\text{Rp}2{.}250" /> muncul jika batas biaya menit diabaikan, sehingga biaya langganan dihitung <InlineMath math="30{.}000+32{.}500=62{.}500" />.
-- Lebih murah <InlineMath math="\text{Rp}17{.}250" /> muncul jika menit gratis dikurangkan dari durasi total, <InlineMath math="195-8\cdot 20=35" />. Cara ini membuat perjalanan pendek menyumbang menit negatif.
-- Lebih murah <InlineMath math="\text{Rp}34{.}750" /> muncul jika biaya langganan <InlineMath math="\text{Rp}30{.}000" /> lupa dihitung.
-- Lebih mahal <InlineMath math="\text{Rp}11{.}250" /> muncul jika biaya buka kunci pada tarif reguler lupa dihitung, sehingga biaya reguler hanya <InlineMath math="\text{Rp}48{.}750" />.
-
-Jadi, dengan paket langganan total biaya Dita pada bulan November lebih murah <InlineMath math="\text{Rp}4{.}750" /> daripada dengan tarif reguler.
+Jadi, ketebalan tumpukan setelah 10 lipatan adalah **102,4 mm**.

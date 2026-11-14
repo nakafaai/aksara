@@ -1,47 +1,17 @@
-Kamu mencari sisa saldo sesudah penarikan terbesar yang diizinkan. Rencananya: hitung berat yang dipakai untuk setiap jenis, jumlahkan nilainya, potong biaya pengelolaan dengan memperhatikan **batas <InlineMath math="\text{Rp}6{.}000" />**, lalu pilih penarikan terbesar yang masih menyisakan paling sedikit <InlineMath math="\text{Rp}10{.}000" />.
+Hitung rata-rata, median, modus, dan jangkauan, lalu periksa setiap pilihan. Median memerlukan **data yang sudah diurutkan**.
 
-# Berat yang dipakai setiap jenis
+# Mengurutkan data
 
-Setiap jenis ditimbang terpisah dan dibulatkan ke bawah ke kelipatan <InlineMath math="0{,}5\text{ kg}" />. Kardus basah **dipotong <InlineMath math="20\%" /> dulu, baru dibulatkan**:
+<BlockMath math="13{,}5,\;13{,}8,\;14{,}0,\;14{,}2,\;14{,}4,\;14{,}6,\;15{,}1,\;16{,}4" />
 
-<BlockMath math="\begin{aligned}
-\text{kaleng} &: 4{,}8 \to 4{,}5\text{ kg} \\
-\text{botol plastik} &: 6{,}3 \to 6{,}0\text{ kg} \\
-\text{kardus basah} &: 0{,}8 \cdot 8{,}4 = 6{,}72 \to 6{,}5\text{ kg}
-\end{aligned}" />
+Ada 8 data, jadi median adalah **rata-rata data ke-4 dan ke-5**.
 
-# Nilai setoran dan biaya pengelolaan
+<BlockMath math="\text{median}=\frac{14{,}2+14{,}4}{2}=14{,}3" />
 
-Kalikan setiap berat dengan harganya, lalu jumlahkan:
+# Ukuran lain dan perbandingan
 
-<BlockMath math="\begin{aligned}
-\text{nilai setoran} &= 4{,}5 \cdot 12{.}000 + 6{,}0 \cdot 4{.}000 + 6{,}5 \cdot 2{.}500 \\
-&= 54{.}000 + 24{.}000 + 16{.}250 \\
-&= 94{.}250
-\end{aligned}" />
+Rata-ratanya <InlineMath math="\tfrac{116}{8}=14{,}5" />, jadi **rata-rata lebih besar daripada median**. Hal ini terjadi karena waktu 16,4 detik jauh lebih besar daripada data lain dan menarik rata-rata ke atas, sedangkan median tidak terpengaruh.
 
-Biaya <InlineMath math="10\%" /> dari nilai itu adalah <InlineMath math="9{.}425" />, lebih dari batas. Jadi, **biaya pengelolaan yang dipotong hanya <InlineMath math="\text{Rp}6{.}000" />**:
+Median bukan 14,4, karena 14,4 hanya data ke-5. Tidak ada waktu yang muncul lebih dari sekali, jadi data ini tidak memiliki modus. Jangkauannya <InlineMath math="16{,}4-13{,}5=2{,}9" /> detik, bukan 3,1 detik.
 
-<BlockMath math="\text{saldo} = 1{.}000 + 94{.}250 - 6{.}000 = 89{.}250" />
-
-# Penarikan terbesar
-
-Penarikan harus kelipatan <InlineMath math="\text{Rp}20{.}000" /> dan **sisanya tidak boleh kurang dari <InlineMath math="\text{Rp}10{.}000" />**. Coba dari yang terbesar:
-
-<BlockMath math="\begin{aligned}
-89{.}250 - 80{.}000 &= 9{.}250 < 10{.}000 \\
-89{.}250 - 60{.}000 &= 29{.}250 \ge 10{.}000
-\end{aligned}" />
-
-Penarikan <InlineMath math="\text{Rp}80{.}000" /> tidak boleh, jadi penarikan terbesar <InlineMath math="\text{Rp}60{.}000" /> dan sisanya <InlineMath math="\text{Rp}29{.}250" />.
-
-# Jawaban yang sering muncul
-
-Beberapa hasil lain muncul dari **satu aturan yang terlewat**:
-
-- <InlineMath math="\text{Rp}9{.}250" /> menarik <InlineMath math="\text{Rp}80{.}000" /> dan lupa sisa minimal <InlineMath math="\text{Rp}10{.}000" />.
-- <InlineMath math="\text{Rp}25{.}825" /> memotong biaya penuh <InlineMath math="9{.}425" /> tanpa batas <InlineMath math="\text{Rp}6{.}000" />, sehingga saldonya <InlineMath math="85{.}825" />.
-- <InlineMath math="\text{Rp}14{.}600" /> tidak membulatkan berat, sehingga nilai setorannya <InlineMath math="99{.}600" /> dan penarikannya <InlineMath math="\text{Rp}80{.}000" />.
-- <InlineMath math="\text{Rp}29{.}000" /> membulatkan kardus dulu (<InlineMath math="8{,}0\text{ kg}" />) baru memotong airnya, sehingga beratnya <InlineMath math="6{,}4\text{ kg}" />.
-
-Jadi, sisa saldo Pak Joko sesudah penarikan itu adalah <InlineMath math="\text{Rp}29{.}250" />.
+Jadi, pernyataan yang benar adalah **rata-rata waktu lebih besar daripada median waktu**.

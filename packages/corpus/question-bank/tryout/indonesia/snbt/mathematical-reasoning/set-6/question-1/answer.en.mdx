@@ -1,48 +1,21 @@
-You're looking for the two moments when the tank holds exactly <InlineMath math="4{,}200\text{ liters}" />, and you want the second one. Follow the water level from 05:00 piece by piece, starting a new piece each time a device switches on or off. Keep in mind that **the level can never go above the capacity** of <InlineMath math="6{,}000\text{ liters}" />.
+A team's points are **3 times its wins plus its draws**. Compute them for all five teams, then add.
 
-# The level while it rises
+# Points of each team
 
-The level changes by the inflow minus the outflow. That difference is the net flow. **The net flow changes every time a device starts or stops**, so work out the level one time piece at a time.
+<BlockMath math="\begin{aligned}
+A&:\quad 3\cdot3+1=10\\
+B&:\quad 3\cdot2+1=7\\
+C&:\quad 3\cdot1+2=5\\
+D&:\quad 3\cdot1+1=4\\
+E&:\quad 3\cdot0+1=1
+\end{aligned}" />
 
-| Time piece | Devices running | Net flow | Level at the end |
-| :---: | :---: | :---: | :---: |
-| 05:00 to 05:20 | P | <InlineMath math="60\text{ liters/min}" /> | <InlineMath math="1{,}000+60\cdot 20=2{,}200" /> |
-| 05:20 to 05:40 | P and K | <InlineMath math="60-50=10\text{ liters/min}" /> | <InlineMath math="2{,}200+10\cdot 20=2{,}400" /> |
-| from 05:40 | P, Q, and K | <InlineMath math="60+80-50=90\text{ liters/min}" /> | keeps rising |
+**The total of the five teams** is <InlineMath math="10+7+5+4+1=27" />.
 
-From 05:40 on, the level rises by <InlineMath math="90\text{ liters}" /> every minute. Let <InlineMath math="t" /> be the number of minutes after 05:40 until the level reaches <InlineMath math="4{,}200\text{ liters}" />.
+# Check by matches
 
-<BlockMath math="\begin{aligned} 2{,}400+90t &= 4{,}200 \\ 90t &= 1{,}800 \\ t &= 20 \end{aligned}" />
+There are <InlineMath math="\binom52=10" /> matches. The draws add up to 6, and **each drawn match is recorded for two teams**, so there are 3 drawn matches and 7 matches with a winner. A match with a winner gives 3 points, and a draw gives <InlineMath math="1+1=2" /> points.
 
-So the first moment is 06:00. That isn't the answer yet, because the question asks for the second moment.
+<BlockMath math="7\cdot3+3\cdot2=27" />
 
-# The tank fills and stays full
-
-With the same net flow, find when the tank reaches <InlineMath math="6{,}000\text{ liters}" />.
-
-<BlockMath math="\begin{aligned} 2{,}400+90t &= 6{,}000 \\ 90t &= 3{,}600 \\ t &= 40 \end{aligned}" />
-
-The tank is full at 06:20. From then on, the extra water leaves through the overflow pipe, so **the level is held at the capacity**. Pump Q stops at 06:40, but pump P still pushes in <InlineMath math="60\text{ liters/min}" />, which is more than the <InlineMath math="50\text{ liters/min}" /> leaving through tap K. So the tank stays full until pump P stops at 07:00.
-
-# The level while it falls
-
-After 07:00 only tap K is running, so the level **drops by <InlineMath math="50\text{ liters}" /> every minute, starting from <InlineMath math="6{,}000\text{ liters}" />**. Let <InlineMath math="u" /> be the number of minutes after 07:00.
-
-<BlockMath math="\begin{aligned} 6{,}000-50u &= 4{,}200 \\ 50u &= 1{,}800 \\ u &= 36 \end{aligned}" />
-
-The second moment is <InlineMath math="36\text{ minutes}" /> after 07:00, which is 07:36.
-
-# Checking the result
-
-By 07:36, tap K has let out <InlineMath math="50\cdot 36=1{,}800\text{ liters}" /> since the level started falling, and <InlineMath math="6{,}000-1{,}800=4{,}200" />. The answer also makes sense because **the tank only runs dry at 09:00**, which is <InlineMath math="6{,}000\div 50=120\text{ minutes}" /> after 07:00. So 07:36 really sits inside the falling stretch.
-
-# Why the other options fail
-
-Each wrong option comes from **one skipped step**.
-
-- 06:00 is the first moment, while the level is still rising.
-- 06:56 comes from letting the level fall right after the tank fills at 06:20, even though more water is still coming in than going out.
-- 07:16 comes from letting the level fall once pump Q stops at 06:40, even though pump P keeps running until 07:00.
-- 08:16 comes from keeping the overflow water in the tank, so the level at 07:00 is taken as <InlineMath math="8{,}000\text{ liters}" />, which is more than the tank holds.
-
-So the tank holds exactly <InlineMath math="4{,}200\text{ liters}" /> for the second time at 07:36.
+So the total of all teams' points is **27 points**.

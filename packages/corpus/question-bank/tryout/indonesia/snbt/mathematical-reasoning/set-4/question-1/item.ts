@@ -1,17 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "car-rental",
+  stimulus: "time-zones",
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "$$\\text{Rp}1{.}824{.}000$$" },
-        { correct: true, label: "$$\\text{Rp}1{.}860{.}000$$" },
-        { correct: false, label: "$$\\text{Rp}2{.}000{.}000$$" },
-        { correct: false, label: "$$\\text{Rp}2{.}280{.}000$$" },
-        { correct: false, label: "$$\\text{Rp}2{.}400{.}000$$" },
-      ],
+      kind: "numericEntry",
+      unit: "menit",
+      value: "145",
     },
   },
 };

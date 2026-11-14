@@ -1,49 +1,11 @@
-You need to follow the stock day by day. Three things matter at once: **an order is placed only when the end-of-day stock is at most <InlineMath math="60" /> and no order is still on its way**, an order arrives three days later, and demand that can't be served is simply lost.
+An order of 450 sheets falls in the group 101 to 500, and that group's price **applies to every sheet**, not only to the sheets after the 100th.
 
-# The first cycle
+# Cost of the order
 
-The end-of-day stock is the morning stock minus that day's sales.
+<BlockMath math="450\cdot400=180{,}000" />
 
-<BlockMath math="\begin{aligned}
-\text{day }1 &: \ 120-20=100 \\
-\text{day }2 &: \ 100-25=75 \\
-\text{day }3 &: \ 75-30=45
-\end{aligned}" />
+In thousands of rupiah, the cost is 180.
 
-At the end of day <InlineMath math="3" />, the stock is <InlineMath math="45\le60" />, so the shop orders. That order **only arrives on the morning of day <InlineMath math="6" />**, so days <InlineMath math="4" /> and <InlineMath math="5" /> have to be served with just <InlineMath math="45" /> sacks.
+Charging the first 100 sheets Rp500 and the rest Rp400 gives 190,000. That is wrong because this printer's rule **is not a tiered rate by parts**.
 
-<BlockMath math="\begin{aligned}
-\text{day }4 &: \ 45-20=25 \\
-\text{day }5 &: \ \text{demand }35,\ \text{sold }25,\ \text{lost }10
-\end{aligned}" />
-
-# The second cycle
-
-On the morning of day <InlineMath math="6" />, the stock becomes <InlineMath math="0+150=150" />.
-
-<BlockMath math="\begin{aligned}
-\text{day }6 &: \ 150-40=110 \\
-\text{day }7 &: \ 110-30=80 \\
-\text{day }8 &: \ 80-25=55
-\end{aligned}" />
-
-At the end of day <InlineMath math="8" />, the stock is <InlineMath math="55\le60" /> and no order is on its way, so the shop orders again. This order **arrives on the morning of day <InlineMath math="11" />**.
-
-<BlockMath math="\begin{aligned}
-\text{day }9 &: \ 55-45=10 \\
-\text{day }10 &: \ \text{demand }50,\ \text{sold }10,\ \text{lost }40
-\end{aligned}" />
-
-At the end of day <InlineMath math="9" />, the stock of <InlineMath math="10" /> is below <InlineMath math="60" />, but the shop doesn't order again because an order is still on its way.
-
-# The last days and the total
-
-On the morning of day <InlineMath math="11" />, the stock becomes <InlineMath math="150" />. Day <InlineMath math="11" /> leaves <InlineMath math="120" /> and day <InlineMath math="12" /> leaves <InlineMath math="100" />, so **no more sales are lost**.
-
-<BlockMath math="\text{total lost sales}=10+40=50\text{ sacks}" />
-
-Check it another way. Total demand is <InlineMath math="370" /> sacks, the goods available are <InlineMath math="120+150+150=420" /> sacks, and <InlineMath math="100" /> sacks are left at the end. So <InlineMath math="420-100=320" /> sacks were sold, and <InlineMath math="370-320=50" /> sacks were lost, the same as above.
-
-If you let shortages be served later, you'd get <InlineMath math="60" /> sacks, and if you count the whole demand of a short day as lost, you'd get <InlineMath math="85" /> sacks. Neither follows the sales rule.
-
-So the total lost sales over the <InlineMath math="12" /> days are <InlineMath math="50" /> sacks.
+So printing 450 sheets costs **180 thousand rupiah**.

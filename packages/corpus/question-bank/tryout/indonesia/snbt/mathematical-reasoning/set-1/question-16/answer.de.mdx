@@ -1,43 +1,23 @@
-Jede Reihe, die von Kategorie B zu Kategorie A wechselt, verteuert alle ihre Plätze. Also **steigen die Einnahmen, wenn** <InlineMath math="k" /> **steigt**, und deine Aufgabe ist es, das größte <InlineMath math="k" /> zu finden, das die Platzbedingung noch erfüllt, und dann die Einnahmen zu berechnen.
+Berechne die Gesamtkosten der zwei Monate für **jeden Tarif als Ganzes** und vergleiche dann die Summen.
 
-# Die Grenze für Plätze in Kategorie A
-
-Reihe <InlineMath math="n" /> hat <InlineMath math="17+2n" /> Plätze. Die ganze Tribüne hat <InlineMath math="\tfrac{30(19+77)}{2}=1{.}440" /> Plätze, ein Viertel davon sind <InlineMath math="360" />. Kategorie A muss **weniger als** <InlineMath math="360" /> Plätze haben.
-
-# Plätze für jede mögliche Grenze
-
-Eine Kategorie A mit <InlineMath math="k" /> Reihen umfasst die Reihen <InlineMath math="1" /> bis <InlineMath math="k" />, von <InlineMath math="19" /> bis <InlineMath math="17+2k" /> Plätzen.
+# Gesamtkosten des Tarifs Hemat
 
 <BlockMath math="\begin{aligned}
-\text{Plätze in A} &= \frac{k(19+17+2k)}{2}=k^2+18k\\
-k=11 &: 121+198=319<360\\
-k=12 &: 144+216=360
+\text{Januar}&:\quad 50\,000+8\cdot9\,000=122\,000\\
+\text{Februar}&:\quad 50\,000+16\cdot9\,000=194\,000\\
+\text{Summe}&=316\,000
 \end{aligned}" />
 
-Bei <InlineMath math="k=12" /> hat Kategorie A genau <InlineMath math="360" /> Plätze. Das ist **nicht weniger als ein Viertel**, also ist <InlineMath math="k=12" /> nicht erlaubt. Der größte Wert ist <InlineMath math="k=11" />.
+# Gesamtkosten des Tarifs Bebas und der Unterschied
 
-# Die größten Einnahmen
-
-Mit der ursprünglichen Aufteilung betragen die Einnahmen bei vollem Verkauf <InlineMath math="144\cdot250{.}000+400\cdot150{.}000+896\cdot100{.}000=185{.}600{.}000" /> Rupiah. Die Reihen <InlineMath math="7" /> bis <InlineMath math="11" /> wechseln von B zu A, also **wird jeder ihrer Plätze um** <InlineMath math="\text{Rp}100{.}000" /> **teurer**, nicht um <InlineMath math="\text{Rp}250{.}000" />.
+Im Januar **liegen 18 GB noch im Volumen von 20 GB**, die Kosten sind also 95 000.
 
 <BlockMath math="\begin{aligned}
-\text{wechselnde Plätze} &= 31+33+35+37+39=175\\
-\text{Einnahmen} &= 185{.}600{.}000+175\cdot100{.}000=203{.}100{.}000
+\text{Februar}&:\quad 95\,000+6\cdot5\,000=125\,000\\
+\text{Summe}&=95\,000+125\,000=220\,000\\
+\text{Unterschied}&=316\,000-220\,000=96\,000
 \end{aligned}" />
 
-# Direkte Kontrolle
+Der Wert 69 000 Rupiah ist nur der Unterschied im Februar. Der Wert 122 000 Rupiah sind die Kosten von Hemat im Januar, und 316 000 Rupiah die Gesamtkosten von Hemat.
 
-Rechne es noch einmal ohne die ursprünglichen Einnahmen. Kategorie A hat <InlineMath math="319" /> Plätze, Kategorie B behält die Reihen <InlineMath math="12" /> bis <InlineMath math="16" /> mit <InlineMath math="41+43+45+47+49=225" /> Plätzen, und Kategorie C hat weiter <InlineMath math="896" /> Plätze.
-
-<BlockMath math="319\cdot250{.}000+225\cdot150{.}000+896\cdot100{.}000=79{.}750{.}000+33{.}750{.}000+89{.}600{.}000=203{.}100{.}000" />
-
-Beide Wege **führen zum selben Ergebnis**.
-
-# Die falschen Antworten
-
-- <InlineMath math="\text{Rp}188{.}700{.}000{,}00" /> nimmt ein Viertel der Reihen, <InlineMath math="\tfrac{30}{4}=7{,}5" />, und hört deshalb bei <InlineMath math="k=7" /> auf.
-- <InlineMath math="\text{Rp}199{.}200{.}000{,}00" /> verschiebt nur vier Reihen, die Reihen <InlineMath math="7" /> bis <InlineMath math="10" />, weil die Reihen von <InlineMath math="7" /> bis <InlineMath math="11" /> falsch gezählt werden.
-- <InlineMath math="\text{Rp}207{.}200{.}000{,}00" /> verwendet <InlineMath math="k=12" />, womit Kategorie A genau ein Viertel hat, obwohl die Bedingung **weniger als** ein Viertel verlangt.
-- <InlineMath math="\text{Rp}229{.}350{.}000{,}00" /> rechnet für jeden wechselnden Platz den vollen Preis von <InlineMath math="\text{Rp}250{.}000" /> dazu, obwohl diese Plätze vorher schon <InlineMath math="\text{Rp}150{.}000" /> eingebracht haben.
-
-Die größtmöglichen Einnahmen bei vollem Verkauf betragen also <InlineMath math="\text{Rp}203{.}100{.}000{,}00" />.
+Der Unterschied der Gesamtkosten beträgt also **96 000 Rupiah**.

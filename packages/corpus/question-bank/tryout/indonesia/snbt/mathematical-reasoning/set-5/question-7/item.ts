@@ -1,7 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "track-laps",
+  stimulus: "phone-storage",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -9,22 +9,22 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "Pertemuan ketiga Andi dan Bima terjadi tepat di titik $$S$$.",
+          label:
+            "Bagian memori yang terpakai oleh sistem lebih dari $$14\\%$$ kapasitas ponsel.",
+        },
+        {
+          column: 2,
+          label: "Memori sebesar 1 GB dapat menampung tepat 250 foto.",
         },
         {
           column: 1,
           label:
-            "Andi menyelesaikan putaran ke-$$16$$ lebih dulu daripada Bima menyelesaikan putaran ke-$$15$$.",
+            "Video 4K berdurasi 1 menit memerlukan memori yang sama dengan 100 foto.",
         },
         {
           column: 2,
           label:
-            "Kecepatan rata-rata Andi selama $$25$$ menit itu, termasuk waktu minumnya, lebih dari $$4{,}4\\text{ m/s}$$.",
-        },
-        {
-          column: 2,
-          label:
-            "Selama $$25$$ menit itu, jarak tempuh Andi tidak pernah melebihi jarak tempuh Bima lebih dari $$400\\text{ m}$$.",
+            "Setelah 20.000 foto disimpan, video HD berdurasi 4 jam masih dapat direkam.",
         },
       ],
     },

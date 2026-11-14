@@ -1,35 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "home-battery",
+  stimulus: "electricity-tariff",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Penghematan $$\\text{Rp}25{.}000{,}00$$ dengan kapasitas $$16\\text{ kWh}$$",
+            "Tagihan untuk pemakaian 100 kWh dalam satu bulan adalah $$\\text{Rp}120{.}000{,}00$$.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Penghematan $$\\text{Rp}21{.}000{,}00$$ dengan kapasitas $$16\\text{ kWh}$$",
+            "Kenaikan pemakaian dari 300 kWh menjadi 301 kWh menambah tagihan sebesar $$\\text{Rp}1{.}500{,}00$$.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Penghematan $$\\text{Rp}21{.}000{,}00$$ dengan kapasitas $$14\\text{ kWh}$$",
+            "Tagihan untuk pemakaian 200 kWh sama dengan dua kali tagihan untuk pemakaian 100 kWh.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Penghematan $$\\text{Rp}20{.}000{,}00$$ dengan kapasitas $$16\\text{ kWh}$$",
-        },
-        {
-          correct: true,
-          label:
-            "Penghematan $$\\text{Rp}20{.}000{,}00$$ dengan kapasitas $$14\\text{ kWh}$$",
+            "Untuk pemakaian 400 kWh, rata-rata biaya per kWh, termasuk biaya beban, adalah $$\\text{Rp}1{.}550{,}00$$.",
         },
       ],
     },

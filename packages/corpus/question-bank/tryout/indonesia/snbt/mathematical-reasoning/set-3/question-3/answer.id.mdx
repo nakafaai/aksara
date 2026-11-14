@@ -1,42 +1,21 @@
-Mobil ini berada di gedung dari Sabtu malam sampai Senin pagi, jadi ia melewati pukul 00.00 sebanyak <InlineMath math="2" /> kali. Rencananya, **potong waktu parkir di setiap pukul 00.00**, hitung biaya tiap bagian dengan batasnya, lalu tambahkan biaya menginap.
+Untuk gir belakang dengan <InlineMath math="g" /> gigi, satu putaran pedal memutar roda <InlineMath math="\tfrac{48}{g}" /> kali, sehingga **jarak per putaran pedal adalah <InlineMath math="\tfrac{48}{g}\cdot2{,}2" /> meter**.
 
-# Tiga bagian parkir
+# Pengaruh banyak gigi gir belakang
 
-Aturan tengah malam memotong parkir pada pukul 00.00 hari Minggu dan pukul 00.00 hari Senin. Hasilnya **<InlineMath math="3" /> bagian yang dihitung terpisah**, masing-masing seperti parkir baru.
+| Gir belakang | Putaran roda per pedal | Jarak per pedal |
+| :---: | :---: | :---: |
+| 12 gigi | 4 | 8,8 m |
+| 16 gigi | 3 | 6,6 m |
+| 24 gigi | 2 | 4,4 m |
 
-| Bagian | Waktu | Lama | Dihitung |
-| :---: | :---: | :---: | :---: |
-| Sabtu | 19.25 sampai 24.00 | <InlineMath math="4\text{ jam }35\text{ menit}" /> | <InlineMath math="5\text{ jam}" /> |
-| Minggu | 00.00 sampai 24.00 | <InlineMath math="24\text{ jam}" /> | <InlineMath math="24\text{ jam}" /> |
-| Senin | 00.00 sampai 08.10 | <InlineMath math="8\text{ jam }10\text{ menit}" /> | <InlineMath math="9\text{ jam}" /> |
+Pernyataan pertama benar. Tabel menunjukkan bahwa **gir belakang yang lebih besar justru memperpendek jarak** per putaran pedal, jadi pernyataan ketiga salah.
 
-Setiap kelebihan menit memulai jam baru, karena aturan jam dimulai menghitung per jam yang dimulai.
+# Kecepatan dan banyak putaran pedal
 
-# Biaya setiap bagian
+Dengan gir 24 gigi dan 60 putaran per menit, sepeda menempuh <InlineMath math="60\cdot4{,}4=264" /> m per menit.
 
-Satu bagian yang dihitung <InlineMath math="k" /> jam berbiaya <InlineMath math="6{.}000+4{.}000(k-1)" /> rupiah, tetapi **paling banyak <InlineMath math="\text{Rp}30{.}000" /> per bagian**.
+<BlockMath math="264\cdot60=15{.}840\text{ m/jam}=15{,}84\text{ km/jam}" />
 
-<BlockMath math="\begin{aligned}
-\text{Sabtu} &= 6{.}000+4{.}000\cdot4 = 22{.}000 \\
-\text{Minggu} &= \min\bigl(6{.}000+4{.}000\cdot23,\,30{.}000\bigr) = 30{.}000 \\
-\text{Senin} &= \min\bigl(6{.}000+4{.}000\cdot8,\,30{.}000\bigr) = 30{.}000
-\end{aligned}" />
+Kecepatannya 15,84 km/jam, bukan 16 km/jam, jadi pernyataan kedua salah. Dengan gir 16 gigi, <InlineMath math="\tfrac{3{.}300}{6{,}6}=500" /> putaran pedal, jadi pernyataan keempat benar.
 
-Bagian Sabtu belum mencapai batas, sedangkan bagian Minggu (<InlineMath math="98{.}000" /> tanpa batas) dan bagian Senin (<InlineMath math="38{.}000" /> tanpa batas) sama-sama dipotong menjadi <InlineMath math="\text{Rp}30{.}000" />.
-
-# Biaya menginap dan total
-
-Mobil berada di gedung pada pukul 00.00 sebanyak <InlineMath math="2" /> kali, jadi biaya menginapnya <InlineMath math="2\cdot\text{Rp}10{.}000" />. Aturan menginap bilang **biaya menginap tidak ikut dibatasi**, jadi biaya ini ditambahkan penuh.
-
-<BlockMath math="\begin{aligned}
-\text{total} &= 22{.}000+30{.}000+30{.}000+2\cdot10{.}000 \\
-&= 102{.}000\text{ rupiah}
-\end{aligned}" />
-
-# Cek hasilnya
-
-Coba **cek dengan batas atas**. Ketiga bagian itu paling banyak <InlineMath math="3\cdot30{.}000=90{.}000" />, ditambah menginap <InlineMath math="20{.}000" />, jadi totalnya paling banyak <InlineMath math="110{.}000" />. Hasil <InlineMath math="102{.}000" /> ada di bawah batas itu, dan selisih <InlineMath math="8{.}000" /> memang berasal dari bagian Sabtu yang <InlineMath math="8{.}000" /> di bawah batasnya.
-
-Beberapa kekeliruan yang sering muncul: lupa membatasi bagian Senin memberi <InlineMath math="110" /> ribu, lupa biaya menginap memberi <InlineMath math="82" /> ribu, dan lupa semua batas memberi <InlineMath math="178" /> ribu.
-
-Jadi, total biaya yang harus dibayar adalah <InlineMath math="102" /> ribu rupiah.
+Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.

@@ -1,11 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "download-quota",
+  stimulus: "solar-panels",
   versions: {
     id: {
       kind: "numericEntry",
-      value: "18",
+      unit: "m²",
+      value: "16",
     },
   },
 };

@@ -1,48 +1,14 @@
-You're looking for the smallest score from the third interviewer that lets Gita qualify. The plan: first find the <InlineMath math="W" /> she needs, then work out **which interviewer scores actually count**, and only then find a third score that's enough.
+The number of passengers on the bus changes at each stop: **add those who board and subtract those who alight**. Run this count from the first terminal.
 
-# The interview score she needs
-
-Three of Gita's components are known. Add up what they contribute to the final score:
-
-<BlockMath math="0.40\times74+0.20\times88+0.15\times90=29.6+17.6+13.5=60.7" />
-
-The condition <InlineMath math="N\ge80" /> gives a bound on <InlineMath math="W" />:
+# Counting stop by stop
 
 <BlockMath math="\begin{aligned}
-60.7+0.25W &\ge 80\\
-0.25W &\ge 19.3\\
-W &\ge 77.2
+\text{first terminal}&:\quad 0+25=25\\
+\text{Stop A}&:\quad 25+12-8=29\\
+\text{Stop B}&:\quad 29+6-10=25\\
+\text{Stop C}&:\quad 25+9-7=27
 \end{aligned}" />
 
-This bound already satisfies **the component condition** <InlineMath math="W\ge65" />, so <InlineMath math="W\ge77.2" /> is the one that decides.
+The count must run **in order from the start**, because each stop depends on the number of passengers before it.
 
-# Which scores count
-
-Call the third interviewer's score <InlineMath math="t" />. The value of <InlineMath math="W" /> only uses **the two highest scores**, so there are two cases.
-
-If <InlineMath math="t\le58" />, the two highest scores are <InlineMath math="84" /> and <InlineMath math="58" />, so <InlineMath math="W=\tfrac{84+58}{2}=71" />. That's below <InlineMath math="77.2" />, so this case fails.
-
-If <InlineMath math="t>58" />, the <InlineMath math="58" /> drops out and the two highest scores are <InlineMath math="84" /> and <InlineMath math="t" />:
-
-<BlockMath math="\begin{aligned}
-\frac{84+t}{2} &\ge 77.2\\
-84+t &\ge 154.4\\
-t &\ge 70.4
-\end{aligned}" />
-
-Interviewer scores are whole numbers, so **the smallest score that works is** <InlineMath math="71" />. It's more than <InlineMath math="58" />, so it fits the case you used.
-
-# Checking the boundary
-
-Check <InlineMath math="t=71" /> and <InlineMath math="t=70" />:
-
-<BlockMath math="\begin{aligned}
-t=71:\quad W &= 77.5,\quad N=60.7+0.25\times77.5=80.075\ge80\\
-t=70:\quad W &= 77,\quad N=60.7+0.25\times77=79.95<80
-\end{aligned}" />
-
-With <InlineMath math="71" /> Gita qualifies, while with <InlineMath math="70" /> she **falls just short of the bound**.
-
-Common slips: averaging all three scores gives <InlineMath math="90" />, pairing the third score with <InlineMath math="58" /> instead of <InlineMath math="84" /> gives <InlineMath math="97" />, and rounding <InlineMath math="70.4" /> down gives <InlineMath math="70" />, which isn't enough.
-
-So the third interviewer has to give Gita at least <InlineMath math="71" />.
+So when the bus leaves Stop C there are **27 people** on board.

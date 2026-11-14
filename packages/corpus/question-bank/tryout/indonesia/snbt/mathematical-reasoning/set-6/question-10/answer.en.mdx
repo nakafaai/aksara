@@ -1,38 +1,15 @@
-All four statements are about the whole night, not just one rider. So first list all ten bus A departures, then judge each statement from that list. Two rules are easy to miss: **the walk takes at least <InlineMath math="4\text{ minutes}" />** and **the last bus B leaves at 23:52**.
+For this box the volumetric weight is fixed, whatever is inside. The cost rises only when **the actual weight makes the charged weight exceed the volumetric weight**.
 
-# The full list of departures
+# Volumetric weight of the box
 
-Bus A reaches Halte Pasar <InlineMath math="25\text{ minutes}" /> after it leaves. Riders take the first bus B that leaves **at least <InlineMath math="4\text{ minutes}" /> after bus A arrives**. The wait runs from bus A's arrival to bus B's departure.
+<BlockMath math="\frac{40\cdot40\cdot30}{6{,}000}=\frac{48{,}000}{6{,}000}=8\text{ kg}" />
 
-| Bus A leaves | Reaches Halte Pasar | Bus B taken | Wait | Reaches Halte Kampus |
-| :---: | :---: | :---: | :---: | :---: |
-| 21:00 | 21:25 | 21:52 | <InlineMath math="27\text{ minutes}" /> | 22:07 |
-| 21:18 | 21:43 | 21:52 | <InlineMath math="9\text{ minutes}" /> | 22:07 |
-| 21:36 | 22:01 | 22:22 | <InlineMath math="21\text{ minutes}" /> | 22:37 |
-| 21:54 | 22:19 | 22:52 | <InlineMath math="33\text{ minutes}" /> | 23:07 |
-| 22:12 | 22:37 | 22:52 | <InlineMath math="15\text{ minutes}" /> | 23:07 |
-| 22:30 | 22:55 | 23:22 | <InlineMath math="27\text{ minutes}" /> | 23:37 |
-| 22:48 | 23:13 | 23:22 | <InlineMath math="9\text{ minutes}" /> | 23:37 |
-| 23:06 | 23:31 | 23:52 | <InlineMath math="21\text{ minutes}" /> | 00:07 |
-| 23:24 | 23:49 | none | none | doesn't arrive |
-| 23:42 | 00:07 | none | none | doesn't arrive |
+An empty box **is charged 8 kg**, Rp72,000.
 
-The 21:54 bus A arrives at 22:19, only <InlineMath math="3\text{ minutes}" /> before the 22:22 bus B, so its riders have to wait for the 22:52 bus. The same happens to the 23:24 bus A, but there's no bus B after the 23:52 one.
+# Limit on the actual weight
 
-# The statement about the longest wait
+As long as the actual weight is at most 8 kg, the charged weight stays 8 kg. If the actual weight is slightly above 8 kg, say 8.2 kg, it **becomes the larger weight and rounds up to 9 kg**, so the cost rises to Rp81,000.
 
-The longest wait in the list is <InlineMath math="33\text{ minutes}" />, for riders of the 21:54 bus A. You only get <InlineMath math="27\text{ minutes}" /> if you **ignore the <InlineMath math="4\text{-minute}" /> walk**, because then those riders seem to catch the 22:22 bus. This statement is **false**.
+The choice 8.9 kg is wrong because it rounds up to 9 kg. The choice 7.9 kg assumes the actual weight must be below 8 kg, although exactly 8 kg still gives the same cost. The choices 5.5 kg and 7 kg do give the same cost, but they are not the largest.
 
-# The statement about ninety minutes apart
-
-Bus A repeats every <InlineMath math="18\text{ minutes}" /> and bus B every <InlineMath math="30\text{ minutes}" />. The least common multiple of <InlineMath math="18" /> and <InlineMath math="30" /> is <InlineMath math="90" />, so the wait pattern does repeat every <InlineMath math="90\text{ minutes}" />, **as long as bus B is still running**. For example, the 22:12 bus A gives a <InlineMath math="15\text{-minute}" /> wait, but the 23:42 bus A, <InlineMath math="90\text{ minutes}" /> later, gets no bus B at all. The word "always" fails on this pair. This statement is **false**.
-
-# The statement about arrival order
-
-The 21:54 bus A and the next one, at 22:12, both feed into the 22:52 bus B. Their riders **reach Halte Kampus at the same time**, 23:07. The riders who left earlier don't arrive earlier. This statement is **false**.
-
-# The statement about the changed bus B interval
-
-If bus B also leaves every <InlineMath math="18\text{ minutes}" />, it leaves at 21:22, 21:40, 21:58, and so on up to 23:46. The first bus A arrives at 21:25 and its riders take the 21:40 bus B, a <InlineMath math="15\text{-minute}" /> wait. Every later bus A arrives <InlineMath math="18\text{ minutes}" /> later, and the bus B it feeds is also <InlineMath math="18\text{ minutes}" /> later. So **the gap between bus A's arrival and the bus B taken is always <InlineMath math="15\text{ minutes}" />**, and every rider who still gets a bus B has a free transfer. The 23:24 and 23:42 buses A get no bus B, but the statement is only about riders who can still board bus B. This statement is **true**.
-
-So the statement about a <InlineMath math="27\text{-minute}" /> longest wait is false, the statement about departures <InlineMath math="90\text{ minutes}" /> apart is false, the statement about arrival order is false, and the statement about bus B every <InlineMath math="18\text{ minutes}" /> is true.
+So the largest actual weight is **8 kg**.

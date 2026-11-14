@@ -1,36 +1,13 @@
-You're looking for the most minutes that <InlineMath math="\text{Rp}45{,}000" /> can buy across <InlineMath math="8" /> trips. Work out that limit for each payment option, then take the bigger one. On the subscription, the key is **splitting the time so that every trip uses all of its free minutes**.
+After <InlineMath math="n" /> folds the thickness is <InlineMath math="0.1\cdot2^n" /> mm. The ratio of two thicknesses **depends only on the difference in folds**, because the factor 0.1 cancels.
 
-# The longest time on the regular tariff
+# Comparing two thicknesses
 
-Eight trips always pay the unlock fee eight times. **The budget left after the unlock fees** pays for the minutes.
+<BlockMath math="\frac{0.1\cdot2^{12}}{0.1\cdot2^{8}}=2^{12-8}=2^4=16" />
 
-<BlockMath math="\begin{aligned} \text{budget left} &= 45{,}000-8\cdot 2{,}000=29{,}000 \\ \text{minutes} &= 29{,}000\div 250=116 \end{aligned}" />
+# What the result means
 
-# The longest time on the subscription
+Four extra folds double the thickness four times: <InlineMath math="2\cdot2\cdot2\cdot2=16" />. **Each fold multiplies, it does not add**, so a difference of 4 folds means 16 times as thick.
 
-After the subscription fee, the budget left pays for the paid minutes.
+The value 1.5 is the ratio of the numbers of folds, <InlineMath math="\tfrac{12}{8}" />. The value 4 is the difference in folds, and 32 uses <InlineMath math="2^5" />.
 
-<BlockMath math="\begin{aligned} \text{budget left} &= 45{,}000-30{,}000=15{,}000 \\ \text{paid minutes} &= 15{,}000\div 500=30 \end{aligned}" />
-
-Minute charges of <InlineMath math="\text{Rp}15{,}000" /> are below the <InlineMath math="\text{Rp}30{,}000" /> cap, so the monthly cap gives no extra free minutes here. The free minutes come from each trip: the first <InlineMath math="20\text{ minutes}" /> of every trip aren't charged. A trip only uses all of them if it lasts at least <InlineMath math="20\text{ minutes}" />, so **every trip should last at least <InlineMath math="20\text{ minutes}" />**.
-
-<BlockMath math="\text{longest total}=8\cdot 20+30=190" />
-
-For example, seven trips of <InlineMath math="20\text{ minutes}" /> and one of <InlineMath math="50\text{ minutes}" />.
-
-# Comparing the two options
-
-The subscription gives <InlineMath math="190\text{ minutes}" />, longer than the <InlineMath math="116\text{ minutes}" /> on the regular tariff. So Eko **picks the subscription**.
-
-Check that example. Its only paid minutes come from the <InlineMath math="50\text{-minute}" /> trip, <InlineMath math="50-20=30" />, so the cost is <InlineMath math="30{,}000+30\cdot 500=45{,}000" />, exactly the budget. One more paid minute would make it <InlineMath math="\text{Rp}45{,}500" />, over the budget.
-
-# Why the other options fail
-
-Each wrong option comes from **one wrong step**.
-
-- <InlineMath math="116\text{ minutes}" /> comes from picking the regular tariff, for example by counting the free minutes only once per month, which makes the subscription look like just <InlineMath math="20+30=50\text{ minutes}" />.
-- <InlineMath math="184\text{ minutes}" /> comes from assuming all eight trips must be the same length. Trips of <InlineMath math="23\text{ minutes}" /> still fit, but <InlineMath math="24\text{ minutes}" /> would cost <InlineMath math="30{,}000+8\cdot 4\cdot 500=46{,}000" />, so you only get <InlineMath math="8\cdot 23=184" />.
-- <InlineMath math="220\text{ minutes}" /> comes from charging the subscription's paid minutes at <InlineMath math="\text{Rp}250" />, which gives <InlineMath math="15{,}000\div 250=60" /> paid minutes.
-- <InlineMath math="250\text{ minutes}" /> comes from forgetting the subscription fee, so all <InlineMath math="\text{Rp}45{,}000" /> goes to <InlineMath math="90" /> paid minutes.
-
-So the longest total riding time Eko can get is <InlineMath math="190\text{ minutes}" />.
+So the stack after 12 folds is **16 times** as thick as after 8 folds.

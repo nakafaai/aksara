@@ -1,41 +1,20 @@
-Kamu mencari banyak perjalanan terkecil yang membuat paket langganan lebih murah. Bandingkan total biaya kedua cara untuk setiap banyak perjalanan. Hal yang menentukan di sini adalah **batas biaya menit bulanan, yang membuat biaya paket langganan berhenti naik**.
+Setelah <InlineMath math="n" /> lipatan, tumpukan terdiri atas <InlineMath math="2^n" /> lapisan dan **tebalnya <InlineMath math="0{,}1\cdot2^n" /> mm**. Setiap pernyataan diperiksa dengan rumus ini.
 
-# Biaya satu perjalanan
+# Lima dan tujuh lipatan
 
-Dengan tarif reguler, satu perjalanan <InlineMath math="40\text{ menit}" /> membayar biaya buka kunci dan semua menitnya. Dengan paket langganan, <InlineMath math="20\text{ menit}" /> pertama gratis, jadi **hanya <InlineMath math="20\text{ menit}" /> yang dibayar**.
+<BlockMath math="\begin{aligned}
+n=5&:\quad 0{,}1\cdot2^5=0{,}1\cdot32=3{,}2\text{ mm}\\
+n=7&:\quad 2^7=128\text{ lapisan}
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned} \text{reguler per perjalanan} &= 2{.}000+250\cdot 40=12{.}000 \\ \text{biaya menit langganan per perjalanan} &= 500\cdot(40-20)=10{.}000 \end{aligned}" />
+Pernyataan pertama benar. Tujuh lipatan menghasilkan 128 lapisan, **bukan 64**, jadi pernyataan ketiga salah.
 
-# Biaya langganan berhenti naik
+# Sifat penggandaan dan dua puluh lipatan
 
-Biaya menit bertambah <InlineMath math="\text{Rp}10{.}000" /> setiap perjalanan sampai mencapai batas <InlineMath math="\text{Rp}30{.}000" />. Batas itu tercapai tepat pada perjalanan ketiga, karena <InlineMath math="3\cdot 10{.}000=30{.}000" />. **Mulai perjalanan ketiga, total biaya langganan tetap <InlineMath math="30{.}000+30{.}000=\text{Rp}60{.}000" />**, berapa pun banyak perjalanan berikutnya.
+Dari 1 ke 2 lipatan, tebalnya naik dari 0,2 mm menjadi 0,4 mm, yaitu bertambah 0,2 mm, bukan 0,1 mm. Pertambahannya **makin besar di setiap lipatan**, jadi pernyataan kedua salah.
 
-| Banyak perjalanan | Tarif reguler | Paket langganan |
-| :---: | :---: | :---: |
-| <InlineMath math="1" /> | <InlineMath math="12{.}000" /> | <InlineMath math="40{.}000" /> |
-| <InlineMath math="2" /> | <InlineMath math="24{.}000" /> | <InlineMath math="50{.}000" /> |
-| <InlineMath math="3" /> | <InlineMath math="36{.}000" /> | <InlineMath math="60{.}000" /> |
-| <InlineMath math="4" /> | <InlineMath math="48{.}000" /> | <InlineMath math="60{.}000" /> |
-| <InlineMath math="5" /> | <InlineMath math="60{.}000" /> | <InlineMath math="60{.}000" /> |
-| <InlineMath math="6" /> | <InlineMath math="72{.}000" /> | <InlineMath math="60{.}000" /> |
+<BlockMath math="0{,}1\cdot2^{20}=0{,}1\cdot1{.}048{.}576=104{.}857{,}6\text{ mm}\approx104{,}9\text{ m}" />
 
-# Syarat lebih murah
+Ketebalannya lebih dari 100 m, jadi pernyataan keempat benar.
 
-Paket langganan harus **lebih murah**, bukan sekadar sama. Untuk <InlineMath math="n" /> perjalanan dengan <InlineMath math="n\ge 3" />, syaratnya:
-
-<BlockMath math="\begin{aligned} 12{.}000n &> 60{.}000 \\ n &> 5 \end{aligned}" />
-
-Bilangan bulat terkecil yang lebih dari <InlineMath math="5" /> adalah <InlineMath math="6" />. Untuk <InlineMath math="n" /> kurang dari <InlineMath math="3" />, tabel menunjukkan tarif reguler masih jauh lebih murah. Pada <InlineMath math="5" /> perjalanan, kedua biaya sama, <InlineMath math="\text{Rp}60{.}000" />.
-
-# Pemeriksaan hasil
-
-Dengan <InlineMath math="6" /> perjalanan, tarif reguler <InlineMath math="\text{Rp}72{.}000" /> dan paket langganan <InlineMath math="\text{Rp}60{.}000" />, jadi paket langganan lebih murah <InlineMath math="\text{Rp}12{.}000" />. Setelah itu tarif reguler terus naik, sedangkan paket langganan tetap, jadi **paket langganan tetap lebih murah untuk lebih dari enam perjalanan**.
-
-# Jebakan yang perlu dihindari
-
-Ada **dua jawaban yang sering muncul** dari langkah yang terlewat.
-
-- Jawaban <InlineMath math="5" /> muncul jika "sama" dianggap cukup. Pada <InlineMath math="5" /> perjalanan biayanya sama, belum lebih murah.
-- Jawaban <InlineMath math="16" /> muncul jika batas biaya menit diabaikan. Tanpa batas, setiap perjalanan langganan hanya lebih murah <InlineMath math="\text{Rp}2{.}000" />, sehingga butuh lebih dari <InlineMath math="30{.}000:2{.}000=15" /> perjalanan untuk menutup biaya langganan.
-
-Jadi, Dita harus melakukan paling sedikit <InlineMath math="6" /> perjalanan pada bulan Desember agar paket langganan lebih murah.
+Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.

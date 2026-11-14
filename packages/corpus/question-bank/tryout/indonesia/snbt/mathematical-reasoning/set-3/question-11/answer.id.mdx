@@ -1,46 +1,18 @@
-Kamu mencari populasi awal terkecil yang tidak pernah habis. Lolos dari panen pertama saja belum cukup: **populasi harus tetap bertahan di setiap panen berikutnya**. Rencananya, cari rumus satu siklus <InlineMath math="3" /> jam, lalu cari kapan populasi naik dari siklus ke siklus.
+Bandingkan setiap perolehan dengan **batas menang lebih dari 120 suara**, yaitu lebih dari setengah dari 240 suara sah.
 
-# Rumus satu siklus
+# Hasil putaran pertama
 
-Selama tabung belum penuh, populasi <InlineMath math="P" /> berlipat <InlineMath math="2" /> kali sebanyak <InlineMath math="3" /> kali sebelum panen, jadi menjadi <InlineMath math="8P" />. Kalau <InlineMath math="8P>200" />, panen **mengambil tepat <InlineMath math="200" /> dan menyisakan sisanya**.
+Andra memperoleh <InlineMath math="\tfrac{96}{240}\times100\%=40\%" />. Suara terbanyak pun belum melewati 120, jadi tidak ada pemenang putaran pertama. Pernyataan pertama benar, dan pernyataan ketiga salah karena **Andra memperoleh 40%, bukan 45%**.
 
-<BlockMath math="P_{\text{baru}} = 8P-200" />
+Dua suara terbanyak adalah Andra dengan 96 dan Bunga dengan 72, jadi keduanya maju ke putaran kedua. Pernyataan keempat benar.
 
-# Kapan populasi naik
-
-Populasi naik dari siklus ke siklus jika <InlineMath math="P_{\text{baru}}>P" />. **Inilah syarat yang menentukan**, karena populasi yang turun akan terus turun sampai habis.
+# Skenario putaran kedua
 
 <BlockMath math="\begin{aligned}
-8P-200 &> P \\
-7P &> 200 \\
-P &> \tfrac{200}{7}
+\text{Andra}&=96+24=120\\
+\text{Bunga}&=72+48=120
 \end{aligned}" />
 
-Nilai <InlineMath math="\tfrac{200}{7}" /> ada di antara <InlineMath math="28" /> dan <InlineMath math="29" />, jadi bilangan bulat terkecil yang memenuhi adalah <InlineMath math="29" />.
+Kedua kandidat **memperoleh suara yang sama**, jadi Bunga tidak menang. Pernyataan kedua salah.
 
-# Cek kedua sisi batas
-
-Coba <InlineMath math="28" />, yang ada tepat di bawah batas.
-
-<BlockMath math="\begin{aligned}
-t=3 &: \ 28\cdot8-200=24 \\
-t=6 &: \ 24\cdot8=192\le200
-\end{aligned}" />
-
-Pada <InlineMath math="t=6" /> semua <InlineMath math="192" /> diambil, jadi **populasi awal <InlineMath math="28" /> habis**. Populasi awal yang lebih kecil juga habis, karena setiap siklusnya pun turun.
-
-Sekarang coba <InlineMath math="29" />.
-
-<BlockMath math="\begin{aligned}
-t=3 &: \ 29\cdot8-200=32 \\
-t=6 &: \ 32\cdot8-200=56 \\
-t=9 &: \ 56\cdot8-200=248
-\end{aligned}" />
-
-Populasinya naik terus. Pada siklus berikutnya, <InlineMath math="248\to496\to960" /> karena tabung penuh, lalu panen menyisakan <InlineMath math="760" />. Sejak itu setiap siklus berulang dari <InlineMath math="760" /> ke <InlineMath math="960" /> lalu kembali ke <InlineMath math="760" />, jadi kultur tidak pernah habis.
-
-# Jebakan panen pertama
-
-Kalau kamu hanya memastikan panen pertama tidak menghabiskan kultur, syaratnya <InlineMath math="8P>200" />, yaitu <InlineMath math="P\ge26" />. Padahal <InlineMath math="26" /> menyisakan <InlineMath math="8" /> lalu <InlineMath math="64" />, dan **habis pada panen kedua**. Jawaban <InlineMath math="25" /> juga keliru, karena tepat <InlineMath math="200" /> pada panen pertama ikut diambil semuanya.
-
-Jadi, populasi awal paling sedikit agar kultur tidak pernah habis adalah <InlineMath math="29" /> juta sel.
+Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.

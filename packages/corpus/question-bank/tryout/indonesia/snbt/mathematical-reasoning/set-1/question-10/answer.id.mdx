@@ -1,50 +1,19 @@
-Setiap pernyataan diuji dengan aturan yang sama: **jumlah obat menjadi setengah setiap** <InlineMath math="6" /> **jam, lalu bertambah sebesar takaran yang diminum**. Tulis takaran sekali minum sebagai <InlineMath math="D" /> supaya pola umumnya terlihat, lalu periksa angka khusus setiap pernyataan.
+Kuartil bawah adalah nilai yang **di bawahnya terdapat seperempat data**. Untuk 40 data, kuartil bawah berada di sekitar data ke-10.
 
-# Pola pada hari pertama
+# Frekuensi kumulatif
 
-Dengan takaran <InlineMath math="D" />, jumlah obat pada hari pertama berubah seperti ini.
+Frekuensi kumulatif menunjukkan **banyak data sampai akhir setiap kelas**.
 
-<BlockMath math="\begin{aligned}
-\text{sesudah minum pagi} &= D\\
-\text{sesudah minum siang} &= \tfrac{1}{2}D+D=\tfrac{3}{2}D\\
-\text{sesaat sebelum minum sore} &= \tfrac{1}{2}\cdot\tfrac{3}{2}D=\tfrac{3}{4}D\\
-\text{sesudah minum sore} &= \tfrac{3}{4}D+D=\tfrac{7}{4}D
-\end{aligned}" />
+| Kelas | Frekuensi | Frekuensi kumulatif |
+| :---: | :---: | :---: |
+| 0-9 | 4 | 4 |
+| 10-19 | 10 | 14 |
+| 20-29 | 15 | 29 |
 
-# Pernyataan pertama tentang angka tepat
+# Menentukan kelas
 
-Agar jumlah sebelum minum sore tepat <InlineMath math="375\text{ mg}" />, harus berlaku <InlineMath math="\tfrac{3}{4}D=375" />, jadi <InlineMath math="D=500\text{ mg}" />. Padahal **takaran sekali minum paling besar** <InlineMath math="400\text{ mg}" />, sehingga jumlah itu paling banyak <InlineMath math="\tfrac{3}{4}\cdot400=300\text{ mg}" />. Anak dengan berat <InlineMath math="50\text{ kg}" /> pun hanya mendapat <InlineMath math="400\text{ mg}" />. Pernyataan pertama salah.
+Kelas 0-9 hanya memuat data ke-1 sampai ke-4. Kelas 10-19 memuat **data ke-5 sampai ke-14**, jadi data ke-10 ada di kelas ini.
 
-# Pernyataan kedua tentang dua kali takaran
+Kelas 20-29 adalah kelas median dan kelas modus, bukan kelas kuartil bawah. Kelas 0-9 hanya berisi 4 data, kurang dari seperempat dari 40.
 
-Lihat jumlah obat sesaat sebelum setiap minum. Sebelum minum pertama jumlahnya <InlineMath math="0" />, yang kurang dari <InlineMath math="D" />. Jika sebelum suatu minum jumlahnya kurang dari <InlineMath math="D" />, sesudah minum jumlahnya kurang dari <InlineMath math="2D" />. Sampai minum berikutnya jumlah itu **paling sedikit menjadi setengahnya**, jadi kembali kurang dari <InlineMath math="D" />.
-
-<BlockMath math="\text{sebelum minum}<D\ \Rightarrow\ \text{sesudah minum}<2D\ \Rightarrow\ \text{sebelum minum berikutnya}<\tfrac{1}{2}\cdot2D=D" />
-
-Pola ini berulang tanpa akhir, dan di antara dua jadwal minum jumlah obat hanya turun. Jadi jumlah obat tidak pernah mencapai <InlineMath math="2D" />, berapa pun berat badan anak itu. Pernyataan kedua benar.
-
-# Pernyataan ketiga tentang dosis yang terlewat
-
-Takaran anak <InlineMath math="30\text{ kg}" /> adalah <InlineMath math="300\text{ mg}" />, tepat <InlineMath math="15\text{ mL}" /> sirup. Dua kali takaran adalah <InlineMath math="600\text{ mg}" />, tetapi **batas** <InlineMath math="400\text{ mg}" /> **tetap berlaku**, jadi pukul 18.00 ia hanya minum <InlineMath math="400\text{ mg}" />.
-
-<BlockMath math="\begin{aligned}
-\text{sesuai jadwal} &= \tfrac{1}{2}\cdot\left(\tfrac{1}{2}\cdot300+300\right)+300=525\text{ mg}\\
-\text{dosis siang terlewat} &= \tfrac{1}{2}\cdot\tfrac{1}{2}\cdot300+400=475\text{ mg}
-\end{aligned}" />
-
-Karena <InlineMath math="475<525" />, jumlah obat justru lebih kecil. Pernyataan ketiga salah. Tanpa batas <InlineMath math="400\text{ mg}" />, jumlahnya menjadi <InlineMath math="75+600=675\text{ mg}" />, dan itulah yang membuat pernyataan ini tampak benar.
-
-# Pernyataan keempat tentang pagi yang berulang
-
-Takaran anak <InlineMath math="20\text{ kg}" /> adalah <InlineMath math="200\text{ mg}" />. Sore hari pertama jumlahnya <InlineMath math="\tfrac{7}{4}\cdot200=350\text{ mg}" />, lalu **malam selama** <InlineMath math="12" /> **jam membagi jumlah itu dengan** <InlineMath math="4" />.
-
-<BlockMath math="\begin{aligned}
-\text{sebelum minum pagi hari kedua} &= \tfrac{1}{4}\cdot350=87{,}5\text{ mg}\\
-\text{sesudah minum siang hari kedua} &= \tfrac{1}{2}(87{,}5+200)+200=343{,}75\text{ mg}\\
-\text{sesudah minum sore hari kedua} &= \tfrac{1}{2}\cdot343{,}75+200=371{,}875\text{ mg}\\
-\text{sebelum minum pagi hari ketiga} &= \tfrac{1}{4}\cdot371{,}875\approx92{,}97\text{ mg}
-\end{aligned}" />
-
-Jumlahnya naik dari <InlineMath math="87{,}5\text{ mg}" /> menjadi sekitar <InlineMath math="92{,}97\text{ mg}" />, karena sisa obat hari sebelumnya ikut menumpuk. Pernyataan keempat salah.
-
-Jadi, pernyataan pertama salah, pernyataan kedua benar, pernyataan ketiga salah, dan pernyataan keempat salah.
+Jadi, kuartil bawah terletak pada kelas **10-19 menit**.

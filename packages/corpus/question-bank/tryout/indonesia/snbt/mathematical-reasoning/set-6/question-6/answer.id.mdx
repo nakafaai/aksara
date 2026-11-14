@@ -1,44 +1,15 @@
-Tiga pernyataan pertama memakai catatan perjalanan Dita, dan pernyataan terakhir membahas pengguna mana pun. Jadi hitung dulu menit berbayar setiap perjalanan Dita dan biaya menit yang terkumpul, lalu nilai setiap pernyataan dengan buktinya sendiri. Ingat, **batas <InlineMath math="\text{Rp}30{.}000" /> berlaku untuk jumlah biaya menit dalam sebulan**, bukan untuk setiap perjalanan.
+Samakan satuan dulu: 1 meter sama dengan 1.000 mm. Lalu cari **bilangan bulat terkecil <InlineMath math="n" />** dengan <InlineMath math="0{,}1\cdot2^n>1{.}000" />.
 
-# Biaya menit yang terkumpul
+# Menyederhanakan syarat
 
-Menit berbayar sebuah perjalanan adalah durasinya dikurangi <InlineMath math="20" />, atau nol jika durasinya tidak lebih dari <InlineMath math="20\text{ menit}" />. Setiap menit berbayar bernilai <InlineMath math="\text{Rp}500" />. Tabel ini menjumlahkan **biaya menit secara berurutan**, sebelum batas diterapkan.
+<BlockMath math="0{,}1\cdot2^n>1{.}000\;\Longleftrightarrow\;2^n>10{.}000" />
 
-| Perjalanan ke- | Durasi | Menit berbayar | Biaya menit terkumpul |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="1" /> | <InlineMath math="25" /> | <InlineMath math="5" /> | <InlineMath math="2{.}500" /> |
-| <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="0" /> | <InlineMath math="2{.}500" /> |
-| <InlineMath math="3" /> | <InlineMath math="38" /> | <InlineMath math="18" /> | <InlineMath math="11{.}500" /> |
-| <InlineMath math="4" /> | <InlineMath math="44" /> | <InlineMath math="24" /> | <InlineMath math="23{.}500" /> |
-| <InlineMath math="5" /> | <InlineMath math="15" /> | <InlineMath math="0" /> | <InlineMath math="23{.}500" /> |
-| <InlineMath math="6" /> | <InlineMath math="31" /> | <InlineMath math="11" /> | <InlineMath math="29{.}000" /> |
-| <InlineMath math="7" /> | <InlineMath math="9" /> | <InlineMath math="0" /> | <InlineMath math="29{.}000" /> |
-| <InlineMath math="8" /> | <InlineMath math="27" /> | <InlineMath math="7" /> | <InlineMath math="32{.}500" /> |
+# Mencari pangkat dua yang cukup
 
-Karena batasnya <InlineMath math="\text{Rp}30{.}000" />, Dita hanya membayar biaya menit <InlineMath math="\text{Rp}30{.}000" /> dari <InlineMath math="65\text{ menit}" /> berbayar.
+<BlockMath math="2^{13}=8{.}192,\qquad 2^{14}=16{.}384" />
 
-# Pernyataan tentang urutan yang dibalik
+Pangkat 13 **belum melewati 10.000**, sedangkan pangkat 14 sudah. Setelah 13 lipatan tumpukan baru setebal 819,2 mm, dan setelah 14 lipatan menjadi 1.638,4 mm.
 
-Biaya menit bulanan sama dengan <InlineMath math="500" /> kali jumlah menit berbayar, lalu dipotong di <InlineMath math="30{.}000" /> jika lebih. **Jumlah menit berbayar tidak bergantung pada urutan perjalanan**, karena penjumlahan boleh ditukar urutannya. Jadi biayanya tetap <InlineMath math="\text{Rp}30{.}000" />. Urutan hanya mengubah kapan batas tercapai. Jika urutannya dibalik, biaya terkumpul menjadi <InlineMath math="3{.}500" />, <InlineMath math="3{.}500" />, <InlineMath math="9{.}000" />, <InlineMath math="9{.}000" />, <InlineMath math="21{.}000" />, lalu <InlineMath math="30{.}000" /> pada perjalanan ke-<InlineMath math="6" />. Jumlah yang dibayar tetap sama. Pernyataan ini **benar**.
+Nilai 13 berhenti satu langkah terlalu cepat. Nilai 100 muncul jika setiap lipatan dianggap menambah tebal 10 mm, dan nilai 10 memakai <InlineMath math="2^{10}" /> yang hanya memberi 102,4 mm.
 
-# Pernyataan tentang perjalanan terakhir
-
-Sebelum perjalanan terakhir, biaya menit terkumpul baru <InlineMath math="\text{Rp}29{.}000" />, masih di bawah batas. Perjalanan terakhir menambah <InlineMath math="7\cdot 500=\text{Rp}3{.}500" />, sehingga **batas baru tercapai di tengah perjalanan terakhir**. Pernyataan ini **benar**.
-
-# Pernyataan tentang perjalanan yang dipecah
-
-Perjalanan <InlineMath math="13\text{ menit}" /> dan <InlineMath math="12\text{ menit}" /> masing-masing tidak lebih dari <InlineMath math="20\text{ menit}" />, jadi keduanya tidak punya menit berbayar. Menit berbayar bulan itu turun dari <InlineMath math="65" /> menjadi <InlineMath math="60" />.
-
-<BlockMath math="60\cdot 500=30{.}000" />
-
-Biaya menitnya tepat <InlineMath math="\text{Rp}30{.}000" />, sama dengan yang dibayar sebelumnya karena batas. Jadi **total biaya tetap <InlineMath math="\text{Rp}60{.}000" />**, tidak menjadi lebih kecil. Pernyataan ini **salah**. Jika batas diabaikan, kamu akan membandingkan <InlineMath math="\text{Rp}32{.}500" /> dengan <InlineMath math="\text{Rp}30{.}000" /> dan keliru menilainya benar.
-
-# Pernyataan tentang pengguna dengan sedikit perjalanan
-
-Biaya paket langganan paling sedikit <InlineMath math="\text{Rp}30{.}000" />, yaitu biaya langganannya. Dengan tarif reguler, **biaya terbesar terjadi jika keempat perjalanan masing-masing <InlineMath math="20\text{ menit}" />**, karena biaya naik jika durasi atau banyak perjalanan bertambah.
-
-<BlockMath math="4\cdot(2{.}000+250\cdot 20)=4\cdot 7{.}000=28{.}000" />
-
-Biaya reguler paling banyak <InlineMath math="\text{Rp}28{.}000" />, selalu kurang dari <InlineMath math="\text{Rp}30{.}000" />. Pernyataan ini **benar** untuk setiap pengguna seperti itu. Angka <InlineMath math="4" /> memang penting: dengan <InlineMath math="5" /> perjalanan <InlineMath math="20\text{ menit}" />, biaya reguler menjadi <InlineMath math="\text{Rp}35{.}000" />, lebih mahal daripada paket langganan.
-
-Jadi, pernyataan tentang urutan yang dibalik benar, pernyataan tentang perjalanan terakhir benar, pernyataan tentang perjalanan yang dipecah salah, dan pernyataan tentang pengguna dengan paling banyak <InlineMath math="4" /> perjalanan pendek benar.
+Jadi, diperlukan paling sedikit **14 lipatan**.

@@ -1,12 +1,17 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "home-battery",
+  stimulus: "electricity-tariff",
   versions: {
     id: {
-      kind: "numericEntry",
-      unit: "pilihan",
-      value: "5",
+      kind: "choice",
+      options: [
+        { correct: true, label: "$$50<x<300$$" },
+        { correct: false, label: "$$x>50$$" },
+        { correct: false, label: "$$100<x<300$$" },
+        { correct: false, label: "$$x<300$$" },
+        { correct: false, label: "$$50<x<100$$" },
+      ],
     },
   },
 };

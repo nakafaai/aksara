@@ -1,36 +1,18 @@
-Budi has two goals in order: first arrive as early as possible, then, among equally fast options, pay the least. So **work out the arrival time for every bus A Budi can take**, find the earliest arrival, and then compare the fares.
+Compute **the charged weight for both boxes**, then compare the costs.
 
-# Arrival time for each bus A
+# The original box
 
-The buses A Budi can take are the ones after 21:45: 21:54, 22:12, 22:30, and so on. Bus A reaches Halte Pasar <InlineMath math="25\text{ minutes}" /> after it leaves. Bus B has to leave at least <InlineMath math="4\text{ minutes}" /> after bus A arrives, and then takes <InlineMath math="15\text{ minutes}" /> to Halte Kampus.
+Its volumetric weight is <InlineMath math="\tfrac{50\cdot40\cdot30}{6{,}000}=10" /> kg, more than 4.8 kg, so **10 kg is charged**, Rp90,000.
 
-| Bus A leaves | Reaches Halte Pasar | Earliest bus B | Wait | Reaches Halte Kampus |
-| :---: | :---: | :---: | :---: | :---: |
-| 21:54 | 22:19 | 22:52 | <InlineMath math="33\text{ minutes}" /> | 23:07 |
-| 22:12 | 22:37 | 22:52 | <InlineMath math="15\text{ minutes}" /> | 23:07 |
-| 22:30 | 22:55 | 23:22 | <InlineMath math="27\text{ minutes}" /> | 23:37 |
+# The new box and the saving
 
-The 22:22 bus B can't be caught from the 21:54 bus A, because the gap is only <InlineMath math="3\text{ minutes}" />. Later buses A only arrive later. The earliest arrival is 23:07, and **two buses A give the same arrival time**.
+The new box has a volumetric weight of <InlineMath math="\tfrac{45\cdot30\cdot20}{6{,}000}=\tfrac{27{,}000}{6{,}000}=4.5" /> kg. This time **the actual 4.8 kg is larger**, and it rounds up to 5 kg.
 
-# The fare for the two equally fast options
+<BlockMath math="\begin{aligned}
+\text{new cost}&=5\cdot9{,}000=45{,}000\\
+\text{saving}&=90{,}000-45{,}000=45{,}000
+\end{aligned}" />
 
-A rider doesn't pay for bus B if bus B leaves at most <InlineMath math="15\text{ minutes}" /> after bus A arrives.
+The smaller box works because the volumetric weight drops almost to the actual weight. Shrinking the box further would not lower the cost, since the actual weight stays 4.8 kg.
 
-<BlockMath math="\begin{aligned} \text{bus A at 21:54: } & \text{wait } 33 > 15,\ \text{fare } 5{,}000+4{,}000=9{,}000 \\ \text{bus A at 22:12: } & \text{wait } 15 \le 15,\ \text{fare } 5{,}000 \end{aligned}" />
-
-So **the later bus A is actually cheaper** and still arrives at 23:07. Budi takes the 22:12 bus A.
-
-# Checking the choice
-
-On the 22:12 bus A, Budi reaches Halte Pasar at 22:37, walks for at least <InlineMath math="4\text{ minutes}" />, boards the 22:52 bus B, and reaches Halte Kampus at 23:07. His wait is exactly <InlineMath math="15\text{ minutes}" />, and the rule **at most <InlineMath math="15\text{ minutes}" /> includes <InlineMath math="15" /> itself**, so the transfer is free.
-
-# Why the other options fail
-
-Each wrong option **ignores one rule or one of Budi's goals**.
-
-- The 21:54 bus A arriving at 22:37 ignores the walk, so the 22:22 bus B seems catchable.
-- The 21:54 bus A arriving at 23:07 is as fast as it gets, but it costs <InlineMath math="\text{Rp}9{,}000" />, while an equally fast option costs <InlineMath math="\text{Rp}5{,}000" />.
-- The 22:12 bus A arriving at 22:52 forgets that bus B still needs <InlineMath math="15\text{ minutes}" /> after leaving at 22:52.
-- The 22:48 bus A does give a free transfer, but Budi would only arrive at 23:37. That option puts the fare ahead of speed.
-
-So Budi takes the 22:12 bus A and reaches Halte Kampus at 23:07.
+So the saving is **Rp45,000**.

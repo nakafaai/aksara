@@ -1,44 +1,23 @@
-You're after two things: the largest saving a bigger battery can give, and the smallest capacity that already reaches it. The key is to **separate the purchases a battery can remove from the ones it can't**.
+Compute the bill for each usage in the same way: **the fixed charge plus the cost of every block passed**.
 
-# The cost with the old battery
-
-With the <InlineMath math="6\text{ kWh}" /> battery, the family buys <InlineMath math="1\text{ kWh}" /> at 07.00-08.00 and <InlineMath math="8\text{ kWh}" /> in the evening. At 17.00 the battery holds only <InlineMath math="4\text{ kWh}" /> because **the midday surplus was wasted once the battery was full**.
-
-<BlockMath math="\text{old cost}=1\cdot\text{Rp}1{,}000+8\cdot\text{Rp}2{,}500=\text{Rp}21{,}000" />
-
-# The morning purchase can't be removed
-
-At 07.00 the battery is already at its reserve, and the first hour is short by <InlineMath math="1\text{ kWh}" />. At that moment there's no panel surplus to store yet. So **no capacity, however large, helps the first hour**, and the <InlineMath math="\text{Rp}1{,}000" /> is still paid.
-
-# The largest saving
-
-Only the evening purchase of <InlineMath math="8\text{ kWh}" /> can go, worth <InlineMath math="8\cdot\text{Rp}2{,}500=\text{Rp}20{,}000" />. Check that a battery with no capacity limit really removes all of it. Every hour from 08.00 to 15.00 has a surplus, and the last two hours are each <InlineMath math="1\text{ kWh}" /> short.
+# Bills for 100 kWh and 200 kWh
 
 <BlockMath math="\begin{aligned}
-\text{highest level} &= 1+(1+2+3+3+2+3+1)=16\text{ kWh}\\
-\text{level at the end of the afternoon} &= 16-1-1=14\text{ kWh}\\
-\text{usable part} &= 14-1=13\text{ kWh}\ge11\text{ kWh}
+T(100)&=20{,}000+100\cdot1{,}000=120{,}000\\
+T(200)&=20{,}000+100{,}000+100\cdot1{,}500=270{,}000
 \end{aligned}" />
 
-The stored energy covers the whole evening, so **the largest saving is** <InlineMath math="\text{Rp}20{,}000" />.
+The first statement is true. Twice <InlineMath math="T(100)" /> is 240,000, not 270,000, because **the fixed charge is paid only once** and the second 100 kWh fall in block 2. The third statement is false.
 
-# The smallest capacity
+# The 301st kWh and a usage of 400 kWh
 
-From 08.00 to 15.00 the battery only rises, so a battery with capacity <InlineMath math="C\le16" /> is surely full at 15.00. After that it drops by <InlineMath math="2\text{ kWh}" />. For the evening to need no purchase, **the energy above the reserve has to be at least** <InlineMath math="11\text{ kWh}" />.
+The 301st kWh is already in block 3, so **it adds Rp2,000**, not Rp1,500. The second statement is false.
 
 <BlockMath math="\begin{aligned}
-(C-2)-1 &\ge 11\\
-C &\ge 14
+T(400)&=20{,}000+100{,}000+300{,}000+100\cdot2{,}000=620{,}000\\
+\frac{620{,}000}{400}&=1{,}550
 \end{aligned}" />
 
-# Checking two capacities
+The fourth statement is true.
 
-With <InlineMath math="C=14" />, the battery goes <InlineMath math="1,2,4,7,10,12,14,14,13,12" />. The part above the reserve is exactly <InlineMath math="11\text{ kWh}" />, so nothing is bought in the evening. With <InlineMath math="C=13" />, the level at the end of the afternoon is only <InlineMath math="11\text{ kWh}" /> and the usable part is <InlineMath math="10\text{ kWh}" />, so **there's still a purchase of** <InlineMath math="1\text{ kWh}" /> and the saving is only <InlineMath math="\text{Rp}17{,}500" />.
-
-# The wrong options
-
-- A capacity of <InlineMath math="16\text{ kWh}" /> with a saving of <InlineMath math="\text{Rp}20{,}000.00" /> assumes no energy may be wasted. In fact **wasted energy does no harm** as long as the evening is covered.
-- A saving of <InlineMath math="\text{Rp}21{,}000.00" />, with <InlineMath math="14" /> or <InlineMath math="16\text{ kWh}" />, assumes the morning purchase disappears too, but that shortfall happens before there's any panel surplus.
-- A saving of <InlineMath math="\text{Rp}25{,}000.00" /> prices all <InlineMath math="10\text{ kWh}" /> of wasted energy at the evening tariff, but only the <InlineMath math="8\text{ kWh}" /> evening purchase can be replaced.
-
-So the largest saving is <InlineMath math="\text{Rp}20{,}000.00" /> per day, and the smallest capacity that gives it is <InlineMath math="14\text{ kWh}" />.
+So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.

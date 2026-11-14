@@ -1,42 +1,21 @@
-Dieses Auto steht von Samstagabend bis Montagmorgen im Parkhaus, es parkt also <InlineMath math="2" />-mal über 00.00 Uhr. Der Plan: **Schneide den Aufenthalt an jedem 00.00 Uhr**, berechne die Gebühr jedes Teils mit seiner Grenze und addiere dann die Übernachtungsgebühren.
+Bei einem hinteren Zahnrad mit <InlineMath math="g" /> Zähnen dreht eine Pedalumdrehung das Rad <InlineMath math="\tfrac{48}{g}" />-mal, also ist **die Strecke pro Pedalumdrehung <InlineMath math="\tfrac{48}{g}\cdot2{,}2" /> Meter**.
 
-# Drei Parkteile
+# Einfluss der Größe des hinteren Zahnrads
 
-Die Mitternachtsregel schneidet den Aufenthalt um 00.00 Uhr am Sonntag und um 00.00 Uhr am Montag. So entstehen **<InlineMath math="3" /> Teile, die getrennt berechnet werden**, jeder wie ein neues Parken.
+| Hinteres Zahnrad | Radumdrehungen pro Pedal | Strecke pro Pedal |
+| :---: | :---: | :---: |
+| 12 Zähne | 4 | 8,8 m |
+| 16 Zähne | 3 | 6,6 m |
+| 24 Zähne | 2 | 4,4 m |
 
-| Teil | Zeit | Dauer | Zählt als |
-| :---: | :---: | :---: | :---: |
-| Samstag | 19.25 bis 24.00 Uhr | <InlineMath math="4\text{ h }35\text{ min}" /> | <InlineMath math="5\text{ h}" /> |
-| Sonntag | 00.00 bis 24.00 Uhr | <InlineMath math="24\text{ h}" /> | <InlineMath math="24\text{ h}" /> |
-| Montag | 00.00 bis 08.10 Uhr | <InlineMath math="8\text{ h }10\text{ min}" /> | <InlineMath math="9\text{ h}" /> |
+Die erste Aussage ist wahr. Die Tabelle zeigt, dass **ein größeres hinteres Zahnrad die Strecke sogar verkürzt**, also ist die dritte Aussage falsch.
 
-Jede zusätzliche Minute fängt eine neue Stunde an, weil die Regel der angefangenen Stunde pro angefangene Stunde rechnet.
+# Geschwindigkeit und Anzahl der Pedalumdrehungen
 
-# Die Gebühr jedes Teils
+Mit dem Zahnrad mit 24 Zähnen und 60 Umdrehungen pro Minute legt das Fahrrad <InlineMath math="60\cdot4{,}4=264" /> m pro Minute zurück.
 
-Ein Teil, der als <InlineMath math="k" /> Stunden zählt, kostet <InlineMath math="6{.}000+4{.}000(k-1)" /> Rupiah, aber **höchstens <InlineMath math="\text{Rp}30{.}000" /> pro Teil**.
+<BlockMath math="264\cdot60=15\,840\text{ m/h}=15{,}84\text{ km/h}" />
 
-<BlockMath math="\begin{aligned}
-\text{Samstag} &= 6{.}000+4{.}000\cdot4 = 22{.}000 \\
-\text{Sonntag} &= \min\bigl(6{.}000+4{.}000\cdot23,\,30{.}000\bigr) = 30{.}000 \\
-\text{Montag} &= \min\bigl(6{.}000+4{.}000\cdot8,\,30{.}000\bigr) = 30{.}000
-\end{aligned}" />
+Die Geschwindigkeit ist 15,84 km/h, nicht 16 km/h, also ist die zweite Aussage falsch. Mit dem Zahnrad mit 16 Zähnen sind es <InlineMath math="\tfrac{3\,300}{6{,}6}=500" /> Pedalumdrehungen, also ist die vierte Aussage wahr.
 
-Der Samstagsteil bleibt unter der Grenze, während der Sonntagsteil (<InlineMath math="98{.}000" /> ohne Grenze) und der Montagsteil (<InlineMath math="38{.}000" /> ohne Grenze) beide auf <InlineMath math="\text{Rp}30{.}000" /> gekappt werden.
-
-# Übernachtungsgebühren und Summe
-
-Das Auto steht <InlineMath math="2" />-mal um 00.00 Uhr im Parkhaus, also betragen die Übernachtungsgebühren <InlineMath math="2\cdot\text{Rp}10{.}000" />. Nach der Übernachtungsregel **wird die Übernachtungsgebühr nicht gekappt**, sie kommt also voll dazu.
-
-<BlockMath math="\begin{aligned}
-\text{Gesamt} &= 22{.}000+30{.}000+30{.}000+2\cdot10{.}000 \\
-&= 102{.}000\text{ Rupiah}
-\end{aligned}" />
-
-# Das Ergebnis prüfen
-
-**Prüf das Ergebnis mit einer oberen Schranke**. Die drei Teile kosten höchstens <InlineMath math="3\cdot30{.}000=90{.}000" />, dazu <InlineMath math="20{.}000" /> für die Nächte, also höchstens <InlineMath math="110{.}000" />. Das Ergebnis <InlineMath math="102{.}000" /> liegt darunter, und der Abstand von <InlineMath math="8{.}000" /> kommt genau vom Samstagsteil, der <InlineMath math="8{.}000" /> unter seiner Grenze bleibt.
-
-Ein paar typische Fehler: Wer die Grenze beim Montagsteil vergisst, kommt auf <InlineMath math="110" /> Tausend. Wer die Übernachtungsgebühren vergisst, kommt auf <InlineMath math="82" /> Tausend, und wer alle Grenzen vergisst, auf <InlineMath math="178" /> Tausend.
-
-Die Gesamtgebühr beträgt also <InlineMath math="102" /> Tausend Rupiah.
+Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.

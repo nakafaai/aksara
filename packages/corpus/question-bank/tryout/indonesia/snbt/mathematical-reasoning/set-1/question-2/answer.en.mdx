@@ -1,50 +1,18 @@
-Each statement changes one part of the data, so **trace the battery hour by hour again for every change**. Start with the original day, then repeat the trace with the change named in each statement.
+Work from the bill back to the usage. First subtract the fixed charge, then **use up the remaining money block by block** until nothing is left.
 
-# The original day
+# Usage cost and the blocks passed
 
-From 07.00 to 17.00, the panel energy minus the use is <InlineMath math="-1,+1,+2,+3,+3,+2,+3,+1,-1,-1" /> in kWh. At 07.00 the battery is already at its reserve, so **the first hour's shortfall is bought from PLN**, which is <InlineMath math="1\text{ kWh}" />. After that the battery goes to <InlineMath math="2" />, then <InlineMath math="4" />, and it's full at <InlineMath math="6\text{ kWh}" /> during 10.00-11.00.
+<BlockMath math="550{,}000-20{,}000=530{,}000" />
 
-<BlockMath math="\begin{aligned}
-\text{wasted energy} &= 1+3+2+3+1=10\text{ kWh}\\
-\text{battery at the end of the afternoon} &= 6-1-1=4\text{ kWh}\\
-\text{bought in the evening} &= 11-(4-1)=8\text{ kWh}
-\end{aligned}" />
+A full block 1 costs <InlineMath math="100\cdot1{,}000=100{,}000" />, and a full block 2, which is 200 kWh, costs <InlineMath math="200\cdot1{,}500=300{,}000" />. Together they cost 400,000 for 300 kWh. Since 530,000 is more than 400,000, **the usage reaches block 3**.
 
-So on the original day the family buys <InlineMath math="1+8=9\text{ kWh}" />, and it costs <InlineMath math="1\cdot\text{Rp}1{,}000+8\cdot\text{Rp}2{,}500=\text{Rp}21{,}000" />.
-
-# The first statement on wasted energy
-
-The wasted energy is <InlineMath math="10\text{ kWh}" /> and the energy bought is <InlineMath math="9\text{ kWh}" />. Since <InlineMath math="10>9" />, **the first statement is true**. It also shows that the battery's capacity is what holds the family back, not the panel's output.
-
-# The second statement on a bigger battery
-
-With a capacity of <InlineMath math="10\text{ kWh}" />, the battery goes <InlineMath math="1,2,4,7,10" /> up to 12.00. After that it's full, so the surplus of <InlineMath math="2+3+1=6\text{ kWh}" /> is wasted. From 15.00 to 17.00 it drops to <InlineMath math="8\text{ kWh}" />.
+# Usage in block 3
 
 <BlockMath math="\begin{aligned}
-\text{bought in the evening} &= 11-(8-1)=4\text{ kWh}\\
-\tfrac{1}{2}\cdot\text{original evening purchase} &= \tfrac{1}{2}\cdot8=4\text{ kWh}
+530{,}000-400{,}000&=130{,}000\\
+\frac{130{,}000}{2{,}000}&=65\text{ kWh}
 \end{aligned}" />
 
-The evening purchase drops to **exactly half, not less than half**, so the second statement is false.
+The total usage is <InlineMath math="300+65=365" /> kWh. Check: <InlineMath math="20{,}000+100{,}000+300{,}000+65\cdot2{,}000=550{,}000" />.
 
-# The third statement on the reserve rule
-
-Without the reserve, the shortfall at 07.00-08.00 can come from the battery's <InlineMath math="1\text{ kWh}" />, so **the morning purchase disappears**. The battery goes <InlineMath math="0,1,3,6" /> and then stays full, and at 17.00 it still holds <InlineMath math="4\text{ kWh}" />. This time all of it may be used.
-
-<BlockMath math="\begin{aligned}
-\text{bought in the evening} &= 11-4=7\text{ kWh}\\
-\text{new cost} &= 7\cdot\text{Rp}2{,}500=\text{Rp}17{,}500\\
-\text{saving} &= \text{Rp}21{,}000-\text{Rp}17{,}500=\text{Rp}3{,}500
-\end{aligned}" />
-
-The cost drops by exactly <InlineMath math="\text{Rp}3{,}500.00" />, so the third statement is true. The saving comes from two places: <InlineMath math="\text{Rp}1{,}000" /> in the morning and <InlineMath math="\text{Rp}2{,}500" /> in the evening.
-
-# The fourth statement on a stronger panel
-
-The extra panel output adds <InlineMath math="10\cdot1=10\text{ kWh}" />, more than the <InlineMath math="9\text{ kWh}" /> that was bought. That looks like enough, but **the battery still holds only** <InlineMath math="6\text{ kWh}" />. The hourly differences are now <InlineMath math="0,+2,+3,+4,+4,+3,+4,+2,0,0" />. The morning purchase does disappear, and the battery is full from 09.00-10.00 all the way to 17.00.
-
-<BlockMath math="\text{bought in the evening}=11-(6-1)=6\text{ kWh}" />
-
-The family still buys <InlineMath math="6\text{ kWh}" /> in the evening, so the fourth statement is false.
-
-So the first statement is true, the second is false, the third is true, and the fourth is false.
+So Sari's family used **365 kWh** of electricity.

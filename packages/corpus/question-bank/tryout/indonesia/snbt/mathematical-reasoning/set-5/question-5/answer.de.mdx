@@ -1,48 +1,16 @@
-Andi und Bima treffen sich, wenn Andi genau <InlineMath math="400\text{ m}" />, also eine volle Runde, mehr gelaufen ist als Bima. Verfolge deshalb den **Streckenunterschied** <InlineMath math="g" />, also Andis Strecke minus Bimas Strecke. Der Plan: Schau, wie sich <InlineMath math="g" /> ändert, während Andi läuft und während er trinkt, und finde dann heraus, wann <InlineMath math="g" /> zum ersten Mal <InlineMath math="400" /> erreicht.
+Der für die Nutzung freie Speicher ist **Kapazität minus Systemanteil**. Rechne ihn in Megabyte um und teile durch die Größe eines Fotos.
 
-# Der Unterschied, während beide laufen
-
-Solange beide laufen, schafft Andi pro Sekunde <InlineMath math="5\text{ m}" /> und Bima <InlineMath math="4\text{ m}" />, also **wächst der Unterschied um <InlineMath math="1\text{ m}" /> pro Sekunde**. Für seine ersten <InlineMath math="4" /> Runden braucht Andi:
+# Freier Speicher
 
 <BlockMath math="\begin{aligned}
-\text{Laufzeit} &= \frac{4 \cdot 400}{5} = 320 \text{ s} \\
-g(320) &= 1{.}600 - 4 \cdot 320 = 320
+128-18&=110\text{ GB}\\
+110\cdot1\,024&=112\,640\text{ MB}
 \end{aligned}" />
 
-Ein Unterschied von <InlineMath math="320" /> ist noch kleiner als <InlineMath math="400" />, also treffen sich die beiden nicht, bevor Andi anhält.
+# Anzahl der Fotos
 
-# Der Unterschied, während Andi trinkt
+<BlockMath math="\frac{112\,640}{4}=28\,160" />
 
-<InlineMath math="50" /> Sekunden lang steht Andi bei <InlineMath math="S" />, aber Bima läuft weiter. Also **schrumpft der Unterschied mit Bimas Geschwindigkeit**, nicht mit Andis:
+Die Division geht auf, also **füllen 28 160 Fotos den Speicher genau**.
 
-<BlockMath math="g(370) = 320 - 4 \cdot 50 = 120" />
-
-Während Andi trinkt, kann der Unterschied <InlineMath math="400" /> nicht erreichen, denn er wird nur kleiner.
-
-# Wann der Unterschied eine Runde erreicht
-
-Ab Sekunde <InlineMath math="370" /> laufen beide wieder, und der Unterschied wächst wieder um <InlineMath math="1\text{ m}" /> pro Sekunde. Es fehlen noch <InlineMath math="400-120=280" /> Meter:
-
-<BlockMath math="t = 370 + \frac{280}{1} = 650" />
-
-Andis zweite Laufphase dauert von Sekunde <InlineMath math="370" /> bis Sekunde <InlineMath math="690" />, also liegt Sekunde <InlineMath math="650" /> **noch in dieser Laufphase**, und Andi hat noch nicht wieder angehalten.
-
-Prüfe mit den Strecken der beiden bei Sekunde <InlineMath math="650" />:
-
-<BlockMath math="\begin{aligned}
-\text{Andi} &= 1{.}600 + 5 \cdot 280 = 3{.}000\text{ m} \\
-\text{Bima} &= 4 \cdot 650 = 2{.}600\text{ m}
-\end{aligned}" />
-
-Der Unterschied beträgt genau <InlineMath math="400\text{ m}" />, die beiden sind also wirklich am selben Punkt.
-
-# Die falschen Antworten
-
-Jede andere Antwort **behandelt die Trinkpause falsch**:
-
-- Sekunde <InlineMath math="400" /> übersieht die Pause, als würde der Unterschied ab dem Start jede Sekunde um <InlineMath math="1\text{ m}" /> wachsen.
-- Sekunde <InlineMath math="450" /> lässt den Unterschied während der Pause bei <InlineMath math="320" /> und addiert dann <InlineMath math="80" /> Sekunden nach Sekunde <InlineMath math="370" />.
-- Sekunde <InlineMath math="600" /> rechnet den Unterschied richtig, vergisst aber die <InlineMath math="50" /> Sekunden Pause in der Zeit, also <InlineMath math="320+280" />.
-- Sekunde <InlineMath math="700" /> lässt den Unterschied mit Andis Geschwindigkeit schrumpfen, <InlineMath math="5 \cdot 50=250" />, sodass nur <InlineMath math="70" /> bleiben und noch <InlineMath math="330" /> Meter fehlen.
-
-Andi und Bima treffen sich also zum ersten Mal bei Sekunde <InlineMath math="650" /> nach dem Start.
+Es lassen sich also höchstens **28 160 Fotos** speichern.

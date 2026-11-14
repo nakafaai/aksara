@@ -1,36 +1,13 @@
-Kamu mencari total menit terbanyak yang bisa dibeli dengan <InlineMath math="\text{Rp}45{.}000" /> untuk <InlineMath math="8" /> perjalanan. Hitung batas itu untuk setiap cara pembayaran, lalu ambil yang lebih besar. Pada paket langganan, kuncinya adalah **membagi durasi supaya setiap perjalanan memakai penuh menit gratisnya**.
+Setelah <InlineMath math="n" /> lipatan, ketebalan adalah <InlineMath math="0{,}1\cdot2^n" /> mm. Perbandingan dua ketebalan **hanya bergantung pada selisih banyak lipatan**, karena faktor 0,1 saling menghapus.
 
-# Waktu terlama dengan tarif reguler
+# Membandingkan dua ketebalan
 
-Delapan perjalanan selalu membayar delapan kali biaya buka kunci. **Sisa anggaran setelah biaya buka kunci** dipakai untuk membayar menit.
+<BlockMath math="\frac{0{,}1\cdot2^{12}}{0{,}1\cdot2^{8}}=2^{12-8}=2^4=16" />
 
-<BlockMath math="\begin{aligned} \text{sisa anggaran} &= 45{.}000-8\cdot 2{.}000=29{.}000 \\ \text{menit} &= 29{.}000:250=116 \end{aligned}" />
+# Makna hasilnya
 
-# Waktu terlama dengan paket langganan
+Empat lipatan tambahan menggandakan ketebalan empat kali: <InlineMath math="2\cdot2\cdot2\cdot2=16" />. **Setiap lipatan mengalikan, bukan menambah**, jadi selisih 4 lipatan berarti 16 kali lipat.
 
-Setelah biaya langganan, sisa anggaran dipakai untuk membayar menit berbayar.
+Nilai 1,5 adalah perbandingan banyak lipatan, <InlineMath math="\tfrac{12}{8}" />. Nilai 4 adalah selisih banyak lipatan, dan 32 memakai <InlineMath math="2^5" />.
 
-<BlockMath math="\begin{aligned} \text{sisa anggaran} &= 45{.}000-30{.}000=15{.}000 \\ \text{menit berbayar} &= 15{.}000:500=30 \end{aligned}" />
-
-Biaya menit <InlineMath math="\text{Rp}15{.}000" /> belum mencapai batas <InlineMath math="\text{Rp}30{.}000" />, jadi batas bulanan tidak memberi menit gratis tambahan di sini. Menit gratis datang dari setiap perjalanan: <InlineMath math="20\text{ menit}" /> pertama tiap perjalanan tidak dibayar. Menit gratis itu hanya terpakai penuh jika perjalanannya paling sedikit <InlineMath math="20\text{ menit}" />, jadi **setiap perjalanan harus berdurasi paling sedikit <InlineMath math="20\text{ menit}" />**.
-
-<BlockMath math="\text{total terlama}=8\cdot 20+30=190" />
-
-Contohnya tujuh perjalanan <InlineMath math="20\text{ menit}" /> dan satu perjalanan <InlineMath math="50\text{ menit}" />.
-
-# Membandingkan kedua cara
-
-Paket langganan memberi <InlineMath math="190\text{ menit}" />, lebih lama daripada <InlineMath math="116\text{ menit}" /> dengan tarif reguler. Jadi Eko **memilih paket langganan**.
-
-Coba periksa contoh tadi. Menit berbayarnya hanya dari perjalanan <InlineMath math="50\text{ menit}" />, yaitu <InlineMath math="50-20=30" />, sehingga biayanya <InlineMath math="30{.}000+30\cdot 500=45{.}000" />, tepat sama dengan anggaran. Satu menit berbayar lagi akan membuat biayanya <InlineMath math="\text{Rp}45{.}500" />, melebihi anggaran.
-
-# Jebakan pada pilihan lain
-
-Setiap pilihan yang salah berasal dari **satu langkah yang keliru**.
-
-- <InlineMath math="116\text{ menit}" /> muncul jika tarif reguler yang dipilih, misalnya karena menit gratis hanya dihitung sekali sebulan sehingga paket langganan tampak hanya memberi <InlineMath math="20+30=50\text{ menit}" />.
-- <InlineMath math="184\text{ menit}" /> muncul jika kedelapan perjalanan dianggap harus sama panjang. Perjalanan <InlineMath math="23\text{ menit}" /> masih muat, tetapi <InlineMath math="24\text{ menit}" /> membuat biayanya <InlineMath math="30{.}000+8\cdot 4\cdot 500=46{.}000" />, sehingga hasilnya hanya <InlineMath math="8\cdot 23=184" />.
-- <InlineMath math="220\text{ menit}" /> muncul jika menit berbayar langganan dihitung dengan tarif <InlineMath math="\text{Rp}250" />, sehingga dapat <InlineMath math="15{.}000:250=60" /> menit berbayar.
-- <InlineMath math="250\text{ menit}" /> muncul jika biaya langganan lupa dihitung, sehingga seluruh <InlineMath math="\text{Rp}45{.}000" /> dipakai untuk <InlineMath math="90" /> menit berbayar.
-
-Jadi, total waktu bersepeda paling lama yang bisa didapat Eko adalah <InlineMath math="190\text{ menit}" />.
+Jadi, ketebalan setelah 12 lipatan adalah **16 kali** ketebalan setelah 8 lipatan.

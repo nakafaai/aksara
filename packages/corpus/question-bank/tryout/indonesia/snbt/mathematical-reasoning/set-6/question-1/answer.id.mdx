@@ -1,48 +1,21 @@
-Kamu mencari dua saat ketika isi tandon tepat <InlineMath math="4{.}200\text{ liter}" />, lalu memilih saat yang kedua. Caranya, ikuti isi tandon dari pukul 05.00 potong demi potong, setiap kali ada alat yang mulai atau berhenti. Ingat juga bahwa **isi tandon tidak pernah melebihi kapasitasnya**, yaitu <InlineMath math="6{.}000\text{ liter}" />.
+Poin setiap tim adalah **3 kali banyak kemenangan ditambah banyak seri**. Hitung untuk kelima tim, lalu jumlahkan.
 
-# Isi tandon saat masih naik
+# Poin setiap tim
 
-Isi tandon berubah sebesar debit masuk dikurangi debit keluar. Selisih ini disebut debit bersih. **Debit bersih berubah setiap kali ada alat yang mulai atau berhenti**, jadi hitung isi tandon per potongan waktu.
+<BlockMath math="\begin{aligned}
+A&:\quad 3\cdot3+1=10\\
+B&:\quad 3\cdot2+1=7\\
+C&:\quad 3\cdot1+2=5\\
+D&:\quad 3\cdot1+1=4\\
+E&:\quad 3\cdot0+1=1
+\end{aligned}" />
 
-| Potongan waktu | Alat yang bekerja | Debit bersih | Isi di akhir potongan |
-| :---: | :---: | :---: | :---: |
-| 05.00 sampai 05.20 | P | <InlineMath math="60\text{ liter/menit}" /> | <InlineMath math="1{.}000+60\cdot 20=2{.}200" /> |
-| 05.20 sampai 05.40 | P dan K | <InlineMath math="60-50=10\text{ liter/menit}" /> | <InlineMath math="2{.}200+10\cdot 20=2{.}400" /> |
-| mulai 05.40 | P, Q, dan K | <InlineMath math="60+80-50=90\text{ liter/menit}" /> | terus naik |
+**Jumlah poin kelima tim** adalah <InlineMath math="10+7+5+4+1=27" />.
 
-Mulai pukul 05.40, isi tandon naik <InlineMath math="90\text{ liter}" /> setiap menit. Misalkan <InlineMath math="t" /> adalah banyak menit setelah pukul 05.40 sampai isinya <InlineMath math="4{.}200\text{ liter}" />.
+# Pemeriksaan per pertandingan
 
-<BlockMath math="\begin{aligned} 2{.}400+90t &= 4{.}200 \\ 90t &= 1{.}800 \\ t &= 20 \end{aligned}" />
+Ada <InlineMath math="\binom52=10" /> pertandingan. Banyak seri seluruhnya 6, dan **setiap pertandingan seri tercatat pada dua tim**, jadi ada 3 pertandingan seri dan 7 pertandingan dengan pemenang. Pertandingan dengan pemenang memberi 3 poin, dan pertandingan seri memberi <InlineMath math="1+1=2" /> poin.
 
-Jadi saat pertama adalah pukul 06.00. Itu belum jawabannya, karena soal meminta saat yang kedua.
+<BlockMath math="7\cdot3+3\cdot2=27" />
 
-# Tandon penuh lalu tertahan penuh
-
-Dengan debit bersih yang sama, cari kapan tandon mencapai <InlineMath math="6{.}000\text{ liter}" />.
-
-<BlockMath math="\begin{aligned} 2{.}400+90t &= 6{.}000 \\ 90t &= 3{.}600 \\ t &= 40 \end{aligned}" />
-
-Tandon penuh pada pukul 06.20. Sejak itu air yang berlebih keluar lewat pipa luapan, sehingga **isi tandon tertahan di kapasitasnya**. Pukul 06.40 pompa Q mati, tetapi pompa P masih memasukkan <InlineMath math="60\text{ liter/menit}" />, lebih banyak daripada <InlineMath math="50\text{ liter/menit}" /> yang keluar lewat keran K. Jadi tandon tetap penuh sampai pompa P mati pukul 07.00.
-
-# Isi tandon saat turun
-
-Setelah pukul 07.00 hanya keran K yang bekerja, sehingga isi tandon **turun <InlineMath math="50\text{ liter}" /> setiap menit mulai dari <InlineMath math="6{.}000\text{ liter}" />**. Misalkan <InlineMath math="u" /> adalah banyak menit setelah pukul 07.00.
-
-<BlockMath math="\begin{aligned} 6{.}000-50u &= 4{.}200 \\ 50u &= 1{.}800 \\ u &= 36 \end{aligned}" />
-
-Saat yang kedua adalah <InlineMath math="36\text{ menit}" /> setelah pukul 07.00, yaitu pukul 07.36.
-
-# Pemeriksaan hasil
-
-Pada pukul 07.36 keran K sudah mengalirkan <InlineMath math="50\cdot 36=1{.}800\text{ liter}" /> sejak tandon mulai turun, dan <InlineMath math="6{.}000-1{.}800=4{.}200" />. Hasil ini juga masuk akal, karena **tandon baru kosong pukul 09.00**, yaitu <InlineMath math="6{.}000:50=120\text{ menit}" /> setelah pukul 07.00. Jadi pukul 07.36 memang berada di tengah masa turun.
-
-# Jebakan pada pilihan lain
-
-Setiap pilihan yang salah berasal dari satu **langkah yang terlewat**.
-
-- Pukul 06.00 adalah saat pertama, ketika isi tandon masih naik.
-- Pukul 06.56 muncul jika isi dianggap langsung turun sejak tandon penuh pukul 06.20, padahal debit masuk masih lebih besar daripada debit keluar.
-- Pukul 07.16 muncul jika tandon dianggap mulai turun saat pompa Q mati pukul 06.40, padahal pompa P masih menyala sampai pukul 07.00.
-- Pukul 08.16 muncul jika air berlebih dianggap tetap tersimpan, sehingga isi pukul 07.00 dihitung <InlineMath math="8{.}000\text{ liter}" />, melebihi kapasitas.
-
-Jadi, isi tandon tepat <InlineMath math="4{.}200\text{ liter}" /> untuk kedua kalinya pada pukul 07.36.
+Jadi, jumlah poin seluruh tim adalah **27 poin**.

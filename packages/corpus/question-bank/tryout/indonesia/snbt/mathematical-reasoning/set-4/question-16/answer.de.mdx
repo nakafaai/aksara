@@ -1,40 +1,19 @@
-Gesucht ist der Preis mit dem größten Gewinn an einem Feiertag. Der Plan: Schreibe die Nachfrage am Feiertag auf und teile die Preise in zwei Bereiche, **einen mit vollem Saal und einen mit freien Plätzen**. Bestimme in jedem Bereich den besten Preis und vergleiche.
+Eine stehende Dose belegt auf dem Kartonboden ein quadratisches Feld von **Durchmesser mal Durchmesser**, und jede Lage ist so hoch wie eine Dose. Zähle die Dosen in jeder Richtung.
 
-# Nachfrage und Zuschauer
+# Dosen in jeder Richtung
 
-An einem normalen Tag beträgt die Zuschauerzahl <InlineMath math="280-3{,}2p" />, mit <InlineMath math="p" /> in Tausend Rupiah. Am Feiertag ist die Nachfrage <InlineMath math="1{,}5" />-mal so groß:
-
-<BlockMath math="m=1{,}5(280-3{,}2p)=420-4{,}8p" />
-
-Tatsächlich hinein kommen <InlineMath math="m" /> Personen, aber **höchstens** <InlineMath math="200" />. Der Gewinn bleibt <InlineMath math="K=(p+10)\,n-2{.}000" /> Tausend.
-
-# Der Bereich mit vollem Saal
-
-Alle Plätze sind besetzt, wenn die Nachfrage mindestens <InlineMath math="200" /> beträgt:
+**Der Durchmesser von Dose A ist 8 cm**, ihre Höhe 10 cm.
 
 <BlockMath math="\begin{aligned}
-420-4{,}8p &\ge 200\\
-4{,}8p &\le 220\\
-p &\le 45{,}83\ldots
+32:8&=4\text{ Dosen}\\
+24:8&=3\text{ Dosen}\\
+20:10&=2\text{ Lagen}
 \end{aligned}" />
 
-In diesem Bereich bleibt <InlineMath math="n=200" /> fest, also **steigt** <InlineMath math="K=200(p+10)-2{.}000" /> **mit dem Preis immer weiter**. Das höchste Vielfache von <InlineMath math="5\text{ Tausend}" /> in diesem Bereich ist <InlineMath math="45\text{ Tausend}" />, mit einer Nachfrage von <InlineMath math="420-216=204" /> und <InlineMath math="200" /> Zuschauern:
+# Gesamtzahl der Dosen
 
-<BlockMath math="K(45)=55\times200-2{.}000=9{.}000\text{ Tausend}" />
+<BlockMath math="4\cdot3\cdot2=24" />
 
-# Der Bereich mit freien Plätzen
+Alle drei Divisionen gehen ohne Rest auf, diese Anordnung in Reihen und Spalten füllt den Karton also dicht. Der Wert 12 zählt nur **eine Lage**, obwohl der Karton hoch genug für zwei ist.
 
-Ab <InlineMath math="p=50" /> liegt die Nachfrage unter <InlineMath math="200" />, also gilt <InlineMath math="K=(p+10)(420-4{,}8p)-2{.}000" />. Diese Formel hat ihren Gipfel mittig zwischen den Nullstellen <InlineMath math="-10" /> und <InlineMath math="87{,}5" />, bei <InlineMath math="38{,}75" />, also **fällt der Gewinn oberhalb des Gipfels immer weiter**. Am besten ist in diesem Bereich der niedrigste Preis:
-
-<BlockMath math="\begin{aligned}
-K(50) &= 60\times180-2{.}000=8{.}800\text{ Tausend}\\
-K(55) &= 65\times156-2{.}000=8{.}140\text{ Tausend}
-\end{aligned}" />
-
-Vergleiche die beiden Bereiche: <InlineMath math="9{.}000\text{ Tausend}" /> bei <InlineMath math="\text{Rp}45{.}000" /> sind mehr als <InlineMath math="8{.}800\text{ Tausend}" /> bei <InlineMath math="\text{Rp}50{.}000" />.
-
-# Die Falle mit dem Preis vom normalen Tag
-
-Wenn du die Platzgrenze vergisst, bleibt der Gipfel wie am normalen Tag bei <InlineMath math="38{,}75" />, denn **das Vervielfachen der Nachfrage mit** <InlineMath math="1{,}5" /> verschiebt den Gipfel nicht. Das führt zu <InlineMath math="\text{Rp}40{.}000" />. Bei diesem Preis kommen aber nur <InlineMath math="200" /> der <InlineMath math="228" /> Interessierten hinein, und der Gewinn beträgt <InlineMath math="50\times200-2{.}000=8{.}000\text{ Tausend}" />, weniger als bei <InlineMath math="\text{Rp}45{.}000" />.
-
-Der Ticketpreis mit dem größten Gewinn am Feiertag beträgt also <InlineMath math="\text{Rp}45{.}000" />.
+Es passen also höchstens **24** Dosen hinein.

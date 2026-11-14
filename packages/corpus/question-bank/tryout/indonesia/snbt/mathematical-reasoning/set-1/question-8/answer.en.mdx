@@ -1,41 +1,21 @@
-This time the cost is known and the actual weight is what you're after, so **run the courier rules backwards**: from the cost to the billed weight, from the billed weight to the starting weight, then from the starting weight to the actual weight, keeping an eye on the volume weight.
+The condition is that **the volume entering is at least the tank capacity**. Let the roof area be <InlineMath math="A" /> square metres.
 
-# The billed weight from the cost
+# The capacity to reach
 
-For the Outside Java zone, the cost at billed weight <InlineMath math="w" /> is <InlineMath math="5{,}000+30{,}000+20{,}000(w-1)=20{,}000w+15{,}000" /> rupiah. **The admin fee has to come off too** before you divide by the rate.
+**The tank capacity** is <InlineMath math="\tfrac{22}{7}\cdot0.7^2\cdot2=3.08" /> cubic metres.
+
+# Setting up the inequality
+
+A rainfall of 20 mm equals 0.02 m, and only 80% of the water enters.
 
 <BlockMath math="\begin{aligned}
-20{,}000w+15{,}000 &= 235{,}000\\
-20{,}000w &= 220{,}000\\
-w &= 11
+A\cdot0.02\cdot0.8&\ge3.08\\
+0.016A&\ge3.08\\
+A&\ge192.5
 \end{aligned}" />
 
-# The starting weights that give this billed weight
+The minimum roof area is 192.5 square metres, **a little more than two and a half times the current roof**.
 
-A billed weight of <InlineMath math="11\text{ kg}" /> comes from two possibilities. A starting weight above <InlineMath math="10.3\text{ kg}" /> up to <InlineMath math="11\text{ kg}" /> rounds up to <InlineMath math="11\text{ kg}" />. A starting weight above <InlineMath math="11\text{ kg}" /> up to <InlineMath math="11.3\text{ kg}" /> has its excess dropped, so it stays at <InlineMath math="11\text{ kg}" />. So **the starting weight must be more than** <InlineMath math="10.3\text{ kg}" /> **and at most** <InlineMath math="11.3\text{ kg}" />.
+The area 154 square metres forgets the 80% efficiency. The area 123.2 square metres multiplies by 0.8 when it should divide. The area 19.25 square metres uses 20 mm as 0.2 m.
 
-# The role of the volume weight
-
-The box's volume weight is
-
-<BlockMath math="\frac{56\cdot40\cdot30}{6{,}000}=\frac{67{,}200}{6{,}000}=11.2\text{ kg}" />
-
-The starting weight is the larger of the actual weight and <InlineMath math="11.2\text{ kg}" />, so it's **never less than** <InlineMath math="11.2\text{ kg}" />. Now split into two cases.
-
-- If the actual weight is at most <InlineMath math="11.2\text{ kg}" />, the starting weight is <InlineMath math="11.2\text{ kg}" />. That lies between <InlineMath math="10.3" /> and <InlineMath math="11.3\text{ kg}" />, so the billed weight is <InlineMath math="11\text{ kg}" />, whatever the actual weight is.
-- If the actual weight is more than <InlineMath math="11.2\text{ kg}" />, the starting weight equals the actual weight, and it has to be at most <InlineMath math="11.3\text{ kg}" />.
-
-Put the two cases together: the actual weight can be anything, as long as it's at most <InlineMath math="11.3\text{ kg}" />.
-
-# Checking the answer
-
-A parcel with an actual weight of <InlineMath math="2\text{ kg}" /> has a starting weight of <InlineMath math="11.2\text{ kg}" />, a billed weight of <InlineMath math="11\text{ kg}" />, and a cost of <InlineMath math="\text{Rp}235{,}000" />. A <InlineMath math="11.3\text{ kg}" /> parcel is also billed at <InlineMath math="11\text{ kg}" />. A <InlineMath math="11.4\text{ kg}" /> parcel is already billed at <InlineMath math="12\text{ kg}" /> and **costs more**, namely <InlineMath math="\text{Rp}255{,}000" />.
-
-# The wrong options
-
-- More than <InlineMath math="10\text{ kg}" /> and at most <InlineMath math="11\text{ kg}" /> uses plain rounding up and forgets the volume weight.
-- More than <InlineMath math="10.3\text{ kg}" /> and at most <InlineMath math="11.3\text{ kg}" /> uses the rounding rule correctly but **forgets the volume weight**, which bills even a light parcel at <InlineMath math="11\text{ kg}" />.
-- At most <InlineMath math="11.2\text{ kg}" /> forgets that an actual weight a little above the volume weight, up to <InlineMath math="11.3\text{ kg}" />, still rounds to <InlineMath math="11\text{ kg}" />.
-- More than <InlineMath math="11.2\text{ kg}" /> and at most <InlineMath math="11.3\text{ kg}" /> assumes the actual weight has to be the billed one, but the volume weight can be billed too.
-
-So the parcel's actual weight can be anything, as long as it's at most <InlineMath math="11.3\text{ kg}" />.
+So the minimum roof area needed is **<InlineMath math="192.5\text{ m}^2" />**.

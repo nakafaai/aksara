@@ -1,16 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "cinema-pricing",
+  stimulus: "can-design",
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "$$\\text{Rp}3{.}880{.}000$$" },
-        { correct: false, label: "$$\\text{Rp}5{.}000{.}000$$" },
-        { correct: false, label: "$$\\text{Rp}5{.}480{.}000$$" },
-        { correct: true, label: "$$\\text{Rp}5{.}560{.}000$$" },
-        { correct: false, label: "$$\\text{Rp}5{.}600{.}000$$" },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        {
+          column: 1,
+          label: "Volume kaleng desain A sama dengan volume kaleng desain B.",
+        },
+        {
+          column: 2,
+          label:
+            "Kaleng desain B memerlukan bahan lebih sedikit daripada kaleng desain A.",
+        },
+        {
+          column: 1,
+          label:
+            "Jika jari-jari desain A dijadikan dua kali semula dan tingginya tetap, volumenya menjadi empat kali semula.",
+        },
+        {
+          column: 2,
+          label:
+            "Luas selimut kaleng desain B lebih besar daripada luas selimut kaleng desain A.",
+        },
       ],
     },
   },
