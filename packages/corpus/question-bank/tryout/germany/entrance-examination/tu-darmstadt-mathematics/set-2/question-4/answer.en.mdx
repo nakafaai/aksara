@@ -1,19 +1,28 @@
-The key is that **the radius to the point of contact is perpendicular to the tangent**. So the quadrilateral <InlineMath math="PAMB" /> splits along <InlineMath math="\overline{PM}" /> into two right triangles <InlineMath math="PAM" /> and <InlineMath math="PBM" />, with the right angles at <InlineMath math="A" /> and <InlineMath math="B" />. Both have the hypotenuse <InlineMath math="\overline{PM}=25\text{ cm}" /> and a leg of <InlineMath math="7\text{ cm}" />, so they are congruent.
+# Peel from the outside
 
-The other leg, the tangent segment, follows from the Pythagorean theorem.
+There are two absolute values, one inside the other. **Peel the outer one first**, treating <InlineMath math="u=\lvert x-2\rvert" /> as a single number:
 
-<BlockMath math="\begin{aligned}
-\overline{PA}&=\sqrt{25^2-7^2}=\sqrt{625-49}=\sqrt{576}=24\text{ cm} \\
-A_{PAM}&=\frac12\cdot7\cdot24=84\text{ cm}^2 \\
-A_{PAMB}&=2\cdot84=168\text{ cm}^2
-\end{aligned}" />
+<BlockMath math="\lvert u-3\rvert<1\quad\Leftrightarrow\quad-1<u-3<1\quad\Leftrightarrow\quad2<u<4" />
 
-As a check, <InlineMath math="7^2+24^2=49+576=625=25^2" />.
+So the condition becomes <InlineMath math="2<\lvert x-2\rvert<4" />: the distance from <InlineMath math="x" /> to <InlineMath math="2" /> is more than <InlineMath math="2" /> but less than <InlineMath math="4" />.
 
-So the quadrilateral <InlineMath math="PAMB" /> has an area of <InlineMath math="168\text{ cm}^2" />.
+# Two distance conditions at once
 
-- <InlineMath math="84\text{ cm}^2" /> is only one of the two triangles.
-- <InlineMath math="87.5\text{ cm}^2" /> computes <InlineMath math="\frac12\cdot7\cdot25" /> and treats the hypotenuse <InlineMath math="\overline{PM}" /> as a leg.
-- <InlineMath math="175\text{ cm}^2" /> makes the same mistake for both triangles.
-- <InlineMath math="336\text{ cm}^2" /> forgets the factor <InlineMath math="\frac12" /> in the triangle areas.
-- <InlineMath math="350\text{ cm}^2" /> forgets the factor <InlineMath math="\frac12" /> and also takes <InlineMath math="\overline{PM}" /> as a leg.
+- <InlineMath math="\lvert x-2\rvert<4" /> means <InlineMath math="-2<x<6" />.
+- <InlineMath math="\lvert x-2\rvert>2" /> means <InlineMath math="x<0" /> or <InlineMath math="x>4" />.
+
+**Both have to hold at the same time**, so take the overlap. On the number line, that's two pieces, one on each side of <InlineMath math="2" />:
+
+<BlockMath math="-2<x<0\quad\text{or}\quad4<x<6" />
+
+Check: <InlineMath math="x=-1" /> gives <InlineMath math="\lvert3-3\rvert=0<1" />. <InlineMath math="x=2" /> gives <InlineMath math="\lvert0-3\rvert=3" />, which fails. <InlineMath math="x=0" /> gives exactly <InlineMath math="1" />, so the ends are out.
+
+So the solutions are <InlineMath math="-2<x<0" /> or <InlineMath math="4<x<6" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="4<x<6" /> **only looks at the right side** <InlineMath math="x\ge2" /> and forgets that the distance to <InlineMath math="2" /> can also point left.
+- <InlineMath math="-2<x<6" /> drops the outer absolute value and only solves <InlineMath math="\lvert x-2\rvert-3<1" />.
+- <InlineMath math="0<x<4" /> flips the condition <InlineMath math="\lvert x-2\rvert>2" /> into <InlineMath math="\lvert x-2\rvert<2" />.
+- <InlineMath math="x<0" /> or <InlineMath math="x>4" /> forgets the upper bound <InlineMath math="\lvert x-2\rvert<4" />.
+- The option with <InlineMath math="\le" /> includes the ends, but there the value is exactly <InlineMath math="1" />, not less than <InlineMath math="1" />.

@@ -1,0 +1,225 @@
+export const metadata = {
+  title: "Sifat Penentu Matriks",
+  description: "Jejaki bagaimana penentu berubah di bawah hasil darab matriks dan pendaraban skalar melalui contoh lengkap.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-06",
+  dateModified: "2026-11-08",
+  subject: "Matriks",
+};
+
+## Penentu Hasil Darab Matriks dan Matriks yang Diskalakan
+
+Kita akan membandingkan **kesan pendaraban matriks dan pendaraban skalar terhadap penentu**. Gunakan dua matriks ini untuk mengikuti perubahannya:
+
+<MathContainer>
+  <BlockMath math="A = \begin{bmatrix} -5 & 2 \\ 1 & -3 \end{bmatrix}" />
+  <BlockMath math="B = \begin{bmatrix} 9 & -4 \\ 1 & -1 \end{bmatrix}" />
+</MathContainer>
+### Penentu Hasil Darab Dua Matriks
+
+Selidiki hubungan antara penentu [hasil darab dua matriks](/ms/subjek/matematik/matriks/pendaraban-matriks) (<InlineMath math="|AB|" />) dengan hasil darab penentu setiap matriks (<InlineMath math="|A||B|" />).
+
+**Langkah 1**: Kira Penentu Matriks <InlineMath math="A" /> (<InlineMath math="|A|" />)
+
+<BlockMath math="\begin{aligned} |A| &amp;= (-5 \cdot -3) - (2 \cdot 1) \\ &amp;= 15 - 2 \\ &amp;= 13 \end{aligned}" />
+
+**Langkah 2**: Kira Penentu Matriks <InlineMath math="B" /> (<InlineMath math="|B|" />)
+
+<BlockMath math="\begin{aligned} |B| &amp;= (9 \cdot -1) - (-4 \cdot 1) \\ &amp;= -9 - (-4) \\ &amp;= -9 + 4 \\ &amp;= -5 \end{aligned}" />
+
+**Langkah 3**: Tentukan Hasil Darab Matriks <InlineMath math="A" /> dan <InlineMath math="B" /> (<InlineMath math="AB" />)
+
+Matriks <InlineMath math="AB" /> diperoleh dengan mendarab matriks <InlineMath math="A" /> dan <InlineMath math="B" />:
+
+<BlockMath math="AB = \begin{bmatrix} -5 & 2 \\ 1 & -3 \end{bmatrix} \begin{bmatrix} 9 & -4 \\ 1 & -1 \end{bmatrix}" />
+  Kira setiap unsur dengan mendarab satu baris dengan satu lajur:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_{11}=(-5)(9) + (2)(1) \\ &amp;m_{12}=(-5)(-4) + (2)(-1) \\ &amp;m_{21}=(1)(9) + (-3)(1) \\ &amp;m_{22}=(1)(-4) + (-3)(-1) \end{aligned}" />
+
+  <BlockMath math="\begin{aligned} &amp;AB \\ &amp;=\begin{bmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{bmatrix} \end{aligned}" />
+  <BlockMath math="AB = \begin{bmatrix} -45 + 2 & 20 - 2 \\ 9 - 3 & -4 + 3 \end{bmatrix}" />
+  <BlockMath math="AB = \begin{bmatrix} -43 & 18 \\ 6 & -1 \end{bmatrix}" />
+</MathContainer>
+
+**Langkah 4**: Kira Penentu Matriks <InlineMath math="AB" /> (<InlineMath math="|AB|" />)
+
+Sekarang, kira penentu matriks hasil darab <InlineMath math="AB" />:
+
+<BlockMath math="\begin{aligned} |AB| &amp;= (-43 \cdot -1) - (18 \cdot 6) \\ &amp;= 43 - 108 \\ &amp;= -65 \end{aligned}" />
+
+**Langkah 5**: Bandingkan <InlineMath math="|AB|" /> dengan <InlineMath math="|A||B|" />
+
+Kita sudah memperoleh <InlineMath math="|A| = 13" />, <InlineMath math="|B| = -5" />, dan <InlineMath math="|AB| = -65" />.
+
+Kira <InlineMath math="|A||B|" />:
+
+<BlockMath math="|A||B| = 13 \cdot (-5) = -65" />
+
+Perhatikan bahawa nilai <InlineMath math="|AB|" /> sama dengan nilai <InlineMath math="|A||B|" />.
+
+**Rumus Sifat Penentu Hasil Darab Matriks**
+
+Kalau <InlineMath math="A" /> dan <InlineMath math="B" /> ialah dua matriks segi empat sama yang sama peringkat, maka <Highlight>penentu hasil darab matriks</Highlight> <InlineMath math="A" /> dan <InlineMath math="B" /> sama dengan hasil darab penentu setiap matriks.
+
+<BlockMath math="|AB| = |A||B|" />
+
+### Penentu Matriks dengan Pendaraban Skalar
+
+Sekarang, selidiki apa yang berlaku kepada penentu matriks kalau setiap unsur matriks itu didarab dengan satu skalar (pemalar).
+
+Katakan kita menggunakan matriks <InlineMath math="A" /> daripada contoh sebelum ini dan skalar <InlineMath math="k=2" />.
+
+<BlockMath math="A = \begin{bmatrix} -5 & 2 \\ 1 & -3 \end{bmatrix}" />
+
+Kita sudah tahu bahawa <InlineMath math="|A| = 13" />. Matriks <InlineMath math="A" /> ialah matriks berperingkat <InlineMath math="2 \times 2" />, jadi <InlineMath math="n=2" />.
+
+**Langkah 1**: Tentukan Matriks <InlineMath math="kA" />
+
+Darab setiap unsur matriks <InlineMath math="A" /> dengan skalar <InlineMath math="k=2" />:
+
+<BlockMath math="\begin{aligned} kA &amp;= 2A \\ &amp;= 2\begin{bmatrix} -5 &amp; 2 \\ 1 &amp; -3 \end{bmatrix} \\ &amp;= \begin{bmatrix} 2(-5) &amp; 2(2) \\ 2(1) &amp; 2(-3) \end{bmatrix} \\ &amp;= \begin{bmatrix} -10 &amp; 4 \\ 2 &amp; -6 \end{bmatrix} \end{aligned}" />
+
+**Langkah 2**: Kira Penentu Matriks <InlineMath math="kA" /> (<InlineMath math="|kA|" />)
+
+<BlockMath math="\begin{aligned} |kA| &amp;= (-10 \cdot -6) - (4 \cdot 2) \\ &amp;= 60 - 8 \\ &amp;= 52 \end{aligned}" />
+
+**Langkah 3**: Bandingkan <InlineMath math="|kA|" /> dengan <InlineMath math="k^n|A|" />
+
+Kita ada <InlineMath math="|kA| = 52" />. Skalarnya <InlineMath math="k=2" />, peringkat matriks <InlineMath math="n=2" />, dan <InlineMath math="|A|=13" />.
+
+Kira <InlineMath math="k^n|A|" />:
+
+<BlockMath math="k^n|A| = 2^2 \cdot 13 = 4 \cdot 13 = 52" />
+
+Perhatikan bahawa nilai <InlineMath math="|kA|" /> sama dengan nilai <InlineMath math="k^n|A|" />.
+
+**Rumus Sifat Penentu bagi Pendaraban Skalar**
+
+Kalau <InlineMath math="A" /> ialah matriks segi empat sama berperingkat <InlineMath math="n \times n" /> dan <InlineMath math="k" /> ialah skalar, maka penentu matriks <InlineMath math="kA" /> ialah <InlineMath math="k^n" /> didarab dengan penentu matriks <InlineMath math="A" />.
+
+<BlockMath math="|kA| = k^n |A|" />
+
+Di sini, <InlineMath math="n" /> ialah peringkat (bilangan baris atau lajur) matriks segi empat sama <InlineMath math="A" />.
+
+Petua ini ada gambarannya. Bagi matriks <InlineMath math="2 \times 2" />, <InlineMath math="|\det|" /> ialah luas segi empat selari yang dibentuk oleh dua lajurnya. Lajur <InlineMath math="A" />, iaitu <InlineMath math="(-5, 1)" /> dan <InlineMath math="(2, -3)" />, membentuk luas <InlineMath math="|\det(A)| = 13" />. Menggandakan <InlineMath math="A" /> menggandakan setiap lajur, jadi setiap sisi segi empat selari itu menjadi dua kali ganda dan luasnya bertambah dengan faktor <InlineMath math="2 \cdot 2 = 4" /> kepada <InlineMath math="52" />. Itulah tepatnya <InlineMath math="\det(2A) = 2^2 \det(A) = 4 \cdot 13 = 52" />.
+
+<MathVisual
+  title={<>Menggandakan <InlineMath math="A" /> mendarab luas dengan <InlineMath math="4" /></>}
+  description={<>Lajur <InlineMath math="A" /> membentuk segi empat selari dengan luas <InlineMath math="13" />. Lajur <InlineMath math="2A" /> dua kali lebih panjang dan membentuk luas <InlineMath math="52" />.</>}
+  labels={{
+    single: <InlineMath math="13" />,
+    double: <InlineMath math="52" />,
+    a1: <InlineMath math="(-5, 1)" />,
+    a2: <InlineMath math="(2, -3)" />,
+    d1: <InlineMath math="(-10, 2)" />,
+    d2: <InlineMath math="(4, -6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -11, max: 5 }, y: { min: -7, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "double", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: -10, y: 2 }, { x: -6, y: -4 }, { x: 4, y: -6 }], appearance: "secondary" },
+      { id: "single", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: -5, y: 1 }, { x: -3, y: -2 }, { x: 2, y: -3 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "single", objectId: "single", at: { x: -1.5, y: -1 }, placement: "center" },
+      { key: "double", objectId: "double", at: { x: -7, y: -0.5 }, placement: "center" },
+      { key: "a1", objectId: "single", at: { x: -5, y: 1 }, placement: "above" },
+      { key: "a2", objectId: "single", at: { x: 2, y: -3 }, placement: "right" },
+      { key: "d1", objectId: "double", at: { x: -10, y: 2 }, placement: "above" },
+      { key: "d2", objectId: "double", at: { x: 4, y: -6 }, placement: "right" },
+    ],
+  }}
+/>
+
+Menukar dua baris <InlineMath math="A=\begin{bmatrix}1&2\\3&4\end{bmatrix}" /> memberikan <InlineMath math="B" /> dan mencerminkan segi empat selari lajurnya merentasi garis <InlineMath math="y = x" />. Luasnya kekal <InlineMath math="2" />, tetapi orientasinya terbalik, sebab itulah <InlineMath math="\det(B) = 2 = -\det(A)" />.
+
+<MathVisual
+  title={<>Menukar baris mencerminkan segi empat selari</>}
+  description={<>Segi empat selari lajur bagi <InlineMath math="A" /> dan bagi <InlineMath math="B" /> (iaitu <InlineMath math="A" /> dengan barisnya ditukar) ialah imej cermin merentasi <InlineMath math="y = x" /> dengan luas yang sama, <InlineMath math="2" />.</>}
+  labels={{
+    a: <InlineMath math="A: \det = -2" />,
+    b: <InlineMath math="B: \det = 2" />,
+    mirror: <InlineMath math="y = x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "a", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 3 }, { x: 3, y: 7 }, { x: 2, y: 4 }], appearance: "primary" },
+      { id: "b", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 1 }, { x: 7, y: 3 }, { x: 4, y: 2 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 3, y: 7 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 7, y: 3 }, placement: "below" },
+      { key: "mirror", objectId: "mirror", at: { x: 6, y: 6 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Bagi matriks yang mudah, petua hasil darab ini jelas kelihatan. <InlineMath math="B = \begin{bmatrix} 1 & 0 \\ 0 & 3 \end{bmatrix}" /> meregangkan segi empat sama unit kepada segi empat tepat berukuran <InlineMath math="1" /> kali <InlineMath math="3" />, dengan luas <InlineMath math="3" />. <InlineMath math="A = \begin{bmatrix} 2 & 0 \\ 0 & 1 \end{bmatrix}" /> kemudian menggandakan lebarnya, jadi luasnya <InlineMath math="6" />. Jadi <InlineMath math="\det(AB) = 6 = 2 \cdot 3 = \det(A)\det(B)" />.
+
+<MathVisual
+  title={<>Luas turut didarab apabila matriks didarab</>}
+  description={<>Segi empat sama unit, imejnya di bawah <InlineMath math="B" /> dengan luas <InlineMath math="3" />, dan imejnya di bawah <InlineMath math="AB" /> dengan luas <InlineMath math="6" />.</>}
+  labels={{
+    bb: <InlineMath math="B" />,
+    ab: <InlineMath math="AB" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 2.5 }, y: { min: -0.3, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "ab", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "bb", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "unit", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "bb", objectId: "bb", at: { x: 0.5, y: 2 }, placement: "center" },
+      { key: "ab", objectId: "ab", at: { x: 1.5, y: 2 }, placement: "center" },
+    ],
+  }}
+/>
+
+## Sifat Penentu yang Lain
+
+Petua hasil darab dan petua penskalaan seluruh matriks ialah sebahagian daripada set petua berguna yang lebih besar. Dalam jadual ini, <InlineMath math="A" /> ialah matriks segi empat sama dan setiap operasi baris menghasilkan matriks baharu <InlineMath math="B" />.
+
+| Perubahan atau bentuk matriks | Kesan terhadap penentu |
+| :-------------------- | :------------------------ |
+| Transpos | <InlineMath math="\det(A^T)=\det(A)" /> |
+| Songsangan, apabila <InlineMath math="\det(A)\neq0" /> | <InlineMath math="\det(A^{-1})=1/\det(A)" /> |
+| Matriks segi tiga <InlineMath math="U" /> | <InlineMath math="\det(U)=\prod_{i=1}^{n}u_{ii}" /> |
+| Tukar dua baris, <InlineMath math="R_i\leftrightarrow R_j" /> | <InlineMath math="\det(B)=-\det(A)" /> |
+| Darab satu baris dengan <InlineMath math="k" /> | <InlineMath math="\det(B)=k\det(A)" /> |
+| Tambah gandaan satu baris kepada baris lain, <InlineMath math="R_i\leftarrow R_i+kR_j" /> | <InlineMath math="\det(B)=\det(A)" /> |
+| Dua baris yang sama, atau satu baris sifar | <InlineMath math="\det(A)=0" /> |
+
+Jangan keliru antara **menskalakan satu baris** dengan menskalakan seluruh matriks. Dalam matriks <InlineMath math="n\times n" />, <InlineMath math="kA" /> menskalakan semua <InlineMath math="n" /> baris dengan <InlineMath math="k" />, jadi faktor <InlineMath math="k" /> muncul <InlineMath math="n" /> kali dan memberikan <InlineMath math="k^n" />.
+
+## Uji Kefahaman Kamu
+
+Mulakan dengan:
+
+<BlockMath math="A=\begin{bmatrix}1&2\\3&4\end{bmatrix},\qquad \det(A)=-2" />
+
+Petua penentu **meramalkan setiap hasil** sebelum sebarang kembangan penuh:
+
+<MathContainer>
+  <BlockMath math="B=\begin{bmatrix}3&4\\1&2\end{bmatrix}\quad\Longrightarrow\quad\det(B)=2" />
+  <BlockMath math="\begin{aligned} &amp;C=\begin{bmatrix}5&amp;10\\3&amp;4\end{bmatrix} \\ &amp;\Longrightarrow \\ &amp;\det(C)=5\det(A)=-10 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;D=\begin{bmatrix}1&amp;2\\6&amp;10\end{bmatrix} \\ &amp;\Longrightarrow \\ &amp;\det(D)=\det(A)=-2 \end{aligned}" />
+</MathContainer>
+
+Matriks <InlineMath math="B" /> menukar baris, matriks <InlineMath math="C" /> mendarab baris pertama dengan <InlineMath math="5" />, dan matriks <InlineMath math="D" /> menggunakan <InlineMath math="R_2\leftarrow R_2+3R_1" />. Pengiraan terus mengesahkan setiap ramalan itu.
+
+| Matriks | Pengesahan terus |
+| --- | --- |
+| <InlineMath math="B" /> | <InlineMath math="\det(B)=3(2)-4(1)=6-4=2" /> |
+| <InlineMath math="C" /> | <InlineMath math="\det(C)=5(4)-10(3)=20-30=-10" /> |
+| <InlineMath math="D" /> | <InlineMath math="\det(D)=1(10)-2(6)=10-12=-2" /> |

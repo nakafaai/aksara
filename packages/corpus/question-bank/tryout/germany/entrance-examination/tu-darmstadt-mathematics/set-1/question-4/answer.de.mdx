@@ -1,17 +1,35 @@
-Zwei Prozentänderungen hintereinander darfst du nicht einfach verrechnen, denn die zweite Änderung bezieht sich auf **einen anderen Grundwert**. Die Abnahme um <InlineMath math="10\,\%" /> wird vom höheren Stand im Sommer berechnet, nicht vom Stand zu Jahresbeginn. Rechne deshalb mit Faktoren: Eine Zunahme um <InlineMath math="10\,\%" /> bedeutet den Faktor <InlineMath math="1{,}1" />, eine Abnahme um <InlineMath math="10\,\%" /> den Faktor <InlineMath math="0{,}9" />.
+# Wie viele Ecken die Grundfläche hat
 
-Es sei <InlineMath math="n" /> die Mitgliederzahl zu Jahresbeginn. Dann gilt am Jahresende:
+Ein Prisma mit einem <InlineMath math="n" />-Eck als Grundfläche hat <InlineMath math="n" /> Kanten unten, <InlineMath math="n" /> oben und <InlineMath math="n" /> senkrechte Kanten. **Es hat also <InlineMath math="3n" /> Kanten**:
 
-<BlockMath math="n\cdot1{,}1\cdot0{,}9=n\cdot0{,}99" />
+<BlockMath math="3n=30\quad\Rightarrow\quad n=10" />
 
-Der Faktor <InlineMath math="0{,}99" /> bedeutet, dass am Jahresende <InlineMath math="99\,\%" /> der ursprünglichen Mitgliederzahl erreicht sind. Die Zahl ist also um <InlineMath math="1\,\%" /> gesunken.
+Dieses Prisma hat <InlineMath math="20" /> Ecken, <InlineMath math="10" /> oben und <InlineMath math="10" /> unten.
 
-Ein Zahlenbeispiel bestätigt das. Bei <InlineMath math="500" /> Mitgliedern kommen bis zum Sommer <InlineMath math="50" /> hinzu, es sind dann <InlineMath math="550" />. Davon sind <InlineMath math="10\,\%" /> genau <InlineMath math="55" />, also bleiben <InlineMath math="495" /> Mitglieder. Das sind <InlineMath math="5" /> weniger als zu Beginn, und <InlineMath math="5" /> ist <InlineMath math="1\,\%" /> von <InlineMath math="500" />.
+# Von einer Ecke oben aus
 
-Die Mitgliederzahl ist also insgesamt um <InlineMath math="1\,\%" /> gesunken.
+Nimm eine Ecke der Deckfläche. Alle anderen Ecken oben liegen in derselben Deckfläche, keine davon liefert eine Raumdiagonale. Unten liegen **die Ecke direkt darunter und ihre beiden Nachbarn mit ihr auf einer gemeinsamen Seitenfläche**. Es bleiben <InlineMath math="10-3=7" /> Ecken.
 
-- Eine Zunahme um <InlineMath math="21\,\%" /> zählt beide Änderungen als Zunahme, denn <InlineMath math="1{,}1\cdot1{,}1=1{,}21" />.
-- Eine Zunahme um <InlineMath math="1\,\%" /> hat den richtigen Betrag, aber die falsche Richtung. Der Faktor <InlineMath math="0{,}99" /> ist kleiner als <InlineMath math="1" />.
-- Keine Veränderung ergibt sich, wenn die Prozentsätze einfach verrechnet werden: <InlineMath math="10\,\%-10\,\%=0\,\%" />. Die beiden Prozentsätze beziehen sich aber auf verschiedene Grundwerte.
-- Eine Abnahme um <InlineMath math="0{,}1\,\%" /> verschiebt das Komma. Der Unterschied <InlineMath math="1-0{,}99=0{,}01" /> entspricht <InlineMath math="1\,\%" />.
-- Eine Abnahme um <InlineMath math="10\,\%" /> berücksichtigt nur die zweite Änderung.
+Jede Raumdiagonale verbindet eine Ecke oben mit einer Ecke unten, keine wird also doppelt gezählt:
+
+<BlockMath math="10\cdot7=70" />
+
+# Probe auf einem zweiten Weg
+
+Zwischen zwei Ecken gibt es <InlineMath math="\binom{20}{2}=190" /> Strecken. **Zieh alle Strecken ab, die in einer Fläche liegen**:
+
+- die <InlineMath math="30" /> Kanten,
+- die Diagonalen der beiden Grundflächen, <InlineMath math="2\cdot\frac{10\cdot7}{2}=70" />,
+- die Diagonalen der <InlineMath math="10" /> rechteckigen Seitenflächen, <InlineMath math="10\cdot2=20" />.
+
+<BlockMath math="190-30-70-20=70" />
+
+Das Prisma hat also <InlineMath math="70" /> Raumdiagonalen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="90" /> **lässt nur die Ecke direkt darunter weg**, dabei liegen auch die beiden Nachbarn auf einer gemeinsamen Seitenfläche. Das ist dasselbe, wie die Diagonalen der Seitenflächen zu vergessen.
+- <InlineMath math="35" /> halbiert noch einmal, als würde jede Diagonale doppelt gezählt. Von oben nach unten zählt man jede nur einmal.
+- <InlineMath math="80" /> lässt nur die Ecke darunter und einen Nachbarn weg.
+- <InlineMath math="140" /> vergisst, die Diagonalen der beiden Grundflächen abzuziehen.
+- <InlineMath math="160" /> zieht nur die Kanten ab und zählt jede andere Strecke als Raumdiagonale.
