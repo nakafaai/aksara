@@ -134,7 +134,7 @@ const makeCatalogTestFixtures = Effect.fn(
     const rendererManifest = yield* createRendererManifest({
       base: baseComponents,
       domains: testRendererDomains({
-        chemistry: ["AtomShellLab"],
+        chemistry: ["AtomShellLab", "BohrEmissionLab", "OrbitalCloudLab"],
         mathematics: ["FunctionMachine"],
         politics: [
           "KimPlusElectabilityChart",
