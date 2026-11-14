@@ -8,8 +8,29 @@ const item: ItemSource = {
   },
   versions: {
     id: {
-      kind: "numericEntry",
-      value: "36",
+      kind: "choice",
+      options: [
+        {
+          correct: false,
+          label: "$$\\text{Rp}6{.}650{.}000$$",
+        },
+        {
+          correct: true,
+          label: "$$\\text{Rp}6{.}850{.}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}7{.}250{.}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}8{.}400{.}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}8{.}750{.}000$$",
+        },
+      ],
     },
   },
 };

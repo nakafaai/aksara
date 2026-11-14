@@ -1,20 +1,33 @@
-The problem needs **the weekday of the first day of February**, because it decides which dates fall on a Sunday. Then check whether any Sunday is also a multiple of <InlineMath math="5" />, so that no closed day is counted twice.
+Two cycles run side by side: the weekday repeats every <InlineMath math="7" /> days, and the market day (*pasaran*) repeats every <InlineMath math="5" /> days. So all you need is **how many days lie between 20 July and 1 December**, then the remainder of that number divided by <InlineMath math="7" /> and, separately, by <InlineMath math="5" />. The options use the Indonesian weekday names: *Senin* is Monday, *Selasa* Tuesday, *Rabu* Wednesday, and *Kamis* Thursday.
 
-January has <InlineMath math="31" /> days, so 1 February is <InlineMath math="31" /> days after 1 January. A week has <InlineMath math="7" /> days, so only the remainder matters:
+Count the gap month by month. Remember the month lengths: July has <InlineMath math="31" /> days, August <InlineMath math="31" />, September <InlineMath math="30" />, October <InlineMath math="31" />, and November <InlineMath math="30" />.
 
-<BlockMath math="31=4\times7+3" />
+| Part | Days |
+| --- | --- |
+| 21 to 31 July | <InlineMath math="11" /> |
+| August | <InlineMath math="31" /> |
+| September | <InlineMath math="30" /> |
+| October | <InlineMath math="31" /> |
+| November | <InlineMath math="30" /> |
+| 1 December | <InlineMath math="1" /> |
+| Total | <InlineMath math="134" /> |
 
-Friday moves forward <InlineMath math="3" /> days to Monday. So 1 February <InlineMath math="2027" /> is a Monday.
+So 1 December is <InlineMath math="134" /> days after 20 July. Now divide that gap by the length of each cycle:
 
-February <InlineMath math="2027" /> has <InlineMath math="28" /> days. The Sundays are the 7th, 14th, 21st, and 28th. The multiples of <InlineMath math="5" /> are the 5th, 10th, 15th, 20th, and 25th. No date appears in both lists, so **no closed day is counted twice**.
+<BlockMath math="\begin{aligned}
+134 &= 7\times19+1 \\
+134 &= 5\times26+4
+\end{aligned}" />
 
-<BlockMath math="\text{Open days}=28-4-5=19" />
+A remainder of <InlineMath math="1" /> in the seven-day cycle moves the weekday one step on from Monday, to Tuesday (*Selasa*). A remainder of <InlineMath math="4" /> in the five-day cycle moves the market day four steps on from Pahing: Pon, Wage, Kliwon, Legi. So 1 December falls on Selasa Legi.
 
-The other options come from these mistakes:
+Check it another way. The same weekday and market day pair comes back every <InlineMath math="7\times5=35" /> days. After <InlineMath math="3\times35=105" /> days, on 2 November, the date is Senin Pahing again. From 2 November to 1 December is <InlineMath math="29" /> days, with <InlineMath math="29=7\times4+1" /> and <InlineMath math="29=5\times5+4" />. Same result: Selasa Legi.
 
-- <InlineMath math="24" /> comes from subtracting only the Sundays.
-- <InlineMath math="23" /> comes from subtracting only the multiples of <InlineMath math="5" />.
-- <InlineMath math="20" /> comes from keeping 1 February on a Friday. The Sundays would then be the 3rd, 10th, 17th, and 24th, so the 10th counts once and only <InlineMath math="8" /> days are closed.
-- <InlineMath math="18" /> comes from assuming February has five Sundays.
+The other options come from different counting slips:
 
-So the bakery is open on <InlineMath math="19" /> days in February <InlineMath math="2027" />.
+- Selasa Pon comes from using the remainder <InlineMath math="1" /> from the seven-day cycle for the market day too. The market day needs the remainder after dividing by <InlineMath math="5" />, which is <InlineMath math="4" />.
+- Rabu Pahing comes from a gap of <InlineMath math="135" /> days because 20 July itself was counted. A gap from a date doesn't include the starting date.
+- Kamis Pon comes from giving September and November <InlineMath math="31" /> days each, which makes the gap <InlineMath math="136" /> days.
+- Senin Kliwon comes from stopping at 30 November, <InlineMath math="133" /> days, and forgetting the last day to 1 December.
+
+So in that year, 1 December falls on Selasa Legi, a Tuesday with the market day Legi.

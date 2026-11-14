@@ -1,27 +1,25 @@
-For a "must be true" question, find **every arrangement that satisfies the conditions** and choose the statement that holds in all of them.
+Each option only fills turns <InlineMath math="3" /> to <InlineMath math="6" />. The remaining three students have to go into turns <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="7" />. The four middle names are possible only if **the three outer turns can still be filled without breaking any condition**.
 
-K sits in chair 1, so chair 4 faces K. Chairs 2 and 6 are next to K, so N can only sit in chair 3, 4, or 5. L and M must take a pair of facing chairs: chairs 2 and 5 or chairs 3 and 6. The pair 1 and 4 is impossible because chair 1 belongs to K.
+Among the four names in each option, no condition is broken directly. A problem only shows up when you ask where the other three students can present. So you have to complete each option first, and only then judge it.
 
-**Case L and M in chairs 2 and 5**. The free chairs are 3, 4, and 6. N must be in chair 3 or 4. If N were in chair 4, O would need chair 5, which is taken. So N is in chair 3, O in chair 4, and P in chair 6. Chair 6 is even, so condition 5 holds.
+Start with Eka, Bayu, Citra, Fani. Dimas, Galih, and Hesti are left. Citra is in turn <InlineMath math="5" />, so Dimas must be in turn <InlineMath math="7" /> (condition 2). Galih and Hesti get turns <InlineMath math="1" /> and <InlineMath math="2" />, which are next to each other. One full order is Galih, Hesti, Eka, Bayu, Citra, Fani, Dimas.
 
-**Case L and M in chairs 3 and 6**. The free chairs are 2, 4, and 5. N must be in chair 4 or 5. If N were in chair 5, O would need chair 6, which is taken. So N is in chair 4, O in chair 5, and P in chair 2.
+| Condition | What happens in this order | Result |
+| --- | --- | --- |
+| 1 | Galih in turn <InlineMath math="1" />, Hesti in turn <InlineMath math="2" /> | consecutive |
+| 2 | Citra in turn <InlineMath math="5" />, Dimas in turn <InlineMath math="7" /> | exactly two turns apart |
+| 3 | Eka in turn <InlineMath math="3" />, Citra in turn <InlineMath math="5" /> | Eka goes first |
+| 4 | Eka in turn <InlineMath math="3" /> | not turn <InlineMath math="1" /> |
+| 5 | Turn <InlineMath math="7" /> goes to Dimas | not Galih or Hesti |
+| 6 | Bayu in turn <InlineMath math="4" />, an even number | this condition asks for nothing |
 
-L and M can swap places in each case, which gives four arrangements:
+Condition 6 only applies when Bayu is in an odd-numbered turn. Bayu is in turn <InlineMath math="4" />, so Fani in turn <InlineMath math="6" /> breaks nothing.
 
-| Arrangement | Chair 1 | Chair 2 | Chair 3 | Chair 4 | Chair 5 | Chair 6 |
-| --- | --- | --- | --- | --- | --- | --- |
-| I | K | L | N | O | M | P |
-| II | K | M | N | O | L | P |
-| III | K | P | L | N | O | M |
-| IV | K | P | M | N | O | L |
+The other four options all get stuck once you complete them, each because of a different condition.
 
-P always sits in chair 6 or chair 2. Both chairs are next to chair 1, so **P is certainly next to K**.
+- Eka, Galih, Citra, Bayu: Citra in turn <InlineMath math="5" /> forces Dimas into turn <InlineMath math="7" />. Hesti must sit right next to Galih, in turn <InlineMath math="3" /> or <InlineMath math="5" />. Both are taken, so condition 1 fails.
+- Hesti, Fani, Citra, Bayu: Dimas is again in turn <InlineMath math="7" />. Galih must sit next to Hesti, and turn <InlineMath math="4" /> already belongs to Fani, so Galih takes turn <InlineMath math="2" />. That pushes Eka into turn <InlineMath math="1" />, which condition 4 forbids.
+- Eka, Citra, Fani, Dimas: Bayu, Galih, and Hesti are left for turns <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="7" />. Galih and Hesti must be side by side, so they take turns <InlineMath math="1" /> and <InlineMath math="2" />, and Bayu takes turn <InlineMath math="7" />. That turn is odd, so Fani would have to be in turn <InlineMath math="8" />, which doesn't exist. Condition 6 fails.
+- Citra, Bayu, Dimas, Fani: Eka, Galih, and Hesti are left for turns <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="7" />. Eka must come before Citra and can't be in turn <InlineMath math="1" />, so Eka takes turn <InlineMath math="2" />. Galih and Hesti end up split between turns <InlineMath math="1" /> and <InlineMath math="7" />, but they must be consecutive, and turn <InlineMath math="7" /> is off limits for them.
 
-The other statements hold only in some arrangements:
-
-- N faces P in arrangements I and II, but not in III and IV, where N in chair 4 faces K.
-- L sits in an even chair only in arrangement I.
-- O faces K in arrangements I and II, but sits in chair 5 in III and IV.
-- In arrangement I, M in chair 5 is next to O in chair 4.
-
-So the statement that must be true is that P sits next to K.
+So the order that can fill turns <InlineMath math="3" /> to <InlineMath math="6" /> is Eka, Bayu, Citra, Fani.

@@ -1,9 +1,26 @@
-Barisan ini tidak naik dengan selisih tetap, jadi periksa **selisih antarsuku yang berurutan**:
+Soal ini minta dua hal: menemukan aturan barisan, lalu terus melanjutkannya sampai ada suku yang melewati <InlineMath math="200" />. Selisih antarsukunya tidak tetap, jadi cari pola pada **selisih bertingkat**, yaitu selisih antarsuku, lalu selisih dari selisih itu, dan seterusnya.
 
-<BlockMath math="3-2=1,\quad 7-3=4,\quad 16-7=9,\quad 32-16=16,\quad 57-32=25" />
+<BlockMath math="\begin{aligned}
+\text{suku} &: 3,\ 4,\ 7,\ 15,\ 31,\ 58 \\
+\text{selisih tingkat satu} &: 1,\ 3,\ 8,\ 16,\ 27 \\
+\text{selisih tingkat dua} &: 2,\ 5,\ 8,\ 11 \\
+\text{selisih tingkat tiga} &: 3,\ 3,\ 3
+\end{aligned}" />
 
-Selisihnya adalah <InlineMath math="1, 4, 9, 16, 25" />, yaitu bilangan kuadrat <InlineMath math="1^2, 2^2, 3^2, 4^2, 5^2" />. Selisih berikutnya adalah <InlineMath math="6^2=36" />.
+Selisih tingkat dua belum tetap, tetapi selalu naik <InlineMath math="3" />. Jadi, selisih tingkat dua berikutnya adalah <InlineMath math="14" />, <InlineMath math="17" />, <InlineMath math="20" />, dan seterusnya.
 
-<BlockMath math="57+36=93" />
+Sekarang bangun barisan dari bawah ke atas. Selisih tingkat dua yang baru ditambahkan ke selisih tingkat satu terakhir, lalu hasilnya ditambahkan ke suku terakhir:
 
-Periksa polanya sekali lagi: setiap suku sama dengan suku sebelumnya ditambah kuadrat urutan selisihnya, dan pola itu cocok untuk kelima selisih yang tersedia. Jadi, bilangan berikutnya adalah <InlineMath math="93" />.
+<BlockMath math="\begin{aligned}
+27+14 &= 41, & 58+41 &= 99 \\
+41+17 &= 58, & 99+58 &= 157 \\
+58+20 &= 78, & 157+78 &= 235
+\end{aligned}" />
+
+Suku ketujuh <InlineMath math="99" /> dan suku kedelapan <InlineMath math="157" /> masih belum lebih dari <InlineMath math="200" />. Suku kesembilan <InlineMath math="235" /> adalah suku pertama yang melewatinya.
+
+Cek lagi dari arah sebaliknya. Selisih tingkat satu yang baru adalah <InlineMath math="41, 58, 78" />, dan selisih di antara ketiganya adalah <InlineMath math="17" /> dan <InlineMath math="20" />. Keduanya meneruskan pola <InlineMath math="2, 5, 8, 11, 14" /> yang naik <InlineMath math="3" />, jadi perhitungannya konsisten.
+
+Dua jalan pintas yang keliru sering muncul. Kalau selisih tingkat dua dianggap tetap <InlineMath math="11" />, barisannya menjadi <InlineMath math="96, 145, 205" />, sehingga muncul jawaban <InlineMath math="205" />. Kalau kamu berhenti pada suku berikutnya saja, kamu mendapat <InlineMath math="99" />, padahal <InlineMath math="99" /> belum melewati <InlineMath math="200" />.
+
+Jadi, suku pertama barisan itu yang lebih dari <InlineMath math="200" /> adalah <InlineMath math="235" />.

@@ -2,37 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
     topic: "data-interpretation",
   },
-  stimulus: "pinjam",
+  stimulus: "gudang",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Bakung, Anggrek, Cempaka",
+        },
+        {
           correct: true,
-          label:
-            "Proporsi peminjaman buku sains terhadap total peminjaman turun dari semester I ke semester II.",
+          label: "Bakung, Cempaka, Anggrek",
         },
         {
           correct: false,
-          label:
-            "Kategori dengan kenaikan jumlah peminjaman terbesar juga memiliki persentase kenaikan terbesar.",
+          label: "Cempaka, Bakung, Anggrek",
         },
         {
           correct: false,
-          label: "Peminjaman buku bahasa naik lebih dari $$15\\%$$.",
+          label: "Cempaka, Anggrek, Bakung",
         },
         {
           correct: false,
-          label:
-            "Lebih dari separuh buku yang dipinjam pada semester II adalah buku fiksi.",
-        },
-        {
-          correct: false,
-          label: "Total peminjaman naik lebih dari $$20\\%$$.",
+          label: "Anggrek, Cempaka, Bakung",
         },
       ],
     },

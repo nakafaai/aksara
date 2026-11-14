@@ -1,19 +1,40 @@
-Die Kategorien der Tabelle sind Fiksi (Belletristik), Sains (Naturwissenschaften), Sejarah (Geschichte) und Bahasa (Sprache). Jede Option nutzt ein anderes Maß: eine Anzahl, eine prozentuale Zunahme oder einen Anteil an der Gesamtzahl. Berechne das Maß, nach dem **jede Aussage** fragt, statt nur die Änderung der Anzahlen abzulesen.
+Die Aufgabe hat zwei Stufen. Zuerst suchst du die Woche, in der der gemeinsame Bestand der drei Lager zum ersten Mal unter <InlineMath math="200" /> Tonnen fällt. Dann berechnest du den Bestand jedes Lagers in dieser Woche und ordnest sie. Beide Stufen brauchen dieselbe Zahl: **die Änderung des Bestands jedes Lagers pro Woche**.
 
-Der Anteil der Naturwissenschaftsbücher an der Gesamtzahl:
+Der Bestand wächst durch eingehenden Reis und sinkt durch ausgehenden Reis und durch Schwund (*susut*). Laut Text wird der Schwund getrennt vom ausgehenden Reis erfasst, also musst du ihn ebenfalls abziehen:
 
 <BlockMath math="\begin{aligned}
-\text{Semester I: } & \frac{800}{3{.}000}\approx 26{,}7\% \\
-\text{Semester II: } & \frac{760}{3{.}450}\approx 22{,}0\%
+\text{Anggrek}: \quad 22-35-3 &= -16 \\
+\text{Bakung}: \quad 38-48-1 &= -11 \\
+\text{Cempaka}: \quad 15-18-2 &= -5
 \end{aligned}" />
 
-Der Anteil sinkt, die Aussage über die Naturwissenschaften passt also zu den Daten.
+Zusammen starten die drei Lager mit <InlineMath math="180+150+96=426" /> Tonnen, und dieser Gesamtbestand sinkt jede Woche um <InlineMath math="16+11+5=32" /> Tonnen. Nach <InlineMath math="w" /> Wochen beträgt er <InlineMath math="426-32w" />. Such das kleinste ganze <InlineMath math="w" />, bei dem er unter <InlineMath math="200" /> liegt:
 
-Prüfe die anderen Aussagen:
+<BlockMath math="\begin{aligned}
+426-32w &< 200 \\
+32w &> 226 \\
+w &> 7{,}0625
+\end{aligned}" />
 
-- Die größte Zunahme der Anzahl hat Belletristik: <InlineMath math="300" /> Bücher oder <InlineMath math="\frac{300}{1{.}200}=25\%" />. Die größte prozentuale Zunahme hat Geschichte: <InlineMath math="\frac{135}{450}=30\%" />. Es sind verschiedene Kategorien.
-- Sprachbücher stiegen um <InlineMath math="\frac{55}{550}=10\%" />, nicht um mehr als <InlineMath math="15\%" />.
-- Belletristik macht im Semester II <InlineMath math="\frac{1{.}500}{3{.}450}\approx 43{,}5\%" /> der Ausleihen aus, weniger als die Hälfte.
-- Die Gesamtzahl stieg um <InlineMath math="\frac{450}{3{.}000}=15\%" />, nicht um mehr als <InlineMath math="20\%" />.
+Gesucht ist also Woche <InlineMath math="8" />. Am Ende von Woche <InlineMath math="7" /> liegt der Gesamtbestand noch bei <InlineMath math="426-224=202" /> Tonnen, also nicht unter <InlineMath math="200" />. Am Ende von Woche <InlineMath math="8" /> sind es <InlineMath math="426-256=170" /> Tonnen.
 
-Zu den Daten passt also die Aussage, dass der Anteil der ausgeliehenen Naturwissenschaftsbücher an der Gesamtzahl gesunken ist.
+Berechne jetzt den Bestand jedes Lagers nach <InlineMath math="8" /> Wochen:
+
+<BlockMath math="\begin{aligned}
+\text{Anggrek}: \quad 180-8\times16 &= 52 \\
+\text{Bakung}: \quad 150-8\times11 &= 62 \\
+\text{Cempaka}: \quad 96-8\times5 &= 56
+\end{aligned}" />
+
+Vom größten zum kleinsten: Bakung mit <InlineMath math="62" /> Tonnen, Cempaka mit <InlineMath math="56" />, dann Anggrek mit <InlineMath math="52" />. Kontrolle: <InlineMath math="62+56+52=170" />, genau der Gesamtbestand von oben.
+
+Beachte: Anggrek, das Lager mit dem größten Anfangsbestand, ist am Ende das kleinste, weil sein Bestand am schnellsten sinkt. Der Vorsitzende der Genossenschaft hat nur auf den Anfangsbestand geschaut.
+
+Die anderen Reihenfolgen entstehen aus bestimmten Fehlern:
+
+- Bakung, Anggrek, Cempaka ist die Reihenfolge am Ende von Woche <InlineMath math="7" />: Bakung <InlineMath math="73" />, Anggrek <InlineMath math="68" />, Cempaka <InlineMath math="61" />. Das passiert, wenn du <InlineMath math="7{,}0625" /> abrundest, obwohl der Gesamtbestand in dieser Woche noch <InlineMath math="202" /> Tonnen beträgt.
+- Cempaka, Bakung, Anggrek ordnet die Lager danach, wie langsam sie schrumpfen, von <InlineMath math="-5" /> bis <InlineMath math="-16" />. Dabei fehlt der Anfangsbestand.
+- Cempaka, Anggrek, Bakung entsteht, wenn du den Schwund überall vergisst. Die wöchentlichen Rückgänge werden dann <InlineMath math="13" />, <InlineMath math="10" /> und <InlineMath math="3" /> Tonnen, der Gesamtbestand fällt erst in Woche <InlineMath math="9" /> unter <InlineMath math="200" />, und die Bestände sind Anggrek <InlineMath math="63" />, Bakung <InlineMath math="60" />, Cempaka <InlineMath math="69" />.
+- Anggrek, Cempaka, Bakung entsteht, wenn die Woche stimmt, du aber beim Bestand jedes Lagers den Schwund vergisst. Dann kommen Anggrek <InlineMath math="76" />, Bakung <InlineMath math="70" />, Cempaka <InlineMath math="72" /> heraus.
+
+Am Ende dieser Woche lautet die Reihenfolge vom größten zum kleinsten Bestand also Bakung, Cempaka, dann Anggrek.
