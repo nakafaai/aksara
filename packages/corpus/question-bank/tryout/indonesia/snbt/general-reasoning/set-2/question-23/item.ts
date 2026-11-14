@@ -2,34 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
     topic: "data-interpretation",
   },
-  stimulus: "mebel",
+  stimulus: "meteran",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Februari",
+          label: "Lebih murah $$\\text{Rp}25{.}000$$",
         },
         {
           correct: false,
-          label: "Maret",
+          label: "Lebih murah $$\\text{Rp}10{.}000$$",
         },
         {
           correct: true,
-          label: "April",
+          label: "Lebih mahal $$\\text{Rp}4{.}000$$",
         },
         {
           correct: false,
-          label: "Mei",
+          label: "Lebih mahal $$\\text{Rp}29{.}000$$",
         },
         {
           correct: false,
-          label: "Juni",
+          label: "Lebih mahal $$\\text{Rp}76{.}000$$",
         },
       ],
     },

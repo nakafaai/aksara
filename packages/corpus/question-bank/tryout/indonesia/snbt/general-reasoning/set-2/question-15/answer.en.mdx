@@ -1,19 +1,31 @@
-From the four possible arrangements, keep those that meet **the extra condition: Fajar in the top row**. Only arrangements II and IV do.
+A statement that **must be true** has to hold in every arrangement that meets all six rules. To throw an option out, one valid arrangement that contradicts it is enough. To accept an option, you need a proof that covers every possibility.
 
-| Arrangement | Top row (columns 1, 2, 3) | Bottom row (columns 1, 2, 3) |
-| --- | --- | --- |
-| II | Caca, Ana, Fajar | Beni, Doni, Eli |
-| IV | Caca, Fajar, Ana | Beni, Eli, Doni |
+Start with two facts you'll use at every step.
 
-You can also derive this directly. If Fajar is on top, Eli, who shares Fajar's column, is below. Beni shares Eli's row, so Beni is also below, in column 1. Caca therefore takes the top locker in column 1.
+- Fikri and Galih can't be in the medical post. That post has only two seats, Jihan already takes one (rule 4), and Fikri and Galih must sit together (rule 1).
+- Putri can't share a post with Fikri and Galih. Their post has only one seat left. If Putri takes it, neither Hana nor Indra is in that post, so rule 3 fails.
 
-In both arrangements, **Caca is in the top row**. This statement must be true.
+Now prove that Kurnia and Nanda never share a post. Suppose they do, and check each of the three posts.
 
-The other options are not certain:
+- Medical is impossible, because next to Jihan there's only one free seat.
+- Registration is impossible too. Kurnia in registration makes rule 6 demand Nanda in logistics, not in registration.
+- Logistics is impossible as well. Nanda can't be with Fikri (rule 5), so Fikri and Galih aren't in logistics, and by the first fact they aren't in medical either. That puts Fikri and Galih in registration. Now one seat is left in registration, one in logistics and one in medical, and Hana, Indra and Putri must fill them. The three of them end up in three different posts, so Putri is with neither Hana nor Indra, and rule 3 fails.
 
-- Ana is in column 2 in arrangement II but in column 3 in arrangement IV.
-- Eli is in column 3 in arrangement II but in column 2 in arrangement IV.
-- In II, Doni is in column 2 and Fajar in column 3. In IV, Doni is in column 3 and Fajar in column 2. Doni is never directly below Fajar.
-- Beni is always in the bottom row in both arrangements.
+All three posts are ruled out, so **Kurnia and Nanda are always in different posts**.
 
-So if Fajar's locker is in the top row, Caca's locker must be in the top row.
+For the other four options, these three valid arrangements are enough to refute them.
+
+| Example | Registration | Logistics | Medical |
+| --- | --- | --- | --- |
+| First | Fikri, Galih, Hana | Indra, Kurnia, Putri | Jihan, Nanda |
+| Second | Fikri, Galih, Kurnia | Hana, Nanda, Putri | Indra, Jihan |
+| Third | Hana, Nanda, Putri | Fikri, Galih, Indra | Jihan, Kurnia |
+
+All three meet every rule. In the second example, Kurnia is in registration, but Nanda is in logistics, so rule 6 still holds. In every example, Putri is with Hana or Indra, and Nanda is never with Fikri.
+
+- "Kurnia isn't in the registration post" is refuted by the second example. Rule 6 doesn't ban Kurnia from registration. It only demands Nanda in logistics when Kurnia is there.
+- "Putri is in the same post as Nanda" is refuted by the first example, where Putri is in logistics and Nanda is in medical. The pattern shows up often, but often isn't always.
+- "Hana or Indra is in the medical post" is also refuted by the first example, whose medical post holds Jihan and Nanda. Hana and Indra do have to split up, but they can split between registration and logistics.
+- "Fikri is in the registration post" is refuted by the third example. This trap catches you if you only try the case with Fikri and Galih in registration.
+
+So the statement that must be true is that Kurnia and Nanda don't work in the same post.

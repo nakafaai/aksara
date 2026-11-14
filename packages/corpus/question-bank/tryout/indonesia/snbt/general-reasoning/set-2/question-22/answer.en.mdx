@@ -1,25 +1,32 @@
-The key is **the last number in each row**. Rows 1 to <InlineMath math="k" /> hold <InlineMath math="1+2+\cdots+k" /> numbers, so the last number in row <InlineMath math="k" /> is
+Each percentage in this problem comes from **a different group**: <InlineMath math="60\%" /> of all participants, half of those who failed stage 1, <InlineMath math="75\%" /> of those who passed directly, and <InlineMath math="52\%" /> of all participants again. The safest move is to turn everything into numbers of people from one shared starting group.
 
-<BlockMath math="1+2+\cdots+k=\frac{k(k+1)}{2}" />
-
-Find the first row whose last number reaches <InlineMath math="100" />:
+Since every figure is a percentage, you can assume there were <InlineMath math="100" /> participants at the start. Work out the size of each group first.
 
 <BlockMath math="\begin{aligned}
-k=13 &: \frac{13\times14}{2}=91 \\
-k=14 &: \frac{14\times15}{2}=105
+\text{passed directly} &= 60\%\times100 = 60 \\
+\text{failed stage 1} &= 100-60 = 40 \\
+\text{passed the retake} &= \tfrac12\times40 = 20
 \end{aligned}" />
 
-Row <InlineMath math="13" /> ends at <InlineMath math="91" />, so row <InlineMath math="14" /> holds <InlineMath math="92" /> to <InlineMath math="105" />. The number <InlineMath math="100" /> sits in that row at position
+Of the <InlineMath math="60" /> who passed directly, <InlineMath math="75\%" /> passed stage 2.
 
-<BlockMath math="100-91=9" />
+<BlockMath math="75\%\times60 = 45" />
 
-Check with the sample rows: row <InlineMath math="4" /> ends at <InlineMath math="\frac{4\times5}{2}=10" />, which matches the arrangement given.
+Altogether, <InlineMath math="52\%\times100=52" /> people passed stage 2. Anyone who didn't come through the direct route must have come through the retake.
 
-The other options come from these mistakes:
+<BlockMath math="52-45 = 7" />
 
-- Row <InlineMath math="13" /> comes from treating the row that ends at <InlineMath math="91" /> as if it still contained <InlineMath math="100" />.
-- Position <InlineMath math="5" /> comes from counting back from <InlineMath math="105" />, since <InlineMath math="105-100=5" />.
-- Position <InlineMath math="10" /> comes from using <InlineMath math="100-90" />, as if the previous row ended at <InlineMath math="90" />.
-- Row <InlineMath math="10" />, position <InlineMath math="10" /> comes from the wrong idea that <InlineMath math="100=10\times10" /> fixes its place.
+Now watch the divisor. The question asks for a percentage **of those who passed through the retake**, and that's <InlineMath math="20" /> people.
 
-So <InlineMath math="100" /> is in row <InlineMath math="14" />, position <InlineMath math="9" />.
+<BlockMath math="\frac{7}{20}\times100\% = 35\%" />
+
+Check it backwards: if <InlineMath math="35\%" /> of <InlineMath math="20" /> people pass, that's <InlineMath math="7" /> people. Together with the <InlineMath math="45" /> from the direct route, that makes <InlineMath math="52" />, which matches <InlineMath math="52\%" /> of <InlineMath math="100" /> participants.
+
+The other options come from a wrong divisor or a wrong average:
+
+- <InlineMath math="7\%" /> stops at <InlineMath math="7" /> people out of the original <InlineMath math="100" />. It hasn't been divided by the retake group yet.
+- <InlineMath math="17.5\%" /> divides <InlineMath math="7" /> by <InlineMath math="40" />, everyone who failed stage 1. But half of them dropped out at the retake and never sat stage 2.
+- <InlineMath math="55\%" /> first finds the stage-2 pass rate for everyone in stage 2, <InlineMath math="\tfrac{52}{80}=65\%" />, then treats <InlineMath math="65\%" /> as a plain average of <InlineMath math="75\%" /> and the answer. That average should be weighted <InlineMath math="60" /> people to <InlineMath math="20" /> people, not equally.
+- <InlineMath math="65\%" /> is the stage-2 pass rate for both routes combined, not for the retake route alone.
+
+So <InlineMath math="35\%" /> of the participants who passed through the retake went on to pass stage 2.

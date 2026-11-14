@@ -1,22 +1,30 @@
-Mark each statement Benar (true) or Salah (false). First compute **the price per kilogram** and the member price of the <InlineMath math="25\text{ kg}" /> pack, since all four statements use these numbers.
+Machine X is faster while it works, but it keeps pausing. Machine Y is slower, but it never stops. So who's ahead **depends on the moment you look**, and each statement has to be checked at its own time.
+
+Look at X's pattern over one <InlineMath math="10" />-minute cycle: <InlineMath math="8" /> minutes of work make <InlineMath math="8\times60=480" /> sheets, then it rests for <InlineMath math="2" /> minutes. In the same <InlineMath math="10" /> minutes, Y makes <InlineMath math="500" /> sheets. While X works, it gains <InlineMath math="60-50=10" /> sheets per minute on Y. While X rests, Y pulls ahead by <InlineMath math="50" /> sheets per minute. This table records both totals at the end of each work spell and each rest.
+
+| Minute | X total | Y total | X minus Y |
+| --- | --- | --- | --- |
+| <InlineMath math="8" /> | <InlineMath math="480" /> | <InlineMath math="400" /> | <InlineMath math="+80" /> |
+| <InlineMath math="10" /> | <InlineMath math="480" /> | <InlineMath math="500" /> | <InlineMath math="-20" /> |
+| <InlineMath math="18" /> | <InlineMath math="960" /> | <InlineMath math="900" /> | <InlineMath math="+60" /> |
+| <InlineMath math="20" /> | <InlineMath math="960" /> | <InlineMath math="1{,}000" /> | <InlineMath math="-40" /> |
+| <InlineMath math="28" /> | <InlineMath math="1{,}440" /> | <InlineMath math="1{,}400" /> | <InlineMath math="+40" /> |
+| <InlineMath math="30" /> | <InlineMath math="1{,}440" /> | <InlineMath math="1{,}500" /> | <InlineMath math="-60" /> |
+
+Statement 1 is Salah (false). Y first catches X during X's first rest: X sits at <InlineMath math="480" />, and Y reaches <InlineMath math="480" /> at minute <InlineMath math="480\div50=9.6" />. But once X works again, it gets ahead again. For example, at minute <InlineMath math="13" /> X has printed <InlineMath math="480+3\times60=660" /> sheets, while Y has only <InlineMath math="13\times50=650" />. X's average rate really is <InlineMath math="480\div10=48" /> sheets per minute, less than <InlineMath math="50" />, but that doesn't mean X is behind at every moment.
+
+Statement 2 is Benar (true). Minute <InlineMath math="30" /> is the end of the third cycle, so X has worked <InlineMath math="3\times8=24" /> minutes and printed <InlineMath math="24\times60=1{,}440" /> sheets. Y has printed <InlineMath math="30\times50=1{,}500" /> sheets. The gap is <InlineMath math="1{,}500-1{,}440=60" /> sheets in Y's favour. The quick count <InlineMath math="30\times60=1{,}800" /> is wrong because it pretends X never stops.
+
+Statement 3 is Benar (true). With a <InlineMath math="1" />-minute rest, a cycle lasts <InlineMath math="9" /> minutes. During the <InlineMath math="8" /> working minutes, X's lead grows by <InlineMath math="8\times10=80" /> sheets. During the <InlineMath math="1" />-minute rest, the lead shrinks by <InlineMath math="50" /> sheets. The lowest point of each cycle is at the end of the rest, so those are the points to check.
 
 <BlockMath math="\begin{aligned}
-\text{5 kg pack} &: \frac{68{,}000}{5}=13{,}600 \text{ per kg} \\
-\text{25 kg pack, non-member} &: \frac{320{,}000}{25}=12{,}800 \text{ per kg} \\
-\text{25 kg pack, member} &: 0.9\times320{,}000=288{,}000
+\text{end of rest 1} &: 0+80-50 = 30 \\
+\text{end of rest 2} &: 30+80-50 = 60 \\
+\text{end of rest 3} &: 60+80-50 = 90
 \end{aligned}" />
 
-**Statement 1** is true, because <InlineMath math="12{,}800<13{,}600" />.
+X's lead at the lowest points keeps rising by <InlineMath math="30" /> sheets per cycle and never goes negative. At the very start, both totals are <InlineMath math="0" />. So X's total is never less than Y's.
 
-**Statement 2** is true. Five <InlineMath math="5\text{ kg}" /> packs cost <InlineMath math="5\times68{,}000=340{,}000" />, and <InlineMath math="340{,}000-288{,}000=52{,}000" />.
+Statement 4 is Salah (false). For <InlineMath math="1{,}200" /> sheets, X needs <InlineMath math="1{,}200\div60=20" /> minutes of work, which is <InlineMath math="8+8+4" /> minutes. There are two <InlineMath math="2" />-minute rests in between, so X finishes at minute <InlineMath math="8+2+8+2+4=24" />. Y needs <InlineMath math="1{,}200\div50=24" /> minutes. They finish **at the same time**, so X isn't faster. The answer "X finishes in <InlineMath math="20" /> minutes" forgets the rests.
 
-**Statement 3** is false. One <InlineMath math="25\text{ kg}" /> pack and one <InlineMath math="5\text{ kg}" /> pack is cheaper:
-
-<BlockMath math="\begin{aligned}
-6\times68{,}000 &= 408{,}000 \\
-320{,}000+68{,}000 &= 388{,}000
-\end{aligned}" />
-
-**Statement 4** is false. The member price per kilogram is <InlineMath math="\frac{288{,}000}{25}=11{,}520" />, more than <InlineMath math="11{,}000" />.
-
-So statements 1 and 2 are true, and statements 3 and 4 are false.
+So statements 2 and 3 are true, and statements 1 and 4 are false.

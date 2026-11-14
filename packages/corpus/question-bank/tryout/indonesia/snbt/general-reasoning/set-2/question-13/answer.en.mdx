@@ -1,19 +1,38 @@
-A negation must be true **exactly when the original statement is false**. The original statement is false as soon as one passing vehicle fails to meet both conditions together.
+You're looking for the sentence that always has the same truth value as the original, in every situation. Give its four parts a symbol each.
 
-Work in two steps:
+- <InlineMath math="p" />: Rendi returns the book late.
+- <InlineMath math="q" />: the book is a reference item.
+- <InlineMath math="r" />: Rendi pays a fine.
+- <InlineMath math="s" />: Rendi's membership card is frozen.
 
-1. The negation of "every passing vehicle meets the condition" is "**some** passing vehicle does not meet the condition".
-2. The condition has the form "pays the toll **and** has an electronic card". The negation of a conjunction is the disjunction of the negations: "does not pay the toll **or** does not have a card".
+The original statement is <InlineMath math="(p \wedge q) \Rightarrow (r \vee s)" />. The safest way to compare compound implications is to **rewrite everything in "or" form**, using the rule <InlineMath math="(A \Rightarrow B) \equiv (\neg A \vee B)" />. The negation of "<InlineMath math="p" /> and <InlineMath math="q" />" is "not <InlineMath math="p" /> or not <InlineMath math="q" />" (De Morgan's law).
 
-<BlockMath math="\neg(p \wedge q) \equiv \neg p \vee \neg q" />
+<BlockMath math="\begin{aligned}
+(p \wedge q) \Rightarrow (r \vee s) &\equiv \neg(p \wedge q) \vee r \vee s \\
+&\equiv \neg p \vee \neg q \vee r \vee s
+\end{aligned}" />
 
-The result: some vehicle passing on that road does not pay the toll or does not have an electronic card.
+This form has four pieces joined by "or". An implication is equivalent to the original when its "or" form contains exactly these four pieces. That gives you a handy rule: every piece that moves across the arrow **must be negated**.
 
-The other options are wrong:
+Rewrite each option the same way.
 
-- The option starting "All vehicles ... do not pay the toll and do not have a card" keeps "all" instead of switching to "some" and negates "and" incorrectly.
-- The option "Some vehicle ... does not pay the toll and does not have a card" is too narrow. A vehicle that pays but has no card already makes the original statement false.
-- Vehicles that do not pass on the road are not part of the original statement.
-- "No passing vehicle pays the toll or has a card" is far stronger than a negation.
+| Option | "Or" form | Equivalent? |
+| --- | --- | --- |
+| Doesn't pay and not frozen, so not late and not reference | <InlineMath math="r \vee s \vee (\neg p \wedge \neg q)" /> | No |
+| Late and doesn't pay, so not reference or frozen | <InlineMath math="\neg p \vee r \vee \neg q \vee s" /> | Yes |
+| Late, reference and pays, so frozen | <InlineMath math="\neg p \vee \neg q \vee \neg r \vee s" /> | No |
+| Late and doesn't pay, so reference or frozen | <InlineMath math="\neg p \vee r \vee q \vee s" /> | No |
+| Not late or not reference, so doesn't pay and not frozen | <InlineMath math="(p \wedge q) \vee (\neg r \wedge \neg s)" /> | No |
 
-So the negation is "Some vehicle passing on that road does not pay the toll or does not have an electronic card".
+The equivalent option moves <InlineMath math="q" /> to the right as <InlineMath math="\neg q" />, and moves <InlineMath math="r" /> to the left as <InlineMath math="\neg r" />. All four pieces come back intact.
+
+Check it with one situation. Say Rendi is late, the book is a reference item, he doesn't pay a fine, and his card isn't frozen. The original is false, because its condition is met but the result doesn't happen. The equivalent option is false too, because "late and doesn't pay" is met while "not reference or frozen" doesn't happen. The two agree.
+
+Each of the other options fails in one situation.
+
+- "Doesn't pay and not frozen, so not late and not reference" gets De Morgan wrong. The correct contrapositive ends with "not late or not reference". If Rendi is late with an ordinary book, pays nothing and his card isn't frozen, the original is true but this option is false.
+- "Late, reference and pays, so frozen" moves <InlineMath math="r" /> to the left without negating it. If Rendi is late with a reference book, pays the fine and his card isn't frozen, the original is true but this option is false.
+- "Late and doesn't pay, so reference or frozen" moves <InlineMath math="q" /> to the right without negating it. It differs from the equivalent option only by the word "not" (*bukan*). If Rendi is late with an ordinary book, doesn't pay and his card isn't frozen, the original is true but this option is false.
+- "Not late or not reference, so doesn't pay and not frozen" is the inverse: both sides negated but not swapped. If Rendi isn't late but pays a fine for something else, the original is true but this option is false.
+
+So the equivalent statement is "If Rendi returns the book late and doesn't pay a fine, then the book isn't a reference item or his membership card is frozen."

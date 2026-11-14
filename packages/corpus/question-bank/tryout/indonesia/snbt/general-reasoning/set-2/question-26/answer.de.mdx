@@ -1,18 +1,34 @@
-Seien Länge und Breite <InlineMath math="p" /> und <InlineMath math="l" />. Gesucht ist der Flächeninhalt <InlineMath math="pl" />. Du **brauchst <InlineMath math="p" /> und <InlineMath math="l" /> nicht einzeln**, nur ihr Produkt.
+Bei einer Aufgabe zur Datensuffizienz sollst du die Frage nicht beantworten, sondern prüfen, ob die Angaben **zu genau einer Antwort führen**. Prüf jede Aussage zuerst für sich und kombiniere sie nur, wenn es nötig ist.
 
-**Aussage (1) allein**. Ein Umfang von <InlineMath math="30" /> ergibt <InlineMath math="p+l=15" />. Viele Paare passen, etwa <InlineMath math="10" /> und <InlineMath math="5" /> mit Fläche <InlineMath math="50" /> oder <InlineMath math="8" /> und <InlineMath math="7" /> mit Fläche <InlineMath math="56" />. Der Flächeninhalt ist nicht eindeutig, also reicht das nicht.
+Der Durchschnitt der drei Punktzahlen ist <InlineMath math="6" />, ihre Summe also <InlineMath math="3\times6=18" />. Benenne die Punktzahlen von klein nach groß: <InlineMath math="a<b<c" />. Es sind verschiedene positive ganze Zahlen mit <InlineMath math="a+b+c=18" />. Gefragt ist <InlineMath math="c" />.
 
-**Aussage (2) allein**. Eine Diagonale von <InlineMath math="11" /> ergibt <InlineMath math="p^2+l^2=121" />. Das Rechteck kann lang und schmal oder fast quadratisch sein, die Fläche ist also wieder nicht eindeutig. Das reicht nicht.
-
-**Beide Aussagen zusammen**. Nutze das Quadrat einer Summe:
+Prüf Aussage (1). Mit <InlineMath math="a=5" /> bleibt <InlineMath math="b+c=13" />. Auf den ersten Blick scheint das zu wenig, weil noch zwei Zahlen unbekannt sind. Die Reihenfolge legt die Antwort aber fest: <InlineMath math="b" /> muss größer als <InlineMath math="5" /> sein und <InlineMath math="c" /> größer als <InlineMath math="b" />.
 
 <BlockMath math="\begin{aligned}
-(p+l)^2 &= p^2+2pl+l^2 \\
-15^2 &= 121+2pl \\
-2pl &= 225-121=104 \\
-pl &= 52
+b=6 &\quad\Rightarrow\quad c=13-6=7, \text{ und } 7>6 \text{ (passt)} \\
+b\ge7 &\quad\Rightarrow\quad c\le13-7=6<b \text{ (passt nicht)}
 \end{aligned}" />
 
-Die Fläche ist eindeutig, nämlich <InlineMath math="52\text{ cm}^2" />. So ein Rechteck gibt es, denn <InlineMath math="p" /> und <InlineMath math="l" /> sind die positiven Lösungen von <InlineMath math="t^2-15t+52=0" />, deren Diskriminante <InlineMath math="225-208=17>0" /> ist. Die Seiten sind keine ganzen Zahlen, die Fläche ist trotzdem bestimmt.
+Die einzige Möglichkeit ist <InlineMath math="5,\ 6,\ 7" />, also <InlineMath math="c=7" />. Aussage (1) allein reicht.
 
-Beide Aussagen zusammen reichen also, jede allein nicht.
+Prüf Aussage (2). Weil die Punktzahlen verschieden sind, ist der Abstand <InlineMath math="c-a" /> mindestens <InlineMath math="2" />. Du musst also nur die Abstände <InlineMath math="2" />, <InlineMath math="3" /> und <InlineMath math="4" /> prüfen, mit jeder möglichen Lage von <InlineMath math="b" /> zwischen <InlineMath math="a" /> und <InlineMath math="c" />.
+
+| Punktzahlen | Summe | Summe gleich <InlineMath math="18" /> |
+| --- | --- | --- |
+| <InlineMath math="a,\ a+1,\ a+2" /> | <InlineMath math="3a+3" /> | <InlineMath math="a=5" />, also <InlineMath math="5,\ 6,\ 7" /> |
+| <InlineMath math="a,\ a+1,\ a+3" /> | <InlineMath math="3a+4" /> | kein ganzzahliges <InlineMath math="a" /> |
+| <InlineMath math="a,\ a+2,\ a+3" /> | <InlineMath math="3a+5" /> | kein ganzzahliges <InlineMath math="a" /> |
+| <InlineMath math="a,\ a+1,\ a+4" /> | <InlineMath math="3a+5" /> | kein ganzzahliges <InlineMath math="a" /> |
+| <InlineMath math="a,\ a+2,\ a+4" /> | <InlineMath math="3a+6" /> | <InlineMath math="a=4" />, also <InlineMath math="4,\ 6,\ 8" /> |
+| <InlineMath math="a,\ a+3,\ a+4" /> | <InlineMath math="3a+7" /> | kein ganzzahliges <InlineMath math="a" /> |
+
+Es gibt zwei Möglichkeiten, <InlineMath math="5,\ 6,\ 7" /> und <InlineMath math="4,\ 6,\ 8" />. Die höchste Punktzahl kann <InlineMath math="7" /> oder <InlineMath math="8" /> sein, Aussage (2) allein reicht also nicht.
+
+Die anderen Optionen entstehen, wenn du zu früh aufhörst:
+
+- "Beide Aussagen zusammen reichen" wählst du, wenn du <InlineMath math="b+c=13" /> für vieldeutig hältst und übersiehst, dass <InlineMath math="5<b<c" /> nur <InlineMath math="6" /> und <InlineMath math="7" /> übrig lässt.
+- "Jede Aussage allein reicht" wählst du, wenn du für Aussage (2) <InlineMath math="5,\ 6,\ 7" /> findest und aufhörst, obwohl <InlineMath math="4,\ 6,\ 8" /> ebenfalls passt.
+- "Aussage (2) allein reicht" vertauscht die beiden Urteile oben.
+- "Keine der Aussagen reicht" übersieht, dass verschiedene ganze Zahlen in fester Reihenfolge die Antwort festlegen können.
+
+Aussage (1) allein reicht also, um die Frage zu beantworten, Aussage (2) allein dagegen nicht.
