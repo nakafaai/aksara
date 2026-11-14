@@ -1,0 +1,177 @@
+
+
+export const metadata = {
+  title: "Leraian Vektor secara Trigonometri",
+  description:
+    "Leraikan vektor condong kepada komponen mengufuk dan menegak menggunakan sinus dan kosinus.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-06-06",
+  dateModified: "2026-09-01",
+  subject: "Vektor",
+};
+
+## Sudut Menentukan Komponen
+
+Apabila vektor membentuk sudut dengan suatu paksi, komponennya boleh dicari menggunakan trigonometri. Ideanya mudah: vektor condong itu menjadi <Highlight>hipotenus bagi segi tiga bersudut tegak</Highlight>, manakala komponennya menjadi sisi mengufuk dan sisi menegak.
+
+Bagi vektor dalam sukuan I, ukur <InlineMath math="\theta" /> dari paksi <InlineMath math="x" /> positif. Komponen mengufuk bersebelahan dengan sudut itu dan komponen menegak bertentangan dengannya. Bagi magnitud vektor <InlineMath math="F>0" />, bahagikan setiap sisi dengan hipotenus, kemudian darabkan semula dengan <InlineMath math="F" />.
+
+<MathContainer>
+  <BlockMath math="\cos\theta=\frac{F_x}{F}\quad\Rightarrow\quad F_x=F\cos\theta" />
+  <BlockMath math="\sin\theta=\frac{F_y}{F}\quad\Rightarrow\quad F_y=F\sin\theta" />
+</MathContainer>
+
+> Kenal pasti sisi yang bersebelahan dengan sudut rujukan sebelum memilih <InlineMath math="\cos" />, dan sisi yang bertentangan sebelum memilih <InlineMath math="\sin" />.
+
+## Daya Condong pada Paksi Koordinat
+
+Bayangkan seutas tali menarik sebuah kotak dengan daya <InlineMath math="\vec{F}" /> ke atas dan ke kanan. Tarikan itu mempunyai **komponen daya ke kanan dan ke atas**. Komponen ke atas tidak semestinya mengangkat kotak itu. Gerakannya juga bergantung pada berat kotak dan daya normal daripada lantai.
+
+<MathVisual
+  title={<>Meleraikan Daya Condong</>}
+  description={
+    <>
+      Daya <InlineMath math="F=50\text{ N}" /> membentuk sudut{" "}
+      <InlineMath math="37^\circ" /> di atas garis mengufuk, jadi
+      komponennya boleh dianggarkan daripada <InlineMath math="\cos37^\circ" /> dan{" "}
+      <InlineMath math="\sin37^\circ" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="F" />,
+    "l2": <InlineMath math="F_x" />,
+    "l3": <InlineMath math="F_y" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 2.4, y: 1.81 }, { x: 3.99, y: 3.01 }], appearance: "primary" },
+      { id: "s1-head", kind: "vector", from: { x: 2.4, y: 1.81 }, to: { x: 3.99, y: 3.01 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 3.99, y: 0 }], appearance: "secondary" },
+      { id: "s2-head", kind: "vector", from: { x: 2, y: 0 }, to: { x: 3.99, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 3.99, y: 0 }, { x: 3.99, y: 1.5 }, { x: 3.99, y: 3.01 }], appearance: "answer" },
+      { id: "s3-head", kind: "vector", from: { x: 3.99, y: 1.5 }, to: { x: 3.99, y: 3.01 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.4, y: 1.81 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "l3", objectId: "s3", at: { x: 3.99, y: 1.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Setiap unit koordinat dalam model ini mewakili <InlineMath math="10\text{ N}" />. Titik akhir <InlineMath math="F_x" /> yang diikuti oleh <InlineMath math="F_y" /> sama dengan titik akhir vektor <InlineMath math="\vec{F}" />. Komponen itu menerangkan daya yang sama dalam dua arah.
+
+### Mengira Komponen Daya Tarikan
+
+Daya <InlineMath math="50\text{ N}" /> bertindak <InlineMath math="37^\circ" /> di atas garis mengufuk. Gunakan **nilai anggaran trigonometri** <InlineMath math="\cos37^\circ\approx0.8" /> dan <InlineMath math="\sin37^\circ\approx0.6" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}
+  F_x&=F\cos\theta \\
+  &\approx50(0.8) \\
+  &=40\text{ N}
+  \end{aligned}" />
+
+  <BlockMath math="\begin{aligned}
+  F_y&=F\sin\theta \\
+  &\approx50(0.6) \\
+  &=30\text{ N}
+  \end{aligned}" />
+</MathContainer>
+
+Dengan pembundaran ini, komponen daya <InlineMath math="50\text{ N}" /> itu ialah lebih kurang tarikan <InlineMath math="40\text{ N}" /> ke kanan dan tarikan <InlineMath math="30\text{ N}" /> ke atas.
+
+Tanpa membundarkan terlalu awal, nilainya lebih kurang <InlineMath math="39.93\text{ N}" /> dan <InlineMath math="30.09\text{ N}" />. Model ini menggunakan sudut <InlineMath math="37^\circ" /> secara terus, jadi koordinatnya bukan tepat <InlineMath math="4" /> dan <InlineMath math="3" />.
+
+Inilah daya tali yang dileraikan pada paksi. Kosinus memberikan bahagian mengufuk dan sinus memberikan bahagian menegak, lebih kurang <InlineMath math="40\text{ N}" /> dan <InlineMath math="30\text{ N}" />, dan kedua-dua bahagian itu membina semula daya <InlineMath math="50\text{ N}" />.
+
+<MathVisual
+  title={<>Meleraikan Daya Tarikan</>}
+  description={<><InlineMath math="F=50\text{ N}" /> pada 37° di atas garis mengufuk bersama komponennya. Satu petak grid ialah 10 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "fx", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 0 } },
+      { id: "fx-head", kind: "polygon", appearance: "construction", vertices: [{ x: 5 * Math.cos((37 * Math.PI) / 180), y: 0 }, { x: 5 * Math.cos((37 * Math.PI) / 180) + -0.25, y: 0.125 }, { x: 5 * Math.cos((37 * Math.PI) / 180) + -0.25, y: -0.125 }] },
+      { id: "fy", kind: "segment", appearance: "secondary", from: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 0 }, to: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) } },
+      { id: "fy-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) }, { x: 5 * Math.cos((37 * Math.PI) / 180) + 0.125, y: 5 * Math.sin((37 * Math.PI) / 180) + -0.25 }, { x: 5 * Math.cos((37 * Math.PI) / 180) + -0.125, y: 5 * Math.sin((37 * Math.PI) / 180) + -0.25 }] },
+      { id: "f", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) } },
+      { id: "f-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) }, { x: 5 * Math.cos((37 * Math.PI) / 180) - (0.25 * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) + ((0.25 / 2) * -3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416), y: 5 * Math.sin((37 * Math.PI) / 180) - (0.25 * 3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416) + ((0.25 / 2) * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) }, { x: 5 * Math.cos((37 * Math.PI) / 180) - (0.25 * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) - ((0.25 / 2) * -3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416), y: 5 * Math.sin((37 * Math.PI) / 180) - (0.25 * 3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416) - ((0.25 / 2) * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) }] },
+    ],
+    labels: [
+      { key: "fx", objectId: "fx", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "fy", objectId: "fy", at: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 1.5 }, placement: "right" },
+      { key: "f", objectId: "f", at: { x: 2, y: 1.5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    fx: <InlineMath math="F_x=F\cos37^\circ\approx40\text{ N}" />,
+    fy: <InlineMath math="F_y=F\sin37^\circ\approx30\text{ N}" />,
+    f: <InlineMath math="F=50\text{ N}" />,
+  }}
+/>
+
+## Sudut dari Paksi Menegak
+
+Kekalkan daya itu dalam sukuan I, tetapi ukur **sudut dari paksi menegak positif** ke arah daya. Komponen yang bersebelahan dengan <InlineMath math="\theta" /> kini ialah <InlineMath math="F_y" />, manakala <InlineMath math="F_x" /> bertentangan dengan sudut itu.
+
+<MathContainer>
+  <BlockMath math="F_y=F\cos\theta" />
+  <BlockMath math="F_x=F\sin\theta" />
+</MathContainer>
+
+Sebelum menggunakan rumus, sentiasa tanya diri kamu: dari paksi mana sudut itu diukur? Semakan kecil ini mengelakkan kesilapan lazim semasa meleraikan vektor.
+
+## Tanda Komponen Mengikut Sukuan
+
+Jika <InlineMath math="\theta" /> ialah **sudut kedudukan piawai penuh** yang diukur lawan arah jam dari <InlineMath math="x" /> positif, <InlineMath math="\cos\theta" /> dan <InlineMath math="\sin\theta" /> sudah memberikan tanda komponen. Jika sudut rujukan tirus digunakan, kira dahulu magnitud komponen, kemudian tentukan tandanya mengikut sukuan.
+
+| Arah vektor | Tanda <InlineMath math="F_x" /> | Tanda <InlineMath math="F_y" /> |
+| :--------------- | :------------------------------- | :------------------------------- |
+| atas dan kanan | positif | positif |
+| atas dan kiri | negatif | positif |
+| bawah dan kiri | negatif | negatif |
+| bawah dan kanan | positif | negatif |
+
+Jika daya menghala ke atas dan ke kiri, komponen mengufuknya negatif kerana ia bertentangan dengan paksi <InlineMath math="x" /> positif, manakala komponen menegaknya kekal positif.
+
+Ukur sudut dari paksi x positif mengikut lawan arah jam, dan sukuan akan memberikan tandanya. Setiap anak panah mempunyai saiz yang sama, tetapi komponennya mengambil tanda sukuan yang ditujunya. Besarkan paparan pada setiap hujung anak panah.
+
+<MathVisual
+  title={<>Tanda Komponen Mengikut Sukuan</>}
+  description={<>Empat daya yang sama saiz pada 30, 150, 210 dan 330 darjah.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: -3 }, to: { x: 0, y: 3 } },
+      { id: "q30", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: (3 * Math.sqrt(3)) / 2, y: 1.5 } },
+      { id: "q30-head", kind: "polygon", appearance: "primary", vertices: [{ x: (3 * Math.sqrt(3)) / 2, y: 1.5 }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) + ((0.25 / 2) * -1.5) / Math.hypot(2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(2.598076211353316, 1.5) + ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) - ((0.25 / 2) * -1.5) / Math.hypot(2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(2.598076211353316, 1.5) - ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) }] },
+      { id: "q150", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -(3 * Math.sqrt(3)) / 2, y: 1.5 } },
+      { id: "q150-head", kind: "polygon", appearance: "secondary", vertices: [{ x: -(3 * Math.sqrt(3)) / 2, y: 1.5 }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) + ((0.25 / 2) * -1.5) / Math.hypot(-2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(-2.598076211353316, 1.5) + ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) - ((0.25 / 2) * -1.5) / Math.hypot(-2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(-2.598076211353316, 1.5) - ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) }] },
+      { id: "q210", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -(3 * Math.sqrt(3)) / 2, y: -1.5 } },
+      { id: "q210-head", kind: "polygon", appearance: "construction", vertices: [{ x: -(3 * Math.sqrt(3)) / 2, y: -1.5 }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) + ((0.25 / 2) * 1.5) / Math.hypot(-2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(-2.598076211353316, -1.5) + ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) - ((0.25 / 2) * 1.5) / Math.hypot(-2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(-2.598076211353316, -1.5) - ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) }] },
+      { id: "q330", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: (3 * Math.sqrt(3)) / 2, y: -1.5 } },
+      { id: "q330-head", kind: "polygon", appearance: "answer", vertices: [{ x: (3 * Math.sqrt(3)) / 2, y: -1.5 }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) + ((0.25 / 2) * 1.5) / Math.hypot(2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(2.598076211353316, -1.5) + ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) - ((0.25 / 2) * 1.5) / Math.hypot(2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(2.598076211353316, -1.5) - ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) }] },
+    ],
+    labels: [
+      { key: "q30", objectId: "q30", at: { x: (3 * Math.sqrt(3)) / 2, y: 1.5 }, placement: "above" },
+      { key: "q150", objectId: "q150", at: { x: -(3 * Math.sqrt(3)) / 2, y: 1.5 }, placement: "above" },
+      { key: "q210", objectId: "q210", at: { x: -(3 * Math.sqrt(3)) / 2, y: -1.5 }, placement: "below" },
+      { key: "q330", objectId: "q330", at: { x: (3 * Math.sqrt(3)) / 2, y: -1.5 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    q30: <InlineMath math="F_x>0,\ F_y>0" />,
+    q150: <InlineMath math="F_x<0,\ F_y>0" />,
+    q210: <InlineMath math="F_x<0,\ F_y<0" />,
+    q330: <InlineMath math="F_x>0,\ F_y<0" />,
+  }}
+/>

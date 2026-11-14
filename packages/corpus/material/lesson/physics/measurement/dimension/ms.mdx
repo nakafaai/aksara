@@ -1,0 +1,183 @@
+
+export const metadata = {
+  title: "Dimensi",
+  description:
+    "Dimensi fizik menulis kuantiti terbitan sebagai kuasa kuantiti asas dan menguji sama ada rumus konsisten dari segi dimensi tanpa menggunakan nilai berangka.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-04-25",
+  dateModified: "2026-09-12",
+  subject: "Pengukuran dalam Kerja Saintifik",
+};
+
+## Dimensi Menerangkan Jenis Kuantiti
+
+Dalam bahasa harian, dimensi selalunya bermaksud ukuran ruang seperti panjang, lebar dan tinggi. Dalam fizik, **dimensi** menunjukkan kuantiti asas dan kuasa yang membentuk sesuatu kuantiti fizik.
+
+Contohnya, panjang bolt, diameter nat, jejari guli dan jarak perjalanan boleh menggunakan unit yang berbeza, tetapi semuanya masih kuantiti yang sama jenis.
+
+Panjang, diameter, jejari dan jarak semuanya mempunyai dimensi panjang <InlineMath math="[\mathrm{L}]" />.
+
+Dimensi tidak menyatakan nilai yang diukur. Dimensi memberitahu kamu *jenis kuantiti fizik* yang sedang diukur.
+
+## Membaca Kuasa dalam Rumus Dimensi
+
+Rajah di bawah hanya memberi tumpuan kepada dimensi panjang. Tukar daripada panjang kepada luas, kemudian kepada isi padu. Perhatikan cara satu, dua dan tiga **faktor panjang** memberikan dimensi <InlineMath math="[\mathrm{L}]" />, <InlineMath math="[\mathrm{L}]^2" /> dan <InlineMath math="[\mathrm{L}]^3" />.
+
+<DimensionLab
+  title={<>Daripada Panjang kepada Luas dan Isi Padu</>}
+  description={
+    <>
+      Pilih bentuk yang dibina daripada faktor panjang untuk melihat rumus, unit
+      dan dimensinya.
+    </>
+  }
+  labels={{
+    chooseMode: "Pilih bentuk dimensi",
+    dimension: "Dimensi",
+    formula: "Rumus",
+    modes: {
+      length: "Panjang",
+      area: "Luas",
+      volume: "Isi padu",
+    },
+    unit: "Unit S.I.",
+  }}
+/>
+
+## Kuantiti Asas dalam Analisis Dimensi
+
+Sistem Unit Antarabangsa atau S.I. menggunakan <InlineMath math="7" /> kuantiti asas. Dimensi bagi kuantiti terbitan ditulis sebagai **hasil darab kuasa** tujuh dimensi asas itu.
+
+| Kuantiti asas | Contoh simbol | Dimensi |
+| :------------ | :------------- | :-------- |
+| Panjang | <InlineMath math="\ell,\ x,\ r" /> | <InlineMath math="[\mathrm{L}]" /> |
+| Jisim | <InlineMath math="m" /> | <InlineMath math="[\mathrm{M}]" /> |
+| Masa | <InlineMath math="t" /> | <InlineMath math="[\mathrm{T}]" /> |
+| Arus elektrik | <InlineMath math="I" /> | <InlineMath math="[\mathrm{I}]" /> |
+| Suhu termodinamik | <InlineMath math="T" /> | <InlineMath math="[\Theta]" /> |
+| Kuantiti bahan | <InlineMath math="n" /> | <InlineMath math="[\mathrm{N}]" /> |
+| Keamatan berluminositi | <InlineMath math="I_v" /> | <InlineMath math="[\mathrm{J}]" /> |
+
+Dimensi ditulis dalam kurungan segi empat supaya tidak tertukar dengan unit. Contohnya, <InlineMath math="[\mathrm{L}]" /> ialah dimensi panjang, manakala <InlineMath math="\text{m}" /> ialah unit meter.
+
+## Menerbitkan Dimensi daripada Rumus
+
+Analisis dimensi dilakukan dengan **menggantikan setiap kuantiti dalam rumus dengan dimensinya**, kemudian meringkaskan kuasanya.
+
+<BlockMath math="\begin{aligned}
+[A] &= [l][w] = [\mathrm{L}][\mathrm{L}] = [\mathrm{L}]^2 \\
+[V] &= [l][w][h] = [\mathrm{L}]^3 \\
+[v] &= \frac{[\Delta s]}{[\Delta t]} = \frac{[\mathrm{L}]}{[\mathrm{T}]} = [\mathrm{L}][\mathrm{T}]^{-1} \\
+[a] &= \frac{[\Delta v]}{[\Delta t]} = \frac{[\mathrm{L}][\mathrm{T}]^{-1}}{[\mathrm{T}]} = [\mathrm{L}][\mathrm{T}]^{-2}
+\end{aligned}" />
+
+Daya, kerja dan kuasa juga boleh dibaca sebagai susunan dimensi.
+
+<BlockMath math="\begin{aligned}
+[F] &= [m][a] = [\mathrm{M}][\mathrm{L}][\mathrm{T}]^{-2} \\
+[W] &= [F][\Delta s] = [\mathrm{M}][\mathrm{L}]^2[\mathrm{T}]^{-2} \\
+[P] &= \frac{[W]}{[t]} = [\mathrm{M}][\mathrm{L}]^2[\mathrm{T}]^{-3}
+\end{aligned}" />
+
+Letakkan setiap kuantiti mengikut kuasa panjang, jisim dan masanya: melintang, ke atas dan ke dalam halaman. Pendaraban menambah kuasa, jadi jisim <InlineMath math="\mathrm{M}" /> ditambah pecutan <InlineMath math="\mathrm{LT^{-2}}" /> meletakkan daya pada <InlineMath math="\mathrm{LMT^{-2}}" />. Putar rajah ini dan ikut langkahnya.
+
+<MathVisual
+  title={<>Tiga Langkah Analisis Dimensi</>}
+  description={<>Kuasa L (melintang), M (ke atas) dan T (kedalaman) bagi jisim, pecutan dan daya.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.5, max: 1.5 }, z: { min: -2.5, max: 0.5 } },
+    view: { kind: "camera", position: { x: 4, y: 3, z: 3 }, target: { x: 0.5, y: 0.5, z: -1 } },
+    objects: [
+      { id: "m", kind: "segment", appearance: "secondary", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 1, z: 0 } },
+      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 1, z: 0 }, to: { x: 1, y: 1, z: -2 } },
+      { id: "f", kind: "segment", appearance: "answer", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 1, z: -2 } },
+      { id: "m-end", kind: "point", appearance: "secondary", at: { x: 0, y: 1, z: 0 } },
+      { id: "f-end", kind: "point", appearance: "answer", at: { x: 1, y: 1, z: -2 } },
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0, z: 0 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m-end", at: { x: 0, y: 1, z: 0 }, placement: "above" },
+      { key: "f", objectId: "f-end", at: { x: 1, y: 1, z: -2 }, placement: "right" },
+      { key: "o", objectId: "origin", at: { x: 0, y: 0, z: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    m: <InlineMath math="m:\ \mathrm{M}" />,
+    f: <InlineMath math="F=ma:\ \mathrm{LMT^{-2}}" />,
+    o: <InlineMath math="(0,0,0)" />,
+  }}
+/>
+
+## Menyemak Kekonsistenan Dimensi dalam Rumus
+
+Dimensi boleh membantu kamu menyemak sama ada bentuk sesuatu rumus mungkin betul. Setiap sebutan yang dijumlahkan <Highlight>mesti mempunyai dimensi yang sama</Highlight>.
+
+Ambil rumus sesaran bagi gerakan dengan pecutan seragam:
+
+<BlockMath math="s = v_0 t + \frac{1}{2} a t^2" />
+
+Semak dimensinya:
+
+<BlockMath math="\begin{aligned}
+[v_0t] &= [\mathrm{L}][\mathrm{T}]^{-1}[\mathrm{T}] = [\mathrm{L}] \\
+[at^2] &= [\mathrm{L}][\mathrm{T}]^{-2}[\mathrm{T}]^2 = [\mathrm{L}]
+\end{aligned}" />
+
+Kedua-dua sebutan di sebelah kanan mempunyai dimensi <InlineMath math="[\mathrm{L}]" />, jadi rumus ini lulus semakan dimensi. Lulus semakan ini tidak membuktikan bahawa rumus itu betul. Namun, semakan ini tetap boleh mengesan rumus yang mustahil dengan cepat.
+
+<InlineMath math="s+t" /> tidak sah di sini kerana dimensinya berbeza: <InlineMath math="[\mathrm L]\ne[\mathrm T]" />.
+
+Tulis setiap dimensi sebagai kuasa L dan T, dan pendaraban menambah kuasa itu seperti anak panah. Kedua-dua <InlineMath math="v_0t" /> dan <InlineMath math="\tfrac12at^2" /> mendarat pada titik fuchsia, <InlineMath math="\mathrm{L}" />, iaitu dimensi yang sama dengan <InlineMath math="s" />, jadi <InlineMath math="s=v_0t+\tfrac12at^2" /> adalah konsisten. Zum ke tempat anak panah bertemu.
+
+<MathVisual
+  title={<>Setiap Sebutan Mesti Mempunyai Dimensi yang Sama</>}
+  description={<>Kuasa panjang (melintang) dan masa (ke atas) bagi sebutan dalam rumus gerakan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 2.5 }, y: { min: -2.4, max: 0.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "v0", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1, y: -1 } },
+      { id: "v0-head", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: -1 }, { x: 1 - (0.25 * 1) / Math.hypot(1, -1) + ((0.25 / 2) * 1) / Math.hypot(1, -1), y: -1 - (0.25 * -1) / Math.hypot(1, -1) + ((0.25 / 2) * 1) / Math.hypot(1, -1) }, { x: 1 - (0.25 * 1) / Math.hypot(1, -1) - ((0.25 / 2) * 1) / Math.hypot(1, -1), y: -1 - (0.25 * -1) / Math.hypot(1, -1) - ((0.25 / 2) * 1) / Math.hypot(1, -1) }] },
+      { id: "t", kind: "segment", appearance: "secondary", from: { x: 1, y: -1 }, to: { x: 1, y: 0 } },
+      { id: "t-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 1, y: 0 }, { x: 1.125, y: -0.25 }, { x: 0.875, y: -0.25 }] },
+      { id: "a", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 1, y: -2 } },
+      { id: "a-head", kind: "polygon", appearance: "construction", vertices: [{ x: 1, y: -2 }, { x: 1 - (0.25 * 1) / Math.hypot(1, -2) + ((0.25 / 2) * 2) / Math.hypot(1, -2), y: -2 - (0.25 * -2) / Math.hypot(1, -2) + ((0.25 / 2) * 1) / Math.hypot(1, -2) }, { x: 1 - (0.25 * 1) / Math.hypot(1, -2) - ((0.25 / 2) * 2) / Math.hypot(1, -2), y: -2 - (0.25 * -2) / Math.hypot(1, -2) - ((0.25 / 2) * 1) / Math.hypot(1, -2) }] },
+      { id: "t2", kind: "segment", appearance: "highlight", from: { x: 1, y: -2 }, to: { x: 1, y: 0 } },
+      { id: "t2-head", kind: "polygon", appearance: "highlight", vertices: [{ x: 1, y: 0 }, { x: 1.125, y: -0.25 }, { x: 0.875, y: -0.25 }] },
+      { id: "length", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+    ],
+    labels: [
+      { key: "v0", objectId: "v0", at: { x: 0.5, y: -0.5 }, placement: "above-left" },
+      { key: "a", objectId: "a", at: { x: 0.5, y: -1 }, placement: "left" },
+      { key: "t", objectId: "t", at: { x: 1, y: -0.5 }, placement: "right" },
+      { key: "t2", objectId: "t2", at: { x: 1, y: -1.5 }, placement: "right" },
+      { key: "length", objectId: "length", at: { x: 1, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    v0: <InlineMath math="v_0:\ \mathrm{LT^{-1}}" />,
+    a: <InlineMath math="a:\ \mathrm{LT^{-2}}" />,
+    t: <InlineMath math="\cdot t:\ \mathrm{T}" />,
+    t2: <InlineMath math="\cdot t^2:\ \mathrm{T^2}" />,
+    length: <InlineMath math="\mathrm{L}" />,
+  }}
+/>
+
+## Satu Objek Boleh Mempunyai Banyak Kuantiti
+
+Bolt dan nat nampak seperti objek kecil, tetapi mengukurnya boleh melibatkan beberapa kuantiti yang berbeza. Itulah sebabnya satu objek kadang-kadang memerlukan lebih daripada satu alat pengukur.
+
+| Apa yang disemak | Alat yang sesuai | Dimensi |
+| :-------------- | :------------ | :-------- |
+| Panjang bolt | pembaris atau angkup vernier | <InlineMath math="[\mathrm{L}]" /> |
+| Diameter luar | angkup vernier atau tolok skru mikrometer | <InlineMath math="[\mathrm{L}]" /> |
+| Luas keratan rentas | dikira daripada diameter | <InlineMath math="[\mathrm{L}]^2" /> |
+| Isi padu bahan | dikira daripada ukuran ruang | <InlineMath math="[\mathrm{L}]^3" /> |
+| Jisim | neraca | <InlineMath math="[\mathrm{M}]" /> |
+| Ketumpatan | jisim dibahagi dengan isi padu | <InlineMath math="[\mathrm{M}][\mathrm{L}]^{-3}" /> |
+
+Jadi, dua alat pengukur boleh mengukur kuantiti yang dimensinya sama, tetapi setiap alat sesuai untuk konteks yang berbeza. Pembaris sudah memadai untuk panjang yang besar dan tidak memerlukan kepersisan tinggi. Angkup vernier atau tolok skru mikrometer lebih sesuai apabila diameter yang kecil perlu dibaca dengan lebih teliti.
+
+Had semakan ini menjadi jelas jika kita buang <InlineMath math="\frac{1}{2}" /> daripada rumus sesaran. Ungkapan <InlineMath math="s=v_0t+at^2" /> masih mempunyai dimensi panjang di kedua-dua belah, tetapi memberikan sesaran yang salah bagi pecutan malar yang bukan sifar. **Dimensi tidak menentukan faktor berangka** seperti <InlineMath math="\frac{1}{2}" />.

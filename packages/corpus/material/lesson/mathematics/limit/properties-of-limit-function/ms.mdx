@@ -1,0 +1,338 @@
+export const metadata = {
+   title: "Sifat Had Fungsi",
+   description: "Pecahkan had yang rumit kepada langkah tersusun menggunakan petua hasil tambah, hasil darab, hasil bahagi, kuasa dan punca.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   datePublished: "2025-05-26",
+   dateModified: "2026-11-08",
+   subject: "Had",
+};
+
+## Mencari Had daripada Had Setiap Bahagiannya
+
+**Petua had** mengira had bagi hasil tambah, beza, hasil darab atau hasil bahagi daripada had setiap bahagiannya. Semak bahawa had setiap komponen itu wujud. Untuk hasil bahagi, <Highlight>had penyebut juga mesti bukan sifar</Highlight>.
+
+## Sifat Asas Had
+
+Dua petua merangkumi kes yang paling mudah, iaitu had **fungsi pemalar** dan had fungsi identiti. Kedua-duanya boleh dibaca terus daripada graf, dan semua petua lain dibina di atas kedua-dua petua ini.
+
+### Sifat Pemalar
+
+Sifat yang paling mudah ialah had **fungsi pemalar**. Jika <InlineMath math="k" /> ialah pemalar, maka:
+
+<BlockMath math="\lim_{x \to c} k = k" />
+
+Pemalar tidak berubah apabila <InlineMath math="x" /> menghampiri <InlineMath math="c" />, jadi hadnya ialah pemalar itu sendiri.
+
+### Sifat Identiti
+
+Untuk fungsi identiti, hubungan ini berlaku:
+
+<BlockMath math="\lim_{x \to c} x = c" />
+
+Apabila <InlineMath math="x" /> menghampiri <InlineMath math="c" />, nilai fungsi <InlineMath math="f(x) = x" /> juga menghampiri <InlineMath math="c" />.
+
+Bandingkan fungsi pemalar <InlineMath math="y=3" /> dengan fungsi identiti <InlineMath math="y=x" /> apabila <InlineMath math="x" /> menghampiri <InlineMath math="2" />. Fungsi pemalar ada **output yang tidak berubah**. Untuk fungsi identiti, **output mengikut input**.
+
+| Input | Fungsi pemalar | Fungsi identiti |
+| --- | --- | --- |
+| <InlineMath math="1.9" /> | <InlineMath math="3" /> | <InlineMath math="1.9" /> |
+| <InlineMath math="1.99" /> | <InlineMath math="3" /> | <InlineMath math="1.99" /> |
+| <InlineMath math="2.01" /> | <InlineMath math="3" /> | <InlineMath math="2.01" /> |
+| <InlineMath math="2.1" /> | <InlineMath math="3" /> | <InlineMath math="2.1" /> |
+
+## Sifat Operasi Aritmetik
+
+Katakan <InlineMath math="\lim_{x \to c} f(x) = L" /> dan <InlineMath math="\lim_{x \to c} g(x) = M" />, dengan <InlineMath math="L" /> dan <InlineMath math="M" /> ialah nombor nyata. Petua-petua berikut membawa had masuk ke dalam hasil tambah, hasil darab, **faktor pemalar** dan hasil bahagi, asalkan penyebut tidak menghampiri sifar.
+
+### Sifat Penambahan dan Penolakan
+
+Had bagi **hasil tambah** atau **beza** dua fungsi sama dengan hasil tambah atau beza **had setiap fungsi**:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to c} [f(x) + g(x)] \\ &amp;= \lim_{x \to c} f(x) + \lim_{x \to c} g(x) \\ &amp;= L + M \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to c} [f(x) - g(x)] \\ &amp;= \lim_{x \to c} f(x) - \lim_{x \to c} g(x) \\ &amp;= L - M \end{aligned}" />
+</MathContainer>
+
+> Had yang bergabung menjadi beberapa had yang lebih mudah, dan setiap satu boleh dinilai secara berasingan.
+
+Contohnya, apabila <InlineMath math="x\to2" />, had bagi <InlineMath math="x" /> dan <InlineMath math="x+1" /> ialah <InlineMath math="2" /> dan <InlineMath math="3" />. Dengan petua ini, kita dapat:
+
+<BlockMath math="\begin{aligned}\lim_{x\to2}[x+(x+1)]&=2+3=5\\\lim_{x\to2}[x-(x+1)]&=2-3=-1\end{aligned}" />
+
+Lihat petua hasil tambah pada dua garis. Apabila <InlineMath math="x \to 2" />, <InlineMath math="f(x) = \tfrac{x}{2} + 1" /> menuju ke <InlineMath math="2" /> dan <InlineMath math="g(x) = 3 - x" /> menuju ke <InlineMath math="1" />. Hasil tambahnya, <InlineMath math="f(x) + g(x) = 4 - \tfrac{x}{2}" />, menuju ke <InlineMath math="3 = 2 + 1" />, tepat sama dengan hasil tambah kedua-dua had itu.
+
+<MathVisual
+  title={<>Had hasil tambah ialah hasil tambah had</>}
+  description={<>Garis <InlineMath math="f" />, <InlineMath math="g" /> dan <InlineMath math="f + g" /> dengan nilainya pada <InlineMath math="x = 2" />: <InlineMath math="2" />, <InlineMath math="1" /> dan <InlineMath math="3" />.</>}
+  labels={{
+    f: <InlineMath math="f" />,
+    g: <InlineMath math="g" />,
+    sum: <InlineMath math="f + g" />,
+    pf: <InlineMath math="2" />,
+    pg: <InlineMath math="1" />,
+    ps: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.7 }, y: { min: -1.4, max: 4.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "segment", from: { x: 0, y: 1 }, to: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "g", kind: "segment", from: { x: 0, y: 3 }, to: { x: 4, y: -1 }, appearance: "secondary" },
+      { id: "sum", kind: "segment", from: { x: 0, y: 4 }, to: { x: 4, y: 2 }, appearance: "construction" },
+      { id: "pf", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "pg", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "ps", kind: "point", at: { x: 2, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "g", objectId: "g", at: { x: 4, y: -1 }, placement: "right" },
+      { key: "sum", objectId: "sum", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "pf", objectId: "pf", at: { x: 2, y: 2 }, placement: "left" },
+      { key: "pg", objectId: "pg", at: { x: 2, y: 1 }, placement: "left" },
+      { key: "ps", objectId: "ps", at: { x: 2, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
+
+### Sifat Pendaraban
+
+Had bagi **hasil darab** dua fungsi sama dengan hasil darab **had setiap fungsi**:
+
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to c} [f(x) \cdot g(x)] \\ &amp;= \lim_{x \to c} f(x) \cdot \lim_{x \to c} g(x) \\ &amp;= L \cdot M \end{aligned}" />
+
+Contohnya, apabila <InlineMath math="x\to2" />, had bagi <InlineMath math="x" /> dan <InlineMath math="x+1" /> ialah <InlineMath math="2" /> dan <InlineMath math="3" />. Dengan petua ini, kita dapat:
+
+<BlockMath math="\lim_{x\to2}x(x+1)=2\cdot3=6" />
+
+Petua hasil darab juga berlaku dengan cara yang sama. Lengkung <InlineMath math="f(x)g(x) = (\tfrac{x}{2} + 1)(3 - x)" /> melalui <InlineMath math="(2, 2)" />, kerana had-hadnya didarab: <InlineMath math="2 \cdot 1 = 2" />. Lengkung hasil darab itu bukan lagi garis lurus, tetapi hadnya masih datang terus daripada dua faktor itu.
+
+<MathVisual
+  title={<>Had hasil darab ialah hasil darab had</>}
+  description={<>Garis <InlineMath math="f" /> dan <InlineMath math="g" /> serta parabola <InlineMath math="fg" />, yang bernilai <InlineMath math="2 \cdot 1 = 2" /> pada <InlineMath math="x = 2" />.</>}
+  labels={{
+    f: <InlineMath math="f" />,
+    g: <InlineMath math="g" />,
+    product: <InlineMath math="fg" />,
+    pp: <InlineMath math="(2, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.7 }, y: { min: -3.4, max: 4.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "segment", from: { x: 0, y: 1 }, to: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "g", kind: "segment", from: { x: 0, y: 3 }, to: { x: 4, y: -1 }, appearance: "secondary" },
+      { id: "product", kind: "quadratic", inputAxis: "x", coefficients: { a: -1 / 2, b: 1 / 2, c: 3 }, domain: { min: 0, max: 4 }, appearance: "construction" },
+      { id: "pp", kind: "point", at: { x: 2, y: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "g", objectId: "g", at: { x: 4, y: -1 }, placement: "right" },
+      { key: "product", objectId: "product", at: { x: 4, y: -3 }, placement: "right" },
+      { key: "pp", objectId: "pp", at: { x: 2, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
+### Sifat Pendaraban dengan Pemalar
+
+**Pemalar** boleh dikeluarkan daripada tanda had:
+
+<BlockMath math="\lim_{x \to c} [k \cdot f(x)] = k \cdot \lim_{x \to c} f(x) = k \cdot L" />
+
+Dengan faktor pemalar <InlineMath math="5" /> dan <InlineMath math="x\to2" />, kita dapat:
+
+<BlockMath math="\lim_{x\to2}5x=5\lim_{x\to2}x=5\cdot2=10" />
+
+Faktor pemalar meregangkan setiap tinggi dengan kadar yang sama. Berhampiran <InlineMath math="x = 2" />, garis ungu <InlineMath math="y = x" /> menghampiri <InlineMath math="2" />, dan garis jingga <InlineMath math="y = 5x" /> menghampiri <InlineMath math="5 \cdot 2 = 10" />, iaitu lima kali lebih tinggi pada setiap input.
+
+<MathVisual
+  title={<>Faktor pemalar menskalakan had</>}
+  description={<>Garis <InlineMath math="y = x" /> dan <InlineMath math="y = 5x" /> dengan nilainya <InlineMath math="2" /> dan <InlineMath math="10" /> pada <InlineMath math="x = 2" />.</>}
+  labels={{
+    identity: <InlineMath math="y = x" />,
+    scaled: <InlineMath math="y = 5x" />,
+    "p-identity": <InlineMath math="2" />,
+    "p-scaled": <InlineMath math="5 \cdot 2 = 10" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.8 }, y: { min: -0.6, max: 12.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "identity", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4.2, y: 4.2 }, appearance: "secondary" },
+      { id: "scaled", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2.5, y: 12.5 }, appearance: "primary" },
+      { id: "guide", kind: "segment", from: { x: 2, y: 2 }, to: { x: 2, y: 10 }, appearance: "construction" },
+      { id: "p-identity", kind: "point", at: { x: 2, y: 2 }, appearance: "secondary" },
+      { id: "p-scaled", kind: "point", at: { x: 2, y: 10 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "identity", objectId: "identity", at: { x: 4.2, y: 4.2 }, placement: "right" },
+      { key: "scaled", objectId: "scaled", at: { x: 2.5, y: 12.5 }, placement: "right" },
+      { key: "p-identity", objectId: "p-identity", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "p-scaled", objectId: "p-scaled", at: { x: 2, y: 10 }, placement: "left" },
+    ],
+  }}
+/>
+
+### Sifat Pembahagian
+
+Had bagi **hasil bahagi** dua fungsi sama dengan hasil bahagi **had setiap fungsi**, asalkan had penyebut **bukan sifar**:
+
+<BlockMath math="\lim_{x \to c} \frac{f(x)}{g(x)} = \frac{\lim_{x \to c} f(x)}{\lim_{x \to c} g(x)} = \frac{L}{M}" />
+
+Petua hasil bahagi ini berlaku apabila <InlineMath math="M \neq 0" />.
+
+Contohnya, apabila <InlineMath math="x\to2" />, had bagi <InlineMath math="x" /> dan <InlineMath math="x+1" /> ialah <InlineMath math="2" /> dan <InlineMath math="3" />. Dengan petua ini, kita dapat:
+
+<BlockMath math="\lim_{x\to2}\frac{x}{x+1}=\frac23" />
+
+## Sifat Kuasa dan Punca
+
+Kuasa atau punca boleh dibawa melalui had apabila hasilnya kekal **dalam domain**. Syarat domain itu memastikan punca tertakrif, jadi nilai negatif di bawah punca genap menyebabkan petua ini tidak boleh digunakan.
+
+### Sifat Kuasa
+
+Had bagi **fungsi yang dikuasakan** sama dengan **kuasa** bagi had fungsi itu:
+
+<BlockMath math="\lim_{x \to c} [f(x)]^n = \left[\lim_{x \to c} f(x)\right]^n = L^n" />
+
+Dalam petua ini, <InlineMath math="n" /> ialah integer positif.
+
+Untuk indeks integer positif <InlineMath math="3" />, kira had itu daripada had di bahagian dalam:
+
+<BlockMath math="\lim_{x\to2}(x+1)^3=(2+1)^3=27" />
+
+### Sifat Punca
+
+Had bagi **punca suatu fungsi** sama dengan **punca** bagi had fungsi itu:
+
+<BlockMath math="\lim_{x \to c} \sqrt[n]{f(x)} = \sqrt[n]{\lim_{x \to c} f(x)} = \sqrt[n]{L}" />
+
+**Syarat domain**: Punca itu mesti tertakrif untuk input berhampiran titik yang dihampiri.
+- Jika <InlineMath math="n" /> ganjil: punca nyata tertakrif untuk setiap nilai nyata <InlineMath math="L" />
+- Jika <InlineMath math="n" /> genap: fungsi di bawah punca mesti kekal tidak negatif berhampiran titik itu, dan <InlineMath math="L \geq 0" />
+
+Sebagai perbandingan, punca kuasa tiga menerima input nyata yang negatif, tetapi punca kuasa dua nyata tidak:
+
+<BlockMath math="\lim_{x\to-8}\sqrt[3]{x}=\sqrt[3]{-8}=-2" />
+
+## Contoh Penggunaan Sifat Had
+
+Setiap contoh menggunakan **satu petua pada satu masa** dan menyebut nama petua itu, jadi kamu boleh ikut urutan yang sama untuk ungkapan yang serupa. Contoh terakhir menunjukkan apa yang berubah apabila ada punca.
+
+### Had Polinomial
+
+Kira <InlineMath math="\lim_{x \to 2} (3x^2 + 5x - 1)" />.
+
+**Penyelesaian**:
+
+Dengan sifat had:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} (3x^2 + 5x - 1) \\ &amp;= \lim_{x \to 2} 3x^2 \\ &amp;\quad{}+ \lim_{x \to 2} 5x - \lim_{x \to 2} 1 \end{aligned}" />
+<BlockMath math="= 3 \lim_{x \to 2} x^2 + 5 \lim_{x \to 2} x - 1" />
+<BlockMath math="\begin{aligned}  &amp;= 3(2)^2 + 5(2) - 1 \\ &amp;= 12 + 10 - 1 \\ &amp;= 21 \end{aligned}" />
+</MathContainer>
+
+### Had Fungsi Rasional
+
+Kira <InlineMath math="\lim_{x \to 4} \frac{x\sqrt{x}}{x^2 + 3}" />.
+
+**Penyelesaian**:
+
+Dengan sifat pembahagian dan sifat pendaraban:
+
+<MathContainer>
+<BlockMath math="\lim_{x \to 4} \frac{x\sqrt{x}}{x^2 + 3} = \frac{\lim_{x \to 4} x\sqrt{x}}{\lim_{x \to 4} (x^2 + 3)}" />
+<BlockMath math="= \frac{\lim_{x \to 4} x \cdot \lim_{x \to 4} \sqrt{x}}{\lim_{x \to 4} x^2 + \lim_{x \to 4} 3}" />
+</MathContainer>
+
+Sekarang kita gantikan nilai <InlineMath math="x = 4" />:
+
+<MathContainer>
+<BlockMath math="\lim_{x\to4}\frac{x\sqrt{x}}{x^2+3}= \frac{4 \cdot \sqrt{4}}{4^2 + 3} = \frac{4 \cdot 2}{16 + 3} = \frac{8}{19}" />
+</MathContainer>
+
+Dalam bentuk **perpuluhan**: <InlineMath math="\frac{8}{19} \approx 0.421" />
+
+### Had Fungsi Radikal
+
+Kira <InlineMath math="\lim_{x \to 0} \sqrt{x^2 - 3x + 2}" />.
+
+**Penyelesaian**:
+
+Dengan sifat punca (oleh sebab <InlineMath math="n = 2" /> genap, kita perlu pastikan hasil di dalam punca tidak negatif):
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to 0} \sqrt{x^2 - 3x + 2} \\ &amp;= \sqrt{\lim_{x \to 0} (x^2 - 3x + 2)} \end{aligned}" />
+</MathContainer>
+
+Kira had di dalam punca dahulu:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} \lim_{x \to 0} (x^2 - 3x + 2) &amp;= 0^2 - 3(0) + 2 \\ &amp;= 0 - 0 + 2 \\ &amp;= 2 \end{aligned}" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="2 > 0" />, kita boleh gunakan sifat punca:
+
+<BlockMath math="\lim_{x\to0}\sqrt{x^2-3x+2}= \sqrt{2} \approx 1.414" />
+
+## Latihan
+
+Setiap soalan meminta had yang menggunakan satu atau lebih petua di atas. Tulis **petua yang digunakan pada setiap langkah**.
+
+1. Kira <InlineMath math="\lim_{x \to 3} (2x^2 - 4x + 1)" />
+
+2. Kira <InlineMath math="\lim_{x \to 1} \frac{3x + 2}{x^2 + 1}" />
+
+3. Kira <InlineMath math="\lim_{x \to 4} \sqrt{x + 5}" />
+
+4. Kira <InlineMath math="\lim_{x \to 2} (x + 1)^3" />
+
+5. Kira <InlineMath math="\lim_{x \to 0} \frac{5x^2 + 3x}{2x + 1}" />
+
+### Jalan Kerja
+
+**Soalan 1**. Dengan sifat **penambahan dan pendaraban** dengan pemalar:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to 3} (2x^2 - 4x + 1) \\ &amp;= 2\lim_{x \to 3} x^2 \\ &amp;\quad{}- 4\lim_{x \to 3} x + \lim_{x \to 3} 1 \end{aligned}" />
+</MathContainer>
+
+Gantikan <InlineMath math="x = 3" />:
+
+<MathContainer>
+<BlockMath math="\begin{aligned}  &amp;= 2(3)^2 - 4(3) + 1 \\ &amp;= 2(9) - 12 + 1 \\ &amp;= 18 - 12 + 1 \\ &amp;= 7 \end{aligned}" />
+</MathContainer>
+
+**Soalan 2**. Dengan sifat pembahagian:
+
+<MathContainer>
+<BlockMath math="\lim_{x \to 1} \frac{3x + 2}{x^2 + 1} = \frac{\lim_{x \to 1} (3x + 2)}{\lim_{x \to 1} (x^2 + 1)}" />
+<BlockMath math="= \frac{3(1) + 2}{1^2 + 1} = \frac{5}{2}" />
+</MathContainer>
+
+Dalam bentuk **perpuluhan**: <InlineMath math="\frac{5}{2} = 2.5" />
+
+**Soalan 3**. Dengan **sifat punca**:
+
+<MathContainer>
+<BlockMath math="\lim_{x \to 4} \sqrt{x + 5} = \sqrt{\lim_{x \to 4} (x + 5)}" />
+<BlockMath math="= \sqrt{4 + 5} = \sqrt{9} = 3" />
+</MathContainer>
+
+**Soalan 4**. Dengan **sifat kuasa**:
+
+<MathContainer>
+<BlockMath math="\lim_{x \to 2} (x + 1)^3 = \left[\lim_{x \to 2} (x + 1)\right]^3" />
+<BlockMath math="= (2 + 1)^3 = 3^3 = 27" />
+</MathContainer>
+
+**Soalan 5**. Dengan **sifat pembahagian**:
+
+<MathContainer>
+<BlockMath math="\lim_{x \to 0} \frac{5x^2 + 3x}{2x + 1} = \frac{\lim_{x \to 0} (5x^2 + 3x)}{\lim_{x \to 0} (2x + 1)}" />
+<BlockMath math="= \frac{5(0)^2 + 3(0)}{2(0) + 1} = \frac{0}{1} = 0" />
+</MathContainer>

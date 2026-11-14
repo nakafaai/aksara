@@ -1,0 +1,234 @@
+export const metadata = {
+  title: "Memahami Matriks",
+  description: "Baca baris, lajur, unsur, dan peringkat sesuatu matriks melalui dua contoh jadual data.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-06",
+  dateModified: "2026-11-08",
+  subject: "Matriks",
+};
+
+## Daripada Jadual Markah kepada Matriks
+
+Jadual selalu menyusun maklumat dalam baris dan lajur. Contohnya, satu helaian markah kelas boleh meletakkan seorang murid pada setiap baris dan satu mata pelajaran pada setiap lajur. **Matriks** menggunakan susunan segi empat tepat yang sama untuk menyusun nombor bagi kerja matematik.
+
+Nombor di dalam matriks ialah **unsurnya**. Kita biasanya menutupnya dengan kurungan <InlineMath math="()" /> atau kurungan segi empat <InlineMath math="[]" />. Baris dan lajur sesuatu unsur menentukan kuantiti yang diwakilinya, jadi kalau unsur itu dialihkan, maknanya turut berubah.
+
+Pertimbangkan markah Matematik dan Bahasa Inggeris tiga orang murid:
+
+| Murid   | Matematik | Bahasa Inggeris |
+| :------ | :---------- | :------ |
+| Aisyah  | <InlineMath math="80" /> | <InlineMath math="75" /> |
+| Alex    | <InlineMath math="70" /> | <InlineMath math="95" /> |
+| Wayan   | <InlineMath math="95" /> | <InlineMath math="75" /> |
+
+Apabila kita simpan nombor-nombornya sahaja, kita dapat matriks:
+
+<BlockMath math="A = \begin{bmatrix} 80 & 75 \\ 70 & 95 \\ 95 & 75 \end{bmatrix}" />
+
+Matriks yang sama juga boleh ditulis dengan kurungan:
+
+<BlockMath math="A = \begin{pmatrix} 80 & 75 \\ 70 & 95 \\ 95 & 75 \end{pmatrix}" />
+
+<InlineMath math="80, 75, 70, 95, 95, 75" /> ialah unsur-unsur matriks <InlineMath math="A" />.
+
+## Baris Lajur dan Unsur
+
+Tiga istilah menerangkan struktur sesuatu matriks:
+
+1.  **Baris** ialah susunan unsur secara mengufuk.
+2.  **Lajur** ialah susunan unsur secara mencancang.
+3.  **Unsur** ialah satu nombor pada baris dan lajur tertentu.
+
+Untuk matriks <InlineMath math="A" />:
+
+<BlockMath math="A = \begin{bmatrix} 80 & 75 \\ 70 & 95 \\ 95 & 75 \end{bmatrix}" />
+
+- **Baris** <InlineMath math="1" /> ialah <InlineMath math="[80 \ 75]" />
+- **Baris** <InlineMath math="2" /> ialah <InlineMath math="[70 \ 95]" />
+- **Baris** <InlineMath math="3" /> ialah <InlineMath math="[95 \ 75]" />
+
+- **Lajur** <InlineMath math="1" />:
+
+  <BlockMath math="\begin{bmatrix} 80 \\ 70 \\ 95 \end{bmatrix}" />
+
+- **Lajur** <InlineMath math="2" />:
+
+  <BlockMath math="\begin{bmatrix} 75 \\ 95 \\ 75 \end{bmatrix}" />
+
+Unsur matriks <InlineMath math="A" /> ditulis <InlineMath math="a_{ij}" />. **Indeks pertama** <InlineMath math="i" /> memberikan baris, dan indeks kedua <InlineMath math="j" /> memberikan lajur.
+
+<BlockMath math="A=[a_{ij}]_{m\times n}" />
+
+Di sini <InlineMath math="m" /> ialah bilangan baris dan <InlineMath math="n" /> ialah bilangan lajur. Indeks baris <InlineMath math="i" /> ialah integer yang memenuhi <InlineMath math="1\le i\le m" />. **Indeks lajur** <InlineMath math="j" /> ialah integer yang memenuhi <InlineMath math="1\le j\le n" />. Batasan ini memastikan setiap indeks kekal di dalam matriks.
+
+Untuk matriks di atas:
+
+| Unsur | Baris | Lajur | Nilai |
+| --- | --- | --- | --- |
+| <InlineMath math="a_{11}" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="80" /> |
+| <InlineMath math="a_{12}" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="75" /> |
+| <InlineMath math="a_{21}" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="70" /> |
+| <InlineMath math="a_{22}" /> | <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="95" /> |
+| <InlineMath math="a_{31}" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="95" /> |
+| <InlineMath math="a_{32}" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="75" /> |
+
+Sekarang baca setiap baris <InlineMath math="A" /> sebagai satu titik <InlineMath math="(x, y)" />. Lajur pertama memberikan <InlineMath math="x" />, iaitu markah Matematik, dan lajur kedua memberikan <InlineMath math="y" />, iaitu markah Bahasa Inggeris, jadi setiap murid menjadi satu titik. Lihat Aisyah: garis panduannya menunjukkan <InlineMath math="a_{11} = 80" /> ke kanan dan <InlineMath math="a_{12} = 75" /> ke atas. Kalau dua unsur dalam barisnya ditukar, titik itu melompat ke <InlineMath math="(75, 80)" />, dan sebab itulah kedudukan sesuatu unsur menentukan maknanya.
+
+<MathVisual
+  title={<>Tiga orang murid sebagai tiga titik</>}
+  description={<>Baris <InlineMath math="i" /> bagi <InlineMath math="A" /> menjadi titik (lajur pertama, lajur kedua): markah Matematik ke kanan dan markah Bahasa Inggeris ke atas.</>}
+  labels={{
+    aisyah: <>Aisyah <InlineMath math="(80, 75)" /></>,
+    alex: <>Alex <InlineMath math="(70, 95)" /></>,
+    wayan: <>Wayan <InlineMath math="(95, 75)" /></>,
+    math: <InlineMath math="a_{11} = 80" />,
+    english: <InlineMath math="a_{12} = 75" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 60, max: 100 }, y: { min: 60, max: 100 } },
+    view: { kind: "fit", padding: 2 },
+    objects: [
+      { id: "aisyah", kind: "point", at: { x: 80, y: 75 }, appearance: "primary" },
+      { id: "alex", kind: "point", at: { x: 70, y: 95 }, appearance: "secondary" },
+      { id: "wayan", kind: "point", at: { x: 95, y: 75 }, appearance: "answer" },
+      { id: "math", kind: "segment", from: { x: 80, y: 60 }, to: { x: 80, y: 75 }, appearance: "construction" },
+      { id: "english", kind: "segment", from: { x: 60, y: 75 }, to: { x: 80, y: 75 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "aisyah", objectId: "aisyah", at: { x: 80, y: 75 }, placement: "above-right" },
+      { key: "alex", objectId: "alex", at: { x: 70, y: 95 }, placement: "below-right" },
+      { key: "wayan", objectId: "wayan", at: { x: 95, y: 75 }, placement: "above-left" },
+      { key: "math", objectId: "math", at: { x: 80, y: 66 }, placement: "right" },
+      { key: "english", objectId: "english", at: { x: 68, y: 75 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Peringkat Matriks
+
+**Peringkat** sesuatu matriks menyatakan <Highlight>bilangan barisnya dahulu, kemudian bilangan lajurnya</Highlight>. Matriks dengan <InlineMath math="m" /> baris dan <InlineMath math="n" /> lajur ada peringkat <InlineMath math="m \times n" />, dibaca "<InlineMath math="m" /> darab <InlineMath math="n" />."
+
+Untuk matriks <InlineMath math="A" />:
+
+<BlockMath math="A = \underbrace{\begin{bmatrix} 80 & 75 \\ 70 & 95 \\ 95 & 75 \end{bmatrix}}_{\text{2 lajur}} \hspace{0.1em} \left. \vphantom{\begin{bmatrix} 80 \\ 70 \\ 95 \end{bmatrix}} \right\} \hspace{0.1em} \text{3 baris}" />
+
+Matriks <InlineMath math="A" /> ada <InlineMath math="3" /> baris dan <InlineMath math="2" /> lajur, jadi peringkatnya ialah <InlineMath math="3 \times 2" />. Kita boleh menulisnya sebagai <InlineMath math="A_{3 \times 2}" />.
+
+**Contoh lain**:
+
+Katakan satu jadual kehadiran semester merekodkan ketidakhadiran bersebab, sakit, dan tanpa sebab:
+
+| Murid   | Bersebab | Sakit | Tanpa sebab |
+| :------ | :------ | :--- | :-------- |
+| Aisyah  | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| Alex    | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| Wayan   | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="1" /> |
+
+Nombor-nombornya membentuk matriks <InlineMath math="B" />:
+
+<BlockMath math="B = \underbrace{\begin{bmatrix} 2 & 1 & 0 \\ 3 & 1 & 1 \\ 1 & 2 & 1 \end{bmatrix}}_{\text{3 lajur}} \hspace{0.1em} \left. \vphantom{\begin{bmatrix} 2 \\ 3 \\ 1 \end{bmatrix}} \right\} \hspace{0.1em} \text{3 baris}" />
+
+Matriks <InlineMath math="B" /> ada <InlineMath math="3" /> baris dan <InlineMath math="3" /> lajur. Jadi peringkatnya ialah <InlineMath math="3 \times 3" />, ditulis <InlineMath math="B_{3 \times 3}" />.
+
+Contohnya:
+
+- <InlineMath math="b_{11} = 2" /> ialah unsur pada baris <InlineMath math="1" />, lajur <InlineMath math="1" />.
+- <InlineMath math="b_{23} = 1" /> ialah unsur pada baris <InlineMath math="2" />, lajur <InlineMath math="3" />.
+- <InlineMath math="b_{32} = 2" /> ialah unsur pada baris <InlineMath math="3" />, lajur <InlineMath math="2" />.
+
+Ini matriks <InlineMath math="B" /> dengan setiap unsur diletakkan di tempatnya: nombor lajur ke kanan, nombor baris ke bawah. Indeks pertama mengira baris ke bawah dan indeks kedua mengira lajur ke kanan, jadi <InlineMath math="b_{23} = 1" /> berada pada baris <InlineMath math="2" />, lajur <InlineMath math="3" />, manakala <InlineMath math="b_{32} = 2" /> berada pada baris <InlineMath math="3" />, lajur <InlineMath math="2" />.
+
+<MathVisual
+  title={<>Kedudukan <InlineMath math="b_{ij}" /> dalam <InlineMath math="B" /></>}
+  description={<>Sembilan unsur <InlineMath math="B" /> diletakkan mengikut lajur (ke kanan) dan baris (ke bawah), dengan <InlineMath math="b_{11}" />, <InlineMath math="b_{23}" /> dan <InlineMath math="b_{32}" /> dinamakan.</>}
+  labels={{
+    b11: <InlineMath math="b_{11} = 2" />,
+    b12: <InlineMath math="1" />,
+    b13: <InlineMath math="0" />,
+    b21: <InlineMath math="3" />,
+    b22: <InlineMath math="1" />,
+    b23: <InlineMath math="b_{23} = 1" />,
+    b31: <InlineMath math="1" />,
+    b32: <InlineMath math="b_{32} = 2" />,
+    b33: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "b11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "b12", kind: "point", at: { x: 2, y: -1 }, appearance: "reference" },
+      { id: "b13", kind: "point", at: { x: 3, y: -1 }, appearance: "reference" },
+      { id: "b21", kind: "point", at: { x: 1, y: -2 }, appearance: "reference" },
+      { id: "b22", kind: "point", at: { x: 2, y: -2 }, appearance: "reference" },
+      { id: "b23", kind: "point", at: { x: 3, y: -2 }, appearance: "secondary" },
+      { id: "b31", kind: "point", at: { x: 1, y: -3 }, appearance: "reference" },
+      { id: "b32", kind: "point", at: { x: 2, y: -3 }, appearance: "answer" },
+      { id: "b33", kind: "point", at: { x: 3, y: -3 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "b11", objectId: "b11", at: { x: 1, y: -1 }, placement: "above-right" },
+      { key: "b12", objectId: "b12", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "b13", objectId: "b13", at: { x: 3, y: -1 }, placement: "above-right" },
+      { key: "b21", objectId: "b21", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "b22", objectId: "b22", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "b23", objectId: "b23", at: { x: 3, y: -2 }, placement: "above-right" },
+      { key: "b31", objectId: "b31", at: { x: 1, y: -3 }, placement: "above-right" },
+      { key: "b32", objectId: "b32", at: { x: 2, y: -3 }, placement: "above-right" },
+      { key: "b33", objectId: "b33", at: { x: 3, y: -3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Peringkat sentiasa menyebut baris dahulu. Blok kiri ada <InlineMath math="3" /> baris yang setiap satunya ada <InlineMath math="2" /> unsur, jadi peringkatnya <InlineMath math="3 \times 2" />, sama seperti matriks markah. Blok kanan ada enam unsur yang sama tetapi disusun dalam <InlineMath math="2" /> baris yang setiap satunya ada <InlineMath math="3" /> unsur, jadi peringkatnya berbeza, iaitu <InlineMath math="2 \times 3" />.
+
+<MathVisual
+  title={<>Enam unsur yang sama, dua peringkat yang berbeza</>}
+  description={<>Enam unsur sebagai blok <InlineMath math="3" /> baris dan <InlineMath math="2" /> lajur, dan sebagai blok <InlineMath math="2" /> baris dan <InlineMath math="3" /> lajur.</>}
+  labels={{
+    t32: <InlineMath math="3 \times 2" />,
+    t23: <InlineMath math="2 \times 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: -4, max: 0.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "a12", kind: "point", at: { x: 2, y: -1 }, appearance: "primary" },
+      { id: "a21", kind: "point", at: { x: 1, y: -2 }, appearance: "primary" },
+      { id: "a22", kind: "point", at: { x: 2, y: -2 }, appearance: "primary" },
+      { id: "a31", kind: "point", at: { x: 1, y: -3 }, appearance: "primary" },
+      { id: "a32", kind: "point", at: { x: 2, y: -3 }, appearance: "primary" },
+      { id: "b11", kind: "point", at: { x: 5, y: -1 }, appearance: "secondary" },
+      { id: "b12", kind: "point", at: { x: 6, y: -1 }, appearance: "secondary" },
+      { id: "b13", kind: "point", at: { x: 7, y: -1 }, appearance: "secondary" },
+      { id: "b21", kind: "point", at: { x: 5, y: -2 }, appearance: "secondary" },
+      { id: "b22", kind: "point", at: { x: 6, y: -2 }, appearance: "secondary" },
+      { id: "b23", kind: "point", at: { x: 7, y: -2 }, appearance: "secondary" },
+      { id: "t32", kind: "segment", from: { x: 1, y: -3.6 }, to: { x: 2, y: -3.6 }, appearance: "primary" },
+      { id: "t23", kind: "segment", from: { x: 5, y: -2.6 }, to: { x: 7, y: -2.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "t32", objectId: "t32", at: { x: 1.5, y: -3.6 }, placement: "below" },
+      { key: "t23", objectId: "t23", at: { x: 6, y: -2.6 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Tatatanda Am Matriks
+
+Matriks <InlineMath math="A" /> dengan <InlineMath math="m" /> baris dan <InlineMath math="n" /> lajur boleh ditulis sebagai:
+
+<BlockMath math="A_{m\times n}=\begin{bmatrix} a_{11} &amp; a_{12} &amp; \dots &amp; a_{1n} \\ a_{21} &amp; a_{22} &amp; \dots &amp; a_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ a_{m1} &amp; a_{m2} &amp; \dots &amp; a_{mn} \end{bmatrix}" />
+
+Tatatanda ini memberitahu kita:
+
+- <InlineMath math="A_{m \times n}" /> ialah matriks <InlineMath math="A" /> dengan peringkat <InlineMath math="m \times n" />.
+- <InlineMath math="m" /> ialah bilangan baris.
+- <InlineMath math="n" /> ialah bilangan lajur.
+- <InlineMath math="a_{ij}" /> ialah unsur pada baris <InlineMath math="i" /> dan lajur <InlineMath math="j" />.
+
+Jenis-jenis matriks dan operasinya menggunakan **kedudukan baris dan lajur** untuk mengenal pasti unsur mana yang dibandingkan, digabungkan, atau ditransformasikan.

@@ -1,0 +1,189 @@
+
+export const metadata = {
+  title: "Penukaran Tenaga",
+  description:
+    "Penukaran tenaga menghubungkan sumber semula jadi dengan elektrik, output berguna, tenaga yang dipindahkan ke persekitaran dan kecekapan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-05-01",
+  dateModified: "2026-09-12",
+  subject: "Tenaga Boleh Baharu",
+};
+
+## Urutan Penukaran Tenaga dalam Sesuatu Alat
+
+**Penukaran tenaga** ialah perubahan daripada satu bentuk tenaga kepada bentuk tenaga yang lain. Tenaga boleh berpindah antara sesuatu alat dengan persekitarannya, tetapi [jumlah tenaga tetap tidak berubah](https://www.eia.gov/energyexplained/what-is-energy/laws-of-energy.php).
+
+Apabila kamu menghidupkan lampu suluh, tenaga kimia dalam bateri menjadi tenaga elektrik yang dibekalkan kepada mentol. Mentol itu menghasilkan **cahaya yang kamu perlukan** dan pada masa yang sama memanaskan bahagian lampu suluh serta persekitarannya. Pemanasan itu tetap dikira dalam imbangan tenaga, walaupun tujuan kamu ialah menerangi bilik.
+
+## Laluan Penukaran di Stesen Janakuasa
+
+Rajah di bawah menunjukkan bentuk tenaga yang dibekalkan oleh sumber yang berbeza dan cara stesen janakuasa menukarkannya untuk digunakan.
+
+<Mermaid
+  title="Stesen Janakuasa Menukarkan Tenaga secara Berperingkat"
+  description="Rajah ini menunjukkan laluan daripada sumber tenaga semula jadi, melalui alat penukar, hingga menjadi output berguna dan tenaga yang dipindahkan ke persekitaran."
+  chart={`flowchart TD
+    A["Sumber semula jadi"] --> B["Bentuk tenaga awal"]
+    B --> C["Alat penukar"]
+    C --> D["Tenaga berguna"]
+    C --> E["Tenaga ke persekitaran"]`}/>
+
+Dalam [kuasa hidro](https://www.energy.gov/cmei/water/how-hydropower-works), air mengalir melalui paip penstok dan memutarkan bilah turbin. Turbin itu memacu **penjana yang menghasilkan elektrik**.
+
+Dalam [kuasa angin](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work), angin memutarkan bilah turbin, rotor memacu penjana, dan penjana itu menghasilkan elektrik.
+
+<WindEnergyConversionLab
+  title={<>Penukaran Tenaga dalam Turbin Angin</>}
+  description={
+    <>
+      Ubah laju angin, perhatikan rotor, dan bandingkan cara tenaga kinetik
+      udara ditukarkan kepada tenaga elektrik.
+    </>
+  }
+  labels={{
+    flow: <>Angin memutarkan rotor, rotor memutarkan penjana, dan elektrik mengalir keluar.</>,
+    flowLabel: "Laluan penukaran",
+    meaning: <>Laju angin yang lebih tinggi boleh menyebabkan rotor berpusing lebih laju, tetapi output masih dihadkan oleh kapasiti turbin, sistem kawalan dan keadaan tapak.</>,
+    meaningLabel: "Maksud fizik",
+    speedControl: "Laju angin",
+    speedUnit: "m/s",
+    viewLabel: "Model penukaran tenaga angin",
+  }}
+/>
+
+Dalam [panel fotovolta](https://www.eia.gov/energyexplained/solar/photovoltaics-and-electricity.php), sel-selnya menukarkan cahaya matahari terus kepada elektrik. Hanya foton yang diserap oleh bahan semikonduktor menyumbang tenaga kepada penjanaan elektrik.
+
+| Teknologi | Laluan penukaran utama | Tenaga yang sering dipindahkan ke persekitaran sebagai |
+| :--------- | :------------------- | :------------------------- |
+| Stesen janakuasa hidro | tenaga keupayaan graviti air → tenaga kinetik air → turbin → penjana → elektrik | haba daripada geseran aci, bunyi, getaran |
+| Turbin angin | tenaga kinetik angin → turbin → penjana → elektrik | bunyi, getaran, haba daripada komponen |
+| Panel suria fotovolta | sinaran suria → elektrik | cahaya yang dipantulkan dan haba |
+| Biojisim | tenaga kimia → pembakaran → haba → turbin → penjana → elektrik | haba buangan, gas ekzos, bunyi |
+| Biogas | tenaga kimia → pembakaran dalam enjin atau turbin → gerakan aci → penjana → elektrik | haba buangan, gas ekzos, bunyi |
+| Kuasa geoterma | tenaga terma takungan → stim atau bendalir kerja yang mengalir → turbin → penjana → elektrik | haba buangan dan geseran sistem |
+
+[Teknologi biokuasa](https://www.energy.gov/cmei/fuels/biopower-energy-heat-and-electricity) menukarkan biojisim kepada haba dan elektrik melalui pembakaran, penguraian oleh bakteria, atau penukaran kepada bahan api gas dan cecair.
+
+[Stesen janakuasa geoterma](https://www.energy.gov/hgeo/geothermal/geothermal-electricity-generation) menggunakan bendalir panas atau stim dari bawah permukaan Bumi untuk memacu turbin dan menghasilkan elektrik.
+
+Stesen janakuasa menukarkan tenaga secara berperingkat, dan setiap peringkat hanya menyalurkan sebahagian daripada tenaga yang diterimanya, jadi kecekapan setiap peringkat didarabkan bersama. Dengan nilai contoh <InlineMath math="90\%" /> bagi turbin dan <InlineMath math="95\%" /> masing-masing bagi penjana dan talian, rantaian ini menyampaikan <InlineMath math="\eta=0.9\times0.95\times0.95\approx81\%" /> daripada tenaga air. Putarkan bar-bar itu dan perhatikan bahagian kelabu semakin besar.
+
+<MathVisual
+  title={<>Kecekapan Setiap Peringkat Didarabkan</>}
+  description={<>Tenaga yang tinggal pada setiap peringkat dalam contoh rantaian kuasa hidro, bermula daripada 100 J tenaga air (hijau kebiruan, depan), dan tenaga yang hilang setakat itu (kelabu, belakang). Satu petak grid ke atas ialah 20 J.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 6.5 }, z: { min: -1.8, max: 1.8 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 12 }, target: { x: 3.75, y: 2.5, z: 0 } },
+    objects: [
+      { id: "useful-0", kind: "cuboid", appearance: "construction", center: { x: 0, y: 2.5, z: 0.7 }, size: { length: 1.2, height: 5, width: 1.2 } },
+      { id: "useful-1", kind: "cuboid", appearance: "construction", center: { x: 2.5, y: ((100 * 90 * 100 * 100) / (20 * 100 * 100 * 100)) / 2, z: 0.7 }, size: { length: 1.2, height: (100 * 90 * 100 * 100) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "lost-1", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: ((100 * 100 * 100 * 100 - 100 * 90 * 100 * 100) / (20 * 100 * 100 * 100)) / 2, z: -0.7 }, size: { length: 1.2, height: (100 * 100 * 100 * 100 - 100 * 90 * 100 * 100) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "useful-2", kind: "cuboid", appearance: "construction", center: { x: 5, y: ((100 * 90 * 95 * 100) / (20 * 100 * 100 * 100)) / 2, z: 0.7 }, size: { length: 1.2, height: (100 * 90 * 95 * 100) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "lost-2", kind: "cuboid", appearance: "reference", center: { x: 5, y: ((100 * 100 * 100 * 100 - 100 * 90 * 95 * 100) / (20 * 100 * 100 * 100)) / 2, z: -0.7 }, size: { length: 1.2, height: (100 * 100 * 100 * 100 - 100 * 90 * 95 * 100) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "useful-3", kind: "cuboid", appearance: "construction", center: { x: 7.5, y: ((100 * 90 * 95 * 95) / (20 * 100 * 100 * 100)) / 2, z: 0.7 }, size: { length: 1.2, height: (100 * 90 * 95 * 95) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "lost-3", kind: "cuboid", appearance: "reference", center: { x: 7.5, y: ((100 * 100 * 100 * 100 - 100 * 90 * 95 * 95) / (20 * 100 * 100 * 100)) / 2, z: -0.7 }, size: { length: 1.2, height: (100 * 100 * 100 * 100 - 100 * 90 * 95 * 95) / (20 * 100 * 100 * 100), width: 1.2 } },
+    ],
+    labels: [
+      { key: "stage0", objectId: "useful-0", at: { x: 0, y: 5, z: 0.7 }, placement: "above" },
+      { key: "stage1", objectId: "useful-1", at: { x: 2.5, y: 5, z: 0.7 }, placement: "above" },
+      { key: "stage2", objectId: "useful-2", at: { x: 5, y: 5, z: 0.7 }, placement: "above" },
+      { key: "stage3", objectId: "useful-3", at: { x: 7.5, y: 5, z: 0.7 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    stage0: <InlineMath math="\text{air}:\ 100\text{ J}" />,
+    stage1: <InlineMath math="\text{turbin}:\ 90\text{ J}" />,
+    stage2: <InlineMath math="\text{penjana}:\ 85.5\text{ J}" />,
+    stage3: <InlineMath math="\text{talian}:\ \approx81.2\text{ J}" />,
+  }}
+/>
+
+## Kecekapan Mengukur Bahagian yang Berguna
+
+Oleh sebab tidak semua tenaga input menjadi output yang kita perlukan, kita menggunakan **kecekapan**. Kecekapan membandingkan tenaga berguna dengan tenaga input.
+
+<BlockMath math="\eta=\frac{E_{\text{berguna}}}{E_{\text{input}}}\times 100\%" />
+
+Panduan simbol:
+
+| Simbol | Maksud |
+| :----- | :------ |
+| <InlineMath math="\eta" /> | kecekapan |
+| <InlineMath math="E_{\text{berguna}}" /> | tenaga yang dihasilkan sebagai output berguna yang dikehendaki |
+| <InlineMath math="E_{\text{input}}" /> | tenaga yang diterima oleh alat |
+
+Sepanjang pengukuran berikut, anggap **tenaga yang tersimpan dalam panel tidak berubah**. Katakan sebuah panel menerima <InlineMath math="800 \text{ J}" /> tenaga cahaya dan menghasilkan <InlineMath math="160 \text{ J}" /> tenaga elektrik. Kecekapannya ialah:
+
+<BlockMath math="\begin{aligned}
+\eta
+&= \frac{E_{\text{berguna}}}{E_{\text{input}}}\times 100\% \\
+&= \frac{160 \text{ J}}{800 \text{ J}}\times 100\% \\
+&= 20\%
+\end{aligned}" />
+
+Tenaga yang tidak menjadi elektrik berguna ialah:
+
+<BlockMath math="\begin{aligned}
+E_{\text{persekitaran}}
+&= E_{\text{input}}-E_{\text{berguna}} \\
+&= 800 \text{ J}-160 \text{ J} \\
+&= 640 \text{ J}
+\end{aligned}" />
+
+Jadi, kecekapan <InlineMath math="20\%" /> tidak bermakna baki <InlineMath math="80\%" /> itu lenyap begitu sahaja. Baki <InlineMath math="80\%" /> itu dipindahkan ke persekitaran, contohnya melalui pemanasan atau sinaran yang dipantulkan dan yang menembusi panel.
+
+[Kecekapan tenaga](https://www.eia.gov/energyexplained/use-of-energy/efficiency-and-conservation.php) mengukur bahagian tenaga input yang ditukarkan oleh sesuatu alat kepada output berguna.
+
+Gerakkan kecekapan panel itu dan perhatikan cara <InlineMath math="800\text{ J}" /> itu terbahagi. Pada <InlineMath math="\eta=20\%" />, jalur kuning ambar ialah <InlineMath math="160\text{ J}" /> elektrik daripada contoh tadi, dan jalur merah jambu ialah <InlineMath math="640\text{ J}" /> yang pergi ke persekitaran. Jumlah kedua-dua jalur itu sentiasa sama dengan input.
+
+<MathVisual
+  title={<>Kecekapan Membahagikan Input</>}
+  description={<>800 J cahaya yang masuk ke panel (kelabu) terbahagi kepada elektrik (kuning ambar) dan tenaga ke persekitaran (merah jambu), dengan lebar jalur dilukis mengikut skala. Satu petak grid ialah 100 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "input", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 8 }, { x: 0, y: 8 }] },
+      { id: "useful", kind: "loop", appearance: "highlight", points: [{ x: "3", y: "8 - 8a" }, { x: "8", y: "8 - 8a" }, { x: "8", y: "8" }, { x: "3", y: "8" }] },
+      { id: "lost", kind: "loop", appearance: "warning", points: [{ x: "3", y: "0" }, { x: "8", y: "0" }, { x: "8", y: "8 - 8a" }, { x: "3", y: "8 - 8a" }] },
+    ],
+    labels: [
+      { key: "input", objectId: "input", at: { x: 1.5, y: 8 }, placement: "above" },
+      { key: "useful", objectId: "useful", at: { x: "8", y: "8 - 4a" }, placement: "right" },
+      { key: "lost", objectId: "lost", at: { x: "8", y: "4 - 4a" }, placement: "right" },
+    ],
+    parameters: [
+      { name: "a", min: 0.05, max: 0.95, value: 0.2, step: 0.01, label: "slider" },
+    ],
+    readouts: [
+      { key: "eta", formula: "100 a" },
+      { key: "out", formula: "800 a" },
+      { key: "rest", formula: "800 (1 - a)" },
+    ],
+  }}
+  labels={{
+    slider: <InlineMath math="\eta" />,
+    input: <InlineMath math="800\text{ J cahaya}" />,
+    useful: <InlineMath math="\text{elektrik}" />,
+    lost: <InlineMath math="\text{ke persekitaran}" />,
+    eta: <InlineMath math="\eta\ (\%)" />,
+    out: <InlineMath math="E_{\text{berguna}}=\eta E_{\text{input}}\ (\text{J})" />,
+    rest: <InlineMath math="E_{\text{input}}-E_{\text{berguna}}\ (\text{J})" />,
+  }}
+/>
+
+## Membandingkan Laluan Penukaran dalam Pelbagai Alat
+
+Panel suria, turbin angin, penjana dan reaktor biogas menukarkan tenaga yang sedia ada daripada satu bentuk kepada bentuk yang lain. Nama alat itu sahaja <Highlight>tidak menyatakan sumbernya</Highlight>, laluan penukaran, output berguna atau tenaga yang dipindahkan ke persekitaran.
+
+| Apabila kamu melihat alat ini | Tanya soalan ini |
+| :---------------- | :------- |
+| Panel suria | Berapa banyak tenaga sinaran yang menjadi elektrik? |
+| Turbin angin | Adakah angin cukup laju untuk memutarkan rotor? |
+| Stesen janakuasa hidro | Berapa besar kadar aliran air dan beza ketinggiannya? |
+| Biojisim | Adakah bahan mentahnya mencukupi dan diurus secara mampan? |
+| Stesen janakuasa geoterma | Adakah tapak itu membekalkan haba bawah tanah, bendalir dan aliran yang cukup untuk menjana kuasa elektrik? |
+
+Laluan penukaran merekodkan sumber, bentuk tenaga awal, bentuk output, tenaga berguna dan tenaga yang dipindahkan ke persekitaran.
