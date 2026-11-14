@@ -12,6 +12,11 @@ import {
   releaseVersions,
 } from "#scripts/dependencies/fixture";
 
+/** The Effect release the policy approves, and upstream releases no review can have reached. */
+const EFFECT = approved("effect");
+const NEWER_RELEASE = "99.0.0";
+const NEWER_PRERELEASE = "99.0.0-beta.1";
+
 layer(NodeServices.layer, { excludeTestServices: true })(
   "reviewed hold policy",
   (it) => {
@@ -38,7 +43,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
 
           assert.strictEqual(error._tag, "DependencyPolicyError");
           assert.ok(
-            error.message.includes("effect declares 4.0.6; approved 4.1.2.")
+            error.message.includes(`effect declares 4.0.6; approved ${EFFECT}.`)
           );
           const recorded = yield* Ref.get(commands);
           assert.strictEqual(
@@ -60,14 +65,14 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           const error = yield* makeBumpDependenciesProgram(
             config,
             makeRunner({
-              effect: releaseVersions(["4.1.2", "4.1.3"]),
+              effect: releaseVersions([EFFECT, NEWER_RELEASE]),
             })
           ).pipe(Effect.flip);
 
           assert.strictEqual(error._tag, "DependencyPolicyError");
           assert.ok(
             error.message.includes(
-              "effect upstream is 4.1.3; last reviewed 4.1.2."
+              `effect upstream is ${NEWER_RELEASE}; last reviewed ${EFFECT}.`
             )
           );
         })
@@ -81,14 +86,14 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           const reports = yield* makeBumpDependenciesProgram(
             config,
             makeRunner({
-              effect: releaseVersions(["4.1.2", "4.2.0-beta.1"]),
+              effect: releaseVersions([EFFECT, NEWER_PRERELEASE]),
             })
           );
           const effectReport = Option.getOrUndefined(
             Arr.findFirst(reports, ({ dependency }) => dependency === "effect")
           );
 
-          assert.strictEqual(effectReport?.latest, "4.1.2");
+          assert.strictEqual(effectReport?.latest, EFFECT);
         })
     );
 
