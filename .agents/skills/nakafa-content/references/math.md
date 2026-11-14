@@ -20,6 +20,28 @@ strings with their own [math syntax](questions.md#response-items).
   units, coordinates, and calculated values in prose. Keep instructional
   ordinals and references such as `Step 1`, `Example 2`, and `equation (3)` as
   ordinary text. Mathematical indices and calculated positions remain math.
+- Every number a learner reads as a quantity is math, never plain digits
+  beside rendered math (owner, 13 November 2026): a count, a measurement, an
+  amount, a percentage, a value, a clock time, and an ordinal index such as
+  `ke-<InlineMath math="3" />`. `bersisa 2 jika dibagi 5` becomes `bersisa
+  <InlineMath math="2" /> jika dibagi <InlineMath math="5" />`. A unit symbol
+  goes inside the math as `5\text{ cm}`, `\text{ cm}^2`, `\text{ m/s}^2`,
+  `30^\circ`, `30^\circ\text{C}`, `10\text{ k}\Omega`, `25\%`, and
+  `\text{Rp}5{.}000`; a unit word such as `meter`, `jam`, or `hours` stays prose
+  after the math. Indonesian and German write `2{,}5` and `5{.}000`; English
+  and Malay write `2.5` and `5{,}000`. These stay text: a year (`2024`,
+  `1998-2024`, `SNBT 2027`, `tahun ajaran 2025/26`), a date (`13 November
+  2026`, `13.11.2026`), an era or century (`300 SM`, `abad ke-19`), a document,
+  exam, course, or legal label (`Soal 3`, `Kelas 10`, `Langkah 1 dan 2`,
+  `Bab 4.1`, `Pasal 1(2)`, `UU 12/2011`), a statement or citation marker
+  (`(1)`, `[3]`, `(Smith, 2019)`), a section number that opens a line, and a
+  number glued into a name (`COVID-19`, `3D`, `B12`, `1990s`). Code, links,
+  and metadata stay out. The [voice gate](verification.md#lesson-voice-gate)
+  reports each remaining number as `plain-number`, and
+  `node --conditions=aksara-source .agents/skills/nakafa-content/scripts/math/fix.ts <directory or .mdx file>...`
+  wraps every unambiguous one in place. It leaves for a person a number whose
+  separators the locale cannot read (`3.5` in Indonesian), a number inside a
+  string prop (convert the prop to JSX first), and a number alone on its line.
 - Use upright math letters for named factorizations and algorithms in prose.
   Write `<InlineMath math="\mathrm{QR}" />`, `<InlineMath
   math="\mathrm{LU}" />`, and `<InlineMath math="\mathrm{SVD}" />` instead of
