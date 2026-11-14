@@ -1,18 +1,34 @@
-Two numbers underlie everything: the floor needs **exactly 180 tiles**, and the tiler's advice leads to buying 17 boxes, or 204 tiles.
+Every statement is checked with the same two rules, but **each one hides a different trap**. For <InlineMath math="n" /> steps, first work out <InlineMath math="R=\tfrac{288}{n}" />, check the rise rule, then check the step rule <InlineMath math="62\le2R+T\le66" />.
 
-# Cost and leftover tiles
+# The first statement
+
+With <InlineMath math="18" /> steps, <InlineMath math="R=\tfrac{288}{18}=16" />, so the rise rule holds. Now check the step rule for <InlineMath math="T=28" />.
+
+<BlockMath math="2\cdot16+28=60<62" />
+
+The stride is **too short for the lower limit of the step rule**. The allowed width for <InlineMath math="R=16" /> is <InlineMath math="30\le T\le34" />, so a <InlineMath math="28\text{ cm}" /> tread really can't be used. The first statement is **true**.
+
+# The second statement
+
+With <InlineMath math="19" /> steps, <InlineMath math="R=\tfrac{288}{19}" />, about <InlineMath math="15.16" />. That isn't a whole number, but the information says **<InlineMath math="R" /> may be a fraction**, and its value lies between <InlineMath math="15" /> and <InlineMath math="18" />.
 
 <BlockMath math="\begin{aligned}
-17\cdot96{,}000&=1{,}632{,}000\\
-204-180&=24
+62-2R &= 62-\tfrac{576}{19} = \tfrac{602}{19}\approx31.7 \\
+66-2R &= 66-\tfrac{576}{19} = \tfrac{678}{19}\approx35.7
 \end{aligned}" />
 
-The cost comes from **the 17 boxes bought**, not from the 180 tiles laid. The first and third statements are true.
+For example, <InlineMath math="T=32" /> lies inside that range, so such a design exists. The second statement is **true**.
 
-# No spare and another tile size
+# The third statement
 
-Without a spare, exactly <InlineMath math="\tfrac{180}{12}=15" /> boxes are needed, **not 16**. The fourth statement is false.
+Try the step rule first: <InlineMath math="R=\tfrac{288}{20}=14.4" />, so <InlineMath math="2R+T=28.8+34=62.8" />, which meets the step rule. But **the rise rule fails**, because <InlineMath math="14.4<15" />. One failed rule is enough to reject a design, so the third statement is **false**.
 
-For 40 cm tiles, <InlineMath math="450:40=11.25" /> is not a whole number, so along the 4.5 m side **tiles must be cut**. The second statement is false.
+# The fourth statement
 
-So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.
+With <InlineMath math="16" /> steps, <InlineMath math="R=18" />, and <InlineMath math="2\cdot18+28=64" /> lies between <InlineMath math="62" /> and <InlineMath math="66" />, so both rules hold. For the length, remember that **the floor above doesn't count as a tread**, so there are <InlineMath math="16-1=15" /> treads.
+
+<BlockMath math="15\cdot28=420\text{ cm}" />
+
+The length is exactly <InlineMath math="420\text{ cm}" />, so the fourth statement is **true**. If you counted <InlineMath math="16" /> treads, you'd get <InlineMath math="448\text{ cm}" /> and judge it wrongly.
+
+So the first statement is true, the second is true, the third is false, and the fourth is true.

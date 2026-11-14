@@ -1,18 +1,48 @@
-A budget of Rp30,000 buys <InlineMath math="\tfrac{30{,}000}{50}=600" /> <InlineMath math="\text{cm}^2" /> of material. So **the frame can be at most 600 <InlineMath math="\text{cm}^2" />**.
+You're looking for the fewest weekly portions that give a net profit of at least <InlineMath math="600{,}000" />, with a fixed mix of dishes. Here's the plan: find the mix from the chart totals, turn it into one **bundle of portions**, find the profit of one bundle, then find how many bundles are enough.
 
-# Frame area in terms of x
+# The mix of the three dishes
 
-<BlockMath math="(24+2x)(36+2x)-864=4x^2+120x" />
+Add up the portions of each dish over the five days.
 
-# Trying whole numbers
+<BlockMath math="\begin{aligned}
+\text{chicken rice} &= 40+30+20+35+25=150\\
+\text{fried noodles} &= 30+25+10+20+15=100\\
+\text{orange ice} &= 40+65+40+45+60=250
+\end{aligned}" />
 
-| Width | Frame area | Cost |
-| :---: | :---: | :---: |
-| 4 cm | <InlineMath math="64+480=544" /> <InlineMath math="\text{cm}^2" /> | Rp27,200 |
-| 5 cm | <InlineMath math="100+600=700" /> <InlineMath math="\text{cm}^2" /> | Rp35,000 |
+The ratio is <InlineMath math="150:100:250=3:2:5" />. For the ratio to be **exactly the same**, weekly sales have to be made of whole bundles of <InlineMath math="3" /> chicken rice, <InlineMath math="2" /> fried noodles, and <InlineMath math="5" /> orange ice, which is <InlineMath math="10" /> portions per bundle.
 
-A width of 4 cm stays within budget, while **5 cm goes over it**.
+# Profit of one bundle and the fixed costs
 
-The value 5 cm appears if the frame area is taken as just <InlineMath math="120x" />, without the four corners <InlineMath math="4x^2" />. The values 1, 2 and 3 cm are within budget, but they are not the largest.
+The profit per portion is <InlineMath math="4{,}000" />, <InlineMath math="3{,}000" />, and <InlineMath math="2{,}000" />. A week's rent and wages **don't depend on the number of portions**.
 
-So the largest frame width is **4 cm**.
+<BlockMath math="\begin{aligned}
+\text{profit of one bundle} &= 3\cdot4{,}000+2\cdot3{,}000+5\cdot2{,}000=28{,}000\\
+\text{rent and wages for a week} &= 350{,}000+5\cdot70{,}000=700{,}000
+\end{aligned}" />
+
+# How many bundles are enough
+
+Say <InlineMath math="k" /> bundles are sold. The net profit has to be at least <InlineMath math="600{,}000" />.
+
+<BlockMath math="\begin{aligned}
+28{,}000k-700{,}000 &\ge 600{,}000\\
+28{,}000k &\ge 1{,}300{,}000\\
+k &\ge 46.42\ldots
+\end{aligned}" />
+
+Bundles have to be whole, so **at least** <InlineMath math="47" /> bundles, which is <InlineMath math="47\cdot10=470" /> portions.
+
+# Checking
+
+With <InlineMath math="46" /> bundles, the net profit is <InlineMath math="46\cdot28{,}000-700{,}000=588{,}000" />, still short. With <InlineMath math="47" /> bundles, it's <InlineMath math="616{,}000\ge600{,}000" />. So **the forty-seventh bundle really is needed**.
+
+# Common wrong answers
+
+These answers **break the dish ratio or miscount the fixed costs**.
+
+- The answer <InlineMath math="465" /> divides <InlineMath math="1{,}300{,}000" /> by the average profit of <InlineMath math="2{,}800" /> per portion. But <InlineMath math="465" /> portions can't be split exactly in the ratio <InlineMath math="3:2:5" />.
+- The answer <InlineMath math="434" /> uses the plain average profit per portion, <InlineMath math="\tfrac{4{,}000+3{,}000+2{,}000}{3}=3{,}000" />, even though orange ice sells the most.
+- The answer <InlineMath math="340" /> counts only the rent or only the wages, so the fixed cost becomes <InlineMath math="350{,}000" />.
+
+So at least <InlineMath math="470" /> portions have to be sold in a week.

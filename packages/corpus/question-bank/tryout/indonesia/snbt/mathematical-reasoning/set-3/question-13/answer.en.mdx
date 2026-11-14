@@ -1,18 +1,46 @@
-The floor dimensions divide evenly by the tile size on both sides, so the tiles fit **in rows and columns without cutting**. First convert to centimetres.
+Both stairs have to use exactly the same steps. So the plan: **first find a height <InlineMath math="R" /> that fits both gaps at once**, then pick the narrowest tread that's still allowed, and finally count the treads.
 
-# Tiles along each side
+# The shared step height
+
+The lower stair has <InlineMath math="n_1" /> steps and the upper stair <InlineMath math="n_2" />. Since the heights match, <InlineMath math="R=\tfrac{288}{n_1}=\tfrac{272}{n_2}" />.
 
 <BlockMath math="\begin{aligned}
-450:30&=15\text{ tiles along the 4.5 m side}\\
-360:30&=12\text{ tiles along the 3.6 m side}
+\frac{n_2}{n_1} &= \frac{272}{288} = \frac{17}{18} \\
+n_1 = 18k,\ n_2 &= 17k \\
+R &= \frac{288}{18k} = \frac{16}{k}
 \end{aligned}" />
 
-# Total number of tiles
+The second line holds because <InlineMath math="17" /> and <InlineMath math="18" /> share no factor other than <InlineMath math="1" />, so <InlineMath math="n_1" /> has to be a multiple of <InlineMath math="18" />. Here <InlineMath math="k" /> is a positive whole number. The rise rule asks for <InlineMath math="15\le R\le18" />. For <InlineMath math="k=1" />, <InlineMath math="R=16" /> works, while <InlineMath math="k=2" /> already gives <InlineMath math="R=8" />, which is too low. So **the only height that fits both stairs is <InlineMath math="16\text{ cm}" />**, with <InlineMath math="n_1=18" /> and <InlineMath math="n_2=17" />.
 
-<BlockMath math="15\cdot12=180" />
+# The narrowest tread
 
-Check with area: the floor is 162,000 square centimetres and one tile is 900 square centimetres. The quotient **is also 180**.
+The shortest stairs use the narrowest treads. The step rule with <InlineMath math="R=16" /> gives a lower limit for <InlineMath math="T" />.
 
-The value 198 already includes the 10% spare, and 204 is the content of 17 boxes. The value 162 appears if the floor area of 16.2 square metres is divided by 0.1, as if one tile covered 0.1 square metres.
+<BlockMath math="\begin{aligned}
+2\cdot16+T &\ge 62 \\
+T &\ge 30
+\end{aligned}" />
 
-So the number of tiles that exactly cover the floor is **180**.
+The upper limit is <InlineMath math="T\le66-32=34" />, so <InlineMath math="T=30" /> is allowed and **it's the narrowest tread for both stairs**.
+
+# Treads and total length
+
+The top step of each stair has no tread, because **the floor above doesn't count as a tread**. So each stair has one tread fewer than it has steps.
+
+<BlockMath math="\begin{aligned}
+\text{treads} &= (18-1)+(17-1) = 33 \\
+\text{total length} &= 33\cdot30 = 990\text{ cm}
+\end{aligned}" />
+
+Check the sizes. The heights <InlineMath math="18\cdot16=288" /> and <InlineMath math="17\cdot16=272" /> match both gaps, and <InlineMath math="2\cdot16+30=62" /> sits exactly on the lower limit of the step rule.
+
+# Why the other options are wrong
+
+Each other option **forgets the same-size condition or miscounts the treads**.
+
+- <InlineMath math="810\text{ cm}" /> comes from designing each stair on its own: the lower stair with <InlineMath math="16" /> steps of <InlineMath math="18\text{ cm}" /> and <InlineMath math="T=26" /> (<InlineMath math="390\text{ cm}" />), and the upper stair with <InlineMath math="16" /> steps of <InlineMath math="17\text{ cm}" /> and <InlineMath math="T=28" /> (<InlineMath math="420\text{ cm}" />). Those sizes don't match.
+- <InlineMath math="858\text{ cm}" /> comes from giving <InlineMath math="33" /> treads a width of <InlineMath math="26\text{ cm}" />, but that width is only allowed for <InlineMath math="R=18" />.
+- <InlineMath math="1{,}020\text{ cm}" /> comes from counting the floor above one stair as a tread, which gives <InlineMath math="34" /> treads.
+- <InlineMath math="1{,}050\text{ cm}" /> comes from treating the number of treads as the number of steps, <InlineMath math="35" />.
+
+So the shortest total horizontal length of the two stairs is <InlineMath math="990\text{ cm}" />.

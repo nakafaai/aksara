@@ -1,18 +1,50 @@
-Untuk setiap pernyataan, bulatkan jarak ke atas, lalu hitung tarif. Pada Aplikasi Cepat, **tarif minimum <InlineMath math="\text{Rp}12{.}000{,}00" /> berlaku jika hasil per kilometer lebih kecil**.
+Setiap pernyataan membahas rencana yang berbeda, jadi kita uji satu per satu. Pegangannya ada dua aturan: **penambahan otomatis hanya terjadi saat energi di bawah <InlineMath math="60" />**, dan penghitung mulai dari nol hanya ketika energi turun dari <InlineMath math="60" /> atau lebih. Pukul 10.00 energi Nadia <InlineMath math="38" />, jadi penghitungnya sedang berjalan dengan jadwal 10.05, 10.10, dan seterusnya.
 
-# Tarif Aplikasi Cepat untuk jarak pendek
+# Pernyataan pertama
 
-Jarak 3,2 km dibulatkan menjadi 4 km, dan <InlineMath math="4\cdot3{.}000=12{.}000" />. Pernyataan pertama benar.
-
-Jarak 1 km memberi <InlineMath math="3{.}000" />, tetapi angka itu **di bawah tarif minimum**, jadi tarifnya tetap Rp12.000,00. Pernyataan kedua salah.
-
-# Membandingkan kedua aplikasi
+Misi bos pukul 10.00 membuat energi menjadi <InlineMath math="38-20=18" />. Energi tetap di bawah <InlineMath math="60" />, jadi penambahan berjalan terus dengan jadwal lama. Dari 10.05 sampai 12.00 ada <InlineMath math="120 : 5=24" /> penambahan. Pukul 12.00 penambahan dihitung lebih dulu, lalu **hadiah harian ikut menambah energi**.
 
 <BlockMath math="\begin{aligned}
-6\text{ km}&:\quad \text{Jalan}=10{.}000+4\cdot2{.}500=20{.}000,\quad \text{Cepat}=6\cdot3{.}000=18{.}000\\
-12\text{ km}&:\quad \text{Jalan}=10{.}000+10\cdot2{.}500=35{.}000,\quad \text{Cepat}=12\cdot3{.}000=36{.}000
+18+24&=42 \\
+42+15&=57
 \end{aligned}" />
 
-Pada 6 km, Aplikasi Cepat lebih murah, jadi pernyataan ketiga salah. Pada 12 km, **Aplikasi Jalan lebih murah Rp1.000,00**, jadi pernyataan keempat benar.
+Energi <InlineMath math="57" /> masih di bawah <InlineMath math="60" />, jadi penambahan berlanjut. Pukul 12.05 energi <InlineMath math="58" />, pukul 12.10 energi <InlineMath math="59" />, dan pukul 12.15 energi <InlineMath math="60" />. Jadi energi pertama kali mencapai <InlineMath math="60" /> pukul 12.15. Pernyataan ini **benar**. Tanpa hadiah, kamu akan mendapat pukul 13.30, karena <InlineMath math="18" /> butuh <InlineMath math="42" /> penambahan untuk sampai ke <InlineMath math="60" />.
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.
+# Pernyataan kedua
+
+Cukup satu contoh yang membuat hasilnya berbeda. Dari pernyataan pertama, misi bos pukul 10.00 memberi energi <InlineMath math="60" /> pada pukul 12.30, karena energi berhenti di <InlineMath math="60" /> sejak 12.15.
+
+Sekarang misalkan misi bos dimulai pukul 12.10. Dari <InlineMath math="38" />, energi butuh <InlineMath math="22" /> penambahan untuk mencapai <InlineMath math="60" />, yaitu sampai pukul 11.50. Setelah itu **energi penuh dan penambahan berhenti**, sehingga waktu menunggu dari 11.50 sampai 12.10 terbuang.
+
+<BlockMath math="\begin{aligned}
+60+15&=75 \\
+75-20&=55 \\
+55+4&=59
+\end{aligned}" />
+
+Hadiah pukul 12.00 membuat energi <InlineMath math="75" />. Misi bos pukul 12.10 membuat energi <InlineMath math="55" />, dan penghitung mulai dari nol pukul 12.10. Penambahan terjadi pukul 12.15, 12.20, 12.25, dan 12.30, jadi energi pukul 12.30 adalah <InlineMath math="59" />. Karena <InlineMath math="59" /> tidak sama dengan <InlineMath math="60" />, pernyataan ini **salah**.
+
+# Pernyataan ketiga
+
+Energi bisa melebihi <InlineMath math="60" /> hanya karena hadiah atau ramuan. Jadi supaya energi besar, **biarkan penambahan otomatis mengisi energi sampai <InlineMath math="60" /> lebih dulu, lalu minum ramuan terakhir**.
+
+Ikuti rencana pernyataan pertama: misi bos pukul 10.00, lalu energi mencapai <InlineMath math="60" /> pukul 12.15. Nadia meminum ramuan pukul 12.15, jadi energinya <InlineMath math="60+30=90" />. Setelah itu tidak ada lagi yang memakai energi, jadi energi pukul 12.30 adalah <InlineMath math="90" />. Karena <InlineMath math="90>85" />, rencana seperti itu memang ada, dan pernyataan ini **benar**.
+
+# Pernyataan keempat
+
+Ramuan pukul 10.00 membuat energi <InlineMath math="38+30=68" />, dan penambahan otomatis berhenti. Kita periksa semua kemungkinan waktu misi bos dengan **membagi dua kasus menurut waktu misi bos**.
+
+## Misi bos sebelum hadiah
+
+Jika misi bos dimulai sebelum pukul 12.00, energi menjadi <InlineMath math="68-20=48" />. Penambahan otomatis **paling jauh membawa energi sampai <InlineMath math="60" />**, lalu berhenti. Jadi tepat sebelum hadiah energi paling banyak <InlineMath math="60" />, dan sesudah hadiah paling banyak <InlineMath math="60+15=75" />. Energi itu sudah di atas <InlineMath math="60" />, jadi tidak bertambah lagi sampai 12.30. Nilai <InlineMath math="75" /> memang tercapai jika misi bos dimulai pukul 10.00, karena energi <InlineMath math="48" /> mencapai <InlineMath math="60" /> pukul 11.00.
+
+## Misi bos pada atau sesudah hadiah
+
+Jika misi bos dimulai pukul 12.00 atau sesudahnya, energi tetap <InlineMath math="68" /> sampai pukul 12.00 karena penambahan berhenti. Hadiah membuatnya <InlineMath math="83" />, lalu misi bos membuatnya <InlineMath math="63" />. Energi <InlineMath math="63" /> masih di atas <InlineMath math="60" />, jadi tidak bertambah lagi.
+
+Dalam kedua kasus energi pukul 12.30 paling banyak <InlineMath math="75" />, jadi pernyataan ini **benar**.
+
+# Ringkasan
+
+Pernyataan pertama, ketiga, dan keempat benar. Pernyataan kedua salah, karena **menunggu dalam keadaan penuh membuang penambahan otomatis**.

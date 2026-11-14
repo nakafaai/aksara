@@ -1,15 +1,49 @@
-Hitung **banyak babak yang dilalui seorang pemain**. Setiap babak yang dimainkan berarti satu pertandingan.
+Kamu mencari tahun pertama saat saldo mencapai <InlineMath math="135" /> juta rupiah. Rencananya: hitung dana yang masuk pada setiap tahap, tulis saldo akhir tahun dengan faktor dari tabel, lalu periksa tahun demi tahun. Setoran berubah di tengah jalan, dan **dana pendamping ikut berubah karena batasnya**. Semua angka di bawah ini dalam juta rupiah.
 
-# Banyak pertandingan seorang juara
+# Dana yang masuk pada setiap tahap
 
-Dari babak kedua sampai final ada 5 babak: 32 ke 16, 16 ke 8, 8 ke 4, 4 ke 2, dan final. Juara yang mendapat bye hanya memainkan **5 pertandingan**, jadi pernyataan pertama salah.
+Pada tahun ke-<InlineMath math="1" /> sampai ke-<InlineMath math="3" />, setoran <InlineMath math="6" /> mendapat pendamping <InlineMath math="3" />, jadi masuk <InlineMath math="9" />. Mulai tahun ke-<InlineMath math="4" />, setoran <InlineMath math="12" /> seharusnya mendapat <InlineMath math="6" />, tetapi **batas dana pendamping memotongnya menjadi <InlineMath math="4" />**, jadi masuk <InlineMath math="16" />.
 
-Juara yang bermain sejak babak pertama memainkan <InlineMath math="1+5=6" /> pertandingan, dan tidak ada juara yang bermain lebih banyak. Pernyataan kedua benar.
+# Saldo pada akhir tahun ketujuh dan kedelapan
 
-# Banyak pertandingan per babak
+Dana yang masuk pada awal tahun ke-<InlineMath math="k" /> tumbuh sampai akhir tahun ke-<InlineMath math="n" /> dengan faktor <InlineMath math="(1{,}1)^{n-k+1}" />. Pada akhir tahun ke-<InlineMath math="7" />, tiga setoran pertama tumbuh <InlineMath math="7" />, <InlineMath math="6" />, dan <InlineMath math="5" /> kali, sedangkan empat setoran berikutnya tumbuh <InlineMath math="4" />, <InlineMath math="3" />, <InlineMath math="2" />, dan <InlineMath math="1" /> kali.
 
-Perempat final diikuti 8 pemain, jadi ada <InlineMath math="\tfrac82=4" /> pertandingan. Pernyataan ketiga benar.
+<BlockMath math="\begin{aligned}
+B_7 &= 9\times(1{,}949+1{,}772+1{,}611)+16\times(1{,}464+1{,}331+1{,}210+1{,}100) \\
+&= 9\times5{,}332+16\times5{,}105=47{,}988+81{,}68=129{,}668
+\end{aligned}" />
 
-Babak kedua memiliki 16 pertandingan, sedangkan semua babak setelahnya <InlineMath math="8+4+2+1=15" /> pertandingan. **Selisihnya satu**, jadi pernyataan keempat salah.
+Saldo itu masih kurang dari <InlineMath math="135" />. Pada akhir tahun ke-<InlineMath math="8" />, semua faktor naik satu langkah dan ada satu setoran <InlineMath math="16" /> lagi.
 
-Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **benar**, dan keempat **salah**.
+<BlockMath math="\begin{aligned}
+B_8 &= 9\times(2{,}144+1{,}949+1{,}772)+16\times(1{,}611+1{,}464+1{,}331+1{,}210+1{,}100) \\
+&= 9\times5{,}865+16\times6{,}716=52{,}785+107{,}456=160{,}241
+\end{aligned}" />
+
+Saldo tahun ke-<InlineMath math="8" /> sudah melewati <InlineMath math="135" />. **Saldo selalu naik dari tahun ke tahun**, karena ada setoran baru dan pertumbuhan, jadi tahun-tahun sebelum tahun ke-<InlineMath math="7" /> pasti juga kurang dari <InlineMath math="135" />.
+
+# Cek tahun demi tahun
+
+Cara kedua: setiap tahun tambahkan dana yang masuk, lalu kalikan <InlineMath math="1{,}1" />. Angkanya dibulatkan sampai dua angka di belakang koma.
+
+<BlockMath math="\begin{aligned}
+B_1 &= 9\times1{,}1=9{,}9 \\
+B_2 &= (9{,}9+9)\times1{,}1=20{,}79 \\
+B_3 &= (20{,}79+9)\times1{,}1\approx32{,}77 \\
+B_4 &\approx (32{,}77+16)\times1{,}1\approx53{,}65 \\
+B_5 &\approx (53{,}65+16)\times1{,}1\approx76{,}61 \\
+B_6 &\approx (76{,}61+16)\times1{,}1\approx101{,}87 \\
+B_7 &\approx (101{,}87+16)\times1{,}1\approx129{,}66 \\
+B_8 &\approx (129{,}66+16)\times1{,}1\approx160{,}22
+\end{aligned}" />
+
+Hasilnya sama, jadi **kedua cara sepakat**: tahun ke-<InlineMath math="7" /> masih kurang dan tahun ke-<InlineMath math="8" /> sudah cukup.
+
+# Jebakan yang perlu dihindari
+
+Jawaban lain muncul kalau **batas dana pendamping atau pertumbuhan dilupakan**.
+
+- Tanpa batas, dana yang masuk mulai tahun ke-<InlineMath math="4" /> menjadi <InlineMath math="18" />, sehingga <InlineMath math="B_7=47{,}988+18\times5{,}105=139{,}878" /> dan jawabannya tampak tahun ke-<InlineMath math="7" />.
+- Tanpa pertumbuhan, saldo hanya jumlah dana yang masuk, <InlineMath math="27+16(n-3)" />, yang baru mencapai <InlineMath math="135" /> pada tahun ke-<InlineMath math="10" />.
+
+Jadi, saldo dana pensiun itu pertama kali mencapai paling sedikit <InlineMath math="\text{Rp}135{.}000{.}000{,}00" /> pada akhir tahun ke-<InlineMath math="8" />.

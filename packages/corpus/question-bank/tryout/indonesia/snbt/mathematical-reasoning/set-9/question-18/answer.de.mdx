@@ -1,13 +1,38 @@
-Der geneigte Teil braucht mindestens <InlineMath math="60\cdot12=720" /> cm oder 7,2 m waagerechte Länge. Da ein Abschnitt höchstens 6 m lang ist, bestimme zuerst **wie viele Abschnitte und Podeste nötig sind**.
+Alle Aussagen hängen vom Plan der beiden Maschinen ab, also verfolgst du den zuerst von Montag bis Mittwoch. Behalte die wichtige Regel im Kopf: **Betriebsstunden werden von einem Tag in den nächsten übernommen**, und eine Maschine wird gewartet, sobald sie ihre Grenze erreicht. Gute Teile pro Stunde sind <InlineMath math="95\%\times120=114" /> bei P und <InlineMath math="90\%\times90=81" /> bei Q.
 
-# Abschnitte und Podeste
+# Der Plan beider Maschinen
 
-7,2 m sind mehr als 6 m, ein Abschnitt reicht also nicht. Zwei Abschnitte reichen, etwa 3,6 m und 3,6 m, und **zwischen zwei Abschnitten liegt ein Podest**.
+Maschine P läuft <InlineMath math="5" /> Stunden und wird dann <InlineMath math="1" /> Stunde gewartet. Maschine Q läuft <InlineMath math="7" /> Stunden und wird dann <InlineMath math="1" /> Stunde gewartet, zwei ihrer Runden füllen also genau <InlineMath math="16" /> Stunden, und **der Plan von Q ist jeden Tag gleich**.
 
-# Waagerechte Gesamtlänge
+| Tag | P läuft | P-Wartung ab | P-Stunden um 23.00 | Q läuft | Q-Wartung ab |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| Montag | <InlineMath math="14" /> Stunden | 12.00, 18.00 | <InlineMath math="4" /> | <InlineMath math="14" /> Stunden | 14.00, 22.00 |
+| Dienstag | <InlineMath math="13" /> Stunden | 08.00, 14.00, 20.00 | <InlineMath math="2" /> | <InlineMath math="14" /> Stunden | 14.00, 22.00 |
+| Mittwoch | <InlineMath math="13" /> Stunden | 10.00, 16.00, 22.00 | <InlineMath math="0" /> | <InlineMath math="14" /> Stunden | 14.00, 22.00 |
 
-<BlockMath math="7{,}2+1{,}5=8{,}7\text{ m}" />
+Die Spalte mit den P-Stunden um 23.00 Uhr zeigt, was in den nächsten Morgen übernommen wird. Am Dienstagmorgen fehlt P nur noch <InlineMath math="1" /> Stunde bis zur Wartung, am Mittwochmorgen noch <InlineMath math="3" />.
 
-Der Wert 7,2 m vergisst das Podest. Der Wert 10,2 m nimmt zwei Podeste, obwohl zwei Abschnitte nur eins brauchen. Der Wert 12 m nimmt zwei Abschnitte von 6 m ohne Podest, und 13,5 m zwei Abschnitte von 6 m mit Podest, beide länger als nötig.
+# Die erste Aussage über die Laufzeit von P
 
-Die kürzeste waagerechte Gesamtlänge der Rampe beträgt also **8,7 m**.
+P läuft am Montag <InlineMath math="14" /> Stunden und am Dienstag <InlineMath math="13" /> Stunden, weil **die <InlineMath math="4" /> übernommenen Stunden vom Montag am Dienstag drei Wartungen erzwingen**. Weil <InlineMath math="13<14" />, ist die erste Aussage wahr.
+
+# Die zweite Aussage über die Wartungszeiten von P
+
+Die Wartung von P beginnt am Montag um 12.00 und 18.00 Uhr, am Dienstag aber um 08.00, 14.00 und 20.00 Uhr. **Die übernommenen Stunden verschieben die Wartungszeiten** jeden Tag, sie sind also nicht gleich. Die zweite Aussage ist falsch.
+
+# Die dritte Aussage über die Tagesleistung
+
+Am wenigsten liefert P an einem Tag mit <InlineMath math="13" /> Betriebsstunden, während Q immer <InlineMath math="14" /> Stunden läuft.
+
+<BlockMath math="\begin{aligned}
+\text{P mindestens} &: 13\times114=1{.}482 \\
+\text{Q jeden Tag} &: 14\times81=1{.}134
+\end{aligned}" />
+
+Selbst an seinem schwächsten Tag **liegt P noch vor Q**, denn <InlineMath math="1{.}482>1{.}134" />. Am Montag ist der Abstand noch größer, <InlineMath math="14\times114=1{.}596" />. Die dritte Aussage ist wahr.
+
+# Die vierte Aussage über die gemeinsame Rate
+
+Die Zahl <InlineMath math="114+81=195" /> gilt nur, solange beide Maschinen laufen. Am Montag von 12.00 bis 13.00 Uhr wird P gewartet, die Fabrik macht in dieser Stunde also nur <InlineMath math="81" /> gute Teile. Am Mittwoch von 22.00 bis 23.00 Uhr **werden beide Maschinen gleichzeitig gewartet**, diese Stunde bringt also nichts. Das Wort immer ist widerlegt, die vierte Aussage ist falsch.
+
+Die erste Aussage ist also wahr, die zweite falsch, die dritte wahr und die vierte falsch.

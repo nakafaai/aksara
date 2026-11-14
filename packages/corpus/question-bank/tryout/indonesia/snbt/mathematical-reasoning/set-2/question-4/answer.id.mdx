@@ -1,23 +1,45 @@
-Kedua tarif berubah rumus di titik tertentu: Aplikasi Jalan di 2 km, dan Aplikasi Cepat di 4 km, tempat <InlineMath math="3{.}000k" /> mencapai tarif minimum. Jadi **bandingkan per selang jarak** <InlineMath math="k" /> km.
+Kita mencari waktu paling awal Rio dapat memulai misi bos keenam. Rencananya, hitung energi yang dibutuhkan enam misi bos, kurangi dengan **energi yang sudah pasti ada**, lalu ubah kekurangannya menjadi banyak penambahan otomatis dan waktunya.
 
-# Jarak 1 sampai 4 km
+# Energi yang dibutuhkan
 
-Aplikasi Cepat **selalu Rp12.000,00** pada selang ini.
+Enam misi bos memakai <InlineMath math="6\cdot 20=120" /> energi. Pukul 09.00 energi Rio <InlineMath math="60" />, sama seperti pukul 08.30. Dari 08.30 sampai 09.00 energinya penuh, jadi **tidak ada penambahan selama energi penuh**. Waktu tunggu setengah jam itu tidak menghasilkan energi apa pun.
 
-| <InlineMath math="k" /> | Jalan | Cepat | Lebih murah |
-| :---: | :---: | :---: | :---: |
-| 1 atau 2 | 10.000 | 12.000 | Jalan |
-| 3 | 12.500 | 12.000 | Cepat |
-| 4 | 15.000 | 12.000 | Cepat |
+# Sumber energi lainnya
 
-# Jarak 4 km atau lebih
+Rio tidak meminum ramuan, jadi sumber lainnya hanya **hadiah harian <InlineMath math="15" /> pukul 12.00**. Hadiah ini ikut dihitung jika misi keenam dimulai pukul 12.00 atau sesudahnya. Sisa kebutuhannya harus datang dari penambahan otomatis.
 
-Untuk <InlineMath math="k\ge2" />, tarif Jalan adalah <InlineMath math="10{.}000+2{.}500(k-2)=5{.}000+2{.}500k" />, dan untuk <InlineMath math="k\ge4" /> tarif Cepat adalah <InlineMath math="3{.}000k" />.
+<BlockMath math="120-60-15=45" />
 
-<BlockMath math="5{.}000+2{.}500k<3{.}000k\;\Longleftrightarrow\;5{.}000<500k\;\Longleftrightarrow\;k>10" />
+# Kapan penambahan dimulai
 
-Pada <InlineMath math="k=10" />, kedua tarif **sama-sama Rp30.000,00**, jadi Jalan belum lebih murah. Mulai 11 km, Jalan lebih murah.
+Misi bos pertama pukul 09.00 membuat energi <InlineMath math="40" />, jadi energi turun di bawah <InlineMath math="60" /> dan **penghitung mulai dari nol pukul 09.00**. Penambahan pertama terjadi pukul 09.05. Jika Rio selalu memulai misi bos secepat mungkin, energinya tidak pernah kembali ke <InlineMath math="60" />, jadi penambahan berjalan tanpa henti setiap <InlineMath math="5" /> menit. Penambahan yang terakhir dari <InlineMath math="45" /> penambahan itu terjadi pada menit berikut setelah 09.00.
 
-Pilihan paling sedikit 11 km atau paling jauh 2 km masing-masing hanya memuat satu bagian jawaban. Pilihan paling jauh 2 km atau paling sedikit 10 km memasukkan jarak 10 km, tempat kedua tarif sama.
+<BlockMath math="45\cdot 5=225\text{ menit}" />
 
-Jadi, Aplikasi Jalan lebih murah tepat ketika jaraknya **paling jauh 2 km atau paling sedikit 11 km**.
+Waktu <InlineMath math="225" /> menit sama dengan <InlineMath math="3" /> jam <InlineMath math="45" /> menit, jadi penambahan terakhir itu terjadi pukul 12.45.
+
+# Memeriksa jadwal misi
+
+Sekarang pastikan jadwalnya benar-benar bisa dijalankan, termasuk lama setiap misi bos <InlineMath math="10" /> menit. **Setiap misi dimulai begitu energinya cukup dan misi sebelumnya selesai**.
+
+| Waktu mulai | Energi sebelum misi | Energi sesudah misi |
+| --- | --- | --- |
+| 09.00 | <InlineMath math="60" /> | <InlineMath math="40" /> |
+| 09.10 | <InlineMath math="42" /> | <InlineMath math="22" /> |
+| 09.20 | <InlineMath math="24" /> | <InlineMath math="4" /> |
+| 10.40 | <InlineMath math="20" /> | <InlineMath math="0" /> |
+| 12.00 | <InlineMath math="31" /> | <InlineMath math="11" /> |
+| 12.45 | <InlineMath math="20" /> | <InlineMath math="0" /> |
+
+Dari 09.20 sampai 10.40 terjadi <InlineMath math="16" /> penambahan, jadi energi naik dari <InlineMath math="4" /> ke <InlineMath math="20" />. Dari 10.45 sampai 12.00 terjadi <InlineMath math="16" /> penambahan, lalu hadiah datang, jadi <InlineMath math="0+16+15=31" />. Dari 12.05 sampai 12.45 terjadi <InlineMath math="9" /> penambahan, jadi <InlineMath math="11+9=20" />, tepat cukup untuk misi keenam. Sebelum 12.45 energi selalu kurang dari <InlineMath math="20" /> sesudah misi kelima, jadi misi keenam tidak bisa lebih awal.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain berasal dari **satu langkah hitung yang tergelincir**.
+
+- Pukul 12.00 adalah waktu mulai misi bos kelima, jadi hitungan berhenti satu misi terlalu cepat.
+- Pukul 12.15 muncul jika penambahan dihitung sejak 08.30, padahal energi Rio penuh sampai 09.00.
+- Pukul 12.40 muncul jika pukul 09.00 dianggap sudah memberi satu penambahan, sehingga hanya <InlineMath math="44" /> kali <InlineMath math="5" /> menit yang dihitung.
+- Pukul 14.00 muncul jika hadiah harian dilupakan, sehingga dibutuhkan <InlineMath math="60" /> penambahan atau <InlineMath math="300" /> menit.
+
+Jadi, Rio paling cepat dapat memulai misi bos keenam pukul 12.45.

@@ -1,15 +1,30 @@
-Andra gewinnt mit **mehr als der Hälfte der gültigen Stimmen**. Die Hälfte von 240 ist 120, also braucht Andra mindestens 121 Stimmen.
+Bakterien sterben wegen des vollen Behälters nur dann, wenn **die Verdopplung mehr als <InlineMath math="960" /> Millionen Zellen ergibt**. Genau <InlineMath math="960" /> tötet noch keine Zelle. Der Plan: Verfolge die Population Stunde für Stunde, mit einer Ernte direkt nach der Verdopplung bei jedem <InlineMath math="t" />, das ein Vielfaches von <InlineMath math="3" /> ist.
 
-# Die Ungleichung aufstellen
+# Die ersten drei Zyklen
 
-Es mögen <InlineMath math="k" /> Wählende zu Andra wechseln. **Die Zahl gültiger Stimmen bleibt 240**, weil die Stimmen nur von anderen Kandidaten wandern.
+Starte bei <InlineMath math="30" />. In einer Erntestunde **kommt zuerst die Verdopplung und dann die Ernte**.
 
-<BlockMath math="96+k>120\;\Longleftrightarrow\;k>24" />
+<BlockMath math="\begin{aligned}
+t=1,2,3 &: \ 30\to60\to120\to240, \ 240-200=40 \\
+t=4,5,6 &: \ 40\to80\to160\to320, \ 320-200=120 \\
+t=7,8,9 &: \ 120\to240\to480\to960, \ 960-200=760
+\end{aligned}" />
 
-# Die kleinste ganze Zahl
+Jede Ernte nimmt <InlineMath math="200" />, weil in diesem Moment mehr als <InlineMath math="200" /> Zellen da sind, die Kultur erlischt also nicht.
 
-Die Zahl der Wählenden ist ganzzahlig, der kleinste Wert ist also <InlineMath math="k=25" />, und Andra hat 121 Stimmen. Bei <InlineMath math="k=24" /> hat Andra genau 120 Stimmen, **genau 50 %, also nicht mehr als 50 %**.
+# Wann der Behälter zum ersten Mal überläuft
 
-Der Wert 121 ist die nötige Stimmenzahl für Andra, nicht die Zahl der Wechselnden. Die Werte 48 und 49 entstehen, wenn man annimmt, dass Wechselnde gültige Stimmen entfernen, oder wenn man die zusätzlichen Stimmen verdoppelt.
+Bei <InlineMath math="t=9" /> füllt die Verdopplung <InlineMath math="480\to960" /> den Behälter genau. **Genau voll heißt noch nicht übergelaufen**, es stirbt also noch keine Zelle, und die Ernte senkt die Zahl dann auf <InlineMath math="760" />.
 
-Es müssen also mindestens **25 Wählende** wechseln.
+Bei <InlineMath math="t=10" /> ergibt die Verdopplung <InlineMath math="760\cdot2=1{.}520" />, also mehr als <InlineMath math="960" />. Die Zahl wird <InlineMath math="960" />, und <InlineMath math="1{.}520-960=560" /> Millionen Zellen sterben. Das ist das erste Mal, dass Bakterien wegen des vollen Behälters sterben.
+
+# Warum die anderen Antworten falsch sind
+
+Jede andere Antwort **vergisst die Ernte, liest die Grenze falsch oder dreht die Reihenfolge um**.
+
+- <InlineMath math="t=5" /> entsteht, wenn die Ernte fehlt und genau <InlineMath math="960" /> aus <InlineMath math="30\cdot2^5=960" /> schon als Absterben gilt.
+- <InlineMath math="t=6" /> entsteht, wenn die Ernte fehlt, denn <InlineMath math="30\cdot2^6=1{.}920" /> liegt über der Kapazität.
+- <InlineMath math="t=9" /> entsteht, wenn ein genau voller Behälter schon als übergelaufen gilt.
+- Die Antwort, dass nie Bakterien sterben, entsteht, wenn vor der Verdopplung geerntet wird. Bei <InlineMath math="t=3" /> wären es dann erst <InlineMath math="120" />, also höchstens <InlineMath math="200" />, alles würde genommen und die Kultur wäre sofort erloschen.
+
+Bakterien sterben also zum ersten Mal wegen des vollen Behälters bei <InlineMath math="t=10" />.

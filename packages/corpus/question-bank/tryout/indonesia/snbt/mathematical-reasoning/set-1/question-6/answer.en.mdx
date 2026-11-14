@@ -1,22 +1,46 @@
-Water entering the tank fills the cylinder from the bottom, so its height is **the volume of water divided by the base area of the tank**.
+Each statement has to be tested on its own. To speed things up, **first write the cost as a formula in the billed weight** <InlineMath math="w" />, then find each parcel's billed weight from its volume weight and the <InlineMath math="0.3\text{ kg}" /> excess rule.
 
-# Volume of water entering
+# The cost formula for each zone
 
-From the roof area <InlineMath math="77\text{ m}^2" />, the rainfall 0.025 m and **the 80% efficiency** we get
-
-<BlockMath math="V=77\cdot0.025\cdot0.8=1.54\text{ m}^3" />
-
-# Base area and water height
-
-The base radius is half the diameter, 0.7 m.
+The cost is the admin fee, plus the first-kilogram rate, plus the next-kilogram rate for the remaining <InlineMath math="w-1" /> kilograms. These two short forms **are used for every statement**.
 
 <BlockMath math="\begin{aligned}
-L_{\text{base}}&=\tfrac{22}{7}\cdot0.7^2=\tfrac{22}{7}\cdot0.49=1.54\text{ m}^2\\
-t&=\frac{1.54}{1.54}=1\text{ m}
+\text{Java} &: 5{,}000+18{,}000+12{,}000(w-1)=12{,}000w+11{,}000\\
+\text{Outside Java} &: 5{,}000+30{,}000+20{,}000(w-1)=20{,}000w+15{,}000
 \end{aligned}" />
 
-This height is **less than the tank height of 2 m**, so no water overflows.
+# The first statement on two parcels to Java
 
-The height 1.25 m forgets that only 80% of the water enters. The height 0.8 m multiplies by 80% twice. The value 0.5 is the fraction of the tank that is filled, not the height, and 2 m is the height of the tank.
+The first box has a volume weight of <InlineMath math="\tfrac{50\cdot40\cdot30}{6{,}000}=10\text{ kg}" />, more than <InlineMath math="4\text{ kg}" />, so its billed weight is <InlineMath math="10\text{ kg}" />. The second box has a volume weight of <InlineMath math="\tfrac{30\cdot30\cdot30}{6{,}000}=4.5\text{ kg}" />, so its starting weight is <InlineMath math="8.2\text{ kg}" />. The excess of <InlineMath math="0.2\text{ kg}" /> is dropped, so its billed weight is <InlineMath math="8\text{ kg}" />.
 
-So the height of the water in the tank is **1 m**.
+<BlockMath math="\begin{aligned}
+\text{first parcel} &= 12{,}000\cdot10+11{,}000=\text{Rp}131{,}000\\
+\text{second parcel} &= 12{,}000\cdot8+11{,}000=\text{Rp}107{,}000
+\end{aligned}" />
+
+The lighter parcel actually costs more because **it's billed on its volume weight**, so the first statement is true.
+
+# The second statement on one box size
+
+That box has a volume weight of <InlineMath math="\tfrac{40\cdot30\cdot20}{6{,}000}=4\text{ kg}" />. There are two cases. If the actual weight is at most <InlineMath math="4\text{ kg}" />, the starting weight is the volume weight of <InlineMath math="4\text{ kg}" />. If the actual weight is between <InlineMath math="4\text{ kg}" /> and <InlineMath math="4.3\text{ kg}" />, the excess is at most <InlineMath math="0.3\text{ kg}" /> and gets dropped. In **both cases the billed weight stays** <InlineMath math="4\text{ kg}" />, so the cost is always <InlineMath math="20{,}000\cdot4+15{,}000=\text{Rp}95{,}000" />. The second statement is true.
+
+# The third statement on a shorter box
+
+The old box has a volume weight of <InlineMath math="\tfrac{60\cdot50\cdot40}{6{,}000}=20\text{ kg}" />, so its billed weight is <InlineMath math="20\text{ kg}" />. The new box has a volume weight of <InlineMath math="\tfrac{60\cdot50\cdot25}{6{,}000}=12.5\text{ kg}" />. That's **still more than the actual weight** of <InlineMath math="12\text{ kg}" />, so the starting weight is <InlineMath math="12.5\text{ kg}" />. The excess of <InlineMath math="0.5\text{ kg}" /> is more than <InlineMath math="0.3\text{ kg}" />, so the billed weight is <InlineMath math="13\text{ kg}" />.
+
+<BlockMath math="\text{saving}=(20-13)\cdot\text{Rp}20{,}000=\text{Rp}140{,}000" />
+
+The saving is <InlineMath math="\text{Rp}140{,}000" />, not <InlineMath math="\text{Rp}160{,}000" />. The figure <InlineMath math="\text{Rp}160{,}000" /> comes from taking the new billed weight as <InlineMath math="12\text{ kg}" />. The third statement is false.
+
+# The fourth statement on the two zones
+
+Compare the Outside Java cost with twice the Java cost for the same billed weight <InlineMath math="w" />.
+
+<BlockMath math="\begin{aligned}
+2(12{,}000w+11{,}000)-(20{,}000w+15{,}000) &= 24{,}000w+22{,}000-20{,}000w-15{,}000\\
+&= 4{,}000w+7{,}000
+\end{aligned}" />
+
+Since <InlineMath math="w\ge1" />, the difference <InlineMath math="4{,}000w+7{,}000" /> is always positive. That means **twice the Java cost is always larger** than the Outside Java cost. For example, at <InlineMath math="w=1" /> the cost is <InlineMath math="\text{Rp}35{,}000" /> against <InlineMath math="2\cdot\text{Rp}23{,}000=\text{Rp}46{,}000" />. The fourth statement is true.
+
+So the first statement is true, the second is true, the third is false, and the fourth is true.

@@ -1,18 +1,40 @@
-Reverse the formula <InlineMath math="F=\tfrac95C+32" /> by undoing its steps from the end: **subtract 32 first, then multiply by <InlineMath math="\tfrac59" />**.
+You're looking for the first moment the water level reaches <InlineMath math="300\text{ cm}" />. The plan: match each hour at the gauge with the rain that fell <InlineMath math="2" /> hours earlier, follow the rise hour by hour, and change the rate as soon as the floodgate opens at <InlineMath math="250\text{ cm}" />.
 
-# Reversing the formula
+# The rain arriving each hour
+
+Rain upstream only arrives <InlineMath math="2" /> hours later, so **each gauge hour is paired with the rain from two hours earlier**. The change is <InlineMath math="(2p-20)\text{ cm}" /> per hour.
+
+| Hour at the gauge | Rain arriving | Change per hour |
+| --- | --- | --- |
+| 06.00-07.00 | <InlineMath math="30\text{ mm}" /> | <InlineMath math="+40\text{ cm}" /> |
+| 07.00-08.00 | <InlineMath math="25\text{ mm}" /> | <InlineMath math="+30\text{ cm}" /> |
+| 08.00-09.00 | <InlineMath math="40\text{ mm}" /> | <InlineMath math="+60\text{ cm}" /> |
+| 09.00-10.00 | <InlineMath math="55\text{ mm}" /> | <InlineMath math="+90\text{ cm}" /> |
+
+# Rising until the floodgate opens
+
+The level becomes <InlineMath math="140+40=180\text{ cm}" /> at 07.00 and <InlineMath math="180+30=210\text{ cm}" /> at 08.00. From 08.00 it rises <InlineMath math="60\text{ cm}" /> per hour, so **the floodgate opens when the level reaches <InlineMath math="250\text{ cm}" />**.
+
+<BlockMath math="\frac{250-210}{60}\text{ h}=\frac{40}{60}\text{ h}=40\text{ min}" />
+
+The floodgate opens at 08.40.
+
+# Rising more slowly once the gate is open
+
+While the gate is open, every change drops by <InlineMath math="30\text{ cm}" /> per hour. **From 08.40 to 09.00 the rate is only <InlineMath math="60-30=30\text{ cm}" /> per hour**, and from 09.00 to 10.00 it's <InlineMath math="90-30=60\text{ cm}" /> per hour.
 
 <BlockMath math="\begin{aligned}
-F-32&=\tfrac95C\\
-C&=\tfrac59(F-32)
+\text{level at 09.00} &= 250+30\cdot\frac{20}{60}=250+10=260\text{ cm} \\
+\text{time to } 300\text{ cm} &= \frac{300-260}{60}\text{ h}=40\text{ min}
 \end{aligned}" />
 
-# Substitution
+The Awas status starts at 09.00 plus <InlineMath math="40" /> minutes, which is 09.40. As a check, at 10.00 the level is <InlineMath math="260+60=320\text{ cm}" />, and <InlineMath math="300" /> does lie between <InlineMath math="260" /> and <InlineMath math="320" />.
 
-<BlockMath math="C=\tfrac59(356-32)=\tfrac59\cdot324=180" />
+# The wrong options
 
-Check: <InlineMath math="\tfrac95\cdot180+32=324+32=356" />, **matching the recipe**.
+- 08.40 is when the **Siaga** status starts at <InlineMath math="250\text{ cm}" />, not Awas.
+- 09.10 comes from assuming the rain arrives <InlineMath math="1" /> hour later, so every gauge hour gets paired with the wrong rain.
+- 09.20 comes from ignoring the floodgate: the level at 09.00 becomes <InlineMath math="270\text{ cm}" />, then rises <InlineMath math="90\text{ cm}" /> per hour.
+- 09.30 comes from letting the gate work only from 09.00, so the level at 09.00 is <InlineMath math="270\text{ cm}" /> and then rises <InlineMath math="60\text{ cm}" /> per hour.
 
-The value 197.8 °C forgets to subtract 32. The value 165.8 °C multiplies first and subtracts 32 afterwards. The value 215.6 °C adds 32 instead. The value 324 °C only subtracts 32 without multiplying by <InlineMath math="\tfrac59" />.
-
-So the oven temperature is **180 °C**.
+So the Awas status first starts at 09.40.

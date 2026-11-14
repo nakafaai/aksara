@@ -1,11 +1,41 @@
-Cara tercepat adalah menghitung **pemain yang gugur**. Setiap pertandingan membuat tepat satu pemain gugur, dan setiap pemain selain juara gugur tepat satu kali.
+Kamu mencari saldo pada akhir tahun ke-<InlineMath math="5" />. Ada dua hal yang perlu dijaga: **dana pendamping punya batas per tahun**, dan setiap setoran tumbuh selama banyak tahun yang berbeda. Rencananya: hitung dana yang masuk setiap tahun, kalikan setiap setoran dengan faktor yang tepat dari tabel, lalu jumlahkan.
 
-# Menghitung pemain yang gugur
+# Dana yang masuk setiap tahun
 
-Dari 40 pemain, hanya juara yang tidak pernah kalah, jadi ada <InlineMath math="40-1=39" /> pemain yang gugur. **Banyak pertandingan sama dengan banyak pemain yang gugur**.
+Setengah dari setoran <InlineMath math="\text{Rp}10{.}000{.}000{,}00" /> adalah <InlineMath math="\text{Rp}5{.}000{.}000{,}00" />. Angka ini melewati batas, jadi **dana pendamping terpotong oleh batasnya** menjadi <InlineMath math="\text{Rp}4{.}000{.}000{,}00" />, bukan <InlineMath math="\text{Rp}5{.}000{.}000{,}00" />. Dana yang masuk setiap awal tahun adalah <InlineMath math="10+4=14" /> juta rupiah.
 
-# Pemeriksaan per babak
+# Pertumbuhan setiap setoran
 
-Babak pertama mengurangi 40 pemain menjadi 32, jadi ada 8 pertandingan. Setelah itu <InlineMath math="16+8+4+2+1=31" /> pertandingan, dan <InlineMath math="8+31=39" />. **Pemain yang mendapat bye tidak menambah pertandingan**.
+Saldo dikalikan <InlineMath math="1{,}1" /> pada akhir setiap tahun. Setoran awal tahun ke-<InlineMath math="1" /> ikut tumbuh pada akhir tahun ke-<InlineMath math="1" />, ke-<InlineMath math="2" />, sampai ke-<InlineMath math="5" />, jadi tumbuh <InlineMath math="5" /> kali dan faktornya <InlineMath math="1{,}611" />. **Setoran yang lebih awal tumbuh lebih lama**: setoran tahun ke-<InlineMath math="2" /> tumbuh <InlineMath math="4" /> kali, dan setoran tahun ke-<InlineMath math="5" /> tumbuh <InlineMath math="1" /> kali.
 
-Jadi, seluruhnya ada **39 pertandingan**.
+<BlockMath math="\begin{aligned}
+\text{saldo} &= 14\times(1{,}611+1{,}464+1{,}331+1{,}210+1{,}100)\text{ juta} \\
+&= 14\times6{,}716\text{ juta}=94{,}024\text{ juta}
+\end{aligned}" />
+
+Saldonya <InlineMath math="\text{Rp}94{.}024{.}000{,}00" />.
+
+# Cek tahun demi tahun
+
+Kamu juga bisa menambah <InlineMath math="14" /> lalu mengalikan <InlineMath math="1{,}1" /> setiap tahun, dalam juta rupiah.
+
+<BlockMath math="\begin{aligned}
+14\times1{,}1 &= 15{,}4 \\
+(15{,}4+14)\times1{,}1 &= 32{,}34 \\
+(32{,}34+14)\times1{,}1 &= 50{,}974 \\
+(50{,}974+14)\times1{,}1 &= 71{,}4714 \\
+(71{,}4714+14)\times1{,}1 &= 94{,}01854
+\end{aligned}" />
+
+Hasilnya hampir sama. Selisih kecilnya muncul karena **nilai pada tabel sudah dibulatkan**, dan soal meminta kamu memakai tabel.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain **salah membaca salah satu aturan**.
+
+- <InlineMath math="\text{Rp}85{.}470{.}000{,}00" /> menganggap setoran baru masuk akhir tahun, jadi memakai faktor <InlineMath math="1+1{,}1+1{,}21+1{,}331+1{,}464=6{,}105" />.
+- <InlineMath math="\text{Rp}91{.}000{.}000{,}00" /> memakai bunga tunggal, <InlineMath math="14\times(1{,}5+1{,}4+1{,}3+1{,}2+1{,}1)=14\times6{,}5" />.
+- <InlineMath math="\text{Rp}100{.}740{.}000{,}00" /> lupa batas dana pendamping dan memakai <InlineMath math="15\times6{,}716" />.
+- <InlineMath math="\text{Rp}112{.}770{.}000{,}00" /> menumbuhkan seluruh dana <InlineMath math="70" /> juta selama <InlineMath math="5" /> tahun, <InlineMath math="70\times1{,}611" />, padahal setoran terakhir hanya tumbuh satu tahun.
+
+Jadi, saldo dana pensiun pegawai itu pada akhir tahun ke-<InlineMath math="5" /> adalah <InlineMath math="\text{Rp}94{.}024{.}000{,}00" />.

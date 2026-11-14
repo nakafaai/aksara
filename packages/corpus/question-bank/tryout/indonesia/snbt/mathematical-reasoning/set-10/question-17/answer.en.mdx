@@ -1,17 +1,54 @@
-The total area is **the area of the outer rectangle**, and the photo's area is <InlineMath math="24\cdot36=864" /> <InlineMath math="\text{cm}^2" />. Set up the equation, then solve the quadratic.
+You're looking for the first day when the running net profit reaches <InlineMath math="1{,}500{,}000" />. The rent is paid in one go every Monday, so **the daily net profit isn't the same every day**. Here's the plan: find each day's gross profit from the chart, subtract the wage and the rent on the right days, then add up day by day until the total reaches the capital.
 
-# Setting up the equation
+# Gross profit each day
+
+The profit per portion is <InlineMath math="4{,}000" /> for chicken rice, <InlineMath math="3{,}000" /> for fried noodles, and <InlineMath math="2{,}000" /> for orange ice. Multiply by the portions in the chart and add up **all three dishes on the same day**.
 
 <BlockMath math="\begin{aligned}
-(24+2x)(36+2x)&=2\cdot864\\
-864+120x+4x^2&=1{,}728\\
-x^2+30x-216&=0
+\text{Monday} &= 40\cdot4{,}000+30\cdot3{,}000+40\cdot2{,}000=330{,}000\\
+\text{Tuesday} &= 30\cdot4{,}000+25\cdot3{,}000+65\cdot2{,}000=325{,}000\\
+\text{Wednesday} &= 20\cdot4{,}000+10\cdot3{,}000+40\cdot2{,}000=190{,}000\\
+\text{Thursday} &= 35\cdot4{,}000+20\cdot3{,}000+45\cdot2{,}000=290{,}000\\
+\text{Friday} &= 25\cdot4{,}000+15\cdot3{,}000+60\cdot2{,}000=265{,}000
 \end{aligned}" />
 
-# Solving the equation
+# Net profit each day
 
-<BlockMath math="(x+36)(x-6)=0" />
+Every day loses the <InlineMath math="70{,}000" /> wage, and **only Monday also loses the rent** of <InlineMath math="350{,}000" />.
 
-A frame cannot have negative width, so **only x = 6 works**. The outer size is <InlineMath math="36\times48" />, and <InlineMath math="36\cdot48=1{,}728=2\cdot864" />.
+<BlockMath math="\begin{aligned}
+\text{Monday} &= 330{,}000-70{,}000-350{,}000=-90{,}000\\
+\text{Tuesday} &= 325{,}000-70{,}000=255{,}000\\
+\text{Wednesday} &= 190{,}000-70{,}000=120{,}000\\
+\text{Thursday} &= 290{,}000-70{,}000=220{,}000\\
+\text{Friday} &= 265{,}000-70{,}000=195{,}000
+\end{aligned}" />
 
-So the frame must be **6 cm** wide.
+One week gives a net profit of <InlineMath math="-90{,}000+255{,}000+120{,}000+220{,}000+195{,}000=700{,}000" />.
+
+# The running total day by day
+
+| Day | Week one | Week two | Week three |
+| :---: | :---: | :---: | :---: |
+| Monday | <InlineMath math="-90{,}000" /> | <InlineMath math="610{,}000" /> | <InlineMath math="1{,}310{,}000" /> |
+| Tuesday | <InlineMath math="165{,}000" /> | <InlineMath math="865{,}000" /> | <InlineMath math="1{,}565{,}000" /> |
+| Wednesday | <InlineMath math="285{,}000" /> | <InlineMath math="985{,}000" /> | |
+| Thursday | <InlineMath math="505{,}000" /> | <InlineMath math="1{,}205{,}000" /> | |
+| Friday | <InlineMath math="700{,}000" /> | <InlineMath math="1{,}400{,}000" /> | |
+
+On Monday of week three, the rent makes the total **drop from** <InlineMath math="1{,}400{,}000" /> to <InlineMath math="1{,}310{,}000" />, still below the capital. On Tuesday of week three, the total is <InlineMath math="1{,}565{,}000\ge1{,}500{,}000" />.
+
+# Checking
+
+Every Friday total is a multiple of <InlineMath math="700{,}000" />, the net profit of one week. After two weeks the total is <InlineMath math="1{,}400{,}000" />, so the capital **must come back during week three**, and the table shows the day is Tuesday.
+
+# The wrong options
+
+Each wrong option **handles the rent or the wage wrongly in the total**.
+
+- Monday of week two ignores both the rent and the wage and just adds up gross profit.
+- Tuesday of week two forgets the weekly rent.
+- Wednesday of week two forgets the daily wage.
+- Monday of week three spreads the rent evenly over the days, or uses the average of <InlineMath math="140{,}000" /> a day. But the full rent is paid every Monday, so that Monday's total is only <InlineMath math="1{,}310{,}000" />.
+
+So the running net profit first reaches the equipment capital on Tuesday of week three.

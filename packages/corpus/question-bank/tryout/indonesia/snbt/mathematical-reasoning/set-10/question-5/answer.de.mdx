@@ -1,15 +1,48 @@
-Linie C fährt um 05.00 Uhr plus Vielfache von 40 Minuten ab. Suche **das größte Vielfache, das 22.00 Uhr nicht überschreitet**.
+Du vergleichst alles, was Rina bei einem Ratenkauf über <InlineMath math="9" /> Monate zahlt, mit dem Barpreis. Der Plan: Berechne den Barpreis nach dem Rabatt, dann die Monatsrate mit dem **Aufrunden**, addiere alle Zahlungen des Ratenkaufs und ziehe ab.
 
-# Letzte Abfahrt
+# Der Barpreis nach dem Rabatt
 
-Von 05.00 bis 22.00 Uhr sind es <InlineMath math="17\cdot60=1\,020" /> Minuten.
+Wer bar zahlt, bekommt <InlineMath math="4\%" /> Rabatt, also **vergleichst du mit dem reduzierten Preis**, nicht mit dem Listenpreis.
 
-<BlockMath math="\frac{1\,020}{40}=25{,}5" />
+<BlockMath math="\begin{aligned}
+\text{Barpreis} &= 6{.}000{.}000-4\%\cdot6{.}000{.}000\\
+&= 6{.}000{.}000-240{.}000=5{.}760{.}000
+\end{aligned}" />
 
-Die letzte Abfahrt ist also <InlineMath math="25\cdot40=1\,000" /> Minuten nach 05.00 Uhr, um 21.40 Uhr. Die nächste wäre um 22.20 Uhr, **schon nach der Grenze**.
+# Die Rate bei neun Monaten
 
-# Zahl der Abfahrten
+Anzahlung und Zinsen haben zwei verschiedene Grundlagen. Die Anzahlung kommt vom Preis, **die Zinsen kommen vom Kreditbetrag**. Eine Laufzeit von <InlineMath math="9" /> Monaten hat noch <InlineMath math="1{,}5\%" /> Zinsen pro Monat.
 
-Die Abfahrten Nummer 0 bis 25 ergeben <InlineMath math="25+1=26" />. Denk daran, dass die erste Abfahrt um 05.00 Uhr mitzählt.
+<BlockMath math="\begin{aligned}
+\text{Anzahlung} &= 20\%\cdot6{.}000{.}000=1{.}200{.}000\\
+\text{Kreditbetrag} &= 6{.}000{.}000-1{.}200{.}000=4{.}800{.}000\\
+\text{Zinsen gesamt} &= 4{.}800{.}000\cdot1{,}5\%\cdot9=648{.}000\\
+\text{Rate vor dem Runden} &= \frac{4{.}800{.}000+648{.}000}{9}=605{.}333{,}33\ldots
+\end{aligned}" />
 
-Linie C fährt also **26-mal** ab.
+Regel vier verlangt Aufrunden auf ein Vielfaches von <InlineMath math="1{.}000" />. Die Rate beträgt also <InlineMath math="606{.}000" />, obwohl der Rest nur <InlineMath math="333{,}33" /> ist.
+
+# Alle Zahlungen des Ratenkaufs
+
+Rina zahlt **am Anfang die Anzahlung und die Bearbeitungsgebühr**, danach <InlineMath math="9" /> Raten.
+
+<BlockMath math="\begin{aligned}
+\text{Ratenkauf gesamt} &= 1{.}200{.}000+200{.}000+9\cdot606{.}000\\
+&= 1{.}400{.}000+5{.}454{.}000=6{.}854{.}000\\
+\text{Unterschied} &= 6{.}854{.}000-5{.}760{.}000=1{.}094{.}000
+\end{aligned}" />
+
+# Kontrolle des Rundens
+
+Jeden Monat zahlt Rina <InlineMath math="606{.}000-605{.}333{,}33\ldots=666{,}66\ldots" /> mehr als den genauen Wert. In <InlineMath math="9" /> Monaten ergibt **der Aufschlag durch das Runden** <InlineMath math="9\cdot666{,}66\ldots=6{.}000" />. Das passt, denn <InlineMath math="4{.}800{.}000+648{.}000+6{.}000=5{.}454{.}000" />.
+
+# Die falschen Antworten
+
+Jede falsche Antwort **lässt einen Kostenteil weg oder nimmt die falsche Basis**.
+
+- <InlineMath math="\text{Rp}1{.}256{.}000{,}00" /> rechnet die Zinsen vom vollen Preis <InlineMath math="6{.}000{.}000" />, sodass die Zinsen <InlineMath math="810{.}000" /> und die Rate <InlineMath math="624{.}000" /> betragen.
+- <InlineMath math="\text{Rp}1{.}088{.}000{,}00" /> rundet die Rate nicht auf.
+- <InlineMath math="\text{Rp}894{.}000{,}00" /> vergisst die Bearbeitungsgebühr von <InlineMath math="200{.}000" />.
+- <InlineMath math="\text{Rp}854{.}000{,}00" /> vergleicht mit dem Listenpreis <InlineMath math="6{.}000{.}000" />, obwohl ein Barzahler <InlineMath math="5{.}760{.}000" /> zahlt.
+
+Rina zahlt beim Ratenkauf also insgesamt <InlineMath math="\text{Rp}1{.}094{.}000{,}00" /> mehr als beim Barkauf.

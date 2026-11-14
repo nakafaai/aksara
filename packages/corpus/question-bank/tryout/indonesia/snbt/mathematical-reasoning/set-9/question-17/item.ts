@@ -1,12 +1,17 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "wheelchair-ramp",
+  stimulus: "factory-shifts",
   versions: {
     id: {
-      kind: "numericEntry",
-      unit: "m",
-      value: "7.2",
+      kind: "choice",
+      options: [
+        { correct: true, label: "$$2{.}616$$ komponen" },
+        { correct: false, label: "$$2{.}679$$ komponen" },
+        { correct: false, label: "$$2{.}730$$ komponen" },
+        { correct: false, label: "$$2{.}820$$ komponen" },
+        { correct: false, label: "$$3{.}120$$ komponen" },
+      ],
     },
   },
 };

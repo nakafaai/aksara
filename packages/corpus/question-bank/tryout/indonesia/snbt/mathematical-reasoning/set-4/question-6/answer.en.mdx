@@ -1,22 +1,50 @@
-Compute the cost of each ingredient for one recipe, add them, then **divide by 12 pieces**. The price units must match the amounts, for example grams with kilograms.
+All four statements use the same data, but each one needs its own calculation. The plan: first turn the survival percentages into numbers of fish, then multiply by the mean weight to get the biomass. **Biomass depends on two things at once**, the number of fish and the weight per fish, so don't judge it from the weight per fish alone.
 
-# Cost of each ingredient
+# Fish count and biomass each month
 
-Grams and millilitres are **converted to kilograms and litres** to match the price units.
+The number of fish alive is the percentage times <InlineMath math="5{,}000" />. The biomass is **the number of fish times the mean weight** in kilograms. The biomass at the end of the first month, <InlineMath math="4{,}500\times0.04=180\text{ kg}" />, is used for the second-month increase:
 
-| Ingredient | Amount | Cost |
-| :---: | :---: | :---: |
-| Flour | 0.25 kg | <InlineMath math="0.25\cdot12{,}000=3{,}000" /> |
-| Eggs | 3 | <InlineMath math="3\cdot2{,}000=6{,}000" /> |
-| Sugar | 0.15 kg | <InlineMath math="0.15\cdot20{,}000=3{,}000" /> |
-| Milk | 0.2 L | <InlineMath math="0.2\cdot15{,}000=3{,}000" /> |
+| End of month | Fish alive | Biomass | Biomass increase | Increase per fish |
+| :---: | :---: | :---: | :---: | :---: |
+| 2 | <InlineMath math="4{,}250" /> | <InlineMath math="4{,}250\times0.1=425\text{ kg}" /> | <InlineMath math="245\text{ kg}" /> | <InlineMath math="60\text{ g}" /> |
+| 3 | <InlineMath math="4{,}000" /> | <InlineMath math="4{,}000\times0.15=600\text{ kg}" /> | <InlineMath math="175\text{ kg}" /> | <InlineMath math="50\text{ g}" /> |
+| 4 | <InlineMath math="3{,}800" /> | <InlineMath math="3{,}800\times0.22=836\text{ kg}" /> | <InlineMath math="236\text{ kg}" /> | <InlineMath math="70\text{ g}" /> |
+| 5 | <InlineMath math="3{,}600" /> | <InlineMath math="3{,}600\times0.25=900\text{ kg}" /> | <InlineMath math="64\text{ kg}" /> | <InlineMath math="30\text{ g}" /> |
+| 6 | <InlineMath math="3{,}500" /> | <InlineMath math="3{,}500\times0.27=945\text{ kg}" /> | <InlineMath math="45\text{ kg}" /> | <InlineMath math="20\text{ g}" /> |
 
-# Cost per piece
+# The first statement
 
-One recipe costs 15,000 in total, and **one recipe makes 12 pieces**.
+The largest gain per fish happens in the fourth month, <InlineMath math="70\text{ g}" />. The largest biomass increase happens in the second month, <InlineMath math="245\text{ kg}" />, just above the <InlineMath math="236\text{ kg}" /> of the fourth month. The biomass increase also depends on **how many fish are still alive**, not only on the gain per fish, and in the second month there are still the most fish. The two months differ, so the first statement is **false**.
 
-<BlockMath math="\frac{15{,}000}{12}=1{,}250" />
+# The second statement
 
-The value Rp15,000 is the cost of the whole recipe, not per piece. The value Rp1,000 leaves out an ingredient, for example adding only flour, sugar and eggs.
+The fish that die during a month are the difference between the fish alive at the start and at the end of that month:
 
-So the ingredient cost per piece is **Rp1,250**.
+<BlockMath math="\begin{aligned}
+\text{died in the fifth month} &= 3{,}800-3{,}600=200\text{ fish}\\
+\text{died in the sixth month} &= 3{,}600-3{,}500=100\text{ fish}
+\end{aligned}" />
+
+The <InlineMath math="100" /> is exactly half of <InlineMath math="200" />, not less than half. Because the statement says **"less than"**, equality makes it **false**.
+
+# The third statement
+
+At the end of the third month the mean weight is <InlineMath math="150\text{ g}" />, so the price is <InlineMath math="\text{Rp}20{,}000" />. At the end of the fourth month the weight is <InlineMath math="220\text{ g}" />, so the price rises to <InlineMath math="\text{Rp}24{,}000" />:
+
+<BlockMath math="\begin{aligned}
+\text{revenue in the third month} &= 600\times20{,}000=12{,}000{,}000\\
+\text{revenue in the fourth month} &= 836\times24{,}000=20{,}064{,}000\\
+1.5\times12{,}000{,}000 &= 18{,}000{,}000<20{,}064{,}000
+\end{aligned}" />
+
+The biomass by itself only grows from <InlineMath math="600" /> to <InlineMath math="836" />, less than <InlineMath math="1.5" /> times. What makes the revenue jump is **the move to a higher price class**. The third statement is **true**.
+
+# The fourth statement
+
+The weight per fish grows from <InlineMath math="100\text{ g}" /> to <InlineMath math="270\text{ g}" />, which is <InlineMath math="2.7" /> times, and that tempts you to say true right away. But **the number of fish falls** from <InlineMath math="4{,}250" /> to <InlineMath math="3{,}500" />:
+
+<BlockMath math="2.5\times425=1{,}062.5\text{ kg}>945\text{ kg}" />
+
+The sixth-month biomass is less than <InlineMath math="2.5" /> times the second-month biomass, so the fourth statement is **false**.
+
+So the first statement is false, the second is false, the third is true, and the fourth is false.

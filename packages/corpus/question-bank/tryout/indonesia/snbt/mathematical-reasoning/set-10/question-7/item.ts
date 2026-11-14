@@ -1,7 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "train-departures",
+  stimulus: "phone-installment",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -10,19 +10,22 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Dari pukul 06.00 sampai sebelum pukul 07.00, kereta jurusan A berangkat 4 kali.",
+            "Untuk tenor $$3$$ sampai $$12$$ bulan, makin panjang tenor yang dipilih, makin kecil cicilan per bulannya.",
         },
         {
           column: 2,
-          label: "Ada kereta jurusan B yang berangkat pukul 07.15.",
+          label:
+            "Cicilan per bulan untuk tenor $$13$$ bulan lebih kecil daripada cicilan per bulan untuk tenor $$12$$ bulan.",
         },
         {
           column: 2,
-          label: "Ada kereta jurusan C yang berangkat pukul 12.10.",
+          label:
+            "Untuk tenor $$9$$ bulan, jumlah semua cicilan tepat sama dengan pokok kredit ditambah total bunganya.",
         },
         {
           column: 1,
-          label: "Ada kereta jurusan A yang berangkat pukul 21.00.",
+          label:
+            "Untuk tenor berapa pun, pelunasan dipercepat tepat setelah cicilan mana pun sebelum cicilan terakhir selalu membuat seluruh pembayaran lebih kecil daripada membayar semua cicilan sampai tenor selesai.",
         },
       ],
     },

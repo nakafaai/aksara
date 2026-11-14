@@ -1,19 +1,44 @@
-Die durchschnittliche Torzahl pro Spiel ist **die Gesamtzahl der Tore geteilt durch die Zahl der Spiele**. Beide Zahlen müssen sorgfältig bestimmt werden, damit nichts doppelt zählt.
+Du suchst die früheste Startzeit für Pumpe Q, bei der kein Wasser verloren geht. Wasser geht nur dann verloren, wenn **der Füllstand ohne Überlaufrohr gerechnet über <InlineMath math="6{.}000\text{ Liter}" /> steigen würde**. Bestimm also, wann der Füllstand seinen Höchstwert erreicht, und leg den Plan von Pumpe Q so, dass dieser Höchstwert die Kapazität nicht überschreitet.
 
-# Gesamtzahl der Tore
+# Wann der Füllstand am höchsten ist
 
-Jedes Tor ist als erzieltes Tor einer Mannschaft eingetragen. Die Spalte der erzielten Tore ergibt
+Der Nettozufluss ist Zufluss minus Abfluss. Sobald Hahn K offen ist, gibt es vier mögliche Nettozuflüsse.
 
-<BlockMath math="8+6+5+3+2=24" />
+<BlockMath math="\begin{aligned} \text{P und K: } 60-50 &= 10 \\ \text{Q und K: } 80-50 &= 30 \\ \text{P, Q und K: } 60+80-50 &= 90 \\ \text{nur K: } 0-50 &= -50 \end{aligned}" />
 
-Auch die Gegentore ergeben 24, weil diese Spalte **dieselben Tore aus Sicht des Gegners zählt**, die beiden Spalten dürfen also nicht addiert werden.
+Solange mindestens eine Pumpe läuft, ist der Nettozufluss positiv, und der Füllstand steigt weiter. Er sinkt erst, wenn beide Pumpen aus sind. Also **ist der Füllstand am höchsten, wenn die letzte Pumpe ausgeht**.
 
-# Zahl der Spiele und Durchschnitt
+# Pumpe Q endet vor Pumpe P
 
-Je zwei Mannschaften spielen einmal, also gibt es <InlineMath math="\binom52=10" /> Spiele.
+Angenommen, Pumpe Q startet spätestens um 06:00 Uhr und endet damit spätestens um 07:00 Uhr. Dann geht als letzte Pumpe P um 07:00 Uhr aus. Bis dahin ist das gesamte Wasser beider Pumpen im Tank, und Hahn K ist seit 05:20 Uhr <InlineMath math="100\text{ Minuten}" /> offen.
 
-<BlockMath math="\frac{24}{10}=2{,}4" />
+<BlockMath math="1{.}000+60\cdot 120+80\cdot 60-50\cdot 100=8{.}000" />
 
-Der Wert 4,8 addiert erzielte Tore und Gegentore, zählt also jedes Tor doppelt. Der Wert 6 teilt 24 durch 4, die Spiele pro Mannschaft, nicht durch alle Spiele.
+Der Höchstwert beträgt <InlineMath math="8{.}000\text{ Liter}" />, mehr als die Kapazität, egal wie weit du Pumpe Q verschiebst. Also **verringert eine Verschiebung innerhalb der Laufzeit von Pumpe P den Verlust nicht**. Pumpe Q muss nach 07:00 Uhr enden.
 
-Im Durchschnitt fallen also **2,4** Tore pro Spiel.
+# Pumpe Q endet nach Pumpe P
+
+Jetzt geht Pumpe Q als letzte aus. Bis dahin haben beide Pumpen <InlineMath math="60\cdot 120+80\cdot 60=12{.}000\text{ Liter}" /> geliefert. Sei <InlineMath math="m" /> die Zahl der Minuten, die Hahn K von 05:20 Uhr bis zum Abschalten von Pumpe Q offen ist. Der Höchstwert **darf die Kapazität nicht überschreiten**.
+
+<BlockMath math="\begin{aligned} 1{.}000+12{.}000-50m &\le 6{.}000 \\ 50m &\ge 7{.}000 \\ m &\ge 140 \end{aligned}" />
+
+Pumpe Q darf frühestens <InlineMath math="140\text{ Minuten}" /> nach 05:20 Uhr ausgehen, also um 07:40 Uhr. Da sie <InlineMath math="60\text{ Minuten}" /> läuft, startet sie frühestens um 06:40 Uhr.
+
+# Kontrolle des neuen Plans
+
+Spiel den neuen Plan durch, mit Pumpe Q von 06:40 bis 07:40 Uhr. Um 06:40 Uhr hat Pumpe P <InlineMath math="100\text{ Minuten}" /> gearbeitet und Hahn K <InlineMath math="80\text{ Minuten}" />.
+
+<BlockMath math="\begin{aligned} \text{um 06:40 Uhr: } 1{.}000+60\cdot 100-50\cdot 80 &= 3{.}000 \\ \text{um 07:00 Uhr: } 3{.}000+90\cdot 20 &= 4{.}800 \\ \text{um 07:40 Uhr: } 4{.}800+30\cdot 40 &= 6{.}000 \end{aligned}" />
+
+Der Füllstand **erreicht die Kapazität genau, ohne sie zu überschreiten**, also geht kein Wasser verloren. Startet Pumpe Q <InlineMath math="5\text{ Minuten}" /> früher, ist Hahn K bis zum Abschalten von Pumpe Q nur <InlineMath math="135\text{ Minuten}" /> offen, und der Höchstwert liegt bei <InlineMath math="13{.}000-50\cdot 135=6{.}250\text{ Liter}" />. Das ist mehr als die Kapazität.
+
+# Warum die anderen Antworten nicht passen
+
+Die zwei zu frühen Zeiten verlieren noch Wasser, und **die zwei späteren Zeiten sind sicher, aber nicht die frühesten**.
+
+- 06:20 Uhr entsteht, wenn Hahn K schon ab 05:00 Uhr offen sein soll. Tatsächlich öffnet er erst um 05:20 Uhr, also liegt der Höchstwert bei <InlineMath math="13{.}000-50\cdot 120=7{.}000\text{ Liter}" />, und <InlineMath math="1{.}000\text{ Liter}" /> gehen verloren.
+- 06:25 Uhr entsteht, wenn du den Füllstand nur um 07:00 Uhr prüfst. Um 07:00 Uhr ist der Tank genau voll, aber Pumpe Q läuft bis 07:25 Uhr mit einem Nettozufluss von <InlineMath math="30\text{ Liter/min}" /> weiter, also gehen <InlineMath math="30\cdot 25=750\text{ Liter}" /> verloren.
+- 07:00 Uhr lässt Pumpe Q erst nach Pumpe P anlaufen. Es geht kein Wasser verloren, aber 06:40 Uhr ist früher und ebenfalls sicher.
+- 07:40 Uhr entsteht, wenn im Tank vor dem Start Platz für alle <InlineMath math="4{.}800\text{ Liter}" /> von Pumpe Q frei sein soll, obwohl Hahn K während der Laufzeit von Pumpe Q weiter Wasser abgibt.
+
+Pumpe Q startet also frühestens um 06:40 Uhr.

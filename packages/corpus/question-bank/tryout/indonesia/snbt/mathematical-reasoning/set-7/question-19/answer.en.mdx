@@ -1,17 +1,44 @@
-The formula <InlineMath math="T=30-4m" /> is **a decreasing linear function**, not an inverse proportion. Tell decreasing at a constant rate apart from being inversely proportional.
+All four statements need the start and end time of every period, and the timetable differs by day. The plan: build a clock timetable for the three kinds of day, then judge each statement with it.
 
-# Type of relation
+# A clock timetable for the three kinds of day
 
-The coefficient <InlineMath math="-4" /> means each extra kilogram cuts the flight time by 4 minutes. The second statement is true.
+**Each start time is the previous time plus the length of a period or a break**, beginning after the opening activity.
 
-Under inverse proportion the product <InlineMath math="T\cdot m" /> would stay fixed. But 1 kg gives <InlineMath math="26\cdot1=26" />, while 2 kg gives <InlineMath math="22\cdot2=44" />. With no load the flight time is 30 minutes, **not infinite**. The first statement is false.
+| Day | First period starts | First break | Second break | Last period ends |
+| --- | --- | --- | --- | --- |
+| Monday | 07.40 | 10.20-10.35 | 12.35-13.05 | 14.25 |
+| Tuesday, Wednesday, Thursday | 07.15 | 09.30-09.45 | 12.00-12.30 | 14.45 |
+| Friday | 07.30 | 09.50-10.05 | none | 11.15 |
 
-# Doubling the load and half the flight time
+For example on Monday: periods <InlineMath math="1" /> to <InlineMath math="4" /> take <InlineMath math="4\cdot40=160" /> minutes from 07.40, so the first break starts at 10.20.
 
-A 1 kg load gives 26 minutes, while 2 kg gives 22 minutes, **not 13 minutes**. The third statement is false.
+# Period eight on Monday and Tuesday
 
-<BlockMath math="30-4\cdot3.75=30-15=15=\tfrac12\cdot30" />
+On Monday, period <InlineMath math="8" /> starts after the second break, at 13.05. On Tuesday, period <InlineMath math="8" /> starts after period <InlineMath math="7" /> (12.30 to 13.15), at 13.15. **Monday's ceremony is <InlineMath math="25" /> minutes longer, but each of the seven Monday periods before period <InlineMath math="8" /> is <InlineMath math="5" /> minutes shorter**, so Monday comes out <InlineMath math="35-25=10" /> minutes earlier.
 
-With 3.75 kg the flight time is 15 minutes, exactly half of the 30 minutes with no load. The fourth statement is true.
+<BlockMath math="\begin{aligned}
+\text{Monday} &: 40+7\cdot40+15+30=365\text{ min after 07.00} \\
+\text{Tuesday} &: 15+7\cdot45+15+30=375\text{ min after 07.00}
+\end{aligned}" />
 
-So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.
+Monday's period <InlineMath math="8" /> starts earlier, so the first statement is **false**.
+
+# Comparing total lesson time
+
+Total lesson time is the number of periods times their length: Friday <InlineMath math="6\cdot35=210" /> minutes, Monday <InlineMath math="9\cdot40=360" /> minutes, and Tuesday <InlineMath math="9\cdot45=405" /> minutes. Half of Monday's lesson time is <InlineMath math="180" /> minutes, and half of Tuesday's is <InlineMath math="202.5" /> minutes.
+
+The first part holds because <InlineMath math="210>180" />, but **the second part fails because <InlineMath math="210>202.5" />**. A statement joined with "but" is true only when both parts are true, so the second statement is **false**.
+
+# Who is on a break
+
+10.25 falls inside Monday's first break (10.20 to 10.35). From Tuesday to Thursday, 10.25 falls inside period <InlineMath math="4" /> (09.45 to 10.30). On Friday, 10.25 falls inside period <InlineMath math="5" /> (10.05 to 10.40). **Only Monday is on a break**, so the third statement is **true**.
+
+# Finishing times from Monday to Thursday
+
+Monday ends at 14.25, before 14.30. But **Tuesday to Thursday only end at 14.45**.
+
+<BlockMath math="15+9\cdot45+15+30=465\text{ min after 07.00}" />
+
+One day ending after 14.30 is enough to break the word "every", so the fourth statement is **false**.
+
+So the first statement is false, the second is false, the third is true, and the fourth is false.

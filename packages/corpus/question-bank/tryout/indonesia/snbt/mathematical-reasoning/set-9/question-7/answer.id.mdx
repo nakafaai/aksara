@@ -1,15 +1,38 @@
-Bandingkan pompa dan saluran melalui **lajunya**: A <InlineMath math="\tfrac16" />, B <InlineMath math="\tfrac19" />, dan saluran <InlineMath math="\tfrac{1}{18}" /> kolam per jam.
+Kamu mencari saat peserta terakhir tiba, bukan saat ia berangkat. Rencananya: buat jadwal keberangkatan setiap kendaraan, jumlahkan peserta yang terangkut sampai <InlineMath math="150" />, lalu tambahkan waktu tempuh kendaraan yang membawa rombongan terakhir. **Hitung waktu dalam menit setelah pukul 07.00** supaya mudah dijumlahkan.
 
-# Membandingkan laju
+# Jadwal keberangkatan setiap kendaraan
 
-<InlineMath math="\tfrac16:\tfrac19=\tfrac96=1{,}5" />, jadi pompa A 1,5 kali lebih cepat. Pernyataan pertama benar.
+Kendaraan bolak-balik, jadi keberangkatan berikutnya terjadi setelah dua kali waktu tempuh. Bus berangkat pada menit <InlineMath math="0" />, <InlineMath math="50" />, <InlineMath math="100" />, dan seterusnya. Kedua minibus berangkat bersama pada menit <InlineMath math="0" />, <InlineMath math="40" />, <InlineMath math="80" />, <InlineMath math="120" />, dan seterusnya. **Urutkan semua keberangkatan menurut waktunya**, karena peserta naik ke kendaraan mana pun yang berangkat lebih dahulu.
 
-<InlineMath math="\tfrac{1}{18}" /> adalah setengah dari <InlineMath math="\tfrac19" />, jadi **laju saluran setengah laju pompa B**. Pernyataan kedua benar.
+# Jumlah peserta yang terangkut
 
-# Dugaan yang keliru
+Setiap keberangkatan membawa peserta sebanyak kapasitasnya, kecuali rombongan terakhir yang hanya membawa sisanya.
 
-Pompa yang dua kali lebih cepat dari A mengisi <InlineMath math="\tfrac13" /> kolam per jam. Bersama B, lajunya <InlineMath math="\tfrac13+\tfrac19=\tfrac49" />, jadi waktunya 2,25 jam. Setengah dari 3,6 jam adalah 1,8 jam, **jadi waktunya tidak menjadi setengah**, karena pompa B tidak ikut dipercepat. Pernyataan ketiga salah.
+| Menit berangkat | Kendaraan | Diangkut | Total terangkut | Menit tiba |
+| :---: | :--- | :---: | :---: | :---: |
+| <InlineMath math="0" /> | bus | <InlineMath math="30" /> | <InlineMath math="30" /> | <InlineMath math="25" /> |
+| <InlineMath math="0" /> | dua minibus | <InlineMath math="28" /> | <InlineMath math="58" /> | <InlineMath math="20" /> |
+| <InlineMath math="40" /> | dua minibus | <InlineMath math="28" /> | <InlineMath math="86" /> | <InlineMath math="60" /> |
+| <InlineMath math="50" /> | bus | <InlineMath math="30" /> | <InlineMath math="116" /> | <InlineMath math="75" /> |
+| <InlineMath math="80" /> | dua minibus | <InlineMath math="28" /> | <InlineMath math="144" /> | <InlineMath math="100" /> |
+| <InlineMath math="100" /> | bus | <InlineMath math="6" /> | <InlineMath math="150" /> | <InlineMath math="125" /> |
 
-Setengah rata-rata waktu kedua pompa adalah <InlineMath math="\tfrac12\cdot\tfrac{6+9}{2}=3{,}75" /> jam, sedangkan waktu sebenarnya 3,6 jam. Pernyataan keempat salah.
+Sampai menit <InlineMath math="80" /> sudah <InlineMath math="144" /> peserta berangkat, jadi tersisa <InlineMath math="150-144=6" /> orang. Kendaraan pertama yang kembali ke stasiun sesudah itu adalah **bus yang kembali pada menit** <InlineMath math="100" />, karena minibus baru kembali pada menit <InlineMath math="120" />.
 
-Jadi, pernyataan pertama **benar**, kedua **benar**, ketiga **salah**, dan keempat **salah**.
+# Saat peserta terakhir tiba
+
+Bus membawa <InlineMath math="6" /> orang terakhir dan tiba setelah <InlineMath math="25" /> menit.
+
+<BlockMath math="t_{\text{terakhir}}=100+25=125\text{ menit}" />
+
+Cek bahwa tidak ada yang tiba lebih lambat: semua rombongan sebelumnya tiba paling lambat menit <InlineMath math="100" />. Jadi **peserta terakhir tiba pukul 09.05**, yaitu <InlineMath math="125" /> menit setelah pukul 07.00.
+
+# Jebakan yang perlu dihindari
+
+Jawaban lain muncul kalau **waktu berangkat tertukar dengan waktu tiba** atau kalau jadwal diganti rata-rata.
+
+- Menjawab <InlineMath math="100" /> berarti memakai menit berangkat rombongan terakhir, bukan menit tibanya.
+- Menjumlahkan laju rata-rata, <InlineMath math="\tfrac{30}{50}+\tfrac{28}{40}=1{,}3" /> orang per menit, memberi <InlineMath math="150:1{,}3\approx115" /> menit. Kendaraan tidak mengangkut peserta sedikit demi sedikit, jadi cara ini salah.
+- Menunggu minibus pada menit <InlineMath math="120" /> memberi <InlineMath math="140" /> menit, padahal bus sudah siap lebih dahulu.
+
+Jadi, peserta terakhir tiba di gedung <InlineMath math="125" /> menit setelah pukul 07.00.

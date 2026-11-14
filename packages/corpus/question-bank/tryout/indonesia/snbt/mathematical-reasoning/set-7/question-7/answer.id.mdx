@@ -1,19 +1,32 @@
-Ada **36 pasangan mata dadu yang sama mungkin**. Setiap peluang adalah banyak pasangan yang cocok dibagi 36.
+Kita mencari setoran terkecil Dani, dalam kelipatan <InlineMath math="10" /> juta, yang membuat bagiannya lebih dari <InlineMath math="\frac15" /> laba yang dibagi. Rencananya: hitung modal-bulan pemilik lama, tulis bagian Dani sebagai pecahan, selesaikan pertidaksamaannya, lalu pilih kelipatan <InlineMath math="10" /> yang memenuhi.
 
-# Jumlah 11 dan dua permainan
+# Modal bulan pemilik lama
 
-Jumlah 11 muncul dari <InlineMath math="(5,6)" /> dan <InlineMath math="(6,5)" />, jadi peluangnya <InlineMath math="\tfrac{2}{36}=\tfrac{1}{18}" />. Pernyataan pertama benar.
+Ayu punya <InlineMath math="40\cdot3+20\cdot9=300" />, Bima <InlineMath math="30\cdot6+40\cdot6=420" />, dan Citra <InlineMath math="90\cdot8=720" />. **Kedatangan Dani tidak mengubah modal-bulan mereka**, jadi jumlahnya tetap <InlineMath math="1{.}440" />.
 
-Dua permainan **tidak saling memengaruhi**, jadi peluang jumlah 12 pada keduanya adalah hasil kali kedua peluangnya.
+# Bagian Dani sebagai pecahan
 
-<BlockMath math="\frac{1}{36}\cdot\frac{1}{36}=\frac{1}{1{.}296}" />
+Misalkan setoran Dani <InlineMath math="x" /> juta. Modal itu bekerja dari Juli sampai Desember, yaitu <InlineMath math="6" /> bulan, jadi modal-bulan Dani <InlineMath math="6x" />. **Modal Dani juga menambah jumlah modal-bulan semua pemilik**, sehingga penyebutnya menjadi <InlineMath math="1{.}440+6x" />.
 
-Pernyataan kedua benar.
+<BlockMath math="\begin{aligned}
+\frac{6x}{1{.}440+6x} &> \frac{1}{5} \\
+30x &> 1{.}440+6x \\
+24x &> 1{.}440 \\
+x &> 60
+\end{aligned}" />
 
-# Harapan kejadian dan perbandingan peluang
+Mengalikan silang di sini aman, karena kedua penyebut positif.
 
-Jumlah 12 hanya muncul dari <InlineMath math="(6,6)" />, jadi dalam 360 permainan diharapkan muncul <InlineMath math="360\cdot\tfrac{1}{36}=10" /> kali, **bukan 20 kali**. Pernyataan ketiga salah.
+# Memilih kelipatan sepuluh juta
 
-Jumlah 6 muncul dari 5 pasangan, yaitu (1,5), (2,4), (3,3), (4,2), dan (5,1), sedangkan jumlah 7 muncul dari 6 pasangan. Peluangnya <InlineMath math="\tfrac{5}{36}" /> dan <InlineMath math="\tfrac{6}{36}" />, **tidak sama besar**, jadi pernyataan keempat salah.
+Tanda pertidaksamaannya tegas, jadi **setoran <InlineMath math="60" /> juta belum cukup**: bagiannya <InlineMath math="\frac{360}{1{.}800}=\frac15" />, tepat seperlima dan tidak lebih. Kelipatan <InlineMath math="10" /> juta berikutnya adalah <InlineMath math="70" /> juta.
 
-Jadi, pernyataan pertama **benar**, kedua **benar**, ketiga **salah**, dan keempat **salah**.
+<BlockMath math="\frac{6\cdot70}{1{.}440+6\cdot70}=\frac{420}{1{.}860}=\frac{7}{31}" />
+
+Karena <InlineMath math="7\cdot5=35>31" />, pecahan <InlineMath math="\frac{7}{31}" /> memang lebih dari <InlineMath math="\frac15" />.
+
+# Kesalahan yang sering terjadi
+
+Kalau **penyebut tidak ditambah modal Dani**, syaratnya menjadi <InlineMath math="6x>\frac{1{.}440}{5}=288" />, sehingga <InlineMath math="50" /> juta tampak cukup. Padahal bagian <InlineMath math="50" /> juta hanya <InlineMath math="\frac{300}{1{.}740}=\frac{5}{29}" />, kurang dari <InlineMath math="\frac15" />. Kalau bulan Dani dihitung <InlineMath math="5" /> (Desember dikurangi Juli), hasilnya <InlineMath math="80" /> juta. Kalau tanda "lebih dari" dibaca "paling sedikit", hasilnya <InlineMath math="60" /> juta.
+
+Jadi, setoran Dani paling sedikit <InlineMath math="70" /> juta rupiah.

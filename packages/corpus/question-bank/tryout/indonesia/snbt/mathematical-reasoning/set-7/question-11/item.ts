@@ -1,7 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "delivery-robot",
+  stimulus: "aquarium-salinity",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -10,21 +10,22 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Jarak tempuh terpendek antara pelanggan A dan pelanggan C adalah 500 m.",
-        },
-        {
-          column: 1,
-          label: "Banyak rute terpendek yang berbeda dari G ke B adalah 6.",
+            "Membuang $$20\\text{ liter}$$ air lalu mengisi ulang dengan air tawar sebanyak $$2$$ kali menurunkan salinitas sama besar dengan membuang $$40\\text{ liter}$$ air lalu mengisi ulang dengan air tawar sebanyak $$1$$ kali.",
         },
         {
           column: 1,
           label:
-            "Perjalanan pulang pergi dari G ke B melalui jalur terpendek menghabiskan $$24\\%$$ baterai.",
+            "Jika air yang menguap diisi ulang dengan air laut buatan setiap hari, salinitas akuarium naik dengan besar yang sama setiap hari.",
         },
         {
           column: 2,
           label:
-            "Dengan baterai penuh, robot dapat menempuh jarak lebih dari 5 km.",
+            "Jika salinitas mula-mula di atas $$35\\text{ g/L}$$, penggantian air berulang dengan air laut buatan suatu saat akan membuat salinitas turun di bawah $$35\\text{ g/L}$$.",
+        },
+        {
+          column: 2,
+          label:
+            "Dari akuarium penuh bersalinitas $$42\\text{ g/L}$$, salinitas dapat dijadikan tepat $$35\\text{ g/L}$$ dengan sekali mengganti $$20\\text{ liter}$$ air memakai air laut buatan.",
         },
       ],
     },

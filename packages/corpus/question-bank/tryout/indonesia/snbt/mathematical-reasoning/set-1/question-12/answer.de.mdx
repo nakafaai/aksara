@@ -1,23 +1,38 @@
-Der Mittelwert gruppierter Daten verwendet **die Klassenmitte als Stellvertreter aller Werte dieser Klasse** und gewichtet jede Klassenmitte mit ihrer Häufigkeit.
+Diesmal ist die Menge des Medikaments bekannt und das Körpergewicht gesucht. Der Weg führt rückwärts: Drücke diese Menge mit der Dosis <InlineMath math="D" /> aus, bestimme <InlineMath math="D" /> und suche dann alle Körpergewichte, die zu dieser Dosis führen. Im letzten Schritt **sorgt die Grenze von** <InlineMath math="400\text{ mg}" /> **dafür, dass die Antwort keine einzelne Zahl ist**.
 
-# Klassenmitten und Produkte
+# Die Menge in Abhängigkeit von der Dosis
 
-Die Klassenmitte ist **der Mittelwert von unterer und oberer Klassengrenze**, zum Beispiel <InlineMath math="\tfrac{0+9}{2}=4{,}5" />.
+Am ersten Tag beträgt die Menge nach der Abendeinnahme <InlineMath math="\tfrac{7}{4}D" />, denn nach der Morgeneinnahme sind es <InlineMath math="D" />, nach der Mittagseinnahme <InlineMath math="\tfrac{1}{2}D+D=\tfrac{3}{2}D" /> und nach der Abendeinnahme <InlineMath math="\tfrac{3}{4}D+D=\tfrac{7}{4}D" />. **Die** <InlineMath math="12" /> **Nachtstunden teilen diese Menge durch** <InlineMath math="4" />.
 
-| Klasse | Klassenmitte | Häufigkeit | Produkt |
-| :---: | :---: | :---: | :---: |
-| 0-9 | 4,5 | 4 | 18 |
-| 10-19 | 14,5 | 10 | 145 |
-| 20-29 | 24,5 | 15 | 367,5 |
-| 30-39 | 34,5 | 7 | 241,5 |
-| 40-49 | 44,5 | 4 | 178 |
+<BlockMath math="\begin{aligned}
+\text{nach der zweiten Morgeneinnahme} &= \tfrac{1}{4}\cdot\tfrac{7}{4}D+D=\tfrac{23}{16}D\\
+\text{kurz vor der zweiten Mittagseinnahme} &= \tfrac{1}{2}\cdot\tfrac{23}{16}D=\tfrac{23}{32}D
+\end{aligned}" />
 
-# Der Mittelwert
+# Die eingenommene Dosis
 
-Die Produkte ergeben zusammen 950, und **der Nenner ist die Anzahl der Schüler, also 40**.
+Setze das mit der bekannten Menge gleich.
 
-<BlockMath math="\bar x=\frac{950}{40}=23{,}75" />
+<BlockMath math="\begin{aligned}
+\tfrac{23}{32}D &= 287{,}5\\
+D &= \frac{287{,}5\cdot32}{23}=\frac{9{.}200}{23}=400\text{ mg}
+\end{aligned}" />
 
-Der Wert 23,5 ist der Median, nicht der Mittelwert. Der Wert 24,5 ist die Mitte der Klasse mit der größten Häufigkeit.
+# Die möglichen Körpergewichte
 
-Die mittlere Wegzeit beträgt also **23,75 Minuten**.
+Die eingenommene Dosis ist immer ein Vielfaches von <InlineMath math="50\text{ mg}" />, weil <InlineMath math="2{,}5\text{ mL}" /> Sirup <InlineMath math="50\text{ mg}" /> enthalten, und es wird auf dieses Vielfache abgerundet. Liegt die erlaubte Dosis unter <InlineMath math="400\text{ mg}" />, nimmt das Kind höchstens <InlineMath math="350\text{ mg}" />. Also muss die erlaubte Dosis mindestens <InlineMath math="400\text{ mg}" /> betragen, das heißt <InlineMath math="10w\ge400" /> bei einem Körpergewicht von <InlineMath math="w\text{ kg}" />, also <InlineMath math="w\ge40" />.
+
+Umgekehrt **nimmt jedes Kind ab** <InlineMath math="40\text{ kg}" /> **genau** <InlineMath math="400\text{ mg}" />, wegen der Grenze pro Einnahme. Ein Kind mit <InlineMath math="40\text{ kg}" />, <InlineMath math="50\text{ kg}" /> oder <InlineMath math="70\text{ kg}" /> kommt auf dieselbe Menge, also lässt sich das Gewicht nicht genauer bestimmen.
+
+# Kontrolle
+
+Bei einem Kind mit <InlineMath math="60\text{ kg}" /> beträgt die Dosis <InlineMath math="400\text{ mg}" />. Die Menge ist <InlineMath math="175\text{ mg}" /> vor der zweiten Morgeneinnahme, <InlineMath math="575\text{ mg}" /> danach und dann <InlineMath math="287{,}5\text{ mg}" /> vor der Mittagseinnahme. Bei einem Kind mit <InlineMath math="39\text{ kg}" /> beträgt die Dosis <InlineMath math="350\text{ mg}" />, und die Menge ist nur <InlineMath math="\tfrac{23}{32}\cdot350\approx251{,}6\text{ mg}" />.
+
+# Die falschen Antworten
+
+- Mindestens <InlineMath math="37{,}5\text{ kg}" /> nimmt an, dass die Dosis auf das nächstgelegene Vielfache von <InlineMath math="50\text{ mg}" /> gerundet wird, aber die Regel **rundet ab**. Ein Kind mit <InlineMath math="38\text{ kg}" /> nimmt nur <InlineMath math="350\text{ mg}" />.
+- Mindestens <InlineMath math="40\text{ kg}" />, aber unter <InlineMath math="45\text{ kg}" /> wendet die Regel für den Messlöffel richtig an, vergisst aber die Grenze von <InlineMath math="400\text{ mg}" />, durch die auch schwerere Kinder <InlineMath math="400\text{ mg}" /> nehmen.
+- Genau <InlineMath math="40\text{ kg}" /> löst einfach <InlineMath math="10w=400" /> und vergisst sowohl die Grenze pro Einnahme als auch die Regel für den Messlöffel.
+- Genau <InlineMath math="57{,}5\text{ kg}" /> vergisst den Rest vom ersten Tag, löst also <InlineMath math="\tfrac{1}{2}D=287{,}5" /> und verwendet <InlineMath math="D=575" /> ohne Grenze.
+
+Alle möglichen Körpergewichte des Kindes betragen also mindestens <InlineMath math="40\text{ kg}" />.

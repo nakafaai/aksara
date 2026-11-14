@@ -1,31 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "phone-credit",
+  stimulus: "coffee-roast",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label:
-            "Uang muka pembelian kredit adalah $$\\text{Rp}720{.}000{,}00$$.",
-        },
-        {
           column: 2,
           label:
-            "Bunga flat $$2\\%$$ per bulan berarti total bunga selama 12 bulan sebesar $$2\\%$$ dari pokok.",
+            "Jika biji hijau yang dipanggang menjadi kopi dark ditambah $$1\\text{ kg}$$, banyak kantong dark yang terjual selalu bertambah tepat $$3$$.",
         },
         {
           column: 1,
           label:
-            "Dengan bunga flat, besar bunga yang dibayar pada bulan ke-12 sama dengan besar bunga pada bulan pertama.",
+            "Untuk berat biji hijau yang sama, memanggang semuanya menjadi kopi light selalu menghasilkan pendapatan yang lebih besar daripada memanggang semuanya menjadi kopi dark.",
+        },
+        {
+          column: 1,
+          label:
+            "Jika semua biji hijau dipanggang menjadi kopi dark dan beratnya paling banyak $$48\\text{ kg}$$, selalu ada kopi sangrai di luar kopi uji rasa yang tidak dijual.",
         },
         {
           column: 2,
           label:
-            "Jika uang muka dinaikkan, total bunga yang dibayar pembeli kredit ikut naik.",
+            "Ada berat biji hijau yang paling banyak $$12\\text{ kg}$$ dan menghasilkan tepat $$40$$ kantong kopi light.",
         },
       ],
     },

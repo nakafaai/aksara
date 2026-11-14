@@ -1,17 +1,59 @@
-Wer alle Aufgaben beantwortet, dessen Punktzahl hängt nur von der Anzahl richtiger Antworten <InlineMath math="b" /> ab, nämlich <InlineMath math="5b-40" />, also **hängt die Punktzahl nur von den richtigen Antworten ab**.
+Du zählst, für wie viele Werte von <InlineMath math="m" /> die Gesamtkosten bei Rencana Menurun kleiner sind. Schreib die Gesamtkosten beider Pläne als Formeln in <InlineMath math="m" />, füll eine Tabelle für alle <InlineMath math="12" /> Werte aus und zähl die Zeilen. **Jeder Wert muss geprüft werden**, weil der günstigere Plan mehr als einmal wechseln kann.
 
-# Mögliche Werte von b
+# Die Gesamtkosten bei Rencana Tetap
 
-Die Anzahl richtiger Antworten kann jede ganze Zahl von 0 bis 40 sein, das sind **41 Möglichkeiten**, <InlineMath math="b=0" /> eingeschlossen.
+Die Zinsen betragen <InlineMath math="120{.}000" /> pro Monat, die Verwaltungsgebühr <InlineMath math="2\%\cdot 12{.}000{.}000=240{.}000" /> und die Strafgebühr <InlineMath math="250{.}000" />. **Die Strafgebühr fällt nur bei vorzeitiger Tilgung an**, also für <InlineMath math="m\le 11" />.
 
-# Jedes b liefert eine andere Punktzahl
+<BlockMath math="\begin{aligned}
+T(m)&=120{.}000\,m+240{.}000+250{.}000=120{.}000\,m+490{.}000 \quad\text{für } m\le 11 \\
+T(12)&=12\cdot 120{.}000+240{.}000=1{.}680{.}000
+\end{aligned}" />
 
-Der Term <InlineMath math="5b-40" /> steigt um 5, wenn <InlineMath math="b" /> um 1 steigt, zwei verschiedene Werte von <InlineMath math="b" /> liefern also nie dieselbe Punktzahl. Die Punktzahlen sind
+# Die Gesamtkosten bei Rencana Menurun
 
-<BlockMath math="-40,\,-35,\,-30,\,\dots,\,155,\,160" />
+Die Zinsen in Monat <InlineMath math="k" /> sind <InlineMath math="2\%" /> der <InlineMath math="13-k" /> Millionen Restschuld, also <InlineMath math="20{.}000\,(13-k)" />. Diese Beträge bilden die arithmetische Folge <InlineMath math="240{.}000" />, <InlineMath math="220{.}000" /> und so weiter, also **liefert die Summenformel die Zinsen bis Monat <InlineMath math="m" />**. Eine Strafgebühr gibt es nicht, die Verwaltungsgebühr beträgt <InlineMath math="100{.}000" />.
 
-Das sind 41 verschiedene Werte.
+<BlockMath math="M(m)=\frac{m}{2}\,\bigl(240{.}000+20{.}000\,(13-m)\bigr)+100{.}000=10{.}000\,m\,(25-m)+100{.}000" />
 
-Der Wert 40 vergisst den Fall <InlineMath math="b=0" />. Der Wert 201 zählt alle ganzen Zahlen von <InlineMath math="-40" /> bis 160, obwohl nur Vielfache von 5 möglich sind. Der Wert 160 ist die Höchstpunktzahl, nicht die Anzahl der Punktzahlen.
+# Eine Tabelle aller Fälle
 
-Es gibt also **41** mögliche verschiedene Punktzahlen.
+Setz jedes <InlineMath math="m" /> in beide Formeln ein. Alle Beträge in der Tabelle sind in Tausend Rupiah.
+
+| Monat der Tilgung | Rencana Tetap | Rencana Menurun | Günstiger |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="610" /> | <InlineMath math="340" /> | Menurun |
+| <InlineMath math="2" /> | <InlineMath math="730" /> | <InlineMath math="560" /> | Menurun |
+| <InlineMath math="3" /> | <InlineMath math="850" /> | <InlineMath math="760" /> | Menurun |
+| <InlineMath math="4" /> | <InlineMath math="970" /> | <InlineMath math="940" /> | Menurun |
+| <InlineMath math="5" /> | <InlineMath math="1{.}090" /> | <InlineMath math="1{.}100" /> | Tetap |
+| <InlineMath math="6" /> | <InlineMath math="1{.}210" /> | <InlineMath math="1{.}240" /> | Tetap |
+| <InlineMath math="7" /> | <InlineMath math="1{.}330" /> | <InlineMath math="1{.}360" /> | Tetap |
+| <InlineMath math="8" /> | <InlineMath math="1{.}450" /> | <InlineMath math="1{.}460" /> | Tetap |
+| <InlineMath math="9" /> | <InlineMath math="1{.}570" /> | <InlineMath math="1{.}540" /> | Menurun |
+| <InlineMath math="10" /> | <InlineMath math="1{.}690" /> | <InlineMath math="1{.}600" /> | Menurun |
+| <InlineMath math="11" /> | <InlineMath math="1{.}810" /> | <InlineMath math="1{.}640" /> | Menurun |
+| <InlineMath math="12" /> | <InlineMath math="1{.}680" /> | <InlineMath math="1{.}660" /> | Menurun |
+
+Rencana Menurun ist günstiger für <InlineMath math="m=1, 2, 3, 4" /> und <InlineMath math="m=9, 10, 11, 12" />, also **gibt es zwei Gruppen von Monaten**. Am Anfang laufen die hohen Zinsen von Rencana Menurun erst kurz. In der Mitte haben sich diese hohen Anfangszinsen angesammelt. Gegen Ende entscheiden wieder die Strafgebühr und die höhere Verwaltungsgebühr von Rencana Tetap. Keine Zeile ist gleich, die Anzahl ist also genau <InlineMath math="8" />.
+
+# Kontrolle über die Differenz
+
+Für <InlineMath math="m\le 11" /> lässt sich die Differenz <InlineMath math="T(m)-M(m)" /> als eine quadratische Formel schreiben. **Diese Differenz ist nur zwischen ihren beiden Nullstellen negativ**.
+
+<BlockMath math="\begin{aligned}
+T(m)-M(m)&=120{.}000\,m+490{.}000-10{.}000\,m\,(25-m)-100{.}000 \\
+&=10{.}000\,(m^2-13m+39)
+\end{aligned}" />
+
+Die Nullstellen von <InlineMath math="m^2-13m+39=0" /> sind <InlineMath math="\tfrac{13\pm\sqrt{13}}{2}" />, also etwa <InlineMath math="4{,}7" /> und <InlineMath math="8{,}3" />. Die Differenz ist also nur für <InlineMath math="m=5, 6, 7, 8" /> negativ, passend zur Tabelle. Für <InlineMath math="m=12" /> gilt die Formel nicht, weil keine Strafgebühr anfällt, und die Tabelle zeigt dort eine positive Differenz von <InlineMath math="20{.}000" />.
+
+# Die falschen Optionen
+
+Jede andere Option entsteht, wenn **ein Kostenteil oder eine Gruppe von Monaten fehlt**.
+
+- <InlineMath math="2" /> entsteht, wenn du die Strafgebühr von Rencana Tetap vergisst.
+- <InlineMath math="3" /> entsteht, wenn du beide Verwaltungsgebühren vergisst.
+- <InlineMath math="4" /> entsteht, wenn du aufhörst, sobald Rencana Tetap zum ersten Mal günstiger ist, und die zweite Gruppe von Monaten nie siehst.
+- <InlineMath math="7" /> entsteht, wenn du den Fall <InlineMath math="m=12" /> nicht mitzählst, also das Bezahlen bis zum letzten Monat.
+
+Für <InlineMath math="8" /> Werte von <InlineMath math="m" /> sind die Gesamtkosten bei Rencana Menurun also kleiner.

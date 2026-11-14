@@ -1,11 +1,41 @@
-Am schnellsten zählst du **die ausgeschiedenen Spieler**. Jedes Spiel lässt genau einen Spieler ausscheiden, und jeder außer dem Sieger scheidet genau einmal aus.
+Gesucht ist der Kontostand am Ende von Jahr <InlineMath math="5" />. Zwei Dinge brauchen Sorgfalt: **der Arbeitgeberzuschuss hat eine jährliche Obergrenze**, und jede Einzahlung wächst unterschiedlich viele Jahre. Der Plan: Bestimm, was jedes Jahr eingezahlt wird, multipliziere jede Einzahlung mit dem passenden Faktor aus der Tabelle und addiere alles.
 
-# Ausgeschiedene Spieler zählen
+# Was jedes Jahr eingezahlt wird
 
-Von 40 Spielern verliert nur der Sieger nie, also scheiden <InlineMath math="40-1=39" /> Spieler aus. **Die Zahl der Spiele ist gleich der Zahl der Ausgeschiedenen**.
+Die Hälfte der Einzahlung von <InlineMath math="\text{Rp}10{.}000{.}000{,}00" /> sind <InlineMath math="\text{Rp}5{.}000{.}000{,}00" />. Das liegt über der Grenze, also **wird der Zuschuss durch die Grenze gekappt** auf <InlineMath math="\text{Rp}4{.}000{.}000{,}00" />, nicht <InlineMath math="\text{Rp}5{.}000{.}000{,}00" />. Zu jedem Jahresanfang kommen <InlineMath math="10+4=14" /> Millionen Rupiah hinzu.
 
-# Kontrolle Runde für Runde
+# Wie jede Einzahlung wächst
 
-Die erste Runde verringert 40 Spieler auf 32, hat also 8 Spiele. Danach folgen <InlineMath math="16+8+4+2+1=31" /> Spiele, und <InlineMath math="8+31=39" />. **Spieler mit Freilos erzeugen keine Spiele**.
+Der Kontostand wird am Ende jedes Jahres mit <InlineMath math="1{,}1" /> multipliziert. Die Einzahlung vom Anfang von Jahr <InlineMath math="1" /> wächst am Ende von Jahr <InlineMath math="1" />, <InlineMath math="2" /> und so weiter bis <InlineMath math="5" />, also <InlineMath math="5" />-mal, und ihr Faktor ist <InlineMath math="1{,}611" />. **Frühere Einzahlungen wachsen länger**: Die Einzahlung aus Jahr <InlineMath math="2" /> wächst <InlineMath math="4" />-mal, die aus Jahr <InlineMath math="5" /> nur <InlineMath math="1" />-mal.
 
-Insgesamt gibt es also **39 Spiele**.
+<BlockMath math="\begin{aligned}
+\text{Stand} &= 14\times(1{,}611+1{,}464+1{,}331+1{,}210+1{,}100)\text{ Mio.} \\
+&= 14\times6{,}716\text{ Mio.}=94{,}024\text{ Mio.}
+\end{aligned}" />
+
+Der Kontostand beträgt <InlineMath math="\text{Rp}94{.}024{.}000{,}00" />.
+
+# Kontrolle Jahr für Jahr
+
+Du kannst auch jedes Jahr <InlineMath math="14" /> addieren und dann mit <InlineMath math="1{,}1" /> multiplizieren, in Millionen Rupiah.
+
+<BlockMath math="\begin{aligned}
+14\times1{,}1 &= 15{,}4 \\
+(15{,}4+14)\times1{,}1 &= 32{,}34 \\
+(32{,}34+14)\times1{,}1 &= 50{,}974 \\
+(50{,}974+14)\times1{,}1 &= 71{,}4714 \\
+(71{,}4714+14)\times1{,}1 &= 94{,}01854
+\end{aligned}" />
+
+Das ist fast dasselbe. Der kleine Unterschied entsteht, weil **die Tabellenwerte gerundet sind**, und die Aufgabe verlangt, mit der Tabelle zu rechnen.
+
+# Die falschen Antworten
+
+Jede andere Antwort **liest eine der Regeln falsch**.
+
+- <InlineMath math="\text{Rp}85{.}470{.}000{,}00" /> behandelt die Einzahlungen so, als kämen sie am Jahresende, und nutzt den Faktor <InlineMath math="1+1{,}1+1{,}21+1{,}331+1{,}464=6{,}105" />.
+- <InlineMath math="\text{Rp}91{.}000{.}000{,}00" /> rechnet mit einfachen Zinsen, <InlineMath math="14\times(1{,}5+1{,}4+1{,}3+1{,}2+1{,}1)=14\times6{,}5" />.
+- <InlineMath math="\text{Rp}100{.}740{.}000{,}00" /> vergisst die Grenze des Zuschusses und rechnet <InlineMath math="15\times6{,}716" />.
+- <InlineMath math="\text{Rp}112{.}770{.}000{,}00" /> lässt die ganzen <InlineMath math="70" /> Millionen <InlineMath math="5" /> Jahre wachsen, <InlineMath math="70\times1{,}611" />, obwohl die letzte Einzahlung nur ein Jahr wächst.
+
+Am Ende von Jahr <InlineMath math="5" /> beträgt der Kontostand der Pensionskasse also <InlineMath math="\text{Rp}94{.}024{.}000{,}00" />.

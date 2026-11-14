@@ -1,18 +1,40 @@
-Setiap dosis **meluruh sendiri-sendiri sejak saat diminum**, lalu sisanya dijumlahkan. Pada pukul 22.00, dosis pertama sudah 16 jam di dalam tubuh, sedangkan dosis kedua baru 8 jam.
+Kita mencari banyak bibit paling banyak. Rencananya, hitung bibit dalam satu baris, hitung baris dalam setiap bagian tanam dengan memperhatikan **dua jenis batas jarak**, yaitu dari tepi lahan dan dari tepi saluran, lalu kalikan.
 
-# Sisa setiap dosis
+# Bibit dalam satu baris
+
+Baris sejajar sisi <InlineMath math="24\text{ m}" />, dan bibit harus berjarak paling sedikit <InlineMath math="1\text{ m}" /> dari kedua ujung lahan. Jadi bibit hanya boleh berada pada ruas sepanjang <InlineMath math="24-2\cdot 1=22" /> meter. Pada ruas itu, banyak jarak <InlineMath math="0{,}8\text{ m}" /> paling banyak adalah bilangan bulat terbesar yang tidak melebihi <InlineMath math="22:0{,}8" />.
 
 <BlockMath math="\begin{aligned}
-\text{dosis pertama}&:\quad 360\cdot\left(\tfrac12\right)^{16/8}=90\\
-\text{dosis kedua}&:\quad 360\cdot\left(\tfrac12\right)^{8/8}=180
+\frac{22}{0{,}8}&=27{,}5\ \Rightarrow\ 27\text{ jarak} \\
+27+1&=28\text{ bibit}
 \end{aligned}" />
 
-# Jumlah obat
+Kita menambah satu karena **banyak bibit selalu satu lebih banyak daripada banyak jarak** di antaranya.
 
-<BlockMath math="90+180=270" />
+# Baris dalam satu bagian tanam
 
-Cara lain: tepat setelah dosis kedua, tubuh berisi <InlineMath math="180+360=540" /> mg, dan **8 jam kemudian jumlah itu menjadi setengahnya**, yaitu 270 mg.
+Setiap bagian tanam selebar <InlineMath math="7\text{ m}" />. Satu sisinya tepi lahan, jadi baris harus berjarak paling sedikit <InlineMath math="1\text{ m}" /> dari sana. Sisi lainnya tepi saluran, dan **jarak dari saluran cukup <InlineMath math="0{,}5\text{ m}" />**. Jadi baris hanya boleh berada pada pita selebar <InlineMath math="7-1-0{,}5=5{,}5" /> meter.
 
-Nilai 540 mg adalah banyak obat tepat setelah dosis kedua. Nilai 450 mg tidak meluruhkan dosis kedua, dan 180 mg melupakan sisa dosis pertama.
+<BlockMath math="\begin{aligned}
+\frac{5{,}5}{1{,}2}&=4{,}58\ldots\ \Rightarrow\ 4\text{ jarak} \\
+4+1&=5\text{ baris}
+\end{aligned}" />
 
-Jadi, banyak obat pada pukul 22.00 adalah **270 mg**.
+Baris pertama tepat <InlineMath math="1\text{ m}" /> dari tepi lahan, dan baris kelima <InlineMath math="1+4\cdot 1{,}2=5{,}8" /> meter dari tepi lahan. Tepi saluran ada <InlineMath math="7\text{ m}" /> dari tepi lahan, jadi baris kelima berjarak <InlineMath math="1{,}2\text{ m}" /> dari saluran, aman. Baris keenam akan berada <InlineMath math="7{,}0" /> meter dari tepi lahan, tepat di tepi saluran, jadi tidak boleh.
+
+# Jumlah seluruh bibit
+
+Ada **dua bagian tanam yang sama**, masing-masing <InlineMath math="5" /> baris, dan setiap baris <InlineMath math="28" /> bibit.
+
+<BlockMath math="2\cdot 5\cdot 28=280" />
+
+# Pilihan yang keliru
+
+Setiap pilihan lain berasal dari **lupa menambah satu atau salah membaca arah baris**.
+
+- <InlineMath math="216" /> muncul jika tambahan satu dilupakan di dua arah, yaitu <InlineMath math="27" /> bibit per baris dan <InlineMath math="4" /> baris per bagian.
+- <InlineMath math="224" /> muncul jika tambahan satu hanya dilupakan pada baris, sehingga setiap bagian dianggap berisi <InlineMath math="4" /> baris.
+- <InlineMath math="266" /> muncul jika baris dibuat sejajar sisi <InlineMath math="15\text{ m}" />, padahal aturan meminta baris sejajar sisi <InlineMath math="24\text{ m}" />.
+- <InlineMath math="270" /> muncul jika tambahan satu dilupakan di dalam baris, sehingga setiap baris dianggap berisi <InlineMath math="27" /> bibit.
+
+Jadi, Pak Darto dapat menanam paling banyak <InlineMath math="280" /> bibit.

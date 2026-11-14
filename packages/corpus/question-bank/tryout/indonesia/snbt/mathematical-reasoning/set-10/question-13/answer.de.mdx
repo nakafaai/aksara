@@ -1,13 +1,33 @@
-Verglichen wird **der Preis geteilt durch die Saftmenge**, nicht der Preis geteilt durch die Sirupmenge.
+Du suchst die kleinste Menge Stammlösung A, mit der ein voller Tank in den passenden Bereich kommt. Der Plan: Rechne die Konzentration in eine Menge Stammlösung A um, bestimme die Menge, die schon im Tank ist, dann die Menge für **die untere Grenze des Bereichs**, und ziehe ab.
 
-# Saft in einem Liter Sirup B
+# Von ppm zur Menge Stammlösung
 
-<BlockMath math="20\,\%\cdot1\,000\text{ mL}=200\text{ mL}" />
+Nach Regel eins ergibt <InlineMath math="1\text{ ml}" /> Stammlösung A in jedem Liter <InlineMath math="200\text{ ppm}" />. Also ist **die Menge Stammlösung A pro Liter die Konzentration geteilt durch** <InlineMath math="200" />, und im ganzen Tank ist es dieser Wert mal das Volumen.
 
-# Preis pro mL Saft
+<BlockMath math="\begin{aligned}
+\text{Stammlösung A im Tank} &= \frac{700}{200}\cdot120=3{,}5\cdot120=420\text{ ml}
+\end{aligned}" />
 
-<BlockMath math="\frac{24\,000}{200}=120\text{ Rupiah}" />
+# Die untere Grenze für die fünfte Woche
 
-Zum Vergleich: Sirup A liefert 600 mL Saft für 60 000 Rupiah, also 100 Rupiah pro mL. **Sirup B ist also teurer**, wenn man nach dem Saft rechnet, obwohl er pro Liter billiger ist.
+Das Ziel der fünften Woche ist <InlineMath math="1{.}200\text{ ppm}" />, also passt die Lösung von <InlineMath math="1{.}150\text{ ppm}" /> bis <InlineMath math="1{.}250\text{ ppm}" />. Gefragt ist die **kleinste** Menge, also reicht die untere Grenze von <InlineMath math="1{.}150\text{ ppm}" />, denn diese Grenze zählt mit. Nach dem Auffüllen beträgt das Volumen <InlineMath math="200" /> Liter.
 
-Ein mL Saft in Sirup B kostet also **120 Rupiah**.
+<BlockMath math="\begin{aligned}
+\text{nötige Stammlösung A} &= \frac{1{.}150}{200}\cdot200=1{.}150\text{ ml}\\
+\text{zuzugebende Stammlösung A} &= 1{.}150-420=730\text{ ml}
+\end{aligned}" />
+
+# Kontrolle
+
+Nach dem Auffüllen enthält der Tank <InlineMath math="420+730=1{.}150\text{ ml}" /> Stammlösung A in <InlineMath math="200" /> Litern, die Konzentration ist also <InlineMath math="\tfrac{1{.}150}{200}\cdot200=1{.}150\text{ ppm}" />. Das liegt **genau auf der unteren Grenze und passt noch**. Mit nur <InlineMath math="729\text{ ml}" /> wären es <InlineMath math="1{.}149\text{ ppm}" />, schon außerhalb des Bereichs.
+
+# Die falschen Antworten
+
+Jede falsche Antwort **wählt das falsche Ziel oder zählt die Stammlösung falsch**.
+
+- <InlineMath math="780\text{ ml}" /> zielt auf genau <InlineMath math="1{.}200\text{ ppm}" />. Das passt zwar auch, ist aber nicht die kleinste Menge.
+- <InlineMath math="1{.}150\text{ ml}" /> vergisst, dass im Tank schon <InlineMath math="420\text{ ml}" /> Stammlösung A sind.
+- <InlineMath math="460\text{ ml}" /> rechnet nur für die <InlineMath math="80" /> Liter neues Wasser, <InlineMath math="\tfrac{1{.}150}{200}\cdot80" />, als hätte die alte Lösung schon <InlineMath math="1{.}150\text{ ppm}" />.
+- <InlineMath math="450\text{ ml}" /> hebt <InlineMath math="700" /> auf <InlineMath math="1{.}150\text{ ppm}" /> für <InlineMath math="200" /> Liter an, als hätten auch die <InlineMath math="80" /> Liter neues Wasser schon <InlineMath math="700\text{ ppm}" />.
+
+Herr Darto muss also mindestens <InlineMath math="730\text{ ml}" /> Stammlösung A (und <InlineMath math="730\text{ ml}" /> Stammlösung B) zugeben.

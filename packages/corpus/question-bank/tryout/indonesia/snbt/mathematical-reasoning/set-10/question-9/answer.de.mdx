@@ -1,9 +1,44 @@
-Besetze die Plätze von links nach rechts. Jeder besetzte Platz **lässt eine Wahl weniger** für den nächsten.
+Du suchst die Zahl der Becherkartons für alle fünf Stationen. Entscheidend ist Regel zwei: **Jede Station bekommt ihre eigenen ganzen Kartons**. Der Plan: Berechne die geplanten Becher jeder Station, runde Station für Station auf ganze Kartons auf und addiere dann die Kartons aller fünf Stationen.
 
-# Multiplikationsregel
+# Geplante Becher jeder Station
 
-Für den ersten Platz gibt es 5 Schüler, für den zweiten die 4 übrigen und so weiter.
+An den Stationen 1 und 2 nimmt jeder Läufer <InlineMath math="1" /> Becher, an den Stationen 3 bis 5 dagegen **nimmt jeder Läufer zwei Becher**. Die Reserve von <InlineMath math="10\%" /> macht die geplanten Becher zu <InlineMath math="110\%" /> des erwarteten Verbrauchs.
 
-<BlockMath math="5\cdot4\cdot3\cdot2\cdot1=5!=120" />
+<BlockMath math="\begin{aligned}
+\text{Station 1} &= 1{,}1\cdot1{.}200=1{.}320\\
+\text{Station 2} &= 1{,}1\cdot1{.}180=1{.}298\\
+\text{Station 3} &= 1{,}1\cdot(2\cdot1{.}140)=1{,}1\cdot2{.}280=2{.}508\\
+\text{Station 4} &= 1{,}1\cdot(2\cdot1{.}100)=1{,}1\cdot2{.}200=2{.}420\\
+\text{Station 5} &= 1{,}1\cdot(2\cdot1{.}050)=1{,}1\cdot2{.}100=2{.}310
+\end{aligned}" />
 
-Es gibt also **120 verschiedene Anordnungen**.
+# Ganze Kartons für jede Station
+
+Ein Karton enthält <InlineMath math="100" /> Becher, und sein Inhalt darf nicht an eine andere Station gehen. Jede Station braucht also ihre geplanten Becher geteilt durch <InlineMath math="100" />, **aufgerundet**, auch wenn der Überschuss winzig ist.
+
+| Station | Geplante Becher | Geplante Becher geteilt durch hundert | Kartons |
+| :---: | :---: | :---: | :---: |
+| 1 | <InlineMath math="1{.}320" /> | <InlineMath math="13{,}2" /> | <InlineMath math="14" /> |
+| 2 | <InlineMath math="1{.}298" /> | <InlineMath math="12{,}98" /> | <InlineMath math="13" /> |
+| 3 | <InlineMath math="2{.}508" /> | <InlineMath math="25{,}08" /> | <InlineMath math="26" /> |
+| 4 | <InlineMath math="2{.}420" /> | <InlineMath math="24{,}2" /> | <InlineMath math="25" /> |
+| 5 | <InlineMath math="2{.}310" /> | <InlineMath math="23{,}1" /> | <InlineMath math="24" /> |
+
+<BlockMath math="\begin{aligned}
+\text{Kartons gesamt} &= 14+13+26+25+24=102
+\end{aligned}" />
+
+# Kontrolle der übrigen Becher
+
+Die Kartonzahl einer Station ist genau dann die kleinste, wenn weniger als ein Karton Becher übrig bleibt. Übrig bleiben <InlineMath math="80" />, <InlineMath math="2" />, <InlineMath math="92" />, <InlineMath math="80" /> und <InlineMath math="90" /> Becher. Alle liegen unter <InlineMath math="100" />, also **kann keine Station auf einen Karton verzichten**.
+
+# Die falschen Antworten
+
+Jede falsche Antwort **verletzt eine Regel zum Verpacken oder Verbrauch der Becher**.
+
+- <InlineMath math="99" /> Kartons teilt die geplanten Becher aller fünf Stationen zusammen, <InlineMath math="9{.}856" />, auf einmal durch <InlineMath math="100" />. Dann tust du so, als könnte ein Karton auf mehrere Stationen verteilt werden.
+- <InlineMath math="98" /> Kartons rundet auf die nächste ganze Zahl, sodass Station 3 nur <InlineMath math="25" /> Kartons für <InlineMath math="2{.}508" /> Becher bekommt.
+- <InlineMath math="90" /> Kartons vergisst die Reserve von <InlineMath math="10\%" />.
+- <InlineMath math="65" /> Kartons übersieht, dass die Läufer an den Stationen 3 bis 5 <InlineMath math="2" /> Becher nehmen.
+
+Die Organisatoren müssen also <InlineMath math="102" /> Becherkartons für die fünf Stationen bereitstellen.

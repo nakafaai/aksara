@@ -1,15 +1,57 @@
-Ada dua langkah yang mudah terlewat: **jarak dibulatkan ke atas lebih dulu**, lalu tarif dasar sudah mencakup 2 km pertama.
+Kita mencari energi Bima pada pukul 12.30. Caranya, ikuti energi Bima dari satu kejadian ke kejadian berikutnya, dan setiap kali periksa **apakah energi sedang di bawah <InlineMath math="60" />**, karena hanya di bawah <InlineMath math="60" /> energi bertambah otomatis.
 
-# Membulatkan jarak
+# Ramuan menghentikan penambahan
 
-Jarak 7,3 km dibulatkan ke atas menjadi 8 km. Dari 8 km itu, 2 km pertama tercakup tarif dasar, jadi **sisanya 6 km** dikenai tarif per kilometer.
+Pukul 10.03 belum ada penambahan baru, karena penambahan berikutnya baru pukul 10.05. Jadi energi Bima masih <InlineMath math="52" />. Ramuan menambah <InlineMath math="30" />, lalu misi bos memakai <InlineMath math="20" />.
 
-# Menghitung tarif
+<BlockMath math="\begin{aligned}
+52+30&=82 \\
+82-20&=62
+\end{aligned}" />
 
-<BlockMath math="10{.}000+6\cdot2{.}500=10{.}000+15{.}000=25{.}000" />
+Energi <InlineMath math="62" /> masih lebih dari <InlineMath math="60" />, jadi **penambahan otomatis berhenti sejak ramuan diminum**. Sampai pukul 10.13 energi Bima tetap <InlineMath math="62" />.
 
-Perjalanan ini di luar jam sibuk, jadi tarif tidak dikalikan 1,2.
+# Penghitung mulai lagi dari nol
 
-Tarif Rp22.500,00 membulatkan 7,3 km ke bawah menjadi 7 km. Tarif Rp23.250,00 tidak membulatkan jarak sama sekali. Tarif Rp30.000,00 muncul jika tarif dikalikan 1,2 seperti jam sibuk, atau jika 2 km pertama ikut dikenai Rp2.500,00 per kilometer.
+Pukul 10.13 Bima memulai misi bos kedua, jadi energinya menjadi <InlineMath math="62-20=42" />. Energi baru saja turun di bawah <InlineMath math="60" />. Menurut aturan tentang penghitung, **penghitung mulai dari nol tepat pukul 10.13**, bukan mengikuti jadwal lama 10.15, 10.20, dan seterusnya. Jadi penambahan berikutnya terjadi pukul 10.18, 10.23, 10.28, dan seterusnya.
 
-Jadi, tarif yang dibayar Dewi adalah **Rp25.000,00**.
+Pukul 10.23 sudah terjadi dua penambahan, yaitu pukul 10.18 dan 10.23, lalu misi biasa memakai <InlineMath math="6" />. Pukul 10.27 belum ada penambahan baru, lalu misi biasa memakai <InlineMath math="6" /> lagi.
+
+<BlockMath math="\begin{aligned}
+42+2-6&=38 \\
+38-6&=32
+\end{aligned}" />
+
+Selama itu energi tetap di bawah <InlineMath math="60" />, jadi penghitung berjalan terus dan tidak diulang ketika energi dipakai.
+
+# Penambahan sampai menjelang siang
+
+Setelah pukul 10.27 Bima tidak bermain lagi. Penambahan terjadi pukul 10.28, 10.33, dan seterusnya, yang terakhir sebelum siang pukul 11.58. Dari 10.28 sampai 11.58 ada <InlineMath math="90" /> menit. **Penambahan pada pukul 10.28 juga dihitung**, jadi banyaknya penambahan adalah <InlineMath math="90 : 5" /> ditambah satu.
+
+<BlockMath math="\begin{aligned}
+\frac{90}{5}+1&=19 \\
+32+19&=51
+\end{aligned}" />
+
+Energi <InlineMath math="51" /> masih di bawah <InlineMath math="60" />, jadi pada bagian ini penambahan tidak pernah berhenti.
+
+# Hadiah siang menghentikan penambahan
+
+Pukul 12.00 bukan waktu penambahan, karena penambahan berikutnya baru pukul 12.03. Hadiah harian menambah <InlineMath math="15" />, jadi energi menjadi <InlineMath math="51+15=66" />. Energi sekarang lebih dari <InlineMath math="60" />, jadi **penambahan otomatis berhenti lagi**. Bima juga tidak memakai energi sesudahnya, sehingga energinya tetap <InlineMath math="66" /> sampai pukul 12.30.
+
+# Pemeriksaan dengan menjumlah semua perubahan
+
+Coba hitung ulang dengan menjumlahkan semua perubahan sekaligus. Ada <InlineMath math="2+19=21" /> penambahan otomatis, satu ramuan, satu hadiah, dua misi bos, dan dua misi biasa. **Hasil jumlahnya harus sama** dengan hasil langkah demi langkah tadi.
+
+<BlockMath math="52+21+30+15-2\cdot 20-2\cdot 6=66" />
+
+# Pilihan yang keliru
+
+Setiap pilihan lain muncul karena **satu aturan energi terlewat**.
+
+- <InlineMath math="52" /> muncul jika ramuan dianggap hanya mengisi energi sampai <InlineMath math="60" />, sehingga penambahan sudah berjalan lagi sejak misi bos pertama.
+- <InlineMath math="60" /> muncul jika hadiah harian dianggap hanya mengisi energi sampai <InlineMath math="60" />.
+- <InlineMath math="72" /> muncul jika penambahan otomatis dianggap tetap berjalan setelah hadiah membuat energi <InlineMath math="66" />.
+- <InlineMath math="75" /> muncul jika batas <InlineMath math="60" /> diabaikan sama sekali, sehingga energi dianggap bertambah setiap <InlineMath math="5" /> menit sejak pukul 10.00.
+
+Jadi, energi Bima pada pukul 12.30 adalah <InlineMath math="66" />.

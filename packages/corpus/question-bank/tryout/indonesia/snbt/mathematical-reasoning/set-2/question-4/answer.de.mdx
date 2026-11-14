@@ -1,23 +1,45 @@
-Beide Preise wechseln an bestimmten Stellen die Formel: Jalan bei 2 km und Cepat bei 4 km, wo <InlineMath math="3\,000k" /> den Mindestpreis erreicht. Vergleiche also **Intervall für Intervall** in der Strecke <InlineMath math="k" /> km.
+Gesucht ist der früheste Zeitpunkt, zu dem Rio seine sechste Bossmission starten kann. Bestimme, wie viel Energie sechs Bossmissionen brauchen, zieh **die Energie ab, die er sicher hat**, und rechne den Rest in Auffüllungen und in eine Uhrzeit um.
 
-# Strecken von 1 bis 4 km
+# Die benötigte Energie
 
-Cepat **kostet in diesem Bereich immer 12 000 Rupiah**.
+Sechs Bossmissionen kosten <InlineMath math="6\cdot 20=120" /> Energie. Um 09:00 Uhr hat Rio <InlineMath math="60" />, genauso viel wie um 08:30 Uhr. Von 08:30 bis 09:00 Uhr ist seine Energie voll, also **wird bei voller Energie nicht aufgefüllt**. Die halbe Stunde Warten bringt gar keine Energie.
 
-| <InlineMath math="k" /> | Jalan | Cepat | Günstiger |
-| :---: | :---: | :---: | :---: |
-| 1 oder 2 | 10 000 | 12 000 | Jalan |
-| 3 | 12 500 | 12 000 | Cepat |
-| 4 | 15 000 | 12 000 | Cepat |
+# Weitere Energiequellen
 
-# Strecken ab 4 km
+Rio trinkt keinen Trank, die einzige weitere Quelle ist also **das Tagesgeschenk von <InlineMath math="15" /> um 12:00 Uhr**. Es zählt, wenn die sechste Mission um 12:00 Uhr oder später startet. Der Rest muss aus automatischen Auffüllungen kommen.
 
-Für <InlineMath math="k\ge2" /> kostet Jalan <InlineMath math="10\,000+2\,500(k-2)=5\,000+2\,500k" />, und für <InlineMath math="k\ge4" /> kostet Cepat <InlineMath math="3\,000k" />.
+<BlockMath math="120-60-15=45" />
 
-<BlockMath math="5\,000+2\,500k<3\,000k\;\Longleftrightarrow\;5\,000<500k\;\Longleftrightarrow\;k>10" />
+# Wann das Auffüllen beginnt
 
-Bei <InlineMath math="k=10" /> kosten **beide 30 000 Rupiah**, Jalan ist also noch nicht günstiger. Ab 11 km ist Jalan günstiger.
+Die erste Bossmission um 09:00 Uhr lässt <InlineMath math="40" /> übrig, die Energie fällt also unter <InlineMath math="60" />, und **der Zähler startet um 09:00 Uhr bei null**. Das erste Auffüllen kommt um 09:05 Uhr. Wenn Rio jede Bossmission so früh wie möglich startet, kommt seine Energie nie wieder auf <InlineMath math="60" />, also wird ohne Pause alle <InlineMath math="5" /> Minuten aufgefüllt. Die letzte dieser <InlineMath math="45" /> Auffüllungen kommt so viele Minuten nach 09:00 Uhr:
 
-Die Wahlen mindestens 11 km und höchstens 2 km enthalten jeweils nur einen Teil der Antwort. Die Wahl höchstens 2 km oder mindestens 10 km schließt 10 km ein, wo beide gleich viel kosten.
+<BlockMath math="45\cdot 5=225\text{ Minuten}" />
 
-Jalan ist also genau dann günstiger, wenn die Strecke **höchstens 2 km oder mindestens 11 km** beträgt.
+<InlineMath math="225" /> Minuten sind <InlineMath math="3" /> Stunden und <InlineMath math="45" /> Minuten, diese letzte Auffüllung kommt also um 12:45 Uhr.
+
+# Den Missionsplan prüfen
+
+Prüf jetzt, ob der Plan wirklich aufgeht, auch mit den <InlineMath math="10" /> Minuten, die jede Bossmission dauert. **Jede Mission startet, sobald genug Energie da ist und die vorige Mission vorbei ist**.
+
+| Startzeit | Energie davor | Energie danach |
+| --- | --- | --- |
+| 09:00 | <InlineMath math="60" /> | <InlineMath math="40" /> |
+| 09:10 | <InlineMath math="42" /> | <InlineMath math="22" /> |
+| 09:20 | <InlineMath math="24" /> | <InlineMath math="4" /> |
+| 10:40 | <InlineMath math="20" /> | <InlineMath math="0" /> |
+| 12:00 | <InlineMath math="31" /> | <InlineMath math="11" /> |
+| 12:45 | <InlineMath math="20" /> | <InlineMath math="0" /> |
+
+Von 09:20 bis 10:40 Uhr wird <InlineMath math="16" />-mal aufgefüllt, die Energie steigt also von <InlineMath math="4" /> auf <InlineMath math="20" />. Von 10:45 bis 12:00 Uhr wird <InlineMath math="16" />-mal aufgefüllt, dann kommt das Geschenk, also <InlineMath math="0+16+15=31" />. Von 12:05 bis 12:45 Uhr wird <InlineMath math="9" />-mal aufgefüllt, also <InlineMath math="11+9=20" />, gerade genug für die sechste Mission. Vor 12:45 Uhr liegt die Energie nach der fünften Mission immer unter <InlineMath math="20" />, früher geht die sechste Mission also nicht.
+
+# Die falschen Optionen
+
+Jede andere Option entsteht aus **einem verrutschten Zählschritt**.
+
+- 12:00 Uhr ist der Start der fünften Bossmission, die Zählung hört also eine Mission zu früh auf.
+- 12:15 Uhr entsteht, wenn du ab 08:30 Uhr auffüllst, obwohl Rios Energie bis 09:00 Uhr voll war.
+- 12:40 Uhr entsteht, wenn du 09:00 Uhr selbst schon als Auffüllung zählst, sodass nur <InlineMath math="44" />-mal <InlineMath math="5" /> Minuten gezählt werden.
+- 14:00 Uhr entsteht, wenn du das Tagesgeschenk vergisst, dann bräuchte es <InlineMath math="60" /> Auffüllungen, also <InlineMath math="300" /> Minuten.
+
+Rio kann seine sechste Bossmission also frühestens um 12:45 Uhr starten.

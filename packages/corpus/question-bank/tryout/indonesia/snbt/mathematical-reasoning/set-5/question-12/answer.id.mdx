@@ -1,17 +1,52 @@
-Hanya satu data berubah, jadi tidak perlu menjumlahkan ulang semua waktu. Cukup **koreksi jumlah semula dengan selisih data yang berubah**.
+Kamu mencari tambahan kaleng terkecil yang membuat saldo sesudah setoran minggu ketiga cukup untuk penarikan <InlineMath math="\text{Rp}100{.}000" />. Rencananya: hitung saldo <InlineMath math="2" /> minggu pertama, tentukan saldo yang dibutuhkan dengan **sisa minimal <InlineMath math="\text{Rp}10{.}000" />**, ubah kebutuhan itu menjadi nilai setoran minggu ketiga, lalu menjadi berat kaleng.
 
-# Jumlah yang dikoreksi
+# Saldo sesudah dua minggu
 
-Waktu Fajar turun <InlineMath math="16{,}4-14{,}8=1{,}6" /> detik, jadi **jumlah semua waktu juga turun 1,6 detik**.
+Setiap minggu, **berat yang dipakai dibulatkan ke bawah** ke kelipatan <InlineMath math="0{,}5\text{ kg}" />:
 
-<BlockMath math="116-1{,}6=114{,}4" />
+<BlockMath math="\begin{aligned}
+\text{botol plastik} &: 3{,}8 \to 3{,}5\text{ kg} \to 3{,}5 \cdot 4{.}000 = 14{.}000 \\
+\text{kaleng} &: 2{,}3 \to 2{,}0\text{ kg} \to 2{,}0 \cdot 12{.}000 = 24{.}000 \\
+\text{tambahan saldo} &= 38{.}000 - 3{.}800 = 34{.}200
+\end{aligned}" />
 
-# Rata-rata baru
+Nilai <InlineMath math="38{.}000" /> di bawah <InlineMath math="60{.}000" />, jadi biayanya tepat <InlineMath math="10\%" />. Sesudah <InlineMath math="2" /> minggu, saldonya <InlineMath math="2 \cdot 34{.}200 = 68{.}400" />.
 
-<BlockMath math="\frac{114{,}4}{8}=14{,}3" />
+# Saldo yang dibutuhkan
 
-Cara cepatnya, rata-rata **turun sebesar <InlineMath math="\tfrac{1{,}6}{8}=0{,}2" /> detik**, dari 14,5 menjadi 14,3.
+Penarikan <InlineMath math="\text{Rp}100{.}000" /> sudah kelipatan <InlineMath math="\text{Rp}20{.}000" />, tetapi sesudah penarikan **saldo harus tersisa paling sedikit <InlineMath math="\text{Rp}10{.}000" />**. Jadi, saldo sesudah setoran ketiga paling sedikit <InlineMath math="110{.}000" />, dan setoran ketiga harus menambah paling sedikit:
 
-Nilai 14,5 detik adalah rata-rata sebelum koreksi. Nilai 14,7 detik menambahkan 0,2, padahal waktunya berkurang.
+<BlockMath math="110{.}000 - 68{.}400 = 41{.}600" />
 
-Jadi, rata-rata waktu setelah dikoreksi adalah **14,3 detik**.
+# Nilai setoran minggu ketiga
+
+Misalkan nilai setoran ketiga <InlineMath math="V" />. Selama <InlineMath math="V" /> tidak lebih dari <InlineMath math="60{.}000" />, tambahan saldonya <InlineMath math="0{,}9V" />:
+
+<BlockMath math="\begin{aligned}
+0{,}9V &\ge 41{.}600 \\
+V &\ge 46{.}222{,}2\ldots
+\end{aligned}" />
+
+Botol plastik tetap memberi <InlineMath math="14{.}000" />, jadi kaleng harus bernilai paling sedikit <InlineMath math="32{.}222{,}2\ldots" />, artinya berat kaleng yang dipakai paling sedikit <InlineMath math="2{,}68\ldots\text{ kg}" />. Karena **berat yang dipakai selalu kelipatan <InlineMath math="0{,}5\text{ kg}" />**, berat kaleng yang dipakai harus <InlineMath math="3{,}0\text{ kg}" />. Cek kedua kemungkinan:
+
+<BlockMath math="\begin{aligned}
+2{,}5\text{ kg} &: V = 14{.}000 + 30{.}000 = 44{.}000, \ 68{.}400 + 39{.}600 = 108{.}000 \\
+3{,}0\text{ kg} &: V = 14{.}000 + 36{.}000 = 50{.}000, \ 68{.}400 + 45{.}000 = 113{.}400
+\end{aligned}" />
+
+Saldo <InlineMath math="108{.}000" /> kurang dari <InlineMath math="110{.}000" />, sedangkan <InlineMath math="113{.}400" /> cukup. Nilai <InlineMath math="50{.}000" /> juga masih di bawah <InlineMath math="60{.}000" />, jadi biaya <InlineMath math="10\%" /> tadi memang berlaku.
+
+# Tambahan berat kaleng
+
+Berat <InlineMath math="3{,}0\text{ kg}" /> dipakai kalau **seluruh kaleng yang ditimbang** paling sedikit <InlineMath math="3{,}0\text{ kg}" />. Rina sudah membawa <InlineMath math="2{,}3\text{ kg}" />, jadi tambahannya paling sedikit <InlineMath math="3{,}0-2{,}3=0{,}7\text{ kg}" />.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain **melupakan satu aturan**:
+
+- <InlineMath math="0\text{ kg}" /> lupa sisa minimal: tanpa tambahan saldonya <InlineMath math="102{.}600" />, cukup untuk mengambil <InlineMath math="100{.}000" /> tetapi sisanya hanya <InlineMath math="2{.}600" />.
+- <InlineMath math="0{,}2\text{ kg}" /> lupa biaya pengelolaan, sehingga <InlineMath math="V \ge 41{.}600" /> dan kaleng <InlineMath math="2{,}5\text{ kg}" /> dianggap cukup.
+- <InlineMath math="0{,}4\text{ kg}" /> menambah kaleng sampai <InlineMath math="2{,}7\text{ kg}" />, padahal berat itu dibulatkan turun ke <InlineMath math="2{,}5\text{ kg}" />.
+- <InlineMath math="1{,}0\text{ kg}" /> menambah kaleng per <InlineMath math="0{,}5\text{ kg}" />, padahal yang dibulatkan adalah berat total kaleng, bukan tambahannya.
+
+Jadi, Rina perlu menambah kaleng paling sedikit <InlineMath math="0{,}7\text{ kg}" /> pada setoran minggu ketiga.

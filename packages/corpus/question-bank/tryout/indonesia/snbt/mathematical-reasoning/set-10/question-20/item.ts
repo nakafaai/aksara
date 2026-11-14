@@ -1,17 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "photo-frame",
+  stimulus: "school-canteen",
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "1 cm" },
-        { correct: false, label: "2 cm" },
-        { correct: false, label: "3 cm" },
-        { correct: true, label: "4 cm" },
-        { correct: false, label: "5 cm" },
-      ],
+      kind: "numericEntry",
+      unit: "porsi",
+      value: "470",
     },
   },
 };

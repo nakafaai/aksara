@@ -1,20 +1,51 @@
-A tiered tariff means **each part of the usage is charged at its own block rate**, not one rate for all of it. A usage of 250 kWh passes through block 1 and stops in block 2.
+You're looking for the total PLN electricity cost from 07.00 to 22.00. Here's the plan: **follow the battery hour by hour** with the capacity and reserve rules, note the energy bought before 17.00 and after it, then multiply each part by its own tariff.
 
-# Splitting the usage into blocks
+# The battery hour by hour
 
-The 250 kWh **split into 100 kWh in block 1 and 150 kWh in block 2**.
+For each hour, first work out the panel energy minus the energy the house uses. A positive difference is a surplus that goes into the battery. A negative difference is a shortfall taken from the battery. The battery **can only be charged up to its capacity** and **can only be drained down to the reserve**, so what you track is the battery level at the end of each hour.
 
-| Part | kWh | Cost |
-| :---: | :---: | :---: |
-| Block 1 | 100 | <InlineMath math="100\cdot1{,}000=100{,}000" /> |
-| Block 2 | 150 | <InlineMath math="150\cdot1{,}500=225{,}000" /> |
+| Hour | Panel minus use (kWh) | Battery at end of hour (kWh) | Wasted (kWh) | Bought from PLN (kWh) |
+| :---: | :---: | :---: | :---: | :---: |
+| 07.00-08.00 | <InlineMath math="-1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
+| 08.00-09.00 | <InlineMath math="+1" /> | <InlineMath math="2" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| 09.00-10.00 | <InlineMath math="+2" /> | <InlineMath math="4" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| 10.00-11.00 | <InlineMath math="+3" /> | <InlineMath math="6" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| 11.00-12.00 | <InlineMath math="+3" /> | <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="0" /> |
+| 12.00-13.00 | <InlineMath math="+2" /> | <InlineMath math="6" /> | <InlineMath math="2" /> | <InlineMath math="0" /> |
+| 13.00-14.00 | <InlineMath math="+3" /> | <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="0" /> |
+| 14.00-15.00 | <InlineMath math="+1" /> | <InlineMath math="6" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| 15.00-16.00 | <InlineMath math="-1" /> | <InlineMath math="5" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| 16.00-17.00 | <InlineMath math="-1" /> | <InlineMath math="4" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
 
-# Adding the fixed charge
+Look at the first hour. At 07.00 the battery holds exactly <InlineMath math="1\text{ kWh}" />, which is its reserve, so **the first hour's shortfall is bought straight from PLN**. From 10.00-11.00 on the battery is full, so a surplus of <InlineMath math="10\text{ kWh}" /> around midday is wasted.
 
-<BlockMath math="20{,}000+100{,}000+225{,}000=345{,}000" />
+# The evening demand
 
-The bill **always includes the fixed charge**, whatever the usage.
+At 17.00 the battery holds <InlineMath math="4\text{ kWh}" />. Of that, **only the part above the reserve may be used**.
 
-A bill of Rp395,000 charges the block 2 rate for all 250 kWh, and Rp520,000 charges the block 3 rate for all of it. A bill of Rp325,000 forgets the fixed charge, and Rp270,000 charges the block 1 rate for all of the usage.
+<BlockMath math="\begin{aligned}
+\text{usable battery energy} &= 4-1=3\text{ kWh}\\
+\text{energy bought in the evening} &= 11-3=8\text{ kWh}
+\end{aligned}" />
 
-So the electricity bill for that month is **Rp345,000**.
+# The total cost
+
+The energy bought before 17.00 is <InlineMath math="1\text{ kWh}" /> at the daytime tariff, and **the evening energy uses the higher tariff**.
+
+<BlockMath math="\begin{aligned}
+\text{cost} &= 1\cdot\text{Rp}1{,}000+8\cdot\text{Rp}2{,}500\\
+&= \text{Rp}1{,}000+\text{Rp}20{,}000=\text{Rp}21{,}000
+\end{aligned}" />
+
+# Checking with an energy balance
+
+Energy in has to equal energy out. In: the panel's <InlineMath math="30\text{ kWh}" />, PLN's <InlineMath math="9\text{ kWh}" />, and the battery's starting <InlineMath math="1\text{ kWh}" />. Out: the house's use of <InlineMath math="18+11=29\text{ kWh}" />, the wasted <InlineMath math="10\text{ kWh}" />, and the battery's final <InlineMath math="1\text{ kWh}" />. Both sides come to <InlineMath math="40\text{ kWh}" />, so **the hour-by-hour work is consistent**.
+
+# The wrong options
+
+- <InlineMath math="\text{Rp}1{,}000.00" /> comes from ignoring the <InlineMath math="6\text{ kWh}" /> capacity. The battery would seem to hold <InlineMath math="14\text{ kWh}" /> at 17.00, but **the midday surplus doesn't fit and is wasted**.
+- <InlineMath math="\text{Rp}17{,}500.00" /> comes from letting the battery run empty. The morning purchase disappears and the evening purchase becomes <InlineMath math="7\text{ kWh}" />.
+- <InlineMath math="\text{Rp}20{,}000.00" /> forgets to pay for the <InlineMath math="1\text{ kWh}" /> bought at 07.00-08.00.
+- <InlineMath math="\text{Rp}22{,}500.00" /> charges all <InlineMath math="9\text{ kWh}" /> at the evening tariff, including the energy bought in the morning.
+
+So Mr Hadi's family pays <InlineMath math="\text{Rp}21{,}000.00" /> in total for PLN electricity that day.

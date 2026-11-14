@@ -1,13 +1,49 @@
-The file size is in megabytes, while the speed is in megabits per second. **Convert the file size to megabits first**, then divide by the speed.
+You're looking for the order of the three activities that leaves the battery as high as possible at 16.30. The plan: first see when using the phone costs the least and when charging is fastest, work out the best order, then compare it with every other order.
 
-# File size in megabits
+# Why the order matters
 
-<BlockMath math="600\text{ MB}\cdot8=4{,}800\text{ megabits}" />
+Two rules make the order matter. First, **power saving mode halves the drain of gaming and reading**, but only while the battery is at <InlineMath math="20\%" /> or less. So gaming and reading are cheaper when the battery is already low. Second, the charger adds <InlineMath math="40\%" /> per hour only while the battery is below <InlineMath math="80\%" />, so charging is fastest when the battery is low.
 
-# Download time
+Both rules point the same way: **drain the battery first and charge last**. You still have to check that the phone doesn't die along the way.
 
-<BlockMath math="\frac{4{,}800}{40}=120\text{ seconds}" />
+# Gaming and reading first
 
-Without matching the units, the result is 15 seconds, which is **eight times too fast**.
+Start with gaming. The battery falls from <InlineMath math="22\%" /> to <InlineMath math="20\%" /> at the full rate of <InlineMath math="30\%" /> per hour. Once it hits <InlineMath math="20\%" />, **power saving mode turns on and gaming drains only <InlineMath math="15\%" /> per hour**. Let <InlineMath math="t" /> be the time until the battery reaches <InlineMath math="20\%" />.
 
-So the file downloads in **120 seconds**.
+<BlockMath math="\begin{aligned}
+t &= \frac{22-20}{30}\text{ h}=\frac{1}{15}\text{ h}=4\text{ min} \\
+\text{battery after gaming} &= 20\%-15\%\cdot\frac{56}{60}=20\%-14\%=6\%
+\end{aligned}" />
+
+Reading then happens entirely in power saving mode at <InlineMath math="5\%" /> per hour, so the battery drops from <InlineMath math="6\%" /> to <InlineMath math="1\%" />. The phone doesn't die. If you read before gaming, you still end at <InlineMath math="1\%" />: reading takes the battery to <InlineMath math="16\%" />, then gaming at the saving rate of <InlineMath math="15\%" /> per hour takes it to <InlineMath math="1\%" />.
+
+# Charging last
+
+While it charges without being used, the phone is on standby. So **the battery gains <InlineMath math="40\%-4\%=36\%" /> per hour**. Power saving mode doesn't change the standby rate.
+
+<BlockMath math="1\%+36\%\cdot1.5=1\%+54\%=55\%" />
+
+The battery stays below <InlineMath math="80\%" /> the whole time, so the <InlineMath math="40\%" /> per hour rate holds for all <InlineMath math="1.5" /> hours.
+
+# Comparing every order
+
+Charging for <InlineMath math="1.5" /> hours always adds <InlineMath math="54\%" />, because in no order does the battery reach <InlineMath math="80\%" /> while charging. **The only difference is how much of the gaming and reading happens in power saving mode.**
+
+| Order | Battery calculation | Battery at 16.30 |
+| --- | --- | --- |
+| Gaming, reading, charging | <InlineMath math="1\%+54\%" /> | <InlineMath math="55\%" /> |
+| Reading, gaming, charging | <InlineMath math="1\%+54\%" /> | <InlineMath math="55\%" /> |
+| Gaming, charging, reading | <InlineMath math="6\%+54\%-10\%" /> | <InlineMath math="50\%" /> |
+| Reading, charging, gaming | <InlineMath math="16\%+54\%-30\%" /> | <InlineMath math="40\%" /> |
+| Charging, then gaming and reading | <InlineMath math="22\%+54\%-30\%-10\%" /> | <InlineMath math="36\%" /> |
+
+In the last three rows, whatever comes after charging happens above <InlineMath math="20\%" />, so it drains at the full rate. The largest value in the table is <InlineMath math="55\%" />.
+
+# The wrong options
+
+- <InlineMath math="36\%" /> comes from **charging first**. You also get it if you ignore power saving mode: gaming and reading at full rate use <InlineMath math="40\%" />, more than <InlineMath math="22\%" />, so the best order seems to kill the phone.
+- <InlineMath math="40\%" /> is the result of reading, charging, then gaming.
+- <InlineMath math="50\%" /> is the result of gaming, charging, then reading.
+- <InlineMath math="61\%" /> comes from forgetting that the phone still uses <InlineMath math="4\%" /> per hour on standby while it charges, so the gain is counted as <InlineMath math="40\%\cdot1.5=60\%" />.
+
+So the highest possible battery at 16.30 is <InlineMath math="55\%" />, reached by gaming and reading first and charging last.

@@ -1,15 +1,34 @@
-For each date, count **the number of days after 1 January 2027**, then shift Friday by the remainder on division by 7.
+You're looking for the smallest number of new respondents that lifts Pasar X's overall percentage to <InlineMath math="52\%" />. Two conditions have to hold together: **the percentage condition**, and **the condition that a number of people is always a whole number**.
 
-# The end of the year and the next new year
+# Where Pasar X stands now
 
-31 December is 364 days after 1 January, and <InlineMath math="364=7\cdot52" /> is divisible by 7. So 31 December is a Friday, and the second statement is true.
+Pasar X has <InlineMath math="40\cdot 80\%+160\cdot 30\%=32+48=80" /> QRIS users out of <InlineMath math="200" /> respondents, which is <InlineMath math="40\%" />. Let there be <InlineMath math="n" /> new respondents. **The new QRIS users are <InlineMath math="80\%" /> of <InlineMath math="n" />**, which is <InlineMath math="0.8n" /> people.
 
-1 January 2028 is 365 days after 1 January 2027, and <InlineMath math="365=7\cdot52+1" />. The weekday **moves one on from Friday**, to Saturday. The first statement is true.
+# The percentage condition
 
-# 1 March and the number of Saturdays
+The new overall percentage is all QRIS users divided by all respondents. You can multiply both sides by <InlineMath math="100(200+n)" /> because it's positive, so **the direction of the inequality stays the same**.
 
-1 March is <InlineMath math="31+28=59" /> days after 1 January, and <InlineMath math="59=7\cdot8+3" />. Three days after Friday is Monday, **not Sunday**. The third statement is false.
+<BlockMath math="\begin{aligned} \frac{80+0.8n}{200+n} &\ge \frac{52}{100} \\ 8{,}000+80n &\ge 10{,}400+52n \\ 28n &\ge 2{,}400 \\ n &\ge 85.71\ldots \end{aligned}" />
 
-Since <InlineMath math="365=7\cdot52+1" />, only Friday appears 53 times. Saturday appears 52 times, so the fourth statement is false.
+From this condition alone, <InlineMath math="n" /> is at least <InlineMath math="86" />.
 
-So the first statement is **true**, the second is **true**, the third is **false**, and the fourth is **false**.
+# The whole number condition
+
+The number of new QRIS users, <InlineMath math="0.8n=\frac{4n}{5}" />, has to be a whole number because it counts people. That only happens when **<InlineMath math="n" /> is a multiple of <InlineMath math="5" />**. For <InlineMath math="n=86" />, the new QRIS users would be <InlineMath math="68.8" /> people, which can't happen. The smallest multiple of <InlineMath math="5" /> that's at least <InlineMath math="86" /> is <InlineMath math="90" />.
+
+# Checking the result
+
+Compare <InlineMath math="n=90" /> with the multiple of <InlineMath math="5" /> just before it, <InlineMath math="n=85" />. To compare a fraction with <InlineMath math="52\%" />, **cross-multiply so you don't have to divide**.
+
+<BlockMath math="\begin{aligned} n=90:\ \ & \frac{80+72}{290}=\frac{152}{290},\quad 152\cdot 100=15{,}200 \ge 52\cdot 290=15{,}080 \\ n=85:\ \ & \frac{80+68}{285}=\frac{148}{285},\quad 148\cdot 100=14{,}800 < 52\cdot 285=14{,}820 \end{aligned}" />
+
+With <InlineMath math="90" /> new respondents, the percentage is about <InlineMath math="52.4\%" />, which reaches the target. With <InlineMath math="85" />, it's about <InlineMath math="51.9\%" />, which falls short.
+
+# Traps to avoid
+
+There are **two answers that come up often** when one condition is skipped.
+
+- The answer <InlineMath math="86" /> only uses the percentage condition. With <InlineMath math="86" /> new respondents, exactly <InlineMath math="80\%" /> of them is <InlineMath math="68.8" /> people, which is impossible.
+- The answer <InlineMath math="85" /> comes from rounding <InlineMath math="85.71\ldots" /> down. The check shows <InlineMath math="85" /> isn't enough.
+
+So at least <InlineMath math="90" /> new respondents have to be added.

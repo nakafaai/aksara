@@ -1,15 +1,56 @@
-Rina **kauft** Fremdwährung, es gilt also der Verkaufskurs, der Preis, den die Kundschaft zahlt. Die Servicegebühr wird beim Kauf addiert.
+Gesucht sind der Schalter und die Wartezeit von Person <InlineMath math="20" />. Stell den Plan der Startzeiten für alle Personen mit der Regel **der Schalter, der zuerst frei wird** auf, such die Zeile von Person <InlineMath math="20" /> und zieh die Ankunftszeit von der Startzeit ab.
 
-# Preis von 300 SGD
+# Beide Schalter sind immer beschäftigt
 
-<BlockMath math="300\cdot11\,800=3\,540\,000" />
+Schalter A kann alle <InlineMath math="4" /> Minuten eine neue Bedienung beginnen, also um 08:00, 08:04, 08:08 Uhr und so weiter. Schalter B alle <InlineMath math="6" /> Minuten, also um 08:00, 08:06, 08:12 Uhr und so weiter. Dieser Plan gilt nur, wenn **immer jemand wartet**, sobald ein Schalter frei wird. Die Tabelle unten zeigt, dass jede Person vor ihrem Start schon angekommen ist, kein Schalter steht also je still.
 
-# Die Servicegebühr addieren
+# Der Plan der Startzeiten
 
-<BlockMath math="3\,540\,000+25\,000=3\,565\,000" />
+Sortier alle freien Startzeiten beider Schalter von früh nach spät. Um 08:00, 08:12 und 08:24 Uhr werden beide Schalter gleichzeitig frei, also **geht die weiter vorne stehende Person zu Schalter A**. Person <InlineMath math="n" />, die nach 08:00 Uhr kommt, trifft <InlineMath math="3(n-10)" /> Minuten nach 08:00 Uhr ein.
 
-Die Gebühr fällt **einmal pro Transaktion** an, egal wie viele Dollar gekauft werden.
+| Person | Ankunft | Beginn | Schalter |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> | 08:00 | 08:00 | A |
+| <InlineMath math="2" /> | 08:00 | 08:00 | B |
+| <InlineMath math="3" /> | 08:00 | 08:04 | A |
+| <InlineMath math="4" /> | 08:00 | 08:06 | B |
+| <InlineMath math="5" /> | 08:00 | 08:08 | A |
+| <InlineMath math="6" /> | 08:00 | 08:12 | A |
+| <InlineMath math="7" /> | 08:00 | 08:12 | B |
+| <InlineMath math="8" /> | 08:00 | 08:16 | A |
+| <InlineMath math="9" /> | 08:00 | 08:18 | B |
+| <InlineMath math="10" /> | 08:00 | 08:20 | A |
+| <InlineMath math="11" /> | 08:03 | 08:24 | A |
+| <InlineMath math="12" /> | 08:06 | 08:24 | B |
+| <InlineMath math="13" /> | 08:09 | 08:28 | A |
+| <InlineMath math="14" /> | 08:12 | 08:30 | B |
+| <InlineMath math="15" /> | 08:15 | 08:32 | A |
+| <InlineMath math="16" /> | 08:18 | 08:36 | A |
+| <InlineMath math="17" /> | 08:21 | 08:36 | B |
+| <InlineMath math="18" /> | 08:24 | 08:40 | A |
+| <InlineMath math="19" /> | 08:27 | 08:42 | B |
+| <InlineMath math="20" /> | 08:30 | 08:44 | A |
 
-Die Werte 3 480 000 und 3 505 000 Rupiah verwenden den Ankaufskurs, der gilt, wenn die Kundschaft verkauft. Der Wert 3 455 000 Rupiah verwendet den Ankaufskurs und zieht die Gebühr ab. Der Wert 3 590 000 Rupiah addiert die Gebühr zweimal.
+In je <InlineMath math="12" /> Minuten beginnt Schalter A <InlineMath math="3" /> Bedienungen und Schalter B <InlineMath math="2" />, das Muster wiederholt sich also.
 
-Rina muss also **3 565 000 Rupiah** zahlen.
+# Die Wartezeit von Person zwanzig
+
+Person <InlineMath math="19" /> nimmt um 08:42 Uhr Schalter B, der also erst um 08:48 Uhr wieder frei ist. Schalter A ist um 08:44 Uhr frei, also früher, und deshalb **geht Person <InlineMath math="20" /> um 08:44 Uhr zu Schalter A**. Person <InlineMath math="20" /> kam <InlineMath math="30" /> Minuten nach 08:00 Uhr an, also um 08:30 Uhr, und ihre Bedienung beginnt <InlineMath math="44" /> Minuten nach 08:00 Uhr.
+
+<BlockMath math="\begin{aligned}
+\text{Ankunftsminute}&=3\cdot(20-10)=30 \\
+\text{Wartezeit}&=44-30=14
+\end{aligned}" />
+
+Zur Kontrolle: In den ersten <InlineMath math="44" /> Minuten beginnt Schalter A <InlineMath math="12" /> Bedienungen und Schalter B <InlineMath math="8" />. Person <InlineMath math="20" /> ist also wirklich die letzte der <InlineMath math="12" /> Personen, die bis dahin an Schalter A an der Reihe waren.
+
+# Die falschen Optionen
+
+Jede andere Option entsteht aus **einem Fehler im Zeitplan**.
+
+- Schalter A mit <InlineMath math="18" /> Minuten zählt bis zum Ende der Bedienung um 08:48 Uhr, aber das Warten endet, sobald die Bedienung beginnt.
+- Schalter A mit <InlineMath math="44" /> Minuten nimmt die Startzeit als Wartezeit und vergisst, dass die Person erst um 08:30 Uhr ankam.
+- Schalter B mit <InlineMath math="12" /> Minuten gibt Person <InlineMath math="20" /> den Platz an Schalter B um 08:42 Uhr, den aber schon Person <InlineMath math="19" /> genommen hat.
+- Schalter B mit <InlineMath math="24" /> Minuten nimmt an, dass sich die Personen zwischen A und B abwechseln, dabei geht jede zu dem Schalter, der zuerst frei wird.
+
+Person <InlineMath math="20" /> wird also an Schalter A bedient und wartet <InlineMath math="14" /> Minuten.

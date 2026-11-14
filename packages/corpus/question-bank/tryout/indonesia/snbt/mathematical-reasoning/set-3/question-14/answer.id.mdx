@@ -1,13 +1,46 @@
-Saran tukang meminta **paling sedikit 10% lebih banyak** daripada 180 ubin yang tepat menutupi lantai. Setelah itu, banyak ubin harus dibulatkan ke atas menjadi dus utuh.
+Kamu menghitung pasangan <InlineMath math="(n, T)" /> yang lolos tiga saringan: aturan tanjakan, aturan langkah, dan batas ruang. Rencananya, cari dulu <InlineMath math="n" /> yang mungkin, lalu rentang <InlineMath math="T" /> untuk setiap <InlineMath math="n" />, dan terakhir **potong rentang itu dengan batas ruang yang memakai <InlineMath math="n-1" /> pijakan**.
 
-# Banyak ubin minimum
+# Banyak anak tangga yang mungkin
 
-<BlockMath math="180+10\%\cdot180=180+18=198" />
+Aturan tanjakan meminta <InlineMath math="15\le\tfrac{288}{n}\le18" />.
 
-# Banyak dus
+<BlockMath math="\begin{aligned}
+\frac{288}{n}\le18 &\iff n\ge16 \\
+\frac{288}{n}\ge15 &\iff n\le19{,}2
+\end{aligned}" />
 
-<BlockMath math="\frac{198}{12}=16{,}5" />
+Jadi **hanya <InlineMath math="n=16, 17, 18, 19" /> yang mungkin**.
 
-Dus tidak dapat dibeli sebagian, dan 16 dus hanya berisi 192 ubin, kurang dari 198. Jadi **harus dibulatkan ke atas** menjadi 17 dus, yang berisi 204 ubin.
+# Rentang lebar pijakan
 
-Jadi, paling sedikit harus dibeli **17 dus**.
+Aturan langkah <InlineMath math="62\le2R+T\le66" /> berarti <InlineMath math="62-2R\le T\le66-2R" />. Karena <InlineMath math="T" /> bulat, **ambil bilangan bulat di dalam rentang itu**.
+
+| <InlineMath math="n" /> | <InlineMath math="2R" /> | Rentang <InlineMath math="T" /> | <InlineMath math="T" /> bulat |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="16" /> | <InlineMath math="36" /> | <InlineMath math="26\le T\le30" /> | <InlineMath math="26" /> sampai <InlineMath math="30" /> |
+| <InlineMath math="17" /> | <InlineMath math="\tfrac{576}{17}" /> | <InlineMath math="\tfrac{478}{17}\le T\le\tfrac{546}{17}" /> | <InlineMath math="29" /> sampai <InlineMath math="32" /> |
+| <InlineMath math="18" /> | <InlineMath math="32" /> | <InlineMath math="30\le T\le34" /> | <InlineMath math="30" /> sampai <InlineMath math="34" /> |
+| <InlineMath math="19" /> | <InlineMath math="\tfrac{576}{19}" /> | <InlineMath math="\tfrac{602}{19}\le T\le\tfrac{678}{19}" /> | <InlineMath math="32" /> sampai <InlineMath math="35" /> |
+
+Pecahannya mudah diperkirakan: <InlineMath math="\tfrac{478}{17}" /> sedikit di atas <InlineMath math="28" />, <InlineMath math="\tfrac{546}{17}" /> sedikit di atas <InlineMath math="32" />, <InlineMath math="\tfrac{602}{19}" /> sekitar <InlineMath math="31{,}7" />, dan <InlineMath math="\tfrac{678}{19}" /> sekitar <InlineMath math="35{,}7" />.
+
+# Batas ruang
+
+Lantai atas tidak dihitung sebagai pijakan, jadi tangga dengan <InlineMath math="n" /> anak tangga punya <InlineMath math="n-1" /> pijakan. Syarat ruangnya <InlineMath math="(n-1)T\le480" />, jadi **lebar pijakan paling besar <InlineMath math="\tfrac{480}{n-1}" />**.
+
+<BlockMath math="\begin{aligned}
+n=16 &: \ T\le\tfrac{480}{15}=32 \\
+n=17 &: \ T\le\tfrac{480}{16}=30 \\
+n=18 &: \ T\le\tfrac{480}{17}\approx28{,}2 \\
+n=19 &: \ T\le\tfrac{480}{18}\approx26{,}7
+\end{aligned}" />
+
+Untuk <InlineMath math="n=16" />, semua nilai <InlineMath math="26" /> sampai <InlineMath math="30" /> muat. Untuk <InlineMath math="n=17" />, hanya <InlineMath math="29" /> dan <InlineMath math="30" /> yang muat. Untuk <InlineMath math="n=18" /> dan <InlineMath math="n=19" />, lebar terkecil yang diizinkan sudah terlalu panjang.
+
+<BlockMath math="5+2+0+0=7" />
+
+# Cek jebakan
+
+Kalau lantai atas ikut dihitung sebagai pijakan, syaratnya menjadi <InlineMath math="nT\le480" />, dan **pilihan untuk <InlineMath math="n=17" /> hilang semua**, sehingga hanya ada <InlineMath math="5" /> rancangan. Kalau batas atas <InlineMath math="2R+T\le66" /> dilupakan, <InlineMath math="n=16" /> mendapat tambahan <InlineMath math="T=31" /> dan <InlineMath math="T=32" />, sehingga terhitung <InlineMath math="9" /> rancangan. Keduanya keliru.
+
+Jadi, ada <InlineMath math="7" /> rancangan berbeda yang memenuhi kedua aturan dan muat di ruang itu.

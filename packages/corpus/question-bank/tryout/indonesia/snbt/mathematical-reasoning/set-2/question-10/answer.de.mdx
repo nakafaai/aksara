@@ -1,15 +1,33 @@
-Die Person hat alle Aufgaben beantwortet, es gibt also **keine leere Aufgabe**: Sind <InlineMath math="b" /> Antworten richtig, dann sind <InlineMath math="40-b" /> falsch.
+Gesucht ist das meiste Geld, das Pak Joni bei der Auszahlung bekommt. Dieses Geld ist das Darlehen minus die Verwaltungsgebühr. Bestimm für jeden Plan das größte Darlehen, bei dem jede Rate im Limit bleibt, zieh die Gebühr dieses Plans ab und **vergleich dann den Nettobetrag beider Pläne**.
 
-# Punktzahl in Abhängigkeit der richtigen Antworten
+# Das größte Darlehen bei Rencana Tetap
 
-<BlockMath math="4b-(40-b)=5b-40" />
+Bei Rencana Tetap sind die Zinsen jeden Monat gleich, also **sind alle Raten gleich hoch**. Für ein Darlehen <InlineMath math="P" /> beträgt die Rate <InlineMath math="\tfrac{P}{12}+1\%\cdot P" />. Jede Million Darlehen kostet im Monat etwa <InlineMath math="93{.}333" /> Rupiah, das passende Darlehen liegt also bei etwa <InlineMath math="10{,}7" /> Millionen. Prüf die zwei Vielfachen von <InlineMath math="600{.}000" /> in der Nähe.
 
-# Die Gleichung lösen
+<BlockMath math="\begin{aligned}
+\tfrac{10{.}200{.}000}{12}+1\%\cdot 10{.}200{.}000&=850{.}000+102{.}000=952{.}000 \\
+\tfrac{10{.}800{.}000}{12}+1\%\cdot 10{.}800{.}000&=900{.}000+108{.}000=1{.}008{.}000
+\end{aligned}" />
 
-Diese Punktzahl muss 95 sein.
+Mit <InlineMath math="10{.}800{.}000" /> ist das Limit schon überschritten, das größte Darlehen ist also <InlineMath math="10{.}200{.}000" />. Ausgezahlt wird das Darlehen minus <InlineMath math="2\%" /> Verwaltungsgebühr.
 
-<BlockMath math="5b-40=95\;\Longrightarrow\;5b=135\;\Longrightarrow\;b=27" />
+<BlockMath math="10{.}200{.}000-2\%\cdot 10{.}200{.}000=10{.}200{.}000-204{.}000=9{.}996{.}000" />
 
-Kontrolle: 27 richtige und 13 falsche Antworten ergeben <InlineMath math="108-13=95" />. Das Ergebnis ist ganzzahlig und **nicht größer als 40**, also möglich.
+# Das größte Darlehen bei Rencana Menurun
 
-Die Person hat also **27 Aufgaben** richtig beantwortet.
+Bei Rencana Menurun sinken die Zinsen jeden Monat, weil die Restschuld kleiner wird. Also **ist die erste Rate die höchste**, weil dann die Zinsen auf das ganze Darlehen anfallen. Es reicht, den ersten Monat zu prüfen: <InlineMath math="\tfrac{P}{12}+2\%\cdot P" />.
+
+<BlockMath math="\begin{aligned}
+\tfrac{9{.}600{.}000}{12}+2\%\cdot 9{.}600{.}000&=800{.}000+192{.}000=992{.}000 \\
+\tfrac{10{.}200{.}000}{12}+2\%\cdot 10{.}200{.}000&=850{.}000+204{.}000=1{.}054{.}000
+\end{aligned}" />
+
+Das größte Darlehen ist <InlineMath math="9{.}600{.}000" />, ausgezahlt werden <InlineMath math="9{.}600{.}000-100{.}000=9{.}500{.}000" />.
+
+# Die beiden Pläne vergleichen
+
+Rencana Tetap zahlt <InlineMath math="9{.}996{.}000" /> Rupiah aus, Rencana Menurun <InlineMath math="9{.}500{.}000" /> Rupiah. **Rencana Tetap zahlt mehr aus**, obwohl die Gebühr höher ist, weil die erste Rate bei Rencana Menurun so viel schwerer ist.
+
+Zur Kontrolle: Jede Rate bei Rencana Tetap beträgt <InlineMath math="952{.}000" /> Rupiah, also nicht mehr als eine Million, und das nächste Darlehen scheitert schon. Die Antwort <InlineMath math="10{.}200{.}000" /> entsteht, wenn du die Gebühr vergisst, und <InlineMath math="11{.}300{.}000" /> entsteht, wenn du Rencana Menurun mit der letzten Rate prüfst, die in Wahrheit die kleinste ist.
+
+Pak Joni bekommt also höchstens <InlineMath math="\text{Rp}9{.}996{.}000{,}00" /> ausgezahlt.

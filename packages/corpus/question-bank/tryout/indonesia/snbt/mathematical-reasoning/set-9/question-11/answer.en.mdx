@@ -1,15 +1,49 @@
-Count **the rounds a player goes through**. Every round played means one match.
+You're looking for the first year in which the balance reaches <InlineMath math="135" /> million rupiah. The plan: find what goes in during each phase, write the year-end balance with factors from the table, then check year by year. The deposit changes partway through, and **the matching fund changes too because of its cap**. All amounts below are in millions of rupiah.
 
-# Matches played by a champion
+# Money going in during each phase
 
-From the second round to the final there are 5 rounds: 32 to 16, 16 to 8, 8 to 4, 4 to 2, and the final. A champion with a bye plays only **5 matches**, so the first statement is false.
+In years <InlineMath math="1" /> to <InlineMath math="3" />, a deposit of <InlineMath math="6" /> gets a match of <InlineMath math="3" />, so <InlineMath math="9" /> goes in. From year <InlineMath math="4" />, a deposit of <InlineMath math="12" /> should get <InlineMath math="6" />, but **the cap cuts the match to <InlineMath math="4" />**, so <InlineMath math="16" /> goes in.
 
-A champion who plays from the first round plays <InlineMath math="1+5=6" /> matches, and no champion plays more. The second statement is true.
+# The balance at the end of years seven and eight
 
-# Matches per round
+Money paid in at the start of year <InlineMath math="k" /> grows to the end of year <InlineMath math="n" /> by the factor <InlineMath math="(1.1)^{n-k+1}" />. At the end of year <InlineMath math="7" />, the first three deposits have grown <InlineMath math="7" />, <InlineMath math="6" />, and <InlineMath math="5" /> times, and the next four have grown <InlineMath math="4" />, <InlineMath math="3" />, <InlineMath math="2" />, and <InlineMath math="1" /> times.
 
-The quarter-finals have 8 players, so there are <InlineMath math="\tfrac82=4" /> matches. The third statement is true.
+<BlockMath math="\begin{aligned}
+B_7 &= 9\times(1.949+1.772+1.611)+16\times(1.464+1.331+1.210+1.100) \\
+&= 9\times5.332+16\times5.105=47.988+81.68=129.668
+\end{aligned}" />
 
-The second round has 16 matches, while all later rounds have <InlineMath math="8+4+2+1=15" />. **They differ by one**, so the fourth statement is false.
+That's still below <InlineMath math="135" />. At the end of year <InlineMath math="8" />, every factor moves up one step and there's one more deposit of <InlineMath math="16" />.
 
-So the first statement is **false**, the second is **true**, the third is **true**, and the fourth is **false**.
+<BlockMath math="\begin{aligned}
+B_8 &= 9\times(2.144+1.949+1.772)+16\times(1.611+1.464+1.331+1.210+1.100) \\
+&= 9\times5.865+16\times6.716=52.785+107.456=160.241
+\end{aligned}" />
+
+The year <InlineMath math="8" /> balance is past <InlineMath math="135" />. **The balance always goes up from one year to the next**, because of the new deposit and the growth, so every year before year <InlineMath math="7" /> is also below <InlineMath math="135" />.
+
+# A year by year check
+
+Second route: each year, add the money going in, then multiply by <InlineMath math="1.1" />. The numbers are rounded to two decimal places.
+
+<BlockMath math="\begin{aligned}
+B_1 &= 9\times1.1=9.9 \\
+B_2 &= (9.9+9)\times1.1=20.79 \\
+B_3 &= (20.79+9)\times1.1\approx32.77 \\
+B_4 &\approx (32.77+16)\times1.1\approx53.65 \\
+B_5 &\approx (53.65+16)\times1.1\approx76.61 \\
+B_6 &\approx (76.61+16)\times1.1\approx101.87 \\
+B_7 &\approx (101.87+16)\times1.1\approx129.66 \\
+B_8 &\approx (129.66+16)\times1.1\approx160.22
+\end{aligned}" />
+
+Same result, so **both routes agree**: year <InlineMath math="7" /> is still short and year <InlineMath math="8" /> is enough.
+
+# Traps to avoid
+
+Other answers show up when **the cap or the growth is forgotten**.
+
+- Without the cap, <InlineMath math="18" /> would go in from year <InlineMath math="4" />, so <InlineMath math="B_7=47.988+18\times5.105=139.878" /> and year <InlineMath math="7" /> would look like the answer.
+- Without growth, the balance is just the money paid in, <InlineMath math="27+16(n-3)" />, which only reaches <InlineMath math="135" /> in year <InlineMath math="10" />.
+
+So the pension balance first reaches at least <InlineMath math="\text{Rp}135{,}000{,}000" /> at the end of year <InlineMath math="8" />.

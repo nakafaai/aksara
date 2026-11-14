@@ -1,12 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "delivery-drone",
+  stimulus: "class-timetable",
   versions: {
     id: {
       kind: "numericEntry",
       unit: "menit",
-      value: "24",
+      value: "39",
     },
   },
 };

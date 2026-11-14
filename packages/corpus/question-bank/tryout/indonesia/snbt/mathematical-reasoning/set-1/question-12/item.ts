@@ -1,16 +1,19 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "commute-survey",
+  stimulus: "drug-dose",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$23$$" },
-        { correct: false, label: "$$23{,}25$$" },
-        { correct: false, label: "$$23{,}5$$" },
-        { correct: true, label: "$$23{,}75$$" },
-        { correct: false, label: "$$24{,}5$$" },
+        { correct: true, label: "paling sedikit $$40\\text{ kg}$$" },
+        { correct: false, label: "paling sedikit $$37{,}5\\text{ kg}$$" },
+        {
+          correct: false,
+          label: "paling sedikit $$40\\text{ kg}$$, tetapi kurang dari $$45\\text{ kg}$$",
+        },
+        { correct: false, label: "tepat $$40\\text{ kg}$$" },
+        { correct: false, label: "tepat $$57{,}5\\text{ kg}$$" },
       ],
     },
   },

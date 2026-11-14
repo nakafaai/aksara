@@ -1,17 +1,34 @@
-Bestimme zuerst **den Teil des Beckens, den Pumpe A allein** bis 11.00 Uhr füllt. Den Rest muss Pumpe B schaffen.
+Die sechs Teams haben zusammen <InlineMath math="9+10+12+12+13+14=70" /> Mitglieder, aber Sitzplätze zu zählen reicht nicht. **Ein Team darf nicht aufgeteilt werden**, und die Grenze 08.30 Uhr begrenzt die Zahl der Fahrten. Der Plan: Bestimm die Grenzen für die Fahrten, dann wie viele Teams in eine Fahrt passen, und probier danach die Pläne vom günstigsten an.
 
-# Anteil von Pumpe A
+# Grenzen für die Fahrten bis halb neun
 
-Von 07.00 bis 11.00 Uhr **läuft Pumpe A 4 Stunden** und füllt <InlineMath math="4\cdot\tfrac16=\tfrac23" /> des Beckens. Zu füllen bleibt
+Der Bus fährt um 07.00 Uhr und 07.50 Uhr ab und kommt um 07.25 Uhr und 08.15 Uhr an. Die nächste Abfahrt um 08.40 Uhr ist zu spät. Jeder Kleinbus fährt um 07.00 Uhr und 07.40 Uhr ab, die Abfahrt um 08.20 Uhr kommt erst um 08.40 Uhr an. Also gibt es **höchstens zwei Busfahrten und vier Kleinbusfahrten**.
 
-<BlockMath math="1-\frac14-\frac23=\frac{12}{12}-\frac{3}{12}-\frac{8}{12}=\frac{1}{12}" />
+# Teams pro Fahrt
 
-# Laufzeit von Pumpe B
+Schon die zwei kleinsten Teams haben <InlineMath math="9+10=19" /> Personen, mehr als die <InlineMath math="14" /> Plätze eines Kleinbusses. Also **kann eine Kleinbusfahrt nur ein Team mitnehmen**.
 
-<BlockMath math="\frac{1}{12}:\frac19=\frac{9}{12}=\frac34\text{ Stunde}=45\text{ Minuten}" />
+Die drei kleinsten Teams haben <InlineMath math="9+10+12=31" /> Personen, mehr als die <InlineMath math="30" /> Plätze des Busses. Eine Busfahrt nimmt also höchstens zwei Teams mit. Zwei beliebige Teams passen in den Bus, denn die zwei größten haben nur <InlineMath math="13+14=27" /> Personen.
 
-Pumpe B muss mindestens 45 Minuten vor 11.00 Uhr laufen, **also spätestens um 10.15 Uhr eingeschaltet werden**.
+# Der günstigste Plan
 
-Die Antwort 08.00 Uhr vergisst, dass das Becken schon zu einem Viertel gefüllt ist, sodass Pumpe B in 3 Stunden <InlineMath math="\tfrac13" /> füllen müsste. 09.00, 09.45 und 10.00 Uhr füllen das Becken ebenfalls rechtzeitig, sind aber nicht die spätesten Zeiten.
+Angenommen, es gibt <InlineMath math="b" /> Busfahrten und <InlineMath math="m" /> Kleinbusfahrten. Alle sechs Teams müssen fahren, also <InlineMath math="2b+m\ge6" /> mit <InlineMath math="b\le2" /> und <InlineMath math="m\le4" />. Probier jeden Wert von <InlineMath math="b" /> aus.
 
-Pumpe B muss also spätestens um **10.15 Uhr** eingeschaltet werden.
+<BlockMath math="\begin{aligned}
+b=0 &: m\ge6, \text{ aber } m\le4 \\
+b=1 &: m\ge4, \quad \text{Kosten }150{.}000+4\times65{.}000=410{.}000 \\
+b=2 &: m\ge2, \quad \text{Kosten }2\times150{.}000+2\times65{.}000=430{.}000
+\end{aligned}" />
+
+Also liefern **eine Busfahrt und vier Kleinbusfahrten** die kleinsten Kosten, nämlich <InlineMath math="\text{Rp}410{.}000{,}00" />. Eine mögliche Aufteilung: Der Bus nimmt die Teams mit <InlineMath math="13" /> und <InlineMath math="14" /> Personen (<InlineMath math="27" /> Personen), und vier Kleinbusfahrten nehmen die Teams mit <InlineMath math="9" />, <InlineMath math="10" />, <InlineMath math="12" /> und <InlineMath math="12" /> Personen. Prüf die Zeiten: Der Bus kommt um 07.25 Uhr an, die Kleinbusse um 07.20 Uhr und 08.00 Uhr. Alle sind rechtzeitig da.
+
+# Die falschen Antworten
+
+Die billigeren Antworten **zählen nur Sitzplätze** oder vergessen die Zeitgrenze.
+
+- <InlineMath math="\text{Rp}325{.}000{,}00" /> nimmt <InlineMath math="5" /> Kleinbusfahrten, weil <InlineMath math="5\times14=70" />, aber Teams dürfen nicht geteilt werden, und die Kleinbusse schaffen nur <InlineMath math="4" /> Fahrten.
+- <InlineMath math="\text{Rp}345{.}000{,}00" /> nimmt <InlineMath math="1" /> Busfahrt und <InlineMath math="3" /> Kleinbusfahrten (<InlineMath math="72" /> Plätze), aber dann muss der Bus drei Teams mitnehmen, mindestens <InlineMath math="31" /> Personen.
+- <InlineMath math="\text{Rp}365{.}000{,}00" /> nimmt <InlineMath math="2" /> Busfahrten und <InlineMath math="1" /> Kleinbusfahrt (<InlineMath math="74" /> Plätze), aber fünf Teams auf zwei Busfahrten bringen drei Teams in einen Bus.
+- <InlineMath math="\text{Rp}390{.}000{,}00" /> nimmt <InlineMath math="6" /> Kleinbusfahrten, ein Team pro Fahrt, aber die Kleinbusse schaffen vor 08.30 Uhr nur <InlineMath math="4" /> Fahrten.
+
+Am günstigsten kostet die Fahrt der sechs Teams also <InlineMath math="\text{Rp}410{.}000{,}00" />.

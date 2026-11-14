@@ -1,15 +1,29 @@
-Der Roboter fährt nur entlang der Straßen, also nicht auf gerader Linie. Seine kürzeste Fahrstrecke ist **die Zahl der Abschnitte nach Osten plus die nach Norden**.
+Gesucht ist der Salzgehalt, nachdem das Aquarium mit künstlichem Meerwasser aufgefüllt wurde. Der Plan: Verfolge Salzmenge und Wassermenge getrennt, denn der Salzgehalt ist Salz geteilt durch Wasser, und Verdunstung nimmt nur Wasser weg.
 
-# Anzahl der Abschnitte
+# Salz und Wasser vor dem Auffüllen
 
-Von <InlineMath math="(0,0)" /> nach <InlineMath math="(3,4)" /> fährt der Roboter 3 Abschnitte nach Osten und 4 nach Norden, **in beliebiger Reihenfolge**.
+Voll enthält das Aquarium <InlineMath math="120\cdot34=4{.}080" /> Gramm Salz. In <InlineMath math="6" /> Tagen verdunsten <InlineMath math="6\cdot4=24\text{ Liter}" /> Wasser. **Das Salz verdunstet nicht**, also sind weiterhin <InlineMath math="4{.}080" /> Gramm Salz in <InlineMath math="96\text{ Liter}" /> Wasser.
 
-<BlockMath math="3+4=7\text{ Abschnitte}" />
+<BlockMath math="\frac{4{.}080}{96}=42{,}5\text{ g/L}" />
 
-# Fahrstrecke
+Der Salzgehalt steigt, weil das Wasser weniger wird und das Salz bleibt.
 
-<BlockMath math="7\cdot100=700\text{ m}" />
+# Auffüllen mit künstlichem Meerwasser
 
-Die Luftlinie <InlineMath math="\sqrt{3^2+4^2}=5" /> Abschnitte, also 500 m, **steht dem Roboter nicht zur Verfügung**, weil sie durch Häuserblöcke führt.
+Damit das Aquarium wieder voll ist, kommen <InlineMath math="24\text{ Liter}" /> künstliches Meerwasser hinein. **Dieses Wasser bringt sein eigenes Salz mit**, nämlich <InlineMath math="24\cdot35=840" /> Gramm.
 
-Die kürzeste Fahrstrecke von G nach A beträgt also **700 m**.
+<BlockMath math="\begin{aligned}
+\text{Salz am Ende} &= 4{.}080+840=4{.}920\text{ Gramm} \\
+\text{Salzgehalt am Ende} &= \frac{4{.}920}{120}=41\text{ g/L}
+\end{aligned}" />
+
+Zur Probe: <InlineMath math="41" /> liegt zwischen <InlineMath math="35" /> und <InlineMath math="42{,}5" />, wie es sein muss, wenn du <InlineMath math="96\text{ Liter}" /> mit <InlineMath math="42{,}5\text{ g/L}" /> und <InlineMath math="24\text{ Liter}" /> mit <InlineMath math="35\text{ g/L}" /> mischst. Der Wert liegt über <InlineMath math="36\text{ g/L}" />, für die Fische ist das also nicht mehr sicher.
+
+# Die falschen Antworten
+
+- <InlineMath math="34\text{ g/L}" /> entsteht, wenn du annimmst, dass Auffüllen immer den alten Salzgehalt herstellt. Das stimmt nur, **wenn mit Süßwasser aufgefüllt wird**.
+- <InlineMath math="34{,}2\text{ g/L}" /> entsteht, wenn die übrigen <InlineMath math="96\text{ Liter}" /> noch mit <InlineMath math="34\text{ g/L}" /> gerechnet werden, obwohl die Verdunstung sie schon konzentriert hat.
+- <InlineMath math="35\text{ g/L}" /> entsteht, wenn du annimmst, dass das Aquarium den Salzgehalt des Auffüllwassers übernimmt.
+- <InlineMath math="42{,}5\text{ g/L}" /> ist der Salzgehalt vor dem Auffüllen, also ein Schritt zu früh aufgehört.
+
+Der Salzgehalt nach dem Auffüllen beträgt also <InlineMath math="41\text{ g/L}" />.

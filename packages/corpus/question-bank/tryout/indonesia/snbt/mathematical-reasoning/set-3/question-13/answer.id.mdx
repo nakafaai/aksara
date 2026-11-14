@@ -1,18 +1,46 @@
-Ukuran lantai habis dibagi ukuran ubin pada kedua sisinya, jadi ubin dapat disusun **dalam baris dan kolom tanpa dipotong**. Samakan satuan lebih dulu ke sentimeter.
+Kedua tangga harus memakai anak tangga yang persis sama. Jadi rencananya, **cari dulu tinggi <InlineMath math="R" /> yang cocok untuk kedua jarak sekaligus**, lalu pilih pijakan tersempit yang masih diizinkan, dan terakhir hitung banyak pijakan.
 
-# Banyak ubin pada setiap sisi
+# Tinggi anak tangga yang sama
+
+Tangga bawah punya <InlineMath math="n_1" /> anak tangga dan tangga atas <InlineMath math="n_2" />. Karena tingginya sama, <InlineMath math="R=\tfrac{288}{n_1}=\tfrac{272}{n_2}" />.
 
 <BlockMath math="\begin{aligned}
-450:30&=15\text{ ubin sepanjang sisi 4,5 m}\\
-360:30&=12\text{ ubin sepanjang sisi 3,6 m}
+\frac{n_2}{n_1} &= \frac{272}{288} = \frac{17}{18} \\
+n_1 = 18k,\ n_2 &= 17k \\
+R &= \frac{288}{18k} = \frac{16}{k}
 \end{aligned}" />
 
-# Banyak ubin seluruhnya
+Baris kedua berlaku karena <InlineMath math="17" /> dan <InlineMath math="18" /> tidak punya faktor persekutuan selain <InlineMath math="1" />, jadi <InlineMath math="n_1" /> harus kelipatan <InlineMath math="18" />. Di sini <InlineMath math="k" /> bilangan bulat positif. Aturan tanjakan meminta <InlineMath math="15\le R\le18" />. Untuk <InlineMath math="k=1" />, <InlineMath math="R=16" /> memenuhi, sedangkan <InlineMath math="k=2" /> sudah memberi <InlineMath math="R=8" />, terlalu pendek. Jadi **satu-satunya tinggi yang cocok untuk kedua tangga adalah <InlineMath math="16\text{ cm}" />**, dengan <InlineMath math="n_1=18" /> dan <InlineMath math="n_2=17" />.
 
-<BlockMath math="15\cdot12=180" />
+# Lebar pijakan tersempit
 
-Pemeriksaan dengan luas: lantai seluas <InlineMath math="45{.}000\cdot\tfrac{36}{10}" /> cm persegi, yaitu 162.000 cm persegi, dan satu ubin seluas 900 cm persegi. Hasil baginya **juga 180**.
+Tangga paling pendek memakai pijakan paling sempit. Aturan langkah dengan <InlineMath math="R=16" /> memberi batas bawah <InlineMath math="T" />.
 
-Nilai 198 sudah memuat cadangan 10%, dan 204 adalah isi 17 dus. Nilai 162 muncul jika luas lantai 16,2 meter persegi dibagi 0,1, seolah-olah satu ubin seluas 0,1 meter persegi.
+<BlockMath math="\begin{aligned}
+2\cdot16+T &\ge 62 \\
+T &\ge 30
+\end{aligned}" />
 
-Jadi, banyak ubin yang tepat menutupi lantai adalah **180**.
+Batas atasnya <InlineMath math="T\le66-32=34" />, jadi <InlineMath math="T=30" /> diizinkan dan **inilah lebar tersempit untuk kedua tangga**.
+
+# Banyak pijakan dan panjang total
+
+Anak tangga teratas setiap tangga tidak punya pijakan, karena **lantai atasnya tidak dihitung sebagai pijakan**. Jadi tiap tangga punya pijakan satu lebih sedikit daripada anak tangganya.
+
+<BlockMath math="\begin{aligned}
+\text{banyak pijakan} &= (18-1)+(17-1) = 33 \\
+\text{panjang total} &= 33\cdot30 = 990\text{ cm}
+\end{aligned}" />
+
+Coba cek ukurannya. Tinggi <InlineMath math="18\cdot16=288" /> dan <InlineMath math="17\cdot16=272" /> pas dengan kedua jarak, dan <InlineMath math="2\cdot16+30=62" /> tepat di batas bawah aturan langkah.
+
+# Mengapa pilihan lain keliru
+
+Setiap pilihan lain **melupakan syarat ukuran yang sama atau salah menghitung pijakan**.
+
+- <InlineMath math="810\text{ cm}" /> muncul kalau setiap tangga dirancang sendiri: tangga bawah <InlineMath math="16" /> anak tangga setinggi <InlineMath math="18\text{ cm}" /> dengan <InlineMath math="T=26" /> (<InlineMath math="390\text{ cm}" />), dan tangga atas <InlineMath math="16" /> anak tangga setinggi <InlineMath math="17\text{ cm}" /> dengan <InlineMath math="T=28" /> (<InlineMath math="420\text{ cm}" />). Ukurannya tidak sama.
+- <InlineMath math="858\text{ cm}" /> muncul kalau <InlineMath math="33" /> pijakan diberi lebar <InlineMath math="26\text{ cm}" />, padahal lebar itu hanya boleh untuk <InlineMath math="R=18" />.
+- <InlineMath math="1{.}020\text{ cm}" /> muncul kalau lantai atas salah satu tangga ikut dihitung sebagai pijakan, sehingga ada <InlineMath math="34" /> pijakan.
+- <InlineMath math="1{.}050\text{ cm}" /> muncul kalau banyak pijakan disamakan dengan banyak anak tangga, yaitu <InlineMath math="35" />.
+
+Jadi, total panjang horizontal kedua tangga paling pendek adalah <InlineMath math="990\text{ cm}" />.

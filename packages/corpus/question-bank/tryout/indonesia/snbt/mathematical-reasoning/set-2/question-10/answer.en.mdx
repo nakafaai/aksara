@@ -1,15 +1,33 @@
-The candidate answered every question, so **no question is blank**: if <InlineMath math="b" /> answers are correct, then <InlineMath math="40-b" /> are wrong.
+You're looking for the most money Pak Joni can receive when the loan is paid out. That money is the principal minus the admin fee. For each plan, find the largest principal that keeps every instalment within the limit, subtract that plan's admin fee, and then **compare the net money from the two plans**.
 
-# Score as a function of correct answers
+# The largest principal under Rencana Tetap
 
-<BlockMath math="4b-(40-b)=5b-40" />
+Under Rencana Tetap the interest is the same every month, so **every instalment is the same size**. For a principal <InlineMath math="P" />, the instalment is <InlineMath math="\tfrac{P}{12}+1\%\cdot P" />. Each million rupiah of principal costs about <InlineMath math="93{,}333" /> rupiah a month, so the right principal is near <InlineMath math="10.7" /> million. Test the two multiples of <InlineMath math="600{,}000" /> around it.
 
-# Solving the equation
+<BlockMath math="\begin{aligned}
+\tfrac{10{,}200{,}000}{12}+1\%\cdot 10{,}200{,}000&=850{,}000+102{,}000=952{,}000 \\
+\tfrac{10{,}800{,}000}{12}+1\%\cdot 10{,}800{,}000&=900{,}000+108{,}000=1{,}008{,}000
+\end{aligned}" />
 
-That score must equal 95.
+A principal of <InlineMath math="10{,}800{,}000" /> already breaks the limit, so the largest principal is <InlineMath math="10{,}200{,}000" />. The money received is the principal minus the <InlineMath math="2\%" /> admin fee.
 
-<BlockMath math="5b-40=95\;\Longrightarrow\;5b=135\;\Longrightarrow\;b=27" />
+<BlockMath math="10{,}200{,}000-2\%\cdot 10{,}200{,}000=10{,}200{,}000-204{,}000=9{,}996{,}000" />
 
-Check: 27 correct and 13 wrong give <InlineMath math="108-13=95" />. The result is a whole number and **does not exceed 40**, so it is possible.
+# The largest principal under Rencana Menurun
 
-So the candidate answered **27 questions** correctly.
+Under Rencana Menurun the interest falls every month because the remaining principal shrinks. So **the biggest instalment is the first one**, when interest is charged on the whole principal. It's enough to test month one: <InlineMath math="\tfrac{P}{12}+2\%\cdot P" />.
+
+<BlockMath math="\begin{aligned}
+\tfrac{9{,}600{,}000}{12}+2\%\cdot 9{,}600{,}000&=800{,}000+192{,}000=992{,}000 \\
+\tfrac{10{,}200{,}000}{12}+2\%\cdot 10{,}200{,}000&=850{,}000+204{,}000=1{,}054{,}000
+\end{aligned}" />
+
+The largest principal is <InlineMath math="9{,}600{,}000" />, and the money received is <InlineMath math="9{,}600{,}000-100{,}000=9{,}500{,}000" />.
+
+# Comparing the two plans
+
+Rencana Tetap gives <InlineMath math="9{,}996{,}000" /> rupiah and Rencana Menurun gives <InlineMath math="9{,}500{,}000" /> rupiah. **Rencana Tetap pays out more** even though its admin fee is higher, because Rencana Menurun's first instalment is so much heavier.
+
+As a check, every Rencana Tetap instalment is <InlineMath math="952{,}000" /> rupiah, within one million, and the next principal already fails. The answer <InlineMath math="10{,}200{,}000" /> comes from forgetting to subtract the admin fee, and <InlineMath math="11{,}300{,}000" /> comes from testing Rencana Menurun with its last instalment, which is actually the smallest.
+
+So the most money Pak Joni can receive is <InlineMath math="\text{Rp}9{,}996{,}000.00" />.

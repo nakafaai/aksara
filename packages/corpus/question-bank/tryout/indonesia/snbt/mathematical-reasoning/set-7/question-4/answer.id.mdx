@@ -1,18 +1,38 @@
-Unduhan terjadi dalam **dua tahap dengan kecepatan berbeda**: 40 Mbps selama 60 detik pertama, lalu 30 Mbps sampai selesai.
+Kita mencari jam ponsel Dimas mati. Rencananya: ikuti baterai tahap demi tahap dari pukul 19.00, dan setiap kali baterai melewati <InlineMath math="20\%" />, periksa apakah mode hemat daya menyala atau mati, karena itu mengubah lajunya.
 
-# Bagian yang terunduh pada tahap pertama
+# Video lalu gim sampai mode hemat
 
-<BlockMath math="40\cdot60=2{.}400\text{ megabit}=\frac{2{.}400}{8}=300\text{ MB}" />
+Video selama <InlineMath math="1{,}5" /> jam menghabiskan <InlineMath math="20\%\cdot1{,}5=30\%" />, jadi pukul 20.30 baterai <InlineMath math="40\%" />. Gim dengan laju penuh <InlineMath math="30\%" /> per jam membawa baterai ke <InlineMath math="20\%" /> dalam <InlineMath math="\frac{20}{30}" /> jam, yaitu <InlineMath math="40" /> menit, jadi pukul 21.10. Sesudah itu **mode hemat daya menyala dan gim hanya memakai <InlineMath math="15\%" /> per jam**.
 
-# Waktu tahap kedua dan waktu total
+<BlockMath math="20\%-15\%\cdot\frac{20}{60}=20\%-5\%=15\%" />
 
-Sisa berkas <InlineMath math="900-300=600" /> MB, yaitu 4.800 megabit, diunduh dengan <InlineMath math="40-10=30" /> Mbps.
+Pukul 21.30, saat pengisi daya dicolokkan, baterai <InlineMath math="15\%" />.
 
-<BlockMath math="\begin{aligned}
-\frac{4{.}800}{30}&=160\text{ detik}\\
-60+160&=220\text{ detik}
-\end{aligned}" />
+# Mengisi daya sambil bermain
 
-Nilai 160 detik hanya waktu tahap kedua. Nilai 180 detik mengabaikan televisi, dan 240 detik memakai 30 Mbps sejak awal. Waktu total **pasti di antara kedua nilai itu**, karena televisi baru menyala setelah 60 detik.
+Selama baterai <InlineMath math="20\%" /> atau kurang, baterai berubah <InlineMath math="40\%-15\%=25\%" /> per jam. Kenaikan dari <InlineMath math="15\%" /> ke <InlineMath math="20\%" /> butuh <InlineMath math="\frac{5}{25}" /> jam, yaitu <InlineMath math="12" /> menit, jadi selesai pukul 21.42.
 
-Jadi, waktu total unduhan adalah **220 detik**.
+Di atas <InlineMath math="20\%" />, **mode hemat daya mati, jadi gim kembali memakai <InlineMath math="30\%" /> per jam** dan baterai hanya naik <InlineMath math="40\%-30\%=10\%" /> per jam.
+
+<BlockMath math="20\%+10\%\cdot\frac{18}{60}=20\%+3\%=23\%" />
+
+Pukul 22.00, saat pengisi daya dicabut, baterai <InlineMath math="23\%" />.
+
+# Gim sampai ponsel mati
+
+Dari <InlineMath math="23\%" /> ke <InlineMath math="20\%" /> gim memakai laju penuh, jadi butuh <InlineMath math="\frac{3}{30}" /> jam, yaitu <InlineMath math="6" /> menit, sampai pukul 22.06. Lalu **mode hemat daya menyala lagi**, dan <InlineMath math="20\%" /> terakhir habis dengan laju <InlineMath math="15\%" /> per jam.
+
+<BlockMath math="\frac{20}{15}\text{ jam}=1\text{ jam }20\text{ menit}" />
+
+Ponsel mati pukul 22.06 ditambah <InlineMath math="1" /> jam <InlineMath math="20" /> menit, yaitu pukul 23.26.
+
+Sebagai pemeriksaan, jumlahkan semua durasinya: <InlineMath math="90+40+20+12+18+6+80=266" /> menit, dan pukul 19.00 ditambah <InlineMath math="266" /> menit memang pukul 23.26.
+
+# Pilihan yang keliru
+
+- Pukul 22.30 muncul kalau **mode hemat daya diabaikan sama sekali**: baterai pukul 22.00 dianggap <InlineMath math="15\%" /> dan habis dalam <InlineMath math="30" /> menit.
+- Pukul 22.46 muncul kalau mode hemat daya lupa dinyalakan lagi setelah pukul 22.00, sehingga <InlineMath math="23\%" /> dihabiskan dengan <InlineMath math="30\%" /> per jam.
+- Pukul 23.35 muncul kalau mode hemat dianggap tetap menyala selama seluruh pengisian, sehingga baterai pukul 22.00 dihitung <InlineMath math="27{,}5\%" />.
+- Pukul 23.50 muncul kalau pemakaian gim lupa dikurangkan saat mengisi daya, sehingga baterai dianggap naik <InlineMath math="40\%" /> per jam.
+
+Jadi, ponsel Dimas mati pukul 23.26.

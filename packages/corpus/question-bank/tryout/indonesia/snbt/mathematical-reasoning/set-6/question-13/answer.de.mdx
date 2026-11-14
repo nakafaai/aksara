@@ -1,19 +1,34 @@
-Zähle, wie viele Tage nach dem 1. Januar der 17. August liegt, und nimm dann **den Rest bei Division durch 7**, denn die Wochentage wiederholen sich alle 7 Tage.
+Du rechnest den Gesamtanteil von Pasar Y mit der Altersverteilung von Pasar X neu aus und vergleichst ihn dann mit Pasar X. Der Schlüssel: **Ein Gesamtanteil ist ein gewichteter Mittelwert**. Jeder Gruppenanteil zählt so stark, wie die Gruppe Befragte hat, und wird nicht einfach gemittelt.
 
-# Stelle im Jahr
+# Der Gesamtanteil von Pasar X
 
-Addiere die Tage von Januar bis Juli und dann 17.
+Die QRIS-Nutzer einer Gruppe sind ihre Befragten mal ihr Anteil. Addiere sie und **teile durch alle Befragten von Pasar X**.
 
-<BlockMath math="31+28+31+30+31+30+31+17=229" />
+<BlockMath math="\begin{aligned} \text{QRIS-Nutzer in X} &= 40\cdot 80\%+160\cdot 30\% \\ &= 32+48=80 \\ \text{Anteil X} &= \frac{80}{200}\cdot 100\%=40\% \end{aligned}" />
 
-Der 17. August ist also Tag 229, das heißt **228 Tage nach dem 1. Januar**.
+# Pasar Y mit der Verteilung von Pasar X
 
-# Den Wochentag verschieben
+Jetzt hat Pasar Y <InlineMath math="40" /> junge Befragte und <InlineMath math="160" /> Befragte ab <InlineMath math="30\text{ Jahren}" />, aber **jede Gruppe behält den Anteil von Pasar Y**.
 
-<BlockMath math="228=7\cdot32+4" />
+<BlockMath math="\begin{aligned} \text{QRIS-Nutzer in Y} &= 40\cdot 65\%+160\cdot 20\% \\ &= 26+32=58 \\ \text{Anteil Y} &= \frac{58}{200}\cdot 100\%=29\% \end{aligned}" />
 
-Nach 32 vollen Wochen ist wieder Freitag, dann geht es 4 Tage weiter: Samstag, Sonntag, Montag, Dienstag.
+# Vergleich der beiden Märkte
 
-Ein häufiger Fehler ist, 229 als Zahl der Tage nach dem 1. Januar zu nehmen, wodurch sich der Wochentag um eins auf Mittwoch verschiebt.
+<BlockMath math="40\%-29\%=11\%" />
 
-Der 17. August 2027 ist also ein **Dienstag**.
+Pasar X liegt jetzt **um <InlineMath math="11" /> Prozentpunkte höher**. In der ursprünglichen Tabelle lag dagegen Pasar Y vorn, <InlineMath math="56\%" /> zu <InlineMath math="40\%" />. Dieser Vorsprung kam von den vielen jungen Befragten in Pasar Y, denn die junge Gruppe wählt viel häufiger QRIS.
+
+# Kontrolle der Richtung
+
+In der jungen Gruppe liegt Pasar X vorn (<InlineMath math="80\%" /> zu <InlineMath math="65\%" />). In der Gruppe ab <InlineMath math="30\text{ Jahren}" /> liegt Pasar X ebenfalls vorn (<InlineMath math="30\%" /> zu <InlineMath math="20\%" />). Bei gleicher Verteilung ist also **jeder Summand im gewichteten Mittel von Pasar X größer**, und Pasar X muss vorn liegen. Der Vorsprung von <InlineMath math="11" /> Prozentpunkten für Pasar X passt zu dieser Richtung.
+
+# Warum die anderen Antworten nicht passen
+
+Jede falsche Antwort **benutzt falsche Gewichte**.
+
+- „Gleich groß“ entsteht, wenn gleiche Verteilung automatisch gleiche Anteile liefern soll. Die Gruppenanteile sind aber verschieden, also auch die Ergebnisse.
+- „Pasar Y um <InlineMath math="2{,}5" /> Prozentpunkte höher“ entsteht, wenn du die Anteile von Pasar Y ohne Gewichte mittelst, <InlineMath math="\frac{65\%+20\%}{2}=42{,}5\%" />.
+- „Pasar Y um <InlineMath math="16" /> Prozentpunkte höher“ ist der Abstand in der ursprünglichen Tabelle, <InlineMath math="56\%-40\%" />. Die Verteilung von Pasar Y wurde dabei nicht geändert.
+- „Pasar Y um <InlineMath math="30" /> Prozentpunkte höher“ entsteht, wenn du die Anteile von Pasar X mit der Verteilung von Pasar Y verwendest, <InlineMath math="\frac{160\cdot 80\%+40\cdot 30\%}{200}=70\%" />.
+
+Bei gleicher Altersverteilung liegt der Gesamtanteil der QRIS-Nutzer in Pasar X also <InlineMath math="11" /> Prozentpunkte über dem von Pasar Y.

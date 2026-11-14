@@ -1,12 +1,17 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "school-vaccination",
+  stimulus: "carpool-cost",
   versions: {
     id: {
-      kind: "numericEntry",
-      unit: "siswa",
-      value: "80",
+      kind: "choice",
+      options: [
+        { correct: false, label: "$$\\text{Rp}44{.}600$$" },
+        { correct: false, label: "$$\\text{Rp}49{.}900$$" },
+        { correct: false, label: "$$\\text{Rp}51{.}100$$" },
+        { correct: false, label: "$$\\text{Rp}53{.}800$$" },
+        { correct: true, label: "$$\\text{Rp}55{.}100$$" },
+      ],
     },
   },
 };

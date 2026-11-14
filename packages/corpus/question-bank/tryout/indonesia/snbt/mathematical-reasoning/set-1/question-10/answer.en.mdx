@@ -1,19 +1,50 @@
-The lower quartile is the value **with a quarter of the data below it**. For 40 values, the lower quartile lies around the 10th value.
+Every statement is tested with the same rule: **the amount halves every** <InlineMath math="6" /> **hours, then goes up by the dose just taken**. Write one dose as <InlineMath math="D" /> so the general pattern shows, then check the specific numbers in each statement.
 
-# Cumulative frequency
+# The pattern on the first day
 
-The cumulative frequency shows **how many values lie up to the end of each class**.
+With a dose of <InlineMath math="D" />, the amount on the first day changes like this.
 
-| Class | Frequency | Cumulative frequency |
-| :---: | :---: | :---: |
-| 0-9 | 4 | 4 |
-| 10-19 | 10 | 14 |
-| 20-29 | 15 | 29 |
+<BlockMath math="\begin{aligned}
+\text{after the morning dose} &= D\\
+\text{after the midday dose} &= \tfrac{1}{2}D+D=\tfrac{3}{2}D\\
+\text{just before the evening dose} &= \tfrac{1}{2}\cdot\tfrac{3}{2}D=\tfrac{3}{4}D\\
+\text{after the evening dose} &= \tfrac{3}{4}D+D=\tfrac{7}{4}D
+\end{aligned}" />
 
-# Finding the class
+# The first statement on an exact amount
 
-The class 0-9 holds only values 1 to 4. The class 10-19 holds **values 5 to 14**, so the 10th value is in this class.
+For the amount just before the evening dose to be exactly <InlineMath math="375\text{ mg}" />, you'd need <InlineMath math="\tfrac{3}{4}D=375" />, so <InlineMath math="D=500\text{ mg}" />. But **a single dose is at most** <InlineMath math="400\text{ mg}" />, so that amount is at most <InlineMath math="\tfrac{3}{4}\cdot400=300\text{ mg}" />. Even a child weighing <InlineMath math="50\text{ kg}" /> gets only <InlineMath math="400\text{ mg}" />. The first statement is false.
 
-The class 20-29 is the median class and the modal class, not the lower quartile class. The class 0-9 holds only 4 values, less than a quarter of 40.
+# The second statement on twice the dose
 
-So the lower quartile lies in the class **10-19 minutes**.
+Look at the amount just before each dose. Before the first dose it's <InlineMath math="0" />, which is less than <InlineMath math="D" />. If the amount before some dose is less than <InlineMath math="D" />, then after the dose it's less than <InlineMath math="2D" />. By the next dose it has **at least halved**, so it's back below <InlineMath math="D" />.
+
+<BlockMath math="\text{before a dose}<D\ \Rightarrow\ \text{after the dose}<2D\ \Rightarrow\ \text{before the next dose}<\tfrac{1}{2}\cdot2D=D" />
+
+This repeats forever, and between two doses the amount only falls. So the amount never reaches <InlineMath math="2D" />, whatever the child weighs. The second statement is true.
+
+# The third statement on a missed dose
+
+A <InlineMath math="30\text{ kg}" /> child's dose is <InlineMath math="300\text{ mg}" />, exactly <InlineMath math="15\text{ mL}" /> of syrup. Twice the dose is <InlineMath math="600\text{ mg}" />, but **the** <InlineMath math="400\text{ mg}" /> **cap still applies**, so at 18.00 the child takes only <InlineMath math="400\text{ mg}" />.
+
+<BlockMath math="\begin{aligned}
+\text{on schedule} &= \tfrac{1}{2}\cdot\left(\tfrac{1}{2}\cdot300+300\right)+300=525\text{ mg}\\
+\text{midday dose missed} &= \tfrac{1}{2}\cdot\tfrac{1}{2}\cdot300+400=475\text{ mg}
+\end{aligned}" />
+
+Since <InlineMath math="475<525" />, the amount is actually smaller. The third statement is false. Without the <InlineMath math="400\text{ mg}" /> cap, the amount would be <InlineMath math="75+600=675\text{ mg}" />, and that's what makes the statement look true.
+
+# The fourth statement on a repeating morning
+
+A <InlineMath math="20\text{ kg}" /> child's dose is <InlineMath math="200\text{ mg}" />. On the first evening the amount is <InlineMath math="\tfrac{7}{4}\cdot200=350\text{ mg}" />, and then **the** <InlineMath math="12" /> **night hours divide it by** <InlineMath math="4" />.
+
+<BlockMath math="\begin{aligned}
+\text{before the second morning dose} &= \tfrac{1}{4}\cdot350=87.5\text{ mg}\\
+\text{after the second midday dose} &= \tfrac{1}{2}(87.5+200)+200=343.75\text{ mg}\\
+\text{after the second evening dose} &= \tfrac{1}{2}\cdot343.75+200=371.875\text{ mg}\\
+\text{before the third morning dose} &= \tfrac{1}{4}\cdot371.875\approx92.97\text{ mg}
+\end{aligned}" />
+
+The amount rises from <InlineMath math="87.5\text{ mg}" /> to about <InlineMath math="92.97\text{ mg}" />, because what's left from the day before keeps building up. The fourth statement is false.
+
+So the first statement is false, the second is true, the third is false, and the fourth is false.

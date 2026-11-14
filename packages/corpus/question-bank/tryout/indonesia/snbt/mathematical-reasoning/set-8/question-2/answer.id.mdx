@@ -1,19 +1,45 @@
-Luas kebun adalah <InlineMath math="L=x(44-2x)" />. Puncak fungsi ini belum tentu boleh dipakai, karena **sisi sejajar tembok paling panjang 20 m**.
+Kamu perlu melacak sisa gas di tabung itu hari demi hari, karena **pemakaian harian berubah di tengah jalan**. Rencananya: hitung pemakaian sebelum dan sesudah <InlineMath math="12" /> Juli, kurangi sisa gas setiap hari, lalu cari pagi pertama ketika sisa gas tidak cukup untuk hari itu.
 
-# Batas untuk x
+# Pemakaian sebelum dan sesudah perubahan
+
+Pemakaian sehari adalah gas kompor besar ditambah gas kompor kecil. Mulai <InlineMath math="12" /> Juli, **lama nyala kompor besar menjadi lima jam**, bukan bertambah lima jam. Kompor kecil tetap tujuh jam.
 
 <BlockMath math="\begin{aligned}
-44-2x&\le20\\
-2x&\ge24\\
-x&\ge12
+\text{sampai 11 Juli: } d&=0{,}3\cdot3+0{,}1\cdot7=0{,}9+0{,}7=1{,}6\text{ kg}\\
+\text{mulai 12 Juli: } d&=0{,}3\cdot5+0{,}1\cdot7=1{,}5+0{,}7=2{,}2\text{ kg}
 \end{aligned}" />
 
-# Puncak yang tidak boleh dipakai
+# Melacak sisa gas
 
-Fungsi <InlineMath math="L=44x-2x^2" /> mencapai puncak di <InlineMath math="x=\tfrac{44}{4}=11" />. Saat itu sisi sejajar tembok <InlineMath math="44-22=22" /> m, **lebih panjang daripada tembok**, jadi ukuran itu tidak mungkin.
+Setiap pagi, Bu Sari membandingkan sisa gas dengan pemakaian hari itu. Selama sisa gas cukup, tabung dipakai dan sisanya berkurang sebesar pemakaian hari itu.
 
-Di kanan puncak, luas makin kecil ketika <InlineMath math="x" /> makin besar. Karena <InlineMath math="x" /> paling kecil 12, luas terbesar dicapai tepat di <InlineMath math="x=12" />.
+| Tanggal | Sisa gas pagi | Pemakaian | Sisa gas malam |
+| --- | --- | --- | --- |
+| <InlineMath math="9" /> Juli | <InlineMath math="12\text{ kg}" /> | <InlineMath math="1{,}6\text{ kg}" /> | <InlineMath math="10{,}4\text{ kg}" /> |
+| <InlineMath math="10" /> Juli | <InlineMath math="10{,}4\text{ kg}" /> | <InlineMath math="1{,}6\text{ kg}" /> | <InlineMath math="8{,}8\text{ kg}" /> |
+| <InlineMath math="11" /> Juli | <InlineMath math="8{,}8\text{ kg}" /> | <InlineMath math="1{,}6\text{ kg}" /> | <InlineMath math="7{,}2\text{ kg}" /> |
+| <InlineMath math="12" /> Juli | <InlineMath math="7{,}2\text{ kg}" /> | <InlineMath math="2{,}2\text{ kg}" /> | <InlineMath math="5\text{ kg}" /> |
+| <InlineMath math="13" /> Juli | <InlineMath math="5\text{ kg}" /> | <InlineMath math="2{,}2\text{ kg}" /> | <InlineMath math="2{,}8\text{ kg}" /> |
+| <InlineMath math="14" /> Juli | <InlineMath math="2{,}8\text{ kg}" /> | <InlineMath math="2{,}2\text{ kg}" /> | <InlineMath math="0{,}6\text{ kg}" /> |
 
-<BlockMath math="L=12\cdot(44-24)=12\cdot20=240\text{ m}^2" />
+Pada pagi <InlineMath math="15" /> Juli, sisa gas <InlineMath math="0{,}6\text{ kg}" /> kurang dari pemakaian hari itu, <InlineMath math="2{,}2\text{ kg}" />. Menurut aturan, **tabung ditukar pada pagi <InlineMath math="15" /> Juli**, dan sisa <InlineMath math="0{,}6\text{ kg}" /> ikut hilang.
 
-Jadi, luas terbesar kebun itu adalah **240 <InlineMath math="\text{m}^2" />**, dengan sisi sejajar memakai seluruh tembok.
+Coba cek dengan jumlah total. Tabung itu dipakai <InlineMath math="3" /> hari dengan pemakaian lama dan <InlineMath math="3" /> hari dengan pemakaian baru:
+
+<BlockMath math="\begin{aligned}
+3\cdot1{,}6+3\cdot2{,}2&=4{,}8+6{,}6=11{,}4\text{ kg}\\
+12-11{,}4&=0{,}6\text{ kg}
+\end{aligned}" />
+
+Sisa <InlineMath math="0{,}6\text{ kg}" /> memang tidak cukup untuk hari keempat dengan pemakaian baru.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain muncul dari satu langkah yang salah.
+
+- Pilihan <InlineMath math="14" /> Juli dengan <InlineMath math="0{,}6\text{ kg}" /> menyebut hari terakhir tabung dipakai. Padahal **hari terakhir dipakai berbeda dengan hari penukaran**: tabung baru ditukar keesokan paginya.
+- Pilihan <InlineMath math="14" /> Juli dengan <InlineMath math="1\text{ kg}" /> memakai <InlineMath math="2{,}2\text{ kg}" /> per hari sejak <InlineMath math="9" /> Juli, sehingga <InlineMath math="12-5\cdot2{,}2=1" />.
+- Pilihan <InlineMath math="15" /> Juli dengan <InlineMath math="1{,}2\text{ kg}" /> menganggap perubahan baru mulai <InlineMath math="13" /> Juli, sehingga sisanya <InlineMath math="12-4\cdot1{,}6-2\cdot2{,}2=1{,}2" />.
+- Pilihan <InlineMath math="16" /> Juli dengan <InlineMath math="0{,}8\text{ kg}" /> mengabaikan perubahan, sehingga tabung dipakai <InlineMath math="7" /> hari dan <InlineMath math="12-7\cdot1{,}6=0{,}8" />.
+
+Jadi, tabung yang dipasang pada <InlineMath math="9" /> Juli ditukar pada <InlineMath math="15" /> Juli, dan sisa gas <InlineMath math="0{,}6\text{ kg}" /> ikut hilang.

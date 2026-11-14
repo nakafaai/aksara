@@ -1,18 +1,50 @@
-Runde bei jeder Aussage die Strecke auf und berechne den Preis. Bei der App Cepat **gilt der Mindestpreis von 12 000 Rupiah, wenn der Kilometerbetrag kleiner ist**.
+Jede Aussage beschreibt einen anderen Plan, also prüfst du sie einzeln. Zwei Regeln tragen alles: **Automatisch aufgefüllt wird nur, solange die Energie unter <InlineMath math="60" /> liegt**, und der Zähler startet nur dann neu bei null, wenn die Energie von <InlineMath math="60" /> oder mehr darunter fällt. Um 10:00 Uhr hat Nadia <InlineMath math="38" />, ihr Zähler läuft also schon im Takt 10:05, 10:10 Uhr und so weiter.
 
-# Preise von Cepat für kurze Fahrten
+# Die erste Aussage
 
-Die Strecke 3,2 km wird auf 4 km aufgerundet, und <InlineMath math="4\cdot3\,000=12\,000" />. Die erste Aussage ist wahr.
-
-Eine Strecke von 1 km ergibt <InlineMath math="3\,000" />, das liegt aber **unter dem Mindestpreis**, der Preis bleibt also 12 000 Rupiah. Die zweite Aussage ist falsch.
-
-# Die beiden Apps vergleichen
+Eine Bossmission um 10:00 Uhr lässt <InlineMath math="38-20=18" /> übrig. Die Energie bleibt unter <InlineMath math="60" />, also bleibt der alte Takt. Von 10:05 bis 12:00 Uhr wird <InlineMath math="120 : 5=24" />-mal aufgefüllt. Um 12:00 Uhr kommt zuerst das Auffüllen, dann **bringt auch das Tagesgeschenk Energie**.
 
 <BlockMath math="\begin{aligned}
-6\text{ km}&:\quad \text{Jalan}=10\,000+4\cdot2\,500=20\,000,\quad \text{Cepat}=6\cdot3\,000=18\,000\\
-12\text{ km}&:\quad \text{Jalan}=10\,000+10\cdot2\,500=35\,000,\quad \text{Cepat}=12\cdot3\,000=36\,000
+18+24&=42 \\
+42+15&=57
 \end{aligned}" />
 
-Bei 6 km ist Cepat günstiger, also ist die dritte Aussage falsch. Bei 12 km **ist Jalan um 1 000 Rupiah günstiger**, also ist die vierte Aussage wahr.
+Mit <InlineMath math="57" /> liegt die Energie noch unter <InlineMath math="60" />, also geht das Auffüllen weiter. Um 12:05 Uhr hat sie <InlineMath math="58" />, um 12:10 Uhr <InlineMath math="59" /> und um 12:15 Uhr <InlineMath math="60" />. Die Energie erreicht <InlineMath math="60" /> also zum ersten Mal um 12:15 Uhr, und die Aussage ist **wahr**. Ohne das Geschenk kämst du auf 13:30 Uhr, weil <InlineMath math="18" /> dann <InlineMath math="42" /> Auffüllungen bis <InlineMath math="60" /> braucht.
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.
+# Die zweite Aussage
+
+Ein einziges Beispiel mit anderem Ergebnis reicht. Aus der ersten Aussage weißt du: Eine Bossmission um 10:00 Uhr ergibt um 12:30 Uhr genau <InlineMath math="60" />, weil die Energie seit 12:15 Uhr bei <InlineMath math="60" /> stehen bleibt.
+
+Nimm jetzt an, die Bossmission startet um 12:10 Uhr. Von <InlineMath math="38" /> aus braucht die Energie <InlineMath math="22" /> Auffüllungen bis <InlineMath math="60" />, also bis 11:50 Uhr. Danach **ist die Energie voll und das Auffüllen stoppt**, die Wartezeit von 11:50 bis 12:10 Uhr ist also verschenkt.
+
+<BlockMath math="\begin{aligned}
+60+15&=75 \\
+75-20&=55 \\
+55+4&=59
+\end{aligned}" />
+
+Das Geschenk um 12:00 Uhr hebt die Energie auf <InlineMath math="75" />. Die Bossmission um 12:10 Uhr senkt sie auf <InlineMath math="55" />, und der Zähler startet um 12:10 Uhr neu bei null. Aufgefüllt wird um 12:15, 12:20, 12:25 und 12:30 Uhr, um 12:30 Uhr hat sie also <InlineMath math="59" />. Weil <InlineMath math="59" /> nicht <InlineMath math="60" /> ist, ist die Aussage **falsch**.
+
+# Die dritte Aussage
+
+Über <InlineMath math="60" /> kommt die Energie nur durch das Geschenk oder den Trank. Für einen hohen Endstand **lässt du also zuerst das automatische Auffüllen bis <InlineMath math="60" /> laufen und trinkst den Trank zuletzt**.
+
+Folge dem Plan aus der ersten Aussage: Bossmission um 10:00 Uhr, die Energie erreicht <InlineMath math="60" /> um 12:15 Uhr. Nadia trinkt den Trank um 12:15 Uhr und hat dann <InlineMath math="60+30=90" />. Danach verbraucht nichts mehr Energie, um 12:30 Uhr hat sie also <InlineMath math="90" />. Weil <InlineMath math="90>85" /> gilt, gibt es so einen Plan, und die Aussage ist **wahr**.
+
+# Die vierte Aussage
+
+Ein Trank um 10:00 Uhr ergibt <InlineMath math="38+30=68" />, und das automatische Auffüllen stoppt. Prüf alle möglichen Zeiten für die Bossmission, indem du **nach dem Zeitpunkt der Bossmission zwei Fälle trennst**.
+
+## Bossmission vor dem Geschenk
+
+Startet die Bossmission vor 12:00 Uhr, fällt die Energie auf <InlineMath math="68-20=48" />. Das automatische Auffüllen bringt sie **höchstens bis <InlineMath math="60" />** und stoppt dann. Kurz vor dem Geschenk hat sie also höchstens <InlineMath math="60" />, danach höchstens <InlineMath math="60+15=75" />. Das liegt schon über <InlineMath math="60" />, also wächst die Energie bis 12:30 Uhr nicht mehr. Der Wert <InlineMath math="75" /> wird wirklich erreicht, wenn die Bossmission um 10:00 Uhr startet, denn dann erreicht <InlineMath math="48" /> um 11:00 Uhr die <InlineMath math="60" />.
+
+## Bossmission beim Geschenk oder danach
+
+Startet die Bossmission um 12:00 Uhr oder später, bleibt die Energie bis 12:00 Uhr bei <InlineMath math="68" />, weil das Auffüllen gestoppt ist. Das Geschenk macht daraus <InlineMath math="83" />, die Bossmission <InlineMath math="63" />. Das liegt noch über <InlineMath math="60" />, also wächst die Energie nicht mehr.
+
+In beiden Fällen hat sie um 12:30 Uhr höchstens <InlineMath math="75" />, die Aussage ist also **wahr**.
+
+# Zusammenfassung
+
+Die erste, dritte und vierte Aussage sind wahr. Die zweite ist falsch, weil **Warten bei voller Energie Auffüllungen verschenkt**.

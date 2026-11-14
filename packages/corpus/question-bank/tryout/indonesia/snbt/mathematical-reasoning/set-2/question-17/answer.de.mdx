@@ -1,9 +1,35 @@
-Von 06.00 bis 22.00 Uhr vergehen 16 Stunden. In diesem Modell **halbiert sich die Arzneimenge alle 8 Stunden**, 16 Stunden bedeuten also zweimal halbieren.
+Gesucht ist die kleinste Anzahl an Pfosten. Markier zuerst die Pfosten, die stehen müssen, teil den Zaun in gerade Stücke zwischen diesen Pfosten, bestimm für jedes Stück die kleinste Anzahl an Abständen und rechne die Abstände dann in Pfosten um. **Die Pflichtpfosten teilen den Zaun in Stücke, die du einzeln zählst**.
 
-# In die Formel einsetzen
+# Die Pflichtpfosten
 
-<BlockMath math="M(16)=360\cdot\left(\frac12\right)^{16/8}=360\cdot\left(\frac12\right)^2=360\cdot\frac14=90" />
+Es gibt <InlineMath math="4" /> Eckpfosten und <InlineMath math="2" /> **Pfosten an den Rändern des Tors**. Das Tor mit <InlineMath math="3\text{ m}" /> Breite liegt in der Mitte einer Seite von <InlineMath math="24\text{ m}" />, der Rest dieser Seite zerfällt also in zwei gleich lange Stücke.
 
-Schrittweise: Aus 360 mg werden um 14.00 Uhr 180 mg und um 22.00 Uhr 90 mg.
+<BlockMath math="\frac{24-3}{2}=10{,}5" />
 
-Um 22.00 Uhr sind also noch **90 mg** im Körper.
+Der Zaun besteht also aus einem Stück von <InlineMath math="24\text{ m}" />, zwei Stücken von <InlineMath math="15\text{ m}" /> und zwei Stücken von <InlineMath math="10{,}5\text{ m}" />, dazu die Toröffnung.
+
+# Die Abstände auf jedem Stück
+
+Benachbarte Pfosten stehen höchstens <InlineMath math="3\text{ m}" /> auseinander, ein Stück der Länge <InlineMath math="\ell" /> braucht also mindestens <InlineMath math="\tfrac{\ell}{3}" /> Abstände, **aufgerundet**, wenn das keine ganze Zahl ist. Ein Abstand von genau <InlineMath math="3\text{ m}" /> ist noch erlaubt.
+
+<BlockMath math="\begin{aligned}
+\frac{24}{3}&=8 \\
+\frac{15}{3}&=5 \\
+\frac{10{,}5}{3}&=3{,}5\ \Rightarrow\ 4
+\end{aligned}" />
+
+Ein Stück von <InlineMath math="10{,}5\text{ m}" /> kommt nicht mit <InlineMath math="3" /> Abständen aus, denn dann wäre jeder Abstand <InlineMath math="3{,}5\text{ m}" />. Mit <InlineMath math="4" /> Abständen ist jeder <InlineMath math="10{,}5:4=2{,}625\text{ m}" />, und das ist erlaubt.
+
+# Von Abständen zu Pfosten
+
+Der Zaun läuft ringsum, also endet jeder Abstand an einem Pfosten, und jeder Pfosten beginnt einen Abstand. Deshalb **ist die Anzahl der Pfosten gleich der Anzahl der Abstände**, und die Toröffnung zählt als ein Abstand zwischen den beiden Torpfosten.
+
+<BlockMath math="8+5+5+4+4+1=27" />
+
+# Kontrolle
+
+Ohne Tor bräuchte diese Seite nur <InlineMath math="8" /> Abstände, insgesamt also <InlineMath math="26" />. Mit dem Tor in der Mitte braucht sie <InlineMath math="4+4+1=9" /> Abstände. **Ein Tor in der Mitte bringt also sogar einen Pfosten mehr**, weil sich <InlineMath math="10{,}5\text{ m}" /> nicht glatt durch <InlineMath math="3" /> teilen lassen.
+
+Die Antwort <InlineMath math="26" /> entsteht, wenn du den Umfang von <InlineMath math="78\text{ m}" /> direkt durch <InlineMath math="3" /> teilst oder das Tor übersiehst. Die Antwort <InlineMath math="25" /> entsteht, wenn du die <InlineMath math="75\text{ m}" /> Zaun ohne Tor durch <InlineMath math="3" /> teilst und die Pflichtpfosten nicht beachtest.
+
+Du brauchst also mindestens <InlineMath math="27" /> Pfosten.

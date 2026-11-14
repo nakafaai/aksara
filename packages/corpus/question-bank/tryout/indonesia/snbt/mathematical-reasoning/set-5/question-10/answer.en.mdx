@@ -1,17 +1,47 @@
-Compute the mean, median, mode and range, then check each choice. The median needs **the data in order**.
+You're looking for the balance left after the largest withdrawal that's allowed. The plan: find the counted weight of each kind, add up the value, take off the handling fee while keeping the **<InlineMath math="\text{Rp}6{,}000" /> cap** in mind, then pick the largest withdrawal that still leaves at least <InlineMath math="\text{Rp}10{,}000" />.
 
-# Sorting the data
+# The counted weight of each kind
 
-<BlockMath math="13.5,\;13.8,\;14.0,\;14.2,\;14.4,\;14.6,\;15.1,\;16.4" />
+Each kind is weighed separately and rounded down to a multiple of <InlineMath math="0.5\text{ kg}" />. Wet cardboard **loses <InlineMath math="20\%" /> first and is rounded after that**:
 
-There are 8 values, so the median is **the mean of the 4th and 5th values**.
+<BlockMath math="\begin{aligned}
+\text{cans} &: 4.8 \to 4.5\text{ kg} \\
+\text{plastic bottles} &: 6.3 \to 6.0\text{ kg} \\
+\text{wet cardboard} &: 0.8 \cdot 8.4 = 6.72 \to 6.5\text{ kg}
+\end{aligned}" />
 
-<BlockMath math="\text{median}=\frac{14.2+14.4}{2}=14.3" />
+# The deposit value and the handling fee
 
-# Other measures and the comparison
+Multiply each weight by its price and add them up:
 
-The mean is <InlineMath math="\tfrac{116}{8}=14.5" />, so **the mean is greater than the median**. This happens because 16.4 seconds is far above the other times and pulls the mean up, while the median is not affected.
+<BlockMath math="\begin{aligned}
+\text{deposit value} &= 4.5 \cdot 12{,}000 + 6.0 \cdot 4{,}000 + 6.5 \cdot 2{,}500 \\
+&= 54{,}000 + 24{,}000 + 16{,}250 \\
+&= 94{,}250
+\end{aligned}" />
 
-The median is not 14.4, because 14.4 is only the 5th value. No time appears more than once, so the data have no mode. The range is <InlineMath math="16.4-13.5=2.9" /> seconds, not 3.1 seconds.
+A <InlineMath math="10\%" /> fee on that value would be <InlineMath math="9{,}425" />, which is over the cap. So **the handling fee taken is only <InlineMath math="\text{Rp}6{,}000" />**:
 
-So the true statement is that **the mean time is greater than the median time**.
+<BlockMath math="\text{balance} = 1{,}000 + 94{,}250 - 6{,}000 = 89{,}250" />
+
+# The largest withdrawal
+
+A withdrawal has to be a multiple of <InlineMath math="\text{Rp}20{,}000" />, and **what's left can't be less than <InlineMath math="\text{Rp}10{,}000" />**. Try from the top:
+
+<BlockMath math="\begin{aligned}
+89{,}250 - 80{,}000 &= 9{,}250 < 10{,}000 \\
+89{,}250 - 60{,}000 &= 29{,}250 \ge 10{,}000
+\end{aligned}" />
+
+Taking out <InlineMath math="\text{Rp}80{,}000" /> isn't allowed, so the largest withdrawal is <InlineMath math="\text{Rp}60{,}000" /> and <InlineMath math="\text{Rp}29{,}250" /> is left.
+
+# Answers that often come up
+
+Several other results come from **one rule that got skipped**:
+
+- <InlineMath math="\text{Rp}9{,}250" /> takes out <InlineMath math="\text{Rp}80{,}000" /> and forgets the <InlineMath math="\text{Rp}10{,}000" /> minimum balance.
+- <InlineMath math="\text{Rp}25{,}825" /> takes the full <InlineMath math="9{,}425" /> fee without the <InlineMath math="\text{Rp}6{,}000" /> cap, so the balance is <InlineMath math="85{,}825" />.
+- <InlineMath math="\text{Rp}14{,}600" /> doesn't round the weights, so the deposit value is <InlineMath math="99{,}600" /> and the withdrawal is <InlineMath math="\text{Rp}80{,}000" />.
+- <InlineMath math="\text{Rp}29{,}000" /> rounds the cardboard first (<InlineMath math="8.0\text{ kg}" />) and only then takes off the water, giving <InlineMath math="6.4\text{ kg}" />.
+
+So Pak Joko's balance after that withdrawal is <InlineMath math="\text{Rp}29{,}250" />.

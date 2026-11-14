@@ -1,20 +1,48 @@
-Die Rate wird aus **dem Darlehensbetrag** berechnet, also dem Barpreis minus Anzahlung, nicht aus dem Barpreis.
+Gesucht ist der Gewinn aus diesem Auftrag. Der Plan: Zähl die Chargen, bestimm, wie viel Kaffee sich abfüllen lässt, zähl die vollen Beutel und zieh dann drei Kostenarten vom Erlös ab. Behalte die wichtigste Regel im Kopf: **Light und Dark werden nie gemischt**, weder im Röster noch im Beutel. Du rechnest beide also getrennt.
 
-# Anzahlung und Darlehensbetrag
+# Chargen für jede Röststufe
+
+Eine Charge enthält nur eine Röststufe und höchstens <InlineMath math="12\text{ kg}" />. Light mit <InlineMath math="18\text{ kg}" /> braucht <InlineMath math="2" /> Chargen, nämlich <InlineMath math="12\text{ kg}" /> und <InlineMath math="6\text{ kg}" />. Dark mit <InlineMath math="15\text{ kg}" /> braucht ebenfalls <InlineMath math="2" /> Chargen, nämlich <InlineMath math="12\text{ kg}" /> und <InlineMath math="3\text{ kg}" />.
+
+Also **braucht dieser Auftrag vier Chargen**, nicht drei. Auf drei kommst du nur, wenn du die <InlineMath math="33\text{ kg}" /> als einen Haufen behandelst, aber Light und Dark dürfen sich keine Charge teilen.
+
+# Verkaufte Beutel
+
+Ein Schwund von <InlineMath math="16\%" /> heißt, dass Light <InlineMath math="84\%" /> seines Rohgewichts behält. Ein Schwund von <InlineMath math="25\%" /> heißt, dass Dark <InlineMath math="75\%" /> behält. Außerdem gibt jede Charge <InlineMath math="200\text{ g}" /> für die Geschmacksprobe ab.
 
 <BlockMath math="\begin{aligned}
-\text{Anzahlung}&=20\,\%\cdot3\,600\,000=720\,000\\
-\text{Darlehen}&=3\,600\,000-720\,000=2\,880\,000
+W_{\text{light}} &= 84\%\times18{.}000-2\times200=15{.}120-400=14{.}720\text{ g} \\
+W_{\text{dark}} &= 75\%\times15{.}000-2\times200=11{.}250-400=10{.}850\text{ g}
 \end{aligned}" />
 
-# Monatliche Rate
+Verkauft werden nur volle Beutel zu <InlineMath math="250\text{ g}" />. Teil also jedes Gewicht durch <InlineMath math="250" /> und behalte den ganzzahligen Teil.
 
 <BlockMath math="\begin{aligned}
-\tfrac{1}{12}\cdot2\,880\,000&=240\,000\\
-2\,\%\cdot2\,880\,000&=57\,600\\
-240\,000+57\,600&=297\,600
+14{.}720 &= 58\times250+220 \\
+10{.}850 &= 43\times250+100
 \end{aligned}" />
 
-In Tausend Rupiah **beträgt die Rate 297,6**.
+Das sind <InlineMath math="58" /> Beutel Light und <InlineMath math="43" /> Beutel Dark, zusammen <InlineMath math="101" /> Beutel. **Die Reste von Light und Dark darfst du nicht zusammenlegen**, denn ein Beutel enthält nur eine Röststufe.
 
-Die monatliche Rate beträgt also **297,6 Tausend Rupiah**, das sind 297 600 Rupiah.
+# Erlös minus alle Kosten
+
+Der Erlös kommt aus den verkauften Beuteln. Kosten gibt es drei: <InlineMath math="33\text{ kg}" /> Rohkaffee, Gas für <InlineMath math="4" /> Chargen und <InlineMath math="101" /> Beutel.
+
+<BlockMath math="\begin{aligned}
+\text{Erlös} &= 58\times75{.}000+43\times70{.}000=4{.}350{.}000+3{.}010{.}000=7{.}360{.}000 \\
+\text{Kosten} &= 33\times90{.}000+4\times30{.}000+101\times4{.}000=2{.}970{.}000+120{.}000+404{.}000=3{.}494{.}000 \\
+\text{Gewinn} &= 7{.}360{.}000-3{.}494{.}000=3{.}866{.}000
+\end{aligned}" />
+
+Prüf das, indem du **den Gewinn jeder Röststufe einzeln ausrechnest**. Light bringt <InlineMath math="4{.}350{.}000-1{.}620{.}000-60{.}000-232{.}000=2{.}438{.}000" />. Dark bringt <InlineMath math="3{.}010{.}000-1{.}350{.}000-60{.}000-172{.}000=1{.}428{.}000" />. Zusammen ergibt das <InlineMath math="2{.}438{.}000+1{.}428{.}000=3{.}866{.}000" />, also dasselbe.
+
+# Die falschen Antworten
+
+Jede andere Antwort entsteht, wenn **genau ein Schritt fehlt**.
+
+- <InlineMath math="\text{Rp}3{.}986{.}000{,}00" /> vergisst die Gaskosten von <InlineMath math="\text{Rp}120{.}000{,}00" />.
+- <InlineMath math="\text{Rp}4{.}003{.}000{,}00" /> nimmt die Probe nur einmal je Röststufe statt einmal je Charge und kommt so auf <InlineMath math="59" /> Beutel Light und <InlineMath math="44" /> Beutel Dark.
+- <InlineMath math="\text{Rp}4{.}140{.}000{,}00" /> vergisst die Geschmacksprobe und kommt so auf <InlineMath math="60" /> Beutel Light und <InlineMath math="45" /> Beutel Dark.
+- <InlineMath math="\text{Rp}4{.}270{.}000{,}00" /> vergisst die Beutelkosten von <InlineMath math="\text{Rp}404{.}000{,}00" />.
+
+Der Gewinn aus diesem Auftrag beträgt also <InlineMath math="\text{Rp}3{.}866{.}000{,}00" />.

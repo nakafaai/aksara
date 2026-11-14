@@ -1,13 +1,40 @@
-Luas atap yang diperlukan adalah **banyak panel dikali luas satu panel**. Jadi tentukan dulu banyak panel.
+Kamu mencari tanggal pertama ketika keluarga itu mengunduh tanpa sisa kuota utama. Rencananya: jumlahkan hanya unduhan yang **memotong kuota utama**, hari demi hari, sampai jumlahnya mencapai <InlineMath math="100\text{ GB}" />, lalu periksa apa yang terjadi tepat di batas itu.
 
-# Banyak panel
+# Unduhan yang memotong kuota
 
-Satu panel menghasilkan <InlineMath math="0{,}2\cdot4{,}5=0{,}9" /> kWh per hari, sehingga **diperlukan 10 panel**, karena <InlineMath math="\tfrac{9}{0{,}9}=10" />.
+Unduhan jam malam tidak memotong kuota utama, jadi <InlineMath math="3\text{ GB}" /> setiap malam **tidak ikut dijumlahkan**. Yang dijumlahkan hanya <InlineMath math="4\text{ GB}" /> pada hari kerja dan <InlineMath math="12\text{ GB}" /> pada akhir pekan. Karena tanggal <InlineMath math="1" /> hari Selasa, minggu pertama berjalan dari Selasa sampai Senin:
 
-# Luas atap
+| Tanggal | Hari | Unduhan siang | Jumlah pemakaian kuota |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> sampai <InlineMath math="4" /> | Selasa sampai Jumat | <InlineMath math="4\text{ GB}" /> per hari | <InlineMath math="16\text{ GB}" /> |
+| <InlineMath math="5" /> | Sabtu | <InlineMath math="12\text{ GB}" /> | <InlineMath math="28\text{ GB}" /> |
+| <InlineMath math="6" /> | Minggu | <InlineMath math="12\text{ GB}" /> | <InlineMath math="40\text{ GB}" /> |
+| <InlineMath math="7" /> | Senin | <InlineMath math="4\text{ GB}" /> | <InlineMath math="44\text{ GB}" /> |
 
-<BlockMath math="10\cdot1{,}6=16\text{ m}^2" />
+Setiap <InlineMath math="7" /> hari, pemakaian kuota bertambah <InlineMath math="44\text{ GB}" />, jadi pada akhir tanggal <InlineMath math="14" /> jumlahnya <InlineMath math="88\text{ GB}" />.
 
-Luas ini adalah luas bersih panel, dengan anggapan panel dapat dipasang **rapat tanpa celah**.
+# Tanggal kuota habis
 
-Jadi, luas atap paling sedikit adalah **16 meter persegi**.
+Lanjutkan dari tanggal <InlineMath math="15" />, yang jatuh pada hari Selasa:
+
+<BlockMath math="\begin{aligned}
+\text{tanggal } 15 &: 88 + 4 = 92 \\
+\text{tanggal } 16 &: 92 + 4 = 96 \\
+\text{tanggal } 17 &: 96 + 4 = 100
+\end{aligned}" />
+
+Kuota utama habis **tepat ketika unduhan siang tanggal <InlineMath math="17" /> selesai**. Jadi, seluruh unduhan tanggal <InlineMath math="17" /> masih berkecepatan <InlineMath math="40\text{ Mbps}" />.
+
+# Unduhan lambat yang pertama
+
+Tanggal <InlineMath math="18" /> hari Jumat. Unduhan jam malamnya (pukul 00.00 sampai 06.00) tetap <InlineMath math="40\text{ Mbps}" />. Unduhan siangnya dimulai tanpa sisa kuota utama, jadi **inilah unduhan pertama dengan <InlineMath math="8\text{ Mbps}" />**.
+
+# Jawaban yang sering muncul
+
+Beberapa jawaban lain muncul dari **cara menjumlah yang keliru**:
+
+- Tanggal <InlineMath math="17" /> muncul kalau kamu menganggap hari kuota habis sudah ikut lambat, padahal kuota habis tepat di akhir unduhan hari itu.
+- Tanggal <InlineMath math="12" /> muncul kalau unduhan jam malam ikut dijumlahkan: <InlineMath math="7\text{ GB}" /> per hari kerja dan <InlineMath math="15\text{ GB}" /> per hari akhir pekan.
+- Tanggal <InlineMath math="16" /> muncul kalau kamu memakai rata-rata <InlineMath math="\tfrac{44}{7}\text{ GB}" /> per hari: <InlineMath math="100 : \tfrac{44}{7} \approx 15{,}9" />, lalu dibulatkan ke atas. Rata-rata mengabaikan urutan hari kerja dan akhir pekan.
+
+Jadi, keluarga Pak Dedi pertama kali mengunduh dengan kecepatan <InlineMath math="8\text{ Mbps}" /> pada tanggal <InlineMath math="18" />.

@@ -1,18 +1,47 @@
-If all four sides are fenced, the perimeter is 44 m, so **length plus width is always 22 m**. You want two numbers adding up to 22 with the largest product.
+You need to know **on which dates the cylinder is swapped**, because the price paid depends on the date of each swap. Here's the plan: find the daily use, find when the gas left on <InlineMath math="1" /> July runs out, find how long one full cylinder lasts, list every swap in July, then add up the prices.
 
-# Comparing some sizes
+# The first swap
 
-| Length | Width | Area |
-| :---: | :---: | :---: |
-| 14 m | 8 m | 112 <InlineMath math="\text{m}^2" /> |
-| 13 m | 9 m | 117 <InlineMath math="\text{m}^2" /> |
-| 12 m | 10 m | 120 <InlineMath math="\text{m}^2" /> |
-| 11 m | 11 m | 121 <InlineMath math="\text{m}^2" /> |
+The daily use is <InlineMath math="0.3\cdot3+0.1\cdot7=1.6\text{ kg}" />. On the morning of <InlineMath math="1" /> July, the <InlineMath math="2.5\text{ kg}" /> left is enough for that day, so there's no swap yet. That night <InlineMath math="2.5-1.6=0.9\text{ kg}" /> is left. On the morning of <InlineMath math="2" /> July, <InlineMath math="0.9\text{ kg}" /> is less than <InlineMath math="1.6\text{ kg}" />, so **the first swap happens on <InlineMath math="2" /> July**, and that <InlineMath math="0.9\text{ kg}" /> is lost.
 
-The closer length and width are, the larger the area. With length <InlineMath math="11+d" /> and width <InlineMath math="11-d" /> the area is <InlineMath math="121-d^2" />, so **the largest area occurs at d = 0**, a square.
+# How long a full cylinder lasts
 
-# Checking the choices
+A full cylinder stays as long as its gas covers a full day:
 
-The values 112, 117 and 120 <InlineMath math="\text{m}^2" /> are possible but smaller than the square. The value 100 <InlineMath math="\text{m}^2" /> is a square with 10 m sides, whose perimeter is only 40 m.
+<BlockMath math="7\cdot1.6=11.2\le12 < 8\cdot1.6=12.8" />
 
-So the largest area is **121 <InlineMath math="\text{m}^2" />**, a square garden with 11 m sides.
+So one full cylinder lasts exactly <InlineMath math="7" /> days and is swapped on the eighth morning, losing <InlineMath math="0.8\text{ kg}" />. That means **each swap comes seven days after the one before**:
+
+<BlockMath math="2,\ 9,\ 16,\ 23,\ 30" />
+
+The next one would be on day <InlineMath math="37" />, outside July. So there are <InlineMath math="5" /> swaps.
+
+# The price of each swap
+
+A cylinder is paid at the price that applies on the day of the swap. The swaps on <InlineMath math="2" /> July and <InlineMath math="9" /> July still use the old price, <InlineMath math="\text{Rp}196{,}000" />. **The swap on <InlineMath math="16" /> July already uses the new price**, because the new price applies from <InlineMath math="16" /> July, and so do the swaps on <InlineMath math="23" /> July and <InlineMath math="30" /> July.
+
+<BlockMath math="\begin{aligned}
+\text{Total}&=2\cdot196{,}000+3\cdot224{,}000\\
+&=392{,}000+672{,}000\\
+&=1{,}064{,}000
+\end{aligned}" />
+
+Check it by tracking all the gas. July uses <InlineMath math="31\cdot1.6=49.6\text{ kg}" />. The lost gas is <InlineMath math="0.9\text{ kg}" /> on <InlineMath math="2" /> July and <InlineMath math="0.8\text{ kg}" /> at each swap on <InlineMath math="9" />, <InlineMath math="16" />, <InlineMath math="23" /> and <InlineMath math="30" /> July. The cylinder installed on <InlineMath math="30" /> July has only served two days, so <InlineMath math="12-3.2=8.8\text{ kg}" /> is still in it.
+
+<BlockMath math="\begin{aligned}
+\text{gas in}&=2.5+5\cdot12=62.5\text{ kg}\\
+\text{gas out}&=49.6+0.9+4\cdot0.8+8.8=62.5\text{ kg}
+\end{aligned}" />
+
+Both totals match, so the list of swaps is right.
+
+# The wrong options
+
+Each other option **skips one condition**.
+
+- <InlineMath math="\text{Rp}1{,}260{,}000" /> also pays for the cylinder already installed on <InlineMath math="1" /> July, but that one was paid the month before.
+- <InlineMath math="\text{Rp}1{,}036{,}000" /> pays the <InlineMath math="16" /> July swap at the old price. You get the same value if you ignore the <InlineMath math="2.5\text{ kg}" /> left, so the swaps fall on <InlineMath math="1" />, <InlineMath math="8" />, <InlineMath math="15" />, <InlineMath math="22" /> and <InlineMath math="29" /> July.
+- <InlineMath math="\text{Rp}980{,}000" /> ignores the price rise and pays all five swaps at <InlineMath math="\text{Rp}196{,}000" />.
+- <InlineMath math="\text{Rp}840{,}000" /> assumes no gas is lost, so the <InlineMath math="49.6-2.5=47.1\text{ kg}" /> needed fits into <InlineMath math="4" /> cylinders.
+
+So the total paid for cylinder swaps from <InlineMath math="1" /> July to <InlineMath math="31" /> July is <InlineMath math="\text{Rp}1{,}064{,}000" />.

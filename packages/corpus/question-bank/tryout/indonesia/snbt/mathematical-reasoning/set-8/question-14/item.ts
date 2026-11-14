@@ -1,16 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "school-vaccination",
+  stimulus: "carpool-cost",
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "$$\\dfrac16$$" },
-        { correct: false, label: "$$\\dfrac{4}{15}$$" },
-        { correct: true, label: "$$\\dfrac25$$" },
-        { correct: false, label: "$$\\dfrac{5}{12}$$" },
-        { correct: false, label: "$$\\dfrac58$$" },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        {
+          column: 1,
+          label:
+            "Pada perjalanan pagi biasa, bagian Pak Andi lebih dari dua kali bagian Citra.",
+        },
+        {
+          column: 2,
+          label:
+            "Jika Dewi tidak ikut pada suatu pagi, bagian Citra pagi itu naik lebih dari $$10\\%$$ dibanding pagi biasa.",
+        },
+        {
+          column: 1,
+          label:
+            "Jika Budi tidak ikut pada suatu pagi, kenaikan bagian Pak Andi pagi itu lebih besar daripada kenaikan bagian Citra.",
+        },
+        {
+          column: 2,
+          label:
+            "Jika Citra dan Dewi sama-sama tidak ikut pada suatu pagi, bagian Budi pagi itu lebih dari $$\\text{Rp}45{.}000$$.",
+        },
       ],
     },
   },

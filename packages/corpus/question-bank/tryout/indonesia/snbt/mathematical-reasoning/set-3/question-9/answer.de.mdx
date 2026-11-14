@@ -1,15 +1,33 @@
-Der Prozentsatz bezieht sich **auf die gültigen Stimmen**, nicht auf alle abgegebenen Stimmzettel, denn die Wahlregel verwendet gültige Stimmen.
+Jede Aussage braucht ihre eigene Rechnung. Ein praktisches Werkzeug: In einem Zyklus von <InlineMath math="3" /> Stunden verdoppelt sich die Population <InlineMath math="P" /> <InlineMath math="3" />-mal, also auf das <InlineMath math="2\cdot2\cdot2=8" />-Fache, und danach wird geerntet. **Solange der Behälter nicht voll ist, macht ein Zyklus aus <InlineMath math="P" /> also <InlineMath math="8P-200" />**. Wird der Behälter mitten im Zyklus voll, bleibt die Zahl zuerst bei <InlineMath math="960" /> stehen.
 
-# Anzahl gültiger Stimmen
+# Die erste Aussage
 
-<BlockMath math="96+72+48+24=240" />
+Starte bei <InlineMath math="40" /> und rechne Stunde für Stunde.
 
-Das ist auch <InlineMath math="248-8" />, **die Tabelle ist also vollständig**.
+<BlockMath math="\begin{aligned}
+t=3 &: \ 40\to80\to160\to320, \ 320-200=120 \\
+t=6 &: \ 120\to240\to480\to960, \ 960-200=760 \\
+t=9 &: \ 760\to960\to960\to960, \ 960-200=760
+\end{aligned}" />
 
-# Bungas Prozentsatz
+Im dritten Zyklus liegt <InlineMath math="760\cdot2=1{.}520" /> schon über der Kapazität, also **bleibt die Population bis zur Ernte bei <InlineMath math="960" />**. Jeder spätere Zyklus beginnt ebenfalls bei <InlineMath math="760" /> und endet deshalb wieder bei <InlineMath math="760" />. Die erste Aussage ist **wahr**.
 
-<BlockMath math="\frac{72}{240}\times100\%=30\%" />
+# Die zweite Aussage
 
-Teilt man durch 248, erhält man etwa 29 %, mit dem falschen Bezugswert.
+Mit der Anfangspopulation <InlineMath math="26" /> nimmt die erste Ernte <InlineMath math="200" /> von <InlineMath math="208" />, übrig bleiben <InlineMath math="8" />. Bei <InlineMath math="t=6" /> sind es erst <InlineMath math="64" />, also höchstens <InlineMath math="200" />, darum **werden alle <InlineMath math="64" /> genommen und die Kultur ist erloschen**. Zusammen sind das <InlineMath math="200+64=264" />.
 
-Bunga erhielt also **30 %** der gültigen Stimmen.
+Mit der Anfangspopulation <InlineMath math="52" /> lässt die erste Ernte <InlineMath math="416-200=216" /> übrig. Bei <InlineMath math="t=6" /> gilt <InlineMath math="216\to432\to864\to960" />, danach bleiben <InlineMath math="760" />, und bei <InlineMath math="t=9" /> und <InlineMath math="t=12" /> beträgt die Ernte weiterhin <InlineMath math="200" />. Zusammen sind das <InlineMath math="4\cdot200=800" />.
+
+Wegen <InlineMath math="2\cdot264=528\ne800" /> ist die zweite Aussage **falsch**. Eine Ernte fester Größe verdoppelt sich nicht, nur weil sich die Anfangspopulation verdoppelt.
+
+# Die dritte Aussage
+
+Von <InlineMath math="25" /> aus sind es bei <InlineMath math="t=3" /> genau <InlineMath math="25\cdot8=200" />. Die Ernteregel sagt: **Sind es höchstens <InlineMath math="200" />, wird alles genommen**, also auch bei genau <InlineMath math="200" />. Die Kultur erlischt also bei der ersten Ernte, und die dritte Aussage ist **wahr**.
+
+# Die vierte Aussage
+
+Um ein „immer“ zu widerlegen, reicht ein Gegenbeispiel. Vergleich die Anfangspopulationen <InlineMath math="40" /> und <InlineMath math="100" />. Für <InlineMath math="40" /> hat die erste Aussage schon <InlineMath math="760" /> bei <InlineMath math="t=9" /> gezeigt. Für <InlineMath math="100" /> lässt die erste Ernte <InlineMath math="800-200=600" /> übrig, bei <InlineMath math="t=6" /> ist der Behälter voll und <InlineMath math="760" /> bleiben, und bei <InlineMath math="t=9" /> bleiben wieder <InlineMath math="760" />.
+
+Beide Anfangspopulationen liefern dasselbe Ergebnis, weil **die Kapazität des Behälters den Unterschied am Anfang auslöscht**. Die vierte Aussage ist **falsch**.
+
+Die erste Aussage ist also wahr, die zweite falsch, die dritte wahr und die vierte falsch.

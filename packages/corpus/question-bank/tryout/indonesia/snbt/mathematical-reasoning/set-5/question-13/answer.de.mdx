@@ -1,15 +1,41 @@
-Spitzenleistung ist keine Tagesenergie. Die Tagesenergie eines Moduls ist **Spitzenleistung mal 4,5 Stunden**, und dieser Wert wird mit den 9 kWh verglichen.
+Du suchst eine Downloadzeit, in der sich die Geschwindigkeit zweimal ändert: Mitten im Download ist das Hauptvolumen aufgebraucht, und um 00.00 beginnen die Nachtstunden. Der Plan: Rechne jede Geschwindigkeit in **Sekunden pro GB** um und teile den Download dann nach Geschwindigkeit in drei Teile.
 
-# Tagesenergie eines Moduls
+# Zeit für ein GB
 
-<BlockMath math="0{,}2\text{ kW}\cdot4{,}5\text{ h}=0{,}9\text{ kWh}" />
+Eine Größe von <InlineMath math="1\text{ GB}" /> entspricht <InlineMath math="1{.}000 \cdot 8 = 8{.}000" /> Megabit. Für <InlineMath math="1\text{ GB}" /> brauchst du also:
 
-# Anzahl der Module
+<BlockMath math="\begin{aligned}
+\text{bei } 40\text{ Mbps} &: \frac{8{.}000}{40} = 200 \text{ s} \\
+\text{bei } 8\text{ Mbps} &: \frac{8{.}000}{8} = 1{.}000 \text{ s}
+\end{aligned}" />
 
-<BlockMath math="\frac{9}{0{,}9}=10" />
+# Der schnelle und der langsame Teil
 
-Zehn Module liefern genau 9 kWh pro Tag, neun Module nur 8,1 kWh, **zu wenig**.
+Die restlichen <InlineMath math="6\text{ GB}" /> Volumen laufen schnell, in <InlineMath math="6 \cdot 200 = 1{.}200" /> Sekunden, also <InlineMath math="20" /> Minuten, bis 21.50. Danach ist das Hauptvolumen weg und **die Geschwindigkeit fällt auf <InlineMath math="8\text{ Mbps}" />**. Von 21.50 bis 00.00 sind es <InlineMath math="130" /> Minuten:
 
-Der Wert 45 Module teilt 9 durch die Spitzenleistung 0,2 ohne die 4,5 Stunden. Der Wert 9 Module nimmt 1 kWh pro Modul an.
+<BlockMath math="\begin{aligned}
+130 \text{ min} &= 7{.}800 \text{ s} \\
+\text{langsamer Download} &= \frac{7{.}800}{1{.}000} = 7{,}8\text{ GB}
+\end{aligned}" />
 
-Es werden also mindestens **10 Module** gebraucht.
+# Der Teil nach Mitternacht
+
+Ab 00.00 **bringen die Nachtstunden die Geschwindigkeit zurück auf <InlineMath math="40\text{ Mbps}" />**, obwohl das Hauptvolumen aufgebraucht ist. Der Rest und seine Dauer:
+
+<BlockMath math="\begin{aligned}
+\text{Rest der Datei} &= 15 - 6 - 7{,}8 = 1{,}2\text{ GB} \\
+\text{Zeit} &= 1{,}2 \cdot 200 = 240 \text{ s} = 4 \text{ min}
+\end{aligned}" />
+
+Der ganze Download dauert also <InlineMath math="20 + 130 + 4 = 154" /> Minuten, und die Datei ist um 00.04 fertig. Prüfe die Datenmenge: <InlineMath math="6 + 7{,}8 + 1{,}2 = 15\text{ GB}" />, genau die Dateigröße.
+
+# Die falschen Antworten
+
+Jede andere Antwort **übersieht einen der Geschwindigkeitswechsel**:
+
+- <InlineMath math="50" /> Minuten lädt alles mit <InlineMath math="40\text{ Mbps}" />, als wäre das Hauptvolumen nie aufgebraucht.
+- <InlineMath math="170" /> Minuten vergisst die Nachtstunden: Die übrigen <InlineMath math="9\text{ GB}" /> laufen langsam in <InlineMath math="150" /> Minuten.
+- <InlineMath math="174" /> Minuten nimmt als Rest um Mitternacht <InlineMath math="15-7{,}8=7{,}2\text{ GB}" /> und vergisst, die schon schnell geladenen <InlineMath math="6\text{ GB}" /> abzuziehen.
+- <InlineMath math="250" /> Minuten lädt alles mit <InlineMath math="8\text{ Mbps}" />.
+
+Bu Ani braucht also <InlineMath math="154" /> Minuten für diese Datei.

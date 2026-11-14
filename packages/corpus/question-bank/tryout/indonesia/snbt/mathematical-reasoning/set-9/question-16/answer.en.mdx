@@ -1,15 +1,31 @@
-The new mean is **the new total rainfall divided by 12**. Only five months change.
+You're looking for the latest bedtime. Two averages matter: **the average effective sleep** sets how long the user must actually sleep, and **the average time awake** has to be added, because they're still lying in bed while awake. The plan: find both averages, add them to get the time in bed, then count back from 05:15. All times are in minutes.
 
-# Total rainfall
+# Average effective sleep
 
-The yearly total in the table is 2,100 mm. **May to September** add up to <InlineMath math="120+80+50+40+70=360" /> mm, which drops by <InlineMath math="20\%\cdot360=72" /> mm.
+Time in bed runs from bedtime to wake-up time, and if bedtime is before midnight, count up to 24:00 first. **Wednesday starts after midnight**, so 00:20 to 06:50 is only <InlineMath math="390" /> minutes. After taking off the time awake, the effective sleep each night is <InlineMath math="500" />, <InlineMath math="375" />, <InlineMath math="380" />, <InlineMath math="515" />, <InlineMath math="360" />, <InlineMath math="600" />, and <InlineMath math="560" />.
 
-<BlockMath math="2{,}100-72=2{,}028\text{ mm}" />
+<BlockMath math="\begin{aligned}
+\text{average effective sleep} &= \frac{500+375+380+515+360+600+560}{7}=\frac{3{,}290}{7}=470 \\
+\text{average time awake} &= \frac{20+15+10+25+0+30+40}{7}=\frac{140}{7}=20
+\end{aligned}" />
 
-# New mean
+# Time in bed needed
 
-<BlockMath math="\frac{2{,}028}{12}=169\text{ mm}" />
+The user needs <InlineMath math="470" /> minutes of effective sleep and expects <InlineMath math="20" /> minutes awake, so **they need <InlineMath math="470+20=490" /> minutes in bed**, which is <InlineMath math="8" /> hours <InlineMath math="10" /> minutes.
 
-The value 103 mm subtracts 72 straight from the old mean of 175 mm, although **the drop must be divided by 12 first**. The value 140 mm lowers every month by <InlineMath math="20\%" />. The value 175 mm is the old mean, and 181 mm adds the 72 mm instead.
+# Counting back from the wake-up time
 
-So the mean monthly rainfall the next year is **169 mm**.
+From midnight to 05:15 there are <InlineMath math="5\times60+15=315" /> minutes. The rest has to come before midnight: <InlineMath math="490-315=175" /> minutes, or <InlineMath math="2" /> hours <InlineMath math="55" /> minutes. **Going back <InlineMath math="2" /> hours <InlineMath math="55" /> minutes from 24:00** gives 21:05.
+
+Check: from 21:05 to 24:00 is <InlineMath math="175" /> minutes, plus <InlineMath math="315" /> minutes to 05:15, so <InlineMath math="490" /> minutes. Take off <InlineMath math="20" /> minutes awake and the effective sleep is <InlineMath math="470" /> minutes, exactly the average.
+
+# The wrong options
+
+Each other option **uses the wrong measure for how long to sleep** or forgets the time awake.
+
+- 20:35 uses the median effective sleep, <InlineMath math="500" /> minutes, instead of the mean, so the time in bed becomes <InlineMath math="520" /> minutes.
+- 20:45 uses the average time in bed, <InlineMath math="490" /> minutes, and then adds the time awake again, making <InlineMath math="510" /> minutes.
+- 20:55 uses the <InlineMath math="8" />-hour target instead of the week's average, making <InlineMath math="480+20=500" /> minutes.
+- 21:25 forgets to add the time awake and only uses <InlineMath math="470" /> minutes.
+
+So the user has to go to bed by 21:05 at the latest.

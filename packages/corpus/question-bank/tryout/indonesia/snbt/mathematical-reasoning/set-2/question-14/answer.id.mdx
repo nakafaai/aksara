@@ -1,13 +1,42 @@
-Rina sekarang **menjual** mata uang asing, jadi yang dipakai adalah kurs beli, yaitu rupiah yang diterima pelanggan. Biaya layanan dikurangkan dari uang yang diterima.
+Kita mencari orang pertama yang datang sesudah pukul 08.00 dan langsung dilayani. Orang nomor <InlineMath math="1" /> dan <InlineMath math="2" /> memang langsung dilayani, tetapi mereka datang pukul 08.00, jadi tidak dihitung. Rencananya, lihat **seberapa cepat antrean menyusut**, temukan pola waktu tunggu, lalu cari kapan waktu tunggu pertama kali habis.
 
-# Nilai 60 SGD
+# Seberapa cepat antrean menyusut
 
-<BlockMath math="60\cdot11{.}600=696{.}000" />
+Selama kedua loket terus sibuk, dalam setiap <InlineMath math="12" /> menit Loket A memulai <InlineMath math="12:4=3" /> pelayanan dan Loket B memulai <InlineMath math="12:6=2" /> pelayanan. Dalam <InlineMath math="12" /> menit yang sama datang <InlineMath math="12:3=4" /> orang. Jadi **setiap <InlineMath math="12" /> menit antrean berkurang satu orang**, dan suatu saat antrean pasti habis.
 
-# Mengurangkan biaya layanan
+# Pola waktu tunggu
 
-<BlockMath math="696{.}000-25{.}000=671{.}000" />
+Dengan aturan loket yang lebih dulu kosong, orang nomor <InlineMath math="11" /> sampai <InlineMath math="15" /> mulai dilayani pukul 08.24, 08.24, 08.28, 08.30, dan 08.32. Mereka datang pukul 08.03, 08.06, 08.09, 08.12, dan 08.15, jadi waktu tunggunya <InlineMath math="21" />, <InlineMath math="18" />, <InlineMath math="19" />, <InlineMath math="18" />, dan <InlineMath math="17" /> menit.
 
-Dalam ribu rupiah, nilai ini adalah 671. Kurs beli lebih rendah daripada kurs jual, jadi **pelanggan menerima lebih sedikit daripada harga beli**.
+Lima orang kemudian, jadwal loket sudah bergeser tepat satu putaran <InlineMath math="12" /> menit, sedangkan kedatangan bergeser <InlineMath math="5\cdot 3=15" /> menit. Jadi **setiap lima nomor, waktu tunggu turun tiga menit**.
 
-Jadi, Rina menerima **671 ribu rupiah**.
+<BlockMath math="\text{tunggu}(n+5)=\text{tunggu}(n)+12-15=\text{tunggu}(n)-3" />
+
+# Waktu tunggu pertama kali habis
+
+Pola itu berlaku selama kedua loket terus sibuk, yaitu sampai ada orang yang tidak menunggu. Jadi cukup hitung untuk setiap posisi berapa putaran yang dibutuhkan sampai waktu tunggunya habis, lalu **ambil nomor yang paling kecil**.
+
+| Orang nomor | Waktu tunggu awal | Putaran sampai habis | Nomor tanpa menunggu |
+| --- | --- | --- | --- |
+| <InlineMath math="11" /> | <InlineMath math="21" /> | <InlineMath math="7" /> | <InlineMath math="46" /> |
+| <InlineMath math="12" /> | <InlineMath math="18" /> | <InlineMath math="6" /> | <InlineMath math="42" /> |
+| <InlineMath math="13" /> | <InlineMath math="19" /> | <InlineMath math="7" /> | <InlineMath math="48" /> |
+| <InlineMath math="14" /> | <InlineMath math="18" /> | <InlineMath math="6" /> | <InlineMath math="44" /> |
+| <InlineMath math="15" /> | <InlineMath math="17" /> | <InlineMath math="6" /> | <InlineMath math="45" /> |
+
+Nomor terkecil adalah <InlineMath math="42" />, karena <InlineMath math="12+5\cdot 6=42" /> dan <InlineMath math="18-3\cdot 6=0" />.
+
+# Pemeriksaan langsung
+
+Orang nomor <InlineMath math="42" /> datang <InlineMath math="3\cdot(42-10)=96" /> menit setelah 08.00, yaitu pukul 09.36. Loket B memulai pelayanan pukul 09.30 untuk orang nomor <InlineMath math="39" />, jadi **Loket B kosong tepat pukul 09.36**, saat orang nomor <InlineMath math="42" /> datang. Orang nomor <InlineMath math="41" /> sebelumnya masih menunggu <InlineMath math="21-3\cdot 6=3" /> menit, jadi tidak ada orang sebelum nomor <InlineMath math="42" /> yang langsung dilayani.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain berasal dari **cara menebak pola yang terlalu cepat**.
+
+- Nomor <InlineMath math="29" /> muncul jika orang dianggap bergantian ke Loket A dan Loket B.
+- Nomor <InlineMath math="45" /> muncul jika hanya jadwal Loket A yang diperhatikan.
+- Nomor <InlineMath math="46" /> muncul jika pola hanya diterapkan pada orang nomor <InlineMath math="11" />, yang waktu tunggunya paling lama.
+- Nomor <InlineMath math="50" /> muncul jika antrean <InlineMath math="10" /> orang dianggap berkurang satu setiap <InlineMath math="12" /> menit sampai habis setelah <InlineMath math="120" /> menit, padahal dua orang di antaranya langsung dilayani pukul 08.00.
+
+Jadi, orang pertama yang datang sesudah pukul 08.00 dan langsung dilayani adalah orang nomor <InlineMath math="42" />.

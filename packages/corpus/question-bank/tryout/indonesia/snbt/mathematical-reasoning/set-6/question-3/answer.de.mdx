@@ -1,13 +1,40 @@
-Lies für jede Aussage die passende Spalte und denke daran, dass **jedes Tor doppelt eingetragen wird**: als erzieltes Tor einer Mannschaft und als Gegentor des Gegners.
+Hahn K kann nur Wasser abgeben, das auch da ist. Deshalb **bestimmst du zuerst, wann der Tank leer ist**, und zählst dann, wie viele Minuten Hahn K wirklich <InlineMath math="50\text{ Liter}" /> pro Minute liefert. Dafür brauchst du den Füllstand beim Abschalten der letzten Pumpe, und dieser Füllstand ist durch die Kapazität von <InlineMath math="6{.}000\text{ Liter}" /> begrenzt.
 
-# Punkte und Niederlagen
+# Der Füllstand beim Abschalten der letzten Pumpe
 
-Mannschaft C hat <InlineMath math="3\cdot1+2=5" /> Punkte und Mannschaft D <InlineMath math="3\cdot1+1=4" /> Punkte, also ist die erste Aussage wahr. Mannschaft A hat **0 Niederlagen**, also ist die dritte Aussage wahr.
+Der Füllstand ändert sich um den Zufluss minus den Abfluss, den Nettozufluss. Rechne abschnittsweise, denn **der Nettozufluss wechselt jedes Mal, wenn ein Gerät startet oder stoppt**.
 
-# Tordifferenz und Gesamtzahl der Tore
+<BlockMath math="\begin{aligned} \text{05:00 bis 05:20 Uhr: } 1{.}000+60\cdot 20 &= 2{.}200 \\ \text{05:20 bis 05:40 Uhr: } 2{.}200+(60-50)\cdot 20 &= 2{.}400 \\ \text{05:40 bis 06:40 Uhr: } 2{.}400+(60+80-50)\cdot 60 &= 7{.}800 \end{aligned}" />
 
-Die Tordifferenz von B ist <InlineMath math="6-4=+2" />, nicht <InlineMath math="+3" />. Die zweite Aussage ist falsch.
+Die Zahl <InlineMath math="7{.}800" /> ist größer als die Kapazität. Der Tank war also schon vor 06:40 Uhr voll, und der Überschuss ist durch das Überlaufrohr abgeflossen. Der echte Füllstand um 06:40 Uhr beträgt <InlineMath math="6{.}000\text{ Liter}" />. Von 06:40 bis 07:00 Uhr ist der Nettozufluss <InlineMath math="60-50=10\text{ Liter/min}" />, weiter positiv, also bleibt der Tank voll. Um 07:00 Uhr, wenn Pumpe P ausgeht, **enthält der Tank genau <InlineMath math="6{.}000\text{ Liter}" />**.
 
-Die Spalte der erzielten Tore ergibt <InlineMath math="8+6+5+3+2=24" />. Auch die Gegentore ergeben 24, weil **beide Spalten dieselben Tore** von zwei Seiten zählen. Im ganzen Wettbewerb fielen also 24 Tore, nicht 48. Die vierte Aussage ist falsch.
+# Wann der Tank leer ist
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **wahr** und die vierte **falsch**.
+Nach 07:00 Uhr fließt kein Wasser mehr hinein, und Hahn K gibt <InlineMath math="50\text{ Liter}" /> pro Minute ab.
+
+<BlockMath math="\begin{aligned} \text{Zeit bis leer} &= \frac{6{.}000}{50} \\ &= 120\text{ Minuten} \end{aligned}" />
+
+Der Tank ist um 09:00 Uhr leer. Von 09:00 bis 10:00 Uhr läuft keine Pumpe, also **liefert Hahn K überhaupt kein Wasser**, obwohl er noch offen ist.
+
+# Das Wasser aus dem Hahn
+
+Hahn K **liefert wirklich Wasser von 05:20 bis 09:00 Uhr**, also <InlineMath math="220\text{ Minuten}" /> lang.
+
+<BlockMath math="50\cdot 220=11{.}000" />
+
+# Kontrolle mit einer Wasserbilanz
+
+Jeder Liter, der je im Tank war, landet an genau einer Stelle: durch Hahn K hinaus, durch das Überlaufrohr verloren oder noch im Tank. Beide Seiten dieser Bilanz **müssen gleich groß sein**. Vorhanden war der Anfangsbestand plus das Wasser beider Pumpen, <InlineMath math="1{.}000+60\cdot 120+80\cdot 60=13{.}000\text{ Liter}" />. Verloren gingen <InlineMath math="7{.}800-6{.}000=1{.}800\text{ Liter}" /> bis 06:40 Uhr und <InlineMath math="10\cdot 20=200\text{ Liter}" /> bis 07:00 Uhr, zusammen <InlineMath math="2{.}000\text{ Liter}" />. Um 10:00 Uhr ist der Tank leer.
+
+<BlockMath math="11{.}000+2{.}000+0=13{.}000" />
+
+Die Bilanz geht auf.
+
+# Fallen, die du vermeiden solltest
+
+Es gibt **zwei Grenzen, die man leicht vergisst**: die Kapazität und den leeren Tank.
+
+- Lässt du Hahn K die vollen <InlineMath math="280\text{ Minuten}" /> von 05:20 bis 10:00 Uhr laufen, erhältst du <InlineMath math="14{.}000\text{ Liter}" />. Dabei fehlt, dass der Tank um 09:00 Uhr leer ist.
+- Lässt du das Überlaufwasser im Tank, liegt der Füllstand um 07:00 Uhr bei <InlineMath math="8{.}000\text{ Liter}" />, der Tank ist erst um 09:40 Uhr leer, und du erhältst <InlineMath math="50\cdot 260=13{.}000\text{ Liter}" />. Dabei fehlt das Überlaufrohr.
+
+Durch Hahn K fließen an diesem Tag also wirklich <InlineMath math="11{.}000\text{ Liter}" /> Wasser.

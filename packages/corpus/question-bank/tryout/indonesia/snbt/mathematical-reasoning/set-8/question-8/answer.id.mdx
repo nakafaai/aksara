@@ -1,21 +1,41 @@
-Jumlah lantai lewat tangga adalah **jumlah jarak dari lantai berhenti ke setiap lantai tujuan**. Jarak ke bawah dan ke atas sama-sama dihitung.
+Kamu mencari saat pertama **uang yang diterima panitia mencapai biaya produksi**, yaitu <InlineMath math="\text{Rp}100{.}000{.}000" />. Rencananya: hitung uang yang diterima panitia per tiket di setiap tahap, jumlahkan tahap demi tahap, lalu cari berapa tiket normal yang masih dibutuhkan.
 
-# Menghitung beberapa pilihan
+# Uang yang diterima per tiket
 
-Hitung **jumlah jarak untuk setiap lantai berhenti** yang ada di pilihan.
+Panitia menerima <InlineMath math="90\%" /> dari harga tiket menurut tahapnya. Potongan dan biaya layanan menjadi urusan platform, jadi **keduanya tidak mengubah uang yang diterima panitia**.
 
-| Berhenti di | Jumlah lantai lewat tangga |
-| :---: | :---: |
-| 6 | <InlineMath math="3+0+0+4+9=16" /> |
-| 8 | <InlineMath math="5+2+2+2+7=18" /> |
-| 9 | <InlineMath math="6+3+3+1+6=19" /> |
-| 10 | <InlineMath math="7+4+4+0+5=20" /> |
-| 15 | <InlineMath math="12+9+9+5+0=35" /> |
+<BlockMath math="\begin{aligned}
+\text{early bird: } 90\%\cdot120{.}000&=108{.}000\\
+\text{presale: } 90\%\cdot150{.}000&=135{.}000\\
+\text{normal: } 90\%\cdot200{.}000&=180{.}000
+\end{aligned}" />
 
-# Mengapa median
+# Jumlah setelah dua tahap pertama
 
-Jika lift berhenti satu lantai di atas lantai 6, tiga karyawan yang menuju lantai 3, 6, dan 6 masing-masing berjalan satu lantai lebih jauh, sedangkan hanya dua karyawan yang berjalan lebih dekat. **Median, yaitu lantai 6, membuat jumlah jaraknya paling kecil**.
+Hitung dulu uang yang terkumpul ketika seluruh tiket early bird dan presale habis:
 
-Lantai 8 adalah rata-rata lantai tujuan, dan lantai 9 adalah titik tengah antara lantai terendah dan tertinggi. Keduanya memberi jumlah yang lebih besar.
+<BlockMath math="\begin{aligned}
+150\cdot108{.}000+300\cdot135{.}000&=16{.}200{.}000+40{.}500{.}000\\
+&=56{.}700{.}000
+\end{aligned}" />
 
-Jadi, lift sebaiknya berhenti di **lantai 6**.
+Jumlah ini masih kurang dari <InlineMath math="100{.}000{.}000" />, jadi **titik balik modal ada di tahap normal**.
+
+# Tiket normal yang dibutuhkan
+
+Kekurangannya <InlineMath math="100{.}000{.}000-56{.}700{.}000=43{.}300{.}000" /> rupiah. Setiap tiket normal menambah <InlineMath math="180{.}000" /> rupiah, jadi banyak tiket normal <InlineMath math="k" /> harus memenuhi:
+
+<BlockMath math="\begin{aligned}
+180{.}000k&\ge43{.}300{.}000\\
+k&\ge240\tfrac{5}{9}
+\end{aligned}" />
+
+Banyak tiket harus bulat, jadi **dibulatkan ke atas** menjadi <InlineMath math="k=241" />. Total tiket terjual <InlineMath math="450+241=691" />.
+
+Coba cek kedua sisinya. Setelah <InlineMath math="690" /> tiket, panitia menerima <InlineMath math="56{.}700{.}000+240\cdot180{.}000=99{.}900{.}000" /> rupiah, masih kurang. Setelah <InlineMath math="691" /> tiket, panitia menerima <InlineMath math="56{.}700{.}000+241\cdot180{.}000=100{.}080{.}000" /> rupiah, sudah mencapai biaya produksi.
+
+# Jawaban yang sering keliru
+
+Ada beberapa jalan pintas yang menghasilkan angka lain. Kalau bagian **sembilan puluh persen untuk panitia** terlupa, hasilnya <InlineMath math="635" /> tiket, karena <InlineMath math="63{.}000{.}000+185\cdot200{.}000=100{.}000{.}000" />. Kalau <InlineMath math="240\tfrac{5}{9}" /> dibulatkan ke bawah, hasilnya <InlineMath math="690" /> tiket, padahal uangnya belum cukup. Kalau potongan empat tiket ikut dikurangkan dari uang panitia, hasilnya terlalu besar, karena potongan itu ditanggung platform.
+
+Jadi, paling sedikit <InlineMath math="691" /> tiket harus terjual.

@@ -1,9 +1,44 @@
-Fill the places from left to right. Each place filled **leaves one fewer choice** for the next.
+You're looking for the number of boxes of cups for all five stations. The key is rule two: **each station gets its own whole boxes**. So here's the plan: find the planned cups at each station, round up to whole boxes station by station, then add the boxes of all five stations.
 
-# Multiplication rule
+# Planned cups at each station
 
-The first place can be any of 5 students, the second any of the 4 left, and so on.
+At stations 1 and 2 each runner takes <InlineMath math="1" /> cup, while at stations 3 to 5 **each runner takes two cups**. The <InlineMath math="10\%" /> reserve makes the planned cups equal to <InlineMath math="110\%" /> of the expected use.
 
-<BlockMath math="5\cdot4\cdot3\cdot2\cdot1=5!=120" />
+<BlockMath math="\begin{aligned}
+\text{station 1} &= 1.1\cdot1{,}200=1{,}320\\
+\text{station 2} &= 1.1\cdot1{,}180=1{,}298\\
+\text{station 3} &= 1.1\cdot(2\cdot1{,}140)=1.1\cdot2{,}280=2{,}508\\
+\text{station 4} &= 1.1\cdot(2\cdot1{,}100)=1.1\cdot2{,}200=2{,}420\\
+\text{station 5} &= 1.1\cdot(2\cdot1{,}050)=1.1\cdot2{,}100=2{,}310
+\end{aligned}" />
 
-So there are **120 different arrangements**.
+# Whole boxes for each station
+
+One box holds <InlineMath math="100" /> cups, and its contents can't be shared with another station. So each station needs its planned cups divided by <InlineMath math="100" />, **rounded up**, even when the extra is tiny.
+
+| Station | Planned cups | Planned cups divided by a hundred | Boxes |
+| :---: | :---: | :---: | :---: |
+| 1 | <InlineMath math="1{,}320" /> | <InlineMath math="13.2" /> | <InlineMath math="14" /> |
+| 2 | <InlineMath math="1{,}298" /> | <InlineMath math="12.98" /> | <InlineMath math="13" /> |
+| 3 | <InlineMath math="2{,}508" /> | <InlineMath math="25.08" /> | <InlineMath math="26" /> |
+| 4 | <InlineMath math="2{,}420" /> | <InlineMath math="24.2" /> | <InlineMath math="25" /> |
+| 5 | <InlineMath math="2{,}310" /> | <InlineMath math="23.1" /> | <InlineMath math="24" /> |
+
+<BlockMath math="\begin{aligned}
+\text{total boxes} &= 14+13+26+25+24=102
+\end{aligned}" />
+
+# Checking the leftover cups
+
+Each station's box count is the smallest possible exactly when its leftover cups are fewer than one box. The leftovers are <InlineMath math="80" />, <InlineMath math="2" />, <InlineMath math="92" />, <InlineMath math="80" />, and <InlineMath math="90" /> cups. All of them are under <InlineMath math="100" />, so **no station can drop a box**.
+
+# The wrong options
+
+Each wrong option **breaks one rule about packing or using cups**.
+
+- <InlineMath math="99" /> boxes divides the planned cups of all five stations together, <InlineMath math="9{,}856" />, by <InlineMath math="100" /> in one go. That treats one box as if it could be split between stations.
+- <InlineMath math="98" /> boxes rounds to the nearest whole number, so station 3 gets only <InlineMath math="25" /> boxes for <InlineMath math="2{,}508" /> cups.
+- <InlineMath math="90" /> boxes forgets the <InlineMath math="10\%" /> reserve.
+- <InlineMath math="65" /> boxes forgets that runners at stations 3 to 5 take <InlineMath math="2" /> cups.
+
+So the organisers have to provide <InlineMath math="102" /> boxes of cups for the five stations.

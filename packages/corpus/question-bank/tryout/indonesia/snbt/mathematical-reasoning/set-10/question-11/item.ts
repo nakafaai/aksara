@@ -1,30 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "class-photo",
+  stimulus: "marathon-water",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label: "Banyak susunan dengan Citra di posisi tengah adalah 24.",
+          column: 2,
+          label:
+            "Pos yang dilewati pelari paling banyak juga merupakan pos yang memerlukan dus gelas paling banyak.",
         },
         {
           column: 1,
           label:
-            "Banyak susunan dengan Ani di sebelah kiri Budi, tidak harus berdampingan, sama dengan banyak susunan dengan Budi di sebelah kiri Ani.",
+            "Jika ternyata $$1{.}290$$ pelari melewati pos 3 dan setiap pelari mengambil $$2$$ gelas, gelas dalam dus yang diterima pos 3 masih cukup.",
+        },
+        {
+          column: 1,
+          label:
+            "Jika setiap pos menerima semua galon yang diperlukannya, tepat separuh dari seluruh galon untuk kelima pos dipakai di pos 3 dan pos 4.",
         },
         {
           column: 2,
           label:
-            "Jika hanya 3 dari 5 siswa itu yang berfoto berjajar dan urutan dari kiri ke kanan diperhatikan, banyak susunannya adalah 10.",
-        },
-        {
-          column: 2,
-          label:
-            "Banyak susunan dengan Dodi dan Eka menempati kedua ujung baris adalah 6.",
+            "Jika ternyata $$1{.}310$$ pelari melewati pos 2 dan setiap pelari mengambil $$1$$ gelas, gelas dalam dus yang diterima pos 2 masih cukup.",
         },
       ],
     },

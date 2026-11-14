@@ -1,13 +1,49 @@
-Ukuran berkas dalam megabita, sedangkan kecepatan dalam megabit per detik. **Ubah ukuran berkas ke megabit dulu**, lalu bagi dengan kecepatan.
+Kita mencari urutan tiga kegiatan yang membuat baterai pukul 16.30 paling tinggi. Rencananya: pahami dulu kapan pemakaian paling hemat dan kapan pengisian paling cepat, hitung urutan terbaik, lalu bandingkan dengan semua urutan lain.
 
-# Ukuran berkas dalam megabit
+# Mengapa urutan berpengaruh
 
-<BlockMath math="600\text{ MB}\cdot8=4{.}800\text{ megabit}" />
+Dua aturan membuat urutan penting. Pertama, **mode hemat daya memotong laju gim dan membaca menjadi setengahnya**, tetapi hanya saat baterai <InlineMath math="20\%" /> atau kurang. Jadi, gim dan membaca lebih murah kalau dikerjakan saat baterai sudah rendah. Kedua, pengisi daya menambah <InlineMath math="40\%" /> per jam hanya selama baterai di bawah <InlineMath math="80\%" />, jadi pengisian paling cepat saat baterai rendah.
 
-# Waktu unduh
+Kedua aturan itu menunjuk ke arah yang sama: **habiskan baterai dulu, isi daya paling akhir**. Kamu tetap perlu memeriksa bahwa ponsel tidak mati di tengah jalan.
 
-<BlockMath math="\frac{4{.}800}{40}=120\text{ detik}" />
+# Gim dan membaca lebih dulu
 
-Jika satuan tidak disamakan, hasilnya 15 detik, yaitu **delapan kali terlalu cepat**.
+Mulai dengan gim. Baterai turun dari <InlineMath math="22\%" /> ke <InlineMath math="20\%" /> dengan laju penuh <InlineMath math="30\%" /> per jam. Begitu baterai <InlineMath math="20\%" />, **mode hemat daya menyala dan laju gim menjadi <InlineMath math="15\%" /> per jam**. Misalkan <InlineMath math="t" /> adalah waktu sampai baterai <InlineMath math="20\%" />.
 
-Jadi, berkas itu terunduh dalam **120 detik**.
+<BlockMath math="\begin{aligned}
+t &= \frac{22-20}{30}\text{ jam}=\frac{1}{15}\text{ jam}=4\text{ menit} \\
+\text{baterai setelah gim} &= 20\%-15\%\cdot\frac{56}{60}=20\%-14\%=6\%
+\end{aligned}" />
+
+Membaca berlangsung seluruhnya dalam mode hemat daya dengan laju <InlineMath math="5\%" /> per jam, jadi baterai turun dari <InlineMath math="6\%" /> ke <InlineMath math="1\%" />. Ponsel tidak sempat mati. Kalau membaca dikerjakan sebelum gim, hasilnya tetap <InlineMath math="1\%" />: membaca membawa baterai ke <InlineMath math="16\%" />, lalu gim dengan laju hemat <InlineMath math="15\%" /> per jam membawanya ke <InlineMath math="1\%" />.
+
+# Mengisi daya paling akhir
+
+Saat diisi tanpa dipakai, ponsel berada dalam keadaan siaga. Jadi, **baterai bertambah <InlineMath math="40\%-4\%=36\%" /> per jam**. Mode hemat daya tidak mengubah laju siaga.
+
+<BlockMath math="1\%+36\%\cdot1{,}5=1\%+54\%=55\%" />
+
+Baterai tetap di bawah <InlineMath math="80\%" /> sepanjang pengisian, jadi laju <InlineMath math="40\%" /> per jam berlaku penuh selama <InlineMath math="1{,}5" /> jam itu.
+
+# Membandingkan semua urutan
+
+Pengisian <InlineMath math="1{,}5" /> jam selalu menambah <InlineMath math="54\%" />, karena di urutan mana pun baterai tidak mencapai <InlineMath math="80\%" /> saat diisi. **Yang membedakan hanyalah seberapa banyak gim dan membaca terjadi dalam mode hemat daya.**
+
+| Urutan | Hitungan baterai | Baterai pukul 16.30 |
+| --- | --- | --- |
+| Gim, membaca, isi daya | <InlineMath math="1\%+54\%" /> | <InlineMath math="55\%" /> |
+| Membaca, gim, isi daya | <InlineMath math="1\%+54\%" /> | <InlineMath math="55\%" /> |
+| Gim, isi daya, membaca | <InlineMath math="6\%+54\%-10\%" /> | <InlineMath math="50\%" /> |
+| Membaca, isi daya, gim | <InlineMath math="16\%+54\%-30\%" /> | <InlineMath math="40\%" /> |
+| Isi daya, lalu gim dan membaca | <InlineMath math="22\%+54\%-30\%-10\%" /> | <InlineMath math="36\%" /> |
+
+Pada tiga baris terakhir, kegiatan sesudah pengisian terjadi saat baterai di atas <InlineMath math="20\%" />, jadi lajunya penuh. Nilai terbesar di tabel adalah <InlineMath math="55\%" />.
+
+# Pilihan yang keliru
+
+- <InlineMath math="36\%" /> muncul kalau kamu **mengisi daya lebih dulu**. Nilai ini juga muncul kalau mode hemat daya diabaikan: gim dan membaca dengan laju penuh menghabiskan <InlineMath math="40\%" />, lebih dari <InlineMath math="22\%" />, sehingga urutan terbaik tampak membuat ponsel mati.
+- <InlineMath math="40\%" /> adalah hasil urutan membaca, isi daya, lalu gim.
+- <InlineMath math="50\%" /> adalah hasil urutan gim, isi daya, lalu membaca.
+- <InlineMath math="61\%" /> muncul kalau kamu lupa bahwa ponsel siaga tetap memakai <InlineMath math="4\%" /> per jam saat diisi, sehingga tambahannya dihitung <InlineMath math="40\%\cdot1{,}5=60\%" />.
+
+Jadi, baterai pukul 16.30 paling tinggi <InlineMath math="55\%" />, dicapai dengan bermain gim dan membaca lebih dulu, lalu mengisi daya paling akhir.

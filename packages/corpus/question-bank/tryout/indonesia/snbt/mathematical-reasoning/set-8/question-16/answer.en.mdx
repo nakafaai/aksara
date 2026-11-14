@@ -1,18 +1,38 @@
-Compare **the number of students with at least one vaccine** with the number the target asks for.
+You're finding where Eko gets in from the size of Budi's share. That spot is unknown, so **split the ordinary road into possible locations**, work out Budi's share for each one, then find the one that can give <InlineMath math="\text{Rp}23{,}420" />. Fuel costs <InlineMath math="1{,}300" /> rupiah per kilometre.
 
-# Target and current state
+# The possible locations
+
+Eko gets in before the toll road or after it. The ordinary road runs from km <InlineMath math="0" /> to <InlineMath math="24" /> and from km <InlineMath math="48" /> to <InlineMath math="60" />, so there are **three possible locations**: before Budi gets in, between Budi and Citra, or after the toll road.
+
+# Eko gets in at km twelve or earlier
+
+If Eko gets in at km <InlineMath math="12" /> or earlier, he's in the car the whole time Budi is. Budi shares km <InlineMath math="12" /> to <InlineMath math="24" /> with Pak Andi and Eko, the toll road with four people, and the last section with five:
+
+<BlockMath math="\frac{15{,}600}{3}+\frac{31{,}200}{4}+\frac{24{,}000}{4}+\frac{15{,}600}{5}=5{,}200+7{,}800+6{,}000+3{,}120=22{,}120" />
+
+That's always <InlineMath math="22{,}120" />, not <InlineMath math="23{,}420" />, so **this case is ruled out**.
+
+# Eko gets in after the toll road
+
+If Eko gets in at km <InlineMath math="48" /> or later, Budi pays as usual up to km <InlineMath math="48" />, which is <InlineMath math="7{,}800+10{,}400+8{,}000=26{,}200" />. That's already more than <InlineMath math="23{,}420" />, and the last section still adds to it. So **this case is ruled out too**.
+
+# Eko gets in between Budi and Citra
+
+Say Eko gets in at km <InlineMath math="e" />, with <InlineMath math="e" /> between <InlineMath math="12" /> and <InlineMath math="24" />. From km <InlineMath math="12" /> to <InlineMath math="e" />, Budi shares with Pak Andi. From km <InlineMath math="e" /> to <InlineMath math="24" />, Budi shares with Pak Andi and Eko. After that, **his share is the same as in the first case**, <InlineMath math="7{,}800+6{,}000+3{,}120=16{,}920" />.
 
 <BlockMath math="\begin{aligned}
-\text{target}&=95\%\cdot480=456\\
-\text{now}&=480-60=420
+\frac{1{,}300(e-12)}{2}+\frac{1{,}300(24-e)}{3}+16{,}920&=23{,}420\\
+650(e-12)+\frac{1{,}300(24-e)}{3}&=6{,}500\\
+1{,}950(e-12)+1{,}300(24-e)&=19{,}500\\
+3(e-12)+2(24-e)&=30\\
+e+12&=30\\
+e&=18
 \end{aligned}" />
 
-# Shortfall
+<InlineMath math="18" /> really lies between <InlineMath math="12" /> and <InlineMath math="24" />, so this case's condition holds.
 
-<BlockMath math="456-420=36" />
+# Checking the answer
 
-Each extra student comes from the 60 unvaccinated students, so **36 students are indeed available**.
+Put in <InlineMath math="e=18" />. The section from km <InlineMath math="12" /> to <InlineMath math="18" /> costs <InlineMath math="6\cdot1{,}300=7{,}800" />, split two ways into <InlineMath math="3{,}900" />. The section from km <InlineMath math="18" /> to <InlineMath math="24" /> also costs <InlineMath math="7{,}800" />, split three ways into <InlineMath math="2{,}600" />. Budi's share is <InlineMath math="3{,}900+2{,}600+16{,}920=23{,}420" />, **exactly the given amount**.
 
-The value 57 is <InlineMath math="95\%" /> of the 60 unvaccinated students. The value 60 vaccinates every unvaccinated student, more than needed. The value 116 counts only the 340 students with exactly one vaccine, and 156 counts only the 300 influenza recipients.
-
-So at least **36 more students** must be vaccinated.
+So Eko gets in at km <InlineMath math="18" />.

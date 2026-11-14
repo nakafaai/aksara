@@ -1,23 +1,41 @@
-Schreibe die Kosten jedes Tarifs als Funktion des Verbrauchs <InlineMath math="x" /> GB über dem Inklusivvolumen. Für <InlineMath math="x>10" /> **kostet Hemat <InlineMath math="50\,000+9\,000(x-10)" />**, und für <InlineMath math="x>20" /> kostet Bebas <InlineMath math="95\,000+5\,000(x-20)" />.
+Die Tickets werden von vorn nach hinten verkauft, also gehen zuerst alle Plätze der Kategorie A weg, dann Kategorie B, dann Kategorie C. Der Plan: Berechne die Einnahmen jeder ausverkauften Kategorie, **finde die Kategorie, in der die Summe das Ziel überschreitet**, und zähle dann die Tickets in dieser Kategorie.
 
-# Verbrauch von 25 GB und 12 GB
+# Plätze in den Kategorien A und B
 
-<BlockMath math="\begin{aligned}
-\text{Hemat}(25)&=50\,000+15\cdot9\,000=185\,000\\
-\text{Bebas}(25)&=95\,000+5\cdot5\,000=120\,000
-\end{aligned}" />
-
-Der Unterschied ist 65 000, also ist die erste Aussage wahr. Bei 12 GB kostet Hemat <InlineMath math="50\,000+2\cdot9\,000=68\,000" />, **günstiger als 95 000**. Die zweite Aussage ist falsch.
-
-# Wachstum des Unterschieds und Budgetgrenze
-
-Über 20 GB kommen pro GB bei Hemat 9 000 und bei Bebas 5 000 Rupiah hinzu, der Unterschied **wächst also um 4 000 Rupiah pro GB**. Die dritte Aussage ist wahr.
+Reihe <InlineMath math="n" /> hat <InlineMath math="19+2(n-1)=17+2n" /> Plätze. Die Plätze pro Reihe bilden eine arithmetische Folge, also ist **die Summe einer Kategorie die Anzahl der Reihen mal der Mittelwert aus ihrer ersten und letzten Reihe**.
 
 <BlockMath math="\begin{aligned}
-50\,000+9\,000(x-10)&\le150\,000\\
-x-10&\le\tfrac{100}{9}\approx11{,}1
+\text{A, Reihen }1\text{ bis }6 &: \tfrac{6(19+29)}{2}=144\text{ Plätze}\\
+\text{B, Reihen }7\text{ bis }16 &: \tfrac{10(31+49)}{2}=400\text{ Plätze}
 \end{aligned}" />
 
-Der Verbrauch zählt in ganzen GB, also höchstens 21 GB. Ein Verbrauch von 22 GB kostet 158 000 und übersteigt das Budget. Die vierte Aussage ist falsch.
+# Einnahmen nach dem Ausverkauf von A und B
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **wahr** und die vierte **falsch**.
+Multipliziere die Platzzahl mit dem Preis der Kategorie, denn **der Ticketpreis hängt von der Kategorie der Reihe ab**.
+
+<BlockMath math="\begin{aligned}
+\text{Einnahmen aus A} &= 144\cdot\text{Rp}250{.}000=\text{Rp}36{.}000{.}000\\
+\text{Einnahmen aus A und B} &= \text{Rp}36{.}000{.}000+400\cdot\text{Rp}150{.}000=\text{Rp}96{.}000{.}000
+\end{aligned}" />
+
+Nach <InlineMath math="144+400=544" /> Tickets liegen die Einnahmen erst bei <InlineMath math="\text{Rp}96{.}000{.}000" />. Also **ist Kategorie B ausverkauft, bevor das Ziel erreicht ist**, und der Rest muss aus Tickets der Kategorie C kommen.
+
+# Die nötigen Tickets der Kategorie C
+
+Bis zum Ziel fehlen <InlineMath math="\text{Rp}100{.}000{.}000-\text{Rp}96{.}000{.}000=\text{Rp}4{.}000{.}000" />. Jedes Ticket der Kategorie C bringt <InlineMath math="\text{Rp}100{.}000" />.
+
+<BlockMath math="\begin{aligned}
+\text{Tickets in C} &= \frac{4{.}000{.}000}{100{.}000}=40\\
+\text{Tickets insgesamt} &= 144+400+40=584
+\end{aligned}" />
+
+# Kontrolle
+
+Nach <InlineMath math="583" /> Tickets betragen die Einnahmen <InlineMath math="\text{Rp}96{.}000{.}000+39\cdot\text{Rp}100{.}000=\text{Rp}99{.}900{.}000" />, also **noch unter dem Ziel**. Ticket Nummer <InlineMath math="584" /> bringt sie auf genau <InlineMath math="\text{Rp}100{.}000{.}000" />. Reihe <InlineMath math="17" /> hat <InlineMath math="51" /> Plätze, also liegen diese <InlineMath math="40" /> Tickets der Kategorie C alle in Reihe <InlineMath math="17" />.
+
+# Typische falsche Antworten
+
+- Die Antwort <InlineMath math="571" /> nimmt an, dass die nach Kategorie A fehlenden <InlineMath math="\text{Rp}64{.}000{.}000" /> aus Kategorie B kommen, also aus <InlineMath math="427" /> Tickets. Aber **Kategorie B hat nur** <InlineMath math="400" /> **Plätze**.
+- Die Antwort <InlineMath math="400" /> teilt <InlineMath math="\text{Rp}100{.}000{.}000" /> durch den Preis der Kategorie A, als würde jedes Ticket <InlineMath math="\text{Rp}250{.}000" /> kosten.
+
+Die Einnahmen erreichen <InlineMath math="\text{Rp}100{.}000{.}000{,}00" /> also zum ersten Mal, wenn <InlineMath math="584" /> Tickets verkauft sind.

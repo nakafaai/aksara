@@ -1,15 +1,29 @@
-The robot moves only along streets, so it cannot travel in a straight line. Its shortest travel distance is **the number of blocks east plus the number of blocks north** it must cover.
+You're looking for the salinity after the tank is refilled with artificial seawater. The plan: track the amount of salt and the amount of water separately, because salinity is salt divided by water, and evaporation only takes away water.
 
-# Number of blocks
+# Salt and water before the refill
 
-From <InlineMath math="(0,0)" /> to <InlineMath math="(3,4)" />, the robot must travel 3 blocks east and 4 blocks north, **in any order**.
+When full, the tank holds <InlineMath math="120\cdot34=4{,}080" /> grams of salt. Over <InlineMath math="6" /> days, <InlineMath math="6\cdot4=24\text{ liters}" /> of water evaporate. **The salt doesn't evaporate**, so there are still <InlineMath math="4{,}080" /> grams of salt in <InlineMath math="96\text{ liters}" /> of water.
 
-<BlockMath math="3+4=7\text{ blocks}" />
+<BlockMath math="\frac{4{,}080}{96}=42.5\text{ g/L}" />
 
-# Travel distance
+The salinity goes up because the water shrinks while the salt stays.
 
-<BlockMath math="7\cdot100=700\text{ m}" />
+# Refilling with artificial seawater
 
-The straight-line distance <InlineMath math="\sqrt{3^2+4^2}=5" /> blocks, or 500 m, **is not available to the robot**, because it cuts through city blocks.
+To fill the tank again, <InlineMath math="24\text{ liters}" /> of artificial seawater go in. **This refill water brings its own salt**, namely <InlineMath math="24\cdot35=840" /> grams.
 
-So the shortest travel distance from G to A is **700 m**.
+<BlockMath math="\begin{aligned}
+\text{final salt} &= 4{,}080+840=4{,}920\text{ grams} \\
+\text{final salinity} &= \frac{4{,}920}{120}=41\text{ g/L}
+\end{aligned}" />
+
+As a check, <InlineMath math="41" /> lies between <InlineMath math="35" /> and <InlineMath math="42.5" />, as it should when you mix <InlineMath math="96\text{ liters}" /> at <InlineMath math="42.5\text{ g/L}" /> with <InlineMath math="24\text{ liters}" /> at <InlineMath math="35\text{ g/L}" />. It's above <InlineMath math="36\text{ g/L}" />, so it's no longer safe for the fish.
+
+# The wrong options
+
+- <InlineMath math="34\text{ g/L}" /> comes from assuming a refill always restores the old salinity. That's only true **when the refill water is fresh water**.
+- <InlineMath math="34.2\text{ g/L}" /> comes from treating the <InlineMath math="96\text{ liters}" /> left as still being at <InlineMath math="34\text{ g/L}" />, when evaporation has already concentrated it.
+- <InlineMath math="35\text{ g/L}" /> comes from assuming the tank takes on the salinity of the refill water.
+- <InlineMath math="42.5\text{ g/L}" /> is the salinity before the refill, so it stops one step too early.
+
+So the salinity after the refill is <InlineMath math="41\text{ g/L}" />.

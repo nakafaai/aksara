@@ -1,7 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "floor-tiles",
+  stimulus: "stair-design",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -10,22 +10,21 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Biaya pembelian ubin sesuai saran tukang dengan jumlah dus paling sedikit adalah $$\\text{Rp}1{.}632{.}000{,}00$$.",
+            "Tangga dengan $$18$$ anak tangga tidak dapat memakai pijakan selebar $$28\\text{ cm}$$.",
+        },
+        {
+          column: 1,
+          label: "Ada rancangan dengan $$19$$ anak tangga yang memenuhi kedua aturan.",
         },
         {
           column: 2,
           label:
-            "Lantai yang sama juga dapat ditutup ubin persegi berukuran $$40\\text{ cm}\\times40\\text{ cm}$$ tanpa memotong ubin.",
+            "Tangga dengan $$20$$ anak tangga dan pijakan selebar $$34\\text{ cm}$$ memenuhi kedua aturan.",
         },
         {
           column: 1,
           label:
-            "Jika dibeli dus dengan jumlah paling sedikit sesuai saran tukang, setelah lantai selesai dipasang tersisa 24 ubin, dengan anggapan tidak ada ubin yang pecah.",
-        },
-        {
-          column: 2,
-          label:
-            "Tanpa cadangan, banyak dus paling sedikit yang diperlukan adalah 16 dus.",
+            "Tangga dengan $$16$$ anak tangga dan pijakan selebar $$28\\text{ cm}$$ memenuhi kedua aturan dan panjang horizontalnya $$420\\text{ cm}$$.",
         },
       ],
     },

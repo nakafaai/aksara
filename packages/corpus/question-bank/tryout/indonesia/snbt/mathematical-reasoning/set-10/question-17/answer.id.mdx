@@ -1,17 +1,54 @@
-Luas seluruhnya adalah **luas persegi panjang luar**, sedangkan luas foto <InlineMath math="24\cdot36=864" /> <InlineMath math="\text{cm}^2" />. Susun persamaan, lalu selesaikan persamaan kuadratnya.
+Kamu mencari hari pertama ketika total laba bersih mencapai <InlineMath math="1{.}500{.}000" />. Sewa dibayar sekaligus setiap Senin, jadi **laba bersih harian tidak sama setiap hari**. Rencananya begini: hitung laba kotor setiap hari dari grafik, kurangi upah dan sewa sesuai harinya, lalu jumlahkan hari demi hari sampai totalnya mencapai modal.
 
-# Menyusun persamaan
+# Laba kotor setiap hari
+
+Laba per porsi adalah <InlineMath math="4{.}000" /> untuk nasi ayam, <InlineMath math="3{.}000" /> untuk mi goreng, dan <InlineMath math="2{.}000" /> untuk es jeruk. Kalikan dengan porsi pada grafik, lalu jumlahkan **ketiga menu pada hari yang sama**.
 
 <BlockMath math="\begin{aligned}
-(24+2x)(36+2x)&=2\cdot864\\
-864+120x+4x^2&=1{.}728\\
-x^2+30x-216&=0
+\text{Senin} &= 40\cdot4{.}000+30\cdot3{.}000+40\cdot2{.}000=330{.}000\\
+\text{Selasa} &= 30\cdot4{.}000+25\cdot3{.}000+65\cdot2{.}000=325{.}000\\
+\text{Rabu} &= 20\cdot4{.}000+10\cdot3{.}000+40\cdot2{.}000=190{.}000\\
+\text{Kamis} &= 35\cdot4{.}000+20\cdot3{.}000+45\cdot2{.}000=290{.}000\\
+\text{Jumat} &= 25\cdot4{.}000+15\cdot3{.}000+60\cdot2{.}000=265{.}000
 \end{aligned}" />
 
-# Menyelesaikan persamaan
+# Laba bersih setiap hari
 
-<BlockMath math="(x+36)(x-6)=0" />
+Setiap hari dikurangi upah <InlineMath math="70{.}000" />, dan **hanya Senin yang juga dikurangi sewa** <InlineMath math="350{.}000" />.
 
-Lebar bingkai tidak mungkin negatif, jadi **hanya x = 6 yang berlaku**. Ukuran luarnya <InlineMath math="36\times48" />, dan <InlineMath math="36\cdot48=1{.}728=2\cdot864" />.
+<BlockMath math="\begin{aligned}
+\text{Senin} &= 330{.}000-70{.}000-350{.}000=-90{.}000\\
+\text{Selasa} &= 325{.}000-70{.}000=255{.}000\\
+\text{Rabu} &= 190{.}000-70{.}000=120{.}000\\
+\text{Kamis} &= 290{.}000-70{.}000=220{.}000\\
+\text{Jumat} &= 265{.}000-70{.}000=195{.}000
+\end{aligned}" />
 
-Jadi, lebar bingkai yang diperlukan adalah **6 cm**.
+Satu minggu memberi laba bersih <InlineMath math="-90{.}000+255{.}000+120{.}000+220{.}000+195{.}000=700{.}000" />.
+
+# Total laba bersih hari demi hari
+
+| Hari | Minggu pertama | Minggu kedua | Minggu ketiga |
+| :---: | :---: | :---: | :---: |
+| Senin | <InlineMath math="-90{.}000" /> | <InlineMath math="610{.}000" /> | <InlineMath math="1{.}310{.}000" /> |
+| Selasa | <InlineMath math="165{.}000" /> | <InlineMath math="865{.}000" /> | <InlineMath math="1{.}565{.}000" /> |
+| Rabu | <InlineMath math="285{.}000" /> | <InlineMath math="985{.}000" /> | |
+| Kamis | <InlineMath math="505{.}000" /> | <InlineMath math="1{.}205{.}000" /> | |
+| Jumat | <InlineMath math="700{.}000" /> | <InlineMath math="1{.}400{.}000" /> | |
+
+Pada Senin minggu ketiga, sewa membuat total **turun dari** <InlineMath math="1{.}400{.}000" /> menjadi <InlineMath math="1{.}310{.}000" />, masih di bawah modal. Pada Selasa minggu ketiga, totalnya <InlineMath math="1{.}565{.}000\ge1{.}500{.}000" />.
+
+# Pemeriksaan
+
+Total setiap Jumat adalah kelipatan <InlineMath math="700{.}000" />, sesuai laba bersih satu minggu. Setelah dua minggu totalnya <InlineMath math="1{.}400{.}000" />, jadi modal **pasti kembali pada minggu ketiga**, dan tabel menunjukkan harinya Selasa.
+
+# Pilihan yang keliru
+
+Setiap pilihan yang keliru **salah memasukkan sewa atau upah ke dalam total**.
+
+- Senin pada minggu kedua mengabaikan sewa dan upah, sehingga hanya menjumlahkan laba kotor.
+- Selasa pada minggu kedua lupa sewa mingguan.
+- Rabu pada minggu kedua lupa upah harian.
+- Senin pada minggu ketiga membagi sewa rata ke setiap hari, atau memakai rata-rata <InlineMath math="140{.}000" /> per hari. Padahal sewa dibayar penuh setiap Senin, sehingga total Senin itu baru <InlineMath math="1{.}310{.}000" />.
+
+Jadi, total laba bersih pertama kali mencapai modal peralatan pada Selasa minggu ketiga.

@@ -1,15 +1,38 @@
-Write the condition as the equation <InlineMath math="F-C=60" />, then **replace F with its conversion formula** so that only one variable is left.
+All four notes need the full picture of the water level from 06.00 to 14.00. The plan: pair each gauge hour with the rain that arrives <InlineMath math="2" /> hours later, subtract <InlineMath math="30\text{ cm}" /> while the floodgate is open, then judge each note with that table.
 
-# Setting up and solving the equation
+# The water level through the day
 
-<BlockMath math="\begin{aligned}
-\tfrac95C+32-C&=60\\
-\tfrac45C&=28\\
-C&=35
-\end{aligned}" />
+**Each hour's change uses the rain from two hours earlier**, and from 08.40 on the level never drops below <InlineMath math="250\text{ cm}" />, so the floodgate stays open until 14.00. Between 08.00 and 09.00, the water rises <InlineMath math="60\text{ cm}" /> per hour until it reaches <InlineMath math="250\text{ cm}" /> at 08.40, then <InlineMath math="30\text{ cm}" /> per hour.
 
-# Check
+| Hour at the gauge | Rain arriving | Change | Level at the end of the hour |
+| --- | --- | --- | --- |
+| 06.00-07.00 | <InlineMath math="30\text{ mm}" /> | <InlineMath math="+40" /> | <InlineMath math="180\text{ cm}" /> |
+| 07.00-08.00 | <InlineMath math="25\text{ mm}" /> | <InlineMath math="+30" /> | <InlineMath math="210\text{ cm}" /> |
+| 08.00-09.00 | <InlineMath math="40\text{ mm}" /> | <InlineMath math="+40+10" /> | <InlineMath math="260\text{ cm}" /> |
+| 09.00-10.00 | <InlineMath math="55\text{ mm}" /> | <InlineMath math="90-30=+60" /> | <InlineMath math="320\text{ cm}" /> |
+| 10.00-11.00 | <InlineMath math="35\text{ mm}" /> | <InlineMath math="50-30=+20" /> | <InlineMath math="340\text{ cm}" /> |
+| 11.00-12.00 | <InlineMath math="20\text{ mm}" /> | <InlineMath math="20-30=-10" /> | <InlineMath math="330\text{ cm}" /> |
+| 12.00-13.00 | <InlineMath math="15\text{ mm}" /> | <InlineMath math="10-30=-20" /> | <InlineMath math="310\text{ cm}" /> |
+| 13.00-14.00 | <InlineMath math="5\text{ mm}" /> | <InlineMath math="-10-30=-40" /> | <InlineMath math="270\text{ cm}" /> |
 
-<InlineMath math="35^\circ\text{C}" /> in Fahrenheit is <InlineMath math="\tfrac95\cdot35+32=63+32=95" />, and <InlineMath math="95-35=60" />. **The difference is exactly 60**.
+# The note about the highest level
 
-So the temperature that day was **35 °C**.
+The water rises until 11.00 and falls after that, so **the peak is <InlineMath math="340\text{ cm}" /> at 11.00**. The first note is **true**.
+
+# The note about rain and falling water
+
+From 11.00 to 12.00, <InlineMath math="20\text{ mm}" /> of rain still arrives, but the change is <InlineMath math="2\cdot20-20-30=-10\text{ cm}" />. **The open floodgate makes the water fall even while rain is still arriving.** The same happens in the next two hours. The second note is **false**.
+
+# The note about a river without a floodgate
+
+Without the floodgate, the hourly changes are <InlineMath math="+40" />, <InlineMath math="+30" />, <InlineMath math="+60" />, <InlineMath math="+90" />, <InlineMath math="+50" />, <InlineMath math="+20" />, <InlineMath math="+10" />, and <InlineMath math="-10" />.
+
+<BlockMath math="140+40+30+60+90+50+20+10=440\text{ cm}" />
+
+**The peak is <InlineMath math="440\text{ cm}" /> at 13.00**, before it drops to <InlineMath math="430\text{ cm}" /> at 14.00. Since <InlineMath math="440>400" />, the third note is **true**.
+
+# The note about the heaviest rain
+
+The heaviest rain, <InlineMath math="55\text{ mm}" />, falls from 07.00 to 08.00, so it stops at 08.00. The Siaga status, at <InlineMath math="250\text{ cm}" />, first starts at 08.40. **Rainwater takes two hours to arrive**, so the biggest rise only comes after the rain itself has stopped. The fourth note is **true**.
+
+So the first note is true, the second is false, the third is true, and the fourth is true.

@@ -1,17 +1,39 @@
-Banyak obat paling rendah terjadi **tepat sebelum dosis berikutnya diminum**. Jadi periksa titik-titik itu untuk setiap nilai <InlineMath math="T" />.
+Kita mencari jarak antarbaris terbesar yang masih memberi paling sedikit <InlineMath math="336" /> bibit. Rencananya, hitung banyak baris yang dibutuhkan, bagi baris itu ke dua bagian tanam, lalu cari jarak terbesar yang memuat baris sebanyak itu di setiap bagian. **Saluran membuat baris harus dibagi ke dua pita yang terpisah**.
 
-# Titik terendah pertama
+# Banyak baris yang dibutuhkan
 
-Tepat sebelum dosis kedua, tubuh hanya berisi sisa dosis pertama, yaitu <InlineMath math="360\cdot\left(\tfrac12\right)^{T/8}" />. **Batas 90 mg harus terpenuhi di titik ini**, jadi
+Jarak dalam baris tidak berubah, jadi **setiap baris tetap memuat <InlineMath math="28" /> bibit** pada ruas <InlineMath math="22\text{ m}" />.
 
-<BlockMath math="360\cdot\left(\tfrac12\right)^{T/8}\ge90\;\Longleftrightarrow\;\left(\tfrac12\right)^{T/8}\ge\tfrac14\;\Longleftrightarrow\;\tfrac{T}{8}\le2\;\Longleftrightarrow\;T\le16" />
+<BlockMath math="\frac{336}{28}=12" />
 
-# Memeriksa T sama dengan 16 dan 24
+Pak Darto butuh paling sedikit <InlineMath math="12" /> baris.
 
-Untuk <InlineMath math="T=16" />, banyak obat pukul 22.00 tepat 90 mg, dan nilai ini **masih memenuhi syarat tidak kurang dari 90 mg**. Setelah dosis kedua banyaknya menjadi 450 mg, dan pada akhir 24 jam pertama masih <InlineMath math="450\cdot\tfrac12=225" /> mg.
+# Baris di setiap bagian tanam
 
-Untuk <InlineMath math="T=24" />, tidak ada dosis kedua sebelum jam ke-24, dan tepat sebelum jam ke-24 obat tinggal 45 mg. Nilai ini tidak memenuhi.
+Kedua bagian tanam sama lebar dan aturannya sama, jadi dengan jarak antarbaris yang sama keduanya memuat baris sama banyak. Total <InlineMath math="12" /> baris berarti **setiap bagian harus memuat paling sedikit <InlineMath math="6" /> baris**. Baris hanya boleh berada pada pita <InlineMath math="7-1-0{,}5=5{,}5" /> meter.
 
-Nilai 4, 8, dan 12 jam juga memenuhi, tetapi semuanya lebih kecil dari 16. Nilai 8 jam sering dipilih karena sama dengan waktu paruh, padahal syaratnya hanya batas 90 mg.
+# Jarak terbesar
 
-Jadi, nilai <InlineMath math="T" /> terbesar yang memenuhi adalah **16 jam**.
+Enam baris pada satu pita berarti ada **<InlineMath math="5" /> jarak di antara baris pertama dan keenam**, dan kelima jarak itu harus muat di pita <InlineMath math="5{,}5\text{ m}" />.
+
+<BlockMath math="\begin{aligned}
+5d&\le 5{,}5 \\
+d&\le 1{,}1\text{ m}=110\text{ cm}
+\end{aligned}" />
+
+Angka <InlineMath math="110" /> sudah kelipatan <InlineMath math="5" />, jadi jarak terbesar <InlineMath math="110\text{ cm}" />.
+
+# Pemeriksaan
+
+Dengan <InlineMath math="d=1{,}1" />, setiap pita memuat <InlineMath math="\lfloor 5{,}5:1{,}1\rfloor+1=6" /> baris, jadi totalnya <InlineMath math="2\cdot 6\cdot 28=336" /> bibit, pas memenuhi. Dengan kelipatan berikutnya, <InlineMath math="d=1{,}15" />, setiap pita hanya memuat <InlineMath math="\lfloor 5{,}5:1{,}15\rfloor+1=4+1=5" /> baris, jadi totalnya <InlineMath math="280" /> bibit. Jadi **<InlineMath math="110\text{ cm}" /> adalah batas terakhir yang masih cukup**.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain muncul karena **satu batas jarak terlupa**.
+
+- <InlineMath math="115\text{ cm}" /> muncul jika saluran diabaikan, sehingga <InlineMath math="12" /> baris dianggap berada pada satu pita <InlineMath math="13\text{ m}" /> dengan <InlineMath math="11" /> jarak.
+- <InlineMath math="120\text{ cm}" /> muncul jika batas <InlineMath math="0{,}5\text{ m}" /> dari saluran diabaikan, sehingga pitanya <InlineMath math="6\text{ m}" />.
+- <InlineMath math="130\text{ cm}" /> muncul jika batas <InlineMath math="1\text{ m}" /> dari tepi lahan diabaikan, sehingga pitanya <InlineMath math="6{,}5\text{ m}" />.
+- <InlineMath math="140\text{ cm}" /> muncul jika kedua batas diabaikan, sehingga seluruh lebar <InlineMath math="7\text{ m}" /> dipakai.
+
+Jadi, jarak antarbaris terbesar yang memenuhi keinginan Pak Darto adalah <InlineMath math="110\text{ cm}" />.
