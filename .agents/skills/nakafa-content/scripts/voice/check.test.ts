@@ -58,7 +58,11 @@ const temporaryRoot = (
     (root) => Effect.sync(() => rmSync(root, { force: true, recursive: true }))
   );
 
-/** The corpus whose every root must pass the gate, one test per root. */
+/**
+ * The corpus whose every root must pass the gate, one test per root. A root
+ * gets ten minutes: the 1,560 lessons took 130 to 205 seconds under coverage
+ * on the free runners, and the corpus keeps growing.
+ */
 const CORPUS = join(process.cwd(), "packages/corpus");
 
 for (const [root, minimum] of [
@@ -74,7 +78,7 @@ for (const [root, minimum] of [
       assert.ok(report.fileCount >= minimum);
       assert.deepEqual(report.issues, []);
     }),
-    180_000
+    600_000
   );
 }
 
