@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "vocabulary",
-    topic: "affix-meaning",
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
   },
-  stimulus: "bakau",
+  stimulus: "antibiotik",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "*Pelari* itu mencapai garis akhir lebih dulu.",
+          label:
+            "Bakteri usus seseorang yang meminum antibiotik tanpa resep akan berubah menjadi resistan.",
+        },
+        {
+          correct: false,
+          label:
+            "Antibiotik yang hanya mengenai sedikit jenis bakteri membuat bakteri usus luput dari seleksi.",
         },
         {
           correct: true,
-          label: "*Pengering* rambut di kamar itu tidak menyala.",
+          label:
+            "Pasien yang meminum antibiotik sesuai resep untuk infeksi saluran kemih ikut menyeleksi bakteri di ususnya.",
         },
         {
           correct: false,
-          label: "Adik saya seorang *pemalu* di depan orang baru.",
+          label:
+            "Gen resistansi dari bakteri usus hanya dapat diturunkan kepada generasi bakteri usus berikutnya.",
         },
         {
           correct: false,
-          label: "*Penduduk* desa itu sebagian besar bertani.",
-        },
-        {
-          correct: false,
-          label: "Ayahnya dahulu seorang *petinju*.",
+          label:
+            "Setiap pemakaian antibiotik yang tidak perlu menimbulkan seleksi yang lebih kuat daripada pemakaian yang sesuai resep.",
         },
       ],
     },

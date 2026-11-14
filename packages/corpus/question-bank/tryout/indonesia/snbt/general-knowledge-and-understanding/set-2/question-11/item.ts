@@ -2,34 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "vocabulary",
-    topic: "word-meaning",
+    topic: "figurative-meaning",
   },
-  stimulus: "tabungan",
+  stimulus: "fansur",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Naik sedikit demi sedikit",
+          label: "*harum* pada kalimat (4) dan *mengering* pada kalimat (13)",
         },
         {
           correct: true,
-          label: "Turun dengan tajam",
+          label: "*harum* pada kalimat (1) dan *lesu* pada kalimat (16)",
         },
         {
           correct: false,
-          label: "Tidak berubah sama sekali",
+          label: "*mengering* pada kalimat (13) dan *dipikul* pada kalimat (7)",
         },
         {
           correct: false,
-          label: "Naik dan turun berganti-ganti",
+          label: "*lesu* pada kalimat (16) dan *hulu* pada kalimat (7)",
         },
         {
           correct: false,
-          label: "Hilang dari pasaran",
+          label: "*harum* pada kalimat (1) dan *mengeras* pada kalimat (4)",
         },
       ],
     },

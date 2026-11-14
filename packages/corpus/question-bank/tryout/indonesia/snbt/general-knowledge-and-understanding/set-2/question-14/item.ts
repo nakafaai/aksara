@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "paragraph-meaning",
-    topic: "inference",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
   },
-  stimulus: "tabungan",
+  stimulus: "fansur",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kerajinan dan kompos tidak memerlukan pemilahan sampah sama sekali.",
+            "kalimat menjadi menyatakan bahwa keluarga-keluarga di pedalaman hidup makmur berkat perdagangan itu",
         },
         {
           correct: false,
           label:
-            "Pemerintah daerah membeli semua kerajinan dan kompos buatan bank sampah dengan harga tetap sepanjang tahun, berapa pun harga barang bekas di pasar.",
+            "kalimat menjadi menyatakan bahwa keluarga-keluarga di pedalamanlah yang membiayai perdagangan itu",
         },
         {
           correct: false,
           label:
-            "Warga tidak perlu lagi menyetor sampah ke bank sampah tersebut.",
+            "kalimat menjadi menyatakan bahwa perdagangan itu membiarkan keluarga-keluarga di pedalaman tetap hidup",
         },
         {
           correct: true,
           label:
-            "Sebagian pendapatannya berasal dari produk yang harganya lebih stabil, sehingga tidak sepenuhnya bergantung pada harga barang bekas.",
+            "kalimat menjadi menggambarkan pengumpul dan pemikul sebagai pekerja yang diupah secara berkala oleh pemberi kerja, padahal semula mereka hanya disebut memperoleh nafkah dari perdagangan",
         },
         {
           correct: false,
           label:
-            "Harga barang bekas di bank sampah tersebut tidak pernah turun.",
+            "kalimat menjadi menyatakan bahwa penghasilan keluarga-keluarga itu lebih besar daripada sebelum ada perdagangan",
         },
       ],
     },

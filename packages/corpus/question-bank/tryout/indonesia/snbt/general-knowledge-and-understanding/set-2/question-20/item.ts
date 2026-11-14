@@ -2,34 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "paragraph-meaning",
-    topic: "detail",
+    topic: "inference",
   },
-  stimulus: "gerhana",
+  stimulus: "gang",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
+      columns: ["Sesuai", "Tidak sesuai"],
       kind: "matrix",
       statements: [
         {
           column: 2,
-          label: "Gerhana bulan total dapat terjadi pada fase bulan sabit.",
+          label:
+            "Pengalaman program perbaikan kampung di Jakarta menunjukkan bahwa perbaikan akan bertahan bila warga ikut menentukan bagian yang dibenahi lebih dulu.",
         },
         {
           column: 1,
           label:
-            "Atmosfer Bumi lebih banyak menghamburkan cahaya biru daripada cahaya merah.",
+            "Jumlah penduduk sebuah kota dapat bertambah meskipun tidak ada seorang pun yang pindah dari desa ke kota itu.",
+        },
+        {
+          column: 1,
+          label:
+            "Warga yang menjalankan usaha dari rumahnya di kampung kota dapat dirugikan oleh penggusuran meskipun mereka mendapat tempat tinggal baru.",
         },
         {
           column: 2,
           label:
-            "Gerhana bulan total dapat dilihat dari seluruh permukaan Bumi pada saat yang sama.",
-        },
-        {
-          column: 1,
-          label:
-            "Saat gerhana bulan total, Bumi berada di antara Matahari dan Bulan.",
+            "Program perbaikan kampung di Jakarta membenahi kampung dengan memindahkan warganya ke rumah susun.",
         },
       ],
     },
