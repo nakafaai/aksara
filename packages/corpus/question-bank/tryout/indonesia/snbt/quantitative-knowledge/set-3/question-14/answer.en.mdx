@@ -1,21 +1,47 @@
-The length <InlineMath math="s" /> is not given, but the third side of a triangle is not free. **The triangle inequality** limits it: every side is shorter than the sum of the other two.
+A combined mean is a weighted mean, so what matters is **the ratio of the group sizes**, not the sizes themselves. Let the numbers of students in groups A, B, and C be <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" />, and let the mean of group C be <InlineMath math="x" />. The total score of a group equals its mean times its size.
 
-# The bounds on the third side
+# The ratio of groups A and B
 
-The three triangle inequalities for sides 5, 8, and <InlineMath math="s" /> are as follows.
+The total score of A and B together equals their combined mean times <InlineMath math="a+b" />.
 
 <BlockMath math="\begin{aligned}
-s&<5+8=13\\
-8&<5+s\quad\Rightarrow\quad s>3\\
-5&<8+s\quad\Rightarrow\quad s>-3
+50a+80b&=60(a+b)\\
+20b&=10a\\
+a&=2b
 \end{aligned}" />
 
-So <InlineMath math="3<s<13" />. **The lower bound 3 is excluded**, because sides 5, 8, and 3 only form a straight line.
+So **group A is twice as large as group B**, even though neither size is known.
 
-# Comparing the quantities
+# Two equations for group C
 
-From <InlineMath math="s>3" /> we get <InlineMath math="P=2s>6=Q" /> for every possible triangle. Although <InlineMath math="s" /> is not unique, **the relation is always the same**.
+Combining B and C gives the first equation. Combining all three groups, after replacing <InlineMath math="a" /> with <InlineMath math="2b" />, gives the second.
 
-The option saying the information is not enough comes from noticing only that <InlineMath math="s" /> is unknown. The option <InlineMath math="P=Q" /> uses <InlineMath math="s=3" />, which does not form a triangle.
+<BlockMath math="\begin{aligned}
+80b+xc=86(b+c) &\implies xc=6b+86c\\
+100b+80b+xc=78(3b+c) &\implies xc=54b+78c
+\end{aligned}" />
 
-So the correct relation is <InlineMath math="P>Q" /> for every possible triangle.
+Both right sides equal <InlineMath math="xc" />, so **set the two right sides equal**.
+
+<BlockMath math="\begin{aligned}
+6b+86c&=54b+78c\\
+8c&=48b\\
+c&=6b
+\end{aligned}" />
+
+Substitute <InlineMath math="c=6b" /> into the first equation.
+
+<BlockMath math="\begin{aligned}
+x\cdot 6b&=6b+86\cdot 6b=522b\\
+x&=87
+\end{aligned}" />
+
+# Checking with sample group sizes
+
+Take <InlineMath math="b=1" />, so <InlineMath math="a=2" /> and <InlineMath math="c=6" />. The total scores are <InlineMath math="100" />, <InlineMath math="80" />, and <InlineMath math="6\cdot 87=522" />. The combined mean of A and B is <InlineMath math="\tfrac{180}{3}=60" />, of B and C it's <InlineMath math="\tfrac{602}{7}=86" />, and of everyone it's <InlineMath math="\tfrac{702}{9}=78" />. **All three combined means match**, and the same ratio gives the same result for any value of <InlineMath math="b" />.
+
+# Checking the other options
+
+The option that it can't be determined comes from thinking the group sizes must be known, but **the ratio is already locked** by the combined means. The option <InlineMath math="104" /> simply averages the three means, <InlineMath math="\tfrac{50+80+x}{3}=78" />. The option <InlineMath math="92" /> treats groups B and C as equal in size, <InlineMath math="\tfrac{80+x}{2}=86" />. The option <InlineMath math="96" /> treats group C as the same size as A and B together, <InlineMath math="\tfrac{60+x}{2}=78" />.
+
+So the mean exam score of group C is <InlineMath math="87" />.

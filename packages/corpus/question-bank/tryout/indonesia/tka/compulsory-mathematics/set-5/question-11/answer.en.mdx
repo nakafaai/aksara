@@ -1,13 +1,49 @@
-**A tangent is perpendicular to the radius at the point of contact**, so <InlineMath math="\angle OAP=\angle OBP=90^\circ" />. The segment <InlineMath math="OP" /> splits <InlineMath math="OAPB" /> into two congruent right triangles, <InlineMath math="OAP" /> and <InlineMath math="OBP" />.
+# The parts of the belt
+
+The question asks for the length of a belt around three pulleys. The belt is made of **straight parts** that touch the pulleys and **curved parts** that lie on the pulleys. Work out each part, then add them up.
+
+From the figure there are four straight parts: two horizontal ones from <InlineMath math="P" /> to <InlineMath math="Q" /> and two slanted ones from <InlineMath math="Q" /> to <InlineMath math="S" />. The curved parts are on all three pulleys.
+
+Pulleys <InlineMath math="P" /> and <InlineMath math="Q" /> are the same size, so their top and bottom tangents run parallel to the line of centres. Each horizontal part is as long as the distance between the centres, <InlineMath math="20\text{ cm}" />.
+
+# The slanted straight parts
+
+A radius drawn to a point of tangency is always perpendicular to the tangent, so the radius <InlineMath math="8" /> at <InlineMath math="Q" /> and the radius <InlineMath math="2" /> at <InlineMath math="S" /> are parallel. Slide the tangent <InlineMath math="2" /> units towards the centres. You get a right triangle with hypotenuse <InlineMath math="QS=12" /> and one leg <InlineMath math="8-2=6" />:
 
 <BlockMath math="\begin{aligned}
-PA&=\sqrt{OP^2-OA^2}=\sqrt{15^2-9^2}=\sqrt{144}=12 \\
-L_{OAPB}&=2\cdot\tfrac12\cdot OA\cdot PA=2\cdot\tfrac12\cdot9\cdot12=108
+\text{slanted part}&=\sqrt{12^2-6^2}=\sqrt{108}=6\sqrt3 \\
+\sin\theta&=\frac{6}{12}=\frac12\ \Rightarrow\ \theta=30^\circ
 \end{aligned}" />
 
-So the area of quadrilateral <InlineMath math="OAPB" /> is <InlineMath math="108\text{ cm}^2" />.
+The angle <InlineMath math="\theta" /> is **the tilt of that part against the line of centres**. It decides how long the arcs on <InlineMath math="Q" /> and <InlineMath math="S" /> are.
 
-- <InlineMath math="135\text{ cm}^2" /> multiplies <InlineMath math="OA" /> by <InlineMath math="OP" />, but <InlineMath math="OP" /> is the hypotenuse, not a base or a height.
-- <InlineMath math="180\text{ cm}^2" /> multiplies <InlineMath math="PA" /> by <InlineMath math="OP" />.
-- <InlineMath math="216\text{ cm}^2" /> forgets the factor <InlineMath math="\tfrac12" /> in the triangle area.
-- <InlineMath math="270\text{ cm}^2" /> forgets the factor <InlineMath math="\tfrac12" /> and uses <InlineMath math="OP" /> as a height.
+# The arc on each pulley
+
+At <InlineMath math="Q" />, the belt arrives horizontally and leaves tilted by <InlineMath math="30^\circ" />. The radius to the point of tangency turns by <InlineMath math="30^\circ" /> too, so the belt lies on <InlineMath math="30^\circ" /> at the top and <InlineMath math="30^\circ" /> at the bottom. At <InlineMath math="S" />, the belt lies on the right side over <InlineMath math="180^\circ-2\cdot30^\circ=120^\circ" />. At <InlineMath math="P" />, it lies on half the circle:
+
+<BlockMath math="\begin{aligned}
+\text{arc on }P&=\tfrac{180}{360}\cdot2\pi\cdot8=8\pi \\
+\text{arc on }Q&=\tfrac{60}{360}\cdot2\pi\cdot8=\tfrac{8\pi}{3} \\
+\text{arc on }S&=\tfrac{120}{360}\cdot2\pi\cdot2=\tfrac{4\pi}{3} \\
+\text{all arcs}&=8\pi+\tfrac{8\pi}{3}+\tfrac{4\pi}{3}=12\pi
+\end{aligned}" />
+
+Check the angles: <InlineMath math="180^\circ+60^\circ+120^\circ=360^\circ" />. The belt turns **exactly one full turn**, just as a closed belt should.
+
+# The whole belt
+
+Add **the four straight parts and all the arcs**:
+
+<BlockMath math="\begin{aligned}
+L&=2\cdot20+2\cdot6\sqrt3+12\pi \\
+&=\left(40+12\sqrt3+12\pi\right)\text{ cm}
+\end{aligned}" />
+
+So the belt is <InlineMath math="\left(40+12\sqrt3+12\pi\right)\text{ cm}" /> long.
+
+# Why the other options are wrong
+
+- <InlineMath math="40+12\sqrt3+10\pi" /> puts half circles on <InlineMath math="P" /> and <InlineMath math="S" /> and **leaves out the arc on <InlineMath math="Q" />**. Because the parts are slanted, the belt also lies on <InlineMath math="Q" />, and the arc on <InlineMath math="S" /> is less than half a circle.
+- <InlineMath math="64+10\pi" /> uses the formula for two equal pulleys: straight parts equal to the centre distances, <InlineMath math="2(20+12)" />, plus half circles at both ends. That formula doesn't work for pulleys of different sizes.
+- <InlineMath math="64+12\pi" /> has the arcs right but takes <InlineMath math="12" /> as the slanted length. It's <InlineMath math="6\sqrt3" />, shorter than the centre distance.
+- <InlineMath math="40+12\sqrt3+14\pi" /> takes the tilt as <InlineMath math="60^\circ" />, for example from <InlineMath math="\cos\theta=\frac12" />. The side <InlineMath math="6" /> is opposite the tilt angle, so the right equation is <InlineMath math="\sin\theta=\frac12" />.

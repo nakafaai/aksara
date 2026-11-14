@@ -1,14 +1,42 @@
-Turn each statement into **a price per mL or an amount of water per pack**, then compare.
+# The tool for every statement
+
+All three statements compare two sound situations. From the formula in the reading, **the difference in level depends only on the ratio of the intensities**:
+
+<BlockMath math="\mathrm{TI}_2-\mathrm{TI}_1=10\log\frac{I_2}{10^{-12}}-10\log\frac{I_1}{10^{-12}}=10\log\frac{I_2}{I_1}" />
+
+So for each statement you only need the intensity ratio, and then you check whether the claim holds in every situation, not just in one example.
+
+# The first statement
+
+**False**. With <InlineMath math="n" /> identical big drums the intensity is <InlineMath math="nI" />. Adding one drum makes it <InlineMath math="(n+1)I" />, so the increase is <InlineMath math="10\log\frac{n+1}{n}" />. That depends on <InlineMath math="n" />:
 
 <BlockMath math="\begin{aligned}
-\frac{24{,}000}{250}&=96,\qquad\frac{84{,}000}{1{,}000}=84 \\
-\frac{96-84}{96}&=\frac{12}{96}=12.5\,\% \\
-\frac{250}{10}\cdot4&=100\text{ litres} \\
-\frac{1{,}000}{20}\cdot4&=200\text{ litres} \\
-\frac{24{,}000}{100}&=240
+n=1:&\quad 10\log2=10\cdot0.30=3\text{ dB} \\
+n=2:&\quad 10\log\tfrac32=10\,(0.48-0.30)=1.8\text{ dB}
 \end{aligned}" />
 
-- The large pack costs <InlineMath math="\text{Rp}84" /> per mL and the small one <InlineMath math="\text{Rp}96" /> per mL. The gap of <InlineMath math="\text{Rp}12" /> is <InlineMath math="12.5\,\%" /> of <InlineMath math="\text{Rp}96" />. This statement is true.
-- One small pack covers exactly <InlineMath math="100" /> litres of water, not more. This statement is false.
-- At <InlineMath math="20" /> mL per dose the large pack holds <InlineMath math="50" /> doses, enough for <InlineMath math="50\cdot4=200" /> litres of water. This statement is true.
-- The small pack costs <InlineMath math="\text{Rp}24{,}000" /> and covers <InlineMath math="100" /> litres, so it costs <InlineMath math="\text{Rp}240" /> per litre, not more than <InlineMath math="\text{Rp}250" />. This statement is false.
+The jump of <InlineMath math="3\text{ dB}" /> only happens from one drum to two, when the intensity doubles. The more drums you start with, the smaller the increase.
+
+# The second statement
+
+**False**. Dropping <InlineMath math="10\text{ dB}" /> means the intensity at Q is a tenth of the intensity at P. Intensity is inversely proportional to the square of the distance, so the distance ratio is the square root of <InlineMath math="10" />:
+
+<BlockMath math="\begin{aligned}
+10\log\frac{I_Q}{I_P}&=-10 \quad\Rightarrow\quad \frac{I_Q}{I_P}=\frac1{10} \\
+\frac{I_Q}{I_P}&=\frac{r_P^2}{r_Q^2}=\frac1{10} \quad\Rightarrow\quad \frac{r_Q}{r_P}=\sqrt{10}\approx3.16
+\end{aligned}" />
+
+Q is about <InlineMath math="3.16" /> times as far as P, not <InlineMath math="10" /> times. Ten times the distance would make the intensity <InlineMath math="\tfrac1{100}" /> as large, a drop of <InlineMath math="20\text{ dB}" />.
+
+# The third statement
+
+**True**. Let one big drum have intensity <InlineMath math="I" /> at <InlineMath math="1\text{ m}" />, so one small drum has <InlineMath math="\tfrac14I" />. Compare the two situations in general:
+
+<BlockMath math="\begin{aligned}
+k\text{ big drums from distance }d&:\quad k\cdot\frac{I}{d^2} \\
+16k\text{ small drums from distance }2d&:\quad 16k\cdot\frac{\tfrac14 I}{(2d)^2}=16k\cdot\frac{I}{16d^2}=k\cdot\frac{I}{d^2}
+\end{aligned}" />
+
+The intensities are exactly equal for every <InlineMath math="d" /> and <InlineMath math="k" />, so the levels are equal too. The factor <InlineMath math="16" /> makes up for two losses at once: a quarter because the drums are small, and another quarter because the distance is doubled.
+
+So the first statement is false, the second is false, and the third is true.

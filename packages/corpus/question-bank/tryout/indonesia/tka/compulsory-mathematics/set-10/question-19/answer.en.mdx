@@ -1,16 +1,47 @@
-Each tip moves along an arc. **Its length depends on two things at once**: how far the hand turns and how long it is. In <InlineMath math="1" /> hour the minute hand makes one full turn, while the hour hand makes only <InlineMath math="\frac{1}{12}" /> of a turn.
+# Starting water and the tank's capacity
+
+The question asks for the water level after two pourings, a possible spill, and then the concrete block being lifted out. The key is this: **while the block is still in the tank, the water can only use the tank's base minus the block's base**. The block is taller than the tank, so it always sticks out through the water surface.
+
+Work out the tank's base, the block's base, and the area left for the water:
 
 <BlockMath math="\begin{aligned}
-\text{minute hand}&=2\pi\cdot10=20\pi \\
-\text{hour hand}&=\frac{1}{12}\cdot2\pi\cdot6=\pi \\
-\frac{20\pi}{\pi}&=20
+\text{tank base}&=70\cdot44=3{,}080\text{ cm}^2 \\
+\text{block base}&=35\cdot22=770\text{ cm}^2 \\
+\text{base for the water}&=3{,}080-770=2{,}310\text{ cm}^2
 \end{aligned}" />
 
-The turns compare as <InlineMath math="12" /> and the lengths as <InlineMath math="\frac{10}{6}" />, so the result is <InlineMath math="12\cdot\frac{10}{6}=20" />.
+That gives the starting volume of water and the most water that fits while the block is inside:
 
-So the minute hand's tip travels <InlineMath math="20" /> times as far as the hour hand's tip.
+<BlockMath math="\begin{aligned}
+\text{starting water}&=2{,}310\cdot32=73{,}920\text{ cm}^3 \\
+\text{water capacity up to the rim}&=2{,}310\cdot40=92{,}400\text{ cm}^3
+\end{aligned}" />
 
-- <InlineMath math="\frac53" /> compares only the lengths of the hands.
-- <InlineMath math="7.2" /> turns the length ratio upside down, <InlineMath math="12\cdot\frac{6}{10}" />.
-- <InlineMath math="12" /> compares only how far the hands turn.
-- <InlineMath math="60" /> compares minutes in an hour, not the paths of the tips.
+# Water poured in and water spilled
+
+The bucket is a cylinder, and the bottle holds <InlineMath math="1.54" /> liters, which is <InlineMath math="1{,}540\text{ cm}^3" /> because <InlineMath math="1" /> liter <InlineMath math="=1{,}000\text{ cm}^3" />:
+
+<BlockMath math="\begin{aligned}
+\text{bucket}&=\frac{22}{7}\cdot14^2\cdot35=21{,}560\text{ cm}^3 \\
+\text{total poured}&=21{,}560+1{,}540=23{,}100\text{ cm}^3 \\
+\text{starting water}+\text{poured water}&=73{,}920+23{,}100=97{,}020\text{ cm}^3
+\end{aligned}" />
+
+<InlineMath math="97{,}020" /> is more than the capacity of <InlineMath math="92{,}400" />, so **some water spills**: <InlineMath math="97{,}020-92{,}400=4{,}620\text{ cm}^3" />. In fact the tank already overflows while the bucket is being poured, because <InlineMath math="73{,}920+21{,}560=95{,}480" /> is already past <InlineMath math="92{,}400" />. Exactly <InlineMath math="92{,}400\text{ cm}^3" /> of water stays in the tank.
+
+# After the block is lifted out
+
+Once the block is out, the remaining water spreads over the whole base of the tank:
+
+<BlockMath math="\text{water level}=\frac{92{,}400}{3{,}080}=30\text{ cm}" />
+
+Check it another way. Before the lift, the submerged part of the block was <InlineMath math="40\text{ cm}" /> tall, with volume <InlineMath math="770\cdot40=30{,}800\text{ cm}^3" />. **The space the block leaves behind** makes the water drop <InlineMath math="\frac{30{,}800}{3{,}080}=10\text{ cm}" />, from <InlineMath math="40" /> to <InlineMath math="30\text{ cm}" />.
+
+So the water level in the tank is now <InlineMath math="30\text{ cm}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="40" /> cm comes from assuming the tank stays full after the block is lifted. But **the submerged part of the block leaves too**, so the surface drops.
+- <InlineMath math="39.5" /> cm comes from forgetting the block completely. The starting water becomes <InlineMath math="3{,}080\cdot32=98{,}560" />, plus <InlineMath math="23{,}100" /> gives <InlineMath math="121{,}660" />, still below <InlineMath math="3{,}080\cdot40=123{,}200" />, so it looks as if nothing spills.
+- <InlineMath math="32" /> cm comes from computing the drop with only the <InlineMath math="32\text{ cm}" /> of block that was underwater at the start: <InlineMath math="\frac{770\cdot32}{3{,}080}=8\text{ cm}" />. When the block is lifted, the water is up to the rim, so <InlineMath math="40\text{ cm}" /> of block is underwater.
+- <InlineMath math="31.5" /> cm comes from forgetting the block when checking for the overflow. The capacity is then taken as <InlineMath math="123{,}200\text{ cm}^3" />, the <InlineMath math="97{,}020\text{ cm}^3" /> of water seems not to spill, and <InlineMath math="\frac{97{,}020}{3{,}080}=31.5" />.

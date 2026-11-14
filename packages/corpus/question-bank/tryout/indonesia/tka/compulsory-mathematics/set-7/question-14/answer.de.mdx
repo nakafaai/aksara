@@ -1,15 +1,94 @@
-Eine Spiegelung an der Geraden <InlineMath math="y=2" /> behält die <InlineMath math="x" />-Koordinate bei und **setzt den Punkt im gleichen Abstand auf die andere Seite von <InlineMath math="y=2" />**. Also wird <InlineMath math="(x,y)" /> auf <InlineMath math="(x,\,4-y)" /> abgebildet, denn <InlineMath math="2" /> liegt genau zwischen <InlineMath math="y" /> und <InlineMath math="4-y" />. Der Urpunkt eines Bildpunkts <InlineMath math="(x,y)" /> ist <InlineMath math="(x,\,4-y)" />, den setzt du in die ursprüngliche Gleichung ein.
+Gesucht ist das Zentrum <InlineMath math="P" /> der zentrischen Streckung. Der Haken: Die Bildpunkte **haben keine Namen**. Du musst also zuerst jedem Eckpunkt seinen Bildpunkt zuordnen und dann den Streckfaktor <InlineMath math="k" /> mitsamt Vorzeichen bestimmen.
+
+# Ecken zuordnen
+
+Eine Streckung mit Faktor <InlineMath math="k" /> multipliziert jeden Seitenvektor mit <InlineMath math="k" />, also <InlineMath math="\overrightarrow{X'Y'}=k\,\overrightarrow{XY}" />. Deshalb bleiben Winkel gleich, und jede Länge wird mit <InlineMath math="|k|" /> multipliziert.
+
+Das Dreieck <InlineMath math="ABC" /> hat bei <InlineMath math="A" /> einen rechten Winkel, mit <InlineMath math="AB=3" /> waagrecht und <InlineMath math="AC=4" /> senkrecht. Im Bild liegt der Punkt <InlineMath math="(-3,0)" /> waagrecht <InlineMath math="6" /> von <InlineMath math="(-9,0)" /> entfernt und senkrecht <InlineMath math="8" /> über <InlineMath math="(-3,-8)" />. Der rechte Winkel liegt also bei <InlineMath math="(-3,0)" />. **Ein rechter Winkel wird auf einen rechten Winkel abgebildet**, und die kurze Kathete auf die kurze Kathete:
+
+<BlockMath math="A'=(-3,0),\qquad B'=(-9,0),\qquad C'=(-3,-8)" />
+
+# Streckfaktor bestimmen
+
+Vergleich jeden Seitenvektor vor und nach der Streckung.
 
 <BlockMath math="\begin{aligned}
-4-y&=3x-1 \\
-y&=-3x+5
+\overrightarrow{AB}&=(3,0), & \overrightarrow{A'B'}&=(-6,0)=-2\,(3,0) \\
+\overrightarrow{AC}&=(0,4), & \overrightarrow{A'C'}&=(0,-8)=-2\,(0,4)
 \end{aligned}" />
 
-Probe: <InlineMath math="y=3x-1" /> schneidet <InlineMath math="y=2" /> in <InlineMath math="(1,2)" />, und Punkte auf der Spiegelachse bleiben liegen. Die Gerade <InlineMath math="y=-3x+5" /> geht tatsächlich durch <InlineMath math="(1,2)" />.
+Beide Seiten liefern denselben Faktor, also <InlineMath math="k=-2" />. Die Längen allein verraten nur <InlineMath math="|k|=2" />. **Das Minus kommt von der umgedrehten Richtung der Seiten**: <InlineMath math="B" /> liegt rechts von <InlineMath math="A" />, aber <InlineMath math="B'" /> liegt links von <InlineMath math="A'" />.
 
-Die Bildgerade lautet also <InlineMath math="y=-3x+5" />.
+# Zentrum berechnen
 
-- <InlineMath math="y=-3x+1" /> ist die Spiegelung an der <InlineMath math="x" />-Achse, nicht an <InlineMath math="y=2" />.
-- <InlineMath math="y=-3x+3" /> nimmt <InlineMath math="(x,\,2-y)" />, dabei muss der Abstand zur Spiegelachse verdoppelt werden.
-- <InlineMath math="y=3x+3" /> verschiebt die Gerade um <InlineMath math="4" /> nach oben, statt sie zu spiegeln.
-- <InlineMath math="y=-3x+11" /> spiegelt an der senkrechten Geraden <InlineMath math="x=2" />, nicht an der waagerechten <InlineMath math="y=2" />.
+Eine Streckung mit Zentrum <InlineMath math="P" /> bedeutet <InlineMath math="A'-P=k\,(A-P)" />. Bring alle <InlineMath math="P" /> auf eine Seite und setz dann <InlineMath math="k=-2" /> ein.
+
+<BlockMath math="\begin{aligned}
+A'-P&=kA-kP \\
+A'-kA&=(1-k)\,P \\
+P&=\frac{A'-kA}{1-k}=\frac{(-3,0)+2\,(3,3)}{1+2}=\frac{(3,6)}{3}=(1,2)
+\end{aligned}" />
+
+Prüf jetzt die beiden anderen Ecken. **Das richtige Zentrum muss für alle drei Punkte passen**, nicht nur für <InlineMath math="A" />.
+
+<BlockMath math="\begin{aligned}
+P+k\,(B-P)&=(1,2)-2\,(5,1)=(-9,0)=B' \\
+P+k\,(C-P)&=(1,2)-2\,(2,5)=(-3,-8)=C'
+\end{aligned}" />
+
+In der Abbildung treffen sich die drei Verbindungsstrecken von jedem Punkt zu seinem Bild in einem Punkt, und das ist <InlineMath math="P" />.
+
+<MathVisual
+  title={<>Streckung des Dreiecks <InlineMath math="ABC" /></>}
+  description={<>Das Dreieck <InlineMath math="ABC" /> mit <InlineMath math="A(3,3)" />, <InlineMath math="B(6,3)" />, <InlineMath math="C(3,7)" /> und sein Bild mit <InlineMath math="A'(-3,0)" />, <InlineMath math="B'(-9,0)" />, <InlineMath math="C'(-3,-8)" />. Die Strecken <InlineMath math="AA'" />, <InlineMath math="BB'" /> und <InlineMath math="CC'" /> gehen durch das Zentrum <InlineMath math="P(1,2)" />, und das Bild liegt vom Zentrum aus auf der anderen Seite als das ursprüngliche Dreieck.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    "a-image": <InlineMath math="A'" />,
+    "b-image": <InlineMath math="B'" />,
+    "c-image": <InlineMath math="C'" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 7 },
+      y: { min: -9, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "original", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 3 }, { x: 6, y: 3 }, { x: 3, y: 7 }] },
+      { id: "image", kind: "polygon", appearance: "secondary", vertices: [{ x: -3, y: 0 }, { x: -9, y: 0 }, { x: -3, y: -8 }] },
+      { id: "line-a", kind: "segment", appearance: "construction", from: { x: 3, y: 3 }, to: { x: -3, y: 0 } },
+      { id: "line-b", kind: "segment", appearance: "construction", from: { x: 6, y: 3 }, to: { x: -9, y: 0 } },
+      { id: "line-c", kind: "segment", appearance: "construction", from: { x: 3, y: 7 }, to: { x: -3, y: -8 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 3, y: 3 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 6, y: 3 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 3, y: 7 } },
+      { id: "point-a-image", kind: "point", appearance: "reference", at: { x: -3, y: 0 } },
+      { id: "point-b-image", kind: "point", appearance: "reference", at: { x: -9, y: 0 } },
+      { id: "point-c-image", kind: "point", appearance: "reference", at: { x: -3, y: -8 } },
+      { id: "point-p", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 3, y: 3 }, placement: "below-right" },
+      { key: "b", objectId: "point-b", at: { x: 6, y: 3 }, placement: "right" },
+      { key: "c", objectId: "point-c", at: { x: 3, y: 7 }, placement: "above" },
+      { key: "a-image", objectId: "point-a-image", at: { x: -3, y: 0 }, placement: "below-right" },
+      { key: "b-image", objectId: "point-b-image", at: { x: -9, y: 0 }, placement: "left" },
+      { key: "c-image", objectId: "point-c-image", at: { x: -3, y: -8 }, placement: "below" },
+      { key: "p", objectId: "point-p", at: { x: 1, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="(9,6)" /> entsteht, wenn du <InlineMath math="k=2" /> nimmst, nur weil die Seiten doppelt so lang sind. Mit diesem Zentrum landet <InlineMath math="B" /> bei <InlineMath math="(3,0)" />, und das ist keine Ecke des Bildes. **Umgedrehte Seiten verlangen ein negatives <InlineMath math="k" />**.
+- <InlineMath math="\left(0,\tfrac{3}{2}\right)" /> ist der Mittelpunkt von <InlineMath math="A" /> und <InlineMath math="A'" />. Das Zentrum liegt nur bei <InlineMath math="k=-1" /> genau in der Mitte. Hier gilt <InlineMath math="PA'=2\,PA" />.
+- <InlineMath math="(-1,1)" /> kommt von <InlineMath math="k=-\tfrac{1}{2}" />, also vom umgedrehten Verhältnis. Dieser Faktor bringt das Bild zurück zum Ausgangsdreieck, nicht umgekehrt.
+- <InlineMath math="(-1,-2)" /> ist ein Vorzeichenfehler beim Umstellen, nämlich <InlineMath math="\frac{kA-A'}{1-k}" />. Das liefert das richtige Zentrum am Ursprung gespiegelt.
+
+Das Zentrum der Streckung ist also <InlineMath math="P(1,2)" />, mit Streckfaktor <InlineMath math="k=-2" />.

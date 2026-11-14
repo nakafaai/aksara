@@ -1,10 +1,35 @@
-**The interquartile range is the upper quartile minus the lower quartile**. It measures how spread out the middle half of the data is.
+The question asks for the estimated number of students with <InlineMath math="15\le t<35" />. The table only gives numbers at the boundaries <InlineMath math="10" />, <InlineMath math="20" />, <InlineMath math="30" />, and so on, while <InlineMath math="15" /> and <InlineMath math="35" /> sit **in the middle of a class**. So first get each class's frequency, then cut classes using the even-spread assumption.
 
-<BlockMath math="Q_3-Q_1=82-62=20" />
+# Frequency of each class
 
-So the interquartile range for class XI-1 is <InlineMath math="20" />.
+A cumulative frequency is a running total. A class's frequency is the difference between two neighbouring rows, **not the cumulative number itself**:
 
-- <InlineMath math="22" /> is the highest score minus the median, <InlineMath math="96-74" />.
-- <InlineMath math="34" /> is the highest score minus the lower quartile, <InlineMath math="96-62" />.
-- <InlineMath math="37" /> is the upper quartile minus the lowest score, <InlineMath math="82-45" />.
-- <InlineMath math="51" /> is the range of all the data, <InlineMath math="96-45" />.
+| Class | Working | Frequency |
+| :---: | :---: | :---: |
+| <InlineMath math="10\le t<20" /> | <InlineMath math="8-2" /> | <InlineMath math="6" /> |
+| <InlineMath math="20\le t<30" /> | <InlineMath math="32-8" /> | <InlineMath math="24" /> |
+| <InlineMath math="30\le t<40" /> | <InlineMath math="52-32" /> | <InlineMath math="20" /> |
+
+Only these three classes touch the range in the question, so the other classes don't matter here.
+
+# Cutting the classes at the ends
+
+Because the students are assumed to be spread evenly, **the number in a piece of a class is proportional to the width of that piece**. The range <InlineMath math="15\le t<35" /> is made of three pieces. The piece <InlineMath math="15\le t<20" /> is half the width of the class <InlineMath math="10\le t<20" />, so it gets half that class's frequency. The class <InlineMath math="20\le t<30" /> is fully inside. The piece <InlineMath math="30\le t<35" /> is half the width of the class <InlineMath math="30\le t<40" />.
+
+<BlockMath math="\begin{aligned}
+15\le t<20&:\quad\tfrac{5}{10}\cdot6=3 \\
+20\le t<30&:\quad24 \\
+30\le t<35&:\quad\tfrac{5}{10}\cdot20=10 \\
+\text{total}&=3+24+10=37
+\end{aligned}" />
+
+Check with cumulative frequencies: the estimate for <InlineMath math="t<35" /> is <InlineMath math="32+10=42" />, and for <InlineMath math="t<15" /> it's <InlineMath math="2+3=5" />. The difference is <InlineMath math="42-5=37" />. It matches.
+
+# Why the other options are wrong
+
+- <InlineMath math="40" /> comes from taking the class <InlineMath math="10\le t<20" /> whole, <InlineMath math="6+24+10" />. Students with <InlineMath math="t<15" /> sneak in.
+- <InlineMath math="42" /> is the estimate for <InlineMath math="t<35" />. **The students who read less than** <InlineMath math="15" /> **minutes haven't been taken away**.
+- <InlineMath math="44" /> comes from replacing <InlineMath math="35" /> and <InlineMath math="15" /> with the next table rows, <InlineMath math="52-8" />. That counts the range <InlineMath math="20\le t<40" />.
+- <InlineMath math="50" /> comes from taking both end classes whole, <InlineMath math="52-2" />, which is the range <InlineMath math="10\le t<40" />.
+
+So the estimated number of students who read at least <InlineMath math="15" /> but less than <InlineMath math="35" /> minutes is <InlineMath math="37" />.

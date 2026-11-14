@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$7$$",
+          label: "$$-\\frac{1}{2}<a<\\frac{11}{3}$$",
+        },
+        {
+          correct: false,
+          label: "$$a\\ge3$$",
+        },
+        {
+          correct: false,
+          label: "$$3<a<\\frac{11}{3}$$",
         },
         {
           correct: true,
-          label: "$$8$$",
+          label: "$$3\\le a<\\frac{11}{3}$$",
         },
         {
           correct: false,
-          label: "$$12$$",
-        },
-        {
-          correct: false,
-          label: "$$14$$",
-        },
-        {
-          correct: false,
-          label: "$$19$$",
+          label: "$$-\\frac{1}{2}<a\\le3$$",
         },
       ],
     },

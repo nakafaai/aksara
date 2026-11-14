@@ -3,37 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "sentence-meaning",
-    topic: "paraphrase",
+    contentDomain: "word-relation",
+    topic: "antonym",
   },
-  stimulus: "bunga",
+  stimulus: "beber",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Es di permukaan kolam itu mulai *mencair* ketika matahari meninggi.",
+        },
+        {
           correct: true,
           label:
-            "Selisih hasil bunga tunggal dan bunga majemuk makin besar jika uang disimpan makin lama.",
+            "Penari itu baru *bergerak* setelah kendang ditabuh untuk ketiga kalinya.",
         },
         {
           correct: false,
           label:
-            "Bunga majemuk selalu menghasilkan dua kali lipat bunga tunggal.",
+            "Warga segera *bergerak* membersihkan saluran air setelah banjir surut.",
         },
         {
           correct: false,
           label:
-            "Pada tahun pertama, bunga tunggal lebih besar daripada bunga majemuk.",
+            "Sikap kepala desa itu *melunak* setelah warga menjelaskan duduk perkaranya.",
         },
         {
           correct: false,
           label:
-            "Bunga majemuk hanya menguntungkan penabung jika uangnya disimpan di bank kurang dari satu tahun.",
-        },
-        {
-          correct: false,
-          label: "Selisih hasil kedua cara itu tetap sama setiap tahun.",
+            "Dana nasabah yang sempat dibekukan bank akhirnya *dicairkan* bulan ini.",
         },
       ],
     },

@@ -29,6 +29,18 @@ const TranslationMapSchema = localizedSourceMapSchema(
 );
 
 /**
+ * An exam's official name is a proper noun: SNBT, TKA, Aufnahmeprüfung, and
+ * Feststellungsprüfung read the same in every locale, so an exam names itself
+ * once and only its description is translated.
+ */
+const ExamNameSchema = Schema.Trimmed.check(Schema.isNonEmpty());
+
+/** The localized description of one exam page. */
+const ExamTranslationMapSchema = localizedSourceMapSchema(
+  Schema.Struct({ description: Schema.String })
+);
+
+/**
  * One section of an exam profile: the language its items are asked in, how
  * many items it has, how long it lasts, the interactions it allows, and its
  * names and routes. Every set of the track sits the same sections in this
@@ -144,9 +156,10 @@ const GroupingSourceSchema = Schema.Struct({
 export const ExamSourceSchema = Schema.Struct({
   ...CountrySourceSchema.fields,
   examKey: KebabKeySchema,
+  examName: ExamNameSchema,
   examOrder: PositiveIntSchema,
   examRouteSlugs: PublicRouteSlugMapSchema,
-  examTranslations: TranslationMapSchema,
+  examTranslations: ExamTranslationMapSchema,
   grouping: GroupingSourceSchema,
   sourceRevision: PublicRouteSegmentSchema,
   tracks: Schema.Array(TrackSourceSchema),

@@ -1,16 +1,37 @@
-**Exactly one machine breaks down** in two cases that can't happen together: A breaks and B doesn't, or A doesn't and B breaks. The machines are independent, so each case's probability is the product of the separate probabilities.
+# Use the complement
+
+The sample space is every pair of two cards, <InlineMath math="\binom{20}{2}=190" /> pairs, all equally likely. The event "even product or sum a multiple of <InlineMath math="3" />" covers many pairs, so it's easier to count the opposite: **both conditions fail**.
+
+The product of two numbers is odd only when both numbers are odd. So the complement is the pairs where both numbers are odd and the sum isn't a multiple of <InlineMath math="3" />. There are <InlineMath math="10" /> odd numbers, <InlineMath math="1,3,5,\dots,19" />, which give <InlineMath math="\binom{10}{2}=45" /> odd pairs.
+
+# Odd pairs whose sum is a multiple of three
+
+Whether a sum is a multiple of <InlineMath math="3" /> depends on the remainders when you divide by <InlineMath math="3" />. Group the ten odd numbers by remainder:
+
+| Remainder after dividing by <InlineMath math="3" /> | Odd numbers | Count |
+| :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="3,\ 9,\ 15" /> | <InlineMath math="3" /> |
+| <InlineMath math="1" /> | <InlineMath math="1,\ 7,\ 13,\ 19" /> | <InlineMath math="4" /> |
+| <InlineMath math="2" /> | <InlineMath math="5,\ 11,\ 17" /> | <InlineMath math="3" /> |
+
+The sum is a multiple of <InlineMath math="3" /> when both remainders are <InlineMath math="0" />, or when **one has remainder <InlineMath math="1" /> and the other remainder <InlineMath math="2" />**, like <InlineMath math="1+5=6" />.
 
 <BlockMath math="\begin{aligned}
-P(\text{A breaks, B doesn't})&=0.1\cdot0.8=0.08 \\
-P(\text{A doesn't, B breaks})&=0.9\cdot0.2=0.18 \\
-P(\text{exactly one breaks})&=0.08+0.18=0.26
+\text{odd pairs, sum a multiple of }3&=\binom32+4\cdot3=3+12=15 \\
+\text{odd pairs, sum not a multiple of }3&=45-15=30
 \end{aligned}" />
 
-Check: both break with probability <InlineMath math="0.02" /> and neither breaks with probability <InlineMath math="0.72" />, and <InlineMath math="0.26+0.02+0.72=1" />.
+# The probability of the union
 
-So the probability that exactly one machine breaks down is <InlineMath math="0.26" />.
+<BlockMath math="P=1-\frac{30}{190}=\frac{160}{190}=\frac{16}{19}" />
 
-- <InlineMath math="0.02" /> is the probability that both machines break.
-- <InlineMath math="0.28" /> is the probability that at least one machine breaks, which also counts the case where both do.
-- <InlineMath math="0.30" /> just adds <InlineMath math="0.1" /> and <InlineMath math="0.2" />, so the case where both break is counted twice.
-- <InlineMath math="0.72" /> is the probability that neither machine breaks.
+Check it with the addition rule. Pairs with an even product number <InlineMath math="190-45=145" />. From <InlineMath math="1" /> to <InlineMath math="20" />, the numbers with remainder <InlineMath math="0" />, <InlineMath math="1" />, and <InlineMath math="2" /> number <InlineMath math="6" />, <InlineMath math="7" />, and <InlineMath math="7" />, so the pairs whose sum is a multiple of <InlineMath math="3" /> number <InlineMath math="\binom62+7\cdot7=64" />. **The overlap has to be subtracted once**: <InlineMath math="64-15=49" /> pairs satisfy both. That gives <InlineMath math="145+64-49=160" />, the same as the complement method.
+
+So the probability is <InlineMath math="\frac{16}{19}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\frac{29}{38}" /> is <InlineMath math="\frac{145}{190}" />, the probability of an even product only. The condition on the sum hasn't been used.
+- <InlineMath math="\frac56" /> treats the two events as independent with the rough probabilities <InlineMath math="\tfrac34" /> and <InlineMath math="\tfrac13" />, giving <InlineMath math="\tfrac34+\tfrac13-\tfrac14" />. But the cards are drawn without replacement, and the remainder groups aren't the same size.
+- <InlineMath math="\frac{169}{190}" /> **treats a sum like a product**, as if a sum could only be a multiple of <InlineMath math="3" /> when one of the numbers is. The complement then becomes the pairs from the seven odd numbers that aren't multiples of <InlineMath math="3" />, <InlineMath math="\binom72=21" />.
+- <InlineMath math="\frac{86}{95}" /> counts the remainder-<InlineMath math="1" />, remainder-<InlineMath math="2" /> pairs twice, as if order mattered, so the odd pairs with a sum that's a multiple of <InlineMath math="3" /> become <InlineMath math="3+24=27" /> and the complement <InlineMath math="18" />.

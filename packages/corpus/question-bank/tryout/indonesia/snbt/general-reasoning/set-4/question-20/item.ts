@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "tournament",
+    topic: "arrangement",
   },
   versions: {
     id: {
@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "A bermain seri melawan C.",
+          label: "Lompatan Irfan adalah yang terjauh.",
         },
         {
           correct: false,
-          label: "B mengalahkan D.",
+          label: "Lompatan Lukas lebih pendek daripada lompatan Nadia.",
         },
         {
           correct: false,
-          label: "D bermain seri melawan A.",
+          label: "Lompatan Nadia adalah yang terjauh.",
+        },
+        {
+          correct: false,
+          label: "Lompatan Jihan termasuk tiga lompatan terjauh.",
         },
         {
           correct: true,
-          label: "C mengalahkan D.",
-        },
-        {
-          correct: false,
-          label: "A kalah dari B.",
+          label: "Lompatan Irfan termasuk tiga lompatan terjauh.",
         },
       ],
     },

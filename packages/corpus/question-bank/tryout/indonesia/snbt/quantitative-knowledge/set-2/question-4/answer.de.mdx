@@ -1,22 +1,45 @@
-Beide Gleichungen sind symmetrisch in <InlineMath math="x" /> und <InlineMath math="y" />, deshalb **setzt du <InlineMath math="s=x+y" /> und <InlineMath math="p=xy" />**. Die zweite Gleichung lässt sich als <InlineMath math="xy(x+y)" /> faktorisieren.
+Der Ausdruck <InlineMath math="S(x)=|x-2|+|x+7|" /> ist **die Summe der Abstände** von <InlineMath math="x" /> zu <InlineMath math="2" /> und zu <InlineMath math="-7" /> auf dem Zahlenstrahl. Der Plan: Schreibe <InlineMath math="S(x)" /> ohne Betragsstriche, bestimme die Lösungsmenge für jedes <InlineMath math="k" />, zähle ihre ganzen Zahlen und suche dann die <InlineMath math="k" />, die genau <InlineMath math="20" /> liefern.
 
-<BlockMath math="s+p=11,\qquad sp=30" />
+# Die Form der Abstandsfunktion
 
-# s und p bestimmen
+Die Beträge wechseln ihre Form bei <InlineMath math="x=-7" /> und <InlineMath math="x=2" />, es gibt also drei Bereiche.
 
-Die Zahlen <InlineMath math="s" /> und <InlineMath math="p" /> haben die Summe 11 und das Produkt 30, sie sind also die Lösungen von <InlineMath math="t^2-11t+30=0" />, nämlich 5 und 6. Es gibt **zwei Möglichkeiten**: <InlineMath math="(s,p)=(5,6)" /> oder <InlineMath math="(s,p)=(6,5)" />.
+<BlockMath math="\begin{aligned}
+x\le-7&:\quad S(x)=(2-x)+(-x-7)=-2x-5\\
+-7\le x\le2&:\quad S(x)=(2-x)+(x+7)=9\\
+x\ge2&:\quad S(x)=(x-2)+(x+7)=2x+5
+\end{aligned}" />
 
-Jede Möglichkeit muss reelle Werte für <InlineMath math="x" /> und <InlineMath math="y" /> liefern. Diese sind die Lösungen von <InlineMath math="t^2-st+p=0" />.
+Zwischen <InlineMath math="-7" /> und <InlineMath math="2" /> **bleibt <InlineMath math="S(x)" /> konstant bei <InlineMath math="9" />**, weil die beiden Abstände zusammen immer die Länge dieser Strecke ergeben. Also gilt <InlineMath math="S(x)\ge9" /> für jedes <InlineMath math="x" />, und für <InlineMath math="k<9" /> gibt es keine Lösung.
 
-| <InlineMath math="(s,p)" /> | Gleichung | <InlineMath math="(x,y)" /> | <InlineMath math="x^2+y^2=s^2-2p" /> |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="(5,6)" /> | <InlineMath math="t^2-5t+6=0" /> | 2 und 3 | <InlineMath math="25-12=13" /> |
-| <InlineMath math="(6,5)" /> | <InlineMath math="t^2-6t+5=0" /> | 1 und 5 | <InlineMath math="36-10=26" /> |
+# Die Lösungsmenge
 
-# Größten Wert wählen
+Für <InlineMath math="k\ge9" /> erfüllt der ganze mittlere Bereich die Ungleichung. Rechts liefert <InlineMath math="2x+5\le k" /> die Bedingung <InlineMath math="x\le\tfrac{k-5}{2}" />. Links liefert <InlineMath math="-2x-5\le k" /> die Bedingung <InlineMath math="x\ge-\tfrac{k+5}{2}" />. Zusammen:
 
-Beide Paare sind reell und erfüllen das System. Probe für das zweite Paar: <InlineMath math="1+5+5=11" /> und <InlineMath math="1^2(5)+1(5^2)=30" />. Der **größte** Wert ist 26.
+<BlockMath math="-\frac{k+5}{2}\le x\le\frac{k-5}{2}" />
 
-Der Wert 13 verwendet nur die erste Möglichkeit. Die Werte 25 und 36 sind <InlineMath math="s^2" />, dort fehlt die Subtraktion von <InlineMath math="2p" />. Der Wert 31 zieht nur <InlineMath math="p" /> statt <InlineMath math="2p" /> ab.
+Dieses Intervall hat den Mittelpunkt <InlineMath math="-\tfrac52" /> und die Länge <InlineMath math="k" />. Die ganzen Zahlen im mittleren Bereich, <InlineMath math="-6" /> bis <InlineMath math="1" />, **zählen als Lösungen mit**.
 
-Der größtmögliche Wert von <InlineMath math="x^2+y^2" /> ist also **26**.
+# Nach der Parität zählen
+
+Wie viele ganze Zahlen im Intervall liegen, hängt davon ab, **ob seine Randpunkte ganzzahlig sind**, und das entscheidet die Parität von <InlineMath math="k" />.
+
+<BlockMath math="\begin{aligned}
+k\ \text{ungerade}&:\quad \text{ganze Zahlen } -\tfrac{k+5}{2},\ \ldots,\ \tfrac{k-5}{2},\ \text{Anzahl } \tfrac{k-5}{2}+\tfrac{k+5}{2}+1=k+1\\
+k\ \text{gerade}&:\quad \text{ganze Zahlen } -\tfrac{k+4}{2},\ \ldots,\ \tfrac{k-6}{2},\ \text{Anzahl } \tfrac{k-6}{2}+\tfrac{k+4}{2}+1=k
+\end{aligned}" />
+
+Für ungerades <InlineMath math="k" /> liefert <InlineMath math="k+1=20" /> den Wert <InlineMath math="k=19" />, und <InlineMath math="19" /> ist tatsächlich ungerade. Für gerades <InlineMath math="k" /> gilt <InlineMath math="k=20" />, und <InlineMath math="20" /> ist tatsächlich gerade. Es gibt also zwei Werte von <InlineMath math="k" />, und ihre Summe ist <InlineMath math="19+20=39" />.
+
+# Das Ergebnis prüfen
+
+Für <InlineMath math="k=19" /> sind die Lösungen <InlineMath math="-12\le x\le7" />, das sind <InlineMath math="7-(-12)+1=20" /> ganze Zahlen. Für <InlineMath math="k=20" /> sind die Lösungen <InlineMath math="-12{,}5\le x\le7{,}5" />, darin liegen die ganzen Zahlen <InlineMath math="-12" /> bis <InlineMath math="7" />, wieder <InlineMath math="20" />. Für <InlineMath math="k=21" /> wird das Intervall zu <InlineMath math="-13\le x\le8" /> mit <InlineMath math="22" /> ganzen Zahlen, **die Anzahl springt also von zwanzig direkt auf zweiundzwanzig**.
+
+# Fallen in den anderen Antworten
+
+- <InlineMath math="19" /> nimmt an, die Anzahl sei immer <InlineMath math="k+1" />, und übersieht so den geraden Fall.
+- <InlineMath math="20" /> nimmt an, die Anzahl sei immer <InlineMath math="k" />, und übersieht so den ungeraden Fall.
+- <InlineMath math="55" /> zählt nur die Lösungen aus den beiden äußeren Bereichen und **vergisst die acht ganzen Zahlen im mittleren Bereich**. Dann gibt es genau <InlineMath math="20" /> Lösungen bei <InlineMath math="k=27" /> und <InlineMath math="k=28" />.
+- <InlineMath math="60" /> nimmt <InlineMath math="19\le k\le21" /> an, aber bei <InlineMath math="k=21" /> sind es schon <InlineMath math="22" />.
+
+Die Summe aller möglichen Werte von <InlineMath math="k" /> ist also <InlineMath math="39" />.

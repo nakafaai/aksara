@@ -3,30 +3,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
-    contentDomain: "analytical-exposition",
-    topic: "synthesis",
+    contentDomain: "descriptive",
+    topic: "explicit-information",
   },
-  stimulus: "source-checking",
+  stimulus: "observatory",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "Trace a claim to its source.",
-        },
-        {
-          correct: true,
-          label: "Match checking effort to possible harm.",
+          correct: false,
+          label: "I and III only",
         },
         {
           correct: false,
-          label:
-            "Treat professional design as evidence that the source has already been verified.",
+          label: "I, II, and III only",
+        },
+        {
+          correct: false,
+          label: "III and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, and IV only",
         },
         {
           correct: true,
-          label: "Use source checking across different subjects.",
+          label: "I, III, and IV only",
         },
       ],
     },

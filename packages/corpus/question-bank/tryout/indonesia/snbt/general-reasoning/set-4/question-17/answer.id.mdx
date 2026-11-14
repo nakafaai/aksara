@@ -1,11 +1,40 @@
-Bagi perhitungan menurut **hari tampil Q dan R**, karena keduanya selalu mengisi satu hari penuh, yaitu Jumat atau Minggu.
+Soal ini menanyakan banyak jadwal yang memenuhi **keenam syarat sekaligus**. Cara paling aman adalah memecah kasus menurut sesi batik, karena batik dan gamelan selalu menempati dua sesi yang berurutan. Setelah sesi batik dikunci, kegiatan lain ikut terkunci satu per satu.
 
-**Q dan R pada hari Jumat**. Sabtu diisi P dan satu penampil lain, sedangkan Minggu diisi dua penampil. S harus malam, jadi S tidak dapat bersama P di Sabtu kecuali P sore, tetapi jika S di Sabtu, T dan U akan berada di hari yang sama, yaitu Minggu. Jadi, S tampil Minggu malam. T harus lebih awal daripada U, sehingga T di Sabtu dan U Minggu sore. Pilihan yang masih bebas: urutan Q dan R di Jumat (<InlineMath math="2" /> cara) dan urutan P dan T di Sabtu (<InlineMath math="2" /> cara), jadi <InlineMath math="2\times2=4" /> jadwal.
+Kumpulkan dulu tiga fakta yang berlaku di semua kasus.
 
-**Q dan R pada hari Minggu**. Dengan alasan yang sama, S tampil Jumat malam, T Jumat sore, dan U di Sabtu bersama P. Urutan Q dan R serta urutan P dan U masing-masing memberi <InlineMath math="2" /> cara, jadi ada <InlineMath math="4" /> jadwal.
+- Batik tidak mungkin di hari Rabu. Syarat 6 meminta kuliner pada hari setelah hari batik, dan tidak ada hari setelah Rabu.
+- Wayang tidak mungkin di hari Rabu, karena dongeng harus pada hari setelah hari wayang (syarat 3).
+- Dongeng tidak mungkin di hari Senin (syarat 3) dan harus di sesi pagi (syarat 4). Jadi dongeng di Selasa pagi atau Rabu pagi.
 
-<BlockMath math="\text{Banyak jadwal}=4+4=8" />
+Batik tinggal punya empat kemungkinan: Senin pagi, Senin siang, Selasa pagi, atau Selasa siang. Gamelan selalu di sesi tepat sesudahnya. Perhatikan bahwa sesi sesudah Senin siang adalah Selasa pagi, dan sesi sesudah Selasa siang adalah Rabu pagi.
 
-Pilihan <InlineMath math="4" /> muncul jika hanya satu kasus yang dihitung. Pilihan <InlineMath math="6" /> dan <InlineMath math="10" /> tidak cocok dengan pembagian kasus, karena setiap kasus selalu menghasilkan kelipatan <InlineMath math="4" />. Pilihan <InlineMath math="12" /> muncul jika S dianggap boleh tampil pada hari Sabtu tanpa memeriksa syarat 4.
+Kasus 1, batik di Senin pagi dan gamelan di Senin siang. Senin penuh, dan wayang tidak boleh di Rabu, jadi wayang di Selasa. Dongeng harus pada hari setelah Selasa, jadi dongeng di Rabu pagi. Angklung dan kuliner mengisi sesi Selasa yang tersisa dan Rabu siang.
 
-Jadi, ada <InlineMath math="8" /> jadwal yang memenuhi semua syarat.
+- Jika kuliner di Rabu siang, wayang dan angklung bisa bertukar sesi di hari Selasa. Ada <InlineMath math="2" /> jadwal.
+- Jika kuliner di Selasa, kuliner tidak boleh di Selasa pagi, karena syarat 5 lalu menuntut wayang di Senin. Jadi kuliner di Selasa siang, wayang di Selasa pagi, dan angklung di Rabu siang. Ada <InlineMath math="1" /> jadwal.
+
+Kasus 2, batik di Senin siang dan gamelan di Selasa pagi. Wayang tidak boleh di Selasa (syarat 2) dan tidak boleh di Rabu, jadi wayang di Senin pagi. Selasa pagi sudah terisi, jadi dongeng di Rabu pagi. Angklung dan kuliner mengisi Selasa siang dan Rabu siang dengan urutan bebas. Ada <InlineMath math="2" /> jadwal.
+
+Kasus 3, batik di Selasa pagi dan gamelan di Selasa siang. Wayang tidak boleh di Selasa dan tidak boleh di Rabu, jadi wayang di Senin. Selasa pagi sudah terisi, jadi dongeng di Rabu pagi. Kuliner harus pada hari setelah Selasa, jadi kuliner di Rabu siang. Angklung menemani wayang di hari Senin, dan keduanya bisa bertukar sesi. Ada <InlineMath math="2" /> jadwal.
+
+Kasus 4, batik di Selasa siang dan gamelan di Rabu pagi. Dongeng tinggal punya Selasa pagi, jadi wayang harus di Senin. Kuliner harus pada hari setelah Selasa, jadi kuliner di Rabu siang. Angklung menemani wayang di hari Senin dengan dua urutan. Ada <InlineMath math="2" /> jadwal.
+
+Semua jadwal yang sah tercatat di tabel berikut.
+
+| Kasus | Senin pagi | Senin siang | Selasa pagi | Selasa siang | Rabu pagi | Rabu siang |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | batik | gamelan | wayang | angklung | dongeng | kuliner |
+| 1 | batik | gamelan | angklung | wayang | dongeng | kuliner |
+| 1 | batik | gamelan | wayang | kuliner | dongeng | angklung |
+| 2 | wayang | batik | gamelan | angklung | dongeng | kuliner |
+| 2 | wayang | batik | gamelan | kuliner | dongeng | angklung |
+| 3 | wayang | angklung | batik | gamelan | dongeng | kuliner |
+| 3 | angklung | wayang | batik | gamelan | dongeng | kuliner |
+| 4 | wayang | angklung | dongeng | batik | gamelan | kuliner |
+| 4 | angklung | wayang | dongeng | batik | gamelan | kuliner |
+
+<BlockMath math="3 + 2 + 2 + 2 = 9" />
+
+Hasil lain biasanya berasal dari satu langkah yang terlewat. Angka <InlineMath math="5" /> muncul jika batik dan gamelan hanya dicari pada hari yang sama, sehingga kasus 2 dan 4 hilang. Angka <InlineMath math="10" /> muncul jika syarat 5 lupa dipakai, karena kasus 1 lalu mendapat jadwal tambahan dengan kuliner di Selasa pagi dan wayang di Selasa siang.
+
+Jadi, banyak jadwal yang memenuhi semua syarat adalah <InlineMath math="9" />.

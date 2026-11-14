@@ -11,27 +11,29 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Gedung latihan disewa dengan uang kas paduan suara dan paduan suara mengikuti festival tingkat nasional.",
+        },
+        {
+          correct: false,
+          label:
+            "Sponsor baru tidak bergabung dan gedung latihan tidak disewa dengan uang kas paduan suara.",
+        },
+        {
+          correct: false,
+          label:
+            "Latihan tambahan diadakan setiap Sabtu dan pelatih vokal tamu tidak diundang.",
+        },
+        {
+          correct: false,
+          label:
+            "Sponsor baru bergabung dan latihan tambahan diadakan setiap Sabtu.",
+        },
+        {
           correct: true,
           label:
-            "Gudang tidak menerima kiriman beras pada hari Senin minggu ini.",
-        },
-        {
-          correct: false,
-          label: "Petugas menimbang ulang semua karung minggu ini.",
-        },
-        {
-          correct: false,
-          label: "Laporan stok terlambat dikirim minggu ini.",
-        },
-        {
-          correct: false,
-          label:
-            "Gudang menerima kiriman beras pada hari selain Senin minggu ini.",
-        },
-        {
-          correct: false,
-          label:
-            "Kepala gudang tidak akan menelepon pemasok pada minggu depan.",
+            "Sponsor baru tidak bergabung dan latihan tambahan diadakan setiap Sabtu.",
         },
       ],
     },

@@ -1,16 +1,38 @@
-<InlineMath math="f^{-1}(5)" /> ist **der Wert von <InlineMath math="x" />, für den <InlineMath math="f(x)=5" /> gilt**. Löse also diese Gleichung oder bestimme zuerst die Umkehrfunktion.
+# Drei Bedingungen für einen Logarithmus
+
+Gefragt ist, wann <InlineMath math="{}^{5-x}\log\left(x^2-x-6\right)" /> überhaupt einen Sinn hat. Ein Logarithmus <InlineMath math="{}^{a}\log b" /> ist nur definiert, wenn das Argument positiv ist, <InlineMath math="b>0" />, und die Basis positiv, aber **nicht <InlineMath math="1" />** ist, also <InlineMath math="a>0" /> und <InlineMath math="a\neq1" />. Hier enthält auch die Basis <InlineMath math="x" />, also müssen alle drei Bedingungen gleichzeitig gelten.
+
+# Die Bedingung für das Argument
+
+Faktorisiere den quadratischen Term und bestimme, wo er positiv ist.
 
 <BlockMath math="\begin{aligned}
-\frac{2x-1}{3}&=5 \\
-2x-1&=15 \\
-x&=8
+x^2-x-6&>0 \\
+(x-3)(x+2)&>0
 \end{aligned}" />
 
-Die Umkehrfunktion liefert dasselbe: <InlineMath math="f^{-1}(x)=\frac{3x+1}{2}" /> und <InlineMath math="f^{-1}(5)=\frac{16}{2}=8" />. Probe: <InlineMath math="f(8)=\frac{15}{3}=5" />.
+Ein Produkt aus zwei Faktoren ist positiv, wenn beide Faktoren dasselbe Vorzeichen haben, also **außerhalb der beiden Nullstellen**. Damit gilt <InlineMath math="x<-2" /> oder <InlineMath math="x>3" />. Probier <InlineMath math="x=0" />: <InlineMath math="0-0-6=-6" /> ist negativ, der Bereich zwischen <InlineMath math="-2" /> und <InlineMath math="3" /> fällt also wirklich weg.
 
-Also ist <InlineMath math="f^{-1}(5)=8" />.
+# Die Bedingung für die Basis
 
-- <InlineMath math="\frac13" /> ist der Kehrwert von <InlineMath math="f(5)" />, doch eine Umkehrfunktion ist kein Kehrwert.
-- <InlineMath math="3" /> ist <InlineMath math="f(5)" />, nicht <InlineMath math="f^{-1}(5)" />.
-- <InlineMath math="7" /> kehrt die Reihenfolge der Rechenschritte um, aber nicht das Vorzeichen, und rechnet <InlineMath math="\frac{3\cdot5-1}{2}" />.
-- <InlineMath math="14" /> rechnet <InlineMath math="3\cdot5-1" /> und vergisst, durch <InlineMath math="2" /> zu teilen.
+Die Basis ist <InlineMath math="5-x" />, und **die Basis muss positiv und ungleich eins sein**.
+
+<BlockMath math="\begin{aligned}
+5-x>0 &\Rightarrow x<5 \\
+5-x\neq1 &\Rightarrow x\neq4
+\end{aligned}" />
+
+Die erste Bedingung wirft alle <InlineMath math="x" /> ab <InlineMath math="5" /> hinaus, weil die Basis dort null oder negativ ist. Die zweite wirft nur einen einzigen Punkt hinaus, nämlich <InlineMath math="x=4" />.
+
+# Alles zusammensetzen
+
+Schneidest du <InlineMath math="x<-2" /> oder <InlineMath math="x>3" /> mit <InlineMath math="x<5" />, erhältst du <InlineMath math="x<-2" /> oder <InlineMath math="3<x<5" />. Der Punkt <InlineMath math="x=4" /> **liegt mitten in <InlineMath math="3<x<5" />**, also muss er raus. Probe: Bei <InlineMath math="x=4" /> ist die Basis <InlineMath math="1" />, und ein Logarithmus zur Basis <InlineMath math="1" /> ist nicht definiert. Bei <InlineMath math="x=-3" /> ist das Argument <InlineMath math="6" /> und die Basis <InlineMath math="8" />, beides erlaubt.
+
+Also ist <InlineMath math="f(x)" /> definiert für <InlineMath math="x<-2" /> oder <InlineMath math="3<x<5" />, mit <InlineMath math="x\neq4" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="-2<x<3" /> entsteht, wenn du das Vorzeichen der quadratischen Ungleichung umdrehst. Der positive Teil liegt außerhalb der Nullstellen, nicht dazwischen.
+- <InlineMath math="3<x<5" /> mit <InlineMath math="x\neq4" /> wirft <InlineMath math="x<-2" /> weg. Dort sind Argument und Basis beide positiv, und die Basis ist sogar größer als <InlineMath math="1" />.
+- <InlineMath math="x<-2" /> oder <InlineMath math="3<x<5" /> vergisst, dass **die Basis nicht <InlineMath math="1" /> sein darf**.
+- <InlineMath math="x<-2" /> oder <InlineMath math="x>3" />, mit <InlineMath math="x\neq4" />, vergisst, dass die Basis positiv sein muss. Für <InlineMath math="x\ge5" /> ist <InlineMath math="5-x" /> null oder negativ.

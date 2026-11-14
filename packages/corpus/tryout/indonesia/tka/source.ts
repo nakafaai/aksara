@@ -20,21 +20,19 @@ import { defineExamSource } from "#corpus/tryout/schema";
 const tkaTryoutCatalog = defineExamSource({
   ...indonesiaTryoutCountry,
   examKey: "tka",
+  examName: "TKA",
   examOrder: 2,
   examRouteSlugs: { de: "tka", en: "tka", id: "tka" },
   examTranslations: {
     de: {
       description:
         "Probetest für den indonesischen akademischen Kompetenztest.",
-      title: "TKA",
     },
     en: {
       description: "Indonesian academic competency try-outs.",
-      title: "TKA",
     },
     id: {
       description: "Try out Tes Kemampuan Akademik Indonesia.",
-      title: "TKA",
     },
   },
   grouping: {

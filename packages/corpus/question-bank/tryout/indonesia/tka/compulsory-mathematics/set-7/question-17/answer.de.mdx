@@ -1,17 +1,68 @@
-Ein komplettes Eis braucht **das Eis in der Waffel plus die Halbkugel darauf**. Beide haben den Radius <InlineMath math="3\text{ cm}" />, und <InlineMath math="1" /> Liter sind <InlineMath math="1{.}000\text{ cm}^3" />.
+Diese Aufgabe hat zwei Teile, die am Ende multipliziert werden: **wie viele Rohre in einem Bündel stecken** und wie schwer ein Rohr ist. Der erste Teil ist Abzählen, der zweite Volumen und Dichte.
+
+# Anzahl der Rohre im Bündel
+
+Stell dir die Stirnseite des Bündels als waagrechte Reihen von Kreisen vor. Die obere Seite enthält <InlineMath math="3" /> Rohre. Jede Reihe darunter hat ein Rohr mehr bis zur mittleren Reihe, danach wird es wieder weniger. Die Reihen enthalten also <InlineMath math="3,4,5,4,3" /> Rohre.
+
+<BlockMath math="3+4+5+4+3=19\text{ Rohre}" />
+
+Du kannst auch Ring für Ring zählen. Das mittlere Rohr ist <InlineMath math="1" />, der erste Ring hat <InlineMath math="6" />, und der äußere Ring hat <InlineMath math="6\cdot3-6=12" />. **Jedes Eckrohr gehört gleichzeitig zu zwei Seiten**, deshalb werden die sechs Eckrohre einmal abgezogen. Die Summe ist dieselbe, <InlineMath math="1+6+12=19" />.
+
+<MathVisual
+  title={<>Stirnseite eines Bündels</>}
+  description={<>Neunzehn gleich große Kreise, die sich gegenseitig berühren, bilden ein regelmäßiges Sechseck. Die Reihen enthalten <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="5" />, <InlineMath math="4" /> und <InlineMath math="3" /> Kreise. In der Mitte liegt ein Kreis, im ersten Ring liegen <InlineMath math="6" /> und im äußeren Ring <InlineMath math="12" /> Kreise, mit <InlineMath math="3" /> Kreisen auf jeder äußeren Seite.</>}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 5.5 },
+      y: { min: -5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pipe-center", kind: "circle", appearance: "highlight", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "pipe-inner-1", kind: "circle", appearance: "primary", center: { x: 2, y: 0 }, radius: 1 },
+      { id: "pipe-inner-2", kind: "circle", appearance: "primary", center: { x: -2, y: 0 }, radius: 1 },
+      { id: "pipe-inner-3", kind: "circle", appearance: "primary", center: { x: 1, y: Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-inner-4", kind: "circle", appearance: "primary", center: { x: -1, y: Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-inner-5", kind: "circle", appearance: "primary", center: { x: 1, y: -Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-inner-6", kind: "circle", appearance: "primary", center: { x: -1, y: -Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-1", kind: "circle", appearance: "secondary", center: { x: 4, y: 0 }, radius: 1 },
+      { id: "pipe-outer-2", kind: "circle", appearance: "secondary", center: { x: -4, y: 0 }, radius: 1 },
+      { id: "pipe-outer-3", kind: "circle", appearance: "secondary", center: { x: 3, y: Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-4", kind: "circle", appearance: "secondary", center: { x: -3, y: Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-5", kind: "circle", appearance: "secondary", center: { x: 3, y: -Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-6", kind: "circle", appearance: "secondary", center: { x: -3, y: -Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-7", kind: "circle", appearance: "secondary", center: { x: 2, y: 2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-8", kind: "circle", appearance: "secondary", center: { x: 0, y: 2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-9", kind: "circle", appearance: "secondary", center: { x: -2, y: 2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-10", kind: "circle", appearance: "secondary", center: { x: 2, y: -2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-11", kind: "circle", appearance: "secondary", center: { x: 0, y: -2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-12", kind: "circle", appearance: "secondary", center: { x: -2, y: -2 * Math.sqrt(3) }, radius: 1 },
+    ],
+  }}
+/>
+
+# Masse eines Rohrs
+
+Der Außenradius ist <InlineMath math="R=5\text{ cm}" />. Die Wand von <InlineMath math="1\text{ cm}" /> liegt auf beiden Seiten des Hohlraums, also ist der Innenradius <InlineMath math="r=4\text{ cm}" />. Die Länge ist <InlineMath math="5\text{ m}=500\text{ cm}" />. Das Eisenvolumen ist Ringfläche mal Länge, und dann gilt **Masse gleich Dichte mal Volumen**.
 
 <BlockMath math="\begin{aligned}
-V_{\text{Kegel}}&=\tfrac13\cdot3{,}14\cdot3^2\cdot12=113{,}04 \\
-V_{\text{Halbkugel}}&=\tfrac23\cdot3{,}14\cdot3^3=56{,}52 \\
-V_{\text{ein Eis}}&=113{,}04+56{,}52=169{,}56\text{ cm}^3 \\
-\frac{1{.}000}{169{,}56}&\approx5{,}9
+V&=\frac{22}{7}\,(5^2-4^2)\cdot500=\frac{22}{7}\cdot9\cdot500=\frac{99{.}000}{7}\text{ cm}^3 \\
+m&=7\cdot\frac{99{.}000}{7}=99{.}000\text{ g}=99\text{ kg}
 \end{aligned}" />
 
-Ein sechstes komplettes Eis geht nicht mehr, denn <InlineMath math="6\cdot169{,}56=1{.}017{,}36\text{ cm}^3" /> ist mehr als <InlineMath math="1{.}000\text{ cm}^3" />. Das Ergebnis wird also **abgerundet**.
+# Masse eines Bündels
 
-Es lassen sich also höchstens <InlineMath math="5" /> komplette Eis machen.
+Ein Bündel enthält <InlineMath math="19" /> gleiche Rohre, und die Bänder werden nicht mitgezählt. Weil alle Rohre gleich groß sind, **ist die Masse des Bündels die Anzahl der Rohre mal die Masse eines Rohrs**.
 
-- <InlineMath math="4" /> setzt eine ganze Kugel statt einer Halbkugel auf die Waffel.
-- <InlineMath math="6" /> rundet <InlineMath math="5{,}9" /> auf, doch für ein sechstes Eis reicht es nicht.
-- <InlineMath math="8" /> zählt nur das Eis in der Waffel.
-- <InlineMath math="17" /> zählt nur die Halbkugel.
+<BlockMath math="19\cdot99\text{ kg}=1{.}881\text{ kg}" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="2{.}475\text{ kg}" /> ist <InlineMath math="25\cdot99" />. Der äußere Ring wurde als <InlineMath math="6\cdot3=18" /> gezählt, ohne die doppelt gezählten Eckrohre abzuziehen.
+- <InlineMath math="3{.}663\text{ kg}" /> ist <InlineMath math="37\cdot99" />. Die Angabe von <InlineMath math="3" /> Rohren pro Seite wurde als drei Ringe um das mittlere Rohr gelesen, <InlineMath math="1+6+12+18=37" />.
+- <InlineMath math="5{.}225\text{ kg}" /> ist <InlineMath math="19\cdot275" />. Hier wurden die Rohre als massiv behandelt, aber **im Hohlraum eines Rohrs steckt kein Eisen**.
+- <InlineMath math="7{.}524\text{ kg}" /> ist <InlineMath math="19\cdot396" />. Die Durchmesser <InlineMath math="10" /> und <InlineMath math="8" /> wurden als Radien benutzt, dadurch wird die Ringfläche viermal zu groß.
+
+Ein Bündel Rohre hat also eine Masse von <InlineMath math="1{.}881\text{ kg}" />.

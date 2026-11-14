@@ -1,0 +1,94 @@
+Soalan ini meminta pusat pembesaran <InlineMath math="P" />. Masalahnya, bucu-bucu imej **tidak dilabelkan**. Jadi kamu perlu memadankan dahulu setiap bucu dengan imejnya, kemudian mencari faktor skala <InlineMath math="k" /> bersama tandanya.
+
+# Padankan bucu
+
+Pembesaran dengan faktor <InlineMath math="k" /> mendarab setiap vektor sisi dengan <InlineMath math="k" />, iaitu <InlineMath math="\overrightarrow{X'Y'}=k\,\overrightarrow{XY}" />. Oleh itu saiz sudut tidak berubah, dan setiap panjang didarab dengan <InlineMath math="|k|" />.
+
+Segi tiga <InlineMath math="ABC" /> bersudut tegak di <InlineMath math="A" />, dengan <InlineMath math="AB=3" /> mengufuk dan <InlineMath math="AC=4" /> mencancang. Pada imejnya, titik <InlineMath math="(-3,0)" /> berjarak <InlineMath math="6" /> secara mengufuk dari <InlineMath math="(-9,0)" /> dan <InlineMath math="8" /> tegak di atas <InlineMath math="(-3,-8)" />, jadi sudut tegaknya berada di <InlineMath math="(-3,0)" />. **Sudut tegak dipetakan kepada sudut tegak**, dan sisi pendek kepada sisi pendek:
+
+<BlockMath math="A'=(-3,0),\qquad B'=(-9,0),\qquad C'=(-3,-8)" />
+
+# Cari faktor skala
+
+Bandingkan setiap vektor sisi sebelum dan selepas pembesaran.
+
+<BlockMath math="\begin{aligned}
+\overrightarrow{AB}&=(3,0), & \overrightarrow{A'B'}&=(-6,0)=-2\,(3,0) \\
+\overrightarrow{AC}&=(0,4), & \overrightarrow{A'C'}&=(0,-8)=-2\,(0,4)
+\end{aligned}" />
+
+Kedua-dua sisi memberikan faktor yang sama, jadi <InlineMath math="k=-2" />. Panjang sisi sahaja hanya memberitahu <InlineMath math="|k|=2" />. **Tanda negatif datang daripada arah sisi yang berpatah balik**: <InlineMath math="B" /> berada di sebelah kanan <InlineMath math="A" />, tetapi <InlineMath math="B'" /> berada di sebelah kiri <InlineMath math="A'" />.
+
+# Kira pusat pembesaran
+
+Pembesaran berpusat <InlineMath math="P" /> bermaksud <InlineMath math="A'-P=k\,(A-P)" />. Kumpulkan semua <InlineMath math="P" /> pada satu belah, kemudian gantikan <InlineMath math="k=-2" />.
+
+<BlockMath math="\begin{aligned}
+A'-P&=kA-kP \\
+A'-kA&=(1-k)\,P \\
+P&=\frac{A'-kA}{1-k}=\frac{(-3,0)+2\,(3,3)}{1+2}=\frac{(3,6)}{3}=(1,2)
+\end{aligned}" />
+
+Sekarang semak dengan dua bucu yang lain. **Pusat yang betul mesti sesuai untuk ketiga-tiga titik**, bukan untuk <InlineMath math="A" /> sahaja.
+
+<BlockMath math="\begin{aligned}
+P+k\,(B-P)&=(1,2)-2\,(5,1)=(-9,0)=B' \\
+P+k\,(C-P)&=(1,2)-2\,(2,5)=(-3,-8)=C'
+\end{aligned}" />
+
+Dalam rajah, tiga garis yang menyambungkan setiap bucu dengan imejnya bertemu pada satu titik, iaitu <InlineMath math="P" />.
+
+<MathVisual
+  title={<>Pembesaran segi tiga <InlineMath math="ABC" /></>}
+  description={<>Segi tiga <InlineMath math="ABC" /> dengan <InlineMath math="A(3,3)" />, <InlineMath math="B(6,3)" />, <InlineMath math="C(3,7)" /> dan imejnya dengan <InlineMath math="A'(-3,0)" />, <InlineMath math="B'(-9,0)" />, <InlineMath math="C'(-3,-8)" />. Garis <InlineMath math="AA'" />, <InlineMath math="BB'" /> dan <InlineMath math="CC'" /> melalui pusat <InlineMath math="P(1,2)" />, dan imej terletak di seberang pusat daripada segi tiga asal.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    "a-image": <InlineMath math="A'" />,
+    "b-image": <InlineMath math="B'" />,
+    "c-image": <InlineMath math="C'" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 7 },
+      y: { min: -9, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "original", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 3 }, { x: 6, y: 3 }, { x: 3, y: 7 }] },
+      { id: "image", kind: "polygon", appearance: "secondary", vertices: [{ x: -3, y: 0 }, { x: -9, y: 0 }, { x: -3, y: -8 }] },
+      { id: "line-a", kind: "segment", appearance: "construction", from: { x: 3, y: 3 }, to: { x: -3, y: 0 } },
+      { id: "line-b", kind: "segment", appearance: "construction", from: { x: 6, y: 3 }, to: { x: -9, y: 0 } },
+      { id: "line-c", kind: "segment", appearance: "construction", from: { x: 3, y: 7 }, to: { x: -3, y: -8 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 3, y: 3 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 6, y: 3 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 3, y: 7 } },
+      { id: "point-a-image", kind: "point", appearance: "reference", at: { x: -3, y: 0 } },
+      { id: "point-b-image", kind: "point", appearance: "reference", at: { x: -9, y: 0 } },
+      { id: "point-c-image", kind: "point", appearance: "reference", at: { x: -3, y: -8 } },
+      { id: "point-p", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 3, y: 3 }, placement: "below-right" },
+      { key: "b", objectId: "point-b", at: { x: 6, y: 3 }, placement: "right" },
+      { key: "c", objectId: "point-c", at: { x: 3, y: 7 }, placement: "above" },
+      { key: "a-image", objectId: "point-a-image", at: { x: -3, y: 0 }, placement: "below-right" },
+      { key: "b-image", objectId: "point-b-image", at: { x: -9, y: 0 }, placement: "left" },
+      { key: "c-image", objectId: "point-c-image", at: { x: -3, y: -8 }, placement: "below" },
+      { key: "p", objectId: "point-p", at: { x: 1, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="(9,6)" /> terhasil apabila kamu menggunakan <InlineMath math="k=2" /> hanya kerana sisinya dua kali lebih panjang. Dengan pusat itu, <InlineMath math="B" /> dipetakan kepada <InlineMath math="(3,0)" />, yang bukan bucu imej. **Sisi yang berpatah arah memerlukan <InlineMath math="k" /> negatif**.
+- <InlineMath math="\left(0,\tfrac{3}{2}\right)" /> ialah titik tengah <InlineMath math="A" /> dan <InlineMath math="A'" />. Pusat terletak tepat di tengah hanya apabila <InlineMath math="k=-1" />. Di sini <InlineMath math="PA'=2\,PA" />.
+- <InlineMath math="(-1,1)" /> datang daripada <InlineMath math="k=-\tfrac{1}{2}" />, iaitu nisbah yang terbalik. Faktor itu membawa imej kembali kepada segi tiga asal, bukan sebaliknya.
+- <InlineMath math="(-1,-2)" /> ialah kesilapan tanda semasa memindahkan sebutan, iaitu mengira <InlineMath math="\frac{kA-A'}{1-k}" />. Hasilnya ialah pusat sebenar yang dipantulkan pada asalan.
+
+Jadi, pusat pembesaran ialah <InlineMath math="P(1,2)" />, dengan faktor skala <InlineMath math="k=-2" />.

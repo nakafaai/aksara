@@ -2,34 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "writing",
-    topic: "spelling",
+    topic: "word-choice",
   },
-  stimulus: "waste-bank",
+  stimulus: "gelasan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "diacuhkan",
+        },
+        {
+          correct: false,
+          label: "dilupakan",
+        },
+        {
+          correct: false,
+          label: "disalahpahami",
+        },
+        {
+          correct: false,
+          label: "dipertanyakan",
+        },
+        {
           correct: true,
-          label: "Rp1.800,00 per kg",
-        },
-        {
-          correct: false,
-          label: "Rp. 1.800,00 per Kg",
-        },
-        {
-          correct: false,
-          label: "Rp 1.800,00,- per kg",
-        },
-        {
-          correct: false,
-          label: "Rp1.800,00 per Kg.",
-        },
-        {
-          correct: false,
-          label: "RP1.800,00 per KG",
+          label: "diabaikan",
         },
       ],
     },

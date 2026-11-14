@@ -1,15 +1,31 @@
-Dari suku ke-<InlineMath math="2" /> ke suku ke-<InlineMath math="5" />, suku dikalikan rasio **tiga kali**. Jadi bagi <InlineMath math="U_5" /> dengan <InlineMath math="U_2" /> untuk mendapat <InlineMath math="r^3" />.
+# Mengenali pola penyebut
+
+Sebelum menjumlahkan, kamu perlu tahu bentuk umum sukunya dan dari mana sampai mana deret ini berjalan. Perhatikan penyebutnya.
+
+<BlockMath math="35=5\cdot7,\quad 63=7\cdot9,\quad 99=9\cdot11,\quad 143=11\cdot13,\quad 2499=49\cdot51" />
+
+Setiap penyebut adalah hasil kali dua bilangan ganjil berurutan, <InlineMath math="(2k-1)(2k+1)" />. Penyebut <InlineMath math="2499" /> bisa dikenali dari <InlineMath math="2499=50^2-1=49\cdot51" />. Jadi suku pertama memakai <InlineMath math="k=3" /> dan suku terakhir memakai <InlineMath math="k=25" />, sehingga ada <InlineMath math="25-3+1=23" /> suku. **Deret ini tidak dimulai dari <InlineMath math="\frac{1}{1\cdot3}" />**.
+
+# Memecah suku dan meniadakan
+
+Setiap suku bisa dipecah menjadi selisih dua pecahan.
+
+<BlockMath math="\frac{1}{(2k-1)(2k+1)}=\frac{1}{2}\left(\frac{1}{2k-1}-\frac{1}{2k+1}\right)" />
+
+Cek dengan menyamakan penyebut: <InlineMath math="\frac{1}{2}\cdot\frac{(2k+1)-(2k-1)}{(2k-1)(2k+1)}=\frac{1}{2}\cdot\frac{2}{(2k-1)(2k+1)}" />, cocok. Saat semua suku ditulis berderet, **setiap pecahan di tengah muncul sekali positif dan sekali negatif**, jadi saling meniadakan.
 
 <BlockMath math="\begin{aligned}
-r^3&=\frac{U_5}{U_2}=\frac{162}{6}=27\ \Rightarrow\ r=3 \\
-U_1&=\frac{U_2}{r}=\frac63=2
+\text{jumlah}&=\frac{1}{2}\left[\left(\frac{1}{5}-\frac{1}{7}\right)+\left(\frac{1}{7}-\frac{1}{9}\right)+\cdots+\left(\frac{1}{49}-\frac{1}{51}\right)\right] \\
+&=\frac{1}{2}\left(\frac{1}{5}-\frac{1}{51}\right)=\frac{1}{2}\cdot\frac{46}{255}=\frac{23}{255}
 \end{aligned}" />
 
-Cek: barisannya <InlineMath math="2" />, <InlineMath math="6" />, <InlineMath math="18" />, <InlineMath math="54" />, <InlineMath math="162" />.
+Cek dengan cara lain. Jumlah dari <InlineMath math="k=1" /> sampai <InlineMath math="n" /> adalah <InlineMath math="S_n=\frac{n}{2n+1}" />. Deret kita adalah <InlineMath math="S_{25}" /> tanpa dua suku pertama, yaitu <InlineMath math="S_{25}-S_2=\frac{25}{51}-\frac{2}{5}=\frac{125-102}{255}=\frac{23}{255}" />.
 
-Jadi, suku pertama barisan itu adalah <InlineMath math="2" />.
+Jadi, jumlah deret itu adalah <InlineMath math="\frac{23}{255}" />.
 
-- <InlineMath math="3" /> adalah rasionya.
-- <InlineMath math="6" /> adalah suku ke-<InlineMath math="2" />.
-- <InlineMath math="18" /> adalah suku ke-<InlineMath math="3" />.
-- <InlineMath math="54" /> adalah suku ke-<InlineMath math="4" />.
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\frac{25}{51}" /> adalah <InlineMath math="S_{25}" />, yang ikut menghitung <InlineMath math="\frac{1}{3}" /> dan <InlineMath math="\frac{1}{15}" />. Kedua suku itu tidak ada di deret.
+- <InlineMath math="\frac{23}{47}" /> memasukkan banyak suku, <InlineMath math="23" />, ke rumus <InlineMath math="\frac{n}{2n+1}" />. **Rumus itu hanya berlaku kalau deret dimulai dari <InlineMath math="\frac{1}{1\cdot3}" />**.
+- <InlineMath math="\frac{46}{255}" /> lupa faktor <InlineMath math="\frac{1}{2}" /> saat memecah suku.
+- <InlineMath math="\frac{22}{357}" /> adalah <InlineMath math="S_{25}-S_3" />. Pengurangnya terlalu banyak satu suku, karena <InlineMath math="S_3" /> sudah memuat <InlineMath math="\frac{1}{35}" />, suku pertama deret ini.

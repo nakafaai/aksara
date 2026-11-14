@@ -1,14 +1,38 @@
-The graph of <InlineMath math="f" /> is a parabola that opens upward with axis <InlineMath math="x=\frac{4}{2}=2" />. The value <InlineMath math="x=2" /> lies in the domain, so **the smallest value is at the vertex**, and the largest is at the end of the domain farthest from <InlineMath math="x=2" />, which is <InlineMath math="x=-1" />.
+# Reading points on the inverse graph
+
+The question asks for <InlineMath math="f\left(\tfrac{5}{2}\right)" />, but the points you're given lie on the graph of <InlineMath math="f^{-1}" />, not on the graph of <InlineMath math="f" />. An inverse function swaps input and output, so **flip the coordinates of each point**:
 
 <BlockMath math="\begin{aligned}
-f(2)&=4-8+1=-3 \\
-f(-1)&=1+4+1=6 \\
-f(3)&=9-12+1=-2
+f^{-1}(6)=1 \;&\Rightarrow\; f(1)=6 \\
+f^{-1}(54)=3 \;&\Rightarrow\; f(3)=54
 \end{aligned}" />
 
-So the range of <InlineMath math="f" /> is <InlineMath math="\{y\mid-3\le y\le6\}" />.
+# Finding a and b
 
-- <InlineMath math="\{y\mid-2\le y\le6\}" /> uses only the two ends of the domain and misses the vertex at <InlineMath math="x=2" />.
-- <InlineMath math="\{y\mid y\ge-3\}" /> is the range over all real numbers, not over <InlineMath math="-1\le x\le3" />.
-- <InlineMath math="\{y\mid-3\le y\le-2\}" /> gets a sign wrong in <InlineMath math="f(-1)" />, using <InlineMath math="-4\cdot(-1)=-4" />.
-- <InlineMath math="\{y\mid-1\le y\le3\}" /> copies the domain as the range.
+Write both facts with the rule <InlineMath math="f(x)=a\cdot b^{x}" />, then divide the second equation by the first so that <InlineMath math="a" /> cancels:
+
+<BlockMath math="\begin{aligned}
+a\cdot b=6, \qquad a\cdot b^{3}&=54 \\
+\frac{a\cdot b^{3}}{a\cdot b}=b^{2}&=\frac{54}{6}=9
+\end{aligned}" />
+
+The equation <InlineMath math="b^{2}=9" /> has two solutions, <InlineMath math="b=3" /> and <InlineMath math="b=-3" />. **The condition <InlineMath math="b>0" /> rules out <InlineMath math="b=-3" />**, so <InlineMath math="b=3" /> and <InlineMath math="a=6\div3=2" />. The function is <InlineMath math="f(x)=2\cdot3^{x}" />.
+
+# Working with a fractional exponent
+
+Split the exponent <InlineMath math="\tfrac{5}{2}" /> into a whole part and a half, because **a power of one half is a square root**:
+
+<BlockMath math="f\left(\tfrac{5}{2}\right)=2\cdot3^{\frac{5}{2}}=2\cdot3^{2}\cdot3^{\frac{1}{2}}=2\cdot9\cdot\sqrt{3}=18\sqrt{3}" />
+
+Check: <InlineMath math="f(1)=2\cdot3=6" /> and <InlineMath math="f(3)=2\cdot27=54" />, which match the two flipped points. The value <InlineMath math="18\sqrt{3}\approx31.2" /> also makes sense, since it lies between <InlineMath math="f(2)=18" /> and <InlineMath math="f(3)=54" />.
+
+# Why the other options are wrong
+
+An exponential function grows by **multiplying by the same factor**, not by adding the same amount, and most wrong options forget that.
+
+- <InlineMath math="162" /> comes from reading <InlineMath math="b^{2}=9" /> as <InlineMath math="b=9" />. Then <InlineMath math="a=\tfrac{2}{3}" /> and <InlineMath math="\tfrac{2}{3}\cdot9^{\frac{5}{2}}=\tfrac{2}{3}\cdot243=162" />.
+- <InlineMath math="54\sqrt{3}" /> comes from taking <InlineMath math="a" /> to be <InlineMath math="f(1)=6" />. In fact <InlineMath math="a=f(0)" />.
+- <InlineMath math="42" /> comes from straight-line interpolation between <InlineMath math="(1,6)" /> and <InlineMath math="(3,54)" />: <InlineMath math="6+\tfrac{3}{2}\cdot24=42" />. An exponential graph isn't a straight line.
+- <InlineMath math="36" /> comes from getting <InlineMath math="f(2)=18" /> right but treating the halfway point between <InlineMath math="x=2" /> and <InlineMath math="x=3" /> as linear. Half a step in the exponent multiplies by <InlineMath math="\sqrt{3}" />, it doesn't add half the gap.
+
+So <InlineMath math="f\left(\tfrac{5}{2}\right)=18\sqrt{3}" />.

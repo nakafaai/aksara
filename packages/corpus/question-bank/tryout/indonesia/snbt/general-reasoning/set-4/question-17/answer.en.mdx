@@ -1,11 +1,40 @@
-Split the count by **the day Q and R perform**, since they always fill a whole day, Friday or Sunday.
+The question asks how many schedules meet **all six conditions at once**. The safest method is to split into cases by the batik session, because batik and gamelan always take two sessions in a row. Once the batik session is fixed, the other activities lock in one by one.
 
-**Q and R on Friday**. Saturday holds P and one other performer, and Sunday holds two. If S were on Saturday, T and U would end up on the same day, Sunday, which is not allowed. So S performs on Sunday evening. T must be earlier than U, so T is on Saturday and U on Sunday afternoon. The free choices are the order of Q and R on Friday (<InlineMath math="2" /> ways) and of P and T on Saturday (<InlineMath math="2" /> ways), so <InlineMath math="2\times2=4" /> schedules.
+First collect three facts that hold in every case.
 
-**Q and R on Sunday**. By the same reasoning, S performs Friday evening, T Friday afternoon, and U on Saturday with P. The order of Q and R and the order of P and U each give <InlineMath math="2" /> ways, so there are <InlineMath math="4" /> schedules.
+- Batik can't be on Wednesday. Condition 6 needs kuliner on a day after the batik day, and there's no day after Wednesday.
+- Wayang can't be on Wednesday, because dongeng must be on a day after the wayang day (condition 3).
+- Dongeng can't be on Monday (condition 3) and must be in a morning session (condition 4). So dongeng is on Tuesday morning or Wednesday morning.
 
-<BlockMath math="\text{Number of schedules}=4+4=8" />
+That leaves batik four options: Monday morning, Monday afternoon, Tuesday morning or Tuesday afternoon. Gamelan always takes the session right after it. Notice that the session after Monday afternoon is Tuesday morning, and the session after Tuesday afternoon is Wednesday morning.
 
-The answer <InlineMath math="4" /> comes from counting only one case. The answers <InlineMath math="6" /> and <InlineMath math="10" /> do not fit the case split, because each case gives a multiple of <InlineMath math="4" />. The answer <InlineMath math="12" /> comes from letting S perform on Saturday without checking condition 4.
+Case 1, batik on Monday morning and gamelan on Monday afternoon. Monday is full, and wayang can't be on Wednesday, so wayang is on Tuesday. Dongeng must be on a day after Tuesday, so dongeng is on Wednesday morning. Angklung and kuliner fill the other Tuesday session and Wednesday afternoon.
 
-So <InlineMath math="8" /> schedules satisfy all the conditions.
+- If kuliner is on Wednesday afternoon, wayang and angklung can swap sessions on Tuesday. That's <InlineMath math="2" /> schedules.
+- If kuliner is on Tuesday, it can't be Tuesday morning, because condition 5 would then require wayang on Monday. So kuliner is on Tuesday afternoon, wayang on Tuesday morning and angklung on Wednesday afternoon. That's <InlineMath math="1" /> schedule.
+
+Case 2, batik on Monday afternoon and gamelan on Tuesday morning. Wayang can't be on Tuesday (condition 2) or on Wednesday, so wayang is on Monday morning. Tuesday morning is taken, so dongeng is on Wednesday morning. Angklung and kuliner fill Tuesday afternoon and Wednesday afternoon in either order. That's <InlineMath math="2" /> schedules.
+
+Case 3, batik on Tuesday morning and gamelan on Tuesday afternoon. Wayang can't be on Tuesday or on Wednesday, so wayang is on Monday. Tuesday morning is taken, so dongeng is on Wednesday morning. Kuliner must be on a day after Tuesday, so kuliner is on Wednesday afternoon. Angklung joins wayang on Monday, and the two can swap sessions. That's <InlineMath math="2" /> schedules.
+
+Case 4, batik on Tuesday afternoon and gamelan on Wednesday morning. Dongeng is left with Tuesday morning only, so wayang must be on Monday. Kuliner must be on a day after Tuesday, so kuliner is on Wednesday afternoon. Angklung joins wayang on Monday in two orders. That's <InlineMath math="2" /> schedules.
+
+The table lists every valid schedule.
+
+| Case | Monday morning | Monday afternoon | Tuesday morning | Tuesday afternoon | Wednesday morning | Wednesday afternoon |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | batik | gamelan | wayang | angklung | dongeng | kuliner |
+| 1 | batik | gamelan | angklung | wayang | dongeng | kuliner |
+| 1 | batik | gamelan | wayang | kuliner | dongeng | angklung |
+| 2 | wayang | batik | gamelan | angklung | dongeng | kuliner |
+| 2 | wayang | batik | gamelan | kuliner | dongeng | angklung |
+| 3 | wayang | angklung | batik | gamelan | dongeng | kuliner |
+| 3 | angklung | wayang | batik | gamelan | dongeng | kuliner |
+| 4 | wayang | angklung | dongeng | batik | gamelan | kuliner |
+| 4 | angklung | wayang | dongeng | batik | gamelan | kuliner |
+
+<BlockMath math="3 + 2 + 2 + 2 = 9" />
+
+Other totals usually come from one missed step. You get <InlineMath math="5" /> if you only look for batik and gamelan on the same day, which drops cases 2 and 4. You get <InlineMath math="10" /> if you forget condition 5, because case 1 then gains an extra schedule with kuliner on Tuesday morning and wayang on Tuesday afternoon.
+
+So <InlineMath math="9" /> schedules meet every condition.

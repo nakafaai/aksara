@@ -1,0 +1,71 @@
+# Apotem kolam
+
+Soalan ini mahukan luas laluan, iaitu heksagon luar tolak kolam. Masalahnya, panjang sisi heksagon luar belum diketahui. Lebar laluan diukur berserenjang dengan sisi, jadi **lebar laluan menambah apotem, bukan panjang sisi**. Apotem ialah jarak dari pusat heksagon ke sisinya.
+
+Heksagon sekata boleh dibahagikan kepada enam segi tiga sama sisi yang bertemu di pusat. Lukis garis dari pusat ke titik tengah satu sisi. Terbentuk segi tiga bersudut tegak dengan sudut tegak di titik tengah sisi itu, tapak separuh sisi kolam, iaitu <InlineMath math="3\text{ m}" />, dan sudut <InlineMath math="60^\circ" /> di bucu kolam (setiap sudut segi tiga sama sisi ialah <InlineMath math="60^\circ" />). Apotem ialah sisi yang bertentangan dengan sudut <InlineMath math="60^\circ" /> itu:
+
+<BlockMath math="a_{\text{kolam}}=3\cdot\tan60^\circ=3\sqrt3\text{ m}" />
+
+# Sisi heksagon luar
+
+Apotem heksagon luar lebih panjang sebanyak lebar laluan. Dalam segi tiga bersudut tegak yang sama bentuk, separuh sisi bertentangan dengan sudut <InlineMath math="30^\circ" /> di pusat:
+
+<BlockMath math="\begin{aligned}
+a_{\text{luar}}&=3\sqrt3+\sqrt3=4\sqrt3\text{ m} \\
+\tfrac12 s_{\text{luar}}&=a_{\text{luar}}\cdot\tan30^\circ=4\sqrt3\cdot\frac{1}{\sqrt3}=4 \\
+s_{\text{luar}}&=8\text{ m}
+\end{aligned}" />
+
+Semakan pantas: kedua-dua heksagon serupa, dan **nisbah apotemnya <InlineMath math="4\sqrt3:3\sqrt3=4:3" />**, jadi sisi luar ialah <InlineMath math="6\cdot\frac43=8\text{ m}" />.
+
+# Luas laluan
+
+Heksagon sekata bersisi <InlineMath math="s" /> terdiri daripada enam segi tiga sama sisi, jadi luasnya <InlineMath math="6\cdot\frac{\sqrt3}{4}s^2=\frac{3\sqrt3}{2}s^2" />. Tolak luas kolam daripada luas heksagon luar:
+
+<BlockMath math="\begin{aligned}
+L_{\text{laluan}}&=\frac{3\sqrt3}{2}\left(8^2-6^2\right) \\
+&=\frac{3\sqrt3}{2}\cdot28=42\sqrt3\text{ m}^2
+\end{aligned}" />
+
+Semak dengan cara lain. Laluan itu terdiri daripada enam trapezium dengan sisi selari <InlineMath math="6" /> dan <InlineMath math="8" />, serta tinggi <InlineMath math="\sqrt3" />. **Jumlah luasnya <InlineMath math="6\cdot\frac{6+8}{2}\cdot\sqrt3=42\sqrt3" />**, sama.
+
+<MathVisual
+  title={<>Kolam heksagon dan laluan di sekelilingnya</>}
+  description={<>Dua heksagon sekata sepusat dengan sisi yang selari. Heksagon dalam bersisi <InlineMath math="6" /> dengan apotem <InlineMath math="3\sqrt3" />. Heksagon luar bersisi <InlineMath math="8" /> dengan apotem <InlineMath math="4\sqrt3" />. Jarak antara sisi yang selari ialah lebar laluan <InlineMath math="\sqrt3" />.</>}
+  labels={{
+    apothem: <InlineMath math="3\sqrt3" />,
+    width: <InlineMath math="\sqrt3" />,
+    inner: <InlineMath math="6" />,
+    outer: <InlineMath math="8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 10 },
+      y: { min: -9, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "outer", kind: "polygon", appearance: "secondary", vertices: [{ x: 8, y: 0 }, { x: 4, y: 4 * Math.sqrt(3) }, { x: -4, y: 4 * Math.sqrt(3) }, { x: -8, y: 0 }, { x: -4, y: -4 * Math.sqrt(3) }, { x: 4, y: -4 * Math.sqrt(3) }] },
+      { id: "pond", kind: "polygon", appearance: "primary", vertices: [{ x: 6, y: 0 }, { x: 3, y: 3 * Math.sqrt(3) }, { x: -3, y: 3 * Math.sqrt(3) }, { x: -6, y: 0 }, { x: -3, y: -3 * Math.sqrt(3) }, { x: 3, y: -3 * Math.sqrt(3) }] },
+      { id: "apothem", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 0, y: 3 * Math.sqrt(3) } },
+      { id: "width", kind: "segment", appearance: "answer", from: { x: 0, y: 3 * Math.sqrt(3) }, to: { x: 0, y: 4 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "apothem", objectId: "apothem", at: { x: 0, y: 1.5 * Math.sqrt(3) }, placement: "right" },
+      { key: "width", objectId: "width", at: { x: 0, y: 3.5 * Math.sqrt(3) }, placement: "right" },
+      { key: "inner", objectId: "pond", at: { x: 0, y: -3 * Math.sqrt(3) }, placement: "above" },
+      { key: "outer", objectId: "outer", at: { x: 0, y: -4 * Math.sqrt(3) }, placement: "below" },
+    ],
+  }}
+/>
+
+Jadi, luas laluan itu ialah <InlineMath math="42\sqrt3\text{ m}^2" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="48\sqrt3\text{ m}^2" /> muncul jika laluan dikira sebagai perimeter luar didarab lebar, <InlineMath math="48\cdot\sqrt3" />. Setiap bahagian laluan berbentuk trapezium, jadi yang didarab dengan lebar ialah purata perimeter dalam dan luar, <InlineMath math="\frac{36+48}{2}=42" />.
+- <InlineMath math="(108+18\sqrt3)\text{ m}^2" /> muncul jika sisi luar dianggap <InlineMath math="6+2\sqrt3" />, seperti bingkai segi empat sama. **Pada heksagon, lebar laluan menambah apotem**, bukan menambah dua kali lebar pada sisi.
+- <InlineMath math="96\sqrt3\text{ m}^2" /> ialah luas heksagon luar sahaja. Luas kolam belum ditolak.
+- <InlineMath math="162\sqrt3\text{ m}^2" /> muncul jika <InlineMath math="\tan30^\circ" /> dan <InlineMath math="\tan60^\circ" /> tertukar. Apotem kolam menjadi <InlineMath math="\sqrt3" />, apotem luar <InlineMath math="2\sqrt3" />, nisbahnya <InlineMath math="2" />, lalu sisi luar dikira <InlineMath math="12\text{ m}" />.

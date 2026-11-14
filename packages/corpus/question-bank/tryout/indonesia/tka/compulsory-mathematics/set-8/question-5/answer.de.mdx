@@ -1,15 +1,44 @@
-Schreib die Angabe als eine Gleichung. **Eine Gleichung mit zwei Unbekannten legt <InlineMath math="x" /> und <InlineMath math="y" /> nicht fest**, wohl aber ihre Beziehung zueinander.
+# Das Modell und seine Ecken
+
+Sei <InlineMath math="x" /> die Zahl der kleinen Schränke und <InlineMath math="y" /> die Zahl der Bücherregale. Der Gewinn in Hunderttausend Rupiah ist <InlineMath math="P=6x+5y" />. Die drei Vorräte liefern drei Ungleichungen.
 
 <BlockMath math="\begin{aligned}
-3x+2y&=2x+3y+500 \\
-x-y&=500
+4x+3y&\le32 \quad \text{(Bretter)} \\
+4x+2y&\le31 \quad \text{(Montage)} \\
+x+2y&\le12 \quad \text{(Lackieren)}
 \end{aligned}" />
 
-Sicher ist nur der Unterschied: Ein Heft kostet immer <InlineMath math="\text{Rp}500" /> mehr als ein Stift. Zum Beispiel erfüllen <InlineMath math="x=3{.}000" /> und <InlineMath math="y=2{.}500" /> die Gleichung, ebenso <InlineMath math="x=5{.}000" /> und <InlineMath math="y=4{.}500" />.
+Außer <InlineMath math="(0|0)" /> sind die Ecken dieses Bereichs <InlineMath math="(0|6)" />, der Schnittpunkt der Bretter-Geraden mit der Lackier-Geraden, der Schnittpunkt der Bretter-Geraden mit der Montage-Geraden und <InlineMath math="(7{,}75|0)" />.
 
-Sicher richtig ist also, dass ein Heft <InlineMath math="\text{Rp}500" /> mehr kostet als ein Stift.
+<BlockMath math="\begin{aligned}
+\text{Bretter und Lackieren}&:\ x=12-2y,\ 4(12-2y)+3y=32 \Rightarrow (5{,}6|3{,}2),\ P=49{,}6 \\
+\text{Bretter und Montage}&:\ (4x+3y)-(4x+2y)=32-31 \Rightarrow (7{,}25|1),\ P=48{,}5 \\
+\text{andere Ecken}&:\ P(0|6)=30,\quad P(7{,}75|0)=46{,}5
+\end{aligned}" />
 
-- Der Preis des Hefts lässt sich nicht festlegen, denn <InlineMath math="x=3{.}000" /> und <InlineMath math="x=5{.}000" /> sind beide möglich.
-- Das Heft kostet nur für <InlineMath math="x=1{.}000" /> und <InlineMath math="y=500" /> doppelt so viel wie der Stift, nicht in jedem Fall.
-- Der Unterschied ist verkehrt herum. Aus <InlineMath math="x-y=500" /> folgt, dass das Heft teurer ist.
-- Die Summe <InlineMath math="x+y" /> lässt sich nicht festlegen. In den beiden Beispielen oben ist sie <InlineMath math="\text{Rp}5{.}500" /> und <InlineMath math="\text{Rp}9{.}500" />.
+Die beste Ecke ist <InlineMath math="(5{,}6|3{,}2)" />, und sie ist **kein Paar natürlicher Zahlen**. Ein Gewinn von <InlineMath math="\text{Rp}4{.}960{.}000" /> ist also nicht erreichbar. Du musst den besten ganzzahligen Punkt im Bereich suchen.
+
+# Den besten ganzzahligen Punkt finden
+
+Nimm für jeden Wert von <InlineMath math="y" /> das größte <InlineMath math="x" />, das **alle drei** Ungleichungen erfüllt, denn ein größeres <InlineMath math="x" /> bringt immer mehr Gewinn.
+
+| <InlineMath math="y" /> | Grenzen für <InlineMath math="x" /> aus Brettern, Montage, Lackieren | Größtes <InlineMath math="x" /> | <InlineMath math="P" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="8;\ 7{,}75;\ 12" /> | <InlineMath math="7" /> | <InlineMath math="42" /> |
+| <InlineMath math="1" /> | <InlineMath math="7{,}25;\ 7{,}25;\ 10" /> | <InlineMath math="7" /> | <InlineMath math="47" /> |
+| <InlineMath math="2" /> | <InlineMath math="6{,}5;\ 6{,}75;\ 8" /> | <InlineMath math="6" /> | <InlineMath math="46" /> |
+| <InlineMath math="3" /> | <InlineMath math="5{,}75;\ 6{,}25;\ 6" /> | <InlineMath math="5" /> | <InlineMath math="45" /> |
+| <InlineMath math="4" /> | <InlineMath math="5;\ 5{,}75;\ 4" /> | <InlineMath math="4" /> | <InlineMath math="44" /> |
+| <InlineMath math="5" /> | <InlineMath math="4{,}25;\ 5{,}25;\ 2" /> | <InlineMath math="2" /> | <InlineMath math="37" /> |
+| <InlineMath math="6" /> | <InlineMath math="3{,}5;\ 4{,}75;\ 0" /> | <InlineMath math="0" /> | <InlineMath math="30" /> |
+
+Der größte Wert ist <InlineMath math="47" /> im Punkt <InlineMath math="(7|1)" />. Probe: Bretter <InlineMath math="28+3=31\le32" />, Montage <InlineMath math="28+2=30\le31" />, Lackieren <InlineMath math="7+2=9\le12" />. Dieser Punkt liegt weit weg von der Ecke <InlineMath math="(5{,}6|3{,}2)" />, Runden der Ecke findet ihn also nie.
+
+Der größte Gewinn beträgt also <InlineMath math="\text{Rp}4{.}700{.}000" /> pro Woche, mit <InlineMath math="7" /> kleinen Schränken und <InlineMath math="1" /> Bücherregal.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\text{Rp}4{.}960{.}000" /> ist der Gewinn in der Ecke <InlineMath math="(5{,}6|3{,}2)" />. Einen Bruchteil eines Schranks kann man nicht bauen.
+- <InlineMath math="\text{Rp}4{.}800{.}000" /> kommt von <InlineMath math="(8|0)" />. Dieser Punkt hält die Grenzen für Bretter und Lackieren ein, braucht aber <InlineMath math="32" /> Stunden Montage, **mehr als die <InlineMath math="31" /> verfügbaren**.
+- <InlineMath math="\text{Rp}4{.}600{.}000" /> kommt von <InlineMath math="(6|2)" />, dem besten ganzzahligen Punkt direkt neben der Ecke. Die Suche hört zu nah an der Ecke auf.
+- <InlineMath math="\text{Rp}4{.}500{.}000" /> entsteht, wenn du die Ecke zu <InlineMath math="(5|3)" /> abrundest.

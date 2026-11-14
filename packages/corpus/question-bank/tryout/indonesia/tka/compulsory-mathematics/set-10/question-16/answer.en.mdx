@@ -1,10 +1,73 @@
-A cylinder's volume is **the circular base area times the height**. The radius is half the diameter, <InlineMath math="3\text{ m}" />.
+# The depth of the channel
 
-<BlockMath math="V=\pi r^2t=3.14\cdot3^2\cdot10=3.14\cdot90=282.6" />
+The question asks for the largest discharge when the water surface stays **at least <InlineMath math="20\text{ cm}" /> below the rim**. Discharge is the area of the water's cross-section times the speed, so you need that area at the highest water level allowed.
 
-So the cylindrical part holds <InlineMath math="282.6\text{ m}^3" />.
+The reading doesn't give the depth of the channel, only the length of the sloping walls. Each wall moves sideways by half the difference of the two widths, and the depth then comes from Pythagoras in the right triangle under the wall:
 
-- <InlineMath math="28.26\text{ m}^3" /> is only the base area, not yet times the height.
-- <InlineMath math="37.68\text{ m}^3" /> is the volume of the conical roof, <InlineMath math="\tfrac13\cdot3.14\cdot9\cdot4" />.
-- <InlineMath math="94.2\text{ m}^3" /> uses the cone formula, <InlineMath math="\tfrac13\pi r^2t" />, for the cylinder.
-- <InlineMath math="188.4" /> is the cylinder's curved surface area, <InlineMath math="2\pi rt" />, not a volume.
+<BlockMath math="\begin{aligned}
+\text{sideways shift per side}&=\frac{180-60}{2}=60\text{ cm} \\
+\text{depth of the channel}&=\sqrt{100^2-60^2}=\sqrt{6{,}400}=80\text{ cm}
+\end{aligned}" />
+
+# The width of the water surface
+
+The water may reach at most <InlineMath math="80-20=60\text{ cm}" /> above the bottom. The walls are straight, so the sideways shift grows in proportion to the height (similar triangles). Each wall shifts <InlineMath math="60\text{ cm}" /> over a height of <InlineMath math="80\text{ cm}" />, so at a water height of <InlineMath math="60\text{ cm}" />:
+
+<BlockMath math="\begin{aligned}
+\text{shift per side}&=\frac{60}{80}\cdot60=45\text{ cm} \\
+\text{width of the water surface}&=60+2\cdot45=150\text{ cm}
+\end{aligned}" />
+
+Notice that **the water surface is narrower than the rim**, because the water doesn't reach the rim.
+
+# Cross-section area and discharge
+
+The water's cross-section is a trapezoid with parallel sides <InlineMath math="60\text{ cm}" /> and <InlineMath math="150\text{ cm}" /> and height <InlineMath math="60\text{ cm}" />. Convert to square meters, multiply by the speed, then convert to liters with <InlineMath math="1\text{ m}^3=1{,}000" /> liters:
+
+<BlockMath math="\begin{aligned}
+L&=\frac{60+150}{2}\cdot60=6{,}300\text{ cm}^2=0.63\text{ m}^2 \\
+Q&=0.63\cdot0.5=0.315\text{ m}^3\text{/s}=315\text{ liters per second}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Cross-section of the channel with water <InlineMath math="60\text{ cm}" /> deep</>}
+  description={<>An isosceles trapezoid with bottom <InlineMath math="60\text{ cm}" />, rim <InlineMath math="180\text{ cm}" />, sloping walls <InlineMath math="100\text{ cm}" />, and depth <InlineMath math="80\text{ cm}" />. Water fills the lower part up to a height of <InlineMath math="60\text{ cm}" />, where the water surface is <InlineMath math="150\text{ cm}" /> wide. Above the water, <InlineMath math="20\text{ cm}" /> remain up to the rim.</>}
+  labels={{
+    bottom: <InlineMath math="60\text{ cm}" />,
+    rim: <InlineMath math="180\text{ cm}" />,
+    wall: <InlineMath math="100\text{ cm}" />,
+    surface: <InlineMath math="150\text{ cm}" />,
+    depth: <InlineMath math="60\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -20, max: 200 },
+      y: { min: -20, max: 100 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "water", kind: "polygon", appearance: "highlight", vertices: [{ x: 60, y: 0 }, { x: 120, y: 0 }, { x: 165, y: 60 }, { x: 15, y: 60 }] },
+      { id: "channel", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 80 }, { x: 60, y: 0 }, { x: 120, y: 0 }, { x: 180, y: 80 }] },
+      { id: "rim", kind: "segment", appearance: "reference", from: { x: 0, y: 80 }, to: { x: 180, y: 80 } },
+      { id: "depth", kind: "segment", appearance: "construction", from: { x: 90, y: 0 }, to: { x: 90, y: 60 } },
+    ],
+    labels: [
+      { key: "bottom", objectId: "channel", at: { x: 90, y: 0 }, placement: "below" },
+      { key: "rim", objectId: "rim", at: { x: 90, y: 80 }, placement: "above" },
+      { key: "wall", objectId: "channel", at: { x: 30, y: 40 }, placement: "left" },
+      { key: "surface", objectId: "water", at: { x: 130, y: 60 }, placement: "above" },
+      { key: "depth", objectId: "depth", at: { x: 90, y: 30 }, placement: "right" },
+    ],
+  }}
+/>
+
+So **the largest discharge still allowed is <InlineMath math="315" /> liters per second**.
+
+# Why the other options are wrong
+
+- <InlineMath math="360" /> liters per second comes from taking the water surface as wide as the rim, <InlineMath math="180\text{ cm}" />. The water is only <InlineMath math="60\text{ cm}" /> deep, so **its surface is only <InlineMath math="150\text{ cm}" /> wide**.
+- <InlineMath math="432" /> liters per second comes from treating the <InlineMath math="100\text{ cm}" /> wall as the depth of the channel. The wall is the slanted side of a triangle, and the depth is <InlineMath math="80\text{ cm}" />.
+- <InlineMath math="450" /> liters per second comes from treating the cross-section as a rectangle, <InlineMath math="150\cdot60" />. The bottom of the cross-section is only <InlineMath math="60\text{ cm}" /> wide, so it's a trapezoid.
+- <InlineMath math="480" /> liters per second is the discharge when the channel is full to the rim. That breaks the <InlineMath math="20\text{ cm}" /> rule.

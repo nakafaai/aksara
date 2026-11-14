@@ -1,16 +1,83 @@
-Translasi oleh <InlineMath math="T" /> memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(x-2,\,y+5)" />. Jadi titik asal dari bayangan <InlineMath math="(x,y)" /> adalah <InlineMath math="(x+2,\,y-5)" />. **Substitusikan titik asal itu ke persamaan grafik semula**.
+Soal ini menanyakan luas sebagian bayangan saja, yaitu bagian yang ada di atas sumbu <InlineMath math="X" />. Luas seluruh bayangan belum cukup, karena sumbu <InlineMath math="X" /> memotong bayangan itu. Kamu perlu **letak titik-titik sudut bayangan yang sebenarnya**.
+
+# Bayangan setiap titik sudut
+
+Dilatasi dengan pusat <InlineMath math="P" /> dan faktor <InlineMath math="k" /> memindahkan titik <InlineMath math="X" /> ke <InlineMath math="P+k(X-P)" />. Artinya, ambil langkah dari <InlineMath math="P" /> ke titik itu, kalikan langkahnya dengan <InlineMath math="k" />, lalu mulai lagi dari <InlineMath math="P" />. Faktor negatif membalik arah langkah, jadi bayangannya pindah ke seberang <InlineMath math="P" />. **Translasi baru dikerjakan sesudah dilatasi**, sesuai urutan di soal.
+
+| Titik | <InlineMath math="X-P" /> | <InlineMath math="-\frac12(X-P)" /> | Setelah dilatasi | Setelah translasi |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="A" /> | <InlineMath math="(-6,-4)" /> | <InlineMath math="(3,2)" /> | <InlineMath math="(5,4)" /> | <InlineMath math="A''(4,1)" /> |
+| <InlineMath math="B" /> | <InlineMath math="(6,-4)" /> | <InlineMath math="(-3,2)" /> | <InlineMath math="(-1,4)" /> | <InlineMath math="B''(-2,1)" /> |
+| <InlineMath math="C" /> | <InlineMath math="(2,4)" /> | <InlineMath math="(-1,-2)" /> | <InlineMath math="(1,0)" /> | <InlineMath math="C''(0,-3)" /> |
+| <InlineMath math="D" /> | <InlineMath math="(-2,4)" /> | <InlineMath math="(1,-2)" /> | <InlineMath math="(3,0)" /> | <InlineMath math="D''(2,-3)" /> |
+
+Perhatikan sisi <InlineMath math="AB" />. Semula sisi panjang itu ada di bawah, sekarang <InlineMath math="A''B''" /> ada di atas, pada garis <InlineMath math="y=1" />. **Faktor negatif membalik bangun atas ke bawah dan kiri ke kanan**. Bayangannya trapesium dengan sisi sejajar <InlineMath math="A''B''=6" /> pada <InlineMath math="y=1" /> dan <InlineMath math="C''D''=2" /> pada <InlineMath math="y=-3" />, tingginya <InlineMath math="4" />.
 
 <BlockMath math="\begin{aligned}
-y-5&=(x+2)^2-4(x+2)+3 \\
-y-5&=x^2+4x+4-4x-8+3=x^2-1 \\
-y&=x^2+4
+\text{luas trapesium asal}&=\frac{12+4}{2}\cdot8=64 \\
+\text{luas bayangan}&=\frac{6+2}{2}\cdot4=16=\left(-\tfrac12\right)^2\cdot64
 \end{aligned}" />
 
-Cek lewat puncak: <InlineMath math="y=x^2-4x+3=(x-2)^2-1" /> berpuncak di <InlineMath math="(2,-1)" />. Puncak itu bergeser ke <InlineMath math="(2-2,\,-1+5)=(0,4)" />, dan <InlineMath math="y=x^2+4" /> memang berpuncak di <InlineMath math="(0,4)" />.
+# Bagian di atas sumbu X
 
-Jadi, persamaan grafik bayangannya adalah <InlineMath math="y=x^2+4" />.
+Sumbu <InlineMath math="X" /> berada <InlineMath math="1" /> satuan di bawah sisi <InlineMath math="A''B''" />. Cari titik potong kedua kaki trapesium dengan sumbu itu. Kaki <InlineMath math="B''C''" /> turun <InlineMath math="4" /> satuan sambil bergeser <InlineMath math="2" /> satuan ke kanan, jadi setiap turun <InlineMath math="1" /> satuan ia bergeser <InlineMath math="\frac12" />. Kaki <InlineMath math="A''D''" /> bergeser <InlineMath math="\frac12" /> ke kiri untuk setiap satuan turun.
 
-- <InlineMath math="y=x^2-1" /> hanya mengerjakan pergeseran mendatar.
-- <InlineMath math="y=x^2-4x+8" /> hanya mengerjakan pergeseran tegak.
-- <InlineMath math="y=x^2-8x+20" /> menggeser grafik ke kanan, padahal komponen pertama <InlineMath math="T" /> adalah <InlineMath math="-2" />.
-- <InlineMath math="y=x^2-6" /> menggeser grafik ke bawah, padahal komponen kedua <InlineMath math="T" /> adalah <InlineMath math="5" />.
+<BlockMath math="\begin{aligned}
+B''C''\text{ memotong sumbu }X&\text{ di }\left(-2+\tfrac12,\,0\right)=\left(-\tfrac32,\,0\right) \\
+A''D''\text{ memotong sumbu }X&\text{ di }\left(4-\tfrac12,\,0\right)=\left(\tfrac72,\,0\right) \\
+\text{panjang potongan}&=\tfrac72-\left(-\tfrac32\right)=5
+\end{aligned}" />
+
+Bagian di atas sumbu <InlineMath math="X" /> adalah trapesium kecil dengan sisi sejajar <InlineMath math="6" /> dan <InlineMath math="5" />, tingginya <InlineMath math="1" />:
+
+<BlockMath math="\text{luas bagian atas}=\frac{6+5}{2}\cdot1=5{,}5" />
+
+<MathVisual
+  title={<>Bayangan akhir dan sumbu <InlineMath math="X" /></>}
+  description={<>Bayangan akhir adalah trapesium <InlineMath math="A''B''C''D''" /> dengan <InlineMath math="A''(4,1)" />, <InlineMath math="B''(-2,1)" />, <InlineMath math="C''(0,-3)" />, dan <InlineMath math="D''(2,-3)" />. Sumbu <InlineMath math="X" /> memotong trapesium itu dari <InlineMath math="\left(-\tfrac32,0\right)" /> sampai <InlineMath math="\left(\tfrac72,0\right)" />, sepanjang <InlineMath math="5" />. Bagian di atas sumbu <InlineMath math="X" /> ditandai, sisi atasnya <InlineMath math="6" /> dan tingginya <InlineMath math="1" />.</>}
+  labels={{
+    a: <InlineMath math="A''" />,
+    b: <InlineMath math="B''" />,
+    c: <InlineMath math="C''" />,
+    d: <InlineMath math="D''" />,
+    top: <InlineMath math="6" />,
+    cut: <InlineMath math="5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 6 },
+      y: { min: -5, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "image", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 1 }, { x: -2, y: 1 }, { x: 0, y: -3 }, { x: 2, y: -3 }] },
+      { id: "upper-part", kind: "polygon", appearance: "highlight", vertices: [{ x: -2, y: 1 }, { x: 4, y: 1 }, { x: 3.5, y: 0 }, { x: -1.5, y: 0 }] },
+      { id: "cut", kind: "segment", appearance: "answer", from: { x: -1.5, y: 0 }, to: { x: 3.5, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 4, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: -2, y: 1 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 0, y: -3 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 2, y: -3 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 4, y: 1 }, placement: "above-right" },
+      { key: "b", objectId: "point-b", at: { x: -2, y: 1 }, placement: "above-left" },
+      { key: "c", objectId: "point-c", at: { x: 0, y: -3 }, placement: "below-left" },
+      { key: "d", objectId: "point-d", at: { x: 2, y: -3 }, placement: "below-right" },
+      { key: "top", objectId: "image", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "cut", objectId: "cut", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Cek: bagian di bawah sumbu <InlineMath math="X" /> luasnya <InlineMath math="\frac{5+2}{2}\cdot3=10{,}5" />, dan <InlineMath math="5{,}5+10{,}5=16" />, **cocok dengan luas seluruh bayangan**.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="2{,}5" /> muncul kalau faktornya dianggap <InlineMath math="+\frac12" />. Bayangannya tidak terbalik, sisi panjang tetap di bawah, sehingga bagian di atas sumbu <InlineMath math="X" /> hanya <InlineMath math="\frac{3+2}{2}\cdot1" />.
+- <InlineMath math="4" /> muncul kalau luas <InlineMath math="16" /> dibagi menurut tinggi saja, <InlineMath math="1" /> dari <InlineMath math="4" />. Trapesium itu paling lebar di atas, jadi **potongan atasnya lebih dari seperempat luas**.
+- <InlineMath math="10{,}5" /> muncul kalau trapesium asal yang dipotong di sumbu <InlineMath math="X" />, lalu luasnya dikali <InlineMath math="\frac14" />. Karena bangunnya terbalik, bagian asal di atas sumbu <InlineMath math="X" /> justru menjadi bagian bayangan di bawah sumbu <InlineMath math="X" />.
+- <InlineMath math="16" /> adalah luas seluruh bayangan, tanpa dipotong. Nilai ini juga keluar kalau translasi dikerjakan lebih dulu, karena bayangannya lalu berada seluruhnya di atas sumbu <InlineMath math="X" />.
+
+Jadi, luas bagian bayangan akhir yang terletak di atas sumbu <InlineMath math="X" /> adalah <InlineMath math="5{,}5" /> satuan luas.

@@ -1,13 +1,88 @@
-Start with the hypotenuse and the area. The area of triangle <InlineMath math="ABC" /> can be written with two different base and height pairs, so **<InlineMath math="CD" /> is the height onto the hypotenuse <InlineMath math="AB" />**. Triangle <InlineMath math="ACD" /> is similar to triangle <InlineMath math="ABC" /> because both are right triangles and they share <InlineMath math="\angle A" />.
+# The central angle from the chord's distance
+
+All three statements depend on one fact: the size of the central angle <InlineMath math="AOB" />. So find that angle first from the radius and the chord's distance to the centre.
+
+Draw the line from <InlineMath math="O" /> perpendicular to <InlineMath math="AB" />, meeting it at <InlineMath math="M" />. This line **cuts the chord into two equal halves**, so triangle <InlineMath math="OMA" /> has a right angle at <InlineMath math="M" />, with <InlineMath math="OA=10" /> and <InlineMath math="OM=5" />:
 
 <BlockMath math="\begin{aligned}
-AB&=\sqrt{6^2+8^2}=10 \\
-\tfrac12\cdot AC\cdot BC=\tfrac12\cdot AB\cdot CD\ &\Rightarrow\ CD=\frac{6\cdot8}{10}=4.8 \\
-\frac{AD}{AC}=\frac{AC}{AB}\ &\Rightarrow\ AD=\frac{6^2}{10}=3.6 \\
-BD&=10-3.6=6.4
+AM&=\sqrt{10^2-5^2}=5\sqrt3,\qquad AB=10\sqrt3 \\
+\cos\angle AOM&=\frac{OM}{OA}=\frac{5}{10}=\frac12\ \Rightarrow\ \angle AOM=60^\circ \\
+\angle AOB&=2\cdot60^\circ=120^\circ
 \end{aligned}" />
 
-- <InlineMath math="AD=3.6\text{ cm}" />. The value <InlineMath math="6.4\text{ cm}" /> is the length of <InlineMath math="BD" />. This statement is false.
-- <InlineMath math="CD=4.8\text{ cm}" />, as the area calculation shows. This statement is true.
-- The perimeter of triangle <InlineMath math="BCD" /> is <InlineMath math="8+4.8+6.4=19.2\text{ cm}" />, not <InlineMath math="18\text{ cm}" />. This statement is false.
-- Triangles <InlineMath math="ACD" /> and <InlineMath math="BCD" /> have the same height <InlineMath math="CD" />, so their areas compare like <InlineMath math="AD:BD=3.6:6.4=9:16" />. This statement is true.
+<MathVisual
+  title={<>The chord <InlineMath math="AB" /> and the key points</>}
+  description={<>A circle with centre <InlineMath math="O" /> and radius <InlineMath math="10" />. The chord <InlineMath math="AB" /> is horizontal below the centre, at distance <InlineMath math="OM=5" />. The tangents at <InlineMath math="A" /> and <InlineMath math="B" /> meet at <InlineMath math="P" /> on the extension of <InlineMath math="OM" />. The point <InlineMath math="C_1" /> at the top of the circle and the point <InlineMath math="C_2" /> at the bottom are both equally far from <InlineMath math="A" /> and <InlineMath math="B" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    m: <InlineMath math="M" />,
+    p: <InlineMath math="P" />,
+    c1: <InlineMath math="C_1" />,
+    c2: <InlineMath math="C_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -13, max: 13 },
+      y: { min: -23, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 10 },
+      { id: "chord", kind: "segment", appearance: "highlight", from: { x: -5 * Math.sqrt(3), y: -5 }, to: { x: 5 * Math.sqrt(3), y: -5 } },
+      { id: "radius-a", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -5 * Math.sqrt(3), y: -5 } },
+      { id: "radius-b", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 5 * Math.sqrt(3), y: -5 } },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 0, y: 10 }, to: { x: 0, y: -20 } },
+      { id: "tangent-a", kind: "segment", appearance: "reference", from: { x: -5 * Math.sqrt(3), y: -5 }, to: { x: 0, y: -20 } },
+      { id: "tangent-b", kind: "segment", appearance: "reference", from: { x: 5 * Math.sqrt(3), y: -5 }, to: { x: 0, y: -20 } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: -5 * Math.sqrt(3), y: -5 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 5 * Math.sqrt(3), y: -5 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 0, y: -5 } },
+      { id: "point-p", kind: "point", appearance: "answer", at: { x: 0, y: -20 } },
+      { id: "point-c1", kind: "point", appearance: "highlight", at: { x: 0, y: 10 } },
+      { id: "point-c2", kind: "point", appearance: "highlight", at: { x: 0, y: -10 } },
+    ],
+    labels: [
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "a", objectId: "point-a", at: { x: -5 * Math.sqrt(3), y: -5 }, placement: "left" },
+      { key: "b", objectId: "point-b", at: { x: 5 * Math.sqrt(3), y: -5 }, placement: "right" },
+      { key: "m", objectId: "point-m", at: { x: 0, y: -5 }, placement: "above-right" },
+      { key: "p", objectId: "point-p", at: { x: 0, y: -20 }, placement: "below" },
+      { key: "c1", objectId: "point-c1", at: { x: 0, y: 10 }, placement: "above" },
+      { key: "c2", objectId: "point-c2", at: { x: 0, y: -10 }, placement: "right" },
+    ],
+  }}
+/>
+
+# The first statement
+
+A tangent is always perpendicular to the radius at its point of tangency, so triangle <InlineMath math="OAP" /> has a right angle at <InlineMath math="A" />. The picture is symmetric, so <InlineMath math="P" /> lies on the extension of <InlineMath math="OM" />, and <InlineMath math="\angle AOP=\angle AOM=60^\circ" />:
+
+<BlockMath math="OP=\frac{OA}{\cos60^\circ}=\frac{10}{\frac12}=20\text{ cm}" />
+
+If you wrongly took the central angle as <InlineMath math="60^\circ" />, you'd get <InlineMath math="\frac{10}{\cos30^\circ}\approx11.5" />. With the right angle, **<InlineMath math="OP" /> is exactly <InlineMath math="20\text{ cm}" />**. The statement is **True**.
+
+# The second statement
+
+The minor arc <InlineMath math="AB" /> belongs to the central angle <InlineMath math="120^\circ" />, which is a third of the circle:
+
+<BlockMath math="\text{minor arc }AB=\frac{120}{360}\cdot2\pi\cdot10=\frac{20\pi}{3}" />
+
+Since <InlineMath math="\pi>3" />, you get <InlineMath math="\frac{20\pi}{3}>\frac{20\cdot3}{3}=20" />. The arc is about <InlineMath math="20.9\text{ cm}" />, **more than** <InlineMath math="20\text{ cm}" />, even though the chord is only <InlineMath math="10\sqrt3\approx17.3\text{ cm}" />. The statement is **False**.
+
+# The third statement
+
+A point <InlineMath math="C" /> with <InlineMath math="CA=CB" /> lies on the perpendicular bisector of <InlineMath math="AB" />, which is the line <InlineMath math="OM" />. That line meets the circle at **two points**: <InlineMath math="C_1" /> on the far side of the chord and <InlineMath math="C_2" /> on the near side. The height of the triangle over the base <InlineMath math="AB" /> is different for each:
+
+<BlockMath math="\begin{aligned}
+C_1&:\ \text{height}=10+5=15,\quad \text{area}=\tfrac12\cdot10\sqrt3\cdot15=75\sqrt3 \\
+C_2&:\ \text{height}=10-5=5,\quad \text{area}=\tfrac12\cdot10\sqrt3\cdot5=25\sqrt3
+\end{aligned}" />
+
+The area can be <InlineMath math="75\sqrt3" /> or <InlineMath math="25\sqrt3\text{ cm}^2" />, so the word *pasti* (certainly) in the statement doesn't fit. The statement is **False**.
+
+So the answers are True, False, False.

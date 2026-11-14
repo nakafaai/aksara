@@ -1,17 +1,44 @@
-Der Kreisradius ist nicht gegeben. Drücke deshalb beide Flächeninhalte mit demselben Radius <InlineMath math="r" /> aus. Beide Figuren **haben denselben Umkreis**, ihr Vergleich hängt also nicht vom Wert von <InlineMath math="r" /> ab.
+Beide Geraden enthalten den Parameter <InlineMath math="a" />, ihre Lage zueinander ändert sich also. Der Plan: Finde zuerst heraus, wann die Geraden parallel sind oder zusammenfallen, und nutze dann die Steigungen für die Orthogonalität und die Abstandsformel für die letzten beiden Aussagen. Jede Aussage bekommt **einen Beweis oder ein Gegenbeispiel**.
 
-# Flächeninhalt des regelmäßigen Sechsecks
+# Die erste Aussage
 
-Ein regelmäßiges Sechseck mit den Ecken auf dem Kreis besteht aus **sechs gleichseitigen Dreiecken** mit der Seite <InlineMath math="r" />.
+Zwei Geraden <InlineMath math="p_1x+q_1y=r_1" /> und <InlineMath math="p_2x+q_2y=r_2" /> sind genau dann parallel oder identisch, wenn <InlineMath math="p_1q_2=p_2q_1" /> gilt, denn dann stimmen ihre Steigungen überein.
 
-<BlockMath math="P=6\cdot\frac{\sqrt3}{4}r^2=\frac{3\sqrt3}{2}r^2\approx2{,}60\,r^2" />
+<BlockMath math="\begin{aligned}
+a(a+1)&=3\cdot2\\
+a^2+a-6&=0\\
+(a+3)(a-2)&=0
+\end{aligned}" />
 
-# Flächeninhalt des Quadrats
+Es gibt <InlineMath math="2" /> Kandidaten, <InlineMath math="a=-3" /> und <InlineMath math="a=2" />, und du musst beide prüfen. Für <InlineMath math="a=2" /> wird <InlineMath math="g" /> zu <InlineMath math="2x+2y=6" /> und <InlineMath math="h" /> zu <InlineMath math="3x+3y=9" />. Beide sind gleich <InlineMath math="x+y=3" />, also **fallen die Geraden zusammen** und haben unendlich viele gemeinsame Punkte. Für <InlineMath math="a=-3" /> ist <InlineMath math="g" /> die Gerade <InlineMath math="-3x+2y=6" /> und <InlineMath math="h" /> die Gerade <InlineMath math="3x-2y=9" />, also <InlineMath math="-3x+2y=-9" />. Die rechten Seiten sind verschieden, also sind die Geraden parallel ohne gemeinsamen Punkt. Nur <InlineMath math="1" /> Wert von <InlineMath math="a" /> passt, die erste Aussage ist also falsch.
 
-Die Diagonale des Quadrats ist der Durchmesser <InlineMath math="2r" />. Der Flächeninhalt eines Quadrats ist **das halbe Produkt seiner Diagonalen**.
+# Die zweite Aussage
 
-<BlockMath math="Q=\tfrac12\cdot2r\cdot2r=2r^2" />
+Die Steigung von <InlineMath math="g" /> ist <InlineMath math="-\tfrac a2" />, die Steigung von <InlineMath math="h" /> ist <InlineMath math="-\tfrac{3}{a+1}" /> für <InlineMath math="a\ne-1" />. **Zwei Geraden stehen senkrecht aufeinander, wenn das Produkt ihrer Steigungen <InlineMath math="-1" /> ist**.
 
-Wegen <InlineMath math="\frac{3\sqrt3}{2}\approx2{,}60>2" /> gilt <InlineMath math="P>Q" /> für jeden Radius. Die Wahl, die Informationen reichten nicht aus, ist falsch, denn das Verhältnis der beiden Flächen hängt nicht von <InlineMath math="r" /> ab. Allgemein gilt: Regelmäßige Vielecke im selben Kreis werden mit wachsender Eckenzahl größer.
+<BlockMath math="\begin{aligned}
+\left(-\frac a2\right)\left(-\frac{3}{a+1}\right)&=-1\\
+3a&=-2(a+1)\\
+5a&=-2\\
+a&=-\tfrac25
+\end{aligned}" />
 
-Die richtige Beziehung lautet also: **Das Sechseck hat den größeren Flächeninhalt**, also <InlineMath math="P>Q" />.
+Direkte Probe: Für <InlineMath math="a=-\tfrac25" /> hat <InlineMath math="g" /> die Steigung <InlineMath math="\tfrac15" /> und <InlineMath math="h" /> die Steigung <InlineMath math="-\tfrac{3}{3/5}=-5" />, das Produkt ist <InlineMath math="-1" />. Für <InlineMath math="a=-1" /> ist <InlineMath math="h" /> senkrecht (<InlineMath math="x=3" />), aber <InlineMath math="g" /> nicht waagerecht, dieser Fall liefert also keine orthogonalen Geraden. Die zweite Aussage ist wahr.
+
+# Die dritte Aussage
+
+Für <InlineMath math="a=-3" /> sind die Geraden parallel. Der Abstand der parallelen Geraden <InlineMath math="px+qy=r_1" /> und <InlineMath math="px+qy=r_2" /> ist <InlineMath math="\tfrac{|r_1-r_2|}{\sqrt{p^2+q^2}}" />, aber diese Formel gilt nur, wenn **die Koeffizienten von <InlineMath math="x" /> und <InlineMath math="y" /> in beiden Gleichungen übereinstimmen**. Schreib <InlineMath math="h" /> als <InlineMath math="-3x+2y=-9" />.
+
+<BlockMath math="d=\frac{|6-(-9)|}{\sqrt{(-3)^2+2^2}}=\frac{15}{\sqrt{13}}" />
+
+Probe mit dem Punkt <InlineMath math="(0,3)" /> auf <InlineMath math="g" />: Sein Abstand zu <InlineMath math="3x-2y-9=0" /> ist <InlineMath math="\tfrac{|0-6-9|}{\sqrt{13}}=\tfrac{15}{\sqrt{13}}" />. Der Wert <InlineMath math="\tfrac{3}{\sqrt{13}}" /> entsteht, wenn du <InlineMath math="9-6" /> rechnest, ohne die Koeffizienten anzugleichen. Die dritte Aussage ist falsch.
+
+# Die vierte Aussage
+
+Den Abstand des Punktes <InlineMath math="(0,0)" /> zur Geraden <InlineMath math="ax+2y-6=0" /> liefert die Formel für den Abstand eines Punktes von einer Geraden.
+
+<BlockMath math="d(a)=\frac{|a\cdot0+2\cdot0-6|}{\sqrt{a^2+4}}=\frac{6}{\sqrt{a^2+4}}" />
+
+Der Nenner ist am kleinsten bei <InlineMath math="a=0" />, und dann gilt <InlineMath math="d(0)=\tfrac62=3" />. Für <InlineMath math="a=0" /> ist der Abstand also genau <InlineMath math="3" /> und nicht kleiner als <InlineMath math="3" />. **Ein einziges Beispiel widerlegt eine Aussage über jeden Wert**, die vierte Aussage ist also falsch.
+
+Die erste Aussage ist also falsch, die zweite wahr, die dritte falsch und die vierte falsch.

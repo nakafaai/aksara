@@ -13,20 +13,16 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "Keliling belah ketupat $$ABCD$$ adalah $$40\\text{ cm}$$.",
+          label: "Ada tepat $$11$$ nilai $$c$$ yang mungkin.",
         },
         {
           column: 2,
-          label: "Luas belah ketupat $$ABCD$$ adalah $$192\\text{ cm}^2$$.",
+          label: "Segitiga itu tumpul untuk tepat $$4$$ nilai $$c$$.",
         },
         {
-          column: 1,
+          column: 2,
           label:
-            "Jarak antara sisi $$AB$$ dan sisi $$CD$$ adalah $$9{,}6\\text{ cm}$$.",
-        },
-        {
-          column: 2,
-          label: "Besar $$\\angle BAD$$ lebih dari $$90^\\circ$$.",
+            "Jika keliling segitiga itu bilangan genap, segitiga itu pasti lancip.",
         },
       ],
     },

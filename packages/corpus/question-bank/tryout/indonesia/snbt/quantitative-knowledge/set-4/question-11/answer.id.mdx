@@ -1,17 +1,43 @@
-Sudut <InlineMath math="ADB" /> menghadap tali busur <InlineMath math="AB" />. Sudut keliling lain yang menghadap tali busur yang sama dari sisi yang sama adalah sudut <InlineMath math="ACB" />, dan **sudut keliling yang menghadap busur yang sama besarnya sama**.
+Kamu mencari jarak tempuh terpendek dari <InlineMath math="A" /> ke suatu titik <InlineMath math="P" /> lalu ke <InlineMath math="B" />, dengan <InlineMath math="P" /> di ruas garis <InlineMath math="CD" />. Cara biasanya adalah mencerminkan salah satu titik terhadap garis, tetapi di sini **<InlineMath math="P" /> hanya boleh berada di ruas garis, bukan di seluruh garis**. Rencananya: cari persamaan garis, cerminkan <InlineMath math="A" />, cari titik terbaik di seluruh garis, lalu periksa apakah titik itu ada di ruas <InlineMath math="CD" />.
 
-# Sudut pada segitiga sama kaki
+# Garis dan posisi kedua titik
 
-Segitiga <InlineMath math="ABC" /> sama kaki karena <InlineMath math="AB=BC" />, jadi **sudut <InlineMath math="BAC" /> dan sudut <InlineMath math="BCA" /> sama besar**.
+Gradien garis <InlineMath math="CD" /> adalah <InlineMath math="\frac{9-5}{7-5}=2" />, jadi persamaannya <InlineMath math="y=2x-5" /> atau <InlineMath math="2x-y-5=0" />. Ruas <InlineMath math="CD" /> adalah bagian garis itu dengan <InlineMath math="5\le x\le7" />.
 
-<BlockMath math="\angle BCA=\frac{180^\circ-110^\circ}{2}=35^\circ" />
+Substitusikan <InlineMath math="A" /> dan <InlineMath math="B" /> ke ruas kiri persamaan garis: <InlineMath math="2(0)-5-5=-10" /> dan <InlineMath math="2(2)-1-5=-2" />. Keduanya negatif, jadi **<InlineMath math="A" /> dan <InlineMath math="B" /> berada di sisi garis yang sama**. Akibatnya ruas <InlineMath math="AB" /> tidak menyentuh garis, dan jalan lurus dari <InlineMath math="A" /> ke <InlineMath math="B" /> tidak mungkin melewati <InlineMath math="P" />.
 
-# Memindahkan sudut ke titik D
+# Mencerminkan titik A
 
-Titik <InlineMath math="C" /> dan <InlineMath math="D" /> sama-sama terletak pada busur di seberang <InlineMath math="AB" />, karena urutan titiknya <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, <InlineMath math="D" />. Sudut <InlineMath math="ACB" /> dan <InlineMath math="ADB" /> **menghadap busur <InlineMath math="AB" /> yang sama**.
+Cerminan <InlineMath math="A(0,5)" /> terhadap garis itu adalah <InlineMath math="A'(8,1)" />. Coba cek dua syarat cermin. Titik tengah <InlineMath math="AA'" /> adalah <InlineMath math="(4,3)" />, dan <InlineMath math="2(4)-3-5=0" />, jadi titik tengahnya ada di garis. Arah <InlineMath math="AA'" /> adalah <InlineMath math="(8,-4)" />, dan arah garis <InlineMath math="(1,2)" />. Hasil kali titiknya <InlineMath math="8-8=0" />, jadi <InlineMath math="AA'" /> tegak lurus garis.
 
-<BlockMath math="\angle ADB=\angle ACB=35^\circ" />
+Karena garis itu cermin, **setiap titik <InlineMath math="P" /> di garis berjarak sama ke <InlineMath math="A" /> dan ke <InlineMath math="A'" />**. Jadi <InlineMath math="PA+PB=PA'+PB" />, dan jumlah ini paling kecil jika <InlineMath math="P" /> segaris dengan <InlineMath math="A'" /> dan <InlineMath math="B" />. Garis <InlineMath math="A'B" /> mendatar, yaitu <InlineMath math="y=1" />.
 
-Nilai 70 adalah sudut pusat yang menghadap busur <InlineMath math="AB" />, dua kali sudut keliling. Nilai 55 adalah setengah dari 110. Nilai 110 menyamakan <InlineMath math="ADB" /> dengan sudut <InlineMath math="ABC" />. Nilai 145 adalah pelurus 35, yang berlaku untuk sudut keliling dari sisi lain tali busur.
+<BlockMath math="\begin{aligned}
+1&=2x-5\quad\Rightarrow\quad x=3\quad\Rightarrow\quad P^*=(3,1)\\
+A'B&=8-2=6
+\end{aligned}" />
 
-Jadi, besar sudut <InlineMath math="ADB" /> adalah <InlineMath math="35^\circ" />.
+# Memeriksa batas ruas garis
+
+Titik terbaik di seluruh garis adalah <InlineMath math="P^*(3,1)" />, tetapi <InlineMath math="x=3" /> tidak berada di antara <InlineMath math="5" /> dan <InlineMath math="7" />. Jadi **nilai <InlineMath math="6" /> tidak bisa dicapai**.
+
+Jarak dari titik tetap ke titik yang bergerak lurus selalu berbentuk lembah: turun sampai titik terdekat, lalu naik terus. Jumlah dua bentuk lembah juga berbentuk lembah, dan dasarnya di <InlineMath math="P^*" />. Semua titik ruas <InlineMath math="CD" /> ada di kanan <InlineMath math="P^*" />, tempat jumlahnya terus naik, jadi nilai terkecil ada di titik ruas yang paling dekat dengan <InlineMath math="P^*" />, yaitu <InlineMath math="C(5,5)" />.
+
+<BlockMath math="\begin{aligned}
+CA&=\sqrt{(5-0)^2+(5-5)^2}=5\\
+CB&=\sqrt{(5-2)^2+(5-1)^2}=\sqrt{9+16}=5\\
+CA+CB&=10
+\end{aligned}" />
+
+Coba bandingkan dengan titik lain di ruas. Di titik tengah <InlineMath math="(6,7)" />, jumlahnya <InlineMath math="2\sqrt{10}+2\sqrt{13}" />, yang lebih dari <InlineMath math="6+7=13" />. Di <InlineMath math="D" />, jumlahnya <InlineMath math="\sqrt{65}+\sqrt{89}" />, yang lebih dari <InlineMath math="8+9=17" />. Keduanya lebih besar dari <InlineMath math="10" />.
+
+# Pilihan yang menjebak
+
+Pilihan lain muncul karena **batas ruas garis diabaikan** atau titiknya hanya ditebak.
+
+- <InlineMath math="6" /> adalah nilai minimum untuk seluruh garis, padahal titik <InlineMath math="P^*(3,1)" /> tidak ada di ruas <InlineMath math="CD" />.
+- <InlineMath math="2\sqrt5" /> adalah panjang <InlineMath math="AB" />, seolah jalan lurus dari <InlineMath math="A" /> ke <InlineMath math="B" /> boleh dipakai, padahal jalan itu tidak menyentuh ruas <InlineMath math="CD" />.
+- <InlineMath math="2\sqrt{10}+2\sqrt{13}" /> muncul dari menebak titik tengah ruas sebagai titik terbaik.
+- <InlineMath math="\sqrt{65}+\sqrt{89}" /> muncul dari memilih ujung yang salah, yaitu <InlineMath math="D" />.
+
+Jadi, nilai minimum <InlineMath math="PA+PB" /> adalah <InlineMath math="10" />, dicapai saat <InlineMath math="P" /> berada di <InlineMath math="C(5,5)" />.

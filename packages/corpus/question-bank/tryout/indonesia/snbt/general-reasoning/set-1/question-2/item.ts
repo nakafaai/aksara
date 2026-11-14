@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "inductive-reasoning",
     topic: "weakening",
   },
-  stimulus: "atap",
+  stimulus: "tambak",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Harga cat putih reflektif dua kali lipat harga cat atap biasa.",
+            "Benur lemah ditebar di semua petak yang kelompoknya mencatat rata-rata kematian di atas $$25\\%$$ pada siklus terakhir.",
         },
         {
           correct: false,
           label:
-            "Sebagian penghuni rumah yang tidak dicat juga jarang menyalakan kipas angin.",
+            "Benur lemah ditebar di semua petak yang kelompoknya mencatat rata-rata kematian di bawah $$25\\%$$ pada siklus lalu.",
         },
         {
           correct: false,
           label:
-            "Sebelum pengecatan dilakukan, rata-rata suhu ruang utama di kedua kelompok rumah tercatat hampir sama, baik pada rumah berplafon maupun pada rumah tanpa plafon.",
-        },
-        {
-          correct: false,
-          label:
-            "Pada hari cerah, selisih suhu antara kedua kelompok rumah lebih besar daripada pada hari berawan.",
+            "Benur lemah ditebar di semua petak yang kelompoknya mengalami kenaikan rata-rata kematian paling kecil.",
         },
         {
           correct: true,
           label:
-            "Tiga puluh dari $$40$$ rumah beratap putih ternyata berada di bawah naungan pohon besar, sedangkan hanya delapan dari $$40$$ rumah lainnya yang demikian.",
+            "Benur lemah hanya ditebar di petak yang kelompoknya mencatat rata-rata kematian paling tinggi pada siklus lalu.",
+        },
+        {
+          correct: false,
+          label:
+            "Benur lemah ditebar di semua petak dengan porsi yang sama untuk setiap petak.",
         },
       ],
     },

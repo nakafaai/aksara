@@ -1,23 +1,43 @@
-Die Grundseite <InlineMath math="AB=4+9=13\text{ cm}" /> ist bekannt, du brauchst also **die Höhe <InlineMath math="CD" />** auf diese Grundseite.
+Ein Punkt im Inneren des Dreiecks, der keine Seite berührt, erfüllt drei strenge Ungleichungen zugleich: <InlineMath math="y>0" />, <InlineMath math="y<2x" /> und <InlineMath math="3x+2y<30" />. Der Plan: Bestimme die Ecken und zähle dann die Gitterpunkte **Spalte für Spalte** für jeden Wert von <InlineMath math="x" />.
 
-# Zwei ähnliche Teildreiecke
+# Die Ecken des Dreiecks
 
-Die Höhe aus dem rechten Winkel zerlegt das Dreieck <InlineMath math="ABC" /> in die Dreiecke <InlineMath math="ADC" /> und <InlineMath math="CDB" />. Die Winkel <InlineMath math="ACD" /> und <InlineMath math="CBD" /> ergänzen beide den Winkel <InlineMath math="A" /> zu <InlineMath math="90^\circ" />, deshalb sind die beiden Teildreiecke **ähnlich**. Entsprechende Seiten stehen im selben Verhältnis.
+Die Gerade <InlineMath math="y=0" /> schneidet <InlineMath math="y=2x" /> in <InlineMath math="(0,0)" /> und <InlineMath math="3x+2y=30" /> in <InlineMath math="(10,0)" />. Die dritte Ecke liegt auf <InlineMath math="y=2x" /> und auf <InlineMath math="3x+2y=30" />.
 
 <BlockMath math="\begin{aligned}
-\frac{AD}{CD}&=\frac{CD}{DB}\\
-CD^2&=AD\cdot DB=4\cdot9=36\\
-CD&=6
+3x+2(2x)&=30\\
+x&=\frac{30}{7},\quad y=\frac{60}{7}
 \end{aligned}" />
 
-Die Höhe <InlineMath math="CD" /> ist das **geometrische Mittel** von 4 und 9 und nicht ihr arithmetisches Mittel.
+Diese Spitze ist **kein Gitterpunkt**, also funktionieren Abkürzungen, die ganzzahlige Ecken brauchen, hier nicht. Wegen <InlineMath math="4<\tfrac{30}{7}<5" /> kommt die obere Schranke für <InlineMath math="y" /> bis zur Spalte <InlineMath math="x=4" /> von der Geraden <InlineMath math="y=2x" /> und ab der Spalte <InlineMath math="x=5" /> von der Geraden <InlineMath math="3x+2y=30" />.
 
-# Flächeninhalt berechnen
+# Jede Spalte zählen
 
-<BlockMath math="A=\tfrac12\cdot AB\cdot CD=\tfrac12\cdot13\cdot6=39\text{ cm}^2" />
+Die Spalten <InlineMath math="x=0" /> und <InlineMath math="x=10" /> enthalten keine inneren Punkte, du brauchst also nur <InlineMath math="x=1" /> bis <InlineMath math="x=9" />. In jeder Spalte muss <InlineMath math="y" /> ganzzahlig sein, mindestens <InlineMath math="1" /> und **kleiner als beide Schranken**. Ist eine Schranke selbst ganzzahlig, zählt dieser Wert nicht mit.
 
-Probe mit den Katheten, denn **zwei Wege zum Flächeninhalt müssen übereinstimmen**: <InlineMath math="AC=\sqrt{4^2+6^2}=2\sqrt{13}" /> und <InlineMath math="BC=\sqrt{9^2+6^2}=3\sqrt{13}" />, also <InlineMath math="\tfrac12\cdot2\sqrt{13}\cdot3\sqrt{13}=39" />.
+| <InlineMath math="x" /> | Bedingung <InlineMath math="y<2x" /> | Bedingung <InlineMath math="y<\tfrac{30-3x}{2}" /> | Werte von <InlineMath math="y" /> | Anzahl |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="y<2" /> | <InlineMath math="y<13{,}5" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="2" /> | <InlineMath math="y<4" /> | <InlineMath math="y<12" /> | <InlineMath math="1" /> bis <InlineMath math="3" /> | <InlineMath math="3" /> |
+| <InlineMath math="3" /> | <InlineMath math="y<6" /> | <InlineMath math="y<10{,}5" /> | <InlineMath math="1" /> bis <InlineMath math="5" /> | <InlineMath math="5" /> |
+| <InlineMath math="4" /> | <InlineMath math="y<8" /> | <InlineMath math="y<9" /> | <InlineMath math="1" /> bis <InlineMath math="7" /> | <InlineMath math="7" /> |
+| <InlineMath math="5" /> | <InlineMath math="y<10" /> | <InlineMath math="y<7{,}5" /> | <InlineMath math="1" /> bis <InlineMath math="7" /> | <InlineMath math="7" /> |
+| <InlineMath math="6" /> | <InlineMath math="y<12" /> | <InlineMath math="y<6" /> | <InlineMath math="1" /> bis <InlineMath math="5" /> | <InlineMath math="5" /> |
+| <InlineMath math="7" /> | <InlineMath math="y<14" /> | <InlineMath math="y<4{,}5" /> | <InlineMath math="1" /> bis <InlineMath math="4" /> | <InlineMath math="4" /> |
+| <InlineMath math="8" /> | <InlineMath math="y<16" /> | <InlineMath math="y<3" /> | <InlineMath math="1" /> bis <InlineMath math="2" /> | <InlineMath math="2" /> |
+| <InlineMath math="9" /> | <InlineMath math="y<18" /> | <InlineMath math="y<1{,}5" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
 
-Der Wert 42,25 verwendet das arithmetische Mittel <InlineMath math="6{,}5" /> als Höhe. Die Werte 26 und 58,5 verwenden <InlineMath math="AD" /> oder <InlineMath math="DB" /> als Höhe. Der Wert 78 vergisst den Faktor <InlineMath math="\tfrac12" />.
+<BlockMath math="1+3+5+7+7+5+4+2+1=35" />
 
-Der Flächeninhalt des Dreiecks <InlineMath math="ABC" /> beträgt also **<InlineMath math="39\text{ cm}^2" />**.
+# Die Punkte auf den Seiten prüfen
+
+Gitterpunkte genau auf einer schrägen Seite sind durch die strengen Zeichen schon ausgeschlossen. Auf der Geraden <InlineMath math="y=2x" /> liegen <InlineMath math="(1,2)" />, <InlineMath math="(2,4)" />, <InlineMath math="(3,6)" /> und <InlineMath math="(4,8)" />. Auf der Geraden <InlineMath math="3x+2y=30" /> liegen <InlineMath math="(6,6)" /> und <InlineMath math="(8,3)" />. **Keiner dieser sechs Punkte wird gezählt**, genau wie in der Tabelle.
+
+# Fallen in den anderen Antworten
+
+- <InlineMath math="52" /> zählt alle Punkte auf allen drei Seiten mit, auch die auf der <InlineMath math="x" />-Achse.
+- <InlineMath math="41" /> zählt die sechs Punkte auf den beiden schrägen Seiten mit, als wären die Zeichen <InlineMath math="\le" />.
+- <InlineMath math="37" /> zählt zusätzlich <InlineMath math="(6,6)" /> und <InlineMath math="(8,3)" /> mit, die beiden Punkte, die genau auf der Geraden <InlineMath math="3x+2y=30" /> liegen.
+- <InlineMath math="33" /> rundet die Spitze auf <InlineMath math="(4,8)" /> und benutzt dann den Satz von Pick, der nur für Dreiecke gilt, deren **Ecken alle Gitterpunkte sind**.
+
+Im Inneren des Dreiecks liegen also <InlineMath math="35" /> Gitterpunkte.

@@ -13,27 +13,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Pencerminan terhadap garis $$x=1$$ dilanjutkan pencerminan terhadap garis $$x=4$$ sama dengan translasi oleh $$\\begin{pmatrix}6\\\\0\\end{pmatrix}$$.",
+            "Pencerminan terhadap garis $$x+2y=12$$ memetakan $$g$$ pada dirinya sendiri.",
         },
         {
           correct: false,
           label:
-            "Pencerminan terhadap garis $$y=x$$ dilanjutkan pencerminan terhadap sumbu $$x$$ sama dengan rotasi $$90^\\circ$$ berlawanan arah jarum jam dengan pusat $$O(0,0)$$.",
+            "Rotasi $$180^\\circ$$ dengan pusat $$O(0,0)$$ yang dilanjutkan dengan translasi $$\\begin{pmatrix}2\\\\4\\end{pmatrix}$$ memetakan $$g$$ pada dirinya sendiri.",
         },
         {
           correct: true,
           label:
-            "Dilatasi dengan pusat $$O(0,0)$$ dan faktor skala $$-2$$ membuat luas setiap bangun menjadi $$4$$ kali luas semula.",
+            "Pencerminan terhadap garis $$x=3$$ yang dilanjutkan dengan pencerminan terhadap garis $$y=2$$ memetakan $$g$$ pada dirinya sendiri.",
         },
         {
           correct: true,
           label:
-            "Rotasi $$180^\\circ$$ dengan pusat $$O(0,0)$$ sama dengan dilatasi dengan pusat $$O(0,0)$$ dan faktor skala $$-1$$.",
+            "Dilatasi dengan pusat $$(1,-2)$$ dan faktor skala $$-3$$ memetakan $$g$$ pada dirinya sendiri.",
         },
         {
-          correct: false,
+          correct: true,
           label:
-            "Translasi oleh $$\\begin{pmatrix}3\\\\-1\\end{pmatrix}$$ dilanjutkan translasi oleh $$\\begin{pmatrix}-3\\\\1\\end{pmatrix}$$ memindahkan setiap titik ke posisi yang berbeda dari posisi awalnya.",
+            "Translasi yang memetakan titik $$(1,3)$$ ke titik $$(4,9)$$ memetakan $$g$$ pada dirinya sendiri.",
         },
       ],
     },

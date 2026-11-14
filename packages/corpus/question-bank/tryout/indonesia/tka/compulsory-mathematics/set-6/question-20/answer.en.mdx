@@ -1,15 +1,74 @@
-The road, the horizontal distance, and the height difference form a right triangle. You know the horizontal side and want the vertical side, so **the right ratio is <InlineMath math="\tan\alpha" />**. From <InlineMath math="\sin\alpha=\frac{7}{25}" />, the vertical side is <InlineMath math="7" /> and the hypotenuse is <InlineMath math="25" />, so the horizontal side is <InlineMath math="\sqrt{25^2-7^2}=24" />.
+The question doesn't give the pole's height directly. You have to get it from the shadow on the wall. After that, check **whether the shadow still reaches the wall** at each elevation, because the wall cuts off the part of the shadow that lies on the ground.
+
+# The height of the pole
+
+The sun ray passing the top of the pole makes a <InlineMath math="45^\circ" /> angle with the ground. Since <InlineMath math="\tan45^\circ=1" />, the ray drops <InlineMath math="1\text{ m}" /> for every <InlineMath math="1\text{ m}" /> across. By the time it reaches the wall it has gone <InlineMath math="6\text{ m}" /> across and dropped <InlineMath math="6\text{ m}" />, and it hits the wall at a height of <InlineMath math="3\text{ m}" />:
 
 <BlockMath math="\begin{aligned}
-\tan\alpha&=\frac{7}{24} \\
-h&=840\cdot\frac{7}{24}=245\text{ m}
+h-6\cdot\tan45^\circ&=3 \\
+h-6&=3 \\
+h&=9\text{ m}
 \end{aligned}" />
 
-Check: the road is <InlineMath math="\sqrt{840^2+245^2}=875\text{ m}" /> long, and <InlineMath math="\frac{245}{875}=\frac{7}{25}=\sin\alpha" />.
+So **the pole is <InlineMath math="9\text{ m}" /> tall**, not <InlineMath math="6\text{ m}" />. At <InlineMath math="45^\circ" />, the part of the shadow on the ground is only <InlineMath math="6\text{ m}" />, because the wall stops it.
 
-So point <InlineMath math="Q" /> is <InlineMath math="245\text{ m}" /> higher than point <InlineMath math="P" />.
+# The shadow at sixty degrees
 
-- <InlineMath math="235.2\text{ m}" /> multiplies the horizontal distance by <InlineMath math="\sin\alpha" />, but <InlineMath math="\sin\alpha" /> compares the vertical side with the road's length.
-- <InlineMath math="806.4\text{ m}" /> multiplies the horizontal distance by <InlineMath math="\cos\alpha" />.
-- <InlineMath math="875\text{ m}" /> is the length of the road, not the height difference.
-- <InlineMath math="2{,}880\text{ m}" /> divides the horizontal distance by <InlineMath math="\tan\alpha" />, which turns the ratio upside down.
+Without a wall, the shadow's length is the pole's height divided by <InlineMath math="\tan60^\circ" />:
+
+<BlockMath math="\frac{9}{\tan60^\circ}=\frac{9}{\sqrt3}=3\sqrt3\approx5.2\text{ m}" />
+
+Since <InlineMath math="3\sqrt3\approx5.2" /> is less than <InlineMath math="6" />, **the shadow doesn't reach the wall** and lies entirely on the ground.
+
+<MathVisual
+  title={<>The pole, the wall, and two sun rays</>}
+  description={<>A pole <InlineMath math="9\text{ m}" /> tall stands <InlineMath math="6\text{ m}" /> from a wall. The ray at elevation <InlineMath math="45^\circ" /> from the top of the pole hits the wall at a height of <InlineMath math="3\text{ m}" />. The ray at elevation <InlineMath math="60^\circ" /> hits the ground <InlineMath math="3\sqrt3\approx5.2\text{ m}" /> from the foot of the pole, before the wall.</>}
+  labels={{
+    pole: <InlineMath math="9" />,
+    gap: <InlineMath math="6" />,
+    mark: <InlineMath math="3" />,
+    low: <InlineMath math="45^\circ" />,
+    high: <InlineMath math="60^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 8 },
+      y: { min: -1, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -1, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 6, y: 0 }, to: { x: 6, y: 10 } },
+      { id: "pole", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 9 } },
+      { id: "ray-low", kind: "segment", appearance: "highlight", from: { x: 0, y: 9 }, to: { x: 6, y: 3 } },
+      { id: "ray-high", kind: "segment", appearance: "answer", from: { x: 0, y: 9 }, to: { x: Math.sqrt(27), y: 0 } },
+      { id: "wall-mark", kind: "segment", appearance: "highlight", from: { x: 6, y: 0 }, to: { x: 6, y: 3 } },
+    ],
+    labels: [
+      { key: "pole", objectId: "pole", at: { x: 0, y: 4.5 }, placement: "left" },
+      { key: "gap", objectId: "ground", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "mark", objectId: "wall-mark", at: { x: 6, y: 1.5 }, placement: "right" },
+      { key: "low", objectId: "ray-low", at: { x: 3, y: 6 }, placement: "above-right" },
+      { key: "high", objectId: "ray-high", at: { x: Math.sqrt(27) / 2, y: 4.5 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+# The change on the ground
+
+Now compare the part of the shadow on the ground at the two times: <InlineMath math="6\text{ m}" /> at <InlineMath math="45^\circ" /> and <InlineMath math="3\sqrt3\text{ m}" /> at <InlineMath math="60^\circ" />.
+
+<BlockMath math="\text{decrease}=6-3\sqrt3\approx6-5.2=0.8\text{ m}" />
+
+The ground shadow shrinks only a little, because at <InlineMath math="45^\circ" /> most of the extra shadow **climbs the wall** instead of stretching across the ground.
+
+# Why the other options are wrong
+
+- <InlineMath math="\frac32" /> comes from treating the pole as the hypotenuse, so the shadow becomes <InlineMath math="9\cos60^\circ=4.5" />. The shadow is the horizontal side next to the elevation angle, so the rule is <InlineMath math="\frac{h}{\tan\theta}" />.
+- <InlineMath math="6-2\sqrt3" /> uses a pole height of <InlineMath math="6\text{ m}" />. The <InlineMath math="3\text{ m}" /> of shadow on the wall was forgotten.
+- <InlineMath math="9-3\sqrt3" /> uses <InlineMath math="9\text{ m}" /> as the ground shadow at <InlineMath math="45^\circ" />. **The wall stops that shadow at <InlineMath math="6\text{ m}" />**.
+- <InlineMath math="3\sqrt3" /> is the length of the shadow at <InlineMath math="60^\circ" />, not yet subtracted from the earlier length.
+
+So the shadow on the ground gets shorter by <InlineMath math="6-3\sqrt3" /> metres.

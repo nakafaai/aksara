@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
-    topic: "relative-motion",
+    topic: "rate-comparison",
   },
   versions: {
     id: {
@@ -13,21 +13,22 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "Ari menyusul Bima untuk pertama kali setelah $$400$$ detik.",
+          label: "Tangki pertama kali penuh sebelum menit ke-$$70$$.",
+        },
+        {
+          column: 2,
+          label:
+            "Selama $$30$$ menit pertama, volume air bertambah rata-rata lebih dari $$12$$ liter per menit.",
+        },
+        {
+          column: 2,
+          label:
+            "Jika pompa B ikut berhenti setiap kali pompa A beristirahat, tangki pertama kali penuh pada menit yang sama.",
         },
         {
           column: 1,
           label:
-            "Saat pertama kali menyusul Bima, Ari telah menempuh tepat $$5$$ putaran.",
-        },
-        {
-          column: 2,
-          label:
-            "Jika keduanya berlari berlawanan arah dari titik awal yang sama, mereka bertemu untuk pertama kali setelah $$40$$ detik.",
-        },
-        {
-          column: 2,
-          label: "Dalam $$10$$ menit, Bima menempuh lebih dari $$6$$ putaran.",
+            "Volume air pada menit ke-$$40$$ lebih besar daripada volume air pada menit ke-$$45$$.",
         },
       ],
     },

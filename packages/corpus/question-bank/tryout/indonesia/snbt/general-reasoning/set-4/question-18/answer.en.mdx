@@ -1,20 +1,24 @@
-Compute each car's fee **in the right order of rules**: the first two hours, the following hours rounded up, the maximum, then the subscription discount. The table gives *Lama parkir* (parking time) and *Kartu langganan* (subscription card).
+All four labels are false, so you replace each label with **its opposite**. Then you look for the arrangement that satisfies all four opposites at once. The items are a *jam dinding* (wall clock), a *kamus* (dictionary), a *payung* (umbrella) and a *termos* (flask).
 
-| Car | Hours after the first two | Fee before the cap | Fee paid |
-| --- | --- | --- | --- |
-| A | None | <InlineMath math="5{,}000" /> | <InlineMath math="5{,}000" /> |
-| B | <InlineMath math="2" /> h <InlineMath math="10" /> min, counted as <InlineMath math="3" /> h | <InlineMath math="5{,}000+9{,}000=14{,}000" /> | <InlineMath math="14{,}000" /> |
-| C | <InlineMath math="7" /> h | <InlineMath math="5{,}000+21{,}000=26{,}000" /> | <InlineMath math="20{,}000" /> because of the cap |
-| D | <InlineMath math="4" /> h <InlineMath math="5" /> min, counted as <InlineMath math="5" /> h | <InlineMath math="5{,}000+15{,}000=20{,}000" /> | <InlineMath math="10{,}000" /> at half price |
-| E | <InlineMath math="3" /> h <InlineMath math="59" /> min, counted as <InlineMath math="4" /> h | <InlineMath math="5{,}000+12{,}000=17{,}000" /> | <InlineMath math="17{,}000" /> |
+First write the opposite of each label.
 
-<BlockMath math="5{,}000+14{,}000+20{,}000+10{,}000+17{,}000=66{,}000" />
+- The box 1 label is false, so box 1 holds neither the dictionary nor the flask.
+- The box 2 label has the form "if ..., then ...". A sentence like that is false in only one situation: the "if" part happens but the "then" part doesn't. So the dictionary is in box 3, and box 2 doesn't hold the umbrella.
+- The box 3 label is false, so the dictionary's box number is bigger than the wall clock's box number. The two numbers can't be equal, because the items sit in different boxes.
+- The box 4 label is false, so the wall clock's box number and the umbrella's box number aren't consecutive.
 
-The other options come from skipping one rule:
+The dictionary is definitely in box 3. The umbrella isn't in box 2 or box 3, so it's in box 1 or box 4. Split into two cases.
 
-- <InlineMath math="\text{Rp}72{,}000" /> ignores the <InlineMath math="\text{Rp}20{,}000" /> cap for car C.
-- <InlineMath math="\text{Rp}76{,}000" /> ignores the half-price discount for car D.
-- <InlineMath math="\text{Rp}82{,}000" /> ignores both rules.
-- <InlineMath math="\text{Rp}58{,}500" /> drops partial hours instead of counting them as one hour.
+- Umbrella in box 1. The wall clock can only go in box 2 or box 4. Numbers 2 and 1 are consecutive, so box 2 breaks the opposite of the box 4 label. Box 4 makes the dictionary's number, <InlineMath math="3" />, smaller than the wall clock's number, so box 4 breaks the opposite of the box 3 label. This case fails.
+- Umbrella in box 4. Box 1 can't hold the dictionary or the flask, and the umbrella is already in box 4, so box 1 holds the wall clock. The flask fills box 2.
 
-So the five cars pay <InlineMath math="\text{Rp}66{,}000" /> in total.
+The result: box 1 wall clock, box 2 flask, box 3 dictionary, box 4 umbrella. Check once more that all four labels really are false. Box 1 holds the wall clock, not the dictionary or the flask. The dictionary is in box 3, but box 2 holds the flask, not the umbrella. The dictionary's number, <InlineMath math="3" />, isn't smaller than the wall clock's number, <InlineMath math="1" />. The wall clock in box 1 and the umbrella in box 4 aren't consecutive.
+
+Every other option makes exactly one label true.
+
+- Umbrella, wall clock, dictionary, flask makes the box 4 label true, because the wall clock in box 2 and the umbrella in box 1 have consecutive numbers. You land here if you don't finish checking the case with the umbrella in box 1.
+- Wall clock, flask, umbrella, dictionary makes the box 2 label true. The dictionary isn't in box 3, so the "if" part doesn't happen, and an "if ..., then ..." sentence whose "if" part doesn't happen counts as true. You land here if you take the opposite of the box 2 label to be "the dictionary isn't in box 3 and the umbrella isn't in box 2".
+- Flask, wall clock, dictionary, umbrella makes the box 1 label true, because box 1 holds the flask. You land here if you take the opposite of "holds the dictionary or the flask" to be "doesn't hold the dictionary or doesn't hold the flask", when the correct opposite uses "and".
+- Umbrella, flask, dictionary, wall clock makes the box 3 label true, because the dictionary's number, <InlineMath math="3" />, is smaller than the wall clock's number, <InlineMath math="4" />. You land here if you forget to flip the box 3 label.
+
+So boxes 1 to 4 hold, in order, the wall clock, the flask, the dictionary and the umbrella.

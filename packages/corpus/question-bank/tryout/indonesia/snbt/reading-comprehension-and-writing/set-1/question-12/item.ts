@@ -3,35 +3,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "reading",
-    topic: "argument-evaluation",
+    contentDomain: "writing",
+    topic: "conjunction",
   },
-  stimulus: "grain-barn",
+  stimulus: "kenikir",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Sebagian petani menyimpan gabah di rumah masing-masing.",
+          label: "*Oleh karena itu,* dan *Hal itu terjadi karena*",
         },
         {
           correct: false,
-          label:
-            "Harga gabah setelah panen biasanya lebih rendah daripada sebelum panen.",
-        },
-        {
-          correct: false,
-          label: "Pembangunan lumbung baru memerlukan biaya yang besar.",
+          label: "*Meskipun demikian,* dan *Akibatnya,*",
         },
         {
           correct: true,
-          label:
-            "Desa yang masih mengelola lumbung bersama lebih jarang kekurangan beras saat panen gagal.",
+          label: "*Meskipun demikian,* dan *Hal itu terjadi karena*",
         },
         {
           correct: false,
-          label: "Banyak warga desa kini bekerja di luar sektor pertanian.",
+          label: "*Selain itu,* dan *Hal itu terjadi karena*",
+        },
+        {
+          correct: false,
+          label: "*Meskipun demikian,* dan *Dengan kata lain,*",
         },
       ],
     },

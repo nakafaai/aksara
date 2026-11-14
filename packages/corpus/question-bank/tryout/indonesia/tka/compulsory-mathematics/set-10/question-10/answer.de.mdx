@@ -1,13 +1,84 @@
-Die Fläche liefert zuerst **den Radius**, und mit dem Radius bekommst du den Umfang.
+# Der Außenwinkel im Sehnenviereck
+
+Gefragt ist der Winkel zwischen der Diagonale <InlineMath math="CA" /> und der Verlängerung <InlineMath math="CE" />. Du brauchst drei Kreissätze nacheinander, und der erste Schritt verschiebt den Winkel von <InlineMath math="64^\circ" /> zum Punkt <InlineMath math="A" />.
+
+Im Sehnenviereck ergeben gegenüberliegende Winkel zusammen <InlineMath math="180^\circ" />. Die Punkte <InlineMath math="B" />, <InlineMath math="C" /> und <InlineMath math="E" /> liegen auf einer Geraden, also ergeben auch <InlineMath math="\angle BCD" /> und <InlineMath math="\angle DCE" /> zusammen <InlineMath math="180^\circ" />.
 
 <BlockMath math="\begin{aligned}
-\frac{22}{7}r^2&=154\ \Rightarrow\ r^2=49\ \Rightarrow\ r=7 \\
-K&=2\pi r=2\cdot\frac{22}{7}\cdot7=44
+\angle BAD&=180^\circ-\angle BCD \\
+\angle DCE&=180^\circ-\angle BCD \\
+\angle BAD&=\angle DCE=64^\circ
 \end{aligned}" />
 
-Der Kreis hat also den Umfang <InlineMath math="44\text{ cm}" />.
+**Der Außenwinkel bei <InlineMath math="C" /> ist also gleich dem gegenüberliegenden Innenwinkel bei <InlineMath math="A" />**, nicht dessen Ergänzung zu <InlineMath math="180^\circ" />.
 
-- <InlineMath math="14\text{ cm}" /> ist der Durchmesser.
-- <InlineMath math="22\text{ cm}" /> rechnet <InlineMath math="\pi r" />, den halben Umfang.
-- <InlineMath math="49" /> ist <InlineMath math="r^2" />, keine Länge.
-- <InlineMath math="88\text{ cm}" /> rechnet <InlineMath math="2\pi d" />, den doppelten Umfang.
+# Gleichschenkliges Dreieck und Umfangswinkel
+
+Wegen <InlineMath math="AB=AD" /> ist das Dreieck <InlineMath math="ABD" /> gleichschenklig, also sind seine beiden Basiswinkel gleich.
+
+<BlockMath math="\angle ABD=\angle ADB=\frac{180^\circ-64^\circ}{2}=58^\circ" />
+
+Die Umfangswinkel <InlineMath math="\angle ACB" /> und <InlineMath math="\angle ADB" /> **stehen über demselben Bogen** <InlineMath math="AB" />, also gilt <InlineMath math="\angle ACB=\angle ADB=58^\circ" />. Genauso ist <InlineMath math="\angle ACD=\angle ABD=58^\circ" />, weil beide über dem Bogen <InlineMath math="AD" /> stehen.
+
+<BlockMath math="\begin{aligned}
+\angle ACE&=180^\circ-\angle ACB=180^\circ-58^\circ=122^\circ \\
+\text{Probe: }\angle ACD+\angle DCE&=58^\circ+64^\circ=122^\circ
+\end{aligned}" />
+
+<MathVisual
+  title={<>Die Winkel im Viereck <InlineMath math="ABCD" /></>}
+  description={<>Die Figur aus der Aufgabe mit der zusätzlichen Diagonale <InlineMath math="BD" />. Der Bogen bei <InlineMath math="A" /> markiert <InlineMath math="\angle BAD=64^\circ" />. Bei <InlineMath math="C" /> markiert ein Bogen <InlineMath math="\angle ACD=58^\circ" /> und der andere <InlineMath math="\angle DCE=64^\circ" />, zusammen also <InlineMath math="\angle ACE=122^\circ" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    "angle-bad": <InlineMath math="64^\circ" />,
+    "angle-acd": <InlineMath math="58^\circ" />,
+    "angle-dce": <InlineMath math="64^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 6 },
+      y: { min: -8, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "quadrilateral", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 5 }, { x: 5 * Math.cos((206 * Math.PI) / 180), y: 5 * Math.sin((206 * Math.PI) / 180) }, { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, { x: 5 * Math.cos((334 * Math.PI) / 180), y: 5 * Math.sin((334 * Math.PI) / 180) }] },
+      { id: "diagonal-ac", kind: "segment", appearance: "secondary", from: { x: 0, y: 5 }, to: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) } },
+      { id: "diagonal-bd", kind: "segment", appearance: "construction", from: { x: 5 * Math.cos((206 * Math.PI) / 180), y: 5 * Math.sin((206 * Math.PI) / 180) }, to: { x: 5 * Math.cos((334 * Math.PI) / 180), y: 5 * Math.sin((334 * Math.PI) / 180) } },
+      { id: "extension-ce", kind: "segment", appearance: "secondary", from: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, to: { x: 1.9 * 5 * Math.cos((250 * Math.PI) / 180) - 0.9 * 5 * Math.cos((206 * Math.PI) / 180), y: 1.9 * 5 * Math.sin((250 * Math.PI) / 180) - 0.9 * 5 * Math.sin((206 * Math.PI) / 180) } },
+      { id: "arc-bad", kind: "arc", appearance: "highlight", center: { x: 0, y: 5 }, radius: 0.8, startDegrees: 238, sweepDegrees: 64 },
+      { id: "arc-acd", kind: "arc", appearance: "answer", center: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, radius: 1.1, startDegrees: 22, sweepDegrees: 58 },
+      { id: "arc-dce", kind: "arc", appearance: "highlight", center: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, radius: 0.8, startDegrees: 318, sweepDegrees: 64 },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 5 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 5 * Math.cos((206 * Math.PI) / 180), y: 5 * Math.sin((206 * Math.PI) / 180) } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 5 * Math.cos((334 * Math.PI) / 180), y: 5 * Math.sin((334 * Math.PI) / 180) } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: 1.9 * 5 * Math.cos((250 * Math.PI) / 180) - 0.9 * 5 * Math.cos((206 * Math.PI) / 180), y: 1.9 * 5 * Math.sin((250 * Math.PI) / 180) - 0.9 * 5 * Math.sin((206 * Math.PI) / 180) } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 5 }, placement: "above" },
+      { key: "b", objectId: "point-b", at: { x: 5 * Math.cos((206 * Math.PI) / 180), y: 5 * Math.sin((206 * Math.PI) / 180) }, placement: "left" },
+      { key: "c", objectId: "point-c", at: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, placement: "below-left" },
+      { key: "d", objectId: "point-d", at: { x: 5 * Math.cos((334 * Math.PI) / 180), y: 5 * Math.sin((334 * Math.PI) / 180) }, placement: "right" },
+      { key: "e", objectId: "point-e", at: { x: 1.9 * 5 * Math.cos((250 * Math.PI) / 180) - 0.9 * 5 * Math.cos((206 * Math.PI) / 180), y: 1.9 * 5 * Math.sin((250 * Math.PI) / 180) - 0.9 * 5 * Math.sin((206 * Math.PI) / 180) }, placement: "below-right" },
+      { key: "angle-bad", objectId: "arc-bad", at: { x: 0, y: 3.6 }, placement: "below" },
+      { key: "angle-acd", objectId: "arc-acd", at: { x: 5 * Math.cos((250 * Math.PI) / 180) + 1.6 * Math.cos((51 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) + 1.6 * Math.sin((51 * Math.PI) / 180) }, placement: "right" },
+      { key: "angle-dce", objectId: "arc-dce", at: { x: 5 * Math.cos((250 * Math.PI) / 180) + 1.5 * Math.cos((350 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) + 1.5 * Math.sin((350 * Math.PI) / 180) }, placement: "right" },
+    ],
+  }}
+/>
+
+Der Winkel <InlineMath math="\angle ACE" /> ist also <InlineMath math="122^\circ" /> groß.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="58^\circ" /> hört bei <InlineMath math="\angle ACB" /> oder <InlineMath math="\angle ACD" /> auf. Das ist ein Umfangswinkel, nicht der Winkel zwischen <InlineMath math="CA" /> und der Verlängerung <InlineMath math="CE" />.
+- <InlineMath math="116^\circ" /> behandelt <InlineMath math="\angle ACE" /> und <InlineMath math="\angle BAD" /> wie gegenüberliegende Winkel mit der Summe <InlineMath math="180^\circ" />. Der Wert <InlineMath math="116^\circ" /> ist in Wirklichkeit <InlineMath math="\angle BCD" />.
+- <InlineMath math="128^\circ" /> nimmt an, dass <InlineMath math="CD" /> den Winkel <InlineMath math="\angle ACE" /> halbiert, also <InlineMath math="\angle ACD=\angle DCE=64^\circ" />. Es ist aber <InlineMath math="\angle ACD=58^\circ" />.
+- <InlineMath math="148^\circ" /> benutzt <InlineMath math="\angle BAD=180^\circ-64^\circ=116^\circ" />. **Der Außenwinkel ist gleich dem gegenüberliegenden Innenwinkel, nicht dessen Ergänzung**. Mit diesem Fehler werden die Basiswinkel <InlineMath math="32^\circ" /> und <InlineMath math="\angle ACE" /> wird <InlineMath math="148^\circ" />.

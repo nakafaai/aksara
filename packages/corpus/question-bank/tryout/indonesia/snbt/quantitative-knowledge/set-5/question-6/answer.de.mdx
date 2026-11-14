@@ -1,20 +1,36 @@
-Eine quadratische Gleichung mit den Lösungen <InlineMath math="u" /> und <InlineMath math="v" /> lässt sich als <InlineMath math="x^2-(u+v)x+uv=0" /> schreiben. Du brauchst also **Summe und Produkt der neuen Lösungen**, die sich aus <InlineMath math="\alpha+\beta=3" /> und <InlineMath math="\alpha\beta=1" /> ergeben, ohne die Lösungen selbst zu bestimmen.
+Du zählst Sitzordnungen am runden Tisch, die zwei verbotene Paare zugleich vermeiden. Die erlaubten Ordnungen direkt zu zählen ist mühsam, also lautet der Plan: Zähle alle Sitzordnungen, zieh die ab, die eine Regel verletzen, und nutze **das Prinzip von Inklusion und Exklusion**, damit keine Ordnung doppelt abgezogen wird.
 
-# Summe und Produkt der neuen Lösungen
+# Alle Sitzordnungen im Kreis
+
+Zwei Sitzordnungen gelten als gleich, wenn jede Person dieselben Nachbarn links und rechts hat. Das heißt, **wenn alle gemeinsam weiterrücken, entsteht keine neue Sitzordnung**. Setz deshalb Ani als festen Bezugspunkt auf einen Stuhl und verteile die anderen <InlineMath math="6" /> Personen auf die übrigen <InlineMath math="6" /> Stühle.
+
+<BlockMath math="(7-1)!=6!=720" />
+
+# Sitzordnungen, die eine Regel verletzen
+
+Sitzen Ani und Budi nebeneinander, **fasst du sie zu einem Block zusammen**. Dann sitzen <InlineMath math="6" /> Einheiten im Kreis, und im Block gibt es <InlineMath math="2" /> Reihenfolgen (Ani links oder rechts von Budi). Für Citra und Dodi gilt dasselbe. Sitzen beide Paare nebeneinander, hast du zwei Blöcke und <InlineMath math="3" /> weitere Personen, also <InlineMath math="5" /> Einheiten.
 
 <BlockMath math="\begin{aligned}
-\alpha^2+\beta^2&=(\alpha+\beta)^2-2\alpha\beta=9-2=7\\
-\alpha^2\beta^2&=(\alpha\beta)^2=1
+\text{Ani und Budi nebeneinander}&=(6-1)!\times2=240\\
+\text{Citra und Dodi nebeneinander}&=(6-1)!\times2=240\\
+\text{beide Paare nebeneinander}&=(5-1)!\times2\times2=96
 \end{aligned}" />
 
-# Gleichung aufstellen
+# Inklusion und Exklusion
 
-Setze Summe und Produkt in die allgemeine Form ein. **Die Summe der Lösungen steht mit einem Minuszeichen**.
+Eine Sitzordnung, in der beide Paare nebeneinandersitzen, steckt in der ersten Gruppe und noch einmal in der zweiten. Deshalb **musst du die Ordnungen mit beiden Verstößen einmal wieder dazuzählen**.
 
-<BlockMath math="x^2-7x+1=0" />
+<BlockMath math="\begin{aligned}
+\text{mindestens ein Verstoß}&=240+240-96=384\\
+\text{erlaubte Sitzordnungen}&=720-384=336
+\end{aligned}" />
 
-Probe mit den tatsächlichen Lösungen: <InlineMath math="\alpha=\frac{3+\sqrt5}{2}" /> liefert <InlineMath math="\alpha^2=\frac{7+3\sqrt5}{2}" />, und dieser Wert erfüllt <InlineMath math="x^2-7x+1=0" />.
+# Probe auf einem zweiten Weg
 
-Die Gleichung mit dem Koeffizienten 9 vergisst, <InlineMath math="2\alpha\beta" /> abzuziehen, die mit 11 addiert es. Die Gleichung <InlineMath math="x^2+7x+1=0" /> hat das falsche Vorzeichen bei der Summe. Die Gleichung mit der Konstanten 2 verwendet <InlineMath math="2\alpha\beta" /> als Produkt.
+Zähl in Schritten. Es gibt <InlineMath math="720-240=480" /> Ordnungen, in denen Ani und Budi nicht nebeneinandersitzen. Von den <InlineMath math="240" /> Ordnungen mit Citra und Dodi nebeneinander haben <InlineMath math="96" /> auch Ani und Budi nebeneinander, also halten <InlineMath math="240-96=144" /> Ani und Budi getrennt. Diese ziehst du von den <InlineMath math="480" /> ab.
 
-Die gesuchte Gleichung ist also <InlineMath math="x^2-7x+1=0" />.
+<BlockMath math="480-144=336" />
+
+Das Ergebnis stimmt überein. **Typische Fehler** sind, die <InlineMath math="96" /> nicht wieder dazuzuzählen, was <InlineMath math="720-480=240" /> ergibt, mit <InlineMath math="7!" /> zu rechnen, obwohl Drehungen als gleich gelten, oder den Faktor <InlineMath math="2" /> für die Reihenfolge im Block zu vergessen.
+
+Es gibt also <InlineMath math="336" /> erlaubte Sitzordnungen.

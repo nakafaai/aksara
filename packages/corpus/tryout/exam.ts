@@ -95,7 +95,7 @@ export const projectTryoutExam = Effect.fn(
         appLocale,
         description: examTranslation.description,
         sourceRevision: source.sourceRevision,
-        title: examTranslation.title,
+        title: source.examName,
       }),
       countryKey: source.countryKey,
       examKey: source.examKey,

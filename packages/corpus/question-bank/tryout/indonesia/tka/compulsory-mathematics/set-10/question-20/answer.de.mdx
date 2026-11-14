@@ -1,12 +1,71 @@
-Kurs des Schiffs, Nordlinie und Verschiebung nach Osten bilden ein rechtwinkliges Dreieck mit **dem <InlineMath math="20" />-km-Kurs als Hypotenuse**. Der Winkel <InlineMath math="60^\circ" /> liegt bei <InlineMath math="P" />, gemessen von der Nordlinie, die Verschiebung nach Osten liegt ihm also gegenüber.
+# Die Apothema des Teichs
 
-<BlockMath math="\text{nach Osten}=20\sin60^\circ=20\cdot\frac{\sqrt3}{2}=10\sqrt3" />
+Gesucht ist die Fläche des Wegs, also das äußere Sechseck minus den Teich. Der Haken: Die Seitenlänge des äußeren Sechsecks ist nicht angegeben. Die Wegbreite wird senkrecht zu den Seiten gemessen, also **kommt die Breite zur Apothema hinzu, nicht zur Seitenlänge**. Die Apothema ist der Abstand vom Mittelpunkt des Sechsecks zu einer Seite.
 
-Die Verschiebung nach Norden ist die Ankathete, <InlineMath math="20\cos60^\circ=10" /> km. Probe: <InlineMath math="(10\sqrt3)^2+10^2=300+100=400=20^2" />.
+Ein regelmäßiges Sechseck lässt sich in sechs gleichseitige Dreiecke zerlegen, die sich im Mittelpunkt treffen. Zeichne eine Strecke vom Mittelpunkt zur Mitte einer Seite. Es entsteht ein rechtwinkliges Dreieck mit dem rechten Winkel an dieser Seitenmitte, der halben Seite <InlineMath math="3\text{ m}" /> als Grundseite und einem Winkel von <InlineMath math="60^\circ" /> an der Ecke des Teichs (jeder Winkel im gleichseitigen Dreieck ist <InlineMath math="60^\circ" />). Die Apothema ist die Gegenkathete dieses <InlineMath math="60^\circ" />-Winkels:
 
-Das Schiff ist also <InlineMath math="10\sqrt3" /> km, etwa <InlineMath math="17{,}3" /> km, nach Osten gerückt.
+<BlockMath math="a_{\text{Teich}}=3\cdot\tan60^\circ=3\sqrt3\text{ m}" />
 
-- <InlineMath math="10" /> km ist die Verschiebung nach Norden, mit <InlineMath math="\cos60^\circ" />.
-- <InlineMath math="10\sqrt2" /> km nimmt einen Winkel von <InlineMath math="45^\circ" />.
-- <InlineMath math="20\sqrt3" /> km rechnet <InlineMath math="20\tan60^\circ" />, doch <InlineMath math="20" /> km sind die Hypotenuse.
-- <InlineMath math="\frac{40\sqrt3}{3}" /> km teilt <InlineMath math="20" /> durch <InlineMath math="\cos30^\circ" />, als wären <InlineMath math="20" /> km eine Kathete.
+# Die Seite des äußeren Sechsecks
+
+Die Apothema des äußeren Sechsecks ist um die Wegbreite länger. Im gleichen rechtwinkligen Dreieck liegt die halbe Seite dem <InlineMath math="30^\circ" />-Winkel am Mittelpunkt gegenüber:
+
+<BlockMath math="\begin{aligned}
+a_{\text{außen}}&=3\sqrt3+\sqrt3=4\sqrt3\text{ m} \\
+\tfrac12 s_{\text{außen}}&=a_{\text{außen}}\cdot\tan30^\circ=4\sqrt3\cdot\frac{1}{\sqrt3}=4 \\
+s_{\text{außen}}&=8\text{ m}
+\end{aligned}" />
+
+Schnelle Probe: Die beiden Sechsecke sind ähnlich, und **ihre Apothemen stehen im Verhältnis <InlineMath math="4\sqrt3:3\sqrt3=4:3" />**, also ist die äußere Seite <InlineMath math="6\cdot\frac43=8\text{ m}" />.
+
+# Die Fläche des Wegs
+
+Ein regelmäßiges Sechseck mit Seite <InlineMath math="s" /> besteht aus sechs gleichseitigen Dreiecken, seine Fläche ist also <InlineMath math="6\cdot\frac{\sqrt3}{4}s^2=\frac{3\sqrt3}{2}s^2" />. Zieh den Teich vom äußeren Sechseck ab:
+
+<BlockMath math="\begin{aligned}
+L_{\text{Weg}}&=\frac{3\sqrt3}{2}\left(8^2-6^2\right) \\
+&=\frac{3\sqrt3}{2}\cdot28=42\sqrt3\text{ m}^2
+\end{aligned}" />
+
+Prüf es auf einem zweiten Weg. Der Weg besteht aus sechs Trapezen mit den parallelen Seiten <InlineMath math="6" /> und <InlineMath math="8" /> und der Höhe <InlineMath math="\sqrt3" />. **Zusammen haben sie <InlineMath math="6\cdot\frac{6+8}{2}\cdot\sqrt3=42\sqrt3" />**, dasselbe.
+
+<MathVisual
+  title={<>Der sechseckige Teich und der Weg darum</>}
+  description={<>Zwei konzentrische regelmäßige Sechsecke mit parallelen Seiten. Das innere Sechseck hat die Seite <InlineMath math="6" /> und die Apothema <InlineMath math="3\sqrt3" />. Das äußere Sechseck hat die Seite <InlineMath math="8" /> und die Apothema <InlineMath math="4\sqrt3" />. Der Abstand zwischen parallelen Seiten ist die Wegbreite <InlineMath math="\sqrt3" />.</>}
+  labels={{
+    apothem: <InlineMath math="3\sqrt3" />,
+    width: <InlineMath math="\sqrt3" />,
+    inner: <InlineMath math="6" />,
+    outer: <InlineMath math="8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 10 },
+      y: { min: -9, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "outer", kind: "polygon", appearance: "secondary", vertices: [{ x: 8, y: 0 }, { x: 4, y: 4 * Math.sqrt(3) }, { x: -4, y: 4 * Math.sqrt(3) }, { x: -8, y: 0 }, { x: -4, y: -4 * Math.sqrt(3) }, { x: 4, y: -4 * Math.sqrt(3) }] },
+      { id: "pond", kind: "polygon", appearance: "primary", vertices: [{ x: 6, y: 0 }, { x: 3, y: 3 * Math.sqrt(3) }, { x: -3, y: 3 * Math.sqrt(3) }, { x: -6, y: 0 }, { x: -3, y: -3 * Math.sqrt(3) }, { x: 3, y: -3 * Math.sqrt(3) }] },
+      { id: "apothem", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 0, y: 3 * Math.sqrt(3) } },
+      { id: "width", kind: "segment", appearance: "answer", from: { x: 0, y: 3 * Math.sqrt(3) }, to: { x: 0, y: 4 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "apothem", objectId: "apothem", at: { x: 0, y: 1.5 * Math.sqrt(3) }, placement: "right" },
+      { key: "width", objectId: "width", at: { x: 0, y: 3.5 * Math.sqrt(3) }, placement: "right" },
+      { key: "inner", objectId: "pond", at: { x: 0, y: -3 * Math.sqrt(3) }, placement: "above" },
+      { key: "outer", objectId: "outer", at: { x: 0, y: -4 * Math.sqrt(3) }, placement: "below" },
+    ],
+  }}
+/>
+
+Der Weg hat also die Fläche <InlineMath math="42\sqrt3\text{ m}^2" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="48\sqrt3\text{ m}^2" /> entsteht, wenn du den äußeren Umfang mal die Breite rechnest, <InlineMath math="48\cdot\sqrt3" />. Jedes Wegstück ist ein Trapez, also musst du die Breite mit dem Mittel aus innerem und äußerem Umfang multiplizieren, <InlineMath math="\frac{36+48}{2}=42" />.
+- <InlineMath math="(108+18\sqrt3)\text{ m}^2" /> entsteht, wenn du die äußere Seite als <InlineMath math="6+2\sqrt3" /> nimmst, wie bei einem quadratischen Rahmen. **Beim Sechseck kommt die Breite zur Apothema hinzu**, nicht doppelt zur Seite.
+- <InlineMath math="96\sqrt3\text{ m}^2" /> ist nur das äußere Sechseck. Der Teich ist noch nicht abgezogen.
+- <InlineMath math="162\sqrt3\text{ m}^2" /> entsteht, wenn du <InlineMath math="\tan30^\circ" /> und <InlineMath math="\tan60^\circ" /> vertauschst. Die Apothema des Teichs wird dann <InlineMath math="\sqrt3" />, die äußere <InlineMath math="2\sqrt3" />, das Verhältnis <InlineMath math="2" />, und die äußere Seite kommt als <InlineMath math="12\text{ m}" /> heraus.

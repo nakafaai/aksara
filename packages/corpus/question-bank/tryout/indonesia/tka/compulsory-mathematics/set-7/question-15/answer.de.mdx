@@ -1,17 +1,26 @@
-Verfolge jeden Punkt durch beide Abbildungen. Die Streckung mit Faktor <InlineMath math="2" /> und Zentrum <InlineMath math="O" /> bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(2x,2y)" /> ab, danach **vertauscht die Spiegelung an <InlineMath math="y=x" /> die Koordinaten**.
+Zwei Abbildungen sind vertauschbar, wenn **sie für jeden Punkt dasselbe Ergebnis liefern**, egal welche zuerst kommt. Ein einziger Punkt mit verschiedenen Ergebnissen reicht, um ein Paar abzulehnen. Umgekehrt beweist ein Punkt, der zufällig übereinstimmt, noch gar nichts.
+
+# So prüfst du jedes Paar
+
+Schreib jede Abbildung als Regel für einen allgemeinen Punkt <InlineMath math="(x,y)" /> und rechne dann beide Reihenfolgen durch. Die Schreibweise <InlineMath math="T_2\circ T_1" /> bedeutet: zuerst <InlineMath math="T_1" />, dann <InlineMath math="T_2" />. Diese Regeln brauchst du:
 
 <BlockMath math="\begin{aligned}
-A(0,0)&\to(0,0)\to A'(0,0) \\
-B(4,0)&\to(8,0)\to B'(0,8) \\
-C(0,2)&\to(0,4)\to C'(4,0)
+\text{Drehung um } 180^\circ \text{ um } (a,b)&:\ (x,y)\mapsto(2a-x,\ 2b-y) \\
+\text{Drehung um } 90^\circ \text{ um } O&:\ (x,y)\mapsto(-y,\ x) \\
+\text{Spiegelung an } y=x&:\ (x,y)\mapsto(y,\ x) \\
+\text{Spiegelung an } y=-x&:\ (x,y)\mapsto(-y,\ -x) \\
+\text{Spiegelung an der } x\text{-Achse}&:\ (x,y)\mapsto(x,\ -y) \\
+\text{Streckung um } (a,b)\text{, Faktor } k&:\ (x,y)\mapsto\big(a+k(x-a),\ b+k(y-b)\big)
 \end{aligned}" />
 
-Die Spiegelung ändert die Größe nicht, das tut nur die Streckung: **Jede Länge wird mit <InlineMath math="2" /> und jede Fläche mit <InlineMath math="2^2=4" /> multipliziert**. Das Dreieck <InlineMath math="ABC" /> hat die Fläche <InlineMath math="\tfrac12\cdot4\cdot2=4" />.
+Liefern beide Reihenfolgen genau dieselbe Regel, ist das Paar vertauschbar. **Unterscheiden sich die Regeln, nenn einen Punkt mit verschiedenen Bildern**, damit das Urteil sicher ist.
 
-- Die Fläche von <InlineMath math="A'B'C'" /> ist <InlineMath math="4\cdot4=16" />. Direkte Probe: ein rechtwinkliges Dreieck mit den Katheten <InlineMath math="8" /> und <InlineMath math="4" /> hat <InlineMath math="\tfrac12\cdot8\cdot4=16" />. Die Aussage ist richtig.
-- <InlineMath math="B'=(0,8)" />, wie berechnet. Die Aussage ist richtig.
-- Die Seiten von <InlineMath math="A'B'C'" /> sind doppelt so lang wie die von <InlineMath math="ABC" />, die Dreiecke sind also ähnlich, aber nicht kongruent. Die Aussage ist falsch.
-- Jede Seite wird verdoppelt, also auch der Umfang. Die Aussage ist richtig.
-- <InlineMath math="C'=(4,0)" /> liegt auf der <InlineMath math="x" />-Achse, nicht auf der <InlineMath math="y" />-Achse. Die Aussage ist falsch.
+# Jede Aussage prüfen
 
-Richtig sind also die Aussagen zur Fläche <InlineMath math="16" />, zum Punkt <InlineMath math="B'(0,8)" /> und zum verdoppelten Umfang.
+1. **Falsch**. Die Drehung um <InlineMath math="180^\circ" /> um <InlineMath math="O" /> ist <InlineMath math="(x,y)\mapsto(-x,-y)" />, die um <InlineMath math="(2,0)" /> ist <InlineMath math="(x,y)\mapsto(4-x,-y)" />. Zuerst Zentrum <InlineMath math="(2,0)" />, dann Zentrum <InlineMath math="O" /> ergibt <InlineMath math="(x-4,\,y)" />. Die andere Reihenfolge ergibt <InlineMath math="(x+4,\,y)" />. Das sind zwei Verschiebungen in entgegengesetzte Richtungen, zum Beispiel landet <InlineMath math="O" /> bei <InlineMath math="(-4,0)" /> oder bei <InlineMath math="(4,0)" />. Gleicher Winkel, aber verschiedene Zentren.
+2. **Richtig**. Erst Spiegelung, dann Verschiebung: <InlineMath math="(y,x)" /> wird zu <InlineMath math="(y+2,\,x+2)" />. Erst Verschiebung, dann Spiegelung: <InlineMath math="(x+2,\,y+2)" /> wird zu <InlineMath math="(y+2,\,x+2)" />. Beide Reihenfolgen stimmen für jeden Punkt überein. Der Grund: Der Vektor <InlineMath math="(2,2)" /> verläuft entlang der Spiegelachse <InlineMath math="y=x" />, und eine Verschiebung entlang der Achse ändert die Spiegelung nicht.
+3. **Falsch**. Die Streckung um <InlineMath math="O" /> mit Faktor <InlineMath math="2" /> ist <InlineMath math="(2x,\,2y)" />, die um <InlineMath math="(2,0)" /> mit Faktor <InlineMath math="3" /> ist <InlineMath math="(3x-4,\,3y)" />. Zuerst Zentrum <InlineMath math="(2,0)" /> ergibt <InlineMath math="(6x-8,\,6y)" />, zuerst Zentrum <InlineMath math="O" /> ergibt <InlineMath math="(6x-4,\,6y)" />. Der Faktor ist beide Male <InlineMath math="6" />, aber die Verschiebung ist verschieden. Der Punkt <InlineMath math="O" /> landet bei <InlineMath math="(-8,0)" /> oder bei <InlineMath math="(-4,0)" />.
+4. **Falsch**. Erst Spiegelung, dann Drehung: <InlineMath math="(x,-y)" /> wird zu <InlineMath math="(y,\,x)" />. Erst Drehung, dann Spiegelung: <InlineMath math="(-y,x)" /> wird zu <InlineMath math="(-y,\,-x)" />. Für den Punkt <InlineMath math="(1,0)" /> erhältst du <InlineMath math="(0,1)" /> und <InlineMath math="(0,-1)" />. Die beiden Reihenfolgen stimmen nur bei <InlineMath math="O" /> überein, ein Test nur mit <InlineMath math="O" /> würde dich also täuschen.
+5. **Richtig**. Erst Spiegelung, dann Drehung: <InlineMath math="(-y,-x)" /> wird zu <InlineMath math="(y,\,x)" />. Erst Drehung, dann Spiegelung: <InlineMath math="(-x,-y)" /> wird zu <InlineMath math="(y,\,x)" />. Beide Reihenfolgen stimmen für jeden Punkt überein. Die Drehung um <InlineMath math="180^\circ" /> um <InlineMath math="O" /> dreht nur das Vorzeichen beider Koordinaten um, und dabei spielt die Reihenfolge keine Rolle.
+
+Vertauschbar sind also die Spiegelung an <InlineMath math="y=x" /> mit der Verschiebung um <InlineMath math="(2,2)" /> und die Drehung um <InlineMath math="180^\circ" /> um <InlineMath math="O" /> mit der Spiegelung an <InlineMath math="y=-x" />.

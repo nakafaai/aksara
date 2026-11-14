@@ -2,38 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "recount",
-    topic: "comparison",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "analytical-exposition",
+    topic: "fact-opinion",
   },
-  stimulus: "accessible-fair",
+  stimulus: "meadow",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Fact", "Opinion"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "The writer learned that signs are adequate when their designer can explain them nearby.",
+            "In Lindung, a two-year trial in one park found three times as many bee visits on the planted strips as on the lawn beside them.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "The writer treated the rainy-day delays as proof that the project had failed.",
+            "Fast-growing weeds take over before the native plants are established.",
         },
         {
-          correct: false,
-          label: "The writer stopped recording remaining problems.",
+          column: 2,
+          label:
+            "Even a $$10\\%$$ cut in mowing would be the smartest decision the council has made in years.",
         },
         {
-          correct: true,
-          label:
-            "The writer learned that a route must be tested by people with different needs.",
-        },
-        {
-          correct: false,
-          label:
-            "The writer believed symbols were less useful than hidden arrows.",
+          column: 1,
+          label: "Mowing alone burns about $$3{,}000$$ litres of fuel a year.",
         },
       ],
     },

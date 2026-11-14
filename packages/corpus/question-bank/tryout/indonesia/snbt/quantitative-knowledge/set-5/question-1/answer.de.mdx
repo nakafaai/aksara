@@ -1,19 +1,37 @@
-Du musst <InlineMath math="N" /> nicht direkt ausrechnen. Jedes Paar aus einem Faktor 2 und einem Faktor 5 ergibt einen Faktor 10, deshalb **bildest du möglichst viele Paare aus 2 und 5**.
+Du zählst Zahlen mit <InlineMath math="4" /> Ziffern, die zwei Bedingungen zugleich erfüllen: Ihre Quersumme ist <InlineMath math="18" />, und sie sind durch <InlineMath math="44" /> teilbar. Weil <InlineMath math="44=4\times11" /> gilt und <InlineMath math="4" /> und <InlineMath math="11" /> außer <InlineMath math="1" /> keinen gemeinsamen Teiler haben, **heißt teilbar durch <InlineMath math="44" /> dasselbe wie teilbar durch <InlineMath math="4" /> und durch <InlineMath math="11" />**. Der Plan: Die Elferregel koppelt die Ziffern paarweise, die Viererregel schränkt die letzten beiden Ziffern ein, und dann zählst du alle Möglichkeiten.
 
-# Zehnerpotenz bilden
+# Die Teilbarkeit durch elf
 
-Es gibt **sieben Faktoren 5**, also lassen sich sieben Faktoren 2 mit ihnen paaren. Drei Faktoren 2 bleiben übrig.
+Schreibe die Zahl als <InlineMath math="\overline{abcd}" /> mit <InlineMath math="a\ne0" />. Die Elferregel vergleicht die Summe der Ziffern an den ungeraden Stellen von rechts, <InlineMath math="u=b+d" />, mit der Summe an den geraden Stellen, <InlineMath math="v=a+c" />. Die Zahl ist genau dann durch <InlineMath math="11" /> teilbar, wenn <InlineMath math="u-v" /> ein Vielfaches von <InlineMath math="11" /> ist.
 
 <BlockMath math="\begin{aligned}
-N&=2^{3}\times\left(2^{7}\times5^{7}\right)\times3\\
-&=2^3\times3\times10^7\\
-&=24\times10^7=240{.}000{.}000
+u+v&=18\\
+u-v&=18-2v
 \end{aligned}" />
 
-# Ziffern zählen
+Der Ausdruck <InlineMath math="18-2v" /> ist immer gerade, und weil <InlineMath math="u" /> und <InlineMath math="v" /> nicht negativ sind, gilt <InlineMath math="-18\le u-v\le18" />. In diesem Bereich liegen nur die Vielfachen <InlineMath math="-11" />, <InlineMath math="0" /> und <InlineMath math="11" />, und gerade ist davon nur <InlineMath math="0" />. Also **müssen beide Summen gleich sein**, und es gilt <InlineMath math="a+c=9" /> und <InlineMath math="b+d=9" />.
 
-Die Zahl <InlineMath math="24\times10^7" /> besteht aus den Ziffern 2 und 4, gefolgt von **sieben Nullen**, sie hat also <InlineMath math="2+7=9" /> Ziffern.
+# Die Teilbarkeit durch vier
 
-Der Wert 7 zählt nur die Endnullen. Der Wert 8 behandelt <InlineMath math="2^3\times3" /> wie eine einzige Ziffer. Der Wert 10 ist der Exponent von 2, und der Wert 17 addiert die beiden Exponenten <InlineMath math="10+7" />.
+Eine Zahl ist genau dann durch <InlineMath math="4" /> teilbar, wenn ihre letzten beiden Ziffern, <InlineMath math="\overline{cd}=10c+d" />, durch <InlineMath math="4" /> teilbar sind. Der Teil <InlineMath math="8c" /> ist immer durch <InlineMath math="4" /> teilbar, also musst du nur den Rest prüfen.
 
-Die Zahl <InlineMath math="N" /> hat also **9 Ziffern**.
+<BlockMath math="10c+d=8c+(2c+d)" />
+
+Deshalb **hängen die erlaubten Einerziffern von der Zehnerziffer ab**. Ist <InlineMath math="c" /> gerade, dann ist <InlineMath math="2c" /> durch <InlineMath math="4" /> teilbar, und <InlineMath math="d" /> muss <InlineMath math="0" />, <InlineMath math="4" /> oder <InlineMath math="8" /> sein. Ist <InlineMath math="c" /> ungerade, lässt <InlineMath math="2c" /> den Rest <InlineMath math="2" />, und <InlineMath math="d" /> muss <InlineMath math="2" /> oder <InlineMath math="6" /> sein.
+
+# Alle Möglichkeiten zählen
+
+Sobald <InlineMath math="c" /> und <InlineMath math="d" /> gewählt sind, **liegen <InlineMath math="a=9-c" /> und <InlineMath math="b=9-d" /> fest**, du zählst also nur die Paare <InlineMath math="(c,d)" />. Die Bedingung <InlineMath math="a\ge1" /> liefert <InlineMath math="c\le8" />, also läuft <InlineMath math="c" /> von <InlineMath math="0" /> bis <InlineMath math="8" />. Das sind <InlineMath math="5" /> gerade Werte von <InlineMath math="c" /> (<InlineMath math="0,2,4,6,8" />) und <InlineMath math="4" /> ungerade (<InlineMath math="1,3,5,7" />).
+
+<BlockMath math="5\times3+4\times2=15+8=23" />
+
+Prüfe ein Beispiel: Mit <InlineMath math="c=8" /> und <InlineMath math="d=8" /> entsteht <InlineMath math="1{.}188" />. Die Quersumme ist <InlineMath math="1+1+8+8=18" />, und es gilt <InlineMath math="1{.}188=44\times27" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="90" /> benutzt nur die Elferbedingung: <InlineMath math="9" /> Möglichkeiten für <InlineMath math="c" /> mal <InlineMath math="10" /> für <InlineMath math="d" />, ganz ohne die Prüfung auf <InlineMath math="4" />.
+- <InlineMath math="27" /> entsteht, wenn du **nur die Einerziffer prüfst**, sodass <InlineMath math="d" /> immer <InlineMath math="0" />, <InlineMath math="4" /> oder <InlineMath math="8" /> ist. Aber <InlineMath math="2{.}574" /> endet auf <InlineMath math="74" />, und das ist nicht durch <InlineMath math="4" /> teilbar.
+- <InlineMath math="25" /> zählt auch <InlineMath math="a=0" /> mit, also <InlineMath math="396" /> und <InlineMath math="792" />, die nur <InlineMath math="3" /> Ziffern haben.
+- <InlineMath math="18" /> vergisst, dass auch <InlineMath math="0" /> ein Vielfaches von <InlineMath math="4" /> ist, und wirft die Wahl <InlineMath math="d=0" /> weg.
+
+Es gibt also <InlineMath math="23" /> ganze Zahlen von <InlineMath math="1{.}000" /> bis <InlineMath math="9{.}999" /> mit der Quersumme <InlineMath math="18" />, die durch <InlineMath math="44" /> teilbar sind.

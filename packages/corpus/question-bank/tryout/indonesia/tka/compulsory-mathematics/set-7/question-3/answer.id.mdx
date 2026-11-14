@@ -1,14 +1,42 @@
-Ubah setiap pernyataan menjadi **harga per mL atau banyak air per kemasan**, lalu bandingkan.
+# Alat yang dipakai di semua pernyataan
+
+Ketiga pernyataan membandingkan dua keadaan bunyi. Dari rumus di bacaan, **selisih taraf intensitas hanya ditentukan oleh perbandingan intensitasnya**:
+
+<BlockMath math="\mathrm{TI}_2-\mathrm{TI}_1=10\log\frac{I_2}{10^{-12}}-10\log\frac{I_1}{10^{-12}}=10\log\frac{I_2}{I_1}" />
+
+Jadi, untuk setiap pernyataan kamu cukup mencari perbandingan intensitas, lalu memeriksa apakah klaimnya berlaku untuk semua keadaan, bukan hanya untuk satu contoh.
+
+# Pernyataan pertama
+
+**Salah**. Kalau ada <InlineMath math="n" /> bedug besar yang sama, intensitasnya <InlineMath math="nI" />. Menambah satu bedug mengubahnya menjadi <InlineMath math="(n+1)I" />, sehingga kenaikannya <InlineMath math="10\log\frac{n+1}{n}" />. Nilai ini bergantung pada <InlineMath math="n" />:
 
 <BlockMath math="\begin{aligned}
-\frac{24{.}000}{250}&=96,\qquad\frac{84{.}000}{1{.}000}=84 \\
-\frac{96-84}{96}&=\frac{12}{96}=12{,}5\,\% \\
-\frac{250}{10}\cdot4&=100\text{ liter} \\
-\frac{1{.}000}{20}\cdot4&=200\text{ liter} \\
-\frac{24{.}000}{100}&=240
+n=1:&\quad 10\log2=10\cdot0{,}30=3\text{ dB} \\
+n=2:&\quad 10\log\tfrac32=10\,(0{,}48-0{,}30)=1{,}8\text{ dB}
 \end{aligned}" />
 
-- Kemasan besar <InlineMath math="\text{Rp}84" /> per mL dan kemasan kecil <InlineMath math="\text{Rp}96" /> per mL. Selisih <InlineMath math="\text{Rp}12" /> adalah <InlineMath math="12{,}5\,\%" /> dari <InlineMath math="\text{Rp}96" />. Pernyataan ini benar.
-- Satu kemasan kecil cukup untuk tepat <InlineMath math="100" /> liter air, tidak lebih. Pernyataan ini salah.
-- Dengan takaran <InlineMath math="20" /> mL, kemasan besar berisi <InlineMath math="50" /> takaran, cukup untuk <InlineMath math="50\cdot4=200" /> liter air. Pernyataan ini benar.
-- Kemasan kecil seharga <InlineMath math="\text{Rp}24{.}000" /> cukup untuk <InlineMath math="100" /> liter, jadi biayanya <InlineMath math="\text{Rp}240" /> per liter, tidak lebih dari <InlineMath math="\text{Rp}250" />. Pernyataan ini salah.
+Kenaikan <InlineMath math="3\text{ dB}" /> hanya terjadi dari satu menjadi dua bedug, yaitu saat intensitasnya menjadi dua kali. Makin banyak bedug semula, makin kecil kenaikannya.
+
+# Pernyataan kedua
+
+**Salah**. Turun <InlineMath math="10\text{ dB}" /> berarti intensitas di Q sepersepuluh intensitas di P. Karena intensitas berbanding terbalik dengan kuadrat jarak, perbandingan jaraknya adalah akar dari <InlineMath math="10" />:
+
+<BlockMath math="\begin{aligned}
+10\log\frac{I_Q}{I_P}&=-10 \quad\Rightarrow\quad \frac{I_Q}{I_P}=\frac1{10} \\
+\frac{I_Q}{I_P}&=\frac{r_P^2}{r_Q^2}=\frac1{10} \quad\Rightarrow\quad \frac{r_Q}{r_P}=\sqrt{10}\approx3{,}16
+\end{aligned}" />
+
+Jarak Q kira-kira <InlineMath math="3{,}16" /> kali jarak P, bukan <InlineMath math="10" /> kali. Jarak <InlineMath math="10" /> kali lipat justru membuat intensitas menjadi <InlineMath math="\tfrac1{100}" /> kali, yaitu turun <InlineMath math="20\text{ dB}" />.
+
+# Pernyataan ketiga
+
+**Benar**. Misalkan intensitas satu bedug besar pada jarak <InlineMath math="1\text{ m}" /> adalah <InlineMath math="I" />, jadi satu bedug kecil <InlineMath math="\tfrac14I" />. Bandingkan kedua keadaan secara umum:
+
+<BlockMath math="\begin{aligned}
+k\text{ bedug besar dari jarak }d&:\quad k\cdot\frac{I}{d^2} \\
+16k\text{ bedug kecil dari jarak }2d&:\quad 16k\cdot\frac{\tfrac14 I}{(2d)^2}=16k\cdot\frac{I}{16d^2}=k\cdot\frac{I}{d^2}
+\end{aligned}" />
+
+Intensitasnya sama persis untuk setiap <InlineMath math="d" /> dan <InlineMath math="k" />, jadi taraf intensitasnya juga sama. Faktor <InlineMath math="16" /> menutup dua kerugian sekaligus: seperempat karena bedugnya kecil, dan seperempat lagi karena jaraknya dua kali lipat.
+
+Jadi, pernyataan pertama salah, pernyataan kedua salah, dan pernyataan ketiga benar.

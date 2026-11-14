@@ -1,15 +1,43 @@
-Pertanyaannya meminta nilai bentuk <InlineMath math="2x-y" />, **bukan nilai <InlineMath math="x" /> dan <InlineMath math="y" /> masing-masing**. Sebuah pernyataan bisa cukup walaupun tidak menentukan kedua variabel.
+Yang diketahui adalah suku ketiga, bukan suku pertama. Rencananya: tunjukkan bahwa aturan itu berulang setiap empat langkah, cari <InlineMath math="a_1" /> dan <InlineMath math="a_2" />, jumlahkan satu periode, lalu **tambahkan suku sisa** yang tidak membentuk periode penuh.
 
-# Pernyataan pertama saja
+# Aturan yang berulang setiap empat langkah
 
-Ruas kiri pernyataan (1) adalah **dua kali bentuk yang ditanyakan**.
+Tulis aturannya sebagai fungsi <InlineMath math="f(x)=\tfrac{x-1}{x+1}" />. Terapkan <InlineMath math="f" /> dua kali, lalu sederhanakan dengan mengalikan pembilang dan penyebut dengan <InlineMath math="x+1" />.
 
-<BlockMath math="4x-2y=2(2x-y)=10\quad\Rightarrow\quad 2x-y=5" />
+<BlockMath math="\begin{aligned}
+f\big(f(x)\big)&=\frac{\frac{x-1}{x+1}-1}{\frac{x-1}{x+1}+1}=\frac{(x-1)-(x+1)}{(x-1)+(x+1)}=\frac{-2}{2x}=-\frac{1}{x}\\
+f\Big(f\big(f(f(x))\big)\Big)&=-\frac{1}{-\frac{1}{x}}=x
+\end{aligned}" />
 
-Nilai <InlineMath math="2x-y" /> tunggal, jadi pernyataan (1) saja cukup, walaupun <InlineMath math="x" /> dan <InlineMath math="y" /> sendiri belum diketahui.
+Jadi <InlineMath math="a_{n+4}=a_n" /> untuk setiap <InlineMath math="n" />. Artinya **barisan ini berulang dengan periode <InlineMath math="4" />**, sehingga <InlineMath math="a_1=a_5" /> dan <InlineMath math="a_2=a_6" />. Langkah ini sah selama tidak ada suku yang bernilai <InlineMath math="-1" /> atau <InlineMath math="0" />, dan itu dicek di bagian berikutnya.
 
-# Pernyataan kedua saja
+# Mencari suku pertama dan kedua
 
-Pasangan <InlineMath math="(x,y)=(3,4)" /> dan <InlineMath math="(4,3)" /> sama-sama memenuhi <InlineMath math="x+y=7" />, tetapi memberi <InlineMath math="2x-y=2" /> dan <InlineMath math="2x-y=5" />. Jumlah <InlineMath math="x+y" /> **tidak menentukan selisih berbobot** <InlineMath math="2x-y" />, jadi pernyataan (2) saja tidak cukup.
+Hitung maju dari <InlineMath math="a_3=-\tfrac{1}{2}" />.
 
-Menggabungkan kedua pernyataan memang menghasilkan <InlineMath math="x=4" /> dan <InlineMath math="y=3" />, tetapi itu tidak diperlukan. Jawabannya adalah **pernyataan (1) saja cukup**, tetapi pernyataan (2) saja tidak cukup.
+<BlockMath math="\begin{aligned}
+a_4&=\frac{-\frac{1}{2}-1}{-\frac{1}{2}+1}=\frac{-\frac{3}{2}}{\frac{1}{2}}=-3\\
+a_5&=\frac{-3-1}{-3+1}=\frac{-4}{-2}=2\\
+a_6&=\frac{2-1}{2+1}=\frac{1}{3}
+\end{aligned}" />
+
+Karena periodenya <InlineMath math="4" />, diperoleh <InlineMath math="a_1=2" /> dan <InlineMath math="a_2=\tfrac{1}{3}" />. Cek ke depan: <InlineMath math="f(2)=\tfrac{1}{3}" /> dan <InlineMath math="f\left(\tfrac{1}{3}\right)=\tfrac{-2/3}{4/3}=-\tfrac{1}{2}" />, cocok dengan <InlineMath math="a_3" />. Keempat suku <InlineMath math="2" />, <InlineMath math="\tfrac{1}{3}" />, <InlineMath math="-\tfrac{1}{2}" />, <InlineMath math="-3" /> **tidak ada yang bernilai <InlineMath math="-1" />**, jadi setiap suku terdefinisi.
+
+# Jumlah periode dan suku sisa
+
+Satu periode berjumlah <InlineMath math="2+\tfrac{1}{3}-\tfrac{1}{2}-3=-\tfrac{7}{6}" />. Karena <InlineMath math="2026=4\cdot 506+2" />, ada <InlineMath math="506" /> periode penuh dari <InlineMath math="a_1" /> sampai <InlineMath math="a_{2024}" />, lalu **dua suku sisa** <InlineMath math="a_{2025}=a_1=2" /> dan <InlineMath math="a_{2026}=a_2=\tfrac{1}{3}" />.
+
+<BlockMath math="\begin{aligned}
+a_1+\cdots+a_{2026}&=506\cdot\left(-\frac{7}{6}\right)+2+\frac{1}{3}\\
+&=-\frac{1771}{3}+\frac{7}{3}=-\frac{1764}{3}=-588
+\end{aligned}" />
+
+# Memeriksa dengan pengelompokan lain
+
+Hitung juga <InlineMath math="507" /> periode penuh sampai <InlineMath math="a_{2028}" />, lalu kurangkan dua suku yang berlebih, <InlineMath math="a_{2027}+a_{2028}=a_3+a_4=-\tfrac{7}{2}" />. Hasilnya <InlineMath math="507\cdot\left(-\tfrac{7}{6}\right)+\tfrac{7}{2}=-\tfrac{1183}{2}+\tfrac{7}{2}=-588" />, **sama dengan hitungan pertama**.
+
+# Memeriksa pilihan lain
+
+Pilihan <InlineMath math="-\tfrac{1771}{3}" /> hanya menjumlahkan <InlineMath math="506" /> periode dan **lupa dua suku sisa**. Pilihan <InlineMath math="-590" /> hanya menambahkan <InlineMath math="a_{2026}=\tfrac{1}{3}" /> dan lupa <InlineMath math="a_{2025}=2" />. Pilihan <InlineMath math="-\tfrac{1183}{2}" /> membulatkan ke atas menjadi <InlineMath math="507" /> periode, sehingga ikut menjumlahkan <InlineMath math="a_{2027}" /> dan <InlineMath math="a_{2028}" />. Pilihan <InlineMath math="\tfrac{1}{3}" /> adalah nilai suku <InlineMath math="a_{2026}" /> saja, bukan jumlah sampai suku itu.
+
+Jadi, <InlineMath math="a_1+a_2+\cdots+a_{2026}=-588" />.

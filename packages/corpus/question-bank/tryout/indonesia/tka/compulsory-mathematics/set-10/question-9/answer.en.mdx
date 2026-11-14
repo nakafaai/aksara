@@ -1,14 +1,54 @@
-Factor <InlineMath math="f" /> first, because **one of its factors is <InlineMath math="g(x)" />**.
+# What you need first
+
+Each statement needs its own proof or one counterexample. Remember that <InlineMath math="f" /> adds <InlineMath math="2" /> first and then takes the base-<InlineMath math="3" /> logarithm. So <InlineMath math="f(\text{something})={}^{3}\log(\text{something}+2)" />, and **the number inside the logarithm has to be positive**.
+
+You get the inverse by undoing those steps: raise <InlineMath math="3" /> to the power, then subtract <InlineMath math="2" />.
+
+<BlockMath math="y={}^{3}\log(x+2) \;\Longleftrightarrow\; x+2=3^y \;\Longleftrightarrow\; f^{-1}(y)=3^y-2" />
+
+# First statement
 
 <BlockMath math="\begin{aligned}
-f(x)&=x^2-6x+8=(x-2)(x-4)=(x-4)\cdot g(x) \\
-f(x)-g(x)&=(x-2)(x-4)-(x-2)=(x-2)(x-5)
+f(a)+f(b)&={}^{3}\log\big((a+2)(b+2)\big)={}^{3}\log(ab+2a+2b+4) \\
+&={}^{3}\log\big((ab+2a+2b+2)+2\big)=f(ab+2a+2b+2)
 \end{aligned}" />
 
-- The vertex of <InlineMath math="f" /> is at <InlineMath math="x=3" />, and <InlineMath math="f(3)=9-18+8=-1" />. The minimum is <InlineMath math="-1" />, not <InlineMath math="-2" />. This statement is false.
-- The factorisation shows <InlineMath math="f(x)=(x-4)\cdot g(x)" /> for every <InlineMath math="x" />. This statement is true.
-- At <InlineMath math="x=3" />, <InlineMath math="f(3)=-1" /> while <InlineMath math="g(3)=1" />, so <InlineMath math="f(x)\ge g(x)" /> doesn't hold for every <InlineMath math="x" />. This statement is false.
-- <InlineMath math="f(x)=g(x)" /> exactly when <InlineMath math="(x-2)(x-5)=0" />, that is <InlineMath math="x=2" /> or <InlineMath math="x=5" />. The intersection points are <InlineMath math="(2,0)" /> and <InlineMath math="(5,3)" />. This statement is true.
-- <InlineMath math="(x-2)(x-4)<0" /> exactly when <InlineMath math="x" /> lies between the two roots, <InlineMath math="2<x<4" />. This statement is true.
+For <InlineMath math="a>-2" /> and <InlineMath math="b>-2" />, the product <InlineMath math="(a+2)(b+2)" /> is positive, so **the number <InlineMath math="ab+2a+2b+2" /> is always in the domain**. This statement is **True**.
 
-So the true statements are <InlineMath math="f(x)=(x-4)\cdot g(x)" />, the two intersection points, and <InlineMath math="f(x)<0" /> exactly for <InlineMath math="2<x<4" />.
+# Second statement
+
+Work from the inside out. The <InlineMath math="1" /> is added inside, before the inverse is applied.
+
+<BlockMath math="\begin{aligned}
+f(5)+1&={}^{3}\log7+{}^{3}\log3={}^{3}\log21 \\
+f^{-1}\big({}^{3}\log21\big)&=3^{{}^{3}\log21}-2=21-2=19
+\end{aligned}" />
+
+The trap is computing <InlineMath math="f^{-1}(f(5))+1=6" />. **The <InlineMath math="1" /> sits inside the brackets**, so <InlineMath math="f^{-1}" /> acts on it too. This statement is **True**.
+
+# Third statement
+
+The base-<InlineMath math="3" /> logarithm is always increasing, so two of its values are equal only when the inputs are equal.
+
+<BlockMath math="x+2=\frac{1}{x}+2 \;\Longrightarrow\; x^2=1 \;\Longrightarrow\; x=1 \;\text{or}\; x=-1" />
+
+Now check the domain. For <InlineMath math="x=1" />, both inputs are <InlineMath math="1" />, which is fine. For <InlineMath math="x=-1" />, both <InlineMath math="x" /> and <InlineMath math="\frac{1}{x}" /> equal <InlineMath math="-1" />, which is greater than <InlineMath math="-2" />, and <InlineMath math="f(-1)={}^{3}\log1=0" />. **The negative number <InlineMath math="-1" /> is still allowed**, because it's <InlineMath math="x+2" /> that has to be positive, not <InlineMath math="x" />. There are exactly two solutions, so this statement is **True**.
+
+# Fourth statement
+
+For <InlineMath math="-2<x<2" />, both <InlineMath math="x" /> and <InlineMath math="-x" /> are in the domain.
+
+<BlockMath math="\begin{aligned}
+f(x)+f(-x)&={}^{3}\log\big((2+x)(2-x)\big)={}^{3}\log(4-x^2) \\
+&\le{}^{3}\log4={}^{3}\log2^2=2\cdot{}^{3}\log2=2f(0)
+\end{aligned}" />
+
+The inequality holds because <InlineMath math="4-x^2\le4" /> and the base-<InlineMath math="3" /> logarithm is increasing. **Equality only happens at <InlineMath math="x=0" />**. This statement is **True**.
+
+# Fifth statement
+
+<BlockMath math="f(2x)-f(x)={}^{3}\log\frac{2x+2}{x+2}" />
+
+Try two values. For <InlineMath math="x=0" /> you get <InlineMath math="{}^{3}\log1=0" />. For <InlineMath math="x=1" /> you get <InlineMath math="{}^{3}\log\frac{4}{3}\ne0" />. The value changes, so this statement is **False**. The rule <InlineMath math="{}^{3}\log(2x)-{}^{3}\log x={}^{3}\log2" /> only works when there's no extra <InlineMath math="2" /> inside the logarithm.
+
+So the true statements are the first, second, third, and fourth.

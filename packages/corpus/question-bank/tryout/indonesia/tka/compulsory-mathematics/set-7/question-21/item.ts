@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "library-visits",
+  stimulus: "gaji",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$40$$",
+          label: "$$\\text{Rp}4{,}75\\text{ juta}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}6{,}05\\text{ juta}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}6{,}6\\text{ juta}$$",
         },
         {
           correct: true,
-          label: "$$42$$",
+          label: "$$\\text{Rp}7{,}35\\text{ juta}$$",
         },
         {
           correct: false,
-          label: "$$43{,}5$$",
-        },
-        {
-          correct: false,
-          label: "$$45$$",
-        },
-        {
-          correct: false,
-          label: "$$52$$",
+          label: "$$\\text{Rp}9\\text{ juta}$$",
         },
       ],
     },

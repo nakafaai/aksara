@@ -1,28 +1,44 @@
-Die ersten drei Aussagen verwenden die Grundlängen eines Würfels mit der Kante <InlineMath math="a=9" />, nämlich **Flächendiagonale und Raumdiagonale**. Die vierte Aussage prüfst du am einfachsten mit Koordinaten.
+Die Schnittfläche einer Ebene mit einem Würfel ist die ebene Figur, die von allen Punkten begrenzt wird, an denen die Ebene eine Kante schneidet. Diese Figur ist **nicht unbedingt das Dreieck <InlineMath math="PQR" />**, denn die Ebene kann noch weitere Kanten schneiden. Der Plan: Koordinaten festlegen, die Ebenengleichung bestimmen, alle Schnittpunkte mit Kanten finden und dann die Fläche berechnen.
+
+# Koordinaten festlegen
+
+Lege <InlineMath math="A" /> in den Ursprung, mit **den Kanten <InlineMath math="AB" />, <InlineMath math="AD" /> und <InlineMath math="AE" /> auf den Koordinatenachsen**.
 
 <BlockMath math="\begin{aligned}
-AC&=a\sqrt2=9\sqrt2\\
-AG&=\sqrt{AC^2+CG^2}=\sqrt{162+81}=9\sqrt3
+A&=(0,0,0),\quad B=(6,0,0),\quad C=(6,6,0),\quad D=(0,6,0)\\
+E&=(0,0,6),\quad F=(6,0,6),\quad G=(6,6,6),\quad H=(0,6,6)
 \end{aligned}" />
 
-# Raumdiagonale und Diagonalschnitt
+Die Mittelpunkte sind <InlineMath math="P=(3,0,0)" />, <InlineMath math="Q=(6,3,0)" /> und <InlineMath math="R=(3,6,6)" />.
 
-Die zweite Aussage ist **wahr**, denn <InlineMath math="AG=9\sqrt3\text{ cm}" />. Der Diagonalschnitt <InlineMath math="ACGE" /> ist ein Rechteck mit den Seiten <InlineMath math="AC=9\sqrt2" /> und <InlineMath math="AE=9" />, sein Flächeninhalt ist also <InlineMath math="81\sqrt2\approx114{,}6\text{ cm}^2" />. Die Zahl 162 ist <InlineMath math="AC^2" /> und nicht der Flächeninhalt, die erste Aussage ist also falsch.
+# Die Ebenengleichung bestimmen
 
-# Winkel zwischen Gerade und Ebene
+Schreibe die Ebene als <InlineMath math="ax+by+cz=d" /> und setze die drei Punkte ein. Der Punkt <InlineMath math="P" /> liefert <InlineMath math="3a=d" />. Der Punkt <InlineMath math="Q" /> liefert <InlineMath math="6a+3b=3a" />, also <InlineMath math="b=-a" />. Der Punkt <InlineMath math="R" /> liefert <InlineMath math="3a-6a+6c=3a" />, also <InlineMath math="c=a" />. Mit <InlineMath math="a=1" /> lautet **die Ebene <InlineMath math="x-y+z=3" />**.
 
-Die Projektion von <InlineMath math="AG" /> auf die Grundfläche ist <InlineMath math="AC" />, weil <InlineMath math="G" /> genau über <InlineMath math="C" /> liegt. Gesucht ist der Winkel <InlineMath math="GAC" /> im rechtwinkligen Dreieck <InlineMath math="ACG" />.
+# Alle Schnittpunkte finden
 
-<BlockMath math="\tan\angle GAC=\frac{CG}{AC}=\frac{9}{9\sqrt2}=\frac{1}{\sqrt2}" />
+Prüfe die übrigen Kantenmitten in <InlineMath math="x-y+z=3" />.
 
-Ein Winkel von <InlineMath math="45^\circ" /> hätte den Tangens 1. Wegen <InlineMath math="\tfrac{1}{\sqrt2}<1" /> ist **der Winkel kleiner als <InlineMath math="45^\circ" />** (etwa <InlineMath math="35{,}3^\circ" />). Die dritte Aussage ist falsch.
+<BlockMath math="\begin{aligned}
+\text{Mitte von } CG&=(6,6,3):\quad 6-6+3=3\\
+\text{Mitte von } HE&=(0,3,6):\quad 0-3+6=3\\
+\text{Mitte von } EA&=(0,0,3):\quad 0-0+3=3
+\end{aligned}" />
 
-# Abstand eines Punktes von einer Ebene
+Die Ebene geht also durch sechs Kantenmitten, nämlich die von <InlineMath math="AB" />, <InlineMath math="BC" />, <InlineMath math="CG" />, <InlineMath math="GH" />, <InlineMath math="HE" /> und <InlineMath math="EA" />. Ein Würfel hat nur sechs Seitenflächen, also hat eine Schnittfläche höchstens sechs Seiten. **Die Schnittfläche ist ein Sechseck** mit diesen sechs Mittelpunkten als Ecken.
 
-Lege den Würfel in die Punkte <InlineMath math="A(0,0,0)" />, <InlineMath math="B(9,0,0)" />, <InlineMath math="D(0,9,0)" />, <InlineMath math="E(0,0,9)" /> und <InlineMath math="G(9,9,9)" />. Die drei Punkte <InlineMath math="B" />, <InlineMath math="D" /> und <InlineMath math="G" /> erfüllen <InlineMath math="x+y-z=9" />, das ist also **die Gleichung der Ebene <InlineMath math="BDG" />**. Der Abstand von <InlineMath math="E" /> zu dieser Ebene beträgt
+# Die Fläche des Sechsecks berechnen
 
-<BlockMath math="d=\frac{\lvert 0+0-9-9\rvert}{\sqrt{1^2+1^2+(-1)^2}}=\frac{18}{\sqrt3}=6\sqrt3" />
+Zwei benachbarte Mittelpunkte, etwa <InlineMath math="P" /> und <InlineMath math="Q" />, haben den Abstand <InlineMath math="\sqrt{3^2+3^2+0^2}=3\sqrt2" />. Genauso zeigst du, dass alle sechs Seiten gleich lang sind. Auch der Würfelmittelpunkt <InlineMath math="(3,3,3)" /> erfüllt <InlineMath math="3-3+3=3" />, und sein Abstand zu jeder Ecke ist ebenfalls <InlineMath math="3\sqrt2" />, zum Beispiel zu <InlineMath math="P" /> über die Differenz <InlineMath math="(0,-3,-3)" />. Das Sechseck **zerfällt also in sechs gleichseitige Dreiecke** mit der Seite <InlineMath math="3\sqrt2" />. Der Flächeninhalt <InlineMath math="L" /> des Sechsecks ist sechsmal die Fläche eines solchen Dreiecks.
 
-Das Ergebnis lässt sich auch geometrisch sehen. Die Raumdiagonale <InlineMath math="CE" /> steht senkrecht auf der Ebene <InlineMath math="BDG" />, der Abstand von <InlineMath math="C" /> zu dieser Ebene ist <InlineMath math="\frac{9}{\sqrt3}=3\sqrt3" />, und es bleibt <InlineMath math="9\sqrt3-3\sqrt3=6\sqrt3" />. Die vierte Aussage ist wahr.
+<BlockMath math="L=6\cdot\frac{\sqrt3}{4}\left(3\sqrt2\right)^2=6\cdot\frac{\sqrt3}{4}\cdot18=27\sqrt3" />
 
-Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **falsch** und die vierte **wahr**.
+# Das Ergebnis prüfen
+
+In diesem Sechseck liegen <InlineMath math="P" /> und <InlineMath math="R" /> einander gegenüber, denn der Mittelpunkt von <InlineMath math="PR" /> ist der Würfelmittelpunkt <InlineMath math="(3,3,3)" />. Also ist <InlineMath math="PR=6\sqrt2" /> ein Durchmesser, und der Winkel <InlineMath math="PQR" /> ist ein rechter Winkel. Das Dreieck <InlineMath math="PQR" /> hat die Fläche <InlineMath math="\frac12\cdot3\sqrt2\cdot3\sqrt6=9\sqrt3" />, also **genau ein Drittel des Sechsecks**. Das passt zur Fläche von zwei der sechs gleichseitigen Dreiecke, <InlineMath math="2\cdot\frac{\sqrt3}{4}\cdot18=9\sqrt3" />.
+
+# Die falschen Antworten
+
+Die Antwort <InlineMath math="\frac{9\sqrt3}{2}\text{ cm}^2" /> ist die Fläche des Dreiecks, das nur die Ecke <InlineMath math="B" /> abschneidet, also des gleichseitigen Dreiecks durch die Mitten von <InlineMath math="AB" />, <InlineMath math="BC" /> und <InlineMath math="BF" /> mit der Seite <InlineMath math="3\sqrt2" />. Die Antwort <InlineMath math="9\sqrt3\text{ cm}^2" /> hält **das Dreieck <InlineMath math="PQR" /> für die Schnittfläche**. Die Antwort <InlineMath math="\frac{27\sqrt3}{2}\text{ cm}^2" /> nimmt als Sechseckseite <InlineMath math="3\text{ cm}" />, also eine halbe Kante. Die Antwort <InlineMath math="18\sqrt3\text{ cm}^2" /> hält die Schnittfläche für ein Rechteck mit den Seiten <InlineMath math="PQ" /> und <InlineMath math="QR" />, weil der Winkel <InlineMath math="PQR" /> ein rechter ist.
+
+Die Schnittfläche der Ebene <InlineMath math="PQR" /> mit dem Würfel hat also den Flächeninhalt <InlineMath math="27\sqrt3\text{ cm}^2" />.

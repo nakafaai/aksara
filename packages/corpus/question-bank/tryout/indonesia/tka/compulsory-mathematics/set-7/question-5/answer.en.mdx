@@ -1,20 +1,49 @@
-Let the number of adult tickets be <InlineMath math="a" /> and child tickets <InlineMath math="c" />, both positive whole numbers. In thousands of rupiah, <InlineMath math="35a+20c=235" />, or after dividing by <InlineMath math="5" />:
+# The third equation adds nothing new
 
-<BlockMath math="7a+4c=47" />
+The question doesn't ask for one solution. It asks for a statement that's true for **every** solution. So the first step is to find out whether the solution is unique. Multiply the first equation by <InlineMath math="3" /> and subtract the second:
 
-Since <InlineMath math="4c" /> is even and <InlineMath math="47" /> is odd, <InlineMath math="7a" /> must be odd, so **<InlineMath math="a" /> is odd**. Also <InlineMath math="7a<47" />, so <InlineMath math="a\le6" />. Check each odd value of <InlineMath math="a" />:
+<BlockMath math="\begin{aligned}
+3(x+y+2z)-(2x-y+z)&=3\cdot9-3 \\
+x+4y+5z&=24
+\end{aligned}" />
 
-| <InlineMath math="a" /> | <InlineMath math="4c=47-7a" /> | <InlineMath math="c" /> |
-| --- | --- | --- |
-| <InlineMath math="1" /> | <InlineMath math="40" /> | <InlineMath math="10" /> |
-| <InlineMath math="3" /> | <InlineMath math="26" /> | not a whole number |
-| <InlineMath math="5" /> | <InlineMath math="12" /> | <InlineMath math="3" /> |
+That's exactly the third equation. So **the third equation is just a combination of the first two**. You only have two genuinely different equations for three unknowns, so there are infinitely many solutions.
 
-There are two possible purchases: <InlineMath math="1" /> adult and <InlineMath math="10" /> children, or <InlineMath math="5" /> adults and <InlineMath math="3" /> children. A statement **must be true** only if it holds for both.
+# The general solution
 
-So the statement that must be true is that the number of adult tickets is odd.
+Add the first two equations so that <InlineMath math="y" /> drops out, then write everything in terms of <InlineMath math="z" />.
 
-- More child tickets holds only for the first purchase. In the second there are <InlineMath math="5" /> adult and <InlineMath math="3" /> child tickets.
-- A total of <InlineMath math="8" /> tickets holds only for the second purchase. The first has <InlineMath math="11" /> tickets.
-- More than <InlineMath math="2" /> adult tickets holds only for the second purchase.
-- An even number of child tickets holds only for the first purchase.
+<BlockMath math="\begin{aligned}
+(x+y+2z)+(2x-y+z)&=9+3 \\
+3x+3z&=12 \\
+x&=4-z \\
+y&=9-x-2z=9-(4-z)-2z=5-z
+\end{aligned}" />
+
+**Every solution has the form <InlineMath math="(4-z,\ 5-z,\ z)" />** with <InlineMath math="z" /> any real number. For example, <InlineMath math="z=0" /> gives <InlineMath math="(4,5,0)" /> and <InlineMath math="z=1" /> gives <InlineMath math="(3,4,1)" />. Both satisfy all three equations.
+
+# Testing each option
+
+Plug the general solution into each option. A statement is certain only if **the result doesn't depend on <InlineMath math="z" />** and equals the right-hand side.
+
+| Option | Left side for <InlineMath math="(4-z,\ 5-z,\ z)" /> | Always true? |
+| :---: | :---: | :---: |
+| <InlineMath math="z=1" /> | <InlineMath math="z" /> | only if <InlineMath math="z=1" /> |
+| <InlineMath math="x-y=1" /> | <InlineMath math="-1" /> | never |
+| <InlineMath math="x+y=7" /> | <InlineMath math="9-2z" /> | only if <InlineMath math="z=1" /> |
+| <InlineMath math="2x+y+3z=13" /> | <InlineMath math="13" /> | always |
+| <InlineMath math="x+y+z=8" /> | <InlineMath math="9-z" /> | only if <InlineMath math="z=1" /> |
+
+Here's the fourth row worked out:
+
+<BlockMath math="2x+y+3z=2(4-z)+(5-z)+3z=8-2z+5-z+3z=13" />
+
+The <InlineMath math="z" /> terms cancel, so the value is <InlineMath math="13" /> for every solution.
+
+# Why the other options are wrong
+
+- <InlineMath math="z=1" /> is true for the solution <InlineMath math="(3,4,1)" />, but <InlineMath math="(4,5,0)" /> is also a solution, and there <InlineMath math="z=0" />.
+- <InlineMath math="x-y=1" /> has the wrong sign. For every solution, <InlineMath math="x-y=(4-z)-(5-z)=-1" />. You get <InlineMath math="1" /> if you work out <InlineMath math="y-x" /> instead.
+- <InlineMath math="x+y=7" /> and <InlineMath math="x+y+z=8" /> **only fit <InlineMath math="(3,4,1)" />**. If you find just that one solution and test the options with it, these two and <InlineMath math="z=1" /> all look right. With <InlineMath math="(4,5,0)" /> the values become <InlineMath math="9" /> and <InlineMath math="9" />.
+
+So the statement that's true for every solution is <InlineMath math="2x+y+3z=13" />.

@@ -1,10 +1,43 @@
-The wrapping paper covers the whole surface without overlap, so its area equals **the cuboid's surface area**. A cuboid has three pairs of equal faces: <InlineMath math="30\times20" />, <InlineMath math="30\times10" />, and <InlineMath math="20\times10" />.
+The question asks what fraction of the box is **not** taken up by balls. There are two kinds of empty space: the gaps between the tubes, and the gaps inside each tube around its balls. Both have to be measured against **the same box volume**.
 
-<BlockMath math="L=2(30\cdot20+30\cdot10+20\cdot10)=2(600+300+200)=2{,}200" />
+# One cell is enough
 
-So the box needs <InlineMath math="2{,}200\text{ cm}^2" /> of wrapping paper.
+The ball's diameter is <InlineMath math="6.5\text{ cm}" />, so each tube fits inside a small box with a square base of <InlineMath math="6.5\times6.5" /> and height <InlineMath math="3\cdot6.5=19.5" />. Call this small box a cell. The arrangement of <InlineMath math="6" /> rows of <InlineMath math="4" /> tubes fills the box exactly, with nothing left over:
 
-- <InlineMath math="1{,}100\text{ cm}^2" /> counts only one face of each pair.
-- <InlineMath math="1{,}200\text{ cm}^2" /> counts only the top and the bottom.
-- <InlineMath math="1{,}600\text{ cm}^2" /> leaves out the pair of <InlineMath math="30\times10" /> faces.
-- <InlineMath math="1{,}800\text{ cm}^2" /> leaves out the pair of <InlineMath math="20\times10" /> faces.
+<BlockMath math="6\cdot6.5=39,\qquad 4\cdot6.5=26,\qquad 1\cdot19.5=19.5" />
+
+So the box splits into <InlineMath math="24" /> identical cells, and **the empty fraction of the box equals the empty fraction of one cell**.
+
+# Volumes inside one cell
+
+Write the ball's radius as <InlineMath math="r" />. The cell's base is a square with side <InlineMath math="2r" />, the cell and the tube are both <InlineMath math="6r" /> tall, and the tube's radius is also <InlineMath math="r" />. You don't need the value of <InlineMath math="r" />, **because it cancels**.
+
+<BlockMath math="\begin{aligned}
+V_\text{cell}&=(2r)^2\cdot6r=24r^3 \\
+V_\text{tube}&=\pi r^2\cdot6r=6\pi r^3 \\
+V_\text{3 balls}&=3\cdot\tfrac43\pi r^3=4\pi r^3
+\end{aligned}" />
+
+Now compare the balls with the cell, then take what's left:
+
+<BlockMath math="\begin{aligned}
+\frac{V_\text{3 balls}}{V_\text{cell}}&=\frac{4\pi r^3}{24r^3}=\frac{\pi}{6} \\
+\text{empty part}&=1-\frac{\pi}{6}\approx1-0.524=0.476
+\end{aligned}" />
+
+# Check in two stages
+
+Redo it in two steps. The tube takes up <InlineMath math="\frac{6\pi r^3}{24r^3}=\frac{\pi}{4}" /> of the cell, and the balls take up <InlineMath math="\frac{4\pi r^3}{6\pi r^3}=\frac23" /> of the tube. So the balls take up <InlineMath math="\frac23\cdot\frac{\pi}{4}=\frac{\pi}{6}" /> of the cell, the same result. The empty space inside the tube is <InlineMath math="\frac13" /> of the tube, which is <InlineMath math="\frac13\cdot\frac{\pi}{4}=\frac{\pi}{12}" /> of the cell. Add it to the gaps outside the tube:
+
+<BlockMath math="\Bigl(1-\frac{\pi}{4}\Bigr)+\frac{\pi}{12}=1-\frac{3\pi}{12}+\frac{\pi}{12}=1-\frac{\pi}{6}" />
+
+Both routes agree, and **the result doesn't depend on the size of the balls**.
+
+# Why the other options are wrong
+
+- <InlineMath math="1-\frac{\pi}{4}" /> counts only the gaps between the tubes. The empty space inside the tubes is forgotten.
+- <InlineMath math="\frac13" /> counts only the empty space inside the tubes, as if the tubes filled the box with no gaps.
+- <InlineMath math="\frac{\pi}{6}" /> is the fraction **filled** by the balls, but the question asks for the empty part.
+- <InlineMath math="\frac43-\frac{\pi}{4}" /> adds <InlineMath math="1-\frac{\pi}{4}" /> and <InlineMath math="\frac13" /> directly. That <InlineMath math="\frac13" /> is a fraction of the tube's volume, not the box's, so it has to become <InlineMath math="\frac{\pi}{12}" /> first.
+
+So the fraction of the display box not taken up by balls is <InlineMath math="1-\frac{\pi}{6}" />.

@@ -1,15 +1,58 @@
-Write out both compositions first. **The order decides which function acts first**: <InlineMath math="(f\circ g)(x)=f(g(x))" /> and <InlineMath math="(g\circ f)(x)=g(f(x))" />.
+# A handier form
+
+The five statements cover the range, a composition, the inverse and the fixed points of <InlineMath math="f" />. One rewrite of <InlineMath math="f" /> helps a lot. **Split the fraction into a constant plus a remainder**:
+
+<BlockMath math="f(x)=\frac{2x+6}{x-3}=\frac{2(x-3)+12}{x-3}=2+\frac{12}{x-3}" />
+
+The fraction <InlineMath math="\frac{12}{x-3}" /> is never zero, and it can take any value other than zero.
+
+# Statement one
+
+For <InlineMath math="f(x)=2" />, the fraction <InlineMath math="\frac{12}{x-3}" /> would have to be zero, which can't happen. Another way: <InlineMath math="2x+6=2(x-3)" /> gives <InlineMath math="6=-6" />, which is false. So **<InlineMath math="2" /> is not in the range of <InlineMath math="f" />**, and this statement is **True**.
+
+# Statement two
+
+The value <InlineMath math="f(f(x))" /> needs two conditions: <InlineMath math="x\neq3" /> so that <InlineMath math="f(x)" /> exists, and **<InlineMath math="f(x)\neq3" /> so that <InlineMath math="f" /> can be applied again**. Find when <InlineMath math="f(x)=3" />:
 
 <BlockMath math="\begin{aligned}
-(f\circ g)(x)&=2x^2+1 \\
-(g\circ f)(x)&=(2x+1)^2=4x^2+4x+1 \\
-f^{-1}(x)&=\frac{x-1}{2}
+\frac{2x+6}{x-3}&=3 \\
+2x+6&=3x-9 \\
+x&=15
 \end{aligned}" />
 
-- Since <InlineMath math="x^2\ge0" />, <InlineMath math="2x^2+1" /> is always at least <InlineMath math="1" />. This statement is true.
-- <InlineMath math="(2x+1)^2" /> equals <InlineMath math="0" /> at <InlineMath math="x=-\frac12" />, so it is not always at least <InlineMath math="1" />. This statement is false.
-- <InlineMath math="2x^2+1=4x^2+4x+1" /> becomes <InlineMath math="2x^2+4x=0" />, that is <InlineMath math="2x(x+2)=0" />. The solutions are exactly <InlineMath math="x=0" /> and <InlineMath math="x=-2" />. This statement is true.
-- <InlineMath math="g(3)=9" /> and <InlineMath math="f^{-1}(9)=\frac{9-1}{2}=4" />. Check: <InlineMath math="f(4)=9" />. This statement is true.
-- <InlineMath math="(f\circ g)(-1)=2+1=3" />, but <InlineMath math="(g\circ f)(-1)=(-1)^2=1" />. This statement is false.
+At <InlineMath math="x=15" />, <InlineMath math="f(15)=\frac{36}{12}=3" />, and then <InlineMath math="f(3)" /> is undefined. So <InlineMath math="f\circ f" /> is also undefined at <InlineMath math="x=15" />, and this statement is **False**.
 
-So the true statements are <InlineMath math="(f\circ g)(x)\ge1" />, the solutions <InlineMath math="x=0" /> and <InlineMath math="x=-2" />, and <InlineMath math="f^{-1}(g(3))=4" />.
+# Statement three
+
+Write <InlineMath math="y=f(x)" />, solve for <InlineMath math="x" /> in terms of <InlineMath math="y" />, then swap the names:
+
+<BlockMath math="\begin{aligned}
+y(x-3)&=2x+6 \\
+xy-2x&=3y+6 \\
+x(y-2)&=3y+6 \\
+x&=\frac{3y+6}{y-2}
+\end{aligned}" />
+
+So <InlineMath math="f^{-1}(x)=\frac{3x+6}{x-2}" />, and **the condition <InlineMath math="x\neq2" /> matches statement one**, because the domain of the inverse is the range of <InlineMath math="f" />. Check one value: <InlineMath math="f(0)=-2" /> and <InlineMath math="f^{-1}(-2)=\frac{0}{-4}=0" />. This statement is **True**.
+
+# Statement four
+
+The intersection points with the line <InlineMath math="y=x" /> satisfy <InlineMath math="f(x)=x" />:
+
+<BlockMath math="\begin{aligned}
+2x+6&=x(x-3) \\
+x^{2}-5x-6&=0 \\
+(x-6)(x+1)&=0
+\end{aligned}" />
+
+That gives <InlineMath math="x=6" /> or <InlineMath math="x=-1" />. **Neither of them is <InlineMath math="3" />**, so both count: <InlineMath math="f(6)=\frac{18}{3}=6" /> and <InlineMath math="f(-1)=\frac{4}{-4}=-1" />. There are exactly two points and their x-coordinates add up to <InlineMath math="6+(-1)=5" />. This statement is **True**.
+
+# Statement five
+
+This statement says the same thing as <InlineMath math="f" /> being its own inverse. The inverse in statement three has a different formula from <InlineMath math="f" />, so **one counterexample is enough**. Take <InlineMath math="p=0" />: <InlineMath math="q=f(0)=-2" />, but
+
+<BlockMath math="f(-2)=\frac{-4+6}{-5}=-\frac{2}{5}\neq0" />
+
+This statement is **False**.
+
+So the true statements are statements one, three and four.

@@ -1,46 +1,31 @@
-Der Graph von <InlineMath math="y=\lvert x-2\rvert" /> ist V-förmig mit dem Scheitel in <InlineMath math="(2,0)" />. Die Gerade <InlineMath math="y=4" /> schneidet beide Äste, deshalb **ist die eingeschlossene Fläche ein Dreieck**.
+Du zählst, auf wie viele Arten gleiche Bonbons unter drei Bedingungen gleichzeitig verteilt werden können. Die Bedingung für das älteste Kind hängt vom Anteil des jüngsten ab. Der Plan: **Teil in Fälle nach dem Anteil des jüngsten Kindes auf**, zähl jeden Fall mit Sternen und Strichen und addiere.
 
-<MathVisual
-  title={<>Fläche zwischen <InlineMath math="y=\lvert x-2\rvert" /> und <InlineMath math="y=4" /></>}
-  description={<>Der V-förmige Graph mit dem Scheitel <InlineMath math="(2,0)" /> schneidet die Gerade <InlineMath math="y=4" /> in <InlineMath math="(-2,4)" /> und <InlineMath math="(6,4)" />. Die Fläche dazwischen ist ein Dreieck.</>}
-  labels={{
-    "l1": <InlineMath math="(-2,4)" />,
-    "l2": <InlineMath math="(2,0)" />,
-    "l3": <InlineMath math="(6,4)" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -4, max: 8 }, y: { min: -0.5, max: 5.5 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "parametric", x: "((-3) + (t / 10))", y: "abs((((-3) + (t / 10)) - 2))", parameter: { min: 0, max: 100 }, appearance: "primary" },
-      { id: "s1-p10", kind: "point", at: { x: -2, y: 4 }, appearance: "primary" },
-      { id: "s1-p50", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
-      { id: "s1-p90", kind: "point", at: { x: 6, y: 4 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "((-3) + (10 * t))", y: "4", parameter: { min: 0, max: 1 }, appearance: "secondary" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s1", at: { x: -2, y: 4 }, placement: "above-left" },
-      { key: "l2", objectId: "s1", at: { x: 2, y: 0 }, placement: "below" },
-      { key: "l3", objectId: "s1", at: { x: 6, y: 4 }, placement: "above-right" },
-    ],
-  }}
-/>
+# Sterne und Striche
 
-# Schnittpunkte
+<InlineMath math="N" /> gleiche Bonbons ohne Mindestanteil auf <InlineMath math="3" /> Kinder zu verteilen ist dasselbe, wie <InlineMath math="N" /> Sterne und <InlineMath math="2" /> Striche in eine Reihe zu legen. Die Sterne vor dem ersten Strich bekommt das erste Kind, die zwischen den Strichen das zweite und die nach dem zweiten Strich das dritte. Die Anzahl der Anordnungen ist **die Auswahl der Plätze für <InlineMath math="2" /> Striche aus <InlineMath math="N+2" /> Plätzen**, also <InlineMath math="\binom{N+2}{2}" />.
 
-Löse <InlineMath math="\lvert x-2\rvert=4" />.
+Gibt es einen Mindestanteil, verteilst du zuerst die Mindestanteile und danach den Rest frei.
 
-<BlockMath math="x-2=4\ \ \text{oder}\ \ x-2=-4\quad\Rightarrow\quad x=6\ \ \text{oder}\ \ x=-2" />
+# Fälle nach dem Anteil des jüngsten Kindes
 
-Die Ecken des Dreiecks sind <InlineMath math="(-2,4)" />, <InlineMath math="(6,4)" /> und der Scheitel <InlineMath math="(2,0)" />. Die <InlineMath math="y" />-Achse **begrenzt die Fläche nicht**, denn sie kommt in der Aufgabe nicht vor.
+Das jüngste Kind bekommt <InlineMath math="y" /> Bonbons mit <InlineMath math="2\le y\le4" />. Das älteste Kind muss **mehr als <InlineMath math="y" /> bekommen**, also mindestens <InlineMath math="y+1" />. Das zweite und das dritte Kind bekommen jeweils mindestens <InlineMath math="2" />. Nach den Mindestanteilen bleiben für diese drei Kinder <InlineMath math="N=17-y-(y+1)-2-2=12-2y" /> Bonbons übrig.
 
-# Flächeninhalt berechnen
+<BlockMath math="\begin{aligned}
+y=2:\quad N=8,&\quad\binom{10}{2}=45\\
+y=3:\quad N=6,&\quad\binom{8}{2}=28\\
+y=4:\quad N=4,&\quad\binom{6}{2}=15\\
+\text{insgesamt}&=45+28+15=88
+\end{aligned}" />
 
-Die Grundseite des Dreiecks liegt auf der Geraden <InlineMath math="y=4" /> und ist <InlineMath math="6-(-2)=8" /> lang. Die Höhe ist der Abstand des Scheitels <InlineMath math="(2,0)" /> zu dieser Geraden, also 4.
+Prüf den Fall <InlineMath math="y=4" /> auf einem anderen Weg. Das älteste Kind bekommt mindestens <InlineMath math="5" />, die beiden mittleren mindestens <InlineMath math="2" />, und zusammen teilen sie <InlineMath math="13" />. Die <InlineMath math="4" /> übrigen Bonbons frei auf <InlineMath math="3" /> Kinder verteilt ergeben <InlineMath math="15" /> Möglichkeiten, wie in der Rechnung oben. Ohne die Bedingung für das älteste Kind ergeben die drei Fälle zusammen <InlineMath math="55+45+36=136" />, und <InlineMath math="88" /> ist wie erwartet kleiner.
 
-<BlockMath math="A=\tfrac12\cdot8\cdot4=16" />
+# Die verlockenden falschen Optionen
 
-Der Wert 32 vergisst den Faktor <InlineMath math="\tfrac12" />. Der Wert 8 zählt nur die Hälfte des Dreiecks auf einer Seite des Scheitels. Die Werte 14 und 6 schneiden die Fläche mit der <InlineMath math="y" />-Achse ab, die nicht zum Rand gehört.
+Jede andere Option entsteht, wenn **eine Bedingung zu locker oder zu streng gelesen wird**.
 
-Der Flächeninhalt beträgt also **16 Flächeneinheiten**.
+- <InlineMath math="136" /> entsteht, wenn du die Bedingung übersiehst, dass das älteste Kind mehr bekommt als das jüngste.
+- <InlineMath math="112" /> entsteht, wenn du mehr als wie mindestens gleich viele liest, sodass das älteste Kind auch <InlineMath math="y" /> Bonbons bekommen dürfte.
+- <InlineMath math="95" /> entsteht, wenn du die Grenze von höchstens <InlineMath math="4" /> Bonbons für das jüngste Kind übersiehst. Dann zählen die Fälle <InlineMath math="y=5" /> und <InlineMath math="y=6" /> mit.
+- <InlineMath math="73" /> entsteht, wenn du höchstens <InlineMath math="4" /> als weniger als <InlineMath math="4" /> liest und so den Fall <InlineMath math="y=4" /> verlierst.
+
+Es gibt also <InlineMath math="88" /> Möglichkeiten, die Bonbons zu verteilen.

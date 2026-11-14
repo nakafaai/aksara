@@ -1,15 +1,58 @@
-Tulis kedua komposisi lebih dulu. **Urutan komposisi menentukan fungsi mana yang bekerja lebih dulu**: <InlineMath math="(f\circ g)(x)=f(g(x))" /> dan <InlineMath math="(g\circ f)(x)=g(f(x))" />.
+# Bentuk yang memudahkan
+
+Kelima pernyataan membahas daerah hasil, komposisi, invers, dan titik tetap fungsi <InlineMath math="f" />. Satu bentuk lain dari <InlineMath math="f" /> sangat membantu. **Pisahkan pecahannya menjadi bilangan tetap ditambah sisa**:
+
+<BlockMath math="f(x)=\frac{2x+6}{x-3}=\frac{2(x-3)+12}{x-3}=2+\frac{12}{x-3}" />
+
+Pecahan <InlineMath math="\frac{12}{x-3}" /> tidak pernah nol, dan bisa bernilai berapa pun selain nol.
+
+# Pernyataan pertama
+
+Agar <InlineMath math="f(x)=2" />, pecahan <InlineMath math="\frac{12}{x-3}" /> harus nol, dan itu mustahil. Cara lain: <InlineMath math="2x+6=2(x-3)" /> memberi <InlineMath math="6=-6" />, kalimat yang salah. Jadi **<InlineMath math="2" /> tidak termasuk daerah hasil <InlineMath math="f" />**, dan pernyataan ini **Benar**.
+
+# Pernyataan kedua
+
+Nilai <InlineMath math="f(f(x))" /> butuh dua syarat: <InlineMath math="x\neq3" /> supaya <InlineMath math="f(x)" /> ada, dan **<InlineMath math="f(x)\neq3" /> supaya <InlineMath math="f" /> bisa diterapkan lagi**. Cari kapan <InlineMath math="f(x)=3" />:
 
 <BlockMath math="\begin{aligned}
-(f\circ g)(x)&=2x^2+1 \\
-(g\circ f)(x)&=(2x+1)^2=4x^2+4x+1 \\
-f^{-1}(x)&=\frac{x-1}{2}
+\frac{2x+6}{x-3}&=3 \\
+2x+6&=3x-9 \\
+x&=15
 \end{aligned}" />
 
-- Karena <InlineMath math="x^2\ge0" />, nilai <InlineMath math="2x^2+1" /> selalu paling sedikit <InlineMath math="1" />. Pernyataan ini benar.
-- <InlineMath math="(2x+1)^2" /> bernilai <InlineMath math="0" /> saat <InlineMath math="x=-\frac12" />, jadi tidak selalu paling sedikit <InlineMath math="1" />. Pernyataan ini salah.
-- <InlineMath math="2x^2+1=4x^2+4x+1" /> menjadi <InlineMath math="2x^2+4x=0" />, yaitu <InlineMath math="2x(x+2)=0" />. Penyelesaiannya tepat <InlineMath math="x=0" /> dan <InlineMath math="x=-2" />. Pernyataan ini benar.
-- <InlineMath math="g(3)=9" /> dan <InlineMath math="f^{-1}(9)=\frac{9-1}{2}=4" />. Cek: <InlineMath math="f(4)=9" />. Pernyataan ini benar.
-- <InlineMath math="(f\circ g)(-1)=2+1=3" />, sedangkan <InlineMath math="(g\circ f)(-1)=(-1)^2=1" />. Pernyataan ini salah.
+Pada <InlineMath math="x=15" />, <InlineMath math="f(15)=\frac{36}{12}=3" />, lalu <InlineMath math="f(3)" /> tidak terdefinisi. Jadi <InlineMath math="f\circ f" /> juga tidak terdefinisi di <InlineMath math="x=15" />, dan pernyataan ini **Salah**.
 
-Jadi, pernyataan yang benar adalah <InlineMath math="(f\circ g)(x)\ge1" />, penyelesaian <InlineMath math="x=0" /> dan <InlineMath math="x=-2" />, serta <InlineMath math="f^{-1}(g(3))=4" />.
+# Pernyataan ketiga
+
+Tulis <InlineMath math="y=f(x)" />, nyatakan <InlineMath math="x" /> dalam <InlineMath math="y" />, lalu tukar namanya:
+
+<BlockMath math="\begin{aligned}
+y(x-3)&=2x+6 \\
+xy-2x&=3y+6 \\
+x(y-2)&=3y+6 \\
+x&=\frac{3y+6}{y-2}
+\end{aligned}" />
+
+Jadi <InlineMath math="f^{-1}(x)=\frac{3x+6}{x-2}" />, dan **syarat <InlineMath math="x\neq2" /> cocok dengan pernyataan pertama**, karena domain invers sama dengan daerah hasil <InlineMath math="f" />. Cek dengan satu nilai: <InlineMath math="f(0)=-2" /> dan <InlineMath math="f^{-1}(-2)=\frac{0}{-4}=0" />. Pernyataan ini **Benar**.
+
+# Pernyataan keempat
+
+Titik potong dengan garis <InlineMath math="y=x" /> memenuhi <InlineMath math="f(x)=x" />:
+
+<BlockMath math="\begin{aligned}
+2x+6&=x(x-3) \\
+x^{2}-5x-6&=0 \\
+(x-6)(x+1)&=0
+\end{aligned}" />
+
+Didapat <InlineMath math="x=6" /> atau <InlineMath math="x=-1" />. **Keduanya bukan <InlineMath math="3" />**, jadi keduanya sah: <InlineMath math="f(6)=\frac{18}{3}=6" /> dan <InlineMath math="f(-1)=\frac{4}{-4}=-1" />. Ada tepat dua titik dan jumlah absisnya <InlineMath math="6+(-1)=5" />. Pernyataan ini **Benar**.
+
+# Pernyataan kelima
+
+Pernyataan ini sama saja dengan mengatakan <InlineMath math="f" /> adalah invers dirinya sendiri. Rumus invers di pernyataan ketiga berbeda dari rumus <InlineMath math="f" />, jadi **cukup satu contoh penyangkal**. Ambil <InlineMath math="p=0" />: <InlineMath math="q=f(0)=-2" />, padahal
+
+<BlockMath math="f(-2)=\frac{-4+6}{-5}=-\frac{2}{5}\neq0" />
+
+Pernyataan ini **Salah**.
+
+Jadi, pernyataan yang benar adalah pernyataan pertama, ketiga, dan keempat.

@@ -195,11 +195,11 @@ layer(planTestLayer)("article plan", (it) => {
     Effect.gen(function* () {
       const records = yield* collectArticlePublication({ heads: [] });
 
-      expect(records).toHaveLength(21);
+      expect(records).toHaveLength(28);
       expect(
         Arr.every(records, ({ record }) => record.change.operation === "upsert")
       ).toBe(true);
-      expect(compilerState.calls).toBe(21);
+      expect(compilerState.calls).toBe(28);
     })
   );
 });

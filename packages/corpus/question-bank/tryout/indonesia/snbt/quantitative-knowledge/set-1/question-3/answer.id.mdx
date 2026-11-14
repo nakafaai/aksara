@@ -1,14 +1,42 @@
-Dari <InlineMath math="a^2=49" /> dan <InlineMath math="b^2=36" />, nilai <InlineMath math="a" /> bisa 7 atau <InlineMath math="-7" />, sedangkan <InlineMath math="b" /> bisa 6 atau <InlineMath math="-6" />. Syarat <InlineMath math="ab<0" /> hanya mengatakan **tanda keduanya berlawanan**. Syarat itu tidak memberi tahu bilangan mana yang positif.
+Kedua kuantitas bisa dihitung tepat tanpa mencari nilai <InlineMath math="x" />. Kuncinya adalah **dua bentuk bantu, <InlineMath math="x+\frac1x" /> dan <InlineMath math="x-\frac1x" />**. Hitung keduanya dari syarat soal, nyatakan <InlineMath math="P" /> dan <InlineMath math="Q" /> dengan bentuk bantu itu, lalu bandingkan hasilnya.
 
-# Memeriksa setiap kemungkinan
+# Mencari jumlah bilangan dan kebalikannya
 
-Ada dua pasangan yang memenuhi semua syarat. Hitung kedua kuantitas untuk masing-masing pasangan.
+Kuadratkan <InlineMath math="x+\frac1x" />. Suku tengahnya <InlineMath math="2\cdot x\cdot\frac1x=2" />.
 
-| <InlineMath math="(a,b)" /> | <InlineMath math="P=a-b" /> | <InlineMath math="Q=\lvert a+b\rvert+12" /> | Hubungan |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="(7,-6)" /> | <InlineMath math="13" /> | <InlineMath math="\lvert1\rvert+12=13" /> | <InlineMath math="P=Q" /> |
-| <InlineMath math="(-7,6)" /> | <InlineMath math="-13" /> | <InlineMath math="\lvert-1\rvert+12=13" /> | <InlineMath math="Q>P" /> |
+<BlockMath math="\left(x+\frac1x\right)^2=x^2+2+\frac1{x^2}=3+2=5" />
 
-Kedua pasangan sah, tetapi menghasilkan **hubungan yang berbeda**. Jika kamu hanya mencoba <InlineMath math="a=7" />, kamu akan menyimpulkan <InlineMath math="P=Q" />. Jika hanya mencoba <InlineMath math="a=-7" />, kesimpulannya <InlineMath math="Q>P" />. Hubungan <InlineMath math="P>Q" /> tidak pernah terjadi.
+Jadi <InlineMath math="x+\frac1x=\sqrt5" /> atau <InlineMath math="x+\frac1x=-\sqrt5" />. Karena **<InlineMath math="x" /> positif**, <InlineMath math="\frac1x" /> juga positif, sehingga jumlahnya positif. Yang berlaku hanya <InlineMath math="x+\frac1x=\sqrt5" />.
 
-Jadi, **informasi yang diberikan tidak cukup** untuk memutuskan hubungan antara <InlineMath math="P" /> dan <InlineMath math="Q" />.
+# Menghitung kuantitas pertama
+
+Uraikan pangkat tiga dari <InlineMath math="x+\frac1x" />. Dua suku tengahnya bisa dikumpulkan menjadi **tiga kali <InlineMath math="x+\frac1x" />**.
+
+<BlockMath math="\begin{aligned}
+\left(x+\frac1x\right)^3&=x^3+3x+\frac3x+\frac1{x^3}=x^3+\frac1{x^3}+3\left(x+\frac1x\right)\\
+P=x^3+\frac1{x^3}&=\left(\sqrt5\right)^3-3\sqrt5=5\sqrt5-3\sqrt5=2\sqrt5
+\end{aligned}" />
+
+# Menghitung kuantitas kedua
+
+Kuadratkan juga <InlineMath math="x-\frac1x" />.
+
+<BlockMath math="\left(x-\frac1x\right)^2=x^2-2+\frac1{x^2}=3-2=1" />
+
+Nilai <InlineMath math="x-\frac1x" /> bisa <InlineMath math="1" /> atau <InlineMath math="-1" />, karena <InlineMath math="x" /> boleh lebih dari <InlineMath math="1" /> atau kurang dari <InlineMath math="1" />. Tandanya memang tidak bisa dipastikan. Namun <InlineMath math="Q" /> adalah sebuah kuadrat, jadi **tanda itu hilang setelah dikuadratkan**.
+
+<BlockMath math="Q=\left(x^2-\frac1{x^2}\right)^2=\left(x+\frac1x\right)^2\left(x-\frac1x\right)^2=5\cdot1=5" />
+
+# Membandingkan kedua kuantitas
+
+Kedua bilangan positif, jadi kamu boleh **membandingkan kuadratnya**.
+
+<BlockMath math="P^2=\left(2\sqrt5\right)^2=20<25=5^2=Q^2" />
+
+Jadi <InlineMath math="P<Q" />. Sebagai cek, ambil <InlineMath math="x=\frac{1+\sqrt5}{2}\approx1{,}618" />. Nilai ini memenuhi syarat, dan hasilnya <InlineMath math="P\approx4{,}472" /> serta <InlineMath math="Q=5" />.
+
+# Pilihan yang keliru
+
+Pilihan <InlineMath math="P>Q" /> muncul jika <InlineMath math="P" /> dihitung sebagai <InlineMath math="\left(x+\frac1x\right)^3=5\sqrt5" />, yaitu **lupa mengurangkan <InlineMath math="3\left(x+\frac1x\right)" />**. Pilihan <InlineMath math="P=Q" /> memerlukan <InlineMath math="2\sqrt5=5" />, padahal <InlineMath math="20\neq25" />. Pilihan informasi tidak cukup muncul jika tanda <InlineMath math="x-\frac1x" /> yang tidak pasti dianggap mengubah <InlineMath math="Q" />, padahal kuadrat membuat kedua tanda memberi nilai yang sama.
+
+Jadi, <InlineMath math="Q>P" />, karena <InlineMath math="Q=5" /> dan <InlineMath math="P=2\sqrt5" />.

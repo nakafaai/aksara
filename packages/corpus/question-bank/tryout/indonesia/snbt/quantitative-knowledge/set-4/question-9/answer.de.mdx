@@ -1,23 +1,31 @@
-Das <InlineMath math="n" />-te Glied einer geometrischen Folge ist <InlineMath math="u_n=ar^{n-1}" />. Aus dem ersten und dem vierten Glied **bestimmst du zuerst den Quotienten**, alle anderen Aussagen folgen daraus.
+Du zählst die Teiler <InlineMath math="d" /> von <InlineMath math="3600" />, die zwei Bedingungen gleichzeitig erfüllen: <InlineMath math="d" /> ist durch <InlineMath math="6" /> teilbar, sein Partner <InlineMath math="\frac{3600}{d}" /> dagegen nicht. Der Plan: Zerleg <InlineMath math="3600" /> in Primfaktoren, mach aus beiden Bedingungen Grenzen für die Exponenten und zähl dann. Am häufigsten geht schief, **was nicht durch <InlineMath math="6" /> teilbar bedeutet**.
 
-# Quotienten bestimmen
+# Primfaktorzerlegung
+
+<BlockMath math="3600=36\cdot100=2^2\cdot3^2\cdot2^2\cdot5^2=2^4\cdot3^2\cdot5^2" />
+
+Jeder positive Teiler von <InlineMath math="3600" /> hat die Form <InlineMath math="d=2^a\cdot3^b\cdot5^c" /> mit <InlineMath math="0\le a\le4" />, <InlineMath math="0\le b\le2" /> und <InlineMath math="0\le c\le2" />. Sein Partner **bekommt die restlichen Exponenten**: <InlineMath math="\frac{3600}{d}=2^{4-a}\cdot3^{2-b}\cdot5^{2-c}" />.
+
+# Beide Bedingungen übersetzen
+
+Eine Zahl ist durch <InlineMath math="6" /> teilbar, wenn sie einen Faktor <InlineMath math="2" /> und einen Faktor <InlineMath math="3" /> enthält. Die erste Bedingung heißt also <InlineMath math="a\ge1" /> und <InlineMath math="b\ge1" />.
+
+Die zweite Bedingung ist das Gegenteil: Dem Partner von <InlineMath math="d" /> **fehlt der Faktor <InlineMath math="2" /> oder es fehlt der Faktor <InlineMath math="3" />**. Ein fehlender Faktor reicht schon. Das bedeutet <InlineMath math="4-a=0" /> oder <InlineMath math="2-b=0" />, also <InlineMath math="a=4" /> oder <InlineMath math="b=2" />.
+
+# Mit dem Gegenereignis zählen
+
+**Über das Gegenereignis zu zählen** geht schneller, als alles einzeln aufzulisten. Zähl zuerst alle <InlineMath math="d" />, die durch <InlineMath math="6" /> teilbar sind, und nimm dann die heraus, deren Partner ebenfalls durch <InlineMath math="6" /> teilbar ist, also die mit <InlineMath math="a\le3" /> und <InlineMath math="b\le1" />.
 
 <BlockMath math="\begin{aligned}
-u_4&=ar^3=48r^3=6\\
-r^3&=\tfrac18\\
-r&=\tfrac12
+\text{alle Vielfachen von }6&:\ a\in\{1,2,3,4\},\ b\in\{1,2\},\ c\in\{0,1,2\}\quad\Rightarrow\quad4\cdot2\cdot3=24\\
+\text{Partner auch Vielfaches von }6&:\ a\in\{1,2,3\},\ b=1,\ c\in\{0,1,2\}\quad\Rightarrow\quad3\cdot1\cdot3=9\\
+\text{gesucht}&=24-9=15
 \end{aligned}" />
 
-Die einzige reelle Zahl mit der dritten Potenz <InlineMath math="\tfrac18" /> ist <InlineMath math="\tfrac12" />, **der Quotient ist also eindeutig**. Die erste Aussage ist wahr.
+Prüf das durch direktes Zählen. Für <InlineMath math="a=4" /> gibt es <InlineMath math="2\cdot3=6" /> Möglichkeiten für <InlineMath math="b" /> und <InlineMath math="c" />. Für <InlineMath math="a\le3" /> und <InlineMath math="b=2" /> gibt es <InlineMath math="3\cdot3=9" /> Möglichkeiten. Zusammen sind das <InlineMath math="6+9=15" />. Zum Beispiel hat <InlineMath math="d=48=2^4\cdot3" /> den Partner <InlineMath math="75" />, und der ist tatsächlich nicht durch <InlineMath math="6" /> teilbar.
 
-# Glieder und Summen
+# Fallen, die du vermeiden solltest
 
-<BlockMath math="\begin{aligned}
-u_6&=48\left(\tfrac12\right)^5=\tfrac{48}{32}=1{,}5\\
-S_5&=\frac{48\left(1-\left(\tfrac12\right)^5\right)}{1-\tfrac12}=96\cdot\tfrac{31}{32}=93\\
-S_\infty&=\frac{48}{1-\tfrac12}=96
-\end{aligned}" />
+**Der häufigste Fehler** ist, nicht durch <InlineMath math="6" /> teilbar als ohne Faktor <InlineMath math="2" /> und ohne Faktor <InlineMath math="3" /> zu lesen. Dann zählst du nur <InlineMath math="a=4" /> zusammen mit <InlineMath math="b=2" /> und kommst auf <InlineMath math="3" />. Ein anderer Fehler ist, die zweite Bedingung zu vergessen und bei <InlineMath math="24" /> aufzuhören.
 
-Die dritte Aussage ist wahr. Das sechste Glied ist 1,5 und nicht 3, die vierte Aussage ist also falsch. Die Zahl 3 ist das fünfte Glied. Die unendliche Summe existiert, weil <InlineMath math="\lvert r\rvert<1" /> ist, und sie beträgt 96. Die Zahl 64 entsteht, wenn der Quotient als <InlineMath math="\tfrac14" /> genommen wird, also **ist die zweite Aussage falsch**.
-
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **wahr** und die vierte **falsch**.
+Die Anzahl der passenden Zahlen <InlineMath math="d" /> ist also <InlineMath math="15" />.

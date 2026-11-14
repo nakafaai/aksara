@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$93$$",
+          label: "$$812\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$96$$",
+          label: "$$975\\text{ cm}$$",
+        },
+        {
+          correct: false,
+          label: "$$1{.}023\\text{ cm}$$",
         },
         {
           correct: true,
-          label: "$$189$$",
+          label: "$$1{.}055\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$192$$",
-        },
-        {
-          correct: false,
-          label: "$$381$$",
+          label: "$$1{.}298\\text{ cm}$$",
         },
       ],
     },

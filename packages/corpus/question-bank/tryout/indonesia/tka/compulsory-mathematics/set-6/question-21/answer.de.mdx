@@ -1,18 +1,39 @@
-Es sind <InlineMath math="40" /> Werte, also ist **der Median der Mittelwert des <InlineMath math="20" />. und <InlineMath math="21" />. Werts** in geordneter Reihenfolge. Die Tabelle ist schon nach Größe sortiert, also addierst du die Anzahlen kumulativ.
+Diese Aufgabe läuft in drei Schritten. Die Monate werden mit den Daten von **Stadt P** ausgewählt, aber der gefragte Mittelwert benutzt die Daten von **Stadt Q** in diesen Monaten. Auch die Wörter "lebih dari" (mehr als) zählen, weil ein Monat genau auf dem Mittelwert liegt.
 
-| Größe | Anzahl | Kumuliert |
-| --- | --- | --- |
-| <InlineMath math="37" /> | <InlineMath math="4" /> | <InlineMath math="4" /> |
-| <InlineMath math="38" /> | <InlineMath math="7" /> | <InlineMath math="11" /> |
-| <InlineMath math="39" /> | <InlineMath math="12" /> | <InlineMath math="23" /> |
+# Der Mittelwert von Stadt P
 
-Die Werte <InlineMath math="12" /> bis <InlineMath math="23" /> haben alle Größe <InlineMath math="39" />, also sind der <InlineMath math="20" />. und der <InlineMath math="21" />. Wert beide <InlineMath math="39" />.
+Die Grenze für die Auswahl ist der Sechsmonatsmittelwert von Stadt P. Addiere die sechs Werte von Stadt P aus der Tabelle und **teile durch sechs**, die Anzahl der erfassten Monate:
 
-<BlockMath math="\text{Median}=\frac{39+39}{2}=39" />
+<BlockMath math="\bar x_P=\frac{330+270+240+200+120+40}{6}=\frac{1{.}200}{6}=200\text{ mm}" />
 
-Der Median der Schuhgrößen ist also <InlineMath math="39" />.
+# Die Monate auswählen
 
-- <InlineMath math="6" /> ist der Median der Spalte mit den Anzahlen, nicht der Schuhgrößen.
-- <InlineMath math="38" /> ist das untere Quartil, der Mittelwert des <InlineMath math="10" />. und <InlineMath math="11" />. Werts.
-- <InlineMath math="39{,}325" /> ist der Mittelwert der Schuhgrößen.
-- <InlineMath math="39{,}5" /> ist die Mitte der sechs Größen in der Tabelle, ohne zu beachten, wie viele Schüler sie tragen.
+Vergleiche den Wert von Stadt P in jedem Monat mit <InlineMath math="200\text{ mm}" />. **Ein Monat mit genau <InlineMath math="200\text{ mm}" /> liegt nicht über dem Mittelwert** und wird deshalb nicht gewählt.
+
+| Monat | Stadt P | Mehr als <InlineMath math="200" />? | Stadt Q |
+| :---: | :---: | :---: | :---: |
+| Januar | <InlineMath math="330" /> | ja | <InlineMath math="250" /> |
+| Februar | <InlineMath math="270" /> | ja | <InlineMath math="230" /> |
+| März | <InlineMath math="240" /> | ja | <InlineMath math="180" /> |
+| April | <InlineMath math="200" /> | nein, gleich dem Mittelwert | <InlineMath math="320" /> |
+| Mai | <InlineMath math="120" /> | nein | <InlineMath math="300" /> |
+| Juni | <InlineMath math="40" /> | nein | <InlineMath math="280" /> |
+
+Gewählt sind Januar, Februar und März.
+
+# Der Mittelwert von Stadt Q in diesen Monaten
+
+Nimm jetzt die Werte von Stadt Q in diesen drei Monaten:
+
+<BlockMath math="\frac{250+230+180}{3}=\frac{660}{3}=220\text{ mm}" />
+
+Plausibilitätsprobe: In diesen drei Monaten ist Stadt Q tatsächlich trockener als Stadt P, also passt es, dass das Ergebnis **kleiner ist als der Sechsmonatsmittelwert von Stadt Q** mit <InlineMath math="260\text{ mm}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="245\text{ mm}" /> nimmt April mit dazu, obwohl der Aprilwert von Stadt P genau dem Mittelwert entspricht: <InlineMath math="\frac{660+320}{4}=245" />.
+- <InlineMath math="260\text{ mm}" /> ist der Mittelwert von Stadt Q über alle sechs Monate. **Der Auswahlschritt wurde übersprungen**.
+- <InlineMath math="280\text{ mm}" /> ist der Mittelwert von Stadt P in den gewählten Monaten, <InlineMath math="\frac{330+270+240}{3}" />. Die Städte wurden vertauscht.
+- <InlineMath math="300\text{ mm}" /> entsteht, wenn die Monate gewählt werden, in denen Stadt Q über ihrem eigenen Mittelwert liegt, also April, Mai und Juni. Die Bedingung in der Aufgabe benutzt aber Stadt P.
+
+Der mittlere Niederschlag von Stadt Q in diesen Monaten beträgt also <InlineMath math="220\text{ mm}" />.

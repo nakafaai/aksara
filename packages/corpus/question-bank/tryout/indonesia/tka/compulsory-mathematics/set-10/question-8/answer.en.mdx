@@ -1,15 +1,31 @@
-From the <InlineMath math="2" />nd term to the <InlineMath math="5" />th term, the ratio is applied **three times**. So divide <InlineMath math="U_5" /> by <InlineMath math="U_2" /> to get <InlineMath math="r^3" />.
+# Spotting the pattern in the denominators
+
+Before adding anything, you need the general term and the first and last index of the series. Look at the denominators.
+
+<BlockMath math="35=5\cdot7,\quad 63=7\cdot9,\quad 99=9\cdot11,\quad 143=11\cdot13,\quad 2499=49\cdot51" />
+
+Each denominator is the product of two consecutive odd numbers, <InlineMath math="(2k-1)(2k+1)" />. You can recognize <InlineMath math="2499" /> from <InlineMath math="2499=50^2-1=49\cdot51" />. So the first term uses <InlineMath math="k=3" /> and the last term uses <InlineMath math="k=25" />, which makes <InlineMath math="25-3+1=23" /> terms. **This series doesn't start at <InlineMath math="\frac{1}{1\cdot3}" />**.
+
+# Splitting the terms so they cancel
+
+Each term splits into a difference of two fractions.
+
+<BlockMath math="\frac{1}{(2k-1)(2k+1)}=\frac{1}{2}\left(\frac{1}{2k-1}-\frac{1}{2k+1}\right)" />
+
+Check it with a common denominator: <InlineMath math="\frac{1}{2}\cdot\frac{(2k+1)-(2k-1)}{(2k-1)(2k+1)}=\frac{1}{2}\cdot\frac{2}{(2k-1)(2k+1)}" />, which matches. When you write all the terms in a row, **every fraction in the middle shows up once with a plus and once with a minus**, so they cancel.
 
 <BlockMath math="\begin{aligned}
-r^3&=\frac{U_5}{U_2}=\frac{162}{6}=27\ \Rightarrow\ r=3 \\
-U_1&=\frac{U_2}{r}=\frac63=2
+\text{sum}&=\frac{1}{2}\left[\left(\frac{1}{5}-\frac{1}{7}\right)+\left(\frac{1}{7}-\frac{1}{9}\right)+\cdots+\left(\frac{1}{49}-\frac{1}{51}\right)\right] \\
+&=\frac{1}{2}\left(\frac{1}{5}-\frac{1}{51}\right)=\frac{1}{2}\cdot\frac{46}{255}=\frac{23}{255}
 \end{aligned}" />
 
-Check: the sequence is <InlineMath math="2" />, <InlineMath math="6" />, <InlineMath math="18" />, <InlineMath math="54" />, <InlineMath math="162" />.
+Check it another way. The sum from <InlineMath math="k=1" /> to <InlineMath math="n" /> is <InlineMath math="S_n=\frac{n}{2n+1}" />. Our series is <InlineMath math="S_{25}" /> without its first two terms, so it's <InlineMath math="S_{25}-S_2=\frac{25}{51}-\frac{2}{5}=\frac{125-102}{255}=\frac{23}{255}" />.
 
-So the first term is <InlineMath math="2" />.
+So the sum of the series is <InlineMath math="\frac{23}{255}" />.
 
-- <InlineMath math="3" /> is the ratio.
-- <InlineMath math="6" /> is the <InlineMath math="2" />nd term.
-- <InlineMath math="18" /> is the <InlineMath math="3" />rd term.
-- <InlineMath math="54" /> is the <InlineMath math="4" />th term.
+# Why the other options are wrong
+
+- <InlineMath math="\frac{25}{51}" /> is <InlineMath math="S_{25}" />, which also counts <InlineMath math="\frac{1}{3}" /> and <InlineMath math="\frac{1}{15}" />. Those two terms aren't in the series.
+- <InlineMath math="\frac{23}{47}" /> puts the number of terms, <InlineMath math="23" />, into the formula <InlineMath math="\frac{n}{2n+1}" />. **That formula only works when the series starts at <InlineMath math="\frac{1}{1\cdot3}" />**.
+- <InlineMath math="\frac{46}{255}" /> forgets the factor <InlineMath math="\frac{1}{2}" /> when splitting the terms.
+- <InlineMath math="\frac{22}{357}" /> is <InlineMath math="S_{25}-S_3" />. It subtracts one term too many, because <InlineMath math="S_3" /> already contains <InlineMath math="\frac{1}{35}" />, the first term of this series.

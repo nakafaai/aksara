@@ -1,13 +1,77 @@
-The area of triangle <InlineMath math="DEF" /> is easiest as **the square minus three right triangles in the corners**: <InlineMath math="ADE" />, <InlineMath math="EBF" />, and <InlineMath math="FCD" />. The side lengths come from Pythagoras' theorem.
+# Recognising the prism from its net
+
+The two congruent pentagons are the base and the top of the prism. The five rectangles are the side faces: their widths <InlineMath math="6" />, <InlineMath math="4" />, <InlineMath math="4" />, <InlineMath math="5" />, and <InlineMath math="5" /> match the five sides of the pentagon, and the length <InlineMath math="10\text{ cm}" /> is the height of the prism. So this is **a pentagonal prism of height <InlineMath math="10\text{ cm}" />**.
+
+The pentagon is shaped like a house. Because <InlineMath math="\angle A=\angle B=90^\circ" /> and <InlineMath math="BC=EA=4" />, its lower part is the rectangle <InlineMath math="ABCE" />, <InlineMath math="6\times4" />. On top sits the isosceles triangle <InlineMath math="CDE" /> with base <InlineMath math="CE=6" /> and legs <InlineMath math="5" />. Find the triangle's height with Pythagoras on half the base:
 
 <BlockMath math="\begin{aligned}
-L_{DEF}&=100-\tfrac12\cdot10\cdot5-\tfrac12\cdot5\cdot5-\tfrac12\cdot5\cdot10=100-25-12.5-25=37.5 \\
-DE&=\sqrt{10^2+5^2}=\sqrt{125}\approx11.18 \\
-DF&=\sqrt{5^2+10^2}=\sqrt{125}\approx11.18 \\
-EF&=\sqrt{5^2+5^2}=\sqrt{50}\approx7.07
+t&=\sqrt{5^2-3^2}=\sqrt{16}=4\text{ cm} \\
+A_{\text{base}}&=6\cdot4+\tfrac12\cdot6\cdot4=24+12=36\text{ cm}^2
 \end{aligned}" />
 
-- <InlineMath math="DE" /> and <InlineMath math="DF" /> are both <InlineMath math="\sqrt{125}\text{ cm}" />, because triangles <InlineMath math="ADE" /> and <InlineMath math="CDF" /> are congruent. This statement is true.
-- The area is <InlineMath math="37.5\text{ cm}^2" />. This statement is true.
-- A right angle at <InlineMath math="E" /> would need <InlineMath math="DE^2+EF^2=DF^2" />. But <InlineMath math="125+50=175" />, not <InlineMath math="125" />. This statement is false.
-- The perimeter is about <InlineMath math="11.18+11.18+7.07=29.43\text{ cm}" />, less than <InlineMath math="30\text{ cm}" />. This statement is true.
+<MathVisual
+  title={<>The pentagon <InlineMath math="ABCDE" /></>}
+  description={<>A pentagon with vertices <InlineMath math="A(0,0)" />, <InlineMath math="B(6,0)" />, <InlineMath math="C(6,4)" />, <InlineMath math="D(3,8)" />, and <InlineMath math="E(0,4)" />. The segment <InlineMath math="CE" /> splits it into a <InlineMath math="6\times4" /> rectangle and an isosceles triangle of height <InlineMath math="4" />, so <InlineMath math="D" /> is <InlineMath math="8" /> above <InlineMath math="AB" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    height: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 8 },
+      y: { min: -1.5, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pentagon", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 4 }, { x: 3, y: 8 }, { x: 0, y: 4 }] },
+      { id: "split", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 6, y: 4 } },
+      { id: "roof-height", kind: "segment", appearance: "highlight", from: { x: 3, y: 4 }, to: { x: 3, y: 8 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 6, y: 4 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 3, y: 8 } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: 0, y: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 6, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "d", objectId: "point-d", at: { x: 3, y: 8 }, placement: "above" },
+      { key: "e", objectId: "point-e", at: { x: 0, y: 4 }, placement: "left" },
+      { key: "height", objectId: "roof-height", at: { x: 3, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
+
+# The first statement
+
+**True**. A pentagonal prism has <InlineMath math="5" /> edges on the base, <InlineMath math="5" /> on the top, and <InlineMath math="5" /> side edges, so <InlineMath math="15" /> edges. The base edges and the top edges each add up to the pentagon's perimeter, and every side edge is <InlineMath math="10\text{ cm}" /> long.
+
+<BlockMath math="\begin{aligned}
+\text{perimeter of the pentagon}&=6+4+4+5+5=24\text{ cm} \\
+\text{total edge length}&=2\cdot24+5\cdot10=98\text{ cm}
+\end{aligned}" />
+
+Be careful if you add up the perimeters of all the faces in the net. You get <InlineMath math="196\text{ cm}" />, twice the answer, because **every edge is shared by two faces**.
+
+# The second statement
+
+**False**. The volume of a prism is the base area times the height.
+
+<BlockMath math="V=36\cdot10=360\text{ cm}^3" />
+
+That's less than <InlineMath math="375\text{ cm}^3" />. The statement looks true if you use the triangle's leg <InlineMath math="5" /> as its height, because then the base area becomes <InlineMath math="24+15=39" /> and the volume <InlineMath math="390\text{ cm}^3" />. **A triangle's height must be perpendicular to its base**, and here it's <InlineMath math="4" />, not <InlineMath math="5" />.
+
+# The third statement
+
+**True**. The <InlineMath math="6\times10" /> face comes from edge <InlineMath math="AB" />. With that face on the floor, both pentagons stand upright with <InlineMath math="AB" /> at the bottom. The highest points lie on the edge through <InlineMath math="D" />. Their height is the rectangle's height plus the triangle's height:
+
+<BlockMath math="BC+t=4+4=8\text{ cm}" />
+
+So the first statement is true, the second is false, and the third is true.

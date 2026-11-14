@@ -1,17 +1,27 @@
-Die beiden Abbildungen werden nacheinander ausgeführt, **ihre Reihenfolge muss also eingehalten werden**: zuerst spiegeln, dann verschieben.
+Beide Größen zählen Anordnungen von Buchstaben unter einer Bedingung. Rechne also jede vollständig aus und vergleiche dann. Entscheidend ist, **wie jede Bedingung verändert, welche Buchstaben frei verteilt werden können**, und jede Größe hat eine Bedingung, die man leicht übersieht.
 
-# Spiegelung an der Geraden y gleich x
+# P zählen
 
-Die Spiegelung an der Geraden <InlineMath math="y=x" /> **vertauscht die beiden Koordinaten**, <InlineMath math="(x,y)\mapsto(y,x)" />.
+Das Wort SEPATU hat <InlineMath math="6" /> verschiedene Buchstaben: die Vokale A, E, U und die Konsonanten S, P, T. Der erste Buchstabe muss ein Konsonant sein, dafür gibt es <InlineMath math="3" /> Möglichkeiten. Auf den übrigen <InlineMath math="5" /> Plätzen stehen <InlineMath math="2" /> Konsonanten und <InlineMath math="3" /> Vokale. Wähle <InlineMath math="3" /> Plätze für die Vokale, besetze sie auf nur <InlineMath math="1" /> Weise in der Reihenfolge A, E, U und ordne dann die <InlineMath math="2" /> übrigen Konsonanten an.
 
-<BlockMath math="A(4,-2)\ \mapsto\ A'(-2,4)" />
+<BlockMath math="P=3\times\binom{5}{3}\times1\times2!=3\times10\times2=60" />
 
-# Verschiebung
+Prüfe das auf einem zweiten Weg. Ohne den Konsonanten vorn **wirkt eine festgelegte Vokalreihenfolge so, als wären die drei Vokale gleich**, also gibt es <InlineMath math="\tfrac{6!}{3!}=120" /> Anordnungen. Der erste Buchstabe kann nur dann ein Vokal sein, wenn er A ist, denn A muss vor E und U stehen. Mit A beginnen <InlineMath math="\tfrac{5!}{2!}=60" /> Anordnungen, also beginnen <InlineMath math="120-60=60" /> mit einem Konsonanten.
 
-Die Verschiebung <InlineMath math="\begin{pmatrix}-3\\5\end{pmatrix}" /> addiert <InlineMath math="-3" /> zur <InlineMath math="x" />-Koordinate und 5 zur <InlineMath math="y" />-Koordinate, passend zu **ihrer oberen und unteren Komponente**.
+# Q zählen
 
-<BlockMath math="A'(-2,4)\ \mapsto\ A''(-2-3,\ 4+5)=A''(-5,9)" />
+Das Wort PERMATA besteht aus P, E, R, M, A, T, A. Erster und letzter Buchstabe können nur gleich sein, wenn dieser Buchstabe mindestens <InlineMath math="2" />-mal vorkommt. **Nur der Buchstabe A kommt mehr als einmal vor**, also müssen beide Enden A sein. Die <InlineMath math="5" /> mittleren Buchstaben sind P, E, R, M, T, alle verschieden.
 
-Die Wahl <InlineMath math="(3,1)" /> verschiebt zuerst und spiegelt danach. Die Wahl <InlineMath math="(1,-1)" /> dreht die Vorzeichen der Verschiebung um. Die Wahl <InlineMath math="(1,7)" /> spiegelt an der <InlineMath math="x" />-Achse, und die Wahl <InlineMath math="(-1,1)" /> spiegelt an der Geraden <InlineMath math="y=-x" />.
+<BlockMath math="Q=1\times5!\times1=120" />
 
-Das endgültige Bild von <InlineMath math="A" /> ist also <InlineMath math="(-5,9)" />.
+# Der Vergleich
+
+Es gilt <InlineMath math="Q=120" /> und <InlineMath math="P=60" />, also **ist <InlineMath math="Q" /> doppelt so groß wie <InlineMath math="P" />**, und die richtige Beziehung ist <InlineMath math="Q>P" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="P=Q" /> entsteht, wenn du bei <InlineMath math="P" /> den Konsonanten vorn vergisst und <InlineMath math="P=120" /> erhältst, oder wenn du <InlineMath math="Q" /> noch durch <InlineMath math="2!" /> teilst und <InlineMath math="Q=60" /> erhältst, obwohl beide A schon an den Enden stehen.
+- <InlineMath math="P>Q" /> entsteht, wenn du die Vokalreihenfolge bei <InlineMath math="P" /> übersiehst und <InlineMath math="P=3\times5!=360" /> erhältst.
+- Die Antwort, dass die Angaben nicht ausreichen, ist falsch, weil beide Größen **feste Zahlen** sind, die sich vollständig abzählen lassen.
+
+Bei <InlineMath math="Q" /> gibt es also mehr Anordnungen: <InlineMath math="Q=120" /> und <InlineMath math="P=60" />, also gilt <InlineMath math="Q>P" />.

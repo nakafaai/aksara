@@ -1,16 +1,38 @@
-Wende die Aktion **in ihrer Reihenfolge** an: erst den ersten Rabatt, dann den Mitgliederrabatt auf den neuen Preis, dann die Bedingung für kostenlosen Versand prüfen.
+# Die Gesamtzahlung zerlegen
+
+Gefragt ist die Monatsrate, aber die Anzahlung ist nicht bekannt. Du weißt nur, dass der Kauf auf Raten insgesamt <InlineMath math="\text{Rp}10{.}026{.}000" /> kostet, bei einer Laufzeit von <InlineMath math="12" /> Monaten und festen Zinsen von <InlineMath math="1{,}5\%" /> pro Monat.
+
+Nenn den Kreditbetrag <InlineMath math="p" /> Rupiah. Dann ist die Anzahlung <InlineMath math="9{.}000{.}000-p" />, denn Anzahlung und Kreditbetrag ergeben zusammen immer den Normalpreis. Die Bearbeitungsgebühr ist <InlineMath math="1\%" /> des Kreditbetrags. In <InlineMath math="12" /> Monaten fallen <InlineMath math="12\cdot1{,}5\%=18\%" /> des Kreditbetrags an Zinsen an, und alle Raten zusammen zahlen den Kreditbetrag plus diese Zinsen.
 
 <BlockMath math="\begin{aligned}
-250{.}000\cdot0{,}8&=200{.}000 \\
-200{.}000\cdot0{,}9&=180{.}000 \\
-180{.}000+15{.}000&=195{.}000
+\text{Summe}&=\text{Anzahlung}+\text{Gebühr}+\text{alle Raten} \\
+&=(9{.}000{.}000-p)+0{,}01p+(p+0{,}18p) \\
+&=9{.}000{.}000+0{,}19p
 \end{aligned}" />
 
-Nach beiden Rabatten kostet der Schuh <InlineMath math="\text{Rp}180{.}000" />, weniger als <InlineMath math="\text{Rp}200{.}000" />, also fällt der Versand an.
+**Alles, was über den Normalpreis hinausgeht, stammt also aus Gebühr und Zinsen**, und beide sind proportional zum Kreditbetrag.
 
-Das Mitglied zahlt also <InlineMath math="\text{Rp}195{.}000" />.
+# Kreditbetrag und Rate
 
-- <InlineMath math="\text{Rp}175{.}000" /> addiert die Rabatte zu <InlineMath math="30\,\%" /> und vergisst den Versand.
-- <InlineMath math="\text{Rp}180{.}000" /> vergisst, den Versand zu addieren.
-- <InlineMath math="\text{Rp}190{.}000" /> addiert die Rabatte zu <InlineMath math="30\,\%" /> und rechnet dann den Versand dazu.
-- <InlineMath math="\text{Rp}200{.}000" /> nimmt nur den ersten Rabatt und bekommt so fälschlich kostenlosen Versand.
+Setz diesen Ausdruck jetzt mit der gegebenen Summe gleich.
+
+<BlockMath math="\begin{aligned}
+9{.}000{.}000+0{,}19p&=10{.}026{.}000 \\
+0{,}19p&=1{.}026{.}000 \\
+p&=5{.}400{.}000
+\end{aligned}" />
+
+Die Anzahlung ist <InlineMath math="9{.}000{.}000-5{.}400{.}000=3{.}600{.}000" />, also <InlineMath math="40\%" /> des Normalpreises. **Die Regel von mindestens <InlineMath math="20\%" /> Anzahlung ist erfüllt**. Die Rate ist der Kreditbetrag plus alle Zinsen, geteilt durch <InlineMath math="12" />.
+
+<BlockMath math="\text{Rate}=\frac{5{.}400{.}000+0{,}18\cdot5{.}400{.}000}{12}=\frac{6{.}372{.}000}{12}=531{.}000" />
+
+Prüf das, indem du alle Zahlungen addierst: <InlineMath math="3{.}600{.}000+54{.}000+12\cdot531{.}000=10{.}026{.}000" />. Das passt zur Summe in der Aufgabe.
+
+Die Monatsrate des Käufers beträgt also <InlineMath math="\text{Rp}531{.}000" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\text{Rp}560{.}500" /> entsteht, wenn du die Gebühr vergisst und die ganzen <InlineMath math="1{.}026{.}000" /> als Zinsen behandelst. Aus <InlineMath math="0{,}18p=1{.}026{.}000" /> folgt dann <InlineMath math="p=5{.}700{.}000" />, ein zu großer Kreditbetrag.
+- <InlineMath math="\text{Rp}679{.}500" /> nimmt die kleinste Anzahlung an, <InlineMath math="\text{Rp}1{.}800{.}000" /> mit <InlineMath math="\text{Rp}72{.}000" /> Gebühr, und teilt den Rest der Summe durch <InlineMath math="12" />. **Die gegebene Summe zeigt aber, dass die Anzahlung größer war**.
+- <InlineMath math="\text{Rp}708{.}000" /> ist die Rate bei der kleinsten Anzahlung. Die Summe aus der Aufgabe wird dabei gar nicht benutzt.
+- <InlineMath math="\text{Rp}835{.}500" /> ist die ganze Summe geteilt durch <InlineMath math="12" />, als würden auch Anzahlung und Gebühr in Raten bezahlt.

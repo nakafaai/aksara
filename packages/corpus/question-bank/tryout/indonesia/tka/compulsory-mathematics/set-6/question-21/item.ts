@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "shoe-sizes",
+  stimulus: "hujan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$6$$",
-        },
-        {
-          correct: false,
-          label: "$$38$$",
-        },
-        {
           correct: true,
-          label: "$$39$$",
+          label: "$$220\\text{ mm}$$",
         },
         {
           correct: false,
-          label: "$$39{,}325$$",
+          label: "$$245\\text{ mm}$$",
         },
         {
           correct: false,
-          label: "$$39{,}5$$",
+          label: "$$260\\text{ mm}$$",
+        },
+        {
+          correct: false,
+          label: "$$280\\text{ mm}$$",
+        },
+        {
+          correct: false,
+          label: "$$300\\text{ mm}$$",
         },
       ],
     },

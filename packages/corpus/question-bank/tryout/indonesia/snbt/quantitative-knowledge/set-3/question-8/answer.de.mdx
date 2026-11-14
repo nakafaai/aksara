@@ -1,19 +1,35 @@
-Der Punkt <InlineMath math="F" /> ist der Schnittpunkt zweier Strecken. Suche deshalb **zwei ähnliche Dreiecke**, die beide <InlineMath math="F" /> enthalten. Die Dreiecke <InlineMath math="FAB" /> und <InlineMath math="FED" /> passen, weil <InlineMath math="AB" /> parallel zu <InlineMath math="DE" /> ist.
+Eine Aussage reicht aus, wenn sie **eine einzige Antwort erzwingt**, also sicher ungerade oder sicher gerade. Beide Aussagen handeln von der Teilbarkeit durch <InlineMath math="4" />, also prüfst du <InlineMath math="n" /> nach seinem Rest bei Division durch <InlineMath math="4" />.
 
-# Ähnliche Dreiecke
+# Warum vier Reste genügen
 
-Die Seite <InlineMath math="AB" /> ist parallel zu <InlineMath math="CD" />, und <InlineMath math="DE" /> liegt auf <InlineMath math="CD" />. Daher ist der Winkel <InlineMath math="FAB" /> gleich dem Winkel <InlineMath math="FED" /> und der Winkel <InlineMath math="FBA" /> gleich dem Winkel <InlineMath math="FDE" /> (Wechselwinkel). **Das Dreieck <InlineMath math="FAB" /> ist also ähnlich zum Dreieck <InlineMath math="FED" />**, und entsprechende Seiten stehen im selben Verhältnis.
+Ersetzt du <InlineMath math="n" /> durch <InlineMath math="n+4" />, ändern sich beide Terme um ein Vielfaches von <InlineMath math="4" />.
 
-<BlockMath math="\frac{BF}{FD}=\frac{AB}{ED}" />
+<BlockMath math="\begin{aligned}
+(n+4)^2+3(n+4)&=\left(n^2+3n\right)+4(2n+7)\\
+(n+4)^2+(n+4)+2&=\left(n^2+n+2\right)+4(2n+5)
+\end{aligned}" />
 
-# Verhältnis berechnen
+Ob ein Term durch <InlineMath math="4" /> teilbar ist, **hängt also nur vom Rest von <InlineMath math="n" /> ab**, wenn du durch <InlineMath math="4" /> teilst. Es genügt, <InlineMath math="n=0" />, <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="3" /> auszuprobieren.
 
-Im Parallelogramm gilt <InlineMath math="AB=CD" />. Mit <InlineMath math="DE:EC=1:2" /> schreibst du <InlineMath math="DE=k" /> und <InlineMath math="EC=2k" />, also <InlineMath math="AB=CD=3k" />.
+| Rest von <InlineMath math="n" /> bei Division durch <InlineMath math="4" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
+| :--- | :---: | :---: | :---: | :---: |
+| <InlineMath math="n^2+3n" /> | <InlineMath math="0" /> | <InlineMath math="4" /> | <InlineMath math="10" /> | <InlineMath math="18" /> |
+| Durch <InlineMath math="4" /> teilbar? | ja | ja | nein | nein |
+| <InlineMath math="n^2+n+2" /> | <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="8" /> | <InlineMath math="14" /> |
+| Durch <InlineMath math="4" /> teilbar? | nein | ja | ja | nein |
 
-<BlockMath math="\frac{BF}{FD}=\frac{3k}{k}=\frac31" />
+# Erste Aussage allein
 
-Also gilt <InlineMath math="BF:FD=3:1" />. **Der Punkt <InlineMath math="F" /> liegt näher an <InlineMath math="D" />**, passend dazu, dass <InlineMath math="E" /> nahe bei <InlineMath math="D" /> liegt.
+Aussage (1) gilt für den Rest <InlineMath math="0" /> und den Rest <InlineMath math="1" />, also **kann <InlineMath math="n" /> gerade oder ungerade sein**. Für <InlineMath math="n=4" /> ist <InlineMath math="16+12=28" /> durch <InlineMath math="4" /> teilbar, und <InlineMath math="n" /> ist gerade. Für <InlineMath math="n=1" /> ist <InlineMath math="1+3=4" /> durch <InlineMath math="4" /> teilbar, und <InlineMath math="n" /> ist ungerade. Aussage (1) allein reicht nicht aus.
 
-Die Wahl <InlineMath math="1:3" /> vertauscht die Reihenfolge des Verhältnisses. Die Wahlen <InlineMath math="1:2" /> und <InlineMath math="2:1" /> übernehmen das Verhältnis <InlineMath math="DE:EC" /> direkt. Die Wahl <InlineMath math="3:2" /> vergleicht <InlineMath math="AB" /> mit <InlineMath math="EC" />, obwohl <InlineMath math="ED" /> die zu <InlineMath math="AB" /> gehörende Seite ist.
+# Zweite Aussage allein
 
-Also gilt <InlineMath math="BF:FD=3:1" />.
+Aussage (2) gilt für den Rest <InlineMath math="1" /> und den Rest <InlineMath math="2" />, also **bleiben wieder beide Antworten möglich**. Für <InlineMath math="n=2" /> ist <InlineMath math="4+2+2=8" /> durch <InlineMath math="4" /> teilbar, und <InlineMath math="n" /> ist gerade. Für <InlineMath math="n=1" /> ist <InlineMath math="1+1+2=4" /> durch <InlineMath math="4" /> teilbar, und <InlineMath math="n" /> ist ungerade. Aussage (2) allein reicht nicht aus.
+
+# Beide Aussagen zusammen
+
+Der einzige Rest, der beide erfüllt, ist <InlineMath math="1" />. Also gilt <InlineMath math="n=4m+1" /> für eine ganze Zahl <InlineMath math="m" />, und **<InlineMath math="n" /> ist sicher ungerade**. Zum Beispiel sind für <InlineMath math="n=5" /> die Werte <InlineMath math="25+15=40" /> und <InlineMath math="25+5+2=32" /> beide durch <InlineMath math="4" /> teilbar, und <InlineMath math="5" /> ist tatsächlich ungerade.
+
+Die Wahl "Aussage (1) allein reicht" entsteht meist aus der Annahme, <InlineMath math="n(n+3)" /> sei nur für gerade <InlineMath math="n" /> durch <InlineMath math="4" /> teilbar, doch <InlineMath math="n=1" /> klappt auch. Die Wahl "keine der Aussagen reicht" entsteht, wenn du nicht prüfst, wo sich die beiden Restmengen überschneiden.
+
+Beide Aussagen zusammen reichen also aus, um zu zeigen, dass <InlineMath math="n" /> ungerade ist, eine allein aber nicht.

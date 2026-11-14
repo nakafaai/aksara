@@ -1,16 +1,71 @@
-A profit means <InlineMath math="R(x)>C(x)" />. **Each packet contributes the gap between its selling price and its cost**, <InlineMath math="\text{Rp}5{,}000" />, towards the fixed cost.
+# The slope from the midpoint
+
+The line isn't given, so find its slope first and then the length of <InlineMath math="AB" />. The midpoint of <InlineMath math="AB" /> lies on the line <InlineMath math="AB" />, so the line passes through <InlineMath math="P(2,-3)" />. The vertical line <InlineMath math="x=2" /> meets the parabola at only one point, so the line has a slope <InlineMath math="m" />.
+
+<BlockMath math="y=m(x-2)-3" />
+
+The <InlineMath math="x" />-coordinates of the intersection points are the roots of the equation you get by setting the two formulas for <InlineMath math="y" /> equal.
 
 <BlockMath math="\begin{aligned}
-12{,}000x&>7{,}000x+600{,}000 \\
-5{,}000x&>600{,}000 \\
-x&>120
+x^2-3x-4&=m(x-2)-3 \\
+x^2-(3+m)x+(2m-1)&=0
 \end{aligned}" />
 
-At <InlineMath math="x=120" />, revenue and cost are both <InlineMath math="\text{Rp}1{,}440{,}000" />, so the business only breaks even. The smallest whole number above <InlineMath math="120" /> is <InlineMath math="121" />.
+Call the roots <InlineMath math="x_1" /> and <InlineMath math="x_2" />. By Vieta, <InlineMath math="x_1+x_2=3+m" />. **The midpoint's <InlineMath math="x" />-coordinate is the average of the two roots**, and it has to be <InlineMath math="2" />.
 
-So at least <InlineMath math="121" /> packets have to be sold.
+<BlockMath math="\frac{x_1+x_2}{2}=\frac{3+m}{2}=2 \quad\Rightarrow\quad m=1" />
 
-- <InlineMath math="32" /> divides the fixed cost by the selling price plus the unit cost, <InlineMath math="19{,}000" />, and rounds up.
-- <InlineMath math="50" /> divides the fixed cost by the selling price alone.
-- <InlineMath math="86" /> divides the fixed cost by the unit cost and rounds up.
-- <InlineMath math="120" /> is the break-even point. At that level there is no profit yet.
+So the line is <InlineMath math="y=x-5" />, and the intersection equation becomes <InlineMath math="x^2-4x+1=0" />.
+
+# The length of the chord
+
+From <InlineMath math="x^2-4x+1=0" />, Vieta gives <InlineMath math="x_1+x_2=4" /> and <InlineMath math="x_1x_2=1" />. Both points lie on a line with slope <InlineMath math="1" />, so **the difference in <InlineMath math="y" /> is <InlineMath math="m" /> times the difference in <InlineMath math="x" />**.
+
+<BlockMath math="\begin{aligned}
+(x_1-x_2)^2&=(x_1+x_2)^2-4x_1x_2=16-4=12 \\
+AB^2&=(x_1-x_2)^2+(y_1-y_2)^2=(1+m^2)(x_1-x_2)^2=2\cdot12=24 \\
+AB&=\sqrt{24}=2\sqrt{6}
+\end{aligned}" />
+
+A direct check: the roots are <InlineMath math="x=2\pm\sqrt{3}" />, so <InlineMath math="A(2-\sqrt{3},\,-3-\sqrt{3})" /> and <InlineMath math="B(2+\sqrt{3},\,-3+\sqrt{3})" />. Their midpoint really is <InlineMath math="(2,-3)" />.
+
+<MathVisual
+  title={<>Chord <InlineMath math="AB" /> with midpoint <InlineMath math="P" /></>}
+  description={<>The parabola <InlineMath math="y=x^2-3x-4" /> and the line <InlineMath math="y=x-5" />. The line meets the parabola at <InlineMath math="A(2-\sqrt{3},-3-\sqrt{3})" /> and <InlineMath math="B(2+\sqrt{3},-3+\sqrt{3})" />. The point <InlineMath math="P(2,-3)" /> lies exactly in the middle of <InlineMath math="AB" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 6 },
+      y: { min: -7, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -3, c: -4 }, domain: { min: -1.5, max: 4.5 }, inputAxis: "x" },
+      { id: "line", kind: "segment", appearance: "secondary", from: { x: -1, y: -6 }, to: { x: 5, y: 0 } },
+      { id: "chord", kind: "segment", appearance: "highlight", from: { x: 2 - Math.sqrt(3), y: -3 - Math.sqrt(3) }, to: { x: 2 + Math.sqrt(3), y: -3 + Math.sqrt(3) } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 2 - Math.sqrt(3), y: -3 - Math.sqrt(3) } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 2 + Math.sqrt(3), y: -3 + Math.sqrt(3) } },
+      { id: "point-p", kind: "point", appearance: "answer", at: { x: 2, y: -3 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 2 - Math.sqrt(3), y: -3 - Math.sqrt(3) }, placement: "left" },
+      { key: "b", objectId: "point-b", at: { x: 2 + Math.sqrt(3), y: -3 + Math.sqrt(3) }, placement: "right" },
+      { key: "p", objectId: "point-p", at: { x: 2, y: -3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+So the length of <InlineMath math="AB" /> is <InlineMath math="2\sqrt{6}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="2\sqrt{3}" /> is only the horizontal difference <InlineMath math="|x_1-x_2|" />. The line is slanted, so you still have to multiply by <InlineMath math="\sqrt{1+m^2}=\sqrt{2}" />.
+- <InlineMath math="5" /> is the distance between the points where the parabola crosses the <InlineMath math="x" />-axis, <InlineMath math="x=-1" /> and <InlineMath math="x=4" />. **<InlineMath math="A" /> and <InlineMath math="B" /> are where the parabola meets the line, not the <InlineMath math="x" />-axis**.
+- <InlineMath math="2\sqrt{7}" /> uses the wrong identity <InlineMath math="(x_1-x_2)^2=(x_1+x_2)^2-2x_1x_2=14" />. The right one subtracts <InlineMath math="4x_1x_2" />.
+- <InlineMath math="4\sqrt{2}" /> uses <InlineMath math="x_1+x_2=2" />, forgetting to halve for the midpoint. That gives <InlineMath math="m=-1" />, and the line <InlineMath math="y=-x-1" /> meets the parabola at <InlineMath math="x=-1" /> and <InlineMath math="x=3" />, whose midpoint is <InlineMath math="(1,-2)" />, not <InlineMath math="P" />.

@@ -1,11 +1,39 @@
-There are now <InlineMath math="45" /> values, and **all five new values sit at the top end**, size <InlineMath math="42" />. The number of students in size <InlineMath math="42" /> becomes <InlineMath math="3+5=8" />.
+# The data
 
-<BlockMath math="\begin{aligned}
-\text{median}&=x_{23} \\
-\bar x&=\frac{1{,}573+5\cdot42}{45}=\frac{1{,}783}{45}\approx39.62
-\end{aligned}" />
+All three statements change the data and ask what happens, so you need to **sort the data and recalculate after each change**. From the table:
 
-- For <InlineMath math="45" /> values, the median is the <InlineMath math="23" />rd value. The cumulative count up to size <InlineMath math="39" /> is <InlineMath math="4+7+12=23" />, so the <InlineMath math="23" />rd value is still <InlineMath math="39" />. This statement is true.
-- The smallest size is still <InlineMath math="37" /> and the largest is still <InlineMath math="42" />, so the range stays <InlineMath math="5" />. This statement is false.
-- The new mean is about <InlineMath math="39.62" />, more than <InlineMath math="39.5" />. This statement is true.
-- Size <InlineMath math="42" /> is worn by <InlineMath math="8" /> students, while size <InlineMath math="39" /> is still worn by <InlineMath math="12" />. The mode stays <InlineMath math="39" />. This statement is false.
+- City P: <InlineMath math="330, 270, 240, 200, 120, 40" />. Sorted: <InlineMath math="40, 120, 200, 240, 270, 330" />.
+- City Q: <InlineMath math="250, 230, 180, 320, 300, 280" />. Sorted: <InlineMath math="180, 230, 250, 280, 300, 320" />, with median <InlineMath math="\tfrac{250+280}{2}=265" /> and mean <InlineMath math="\tfrac{1560}{6}=260" />.
+
+# First statement
+
+With July added, City P has seven values, so the median is the <InlineMath math="4" />th value after sorting. The July value <InlineMath math="x" /> can land anywhere, so check every case.
+
+| July value | 4th value |
+| :---: | :---: |
+| <InlineMath math="x\le200" /> | <InlineMath math="200" /> |
+| <InlineMath math="200<x<240" /> | <InlineMath math="x" /> |
+| <InlineMath math="x\ge240" /> | <InlineMath math="240" /> |
+
+In every case the median is **always between <InlineMath math="200" /> and <InlineMath math="240" />**, including both ends. This statement is **True**.
+
+# Second statement
+
+Add <InlineMath math="260" /> to City Q's data. The order becomes <InlineMath math="180, 230, 250, 260, 280, 300, 320" />, and the median of seven values is the <InlineMath math="4" />th, which is <InlineMath math="260" />. The median was <InlineMath math="265" />, so **the median changes**. Adding the mean doesn't change the mean, but it can change the median. This statement is **False**.
+
+# Third statement
+
+Falling by <InlineMath math="40\%" /> leaves <InlineMath math="60\%" />, so every City Q value is multiplied by <InlineMath math="0.6" />. Then compare **month by month**, not the sorted values.
+
+| Month | City P | New City Q | P higher? |
+| :---: | :---: | :---: | :---: |
+| January | <InlineMath math="330" /> | <InlineMath math="150" /> | yes |
+| February | <InlineMath math="270" /> | <InlineMath math="138" /> | yes |
+| March | <InlineMath math="240" /> | <InlineMath math="108" /> | yes |
+| April | <InlineMath math="200" /> | <InlineMath math="192" /> | yes |
+| May | <InlineMath math="120" /> | <InlineMath math="180" /> | no |
+| June | <InlineMath math="40" /> | <InlineMath math="168" /> | no |
+
+That's exactly <InlineMath math="4" /> months. April is the closest, <InlineMath math="200" /> against <InlineMath math="192" />. This statement is **True**.
+
+So the answers are True, False, True.

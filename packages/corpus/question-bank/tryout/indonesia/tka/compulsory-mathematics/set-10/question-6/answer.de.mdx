@@ -1,12 +1,34 @@
-Schreib <InlineMath math="2^{a+1}" /> als <InlineMath math="2\cdot2^a" /> und **klammere den gemeinsamen Faktor <InlineMath math="2^a" /> aus**.
+# Die Reihenfolge beim Umkehren
 
-<BlockMath math="f(a+1)-f(a)=2^{a+1}-2^a=2\cdot2^a-2^a=2^a(2-1)=2^a" />
+Der Wert <InlineMath math="(f\circ g)^{-1}(21)" /> ist die Zahl <InlineMath math="x" /> mit <InlineMath math="f(g(x))=21" />. Bei <InlineMath math="f\circ g" /> geht <InlineMath math="x" /> zuerst in <InlineMath math="g" />, und das Ergebnis geht dann in <InlineMath math="f" />. Zum Umkehren **machst du den letzten Schritt zuerst rückgängig**: erst <InlineMath math="f" /> umkehren, dann <InlineMath math="g" />.
 
-Probe mit <InlineMath math="a=3" />: <InlineMath math="f(4)-f(3)=16-8=8=2^3" />.
+<BlockMath math="(f\circ g)^{-1}(21)=g^{-1}\big(f^{-1}(21)\big)" />
 
-Also ist <InlineMath math="f(a+1)-f(a)=2^a" />.
+# Die quadratische Funktion umkehren
 
-- <InlineMath math="1" /> subtrahiert die Exponenten, <InlineMath math="(a+1)-a" />, doch Exponenten zieht man nur beim Dividieren ab.
-- <InlineMath math="2" /> ist der Quotient <InlineMath math="\frac{f(a+1)}{f(a)}" />, nicht die Differenz.
-- <InlineMath math="2^{a+1}" /> vergisst, <InlineMath math="f(a)" /> abzuziehen.
-- <InlineMath math="2^{2a+1}" /> multipliziert <InlineMath math="2^{a+1}" /> mit <InlineMath math="2^a" />, statt zu subtrahieren.
+Such <InlineMath math="t" /> mit <InlineMath math="f(t)=21" />.
+
+<BlockMath math="\begin{aligned}
+t^2+8t+21&=21 \\
+t^2+8t&=0 \\
+t(t+8)&=0 \quad\Rightarrow\quad t=0 \;\text{oder}\; t=-8
+\end{aligned}" />
+
+Die quadratische Gleichung liefert zwei Lösungen, aber **der Definitionsbereich von <InlineMath math="f" /> ist nur <InlineMath math="t\ge-4" />**. Dort steigt <InlineMath math="f" /> ständig, ist also umkehrbar, und die Lösung <InlineMath math="t=-8" /> fällt weg. Also ist <InlineMath math="f^{-1}(21)=0" />, und <InlineMath math="g(x)" /> muss gleich <InlineMath math="0" /> sein.
+
+# Die lineare Funktion umkehren
+
+Such jetzt das <InlineMath math="x" />, für das <InlineMath math="g(x)=0" /> gilt. **Die Funktion <InlineMath math="g" /> ist für jede reelle Zahl definiert**, in diesem Schritt fällt also keine Lösung weg.
+
+<BlockMath math="\frac{x-12}{2}=0 \quad\Rightarrow\quad x=12" />
+
+Probe: <InlineMath math="g(12)=0" /> liegt im Definitionsbereich von <InlineMath math="f" />, und <InlineMath math="f(0)=21" />. Also ist <InlineMath math="(f\circ g)(12)=21" />.
+
+Der Wert von <InlineMath math="(f\circ g)^{-1}(21)" /> ist also <InlineMath math="12" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="-6" /> kehrt <InlineMath math="f" /> richtig um, benutzt danach aber <InlineMath math="g(0)=-6" /> statt <InlineMath math="g^{-1}(0)" />.
+- <InlineMath math="-4" /> nimmt die Lösung <InlineMath math="t=-8" /> und erhält <InlineMath math="g^{-1}(-8)=-4" />. **Der Wert <InlineMath math="-8" /> liegt außerhalb des Definitionsbereichs von <InlineMath math="f" />**, also ist <InlineMath math="f(g(-4))" /> nicht definiert.
+- <InlineMath math="0" /> hört bei <InlineMath math="f^{-1}(21)" /> auf. Das ist der Wert von <InlineMath math="g(x)" />, nicht von <InlineMath math="x" />.
+- <InlineMath math="3" /> benutzt die umgekehrte Reihenfolge, <InlineMath math="f^{-1}\big(g^{-1}(21)\big)=f^{-1}(54)=3" />. Aber <InlineMath math="g(3)=-\frac{9}{2}" /> liegt außerhalb des Definitionsbereichs von <InlineMath math="f" />.

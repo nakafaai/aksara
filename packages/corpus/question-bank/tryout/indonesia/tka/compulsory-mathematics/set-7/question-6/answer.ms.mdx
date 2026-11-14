@@ -1,0 +1,37 @@
+# Langkah awal di titik sempadan
+
+Soalan ini meminta kamu menggunakan <InlineMath math="f" /> sebanyak <InlineMath math="2026" /> kali, bermula daripada <InlineMath math="2" />. Sudah tentu kamu tidak mengira satu demi satu. Kira beberapa langkah awal sehingga **nilainya mula berulang**, kemudian gunakan corak itu.
+
+Berhati-hati di titik sempadan. Nilai <InlineMath math="x=2" /> masuk ke cabang <InlineMath math="x\ge2" />, bukan ke cabang tengah, kerana cabang tengah hanya untuk <InlineMath math="x<2" />. Nilai <InlineMath math="x=0" /> masuk ke cabang tengah <InlineMath math="0\le x<2" />, bukan ke cabang <InlineMath math="x<0" />.
+
+| <InlineMath math="n" /> | Input | Cabang yang digunakan | <InlineMath math="f^{(n)}(2)" /> |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="x\ge2" /> | <InlineMath math="2-4=-2" /> |
+| <InlineMath math="2" /> | <InlineMath math="-2" /> | <InlineMath math="x<0" /> | <InlineMath math="-2+1=-1" /> |
+| <InlineMath math="3" /> | <InlineMath math="-1" /> | <InlineMath math="x<0" /> | <InlineMath math="-1+1=0" /> |
+| <InlineMath math="4" /> | <InlineMath math="0" /> | <InlineMath math="0\le x<2" /> | <InlineMath math="3-0=3" /> |
+| <InlineMath math="5" /> | <InlineMath math="3" /> | <InlineMath math="x\ge2" /> | <InlineMath math="3-4=-1" /> |
+| <InlineMath math="6" /> | <InlineMath math="-1" /> | <InlineMath math="x<0" /> | <InlineMath math="0" /> |
+| <InlineMath math="7" /> | <InlineMath math="0" /> | <InlineMath math="0\le x<2" /> | <InlineMath math="3" /> |
+
+# Corak yang berulang
+
+Bermula daripada <InlineMath math="n=2" />, nilainya berputar <InlineMath math="-1,\ 0,\ 3,\ -1,\ 0,\ 3,\ \dots" /> dengan kala <InlineMath math="3" />. **Nilai <InlineMath math="-2" /> hanya muncul sekali pada awalnya** dan tidak termasuk dalam pusingan.
+
+Nilai <InlineMath math="3" /> muncul pada <InlineMath math="n=4,7,10,\dots" />, iaitu apabila <InlineMath math="n" /> berbaki <InlineMath math="1" /> apabila dibahagi dengan <InlineMath math="3" /> dan <InlineMath math="n\ge4" />. Sekarang semak <InlineMath math="2026" />:
+
+<BlockMath math="\begin{aligned}
+2026&=3\cdot675+1 \\
+2026&=4+3\cdot674
+\end{aligned}" />
+
+Jadi, <InlineMath math="n=2026" /> berada pada kedudukan yang sama dalam pusingan dengan <InlineMath math="n=4" />, maka <InlineMath math="f^{(2026)}(2)=3" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="-2" /> muncul jika <InlineMath math="x=0" /> dimasukkan ke cabang <InlineMath math="x+1" />. Jujukannya menjadi <InlineMath math="-2,-1,0,1,2" /> lalu berulang dengan kala <InlineMath math="5" />, dan <InlineMath math="2026" /> berbaki <InlineMath math="1" /> apabila dibahagi dengan <InlineMath math="5" />.
+- <InlineMath math="-1" /> muncul jika pusingan <InlineMath math="-1,0,3" /> dianggap bermula sejak <InlineMath math="n=1" />. **Nilai pertama <InlineMath math="-2" /> menganjakkan seluruh jujukan satu langkah**.
+- <InlineMath math="0" /> muncul jika nilai awal <InlineMath math="2" /> turut dikira sebagai langkah pertama. Itu sama dengan mengira <InlineMath math="f^{(2025)}(2)" />.
+- <InlineMath math="2" /> muncul jika <InlineMath math="x=2" /> dimasukkan ke cabang tengah. Nilainya kemudian berselang-seli <InlineMath math="1,2,1,2,\dots" />, dan bagi <InlineMath math="n" /> genap hasilnya <InlineMath math="2" />.
+
+Jadi, nilai <InlineMath math="f^{(2026)}(2)" /> ialah <InlineMath math="3" />.

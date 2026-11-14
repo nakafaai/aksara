@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0{,}64\\text{ m}^2$$",
+          label: "$$260\\text{ m}^2$$",
         },
         {
           correct: true,
-          label: "$$1{,}28\\text{ m}^2$$",
+          label: "$$1{.}300\\text{ m}^2$$",
         },
         {
           correct: false,
-          label: "$$1{,}6\\text{ m}^2$$",
+          label: "$$1{.}550\\text{ m}^2$$",
         },
         {
           correct: false,
-          label: "$$2{,}56\\text{ m}^2$$",
+          label: "$$2{.}000\\text{ m}^2$$",
         },
         {
           correct: false,
-          label: "$$3{,}2\\text{ m}^2$$",
+          label: "$$2{.}600\\text{ m}^2$$",
         },
       ],
     },

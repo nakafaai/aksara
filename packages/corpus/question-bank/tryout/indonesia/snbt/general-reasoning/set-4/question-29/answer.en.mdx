@@ -1,9 +1,25 @@
-Count all pairs first, then **remove the forbidden pair**. Order does not matter, since Lala with Miko is the same pair as Miko with Lala, so use combinations.
+There are two conditions, so use two steps: first count the lineups that keep Ayu and Banu together, then **remove the lineups with Candra at an end**.
 
-<BlockMath math="C(6,2)=\frac{6\times5}{2}=15" />
+Step 1. Treat Ayu and Banu as one block. Now there are <InlineMath math="5" /> units: the AB block, Candra, Dewi, Eko and Fajar. Inside the block, the order can be AB or BA.
 
-Of those <InlineMath math="15" /> pairs, only one is forbidden, Lala together with Miko:
+<BlockMath math="5! \times 2 = 120 \times 2 = 240" />
 
-<BlockMath math="15-1=14" />
+Step 2. Count the step 1 lineups with Candra at the left end. The other <InlineMath math="5" /> places hold the AB block, Dewi, Eko and Fajar, which is <InlineMath math="4" /> units.
 
-Lala or Miko may still be chosen with another student. The rule only bans them being chosen together. So there are <InlineMath math="14" /> possible pairs.
+<BlockMath math="4! \times 2 = 24 \times 2 = 48" />
+
+The right end gives <InlineMath math="48" /> lineups too, so <InlineMath math="96" /> lineups have Candra at an end.
+
+Step 3. Subtract.
+
+<BlockMath math="240 - 96 = 144" />
+
+Check another way: Candra may stand in position <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" /> or <InlineMath math="5" />. Counting all those cases one by one also gives <InlineMath math="144" />.
+
+Common wrong answers:
+
+- <InlineMath math="240" /> forgets Candra's condition.
+- <InlineMath math="72" /> forgets to multiply by <InlineMath math="2" /> for the order inside the block, AB or BA.
+- <InlineMath math="192" /> removes only one end of the line.
+
+So there are <InlineMath math="144" /> possible lineups.

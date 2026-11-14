@@ -1,11 +1,47 @@
-Zähle die Anordnungen, indem du nach **dem gegenüberliegenden Stuhlpaar von L und M** unterscheidest. K bleibt auf Stuhl 1, also stehen nur die Paare 2 und 5 oder 3 und 6 zur Verfügung.
+Gefragt ist, wie viele vollständige Reihenfolgen alle sechs Bedingungen erfüllen. Ein Muster zu raten reicht nicht. Du teilst in Fälle auf, bis jede Reihenfolge genau einmal vorkommt, und zählst dann.
 
-**Fall Stühle 2 und 5**. N darf nicht auf Stuhl 2 oder 6 sitzen, weil diese neben K liegen, und Stuhl 5 ist besetzt. Also sitzt N auf Stuhl 3 oder 4. Säße N auf Stuhl 4, bräuchte O Stuhl 5, der besetzt ist. Also sitzt N auf Stuhl 3, O auf Stuhl 4 und P auf Stuhl 6. Nur die Reihenfolge von L und M ist noch frei, das ergibt <InlineMath math="2" /> Anordnungen.
+Beginne bei Citra, denn drei Bedingungen halten sie fest. Eka darf nicht auf Platz <InlineMath math="1" /> (Bedingung 4) und kommt vor Citra (Bedingung 3), also steht Citra frühestens auf Platz <InlineMath math="3" />. Dimas kommt genau zwei Plätze nach Citra (Bedingung 2) und kann nicht über Platz <InlineMath math="7" /> hinaus, also steht Citra spätestens auf Platz <InlineMath math="5" />.
 
-**Fall Stühle 3 und 6**. N sitzt auf Stuhl 4 oder 5. Säße N auf Stuhl 5, bräuchte O Stuhl 6, der besetzt ist. Also sitzt N auf Stuhl 4, O auf Stuhl 5 und P auf Stuhl 2. Stuhl 2 ist gerade, die Bedingung für P ist erfüllt. Die Reihenfolge von L und M ergibt <InlineMath math="2" /> Anordnungen.
+Fall Citra auf Platz <InlineMath math="3" />. Dimas steht auf Platz <InlineMath math="5" /> und Eka auf Platz <InlineMath math="2" />. Frei sind die Plätze <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="6" /> und <InlineMath math="7" />. Galih und Hesti brauchen zwei freie Plätze direkt hintereinander, und das einzige Paar ist <InlineMath math="6" /> und <InlineMath math="7" />. Bedingung 5 verbietet ihnen Platz <InlineMath math="7" />, also liefert dieser Fall <InlineMath math="0" /> Reihenfolgen.
 
-<BlockMath math="\text{Anzahl der Anordnungen} = 2+2=4" />
+Fall Citra auf Platz <InlineMath math="4" />. Dimas steht auf Platz <InlineMath math="6" />. Steht Eka auf Platz <InlineMath math="2" />, sind <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="5" />, <InlineMath math="7" /> frei, und keine zwei davon liegen nebeneinander für Galih und Hesti. Steht Eka auf Platz <InlineMath math="3" />, nehmen Galih und Hesti die Plätze <InlineMath math="1" /> und <InlineMath math="2" />, Bayu und Fani die Plätze <InlineMath math="5" /> und <InlineMath math="7" />. Bayu steht dann sicher auf einem ungeraden Platz, also muss Fani direkt nach ihm kommen: auf Platz <InlineMath math="6" />, den Dimas hat, oder auf Platz <InlineMath math="8" />, den es nicht gibt. Auch dieser Fall liefert <InlineMath math="0" /> Reihenfolgen.
 
-Die Antwort <InlineMath math="2" /> entsteht, wenn nur ein Fall gezählt wird. Die Antwort <InlineMath math="8" /> entsteht, wenn die Reihenfolge von L und M doppelt gezählt wird oder wenn N frei auf Stuhl 4 oder 5 gesetzt wird, ohne den Stuhl von O zu prüfen. Die Antworten <InlineMath math="3" /> und <InlineMath math="6" /> passen nicht zur Fallunterscheidung, weil jeder Fall immer ein Paar von Anordnungen liefert, in denen L und M die Plätze tauschen.
+Fall Citra auf Platz <InlineMath math="5" />. Dimas steht auf Platz <InlineMath math="7" />. Galih oder Hesti können Platz <InlineMath math="6" /> nicht nehmen, weil beide Nachbarplätze besetzt sind. Eka auch nicht, weil Eka vor Citra kommen muss. Also **gehört der sechste Platz Bayu oder Fani**, und der Fall teilt sich in zwei.
 
-Es gibt also <InlineMath math="4" /> Sitzordnungen, die alle Bedingungen erfüllen.
+Unterfall Bayu auf Platz <InlineMath math="6" />. Der Platz ist gerade, also verlangt Bedingung 6 nichts. Eka, Fani, Galih und Hesti besetzen die Plätze <InlineMath math="1" /> bis <InlineMath math="4" />, wobei Galih und Hesti nebeneinander stehen und Eka nicht auf Platz <InlineMath math="1" /> steht.
+
+- Galih und Hesti auf den Plätzen <InlineMath math="1" /> und <InlineMath math="2" />: Eka und Fani verteilen sich beliebig auf die Plätze <InlineMath math="3" /> und <InlineMath math="4" />, das sind zwei Möglichkeiten.
+- Galih und Hesti auf den Plätzen <InlineMath math="2" /> und <InlineMath math="3" />: Platz <InlineMath math="1" /> muss Fani haben, weil Eka dort verboten ist, und Eka nimmt Platz <InlineMath math="4" />. Eine Möglichkeit.
+- Galih und Hesti auf den Plätzen <InlineMath math="3" /> und <InlineMath math="4" />: Fani auf Platz <InlineMath math="1" />, Eka auf Platz <InlineMath math="2" />. Eine Möglichkeit.
+
+Das sind vier Muster, und jedes wird zu zwei Reihenfolgen, weil Galih und Hesti tauschen dürfen. Dieser Unterfall liefert <InlineMath math="8" /> Reihenfolgen.
+
+Unterfall Fani auf Platz <InlineMath math="6" />. Bayu steht irgendwo auf den Plätzen <InlineMath math="1" /> bis <InlineMath math="4" />. Stünde Bayu auf einem ungeraden Platz, müsste Fani direkt nach ihm kommen, aber Fani steht auf Platz <InlineMath math="6" />. Also steht Bayu auf Platz <InlineMath math="2" /> oder <InlineMath math="4" />.
+
+- Bayu auf Platz <InlineMath math="2" />: Eka, Galih und Hesti besetzen die Plätze <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="4" />. Galih und Hesti müssen auf <InlineMath math="3" /> und <InlineMath math="4" />, damit fällt Eka auf Platz <InlineMath math="1" />. Das verbietet Bedingung 4.
+- Bayu auf Platz <InlineMath math="4" />: Eka, Galih und Hesti besetzen die Plätze <InlineMath math="1" /> bis <InlineMath math="3" />. Eka darf nicht auf Platz <InlineMath math="1" />, und Galih und Hesti müssen zusammenstehen, also nehmen Galih und Hesti die Plätze <InlineMath math="1" /> und <InlineMath math="2" /> und Eka Platz <InlineMath math="3" />.
+
+Dieser Unterfall liefert ein Muster, also zwei Reihenfolgen.
+
+Hier sind alle zehn Reihenfolgen.
+
+| Nr. | Platz 1 | Platz 2 | Platz 3 | Platz 4 | Platz 5 | Platz 6 | Platz 7 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | Galih | Hesti | Eka | Fani | Citra | Bayu | Dimas |
+| 2 | Hesti | Galih | Eka | Fani | Citra | Bayu | Dimas |
+| 3 | Galih | Hesti | Fani | Eka | Citra | Bayu | Dimas |
+| 4 | Hesti | Galih | Fani | Eka | Citra | Bayu | Dimas |
+| 5 | Fani | Galih | Hesti | Eka | Citra | Bayu | Dimas |
+| 6 | Fani | Hesti | Galih | Eka | Citra | Bayu | Dimas |
+| 7 | Fani | Eka | Galih | Hesti | Citra | Bayu | Dimas |
+| 8 | Fani | Eka | Hesti | Galih | Citra | Bayu | Dimas |
+| 9 | Galih | Hesti | Eka | Bayu | Citra | Fani | Dimas |
+| 10 | Hesti | Galih | Eka | Bayu | Citra | Fani | Dimas |
+
+Zähle aus der Fallunterscheidung nach:
+
+<BlockMath math="0 + 0 + (8 + 2) = 10" />
+
+Zwei häufige falsche Antworten entstehen durch einen verlorenen Fall. Auf <InlineMath math="5" /> kommst du, wenn du vergisst, dass Galih und Hesti tauschen dürfen. Auf <InlineMath math="8" /> kommst du, wenn du annimmst, Platz <InlineMath math="6" /> gehöre immer Bayu, und die Reihenfolgen 9 und 10 übersiehst, in denen Bayu auf dem geraden Platz <InlineMath math="4" /> steht.
+
+Es gibt also <InlineMath math="10" /> Reihenfolgen, die alle sechs Bedingungen erfüllen.

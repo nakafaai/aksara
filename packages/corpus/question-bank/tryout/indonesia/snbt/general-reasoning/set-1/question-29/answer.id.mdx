@@ -1,15 +1,32 @@
-Pisahkan soal menjadi dua langkah: **hitung bilangan yang habis dibagi 4 atau 6**, lalu **buang yang juga habis dibagi 5**.
+Penerima voucher adalah anggota kelompok "yoga atau pilates" yang tidak mengikuti renang. Jadi, hitung dulu seluruh kelompok "yoga atau pilates", lalu keluarkan anggota kelompok itu yang juga mengikuti renang. **Kedua hitungan memakai inklusi-eksklusi**, yaitu menjumlahkan dua kelompok lalu mengurangkan bagian yang terhitung dua kali.
 
-**Langkah 1** memakai prinsip inklusi dan eksklusi. Bilangan yang habis dibagi <InlineMath math="4" /> dan <InlineMath math="6" /> sekaligus adalah kelipatan KPK keduanya, yaitu <InlineMath math="12" />, dan bilangan itu tidak boleh dihitung dua kali.
+Langkah pertama, banyak anggota yang mengikuti yoga atau pilates. Yoga dan pilates dijumlahkan, lalu <InlineMath math="25" /> anggota yang mengikuti keduanya dikurangkan sekali karena sudah terhitung dua kali:
 
-<BlockMath math="\left\lfloor\frac{200}{4}\right\rfloor+\left\lfloor\frac{200}{6}\right\rfloor-\left\lfloor\frac{200}{12}\right\rfloor=50+33-16=67" />
+<BlockMath math="85+60-25 = 120" />
 
-**Langkah 2** menghitung bilangan di antara <InlineMath math="67" /> itu yang juga habis dibagi <InlineMath math="5" />. Bilangan yang habis dibagi <InlineMath math="4" /> dan <InlineMath math="5" /> adalah kelipatan <InlineMath math="20" />, yang habis dibagi <InlineMath math="6" /> dan <InlineMath math="5" /> adalah kelipatan <InlineMath math="30" />, dan irisannya adalah kelipatan <InlineMath math="60" />.
+Langkah kedua, banyak anggota kelompok itu yang juga mengikuti renang. Mereka adalah anggota yang mengikuti yoga dan renang, atau pilates dan renang. Kedua kelompok ini sama-sama memuat <InlineMath math="8" /> anggota yang mengikuti ketiga kelas, jadi <InlineMath math="8" /> anggota itu dikurangkan sekali:
 
-<BlockMath math="\left\lfloor\frac{200}{20}\right\rfloor+\left\lfloor\frac{200}{30}\right\rfloor-\left\lfloor\frac{200}{60}\right\rfloor=10+6-3=13" />
+<BlockMath math="40+30-8 = 62" />
 
-Kurangkan hasil langkah 2 dari langkah 1:
+Langkah ketiga, keluarkan mereka dari kelompok pertama:
 
-<BlockMath math="67-13=54" />
+<BlockMath math="120-62 = 58" />
 
-Sebagai pemeriksaan, bilangan <InlineMath math="60" /> habis dibagi <InlineMath math="4" />, <InlineMath math="6" />, dan <InlineMath math="5" />. Bilangan itu dihitung sekali pada langkah 1 dan dibuang sekali pada langkah 2, sesuai dengan syarat soal. Jadi, ada <InlineMath math="54" /> bilangan yang memenuhi.
+Cek dengan membagi kelompok "yoga atau pilates tanpa renang" menjadi tiga bagian yang tidak saling tumpang tindih:
+
+| Bagian | Perhitungan | Banyak anggota |
+| --- | --- | --- |
+| yoga dan pilates, tanpa renang | <InlineMath math="25-8" /> | <InlineMath math="17" /> |
+| hanya yoga | <InlineMath math="85-17-(40-8)-8" /> | <InlineMath math="28" /> |
+| hanya pilates | <InlineMath math="60-17-(30-8)-8" /> | <InlineMath math="13" /> |
+| jumlah | <InlineMath math="17+28+13" /> | <InlineMath math="58" /> |
+
+Hasilnya sama, yaitu <InlineMath math="58" />.
+
+Beberapa hasil keliru yang sering muncul:
+
+- <InlineMath math="50" /> muncul jika yang dikeluarkan adalah <InlineMath math="40+30=70" />, sehingga <InlineMath math="8" /> anggota yang mengikuti ketiga kelas dikeluarkan dua kali.
+- <InlineMath math="83" /> muncul jika <InlineMath math="25" /> anggota yoga dan pilates tidak dikurangkan, sehingga kelompok pertama terhitung <InlineMath math="145" />.
+- <InlineMath math="120" /> muncul jika syarat "tidak mengikuti renang" terlupa.
+
+Jadi, pengelola membagikan <InlineMath math="58" /> voucher.

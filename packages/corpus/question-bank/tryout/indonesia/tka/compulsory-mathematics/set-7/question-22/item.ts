@@ -6,31 +6,26 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "library-visits",
+  stimulus: "gaji",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label:
-            "Banyak seluruh pengunjung pada minggu kedua $$15$$ orang lebih banyak daripada minggu pertama.",
-        },
-        {
-          column: 1,
-          label:
-            "Banyak pengunjung hari Kamis naik lebih dari $$35\\,\\%$$ dari minggu pertama ke minggu kedua.",
-        },
-        {
           column: 2,
           label:
-            "Median banyak pengunjung minggu kedua lebih kecil daripada median minggu pertama.",
+            "Jika gaji setiap karyawan bagian desain naik $$25\\%$$, rata-rata gaji seluruh karyawan naik lebih dari $$\\text{Rp}0{,}5\\text{ juta}$$.",
         },
         {
-          column: 2,
+          column: 1,
           label:
-            "Selama dua minggu itu, pengunjung paling sedikit tercatat pada hari Jumat minggu pertama.",
+            "Jika $$10$$ karyawan baru dengan gaji masing-masing $$\\text{Rp}7{,}2\\text{ juta}$$ masuk ke bagian desain, rata-rata gaji seluruh karyawan menjadi $$\\text{Rp}6\\text{ juta}$$.",
+        },
+        {
+          column: 1,
+          label:
+            "Kenaikan gaji $$10\\%$$ untuk setiap karyawan bagian jahit menaikkan rata-rata gaji seluruh karyawan sama besar dengan kenaikan $$\\text{Rp}1{,}44\\text{ juta}$$ untuk setiap karyawan bagian desain.",
         },
       ],
     },

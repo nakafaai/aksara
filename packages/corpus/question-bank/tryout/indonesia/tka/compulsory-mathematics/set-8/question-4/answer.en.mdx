@@ -1,16 +1,37 @@
-Let the number of right answers be <InlineMath math="b" /> and wrong answers <InlineMath math="s" />. Rani answered <InlineMath math="35" /> questions, so **only those <InlineMath math="35" /> are split into right and wrong**, and the other <InlineMath math="5" /> score <InlineMath math="0" />.
+# Setting up the equations
+
+Call the hundreds, tens, and units digits <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" />. The original number is <InlineMath math="100a+10b+c" />, and the reversed number is <InlineMath math="100c+10b+a" />. The word **difference** doesn't say which number is bigger, so the sign is still unknown.
 
 <BlockMath math="\begin{aligned}
-b+s&=35 \\
-4b-s&=105 \\
-5b&=140\ \Rightarrow\ b=28,\ s=7
+(100a+10b+c)-(100c+10b+a)&=99(a-c) \\
+|99(a-c)|=396 \Rightarrow |a-c|&=4
 \end{aligned}" />
 
-Check: <InlineMath math="4\cdot28-7=105" />.
+Now combine the other two conditions. The tens digit is <InlineMath math="b=2a+1" />, so put that into the digit sum.
 
-So Rani got <InlineMath math="28" /> questions right.
+<BlockMath math="\begin{aligned}
+a+(2a+1)+c&=13 \\
+3a+c&=12
+\end{aligned}" />
 
-- <InlineMath math="7" /> is the number of wrong answers.
-- <InlineMath math="26" /> divides the score of <InlineMath math="105" /> by <InlineMath math="4" /> and ignores the points lost on wrong answers.
-- <InlineMath math="29" /> counts the <InlineMath math="5" /> unanswered questions as wrong, which gives <InlineMath math="4b-(40-b)=105" />.
-- <InlineMath math="35" /> assumes every answered question was right, but that would score <InlineMath math="140" />.
+# Checking both cases
+
+Solve once for each sign of the difference.
+
+<BlockMath math="\begin{aligned}
+a-c=4&:\quad c=a-4,\ 4a-4=12 \Rightarrow a=4,\ c=0,\ b=9 \\
+c-a=4&:\quad c=a+4,\ 4a+4=12 \Rightarrow a=2,\ c=6,\ b=5
+\end{aligned}" />
+
+The first case gives <InlineMath math="490" />. Reversed, it becomes <InlineMath math="094" />, which is just <InlineMath math="94" />, and that's **not a three-digit number**. The question rules this case out. The second case gives <InlineMath math="256" />, whose reversal is <InlineMath math="652" />.
+
+Check <InlineMath math="256" />: <InlineMath math="2+5+6=13" />, <InlineMath math="5=2(2)+1" />, and <InlineMath math="652-256=396" />. Every condition holds.
+
+So the product of the hundreds digit and the tens digit is <InlineMath math="2\times5=10" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="36" /> comes from <InlineMath math="490" />. That happens if you **assume the original number is the bigger one** and don't check that its reversal must have three digits.
+- <InlineMath math="21" /> comes from <InlineMath math="733" />, which you get by flipping the "twice" sentence into <InlineMath math="a=2b+1" />.
+- <InlineMath math="30" /> comes from <InlineMath math="652" />, which you get by tying the tens digit to the units digit, <InlineMath math="b=2c+1" />. That number is the reversal, not the original.
+- <InlineMath math="9" /> comes from <InlineMath math="337" />, which you get by putting the condition on the units digit, <InlineMath math="c=2a+1" />, even though it's about the tens digit.

@@ -1,15 +1,94 @@
-A reflection in the line <InlineMath math="y=2" /> keeps the <InlineMath math="x" />-coordinate and **moves the point to the other side of <InlineMath math="y=2" /> at the same distance**. So <InlineMath math="(x,y)" /> maps to <InlineMath math="(x,\,4-y)" />, because <InlineMath math="2" /> is halfway between <InlineMath math="y" /> and <InlineMath math="4-y" />. The original point of an image <InlineMath math="(x,y)" /> is <InlineMath math="(x,\,4-y)" />, so substitute it into the original equation.
+The question asks for the centre <InlineMath math="P" /> of the dilation. The catch is that the image vertices **come without names**. So first you match each vertex with its image, and then you find the scale factor <InlineMath math="k" /> together with its sign.
+
+# Match the vertices
+
+A dilation with factor <InlineMath math="k" /> multiplies every side vector by <InlineMath math="k" />, that is <InlineMath math="\overrightarrow{X'Y'}=k\,\overrightarrow{XY}" />. That's why angles stay the same and every length is multiplied by <InlineMath math="|k|" />.
+
+Triangle <InlineMath math="ABC" /> has its right angle at <InlineMath math="A" />, with <InlineMath math="AB=3" /> horizontal and <InlineMath math="AC=4" /> vertical. In the image, the point <InlineMath math="(-3,0)" /> is <InlineMath math="6" /> across from <InlineMath math="(-9,0)" /> and <InlineMath math="8" /> straight above <InlineMath math="(-3,-8)" />, so the right angle sits at <InlineMath math="(-3,0)" />. **A right angle has to land on a right angle**, and the short leg on the short leg:
+
+<BlockMath math="A'=(-3,0),\qquad B'=(-9,0),\qquad C'=(-3,-8)" />
+
+# Find the scale factor
+
+Compare each side vector before and after the dilation.
 
 <BlockMath math="\begin{aligned}
-4-y&=3x-1 \\
-y&=-3x+5
+\overrightarrow{AB}&=(3,0), & \overrightarrow{A'B'}&=(-6,0)=-2\,(3,0) \\
+\overrightarrow{AC}&=(0,4), & \overrightarrow{A'C'}&=(0,-8)=-2\,(0,4)
 \end{aligned}" />
 
-Check: <InlineMath math="y=3x-1" /> meets <InlineMath math="y=2" /> at <InlineMath math="(1,2)" />, and points on the mirror line don't move. The line <InlineMath math="y=-3x+5" /> does pass through <InlineMath math="(1,2)" />.
+Both sides give the same factor, so <InlineMath math="k=-2" />. The lengths alone only tell you <InlineMath math="|k|=2" />. **The minus sign comes from the sides pointing the other way**: <InlineMath math="B" /> is to the right of <InlineMath math="A" />, but <InlineMath math="B'" /> is to the left of <InlineMath math="A'" />.
 
-So the image line is <InlineMath math="y=-3x+5" />.
+# Find the centre
 
-- <InlineMath math="y=-3x+1" /> is the reflection in the <InlineMath math="x" />-axis, not in <InlineMath math="y=2" />.
-- <InlineMath math="y=-3x+3" /> uses <InlineMath math="(x,\,2-y)" />, but the distance to the mirror line has to be doubled.
-- <InlineMath math="y=3x+3" /> shifts the line up by <InlineMath math="4" /> instead of reflecting it.
-- <InlineMath math="y=-3x+11" /> reflects in the vertical line <InlineMath math="x=2" />, not the horizontal line <InlineMath math="y=2" />.
+A dilation with centre <InlineMath math="P" /> means <InlineMath math="A'-P=k\,(A-P)" />. Collect every <InlineMath math="P" /> on one side, then put in <InlineMath math="k=-2" />.
+
+<BlockMath math="\begin{aligned}
+A'-P&=kA-kP \\
+A'-kA&=(1-k)\,P \\
+P&=\frac{A'-kA}{1-k}=\frac{(-3,0)+2\,(3,3)}{1+2}=\frac{(3,6)}{3}=(1,2)
+\end{aligned}" />
+
+Now check the other two vertices. **The right centre has to work for all three points**, not just for <InlineMath math="A" />.
+
+<BlockMath math="\begin{aligned}
+P+k\,(B-P)&=(1,2)-2\,(5,1)=(-9,0)=B' \\
+P+k\,(C-P)&=(1,2)-2\,(2,5)=(-3,-8)=C'
+\end{aligned}" />
+
+In the figure, the three lines joining each vertex to its image all meet at one point, and that point is <InlineMath math="P" />.
+
+<MathVisual
+  title={<>Dilation of triangle <InlineMath math="ABC" /></>}
+  description={<>Triangle <InlineMath math="ABC" /> with <InlineMath math="A(3,3)" />, <InlineMath math="B(6,3)" />, <InlineMath math="C(3,7)" /> and its image with <InlineMath math="A'(-3,0)" />, <InlineMath math="B'(-9,0)" />, <InlineMath math="C'(-3,-8)" />. The segments <InlineMath math="AA'" />, <InlineMath math="BB'" />, and <InlineMath math="CC'" /> pass through the centre <InlineMath math="P(1,2)" />, and the image lies on the opposite side of the centre from the original triangle.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    "a-image": <InlineMath math="A'" />,
+    "b-image": <InlineMath math="B'" />,
+    "c-image": <InlineMath math="C'" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 7 },
+      y: { min: -9, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "original", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 3 }, { x: 6, y: 3 }, { x: 3, y: 7 }] },
+      { id: "image", kind: "polygon", appearance: "secondary", vertices: [{ x: -3, y: 0 }, { x: -9, y: 0 }, { x: -3, y: -8 }] },
+      { id: "line-a", kind: "segment", appearance: "construction", from: { x: 3, y: 3 }, to: { x: -3, y: 0 } },
+      { id: "line-b", kind: "segment", appearance: "construction", from: { x: 6, y: 3 }, to: { x: -9, y: 0 } },
+      { id: "line-c", kind: "segment", appearance: "construction", from: { x: 3, y: 7 }, to: { x: -3, y: -8 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 3, y: 3 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 6, y: 3 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 3, y: 7 } },
+      { id: "point-a-image", kind: "point", appearance: "reference", at: { x: -3, y: 0 } },
+      { id: "point-b-image", kind: "point", appearance: "reference", at: { x: -9, y: 0 } },
+      { id: "point-c-image", kind: "point", appearance: "reference", at: { x: -3, y: -8 } },
+      { id: "point-p", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 3, y: 3 }, placement: "below-right" },
+      { key: "b", objectId: "point-b", at: { x: 6, y: 3 }, placement: "right" },
+      { key: "c", objectId: "point-c", at: { x: 3, y: 7 }, placement: "above" },
+      { key: "a-image", objectId: "point-a-image", at: { x: -3, y: 0 }, placement: "below-right" },
+      { key: "b-image", objectId: "point-b-image", at: { x: -9, y: 0 }, placement: "left" },
+      { key: "c-image", objectId: "point-c-image", at: { x: -3, y: -8 }, placement: "below" },
+      { key: "p", objectId: "point-p", at: { x: 1, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+# Why the other options are wrong
+
+- <InlineMath math="(9,6)" /> comes from using <InlineMath math="k=2" /> just because the sides are twice as long. With that centre, <InlineMath math="B" /> goes to <InlineMath math="(3,0)" />, which isn't a vertex of the image. **Sides that flip direction need a negative <InlineMath math="k" />**.
+- <InlineMath math="\left(0,\tfrac{3}{2}\right)" /> is the midpoint of <InlineMath math="A" /> and <InlineMath math="A'" />. The centre sits exactly halfway only when <InlineMath math="k=-1" />. Here <InlineMath math="PA'=2\,PA" />.
+- <InlineMath math="(-1,1)" /> comes from <InlineMath math="k=-\tfrac{1}{2}" />, the ratio turned upside down. That factor takes the image back to the original triangle, not the other way round.
+- <InlineMath math="(-1,-2)" /> is a sign slip when moving terms across, that is computing <InlineMath math="\frac{kA-A'}{1-k}" />. It gives the true centre reflected through the origin.
+
+So the centre of the dilation is <InlineMath math="P(1,2)" />, with scale factor <InlineMath math="k=-2" />.

@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "assumption",
+    topic: "strengthening",
   },
-  stimulus: "jalur",
+  stimulus: "pengayaan",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Biaya pembangunan jalur sepeda di jalan utama lain tidak lebih mahal daripada di Jalan Merdeka.",
+            "Peserta yang menghadiri lebih dari $$90\\%$$ pertemuan naik rata-rata $$10$$ poin, sedangkan peserta lainnya naik rata-rata $$5$$ poin.",
         },
         {
           correct: false,
           label:
-            "Semua jalan utama di kota itu sama padatnya dengan Jalan Merdeka.",
-        },
-        {
-          correct: false,
-          label:
-            "Jumlah pesepeda di kota itu akan meningkat setelah jalur sepeda dibangun.",
-        },
-        {
-          correct: false,
-          label:
-            "Jumlah kecelakaan kendaraan bermotor di Jalan Merdeka juga menurun pada tahun setelah jalur sepeda itu dibuka.",
+            "Kenaikan rata-rata peserta jauh lebih besar daripada kenaikan rata-rata seluruh $$120$$ siswa yang tidak mengikuti kelas tambahan.",
         },
         {
           correct: true,
           label:
-            "Penurunan kecelakaan di Jalan Merdeka tidak terutama terjadi karena pesepeda beralih ke jalan lain.",
+            "Panitia menentukan $$60$$ peserta dengan mengundi nama seluruh pendaftar.",
+        },
+        {
+          correct: false,
+          label:
+            "Sebagian pendaftar yang tidak mendapat tempat mengikuti bimbingan belajar berbayar di luar sekolah selama Februari sampai April.",
+        },
+        {
+          correct: false,
+          label:
+            "Panitia memberikan tempat kepada pendaftar yang paling dahulu mengembalikan formulir pendaftaran.",
         },
       ],
     },

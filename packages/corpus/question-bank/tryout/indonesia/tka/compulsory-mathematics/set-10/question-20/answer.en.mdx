@@ -1,12 +1,71 @@
-The ship's path, the north line, and the eastward shift form a right triangle with **the <InlineMath math="20" /> km path as the hypotenuse**. The <InlineMath math="60^\circ" /> angle is at <InlineMath math="P" />, measured from the north line, so the eastward shift is the side opposite it.
+# The apothem of the pond
 
-<BlockMath math="\text{east}=20\sin60^\circ=20\cdot\frac{\sqrt3}{2}=10\sqrt3" />
+The question asks for the area of the path, which is the outer hexagon minus the pond. The catch is that the outer hexagon's side isn't given. The path's width is measured perpendicular to the sides, so **the width adds to the apothem, not to the side length**. The apothem is the distance from the center of the hexagon to a side.
 
-The northward shift is the side next to the angle, <InlineMath math="20\cos60^\circ=10" /> km. Check: <InlineMath math="(10\sqrt3)^2+10^2=300+100=400=20^2" />.
+A regular hexagon splits into six equilateral triangles that meet at the center. Draw a line from the center to the midpoint of one side. You get a right triangle with the right angle at that midpoint, a base of half a side, <InlineMath math="3\text{ m}" />, and a <InlineMath math="60^\circ" /> angle at the corner of the pond (every angle of an equilateral triangle is <InlineMath math="60^\circ" />). The apothem is the side opposite that <InlineMath math="60^\circ" /> angle:
 
-So the ship has moved <InlineMath math="10\sqrt3" /> km, about <InlineMath math="17.3" /> km, to the east.
+<BlockMath math="a_{\text{pond}}=3\cdot\tan60^\circ=3\sqrt3\text{ m}" />
 
-- <InlineMath math="10" /> km is the northward shift, using <InlineMath math="\cos60^\circ" />.
-- <InlineMath math="10\sqrt2" /> km uses a <InlineMath math="45^\circ" /> angle.
-- <InlineMath math="20\sqrt3" /> km uses <InlineMath math="20\tan60^\circ" />, but <InlineMath math="20" /> km is the hypotenuse.
-- <InlineMath math="\frac{40\sqrt3}{3}" /> km divides <InlineMath math="20" /> by <InlineMath math="\cos30^\circ" />, as if <InlineMath math="20" /> km were a leg.
+# The side of the outer hexagon
+
+The outer hexagon's apothem is longer by the width of the path. In the same kind of right triangle, half a side sits opposite the <InlineMath math="30^\circ" /> angle at the center:
+
+<BlockMath math="\begin{aligned}
+a_{\text{outer}}&=3\sqrt3+\sqrt3=4\sqrt3\text{ m} \\
+\tfrac12 s_{\text{outer}}&=a_{\text{outer}}\cdot\tan30^\circ=4\sqrt3\cdot\frac{1}{\sqrt3}=4 \\
+s_{\text{outer}}&=8\text{ m}
+\end{aligned}" />
+
+A quick check: the two hexagons are similar, and **their apothems are in the ratio <InlineMath math="4\sqrt3:3\sqrt3=4:3" />**, so the outer side is <InlineMath math="6\cdot\frac43=8\text{ m}" />.
+
+# The area of the path
+
+A regular hexagon with side <InlineMath math="s" /> is six equilateral triangles, so its area is <InlineMath math="6\cdot\frac{\sqrt3}{4}s^2=\frac{3\sqrt3}{2}s^2" />. Subtract the pond from the outer hexagon:
+
+<BlockMath math="\begin{aligned}
+L_{\text{path}}&=\frac{3\sqrt3}{2}\left(8^2-6^2\right) \\
+&=\frac{3\sqrt3}{2}\cdot28=42\sqrt3\text{ m}^2
+\end{aligned}" />
+
+Check it another way. The path is made of six trapezoids with parallel sides <InlineMath math="6" /> and <InlineMath math="8" /> and height <InlineMath math="\sqrt3" />. **Their total area is <InlineMath math="6\cdot\frac{6+8}{2}\cdot\sqrt3=42\sqrt3" />**, the same.
+
+<MathVisual
+  title={<>The hexagonal pond and the path around it</>}
+  description={<>Two concentric regular hexagons with parallel sides. The inner hexagon has side <InlineMath math="6" /> and apothem <InlineMath math="3\sqrt3" />. The outer hexagon has side <InlineMath math="8" /> and apothem <InlineMath math="4\sqrt3" />. The distance between parallel sides is the path's width, <InlineMath math="\sqrt3" />.</>}
+  labels={{
+    apothem: <InlineMath math="3\sqrt3" />,
+    width: <InlineMath math="\sqrt3" />,
+    inner: <InlineMath math="6" />,
+    outer: <InlineMath math="8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 10 },
+      y: { min: -9, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "outer", kind: "polygon", appearance: "secondary", vertices: [{ x: 8, y: 0 }, { x: 4, y: 4 * Math.sqrt(3) }, { x: -4, y: 4 * Math.sqrt(3) }, { x: -8, y: 0 }, { x: -4, y: -4 * Math.sqrt(3) }, { x: 4, y: -4 * Math.sqrt(3) }] },
+      { id: "pond", kind: "polygon", appearance: "primary", vertices: [{ x: 6, y: 0 }, { x: 3, y: 3 * Math.sqrt(3) }, { x: -3, y: 3 * Math.sqrt(3) }, { x: -6, y: 0 }, { x: -3, y: -3 * Math.sqrt(3) }, { x: 3, y: -3 * Math.sqrt(3) }] },
+      { id: "apothem", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 0, y: 3 * Math.sqrt(3) } },
+      { id: "width", kind: "segment", appearance: "answer", from: { x: 0, y: 3 * Math.sqrt(3) }, to: { x: 0, y: 4 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "apothem", objectId: "apothem", at: { x: 0, y: 1.5 * Math.sqrt(3) }, placement: "right" },
+      { key: "width", objectId: "width", at: { x: 0, y: 3.5 * Math.sqrt(3) }, placement: "right" },
+      { key: "inner", objectId: "pond", at: { x: 0, y: -3 * Math.sqrt(3) }, placement: "above" },
+      { key: "outer", objectId: "outer", at: { x: 0, y: -4 * Math.sqrt(3) }, placement: "below" },
+    ],
+  }}
+/>
+
+So the area of the path is <InlineMath math="42\sqrt3\text{ m}^2" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="48\sqrt3\text{ m}^2" /> comes from taking the outer perimeter times the width, <InlineMath math="48\cdot\sqrt3" />. Each piece of the path is a trapezoid, so the length to multiply by the width is the average of the inner and outer perimeters, <InlineMath math="\frac{36+48}{2}=42" />.
+- <InlineMath math="(108+18\sqrt3)\text{ m}^2" /> comes from taking the outer side as <InlineMath math="6+2\sqrt3" />, as you would for a square frame. **On a hexagon, the width adds to the apothem**, not twice to the side.
+- <InlineMath math="96\sqrt3\text{ m}^2" /> is the outer hexagon alone. The pond hasn't been subtracted.
+- <InlineMath math="162\sqrt3\text{ m}^2" /> comes from swapping <InlineMath math="\tan30^\circ" /> and <InlineMath math="\tan60^\circ" />. The pond's apothem becomes <InlineMath math="\sqrt3" /> and the outer one <InlineMath math="2\sqrt3" />, a ratio of <InlineMath math="2" />, so the outer side comes out as <InlineMath math="12\text{ m}" />.

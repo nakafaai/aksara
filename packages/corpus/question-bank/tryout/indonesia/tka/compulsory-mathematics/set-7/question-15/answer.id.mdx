@@ -1,17 +1,26 @@
-Ikuti setiap titik melewati kedua transformasi. Dilatasi faktor <InlineMath math="2" /> dengan pusat <InlineMath math="O" /> memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(2x,2y)" />, lalu pencerminan terhadap <InlineMath math="y=x" /> **menukar kedua koordinat**.
+Dua transformasi dapat dipertukarkan kalau **hasilnya sama untuk setiap titik**, apa pun urutannya. Satu titik yang hasilnya berbeda sudah cukup untuk menolak sebuah pasangan. Sebaliknya, satu titik yang hasilnya kebetulan sama belum membuktikan apa-apa.
+
+# Cara menguji setiap pasangan
+
+Tulis setiap transformasi sebagai aturan untuk titik umum <InlineMath math="(x,y)" />, lalu hitung kedua urutan. Notasi <InlineMath math="T_2\circ T_1" /> berarti <InlineMath math="T_1" /> dikerjakan dulu, baru <InlineMath math="T_2" />. Aturan yang kamu perlukan:
 
 <BlockMath math="\begin{aligned}
-A(0,0)&\to(0,0)\to A'(0,0) \\
-B(4,0)&\to(8,0)\to B'(0,8) \\
-C(0,2)&\to(0,4)\to C'(4,0)
+\text{rotasi } 180^\circ \text{ pusat } (a,b)&:\ (x,y)\mapsto(2a-x,\ 2b-y) \\
+\text{rotasi } 90^\circ \text{ pusat } O&:\ (x,y)\mapsto(-y,\ x) \\
+\text{pencerminan terhadap } y=x&:\ (x,y)\mapsto(y,\ x) \\
+\text{pencerminan terhadap } y=-x&:\ (x,y)\mapsto(-y,\ -x) \\
+\text{pencerminan terhadap sumbu } x&:\ (x,y)\mapsto(x,\ -y) \\
+\text{dilatasi pusat } (a,b)\text{, faktor } k&:\ (x,y)\mapsto\big(a+k(x-a),\ b+k(y-b)\big)
 \end{aligned}" />
 
-Pencerminan tidak mengubah ukuran, jadi ukuran bangun hanya diubah oleh dilatasi: **setiap panjang dikali <InlineMath math="2" /> dan luas dikali <InlineMath math="2^2=4" />**. Luas segitiga <InlineMath math="ABC" /> adalah <InlineMath math="\tfrac12\cdot4\cdot2=4" />.
+Kalau kedua urutan memberi aturan yang persis sama, pasangan itu dapat dipertukarkan. **Kalau aturannya berbeda, tunjukkan satu titik yang bayangannya berbeda** supaya kesimpulannya pasti.
 
-- Luas <InlineMath math="A'B'C'" /> adalah <InlineMath math="4\cdot4=16" />. Cek langsung: segitiga siku-siku dengan kaki <InlineMath math="8" /> dan <InlineMath math="4" />, luasnya <InlineMath math="\tfrac12\cdot8\cdot4=16" />. Pernyataan ini benar.
-- <InlineMath math="B'=(0,8)" /> sesuai perhitungan. Pernyataan ini benar.
-- Sisi-sisi <InlineMath math="A'B'C'" /> dua kali sisi <InlineMath math="ABC" />, jadi keduanya sebangun tetapi tidak kongruen. Pernyataan ini salah.
-- Setiap sisi dikali <InlineMath math="2" />, jadi kelilingnya juga dikali <InlineMath math="2" />. Pernyataan ini benar.
-- <InlineMath math="C'=(4,0)" /> terletak pada sumbu <InlineMath math="x" />, bukan sumbu <InlineMath math="y" />. Pernyataan ini salah.
+# Menilai setiap pernyataan
 
-Jadi, pernyataan yang benar adalah pernyataan tentang luas <InlineMath math="16" />, koordinat <InlineMath math="B'(0,8)" />, dan keliling yang menjadi dua kali.
+1. **Salah**. Rotasi <InlineMath math="180^\circ" /> pusat <InlineMath math="O" /> adalah <InlineMath math="(x,y)\mapsto(-x,-y)" />, dan rotasi <InlineMath math="180^\circ" /> pusat <InlineMath math="(2,0)" /> adalah <InlineMath math="(x,y)\mapsto(4-x,-y)" />. Pusat <InlineMath math="(2,0)" /> dulu lalu pusat <InlineMath math="O" /> memberi <InlineMath math="(x-4,\,y)" />. Urutan sebaliknya memberi <InlineMath math="(x+4,\,y)" />. Hasilnya dua translasi yang berlawanan arah, misalnya titik <InlineMath math="O" /> dibawa ke <InlineMath math="(-4,0)" /> atau ke <InlineMath math="(4,0)" />. Sudutnya sama, tetapi pusatnya berbeda.
+2. **Benar**. Pencerminan dulu lalu translasi: <InlineMath math="(y,x)" /> menjadi <InlineMath math="(y+2,\,x+2)" />. Translasi dulu lalu pencerminan: <InlineMath math="(x+2,\,y+2)" /> menjadi <InlineMath math="(y+2,\,x+2)" />. Kedua urutan sama untuk setiap titik. Ini terjadi karena vektor <InlineMath math="(2,2)" /> sejajar cermin <InlineMath math="y=x" />, jadi geseran di sepanjang cermin tidak diubah oleh pencerminan.
+3. **Salah**. Dilatasi pusat <InlineMath math="O" /> faktor <InlineMath math="2" /> adalah <InlineMath math="(2x,\,2y)" />, dan dilatasi pusat <InlineMath math="(2,0)" /> faktor <InlineMath math="3" /> adalah <InlineMath math="(3x-4,\,3y)" />. Pusat <InlineMath math="(2,0)" /> dulu memberi <InlineMath math="(6x-8,\,6y)" />, sedangkan pusat <InlineMath math="O" /> dulu memberi <InlineMath math="(6x-4,\,6y)" />. Faktornya sama-sama menjadi <InlineMath math="6" />, tetapi geserannya berbeda. Titik <InlineMath math="O" /> dibawa ke <InlineMath math="(-8,0)" /> atau ke <InlineMath math="(-4,0)" />.
+4. **Salah**. Pencerminan dulu lalu rotasi: <InlineMath math="(x,-y)" /> menjadi <InlineMath math="(y,\,x)" />. Rotasi dulu lalu pencerminan: <InlineMath math="(-y,x)" /> menjadi <InlineMath math="(-y,\,-x)" />. Untuk titik <InlineMath math="(1,0)" />, hasilnya <InlineMath math="(0,1)" /> dan <InlineMath math="(0,-1)" />. Kedua urutan hanya cocok di titik <InlineMath math="O" />, jadi menguji titik <InlineMath math="O" /> saja akan menyesatkan.
+5. **Benar**. Pencerminan dulu lalu rotasi: <InlineMath math="(-y,-x)" /> menjadi <InlineMath math="(y,\,x)" />. Rotasi dulu lalu pencerminan: <InlineMath math="(-x,-y)" /> menjadi <InlineMath math="(y,\,x)" />. Kedua urutan sama untuk setiap titik. Rotasi <InlineMath math="180^\circ" /> pusat <InlineMath math="O" /> hanya membalik tanda kedua koordinat, dan pembalikan tanda itu tidak terpengaruh urutan.
+
+Jadi, pasangan yang dapat dipertukarkan adalah pencerminan terhadap <InlineMath math="y=x" /> dengan translasi <InlineMath math="(2,2)" />, serta rotasi <InlineMath math="180^\circ" /> pusat <InlineMath math="O" /> dengan pencerminan terhadap <InlineMath math="y=-x" />.

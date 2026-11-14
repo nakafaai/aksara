@@ -1,19 +1,34 @@
-Fungsi bagian demi bagian memakai rumus yang berbeda di setiap selang. Selesaikan <InlineMath math="f(x)=5" /> pada setiap bagian, lalu **pertahankan hanya penyelesaian yang berada di selang bagiannya sendiri**.
+Nilai <InlineMath math="Q" /> sudah diketahui, yaitu median <InlineMath math="10{,}5" />. Yang belum pasti adalah <InlineMath math="x" />, jadi kamu perlu tahu **semua nilai <InlineMath math="x" /> yang membuat median <InlineMath math="10{,}5" />**, lalu membandingkan rata-rata dengan <InlineMath math="10{,}5" /> untuk setiap nilai itu.
 
-# Bagian untuk x kurang dari tiga
+# Nilai x yang mungkin
 
-<BlockMath math="2x+1=5\quad\Rightarrow\quad x=2" />
+Median enam data adalah rata-rata dua data tengah setelah data diurutkan. Urutan data yang diketahui adalah <InlineMath math="3" />, <InlineMath math="5" />, <InlineMath math="9" />, <InlineMath math="12" />, <InlineMath math="16" />, dan letak <InlineMath math="x" /> menentukan dua data tengahnya.
 
-Nilai <InlineMath math="x=2" /> memang kurang dari 3, jadi **penyelesaian ini sah**.
+| Letak <InlineMath math="x" /> | Dua data tengah | Median |
+| :---: | :---: | :---: |
+| <InlineMath math="x\le5" /> | <InlineMath math="5" /> dan <InlineMath math="9" /> | <InlineMath math="7" /> |
+| <InlineMath math="5\le x\le9" /> | <InlineMath math="x" /> dan <InlineMath math="9" /> | <InlineMath math="\tfrac{x+9}{2}\le9" /> |
+| <InlineMath math="9\le x\le12" /> | <InlineMath math="9" /> dan <InlineMath math="x" /> | <InlineMath math="\tfrac{9+x}{2}\le10{,}5" /> |
+| <InlineMath math="x\ge12" /> | <InlineMath math="9" /> dan <InlineMath math="12" /> | <InlineMath math="10{,}5" /> |
 
-# Bagian untuk x paling sedikit tiga
+Median baru mencapai <InlineMath math="10{,}5" /> ketika <InlineMath math="x\ge12" />, dan setelah itu median tidak berubah lagi karena dua data tengahnya tetap <InlineMath math="9" /> dan <InlineMath math="12" />. Jadi **syarat median hanya memberi <InlineMath math="x\ge12" />**, bukan satu nilai <InlineMath math="x=12" />.
 
-<BlockMath math="x^2-4=5\quad\Rightarrow\quad x^2=9\quad\Rightarrow\quad x=3\ \text{atau}\ x=-3" />
+# Membandingkan rata-rata dengan median
 
-Bagian ini hanya berlaku untuk <InlineMath math="x\ge3" />. Nilai <InlineMath math="x=3" /> sah, sedangkan <InlineMath math="x=-3" /> **ditolak** karena untuk <InlineMath math="x=-3" /> rumus yang berlaku adalah <InlineMath math="2x+1" />, yang memberi <InlineMath math="f(-3)=-5" />.
+Rata-rata keenam data adalah <InlineMath math="P=\tfrac{3+5+9+12+16+x}{6}=\tfrac{45+x}{6}" />, sedangkan <InlineMath math="Q=10{,}5=\tfrac{63}{6}" />. Jadi perbandingannya hanya bergantung pada <InlineMath math="45+x" /> dibandingkan dengan <InlineMath math="63" />, yaitu <InlineMath math="x" /> dibandingkan dengan <InlineMath math="18" />. Coba tiga nilai <InlineMath math="x" /> yang sah.
 
-Penyelesaiannya 2 dan 3, jadi jumlahnya <InlineMath math="2+3=5" />.
+<BlockMath math="\begin{aligned}
+x=12:&\quad P=\tfrac{57}{6}=9{,}5<10{,}5\\
+x=18:&\quad P=\tfrac{63}{6}=10{,}5\\
+x=24:&\quad P=\tfrac{69}{6}=11{,}5>10{,}5
+\end{aligned}" />
 
-Nilai 2 hanya memakai bagian pertama, dan nilai 3 hanya memakai bagian kedua. Nilai <InlineMath math="-1" /> memakai <InlineMath math="-3" /> sebagai pengganti 3. Nilai 6 menghitung <InlineMath math="x=3" /> dua kali.
+Ketiga nilai itu memenuhi <InlineMath math="x\ge12" />, jadi median ketiganya memang <InlineMath math="10{,}5" />. **Ketiga hubungan bisa terjadi**, jadi informasinya tidak cukup.
 
-Jadi, jumlah semua nilai <InlineMath math="x" /> yang memenuhi adalah **5**.
+# Mengapa pilihan lain salah
+
+- <InlineMath math="Q>P" /> muncul kalau kamu menyelesaikan <InlineMath math="\tfrac{9+x}{2}=10{,}5" /> menjadi <InlineMath math="x=12" /> saja dan **lupa bahwa median tetap <InlineMath math="10{,}5" /> untuk <InlineMath math="x" /> yang lebih besar**.
+- <InlineMath math="P>Q" /> hanya benar untuk <InlineMath math="x>18" />, misalnya <InlineMath math="x=24" />, tetapi tidak untuk <InlineMath math="x=12" />.
+- <InlineMath math="P=Q" /> hanya terjadi untuk satu nilai, yaitu <InlineMath math="x=18" />.
+
+Jadi, informasi yang diberikan tidak cukup untuk memutuskan hubungan antara rata-rata dan median keenam data itu.

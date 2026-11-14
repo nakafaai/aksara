@@ -1,19 +1,38 @@
-Tangga, dinding, dan lantai selalu membentuk segitiga siku-siku dengan sisi miring 13 m. **Panjang tangga tetap**, jadi teorema Pythagoras berlaku sebelum dan sesudah tangga digeser.
+Nilai <InlineMath math="S(n)" /> hanya bertambah ketika <InlineMath math="n" /> mencapai bilangan baru yang bersisa <InlineMath math="3" /> jika dibagi <InlineMath math="7" />. Rencananya, tulis bilangan-bilangan itu sebagai barisan aritmetika, cari **banyak suku yang diperlukan agar jumlahnya melewati <InlineMath math="1{.}000" />**, lalu ubah banyak suku itu menjadi nilai <InlineMath math="n" />.
 
-# Posisi awal
+# Barisan bilangan yang bersisa tiga
 
-<BlockMath math="t_{\text{awal}}=\sqrt{13^2-5^2}=\sqrt{144}=12" />
+Bilangan positif terkecil yang bersisa <InlineMath math="3" /> jika dibagi <InlineMath math="7" /> adalah <InlineMath math="3" /> sendiri, karena <InlineMath math="3=7\cdot0+3" />. Jadi **suku pertamanya <InlineMath math="3" />, bukan <InlineMath math="10" />**. Bilangan berikutnya selalu <InlineMath math="7" /> lebih besar, sehingga barisannya <InlineMath math="3" />, <InlineMath math="10" />, <InlineMath math="17" />, dan seterusnya.
 
-Ujung atas tangga mula-mula berada **12 m di atas lantai**.
+<BlockMath math="\begin{aligned}
+u_k&=3+7(k-1)=7k-4\\
+S_k&=\frac{k}{2}\left(3+7k-4\right)=\frac{k(7k-1)}{2}
+\end{aligned}" />
 
-# Posisi setelah digeser
+# Banyak suku yang diperlukan
 
-Ujung atas turun 1 m, jadi kini setinggi 11 m. Jarak ujung bawah ke dinding menjadi
+Kamu butuh <InlineMath math="\tfrac{k(7k-1)}{2}>1{.}000" />, yaitu <InlineMath math="k(7k-1)>2{.}000" />. Perkiraan kasarnya <InlineMath math="7k^2\approx2{.}000" />, jadi <InlineMath math="k" /> sekitar <InlineMath math="17" />. Uji dua bilangan di sekitar perkiraan itu.
 
-<BlockMath math="d=\sqrt{13^2-11^2}=\sqrt{48}=4\sqrt3" />
+<BlockMath math="\begin{aligned}
+k=16:&\quad S_{16}=\frac{16\cdot111}{2}=888\\
+k=17:&\quad S_{17}=\frac{17\cdot118}{2}=1{.}003
+\end{aligned}" />
 
-Pergeseran ujung bawah adalah **selisih jarak baru dan jarak lama**, <InlineMath math="4\sqrt3-5\approx1{,}93" /> m.
+Sebanyak <InlineMath math="16" /> suku belum cukup, sedangkan <InlineMath math="17" /> suku sudah melewati <InlineMath math="1{.}000" />. Jadi **banyak suku harus dibulatkan ke atas menjadi <InlineMath math="17" />**.
 
-Nilai 1 m menganggap ujung bawah bergeser sejauh ujung atas turun, padahal hubungan keduanya tidak linear. Nilai <InlineMath math="4\sqrt3" /> adalah jarak baru ke dinding, belum dikurangi 5. Nilai <InlineMath math="\sqrt{23}" /> memakai Pythagoras pada sisi 12 dan 11, yang bukan segitiga siku-siku dalam soal. Nilai <InlineMath math="\tfrac{12}{5}" /> menskalakan penurunan 1 m dengan perbandingan <InlineMath math="12:5" />.
+# Dari banyak suku ke nilai n
 
-Jadi, ujung bawah tangga bergeser sejauh <InlineMath math="\left(4\sqrt3-5\right)" /> m.
+Jumlah <InlineMath math="S(n)" /> baru memuat suku ke-<InlineMath math="17" /> ketika <InlineMath math="n" /> paling sedikit sama dengan suku itu.
+
+<BlockMath math="u_{17}=7\cdot17-4=115" />
+
+Untuk <InlineMath math="n=114" />, yang terhitung baru <InlineMath math="16" /> suku, jadi <InlineMath math="S(114)=888" />. Untuk <InlineMath math="n=115" />, jumlahnya <InlineMath math="S(115)=1{.}003>1{.}000" />. **Yang ditanya adalah <InlineMath math="n" />, bukan banyak suku**, jadi jawabannya <InlineMath math="115" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="17" /> adalah **banyak suku**, bukan nilai <InlineMath math="n" />.
+- <InlineMath math="87" /> muncul kalau pecahan <InlineMath math="\tfrac12" /> di rumus jumlah terlupa: <InlineMath math="k(7k-1)>1{.}000" /> memberi <InlineMath math="k=13" /> dan <InlineMath math="u_{13}=87" />.
+- <InlineMath math="108" /> adalah suku ke-<InlineMath math="16" />, hasil membulatkan <InlineMath math="k" /> ke bawah, padahal <InlineMath math="S(108)=888" />.
+- <InlineMath math="122" /> muncul kalau barisan dimulai dari <InlineMath math="10" />, sehingga suku ke-<InlineMath math="17" /> menjadi <InlineMath math="10+7\cdot16=122" />.
+
+Jadi, bilangan bulat positif terkecil <InlineMath math="n" /> yang memenuhi <InlineMath math="S(n)>1{.}000" /> adalah <InlineMath math="115" />.

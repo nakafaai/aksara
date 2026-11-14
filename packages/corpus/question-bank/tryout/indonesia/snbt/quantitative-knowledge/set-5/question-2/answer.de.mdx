@@ -1,19 +1,45 @@
-Jede Zahl ist eine Summe zweier Wurzeln, und die Zahlen unter den Wurzeln ergeben jeweils zusammen 9. Vergleiche die **Quadrate** der drei Zahlen, denn bei positiven Zahlen haben die Quadrate dieselbe Reihenfolge wie die Zahlen.
+Du brauchst <InlineMath math="\tfrac{1}{p^2}+\tfrac{1}{q^2}+\tfrac{1}{r^2}" />, aber der Koeffizient <InlineMath math="k" /> ist noch unbekannt. Der Plan: Mit der Bedingung <InlineMath math="pq=1" /> **findest du zuerst die dritte Nullstelle** und <InlineMath math="k" />, danach baust du die Summe der Kehrwertquadrate aus Summe und Produkt der Nullstellen auf. Für <InlineMath math="x^3-5x^2+kx-2=0" /> liefert der Satz von Vieta (die Verbindung zwischen Nullstellen und Koeffizienten) <InlineMath math="p+q+r=5" />, <InlineMath math="pq+qr+rp=k" /> und <InlineMath math="pqr=2" />.
 
-# Jede Zahl quadrieren
+# Die dritte Nullstelle und der Wert von k
 
-Verwende **das Quadrat einer Summe**, <InlineMath math="(\sqrt p+\sqrt q)^2=p+q+2\sqrt{pq}" />.
+Das Produkt aller drei Nullstellen ist <InlineMath math="2" />, und es gilt <InlineMath math="pq=1" />. Also **liefert die Bedingung <InlineMath math="pq=1" /> sofort die dritte Nullstelle**: <InlineMath math="r=\tfrac{2}{1}=2" />. Weil <InlineMath math="2" /> eine Nullstelle ist, setzt du <InlineMath math="x=2" /> in die Gleichung ein und erhältst <InlineMath math="k" />.
 
 <BlockMath math="\begin{aligned}
-a^2&=2+7+2\sqrt{14}=9+2\sqrt{14}\\
-b^2&=3+6+2\sqrt{18}=9+2\sqrt{18}\\
-c^2&=4+5+2\sqrt{20}=9+2\sqrt{20}
+2^3-5\cdot2^2+2k-2&=0\\
+8-20+2k-2&=0\\
+2k&=14\\
+k&=7
 \end{aligned}" />
 
-# Produkte vergleichen
+Die anderen beiden Nullstellen erfüllen <InlineMath math="p+q=5-2=3" /> und <InlineMath math="pq=1" />, sie sind also die Lösungen von <InlineMath math="t^2-3t+1=0" />. Die Diskriminante <InlineMath math="9-4=5" /> ist positiv, also sind <InlineMath math="p" /> und <InlineMath math="q" /> reell.
 
-Der Anteil 9 ist bei allen gleich, die Reihenfolge entscheidet also **das Produkt der beiden Zahlen unter den Wurzeln**: <InlineMath math="14<18<20" />. Daraus folgt <InlineMath math="a^2<b^2<c^2" />, und weil alle drei positiv sind, gilt <InlineMath math="a<b<c" />.
+# Die Summe der Kehrwertquadrate
 
-Die Reihenfolge <InlineMath math="c<b<a" /> entsteht aus der Annahme, die Wurzeln der am weitesten auseinanderliegenden Zahlen, etwa 2 und 7, lieferten die größte Summe. Die übrigen Reihenfolgen widersprechen <InlineMath math="14<18<20" />. Allgemein gilt: Bei fester Summe liefern zwei näher beieinanderliegende Zahlen die größere Wurzelsumme.
+Wenn du eine Summe von Kehrwerten quadrierst, entstehen gemischte Terme. Deshalb gilt: **Die Summe der Kehrwertquadrate ist das Quadrat der Kehrwertsumme minus das Doppelte der gemischten Terme**. Beide Teile liefert der Satz von Vieta.
 
-Die Reihenfolge von der kleinsten zur größten Zahl ist also <InlineMath math="a<b<c" />.
+<BlockMath math="\begin{aligned}
+\frac1p+\frac1q+\frac1r&=\frac{pq+qr+rp}{pqr}=\frac72\\
+\frac{1}{pq}+\frac{1}{qr}+\frac{1}{rp}&=\frac{p+q+r}{pqr}=\frac52\\
+\frac{1}{p^2}+\frac{1}{q^2}+\frac{1}{r^2}&=\left(\frac72\right)^2-2\cdot\frac52=\frac{49}{4}-5=\frac{29}{4}
+\end{aligned}" />
+
+# Probe auf einem zweiten Weg
+
+Rechne den Teil mit <InlineMath math="p" /> und <InlineMath math="q" /> getrennt vom Teil mit <InlineMath math="r" />. Wegen <InlineMath math="pq=1" /> ist der Nenner <InlineMath math="(pq)^2" /> gleich <InlineMath math="1" />.
+
+<BlockMath math="\begin{aligned}
+p^2+q^2&=(p+q)^2-2pq=9-2=7\\
+\frac{1}{p^2}+\frac{1}{q^2}&=\frac{p^2+q^2}{(pq)^2}=7\\
+7+\frac{1}{2^2}&=\frac{29}{4}
+\end{aligned}" />
+
+Das Ergebnis stimmt überein, also **ist der gesuchte Wert <InlineMath math="\tfrac{29}{4}" />**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="7" /> addiert nur <InlineMath math="\tfrac{1}{p^2}+\tfrac{1}{q^2}" /> und **vergisst den Term der dritten Nullstelle**, <InlineMath math="\tfrac{1}{r^2}=\tfrac14" />.
+- <InlineMath math="\tfrac{49}{4}" /> ist das Quadrat der Kehrwertsumme, **ohne die gemischten Terme abzuziehen**.
+- <InlineMath math="\tfrac{29}{2}" /> entsteht, wenn du <InlineMath math="49-20" /> durch <InlineMath math="pqr=2" /> teilst, obwohl der Nenner <InlineMath math="(pqr)^2=4" /> sein muss.
+- <InlineMath math="\tfrac{69}{4}" /> entsteht, wenn du die gemischten Terme addierst statt sie abzuziehen.
+
+Der Wert von <InlineMath math="\tfrac{1}{p^2}+\tfrac{1}{q^2}+\tfrac{1}{r^2}" /> ist also <InlineMath math="\tfrac{29}{4}" />.

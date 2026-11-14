@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  stimulus: "overtime-pay",
+  stimulus: "grosir",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -15,22 +15,17 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Upah satu jam lembur sama dengan upah $$1$$ jam $$30$$ menit kerja biasa.",
+            "Baik bagi anggota maupun bukan anggota, cara termurah untuk membawa pulang paling sedikit $$35$$ botol dalam satu nota adalah membeli $$3$$ dus.",
         },
         {
           column: 1,
           label:
-            "Upah kotor untuk $$48$$ jam kerja dalam seminggu lebih dari $$1{,}2$$ kali upah kotor untuk $$40$$ jam kerja.",
+            "Jika seorang anggota hanya membeli botol lepas, harga rata-rata per botol yang ia bayar tidak pernah kurang dari $$\\text{Rp}14{.}250$$.",
         },
         {
           column: 2,
           label:
-            "Jika upah per jam biasa naik $$10\\,\\%$$, upah kotor untuk $$44$$ jam kerja dalam seminggu naik lebih dari $$10\\,\\%$$.",
-        },
-        {
-          column: 2,
-          label:
-            "Iuran yang dipotong dari upah untuk $$50$$ jam kerja dalam seminggu lebih dari $$\\text{Rp}30{.}000$$.",
+            "Bagi seorang anggota, menambahkan satu botol lepas ke belanjaan dalam nota yang sama tidak pernah membuat tagihannya lebih kecil.",
         },
       ],
     },

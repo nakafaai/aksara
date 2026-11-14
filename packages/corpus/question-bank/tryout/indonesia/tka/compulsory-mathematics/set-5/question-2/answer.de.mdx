@@ -1,14 +1,37 @@
-Es gibt zwei Geschäfte zu verschiedenen Kursen. Beim **Kauf** von Ringgit zahlt Sinta den Verkaufskurs <InlineMath math="\text{Rp}3{.}500" />. Beim **Verkauf** des Rests bekommt sie den Ankaufskurs <InlineMath math="\text{Rp}3{.}400" />.
+# Kosten für ein Heft
+
+Gesucht ist die größte Zahl von Heften, deren Gesamtkosten <InlineMath math="\text{Rp}275{.}000" /> nicht übersteigen. Entscheidend ist die Regel, dass **leere Blätter dazubestellt werden dürfen**: Mehr Blätter können den Preis pro Blatt senken.
+
+Ein Heft mit <InlineMath math="30" /> Seiten wird beidseitig gedruckt, braucht also <InlineMath math="\frac{30}{2}=15" /> Blätter. Bei <InlineMath math="n" /> Heften brauchst du wirklich <InlineMath math="15n" /> Blätter, und das Binden kostet <InlineMath math="4{.}000n" />.
+
+# Ohne zusätzliche Blätter
+
+Für <InlineMath math="14\le n\le33" /> hat die Bestellung <InlineMath math="210" /> bis <InlineMath math="495" /> Blätter, der Preis ist also <InlineMath math="\text{Rp}400" /> pro Blatt. Ein Heft kostet dann <InlineMath math="15\cdot400+4{.}000=10{.}000" /> Rupiah:
 
 <BlockMath math="\begin{aligned}
-\text{gekaufte Ringgit}&=\frac{7{.}000{.}000}{3{.}500}=2{.}000 \\
-\text{übrige Ringgit}&=2{.}000-1{.}450=550 \\
-\text{erhaltene Rupiah}&=550\cdot3{.}400=1{.}870{.}000
+10{.}000n&\le275{.}000 \\
+n&\le27{,}5
 \end{aligned}" />
 
-Sinta erhält also <InlineMath math="\text{Rp}1{.}870{.}000" />.
+Auf diesem Weg **bekommst du höchstens <InlineMath math="27" /> Hefte**. Ohne Zusatzblätter gilt der Preis <InlineMath math="\text{Rp}300" /> erst ab <InlineMath math="15n\ge500" />, also ab <InlineMath math="n\ge34" />, und <InlineMath math="34" /> Hefte kosten schon <InlineMath math="34\cdot(15\cdot300+4{.}000)=289{.}000" /> Rupiah. Das sprengt das Budget.
 
-- <InlineMath math="\text{Rp}1{.}897{.}500" /> verkauft die übrigen Ringgit zum Mittelwert beider Kurse, <InlineMath math="\text{Rp}3{.}450" />.
-- <InlineMath math="\text{Rp}1{.}925{.}000" /> verkauft die übrigen Ringgit zum Verkaufskurs <InlineMath math="\text{Rp}3{.}500" />.
-- <InlineMath math="\text{Rp}2{.}070{.}000" /> zieht <InlineMath math="1{.}450\cdot3{.}400" /> vom Startbetrag ab und vermischt so beide Kurse.
-- <InlineMath math="\text{Rp}4{.}930{.}000" /> ist der Wert der ausgegebenen <InlineMath math="1{.}450" /> Ringgit, nicht der übrigen.
+# Mit zusätzlichen Blättern
+
+Bestelle jetzt genau <InlineMath math="500" /> Blätter: die Blätter der Hefte plus leere Blätter. Solange <InlineMath math="15n\le500" /> gilt, kostet der Druck immer <InlineMath math="500\cdot300=150{.}000" /> Rupiah, egal wie groß <InlineMath math="n" /> ist. **Nur das Binden wächst noch mit**:
+
+<BlockMath math="\begin{aligned}
+150{.}000+4{.}000n&\le275{.}000 \\
+4{.}000n&\le125{.}000 \\
+n&\le31{,}25
+\end{aligned}" />
+
+Also <InlineMath math="n=31" />. Probe: <InlineMath math="31" /> Hefte brauchen <InlineMath math="465" /> Blätter, mit <InlineMath math="35" /> leeren Blättern sind es <InlineMath math="500" />, und die Summe ist <InlineMath math="150{.}000+124{.}000=274{.}000" /> Rupiah. Für <InlineMath math="32" /> Hefte ist der günstigste Weg ebenfalls <InlineMath math="500" /> Blätter, mit <InlineMath math="150{.}000+128{.}000=278{.}000" /> Rupiah, und das liegt über dem Budget.
+
+Es können also höchstens <InlineMath math="31" /> Hefte bestellt werden.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="27" /> bleibt beim Preis <InlineMath math="\text{Rp}400" /> stehen und **vergisst, dass leere Blätter erlaubt sind**, um <InlineMath math="500" /> Blätter zu erreichen.
+- <InlineMath math="25" /> liest die Preise wie eine Treppe: die ersten <InlineMath math="199" /> Blätter zu <InlineMath math="\text{Rp}500" />, der Rest zu <InlineMath math="\text{Rp}400" />. So kosten <InlineMath math="25" /> Hefte <InlineMath math="269{.}900" /> und <InlineMath math="26" /> Hefte <InlineMath math="279{.}900" />. Es gilt aber ein Preis für alle Blätter.
+- <InlineMath math="23" /> nimmt die Stufe eines einzelnen Hefts. Ein Heft hat nur <InlineMath math="15" /> Blätter, also <InlineMath math="\text{Rp}500" /> pro Blatt und <InlineMath math="11{.}500" /> Rupiah pro Heft. Die Stufe hängt aber von den Blättern der ganzen Bestellung ab.
+- <InlineMath math="21" /> liest <InlineMath math="30" /> Seiten als <InlineMath math="30" /> Blätter, sodass ein Heft <InlineMath math="30\cdot300+4{.}000=13{.}000" /> Rupiah kostet. Die Hefte werden beidseitig gedruckt, es sind also nur <InlineMath math="15" /> Blätter.

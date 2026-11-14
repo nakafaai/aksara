@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\angle A=60^\\circ$$",
+          label: "$$8$$",
         },
         {
           correct: true,
-          label: "$$\\angle D=95^\\circ$$",
+          label: "$$12$$",
         },
         {
           correct: false,
-          label: "$$AC$$ adalah diameter lingkaran itu.",
+          label: "$$16$$",
         },
         {
           correct: false,
-          label: "$$\\angle B=\\angle D$$",
+          label: "$$18$$",
         },
         {
           correct: false,
-          label: "$$\\angle A+\\angle B=180^\\circ$$",
+          label: "$$21$$",
         },
       ],
     },

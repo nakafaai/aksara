@@ -1,14 +1,59 @@
-The slope of <InlineMath math="f" /> is <InlineMath math="k-2" /> and its <InlineMath math="y" />-intercept is <InlineMath math="(0,k)" />. **Each statement can be checked with one of those two quantities**, or by working out a value of <InlineMath math="f" /> directly.
+# What you really know
+
+The sketch is just one example. A statement that's **certainly true** has to hold for every parabola with <InlineMath math="a<0" />, <InlineMath math="-1<p<0" />, and <InlineMath math="1<q<2" />. So turn each statement into a fact about the graph, then check whether that fact always happens.
+
+You have two tools. First, because <InlineMath math="a<0" />, the value <InlineMath math="g(x)" /> is positive between the two intercepts and negative outside them. Second, the x-coordinate of the vertex, call it <InlineMath math="h" />, is the midpoint of the two intercepts:
 
 <BlockMath math="\begin{aligned}
-f(-1)&=-(k-2)+k=2 \\
-f(1)&=(k-2)+k=2k-2
+h&=-\frac{b}{2a}=\frac{p+q}{2} \\
+-1+1<p+q&<0+2 \\
+0<h&<1
 \end{aligned}" />
 
-- <InlineMath math="f(-1)=2" /> for every <InlineMath math="k" />, because the <InlineMath math="k" /> terms cancel. Every graph of <InlineMath math="f" /> passes through <InlineMath math="(-1,2)" />. This statement is true.
-- The graph rises only when the slope is positive, that is <InlineMath math="k>2" />. For <InlineMath math="k=1" /> the slope is <InlineMath math="-1" /> and the graph falls. This statement is false.
-- Parallel to <InlineMath math="y=3x+1" /> means slope <InlineMath math="3" />, so <InlineMath math="k-2=3" /> and <InlineMath math="k=5" />. The graph is <InlineMath math="y=3x+5" />, parallel and not the same line. This statement is true.
-- For <InlineMath math="k=2" />, <InlineMath math="f(x)=2" />, a horizontal line through <InlineMath math="(0,2)" />, not <InlineMath math="(0,0)" />. This statement is false.
-- <InlineMath math="f(1)=2k-2=0" /> gives <InlineMath math="k=1" />. This statement is true.
+Also, <InlineMath math="g(0)=c" />, <InlineMath math="g(1)=a+b+c" />, and <InlineMath math="g(-1)=a-b+c" />.
 
-So the true statements are the ones about the point <InlineMath math="(-1,2)" />, the parallel line with <InlineMath math="k=5" />, and <InlineMath math="f(1)=0" /> giving <InlineMath math="k=1" />.
+# Judging each statement
+
+1. **False**. The statement <InlineMath math="a+b>0" /> isn't certain. Notice that <InlineMath math="a+b=g(1)-g(0)" />. Its sign depends on where the vertex is: if <InlineMath math="h>\tfrac12" />, the point <InlineMath math="x=1" /> is closer to the vertex, so <InlineMath math="g(1)>g(0)" />. If <InlineMath math="h<\tfrac12" />, it's the other way round. Here are two examples that both meet the conditions:
+
+<BlockMath math="\begin{aligned}
+p=-0.4,\ q=1.6:&\quad g(x)=-x^2+1.2x+0.64,\quad a+b=0.2>0 \\
+p=-0.9,\ q=1.2:&\quad g(x)=-x^2+0.3x+1.08,\quad a+b=-0.7<0
+\end{aligned}" />
+
+<MathVisual
+  title={<>Two parabolas that both meet the conditions</>}
+  description={<>The first parabola <InlineMath math="-x^2+1.2x+0.64" /> crosses the <InlineMath math="x" />-axis at <InlineMath math="-0.4" /> and <InlineMath math="1.6" />, with <InlineMath math="g(0)=0.64" /> and <InlineMath math="g(1)=0.84" />. The second parabola <InlineMath math="-x^2+0.3x+1.08" /> crosses it at <InlineMath math="-0.9" /> and <InlineMath math="1.2" />, with <InlineMath math="g(0)=1.08" /> and <InlineMath math="g(1)=0.38" />. On the first parabola the value at <InlineMath math="x=1" /> is larger, on the second it's smaller.</>}
+  labels={{
+    first: <InlineMath math="g_1" />,
+    second: <InlineMath math="g_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 2.5 },
+      y: { min: -1.5, max: 1.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-graph", kind: "quadratic", appearance: "primary", coefficients: { a: -1, b: 1.2, c: 0.64 }, domain: { min: -0.8, max: 2 }, inputAxis: "x" },
+      { id: "second-graph", kind: "quadratic", appearance: "secondary", coefficients: { a: -1, b: 0.3, c: 1.08 }, domain: { min: -1.1, max: 1.4 }, inputAxis: "x" },
+      { id: "first-at-zero", kind: "point", appearance: "reference", at: { x: 0, y: 0.64 } },
+      { id: "first-at-one", kind: "point", appearance: "highlight", at: { x: 1, y: 0.84 } },
+      { id: "second-at-zero", kind: "point", appearance: "reference", at: { x: 0, y: 1.08 } },
+      { id: "second-at-one", kind: "point", appearance: "highlight", at: { x: 1, y: 0.38 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first-graph", at: { x: 1.5, y: 0.19 }, placement: "right" },
+      { key: "second", objectId: "second-graph", at: { x: -1, y: -0.22 }, placement: "left" },
+    ],
+  }}
+/>
+
+2. **True**. From <InlineMath math="h=-\frac{b}{2a}" /> you get <InlineMath math="b=-2a\,h" />. Since <InlineMath math="a<0" />, the number <InlineMath math="-2a" /> is positive, and <InlineMath math="h>0" />. So <InlineMath math="b>0" /> for every parabola that meets the conditions.
+3. **True**. The value <InlineMath math="a-b+c" /> is <InlineMath math="g(-1)" />. Because <InlineMath math="-1<p" />, the point <InlineMath math="x=-1" /> lies to the left of both intercepts, where the graph is below the <InlineMath math="x" />-axis. So <InlineMath math="a-b+c<0" />.
+4. **True**. Substitute <InlineMath math="b=-2a\,h" /> to get <InlineMath math="2a+b=2a\,(1-h)" />. The factor <InlineMath math="2a" /> is negative, and <InlineMath math="1-h" /> is positive because <InlineMath math="h<1" />. **A negative number times a positive number is always negative**, so <InlineMath math="2a+b<0" />.
+5. **True**. The points <InlineMath math="x=0" /> and <InlineMath math="x=1" /> both lie between <InlineMath math="p" /> and <InlineMath math="q" />, so <InlineMath math="c=g(0)>0" /> and <InlineMath math="a+b+c=g(1)>0" />. The product of two positive numbers is positive.
+
+So the statements that are certainly true are <InlineMath math="b>0" />, <InlineMath math="a-b+c<0" />, <InlineMath math="2a+b<0" />, and <InlineMath math="c\,(a+b+c)>0" />.

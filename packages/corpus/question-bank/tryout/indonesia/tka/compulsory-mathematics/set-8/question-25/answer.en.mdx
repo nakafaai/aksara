@@ -1,16 +1,43 @@
-The colour of the second marble depends on the first, so **split into two cases by the colour of the first marble**, then add the two probabilities.
+The question gives you the result, two red balls, and asks **which bag they most likely came from**. That's a conditional probability turned around: from the result back to the cause. The path has three steps: the chance of each bag being picked, the chance of two reds from each bag, then comparing them.
+
+# Chance of each bag being picked
+
+The multiples of <InlineMath math="3" /> on a die are only <InlineMath math="3" /> and <InlineMath math="6" />, so **bag I is picked with probability** <InlineMath math="\tfrac26" />:
+
+<BlockMath math="P(\text{I})=\frac26=\frac13,\qquad P(\text{II})=1-\frac13=\frac23" />
+
+Bag II is picked more often, so before you see any colours, bag II is actually the more likely one. The colour information is what shifts this balance.
+
+# Chance of two reds from each bag
+
+The two balls are taken at the same time, so **the first ball isn't put back**. Use combinations: the number of ways to choose two reds divided by the number of ways to choose any two balls. Each bag holds <InlineMath math="5" /> balls, so <InlineMath math="C(5,2)=10" />.
 
 <BlockMath math="\begin{aligned}
-P(\text{R then R})&=\frac35\cdot\frac24=\frac{6}{20} \\
-P(\text{B then R})&=\frac25\cdot\frac34=\frac{6}{20} \\
-P(\text{second red})&=\frac{6}{20}+\frac{6}{20}=\frac{12}{20}=\frac35
+P(\text{RR}\mid\text{I})&=\frac{C(3,2)}{C(5,2)}=\frac{3}{10} \\
+P(\text{RR}\mid\text{II})&=\frac{C(2,2)}{C(5,2)}=\frac{1}{10}
 \end{aligned}" />
 
-The result equals the probability that the first marble is red. Before you see the first marble, every marble is equally likely to come out second.
+# Turning the condition around
 
-So the probability that the second marble is red is <InlineMath math="\frac35" />.
+Work out the chance of each route that ends with two reds, then add them:
 
-- <InlineMath math="\frac{3}{10}" /> is the probability that both marbles are red, not just the second.
-- <InlineMath math="\frac25" /> is the probability that the second marble is blue.
-- <InlineMath math="\frac12" /> assumes the first marble was certainly red, leaving <InlineMath math="2" /> red out of <InlineMath math="4" />.
-- <InlineMath math="\frac34" /> assumes the first marble was certainly blue, leaving <InlineMath math="3" /> red out of <InlineMath math="4" />.
+<BlockMath math="\begin{aligned}
+P(\text{I and RR})&=\frac13\cdot\frac{3}{10}=\frac{1}{10}=\frac{3}{30} \\
+P(\text{II and RR})&=\frac23\cdot\frac{1}{10}=\frac{2}{30} \\
+P(\text{RR})&=\frac{3}{30}+\frac{2}{30}=\frac{5}{30}
+\end{aligned}" />
+
+Out of all the two-red outcomes, **the share that went through bag I** is
+
+<BlockMath math="P(\text{I}\mid\text{RR})=\frac{3/30}{5/30}=\frac35" />
+
+Check by picturing the experiment repeated <InlineMath math="30" /> times. Bag I is picked about <InlineMath math="10" /> times, and <InlineMath math="3" /> of those give two reds. Bag II is picked about <InlineMath math="20" /> times, and <InlineMath math="2" /> of those give two reds. Of the <InlineMath math="5" /> two-red outcomes, <InlineMath math="3" /> come from bag I.
+
+# Why the other options are wrong
+
+- <InlineMath math="\frac{1}{10}" /> is the chance that bag I is picked **and** both balls are red. It hasn't been divided by the chance of two reds.
+- <InlineMath math="\frac{3}{10}" /> is the chance of two reds once you know it's bag I. The condition points the wrong way.
+- <InlineMath math="\frac13" /> is just the starting chance of picking bag I. The fact that both balls are red hasn't been used.
+- <InlineMath math="\frac{9}{17}" /> comes from treating the draw as with replacement, using <InlineMath math="\left(\frac35\right)^2" /> and <InlineMath math="\left(\frac25\right)^2" />. The balls are taken together, so the first one never goes back into the bag.
+
+So the probability that the two red balls came from bag I is <InlineMath math="\frac35" />.

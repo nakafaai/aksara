@@ -1,16 +1,34 @@
-Several pairs <InlineMath math="(a,b)" /> satisfy the conditions, for example <InlineMath math="(7,5)" /> and <InlineMath math="(11,1)" />. Instead of trying them one by one, **factor <InlineMath math="P" />** as a difference of squares.
+Each new segment forms an isosceles triangle with the segment before it. The plan: find the pattern in the base angles of those triangles, work out **when a new point can no longer be made**, and then count the segments.
 
-# Factoring the difference of squares
+# The pattern in the base angles
+
+Triangle <InlineMath math="AP_1P_2" /> is isosceles because <InlineMath math="AP_1=P_1P_2" />, with apex <InlineMath math="P_1" />. So both base angles are <InlineMath math="12^\circ" />. The next triangle, <InlineMath math="P_1P_2P_3" />, has its apex at <InlineMath math="P_2" />, and its base angle at <InlineMath math="P_1" /> is an exterior angle of triangle <InlineMath math="AP_1P_2" />. The rule: **an exterior angle of a triangle equals the sum of the two interior angles that aren't next to it**.
 
 <BlockMath math="\begin{aligned}
-P=a^2-b^2&=(a+b)(a-b)\\
-&=12(a-b)
+\text{base angle of triangle } P_1P_2P_3&=12^\circ+12^\circ=24^\circ\\
+\text{base angle of triangle } P_2P_3P_4&=12^\circ+24^\circ=36^\circ
 \end{aligned}" />
 
-The last expression is **exactly <InlineMath math="Q" />**, for every pair that satisfies <InlineMath math="a+b=12" />.
+The second row uses triangle <InlineMath math="AP_2P_3" />, whose angle at <InlineMath math="A" /> is <InlineMath math="12^\circ" /> and whose angle at <InlineMath math="P_3" /> is <InlineMath math="24^\circ" />. Each step adds <InlineMath math="12^\circ" />, so the <InlineMath math="k" />-th triangle, with apex <InlineMath math="P_k" />, has base angles of <InlineMath math="12k^\circ" />.
 
-# Checking with examples
+# When a new point can still be made
 
-For <InlineMath math="(7,5)" />: <InlineMath math="P=49-25=24" /> and <InlineMath math="Q=12(2)=24" />. For <InlineMath math="(11,1)" />: <InlineMath math="P=121-1=120" /> and <InlineMath math="Q=12(10)=120" />. The values of <InlineMath math="P" /> and <InlineMath math="Q" /> change together, but they are **always equal**.
+The new point is the second place where the circle centred at the apex with radius <InlineMath math="1" /> meets the ray. That point is farther from <InlineMath math="A" /> than the old point only if **the base angle of the triangle is acute**. If the base angle is <InlineMath math="90^\circ" /> or more, the second intersection lands on the old point or closer to <InlineMath math="A" />. The angle sum shows the same thing: two base angles of <InlineMath math="90^\circ" /> or more can't fit inside <InlineMath math="180^\circ" />.
 
-The option saying the information is not enough looks reasonable because <InlineMath math="a" /> and <InlineMath math="b" /> are not unique. The relation asked for is the same for every pair, though, so <InlineMath math="P=Q" />.
+<BlockMath math="\begin{aligned}
+12k&<90\\
+k&<7.5\\
+k&\le 7
+\end{aligned}" />
+
+The seventh triangle has base angles of <InlineMath math="84^\circ" /> and an apex angle of <InlineMath math="180^\circ-2\cdot 84^\circ=12^\circ" />, so it exists. The eighth triangle would need base angles of <InlineMath math="96^\circ" />, which is impossible.
+
+# Counting the segments
+
+The first segment <InlineMath math="AP_1" /> doesn't form a new triangle. After that, **every triangle adds exactly one segment**, from <InlineMath math="P_1P_2" /> to <InlineMath math="P_7P_8" />. The number of segments is <InlineMath math="1+7=8" />.
+
+# Checking the other options
+
+The option <InlineMath math="7" /> counts only the triangles and **forgets the first segment** <InlineMath math="AP_1" />. The option <InlineMath math="9" /> counts the points <InlineMath math="A,P_1,\ldots,P_8" /> instead of the segments. The option <InlineMath math="15" /> only requires the base angle to be less than <InlineMath math="180^\circ" />, so <InlineMath math="12k<180" /> gives <InlineMath math="14" /> triangles. The option <InlineMath math="4" /> assumes the base angles double, going <InlineMath math="12^\circ" />, <InlineMath math="24^\circ" />, <InlineMath math="48^\circ" />, then <InlineMath math="96^\circ" />, but each step only adds <InlineMath math="12^\circ" />.
+
+So <InlineMath math="8" /> segments of length <InlineMath math="1\text{ unit}" /> can be drawn.

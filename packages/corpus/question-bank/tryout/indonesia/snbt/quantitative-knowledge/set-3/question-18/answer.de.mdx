@@ -1,17 +1,34 @@
-Ein-, zwei- und dreistellige Zahlen lassen sich gemeinsam zählen, wenn du jede Zahl **dreistellig mit führenden Nullen** schreibst, etwa 5 als 005 und 42 als 042. Dabei kommt keine 7 hinzu und keine fällt weg.
+Zähle zuerst alle Wege über <InlineMath math="P" /> und ziehe dann die Wege ab, die das gesperrte Straßenstück benutzen. Gesperrt ist **ein Straßenstück, keine Kreuzung**, ein Weg, der nur durch <InlineMath math="(3,2)" /> oder <InlineMath math="(4,2)" /> führt, bleibt also erlaubt.
 
-# Dreistellige Ziffernfolgen zählen
+# Wege über den Punkt P
 
-Jede Stelle darf eine Ziffer von 0 bis 9 außer 7 tragen, das sind 9 Möglichkeiten pro Stelle. Die drei Stellen werden **unabhängig gewählt**.
+Ein kürzester Weg von einem Punkt zu einem anderen besteht aus Schritten nach rechts und nach oben, und die Anzahl solcher Wege ist **die Anzahl der Möglichkeiten, die Plätze der Schritte nach oben zu wählen**. Jeder erste Teil passt zu jedem zweiten Teil, also multiplizierst du.
 
-<BlockMath math="9\times9\times9=729" />
+<BlockMath math="\begin{aligned}
+A\to P&:\ 2 \text{ rechts},\ 1 \text{ hoch},\quad \binom{3}{1}=3\\
+P\to B&:\ 4 \text{ rechts},\ 3 \text{ hoch},\quad \binom{7}{3}=35\\
+\text{über } P&:\ 3\cdot 35=105
+\end{aligned}" />
 
-Darin steckt die Folge 000, die keine positive ganze Zahl ist.
+# Wege über das gesperrte Stück
 
-<BlockMath math="729-1=728" />
+Ein Weg benutzt das gesperrte Stück, wenn er von <InlineMath math="(3,2)" /> direkt nach <InlineMath math="(4,2)" /> geht. Teile so einen Weg in drei Abschnitte und **multipliziere die Anzahlen der einzelnen Abschnitte**.
 
-# Andere Wahlmöglichkeiten prüfen
+<BlockMath math="\begin{aligned}
+A\to P&:\ 3\\
+P\to(3,2)&:\ 1 \text{ rechts},\ 1 \text{ hoch},\quad \binom{2}{1}=2\\
+(4,2)\to B&:\ 2 \text{ rechts},\ 2 \text{ hoch},\quad \binom{4}{2}=6\\
+\text{über das gesperrte Stück}&:\ 3\cdot 2\cdot 6=36
+\end{aligned}" />
 
-Der Wert 729 vergisst, 000 zu entfernen. Der Wert 648 zählt nur dreistellige Zahlen, <InlineMath math="8\times9\times9" />, und vergisst die ein- und zweistelligen. Der Wert 700 zieht für jede Stelle 100 Zahlen mit einer 7 ab und übersieht Zahlen, die die 7 mehrfach enthalten. Der Wert 810 verbietet die 7 nur an zwei Stellen, <InlineMath math="9\times9\times10" />.
+Erlaubt sind also <InlineMath math="105-36=69" /> Wege.
 
-Es gibt also **728** solche Zahlen.
+# Probe auf einem anderen Weg
+
+Teile die Wege über <InlineMath math="P" /> danach ein, ob sie durch <InlineMath math="(3,2)" /> führen. Durch <InlineMath math="(3,2)" /> führen <InlineMath math="3\cdot 2\cdot\binom{5}{2}=60" /> Wege, also meiden <InlineMath math="105-60=45" /> Wege diesen Punkt, und die sind alle erlaubt. Von <InlineMath math="(3,2)" /> aus **muss ein erlaubter Weg zuerst nach <InlineMath math="(3,3)" /> hoch**, dann gibt es <InlineMath math="\binom{4}{1}=4" /> Wege bis <InlineMath math="B" />, also <InlineMath math="3\cdot 2\cdot 4=24" /> erlaubte Wege durch <InlineMath math="(3,2)" />. Zusammen sind das <InlineMath math="45+24=69" />, wie oben.
+
+# Die anderen Antworten prüfen
+
+Die Antwort <InlineMath math="105" /> **übersieht die Sperrung**. Die Antwort <InlineMath math="36" /> bleibt bei der Zahl der Wege stehen, die wegfallen. Die Antwort <InlineMath math="45" /> entsteht, wenn auch die Kreuzung <InlineMath math="(3,2)" /> als gesperrt gilt, oder wenn alle <InlineMath math="10\cdot 6=60" /> Wege ab <InlineMath math="A" /> über das gesperrte Stück abgezogen werden, auch die, die nicht über <InlineMath math="P" /> führen. Die Antwort <InlineMath math="51" /> entsteht, wenn die Kreuzung <InlineMath math="(4,2)" /> als gesperrt gilt, sodass <InlineMath math="3\cdot 3\cdot 6=54" /> Wege wegfallen.
+
+Der Kurier kann also aus <InlineMath math="69" /> verschiedenen kürzesten Wegen wählen.

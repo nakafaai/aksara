@@ -1,11 +1,37 @@
-Kuartil membagi <InlineMath math="32" /> nilai yang berbeda menjadi **empat kelompok yang masing-masing berisi <InlineMath math="8" /> nilai**. Jadi <InlineMath math="8" /> siswa bernilai di bawah kuartil bawah, dan <InlineMath math="8" /> siswa bernilai di atas kuartil atas.
+Ketiga pernyataan menyangkut data yang sebenarnya, padahal tabel hanya memberi tahu berapa siswa di setiap kelas. Sebuah pernyataan **pasti benar hanya jika benar untuk setiap cara siswa menyebar di dalam kelasnya**. Untuk menunjukkan sebuah pernyataan salah, cukup satu contoh data yang cocok dengan tabel tetapi melanggar pernyataan itu.
+
+# Frekuensi setiap kelas
+
+Frekuensi kelas didapat dari selisih baris kumulatif yang berurutan:
+
+| Kelas | <InlineMath math="0\text{ sampai }10" /> | <InlineMath math="10\text{ sampai }20" /> | <InlineMath math="20\text{ sampai }30" /> | <InlineMath math="30\text{ sampai }40" /> | <InlineMath math="40\text{ sampai }50" /> | <InlineMath math="50\text{ sampai }60" /> | <InlineMath math="60\text{ sampai }70" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Frekuensi | <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="24" /> | <InlineMath math="20" /> | <InlineMath math="16" /> | <InlineMath math="6" /> | <InlineMath math="6" /> |
+
+Setiap kelas memuat batas bawahnya tetapi tidak memuat batas atasnya. Jadi siswa di kelas <InlineMath math="30\le t<40" /> bisa membaca tepat <InlineMath math="30" /> menit, tetapi **selalu kurang dari** <InlineMath math="40" /> menit.
+
+# Menilai setiap pernyataan
+
+**Pernyataan 1**. Rata-rata sebenarnya paling besar kalau setiap siswa membaca sedekat mungkin dengan batas atas kelasnya. Hitung jumlah kalau setiap siswa tepat di batas atas:
 
 <BlockMath math="\begin{aligned}
-\text{di atas }Q_1\text{ kelas XI-2}&=32-8=24=75\,\%\cdot32 \\
-Q_3-Q_1\ \text{XI-1}&=82-62=20,\qquad Q_3-Q_1\ \text{XI-2}=78-64=14
+&2\cdot10+6\cdot20+24\cdot30+20\cdot40+16\cdot50+6\cdot60+6\cdot70 \\
+&=20+120+720+800+800+360+420=3{.}240 \\
+&\frac{3{.}240}{80}=40{,}5
 \end{aligned}" />
 
-- Tepat <InlineMath math="24" /> siswa kelas XI-2, yaitu <InlineMath math="75\,\%" />, bernilai lebih dari kuartil bawah <InlineMath math="64" />. Jadi paling sedikit <InlineMath math="75\,\%" /> terpenuhi. Pernyataan ini benar.
-- Nilai tertinggi kelas XI-1 adalah <InlineMath math="96" />, lebih tinggi daripada <InlineMath math="90" /> di kelas XI-2. Pernyataan ini salah.
-- Nilai <InlineMath math="80" /> lebih dari kuartil atas kelas XI-2, yaitu <InlineMath math="78" />, dan hanya <InlineMath math="8" /> siswa bernilai di atas <InlineMath math="78" />. Siswa itu termasuk kelompok <InlineMath math="8" /> siswa teratas. Pernyataan ini benar.
-- Jangkauan antarkuartil kelas XI-2 adalah <InlineMath math="14" />, lebih kecil daripada <InlineMath math="20" /> di kelas XI-1, jadi setengah data di tengah kelas XI-2 justru lebih rapat. Pernyataan ini salah.
+Setiap siswa membaca kurang dari batas atas kelasnya, jadi jumlah sebenarnya kurang dari <InlineMath math="3{.}240" /> dan rata-ratanya kurang dari <InlineMath math="40{,}5" />. Itu selalu kurang dari <InlineMath math="41" />, apa pun sebarannya. **Benar**.
+
+**Pernyataan 2**. Sampai kelas <InlineMath math="20\le t<30" /> ada <InlineMath math="32" /> siswa, dan sampai kelas <InlineMath math="30\le t<40" /> ada <InlineMath math="52" />. Jadi data ke-<InlineMath math="40" /> dan ke-<InlineMath math="41" /> pasti ada di kelas <InlineMath math="30\le t<40" />, dan median sebenarnya hanya pasti berada di antara <InlineMath math="30" /> dan <InlineMath math="40" />. Contoh yang melanggar: kedua puluh siswa di kelas itu membaca tepat <InlineMath math="30" /> menit. Data ini cocok dengan tabel, dan
+
+<BlockMath math="\text{median}=\frac{30+30}{2}=30\le32" />
+
+Taksiran median memang <InlineMath math="34" />, tetapi taksiran bukan kepastian. **Salah**.
+
+**Pernyataan 3**. Siswa yang pasti membaca paling sedikit <InlineMath math="45" /> menit hanyalah siswa di kelas <InlineMath math="50\le t<60" /> dan <InlineMath math="60\le t<70" />, yaitu <InlineMath math="6+6=12" /> siswa. Keenam belas siswa di kelas <InlineMath math="40\le t<50" /> bisa saja semuanya membaca tepat <InlineMath math="40" /> menit, dan data itu tetap cocok dengan tabel. Dalam contoh ini, banyak siswa yang membaca <InlineMath math="45" /> menit atau lebih hanya
+
+<BlockMath math="6+6=12<20" />
+
+Angka <InlineMath math="20" /> berasal dari taksiran <InlineMath math="\tfrac12\cdot16+12=20" />, yang menganggap kelas <InlineMath math="40\le t<50" /> terbagi dua sama rata. **Salah**.
+
+Jadi, urutannya adalah Benar, Salah, Salah.

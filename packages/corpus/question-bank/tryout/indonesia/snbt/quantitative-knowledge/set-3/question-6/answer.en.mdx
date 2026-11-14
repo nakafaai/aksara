@@ -1,19 +1,31 @@
-There are three unknowns but only two equations, so <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> are indeed not fixed individually. The question, however, asks only for **their sum**, and that sum can still be fixed.
+You need to sort the triangles by where their vertices lie, write the area in terms of a single distance, and then count the pairs of points that work. The key is that **the area depends only on the length of the base** on one of the lines.
 
-# Adding the two equations
+# Which triangles are possible
 
-Look at the coefficients: <InlineMath math="1+3" />, <InlineMath math="2+2" />, and <InlineMath math="3+1" /> are all 4. So **the sum of the two equations** contains <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> with equal coefficients.
+Three points on the same line are collinear, so they don't form a triangle. That means every triangle has **two vertices on one line and one vertex on the other line**. The total number of triangles is <InlineMath math="\binom{7}{2}\cdot 5+\binom{5}{2}\cdot 7=105+70=175" />.
+
+# The area of each triangle
+
+Take the two vertices on the same line as the base, with length <InlineMath math="d\text{ cm}" />. Since neighbouring points are <InlineMath math="1\text{ cm}" /> apart, <InlineMath math="d" /> is a whole number. The third vertex sits on the parallel line, so the height is always the distance between the lines, <InlineMath math="3\text{ cm}" />, wherever that vertex is.
+
+<BlockMath math="L=\frac{1}{2}\cdot d\cdot 3=\frac{3d}{2}" />
+
+The number <InlineMath math="3" /> is odd, so <InlineMath math="\tfrac{3d}{2}" /> is a whole number exactly when **the base length <InlineMath math="d" /> is even**.
+
+# Counting pairs at an even distance
+
+On a line with <InlineMath math="k" /> points spaced <InlineMath math="1\text{ cm}" /> apart, the number of pairs at distance <InlineMath math="d" /> is <InlineMath math="k-d" />. Line <InlineMath math="g" /> has <InlineMath math="7" /> points, so its even distances are <InlineMath math="2" />, <InlineMath math="4" />, and <InlineMath math="6" />. Line <InlineMath math="h" /> has <InlineMath math="5" /> points, so its even distances are <InlineMath math="2" /> and <InlineMath math="4" />. Each base then pairs with **every point on the opposite line**.
 
 <BlockMath math="\begin{aligned}
-(x+2y+3z)+(3x+2y+z)&=14+10\\
-4x+4y+4z&=24\\
-x+y+z&=6
+\text{base on } g&: (5+3+1)\cdot 5=9\cdot 5=45\\
+\text{base on } h&: (3+1)\cdot 7=4\cdot 7=28\\
+\text{total}&: 45+28=73
 \end{aligned}" />
 
-# Making sure a solution exists
+# Checking with the odd distances
 
-The sum is meaningful only if some numbers really satisfy the system. One example is <InlineMath math="x=1" />, <InlineMath math="y=2" />, and <InlineMath math="z=3" />: <InlineMath math="1+4+9=14" /> and <InlineMath math="3+4+3=10" />, with sum 6. **Every other solution gives the same sum**, because the sum follows directly from the two equations.
+Also count the triangles whose area isn't a whole number, the ones with an odd base. On <InlineMath math="g" /> there are <InlineMath math="6+4+2=12" /> pairs at distance <InlineMath math="1" />, <InlineMath math="3" />, or <InlineMath math="5" />, and on <InlineMath math="h" /> there are <InlineMath math="4+2=6" /> pairs at distance <InlineMath math="1" /> or <InlineMath math="3" />. That gives <InlineMath math="12\cdot 5+6\cdot 7=102" />, and **<InlineMath math="73+102=175" /> matches the total number of triangles**.
 
-The option *tidak dapat ditentukan* (cannot be determined) comes from the belief that three unknowns always need three equations. The value 24 stops before dividing by 4, and the value 12 divides only by 2. The value 4 comes from the difference of the equations, <InlineMath math="2z-2x=4" />, which is not the sum of the three unknowns.
+Common traps: forgetting the factor <InlineMath math="\tfrac{1}{2}" /> makes the area <InlineMath math="3d" /> always a whole number, which leads to <InlineMath math="175" />, and forgetting the triangles with their base on <InlineMath math="h" /> gives <InlineMath math="45" />.
 
-So the value of <InlineMath math="x+y+z" /> is **6**.
+So <InlineMath math="73" /> triangles have a whole-number area.

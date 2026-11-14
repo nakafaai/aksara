@@ -1,15 +1,43 @@
-The <InlineMath math="15\,\%" /> drop each year is taken from the previous year's price, so **the price is multiplied by <InlineMath math="0.85" /> once per year**. For <InlineMath math="t=2" />:
+# The bill before the discount
+
+This question runs backwards: from the money paid, you find the water used. The first step is to remove the discount. The <InlineMath math="25\%" /> discount is taken from the full bill, so **the amount paid is <InlineMath math="75\%" /> of the original bill**.
 
 <BlockMath math="\begin{aligned}
-H(2)&=200{,}000{,}000\cdot0.85^2 \\
-&=200{,}000{,}000\cdot0.7225=144{,}500{,}000
+0.75\cdot T&=120{,}000 \\
+T&=\frac{120{,}000}{0.75}=160{,}000
 \end{aligned}" />
 
-Year by year: after one year <InlineMath math="200{,}000{,}000\cdot0.85=170{,}000{,}000" />, and after two years <InlineMath math="170{,}000{,}000\cdot0.85=144{,}500{,}000" />.
+The bill before the discount is <InlineMath math="\text{Rp}160{,}000" />.
 
-So the car's resale price after <InlineMath math="2" /> years is <InlineMath math="\text{Rp}144{,}500{,}000" />.
+# Finding the usage block
 
-- <InlineMath math="\text{Rp}4{,}500{,}000" /> uses <InlineMath math="0.15^2" />, the part that is lost, not the part that remains.
-- <InlineMath math="\text{Rp}122{,}825{,}000" /> is the price after <InlineMath math="3" /> years.
-- <InlineMath math="\text{Rp}140{,}000{,}000" /> takes <InlineMath math="15\,\%" /> of the original price off twice, as if the drop were a fixed <InlineMath math="\text{Rp}30{,}000{,}000" /> a year.
-- <InlineMath math="\text{Rp}170{,}000{,}000" /> is the price after <InlineMath math="1" /> year.
+The price per cubic metre changes from block to block, so first find out which block the usage falls in. Work out the bill exactly at the block limits.
+
+<BlockMath math="\begin{aligned}
+T(10)&=40{,}000+10\cdot3{,}000=70{,}000 \\
+T(30)&=70{,}000+20\cdot5{,}000=170{,}000
+\end{aligned}" />
+
+Because <InlineMath math="70{,}000<160{,}000<170{,}000" />, **the usage is in the second block**: above <InlineMath math="10\text{ m}^3" /> and no more than <InlineMath math="30\text{ m}^3" />.
+
+# Working out the usage
+
+In the second block, the bill for usage <InlineMath math="u" /> is <InlineMath math="70{,}000" /> plus <InlineMath math="5{,}000" /> for every <InlineMath math="\text{m}^3" /> above <InlineMath math="10" />.
+
+<BlockMath math="\begin{aligned}
+70{,}000+5{,}000\,(u-10)&=160{,}000 \\
+5{,}000\,(u-10)&=90{,}000 \\
+u-10&=18 \\
+u&=28
+\end{aligned}" />
+
+As a check, the bill for <InlineMath math="28\text{ m}^3" /> is <InlineMath math="40{,}000+30{,}000+90{,}000=160{,}000" />, and after the discount it's <InlineMath math="0.75\cdot160{,}000=120{,}000" />. **That's exactly the amount paid**.
+
+# Why the other options are wrong
+
+- <InlineMath math="18\text{ m}^3" /> is only the part above <InlineMath math="10\text{ m}^3" />. The first <InlineMath math="10\text{ m}^3" /> were never added back.
+- <InlineMath math="20\text{ m}^3" /> treats <InlineMath math="\text{Rp}120{,}000" /> as the bill, which means the discount was never removed.
+- <InlineMath math="24\text{ m}^3" /> uses the <InlineMath math="\text{Rp}5{,}000" /> rate for all the water, <InlineMath math="(160{,}000-40{,}000)\div5{,}000" />. But the first <InlineMath math="10\text{ m}^3" /> are cheaper.
+- <InlineMath math="26\text{ m}^3" /> adds <InlineMath math="25\%" /> of the amount paid, giving a bill of <InlineMath math="150{,}000" />. **The discount is a share of the original bill, not of the amount paid**, so the right move is dividing by <InlineMath math="0.75" />.
+
+So the customer used <InlineMath math="28\text{ m}^3" /> of water.

@@ -1,10 +1,33 @@
-Setiap kartu mempunyai kesempatan yang sama, jadi **peluang adalah banyak kartu As dibagi banyak semua kartu**.
+# Ruang sampel yang sebenarnya
 
-<BlockMath math="P(\text{As})=\frac{4}{52}=\frac{1}{13}" />
+Lemparan terakhir selalu menghasilkan dua mata dadu yang berbeda, karena hasil kembar langsung diulang. Jadi **pelemparan ulang sama saja dengan membuang hasil kembar dari ruang sampel**. Ruang sampel baru berisi semua pasangan berurutan dengan mata berbeda:
 
-Jadi, peluang terambil kartu As adalah <InlineMath math="\frac{1}{13}" />.
+<BlockMath math="n(S)=6\cdot6-6=30" />
 
-- <InlineMath math="\frac{1}{52}" /> adalah peluang terambil satu kartu As tertentu, misalnya As hati.
-- <InlineMath math="\frac{1}{26}" /> hanya menghitung <InlineMath math="2" /> kartu As.
-- <InlineMath math="\frac14" /> adalah peluang terambil kartu dari satu jenis tertentu, misalnya hati.
-- <InlineMath math="\frac{4}{13}" /> membagi <InlineMath math="4" /> kartu As dengan <InlineMath math="13" /> kartu dalam satu jenis, padahal ruang sampelnya <InlineMath math="52" /> kartu.
+Ke-<InlineMath math="30" /> hasil ini sama peluangnya. Pada setiap lemparan, masing-masing muncul dengan peluang <InlineMath math="\frac{1}{36}" />, dan pengulangan tidak memihak salah satunya. Kamu juga bisa mengeceknya dengan deret: lemparan berhenti di lemparan ke-<InlineMath math="k" /> kalau <InlineMath math="k-1" /> lemparan pertama kembar (masing-masing berpeluang <InlineMath math="\frac16" />).
+
+<BlockMath math="P=\frac{14}{36}\left(1+\frac16+\frac1{36}+\cdots\right)=\frac{14}{36}\cdot\frac{1}{1-\frac16}=\frac{14}{30}" />
+
+Angka <InlineMath math="14" /> di deret itu adalah banyak hasil berbeda yang jumlahnya prima. Bagian berikut menghitungnya.
+
+# Hasil yang jumlahnya prima
+
+Jumlah dua mata dadu berkisar dari <InlineMath math="2" /> sampai <InlineMath math="12" />, dan bilangan primanya <InlineMath math="2,\ 3,\ 5,\ 7,\ 11" />. Jumlah <InlineMath math="2" /> hanya dari <InlineMath math="(1,1)" />, yang kembar, jadi **jumlah <InlineMath math="2" /> tidak mungkin muncul di lemparan terakhir**. Hitung pasangan berurutan (dadu pertama, dadu kedua):
+
+| Jumlah | Pasangan | Banyak |
+| :---: | :--- | :---: |
+| <InlineMath math="3" /> | <InlineMath math="(1,2),\ (2,1)" /> | <InlineMath math="2" /> |
+| <InlineMath math="5" /> | <InlineMath math="(1,4),\ (4,1),\ (2,3),\ (3,2)" /> | <InlineMath math="4" /> |
+| <InlineMath math="7" /> | <InlineMath math="(1,6),\ (6,1),\ (2,5),\ (5,2),\ (3,4),\ (4,3)" /> | <InlineMath math="6" /> |
+| <InlineMath math="11" /> | <InlineMath math="(5,6),\ (6,5)" /> | <InlineMath math="2" /> |
+
+<BlockMath math="P=\frac{2+4+6+2}{30}=\frac{14}{30}=\frac{7}{15}" />
+
+Jadi, peluang jumlah mata dadu pada lemparan terakhir merupakan bilangan prima adalah <InlineMath math="\frac{7}{15}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\frac{5}{12}" /> adalah <InlineMath math="\frac{15}{36}" />, peluang jumlah prima pada satu lemparan biasa. Ini mengabaikan aturan lempar ulang dan masih menghitung <InlineMath math="(1,1)" />.
+- <InlineMath math="\frac{7}{18}" /> adalah <InlineMath math="\frac{14}{36}" />. Hasil kembar sudah dibuang dari pembilang, tetapi **penyebutnya masih <InlineMath math="36" />**, padahal hasil kembar tidak pernah menjadi lemparan terakhir.
+- <InlineMath math="\frac{7}{30}" /> muncul kalau pasangan dihitung tanpa urutan, misalnya <InlineMath math="\{1,2\}" /> hanya sekali, sehingga ada <InlineMath math="7" /> pasangan, tetapi penyebutnya memakai <InlineMath math="30" /> hasil berurutan.
+- <InlineMath math="\frac{7}{36}" /> menggabungkan dua kekeliruan: pasangan tanpa urutan di pembilang dan <InlineMath math="36" /> hasil di penyebut.

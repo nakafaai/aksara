@@ -14,24 +14,22 @@ import { defineExamSource } from "#corpus/tryout/schema";
 const entranceTryoutCatalog = defineExamSource({
   ...germanyTryoutCountry,
   examKey: "entrance-examination",
+  examName: "Aufnahmeprüfung",
   examOrder: 1,
   examRouteSlugs: {
     de: "aufnahmepruefung",
-    en: "entrance-examination",
-    id: "ujian-masuk",
+    en: "aufnahmepruefung",
+    id: "aufnahmepruefung",
   },
   examTranslations: {
     de: {
       description: "Probetests für die Aufnahmeprüfungen der Studienkollegs.",
-      title: "Aufnahmeprüfung",
     },
     en: {
-      description: "Try-outs for the entrance examinations of Studienkollegs.",
-      title: "Entrance Examination",
+      description: "Try-outs for the Aufnahmeprüfung of the Studienkollegs.",
     },
     id: {
-      description: "Try out ujian masuk Studienkolleg di Jerman.",
-      title: "Ujian Masuk",
+      description: "Try out Aufnahmeprüfung Studienkolleg di Jerman.",
     },
   },
   grouping: {

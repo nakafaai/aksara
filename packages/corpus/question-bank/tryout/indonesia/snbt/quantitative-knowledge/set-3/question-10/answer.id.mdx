@@ -1,21 +1,37 @@
-Segi empat <InlineMath math="DBCE" /> adalah segitiga <InlineMath math="ABC" /> dikurangi segitiga <InlineMath math="ADE" />. Jadi cukup hitung luas <InlineMath math="ADE" />, yang **berbagi sudut <InlineMath math="A" />** dengan segitiga <InlineMath math="ABC" />.
+Ruang sampelnya adalah semua pilihan tiga titik dari tujuh titik, termasuk pilihan yang **tidak membentuk segitiga**. Rencananya: hitung ruang sampel, lalu kelompokkan setiap pilihan menurut letak <InlineMath math="O" /> terhadap segitiganya.
 
-# Perbandingan luas dengan sudut sama
+# Banyak anggota ruang sampel
 
-Luas segitiga dapat ditulis sebagai <InlineMath math="\tfrac12\cdot\text{sisi}\cdot\text{sisi}\cdot\sin A" />. Karena sudut <InlineMath math="A" /> sama, perbandingan luasnya adalah **hasil kali perbandingan kedua sisi yang mengapit sudut itu**.
+Urutan pemilihan tidak penting, jadi banyak pilihannya adalah kombinasi.
 
-<BlockMath math="\frac{[ADE]}{[ABC]}=\frac{\tfrac12\,AD\cdot AE\sin A}{\tfrac12\,AB\cdot AC\sin A}=\frac{AD}{AB}\cdot\frac{AE}{AC}" />
+<BlockMath math="\binom{7}{3}=\frac{7\cdot 6\cdot 5}{3\cdot 2\cdot 1}=35" />
 
-Dari <InlineMath math="AD:DB=1:2" /> diperoleh <InlineMath math="\frac{AD}{AB}=\frac13" />, dan dari <InlineMath math="AE:EC=3:1" /> diperoleh <InlineMath math="\frac{AE}{AC}=\frac34" />.
+Ke-<InlineMath math="35" /> pilihan ini berpeluang sama, jadi peluangnya nanti adalah **banyak pilihan yang cocok dibagi <InlineMath math="35" />**.
 
-<BlockMath math="[ADE]=\frac13\cdot\frac34\cdot48=12" />
+# Pilihan yang memuat titik pusat
 
-# Menghitung luas segi empat
+Ada <InlineMath math="\binom{6}{2}=15" /> pilihan yang memuat <InlineMath math="O" /> dan dua titik sudut. Tiga di antaranya segaris, yaitu <InlineMath math="O" /> bersama pasangan titik yang berhadapan <InlineMath math="A" /> dan <InlineMath math="D" />, <InlineMath math="B" /> dan <InlineMath math="E" />, atau <InlineMath math="C" /> dan <InlineMath math="F" />, jadi tidak membentuk segitiga. Sisanya <InlineMath math="12" /> segitiga yang **menjadikan <InlineMath math="O" /> titik sudut**, bukan titik di dalam. Tidak ada satu pun dari <InlineMath math="15" /> pilihan ini yang cocok.
 
-Segi empat itu adalah **sisa segitiga setelah <InlineMath math="ADE" /> dibuang**.
+# Pilihan tiga titik sudut
 
-<BlockMath math="[DBCE]=48-12=36\text{ cm}^2" />
+Ada <InlineMath math="\binom{6}{3}=20" /> segitiga yang titik sudutnya diambil dari segi enam. Kelompokkan menurut sisinya.
 
-Nilai 12 adalah luas segitiga <InlineMath math="ADE" />, belum dikurangkan dari 48. Nilai 30 membaca <InlineMath math="AD:DB=1:2" /> sebagai <InlineMath math="\frac{AD}{AB}=\frac12" />. Nilai 44 memakai <InlineMath math="\frac{AE}{AC}=\frac14" />, yaitu bagian <InlineMath math="EC" />, bukan <InlineMath math="AE" />. Nilai 24 hanya mengambil setengah luas segitiga.
+| Jenis segitiga | Banyak | Letak <InlineMath math="O" /> |
+| :--- | :---: | :---: |
+| Memuat diagonal panjang, misalnya <InlineMath math="ABD" /> | <InlineMath math="3\cdot 4=12" /> | pada sisi |
+| Tiga titik berurutan, misalnya <InlineMath math="ABC" /> | <InlineMath math="6" /> | di luar |
+| Sama sisi, yaitu <InlineMath math="ACE" /> dan <InlineMath math="BDF" /> | <InlineMath math="2" /> | di dalam |
 
-Jadi, luas segi empat <InlineMath math="DBCE" /> adalah **<InlineMath math="36\text{ cm}^2" />**.
+Diagonal panjang melewati <InlineMath math="O" />, jadi segitiga yang memakai diagonal itu sebagai sisi memuat <InlineMath math="O" /> tepat di sisinya. Tiga titik berurutan terletak di satu sisi garis yang menghubungkan dua titik ujungnya, dan garis itu tidak melewati <InlineMath math="O" />, jadi <InlineMath math="O" /> berada di luar. **Hanya segitiga sama sisi <InlineMath math="ACE" /> dan <InlineMath math="BDF" />** yang memuat <InlineMath math="O" /> di dalamnya, karena pusat segitiga sama sisi itu tepat di <InlineMath math="O" />.
+
+# Peluang dan pemeriksaannya
+
+<BlockMath math="P=\frac{2}{35}" />
+
+Cek bahwa semua pilihan sudah terhitung: <InlineMath math="3" /> pilihan segaris, <InlineMath math="12" /> dengan <InlineMath math="O" /> sebagai titik sudut, <InlineMath math="12" /> dengan <InlineMath math="O" /> pada sisi, <InlineMath math="6" /> dengan <InlineMath math="O" /> di luar, dan <InlineMath math="2" /> dengan <InlineMath math="O" /> di dalam. Jumlahnya <InlineMath math="3+12+12+6+2=35" />, **sama dengan ruang sampel**.
+
+# Memeriksa pilihan lain
+
+Pilihan <InlineMath math="\tfrac{1}{10}=\tfrac{2}{20}" /> hanya memakai <InlineMath math="20" /> segitiga dari titik sudut dan **lupa bahwa <InlineMath math="O" /> juga bisa terpilih**. Pilihan <InlineMath math="\tfrac{1}{16}=\tfrac{2}{32}" /> membuang <InlineMath math="3" /> pilihan segaris dari ruang sampel, padahal pilihan itu tetap mungkin terjadi. Pilihan <InlineMath math="\tfrac{2}{5}=\tfrac{14}{35}" /> ikut menghitung <InlineMath math="12" /> segitiga yang memuat <InlineMath math="O" /> pada sisinya. Pilihan <InlineMath math="\tfrac{26}{35}" /> menghitung setiap segitiga yang menyentuh <InlineMath math="O" />, yaitu <InlineMath math="2+12+12" />.
+
+Jadi, peluang segitiga yang terbentuk memuat <InlineMath math="O" /> di bagian dalamnya adalah <InlineMath math="\tfrac{2}{35}" />.

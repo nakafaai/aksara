@@ -1,17 +1,27 @@
-The two transformations happen in sequence, so **their order must be kept**: reflect first, then translate.
+Both quantities count arrangements of letters under a condition, so work each one out completely, then compare. The key is **how each condition changes which letters are free to move**, and each quantity has one condition that's easy to miss.
 
-# Reflection in the line y equals x
+# Counting P
 
-Reflection in the line <InlineMath math="y=x" /> **swaps the two coordinates**, <InlineMath math="(x,y)\mapsto(y,x)" />.
+The word SEPATU has <InlineMath math="6" /> different letters: the vowels A, E, U and the consonants S, P, T. The first letter has to be a consonant, so there are <InlineMath math="3" /> choices. The other <InlineMath math="5" /> positions hold <InlineMath math="2" /> consonants and <InlineMath math="3" /> vowels. Pick <InlineMath math="3" /> positions for the vowels, fill them in the order A, E, U in just <InlineMath math="1" /> way, then arrange the <InlineMath math="2" /> remaining consonants.
 
-<BlockMath math="A(4,-2)\ \mapsto\ A'(-2,4)" />
+<BlockMath math="P=3\times\binom{5}{3}\times1\times2!=3\times10\times2=60" />
 
-# Translation
+Check it another way. Without the consonant at the front, **locking the order of the vowels works like treating the three vowels as identical**, so there are <InlineMath math="\tfrac{6!}{3!}=120" /> arrangements. The first letter can only be a vowel if it's A, because A has to come before E and U. There are <InlineMath math="\tfrac{5!}{2!}=60" /> arrangements starting with A, so <InlineMath math="120-60=60" /> start with a consonant.
 
-The translation <InlineMath math="\begin{pmatrix}-3\\5\end{pmatrix}" /> adds <InlineMath math="-3" /> to the <InlineMath math="x" />-coordinate and 5 to the <InlineMath math="y" />-coordinate, matching **its top and bottom components**.
+# Counting Q
 
-<BlockMath math="A'(-2,4)\ \mapsto\ A''(-2-3,\ 4+5)=A''(-5,9)" />
+The word PERMATA is made of P, E, R, M, A, T, A. The first and last letters can only match if that letter appears at least <InlineMath math="2" /> times. **Only the letter A appears more than once**, so both ends have to be A. The <InlineMath math="5" /> middle letters are P, E, R, M, T, all different.
 
-The option <InlineMath math="(3,1)" /> translates first and then reflects. The option <InlineMath math="(1,-1)" /> flips the signs of the translation. The option <InlineMath math="(1,7)" /> reflects in the <InlineMath math="x" />-axis, and the option <InlineMath math="(-1,1)" /> reflects in the line <InlineMath math="y=-x" />.
+<BlockMath math="Q=1\times5!\times1=120" />
 
-So the final image of <InlineMath math="A" /> is <InlineMath math="(-5,9)" />.
+# Comparing
+
+You have <InlineMath math="Q=120" /> and <InlineMath math="P=60" />, so **<InlineMath math="Q" /> is twice <InlineMath math="P" />**, and the correct relationship is <InlineMath math="Q>P" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="P=Q" /> comes from forgetting the consonant at the front of <InlineMath math="P" />, which gives <InlineMath math="P=120" />, or from still dividing <InlineMath math="Q" /> by <InlineMath math="2!" />, which gives <InlineMath math="Q=60" /> even though both A's are already used at the ends.
+- <InlineMath math="P>Q" /> comes from ignoring the vowel order in <InlineMath math="P" />, which gives <InlineMath math="P=3\times5!=360" />.
+- The option that says the information isn't enough is wrong, because both quantities are **definite numbers you can count fully**.
+
+So the arrangements in <InlineMath math="Q" /> are more numerous: <InlineMath math="Q=120" /> and <InlineMath math="P=60" />, which means <InlineMath math="Q>P" />.

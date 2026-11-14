@@ -1,3 +1,32 @@
-Diketahui fungsi <InlineMath math="f(x)=(k-2)x+k" /> untuk setiap bilangan real <InlineMath math="x" />, dengan <InlineMath math="k" /> bilangan real.
+Grafik fungsi kuadrat <InlineMath math="g(x)=ax^2+bx+c" /> dengan <InlineMath math="a<0" /> memotong sumbu <InlineMath math="x" /> di titik <InlineMath math="(p,0)" /> dan <InlineMath math="(q,0)" />. Yang diketahui tentang kedua titik itu hanyalah <InlineMath math="-1<p<0" /> dan <InlineMath math="1<q<2" />. Gambar berikut hanya sketsa dan tidak berskala.
 
-Pilih semua pernyataan yang benar.
+<MathVisual
+  title={<>Sketsa grafik <InlineMath math="g" /></>}
+  description={<>Parabola terbuka ke bawah dan memotong sumbu <InlineMath math="x" /> di dua titik, <InlineMath math="(p,0)" /> di kiri sumbu <InlineMath math="y" /> dan <InlineMath math="(q,0)" /> di kanan sumbu <InlineMath math="y" />. Sketsa ini hanya satu contoh bentuk grafik yang memenuhi <InlineMath math="-1<p<0" /> dan <InlineMath math="1<q<2" />.</>}
+  labels={{
+    p: <InlineMath math="p" />,
+    q: <InlineMath math="q" />,
+    curve: <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 2.5 },
+      y: { min: -1.5, max: 1.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "graph", kind: "quadratic", appearance: "primary", coefficients: { a: -1, b: 1.2, c: 0.64 }, domain: { min: -0.8, max: 2 }, inputAxis: "x" },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: -0.4, y: 0 } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 1.6, y: 0 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point-p", at: { x: -0.4, y: 0 }, placement: "below-left" },
+      { key: "q", objectId: "point-q", at: { x: 1.6, y: 0 }, placement: "below-right" },
+      { key: "curve", objectId: "graph", at: { x: 0.6, y: 1 }, placement: "above" },
+    ],
+  }}
+/>
+
+Pilih semua pernyataan yang pasti benar.

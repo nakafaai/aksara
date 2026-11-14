@@ -1,13 +1,48 @@
-Each statement compares two quantities, so **put them in the same unit first**, then work out the ratio or the difference.
+# Basic data from the reading
+
+All three statements use the same data, so put it in liters first. Tap P gives <InlineMath math="24" /> liters per minute, tap Q gives <InlineMath math="\tfrac{1}{75}\cdot1{,}200=16" /> liters per minute, and the leak loses <InlineMath math="\tfrac{1}{150}\cdot1{,}200=8" /> liters per minute. The tank is an upright cylinder, so a crack at <InlineMath math="\tfrac{2}{5}" /> of the height means a volume of <InlineMath math="480" /> liters. **Water only leaks while the tank holds more than <InlineMath math="480" /> liters**.
+
+In the reading, tap P alone reaches the crack at 6:20 (written 06.20), after <InlineMath math="480\div24=20" /> minutes. From 6:20 to 6:25 the net rate is <InlineMath math="24-8=16" /> liters per minute, and once tap Q opens it's <InlineMath math="24+16-8=32" /> liters per minute:
 
 <BlockMath math="\begin{aligned}
-\frac{83.5}{128}&\approx0.6523=65.23\,\% \\
-\frac{375}{90}&\approx4.17 \\
-120\cdot375&=45{,}000\text{ MB}>44{,}500\text{ MB} \\
-83.5-\frac{2{,}000\cdot4.5}{1{,}000}&=83.5-9=74.5\text{ GB}
+\text{volume at 6:25}&=480+16\cdot5=560\text{ liters} \\
+\text{time until full}&=\frac{1{,}200-560}{32}=20\text{ minutes}
 \end{aligned}" />
 
-- About <InlineMath math="65.23\,\%" /> of the memory is in use, just above <InlineMath math="65\,\%" />. This statement is true.
-- One minute of 4K video is about <InlineMath math="4.17" /> times one minute of HD video. This statement is true.
-- Two hours of 4K video need <InlineMath math="45{,}000" /> MB, but only <InlineMath math="44{,}500" /> MB are free. This statement is false.
-- Deleting <InlineMath math="2{,}000" /> photos frees <InlineMath math="9\text{ GB}" />, so the used memory becomes <InlineMath math="74.5\text{ GB}" />, which is not below <InlineMath math="70\text{ GB}" />. This statement is false.
+So in the reading the tank is full at 6:45.
+
+# Statement one
+
+Once both taps are closed, water only leaves through the crack, <InlineMath math="8" /> liters per minute. This leak **stops when the water surface drops to the crack**, that is, when <InlineMath math="480" /> liters are left.
+
+<BlockMath math="\text{time spent dropping}=\frac{1{,}200-480}{8}=90\text{ minutes}" />
+
+Ninety minutes after 6:45 is 8:15. After that the volume stays at <InlineMath math="480" /> liters. This statement is **True**. If you assume the tank leaks until it's empty, you get <InlineMath math="1{,}200\div8=150" /> minutes and think the level only stops dropping at 9:15.
+
+# Statement two
+
+The word **pasti** (certainly) means the claim has to hold for every opening time of tap Q that's still before the tank is full. Look for the worst case, which is opening tap Q very late. Without tap Q at all, the tank is full at
+
+<BlockMath math="\text{6:20}+\frac{1{,}200-480}{24-8}\text{ minutes}=\text{6:20}+45\text{ minutes}=\text{7:05}" />
+
+So tap Q could still be opened at, say, 6:59, while the tank isn't full yet. Work out that case:
+
+<BlockMath math="\begin{aligned}
+\text{volume at 6:59}&=480+16\cdot39=1{,}104\text{ liters} \\
+\text{time until full}&=\frac{1{,}200-1{,}104}{32}=3\text{ minutes}
+\end{aligned}" />
+
+The tank is only full at 7:02, after 7:00. One example like this is enough to break the word certainly. This statement is **False**. The correct bound is before 7:05, because the later tap Q opens, the closer the full time gets to 7:05.
+
+# Statement three
+
+If tap P stops at 6:25, the tank still holds <InlineMath math="560" /> liters at that moment, just as in the reading. After that only tap Q fills it, while the leak keeps going because the water is above the crack. **The net rate is still positive**:
+
+<BlockMath math="\begin{aligned}
+\text{net rate}&=16-8=8\text{ liters per minute} \\
+\text{time until full}&=\frac{1{,}200-560}{8}=80\text{ minutes}
+\end{aligned}" />
+
+Eighty minutes after 6:25 is 7:45, so the tank still fills up at that time. This statement is **True**. If you forget the leak, you get <InlineMath math="640\div16=40" /> minutes, which is 7:05.
+
+So the answers are True, False, True.

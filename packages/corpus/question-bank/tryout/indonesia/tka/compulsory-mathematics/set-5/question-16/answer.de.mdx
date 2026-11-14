@@ -1,15 +1,69 @@
-Von der Seite gesehen, entlang der <InlineMath math="25\text{ m}" />, bildet das Wasser ein **rechtwinkliges Trapez** mit den parallelen Seiten <InlineMath math="1\text{ m}" /> und <InlineMath math="2\text{ m}" />. Dieser Querschnitt ist über die ganze Breite gleich, also ist das Wasser ein Prisma mit Trapez als Grundfläche und <InlineMath math="10\text{ m}" /> Länge.
+# Eine praktische Einheit
+
+Gefragt ist, wie viel Wasser noch hineinmuss, von einer Wasseroberfläche <InlineMath math="0{,}3\text{ m}" /> über der Kegelspitze bis zur Sicherheitslinie. Dieses Wasser füllt zwei Teile: **den Rest des Kegels über dem vorhandenen Wasser** und danach den Zylinder bis zur Sicherheitslinie.
+
+Rechne in Dezimetern, denn <InlineMath math="1\text{ dm}^3=1" /> Liter. Der Radius ist <InlineMath math="r=7\text{ dm}" />, der Kegel ist <InlineMath math="6\text{ dm}" /> hoch, der Zylinder <InlineMath math="15\text{ dm}" />, und die Sicherheitslinie liegt <InlineMath math="3\text{ dm}" /> unter dem oberen Rand. Zylinder und Kegel haben dieselbe Grundfläche:
+
+<BlockMath math="\pi r^2=\frac{22}{7}\cdot7^2=154\text{ dm}^2" />
+
+# Der leere Teil des Kegels
+
+Der volle Kegel fasst <InlineMath math="\tfrac13\cdot154\cdot6=308" /> Liter. Das vorhandene Wasser bildet einen kleinen Kegel mit <InlineMath math="3\text{ dm}" /> Höhe, also der halben Höhe des großen Kegels. Der kleine Kegel ist dem großen ähnlich, deshalb ist auch sein Radius halb so groß, <InlineMath math="3{,}5\text{ dm}" />. Weil Höhe und Radius beide mit <InlineMath math="\tfrac12" /> multipliziert werden, **wird das Volumen mit <InlineMath math="\left(\tfrac12\right)^3=\tfrac18" /> multipliziert**, nicht mit <InlineMath math="\tfrac12" />.
 
 <BlockMath math="\begin{aligned}
-L_{\text{Trapez}}&=\frac{1+2}{2}\cdot25=37{,}5\text{ m}^2 \\
-V&=37{,}5\cdot10=375\text{ m}^3
+V_{\text{Anfang}}&=\tfrac18\cdot308=38{,}5\text{ Liter} \\
+\text{Probe}&:\ \tfrac13\cdot\tfrac{22}{7}\cdot3{,}5^2\cdot3=38{,}5\text{ Liter} \\
+V_{\text{Kegelrest}}&=308-38{,}5=269{,}5\text{ Liter}
 \end{aligned}" />
 
-Das ist dasselbe, wie mit der mittleren Tiefe <InlineMath math="1{,}5\text{ m}" /> über die ganze Fläche von <InlineMath math="25\cdot10=250\text{ m}^2" /> zu rechnen.
+<MathVisual
+  title={<>Das Wasser am Anfang im Kegel</>}
+  description={<>Der Querschnitt des Tanks wie in der Abbildung der Aufgabe. Das Anfangswasser füllt ein kleines Dreieck an der Kegelspitze, <InlineMath math="0{,}3\text{ m}" /> hoch, also halb so hoch wie der Kegel, mit einer <InlineMath math="0{,}7\text{ m}" /> breiten Oberfläche. Die Sicherheitslinie liegt <InlineMath math="0{,}3\text{ m}" /> unter dem oberen Rand des Zylinders.</>}
+  labels={{
+    water: <InlineMath math="0{,}3\text{ m}" />,
+    surface: <InlineMath math="0{,}7\text{ m}" />,
+    safe: <>Sicherheitslinie</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -16, max: 20 },
+      y: { min: -2, max: 24 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tank", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 7, y: 6 }, { x: 7, y: 21 }, { x: -7, y: 21 }, { x: -7, y: 6 }] },
+      { id: "water", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3.5, y: 3 }, { x: -3.5, y: 3 }] },
+      { id: "junction", kind: "segment", appearance: "construction", from: { x: -7, y: 6 }, to: { x: 7, y: 6 } },
+      { id: "water-height", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "safe-line", kind: "segment", appearance: "warning", from: { x: -7, y: 18 }, to: { x: 7, y: 18 } },
+    ],
+    labels: [
+      { key: "water", objectId: "water-height", at: { x: 0, y: 1.5 }, placement: "right" },
+      { key: "surface", objectId: "water", at: { x: -3.5, y: 3 }, placement: "left" },
+      { key: "safe", objectId: "safe-line", at: { x: 7, y: 18 }, placement: "right" },
+    ],
+  }}
+/>
 
-Das volle Becken enthält also <InlineMath math="375\text{ m}^3" /> Wasser.
+# Der Zylinder bis zur Sicherheitslinie
 
-- <InlineMath math="125\text{ m}^3" /> zählt nur das Wasser unterhalb von <InlineMath math="1\text{ m}" /> Tiefe, das Dreiecksprisma <InlineMath math="\tfrac12\cdot25\cdot1\cdot10" />.
-- <InlineMath math="187{,}5\text{ m}^3" /> halbiert die Trapezfläche ein zweites Mal.
-- <InlineMath math="250\text{ m}^3" /> nimmt das ganze Becken als <InlineMath math="1\text{ m}" /> tief an.
-- <InlineMath math="500\text{ m}^3" /> nimmt das ganze Becken als <InlineMath math="2\text{ m}" /> tief an.
+Im Zylinder steigt das Wasser vom Boden des Zylinders bis <InlineMath math="3\text{ dm}" /> unter den oberen Rand. **Das Wasser im Zylinder steht also nur <InlineMath math="15-3=12\text{ dm}" /> hoch**, nicht über die ganze Zylinderhöhe.
+
+<BlockMath math="V_{\text{Zylinder}}=154\cdot12=1{.}848\text{ Liter}" />
+
+# Die gesamte Pumpmenge
+
+<BlockMath math="269{,}5+1{.}848=2{.}117{,}5\text{ Liter}" />
+
+Prüf, ob das stimmt. Ein Tank, der bis zur Sicherheitslinie gefüllt ist, enthält <InlineMath math="308+1{.}848=2{.}156" /> Liter, und am Anfang waren <InlineMath math="38{,}5" /> Liter drin. Die Differenz ist <InlineMath math="2{.}156-38{,}5=2{.}117{,}5" /> Liter, **dasselbe Ergebnis**.
+
+Es müssen also <InlineMath math="2{.}117{,}5" /> Liter Wasser hineingepumpt werden.
+
+# Warum die anderen Optionen falsch sind
+
+- <InlineMath math="2{.}002" /> Liter nimmt an, dass Wasser bis zur halben Kegelhöhe das halbe Kegelvolumen füllt, also <InlineMath math="154" /> Liter. Bei ähnlichen Körpern **ändert sich das Volumen mit der dritten Potenz des Höhenverhältnisses**.
+- <InlineMath math="2{.}156" /> Liter vergisst, die <InlineMath math="38{,}5" /> Liter abzuziehen, die schon im Kegel sind.
+- <InlineMath math="2{.}579{,}5" /> Liter füllt den Zylinder bis zum oberen Rand, <InlineMath math="154\cdot15=2{.}310" /> Liter, obwohl das Wasser nur bis zur Sicherheitslinie reichen darf.
+- <InlineMath math="2{.}656{,}5" /> Liter vergisst den Faktor <InlineMath math="\tfrac13" /> beim Kegelvolumen. Dann zählt der Kegel <InlineMath math="924" /> Liter und der leere Teil <InlineMath math="924-115{,}5=808{,}5" /> Liter.
