@@ -35,6 +35,20 @@ export const SectionVisibilitySchema = Schema.Literals([
 ]);
 
 /** What every row of the catalog says in one app locale. */
+/**
+ * How hard a set is, measured by Aksara's difficulty panel against the real
+ * exam and published with the set, never picked by hand. The scale starts at
+ * the real exam: easy is the real exam's own level, and medium, hard and
+ * cooked climb above it, in this order.
+ */
+export const SetLevelSchema = Schema.Literals([
+  "easy",
+  "medium",
+  "hard",
+  "cooked",
+]);
+export type SetLevel = typeof SetLevelSchema.Type;
+
 const LocalizedFields = {
   appLocale: AppLocaleSchema,
   description: Schema.optionalKey(Schema.String),
@@ -94,8 +108,8 @@ export const CatalogTrackSchema = Schema.Struct({
 });
 
 /**
- * One localized set of a track, and the paper a learner sits for it, by
- * identifier and hash. A set whose only section is entered from the set names
+ * One localized set of a track, its measured level, and the paper a learner
+ * sits for it, by identifier and hash. A set whose only section is entered from the set names
  * that section.
  */
 export const CatalogSetSchema = Schema.Struct({
@@ -103,6 +117,7 @@ export const CatalogSetSchema = Schema.Struct({
   ...SetFields,
   internalEntrySectionKey: Schema.optionalKey(KebabKeySchema),
   kind: Schema.Literal("set"),
+  level: SetLevelSchema,
   order: PositiveCountSchema,
   paper: Schema.Struct({ hash: Sha256HashSchema, id: PaperIdSchema }),
   publicPath: PublicPathSchema,
