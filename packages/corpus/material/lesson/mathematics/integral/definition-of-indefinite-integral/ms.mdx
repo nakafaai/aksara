@@ -1,0 +1,129 @@
+export const metadata = {
+    title: "Definisi Kamiran Tak Tentu",
+  description: "Kamiran tak tentu merangkumi semua antiterbitan yang berbeza dengan satu pemalar pengamiran.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-05-26",
+    dateModified: "2026-11-08",
+    subject: "Pengamiran",
+};
+
+## Mendapatkan Semula Kedudukan daripada Halaju
+
+[Pembezaan](/ms/subjek/matematik/pembezaan/terbitan-sebagai-kadar-perubahan) menukar fungsi kedudukan <InlineMath math="s(t)" /> kepada halajunya, <InlineMath math="v(t)=s'(t)" />. **Antipembezaan** menyongsangkan proses ini. Daripada <InlineMath math="v(t)" />, kita cari setiap fungsi kedudukan yang terbitannya sama dengan <InlineMath math="v(t)" />. Kedudukan awal masih diperlukan untuk memilih satu fungsi kedudukan yang tertentu.
+
+## Peranan Pemalar Pengamiran
+
+Kita sedang mencari fungsi yang terbitannya ialah <InlineMath math="4x" />. Jadual di bawah membandingkan empat calon. Perhatikan bahawa **pemalar yang berbeza** tetap memberikan terbitan yang sama.
+
+| Fungsi <InlineMath math="F(x)" /> | Terbitan <InlineMath math="f(x) = F'(x)" /> |
+| :--- | :--- |
+| <InlineMath math="F(x) = 2x^2 + 1" /> | <InlineMath math="f(x) = 4x" /> |
+| <InlineMath math="F(x) = 2x^2 + 5" /> | <InlineMath math="f(x) = 4x" /> |
+| <InlineMath math="F(x) = 2x^2 - 10" /> | <InlineMath math="f(x) = 4x" /> |
+| <InlineMath math="F(x) = 2x^2" /> | <InlineMath math="f(x) = 4x" /> |
+
+Keempat-empat fungsi <InlineMath math="F(x)" /> mempunyai terbitan yang sama, iaitu <InlineMath math="f(x) = 4x" />. Sebabnya, <Highlight>terbitan bagi pemalar</Highlight>, seperti <InlineMath math="1" />, <InlineMath math="5" />, atau <InlineMath math="-10" />, ialah sifar.
+
+Terbitan tidak menyimpan pemalar daripada fungsi asal. Terbitan tidak dapat memberitahu kita sama ada pemalar asalnya <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="-1000" />, atau nilai lain. Simbol <InlineMath math="C" /> mewakili setiap pemalar yang mungkin. Oleh itu, kamiran tak tentu merangkumi semua antiterbitan yang hanya berbeza pada pemalarnya.
+
+Kesimpulan tentang beza pemalar ini berlaku pada **satu selang** tempat antiterbitan itu tertakrif. Bagi polinomial ini, selang itu boleh merangkumi semua nombor nyata.
+
+## Membandingkan Graf Antiterbitan
+
+Tiga parabola ini mewakili <InlineMath math="2x^2" />, <InlineMath math="2x^2+1" />, dan <InlineMath math="2x^2+5" />. Pada nilai <InlineMath math="x" /> yang sama, tingginya berbeza tetapi kecerunan tangennya sama. Gerakkan atau putarkan paparan untuk membandingkan bentuk lengkung-lengkung itu.
+
+<MathVisual
+  title={<>Antiterbitan yang berbeza dengan satu pemalar</>}
+  description={<>Lengkung ungu <InlineMath math="y = 2x^2" /> mempunyai pemalar <InlineMath math="0" />, lengkung jingga <InlineMath math="y = 2x^2 + 1" /> pemalar <InlineMath math="1" />, dan lengkung hijau kebiruan <InlineMath math="y = 2x^2 + 5" /> pemalar <InlineMath math="5" />. Pada <InlineMath math="x = 1" />, tingginya ialah <InlineMath math="2" />, <InlineMath math="3" /> dan <InlineMath math="7" />.</>}
+  labels={{
+    c0: <InlineMath math="C = 0" />,
+    c1: <InlineMath math="C = 1" />,
+    c5: <InlineMath math="C = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -0.6, max: 9.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c0", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 0 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "secondary" },
+      { id: "c1", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 1 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "primary" },
+      { id: "c5", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 5 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "construction" },
+      { id: "h0", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "h1", kind: "point", at: { x: 1, y: 3 }, appearance: "primary" },
+      { id: "h5", kind: "point", at: { x: 1, y: 7 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "c0", objectId: "c0", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "c1", objectId: "c1", at: { x: 0, y: 1 }, placement: "below" },
+      { key: "c5", objectId: "c5", at: { x: 0, y: 5 }, placement: "below" },
+    ],
+  }}
+/>
+
+Menukar pemalar menghasilkan **translasi mencancang**. Sebagai contoh, pada <InlineMath math="x=1" />, nilai fungsinya ialah <InlineMath math="2" />, <InlineMath math="3" />, dan <InlineMath math="7" />, manakala ketiga-tiga terbitannya bernilai <InlineMath math="4" />.
+
+Lukis tangen pada <InlineMath math="x = 1" /> bagi setiap lengkung. Ketiga-tiga tangen mempunyai kecerunan <InlineMath math="4" />, kerana setiap antiterbitan bagi <InlineMath math="4x" /> mempunyai terbitan yang sama. Hanya tingginya, <InlineMath math="2" />, <InlineMath math="3" /> dan <InlineMath math="7" />, yang berbeza, jadi tangen-tangen itu selari.
+
+<MathVisual
+  title={<>Tangen selari pada <InlineMath math="x = 1" /></>}
+  description={<>Lengkung <InlineMath math="y = 2x^2 + C" /> bagi <InlineMath math="C = 0, 1, 5" /> bersama tangennya yang berkecerunan <InlineMath math="4" /> pada <InlineMath math="x = 1" />.</>}
+  labels={{
+    c0: <InlineMath math="C = 0" />,
+    c1: <InlineMath math="C = 1" />,
+    c5: <InlineMath math="C = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -0.6, max: 9.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c0", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 0 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "secondary" },
+      { id: "c1", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 1 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "primary" },
+      { id: "c5", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 5 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "construction" },
+      { id: "t0", kind: "segment", from: { x: 1 / 2, y: 0 }, to: { x: 3 / 2, y: 4 }, appearance: "secondary" },
+      { id: "t1", kind: "segment", from: { x: 1 / 2, y: 1 }, to: { x: 3 / 2, y: 5 }, appearance: "primary" },
+      { id: "t5", kind: "segment", from: { x: 1 / 2, y: 5 }, to: { x: 3 / 2, y: 9 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "c0", objectId: "c0", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "c1", objectId: "c1", at: { x: 0, y: 1 }, placement: "below" },
+      { key: "c5", objectId: "c5", at: { x: 0, y: 5 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Tatatanda Formal Kamiran
+
+Tatatanda berikut menunjukkan kamiranan, pemboleh ubah pengamiran, antiterbitan, dan pemalar pengamiran:
+
+<BlockMath math="\int f(x) \, dx = F(x) + C" />
+
+Setiap bahagian mempunyai peranan yang khusus:
+- <InlineMath math="\int" /> ialah **simbol kamiran**. Bentuknya berasal daripada huruf S yang dipanjangkan, sempena perkataan Latin *summa* yang bermaksud hasil tambah.
+- <InlineMath math="f(x)" /> ialah fungsi yang akan kita kamirkan, dan fungsi ini dipanggil **kamiranan**.
+- <InlineMath math="dx" /> dipanggil **pembeza** bagi <InlineMath math="x" />. Simbol ini menunjukkan bahawa pengamiran dilakukan terhadap <InlineMath math="x" />. Tanpanya, ungkapan kamiran itu tidak lengkap.
+- <InlineMath math="F(x) + C" /> ialah **kamiran tak tentu** bagi <InlineMath math="f(x)" />. Inilah jawapan kita, dengan <InlineMath math="F(x)" /> sebagai antiterbitan dan <InlineMath math="C" /> sebagai **pemalar pengamiran**.
+
+Hubungan yang menjadi takrifnya ialah:
+
+<BlockMath math="\begin{aligned} &amp;\frac{d}{dx} [F(x)] = f(x) \\ &amp;\iff \\ &amp;\int f(x) \, dx = F(x) + C \end{aligned}" />
+
+> Jika terbitan bagi <InlineMath math="F(x)" /> ialah <InlineMath math="f(x)" />, maka kamiran tak tentu bagi <InlineMath math="f(x)" /> merangkumi setiap fungsi yang berbentuk <InlineMath math="F(x) + C" />.
+
+## Mencari Pemalar daripada Satu Nilai Fungsi
+
+Katakan <InlineMath math="F'(x)=4x" /> dan <InlineMath math="F(1)=7" />. Antiterbitan amnya ialah <InlineMath math="F(x)=2x^2+C" />. **Nilai fungsi yang diketahui** menentukan pemalar yang diperlukan:
+
+<BlockMath math="\begin{aligned}F(1)&=2(1)^2+C=7\\2+C&=7\\C&=5\end{aligned}" />
+
+Jadi, <InlineMath math="F(x)=2x^2+5" />. Semak kedua-dua syarat: terbitan bagi <InlineMath math="2x^2+5" /> ialah <InlineMath math="4x" />, dan <InlineMath math="F(1)=2+5=7" />. Satu nilai fungsi memilih satu lengkung daripada semua antiterbitan pada selang yang sama.
+
+Uji empat antiterbitan daripada jadual tadi dengan syarat <InlineMath math="F(1) = 7" />. Nilai <InlineMath math="F(1) = 2 + C" /> bagi setiap satu ialah <InlineMath math="3" />, <InlineMath math="7" />, <InlineMath math="-8" /> dan <InlineMath math="2" />, dan hanya <InlineMath math="C = 5" /> yang memberikan <InlineMath math="7" />.
+
+<BarChart
+  title={<>Pemalar mana yang memberikan <InlineMath math="F(1) = 7" /></>}
+  description={<>Palang <InlineMath math="F(1) = 2 + C" /> bagi <InlineMath math="C = 1, 5, -10, 0" />.</>}
+  yAxisLabel="F(1)"
+  data={[1, 5, -10, 0].map((c) => ({ name: "C = " + c, value: 2 * 1 ** 2 + c }))}
+  chartConfig={{ value: { label: "F(1)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

@@ -1,0 +1,376 @@
+
+export const metadata = {
+  title: "Tangen Sepunya Luar dan Dalam",
+  description: "Cari panjang tangen sepunya luar dengan beza jejari dan panjang tangen sepunya dalam dengan hasil tambah jejari, lengkap dengan syarat dan contoh.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-11-08",
+  subject: "Bulatan",
+};
+
+## Rumus Tangen Sepunya
+
+Tangen sepunya ialah garis yang **menyentuh dua bulatan sekali gus**. Tangen sepunya luar menyentuh kedua-dua bulatan dari sisi yang sama, manakala tangen sepunya dalam melalui ruang di antara kedua-dua bulatan. Kalau jarak antara pusatnya ialah <InlineMath math="d" /> dan jejarinya ialah <InlineMath math="r_1" /> dan <InlineMath math="r_2" />, panjang tembereng tangen itu ialah:
+
+<MathContainer>
+  <BlockMath math="l_{\text{luar}} = \sqrt{d^2 - (r_2 - r_1)^2}" />
+  <BlockMath math="l_{\text{dalam}} = \sqrt{d^2 - (r_1 + r_2)^2}" />
+</MathContainer>
+
+Tangen luar menggunakan **beza jejari**, dan tangen dalam menggunakan **hasil tambah jejari**. Rumus tangen luar sah selagi <InlineMath math="d > r_2 - r_1" />, dan rumus tangen dalam memerlukan <InlineMath math="d \ge r_1 + r_2" />. Gambar rajah tangen luar menunjukkan dua bulatan dengan jarak antara pusat <InlineMath math="8" />, dan jejarinya <InlineMath math="2" /> dan <InlineMath math="3" />. Lihat segi tiga bersudut tegak <InlineMath math="AHB" />, kerana daripada segi tiga inilah rumus pertama diperoleh.
+
+<MathVisual
+  title={<>Tangen Sepunya Luar</>}
+  description={<>Garis <InlineMath math="g_1" /> dan <InlineMath math="g_2" /> menyentuh kedua-dua bulatan dari sisi yang sama, dan tembereng garis bantu <InlineMath math="AH" /> selari dengan tangen.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="g_1" />,
+    "l4": <InlineMath math="g_2" />,
+    "l5": <InlineMath math="H" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12, max: 11.5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-4) + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(4 + (3 * cos(((t * pi) / 180))))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -9.8, y: 1.29 }, { x: -8.22, y: 1.48 }, { x: 7.59, y: 3.48 }, { x: 9.17, y: 3.68 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -9.8, y: -1.29 }, { x: -8.22, y: -1.48 }, { x: 7.59, y: -3.48 }, { x: 9.17, y: -3.68 }], appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 31 / 8, y: Math.sqrt(63) / 8 }, { x: 4, y: 0 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -4, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 4, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: 7.59, y: 3.48 }, placement: "above-left" },
+      { key: "l4", objectId: "s5", at: { x: 7.59, y: -3.48 }, placement: "below-left" },
+      { key: "l5", objectId: "s6", at: { x: 3.88, y: 0.99 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Untuk pasangan bulatan itu, <InlineMath math="l_{\text{luar}} = \sqrt{8^2 - 1^2} = \sqrt{63} = 3\sqrt{7}" />. Rumus ini memberikan panjang tembereng di antara dua titik sentuhan. Kalau kamu perlukan persamaan garis itu pula, gunakan [persamaan tangen kepada bulatan](/ms/subjek/matematik/geometri-analitik/persamaan-tangen-kepada-bulatan), yang menggunakan titik sentuhan atau kecerunan, bukan panjang.
+
+## Panjang Tangen Sepunya Luar
+
+Rumus tangen luar bergantung pada satu fakta: [tangen kepada bulatan](/ms/subjek/matematik/bulatan/tangen-kepada-bulatan) sentiasa **berserenjang dengan jejari** di titik sentuhan. Jadi kedua-dua jejari ke titik sentuhan itu selari, dan bentuk di antaranya ialah trapezium bersudut tegak.
+
+Dalam gambar rajah tangen luar, lukis tembereng garis bantu <InlineMath math="AH" /> dari pusat <InlineMath math="A" /> selari dengan tangen. Tembereng garis <InlineMath math="AH" /> sama panjang dengan tembereng tangen, jadi <InlineMath math="AH = l" />. Tembereng garis <InlineMath math="BH" /> ialah baki jejari yang lebih besar selepas kamu tolak jejari yang lebih kecil, jadi <InlineMath math="BH = r_2 - r_1" />. Sudut di <InlineMath math="H" /> ialah sudut tegak, dan teorem Pythagoras memberikan:
+
+<BlockMath math="l^2 + (r_2 - r_1)^2 = d^2 \quad\Longrightarrow\quad l = \sqrt{d^2 - (r_2 - r_1)^2}" />
+
+Namakan jejari yang lebih besar sebagai <InlineMath math="r_2" /> supaya bezanya positif. Kuasa dua beza itu sama sahaja walau kamu tolak mengikut susunan mana pun, tetapi nama yang konsisten memudahkan kamu menyemak jalan kerja. Tembereng tangen luar ada panjang positif selagi <InlineMath math="d > r_2 - r_1" />, maksudnya bulatan yang lebih kecil tidak berada di dalam bulatan yang lebih besar.
+
+**Contoh**. Bulatan pertama berpusat di <InlineMath math="A(-3, 0)" /> dengan jejari <InlineMath math="1.5" />, manakala bulatan kedua berpusat di <InlineMath math="B(3, 0)" /> dengan jejari <InlineMath math="2.5" />. Cari panjang tangen sepunya luar kedua-dua bulatan itu.
+
+<MathVisual
+  title={<>Bulatan dengan <InlineMath math="r_1 = 1.5" /> dan <InlineMath math="r_2 = 2.5" /></>}
+  description={<>Jarak antara pusat <InlineMath math="A" /> dan <InlineMath math="B" /> ialah <InlineMath math="6" />, jadi panjang tembereng tangen luar <InlineMath math="PQ" /> ialah <InlineMath math="\sqrt{35}" />.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="P" />,
+    "l4": <InlineMath math="Q" />,
+    "l5": <InlineMath math="R" />,
+    "l6": <InlineMath math="S" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 6.5 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (1.5 * cos(((t * pi) / 180))))", y: "(1.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(3 + (2.5 * cos(((t * pi) / 180))))", y: "(2.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3.25, y: 1.48 }, { x: 2.58, y: 2.47 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3.25, y: -1.48 }, { x: 2.58, y: -2.47 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -3, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: -3.25, y: 1.48 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 2.58, y: 2.47 }, placement: "above-right" },
+      { key: "l5", objectId: "s5", at: { x: -3.25, y: -1.48 }, placement: "below-left" },
+      { key: "l6", objectId: "s5", at: { x: 2.58, y: -2.47 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Baca jarak antara pusat daripada koordinat, kemudian gunakan rumus tangen luar:
+
+<MathContainer>
+  <BlockMath math="d = \sqrt{(3 - (-3))^2 + (0 - 0)^2} = \sqrt{36} = 6" />
+  <BlockMath math="l = \sqrt{6^2 - (2.5 - 1.5)^2} = \sqrt{36 - 1} = \sqrt{35}" />
+</MathContainer>
+
+Panjangnya ialah <InlineMath math="\sqrt{35} \approx 5.92" /> unit. Semak dengan teorem Pythagoras: <InlineMath math="35 + 1^2 = 36 = 6^2" />.
+
+## Panjang Tangen Sepunya Dalam
+
+Tangen dalam **melintasi tembereng garis yang menyambungkan kedua-dua pusat**, jadi kedua-dua bulatan berada pada sisi garis yang bertentangan. Jejari ke titik sentuhan kini menghala ke arah yang bertentangan, dan sebab itulah kedua-dua jejari ditambah.
+
+<MathVisual
+  title={<>Tangen Sepunya Dalam</>}
+  description={<>Garis <InlineMath math="h_1" /> dan <InlineMath math="h_2" /> melalui ruang di antara kedua-dua bulatan, dan <InlineMath math="BH" /> sama dengan hasil tambah jejari.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="h_1" />,
+    "l4": <InlineMath math="h_2" />,
+    "l5": <InlineMath math="H" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 8.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-4) + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(4 + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -6.72, y: 3.88 }, { x: -5.6, y: 3.23 }, { x: 5.6, y: -3.23 }, { x: 6.72, y: -3.88 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -6.72, y: -3.88 }, { x: -5.6, y: -3.23 }, { x: 5.6, y: 3.23 }, { x: 6.72, y: 3.88 }], appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 2, y: -2 * Math.sqrt(3) }, { x: 4, y: 0 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -4, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 4, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: -5.6, y: 3.23 }, placement: "above-left" },
+      { key: "l4", objectId: "s5", at: { x: -5.6, y: -3.23 }, placement: "below-left" },
+      { key: "l5", objectId: "s6", at: { x: 2, y: -3.46 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Dalam gambar rajah tangen dalam, panjangkan jejari dari pusat <InlineMath math="B" /> melepasi titik sentuhan hingga ke titik bantu <InlineMath math="H" />, dengan <InlineMath math="AH" /> selari dengan tangen. Tembereng garis <InlineMath math="BH" /> ialah jejari <InlineMath math="r_2" /> dari <InlineMath math="B" /> ke titik sentuhan ditambah sambungan sepanjang <InlineMath math="r_1" />, jadi <InlineMath math="BH = r_1 + r_2" />. Segi tiga <InlineMath math="AHB" /> ada sudut tegak di <InlineMath math="H" />:
+
+<MathContainer>
+  <BlockMath math="l^2 + (r_1 + r_2)^2 = d^2" />
+  <BlockMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />
+</MathContainer>
+
+Dalam gambar rajah itu, <InlineMath math="d = 8" /> dan kedua-dua jejari ialah <InlineMath math="2" />, jadi <InlineMath math="l = \sqrt{64 - 16} = \sqrt{48} = 4\sqrt{3}" />. Tangen dalam hanya wujud apabila <InlineMath math="d \ge r_1 + r_2" />. Apabila <InlineMath math="d = r_1 + r_2" />, kedua-dua bulatan bersentuhan di luar, dua titik sentuhan itu menjadi satu titik, dan panjang tembereng itu sifar.
+
+**Contoh**. Bulatan pertama berpusat di <InlineMath math="P(-5, 0)" /> dengan jejari <InlineMath math="2" />, manakala bulatan kedua berpusat di <InlineMath math="Q(5, 0)" /> dengan jejari <InlineMath math="3" />. Cari panjang tangen sepunya dalam kedua-dua bulatan itu.
+
+<MathVisual
+  title={<>Bulatan dengan <InlineMath math="r_1 = 2" /> dan <InlineMath math="r_2 = 3" /></>}
+  description={<>Jarak antara pusat <InlineMath math="P" /> dan <InlineMath math="Q" /> ialah <InlineMath math="10" />, jadi panjang tembereng tangen dalam ialah <InlineMath math="5\sqrt{3}" />.</>}
+  labels={{
+    "l1": <InlineMath math="P" />,
+    "l2": <InlineMath math="Q" />,
+    "l3": <InlineMath math="E" />,
+    "l4": <InlineMath math="F" />,
+    "l5": <InlineMath math="G" />,
+    "l6": <InlineMath math="H" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 9.5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-5) + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(5 + (3 * cos(((t * pi) / 180))))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -5, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 5, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -4, y: 1.73 }, { x: 3.5, y: -2.6 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -4, y: -1.73 }, { x: 3.5, y: 2.6 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -5, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 5, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: -4, y: 1.73 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 3.5, y: -2.6 }, placement: "below-right" },
+      { key: "l5", objectId: "s5", at: { x: -4, y: -1.73 }, placement: "below-left" },
+      { key: "l6", objectId: "s5", at: { x: 3.5, y: 2.6 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Semak syaratnya dahulu. Jarak antara pusat, <InlineMath math="d = 10" />, lebih besar daripada <InlineMath math="r_1 + r_2 = 5" />, jadi tangen dalam wujud:
+
+<MathContainer>
+  <BlockMath math="l = \sqrt{10^2 - (2 + 3)^2} = \sqrt{100 - 25}" />
+  <BlockMath math="l = \sqrt{75} = 5\sqrt{3}" />
+</MathContainer>
+
+Panjangnya ialah <InlineMath math="5\sqrt{3} \approx 8.66" /> unit. Semak: <InlineMath math="75 + 5^2 = 100 = 10^2" />.
+
+## Dua Bulatan dengan Jejari yang Sama
+
+Apabila <InlineMath math="r_1 = r_2 = r" />, beza jejari ialah sifar. Rumus tangen luar menjadi <InlineMath math="l = \sqrt{d^2 - 0} = d" />, jadi tangen luar itu **sama panjang dengan jarak antara pusat** dan selari dengan garis yang melalui kedua-dua pusat.
+
+<MathVisual
+  title={<>Tangen Luar bagi Jejari yang Sama</>}
+  description={<>Kedua-dua tangen luar selari dengan garis <InlineMath math="O_1O_2" /> yang menyambungkan kedua-dua pusat dan sama panjang dengan jarak antara pusat, iaitu <InlineMath math="6" />.</>}
+  labels={{
+    "l1": <InlineMath math="O_1" />,
+    "l2": <InlineMath math="O_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(3 + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3, y: 2 }, { x: 3, y: 2 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3, y: -2 }, { x: 3, y: -2 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -3, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Dalam gambar rajah jejari sama, jarak antara pusat ialah <InlineMath math="6" /> dan kedua-dua jejari ialah <InlineMath math="2" />. Dua tangen luar itu terletak <InlineMath math="2" /> unit di atas dan di bawah garis yang menyambungkan kedua-dua pusat, dan setiap satunya sepanjang <InlineMath math="6" />. Tangen dalam tidak dilukis di sini. Disebabkan simetri, tangen dalam bersilang tepat di titik tengah antara <InlineMath math="O_1" /> dan <InlineMath math="O_2" />, dan setiap satunya sepanjang <InlineMath math="\sqrt{36 - 16} = \sqrt{20} = 2\sqrt{5}" />.
+
+## Membandingkan Dua Tangen
+
+Untuk pasangan bulatan yang sama, **tangen dalam sentiasa lebih pendek** daripada tangen luar. Hasil tambah jejari lebih besar daripada bezanya, jadi lebih banyak yang ditolak daripada <InlineMath math="d^2" />. Kes bulatan berjauhan dan bulatan berdekatan menunjukkan sebesar mana jurang itu boleh jadi.
+
+**Bulatan berjauhan**. Bulatan pertama berpusat di <InlineMath math="(-6, 0)" /> dengan jejari <InlineMath math="1" />, manakala bulatan kedua berpusat di <InlineMath math="(6, 0)" /> dengan jejari <InlineMath math="2" />.
+
+<MathVisual
+  title={<>Bulatan Berjauhan</>}
+  description={<>Jarak antara pusat, <InlineMath math="12" />, melebihi hasil tambah jejari, <InlineMath math="3" />, jadi keempat-empat tangen sepunya dilukis.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12, max: 11.5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-6) + (1 * cos(((t * pi) / 180))))", y: "(1 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(6 + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -9.67, y: 0.7 }, { x: -8.08, y: 0.83 }, { x: 7.83, y: 2.16 }, { x: 9.42, y: 2.29 }], appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -9.67, y: -0.7 }, { x: -8.08, y: -0.83 }, { x: 7.83, y: -2.16 }, { x: 9.42, y: -2.29 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -8.04, y: 1.56 }, { x: -6.72, y: 1.22 }, { x: 6.47, y: -2.19 }, { x: 7.79, y: -2.53 }], appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -8.04, y: -1.56 }, { x: -6.72, y: -1.22 }, { x: 6.47, y: 2.19 }, { x: 7.79, y: 2.53 }], appearance: "reference" },
+    ],
+  }}
+/>
+
+Jarak antara pusat ialah <InlineMath math="d = 12" />, jauh lebih besar daripada hasil tambah jejari, <InlineMath math="3" />, jadi keempat-empat tangen sepunya wujud:
+
+<MathContainer>
+  <BlockMath math="l_{\text{luar}} = \sqrt{12^2 - (2 - 1)^2} = \sqrt{143} \approx 11.96" />
+  <BlockMath math="l_{\text{dalam}} = \sqrt{12^2 - (1 + 2)^2} = \sqrt{135} = 3\sqrt{15} \approx 11.62" />
+</MathContainer>
+
+Dua panjang itu hampir sama kerana jejarinya kecil berbanding jarak antara pusat.
+
+**Bulatan berdekatan**. Kedua-dua bulatan ada jejari <InlineMath math="1.5" />, dengan pusat di <InlineMath math="(-2, 0)" /> dan <InlineMath math="(2, 0)" />.
+
+<MathVisual
+  title={<>Bulatan Berdekatan dengan Jejari yang Sama</>}
+  description={<>Tangen luar selari dengan garis yang menyambungkan kedua-dua pusat, manakala dua tangen dalam bersilang di titik tengah antara kedua-dua pusat.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + (1.5 * cos(((t * pi) / 180))))", y: "(1.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2 + (1.5 * cos(((t * pi) / 180))))", y: "(1.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -6, y: 1.5 }, { x: -5, y: 1.5 }, { x: 5, y: 1.5 }, { x: 6, y: 1.5 }], appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -6, y: -1.5 }, { x: -5, y: -1.5 }, { x: 5, y: -1.5 }, { x: 6, y: -1.5 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -2.64, y: 2.99 }, { x: -2.2, y: 2.49 }, { x: 2.2, y: -2.49 }, { x: 2.64, y: -2.99 }], appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -2.64, y: -2.99 }, { x: -2.2, y: -2.49 }, { x: 2.2, y: 2.49 }, { x: 2.64, y: 2.99 }], appearance: "reference" },
+    ],
+  }}
+/>
+
+Jarak antara pusat ialah <InlineMath math="d = 4" /> dan jejarinya sama, jadi panjang tangen luar terus sama dengan <InlineMath math="d" />:
+
+<MathContainer>
+  <BlockMath math="l_{\text{luar}} = d = 4" />
+  <BlockMath math="l_{\text{dalam}} = \sqrt{4^2 - (1.5 + 1.5)^2} = \sqrt{16 - 9} = \sqrt{7} \approx 2.65" />
+</MathContainer>
+
+Di sini jurang antara dua panjang itu jauh lebih besar, kerana kuasa dua hasil tambah jejari, <InlineMath math="9" />, sudah melebihi separuh daripada <InlineMath math="d^2 = 16" />.
+
+## Berapa Banyak Tangen Sepunya bagi Dua Bulatan
+
+Bilangan tangen sepunya bergantung pada **jarak antara pusat berbanding jejari**. Perbandingan yang sama menentukan [kedudukan dua bulatan](/ms/subjek/matematik/geometri-analitik/kedudukan-dua-bulatan), jadi bilangan tangen sepunya juga memberitahu kamu kedudukan kedua-dua bulatan itu.
+
+| Syarat jarak antara pusat | Tangen sepunya | Kedudukan bulatan |
+| --- | ---: | --- |
+| <InlineMath math="d > r_1 + r_2" /> | <InlineMath math="4" /> | terpisah |
+| <InlineMath math="d = r_1 + r_2" /> | <InlineMath math="3" /> | bersentuhan di luar |
+| <InlineMath math="\lvert r_1 - r_2 \rvert < d < r_1 + r_2" /> | <InlineMath math="2" /> | bersilang pada dua titik |
+| <InlineMath math="d = \lvert r_1 - r_2 \rvert" /> | <InlineMath math="1" /> | bersentuhan di dalam |
+| <InlineMath math="d < \lvert r_1 - r_2 \rvert" /> | <InlineMath math="0" /> | satu bulatan di dalam bulatan yang lain |
+
+Pengelasan ini sah untuk dua bulatan yang tidak bertindih sepenuhnya. Apabila kedua-dua bulatan semakin rapat, dua tangen dalam hilang dahulu, kerana tangen dalam memerlukan ruang di antara bulatan.
+
+## Kesilapan Lazim
+
+Sebelum kamu menggantikan sebarang nombor, tentukan dahulu **jenis tangen** yang diminta oleh soalan.
+
+| Kesilapan | Sebab salah | Cara menyemak |
+| --- | --- | --- |
+| Menggunakan hasil tambah jejari untuk tangen luar | Sisi <InlineMath math="BH" /> pada segi tiga bantu bagi tangen luar ialah beza jejari | Tangen luar mesti lebih panjang daripada tangen dalam |
+| Menulis <InlineMath math="l = d - (r_2 - r_1)" /> | Rumus ini datang daripada teorem Pythagoras, jadi kuasa dua beza jejari yang ditolak daripada <InlineMath math="d^2" /> | Semak bahawa <InlineMath math="l^2 + (r_2 - r_1)^2 = d^2" /> |
+| Menggunakan diameter sebagai jejari | Rumus ini menggunakan jarak dari pusat ke titik sentuhannya | Baca semula sama ada soalan memberikan jejari atau diameter |
+| Mengira tangen dalam untuk bulatan yang bersilang | Tangen dalam hanya wujud apabila <InlineMath math="d \ge r_1 + r_2" /> | Bandingkan <InlineMath math="d" /> dengan <InlineMath math="r_1 + r_2" /> dahulu |
+
+Kesilapan terakhir itu nampak pada nombornya. Kalau <InlineMath math="d < r_1 + r_2" />, nombor di bawah punca kuasa dua menjadi negatif, dan itu tanda tangen dalam tidak wujud.
+
+## Latihan Tangen Sepunya
+
+Untuk setiap soalan, pilih **beza atau hasil tambah jejari** mengikut jenis tangen sebelum kamu membentuk persamaan. Soalan 3 dan 4 juga memerlukan jadual tangen sepunya.
+
+1. Bulatan pertama berpusat di <InlineMath math="(0, 0)" /> dengan jejari <InlineMath math="4" />, manakala bulatan kedua berpusat di <InlineMath math="(10, 0)" /> dengan jejari <InlineMath math="2" />. Cari panjang tangen sepunya luar dan tangen sepunya dalam kedua-dua bulatan itu.
+
+2. Dua bulatan masing-masing ada jejari <InlineMath math="3 \text{ cm}" />. Tangen sepunya dalamnya sepanjang <InlineMath math="8 \text{ cm}" />. Cari jarak antara pusatnya.
+
+3. Bulatan <InlineMath math="A" /> berpusat di <InlineMath math="(-5, 0)" /> dengan jejari <InlineMath math="r" />, dan bulatan <InlineMath math="B" /> berpusat di <InlineMath math="(7, 0)" /> dengan jejari <InlineMath math="2r" />. Tangen sepunya luarnya sepanjang <InlineMath math="4\sqrt{8}" />. Cari <InlineMath math="r" /> dan bilangan tangen sepunya bagi kedua-dua bulatan itu.
+
+4. Satu bulatan ialah <InlineMath math="x^2 + y^2 = 4" />, dan satu lagi berpusat di <InlineMath math="(5, 0)" /> dengan jejari <InlineMath math="3" />. Berapa banyak tangen sepunya yang ada pada kedua-dua bulatan itu, dan berapakah panjang tangen sepunya luarnya?
+
+### Jawapan
+
+**Soalan 1**. Jarak antara pusat ialah <InlineMath math="d = 10" />. Tangen luar menggunakan **beza** <InlineMath math="4 - 2 = 2" />, dan tangen dalam menggunakan **hasil tambah** <InlineMath math="4 + 2 = 6" />:
+
+<MathContainer>
+  <BlockMath math="l_{\text{luar}} = \sqrt{10^2 - 2^2} = \sqrt{96} = 4\sqrt{6}" />
+  <BlockMath math="l_{\text{dalam}} = \sqrt{10^2 - 6^2} = \sqrt{64} = 8" />
+</MathContainer>
+
+Susunannya seperti yang dijangka, kerana <InlineMath math="4\sqrt{6} \approx 9.80" /> lebih panjang daripada <InlineMath math="8" />.
+
+**Soalan 2**. Panjang yang diberikan ialah panjang tangen dalam, jadi rumusnya menggunakan **hasil tambah jejari**, <InlineMath math="3 + 3 = 6" />, kemudian kamu cari <InlineMath math="d" />:
+
+<MathContainer>
+  <BlockMath math="8 = \sqrt{d^2 - 6^2}" />
+  <BlockMath math="64 = d^2 - 36" />
+  <BlockMath math="d^2 = 100 \quad\Longrightarrow\quad d = 10 \text{ cm}" />
+</MathContainer>
+
+Jarak mesti positif, jadi nilai <InlineMath math="-10" /> ditolak. Semak: <InlineMath math="\sqrt{100 - 36} = \sqrt{64} = 8" />.
+
+**Soalan 3**. Jarak antara pusat ialah <InlineMath math="d = 7 - (-5) = 12" />, dan beza jejari ialah <InlineMath math="2r - r = r" />. Kuasa duakan kedua-dua belah persamaan untuk menghapuskan punca kuasa dua:
+
+<MathContainer>
+  <BlockMath math="4\sqrt{8} = \sqrt{12^2 - r^2}" />
+  <BlockMath math="128 = 144 - r^2" />
+  <BlockMath math="r^2 = 16 \quad\Longrightarrow\quad r = 4" />
+</MathContainer>
+
+Jejari mesti positif, jadi <InlineMath math="r = -4" /> ditolak. Jejarinya ialah <InlineMath math="4" /> dan <InlineMath math="8" />. Hasil tambahnya ialah <InlineMath math="12" />, sama dengan jarak antara pusat, jadi kedua-dua bulatan **bersentuhan di luar** dan ada <InlineMath math="3" /> tangen sepunya.
+
+**Soalan 4**. Bulatan <InlineMath math="x^2 + y^2 = 4" /> berpusat di <InlineMath math="(0, 0)" /> dengan jejari <InlineMath math="2" />. Jarak antara pusat ialah <InlineMath math="d = 5" />, sama dengan <InlineMath math="2 + 3" />, jadi kedua-dua bulatan bersentuhan di luar dan ada <InlineMath math="3" /> tangen sepunya. Panjang tangen luarnya ialah:
+
+<BlockMath math="l_{\text{luar}} = \sqrt{5^2 - (3 - 2)^2} = \sqrt{24} = 2\sqrt{6}" />
+
+Tangen dalam yang tinggal melalui titik tempat kedua-dua bulatan bersentuhan, jadi panjang temberengnya sifar. Rumusnya juga memberi jawapan yang sama: <InlineMath math="\sqrt{25 - 25} = 0" />.

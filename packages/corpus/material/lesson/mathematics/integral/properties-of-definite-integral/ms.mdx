@@ -1,0 +1,156 @@
+export const metadata = {
+    title: "Sifat Kamiran Tentu",
+    description: "Gunakan sifat kamiran tentu bagi selang selebar sifar, had yang ditukar tempat, kelinearan dan penambahan selang.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-05-26",
+    dateModified: "2026-11-08",
+    subject: "Pengamiran",
+};
+
+## Had Kamiran yang Sama
+
+Kamiran tentu bernilai sifar apabila **had atas dan had bawahnya sama**. Petua ini berlaku untuk fungsi yang boleh dikamirkan pada selang yang sedang kita kaji.
+
+<BlockMath math="\int_{a}^{a} f(x) \, dx = 0" />
+
+Kamiran tentu mengumpulkan suatu kuantiti merentas selang yang mempunyai arah. Dari <InlineMath math="a" /> ke titik yang sama <InlineMath math="a" />, lebar selang itu sifar, jadi pengumpulannya ialah sifar, tidak kira berapa pun nilai kamiranan.
+
+Contohnya, <InlineMath math="f(x)=x" /> bernilai <InlineMath math="3" /> pada <InlineMath math="x=3" />. Tetapi selang dari <InlineMath math="3" /> ke <InlineMath math="3" /> mempunyai **lebar sifar**, jadi kamirannya tetap sifar:
+
+<BlockMath math="\int_3^3 x\,dx=\left[\frac{x^2}{2}\right]_3^3=\frac92-\frac92=0" />
+
+## Menukar Tempat Had Kamiran
+
+Apabila kita menukar tempat had bawah dan had atas suatu kamiran, hasilnya ialah negatif bagi nilai kamiran asal.
+
+<BlockMath math="\int_{a}^{b} f(x) \, dx = - \int_{b}^{a} f(x) \, dx" />
+
+Had bawah dan had atas menentukan arah selang kamiran. Apabila kedua-dua had ditukar tempat, arah itu menjadi terbalik, dan ini <Highlight>menukar tanda setiap sumbangan</Highlight> kepada pengumpulan itu. Oleh itu, kamiran tersebut menjadi negatif bagi nilai asalnya.
+
+Untuk <InlineMath math="f(x)=x" />, satu antiterbitannya ialah <InlineMath math="x^2/2" />. Pengiraan dalam kedua-dua arah memberikan **magnitud yang sama tetapi tanda yang bertentangan**:
+
+<BlockMath math="\begin{aligned}\int_0^2 x\,dx&=\frac{2^2}{2}-\frac{0^2}{2}=2\\\int_2^0 x\,dx&=\frac{0^2}{2}-\frac{2^2}{2}=-2\end{aligned}" />
+
+## Petua Gandaan Pemalar
+
+Sama seperti kamiran tak tentu, pemalar boleh dikeluarkan daripada kamiran supaya pengiraan menjadi lebih mudah.
+
+<BlockMath math="\int_{a}^{b} kf(x) \, dx = k \int_{a}^{b} f(x) \, dx" />
+
+Apabila setiap nilai suatu fungsi didarab dengan pemalar <InlineMath math="k" />, kamiran terkumpulnya juga didarab dengan faktor yang sama. Jadi, kita boleh menilai <InlineMath math="\int_a^b f(x)\,dx" /> dahulu, kemudian darab hasilnya dengan <InlineMath math="k" />.
+
+Dengan <InlineMath math="k=3" />, setiap sumbangan menjadi **tiga kali ganda besarnya**. Kekalkan had kamiran apabila kamu mengeluarkan pemalar itu ke luar kamiran:
+
+<BlockMath math="\int_0^2 3x\,dx=3\int_0^2 x\,dx=3(2)=6" />
+
+Apabila fungsi digandakan dua, setiap tinggi turut menjadi dua kali ganda, jadi luasnya juga menjadi dua kali ganda. Pada <InlineMath math="[0, 2]" />, luas di bawah <InlineMath math="y = x + 1" /> ialah <InlineMath math="4" />, dan luas di bawah <InlineMath math="y = 2(x + 1)" /> ialah <InlineMath math="8 = 2 \cdot 4" />.
+
+<MathVisual
+  title={<>Faktor pemalar mengubah skala luas</>}
+  description={<>Trapezium di bawah <InlineMath math="y = x + 1" /> dan <InlineMath math="y = 2(x + 1)" /> pada <InlineMath math="[0, 2]" />, dengan luas <InlineMath math="4" /> dan <InlineMath math="8" />.</>}
+  labels={{
+    single: <InlineMath math="4" />,
+    double: <InlineMath math="8" />,
+    top: <InlineMath math="y = 2(x + 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "double", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 6 }, { x: 0, y: 2 }], appearance: "secondary" },
+      { id: "single", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 1 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "single", objectId: "single", at: { x: 1, y: 1 }, placement: "center" },
+      { key: "double", objectId: "double", at: { x: 1, y: 3 }, placement: "center" },
+      { key: "top", objectId: "double", at: { x: 2, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Petua Hasil Tambah dan Beza
+
+Kamiran bagi hasil tambah atau beza dua fungsi sama dengan hasil tambah atau beza kamiran setiap fungsi itu.
+
+<MathContainer>
+<BlockMath math="\begin{aligned} \int_{a}^{b} [f(x) + g(x)] \, dx &amp;= \int_{a}^{b} f(x) \, dx \\ &amp;\quad{}+ \int_{a}^{b} g(x) \, dx \end{aligned}" />
+<BlockMath math="\begin{aligned} \int_{a}^{b} [f(x) - g(x)] \, dx &amp;= \int_{a}^{b} f(x) \, dx \\ &amp;\quad{}- \int_{a}^{b} g(x) \, dx \end{aligned}" />
+</MathContainer>
+
+Dengan sifat kelinearan, kita boleh memecahkan kamiranan yang rumit kepada bahagian yang lebih mudah. Kamirkan <InlineMath math="f(x)" /> dan <InlineMath math="g(x)" /> secara berasingan, kemudian gabungkan pengumpulan bertanda kedua-duanya dengan operasi yang sama.
+
+Untuk kamiranan <InlineMath math="x+1" />, kira sumbangan daripada <InlineMath math="x" /> dan daripada pemalar <InlineMath math="1" /> secara berasingan. **Kekalkan operasi tambah** apabila kamu menggabungkannya:
+
+<BlockMath math="\begin{aligned}\int_0^2(x+1)\,dx&=\int_0^2x\,dx+\int_0^2 1\,dx\\&=2+[x]_0^2\\&=2+(2-0)=4\end{aligned}" />
+
+Susun dua bahagian itu satu di atas yang lain. Di bawah <InlineMath math="y = x + 1" /> dari <InlineMath math="0" /> hingga <InlineMath math="2" />, segi empat tepat ungu ialah <InlineMath math="\int_0^2 1\,dx = 2" /> dan segi tiga jingga di atasnya ialah <InlineMath math="\int_0^2 x\,dx = 2" />. Bersama-sama, kedua-duanya memenuhi seluruh rantau, jadi <InlineMath math="\int_0^2 (x + 1)\,dx = 2 + 2 = 4" />.
+
+<MathVisual
+  title={<>Luas di bawah <InlineMath math="x + 1" /> terbahagi kepada dua bahagian</>}
+  description={<>Segi empat tepat berluas <InlineMath math="2" /> di bawah <InlineMath math="y = 1" /> dan segi tiga berluas <InlineMath math="2" /> untuk <InlineMath math="y = x" />, disusun satu di atas yang lain menjadi rantau di bawah <InlineMath math="y = x + 1" /> yang berluas <InlineMath math="4" />.</>}
+  labels={{
+    one: <InlineMath math="2" />,
+    ramp: <InlineMath math="2" />,
+    graph: <InlineMath math="y = x + 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.9 }, y: { min: -0.4, max: 3.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "one", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1 }, { x: 0, y: 1 }], appearance: "secondary" },
+      { id: "ramp", kind: "polygon", vertices: [{ x: 0, y: 1 }, { x: 2, y: 1 }, { x: 2, y: 3 }], appearance: "primary" },
+      { id: "graph", kind: "segment", from: { x: 0, y: 1 }, to: { x: 2, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1, y: 0.5 }, placement: "center" },
+      { key: "ramp", objectId: "ramp", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "graph", objectId: "graph", at: { x: 1, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Sifat Penambahan Selang
+
+Selang kamiran boleh dipecahkan pada satu titik di antara kedua-dua hujungnya. Pengumpulan bertanda pada seluruh selang sama dengan hasil tambah pengumpulan pada dua bahagian itu.
+
+<BlockMath math="\begin{aligned} \int_{a}^{c} f(x) \, dx &amp;= \int_{a}^{b} f(x) \, dx \\ &amp;\quad{}+ \int_{b}^{c} f(x) \, dx \end{aligned}" />
+
+Identiti ini berlaku untuk sebarang susunan <InlineMath math="a" />, <InlineMath math="b" /> dan <InlineMath math="c" />, asalkan fungsi itu boleh dikamirkan pada selang yang diperlukan. Dengan kata lain, pengumpulan dari <InlineMath math="a" /> ke <InlineMath math="c" /> sama dengan pengumpulan dari <InlineMath math="a" /> ke <InlineMath math="b" /> ditambah pengumpulan dari <InlineMath math="b" /> ke <InlineMath math="c" />. Sifat ini sangat berguna untuk fungsi cebis demi cebis kerana setiap rumus boleh dikamirkan pada selang tempat rumus itu berlaku.
+
+Pecahkan selang <InlineMath math="[0,2]" /> pada <InlineMath math="x=1" />. Jadual ini membandingkan dua kamiran separa itu:
+
+| Selang | Pengiraan | Nilai |
+| --- | --- | --- |
+| <InlineMath math="[0,1]" /> | <InlineMath math="\frac{1^2}{2}-\frac{0^2}{2}" /> | <InlineMath math="\frac12" /> |
+| <InlineMath math="[1,2]" /> | <InlineMath math="\frac{2^2}{2}-\frac{1^2}{2}" /> | <InlineMath math="\frac32" /> |
+
+Hasil tambah dua bahagian itu ialah <InlineMath math="\frac12+\frac32=2" />, sama dengan <InlineMath math="\int_0^2 x\,dx" />. **Titik pecahan yang sama** menjadi had atas kamiran pertama dan had bawah kamiran kedua, jadi tiada bahagian selang yang tertinggal.
+
+Apabila selang dipecahkan, luas setiap bahagian boleh ditambah. Di bawah <InlineMath math="y = x + 1" />, rantau dari <InlineMath math="0" /> hingga <InlineMath math="2" /> berluas <InlineMath math="4" /> dan rantau dari <InlineMath math="2" /> hingga <InlineMath math="4" /> berluas <InlineMath math="8" />. Bersama-sama, kedua-duanya membentuk seluruh luas <InlineMath math="\int_0^4 (x + 1)\,dx = 12" />.
+
+<MathVisual
+  title={<>Luas ditambah apabila selang dipecahkan</>}
+  description={<>Dua trapezium di bawah <InlineMath math="y = x + 1" />, dari <InlineMath math="0" /> hingga <InlineMath math="2" /> dengan luas <InlineMath math="4" /> dan dari <InlineMath math="2" /> hingga <InlineMath math="4" /> dengan luas <InlineMath math="8" />, jumlahnya <InlineMath math="12" />.</>}
+  labels={{
+    left: <InlineMath math="4" />,
+    right: <InlineMath math="8" />,
+    f: <InlineMath math="y = x + 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "line", through: [{ x: 0, y: 1 }, { x: 4, y: 5 }], appearance: "reference" },
+      { id: "left", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "right", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 5 }, { x: 2, y: 3 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: 1, y: 1 }, placement: "center" },
+      { key: "right", objectId: "right", at: { x: 3, y: 2 }, placement: "center" },
+      { key: "f", objectId: "f", at: { x: 1, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>

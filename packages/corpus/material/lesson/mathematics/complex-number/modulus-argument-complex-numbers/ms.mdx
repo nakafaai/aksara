@@ -1,0 +1,251 @@
+export const metadata = {
+  title: "Modulus dan Hujah Nombor Kompleks",
+  description: "Modulus nombor kompleks ialah jaraknya dari asalan, dan hujahnya ialah sudut arahnya. Cari kedua-duanya dengan petua sukuan dan bentuk polar.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-01",
+  dateModified: "2026-11-08",
+  subject: "Nombor Kompleks",
+};
+
+## Panjang dan Arah Nombor Kompleks
+
+Nombor kompleks <InlineMath math="z = x + iy" /> dilukis sebagai titik <InlineMath math="(x, y)" /> pada satah kompleks, atau sebagai vektor dari asalan ke titik itu. Vektor itu ada panjang dan arah. Panjangnya ialah **modulus** <InlineMath math="|z|" />, dan arahnya ialah **hujah** <InlineMath math="\arg z" />, iaitu sudut dari paksi nyata positif ke vektor itu:
+
+<MathContainer>
+  <BlockMath math="|z| = \sqrt{x^2 + y^2}" />
+  <BlockMath math="\cos\theta = \frac{x}{|z|}, \qquad \sin\theta = \frac{y}{|z|}" />
+</MathContainer>
+
+Untuk <InlineMath math="z = 3 + 4i" />, modulusnya ialah <InlineMath math="\sqrt{9 + 16} = 5" />, dan hujahnya ialah <InlineMath math="\arctan\frac{4}{3} \approx 53.13^\circ" />. Graf interaktif ini melukis vektor itu bersama komponennya, <InlineMath math="x = 3" /> dan <InlineMath math="y = 4" />, yang membentuk segi tiga bersudut tegak dengan hipotenus <InlineMath math="|z|" />.
+
+<MathVisual
+  title={<><InlineMath math="|z| = 5" /> ialah hipotenus</>}
+  description={<>Vektor <InlineMath math="z = 3 + 4i" /> dengan komponen <InlineMath math="x = 3" /> dan <InlineMath math="y = 4" />. Modulusnya, <InlineMath math="|z| = 5" />, ialah hipotenus segi tiga bersudut tegak itu, dan hujahnya lebih kurang <InlineMath math="53.13^\circ" />.</>}
+  labels={{
+    z: <InlineMath math="|z| = 5" />,
+    x: <InlineMath math="x = 3" />,
+    y: <InlineMath math="y = 4" />,
+    theta: <InlineMath math="\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.4 }, y: { min: -0.7, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 4 }, appearance: "highlight" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 4 / 5, startDegrees: 0, sweepDegrees: Math.atan2(4, 3) * 180 / Math.PI, appearance: "highlight" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 3, y: 4 }, { x: 277 / 100, y: 193 / 50 }, { x: 293 / 100, y: 187 / 50 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 3 / 2, y: 2 }, placement: "above-left" },
+      { key: "x", objectId: "x", at: { x: 3 / 2, y: 0 }, placement: "below" },
+      { key: "y", objectId: "y", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 0.8 * Math.cos(Math.atan2(4, 3) / 2), y: 0.8 * Math.sin(Math.atan2(4, 3) / 2) }, placement: "right" },
+    ],
+  }}
+/>
+
+Asalan ada modulus <InlineMath math="0" />, tetapi **hujah bagi sifar tidak tertakrif**, kerana vektor sifar tiada arah.
+
+## Mencari Modulus dengan Teorem Pythagoras
+
+Modulus ialah hipotenus bagi segi tiga bersudut tegak yang dua sisi lainnya ialah <InlineMath math="|x|" /> dan <InlineMath math="|y|" />, jadi **modulus sentiasa sifar atau positif**. Komponen yang negatif akan dikuasaduakan, jadi tandanya hilang:
+
+| Nombor | Pengiraan | Modulus |
+| --- | --- | --- |
+| <InlineMath math="3 + 4i" /> | <InlineMath math="\sqrt{3^2 + 4^2} = \sqrt{25}" /> | <InlineMath math="5" /> |
+| <InlineMath math="-1 - 2i" /> | <InlineMath math="\sqrt{(-1)^2 + (-2)^2} = \sqrt{5}" /> | <InlineMath math="\sqrt{5}" /> |
+| <InlineMath math="5" /> | <InlineMath math="\sqrt{5^2 + 0^2} = \sqrt{25}" /> | <InlineMath math="5" /> |
+| <InlineMath math="-2i" /> | <InlineMath math="\sqrt{0^2 + (-2)^2} = \sqrt{4}" /> | <InlineMath math="2" /> |
+
+Nombor nyata <InlineMath math="5" /> ada modulus <InlineMath math="5" />, sama dengan nilai mutlaknya, jadi modulus meluaskan nilai mutlak ke satah kompleks. Semak <InlineMath math="-1 - 2i" />: jaraknya, <InlineMath math="\sqrt{5} \approx 2.24" />, lebih besar daripada <InlineMath math="|-1| = 1" /> dan <InlineMath math="|-2| = 2" /> tetapi kurang daripada hasil tambahnya, <InlineMath math="1 + 2 = 3" />, tepat seperti hipotenus sebuah segi tiga. Modulus bagi hasil darab ialah hasil darab modulus setiap faktor, <InlineMath math="|z_1 z_2| = |z_1|\,|z_2|" />, iaitu salah satu [sifat modulus](/ms/subjek/matematik/nombor-kompleks/sifat-modulus-nombor-kompleks).
+
+## Sudut Rujukan dan Petua Sukuan
+
+Kalkulator hanya memberikan <InlineMath math="\arctan\frac{y}{x}" /> antara <InlineMath math="-90^\circ" /> dan <InlineMath math="90^\circ" />, jadi untuk titik dalam sukuan II dan III, jawapannya menghala ke arah yang salah. Untuk titik di dalam satu sukuan, cari dahulu **sudut rujukan tirus** daripada panjang dua komponennya, kemudian gunakan tanda <InlineMath math="x" /> dan <InlineMath math="y" /> untuk memilih sukuan:
+
+<BlockMath math="\alpha = \arctan\left|\frac{y}{x}\right|, \qquad 0^\circ < \alpha < 90^\circ" />
+
+| Sukuan | Tanda komponen | Hujah dalam <InlineMath math="(-180^\circ, 180^\circ]" /> |
+| --- | --- | --- |
+| I | <InlineMath math="x > 0,\ y > 0" /> | <InlineMath math="\alpha" /> |
+| II | <InlineMath math="x < 0,\ y > 0" /> | <InlineMath math="180^\circ - \alpha" /> |
+| III | <InlineMath math="x < 0,\ y < 0" /> | <InlineMath math="-180^\circ + \alpha" /> |
+| IV | <InlineMath math="x > 0,\ y < 0" /> | <InlineMath math="-\alpha" /> |
+
+Graf interaktif ini menunjukkan empat nombor dengan modulus <InlineMath math="2" />, satu dalam setiap sukuan, bersama lengkok bagi setiap hujah. Lengkok dalam sukuan III dan IV berpusing ikut arah jam, kerana hujah-hujah itu negatif.
+
+<MathVisual
+  title={<>Hujah dalam keempat-empat sukuan</>}
+  description={<>Empat vektor dengan modulus <InlineMath math="2" />. Lengkok di atas paksi nyata berpusing lawan arah jam, dan lengkok di bawahnya berpusing ikut arah jam.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.4, max: 2.4 }, y: { min: -2.2, max: 2.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: Math.sqrt(3) }, appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.sqrt(3), y: 1 }, appearance: "secondary" },
+      { id: "c", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: -Math.sqrt(3) }, appearance: "highlight" },
+      { id: "d", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.sqrt(3), y: -1 }, appearance: "reference" },
+      { id: "a-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.5, startDegrees: 0, sweepDegrees: 60, appearance: "primary" },
+      { id: "b-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.8, startDegrees: 0, sweepDegrees: 150, appearance: "secondary" },
+      { id: "c-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 1.1, startDegrees: 0, sweepDegrees: -120, appearance: "highlight" },
+      { id: "d-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.5, startDegrees: 0, sweepDegrees: -30, appearance: "reference" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1, y: Math.sqrt(3) }, placement: "above-right" },
+      { key: "b", objectId: "b", at: { x: -Math.sqrt(3), y: 1 }, placement: "above-left" },
+      { key: "c", objectId: "c", at: { x: -1, y: -Math.sqrt(3) }, placement: "below-left" },
+      { key: "d", objectId: "d", at: { x: Math.sqrt(3), y: -1 }, placement: "below-right" },
+      { key: "a-angle", objectId: "a-angle", at: { x: 0.5 * Math.cos(Math.PI / 6), y: 0.25 }, placement: "right" },
+      { key: "b-angle", objectId: "b-angle", at: { x: 0.8 * Math.cos((5 * Math.PI) / 12), y: 0.8 * Math.sin((5 * Math.PI) / 12) }, placement: "above" },
+      { key: "c-angle", objectId: "c-angle", at: { x: 0.55, y: -1.1 * Math.sin(Math.PI / 3) }, placement: "below-right" },
+      { key: "d-angle", objectId: "d-angle", at: { x: 0.5 * Math.cos(Math.PI / 12), y: -0.5 * Math.sin(Math.PI / 12) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="1 + \sqrt{3}i" />,
+    b: <InlineMath math="-\sqrt{3} + i" />,
+    c: <InlineMath math="-1 - \sqrt{3}i" />,
+    d: <InlineMath math="\sqrt{3} - i" />,
+    "a-angle": <InlineMath math="60^\circ" />,
+    "b-angle": <InlineMath math="150^\circ" />,
+    "c-angle": <InlineMath math="-120^\circ" />,
+    "d-angle": <InlineMath math="-30^\circ" />,
+  }}
+/>
+
+Titik pada paksi tidak memerlukan hasil bahagi <InlineMath math="\frac{y}{x}" />. Arahnya boleh dibaca terus: paksi nyata positif ialah <InlineMath math="0^\circ" />, paksi khayalan positif <InlineMath math="90^\circ" />, paksi nyata negatif <InlineMath math="180^\circ" />, dan paksi khayalan negatif <InlineMath math="-90^\circ" />.
+
+<Mermaid
+  title={<>Memilih hujah berdasarkan sukuan</>}
+  description={<>Sudut rujukan yang sama memberikan hujah yang berbeza dalam setiap sukuan.</>}
+  chart={`flowchart TD
+  A["Cari r dan sudut rujukan tirus α"] --> B{"Tanda x dan y?"}
+  B -->|"x positif, y positif"| C["θ = α"]
+  B -->|"x negatif, y positif"| D["θ = 180° - α"]
+  B -->|"x negatif, y negatif"| E["θ = -180° + α"]
+  B -->|"x positif, y negatif"| F["θ = -α"]
+  C --> G["Semak: r cos θ = x dan r sin θ = y"]
+  D --> G
+  E --> G
+  F --> G`}
+/>
+
+## Contoh Mencari Modulus dan Hujah
+
+**Contoh 1**. Untuk <InlineMath math="z = -\sqrt{3} + i" />, titik <InlineMath math="(-\sqrt{3}, 1)" /> terletak dalam sukuan II, kerana <InlineMath math="x < 0" /> dan <InlineMath math="y > 0" />:
+
+<MathContainer>
+  <BlockMath math="|z| = \sqrt{3 + 1} = 2, \qquad \alpha = \arctan\frac{1}{\sqrt{3}} = 30^\circ" />
+  <BlockMath math="\arg z = 180^\circ - 30^\circ = 150^\circ" />
+</MathContainer>
+
+Semak dengan membina semula komponennya: <InlineMath math="2\cos 150^\circ = -\sqrt{3}" /> dan <InlineMath math="2\sin 150^\circ = 1" />. Kedua-duanya sepadan dengan <InlineMath math="z" />, jadi **sudut dan sukuannya betul**.
+
+**Contoh 2**. Untuk <InlineMath math="z = -1 - \sqrt{3}i" />, kedua-dua komponen negatif, jadi titik itu terletak dalam sukuan III:
+
+<MathContainer>
+  <BlockMath math="|z| = \sqrt{1 + 3} = 2, \qquad \alpha = \arctan\sqrt{3} = 60^\circ" />
+  <BlockMath math="\arg z = -180^\circ + 60^\circ = -120^\circ" />
+</MathContainer>
+
+Semak: <InlineMath math="2\cos(-120^\circ) = -1" /> dan <InlineMath math="2\sin(-120^\circ) = -\sqrt{3}" />. Kalau kamu hanya tekan <InlineMath math="\arctan\frac{-\sqrt{3}}{-1} = \arctan\sqrt{3}" /> pada kalkulator, kamu dapat <InlineMath math="60^\circ" />, iaitu arah yang bertentangan, tepat setengah pusingan jauhnya.
+
+## Bentuk Polar daripada Modulus dan Hujah
+
+Modulus <InlineMath math="r" /> dan hujah <InlineMath math="\theta" /> memberikan **bentuk polar** <InlineMath math="z = r(\cos\theta + i\sin\theta)" />, iaitu salah satu daripada beberapa [bentuk nombor kompleks](/ms/subjek/matematik/nombor-kompleks/bentuk-nombor-kompleks). Untuk kembali ke bentuk Cartesan, darabkan modulus dengan kosinus dan sinus sudut itu.
+
+**Contoh 3**. Nombor <InlineMath math="z = 2 + 2i" /> terletak dalam sukuan I dengan <InlineMath math="r = \sqrt{8} = 2\sqrt{2}" /> dan <InlineMath math="\theta = 45^\circ" />, jadi <InlineMath math="z = 2\sqrt{2}(\cos 45^\circ + i\sin 45^\circ)" />. Semak: <InlineMath math="2\sqrt{2} \cdot \frac{\sqrt{2}}{2} = 2" /> untuk kedua-dua komponen.
+
+**Contoh 4**. Nombor <InlineMath math="z = 6(\cos 120^\circ + i\sin 120^\circ)" /> ditukar kepada bentuk Cartesan:
+
+<BlockMath math="z = 6\left(-\frac{1}{2}\right) + 6\left(\frac{\sqrt{3}}{2}\right)i = -3 + 3\sqrt{3}i" />
+
+Semak modulusnya: <InlineMath math="\sqrt{9 + 27} = \sqrt{36} = 6" />, dan titik <InlineMath math="(-3, 3\sqrt{3})" /> terletak dalam sukuan II, seperti yang dikehendaki oleh sudut <InlineMath math="120^\circ" />. Sudut dalam bentuk polar biasanya dipilih daripada <InlineMath math="(-180^\circ, 180^\circ]" />, dan pilihan ini memberikan [hujah utama](/ms/subjek/matematik/nombor-kompleks/hujah-utama-nombor-kompleks).
+
+## Kesilapan Lazim
+
+| Kesilapan | Mengapa salah | Cara menyemak |
+| --- | --- | --- |
+| Menggunakan <InlineMath math="\arctan\frac{y}{x}" /> tanpa menyemak sukuan | Jawapannya sentiasa terletak antara <InlineMath math="-90^\circ" /> dan <InlineMath math="90^\circ" /> | Bina semula <InlineMath math="r\cos\theta" /> dan <InlineMath math="r\sin\theta" />, tandanya mesti sepadan |
+| Menulis modulus yang negatif | Modulus ialah jarak | Punca kuasa dua sentiasa sifar atau positif |
+| Mengira modulus sebagai <InlineMath math="\lvert x \rvert + \lvert y \rvert" /> | Itu laluan di sepanjang paksi, bukan jarak lurus | Untuk <InlineMath math="3 + 4i" />, jaraknya <InlineMath math="5" />, bukan <InlineMath math="7" /> |
+| Memberikan hujah untuk <InlineMath math="z = 0" /> | Vektor sifar tiada arah | Hujah hanya tertakrif untuk <InlineMath math="z \ne 0" /> |
+| Mencampurkan darjah dan radian | Kalkulator mungkin ditetapkan pada unit yang lain | <InlineMath math="\arctan 1" /> mestilah <InlineMath math="45^\circ" /> atau <InlineMath math="\frac{\pi}{4}" /> |
+
+Semakan yang paling kukuh ialah **membina semula komponen daripada modulus dan hujah**. Jika <InlineMath math="r\cos\theta" /> dan <InlineMath math="r\sin\theta" /> memberikan semula <InlineMath math="x" /> dan <InlineMath math="y" />, modulus dan arahnya betul. Kemudian semak bahawa hujah itu terletak dalam <InlineMath math="(-180^\circ, 180^\circ]" />, kerana <InlineMath math="225^\circ" /> membina semula komponen yang sama bagi <InlineMath math="-1 - i" /> seperti <InlineMath math="-135^\circ" />.
+
+## Latihan
+
+Soalan pertama terletak dalam sukuan I, soalan kedua dan ketiga pada paksi, dan soalan keempat dalam sukuan IV dengan sudut yang bukan sudut khas. **Tentukan kedudukan titik dahulu**, kemudian cari modulus dan hujah dalam <InlineMath math="(-180^\circ, 180^\circ]" />.
+
+1. Cari modulus dan hujah bagi <InlineMath math="z = 2 + 2i" />.
+
+2. Cari modulus dan hujah bagi <InlineMath math="z = -4" />.
+
+3. Cari modulus dan hujah bagi <InlineMath math="z = -i" />.
+
+4. Cari modulus dan hujah bagi <InlineMath math="z = 5 - 12i" />, dengan hujah dibundarkan kepada dua tempat perpuluhan.
+
+### Jalan Kerja
+
+**Soalan 1**. Titik <InlineMath math="(2, 2)" /> terletak dalam sukuan I:
+
+<BlockMath math="|z| = \sqrt{4 + 4} = 2\sqrt{2}, \qquad \arg z = \arctan 1 = 45^\circ" />
+
+Semak: <InlineMath math="2\sqrt{2}\cos 45^\circ = 2" /> dan <InlineMath math="2\sqrt{2}\sin 45^\circ = 2" />, jadi **kedua-dua komponen kembali tanpa berubah**.
+
+**Soalan 2**. Nombor <InlineMath math="-4 = -4 + 0i" /> terletak pada paksi nyata negatif, jadi hasil bahagi <InlineMath math="\frac{y}{x}" /> tidak diperlukan:
+
+<BlockMath math="|z| = \sqrt{16} = 4, \qquad \arg z = 180^\circ" />
+
+Semak: <InlineMath math="4\cos 180^\circ = -4" /> dan <InlineMath math="4\sin 180^\circ = 0" />. Sudut <InlineMath math="-180^\circ" /> menghala ke arah yang sama, tetapi **hujung kiri selang itu tidak termasuk**, jadi jawapannya ialah <InlineMath math="180^\circ" />.
+
+**Soalan 3**. Nombor <InlineMath math="-i = 0 - 1i" /> terletak pada paksi khayalan negatif:
+
+<BlockMath math="|z| = \sqrt{0 + 1} = 1, \qquad \arg z = -90^\circ" />
+
+Semak: <InlineMath math="\cos(-90^\circ) = 0" /> dan <InlineMath math="\sin(-90^\circ) = -1" />, jadi **vektor itu menghala terus ke bawah**.
+
+**Soalan 4**. Titik <InlineMath math="(5, -12)" /> terletak dalam sukuan IV, kerana <InlineMath math="x > 0" /> dan <InlineMath math="y < 0" />:
+
+<MathContainer>
+  <BlockMath math="|z| = \sqrt{25 + 144} = \sqrt{169} = 13" />
+  <BlockMath math="\alpha = \arctan\frac{12}{5} \approx 67.38^\circ, \qquad \arg z \approx -67.38^\circ" />
+</MathContainer>
+
+Semak: <InlineMath math="13\cos(-67.38^\circ) \approx 5.00" /> dan <InlineMath math="13\sin(-67.38^\circ) \approx -12.00" />, jadi **sukuan IV memberikan hujah yang negatif**.
+
+Soalan 4 pada satah: <InlineMath math="5 - 12i" /> terletak dalam sukuan IV, <InlineMath math="5" /> ke kanan dan <InlineMath math="12" /> ke bawah. Modulusnya ialah <InlineMath math="\sqrt{25 + 144} = 13" />, dan hujahnya diukur ikut arah jam: <InlineMath math="\arg z \approx -67.38^\circ" />.
+
+<MathVisual
+  title={<>Modulus dan hujah bagi <InlineMath math="5 - 12i" /></>}
+  description={<>Vektor ke <InlineMath math="5 - 12i" /> dengan komponen <InlineMath math="5" /> dan <InlineMath math="-12" />, modulus <InlineMath math="13" /> dan lengkok ikut arah jam bagi <InlineMath math="\arg z \approx -67.38^\circ" />.</>}
+  labels={{
+    z: <InlineMath math="|z| = 13" />,
+    x: <InlineMath math="5" />,
+    y: <InlineMath math="-12" />,
+    theta: <InlineMath math="\arg z" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6.4 }, y: { min: -13, max: 1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: 5, y: 0 }, to: { x: 5, y: -12 }, appearance: "highlight" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 2, startDegrees: 0, sweepDegrees: -Math.atan2(12, 5) * 180 / Math.PI, appearance: "answer" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: -12 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 5, y: -12 }, { x: 649 / 130, y: -149 / 13 }, { x: 601 / 130, y: -151 / 13 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 5 / 2, y: -6 }, placement: "left" },
+      { key: "x", objectId: "x", at: { x: 5 / 2, y: 0 }, placement: "above" },
+      { key: "y", objectId: "y", at: { x: 5, y: -6 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 2 * Math.cos(Math.atan2(12, 5) / 2), y: -2 * Math.sin(Math.atan2(12, 5) / 2) }, placement: "right" },
+    ],
+  }}
+/>

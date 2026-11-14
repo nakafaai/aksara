@@ -1,0 +1,185 @@
+export const metadata = {
+  title: "Songsangan Nombor Kompleks",
+  description: "Kira salingan nombor kompleks menggunakan konjugat dan modulus, kemudian gunakan salingan itu untuk membahagi nombor kompleks dalam contoh berserta jalan kerja.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-01",
+  dateModified: "2026-11-08",
+  subject: "Nombor Kompleks",
+};
+
+## Mendarab Nombor Kompleks dengan Salingannya
+
+Setiap nombor kompleks **bukan sifar** <InlineMath math="z = x + iy" /> ada **songsangan pendaraban**, yang ditulis sebagai <InlineMath math="z^{-1}" /> atau <InlineMath math="1/z" />.
+
+Apabila nombor kompleks <InlineMath math="z" /> didarab dengan songsangannya <InlineMath math="z^{-1}" />, hasilnya ialah <InlineMath math="1" />, iaitu <Highlight>identiti pendaraban</Highlight>.
+
+<BlockMath math="z \times z^{-1} = 1" />
+
+## Mencari Rumus Songsangan
+
+Kita sudah tahu daripada nota tentang [sifat pendaraban nombor kompleks](/ms/subjek/matematik/nombor-kompleks/sifat-pendaraban-nombor-kompleks#songsangan-pendaraban) bahawa untuk <InlineMath math="z = x + iy" />, songsangannya ialah:
+
+Darabkan pengangka dan penyebut dengan **konjugat penyebut**. Hasil darab sepasang konjugat ialah kuasa dua modulus, jadi penyebutnya menjadi nombor nyata yang positif untuk setiap nombor kompleks bukan sifar:
+
+<MathContainer>
+<BlockMath math="\frac1z=\frac1{x+iy}\cdot\frac{x-iy}{x-iy}=\frac{x-iy}{x^2+y^2},\quad z\ne0" />
+
+<BlockMath math="z^{-1} = \frac{x}{x^2+y^2} - i\frac{y}{x^2+y^2}" />
+</MathContainer>
+
+Rumus ini juga boleh ditulis sebagai pasangan tertib:
+
+<BlockMath math="z^{-1} = \left( \frac{x}{x^2+y^2}, -\frac{y}{x^2+y^2} \right)" />
+
+Ingat juga satu lagi bentuk yang selalu berguna, iaitu bentuk yang menggunakan konjugat (<InlineMath math="\bar{z} = x-iy" />) dan kuasa dua modulus (<InlineMath math="|z|^2 = x^2+y^2" />):
+
+<BlockMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" />
+
+Rumus <InlineMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" /> membina songsangan dalam dua langkah. Untuk <InlineMath math="z = 1 - i" />, konjugat <InlineMath math="\bar{z} = 1 + i" /> memantulkannya pada paksi nyata, kemudian pembahagian dengan <InlineMath math="|z|^2 = 2" /> menjadikan panjangnya separuh, lalu ia tiba di <InlineMath math="\tfrac12 + \tfrac12 i" />.
+
+<MathVisual
+  title={<>Konjugat, kemudian kecilkan</>}
+  description={<>Nombor <InlineMath math="z = 1 - i" />, konjugatnya <InlineMath math="\bar{z} = 1 + i" />, dan songsangan <InlineMath math="\tfrac12 + \tfrac12 i" /> yang panjangnya separuh daripada panjang <InlineMath math="\bar{z}" />.</>}
+  labels={{
+    z: <InlineMath math="z" />,
+    bar: <InlineMath math="\bar{z}" />,
+    inv: <InlineMath math="z^{-1}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 1.6 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 1, y: -1 }, { x: (1) + (-1 / 8 / Math.sqrt(2)) + (1 / 20 / Math.sqrt(2)), y: (-1) + (1 / 8 / Math.sqrt(2)) + (1 / 20 / Math.sqrt(2)) }, { x: (1) + (-1 / 8 / Math.sqrt(2)) + (-1 / 20 / Math.sqrt(2)), y: (-1) + (1 / 8 / Math.sqrt(2)) + (-1 / 20 / Math.sqrt(2)) }], appearance: "primary" },
+      { id: "bar", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "bar-head", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: (1) + (-1 / 8 / Math.sqrt(2)) + (-1 / 20 / Math.sqrt(2)), y: (1) + (-1 / 8 / Math.sqrt(2)) + (1 / 20 / Math.sqrt(2)) }, { x: (1) + (-1 / 8 / Math.sqrt(2)) + (1 / 20 / Math.sqrt(2)), y: (1) + (-1 / 8 / Math.sqrt(2)) + (-1 / 20 / Math.sqrt(2)) }], appearance: "construction" },
+      { id: "inv", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1 / 2, y: 1 / 2 }, appearance: "answer" },
+      { id: "inv-head", kind: "polygon", vertices: [{ x: 1 / 2, y: 1 / 2 }, { x: (1 / 2) + (-1 / 16 / Math.sqrt(1 / 2)) + (-1 / 40 / Math.sqrt(1 / 2)), y: (1 / 2) + (-1 / 16 / Math.sqrt(1 / 2)) + (1 / 40 / Math.sqrt(1 / 2)) }, { x: (1 / 2) + (-1 / 16 / Math.sqrt(1 / 2)) + (1 / 40 / Math.sqrt(1 / 2)), y: (1 / 2) + (-1 / 16 / Math.sqrt(1 / 2)) + (-1 / 40 / Math.sqrt(1 / 2)) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 1, y: -1 }, placement: "right" },
+      { key: "bar", objectId: "bar", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "inv", objectId: "inv", at: { x: 1 / 2, y: 1 / 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+## Mencari Songsangan Nombor Kompleks
+
+Cari songsangan bagi <InlineMath math="z = 1 - i" />.
+
+**Penyelesaian**:
+
+Di sini, <InlineMath math="x=1" /> dan <InlineMath math="y=-1" />.
+
+Dengan menggunakan rumus pertama:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} x^2+y^2 &amp;= (1)^2 + (-1)^2 \\ &amp;= 1 + 1 \\ &amp;= 2 \end{aligned}" />
+  <BlockMath math="z^{-1} = \frac{x}{x^2+y^2} - i\frac{y}{x^2+y^2}" />
+  <BlockMath math="z^{-1}=\frac12-i\frac{-1}{2}=\frac12+\frac12i" />
+</MathContainer>
+
+Dengan menggunakan **rumus konjugat dan modulus**:
+
+<MathContainer>
+  <BlockMath math="\bar{z} = 1 - (-1)i = 1+i" />
+  <BlockMath math="|z|^2 = x^2+y^2 = 1^2 + (-1)^2 = 2" />
+  <BlockMath math="z^{-1} = \frac{\bar{z}}{|z|^2} = \frac{1+i}{2} = \frac{1}{2} + \frac{1}{2}i" />
+</MathContainer>
+
+Kedua-dua rumus memberikan salingan yang sama:
+
+<ContentStack>
+
+  <BlockMath math="z^{-1} = \frac{1}{2} + \frac{1}{2}i \text{ atau} \left( \frac{1}{2}, \frac{1}{2} \right)" />
+
+  Sahkan <InlineMath math="z^{-1}" /> dengan mendarabkannya dengan nombor asal:
+
+  <BlockMath math="\begin{aligned} &amp;(1-i)\left(\frac{1}{2}+\frac{1}{2}i\right) \\ &amp;=\frac{1}{2}+\frac{1}{2}+\left(\frac{1}{2}-\frac{1}{2}\right)i \\ &amp;=1 \end{aligned}" />
+
+  <MathVisual
+    title={<><InlineMath math="z = 1 - i" /> dan songsangannya</>}
+    description={<><InlineMath math="z = 1 - i" /> dan <InlineMath math="z^{-1} = \tfrac12 + \tfrac12 i" /> terletak pada sisi paksi nyata yang bertentangan, satu di luar dan satu di dalam bulatan unit, dengan modulus <InlineMath math="\sqrt2" /> dan <InlineMath math="\tfrac{1}{\sqrt2}" /> yang hasil darabnya <InlineMath math="1" />.</>}
+    labels={{
+      z: <InlineMath math="z = 1 - i" />,
+      inv: <InlineMath math="z^{-1} = \tfrac12 + \tfrac12 i" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -1.3, max: 1.6 }, y: { min: -1.4, max: 1.3 } },
+      view: { kind: "fit", padding: 0.3 },
+      objects: [
+        { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+        { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -1 }, appearance: "primary" },
+        { id: "z-head", kind: "polygon", vertices: [{ x: 1, y: -1 }, { x: (1) + (-1 / 8 / Math.sqrt(2)) + (1 / 20 / Math.sqrt(2)), y: (-1) + (1 / 8 / Math.sqrt(2)) + (1 / 20 / Math.sqrt(2)) }, { x: (1) + (-1 / 8 / Math.sqrt(2)) + (-1 / 20 / Math.sqrt(2)), y: (-1) + (1 / 8 / Math.sqrt(2)) + (-1 / 20 / Math.sqrt(2)) }], appearance: "primary" },
+        { id: "inv", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1 / 2, y: 1 / 2 }, appearance: "secondary" },
+        { id: "inv-head", kind: "polygon", vertices: [{ x: 1 / 2, y: 1 / 2 }, { x: (1 / 2) + (-1 / 16 / Math.sqrt(1 / 2)) + (-1 / 40 / Math.sqrt(1 / 2)), y: (1 / 2) + (-1 / 16 / Math.sqrt(1 / 2)) + (1 / 40 / Math.sqrt(1 / 2)) }, { x: (1 / 2) + (-1 / 16 / Math.sqrt(1 / 2)) + (1 / 40 / Math.sqrt(1 / 2)), y: (1 / 2) + (-1 / 16 / Math.sqrt(1 / 2)) + (-1 / 40 / Math.sqrt(1 / 2)) }], appearance: "secondary" },
+      ],
+      labels: [
+        { key: "z", objectId: "z", at: { x: 1, y: -1 }, placement: "right" },
+        { key: "inv", objectId: "inv", at: { x: 1 / 2, y: 1 / 2 }, placement: "above-right" },
+      ],
+    }}
+  />
+</ContentStack>
+
+### Membahagi dengan Salingan
+
+Untuk **membahagi dua nombor kompleks**, darabkan pengangka dengan salingan penyebut. Penyebut itu tidak boleh sifar. Dalam contoh berikut, gunakan hukum kalis agihan untuk mengira bahagian nyata dan bahagian khayalan:
+
+<BlockMath math="\begin{aligned}\frac{1-i}{2+3i}&amp;=(1-i)\frac{2-3i}{2^2+3^2} \\ &amp;=\frac{2-3i-2i+3i^2}{13} \\ &amp;=\frac{-1-5i}{13}=-\frac1{13}-\frac5{13}i\end{aligned}" />
+
+## Latihan
+
+Diberi dua nombor kompleks <InlineMath math="z_1 = 1-i" /> dan <InlineMath math="z_2 = 2+3i" />. Cari **songsangan bagi hasil tambah** <InlineMath math="z_1 + z_2" />. Jawapan yang kamu dapat mesti memenuhi <InlineMath math="(z_1 + z_2) \cdot w = 1" />, dan persamaan inilah yang boleh kamu gunakan untuk menyemak jawapan kamu.
+
+### Jalan Kerja
+
+**Langkah 1**: Cari <InlineMath math="z_1 + z_2" />.
+
+<BlockMath math="\begin{aligned} z &amp;= z_1 + z_2 \\ &amp;= (1-i) + (2+3i) \\ &amp;= (1+2) + (-1+3)i \\ &amp;= 3+2i \end{aligned}" />
+
+**Langkah 2**: Cari **songsangan bagi hasil tambah** <InlineMath math="z = 3+2i" />.
+Di sini <InlineMath math="x=3" /> dan <InlineMath math="y=2" />.
+Kita gunakan rumus <InlineMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" />.
+
+<MathContainer>
+  <BlockMath math="\bar{z} = 3-2i" />
+  <BlockMath math="\begin{aligned} |z|^2 &amp;= x^2+y^2 \\ &amp;= 3^2 + 2^2 \\ &amp;= 9 + 4 \\ &amp;= 13 \end{aligned}" />
+  <BlockMath math="z^{-1} = \frac{3-2i}{13} = \frac{3}{13} - \frac{2}{13}i" />
+</MathContainer>
+
+Jadi, songsangan bagi <InlineMath math="z_1 + z_2" /> ialah <InlineMath math="\frac{3}{13} - \frac{2}{13}i" />.
+
+Semak dengan mendarab hasil tambah asal itu dengan salingan yang kamu dapat:
+
+<BlockMath math="(3+2i)\frac{3-2i}{13}=\frac{9-6i+6i-4i^2}{13}=\frac{13}{13}=1" />
+
+Dalam latihan ini, <InlineMath math="z_1 + z_2 = 3 + 2i" /> ada modulus <InlineMath math="\sqrt{13}" />, jadi songsangannya <InlineMath math="\tfrac{3}{13} - \tfrac{2}{13}i" /> ada modulus <InlineMath math="\tfrac{1}{\sqrt{13}}" />. Songsangan itu terletak di dalam bulatan unit dan di bawah paksi nyata, pada sudut yang dicerminkan.
+
+<MathVisual
+  title={<><InlineMath math="3 + 2i" /> dan songsangannya</>}
+  description={<>Hasil tambah <InlineMath math="3 + 2i" /> di luar bulatan unit dan songsangannya <InlineMath math="\tfrac{3}{13} - \tfrac{2}{13}i" /> di dalamnya, pada sudut yang bertentangan.</>}
+  labels={{
+    z: <InlineMath math="3 + 2i" />,
+    inv: <InlineMath math="\tfrac{3}{13} - \tfrac{2}{13}i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 3.6 }, y: { min: -1.3, max: 2.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 3, y: 2 }, { x: (3) + (-3 / 5 / Math.sqrt(13)) + (-4 / 25 / Math.sqrt(13)), y: (2) + (-2 / 5 / Math.sqrt(13)) + (6 / 25 / Math.sqrt(13)) }, { x: (3) + (-3 / 5 / Math.sqrt(13)) + (4 / 25 / Math.sqrt(13)), y: (2) + (-2 / 5 / Math.sqrt(13)) + (-6 / 25 / Math.sqrt(13)) }], appearance: "primary" },
+      { id: "inv", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / 13, y: -2 / 13 }, appearance: "answer" },
+      { id: "inv-head", kind: "polygon", vertices: [{ x: 3 / 13, y: -2 / 13 }, { x: (3 / 13) + (-1 / 52 / Math.sqrt(1 / 13)) + (1 / 195 / Math.sqrt(1 / 13)), y: (-2 / 13) + (1 / 78 / Math.sqrt(1 / 13)) + (1 / 130 / Math.sqrt(1 / 13)) }, { x: (3 / 13) + (-1 / 52 / Math.sqrt(1 / 13)) + (-1 / 195 / Math.sqrt(1 / 13)), y: (-2 / 13) + (1 / 78 / Math.sqrt(1 / 13)) + (-1 / 130 / Math.sqrt(1 / 13)) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "inv", objectId: "inv", at: { x: 3 / 13, y: -2 / 13 }, placement: "below-right" },
+    ],
+  }}
+/>
