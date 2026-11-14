@@ -2,34 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "writing",
-    topic: "punctuation",
+    topic: "effective-sentence",
   },
-  stimulus: "plastic-free-market",
+  stimulus: "jelantah",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Tepat", "Tidak tepat"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "kalimat (2)",
+          column: 1,
+          label:
+            "Pada kalimat (2), kata _sehingga_ diganti dengan _sedangkan_ yang didahului tanda koma.",
         },
         {
-          correct: false,
-          label: "kalimat (3)",
+          column: 2,
+          label:
+            "Pada kalimat (4), kata _adapun_ diganti dengan _akibatnya_ yang diikuti tanda koma.",
         },
         {
-          correct: false,
-          label: "kalimat (5)",
+          column: 2,
+          label:
+            "Pada kalimat (5), tanda koma ditambahkan setelah kata _kelurahan_.",
         },
         {
-          correct: true,
-          label: "kalimat (7)",
-        },
-        {
-          correct: false,
-          label: "kalimat (8)",
+          column: 1,
+          label: "Pada kalimat (5), kata _bagi_ dihapus.",
         },
       ],
     },

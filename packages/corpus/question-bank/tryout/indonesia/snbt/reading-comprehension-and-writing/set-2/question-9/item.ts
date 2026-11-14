@@ -2,34 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "reading",
-    topic: "word-meaning",
+    cognitiveLevel: "reasoning",
+    contentDomain: "writing",
+    topic: "insertion",
   },
-  stimulus: "plastic-free-market",
+  stimulus: "jelantah",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "mudah dicapai dari rumah pembeli",
-        },
-        {
           correct: true,
-          label: "harganya dapat dibayar oleh pembeli",
+          label: "di antara kalimat (7) dan kalimat (8)",
         },
         {
           correct: false,
-          label: "tersedia dalam jumlah yang banyak",
+          label: "di antara kalimat (8) dan kalimat (9)",
         },
         {
           correct: false,
-          label: "dibuat dari bahan yang kuat",
+          label: "di antara kalimat (9) dan kalimat (10)",
         },
         {
           correct: false,
-          label: "diberikan tanpa bayaran",
+          label: "di antara kalimat (10) dan kalimat (11)",
+        },
+        {
+          correct: false,
+          label: "di antara kalimat (11) dan kalimat (12)",
         },
       ],
     },
