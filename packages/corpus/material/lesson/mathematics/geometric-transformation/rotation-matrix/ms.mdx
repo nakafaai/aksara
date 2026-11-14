@@ -1,0 +1,210 @@
+
+export const metadata = {
+  title: "Matriks Putaran",
+  description: "Terbitkan matriks putaran dan gunakannya untuk putaran pada asalan dan pada sebarang pusat.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-10",
+  dateModified: "2026-11-08",
+  subject: "Transformasi Geometri",
+};
+
+## Memadankan Unsur Matriks dengan Koordinat yang Diputarkan
+
+Imej bagi titik <InlineMath math="(x,y)" /> yang diputarkan pada asalan <InlineMath math="(0,0)" /> melalui sudut <InlineMath math="\theta" /> ialah <InlineMath math="(x \cos \theta - y \sin \theta, x \sin \theta + y \cos \theta)" />.
+
+Mulakan dengan matriks <InlineMath math="2 \times 2" /> yang umum:
+
+<BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" />
+
+Matriks ini mewakili putaran tersebut hanya jika matriks itu <Highlight>menghasilkan koordinat yang sama</Highlight> bagi setiap <InlineMath math="x" /> dan <InlineMath math="y" />.
+
+Matriks ini mesti memenuhi:
+
+<BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x \cos \theta - y \sin \theta \\ x \sin \theta + y \cos \theta \end{pmatrix}" />
+
+Mengembangkan pendaraban di sebelah kiri memberikan:
+
+<BlockMath math="\begin{pmatrix} rx + sy \\ tx + uy \end{pmatrix} = \begin{pmatrix} x \cos \theta - y \sin \theta \\ x \sin \theta + y \cos \theta \end{pmatrix}" />
+
+Dengan menyamakan komponen yang sepadan:
+
+- Baris pertama: <InlineMath math="rx + sy = x \cos \theta - y \sin \theta" />.
+
+  Supaya persamaan ini benar bagi semua <InlineMath math="x" /> dan <InlineMath math="y" />, pekali <InlineMath math="x" /> mesti sama dan pekali <InlineMath math="y" /> juga mesti sama. Jadi, <InlineMath math="r = \cos \theta" /> dan <InlineMath math="s = -\sin \theta" />.
+
+- Baris kedua: <InlineMath math="tx + uy = x \sin \theta + y \cos \theta" />.
+
+  Dengan cara yang sama, <InlineMath math="t = \sin \theta" /> dan <InlineMath math="u = \cos \theta" />.
+
+### Matriks Putaran pada Asalan
+
+Setiap **lajur matriks** ialah imej bagi satu vektor unit. Vektor unit mengufuk berputar ke <InlineMath math="(\cos\theta,\sin\theta)" />. Vektor unit mencancang bermula suku pusingan lebih awal, jadi imejnya ialah <InlineMath math="(-\sin\theta,\cos\theta)" />. Gunakan unit sudut yang sama untuk sinus dan kosinus:
+
+<BlockMath math="R_\theta = \begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{pmatrix}" />
+
+Setiap lajur <InlineMath math="R_\theta" /> ialah tempat sesuatu vektor unit mendarat. Bagi <InlineMath math="\theta = 30^\circ" />, vektor unit <InlineMath math="(1, 0)" /> berpusing ke <InlineMath math="(\cos 30^\circ, \sin 30^\circ) = \left(\tfrac{\sqrt3}{2}, \tfrac12\right)" />, iaitu lajur pertama, dan <InlineMath math="(0, 1)" /> berpusing ke <InlineMath math="(-\sin 30^\circ, \cos 30^\circ) = \left(-\tfrac12, \tfrac{\sqrt3}{2}\right)" />, iaitu lajur kedua.
+
+<MathVisual
+  title={<>Lajur <InlineMath math="R_{30^\circ}" /> ialah vektor unit yang diputarkan</>}
+  description={<>Vektor unit <InlineMath math="(1, 0)" /> dan <InlineMath math="(0, 1)" /> serta imejnya <InlineMath math="\left(\tfrac{\sqrt3}{2}, \tfrac12\right)" /> dan <InlineMath math="\left(-\tfrac12, \tfrac{\sqrt3}{2}\right)" /> selepas putaran <InlineMath math="30^\circ" />, pada bulatan unit.</>}
+  labels={{
+    e1: <InlineMath math="(1, 0)" />,
+    e2: <InlineMath math="(0, 1)" />,
+    c1: <InlineMath math="\left(\tfrac{\sqrt3}{2}, \tfrac12\right)" />,
+    c2: <InlineMath math="\left(-\tfrac12, \tfrac{\sqrt3}{2}\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.3, max: 1.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "e1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "primary" },
+      { id: "e1-head", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 9 / 10, y: 1 / 25 }, { x: 9 / 10, y: -1 / 25 }], appearance: "primary" },
+      { id: "e2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "e2-head", kind: "polygon", vertices: [{ x: 0, y: 1 }, { x: -1 / 25, y: 9 / 10 }, { x: 1 / 25, y: 9 / 10 }], appearance: "primary" },
+      { id: "c1", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.sqrt(3) / 2, y: 1 / 2 }, appearance: "secondary" },
+      { id: "c1-head", kind: "polygon", vertices: [{ x: Math.sqrt(3) / 2, y: 1 / 2 }, { x: Math.sqrt(3) / 2 - 1 / 10 * (Math.sqrt(3) / 2) - 1 / 25 * (1 / 2), y: 1 / 2 - 1 / 10 * (1 / 2) + 1 / 25 * (Math.sqrt(3) / 2) }, { x: Math.sqrt(3) / 2 - 1 / 10 * (Math.sqrt(3) / 2) + 1 / 25 * (1 / 2), y: 1 / 2 - 1 / 10 * (1 / 2) - 1 / 25 * (Math.sqrt(3) / 2) }], appearance: "secondary" },
+      { id: "c2", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1 / 2, y: Math.sqrt(3) / 2 }, appearance: "secondary" },
+      { id: "c2-head", kind: "polygon", vertices: [{ x: -1 / 2, y: Math.sqrt(3) / 2 }, { x: -1 / 2 - 1 / 10 * (-1 / 2) - 1 / 25 * (Math.sqrt(3) / 2), y: Math.sqrt(3) / 2 - 1 / 10 * (Math.sqrt(3) / 2) + 1 / 25 * (-1 / 2) }, { x: -1 / 2 - 1 / 10 * (-1 / 2) + 1 / 25 * (Math.sqrt(3) / 2), y: Math.sqrt(3) / 2 - 1 / 10 * (Math.sqrt(3) / 2) - 1 / 25 * (-1 / 2) }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "e1", objectId: "e1", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "e2", objectId: "e2", at: { x: 0, y: 1 }, placement: "above-right" },
+      { key: "c1", objectId: "c1", at: { x: Math.sqrt(3) / 2, y: 1 / 2 }, placement: "right" },
+      { key: "c2", objectId: "c2", at: { x: -1 / 2, y: Math.sqrt(3) / 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+## Memutarkan pada Sebarang Pusat
+
+Untuk memutarkan titik <InlineMath math="(x,y)" /> pada sebarang titik <InlineMath math="P(a,b)" /> melalui sudut <InlineMath math="\theta" />, kita **translasikan, putarkan, kemudian translasikan semula** dalam tiga langkah:
+
+1. Translasikan titik <InlineMath math="(x,y)" /> supaya <InlineMath math="P(a,b)" /> menjadi asalan: <InlineMath math="(x-a, y-b)" />.
+2. Putarkan titik yang telah ditranslasikan itu pada asalan sebanyak <InlineMath math="\theta" /> menggunakan matriks <InlineMath math="R_\theta" />.
+3. Translasikan semula titik yang telah diputarkan dengan menambah <InlineMath math="(a,b)" />.
+
+### Rumus Matriks dengan Pusat
+
+Operasi ini bertindak pada **vektor relatif kepada pusat**, bukan terus pada vektor kedudukan dari asalan:
+
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} \cos \theta &amp; -\sin \theta \\ \sin \theta &amp; \cos \theta \end{pmatrix} \begin{pmatrix} x-a \\ y-b \end{pmatrix} \\ &amp;\quad{}+ \begin{pmatrix} a \\ b \end{pmatrix} \end{aligned}" />
+
+Apabila titik yang diputarkan ialah pusat itu sendiri, vektor relatifnya sifar. Oleh itu, pusat itu kekal di tempatnya:
+
+<BlockMath math="R_\theta\left(\begin{pmatrix}a\\b\end{pmatrix}-\begin{pmatrix}a\\b\end{pmatrix}\right)+\begin{pmatrix}a\\b\end{pmatrix}=R_\theta\begin{pmatrix}0\\0\end{pmatrix}+\begin{pmatrix}a\\b\end{pmatrix}=\begin{pmatrix}a\\b\end{pmatrix}" />
+
+## Mencari Matriks Putaran Tertentu
+
+Bagi <InlineMath math="\theta = \frac{1}{4}\pi" /> radian, atau <InlineMath math="45^\circ" />, kedua-dua **nilai trigonometri** sama dengan <InlineMath math="\frac{1}{\sqrt{2}}" />:
+
+<BlockMath math="\begin{aligned} R_{\frac{\pi}{4}} &amp;= \begin{pmatrix} \cos(\frac{\pi}{4}) &amp; -\sin(\frac{\pi}{4}) \\ \sin(\frac{\pi}{4}) &amp; \cos(\frac{\pi}{4}) \end{pmatrix} \\ &amp;= \begin{pmatrix} \frac{1}{\sqrt{2}} &amp; -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} \end{pmatrix} \end{aligned}" />
+
+Matriks ini memutarkan setiap vektor kedudukan sebanyak <InlineMath math="45^\circ" /> mengikut arah lawan jam.
+
+Bagi titik dalam rajah, pendaraban matriks memberikan:
+
+<BlockMath math="\begin{pmatrix}1/\sqrt2&-1/\sqrt2\\1/\sqrt2&1/\sqrt2\end{pmatrix}\begin{pmatrix}2\\0\end{pmatrix}=\begin{pmatrix}2/\sqrt2\\2/\sqrt2\end{pmatrix}=\begin{pmatrix}\sqrt2\\\sqrt2\end{pmatrix}" />
+
+<MathVisual
+  title={<><InlineMath math="(2, 0)" /> diputarkan sebanyak <InlineMath math="45^\circ" /></>}
+  description={<>Titik <InlineMath math="(2, 0)" /> diputarkan <InlineMath math="45^\circ" /> mengikut arah lawan jam pada asalan ke <InlineMath math="(\sqrt2, \sqrt2)" />, dan masih <InlineMath math="2" /> unit dari <InlineMath math="O" />.</>}
+  labels={{
+    p: <InlineMath math="(2, 0)" />,
+    image: <InlineMath math="(\sqrt2, \sqrt2)" />,
+    turn: <InlineMath math="45^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.6 }, y: { min: -0.5, max: 2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "op", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "oi", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.sqrt(2), y: Math.sqrt(2) }, appearance: "construction" },
+      { id: "turn", kind: "arc", center: { x: 0, y: 0 }, radius: 2, startDegrees: 0, sweepDegrees: 45, appearance: "highlight" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "p", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: Math.sqrt(2), y: Math.sqrt(2) }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "image", objectId: "image", at: { x: Math.sqrt(2), y: Math.sqrt(2) }, placement: "above-right" },
+      { key: "turn", objectId: "turn", at: { x: 2 * Math.cos(Math.PI / 8), y: 2 * Math.sin(Math.PI / 8) }, placement: "right" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Soalan-soalan ini bergerak daripada membina matriks putaran kepada menggunakannya. Soalan terakhir memutarkan titik pada **pusat yang bukan asalan**.
+
+1.  Tentukan matriks bagi putaran pada asalan <InlineMath math="O(0,0)" /> sebanyak <InlineMath math="\frac{1}{6}\pi" /> radian.
+2.  Tentukan imej bagi titik <InlineMath math="P(4,2)" /> jika titik itu diputarkan pada asalan <InlineMath math="O(0,0)" /> sebanyak <InlineMath math="60^\circ" />.
+3.  Tentukan imej bagi titik <InlineMath math="Q(3,1)" /> jika titik itu diputarkan pada titik <InlineMath math="C(1,-2)" /> sebanyak <InlineMath math="90^\circ" />.
+
+### Penyelesaian
+
+Perhatikan **tanda negatif pada unsur kanan atas** matriks putaran. Bagi sebarang pusat, tolak dan tambah koordinat pusat di luar pendaraban putaran.
+
+**Penyelesaian 1**
+
+Bagi <InlineMath math="\theta = \frac{\pi}{6}" />, atau <InlineMath math="30^\circ" />, nilai sinus dan kosinusnya ialah:
+
+<MathContainer>
+  <BlockMath math="\cos(\frac{\pi}{6}) = \frac{\sqrt{3}}{2}" />
+  <BlockMath math="\sin(\frac{\pi}{6}) = \frac{1}{2}" />
+</MathContainer>
+
+Menggantikan nilai ini memberikan:
+
+<BlockMath math="\begin{pmatrix} \frac{\sqrt{3}}{2} & -\frac{1}{2} \\ \frac{1}{2} & \frac{\sqrt{3}}{2} \end{pmatrix}" />
+
+**Penyelesaian 2**
+
+Bagi titik <InlineMath math="P(4,2)" /> dan <InlineMath math="\theta = 60^\circ" />, gunakan <InlineMath math="\cos 60^\circ = \frac{1}{2}" /> dan <InlineMath math="\sin 60^\circ = \frac{\sqrt{3}}{2}" />.
+
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} \frac{1}{2} &amp; -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} &amp; \frac{1}{2} \end{pmatrix} \begin{pmatrix} 4 \\ 2 \end{pmatrix} \\ &amp;= \begin{pmatrix} (4)(\frac{1}{2}) - (2)(\frac{\sqrt{3}}{2}) \\ (4)(\frac{\sqrt{3}}{2}) + (2)(\frac{1}{2}) \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 - \sqrt{3} \\ 2\sqrt{3} + 1 \end{pmatrix} \end{aligned}" />
+
+Imejnya ialah <InlineMath math="P'(2-\sqrt{3}, 2\sqrt{3}+1)" />.
+
+**Penyelesaian 3**
+
+Titik yang diputarkan ialah <InlineMath math="Q(3,1)" />, pusat putaran ialah <InlineMath math="C(1,-2)" />, dan <InlineMath math="\theta = 90^\circ" />. Jadi, <InlineMath math="(a,b)=(1,-2)" />.
+
+<MathContainer>
+  <BlockMath math="\cos 90^\circ = 0" />
+  <BlockMath math="\sin 90^\circ = 1" />
+  <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 3-1 \\ 1-(-2) \end{pmatrix} \\ &amp;\quad{}+ \begin{pmatrix} 1 \\ -2 \end{pmatrix} \end{aligned}" />
+  <BlockMath math="\begin{aligned}  &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 2 \\ 3 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -3 \\ 2 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 \\ 0 \end{pmatrix} \end{aligned}" />
+</MathContainer>
+
+Imejnya ialah <InlineMath math="Q'(-2,0)" />.
+
+<MathVisual
+  title={<>Suku pusingan pada <InlineMath math="C(1, -2)" /></>}
+  description={<><InlineMath math="Q(3, 1)" /> diputarkan <InlineMath math="90^\circ" /> mengikut arah lawan jam pada <InlineMath math="C(1, -2)" /> ke <InlineMath math="Q'(-2, 0)" />. Kedua-dua jejari sepanjang <InlineMath math="\sqrt{13}" />.</>}
+  labels={{
+    c: <InlineMath math="C(1, -2)" />,
+    q: <InlineMath math="Q(3, 1)" />,
+    image: <InlineMath math="Q'(-2, 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 4 }, y: { min: -3, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "cq", kind: "segment", from: { x: 1, y: -2 }, to: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "ci", kind: "segment", from: { x: 1, y: -2 }, to: { x: -2, y: 0 }, appearance: "construction" },
+      { id: "turn", kind: "arc", center: { x: 1, y: -2 }, radius: Math.sqrt(13), startDegrees: Math.atan2(3, 2) * 180 / Math.PI, sweepDegrees: 90, appearance: "highlight" },
+      { id: "c", kind: "point", at: { x: 1, y: -2 }, appearance: "answer" },
+      { id: "q", kind: "point", at: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: -2, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "c", objectId: "c", at: { x: 1, y: -2 }, placement: "below" },
+      { key: "q", objectId: "q", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: -2, y: 0 }, placement: "left" },
+    ],
+  }}
+/>
