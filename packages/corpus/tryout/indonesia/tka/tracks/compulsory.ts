@@ -35,6 +35,7 @@ export const tkaCompulsoryMathematicsTrack = {
     de: "pflichtmathematik",
     en: "compulsory-mathematics",
     id: "matematika-wajib",
+    ms: "matematik-wajib",
   },
   sets: Arr.map(compulsoryRatings, (rating, index) => {
     const setNumber = index + 1;
@@ -47,11 +48,13 @@ export const tkaCompulsoryMathematicsTrack = {
         de: `aufgabensatz-${setNumber}`,
         en: setKey,
         id: setKey,
+        ms: setKey,
       },
       translations: {
         de: { title: `Aufgabensatz ${setNumber}` },
         en: { title: `Set ${setNumber}` },
         id: { title: `Set ${setNumber}` },
+        ms: { title: `Set ${setNumber}` },
       },
     };
   }),
@@ -59,5 +62,6 @@ export const tkaCompulsoryMathematicsTrack = {
     de: { title: "Pflichtmathematik" },
     en: { title: "Compulsory Mathematics" },
     id: { title: "Matematika Wajib" },
+    ms: { title: "Matematik Wajib" },
   },
 } satisfies TrackSourceInput;

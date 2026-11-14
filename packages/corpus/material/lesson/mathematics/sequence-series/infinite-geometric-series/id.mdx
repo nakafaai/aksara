@@ -24,11 +24,11 @@ Berapa _total panjang lintasan_ yang ditempuh bola sejak dilepas sampai akhirnya
 
 Dalam model ideal, bola bergerak turun, lalu naik, turun lagi, dan seterusnya tanpa pantulan terakhir. Semua lintasan turun dan naik membentuk deret geometri tak hingga. Jumlah deret tersebut memberikan total panjang lintasan bola.
 
-Setiap pantulan mencapai seperempat tinggi sebelumnya: 1 m, lalu <InlineMath math="\tfrac14" /> m, <InlineMath math="\tfrac{1}{16}" /> m, <InlineMath math="\tfrac{1}{64}" /> m. Batangnya menyusut begitu cepat sehingga setelah beberapa pantulan hampir tidak terlihat.
+Setiap pantulan mencapai seperempat tinggi sebelumnya: <InlineMath math="1\text{ m}" />, lalu <InlineMath math="\tfrac14" /> m, <InlineMath math="\tfrac{1}{16}" /> m, <InlineMath math="\tfrac{1}{64}" /> m. Batangnya menyusut begitu cepat sehingga setelah beberapa pantulan hampir tidak terlihat.
 
 <BarChart
   title={<>Tinggi lima pantulan pertama</>}
-  description={<>Batang <InlineMath math="\left(\tfrac14\right)^{n-1}" /> meter untuk <InlineMath math="n = 1" /> sampai 5.</>}
+  description={<>Batang <InlineMath math="\left(\tfrac14\right)^{n-1}" /> meter untuk <InlineMath math="n = 1" /> sampai <InlineMath math="5" />.</>}
   yAxisLabel="Tinggi (m)"
   data={[1, 2, 3, 4, 5].map((n) => ({ name: String(n), value: (1 / 4) ** (n - 1) }))}
   chartConfig={{ value: { label: "Tinggi (m)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -80,8 +80,8 @@ Tidak ada jumlah parsial berhingga yang tepat sama dengan <InlineMath math="2" /
 
 
 <MathVisual
-  title={<>Jumlah parsial yang mendekati 2</>}
-  description={<>Jumlah <InlineMath math="S_n = 2 - 2^{1-n}" /> setelah 1 sampai 6 suku naik mendekati garis <InlineMath math="y = 2" /> tanpa mencapainya.</>}
+  title={<>Jumlah parsial yang mendekati <InlineMath math="2" /></>}
+  description={<>Jumlah <InlineMath math="S_n = 2 - 2^{1-n}" /> setelah <InlineMath math="1" /> sampai <InlineMath math="6" /> suku naik mendekati garis <InlineMath math="y = 2" /> tanpa mencapainya.</>}
   labels={{
     limit: <InlineMath math="2" />,
     s: <InlineMath math="S_n" />,
@@ -159,10 +159,10 @@ Di sini <InlineMath math="a=12" /> dan <InlineMath math="r=-\frac12" />. Karena 
 
 Rasio negatif membuat tanda suku berganti-ganti, tetapi nilai mutlaknya mengecil cukup cepat sehingga jumlah parsialnya mendekati <InlineMath math="8" />.
 
-Jumlah parsial <InlineMath math="12 - 6 + 3 - \tfrac32 + \cdots" /> adalah 12, 6, 9, 7,5, 8,25, dan 7,875. Nilainya bergantian di atas dan di bawah 8 dan mendekatinya dari kedua sisi.
+Jumlah parsial <InlineMath math="12 - 6 + 3 - \tfrac32 + \cdots" /> adalah <InlineMath math="12" />, <InlineMath math="6" />, <InlineMath math="9" />, <InlineMath math="7{,}5" />, <InlineMath math="8{,}25" />, dan <InlineMath math="7{,}875" />. Nilainya bergantian di atas dan di bawah <InlineMath math="8" /> dan mendekatinya dari kedua sisi.
 
 <MathVisual
-  title={<>Jumlah parsial di kedua sisi 8</>}
+  title={<>Jumlah parsial di kedua sisi <InlineMath math="8" /></>}
   description={<>Jumlah parsial <InlineMath math="S_1" /> sampai <InlineMath math="S_6" /> dari deret dengan <InlineMath math="a = 12" /> dan <InlineMath math="r = -\tfrac12" />, di sekitar garis <InlineMath math="y = 8" />.</>}
   labels={{
     limit: <InlineMath math="8" />,

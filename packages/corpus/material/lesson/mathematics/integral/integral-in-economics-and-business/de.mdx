@@ -50,7 +50,7 @@ Ein Integral summiert eine Rate auf. Bei der Verkaufsrate <InlineMath math="2000
 
 <BarChart
   title={<>Gesamtverkäufe aus einer Rate</>}
-  description={<>Gesamtverkäufe nach 1, 2 und 3 Monaten, jeweils das Integral der Verkaufsrate von 0 bis zu diesem Monat.</>}
+  description={<>Gesamtverkäufe nach <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="3" /> Monaten, jeweils das Integral der Verkaufsrate von <InlineMath math="0" /> bis zu diesem Monat.</>}
   yAxisLabel="Verkaufte Einheiten"
   data={[1, 2, 3].map((t) => ({ name: `${t}`, value: (4000 / 3) * ((t + 1) ** 1.5 - 1) + 800 * t }))}
   chartConfig={{ value: { label: "Verkaufte Einheiten", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -92,11 +92,11 @@ Unter der Annahme <InlineMath math="VC(0)=0" /> betragen die variablen Gesamtkos
 
 > In wirtschaftlichen Anwendungen wandeln Integrale Grenzgrößen oder Änderungsraten in Gesamtgrößen um. So wird aus Grenzkosten beispielsweise die Änderung der Gesamtkosten.
 
-Sieh zu, wie sich die variablen Kosten aufsummieren. <InlineMath math="VC(x) = 0{,}1x^3 - 6x^2 + 200x" /> beträgt nach 5, 10, 15 und 20 Einheiten <InlineMath math="862{,}5" />, <InlineMath math="1500" />, <InlineMath math="1987{,}5" /> und <InlineMath math="2400" /> Tausend Rupiah. Jeder Block von 5 Einheiten fügt weniger hinzu als der vorige, nämlich <InlineMath math="862{,}5" />, <InlineMath math="637{,}5" />, <InlineMath math="487{,}5" /> und <InlineMath math="412{,}5" />, weil die Grenzkosten bis zu ihrem Minimum bei <InlineMath math="x = 20" /> fallen.
+Sieh zu, wie sich die variablen Kosten aufsummieren. <InlineMath math="VC(x) = 0{,}1x^3 - 6x^2 + 200x" /> beträgt nach <InlineMath math="5" />, <InlineMath math="10" />, <InlineMath math="15" /> und <InlineMath math="20" /> Einheiten <InlineMath math="862{,}5" />, <InlineMath math="1500" />, <InlineMath math="1987{,}5" /> und <InlineMath math="2400" /> Tausend Rupiah. Jeder Block von <InlineMath math="5" /> Einheiten fügt weniger hinzu als der vorige, nämlich <InlineMath math="862{,}5" />, <InlineMath math="637{,}5" />, <InlineMath math="487{,}5" /> und <InlineMath math="412{,}5" />, weil die Grenzkosten bis zu ihrem Minimum bei <InlineMath math="x = 20" /> fallen.
 
 <BarChart
-  title={<>Variable Kosten über die ersten 20 Einheiten</>}
-  description={<>Balken von <InlineMath math="VC(x) = 0{,}1x^3 - 6x^2 + 200x" /> Tausend Rupiah bei <InlineMath math="x = 0, 5, 10, 15, 20" /> Einheiten, mit Ende bei 2400.</>}
+  title={<>Variable Kosten über die ersten <InlineMath math="20" /> Einheiten</>}
+  description={<>Balken von <InlineMath math="VC(x) = 0{,}1x^3 - 6x^2 + 200x" /> Tausend Rupiah bei <InlineMath math="x = 0, 5, 10, 15, 20" /> Einheiten, mit Ende bei <InlineMath math="2400" />.</>}
   yAxisLabel="Variable Kosten (Tausend Rupiah)"
   data={[0, 5, 10, 15, 20].map((x) => ({ name: String(x), value: 0.1 * x ** 3 - 6 * x ** 2 + 200 * x }))}
   chartConfig={{ value: { label: "Variable Kosten (Tausend Rupiah)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -129,7 +129,7 @@ Die Konsumentenrente ist die Fläche eines Dreiecks. Käufer würden bis zur Nac
 
 <MathVisual
   title={<>Die Konsumentenrente als Dreieck</>}
-  description={<>Die Nachfragegerade <InlineMath math="P = 100 - 0{,}5Q" />, die Preisgerade 60 und das Dreieck dazwischen bis <InlineMath math="Q = 80" />, mit Fläche 1600.</>}
+  description={<>Die Nachfragegerade <InlineMath math="P = 100 - 0{,}5Q" />, die Preisgerade <InlineMath math="60" /> und das Dreieck dazwischen bis <InlineMath math="Q = 80" />, mit Fläche 1600.</>}
   labels={{
     demand: <InlineMath math="P = 100 - 0{,}5Q" />,
     price: <InlineMath math="P = 60" />,
@@ -178,7 +178,7 @@ Das Ergebnis ist:
 
 Der Gesamtabsatz in <InlineMath math="6 \text{ Monaten}" /> beträgt <InlineMath math="15{.}000 \text{ Einheiten}" />.
 
-**Aufgabe 2**. Integriere die **Grenzkostenfunktion** von null bis 25 produzierten Einheiten. Da die Grenzkosten in Tausend Rupiah pro Einheit angegeben sind, erhältst du das Integral in Tausend Rupiah.
+**Aufgabe 2**. Integriere die **Grenzkostenfunktion** von null bis <InlineMath math="25" /> produzierten Einheiten. Da die Grenzkosten in Tausend Rupiah pro Einheit angegeben sind, erhältst du das Integral in Tausend Rupiah.
 
 <BlockMath math="VC = \int_{0}^{25} (2x + 50) \, dx" />
 

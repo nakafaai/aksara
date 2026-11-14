@@ -22,7 +22,7 @@ const tkaTryoutCatalog = defineExamSource({
   examKey: "tka",
   examName: "TKA",
   examOrder: 2,
-  examRouteSlugs: { de: "tka", en: "tka", id: "tka" },
+  examRouteSlugs: { de: "tka", en: "tka", id: "tka", ms: "tka" },
   examTranslations: {
     de: {
       description:
@@ -33,6 +33,9 @@ const tkaTryoutCatalog = defineExamSource({
     },
     id: {
       description: "Try out Tes Kemampuan Akademik Indonesia.",
+    },
+    ms: {
+      description: "Ujian percubaan kecekapan akademik Indonesia.",
     },
   },
   grouping: {
@@ -45,11 +48,13 @@ const tkaTryoutCatalog = defineExamSource({
           de: "oberstufe",
           en: "senior-high-school",
           id: "sma-ma-smk",
+          ms: "sekolah-menengah-atas",
         },
         translations: {
           de: { title: "Oberstufe" },
           en: { title: "Senior High School" },
           id: { title: "SMA/MA/SMK" },
+          ms: { title: "Sekolah Menengah Atas" },
         },
       },
     ],

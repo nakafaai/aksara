@@ -24,11 +24,11 @@ Wie groß ist die _Gesamtstrecke_, die der Ball vom Loslassen bis zum Stillstand
 
 Im idealisierten Modell bewegt sich der Ball nach unten, dann nach oben, wieder nach unten und so weiter, ohne einen letzten Sprung. Die Gesamtstrecke setzt sich aus allen Abwärts- und Aufwärtswegen zusammen. Da ihre Längen ein unendliches geometrisches Muster bilden, berechnen wir sie mit einer **unendlichen geometrischen Reihe**.
 
-Jeder Aufprall erreicht ein Viertel der vorigen Höhe: 1 m, dann <InlineMath math="\tfrac14" /> m, <InlineMath math="\tfrac{1}{16}" /> m, <InlineMath math="\tfrac{1}{64}" /> m. Die Balken schrumpfen so schnell, dass sie nach wenigen Sprüngen kaum noch zu sehen sind.
+Jeder Aufprall erreicht ein Viertel der vorigen Höhe: <InlineMath math="1\text{ m}" />, dann <InlineMath math="\tfrac14" /> m, <InlineMath math="\tfrac{1}{16}" /> m, <InlineMath math="\tfrac{1}{64}" /> m. Die Balken schrumpfen so schnell, dass sie nach wenigen Sprüngen kaum noch zu sehen sind.
 
 <BarChart
   title={<>Höhen der ersten fünf Sprünge</>}
-  description={<>Balken von <InlineMath math="\left(\tfrac14\right)^{n-1}" /> Metern für <InlineMath math="n = 1" /> bis 5.</>}
+  description={<>Balken von <InlineMath math="\left(\tfrac14\right)^{n-1}" /> Metern für <InlineMath math="n = 1" /> bis <InlineMath math="5" />.</>}
   yAxisLabel="Höhe (m)"
   data={[1, 2, 3, 4, 5].map((n) => ({ name: String(n), value: (1 / 4) ** (n - 1) }))}
   chartConfig={{ value: { label: "Höhe (m)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -80,8 +80,8 @@ Keine endliche Teilsumme ist gleich <InlineMath math="2" />, aber die Teilsummen
 
 
 <MathVisual
-  title={<>Teilsummen, die sich 2 nähern</>}
-  description={<>Die Summen <InlineMath math="S_n = 2 - 2^{1-n}" /> nach 1 bis 6 Gliedern steigen in Richtung der Geraden <InlineMath math="y = 2" />, ohne sie zu erreichen.</>}
+  title={<>Teilsummen, die sich <InlineMath math="2" /> nähern</>}
+  description={<>Die Summen <InlineMath math="S_n = 2 - 2^{1-n}" /> nach <InlineMath math="1" /> bis <InlineMath math="6" /> Gliedern steigen in Richtung der Geraden <InlineMath math="y = 2" />, ohne sie zu erreichen.</>}
   labels={{
     limit: <InlineMath math="2" />,
     s: <InlineMath math="S_n" />,
@@ -159,10 +159,10 @@ Hier <InlineMath math="a=12" /> und <InlineMath math="r=-\frac12" />. Da <Inline
 
 Durch den negativen Faktor wechseln sich die Vorzeichen der Glieder ab. Ihre Beträge werden jedoch schnell genug kleiner, sodass sich die Teilsummen dem Wert <InlineMath math="8" /> nähern.
 
-Die Teilsummen von <InlineMath math="12 - 6 + 3 - \tfrac32 + \cdots" /> sind 12, 6, 9, 7,5, 8,25 und 7,875. Sie liegen abwechselnd über und unter 8 und nähern sich von beiden Seiten.
+Die Teilsummen von <InlineMath math="12 - 6 + 3 - \tfrac32 + \cdots" /> sind <InlineMath math="12" />, <InlineMath math="6" />, <InlineMath math="9" />, <InlineMath math="7{,}5" />, <InlineMath math="8{,}25" /> und <InlineMath math="7{,}875" />. Sie liegen abwechselnd über und unter <InlineMath math="8" /> und nähern sich von beiden Seiten.
 
 <MathVisual
-  title={<>Teilsummen auf beiden Seiten von 8</>}
+  title={<>Teilsummen auf beiden Seiten von <InlineMath math="8" /></>}
   description={<>Die Teilsummen <InlineMath math="S_1" /> bis <InlineMath math="S_6" /> der Reihe mit <InlineMath math="a = 12" /> und <InlineMath math="r = -\tfrac12" />, um die Gerade <InlineMath math="y = 8" />.</>}
   labels={{
     limit: <InlineMath math="8" />,

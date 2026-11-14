@@ -37,7 +37,7 @@ Each row states the same relationship twice:
 
 When converting, keep **the same base**. The exponential output becomes the logarithm's argument, and the exponent becomes the logarithm's value. In the third row, a negative exponent produces a fractional output.
 
-The graph of <InlineMath math="y = \log_2 x" /> answers the question "which power of 2 gives <InlineMath math="x" />?" at every input. At the powers of two it passes exact points: <InlineMath math="\log_2 \tfrac14 = -2" />, <InlineMath math="\log_2 1 = 0" /> and <InlineMath math="\log_2 8 = 3" />.
+The graph of <InlineMath math="y = \log_2 x" /> answers the question "which power of <InlineMath math="2" /> gives <InlineMath math="x" />?" at every input. At the powers of two it passes exact points: <InlineMath math="\log_2 \tfrac14 = -2" />, <InlineMath math="\log_2 1 = 0" /> and <InlineMath math="\log_2 8 = 3" />.
 
 <MathVisual
   title={<>The graph of <InlineMath math="y = \log_2 x" /></>}
@@ -113,11 +113,11 @@ On the graph, the target lies **between two hourly observations**. The point aft
   description={<>The horizontal axis measures time in hours. Compare the populations after five and six hours.</>}
 />
 
-Tabulate <InlineMath math="P(x) = 2{,}000 \cdot 2^x" /> hour by hour. The target <InlineMath math="100{,}000" /> lies between <InlineMath math="P(5) = 64{,}000" /> and <InlineMath math="P(6) = 128{,}000" />, which is why <InlineMath math="x = \log_2 50 \approx 5.64" /> falls between 5 and 6.
+Tabulate <InlineMath math="P(x) = 2{,}000 \cdot 2^x" /> hour by hour. The target <InlineMath math="100{,}000" /> lies between <InlineMath math="P(5) = 64{,}000" /> and <InlineMath math="P(6) = 128{,}000" />, which is why <InlineMath math="x = \log_2 50 \approx 5.64" /> falls between <InlineMath math="5" /> and <InlineMath math="6" />.
 
 <BarChart
   title={<>Population hour by hour</>}
-  description={<>Bars of <InlineMath math="P(x) = 2{,}000 \cdot 2^x" /> for <InlineMath math="x = 0" /> to 7 hours.</>}
+  description={<>Bars of <InlineMath math="P(x) = 2{,}000 \cdot 2^x" /> for <InlineMath math="x = 0" /> to <InlineMath math="7" /> hours.</>}
   yAxisLabel="Population"
   data={[0, 1, 2, 3, 4, 5, 6, 7].map((x) => ({ name: String(x), value: 2000 * 2 ** x }))}
   chartConfig={{ value: { label: "Population", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

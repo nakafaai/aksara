@@ -20,6 +20,7 @@ const entranceTryoutCatalog = defineExamSource({
     de: "aufnahmepruefung",
     en: "aufnahmepruefung",
     id: "aufnahmepruefung",
+    ms: "aufnahmepruefung",
   },
   examTranslations: {
     de: {
@@ -30,6 +31,9 @@ const entranceTryoutCatalog = defineExamSource({
     },
     id: {
       description: "Try out Aufnahmeprüfung Studienkolleg di Jerman.",
+    },
+    ms: {
+      description: "Ujian percubaan Aufnahmeprüfung Studienkolleg di Jerman.",
     },
   },
   grouping: {
@@ -42,11 +46,13 @@ const entranceTryoutCatalog = defineExamSource({
           de: "studienkolleg-der-tu-darmstadt",
           en: "tu-darmstadt-studienkolleg",
           id: "studienkolleg-tu-darmstadt",
+          ms: "studienkolleg-tu-darmstadt",
         },
         translations: {
           de: { title: "Studienkolleg der TU Darmstadt" },
           en: { title: "TU Darmstadt Studienkolleg" },
           id: { title: "Studienkolleg TU Darmstadt" },
+          ms: { title: "Studienkolleg TU Darmstadt" },
         },
       },
     ],

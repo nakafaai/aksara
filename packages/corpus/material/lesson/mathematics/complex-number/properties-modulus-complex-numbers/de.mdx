@@ -123,7 +123,7 @@ Der direkte Abstand ist kürzer als der Weg über die Ecke des rechtwinkligen Dr
 
 <MathVisual
   title={<>Direkter Abstand und Weg über zwei Seiten</>}
-  description={<>Ein waagerechter Vektor der Länge 3 und ein senkrechter Vektor der Länge 4 ergeben einen direkten Vektor der Länge 5. Die Länge 5 überschreitet die Weglänge 3 plus 4 nicht.</>}
+  description={<>Ein waagerechter Vektor der Länge <InlineMath math="3" /> und ein senkrechter Vektor der Länge <InlineMath math="4" /> ergeben einen direkten Vektor der Länge <InlineMath math="5" />. Die Länge <InlineMath math="5" /> überschreitet die Weglänge <InlineMath math="3" /> plus <InlineMath math="4" /> nicht.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: -0.5, max: 4.5 } },
@@ -235,11 +235,11 @@ Beide Grenzen sind erreichbar: Entgegengesetzte Richtungen liefern die Untergren
 
 <BlockMath math="\begin{aligned}|3+(-5)|&amp;=2\\|3+5|&amp;=8\end{aligned}" />
 
-Dreh <InlineMath math="z_2" /> mit <InlineMath math="|z_2| = 5" /> herum, während <InlineMath math="z_1 = 3" /> fest bleibt. Die Länge <InlineMath math="|z_1 + z_2| = \sqrt{34 + 30\cos\theta}" /> fällt von 8 bei <InlineMath math="\theta = 0^\circ" /> auf 2 bei <InlineMath math="\theta = 180^\circ" />, bleibt also immer zwischen <InlineMath math="5 - 3 = 2" /> und <InlineMath math="3 + 5 = 8" />.
+Dreh <InlineMath math="z_2" /> mit <InlineMath math="|z_2| = 5" /> herum, während <InlineMath math="z_1 = 3" /> fest bleibt. Die Länge <InlineMath math="|z_1 + z_2| = \sqrt{34 + 30\cos\theta}" /> fällt von <InlineMath math="8" /> bei <InlineMath math="\theta = 0^\circ" /> auf <InlineMath math="2" /> bei <InlineMath math="\theta = 180^\circ" />, bleibt also immer zwischen <InlineMath math="5 - 3 = 2" /> und <InlineMath math="3 + 5 = 8" />.
 
 <BarChart
   title={<><InlineMath math="|z_1 + z_2|" />, während sich <InlineMath math="z_2" /> dreht</>}
-  description={<>Balken von <InlineMath math="|3 + 5(\cos\theta + i\sin\theta)|" /> für <InlineMath math="\theta = 0^\circ, 60^\circ, 90^\circ, 120^\circ, 180^\circ" />: 8, 7, <InlineMath math="\sqrt{34}" />, <InlineMath math="\sqrt{19}" /> und 2.</>}
+  description={<>Balken von <InlineMath math="|3 + 5(\cos\theta + i\sin\theta)|" /> für <InlineMath math="\theta = 0^\circ, 60^\circ, 90^\circ, 120^\circ, 180^\circ" />: <InlineMath math="8" />, <InlineMath math="7" />, <InlineMath math="\sqrt{34}" />, <InlineMath math="\sqrt{19}" /> und <InlineMath math="2" />.</>}
   yAxisLabel="Betrag"
   data={[0, 60, 90, 120, 180].map((d) => ({ name: d + "°", value: Math.sqrt(34 + 30 * Math.cos((d * Math.PI) / 180)) }))}
   chartConfig={{ value: { label: "Betrag", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

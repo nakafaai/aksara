@@ -34,7 +34,7 @@ For <InlineMath math="f(x)=\sin x" />, the derivative <InlineMath math="f'(x)=\c
 
 <BarChart
   title={<>The slope of sine is cosine</>}
-  description={<>Bars of <InlineMath math="\cos x" />, the slope of <InlineMath math="\sin x" />, at <InlineMath math="x = 0, \tfrac{\pi}{6}, \tfrac{\pi}{3}, \tfrac{\pi}{2}, \tfrac{2\pi}{3}, \tfrac{5\pi}{6}, \pi" /> in radians. The slope is 1 at 0, 0 at the maximum <InlineMath math="\tfrac{\pi}{2}" /> and negative after it.</>}
+  description={<>Bars of <InlineMath math="\cos x" />, the slope of <InlineMath math="\sin x" />, at <InlineMath math="x = 0, \tfrac{\pi}{6}, \tfrac{\pi}{3}, \tfrac{\pi}{2}, \tfrac{2\pi}{3}, \tfrac{5\pi}{6}, \pi" /> in radians. The slope is <InlineMath math="1" /> at <InlineMath math="0" />, <InlineMath math="0" /> at the maximum <InlineMath math="\tfrac{\pi}{2}" /> and negative after it.</>}
   yAxisLabel="Slope of sin x"
   data={[["0", 0], ["π/6", 1 / 6], ["π/3", 1 / 3], ["π/2", 1 / 2], ["2π/3", 2 / 3], ["5π/6", 5 / 6], ["π", 1]].map(([name, k]) => ({ name, value: Math.round(1000 * Math.cos(k * Math.PI)) / 1000 }))}
   chartConfig={{ value: { label: "Slope of sin x", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -42,10 +42,10 @@ For <InlineMath math="f(x)=\sin x" />, the derivative <InlineMath math="f'(x)=\c
 
 On <InlineMath math="-\pi/2<x<\pi/2" />, cosine is positive, so sine increases. On <InlineMath math="\pi/2<x<\pi" />, cosine is negative, so sine decreases. A **zero derivative** at the maximum means the tangent is horizontal.
 
-Now the heights of <InlineMath math="\sin x" /> at the same angles: 0, <InlineMath math="\tfrac12" />, about 0.866, 1, then back down. The bars rise exactly where the cosine bars are positive and fall where they are negative.
+Now the heights of <InlineMath math="\sin x" /> at the same angles: <InlineMath math="0" />, <InlineMath math="\tfrac12" />, about <InlineMath math="0.866" />, <InlineMath math="1" />, then back down. The bars rise exactly where the cosine bars are positive and fall where they are negative.
 
 <BarChart
-  title={<>Heights of <InlineMath math="\sin x" /> from 0 to <InlineMath math="\pi" /></>}
+  title={<>Heights of <InlineMath math="\sin x" /> from <InlineMath math="0" /> to <InlineMath math="\pi" /></>}
   description={<>Bars of <InlineMath math="\sin x" /> at <InlineMath math="x = 0, \tfrac{\pi}{6}, \tfrac{\pi}{3}, \tfrac{\pi}{2}, \tfrac{2\pi}{3}, \tfrac{5\pi}{6}, \pi" />.</>}
   yAxisLabel="sin x"
   data={[["0", 0], ["π/6", 1 / 6], ["π/3", 1 / 3], ["π/2", 1 / 2], ["2π/3", 2 / 3], ["5π/6", 5 / 6], ["π", 1]].map(([name, k]) => ({ name, value: Math.round(1000 * Math.sin(k * Math.PI)) / 1000 }))}

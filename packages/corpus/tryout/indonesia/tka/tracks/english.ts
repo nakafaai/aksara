@@ -35,6 +35,7 @@ export const tkaEnglishTrack = {
     de: "englisch",
     en: "english",
     id: "bahasa-inggris",
+    ms: "bahasa-inggeris",
   },
   sets: Arr.map(englishRatings, (rating, index) => {
     const setNumber = index + 1;
@@ -47,11 +48,13 @@ export const tkaEnglishTrack = {
         de: `aufgabensatz-${setNumber}`,
         en: setKey,
         id: setKey,
+        ms: setKey,
       },
       translations: {
         de: { title: `Aufgabensatz ${setNumber}` },
         en: { title: `Set ${setNumber}` },
         id: { title: `Set ${setNumber}` },
+        ms: { title: `Set ${setNumber}` },
       },
     };
   }),
@@ -59,5 +62,6 @@ export const tkaEnglishTrack = {
     de: { title: "Englisch" },
     en: { title: "English" },
     id: { title: "Bahasa Inggris" },
+    ms: { title: "Bahasa Inggeris" },
   },
 } satisfies TrackSourceInput;

@@ -49,7 +49,7 @@ Relative frequencies split one whole. Laid side by side on a strip of length <In
 
 <MathVisual
   title={<>Three shares filling one whole</>}
-  description={<>A strip of length 1 split into the shares of Apple, Samsung and Xiaomi.</>}
+  description={<>A strip of length <InlineMath math="1" /> split into the shares of Apple, Samsung and Xiaomi.</>}
   labels={{
     apple: <>Apple</>,
     samsung: <>Samsung</>,
@@ -108,7 +108,7 @@ First the raw counts. Apple has the tallest bar with <InlineMath math="12" /> of
 
 <BarChart
   title={<>How many students use each brand</>}
-  description={<>The number of students who use each phone brand, out of 30 students.</>}
+  description={<>The number of students who use each phone brand, out of <InlineMath math="30" /> students.</>}
   yAxisLabel="Students"
   data={[["Apple", 12], ["Samsung", 10], ["Xiaomi", 8]].map(([name, count]) => ({ name, value: count }))}
   chartConfig={{ value: { label: "Students", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -130,7 +130,7 @@ Divide every count by the total <InlineMath math="30" /> and you get the relativ
 
 <BarChart
   title={<>The share of students for each brand</>}
-  description={<>Each bar is the count divided by 30: <InlineMath math="12/30" />, <InlineMath math="10/30" /> and <InlineMath math="8/30" />, which add up to 1.</>}
+  description={<>Each bar is the count divided by <InlineMath math="30" />: <InlineMath math="12/30" />, <InlineMath math="10/30" /> and <InlineMath math="8/30" />, which add up to <InlineMath math="1" />.</>}
   yAxisLabel="Relative frequency"
   data={[["Apple", 12], ["Samsung", 10], ["Xiaomi", 8]].map(([name, count]) => ({ name, value: count / 30 }))}
   chartConfig={{ value: { label: "Relative frequency", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
