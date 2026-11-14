@@ -149,6 +149,45 @@ it("finds plain numbers in prose, headings, tables, emphasis, and visual text", 
   ]);
 });
 
+it("keeps an item title with a qualifier between its label word and its number as text", () => {
+  for (const title of [
+    "Soal identifikasi 4",
+    "Akar soal penjabaran 1",
+    "Soalan pengelasan 2",
+    "Punca bagi soalan pengembangan 3",
+    "Classification problem 2",
+    "Roots of expansion problem 3",
+  ]) {
+    assert.deepEqual(quantities(title), [], title);
+  }
+});
+
+it("keeps a German compound label as text, alone and inside a sentence", () => {
+  assert.deepEqual(
+    quantities(
+      "Einordnungsaufgabe 1, dann Übungsbeispiel 2 mit 3 Schritten und Textaufgaben 4 bis 6."
+    ),
+    ["3"]
+  );
+});
+
+it("keeps a primed equation label as text", () => {
+  assert.deepEqual(
+    quantities(
+      "Tolak persamaan (1) daripada persamaan (2'), lalu kalikan (3′) dengan 2."
+    ),
+    ["2"]
+  );
+});
+
+it("still reads a number as a quantity when a sentence only mentions a label word", () => {
+  assert.deepEqual(
+    quantities("Soal ini punya 4 pilihan dan kelas itu berisi 30 siswa."),
+    ["4", "30"]
+  );
+  assert.deepEqual(quantities("Setiap soal bernilai 4 "), ["4"]);
+});
+
 it("keeps math, code, links, metadata, and labels out", () => {
   const source = [
     'export const metadata = { title: "Bab 2: 5 cara" };',
