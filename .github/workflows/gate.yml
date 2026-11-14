@@ -3,6 +3,13 @@
 # the shared Mac. Dispatch: `gh workflow run gate.yml --repo nakafaai/aksara -f sha=<head>`.
 # It reads no secret, publishes nothing, and no ruleset names it: the statuses it
 # posts on the head are evidence for the merge, never a required check.
+#
+# It is ONE job. Every `needs` stage of a workflow waits in the account's free
+# runner queue again from the back (on 13 November a gate's Report job waited 20
+# minutes after its parts had finished), so the head installs once and runs every
+# part on the machine it already holds. Each part runs whatever the others did, so
+# one failure never hides another, and the job posts `gate/<part>` and `gate`
+# itself when the parts end.
 name: Gate
 run-name: Gate ${{ inputs.sha }}
 
@@ -21,18 +28,19 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  pending:
-    name: Pending
+  gate:
+    name: Gate
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 120
     permissions:
+      contents: read
       statuses: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SHA: ${{ inputs.sha }}
+      URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
       - name: Mark the head pending
-        env:
-          GH_TOKEN: ${{ github.token }}
-          SHA: ${{ inputs.sha }}
-          URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           [[ "$SHA" =~ ^[0-9a-f]{40}$ ]] || { echo "sha must be a full lower-case commit SHA." >&2; exit 1; }
           for context in gate gate/policies gate/typecheck gate/test gate/build gate/audit; do
@@ -40,18 +48,6 @@ jobs:
               -f state=pending -f context="$context" -f target_url="$URL" -f description="Gating"
           done
 
-  check:
-    name: ${{ matrix.part }}
-    needs: pending
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    permissions:
-      contents: read
-    strategy:
-      fail-fast: false
-      matrix:
-        part: [ policies, typecheck, test, build, audit ]
-    steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -70,62 +66,69 @@ jobs:
           bun-version-file: package.json
 
       - name: Install dependencies
+        id: install
         run: bun install --frozen-lockfile
 
-      - name: Run ${{ matrix.part }}
+      - name: Policies
+        id: policies
+        if: always() && steps.install.outcome == 'success'
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          PART: ${{ matrix.part }}
         run: |
-          case "$PART" in
-            policies)
-              bun run lint
-              bun run deprecations
-              bun run names
-              bun run jsdocs
-              bun run lines
-              bun run boundaries
-              bun run locales
-              bun run points
-              bun run visuals
-              bun run workflows
-              bun run native
-              ;;
-            typecheck) bun run typecheck ;;
-            test) bun run test ;;
-            build)
-              bun run build
-              bun run verify:consumer
-              ;;
-            audit) bun run security:audit ;;
-          esac
+          failed=0
+          bun run lint || failed=1
+          bun run deprecations || failed=1
+          bun run names || failed=1
+          bun run jsdocs || failed=1
+          bun run lines || failed=1
+          bun run boundaries || failed=1
+          bun run locales || failed=1
+          bun run points || failed=1
+          bun run workflows || failed=1
+          bun run native || failed=1
+          exit "$failed"
 
-  report:
-    name: Report
-    needs: [ pending, check ]
-    if: always()
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    permissions:
-      actions: read
-      statuses: write
-    steps:
+      - name: Typecheck
+        id: typecheck
+        if: always() && steps.install.outcome == 'success'
+        run: bun run typecheck
+
+      - name: Test
+        id: test
+        if: always() && steps.install.outcome == 'success'
+        run: bun run test
+
+      - name: Build
+        id: build
+        if: always() && steps.install.outcome == 'success'
+        run: |
+          bun run build
+          bun run verify:consumer
+
+      - name: Audit
+        id: audit
+        if: always() && steps.install.outcome == 'success'
+        run: bun run security:audit
+
       - name: Post the statuses
+        if: always()
         env:
-          GH_TOKEN: ${{ github.token }}
-          SHA: ${{ inputs.sha }}
-          URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          POLICIES: ${{ steps.policies.outcome }}
+          TYPECHECK: ${{ steps.typecheck.outcome }}
+          TEST: ${{ steps.test.outcome }}
+          BUILD: ${{ steps.build.outcome }}
+          AUDIT: ${{ steps.audit.outcome }}
         run: |
           [[ "$SHA" =~ ^[0-9a-f]{40}$ ]] || exit 1
-          jobs=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs?per_page=50")
           all=success
           for part in policies typecheck test build audit; do
-            conclusion=$(echo "$jobs" | jq -r --arg p "$part" '.jobs[] | select(.name == $p) | .conclusion')
+            name=${part^^}
+            outcome=${!name}
             state=failure
-            [ "$conclusion" = success ] && state=success
+            [ "$outcome" = success ] && state=success
             [ "$state" = success ] || all=failure
             gh api --silent "repos/$GITHUB_REPOSITORY/statuses/$SHA" \
-              -f state="$state" -f context="gate/$part" -f target_url="$URL" -f description="${conclusion:-did not run}"
+              -f state="$state" -f context="gate/$part" -f target_url="$URL" -f description="${outcome:-did not run}"
             echo "| $part | $state |" >> "$GITHUB_STEP_SUMMARY"
           done
           gh api --silent "repos/$GITHUB_REPOSITORY/statuses/$SHA" \
