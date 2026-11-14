@@ -1,22 +1,35 @@
-In einer Einheit von 45 Minuten passen höchstens 4 Spiele. Da sich Runden nicht überschneiden dürfen, **zählst du die Einheiten jeder Runde getrennt**.
+Gesucht ist die kleinste jährliche Einzahlung, in Schritten von einer halben Million Rupiah, mit der der Kontostand am Ende von Jahr <InlineMath math="6" /> mindestens <InlineMath math="150" /> Millionen Rupiah beträgt. Der Plan: Addiere die sechs Faktoren, bestimm das nötige Jahresgeld und **kläre, ob der Zuschuss an seine Grenze stößt**, bevor du die Einzahlung suchst. Alle Beträge unten sind in Millionen Rupiah.
 
-# Einheiten pro Runde
+# Die Summe der sechs Faktoren
 
-| Runde | Spiele | Einheiten |
-| :--- | :---: | :---: |
-| Erste | 8 | 2 |
-| Zweite | 16 | 4 |
-| Dritte | 8 | 2 |
-| Viertelfinale | 4 | 1 |
-| Halbfinale | 2 | 1 |
-| Finale | 1 | 1 |
+Die Einzahlung aus Jahr <InlineMath math="1" /> wächst <InlineMath math="6" />-mal, die aus Jahr <InlineMath math="2" /> <InlineMath math="5" />-mal und so weiter bis zur Einzahlung aus Jahr <InlineMath math="6" />, die <InlineMath math="1" />-mal wächst. Also ist **der Kontostand das Jahresgeld mal die Summe der ersten sechs Faktoren**.
 
-Halbfinale und Finale nutzen nur einen Teil der Plätze, **brauchen aber trotzdem je eine ganze Einheit**.
+<BlockMath math="1{,}772+1{,}611+1{,}464+1{,}331+1{,}210+1{,}100=8{,}488" />
 
-# Gesamtzeit
+Sei <InlineMath math="T" /> das Geld, das jedes Jahr hineinkommt. Die Bedingung lautet <InlineMath math="8{,}488\,T\ge150" />. Weil <InlineMath math="17\times8{,}488=144{,}296" /> noch zu wenig ist, muss das Jahresgeld größer als <InlineMath math="17" /> sein.
 
-<BlockMath math="11\cdot45=495\text{ min}=8\text{ h }15\text{ min}" />
+# Ob der Zuschuss an die Grenze stößt
 
-Der Wert 7 Stunden 30 Minuten verteilt 39 Spiele gleichmäßig auf 4 Plätze, als dürften sich Runden überschneiden. Der Wert 6 Stunden 45 Minuten vergisst die erste Runde. Der Wert 4 Stunden 30 Minuten rechnet jede Runde als eine Einheit, und 29 Stunden 15 Minuten nutzt nur einen Platz.
+Ist die Einzahlung <InlineMath math="d" /> kleiner als <InlineMath math="8" />, beträgt der Zuschuss <InlineMath math="\tfrac12 d" />, und <InlineMath math="T=1{,}5d<12" /> ist zu klein. Die Einzahlung ist also mindestens <InlineMath math="8" />, und **der Zuschuss bleibt bei <InlineMath math="4" />**, egal wie viel darüber eingezahlt wird. Das Jahresgeld ist <InlineMath math="T=d+4" />.
 
-Die kürzeste Zeit beträgt also **8 Stunden 15 Minuten**.
+# Die kleinste Einzahlung
+
+Probier die Halbmillionenschritte rund um diese Schranke.
+
+<BlockMath math="\begin{aligned}
+d=13{,}5 &: (13{,}5+4)\times8{,}488=17{,}5\times8{,}488=148{,}54<150 \\
+d=14 &: (14+4)\times8{,}488=18\times8{,}488=152{,}784\ge150
+\end{aligned}" />
+
+Eine Einzahlung von <InlineMath math="13{,}5" /> Millionen reicht noch nicht, <InlineMath math="14" /> Millionen reichen. **Eine größere Einzahlung ergibt immer einen größeren Kontostand**, also sind <InlineMath math="14" /> Millionen das Minimum.
+
+# Die falschen Antworten
+
+Jede andere Antwort **übergeht eine Bedingung der Regeln**.
+
+- <InlineMath math="\text{Rp}12{.}000{.}000{,}00" /> vergisst die Grenze des Zuschusses und rechnet mit <InlineMath math="T=1{,}5d" />, sodass <InlineMath math="18\times8{,}488" /> schon mit <InlineMath math="d=12" /> erreicht scheint.
+- <InlineMath math="\text{Rp}13{.}500{.}000{,}00" /> rundet <InlineMath math="d\approx13{,}67" /> ab, aber dann beträgt der Kontostand nur <InlineMath math="148{,}54" />.
+- <InlineMath math="\text{Rp}15{.}500{.}000{,}00" /> behandelt die Einzahlungen so, als kämen sie am Jahresende, und nutzt die Faktorsumme <InlineMath math="1+1{,}1+1{,}21+1{,}331+1{,}464+1{,}611=7{,}716" />.
+- <InlineMath math="\text{Rp}21{.}000{.}000{,}00" /> vergisst das Wachstum und verlangt <InlineMath math="6(d+4)\ge150" />.
+
+Die kleinste jährliche Einzahlung, die das Ziel erreicht, beträgt also <InlineMath math="\text{Rp}14{.}000{.}000{,}00" />.

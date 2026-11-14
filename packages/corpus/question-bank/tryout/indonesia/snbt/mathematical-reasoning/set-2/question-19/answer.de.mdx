@@ -1,17 +1,48 @@
-Die Formel <InlineMath math="M(t)=360\cdot\left(\tfrac12\right)^{t/8}" /> beschreibt **exponentiellen Zerfall**: In gleich langen Zeitabschnitten schrumpft die Menge um denselben Faktor, nicht um dieselbe Differenz.
+Der ursprüngliche Plan ist der Ausgangspunkt für jede Aussage. Jede Reihe hat <InlineMath math="28" /> Setzlinge, weil auf die Strecke von <InlineMath math="22\text{ m}" /> genau <InlineMath math="27" /> Abstände von <InlineMath math="0{,}8\text{ m}" /> passen. Jeder Pflanzstreifen hat <InlineMath math="5" /> Reihen, weil in das Band von <InlineMath math="5{,}5\text{ m}" /> genau <InlineMath math="4" /> Abstände von <InlineMath math="1{,}2\text{ m}" /> passen. Der ursprüngliche Plan hat also <InlineMath math="2\cdot 5\cdot 28=280" /> Setzlinge. **Jede Änderung musst du mit dem Abstand zum Feldrand und zum Kanal neu zählen**.
 
-# Die Abnahme pro Stunde ist nicht konstant
+# Die erste Aussage
 
-In den ersten 8 Stunden sinkt die Menge um 180 mg, in den nächsten 8 Stunden nur um 90 mg. **Die Abnahme ist also nicht konstant** und kann nicht 45 mg pro Stunde sein. Die erste Aussage ist falsch.
-
-# Mehrere Zeitpunkte berechnen
+Laufen die Reihen parallel zur Seite von <InlineMath math="15\text{ m}" />, kreuzt jede Reihe den Kanal. Jede Reihe zerfällt also in zwei Stücke, die jeweils in einem Band von <InlineMath math="5{,}5\text{ m}" /> liegen. Die Reihen stehen jetzt entlang der Seite von <InlineMath math="24\text{ m}" /> hintereinander, auf einer Strecke von <InlineMath math="22\text{ m}" />.
 
 <BlockMath math="\begin{aligned}
-M(24)&=360\cdot\left(\tfrac12\right)^{3}=45\\
-M(4)&=360\cdot\left(\tfrac12\right)^{1/2}=\frac{360}{\sqrt2}=180\sqrt2\approx254{,}6\\
-M(40)&=360\cdot\left(\tfrac12\right)^{5}=\frac{360}{32}=11{,}25
+\text{Setzlinge pro Stück}&=\left\lfloor\frac{5{,}5}{0{,}8}\right\rfloor+1=6+1=7 \\
+\text{Anzahl der Reihen}&=\left\lfloor\frac{22}{1{,}2}\right\rfloor+1=18+1=19 \\
+\text{insgesamt}&=19\cdot 2\cdot 7=266
 \end{aligned}" />
 
-06.00 Uhr am nächsten Tag liegt 24 Stunden nach der ersten Dosis, also ist die zweite Aussage wahr. Nach 4 Stunden sind etwa 254,6 mg vorhanden. Die 270 mg **nehmen eine lineare Abnahme an**, die Hälfte der 180 mg aus den ersten 8 Stunden. Die dritte Aussage ist falsch. Die vierte Aussage ist wahr.
+Das Zeichen <InlineMath math="\lfloor x\rfloor" /> bedeutet die größte ganze Zahl, die <InlineMath math="x" /> nicht überschreitet. Das Ergebnis ist <InlineMath math="266" />, also **weniger als <InlineMath math="280" />**, weil jede Reihe auf beiden Seiten des Kanals Platz verliert. Die Aussage ist **falsch**.
 
-Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **falsch** und die vierte **wahr**.
+# Die zweite Aussage
+
+Eine Reserve von mindestens <InlineMath math="10\%" /> von <InlineMath math="280" /> sind <InlineMath math="28" /> Setzlinge, gebraucht werden also mindestens <InlineMath math="308" />. Schalen gibt es nur ganz, also **wird die Anzahl der Schalen aufgerundet**.
+
+<BlockMath math="\begin{aligned}
+\frac{308}{24}&=12{,}83\ldots \\
+12\cdot 24&=288<308 \\
+13\cdot 24&=312\ge 308
+\end{aligned}" />
+
+Zwölf Schalen reichen nicht, dreizehn reichen. Die Aussage ist **wahr**.
+
+# Die dritte Aussage
+
+Werden Feld und Kanal <InlineMath math="0{,}4\text{ m}" /> länger, ist die Strecke für die Setzlinge <InlineMath math="24{,}4-2=22{,}4" /> Meter lang.
+
+<BlockMath math="\frac{22{,}4}{0{,}8}=28" />
+
+Das geht glatt auf, also passen <InlineMath math="28" /> Abstände, und der letzte Setzling steht genau <InlineMath math="1\text{ m}" /> vom Feldende entfernt. Die Regel sagt "mindestens <InlineMath math="1\text{ m}" />", also **ist ein Abstand genau gleich der Grenze noch erlaubt**. Jede Reihe hat <InlineMath math="29" /> Setzlinge, einen mehr, die Aussage ist also **wahr**.
+
+# Die vierte Aussage
+
+Ohne Kanal wird das Feld zu einer einzigen Pflanzfläche von <InlineMath math="15\text{ m}" /> Breite, und **die Grenze von <InlineMath math="0{,}5\text{ m}" /> zum Kanal fällt weg**. Die Reihen dürfen in einem Band von <InlineMath math="15-2\cdot 1=13" /> Metern liegen.
+
+<BlockMath math="\begin{aligned}
+\left\lfloor\frac{13}{1{,}2}\right\rfloor+1&=10+1=11 \\
+11\cdot 28-280&=308-280=28
+\end{aligned}" />
+
+Die Anzahl der Setzlinge wächst um genau <InlineMath math="28" />, die Aussage ist also **wahr**.
+
+# Zusammenfassung
+
+Die zweite, dritte und vierte Aussage sind wahr, die erste ist falsch. Jede Aussage hängt davon ab, **beim Platz abzurunden und bei den Packungen aufzurunden**.

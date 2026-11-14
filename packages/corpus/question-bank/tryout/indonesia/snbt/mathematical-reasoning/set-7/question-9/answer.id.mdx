@@ -1,15 +1,29 @@
-Robot hanya bergerak sepanjang jalan, jadi tidak dapat menempuh garis lurus. Jarak tempuh terpendeknya adalah **jumlah ruas ke timur dan ruas ke utara** yang harus dilalui.
+Kamu mencari salinitas setelah akuarium diisi ulang dengan air laut buatan. Rencananya: **ikuti banyak garam dan banyak air secara terpisah**, karena salinitas adalah garam dibagi air, dan penguapan hanya mengurangi air.
 
-# Banyak ruas
+# Garam dan air sebelum diisi ulang
 
-Dari <InlineMath math="(0,0)" /> ke <InlineMath math="(3,4)" />, robot harus menempuh 3 ruas ke timur dan 4 ruas ke utara, **dalam urutan apa pun**.
+Saat penuh, akuarium berisi <InlineMath math="120\cdot34=4{.}080" /> gram garam. Selama <InlineMath math="6" /> hari, air yang menguap <InlineMath math="6\cdot4=24\text{ liter}" />. **Garam tidak ikut menguap**, jadi garamnya tetap <InlineMath math="4{.}080" /> gram dalam <InlineMath math="96\text{ liter}" /> air.
 
-<BlockMath math="3+4=7\text{ ruas}" />
+<BlockMath math="\frac{4{.}080}{96}=42{,}5\text{ g/L}" />
 
-# Jarak tempuh
+Salinitas naik karena air berkurang sedangkan garamnya tetap.
 
-<BlockMath math="7\cdot100=700\text{ m}" />
+# Mengisi ulang dengan air laut buatan
 
-Jarak garis lurus <InlineMath math="\sqrt{3^2+4^2}=5" /> ruas, yaitu 500 m, **tidak dapat ditempuh robot** karena memotong blok bangunan.
+Untuk kembali penuh, ditambahkan <InlineMath math="24\text{ liter}" /> air laut buatan. **Air pengisi ini membawa garamnya sendiri**, yaitu <InlineMath math="24\cdot35=840" /> gram.
 
-Jadi, jarak tempuh terpendek dari G ke A adalah **700 m**.
+<BlockMath math="\begin{aligned}
+\text{garam akhir} &= 4{.}080+840=4{.}920\text{ gram} \\
+\text{salinitas akhir} &= \frac{4{.}920}{120}=41\text{ g/L}
+\end{aligned}" />
+
+Sebagai pemeriksaan, <InlineMath math="41" /> berada di antara <InlineMath math="35" /> dan <InlineMath math="42{,}5" />, sesuai dengan mencampur <InlineMath math="96\text{ liter}" /> air bersalinitas <InlineMath math="42{,}5\text{ g/L}" /> dengan <InlineMath math="24\text{ liter}" /> air bersalinitas <InlineMath math="35\text{ g/L}" />. Salinitas ini di atas <InlineMath math="36\text{ g/L}" />, jadi sudah tidak aman bagi ikan.
+
+# Pilihan yang keliru
+
+- <InlineMath math="34\text{ g/L}" /> muncul kalau kamu mengira mengisi ulang selalu mengembalikan salinitas semula. Itu hanya benar **jika air pengisinya air tawar**.
+- <InlineMath math="34{,}2\text{ g/L}" /> muncul kalau <InlineMath math="96\text{ liter}" /> sisa air dianggap masih bersalinitas <InlineMath math="34\text{ g/L}" />, padahal penguapan sudah memekatkannya.
+- <InlineMath math="35\text{ g/L}" /> muncul kalau salinitas akuarium dianggap ikut menjadi salinitas air pengisi.
+- <InlineMath math="42{,}5\text{ g/L}" /> adalah salinitas sebelum diisi ulang, jadi berhenti satu langkah terlalu cepat.
+
+Jadi, salinitas air akuarium setelah diisi ulang <InlineMath math="41\text{ g/L}" />.

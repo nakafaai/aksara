@@ -1,17 +1,59 @@
-For a candidate who answers every question, the score depends only on the number of correct answers <InlineMath math="b" />, as <InlineMath math="5b-40" />, so **the score depends only on the number of correct answers**.
+You're counting how many values of <InlineMath math="m" /> make Rencana Menurun's total cost smaller. Write both total costs as formulas in <InlineMath math="m" />, fill a table for all <InlineMath math="12" /> values, and count the rows. **Every value has to be checked**, because the winner can switch more than once.
 
-# Possible values of b
+# Rencana Tetap's total cost
 
-The number of correct answers can be any integer from 0 to 40, so there are **41 possibilities**, including <InlineMath math="b=0" />.
+Its interest is <InlineMath math="120{,}000" /> a month, its admin fee is <InlineMath math="2\%\cdot 12{,}000{,}000=240{,}000" />, and its fine is <InlineMath math="250{,}000" />. **The fine only applies when the loan is paid off early**, that is, for <InlineMath math="m\le 11" />.
 
-# Each b gives a different score
+<BlockMath math="\begin{aligned}
+T(m)&=120{,}000\,m+240{,}000+250{,}000=120{,}000\,m+490{,}000 \quad\text{for } m\le 11 \\
+T(12)&=12\cdot 120{,}000+240{,}000=1{,}680{,}000
+\end{aligned}" />
 
-The expression <InlineMath math="5b-40" /> rises by 5 whenever <InlineMath math="b" /> rises by 1, so two different values of <InlineMath math="b" /> never give the same score. The scores are
+# Rencana Menurun's total cost
 
-<BlockMath math="-40,\,-35,\,-30,\,\dots,\,155,\,160" />
+The interest in month <InlineMath math="k" /> is <InlineMath math="2\%" /> of the <InlineMath math="13-k" /> million left, which is <InlineMath math="20{,}000\,(13-k)" />. These amounts form the arithmetic sequence <InlineMath math="240{,}000" />, <InlineMath math="220{,}000" />, and so on, so **the interest up to month <InlineMath math="m" /> comes from the series formula**. There's no fine, and the admin fee is <InlineMath math="100{,}000" />.
 
-That is 41 different values.
+<BlockMath math="M(m)=\frac{m}{2}\,\bigl(240{,}000+20{,}000\,(13-m)\bigr)+100{,}000=10{,}000\,m\,(25-m)+100{,}000" />
 
-The value 40 forgets the case <InlineMath math="b=0" />. The value 201 counts every integer from <InlineMath math="-40" /> to 160, although only multiples of 5 are possible. The value 160 is the top score, not the number of scores.
+# A table of every case
 
-So the number of possible different scores is **41**.
+Put each <InlineMath math="m" /> into both formulas. All amounts in the table are in thousands of rupiah.
+
+| Payoff month | Rencana Tetap | Rencana Menurun | Cheaper |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="610" /> | <InlineMath math="340" /> | Menurun |
+| <InlineMath math="2" /> | <InlineMath math="730" /> | <InlineMath math="560" /> | Menurun |
+| <InlineMath math="3" /> | <InlineMath math="850" /> | <InlineMath math="760" /> | Menurun |
+| <InlineMath math="4" /> | <InlineMath math="970" /> | <InlineMath math="940" /> | Menurun |
+| <InlineMath math="5" /> | <InlineMath math="1{,}090" /> | <InlineMath math="1{,}100" /> | Tetap |
+| <InlineMath math="6" /> | <InlineMath math="1{,}210" /> | <InlineMath math="1{,}240" /> | Tetap |
+| <InlineMath math="7" /> | <InlineMath math="1{,}330" /> | <InlineMath math="1{,}360" /> | Tetap |
+| <InlineMath math="8" /> | <InlineMath math="1{,}450" /> | <InlineMath math="1{,}460" /> | Tetap |
+| <InlineMath math="9" /> | <InlineMath math="1{,}570" /> | <InlineMath math="1{,}540" /> | Menurun |
+| <InlineMath math="10" /> | <InlineMath math="1{,}690" /> | <InlineMath math="1{,}600" /> | Menurun |
+| <InlineMath math="11" /> | <InlineMath math="1{,}810" /> | <InlineMath math="1{,}640" /> | Menurun |
+| <InlineMath math="12" /> | <InlineMath math="1{,}680" /> | <InlineMath math="1{,}660" /> | Menurun |
+
+Rencana Menurun is cheaper for <InlineMath math="m=1, 2, 3, 4" /> and <InlineMath math="m=9, 10, 11, 12" />, so **there are two groups of months**. Early on, Rencana Menurun's high interest has only run for a short time. In the middle, that high early interest has piled up. Near the end, Rencana Tetap's fine and bigger admin fee take over again. No row is a tie, so the count is exactly <InlineMath math="8" />.
+
+# Checking with the difference
+
+For <InlineMath math="m\le 11" />, the difference <InlineMath math="T(m)-M(m)" /> can be written as one quadratic. **It's negative only between its two roots**.
+
+<BlockMath math="\begin{aligned}
+T(m)-M(m)&=120{,}000\,m+490{,}000-10{,}000\,m\,(25-m)-100{,}000 \\
+&=10{,}000\,(m^2-13m+39)
+\end{aligned}" />
+
+The roots of <InlineMath math="m^2-13m+39=0" /> are <InlineMath math="\tfrac{13\pm\sqrt{13}}{2}" />, about <InlineMath math="4.7" /> and <InlineMath math="8.3" />. So the difference is negative only for <InlineMath math="m=5, 6, 7, 8" />, which matches the table. For <InlineMath math="m=12" /> the formula doesn't apply because there's no fine, and the table gives a positive difference of <InlineMath math="20{,}000" />.
+
+# The wrong options
+
+Each other option comes from **leaving out one cost or one group of months**.
+
+- <InlineMath math="2" /> comes from forgetting Rencana Tetap's fine.
+- <InlineMath math="3" /> comes from forgetting both admin fees.
+- <InlineMath math="4" /> comes from stopping once Rencana Tetap first wins, so the second group of months never shows up.
+- <InlineMath math="7" /> comes from not counting the case <InlineMath math="m=12" />, which is paying up to the last month.
+
+So <InlineMath math="8" /> values of <InlineMath math="m" /> make Rencana Menurun's total cost smaller.

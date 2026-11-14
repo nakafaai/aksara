@@ -1,21 +1,34 @@
-The linear relation between the reading <InlineMath math="R" /> and the true temperature <InlineMath math="C" /> is fixed by **the two known pairs of data**, just as the Fahrenheit formula is fixed by the freezing and boiling points.
+You're looking for the moment the water drops back below <InlineMath math="300\text{ cm}" /> after having been above it. The plan: follow the level hour by hour with the rain arriving <InlineMath math="2" /> hours later, keep in mind that **the floodgate is still open while the water falls**, then work out the exact minute.
 
-# Finding the thermometer formula
+# Up to the peak
 
-From 0 °C to 100 °C the reading rises from <InlineMath math="-4" /> to 86, an increase of 90. So **each 1 °C raises the reading by 0.9**.
+The water reaches <InlineMath math="250\text{ cm}" /> at 08.40, so **the floodgate opens** and every change drops by <InlineMath math="30\text{ cm}" /> per hour. The level is <InlineMath math="260\text{ cm}" /> at 09.00, rises <InlineMath math="90-30=60\text{ cm}" /> to <InlineMath math="320\text{ cm}" /> at 10.00, and rises <InlineMath math="50-30=20\text{ cm}" /> to <InlineMath math="340\text{ cm}" /> at 11.00.
 
-<BlockMath math="R=0.9C-4" />
+# Falling while rain still arrives
 
-# Finding the true temperature
+**The floodgate stays open while the water is at <InlineMath math="250\text{ cm}" /> or more**, including while it's falling. So the <InlineMath math="30\text{ cm}" /> reduction still applies.
 
-<BlockMath math="\begin{aligned}
-0.9C-4&=32\\
-0.9C&=36\\
-C&=40
-\end{aligned}" />
+| Hour at the gauge | Rain arriving | Change | Level at the end of the hour |
+| --- | --- | --- | --- |
+| 11.00-12.00 | <InlineMath math="20\text{ mm}" /> | <InlineMath math="20-30=-10" /> | <InlineMath math="330\text{ cm}" /> |
+| 12.00-13.00 | <InlineMath math="15\text{ mm}" /> | <InlineMath math="10-30=-20" /> | <InlineMath math="310\text{ cm}" /> |
+| 13.00-14.00 | <InlineMath math="5\text{ mm}" /> | <InlineMath math="-10-30=-40" /> | <InlineMath math="270\text{ cm}" /> |
 
-Check: <InlineMath math="0.9\cdot40-4=32" />. At this temperature the thermometer **reads lower** than the true value.
+At 13.00 the water is still at <InlineMath math="310\text{ cm}" />, so the status is still Awas. **The status changes partway through the hour from 13.00 to 14.00**.
 
-The value 32 °C trusts the reading. The value 36 °C corrects only the offset of 4, not the factor 0.9.
+# The exact minute
 
-So the true temperature is **40 °C**.
+From <InlineMath math="310\text{ cm}" />, the water falls <InlineMath math="40\text{ cm}" /> per hour.
+
+<BlockMath math="\frac{310-300}{40}\text{ h}=\frac14\text{ h}=15\text{ min}" />
+
+The water touches <InlineMath math="300\text{ cm}" /> at 13.15 and is below <InlineMath math="300\text{ cm}" /> after that. At 14.00 it's at <InlineMath math="270\text{ cm}" />, still above <InlineMath math="250\text{ cm}" />, so **the status really is Siaga**, not Waspada.
+
+# The wrong options
+
+- 11.20 comes from assuming the rain arrives <InlineMath math="1" /> hour later, so every gauge hour uses the wrong rain.
+- 13.25 comes from reading <InlineMath math="\frac14" /> of an hour, which is <InlineMath math="0.25" /> hours, as <InlineMath math="25" /> minutes.
+- 14.00 comes from **forgetting the floodgate** from 13.00 to 14.00, so the water only falls <InlineMath math="10\text{ cm}" /> to <InlineMath math="300\text{ cm}" />.
+- After 14.00 comes from assuming the gate closes as soon as the water stops rising. Without the reduction after 11.00, the water would be at <InlineMath math="360\text{ cm}" /> at 14.00.
+
+So the river's status changes from Awas to Siaga at 13.15.

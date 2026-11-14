@@ -1,20 +1,36 @@
-Seluruh pembayaran adalah **harga tunai ditambah total bunga**. Jadi batas seluruh pembayaran memberi batas total bunga.
+Soal ini punya dua tahap. Tahap pertama mencari berat biji dark paling kecil untuk <InlineMath math="108" /> kantong, dan tahap kedua menghitung kantong light dari sisa biji. Bagian yang licin ada di tahap pertama: **banyak batch ikut naik ketika berat biji naik**, padahal setiap batch mengambil kopi uji rasa.
 
-# Batas total bunga
+# Perkiraan awal tanpa uji rasa
 
-<BlockMath math="4{.}118{.}400-3{.}600{.}000=518{.}400" />
+Pesanan itu butuh <InlineMath math="108\times250=27{.}000\text{ g}" /> kopi dark. Satu kilogram biji dark menjadi <InlineMath math="75\%\times1{.}000=750\text{ g}" />, jadi tanpa uji rasa cukup <InlineMath math="27{.}000:750=36\text{ kg}" />. Angka ini **baru batas bawah**, karena uji rasa belum dikurangkan.
 
-# Batas bunga per bulan
+# Berat biji dark paling kecil
 
-Jika bunga flat <InlineMath math="r" /> per bulan, total bunganya <InlineMath math="12\cdot r\cdot2{.}880{.}000=34{.}560{.}000\,r" />.
+Sekarang periksa berat di sekitar batas itu, dengan banyak batch yang benar. Ingat, satu batch memuat paling banyak <InlineMath math="12\text{ kg}" />.
 
 <BlockMath math="\begin{aligned}
-34{.}560{.}000\,r&\le518{.}400\\
-r&\le0{,}015=1{,}5\%
+36\text{ kg},\ 3\text{ batch} &: 27{.}000-3\times200=26{.}400=105\times250+150 \\
+37\text{ kg},\ 4\text{ batch} &: 27{.}750-4\times200=26{.}950=107\times250+200 \\
+38\text{ kg},\ 4\text{ batch} &: 28{.}500-4\times200=27{.}700=110\times250+200
 \end{aligned}" />
 
-Dengan <InlineMath math="1{,}5\%" />, seluruh pembayaran **tepat Rp4.118.400,00**, jadi masih memenuhi.
+Berat <InlineMath math="36\text{ kg}" /> hanya memberi <InlineMath math="105" /> kantong. Berat <InlineMath math="37\text{ kg}" /> tampak cukup kalau kamu tetap memakai <InlineMath math="3" /> batch, tetapi **kilogram ke tiga puluh tujuh memaksa batch keempat**, sehingga hasilnya hanya <InlineMath math="107" /> kantong. Berat <InlineMath math="38\text{ kg}" /> memberi <InlineMath math="110" /> kantong, cukup.
 
-Nilai <InlineMath math="1{,}2\%" /> menghitung bunga dari harga tunai Rp3.600.000,00, bukan dari pokok. Nilai <InlineMath math="0{,}5\%" />, <InlineMath math="1\%" />, dan <InlineMath math="1{,}25\%" /> memang memenuhi, tetapi bukan yang paling tinggi.
+Setiap tambahan satu kilogram memberi <InlineMath math="750\text{ g}" /> dan paling banyak satu batch baru yang mengambil <InlineMath math="200\text{ g}" />. Jadi berat yang lebih besar tidak pernah memberi kantong lebih sedikit, dan berat di bawah <InlineMath math="36\text{ kg}" /> pasti kurang. Berat dark paling kecil adalah <InlineMath math="38\text{ kg}" />.
 
-Jadi, bunga flat paling tinggi adalah **<InlineMath math="1{,}5\%" /> per bulan**.
+# Kantong light dari sisa biji
+
+Sisa biji hijau adalah <InlineMath math="50-38=12\text{ kg}" />. **Berat ini pas untuk satu batch**, jadi uji rasanya hanya <InlineMath math="200\text{ g}" />.
+
+<BlockMath math="84\%\times12{.}000-200=10{.}080-200=9{.}880=39\times250+130" />
+
+Kopi light mengisi <InlineMath math="39" /> kantong penuh, dan sisa <InlineMath math="130\text{ g}" /> tidak dijual. Cek ulang tahap pertama: <InlineMath math="110\ge108" />, jadi pesanan dark terpenuhi, sedangkan <InlineMath math="37\text{ kg}" /> memang gagal karena <InlineMath math="107<108" />.
+
+# Jebakan yang perlu dihindari
+
+Jawaban lain muncul kalau **banyak batch tidak dihitung ulang**.
+
+- Lupa uji rasa membuat dark cukup <InlineMath math="36\text{ kg}" />, sisa <InlineMath math="14\text{ kg}" /> menjadi <InlineMath math="2" /> batch light dan <InlineMath math="11{.}760-400=11{.}360" /> gram, yaitu <InlineMath math="45" /> kantong.
+- Memakai <InlineMath math="3" /> batch untuk <InlineMath math="37\text{ kg}" /> membuat dark tampak cukup, sisa <InlineMath math="13\text{ kg}" /> menjadi <InlineMath math="2" /> batch light dan <InlineMath math="10{.}920-400=10{.}520" /> gram, yaitu <InlineMath math="42" /> kantong.
+
+Jadi, kopi light yang dapat dijual sebanyak <InlineMath math="39" /> kantong.

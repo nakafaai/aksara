@@ -1,18 +1,38 @@
-Bandingkan **banyak siswa yang sudah mendapat minimal satu vaksin** dengan banyak siswa yang diminta target.
+Kamu mencari tempat Eko naik dari besar bagian Budi. Tempat itu belum diketahui, jadi **bagi jalan biasa menjadi beberapa kemungkinan letak**, hitung bagian Budi untuk setiap kemungkinan, lalu cari yang bisa menghasilkan <InlineMath math="\text{Rp}23{.}420" />. Biaya bensin per kilometer <InlineMath math="1{.}300" /> rupiah.
 
-# Target dan keadaan sekarang
+# Kemungkinan letak Eko
+
+Eko naik sebelum jalan tol atau sesudahnya. Jalan biasa ada di km <InlineMath math="0" /> sampai <InlineMath math="24" /> dan km <InlineMath math="48" /> sampai <InlineMath math="60" />, jadi ada **tiga kemungkinan letak**: sebelum Budi naik, di antara Budi dan Citra, atau sesudah jalan tol.
+
+# Eko naik paling lambat di km dua belas
+
+Kalau Eko naik di km <InlineMath math="12" /> atau sebelumnya, ia ada di mobil selama Budi ikut. Budi berbagi ruas km <InlineMath math="12" /> sampai <InlineMath math="24" /> dengan Pak Andi dan Eko, jalan tol dengan empat orang, dan ruas terakhir dengan lima orang:
+
+<BlockMath math="\frac{15{.}600}{3}+\frac{31{.}200}{4}+\frac{24{.}000}{4}+\frac{15{.}600}{5}=5{.}200+7{.}800+6{.}000+3{.}120=22{.}120" />
+
+Hasilnya selalu <InlineMath math="22{.}120" />, bukan <InlineMath math="23{.}420" />, jadi **kemungkinan ini gugur**.
+
+# Eko naik sesudah jalan tol
+
+Kalau Eko naik di km <InlineMath math="48" /> atau sesudahnya, Budi membayar seperti biasa sampai km <InlineMath math="48" />, yaitu <InlineMath math="7{.}800+10{.}400+8{.}000=26{.}200" />. Jumlah ini sudah lebih dari <InlineMath math="23{.}420" />, padahal ruas terakhir masih menambah biaya. Jadi **kemungkinan ini juga gugur**.
+
+# Eko naik di antara Budi dan Citra
+
+Misalkan Eko naik di km <InlineMath math="e" />, dengan <InlineMath math="e" /> di antara <InlineMath math="12" /> dan <InlineMath math="24" />. Dari km <InlineMath math="12" /> sampai <InlineMath math="e" />, Budi berbagi dengan Pak Andi. Dari km <InlineMath math="e" /> sampai <InlineMath math="24" />, Budi berbagi dengan Pak Andi dan Eko. Sesudah itu, **bagiannya sama seperti kemungkinan pertama**, <InlineMath math="7{.}800+6{.}000+3{.}120=16{.}920" />.
 
 <BlockMath math="\begin{aligned}
-\text{target}&=95\%\cdot480=456\\
-\text{sekarang}&=480-60=420
+\frac{1{.}300(e-12)}{2}+\frac{1{.}300(24-e)}{3}+16{.}920&=23{.}420\\
+650(e-12)+\frac{1{.}300(24-e)}{3}&=6{.}500\\
+1{.}950(e-12)+1{.}300(24-e)&=19{.}500\\
+3(e-12)+2(24-e)&=30\\
+e+12&=30\\
+e&=18
 \end{aligned}" />
 
-# Kekurangan
+Nilai <InlineMath math="18" /> memang ada di antara <InlineMath math="12" /> dan <InlineMath math="24" />, jadi syarat kemungkinan ini terpenuhi.
 
-<BlockMath math="456-420=36" />
+# Pemeriksaan
 
-Setiap siswa tambahan diambil dari 60 siswa yang belum divaksin, jadi **36 siswa memang tersedia**.
+Masukkan <InlineMath math="e=18" />. Ruas km <InlineMath math="12" /> sampai <InlineMath math="18" /> berbiaya <InlineMath math="6\cdot1{.}300=7{.}800" />, dibagi dua menjadi <InlineMath math="3{.}900" />. Ruas km <InlineMath math="18" /> sampai <InlineMath math="24" /> juga <InlineMath math="7{.}800" />, dibagi tiga menjadi <InlineMath math="2{.}600" />. Bagian Budi menjadi <InlineMath math="3{.}900+2{.}600+16{.}920=23{.}420" />, **sama dengan yang diketahui**.
 
-Nilai 57 adalah <InlineMath math="95\%" /> dari 60 siswa yang belum divaksin. Nilai 60 memvaksin semua siswa yang belum divaksin, lebih dari yang perlu. Nilai 116 hanya menghitung 340 siswa yang mendapat tepat satu vaksin, dan nilai 156 hanya menghitung 300 penerima vaksin influenza.
-
-Jadi, paling sedikit **36 siswa** lagi harus divaksin.
+Jadi, Eko naik di km <InlineMath math="18" />.

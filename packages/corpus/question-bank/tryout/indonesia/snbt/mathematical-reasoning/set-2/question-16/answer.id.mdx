@@ -1,17 +1,38 @@
-Penukaran ini terdiri atas **dua transaksi terpisah**: menjual dolar Singapura dengan kurs beli, lalu membeli ringgit dengan kurs jual. Setiap transaksi dikenai biaya layanan sendiri.
+Kamu mencari waktu tunggu paling lama pada hari Loket B beristirahat. Rencananya, ikuti jadwal seperti biasa sampai 08.30, susun jadwal selama istirahat, lalu tunjukkan bahwa **sesudah istirahat waktu tunggu turun lagi**, sehingga nilai terbesar pasti muncul di sekitar istirahat.
 
-# Menjual dolar Singapura
+# Sebelum istirahat
 
-<BlockMath math="200\cdot11{.}600-25{.}000=2{.}320{.}000-25{.}000=2{.}295{.}000" />
+Sampai pukul 08.30 tidak ada yang berubah. Orang nomor <InlineMath math="1" /> sampai <InlineMath math="13" /> mulai dilayani seperti biasa, dengan waktu tunggu paling lama <InlineMath math="21" /> menit untuk orang nomor <InlineMath math="11" />. Loket B selesai melayani orang nomor <InlineMath math="12" /> tepat pukul 08.30, lalu **tidak boleh memulai pelayanan baru sampai 08.45**.
 
-# Membeli ringgit
+# Jadwal di sekitar istirahat
 
-Biaya layanan pembelian ikut dibayar dari uang itu, jadi yang tersisa untuk ringgit adalah 2.270.000.
+Selama istirahat hanya Loket A yang menerima orang baru, setiap <InlineMath math="4" /> menit. Pukul 08.45 Loket B boleh bekerja lagi, dan **orang terdepan tetap menuju loket yang lebih dulu kosong**. Waktu tunggu adalah waktu mulai dikurangi waktu datang.
 
-<BlockMath math="\frac{2{.}270{.}000}{3{.}450}\approx657{,}97" />
+| Orang nomor | Datang | Mulai dilayani | Loket | Waktu tunggu |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="11" /> | 08.03 | 08.24 | A | <InlineMath math="21" /> |
+| <InlineMath math="12" /> | 08.06 | 08.24 | B | <InlineMath math="18" /> |
+| <InlineMath math="13" /> | 08.09 | 08.28 | A | <InlineMath math="19" /> |
+| <InlineMath math="14" /> | 08.12 | 08.32 | A | <InlineMath math="20" /> |
+| <InlineMath math="15" /> | 08.15 | 08.36 | A | <InlineMath math="21" /> |
+| <InlineMath math="16" /> | 08.18 | 08.40 | A | <InlineMath math="22" /> |
+| <InlineMath math="17" /> | 08.21 | 08.44 | A | <InlineMath math="23" /> |
+| <InlineMath math="18" /> | 08.24 | 08.45 | B | <InlineMath math="21" /> |
+| <InlineMath math="19" /> | 08.27 | 08.48 | A | <InlineMath math="21" /> |
+| <InlineMath math="20" /> | 08.30 | 08.51 | B | <InlineMath math="21" /> |
+| <InlineMath math="21" /> | 08.33 | 08.52 | A | <InlineMath math="19" /> |
+| <InlineMath math="22" /> | 08.36 | 08.56 | A | <InlineMath math="20" /> |
 
-Ringgit hanya dilayani dalam jumlah bulat, jadi wisatawan memperoleh 657 ringgit. Angka 658 **tidak mungkin**, karena memerlukan <InlineMath math="658\cdot3{.}450=2{.}270{.}100" />, lebih dari uang yang tersisa.
+Orang nomor <InlineMath math="17" /> datang pukul 08.21 dan baru dilayani pukul 08.44, jadi ia menunggu <InlineMath math="44-21=23" /> menit.
 
-Nilai 665 hanya memotong biaya layanan sekali, dan 672 tidak memotong biaya sama sekali. Nilai 669 menjual dolar dengan kurs jual, dan 677 membeli ringgit dengan kurs beli.
+# Sesudah istirahat
 
-Jadi, wisatawan itu memperoleh **657 ringgit**.
+Mulai 08.44 kedua loket kembali sibuk terus. Dalam setiap <InlineMath math="12" /> menit, Loket A memulai <InlineMath math="3" /> pelayanan dan Loket B <InlineMath math="2" /> pelayanan, sedangkan yang datang hanya <InlineMath math="4" /> orang. Jadi orang nomor <InlineMath math="n+5" /> mulai <InlineMath math="12" /> menit setelah orang nomor <InlineMath math="n" />, tetapi datang <InlineMath math="15" /> menit setelahnya, sehingga **setiap lima nomor waktu tunggu turun tiga menit**.
+
+<BlockMath math="\text{tunggu}(n+5)=\text{tunggu}(n)+12-15=\text{tunggu}(n)-3" />
+
+Orang nomor <InlineMath math="18" /> sampai <InlineMath math="22" /> menunggu <InlineMath math="21" />, <InlineMath math="21" />, <InlineMath math="21" />, <InlineMath math="19" />, dan <InlineMath math="20" /> menit, semuanya kurang dari <InlineMath math="23" />. Orang-orang sesudahnya menunggu lebih singkat lagi. Jadi waktu tunggu terlama adalah <InlineMath math="23" /> menit, milik orang nomor <InlineMath math="17" />.
+
+Jawaban <InlineMath math="21" /> muncul jika istirahat diabaikan. Jawaban <InlineMath math="33" /> muncul jika orang nomor <InlineMath math="14" /> dianggap menunggu Loket B sampai 08.45, padahal ia menuju Loket A yang kosong pukul 08.32. Jawaban <InlineMath math="36" /> muncul jika istirahat <InlineMath math="15" /> menit langsung ditambahkan ke waktu tunggu terlama biasa.
+
+Jadi, waktu tunggu paling lama pada hari itu adalah <InlineMath math="23" /> menit.

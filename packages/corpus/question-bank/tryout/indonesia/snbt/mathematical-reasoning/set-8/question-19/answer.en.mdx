@@ -1,15 +1,33 @@
-A scale links lengths on the map to real lengths. For this map, **1 cm stands for 250,000 cm, which is 2.5 km**.
+You want the chance that two donors **can give blood to each other**, so the match has to work in both directions. Here's the plan: work out when a two way match is possible, count the pairs that have it, then divide by the number of all pairs.
 
-# Reading the scale
+# When two people match both ways
 
-A distance of 10 km is <InlineMath math="\tfrac{10}{2.5}=4" /> cm on the map. The first statement is true.
+Start with the ABO rule. An O donor can give to an A patient, but an A donor can't give to an O patient. In the same way A and B can give to AB, but AB can't give back to A or B. Groups A and B don't match in either direction. So **two different ABO groups never match both ways**, and both people need the same ABO group.
 
-250,000 cm is 2.5 km, **not 25 km**, because 1 km is 100,000 cm. The second statement is false.
+The rhesus rule works the same way. Rhesus negative can give to rhesus positive, but not the other way round. So the rhesus has to match too. In short, two donors match both ways exactly when their blood groups are identical.
 
-# Changing the scale
+# Counting the pairs
 
-At 1 : 500,000 each centimetre stands for 5 km, twice as far. The same real distance is drawn **half as long as before**, so the third statement is true.
+The number of ways to choose two of the <InlineMath math="40" /> donors, ignoring order, is <InlineMath math="\binom{40}{2}=780" />. Count the pairs with the same group, group by group:
 
-The enlarged photocopy doubles every length on the map, while real distances stay the same. So 2 cm on the copy stands for 2.5 km, and 1 cm for 1.25 km. The scale becomes 1 : 125,000, **not 1 : 500,000**. The fourth statement is false.
+<BlockMath math="\begin{aligned}
+\binom{9}{2}+\binom{8}{2}+\binom{3}{2}+\binom{14}{2}+\binom{2}{2}+\binom{2}{2}&=36+28+3+91+1+1\\
+&=160
+\end{aligned}" />
 
-So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.
+The groups <InlineMath math="\mathrm{A}^-" /> and <InlineMath math="\mathrm{AB}^-" /> each have only one donor, so **they add no pairs**. The probability is:
+
+<BlockMath math="P=\frac{160}{780}=\frac{8}{39}" />
+
+Check it by counting in order. There are <InlineMath math="2\cdot160=320" /> ordered pairs with the same group, and <InlineMath math="40\cdot39=1{,}560" /> ordered pairs in total. That gives <InlineMath math="\tfrac{320}{1{,}560}=\tfrac{8}{39}" />, the same.
+
+# The wrong options
+
+Each other option uses **the wrong condition or the wrong count**.
+
+- <InlineMath math="\tfrac{607}{780}" /> reads the condition as a match in at least one direction. <InlineMath math="607" /> pairs match one way or the other, but the question asks for both directions at once.
+- <InlineMath math="\tfrac{48}{65}" /> only asks for the same rhesus, <InlineMath math="\tfrac{\binom{34}{2}+\binom{6}{2}}{780}=\tfrac{576}{780}" />, and forgets the ABO rule.
+- <InlineMath math="\tfrac{16}{39}" /> counts ordered pairs on top, <InlineMath math="320" />, but unordered pairs below, <InlineMath math="780" />.
+- <InlineMath math="\tfrac{18}{65}" /> only asks for the same ABO group, <InlineMath math="\tfrac{216}{780}" />, and forgets the rhesus rule.
+
+So the probability that the two donors can give blood to each other is <InlineMath math="\tfrac{8}{39}" />.

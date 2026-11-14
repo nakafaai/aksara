@@ -1,13 +1,32 @@
-Die Summe der ersten acht Glieder einer arithmetischen Folge ist **die Zahl der Glieder mal dem Mittel aus erstem und letztem Glied**.
+Du musst die Gewinnformel mit der Düngerregel neu aufstellen, ihren Scheitel finden und dann **prüfen, ob dieser Scheitel in den Garten passt**. Der Garten fasst höchstens <InlineMath math="70" /> Bäume, und genau diese Grenze ändert die Antwort.
 
-# Erstes und achtes Glied
+# Die Gewinnformel mit Dünger
 
-<BlockMath math="U_8=120+7\cdot15=225" />
+Bei <InlineMath math="n" /> Bäumen mit <InlineMath math="n" /> mindestens <InlineMath math="40" /> beträgt der Ertrag pro Baum <InlineMath math="120-(n-40)=160-n" /> Kilogramm. Die Kosten pro Baum sind jetzt **Pflege plus Dünger**, <InlineMath math="96{.}000+24{.}000=120{.}000" /> Rupiah. Also:
 
-# Summe über acht Jahre
+<BlockMath math="\begin{aligned}
+\text{Gewinn}&=8{.}000\cdot n(160-n)-120{.}000n\\
+&=8{.}000n(160-n-15)\\
+&=8{.}000n(145-n)
+\end{aligned}" />
 
-<BlockMath math="S_8=\frac{8}{2}(120+225)=4\cdot345=1\,380" />
+Für <InlineMath math="n" /> höchstens <InlineMath math="40" /> trägt jeder Baum <InlineMath math="120\text{ kg}" />, der Gewinn ist also <InlineMath math="(960{.}000-120{.}000)n=840{.}000n" />. Er steigt bis <InlineMath math="n=40" /> ständig, der größte Gewinn liegt also bei <InlineMath math="n" /> mindestens <InlineMath math="40" />.
 
-Der Wert 960 nimmt jedes Jahr 120 Setzlinge an. Der Wert 1 065 addiert die Erhöhung <InlineMath math="7\cdot15" /> nur einmal. Der Wert 1 155 ist die Summe für sieben Jahre. Der Wert 1 320 multipliziert 8 mit der Zahl des vierten Jahres, obwohl **acht Glieder kein einzelnes mittleres Glied haben**.
+# Der Scheitel und die Grenze des Gartens
 
-In acht Jahren werden also **1 380 Setzlinge** gepflanzt.
+Der Ausdruck <InlineMath math="8{.}000n(145-n)" /> ist null bei <InlineMath math="n=0" /> und <InlineMath math="n=145" />, sein Scheitel liegt also genau in der Mitte, bei <InlineMath math="n=72{,}5" />. Der Garten fasst aber nur <InlineMath math="70" /> Bäume, also **liegt der Scheitel außerhalb der Gartengrenze**. Vor dem Scheitel steigt der Gewinn mit jedem weiteren Baum. Zwischen <InlineMath math="40" /> und <InlineMath math="70" /> Bäumen ist der Gewinn deshalb bei <InlineMath math="70" /> Bäumen am größten:
+
+<BlockMath math="8{.}000\cdot70\cdot(145-70)=8{.}000\cdot70\cdot75=42{.}000{.}000" />
+
+Prüfe einen Baum weniger: <InlineMath math="8{.}000\cdot69\cdot76=41{.}952{.}000" />, also kleiner. Prüfe auch pro Baum: Bei <InlineMath math="70" /> Bäumen trägt jeder Baum <InlineMath math="90\text{ kg}" /> und bringt <InlineMath math="90\cdot8{.}000-120{.}000=600{.}000" /> Rupiah ein, und <InlineMath math="70\cdot600{.}000=42{.}000{.}000" />.
+
+# Die falschen Antworten
+
+Jede andere Antwort übersieht eine Bedingung.
+
+- <InlineMath math="80" /> Bäume sind der Scheitel der Ernte <InlineMath math="n(160-n)" />. Diese Antwort übersieht die Kosten und die Gartengrenze.
+- <InlineMath math="72" /> Bäume runden den Scheitel <InlineMath math="72{,}5" />, ohne zu prüfen, dass **der Garten nur siebzig Bäume fasst**.
+- <InlineMath math="70" /> Bäume mit <InlineMath math="\text{Rp}43{.}680{.}000" /> vergessen die Düngerkosten und rechnen <InlineMath math="8{.}000\cdot70\cdot78" />.
+- <InlineMath math="47" /> Bäume sind die beste Wahl ohne Dünger, die nicht mehr gilt, wenn sich die Ertragsregel ändert.
+
+Mit dem Spezialdünger ergibt sich der größte Gewinn also bei <InlineMath math="70" /> Bäumen, nämlich <InlineMath math="\text{Rp}42{.}000{.}000" />.

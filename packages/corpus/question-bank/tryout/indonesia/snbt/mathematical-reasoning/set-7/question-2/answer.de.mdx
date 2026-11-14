@@ -1,18 +1,48 @@
-Die nötige Geschwindigkeit ist **die Dateigröße in Megabit geteilt durch die Zeit in Sekunden**. Beide Einheiten müssen zuerst passen.
+Gesucht ist der späteste Zeitpunkt, zu dem Bayu das Ladegerät einstecken kann, damit der Akku um 16.00 Uhr noch <InlineMath math="55\%" /> hat. Der Plan: Schreib alle Raten auf, die gelten, und **rechne dann von 16.00 Uhr rückwärts**, denn je später das Ladegerät steckt, desto niedriger ist der Akku am Ende.
 
-# Größe und Zeit in passenden Einheiten
+# Die geltenden Raten
+
+Ohne Ladegerät verbraucht ein Video <InlineMath math="20\%" /> pro Stunde. Bei <InlineMath math="20\%" /> oder weniger **sorgt der Energiesparmodus dafür, dass ein Video nur <InlineMath math="10\%" /> pro Stunde verbraucht**. Beim Laden und gleichzeitigen Schauen ändert sich der Akku um die Laderate minus den Verbrauch des Videos.
 
 <BlockMath math="\begin{aligned}
-1{,}5\text{ GB}&=1\,500\text{ MB}=1\,500\cdot8=12\,000\text{ Megabit}\\
-4\text{ Minuten}&=240\text{ Sekunden}
+\text{über } 20\% &: 40\%-20\%=20\%\text{ pro Stunde} \\
+\text{bei } 20\% \text{ oder weniger} &: 40\%-10\%=30\%\text{ pro Stunde}
 \end{aligned}" />
 
-# Mindestgeschwindigkeit
+Das Ziel von <InlineMath math="55\%" /> liegt unter <InlineMath math="80\%" />, das langsamere Laden über <InlineMath math="80\%" /> spielt also keine Rolle.
 
-<BlockMath math="\frac{12\,000}{240}=50\text{ Mbps}" />
+# Wann der Akku wieder bei zwanzig Prozent sein muss
 
-Eine geringere Geschwindigkeit lässt den Download **länger als 4 Minuten dauern**, also sind 50 Mbps die Untergrenze. Die 40 Mbps im Haus reichen nicht, denn damit dauert es 300 Sekunden.
+Über <InlineMath math="20\%" /> steigt der Akku um <InlineMath math="20\%" /> pro Stunde. Von <InlineMath math="20\%" /> auf <InlineMath math="55\%" /> dauert es so lange.
 
-Der Wert 6,25 Mbps vergisst, mit 8 zu multiplizieren. Der Wert 375 Mbps teilt durch 4 Minuten statt durch 240 Sekunden und rechnet trotzdem in Megabit.
+<BlockMath math="\frac{55-20}{20}\text{ h}=\frac{35}{20}\text{ h}=1\text{ h }45\text{ min}" />
 
-Die geringste nötige Geschwindigkeit beträgt also **50 Mbps**.
+Also **muss der Akku spätestens um 14.15 Uhr wieder bei <InlineMath math="20\%" /> sein**, während er lädt.
+
+# Fallen und wieder steigen im Sparmodus
+
+Ohne Ladegerät fällt der Akku von <InlineMath math="25\%" /> auf <InlineMath math="20\%" /> in <InlineMath math="\frac{5}{20}" /> Stunden, also in <InlineMath math="15" /> Minuten. Um 13.15 Uhr ist er also bei <InlineMath math="20\%" />, und von 13.15 Uhr bis 14.15 Uhr sind es <InlineMath math="60" /> Minuten.
+
+Angenommen, das Ladegerät kommt <InlineMath math="d" /> Minuten nach 13.15 Uhr dazu. In diesen <InlineMath math="d" /> Minuten **fällt der Akku mit der Sparrate von <InlineMath math="10\%" /> pro Stunde**, danach muss er mit <InlineMath math="30\%" /> pro Stunde wieder auf <InlineMath math="20\%" /> steigen. Das Steigen geht dreimal so schnell wie das Fallen und dauert deshalb ein Drittel der Zeit.
+
+<BlockMath math="\begin{aligned}
+d+\frac{d}{3} &= 60 \\
+\frac{4d}{3} &= 60 \\
+d &= 45
+\end{aligned}" />
+
+Das Ladegerät muss also spätestens <InlineMath math="45" /> Minuten nach 13.15 Uhr stecken, das ist 14.00 Uhr, also <InlineMath math="15+45=60" /> Minuten nach 13.00 Uhr.
+
+# Probe durch Vorwärtsrechnen
+
+Steck das Ladegerät genau um 14.00 Uhr ein. Von 13.15 Uhr bis 14.00 Uhr verliert der Akku <InlineMath math="10\%\cdot\frac{45}{60}=7{,}5\%" />, es bleiben <InlineMath math="12{,}5\%" />. Danach steigt er in <InlineMath math="\frac{7{,}5}{30}" /> Stunden, also in <InlineMath math="15" /> Minuten, wieder auf <InlineMath math="20\%" />, genau um 14.15 Uhr. Von 14.15 Uhr bis 16.00 Uhr sind es <InlineMath math="105" /> Minuten.
+
+<BlockMath math="20\%+20\%\cdot\frac{105}{60}=20\%+35\%=55\%" />
+
+Steckst du später ein, fällt der Akku länger und steigt kürzer, also **landet er am Ende sicher unter <InlineMath math="55\%" />**. Das Handy geht vor dem Laden auch nicht aus, denn der tiefste Stand ist <InlineMath math="12{,}5\%" />.
+
+# Typische Fehler
+
+Wenn du **den Energiesparmodus übersiehst**, scheint der Akku mit <InlineMath math="20\%" /> pro Stunde zu fallen und zu steigen. Dann wirkt es so, als müsse das Ladegerät schon um 13.45 Uhr stecken, also nach <InlineMath math="45" /> Minuten, obwohl der Sparmodus Zeit schenkt. Vergisst du, beim Laden den Verbrauch des Videos abzuziehen, scheint der Akku um <InlineMath math="40\%" /> pro Stunde zu steigen, und du rechnest mit viel zu viel Zeit.
+
+Das Ladegerät muss also spätestens <InlineMath math="60" /> Minuten nach 13.00 Uhr eingesteckt werden.

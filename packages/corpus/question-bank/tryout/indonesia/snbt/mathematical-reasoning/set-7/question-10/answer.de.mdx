@@ -1,19 +1,36 @@
-Der Abstand zweier Kreuzungen ist **die Differenz der x-Werte plus die Differenz der y-Werte**. Berechne einige Reihenfolgen und stelle sicher, dass keine Route kürzer ist.
+Gesucht ist die kleinste Zahl an Wasserwechseln, nach der der Salzgehalt im sicheren Bereich liegt, also höchstens bei <InlineMath math="36\text{ g/L}" />. Der Plan: Schau, was mit **dem Überschuss** über <InlineMath math="35\text{ g/L}" /> bei jedem Wechsel passiert, und zähle dann Wechsel für Wechsel.
 
-# Länge einiger Reihenfolgen
+# Was ein Wechsel bewirkt
 
-Vergleiche **die Länge jeder Besuchsreihenfolge**, den Rückweg nach G eingeschlossen.
+Wenn <InlineMath math="40\text{ Liter}" /> entfernt werden, bleiben <InlineMath math="80\text{ Liter}" /> altes Wasser, also <InlineMath math="\frac{2}{3}" /> des Aquariums. Das übrige <InlineMath math="\frac13" /> ist künstliches Meerwasser mit <InlineMath math="35\text{ g/L}" />. Der neue Salzgehalt ist also ein gewichteter Mittelwert aus dem alten Salzgehalt und <InlineMath math="35" />.
 
-| Reihenfolge | Länge in Abschnitten |
-| :---: | :---: |
-| G, B, A, C, G | <InlineMath math="6+5+4+7=22" /> |
-| G, A, C, B, G | <InlineMath math="7+4+9+6=26" /> |
-| G, C, B, A, G | <InlineMath math="7+9+5+7=28" /> |
+<BlockMath math="\begin{aligned}
+c_{\text{neu}} &= \frac{2}{3}\,c_{\text{alt}}+\frac{1}{3}\cdot35 \\
+c_{\text{neu}}-35 &= \frac{2}{3}\,(c_{\text{alt}}-35)
+\end{aligned}" />
 
-# Eine untere Schranke für jede Route
+Die zweite Zeile ist der Schlüssel: **Der Überschuss über <InlineMath math="35" /> wird bei jedem Wechsel mit <InlineMath math="\frac23" /> multipliziert**. Er schrumpft nicht um einen festen Betrag.
 
-Die Route muss den x-Wert 5 erreichen, bei B, und zurück zu 0, also mindestens <InlineMath math="2\cdot5=10" /> waagerechte Abschnitte. Sie muss auch den y-Wert 6 erreichen, bei C, und zurück zu 0, also mindestens <InlineMath math="2\cdot6=12" /> senkrechte Abschnitte. **Jede Route hat also mindestens 22 Abschnitte**.
+# Wechsel für Wechsel zählen
 
-Die Reihenfolge G, B, A, C, G erreicht diese Schranke, also sind 22 Abschnitte oder 2 200 m das Minimum. Die Werte 2 600 m und 2 800 m stammen aus ungünstigeren Reihenfolgen.
+Am Anfang beträgt der Überschuss <InlineMath math="41-35=6" />. Die Fische sind sicher, sobald er höchstens <InlineMath math="36-35=1" /> beträgt.
 
-Die kürzeste Route ist also **2 200 m** lang.
+| Nach Wechsel Nummer | Überschuss über <InlineMath math="35" /> | Salzgehalt |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="6\cdot\frac23=4" /> | <InlineMath math="39" /> |
+| <InlineMath math="2" /> | <InlineMath math="4\cdot\frac23=\frac83" /> | <InlineMath math="37\frac23" /> |
+| <InlineMath math="3" /> | <InlineMath math="\frac83\cdot\frac23=\frac{16}{9}" /> | <InlineMath math="36\frac79" /> |
+| <InlineMath math="4" /> | <InlineMath math="\frac{16}{9}\cdot\frac23=\frac{32}{27}" /> | <InlineMath math="36\frac{5}{27}" /> |
+| <InlineMath math="5" /> | <InlineMath math="\frac{32}{27}\cdot\frac23=\frac{64}{81}" /> | <InlineMath math="35\frac{64}{81}" /> |
+
+Nach dem vierten Wechsel beträgt der Überschuss <InlineMath math="\frac{32}{27}" />, wegen <InlineMath math="32>27" /> also noch mehr als <InlineMath math="1" />. **Erst nach dem fünften Wechsel ist er mit <InlineMath math="\frac{64}{81}" /> kleiner als <InlineMath math="1" />**.
+
+# Die untere Grenze prüfen
+
+Das Auffüllwasser hat genau <InlineMath math="35" />, der Überschuss bleibt also immer positiv, und **der Salzgehalt fällt nie unter <InlineMath math="35\text{ g/L}" />**. Die untere Grenze von <InlineMath math="33\text{ g/L}" /> wird nie verletzt, der fünfte Wechsel macht das Aquarium also wirklich sicher.
+
+# Ein typischer Fehler
+
+Wenn du **annimmst, dass der Salzgehalt jedes Mal um <InlineMath math="2\text{ g/L}" /> sinkt**, also um ein Drittel des Anfangsüberschusses, scheint er nach <InlineMath math="3" /> Wechseln bei <InlineMath math="35" /> zu sein. Tatsächlich liegt er nach <InlineMath math="3" /> Wechseln noch bei <InlineMath math="36\frac79\text{ g/L}" />.
+
+Es sind also mindestens <InlineMath math="5" /> Wasserwechsel nötig.

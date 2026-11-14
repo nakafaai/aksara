@@ -1,15 +1,31 @@
-Der neue Mittelwert ist **die neue Gesamtmenge geteilt durch 12**. Nur fünf Monate ändern sich.
+Gesucht ist die späteste Schlafenszeit. Zwei Durchschnitte zählen: **der durchschnittliche effektive Schlaf** legt fest, wie lange die Person wirklich schlafen muss, und **die durchschnittliche Wachzeit** kommt dazu, weil sie auch wach im Bett liegt. Der Plan: Berechne beide Durchschnitte, addiere sie zur Zeit im Bett und rechne dann von 05.15 Uhr zurück. Alle Zeiten sind in Minuten.
 
-# Gesamtniederschlag
+# Durchschnittlicher effektiver Schlaf
 
-Die Jahressumme in der Tabelle beträgt 2 100 mm. **Mai bis September** ergeben <InlineMath math="120+80+50+40+70=360" /> mm, die um <InlineMath math="20\,\%\cdot360=72" /> mm sinken.
+Die Zeit im Bett reicht vom Einschlafen bis zum Aufwachen, und liegt die Schlafenszeit vor Mitternacht, zählst du zuerst bis 24.00 Uhr. **Der Mittwoch beginnt erst nach Mitternacht**, also sind es von 00.20 bis 06.50 Uhr nur <InlineMath math="390" /> Minuten. Nach Abzug der Wachzeit beträgt der effektive Schlaf der Nächte <InlineMath math="500" />, <InlineMath math="375" />, <InlineMath math="380" />, <InlineMath math="515" />, <InlineMath math="360" />, <InlineMath math="600" /> und <InlineMath math="560" />.
 
-<BlockMath math="2\,100-72=2\,028\text{ mm}" />
+<BlockMath math="\begin{aligned}
+\text{mittlerer effektiver Schlaf} &= \frac{500+375+380+515+360+600+560}{7}=\frac{3{.}290}{7}=470 \\
+\text{mittlere Wachzeit} &= \frac{20+15+10+25+0+30+40}{7}=\frac{140}{7}=20
+\end{aligned}" />
 
-# Neuer Mittelwert
+# Nötige Zeit im Bett
 
-<BlockMath math="\frac{2\,028}{12}=169\text{ mm}" />
+Die Person braucht <InlineMath math="470" /> Minuten effektiven Schlaf und rechnet mit <InlineMath math="20" /> Minuten Wachzeit, also **muss sie <InlineMath math="470+20=490" /> Minuten im Bett sein**, das sind <InlineMath math="8" /> Stunden <InlineMath math="10" /> Minuten.
 
-Der Wert 103 mm zieht 72 direkt vom alten Mittelwert 175 mm ab, obwohl **der Rückgang zuerst durch 12 geteilt werden muss**. Der Wert 140 mm senkt alle Monate um <InlineMath math="20\,\%" />. Der Wert 175 mm ist der alte Mittelwert, und 181 mm addiert die 72 mm stattdessen.
+# Zurückrechnen von der Aufstehzeit
 
-Der mittlere Monatsniederschlag im nächsten Jahr beträgt also **169 mm**.
+Von Mitternacht bis 05.15 Uhr sind es <InlineMath math="5\times60+15=315" /> Minuten. Der Rest muss vor Mitternacht liegen: <InlineMath math="490-315=175" /> Minuten, also <InlineMath math="2" /> Stunden <InlineMath math="55" /> Minuten. **Von 24.00 Uhr <InlineMath math="2" /> Stunden <InlineMath math="55" /> Minuten zurück** ergibt 21.05 Uhr.
+
+Kontrolle: Von 21.05 bis 24.00 Uhr sind es <InlineMath math="175" /> Minuten, dazu <InlineMath math="315" /> Minuten bis 05.15 Uhr, zusammen <InlineMath math="490" /> Minuten. Minus <InlineMath math="20" /> Minuten Wachzeit bleiben <InlineMath math="470" /> Minuten effektiver Schlaf, genau der Durchschnitt.
+
+# Die falschen Antworten
+
+Jede andere Antwort **nimmt das falsche Maß für die Schlafdauer** oder vergisst die Wachzeit.
+
+- 20.35 Uhr nimmt den Median des effektiven Schlafs, <InlineMath math="500" /> Minuten, statt des Mittelwerts, sodass die Zeit im Bett <InlineMath math="520" /> Minuten wird.
+- 20.45 Uhr nimmt die mittlere Zeit im Bett, <InlineMath math="490" /> Minuten, und addiert die Wachzeit noch einmal, also <InlineMath math="510" /> Minuten.
+- 20.55 Uhr nimmt das Ziel von <InlineMath math="8" /> Stunden statt des Wochendurchschnitts, also <InlineMath math="480+20=500" /> Minuten.
+- 21.25 Uhr vergisst die Wachzeit und nimmt nur <InlineMath math="470" /> Minuten.
+
+Die Person muss also spätestens um 21.05 Uhr schlafen gehen.

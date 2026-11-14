@@ -1,21 +1,34 @@
-Der lineare Zusammenhang zwischen Anzeige <InlineMath math="R" /> und wahrer Temperatur <InlineMath math="C" /> ist durch **die zwei bekannten Wertepaare** festgelegt, so wie die Fahrenheitformel durch Gefrier- und Siedepunkt.
+Gesucht ist der Zeitpunkt, an dem das Wasser wieder unter <InlineMath math="300\text{ cm}" /> fällt, nachdem es darüber lag. Der Plan: Verfolge den Stand Stunde für Stunde mit dem Regen, der <InlineMath math="2" /> Stunden später ankommt, denk daran, dass **das Wehr auch beim Fallen offen ist**, und berechne dann die genaue Minute.
 
-# Die Formel des Thermometers bestimmen
+# Bis zum Höchststand
 
-Von 0 °C bis 100 °C steigt die Anzeige von <InlineMath math="-4" /> auf 86, also um 90. **Jedes 1 °C erhöht die Anzeige also um 0,9**.
+Das Wasser erreicht um 08.40 Uhr <InlineMath math="250\text{ cm}" />, also **öffnet das Wehr**, und jede Änderung sinkt um <InlineMath math="30\text{ cm}" /> pro Stunde. Um 09.00 Uhr steht das Wasser bei <InlineMath math="260\text{ cm}" />, steigt um <InlineMath math="90-30=60\text{ cm}" /> auf <InlineMath math="320\text{ cm}" /> um 10.00 Uhr und um <InlineMath math="50-30=20\text{ cm}" /> auf <InlineMath math="340\text{ cm}" /> um 11.00 Uhr.
 
-<BlockMath math="R=0{,}9C-4" />
+# Fallen, obwohl noch Regen ankommt
 
-# Die wahre Temperatur bestimmen
+**Das Wehr bleibt offen, solange das Wasser bei <InlineMath math="250\text{ cm}" /> oder darüber steht**, auch während es fällt. Die Absenkung um <InlineMath math="30\text{ cm}" /> gilt also weiter.
 
-<BlockMath math="\begin{aligned}
-0{,}9C-4&=32\\
-0{,}9C&=36\\
-C&=40
-\end{aligned}" />
+| Stunde am Pegel | Ankommender Regen | Änderung | Stand am Ende der Stunde |
+| --- | --- | --- | --- |
+| 11.00-12.00 | <InlineMath math="20\text{ mm}" /> | <InlineMath math="20-30=-10" /> | <InlineMath math="330\text{ cm}" /> |
+| 12.00-13.00 | <InlineMath math="15\text{ mm}" /> | <InlineMath math="10-30=-20" /> | <InlineMath math="310\text{ cm}" /> |
+| 13.00-14.00 | <InlineMath math="5\text{ mm}" /> | <InlineMath math="-10-30=-40" /> | <InlineMath math="270\text{ cm}" /> |
 
-Kontrolle: <InlineMath math="0{,}9\cdot40-4=32" />. Bei dieser Temperatur **zeigt das Thermometer zu wenig an**.
+Um 13.00 Uhr steht das Wasser noch bei <InlineMath math="310\text{ cm}" />, der Status ist also noch Awas. **Der Status wechselt mitten in der Stunde von 13.00 Uhr bis 14.00 Uhr**.
 
-Der Wert 32 °C vertraut der Anzeige. Der Wert 36 °C korrigiert nur die Verschiebung um 4, nicht den Faktor 0,9.
+# Die genaue Minute
 
-Die wahre Temperatur beträgt also **40 °C**.
+Ab <InlineMath math="310\text{ cm}" /> fällt das Wasser um <InlineMath math="40\text{ cm}" /> pro Stunde.
+
+<BlockMath math="\frac{310-300}{40}\text{ h}=\frac14\text{ h}=15\text{ min}" />
+
+Das Wasser erreicht <InlineMath math="300\text{ cm}" /> um 13.15 Uhr und liegt danach darunter. Um 14.00 Uhr steht es bei <InlineMath math="270\text{ cm}" />, noch über <InlineMath math="250\text{ cm}" />, **der Status ist also wirklich Siaga** und nicht Waspada.
+
+# Die falschen Antworten
+
+- 11.20 Uhr entsteht, wenn der Regen schon nach <InlineMath math="1" /> Stunde ankommen soll. Dann nutzt jede Pegelstunde den falschen Regen.
+- 13.25 Uhr entsteht, wenn <InlineMath math="\frac14" /> Stunde, also <InlineMath math="0{,}25" /> Stunden, als <InlineMath math="25" /> Minuten gelesen wird.
+- 14.00 Uhr entsteht, wenn du von 13.00 Uhr bis 14.00 Uhr **das offene Wehr vergisst**. Dann fällt das Wasser nur um <InlineMath math="10\text{ cm}" /> auf <InlineMath math="300\text{ cm}" />.
+- Nach 14.00 Uhr entsteht, wenn du annimmst, dass das Wehr schließt, sobald das Wasser nicht mehr steigt. Ohne Absenkung nach 11.00 Uhr stünde das Wasser um 14.00 Uhr bei <InlineMath math="360\text{ cm}" />.
+
+Der Status des Flusses wechselt also um 13.15 Uhr von Awas zu Siaga.

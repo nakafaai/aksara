@@ -1,22 +1,46 @@
-What is compared is **the total number of seedlings since the first year**, not the number in a single year.
+You're counting every number of trees whose profit reaches <InlineMath math="\text{Rp}30{,}720{,}000" />. The key is that **the profit has two formulas**: one for at most <InlineMath math="40" /> trees and one for at least <InlineMath math="40" /> trees. Here's the plan: write both formulas, solve the condition in each range, then combine.
 
-# Total after n years
+# Two profit formulas
 
-<BlockMath math="\begin{aligned}
-\text{Sukamaju}&:\quad \tfrac{n}{2}\bigl(240+15(n-1)\bigr)=120n+7.5n(n-1)\\
-\text{neighbour}&:\quad 195n
-\end{aligned}" />
-
-# Setting them equal
+For <InlineMath math="n" /> of at most <InlineMath math="40" />, each tree yields <InlineMath math="120\text{ kg}" />, so each tree earns <InlineMath math="120\cdot8{,}000-96{,}000=864{,}000" /> rupiah. For <InlineMath math="n" /> of at least <InlineMath math="40" />, each tree yields <InlineMath math="200-2n" /> kilograms:
 
 <BlockMath math="\begin{aligned}
-120n+7.5n(n-1)&=195n\\
-7.5(n-1)&=75\\
-n&=11
+n\le40: \ \text{profit}&=864{,}000n\\
+n\ge40: \ \text{profit}&=8{,}000n(200-2n)-96{,}000n=16{,}000n(94-n)
 \end{aligned}" />
 
-Check: after 11 years Sukamaju has planted <InlineMath math="1{,}320+825=2{,}145" /> seedlings, and the neighbour <InlineMath math="11\cdot195=2{,}145" />.
+Both formulas give the same value at <InlineMath math="n=40" />, namely <InlineMath math="34{,}560{,}000" />, so **they join up correctly**.
 
-Year 6 is when **the number planted in one year** is equal, 195, while the neighbour is still far ahead in total. At the end of years 8 and 10 the neighbour still has more, and at the end of year 12 Sukamaju already has more.
+# The range above forty trees
 
-So the totals are first equal at the end of **year 11**.
+For <InlineMath math="n" /> of at least <InlineMath math="40" />, divide both sides by <InlineMath math="16{,}000" />:
+
+<BlockMath math="\begin{aligned}
+16{,}000n(94-n)&\ge30{,}720{,}000\\
+n(94-n)&\ge1{,}920\\
+n^2-94n+1{,}920&\le0\\
+(n-30)(n-64)&\le0
+\end{aligned}" />
+
+This holds for <InlineMath math="n" /> from <InlineMath math="30" /> to <InlineMath math="64" />. But **this formula is only valid for at least forty trees**, so you keep only <InlineMath math="n" /> from <InlineMath math="40" /> to <InlineMath math="64" />. The upper end, <InlineMath math="64" />, is still below the orchard's capacity of <InlineMath math="70" />.
+
+# The range up to forty trees
+
+For <InlineMath math="n" /> of at most <InlineMath math="40" />, use the first formula:
+
+<BlockMath math="\begin{aligned}
+864{,}000n&\ge30{,}720{,}000\\
+n&\ge35\tfrac{5}{9}
+\end{aligned}" />
+
+So <InlineMath math="n" /> from <InlineMath math="36" /> to <InlineMath math="40" /> works. **The root thirty from the quadratic doesn't apply here**, because below <InlineMath math="40" /> trees the yield per tree stays at <InlineMath math="120\text{ kg}" />.
+
+# Combining the two ranges
+
+Together the two ranges give <InlineMath math="n" /> from <InlineMath math="36" /> to <InlineMath math="64" />, with <InlineMath math="40" /> **counted once**. That's <InlineMath math="64-36+1=29" /> choices.
+
+Check all four ends. <InlineMath math="864{,}000\cdot35=30{,}240{,}000" /> falls short, while <InlineMath math="864{,}000\cdot36=31{,}104{,}000" /> is enough. <InlineMath math="16{,}000\cdot64\cdot30=30{,}720{,}000" /> exactly meets the condition, while <InlineMath math="16{,}000\cdot65\cdot29=30{,}160{,}000" /> falls short.
+
+If you use the quadratic formula for every number of trees, you get <InlineMath math="35" /> choices, from <InlineMath math="30" /> to <InlineMath math="64" />. If you drop <InlineMath math="64" /> trees because its profit only equals the limit, you get <InlineMath math="28" />, but at least includes equality.
+
+So there are <InlineMath math="29" /> choices for the number of trees that give a profit of at least <InlineMath math="\text{Rp}30{,}720{,}000" />.

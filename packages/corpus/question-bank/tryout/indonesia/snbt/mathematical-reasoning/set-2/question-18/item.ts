@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "medicine-level",
+  stimulus: "seedling-grid",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "180 mg" },
-        { correct: true, label: "270 mg" },
-        { correct: false, label: "360 mg" },
-        { correct: false, label: "450 mg" },
-        { correct: false, label: "540 mg" },
+        { correct: false, label: "$$216$$" },
+        { correct: false, label: "$$224$$" },
+        { correct: false, label: "$$266$$" },
+        { correct: false, label: "$$270$$" },
+        { correct: true, label: "$$280$$" },
       ],
     },
   },

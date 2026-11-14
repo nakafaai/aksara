@@ -1,19 +1,36 @@
-The distance between two intersections is **the difference in x plus the difference in y**. Compute some orders, then make sure no route is shorter.
+You're looking for the smallest number of water changes that brings the salinity into the safe range, which means at most <InlineMath math="36\text{ g/L}" />. The plan: see what happens to **the extra salinity** above <InlineMath math="35\text{ g/L}" /> on each change, then count change by change.
 
-# Length of some orders
+# What one change does
 
-Compare **the length of each visiting order**, including the way back to G.
+Removing <InlineMath math="40\text{ liters}" /> leaves <InlineMath math="80\text{ liters}" /> of old water, which is <InlineMath math="\frac{2}{3}" /> of the tank. The other <InlineMath math="\frac13" /> is artificial seawater at <InlineMath math="35\text{ g/L}" />. So the new salinity is a weighted average of the old salinity and <InlineMath math="35" />.
 
-| Order | Length in blocks |
-| :---: | :---: |
-| G, B, A, C, G | <InlineMath math="6+5+4+7=22" /> |
-| G, A, C, B, G | <InlineMath math="7+4+9+6=26" /> |
-| G, C, B, A, G | <InlineMath math="7+9+5+7=28" /> |
+<BlockMath math="\begin{aligned}
+c_{\text{new}} &= \frac{2}{3}\,c_{\text{old}}+\frac{1}{3}\cdot35 \\
+c_{\text{new}}-35 &= \frac{2}{3}\,(c_{\text{old}}-35)
+\end{aligned}" />
 
-# A lower bound for every route
+The second line is the key to this problem: **the extra salinity above <InlineMath math="35" /> is multiplied by <InlineMath math="\frac23" /> on every change**. It doesn't shrink by a fixed amount.
 
-The route must reach x equal to 5, at B, and come back to x equal to 0, so it needs at least <InlineMath math="2\cdot5=10" /> horizontal blocks. It must also reach y equal to 6, at C, and come back to 0, so at least <InlineMath math="2\cdot6=12" /> vertical blocks. So **every route is at least 22 blocks**.
+# Counting change by change
 
-The order G, B, A, C, G reaches that bound, so 22 blocks or 2,200 m is the shortest. The values 2,600 m and 2,800 m come from poorer orders.
+The extra starts at <InlineMath math="41-35=6" />. The fish are safe once the extra is at most <InlineMath math="36-35=1" />.
 
-So the shortest route is **2,200 m**.
+| After change number | Extra above <InlineMath math="35" /> | Salinity |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="6\cdot\frac23=4" /> | <InlineMath math="39" /> |
+| <InlineMath math="2" /> | <InlineMath math="4\cdot\frac23=\frac83" /> | <InlineMath math="37\frac23" /> |
+| <InlineMath math="3" /> | <InlineMath math="\frac83\cdot\frac23=\frac{16}{9}" /> | <InlineMath math="36\frac79" /> |
+| <InlineMath math="4" /> | <InlineMath math="\frac{16}{9}\cdot\frac23=\frac{32}{27}" /> | <InlineMath math="36\frac{5}{27}" /> |
+| <InlineMath math="5" /> | <InlineMath math="\frac{32}{27}\cdot\frac23=\frac{64}{81}" /> | <InlineMath math="35\frac{64}{81}" /> |
+
+After the fourth change the extra is <InlineMath math="\frac{32}{27}" />, still more than <InlineMath math="1" /> because <InlineMath math="32>27" />. **Only after the fifth change is the extra <InlineMath math="\frac{64}{81}" />, less than <InlineMath math="1" />**.
+
+# Checking the lower limit
+
+The refill water is at exactly <InlineMath math="35" />, so the extra always stays positive and **the salinity never drops below <InlineMath math="35\text{ g/L}" />**. The lower limit of <InlineMath math="33\text{ g/L}" /> is never broken, so the fifth change really does make the tank safe.
+
+# A common slip
+
+If you **assume the salinity drops by <InlineMath math="2\text{ g/L}" /> each time**, a third of the starting extra, it seems to reach <InlineMath math="35" /> after <InlineMath math="3" /> changes. In fact, after <InlineMath math="3" /> changes the salinity is still <InlineMath math="36\frac79\text{ g/L}" />.
+
+So at least <InlineMath math="5" /> water changes are needed.

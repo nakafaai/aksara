@@ -1,16 +1,46 @@
-Not making a loss means **the profit from the buns is at least the fixed cost**.
+You're looking for the smallest number of trips when the officer is free to choose each load. Here's the plan: first find a **lower bound**, the number of trips that are surely needed, then show one plan that actually reaches it.
 
-# Setting up the inequality
+# A lower bound from total length and mass
+
+Add up the length and mass of all <InlineMath math="11" /> vehicles: <InlineMath math="3" /> trucks, <InlineMath math="2" /> buses, <InlineMath math="5" /> cars, and <InlineMath math="1" /> pickup.
 
 <BlockMath math="\begin{aligned}
-1{,}500x&\ge120{,}000\\
-x&\ge80
+\text{total length} &= 3\cdot10+2\cdot12+5\cdot5+6=85\text{ m}\\
+\text{total mass} &= 3\cdot15+2\cdot16+5\cdot2+3=90\text{ tonnes}
 \end{aligned}" />
 
-# Checking the constraints
+One trip carries at most <InlineMath math="40\text{ m}" /> and <InlineMath math="30\text{ tonnes}" />. Since <InlineMath math="85>2\cdot40" /> and <InlineMath math="90=3\cdot30" />, these totals only tell you that at least <InlineMath math="3" /> trips are needed. But **vehicles can't be cut into pieces**, so <InlineMath math="3" /> may not be reachable.
 
-Eighty chocolate buns fit in the oven and use <InlineMath math="80\cdot50=4{,}000" /> g of flour, **within the 7 kg limit**. So the plan works.
+# Heavy vehicles that can't share a trip
 
-The value 60 buns uses the cheese bun profit of Rp2,000, although only chocolate buns are made that day. The value 70 buns gives only Rp105,000, still less than the fixed cost. The values 90 and 100 buns avoid a loss, but they are not the fewest.
+Check the pairs of heavy vehicles.
 
-So Bu Sari must make and sell at least **80 chocolate buns**.
+<BlockMath math="\begin{aligned}
+\text{bus and bus} &= 16+16=32\text{ tonnes}>30\text{ tonnes}\\
+\text{bus and truck} &= 16+15=31\text{ tonnes}>30\text{ tonnes}\\
+\text{three trucks} &= 3\cdot15=45\text{ tonnes}>30\text{ tonnes}
+\end{aligned}" />
+
+Suppose <InlineMath math="3" /> trips were enough. The two buses would have to be on two different trips, and **a trip with a bus can't carry a truck**. Then all three trucks would have to go on the one remaining trip, but three trucks weigh <InlineMath math="45\text{ tonnes}" />. That's impossible, so at least <InlineMath math="4" /> trips are needed.
+
+# A plan with four trips
+
+Now show that <InlineMath math="4" /> trips really are enough. Two trucks may travel together because <InlineMath math="30\text{ tonnes}" /> is exactly the limit.
+
+| Trip | Load | Length | Mass |
+| :---: | :---: | :---: | :---: |
+| first | two trucks | <InlineMath math="20\text{ m}" /> | <InlineMath math="30\text{ tonnes}" /> |
+| second | truck, two cars, pickup | <InlineMath math="26\text{ m}" /> | <InlineMath math="22\text{ tonnes}" /> |
+| third | bus, three cars | <InlineMath math="27\text{ m}" /> | <InlineMath math="22\text{ tonnes}" /> |
+| fourth | bus | <InlineMath math="12\text{ m}" /> | <InlineMath math="16\text{ tonnes}" /> |
+
+Every row stays within both limits, and **every vehicle travels exactly once**: three trucks, two buses, five cars, and one pickup.
+
+# Common wrong answers
+
+Both of these answers **misread the loading conditions**.
+
+- The answer <InlineMath math="3" /> uses only the total length and mass and forgets that a bus can't share a trip with another bus or a truck.
+- The answer <InlineMath math="5" /> still follows the queue rule, even though this question lifts the order. You also get <InlineMath math="5" /> if you think a load of exactly <InlineMath math="30\text{ tonnes}" /> isn't allowed, because then every truck has to travel without another truck.
+
+So the ferry needs at least <InlineMath math="4" /> trips to carry all the vehicles across.

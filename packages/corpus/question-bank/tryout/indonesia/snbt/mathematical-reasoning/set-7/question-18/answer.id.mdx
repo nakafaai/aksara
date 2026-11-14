@@ -1,19 +1,30 @@
-Perjalanan pergi dan pulang memakai baterai dengan **laju yang berbeda**, karena bebannya berbeda. Hitung waktu setiap bagian, lalu ubah menjadi persen baterai.
+Kamu mencari banyak praktikum paling banyak dalam seminggu. Rencananya: potong setiap hari menjadi **blok JP yang berurutan tanpa istirahat** dan tanpa JP ke-<InlineMath math="1" />, hitung berapa pasangan JP yang tidak saling berbagi dalam setiap blok, lalu jumlahkan untuk kelima hari.
 
-# Waktu setiap bagian perjalanan
+# Memotong hari menjadi blok
 
-Kecepatan 36 km/jam **sama dengan 0,6 km per menit**, jadi setiap arah memerlukan <InlineMath math="\tfrac{5{,}4}{0{,}6}=9" /> menit.
+Praktikum tidak boleh terpotong istirahat, jadi **setiap istirahat memisahkan blok JP**. JP ke-<InlineMath math="1" /> juga dibuang karena laboratorium belum siap.
 
-# Pemakaian baterai
+| Hari | Blok JP yang dapat dipakai | Praktikum |
+| --- | --- | --- |
+| Senin | JP <InlineMath math="2" /> sampai <InlineMath math="4" />, JP <InlineMath math="5" /> sampai <InlineMath math="7" />, JP <InlineMath math="8" /> sampai <InlineMath math="9" /> | <InlineMath math="1+1+1=3" /> |
+| Selasa, Rabu, Kamis | JP <InlineMath math="2" /> sampai <InlineMath math="3" />, JP <InlineMath math="4" /> sampai <InlineMath math="6" />, JP <InlineMath math="7" /> sampai <InlineMath math="9" /> | <InlineMath math="1+1+1=3" /> per hari |
+| Jumat | JP <InlineMath math="2" /> sampai <InlineMath math="4" />, JP <InlineMath math="5" /> sampai <InlineMath math="6" /> | <InlineMath math="1+1=2" /> |
 
-Dengan beban 2,5 kg, baterai penuh habis dalam <InlineMath math="30-4\cdot2{,}5=20" /> menit. Tanpa beban, baterai penuh habis dalam 30 menit.
+# Mengapa blok tiga JP hanya cukup untuk satu praktikum
 
-<BlockMath math="\begin{aligned}
-\text{pergi}&:\quad \tfrac{9}{20}\cdot100\%=45\%\\
-\text{pulang}&:\quad \tfrac{9}{30}\cdot100\%=30\%\\
-\text{sisa}&=100\%-45\%-30\%=25\%
-\end{aligned}" />
+Dua praktikum tidak boleh memakai JP yang sama, jadi dua praktikum memerlukan <InlineMath math="4" /> JP berbeda dalam satu blok. **Blok berisi <InlineMath math="3" /> JP hanya cukup untuk satu praktikum**, dan satu JP sisanya terbuang. Secara umum, blok berisi <InlineMath math="n" /> JP memuat paling banyak <InlineMath math="\left\lfloor \frac{n}{2}\right\rfloor" /> praktikum.
 
-Nilai 75% adalah baterai yang **terpakai**, bukan yang tersisa. Nilai 30% dan 45% hanya pemakaian satu arah, sedangkan 55% adalah sisa setelah perjalanan pergi saja.
+# Jumlah seminggu
 
-Jadi, sisa baterai ketika drone tiba kembali adalah **25%**.
+<BlockMath math="3+3\cdot3+2=3+9+2=14" />
+
+Sebagai pemeriksaan, **setiap blok di tabel memuat tepat satu praktikum**, dan banyak bloknya <InlineMath math="3+3\cdot3+2=14" />, jadi jadwal dengan <InlineMath math="14" /> praktikum memang dapat disusun.
+
+# Pilihan yang keliru
+
+- <InlineMath math="12" /> melupakan hari Jumat dan hanya menghitung Senin sampai Kamis.
+- <InlineMath math="16" /> lupa bahwa **JP ke-<InlineMath math="1" /> tidak dapat dipakai**. Blok JP <InlineMath math="1" /> sampai <InlineMath math="4" /> pada hari Senin dan Jumat lalu tampak memuat dua praktikum.
+- <InlineMath math="18" /> mengabaikan istirahat dan hanya membagi dua JP yang dapat dipakai setiap hari: <InlineMath math="4+4\cdot3+2=18" />.
+- <InlineMath math="21" /> membagi dua seluruh <InlineMath math="42" /> JP dalam seminggu tanpa memperhatikan istirahat dan JP ke-<InlineMath math="1" />.
+
+Jadi, paling banyak <InlineMath math="14" /> praktikum dapat dijadwalkan dalam seminggu.

@@ -1,19 +1,49 @@
-Der Stoßzeitpreis ist der normale Preis mal 1,2. Teile also **zuerst durch 1,2**, um den normalen Preis zu erhalten, und bestimme dann die Strecke.
+Gesucht ist die größte Anzahl normaler Missionen, die Citra starten kann. Zwei Dinge begrenzen sie: **die Zeit und die Energie**. Bestimme die Grenze aus der Zeit, dann die Grenze aus der Energie, und zeig danach einen Plan, der die kleinere Grenze wirklich erreicht.
 
-# Preis vor dem Aufschlag
+# Die Grenze aus der Zeit
 
-<BlockMath math="\frac{36\,000}{1{,}2}=30\,000" />
+Eine normale Mission dauert <InlineMath math="4" /> Minuten, die nächste kann also frühestens <InlineMath math="4" /> Minuten später starten. Die dichtesten Startzeiten sind 08:00, 08:04 Uhr und so weiter bis 09:08 Uhr. Von 08:00 bis 09:08 Uhr sind es <InlineMath math="68" /> Minuten, und **die erste Startzeit zählt mit**.
 
-# Die berechnete Strecke
+<BlockMath math="\frac{68}{4}+1=18" />
 
-Die berechnete Strecke sei <InlineMath math="k" /> km mit <InlineMath math="k>2" />, weil der Preis über dem Grundpreis liegt. Der normale Preis ist **Grundpreis plus Kilometerpreis nach den ersten 2 km**.
+Die Zeit erlaubt also höchstens <InlineMath math="18" /> Missionen.
+
+# Die Grenze aus der Energie
+
+Die Energie fällt genau um 08:00 Uhr unter <InlineMath math="60" />, wenn die erste Mission startet. Deshalb startet der Zähler um 08:00 Uhr, und aufgefüllt wird um 08:05, 08:10 Uhr und so weiter bis 09:10 Uhr. Das sind höchstens <InlineMath math="70 : 5=14" /> Auffüllungen, aber **nur wenn die Energie nie wieder <InlineMath math="60" /> erreicht**. Mit dem Trank kann sie also höchstens so viel Energie verbrauchen:
 
 <BlockMath math="\begin{aligned}
-10\,000+2\,500(k-2)&=30\,000\\
-2\,500(k-2)&=20\,000\\
-k-2=8\;\Longrightarrow\;k&=10
+60+30+14&=104 \\
+104&=17\cdot 6+2
 \end{aligned}" />
 
-Kontrolle: <InlineMath math="1{,}2\cdot(10\,000+8\cdot2\,500)=1{,}2\cdot30\,000=36\,000" />.
+Die Energie reicht also für höchstens <InlineMath math="17" /> Missionen, denn <InlineMath math="18" /> Missionen brauchen <InlineMath math="18\cdot 6=108" /> Energie. Die Energiegrenze ist kleiner als die Zeitgrenze.
 
-Bayu wurden also **10 km** berechnet.
+# Ein Plan mit siebzehn Missionen
+
+Damit kein Auffüllen verloren geht, muss sie den Trank trinken, solange ihre Energie plus <InlineMath math="30" /> noch unter <InlineMath math="60" /> liegt. Anders gesagt: Citra trinkt den Trank, **wenn ihre Energie unter <InlineMath math="30" /> liegt**.
+
+Probier diesen Plan. Citra startet von 08:00 bis 08:40 Uhr alle <InlineMath math="4" /> Minuten eine Mission. Das sind <InlineMath math="11" /> Missionen, und in dieser Zeit wird <InlineMath math="8" />-mal aufgefüllt, von 08:05 bis 08:40 Uhr. Vor den Missionen hat sie nacheinander <InlineMath math="60" />, <InlineMath math="54" />, <InlineMath math="49" />, <InlineMath math="44" />, <InlineMath math="39" />, <InlineMath math="34" />, <InlineMath math="28" />, <InlineMath math="23" />, <InlineMath math="18" />, <InlineMath math="13" /> und <InlineMath math="8" /> Energie, jede Mission hat also genug.
+
+Um 08:40 Uhr, nach der elften Mission, trinkt Citra den Trank. Dann startet sie <InlineMath math="6" /> weitere Missionen um 08:44, 08:48, 08:52, 08:56, 09:00 und 09:04 Uhr, während um 08:45, 08:50, 08:55 und 09:00 Uhr <InlineMath math="4" />-mal aufgefüllt wird. Vor diesen sechs Missionen hat sie <InlineMath math="32" />, <InlineMath math="27" />, <InlineMath math="22" />, <InlineMath math="17" />, <InlineMath math="12" /> und <InlineMath math="6" /> Energie.
+
+<BlockMath math="\begin{aligned}
+60+8-11\cdot 6&=2 \\
+2+30&=32 \\
+32+4-6\cdot 6&=0
+\end{aligned}" />
+
+Mit <InlineMath math="32" /> bleibt die Energie unter <InlineMath math="60" />, der Zähler stoppt also nie. Dieser Plan startet <InlineMath math="11+6=17" /> Missionen, und die letzte startet um 09:04 Uhr, vor der Grenze 09:10 Uhr.
+
+# Wenn der Trank zu früh getrunken wird
+
+Angenommen, Citra trinkt den Trank um 08:00 Uhr vor dem Spielen. Dann hat sie <InlineMath math="90" /> Energie, und das Auffüllen stoppt, bis die Energie unter <InlineMath math="60" /> fällt. Das passiert erst um 08:20 Uhr nach der sechsten Mission, also gehen die Auffüllungen von 08:05 bis 08:20 Uhr verloren. **Der Zeitpunkt des Tranks verändert das Ergebnis**.
+
+<BlockMath math="\begin{aligned}
+60+30+10&=100 \\
+100&=16\cdot 6+4
+\end{aligned}" />
+
+So schafft sie nur <InlineMath math="16" /> Missionen. Die Antwort <InlineMath math="18" /> entsteht, wenn nur die Zeitgrenze zählt, und <InlineMath math="12" /> entsteht, wenn du den Trank vergisst, denn <InlineMath math="60+14=74" /> reicht nur für <InlineMath math="12" /> Missionen.
+
+Citra kann also höchstens <InlineMath math="17" /> normale Missionen starten.

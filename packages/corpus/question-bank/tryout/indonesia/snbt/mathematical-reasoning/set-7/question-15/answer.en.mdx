@@ -1,15 +1,39 @@
-Distinguish **a change in temperature** from **the temperature itself**. A change is affected only by the factor <InlineMath math="\tfrac95" />, while a temperature is also affected by the added 32.
+You're looking for the smallest floodgate reduction that keeps the water level below <InlineMath math="300\text{ cm}" /> the whole time. The plan: work out the part that doesn't depend on <InlineMath math="g" />, **write the peak level as a formula** in <InlineMath math="g" />, then find the smallest whole number that keeps that peak below <InlineMath math="300" />.
 
-# Temperature change and the Kelvin scale
+# The part the floodgate doesn't touch
 
-If <InlineMath math="C" /> rises by 5, then <InlineMath math="F" /> rises by <InlineMath math="\tfrac95\cdot5=9" />, because the added 32 cancels out. The first statement is true.
+Rain arrives <InlineMath math="2" /> hours later, so the hourly changes from 06.00 are <InlineMath math="+40" />, <InlineMath math="+30" />, <InlineMath math="+60" />, <InlineMath math="+90" />, <InlineMath math="+50" />, <InlineMath math="+20" />, <InlineMath math="+10" />, and <InlineMath math="-10" /> cm. The level is <InlineMath math="210\text{ cm}" /> at 08.00 and reaches <InlineMath math="250\text{ cm}" /> at 08.40. **Until 08.40 the value of <InlineMath math="g" /> makes no difference**, because that's when the gate first opens.
 
-From <InlineMath math="K=C+273" />, 300 K is <InlineMath math="300-273=27^\circ\text{C}" />, **not 37 °C**. The second statement is false.
+# The peak as a formula
 
-# Comparing and doubling temperatures
+After 08.40, every rate drops by <InlineMath math="g" />. The value <InlineMath math="g=30" /> still leads to Awas, so the <InlineMath math="g" /> you want is above <InlineMath math="30" />. For <InlineMath math="g" /> between <InlineMath math="20" /> and <InlineMath math="50" />, the water still rises from 10.00 to 11.00 because <InlineMath math="50-g>0" />, and falls from 11.00 to 12.00 because <InlineMath math="20-g<0" />. So **the peak comes at 11.00**.
 
-Convert 100 °F to Celsius: <InlineMath math="C=\tfrac59(100-32)=\tfrac59\cdot68\approx37.8" />. This is higher than 37 °C, so the third statement is true.
+<BlockMath math="\begin{aligned}
+P &= 250+(60-g)\cdot\frac{20}{60}+(90-g)+(50-g) \\
+&= 250+20-\frac{g}{3}+140-2g \\
+&= 410-\frac{7g}{3}
+\end{aligned}" />
 
-Example: 10 °C is 50 °F, while 20 °C is 68 °F, not 100 °F. Because of **the added 32**, Fahrenheit is not proportional to Celsius. The fourth statement is false.
+The term <InlineMath math="(60-g)\cdot\frac{20}{60}" /> is the rise from 08.40 to 09.00, which lasts only <InlineMath math="20" /> minutes.
 
-So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.
+# The condition for never reaching Awas
+
+Awas starts at <InlineMath math="300\text{ cm}" />, so **the peak has to be less than <InlineMath math="300" />, not equal to it**.
+
+<BlockMath math="\begin{aligned}
+410-\frac{7g}{3} &< 300 \\
+\frac{7g}{3} &> 110 \\
+g &> \frac{330}{7}=47\frac17
+\end{aligned}" />
+
+The smallest whole number above <InlineMath math="47\frac17" /> is <InlineMath math="48" />.
+
+# Checking the values next to the boundary
+
+For <InlineMath math="g=48" />, the peak is <InlineMath math="250+4+42+2=298\text{ cm}" />, below <InlineMath math="300" />. After 11.00 the water falls, and if it gets down to <InlineMath math="250\text{ cm}" /> it just stays there, so **the peak of <InlineMath math="298\text{ cm}" /> is never passed again**. For <InlineMath math="g=47" />, the peak is <InlineMath math="250+\frac{13}{3}+43+3=300\frac13\text{ cm}" />, so Awas is reached.
+
+# Common slips
+
+If you put the peak at 10.00, **you forget the rise from 10.00 to 11.00** and get a value that's too small, <InlineMath math="46" />. If you round <InlineMath math="47\frac17" /> down to <InlineMath math="47" />, the peak becomes <InlineMath math="300\frac13\text{ cm}" />.
+
+So the smallest value of <InlineMath math="g" /> is <InlineMath math="48" /> cm per hour.

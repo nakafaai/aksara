@@ -1,15 +1,31 @@
-Jarak tempuh di kisi adalah **banyak ruas ke timur atau barat ditambah banyak ruas ke utara atau selatan**, karena robot tidak dapat memotong miring.
+Setiap pernyataan membandingkan cara mengatur salinitas, jadi setiap pernyataan perlu dihitung sendiri. Rencananya: **selalu pisahkan banyak garam dan banyak air**, karena salinitas adalah garam dibagi air, lalu periksa apa yang dibawa atau dibuang oleh setiap langkah.
 
-# Jarak A ke C dan banyak rute ke B
+# Dua kali sedikit atau sekali banyak
 
-Dari A(3,4) ke C(1,6), robot bergerak 2 ruas ke barat dan 2 ruas ke utara, yaitu 4 ruas atau 400 m, **bukan 500 m**. Pernyataan pertama salah.
+Membuang <InlineMath math="20\text{ liter}" /> menyisakan <InlineMath math="\frac{100}{120}=\frac56" /> garam, dan mengisi ulang dengan air tawar tidak menambah garam. Membuang <InlineMath math="40\text{ liter}" /> menyisakan <InlineMath math="\frac{80}{120}=\frac23" /> garam. **Dua penggantian kecil berarti dua kali mengalikan <InlineMath math="\frac56" />**, bukan sekali mengalikan <InlineMath math="\frac23" />.
 
-Rute terpendek dari G ke B terdiri atas 5 langkah ke timur dan 1 langkah ke utara. Rute-rute itu hanya berbeda pada **kapan langkah ke utara diambil**, yaitu pada langkah ke-1 sampai ke-6, jadi ada 6 rute. Pernyataan kedua benar.
+<BlockMath math="\left(\frac56\right)^2=\frac{25}{36}\neq\frac{24}{36}=\frac23" />
 
-# Pemakaian baterai
+Sebagai contoh, dari <InlineMath math="42\text{ g/L}" /> sekali buang <InlineMath math="40\text{ liter}" /> memberi <InlineMath math="28\text{ g/L}" />, sedangkan dua kali buang <InlineMath math="20\text{ liter}" /> memberi <InlineMath math="29\frac16\text{ g/L}" />. Hasilnya berbeda. Pernyataan pertama **salah**.
 
-Dari G ke B ada <InlineMath math="5+1=6" /> ruas, jadi pulang pergi 12 ruas dan menghabiskan <InlineMath math="12\cdot2\%=24\%" /> baterai. Pernyataan ketiga benar.
+# Penguapan diisi air laut buatan
 
-Baterai penuh cukup untuk <InlineMath math="\tfrac{100\%}{2\%}=50" /> ruas, yaitu tepat 5.000 m atau 5 km. Robot **tidak dapat menempuh lebih dari 5 km**, jadi pernyataan keempat salah.
+Setiap hari <InlineMath math="4\text{ liter}" /> air menguap tanpa membawa garam. Mengisi ulang <InlineMath math="4\text{ liter}" /> air laut buatan menambah <InlineMath math="4\cdot35=140" /> gram garam, dan isinya kembali <InlineMath math="120\text{ liter}" />.
 
-Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **benar**, dan keempat **salah**.
+<BlockMath math="\text{kenaikan per hari}=\frac{140}{120}=\frac76\text{ g/L}" />
+
+**Kenaikan ini tidak bergantung pada salinitas saat itu**, karena garam yang ditambahkan selalu <InlineMath math="140" /> gram dan tidak ada garam yang keluar. Jadi, salinitas naik <InlineMath math="\frac76\text{ g/L}" /> setiap hari, sama besar. Pernyataan kedua **benar**.
+
+# Penggantian berulang dengan air laut buatan
+
+Jika sebagian air diganti air bersalinitas <InlineMath math="35" />, salinitas baru adalah rata-rata berbobot dari salinitas lama dan <InlineMath math="35" />. **Rata-rata dua bilangan yang keduanya paling sedikit <InlineMath math="35" /> tidak mungkin kurang dari <InlineMath math="35" />**. Salinitas hanya mendekati <InlineMath math="35\text{ g/L}" /> dari atas dan tidak pernah turun di bawahnya. Pernyataan ketiga **salah**.
+
+# Sekali ganti memakai air laut buatan
+
+Hitung garamnya. Setelah membuang <InlineMath math="20\text{ liter}" />, tersisa <InlineMath math="100\cdot42=4{.}200" /> gram garam. **Air laut buatan membawa garamnya sendiri**, yaitu <InlineMath math="20\cdot35=700" /> gram.
+
+<BlockMath math="\frac{4{.}200+700}{120}=\frac{4{.}900}{120}=40\frac56\text{ g/L}" />
+
+Hasilnya <InlineMath math="40\frac56\text{ g/L}" />, bukan <InlineMath math="35\text{ g/L}" />. Angka <InlineMath math="35" /> hanya tercapai kalau air pengisinya air tawar, karena <InlineMath math="\frac{4{.}200}{120}=35" />. Pernyataan keempat **salah**.
+
+Jadi, pernyataan pertama salah, kedua benar, ketiga salah, dan keempat salah.

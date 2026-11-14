@@ -1,21 +1,39 @@
-Kemiringan adalah **kenaikan dibagi panjang mendatar**. Makin kecil hasil baginya, makin landai rampnya.
+Kamu mencari kekurangan pesanan setelah tiga hari kerja. Rencananya: telusuri jam operasi setiap mesin pada Senin, Selasa, dan Rabu, ubah menjadi komponen baik, lalu bandingkan dengan <InlineMath math="8{.}000" />. **Jam operasi mesin P terbawa dari hari ke hari**, jadi jam operasinya tidak sama setiap hari.
 
-# Membaca kemiringan
+# Komponen baik per jam
 
-<InlineMath math="\tfrac{1}{12}\approx0{,}083" />, yaitu sekitar <InlineMath math="8{,}3\%" />. Pernyataan pertama benar.
+Komponen cacat dibuang, jadi **yang dihitung hanya komponen baik**. Mesin P menghasilkan <InlineMath math="95\%\times120=114" /> komponen baik per jam, dan mesin Q <InlineMath math="90\%\times90=81" /> komponen baik per jam.
 
-Kemiringan 1 : 10 sama dengan <InlineMath math="10\%" />, lebih besar daripada <InlineMath math="8{,}3\%" />, jadi **1 : 10 lebih curam**, bukan lebih landai. Pernyataan kedua salah.
+# Jam operasi mesin P
 
-# Panjang permukaan miring
+Mesin P beroperasi <InlineMath math="5" /> jam lalu dirawat <InlineMath math="1" /> jam, dan hitungan jamnya berlanjut ke hari berikutnya.
 
-Ruas 6 m dengan kemiringan 1 : 12 naik <InlineMath math="\tfrac{600}{12}=50" /> cm. Dengan teorema Pythagoras,
+| Hari | Jam terbawa pada 07.00 | Dirawat mulai | Jam operasi |
+| :--- | :---: | :---: | :---: |
+| Senin | <InlineMath math="0" /> | 12.00, 18.00 | <InlineMath math="5+5+4=14" /> |
+| Selasa | <InlineMath math="4" /> | 08.00, 14.00, 20.00 | <InlineMath math="1+5+5+2=13" /> |
+| Rabu | <InlineMath math="2" /> | 10.00, 16.00, 22.00 | <InlineMath math="3+5+5=13" /> |
 
-<BlockMath math="\sqrt{600^2+50^2}=\sqrt{362{.}500}\approx602\text{ cm}" />
+Jadi **mesin P beroperasi <InlineMath math="14+13+13=40" /> jam**, bukan <InlineMath math="3\times14=42" /> jam.
 
-Panjangnya sekitar 6,02 m, **kurang dari 6,1 m**. Pernyataan ketiga salah.
+# Jam operasi mesin Q
 
-# Memeriksa rancangan dua ruas
+Mesin Q beroperasi <InlineMath math="7" /> jam lalu dirawat <InlineMath math="1" /> jam. Dua putaran itu pas mengisi <InlineMath math="16" /> jam shift, jadi setiap hari Q dirawat pukul 14.00 dan 22.00, beroperasi <InlineMath math="14" /> jam, dan **mulai dari nol lagi keesokan paginya**. Selama tiga hari, Q beroperasi <InlineMath math="42" /> jam.
 
-Setiap ruas 3,6 m tidak melebihi 6 m, dan ada satu bordes di antara keduanya. Dengan kemiringan 1 : 12, setiap ruas naik <InlineMath math="\tfrac{360}{12}=30" /> cm, jadi keduanya naik tepat 60 cm. Pernyataan keempat benar.
+# Kekurangan pesanan
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.
+<BlockMath math="\begin{aligned}
+\text{komponen baik} &= 40\times114+42\times81=4{.}560+3{.}402=7{.}962 \\
+\text{kekurangan} &= 8{.}000-7{.}962=38
+\end{aligned}" />
+
+Cek dengan **menjumlahkan hasil setiap hari**: Senin <InlineMath math="14\times114+14\times81=2{.}730" />, Selasa dan Rabu masing-masing <InlineMath math="13\times114+14\times81=2{.}616" />. Jumlahnya <InlineMath math="2{.}730+2{.}616+2{.}616=7{.}962" />, sama.
+
+# Jebakan yang perlu dihindari
+
+Kekurangannya kecil, jadi **satu jam yang salah hitung sudah membalik kesimpulan**.
+
+- Jika jam operasi P dianggap mulai dari nol setiap pagi, P beroperasi <InlineMath math="42" /> jam dan totalnya <InlineMath math="3\times2{.}730=8{.}190" />, sehingga pesanan tampak sudah terpenuhi.
+- Jika komponen cacat tidak dibuang, totalnya <InlineMath math="40\times120+42\times90=8{.}580" />, sehingga pesanan juga tampak sudah terpenuhi.
+
+Jadi, pada hari Rabu pukul 23.00 pesanan itu masih kurang <InlineMath math="38" /> komponen baik.

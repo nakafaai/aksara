@@ -1,32 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "school-vaccination",
+  stimulus: "carpool-cost",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
-        {
-          column: 2,
-          label:
-            "Peluang seorang siswa yang dipilih acak belum mendapat vaksin apa pun adalah $$\\dfrac16$$.",
-        },
-        {
-          column: 1,
-          label:
-            "Banyak siswa yang hanya mendapat vaksin influenza adalah 220.",
-        },
-        {
-          column: 2,
-          label:
-            "Jika 30 siswa yang belum divaksin kemudian mendapat vaksin dengue saja, banyak siswa yang mendapat kedua vaksin bertambah 30.",
-        },
-        {
-          column: 1,
-          label:
-            "Lebih dari separuh siswa sekolah itu mendapat tepat satu jenis vaksin.",
-        },
+      kind: "choice",
+      options: [
+        { correct: false, label: "Budi, naik $$\\text{Rp}1{.}900$$" },
+        { correct: false, label: "Dewi, naik $$\\text{Rp}2{.}100$$" },
+        { correct: true, label: "Citra, naik $$\\text{Rp}3{.}700$$" },
+        { correct: false, label: "Pak Andi, naik $$\\text{Rp}7{.}700$$" },
+        { correct: false, label: "Budi, naik $$\\text{Rp}16{.}900$$" },
       ],
     },
   },

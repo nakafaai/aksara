@@ -1,18 +1,47 @@
-Jika keempat sisi dipagari, keliling kebun 44 m, jadi **panjang ditambah lebar selalu 22 m**. Yang dicari adalah dua bilangan berjumlah 22 dengan hasil kali terbesar.
+Kamu perlu tahu **pada tanggal berapa saja tabung ditukar**, karena harga yang dibayar bergantung pada tanggal penukaran. Rencananya: hitung pemakaian sehari, tentukan kapan sisa gas awal habis, tentukan umur satu tabung penuh, daftar semua tanggal penukaran di bulan Juli, lalu jumlahkan harganya.
 
-# Membandingkan beberapa ukuran
+# Penukaran pertama
 
-| Panjang | Lebar | Luas |
-| :---: | :---: | :---: |
-| 14 m | 8 m | 112 <InlineMath math="\text{m}^2" /> |
-| 13 m | 9 m | 117 <InlineMath math="\text{m}^2" /> |
-| 12 m | 10 m | 120 <InlineMath math="\text{m}^2" /> |
-| 11 m | 11 m | 121 <InlineMath math="\text{m}^2" /> |
+Pemakaian sehari adalah <InlineMath math="0{,}3\cdot3+0{,}1\cdot7=1{,}6\text{ kg}" />. Pada pagi <InlineMath math="1" /> Juli sisa gas <InlineMath math="2{,}5\text{ kg}" /> cukup untuk hari itu, jadi tabung belum ditukar. Malamnya sisa gas tinggal <InlineMath math="2{,}5-1{,}6=0{,}9\text{ kg}" />. Pada pagi <InlineMath math="2" /> Juli, <InlineMath math="0{,}9\text{ kg}" /> kurang dari <InlineMath math="1{,}6\text{ kg}" />, jadi **penukaran pertama terjadi pada <InlineMath math="2" /> Juli**, dan sisa <InlineMath math="0{,}9\text{ kg}" /> itu hilang.
 
-Makin dekat panjang dan lebarnya, makin besar luasnya. Jika panjang <InlineMath math="11+d" /> dan lebar <InlineMath math="11-d" />, luasnya <InlineMath math="121-d^2" />, jadi **luas terbesar dicapai saat d = 0**, yaitu persegi.
+# Umur satu tabung penuh
 
-# Memeriksa pilihan
+Tabung penuh dipakai selama sisanya masih cukup untuk sehari:
 
-Nilai 112, 117, dan 120 <InlineMath math="\text{m}^2" /> memang mungkin, tetapi lebih kecil daripada persegi. Nilai 100 <InlineMath math="\text{m}^2" /> adalah persegi bersisi 10 m, kelilingnya hanya 40 m.
+<BlockMath math="7\cdot1{,}6=11{,}2\le12 < 8\cdot1{,}6=12{,}8" />
 
-Jadi, luas terbesarnya adalah **121 <InlineMath math="\text{m}^2" />**, yaitu kebun persegi bersisi 11 m.
+Jadi satu tabung penuh terpakai tepat <InlineMath math="7" /> hari, lalu ditukar pada pagi kedelapan dengan sisa <InlineMath math="0{,}8\text{ kg}" /> yang hilang. Artinya, **penukaran berikutnya selalu tujuh hari setelah penukaran sebelumnya**:
+
+<BlockMath math="2,\ 9,\ 16,\ 23,\ 30" />
+
+Penukaran berikutnya baru pada tanggal <InlineMath math="37" />, sudah di luar bulan Juli. Jadi ada <InlineMath math="5" /> penukaran.
+
+# Harga setiap penukaran
+
+Tabung dibayar dengan harga yang berlaku pada hari penukaran. Penukaran <InlineMath math="2" /> Juli dan <InlineMath math="9" /> Juli masih memakai harga lama, <InlineMath math="\text{Rp}196{.}000" />. **Penukaran <InlineMath math="16" /> Juli sudah memakai harga baru**, karena harga baru berlaku mulai <InlineMath math="16" /> Juli, begitu juga penukaran <InlineMath math="23" /> Juli dan <InlineMath math="30" /> Juli.
+
+<BlockMath math="\begin{aligned}
+\text{Total}&=2\cdot196{.}000+3\cdot224{.}000\\
+&=392{.}000+672{.}000\\
+&=1{.}064{.}000
+\end{aligned}" />
+
+Coba cek dengan menghitung semua gas. Selama Juli terpakai <InlineMath math="31\cdot1{,}6=49{,}6\text{ kg}" />. Gas yang hilang adalah <InlineMath math="0{,}9\text{ kg}" /> pada <InlineMath math="2" /> Juli dan <InlineMath math="0{,}8\text{ kg}" /> pada setiap penukaran <InlineMath math="9" />, <InlineMath math="16" />, <InlineMath math="23" />, dan <InlineMath math="30" /> Juli. Tabung yang dipasang <InlineMath math="30" /> Juli baru dipakai dua hari, jadi sisanya <InlineMath math="12-3{,}2=8{,}8\text{ kg}" />.
+
+<BlockMath math="\begin{aligned}
+\text{gas masuk}&=2{,}5+5\cdot12=62{,}5\text{ kg}\\
+\text{gas keluar}&=49{,}6+0{,}9+4\cdot0{,}8+8{,}8=62{,}5\text{ kg}
+\end{aligned}" />
+
+Kedua jumlah sama, jadi daftar penukaran itu cocok.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain **melewatkan satu syarat**.
+
+- <InlineMath math="\text{Rp}1{.}260{.}000" /> ikut membayar tabung yang sudah terpasang pada <InlineMath math="1" /> Juli, padahal tabung itu dibayar bulan sebelumnya.
+- <InlineMath math="\text{Rp}1{.}036{.}000" /> membayar penukaran <InlineMath math="16" /> Juli dengan harga lama. Nilai yang sama juga muncul kalau sisa <InlineMath math="2{,}5\text{ kg}" /> diabaikan, sehingga penukaran jatuh pada <InlineMath math="1" />, <InlineMath math="8" />, <InlineMath math="15" />, <InlineMath math="22" />, dan <InlineMath math="29" /> Juli.
+- <InlineMath math="\text{Rp}980{.}000" /> mengabaikan kenaikan harga dan membayar kelima penukaran dengan <InlineMath math="\text{Rp}196{.}000" />.
+- <InlineMath math="\text{Rp}840{.}000" /> menganggap gas tidak ada yang hilang, sehingga kebutuhan <InlineMath math="49{,}6-2{,}5=47{,}1\text{ kg}" /> cukup dengan <InlineMath math="4" /> tabung.
+
+Jadi, total uang untuk penukaran tabung dari <InlineMath math="1" /> Juli sampai <InlineMath math="31" /> Juli adalah <InlineMath math="\text{Rp}1{.}064{.}000" />.

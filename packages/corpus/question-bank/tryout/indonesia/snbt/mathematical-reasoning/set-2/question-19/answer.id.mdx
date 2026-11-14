@@ -1,17 +1,48 @@
-Rumus <InlineMath math="M(t)=360\cdot\left(\tfrac12\right)^{t/8}" /> adalah **peluruhan eksponensial**: dalam selang waktu yang sama, banyak obat berkurang dengan faktor yang sama, bukan dengan selisih yang sama.
+Pegangan untuk semua pernyataan adalah rencana awal. Setiap baris memuat <InlineMath math="28" /> bibit, karena ruas <InlineMath math="22\text{ m}" /> memuat <InlineMath math="27" /> jarak <InlineMath math="0{,}8\text{ m}" />. Setiap bagian tanam memuat <InlineMath math="5" /> baris, karena pita <InlineMath math="5{,}5\text{ m}" /> memuat <InlineMath math="4" /> jarak <InlineMath math="1{,}2\text{ m}" />. Jadi rencana awal memuat <InlineMath math="2\cdot 5\cdot 28=280" /> bibit. **Setiap perubahan harus dihitung ulang dengan batas tepi lahan dan batas saluran**.
 
-# Pengurangan tidak tetap per jam
+# Pernyataan pertama
 
-Dalam 8 jam pertama obat berkurang 180 mg, tetapi dalam 8 jam berikutnya hanya 90 mg. Jadi **pengurangannya tidak tetap** dan tidak mungkin 45 mg setiap jam. Pernyataan pertama salah.
-
-# Menghitung beberapa waktu
+Jika baris sejajar sisi <InlineMath math="15\text{ m}" />, setiap baris memotong saluran. Jadi setiap baris terbelah menjadi dua potongan, masing-masing pada pita <InlineMath math="5{,}5\text{ m}" />. Baris-baris itu sekarang berderet sepanjang sisi <InlineMath math="24\text{ m}" />, pada ruas <InlineMath math="22\text{ m}" />.
 
 <BlockMath math="\begin{aligned}
-M(24)&=360\cdot\left(\tfrac12\right)^{3}=45\\
-M(4)&=360\cdot\left(\tfrac12\right)^{1/2}=\frac{360}{\sqrt2}=180\sqrt2\approx254{,}6\\
-M(40)&=360\cdot\left(\tfrac12\right)^{5}=\frac{360}{32}=11{,}25
+\text{bibit per potongan}&=\left\lfloor\frac{5{,}5}{0{,}8}\right\rfloor+1=6+1=7 \\
+\text{banyak baris}&=\left\lfloor\frac{22}{1{,}2}\right\rfloor+1=18+1=19 \\
+\text{total}&=19\cdot 2\cdot 7=266
 \end{aligned}" />
 
-Pukul 06.00 keesokan harinya adalah 24 jam setelah dosis pertama, jadi pernyataan kedua benar. Setelah 4 jam, banyak obat sekitar 254,6 mg. Angka 270 mg **menganggap penurunan linear**, yaitu setengah dari 180 mg pengurangan 8 jam pertama. Pernyataan ketiga salah. Pernyataan keempat benar.
+Lambang <InlineMath math="\lfloor x\rfloor" /> berarti bilangan bulat terbesar yang tidak melebihi <InlineMath math="x" />. Hasilnya <InlineMath math="266" />, **lebih sedikit daripada <InlineMath math="280" />**, karena setiap baris kehilangan tempat di kedua sisi saluran. Pernyataan ini **salah**.
 
-Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **salah**, dan keempat **benar**.
+# Pernyataan kedua
+
+Cadangan paling sedikit <InlineMath math="10\%" /> dari <InlineMath math="280" /> adalah <InlineMath math="28" /> bibit, jadi dibutuhkan paling sedikit <InlineMath math="308" /> bibit. Nampan dijual utuh, jadi **banyak nampan dibulatkan ke atas**.
+
+<BlockMath math="\begin{aligned}
+\frac{308}{24}&=12{,}83\ldots \\
+12\cdot 24&=288<308 \\
+13\cdot 24&=312\ge 308
+\end{aligned}" />
+
+Dua belas nampan belum cukup, tiga belas nampan cukup. Pernyataan ini **benar**.
+
+# Pernyataan ketiga
+
+Jika lahan dan saluran memanjang <InlineMath math="0{,}4\text{ m}" />, ruas untuk bibit menjadi <InlineMath math="24{,}4-2=22{,}4" /> meter.
+
+<BlockMath math="\frac{22{,}4}{0{,}8}=28" />
+
+Hasilnya tepat bulat, jadi <InlineMath math="28" /> jarak muat dan bibit terakhir tepat <InlineMath math="1\text{ m}" /> dari ujung lahan. Aturannya "paling sedikit <InlineMath math="1\text{ m}" />", jadi **jarak yang tepat sama dengan batas tetap boleh**. Setiap baris memuat <InlineMath math="29" /> bibit, satu lebih banyak, jadi pernyataan ini **benar**.
+
+# Pernyataan keempat
+
+Tanpa saluran, lahan menjadi satu bagian tanam selebar <InlineMath math="15\text{ m}" />, dan **batas <InlineMath math="0{,}5\text{ m}" /> dari saluran hilang**. Baris boleh berada pada pita <InlineMath math="15-2\cdot 1=13" /> meter.
+
+<BlockMath math="\begin{aligned}
+\left\lfloor\frac{13}{1{,}2}\right\rfloor+1&=10+1=11 \\
+11\cdot 28-280&=308-280=28
+\end{aligned}" />
+
+Banyak bibit bertambah tepat <InlineMath math="28" />, jadi pernyataan ini **benar**.
+
+# Ringkasan
+
+Pernyataan kedua, ketiga, dan keempat benar, sedangkan pernyataan pertama salah. Setiap pernyataan bergantung pada **cara pembulatan ke bawah untuk tempat dan ke atas untuk kemasan**.

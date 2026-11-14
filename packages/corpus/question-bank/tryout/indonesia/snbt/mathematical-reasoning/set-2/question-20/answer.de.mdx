@@ -1,17 +1,39 @@
-Die Arzneimenge ist **direkt vor der nächsten Einnahme** am niedrigsten. Prüfe also diese Zeitpunkte für jeden Wert von <InlineMath math="T" />.
+Gesucht ist der größte Reihenabstand, der noch mindestens <InlineMath math="336" /> Setzlinge ergibt. Bestimm, wie viele Reihen nötig sind, verteil sie auf die beiden Pflanzstreifen und such dann den größten Abstand, bei dem so viele Reihen in jeden Streifen passen. **Der Kanal zwingt die Reihen in zwei getrennte Bänder**.
 
-# Der erste Tiefpunkt
+# Die nötigen Reihen
 
-Direkt vor der zweiten Dosis enthält der Körper nur den Rest der ersten, <InlineMath math="360\cdot\left(\tfrac12\right)^{T/8}" />. **Die Grenze von 90 mg muss hier eingehalten werden**, also
+Der Abstand innerhalb einer Reihe ändert sich nicht, jede Reihe hat also **weiterhin <InlineMath math="28" /> Setzlinge** auf der Strecke von <InlineMath math="22\text{ m}" />.
 
-<BlockMath math="360\cdot\left(\tfrac12\right)^{T/8}\ge90\;\Longleftrightarrow\;\left(\tfrac12\right)^{T/8}\ge\tfrac14\;\Longleftrightarrow\;\tfrac{T}{8}\le2\;\Longleftrightarrow\;T\le16" />
+<BlockMath math="\frac{336}{28}=12" />
 
-# T gleich 16 und 24 prüfen
+Pak Darto braucht mindestens <InlineMath math="12" /> Reihen.
 
-Für <InlineMath math="T=16" /> sind um 22.00 Uhr genau 90 mg vorhanden, was **die Bedingung nicht weniger als 90 mg noch erfüllt**. Nach der zweiten Dosis sind es 450 mg, und am Ende der ersten 24 Stunden noch <InlineMath math="450\cdot\tfrac12=225" /> mg.
+# Die Reihen in jedem Streifen
 
-Für <InlineMath math="T=24" /> gibt es vor Stunde 24 keine zweite Dosis, und direkt vor Stunde 24 sind nur noch 45 mg übrig. Dieser Wert scheidet aus.
+Beide Pflanzstreifen sind gleich breit und haben dieselben Regeln, bei gleichem Reihenabstand passen also gleich viele Reihen hinein. Insgesamt <InlineMath math="12" /> Reihen heißt: **Jeder Streifen braucht mindestens <InlineMath math="6" /> Reihen**. Die Reihen dürfen nur in einem Band von <InlineMath math="7-1-0{,}5=5{,}5" /> Metern liegen.
 
-Auch 4, 8 und 12 Stunden erfüllen die Bedingung, sind aber kleiner als 16. Die 8 Stunden locken, weil sie der Halbwertszeit entsprechen, doch die Bedingung ist nur die Grenze von 90 mg.
+# Der größte Abstand
 
-Der größte passende Wert von <InlineMath math="T" /> ist also **16 Stunden**.
+Sechs Reihen in einem Band bedeuten **<InlineMath math="5" /> Abstände zwischen der ersten und der sechsten Reihe**, und diese fünf Abstände müssen in das Band von <InlineMath math="5{,}5\text{ m}" /> passen.
+
+<BlockMath math="\begin{aligned}
+5d&\le 5{,}5 \\
+d&\le 1{,}1\text{ m}=110\text{ cm}
+\end{aligned}" />
+
+<InlineMath math="110" /> ist schon ein Vielfaches von <InlineMath math="5" />, der größte Abstand ist also <InlineMath math="110\text{ cm}" />.
+
+# Kontrolle
+
+Mit <InlineMath math="d=1{,}1" /> passen in jedes Band <InlineMath math="\lfloor 5{,}5:1{,}1\rfloor+1=6" /> Reihen, insgesamt also <InlineMath math="2\cdot 6\cdot 28=336" /> Setzlinge, genau genug. Mit dem nächsten Vielfachen, <InlineMath math="d=1{,}15" />, passen nur <InlineMath math="\lfloor 5{,}5:1{,}15\rfloor+1=4+1=5" /> Reihen hinein, insgesamt also <InlineMath math="280" /> Setzlinge. **<InlineMath math="110\text{ cm}" /> ist also der letzte Abstand, der noch reicht**.
+
+# Die falschen Optionen
+
+Jede andere Option entsteht, wenn du **eine Abstandsgrenze vergisst**.
+
+- <InlineMath math="115\text{ cm}" /> entsteht, wenn du den Kanal übersiehst, sodass die <InlineMath math="12" /> Reihen in einem Band von <InlineMath math="13\text{ m}" /> mit <InlineMath math="11" /> Abständen liegen.
+- <InlineMath math="120\text{ cm}" /> entsteht, wenn du die Grenze von <InlineMath math="0{,}5\text{ m}" /> zum Kanal übersiehst, dann ist das Band <InlineMath math="6\text{ m}" /> breit.
+- <InlineMath math="130\text{ cm}" /> entsteht, wenn du die Grenze von <InlineMath math="1\text{ m}" /> zum Feldrand übersiehst, dann ist das Band <InlineMath math="6{,}5\text{ m}" /> breit.
+- <InlineMath math="140\text{ cm}" /> entsteht, wenn du beide Grenzen übersiehst und die ganzen <InlineMath math="7\text{ m}" /> nutzt.
+
+Der größte Reihenabstand, der Pak Darto genügt, ist also <InlineMath math="110\text{ cm}" />.

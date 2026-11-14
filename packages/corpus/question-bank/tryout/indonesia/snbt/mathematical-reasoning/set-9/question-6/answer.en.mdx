@@ -1,13 +1,49 @@
-The drain **removes** water, so its rate is subtracted from the two pumps' combined rate.
+You judge each statement on its own, because the conditions differ: some have no time limit and some must arrive by 08:30. One idea holds for all of them: **the cost depends on the number of trips, not the number of passengers**, and a vehicle can only leave again after a full round trip.
 
-# Net rate
+# The first statement about cost per seat
 
-<BlockMath math="\frac16+\frac19-\frac{1}{18}=\frac{3}{18}+\frac{2}{18}-\frac{1}{18}=\frac{4}{18}=\frac29" />
+A bus seat costs <InlineMath math="150{,}000\div30=5{,}000" /> and a minibus seat <InlineMath math="65{,}000\div14\approx4{,}643" />. The minibus is cheaper per seat, but **empty seats are still paid for**. Take <InlineMath math="29" /> participants.
 
-# Filling time
+<BlockMath math="\begin{aligned}
+\text{minibuses only} &: 3\times65{,}000=195{,}000 \\
+\text{one bus} &: 1\times150{,}000=150{,}000
+\end{aligned}" />
 
-<BlockMath math="1:\frac29=\frac92=4.5\text{ hours}" />
+Two minibus trips hold only <InlineMath math="28" /> people, so minibuses alone need three trips. One bus is cheaper. The first statement is false.
 
-The value 3.6 hours ignores the drain. The value 6 hours uses pump A only. The value 7.5 hours is the mean of the two pumps' times, and 11 hours is the mean of all three times, although **times cannot be averaged like rates**.
+# The second statement about seventy and seventy-two participants
 
-So the pool is full in **4.5 hours**.
+With the 08:30 limit, the bus leaves at 07:00 and 07:50, while the 08:40 departure is too late. The minibuses leave at 07:00 and 07:40, while the 08:20 departure arrives at 08:40. So **there are at most two bus trips and four minibus trips**.
+
+For <InlineMath math="70" /> participants, five minibus trips (<InlineMath math="70" /> seats, <InlineMath math="\text{Rp}325{,}000" />) aren't allowed. Here are the possible cheapest mixes.
+
+<BlockMath math="\begin{aligned}
+1\text{ bus}+3\text{ minibuses} &: 30+42=72\text{ seats}, \quad 150{,}000+195{,}000=345{,}000 \\
+2\text{ buses}+1\text{ minibus} &: 60+14=74\text{ seats}, \quad 300{,}000+65{,}000=365{,}000
+\end{aligned}" />
+
+One bus with two minibuses gives only <InlineMath math="58" /> seats, and two buses alone only <InlineMath math="60" />, so both fall short. The cheapest cost for <InlineMath math="70" /> participants is <InlineMath math="\text{Rp}345{,}000" />. The same plan carries <InlineMath math="72" /> people, and no cheaper plan is enough for <InlineMath math="72" />, so that cost is also <InlineMath math="\text{Rp}345{,}000" />. The second statement is true.
+
+# The third statement about doubling the participants
+
+The word every means one failing example is enough to break it. **Cost doesn't grow in proportion to the number of people**, because a bigger vehicle can be cheaper. Try <InlineMath math="n=15" />.
+
+<BlockMath math="\begin{aligned}
+15\text{ participants} &: 2\text{ minibuses}=130{,}000 \\
+30\text{ participants} &: 1\text{ bus}=150{,}000
+\end{aligned}" />
+
+Fifteen people don't fit in one minibus, so they need two. Thirty people fit exactly in one bus. The cost for <InlineMath math="30" /> is <InlineMath math="150{,}000" />, not <InlineMath math="2\times130{,}000=260{,}000" />. The third statement is false.
+
+# The fourth statement about the late bus
+
+If the bus is only ready at 07:15, its timetable shifts.
+
+| Bus trip | Leaves | Arrives at the hall | Back at the station |
+| :--- | :---: | :---: | :---: |
+| First | 07:15 | 07:40 | 08:05 |
+| Second | 08:05 | 08:30 | 08:55 |
+
+The second trip arrives exactly at 08:30. **Arriving by 08:30 includes arriving at 08:30**, so the bus still gets two trips. The minibuses don't change and still have four trips. The seats add up to <InlineMath math="2\times30+4\times14=60+56=116" />. The fourth statement is true.
+
+So the first statement is false, the second is true, the third is false, and the fourth is true.

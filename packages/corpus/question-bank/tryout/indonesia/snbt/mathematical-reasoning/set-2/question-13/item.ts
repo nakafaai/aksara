@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "money-changer",
+  stimulus: "service-counters",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$\\text{Rp}3{.}455{.}000{,}00$$" },
-        { correct: false, label: "$$\\text{Rp}3{.}480{.}000{,}00$$" },
-        { correct: false, label: "$$\\text{Rp}3{.}505{.}000{,}00$$" },
-        { correct: true, label: "$$\\text{Rp}3{.}565{.}000{,}00$$" },
-        { correct: false, label: "$$\\text{Rp}3{.}590{.}000{,}00$$" },
+        { correct: true, label: "Loket A dengan waktu tunggu $$14$$ menit" },
+        { correct: false, label: "Loket A dengan waktu tunggu $$18$$ menit" },
+        { correct: false, label: "Loket A dengan waktu tunggu $$44$$ menit" },
+        { correct: false, label: "Loket B dengan waktu tunggu $$12$$ menit" },
+        { correct: false, label: "Loket B dengan waktu tunggu $$24$$ menit" },
       ],
     },
   },

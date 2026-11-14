@@ -1,19 +1,49 @@
-Tarif jam sibuk adalah tarif biasa dikalikan 1,2. Jadi **bagi dulu dengan 1,2** untuk mendapatkan tarif biasa, lalu cari jaraknya.
+Kamu mencari banyak misi biasa paling banyak yang dapat dimulai Citra. Ada dua hal yang membatasi, yaitu **waktu dan energi**. Rencananya, hitung batas dari waktu, hitung batas dari energi, lalu tunjukkan satu jadwal yang benar-benar mencapai batas yang lebih kecil.
 
-# Tarif sebelum kenaikan
+# Batas dari waktu
 
-<BlockMath math="\frac{36{.}000}{1{,}2}=30{.}000" />
+Satu misi biasa berlangsung <InlineMath math="4" /> menit, jadi misi berikutnya paling cepat dimulai <InlineMath math="4" /> menit kemudian. Waktu mulai yang paling rapat adalah 08.00, 08.04, dan seterusnya sampai 09.08. Dari 08.00 sampai 09.08 ada <InlineMath math="68" /> menit, dan **waktu mulai pertama ikut dihitung**.
 
-# Jarak yang ditagihkan
+<BlockMath math="\frac{68}{4}+1=18" />
 
-Misalkan jarak yang ditagihkan <InlineMath math="k" /> km, dengan <InlineMath math="k>2" /> karena tarifnya melebihi tarif dasar. Tarif biasa adalah **tarif dasar ditambah biaya kilometer setelah 2 km pertama**.
+Jadi waktu hanya membolehkan paling banyak <InlineMath math="18" /> misi.
+
+# Batas dari energi
+
+Energi turun di bawah <InlineMath math="60" /> tepat pukul 08.00, saat misi pertama dimulai. Karena itu penghitung mulai pukul 08.00, dan penambahan otomatis terjadi pukul 08.05, 08.10, dan seterusnya sampai 09.10. Banyaknya paling banyak <InlineMath math="70 : 5=14" />, tetapi **hanya jika energi tidak pernah kembali mencapai <InlineMath math="60" />**. Ditambah ramuan, energi yang dapat dipakai paling banyak adalah sebagai berikut.
 
 <BlockMath math="\begin{aligned}
-10{.}000+2{.}500(k-2)&=30{.}000\\
-2{.}500(k-2)&=20{.}000\\
-k-2=8\;\Longrightarrow\;k&=10
+60+30+14&=104 \\
+104&=17\cdot 6+2
 \end{aligned}" />
 
-Pemeriksaan: <InlineMath math="1{,}2\cdot(10{.}000+8\cdot2{.}500)=1{,}2\cdot30{.}000=36{.}000" />.
+Jadi energi hanya cukup untuk paling banyak <InlineMath math="17" /> misi, karena <InlineMath math="18" /> misi butuh <InlineMath math="18\cdot 6=108" /> energi. Batas energi lebih kecil daripada batas waktu.
 
-Jadi, jarak yang ditagihkan kepada Bayu adalah **10 km**.
+# Jadwal yang mencapai tujuh belas misi
+
+Agar tidak ada penambahan yang hilang, ramuan harus diminum ketika energi ditambah <InlineMath math="30" /> masih di bawah <InlineMath math="60" />, artinya **ramuan diminum saat energi kurang dari <InlineMath math="30" />**.
+
+Coba jadwal ini. Citra memulai misi setiap <InlineMath math="4" /> menit dari 08.00 sampai 08.40. Itu <InlineMath math="11" /> misi, dan selama itu terjadi <InlineMath math="8" /> penambahan, yaitu pukul 08.05 sampai 08.40. Energi sebelum misi berturut-turut <InlineMath math="60" />, <InlineMath math="54" />, <InlineMath math="49" />, <InlineMath math="44" />, <InlineMath math="39" />, <InlineMath math="34" />, <InlineMath math="28" />, <InlineMath math="23" />, <InlineMath math="18" />, <InlineMath math="13" />, dan <InlineMath math="8" />, jadi setiap misi punya energi cukup.
+
+Pukul 08.40, setelah misi kesebelas, Citra meminum ramuan. Lalu ia memulai <InlineMath math="6" /> misi lagi pada 08.44, 08.48, 08.52, 08.56, 09.00, dan 09.04, sementara terjadi <InlineMath math="4" /> penambahan pada 08.45, 08.50, 08.55, dan 09.00. Energi sebelum keenam misi itu <InlineMath math="32" />, <InlineMath math="27" />, <InlineMath math="22" />, <InlineMath math="17" />, <InlineMath math="12" />, dan <InlineMath math="6" />.
+
+<BlockMath math="\begin{aligned}
+60+8-11\cdot 6&=2 \\
+2+30&=32 \\
+32+4-6\cdot 6&=0
+\end{aligned}" />
+
+Energi <InlineMath math="32" /> tetap di bawah <InlineMath math="60" />, jadi penghitung tidak berhenti. Jadwal ini memulai <InlineMath math="11+6=17" /> misi, dan misi terakhir dimulai pukul 09.04, sebelum batas 09.10.
+
+# Jika ramuan diminum terlalu cepat
+
+Misalkan Citra meminum ramuan pukul 08.00 sebelum bermain. Energinya <InlineMath math="90" />, dan penambahan berhenti sampai energi turun di bawah <InlineMath math="60" />. Itu baru terjadi pukul 08.20, setelah misi keenam, jadi penambahan pukul 08.05 sampai 08.20 hilang. **Waktu minum ramuan ikut menentukan hasilnya**.
+
+<BlockMath math="\begin{aligned}
+60+30+10&=100 \\
+100&=16\cdot 6+4
+\end{aligned}" />
+
+Dengan cara itu Citra hanya mendapat <InlineMath math="16" /> misi. Jawaban <InlineMath math="18" /> muncul jika hanya batas waktu yang dihitung, dan <InlineMath math="12" /> muncul jika ramuan dilupakan, karena <InlineMath math="60+14=74" /> hanya cukup untuk <InlineMath math="12" /> misi.
+
+Jadi, Citra dapat memulai paling banyak <InlineMath math="17" /> misi biasa.

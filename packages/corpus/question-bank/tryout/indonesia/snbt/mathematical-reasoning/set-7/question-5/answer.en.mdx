@@ -1,19 +1,45 @@
-Two fair dice give **36 equally likely ordered pairs**. The player wins a prize when the sum is 12, 11 or 7.
+You're looking for all the money Ayu receives: her manager's salary plus her part of the shared profit. The plan: work out each owner's capital-months, find the shared profit by **taking the deductions in the right order**, then take Ayu's part and add her salary.
 
-# Pairs for each sum
+# Capital months for each owner
 
-Count **the dice pairs for each prize-winning sum**.
+Capital-months measure how much money was invested and for how long it worked. **Every time the capital changes, count the stretch before and after the change separately**.
 
-| Sum | Pairs | Count |
-| :---: | :---: | :---: |
-| 12 | <InlineMath math="(6,6)" /> | 1 |
-| 11 | <InlineMath math="(5,6),(6,5)" /> | 2 |
-| 7 | <InlineMath math="(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)" /> | 6 |
+<BlockMath math="\begin{aligned}
+\text{Ayu} &= 40\cdot3+20\cdot9=120+180=300 \\
+\text{Bima} &= 30\cdot6+40\cdot6=180+240=420 \\
+\text{Citra} &= 90\cdot8=720
+\end{aligned}" />
 
-# Probability of a prize
+Ayu has <InlineMath math="40" /> million in from January to March, then <InlineMath math="20" /> million from April to December. Citra only joins at the start of May, so her money works for <InlineMath math="8" /> months, May to December. The capital-months add up to <InlineMath math="1{,}440" />, in the ratio <InlineMath math="300:420:720=5:7:12" />.
 
-The three events cannot happen together, so **their pairs are added**.
+# The shared profit
 
-<BlockMath math="\frac{1+2+6}{36}=\frac{9}{36}=0.25" />
+The order matters: **Ayu's salary comes out first, and the reserve is then taken from what's left**.
 
-So the probability of winning a prize is **0.25**.
+<BlockMath math="\begin{aligned}
+\text{left after salary} &= 252-12=240 \\
+\text{reserve} &= 10\%\cdot240=24 \\
+\text{shared profit} &= 240-24=216
+\end{aligned}" />
+
+All amounts here are in millions of rupiah.
+
+# What Ayu receives
+
+Ayu's part is <InlineMath math="\frac{5}{24}" /> of the shared profit. **You still have to add her manager's salary**, because the question asks for all the money Ayu receives.
+
+<BlockMath math="\begin{aligned}
+\text{Ayu's part} &= \frac{5}{24}\cdot216=45 \\
+\text{all of Ayu's money} &= 45+12=57
+\end{aligned}" />
+
+As a check, Bima gets <InlineMath math="\frac{7}{24}\cdot216=63" /> and Citra gets <InlineMath math="\frac{12}{24}\cdot216=108" />. Together that's <InlineMath math="45+63+108=216" />, and <InlineMath math="216+12+24=252" />, exactly the net profit.
+
+# The wrong options
+
+- <InlineMath math="\text{Rp}60" /> million comes from counting Citra's money for <InlineMath math="7" /> months (December minus May). The total becomes <InlineMath math="1{,}350" />, Ayu's part <InlineMath math="216\cdot\frac{300}{1{,}350}=48" />, and then the salary is added.
+- <InlineMath math="\text{Rp}62" /> million comes from forgetting the reserve, so <InlineMath math="240" /> million is shared and Ayu's part is <InlineMath math="50" /> million.
+- <InlineMath math="\text{Rp}76" /> million comes from ignoring Ayu's withdrawal. Her capital-months become <InlineMath math="480" />, the total <InlineMath math="1{,}620" />, and her part <InlineMath math="216\cdot\frac{480}{1{,}620}=64" />.
+- <InlineMath math="\text{Rp}84" /> million comes from splitting the shared profit equally, <InlineMath math="216\div3=72" />, and then adding the salary. That split **ignores the capital-months**.
+
+So Ayu receives <InlineMath math="\text{Rp}57" /> million in total.

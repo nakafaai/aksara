@@ -1,18 +1,40 @@
-Each dose **decays on its own from the moment it is taken**, and the remainders are added. At 22:00 the first dose has been in the body for 16 hours and the second for only 8 hours.
+You're looking for the most seedlings. Count the seedlings in one row, count the rows in each planting strip while watching **two different distance limits**, from the field edge and from the channel edge, and then multiply.
 
-# What remains of each dose
+# Seedlings in one row
+
+Rows run parallel to the <InlineMath math="24\text{ m}" /> side, and seedlings must be at least <InlineMath math="1\text{ m}" /> from both ends of the field. So seedlings can only sit on a stretch of <InlineMath math="24-2\cdot 1=22" /> metres. On that stretch, the most gaps of <InlineMath math="0.8\text{ m}" /> is the largest whole number not above <InlineMath math="22\div 0.8" />.
 
 <BlockMath math="\begin{aligned}
-\text{first dose}&:\quad 360\cdot\left(\tfrac12\right)^{16/8}=90\\
-\text{second dose}&:\quad 360\cdot\left(\tfrac12\right)^{8/8}=180
+\frac{22}{0.8}&=27.5\ \Rightarrow\ 27\text{ gaps} \\
+27+1&=28\text{ seedlings}
 \end{aligned}" />
 
-# Total amount
+You add one because **there's always one more seedling than gaps** between them.
 
-<BlockMath math="90+180=270" />
+# Rows in one planting strip
 
-Another way: right after the second dose the body holds <InlineMath math="180+360=540" /> mg, and **8 hours later that amount halves** to 270 mg.
+Each planting strip is <InlineMath math="7\text{ m}" /> wide. One side is the field edge, so rows must be at least <InlineMath math="1\text{ m}" /> from it. The other side is the channel edge, and **from the channel only <InlineMath math="0.5\text{ m}" /> is needed**. So rows can only sit in a band <InlineMath math="7-1-0.5=5.5" /> metres wide.
 
-The value 540 mg is the amount right after the second dose. The value 450 mg does not decay the second dose, and 180 mg forgets what remains of the first dose.
+<BlockMath math="\begin{aligned}
+\frac{5.5}{1.2}&=4.58\ldots\ \Rightarrow\ 4\text{ gaps} \\
+4+1&=5\text{ rows}
+\end{aligned}" />
 
-So the amount at 22:00 is **270 mg**.
+The first row is exactly <InlineMath math="1\text{ m}" /> from the field edge, and the fifth row is <InlineMath math="1+4\cdot 1.2=5.8" /> metres from it. The channel edge is <InlineMath math="7\text{ m}" /> from the field edge, so the fifth row is <InlineMath math="1.2\text{ m}" /> from the channel, which is fine. A sixth row would be <InlineMath math="7.0" /> metres from the field edge, right at the channel edge, so it isn't allowed.
+
+# All the seedlings
+
+There are **two identical planting strips**, each with <InlineMath math="5" /> rows, and each row has <InlineMath math="28" /> seedlings.
+
+<BlockMath math="2\cdot 5\cdot 28=280" />
+
+# The wrong options
+
+Each other option comes from **forgetting to add one or misreading the row direction**.
+
+- <InlineMath math="216" /> comes from forgetting to add one in both directions, giving <InlineMath math="27" /> seedlings per row and <InlineMath math="4" /> rows per strip.
+- <InlineMath math="224" /> comes from forgetting to add one only for the rows, so each strip seems to hold <InlineMath math="4" /> rows.
+- <InlineMath math="266" /> comes from running the rows parallel to the <InlineMath math="15\text{ m}" /> side, although the rules ask for rows parallel to the <InlineMath math="24\text{ m}" /> side.
+- <InlineMath math="270" /> comes from forgetting to add one inside a row, so each row seems to hold <InlineMath math="27" /> seedlings.
+
+So the most seedlings Pak Darto can plant is <InlineMath math="280" />.

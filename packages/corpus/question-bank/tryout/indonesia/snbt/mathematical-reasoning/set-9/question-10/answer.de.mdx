@@ -1,15 +1,37 @@
-Die erste Runde muss 40 Spieler auf 32 verringern, also müssen **8 Spieler ausscheiden**.
+Du prüfst jede Aussage für sich mit zwei Werkzeugen. Erstens ist **der Zuschuss die Hälfte der Einzahlung, aber höchstens <InlineMath math="4" /> Millionen Rupiah pro Jahr**. Zweitens wächst Geld, das am Anfang von Jahr <InlineMath math="k" /> eingezahlt wird, bis zum Ende von Jahr <InlineMath math="n" /> mit dem Faktor <InlineMath math="(1{,}1)^{n-k+1}" /> aus der Tabelle. Alle Beträge unten sind in Millionen Rupiah.
 
-# Spieler, die spielen
+# Die erste Aussage über Einzahlungen alle zwei Jahre
 
-Jedes Spiel lässt einen Spieler ausscheiden, **die erste Runde braucht also 8 Spiele**. Acht Spiele bestreiten <InlineMath math="8\cdot2=16" /> Spieler.
+Wer jedes Jahr einzahlt, bekäme einen Zuschuss von <InlineMath math="5" />, gekappt auf <InlineMath math="4" />, also kommen jedes Jahr <InlineMath math="14" /> hinein. Wer <InlineMath math="20" /> einzahlt, bekäme <InlineMath math="10" />, aber **die Grenze gilt pro Jahr**, also gibt es nur <InlineMath math="4" />, und es kommen <InlineMath math="24" /> hinein.
 
-# Spieler mit Freilos
+<BlockMath math="\begin{aligned}
+\text{jährlich} &: 14\times(1{,}772+1{,}611+1{,}464+1{,}331+1{,}210+1{,}100)=14\times8{,}488=118{,}832 \\
+\text{zweijährlich} &: 24\times(1{,}772+1{,}464+1{,}210)=24\times4{,}446=106{,}704
+\end{aligned}" />
 
-<BlockMath math="40-16=24" />
+Die zweijährlichen Einzahlungen wachsen <InlineMath math="6" />, <InlineMath math="4" /> und <InlineMath math="2" /> Jahre. Die Kontostände unterscheiden sich, weil der Zuschuss insgesamt nur <InlineMath math="12" /> beträgt, nicht <InlineMath math="24" />. Die erste Aussage ist falsch.
 
-Kontrolle: Die 8 Sieger der ersten Runde und 24 Spieler mit Freilos ergeben 32 Spieler, **genau wie die Regel verlangt**.
+# Die zweite Aussage über eine verdoppelte Einzahlung
 
-Der Wert 8 ist die Zahl der Spiele in Runde eins, 16 die Zahl der Spieler, die spielen. Der Wert 20 nimmt an, dass die Hälfte ein Freilos bekommt, und 32 ist die Zahl der Spieler in Runde zwei.
+Der Kontostand ist das jährlich eingezahlte Geld mal dieselbe Summe von Faktoren, also ist das Verhältnis der Kontostände gleich dem Verhältnis der Jahresbeträge. Eine Einzahlung von <InlineMath math="6" /> bekommt <InlineMath math="3" /> dazu, es kommen also <InlineMath math="9" /> hinein. Eine Einzahlung von <InlineMath math="12" /> sollte <InlineMath math="6" /> bekommen, aber **die Grenze kappt das auf <InlineMath math="4" />**, also kommen <InlineMath math="16" /> hinein.
 
-Also bekommen **24 Spieler** ein Freilos.
+<BlockMath math="\frac{16}{9}\approx1{,}78\neq2" />
+
+Der Kontostand steigt, aber nicht auf das Doppelte. Die zweite Aussage ist falsch.
+
+# Die dritte Aussage über zehn und fünf Jahre
+
+Bei gleicher Einzahlung jedes Jahr ist der Kontostand der Jahresbetrag mal die Summe der Faktoren, du musst also nur diese Summen vergleichen. **Die Faktoren der letzten fünf Jahre sind deutlich größer** als die der ersten fünf.
+
+<BlockMath math="\begin{aligned}
+S_5 &= 1{,}100+1{,}210+1{,}331+1{,}464+1{,}611=6{,}716 \\
+S_{10} &= 6{,}716+1{,}772+1{,}949+2{,}144+2{,}358+2{,}594=17{,}533
+\end{aligned}" />
+
+Vergleiche mit <InlineMath math="2{,}5\times6{,}716=16{,}79" />. Weil <InlineMath math="17{,}533>16{,}79" />, ist die dritte Aussage wahr.
+
+# Die vierte Aussage über die Verdopplung
+
+Das Geld vom Anfang von Jahr <InlineMath math="1" /> ist bis zum Ende von Jahr <InlineMath math="7" /> genau <InlineMath math="7" />-mal gewachsen, sein Faktor ist also <InlineMath math="(1{,}1)^7=1{,}949" />. Dieser Faktor liegt **noch unter zwei**. Mehr als doppelt so viel ist es erst am Ende von Jahr <InlineMath math="8" />, mit dem Faktor <InlineMath math="2{,}144" />. Eine schnelle Schätzung wie <InlineMath math="72:10\approx7{,}2" /> Jahre verleitet zu Jahr <InlineMath math="7" />, aber die Tabelle sagt: noch nicht. Die vierte Aussage ist falsch.
+
+Die erste Aussage ist also falsch, die zweite falsch, die dritte wahr und die vierte falsch.

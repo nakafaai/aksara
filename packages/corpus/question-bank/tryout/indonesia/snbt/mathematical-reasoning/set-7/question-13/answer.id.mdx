@@ -1,18 +1,40 @@
-Balik rumus <InlineMath math="F=\tfrac95C+32" /> dengan membatalkan langkahnya dari belakang: **kurangi 32 dulu, baru kalikan dengan <InlineMath math="\tfrac59" />**.
+Kamu mencari saat pertama tinggi muka air mencapai <InlineMath math="300\text{ cm}" />. Rencananya: cocokkan setiap jam di papan duga dengan hujan yang turun <InlineMath math="2" /> jam sebelumnya, hitung naiknya jam demi jam, dan **ubah lajunya begitu pintu air terbuka** di <InlineMath math="250\text{ cm}" />.
 
-# Membalik rumus
+# Hujan yang tiba setiap jam
+
+Hujan di hulu baru tiba <InlineMath math="2" /> jam kemudian, jadi **jam papan duga dipasangkan dengan hujan dua jam sebelumnya**. Perubahannya <InlineMath math="(2p-20)\text{ cm}" /> per jam.
+
+| Jam di papan duga | Hujan yang tiba | Perubahan per jam |
+| --- | --- | --- |
+| 06.00-07.00 | <InlineMath math="30\text{ mm}" /> | <InlineMath math="+40\text{ cm}" /> |
+| 07.00-08.00 | <InlineMath math="25\text{ mm}" /> | <InlineMath math="+30\text{ cm}" /> |
+| 08.00-09.00 | <InlineMath math="40\text{ mm}" /> | <InlineMath math="+60\text{ cm}" /> |
+| 09.00-10.00 | <InlineMath math="55\text{ mm}" /> | <InlineMath math="+90\text{ cm}" /> |
+
+# Naik sampai pintu air terbuka
+
+Tinggi muka air menjadi <InlineMath math="140+40=180\text{ cm}" /> pukul 07.00 dan <InlineMath math="180+30=210\text{ cm}" /> pukul 08.00. Mulai pukul 08.00 airnya naik <InlineMath math="60\text{ cm}" /> per jam, jadi **pintu air terbuka saat tinggi muka air mencapai <InlineMath math="250\text{ cm}" />**.
+
+<BlockMath math="\frac{250-210}{60}\text{ jam}=\frac{40}{60}\text{ jam}=40\text{ menit}" />
+
+Pintu air terbuka pukul 08.40.
+
+# Naik lebih lambat setelah pintu air terbuka
+
+Selama pintu air terbuka, setiap perubahan berkurang <InlineMath math="30\text{ cm}" /> per jam. **Pada pukul 08.40 sampai 09.00 lajunya tinggal <InlineMath math="60-30=30\text{ cm}" /> per jam**, dan pada pukul 09.00 sampai 10.00 lajunya <InlineMath math="90-30=60\text{ cm}" /> per jam.
 
 <BlockMath math="\begin{aligned}
-F-32&=\tfrac95C\\
-C&=\tfrac59(F-32)
+\text{tinggi pukul 09.00} &= 250+30\cdot\frac{20}{60}=250+10=260\text{ cm} \\
+\text{waktu ke } 300\text{ cm} &= \frac{300-260}{60}\text{ jam}=40\text{ menit}
 \end{aligned}" />
 
-# Substitusi
+Status Awas tercapai pukul 09.00 ditambah <InlineMath math="40" /> menit, yaitu pukul 09.40. Sebagai pemeriksaan, pukul 10.00 tinggi muka air <InlineMath math="260+60=320\text{ cm}" />, dan <InlineMath math="300" /> memang berada di antara <InlineMath math="260" /> dan <InlineMath math="320" />.
 
-<BlockMath math="C=\tfrac59(356-32)=\tfrac59\cdot324=180" />
+# Pilihan yang keliru
 
-Pemeriksaan: <InlineMath math="\tfrac95\cdot180+32=324+32=356" />, **cocok dengan suhu resep**.
+- Pukul 08.40 adalah saat status **Siaga** tercapai di <InlineMath math="250\text{ cm}" />, belum Awas.
+- Pukul 09.10 muncul kalau hujan dianggap tiba <InlineMath math="1" /> jam kemudian, sehingga setiap jam papan duga dipasangkan dengan hujan yang salah.
+- Pukul 09.20 muncul kalau pintu air diabaikan: tinggi pukul 09.00 menjadi <InlineMath math="270\text{ cm}" />, lalu naik <InlineMath math="90\text{ cm}" /> per jam.
+- Pukul 09.30 muncul kalau pintu air dianggap baru berpengaruh mulai pukul 09.00, sehingga tinggi pukul 09.00 menjadi <InlineMath math="270\text{ cm}" /> dan sisanya naik <InlineMath math="60\text{ cm}" /> per jam.
 
-Nilai 197,8 °C lupa mengurangi 32. Nilai 165,8 °C mengalikan dulu, baru mengurangi 32. Nilai 215,6 °C malah menambahkan 32. Nilai 324 °C hanya mengurangi 32 tanpa mengalikan <InlineMath math="\tfrac59" />.
-
-Jadi, suhu oven itu adalah **180 °C**.
+Jadi, status Awas pertama kali tercapai pukul 09.40.

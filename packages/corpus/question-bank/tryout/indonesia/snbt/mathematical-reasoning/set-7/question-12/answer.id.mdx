@@ -1,17 +1,34 @@
-Jarak tempuh 300 m berarti 3 ruas, jadi persimpangan <InlineMath math="(a,b)" /> harus memenuhi **<InlineMath math="\lvert a\rvert+\lvert b\rvert=3" />**. **Koordinat boleh negatif**, karena robot dapat ke barat dan ke selatan.
+Kamu mencari banyak air yang dibuang sebelum akuarium diisi ulang dengan air tawar. Rencananya: hitung keadaan akuarium setelah ditinggal, tentukan **berapa garam yang boleh tersisa**, lalu cari air yang harus dibuang untuk mencapai garam itu.
 
-# Persimpangan pada sumbu
+# Keadaan setelah ditinggal
 
-Jika **salah satu koordinat nol**, persimpangannya adalah <InlineMath math="(3,0)" />, <InlineMath math="(-3,0)" />, <InlineMath math="(0,3)" />, dan <InlineMath math="(0,-3)" />, yaitu 4 persimpangan.
+Saat penuh, akuarium berisi <InlineMath math="120\cdot36=4{.}320" /> gram garam. Selama <InlineMath math="6" /> hari menguap <InlineMath math="6\cdot4=24\text{ liter}" /> air, jadi tersisa <InlineMath math="96\text{ liter}" />. **Garam tidak ikut menguap**, jadi salinitasnya naik.
 
-# Persimpangan di luar sumbu
+<BlockMath math="\frac{4{.}320}{96}=45\text{ g/L}" />
 
-Jika kedua koordinat tidak nol, nilai mutlaknya adalah 1 dan 2 dalam urutan apa pun, dan **setiap koordinat boleh positif atau negatif**.
+Air yang nanti dibuang bersalinitas <InlineMath math="45\text{ g/L}" />, bukan <InlineMath math="36\text{ g/L}" />.
 
-<BlockMath math="2\cdot2\cdot2=8" />
+# Garam yang boleh tersisa
 
-Faktor 2 pertama memilih urutan 1 dan 2, dan dua faktor 2 berikutnya memilih tanda setiap koordinat. Jadi ada <InlineMath math="4+8=12" /> persimpangan, yang bersama-sama membentuk persegi miring di sekitar G.
+Pada akhirnya akuarium penuh lagi, <InlineMath math="120\text{ liter}" /> bersalinitas <InlineMath math="33\text{ g/L}" />, jadi garamnya <InlineMath math="120\cdot33=3{.}960" /> gram. **Air tawar tidak membawa garam**, jadi seluruh garam itu harus sudah ada sebelum pengisian ulang.
 
-Nilai 4 hanya menghitung persimpangan pada sumbu atau hanya ke arah timur laut. Nilai 8 melupakan persimpangan pada sumbu.
+# Air yang harus dibuang
 
-Jadi, ada **12 persimpangan** yang berjarak tempuh tepat 300 m dari G.
+Misalkan air yang dibuang <InlineMath math="x\text{ liter}" />. **Setiap liter yang dibuang membawa <InlineMath math="45" /> gram garam**.
+
+<BlockMath math="\begin{aligned}
+4{.}320-45x &= 3{.}960 \\
+45x &= 360 \\
+x &= 8
+\end{aligned}" />
+
+Sebagai pemeriksaan, tersisa <InlineMath math="96-8=88\text{ liter}" /> air bersalinitas <InlineMath math="45\text{ g/L}" />, yaitu <InlineMath math="88\cdot45=3{.}960" /> gram garam. Lalu ditambahkan <InlineMath math="32\text{ liter}" /> air tawar sampai <InlineMath math="120\text{ liter}" />, dan <InlineMath math="\frac{3{.}960}{120}=33\text{ g/L}" />.
+
+# Pilihan yang keliru
+
+- <InlineMath math="10\text{ liter}" /> muncul kalau **penguapan diabaikan**, sehingga air dibuang dari <InlineMath math="120\text{ liter}" /> bersalinitas <InlineMath math="36\text{ g/L}" />.
+- <InlineMath math="25{,}6\text{ liter}" /> muncul kalau akuarium dianggap hanya diisi kembali sampai <InlineMath math="96\text{ liter}" />, padahal pengisian ulang membuatnya penuh <InlineMath math="120\text{ liter}" />.
+- <InlineMath math="32\text{ liter}" /> adalah banyak air tawar yang ditambahkan, yaitu <InlineMath math="8+24" />, bukan banyak air yang dibuang.
+- <InlineMath math="88\text{ liter}" /> adalah banyak air lama yang tetap tinggal di akuarium.
+
+Jadi, air akuarium yang harus dibuang sebanyak <InlineMath math="8\text{ liter}" />.

@@ -1,18 +1,49 @@
-Ketiga kereta berangkat bersamaan setiap **kelipatan persekutuan terkecil** dari 16, 24, dan 40 menit.
+Kamu mencari seluruh uang yang dibayar Dodi: uang muka, biaya administrasi, lima cicilan, dan uang pelunasan. Bagian yang menentukan adalah uang pelunasan, karena **yang dilunasi hanya sisa pokok**, bukan sisa cicilan. Rencananya begini: hitung cicilan, pisahkan bagian pokok di setiap cicilan, cari sisa pokok, lalu tambahkan dendanya.
 
-# KPK ketiga selang
+# Cicilan tenor dua belas bulan
+
+Tenor <InlineMath math="12" /> bulan memakai bunga <InlineMath math="1{,}5\%" /> per bulan dari pokok kredit <InlineMath math="4{.}800{.}000" />.
 
 <BlockMath math="\begin{aligned}
-16&=2^4\\
-24&=2^3\cdot3\\
-40&=2^3\cdot5\\
-\text{KPK}&=2^4\cdot3\cdot5=240\text{ menit}=4\text{ jam}
+\text{total bunga} &= 4{.}800{.}000\cdot1{,}5\%\cdot12=864{.}000\\
+\text{cicilan} &= \frac{4{.}800{.}000+864{.}000}{12}=\frac{5{.}664{.}000}{12}=472{.}000
 \end{aligned}" />
 
-# Waktu berangkat bersamaan
+Hasilnya sudah kelipatan <InlineMath math="1{.}000" />, jadi **tidak ada pembulatan** pada tenor ini.
 
-Pukul 05.00, 09.00, 13.00, 17.00, dan 21.00. Keberangkatan bersamaan berikutnya pukul 01.00, **sudah di luar jadwal**. Jadi ada 5 kali.
+# Sisa pokok setelah lima cicilan
 
-Nilai 6 kali membulatkan <InlineMath math="\tfrac{1{.}020}{240}=4{,}25" /> ke atas sebelum menambah keberangkatan pertama. Nilai 9, 13, dan 22 kali hanya memakai KPK dua jurusan, yaitu 120, 80, dan 48 menit.
+Aturan kelima memecah setiap cicilan menjadi bagian pokok dan bagian bunga. Bagian pokoknya <InlineMath math="\tfrac{4{.}800{.}000}{12}=400{.}000" />, dan sisanya <InlineMath math="72{.}000" /> adalah bunga satu bulan.
 
-Jadi, ketiga kereta berangkat bersamaan **5 kali**.
+<BlockMath math="\begin{aligned}
+\text{pokok yang sudah dibayar} &= 5\cdot400{.}000=2{.}000{.}000\\
+\text{sisa pokok} &= 4{.}800{.}000-2{.}000{.}000=2{.}800{.}000\\
+\text{uang pelunasan} &= 2{.}800{.}000+3\%\cdot2{.}800{.}000=2{.}884{.}000
+\end{aligned}" />
+
+Bunga untuk <InlineMath math="7" /> bulan yang belum dijalani **tidak ditagih**, jadi bunga itu tidak ikut dalam uang pelunasan.
+
+# Seluruh uang yang keluar
+
+Jumlahkan **semua pembayaran Dodi dari hari pembelian sampai hari pelunasan**.
+
+<BlockMath math="\begin{aligned}
+\text{total} &= 1{.}200{.}000+200{.}000+5\cdot472{.}000+2{.}884{.}000\\
+&= 1{.}400{.}000+2{.}360{.}000+2{.}884{.}000\\
+&= 6{.}644{.}000
+\end{aligned}" />
+
+# Pemeriksaan dengan penghematan
+
+Jika Dodi membayar semua cicilan, totalnya <InlineMath math="1{.}400{.}000+12\cdot472{.}000=7{.}064{.}000" />. Pelunasan dipercepat menghapus bunga <InlineMath math="7\cdot72{.}000=504{.}000" /> tetapi menambah denda <InlineMath math="84{.}000" />. **Penghematannya** <InlineMath math="504{.}000-84{.}000=420{.}000" />, dan memang <InlineMath math="7{.}064{.}000-420{.}000=6{.}644{.}000" />.
+
+# Pilihan yang keliru
+
+Setiap pilihan yang keliru **salah menghitung uang pelunasan**.
+
+- <InlineMath math="\text{Rp}6{.}232{.}000{,}00" /> menghitung sisa pokok untuk <InlineMath math="6" /> bulan, padahal setelah cicilan kelima masih ada <InlineMath math="12-5=7" /> bulan.
+- <InlineMath math="\text{Rp}6{.}560{.}000{,}00" /> lupa denda <InlineMath math="3\%" />.
+- <InlineMath math="\text{Rp}6{.}704{.}000{,}00" /> menghitung denda dari pokok kredit awal, yaitu <InlineMath math="3\%\cdot4{.}800{.}000=144{.}000" />.
+- <InlineMath math="\text{Rp}7{.}163{.}120{,}00" /> menganggap yang dilunasi adalah sisa cicilan <InlineMath math="7\cdot472{.}000=3{.}304{.}000" /> beserta dendanya, sehingga bunga bulan yang belum dijalani ikut dibayar.
+
+Jadi, seluruh uang yang dikeluarkan Dodi untuk ponsel itu adalah <InlineMath math="\text{Rp}6{.}644{.}000{,}00" />.

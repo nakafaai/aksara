@@ -1,22 +1,52 @@
-Say Bu Sari bakes <InlineMath math="x" /> chocolate buns and <InlineMath math="y" /> cheese buns. The largest profit always occurs at **a corner of the region that meets every constraint**.
+You're looking for the fare income from the second trip. Here's the plan: load the vehicles one by one in queue order, **check both limits every time** (lane length and mass) before a vehicle boards, then add up the fares of the vehicles on the second trip.
 
-# Constraints
+# The first trip
+
+The truck in place <InlineMath math="1" /> boards. The truck in place <InlineMath math="2" /> brings the mass to exactly <InlineMath math="30\text{ tonnes}" />. The stimulus says that **a load exactly equal to the limit is still allowed**, so the second truck boards too.
 
 <BlockMath math="\begin{aligned}
-x+y&\le100\\
-50x+100y&\le7{,}000\iff x+2y\le140
+\text{mass of two trucks} &= 15+15=30\text{ tonnes}\\
+\text{mass if the car boards} &= 30+2=32\text{ tonnes}>30\text{ tonnes}
 \end{aligned}" />
 
-**The two boundary lines meet** when <InlineMath math="y=140-100=40" /> and <InlineMath math="x=60" />.
+The car in place <InlineMath math="3" /> doesn't fit, so the ferry leaves with just the two trucks. That car becomes the first vehicle of the second trip.
 
-# Profit at each corner
+# The second trip
 
-| Corner | Profit |
-| :---: | :---: |
-| <InlineMath math="(100,0)" /> | Rp150,000 |
-| <InlineMath math="(60,40)" /> | Rp170,000 |
-| <InlineMath math="(0,70)" /> | Rp140,000 |
+The vehicles in places <InlineMath math="3" /> to <InlineMath math="8" /> are five cars and one pickup. They all fit, because together they take <InlineMath math="31\text{ m}" /> and weigh <InlineMath math="13\text{ tonnes}" />. Next comes the truck in place <InlineMath math="9" />.
 
-**The corner (60, 40) gives the largest profit**, <InlineMath math="60\cdot1{,}500+40\cdot2{,}000=170{,}000" />.
+<BlockMath math="\begin{aligned}
+\text{length of five cars and one pickup} &= 5\cdot5+6=31\text{ m}\\
+\text{length if the truck boards} &= 31+10=41\text{ m}>40\text{ m}\\
+\text{mass if the truck boards} &= 13+15=28\text{ tonnes}\le30\text{ tonnes}
+\end{aligned}" />
 
-So the largest profit is **170 thousand rupiah**, from 60 chocolate buns and 40 cheese buns.
+The mass would still be fine, but **the lane length runs out**. One failed limit is enough to stop the truck, so the ferry leaves with five cars and one pickup.
+
+<BlockMath math="\begin{aligned}
+\text{income of the second trip} &= 5\cdot200{,}000+250{,}000\\
+&= 1{,}000{,}000+250{,}000\\
+&= 1{,}250{,}000
+\end{aligned}" />
+
+# Checking with all the fares
+
+Keep loading. The truck in place <InlineMath math="9" /> and the next bus weigh <InlineMath math="15+16=31\text{ tonnes}" />, so the truck leaves alone. Two buses weigh <InlineMath math="16+16=32\text{ tonnes}" />, so **each bus leaves alone**. The queue is cleared in <InlineMath math="5" /> trips, and every vehicle travels exactly once.
+
+<BlockMath math="\begin{aligned}
+\text{income of the five trips} &= 1{,}700{,}000+1{,}250{,}000+850{,}000+750{,}000+750{,}000\\
+&= 5{,}300{,}000\\
+\text{fares of the eleven vehicles} &= 3\cdot850{,}000+2\cdot750{,}000+5\cdot200{,}000+250{,}000\\
+&= 5{,}300{,}000
+\end{aligned}" />
+
+The two totals match, so the way the vehicles were split into trips is consistent.
+
+# The wrong options
+
+- <InlineMath math="\text{Rp}1{,}700{,}000.00" /> is the income of **the first trip**, the two trucks.
+- <InlineMath math="\text{Rp}1{,}900{,}000.00" /> comes from treating the limit as "less than <InlineMath math="30\text{ tonnes}" />". Then the first trip carries only one truck, and the second trip carries a truck, four cars, and the pickup.
+- <InlineMath math="\text{Rp}2{,}100{,}000.00" /> checks only the mass, so the truck in place <InlineMath math="9" /> boards even though the length becomes <InlineMath math="41\text{ m}" />.
+- <InlineMath math="\text{Rp}2{,}200{,}000.00" /> checks only the length. The second trip then holds three cars, a truck, and a bus with a mass of <InlineMath math="6+15+16=37\text{ tonnes}" />.
+
+So the ferry's fare income from the second trip is <InlineMath math="\text{Rp}1{,}250{,}000.00" />.

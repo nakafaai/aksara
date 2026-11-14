@@ -1,15 +1,49 @@
-Misalkan peserta menjawab benar <InlineMath math="b" /> soal dan salah <InlineMath math="w" /> soal, dengan <InlineMath math="b+w\le40" />. Skor totalnya <InlineMath math="4b-w" />, yaitu **empat kali banyak jawaban benar dikurangi banyak jawaban salah**, dan setiap pernyataan diperiksa dengan rumus ini.
+Untuk pokok <InlineMath math="12{.}000{.}000" />, cicilan pokok setiap bulan <InlineMath math="1{.}000{.}000" />. Bunga Rencana Tetap selalu <InlineMath math="120{.}000" />, sedangkan **bunga Rencana Menurun pada bulan ke-<InlineMath math="k" /> adalah <InlineMath math="20{.}000\,(13-k)" />**, karena dihitung dari sisa pokok <InlineMath math="13-k" /> juta sebelum pembayaran. Dengan dua rumus ini, kita uji setiap pernyataan secara terpisah.
 
-# Peserta yang menjawab semua soal
+# Pernyataan pertama
 
-Jika semua soal dijawab, <InlineMath math="w=40-b" /> dan skornya <InlineMath math="5b-40" />. Skor ini **selalu kelipatan 5**, sedangkan 102 bukan kelipatan 5. Pernyataan pertama salah.
+Cicilan pokok kedua rencana sama, jadi cukup bandingkan bunganya. Bunga Rencana Menurun lebih kecil jika <InlineMath math="20{.}000\,(13-k)<120{.}000" />.
 
-# Skor 159, skor negatif, dan skor nol
+<BlockMath math="\begin{aligned}
+13-k&<6 \\
+k&>7
+\end{aligned}" />
 
-Skor tertinggi adalah 160, dengan 40 jawaban benar. Jika hanya 39 benar, skornya paling tinggi <InlineMath math="4\cdot39=156" />. Tidak ada cara mendapat 159, jadi pernyataan kedua benar.
+Pada bulan ketujuh, bunga Rencana Menurun <InlineMath math="20{.}000\cdot 6=120{.}000" />, **tepat sama, belum lebih kecil**. Cicilannya baru lebih kecil mulai bulan kedelapan, jadi pernyataan ini **salah**.
 
-Peserta yang menjawab satu soal dan salah memperoleh <InlineMath math="-1" />, jadi skor negatif mungkin. Pernyataan ketiga benar.
+# Pernyataan kedua
 
-Peserta dengan 1 jawaban benar dan 4 jawaban salah memperoleh <InlineMath math="4-4=0" />. **Skor 0 juga muncul tanpa mengosongkan semua soal**, jadi pernyataan keempat salah.
+Dengan bunga <InlineMath math="1{,}8\%" />, bunga setiap bulan adalah <InlineMath math="1{,}8\%" /> dari sisa pokok. Jumlah sisa pokok dari bulan pertama sampai kedua belas adalah <InlineMath math="12+11+\cdots+1=78" /> juta, jadi **total bunga sama dengan persen bunga kali jumlah semua sisa pokok**.
 
-Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **benar**, dan keempat **salah**.
+<BlockMath math="\begin{aligned}
+1{,}8\%\cdot 78{.}000{.}000&=1{.}404{.}000 \\
+12\cdot 120{.}000&=1{.}440{.}000
+\end{aligned}" />
+
+Karena <InlineMath math="1{.}404{.}000<1{.}440{.}000" />, pernyataan ini **benar**. Dengan bunga <InlineMath math="2\%" /> seperti di tabel, total bunganya <InlineMath math="1{.}560{.}000" />, jadi Rencana Menurun baru lebih murah bunganya jika persennya cukup kecil.
+
+# Pernyataan ketiga
+
+Selama enam bulan pertama, sisa pokok sebelum pembayaran adalah <InlineMath math="12" />, <InlineMath math="11" />, sampai <InlineMath math="7" /> juta. **Jumlahkan bunga keenam bulan itu**, lalu kurangi dengan enam kali bunga Rencana Tetap.
+
+<BlockMath math="\begin{aligned}
+2\%\cdot (12+11+10+9+8+7)\cdot 1{.}000{.}000&=2\%\cdot 57{.}000{.}000=1{.}140{.}000 \\
+1{.}140{.}000-6\cdot 120{.}000&=420{.}000
+\end{aligned}" />
+
+Selisihnya tepat <InlineMath math="420{.}000" />, jadi pernyataan ini **benar**.
+
+# Pernyataan keempat
+
+Total biaya tanpa pelunasan dipercepat terdiri atas bunga dan biaya administrasi. Untuk pokok <InlineMath math="P" />, bunga Rencana Tetap <InlineMath math="12\%" /> dari <InlineMath math="P" /> dan administrasinya <InlineMath math="2\%" /> dari <InlineMath math="P" />. Bunga Rencana Menurun <InlineMath math="2\%\cdot\tfrac{78}{12}P=13\%" /> dari <InlineMath math="P" />, tetapi **administrasinya tetap <InlineMath math="100{.}000" /> berapa pun pokoknya**.
+
+<BlockMath math="\begin{aligned}
+P=12{.}000{.}000&:\ 1{.}680{.}000-(1{.}560{.}000+100{.}000)=20{.}000 \\
+P=18{.}000{.}000&:\ 2{.}520{.}000-(2{.}340{.}000+100{.}000)=80{.}000
+\end{aligned}" />
+
+Selisihnya menjadi <InlineMath math="4" /> kali, bukan <InlineMath math="1{,}5" /> kali. Yang naik <InlineMath math="1{,}5" /> kali hanya bagian yang sebanding dengan pokok, sedangkan biaya administrasi tetap tidak ikut naik. Pernyataan ini **salah**.
+
+# Ringkasan
+
+Pernyataan kedua dan ketiga benar, pernyataan pertama dan keempat salah. Dua pernyataan yang salah sama-sama melewatkan **satu syarat kecil**, yaitu bunga yang tepat sama pada bulan ketujuh dan biaya administrasi yang tidak bergantung pada pokok.

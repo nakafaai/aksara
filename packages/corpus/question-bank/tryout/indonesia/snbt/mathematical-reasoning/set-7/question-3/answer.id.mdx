@@ -1,24 +1,43 @@
-Ubah megabit ke megabita dengan **membagi 8**, dan ingat bahwa kecepatan 40 Mbps dibagi oleh semua perangkat yang memakainya bersamaan.
+Setiap pernyataan perlu dihitung sendiri dengan aturan baterai. Rencananya: untuk tiap pernyataan, tentukan laju yang berlaku di setiap rentang baterai, terutama saat baterai melewati <InlineMath math="20\%" /> atau <InlineMath math="80\%" />, karena **di situ lajunya berubah**.
 
-# Satuan kecepatan dan batas perangkat
+# Mengisi daya sambil menonton video
 
-Kecepatan 40 Mbps berarti 40 megabit per detik, yaitu <InlineMath math="\tfrac{40}{8}=5" /> MB per detik. Pernyataan pertama benar.
+Di bawah <InlineMath math="80\%" />, baterai berubah <InlineMath math="40\%-20\%=+20\%" /> per jam, atau <InlineMath math="40\%-10\%=+30\%" /> per jam dalam mode hemat. Jadi, baterai naik sampai <InlineMath math="80\%" />. Pada <InlineMath math="80\%" /> atau lebih, **pengisi daya hanya menambah <InlineMath math="16\%" /> per jam, kurang dari <InlineMath math="20\%" /> yang dipakai video**.
 
-Empat belas perangkat video HD memerlukan <InlineMath math="14\cdot3=42" /> Mbps, **melebihi 40 Mbps**, jadi pernyataan kedua salah.
+<BlockMath math="16\%-20\%=-4\%\text{ per jam}" />
 
-# Data untuk satu jam video
+Begitu baterai <InlineMath math="80\%" />, baterai justru turun, lalu di bawah <InlineMath math="80\%" /> naik lagi. Baterai tertahan di <InlineMath math="80\%" /> dan tidak pernah melebihinya. Pernyataan pertama **benar**.
 
-Satu jam sama dengan 3.600 detik, dan video HD memakai 3 megabit setiap detik.
+# Bermain gim dari baterai penuh
+
+Dari <InlineMath math="100\%" /> ke <InlineMath math="20\%" />, gim memakai laju penuh <InlineMath math="30\%" /> per jam. Sesudah itu **mode hemat daya menurunkan laju gim menjadi <InlineMath math="15\%" /> per jam**.
 
 <BlockMath math="\begin{aligned}
-3\cdot3{.}600&=10{.}800\text{ megabit}\\
-\tfrac{10{.}800}{8}&=1{.}350\text{ MB}=1{,}35\text{ GB}
+\text{dari } 100\% \text{ ke } 20\% &: \frac{80}{30}\text{ jam}=2\text{ jam }40\text{ menit} \\
+\text{dari } 20\% \text{ ke } 0\% &: \frac{20}{15}\text{ jam}=1\text{ jam }20\text{ menit}
 \end{aligned}" />
 
-Pemakaiannya **lebih dari 1 GB**, jadi pernyataan ketiga salah.
+Totalnya tepat <InlineMath math="4" /> jam. Hitungan <InlineMath math="\frac{100}{30}" /> jam, yaitu <InlineMath math="3" /> jam <InlineMath math="20" /> menit, lupa pada mode hemat. Pernyataan kedua **benar**.
 
-# Kenaikan kecepatan
+# Mengisi daya dari setengah baterai
 
-Waktu unduh berbanding terbalik dengan kecepatan. Dengan 100 Mbps, waktu menjadi <InlineMath math="\tfrac{40}{100}=0{,}4" /> kali semula, jadi **berkurang 60%** untuk berkas apa pun. Pernyataan keempat benar.
+Tanpa dipakai, ponsel siaga, jadi di bawah <InlineMath math="80\%" /> baterai naik <InlineMath math="40\%-4\%=36\%" /> per jam. Mulai <InlineMath math="80\%" />, **kenaikannya tinggal <InlineMath math="16\%-4\%=12\%" /> per jam**.
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.
+<BlockMath math="\begin{aligned}
+\text{dari } 50\% \text{ ke } 80\% &: \frac{30}{36}\text{ jam}=50\text{ menit} \\
+\text{sisa } 10 \text{ menit} &: 80\%+12\%\cdot\frac{10}{60}=82\%
+\end{aligned}" />
+
+Baterai menjadi <InlineMath math="82\%" />, bukan <InlineMath math="86\%" />. Angka <InlineMath math="86\%" /> muncul kalau <InlineMath math="36\%" /> per jam dipakai sepanjang satu jam penuh. Pernyataan ketiga **salah**.
+
+# Menukar urutan membaca dan menonton
+
+Urutan pertama: membaca <InlineMath math="3" /> jam menghabiskan <InlineMath math="30\%" />, jadi baterai tepat <InlineMath math="20\%" />. Video sejam lalu berjalan dalam mode hemat dengan laju <InlineMath math="10\%" /> per jam, sehingga baterai akhir <InlineMath math="10\%" />.
+
+Urutan kedua: video sejam membawa baterai ke <InlineMath math="30\%" />. Membaca sejam pertama membawanya ke <InlineMath math="20\%" />, lalu dua jam sisanya berjalan dalam mode hemat dengan laju <InlineMath math="5\%" /> per jam.
+
+<BlockMath math="30\%-10\%-5\%\cdot2=10\%" />
+
+Kedua urutan berakhir di <InlineMath math="10\%" />. Ini bukan kebetulan: **tanpa pengisian daya, pemakaian yang terjadi sesudah baterai menyentuh <InlineMath math="20\%" /> selalu dipotong setengah, apa pun urutannya**. Pernyataan keempat **benar**.
+
+Jadi, pernyataan pertama benar, kedua benar, ketiga salah, dan keempat benar.

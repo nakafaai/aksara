@@ -1,19 +1,32 @@
-Es gibt **36 gleich wahrscheinliche Augenpaare**. Jede Wahrscheinlichkeit ist die Zahl der passenden Paare geteilt durch 36.
+Gesucht ist Danis kleinste Einlage in Schritten von <InlineMath math="10" /> Millionen, mit der sein Anteil mehr als <InlineMath math="\frac15" /> des verteilten Gewinns beträgt. Der Plan: Bestimme die Kapitalmonate der bisherigen Personen, **schreib Danis Anteil als Bruch**, löse die Ungleichung und wähle dann das passende Vielfache von <InlineMath math="10" />.
 
-# Summe 11 und zwei Spiele
+# Kapitalmonate der bisherigen Personen
 
-Die Summe 11 entsteht aus <InlineMath math="(5,6)" /> und <InlineMath math="(6,5)" />, ihre Wahrscheinlichkeit ist also <InlineMath math="\tfrac{2}{36}=\tfrac{1}{18}" />. Die erste Aussage ist wahr.
+Ayu hat <InlineMath math="40\cdot3+20\cdot9=300" />, Bima <InlineMath math="30\cdot6+40\cdot6=420" /> und Citra <InlineMath math="90\cdot8=720" />. **Danis Einstieg ändert ihre Kapitalmonate nicht**, zusammen bleiben es <InlineMath math="1{.}440" />.
 
-Zwei Spiele **beeinflussen sich nicht**, die Wahrscheinlichkeit für die Summe 12 in beiden ist also das Produkt der zwei Wahrscheinlichkeiten.
+# Danis Anteil als Bruch
 
-<BlockMath math="\frac{1}{36}\cdot\frac{1}{36}=\frac{1}{1\,296}" />
+Angenommen, Dani zahlt <InlineMath math="x" /> Millionen ein. Das Geld arbeitet von Juli bis Dezember, also <InlineMath math="6" /> Monate, Dani hat also <InlineMath math="6x" /> Kapitalmonate. **Danis Geld erhöht auch die Summe der Kapitalmonate aller Personen**, der Nenner wird also <InlineMath math="1{.}440+6x" />.
 
-Die zweite Aussage ist wahr.
+<BlockMath math="\begin{aligned}
+\frac{6x}{1{.}440+6x} &> \frac{1}{5} \\
+30x &> 1{.}440+6x \\
+24x &> 1{.}440 \\
+x &> 60
+\end{aligned}" />
 
-# Erwartete Anzahl und Wahrscheinlichkeiten vergleichen
+Über Kreuz multiplizieren ist hier erlaubt, weil beide Nenner positiv sind.
 
-Die Summe 12 entsteht nur aus <InlineMath math="(6,6)" />, in 360 Spielen erwartet man sie also <InlineMath math="360\cdot\tfrac{1}{36}=10" />-mal, **nicht 20-mal**. Die dritte Aussage ist falsch.
+# Ein Vielfaches von zehn Millionen wählen
 
-Die Summe 6 entsteht aus 5 Paaren, (1,5), (2,4), (3,3), (4,2) und (5,1), die Summe 7 aus 6 Paaren. Die Wahrscheinlichkeiten sind <InlineMath math="\tfrac{5}{36}" /> und <InlineMath math="\tfrac{6}{36}" />, **also verschieden**, die vierte Aussage ist falsch.
+Die Ungleichung ist streng, also **reichen <InlineMath math="60" /> Millionen noch nicht**: Damit beträgt Danis Anteil <InlineMath math="\frac{360}{1{.}800}=\frac15" />, genau ein Fünftel und nicht mehr. Das nächste Vielfache von <InlineMath math="10" /> Millionen ist <InlineMath math="70" /> Millionen.
 
-Die erste Aussage ist also **wahr**, die zweite **wahr**, die dritte **falsch** und die vierte **falsch**.
+<BlockMath math="\frac{6\cdot70}{1{.}440+6\cdot70}=\frac{420}{1{.}860}=\frac{7}{31}" />
+
+Wegen <InlineMath math="7\cdot5=35>31" /> ist <InlineMath math="\frac{7}{31}" /> tatsächlich mehr als <InlineMath math="\frac15" />.
+
+# Typische Fehler
+
+Wenn du **Danis Geld nicht zum Nenner addierst**, lautet die Bedingung <InlineMath math="6x>\frac{1{.}440}{5}=288" />, und <InlineMath math="50" /> Millionen scheinen zu reichen. Mit <InlineMath math="50" /> Millionen ist sein Anteil aber nur <InlineMath math="\frac{300}{1{.}740}=\frac{5}{29}" />, weniger als <InlineMath math="\frac15" />. Zählst du Danis Monate als <InlineMath math="5" /> (Dezember minus Juli), kommst du auf <InlineMath math="80" /> Millionen. Liest du "mehr als" als "mindestens", kommst du auf <InlineMath math="60" /> Millionen.
+
+Dani muss also mindestens <InlineMath math="70" /> Millionen Rupiah einzahlen.

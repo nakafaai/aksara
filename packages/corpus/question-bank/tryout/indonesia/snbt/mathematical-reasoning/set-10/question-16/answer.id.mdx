@@ -1,17 +1,41 @@
-Penguapan hanya mengurangi air, jadi **volume sari jeruk tetap**. Tentukan volume akhir yang membuat sari jeruk itu menjadi 32%.
+Kamu mencari banyak larutan paling sedikit yang harus dibuang. Larutan <InlineMath math="1{.}500\text{ ppm}" /> terlalu pekat untuk minggu kelima, dan **tandon hanya muat** <InlineMath math="200" /> liter. Rencananya begini: hitung stok A yang ada, periksa apakah menambah air saja sudah cukup, lalu cari banyak larutan yang harus dibuang sebelum tandon diisi air sampai penuh.
 
-# Sari jeruk yang tetap
+# Stok A di tandon
 
-<BlockMath math="20\%\cdot800=160\text{ mL}" />
-
-# Volume akhir dan air yang menguap
+Stok A sama dengan **konsentrasi dibagi** <InlineMath math="200" />, lalu dikali volume.
 
 <BlockMath math="\begin{aligned}
-32\%\cdot V&=160\\
-V&=500\text{ mL}\\
-800-500&=300\text{ mL}
+\text{stok A} &= \frac{1{.}500}{200}\cdot180=7{,}5\cdot180=1{.}350\text{ ml}
 \end{aligned}" />
 
-Nilai 500 mL adalah volume akhir, bukan air yang menguap. Nilai 160 mL adalah volume sari jeruk. Nilai 256 mL adalah 32% dari 800 mL, dan 96 mL adalah selisih kadar, 12%, dikali 800 mL. **Keduanya memakai volume awal**, padahal kadar 32% harus dihitung dari volume akhir.
+# Menambah air saja tidak cukup
 
-Jadi, air yang harus diuapkan adalah **300 mL**.
+Rentang yang sesuai untuk minggu kelima adalah <InlineMath math="1{.}150" /> sampai <InlineMath math="1{.}250\text{ ppm}" />. Volume terbesar yang mungkin adalah <InlineMath math="200" /> liter, jadi konsentrasi terendah tanpa membuang larutan adalah <InlineMath math="\tfrac{1{.}350}{200}\cdot200=1{.}350\text{ ppm}" />. Nilai itu masih di atas <InlineMath math="1{.}250\text{ ppm}" />, jadi **sebagian larutan harus dibuang dulu**.
+
+# Banyak larutan yang dibuang
+
+Misalkan Pak Darto membuang <InlineMath math="x" /> liter. Larutan yang tersisa tetap berkonsentrasi <InlineMath math="1{.}500\text{ ppm}" />, jadi stok A-nya <InlineMath math="7{,}5(180-x)" /> ml. Supaya yang dibuang sesedikit mungkin, **isi tandon dengan air sampai penuh**, karena makin banyak air, makin encer larutannya.
+
+<BlockMath math="\begin{aligned}
+\frac{7{,}5(180-x)}{200}\cdot200 &\le 1{.}250\\
+7{,}5(180-x) &\le 1{.}250\\
+180-x &\le 166\tfrac{2}{3}\\
+x &\ge 13\tfrac{1}{3}
+\end{aligned}" />
+
+Larutan dibuang dalam liter bulat, jadi paling sedikit <InlineMath math="14" /> liter.
+
+# Pemeriksaan kedua batas
+
+Dengan <InlineMath math="x=14" />, konsentrasinya <InlineMath math="7{,}5\cdot166=1{.}245\text{ ppm}" />. Nilai ini di bawah <InlineMath math="1{.}250" /> dan di atas <InlineMath math="1{.}150" />, jadi **larutan itu sesuai**. Dengan <InlineMath math="x=13" />, konsentrasinya <InlineMath math="7{,}5\cdot167=1{.}252{,}5\text{ ppm}" />, masih terlalu pekat.
+
+# Jawaban yang sering muncul
+
+Jawaban-jawaban ini **mengabaikan kapasitas, rentang, atau pembulatan**.
+
+- Jawaban <InlineMath math="45" /> hanya menambah air sampai <InlineMath math="225" /> liter, padahal tandon hanya muat <InlineMath math="200" /> liter.
+- Jawaban <InlineMath math="20" /> mengejar tepat <InlineMath math="1{.}200\text{ ppm}" />, padahal batas atas <InlineMath math="1{.}250\text{ ppm}" /> sudah cukup.
+- Jawaban <InlineMath math="13" /> membulatkan <InlineMath math="13\tfrac{1}{3}" /> ke bawah.
+- Jawaban <InlineMath math="30" /> mengisi air hanya sampai <InlineMath math="180" /> liter lagi, bukan sampai tandon penuh.
+
+Jadi, Pak Darto harus membuang paling sedikit <InlineMath math="14" /> liter larutan.

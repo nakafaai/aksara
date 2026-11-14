@@ -1,15 +1,56 @@
-Rina **membeli** mata uang asing, jadi yang dipakai adalah kurs jual, yaitu harga yang dibayar pelanggan. Biaya layanan ditambahkan pada pembelian.
+Kamu mencari loket dan waktu tunggu orang nomor <InlineMath math="20" />. Rencananya, susun jadwal mulai dilayani setiap orang dengan aturan **loket yang lebih dulu kosong**, temukan baris orang nomor <InlineMath math="20" />, lalu kurangi waktu mulai dengan waktu datangnya.
 
-# Harga 300 SGD
+# Kedua loket selalu sibuk
 
-<BlockMath math="300\cdot11{.}800=3{.}540{.}000" />
+Loket A bisa memulai pelayanan baru setiap <InlineMath math="4" /> menit, yaitu pukul 08.00, 08.04, 08.08, dan seterusnya. Loket B setiap <InlineMath math="6" /> menit, yaitu pukul 08.00, 08.06, 08.12, dan seterusnya. Jadwal ini hanya berlaku jika **selalu ada orang yang menunggu** saat loket kosong. Tabel di bawah menunjukkan bahwa setiap orang memang sudah datang sebelum giliran mulainya, jadi kedua loket tidak pernah menganggur.
 
-# Menambahkan biaya layanan
+# Jadwal mulai dilayani
 
-<BlockMath math="3{.}540{.}000+25{.}000=3{.}565{.}000" />
+Urutkan semua waktu mulai yang tersedia di kedua loket dari yang paling awal. Pada pukul 08.00, 08.12, dan 08.24 kedua loket kosong bersamaan, jadi **orang yang lebih dulu dalam antrean menuju Loket A**. Orang nomor <InlineMath math="n" /> yang datang sesudah 08.00 tiba <InlineMath math="3(n-10)" /> menit setelah 08.00.
 
-Biaya layanan dibayar **sekali untuk satu transaksi**, berapa pun jumlah dolar yang dibeli.
+| Orang nomor | Datang | Mulai dilayani | Loket |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> | 08.00 | 08.00 | A |
+| <InlineMath math="2" /> | 08.00 | 08.00 | B |
+| <InlineMath math="3" /> | 08.00 | 08.04 | A |
+| <InlineMath math="4" /> | 08.00 | 08.06 | B |
+| <InlineMath math="5" /> | 08.00 | 08.08 | A |
+| <InlineMath math="6" /> | 08.00 | 08.12 | A |
+| <InlineMath math="7" /> | 08.00 | 08.12 | B |
+| <InlineMath math="8" /> | 08.00 | 08.16 | A |
+| <InlineMath math="9" /> | 08.00 | 08.18 | B |
+| <InlineMath math="10" /> | 08.00 | 08.20 | A |
+| <InlineMath math="11" /> | 08.03 | 08.24 | A |
+| <InlineMath math="12" /> | 08.06 | 08.24 | B |
+| <InlineMath math="13" /> | 08.09 | 08.28 | A |
+| <InlineMath math="14" /> | 08.12 | 08.30 | B |
+| <InlineMath math="15" /> | 08.15 | 08.32 | A |
+| <InlineMath math="16" /> | 08.18 | 08.36 | A |
+| <InlineMath math="17" /> | 08.21 | 08.36 | B |
+| <InlineMath math="18" /> | 08.24 | 08.40 | A |
+| <InlineMath math="19" /> | 08.27 | 08.42 | B |
+| <InlineMath math="20" /> | 08.30 | 08.44 | A |
 
-Nilai Rp3.480.000,00 dan Rp3.505.000,00 memakai kurs beli, yang berlaku ketika pelanggan menjual. Nilai Rp3.455.000,00 memakai kurs beli dan mengurangkan biaya layanan. Nilai Rp3.590.000,00 menambahkan biaya layanan dua kali.
+Dalam setiap <InlineMath math="12" /> menit, Loket A memulai <InlineMath math="3" /> pelayanan dan Loket B memulai <InlineMath math="2" /> pelayanan, jadi polanya berulang.
 
-Jadi, Rina harus membayar **Rp3.565.000,00**.
+# Waktu tunggu orang nomor dua puluh
+
+Orang nomor <InlineMath math="19" /> mengambil Loket B pukul 08.42, sehingga Loket B baru kosong lagi pukul 08.48. Loket A kosong pukul 08.44, lebih awal, jadi **orang nomor <InlineMath math="20" /> menuju Loket A pukul 08.44**. Ia datang <InlineMath math="30" /> menit setelah 08.00, yaitu pukul 08.30, dan mulai dilayani <InlineMath math="44" /> menit setelah 08.00.
+
+<BlockMath math="\begin{aligned}
+\text{menit datang}&=3\cdot(20-10)=30 \\
+\text{waktu tunggu}&=44-30=14
+\end{aligned}" />
+
+Sebagai pemeriksaan, dalam <InlineMath math="44" /> menit pertama Loket A memulai <InlineMath math="12" /> pelayanan dan Loket B memulai <InlineMath math="8" /> pelayanan. Jadi orang nomor <InlineMath math="20" /> memang orang terakhir dari <InlineMath math="12" /> orang di Loket A sampai saat itu.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain berasal dari **satu langkah jadwal yang tergelincir**.
+
+- Loket A dengan <InlineMath math="18" /> menit menghitung sampai pelayanan selesai pukul 08.48, padahal waktu tunggu berhenti saat pelayanan dimulai.
+- Loket A dengan <InlineMath math="44" /> menit memakai waktu mulai sebagai waktu tunggu dan lupa bahwa orang itu baru datang pukul 08.30.
+- Loket B dengan <InlineMath math="12" /> menit memberikan giliran Loket B pukul 08.42 kepada orang nomor <InlineMath math="20" />, padahal giliran itu sudah diambil orang nomor <InlineMath math="19" />.
+- Loket B dengan <InlineMath math="24" /> menit menganggap orang bergantian ke Loket A dan Loket B, padahal mereka menuju loket yang lebih dulu kosong.
+
+Jadi, orang nomor <InlineMath math="20" /> dilayani di Loket A dengan waktu tunggu <InlineMath math="14" /> menit.

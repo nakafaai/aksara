@@ -1,19 +1,28 @@
-The load is the same both ways, so the whole 12 km trip uses the battery at one rate. The condition is that **the flight time with that load is at least the travel time**.
+You're looking for the moment Raka's total lesson time first reaches <InlineMath math="22" /> hours. The plan: turn the target into minutes, add up the lesson time day by day with each day's own period length, then find the exact minute on the last day, **taking the break into account**.
 
-# Travel time
+# Lesson time each day
 
-<BlockMath math="\frac{12}{0.6}=20\text{ minutes}" />
-
-# Heaviest load
+The target of <InlineMath math="22" /> hours is <InlineMath math="22\cdot60=1{,}320" /> minutes. **The period length depends on the day**, so work out each day with its own row.
 
 <BlockMath math="\begin{aligned}
-30-4m&\ge20\\
-4m&\le10\\
-m&\le2.5
+\text{Monday} &= 9\cdot40=360\text{ min} \\
+\text{Tuesday} &= 9\cdot45=405\text{ min} \\
+\text{Wednesday} &= 9\cdot45=405\text{ min}
 \end{aligned}" />
 
-With 2.5 kg a full battery lasts exactly 20 minutes, so the trip **can just be completed**. A heavier load empties the battery before the drone gets back.
+By the end of Wednesday the total is <InlineMath math="360+405+405=1{,}170" /> minutes. That's still <InlineMath math="1{,}320-1{,}170=150" /> minutes short, so the target is reached on Thursday.
 
-The choices 1 kg, 1.5 kg, 2 kg and 2.25 kg also allow the trip, but they are not the heaviest.
+# The exact minute on Thursday
 
-So the heaviest possible load is **2.5 kg**.
+On Thursday, period <InlineMath math="1" /> starts at 07.15. Periods <InlineMath math="1" /> to <InlineMath math="3" /> give <InlineMath math="3\cdot45=135" /> minutes and end at 09.30. **The break from 09.30 to 09.45 adds no lesson time**, so the remaining <InlineMath math="150-135=15" /> minutes come from period <InlineMath math="4" />, which starts at 09.45.
+
+The target is reached <InlineMath math="15" /> minutes after 09.45, which is 10.00. As a check, <InlineMath math="1{,}170+135+15=1{,}320" /> minutes, exactly <InlineMath math="22" /> hours.
+
+# The wrong options
+
+- Thursday 09.00 comes from **treating every period as <InlineMath math="45" /> minutes**, Monday included. The total by Wednesday becomes <InlineMath math="1{,}215" /> minutes, leaving <InlineMath math="105" /> minutes.
+- Thursday 09.45 comes from forgetting to skip the first break, so the <InlineMath math="150" /> minutes are added straight to 07.15.
+- Thursday 10.15 comes from taking the first break as <InlineMath math="30" /> minutes, when <InlineMath math="30" /> minutes is the length of the second break.
+- Thursday 10.30 is the end of period <InlineMath math="4" />, but the target is already reached in the middle of that period.
+
+So Raka's total lesson time first reaches <InlineMath math="22" /> hours on Thursday at 10.00.

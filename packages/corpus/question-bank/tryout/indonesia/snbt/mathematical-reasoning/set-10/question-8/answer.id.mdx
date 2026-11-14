@@ -1,16 +1,54 @@
-Pukul 09.30 adalah 270 menit setelah 05.00. Untuk setiap jurusan, cari **kelipatan selang yang pertama tidak kurang dari 270**.
+Kamu mencari tenor terpendek yang cicilannya tidak lebih dari <InlineMath math="400{.}000" />. Bunga per bulan berubah setelah tenor <InlineMath math="12" /> bulan, jadi rencananya begini: **periksa kedua kelompok tenor secara terpisah**, susun pertidaksamaan untuk cicilannya, lalu cek tenor di sekitar batasnya.
 
-# Keberangkatan berikutnya
+# Cicilan sebagai rumus tenor
+
+Pokok kreditnya <InlineMath math="6{.}000{.}000-1{.}200{.}000=4{.}800{.}000" />. Total bunga dibagi tenor memberi **bunga per bulan yang tetap**, yaitu <InlineMath math="4{.}800{.}000\cdot r" />.
 
 <BlockMath math="\begin{aligned}
-\text{A}&:\quad 270=16\cdot16+14,\quad 16\cdot17=272\to\text{pukul }09.32\\
-\text{B}&:\quad 270=24\cdot11+6,\quad 24\cdot12=288\to\text{pukul }09.48
+\text{cicilan sebelum dibulatkan} &= \frac{4{.}800{.}000}{n}+4{.}800{.}000\cdot r
 \end{aligned}" />
 
-# Waktu menunggu
+Batas <InlineMath math="400{.}000" /> sudah kelipatan <InlineMath math="1{.}000" />. Jadi cicilan yang dibulatkan ke atas tidak lebih dari <InlineMath math="400{.}000" /> **tepat ketika nilai sebelum dibulatkan juga tidak lebih dari** <InlineMath math="400{.}000" />.
 
-Kereta A berangkat 2 menit lagi dan kereta B 18 menit lagi, jadi **kereta A lebih dulu**.
+# Tenor sampai dua belas bulan
 
-Nilai 14 dan 6 menit adalah sisa pembagian, yaitu waktu sejak kereta A dan kereta B terakhir berangkat, bukan waktu menunggu. Nilai 18 menit adalah waktu menunggu kereta B, dan nilai 8 menit hanya setengah selang kereta A.
+Di kelompok ini <InlineMath math="r=1{,}5\%" />, jadi bunga per bulannya <InlineMath math="72{.}000" />. Cicilan terkecil di kelompok ini ada pada tenor terpanjang, yaitu <InlineMath math="12" /> bulan.
 
-Jadi, Rina paling sedikit menunggu **2 menit**.
+<BlockMath math="\begin{aligned}
+\frac{4{.}800{.}000}{12}+72{.}000 &= 400{.}000+72{.}000=472{.}000>400{.}000
+\end{aligned}" />
+
+Bahkan cicilan terkecilnya sudah melebihi batas, jadi **tidak ada tenor sampai dua belas bulan yang memenuhi**.
+
+# Tenor tiga belas sampai dua puluh empat bulan
+
+Di kelompok ini <InlineMath math="r=2{,}5\%" />, jadi bunga per bulannya <InlineMath math="120{.}000" />. Bunga yang lebih besar membuat **bagian pokok harus lebih kecil**.
+
+<BlockMath math="\begin{aligned}
+\frac{4{.}800{.}000}{n}+120{.}000 &\le 400{.}000\\
+\frac{4{.}800{.}000}{n} &\le 280{.}000\\
+n &\ge \frac{4{.}800{.}000}{280{.}000}=17\tfrac{1}{7}
+\end{aligned}" />
+
+Tenor harus bilangan bulat, jadi tenor terkecil yang mungkin adalah <InlineMath math="18" /> bulan.
+
+# Pemeriksaan di sekitar batas
+
+Cek tenor <InlineMath math="17" /> dan <InlineMath math="18" /> bulan secara langsung.
+
+<BlockMath math="\begin{aligned}
+\text{tenor } 17\text{: } \frac{4{.}800{.}000}{17}+120{.}000 &= 402{.}352{,}94\ldots\to403{.}000>400{.}000\\
+\text{tenor } 18\text{: } \frac{4{.}800{.}000}{18}+120{.}000 &= 386{.}666{,}66\ldots\to387{.}000\le400{.}000
+\end{aligned}" />
+
+**Tenor delapan belas bulan memenuhi**, sedangkan tenor tujuh belas bulan belum.
+
+# Jawaban yang sering muncul
+
+Jawaban-jawaban ini **melewatkan bunga, lompatan bunga, atau arah pembulatan**.
+
+- Jawaban <InlineMath math="15" /> memakai bunga <InlineMath math="1{,}5\%" /> untuk semua tenor, sehingga <InlineMath math="320{.}000+72{.}000=392{.}000" /> tampak memenuhi.
+- Jawaban <InlineMath math="12" /> melupakan bunga dan hanya membagi pokok, <InlineMath math="\tfrac{4{.}800{.}000}{12}=400{.}000" />.
+- Jawaban <InlineMath math="17" /> membulatkan <InlineMath math="17\tfrac{1}{7}" /> ke bawah, padahal tenor <InlineMath math="17" /> bulan memberi cicilan <InlineMath math="403{.}000" />.
+
+Jadi, tenor terpendek yang dapat dipilih Sari adalah <InlineMath math="18" /> bulan.

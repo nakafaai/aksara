@@ -1,17 +1,41 @@
-Evaporation removes only water, so **the volume of juice stays the same**. Find the final volume that makes that juice 32%.
+You're looking for the least solution to pour out. A <InlineMath math="1{,}500\text{ ppm}" /> solution is too strong for week five, and **the tank only holds** <InlineMath math="200" /> litres. Here's the plan: find the stock A in the tank, check whether adding water alone is enough, then work out how much to pour out before filling the tank with water.
 
-# Juice that stays
+# Stock A in the tank
 
-<BlockMath math="20\%\cdot800=160\text{ mL}" />
-
-# Final volume and water evaporated
+Stock A equals **the concentration divided by** <InlineMath math="200" />, times the volume.
 
 <BlockMath math="\begin{aligned}
-32\%\cdot V&=160\\
-V&=500\text{ mL}\\
-800-500&=300\text{ mL}
+\text{stock A} &= \frac{1{,}500}{200}\cdot180=7.5\cdot180=1{,}350\text{ ml}
 \end{aligned}" />
 
-The value 500 mL is the final volume, not the water evaporated. The value 160 mL is the volume of juice. The value 256 mL is 32% of 800 mL, and 96 mL is the change in concentration, 12%, times 800 mL. **Both use the starting volume**, although 32% must be taken of the final volume.
+# Adding water alone isn't enough
 
-So **300 mL** of water must evaporate.
+The suitable range for week five is <InlineMath math="1{,}150" /> to <InlineMath math="1{,}250\text{ ppm}" />. The biggest possible volume is <InlineMath math="200" /> litres, so without pouring anything out the lowest concentration is <InlineMath math="\tfrac{1{,}350}{200}\cdot200=1{,}350\text{ ppm}" />. That's still above <InlineMath math="1{,}250\text{ ppm}" />, so **some solution has to be poured out first**.
+
+# How much to pour out
+
+Say Pak Darto pours out <InlineMath math="x" /> litres. What's left is still at <InlineMath math="1{,}500\text{ ppm}" />, so it holds <InlineMath math="7.5(180-x)" /> ml of stock A. To pour out as little as possible, **fill the tank with water right to the top**, because more water makes the solution weaker.
+
+<BlockMath math="\begin{aligned}
+\frac{7.5(180-x)}{200}\cdot200 &\le 1{,}250\\
+7.5(180-x) &\le 1{,}250\\
+180-x &\le 166\tfrac{2}{3}\\
+x &\ge 13\tfrac{1}{3}
+\end{aligned}" />
+
+The solution is poured out in whole litres, so at least <InlineMath math="14" /> litres.
+
+# Checking both bounds
+
+With <InlineMath math="x=14" />, the concentration is <InlineMath math="7.5\cdot166=1{,}245\text{ ppm}" />. That's below <InlineMath math="1{,}250" /> and above <InlineMath math="1{,}150" />, so **the solution is suitable**. With <InlineMath math="x=13" />, the concentration is <InlineMath math="7.5\cdot167=1{,}252.5\text{ ppm}" />, still too strong.
+
+# Common wrong answers
+
+These answers **ignore the capacity, the range, or the rounding**.
+
+- The answer <InlineMath math="45" /> just adds water up to <InlineMath math="225" /> litres, but the tank only holds <InlineMath math="200" /> litres.
+- The answer <InlineMath math="20" /> aims for exactly <InlineMath math="1{,}200\text{ ppm}" />, although the upper bound of <InlineMath math="1{,}250\text{ ppm}" /> is already enough.
+- The answer <InlineMath math="13" /> rounds <InlineMath math="13\tfrac{1}{3}" /> down.
+- The answer <InlineMath math="30" /> only refills to <InlineMath math="180" /> litres instead of filling the tank.
+
+So Pak Darto has to pour out at least <InlineMath math="14" /> litres of solution.

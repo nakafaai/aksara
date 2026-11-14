@@ -1,19 +1,36 @@
-Jarak antara dua persimpangan adalah **selisih absis ditambah selisih ordinat**. Hitung panjang beberapa urutan, lalu pastikan tidak ada rute yang lebih pendek.
+Kamu mencari banyak penggantian paling sedikit sampai salinitas masuk rentang aman, yaitu paling tinggi <InlineMath math="36\text{ g/L}" />. Rencananya: lihat apa yang terjadi pada **kelebihan garam** di atas <InlineMath math="35\text{ g/L}" /> setiap kali air diganti, lalu hitung kali demi kali.
 
-# Panjang beberapa urutan
+# Apa yang terjadi pada satu penggantian
 
-Bandingkan **panjang setiap urutan kunjungan**, termasuk jalan kembali ke gudang.
+Membuang <InlineMath math="40\text{ liter}" /> berarti menyisakan <InlineMath math="80\text{ liter}" /> air lama, yaitu <InlineMath math="\frac{2}{3}" /> isi akuarium. Sisanya, <InlineMath math="\frac13" /> isi akuarium, diisi air laut buatan bersalinitas <InlineMath math="35\text{ g/L}" />. Jadi, salinitas baru adalah rata-rata berbobot dari salinitas lama dan <InlineMath math="35" />.
 
-| Urutan | Panjang dalam ruas |
-| :---: | :---: |
-| G, B, A, C, G | <InlineMath math="6+5+4+7=22" /> |
-| G, A, C, B, G | <InlineMath math="7+4+9+6=26" /> |
-| G, C, B, A, G | <InlineMath math="7+9+5+7=28" /> |
+<BlockMath math="\begin{aligned}
+c_{\text{baru}} &= \frac{2}{3}\,c_{\text{lama}}+\frac{1}{3}\cdot35 \\
+c_{\text{baru}}-35 &= \frac{2}{3}\,(c_{\text{lama}}-35)
+\end{aligned}" />
 
-# Batas bawah setiap rute
+Baris kedua adalah kunci soal ini: **kelebihan salinitas di atas <InlineMath math="35" /> dikali <InlineMath math="\frac23" /> setiap penggantian**. Kelebihannya tidak berkurang dengan jumlah tetap.
 
-Rute harus mencapai absis 5, yaitu B, dan kembali ke absis 0, jadi paling sedikit <InlineMath math="2\cdot5=10" /> ruas mendatar. Rute juga harus mencapai ordinat 6, yaitu C, dan kembali ke ordinat 0, jadi paling sedikit <InlineMath math="2\cdot6=12" /> ruas tegak. Jadi **setiap rute paling sedikit 22 ruas**.
+# Menghitung kali demi kali
 
-Urutan G, B, A, C, G mencapai batas itu, jadi 22 ruas atau 2.200 m adalah yang terpendek. Nilai 2.600 m dan 2.800 m berasal dari urutan yang kurang baik.
+Kelebihan awal <InlineMath math="41-35=6" />. Ikan aman jika kelebihan itu paling banyak <InlineMath math="36-35=1" />.
 
-Jadi, panjang rute terpendek adalah **2.200 m**.
+| Setelah penggantian ke | Kelebihan di atas <InlineMath math="35" /> | Salinitas |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="6\cdot\frac23=4" /> | <InlineMath math="39" /> |
+| <InlineMath math="2" /> | <InlineMath math="4\cdot\frac23=\frac83" /> | <InlineMath math="37\frac23" /> |
+| <InlineMath math="3" /> | <InlineMath math="\frac83\cdot\frac23=\frac{16}{9}" /> | <InlineMath math="36\frac79" /> |
+| <InlineMath math="4" /> | <InlineMath math="\frac{16}{9}\cdot\frac23=\frac{32}{27}" /> | <InlineMath math="36\frac{5}{27}" /> |
+| <InlineMath math="5" /> | <InlineMath math="\frac{32}{27}\cdot\frac23=\frac{64}{81}" /> | <InlineMath math="35\frac{64}{81}" /> |
+
+Setelah penggantian keempat, kelebihannya <InlineMath math="\frac{32}{27}" />, masih lebih dari <InlineMath math="1" /> karena <InlineMath math="32>27" />. **Baru setelah penggantian kelima kelebihannya <InlineMath math="\frac{64}{81}" />, kurang dari <InlineMath math="1" />**.
+
+# Memeriksa batas bawah
+
+Air pengisi bersalinitas tepat <InlineMath math="35" />, jadi kelebihannya selalu positif dan **salinitas tidak pernah turun di bawah <InlineMath math="35\text{ g/L}" />**. Batas bawah <InlineMath math="33\text{ g/L}" /> tidak pernah terlanggar, jadi penggantian kelima memang membuat ikan aman.
+
+# Kesalahan yang sering terjadi
+
+Kalau **salinitas dianggap turun <InlineMath math="2\text{ g/L}" /> setiap kali**, yaitu sepertiga dari kelebihan awal, salinitas tampak sudah <InlineMath math="35" /> setelah <InlineMath math="3" /> kali. Kenyataannya, setelah <InlineMath math="3" /> kali salinitasnya masih <InlineMath math="36\frac79\text{ g/L}" />.
+
+Jadi, diperlukan paling sedikit <InlineMath math="5" /> kali penggantian air.

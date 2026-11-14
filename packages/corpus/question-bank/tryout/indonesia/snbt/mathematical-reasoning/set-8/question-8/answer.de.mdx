@@ -1,21 +1,41 @@
-Die Zahl der Etagen zu Fuß ist **die Summe der Abstände vom Halt zu jedem Ziel**. Abstände nach unten und nach oben zählen beide.
+Gesucht ist der erste Zeitpunkt, an dem **die Einnahme der Veranstalter die Produktionskosten erreicht**, also <InlineMath math="\text{Rp}100{.}000{.}000" />. So gehst du vor: Bestimme, was die Veranstalter pro Ticket in jeder Stufe erhalten, addiere Stufe für Stufe und finde dann heraus, wie viele Normaltickets noch fehlen.
 
-# Einige Möglichkeiten berechnen
+# Einnahme pro Ticket
 
-Berechne **die Summe der Abstände für jede Halteetage** aus der Auswahl.
+Die Veranstalter erhalten <InlineMath math="90\%" /> des Ticketpreises ihrer Stufe. Rabatt und Servicegebühr sind Sache der Plattform, also **ändert keines von beiden die Einnahme der Veranstalter**.
 
-| Halt in Etage | Etagen zu Fuß insgesamt |
-| :---: | :---: |
-| 6 | <InlineMath math="3+0+0+4+9=16" /> |
-| 8 | <InlineMath math="5+2+2+2+7=18" /> |
-| 9 | <InlineMath math="6+3+3+1+6=19" /> |
-| 10 | <InlineMath math="7+4+4+0+5=20" /> |
-| 15 | <InlineMath math="12+9+9+5+0=35" /> |
+<BlockMath math="\begin{aligned}
+\text{Early Bird: } 90\%\cdot120{.}000&=108{.}000\\
+\text{Presale: } 90\%\cdot150{.}000&=135{.}000\\
+\text{Normal: } 90\%\cdot200{.}000&=180{.}000
+\end{aligned}" />
 
-# Warum der Median
+# Die Summe nach den ersten zwei Stufen
 
-Hält der Aufzug eine Etage über Etage 6, laufen die drei Personen mit Ziel 3, 6 und 6 je eine Etage mehr, während nur zwei Personen weniger laufen. **Der Median, Etage 6, macht die Summe der Abstände am kleinsten**.
+Berechne zuerst das Geld, wenn alle Early-Bird- und Presale-Tickets verkauft sind:
 
-Etage 8 ist der Mittelwert der Ziele, und Etage 9 liegt genau zwischen der niedrigsten und der höchsten Etage. Beide ergeben eine größere Summe.
+<BlockMath math="\begin{aligned}
+150\cdot108{.}000+300\cdot135{.}000&=16{.}200{.}000+40{.}500{.}000\\
+&=56{.}700{.}000
+\end{aligned}" />
 
-Der Aufzug sollte also in **Etage 6** halten.
+Das ist noch weniger als <InlineMath math="100{.}000{.}000" />, also **liegt die Gewinnschwelle in der Normalstufe**.
+
+# Benötigte Normaltickets
+
+Es fehlen <InlineMath math="100{.}000{.}000-56{.}700{.}000=43{.}300{.}000" /> Rupiah. Jedes Normalticket bringt <InlineMath math="180{.}000" /> Rupiah, die Zahl der Normaltickets <InlineMath math="k" /> muss also erfüllen:
+
+<BlockMath math="\begin{aligned}
+180{.}000k&\ge43{.}300{.}000\\
+k&\ge240\tfrac{5}{9}
+\end{aligned}" />
+
+Tickets gibt es nur ganz, also **rundest du auf** <InlineMath math="k=241" /> auf. Insgesamt sind das <InlineMath math="450+241=691" /> Tickets.
+
+Prüfe beide Seiten. Nach <InlineMath math="690" /> Tickets haben die Veranstalter <InlineMath math="56{.}700{.}000+240\cdot180{.}000=99{.}900{.}000" /> Rupiah, also noch zu wenig. Nach <InlineMath math="691" /> Tickets haben sie <InlineMath math="56{.}700{.}000+241\cdot180{.}000=100{.}080{.}000" /> Rupiah und erreichen die Produktionskosten.
+
+# Häufige falsche Antworten
+
+Einige Abkürzungen führen zu anderen Zahlen. Vergisst du **den Anteil von neunzig Prozent für die Veranstalter**, erhältst du <InlineMath math="635" /> Tickets, denn <InlineMath math="63{.}000{.}000+185\cdot200{.}000=100{.}000{.}000" />. Rundest du <InlineMath math="240\tfrac{5}{9}" /> ab, erhältst du <InlineMath math="690" /> Tickets, obwohl das Geld noch nicht reicht. Ziehst du den Rabatt für vier Tickets vom Geld der Veranstalter ab, wird deine Antwort zu groß, denn diesen Rabatt trägt die Plattform.
+
+Es müssen also mindestens <InlineMath math="691" /> Tickets verkauft werden.

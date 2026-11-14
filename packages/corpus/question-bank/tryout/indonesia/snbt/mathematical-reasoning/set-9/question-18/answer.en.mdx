@@ -1,13 +1,38 @@
-The sloped part needs a horizontal length of at least <InlineMath math="60\cdot12=720" /> cm, or 7.2 m. Since one section is at most 6 m, first find **how many sections and landings are needed**.
+Every statement depends on the two machines' schedules, so trace those first, from Monday to Wednesday. Keep the key rule in mind: **operating hours keep carrying over from one day to the next**, and a machine gets maintenance as soon as it hits its limit. The good parts per hour are <InlineMath math="95\%\times120=114" /> for P and <InlineMath math="90\%\times90=81" /> for Q.
 
-# Sections and landings
+# Both machines' schedules
 
-7.2 m is more than 6 m, so one section is not enough. Two sections are enough, say 3.6 m and 3.6 m, and **between two sections there is one landing**.
+Machine P runs <InlineMath math="5" /> hours and then gets <InlineMath math="1" /> hour of maintenance. Machine Q runs <InlineMath math="7" /> hours and then gets <InlineMath math="1" /> hour, so two of its rounds fill exactly <InlineMath math="16" /> hours and **Q's schedule is the same every day**.
 
-# Total horizontal length
+| Day | P runs | P maintenance starts | P hours at 23:00 | Q runs | Q maintenance starts |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| Monday | <InlineMath math="14" /> hours | 12:00, 18:00 | <InlineMath math="4" /> | <InlineMath math="14" /> hours | 14:00, 22:00 |
+| Tuesday | <InlineMath math="13" /> hours | 08:00, 14:00, 20:00 | <InlineMath math="2" /> | <InlineMath math="14" /> hours | 14:00, 22:00 |
+| Wednesday | <InlineMath math="13" /> hours | 10:00, 16:00, 22:00 | <InlineMath math="0" /> | <InlineMath math="14" /> hours | 14:00, 22:00 |
 
-<BlockMath math="7.2+1.5=8.7\text{ m}" />
+The column of P's hours at 23:00 shows what carries over to the next morning. On Tuesday morning P needs only <InlineMath math="1" /> more hour before maintenance, and on Wednesday morning <InlineMath math="3" /> more.
 
-The value 7.2 m forgets the landing. The value 10.2 m uses two landings, although two sections need only one. The value 12 m uses two 6 m sections with no landing, and 13.5 m uses two 6 m sections with a landing, both longer than needed.
+# The first statement about P's running hours
 
-So the shortest total horizontal length of the ramp is **8.7 m**.
+P runs <InlineMath math="14" /> hours on Monday and <InlineMath math="13" /> hours on Tuesday, because **the <InlineMath math="4" /> hours left over from Monday force three maintenance stops on Tuesday**. Since <InlineMath math="13<14" />, the first statement is true.
+
+# The second statement about P's maintenance times
+
+P's maintenance starts at 12:00 and 18:00 on Monday, but at 08:00, 14:00, and 20:00 on Tuesday. **The carried hours shift the maintenance times** every day, so they aren't the same. The second statement is false.
+
+# The third statement about daily output
+
+P's smallest output comes on a day with <InlineMath math="13" /> running hours, while Q always runs <InlineMath math="14" /> hours.
+
+<BlockMath math="\begin{aligned}
+\text{P at least} &: 13\times114=1{,}482 \\
+\text{Q every day} &: 14\times81=1{,}134
+\end{aligned}" />
+
+Even on its worst day, **P still beats Q**, since <InlineMath math="1{,}482>1{,}134" />. On Monday the gap is even bigger, <InlineMath math="14\times114=1{,}596" />. The third statement is true.
+
+# The fourth statement about the combined rate
+
+The number <InlineMath math="114+81=195" /> only holds while both machines are running. On Monday from 12:00 to 13:00, P is in maintenance, so the factory makes only <InlineMath math="81" /> good parts that hour. On Wednesday from 22:00 to 23:00, **both machines are in maintenance at once**, so that hour makes nothing. The word always is broken, so the fourth statement is false.
+
+So the first statement is true, the second is false, the third is true, and the fourth is false.

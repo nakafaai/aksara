@@ -1,17 +1,48 @@
-The formula <InlineMath math="M(t)=360\cdot\left(\tfrac12\right)^{t/8}" /> is **exponential decay**: over equal time intervals the amount shrinks by the same factor, not by the same difference.
+The original plan is the anchor for every statement. Each row holds <InlineMath math="28" /> seedlings, because the <InlineMath math="22\text{ m}" /> stretch fits <InlineMath math="27" /> gaps of <InlineMath math="0.8\text{ m}" />. Each planting strip holds <InlineMath math="5" /> rows, because the <InlineMath math="5.5\text{ m}" /> band fits <InlineMath math="4" /> gaps of <InlineMath math="1.2\text{ m}" />. So the original plan holds <InlineMath math="2\cdot 5\cdot 28=280" /> seedlings. **Every change has to be recounted with both the field-edge limit and the channel limit**.
 
-# The decrease per hour is not constant
+# The first statement
 
-In the first 8 hours the medicine drops by 180 mg, but in the next 8 hours only by 90 mg. So **the decrease is not constant** and cannot be 45 mg every hour. The first statement is false.
-
-# Computing several times
+If the rows run parallel to the <InlineMath math="15\text{ m}" /> side, every row crosses the channel. So each row splits into two pieces, each lying in a <InlineMath math="5.5\text{ m}" /> band. The rows now line up along the <InlineMath math="24\text{ m}" /> side, on a <InlineMath math="22\text{ m}" /> stretch.
 
 <BlockMath math="\begin{aligned}
-M(24)&=360\cdot\left(\tfrac12\right)^{3}=45\\
-M(4)&=360\cdot\left(\tfrac12\right)^{1/2}=\frac{360}{\sqrt2}=180\sqrt2\approx254.6\\
-M(40)&=360\cdot\left(\tfrac12\right)^{5}=\frac{360}{32}=11.25
+\text{seedlings per piece}&=\left\lfloor\frac{5.5}{0.8}\right\rfloor+1=6+1=7 \\
+\text{number of rows}&=\left\lfloor\frac{22}{1.2}\right\rfloor+1=18+1=19 \\
+\text{total}&=19\cdot 2\cdot 7=266
 \end{aligned}" />
 
-06:00 the next day is 24 hours after the first dose, so the second statement is true. After 4 hours there are about 254.6 mg. The figure 270 mg **assumes a linear decrease**, half of the 180 mg lost in the first 8 hours. The third statement is false. The fourth statement is true.
+The symbol <InlineMath math="\lfloor x\rfloor" /> means the largest whole number not above <InlineMath math="x" />. The result is <InlineMath math="266" />, **fewer than <InlineMath math="280" />**, because each row loses space on both sides of the channel. This statement is **false**.
 
-So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.
+# The second statement
+
+A reserve of at least <InlineMath math="10\%" /> of <InlineMath math="280" /> is <InlineMath math="28" /> seedlings, so at least <InlineMath math="308" /> seedlings are needed. Trays are sold whole, so **the number of trays rounds up**.
+
+<BlockMath math="\begin{aligned}
+\frac{308}{24}&=12.83\ldots \\
+12\cdot 24&=288<308 \\
+13\cdot 24&=312\ge 308
+\end{aligned}" />
+
+Twelve trays aren't enough, and thirteen are. This statement is **true**.
+
+# The third statement
+
+If the field and the channel get <InlineMath math="0.4\text{ m}" /> longer, the stretch for seedlings becomes <InlineMath math="24.4-2=22.4" /> metres.
+
+<BlockMath math="\frac{22.4}{0.8}=28" />
+
+That divides exactly, so <InlineMath math="28" /> gaps fit and the last seedling is exactly <InlineMath math="1\text{ m}" /> from the end of the field. The rule says "at least <InlineMath math="1\text{ m}" />", so **a distance exactly equal to the limit is still allowed**. Each row holds <InlineMath math="29" /> seedlings, one more, so this statement is **true**.
+
+# The fourth statement
+
+Without the channel, the field becomes one planting area <InlineMath math="15\text{ m}" /> wide, and **the <InlineMath math="0.5\text{ m}" /> channel limit disappears**. Rows can lie in a band of <InlineMath math="15-2\cdot 1=13" /> metres.
+
+<BlockMath math="\begin{aligned}
+\left\lfloor\frac{13}{1.2}\right\rfloor+1&=10+1=11 \\
+11\cdot 28-280&=308-280=28
+\end{aligned}" />
+
+The number of seedlings grows by exactly <InlineMath math="28" />, so this statement is **true**.
+
+# Summary
+
+The second, third and fourth statements are true, and the first is false. Each one depends on **rounding down for space and rounding up for packs**.
