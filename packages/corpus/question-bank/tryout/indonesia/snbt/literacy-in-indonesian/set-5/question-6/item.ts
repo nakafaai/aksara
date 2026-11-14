@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
+    contentDomain: "fiction",
+    topic: "implicit-information",
   },
-  stimulus: "social-media-age",
+  stimulus: "ferry-mechanic",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Batas usia ada gunanya, tetapi tidak cukup tanpa kewajiban rancangan bagi platform.",
+            "Surat itu memberitahukan bahwa masa kerja Pak Wiryo berakhir empat hari lagi, dan ia belum mau menerima kenyataan itu.",
         },
         {
           correct: false,
           label:
-            "Batas usia sebaiknya dihapus karena remaja berhak memakai media sosial seperti orang dewasa.",
+            "Surat itu menegur Pak Wiryo karena ia tidak pernah mencatat data mesin seperti yang dilakukan Darto.",
         },
         {
           correct: false,
           label:
-            "Batas usia akan efektif asalkan setiap pengguna diwajibkan mengunggah kartu identitas.",
+            "Surat itu memindahkan Pak Wiryo ke kapal lain sehingga urusan suku cadang diserahkan kepada orang lain.",
         },
         {
           correct: false,
           label:
-            "Batas usia sebaiknya diserahkan sepenuhnya kepada keluarga dan sekolah masing-masing.",
+            "Surat itu berisi penghargaan atas masa baktinya, dan ia membawanya ke mana-mana karena bangga.",
         },
         {
           correct: false,
           label:
-            "Batas usia mungkin berhasil jika diterapkan bersamaan oleh semua negara di dunia.",
+            "Surat itu mengundang Pak Wiryo ke acara kantor pekan depan, dan ia belum memutuskan untuk datang.",
         },
       ],
     },

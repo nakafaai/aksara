@@ -2,39 +2,37 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "strengthen-weaken",
   },
-  stimulus: "sriwijaya-stones",
+  stimulus: "pranata-mangsa",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "semua prasasti Sriwijaya hanya berisi kisah peperangan dan perjalanan pasukan raja",
+          label: "Banyak petani muda tidak lagi mengenal nama-nama mangsa.",
         },
         {
           correct: false,
           label:
-            "raja Sriwijaya tidak pernah menghadapi pemberontakan selama berkuasa",
-        },
-        {
-          correct: false,
-          label:
-            "prasasti Sriwijaya hanya dibuat di Pulau Bangka dan bukan di Palembang",
+            "Prakiraan resmi juga kadang meleset dalam menebak awal musim hujan.",
         },
         {
           correct: true,
           label:
-            "prasasti dipakai raja untuk berbagai tujuan, dari kisah perjalanan hingga ancaman",
+            "Sebagian tumbuhan yang dijadikan tanda dalam pranata mangsa ternyata bertunas menurut panjang siang, yang tidak berubah dari tahun ke tahun, bukan menurut hujan.",
+        },
+        {
+          correct: false,
+          label: "Pranata mangsa juga memuat tanda dari perilaku burung.",
         },
         {
           correct: false,
           label:
-            "taman di Talang Tuo dibangun untuk menyambut kedatangan I-Tsing",
+            "Di beberapa desa, kelompok tani mencatat tanda alam selama bertahun-tahun.",
         },
       ],
     },

@@ -3,38 +3,37 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
+    contentDomain: "fiction",
+    topic: "character",
   },
-  stimulus: "homework-debate",
+  stimulus: "kite-maker",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Pekerjaan rumah sebaiknya dihapus di semua jenjang karena hanya membebani anak.",
-        },
-        {
-          correct: false,
-          label:
-            "Pekerjaan rumah perlu ditambah agar murid sekolah dasar terbiasa belajar mandiri.",
-        },
-        {
           correct: true,
           label:
-            "Pekerjaan rumah dihapus di sekolah dasar, sedangkan di sekolah menengah diubah bentuknya.",
+            "Ia ingin Kakek melihat bahwa layangan pabrikan itu berhasil, walaupun ia tidak mengatakannya.",
         },
         {
           correct: false,
           label:
-            "Pekerjaan rumah sebaiknya diperiksa dulu oleh orang tua sebelum dikumpulkan kepada guru.",
+            "Ia khawatir Kakek marah karena ia pergi ke lapangan tanpa pamit.",
         },
         {
           correct: false,
           label:
-            "Pekerjaan rumah paling bermanfaat jika dikerjakan bersama orang tua di rumah.",
+            "Ia ingin memanggil Kakek untuk membantunya memegang benang yang mulai menegang.",
+        },
+        {
+          correct: false,
+          label:
+            "Ia merasa bersalah karena telah menghabiskan uang jajan tiga minggu.",
+        },
+        {
+          correct: false,
+          label: "Ia mencari tanda arah angin dari pepohonan di dekat rumah.",
         },
       ],
     },

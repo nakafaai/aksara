@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "conclusion",
   },
-  stimulus: "fine-dust",
+  stimulus: "hotel-occupancy",
   versions: {
     id: {
       kind: "choice",
@@ -14,25 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kendaraan di jalan raya paling banyak melintas di sekitar taman itu pada pukul 20.00.",
+            "Lembahdaun kehilangan kamar terisi per malam paling banyak dari musim ramai ke musim sepi, karena tingkat huniannya turun paling tajam.",
         },
         {
           correct: false,
           label:
-            "Alat pemantau di Stasiun B menjadi kurang akurat setiap kali matahari terbenam.",
+            "Karangwangi paling menguntungkan bagi pemilik hotel, karena tingkat huniannya paling stabil di antara kedua musim.",
         },
         {
           correct: false,
-          label: "Pohon-pohon di taman melepaskan debu halus setelah gelap.",
-        },
-        {
-          correct: false,
-          label: "Angin malam membawa partikel dari laut menuju permukiman.",
+          label:
+            "Di ketiga kota, tingkat hunian musim sepi tepat separuh tingkat hunian musim ramai.",
         },
         {
           correct: true,
           label:
-            "Warga memasak dan membakar sampah, lalu udara malam yang tenang menahan partikel.",
+            "Dari musim ramai ke musim sepi, Tirtasari kehilangan kamar terisi per malam paling banyak, walaupun penurunan tingkat huniannya bukan yang paling besar.",
+        },
+        {
+          correct: false,
+          label:
+            "Pada musim sepi, lebih dari separuh kamar hotel di setiap kota kosong.",
         },
       ],
     },

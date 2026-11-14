@@ -3,38 +3,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
+    contentDomain: "informational-text",
+    topic: "conclusion",
   },
-  stimulus: "dawn-market",
+  stimulus: "marshmallow-test",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "timbangan tua itu sudah rusak sehingga tidak dapat dipakai lagi",
+            "Penelitian 2018 menemukan bahwa lama menunggu tidak berhubungan sama sekali dengan prestasi pada usia $$15$$ tahun.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "pedagang di pasar itu menolak setiap tawaran yang diajukan pembeli",
+            "Anak-anak dalam uji awal di Stanford tidak mewakili anak-anak dari berbagai latar ekonomi.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "suara decit timbangan tua itu lebih keras daripada suara para pembeli di pasar",
+            "Sebagian kekuatan hubungan dalam temuan awal kemungkinan berasal dari latar keluarga yang tidak diperhitungkan.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "timbangan jujur menunjukkan berat, sedangkan orang kerap bersiasat saat menawar",
+            "Anak yang langsung memakan kudapannya dalam uji awal kelak pasti memperoleh nilai ujian yang rendah.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "pembeli lebih suka menawar kepada timbangan daripada pedagang",
+            "Penulis menganggap pengendalian diri tidak berpengaruh apa pun pada sukses seseorang.",
         },
       ],
     },

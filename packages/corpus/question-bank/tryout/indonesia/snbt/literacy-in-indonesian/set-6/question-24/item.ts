@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "author-purpose",
   },
-  stimulus: "sriwijaya-stones",
+  stimulus: "pranata-mangsa",
   versions: {
     id: {
       kind: "choice",
@@ -14,25 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Prasasti itu memuat daftar kata bahasa Indonesia yang pertama.",
+            "menunjukkan bahwa pengetahuan petani tentang bintang semakin berkurang",
+        },
+        {
+          correct: false,
+          label:
+            "membuktikan bahwa letak bintang ikut berubah akibat perubahan iklim",
+        },
+        {
+          correct: false,
+          label:
+            "menjelaskan cara menemukan Lintang Waluku di langit menjelang subuh",
         },
         {
           correct: true,
           label:
-            "Prasasti itu termasuk bukti tertulis tertua tentang bahasa Melayu.",
-        },
-        {
-          correct: false,
-          label: "Prasasti itu ditulis oleh I-Tsing dalam bahasa Melayu Kuno.",
+            "menunjukkan bahwa tanda yang dahulu tepat kini dapat menyesatkan, karena bintang tetap pada jadwalnya sedangkan hujan bergeser",
         },
         {
           correct: false,
           label:
-            "Prasasti itu membuktikan bahwa aksara Pallawa berasal dari Sumatra.",
-        },
-        {
-          correct: false,
-          label: "Prasasti itu ditulis dalam bahasa Indonesia yang sudah baku.",
+            "memperkenalkan Lintang Waluku kepada pembaca yang belum mengenalnya",
         },
       ],
     },

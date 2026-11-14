@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "author-view",
   },
-  stimulus: "food-estate",
+  stimulus: "pranata-mangsa",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Konsumsi beras per orang di negara itu terus naik selama sepuluh tahun terakhir.",
+            "Pranata mangsa sudah usang karena dibuat jauh sebelum ada prakiraan cuaca modern.",
         },
         {
           correct: false,
           label:
-            "Mesin panen modern mempercepat panen di lahan yang sangat luas.",
+            "Pranata mangsa sebaiknya diganti sepenuhnya oleh prakiraan resmi karena perubahan iklim membuat semua tandanya keliru.",
         },
         {
           correct: true,
           label:
-            "Banyak sawah baru di lahan gambut panennya jauh di bawah perkiraan.",
+            "Perubahan iklim terutama menggoyahkan bagian pranata mangsa yang bertumpu pada keteraturan tanggal, sedangkan kebiasaan mengamati alam tetap berguna.",
         },
         {
           correct: false,
           label:
-            "Harga beras dunia melonjak tajam dalam beberapa tahun terakhir.",
+            "Pranata mangsa tetap dapat diandalkan karena tanda-tandanya sudah dibakukan sejak 1855.",
         },
         {
           correct: false,
-          label: "Sebagian warga kota lebih menyukai nasi daripada sagu.",
+          label:
+            "Pranata mangsa hanya tidak cocok di luar Jawa bagian tengah, sedangkan di tempat asalnya tidak terpengaruh perubahan iklim.",
         },
       ],
     },

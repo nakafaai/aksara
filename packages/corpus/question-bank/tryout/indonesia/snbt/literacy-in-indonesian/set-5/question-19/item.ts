@@ -4,33 +4,29 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "data-interpretation",
   },
-  stimulus: "electric-cars",
+  stimulus: "river-quality",
   versions: {
     id: {
-      columns: ["Ya", "Tidak"],
+      columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
+        { column: 1, label: "Pada 2021, BOD terus turun dari T3 sampai T5." },
+        {
+          column: 1,
+          label:
+            "Pada 2024, semua titik pantau di hilir sentra tahu memenuhi syarat DO untuk air kelas dua.",
+        },
+        { column: 2, label: "Dari 2021 ke 2024, DO di T5 naik." },
         {
           column: 2,
-          label:
-            "Teks 2 menyatakan bahwa mobil listrik sama sekali tidak lebih unggul daripada mobil bensin.",
+          label: "Pada 2024, BOD di T2 melampaui baku mutu air kelas dua.",
         },
         {
           column: 1,
           label:
-            "Teks 1 mengakui bahwa mobil listrik yang baru dibuat membawa jejak karbon lebih besar daripada mobil bensin.",
-        },
-        {
-          column: 1,
-          label:
-            "Menurut Teks 1, keunggulan mobil listrik makin besar ketika listriknya makin bersih.",
-        },
-        {
-          column: 2,
-          label:
-            "Teks 2 mengusulkan agar dana untuk bus listrik dialihkan ke mobil pribadi.",
+            "Selisih DO antara T2 dan T3 pada 2024 kurang dari separuh selisihnya pada 2021.",
         },
       ],
     },

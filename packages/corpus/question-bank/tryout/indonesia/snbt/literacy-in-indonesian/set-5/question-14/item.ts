@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "strengthen-weaken",
   },
-  stimulus: "chili-prices",
+  stimulus: "mountain-quota",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "38,0 persen",
-        },
-        {
-          correct: false,
-          label: "48,6 persen",
-        },
-        {
           correct: true,
-          label: "51,4 persen",
+          label:
+            "Banyak kasus hipotermia per seribu pendaki pada hari-hari terpadat tahun lalu tidak lebih tinggi daripada pada hari-hari sepi.",
         },
         {
           correct: false,
-          label: "105,6 persen",
+          label:
+            "Regu penyelamat taman nasional pernah menangani $$3$$ evakuasi dalam satu hari.",
         },
         {
           correct: false,
-          label: "205,6 persen",
+          label:
+            "Sebagian pendaki yang terkena hipotermia tahun lalu tidak membawa jaket yang memadai.",
+        },
+        {
+          correct: false,
+          label:
+            "Pada hari kerja yang sepi, beberapa pendaki juga pernah tertahan lama karena kabut tebal.",
+        },
+        {
+          correct: false,
+          label:
+            "Sampah yang diangkut dari Pelawangan berkurang banyak setelah kuota berlaku.",
         },
       ],
     },

@@ -2,38 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "assumption",
   },
-  stimulus: "boat-race",
+  stimulus: "ride-hailing",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Teks A", "Teks B"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "ia melarang Ilham ikut lomba lagi karena cuaca tahun depan akan berbahaya",
+            "Siapa yang mengendalikan cara orang bekerja menentukan kewajiban apa yang harus ia tanggung.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "ia mendukung Ilham ikut lomba lagi dan sedang menguatkan layarnya",
+            "Sebuah perlindungan dapat merugikan sebagian orang yang hendak dilindunginya.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "ia hanya meramalkan cuaca tahun depan dan tidak memikirkan lomba",
+            "Hak tertentu dapat dijamin tanpa mengubah status hubungan kerja.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "ia menyindir Ilham yang kalah karena layar perahunya terlalu lemah",
-        },
-        {
-          correct: false,
-          label: "ia ingin menjual perahu itu sebelum musim angin kencang tiba",
+            "Kebebasan yang dibatasi oleh syarat penghasilan tidak sepenuhnya dapat disebut kebebasan.",
         },
       ],
     },

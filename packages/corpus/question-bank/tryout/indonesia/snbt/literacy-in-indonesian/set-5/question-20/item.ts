@@ -2,39 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "conclusion",
   },
-  stimulus: "electric-cars",
+  stimulus: "river-quality",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "jumlah stasiun pengisian daya bertambah pesat di kota-kota besar negaranya",
+            "Keberadaan sawah di antara T4 dan T5 tidak membedakan keadaan 2021 dari keadaan 2024.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "harga bus listrik naik hingga lebih mahal daripada harga mobil listrik pribadi",
+            "Perbedaan musim tidak dapat menjadi penjelasan utama bagi perubahan angka dari 2021 ke 2024.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "pajak bahan bakar bensin di negaranya dinaikkan menjadi dua kali lipat",
+            "Tanpa kawasan perumahan itu, BOD di T5 pada 2024 pasti lebih rendah daripada BOD di T4.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "penjualan mobil bensin di negaranya turun selama beberapa tahun berturut-turut",
+            "Pada 2024, bahan organik yang masuk ke sungai di antara T4 dan T5 lebih banyak daripada yang sempat terurai di ruas itu.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "sebagian besar listrik di negaranya dihasilkan oleh pembangkit yang bersih",
+            "Air sungai yang tiba di kawasan sentra tahu pada 2024 lebih bersih daripada pada 2021.",
         },
       ],
     },

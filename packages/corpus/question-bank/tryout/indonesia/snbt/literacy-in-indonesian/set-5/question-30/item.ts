@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "flaw",
   },
-  stimulus: "pollinators",
+  stimulus: "growth-mindset",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Mendatangkan lebah madu ke setiap kebun agar semua bunga terserbuki.",
+            "Kesimpulan itu mengabaikan kenyataan bahwa efek intervensi sebenarnya besar bagi semua siswa.",
         },
         {
           correct: false,
           label:
-            "Membakar seluruh daun gugur agar kebun tampak bersih dan tertata.",
+            "Kesimpulan itu bertumpu pada meta-analisis yang jumlah studinya terlalu sedikit untuk dipercaya.",
         },
         {
           correct: true,
           label:
-            "Mencari tahu penyerbuk tanaman sebelum menentukan cara membersihkan kebun.",
+            "Kesimpulan itu menilai manfaat tanpa menimbang biaya, dan memperlakukan efek rata-rata seolah-olah berlaku bagi setiap kelompok siswa.",
         },
         {
           correct: false,
           label:
-            "Menyerbuki semua bunga dengan tangan agar tidak bergantung pada hewan.",
+            "Kesimpulan itu keliru karena intervensi tersebut dapat menggantikan perbaikan pengajaran yang mahal.",
         },
         {
           correct: false,
           label:
-            "Menjauhkan kebun dari gua karena kelelawar merusak bunga durian.",
+            "Kesimpulan itu hanya berlaku bagi guru yang menerapkan pola pikir bertumbuh yang semu.",
         },
       ],
     },

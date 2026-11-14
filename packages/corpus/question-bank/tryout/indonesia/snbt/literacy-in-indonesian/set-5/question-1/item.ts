@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "application",
   },
-  stimulus: "urban-heat",
+  stimulus: "wallace-line",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Bahan bangunan kota melepaskan panas simpanan perlahan, desa cepat mendingin.",
+            "Mamalia darat K dan L lebih berbeda daripada mamalia darat M dan N, sedangkan perbedaan tumbuhan K dan L cenderung lebih kecil daripada perbedaan mamalia daratnya.",
         },
         {
           correct: false,
           label:
-            "Pada malam hari, kendaraan yang melintas di kota jauh lebih banyak daripada pada siang hari.",
+            "Mamalia darat M dan N lebih berbeda daripada mamalia darat K dan L, karena selat yang jauh lebih lebar lebih sulit diseberangi hewan darat.",
         },
         {
           correct: false,
           label:
-            "Satelit hanya dapat mengukur suhu kota dengan tepat pada malam hari.",
+            "K dan L tidak memiliki satu jenis makhluk pun yang sama, sedangkan susunan makhluk di M dan N hampir tidak dapat dibedakan.",
         },
         {
           correct: false,
           label:
-            "Tumbuhan di desa menyerap panas dari kota ketika matahari sudah terbenam.",
+            "Perbedaan makhluk antara K dan L sama tajamnya bagi mamalia darat, burung, dan tumbuhan, karena semuanya terhalang oleh laut yang sama.",
         },
         {
           correct: false,
           label:
-            "Angin malam biasanya bertiup dari kota menuju desa sehingga desa lebih sejuk.",
+            "Mamalia darat K dan L lebih berbeda daripada mamalia darat M dan N, asalkan iklim K dan L juga jauh berbeda satu sama lain.",
         },
       ],
     },

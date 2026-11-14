@@ -2,34 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "argument",
   },
-  stimulus: "fine-dust",
+  stimulus: "ride-hailing",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: true,
           label:
-            "Angka tertinggi di kedua stasiun tercatat pada jam yang sama.",
+            "Penulis Teks B memakai pengalamannya sendiri sebagai pengemudi sambilan, padahal Teks A berbicara tentang pengemudi yang bergantung penuh pada aplikasi untuk penghasilannya.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Pada setiap jam pengukuran, angka di Stasiun A lebih tinggi daripada di Stasiun B.",
+            "Penulis Teks B tidak mengakui masalah potongan dan pemutusan akun yang disebut Teks A.",
         },
         {
-          column: 1,
-          label: "Selisih angka kedua stasiun paling kecil pada pukul 23.00.",
+          correct: false,
+          label:
+            "Penulis Teks B menyebut kebijakan di luar negeri tanpa menunjukkan bahwa kebijakan itu buruk.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Angka Stasiun B pada pukul 14.00 lebih kecil daripada angka 15 µg/m³ dalam pedoman WHO.",
+            "Penulis Teks B mengusulkan perlindungan yang lebih mahal bagi perusahaan daripada usul Teks A.",
+        },
+        {
+          correct: false,
+          label: "Penulis Teks B tidak pernah mengemudi pada hari kerja.",
         },
       ],
     },

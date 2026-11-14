@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "author-view",
   },
-  stimulus: "wayang-school",
+  stimulus: "growth-mindset",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Menghafalkan seluruh alur Mahabharata sebelum pelajaran dimulai.",
-        },
-        {
-          correct: false,
-          label:
-            "Mengganti cerita lama dengan cerita yang sama sekali baru dan asing setiap minggu.",
+            "Pola pikir bertumbuh sebaiknya ditinggalkan karena efek rata-ratanya terlalu kecil untuk dirasakan siswa.",
         },
         {
           correct: true,
           label:
-            "Menyisipkan persoalan murid lewat tokoh jenaka dalam cerita yang sudah dikenal.",
+            "Intervensi pola pikir bertumbuh memberi manfaat yang kecil dan tidak merata, tetapi tetap layak dipakai sebagai pelengkap karena murah.",
         },
         {
           correct: false,
           label:
-            "Meminta murid menonton pertunjukan wayang semalam suntuk tanpa jeda.",
+            "Pola pikir bertumbuh baru berhasil jika guru rajin memuji usaha siswa.",
         },
         {
           correct: false,
           label:
-            "Membacakan nasihat para raja dalam lakon wayang secara langsung di kelas.",
+            "Intervensi pola pikir bertumbuh paling tepat diberikan kepada siswa berprestasi tinggi di sekolah yang lingkungannya mendukung.",
+        },
+        {
+          correct: false,
+          label:
+            "Pola pikir bertumbuh adalah cara termurah untuk mengangkat prestasi semua siswa.",
         },
       ],
     },

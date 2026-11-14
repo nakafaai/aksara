@@ -2,39 +2,37 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "argument-structure",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "fiction",
+    topic: "symbol",
   },
-  stimulus: "homework-debate",
+  stimulus: "kite-maker",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "keunggulan barang yang mahal atas barang yang murah",
+        },
+        {
           correct: true,
           label:
-            "menjawab keberatan yang mungkin diajukan terhadap usul penulis",
+            "dua cara menghadapi perubahan, yaitu bertahan kaku sampai jatuh atau melentur lalu menyesuaikan diri",
         },
         {
           correct: false,
           label:
-            "menyajikan data penelitian baru yang mendukung penghapusan pekerjaan rumah",
+            "kemajuan teknologi yang pada akhirnya pasti mengalahkan kerajinan tangan",
         },
         {
           correct: false,
           label:
-            "mengakui bahwa usul penulis memang dapat memanjakan anak-anak",
+            "perbedaan antara angin sore di lapangan dan angin di sekitar rumah",
         },
         {
           correct: false,
-          label:
-            "mengalihkan pembahasan ke soal beban kerja para guru di kelas",
-        },
-        {
-          correct: false,
-          label:
-            "menyimpulkan bahwa pekerjaan rumah perlu dihapus di semua jenjang",
+          label: "kesombongan Kakek terhadap barang buatan pabrik",
         },
       ],
     },

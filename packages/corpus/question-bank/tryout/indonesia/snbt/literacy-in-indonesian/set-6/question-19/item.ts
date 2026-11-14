@@ -2,34 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "conclusion",
   },
-  stimulus: "food-estate",
+  stimulus: "hotel-occupancy",
   versions: {
     id: {
       columns: ["Ya", "Tidak"],
       kind: "matrix",
       statements: [
         {
-          column: 2,
-          label: "Teks 2 menolak setiap bentuk perbaikan irigasi sawah.",
-        },
-        {
           column: 1,
           label:
-            "Teks 1 menyebut lonjakan harga beras dunia dapat mengguncang negara pengimpor.",
+            "Banyak kamar terisi per malam pada musim sepi di Karangwangi naik dari 2023 ke 2024.",
         },
         {
           column: 2,
           label:
-            "Teks 1 mengusulkan agar dana dialihkan untuk mengembangkan pangan lokal.",
+            "Pendapatan hotel berbintang di Karangwangi pada musim ramai 2024 lebih tinggi daripada pada musim ramai 2023.",
+        },
+        {
+          column: 2,
+          label:
+            "Tingkat hunian setiap hotel lama di Karangwangi turun dari 2023 ke 2024.",
         },
         {
           column: 1,
           label:
-            "Teks 2 menyebut sagu, jagung, dan umbi-umbian sebagai makanan di banyak daerah.",
+            "Tingkat hunian musim ramai Karangwangi turun karena banyak kamar tersedia bertambah lebih cepat daripada banyak kamar terisi.",
         },
       ],
     },

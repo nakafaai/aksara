@@ -2,32 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "fiction",
-    topic: "explicit-information",
+    topic: "point-of-view",
   },
-  stimulus: "radio-repair",
+  stimulus: "ferry-mechanic",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Ibu gadis itu menyarankan agar radio tersebut dibuang.",
-        },
-        {
-          column: 2,
+          correct: false,
           label:
-            "Pak Darsa berhasil menangkap kembali siaran wayang yang dulu didengar sang kakek.",
+            "mengetahui isi pikiran Darto dan Kepala Kamar Mesin sejelas isi pikiran Pak Wiryo",
         },
         {
-          column: 2,
-          label: "Gadis itu datang terlambat ketika mengambil radionya.",
+          correct: false,
+          label:
+            "memercayai penilaian Pak Wiryo tentang dirinya karena hanya dialah yang bercerita",
         },
         {
-          column: 1,
-          label: "Pak Darsa mengganti dua kapasitor yang menggembung.",
+          correct: false,
+          label:
+            "memihak Darto karena Pak Wiryo ditampilkan sebagai orang tua yang sombong dan keras kepala",
+        },
+        {
+          correct: true,
+          label:
+            "melihat jarak antara penjelasan Pak Wiryo tentang dirinya dan hal yang diperlihatkan oleh tindakan serta ucapan orang di sekitarnya",
+        },
+        {
+          correct: false,
+          label:
+            "memahami bahwa pendengaran seorang montir lebih dapat diandalkan daripada alat ukur",
         },
       ],
     },

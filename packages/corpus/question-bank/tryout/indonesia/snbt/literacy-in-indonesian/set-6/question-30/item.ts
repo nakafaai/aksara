@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "theme-message",
+    contentDomain: "informational-text",
+    topic: "flaw",
   },
-  stimulus: "dawn-market",
+  stimulus: "marshmallow-test",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,25 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "ajakan agar pembeli datang ke pasar setelah matahari terbit saja",
+            "Latihan menunggu kudapan setiap hari terlalu singkat untuk membentuk kebiasaan.",
         },
         {
           correct: false,
-          label:
-            "keluhan bahwa harga di pasar subuh selalu lebih mahal daripada siang",
+          label: "Marshmallow bukan kudapan yang sehat bagi anak.",
         },
         {
           correct: true,
           label:
-            "gambaran kerja keras yang selesai sebelum kebanyakan orang memulai hari",
+            "Rencana itu menganggap hubungan dalam temuan awal sebagai sebab-akibat, padahal hubungan itu sebagian besar berjalan lewat keadaan keluarga yang tidak diubah oleh latihan.",
         },
         {
           correct: false,
           label:
-            "pujian bahwa matahari membawa keuntungan besar bagi para pedagang",
+            "Rencana itu hanya cocok untuk anak-anak dosen dan mahasiswa Stanford.",
         },
         {
           correct: false,
-          label:
-            "kritik bahwa orang-orang di pasar subuh malas dan pulang terlalu cepat",
+          label: "Sekolah itu tidak menyebut berapa menit anak harus menunggu.",
         },
       ],
     },

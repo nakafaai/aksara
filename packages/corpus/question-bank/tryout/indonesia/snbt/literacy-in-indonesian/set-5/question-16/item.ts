@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "conclusion",
   },
-  stimulus: "chili-prices",
+  stimulus: "river-quality",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Hujan lebat pada bulan Juni merontokkan bunga cabai sehingga panen gagal.",
+            "Setelah IPAL beroperasi, air sungai di T3 sudah memenuhi baku mutu air kelas dua.",
+        },
+        {
+          correct: false,
+          label:
+            "Pada 2024, titik pantau yang memenuhi kedua syarat baku mutu lebih banyak daripada pada 2021.",
         },
         {
           correct: true,
           label:
-            "Permintaan naik menjelang hari raya, sementara pasokan sedikit turun dari Mei.",
+            "BOD di T3 turun lebih dari separuhnya, tetapi titik itu baru memenuhi satu dari dua syarat baku mutu air kelas dua.",
         },
         {
           correct: false,
           label:
-            "Pasokan pada bulan Juni adalah yang paling rendah selama enam bulan itu.",
+            "Naiknya BOD di T2 menunjukkan bahwa IPAL sentra tahu belum bekerja sebagaimana mestinya.",
         },
         {
           correct: false,
           label:
-            "Petani menahan panennya karena harga pada bulan Mei terlalu tinggi bagi pembeli.",
-        },
-        {
-          correct: false,
-          label:
-            "Cabai dari kabupaten lain membanjiri pasar induk pada bulan Juni.",
+            "IPAL memperbaiki mutu air di semua titik pantau yang terletak di hilir sentra tahu.",
         },
       ],
     },

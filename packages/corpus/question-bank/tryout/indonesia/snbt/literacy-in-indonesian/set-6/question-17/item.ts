@@ -2,38 +2,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "calculation",
   },
-  stimulus: "fine-dust",
+  stimulus: "hotel-occupancy",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "Angka di Stasiun B pada beberapa jam lebih tinggi daripada di Stasiun A.",
-        },
-        {
-          correct: true,
-          label: "Datanya hanya tujuh pengukuran pada satu hari kerja.",
-        },
-        {
-          correct: false,
-          label:
-            "Pedoman WHO hanya berlaku untuk rata-rata selama 24 jam penuh.",
-        },
-        {
-          correct: false,
-          label:
-            "Angka tertinggi kedua stasiun tercatat pada jam yang berbeda.",
-        },
-        {
-          correct: false,
-          label: "Stasiun B dipasang sekitar dua kilometer dari jalan raya.",
-        },
+        { correct: false, label: "$$16\\%$$" },
+        { correct: false, label: "$$16\\tfrac{2}{3}\\%$$" },
+        { correct: false, label: "$$20\\%$$" },
+        { correct: false, label: "$$24\\%$$" },
+        { correct: true, label: "$$25\\%$$" },
       ],
     },
   },

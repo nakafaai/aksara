@@ -2,33 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "application",
   },
-  stimulus: "wayang-school",
+  stimulus: "keroncong-origin",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
+          label: "Kelompok itu memainkan bentuk keroncong yang paling tua.",
+        },
+        {
+          correct: false,
           label:
-            "Mahabharata dan Ramayana adalah epos yang berasal dari India.",
+            "Kelompok itu pasti berasal dari Kampung Tugu atau belajar dari pemusik Tugu.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Punakawan sudah menjadi tokoh dalam kisah Mahabharata versi India.",
+            "Kelompok itu tidak memakai alat tambahan seperti biola dan selo.",
         },
         {
-          column: 2,
-          label: "Goro-goro biasanya berlangsung pada awal pertunjukan.",
+          correct: true,
+          label:
+            "Kelompok itu mengikuti pakem yang mengeras pada abad ke-20, dan musiknya belum tentu mirip dengan musik orang Tugu.",
         },
         {
-          column: 1,
-          label: "Bagian goro-goro tidak terikat pada alur pokok lakon.",
+          correct: false,
+          label:
+            "Kelompok itu menolak bentuk stambul dan langgam karena dianggap tidak asli.",
         },
       ],
     },

@@ -2,38 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "text-comparison",
+    topic: "data-interpretation",
   },
-  stimulus: "food-estate",
+  stimulus: "hotel-occupancy",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "sawah baru perlu dibuka di lahan gambut agar produksi beras naik",
+            "Pada musim sepi 2024, tingkat hunian gabungan hotel berbintang di ketiga kota adalah $$45\\%$$.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "impor beras sebaiknya dihentikan sama sekali mulai tahun depan",
+            "Seandainya Lembahdaun menambah $$100$$ kamar dan banyak kamar terisi per malam pada musim sepi tetap, tingkat hunian musim sepinya turun di bawah $$35\\%$$.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "pangan lokal sebaiknya menggantikan beras sebagai makanan pokok",
+            "Pada musim sepi 2024, Karangwangi mengisi lebih banyak kamar per malam daripada Tirtasari karena tingkat huniannya lebih tinggi.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "negara perlu memperkuat pangannya agar tidak mudah terguncang",
-        },
-        {
-          correct: false,
-          label: "mesin modern tidak cocok dipakai oleh para petani kecil",
+            "Pada musim ramai 2024, tingkat hunian gabungan hotel berbintang di ketiga kota lebih dari $$81\\%$$.",
         },
       ],
     },

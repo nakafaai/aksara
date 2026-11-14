@@ -2,39 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "argument",
   },
-  stimulus: "wayang-school",
+  stimulus: "keroncong-origin",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Penonton masa kini tidak lagi mengenal alur pokok lakon Mahabharata.",
+            "Orang yang menyebut langgam Jawa sebagai kemunduran karena menyimpang dari bentuk awal harus menyebut keroncong radio pada dasawarsa 1930-an sebagai kemunduran juga.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Goro-goro tidak terikat pada alur pokok sehingga dalang bebas mengisinya.",
+            "Campursari menunjukkan bahwa keroncong sedang menuju kepunahan.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Semar adalah dewa sehingga nasihatnya wajib didengar oleh semua penonton.",
+            "Kesetiaan pada bentuk awal adalah ukuran terbaik untuk menilai perkembangan keroncong.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Pertunjukan yang singkat memberi waktu lebih banyak untuk memberi nasihat.",
-        },
-        {
-          correct: false,
-          label:
-            "UNESCO mewajibkan setiap pertunjukan wayang memuat pesan pendidikan.",
+            "Daya tahan keroncong berkaitan dengan kesediaannya berubah mengikuti tempat dan zaman.",
         },
       ],
     },

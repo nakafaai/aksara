@@ -2,39 +2,31 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "conclusion",
   },
-  stimulus: "homework-debate",
+  stimulus: "kite-maker",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Banyak siswa sekolah menengah atas mengerjakan tugas sampai lewat tengah malam.",
+            "Kakek menahan diri untuk tidak menceramahi cucunya, walaupun ia punya alasan untuk itu.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Orang tua yang kurang berpendidikan sering kesulitan membantu anaknya mengerjakan tugas.",
+            "Layangan putih itu dibuat Kakek khusus untuk mengganti layangan naga yang hilang.",
         },
+        { column: 1, label: "Pesanan layangan buatan Kakek sedang surut." },
         {
-          correct: false,
+          column: 2,
           label:
-            "Murid sekolah dasar yang tidurnya cukup tampak lebih segar ketika belajar di kelas.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian guru merasa pekerjaan rumah membantu murid berlatih di rumah.",
-        },
-        {
-          correct: true,
-          label:
-            "Murid SD dari keluarga sibuk dapat mengerjakan tugas sederhana sendiri tanpa tertinggal.",
+            "Pada akhir cerita, tokoh _aku_ masih menganggap cara kerja Kakek terlalu lambat.",
         },
       ],
     },

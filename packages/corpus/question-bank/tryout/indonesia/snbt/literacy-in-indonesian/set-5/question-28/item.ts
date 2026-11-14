@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "application",
   },
-  stimulus: "pollinators",
+  stimulus: "growth-mindset",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "petani durian tidak tertarik mempelajari cara kelelawar menyerbuki bunga",
+            "Guru meminta siswa yang gagal mencoba cara lain, lalu menunjukkan satu contoh strategi yang belum dipakai siswa itu.",
         },
         {
           correct: true,
           label:
-            "sumber masalah panen dapat berada jauh di luar kebun yang terdampak",
+            'Guru berkata, "Tidak apa-apa, yang penting kamu sudah berusaha keras," kepada siswa yang $$3$$ kali mengulang cara yang sama dan tetap salah, lalu beralih ke siswa lain.',
         },
         {
           correct: false,
           label:
-            "kerusakan gua selalu terjadi diam-diam tanpa diketahui oleh siapa pun",
+            'Guru berkata, "Kamu memang pintar," kepada siswa yang mendapat nilai sempurna.',
         },
         {
           correct: false,
           label:
-            "kelelawar pemakan nektar menyerbuki durian hanya pada malam tertentu",
+            "Guru menjelaskan bahwa otak membentuk sambungan baru ketika dilatih.",
         },
         {
           correct: false,
-          label: "panen durian turun karena bunga mekar pada waktu yang salah",
+          label:
+            "Guru memberi jam pelajaran tambahan kepada siswa yang tertinggal.",
         },
       ],
     },
