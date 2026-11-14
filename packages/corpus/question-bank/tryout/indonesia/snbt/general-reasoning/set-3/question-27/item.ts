@@ -2,9 +2,9 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
-    topic: "average-speed",
+    topic: "calendar-cycle",
   },
   versions: {
     id: {
@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$8{,}4$$ km/jam",
+          label: "Laras",
+        },
+        {
+          correct: false,
+          label: "Made",
+        },
+        {
+          correct: false,
+          label: "Nina",
+        },
+        {
+          correct: false,
+          label: "Oka",
         },
         {
           correct: true,
-          label: "$$16{,}8$$ km/jam",
-        },
-        {
-          correct: false,
-          label: "$$17{,}5$$ km/jam",
-        },
-        {
-          correct: false,
-          label: "$$21$$ km/jam",
-        },
-        {
-          correct: false,
-          label: "$$35$$ km/jam",
+          label: "Putri",
         },
       ],
     },

@@ -1,16 +1,26 @@
-Sei <InlineMath math="p" />: Der Preis für frische Chilis steigt, <InlineMath math="q" />: Bu Sari kauft weniger frische Chilis, und <InlineMath math="r" />: Bu Sari steigt auf getrocknete Chilis um. Die erste Prämisse lautet <InlineMath math="p \Rightarrow (q \vee r)" />.
+Gefragt ist, was über die letzte Nacht sicher gilt, mit vier Regeln und zwei Fakten: Die Pumpe wurde nicht eingeschaltet, und das Westfeld war in dieser Woche schon gedüngt. Der Schlüssel ist, **Regel 1 und Regel 4 richtig zu lesen**, denn sie benutzen *kecuali jika* ("außer wenn") und *hanya jika* ("nur wenn").
 
-Die zweite Prämisse sagt <InlineMath math="\neg q \wedge \neg r" />, gleichwertig mit <InlineMath math="\neg(q \vee r)" />. Also ist **der Dann-Teil der ersten Prämisse falsch**. Mit dem Modus tollens:
+Ein Satz der Form "P, außer wenn Q" bedeutet "wenn nicht Q, dann P". Regel 1 sagt also: Wenn der Tank noch nicht voll ist, wird die Pumpe eingeschaltet. Jede Wenn-dann-Aussage ist gleichwertig zu ihrer Kontraposition, also der Form, die beide Teile vertauscht und beide verneint. Die Kontraposition von Regel 1 lautet: Wenn die Pumpe nicht eingeschaltet wird, ist der Tank voll.
 
-<BlockMath math="p \Rightarrow (q \vee r),\quad \neg(q \vee r) \;\vdash\; \neg p" />
+Jetzt verkettest du die Schritte.
 
-Der Preis für frische Chilis ist diese Woche also nicht gestiegen.
+1. Die Pumpe war aus, also war der Tank nach der Kontraposition von Regel 1 voll.
+2. Der Tank war voll, also wurde nach Regel 2 das Verteilerschütz geöffnet.
+3. Das Schütz war offen, also wurde nach Regel 3 das Ostfeld oder das Westfeld bewässert. Mindestens eines der beiden wurde bewässert.
+4. Ein Satz der Form "P nur, wenn Q" bedeutet "wenn P, dann Q". Regel 4 sagt also: Wenn das Westfeld bewässert wird, wurde es in dieser Woche nicht gedüngt. Die Kontraposition lautet: Wenn das Westfeld gedüngt wurde, wird es nicht bewässert. Es war gedüngt, also wurde das Westfeld nicht bewässert.
+5. Nach Schritt 3 wurde mindestens ein Feld bewässert. Das Westfeld nicht, also das Ostfeld.
 
-Die anderen Optionen sind falsch:
+So sieht die ganze Kette aus.
 
-- "Der Preis ist gestiegen" widerspricht dem gerade gezogenen Schluss.
-- Nicht weniger kaufen heißt nicht mehr als sonst kaufen. Bu Sari kann die gleiche Menge kaufen.
-- Nicht weniger frische Chilis zu kaufen heißt, dass Bu Sari weiterhin kauft, "gar keine Chilis" widerspricht also der Prämisse.
-- Über den Preis getrockneter Chilis sagen die Prämissen nichts.
+<BlockMath math="\text{Pumpe aus} \Rightarrow \text{Tank voll} \Rightarrow \text{Schütz offen} \Rightarrow (\text{Ost} \vee \text{West})" />
 
-Sicher wahr ist also, dass der Preis für frische Chilis diese Woche nicht gestiegen ist.
+Weil Regel 4 das Westfeld ausschließt, bleibt das Ostfeld. Prüf rückwärts: ein voller Tank, ein offenes Schütz, ein bewässertes Ostfeld und ein trockenes Westfeld erfüllen alle vier Regeln zugleich.
+
+Jeder andere Schluss scheitert an genau einem falschen Schritt.
+
+- "Der Tank war voll, aber welches Feld bewässert wurde, bleibt offen" entsteht, wenn du *hanya jika* rückwärts liest, also als "wenn das Westfeld nicht gedüngt ist, wird es bewässert". So gelesen sagt Regel 4 nichts über ein gedüngtes Feld, und die Kette bleibt bei Schritt 3 stehen.
+- "Der Tank war voll und das Westfeld wurde bewässert" widerspricht Regel 4, weil das Westfeld gedüngt war.
+- "Der Tank war nicht voll und kein Feld wurde bewässert" liest Regel 1 rückwärts, als würde ein voller Tank die Pumpe einschalten. Danach wird auch Regel 2 umgedreht, obwohl ein nicht voller Tank nichts über das Schütz verrät.
+- "Beide Felder wurden bewässert" liest *atau* ("oder") wie *dan* ("und") und übersieht Regel 4.
+
+Sicher wahr ist also, dass der Tank voll war und das Ostfeld letzte Nacht bewässert wurde.

@@ -1,15 +1,26 @@
-Mark each statement Benar (true) or Salah (false), computing each one straight from the table. Some statements sit **close to their threshold** on purpose.
+The four statements use **different denominators**: per medication given, per nurse, or per whole ward. So set up all the basic numbers first. The error rate (*angka kesalahan*) is errors divided by medications given, times <InlineMath math="1{,}000" />. A statement goes under *Benar* ("true") only when these numbers confirm it, and under *Salah* ("false") otherwise.
 
-**Statement 1** is true. Twice the January sales is <InlineMath math="2\times120=240" />, while April sales are <InlineMath math="260" />.
+| Shift | Medications given | Errors | Error rate per <InlineMath math="1{,}000" /> | Errors per nurse |
+| --- | --- | --- | --- | --- |
+| Morning | <InlineMath math="7{,}200" /> | <InlineMath math="36" /> | <InlineMath math="\tfrac{36}{7{,}200}\cdot 1{,}000=5" /> | <InlineMath math="36\div 6=6" /> |
+| Afternoon | <InlineMath math="4{,}000" /> | <InlineMath math="24" /> | <InlineMath math="\tfrac{24}{4{,}000}\cdot 1{,}000=6" /> | <InlineMath math="24\div 4=6" /> |
+| Night | <InlineMath math="2{,}000" /> | <InlineMath math="18" /> | <InlineMath math="\tfrac{18}{2{,}000}\cdot 1{,}000=9" /> | <InlineMath math="18\div 2=9" /> |
+| Total | <InlineMath math="13{,}200" /> | <InlineMath math="78" /> | | |
 
-**Statement 2** is true. The highest temperature, <InlineMath math="35^{\circ}\text{C}" />, is in May, and the highest fan sales, <InlineMath math="290" /> units, are also in May.
+Statement 1 is true. It has two fractions with different denominators. One-sixth of <InlineMath math="13{,}200" /> is <InlineMath math="2{,}200" />, and the night shift handles only <InlineMath math="2{,}000" /> medications, so that's less than one-sixth. One-fifth of <InlineMath math="78" /> is <InlineMath math="15.6" />, and the night shift accounts for <InlineMath math="18" /> errors, so that's more than one-fifth.
 
-**Statement 3** is false. The mean is
+Statement 2 is false. Per nurse, the afternoon and morning shifts both have <InlineMath math="6" /> errors, so the afternoon isn't bigger. The trap is carrying the order of the rates per <InlineMath math="1{,}000" /> medications (afternoon <InlineMath math="6" />, morning <InlineMath math="5" />) over to the per-nurse comparison. The two orders differ because each morning nurse handles <InlineMath math="7{,}200\div 6=1{,}200" /> medications, while each afternoon nurse handles only <InlineMath math="4{,}000\div 4=1{,}000" />.
 
-<BlockMath math="\frac{3{,}000+3{,}400+3{,}900+5{,}200+1{,}100+4{,}600}{6}=\frac{21{,}200}{6}\approx3{,}533" />
+Statement 3 is false. If the night rate dropped to the afternoon rate, <InlineMath math="6" /> per <InlineMath math="1{,}000" />, the night shift with <InlineMath math="2{,}000" /> medications would make only <InlineMath math="12" /> errors.
 
-That is less than <InlineMath math="3{,}600" />. The closure in May pulls the mean down.
+<BlockMath math="\begin{aligned} \text{drop} &= 18-12=6 \text{ errors} \\ \text{percent drop} &= \frac{6}{78}\cdot 100\%\approx 7.7\% \end{aligned}" />
 
-**Statement 4** is false. June sales are <InlineMath math="210" /> units, higher than March at <InlineMath math="180" />.
+That's less than <InlineMath math="10\%" />. The night shift does have the highest rate, but it's a small slice of the work, so fixing it doesn't change the ward total much.
 
-So statements 1 and 2 are true, and statements 3 and 4 are false.
+Statement 4 is true. The whole ward's error rate is total errors divided by total medications.
+
+<BlockMath math="\frac{78}{13{,}200}\cdot 1{,}000\approx 5.9<6" />
+
+The trap is simply averaging the three shift rates, <InlineMath math="(5+6+9)\div 3\approx 6.7" />, which is above <InlineMath math="6" />. That's wrong because the morning shift gives far more medications than the night shift, so its low rate has to carry more weight.
+
+So statements 1 and 4 are true, while statements 2 and 3 are false.

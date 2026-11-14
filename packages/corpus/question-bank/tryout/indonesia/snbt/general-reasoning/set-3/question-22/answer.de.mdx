@@ -1,18 +1,29 @@
-Zähle die Hölzer **nach ihrer Richtung**, denn jedes Holz liegt waagerecht oder senkrecht.
+Die Aufgabe enthält drei Prozentangaben, und **jede bezieht sich auf einen anderen Grundwert**. Die <InlineMath math="10\%" /> beziehen sich auf den Anfangsbestand, die <InlineMath math="50\%" /> auf die noch lebenden Setzlinge und die <InlineMath math="60\%" /> wieder auf den Anfangsbestand. Du kennst nur den Endbestand, <InlineMath math="840" />. Am sichersten ist es also, alles in einer Einheit auszudrücken, nämlich im Anfangsbestand.
 
-Ein großes Quadrat der Größe <InlineMath math="n\times n" /> hat <InlineMath math="n+1" /> waagerechte Linien aus je <InlineMath math="n" /> Hölzern. Ebenso gibt es <InlineMath math="n+1" /> senkrechte Linien aus je <InlineMath math="n" /> Hölzern. Also
+Nenn den Anfangsbestand <InlineMath math="N" /> und verfolge die Setzlinge Monat für Monat.
 
-<BlockMath math="\text{Anzahl der Hölzer}=n(n+1)+n(n+1)=2n(n+1)" />
+<BlockMath math="\begin{aligned}
+\text{lebend nach dem ersten Monat} &= 0{,}9N \\
+\text{umgesetzt} &= 0{,}5 \times 0{,}9N = 0{,}45N \\
+\text{neue Setzlinge} &= 0{,}6N \\
+\text{Endbestand} &= 0{,}9N - 0{,}45N + 0{,}6N = 1{,}05N
+\end{aligned}" />
 
-Prüfe mit der Tabelle: <InlineMath math="2(1)(2)=4" />, <InlineMath math="2(2)(3)=12" /> und <InlineMath math="2(3)(4)=24" />. Die Formel passt zu allen drei Mustern. Für Muster <InlineMath math="10" />:
+Der Endbestand ist <InlineMath math="840" />. Damit findest du <InlineMath math="N" /> und dann die Zahl der umgesetzten Setzlinge.
 
-<BlockMath math="2(10)(11)=220" />
+<BlockMath math="\begin{aligned}
+1{,}05N &= 840 \\
+N &= 800 \\
+0{,}45N &= 0{,}45 \times 800 = 360
+\end{aligned}" />
 
-Die anderen Optionen entstehen aus diesen Fehlern:
+Prüf es, indem du noch einmal durchrechnest: <InlineMath math="800" /> Setzlinge, <InlineMath math="80" /> sterben, also bleiben <InlineMath math="720" />. Die Hälfte davon, <InlineMath math="360" />, wird umgesetzt, also bleiben <InlineMath math="360" />. Dazu kommen <InlineMath math="480" /> neue. Das ergibt <InlineMath math="360 + 480 = 840" />, genau wie in der Aufgabe.
 
-- <InlineMath math="110" /> zählt nur eine Richtung, etwa die waagerechten Hölzer.
-- <InlineMath math="200" /> nutzt <InlineMath math="2n^2" />, als gäbe es nur <InlineMath math="n" /> Linien pro Richtung, obwohl die Randlinien mitzählen.
-- <InlineMath math="242" /> nutzt <InlineMath math="2(n+1)^2" /> und behandelt jede Linie, als bestünde sie aus <InlineMath math="n+1" /> Hölzern.
-- <InlineMath math="400" /> zählt <InlineMath math="4" /> Hölzer pro kleinem Quadrat, sodass gemeinsame Seiten doppelt gezählt werden.
+Jede andere Antwort entsteht aus einem vertauschten Grundwert.
 
-Muster <InlineMath math="10" /> braucht also <InlineMath math="220" /> Streichhölzer.
+- <InlineMath math="378" /> entsteht, wenn du die Prozente einfach addierst: <InlineMath math="-10\% - 50\% + 60\% = 0\%" />. Dann hältst du <InlineMath math="840" /> für den Anfangsbestand, und umgesetzt wären <InlineMath math="0{,}5 \times 0{,}9 \times 840 = 378" />.
+- <InlineMath math="400" /> entsteht, wenn du <InlineMath math="50\%" /> vom Anfangsbestand <InlineMath math="800" /> nimmst, obwohl nur die Hälfte der überlebenden Setzlinge umgesetzt wurde.
+- <InlineMath math="420" /> entsteht, wenn du <InlineMath math="50\%" /> vom Endbestand <InlineMath math="840" /> nimmst.
+- <InlineMath math="525" /> entsteht, wenn du die neuen Setzlinge als <InlineMath math="60\%" /> des Rests nach dem Umsetzen rechnest. Dann ist der Endbestand das <InlineMath math="1{,}6" />-Fache dieses Rests, der Rest also <InlineMath math="840 \div 1{,}6 = 525" />, und weil die Hälfte umgesetzt wurde, setzt du die umgesetzte Zahl diesem Rest gleich.
+
+In der Baumschule wurden im zweiten Monat also <InlineMath math="360" /> Setzlinge in den Garten umgesetzt.

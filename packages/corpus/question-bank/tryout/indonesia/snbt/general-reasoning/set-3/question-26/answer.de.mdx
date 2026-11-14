@@ -1,11 +1,41 @@
-Eine Zahl ist genau dann durch <InlineMath math="6" /> teilbar, wenn sie **durch <InlineMath math="2" /> und durch <InlineMath math="3" /> teilbar ist**, denn <InlineMath math="6=2\times3" />, und <InlineMath math="2" /> und <InlineMath math="3" /> haben außer <InlineMath math="1" /> keinen gemeinsamen Teiler.
+Gefragt ist die Zahl der Pakete A. Eine Aussage reicht, wenn nur eine einzige Anzahl von Paketen A möglich bleibt. Nimm an, Wulan kauft <InlineMath math="a" /> Pakete A und <InlineMath math="b" /> Pakete B, wobei <InlineMath math="a" /> und <InlineMath math="b" /> ganze Zahlen von mindestens <InlineMath math="1" /> sind. Prüf zuerst jede Aussage für sich und kombiniere sie danach.
 
-**Aussage (1) allein**. <InlineMath math="n" /> ist durch <InlineMath math="3" /> teilbar, aber nicht unbedingt gerade. Zum Beispiel ist <InlineMath math="n=6" /> durch <InlineMath math="6" /> teilbar, <InlineMath math="n=9" /> nicht. Das reicht nicht.
+Aussage (1) liefert eine Gleichung in Tausend Rupiah:
 
-**Aussage (2) allein**. Wäre <InlineMath math="n" /> ungerade, wäre auch <InlineMath math="n^2" /> ungerade und nicht durch <InlineMath math="4" /> teilbar. Ist <InlineMath math="n^2" /> durch <InlineMath math="4" /> teilbar, ist <InlineMath math="n" /> also gerade. Durch <InlineMath math="3" /> muss <InlineMath math="n" /> aber nicht teilbar sein. Zum Beispiel ist <InlineMath math="n=2" /> nicht durch <InlineMath math="6" /> teilbar, <InlineMath math="n=12" /> schon. Das reicht nicht.
+<BlockMath math="7a + 4b = 61" />
 
-**Beide Aussagen zusammen**. Aussage (2) macht <InlineMath math="n" /> gerade, Aussage (1) macht es durch <InlineMath math="3" /> teilbar. Also ist <InlineMath math="n" /> sicher durch <InlineMath math="6" /> teilbar. Das reicht.
+Da <InlineMath math="4b" /> ein Vielfaches von <InlineMath math="4" /> ist, muss auch der Rest <InlineMath math="61 - 7a" /> durch <InlineMath math="4" /> teilbar sein. Höchstens ist <InlineMath math="a = 8" />, denn <InlineMath math="7 \times 9 = 63" /> liegt schon über <InlineMath math="61" />. Probier alle Werte durch.
 
-Ein häufiger Fehler ist zu glauben, Aussage (2) sage nur etwas über <InlineMath math="n^2" /> und sei daher nutzlos. Tatsächlich garantiert sie, dass <InlineMath math="n" /> gerade ist.
+| <InlineMath math="a" /> | <InlineMath math="61 - 7a" /> | Durch <InlineMath math="4" /> teilbar? | <InlineMath math="b" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="54" /> | nein | nicht ganzzahlig |
+| <InlineMath math="2" /> | <InlineMath math="47" /> | nein | nicht ganzzahlig |
+| <InlineMath math="3" /> | <InlineMath math="40" /> | ja | <InlineMath math="10" /> |
+| <InlineMath math="4" /> | <InlineMath math="33" /> | nein | nicht ganzzahlig |
+| <InlineMath math="5" /> | <InlineMath math="26" /> | nein | nicht ganzzahlig |
+| <InlineMath math="6" /> | <InlineMath math="19" /> | nein | nicht ganzzahlig |
+| <InlineMath math="7" /> | <InlineMath math="12" /> | ja | <InlineMath math="3" /> |
+| <InlineMath math="8" /> | <InlineMath math="5" /> | nein | nicht ganzzahlig |
 
-Beide Aussagen zusammen reichen also, jede allein nicht.
+Es gibt **zwei mögliche Paare**: <InlineMath math="(a, b) = (3, 10)" /> und <InlineMath math="(7, 3)" />. Die Zahl der Pakete A kann <InlineMath math="3" /> oder <InlineMath math="7" /> sein, also reicht Aussage (1) allein nicht.
+
+Aussage (2) sagt, dass der getauschte Einkauf teurer wäre. Schreib das als Ungleichung und vereinfache.
+
+<BlockMath math="\begin{aligned}
+7b + 4a &> 7a + 4b \\
+3b &> 3a \\
+b &> a
+\end{aligned}" />
+
+Aussage (2) verrät nur, dass Wulan mehr Pakete B als Pakete A gekauft hat. Dazu passen viele Paare, etwa <InlineMath math="(1, 2)" /> oder <InlineMath math="(5, 9)" />. Aussage (2) allein reicht also nicht.
+
+Kombiniere jetzt beide. Von den zwei Paaren aus Aussage (1) erfüllt nur <InlineMath math="(3, 10)" /> die Bedingung <InlineMath math="b > a" />. Das Paar <InlineMath math="(7, 3)" /> fällt weg, weil <InlineMath math="3 < 7" /> ist. Probe: <InlineMath math="7 \times 3 + 4 \times 10 = 61" />, und nach dem Tausch kostet es <InlineMath math="7 \times 10 + 4 \times 3 = 82" />, also wirklich mehr. Die Zahl der Pakete A ist sicher <InlineMath math="3" />.
+
+Warum die anderen Antworten falsch sind:
+
+- Aussage (1) allein wirkt ausreichend, wenn du beim ersten gefundenen Paar <InlineMath math="(3, 10)" /> aufhörst und <InlineMath math="(7, 3)" /> nie prüfst.
+- Aussage (2) allein liefert nur die Reihenfolge <InlineMath math="b > a" />, keinen bestimmten Wert.
+- Dass jede Aussage allein reicht, setzt beide Fehler zugleich voraus.
+- Dass keine Kombination reicht, schließt du, wenn du Aussage (2) nicht in <InlineMath math="b > a" /> übersetzt und deshalb übersiehst, dass sie das Paar <InlineMath math="(7, 3)" /> ausschließt.
+
+Beide Aussagen zusammen reichen also, um die Frage zu beantworten, aber keine Aussage allein reicht.

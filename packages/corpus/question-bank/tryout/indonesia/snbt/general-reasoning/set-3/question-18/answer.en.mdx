@@ -1,28 +1,32 @@
-Compute **each student's final score**, then check all three conditions. A student passes only if no condition fails. UTS and UAS are the midterm and final exams, and *Kehadiran* is attendance.
+This question asks which option must be true, given that exactly two of the five statements are false. Instead of guessing person by person, first look for **pairs of statements that are tied together**, because those pairs fix how many statements can be false.
 
-<BlockMath math="\begin{aligned}
-\text{Ayu} &: 0.4(80)+0.6(50)=32+30=62 \\
-\text{Bagas} &: 0.4(90)+0.6(45)=36+27=63 \\
-\text{Citra} &: 0.4(55)+0.6(65)=22+39=61 \\
-\text{Dimas} &: 0.4(50)+0.6(66)=20+39.6=59.6 \\
-\text{Elsa} &: 0.4(70)+0.6(60)=28+36=64
-\end{aligned}" />
+There are two such pairs.
 
-| Student | Final score at least 60 | Attendance at least 75% | UAS at least 50 | Passes? |
-| --- | --- | --- | --- | --- |
-| Ayu | Yes | Yes | Yes, exactly <InlineMath math="50" /> | Yes |
-| Bagas | Yes | Yes | No | No |
-| Citra | Yes | No | Yes | No |
-| Dimas | No | Yes | Yes | No |
-| Elsa | Yes | Yes, exactly <InlineMath math="75\%" /> | Yes | Yes |
+- Yosef says Rani's statement is false. So Yosef's statement is true exactly when Rani's is false. In the pair Rani and Yosef, exactly one statement is always false.
+- Vina says Putu's statement is true. So Vina's and Putu's statements always have the same value: both true or both false.
 
-Ayu and Elsa meet conditions exactly at the limit. **At least** means a value equal to the limit still qualifies.
+Now count. Exactly two statements are false, and the pair Rani and Yosef already supplies one. That leaves exactly one false statement among Putu, Vina and Joko. Putu and Vina can't supply exactly one, because they're always true together or false together. So Putu and Vina are both true, and Joko's statement is the false one.
 
-The other options come from skipping one condition:
+Joko's statement being false means Vina is the one who forgot. Check the others with Vina as the one who forgot. Putu is true, since the one who forgot is Rani or Vina. Rani is true as well, since it's neither Rani nor Yosef. Then Yosef's statement is false, and the two false statements belong to Yosef and Joko.
 
-- Bagas passes only if the UAS condition is ignored, but Bagas's UAS is <InlineMath math="45" />.
-- Citra passes only if attendance is ignored, but attendance is <InlineMath math="70\%" />.
-- Dimas passes only if <InlineMath math="59.6" /> is rounded to <InlineMath math="60" />, although the condition is at least <InlineMath math="60" />.
-- "Only Elsa" comes from treating Ayu's UAS of exactly <InlineMath math="50" /> as a fail.
+The table checks all five possibilities at once, so you can see the answer is unique. T means the statement is true and F means it's false.
 
-So the students who pass are Ayu and Elsa.
+| Who forgot | Putu | Rani | Vina | Yosef | Joko | False statements |
+| --- | --- | --- | --- | --- | --- | --- |
+| Joko | F | T | F | F | T | 3 |
+| Putu | F | T | F | F | T | 3 |
+| Rani | T | F | T | T | T | 1 |
+| Vina | T | T | T | F | F | 2 |
+| Yosef | F | F | F | T | T | 3 |
+
+Only the Vina row has exactly two false statements.
+
+Now check each option.
+
+- Rani forgot and Yosef's statement is true leaves only one false statement, Rani's. This trap catches you if you blame Rani in the Rani and Yosef pair and then forget to recount.
+- Putu's and Vina's statements both false already uses up the two false statements, but the Rani and Yosef pair always adds one more. That makes three.
+- Vina forgot and Rani's statement is true matches the Vina row. It's the only option that must be true.
+- Yosef forgot and Joko's statement is true gives three false statements. It only fits if you read the condition as "exactly two true" instead of "exactly two false".
+- Vina forgot and Joko's statement is true can't happen, because Joko says precisely that it wasn't Vina.
+
+So what must be true is that Vina forgot to return the key, and Rani's statement is true.

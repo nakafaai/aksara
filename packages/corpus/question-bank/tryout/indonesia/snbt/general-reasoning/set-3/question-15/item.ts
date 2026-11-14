@@ -4,32 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "grouping",
+    topic: "arrangement",
   },
-  stimulus: "rak",
+  stimulus: "rapat",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "M berada di rak tengah.",
+          label: "Cahya bersebelahan dengan Fajar.",
         },
         {
           correct: false,
-          label: "N berada di rak bawah.",
+          label: "Galuh duduk di kursi bernomor genap.",
         },
         {
           correct: false,
-          label: "P berada di rak tengah.",
+          label: "Nomor kursi Asri lebih kecil daripada nomor kursi Fajar.",
         },
         {
           correct: false,
-          label: "L berada di rak atas.",
+          label: "Nomor kursi Bonar lebih kecil daripada nomor kursi Hamid.",
         },
         {
           correct: true,
-          label: "K berada di rak bawah.",
+          label: "Fajar duduk di kursi bernomor genap.",
         },
       ],
     },
