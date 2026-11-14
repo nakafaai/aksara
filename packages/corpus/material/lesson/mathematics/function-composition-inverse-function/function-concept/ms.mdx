@@ -1,0 +1,154 @@
+export const metadata = {
+  title: "Konsep Fungsi",
+  description:
+    "Fungsi memberikan tepat satu output kepada setiap input yang dibenarkan dan boleh diwakili dengan tatatanda, jadual, dan pasangan bertertib.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-27",
+  dateModified: "2026-11-08",
+  subject: "Fungsi Gubahan dan Fungsi Songsang",
+};
+
+## Apa yang Menjadikan Hubungan sebagai Fungsi
+
+Fungsi memberikan **tepat satu output** kepada setiap input dalam domainnya. Jika <InlineMath math="f" /> memetakan set <InlineMath math="A" /> kepada set <InlineMath math="B" />, kita tulis:
+
+<BlockMath math="f:A\to B" />
+
+Bagi setiap <InlineMath math="x\in A" />, mesti ada satu nilai <InlineMath math="y\in B" /> dengan <InlineMath math="y=f(x)" />. Dua input yang berbeza boleh berkongsi output yang sama. Yang tidak dibenarkan ialah <Highlight>satu input menerima dua output yang berbeza</Highlight>.
+
+Contohnya, petua <InlineMath math="f(x)=x+2" /> memberikan satu nilai kepada setiap input nombor nyata:
+
+| Input <InlineMath math="x" /> | Output <InlineMath math="f(x)" /> |
+| ----------------------------- | -------------------------------- |
+| <InlineMath math="3" /> | <InlineMath math="5" /> |
+| <InlineMath math="-1" /> | <InlineMath math="1" /> |
+| <InlineMath math="0" /> | <InlineMath math="2" /> |
+
+Maklumat yang sama boleh ditulis sebagai pasangan bertertib:
+
+<BlockMath math="\{(3,5),(-1,1),(0,2)\}" />
+
+Setiap koordinat pertama muncul bersama hanya satu koordinat kedua, jadi pasangan ini menerangkan satu fungsi pada input yang ditunjukkan.
+
+Setiap input bagi <InlineMath math="f(x) = x + 2" /> mendapat tepat satu output, jadi pasangan <InlineMath math="(3, 5)" />, <InlineMath math="(-1, 1)" /> dan <InlineMath math="(0, 2)" /> semuanya terletak pada satu garis, dengan satu titik di atas setiap input.
+
+<MathVisual
+  title={<>Pasangan input dan output bagi <InlineMath math="f(x) = x + 2" /></>}
+  description={<>Pasangan <InlineMath math="(3, 5)" />, <InlineMath math="(-1, 1)" /> dan <InlineMath math="(0, 2)" /> pada garis <InlineMath math="y = x + 2" />.</>}
+  labels={{
+    rule: <InlineMath math="y = x + 2" />,
+    a: <InlineMath math="(3, 5)" />,
+    b: <InlineMath math="(-1, 1)" />,
+    c: <InlineMath math="(0, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 4.6 }, y: { min: -0.6, max: 6.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "rule", kind: "segment", from: { x: -2, y: 0 }, to: { x: 4, y: 6 }, appearance: "construction" },
+      { id: "a", kind: "point", at: { x: 3, y: 5 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: -1, y: 1 }, appearance: "primary" },
+      { id: "c", kind: "point", at: { x: 0, y: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "rule", objectId: "rule", at: { x: 4, y: 6 }, placement: "left" },
+      { key: "a", objectId: "a", at: { x: 3, y: 5 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: -1, y: 1 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 0, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Membaca Tatatanda Fungsi
+
+Dalam persamaan <InlineMath math="f(x)=y" />:
+
+- <InlineMath math="f" /> ialah nama fungsi itu.
+- <InlineMath math="x" /> ialah input daripada domain.
+- <InlineMath math="f(x)" /> ialah output yang terhasil apabila petua dikenakan pada <InlineMath math="x" />.
+- <InlineMath math="y" /> ialah nama lain bagi output itu.
+
+Tatatanda <InlineMath math="f(3)" /> **tidak bermaksud pendaraban** dengan <InlineMath math="3" />. Maksudnya “cari nilai <InlineMath math="f" /> pada input <InlineMath math="3" />.” Untuk <InlineMath math="f(x)=x+2" />:
+
+<MathContainer>
+  <BlockMath math="f(3)=3+2=5" />
+  <BlockMath math="f(-1)=-1+2=1" />
+  <BlockMath math="f(0)=0+2=2" />
+</MathContainer>
+
+## Teroka Satu Petua
+
+Mesin fungsi interaktif ini menggunakan <InlineMath math="f(x)=2x+1" />. Tukar input, ramalkan outputnya, kemudian bandingkan ramalan kamu dengan hasil yang dipaparkan.
+
+<FunctionMachine
+  title={<>Mesin Fungsi</>}
+  description={<>Masukkan satu nombor untuk mengira nilai petua fungsi yang tetap ini.</>}
+  inputLabel="Input fungsi"
+/>
+
+Petua ini sentiasa mengikut **dua operasi yang sama dalam tertib yang sama**: darab input dengan <InlineMath math="2" />, kemudian tambah <InlineMath math="1" />. Contohnya:
+
+<BlockMath math="\begin{aligned} f(-4) &amp;=2(-4)+1 \\ &amp;=-8+1 \\ &amp;=-7 \end{aligned}" />
+
+## Fungsi atau Bukan Fungsi
+
+Bandingkan dua hubungan ini:
+
+<MathContainer>
+  <BlockMath math="R=\{(1,4),(2,4),(3,7)\}" />
+  <BlockMath math="S=\{(1,4),(1,6),(3,7)\}" />
+</MathContainer>
+
+Hubungan <InlineMath math="R" /> ialah fungsi. Input <InlineMath math="1" /> dan <InlineMath math="2" /> berkongsi **output yang sama**, iaitu <InlineMath math="4" />, dan ini dibenarkan. Hubungan <InlineMath math="S" /> bukan fungsi kerana input <InlineMath math="1" /> ada **dua output yang berbeza**, iaitu <InlineMath math="4" /> dan <InlineMath math="6" />.
+
+Plotkan <InlineMath math="S" />: input <InlineMath math="1" /> ada dua titik di atasnya, iaitu <InlineMath math="(1, 4)" /> dan <InlineMath math="(1, 6)" />, jadi garis mencancang <InlineMath math="x = 1" /> menyilang graf itu dua kali. Itulah sebabnya <InlineMath math="S" /> bukan fungsi, manakala dalam <InlineMath math="R" /> setiap input ada satu titik sahaja.
+
+<MathVisual
+  title={<>Ujian garis mencancang pada <InlineMath math="S" /></>}
+  description={<>Titik <InlineMath math="(1, 4)" />, <InlineMath math="(1, 6)" /> dan <InlineMath math="(3, 7)" /> bagi <InlineMath math="S" />, dengan garis mencancang <InlineMath math="x = 1" /> yang melalui dua daripadanya.</>}
+  labels={{
+    test: <InlineMath math="x = 1" />,
+    a: <InlineMath math="(1, 4)" />,
+    b: <InlineMath math="(1, 6)" />,
+    c: <InlineMath math="(3, 7)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -0.6, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "test", kind: "line", through: [{ x: 1, y: 0 }, { x: 1, y: 8 }], appearance: "warning" },
+      { id: "a", kind: "point", at: { x: 1, y: 4 }, appearance: "secondary" },
+      { id: "b", kind: "point", at: { x: 1, y: 6 }, appearance: "secondary" },
+      { id: "c", kind: "point", at: { x: 3, y: 7 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "test", objectId: "test", at: { x: 1, y: 8 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 1, y: 4 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: 1, y: 6 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 3, y: 7 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Semak Kefahaman Kamu
+
+Soalan-soalan ini menyemak satu takrif pada satu masa, jadi jawab setiap satu dengan menyatakan input, petua, dan **output tunggal** yang dihasilkan oleh petua itu.
+
+1. Diberi <InlineMath math="g(x)=3x-2" />. Cari <InlineMath math="g(0)" />, <InlineMath math="g(2)" />, dan <InlineMath math="g(-3)" />.
+2. Adakah <InlineMath math="T=\{(-2,5),(0,1),(4,5)\}" /> mentakrifkan fungsi pada input yang ditunjukkan? Terangkan.
+3. Adakah <InlineMath math="U=\{(-2,5),(0,1),(-2,7)\}" /> mentakrifkan fungsi pada input yang ditunjukkan? Terangkan.
+
+### Jalan Kerja
+
+1. Gantikan setiap input ke dalam petua yang sama:
+
+   <MathContainer>
+     <BlockMath math="g(0)=3(0)-2=-2" />
+     <BlockMath math="g(2)=3(2)-2=4" />
+     <BlockMath math="g(-3)=3(-3)-2=-11" />
+   </MathContainer>
+
+2. Ya. Setiap koordinat pertama dalam <InlineMath math="T" /> ada tepat satu koordinat kedua. Output <InlineMath math="5" /> yang digunakan semula tidak melanggar takrif.
+3. Tidak. Input <InlineMath math="-2" /> dipasangkan dengan **dua output yang berbeza**, iaitu <InlineMath math="5" /> dan <InlineMath math="7" />.

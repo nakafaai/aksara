@@ -1,0 +1,357 @@
+export const metadata = {
+  title: "Hiperbola",
+  description: "Tentukan fokus, asimptot, kesipian dan verteks hiperbola daripada persamaan piawainya.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-09-23",
+  subject: "Geometri Analitik",
+};
+
+
+
+## Cabang dan Fokus Hiperbola
+
+Garis luar menara penyejuk, kalau dilihat dari sisi, selalunya menyerupai hiperbola. Gelombang kejutan berbentuk kon daripada pesawat supersonik juga boleh membentuk laluan hiperbola di tempat gelombang itu bersilang dengan tanah. Model fizikal mungkin menunjukkan sebahagian lengkung sahaja. Hiperbola matematik yang lengkap ada dua cabang.
+
+Secara geometri, hiperbola terhasil apabila satu satah memotong kedua-dua bahagian kon berganda. Berbeza dengan elips yang tertutup, hiperbola ada **dua cabang yang terpisah** dan saling membelakangi.
+
+Secara matematik, hiperbola ditakrifkan sebagai lokus titik yang <Highlight>beza mutlak jaraknya ke dua titik tetap</Highlight> sentiasa malar. Dua titik tetap ini dipanggil **fokus** hiperbola. Bagi setiap titik <InlineMath math="P" /> pada hiperbola, bezanya <InlineMath math="|PF_1 - PF_2| = 2a" /> (malar), manakala dalam [elips](/ms/subjek/matematik/geometri-analitik/elips) hasil tambah jaraknya yang malar: <InlineMath math="PF_1 + PF_2 = 2a" />.
+
+<MathVisual
+  title={<>Konsep Asas Hiperbola</>}
+  description={<>Hiperbola dengan dua fokus yang menunjukkan beza jarak yang malar</>}
+  labels={{
+    "l1": <InlineMath math="F_1" />,
+    "l2": <InlineMath math="F_2" />,
+    "l3": <InlineMath math="P" />,
+    "l4": <InlineMath math="r_1" />,
+    "l5": <InlineMath math="r_2" />,
+    "l6": <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -14, max: 14 }, y: { min: -9, max: 8 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cosh((-2 + (t * 0.1))))", y: "(2 * sinh((-2 + (t * 0.1))))", parameter: { min: 0, max: 39 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-3) * cosh((-2 + (t * 0.1))))", y: "(2 * sinh((-2 + (t * 0.1))))", parameter: { min: 0, max: 39 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3.61, y: 0 }, { x: 3.61, y: 0 }], appearance: "secondary" },
+      { id: "s4", kind: "point", at: { x: 3.77, y: 1.52 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3.61, y: 0 }, { x: 3.77, y: 1.52 }], appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 3.61, y: 0 }, { x: 3.77, y: 1.52 }], appearance: "highlight" },
+      { id: "s7", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "s8", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }], appearance: "warning" },
+      { id: "s9", kind: "polyline", vertices: [{ x: 0, y: -4 }, { x: 0, y: 4 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -3.61, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3.61, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: 3.77, y: 1.52 }, placement: "above-right" },
+      { key: "l4", objectId: "s5", at: { x: 3.77, y: 1.52 }, placement: "above-left" },
+      { key: "l5", objectId: "s6", at: { x: 3.61, y: 0 }, placement: "above-right" },
+      { key: "l6", objectId: "s7", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Gambar rajah ini menunjukkan kedua-dua cabang, dua fokus, dan satu titik <InlineMath math="P" /> pada lengkung. Dua tembereng garis itu mempunyai panjang <InlineMath math="r_1=PF_1" /> dan <InlineMath math="r_2=PF_2" />. Kalau <InlineMath math="P" /> digerakkan sepanjang mana-mana cabang, kedua-dua panjang itu berubah, tetapi beza mutlaknya tetap <InlineMath math="|r_1-r_2|=2a" />.
+
+## Komponen Hiperbola
+
+Sebelum guna rumus, kenal pasti dahulu bahagian yang mengawal bentuk dan kedudukan lengkung.
+
+<MathVisual
+  title={<>Bahagian Hiperbola</>}
+  description={<>Komponen hiperbola dengan paksi rentas mengufuk.</>}
+  labels={{
+    "l1": <>Pusat</>,
+    "l2": <InlineMath math="F_1" />,
+    "l3": <InlineMath math="F_2" />,
+    "l4": <InlineMath math="A_1" />,
+    "l5": <InlineMath math="A_2" />,
+    "l6": <>Asimptot</>,
+    "l7": <>Asimptot</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 8.5 }, y: { min: -6.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cosh((-1.5 + (t * 0.1))))", y: "(2.5 * sinh((-1.5 + (t * 0.1))))", parameter: { min: 0, max: 29 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-3) * cosh((-1.5 + (t * 0.1))))", y: "(2.5 * sinh((-1.5 + (t * 0.1))))", parameter: { min: 0, max: 29 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3.91, y: 0 }, { x: 3.91, y: 0 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "highlight" },
+      { id: "s5-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "highlight" },
+      { id: "s5-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -6, y: -5 }, { x: 6, y: 5 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: -6, y: 5 }, { x: 6, y: -5 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: -3.91, y: 0 }, placement: "below-left" },
+      { key: "l3", objectId: "s4", at: { x: 3.91, y: 0 }, placement: "below-right" },
+      { key: "l4", objectId: "s5", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "l5", objectId: "s5", at: { x: 3, y: 0 }, placement: "above-right" },
+      { key: "l6", objectId: "s6", at: { x: 6, y: 5 }, placement: "below-left" },
+      { key: "l7", objectId: "s7", at: { x: -6, y: 5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Baca graf ini melalui lima ciri berikut:
+
+1. **Pusat hiperbola** ialah titik tengah antara dua fokus, biasanya ditandakan dengan <InlineMath math="O" />.
+
+2. **Fokus** (<InlineMath math="F_1" /> dan <InlineMath math="F_2" />) ialah dua titik tetap dalam definisi hiperbola. Kalau <InlineMath math="c" /> ialah jarak dari pusat ke mana-mana satu fokus, jarak antara dua fokus itu ialah <InlineMath math="2c" />.
+
+3. **Verteks** (<InlineMath math="A_1" /> dan <InlineMath math="A_2" />) ialah titik pada setiap cabang yang paling dekat dengan pusat. Kedua-duanya terletak pada paksi rentas.
+
+4. **Paksi rentas** ialah tembereng garis yang melalui pusat dan titik hujungnya ialah dua verteks itu. Fokus terletak pada garis yang mengandungi tembereng ini.
+
+5. **Asimptot** ialah garis yang dihampiri oleh cabang hiperbola apabila cabang itu memanjang hingga ke ketakterhinggaan. Hiperbola tidak pernah menyentuh asimptotnya, tetapi semakin jauh dari pusat, semakin dekat lengkung itu dengan garis asimptot.
+
+> Beza utama antara hiperbola dan elips: hiperbola ada asimptot dan terdiri daripada dua cabang yang terpisah, manakala elips ialah lengkung tertutup tanpa asimptot.
+
+## Persamaan Hiperbola
+
+Ambil <InlineMath math="a > 0" /> dan <InlineMath math="b > 0" />. Pemalar dalam definisi itu mesti memenuhi <InlineMath math="0 < 2a < 2c" />, dengan <InlineMath math="2c" /> ialah jarak antara dua fokus. Persamaan piawai bergantung pada orientasi cabang dan kedudukan pusat. Kita akan guna dua kes. **Sebutan kuasa dua yang positif** menentukan arah, jadi kalau sebutan <InlineMath math="x^2" /> positif, hiperbola terbuka ke kiri dan ke kanan, manakala kalau sebutan <InlineMath math="y^2" /> positif, hiperbola terbuka ke atas dan ke bawah.
+
+### Pusat di Asalan
+
+Kalau pusat hiperbola berada di <InlineMath math="O(0,0)" />, ada dua orientasi yang mungkin:
+
+<MathVisual
+  title={<>Paksi Rentas Mengufuk</>}
+  description={<>Hiperbola <InlineMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" /> dengan paksi rentas mengufuk.</>}
+  labels={{
+    "l1": <InlineMath math="O(0,0)" />,
+    "l2": <InlineMath math="F_1" />,
+    "l3": <InlineMath math="F_2" />,
+    "l4": <InlineMath math="A_1" />,
+    "l5": <InlineMath math="A_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -11.5, max: 11.5 }, y: { min: -7.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cosh((-1.8 + (t * 0.1))))", y: "(2 * sinh((-1.8 + (t * 0.1))))", parameter: { min: 0, max: 35 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-3) * cosh((-1.8 + (t * 0.1))))", y: "(2 * sinh((-1.8 + (t * 0.1))))", parameter: { min: 0, max: 35 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3.61, y: 0 }, { x: 3.61, y: 0 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "highlight" },
+      { id: "s5-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "highlight" },
+      { id: "s5-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -6, y: -4 }, { x: 6, y: 4 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: -6, y: 4 }, { x: 6, y: -4 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: -3.61, y: 0 }, placement: "above-left" },
+      { key: "l3", objectId: "s4", at: { x: 3.61, y: 0 }, placement: "above-right" },
+      { key: "l4", objectId: "s5", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "l5", objectId: "s5", at: { x: 3, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Apabila **paksi rentas selari** dengan paksi <InlineMath math="x" />, persamaan hiperbola ialah:
+
+<BlockMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" />
+
+Graf yang sepadan dengan paksi rentas mencancang ditunjukkan di bawah:
+
+<MathVisual
+  title={<>Paksi Rentas Mencancang</>}
+  description={<>Hiperbola <InlineMath math="\frac{y^2}{a^2} - \frac{x^2}{b^2} = 1" /> dengan paksi rentas mencancang.</>}
+  labels={{
+    "l1": <InlineMath math="O(0,0)" />,
+    "l2": <InlineMath math="F_1" />,
+    "l3": <InlineMath math="F_2" />,
+    "l4": <InlineMath math="A_1" />,
+    "l5": <InlineMath math="A_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 6.5 }, y: { min: -11.5, max: 11.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(2 * sinh((-1.8 + (t * 0.1))))", y: "(3 * cosh((-1.8 + (t * 0.1))))", parameter: { min: 0, max: 35 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2 * sinh((-1.8 + (t * 0.1))))", y: "((-3) * cosh((-1.8 + (t * 0.1))))", parameter: { min: 0, max: 35 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: -3.61 }, { x: 0, y: 3.61 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: -3 }, { x: 0, y: 3 }], appearance: "highlight" },
+      { id: "s5-p0", kind: "point", at: { x: 0, y: -3 }, appearance: "highlight" },
+      { id: "s5-p1", kind: "point", at: { x: 0, y: 3 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -4, y: -6 }, { x: 4, y: 6 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: -4, y: 6 }, { x: 4, y: -6 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 0, y: -3.61 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: 0, y: 3.61 }, placement: "above-right" },
+      { key: "l4", objectId: "s5", at: { x: 0, y: -3 }, placement: "below-right" },
+      { key: "l5", objectId: "s5", at: { x: 0, y: 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Apabila paksi rentas selari dengan paksi <InlineMath math="y" />, persamaan hiperbola ialah:
+
+<BlockMath math="\frac{y^2}{a^2} - \frac{x^2}{b^2} = 1" />
+
+### Pusat yang Dianjakkan
+
+Bagi **hiperbola yang berpusat di** <InlineMath math="(h, k)" />, persamaannya menjadi:
+
+Bagi paksi rentas mengufuk:
+
+<BlockMath math="\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1" />
+  Bagi paksi rentas mencancang:
+
+<BlockMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1" />
+
+## Sifat Hiperbola
+
+Tiga parameter bagi setiap hiperbola memenuhi:
+
+<BlockMath math="c^2 = a^2 + b^2" />
+
+Dalam tatatanda ini:
+- <InlineMath math="a" /> ialah jarak dari pusat ke verteks (separuh paksi rentas)
+- <InlineMath math="b" /> ialah separuh paksi konjugat yang menentukan kecerunan asimptot
+- <InlineMath math="c" /> ialah jarak dari pusat ke fokus
+
+Hubungan ini berbeza daripada elips, yang menggunakan <InlineMath math="c^2 = a^2 - b^2" />.
+
+**Kesipian** hiperbola ditakrifkan sebagai:
+
+<BlockMath math="e = \frac{c}{a}" />
+
+Kesipian hiperbola sentiasa <InlineMath math="e > 1" /> kerana <InlineMath math="c^2 = a^2 + b^2" /> bermaksud <InlineMath math="c > a" />. Lebih tepat lagi, <InlineMath math="e^2 = 1 + \frac{b^2}{a^2}" />, jadi apabila <InlineMath math="e" /> bertambah, nisbah <InlineMath math="b/a" /> turut bertambah, dan nisbah inilah yang juga menentukan kecerunan asimptot. Sebagai perbandingan, bulatan ada <InlineMath math="e = 0" />, elips ada <InlineMath math="0 < e < 1" />, parabola ada <InlineMath math="e = 1" />, dan hiperbola ada <InlineMath math="e > 1" />.
+
+**Persamaan asimptot** bagi hiperbola yang berpusat di <InlineMath math="(0,0)" />:
+
+Bagi paksi rentas mengufuk:
+
+<BlockMath math="y = \pm \frac{b}{a}x" />
+  Bagi paksi rentas mencancang:
+
+<BlockMath math="y = \pm \frac{a}{b}x" />
+
+
+Dalam graf dengan paksi rentas mengufuk di atas, <InlineMath math="a=3" /> dan <InlineMath math="b=2" />. Bandingkan cabang kanan atas dengan asimptot positifnya pada <InlineMath math="x=5" />.
+
+<MathContainer>
+<BlockMath math="\begin{aligned}\frac{25}{9}-\frac{y^2}{4}&amp;=1\\y^2&amp;=\frac{64}{9}\\y&amp;=\frac{8}{3}\end{aligned}" />
+
+<BlockMath math="y_{\mathrm{asim}}=\frac{2}{3}\cdot5=\frac{10}{3},\qquad\frac{10}{3}-\frac{8}{3}=\frac{2}{3}" />
+</MathContainer>
+
+Jadi **menghampiri asimptot** tidak bermaksud terletak padanya. Pada koordinat ini, jarak mencancang antara lengkung dengan garis itu masih <InlineMath math="2/3" /> unit.
+
+
+> Asimptot menerangkan arah had bagi kedua-dua cabang. Apabila jarak dari pusat semakin besar, setiap cabang menghampiri satu asimptot tanpa bersilang dengannya.
+
+## Latihan
+
+Gunakan verteks untuk mencari separuh paksi rentas, fokus untuk mencari jarak fokus, dan **sebutan kuasa dua yang positif** untuk mengenal pasti arah bukaan. Apabila pusat beranjak, asimptot juga mesti melalui pusat itu.
+
+1. Tentukan persamaan hiperbola yang berpusat di <InlineMath math="(0,0)" />, dengan verteks di <InlineMath math="(\pm 2, 0)" /> dan fokus di <InlineMath math="(\pm 3, 0)" />.
+
+2. Diberi hiperbola <InlineMath math="\frac{x^2}{25} - \frac{y^2}{9} = 1" />. Tentukan koordinat fokus, kesipian dan persamaan asimptotnya.
+
+3. Satu hiperbola berpusat di <InlineMath math="(1, -2)" />, dengan paksi rentas mengufuk, <InlineMath math="a = 3" /> dan <InlineMath math="b = 4" />. Tentukan persamaan hiperbola itu.
+
+4. Tentukan persamaan asimptot bagi hiperbola <InlineMath math="\frac{(y+1)^2}{4} - \frac{(x-2)^2}{9} = 1" />.
+
+### Jalan Kerja
+
+**Penyelesaian 1**:
+
+Diberi:
+- Pusat di <InlineMath math="(0,0)" />
+- Verteks di <InlineMath math="(\pm 2, 0)" />, jadi <InlineMath math="a = 2" />
+- Fokus di <InlineMath math="(\pm 3, 0)" />, jadi <InlineMath math="c = 3" />
+- **Paksi rentas mengufuk** (kerana verteks dan fokus terletak pada paksi <InlineMath math="x" />)
+
+Gunakan hubungan <InlineMath math="c^2 = a^2 + b^2" />:
+
+<MathContainer>
+  <BlockMath math="3^2 = 2^2 + b^2" />
+  <BlockMath math="9 = 4 + b^2" />
+  <BlockMath math="b^2 = 5" />
+</MathContainer>
+
+Persamaan hiperbola dengan **paksi rentas mengufuk**:
+
+<BlockMath math="\frac{x^2}{4} - \frac{y^2}{5} = 1" />
+
+**Penyelesaian 2**:
+
+Daripada persamaan <InlineMath math="\frac{x^2}{25} - \frac{y^2}{9} = 1" />:
+- <InlineMath math="a^2 = 25" />, jadi <InlineMath math="a = 5" />
+- <InlineMath math="b^2 = 9" />, jadi <InlineMath math="b = 3" />
+
+Oleh sebab persamaan ini berbentuk <InlineMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" />, **paksi rentasnya mengufuk**.
+
+Kira <InlineMath math="c" />:
+
+<MathContainer>
+  <BlockMath math="c^2 = a^2 + b^2 = 25 + 9 = 34" />
+  <BlockMath math="c = \sqrt{34} \approx 5.831" />
+</MathContainer>
+
+Koordinat fokus: <InlineMath math="(\pm \sqrt{34}, 0)" />
+
+Kesipian:
+
+<BlockMath math="e = \frac{c}{a} = \frac{\sqrt{34}}{5} \approx \frac{5.831}{5} \approx 1.166" />
+
+Persamaan asimptot (**paksi rentas mengufuk**):
+
+<BlockMath math="y = \pm \frac{b}{a}x = \pm \frac{3}{5}x" />
+
+**Penyelesaian 3**:
+
+Diberi:
+- Pusat: <InlineMath math="(h,k) = (1, -2)" />
+- **Paksi rentas mengufuk**
+- <InlineMath math="a = 3" />, jadi <InlineMath math="a^2 = 9" />
+- <InlineMath math="b = 4" />, jadi <InlineMath math="b^2 = 16" />
+
+Persamaan hiperbola yang berpusat di <InlineMath math="(h,k)" /> dengan **paksi rentas mengufuk**:
+
+<BlockMath math="\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1" />
+
+Gantikan nilai-nilainya:
+
+<BlockMath math="\frac{(x-1)^2}{9} - \frac{(y+2)^2}{16} = 1" />
+
+**Penyelesaian 4**:
+
+Daripada persamaan <InlineMath math="\frac{(y+1)^2}{4} - \frac{(x-2)^2}{9} = 1" />:
+- Pusat: <InlineMath math="(h,k) = (2, -1)" />
+- <InlineMath math="a^2 = 4" />, jadi <InlineMath math="a = 2" />
+- <InlineMath math="b^2 = 9" />, jadi <InlineMath math="b = 3" />
+- **Paksi rentas mencancang** (kerana persamaan ini berbentuk <InlineMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1" />)
+
+Bagi hiperbola yang berpusat di <InlineMath math="(h,k)" /> dengan **paksi rentas mencancang**, persamaan asimptotnya ialah:
+
+<BlockMath math="y - k = \pm \frac{a}{b}(x - h)" />
+
+Gantikan nilai-nilainya:
+
+<MathContainer>
+  <BlockMath math="y - (-1) = \pm \frac{2}{3}(x - 2)" />
+  <BlockMath math="y + 1 = \pm \frac{2}{3}(x - 2)" />
+  <BlockMath math="y = -1 \pm \frac{2}{3}(x - 2)" />
+</MathContainer>
+
+ Jadi persamaan asimptotnya ialah:
+
+ <MathContainer>
+    <BlockMath math="y = -1 + \frac{2}{3}(x - 2)" />
+    <BlockMath math="y = -1 - \frac{2}{3}(x - 2)" />
+  </MathContainer>

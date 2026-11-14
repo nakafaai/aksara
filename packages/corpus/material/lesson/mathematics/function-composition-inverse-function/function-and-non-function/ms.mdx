@@ -1,0 +1,164 @@
+export const metadata = {
+  title: "Fungsi dan Hubungan Lain",
+  description:
+    "Bezakan fungsi daripada hubungan lain dengan menyemak sama ada setiap unsur domain ada tepat satu output dalam gambar rajah anak panah dan takrif.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-27",
+  dateModified: "2026-09-12",
+  subject: "Fungsi Gubahan dan Fungsi Songsang",
+};
+
+## Hubungan antara Set
+
+Dalam matematik, **hubungan** daripada set <InlineMath math="A" /> kepada set <InlineMath math="B" /> ialah sebarang subset bagi hasil darab Cartesan <InlineMath math="A\times B" />. Pasangan bertertib <InlineMath math="(a,b)" /> dalam hubungan itu menyatakan bahawa <InlineMath math="a" /> dihubungkan dengan <InlineMath math="b" />. Suatu hubungan boleh membiarkan satu unsur <InlineMath math="A" /> tanpa pasangan, atau memasangkannya dengan beberapa unsur <InlineMath math="B" />.
+
+Untuk hubungan "kurang daripada" antara <InlineMath math="A = \{1, 2, 3\}" /> dan <InlineMath math="B = \{1, 2, 3, 4\}" />, masukkan <InlineMath math="(a,b)" /> setiap kali <InlineMath math="a < b" />:
+
+- Untuk <InlineMath math="a=1" />, kita dapat <InlineMath math="1 < 2" />, <InlineMath math="1 < 3" />, <InlineMath math="1 < 4" />. Pasangan: <InlineMath math="(1, 2), (1, 3), (1, 4)" />.
+- Untuk <InlineMath math="a=2" />, kita dapat <InlineMath math="2 < 3" />, <InlineMath math="2 < 4" />. Pasangan: <InlineMath math="(2, 3), (2, 4)" />.
+- Untuk <InlineMath math="a=3" />, kita dapat <InlineMath math="3 < 4" />. Pasangan: <InlineMath math="(3, 4)" />.
+
+Hubungan itu ialah:
+
+<BlockMath math="\left\{\begin{gathered}
+(1, 2), (1, 3), (1, 4), \\
+(2, 3), (2, 4), (3, 4)
+\end{gathered}\right\}" />
+
+## Fungsi sebagai Hubungan Khas
+
+**Fungsi** (atau pemetaan) <InlineMath math="f" /> daripada set <InlineMath math="A" /> kepada set <InlineMath math="B" />, ditulis <InlineMath math="f: A \to B" />, ialah hubungan khas yang memenuhi dua syarat:
+
+1.  **Setiap** input <InlineMath math="x \in A" /> dipasangkan dengan sekurang-kurangnya satu output <InlineMath math="y \in B" />.
+
+    <BlockMath math="\forall x \in A, \exists y \in B \text{ dengan keadaan} (x, y) \in f" />
+
+2.  Tiada input <InlineMath math="x \in A" /> yang dipasangkan dengan dua output berbeza dalam <InlineMath math="B" />.
+
+    <BlockMath math="\text{Jika } (x, y_1) \in f \text{ dan} (x, y_2) \in f, \text{ maka } y_1 = y_2" />
+
+Apabila digabungkan, dua syarat ini bermaksud setiap input dalam domain mesti ada tepat satu output.
+
+## Menguji Hubungan dengan Gambar Rajah Anak Panah
+
+Setiap gambar rajah anak panah boleh diuji dengan syarat yang sama. Anak panah di bawah menunjukkan syarat yang dipenuhi atau dilanggar oleh setiap hubungan. Suatu hubungan ialah fungsi jika dan hanya jika <Highlight>setiap input ada satu anak panah yang keluar daripadanya</Highlight>.
+
+### Hubungan yang Bukan Fungsi
+
+Gambar rajah ini menunjukkan **dua kegagalan yang berbeza**. Dalam gambar rajah pertama, input <InlineMath math="b" /> ada dua output. Dalam gambar rajah kedua, input <InlineMath math="c" /> langsung tiada output.
+
+<ContentStack>
+  <FunctionAndNonFunctionDiagram
+    title="Satu kepada Banyak"
+    description={
+      <>
+        Unsur <InlineMath math="b" /> ada lebih daripada satu pasangan.
+      </>
+    }
+  >
+    <FunctionAndNonFunctionRelationVisualizer
+      accessibilityLabel="Gambar rajah anak panah bagi hubungan satu kepada banyak"
+      domainLabel={<InlineMath math="X" />}
+      codomainLabel={<InlineMath math="Y" />}
+      domain={[
+        { id: "a", label: <InlineMath math="a" /> },
+        { id: "b", label: <InlineMath math="b" /> },
+        { id: "c", label: <InlineMath math="c" /> },
+      ]}
+      codomain={[
+        { id: "m", label: <InlineMath math="m" /> },
+        { id: "n", label: <InlineMath math="n" /> },
+      ]}
+      mappings={[
+        { from: "a", to: "m" },
+        { from: "b", to: "m" },
+        { from: "b", to: "n" },
+        { from: "c", to: "n" },
+      ]}
+    />
+  </FunctionAndNonFunctionDiagram>
+
+  <FunctionAndNonFunctionDiagram
+    title="Unsur Domain Tanpa Pasangan"
+    description={
+      <>
+        Unsur <InlineMath math="c" /> tiada pasangan dalam kodomain.
+      </>
+    }
+  >
+    <FunctionAndNonFunctionRelationVisualizer
+      accessibilityLabel="Gambar rajah anak panah dengan satu unsur domain tanpa pasangan"
+      domainLabel={<InlineMath math="X" />}
+      codomainLabel={<InlineMath math="Y" />}
+      domain={[
+        { id: "a", label: <InlineMath math="a" /> },
+        { id: "b", label: <InlineMath math="b" /> },
+        { id: "c", label: <InlineMath math="c" /> },
+      ]}
+      codomain={[
+        { id: "m", label: <InlineMath math="m" /> },
+        { id: "n", label: <InlineMath math="n" /> },
+        { id: "o", label: <InlineMath math="o" /> },
+      ]}
+      mappings={[
+        { from: "a", to: "m" },
+        { from: "b", to: "o" },
+        // 'c' has no mapping
+      ]}
+    />
+  </FunctionAndNonFunctionDiagram>
+</ContentStack>
+
+### Hubungan yang Merupakan Fungsi
+
+Di sini setiap input dalam domain menghala kepada **tepat satu output**, iaitu syarat yang mesti dipenuhi oleh suatu hubungan untuk menjadi fungsi.
+
+<FunctionAndNonFunctionDiagram
+  title="Tepat Satu Pasangan"
+  description={<>Setiap unsur domain <InlineMath math="p" />, <InlineMath math="q" />, dan <InlineMath math="r" /> ada tepat satu pasangan.</>}
+>
+  <FunctionAndNonFunctionRelationVisualizer
+    accessibilityLabel="Gambar rajah anak panah bagi hubungan fungsi dengan tepat satu pasangan"
+    domainLabel={<InlineMath math="X" />}
+    codomainLabel={<InlineMath math="Y" />}
+    domain={[
+      { id: "p", label: <InlineMath math="p" /> },
+      { id: "q", label: <InlineMath math="q" /> },
+      { id: "r", label: <InlineMath math="r" /> },
+    ]}
+    codomain={[
+      { id: "x", label: <InlineMath math="x" /> },
+      { id: "y", label: <InlineMath math="y" /> },
+      { id: "z", label: <InlineMath math="z" /> },
+    ]}
+    mappings={[
+      { from: "p", to: "x" },
+      { from: "q", to: "y" },
+      { from: "r", to: "y" }, // Many-to-one is allowed for functions
+    ]}
+  />
+</FunctionAndNonFunctionDiagram>
+
+## Menyemak Perwakilan Lain
+
+- Dalam pasangan bertertib, periksa koordinat pertama. Jika koordinat pertama berulang dengan koordinat kedua yang berbeza, hubungan itu bukan fungsi.
+- Dalam jadual, **setiap nilai input** mesti ada satu output yang konsisten, termasuk apabila input itu muncul dalam beberapa baris.
+- Pada graf <InlineMath math="y" /> sebagai fungsi <InlineMath math="x" />, setiap garis mencancang boleh menyilang graf itu **paling banyak sekali**. Inilah ujian garis mencancang.
+
+Contohnya, bulatan <InlineMath math="x^2+y^2=4" /> bukan graf <InlineMath math="y" /> sebagai fungsi <InlineMath math="x" /> pada seluruh bulatan. Pada <InlineMath math="x=0" />, bulatan itu mengandungi <InlineMath math="y=2" /> dan juga <InlineMath math="y=-2" />.
+
+## Mengelaskan Hubungan sebagai Fungsi
+
+Setiap item di bawah menyatakan satu hubungan, dan cara menyemaknya sama setiap kali. Lihat koordinat pertama dan tentukan sama ada mana-mana **satu input** dipasangkan dengan dua output yang berbeza.
+
+1. Adakah <InlineMath math="R=\{(-1,3),(0,3),(2,5)\}" /> suatu fungsi pada input yang ditunjukkan?
+2. Adakah <InlineMath math="S=\{(-1,3),(0,3),(-1,5)\}" /> suatu fungsi pada input yang ditunjukkan?
+3. Adakah <InlineMath math="y^2=x" /> mentakrifkan <InlineMath math="y" /> sebagai fungsi untuk setiap <InlineMath math="x\geq0" />?
+
+### Menyemak Setiap Input
+
+Jawapan di bawah menamakan input yang menentukan keputusan bagi setiap hubungan, jadi kamu boleh bandingkan semakan kamu sendiri dengan penaakulannya.
+
+1. Ya. Setiap koordinat pertama ada tepat satu koordinat kedua. Dua input boleh berkongsi output <InlineMath math="3" />.
+2. Tidak. Input <InlineMath math="-1" /> ada **dua output yang berbeza**.
+3. Tidak. Untuk setiap <InlineMath math="x>0" />, hubungan itu mengandungi <InlineMath math="y=\sqrt{x}" /> dan <InlineMath math="y=-\sqrt{x}" />. Jika hubungan itu dihadkan kepada <InlineMath math="y=\sqrt{x}" />, ia akan mentakrifkan satu fungsi.
