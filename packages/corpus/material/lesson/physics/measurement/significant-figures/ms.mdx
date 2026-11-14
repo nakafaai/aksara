@@ -18,7 +18,7 @@ Zum masuk pada garis fuchsia di tepi kanan penutup botol. Garis itu sudah melepa
 
 <MathVisual
   title={<>Membaca Penutup Botol pada Pembaris</>}
-  description={<>Pembaris dengan satu tanda setiap 0.1 cm di bawah penutup botol. Zum masuk di tempat garis fuchsia memotong pembaris.</>}
+  description={<>Pembaris dengan satu tanda setiap <InlineMath math="0.1\text{ cm}" /> di bawah penutup botol. Zum masuk di tempat garis fuchsia memotong pembaris.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 4.5 } },
@@ -121,6 +121,32 @@ Dengan <InlineMath math="4" /> angka bererti:
 
 <BlockMath math="1000\text{ m}=1.000\times10^3\text{ m}" />
 
+Di sini sebatang rod keluli dibaca dengan tiga alat. Dengan pembaris bacaannya <InlineMath math="31.0\text{ cm}" />: tiga angka bererti, dan sifar terakhir itu memang diukur. Tukar kepada pita pengukur dan sifar itu hilang (<InlineMath math="31\text{ cm}" />). Tukar kepada angkup vernier dan kamu mendapat satu sifar lagi (<InlineMath math="31.00\text{ cm}" />). Sekarang tulis bacaan pembaris itu dalam meter, <InlineMath math="0.310\text{ m}" />: sifar di hadapan hanya menetapkan kedudukan titik perpuluhan, jadi bilangannya kekal tiga.
+
+<SignificantZerosLab
+  title={<>Bila Sifar Dikira</>}
+  description={
+    <>
+      Tukar alat dan unitnya, dan perhatikan sifar yang diukur oleh alat itu dan sifar yang hanya memegang tempat titik perpuluhan.
+    </>
+  }
+  labels={{
+    chooseTool: "Pilih alat pengukur",
+    chooseUnit: "Pilih unit",
+    figures: <>Angka bererti</>,
+    measuredZeros: <>Sifar yang diukur</>,
+    placeZeros: <>Sifar pemegang tempat</>,
+    reading: <>Bacaan</>,
+    scientific: <>Bentuk piawai</>,
+    tools: {
+      caliper: <>Angkup vernier</>,
+      ruler: <>Pembaris</>,
+      tape: <>Pita pengukur</>,
+    },
+    viewLabel: "Rod keluli pada alat pengukur, dengan kanta pembesar pada hujungnya",
+  }}
+/>
+
 ## Bundarkan Sekali Menggunakan Digit Pertama yang Dibuang
 
 Selepas kamu tahu bilangan digit yang dibenarkan, periksa **digit pertama yang akan dibuang**.
@@ -148,11 +174,11 @@ Bagi kes yang tepat di tengah-tengah, pembundaran ke genap menghalang siri nilai
 
 Bundarkan terus daripada nilai yang belum dibundarkan kepada kepersisan akhir. Jangan bundarkan melalui beberapa nilai perantaraan.
 
-Lihat digit pertama yang dibuang sahaja. Di bawah 5, kamu kekalkan digit terakhir. Di atas 5, kamu naikkan digit itu. Tepat 5 tanpa digit lain selepasnya pula dibundarkan ke digit genap yang terdekat. Zum masuk pada tiga bacaan di antara 3.140 dan 3.150.
+Lihat digit pertama yang dibuang sahaja. Di bawah <InlineMath math="5" />, kamu kekalkan digit terakhir. Di atas <InlineMath math="5" />, kamu naikkan digit itu. Tepat <InlineMath math="5" /> tanpa digit lain selepasnya pula dibundarkan ke digit genap yang terdekat. Zum masuk pada tiga bacaan di antara <InlineMath math="3.140" /> dan <InlineMath math="3.150" />.
 
 <MathVisual
   title={<>Membundarkan Berdasarkan Digit Pertama yang Dibuang</>}
-  description={<>Tiga bacaan dibundarkan kepada dua tempat perpuluhan pada garis nombor yang dibesarkan. Satu petak grid ialah 0.001.</>}
+  description={<>Tiga bacaan dibundarkan kepada dua tempat perpuluhan pada garis nombor yang dibesarkan. Satu petak grid ialah <InlineMath math="0.001" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -0.8, max: 2.4 } },
@@ -198,6 +224,29 @@ Katakan sebatang rod besi sepanjang <InlineMath math="8.235 \text{ cm}" /> disam
 
 Nilai <InlineMath math="12.735 \text{ cm}" /> dibundarkan kepada <InlineMath math="1" /> tempat perpuluhan kerana <InlineMath math="4.5 \text{ cm}" /> hanya mempunyai <InlineMath math="1" /> digit selepas titik perpuluhan.
 
+Mengapa bacaan pembaris yang menentukan? Sambungkan dua rod di bawah. Angkup vernier membaca rod besi hingga <InlineMath math="0.005\text{ cm}" />, tetapi pembaris membaca rod kuprum hanya hingga <InlineMath math="0.1\text{ cm}" />, jadi hujung sambungan itu boleh berada di mana-mana dalam jalur hijau kebiruan. Jalur itu lebih lebar daripada setiap perseratus, jadi <InlineMath math="12.735\text{ cm}" /> dilaporkan sebagai <InlineMath math="12.7\text{ cm}" />. Baca rod kuprum dengan angkup vernier juga, dan jalur itu mengecil sehingga ketiga-tiga tempat perpuluhan kekal.
+
+<DecimalSumLab
+  title={<>Menambah Dua Panjang yang Diukur</>}
+  description={
+    <>
+      Tukar alat bagi rod kuprum dan perhatikan lebar jalur kedudukan hujung yang mungkin di dalam kanta pembesar.
+    </>
+  }
+  labels={{
+    chooseTool: "Pilih alat bagi rod kuprum",
+    copper: <>Rod kuprum</>,
+    iron: <>Rod besi</>,
+    raw: <>Hasil tambah kalkulator</>,
+    reported: <>Hasil tambah yang dilaporkan</>,
+    tools: {
+      caliper: <>Angkup vernier</>,
+      ruler: <>Pembaris</>,
+    },
+    viewLabel: "Rod besi dan rod kuprum disambung di atas pembaris, dengan kanta pembesar pada hujung sambungan",
+  }}
+/>
+
 ## Membundarkan Hasil Darab Mengikut Angka Bererti Paling Sedikit
 
 Apabila sesuatu pengiraan hanya menjejaki angka bererti, hasil pendaraban dan pembahagian dibundarkan kepada **angka bererti paling sedikit** dalam kalangan nilai yang diukur. Jalan pintas ini tidak menggantikan pengiraan ketidakpastian pengukuran.
@@ -232,7 +281,7 @@ Pilih peraturan berdasarkan operasinya, kemudian bundarkan sekali sahaja pada ak
 
 <MathVisual
   title={<>Peraturan Pembundaran Mana yang Digunakan</>}
-  description={<>Hasil tambah (oren, satu petak grid ialah 0.01) dan hasil darab (ungu, satu petak grid ialah 0.01) dibundarkan mengikut peraturan masing-masing.</>}
+  description={<>Hasil tambah (oren, satu petak grid ialah <InlineMath math="0.01" />) dan hasil darab (ungu, satu petak grid ialah <InlineMath math="0.01" />) dibundarkan mengikut peraturan masing-masing.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.8, max: 2.5 } },

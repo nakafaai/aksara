@@ -18,6 +18,24 @@ Sisihan piawai sampel <InlineMath math="s" /> menerangkan sejauh mana setiap bac
 
 > Pengukuran berulang menunjukkan variasi rawak melalui perubahan kecil antara satu bacaan dengan bacaan yang lain. Ralat sistematik, seperti alat yang tidak bermula pada sifar atau skala yang rosak, mesti disemak melalui pemeriksaan atau penentukuran.
 
+Membaca skala dari sudut yang sedikit berbeza ialah salah satu perubahan kecil itu. Dalam silinder penyukat di bawah, bahagian bawah permukaan air yang melengkung terletak pada paksi silinder, tetapi skalanya dicetak pada dinding hadapan. Apabila mata kamu berada <InlineMath math="6.0\text{ cm}" /> di atas paras air, garis penglihatan kamu memotong dinding itu di tempat yang lebih tinggi, dan <InlineMath math="42.0\text{ mL}" /> terbaca sebagai <InlineMath math="44.1\text{ mL}" />. Letakkan mata kamu separas dengan air, dan ralat itu menjadi sifar.
+
+<ParallaxReadingLab
+  title={<>Paralaks pada Silinder Penyukat</>}
+  description={
+    <>
+      Gerakkan mata kamu ke atas atau ke bawah dan perhatikan tempat garis penglihatan kamu ke air memotong skala.
+    </>
+  }
+  labels={{
+    error: <>Ralat paralaks</>,
+    eye: "Tinggi mata di atas paras air",
+    reading: <>Bacaan yang kamu lihat</>,
+    trueVolume: <>Isi padu sebenar</>,
+    viewLabel: "Mata membaca paras air dalam silinder penyukat, dengan kanta pembesar pada skala",
+  }}
+/>
+
 ## Min bagi Pengukuran Berulang
 
 Diameter sebuah penutup botol diukur sebanyak <InlineMath math="5" /> kali dengan angkup vernier. Setiap bacaan menggunakan unit yang sama, iaitu <InlineMath math="\text{cm}" />.
@@ -46,6 +64,24 @@ Mula-mula, tambahkan bacaan berangka dalam sentimeter:
 
 Min sahaja belum mencukupi. Kita juga perlu tahu <Highlight>sama ada data itu berkumpul rapat di sekeliling min</Highlight> atau tersebar lebih jauh.
 
+Idea yang sama berguna untuk masa. Di bawah, masa sepuluh ayunan bandul <InlineMath math="0.80\text{ m}" /> diambil berulang kali, dan ibu jari kamu memulakan dan menghentikan jam randik sedikit awal atau lewat setiap kali. Dengan <InlineMath math="N=10" /> cubaan, minnya ialah <InlineMath math="\bar t=17.933\text{ s}" />, hampir dengan nilai sebenar <InlineMath math="17.943\text{ s}" />. Ubah <InlineMath math="N" /> dan perhatikan min itu semakin stabil sedangkan serakan bacaan tunggal lebih kurang sama.
+
+<StopwatchSpreadLab
+  title={<>Mengambil Masa Bandul dengan Tangan</>}
+  description={
+    <>
+      Tambah cubaan dan perhatikan min berwarna fuchsia semakin stabil sedangkan serakan bacaan tunggal lebih kurang sama.
+    </>
+  }
+  labels={{
+    mean: <>Min</>,
+    spread: <>Serakan satu bacaan</>,
+    trials: "Bilangan cubaan",
+    uncertainty: <>Ketidakpastian min</>,
+    viewLabel: "Masa ayunan bandul diambil dengan jam randik, dengan plot titik bagi bacaannya",
+  }}
+/>
+
 ## Serakan Data di Sekeliling Min
 
 Bagi data berulang, serakan sampel boleh dihitung daripada **jarak antara setiap bacaan dengan min**.
@@ -72,7 +108,7 @@ Inilah lima bacaan daripada jadual tadi pada satu garis. Garis merah jambu ialah
 
 <MathVisual
   title={<>Daripada Bacaan kepada Serakan</>}
-  description={<>Lima bacaan diameter (jingga), minnya (merah jambu) dan jalur satu sisihan piawai (hijau kebiruan). Satu petak grid ialah 0.01 cm, bermula dari 3.10 cm.</>}
+  description={<>Lima bacaan diameter (jingga), minnya (merah jambu) dan jalur satu sisihan piawai (hijau kebiruan). Satu petak grid ialah <InlineMath math="0.01\text{ cm}" />, bermula dari <InlineMath math="3.10\text{ cm}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 2.4 } },
@@ -128,7 +164,7 @@ Rajah di bawah meletakkan kelima-lima bacaan bersebelahan. Setiap batang hijau k
 
 <MathVisual
   title={<>Lima Bacaan di Sekeliling Minnya</>}
-  description={<>Setiap batang ialah bacaan tolak min, dengan satu petak bersamaan 0.01 cm. Garis jingga menandakan serakan s, manakala garis ungu menandakan ketidakpastian min u.</>}
+  description={<>Setiap batang ialah bacaan tolak min, dengan satu petak bersamaan <InlineMath math="0.01\text{ cm}" />. Garis jingga menandakan serakan s, manakala garis ungu menandakan ketidakpastian min u.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: -2.8, max: 2.5 } },
@@ -183,7 +219,7 @@ Graf di bawah mengekalkan serakan <InlineMath math="s_d" /> yang sama dan meliha
 
 <MathVisual
   title={<>Lebih Banyak Bacaan, Min Lebih Tajam</>}
-  description={<><InlineMath math="u=s/\sqrt N" /> bagi <InlineMath math="N=1" /> hingga 20 bacaan dengan serakan penutup botol, <InlineMath math="s_d" />. Paksi mengufuk: N, satu petak bersamaan 4. Paksi menegak: u, satu petak bersamaan 0.004 cm.</>}
+  description={<><InlineMath math="u=s/\sqrt N" /> bagi <InlineMath math="N=1" /> hingga <InlineMath math="20" /> bacaan dengan serakan penutup botol, <InlineMath math="s_d" />. Paksi mengufuk: N, satu petak bersamaan <InlineMath math="4" />. Paksi menegak: u, satu petak bersamaan <InlineMath math="0.004\text{ cm}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 5.5 }, y: { min: -0.3, max: 4.6 } },

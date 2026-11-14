@@ -60,6 +60,25 @@ Sistem Unit Antarabangsa atau S.I. menggunakan <InlineMath math="7" /> kuantiti 
 
 Dimensi ditulis dalam kurungan segi empat supaya tidak tertukar dengan unit. Contohnya, <InlineMath math="[\mathrm{L}]" /> ialah dimensi panjang, manakala <InlineMath math="\text{m}" /> ialah unit meter.
 
+Dimensi asas malah boleh meramal sesuatu rumus. Katakan tempoh bandul <InlineMath math="T" /> bergantung pada jisim ladung <InlineMath math="[\mathrm{M}]" />, panjang tali <InlineMath math="[\mathrm{L}]" /> dan graviti <InlineMath math="[\mathrm{L}][\mathrm{T}]^{-2}" />. Supaya hasilnya <InlineMath math="[\mathrm{T}]" />, jisim mesti berkuasa <InlineMath math="0" />, panjang berkuasa <InlineMath math="\tfrac12" /> dan graviti berkuasa <InlineMath math="-\tfrac12" />, jadi <InlineMath math="T=k\sqrt{l/g}" />. Eksperimen memberikan <InlineMath math="k=2\pi" />. Di bawah, tiga ladung berjisim <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" /> dan <InlineMath math="500\text{ g}" /> pada tali <InlineMath math="0.80\text{ m}" /> berayun serentak, sekali setiap <InlineMath math="1.79\text{ s}" /> dengan <InlineMath math="g=9.81\text{ m/s}^2" />. Ubah panjang tali dan cari ladung yang ketinggalan: tiada satu pun.
+
+<PendulumPeriodLab
+  title={<>Apa yang Menentukan Tempoh Bandul</>}
+  description={
+    <>
+      Ubah panjang tali dan perhatikan ladung berjisim <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" /> dan <InlineMath math="500\text{ g}" /> terus berayun serentak.
+    </>
+  }
+  labels={{
+    check: <>Semakan dimensi</>,
+    gravity: <>Pecutan graviti</>,
+    length: "Panjang tali",
+    masses: <>Jisim ladung</>,
+    period: <>Tempoh</>,
+    viewLabel: "Tiga bandul dengan ladung kayu, loyang dan plumbum berayun pada satu palang",
+  }}
+/>
+
 ## Menerbitkan Dimensi daripada Rumus
 
 Analisis dimensi dilakukan dengan **menggantikan setiap kuantiti dalam rumus dengan dimensinya**, kemudian meringkaskan kuasanya.
@@ -181,3 +200,28 @@ Bolt dan nat nampak seperti objek kecil, tetapi mengukurnya boleh melibatkan beb
 Jadi, dua alat pengukur boleh mengukur kuantiti yang dimensinya sama, tetapi setiap alat sesuai untuk konteks yang berbeza. Pembaris sudah memadai untuk panjang yang besar dan tidak memerlukan kepersisan tinggi. Angkup vernier atau tolok skru mikrometer lebih sesuai apabila diameter yang kecil perlu dibaca dengan lebih teliti.
 
 Had semakan ini menjadi jelas jika kita buang <InlineMath math="\frac{1}{2}" /> daripada rumus sesaran. Ungkapan <InlineMath math="s=v_0t+at^2" /> masih mempunyai dimensi panjang di kedua-dua belah, tetapi memberikan sesaran yang salah bagi pecutan malar yang bukan sifar. **Dimensi tidak menentukan faktor berangka** seperti <InlineMath math="\frac{1}{2}" />.
+
+Cuba pada bolt sebenar. Makmal di bawah menggunakan sebatang bolt <InlineMath math="\text{M}10" /> yang batangnya dianggap silinder berdiameter <InlineMath math="10\text{ mm}" /> dan sepanjang <InlineMath math="50\text{ mm}" />, lalu menunjukkan setiap kuantiti daripada jadual pada bolt itu: nilainya dalam unit SI dan dimensinya. Panjang dan diameter berkongsi dimensi <InlineMath math="[\mathrm{L}]" />, manakala ketumpatan, iaitu jisim bahagi isi padu, berakhir sebagai <InlineMath math="[\mathrm{M}][\mathrm{L}]^{-3}" />.
+
+<BoltDimensionsLab
+  title={<>Satu Bolt, Banyak Kuantiti</>}
+  description={
+    <>
+      Pilih satu kuantiti bolt <InlineMath math="\text{M}10" /> ini dan perhatikan bahagian yang diukurnya, nilainya dalam unit SI dan dimensinya.
+    </>
+  }
+  labels={{
+    chooseQuantity: "Pilih kuantiti",
+    dimension: <>Dimensi</>,
+    quantities: {
+      area: <>Keratan rentas</>,
+      density: <>Ketumpatan</>,
+      diameter: <>Diameter</>,
+      length: <>Panjang</>,
+      mass: <>Jisim</>,
+      volume: <>Isi padu</>,
+    },
+    value: <>Nilai dalam unit SI</>,
+    viewLabel: "Bolt keluli dengan kuantiti yang dipilih ditandakan padanya",
+  }}
+/>
