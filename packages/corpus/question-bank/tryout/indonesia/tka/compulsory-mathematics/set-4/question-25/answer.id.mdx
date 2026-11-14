@@ -1,15 +1,24 @@
-"Tepat dua masuk" dapat terjadi dalam **tiga urutan**, yaitu tembakan yang gagal adalah yang pertama, kedua, atau ketiga. Setiap urutan peluangnya <InlineMath math="0{,}7\cdot0{,}7\cdot0{,}3" />.
+# Kapan Andi bisa menang
 
-<BlockMath math="\begin{aligned}
-0{,}7\cdot0{,}7\cdot0{,}3&=0{,}147 \\
-3\cdot0{,}147&=0{,}441
-\end{aligned}" />
+Andi menang kalau salah satu lemparannya masuk **sebelum ada lemparan Budi yang masuk**. Peluang Andi berubah: <InlineMath math="\tfrac14" />, lalu <InlineMath math="\tfrac12" />, lalu <InlineMath math="\tfrac34" />. Peluang Budi meleset selalu <InlineMath math="1-\tfrac13=\tfrac23" />.
 
-Sebagai pemeriksaan, peluang <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="3" /> tembakan masuk adalah <InlineMath math="0{,}027" />, <InlineMath math="0{,}189" />, <InlineMath math="0{,}441" />, dan <InlineMath math="0{,}343" />, dan jumlahnya <InlineMath math="1" />.
+Ada tiga cara Andi menang, dan ketiganya saling lepas.
 
-Jadi, peluang tepat dua tembakan masuk <InlineMath math="0{,}441" />.
+| Cara | Urutan lemparan | Peluang |
+| :---: | :---: | :---: |
+| Masuk di lemparan ke-1 | Andi masuk | <InlineMath math="\tfrac14" /> |
+| Masuk di lemparan ke-2 | Andi meleset, Budi meleset, Andi masuk | <InlineMath math="\tfrac34\cdot\tfrac23\cdot\tfrac12=\tfrac14" /> |
+| Masuk di lemparan ke-3 | dua putaran meleset, lalu Andi masuk | <InlineMath math="\tfrac34\cdot\tfrac23\cdot\tfrac12\cdot\tfrac23\cdot\tfrac34=\tfrac18" /> |
 
-- <InlineMath math="0{,}343" /> adalah peluang ketiga tembakan masuk.
-- <InlineMath math="0{,}49" /> hanya menghitung <InlineMath math="0{,}7\cdot0{,}7" /> dan melupakan tembakan yang gagal.
-- <InlineMath math="0{,}784" /> adalah peluang paling sedikit dua tembakan masuk, <InlineMath math="0{,}441+0{,}343" />.
-- <InlineMath math="0{,}973" /> adalah peluang paling sedikit satu tembakan masuk, <InlineMath math="1-0{,}3^3" />.
+<BlockMath math="P(\text{Andi menang})=\tfrac14+\tfrac14+\tfrac18=\tfrac58" />
+
+# Cek dengan peluang lain
+
+Peluang Budi menang adalah <InlineMath math="\tfrac34\cdot\tfrac13+\tfrac34\cdot\tfrac23\cdot\tfrac12\cdot\tfrac13+\tfrac34\cdot\tfrac23\cdot\tfrac12\cdot\tfrac23\cdot\tfrac14\cdot\tfrac13=\tfrac{25}{72}" />, dan peluang seri adalah <InlineMath math="\tfrac{1}{36}" />. Jumlahnya <InlineMath math="\tfrac{45}{72}+\tfrac{25}{72}+\tfrac{2}{72}=1" />, jadi **perhitungannya konsisten**.
+
+Jadi, peluang Andi memenangkan permainan adalah <InlineMath math="\tfrac58" />.
+
+- <InlineMath math="\tfrac{47}{72}" /> menghitung <InlineMath math="1-\tfrac{25}{72}" />, lupa bahwa permainan bisa berakhir seri.
+- <InlineMath math="\tfrac12" /> hanya menghitung dua putaran pertama.
+- <InlineMath math="\tfrac{7}{16}" /> menganggap peluang Andi tetap <InlineMath math="\tfrac14" /> di setiap lemparan.
+- <InlineMath math="\tfrac{13}{32}" /> memakai peluang Budi masuk, <InlineMath math="\tfrac13" />, padahal Andi hanya bisa melempar lagi kalau Budi meleset.

@@ -1,16 +1,39 @@
-Die Summe zweier Zahlen ist gerade, wenn **beide gerade oder beide ungerade sind**. Von <InlineMath math="1" /> bis <InlineMath math="20" /> gibt es <InlineMath math="10" /> gerade und <InlineMath math="10" /> ungerade Zahlen. Die Karten werden zugleich gezogen, also nimmst du Kombinationen.
+Das ist eine bedingte Wahrscheinlichkeit: Du weißt schon, dass die Sprecherin ein Mädchen ist, und sollst sagen, wie wahrscheinlich das Komitee genau <InlineMath math="2" /> Mädchen hat. Vorsicht, diese Information ist **nicht dasselbe wie „im Komitee ist mindestens ein Mädchen“**. Ein Komitee mit mehr Mädchen liefert leichter eine Sprecherin, also braucht jede Zusammensetzung ein Gewicht.
+
+# Ein Gewicht für jede Zusammensetzung
+
+Es gibt <InlineMath math="\binom93=84" /> mögliche Komitees. Ordne sie nach der Zahl der Mädchen und multipliziere mit der Wahrscheinlichkeit, dass ein Mädchen Sprecherin wird. Bei <InlineMath math="k" /> Mädchen unter <InlineMath math="3" /> Mitgliedern ist das <InlineMath math="\frac k3" />:
+
+| Mädchen | Komitees | Wahrscheinlichkeit einer Sprecherin | Produkt |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="\binom53=10" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="\binom41\binom52=40" /> | <InlineMath math="\frac13" /> | <InlineMath math="\frac{40}{3}" /> |
+| <InlineMath math="2" /> | <InlineMath math="\binom42\binom51=30" /> | <InlineMath math="\frac23" /> | <InlineMath math="20" /> |
+| <InlineMath math="3" /> | <InlineMath math="\binom43=4" /> | <InlineMath math="1" /> | <InlineMath math="4" /> |
+
+Die letzte Spalte berücksichtigt schon, **wer zur Sprecherin gewählt wird**, nicht nur, wer im Komitee sitzt.
+
+# Die bedingte Wahrscheinlichkeit
+
+Teile das Gewicht der gesuchten Zusammensetzung durch das Gewicht aller Zusammensetzungen mit einer Sprecherin. „Spr“ steht hier kurz für Sprecherin:
 
 <BlockMath math="\begin{aligned}
-n(S)&=\binom{20}{2}=190 \\
-n(A)&=\binom{10}{2}+\binom{10}{2}=45+45=90 \\
-P(A)&=\frac{90}{190}=\frac{9}{19}
+P(\text{Spr Mädchen})&=\frac{\frac{40}{3}+20+4}{84}=\frac{112/3}{84}=\frac49 \\
+P(\text{genau 2 Mädchen und Spr Mädchen})&=\frac{20}{84}=\frac{5}{21} \\
+P(\text{genau 2 Mädchen}\mid\text{Spr Mädchen})&=\frac{5/21}{4/9}=\frac{45}{84}=\frac{15}{28}
 \end{aligned}" />
 
-Die Wahrscheinlichkeit liegt knapp unter <InlineMath math="\frac12" />, weil zwei Karten nie dieselbe Nummer tragen. Es gibt mehr Paare aus gerade und ungerade, <InlineMath math="10\cdot10=100" />, als gleichartige Paare.
+Probe auf einem kurzen Weg. Die Sprecherin ist ein bestimmtes Mädchen, und die beiden anderen Mitglieder sind ein zufälliges Paar aus den übrigen <InlineMath math="8" /> Schülern: <InlineMath math="5" /> Jungen und <InlineMath math="3" /> Mädchen. Das Komitee hat genau <InlineMath math="2" /> Mädchen, wenn **genau eines der beiden anderen ein Mädchen ist**:
 
-Die Wahrscheinlichkeit für eine gerade Summe ist also <InlineMath math="\frac{9}{19}" />.
+<BlockMath math="\frac{3\cdot5}{\binom82}=\frac{15}{28}" />
 
-- <InlineMath math="\frac{9}{38}" /> zählt nur die Paare, in denen beide Zahlen gerade sind.
-- <InlineMath math="\frac14" /> rechnet <InlineMath math="\frac12\cdot\frac12" />, als würde die erste Karte zurückgelegt und nur der Fall gerade-gerade gezählt.
-- <InlineMath math="\frac12" /> nimmt an, gerade und ungerade Summen seien gleich wahrscheinlich.
-- <InlineMath math="\frac{10}{19}" /> ist die Wahrscheinlichkeit für eine ungerade Summe.
+Das Ergebnis stimmt überein.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac{3}{28}" /> zählt den Fall, dass beide anderen Mitglieder Mädchen sind. Dann hätte das Komitee aber <InlineMath math="3" /> Mädchen.
+- <InlineMath math="\frac{5}{21}" /> ist die gemeinsame Wahrscheinlichkeit von „genau <InlineMath math="2" /> Mädchen und Sprecherin“. **Hier fehlt die Division** durch <InlineMath math="\frac49" />.
+- <InlineMath math="\frac{5}{14}=\frac{30}{84}" /> ignoriert die Information über die Sprecherin ganz.
+- <InlineMath math="\frac{15}{37}=\frac{30}{74}" /> behandelt die Information wie „mindestens ein Mädchen“ und gibt jedem Komitee mit einem Mädchen dasselbe Gewicht.
+
+Die Wahrscheinlichkeit, dass das Komitee genau <InlineMath math="2" /> Mädchen hat, ist also <InlineMath math="\frac{15}{28}" />.

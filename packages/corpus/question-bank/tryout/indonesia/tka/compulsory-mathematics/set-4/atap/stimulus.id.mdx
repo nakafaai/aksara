@@ -1,0 +1,42 @@
+Sebuah rumah memakai atap pelana, yaitu dua bidang atap miring berbentuk persegi panjang yang bertemu pada garis puncak yang disebut bubungan. Ruang di bawah atap berbentuk prisma segitiga.
+
+- Dinding rumah membentuk denah persegi panjang berukuran <InlineMath math="11\text{ m}\times8\text{ m}" />. Bubungan sejajar dengan sisi <InlineMath math="11\text{ m}" />, berada tepat di atas garis tengah denah, dan <InlineMath math="3\text{ m}" /> lebih tinggi daripada bidang atas dinding.
+- Kedua bidang atap diperpanjang melewati dinding dengan kemiringan yang sama. Pada sisi bawah setiap bidang atap, tepi atap menjorok <InlineMath math="80\text{ cm}" /> dari dinding, diukur mendatar. Pada kedua ujung bubungan, atap menjorok <InlineMath math="50\text{ cm}" /> melewati dinding.
+- Genteng dipasang berbaris sejajar bubungan, dimulai dari tepi bawah atap. Setelah tumpang-tindih, setiap genteng menutupi <InlineMath math="35\text{ cm}" /> diukur sepanjang kemiringan atap dan <InlineMath math="24\text{ cm}" /> diukur sejajar bubungan.
+- Bubungan ditutup genteng bubungan di sepanjang seluruh bubungan, termasuk bagian yang menjorok. Setelah tumpang-tindih, setiap genteng bubungan menutupi <InlineMath math="30\text{ cm}" /> panjang bubungan.
+- Genteng atau genteng bubungan yang perlu dipotong tetap dihitung satu buah utuh, dan potongan sisanya tidak dipakai lagi.
+
+<MathVisual
+  title={<>Penampang atap dilihat dari ujung rumah</>}
+  description={<>Penampang tegak atap. Bidang atas kedua dinding berjarak <InlineMath math="8\text{ m}" />. Bubungan berada <InlineMath math="3\text{ m}" /> di atas titik tengah garis antara kedua dinding. Kedua sisi atap turun dari bubungan, melewati puncak dinding, dan berakhir di tepi atap yang menjorok <InlineMath math="80\text{ cm}" /> dari dinding diukur mendatar.</>}
+  labels={{
+    "label-width": <InlineMath math="8\text{ m}" />,
+    "label-height": <InlineMath math="3\text{ m}" />,
+    "label-overhang": <InlineMath math="80\text{ cm}" />,
+    "label-ridge": <>bubungan</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 6 },
+      y: { min: -3, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "roof", kind: "polyline", appearance: "primary", vertices: [{ x: -4.8, y: -0.6 }, { x: 0, y: 3 }, { x: 4.8, y: -0.6 }] },
+      { id: "wall-left", kind: "segment", appearance: "secondary", from: { x: -4, y: 0 }, to: { x: -4, y: -2.5 } },
+      { id: "wall-right", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4, y: -2.5 } },
+      { id: "wall-top", kind: "segment", appearance: "construction", from: { x: -4, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "height", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "overhang", kind: "segment", appearance: "highlight", from: { x: 4, y: -0.6 }, to: { x: 4.8, y: -0.6 } },
+      { id: "point-ridge", kind: "point", appearance: "reference", at: { x: 0, y: 3 } },
+    ],
+    labels: [
+      { key: "label-width", objectId: "wall-top", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "label-height", objectId: "height", at: { x: 0, y: 1.5 }, placement: "right" },
+      { key: "label-overhang", objectId: "overhang", at: { x: 4.4, y: -0.6 }, placement: "below" },
+      { key: "label-ridge", objectId: "point-ridge", at: { x: 0, y: 3 }, placement: "above" },
+    ],
+  }}
+/>

@@ -1,16 +1,47 @@
-Rotasi terhadap pusat selain titik asal dikerjakan dalam tiga langkah: **geser pusat ke titik asal, putar, lalu geser kembali**. Rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal memetakan <InlineMath math="(a,b)" /> ke <InlineMath math="(-b,a)" />.
+Soal ini menanyakan bayangan titik <InlineMath math="C" />, tetapi faktor skala <InlineMath math="k" /> dan vektor translasinya belum diketahui. Jadi kamu cari dulu <InlineMath math="k" />, <InlineMath math="a" />, dan <InlineMath math="b" /> dari data titik <InlineMath math="A" />, titik <InlineMath math="B" />, dan syarat **<InlineMath math="B'" /> di kuadran III**.
+
+# Rumus transformasinya
+
+Dilatasi berpusat <InlineMath math="O" /> dengan faktor <InlineMath math="k" /> mengalikan kedua koordinat dengan <InlineMath math="k" />. Setelah itu, translasi menambahkan <InlineMath math="a" /> ke absis dan <InlineMath math="b" /> ke ordinat. Jadi **dilatasi dikerjakan lebih dulu**, baru translasi:
+
+<BlockMath math="T(x,y)=(kx+a,\ ky+b)" />
+
+# Dua kemungkinan faktor skala
+
+Dilatasi membuat setiap panjang menjadi <InlineMath math="|k|" /> kali panjang semula, sedangkan translasi tidak mengubah panjang. Hitung dulu panjang <InlineMath math="AB" />, lalu bandingkan dengan <InlineMath math="A'B'=10" />:
 
 <BlockMath math="\begin{aligned}
-B-C&=(7-2,\ 3-(-1))=(5,4) \\
-(5,4)&\to(-4,5) \\
-B'&=(-4+2,\ 5+(-1))=(-2,4)
+AB&=\sqrt{(4-1)^2+(6-2)^2}=\sqrt{9+16}=5 \\
+A'B'&=|k|\cdot AB \\
+10&=|k|\cdot5 \\
+|k|&=2
 \end{aligned}" />
 
-Sebagai pemeriksaan, <InlineMath math="CB=\sqrt{5^2+4^2}=\sqrt{41}" /> dan <InlineMath math="CB'=\sqrt{(-4)^2+5^2}=\sqrt{41}" />, sedangkan <InlineMath math="(5,4)\cdot(-4,5)=-20+20=0" />, jadi kedua ruas tegak lurus.
+Jadi <InlineMath math="k=2" /> atau <InlineMath math="k=-2" />. **Panjang saja belum menentukan tanda <InlineMath math="k" />**, jadi kedua kemungkinan harus dicoba. Untuk setiap <InlineMath math="k" />, cari <InlineMath math="(a,b)" /> dari <InlineMath math="T(1,2)=(k+a,\ 2k+b)=(3,1)" />, lalu hitung <InlineMath math="B'=T(4,6)=(4k+a,\ 6k+b)" />.
 
-Jadi, bayangan titik <InlineMath math="B" /> adalah <InlineMath math="(-2,4)" />.
+| <InlineMath math="k" /> | <InlineMath math="(a,b)" /> | <InlineMath math="B'" /> | Letak <InlineMath math="B'" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="2" /> | <InlineMath math="(1,-3)" /> | <InlineMath math="(9,9)" /> | kuadran I |
+| <InlineMath math="-2" /> | <InlineMath math="(5,5)" /> | <InlineMath math="(-3,-7)" /> | kuadran III |
 
-- <InlineMath math="(-4,5)" /> lupa menggeser kembali hasil putaran ke pusat <InlineMath math="C" />.
-- <InlineMath math="(-3,7)" /> memutar terhadap titik asal, bukan terhadap <InlineMath math="C" />.
-- <InlineMath math="(6,4)" /> menukar kedua koordinat <InlineMath math="(5,4)" /> tanpa mengubah tanda.
-- <InlineMath math="(6,-6)" /> memutar searah jarum jam, <InlineMath math="(5,4)\to(4,-5)" />.
+Hanya <InlineMath math="k=-2" /> yang membuat <InlineMath math="B'" /> berada di kuadran III. Jadi faktor skalanya <InlineMath math="-2" /> dan vektor translasinya <InlineMath math="(5,5)" />.
+
+# Bayangan titik C
+
+Sekarang rumusnya sudah lengkap. **Masukkan titik <InlineMath math="C(2,-1)" />**:
+
+<BlockMath math="\begin{aligned}
+T(x,y)&=(-2x+5,\ -2y+5) \\
+T(2,-1)&=(-4+5,\ 2+5)=(1,7)
+\end{aligned}" />
+
+Cek dengan data soal: <InlineMath math="T(1,2)=(-2+5,\ -4+5)=(3,1)" />, sama dengan <InlineMath math="A'" />. Lalu <InlineMath math="B'=(-3,-7)" />, sehingga <InlineMath math="A'B'=\sqrt{6^2+8^2}=10" />. Semua syarat terpenuhi.
+
+Jadi, bayangan titik <InlineMath math="C" /> oleh transformasi <InlineMath math="T" /> adalah <InlineMath math="(1,7)" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="(5,-5)" /> muncul kalau kamu langsung memakai <InlineMath math="k=2" />. **Syarat kuadran III membuang <InlineMath math="k=2" />**, karena dengan <InlineMath math="k=2" /> titik <InlineMath math="B'=(9,9)" /> ada di kuadran I.
+- <InlineMath math="(-14,-8)" /> muncul kalau saat memetakan <InlineMath math="C" /> kamu mentranslasikan dulu, lalu mendilatasi: <InlineMath math="-2\,(2+5,\ -1+5)=(-14,-8)" />. Urutan di soal adalah dilatasi dulu.
+- <InlineMath math="(-4,2)" /> hanya hasil dilatasi <InlineMath math="-2\cdot(2,-1)" />. Translasi <InlineMath math="(5,5)" /> lupa ditambahkan.
+- <InlineMath math="(-9,-3)" /> memakai vektor translasi dengan tanda terbalik. Dari <InlineMath math="A'=kA+(a,b)" />, translasinya <InlineMath math="A'-kA=(5,5)" />, bukan <InlineMath math="kA-A'=(-5,-5)" />.

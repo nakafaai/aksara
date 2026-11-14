@@ -1,14 +1,39 @@
-Rewrite <InlineMath math="f(x)=2\cdot2^x-4" />: the graph of <InlineMath math="y=2^x" /> is **stretched vertically by <InlineMath math="2" /> and moved <InlineMath math="4" /> units down**. Check each statement with function values or with the properties of <InlineMath math="2^x" />.
+The functions <InlineMath math="f" /> and <InlineMath math="g" /> share the same formula, but **the domain of <InlineMath math="f" /> is cut down to <InlineMath math="x\le1" />**. That cut decides the sign in the inverse formula, the domain of the inverse, and when <InlineMath math="f^{-1}" /> undoes <InlineMath math="g" />.
+
+# The range of f
+
+Complete the square: <InlineMath math="x^2-4x+7=(x-2)^2+3" />. The vertex of the parabola is at <InlineMath math="x=2" />, so on <InlineMath math="x\le1" /> the graph keeps going down from left to right. A function that keeps going down never gives the same value twice, so <InlineMath math="f" /> has an inverse.
+
+The smallest value of <InlineMath math="f" /> is at the right end of its domain, <InlineMath math="f(1)=1-4+7=4" />. Further left, the values get bigger. So the range of <InlineMath math="f" /> is <InlineMath math="y\ge4" />, and **the domain of <InlineMath math="f^{-1}" /> is <InlineMath math="\{x\mid x\ge4\}" />**.
+
+# The inverse formula
+
+Write <InlineMath math="y=f(x)" /> and solve for <InlineMath math="x" />.
 
 <BlockMath math="\begin{aligned}
-f(0)&=2-4=-2,\quad f(1)=4-4=0 \\
-f(2)&=8-4=4,\quad f(3)=16-4=12
+y&=(x-2)^2+3 \\
+(x-2)^2&=y-3 \\
+x-2&=\pm\sqrt{y-3}
 \end{aligned}" />
 
-- <InlineMath math="f(1)=0" /> is true.
-- The statement that <InlineMath math="f" /> decreases is false. The base <InlineMath math="2>1" />, so <InlineMath math="2^{x+1}" /> increases and so does <InlineMath math="f" />, as <InlineMath math="-2,0,4,12" /> shows.
-- The <InlineMath math="y" />-intercept is <InlineMath math="(0,f(0))=(0,-2)" />, so this statement is true.
-- <InlineMath math="2^{x+1}>0" /> for every <InlineMath math="x" />, so <InlineMath math="f(x)>-4" />. This statement is true. The line <InlineMath math="y=-4" /> is a horizontal asymptote that is never reached.
-- <InlineMath math="f(3)=12" />, while <InlineMath math="2\cdot f(2)=8" />. This statement is false, because the subtracted <InlineMath math="4" /> does not double.
+Since <InlineMath math="x\le1" />, <InlineMath math="x-2" /> is always negative, so **you take the minus sign**.
 
-So the true statements are <InlineMath math="f(1)=0" />, the intercept <InlineMath math="(0,-2)" />, and <InlineMath math="f(x)>-4" />.
+<BlockMath math="f^{-1}(x)=2-\sqrt{x-3},\qquad x\ge4" />
+
+# Judging each statement
+
+1. **False**. The inverse does exist, but the sign is wrong. The formula <InlineMath math="2+\sqrt{x-3}" /> always gives at least <InlineMath math="2" />, for example <InlineMath math="4" /> at <InlineMath math="x=7" />, while every value of the inverse has to lie in the domain of <InlineMath math="f" />, <InlineMath math="x\le1" />.
+2. **False**. The formula <InlineMath math="2-\sqrt{x-3}" /> is defined for <InlineMath math="x\ge3" />, but the domain of the inverse is the range of <InlineMath math="f" />, <InlineMath math="x\ge4" />. Take <InlineMath math="3.25" />: the equation <InlineMath math="(x-2)^2=0.25" /> gives <InlineMath math="x=1.5" /> or <InlineMath math="x=2.5" />, and both are outside <InlineMath math="x\le1" />.
+3. **True**. <InlineMath math="f^{-1}(12)=2-\sqrt{9}=-1" />. Check: <InlineMath math="-1\le1" /> and <InlineMath math="f(-1)=1+4+7=12" />.
+4. **False**. It's true for <InlineMath math="a\le1" />, but not for every <InlineMath math="a\le2" />. Take <InlineMath math="a=1.5" />: <InlineMath math="g(1.5)=3.25" />, and <InlineMath math="3.25" /> isn't in the domain of <InlineMath math="f^{-1}" />, so <InlineMath math="f^{-1}(g(1.5))" /> isn't even defined.
+5. **True**. For <InlineMath math="a\ge3" />, <InlineMath math="g(a)=(a-2)^2+3\ge4" />, so it lies in the domain of <InlineMath math="f^{-1}" />.
+
+<BlockMath math="\begin{aligned}
+f^{-1}(g(a))&=2-\sqrt{(a-2)^2} \\
+&=2-|a-2| \\
+&=2-(a-2)=4-a
+\end{aligned}" />
+
+The last line uses <InlineMath math="|a-2|=a-2" /> because <InlineMath math="a-2>0" />. Example: <InlineMath math="g(5)=12" /> and <InlineMath math="f^{-1}(12)=-1=4-5" />. So **<InlineMath math="f^{-1}" /> only undoes <InlineMath math="g" /> on the domain of <InlineMath math="f" /> itself**.
+
+So the true statements are statements 3 and 5.

@@ -1,16 +1,33 @@
-The discount applies only to **the second Jumbo package**, so work out the second package's price after the discount and add the full price of the first.
+# September's energy
+
+The question asks for the smallest price for exported energy that brings the September bill down to the fixed charge alone. That means **the credit has to cover the whole cost of imports**. The credit can't reduce the fixed charge, so the fixed charge isn't part of what it covers.
+
+Work out the energy per day first, because imports and exports are recorded each day. A sunny day exports <InlineMath math="14-4=10\text{ kWh}" /> and imports <InlineMath math="4\text{ kWh}" /> for the night. A cloudy day exports nothing and imports <InlineMath math="(4-2)+4=6\text{ kWh}" />, because its daytime use is still <InlineMath math="2\text{ kWh}" /> short.
+
+September has <InlineMath math="20" /> sunny days and <InlineMath math="10" /> cloudy days:
 
 <BlockMath math="\begin{aligned}
-\text{discount}&=15\,\%\cdot110{,}000=16{,}500 \\
-\text{second package}&=110{,}000-16{,}500=93{,}500 \\
-\text{cost}&=110{,}000+93{,}500=203{,}500
+\text{exported}&=20\cdot10=200\text{ kWh} \\
+\text{imported}&=20\cdot4+10\cdot6=140\text{ kWh} \\
+\text{cost of imports}&=140\cdot1{,}500=210{,}000
 \end{aligned}" />
 
-As a check, the discount of <InlineMath math="16{,}500" /> is <InlineMath math="7.5\,\%" /> of <InlineMath math="220{,}000" />, because it touches only half of the purchase.
+# When the bill equals the fixed charge
 
-So Dinda pays <InlineMath math="\text{Rp}203{,}500" />.
+At a price of <InlineMath math="\text{Rp}b" /> per exported kWh, the credit is <InlineMath math="200b" /> rupiah. The bill drops to the fixed charge exactly when the credit is **at least as large as** the cost of imports. If the credit is bigger, the extra is lost and the bill doesn't drop any further.
 
-- <InlineMath math="\text{Rp}93{,}500" /> is only the second package and forgets the first.
-- <InlineMath math="\text{Rp}187{,}000" /> takes <InlineMath math="15\,\%" /> off both packages.
-- <InlineMath math="\text{Rp}205{,}000" /> subtracts <InlineMath math="\text{Rp}15{,}000" /> instead of <InlineMath math="15\,\%" /> of the price.
-- <InlineMath math="\text{Rp}220{,}000" /> uses no discount at all.
+<BlockMath math="\begin{aligned}
+200b&\ge210{,}000 \\
+b&\ge1{,}050
+\end{aligned}" />
+
+Check <InlineMath math="b=1{,}050" />: the credit is <InlineMath math="200\cdot1{,}050=210{,}000" />, exactly the cost of imports, so the bill is <InlineMath math="\text{Rp}30{,}000" />. At today's price of <InlineMath math="\text{Rp}800" /> the bill is still <InlineMath math="30{,}000+210{,}000-160{,}000=80{,}000" />.
+
+So the smallest value of <InlineMath math="b" /> is <InlineMath math="\text{Rp}1{,}050" /> per kWh.
+
+# Why the other options are wrong
+
+- <InlineMath math="\text{Rp}600" /> only checks one sunny day: <InlineMath math="10b\ge4\cdot1{,}500" />. **Cloudy days have imports too**, and the credit must cover them.
+- <InlineMath math="\text{Rp}900" /> forgets that a cloudy day imports its <InlineMath math="2\text{ kWh}" /> daytime gap, so the imports are counted as <InlineMath math="30\cdot4=120\text{ kWh}" />.
+- <InlineMath math="\text{Rp}1{,}000" /> adds up the month's production first (<InlineMath math="300\text{ kWh}" />) and treats <InlineMath math="300-120=180\text{ kWh}" /> as exported. But the surplus of sunny days can't cover the gap on cloudy days.
+- <InlineMath math="\text{Rp}1{,}200" /> makes the credit cover the fixed charge as well: <InlineMath math="200b\ge240{,}000" />. The rule says the credit only reduces the cost of imports.

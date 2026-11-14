@@ -1,15 +1,69 @@
-Der Höhenwinkel wird vom Auge des Beobachters aus gemessen. Das rechtwinklige Dreieck hat also eine waagerechte Seite von <InlineMath math="30" /> m in Augenhöhe, und **seine senkrechte Seite ist der Teil des Gebäudes über dem Auge**. Die senkrechte Seite liegt dem Winkel gegenüber, die waagerechte an ihm an, also nimmst du <InlineMath math="\tan60^\circ=\sqrt3" />.
+Gesucht ist die Höhe eines Mastes am Hang. Die Entfernung wird entlang des Hangs gemessen, aber **der Höhenwinkel wird von der Waagerechten aus gemessen**, nicht vom Hang. Du brauchst also zwei rechtwinklige Dreiecke mit einer gemeinsamen waagerechten Seite.
+
+# Wo der Fuß des Mastes liegt
+
+Nenne den Fußpunkt des Mastes <InlineMath math="F" />, die Spitze <InlineMath math="T" /> und den Punkt direkt unter <InlineMath math="F" /> auf der Höhe von <InlineMath math="P" /> einfach <InlineMath math="Q" />. Das Dreieck <InlineMath math="PQF" /> hat bei <InlineMath math="Q" /> einen rechten Winkel, die Hypotenuse ist <InlineMath math="PF=16" /> m, und der Winkel bei <InlineMath math="P" /> ist die Hangneigung <InlineMath math="30^\circ" />:
 
 <BlockMath math="\begin{aligned}
-h_{\text{über Auge}}&=30\tan60^\circ=30\sqrt3 \\
-h&=30\sqrt3+1{,}6
+PQ&=16\cos30^\circ=16\cdot\tfrac12\sqrt3=8\sqrt3\text{ m} \\
+QF&=16\sin30^\circ=16\cdot\tfrac12=8\text{ m}
 \end{aligned}" />
 
-Das sind etwa <InlineMath math="30\cdot1{,}732+1{,}6\approx53{,}6" /> m.
+Der Fuß des Mastes liegt also **schon <InlineMath math="8" /> m höher** als <InlineMath math="P" />.
 
-Das Gebäude ist also <InlineMath math="(30\sqrt3+1{,}6)" /> m hoch.
+<MathVisual
+  title={<>Ein Mast am Hang</>}
+  description={<>Der Punkt <InlineMath math="P" /> liegt an einem Hang mit <InlineMath math="30^\circ" /> Steigung. Der Mastfuß <InlineMath math="F" /> ist <InlineMath math="16" /> Meter entlang des Hangs von <InlineMath math="P" /> entfernt. Der Punkt <InlineMath math="Q" /> liegt direkt unter <InlineMath math="F" /> auf der Höhe von <InlineMath math="P" />, mit <InlineMath math="PQ=8\sqrt3" /> Metern und <InlineMath math="QF=8" /> Metern. Die Sichtlinie von <InlineMath math="P" /> zur Spitze <InlineMath math="T" /> bildet mit der Waagerechten <InlineMath math="60^\circ" />, also ist <InlineMath math="QT=24" /> Meter und der Mast <InlineMath math="FT=16" /> Meter.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    f: <InlineMath math="F" />,
+    t: <InlineMath math="T" />,
+    q: <InlineMath math="Q" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 22 },
+      y: { min: -2, max: 26 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "slope", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 20, y: 11.547005383792516 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 13.856406460551018, y: 0 } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 13.856406460551018, y: 0 }, to: { x: 13.856406460551018, y: 8 } },
+      { id: "pole", kind: "segment", appearance: "primary", from: { x: 13.856406460551018, y: 8 }, to: { x: 13.856406460551018, y: 24 } },
+      { id: "sight", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 13.856406460551018, y: 24 } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-f", kind: "point", appearance: "primary", at: { x: 13.856406460551018, y: 8 } },
+      { id: "point-t", kind: "point", appearance: "answer", at: { x: 13.856406460551018, y: 24 } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 13.856406460551018, y: 0 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point-p", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "f", objectId: "point-f", at: { x: 13.856406460551018, y: 8 }, placement: "right" },
+      { key: "t", objectId: "point-t", at: { x: 13.856406460551018, y: 24 }, placement: "right" },
+      { key: "q", objectId: "point-q", at: { x: 13.856406460551018, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
-- <InlineMath math="(10\sqrt3+1{,}6)" /> m nimmt <InlineMath math="\tan30^\circ=\frac{\sqrt3}{3}" />, den falschen Winkel.
-- <InlineMath math="30\sqrt3" /> m vergisst, die Augenhöhe zu addieren.
-- <InlineMath math="(15+1{,}6)" /> m rechnet <InlineMath math="30\cos60^\circ" />, doch <InlineMath math="30" /> m ist die waagerechte Seite, nicht die Hypotenuse.
-- <InlineMath math="(60+1{,}6)" /> m rechnet <InlineMath math="\frac{30}{\cos60^\circ}" />, die Länge der Sichtlinie, keine Höhe.
+# Höhe der Spitze und Höhe des Mastes
+
+Auch das Dreieck <InlineMath math="PQT" /> ist bei <InlineMath math="Q" /> rechtwinklig, mit derselben waagerechten Seite <InlineMath math="PQ=8\sqrt3" /> und dem Höhenwinkel <InlineMath math="60^\circ" /> bei <InlineMath math="P" />. Die Spitze liegt <InlineMath math="QT" /> über <InlineMath math="P" />, und der Mast ist das Stück von <InlineMath math="F" /> bis <InlineMath math="T" />:
+
+<BlockMath math="\begin{aligned}
+QT&=PQ\cdot\tan60^\circ=8\sqrt3\cdot\sqrt3=24\text{ m} \\
+FT&=QT-QF=24-8=16\text{ m}
+\end{aligned}" />
+
+Probe mit dem Dreieck <InlineMath math="PFT" />. Der Winkel bei <InlineMath math="P" /> ist <InlineMath math="60^\circ-30^\circ=30^\circ" />. Der Winkel bei <InlineMath math="F" />, zwischen dem Hang hinunter zu <InlineMath math="P" /> und dem Mast nach oben, ist <InlineMath math="90^\circ+30^\circ=120^\circ" />. Für <InlineMath math="T" /> bleiben ebenfalls <InlineMath math="30^\circ" />. Das Dreieck ist gleichschenklig, also gilt <InlineMath math="FT=FP=16" /> m. **Das passt**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="8\text{ m}" /> entsteht, wenn du den Winkel am Mastfuß als <InlineMath math="60^\circ" /> nimmst. Der Mast steht senkrecht und der Hang fällt zu <InlineMath math="P" /> hin ab, also beträgt dieser Winkel <InlineMath math="120^\circ" />.
+- <InlineMath math="\frac{16}{3}\sqrt3\text{ m}" /> entsteht, wenn der Mast senkrecht zum Hang statt senkrecht zur Waagerechten gedacht wird, also <InlineMath math="FT=16\tan30^\circ" />.
+- <InlineMath math="24\text{ m}" /> ist die Höhe der Spitze über <InlineMath math="P" />. **Hier fehlt der letzte Schritt**, das Abziehen der <InlineMath math="8" /> m, die der Mastfuß schon höher liegt.
+- <InlineMath math="16\sqrt3\text{ m}" /> entsteht, wenn der Boden als eben gilt und die <InlineMath math="16" /> m als waagerechte Entfernung genommen werden.
+
+Der Mast ist also <InlineMath math="16\text{ m}" /> hoch.

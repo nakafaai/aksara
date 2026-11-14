@@ -1,19 +1,33 @@
-There are <InlineMath math="99-10+1=90" /> equally likely numbers. For an **or** between two events, count both sets and subtract the numbers that lie in both, otherwise they are counted twice.
+# All the ways to draw
+
+The four socks are taken at once, so order doesn't matter. **The number of ways to choose <InlineMath math="4" /> from <InlineMath math="10" />** is:
+
+<BlockMath math="C(10,4)=\frac{10\cdot9\cdot8\cdot7}{4\cdot3\cdot2\cdot1}=210" />
+
+# Through the opposite event
+
+At least one pair covers exactly one pair and exactly two pairs. It's easier to **count the opposite**: no pair at all, which means all four socks have different patterns.
+
+For that, first choose <InlineMath math="4" /> patterns out of <InlineMath math="5" />. Then from each chosen pattern take one of its two socks, left or right.
 
 <BlockMath math="\begin{aligned}
-\text{divisible by 4}&:\ 12,16,\dots,96\ \Rightarrow\ \frac{96-12}{4}+1=22 \\
-\text{divisible by 6}&:\ 12,18,\dots,96\ \Rightarrow\ \frac{96-12}{6}+1=15 \\
-\text{divisible by 12}&:\ 12,24,\dots,96\ \Rightarrow\ 8 \\
-P&=\frac{22+15-8}{90}=\frac{29}{90}
+\text{no pair}&=C(5,4)\cdot2^4=5\cdot16=80 \\
+P(\text{no pair})&=\frac{80}{210}=\frac{8}{21}
 \end{aligned}" />
 
-A number is divisible by both <InlineMath math="4" /> and <InlineMath math="6" /> exactly when it is divisible by their least common multiple <InlineMath math="12" />.
+# The probability you want
 
-As a check, <InlineMath math="29" /> is less than <InlineMath math="22+15=37" />, because the eight multiples of <InlineMath math="12" /> may count only once.
+**Subtract from one**:
 
-So the probability is <InlineMath math="\frac{29}{90}" />.
+<BlockMath math="P(\text{at least one pair})=1-\frac{8}{21}=\frac{13}{21}" />
 
-- <InlineMath math="\frac{4}{45}=\frac{8}{90}" /> counts only the numbers divisible by both, an and instead of an or.
-- <InlineMath math="\frac16=\frac{15}{90}" /> counts only the multiples of <InlineMath math="6" />.
-- <InlineMath math="\frac{11}{45}=\frac{22}{90}" /> counts only the multiples of <InlineMath math="4" />.
-- <InlineMath math="\frac{37}{90}" /> adds both sets without subtracting the multiples of <InlineMath math="12" /> once.
+So the probability is <InlineMath math="\frac{13}{21}" />.
+
+# Why the other options are wrong
+
+Each wrong option **stops too early or counts something twice**.
+
+- <InlineMath math="\frac{8}{21}" /> is the probability of no pair, before subtracting it from one.
+- <InlineMath math="\frac47" /> counts only exactly one pair, <InlineMath math="120" /> ways, and forgets the <InlineMath math="10" /> ways that give two pairs.
+- <InlineMath math="\frac23" /> picks one pair and then any two of the other <InlineMath math="8" /> socks, <InlineMath math="5\cdot28=140" />. Draws with two pairs get counted twice.
+- <InlineMath math="\frac{41}{42}" /> forgets that each chosen pattern has two socks to pick from, so it counts only <InlineMath math="5" /> ways with no pair.

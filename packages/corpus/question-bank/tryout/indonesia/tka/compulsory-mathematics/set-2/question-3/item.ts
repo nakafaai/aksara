@@ -12,20 +12,19 @@ const item: ItemSource = {
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label: "$$a^2>b^2$$",
-        },
-        {
-          column: 1,
-          label: "$$\\frac1a>\\frac1b$$",
-        },
-        {
           column: 2,
-          label: "$$a-b>0$$",
+          label:
+            "Bilangan $$\\sqrt{9-4\\sqrt{5}}+\\sqrt{5}$$ adalah bilangan rasional.",
         },
         {
-          column: 2,
-          label: "$$ab<b^2$$",
+          column: 1,
+          label:
+            "Terdapat tepat satu pasangan bilangan bulat $$(m,n)$$ dengan $$m\\ge2$$ dan $$n\\ge2$$ yang memenuhi $$\\left(2^{m}\\right)^{n}=2^{\\left(m^{n}\\right)}$$.",
+        },
+        {
+          column: 1,
+          label:
+            "Bilangan $$\\left(\\sqrt{3}+\\sqrt{12}\\right)^{\\frac{2}{3}}$$ adalah bilangan rasional.",
         },
       ],
     },

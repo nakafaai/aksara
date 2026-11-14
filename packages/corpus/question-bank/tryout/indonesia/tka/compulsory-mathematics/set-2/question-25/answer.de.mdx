@@ -1,16 +1,35 @@
-Bei der Auswahl kommt es nicht auf die Reihenfolge an, also zählst du mit **Binomialkoeffizienten**. Genau ein Torwart bedeutet: einer von <InlineMath math="2" /> Torwarten und vier von <InlineMath math="6" /> Feldspielern.
+Hier geht es um eine bedingte Wahrscheinlichkeit. Du weißt bereits, dass beide Schüler aus demselben Klub kommen, also **schrumpft der Ergebnisraum** auf die Paare aus demselben Klub. Die Spalte der Klasse X brauchst du nicht, denn gewählt werden nur ein Schüler der Klasse XI und einer der Klasse XII.
+
+# Alle möglichen Paare
+
+Ein Schüler der Klasse XI wird aus <InlineMath math="4+6+2=12" /> Schülern gewählt, einer der Klasse XII aus <InlineMath math="5+2+3=10" /> Schülern. Beide Wahlen sind unabhängig, nach der Produktregel ist also **jedes Paar gleich wahrscheinlich**.
+
+<BlockMath math="12\cdot10=120\text{ Paare}" />
+
+# Paare aus demselben Klub
+
+Zähle die Paare Klub für Klub, indem du die Anzahl der Schüler aus Klasse XI und Klasse XII in diesem Klub multiplizierst. Die drei Klubs überschneiden sich nicht, also **addierst du die Ergebnisse**.
 
 <BlockMath math="\begin{aligned}
-\text{alle Auswahlen}&=\binom85=56 \\
-\text{genau 1 Torwart}&=\binom21\binom64=2\cdot15=30 \\
-P&=\frac{30}{56}=\frac{15}{28}
+\text{Robotik}&:\ 4\cdot5=20 \\
+\text{Jurnalistik}&:\ 6\cdot2=12 \\
+\text{Paduan Suara}&:\ 2\cdot3=6 \\
+\text{gleicher Klub}&:\ 20+12+6=38
 \end{aligned}" />
 
-Zur Kontrolle: Kein Torwart gibt <InlineMath math="\binom65=6" /> Auswahlen, zwei Torwarte <InlineMath math="\binom22\binom63=20" />, und <InlineMath math="6+30+20=56" />.
+# Die bedingte Wahrscheinlichkeit
 
-Die Wahrscheinlichkeit ist also <InlineMath math="\frac{15}{28}" />.
+Von den <InlineMath math="38" /> Paaren, die die Bedingung erfüllen, sind <InlineMath math="20" /> Robotik-Paare. **Der Nenner ist <InlineMath math="38" />**, nicht <InlineMath math="120" />.
 
-- <InlineMath math="\frac{3}{28}=\frac{6}{56}" /> ist die Wahrscheinlichkeit, dass kein Torwart gewählt wird.
-- <InlineMath math="\frac{5}{14}=\frac{20}{56}" /> ist die Wahrscheinlichkeit für beide Torwarte.
-- <InlineMath math="\frac{3}{7}=\frac{30}{70}" /> nimmt <InlineMath math="\binom84=70" /> als Anzahl aller Auswahlen, gewählt werden aber <InlineMath math="5" /> Spieler, also <InlineMath math="\binom85=56" />.
-- <InlineMath math="\frac{25}{28}=\frac{50}{56}" /> ist die Wahrscheinlichkeit für mindestens einen Torwart, also einschließlich zweier Torwarte.
+<BlockMath math="P(\text{Robotik}\mid\text{gleicher Klub})=\frac{20/120}{38/120}=\frac{20}{38}=\frac{10}{19}" />
+
+Das passt: Robotik hat die meisten Paare aus demselben Klub, also liegt die Wahrscheinlichkeit über einem Halb.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac16" /> ist <InlineMath math="\frac{20}{120}" />. Hier wird durch alle Paare geteilt, obwohl die Bedingung „gleicher Klub“ schon bekannt ist.
+- <InlineMath math="\frac{19}{60}" /> ist <InlineMath math="\frac{38}{120}" />, die Wahrscheinlichkeit der Bedingung selbst, nicht die gesuchte.
+- <InlineMath math="\frac{9}{22}" /> addiert Schülerzahlen, <InlineMath math="\frac{4+5}{9+8+5}" />, als würde nur eine Person gewählt. Paare zählst du durch **Multiplizieren**, nicht durch Addieren.
+- <InlineMath math="\frac{18}{37}" /> wählt zwei beliebige Schüler der Klassen XI und XII aus einem Klub, <InlineMath math="\frac{\binom92}{\binom92+\binom82+\binom52}=\frac{36}{74}" />. Verlangt ist aber genau ein Schüler der Klasse XI und einer der Klasse XII.
+
+Die Wahrscheinlichkeit, dass beide im Robotik-Klub sind, beträgt also <InlineMath math="\frac{10}{19}" />.

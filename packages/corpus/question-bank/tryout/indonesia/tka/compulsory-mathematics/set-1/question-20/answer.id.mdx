@@ -1,24 +1,73 @@
-Dua teorema menjadi kunci soal ini. **Sudut keliling yang menghadap diameter** besarnya <InlineMath math="90^\circ" />. Selain itu, semua sudut keliling yang menghadap busur yang sama besarnya sama, sedangkan sudut pusatnya dua kali lebih besar.
+# Daerah yang terekam kamera
 
-Karena <InlineMath math="AC" /> diameter, <InlineMath math="\angle ABC=\angle ADC=90^\circ" />. Dari jumlah sudut segitiga diperoleh:
+Soal ini menanyakan panjang bagian jalan tempat tubuh orang itu terekam utuh, dari telapak kaki sampai kepala. Ada dua syarat yang harus dipenuhi bersamaan: kaki harus terekam dan kepala harus terekam. Masing-masing syarat memberi selang jarak sendiri, lalu kamu ambil bagian yang sama.
+
+Letakkan kaki tiang di titik asal dan kamera <InlineMath math="K" /> di ketinggian <InlineMath math="6" />. Sebuah garis pandang dengan sudut depresi <InlineMath math="\theta" /> turun <InlineMath math="\tan\theta" /> meter untuk setiap meter mendatar. Jadi pada jarak mendatar <InlineMath math="x" /> dari tiang, tinggi garis itu <InlineMath math="6-x\tan\theta" />. Sebuah titik setinggi <InlineMath math="y" /> terekam kalau letaknya di antara kedua garis pandang.
+
+<BlockMath math="6-x\tan60^\circ\le y\le 6-x\tan30^\circ,\qquad\tan60^\circ=\sqrt{3},\quad\tan30^\circ=\tfrac{1}{\sqrt{3}}" />
+
+Tubuh orang itu adalah ruas tegak. Daerah rekaman dibatasi dua garis lurus, jadi ruas yang kedua ujungnya ada di dalam daerah itu juga seluruhnya ada di dalam. Karena itu **seluruh tubuh terekam tepat ketika kaki dan kepala sama-sama terekam**.
+
+# Syarat untuk kaki dan kepala
+
+Untuk kaki, isi <InlineMath math="y=0" />. Untuk kepala, isi <InlineMath math="y=1{,}5" />. Setiap pertidaksamaan memberi satu batas jarak.
 
 <BlockMath math="\begin{aligned}
-\angle ACB&=180^\circ-90^\circ-28^\circ=62^\circ \\
-\angle ACD&=180^\circ-90^\circ-46^\circ=44^\circ \\
-\angle BCD&=62^\circ+44^\circ=106^\circ
+\text{kaki: }&0\ge6-x\sqrt{3}\Rightarrow x\ge\frac{6}{\sqrt{3}}=2\sqrt{3}, & 0&\le6-\frac{x}{\sqrt{3}}\Rightarrow x\le6\sqrt{3} \\
+\text{kepala: }&1{,}5\ge6-x\sqrt{3}\Rightarrow x\ge\frac{4{,}5}{\sqrt{3}}=\tfrac32\sqrt{3}, & 1{,}5&\le6-\frac{x}{\sqrt{3}}\Rightarrow x\le\tfrac92\sqrt{3}
 \end{aligned}" />
 
-Sudut keliling <InlineMath math="\angle BAC" /> dan sudut pusat <InlineMath math="\angle BOC" /> menghadap busur <InlineMath math="BC" />. Sudut <InlineMath math="\angle ACB" /> dan <InlineMath math="\angle ADB" /> menghadap busur <InlineMath math="AB" />.
+| Bagian tubuh | Jarak terdekat | Jarak terjauh |
+| :---: | :---: | :---: |
+| Kaki | <InlineMath math="2\sqrt{3}" /> | <InlineMath math="6\sqrt{3}" /> |
+| Kepala | <InlineMath math="\tfrac32\sqrt{3}" /> | <InlineMath math="\tfrac92\sqrt{3}" /> |
+| Seluruh tubuh | <InlineMath math="2\sqrt{3}" /> | <InlineMath math="\tfrac92\sqrt{3}" /> |
 
-<BlockMath math="\begin{aligned}
-\angle BOC&=2\cdot28^\circ=56^\circ \\
-\angle BDC&=\angle BAC=28^\circ \\
-\angle ADB&=\angle ACB=62^\circ
-\end{aligned}" />
+Di dekat tiang, **kaki yang lebih dulu keluar** dari rekaman, jadi kaki menentukan batas dekat. Di jauh dari tiang, kepala yang lebih dulu keluar, jadi kepala menentukan batas jauh.
 
-Sebagai pemeriksaan, sudut-sudut yang berhadapan pada segi empat tali busur berjumlah <InlineMath math="180^\circ" />, dan memang <InlineMath math="\angle BAD+\angle BCD=74^\circ+106^\circ=180^\circ" />.
+<MathVisual
+  title={<>Daerah rekaman kamera dan dua posisi batas</>}
+  description={<>Tiang tegak setinggi <InlineMath math="6" /> m dengan kamera <InlineMath math="K" /> di puncaknya. Garis pandang dengan sudut depresi <InlineMath math="60^\circ" /> menyentuh tanah pada jarak <InlineMath math="2\sqrt{3}" /> m dari kaki tiang, dan garis dengan sudut depresi <InlineMath math="30^\circ" /> menyentuh tanah pada jarak <InlineMath math="6\sqrt{3}" /> m. Orang setinggi <InlineMath math="1{,}5" /> m digambar di dua posisi batas: pada jarak <InlineMath math="2\sqrt{3}" /> m kakinya tepat di garis <InlineMath math="60^\circ" />, dan pada jarak <InlineMath math="\tfrac{9}{2}\sqrt{3}" /> m kepalanya tepat di garis <InlineMath math="30^\circ" />. Ruas tanah di antara kedua posisi itu adalah lintasan yang dicari.</>}
+  labels={{
+    camera: <InlineMath math="K" />,
+    near: <InlineMath math="x=2\sqrt{3}" />,
+    far: <InlineMath math="x=\tfrac{9}{2}\sqrt{3}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 12 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -1, y: 0 }, to: { x: 11.5, y: 0 } },
+      { id: "pole", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 6 } },
+      { id: "steep", kind: "segment", appearance: "secondary", from: { x: 0, y: 6 }, to: { x: 2 * Math.sqrt(3), y: 0 } },
+      { id: "shallow", kind: "segment", appearance: "secondary", from: { x: 0, y: 6 }, to: { x: 6 * Math.sqrt(3), y: 0 } },
+      { id: "near-person", kind: "segment", appearance: "primary", from: { x: 2 * Math.sqrt(3), y: 0 }, to: { x: 2 * Math.sqrt(3), y: 1.5 } },
+      { id: "far-person", kind: "segment", appearance: "primary", from: { x: 4.5 * Math.sqrt(3), y: 0 }, to: { x: 4.5 * Math.sqrt(3), y: 1.5 } },
+      { id: "stretch", kind: "segment", appearance: "answer", from: { x: 2 * Math.sqrt(3), y: 0 }, to: { x: 4.5 * Math.sqrt(3), y: 0 } },
+      { id: "camera", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
+    ],
+    labels: [
+      { key: "camera", objectId: "camera", at: { x: 0, y: 6 }, placement: "left" },
+      { key: "near", objectId: "near-person", at: { x: 2 * Math.sqrt(3), y: 1.5 }, placement: "above-left" },
+      { key: "far", objectId: "far-person", at: { x: 4.5 * Math.sqrt(3), y: 1.5 }, placement: "above-right" },
+    ],
+  }}
+/>
 
-- <InlineMath math="\angle BCD=106^\circ" /> benar.
-- Sebagai sudut pusat, <InlineMath math="\angle BOC" /> dua kali <InlineMath math="\angle BAC" />, yaitu <InlineMath math="56^\circ" />. Pernyataan ini salah.
-- <InlineMath math="\angle BDC" /> menghadap busur yang sama dengan <InlineMath math="\angle BAC" />, jadi besarnya <InlineMath math="28^\circ" />. Nilai <InlineMath math="46^\circ" /> milik <InlineMath math="\angle CAD" />. Pernyataan ini salah.
-- <InlineMath math="\angle ADB=62^\circ" /> benar.
+<BlockMath math="\text{panjang lintasan}=\tfrac92\sqrt{3}-2\sqrt{3}=\tfrac52\sqrt{3}\approx4{,}33\text{ m}" />
+
+# Kenapa pilihan lain keliru
+
+Pilihan yang salah muncul kalau hanya satu bagian tubuh yang diperiksa, atau kalau yang dijawab bukan panjang lintasan. Ingat, **kedua syarat harus berlaku bersamaan**.
+
+- <InlineMath math="2\sqrt{3}\text{ m}" /> adalah jarak posisi terdekat dari kaki tiang, bukan panjang lintasannya.
+- <InlineMath math="3\sqrt{3}\text{ m}" /> hanya memakai syarat kepala, <InlineMath math="\tfrac92\sqrt{3}-\tfrac32\sqrt{3}" />. Di jarak antara <InlineMath math="\tfrac32\sqrt{3}" /> dan <InlineMath math="2\sqrt{3}" />, kaki belum terekam.
+- <InlineMath math="4\sqrt{3}\text{ m}" /> hanya memakai syarat kaki, <InlineMath math="6\sqrt{3}-2\sqrt{3}" />. Di jarak lebih dari <InlineMath math="\tfrac92\sqrt{3}" />, kepala sudah keluar dari rekaman.
+- <InlineMath math="\tfrac92\sqrt{3}\text{ m}" /> adalah bagian lintasan ketika tubuh terekam paling tidak sebagian, dari <InlineMath math="\tfrac32\sqrt{3}" /> sampai <InlineMath math="6\sqrt{3}" />. Soal meminta seluruh tubuh.
+
+Jadi, panjang bagian lintasan ketika seluruh tubuh orang itu terekam adalah <InlineMath math="\tfrac52\sqrt{3}\text{ m}" />.

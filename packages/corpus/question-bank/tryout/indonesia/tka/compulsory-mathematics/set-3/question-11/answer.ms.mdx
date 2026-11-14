@@ -1,0 +1,86 @@
+Apabila kertas dilipat, bucu <InlineMath math="A" /> jatuh pada <InlineMath math="P" />. Maksudnya, **setiap titik pada garis lipatan berjarak sama dari <InlineMath math="A" /> dan dari <InlineMath math="P" />**. Jadi <InlineMath math="EA=EP" /> dan <InlineMath math="FA=FP" />. Gunakan koordinat <InlineMath math="A(0,0)" />, <InlineMath math="B(40,0)" />, <InlineMath math="C(40,24)" /> dan <InlineMath math="D(0,24)" />.
+
+# Kedudukan titik P
+
+Kerana <InlineMath math="BE=15" />, <InlineMath math="AE=40-15=25" />, jadi <InlineMath math="E(25,0)" />. Katakan <InlineMath math="P(p,24)" />. Daripada <InlineMath math="EP=EA=25" />, gunakan teorem Pythagoras kali pertama.
+
+<BlockMath math="\begin{aligned}
+(p-25)^2+24^2&=25^2 \\
+(p-25)^2&=625-576=49 \\
+p&=32\ \text{ atau }\ p=18
+\end{aligned}" />
+
+**Ada dua kemungkinan kedudukan <InlineMath math="P" />**, dan kedua-duanya terletak pada sisi <InlineMath math="DC" />. Syarat tentang <InlineMath math="F" /> yang akan memilih.
+
+# Kes yang ditolak
+
+Titik <InlineMath math="F(f,24)" /> terletak pada garis <InlineMath math="DC" /> dan memenuhi <InlineMath math="FA=FP" />.
+
+<BlockMath math="\begin{aligned}
+f^2+24^2&=(p-f)^2 \\
+576&=p^2-2pf\ \Rightarrow\ f=\frac{p^2-576}{2p}
+\end{aligned}" />
+
+Untuk <InlineMath math="p=32" />: <InlineMath math="f=\frac{1024-576}{64}=7" />, jadi <InlineMath math="F(7,24)" /> berada pada sisi <InlineMath math="DC" />. Untuk <InlineMath math="p=18" />: <InlineMath math="f=\frac{324-576}{36}=-7" />, iaitu di luar kertas, di sebelah kiri <InlineMath math="D" />. Lipatan untuk <InlineMath math="P(18,24)" /> berakhir pada sisi <InlineMath math="AD" />, bukan pada <InlineMath math="DC" />. **Kes <InlineMath math="p=18" /> melanggar syarat soalan**, jadi <InlineMath math="P(32,24)" />.
+
+# Panjang lipatan
+
+Sekarang <InlineMath math="E(25,0)" /> dan <InlineMath math="F(7,24)" />. Gunakan teorem Pythagoras kali kedua dengan beza mengufuk <InlineMath math="18" /> dan beza mencancang <InlineMath math="24" />.
+
+<BlockMath math="EF=\sqrt{(25-7)^2+24^2}=\sqrt{324+576}=\sqrt{900}=30" />
+
+Semak: <InlineMath math="FA=\sqrt{7^2+24^2}=25" /> dan <InlineMath math="FP=32-7=25" />. **Jaraknya sama**, jadi <InlineMath math="F" /> memang terletak pada garis lipatan.
+
+<MathVisual
+  title={<>Lipatan pada kertas <InlineMath math="ABCD" /></>}
+  description={<>Segi empat tepat dengan <InlineMath math="A(0,0)" />, <InlineMath math="B(40,0)" />, <InlineMath math="C(40,24)" /> dan <InlineMath math="D(0,24)" />. Titik <InlineMath math="E(25,0)" /> terletak pada <InlineMath math="AB" />, manakala titik <InlineMath math="F(7,24)" /> dan <InlineMath math="P(32,24)" /> terletak pada <InlineMath math="DC" />. Ruas <InlineMath math="EF" /> ialah lipatan, dan ruas <InlineMath math="AP" /> berserenjang dengannya.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    f: <InlineMath math="F" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 43 },
+      y: { min: -3, max: 27 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "sheet", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 24 }, { x: 0, y: 24 }] },
+      { id: "crease", kind: "segment", appearance: "answer", from: { x: 25, y: 0 }, to: { x: 7, y: 24 } },
+      { id: "fold-path", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 32, y: 24 } },
+      { id: "edge-ep", kind: "segment", appearance: "secondary", from: { x: 25, y: 0 }, to: { x: 32, y: 24 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 40, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 40, y: 24 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 24 } },
+      { id: "point-e", kind: "point", appearance: "highlight", at: { x: 25, y: 0 } },
+      { id: "point-f", kind: "point", appearance: "highlight", at: { x: 7, y: 24 } },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 32, y: 24 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 40, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 40, y: 24 }, placement: "above-right" },
+      { key: "d", objectId: "point-d", at: { x: 0, y: 24 }, placement: "above-left" },
+      { key: "e", objectId: "point-e", at: { x: 25, y: 0 }, placement: "below" },
+      { key: "f", objectId: "point-f", at: { x: 7, y: 24 }, placement: "above" },
+      { key: "p", objectId: "point-p", at: { x: 32, y: 24 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="26\text{ cm}" /> menganggap <InlineMath math="DF=BE=15" />, seolah-olah lipatan melalui pusat segi empat tepat, seperti apabila <InlineMath math="A" /> dilipat ke <InlineMath math="C" />. Hasilnya <InlineMath math="\sqrt{10^2+24^2}=26" />.
+- <InlineMath math="40\text{ cm}" /> menggunakan <InlineMath math="P(18,24)" /> dan menyambung ruas ke <InlineMath math="F(-7,24)" /> yang berada di luar kertas. Nilai ini juga sama dengan panjang <InlineMath math="AP" /> untuk <InlineMath math="P(32,24)" />, sedangkan <InlineMath math="AP" /> bukan lipatan.
+- <InlineMath math="25\text{ cm}" /> berhenti pada <InlineMath math="EA=EP" /> dan belum mengira <InlineMath math="EF" />.
+- <InlineMath math="31.25\text{ cm}" /> ialah panjang lipatan untuk <InlineMath math="P(18,24)" />, yang memotong <InlineMath math="AD" /> pada titik sejauh <InlineMath math="18.75" /> dari <InlineMath math="A" />. **Lipatan itu tidak berakhir pada sisi <InlineMath math="DC" />**, jadi tidak sesuai dengan soalan.
+
+Jadi, panjang lipatan <InlineMath math="EF" /> ialah <InlineMath math="30\text{ cm}" />.

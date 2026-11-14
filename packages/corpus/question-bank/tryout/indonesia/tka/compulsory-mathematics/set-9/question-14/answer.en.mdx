@@ -1,16 +1,93 @@
-A dilation with factor <InlineMath math="2" /> and centre <InlineMath math="O" /> maps <InlineMath math="(x,y)" /> to <InlineMath math="(2x,2y)" />. So **the original point of an image <InlineMath math="(x,y)" /> is <InlineMath math="\left(\frac x2,\frac y2\right)" />**, then substitute it into the original equation.
+The centre of the dilation and the translation vector are unknown, so you can't run <InlineMath math="T" /> step by step. The key: **a dilation followed by a translation is still one dilation with the same factor**, just about a different centre. The plan: find <InlineMath math="k" />, find the new centre from the pair <InlineMath math="A" /> and <InlineMath math="A'" />, then use that centre for <InlineMath math="B" />.
+
+# The general form of the transformation
+
+Say the centre of the dilation is <InlineMath math="P" /> and the translation vector is <InlineMath math="\vec v" />. A point <InlineMath math="X" /> first goes to <InlineMath math="P+k(X-P)" />, then moves by <InlineMath math="\vec v" />:
 
 <BlockMath math="\begin{aligned}
-2\cdot\frac x2+3\cdot\frac y2&=6 \\
-x+\frac32y&=6 \\
-2x+3y&=12
+T(X)&=P+k(X-P)+\vec v \\
+&=kX+\big((1-k)P+\vec v\big)=kX+\vec c
 \end{aligned}" />
 
-Check with the axis intercepts: the original line meets the axes at <InlineMath math="(3,0)" /> and <InlineMath math="(0,2)" />. Their images are <InlineMath math="(6,0)" /> and <InlineMath math="(0,4)" />, and both satisfy <InlineMath math="2x+3y=12" />.
+Two things follow. First, for any two points <InlineMath math="T(X)-T(Y)=k(X-Y)" />, so **every segment gets multiplied by <InlineMath math="k" />**, and the translation doesn't change its direction. Second, if <InlineMath math="k\ne1" />, there's exactly one point <InlineMath math="Q" /> that doesn't move, and <InlineMath math="T" /> is the dilation with factor <InlineMath math="k" /> about <InlineMath math="Q" />.
 
-So the image line is <InlineMath math="2x+3y=12" />.
+# The scale factor from the area and the position of a point
 
-- <InlineMath math="2x+3y=3" /> replaces <InlineMath math="x" /> with <InlineMath math="2x" /> and <InlineMath math="y" /> with <InlineMath math="2y" />, which substitutes in the wrong direction.
-- <InlineMath math="3x+2y=12" /> swaps the coefficients of <InlineMath math="x" /> and <InlineMath math="y" />.
-- <InlineMath math="2x+3y=24" /> multiplies the constant by <InlineMath math="4" />, like the factor for area.
-- <InlineMath math="4x+6y=12" /> doubles every coefficient, which leaves the line exactly where it was.
+A dilation with factor <InlineMath math="k" /> multiplies areas by <InlineMath math="k^2" />. So <InlineMath math="k^2=9" />, which leaves **two possibilities**, <InlineMath math="k=3" /> or <InlineMath math="k=-3" />. Point <InlineMath math="C" /> decides. Since <InlineMath math="C-A=(0,3)" />:
+
+<BlockMath math="\begin{aligned}
+C'&=A'+k(0,3)=(-2,\ 9+3k) \\
+k=3&\ \Rightarrow\ C'=(-2,18),\ \text{above } A' \\
+k=-3&\ \Rightarrow\ C'=(-2,0),\ \text{below } A'
+\end{aligned}" />
+
+The question says <InlineMath math="C'" /> is below <InlineMath math="A'" />, so <InlineMath math="k=-3" />.
+
+# The single centre of dilation
+
+The centre <InlineMath math="Q" /> is the point that doesn't move. The dilation with factor <InlineMath math="-3" /> about <InlineMath math="Q" /> sends <InlineMath math="A" /> to <InlineMath math="A'" />, so <InlineMath math="A'-Q=-3(A-Q)" />:
+
+<BlockMath math="\begin{aligned}
+A'-Q&=-3A+3Q \\
+4Q&=A'+3A=(-2,9)+(6,3)=(4,12) \\
+Q&=(1,3)
+\end{aligned}" />
+
+Check: <InlineMath math="A-Q=(1,-2)" /> and <InlineMath math="A'-Q=(-3,6)" />, exactly <InlineMath math="-3" /> times as much. **The point <InlineMath math="Q" /> lies between <InlineMath math="A" /> and <InlineMath math="A'" />**, as it should for a negative factor.
+
+# The image of the point asked for
+
+Now dilate <InlineMath math="B" /> about <InlineMath math="Q" /> with factor <InlineMath math="-3" />:
+
+<BlockMath math="\begin{aligned}
+B-Q&=(4,0)-(1,3)=(3,-3) \\
+B'&=Q-3(B-Q)=(1,3)+(-9,9)=(-8,12)
+\end{aligned}" />
+
+Check with the segment rule: <InlineMath math="B'-A'=(-6,3)" />, and <InlineMath math="-3(B-A)=-3(2,-1)=(-6,3)" />. **It matches**.
+
+<MathVisual
+  title={<>One dilation about a new centre</>}
+  description={<>The point <InlineMath math="Q(1,3)" /> is the centre of the single dilation with factor <InlineMath math="-3" />. The segment from <InlineMath math="A(2,1)" /> to <InlineMath math="A'(-2,9)" /> passes through <InlineMath math="Q" />, and the distance <InlineMath math="QA'" /> is three times the distance <InlineMath math="QA" />. The same holds for <InlineMath math="B(4,0)" /> and its image <InlineMath math="B'(-8,12)" />, which lies on the other side of <InlineMath math="Q" />.</>}
+  labels={{
+    q: <InlineMath math="Q" />,
+    a: <InlineMath math="A" />,
+    a2: <InlineMath math="A'" />,
+    b: <InlineMath math="B" />,
+    b2: <InlineMath math="B'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 6 },
+      y: { min: -2, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ray-a", kind: "segment", appearance: "construction", from: { x: 2, y: 1 }, to: { x: -2, y: 9 } },
+      { id: "ray-b", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: -8, y: 12 } },
+      { id: "point-q", kind: "point", appearance: "highlight", at: { x: 1, y: 3 } },
+      { id: "point-a", kind: "point", appearance: "primary", at: { x: 2, y: 1 } },
+      { id: "point-a2", kind: "point", appearance: "secondary", at: { x: -2, y: 9 } },
+      { id: "point-b", kind: "point", appearance: "primary", at: { x: 4, y: 0 } },
+      { id: "point-b2", kind: "point", appearance: "answer", at: { x: -8, y: 12 } },
+    ],
+    labels: [
+      { key: "q", objectId: "point-q", at: { x: 1, y: 3 }, placement: "right" },
+      { key: "a", objectId: "point-a", at: { x: 2, y: 1 }, placement: "below-left" },
+      { key: "a2", objectId: "point-a2", at: { x: -2, y: 9 }, placement: "right" },
+      { key: "b", objectId: "point-b", at: { x: 4, y: 0 }, placement: "above-right" },
+      { key: "b2", objectId: "point-b2", at: { x: -8, y: 12 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Why the other options are wrong
+
+- <InlineMath math="(-4,4)" /> dilates <InlineMath math="B" /> about <InlineMath math="A" /> with factor <InlineMath math="-3" />, as if <InlineMath math="A" /> were a centre that stays put. But <InlineMath math="A" /> **moves too**, to <InlineMath math="A'" />.
+- <InlineMath math="(0,8)" /> treats <InlineMath math="T" /> as just a translation by <InlineMath math="A'-A=(-4,8)" />. A translation doesn't change area, but here the area becomes <InlineMath math="9" /> times as large.
+- <InlineMath math="(4,6)" /> uses <InlineMath math="k=3" />. With that factor, <InlineMath math="C'=(-2,18)" /> lies above <InlineMath math="A'" />, which contradicts the third fact.
+- <InlineMath math="(10,-6)" /> finds the centre <InlineMath math="Q(1,3)" /> correctly but drops the minus sign when dilating <InlineMath math="B" />, using <InlineMath math="Q+3(B-Q)" />.
+
+So the image of <InlineMath math="B(4,0)" /> under <InlineMath math="T" /> is <InlineMath math="(-8,12)" />.

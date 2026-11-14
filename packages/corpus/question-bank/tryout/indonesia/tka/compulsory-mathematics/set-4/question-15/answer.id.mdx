@@ -1,16 +1,96 @@
-Setiap koordinat bayangan sama dengan koordinat asalnya **dikalikan <InlineMath math="-2" />**: <InlineMath math="(3,0)\to(-6,0)" /> dan <InlineMath math="(0,2)\to(0,-4)" />. Jadi, cukup periksa apakah setiap transformasi memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(-2x,-2y)" />.
+Kelima pernyataan membahas sifat yang berubah atau tetap setelah dua transformasi berurutan. Cara paling aman adalah **menuliskan <InlineMath math="T" /> sebagai satu aturan koordinat**, lalu memakai aturan itu untuk setiap pernyataan.
+
+# Aturan T dan bayangan segitiga
+
+Dilatasi dengan pusat <InlineMath math="P(2,1)" /> dan faktor <InlineMath math="-2" /> mengalikan jarak dari <InlineMath math="P" /> dengan <InlineMath math="-2" />. Sesudah itu, pencerminan terhadap sumbu <InlineMath math="x" /> mengganti tanda koordinat <InlineMath math="y" />.
 
 <BlockMath math="\begin{aligned}
-\text{rotasi }180^\circ\text{ lalu dilatasi }2&:\ (x,y)\to(-x,-y)\to(-2x,-2y) \\
-\text{dilatasi }2\text{ lalu pencerminan terhadap }O&:\ (x,y)\to(2x,2y)\to(-2x,-2y) \\
-\text{pencerminan sumbu }y\text{ lalu dilatasi }2&:\ C(0,2)\to(0,2)\to(0,4) \\
-\text{pencerminan }y=x\text{ lalu dilatasi }-2&:\ B(3,0)\to(0,3)\to(0,-6)
+\text{dilatasi: }(x,y)&\mapsto\bigl(2-2(x-2),\;1-2(y-1)\bigr)=(6-2x,\;3-2y) \\
+\text{pencerminan: }(6-2x,\;3-2y)&\mapsto(6-2x,\;2y-3) \\
+T(x,y)&=(6-2x,\;2y-3)
 \end{aligned}" />
 
-- Dilatasi dengan pusat <InlineMath math="O" /> dan faktor <InlineMath math="-2" /> langsung memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(-2x,-2y)" />. Benar.
-- Pencerminan terhadap sumbu <InlineMath math="y" /> lalu dilatasi <InlineMath math="2" /> memetakan <InlineMath math="C" /> ke <InlineMath math="(0,4)" />, bukan <InlineMath math="(0,-4)" />. Salah.
-- Rotasi <InlineMath math="180^\circ" /> lalu dilatasi <InlineMath math="2" /> menghasilkan <InlineMath math="(-2x,-2y)" />. Benar.
-- Pencerminan terhadap <InlineMath math="y=x" /> lalu dilatasi <InlineMath math="-2" /> memetakan <InlineMath math="B" /> ke <InlineMath math="(0,-6)" />, bukan <InlineMath math="(-6,0)" />. Salah.
-- Pencerminan terhadap titik <InlineMath math="O" /> sama dengan rotasi <InlineMath math="180^\circ" />, jadi dilatasi <InlineMath math="2" /> lalu pencerminan terhadap <InlineMath math="O" /> juga menghasilkan <InlineMath math="(-2x,-2y)" />. Benar.
+**Bayangan ketiga titik sudutnya** adalah <InlineMath math="D'(6,-3)" />, <InlineMath math="E'(-2,-3)" />, dan <InlineMath math="F'(6,3)" />.
 
-Jadi, transformasi yang memenuhi adalah dilatasi berfaktor <InlineMath math="-2" />, rotasi <InlineMath math="180^\circ" /> lalu dilatasi <InlineMath math="2" />, dan dilatasi <InlineMath math="2" /> lalu pencerminan terhadap <InlineMath math="O" />.
+<MathVisual
+  title={<>Segitiga <InlineMath math="DEF" /> dan bayangannya</>}
+  description={<>Segitiga <InlineMath math="D(0,0)" />, <InlineMath math="E(4,0)" />, <InlineMath math="F(0,3)" /> dan bayangannya <InlineMath math="D'(6,-3)" />, <InlineMath math="E'(-2,-3)" />, <InlineMath math="F'(6,3)" />. Titik <InlineMath math="P(2,1)" /> dan titik tetap <InlineMath math="(2,3)" /> terletak pada garis <InlineMath math="x=2" />.</>}
+  labels={{
+    "label-d": <InlineMath math="D" />,
+    "label-e": <InlineMath math="E" />,
+    "label-f": <InlineMath math="F" />,
+    "label-d-image": <InlineMath math="D'" />,
+    "label-e-image": <InlineMath math="E'" />,
+    "label-f-image": <InlineMath math="F'" />,
+    "label-p": <InlineMath math="P(2,1)" />,
+    "label-fixed": <InlineMath math="(2,3)" />,
+    "label-line": <InlineMath math="x=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 8 },
+      y: { min: -5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line-two", kind: "line", appearance: "construction", through: [{ x: 2, y: -4 }, { x: 2, y: 4 }] },
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 0, y: 3 }] },
+      { id: "triangle-image", kind: "polygon", appearance: "secondary", vertices: [{ x: 6, y: -3 }, { x: -2, y: -3 }, { x: 6, y: 3 }] },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+      { id: "point-f", kind: "point", appearance: "reference", at: { x: 0, y: 3 } },
+      { id: "point-d-image", kind: "point", appearance: "reference", at: { x: 6, y: -3 } },
+      { id: "point-e-image", kind: "point", appearance: "reference", at: { x: -2, y: -3 } },
+      { id: "point-f-image", kind: "point", appearance: "reference", at: { x: 6, y: 3 } },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 2, y: 1 } },
+      { id: "point-fixed", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+    ],
+    labels: [
+      { key: "label-d", objectId: "point-d", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "label-e", objectId: "point-e", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "label-f", objectId: "point-f", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "label-d-image", objectId: "point-d-image", at: { x: 6, y: -3 }, placement: "right" },
+      { key: "label-e-image", objectId: "point-e-image", at: { x: -2, y: -3 }, placement: "left" },
+      { key: "label-f-image", objectId: "point-f-image", at: { x: 6, y: 3 }, placement: "right" },
+      { key: "label-p", objectId: "point-p", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "label-fixed", objectId: "point-fixed", at: { x: 2, y: 3 }, placement: "above-right" },
+      { key: "label-line", objectId: "line-two", at: { x: 2, y: -4 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Menilai setiap pernyataan
+
+**Benar**. Pernyataan 1 tentang luas. Luas <InlineMath math="DEF" /> adalah <InlineMath math="\tfrac12\cdot4\cdot3=6" />. Segitiga <InlineMath math="D'E'F'" /> siku-siku di <InlineMath math="D'" />, dengan <InlineMath math="D'E'=6-(-2)=8" /> dan <InlineMath math="D'F'=3-(-3)=6" />:
+
+<BlockMath math="L_{D'E'F'}=\tfrac12\cdot8\cdot6=24=4\cdot6" />
+
+Ini cocok dengan aturan umumnya: dilatasi berfaktor <InlineMath math="k" /> mengalikan luas dengan <InlineMath math="k^2=(-2)^2=4" />, dan pencerminan tidak mengubah luas. Tanda negatif pada faktor skala **tidak membuat luas negatif**.
+
+**Benar**. Pernyataan 2 tentang arah garis. Tulis titik bayangan sebagai <InlineMath math="(X,Y)=(6-2x,\;2y-3)" />, jadi <InlineMath math="x=\tfrac{6-X}{2}" /> dan <InlineMath math="y=\tfrac{Y+3}{2}" />. Substitusikan ke garis asal:
+
+<BlockMath math="\begin{aligned}
+3\cdot\frac{6-X}{2}-4\cdot\frac{Y+3}{2}&=1 \\
+18-3X-4Y-12&=2 \\
+3X+4Y&=4
+\end{aligned}" />
+
+Garis <InlineMath math="3x+4y=4" /> sejajar dengan <InlineMath math="3x+4y=0" /> karena gradiennya sama, yaitu <InlineMath math="-\tfrac34" />. Dilatasi memang menjaga arah garis, tetapi pencerminan terhadap sumbu <InlineMath math="x" /> membalik tanda gradien <InlineMath math="\tfrac34" /> menjadi <InlineMath math="-\tfrac34" />. Jadi bayangannya **tidak sejajar dengan garis asalnya**.
+
+**Salah**. Pernyataan 3 tentang urutan titik sudut. Urutan <InlineMath math="D\to E\to F" /> memang berlawanan arah jarum jam: dari <InlineMath math="D" /> ke kanan menuju <InlineMath math="E" />, lalu naik ke kiri menuju <InlineMath math="F" />. Pada bayangannya, dari <InlineMath math="D'(6,-3)" /> kamu bergerak ke kiri menuju <InlineMath math="E'(-2,-3)" />, lalu naik ke kanan menuju <InlineMath math="F'(6,3)" />. Itu searah jarum jam. Dilatasi berfaktor negatif sama dengan rotasi <InlineMath math="180^\circ" /> yang disertai perbesaran, jadi **dilatasi itu tidak membalik urutan**. Hanya pencerminan yang membalik, dan pembalikan sekali membuat urutannya menjadi searah jarum jam. Anggapan bahwa faktor negatif dan pencerminan saling meniadakan adalah jebakannya.
+
+**Salah**. Pernyataan 4 tentang pusat dilatasi. Dilatasi memang tidak memindahkan pusatnya, tetapi pencerminan sesudahnya memindahkan titik itu:
+
+<BlockMath math="T(2,1)=(6-4,\;2-3)=(2,-1)\neq(2,1)" />
+
+Titik yang benar-benar tetap memenuhi <InlineMath math="6-2x=x" /> dan <InlineMath math="2y-3=y" />, yaitu <InlineMath math="(2,3)" />. Jadi pusat dilatasi **bukan titik tetap komposisi ini**.
+
+**Benar**. Pernyataan 5 tentang garis <InlineMath math="x=2" />. Setiap titik <InlineMath math="(2,y)" /> pada garis itu dipetakan ke
+
+<BlockMath math="T(2,y)=(6-4,\;2y-3)=(2,\;2y-3)" />
+
+Absisnya tetap <InlineMath math="2" />, jadi bayangannya tetap di garis <InlineMath math="x=2" />. Sebaliknya, titik mana pun <InlineMath math="(2,t)" /> adalah bayangan dari <InlineMath math="\bigl(2,\tfrac{t+3}{2}\bigr)" />. Jadi bayangan garis itu **tepat garis <InlineMath math="x=2" /> lagi**, walaupun titik-titiknya bergeser di sepanjang garis, kecuali titik tetap <InlineMath math="(2,3)" />.
+
+Jadi, pernyataan yang benar adalah pernyataan 1, 2, dan 5.

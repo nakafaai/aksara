@@ -1,17 +1,49 @@
-Let there be <InlineMath math="a" /> teams of <InlineMath math="3" /> and <InlineMath math="b" /> teams of <InlineMath math="5" />. Then <InlineMath math="3a+5b=41" />, with <InlineMath math="a" /> and <InlineMath math="b" /> **whole numbers**. Try every <InlineMath math="b" /> from <InlineMath math="0" /> to <InlineMath math="8" />, since <InlineMath math="5b\le41" />.
+# Every way to get exactly one hundred twenty pieces
+
+Say the committee buys <InlineMath math="x" /> boxes of <InlineMath math="3" /> and <InlineMath math="y" /> boxes of <InlineMath math="5" />. There are three conditions: exactly <InlineMath math="120" /> pieces, at least one box of each kind, and some budget **still left over**, which means the cost must be less than <InlineMath math="760{,}000" />, not equal to it.
+
+Start with the number of pieces.
+
+<BlockMath math="3x+5y=120" />
+
+Both <InlineMath math="3x" /> and <InlineMath math="120" /> are multiples of <InlineMath math="3" />, so <InlineMath math="5y" /> must be a multiple of <InlineMath math="3" /> too. That means **<InlineMath math="y" /> must be a multiple of <InlineMath math="3" />**. Write <InlineMath math="y=3k" /> for a whole number <InlineMath math="k" />:
 
 <BlockMath math="\begin{aligned}
-41-5b&:\ 41,\ 36,\ 31,\ 26,\ 21,\ 16,\ 11,\ 6,\ 1 \\
-\text{divisible by }3&:\ 36\ (b=1),\ 21\ (b=4),\ 6\ (b=7)
+3x+15k&=120 \\
+x&=40-5k
 \end{aligned}" />
 
-The possible pairs are <InlineMath math="(12,1)" />, <InlineMath math="(7,4)" /> and <InlineMath math="(2,7)" />. The value of <InlineMath math="b" /> goes up by <InlineMath math="3" /> each time, because swapping three teams of <InlineMath math="5" /> for five teams of <InlineMath math="3" /> still uses <InlineMath math="15" /> students.
+At least one box of each kind gives <InlineMath math="y=3k\ge1" /> and <InlineMath math="x=40-5k\ge1" />, so <InlineMath math="k=1,2,\ldots,7" />.
 
-As a check, <InlineMath math="36+5=41" />, <InlineMath math="21+20=41" /> and <InlineMath math="6+35=41" />.
+# The budget condition
 
-So there are <InlineMath math="3" /> possible pairs.
+The cost in thousands of rupiah is <InlineMath math="20x+30y" />. Substitute <InlineMath math="x=40-5k" /> and <InlineMath math="y=3k" />.
 
-- <InlineMath math="0" /> concludes it is impossible because <InlineMath math="41" /> is divisible by neither <InlineMath math="3" /> nor <InlineMath math="5" />, but the two kinds of team may be mixed.
-- <InlineMath math="1" /> stops at the first pair found.
-- <InlineMath math="2" /> misses one pair, such as <InlineMath math="(12,1)" /> with only one team of <InlineMath math="5" />.
-- <InlineMath math="4" /> also counts <InlineMath math="b=10" /> with <InlineMath math="a=-3" />, but a number of teams cannot be negative.
+<BlockMath math="\begin{aligned}
+20(40-5k)+30(3k)&<760 \\
+800-10k&<760 \\
+k&>4
+\end{aligned}" />
+
+The sign is **greater than**, so <InlineMath math="k=4" /> is out. Together with <InlineMath math="k\le7" />, that leaves <InlineMath math="k=5,6,7" />.
+
+| <InlineMath math="k" /> | <InlineMath math="(x,y)" /> | Cost |
+| --- | --- | --- |
+| <InlineMath math="4" /> | <InlineMath math="(20,12)" /> | <InlineMath math="760{,}000" />, nothing left |
+| <InlineMath math="5" /> | <InlineMath math="(15,15)" /> | <InlineMath math="750{,}000" /> |
+| <InlineMath math="6" /> | <InlineMath math="(10,18)" /> | <InlineMath math="740{,}000" /> |
+| <InlineMath math="7" /> | <InlineMath math="(5,21)" /> | <InlineMath math="730{,}000" /> |
+| <InlineMath math="8" /> | <InlineMath math="(0,24)" /> | <InlineMath math="720{,}000" />, but no box of <InlineMath math="3" /> |
+
+There are <InlineMath math="3" /> plans that meet every condition.
+
+# The tempting options
+
+Each of the other options **loosens one condition**.
+
+- <InlineMath math="4" /> comes from counting <InlineMath math="(20,12)" />, whose cost is exactly <InlineMath math="760{,}000" />, so nothing is left over. You get the same number by counting <InlineMath math="(0,24)" />, which has no box of <InlineMath math="3" />.
+- <InlineMath math="5" /> comes from counting both of those plans.
+- <InlineMath math="7" /> is the number of plans for <InlineMath math="k=1" /> to <InlineMath math="7" /> if you forget the budget.
+- <InlineMath math="11" /> comes from solving the inequality for <InlineMath math="y" /> only, <InlineMath math="12<y\le23" />, and counting every whole number <InlineMath math="y=13,\ldots,23" />. But when <InlineMath math="y" /> isn't a multiple of <InlineMath math="3" />, the number of boxes <InlineMath math="x" /> isn't a whole number.
+
+So the number of purchase plans that meet every condition is <InlineMath math="3" />.

@@ -1,16 +1,40 @@
-To compare powers with different bases, rewrite them with **the same exponent**. Then the new base alone decides.
+This question is a chain of percentages. The key point: **each percentage is taken of the price just before it**, not of <InlineMath math="h" />. So you can't simply add the percentages. The safest way is to turn every change into a multiplier.
+
+# The price each month
+
+A <InlineMath math="25\%" /> rise means multiplying by <InlineMath math="1.25" />, and a <InlineMath math="20\%" /> drop means multiplying by <InlineMath math="0.8" />.
 
 <BlockMath math="\begin{aligned}
-p&=2^{48}=\left(2^{3}\right)^{16}=8^{16}, & q&=3^{32}=\left(3^{2}\right)^{16}=9^{16} \\
-p&=2^{48}=\left(2^{12}\right)^{4}=4{,}096^{4}, & r&=5^{20}=\left(5^{5}\right)^{4}=3{,}125^{4}
+\text{January price}&=1.25h \\
+\text{February price}&=0.8\cdot1.25h=h
 \end{aligned}" />
 
-This gives <InlineMath math="r<p<q" />.
+**The February price is back to exactly the original price**.
 
-- Since <InlineMath math="9^{16}>8^{16}" />, <InlineMath math="q>p" />. The statement is true.
-- Since <InlineMath math="4{,}096^{4}>3{,}125^{4}" />, <InlineMath math="p>r" />. The statement is true.
-- From <InlineMath math="r<p<q" /> it follows that <InlineMath math="r<q" />. The statement is false.
-- Pair each factor <InlineMath math="2" /> with a factor <InlineMath math="5" /> to make <InlineMath math="10" />: <InlineMath math="p\cdot r=2^{28}\cdot10^{20}" />. With <InlineMath math="2^{28}=2^{20}\cdot2^{8}=1{,}048{,}576\cdot256=268{,}435{,}456" />, the number has <InlineMath math="9+20=29" /> digits. The statement is true.
-- <InlineMath math="q=9^{16}=81^{8}>80^{8}=8^{8}\cdot10^{8}=16{,}777{,}216\cdot10^{8}" />, which is greater than <InlineMath math="10^{15}" />. The statement is false.
+# The two ways to pay
 
-So the true statements are <InlineMath math="q>p" />, <InlineMath math="p>r" /> and the statement about the <InlineMath math="29" /> digits.
+Both ways start from the February price, which is <InlineMath math="h" />. A <InlineMath math="15\%" /> discount means multiplying by <InlineMath math="0.85" />, a <InlineMath math="10\%" /> discount by <InlineMath math="0.9" />, a <InlineMath math="25\%" /> discount by <InlineMath math="0.75" />, and a <InlineMath math="2\%" /> fee by <InlineMath math="1.02" />.
+
+<BlockMath math="\begin{aligned}
+\text{Way I}&=0.85\cdot0.9\cdot h=0.765h \\
+\text{Way II}&=0.75\cdot1.02\cdot h=0.765h
+\end{aligned}" />
+
+Both results depend only on the multipliers, so **they're equal for every value of <InlineMath math="h" />**.
+
+# Judging each statement
+
+1. **False**. The February price equals <InlineMath math="h" />, not <InlineMath math="1.05h" />. The <InlineMath math="5\%" /> comes from <InlineMath math="25\%-20\%" />, but the <InlineMath math="25\%" /> is taken of <InlineMath math="h" /> while the <InlineMath math="20\%" /> is taken of the bigger January price.
+2. **True**. The January rise is <InlineMath math="0.25h" />. The February drop is <InlineMath math="20\%" /> of <InlineMath math="1.25h" />, which is <InlineMath math="0.2\cdot1.25h=0.25h" />. The percentage is smaller, but its base is bigger, so the amounts in rupiah match.
+3. **True**. Both ways give <InlineMath math="0.765h" />, whatever <InlineMath math="h" /> is. Don't be fooled by <InlineMath math="15\%+10\%=25\%" />: the second discount in Way I is taken of an already discounted price, so the total cut is only <InlineMath math="23.5\%" />.
+4. **True**. Way I costs <InlineMath math="0.765h" />, which is <InlineMath math="h-0.765h=0.235h" /> less, so <InlineMath math="23.5\%" /> below <InlineMath math="h" />. This relies on the February price being exactly <InlineMath math="h" />.
+5. **True**. If you raise the price by <InlineMath math="x" /> (as a decimal), you need <InlineMath math="0.765h(1+x)=h" />.
+
+<BlockMath math="\begin{aligned}
+1+x&=\frac{1}{0.765} \\
+x&=\frac{0.235}{0.765}=\frac{47}{153}\approx0.307
+\end{aligned}" />
+
+A quick check without dividing: a <InlineMath math="30\%" /> rise gives <InlineMath math="0.765h\cdot1.3=0.9945h" />, which is still less than <InlineMath math="h" />. So the rise must be more than <InlineMath math="30\%" />, about <InlineMath math="30.7\%" />. A <InlineMath math="23.5\%" /> rise is clearly not enough, because its base is already smaller than <InlineMath math="h" />.
+
+So the true statements are statements 2, 3, 4 and 5.

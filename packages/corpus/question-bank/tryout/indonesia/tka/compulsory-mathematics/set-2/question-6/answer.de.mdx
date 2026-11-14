@@ -1,16 +1,39 @@
-Die Inverse kehrt die Zuordnung um: **<InlineMath math="f^{-1}(2)=a" /> bedeutet <InlineMath math="f(a)=2" />**. Du musst also nicht die ganze Umkehrfunktion bestimmen, sondern nur die Gleichung <InlineMath math="f(a)=2" /> lösen.
+# Was der Umkehrwert bedeutet
+
+Gesucht ist <InlineMath math="f^{-1}(2)" />, also **die Eingabe von <InlineMath math="f" />, die die Ausgabe <InlineMath math="2" /> liefert**. Du suchst eine Zahl <InlineMath math="t" /> mit <InlineMath math="f(t)=2" />. Diese Zahl ist weder <InlineMath math="1/f(2)" /> noch <InlineMath math="f(2)" />.
+
+Die gegebene Vorschrift steht nicht direkt in der Form <InlineMath math="f(t)" /> da. Die Eingabe von <InlineMath math="f" /> ist dort <InlineMath math="2x-1" />, die Ausgabe ist <InlineMath math="\frac{5x}{2x+2}" />. Es gibt also zwei Schritte: Finde das <InlineMath math="x" />, bei dem die Ausgabe <InlineMath math="2" /> ist, und mach daraus die Eingabe <InlineMath math="2x-1" />.
+
+# Die richtige Eingabe finden
+
+Setz die Ausgabe gleich <InlineMath math="2" />:
 
 <BlockMath math="\begin{aligned}
-\frac{3a-2}{a+4}&=2 \\
-3a-2&=2a+8 \\
-a&=10
+\frac{5x}{2x+2}&=2 \\
+5x&=4x+4 \\
+x&=4
 \end{aligned}" />
 
-Zur Kontrolle: <InlineMath math="f(10)=\frac{30-2}{14}=\frac{28}{14}=2" />.
+Der Wert <InlineMath math="x=4" /> ist erlaubt, denn <InlineMath math="x\neq-1" />. Aber <InlineMath math="4" /> ist **noch nicht die Antwort**. Für <InlineMath math="x=4" /> ist die Eingabe von <InlineMath math="f" />:
 
-Also ist <InlineMath math="f^{-1}(2)=10" />.
+<BlockMath math="2x-1=2\cdot4-1=7" />
 
-- <InlineMath math="-10" /> hat das richtige Ergebnis mit falschem Vorzeichen.
-- <InlineMath math="-6" /> rechnet beim Ausmultiplizieren <InlineMath math="2(a+4)" /> als <InlineMath math="2a-8" />.
-- <InlineMath math="\frac23" /> berechnet <InlineMath math="f(2)" /> statt <InlineMath math="f^{-1}(2)" />.
-- <InlineMath math="6" /> verliert das Vorzeichen von <InlineMath math="-2" /> im Zähler und löst <InlineMath math="3a+2=2a+8" />.
+Also gilt <InlineMath math="f(7)=2" /> und damit <InlineMath math="f^{-1}(2)=7" />.
+
+# Probe mit der Funktionsvorschrift
+
+Zur Sicherheit bestimmst du <InlineMath math="f(t)" /> direkt. Setz <InlineMath math="t=2x-1" />, also <InlineMath math="x=\frac{t+1}{2}" />:
+
+<BlockMath math="\begin{aligned}
+f(t)&=\frac{5\cdot\frac{t+1}{2}}{2\cdot\frac{t+1}{2}+2}=\frac{\frac{5(t+1)}{2}}{t+3}=\frac{5t+5}{2t+6} \\
+f(7)&=\frac{35+5}{14+6}=\frac{40}{20}=2
+\end{aligned}" />
+
+**Das Ergebnis passt zur gesuchten Ausgabe**. Der Wert von <InlineMath math="f^{-1}(2)" /> ist also <InlineMath math="7" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac{2}{3}" /> ist <InlineMath math="\frac{1}{f(2)}" />. Die <InlineMath math="-1" /> in <InlineMath math="f^{-1}" /> ist **kein negativer Exponent**, die Umkehrfunktion ist also nicht der Kehrwert.
+- <InlineMath math="\frac{3}{2}" /> ist <InlineMath math="f(2)=\frac{5\cdot2+5}{2\cdot2+6}" />. Hier wird <InlineMath math="2" /> als Eingabe benutzt, obwohl <InlineMath math="2" /> die Ausgabe sein soll.
+- <InlineMath math="4" /> bleibt beim Wert von <InlineMath math="x" /> stehen und vergisst, dass die Eingabe von <InlineMath math="f" /> gleich <InlineMath math="2x-1" /> ist.
+- <InlineMath math="9" /> entsteht durch einen Vorzeichenfehler beim Variablenwechsel, nämlich <InlineMath math="x=\frac{t-1}{2}" />. Aus <InlineMath math="t=2x-1" /> folgt <InlineMath math="x=\frac{t+1}{2}" />.

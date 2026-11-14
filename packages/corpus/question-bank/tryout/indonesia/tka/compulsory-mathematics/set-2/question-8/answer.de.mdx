@@ -1,12 +1,30 @@
-Die Bakterienzahlen nach je <InlineMath math="20" /> Minuten bilden eine **geometrische Folge** mit dem Faktor <InlineMath math="3" />. Zwei Stunden sind <InlineMath math="120" /> Minuten, also <InlineMath math="\frac{120}{20}=6" /> Verdreifachungen.
+# In drei Gruppen aufteilen
 
-<BlockMath math="N=200\cdot3^6=200\cdot729=145{.}800" />
+Die gewählten Zahlen sind nur durch <InlineMath math="4" /> oder nur durch <InlineMath math="6" /> teilbar. Die Zahlen, die durch beide teilbar sind, sind die Vielfachen von <InlineMath math="12" />, denn <InlineMath math="12" /> ist das **kleinste gemeinsame Vielfache** von <InlineMath math="4" /> und <InlineMath math="6" />. Du brauchst also drei Summen: die Vielfachen von <InlineMath math="4" />, von <InlineMath math="6" /> und von <InlineMath math="12" />.
 
-Zur Kontrolle Schritt für Schritt: <InlineMath math="200\to600\to1{.}800\to5{.}400\to16{.}200\to48{.}600\to145{.}800" />, das sind sechs Schritte.
+# Drei arithmetische Reihen
 
-Nach zwei Stunden sind es also <InlineMath math="145{.}800" /> Bakterien.
+Jede Gruppe ist eine arithmetische Reihe. **Ihre Summe ist die Anzahl der Glieder mal den Mittelwert aus erstem und letztem Glied**.
 
-- <InlineMath math="1{.}400" /> rechnet arithmetisch und addiert in jedem Schritt <InlineMath math="200" />.
-- <InlineMath math="3{.}600" /> multipliziert mit <InlineMath math="3\cdot6" /> statt mit <InlineMath math="3^6" />.
-- <InlineMath math="48{.}600" /> zählt nur fünf Verdreifachungen.
-- <InlineMath math="437{.}400" /> zählt sieben Verdreifachungen, als würde der Anfangswert schon als erster Schritt mitgezählt.
+<BlockMath math="\begin{aligned}
+4+8+\dots+100&=\tfrac{25}{2}(4+100)=1{.}300 \\
+6+12+\dots+96&=\tfrac{16}{2}(6+96)=816 \\
+12+24+\dots+96&=\tfrac{8}{2}(12+96)=432
+\end{aligned}" />
+
+# Die Vielfachen von zwölf zweimal abziehen
+
+Die Vielfachen von <InlineMath math="12" /> stecken in der Summe für <InlineMath math="4" /> und noch einmal in der Summe für <InlineMath math="6" />. Weil sie gar nicht gewählt werden dürfen, **ziehst du ihre Summe zweimal ab**, nicht nur einmal.
+
+<BlockMath math="1{.}300+816-2\cdot432=1{.}252" />
+
+Die Summe aller gewählten Zahlen ist also <InlineMath math="1{.}252" />.
+
+# Warum die anderen Antworten falsch sind
+
+Die meisten falschen Antworten entstehen beim **Umgang mit den Zahlen, die durch beide teilbar sind**.
+
+- <InlineMath math="2{.}116" /> zieht die Vielfachen von <InlineMath math="12" /> gar nicht ab, sie zählen also doppelt.
+- <InlineMath math="1{.}684" /> zieht die Vielfachen von <InlineMath math="12" /> nur einmal ab. Das ist die Summe der Zahlen, die durch <InlineMath math="4" /> oder <InlineMath math="6" /> teilbar sind, die durch beide teilbaren eingeschlossen.
+- <InlineMath math="1{.}636" /> hält die durch beide teilbaren Zahlen für die Vielfachen von <InlineMath math="4\cdot6=24" />. Aber auch <InlineMath math="12" /> und <InlineMath math="36" /> sind durch <InlineMath math="4" /> und <InlineMath math="6" /> teilbar.
+- <InlineMath math="868" /> zählt nur die Zahlen, die durch <InlineMath math="4" />, aber nicht durch <InlineMath math="6" /> teilbar sind, und vergisst die umgekehrte Gruppe.

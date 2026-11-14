@@ -1,15 +1,44 @@
-Die Bücherzahlen pro Monat bilden eine **arithmetische Folge** mit <InlineMath math="a=14" /> und <InlineMath math="d=6" />. Gesucht ist die Summe der ersten <InlineMath math="12" /> Glieder, <InlineMath math="S_{12}" />.
+Gesucht ist das erste Glied, der Reihe nach, dessen Wert größer als <InlineMath math="1{.}000" /> ist. Die Folge ist **geometrisch**, das nächste Glied entsteht also durch Multiplizieren mit dem Quotienten <InlineMath math="r" />, nicht durch Addieren einer Differenz. Die Minuszeichen in den Angaben spielen eine große Rolle.
+
+# Der Quotient aus zwei Gliedgruppen
+
+Schreib das <InlineMath math="n" />-te Glied als <InlineMath math="u_n=ar^{n-1}" />. Die nächsten drei Glieder sind die ersten drei, jeweils mal <InlineMath math="r^3" />.
 
 <BlockMath math="\begin{aligned}
-U_{12}&=a+11d=14+66=80 \\
-S_{12}&=\frac{12}{2}\,(a+U_{12})=6\cdot(14+80)=564
+u_4+u_5+u_6&=ar^3+ar^4+ar^5=r^3\left(a+ar+ar^2\right) \\
+168&=r^3\cdot(-21) \\
+r^3&=-8\ \Rightarrow\ r=-2
 \end{aligned}" />
 
-Zur Kontrolle mit der anderen Formel: <InlineMath math="S_{12}=\frac{12}{2}\,(2\cdot14+11\cdot6)=6\cdot94=564" />.
+Die einzige reelle Zahl mit der dritten Potenz <InlineMath math="-8" /> ist <InlineMath math="-2" />. Also ist **der Quotient negativ, und die Vorzeichen der Glieder wechseln sich ab**.
 
-In <InlineMath math="12" /> Monaten erhält die Bibliothek also <InlineMath math="564" /> Bücher.
+# Das erste Glied
 
-- <InlineMath math="80" /> Bücher ist nur die Spende im Monat <InlineMath math="12" />, also <InlineMath math="U_{12}" />.
-- <InlineMath math="234" /> Bücher rechnet <InlineMath math="12\cdot14+11\cdot6" /> und addiert die Differenz insgesamt nur einmal.
-- <InlineMath math="480" /> Bücher rechnet <InlineMath math="\frac{12}{2}\cdot80" /> und vergisst das erste Glied.
-- <InlineMath math="517" /> Bücher nimmt <InlineMath math="\frac{11}{2}" /> statt <InlineMath math="\frac{12}{2}" /> als Faktor.
+Setz <InlineMath math="r=-2" /> in die Summe der ersten drei Glieder ein.
+
+<BlockMath math="\begin{aligned}
+a\left(1+r+r^2\right)&=-21 \\
+a(1-2+4)&=-21 \\
+3a&=-21\ \Rightarrow\ a=-7
+\end{aligned}" />
+
+Probe: <InlineMath math="-7+14-28=-21" /> und <InlineMath math="56-112+224=168" />. **Beide Summen stimmen mit den Angaben überein**.
+
+# Das erste Glied über tausend
+
+Die Glieder sind <InlineMath math="u_n=-7(-2)^{n-1}" />. Für ungerades <InlineMath math="n" /> ist <InlineMath math="(-2)^{n-1}" /> positiv, also <InlineMath math="u_n" /> negativ. **Nur die Glieder mit gerader Nummer sind positiv**. Schau dir jetzt die Glieder in der Nähe von <InlineMath math="1{.}000" /> an.
+
+| <InlineMath math="n" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> | <InlineMath math="10" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="u_n" /> | <InlineMath math="224" /> | <InlineMath math="-448" /> | <InlineMath math="896" /> | <InlineMath math="-1{.}792" /> | <InlineMath math="3{.}584" /> |
+
+Das <InlineMath math="8" />. Glied ist noch <InlineMath math="896" />, das <InlineMath math="9" />. Glied ist negativ. Das erste Glied über <InlineMath math="1{.}000" /> ist also das <InlineMath math="10" />. Glied, nämlich <InlineMath math="3{.}584" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="1{.}792" /> entsteht, wenn du das erste Glied als <InlineMath math="a=7" /> nimmst. Dann wird das <InlineMath math="9" />. Glied positiv, aber <InlineMath math="3a=-21" /> macht <InlineMath math="a" /> negativ.
+- <InlineMath math="1{.}536" /> entsteht, wenn du alle Minuszeichen in den Angaben übersiehst. Dann ist <InlineMath math="r=2" /> und <InlineMath math="7a=21" />, also <InlineMath math="a=3" />, und das <InlineMath math="10" />. Glied ist <InlineMath math="3\cdot2^{9}=1{.}536" />.
+- <InlineMath math="1{.}001" /> bekommst du, wenn du die Folge für arithmetisch hältst. Aus <InlineMath math="3a+3d=-21" /> und <InlineMath math="3a+12d=168" /> folgen <InlineMath math="d=21" /> und <InlineMath math="a=-28" />, und das <InlineMath math="50" />. Glied wäre <InlineMath math="1{.}001" />. **Laut Aufgabe ist die Folge geometrisch**, eine feste Differenz gibt es also nicht.
+- <InlineMath math="-1{.}792" /> ist das erste Glied, dessen Betrag über <InlineMath math="1{.}000" /> liegt. Eine negative Zahl ist aber nicht größer als <InlineMath math="1{.}000" />.
+
+Das erste Glied mit einem Wert über <InlineMath math="1{.}000" /> ist also <InlineMath math="3{.}584" />.

@@ -1,22 +1,63 @@
-Start with **parity**. The only even prime is <InlineMath math="2" />. If one of the numbers were <InlineMath math="2" />, the other would be <InlineMath math="28" />, which is not prime. So <InlineMath math="p" /> and <InlineMath math="q" /> are both odd. Now try every odd prime below <InlineMath math="15" /> as the smaller number.
+# Two fare functions
+
+All four statements compare two functions: the off-peak fare <InlineMath math="F(d)" /> and the peak-hour fare <InlineMath math="P(d)" />, where <InlineMath math="d" /> is the distance in km. To keep things tidy, call <InlineMath math="K(d)" /> the part of the off-peak fare that's charged per km:
+
+<BlockMath math="K(d)=\begin{cases}0, & 0<d\le2 \\ 4{,}500\,(d-2), & 2<d\le12 \\ 45{,}000+3{,}500\,(d-12), & d>12\end{cases}" />
+
+The door fare isn't multiplied, so
+
+<BlockMath math="F(d)=10{,}000+K(d),\qquad P(d)=10{,}000+1.2\,K(d)." />
+
+**Every statement can be judged from these two formulas**, as long as you check each part of the distance range.
+
+# Statement one
+
+From the formula for <InlineMath math="F" />, the per-km part is <InlineMath math="K=F-10{,}000" />. Put that into the formula for <InlineMath math="P" />:
 
 <BlockMath math="\begin{aligned}
-3+27&:\quad 27=3^3\text{ is not prime} \\
-5+25&:\quad 25=5^2\text{ is not prime} \\
-7+23,\ 11+19,\ 13+17&:\quad \text{all terms prime}
+P&=10{,}000+1.2\,(F-10{,}000) \\
+&=10{,}000+1.2F-12{,}000 \\
+&=1.2F-2{,}000
 \end{aligned}" />
 
-So there are exactly three pairs. For each pair, compute the quantities in the statements.
+This works in every part of the range, including <InlineMath math="d\le2" />. There <InlineMath math="F=10{,}000" /> and <InlineMath math="1.2\cdot10{,}000-2{,}000=10{,}000" />, which equals <InlineMath math="P" />. So **the peak fare isn't <InlineMath math="1.2F" />, it's <InlineMath math="1.2F" /> minus <InlineMath math="2{,}000" />**, because the door fare doesn't go up. This statement is **True**.
+
+# Statement two
+
+Up to <InlineMath math="2\text{ km}" />, a passenger pays only the door fare. Take rides of <InlineMath math="1\text{ km}" /> and <InlineMath math="2\text{ km}" />:
+
+<BlockMath math="F(1)=F(2)=10{,}000" />
+
+Two different distances give the same fare, so **the function <InlineMath math="F" /> isn't one-to-one** at the start of a ride. One counterexample is enough. This statement is **False**.
+
+# Statement three
+
+Compare what one extra km costs. At peak hour after km <InlineMath math="12" />, one extra km costs <InlineMath math="1.2\cdot3{,}500" />. Off-peak between km <InlineMath math="2" /> and km <InlineMath math="12" />, one extra km costs <InlineMath math="4{,}500" />.
+
+<BlockMath math="1.2\cdot3{,}500=4{,}200<4{,}500" />
+
+Peak hour is more expensive for **the same distance**, but here you're comparing the rate of increase on two different parts of the range. The peak increase is actually smaller. This statement is **False**.
+
+# Statement four
+
+The condition <InlineMath math="P(d)=F(d+3)" /> is the same as <InlineMath math="1.2\,K(d)=K(d+3)" />. The formula for <InlineMath math="K" /> changes at km <InlineMath math="2" /> and km <InlineMath math="12" />, so **check every case and throw out any root that falls outside its own case**.
+
+| Case | Equation | Root | Decision |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="d\le2" /> | <InlineMath math="10{,}000=F(d+3)" /> | none | <InlineMath math="F(d+3)\ge F(3)=14{,}500" /> |
+| <InlineMath math="2<d\le9" /> | <InlineMath math="5{,}400(d-2)=4{,}500(d+1)" /> | <InlineMath math="d=17" /> | rejected, <InlineMath math="17>9" /> |
+| <InlineMath math="9<d\le12" /> | <InlineMath math="5{,}400(d-2)=45{,}000+3{,}500(d-9)" /> | <InlineMath math="d=\frac{243}{19}\approx12.79" /> | rejected, more than <InlineMath math="12" /> |
+| <InlineMath math="d>12" /> | <InlineMath math="1.2\,[45{,}000+3{,}500(d-12)]=45{,}000+3{,}500(d-9)" /> | <InlineMath math="d=\frac{99}{7}\approx14.14" /> | accepted |
+
+Here's the last case worked out:
 
 <BlockMath math="\begin{aligned}
-pq&:\quad 161,\ 209,\ 221 \\
-p^2+q^2&:\quad 578,\ 482,\ 458 \\
-|p-q|&:\quad 16,\ 8,\ 4
+54{,}000+4{,}200(d-12)&=45{,}000+3{,}500(d-9) \\
+3{,}600+4{,}200d&=13{,}500+3{,}500d \\
+700d&=9{,}900 \\
+d&=\tfrac{99}{7}
 \end{aligned}" />
 
-That every difference is divisible by <InlineMath math="4" /> is no accident. An odd number leaves remainder <InlineMath math="1" /> or <InlineMath math="3" /> when divided by <InlineMath math="4" />. Because <InlineMath math="30" /> leaves remainder <InlineMath math="2" />, <InlineMath math="p" /> and <InlineMath math="q" /> leave the same remainder, so their difference is a multiple of <InlineMath math="4" />.
+Check: the per-km part for <InlineMath math="\frac{99}{7}\text{ km}" /> is <InlineMath math="45{,}000+3{,}500\cdot\frac{15}{7}=52{,}500" />, so <InlineMath math="P=10{,}000+1.2\cdot52{,}500=73{,}000" />. For <InlineMath math="\frac{120}{7}\text{ km}" /> the per-km part is <InlineMath math="45{,}000+3{,}500\cdot\frac{36}{7}=63{,}000" />, so <InlineMath math="F=73{,}000" />. If you only try the <InlineMath math="4{,}500" /> per km formula, you get the rejected <InlineMath math="d=17" /> and might think there's no answer. This statement is **True**.
 
-So the true statements are that both numbers are odd, that <InlineMath math="221" /> is the largest product, and that the difference is always a multiple of <InlineMath math="4" />.
-
-- Four pairs appear if <InlineMath math="1+29" /> is counted. The number <InlineMath math="1" /> is not prime, though, so three pairs remain.
-- <InlineMath math="p^2+q^2" /> is not always divisible by <InlineMath math="10" />. For example, <InlineMath math="49+529=578" />.
+So the verdicts are: True, False, False, True.

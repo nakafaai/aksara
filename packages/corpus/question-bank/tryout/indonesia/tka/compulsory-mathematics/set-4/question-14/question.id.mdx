@@ -1,3 +1,43 @@
-Garis <InlineMath math="y=2x+4" /> dirotasi sebesar <InlineMath math="90^\circ" /> berlawanan arah jarum jam dengan pusat <InlineMath math="O(0,0)" />.
+Segitiga <InlineMath math="ABC" /> dipetakan oleh **satu** transformasi <InlineMath math="T" /> menjadi segitiga <InlineMath math="A'B'C'" />, dengan titik <InlineMath math="A" /> ke <InlineMath math="A'" />, <InlineMath math="B" /> ke <InlineMath math="B'" />, dan <InlineMath math="C" /> ke <InlineMath math="C'" />, seperti pada gambar.
 
-Persamaan bayangan garis tersebut adalah ....
+<MathVisual
+  title={<>Segitiga dan bayangannya</>}
+  description={<>Segitiga <InlineMath math="ABC" /> mempunyai titik sudut <InlineMath math="A(1,1)" />, <InlineMath math="B(5,1)" />, dan <InlineMath math="C(1,4)" />. Bayangannya, segitiga <InlineMath math="A'B'C'" />, mempunyai titik sudut <InlineMath math="A'(-1,3)" />, <InlineMath math="B'(-1,7)" />, dan <InlineMath math="C'(-4,3)" />.</>}
+  labels={{
+    "label-a": <InlineMath math="A(1,1)" />,
+    "label-b": <InlineMath math="B(5,1)" />,
+    "label-c": <InlineMath math="C(1,4)" />,
+    "label-a-image": <InlineMath math="A'(-1,3)" />,
+    "label-b-image": <InlineMath math="B'(-1,7)" />,
+    "label-c-image": <InlineMath math="C'(-4,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 7 },
+      y: { min: -1, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 1 }, { x: 5, y: 1 }, { x: 1, y: 4 }] },
+      { id: "triangle-image", kind: "polygon", appearance: "secondary", vertices: [{ x: -1, y: 3 }, { x: -1, y: 7 }, { x: -4, y: 3 }] },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 5, y: 1 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 1, y: 4 } },
+      { id: "point-a-image", kind: "point", appearance: "reference", at: { x: -1, y: 3 } },
+      { id: "point-b-image", kind: "point", appearance: "reference", at: { x: -1, y: 7 } },
+      { id: "point-c-image", kind: "point", appearance: "reference", at: { x: -4, y: 3 } },
+    ],
+    labels: [
+      { key: "label-a", objectId: "point-a", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "label-b", objectId: "point-b", at: { x: 5, y: 1 }, placement: "below" },
+      { key: "label-c", objectId: "point-c", at: { x: 1, y: 4 }, placement: "above-right" },
+      { key: "label-a-image", objectId: "point-a-image", at: { x: -1, y: 3 }, placement: "below-right" },
+      { key: "label-b-image", objectId: "point-b-image", at: { x: -1, y: 7 }, placement: "above" },
+      { key: "label-c-image", objectId: "point-c-image", at: { x: -4, y: 3 }, placement: "below" },
+    ],
+  }}
+/>
+
+Transformasi <InlineMath math="T" /> yang sama memetakan titik <InlineMath math="P" /> ke titik <InlineMath math="P'(2,5)" />. Koordinat titik <InlineMath math="P" /> adalah ....

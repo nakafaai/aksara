@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$30$$",
+          label: "$$36\\le x\\le 44$$",
+        },
+        {
+          correct: false,
+          label: "$$30\\le x\\le 44$$",
+        },
+        {
+          correct: false,
+          label: "$$30\\le x\\le 50$$",
+        },
+        {
+          correct: false,
+          label: "$$31\\le x\\le 32$$ atau $$37\\le x\\le 43$$",
         },
         {
           correct: true,
-          label: "$$60$$",
-        },
-        {
-          correct: false,
-          label: "$$84$$",
-        },
-        {
-          correct: false,
-          label: "$$120$$",
-        },
-        {
-          correct: false,
-          label: "$$150$$",
+          label: "$$30\\le x\\le 32$$ atau $$36\\le x\\le 44$$",
         },
       ],
     },

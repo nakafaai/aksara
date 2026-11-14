@@ -1,12 +1,36 @@
-**Lebih dari <InlineMath math="50" />** berarti <InlineMath math="55" /> atau <InlineMath math="60" /> gelas, sedangkan nilai <InlineMath math="50" /> sendiri tidak termasuk. Hitung banyak hari pada dua baris itu, lalu bagi dengan seluruh <InlineMath math="30" /> hari.
+# Letak median setelah data bertambah
 
-<BlockMath math="\frac{7+4}{30}=\frac{11}{30}\approx0{,}367=36{,}7\,\%" />
+Soal ini menanyakan berapa panggilan pendek yang perlu ditambahkan agar taksiran median turun di bawah <InlineMath math="10" /> menit. Ada dua hal yang ikut berubah saat <InlineMath math="k" /> panggilan ditambahkan: **banyak data <InlineMath math="n" /> bertambah, sehingga letak median juga bergeser**, dan banyak panggilan di bawah <InlineMath math="10" /> menit juga bertambah.
 
-Sebagai pemeriksaan, sisa <InlineMath math="2+8+9=19" /> hari bersama <InlineMath math="11" /> hari itu tepat berjumlah <InlineMath math="30" />.
+Menurut bacaan, median ditaksir pada data ke-<InlineMath math="\frac{n}{2}" />, dan panggilan di setiap kelas dianggap tersebar merata. Panggilan yang kurang dari <InlineMath math="10" /> menit ada di kelas <InlineMath math="0\le t<5" /> dan <InlineMath math="5\le t<10" />, jadi banyaknya <InlineMath math="(6+k)+22=28+k" />. Data ke-<InlineMath math="28+k" /> tepat berada di ujung kelas <InlineMath math="5\le t<10" />, yaitu di <InlineMath math="10" /> menit. Jadi taksiran median kurang dari <InlineMath math="10" /> tepat ketika letak median ada **sebelum** data ke-<InlineMath math="28+k" />.
 
-Jadi, penjualan lebih dari <InlineMath math="50" /> gelas terjadi pada sekitar <InlineMath math="36{,}7\,\%" /> hari.
+<BlockMath math="\begin{aligned}
+n&=80+k,\qquad\text{letak median}=\frac{80+k}{2} \\
+\frac{80+k}{2}&<28+k \\
+80+k&<56+2k \\
+k&>24
+\end{aligned}" />
 
-- <InlineMath math="11\,\%" /> langsung memakai banyak hari, <InlineMath math="11" />, sebagai persentase, seolah-olah ada <InlineMath math="100" /> hari.
-- <InlineMath math="40\,\%" /> menghitung baris, bukan hari: <InlineMath math="2" /> dari <InlineMath math="5" /> baris.
-- Sekitar <InlineMath math="63{,}3\,\%" /> adalah bagian hari dengan penjualan paling banyak <InlineMath math="50" /> gelas, yaitu kebalikannya.
-- Sekitar <InlineMath math="66{,}7\,\%" /> ikut menghitung <InlineMath math="9" /> hari dengan tepat <InlineMath math="50" /> gelas: <InlineMath math="\frac{20}{30}" />.
+# Memeriksa batasnya
+
+Ketaksamaannya **ketat**, jadi <InlineMath math="k=24" /> belum memenuhi. Coba hitung kedua nilai di sekitar batas dengan rumus taksiran median di kelas <InlineMath math="5\le t<10" />. Sebelum kelas itu ada <InlineMath math="6+k" /> panggilan.
+
+<BlockMath math="\begin{aligned}
+k=24:&\quad n=104,\ \text{data ke-}52,\quad 5+\frac{52-30}{22}\cdot5=5+5=10 \\
+k=25:&\quad n=105,\ \text{data ke-}52{,}5,\quad 5+\frac{52{,}5-31}{22}\cdot5\approx9{,}89
+\end{aligned}" />
+
+Untuk <InlineMath math="k=24" />, taksirannya tepat <InlineMath math="10" /> menit, jadi belum kurang dari <InlineMath math="10" />. Untuk <InlineMath math="k=25" />, taksirannya sekitar <InlineMath math="9{,}89" /> menit.
+
+Cek dengan cara menghitung. Taksiran median kurang dari <InlineMath math="10" /> berarti lebih dari separuh panggilan kurang dari <InlineMath math="10" /> menit. Untuk <InlineMath math="k=25" /> ada <InlineMath math="53" /> panggilan seperti itu dari <InlineMath math="105" />, dan <InlineMath math="53>52{,}5" />. Untuk <InlineMath math="k=24" /> ada <InlineMath math="52" /> dari <InlineMath math="104" />, tepat separuh.
+
+# Kenapa pilihan lain keliru
+
+Setiap pilihan yang salah lupa salah satu dari dua perubahan tadi, atau salah membaca batasnya. **Letak median dan tanda kurang dari** adalah dua hal yang menentukan.
+
+- <InlineMath math="12" /> muncul kalau letak median tetap dianggap data ke-<InlineMath math="40" /> dan kesamaan ikut diterima, <InlineMath math="28+k\ge40" />. Padahal <InlineMath math="n" /> ikut bertambah.
+- <InlineMath math="13" /> muncul dari <InlineMath math="28+k>40" />, yaitu letak median masih data ke-<InlineMath math="40" />. Kesalahannya sama: <InlineMath math="n=80+k" />, bukan <InlineMath math="80" />.
+- <InlineMath math="24" /> membuat taksiran median tepat <InlineMath math="10" /> menit. Itu tidak kurang dari <InlineMath math="10" />.
+- <InlineMath math="53" /> muncul kalau panggilan baru saja yang dibandingkan dengan <InlineMath math="52" /> panggilan yang paling sedikit <InlineMath math="10" /> menit. <InlineMath math="28" /> panggilan lama yang sudah kurang dari <InlineMath math="10" /> menit terlupakan.
+
+Jadi, nilai <InlineMath math="k" /> terkecil adalah <InlineMath math="25" />.

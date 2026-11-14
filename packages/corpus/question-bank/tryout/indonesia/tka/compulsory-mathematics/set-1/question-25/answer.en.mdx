@@ -1,17 +1,22 @@
-The order of selection does not matter, so count with **binomial coefficients**. At least two girls means exactly two or exactly three.
+# Probabilities in terms of r
+
+Since <InlineMath math="r" /> is unknown, **write each probability as a formula in <InlineMath math="r" />**. The second ball can be red after a red first ball or after a white first ball.
 
 <BlockMath math="\begin{aligned}
-\text{all selections}&=\binom93=84 \\
-\text{exactly 2 girls}&=\binom42\binom51=6\cdot5=30 \\
-\text{exactly 3 girls}&=\binom43=4 \\
-P&=\frac{30+4}{84}=\frac{34}{84}=\frac{17}{42}
+P(A)&=\frac{r}{8} \\
+P(A\cap B)&=\frac{r}{8}\cdot\frac{r-1}{7}=\frac{r(r-1)}{56} \\
+P(B)&=\frac{r(r-1)}{56}+\frac{8-r}{8}\cdot\frac{r}{7}=\frac{7r}{56}=\frac{r}{8} \\
+P(B\mid A)&=\frac{r-1}{7}
 \end{aligned}" />
 
-As a check, no girl or exactly one girl gives <InlineMath math="\binom53+\binom41\binom52=10+40=50" /> selections, and <InlineMath math="34+50=84" />.
+So **<InlineMath math="P(B)" /> equals <InlineMath math="P(A)" />**. That makes sense: before you see anything, the second ball is just as random as the first.
 
-So the probability is <InlineMath math="\frac{17}{42}" />.
+# Judging each statement
 
-- <InlineMath math="\frac{1}{21}=\frac{4}{84}" /> counts only the selection with three girls.
-- <InlineMath math="\frac{5}{14}=\frac{30}{84}" /> counts only exactly two girls and forgets the case with three.
-- <InlineMath math="\frac12" /> would need <InlineMath math="42" /> favourable selections, but there are <InlineMath math="34" />.
-- <InlineMath math="\frac{25}{42}=\frac{50}{84}" /> is the complement, at most one girl.
+1. **False**. The two probabilities are equal, <InlineMath math="P(B)=P(A)=\frac r8" />.
+2. **True**. <InlineMath math="\frac{r-1}{7}<\frac r8" /> is the same as <InlineMath math="8r-8<7r" />, which is <InlineMath math="r<8" />. That always holds.
+3. **False**. The chance of the same colour is <InlineMath math="\frac{r(r-1)+(8-r)(7-r)}{56}" />. For <InlineMath math="r=4" /> it's <InlineMath math="\frac{24}{56}=\frac37" />, but for <InlineMath math="r=1" /> it's <InlineMath math="\frac{42}{56}=\frac34" />. In fact <InlineMath math="r=4" /> gives the smallest chance.
+4. **True**. Independent would mean <InlineMath math="P(B\mid A)=P(B)" />. But <InlineMath math="\frac{r-1}{7}" /> is always smaller than <InlineMath math="\frac r8" />, as in the second statement.
+5. **True**. <InlineMath math="P(A\mid B)=\frac{P(A\cap B)}{P(B)}" /> and <InlineMath math="P(B\mid A)=\frac{P(A\cap B)}{P(A)}" />. The numerators match, and so do the denominators, because <InlineMath math="P(A)=P(B)" />.
+
+So the true statements are the second, fourth, and fifth.

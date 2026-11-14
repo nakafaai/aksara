@@ -1,9 +1,49 @@
-Translasi, pencerminan, dan rotasi adalah **transformasi isometri**: semuanya mempertahankan panjang, sehingga sudut dan luas juga tetap. Dilatasi dengan faktor <InlineMath math="k" /> mengalikan panjang dengan <InlineMath math="|k|" /> dan luas dengan <InlineMath math="k^2" />.
+Rotasi <InlineMath math="180^\circ" /> dengan pusat <InlineMath math="O" /> memindahkan setiap titik <InlineMath math="(x,y)" /> ke <InlineMath math="(-x,-y)" />. Jadi untuk setiap komposisi, **hitung bayangan titik umum <InlineMath math="(x,y)" />** dan bandingkan dengan <InlineMath math="(-x,-y)" />. Mencoba satu atau dua titik saja belum cukup, karena dua transformasi berbeda bisa kebetulan sama di beberapa titik.
 
-- Translasi menggeser semua titik dengan vektor yang sama, sehingga setiap sisi tetap panjangnya. Pernyataan ini benar.
-- Pencerminan adalah isometri, jadi bayangannya kongruen dan luasnya sama. Pernyataan ini benar.
-- Dengan <InlineMath math="k=-2" />, setiap panjang menjadi dua kali, sehingga luas dikalikan <InlineMath math="(-2)^2=4" />, bukan <InlineMath math="2" />. Pernyataan ini salah.
-- Rotasi <InlineMath math="180^\circ" /> memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(-x,-y)" />, persis seperti dilatasi dengan <InlineMath math="k=-1" />. Pernyataan ini benar.
-- Pencerminan terhadap sumbu <InlineMath math="x" /> menghasilkan <InlineMath math="(x,-y)" />, lalu pencerminan terhadap sumbu <InlineMath math="y" /> menghasilkan <InlineMath math="(-x,-y)" />. Itu adalah rotasi <InlineMath math="180^\circ" />. Translasi menggeser setiap titik dengan vektor yang sama, padahal di sini misalnya <InlineMath math="(1,0)" /> bergeser sejauh <InlineMath math="(-2,0)" /> dan <InlineMath math="(2,0)" /> sejauh <InlineMath math="(-4,0)" />. Pernyataan ini salah.
+# Rumus yang dipakai
 
-Jadi, pernyataan yang benar adalah pernyataan tentang translasi, pencerminan, dan rotasi <InlineMath math="180^\circ" />.
+Untuk pusat <InlineMath math="P(a,b)" />, kerjakan dari vektor <InlineMath math="(x-a,\ y-b)" />: putar vektornya, lalu tambahkan kembali <InlineMath math="(a,b)" />.
+
+<BlockMath math="\begin{aligned}
+R_{P,90^\circ}:&\ (x,y)\mapsto\big(a-(y-b),\ b+(x-a)\big) \\
+R_{P,180^\circ}:&\ (x,y)\mapsto(2a-x,\ 2b-y) \\
+\text{refleksi } x=h:&\ (x,y)\mapsto(2h-x,\ y) \\
+\text{refleksi } y=k:&\ (x,y)\mapsto(x,\ 2k-y)
+\end{aligned}" />
+
+Ada satu fakta lagi yang berguna. Dua rotasi <InlineMath math="90^\circ" /> berturut-turut selalu menghasilkan **rotasi <InlineMath math="180^\circ" /> terhadap suatu pusat**, tetapi pusatnya belum tentu <InlineMath math="O" />. Karena itu sudut yang berjumlah <InlineMath math="180^\circ" /> saja tidak cukup. Pusatnya juga harus dicek.
+
+# Memeriksa setiap komposisi
+
+**Salah**. Pada komposisi pertama, rotasi dengan pusat <InlineMath math="(1,0)" /> memberi <InlineMath math="(1-y,\ x-1)" />. Rotasi dengan pusat <InlineMath math="(0,1)" /> memetakan <InlineMath math="(u,v)" /> ke <InlineMath math="(1-v,\ 1+u)" />.
+
+<BlockMath math="(x,y)\mapsto(1-y,\ x-1)\mapsto\big(1-(x-1),\ 1+(1-y)\big)=(2-x,\ 2-y)" />
+
+Ini rotasi <InlineMath math="180^\circ" /> dengan pusat <InlineMath math="(1,1)" />. Titik <InlineMath math="O" /> sendiri dipindah ke <InlineMath math="(2,2)" />, padahal rotasi terhadap <InlineMath math="O" /> tidak memindahkan <InlineMath math="O" />.
+
+**Benar**. Pada komposisi kedua, kedua refleksi lalu translasi dikerjakan berurutan.
+
+<BlockMath math="(x,y)\mapsto(6-x,\ y)\mapsto(6-x,\ -2-y)\mapsto(6-x-6,\ -2-y+2)=(-x,-y)" />
+
+Dua refleksi terhadap garis yang saling tegak lurus menghasilkan rotasi <InlineMath math="180^\circ" /> dengan pusat <InlineMath math="(3,-1)" />, lalu translasi menggeser hasilnya tepat kembali ke pusat <InlineMath math="O" />.
+
+**Benar**. Pada komposisi ketiga, garis <InlineMath math="y=2x" /> bergradien <InlineMath math="2" /> dan garis <InlineMath math="x+2y=0" /> bergradien <InlineMath math="-\tfrac12" />. Hasil kali gradiennya <InlineMath math="-1" />, jadi kedua garis tegak lurus dan berpotongan di <InlineMath math="O" />. Dua refleksi terhadap garis yang berpotongan dengan sudut <InlineMath math="90^\circ" /> sama dengan rotasi <InlineMath math="2\cdot90^\circ=180^\circ" /> terhadap titik potongnya. Cek dengan dua titik yang tidak segaris dengan <InlineMath math="O" />.
+
+<BlockMath math="\begin{aligned}
+(1,2)&\mapsto(1,2)\mapsto(-1,-2) \\
+(2,-1)&\mapsto(-2,1)\mapsto(-2,1)
+\end{aligned}" />
+
+Titik <InlineMath math="(1,2)" /> ada di garis pertama sehingga tidak berpindah, lalu dicerminkan tegak lurus ke seberang garis kedua. Titik <InlineMath math="(2,-1)" /> dicerminkan dulu, lalu jatuh tepat di garis kedua. Keduanya berakhir di <InlineMath math="(-x,-y)" />.
+
+**Benar**. Pada komposisi keempat, rotasi pertama sama seperti tadi, <InlineMath math="(1-y,\ x-1)" />. Rotasi dengan pusat <InlineMath math="(0,-1)" /> memetakan <InlineMath math="(u,v)" /> ke <InlineMath math="(-(v+1),\ -1+u)" />.
+
+<BlockMath math="(x,y)\mapsto(1-y,\ x-1)\mapsto\big(-(x-1+1),\ -1+1-y\big)=(-x,-y)" />
+
+Bandingkan dengan komposisi pertama: sudutnya sama, hanya pusat kedua yang berbeda, dan **perbedaan pusat itulah yang memutuskan**.
+
+**Benar**. Pada komposisi kelima, translasi dikerjakan lebih dahulu, baru rotasi <InlineMath math="180^\circ" /> dengan pusat <InlineMath math="(2,1)" />.
+
+<BlockMath math="(x,y)\mapsto(x+4,\ y+2)\mapsto\big(4-(x+4),\ 2-(y+2)\big)=(-x,-y)" />
+
+Jadi, komposisi yang sama dengan rotasi <InlineMath math="180^\circ" /> dengan pusat <InlineMath math="O" /> adalah komposisi kedua, ketiga, keempat, dan kelima.

@@ -1,15 +1,73 @@
-The horizontal distance, the difference in height and the path form a right triangle. **The tangent of an angle is the opposite side over the adjacent side**: opposite <InlineMath math="\alpha" /> is the difference in height, and adjacent is the horizontal distance <InlineMath math="1{,}640\text{ m}" />.
+The question asks for the total horizontal distance: the horizontal run of the first part, plus the landing, plus the horizontal run of the second part. The two parts have different slopes, so **the height of the second part has to come from whatever height the first part hasn't climbed yet**.
+
+# The first part
+
+Each sloped part is the hypotenuse of a right triangle: the vertical side is the height it climbs, and the horizontal side is its horizontal run. From <InlineMath math="\sin\alpha=\frac{7}{25}" />, the opposite side is <InlineMath math="7" /> and the hypotenuse is <InlineMath math="25" />, so **you find the adjacent side with Pythagoras**:
 
 <BlockMath math="\begin{aligned}
-\tan\alpha&=\frac{h}{1{,}640} \\
-h&=1{,}640\cdot\frac{9}{40}=369\text{ m}
+\text{adjacent}&=\sqrt{25^2-7^2}=\sqrt{576}=24 \quad\Rightarrow\quad \cos\alpha=\frac{24}{25} \\
+\text{height}_1&=5\cdot\frac{7}{25}=1.4\text{ m} \\
+\text{run}_1&=5\cdot\frac{24}{25}=4.8\text{ m}
 \end{aligned}" />
 
-As a check, the triangle is similar to the <InlineMath math="9" />-<InlineMath math="40" />-<InlineMath math="41" /> triangle with factor <InlineMath math="41" />: <InlineMath math="h=369" />, horizontal distance <InlineMath math="1{,}640" />, and path length <InlineMath math="1{,}681" />.
+# The second part
 
-So the difference in height is <InlineMath math="369\text{ m}" />.
+The flat landing adds no height. So the second part has to climb the rest. For angle <InlineMath math="\beta" />, the adjacent side is <InlineMath math="\sqrt{13^2-5^2}=12" />, so <InlineMath math="\cos\beta=\frac{12}{13}" />:
 
-- <InlineMath math="36.9\text{ m}" /> converts <InlineMath math="0.369\text{ km}" /> to metres by multiplying by <InlineMath math="100" />, although <InlineMath math="1\text{ km}=1{,}000\text{ m}" />.
-- <InlineMath math="328\text{ m}" /> rounds <InlineMath math="\frac{9}{40}=0.225" /> to <InlineMath math="0.2" /> before multiplying.
-- <InlineMath math="360\text{ m}" /> applies <InlineMath math="\sin\alpha=\frac{9}{41}" /> to the horizontal distance, although the sine goes with the hypotenuse.
-- <InlineMath math="1{,}600\text{ m}" /> uses <InlineMath math="\cos\alpha=\frac{40}{41}" />.
+<BlockMath math="\begin{aligned}
+\text{height}_2&=2.9-1.4=1.5\text{ m} \\
+\text{slanted length}_2&=\frac{1.5}{\sin\beta}=1.5\cdot\frac{13}{5}=3.9\text{ m} \\
+\text{run}_2&=3.9\cdot\frac{12}{13}=3.6\text{ m}
+\end{aligned}" />
+
+**Check with Pythagoras**: <InlineMath math="1.5^2+3.6^2=2.25+12.96=15.21=3.9^2" />. It fits.
+
+# The total horizontal distance
+
+All three pieces go in the same direction, so **their horizontal distances add up**:
+
+<BlockMath math="4.8+1.5+3.6=9.9\text{ m}" />
+
+<MathVisual
+  title={<>Side view of the ramp</>}
+  description={<>Side view of the ramp in metres. The first part climbs <InlineMath math="1.4" /> over a horizontal run of <InlineMath math="4.8" />. The flat landing is <InlineMath math="1.5" /> long. The second part climbs <InlineMath math="1.5" /> over a horizontal run of <InlineMath math="3.6" />, up to a height of <InlineMath math="2.9" />. The total horizontal distance is <InlineMath math="9.9" />.</>}
+  labels={{
+    "run-one": <InlineMath math="4.8" />,
+    "rise-one": <InlineMath math="1.4" />,
+    landing: <InlineMath math="1.5" />,
+    "run-two": <InlineMath math="3.6" />,
+    "rise-two": <InlineMath math="1.5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 11 },
+      y: { min: -0.6, max: 3.4 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "ramp", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4.8, y: 1.4 }, { x: 6.3, y: 1.4 }, { x: 9.9, y: 2.9 }] },
+      { id: "run-one", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4.8, y: 0 } },
+      { id: "rise-one", kind: "segment", appearance: "construction", from: { x: 4.8, y: 0 }, to: { x: 4.8, y: 1.4 } },
+      { id: "run-two", kind: "segment", appearance: "construction", from: { x: 6.3, y: 1.4 }, to: { x: 9.9, y: 1.4 } },
+      { id: "rise-two", kind: "segment", appearance: "construction", from: { x: 9.9, y: 1.4 }, to: { x: 9.9, y: 2.9 } },
+    ],
+    labels: [
+      { key: "run-one", objectId: "run-one", at: { x: 2.4, y: 0 }, placement: "below" },
+      { key: "rise-one", objectId: "rise-one", at: { x: 4.8, y: 0.7 }, placement: "right" },
+      { key: "landing", objectId: "ramp", at: { x: 5.55, y: 1.4 }, placement: "above" },
+      { key: "run-two", objectId: "run-two", at: { x: 8.1, y: 1.4 }, placement: "below" },
+      { key: "rise-two", objectId: "rise-two", at: { x: 9.9, y: 2.15 }, placement: "right" },
+    ],
+  }}
+/>
+
+So the horizontal distance from the foot of the ramp to the top end of the second part is <InlineMath math="9.9\text{ m}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="13.26\text{ m}" /> uses the whole height <InlineMath math="2.9\text{ m}" /> for the second part: <InlineMath math="2.9\cdot\frac{12}{5}=6.96" />. **The first part has already climbed <InlineMath math="1.4\text{ m}" />**.
+- <InlineMath math="10.4\text{ m}" /> adds the slanted lengths <InlineMath math="5+1.5+3.9" />. The question asks for the horizontal distance, not the length of the ramp surface.
+- <InlineMath math="8.4\text{ m}" /> forgets to add the <InlineMath math="1.5\text{ m}" /> landing.
+- <InlineMath math="7.5\text{ m}" /> takes the horizontal run as slanted length minus height: <InlineMath math="5-1.4=3.6" /> and <InlineMath math="3.9-1.5=2.4" />. You can't just subtract the sides of a right triangle, use Pythagoras or the cosine.
