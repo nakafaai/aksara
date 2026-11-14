@@ -1,17 +1,47 @@
-Setiap faktor positif <InlineMath math="N" /> berbentuk <InlineMath math="2^a\cdot5^b" /> dengan <InlineMath math="0\le a\le12" /> dan <InlineMath math="0\le b\le8" />. Bilangan itu kuadrat sempurna tepat ketika **semua pangkat pada faktorisasi primanya genap**.
+Kamu mencari banyak nilai <InlineMath math="k" /> yang memenuhi **dua syarat sekaligus**: pecahan <InlineMath math="\dfrac{k}{84}" /> bisa disederhanakan, dan penyebut hasilnya genap. Rencananya, ubah syarat penyebut genap menjadi syarat tentang <InlineMath math="k" />, hitung semuanya, lalu buang pecahan yang sama sekali tidak berubah.
 
-# Pilihan pangkat genap
+# Penyebut setelah disederhanakan
 
-Pangkat <InlineMath math="a" /> yang genap adalah 0, 2, 4, 6, 8, 10, 12, yaitu 7 pilihan. Pangkat <InlineMath math="b" /> yang genap adalah 0, 2, 4, 6, 8, yaitu 5 pilihan. **Pangkat 0 ikut dihitung**, karena <InlineMath math="2^0=1" /> juga kuadrat sempurna.
+Menyederhanakan <InlineMath math="\dfrac{k}{84}" /> berarti membagi pembilang dan penyebut dengan <InlineMath math="\text{FPB}(k,84)" />, yaitu faktor persekutuan terbesar dari <InlineMath math="k" /> dan <InlineMath math="84" />. Jadi penyebut barunya adalah <InlineMath math="\dfrac{84}{\text{FPB}(k,84)}" />.
 
-# Aturan perkalian
+Faktorkan dulu <InlineMath math="84=2^2\cdot 3\cdot 7" />. Penyebut baru tetap genap selama **faktor <InlineMath math="2" /> di penyebut belum habis**. Faktor itu habis hanya kalau FPB memuat <InlineMath math="2^2=4" />, artinya <InlineMath math="k" /> kelipatan <InlineMath math="4" />. Jadi penyebut baru genap tepat ketika <InlineMath math="k" /> bukan kelipatan <InlineMath math="4" />.
 
-Pilihan <InlineMath math="a" /> dan <InlineMath math="b" /> saling bebas, jadi banyaknya dikalikan.
+Kelipatan <InlineMath math="4" /> dari <InlineMath math="1" /> sampai <InlineMath math="83" /> adalah <InlineMath math="4,8,\ldots,80" />, ada <InlineMath math="20" /> bilangan.
 
-<BlockMath math="7\cdot5=35" />
+<BlockMath math="\begin{aligned}
+\text{banyak } k \text{ dengan penyebut baru genap} &= 83-20 \\
+&= 63
+\end{aligned}" />
 
-Contohnya, <InlineMath math="2^4\cdot5^2=400=20^2" /> termasuk di dalamnya.
+# Pecahan yang tidak berubah
 
-Nilai 117 adalah banyak semua faktor, <InlineMath math="13\cdot9" />. Nilai 30 lupa pangkat 0 untuk salah satu prima, dan nilai 63 memakai semua pangkat 5 tanpa syarat genap, <InlineMath math="7\cdot9" />.
+Pecahan tidak berubah tepat ketika <InlineMath math="\text{FPB}(k,84)=1" />, yaitu <InlineMath math="k" /> tidak habis dibagi <InlineMath math="2" />, <InlineMath math="3" />, maupun <InlineMath math="7" />. Hitung dengan **prinsip inklusi dan eksklusi**: kurangi kelipatan setiap faktor, tambahkan kembali kelipatan dua faktor yang terkurangi dua kali, lalu kurangi lagi kelipatan ketiganya. Bilangan <InlineMath math="84" /> sendiri bukan anggota, jadi menghitung dari <InlineMath math="1" /> sampai <InlineMath math="84" /> memberi hasil yang sama.
 
-Jadi, banyak faktor yang merupakan kuadrat sempurna adalah **35**.
+<BlockMath math="\begin{aligned}
+\text{banyak } k \text{ relatif prima} &= 84-(42+28+12)+(14+6+4)-2 \\
+&= 84-82+24-2 \\
+&= 24
+\end{aligned}" />
+
+Ke-<InlineMath math="24" /> bilangan itu semuanya ganjil, jadi bukan kelipatan <InlineMath math="4" />. Artinya mereka ikut terhitung di antara <InlineMath math="63" /> bilangan tadi, padahal pecahannya tidak berubah. Buang mereka.
+
+<BlockMath math="63-24=39" />
+
+# Pemeriksaan dengan cara lain
+
+Pisahkan <InlineMath math="39" /> pecahan itu menurut jenis <InlineMath math="k" />. Pertama, <InlineMath math="k" /> genap tetapi bukan kelipatan <InlineMath math="4" />, yaitu <InlineMath math="2,6,10,\ldots,82" />. Ada <InlineMath math="21" /> bilangan, dan semuanya bisa dibagi <InlineMath math="2" /> tanpa menghabiskan faktor <InlineMath math="2" /> di penyebut. Kedua, <InlineMath math="k" /> ganjil yang **punya faktor <InlineMath math="3" /> atau <InlineMath math="7" /> bersama <InlineMath math="84" />**. Ada <InlineMath math="42" /> bilangan ganjil dari <InlineMath math="1" /> sampai <InlineMath math="83" />, dan <InlineMath math="24" /> di antaranya relatif prima, jadi sisanya <InlineMath math="18" />.
+
+<BlockMath math="21+18=39" />
+
+Hasilnya sama dengan perhitungan pertama.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain muncul dari **satu syarat yang terlewat**.
+
+- <InlineMath math="18" /> hanya menghitung <InlineMath math="k" /> ganjil yang punya faktor <InlineMath math="3" /> atau <InlineMath math="7" />, dan lupa <InlineMath math="k" /> genap yang bukan kelipatan <InlineMath math="4" />.
+- <InlineMath math="21" /> hanya menghitung <InlineMath math="k" /> genap yang bukan kelipatan <InlineMath math="4" />, dan lupa bahwa faktor <InlineMath math="3" /> atau <InlineMath math="7" /> juga bisa disederhanakan.
+- <InlineMath math="24" /> adalah banyak pecahan yang justru tidak berubah.
+- <InlineMath math="59" /> adalah semua pecahan yang berubah, tanpa memeriksa apakah penyebutnya masih genap.
+
+Jadi, ada <InlineMath math="39" /> pecahan yang berubah ketika disederhanakan dan penyebutnya tetap genap.

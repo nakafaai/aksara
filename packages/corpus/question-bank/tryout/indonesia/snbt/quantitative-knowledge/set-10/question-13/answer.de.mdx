@@ -1,17 +1,55 @@
-Es geht kein Eisen verloren und keines kommt hinzu, also ist **das Kegelvolumen gleich dem Kugelvolumen**.
+Du musst zuerst den Kreis bestimmen, also Mittelpunkt und Radius, und erst danach den zweiten Schnittpunkt mit der Seite <InlineMath math="BC" /> suchen. Es gibt eine Falle: Die Gleichung für den Radius hat zwei Lösungen, und **nur eine davon berührt wirklich die Seiten des Quadrats**.
 
-# Volumen gleichsetzen
+# Wo der Mittelpunkt liegt
+
+Leg ein Koordinatensystem mit <InlineMath math="A=(0,0)" />, <InlineMath math="B=(s,0)" />, <InlineMath math="C=(s,s)" /> und <InlineMath math="D=(0,s)" /> fest, wobei <InlineMath math="s=2+\sqrt{2}" />. Ein Kreis, der eine Gerade berührt, hat von ihr genau den Abstand <InlineMath math="r" />. Dieser Kreis berührt <InlineMath math="AB" /> und <InlineMath math="AD" /> in der Ecke bei <InlineMath math="A" />, sein Mittelpunkt ist also <InlineMath math="O=(r,r)" />. Das heißt: **Der Mittelpunkt liegt auf der Diagonalen <InlineMath math="AC" />**.
+
+# Der Radius
+
+Der Punkt <InlineMath math="C" /> liegt auf dem Kreis, sein Abstand zu <InlineMath math="O" /> ist also <InlineMath math="r" />.
+
+<BlockMath math="OC=\sqrt{(s-r)^2+(s-r)^2}=\sqrt{2}\,\lvert s-r\rvert=r" />
+
+Der Betrag liefert zwei Fälle.
 
 <BlockMath math="\begin{aligned}
-\tfrac43\pi\cdot6^3&=\tfrac13\pi\cdot6^2\cdot t\\
-288\pi&=12\pi t\\
-t&=24
+s-r=\tfrac{r}{\sqrt{2}} &\;\Longrightarrow\; r=\frac{\sqrt{2}\,s}{\sqrt{2}+1}=s(2-\sqrt{2})=(2+\sqrt{2})(2-\sqrt{2})=2 \\
+r-s=\tfrac{r}{\sqrt{2}} &\;\Longrightarrow\; r=\frac{\sqrt{2}\,s}{\sqrt{2}-1}=s(2+\sqrt{2})=(2+\sqrt{2})^2=6+4\sqrt{2}
 \end{aligned}" />
 
-# Allgemeine Kontrolle
+Der zweite Kreis berührt die Gerade <InlineMath math="AB" /> im Punkt <InlineMath math="(6+4\sqrt{2},0)" />, weit außerhalb der Seite <InlineMath math="AB" />, die nur <InlineMath math="2+\sqrt{2}" /> lang ist. Die Aufgabe verlangt **Berührpunkte auf den Seiten**, also fällt der zweite Kreis weg. Der Radius ist <InlineMath math="r=2" /> und der Mittelpunkt <InlineMath math="O=(2,2)" />.
 
-Bei gleichem Radius liefert <InlineMath math="\tfrac43\pi r^3=\tfrac13\pi r^2t" /> sofort **eine Höhe vom Vierfachen des Radius**, also <InlineMath math="t=4r" />. Für <InlineMath math="r=6" /> ist die Höhe 24, passend zum Ergebnis oben.
+# Der zweite Schnittpunkt
 
-Der Wert 8 vergisst den Faktor <InlineMath math="\tfrac13" /> beim Kegelvolumen und behandelt den Kegel wie einen Zylinder. Der Wert 4 verwendet <InlineMath math="r^2" /> beim Kugelvolumen. Der Wert 12 nimmt als Kegelhöhe den Kugeldurchmesser.
+Die Seite <InlineMath math="BC" /> liegt auf der Geraden <InlineMath math="x=s" />. Der Abstand von <InlineMath math="O" /> zu dieser Geraden ist <InlineMath math="s-2=\sqrt{2}" />. Das Lot vom Mittelpunkt auf eine Sehne **halbiert die Sehne**, also berechnest du die halbe Sehne <InlineMath math="CP" /> mit dem Satz des Pythagoras.
 
-Die Höhe des Kegels beträgt also **<InlineMath math="24\text{ cm}" />**.
+<BlockMath math="\begin{aligned}
+\tfrac{1}{2}CP &= \sqrt{r^2-(\sqrt{2})^2}=\sqrt{4-2}=\sqrt{2} \\
+CP &= 2\sqrt{2}
+\end{aligned}" />
+
+Der Mittelpunkt der Sehne ist <InlineMath math="(s,2)" />. Also liegt <InlineMath math="C" /> auf der Höhe <InlineMath math="2+\sqrt{2}" /> und <InlineMath math="P" /> auf der Höhe <InlineMath math="2-\sqrt{2}" />. Die Höhe von <InlineMath math="P" /> liegt zwischen <InlineMath math="0" /> und <InlineMath math="s" />, also liegt <InlineMath math="P" /> tatsächlich auf der Seite <InlineMath math="BC" />.
+
+# Probe mit der Potenz eines Punktes
+
+Der Kreis berührt <InlineMath math="AB" /> im Punkt <InlineMath math="T=(2,0)" />, also ist <InlineMath math="BT=s-2=\sqrt{2}" />. Von <InlineMath math="B" /> aus gilt: **Das Quadrat der Tangentenlänge ist gleich dem Produkt der beiden Abschnitte** einer Geraden durch den Kreis, hier <InlineMath math="BP" /> und <InlineMath math="BC" />.
+
+<BlockMath math="\begin{aligned}
+BT^2 &= BP\cdot BC \\
+2 &= BP\cdot(2+\sqrt{2}) \\
+BP &= \frac{2}{2+\sqrt{2}}=2-\sqrt{2} \\
+CP &= (2+\sqrt{2})-(2-\sqrt{2})=2\sqrt{2}
+\end{aligned}" />
+
+Das stimmt mit dem ersten Weg überein.
+
+# Die falschen Antworten
+
+Jede andere Antwort entsteht aus **einer vertauschten Strecke oder dem falschen Kreis**.
+
+- <InlineMath math="(2-\sqrt{2})\text{ cm}" /> ist die Länge <InlineMath math="BP" />, nicht <InlineMath math="CP" />.
+- <InlineMath math="\sqrt{2}\text{ cm}" /> ist nur die halbe Sehne, weil nicht verdoppelt wurde.
+- <InlineMath math="(2+\sqrt{2})\text{ cm}" /> nimmt an, dass der Kreis auch durch <InlineMath math="B" /> geht, also <InlineMath math="P=B" />.
+- <InlineMath math="(8+6\sqrt{2})\text{ cm}" /> benutzt den zweiten Kreis mit <InlineMath math="r=6+4\sqrt{2}" />, dessen Berührpunkte außerhalb der Quadratseiten liegen.
+
+Die Länge von <InlineMath math="CP" /> ist also <InlineMath math="2\sqrt{2}\text{ cm}" />.

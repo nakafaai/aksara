@@ -1,18 +1,41 @@
-Gewinn ist Erlös minus Kosten, und der Prozentsatz wird **auf die Kosten bezogen**. Die verdorbenen Orangen gehören zu den Kosten, bringen aber keinen Erlös.
+Eine Aussage reicht, wenn **die Antwort immer gleich ausfällt** für jedes <InlineMath math="k" />, das sie erfüllt, also immer „ja“ oder immer „nein“. Der Plan: Nutze zwei Tatsachen über die Anzahl der Teiler und prüfe dann jede Aussage für sich.
 
-# Erlös und Gewinn
+# Zwei Tatsachen über die Teileranzahl
 
-Die verdorbenen Orangen wiegen <InlineMath math="10\%\cdot50=5" /> kg, also werden **nur 45 kg verkauft**.
+Erste Tatsache: Die positiven Teiler einer Zahl <InlineMath math="m" /> lassen sich paaren, <InlineMath math="d" /> mit <InlineMath math="\tfrac{m}{d}" />. Ein Paar fällt nur dann zu einem einzigen Teiler zusammen, wenn <InlineMath math="d=\tfrac{m}{d}" /> ist, also <InlineMath math="d^2=m" />. Deshalb **ist die Teileranzahl genau dann ungerade, wenn <InlineMath math="m" /> eine Quadratzahl ist**.
+
+Zweite Tatsache: Ist <InlineMath math="m=p_1^{e_1}p_2^{e_2}\cdots" /> mit verschiedenen Primzahlen <InlineMath math="p_i" />, dann hat <InlineMath math="m" /> genau <InlineMath math="(e_1+1)(e_2+1)\cdots" /> Teiler, weil der Exponent jeder Primzahl in einem Teiler von <InlineMath math="0" /> bis <InlineMath math="e_i" /> gewählt werden kann. Die Zahl <InlineMath math="m" /> ist genau dann eine Quadratzahl, wenn alle Exponenten gerade sind.
+
+# Aussage eins allein
+
+Nach der ersten Tatsache ist <InlineMath math="2k" /> eine Quadratzahl, etwa <InlineMath math="2k=m^2" />. Die linke Seite ist gerade, also ist <InlineMath math="m" /> gerade. Schreib <InlineMath math="m=2j" />.
 
 <BlockMath math="\begin{aligned}
-\text{Erlös}&=45\cdot16\,000=720\,000\\
-\text{Gewinn}&=720\,000-600\,000=120\,000
+2k &= (2j)^2=4j^2 \\
+k &= 2j^2
 \end{aligned}" />
 
-# Prozentsatz bezogen auf die Kosten
+Der Exponent von <InlineMath math="2" /> in <InlineMath math="j^2" /> ist gerade, also **ist der Exponent von <InlineMath math="2" /> in <InlineMath math="k=2j^2" /> ungerade**. Eine Quadratzahl hat keinen ungeraden Exponenten, also ist <InlineMath math="k" /> sicher keine Quadratzahl. Beispiele sind <InlineMath math="k=2" />, <InlineMath math="k=8" /> und <InlineMath math="k=18" />, die <InlineMath math="2k=4" />, <InlineMath math="16" /> und <InlineMath math="36" /> liefern. Die Antwort ist immer „nein“, also reicht Aussage (1) allein.
 
-<BlockMath math="\frac{120\,000}{600\,000}\times100\%=20\%" />
+# Aussage zwei allein
 
-Der Wert <InlineMath math="33\tfrac13\%" /> nimmt an, dass **alle 50 kg verkauft werden**. Der Wert <InlineMath math="16\tfrac23\%" /> teilt den Gewinn durch den Erlös statt durch die Kosten. Der Wert <InlineMath math="25\%" /> vergleicht die Preisdifferenz pro Kilogramm mit dem Verkaufspreis, <InlineMath math="\tfrac{16\,000-12\,000}{16\,000}" />, und <InlineMath math="10\%" /> ist der Anteil verdorbener Orangen.
+Ist <InlineMath math="k=p_1^{e_1}p_2^{e_2}\cdots" />, dann gilt <InlineMath math="k^2=p_1^{2e_1}p_2^{2e_2}\cdots" />. Nach der zweiten Tatsache hat <InlineMath math="k^2" /> genau <InlineMath math="(2e_1+1)(2e_2+1)\cdots" /> Teiler, und das muss <InlineMath math="15" /> sein. Die Zahl <InlineMath math="15" /> lässt sich nur als <InlineMath math="15" /> oder <InlineMath math="3\cdot 5" /> schreiben, also gibt es zwei Fälle.
 
-Der Gewinn beträgt also **<InlineMath math="20\%" />** der Kosten.
+<BlockMath math="\begin{aligned}
+2e_1+1=15 &\;\Longrightarrow\; e_1=7,\quad k=p^7 \\
+2e_1+1=3,\ 2e_2+1=5 &\;\Longrightarrow\; e_1=1,\ e_2=2,\quad k=pq^2
+\end{aligned}" />
+
+In beiden Fällen **gibt es immer einen ungeraden Exponenten**, nämlich <InlineMath math="7" /> oder <InlineMath math="1" />, also ist <InlineMath math="k" /> sicher keine Quadratzahl. Beispiele sind <InlineMath math="k=128=2^7" /> und <InlineMath math="k=12=3\cdot 2^2" />. Du kannst nachprüfen, dass <InlineMath math="144=12^2" /> tatsächlich <InlineMath math="15" /> Teiler hat. Die Antwort ist immer „nein“, also reicht auch Aussage (2) allein.
+
+Die Zahl <InlineMath math="15" /> ist hier entscheidend. Hätte <InlineMath math="k^2" /> genau <InlineMath math="9" /> Teiler, dann gäbe der Fall <InlineMath math="k=p^4" /> die Antwort „ja“ und der Fall <InlineMath math="k=pq" /> die Antwort „nein“.
+
+# Die falschen Antworten
+
+Jede Aussage reicht für sich allein, also ist **jede Antwort falsch, die eine der beiden Aussagen für nicht ausreichend erklärt**.
+
+- Die Antwort „Aussage (1) allein reicht, (2) nicht“ entsteht meist, weil man glaubt, die zwei Fälle von Aussage (2) lieferten verschiedene Antworten. Beide liefern aber „nein“.
+- Die Antwort „Aussage (2) allein reicht, (1) nicht“ entsteht, wenn man meint, eine ungerade Teileranzahl sage nur etwas über <InlineMath math="2k" /> aus, nicht über <InlineMath math="k" />.
+- Die Antworten „beide zusammen“ und „reichen nicht“ übersehen, dass jede Aussage die Antwort „nein“ schon allein erzwingt.
+
+Aussage (1) allein reicht also, und Aussage (2) allein reicht auch: <InlineMath math="k" /> ist keine Quadratzahl.

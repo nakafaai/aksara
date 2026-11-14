@@ -1,17 +1,55 @@
-No iron is gained or lost, so **the volume of the cone equals the volume of the sphere**.
+You need to find the circle first, meaning its center and radius, and only then find where it meets side <InlineMath math="BC" /> again. There's one trap: the equation for the radius has two solutions, and **only one of them really touches the sides of the square**.
 
-# Equating the volumes
+# Where the center is
+
+Set up coordinates with <InlineMath math="A=(0,0)" />, <InlineMath math="B=(s,0)" />, <InlineMath math="C=(s,s)" /> and <InlineMath math="D=(0,s)" />, where <InlineMath math="s=2+\sqrt{2}" />. A circle that touches a line is exactly <InlineMath math="r" /> away from that line. This circle touches <InlineMath math="AB" /> and <InlineMath math="AD" /> inside the corner at <InlineMath math="A" />, so its center is <InlineMath math="O=(r,r)" />. That means **the center lies on the diagonal <InlineMath math="AC" />**.
+
+# The radius
+
+Point <InlineMath math="C" /> is on the circle, so its distance to <InlineMath math="O" /> equals <InlineMath math="r" />.
+
+<BlockMath math="OC=\sqrt{(s-r)^2+(s-r)^2}=\sqrt{2}\,\lvert s-r\rvert=r" />
+
+The absolute value gives two cases.
 
 <BlockMath math="\begin{aligned}
-\tfrac43\pi\cdot6^3&=\tfrac13\pi\cdot6^2\cdot t\\
-288\pi&=12\pi t\\
-t&=24
+s-r=\tfrac{r}{\sqrt{2}} &\;\Longrightarrow\; r=\frac{\sqrt{2}\,s}{\sqrt{2}+1}=s(2-\sqrt{2})=(2+\sqrt{2})(2-\sqrt{2})=2 \\
+r-s=\tfrac{r}{\sqrt{2}} &\;\Longrightarrow\; r=\frac{\sqrt{2}\,s}{\sqrt{2}-1}=s(2+\sqrt{2})=(2+\sqrt{2})^2=6+4\sqrt{2}
 \end{aligned}" />
 
-# A general check
+The second circle touches the line <InlineMath math="AB" /> at <InlineMath math="(6+4\sqrt{2},0)" />, far beyond side <InlineMath math="AB" />, which is only <InlineMath math="2+\sqrt{2}" /> long. The problem asks for **touching points on the sides**, so you drop the second circle. The radius is <InlineMath math="r=2" /> and the center is <InlineMath math="O=(2,2)" />.
 
-With equal radii, the equation <InlineMath math="\tfrac43\pi r^3=\tfrac13\pi r^2t" /> gives **a height four times the radius**, <InlineMath math="t=4r" />. For <InlineMath math="r=6" />, the height is 24, matching the result above.
+# The second intersection point
 
-The value 8 forgets the factor <InlineMath math="\tfrac13" /> in the cone volume, treating it like a cylinder. The value 4 uses <InlineMath math="r^2" /> in the sphere volume. The value 12 takes the cone's height as the sphere's diameter.
+Side <InlineMath math="BC" /> lies on the line <InlineMath math="x=s" />. The distance from <InlineMath math="O" /> to that line is <InlineMath math="s-2=\sqrt{2}" />. The perpendicular from the center to a chord **cuts the chord into two equal halves**, so find half of chord <InlineMath math="CP" /> with the Pythagorean theorem.
 
-So the height of the cone is **<InlineMath math="24\text{ cm}" />**.
+<BlockMath math="\begin{aligned}
+\tfrac{1}{2}CP &= \sqrt{r^2-(\sqrt{2})^2}=\sqrt{4-2}=\sqrt{2} \\
+CP &= 2\sqrt{2}
+\end{aligned}" />
+
+The midpoint of the chord is <InlineMath math="(s,2)" />. So <InlineMath math="C" /> sits at height <InlineMath math="2+\sqrt{2}" /> and <InlineMath math="P" /> sits at height <InlineMath math="2-\sqrt{2}" />. The height of <InlineMath math="P" /> is between <InlineMath math="0" /> and <InlineMath math="s" />, so <InlineMath math="P" /> really lies on side <InlineMath math="BC" />.
+
+# Checking with the power of a point
+
+The circle touches <InlineMath math="AB" /> at <InlineMath math="T=(2,0)" />, so <InlineMath math="BT=s-2=\sqrt{2}" />. From point <InlineMath math="B" />, **the tangent length squared equals the product of the two pieces of a line** that cuts through the circle, here <InlineMath math="BP" /> and <InlineMath math="BC" />.
+
+<BlockMath math="\begin{aligned}
+BT^2 &= BP\cdot BC \\
+2 &= BP\cdot(2+\sqrt{2}) \\
+BP &= \frac{2}{2+\sqrt{2}}=2-\sqrt{2} \\
+CP &= (2+\sqrt{2})-(2-\sqrt{2})=2\sqrt{2}
+\end{aligned}" />
+
+It matches the first method.
+
+# The wrong options
+
+Each other option comes from **a swapped segment or the wrong circle**.
+
+- <InlineMath math="(2-\sqrt{2})\text{ cm}" /> is the length <InlineMath math="BP" />, not <InlineMath math="CP" />.
+- <InlineMath math="\sqrt{2}\text{ cm}" /> is only half the chord, because it wasn't doubled.
+- <InlineMath math="(2+\sqrt{2})\text{ cm}" /> assumes the circle also passes through <InlineMath math="B" />, so that <InlineMath math="P=B" />.
+- <InlineMath math="(8+6\sqrt{2})\text{ cm}" /> uses the second circle with <InlineMath math="r=6+4\sqrt{2}" />, whose touching points lie outside the sides of the square.
+
+So the length of <InlineMath math="CP" /> is <InlineMath math="2\sqrt{2}\text{ cm}" />.

@@ -1,13 +1,58 @@
-Die Größe <InlineMath math="P" /> ist **eine unendliche geometrische Reihe** mit erstem Glied <InlineMath math="\tfrac13" /> und Quotient <InlineMath math="\tfrac13" />. Sie konvergiert, weil der Quotient zwischen <InlineMath math="-1" /> und 1 liegt.
+Jede Aussage über <InlineMath math="g" /> lässt sich auf <InlineMath math="f" /> zurückführen. Der Graph von <InlineMath math="g" /> ist der Graph von <InlineMath math="f" />, **um <InlineMath math="1" /> Einheit nach rechts verschoben**, senkrecht mit dem Faktor zwei gestreckt und dann um <InlineMath math="3" /> Einheiten angehoben. Der Plan: Übersetze jede Frage über <InlineMath math="g" /> in eine Frage über <InlineMath math="f" /> und prüfe die vier Aussagen einzeln.
 
-# Summe der Reihe
+# Wie die beiden Funktionen zusammenhängen
 
-<BlockMath math="P=\frac{a}{1-r}=\frac{1/3}{1-1/3}=\frac{1/3}{2/3}=\frac12" />
+Setze <InlineMath math="u=x-1" />. Zwei Tatsachen brauchst du immer wieder.
 
-# Kontrolle mit Teilsummen
+Erstens: <InlineMath math="g(x)" /> existiert genau dann, wenn <InlineMath math="u=x-1" /> im Definitionsbereich von <InlineMath math="f" /> liegt, also in <InlineMath math="[-2,4]" />.
 
-Die Summe der ersten vier Glieder ist <InlineMath math="\tfrac{27+9+3+1}{81}=\tfrac{40}{81}\approx0{,}494" />. Die Teilsummen **nähern sich 0,5 immer weiter, überschreiten den Wert aber nie**, und die Summe der unendlichen Reihe ist genau dieser Grenzwert 0,5.
+Zweitens: Die Gleichung <InlineMath math="g(x)=c" /> bedeutet <InlineMath math="2f(u)+3=c" />, also <InlineMath math="f(u)=\dfrac{c-3}{2}" />. Jede Lösung <InlineMath math="u" /> liefert genau ein <InlineMath math="x=u+1" />, deshalb **haben beide Gleichungen immer gleich viele Lösungen**.
 
-Wer nur einige Glieder addiert, vermutet vielleicht <InlineMath math="P<Q" />. Die Reihe endet aber nie, ihr Wert ist also genau gleich <InlineMath math="Q" />.
+# Der Definitionsbereich
 
-Die richtige Beziehung ist also **<InlineMath math="P=Q" />**.
+Die Bedingung ist, dass <InlineMath math="x-1" /> in <InlineMath math="[-2,4]" /> liegt.
+
+<BlockMath math="-2\le x-1\le 4 \;\Longleftrightarrow\; -1\le x\le 5" />
+
+Der Definitionsbereich von <InlineMath math="g" /> ist <InlineMath math="[-1,5]" />. Das Intervall <InlineMath math="[-3,3]" /> entsteht, wenn man den Graphen nach links verschiebt, aber **der Term <InlineMath math="x-1" /> verschiebt den Graphen nach rechts**. Die erste Aussage ist falsch.
+
+# Der Wertebereich
+
+Bestimme zuerst den Wertebereich von <InlineMath math="f" />. Auf <InlineMath math="[-2,1]" /> steigt <InlineMath math="f" /> von <InlineMath math="-3" /> auf <InlineMath math="5" />. Auf <InlineMath math="[1,4]" /> fällt <InlineMath math="f" /> von <InlineMath math="5" /> auf <InlineMath math="1" />. Der größte Wert ist <InlineMath math="5" />. Für den kleinsten Wert vergleichst du die beiden Enden: <InlineMath math="f(-2)=-3" /> ist kleiner als <InlineMath math="f(4)=1" />, also **liegt der kleinste Wert am linken Ende**, nicht am rechten. Weil <InlineMath math="f" /> stetig ist, nimmt <InlineMath math="f" /> jeden Wert zwischen <InlineMath math="-3" /> und <InlineMath math="5" /> an, der Wertebereich von <InlineMath math="f" /> ist also <InlineMath math="[-3,5]" />.
+
+Mit <InlineMath math="2" /> multiplizieren und dann <InlineMath math="3" /> addieren ändert die Reihenfolge der Werte nicht, du brauchst also nur die beiden Enden.
+
+<BlockMath math="\begin{aligned}
+g_{\min} &= 2(-3)+3=-3 \\
+g_{\max} &= 2(5)+3=13
+\end{aligned}" />
+
+Der Wertebereich von <InlineMath math="g" /> ist <InlineMath math="[-3,13]" />. Die zweite Aussage ist wahr.
+
+# Anzahl der Lösungen
+
+Die letzten beiden Aussagen prüfst du mit der zweiten Tatsache. Merk dir dazu noch eine Eigenschaft: Eine stetige Funktion, die nur steigt oder nur fällt, nimmt jeden Wert zwischen ihren Randwerten **genau einmal** an.
+
+## Die Gleichung mit rechter Seite sieben
+
+<BlockMath math="\begin{aligned}
+2f(u)+3 &= 7 \\
+f(u) &= 2
+\end{aligned}" />
+
+Auf <InlineMath math="[-2,1]" /> steigt <InlineMath math="f" /> von <InlineMath math="-3" /> auf <InlineMath math="5" />, und <InlineMath math="2" /> liegt dazwischen, also gibt es genau ein <InlineMath math="u" />. Auf <InlineMath math="[1,4]" /> fällt <InlineMath math="f" /> von <InlineMath math="5" /> auf <InlineMath math="1" />, und auch dort liegt <InlineMath math="2" /> dazwischen, also gibt es genau ein weiteres <InlineMath math="u" />. Die Spitze <InlineMath math="u=1" /> liefert <InlineMath math="f(1)=5" />, nicht <InlineMath math="2" />, also **sind die beiden Lösungen verschieden**. Es gibt genau <InlineMath math="2" /> Lösungen, und die dritte Aussage ist wahr.
+
+## Die Gleichung mit rechter Seite vier
+
+<BlockMath math="\begin{aligned}
+2f(u)+3 &= 4 \\
+f(u) &= \tfrac{1}{2}
+\end{aligned}" />
+
+Auf <InlineMath math="[-2,1]" /> liegt <InlineMath math="\tfrac{1}{2}" /> zwischen <InlineMath math="-3" /> und <InlineMath math="5" />, also gibt es genau ein <InlineMath math="u" />. Auf <InlineMath math="[1,4]" /> **fällt <InlineMath math="f" /> nie unter <InlineMath math="1" />**, dort gibt es also keine Lösung. Es gibt nur <InlineMath math="1" /> Lösung, und die vierte Aussage ist falsch.
+
+# Probe am Graphen
+
+Stell dir den Graphen von <InlineMath math="g" /> vor: Er steigt von <InlineMath math="(-1,-3)" /> zur Spitze <InlineMath math="(2,13)" /> und fällt dann bis <InlineMath math="(5,5)" />. Die Gerade <InlineMath math="y=7" /> schneidet den steigenden und den fallenden Ast, weil <InlineMath math="7" /> über <InlineMath math="5" /> liegt. Die Gerade <InlineMath math="y=4" /> schneidet nur den steigenden Ast, weil **der fallende Ast auf der Höhe <InlineMath math="5" /> endet**. Das Bild passt zu den Zählungen.
+
+Die zweite und die dritte Aussage sind also wahr, die erste und die vierte Aussage sind falsch.

@@ -1,22 +1,32 @@
-Jede Aussage liest **eine andere Zeile oder Spalte** der Tabelle. Berechne die nötigen Größen einzeln.
+Du sollst alle Quadrate zählen, deren vier Ecken markierte Punkte sind, **auch die schräg liegenden**. Der Plan: Ordne die Quadrate nach dem kleinsten achsenparallelen Kasten, in den jedes passt, zähle die Quadrate in einem Kasten und dann die möglichen Lagen des Kastens.
 
-# Änderung und Summe
+# Der Kasten um jedes Quadrat
 
-Die Zunahme in Mekarsari von 2024 auf 2025 bezieht sich auf **die Ernte von 2024**.
+Die markierten Punkte bilden <InlineMath math="6" /> Spalten und <InlineMath math="5" /> Zeilen. Jedes Quadrat, gerade oder schräg, **passt genau in ein kleinstes achsenparalleles Quadrat**, also in das Quadrat mit Seiten parallel zu den Achsen, auf dessen vier Seiten je eine Ecke liegt. Nenne die Seitenlänge dieses Kastens <InlineMath math="s" />.
 
-<BlockMath math="\frac{108-90}{90}\times100\%=\frac{18}{90}\times100\%=20\%" />
+In einem Kasten mit Seitenlänge <InlineMath math="s" /> liegen die Ecken des Quadrats auf den vier Seiten des Kastens. Verschiebe die erste Ecke um <InlineMath math="a" /> von der linken unteren Ecke entlang der unteren Seite, mit <InlineMath math="a=0,1,\ldots,s-1" />. Die vier Ecken sind dann die folgenden.
 
-Die erste Aussage ist wahr. Die Spalte 2026 ergibt <InlineMath math="150+99+165=414" /> Tonnen, also ist die zweite Aussage wahr.
+<BlockMath math="(a,0),\quad (s,a),\quad (s-a,s),\quad (0,s-a)" />
 
-# Mittelwerte und Richtung der Änderung
+Für <InlineMath math="a=0" /> entsteht der Kasten selbst, und jeder andere Wert von <InlineMath math="a" /> liefert ein schräges Quadrat. Also **enthält ein Kasten mit Seitenlänge <InlineMath math="s" /> genau <InlineMath math="s" /> Quadrate**.
 
-<BlockMath math="\begin{aligned}
-\bar x_{\text{Sukamaju}}&=\frac{120+132+150}{3}=\frac{402}{3}=134\\
-\bar x_{\text{Harapan}}&=\frac{150+141+165}{3}=\frac{456}{3}=152
-\end{aligned}" />
+# Die Lagen des Kastens
 
-Der Mittelwert von Sukamaju ist **niedriger** als der von Harapan, also ist die dritte Aussage falsch.
+Ein Kasten mit Seitenlänge <InlineMath math="s" /> lässt sich auf <InlineMath math="6-s" /> Arten nach rechts und auf <InlineMath math="5-s" /> Arten nach oben schieben. Die Punkte reichen nur <InlineMath math="4" /> Einheiten in die Höhe, also **ist die Seitenlänge des Kastens höchstens <InlineMath math="4" />**.
 
-Von 2025 auf 2026 sank die Ernte in Mekarsari von 108 auf 99 Tonnen. Ein Rückgang genügt, also ist die vierte Aussage falsch.
+| <InlineMath math="s" /> | Lagen des Kastens | Quadrate pro Kasten | Quadrate |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="5\cdot 4=20" /> | <InlineMath math="1" /> | <InlineMath math="20" /> |
+| <InlineMath math="2" /> | <InlineMath math="4\cdot 3=12" /> | <InlineMath math="2" /> | <InlineMath math="24" /> |
+| <InlineMath math="3" /> | <InlineMath math="3\cdot 2=6" /> | <InlineMath math="3" /> | <InlineMath math="18" /> |
+| <InlineMath math="4" /> | <InlineMath math="2\cdot 1=2" /> | <InlineMath math="4" /> | <InlineMath math="8" /> |
 
-Die erste Aussage ist also **wahr**, die zweite **wahr**, die dritte **falsch** und die vierte **falsch**.
+<BlockMath math="20+24+18+8=70" />
+
+# Probe mit einem kleinen Feld
+
+Probier dieselbe Methode mit <InlineMath math="9" /> Punkten in <InlineMath math="3" /> Spalten und <InlineMath math="3" /> Zeilen. Die Formel liefert <InlineMath math="1\cdot 2\cdot 2+2\cdot 1\cdot 1=6" />. Die Liste hat wirklich sechs: vier kleine Quadrate, ein großes Quadrat und **ein schräges Quadrat**, dessen Ecken die Mittelpunkte der vier Seiten sind. Die Methode stimmt also.
+
+Ein häufiger Fehler ist die Antwort <InlineMath math="40" />, wenn du nur die Quadrate mit achsenparallelen Seiten zählst, also <InlineMath math="20+12+6+2" />.
+
+Es lassen sich also <InlineMath math="70" /> Quadrate bilden.
