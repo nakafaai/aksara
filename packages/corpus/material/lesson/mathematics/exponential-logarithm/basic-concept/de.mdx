@@ -32,7 +32,7 @@ Jeder Schritt im Exponenten verdoppelt den Balken: <InlineMath math="2^0 = 1" />
 
 <BarChart
   title={<>Zweierpotenzen</>}
-  description={<>Balken von <InlineMath math="2^n" /> für <InlineMath math="n = 0" /> bis 5.</>}
+  description={<>Balken von <InlineMath math="2^n" /> für <InlineMath math="n = 0" /> bis <InlineMath math="5" />.</>}
   yAxisLabel="Wert"
   data={[0, 1, 2, 3, 4, 5].map((x) => ({ name: String(x), value: 2 ** x }))}
   chartConfig={{ value: { label: "Wert", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -75,11 +75,11 @@ Der Grund ist <InlineMath math="a^n a^{-n}=a^0=1" />. Ein negativer Exponent ste
 
 <InlineMath math="3^{-2}=\frac{1}{3^2}=\frac{1}{9}=0{,}111\ldots" />.
 
-Negative Exponenten setzen das Muster nach links fort: Jeder Schritt teilt durch 3, also <InlineMath math="3^0 = 1" />, <InlineMath math="3^{-1} = \tfrac13" /> und <InlineMath math="3^{-2} = \tfrac19" />. Die Werte schrumpfen gegen 0, bleiben aber positiv.
+Negative Exponenten setzen das Muster nach links fort: Jeder Schritt teilt durch <InlineMath math="3" />, also <InlineMath math="3^0 = 1" />, <InlineMath math="3^{-1} = \tfrac13" /> und <InlineMath math="3^{-2} = \tfrac19" />. Die Werte schrumpfen gegen <InlineMath math="0" />, bleiben aber positiv.
 
 <BarChart
-  title={<>Potenzen von 3 von <InlineMath math="3^{-2}" /> bis <InlineMath math="3^2" /></>}
-  description={<>Balken von <InlineMath math="3^n" /> für <InlineMath math="n = -2" /> bis 2.</>}
+  title={<>Potenzen von <InlineMath math="3" /> von <InlineMath math="3^{-2}" /> bis <InlineMath math="3^2" /></>}
+  description={<>Balken von <InlineMath math="3^n" /> für <InlineMath math="n = -2" /> bis <InlineMath math="2" />.</>}
   yAxisLabel="Wert"
   data={[-2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: 3 ** x }))}
   chartConfig={{ value: { label: "Wert", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
