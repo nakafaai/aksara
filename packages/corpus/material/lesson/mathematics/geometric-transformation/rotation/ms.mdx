@@ -1,16 +1,20 @@
 
 export const metadata = {
   title: "Putaran",
-  description: "Gunakan pusat, arah, dan sudut untuk memutarkan titik dan garis sambil mengekalkan jarak dan bentuk.",
+  description: "Gunakan rumus putaran untuk memutarkan titik dan garis pada asalan atau pada pusat (a, b), termasuk petua ringkas bagi 90°, 180°, dan 270°.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-11-08",
+  dateModified: "2026-11-13",
   subject: "Transformasi Geometri",
 };
 
 ## Pusat dan Sudut Putaran
 
 Putaran memusingkan setiap titik pada sesuatu rajah <Highlight>melalui sudut yang sama</Highlight> mengelilingi satu pusat yang tetap. Kedudukan rajah itu berubah dan rajah itu berpusing, manakala jarak, sudut, bentuk, saiz, dan tertib bucunya kekal.
+
+Pada asalan <InlineMath math="O(0, 0)" />, putaran melalui <InlineMath math="\theta" /> membawa titik <InlineMath math="(x, y)" /> ke <InlineMath math="(x\cos\theta - y\sin\theta,\ x\sin\theta + y\cos\theta)" />. Sudut khas ada petua yang lebih ringkas: <InlineMath math="90^\circ" /> memberikan <InlineMath math="(-y, x)" />, <InlineMath math="180^\circ" /> memberikan <InlineMath math="(-x, -y)" />, dan <InlineMath math="270^\circ" /> memberikan <InlineMath math="(y, -x)" />. Apabila pusatnya <InlineMath math="C(a, b)" />, putarkan sesaran <InlineMath math="(x - a, y - b)" /> dengan rumus yang sama, kemudian tambah semula <InlineMath math="(a, b)" />:
+
+<BlockMath math="\begin{aligned} x' &= a + (x - a)\cos\theta - (y - b)\sin\theta \\ y' &= b + (x - a)\sin\theta + (y - b)\cos\theta \end{aligned}" />
 
 Putaran memerlukan dua maklumat:
 
@@ -25,7 +29,7 @@ Sudut yang berbeza sebanyak satu pusingan penuh memberikan imej yang sama. Conto
 
 <BlockMath math="90^\circ-360^\circ=-270^\circ" />
 
-Putarkan <InlineMath math="P(4, 1)" /> pada <InlineMath math="C(1, 1)" /> melalui <InlineMath math="90^\circ" />. Pusatnya kekal, jarak <InlineMath math="CP = CP' = 3" /> tidak berubah, dan arah dari <InlineMath math="C" /> berpusing suku pusingan mengikut arah lawan jam, jadi <InlineMath math="P" /> mendarat di <InlineMath math="P'(1, 4)" />.
+Putarkan <InlineMath math="P(4, 1)" /> pada <InlineMath math="C(1, 1)" /> melalui <InlineMath math="90^\circ" />. Pusatnya kekal, jarak <InlineMath math="CP = CP' = 3" /> tidak berubah, dan arah dari <InlineMath math="C" /> berpusing suku pusingan mengikut arah lawan jam, jadi <InlineMath math="P" /> mendarat di <InlineMath math="P'(1, 4)" />. Rumus bagi pusat <InlineMath math="C(a, b)" /> memberikan titik yang sama: sesarannya <InlineMath math="(3, 0)" />, putaran <InlineMath math="90^\circ" /> menjadikannya <InlineMath math="(0, 3)" />, dan menambah <InlineMath math="(1, 1)" /> memberikan <InlineMath math="(1, 4)" />.
 
 <MathVisual
   title={<>Suku pusingan pada <InlineMath math="C(1, 1)" /></>}

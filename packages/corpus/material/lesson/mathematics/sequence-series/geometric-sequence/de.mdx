@@ -57,7 +57,7 @@ Der Exponent lautet <InlineMath math="n-1" />, weil vom ersten bis zum <InlineMa
 
 Bei einem **positiven ersten Glied** bestimmt der Faktor das grundlegende Verhalten:
 
-| Faktor | Erste Glieder mit Anfangswert 8 | Verhalten |
+| Faktor | Erste Glieder mit Anfangswert <InlineMath math="8" /> | Verhalten |
 | --- | --- | --- |
 | <InlineMath math="2" /> | <InlineMath math="8,16,32,64" /> | Steigend |
 | <InlineMath math="1/2" /> | <InlineMath math="8,4,2,1" /> | Nähert sich null |
@@ -69,11 +69,11 @@ Bei einem **positiven ersten Glied** bestimmt der Faktor das grundlegende Verhal
 
 Aus diesem Grund stellt eine geometrische Folge nicht immer ein Wachstum dar.
 
-Beginne jede Folge bei 8 und ändere nur den Quotienten. Mit <InlineMath math="r = 1" /> bleiben die Glieder bei 8, mit <InlineMath math="r = \tfrac12" /> halbieren sie sich in Richtung 0, und mit <InlineMath math="r = -\tfrac12" /> werden sie ebenfalls kleiner, springen aber von einer Seite der 0 zur anderen. Bei <InlineMath math="n = 3" /> treffen sich die beiden schrumpfenden Folgen bei 2, weil <InlineMath math="\left(-\tfrac12\right)^2 = \left(\tfrac12\right)^2" /> ist.
+Beginne jede Folge bei <InlineMath math="8" /> und ändere nur den Quotienten. Mit <InlineMath math="r = 1" /> bleiben die Glieder bei <InlineMath math="8" />, mit <InlineMath math="r = \tfrac12" /> halbieren sie sich in Richtung <InlineMath math="0" />, und mit <InlineMath math="r = -\tfrac12" /> werden sie ebenfalls kleiner, springen aber von einer Seite der <InlineMath math="0" /> zur anderen. Bei <InlineMath math="n = 3" /> treffen sich die beiden schrumpfenden Folgen bei <InlineMath math="2" />, weil <InlineMath math="\left(-\tfrac12\right)^2 = \left(\tfrac12\right)^2" /> ist.
 
 <MathVisual
   title={<>Ein Anfangsglied, drei Quotienten</>}
-  description={<>Die Glieder <InlineMath math="U_1" /> bis <InlineMath math="U_4" /> für <InlineMath math="a = 8" /> mit <InlineMath math="r = 1" />, <InlineMath math="r = \tfrac12" /> und <InlineMath math="r = -\tfrac12" />, alle mit Start bei 8.</>}
+  description={<>Die Glieder <InlineMath math="U_1" /> bis <InlineMath math="U_4" /> für <InlineMath math="a = 8" /> mit <InlineMath math="r = 1" />, <InlineMath math="r = \tfrac12" /> und <InlineMath math="r = -\tfrac12" />, alle mit Start bei <InlineMath math="8" />.</>}
   labels={{
     one: <InlineMath math="r = 1" />,
     half: <InlineMath math="r = \tfrac12" />,
@@ -205,11 +205,11 @@ Anschließend berechnen wir die Länge des dritten Stücks <InlineMath math="U_3
 
 Das dritte Stück ist somit <InlineMath math="36 \text{ cm}" /> lang.
 
-Alle fünf Seilstücke in einem Diagramm: Jeder Balken ist <InlineMath math="\tfrac32" />-mal so lang wie der vorige, von 16 cm bis 81 cm, und der mittlere Balken ist <InlineMath math="U_3 = 36" /> cm.
+Alle fünf Seilstücke in einem Diagramm: Jeder Balken ist <InlineMath math="\tfrac32" />-mal so lang wie der vorige, von <InlineMath math="16\text{ cm}" /> bis <InlineMath math="81\text{ cm}" />, und der mittlere Balken ist <InlineMath math="U_3 = 36" /> cm.
 
 <BarChart
   title={<>Die fünf Seilstücke</>}
-  description={<>Balken von <InlineMath math="U_n = 16\left(\tfrac32\right)^{n-1}" /> für <InlineMath math="n = 1" /> bis 5: 16, 24, 36, 54 und 81 cm.</>}
+  description={<>Balken von <InlineMath math="U_n = 16\left(\tfrac32\right)^{n-1}" /> für <InlineMath math="n = 1" /> bis <InlineMath math="5" />: <InlineMath math="16" />, <InlineMath math="24" />, <InlineMath math="36" />, <InlineMath math="54" /> und <InlineMath math="81\text{ cm}" />.</>}
   yAxisLabel="Länge (cm)"
   data={[1, 2, 3, 4, 5].map((n) => ({ name: String(n), value: 16 * (3 / 2) ** (n - 1) }))}
   chartConfig={{ value: { label: "Länge (cm)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
