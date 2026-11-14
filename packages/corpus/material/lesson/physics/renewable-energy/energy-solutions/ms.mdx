@@ -20,11 +20,11 @@ Mulakan dengan permintaan, <Highlight>kenal pasti sumber setempat yang sesuai</H
 
 Kos, keselamatan, penyelenggaraan dan perlindungan alam sekitar mesti disemak pada setiap peringkat. Sumber dan peralatan juga mesti sesuai dengan lokasi.
 
-Mulakan daripada keperluan, kemudian semak sumbernya. Sebuah kampung dengan 50 buah rumah yang setiap satunya menggunakan <InlineMath math="1\text{ kWj}" /> sehari memerlukan <InlineMath math="50\text{ kWj}" />, dan mikrohidro <InlineMath math="2.5\text{ kW}" /> yang berjalan sepanjang hari memberikan <InlineMath math="60\text{ kWj}" />. Putar bar-bar itu dan bandingkan.
+Mulakan daripada keperluan, kemudian semak sumbernya. Sebuah kampung dengan <InlineMath math="50" /> buah rumah yang setiap satunya menggunakan <InlineMath math="1\text{ kWj}" /> sehari memerlukan <InlineMath math="50\text{ kWj}" />, dan mikrohidro <InlineMath math="2.5\text{ kW}" /> yang berjalan sepanjang hari memberikan <InlineMath math="60\text{ kWj}" />. Putar bar-bar itu dan bandingkan.
 
 <MathVisual
   title={<>Daripada Keperluan kepada Perkhidmatan Tenaga</>}
-  description={<>Keperluan tenaga harian 50 buah rumah (ungu) dan output harian mikrohidro 2.5 kW (hijau kebiruan). Satu petak grid ke atas ialah 10 kWj.</>}
+  description={<>Keperluan tenaga harian <InlineMath math="50" /> buah rumah (ungu) dan output harian mikrohidro <InlineMath math="2.5\text{ kW}" /> (hijau kebiruan). Satu petak grid ke atas ialah <InlineMath math="10\text{ kWj}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
@@ -77,7 +77,7 @@ Putar permukaan di bawah. Setiap titik padanya ialah rumus tadi dengan satu kada
 
 <MathVisual
   title={<>Kuasa Mikrohidro daripada Kadar Aliran dan Ketinggian</>}
-  description={<><InlineMath math="P=\rho gQh\eta" /> dengan <InlineMath math="\rho=1000\text{ kg/m}^3" />, <InlineMath math="g=10\text{ m/s}^2" /> dan <InlineMath math="\eta=0.7" />. Ke kanan: kadar aliran dalam unit <InlineMath math="0.01\text{ m}^3\text{/s}" />. Ke dalam skrin: beza ketinggian dalam unit 5 m. Ke atas: kuasa dalam kW.</>}
+  description={<><InlineMath math="P=\rho gQh\eta" /> dengan <InlineMath math="\rho=1000\text{ kg/m}^3" />, <InlineMath math="g=10\text{ m/s}^2" /> dan <InlineMath math="\eta=0.7" />. Ke kanan: kadar aliran dalam unit <InlineMath math="0.01\text{ m}^3\text{/s}" />. Ke dalam skrin: beza ketinggian dalam unit <InlineMath math="5\text{ m}" />. Ke atas: kuasa dalam kW.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -0.5, max: 4.5 } },
@@ -129,6 +129,21 @@ Permintaan tenaga juga boleh dipenuhi dengan mengurangkan pembaziran. Kecekapan 
 
 Pelan yang lengkap menggabungkan peralatan yang sesuai dengan lokasi, penggunaan yang cekap, rangkaian yang selamat, penyimpanan apabila perlu, penyelenggaraan berkala dan pengurusan kesan.
 
+Pada simpananlah sesuatu rancangan berdepan dengan waktu malam. Sebuah klinik desa mempunyai bumbung suria <InlineMath math="3\text{ kWp}" /> yang mengumpul kira-kira <InlineMath math="22.9\text{ kWj}" /> sehari, lebih daripada <InlineMath math="13.6\text{ kWj}" /> yang digunakannya. Tetapi peti sejuk vaksin dan lampu malam terus hidup selepas matahari terbenam. Dengan bateri <InlineMath math="5\text{ kWj}" />, sebanyak <InlineMath math="4.3\text{ kWj}" /> daripada keperluan malam tidak dapat dibekalkan. Bateri <InlineMath math="10\text{ kWj}" /> pula bertahan hingga pagi.
+
+<SolarBatteryStorageLab
+  title={<>Klinik Suria Melalui Waktu Malam</>}
+  description={<>Sebuah klinik dengan bumbung suria <InlineMath math="3\text{ kWp}" /> dan bateri, sepanjang satu hari. Pilih saiz bateri dan perhatikan sama ada casnya bertahan sehingga matahari terbit semula.</>}
+  labels={{
+    chooseSize: "Saiz bateri",
+    demand: <>Tenaga yang digunakan sehari</>,
+    size: <>Kapasiti bateri</>,
+    solar: <>Tenaga suria sehari</>,
+    unmet: <>Tenaga yang tidak dibekalkan</>,
+    viewLabel: "Klinik suria dengan bateri di sebelah carta cahaya matahari, permintaan dan cas",
+  }}
+/>
+
 ## Empat Syarat untuk Akses Tenaga
 
 [Matlamat Pembangunan Mampan](https://sdgs.un.org/2030agenda) ialah agenda global yang dipersetujui oleh negara anggota Pertubuhan Bangsa-Bangsa Bersatu untuk meningkatkan kesejahteraan manusia dan melindungi alam sekitar. Agenda <InlineMath math="2030" /> mengandungi <InlineMath math="17" /> matlamat yang saling berkait.
@@ -139,11 +154,11 @@ SDG <InlineMath math="7" /> bertujuan memastikan [akses kepada tenaga yang mampu
 
 Empat syarat ini boleh disemak dengan soalan. Bolehkah isi rumah dan perkhidmatan awam membayar tenaga itu sambil memenuhi keperluan asas yang lain? Adakah bekalan tenaga tersedia apabila diperlukan? Bolehkah sistem tenaga itu berterusan sambil melindungi manusia, ekosistem dan generasi akan datang? Adakah perkhidmatan tenaga itu selamat dan cukup berupaya untuk pencahayaan, komunikasi, kerja produktif dan penjagaan kesihatan?
 
-Beri skor kepada setiap pilihan berdasarkan empat soalan itu, dan bentuknya akan menunjukkan perbezaannya. Dalam skor contoh daripada 4 ini, grid mini suria dengan bateri meliputi kawasan carta yang lebih luas berbanding penjana diesel, terutamanya pada paksi mampan. Besarkan paparan pada setiap sudut.
+Beri skor kepada setiap pilihan berdasarkan empat soalan itu, dan bentuknya akan menunjukkan perbezaannya. Dalam skor contoh daripada <InlineMath math="4" /> ini, grid mini suria dengan bateri meliputi kawasan carta yang lebih luas berbanding penjana diesel, terutamanya pada paksi mampan. Besarkan paparan pada setiap sudut.
 
 <MathVisual
   title={<>Empat Soalan untuk Akses Tenaga</>}
-  description={<>Skor contoh daripada 4 bagi grid mini suria dengan bateri (hijau kebiruan) dan penjana diesel (merah jambu).</>}
+  description={<>Skor contoh daripada <InlineMath math="4" /> bagi grid mini suria dengan bateri (hijau kebiruan) dan penjana diesel (merah jambu).</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -5, max: 5 } },
@@ -184,3 +199,17 @@ Bagi sebuah kampung kecil yang memerlukan elektrik untuk lampu pada waktu malam,
 | Kesan apakah yang mesti dikurangkan? | Penyelesaian tenaga tetap perlu melindungi air, tanah dan penduduk berhampiran. |
 
 Pelan yang boleh diuji menyatakan permintaan mana yang mesti dipenuhi, sumber mana yang tersedia, alat mana yang menukar tenaga, kesan apa yang mesti dihadkan, dan siapa yang memastikan sistem itu terus berfungsi.
+
+Cuba soalan tentang sumber dalam rancangan itu dengan sebatang anak sungai. Loji mikrohidro mengalirkan sebahagian air sungai melalui paip turun ke turbin, dan kuasa bergunanya ialah <InlineMath math="P\approx\rho gQh\eta" />. Dengan <InlineMath math="Q=20\text{ L/s}" />, <InlineMath math="h=10\text{ m}" /> dan <InlineMath math="\eta=0.7" />, loji itu memberikan <InlineMath math="1\,400\text{ W}" />, cukup untuk <InlineMath math="5" /> daripada <InlineMath math="16" /> buah rumah di kampung itu jika setiap rumah memerlukan <InlineMath math="250\text{ W}" /> pada waktu malam. Cari kadar aliran dan beza ketinggian yang menerangi semua rumah.
+
+<MicrohydroLab
+  title={<>Berapa Buah Rumah yang Boleh Diterangi Sebatang Sungai</>}
+  description={<>Loji mikrohidro di lereng bukit pada waktu senja. Ubah kadar aliran dan beza ketinggian, dan kira rumah yang boleh diterangi oleh kuasanya pada <InlineMath math="250\text{ W}" /> setiap rumah.</>}
+  labels={{
+    flowControl: "Kadar aliran air",
+    headControl: "Beza ketinggian",
+    homes: <>Rumah yang diterangi</>,
+    power: <>Kuasa berguna</>,
+    viewLabel: "Loji mikrohidro di lereng bukit dengan paip ke rumah jana kuasa dan sebaris rumah",
+  }}
+/>

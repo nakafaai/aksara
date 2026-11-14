@@ -18,11 +18,11 @@ Vergleiche bei Biomasse **Ernterate und Nachwuchsrate**. Wird einem Wald schnell
 
 Die Bezeichnung „erneuerbar“ beschreibt, wie eine Quelle <Highlight>durch natürliche Prozesse wieder verfügbar wird</Highlight>. Die nutzbare Leistung hängt weiterhin vom Ort, vom Zeitpunkt und vom Zustand der Quelle ab.
 
-So sieht „hängt von der Zeit ab“ bei einer Solaranlage aus. In einem einfachen Modell folgt eine Anlage mit <InlineMath math="3\text{ kW}" /> Spitzenleistung einer halben Sinuswelle vom Sonnenaufgang um 6:00 Uhr bis zum Sonnenuntergang um 18:00 Uhr und liefert nachts nichts. Die Energie eines Tages ist die Fläche unter der Kurve, <InlineMath math="E=P_{\text{peak}}\cdot\frac{24}{\pi}\text{ h}" />, an einem klaren Tag also etwa <InlineMath math="22{,}9\text{ kWh}" />. An einem bewölkten Tag mit halber Spitze enthält die violette Kurve nur halb so viel. Die Quelle erneuert sich jeden Morgen, aber die Leistung ist nicht immer da, wenn du sie brauchst.
+So sieht „hängt von der Zeit ab“ bei einer Solaranlage aus. In einem einfachen Modell folgt eine Anlage mit <InlineMath math="3\text{ kW}" /> Spitzenleistung einer halben Sinuswelle vom Sonnenaufgang um <InlineMath math="6{:}00" /> Uhr bis zum Sonnenuntergang um <InlineMath math="18{:}00" /> Uhr und liefert nachts nichts. Die Energie eines Tages ist die Fläche unter der Kurve, <InlineMath math="E=P_{\text{peak}}\cdot\frac{24}{\pi}\text{ h}" />, an einem klaren Tag also etwa <InlineMath math="22{,}9\text{ kWh}" />. An einem bewölkten Tag mit halber Spitze enthält die violette Kurve nur halb so viel. Die Quelle erneuert sich jeden Morgen, aber die Leistung ist nicht immer da, wenn du sie brauchst.
 
 <MathVisual
   title={<>Solarleistung über einen Tag</>}
-  description={<>Ein einfaches Modell einer 3-kW-Anlage an einem klaren Tag und an einem bewölkten Tag mit halber Spitze. Waagrecht: Uhrzeit in Einheiten von 2 h. Senkrecht: Leistung in kW.</>}
+  description={<>Ein einfaches Modell einer 3-kW-Anlage an einem klaren Tag und an einem bewölkten Tag mit halber Spitze. Waagrecht: Uhrzeit in Einheiten von <InlineMath math="2\text{ h}" />. Senkrecht: Leistung in kW.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 4 } },
@@ -52,7 +52,7 @@ Probier es mit ausgedachten Zahlen: Ein Wald hat <InlineMath math="100" /> Einhe
 
 <MathVisual
   title={<>Erntemenge gegen Nachwachsen</>}
-  description={<>Ein ausgedachter Vorrat von 100 Einheiten, der um 2 Einheiten pro Jahr nachwächst, mit drei Ernteraten h. Waagrecht: Jahre in Einheiten von 5. Senkrecht: Vorrat in Einheiten von 25.</>}
+  description={<>Ein ausgedachter Vorrat von <InlineMath math="100" /> Einheiten, der um <InlineMath math="2" /> Einheiten pro Jahr nachwächst, mit drei Ernteraten h. Waagrecht: Jahre in Einheiten von <InlineMath math="5" />. Senkrecht: Vorrat in Einheiten von <InlineMath math="25" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: 2.5, max: 5.5 } },
@@ -91,6 +91,21 @@ Wähle eine erneuerbare Energiequelle anhand der **physikalischen Bedingungen am
 
 Nutze diese Bedingungen, um eine Quelle mit dem Standort zu vergleichen. Bei Solarmodulen werden Sonneneinstrahlung, verfügbare Fläche, Wetter, Wartung und Strombedarf gemeinsam geprüft.
 
+Das Sonnenlicht an einem Standort hängt auch vom Einfallswinkel ab. Strahlen senkrecht auf eine Fläche bringen etwa <InlineMath math="1\,000\text{ W/m}^2" />. Ist die Fläche um den Winkel <InlineMath math="\theta" /> weggedreht, verteilen sich dieselben Strahlen, und jeder Quadratmeter fängt <InlineMath math="1\,000\cos\theta\text{ W/m}^2" />. Steht die Sonne <InlineMath math="30^\circ" /> hoch, fängt ein flaches Modul <InlineMath math="500\text{ W/m}^2" />. Kippst du es <InlineMath math="60^\circ" /> zur Sonne, fängt es die vollen <InlineMath math="1\,000\text{ W/m}^2" />. Zähl beim Kippen die Strahlen, die auf das Modul treffen.
+
+<SolarPanelAngleLab
+  title={<>Ein Modul zur Sonne kippen</>}
+  description={<>Parallele Sonnenstrahlen fallen auf ein Modul mit <InlineMath math="1{,}6\text{ m}^2" />. Bewege die Sonne und kippe das Modul, und vergleiche dann den Winkel zwischen Strahlen und Flächennormale mit dem Licht und der Leistung, die es einfängt.</>}
+  labels={{
+    incidence: <>Winkel zwischen Strahlen und Normale</>,
+    irradiance: <>Licht pro Quadratmeter</>,
+    power: <>Modulleistung bei <InlineMath math="20\%" /> Wirkungsgrad</>,
+    sunControl: "Sonnenhöhe",
+    tiltControl: "Neigung des Moduls",
+    viewLabel: "Solarmodul auf einem Gestell unter parallelen Sonnenstrahlen",
+  }}
+/>
+
 ## Jede Quelle hat eine Umwandlungskette
 
 Jede erneuerbare Quelle sollte als Energieumwandlungspfad erklärbar sein. Wenn der Weg unklar ist, ist die Behauptung schwer zu überprüfen.
@@ -107,7 +122,7 @@ Jeder Weg endet an einem Generator, aber jeder startet mit einem anderen Anteil 
 
 <MathVisual
   title={<>Drei Umwandlungswege</>}
-  description={<>Typische Wirkungsgrade einer Solarzelle, einer Windturbine und einer Wasserturbine, mit der Betz-Grenze für Wind (rosa). Ein Gitterschritt nach oben entspricht 10 Prozent.</>}
+  description={<>Typische Wirkungsgrade einer Solarzelle, einer Windturbine und einer Wasserturbine, mit der Betz-Grenze für Wind (rosa). Ein Gitterschritt nach oben entspricht <InlineMath math="10" /> Prozent.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 10.5 }, z: { min: -1.5, max: 1.5 } },
@@ -148,6 +163,21 @@ Erdwärme, Biogas und Meeresenergie erfordern jeweils bestimmte örtliche Beding
 | Erdwärme | Die Wärmequelle kann Tag und Nacht stabil sein, Bohrungen und Geologie müssen jedoch geeignet sein. |
 | Biogas | Organische Abfälle können zu Brennstoff werden, doch Rohstoffversorgung und Anlagenwartung müssen dauerhaft gesichert sein. |
 | Ozean | Wellen, Strömungen und Gezeiten können Umwandlungsanlagen antreiben, doch Standortzugang, Korrosion und Sicherheit auf See müssen berücksichtigt werden. |
+
+Deshalb braucht Geothermie ein ausreichend heißes Reservoir. In diesem Kraftwerk steigen jede Sekunde <InlineMath math="100\text{ kg}" /> Wasser auf, geben Wärme ab, bis sie auf <InlineMath math="70^\circ\text{C}" /> abgekühlt sind, und fließen wieder hinab. Eine Wärmekraftmaschine zwischen diesem Wasser und <InlineMath math="27^\circ\text{C}" /> warmer Luft kann <InlineMath math="\eta=1-T_c/T_h" /> nie überschreiten, und ein echtes Kraftwerk erreicht etwa <InlineMath math="40\%" /> dieser Grenze. Bei <InlineMath math="200^\circ\text{C}" /> liefert das Wasser <InlineMath math="54{,}6\text{ MW}" /> Wärme, und das Kraftwerk erzeugt etwa <InlineMath math="8\text{ MW}" />. Heißeres Wasser liefert mehr Wärme und wandelt einen größeren Anteil davon um.
+
+<GeothermalLoopLab
+  title={<>Ein Geothermiekreislauf im Untergrund</>}
+  description={<>Heißes Wasser steigt in der Förderbohrung auf, gibt seine Wärme an das Kraftwerk ab und kehrt mit <InlineMath math="70^\circ\text{C}" /> zurück. Ändere die Reservoirtemperatur und vergleiche entnommene Wärme, ideale Grenze, realen Wirkungsgrad und Strom.</>}
+  labels={{
+    electric: <>Strom</>,
+    heat: <>Dem Wasser entnommene Wärme</>,
+    ideal: <>Ideale Grenze</>,
+    real: <>Wirkungsgrad eines echten Kraftwerks</>,
+    reservoirControl: "Reservoirtemperatur",
+    viewLabel: "Geothermiekraftwerk im Querschnitt mit Förder- und Injektionsbohrung",
+  }}
+/>
 
 ## Indonesischer Kontext
 

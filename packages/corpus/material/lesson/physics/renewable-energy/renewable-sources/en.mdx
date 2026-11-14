@@ -18,11 +18,11 @@ For biomass, compare **the harvest rate with the regrowth rate**. A forest harve
 
 The term renewable describes how a source <Highlight>becomes available again through natural processes</Highlight>. Available power still depends on the place, time, and condition of the resource.
 
-Here's what "depends on time" looks like for a solar panel. In a simple model, a panel system rated <InlineMath math="3\text{ kW}" /> at its peak follows half a sine wave from sunrise at 06:00 to sunset at 18:00 and gives nothing at night. The energy of a day is the area under the curve, <InlineMath math="E=P_{\text{peak}}\cdot\frac{24}{\pi}\text{ h}" />, so a clear day gives about <InlineMath math="22.9\text{ kWh}" />. On a cloudy day with half the peak, the violet curve holds only half as much. The source renews itself every morning, but the power isn't there whenever you want it.
+Here's what "depends on time" looks like for a solar panel. In a simple model, a panel system rated <InlineMath math="3\text{ kW}" /> at its peak follows half a sine wave from sunrise at <InlineMath math="06{:}00" /> to sunset at <InlineMath math="18{:}00" /> and gives nothing at night. The energy of a day is the area under the curve, <InlineMath math="E=P_{\text{peak}}\cdot\frac{24}{\pi}\text{ h}" />, so a clear day gives about <InlineMath math="22.9\text{ kWh}" />. On a cloudy day with half the peak, the violet curve holds only half as much. The source renews itself every morning, but the power isn't there whenever you want it.
 
 <MathVisual
   title={<>Solar Power over One Day</>}
-  description={<>A simple model of a 3 kW panel system on a clear day and a cloudy day with half the peak. Horizontal: clock time in units of 2 h. Vertical: power in kW.</>}
+  description={<>A simple model of a <InlineMath math="3\text{ kW}" /> panel system on a clear day and a cloudy day with half the peak. Horizontal: clock time in units of <InlineMath math="2\text{ h}" />. Vertical: power in kW.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 4 } },
@@ -52,7 +52,7 @@ Try it with made-up numbers: a forest holds <InlineMath math="100" /> units of w
 
 <MathVisual
   title={<>Harvest Rate against Regrowth</>}
-  description={<>An illustrative stock of 100 units regrowing 2 units a year with three harvest rates h. Horizontal: years in units of 5. Vertical: stock in units of 25.</>}
+  description={<>An illustrative stock of <InlineMath math="100" /> units regrowing <InlineMath math="2" /> units a year with three harvest rates h. Horizontal: years in units of <InlineMath math="5" />. Vertical: stock in units of <InlineMath math="25" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: 2.5, max: 5.5 } },
@@ -91,6 +91,21 @@ Choose a renewable source by checking the **physical conditions at the site**. E
 
 Use these conditions to compare a source with the site. For solar panels, check sunlight, available space, weather, maintenance, and electricity needs.
 
+Sunlight at a site also depends on the angle it arrives at. Rays square to a surface bring about <InlineMath math="1\,000\text{ W/m}^2" />. When the surface is turned away by an angle <InlineMath math="\theta" />, the same rays spread out and each square metre catches <InlineMath math="1\,000\cos\theta\text{ W/m}^2" />. With the sun <InlineMath math="30^\circ" /> high, a flat panel catches <InlineMath math="500\text{ W/m}^2" />. Tilt it <InlineMath math="60^\circ" /> toward the sun and it catches the full <InlineMath math="1\,000\text{ W/m}^2" />. Count the rays that land on the panel as you tilt it.
+
+<SolarPanelAngleLab
+  title={<>Tilt a Panel toward the Sun</>}
+  description={<>Parallel rays of sunlight fall on a <InlineMath math="1.6\text{ m}^2" /> panel. Move the sun and tilt the panel, then compare the angle between the rays and the panel's normal with the light and power it catches.</>}
+  labels={{
+    incidence: <>Angle between rays and normal</>,
+    irradiance: <>Light on each square metre</>,
+    power: <>Panel power at <InlineMath math="20\%" /> efficiency</>,
+    sunControl: "Sun height",
+    tiltControl: "Panel tilt",
+    viewLabel: "Solar panel on a stand under parallel rays of sunlight",
+  }}
+/>
+
 ## Every Source Has a Conversion Path
 
 Every renewable source should be explainable as an energy conversion path. If the path is unclear, the claim is hard to check.
@@ -107,7 +122,7 @@ Each path ends at a generator, but each starts with a different share of the inc
 
 <MathVisual
   title={<>Three Conversion Paths</>}
-  description={<>Typical conversion efficiencies of a solar cell, a wind turbine and a hydro turbine, with the Betz limit for wind (pink). One grid step up is 10 percent.</>}
+  description={<>Typical conversion efficiencies of a solar cell, a wind turbine and a hydro turbine, with the Betz limit for wind (pink). One grid step up is <InlineMath math="10" /> percent.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 10.5 }, z: { min: -1.5, max: 1.5 } },
@@ -148,6 +163,21 @@ Geothermal heat, biogas, and ocean energy each require specific local conditions
 | Geothermal heat | The heat source can be steady day and night, but drilling and geology must be suitable. |
 | Biogas | The system needs a steady supply of organic waste and regular maintenance. |
 | Ocean | Waves, currents, and tides can drive conversion equipment, but site access, corrosion, and marine safety must be considered. |
+
+Here's why geothermal power needs a hot enough reservoir. In this plant, <InlineMath math="100\text{ kg}" /> of water rises every second, gives up heat until it cools to <InlineMath math="70^\circ\text{C}" />, and goes back down. A heat engine between that water and <InlineMath math="27^\circ\text{C}" /> air can never pass <InlineMath math="\eta=1-T_c/T_h" />, and a real plant reaches about <InlineMath math="40\%" /> of that limit. At <InlineMath math="200^\circ\text{C}" /> the water gives <InlineMath math="54.6\text{ MW}" /> of heat and the plant makes about <InlineMath math="8\text{ MW}" />. Hotter water gives more heat and converts a larger share of it.
+
+<GeothermalLoopLab
+  title={<>A Geothermal Loop Underground</>}
+  description={<>Hot water rises up the production well, gives its heat to the plant, and returns at <InlineMath math="70^\circ\text{C}" />. Change the reservoir temperature and compare the heat drawn, the ideal limit, the real efficiency and the electricity.</>}
+  labels={{
+    electric: <>Electricity</>,
+    heat: <>Heat drawn from the water</>,
+    ideal: <>Ideal limit</>,
+    real: <>Real plant efficiency</>,
+    reservoirControl: "Reservoir temperature",
+    viewLabel: "Geothermal plant in cross-section with production and injection wells",
+  }}
+/>
 
 ## Renewable Energy Potential in Indonesia
 

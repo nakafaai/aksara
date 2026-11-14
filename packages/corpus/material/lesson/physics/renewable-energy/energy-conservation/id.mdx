@@ -20,6 +20,26 @@ Jika energi listrik dari sebuah alat lebih kecil daripada energi masuknya, sisa 
 
 Hukum kekekalan energi berlaku pada setiap perpindahan dan perubahan bentuk energi dalam sistem.
 
+Coba lihat pada bandul yang berayun. Bandul <InlineMath math="1\text{ kg}" /> pada tali <InlineMath math="2\text{ m}" /> dilepas dari <InlineMath math="40^\circ" /> dengan energi potensial <InlineMath math="4{,}59\text{ J}" />. Tanpa hambatan udara, energi itu hanya bertukar antara potensial dan kinetik. Dengan hambatan udara, sebagian energi berpindah ke lingkungan sebagai kalor, tetapi ketiga pita selalu bertumpuk sampai <InlineMath math="4{,}59\text{ J}" /> yang sama.
+
+<PendulumEnergyLab
+  title={<>Ayunan dengan Total Energi Tetap</>}
+  description={<>Bandul <InlineMath math="1\text{ kg}" /> pada tali <InlineMath math="2\text{ m}" /> berayun dari <InlineMath math="40^\circ" />. Pilih hambatan udaranya dan lihat energi potensial, energi kinetik, dan kalor berbagi satu total yang tetap.</>}
+  labels={{
+    chooseDrag: "Hambatan udara",
+    drags: {
+      light: <>Hambatan kecil</>,
+      none: <>Tanpa hambatan</>,
+      strong: <>Hambatan besar</>,
+    },
+    heat: <>Kalor setelah <InlineMath math="10\text{ s}" /></>,
+    kinetic: <>Energi kinetik setelah <InlineMath math="10\text{ s}" /></>,
+    potential: <>Energi potensial setelah <InlineMath math="10\text{ s}" /></>,
+    start: <>Energi awal</>,
+    viewLabel: "Bandul kuningan berayun dari rangka baja",
+  }}
+/>
+
 ## Tentukan Batas Sistem Lebih Dahulu
 
 **Sistem** adalah bagian yang kita pilih untuk dianalisis. Semua yang berada di luar sistem disebut **lingkungan**. Tentukan batas sistem sebelum memakai hukum kekekalan energi karena batas tersebut menentukan perpindahan energi mana yang masuk atau keluar dari perhitungan.
@@ -72,7 +92,7 @@ Ikuti air yang jatuh pada grafik di bawah, dari <InlineMath math="h=12\text{ m}"
 
 <MathVisual
   title={<>Energi Potensial Berubah Menjadi Energi Kinetik</>}
-  description={<>Air bermassa 1 kg jatuh dari 12 m dengan <InlineMath math="g=10\text{ m/s}^2" /> tanpa energi yang hilang. Mendatar: ketinggian dalam satuan 2 m. Tegak: energi dalam satuan 20 J.</>}
+  description={<>Air bermassa <InlineMath math="1\text{ kg}" /> jatuh dari <InlineMath math="12\text{ m}" /> dengan <InlineMath math="g=10\text{ m/s}^2" /> tanpa energi yang hilang. Mendatar: ketinggian dalam satuan <InlineMath math="2\text{ m}" />. Tegak: energi dalam satuan <InlineMath math="20\text{ J}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.8, max: 7 } },
@@ -102,7 +122,7 @@ Tanpa gesekan, setiap joule energi potensial menjadi energi kinetik: <InlineMath
 
 <MathVisual
   title={<>Ketinggian Menjadi Kelajuan</>}
-  description={<>Kelajuan di dasar terhadap tinggi jatuh dengan <InlineMath math="g=10\text{ m/s}^2" />. Mendatar: satu kotak grid berarti 2 m. Tegak: satu kotak grid berarti 4 m/s.</>}
+  description={<>Kelajuan di dasar terhadap tinggi jatuh dengan <InlineMath math="g=10\text{ m/s}^2" />. Mendatar: satu kotak grid berarti <InlineMath math="2\text{ m}" />. Tegak: satu kotak grid berarti <InlineMath math="4\text{ m/s}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 11 }, y: { min: -0.5, max: 6 } },
@@ -146,7 +166,7 @@ Putar kolomnya: energi yang masuk ke turbin seluruhnya keluar lagi. Energi listr
 
 <MathVisual
   title={<>Neraca Energi Turbin</>}
-  description={<>Energi yang masuk ke turbin dan generator (abu-abu) lalu keluar sebagai listrik (teal) dan ke lingkungan (merah muda). Satu kotak grid ke atas berarti 20 J.</>}
+  description={<>Energi yang masuk ke turbin dan generator (abu-abu) lalu keluar sebagai listrik (teal) dan ke lingkungan (merah muda). Satu kotak grid ke atas berarti <InlineMath math="20\text{ J}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 7 }, z: { min: -1.5, max: 1.5 } },
@@ -198,3 +218,20 @@ Untuk memeriksa kekekalan energi pada teknologi energi terbarukan, jawab tiga pe
 - Berapa bagian energi masuk yang menjadi keluaran berguna?
 
 Jawabannya menunjukkan sumber energi masuk, setiap perpindahan energi keluar dari sistem, dan bagian yang menjadi keluaran berguna.
+
+Coba jawab ketiga pertanyaan itu pada panel surya. Saat matahari terik, <InlineMath math="1\,000\text{ W/m}^2" /> jatuh pada panel <InlineMath math="1{,}6\text{ m}^2" />, jadi daya yang masuk <InlineMath math="1\,600\text{ W}" />. Sekitar <InlineMath math="64\text{ W}" /> dipantulkan kaca, <InlineMath math="274\text{ W}" /> keluar sebagai listrik, dan <InlineMath math="1\,262\text{ W}" /> sisanya memanaskan panel sampai sekitar <InlineMath math="61^\circ\text{C}" />. Lemahkan cahayanya dan cek bahwa ketiga keluaran itu tetap berjumlah sama dengan masukannya.
+
+<SolarPanelHeatLab
+  title={<>Ke Mana Cahaya Matahari pada Panel Pergi</>}
+  description={<>Panel <InlineMath math="1{,}6\text{ m}^2" /> pada hari bersuhu <InlineMath math="30^\circ\text{C}" />. Ubah cahaya mataharinya, ikuti pembagiannya menjadi listrik, pantulan, dan kalor, lalu lihat sel yang lebih panas mengubah bagian yang lebih kecil.</>}
+  labels={{
+    efficiency: <>Efisiensi</>,
+    electric: <>Listrik</>,
+    heat: <>Kalor ke lingkungan</>,
+    input: <>Cahaya yang masuk</>,
+    irradianceControl: "Cahaya matahari per meter persegi",
+    reflected: <>Cahaya yang dipantulkan</>,
+    temperature: <>Suhu sel</>,
+    viewLabel: "Panel surya di atap dengan aliran cahaya, kalor, dan listrik",
+  }}
+/>

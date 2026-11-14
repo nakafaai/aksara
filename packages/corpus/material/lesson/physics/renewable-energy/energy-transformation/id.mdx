@@ -15,6 +15,27 @@ export const metadata = {
 
 Saat kamu menyalakan senter, energi kimia dalam baterai diubah menjadi energi listrik yang mengalir ke lampu. Lampu menghasilkan **cahaya yang kamu butuhkan**, sekaligus memanaskan bagian senter dan lingkungan. Kalor itu tetap masuk dalam perhitungan energi, meskipun tujuan menyalakan senter adalah menerangi ruangan.
 
+Kalau bohlamnya diganti, jalur energinya tetap sama, tetapi bagian yang berguna berubah. Dua baterai AA menyimpan <InlineMath math="3\text{ V}\times2{,}5\text{ Ah}=27\,000\text{ J}" />, dan bohlam menarik <InlineMath math="1\text{ W}" />, jadi baterai bertahan <InlineMath math="7{,}5\text{ h}" /> dengan bohlam mana pun. Bohlam pijar mengubah sekitar <InlineMath math="5\%" /> daya itu menjadi cahaya, LED sekitar <InlineMath math="40\%" />: delapan kali lebih banyak cahaya dari baterai yang sama.
+
+<FlashlightEfficiencyLab
+  title={<>Baterai Sama, Bohlam Berbeda</>}
+  description={<>Senter menarik <InlineMath math="1\text{ W}" /> dari dua baterai AA. Pilih bohlamnya, lalu bandingkan berapa bagian daya listrik yang menjadi cahaya dan berapa yang menjadi kalor.</>}
+  labels={{
+    battery: <>Energi baterai</>,
+    bulbs: {
+      filament: <>Bohlam pijar</>,
+      led: <>LED</>,
+    },
+    chooseBulb: "Bohlam",
+    efficiency: <>Bagian menjadi cahaya</>,
+    heat: <>Kalor</>,
+    input: <>Daya listrik</>,
+    light: <>Cahaya</>,
+    runTime: <>Lama baterai bertahan</>,
+    viewLabel: "Senter di ruangan gelap menyorot dinding, baterainya terlihat dalam potongan",
+  }}
+/>
+
 ## Jalur Konversi pada Pembangkit
 
 Diagram berikut menjawab satu pertanyaan: energi dari alam berubah menjadi apa sebelum akhirnya dipakai?
@@ -70,7 +91,7 @@ Pembangkit listrik mengubah energi dalam beberapa tahap, dan setiap tahap hanya 
 
 <MathVisual
   title={<>Efisiensi Tiap Tahap Saling Dikalikan</>}
-  description={<>Energi yang tersisa di setiap tahap rantai pembangkit listrik tenaga air ilustratif dari 100 J energi air (teal, depan) dan energi yang hilang sejauh ini (abu-abu, belakang). Satu kotak grid ke atas berarti 20 J.</>}
+  description={<>Energi yang tersisa di setiap tahap rantai pembangkit listrik tenaga air ilustratif dari <InlineMath math="100\text{ J}" /> energi air (teal, depan) dan energi yang hilang sejauh ini (abu-abu, belakang). Satu kotak grid ke atas berarti <InlineMath math="20\text{ J}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 6.5 }, z: { min: -1.8, max: 1.8 } },
@@ -139,7 +160,7 @@ Geser efisiensi panelnya dan perhatikan bagaimana <InlineMath math="800\text{ J}
 
 <MathVisual
   title={<>Efisiensi Membagi Masukan</>}
-  description={<>800 J cahaya yang masuk ke panel (abu-abu) terbagi menjadi listrik (kuning) dan energi ke lingkungan (merah muda), dengan lebar pita sesuai skala. Satu kotak grid berarti 100 J.</>}
+  description={<><InlineMath math="800\text{ J}" /> cahaya yang masuk ke panel (abu-abu) terbagi menjadi listrik (kuning) dan energi ke lingkungan (merah muda), dengan lebar pita sesuai skala. Satu kotak grid berarti <InlineMath math="100\text{ J}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: -0.5, max: 9 } },
@@ -187,3 +208,25 @@ Panel surya, turbin angin, generator, dan reaktor biogas mengubah energi dari sa
 | Pembangkit panas bumi | Apakah lokasi menyediakan suhu bawah tanah, fluida, dan aliran yang memadai untuk pembangkit? |
 
 Jalur konversi mencatat sumber, bentuk energi awal, bentuk keluaran, energi berguna, dan energi yang berpindah ke lingkungan.
+
+Sekarang bandingkan rantainya secara utuh. Pada grafik, <InlineMath math="100\text{ J}" /> masuk ke setiap pembangkit, tiap mesin meneruskan bagiannya, dan setiap kehilangan melengkung turun ke lingkungan. Dengan bagian bulat yang umum, panel surya menghasilkan <InlineMath math="19{,}2\text{ J}" />, turbin angin <InlineMath math="40{,}61\text{ J}" />, PLTA <InlineMath math="85{,}5\text{ J}" />, mesin biogas <InlineMath math="33{,}25\text{ J}" />, dan pembangkit panas bumi <InlineMath math="11{,}4\text{ J}" />. Joule yang hilang tidak lenyap: bersama listriknya, jumlahnya selalu <InlineMath math="100\text{ J}" />.
+
+<EnergyFlowLossLab
+  title={<>Ke Mana <InlineMath math="100\text{ J}" /> Pergi di Lima Pembangkit</>}
+  description={<>Setiap pita dimulai dengan <InlineMath math="100\text{ J}" /> energi dari sumbernya. Pilih pembangkit, lalu ikuti bagaimana mesin-mesinnya menipiskan pita dan menyerahkan sisanya ke lingkungan.</>}
+  labels={{
+    choosePlant: "Pembangkit",
+    efficiency: <>Efisiensi total</>,
+    input: <>Energi masuk</>,
+    lost: <>Ke lingkungan</>,
+    plants: {
+      biogas: <>Biogas</>,
+      geothermal: <>Panas bumi</>,
+      hydro: <>Air</>,
+      solar: <>Surya</>,
+      wind: <>Angin</>,
+    },
+    useful: <>Listrik keluar</>,
+    viewLabel: "Diagram aliran energi tahap konversi dan kehilangan pada pembangkit",
+  }}
+/>

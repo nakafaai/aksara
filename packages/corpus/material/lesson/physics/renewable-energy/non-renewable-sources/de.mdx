@@ -22,7 +22,7 @@ Probier die Ungleichung mit runden, ausgedachten Zahlen aus. Ein Vorrat von <Inl
 
 <MathVisual
   title={<>Ein Vorrat, der zu langsam entsteht</>}
-  description={<>Ein ausgedachter Vorrat von 100 Einheiten mit 2 Einheiten Verbrauch pro Jahr und zwei Bildungsraten. Waagrecht: Zeit in Einheiten von 20 Jahren. Senkrecht: Vorrat in Einheiten von 20.</>}
+  description={<>Ein ausgedachter Vorrat von <InlineMath math="100" /> Einheiten mit <InlineMath math="2" /> Einheiten Verbrauch pro Jahr und zwei Bildungsraten. Waagrecht: Zeit in Einheiten von <InlineMath math="20" /> Jahren. Senkrecht: Vorrat in Einheiten von <InlineMath math="20" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.8, max: 5.8 } },
@@ -49,7 +49,7 @@ Ein endlicher Vorrat <InlineMath math="R" />, der mit gleichbleibender Rate <Inl
 
 <MathVisual
   title={<>Ein endlicher Vorrat geht zu Ende</>}
-  description={<>Jahre, die ein beispielhafter Vorrat von 1000 Einheiten bei drei gleichbleibenden Verbrauchsraten reicht. Ein Gitterschritt nach oben entspricht 20 Jahren.</>}
+  description={<>Jahre, die ein beispielhafter Vorrat von <InlineMath math="1000" /> Einheiten bei drei gleichbleibenden Verbrauchsraten reicht. Ein Gitterschritt nach oben entspricht <InlineMath math="20" /> Jahren.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -106,6 +106,28 @@ In Dampfkraftwerken erzeugen Verbrennung und Kernspaltung **Wärme durch untersc
 
 Fossile Brennstoffe und Uran erreichen am Ende dieselbe Energieform: elektrischen Strom. Der Anfang der Kette ist unterschiedlich, doch jede Quelle benötigt Anlagen, die ihre ursprüngliche Energie in Nutzenergie umwandeln.
 
+Tausch die Wärmequelle und sieh, dass alles nach dem Kessel gleich bleibt. Dieses Kraftwerk nimmt <InlineMath math="1\,000\text{ MW}" /> Wärme auf. Mit Kohle erreicht der Dampf etwa <InlineMath math="540^\circ\text{C}" />, und <InlineMath math="380\text{ MW}" /> gehen als Strom hinaus, während der Kondensator <InlineMath math="620\text{ MW}" /> an den Kühlturm abgibt. Ein Reaktor arbeitet mit kühlerem Dampf, etwa <InlineMath math="285^\circ\text{C}" />, und liefert deshalb <InlineMath math="330\text{ MW}" />. Vergleiche auch den Brennstoff: <InlineMath math="150\,000\text{ kg}" /> Kohle pro Stunde gegenüber weniger als <InlineMath math="1\text{ kg}" /> Uranbrennstoff.
+
+<SteamPlantCycleLab
+  title={<>Ein Dampfkreislauf, drei Wärmequellen</>}
+  description={<>Ein Dampfkraftwerk nimmt <InlineMath math="1\,000\text{ MW}" /> Wärme aus Kohle, Gas oder Uran auf. Wähle den Brennstoff und vergleiche Strom, Abwärme, Dampftemperatur, ihre ideale Grenze und den Brennstoffverbrauch pro Stunde.</>}
+  labels={{
+    chooseFuel: "Brennstoff",
+    electric: <>Strom</>,
+    fuelUse: <>Brennstoff pro Stunde</>,
+    fuels: {
+      coal: <>Kohle</>,
+      gas: <>Erdgas</>,
+      uranium: <>Uran</>,
+    },
+    heat: <>Zugeführte Wärme</>,
+    ideal: <>Ideale Grenze</>,
+    steam: <>Dampftemperatur</>,
+    viewLabel: "Dampfkraftwerk mit Wärmequelle, Turbine, Generator und Kühlturm",
+    waste: <>Abwärme</>,
+  }}
+/>
+
 ## Unterschiedliche Aufgaben im Stromnetz
 
 Kraftwerkstypen speisen Strom auf unterschiedliche Weise ins Netz ein. Kernkraftwerke laufen meist durchgehend mit gleichmäßiger Leistung. Erdgasbetriebene GuD-Kraftwerke können ihre Leistung **an einen wechselnden Bedarf anpassen**. Bei Spitzenbedarf liefern Gasturbinen mit Erdgas oder Erdölprodukten für einige Stunden zusätzlichen Strom.
@@ -114,11 +136,11 @@ Im US-amerikanischen Stromsystem heißen diese Aufgaben [Grundlast, Mittellast u
 
 Dieses Betriebsmuster bestimmt, ob ein Kraftwerk eine gleichmäßige Grundlast liefert, wechselndem Bedarf folgt oder eine kurze Lastspitze abdeckt. Zur Bewertung seiner Energiequelle gehören außerdem Brennstoffvorrat, Emissionen, Abfälle sowie die Folgen von Bergbau oder Bohrungen.
 
-An diesem Beispieltag ist die graue Linie die gleichmäßige Grundlast, die ein Kraftwerk mit konstanter Leistung tragen kann. Die orange Nachfrage steigt und fällt darüber, und die Abendspitze gegen 19:00 Uhr müssen schnell regelbare Kraftwerke abdecken.
+An diesem Beispieltag ist die graue Linie die gleichmäßige Grundlast, die ein Kraftwerk mit konstanter Leistung tragen kann. Die orange Nachfrage steigt und fällt darüber, und die Abendspitze gegen <InlineMath math="19{:}00" /> Uhr müssen schnell regelbare Kraftwerke abdecken.
 
 <MathVisual
   title={<>Grundlast und Spitze an einem Tag</>}
-  description={<>Eine beispielhafte Nachfragekurve über einen Tag oberhalb einer gleichmäßigen Grundlast. Waagrecht: Uhrzeit in Einheiten von 2 h. Senkrecht: Leistung in beliebigen Einheiten.</>}
+  description={<>Eine beispielhafte Nachfragekurve über einen Tag oberhalb einer gleichmäßigen Grundlast. Waagrecht: Uhrzeit in Einheiten von <InlineMath math="2\text{ h}" />. Senkrecht: Leistung in beliebigen Einheiten.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: 0, max: 5.5 } },
@@ -155,3 +177,24 @@ Kohlendioxid wird als <InlineMath math="\text{CO}_2" /> geschrieben. Erdgas enth
 > Bei jeder Nutzung einer nicht erneuerbaren Energiequelle wird ein Vorrat verbraucht, der sich nicht schnell erneuert. Ob die Nutzung vertretbar ist, hängt vom Zweck, den Folgen und den verfügbaren Alternativen ab.
 
 Beurteile jede Quelle anhand ihres Vorrats, ihrer Umwandlungskette, ihrer Nutzenergie, ihrer Rückstände und ihrer Auswirkungen auf Menschen und Ökosysteme.
+
+Deshalb setzt das Verbrennen eines Brennstoffs so viel Kohlenstoffdioxid frei. Jedes Kohlenstoffatom verbindet sich mit zwei Sauerstoffatomen aus der Luft, <InlineMath math="\mathrm{C}+\mathrm{O_2}\rightarrow\mathrm{CO_2}" />, also werden aus <InlineMath math="12\text{ g}" /> Kohlenstoff <InlineMath math="44\text{ g}" /> Gas. Verbrennst du <InlineMath math="1\text{ kg}" /> Kohle mit etwa <InlineMath math="70\%" /> Kohlenstoff, entstehen <InlineMath math="2{,}57\text{ kg}" /> <InlineMath math="\mathrm{CO_2}" />, mehr als der Brennstoff selbst, weil <InlineMath math="1{,}87\text{ kg}" /> davon Sauerstoff aus der Luft sind.
+
+<FuelCombustionCarbonLab
+  title={<><InlineMath math="1\text{ kg}" /> Brennstoff verbrennen</>}
+  description={<><InlineMath math="1\text{ kg}" /> Kohle, Diesel oder Methan verbrennt, und ein Ballon fängt das Kohlenstoffdioxid auf. Wähle den Brennstoff und vergleiche Kohlenstoff, Sauerstoff aus der Luft und das entstehende Gas.</>}
+  labels={{
+    carbon: <>Kohlenstoff im Brennstoff</>,
+    chooseFuel: "Brennstoff",
+    dioxide: <>Entstandenes Kohlenstoffdioxid</>,
+    fuels: {
+      coal: <>Kohle</>,
+      diesel: <>Diesel</>,
+      methane: <>Methan</>,
+    },
+    oxygen: <>Sauerstoff aus der Luft</>,
+    perEnergy: <>Kohlenstoffdioxid pro Megajoule Wärme</>,
+    viewLabel: "Brennstoff verbrennt unter einer Haube, während ein Ballon Kohlenstoffdioxid auffängt",
+    volume: <>Gasvolumen bei <InlineMath math="25^\circ\text{C}" /></>,
+  }}
+/>

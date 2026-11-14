@@ -22,7 +22,7 @@ Cuba ketaksamaan ini dengan nombor bulat rekaan. Stok sebanyak <InlineMath math=
 
 <MathVisual
   title={<>Stok yang Terbentuk Terlalu Perlahan</>}
-  description={<>Contoh stok sebanyak 100 unit yang digunakan pada kadar 2 unit setahun, dengan dua kadar pembentukan. Paksi mengufuk: masa dalam unit 20 tahun. Paksi menegak: stok dalam unit 20.</>}
+  description={<>Contoh stok sebanyak <InlineMath math="100" /> unit yang digunakan pada kadar <InlineMath math="2" /> unit setahun, dengan dua kadar pembentukan. Paksi mengufuk: masa dalam unit <InlineMath math="20" /> tahun. Paksi menegak: stok dalam unit <InlineMath math="20" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.8, max: 5.8 } },
@@ -49,7 +49,7 @@ Rizab terhad <InlineMath math="R" /> yang digunakan pada kadar tetap <InlineMath
 
 <MathVisual
   title={<>Rizab Terhad Akan Habis</>}
-  description={<>Bilangan tahun contoh rizab sebanyak 1000 unit bertahan pada tiga kadar penggunaan tetap. Satu petak grid ke atas ialah 20 tahun.</>}
+  description={<>Bilangan tahun contoh rizab sebanyak <InlineMath math="1000" /> unit bertahan pada tiga kadar penggunaan tetap. Satu petak grid ke atas ialah <InlineMath math="20" /> tahun.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -106,6 +106,28 @@ Dalam stesen janakuasa stim, pembakaran dan pembelahan nukleus menghasilkan **ha
 
 Bahan api fosil dan uranium kedua-duanya sampai ke bentuk tenaga akhir yang sama, iaitu elektrik. Laluan awalnya berbeza, tetapi setiap sumber tetap memerlukan alat penukar sebelum tenaga awalnya menjadi tenaga berguna.
 
+Tukar sumber habanya dan perhatikan semua yang berlaku selepas dandang tetap sama. Loji ini menerima <InlineMath math="1\,000\text{ MW}" /> haba. Dengan arang batu, stim mencapai kira-kira <InlineMath math="540^\circ\text{C}" /> dan <InlineMath math="380\text{ MW}" /> keluar sebagai elektrik, manakala kondenser menyerahkan <InlineMath math="620\text{ MW}" /> kepada menara penyejuk. Reaktor menghasilkan stim yang lebih sejuk, kira-kira <InlineMath math="285^\circ\text{C}" />, jadi ia menghantar <InlineMath math="330\text{ MW}" />. Bandingkan juga bahan apinya: <InlineMath math="150\,000\text{ kg}" /> arang batu sejam berbanding kurang daripada <InlineMath math="1\text{ kg}" /> bahan api uranium.
+
+<SteamPlantCycleLab
+  title={<>Satu Kitar Stim, Tiga Sumber Haba</>}
+  description={<>Loji jana kuasa stim menerima <InlineMath math="1\,000\text{ MW}" /> haba daripada arang batu, gas atau uranium. Pilih bahan api dan bandingkan elektrik, haba buangan, suhu stim, had unggulnya dan bahan api yang digunakan setiap jam.</>}
+  labels={{
+    chooseFuel: "Bahan api",
+    electric: <>Elektrik</>,
+    fuelUse: <>Bahan api yang digunakan setiap jam</>,
+    fuels: {
+      coal: <>Arang batu</>,
+      gas: <>Gas asli</>,
+      uranium: <>Uranium</>,
+    },
+    heat: <>Haba masuk</>,
+    ideal: <>Had unggul</>,
+    steam: <>Suhu stim</>,
+    viewLabel: "Loji jana kuasa stim dengan sumber haba, turbin, penjana dan menara penyejuk",
+    waste: <>Haba buangan</>,
+  }}
+/>
+
 ## Peranan yang Berbeza dalam Grid Elektrik
 
 Bukan semua stesen janakuasa membekalkan elektrik dengan cara yang sama. Stesen nuklear biasanya beroperasi tanpa henti pada output yang tetap. Stesen kitaran gabungan gas asli boleh **menaikkan atau menurunkan outputnya** mengikut perubahan permintaan. Apabila permintaan mencapai puncak, turbin pembakaran yang menggunakan gas asli atau petroleum boleh menambah bekalan elektrik selama beberapa jam.
@@ -114,11 +136,11 @@ Dalam sistem elektrik Amerika Syarikat, peranan ini dipanggil [peranan beban asa
 
 Corak operasi ini menentukan sama ada sesebuah stesen membekalkan beban asas yang tetap, mengikut perubahan permintaan atau melayan puncak yang singkat. Untuk menilai sumber tenaganya, kamu juga perlu menyemak stok bahan api, pelepasan, sisa dan kesan perlombongan atau penggerudian.
 
-Dalam contoh satu hari ini, garis kelabu ialah beban asas tetap yang boleh ditanggung oleh stesen yang beroperasi pada output malar. Permintaan berwarna jingga naik dan turun di atasnya, dan puncak waktu petang sekitar 19:00 ialah bahagian yang mesti ditampung oleh stesen yang dapat menyesuaikan outputnya dengan cepat.
+Dalam contoh satu hari ini, garis kelabu ialah beban asas tetap yang boleh ditanggung oleh stesen yang beroperasi pada output malar. Permintaan berwarna jingga naik dan turun di atasnya, dan puncak waktu petang sekitar <InlineMath math="19{:}00" /> ialah bahagian yang mesti ditampung oleh stesen yang dapat menyesuaikan outputnya dengan cepat.
 
 <MathVisual
   title={<>Beban Asas dan Puncak dalam Satu Hari</>}
-  description={<>Contoh lengkung permintaan sepanjang satu hari di atas beban asas yang tetap. Paksi mengufuk: waktu dalam unit 2 jam. Paksi menegak: kuasa dalam unit sebarang.</>}
+  description={<>Contoh lengkung permintaan sepanjang satu hari di atas beban asas yang tetap. Paksi mengufuk: waktu dalam unit <InlineMath math="2\text{ j}" />. Paksi menegak: kuasa dalam unit sebarang.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: 0, max: 5.5 } },
@@ -155,3 +177,24 @@ Karbon dioksida ditulis sebagai <InlineMath math="\text{CO}_2" />. Gas asli terd
 > Penggunaan sumber tidak boleh baharu menghabiskan stok yang sangat lambat terbentuk semula. Sama ada pilihan itu wajar atau tidak bergantung pada tujuan, kesan dan alternatif yang ada.
 
 Nilai setiap sumber berdasarkan stoknya, laluan penukaran, tenaga berguna, sisa dan kesannya terhadap komuniti serta ekosistem.
+
+Inilah sebabnya pembakaran bahan api menambah begitu banyak karbon dioksida. Setiap atom karbon bergabung dengan dua atom oksigen daripada udara, <InlineMath math="\mathrm{C}+\mathrm{O_2}\rightarrow\mathrm{CO_2}" />, jadi <InlineMath math="12\text{ g}" /> karbon menjadi <InlineMath math="44\text{ g}" /> gas. Membakar <InlineMath math="1\text{ kg}" /> arang batu, yang kira-kira <InlineMath math="70\%" /> karbon, menghasilkan <InlineMath math="2.57\text{ kg}" /> <InlineMath math="\mathrm{CO_2}" />, lebih berat daripada bahan api itu sendiri, kerana <InlineMath math="1.87\text{ kg}" /> daripadanya ialah oksigen daripada udara.
+
+<FuelCombustionCarbonLab
+  title={<>Membakar <InlineMath math="1\text{ kg}" /> Bahan Api</>}
+  description={<><InlineMath math="1\text{ kg}" /> arang batu, diesel atau metana terbakar, dan sebiji belon mengumpul karbon dioksidanya. Pilih bahan api dan bandingkan karbon, oksigen yang diambil daripada udara, dan gas yang terhasil.</>}
+  labels={{
+    carbon: <>Karbon dalam bahan api</>,
+    chooseFuel: "Bahan api",
+    dioxide: <>Karbon dioksida yang terhasil</>,
+    fuels: {
+      coal: <>Arang batu</>,
+      diesel: <>Diesel</>,
+      methane: <>Metana</>,
+    },
+    oxygen: <>Oksigen daripada udara</>,
+    perEnergy: <>Karbon dioksida bagi setiap megajoule haba</>,
+    viewLabel: "Bahan api terbakar di bawah serombong sementara belon mengumpul karbon dioksida",
+    volume: <>Isi padu gas pada <InlineMath math="25^\circ\text{C}" /></>,
+  }}
+/>

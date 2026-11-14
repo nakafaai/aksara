@@ -20,11 +20,11 @@ Begin with the demand, <Highlight>identify a suitable local source</Highlight>, 
 
 Cost, safety, maintenance, and environmental protection must be checked at every stage. The source and the equipment must also fit the location.
 
-Start from the need, then check the source. A village of 50 homes using <InlineMath math="1\text{ kWh}" /> each per day needs <InlineMath math="50\text{ kWh}" />, and a <InlineMath math="2.5\text{ kW}" /> micro-hydro running all day gives <InlineMath math="60\text{ kWh}" />. Rotate the bars and compare.
+Start from the need, then check the source. A village of <InlineMath math="50" /> homes using <InlineMath math="1\text{ kWh}" /> each per day needs <InlineMath math="50\text{ kWh}" />, and a <InlineMath math="2.5\text{ kW}" /> micro-hydro running all day gives <InlineMath math="60\text{ kWh}" />. Rotate the bars and compare.
 
 <MathVisual
   title={<>From Need to Energy Service</>}
-  description={<>Daily energy need of 50 homes (violet) and the daily output of a 2.5 kW micro-hydro (teal). One grid step up is 10 kWh.</>}
+  description={<>Daily energy need of <InlineMath math="50" /> homes (violet) and the daily output of a <InlineMath math="2.5\text{ kW}" /> micro-hydro (teal). One grid step up is <InlineMath math="10\text{ kWh}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
@@ -77,7 +77,7 @@ Rotate the surface below. Each point on it is the formula with one flow rate acr
 
 <MathVisual
   title={<>Microhydro Power from Flow and Height</>}
-  description={<><InlineMath math="P=\rho gQh\eta" /> with <InlineMath math="\rho=1000\text{ kg/m}^3" />, <InlineMath math="g=10\text{ m/s}^2" /> and <InlineMath math="\eta=0.7" />. Across: flow in units of <InlineMath math="0.01\text{ m}^3\text{/s}" />. Into the screen: height difference in units of 5 m. Up: power in kW.</>}
+  description={<><InlineMath math="P=\rho gQh\eta" /> with <InlineMath math="\rho=1000\text{ kg/m}^3" />, <InlineMath math="g=10\text{ m/s}^2" /> and <InlineMath math="\eta=0.7" />. Across: flow in units of <InlineMath math="0.01\text{ m}^3\text{/s}" />. Into the screen: height difference in units of <InlineMath math="5\text{ m}" />. Up: power in kW.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -0.5, max: 4.5 } },
@@ -129,6 +129,21 @@ Energy demand can also be met by reducing waste. Efficiency is the ratio of **us
 
 A complete plan combines equipment suited to the location, efficient use, a safe network, storage when needed, regular maintenance, and impact management.
 
+Storage is where a plan meets the night. A village health post has a <InlineMath math="3\text{ kWp}" /> solar roof that collects about <InlineMath math="22.9\text{ kWh}" /> a day, more than the <InlineMath math="13.6\text{ kWh}" /> it uses. But the vaccine fridge and the evening lights keep running after sunset. With a <InlineMath math="5\text{ kWh}" /> battery, <InlineMath math="4.3\text{ kWh}" /> of the night's need goes unsupplied. A <InlineMath math="10\text{ kWh}" /> battery gets through to morning.
+
+<SolarBatteryStorageLab
+  title={<>Getting a Solar Health Post through the Night</>}
+  description={<>A health post on a <InlineMath math="3\text{ kWp}" /> solar roof with a battery, through one day. Choose the battery size and watch whether its charge lasts until the sun returns.</>}
+  labels={{
+    chooseSize: "Battery size",
+    demand: <>Energy used in a day</>,
+    size: <>Battery capacity</>,
+    solar: <>Solar energy in a day</>,
+    unmet: <>Energy not supplied</>,
+    viewLabel: "Solar health post with a battery beside a chart of sunlight, demand and charge",
+  }}
+/>
+
 ## Four Conditions for Energy Access
 
 The [Sustainable Development Goals](https://sdgs.un.org/2030agenda) are a global agenda agreed by United Nations member states to improve human well-being and protect the environment. The <InlineMath math="2030" /> Agenda contains <InlineMath math="17" /> connected goals.
@@ -139,11 +154,11 @@ SDG <InlineMath math="7" /> aims to ensure [access to affordable, reliable, sust
 
 The four conditions can be checked with questions. Can households and public services pay for the energy while meeting other essential needs? Is the energy supply available when needed? Can the energy system continue while protecting people, ecosystems, and future generations? Is the energy service safe and capable enough for lighting, communication, productive work, and health care?
 
-Score each option against the four questions and the shapes tell the story. In these illustrative scores out of 4, a solar mini-grid with batteries covers more of the chart than a diesel generator, above all on the sustainable axis. Zoom in on each corner.
+Score each option against the four questions and the shapes tell the story. In these illustrative scores out of <InlineMath math="4" />, a solar mini-grid with batteries covers more of the chart than a diesel generator, above all on the sustainable axis. Zoom in on each corner.
 
 <MathVisual
   title={<>Four Questions for Energy Access</>}
-  description={<>Illustrative scores out of 4 for a solar mini-grid with batteries (teal) and a diesel generator (pink).</>}
+  description={<>Illustrative scores out of <InlineMath math="4" /> for a solar mini-grid with batteries (teal) and a diesel generator (pink).</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -5, max: 5 } },
@@ -184,3 +199,17 @@ For a hamlet that needs electricity for night lighting, phone charging, a small 
 | What impact must be reduced? | An energy solution still needs to protect water, soil, and nearby residents. |
 
 A testable plan states which demand must be met, which source is available, which device converts the energy, what impact must be limited, and who keeps the system working.
+
+Try the plan's source question with a small stream. A microhydro plant leads part of the stream through a pipe down to a turbine, and its usable power is <InlineMath math="P\approx\rho gQh\eta" />. With <InlineMath math="Q=20\text{ L/s}" />, <InlineMath math="h=10\text{ m}" /> and <InlineMath math="\eta=0.7" />, it gives <InlineMath math="1\,400\text{ W}" />, enough for <InlineMath math="5" /> of the hamlet's <InlineMath math="16" /> homes if each needs <InlineMath math="250\text{ W}" /> in the evening. Find a flow and head that light every home.
+
+<MicrohydroLab
+  title={<>How Many Homes a Stream Can Light</>}
+  description={<>A microhydro plant on a hillside at dusk. Change the flow and the head and count the homes its power can light at <InlineMath math="250\text{ W}" /> each.</>}
+  labels={{
+    flowControl: "Water flow",
+    headControl: "Head",
+    homes: <>Homes lit</>,
+    power: <>Usable power</>,
+    viewLabel: "Microhydro plant on a hillside with a pipe to a powerhouse and a row of homes",
+  }}
+/>

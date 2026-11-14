@@ -24,7 +24,7 @@ Netze übertragen Leistung mit Hochspannung, weil der Verlust in den Leitungen <
 
 <MathVisual
   title={<>Höhere Spannung, kleinere Verluste</>}
-  description={<>Anteil von 100 kW, der in einer 1-Ohm-Leitung verloren geht, über der Leitungsspannung. Waagerecht: kV. Senkrecht: Ein Gitterschritt entspricht 2 Prozent.</>}
+  description={<>Anteil von <InlineMath math="100\text{ kW}" />, der in einer 1-Ohm-Leitung verloren geht, über der Leitungsspannung. Waagerecht: kV. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="2" /> Prozent.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0.5, max: 10.5 }, y: { min: -0.5, max: 5.5 } },
@@ -78,14 +78,14 @@ Vergleiche zwei Geräte, die jeweils eine Stunde lang konstant <InlineMath math=
 
 | Zeitplan | Höchste gleichzeitige Leistung | Gesamtenergie |
 | :--- | :--- | :--- |
-| Beide laufen von 18:00 bis 19:00 Uhr | <InlineMath math="1+1=2 \text{ kW}" /> | <InlineMath math="2 \times 1=2 \text{ kWh}" /> |
-| Erstes Gerät von 18:00 bis 19:00 Uhr, zweites von 19:00 bis 20:00 Uhr | <InlineMath math="1 \text{ kW}" /> | <InlineMath math="1 \times 1+1 \times 1=2 \text{ kWh}" /> |
+| Beide laufen von <InlineMath math="18{:}00" /> bis <InlineMath math="19{:}00" /> Uhr | <InlineMath math="1+1=2 \text{ kW}" /> | <InlineMath math="2 \times 1=2 \text{ kWh}" /> |
+| Erstes Gerät von <InlineMath math="18{:}00" /> bis <InlineMath math="19{:}00" /> Uhr, zweites von <InlineMath math="19{:}00" /> bis <InlineMath math="20{:}00" /> Uhr | <InlineMath math="1 \text{ kW}" /> | <InlineMath math="1 \times 1+1 \times 1=2 \text{ kWh}" /> |
 
 Hier sind beide Zeitpläne als Leistung über den Abend. Der orange Plan lässt beide Geräte gleichzeitig laufen und springt auf eine Spitze von <InlineMath math="2\text{ kW}" />. Der violette Plan verteilt dieselbe Arbeit auf zwei Stunden und kommt nie über <InlineMath math="1\text{ kW}" />. Zähl die Fläche unter jeder Linie, also Leistung mal Zeit: Beide enthalten <InlineMath math="2\text{ kWh}" />. Die Energie bleibt gleich, nur die Spitze, die das Netz liefern muss, ändert sich.
 
 <MathVisual
   title={<>Gleiche Energie, andere Spitze</>}
-  description={<>Leistung zweier 1-kW-Geräte von 17:00 bis 21:00 Uhr. Waagrecht: Uhrzeit in Stunden. Senkrecht: Leistung in kW.</>}
+  description={<>Leistung zweier 1-kW-Geräte von <InlineMath math="17{:}00" /> bis <InlineMath math="21{:}00" /> Uhr. Waagrecht: Uhrzeit in Stunden. Senkrecht: Leistung in kW.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 4.3 }, y: { min: -0.6, max: 2.6 } },
@@ -140,7 +140,7 @@ Ein Wachstum von <InlineMath math="3{,}6\%" /> pro Jahr verzinst sich. Die Kurve
 
 <MathVisual
   title={<>Nachfragewachstum verzinst sich</>}
-  description={<>Wachstum der Stromnachfrage um 3,6 % pro Jahr von 2026 bis 2030. Waagrecht: Jahre nach 2026. Senkrecht: Wachstum in Einheiten von 4 %.</>}
+  description={<>Wachstum der Stromnachfrage um <InlineMath math="3{,}6\%" /> pro Jahr von 2026 bis 2030. Waagrecht: Jahre nach 2026. Senkrecht: Wachstum in Einheiten von <InlineMath math="4\%" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 4.6 }, y: { min: -0.3, max: 4.6 } },
@@ -173,6 +173,25 @@ Eine Zahl zum Energiebedarf reicht allein nicht aus. Prüfe auch, wer die Energi
 
 Ist die tägliche Versorgung zu klein, fehlt die benötigte Energiemenge. Laufen viele Geräte gleichzeitig, kann die Spitzenleistung zu niedrig sein. Die übrigen Fragen prüfen, ob Quelle, Netz oder Speicher die Versorgung begrenzen und welche Folgen ein Ausfall hätte.
 
+So sieht die Frage nach der Spitzenleistung in einem echten Dorf aus. Hundert Haushalte an einem Mini-Netz mit <InlineMath math="50\text{ kW}" /> verbrauchen <InlineMath math="330\text{ kWh}" /> am Tag, und jeder Haushalt betreibt eine Stunde lang einen Reiskocher mit <InlineMath math="0{,}4\text{ kW}" />. Kochen alle um <InlineMath math="18{:}00" /> Uhr, springt der Bedarf auf <InlineMath math="65\text{ kW}" />, und für diese Stunde geht das Licht aus. Verteile das Kochen auf <InlineMath math="16{:}00" /> bis <InlineMath math="20{:}00" /> Uhr, und die Spitze sinkt auf <InlineMath math="35\text{ kW}" />, bei genau derselben Tagesenergie.
+
+<GridLoadCurveLab
+  title={<>Die Abendspitze eines Dorfs</>}
+  description={<>Hundert Haushalte an einem Mini-Netz mit <InlineMath math="50\text{ kW}" /> über einen Tag. Wähle, wann das Dorf kocht, und vergleiche den Spitzenbedarf mit dem, was das Netz liefern kann.</>}
+  labels={{
+    capacity: <>Netzkapazität</>,
+    chooseSchedule: "Wann das Dorf kocht",
+    energy: <>Tagesverbrauch</>,
+    hours: <>Stunden über der Kapazität</>,
+    peak: <>Spitzenbedarf</>,
+    schedules: {
+      spread: <>Verteilt von 16:00 bis 20:00 Uhr</>,
+      together: <>Alle um 18:00 Uhr</>,
+    },
+    viewLabel: "Dorf über einen Tag über seinem stündlichen Bedarfsdiagramm",
+  }}
+/>
+
 ## Erneuerbare Quellen müssen zum Standort passen
 
 Eine erneuerbare Energiequelle eignet sich für einen Standort, wenn örtliche Ressource, Technik, Netz, Speicher und Umweltschutz **den örtlichen Bedarf erfüllen** können. Die Tabelle nennt erste Prüfpunkte für mehrere Ressourcen.
@@ -186,3 +205,23 @@ Eine erneuerbare Energiequelle eignet sich für einen Standort, wenn örtliche R
 | In der Nähe eines Geothermiegebiets | Geothermie | geologische Untersuchung, Bohrungen und Umweltauswirkungen |
 
 Das Energiesystem muss daher zum Energiebedarf, zu den Umweltbedingungen und zu den Bedürfnissen der örtlichen Gemeinschaft passen.
+
+Am Wind sieht man, wie viel der Standort ausmacht. Die Leistung des Winds durch einen Rotor ist <InlineMath math="P=\tfrac12\rho Av^3" />, also liefert dieselbe Anlage mit einem Rotorradius von <InlineMath math="40\text{ m}" /> in einem Tal mit <InlineMath math="4\text{ m/s}" /> etwa <InlineMath math="79\text{ kW}" />, an einer Küste mit <InlineMath math="8\text{ m/s}" /> aber etwa <InlineMath math="631\text{ kW}" />: achtmal so viel bei doppelter Geschwindigkeit. Diese Windgeschwindigkeiten sind beispielhafte, gleichbleibende Mittelwerte. Ein echter Standort braucht ein Jahr gemessener Winddaten.
+
+<WindRotorLab
+  title={<>Eine Anlage an drei Standorten</>}
+  description={<>Dieselbe Windkraftanlage steht in einem Tal, auf einem Hügel und an einer Küste. Wähle den Standort und vergleiche die Windgeschwindigkeit mit der Leistung im Wind und dem erzeugten Strom.</>}
+  labels={{
+    chooseSite: "Standort",
+    daily: <>Energie an einem Tag mit gleichmäßigem Wind</>,
+    electric: <>Strom</>,
+    sites: {
+      coast: <>Küste</>,
+      hill: <>Hügel</>,
+      valley: <>Tal</>,
+    },
+    speed: <>Mittlere Windgeschwindigkeit</>,
+    viewLabel: "Windkraftanlage dreht sich in einem Tal, auf einem Hügel oder an einer Küste",
+    wind: <>Leistung im Wind durch den Rotor</>,
+  }}
+/>

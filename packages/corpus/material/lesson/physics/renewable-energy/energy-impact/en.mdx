@@ -26,7 +26,7 @@ Count the emissions of every stage, from mining and building to running and taki
 
 <MathVisual
   title={<>Every Stage Counts</>}
-  description={<>Median lifecycle emissions per kWh from the IPCC (2014). One grid step up is 100 <InlineMath math="\mathrm{g\,CO_2\text{-}eq/kWh}" />.</>}
+  description={<>Median lifecycle emissions per kWh from the IPCC (2014). One grid step up is <InlineMath math="100" /> <InlineMath math="\mathrm{g\,CO_2\text{-}eq/kWh}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 9.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
@@ -74,8 +74,8 @@ For each stage, record the magnitude, duration, affected area, and available evi
 Energy losses are one impact you can measure stage by stage. Take round, illustrative efficiencies: the power plant turns <InlineMath math="35\%" /> of the fuel energy into electricity, and the grid delivers <InlineMath math="95\%" /> of that. In the scene below, each column is still <InlineMath math="100\text{ J}" /> tall, because energy is conserved. Only the split changes: the teal part is the energy still useful, the gray part is the heat already released to the surroundings. Rotate it and compare how much gray appears at the conversion stage.
 
 <MathVisual
-  title={<>What Is Left of 100 J along the Chain</>}
-  description={<>An illustrative energy chain with a conversion efficiency of 0.35 and a grid efficiency of 0.95. One grid step up is 20 J.</>}
+  title={<>What Is Left of <InlineMath math="100\text{ J}" /> along the Chain</>}
+  description={<>An illustrative energy chain with a conversion efficiency of <InlineMath math="0.35" /> and a grid efficiency of <InlineMath math="0.95" />. One grid step up is <InlineMath math="20\text{ J}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: -1, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -120,6 +120,22 @@ An energy source with low operating emissions still needs assessment <Highlight>
 
 The total impact therefore includes more than what happens while the device is running.
 
+The simplest model of the atmosphere shows that radiative effect: one layer that lets sunlight through but absorbs a share of the infrared from the ground and sends half of it back down. With no absorption, the surface would sit near <InlineMath math="255\text{ K}" />. When the layer absorbs <InlineMath math="78\%" />, the back radiation of <InlineMath math="152\text{ W/m}^2" /> warms the surface to about <InlineMath math="288\text{ K}" />, close to Earth's average. Raise the share and watch the surface warm until it sheds the sunlight plus the back radiation.
+
+<GreenhouseLayerLab
+  title={<>One Layer of Greenhouse Gas</>}
+  description={<>Sunlight warms the ground, the ground gives off infrared, and one layer of atmosphere absorbs a share of it. Change that share and compare the back radiation with the surface temperature.</>}
+  labels={{
+    absorptanceControl: "Share of infrared the layer absorbs",
+    back: <>Back radiation</>,
+    celsius: <>Surface temperature in degrees Celsius</>,
+    emitted: <>Infrared from the surface</>,
+    kelvin: <>Surface temperature in kelvin</>,
+    sunlight: <>Sunlight absorbed</>,
+    viewLabel: "Earth's surface under a layer of atmosphere with arrows of sunlight and infrared",
+  }}
+/>
+
 ## Assessing an Open Pit Coal Mine
 
 In open-pit coal mining, layers of soil and rock above the coal deposit can be removed so the coal can be reached. **Burning the coal and changing the land** during mining both cause impacts.
@@ -128,11 +144,11 @@ In open-pit coal mining, layers of soil and rock above the coal deposit can be r
 
 When examining a mining area, ask what soil is moved, where water flows, where wind carries the dust, and whether the land can be restored after the activity ends.
 
-Each question about the mine points at a place in this cross-section. The amber area is rock and soil that was moved, 2,400 cubic meters for every meter along the pit, water gathers at the bottom, and the wind lifts dust from the edge. Zoom in on each part.
+Each question about the mine points at a place in this cross-section. The amber area is rock and soil that was moved, <InlineMath math="2{,}400" /> cubic meters for every meter along the pit, water gathers at the bottom, and the wind lifts dust from the edge. Zoom in on each part.
 
 <MathVisual
   title={<>Questions at an Open Pit Mine</>}
-  description={<>Cross-section of an open pit with three 10 m benches. One grid step is 10 m.</>}
+  description={<>Cross-section of an open pit with three <InlineMath math="10\text{ m}" /> benches. One grid step is <InlineMath math="10\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -4, max: 2 } },
@@ -172,6 +188,21 @@ A sound energy assessment compares the useful energy with environmental and soci
 | Who receives the energy service and who experiences the impact? | Energy decisions must consider both the users of the energy and the people living near the source or power plant. |
 
 Some costs do not appear in the price of electricity. They can include dirtier air, disturbed rivers, lost habitat, or waste that requires long-term management.
+
+Upstream impact can be weighed against the benefit in energy itself. Making and installing a <InlineMath math="3\text{ kWp}" /> rooftop solar system uses an illustrative <InlineMath math="3\,900\text{ kWh}" /> before it gives back a single kilowatt-hour. On a roof that yields <InlineMath math="1\,300\text{ kWh}" /> per kWp each year, the system repays that energy in one year and returns it <InlineMath math="25" /> times over its <InlineMath math="25" /> years. Move the yield and watch the payback point shift.
+
+<SolarRoofPaybackLab
+  title={<>When a Solar Roof Repays Its Energy</>}
+  description={<>A <InlineMath math="3\text{ kWp}" /> solar roof starts in energy debt: making it took <InlineMath math="3\,900\text{ kWh}" />. Change the yearly yield and watch the energy account cross zero.</>}
+  labels={{
+    invested: <>Energy to make the system</>,
+    lifetime: <>Energy returned over <InlineMath math="25" /> years</>,
+    payback: <>Payback time in years</>,
+    viewLabel: "House with a solar roof above its energy account over five years",
+    yearly: <>Energy each year</>,
+    yieldControl: "Yearly yield per kWp",
+  }}
+/>
 
 ## Evaluate Each Energy Choice as a Whole
 

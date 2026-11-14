@@ -18,11 +18,11 @@ Bagi biojisim, bandingkan **kadar penuaian dengan kadar tumbuh semula**. Hutan y
 
 Istilah boleh baharu menerangkan cara sesuatu sumber <Highlight>tersedia semula melalui proses semula jadi</Highlight>. Kuasa yang tersedia masih bergantung pada tempat, masa dan keadaan sumber itu.
 
-Beginilah rupa "bergantung pada masa" bagi panel suria. Dalam model ringkas, sistem panel dengan kadar puncak <InlineMath math="3\text{ kW}" /> mengikut separuh gelombang sinus dari matahari terbit pada 06:00 hingga matahari terbenam pada 18:00, dan tidak memberikan apa-apa pada waktu malam. Tenaga sehari ialah luas di bawah lengkung, <InlineMath math="E=P_{\text{puncak}}\cdot\frac{24}{\pi}\text{ j}" />, jadi hari yang cerah memberikan lebih kurang <InlineMath math="22.9\text{ kWj}" />. Pada hari mendung dengan separuh nilai puncak, lengkung ungu hanya memuatkan separuh daripada tenaga itu. Sumber ini memperbaharui dirinya setiap pagi, tetapi kuasanya tidak sentiasa ada apabila kamu mahukannya.
+Beginilah rupa "bergantung pada masa" bagi panel suria. Dalam model ringkas, sistem panel dengan kadar puncak <InlineMath math="3\text{ kW}" /> mengikut separuh gelombang sinus dari matahari terbit pada <InlineMath math="06{:}00" /> hingga matahari terbenam pada <InlineMath math="18{:}00" />, dan tidak memberikan apa-apa pada waktu malam. Tenaga sehari ialah luas di bawah lengkung, <InlineMath math="E=P_{\text{puncak}}\cdot\frac{24}{\pi}\text{ j}" />, jadi hari yang cerah memberikan lebih kurang <InlineMath math="22.9\text{ kWj}" />. Pada hari mendung dengan separuh nilai puncak, lengkung ungu hanya memuatkan separuh daripada tenaga itu. Sumber ini memperbaharui dirinya setiap pagi, tetapi kuasanya tidak sentiasa ada apabila kamu mahukannya.
 
 <MathVisual
   title={<>Kuasa Suria dalam Satu Hari</>}
-  description={<>Model ringkas sistem panel 3 kW pada hari cerah dan pada hari mendung dengan separuh nilai puncak. Paksi mengufuk: waktu dalam unit 2 j. Paksi menegak: kuasa dalam kW.</>}
+  description={<>Model ringkas sistem panel <InlineMath math="3\text{ kW}" /> pada hari cerah dan pada hari mendung dengan separuh nilai puncak. Paksi mengufuk: waktu dalam unit <InlineMath math="2\text{ j}" />. Paksi menegak: kuasa dalam kW.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 4 } },
@@ -52,7 +52,7 @@ Cuba dengan nombor rekaan: sebuah hutan menyimpan <InlineMath math="100" /> unit
 
 <MathVisual
   title={<>Kadar Penuaian Berbanding Pertumbuhan Semula</>}
-  description={<>Stok contoh sebanyak 100 unit yang tumbuh semula 2 unit setahun dengan tiga kadar penuaian h. Paksi mengufuk: tahun dalam unit 5. Paksi menegak: stok dalam unit 25.</>}
+  description={<>Stok contoh sebanyak <InlineMath math="100" /> unit yang tumbuh semula <InlineMath math="2" /> unit setahun dengan tiga kadar penuaian h. Paksi mengufuk: tahun dalam unit <InlineMath math="5" />. Paksi menegak: stok dalam unit <InlineMath math="25" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: 2.5, max: 5.5 } },
@@ -91,6 +91,21 @@ Pilih sumber boleh baharu dengan menyemak **keadaan fizikal di tapak itu**. Seti
 
 Gunakan keadaan ini untuk membandingkan sesuatu sumber dengan tapaknya. Bagi panel suria, semak cahaya matahari, ruang yang ada, cuaca, penyelenggaraan dan keperluan elektrik.
 
+Cahaya matahari di sesuatu tapak juga bergantung pada sudut ketibaannya. Sinar yang tegak lurus dengan sesuatu permukaan membawa kira-kira <InlineMath math="1\,000\text{ W/m}^2" />. Apabila permukaan itu dipalingkan sebanyak sudut <InlineMath math="\theta" />, sinar yang sama tersebar dan setiap meter persegi menerima <InlineMath math="1\,000\cos\theta\text{ W/m}^2" />. Dengan matahari setinggi <InlineMath math="30^\circ" />, panel rata menerima <InlineMath math="500\text{ W/m}^2" />. Condongkan panel itu <InlineMath math="60^\circ" /> ke arah matahari, dan panel menerima <InlineMath math="1\,000\text{ W/m}^2" /> sepenuhnya. Kira sinar yang jatuh pada panel semasa kamu mencondongkannya.
+
+<SolarPanelAngleLab
+  title={<>Condongkan Panel ke Arah Matahari</>}
+  description={<>Sinar cahaya matahari yang selari jatuh pada panel seluas <InlineMath math="1.6\text{ m}^2" />. Gerakkan matahari dan condongkan panel, kemudian bandingkan sudut di antara sinar dengan garis normal panel dengan cahaya dan kuasa yang diterimanya.</>}
+  labels={{
+    incidence: <>Sudut di antara sinar dengan garis normal</>,
+    irradiance: <>Cahaya pada setiap meter persegi</>,
+    power: <>Kuasa panel pada kecekapan <InlineMath math="20\%" /></>,
+    sunControl: "Ketinggian matahari",
+    tiltControl: "Kecondongan panel",
+    viewLabel: "Panel suria pada kaki di bawah sinar cahaya matahari yang selari",
+  }}
+/>
+
 ## Setiap Sumber Mempunyai Laluan Penukaran
 
 Setiap sumber boleh baharu sepatutnya boleh diterangkan sebagai satu laluan penukaran tenaga. Jika laluannya tidak jelas, dakwaan itu sukar disemak.
@@ -107,7 +122,7 @@ Setiap laluan berakhir pada penjana, tetapi setiap satu bermula dengan bahagian 
 
 <MathVisual
   title={<>Tiga Laluan Penukaran</>}
-  description={<>Kecekapan penukaran lazim bagi sel suria, turbin angin dan turbin hidro, dengan had Betz bagi angin (merah jambu). Satu petak grid ke atas ialah 10 peratus.</>}
+  description={<>Kecekapan penukaran lazim bagi sel suria, turbin angin dan turbin hidro, dengan had Betz bagi angin (merah jambu). Satu petak grid ke atas ialah <InlineMath math="10" /> peratus.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 10.5 }, z: { min: -1.5, max: 1.5 } },
@@ -148,6 +163,21 @@ Haba geoterma, biogas dan tenaga lautan masing-masing memerlukan keadaan tempata
 | Haba geoterma | Sumber haba boleh stabil siang dan malam, tetapi penggerudian dan keadaan geologi mesti sesuai. |
 | Biogas | Sistem ini memerlukan bekalan sisa organik yang tetap dan penyelenggaraan yang berkala. |
 | Lautan | Ombak, arus dan pasang surut boleh memacu peralatan penukaran, tetapi akses ke tapak, kakisan dan keselamatan marin mesti diambil kira. |
+
+Inilah sebabnya tenaga geoterma memerlukan takungan yang cukup panas. Di loji ini, <InlineMath math="100\text{ kg}" /> air naik setiap saat, melepaskan haba sehingga suhunya turun kepada <InlineMath math="70^\circ\text{C}" />, dan kembali ke bawah. Enjin haba di antara air itu dengan udara <InlineMath math="27^\circ\text{C}" /> tidak mungkin melebihi <InlineMath math="\eta=1-T_c/T_h" />, dan loji sebenar mencapai kira-kira <InlineMath math="40\%" /> daripada had itu. Pada <InlineMath math="200^\circ\text{C}" />, air itu memberikan <InlineMath math="54.6\text{ MW}" /> haba dan loji menghasilkan kira-kira <InlineMath math="8\text{ MW}" />. Air yang lebih panas memberikan lebih banyak haba dan menukarkan bahagian yang lebih besar daripadanya.
+
+<GeothermalLoopLab
+  title={<>Gelung Geoterma di Bawah Tanah</>}
+  description={<>Air panas naik melalui telaga pengeluaran, menyerahkan habanya kepada loji, dan kembali pada <InlineMath math="70^\circ\text{C}" />. Ubah suhu takungan dan bandingkan haba yang diambil, had unggul, kecekapan sebenar dan elektriknya.</>}
+  labels={{
+    electric: <>Elektrik</>,
+    heat: <>Haba yang diambil daripada air</>,
+    ideal: <>Had unggul</>,
+    real: <>Kecekapan loji sebenar</>,
+    reservoirControl: "Suhu takungan",
+    viewLabel: "Keratan rentas loji geoterma dengan telaga pengeluaran dan telaga suntikan",
+  }}
+/>
 
 ## Potensi Tenaga Boleh Baharu di Indonesia
 

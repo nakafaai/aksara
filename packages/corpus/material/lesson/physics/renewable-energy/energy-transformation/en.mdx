@@ -15,6 +15,27 @@ export const metadata = {
 
 When you switch on a flashlight, chemical energy in the battery becomes electrical energy supplied to the lamp. The lamp produces **the light you need** while also heating parts of the flashlight and its surroundings. That heating still counts in the energy balance, even though your purpose is to illuminate the room.
 
+Swap the bulb and the energy path stays the same while the useful share changes. Two AA cells hold <InlineMath math="3\text{ V}\times2.5\text{ Ah}=27\,000\text{ J}" />, and the bulb draws <InlineMath math="1\text{ W}" />, so the battery lasts <InlineMath math="7.5\text{ h}" /> either way. A filament bulb turns about <InlineMath math="5\%" /> of that power into light, an LED about <InlineMath math="40\%" />: eight times as much light from the same battery.
+
+<FlashlightEfficiencyLab
+  title={<>Same Battery, Different Bulbs</>}
+  description={<>A flashlight draws <InlineMath math="1\text{ W}" /> from two AA cells. Choose the bulb and compare how much of the electrical power becomes light and how much becomes heat.</>}
+  labels={{
+    battery: <>Battery energy</>,
+    bulbs: {
+      filament: <>Filament bulb</>,
+      led: <>LED</>,
+    },
+    chooseBulb: "Bulb",
+    efficiency: <>Share as light</>,
+    heat: <>Heat</>,
+    input: <>Electrical power</>,
+    light: <>Light</>,
+    runTime: <>Battery life</>,
+    viewLabel: "Flashlight in a dark room shining at a wall, its cells shown in cutaway",
+  }}
+/>
+
 ## Conversion Paths in Power Plants
 
 The diagram shows the forms of energy supplied by different sources and how power plants convert them for use.
@@ -70,7 +91,7 @@ A power plant converts energy in stages, and every stage passes on only part of 
 
 <MathVisual
   title={<>Stage Efficiencies Multiply</>}
-  description={<>Energy left at each stage of an illustrative hydropower chain from 100 J of water energy (teal, front) and the energy lost so far (gray, back). One grid step up is 20 J.</>}
+  description={<>Energy left at each stage of an illustrative hydropower chain from <InlineMath math="100\text{ J}" /> of water energy (teal, front) and the energy lost so far (gray, back). One grid step up is <InlineMath math="20\text{ J}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 6.5 }, z: { min: -1.8, max: 1.8 } },
@@ -139,7 +160,7 @@ Move the efficiency of the panel and watch the <InlineMath math="800\text{ J}" /
 
 <MathVisual
   title={<>Efficiency Splits the Input</>}
-  description={<>800 J of light into a panel (gray) split into electricity (amber) and energy to the surroundings (pink), with band widths drawn to scale. One grid step is 100 J.</>}
+  description={<><InlineMath math="800\text{ J}" /> of light into a panel (gray) split into electricity (amber) and energy to the surroundings (pink), with band widths drawn to scale. One grid step is <InlineMath math="100\text{ J}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: -0.5, max: 9 } },
@@ -187,3 +208,25 @@ Solar panels, wind turbines, generators, and biogas reactors convert existing en
 | Geothermal power plant | Does the site provide sufficient underground heat, fluid, and flow for power generation? |
 
 The conversion path records the source, initial energy form, output form, useful energy, and energy transferred to the surroundings.
+
+Now compare whole chains side by side. In the chart, <InlineMath math="100\text{ J}" /> enters each plant, every machine passes on its share, and each loss bends down into the surroundings. With typical round shares, a solar panel delivers <InlineMath math="19.2\text{ J}" />, a wind turbine <InlineMath math="40.61\text{ J}" />, a hydropower plant <InlineMath math="85.5\text{ J}" />, a biogas engine <InlineMath math="33.25\text{ J}" />, and a geothermal plant <InlineMath math="11.4\text{ J}" />. The lost joules never vanish: together with the electricity they always make <InlineMath math="100\text{ J}" />.
+
+<EnergyFlowLossLab
+  title={<>Where <InlineMath math="100\text{ J}" /> Go in Five Plants</>}
+  description={<>Each band starts with <InlineMath math="100\text{ J}" /> of the source's energy. Choose a plant and follow how its machines thin the band and hand the rest to the surroundings.</>}
+  labels={{
+    choosePlant: "Power plant",
+    efficiency: <>Overall efficiency</>,
+    input: <>Energy in</>,
+    lost: <>To the surroundings</>,
+    plants: {
+      biogas: <>Biogas</>,
+      geothermal: <>Geothermal</>,
+      hydro: <>Hydro</>,
+      solar: <>Solar</>,
+      wind: <>Wind</>,
+    },
+    useful: <>Electricity out</>,
+    viewLabel: "Energy flow chart of a power plant's conversion stages and losses",
+  }}
+/>

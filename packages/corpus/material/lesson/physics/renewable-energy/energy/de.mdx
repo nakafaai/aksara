@@ -14,6 +14,22 @@ Wenn eine Lampe angeht, Wasser kocht, ein Fahrrad fährt oder ein Telefon aufgel
 
 Energie <Highlight>lässt sich an ihren Wirkungen erkennen</Highlight>: Ein Objekt bewegt sich, die Temperatur ändert sich, Licht erscheint, Geräusche werden erzeugt oder elektrische Ladung fließt.
 
+So sieht das in einem echten Gerät aus. Eine Schwerkraftlampe hat weder Batterie noch Stecker: Ein <InlineMath math="12\text{ kg}" /> schwerer Sandsack sinkt <InlineMath math="1{,}8\text{ m}" /> tief und dreht dabei einen kleinen Generator, der eine LED leuchten lässt. Achte auf die zwei Veränderungen, die gleichzeitig passieren: Der Sack sinkt, und Licht erscheint. Mit <InlineMath math="g=10\text{ m/s}^2" /> gibt der Sack immer <InlineMath math="mgh=216\text{ J}" /> ab, ein langsameres Absinken verteilt diese Energie also nur auf mehr Zeit, und die Lampe leuchtet schwächer.
+
+<WeightLampEnergyLab
+  title={<>Eine Lampe, die ein sinkender Sack antreibt</>}
+  description={<>Ein <InlineMath math="12\text{ kg}" /> schwerer Sack sinkt <InlineMath math="1{,}8\text{ m}" /> und dreht einen Generator, der eine LED leuchten lässt. Wähle, wie lange das Absinken dauert, und vergleiche das Leuchten mit der Leistung, die der Sack abgibt.</>}
+  labels={{
+    chooseDescent: "Dauer des Absinkens",
+    drop: <>Fallhöhe</>,
+    energy: <>Abgegebene Energie</>,
+    mass: <>Masse des Sacks</>,
+    power: <>Leistung des Sacks</>,
+    time: <>Dauer des Absinkens</>,
+    viewLabel: "Schwerkraftlampe: Ein Sandsack sinkt neben einer Wandlampe in einem dunklen Raum",
+  }}
+/>
+
 ## Mechanische Arbeit überträgt Energie
 
 Wirkt eine konstante Kraft **in Richtung der Verschiebung** eines Objekts, beträgt die durch mechanische Arbeit übertragene Energie:
@@ -46,7 +62,7 @@ Zeichne das Schieben als Kraft über der Verschiebung, dann wird die Arbeit zu e
 
 <MathVisual
   title={<>Arbeit als Fläche</>}
-  description={<>Eine konstante Kraft von 15 N über 2 m. Waagrecht: Verschiebung in m. Senkrecht: Kraft in Einheiten von 5 N.</>}
+  description={<>Eine konstante Kraft von <InlineMath math="15\text{ N}" /> über <InlineMath math="2\text{ m}" />. Waagrecht: Verschiebung in m. Senkrecht: Kraft in Einheiten von <InlineMath math="5\text{ N}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.2 } },
@@ -77,6 +93,22 @@ Im SI ist die Einheit für Energie das Joule mit dem Symbol <InlineMath math="\t
 
 Das Joule ist die [abgeleitete SI-Einheit](https://www.nist.gov/pml/special-publication-330/sp-330-section-2) der Energie. [Ein Joule entspricht einem Newtonmeter](https://www.nist.gov/glossary-term/26261) oder einem Kilogramm-Meterquadrat pro Sekundequadrat.
 
+Das Joule kannst du auf einer Baustelle spüren. Ein Motorhebezeug hebt eine <InlineMath math="20\text{ kg}" /> schwere Kiste auf eine Plattform in <InlineMath math="5\text{ m}" /> Höhe. Mit <InlineMath math="g=10\text{ m/s}^2" /> zieht das Seil mit der Gewichtskraft der Kiste, <InlineMath math="200\text{ N}" />, also gewinnt die Kiste <InlineMath math="200\text{ N}\times5\text{ m}=1\,000\text{ J}" />, egal welcher Motor arbeitet. Wechsle den Motor und achte darauf, was sich ändert: nur die Zeit.
+
+<HoistWorkLab
+  title={<>Gleiche Joule, andere Motoren</>}
+  description={<>Ein Hebezeug hebt eine <InlineMath math="20\text{ kg}" /> schwere Kiste <InlineMath math="5\text{ m}" /> hoch. Wähle die Motorleistung und vergleiche die Energie, die die Kiste gewinnt, mit der Dauer des Hubs.</>}
+  labels={{
+    chooseMotor: "Motorleistung",
+    energy: <>Gewonnene Energie</>,
+    height: <>Hubhöhe</>,
+    speed: <>Steiggeschwindigkeit</>,
+    time: <>Hubdauer</>,
+    viewLabel: "Motorhebezeug hebt eine Kiste an einem Gerüstturm",
+    weight: <>Gewichtskraft der Kiste</>,
+  }}
+/>
+
 ## Energieübertragung und Energieumwandlung
 
 Energie kann **von einer Quelle auf ein Gerät übertragen** werden. Das Gerät kann sie dann in eine Nutzenergie wie Licht, Bewegung, Wärme oder Strom umwandeln.
@@ -98,7 +130,7 @@ Bei einer Umwandlung geht Energie nie verloren, sie wird nur aufgeteilt. In dies
 
 <MathVisual
   title={<>Wirkungsgrad ist der nützliche Anteil</>}
-  description={<>Ein beispielhafter Energiefluss durch eine Lampe, die Bandbreiten maßstabsgetreu. Ein Gitterschritt entspricht 10 J.</>}
+  description={<>Ein beispielhafter Energiefluss durch eine Lampe, die Bandbreiten maßstabsgetreu. Ein Gitterschritt entspricht <InlineMath math="10\text{ J}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -1.5, max: 11 } },
@@ -165,7 +197,7 @@ Das Diagramm unten zeigt beide Aussagen auf einmal. Folge der orangen Linie für
 
 <MathVisual
   title={<>Der Energieverbrauch wächst mit der Zeit</>}
-  description={<>E = Pt für eine 10-W- und eine 20-W-Lampe. Waagrecht: Zeit in Stunden. Senkrecht: Energie in Einheiten von 20 Wh.</>}
+  description={<>E = Pt für eine 10-W- und eine 20-W-Lampe. Waagrecht: Zeit in Stunden. Senkrecht: Energie in Einheiten von <InlineMath math="20\text{ Wh}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.5, max: 6.5 } },
