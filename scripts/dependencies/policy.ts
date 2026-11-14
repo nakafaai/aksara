@@ -29,7 +29,7 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     cohort: "Effect",
     dependency: "effect",
     reason:
-      "The contracts and both consumers share one exact Effect v4 peer cohort, and the contracts lead it (docs/adr/compiler.md): a contracts release peers one exact Effect version, and nakafa.com moves to it when it adopts that release. Effect 4.1.0 replaced effect/Crypto with the effect/crypto services. 4.1.3 and 4.1.4 are patch releases: Rational, CLI completion and validation fixes, cluster workflow retries, and a TestClock finalizer fix; Alchemy 2.0.0-beta.87 peers effect ^4.1.4. Contracts 6.4.0 peers 4.1.4.",
+      "The contracts and both consumers share one exact Effect v4 peer cohort, and the contracts lead it (docs/adr/compiler.md): a contracts release peers one exact Effect version, and nakafa.com moves to it when it adopts that release. Effect 4.1.0 replaced effect/Crypto with the effect/crypto services. 4.1.3 and 4.1.4 are patch releases: Rational, CLI completion and validation fixes, cluster workflow retries, and a TestClock finalizer fix; Alchemy 2.0.0-beta.87 peers effect ^4.1.4. Contracts 6.6.0 peers 4.1.4.",
     registry: "effect@latest",
     reviewedLatest: "4.1.4",
     source: "catalog",
@@ -84,21 +84,21 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "catalog",
   },
   {
-    approvedCurrent: "0.68.1",
+    approvedCurrent: "0.69.0",
     cohort: "Effect tooling",
     dependency: "@effect/tsgo",
     reason:
-      "Compiler patching is reviewed with tsrs and Effect. Every rule is decided in packages/typescript-config/base.json, and that rule block matches nakafa.com's (docs/adr/compiler.md), whose rule record, docs/adr/0021-rules.md, gives each reason. 0.68.1 patches tsrs 0.24.0-ts7.1.0-beta (its upstream.json), which replaces the TypeScript package: prepare runs effect-tsgo patch --tsrs --no-typescript. base.json decides onExitFailureToOnError, the one rule 0.68 adds, which no Aksara module reaches. Every later version must decide its new rules in base.json in the same change.",
+      "Compiler patching is reviewed with tsrs and Effect. Every rule is decided in packages/typescript-config/base.json, and that rule block matches nakafa.com's (docs/adr/compiler.md), whose rule record, docs/adr/0021-rules.md, gives each reason. 0.69.0 patches tsrs 0.25.0-ts7.1.0-beta (the version table of its README), which replaces the TypeScript package: prepare runs effect-tsgo patch --tsrs --no-typescript. base.json decides onExitFailureToOnError, the one rule 0.68 added, which no Aksara module reaches; 0.69 adds none. Every later version must decide its new rules in base.json in the same change.",
     registry: "@effect/tsgo@latest",
-    reviewedLatest: "0.68.1",
+    reviewedLatest: "0.69.0",
     source: "root-dev-dependency",
   },
   {
-    approvedCurrent: "0.24.0-ts7.1.0-beta",
+    approvedCurrent: "0.25.0-ts7.1.0-beta",
     cohort: "TypeScript",
     dependency: "tsrs",
     reason:
-      "tsrs is the Rust port of the TypeScript 7.1 compiler: every typecheck, package build, language server, and AST reader runs it, pinned to the release @effect/tsgo 0.68.1 patches. 0.25.0 adds concurrent headless lint and a Windows ARM64 package with the same checker; only tsgo's main branch patches it, so it lands with the @effect/tsgo release that supports it.",
+      "tsrs is the Rust port of the TypeScript 7.1 compiler: every typecheck, package build, language server, and AST reader runs it, pinned to 0.25.0-ts7.1.0-beta, the latest release and the one @effect/tsgo 0.69.0 patches. 0.25.0 adds concurrent headless lint and a Windows ARM64 package with the same checker.",
     registry: "tsrs@latest",
     reviewedLatest: "0.25.0-ts7.1.0-beta",
     source: "catalog",
