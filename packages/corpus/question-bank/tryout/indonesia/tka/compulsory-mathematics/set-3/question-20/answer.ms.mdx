@@ -1,0 +1,73 @@
+Soalan ini meminta jarak mengufuk keseluruhan, iaitu jarak mengufuk bahagian pertama, ditambah pelantar, ditambah jarak mengufuk bahagian kedua. Kecerunan kedua-dua bahagian berbeza, jadi **tinggi bahagian kedua mesti dicari daripada baki tinggi yang belum dinaiki oleh bahagian pertama**.
+
+# Bahagian pertama
+
+Setiap bahagian condong ialah hipotenus bagi sebuah segi tiga bersudut tegak: sisi menegaknya ialah tinggi yang dinaiki, sisi mengufuknya ialah jarak mengufuk. Daripada <InlineMath math="\sin\alpha=\frac{7}{25}" />, sisi bertentangan ialah <InlineMath math="7" /> dan hipotenus ialah <InlineMath math="25" />, jadi **sisi bersebelahan dicari dengan teorem Pythagoras**:
+
+<BlockMath math="\begin{aligned}
+\text{sisi bersebelahan}&=\sqrt{25^2-7^2}=\sqrt{576}=24 \quad\Rightarrow\quad \cos\alpha=\frac{24}{25} \\
+\text{tinggi}_1&=5\cdot\frac{7}{25}=1.4\text{ m} \\
+\text{mengufuk}_1&=5\cdot\frac{24}{25}=4.8\text{ m}
+\end{aligned}" />
+
+# Bahagian kedua
+
+Pelantar yang rata tidak menambah tinggi. Jadi bahagian kedua mesti menaiki baki tingginya. Bagi sudut <InlineMath math="\beta" />, sisi bersebelahan ialah <InlineMath math="\sqrt{13^2-5^2}=12" />, maka <InlineMath math="\cos\beta=\frac{12}{13}" />:
+
+<BlockMath math="\begin{aligned}
+\text{tinggi}_2&=2.9-1.4=1.5\text{ m} \\
+\text{panjang condong}_2&=\frac{1.5}{\sin\beta}=1.5\cdot\frac{13}{5}=3.9\text{ m} \\
+\text{mengufuk}_2&=3.9\cdot\frac{12}{13}=3.6\text{ m}
+\end{aligned}" />
+
+**Semak dengan teorem Pythagoras**: <InlineMath math="1.5^2+3.6^2=2.25+12.96=15.21=3.9^2" />. Sepadan.
+
+# Jarak mengufuk keseluruhan
+
+Ketiga-tiga bahagian menghala ke arah yang sama, jadi **jarak mengufuknya ditambah**:
+
+<BlockMath math="4.8+1.5+3.6=9.9\text{ m}" />
+
+<MathVisual
+  title={<>Keratan sisi laluan landai</>}
+  description={<>Keratan sisi laluan landai dalam meter. Bahagian pertama naik setinggi <InlineMath math="1.4" /> dengan jarak mengufuk <InlineMath math="4.8" />. Pelantar rata sepanjang <InlineMath math="1.5" />. Bahagian kedua naik setinggi <InlineMath math="1.5" /> dengan jarak mengufuk <InlineMath math="3.6" />, hingga ketinggian <InlineMath math="2.9" />. Jarak mengufuk keseluruhannya <InlineMath math="9.9" />.</>}
+  labels={{
+    "run-one": <InlineMath math="4.8" />,
+    "rise-one": <InlineMath math="1.4" />,
+    landing: <InlineMath math="1.5" />,
+    "run-two": <InlineMath math="3.6" />,
+    "rise-two": <InlineMath math="1.5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 11 },
+      y: { min: -0.6, max: 3.4 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "ramp", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4.8, y: 1.4 }, { x: 6.3, y: 1.4 }, { x: 9.9, y: 2.9 }] },
+      { id: "run-one", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4.8, y: 0 } },
+      { id: "rise-one", kind: "segment", appearance: "construction", from: { x: 4.8, y: 0 }, to: { x: 4.8, y: 1.4 } },
+      { id: "run-two", kind: "segment", appearance: "construction", from: { x: 6.3, y: 1.4 }, to: { x: 9.9, y: 1.4 } },
+      { id: "rise-two", kind: "segment", appearance: "construction", from: { x: 9.9, y: 1.4 }, to: { x: 9.9, y: 2.9 } },
+    ],
+    labels: [
+      { key: "run-one", objectId: "run-one", at: { x: 2.4, y: 0 }, placement: "below" },
+      { key: "rise-one", objectId: "rise-one", at: { x: 4.8, y: 0.7 }, placement: "right" },
+      { key: "landing", objectId: "ramp", at: { x: 5.55, y: 1.4 }, placement: "above" },
+      { key: "run-two", objectId: "run-two", at: { x: 8.1, y: 1.4 }, placement: "below" },
+      { key: "rise-two", objectId: "rise-two", at: { x: 9.9, y: 2.15 }, placement: "right" },
+    ],
+  }}
+/>
+
+Jadi, jarak mengufuk dari kaki laluan landai hingga hujung atas bahagian kedua ialah <InlineMath math="9.9\text{ m}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="13.26\text{ m}" /> menggunakan seluruh tinggi <InlineMath math="2.9\text{ m}" /> untuk bahagian kedua: <InlineMath math="2.9\cdot\frac{12}{5}=6.96" />. **Bahagian pertama sudah menaiki <InlineMath math="1.4\text{ m}" />**.
+- <InlineMath math="10.4\text{ m}" /> menambah panjang condong <InlineMath math="5+1.5+3.9" />. Soalan meminta jarak mengufuk, bukan panjang permukaan laluan.
+- <InlineMath math="8.4\text{ m}" /> terlupa menambah pelantar <InlineMath math="1.5\text{ m}" />.
+- <InlineMath math="7.5\text{ m}" /> mengira jarak mengufuk sebagai panjang condong ditolak tinggi: <InlineMath math="5-1.4=3.6" /> dan <InlineMath math="3.9-1.5=2.4" />. Sisi segi tiga bersudut tegak tidak boleh ditolak begitu sahaja, gunakan teorem Pythagoras atau kosinus.

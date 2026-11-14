@@ -3,32 +3,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "numbers",
-    topic: "real-numbers",
+    contentDomain: "algebra",
+    topic: "functions",
   },
+  stimulus: "online-taxi",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$p$$ dan $$q$$ keduanya bilangan ganjil.",
+          column: 1,
+          label:
+            "Untuk setiap jarak perjalanan, jika tarif di luar jam sibuk adalah $$F$$ rupiah, tarif pada jam sibuk untuk jarak yang sama adalah $$1{,}2F-2{.}000$$ rupiah.",
         },
         {
-          correct: false,
-          label: "Ada tepat empat pasangan $$\\{p,q\\}$$ yang memenuhi.",
+          column: 2,
+          label:
+            "Di luar jam sibuk, dua perjalanan yang jaraknya berbeda selalu mempunyai tarif yang berbeda.",
         },
         {
-          correct: true,
-          label: "Nilai terbesar dari $$pq$$ adalah $$221$$.",
+          column: 2,
+          label:
+            "Pada jam sibuk, setiap tambahan $$1\\text{ km}$$ setelah km ke-$$12$$ menambah tarif lebih banyak daripada setiap tambahan $$1\\text{ km}$$ di antara km ke-$$2$$ dan km ke-$$12$$ di luar jam sibuk.",
         },
         {
-          correct: false,
-          label: "$$p^2+q^2$$ selalu habis dibagi $$10$$.",
-        },
-        {
-          correct: true,
-          label: "$$p-q$$ selalu merupakan kelipatan $$4$$.",
+          column: 1,
+          label:
+            "Ada jarak $$d$$ sehingga tarif perjalanan $$d\\text{ km}$$ pada jam sibuk sama dengan tarif perjalanan $$(d+3)\\text{ km}$$ di luar jam sibuk.",
         },
       ],
     },

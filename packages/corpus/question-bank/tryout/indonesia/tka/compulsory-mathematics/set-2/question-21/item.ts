@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "daily-temperature",
+  stimulus: "nilai",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$32{,}0^\\circ\\text{C}$$",
-        },
-        {
           correct: true,
-          label: "$$32{,}5^\\circ\\text{C}$$",
+          label: "$$17\\le x\\le40$$ atau $$98\\le x\\le100$$",
         },
         {
           correct: false,
-          label: "$$32{,}7^\\circ\\text{C}$$",
+          label: "$$18\\le x\\le41$$ atau $$97\\le x\\le100$$",
         },
         {
           correct: false,
-          label: "$$33{,}0^\\circ\\text{C}$$",
+          label: "$$0\\le x\\le40$$ atau $$98\\le x\\le100$$",
         },
         {
           correct: false,
-          label: "$$32{,}2^\\circ\\text{C}$$",
+          label: "$$30\\le x\\le47$$ atau $$91\\le x\\le100$$",
+        },
+        {
+          correct: false,
+          label: "Tidak ada nilai $$x$$ yang memenuhi.",
         },
       ],
     },

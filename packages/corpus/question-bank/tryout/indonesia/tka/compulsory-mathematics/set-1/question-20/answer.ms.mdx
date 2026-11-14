@@ -1,0 +1,73 @@
+# Kawasan yang dirakam kamera
+
+Soalan ini mahu panjang bahagian laluan apabila tubuh orang itu dirakam sepenuhnya, dari tapak kaki hingga hujung kepala. Dua syarat mesti dipenuhi serentak: kaki mesti dirakam dan kepala mesti dirakam. Setiap syarat memberi julat jaraknya sendiri, kemudian kamu ambil bahagian yang dikongsi.
+
+Letakkan kaki tiang di asalan dan kamera <InlineMath math="K" /> pada ketinggian <InlineMath math="6" />. Garis pandangan dengan sudut tunduk <InlineMath math="\theta" /> turun <InlineMath math="\tan\theta" /> meter bagi setiap meter mengufuk. Jadi pada jarak mengufuk <InlineMath math="x" /> dari tiang, tinggi garis itu ialah <InlineMath math="6-x\tan\theta" />. Satu titik pada ketinggian <InlineMath math="y" /> dirakam jika ia terletak di antara dua garis pandangan itu.
+
+<BlockMath math="6-x\tan60^\circ\le y\le 6-x\tan30^\circ,\qquad\tan60^\circ=\sqrt{3},\quad\tan30^\circ=\tfrac{1}{\sqrt{3}}" />
+
+Tubuh orang itu ialah tembereng garis menegak. Kawasan rakaman dibatasi oleh dua garis lurus, jadi tembereng yang kedua-dua hujungnya di dalam kawasan itu juga terletak sepenuhnya di dalam. Sebab itu **seluruh tubuh dirakam tepat apabila kaki dan kepala sama-sama dirakam**.
+
+# Syarat untuk kaki dan kepala
+
+Untuk kaki, gantikan <InlineMath math="y=0" />. Untuk kepala, gantikan <InlineMath math="y=1.5" />. Setiap ketaksamaan memberi satu had jarak yang perlu dipatuhi.
+
+<BlockMath math="\begin{aligned}
+\text{kaki: }&0\ge6-x\sqrt{3}\Rightarrow x\ge\frac{6}{\sqrt{3}}=2\sqrt{3}, & 0&\le6-\frac{x}{\sqrt{3}}\Rightarrow x\le6\sqrt{3} \\
+\text{kepala: }&1.5\ge6-x\sqrt{3}\Rightarrow x\ge\frac{4.5}{\sqrt{3}}=\tfrac32\sqrt{3}, & 1.5&\le6-\frac{x}{\sqrt{3}}\Rightarrow x\le\tfrac92\sqrt{3}
+\end{aligned}" />
+
+| Bahagian tubuh | Jarak terdekat | Jarak terjauh |
+| :---: | :---: | :---: |
+| Kaki | <InlineMath math="2\sqrt{3}" /> | <InlineMath math="6\sqrt{3}" /> |
+| Kepala | <InlineMath math="\tfrac32\sqrt{3}" /> | <InlineMath math="\tfrac92\sqrt{3}" /> |
+| Seluruh tubuh | <InlineMath math="2\sqrt{3}" /> | <InlineMath math="\tfrac92\sqrt{3}" /> |
+
+Dekat dengan tiang, **kaki yang dahulu keluar** dari rakaman, jadi kaki menentukan had dekat. Jauh dari tiang, kepala yang dahulu keluar, jadi kepala menentukan had jauh.
+
+<MathVisual
+  title={<>Kawasan rakaman kamera dan dua kedudukan had</>}
+  description={<>Tiang menegak setinggi <InlineMath math="6" /> m dengan kamera <InlineMath math="K" /> di puncaknya. Garis pandangan dengan sudut tunduk <InlineMath math="60^\circ" /> menyentuh tanah pada jarak <InlineMath math="2\sqrt{3}" /> m dari kaki tiang, dan garis dengan sudut tunduk <InlineMath math="30^\circ" /> menyentuh tanah pada jarak <InlineMath math="6\sqrt{3}" /> m. Orang setinggi <InlineMath math="1.5" /> m dilukis pada dua kedudukan had: pada jarak <InlineMath math="2\sqrt{3}" /> m kakinya tepat pada garis <InlineMath math="60^\circ" />, dan pada jarak <InlineMath math="\tfrac{9}{2}\sqrt{3}" /> m kepalanya tepat pada garis <InlineMath math="30^\circ" />. Bahagian tanah di antara dua kedudukan itu ialah laluan yang dicari.</>}
+  labels={{
+    camera: <InlineMath math="K" />,
+    near: <InlineMath math="x=2\sqrt{3}" />,
+    far: <InlineMath math="x=\tfrac{9}{2}\sqrt{3}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 12 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -1, y: 0 }, to: { x: 11.5, y: 0 } },
+      { id: "pole", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 6 } },
+      { id: "steep", kind: "segment", appearance: "secondary", from: { x: 0, y: 6 }, to: { x: 2 * Math.sqrt(3), y: 0 } },
+      { id: "shallow", kind: "segment", appearance: "secondary", from: { x: 0, y: 6 }, to: { x: 6 * Math.sqrt(3), y: 0 } },
+      { id: "near-person", kind: "segment", appearance: "primary", from: { x: 2 * Math.sqrt(3), y: 0 }, to: { x: 2 * Math.sqrt(3), y: 1.5 } },
+      { id: "far-person", kind: "segment", appearance: "primary", from: { x: 4.5 * Math.sqrt(3), y: 0 }, to: { x: 4.5 * Math.sqrt(3), y: 1.5 } },
+      { id: "stretch", kind: "segment", appearance: "answer", from: { x: 2 * Math.sqrt(3), y: 0 }, to: { x: 4.5 * Math.sqrt(3), y: 0 } },
+      { id: "camera", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
+    ],
+    labels: [
+      { key: "camera", objectId: "camera", at: { x: 0, y: 6 }, placement: "left" },
+      { key: "near", objectId: "near-person", at: { x: 2 * Math.sqrt(3), y: 1.5 }, placement: "above-left" },
+      { key: "far", objectId: "far-person", at: { x: 4.5 * Math.sqrt(3), y: 1.5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+<BlockMath math="\text{panjang laluan}=\tfrac92\sqrt{3}-2\sqrt{3}=\tfrac52\sqrt{3}\approx4.33\text{ m}" />
+
+# Mengapa pilihan lain salah
+
+Pilihan yang salah muncul apabila hanya satu bahagian tubuh yang diperiksa, atau apabila yang dijawab bukan panjang laluan. Ingat, **kedua-dua syarat mesti berlaku serentak**.
+
+- <InlineMath math="2\sqrt{3}\text{ m}" /> ialah jarak kedudukan terdekat dari kaki tiang, bukan panjang laluan.
+- <InlineMath math="3\sqrt{3}\text{ m}" /> hanya menggunakan syarat kepala, <InlineMath math="\tfrac92\sqrt{3}-\tfrac32\sqrt{3}" />. Antara <InlineMath math="\tfrac32\sqrt{3}" /> dan <InlineMath math="2\sqrt{3}" />, kaki belum dirakam.
+- <InlineMath math="4\sqrt{3}\text{ m}" /> hanya menggunakan syarat kaki, <InlineMath math="6\sqrt{3}-2\sqrt{3}" />. Selepas <InlineMath math="\tfrac92\sqrt{3}" />, kepala sudah keluar dari rakaman.
+- <InlineMath math="\tfrac92\sqrt{3}\text{ m}" /> ialah bahagian laluan apabila sekurang-kurangnya sebahagian tubuh dirakam, dari <InlineMath math="\tfrac32\sqrt{3}" /> hingga <InlineMath math="6\sqrt{3}" />. Soalan mahu seluruh tubuh.
+
+Jadi, panjang bahagian laluan apabila seluruh tubuh orang itu dirakam ialah <InlineMath math="\tfrac52\sqrt{3}\text{ m}" />.

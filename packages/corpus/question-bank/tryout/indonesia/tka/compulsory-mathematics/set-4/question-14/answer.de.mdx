@@ -1,15 +1,84 @@
-Eine Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um <InlineMath math="O" /> bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(x',y')=(-y,x)" /> ab. **Drücke den Urpunkt durch den Bildpunkt aus**, also <InlineMath math="x=y'" /> und <InlineMath math="y=-x'" />, und setze in die Geradengleichung ein.
+Gegeben ist der Bildpunkt <InlineMath math="P'(2,5)" />, gesucht ist der Punkt <InlineMath math="P" />, aus dem er entstanden ist. Dafür brauchst du zwei Schritte: **Lies zuerst die Abbildungsvorschrift von <InlineMath math="T" /> aus der Zeichnung ab**, dann wende sie rückwärts an.
+
+# Die Art der Abbildung
+
+Vergleiche die Richtungen der Seiten vor und nach der Abbildung. Die Seite <InlineMath math="AB" /> ist <InlineMath math="4" /> lang und zeigt nach rechts. Die Seite <InlineMath math="A'B'" /> ist ebenfalls <InlineMath math="4" /> lang, zeigt aber nach oben. Die Seite <InlineMath math="AC" /> ist <InlineMath math="3" /> lang und zeigt nach oben, <InlineMath math="A'C'" /> ist <InlineMath math="3" /> lang und zeigt nach links.
+
+Aus rechts wird oben, aus oben wird links. Beide Seiten drehen sich gleich, nämlich um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn, und behalten ihre Länge. Genau so sieht eine **Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn** aus.
+
+Pass bei einer Spiegelung auf. Die Spiegelung an der Geraden <InlineMath math="y=x+2" /> bringt zwar <InlineMath math="A" /> nach <InlineMath math="A'" /> und <InlineMath math="B" /> nach <InlineMath math="B'" />. Den Punkt <InlineMath math="C(1,4)" /> würde sie aber nach <InlineMath math="(2,3)" /> bringen, rechts von <InlineMath math="A'" />, während <InlineMath math="C'" /> bei <InlineMath math="(-4,3)" /> liegt, also links. Eine Spiegelung kehrt den Umlaufsinn der Ecken um, in der Zeichnung bleibt er gleich. Zwei passende Punkte reichen also nicht.
+
+# Die Vorschrift von T
+
+Eine Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn macht aus der Richtung <InlineMath math="(x,y)" /> die Richtung <InlineMath math="(-y,x)" />. Das Zentrum muss nicht <InlineMath math="O" /> sein, also schreibst du die Vorschrift als diese Drehung plus eine Verschiebung und bestimmst die Verschiebung mit dem Punkt <InlineMath math="A" />.
 
 <BlockMath math="\begin{aligned}
--x'&=2y'+4 \\
-y'&=-\frac12x'-2
+T(x,y)&=(-y+a,\;x+b) \\
+T(1,1)&=(-1+a,\;1+b)=(-1,3) \\
+a&=0,\quad b=2 \\
+T(x,y)&=(-y,\;x+2)
 \end{aligned}" />
 
-Zur Kontrolle mit zwei Punkten: <InlineMath math="(0,4)" /> geht nach <InlineMath math="(-4,0)" /> und <InlineMath math="(-2,0)" /> nach <InlineMath math="(0,-2)" />. Beide Bilder erfüllen <InlineMath math="y=-\frac12x-2" />.
+Prüfe die anderen beiden Ecken: <InlineMath math="T(5,1)=(-1,7)=B'" /> und <InlineMath math="T(1,4)=(-4,3)=C'" />. Beide passen. Der Punkt, der sich nicht bewegt, erfüllt <InlineMath math="-y=x" /> und <InlineMath math="x+2=y" />, das ist <InlineMath math="K(-1,1)" />. Also ist <InlineMath math="T" /> eine Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn mit **Zentrum <InlineMath math="K(-1,1)" />, nicht mit Zentrum <InlineMath math="O" />**.
 
-Das Bild der Geraden ist also <InlineMath math="y=-\frac12x-2" />.
+# Der Urpunkt P
 
-- <InlineMath math="y=-2x-4" /> ist die Spiegelung an der <InlineMath math="x" />-Achse.
-- <InlineMath math="y=-2x+4" /> ist die Spiegelung an der <InlineMath math="y" />-Achse.
-- <InlineMath math="y=2x-4" /> ist die Drehung um <InlineMath math="180^\circ" />.
-- <InlineMath math="y=-\frac12x+2" /> ist die Drehung um <InlineMath math="90^\circ" /> im Uhrzeigersinn.
+Setze <InlineMath math="P=(x,y)" />. Sein Bild muss <InlineMath math="(2,5)" /> sein, also vergleichst du die Koordinaten:
+
+<BlockMath math="\begin{aligned}
+-y&=2 &&\Rightarrow\; y=-2 \\
+x+2&=5 &&\Rightarrow\; x=3
+\end{aligned}" />
+
+Probe: <InlineMath math="T(3,-2)=(2,\;3+2)=(2,5)" />. Das Ergebnis ist **genau <InlineMath math="P'" />**, der gesuchte Punkt ist also wirklich <InlineMath math="(3,-2)" />.
+
+<MathVisual
+  title={<>Drehung um <InlineMath math="K" /></>}
+  description={<>Das Dreieck <InlineMath math="ABC" /> mit <InlineMath math="A(1,1)" />, <InlineMath math="B(5,1)" />, <InlineMath math="C(1,4)" /> wird um <InlineMath math="K(-1,1)" /> um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn gedreht und wird zum Dreieck <InlineMath math="A'(-1,3)" />, <InlineMath math="B'(-1,7)" />, <InlineMath math="C'(-4,3)" />. Dieselbe Drehung bringt <InlineMath math="P(3,-2)" /> nach <InlineMath math="P'(2,5)" />.</>}
+  labels={{
+    "label-k": <InlineMath math="K(-1,1)" />,
+    "label-p": <InlineMath math="P(3,-2)" />,
+    "label-p-image": <InlineMath math="P'(2,5)" />,
+    "label-a": <InlineMath math="A" />,
+    "label-a-image": <InlineMath math="A'" />,
+    "label-c-image": <InlineMath math="C'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 7 },
+      y: { min: -4, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 1 }, { x: 5, y: 1 }, { x: 1, y: 4 }] },
+      { id: "triangle-image", kind: "polygon", appearance: "secondary", vertices: [{ x: -1, y: 3 }, { x: -1, y: 7 }, { x: -4, y: 3 }] },
+      { id: "arm-p", kind: "segment", appearance: "construction", from: { x: -1, y: 1 }, to: { x: 3, y: -2 } },
+      { id: "arm-p-image", kind: "segment", appearance: "construction", from: { x: -1, y: 1 }, to: { x: 2, y: 5 } },
+      { id: "point-k", kind: "point", appearance: "highlight", at: { x: -1, y: 1 } },
+      { id: "point-p", kind: "point", appearance: "answer", at: { x: 3, y: -2 } },
+      { id: "point-p-image", kind: "point", appearance: "reference", at: { x: 2, y: 5 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+      { id: "point-a-image", kind: "point", appearance: "reference", at: { x: -1, y: 3 } },
+      { id: "point-c-image", kind: "point", appearance: "reference", at: { x: -4, y: 3 } },
+    ],
+    labels: [
+      { key: "label-k", objectId: "point-k", at: { x: -1, y: 1 }, placement: "left" },
+      { key: "label-p", objectId: "point-p", at: { x: 3, y: -2 }, placement: "right" },
+      { key: "label-p-image", objectId: "point-p-image", at: { x: 2, y: 5 }, placement: "above-right" },
+      { key: "label-a", objectId: "point-a", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "label-a-image", objectId: "point-a-image", at: { x: -1, y: 3 }, placement: "above-right" },
+      { key: "label-c-image", objectId: "point-c-image", at: { x: -4, y: 3 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="(-5,4)" /> ist <InlineMath math="T(2,5)" />, also das Bild von <InlineMath math="P'" />. Gefragt ist aber der Punkt, der **nach <InlineMath math="P'" /> abgebildet wird**. Die Vorschrift muss rückwärts laufen.
+- <InlineMath math="(3,4)" /> entsteht, wenn du <InlineMath math="T" /> nach einer Probe mit nur <InlineMath math="A" /> und <InlineMath math="B" /> für die Spiegelung an <InlineMath math="y=x+2" /> hältst. Die Ecke <InlineMath math="C" /> zeigt, dass es keine Spiegelung ist.
+- <InlineMath math="(4,3)" /> behandelt <InlineMath math="T" /> als Verschiebung um <InlineMath math="\overrightarrow{AA'}=(-2,2)" />. Das Dreieck dreht sich aber, andere Punkte wandern also nicht um diesen Vektor.
+- <InlineMath math="(5,-2)" /> nimmt an, dass das Drehzentrum <InlineMath math="O" /> ist. Eine Drehung um <InlineMath math="O" /> bringt <InlineMath math="A(1,1)" /> nach <InlineMath math="(-1,1)" />, nicht nach <InlineMath math="A'(-1,3)" />.
+
+Der Punkt <InlineMath math="P" /> hat also die Koordinaten <InlineMath math="(3,-2)" />.

@@ -1,18 +1,40 @@
-Jangkauan antarkuartil adalah **kuartil atas dikurangi kuartil bawah**. Pada <InlineMath math="30" /> data terurut, median membagi data menjadi dua bagian yang masing-masing berisi <InlineMath math="15" /> data. Kuartil bawah adalah median bagian bawah, yaitu data ke-<InlineMath math="8" />, dan kuartil atas adalah data ke-<InlineMath math="23" />.
+# Kelompok yang menjadi penyebut
 
-Baca letaknya dari frekuensi kumulatif: sampai <InlineMath math="40" /> ada <InlineMath math="2" /> data, sampai <InlineMath math="45" /> ada <InlineMath math="10" />, sampai <InlineMath math="50" /> ada <InlineMath math="19" />, dan sampai <InlineMath math="55" /> ada <InlineMath math="26" />.
+Soal ini meminta sebuah bagian, jadi kamu perlu pembilang dan penyebut. Kata **di antara panggilan yang bukan panggilan singkat** menentukan penyebutnya: yang dihitung hanya panggilan yang paling sedikit <InlineMath math="7{,}5" /> menit, bukan seluruh <InlineMath math="80" /> panggilan.
+
+Batas <InlineMath math="7{,}5" /> menit jatuh di tengah kelas <InlineMath math="5\le t<10" />. Karena panggilan di kelas itu tersebar merata, separuh dari <InlineMath math="22" /> panggilannya berlangsung paling sedikit <InlineMath math="7{,}5" /> menit. Kelas-kelas sesudahnya ikut seluruhnya.
 
 <BlockMath math="\begin{aligned}
-Q_1&=x_{(8)}=45 \\
-Q_3&=x_{(23)}=55 \\
-Q_3-Q_1&=55-45=10
+\text{bukan singkat}&=\tfrac12\cdot22+14+18+12+8 \\
+&=11+52=63
 \end{aligned}" />
 
-Sebagai pemeriksaan, dengan letak <InlineMath math="\frac{31}{4}=7{,}75" /> dan <InlineMath math="\frac{93}{4}=23{,}25" />, kedua data yang mengapit selalu berada pada baris yang sama, jadi kuartilnya tetap <InlineMath math="45" /> dan <InlineMath math="55" />.
+# Panggilan yang masuk pembilang
 
-Jadi, jangkauan antarkuartilnya adalah <InlineMath math="10" /> gelas.
+Dari <InlineMath math="63" /> panggilan itu, ambil yang kurang dari <InlineMath math="22{,}5" /> menit. Batas <InlineMath math="22{,}5" /> menit jatuh di tengah kelas <InlineMath math="20\le t<25" />, jadi **hanya separuh kelas itu yang ikut dihitung**.
 
-- <InlineMath math="5" /> hanya jarak dari median <InlineMath math="50" /> ke salah satu kuartil.
-- <InlineMath math="15" /> menghitung <InlineMath math="Q_3" /> dikurangi data terkecil <InlineMath math="40" />.
-- <InlineMath math="20" /> adalah jangkauan <InlineMath math="60-40" />, bukan jangkauan antarkuartil.
-- <InlineMath math="8" /> adalah banyak hari dengan penjualan <InlineMath math="45" /> gelas, jadi frekuensi, bukan jarak antara dua nilai.
+| Kelas | Banyak panggilan | Bagian yang masuk pembilang |
+| :---: | :---: | :---: |
+| <InlineMath math="7{,}5\le t<10" /> | <InlineMath math="11" /> | <InlineMath math="11" /> |
+| <InlineMath math="10\le t<15" /> | <InlineMath math="14" /> | <InlineMath math="14" /> |
+| <InlineMath math="15\le t<20" /> | <InlineMath math="18" /> | <InlineMath math="18" /> |
+| <InlineMath math="20\le t<25" /> | <InlineMath math="12" /> | <InlineMath math="6" /> |
+| <InlineMath math="25\le t<30" /> | <InlineMath math="8" /> | <InlineMath math="0" /> |
+
+<BlockMath math="\begin{aligned}
+\text{pembilang}&=11+14+18+6=49 \\
+\text{bagian}&=\frac{49}{63}=\frac{7}{9}
+\end{aligned}" />
+
+Cek dari sisi lain. Panggilan yang bukan singkat tetapi paling sedikit <InlineMath math="22{,}5" /> menit ada <InlineMath math="6+8=14" />, dan <InlineMath math="49+14=63" />. Jadi bagian pelengkapnya <InlineMath math="\frac{14}{63}=\frac29" />, dan <InlineMath math="\frac79+\frac29=1" />.
+
+# Kenapa pilihan lain keliru
+
+Setiap pilihan yang salah muncul dari penyebut yang keliru atau dari kelas yang dipotong dengan cara keliru. **Dua batas yang jatuh di tengah kelas** harus sama-sama dipotong separuh.
+
+- <InlineMath math="\frac{43}{63}" /> lupa memasukkan <InlineMath math="6" /> panggilan pada <InlineMath math="20\le t<22{,}5" />. Pembilangnya berhenti di <InlineMath math="20" /> menit.
+- <InlineMath math="\frac{8}{13}" /> hanya memakai kelas utuh, yaitu <InlineMath math="10\le t<20" /> dibagi <InlineMath math="10\le t<30" />, sama dengan <InlineMath math="\frac{32}{52}" />. Kedua batas di tengah kelas diabaikan.
+- <InlineMath math="\frac{49}{80}" /> memakai seluruh <InlineMath math="80" /> panggilan sebagai penyebut. Soal hanya bertanya di antara panggilan yang bukan singkat.
+- <InlineMath math="\frac{2}{9}" /> adalah bagian panggilan yang paling sedikit <InlineMath math="22{,}5" /> menit, yaitu pelengkapnya.
+
+Jadi, taksiran bagian yang ditanyakan adalah <InlineMath math="\frac{7}{9}" />.

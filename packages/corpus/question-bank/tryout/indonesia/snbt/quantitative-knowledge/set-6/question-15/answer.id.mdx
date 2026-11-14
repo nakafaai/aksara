@@ -1,22 +1,38 @@
-Lingkaran ini tidak memiliki suku konstanta, jadi titik <InlineMath math="(0,0)" /> terletak pada lingkaran. Garis <InlineMath math="y=kx" /> juga selalu melalui titik asal, sehingga **garis itu harus menyinggung lingkaran tepat di titik asal**.
+Panjang kelilingnya tidak disebutkan, tetapi itu belum berarti informasinya kurang. Kedua luas sama-sama sebanding dengan kuadrat keliling, jadi **perbandingan kedua luas tidak bergantung pada kelilingnya**. Rencananya: nyatakan kedua luas dengan keliling <InlineMath math="K" />, hitung perbandingannya, lalu bandingkan dengan <InlineMath math="90\%" /> memakai taksiran yang aman.
 
-# Substitusi garis ke lingkaran
+# Menyatakan kedua luas dengan keliling
 
-Ganti <InlineMath math="y" /> dengan <InlineMath math="kx" />.
+Segienam beraturan dengan keliling <InlineMath math="K" /> punya sisi <InlineMath math="\tfrac{K}{6}" />. Segienam itu tersusun dari **enam segitiga sama sisi** dengan sisi yang sama. Lingkaran dengan keliling <InlineMath math="K" /> punya jari-jari <InlineMath math="r=\tfrac{K}{2\pi}" />.
 
 <BlockMath math="\begin{aligned}
-x^2+k^2x^2-6x+8kx&=0\\
-x\left[(1+k^2)x-(6-8k)\right]&=0
+L_{\text{segienam}} &= 6\cdot\frac{\sqrt3}{4}\left(\frac{K}{6}\right)^2=\frac{\sqrt3\,K^2}{24} \\
+L_{\text{lingkaran}} &= \pi\left(\frac{K}{2\pi}\right)^2=\frac{K^2}{4\pi}
 \end{aligned}" />
 
-Akar <InlineMath math="x=0" /> adalah titik asal. Akar kedua adalah <InlineMath math="x=\dfrac{6-8k}{1+k^2}" />. Garis hanya menyentuh satu titik jika **akar kedua juga sama dengan nol**.
+# Membandingkan perbandingannya
 
-<BlockMath math="6-8k=0\quad\Longrightarrow\quad k=\frac34" />
+Bagi luas segienam dengan luas lingkaran. Faktor <InlineMath math="K^2" /> saling coret, jadi **hasilnya sama untuk keliling berapa pun**.
 
-# Pemeriksaan dengan jari-jari
+<BlockMath math="\begin{aligned}
+\frac{L_{\text{segienam}}}{L_{\text{lingkaran}}} &= \frac{\sqrt3\,K^2}{24}\cdot\frac{4\pi}{K^2}=\frac{\pi\sqrt3}{6}
+\end{aligned}" />
 
-Pusat lingkaran adalah <InlineMath math="(3,-4)" />, jadi jari-jari ke titik asal memiliki gradien <InlineMath math="-\tfrac43" />. Garis singgung **tegak lurus jari-jari**, sehingga gradiennya <InlineMath math="\tfrac34" /> karena <InlineMath math="-\tfrac43\cdot\tfrac34=-1" />.
+Jadi <InlineMath math="P>Q" /> tepat ketika <InlineMath math="\tfrac{\pi\sqrt3}{6}>\tfrac{9}{10}" />, yaitu ketika <InlineMath math="\pi\sqrt3>\tfrac{27}{5}=5{,}4" />.
 
-Nilai <InlineMath math="-\tfrac43" /> adalah gradien jari-jari itu sendiri, dan garis yang melalui pusat memotong lingkaran di dua titik. Nilai <InlineMath math="-\tfrac34" /> muncul dari salah tanda pada suku <InlineMath math="8kx" />. Nilai <InlineMath math="\tfrac43" /> membalik gradien tanpa mengganti tanda. Garis <InlineMath math="y=0" /> memotong lingkaran di <InlineMath math="(0,0)" /> dan <InlineMath math="(6,0)" />.
+# Memeriksa dengan taksiran yang aman
 
-Jadi, nilai <InlineMath math="k" /> adalah **<InlineMath math="\tfrac34" />**.
+Selisihnya tipis, jadi pakai batas bawah yang pasti benar: <InlineMath math="\pi>3{,}14" /> dan <InlineMath math="\sqrt3>1{,}73" />, karena <InlineMath math="1{,}73^2=2{,}9929<3" />. **Batas bawah yang sudah melewati <InlineMath math="5{,}4" /> sudah cukup sebagai bukti**.
+
+<BlockMath math="\pi\sqrt3>3{,}14\times1{,}73=5{,}4322>5{,}4" />
+
+Jadi luas segienam lebih dari <InlineMath math="90\%" /> luas lingkaran, sehingga <InlineMath math="P>Q" />. Cek juga sisi lainnya: <InlineMath math="\pi\sqrt3<6" /> karena <InlineMath math="3\pi^2<36" />, yaitu <InlineMath math="\pi^2<12" />. Jadi segienam tetap lebih kecil dari lingkaran, tetapi hanya sedikit, sekitar <InlineMath math="91\%" /> luasnya.
+
+# Mengapa pilihan lain keliru
+
+Pilihan yang salah muncul dari **anggapan yang tidak dihitung** atau taksiran yang terlalu kasar.
+
+- <InlineMath math="Q>P" /> muncul kalau kamu ingat bahwa lingkaran selalu lebih luas, tetapi lupa bahwa <InlineMath math="Q" /> hanya <InlineMath math="90\%" /> dari luas lingkaran. Pilihan ini juga muncul kalau kamu menaksir <InlineMath math="\pi\approx3" /> dan <InlineMath math="\sqrt3\approx1{,}7" />, karena hasil kalinya <InlineMath math="5{,}1" /> berada di bawah <InlineMath math="5{,}4" />.
+- <InlineMath math="P=Q" /> muncul dari anggapan bahwa keliling sama berarti luasnya hampir sama, tanpa menghitung perbandingannya.
+- Informasi tidak cukup muncul kalau kamu mengira panjang keliling harus diketahui, padahal <InlineMath math="K^2" /> saling coret.
+
+Jadi, hubungan yang benar adalah <InlineMath math="P>Q" />.

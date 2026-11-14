@@ -1,16 +1,42 @@
-A fraction of the tank becomes litres only once the **tank capacity** is known. The <InlineMath math="27" /> litres fill exactly the gap between the two levels.
+The question asks for <InlineMath math="8^{x}-8^{-x}" />, not for <InlineMath math="x" /> itself. So you don't have to solve for <InlineMath math="x" /> directly. **Rewrite every base as <InlineMath math="2" />**, then work with algebraic identities. The condition <InlineMath math="x<0" /> settles a sign along the way.
+
+# Rewrite with base two
+
+Let <InlineMath math="a=2^{x}" /> and <InlineMath math="b=2^{-x}" />. Both are positive, and **their product is always <InlineMath math="1" />**, because <InlineMath math="ab=2^{x}\cdot2^{-x}=2^{0}=1" />. Now rewrite both terms on the left-hand side.
 
 <BlockMath math="\begin{aligned}
-\frac{15}{16}-\frac38=\frac{15}{16}-\frac{6}{16}=\frac{9}{16}\ &\Rightarrow\ \text{tank}=27\div\frac{9}{16}=48\text{ litres} \\
-\frac{15}{16}-\frac14=\frac{11}{16}\ &\Rightarrow\ \frac{11}{16}\cdot48=33\text{ litres} \\
-33\cdot12&=396\text{ km}
+4^{x+1}&=4\cdot4^{x}=4\left(2^{x}\right)^{2}=4a^{2} \\
+2^{2-2x}&=2^{2}\cdot2^{-2x}=4\left(2^{-x}\right)^{2}=4b^{2} \\
+4a^{2}+4b^{2}&=72\ \Rightarrow\ a^{2}+b^{2}=18
 \end{aligned}" />
 
-As a check, <InlineMath math="\frac38\cdot48=18" /> litres plus <InlineMath math="27" /> litres give <InlineMath math="45=\frac{15}{16}\cdot48" /> litres.
+# The sign from x being negative
 
-So the car travels <InlineMath math="396\text{ km}" />.
+You can get the square of the difference from <InlineMath math="a^{2}+b^{2}" /> and <InlineMath math="ab" />.
 
-- <InlineMath math="144\text{ km}" /> uses the <InlineMath math="12" /> litres left in the tank at the end instead of the fuel used.
-- <InlineMath math="324\text{ km}" /> uses only the <InlineMath math="27" /> litres bought and ignores the fuel already in the tank.
-- <InlineMath math="540\text{ km}" /> drives the tank down to empty, <InlineMath math="45" /> litres, instead of to one quarter.
-- <InlineMath math="576\text{ km}" /> uses the full capacity of <InlineMath math="48" /> litres.
+<BlockMath math="\begin{aligned}
+(a-b)^{2}&=a^{2}+b^{2}-2ab=18-2=16 \\
+a-b&=4\ \text{ or }\ a-b=-4
+\end{aligned}" />
+
+There are two possibilities, and the condition <InlineMath math="x<0" /> picks one. If <InlineMath math="x" /> is negative, then <InlineMath math="a=2^{x}<1" /> and <InlineMath math="b=2^{-x}>1" />. So <InlineMath math="a<b" />, which means **<InlineMath math="a-b" /> has to be negative**: <InlineMath math="a-b=-4" />.
+
+# The difference of cubes
+
+Since <InlineMath math="8^{x}=\left(2^{x}\right)^{3}=a^{3}" /> and <InlineMath math="8^{-x}=b^{3}" />, you're looking for <InlineMath math="a^{3}-b^{3}" />. Use the **difference of two cubes** formula.
+
+<BlockMath math="\begin{aligned}
+a^{3}-b^{3}&=(a-b)\left(a^{2}+ab+b^{2}\right) \\
+&=(-4)(18+1)=-76
+\end{aligned}" />
+
+Check with the actual values: from <InlineMath math="a-b=-4" /> and <InlineMath math="ab=1" /> you get <InlineMath math="a=\sqrt5-2" /> and <InlineMath math="b=\sqrt5+2" />. Their product is <InlineMath math="5-4=1" />, and <InlineMath math="a^{2}+b^{2}=(9-4\sqrt5)+(9+4\sqrt5)=18" />. Everything fits.
+
+# Why the other options are wrong
+
+- <InlineMath math="-72" /> forgets the <InlineMath math="ab" /> term in the second factor, so it works out <InlineMath math="(-4)\cdot18" />.
+- <InlineMath math="-64" /> treats <InlineMath math="a^{3}-b^{3}" /> as <InlineMath math="(a-b)^{3}" />. **The cube of a difference isn't the difference of the cubes**.
+- <InlineMath math="-4" /> stops at <InlineMath math="2^{x}-2^{-x}" /> and never moves on to the cubes.
+- <InlineMath math="76" /> uses <InlineMath math="a-b=4" /> and ignores the condition <InlineMath math="x<0" />.
+
+So <InlineMath math="8^{x}-8^{-x}=-76" />.

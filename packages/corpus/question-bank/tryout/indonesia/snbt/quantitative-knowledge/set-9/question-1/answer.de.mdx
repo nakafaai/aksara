@@ -1,20 +1,49 @@
-Primzahlen einzeln auszuprobieren endet nie. Vollständig ist es, **den Rest von <InlineMath math="p" /> bei Division durch 3 zu prüfen**, weil 10 und 14 verschiedene Reste lassen.
+Gesucht ist das größte Porto, das sich **nicht passend bezahlen lässt**, obwohl es beliebig viele Briefmarken gibt. Damit die Zahlen kurz bleiben, steht unten jeder Wert in Tausend Rupiah. Der Plan: Mach aus der Pflichtmarke zuerst eine Aufgabe ohne Regel, such den größten Betrag, der sich nicht aus <InlineMath math="7" /> und <InlineMath math="9" /> bilden lässt, und nimm dann die Regel wieder dazu.
 
-# Kleine Primzahlen
+# Die Regel als Verschiebung
 
-Für <InlineMath math="p=2" /> ist <InlineMath math="p+10=12" /> keine Primzahl. Für <InlineMath math="p=3" /> erhältst du <InlineMath math="13" /> und <InlineMath math="17" />, **beide prim**. Also passt <InlineMath math="p=3" />.
+Jedes Expresspaket trägt schon sicher eine <InlineMath math="9" />-Marke. Den Rest darfst du mit beliebig vielen <InlineMath math="7" />- und <InlineMath math="9" />-Marken bezahlen, auch mit gar keiner. Ein Porto <InlineMath math="M" /> lässt sich also **genau dann passend bezahlen, wenn sich <InlineMath math="M-9" /> ohne Regel bilden lässt**. Die Regel verschiebt also jedes Porto um <InlineMath math="9" />.
 
-# Primzahlen größer als 3
+# Beträge ohne Regel
 
-Jede Primzahl <InlineMath math="p>3" /> ist nicht durch 3 teilbar, ihr Rest ist also 1 oder 2.
+Teile die Beträge nach ihrem Rest beim Teilen durch <InlineMath math="7" /> in Gruppen ein. Eine zusätzliche <InlineMath math="7" />-Marke ändert diesen Rest nicht. Sobald also ein Betrag in einer Gruppe bildbar ist, **ist auch jeder größere Betrag derselben Gruppe bildbar**. Du brauchst nur den kleinsten Betrag jeder Gruppe, und den bildest du allein mit <InlineMath math="9" />-Marken.
+
+| Anzahl der <InlineMath math="9" />-Marken | Betrag | Rest beim Teilen durch <InlineMath math="7" /> |
+| :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="9" /> | <InlineMath math="2" /> |
+| <InlineMath math="2" /> | <InlineMath math="18" /> | <InlineMath math="4" /> |
+| <InlineMath math="3" /> | <InlineMath math="27" /> | <InlineMath math="6" /> |
+| <InlineMath math="4" /> | <InlineMath math="36" /> | <InlineMath math="1" /> |
+| <InlineMath math="5" /> | <InlineMath math="45" /> | <InlineMath math="3" /> |
+| <InlineMath math="6" /> | <InlineMath math="54" /> | <InlineMath math="5" /> |
+
+Alle sieben Reste kommen genau einmal vor, die Tabelle liefert also den kleinsten Betrag jeder Gruppe. Der größte dieser kleinsten Beträge ist <InlineMath math="54" />, in der Gruppe mit Rest <InlineMath math="5" />. Der Betrag <InlineMath math="54-7=47" /> liegt in derselben Gruppe, ist aber kleiner, also lässt er sich nicht bilden. In jeder anderen Gruppe ist der kleinste Betrag höchstens <InlineMath math="45" />, also ist dort jeder Betrag über <InlineMath math="47" /> bildbar. In der Gruppe mit Rest <InlineMath math="5" /> ist der nächste Betrag nach <InlineMath math="47" /> die <InlineMath math="54" />, und die ist bildbar. Ohne Regel ist <InlineMath math="47" /> also der größte Betrag, der sich nicht bilden lässt.
+
+# Die Regel wieder dazunehmen
+
+Ein Porto <InlineMath math="M" /> ist genau dann bezahlbar, wenn <InlineMath math="M-9" /> bildbar ist. Das größte Porto, das scheitert, bekommst du, wenn <InlineMath math="M-9" /> gleich dem größten nicht bildbaren Betrag ist.
 
 <BlockMath math="\begin{aligned}
-p=3k+1&:\quad p+14=3k+15=3(k+5)\\
-p=3k+2&:\quad p+10=3k+12=3(k+4)
+M-9&=47\\
+M&=56
 \end{aligned}" />
 
-In beiden Fällen ist eine der Zahlen **durch 3 teilbar und größer als 3**, also keine Primzahl. Keine weitere Primzahl passt.
+Für jedes <InlineMath math="M>56" /> ist <InlineMath math="M-9" /> größer als <InlineMath math="47" />, also bildbar, und **das Porto <InlineMath math="M" /> ist bezahlbar**.
 
-Die Wahl unendlich viele beruht auf der Annahme, dass unendlich viele Primzahlen das garantieren. Der Wert 0 übersieht <InlineMath math="p=3" />, und 2 oder 3 lässt meist fälschlich 7 oder 13 zu, obwohl <InlineMath math="7+14=21" /> und <InlineMath math="13+14=27" /> ist.
+# Die Probe
 
-Es gibt also **1** solche Primzahl.
+Das Porto <InlineMath math="56=7\cdot8" /> ist ein Vielfaches von <InlineMath math="7" />. Wenn <InlineMath math="56=7a+9b" /> gilt, muss auch <InlineMath math="9b" /> ein Vielfaches von <InlineMath math="7" /> sein, also **muss die Anzahl der <InlineMath math="9" />-Marken ein Vielfaches von <InlineMath math="7" /> sein**. Die Regel verlangt <InlineMath math="b\ge1" />, also folgt <InlineMath math="b\ge7" /> und <InlineMath math="9b\ge63>56" />. Das geht nicht, also ist <InlineMath math="56" /> wirklich nicht bezahlbar. Das nächste Porto klappt:
+
+<BlockMath math="57=4\cdot9+3\cdot7=36+21" />
+
+# Die verlockenden falschen Antworten
+
+Alle fünf Antworten sind tatsächlich Beträge, die sich nicht bezahlen lassen, also reicht es nicht, jede einzeln zu prüfen. Entscheidend ist, **welcher Betrag der größte ist**.
+
+- <InlineMath math="\text{Rp}47{.}000" /> ist die Antwort **ohne die Pflichtmarke**. Mit der Regel ist zwar auch <InlineMath math="47" /> nicht bezahlbar, weil sich <InlineMath math="47-9=38" /> nicht bilden lässt, aber es gibt noch ein größeres Porto, das scheitert.
+- <InlineMath math="\text{Rp}33{.}000" /> verschiebt die Zahl <InlineMath math="24" /> um <InlineMath math="9" />. Dabei ist <InlineMath math="24" /> die Anzahl der Beträge, die ohne Regel scheitern, nicht der größte davon.
+- <InlineMath math="\text{Rp}38{.}000" /> verschiebt in die falsche Richtung, nämlich <InlineMath math="47-9" />. Die Regel erhöht das Porto.
+- <InlineMath math="\text{Rp}24{.}000" /> ist die Anzahl der Beträge, die sich ohne Regel nicht bilden lassen, nicht der größte davon.
+
+Das größte Porto für ein Expresspaket, das sich nicht passend bezahlen lässt, beträgt also <InlineMath math="\text{Rp}56{.}000" />.

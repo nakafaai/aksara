@@ -1,17 +1,47 @@
-Jari-jari ke titik singgung **tegak lurus garis singgung**, jadi sudut <InlineMath math="OAP" /> dan <InlineMath math="OBP" /> siku-siku. Segi empat <InlineMath math="OAPB" /> terdiri atas dua segitiga siku-siku yang kongruen.
+Ini peluang bersyarat. Informasi bahwa hasil kalinya habis dibagi <InlineMath math="4" /> **mengecilkan ruang sampel**: kamu hanya menghitung hasil lemparan yang memenuhi syarat itu, lalu melihat berapa yang jumlahnya prima. Dadunya dua dan bisa dibedakan, jadi hasil <InlineMath math="(1,4)" /> dan <InlineMath math="(4,1)" /> dihitung terpisah, dan semua <InlineMath math="36" /> pasangan berurutan sama peluangnya.
 
-# Panjang garis singgung
+# Menyusun ruang sampel baru
 
-Pada segitiga <InlineMath math="OAP" />, **sisi miringnya** <InlineMath math="OP=13" /> dan salah satu sisi siku-sikunya <InlineMath math="OA=5" />.
+Hasil kali habis dibagi <InlineMath math="4" /> kalau faktor <InlineMath math="2" /> di dalamnya paling sedikit dua. Mata <InlineMath math="2" /> dan <InlineMath math="6" /> masing-masing memuat satu faktor <InlineMath math="2" />, mata <InlineMath math="4" /> memuat dua, dan mata ganjil tidak memuat sama sekali. Jadi syaratnya terpenuhi **kalau salah satu dadu bermata <InlineMath math="4" />, atau kedua dadu bermata <InlineMath math="2" /> atau <InlineMath math="6" />**.
 
-<BlockMath math="PA=\sqrt{13^2-5^2}=\sqrt{144}=12" />
+| Mata dadu pertama | Mata dadu kedua yang memenuhi | Banyak |
+| :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="4" /> | <InlineMath math="1" /> |
+| <InlineMath math="2" /> | <InlineMath math="2,4,6" /> | <InlineMath math="3" /> |
+| <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="1" /> |
+| <InlineMath math="4" /> | <InlineMath math="1,2,3,4,5,6" /> | <InlineMath math="6" /> |
+| <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="1" /> |
+| <InlineMath math="6" /> | <InlineMath math="2,4,6" /> | <InlineMath math="3" /> |
 
-# Luas segi empat
+Ruang sampel barunya berisi <InlineMath math="1+3+1+6+1+3=15" /> hasil.
 
-Setiap segitiga memiliki **sisi siku-siku 5 dan 12**, jadi luasnya <InlineMath math="\tfrac12\cdot5\cdot12=30" />.
+# Mencari jumlah yang prima
 
-<BlockMath math="[OAPB]=2\cdot30=60\text{ cm}^2" />
+Jumlah <InlineMath math="2" /> hanya dari <InlineMath math="(1,1)" />, yang hasil kalinya <InlineMath math="1" />, jadi tidak mungkin. Bilangan prima lainnya ganjil. Jumlah dua mata dadu ganjil tepat ketika **satu dadu genap dan satu dadu ganjil**. Dadu ganjil tidak menyumbang faktor <InlineMath math="2" />, jadi dadu genapnya harus menyumbang dua faktor sendirian, yaitu **dadu genapnya harus <InlineMath math="4" />**.
 
-Nilai 30 hanya menghitung satu segitiga. Nilai 120 lupa faktor <InlineMath math="\tfrac12" />. Nilai 65 memakai <InlineMath math="OP" /> sebagai sisi siku-siku, <InlineMath math="2\cdot\tfrac12\cdot5\cdot13" />, padahal <InlineMath math="OP" /> adalah sisi miring. Nilai 130 melakukan kesalahan yang sama tanpa faktor <InlineMath math="\tfrac12" />.
+<BlockMath math="\begin{aligned}
+4+1 &= 5\ \text{(prima)} \\
+4+3 &= 7\ \text{(prima)} \\
+4+5 &= 9\ \text{(bukan prima)}
+\end{aligned}" />
 
-Jadi, luas segi empat <InlineMath math="OAPB" /> adalah **<InlineMath math="60\text{ cm}^2" />**.
+Setiap pasangan bisa muncul dalam dua urutan, jadi hasil yang cocok adalah <InlineMath math="(4,1)" />, <InlineMath math="(1,4)" />, <InlineMath math="(4,3)" />, dan <InlineMath math="(3,4)" />. Ada <InlineMath math="4" /> hasil.
+
+# Menghitung peluangnya
+
+Peluang bersyarat adalah **banyak hasil yang cocok dibagi banyak hasil di ruang sampel baru**.
+
+<BlockMath math="P=\frac{4}{15}" />
+
+Cek kewajarannya: nilai ini lebih besar dari <InlineMath math="\tfrac{4}{36}" /> tanpa syarat, karena syarat itu membuang <InlineMath math="21" /> hasil yang tidak memenuhi, sementara keempat hasil yang cocok tetap ada.
+
+# Mengapa pilihan lain keliru
+
+Setiap pilihan yang salah **memakai ruang sampel yang keliru** atau salah menghitung urutan.
+
+- <InlineMath math="\tfrac19=\tfrac{4}{36}" /> memakai seluruh <InlineMath math="36" /> hasil, jadi syaratnya diabaikan.
+- <InlineMath math="\tfrac{2}{15}" /> hanya menghitung <InlineMath math="(4,1)" /> dan <InlineMath math="(4,3)" />, sehingga urutan sebaliknya terlewat.
+- <InlineMath math="\tfrac29" /> menghitung pasangan tanpa urutan, yaitu <InlineMath math="2" /> dari <InlineMath math="9" /> pasangan. Pasangan tanpa urutan tidak sama peluangnya, karena <InlineMath math="\{4,4\}" /> hanya muncul dengan satu cara.
+- <InlineMath math="\tfrac14=\tfrac{4}{16}" /> muncul kalau <InlineMath math="(4,4)" /> terhitung dua kali, sekali sebagai dadu pertama bermata <InlineMath math="4" /> dan sekali sebagai dadu kedua bermata <InlineMath math="4" />.
+
+Jadi, peluang jumlah kedua mata dadu merupakan bilangan prima adalah <InlineMath math="\tfrac{4}{15}" />.

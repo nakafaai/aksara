@@ -1,15 +1,55 @@
-Kuadratkan <InlineMath math="x" /> agar bentuk akarnya menjadi lebih sederhana, lalu bandingkan **suku akar yang tersisa** dengan selisihnya terhadap 9,8.
+Keempat pernyataan bergantung pada isi himpunan <InlineMath math="S" />, jadi **tentukan dulu isi himpunan itu dengan tepat**. Setelah itu, nilai setiap pernyataan dengan buktinya sendiri: pernyataan "ada" cukup dengan satu contoh, sedangkan pernyataan "setiap" butuh alasan yang berlaku untuk semua anggota.
 
-# Menghitung x kuadrat
+# Mencari isi himpunan S
 
-<BlockMath math="x^2=(\sqrt2+\sqrt3)^2=2+2\sqrt6+3=5+2\sqrt6" />
+Jangan langsung mengalikan kedua ruas dengan <InlineMath math="x" />. **Tanda <InlineMath math="x" /> belum diketahui**, dan mengalikan dengan bilangan negatif membalik arah ketidaksamaan. Pindahkan semua suku ke satu ruas, lalu jadikan satu pecahan.
 
-# Membandingkan dengan 9,8
+<BlockMath math="\begin{aligned}
+\frac{1}{x}<x
+&\iff x-\frac{1}{x}>0\\
+&\iff \frac{x^2-1}{x}>0\\
+&\iff \frac{(x+1)(x-1)}{x}>0
+\end{aligned}" />
 
-Bandingkan <InlineMath math="5+2\sqrt6" /> dengan <InlineMath math="9{,}8" />, atau setara, <InlineMath math="2\sqrt6" /> dengan <InlineMath math="4{,}8" />. Kedua bilangan positif, jadi **membandingkan kuadratnya** menjaga arah ketidaksamaan.
+Pecahan ini berganti tanda hanya di <InlineMath math="x=-1" />, <InlineMath math="x=0" />, dan <InlineMath math="x=1" />. Uji satu bilangan di setiap selang.
 
-<BlockMath math="\left(2\sqrt6\right)^2=24\qquad\text{dan}\qquad4{,}8^2=23{,}04" />
+| Selang | Contoh | Tanda pecahan |
+| :---: | :---: | :---: |
+| <InlineMath math="x<-1" /> | <InlineMath math="x=-2" /> | negatif |
+| <InlineMath math="-1<x<0" /> | <InlineMath math="x=-\frac{1}{2}" /> | positif |
+| <InlineMath math="0<x<1" /> | <InlineMath math="x=\frac{1}{2}" /> | negatif |
+| <InlineMath math="x>1" /> | <InlineMath math="x=2" /> | positif |
 
-Karena <InlineMath math="24>23{,}04" />, maka <InlineMath math="2\sqrt6>4{,}8" /> dan <InlineMath math="x^2>9{,}8" />. Taksiran <InlineMath math="\sqrt6\approx2{,}45" /> memberi <InlineMath math="x^2\approx9{,}90" />, sejalan dengan hasil ini.
+Jadi <InlineMath math="S" /> terdiri atas **bilangan di antara <InlineMath math="-1" /> dan <InlineMath math="0" />, ditambah bilangan yang lebih dari <InlineMath math="1" />**.
 
-Jadi, hubungan yang benar adalah **<InlineMath math="P>Q" />**.
+<BlockMath math="S=\{x\mid -1<x<0\ \text{atau}\ x>1\}" />
+
+# Pernyataan pertama
+
+Bilangan yang kurang dari <InlineMath math="-1" /> tidak ada di <InlineMath math="S" />. Contohnya <InlineMath math="x=-2" />: nilai <InlineMath math="\frac{1}{x}=-\frac{1}{2}" /> justru **lebih besar** daripada <InlineMath math="-2" />. Pernyataan ini **salah**. Jebakannya muncul kalau kamu mengalikan dengan <InlineMath math="x" /> tanpa memperhatikan tanda, sehingga mendapat <InlineMath math="x^2>1" /> yang ikut memuat <InlineMath math="x<-1" />.
+
+# Pernyataan kedua
+
+Untuk <InlineMath math="x\ne0" />, bilangan <InlineMath math="x^2" /> selalu positif. **Mengalikan kedua ruas dengan bilangan positif tidak mengubah arah ketidaksamaan**.
+
+<BlockMath math="\frac{1}{x}<x\;\Longrightarrow\;\frac{1}{x}\cdot x^2<x\cdot x^2\;\Longrightarrow\;x<x^3" />
+
+Langkah ini berlaku untuk setiap anggota <InlineMath math="S" />, jadi pernyataan ini **benar**. Cek dengan <InlineMath math="x=-\frac{1}{2}" />: <InlineMath math="x^3=-\frac{1}{8}" /> memang lebih dari <InlineMath math="-\frac{1}{2}" />.
+
+# Pernyataan ketiga
+
+Pernyataan "ada" cukup dibuktikan dengan **satu anggota yang cocok**. Ambil <InlineMath math="x=-\frac{1}{2}" />. Bilangan ini anggota <InlineMath math="S" />, karena <InlineMath math="\frac{1}{x}=-2<-\frac{1}{2}" />, dan kuadratnya <InlineMath math="\frac{1}{4}<1" />. Pernyataan ini **benar**.
+
+# Pernyataan keempat
+
+Misalkan <InlineMath math="y=-\frac{1}{x}" />. Maka <InlineMath math="\frac{1}{y}=-x" />. Tulis syarat keanggotaan untuk <InlineMath math="y" />, lalu kalikan kedua ruas dengan <InlineMath math="-1" />, yang membalik arah tanda.
+
+<BlockMath math="\begin{aligned}
+\frac{1}{y}<y
+&\iff -x<-\frac{1}{x}\\
+&\iff x>\frac{1}{x}
+\end{aligned}" />
+
+Baris terakhir adalah syarat keanggotaan <InlineMath math="x" /> sendiri. Jadi **<InlineMath math="y" /> anggota <InlineMath math="S" /> tepat ketika <InlineMath math="x" /> anggota <InlineMath math="S" />**, dan pernyataan ini **benar**. Cek dengan contoh: <InlineMath math="x=2" /> memberi <InlineMath math="y=-\frac{1}{2}" />, dan <InlineMath math="x=-\frac{1}{2}" /> memberi <InlineMath math="y=2" />. Keduanya anggota <InlineMath math="S" />.
+
+Jadi, pernyataan pertama salah, sedangkan pernyataan kedua, ketiga, dan keempat benar.

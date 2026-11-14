@@ -1,22 +1,36 @@
-Garis bagi sudut membagi sisi di hadapannya menurut **perbandingan dua sisi yang mengapit sudut itu**. Inilah teorema garis bagi.
+Soal ini memberi informasi tambahan, jadi yang dicari adalah **peluang bersyarat**: peluang suatu peristiwa jika peristiwa lain sudah pasti terjadi. Sebut <InlineMath math="G" /> peristiwa "jumlah nomor dua kartu pertama genap" dan <InlineMath math="E" /> peristiwa "kartu genap pertama muncul pada pengambilan ketiga". Rencananya: hitung <InlineMath math="P(G)" />, hitung peluang <InlineMath math="E" /> dan <InlineMath math="G" /> terjadi bersama, lalu bagi.
 
-# Perbandingan dari teorema garis bagi
+<BlockMath math="P(E\mid G)=\frac{P(E\cap G)}{P(G)}" />
 
-Garis bagi dari <InlineMath math="A" /> memotong <InlineMath math="BC" />, jadi titik <InlineMath math="D" /> membagi <InlineMath math="BC" /> dengan perbandingan <InlineMath math="AB:AC" />. Sisi <InlineMath math="DC" /> **berpasangan dengan <InlineMath math="AC" />**, karena keduanya bertemu di titik <InlineMath math="C" />.
+# Kapan jumlah dua kartu pertama genap
 
-<BlockMath math="\frac{BD}{DC}=\frac{AB}{AC}=\frac69=\frac23" />
-
-# Membagi panjang BC
-
-Sisi <InlineMath math="BC=10" /> terbagi menjadi <InlineMath math="2+3=5" /> bagian yang sama, dan **<InlineMath math="DC" /> mendapat tiga bagian**.
+Ada <InlineMath math="5" /> kartu ganjil dan <InlineMath math="5" /> kartu genap. Jumlah dua bilangan bulat merupakan bilangan genap **tepat ketika keduanya ganjil atau keduanya genap**. Tanpa pengembalian, kartu kedua dipilih dari <InlineMath math="9" /> kartu yang tersisa.
 
 <BlockMath math="\begin{aligned}
-BD&=\tfrac25\cdot10=4\\
-DC&=\tfrac35\cdot10=6
+P(\text{ganjil, ganjil})&=\tfrac{5}{10}\cdot\tfrac49=\tfrac29\\
+P(\text{genap, genap})&=\tfrac{5}{10}\cdot\tfrac49=\tfrac29\\
+P(G)&=\tfrac29+\tfrac29=\tfrac49
 \end{aligned}" />
 
-Pemeriksaan: <InlineMath math="4+6=10" /> dan <InlineMath math="4:6=2:3" />.
+# Peristiwa yang diminta
 
-Panjang 4 cm adalah <InlineMath math="BD" />, hasil yang muncul jika pasangan sisi tertukar. Panjang 5 cm membagi <InlineMath math="BC" /> sama besar, seperti garis berat, bukan garis bagi. Panjang 4,5 cm adalah setengah <InlineMath math="AC" /> dan panjang 3 cm adalah setengah <InlineMath math="AB" />.
+Kartu genap pertama muncul pada pengambilan ketiga berarti urutannya ganjil, ganjil, genap. Dua kartu ganjil pertama memberi jumlah genap, jadi **peristiwa <InlineMath math="E" /> sudah termasuk di dalam <InlineMath math="G" />** dan <InlineMath math="E\cap G=E" />. Setelah dua kartu ganjil diambil, tersisa <InlineMath math="8" /> kartu, dan <InlineMath math="5" /> di antaranya genap.
 
-Jadi, panjang <InlineMath math="DC" /> adalah **<InlineMath math="6\text{ cm}" />**.
+<BlockMath math="P(E\cap G)=\tfrac{5}{10}\cdot\tfrac49\cdot\tfrac58=\tfrac{100}{720}=\tfrac{5}{36}" />
+
+# Menghitung peluang bersyarat
+
+**Bagi peluang bersama dengan peluang syaratnya**, karena syarat itu menjadi ruang sampel yang baru.
+
+<BlockMath math="P(E\mid G)=\frac{5/36}{4/9}=\frac{5}{36}\cdot\frac94=\frac{45}{144}=\frac{5}{16}" />
+
+Pemeriksaan dengan jalan lain: jika <InlineMath math="G" /> terjadi, pasangan ganjil-ganjil dan genap-genap sama peluangnya (masing-masing <InlineMath math="\tfrac29" />), jadi masing-masing berpeluang <InlineMath math="\tfrac12" />. Pada kasus ganjil-ganjil, kartu ketiga genap dengan peluang <InlineMath math="\tfrac58" />, sedangkan pada kasus genap-genap kartu genap pertama sudah muncul lebih awal. Hasilnya <InlineMath math="\tfrac12\cdot\tfrac58=\tfrac{5}{16}" />.
+
+# Pilihan yang keliru
+
+- <InlineMath math="\frac{13}{16}" /> muncul jika "tepat pada pengambilan ketiga" dibaca sebagai "paling lambat pada pengambilan ketiga", sehingga kasus genap-genap ikut dihitung: <InlineMath math="\tfrac12+\tfrac{5}{16}=\tfrac{13}{16}" />.
+- <InlineMath math="\frac58" /> muncul jika dua kartu pertama dianggap pasti ganjil, sehingga kasus genap-genap terlupa.
+- <InlineMath math="\frac12" /> adalah peluang kartu ketiga genap jika **kata "pertama" diabaikan**: <InlineMath math="\tfrac12\cdot\tfrac58+\tfrac12\cdot\tfrac38=\tfrac12" />.
+- <InlineMath math="\frac14" /> muncul jika pengambilan dianggap dengan pengembalian, sehingga setiap kartu genap berpeluang <InlineMath math="\tfrac12" />: <InlineMath math="\frac{(1/2)^3}{1/2}=\frac14" />.
+
+Jadi, peluang kartu bernomor genap yang pertama muncul tepat pada pengambilan ketiga adalah <InlineMath math="\frac{5}{16}" />.

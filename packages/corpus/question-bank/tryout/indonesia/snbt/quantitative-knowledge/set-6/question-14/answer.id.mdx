@@ -1,19 +1,37 @@
-Urutkan keempat bilangan sebagai <InlineMath math="a\le b\le c\le d" />. Tiga syarat menentukan keempatnya: jumlah <InlineMath math="4\times15=60" />, median <InlineMath math="\frac{b+c}{2}=14" />, dan **12 muncul paling sering**.
+Kita cari skor mana yang salah catat dan berapa nilai benarnya. Kenaikan rata-rata memberi **besar koreksinya**, lalu syarat median dan syarat modus menyaring skor mana yang mungkin. Kedua syarat itu harus dicek, karena satu syarat saja masih menyisakan lebih dari satu kandidat.
 
-# Menentukan keempat bilangan
+# Menghitung besar koreksi
 
-Agar 12 menjadi modus, 12 harus muncul paling sedikit dua kali. Bilangan <InlineMath math="c" /> dan <InlineMath math="d" /> tidak mungkin 12, karena <InlineMath math="b+c=28" /> memaksa <InlineMath math="c\ge14" />. Jadi **12 harus menempati <InlineMath math="a" /> dan <InlineMath math="b" />**.
+Data awal punya jumlah <InlineMath math="2+5+6+7+9+10+10=49" />, jadi rata-ratanya <InlineMath math="\tfrac{49}{7}=7" />. Median adalah data keempat setelah diurutkan, yaitu <InlineMath math="7" />, dan modusnya <InlineMath math="10" />. Rata-rata tujuh data naik <InlineMath math="1" /> berarti **jumlahnya naik <InlineMath math="7\times1=7" />**.
+
+<BlockMath math="\text{nilai benar}=\text{skor tercatat}+7" />
+
+# Menguji syarat median
+
+Median tetap data keempat. Kalau skor yang dikoreksi adalah <InlineMath math="2" />, <InlineMath math="5" />, <InlineMath math="6" />, atau <InlineMath math="7" />, skor itu melompat ke atas <InlineMath math="7" />, sehingga **data keempat yang baru menjadi <InlineMath math="9" />**. Contohnya untuk <InlineMath math="7" /> yang dikoreksi menjadi <InlineMath math="14" />.
+
+<BlockMath math="2,\ 5,\ 6,\ 9,\ 10,\ 10,\ 14\quad\Rightarrow\quad\text{median}=9" />
+
+Jadi skor yang salah harus salah satu skor di atas median, yaitu <InlineMath math="9" /> atau <InlineMath math="10" />.
+
+# Menguji syarat modus
+
+Kalau satu skor <InlineMath math="10" /> dikoreksi menjadi <InlineMath math="17" />, nilai <InlineMath math="10" /> tinggal muncul sekali. Semua nilai lalu muncul sekali, jadi **modus <InlineMath math="10" /> hilang**. Tinggal skor <InlineMath math="9" /> yang dikoreksi menjadi <InlineMath math="16" />.
 
 <BlockMath math="\begin{aligned}
-a=b&=12\\
-c&=28-12=16\\
-d&=60-12-12-16=20
+\text{data baru} &: 2,\ 5,\ 6,\ 7,\ 10,\ 10,\ 16 \\
+\text{rata-rata} &= \tfrac{56}{7}=8=7+1 \\
+\text{median} &= 7,\quad \text{modus}=10
 \end{aligned}" />
 
-Datanya 12, 12, 16, 20. Cek: rata-rata <InlineMath math="\tfrac{60}{4}=15" />, median <InlineMath math="\tfrac{12+16}{2}=14" />, dan 12 satu-satunya modus.
+Ketiga syarat terpenuhi, jadi nilai benarnya <InlineMath math="16" />.
 
-# Memeriksa pernyataan
+# Mengapa pilihan lain keliru
 
-Bilangan terbesar 20 dan jangkauan <InlineMath math="20-12=8" />, jadi pernyataan pertama dan kedua **benar**. Bilangan ketiga adalah 16, bukan 14, karena 14 adalah rata-rata dua bilangan tengah. Pernyataan ketiga salah. Jumlah dua bilangan terbesar <InlineMath math="16+20=36" />, jadi pernyataan keempat salah.
+Setiap pilihan yang salah adalah kandidat yang **lolos satu syarat tetapi gagal di syarat lain**.
 
-Jadi, pernyataan pertama **benar**, kedua **benar**, ketiga **salah**, dan keempat **salah**.
+- <InlineMath math="17" /> berasal dari skor <InlineMath math="10" />. Mediannya tetap <InlineMath math="7" />, tetapi modus <InlineMath math="10" /> hilang.
+- <InlineMath math="14" /> berasal dari skor <InlineMath math="7" />, dan <InlineMath math="12" /> dari skor <InlineMath math="5" />. Modusnya tetap <InlineMath math="10" />, tetapi mediannya berubah menjadi <InlineMath math="9" />.
+- <InlineMath math="9" /> berasal dari skor <InlineMath math="2" />. Mediannya menjadi <InlineMath math="9" />, dan modusnya menjadi dua, yaitu <InlineMath math="9" /> dan <InlineMath math="10" />.
+
+Jadi, nilai yang benar dari skor yang salah catat itu adalah <InlineMath math="16" />.

@@ -1,17 +1,35 @@
-The parking fee consists of **a fixed charge for the first 2 hours** and an hourly charge after that. Let there be <InlineMath math="k" /> hours after the first 2 hours.
+You need to count the pairs <InlineMath math="(a,b)" /> with <InlineMath math="\operatorname{lcm}(a,b)=360" />, but only those with <InlineMath math="a<b" />. The plan is to count **all ordered pairs** first, without the condition <InlineMath math="a<b" />, and then use symmetry to take half of them correctly.
 
-# Setting up the inequality
+# Splitting the lcm by prime factors
+
+Factor <InlineMath math="360=2^3\cdot 3^2\cdot 5" />. Since <InlineMath math="360" /> is a multiple of both <InlineMath math="a" /> and <InlineMath math="b" />, both are divisors of <InlineMath math="360" />. Write each of them in prime factors.
+
+<BlockMath math="a=2^{x_1}3^{y_1}5^{z_1},\qquad b=2^{x_2}3^{y_2}5^{z_2}" />
+
+The lcm takes **the largest power of each prime factor**. So the condition <InlineMath math="\operatorname{lcm}(a,b)=360" /> is the same as three separate conditions: <InlineMath math="\max(x_1,x_2)=3" />, <InlineMath math="\max(y_1,y_2)=2" /> and <InlineMath math="\max(z_1,z_2)=1" />.
+
+# Counting the pairs of exponents
+
+For the factor <InlineMath math="2" />, each exponent can be <InlineMath math="0" /> to <InlineMath math="3" />, so there are <InlineMath math="4\cdot 4=16" /> pairs. Remove the ones whose larger exponent doesn't reach <InlineMath math="3" />, where both are at most <InlineMath math="2" />: that's <InlineMath math="3\cdot 3=9" />. The same idea works for the factors <InlineMath math="3" /> and <InlineMath math="5" />.
 
 <BlockMath math="\begin{aligned}
-5{,}000+3{,}000k&\le20{,}000\\
-3{,}000k&\le15{,}000\\
-k&\le5
+\text{factor } 2 &: 16-9=7 \\
+\text{factor } 3 &: 9-4=5 \\
+\text{factor } 5 &: 4-1=3
 \end{aligned}" />
 
-# Parking time
+The three choices don't affect each other, so the **multiplication rule** gives <InlineMath math="7\cdot 5\cdot 3=105" /> ordered pairs <InlineMath math="(a,b)" />. This number still counts <InlineMath math="(a,b)" /> and <InlineMath math="(b,a)" /> as two pairs, and it also includes pairs with <InlineMath math="a=b" />.
 
-The largest value is <InlineMath math="k=5" />, so the longest parking time is **the first 2 hours plus 5 hours**, that is 7 hours. The fee is exactly <InlineMath math="5{,}000+5\cdot3{,}000=20{,}000" />. Parking longer than 7 hours, even by a few minutes, counts as 8 hours and costs 23,000 rupiah.
+# The order condition
 
-The answer 5 hours forgets to add the first 2 hours. The answer 6 hours divides all the money by 3,000 and rounds down, as if the first 2 hours had no special fee.
+A pair with <InlineMath math="a=b" /> only works if <InlineMath math="\operatorname{lcm}(a,a)=a=360" />, so **there's just one twin pair**, <InlineMath math="(360,360)" />. That leaves <InlineMath math="104" /> pairs with <InlineMath math="a\ne b" />. They come in couples, <InlineMath math="(a,b)" /> and <InlineMath math="(b,a)" />, and exactly one pair in each couple has <InlineMath math="a<b" />.
 
-So the longest parking time is **7 hours**.
+<BlockMath math="\frac{105-1}{2}=52" />
+
+# Checking with a small case
+
+Try the same method for <InlineMath math="\operatorname{lcm}(a,b)=12=2^2\cdot 3" />. It gives <InlineMath math="5\cdot 3=15" /> ordered pairs, so <InlineMath math="\tfrac{15-1}{2}=7" /> pairs with <InlineMath math="a<b" />. The list really has seven: <InlineMath math="(1,12)" />, <InlineMath math="(2,12)" />, <InlineMath math="(3,12)" />, <InlineMath math="(4,12)" />, <InlineMath math="(6,12)" />, <InlineMath math="(3,4)" /> and <InlineMath math="(4,6)" />. So **the counting method checks out**.
+
+Common mistakes are answering <InlineMath math="105" /> because you forgot the condition <InlineMath math="a<b" />, or dividing <InlineMath math="105" /> by <InlineMath math="2" /> without removing the twin pair first.
+
+So there are <InlineMath math="52" /> pairs <InlineMath math="(a,b)" /> with <InlineMath math="a<b" /> and <InlineMath math="\operatorname{lcm}(a,b)=360" />.

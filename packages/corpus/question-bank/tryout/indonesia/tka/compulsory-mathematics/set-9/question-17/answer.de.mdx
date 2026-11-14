@@ -1,13 +1,39 @@
-Ein Stein, der ganz untertaucht, **verdrängt genau sein eigenes Volumen an Wasser**. Das Volumen des Steins ist also das Volumen des Anstiegs, ein Quader mit der Grundfläche des Aquariums und dem Anstieg als Höhe.
+Gesucht ist die Zahl der Drahtrollen, mit denen der ganze Garten mit <InlineMath math="3" /> Lagen Stacheldraht eingezäunt wird. Die Kette ist lang: fehlende Seite finden, in echte Längen umrechnen, Drahtlänge bestimmen und dann **aufrunden, weil Rollen nicht meterweise verkauft werden**.
+
+# Die fehlende Seite
+
+Für den Umfang brauchst du alle vier Seiten, aber <InlineMath math="AD" /> wurde nicht gemessen. Fäll das Lot von <InlineMath math="C" /> auf <InlineMath math="AB" /> mit Fußpunkt <InlineMath math="E" />. Da <InlineMath math="AECD" /> ein Rechteck ist, gilt <InlineMath math="AE=DC=5" /> cm, also <InlineMath math="EB=11-5=6" /> cm. Das Dreieck <InlineMath math="CEB" /> ist bei <InlineMath math="E" /> rechtwinklig:
 
 <BlockMath math="\begin{aligned}
-\text{Anstieg}&=37{,}5-35=2{,}5\text{ cm} \\
-V_{\text{Stein}}&=80\cdot40\cdot2{,}5=8{.}000\text{ cm}^3
+AD=CE&=\sqrt{BC^2-EB^2} \\
+&=\sqrt{10^2-6^2}=\sqrt{64}=8\text{ cm}
 \end{aligned}" />
 
-Der Stein hat also ein Volumen von <InlineMath math="8{.}000\text{ cm}^3" />.
+Denk dran: **Abgezogen werden die Quadrate**, nicht die Längen. <InlineMath math="10-6=4" /> cm ist nicht <InlineMath math="AD" />.
 
-- <InlineMath math="80{.}000\text{ cm}^3" /> liest den Anstieg von <InlineMath math="2{,}5\text{ cm}" /> als <InlineMath math="25" />.
-- <InlineMath math="112{.}000\text{ cm}^3" /> ist das Wasser, bevor der Stein hineinkam.
-- <InlineMath math="120{.}000\text{ cm}^3" /> ist Wasser und Stein bis <InlineMath math="37{,}5\text{ cm}" />, nicht der Stein allein.
-- <InlineMath math="160{.}000\text{ cm}^3" /> ist das volle Aquarium.
+# Umfang und Drahtlänge
+
+Die Maßstabsleiste heißt <InlineMath math="4\text{ cm}" /> entsprechen <InlineMath math="100\text{ m}" />, also entspricht <InlineMath math="1\text{ cm}" /> genau <InlineMath math="25\text{ m}" />. Multipliziere den Umfang auf der Karte mit <InlineMath math="25" /> und dann **mit den <InlineMath math="3" /> Lagen**:
+
+<BlockMath math="\begin{aligned}
+U_{\text{Karte}}&=11+10+5+8=34\text{ cm} \\
+U&=34\cdot25=850\text{ m} \\
+\text{Drahtlänge}&=3\cdot850=2{.}550\text{ m}
+\end{aligned}" />
+
+# Anzahl der Rollen
+
+Eine Rolle enthält <InlineMath math="100\text{ m}" />:
+
+<BlockMath math="\frac{2{.}550}{100}=25{,}5" />
+
+Mit <InlineMath math="25" /> Rollen hättest du nur <InlineMath math="2{.}500\text{ m}" />, also noch <InlineMath math="50\text{ m}" /> zu wenig. Eine halbe Rolle gibt es nicht, deshalb **brauchst du <InlineMath math="26" /> Rollen**. Probe: <InlineMath math="26\cdot100=2{.}600\ge2{.}550" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="9" /> Rollen zählen nur eine Lage: <InlineMath math="850:100=8{,}5" />, aufgerundet.
+- <InlineMath math="20" /> Rollen lassen die Seite <InlineMath math="AD" /> weg, weil ihre Länge nicht in der Tabelle steht: <InlineMath math="3\cdot650=1{.}950\text{ m}" />, dafür reichen <InlineMath math="20" /> Rollen.
+- <InlineMath math="23" /> Rollen verwenden <InlineMath math="AD=10-6=4" /> cm, also die Differenz der Längen statt der Quadrate.
+- <InlineMath math="25" /> Rollen runden <InlineMath math="25{,}5" /> **ab**, und dann fehlen <InlineMath math="50\text{ m}" /> Draht.
+
+Pak Harun muss also mindestens <InlineMath math="26" /> Rollen Draht kaufen.

@@ -3,16 +3,13 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
-        { column: 1, label: "Nilai maksimum $$f$$ adalah $$18$$." },
-        {
-          column: 2,
-          label: "Sumbu simetri grafik $$f$$ adalah garis $$x=3$$.",
-        },
-        { column: 2, label: "$$f(x)>0$$ untuk setiap $$x$$ dengan $$0<x<6$$." },
-        { column: 1, label: "$$a+b+c=16$$" },
+      kind: "choice",
+      options: [
+        { correct: false, label: "$$x<0$$" },
+        { correct: false, label: "$$0<x<4$$" },
+        { correct: true, label: "$$4<x<4{,}5$$" },
+        { correct: false, label: "$$4{,}5<x<5$$" },
+        { correct: false, label: "$$x\\ge5$$" },
       ],
     },
   },

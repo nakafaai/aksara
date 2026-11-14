@@ -1,13 +1,42 @@
-Alle Zutaten werden im selben Verhältnis vervielfacht, also **ist der Faktor die neue Keksanzahl geteilt durch die Anzahl im Rezept**.
+Gefragt ist, wie viel Wirkstoff um 21 Uhr im Blut ist, also <InlineMath math="3" /> Stunden nach der letzten Tablette. Zwei Dinge musst du festhalten: **Der Wirkstoff aller drei Tabletten wird addiert**, und <InlineMath math="3" /> Stunden sind erst die Hälfte von <InlineMath math="6" /> Stunden.
+
+# Das Blut direkt nach der letzten Tablette
+
+Am übersichtlichsten verfolgst du den Inhalt des Bluts von Tablette zu Tablette. Die <InlineMath math="6" /> Stunden heißen Halbwertszeit, das ist die Zeit, bis nur noch die Hälfte da ist. Immer wenn <InlineMath math="6" /> Stunden vergehen, halbiert sich **alles, was gerade im Blut ist**, und dann kommt eine neue Tablette mit <InlineMath math="160\text{ mg}" /> dazu.
 
 <BlockMath math="\begin{aligned}
-\frac{60}{24}&=2{,}5 \\
-2{,}5\cdot300&=750\text{ g}
+\text{6 Uhr}&:\ 160 \\
+\text{12 Uhr}&:\ \tfrac{1}{2}\cdot160+160=240 \\
+\text{18 Uhr}&:\ \tfrac{1}{2}\cdot240+160=280
 \end{aligned}" />
 
-Man braucht also <InlineMath math="750" /> g Mehl.
+Direkt nach der Tablette um 18 Uhr sind also <InlineMath math="280\text{ mg}" /> Wirkstoff im Blut.
 
-- <InlineMath math="120" /> g dreht das Verhältnis um und nimmt <InlineMath math="\frac{24}{60}" />.
-- <InlineMath math="336" /> g addiert den Unterschied der Keksanzahl, <InlineMath math="36" />, zu <InlineMath math="300" /> g, Zutaten werden aber multipliziert.
-- <InlineMath math="600" /> g rundet den Faktor <InlineMath math="2{,}5" /> auf <InlineMath math="2" /> ab.
-- <InlineMath math="900" /> g rundet den Faktor <InlineMath math="2{,}5" /> auf <InlineMath math="3" /> auf.
+# Drei Stunden später
+
+Von 18 Uhr bis 21 Uhr vergehen <InlineMath math="t=3" /> Stunden, der Exponent ist also <InlineMath math="\tfrac{t}{6}=\tfrac{1}{2}" />. Du multiplizierst mit <InlineMath math="\left(\tfrac{1}{2}\right)^{1/2}" />, **nicht mit** <InlineMath math="\tfrac{1}{2}" /> und auch nicht mit <InlineMath math="\tfrac{3}{4}" />.
+
+<BlockMath math="\begin{aligned}
+M&=280\left(\tfrac{1}{2}\right)^{3/6}=280\left(\tfrac{1}{2}\right)^{1/2} \\
+&=280\cdot\tfrac{1}{2}\sqrt{2}=140\sqrt{2}\approx197{,}4\text{ mg}
+\end{aligned}" />
+
+Prüfe das, indem du den Rest jeder Tablette einzeln ausrechnest. Die Tablette von 6 Uhr ist seit <InlineMath math="15" /> Stunden im Blut, die von 12 Uhr seit <InlineMath math="9" /> Stunden und die von 18 Uhr erst seit <InlineMath math="3" /> Stunden.
+
+<BlockMath math="\begin{aligned}
+160\left(\tfrac{1}{2}\right)^{15/6}&=160\cdot\tfrac{1}{8}\sqrt{2}=20\sqrt{2} \\
+160\left(\tfrac{1}{2}\right)^{9/6}&=160\cdot\tfrac{1}{4}\sqrt{2}=40\sqrt{2} \\
+160\left(\tfrac{1}{2}\right)^{3/6}&=160\cdot\tfrac{1}{2}\sqrt{2}=80\sqrt{2} \\
+20\sqrt{2}+40\sqrt{2}+80\sqrt{2}&=140\sqrt{2}
+\end{aligned}" />
+
+Beide Wege liefern dasselbe Ergebnis und bestätigen sich gegenseitig.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="80\sqrt{2}\text{ mg}" /> zählt nur die Tablette von 18 Uhr. Die beiden früheren Tabletten **lassen noch** <InlineMath math="60\sqrt{2}\text{ mg}" /> übrig.
+- <InlineMath math="210\text{ mg}" /> entsteht, wenn du annimmst, dass der Wirkstoff gleichmäßig abnimmt und in <InlineMath math="3" /> Stunden ein Viertel verschwindet: <InlineMath math="280\cdot\tfrac{3}{4}" />. Die Abnahme ist aber eine Multiplikation mit demselben Faktor für alle <InlineMath math="3" /> Stunden. Zweimal angewendet muss dieser Faktor die Hälfte ergeben, und <InlineMath math="\left(\tfrac{3}{4}\right)^2=\tfrac{9}{16}" /> ist nicht die Hälfte.
+- <InlineMath math="160\sqrt{2}\text{ mg}" /> kommt von der Annahme, jede frühere Tablette sei nur auf die Hälfte gesunken. Dann wären um 18 Uhr <InlineMath math="80+80+160=320" /> im Blut. Die Tablette von 6 Uhr hat aber schon zwei Zeiträume von <InlineMath math="6" /> Stunden hinter sich, von ihr ist nur ein Viertel übrig, also <InlineMath math="40" />.
+- <InlineMath math="240\sqrt{2}\text{ mg}" /> addiert die drei Tabletten ganz ohne Abnahme zu <InlineMath math="480\text{ mg}" /> und rechnet erst danach die letzten <InlineMath math="3" /> Stunden.
+
+Am Montag um 21 Uhr sind also <InlineMath math="140\sqrt{2}\text{ mg}" /> Wirkstoff im Blut, ungefähr <InlineMath math="197{,}4\text{ mg}" />.

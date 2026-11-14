@@ -1,17 +1,41 @@
-Factor the expression: <InlineMath math="n^3-n=(n-1)n(n+1)" />. So <InlineMath math="n^3-n" /> is **the product of three consecutive integers**, and its divisibility can be read from that.
+The equation <InlineMath math="f(x)=k" /> has no solution exactly when <InlineMath math="k" /> **isn't in the range of <InlineMath math="f" />**. Here's the plan: simplify <InlineMath math="f" /> without losing the forbidden values of <InlineMath math="x" />, find the value the simplified form never reaches, then check which value disappears because of the forbidden point.
 
-# Divisibility by 6 and by 4
+# Simplifying the function
 
-Among three consecutive integers there is always an even number and always a multiple of 3. Their product is **always divisible by <InlineMath math="2\cdot3=6" />**, so the first statement is true.
+Factor the top and the bottom. The domain is every <InlineMath math="x" /> except <InlineMath math="1" /> and <InlineMath math="-1" />.
 
-For <InlineMath math="n=2" />, the value is <InlineMath math="1\cdot2\cdot3=6" />, which is not divisible by 4. One counterexample is enough, so the second statement is false.
+<BlockMath math="\begin{aligned}
+f(x)&=\frac{(2x+3)(x-1)}{(x-1)(x+1)}\\
+&=\frac{2x+3}{x+1}=2+\frac{1}{x+1},\quad x\ne1,\ x\ne-1
+\end{aligned}" />
 
-# The case of odd n
+You may cancel the factor <InlineMath math="x-1" /> because <InlineMath math="x\ne1" />, but **cancelling doesn't remove the restriction <InlineMath math="x\ne1" />**. The graph of <InlineMath math="f" /> is the graph of <InlineMath math="2+\frac{1}{x+1}" /> with a hole at <InlineMath math="x=1" />.
 
-If <InlineMath math="n" /> is odd, then <InlineMath math="n-1" /> and <InlineMath math="n+1" /> are **two consecutive even numbers**. One of them is a multiple of 4, so their product is divisible by <InlineMath math="2\cdot4=8" />. A multiple of 3 is still among the three numbers, and 8 and 3 share no factor other than 1, so the product is divisible by 24. Example: <InlineMath math="n=5" /> gives <InlineMath math="4\cdot5\cdot6=120=5\cdot24" />. The third statement is true.
+# Values that are never reached
 
-# Divisibility by 5
+Solve <InlineMath math="2+\frac{1}{x+1}=k" />, that is <InlineMath math="\frac{1}{x+1}=k-2" />.
 
-The example <InlineMath math="n=2" /> gives 6, which is not divisible by 5. Three consecutive integers **do not always contain a multiple of 5**, so the fourth statement is false.
+- If <InlineMath math="k=2" />, the equation becomes <InlineMath math="\frac{1}{x+1}=0" />. A fraction with numerator <InlineMath math="1" /> is never zero, so **<InlineMath math="k=2" /> is never reached**.
+- If <InlineMath math="k\ne2" />, the only candidate is <InlineMath math="x=\frac{1}{k-2}-1=\frac{3-k}{k-2}" />. This candidate is valid as long as it isn't <InlineMath math="1" /> or <InlineMath math="-1" />.
 
-So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.
+The candidate can't be <InlineMath math="-1" />, because <InlineMath math="\frac{1}{k-2}" /> is never zero. It equals <InlineMath math="1" /> when <InlineMath math="\frac{1}{k-2}=2" />, that is <InlineMath math="k=\frac52" />. For <InlineMath math="k=\frac52" /> the only candidate is the forbidden <InlineMath math="x=1" />, so **<InlineMath math="k=\frac52" /> is never reached either**. It's the value of the simplified form at the hole <InlineMath math="x=1" />, namely <InlineMath math="2+\frac12=\frac52" />.
+
+# Checking with a quadratic equation
+
+Cross-multiply without simplifying first. For <InlineMath math="x\ne\pm1" />, the equation <InlineMath math="f(x)=k" /> is equivalent to the following one.
+
+<BlockMath math="\begin{aligned}
+2x^2+x-3&=k(x^2-1)\\
+(2-k)x^2+x+(k-3)&=0
+\end{aligned}" />
+
+Its discriminant is <InlineMath math="1-4(2-k)(k-3)=(2k-5)^2\ge0" />, so this equation always has a real root. But **<InlineMath math="x=1" /> is always one of its roots**, since <InlineMath math="(2-k)+1+(k-3)=0" />, and that root is forbidden. Only the other root, <InlineMath math="\frac{3-k}{k-2}" />, is left. That other root doesn't exist for <InlineMath math="k=2" /> (the equation turns into the linear <InlineMath math="x-1=0" />) and equals <InlineMath math="1" /> for <InlineMath math="k=\frac52" /> (the equation turns into <InlineMath math="-\frac12(x-1)^2=0" />). Same result.
+
+# The wrong options
+
+- <InlineMath math="\{-1,1\}" /> lists the forbidden values of <InlineMath math="x" /> in the domain, not the values of <InlineMath math="k" /> missing from the range.
+- <InlineMath math="\varnothing" /> comes from looking only at the discriminant <InlineMath math="(2k-5)^2\ge0" /> and **forgetting to check whether the root is forbidden**.
+- <InlineMath math="\{2\}" /> records only the horizontal asymptote and forgets the hole at <InlineMath math="x=1" />.
+- <InlineMath math="\left\{\frac52\right\}" /> comes from checking the double root at <InlineMath math="k=\frac52" /> but forgetting that for <InlineMath math="k=2" /> the only root is <InlineMath math="x=1" /> too.
+
+So the set of all <InlineMath math="k" /> for which <InlineMath math="f(x)=k" /> has no solution is <InlineMath math="\left\{2,\frac52\right\}" />.

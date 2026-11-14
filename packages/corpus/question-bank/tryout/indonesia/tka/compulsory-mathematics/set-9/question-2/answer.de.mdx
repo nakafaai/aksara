@@ -1,15 +1,40 @@
-Berechne zuerst **die Butter für <InlineMath math="60" /> Kekse** und suche dann die kleinste Zahl von <InlineMath math="200" />-g-Päckchen, die reicht.
+Gesucht ist die erste Messung, deren Ergebnis **kleiner als** <InlineMath math="35\text{ mg}" /> ist. Dafür brauchst du zwei Dinge: die Wirkstoffmenge direkt nach der letzten Tablette und ihren Wert zu jeder Messzeit.
+
+# Das Blut direkt nach der letzten Tablette
+
+Alle <InlineMath math="6" /> Stunden halbiert sich alles, was im Blut ist, und dann bringt die nächste Tablette <InlineMath math="160\text{ mg}" /> dazu. **Alte Tabletten verschwinden nicht**, ihr Rest wird mitgenommen.
 
 <BlockMath math="\begin{aligned}
-\frac{60}{24}\cdot150&=2{,}5\cdot150=375\text{ g} \\
-1\text{ Päckchen}&=200\text{ g}<375\text{ g} \\
-2\text{ Päckchen}&=400\text{ g}\ge375\text{ g} \\
-\text{Rest}&=400-375=25\text{ g}
+\text{6 Uhr}&:\ 160 \\
+\text{12 Uhr}&:\ \tfrac{1}{2}\cdot160+160=240 \\
+\text{18 Uhr}&:\ \tfrac{1}{2}\cdot240+160=280
 \end{aligned}" />
 
-Rina kauft also <InlineMath math="2" /> Päckchen Butter, und <InlineMath math="25" /> g bleiben übrig.
+Nach 18 Uhr kommt keine Tablette mehr. Ab <InlineMath math="280\text{ mg}" /> nimmt die Menge also nur noch ab.
 
-- <InlineMath math="1" /> Päckchen mit <InlineMath math="50" /> g Rest nimmt <InlineMath math="150" /> g, die Menge für nur <InlineMath math="24" /> Kekse.
-- <InlineMath math="2" /> Päckchen mit <InlineMath math="100" /> g Rest nimmt den Faktor <InlineMath math="2" />, die Menge für <InlineMath math="48" /> Kekse.
-- <InlineMath math="3" /> Päckchen mit <InlineMath math="150" /> g Rest nimmt den Faktor <InlineMath math="3" />, die Menge für <InlineMath math="72" /> Kekse.
-- <InlineMath math="3" /> Päckchen mit <InlineMath math="225" /> g Rest nimmt richtig <InlineMath math="375" /> g, kauft aber ein Päckchen mehr als nötig.
+# Das Ergebnis jeder Messung
+
+Zwischen zwei Messungen liegen <InlineMath math="3" /> Stunden, also die Hälfte von <InlineMath math="6" /> Stunden. Jede Messung **multipliziert die Menge mit** <InlineMath math="\left(\tfrac{1}{2}\right)^{1/2}=\tfrac{1}{2}\sqrt{2}" />, und zwei Messungen hintereinander multiplizieren sie mit <InlineMath math="\tfrac{1}{2}" />.
+
+<BlockMath math="M=280\left(\tfrac{1}{2}\right)^{t/6},\qquad t=3,\ 6,\ 9,\ \ldots" />
+
+| Messung | <InlineMath math="t" /> (Stunden) | Wirkstoff (mg) |
+| --- | --- | --- |
+| Montag 21 Uhr | <InlineMath math="3" /> | <InlineMath math="140\sqrt{2}\approx197{,}4" /> |
+| Dienstag 0 Uhr | <InlineMath math="6" /> | <InlineMath math="140" /> |
+| Dienstag 3 Uhr | <InlineMath math="9" /> | <InlineMath math="70\sqrt{2}\approx98{,}7" /> |
+| Dienstag 6 Uhr | <InlineMath math="12" /> | <InlineMath math="70" /> |
+| Dienstag 9 Uhr | <InlineMath math="15" /> | <InlineMath math="35\sqrt{2}\approx49{,}4" /> |
+| Dienstag 12 Uhr | <InlineMath math="18" /> | <InlineMath math="35" /> |
+| Dienstag 15 Uhr | <InlineMath math="21" /> | <InlineMath math="17{,}5\sqrt{2}\approx24{,}7" /> |
+
+Um 12 Uhr sind genau <InlineMath math="35\text{ mg}" /> im Blut. Die Zahl <InlineMath math="35" /> ist nicht kleiner als <InlineMath math="35" />, diese Messung **erfüllt die Bedingung also noch nicht**. Die nächste Messung um 15 Uhr zeigt etwa <InlineMath math="24{,}7\text{ mg}" />, und das ist kleiner als <InlineMath math="35\text{ mg}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- 6 Uhr entsteht, wenn du vergisst, die Tablette von 18 Uhr dazuzuzählen, und mit <InlineMath math="120\text{ mg}" /> rechnest, der Menge kurz vor dieser Tablette. Von <InlineMath math="120" /> bleiben um 6 Uhr nur <InlineMath math="30" />.
+- 9 Uhr entsteht, wenn du **nur die letzte Tablette zählst**. Von <InlineMath math="160" /> bleiben um 9 Uhr nur <InlineMath math="20\sqrt{2}\approx28{,}2" />. Um 18 Uhr lassen die beiden früheren Tabletten aber noch <InlineMath math="120\text{ mg}" /> übrig, die Schätzung ist also zu niedrig.
+- 12 Uhr ist der Moment, in dem genau <InlineMath math="35\text{ mg}" /> im Blut sind. Die Bedingung lautet kleiner als <InlineMath math="35" />, nicht kleiner oder gleich.
+- 18 Uhr entsteht, wenn du annimmst, die Menge sinke nur bei Vielfachen von <InlineMath math="6" /> Stunden, sodass um 15 Uhr noch <InlineMath math="35" /> da wären. Dasselbe kommt heraus, wenn du die drei Tabletten ohne Abnahme zu <InlineMath math="480\text{ mg}" /> addierst. Der Wirkstoff nimmt aber ständig ab, um 15 Uhr liegt er schon unter <InlineMath math="35" />.
+
+Der Patient darf das andere Medikament also frühestens am Dienstag um 15 Uhr bekommen.

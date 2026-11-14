@@ -1,22 +1,63 @@
-Because the greatest common divisor is 12, the two numbers can be written <InlineMath math="a=12m" /> and <InlineMath math="b=12n" /> with <InlineMath math="m" /> and <InlineMath math="n" /> **sharing no factor other than 1**. In this form, the least common multiple is <InlineMath math="12mn" />.
+You're looking for the largest difference between two repeating decimals. The plan: turn each repeating decimal into a fraction, use the sum equation to get <InlineMath math="a+b" />, then pick the pair of digits that makes the difference as large as possible. The last step hides a condition that's easy to miss: **<InlineMath math="a" /> and <InlineMath math="b" /> are single digits**, so neither can be more than <InlineMath math="9" />.
 
-# Finding the possible pairs
+# Turning repeating decimals into fractions
 
-<BlockMath math="12mn=180\quad\Rightarrow\quad mn=15" />
+Let <InlineMath math="x=0.\overline{ab}" />. The repeating block is two digits long, so multiply <InlineMath math="x" /> by <InlineMath math="100" />. That shifts one block to the left of the decimal point, and the tail after the point stays exactly the same. Because the tails match, **the tail cancels when you subtract <InlineMath math="x" /> from <InlineMath math="100x" />**.
 
-The coprime pairs <InlineMath math="(m,n)" /> with product 15 are <InlineMath math="(1,15)" /> and <InlineMath math="(3,5)" />. **The sum condition picks one of them**.
+<BlockMath math="\begin{aligned}
+100x &= (10a+b)+0.\overline{ab} \\
+100x-x &= 10a+b \\
+x &= \dfrac{10a+b}{99}
+\end{aligned}" />
 
-| <InlineMath math="(m,n)" /> | Numbers | Sum |
-| :---: | :---: | :---: |
-| <InlineMath math="(1,15)" /> | 12 and 180 | 192 |
-| <InlineMath math="(3,5)" /> | 36 and 60 | 96 |
+Here <InlineMath math="10a+b" /> is the two-digit number with tens digit <InlineMath math="a" /> and units digit <InlineMath math="b" />. In the same way, <InlineMath math="0.\overline{ba}=\dfrac{10b+a}{99}" />. The number <InlineMath math="1.\overline{3}" /> repeats only one digit, so multiplying by <InlineMath math="10" /> is enough.
 
-# Computing the difference
+<BlockMath math="\begin{aligned}
+y &= 1.\overline{3} \\
+10y &= 13.\overline{3} \\
+10y-y &= 12 \\
+y &= \dfrac{12}{9}=\dfrac{4}{3}
+\end{aligned}" />
 
-The numbers are 36 and 60. Check: their greatest common divisor is 12, their least common multiple is 180, and their sum is 96.
+# Finding the sum of the digits
 
-<BlockMath math="60-36=24" />
+Now add the two fractions. The numerator factors, because <InlineMath math="10a+b+10b+a=11a+11b" />.
 
-The value 168 is the difference of the other pair, 12 and 180, whose sum is not 96. The value 12 is the greatest common divisor, the value 15 is the product <InlineMath math="mn" />, and the value 36 is the smaller number.
+<BlockMath math="\begin{aligned}
+\dfrac{10a+b}{99}+\dfrac{10b+a}{99} &= \dfrac{11(a+b)}{99}=\dfrac{a+b}{9} \\
+\dfrac{a+b}{9} &= \dfrac{12}{9} \\
+a+b &= 12
+\end{aligned}" />
 
-So the difference between the two numbers is **24**.
+So **the two digits must add up to <InlineMath math="12" />**.
+
+# Making the difference as large as possible
+
+Work out the difference the same way. This time the numerator is <InlineMath math="10a+b-10b-a=9a-9b" />.
+
+<BlockMath math="\begin{aligned}
+0.\overline{ab}-0.\overline{ba} &= \dfrac{9(a-b)}{99} \\
+&= \dfrac{a-b}{11}
+\end{aligned}" />
+
+This difference grows as <InlineMath math="a-b" /> grows. From <InlineMath math="a+b=12" /> you get <InlineMath math="a-b=12-2b" />, so <InlineMath math="b" /> should be as small as possible. But **<InlineMath math="a=12-b" /> can't be more than <InlineMath math="9" />**, which forces <InlineMath math="b\ge3" />. The only possible pairs are <InlineMath math="(9,3)" />, <InlineMath math="(8,4)" />, and <InlineMath math="(7,5)" />. The largest <InlineMath math="a-b" /> is <InlineMath math="9-3=6" />, so the largest value is <InlineMath math="\dfrac{6}{11}" />.
+
+Check it with <InlineMath math="a=9" /> and <InlineMath math="b=3" />.
+
+<BlockMath math="\begin{aligned}
+0.\overline{93}+0.\overline{39} &= \dfrac{93+39}{99}=\dfrac{132}{99}=\dfrac{4}{3} \\
+0.\overline{93}-0.\overline{39} &= \dfrac{93-39}{99}=\dfrac{54}{99}=\dfrac{6}{11}
+\end{aligned}" />
+
+The sum really is <InlineMath math="1.\overline{3}" />, and the difference is <InlineMath math="\dfrac{6}{11}=0.\overline{54}" />.
+
+# Why the other options fail
+
+Each wrong option comes from **one step that's skipped or mixed up**.
+
+- <InlineMath math="\dfrac{10}{11}" /> comes from taking <InlineMath math="a=11" /> and <InlineMath math="b=1" /> to make the gap large, but <InlineMath math="11" /> isn't a single digit.
+- <InlineMath math="\dfrac{2}{3}" /> comes from writing the difference as <InlineMath math="\dfrac{a-b}{9}" />, as if the repeating block had only one digit.
+- <InlineMath math="\dfrac{2}{33}" /> comes from writing the numerator of the difference as <InlineMath math="a-b" />, when <InlineMath math="(10a+b)-(10b+a)=9(a-b)" />.
+- <InlineMath math="\dfrac{31}{33}" /> is just the value of <InlineMath math="0.\overline{93}" />, so it stops before subtracting <InlineMath math="0.\overline{39}" />.
+
+So the largest possible value of <InlineMath math="0.\overline{ab}-0.\overline{ba}" /> is <InlineMath math="\dfrac{6}{11}" />.

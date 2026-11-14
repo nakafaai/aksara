@@ -1,13 +1,58 @@
-Kuantitas <InlineMath math="P" /> adalah **deret geometri tak hingga** dengan suku pertama <InlineMath math="\tfrac13" /> dan rasio <InlineMath math="\tfrac13" />. Deret itu konvergen karena rasionya di antara <InlineMath math="-1" /> dan 1.
+Semua pernyataan tentang <InlineMath math="g" /> bisa dikembalikan ke <InlineMath math="f" />. Grafik <InlineMath math="g" /> adalah grafik <InlineMath math="f" /> yang **digeser <InlineMath math="1" /> satuan ke kanan**, diregangkan tegak dua kali, lalu dinaikkan <InlineMath math="3" /> satuan. Rencananya, terjemahkan setiap pertanyaan tentang <InlineMath math="g" /> menjadi pertanyaan tentang <InlineMath math="f" />, lalu nilai keempat pernyataan satu per satu.
 
-# Jumlah deret
+# Hubungan kedua fungsi
 
-<BlockMath math="P=\frac{a}{1-r}=\frac{1/3}{1-1/3}=\frac{1/3}{2/3}=\frac12" />
+Misalkan <InlineMath math="u=x-1" />. Ada dua fakta yang dipakai terus.
 
-# Pemeriksaan dengan jumlah parsial
+Pertama, <InlineMath math="g(x)" /> ada tepat ketika <InlineMath math="u=x-1" /> berada di daerah asal <InlineMath math="f" />, yaitu <InlineMath math="[-2,4]" />.
 
-Jumlah empat suku pertama adalah <InlineMath math="\tfrac{27+9+3+1}{81}=\tfrac{40}{81}\approx0{,}494" />. Jumlah parsialnya **terus mendekati 0,5 tetapi tidak pernah melewatinya**, dan jumlah deret tak hingga adalah nilai limit itu, tepat 0,5.
+Kedua, persamaan <InlineMath math="g(x)=c" /> sama artinya dengan <InlineMath math="2f(u)+3=c" />, yaitu <InlineMath math="f(u)=\dfrac{c-3}{2}" />. Setiap penyelesaian <InlineMath math="u" /> memberi tepat satu <InlineMath math="x=u+1" />, jadi **banyak penyelesaian kedua persamaan selalu sama**.
 
-Jika hanya beberapa suku dijumlahkan, orang bisa mengira <InlineMath math="P<Q" />. Namun deret ini berlanjut tanpa akhir, sehingga nilainya tepat sama dengan <InlineMath math="Q" />.
+# Daerah asal
 
-Jadi, hubungan yang benar adalah **<InlineMath math="P=Q" />**.
+Syaratnya <InlineMath math="x-1" /> harus berada di <InlineMath math="[-2,4]" />.
+
+<BlockMath math="-2\le x-1\le 4 \;\Longleftrightarrow\; -1\le x\le 5" />
+
+Daerah asal <InlineMath math="g" /> adalah <InlineMath math="[-1,5]" />. Interval <InlineMath math="[-3,3]" /> muncul kalau grafik digeser ke kiri, padahal **bentuk <InlineMath math="x-1" /> menggeser grafik ke kanan**. Pernyataan pertama salah.
+
+# Daerah hasil
+
+Cari dulu daerah hasil <InlineMath math="f" />. Pada <InlineMath math="[-2,1]" />, nilai <InlineMath math="f" /> naik dari <InlineMath math="-3" /> ke <InlineMath math="5" />. Pada <InlineMath math="[1,4]" />, nilainya turun dari <InlineMath math="5" /> ke <InlineMath math="1" />. Nilai terbesar adalah <InlineMath math="5" />. Untuk nilai terkecil, bandingkan kedua ujung: <InlineMath math="f(-2)=-3" /> lebih kecil daripada <InlineMath math="f(4)=1" />, jadi **nilai terkecil ada di ujung kiri**, bukan di ujung kanan. Karena <InlineMath math="f" /> kontinu, semua nilai di antara <InlineMath math="-3" /> dan <InlineMath math="5" /> tercapai, sehingga daerah hasil <InlineMath math="f" /> adalah <InlineMath math="[-3,5]" />.
+
+Mengalikan dengan <InlineMath math="2" /> lalu menambah <InlineMath math="3" /> tidak mengubah urutan nilai, jadi kamu cukup menghitung kedua ujungnya.
+
+<BlockMath math="\begin{aligned}
+g_{\min} &= 2(-3)+3=-3 \\
+g_{\max} &= 2(5)+3=13
+\end{aligned}" />
+
+Daerah hasil <InlineMath math="g" /> adalah <InlineMath math="[-3,13]" />. Pernyataan kedua benar.
+
+# Banyak penyelesaian
+
+Kedua pernyataan terakhir dinilai dengan fakta kedua tadi. Ingat juga satu sifat penting: fungsi kontinu yang selalu naik atau selalu turun melewati setiap nilai di antara ujungnya **tepat satu kali**.
+
+## Persamaan dengan ruas kanan tujuh
+
+<BlockMath math="\begin{aligned}
+2f(u)+3 &= 7 \\
+f(u) &= 2
+\end{aligned}" />
+
+Pada <InlineMath math="[-2,1]" />, nilai <InlineMath math="f" /> naik dari <InlineMath math="-3" /> ke <InlineMath math="5" />, dan <InlineMath math="2" /> ada di antaranya, jadi ada tepat satu <InlineMath math="u" />. Pada <InlineMath math="[1,4]" />, nilai <InlineMath math="f" /> turun dari <InlineMath math="5" /> ke <InlineMath math="1" />, dan <InlineMath math="2" /> juga ada di antaranya, jadi ada tepat satu <InlineMath math="u" /> lagi. Titik puncak <InlineMath math="u=1" /> memberi <InlineMath math="f(1)=5" />, bukan <InlineMath math="2" />, jadi **kedua penyelesaian itu berbeda**. Ada tepat <InlineMath math="2" /> penyelesaian, dan pernyataan ketiga benar.
+
+## Persamaan dengan ruas kanan empat
+
+<BlockMath math="\begin{aligned}
+2f(u)+3 &= 4 \\
+f(u) &= \tfrac{1}{2}
+\end{aligned}" />
+
+Pada <InlineMath math="[-2,1]" />, nilai <InlineMath math="\tfrac{1}{2}" /> ada di antara <InlineMath math="-3" /> dan <InlineMath math="5" />, jadi ada tepat satu <InlineMath math="u" />. Pada <InlineMath math="[1,4]" />, nilai <InlineMath math="f" /> **tidak pernah turun di bawah <InlineMath math="1" />**, jadi tidak ada penyelesaian di sana. Hanya ada <InlineMath math="1" /> penyelesaian, dan pernyataan keempat salah.
+
+# Pemeriksaan dengan grafik
+
+Bayangkan grafik <InlineMath math="g" />: naik dari titik <InlineMath math="(-1,-3)" /> ke puncak <InlineMath math="(2,13)" />, lalu turun ke titik <InlineMath math="(5,5)" />. Garis <InlineMath math="y=7" /> memotong cabang naik dan cabang turun, karena <InlineMath math="7" /> ada di atas <InlineMath math="5" />. Garis <InlineMath math="y=4" /> hanya memotong cabang naik, karena **cabang turun berhenti di ketinggian <InlineMath math="5" />**. Gambar ini cocok dengan hitungan tadi.
+
+Jadi, pernyataan kedua dan ketiga benar, sedangkan pernyataan pertama dan keempat salah.

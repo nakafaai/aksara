@@ -1,0 +1,40 @@
+Soalan ini meminta kos paling murah untuk membeli tepat <InlineMath math="16" /> tiket. Ada dua perkara yang perlu kamu asingkan: **harga tiket ditentukan oleh nombor siri tiket**, manakala potongan dan caj perkhidmatan ditentukan oleh cara kamu membahagikan pembelian kepada beberapa pesanan.
+
+# Harga enam belas tiket
+
+Sebanyak <InlineMath math="294" /> tiket sudah terjual, jadi komuniti itu mendapat tiket bernombor <InlineMath math="295" /> hingga <InlineMath math="310" />. Tiket <InlineMath math="295" /> hingga <InlineMath math="300" /> masih tiket *early bird*, iaitu <InlineMath math="300-294=6" /> tiket. Baki <InlineMath math="16-6=10" /> tiket dikenakan harga biasa.
+
+<BlockMath math="\begin{aligned}
+\text{harga tiket}&=6\cdot90{,}000+10\cdot150{,}000 \\
+&=540{,}000+1{,}500{,}000=2{,}040{,}000
+\end{aligned}" />
+
+Nombor siri ini tetap sama walau berapa banyak pesanan yang kamu buat. Jadi **penjimatan hanya boleh datang daripada potongan kumpulan dan caj perkhidmatan**.
+
+# Bilangan pesanan yang paling jimat
+
+Satu pesanan memuatkan paling banyak <InlineMath math="9" /> tiket. Dua kumpulan lengkap memerlukan <InlineMath math="10" /> tiket, jadi **satu pesanan hanya boleh mendapat satu potongan**. Oleh itu, bilangan potongan tidak boleh melebihi bilangan pesanan, dan juga tidak boleh melebihi <InlineMath math="\left\lfloor \frac{16}{5} \right\rfloor=3" />. Kerana <InlineMath math="16>9" />, kamu memerlukan sekurang-kurangnya dua pesanan.
+
+| Bilangan pesanan | Contoh pembahagian | Potongan | Caj perkhidmatan | Perubahan kos |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="2" /> | <InlineMath math="9+7" /> | <InlineMath math="2\cdot90{,}000" /> | <InlineMath math="2\cdot25{,}000" /> | <InlineMath math="-130{,}000" /> |
+| <InlineMath math="3" /> | <InlineMath math="5+5+6" /> | <InlineMath math="3\cdot90{,}000" /> | <InlineMath math="3\cdot25{,}000" /> | <InlineMath math="-195{,}000" /> |
+| <InlineMath math="4" /> | <InlineMath math="5+5+5+1" /> | <InlineMath math="3\cdot90{,}000" /> | <InlineMath math="4\cdot25{,}000" /> | <InlineMath math="-170{,}000" /> |
+
+Pesanan ketiga menambah caj <InlineMath math="\text{Rp}25{,}000" />, tetapi membawa potongan baharu sebanyak <InlineMath math="\text{Rp}90{,}000" />, jadi masih berbaloi. Pesanan keempat hanya menambah caj, kerana potongan sudah terhad kepada tiga. Maka pilihan terbaik ialah tiga pesanan, contohnya <InlineMath math="5" />, <InlineMath math="5" /> dan <InlineMath math="6" /> tiket.
+
+<BlockMath math="\begin{aligned}
+\text{kos keseluruhan}&=2{,}040{,}000-3\cdot90{,}000+3\cdot25{,}000 \\
+&=2{,}040{,}000-270{,}000+75{,}000=1{,}845{,}000
+\end{aligned}" />
+
+Semak semula hadnya: setiap pesanan mempunyai paling banyak <InlineMath math="9" /> tiket, dan setiap pesanan mengandungi satu kumpulan lengkap. Semua peraturan dipatuhi.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\text{Rp}1{,}910{,}000" /> menggunakan pesanan paling sedikit, iaitu dua pesanan dengan dua potongan. **Pesanan yang lebih sedikit tidak semestinya lebih murah**.
+- <InlineMath math="\text{Rp}1{,}820{,}000" /> mengira tiga potongan daripada <InlineMath math="\left\lfloor \frac{16}{5} \right\rfloor" /> tetapi hanya dua pesanan. Dengan dua pesanan, setiap pesanan hanya muat satu kumpulan lengkap.
+- <InlineMath math="\text{Rp}1{,}785{,}000" /> mengira tujuh tiket *early bird*, seolah-olah tiket <InlineMath math="294" /> turut dibeli. Tiket itu sudah terjual, jadi bakinya hanya enam.
+- <InlineMath math="\text{Rp}2{,}205{,}000" /> mengenakan harga biasa kepada semua tiket dan terlupa bahawa enam tiket *early bird* masih ada.
+
+Jadi, kos keseluruhan paling sedikit ialah <InlineMath math="\text{Rp}1{,}845{,}000" />.

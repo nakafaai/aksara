@@ -1,28 +1,46 @@
-Setiap pernyataan memakai **ukuran yang berbeda**: banyak keluarga, persentase perubahan, rata-rata, dan median. Hitung masing-masing dari tabel.
+Tanda sebuah hasil kali ditentukan oleh tanda setiap faktornya, jadi langkah pertama adalah memfaktorkan semuanya. Rencananya: faktorkan, perhatikan **faktor yang berbentuk kuadrat**, buat tabel tanda, lalu hitung bilangan bulat yang memenuhi di antara <InlineMath math="-10" /> dan <InlineMath math="10" />.
 
-# Arah dan persentase perubahan
+# Memfaktorkan setiap bagian
 
-Pemakaian turun pada keluarga B (25 menjadi 20) dan D (30 menjadi 27). Keluarga lain naik, jadi **hanya dua keluarga yang turun**. Pernyataan pertama salah.
-
-Persentase kenaikan dihitung terhadap pemakaian bulan Juli.
+Bagian pertama punya akar <InlineMath math="1" /> dan <InlineMath math="4" />, sedangkan **bagian kedua adalah kuadrat sempurna**.
 
 <BlockMath math="\begin{aligned}
-\text{A}&:\quad \tfrac{6}{18}\approx33\%\\
-\text{C}&:\quad \tfrac{3}{12}=25\%\\
-\text{E}&:\quad \tfrac{9}{15}=60\%
+x^2-5x+4&=(x-1)(x-4)\\
+x^2-14x+49&=(x-7)^2
 \end{aligned}" />
 
-Kenaikan terbesar dalam persen dialami keluarga E, bukan A. Keluarga E naik 9 meter kubik dari **pemakaian awal yang lebih kecil**, yaitu 15, sehingga persentasenya paling besar. Pernyataan kedua salah.
+Jadi pertidaksamaannya menjadi <InlineMath math="(x-1)(x-4)(x-7)^2(x+3)\le0" />.
 
-# Rata-rata dan median
+# Peran faktor kuadrat
+
+Faktor <InlineMath math="(x-7)^2" /> tidak pernah negatif. Untuk <InlineMath math="x\ne7" /> nilainya positif, jadi **tidak mengubah tanda hasil kali**, dan pertidaksamaannya sama dengan <InlineMath math="(x-1)(x-4)(x+3)\le0" />. Untuk <InlineMath math="x=7" />, faktor itu nol, jadi seluruh hasil kali sama dengan <InlineMath math="0" /> dan <InlineMath math="x=7" /> **ikut memenuhi** karena tandanya <InlineMath math="\le" />.
+
+# Tabel tanda tiga faktor
+
+Pembuat nol ketiga faktor adalah <InlineMath math="-3" />, <InlineMath math="1" />, dan <InlineMath math="4" />. **Tanda hanya bisa berganti di pembuat nol**, jadi cukup pilih satu titik uji di setiap selang dan hitung tandanya.
+
+| Selang | <InlineMath math="x+3" /> | <InlineMath math="x-1" /> | <InlineMath math="x-4" /> | Hasil kali |
+| :--- | :---: | :---: | :---: | :---: |
+| <InlineMath math="x<-3" /> | <InlineMath math="-" /> | <InlineMath math="-" /> | <InlineMath math="-" /> | <InlineMath math="-" /> |
+| <InlineMath math="-3<x<1" /> | <InlineMath math="+" /> | <InlineMath math="-" /> | <InlineMath math="-" /> | <InlineMath math="+" /> |
+| <InlineMath math="1<x<4" /> | <InlineMath math="+" /> | <InlineMath math="+" /> | <InlineMath math="-" /> | <InlineMath math="-" /> |
+| <InlineMath math="x>4" /> | <InlineMath math="+" /> | <InlineMath math="+" /> | <InlineMath math="+" /> | <InlineMath math="+" /> |
+
+Hasil kali bernilai negatif atau nol pada <InlineMath math="x\le-3" /> dan pada <InlineMath math="1\le x\le4" />. Ditambah titik terpencil <InlineMath math="x=7" />, himpunan penyelesaiannya adalah <InlineMath math="x\le-3" />, <InlineMath math="1\le x\le4" />, atau <InlineMath math="x=7" />.
+
+# Menghitung bilangan bulat
+
+Batasi dengan <InlineMath math="-10\le x\le10" /> dan hitung setiap bagian, **termasuk kedua ujung** karena tandanya <InlineMath math="\le" />.
 
 <BlockMath math="\begin{aligned}
-\bar x_{\text{Juli}}&=\frac{18+25+12+30+15}{5}=\frac{100}{5}=20\\
-\bar x_{\text{Agustus}}&=\frac{24+20+15+27+24}{5}=\frac{110}{5}=22
+-10\le x\le-3&: \ 8 \text{ bilangan}\\
+1\le x\le4&: \ 4 \text{ bilangan}\\
+x=7&: \ 1 \text{ bilangan}\\
+\text{total}&: \ 8+4+1=13
 \end{aligned}" />
 
-Selisihnya 2 meter kubik, jadi pernyataan ketiga benar.
+Pemeriksaan beberapa titik pada bentuk soal: untuk <InlineMath math="x=7" /> nilainya <InlineMath math="(18)(0)(10)=0" />, jadi memenuhi. Untuk <InlineMath math="x=6" /> nilainya <InlineMath math="(10)(1)(9)=90>0" />, dan untuk <InlineMath math="x=0" /> nilainya <InlineMath math="(4)(49)(3)=588>0" />, jadi keduanya tidak memenuhi.
 
-Data Juli yang diurutkan adalah 12, 15, 18, 25, 30. **Nilai tengahnya 18**, jadi pernyataan keempat benar.
+Jika kamu membagi kedua ruas dengan <InlineMath math="(x-7)^2" /> tanpa memeriksa <InlineMath math="x=7" />, kamu kehilangan satu penyelesaian dan mendapat <InlineMath math="12" />. Jika <InlineMath math="(x-7)^2" /> diperlakukan seperti faktor biasa yang mengubah tanda, kamu mendapat <InlineMath math="-3\le x\le1" /> atau <InlineMath math="4\le x\le7" />, yaitu <InlineMath math="9" /> bilangan.
 
-Jadi, pernyataan pertama **salah**, kedua **salah**, ketiga **benar**, dan keempat **benar**.
+Jadi, banyak bilangan bulat <InlineMath math="x" /> dengan <InlineMath math="-10\le x\le10" /> yang memenuhi pertidaksamaan itu adalah <InlineMath math="13" />.

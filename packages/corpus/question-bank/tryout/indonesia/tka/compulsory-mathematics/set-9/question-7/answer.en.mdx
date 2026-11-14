@@ -1,16 +1,55 @@
-Equilibrium happens at **the price where both functions have the same value**. Find that price first, then substitute it into either function to get the quantity.
+The question asks for every number of bags <InlineMath math="x" /> that gives a profit of **at least** <InlineMath math="\text{Rp}600{,}000" />, so exactly <InlineMath math="\text{Rp}600{,}000" /> counts too. The cost rule changes after <InlineMath math="32" /> bags, so you have to split the problem into two cases.
+
+# The profit formula
+
+Work with all money **in thousands of rupiah**. Revenue is the number of bags times the price per bag, and profit is revenue minus cost.
 
 <BlockMath math="\begin{aligned}
-120-2P&=3P-30 \\
-150&=5P\ \Rightarrow\ P=30 \\
-Q&=120-2\cdot30=60
+x\le32&:\ K(x)=x(120-x)-(900+40x)=-x^2+80x-900 \\
+x\ge33&:\ K(x)=-x^2+80x-900-84=-x^2+80x-984
 \end{aligned}" />
 
-Check with the supply function: <InlineMath math="3\cdot30-30=60" />.
+# The case without the rental fee
 
-So the equilibrium quantity is <InlineMath math="60" />.
+For <InlineMath math="x\le32" />, solve <InlineMath math="K(x)\ge600" />. Multiply by <InlineMath math="-1" /> and **flip the inequality sign**.
 
-- <InlineMath math="30" /> is the equilibrium price in thousands of rupiah, not the quantity.
-- <InlineMath math="84" /> gets the sign wrong when moving <InlineMath math="-30" />, giving <InlineMath math="5P=90" /> and <InlineMath math="P=18" />.
-- <InlineMath math="120" /> is the quantity demanded at a price of <InlineMath math="0" />.
-- <InlineMath math="150" /> is the value of <InlineMath math="5P" />, not yet divided by <InlineMath math="5" />.
+<BlockMath math="\begin{aligned}
+-x^2+80x-900&\ge600 \\
+x^2-80x+1500&\le0 \\
+(x-30)(x-50)&\le0 \\
+30\le x&\le50
+\end{aligned}" />
+
+This case only covers <InlineMath math="x\le32" />, so what's left is <InlineMath math="x=30,\ 31,\ 32" />.
+
+# The case with the rental fee
+
+For <InlineMath math="x\ge33" />, the rental fee is subtracted too.
+
+<BlockMath math="\begin{aligned}
+-x^2+80x-984&\ge600 \\
+x^2-80x+1584&\le0 \\
+(x-36)(x-44)&\le0 \\
+36\le x&\le44
+\end{aligned}" />
+
+All of these values really are above <InlineMath math="32" />, so **every one of them counts**: <InlineMath math="x=36,\ 37,\ \ldots,\ 44" />.
+
+# Putting the two cases together
+
+Between the two cases there's a **gap**, namely <InlineMath math="x=33,\ 34,\ 35" />. The rental fee kicks in exactly at <InlineMath math="x=33" /> and pulls the profit down from <InlineMath math="651" /> to <InlineMath math="567" />. The profit only climbs back to <InlineMath math="600" /> at <InlineMath math="x=36" />.
+
+| <InlineMath math="x" /> | <InlineMath math="29" /> | <InlineMath math="30" /> | <InlineMath math="32" /> | <InlineMath math="33" /> | <InlineMath math="35" /> | <InlineMath math="36" /> | <InlineMath math="44" /> | <InlineMath math="45" /> |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| <InlineMath math="K(x)" /> | <InlineMath math="579" /> | <InlineMath math="600" /> | <InlineMath math="636" /> | <InlineMath math="567" /> | <InlineMath math="591" /> | <InlineMath math="600" /> | <InlineMath math="600" /> | <InlineMath math="591" /> |
+
+The values <InlineMath math="x=30" />, <InlineMath math="36" /> and <InlineMath math="44" /> give a profit of exactly <InlineMath math="600" />, and all three count because the condition is at least <InlineMath math="600" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="36\le x\le44" /> charges the rental fee on every day, even when <InlineMath math="x\le32" />. But for <InlineMath math="x=30,\ 31,\ 32" /> there's no rental, and the profit is already enough.
+- <InlineMath math="30\le x\le44" /> merges the two cases into one interval without checking the gap. For <InlineMath math="x=33,\ 34,\ 35" /> the profit is **below** <InlineMath math="600" />.
+- <InlineMath math="30\le x\le50" /> forgets the rental fee altogether.
+- <InlineMath math="31\le x\le32" /> or <InlineMath math="37\le x\le43" /> drops the values whose profit is exactly <InlineMath math="600" />. At least means greater than or equal to.
+
+So a daily profit of at least <InlineMath math="\text{Rp}600{,}000" /> happens exactly for <InlineMath math="30\le x\le32" /> or <InlineMath math="36\le x\le44" />.

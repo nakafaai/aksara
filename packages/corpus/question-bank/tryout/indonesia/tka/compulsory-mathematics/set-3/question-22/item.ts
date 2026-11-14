@@ -6,32 +6,33 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "travel-time",
+  stimulus: "lari",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "Median data terletak pada kelas $$15$$ sampai $$19$$.",
+          label: "Median waktu kelas XI A adalah $$14{,}25$$ detik.",
+        },
+        {
+          correct: false,
+          label: "Data waktu kelas XI A mempunyai tepat satu modus.",
         },
         {
           correct: true,
           label:
-            "Rata-rata lama perjalanan, dihitung dengan titik tengah kelas, lebih dari $$17$$ menit.",
-        },
-        {
-          correct: false,
-          label: "Modus data terletak pada kelas $$20$$ sampai $$24$$.",
+            "Jika waktu Raka tidak diikutkan, median waktu kelas XI A menjadi lebih besar.",
         },
         {
           correct: false,
           label:
-            "Lebih dari separuh siswa memerlukan kurang dari $$15$$ menit.",
+            "Jika seorang siswa baru dengan waktu $$13{,}5$$ detik bergabung ke kelas XI A, median waktu kelas XI A tidak berubah.",
         },
         {
           correct: true,
-          label: "Kuartil bawah data terletak pada kelas $$10$$ sampai $$14$$.",
+          label:
+            "Jika seorang siswa baru dengan waktu $$14{,}6$$ detik bergabung ke kelas XI A, data waktu kelas XI A mempunyai tepat satu modus.",
         },
       ],
     },

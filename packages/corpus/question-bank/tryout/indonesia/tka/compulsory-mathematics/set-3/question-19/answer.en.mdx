@@ -1,15 +1,37 @@
-In two similar solids every length has the same ratio, here <InlineMath math="12:8=3:2" />. **Volumes are in the ratio of the cube of the length ratio**, because a cylinder's volume contains two radii and one height.
+The question asks for the largest number of whole cones. No metal is lost, so the metal in the ball is exactly the metal available for the cones. There are two traps before you divide: **the ball is hollow**, and the cone's height isn't given.
+
+# The volume of the metal
+
+The metal is **the big ball minus the cavity inside it**. A ball has volume <InlineMath math="\frac{4}{3}\pi r^3" />, so:
 
 <BlockMath math="\begin{aligned}
-\frac{V_{\text{large}}}{V_{\text{small}}}&=\left(\frac32\right)^3=\frac{27}{8} \\
-V_{\text{large}}&=320\cdot\frac{27}{8}=40\cdot27=1{,}080\text{ mL}
+V_{\text{metal}}&=\frac{4}{3}\pi\left(12^3-3^3\right) \\
+&=\frac{4}{3}\pi\,(1{,}728-27) \\
+&=\frac{4}{3}\pi\cdot1{,}701=2{,}268\pi\text{ cm}^3
 \end{aligned}" />
 
-As a check, the radius and the height are both multiplied by <InlineMath math="\frac32" />, so <InlineMath math="\pi r^2h" /> is multiplied by <InlineMath math="\frac32\cdot\frac32\cdot\frac32=\frac{27}{8}" />.
+# The height and volume of one cone
 
-So the large glass holds <InlineMath math="1{,}080\text{ mL}" />.
+The slant height is the hypotenuse of a right triangle whose other sides are the base radius and the height of the cone. **Use Pythagoras for the height**, then work out the volume:
 
-- <InlineMath math="480\text{ mL}" /> multiplies the volume by the length ratio <InlineMath math="\frac32" /> alone.
-- <InlineMath math="720\text{ mL}" /> uses the area ratio <InlineMath math="\frac94" />, as if only the radius changed.
-- <InlineMath math="1{,}400\text{ mL}" /> adds the small glass to the correct result, <InlineMath math="1{,}080+320" />, although only the large glass is asked for.
-- <InlineMath math="2{,}560\text{ mL}" /> multiplies by <InlineMath math="2^3=8" />, taking the wrong number from the ratio <InlineMath math="3:2" />.
+<BlockMath math="\begin{aligned}
+h&=\sqrt{10^2-6^2}=\sqrt{64}=8\text{ cm} \\
+V_{\text{cone}}&=\frac{1}{3}\pi r^2h=\frac{1}{3}\pi\cdot36\cdot8=96\pi\text{ cm}^3
+\end{aligned}" />
+
+# The number of cones
+
+Divide the metal's volume by the volume of one cone:
+
+<BlockMath math="\frac{2{,}268\pi}{96\pi}=23.625" />
+
+The cones have to be whole, so **round down** to <InlineMath math="23" />. Check both sides. Twenty-three cones use <InlineMath math="23\cdot96\pi=2{,}208\pi" />, which fits, and the leftover <InlineMath math="60\pi" /> is less than one cone. Twenty-four cones would need <InlineMath math="2{,}304\pi" />, more than the metal you have.
+
+So the largest number of cones that can be cast is <InlineMath math="23" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="24" /> comes from rounding <InlineMath math="23.625" /> up or to the nearest whole number. You also get it if you forget the cavity, because <InlineMath math="\frac{4}{3}\pi\cdot12^3=2{,}304\pi" /> is exactly enough for <InlineMath math="24" /> cones. **There isn't enough metal for a 24th cone**.
+- <InlineMath math="18" /> uses the slant height <InlineMath math="10" /> as the height, so one cone becomes <InlineMath math="120\pi" /> and <InlineMath math="\frac{2{,}268}{120}=18.9" />.
+- <InlineMath math="10" /> uses <InlineMath math="(12-3)^3=729" /> instead of <InlineMath math="12^3-3^3" />, so the metal becomes <InlineMath math="972\pi" />. The difference of two cubes isn't the cube of the difference.
+- <InlineMath math="7" /> uses the cylinder formula <InlineMath math="\pi r^2h=288\pi" /> for a cone and forgets the factor <InlineMath math="\frac{1}{3}" />.

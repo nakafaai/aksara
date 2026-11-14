@@ -1,15 +1,42 @@
-Banyak pengguna membentuk **barisan geometri** dengan <InlineMath math="a=1{.}600" /> dan rasio <InlineMath math="r=1{,}5" />. Dari bulan pertama ke bulan kelima ada empat kali perkalian, jadi <InlineMath math="U_5=ar^4" />.
+# Selisih dan suku pertama
+
+Tulis laba hari ke-<InlineMath math="n" /> dalam ribu rupiah sebagai <InlineMath math="U_n=a-(n-1)d" />, dengan <InlineMath math="a" /> laba hari pertama dan <InlineMath math="d" /> besar penurunan per hari. Soal ini menanyakan hari pertama dengan <InlineMath math="U_n<0" />, **negatif sungguhan, bukan nol**.
+
+Mulai dari selisih hari ke-<InlineMath math="4" /> dan hari ke-<InlineMath math="9" />. Dari hari ke-<InlineMath math="4" /> ke hari ke-<InlineMath math="9" /> ada <InlineMath math="9-4=5" /> langkah penurunan, bukan <InlineMath math="4" /> atau <InlineMath math="6" />.
 
 <BlockMath math="\begin{aligned}
-r^4&=1{,}5^4=5{,}0625 \\
-U_5&=1{.}600\cdot5{,}0625=8{.}100
+U_4-U_9&=5d=60 \\
+d&=12
 \end{aligned}" />
 
-Sebagai pemeriksaan bulan demi bulan, <InlineMath math="1{.}600\to2{.}400\to3{.}600\to5{.}400\to8{.}100" />.
+Hari ke-<InlineMath math="3" /> dan hari ke-<InlineMath math="11" /> berjarak sama dari hari ke-<InlineMath math="7" />, jadi jumlahnya sama dengan <InlineMath math="2U_7" />.
 
-Jadi, pada bulan kelima ada <InlineMath math="8{.}100" /> pengguna.
+<BlockMath math="\begin{aligned}
+U_3+U_{11}&=2U_7=432 \\
+U_7&=216 \\
+a=U_7+6d&=216+72=288
+\end{aligned}" />
 
-- <InlineMath math="9{.}600" /> mengalikan rasio dengan <InlineMath math="4" />, yaitu <InlineMath math="1{.}600\cdot1{,}5\cdot4" />, bukan memangkatkannya.
-- <InlineMath math="12{.}000" /> menghitung <InlineMath math="1{.}600\cdot1{,}5\cdot5" />.
-- <InlineMath math="12{.}150" /> memakai <InlineMath math="r^5" />, seolah-olah ada lima kali perkalian.
-- <InlineMath math="18{.}225" /> memakai <InlineMath math="r^6" />.
+Jadi <InlineMath math="U_n=288-12(n-1)=300-12n" />.
+
+# Hari pertama rugi
+
+Sekarang cari <InlineMath math="n" /> terkecil dengan laba negatif.
+
+<BlockMath math="\begin{aligned}
+300-12n&<0 \\
+n&>25
+\end{aligned}" />
+
+Pada hari ke-<InlineMath math="25" />, labanya <InlineMath math="300-300=0" />. Itu **belum rugi**, hanya impas. Hari ke-<InlineMath math="26" /> labanya <InlineMath math="300-312=-12" />, artinya rugi <InlineMath math="\text{Rp}12{.}000" />. Jadi kedai pertama kali rugi pada hari ke-<InlineMath math="26" />.
+
+# Pilihan yang menjebak
+
+Setiap pilihan lain berasal dari **satu langkah yang meleset**.
+
+- Hari ke-<InlineMath math="22" /> muncul kalau dari hari ke-<InlineMath math="4" /> ke hari ke-<InlineMath math="9" /> dihitung <InlineMath math="4" /> langkah, sehingga <InlineMath math="d=15" /> dan <InlineMath math="U_n=321-15n" />.
+- Hari ke-<InlineMath math="25" /> adalah hari dengan laba tepat nol. Laba nol tidak termasuk rugi.
+- Hari ke-<InlineMath math="29" /> muncul kalau dihitung <InlineMath math="6" /> langkah karena ada enam hari dari hari ke-<InlineMath math="4" /> sampai hari ke-<InlineMath math="9" />, sehingga <InlineMath math="d=10" /> dan <InlineMath math="U_n=286-10n" />.
+- Hari ke-<InlineMath math="50" /> adalah hari pertama ketika **total** laba sejak hari pertama menjadi negatif. Total itu <InlineMath math="S_n=n(294-6n)" />, yang tepat nol di <InlineMath math="n=49" />. Soal menanyakan laba harian, bukan total.
+
+Jadi, kedai itu pertama kali mengalami rugi pada hari ke-<InlineMath math="26" />.

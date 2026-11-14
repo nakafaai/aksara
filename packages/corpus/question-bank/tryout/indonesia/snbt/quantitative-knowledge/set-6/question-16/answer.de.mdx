@@ -1,23 +1,47 @@
-Ein Betrag ändert seine Form dort, wo sein Inneres null ist, also bei <InlineMath math="x=1" /> und <InlineMath math="x=7" />. Diese zwei Stellen teilen die Zahlengerade in drei Bereiche, und **jeder Bereich wird einzeln gelöst**.
+Die Regel <InlineMath math="f(x+1)=f(x)+2x+1" /> verbindet nur Werte von <InlineMath math="f" />, deren Eingaben sich um eine ganze Zahl unterscheiden. Also bekommst du <InlineMath math="f(-2)" /> aus <InlineMath math="f(1)" />, aber <InlineMath math="f\left(\tfrac72\right)" /> aus <InlineMath math="f\left(\tfrac12\right)" />. Der Kern: **die beiden Ketten sind getrennt**, eine Formel aus einem einzigen Startwert passt nicht für beide.
 
-# Drei Bereiche
+# Die zwei Ketten erkennen
 
-Für <InlineMath math="x<1" /> sind beide Inneren negativ. Für <InlineMath math="1\le x\le7" /> ist nur das zweite Innere negativ. Für <InlineMath math="x>7" /> sind beide positiv.
+Ab <InlineMath math="1" /> erreichen Schritte der Länge <InlineMath math="1" /> nur ganze Zahlen wie <InlineMath math="0" />, <InlineMath math="-1" /> und <InlineMath math="-2" />. Ab <InlineMath math="\tfrac12" /> erreichen sie nur <InlineMath math="\tfrac32" />, <InlineMath math="\tfrac52" />, <InlineMath math="\tfrac72" /> und so weiter. **Kein Schritt führt von der ganzzahligen Kette in die Kette der Halben**, also braucht jede Kette ihren eigenen Startwert.
+
+# Rückwärts vom Wert bei eins
+
+Um nach links zu gehen, stellst du die Regel um: <InlineMath math="f(x)=f(x+1)-2x-1" />. Beim Rückwärtsgehen **ziehst du** also <InlineMath math="2x+1" /> ab, wobei <InlineMath math="x" /> die Eingabe ist, zu der du gehst.
 
 <BlockMath math="\begin{aligned}
-x<1:&\quad (1-x)+(7-x)=10 \;\Rightarrow\; 8-2x=10 \;\Rightarrow\; x=-1\\
-1\le x\le7:&\quad (x-1)+(7-x)=6\ne10\\
-x>7:&\quad (x-1)+(x-7)=10 \;\Rightarrow\; 2x-8=10 \;\Rightarrow\; x=9
+f(0) &= f(1)-2(0)-1=3-1=2 \\
+f(-1) &= f(0)-2(-1)-1=2+2-1=3 \\
+f(-2) &= f(-1)-2(-2)-1=3+4-1=6
 \end{aligned}" />
 
-Der Wert <InlineMath math="x=-1" /> ist tatsächlich kleiner als 1 und <InlineMath math="x=9" /> tatsächlich größer als 7, also **gelten beide Lösungen**. Der mittlere Bereich liefert keine Lösung.
+# Vorwärts vom Wert bei einhalb
 
-# Deutung als Abstand
+Um nach rechts zu gehen, verwendest du die Regel direkt. Von <InlineMath math="\tfrac12" /> bis <InlineMath math="\tfrac72" /> sind es **genau drei Schritte**.
 
-Der Term <InlineMath math="\lvert x-1\rvert+\lvert x-7\rvert" /> ist **die Summe der Abstände von <InlineMath math="x" /> zu den Punkten 1 und 7**. Zwischen den beiden Punkten ist diese Summe immer 6. Damit sie 10 wird, muss <InlineMath math="x" /> 2 Einheiten außerhalb eines der Enden liegen, also bei <InlineMath math="-1" /> oder bei <InlineMath math="9" />.
+<BlockMath math="\begin{aligned}
+f\left(\tfrac32\right) &= f\left(\tfrac12\right)+2\cdot\tfrac12+1=2+2=4 \\
+f\left(\tfrac52\right) &= f\left(\tfrac32\right)+2\cdot\tfrac32+1=4+4=8 \\
+f\left(\tfrac72\right) &= f\left(\tfrac52\right)+2\cdot\tfrac52+1=8+6=14
+\end{aligned}" />
 
-<BlockMath math="(-1)(9)=-9" />
+Also ist <InlineMath math="f(-2)+f\left(\tfrac72\right)=6+14=20" />.
 
-Die Werte 9 und <InlineMath math="-1" /> verwenden nur eine Lösung. Der Wert 8 ist die Summe der beiden Lösungen und nicht ihr Produkt. Der Wert 7 ist das Produkt der Grenzstellen 1 und 7.
+Prüfe das auf einem zweiten Weg. Die Regel lässt sich als <InlineMath math="f(x+1)-(x+1)^2=f(x)-x^2" /> schreiben, denn <InlineMath math="(x+1)^2=x^2+2x+1" />. Also **bleibt <InlineMath math="f(x)-x^2" /> entlang einer Kette gleich**.
 
-Das Produkt aller Lösungen ist also **<InlineMath math="-9" />**.
+<BlockMath math="\begin{aligned}
+\text{ganzzahlige Kette}:\quad & f(-2)-4=2=f(1)-1 \\
+\text{Kette der Halben}:\quad & f\left(\tfrac72\right)-\tfrac{49}{4}=\tfrac74=f\left(\tfrac12\right)-\tfrac14
+\end{aligned}" />
+
+Die beiden Ketten haben verschiedene Konstanten, <InlineMath math="2" /> und <InlineMath math="\tfrac74" />. Deshalb reicht eine einzige Formel nicht.
+
+# Warum die anderen Antworten nicht passen
+
+Die falschen Antworten entstehen, wenn du **die beiden Ketten zusammenwirfst** oder dich bei den Schritten verzählst.
+
+- <InlineMath math="\tfrac{81}{4}" /> verwendet <InlineMath math="f(x)=x^2+2" /> für beide Eingaben, dann ergibt sich <InlineMath math="f\left(\tfrac72\right)=\tfrac{57}{4}" />.
+- <InlineMath math="26" /> entsteht, wenn du beim Vorwärtsgehen die Zieleingabe statt der Starteingabe einsetzt: <InlineMath math="f\left(\tfrac32\right)=2+2\cdot\tfrac32+1=6" />, dann <InlineMath math="12" />, dann <InlineMath math="20" /> für <InlineMath math="f\left(\tfrac72\right)" />.
+- <InlineMath math="25" /> entsteht, wenn du beim Rückwärtsgehen einen Schritt zu weit gehst und <InlineMath math="f(-3)=6+6-1=11" /> statt <InlineMath math="f(-2)" /> berechnest.
+- <InlineMath math="28" /> entsteht, wenn du einen Schritt zu weit gehst und <InlineMath math="f\left(\tfrac92\right)=22" /> statt <InlineMath math="f\left(\tfrac72\right)" /> berechnest.
+
+Der Wert von <InlineMath math="f(-2)+f\left(\tfrac72\right)" /> ist also <InlineMath math="20" />.

@@ -1,12 +1,36 @@
-**Mehr als <InlineMath math="50" />** bedeutet <InlineMath math="55" /> oder <InlineMath math="60" /> Becher, der Wert <InlineMath math="50" /> selbst gehört nicht dazu. Zähle die Tage in diesen beiden Zeilen und teile durch alle <InlineMath math="30" /> Tage.
+# Wo der Median nach dem Ergänzen liegt
 
-<BlockMath math="\frac{7+4}{30}=\frac{11}{30}\approx0{,}367=36{,}7\,\%" />
+Gefragt ist, wie viele kurze Anrufe ergänzt werden müssen, damit der geschätzte Median unter <InlineMath math="10" /> Minuten fällt. Beim Ergänzen von <InlineMath math="k" /> Anrufen ändern sich zwei Dinge: **Die Anzahl <InlineMath math="n" /> der Daten wächst, also verschiebt sich auch die Position des Medians**, und die Anzahl der Anrufe unter <InlineMath math="10" /> Minuten wächst ebenfalls.
 
-Zur Kontrolle: Die übrigen <InlineMath math="2+8+9=19" /> Tage ergeben zusammen mit den <InlineMath math="11" /> Tagen genau <InlineMath math="30" />.
+Laut Text wird der Median beim <InlineMath math="\frac{n}{2}" />-ten Wert geschätzt, und die Anrufe einer Klasse gelten als gleichmäßig verteilt. Anrufe unter <InlineMath math="10" /> Minuten liegen in den Klassen <InlineMath math="0\le t<5" /> und <InlineMath math="5\le t<10" />, es sind also <InlineMath math="(6+k)+22=28+k" />. Der <InlineMath math="(28+k)" />-te Wert liegt genau am Ende der Klasse <InlineMath math="5\le t<10" />, also bei <InlineMath math="10" /> Minuten. Der geschätzte Median ist also genau dann kleiner als <InlineMath math="10" />, wenn seine Position **vor** dem <InlineMath math="(28+k)" />-ten Wert liegt.
 
-An etwa <InlineMath math="36{,}7\,\%" /> der Tage wurden also mehr als <InlineMath math="50" /> Becher verkauft.
+<BlockMath math="\begin{aligned}
+n&=80+k,\qquad\text{Position des Medians}=\frac{80+k}{2} \\
+\frac{80+k}{2}&<28+k \\
+80+k&<56+2k \\
+k&>24
+\end{aligned}" />
 
-- <InlineMath math="11\,\%" /> nimmt die Zahl der Tage, <InlineMath math="11" />, direkt als Prozentsatz, als gäbe es <InlineMath math="100" /> Tage.
-- <InlineMath math="40\,\%" /> zählt Zeilen statt Tage: <InlineMath math="2" /> von <InlineMath math="5" /> Zeilen.
-- Etwa <InlineMath math="63{,}3\,\%" /> ist der Anteil der Tage mit höchstens <InlineMath math="50" /> Bechern, also das Gegenteil.
-- Etwa <InlineMath math="66{,}7\,\%" /> zählt die <InlineMath math="9" /> Tage mit genau <InlineMath math="50" /> Bechern mit: <InlineMath math="\frac{20}{30}" />.
+# Die Grenze prüfen
+
+Die Ungleichung ist **streng**, also reicht <InlineMath math="k=24" /> noch nicht. Berechne beide Werte an der Grenze mit der Medianschätzung in der Klasse <InlineMath math="5\le t<10" />. Vor dieser Klasse liegen <InlineMath math="6+k" /> Anrufe.
+
+<BlockMath math="\begin{aligned}
+k=24:&\quad n=104,\ \text{Wert Nr. }52,\quad 5+\frac{52-30}{22}\cdot5=5+5=10 \\
+k=25:&\quad n=105,\ \text{Wert Nr. }52{,}5,\quad 5+\frac{52{,}5-31}{22}\cdot5\approx9{,}89
+\end{aligned}" />
+
+Für <InlineMath math="k=24" /> ist die Schätzung genau <InlineMath math="10" /> Minuten, also noch nicht kleiner als <InlineMath math="10" />. Für <InlineMath math="k=25" /> beträgt sie etwa <InlineMath math="9{,}89" /> Minuten.
+
+Prüf das durch Zählen. Ein geschätzter Median unter <InlineMath math="10" /> bedeutet, dass mehr als die Hälfte der Anrufe kürzer als <InlineMath math="10" /> Minuten ist. Für <InlineMath math="k=25" /> sind das <InlineMath math="53" /> von <InlineMath math="105" />, und <InlineMath math="53>52{,}5" />. Für <InlineMath math="k=24" /> sind es <InlineMath math="52" /> von <InlineMath math="104" />, genau die Hälfte.
+
+# Warum die anderen Antworten falsch sind
+
+Jede falsche Antwort vergisst eine der beiden Änderungen oder liest die Grenze falsch. **Die Position des Medians und das strenge Kleiner** entscheiden.
+
+- <InlineMath math="12" /> entsteht, wenn der Median beim <InlineMath math="40" />-ten Wert bleibt und auch Gleichheit zählt, <InlineMath math="28+k\ge40" />. Aber <InlineMath math="n" /> wächst mit.
+- <InlineMath math="13" /> entsteht aus <InlineMath math="28+k>40" />, der Median bleibt also beim <InlineMath math="40" />-ten Wert. Derselbe Fehler: <InlineMath math="n=80+k" />, nicht <InlineMath math="80" />.
+- <InlineMath math="24" /> macht die Medianschätzung genau <InlineMath math="10" /> Minuten. Das ist nicht kleiner als <InlineMath math="10" />.
+- <InlineMath math="53" /> entsteht, wenn du nur die neuen Anrufe mit den <InlineMath math="52" /> Anrufen von mindestens <InlineMath math="10" /> Minuten vergleichst. Die <InlineMath math="28" /> früheren Anrufe unter <InlineMath math="10" /> Minuten fehlen dabei.
+
+Der kleinste Wert von <InlineMath math="k" /> ist also <InlineMath math="25" />.

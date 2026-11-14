@@ -1,15 +1,77 @@
-Die maximale Definitionsmenge enthält jedes <InlineMath math="x" />, für das die Formel Sinn ergibt. Es gibt **zwei Bedingungen**: Die Zahl unter der Wurzel ist nicht negativ, und der Nenner ist nicht null.
+# Der Definitionsbereich aus dem Betrag
+
+Die Wertemenge ist die Menge aller Werte <InlineMath math="f(x)" /> für die <InlineMath math="x" />, die du einsetzen darfst. Klär also zuerst, **welche <InlineMath math="x" /> erlaubt sind**. Die Ungleichung <InlineMath math="2\le|x-1|\le5" /> enthält zwei Bedingungen auf einmal.
+
+<InlineMath math="|x-1|\le5" /> heißt: Der Abstand von <InlineMath math="x" /> zu <InlineMath math="1" /> ist höchstens <InlineMath math="5" />. <InlineMath math="|x-1|\ge2" /> heißt: Dieser Abstand ist mindestens <InlineMath math="2" />, und das hat **zwei Zweige**, nach links und nach rechts.
 
 <BlockMath math="\begin{aligned}
-12-3x\ge0\ &\Rightarrow\ x\le4 \\
-x+1\ne0\ &\Rightarrow\ x\ne-1
+|x-1|\le5 &\iff -4\le x\le 6 \\
+|x-1|\ge2 &\iff x-1\le-2 \ \lor\ x-1\ge2 \\
+&\iff x\le-1 \ \lor\ x\ge3
 \end{aligned}" />
 
-Zur Kontrolle: <InlineMath math="f(4)=\frac{0}{5}=0" /> ist definiert, während <InlineMath math="x=-1" /> den Nenner null macht und <InlineMath math="x=5" /> die Zahl unter der Wurzel negativ.
+Setz beides zusammen. Der Definitionsbereich von <InlineMath math="f" /> besteht aus zwei Intervallen, <InlineMath math="-4\le x\le-1" /> und <InlineMath math="3\le x\le6" />. Die Lücke <InlineMath math="-1<x<3" /> gehört nicht dazu.
 
-Die maximale Definitionsmenge ist also <InlineMath math="\{x\mid x\le4,\ x\ne-1\}" />.
+# Die Werte auf jedem Intervall
 
-- <InlineMath math="\{x\mid x\le4\}" /> vergisst, dass der Nenner nicht null sein darf.
-- <InlineMath math="\{x\mid x<4,\ x\ne-1\}" /> lässt <InlineMath math="x=4" /> weg, obwohl die Wurzel aus null definiert ist.
-- <InlineMath math="\{x\mid x\ge4\}" /> dreht das Ungleichheitszeichen beim Teilen durch <InlineMath math="-3" /> nicht um.
-- <InlineMath math="\{x\mid x\ge-4,\ x\ne-1\}" /> macht beim Verschieben der <InlineMath math="12" /> einen Vorzeichenfehler und erhält <InlineMath math="3x\ge-12" />.
+Ergänz quadratisch, dann siehst du den Scheitelpunkt.
+
+<BlockMath math="f(x)=x^2-4x+1=(x-2)^2-3" />
+
+Der Scheitelpunkt liegt bei <InlineMath math="x=2" /> mit dem Wert <InlineMath math="-3" />. Aber <InlineMath math="x=2" /> liegt in der Lücke <InlineMath math="-1<x<3" />, also **wird der Wert <InlineMath math="-3" /> nie erreicht**. Auf jedem Intervall fällt <InlineMath math="f" /> nur oder steigt nur, kleinster und größter Wert liegen also an den Intervallenden.
+
+<BlockMath math="\begin{aligned}
+-4\le x\le-1:&\quad f(-1)=6,\ \ f(-4)=33,\ \text{ Werte } 6\le y\le 33 \\
+3\le x\le 6:&\quad f(3)=-2,\ \ f(6)=13,\ \text{ Werte } -2\le y\le 13
+\end{aligned}" />
+
+Die beiden Wertebereiche überlappen sich, denn <InlineMath math="6" /> bis <InlineMath math="13" /> liegt in beiden. Zusammen ergeben sie <InlineMath math="-2\le y\le33" />.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="f(x)=(x-2)^2-3" /> auf seinem Definitionsbereich</>}
+  description={<>Eine nach oben geöffnete Parabel mit Scheitelpunkt <InlineMath math="(2,-3)" />. Benutzt werden nur zwei Teile: für <InlineMath math="-4\le x\le-1" /> fällt sie von <InlineMath math="(-4,33)" /> auf <InlineMath math="(-1,6)" />, für <InlineMath math="3\le x\le6" /> steigt sie von <InlineMath math="(3,-2)" /> auf <InlineMath math="(6,13)" />. Der Scheitelpunkt liegt in der Lücke, die nicht zum Definitionsbereich gehört.</>}
+  labels={{
+    vertex: <InlineMath math="(2,-3)" />,
+    "low-end": <InlineMath math="(3,-2)" />,
+    "high-end": <InlineMath math="(-4,33)" />,
+    "left-end": <InlineMath math="(-1,6)" />,
+    "right-end": <InlineMath math="(6,13)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 9 },
+      y: { min: -6, max: 37 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "whole", kind: "quadratic", appearance: "construction", coefficients: { a: 1, b: -4, c: 1 }, domain: { min: -4, max: 6 }, inputAxis: "x" },
+      { id: "left-piece", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 1 }, domain: { min: -4, max: -1 }, inputAxis: "x" },
+      { id: "right-piece", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 1 }, domain: { min: 3, max: 6 }, inputAxis: "x" },
+      { id: "vertex-point", kind: "point", appearance: "warning", at: { x: 2, y: -3 } },
+      { id: "low-point", kind: "point", appearance: "answer", at: { x: 3, y: -2 } },
+      { id: "high-point", kind: "point", appearance: "answer", at: { x: -4, y: 33 } },
+      { id: "left-point", kind: "point", appearance: "reference", at: { x: -1, y: 6 } },
+      { id: "right-point", kind: "point", appearance: "reference", at: { x: 6, y: 13 } },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex-point", at: { x: 2, y: -3 }, placement: "below-left" },
+      { key: "low-end", objectId: "low-point", at: { x: 3, y: -2 }, placement: "right" },
+      { key: "high-end", objectId: "high-point", at: { x: -4, y: 33 }, placement: "right" },
+      { key: "left-end", objectId: "left-point", at: { x: -1, y: 6 }, placement: "left" },
+      { key: "right-end", objectId: "right-point", at: { x: 6, y: 13 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Die verlockenden Antworten
+
+Jede andere Antwort **vergisst einen Teil des Definitionsbereichs**.
+
+- <InlineMath math="\{y\mid -3\le y\le33\}" /> benutzt den Scheitelwert <InlineMath math="-3" />, obwohl <InlineMath math="x=2" /> nicht zum Definitionsbereich gehört.
+- <InlineMath math="\{y\mid y\ge-3\}" /> ist die Wertemenge, wenn <InlineMath math="x" /> jede reelle Zahl sein darf. Die Betragsbedingung wurde ignoriert.
+- <InlineMath math="\{y\mid -2\le y\le13\}" /> benutzt nur den Zweig <InlineMath math="x\ge3" /> und verliert den Zweig <InlineMath math="x\le-1" />.
+- <InlineMath math="\{y\mid 6\le y\le33\}" /> benutzt nur den Zweig <InlineMath math="x\le-1" />.
+
+Die Wertemenge von <InlineMath math="f" /> ist also <InlineMath math="\{y\mid -2\le y\le33\}" />.

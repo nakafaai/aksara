@@ -1,17 +1,34 @@
-First find **the three averages and the range**. Then each statement can be checked directly. In order, the <InlineMath math="12" /> values are:
+The table gives only five values per class, so a huge number of data sets fit it. A statement is **certainly true only if it holds for every one of those data sets**. To show a statement is false, one data set that fits the table but breaks the statement is enough.
 
-<BlockMath math="30,\ 31,\ 31,\ 32,\ 32,\ 32,\ 32,\ 33,\ 33,\ 34,\ 34,\ 36" />
+# Where the quartiles sit in the sorted data
+
+Sort class A's scores as <InlineMath math="a_1\le a_2\le\dots\le a_{31}" /> and class B's as <InlineMath math="b_1\le\dots\le b_{27}" />. In class A the median is the <InlineMath math="16" />th value, with <InlineMath math="15" /> values on each side. The middle of <InlineMath math="a_1" /> to <InlineMath math="a_{15}" /> is <InlineMath math="a_8" />, and the middle of <InlineMath math="a_{17}" /> to <InlineMath math="a_{31}" /> is <InlineMath math="a_{24}" />. Class B works the same way.
 
 <BlockMath math="\begin{aligned}
-\bar x&=\frac{390}{12}=32.5 \\
-\text{median}&=\frac{32+32}{2}=32,\qquad \text{mode}=32 \\
-\text{range}&=36-30=6
+\text{Class A}&:\ a_1=40,\quad a_8=56,\quad a_{16}=70,\quad a_{24}=82,\quad a_{31}=98 \\
+\text{Class B}&:\ b_1=50,\quad b_7=62,\quad b_{14}=68,\quad b_{21}=76,\quad b_{27}=92
 \end{aligned}" />
 
-- The days with <InlineMath math="33" />, <InlineMath math="34" /> and <InlineMath math="36^\circ\text{C}" /> lie above <InlineMath math="32.5" />, together <InlineMath math="5" /> of <InlineMath math="12" />, about <InlineMath math="41.7\,\%" />. The statement is true.
-- The median and the mode are both <InlineMath math="32^\circ\text{C}" />. The statement is true.
-- The mean <InlineMath math="32.5" /> is greater than the median <InlineMath math="32" />, not smaller. The single value <InlineMath math="36" /> pulls the mean up. The statement is false.
-- <InlineMath math="1+2=3" /> days lie below <InlineMath math="32^\circ\text{C}" />. The statement is true.
-- The range is <InlineMath math="6^\circ\text{C}" />, not <InlineMath math="5^\circ\text{C}" />. The statement is false.
+Because the data are sorted, if <InlineMath math="a_k=v" />, then **every value from position <InlineMath math="k" /> upward is at least <InlineMath math="v" />**, and only values before position <InlineMath math="k" /> can be smaller than <InlineMath math="v" />. Other values may still equal <InlineMath math="v" />, and those ties are what make some counts uncertain.
 
-So the true statements are the ones about the share above the mean, about the median and mode, and about the three days below <InlineMath math="32^\circ\text{C}" />.
+# Judging each statement
+
+**True**. First statement: <InlineMath math="a_{24}=82" />, so <InlineMath math="a_{24},a_{25},\dots,a_{31}" /> are all at least <InlineMath math="82" />. That's <InlineMath math="31-24+1=8" /> students, whatever the other scores are.
+
+**False**. Second statement: the values <InlineMath math="b_{15}" /> to <InlineMath math="b_{27}" /> are indeed <InlineMath math="13" /> scores of at least <InlineMath math="68" />, but some can be **exactly <InlineMath math="68" />**, not more than <InlineMath math="68" />. Here's class B data that fits the table:
+
+<BlockMath math="50,\ \underbrace{55,\dots,55}_{5},\ 62,\ \underbrace{65,\dots,65}_{6},\ 68,\ 68,\ \underbrace{70,\dots,70}_{5},\ 76,\ \underbrace{80,\dots,80}_{5},\ 92" />
+
+Here <InlineMath math="b_7=62" />, <InlineMath math="b_{14}=68" /> and <InlineMath math="b_{21}=76" />, just like the table. But <InlineMath math="b_{15}=68" />, so only <InlineMath math="5+1+5+1=12" /> students score more than <InlineMath math="68" />.
+
+**True**. Third statement: <InlineMath math="b_{21}=76" />, so <InlineMath math="b_{21}" /> to <InlineMath math="b_{27}" />, that's <InlineMath math="7" /> students, score at least <InlineMath math="76" />.
+
+<BlockMath math="\frac{7}{27}\approx25.9\%>25\%" />
+
+The idea that exactly <InlineMath math="25\%" /> of the data sit at or above the upper quartile doesn't work here, because <InlineMath math="27" /> isn't divisible by <InlineMath math="4" />.
+
+**True**. Fourth statement: in class A, the eight students <InlineMath math="a_{24}" /> to <InlineMath math="a_{31}" /> score at least <InlineMath math="82" />, so more than <InlineMath math="76" />. In class B, <InlineMath math="b_{21}=76" />, so only <InlineMath math="b_{22}" /> to <InlineMath math="b_{27}" /> can be above <InlineMath math="76" />, at most <InlineMath math="6" /> students. At least <InlineMath math="8" /> is always more than at most <InlineMath math="6" />.
+
+**True**. Fifth statement: <InlineMath math="a_8=56" /> and <InlineMath math="a_{24}=82" />, so every value from <InlineMath math="a_8" /> to <InlineMath math="a_{24}" /> lies from <InlineMath math="56" /> to <InlineMath math="82" />. That's <InlineMath math="24-8+1=17" /> students.
+
+So the statements that are certainly true are the first, third, fourth and fifth.

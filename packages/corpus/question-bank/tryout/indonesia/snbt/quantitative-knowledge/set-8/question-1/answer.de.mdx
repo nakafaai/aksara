@@ -1,19 +1,42 @@
-Faktorisiere die linke Seite zu <InlineMath math="(a-b)(a+b)=45" />. Die Aufgabe wird zur **Suche nach Faktorpaaren von 45**, die <InlineMath math="a-b" /> und <InlineMath math="a+b" /> sein können.
+Gesucht ist der Rest, den <InlineMath math="2^{2026}+11^{2027}" /> bei Division durch <InlineMath math="13" /> lässt. Die Potenzen sind viel zu groß zum direkten Ausrechnen, also gehst du so vor: Du suchst **das sich wiederholende Restmuster** der Zweierpotenzen, schreibst <InlineMath math="11" /> als negative Zahl mit demselben Rest und addierst dann beide Reste.
 
-# Bedingungen an das Faktorpaar
+# Das Restmuster der Zweierpotenzen
 
-Da <InlineMath math="a" /> und <InlineMath math="b" /> positiv sind, gilt <InlineMath math="a-b<a+b" />, also ist der kleinere Faktor <InlineMath math="a-b" />. Außerdem ist <InlineMath math="a=\tfrac{(a+b)+(a-b)}{2}" />, also **müssen beide Faktoren ungerade oder beide gerade sein**. Alle Teiler von 45 sind ungerade, das ist also immer erfüllt.
+Der Rest eines Produkts hängt nur von den Resten seiner Faktoren ab. Den Rest von <InlineMath math="2^{k+1}" /> bekommst du also, indem du den Rest von <InlineMath math="2^{k}" /> mit <InlineMath math="2" /> multiplizierst und davon wieder den Rest nimmst. Das Zeichen <InlineMath math="a\equiv b\pmod{13}" /> bedeutet, dass <InlineMath math="a" /> und <InlineMath math="b" /> bei Division durch <InlineMath math="13" /> denselben Rest lassen. Die Reste von <InlineMath math="2^{1}" /> bis <InlineMath math="2^{12}" /> sind der Reihe nach
 
-# Liste der Paare
+<BlockMath math="2,\ 4,\ 8,\ 3,\ 6,\ 12,\ 11,\ 9,\ 5,\ 10,\ 7,\ 1" />
 
-| <InlineMath math="a-b" /> | <InlineMath math="a+b" /> | <InlineMath math="a" /> | <InlineMath math="b" /> |
-| :---: | :---: | :---: | :---: |
-| 1 | 45 | 23 | 22 |
-| 3 | 15 | 9 | 6 |
-| 5 | 9 | 7 | 2 |
+Weil <InlineMath math="2^{12}" /> den Rest <InlineMath math="1" /> lässt, **wiederholt sich das Muster alle <InlineMath math="12" /> Potenzen**. Du brauchst also nur den Rest des Exponenten bei Division durch <InlineMath math="12" />.
 
-Das Paar <InlineMath math="(9,5)" /> und die weiteren kehren nur die Reihenfolge um und liefern ein negatives <InlineMath math="b" />. Kontrolle: <InlineMath math="23^2-22^2=45" />, <InlineMath math="81-36=45" /> und <InlineMath math="49-4=45" />.
+<BlockMath math="\begin{aligned}
+2026&=12\cdot168+10\\
+2^{2026}&=\left(2^{12}\right)^{168}\cdot2^{10}\equiv1\cdot10=10\pmod{13}
+\end{aligned}" />
 
-Der Wert 6 zählt alle sechs Teiler von 45, als lieferte jeder ein Paar. Der Wert 2 übersieht meist das Faktorpaar <InlineMath math="1\times45" />.
+# Elf als negative Zahl schreiben
 
-Es gibt also **3** solche Paare.
+Die Zahl <InlineMath math="11" /> ist <InlineMath math="13-2" />, also gilt <InlineMath math="11\equiv-2\pmod{13}" />. Ersetzt du die Basis durch eine Zahl mit demselben Rest, ändert sich der Rest der Potenz nicht. Der Exponent <InlineMath math="2027" /> ist ungerade, und **ein ungerader Exponent behält das Minuszeichen**.
+
+<BlockMath math="\begin{aligned}
+11^{2027}&\equiv(-2)^{2027}=-2^{2027}\pmod{13}\\
+2027&=12\cdot168+11\\
+2^{2027}&\equiv2^{11}\equiv7\pmod{13}\\
+11^{2027}&\equiv-7\equiv-7+13=6\pmod{13}
+\end{aligned}" />
+
+# Addieren und prüfen
+
+Addiere beide Reste und ziehe dann <InlineMath math="13" /> ab, denn **ein Rest bei Division durch <InlineMath math="13" /> liegt zwischen <InlineMath math="0" /> und <InlineMath math="12" />**.
+
+<BlockMath math="2^{2026}+11^{2027}\equiv10+6=16\equiv16-13=3\pmod{13}" />
+
+Prüfe den Rest von <InlineMath math="11^{2027}" /> auf einem zweiten Weg. Wegen <InlineMath math="11^{12}\equiv(-2)^{12}=2^{12}\equiv1" /> gilt <InlineMath math="11^{2027}\equiv11^{11}" />. Außerdem ist <InlineMath math="11^{11}\cdot11=11^{12}\equiv1" /> und <InlineMath math="6\cdot11=66=5\cdot13+1" />. Also lässt <InlineMath math="11^{11}" /> tatsächlich den Rest <InlineMath math="6" />.
+
+# Die falschen Antworten
+
+- <InlineMath math="4" /> entsteht, wenn **das Minuszeichen verloren geht** und <InlineMath math="11" /> so behandelt wird, als hätte es denselben Rest wie <InlineMath math="2" />: <InlineMath math="10+7=17\equiv4" />.
+- <InlineMath math="6" /> entsteht, wenn du im Muster einen Schritt zu weit liest, also <InlineMath math="2^{11}\equiv7" /> und <InlineMath math="2^{12}\equiv1" /> nimmst: <InlineMath math="7-1=6" />.
+- <InlineMath math="8" /> entsteht, wenn du im Muster einen Schritt zu früh liest, also <InlineMath math="2^{9}\equiv5" /> und <InlineMath math="2^{10}\equiv10" /> nimmst: <InlineMath math="5-10=-5\equiv8" />.
+- <InlineMath math="10" /> entsteht, wenn du glaubst, das Muster wiederhole sich alle <InlineMath math="6" /> Potenzen. Doch <InlineMath math="2^{6}" /> lässt den Rest <InlineMath math="12" />, nicht <InlineMath math="1" />: <InlineMath math="2^{4}-2^{5}\equiv3-6=-3\equiv10" />.
+
+Der Rest von <InlineMath math="2^{2026}+11^{2027}" /> bei Division durch <InlineMath math="13" /> ist also <InlineMath math="3" />.

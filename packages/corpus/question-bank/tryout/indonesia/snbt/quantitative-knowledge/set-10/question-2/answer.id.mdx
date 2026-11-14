@@ -1,16 +1,48 @@
-Perbandingan <InlineMath math="a:b=3:4" /> berarti **<InlineMath math="a=3k" /> dan <InlineMath math="b=4k" />** untuk suatu bilangan <InlineMath math="k\ne0" />. Bentuk yang ditanyakan hanya bergantung pada perbandingan, jadi <InlineMath math="k" /> akan hilang.
+Kamu perlu menemukan semua akar real dulu, baru mengalikannya. Bentuk <InlineMath math="x^2-6x" /> sangat mirip dengan kuadrat dari <InlineMath math="x-3" />, jadi rencananya ganti <InlineMath math="\lvert x-3\rvert" /> dengan satu variabel baru yang **tidak boleh bernilai negatif**.
 
-# Substitusi
+# Mengganti nilai mutlak
+
+Kuadrat sebuah bilangan sama dengan kuadrat nilai mutlaknya, jadi <InlineMath math="(x-3)^2=\lvert x-3\rvert^2" />. Karena <InlineMath math="(x-3)^2=x^2-6x+9" />, kamu dapat <InlineMath math="x^2-6x=\lvert x-3\rvert^2-9" />.
+
+Misalkan <InlineMath math="t=\lvert x-3\rvert" />. Nilai mutlak tidak pernah negatif, jadi **syaratnya <InlineMath math="t\ge 0" />**. Sekarang ruas kiri persamaan menjadi persamaan kuadrat dalam <InlineMath math="t" />.
 
 <BlockMath math="\begin{aligned}
-\frac{2a+b}{a-3b}&=\frac{2(3k)+4k}{3k-3(4k)}\\
-&=\frac{10k}{-9k}=-\frac{10}{9}
+x^2-6x-4\lvert x-3\rvert-3 &= (t^2-9)-4t-3 \\
+&= t^2-4t-12 \\
+&= (t-6)(t+2)
 \end{aligned}" />
 
-# Pemeriksaan tanda
+Persamaannya menjadi <InlineMath math="(t-6)(t+2)=0" />, jadi <InlineMath math="t=6" /> atau <InlineMath math="t=-2" />. Nilai <InlineMath math="t=-2" /> dibuang karena melanggar syarat <InlineMath math="t\ge 0" />. Tidak ada <InlineMath math="x" /> yang membuat <InlineMath math="\lvert x-3\rvert=-2" />.
 
-Penyebut <InlineMath math="a-3b" /> negatif karena <InlineMath math="3b" /> **jauh lebih besar daripada <InlineMath math="a" />**, sedangkan pembilangnya positif untuk <InlineMath math="k>0" />. Jadi hasilnya harus negatif. Untuk <InlineMath math="k<0" />, pembilang dan penyebut sama-sama berganti tanda, dan hasilnya tetap <InlineMath math="-\tfrac{10}{9}" />.
+# Kembali ke variabel awal
 
-Nilai <InlineMath math="\tfrac{10}{9}" /> mengabaikan tanda negatif penyebut. Nilai <InlineMath math="-\tfrac{9}{10}" /> membalik pecahan.
+Hanya <InlineMath math="\lvert x-3\rvert=6" /> yang tersisa. Jarak <InlineMath math="x" /> ke <InlineMath math="3" /> sama dengan <InlineMath math="6" />, jadi **ada dua titik, satu di kanan dan satu di kiri**.
 
-Jadi, nilai bentuk itu adalah **<InlineMath math="-\tfrac{10}{9}" />**.
+<BlockMath math="\begin{aligned}
+x-3=6 &\;\Longrightarrow\; x=9 \\
+x-3=-6 &\;\Longrightarrow\; x=-3
+\end{aligned}" />
+
+Hasil kali kedua akar itu adalah <InlineMath math="9\cdot(-3)=-27" />.
+
+# Pemeriksaan
+
+Substitusikan kedua akar ke persamaan awal.
+
+<BlockMath math="\begin{aligned}
+x=9:&\quad 81-54-4\cdot 6-3=0 \\
+x=-3:&\quad 9+18-4\cdot 6-3=0
+\end{aligned}" />
+
+Cara kedua adalah memecah kasus. Untuk <InlineMath math="x\ge 3" />, persamaannya <InlineMath math="x^2-10x+9=0" /> dengan akar <InlineMath math="1" /> dan <InlineMath math="9" />. Akar <InlineMath math="1" /> dibuang karena **tidak memenuhi syarat kasusnya** <InlineMath math="x\ge 3" />. Untuk <InlineMath math="x<3" />, persamaannya <InlineMath math="x^2-2x-15=0" /> dengan akar <InlineMath math="5" /> dan <InlineMath math="-3" />. Akar <InlineMath math="5" /> dibuang karena tidak memenuhi <InlineMath math="x<3" />. Yang tersisa tetap <InlineMath math="9" /> dan <InlineMath math="-3" />.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain muncul dari **akar yang tidak diperiksa** atau besaran yang tertukar.
+
+- <InlineMath math="-135" /> adalah hasil kali empat calon akar <InlineMath math="1" />, <InlineMath math="9" />, <InlineMath math="5" />, dan <InlineMath math="-3" /> tanpa memeriksa syarat setiap kasus.
+- <InlineMath math="-15" /> hanya memakai persamaan kasus <InlineMath math="x<3" />, seolah-olah <InlineMath math="\lvert x-3\rvert=3-x" /> untuk semua <InlineMath math="x" />.
+- <InlineMath math="-12" /> adalah hasil kali kedua nilai <InlineMath math="t" />, bukan hasil kali akar <InlineMath math="x" />.
+- <InlineMath math="9" /> muncul kalau tanda mutlak dibuang begitu saja, sehingga kamu hanya menyelesaikan <InlineMath math="x^2-10x+9=0" />.
+
+Jadi, hasil kali semua akar real persamaan itu adalah <InlineMath math="-27" />.

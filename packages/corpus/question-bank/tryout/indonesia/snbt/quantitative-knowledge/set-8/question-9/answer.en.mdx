@@ -1,21 +1,43 @@
-On each part of the trip, time equals distance divided by speed. The average speed of the whole trip is **total distance divided by total time**, not the mean of the two speeds.
+You're counting points with whole-number coordinates that satisfy the inequality. Here's the plan: complete the squares so a circle shows up, move its centre to the origin, count row by row, and **remember that the strict less-than sign throws out the points lying exactly on the circle**.
 
-# Time for each part
+# Completing the squares
+
+Move all the <InlineMath math="x" /> and <InlineMath math="y" /> terms to the left side, then complete the squares. Each square you build adds a constant, so **the same constant has to be added to the right side**.
 
 <BlockMath math="\begin{aligned}
-t_1&=\frac{120}{60}=2\text{ h}\\
-t_2&=\frac{180-120}{40}=\frac{60}{40}=1.5\text{ h}\\
-t&=2+1.5=3.5\text{ h}
+x^2-2x+y^2-4y&<20\\
+(x-1)^2-1+(y-2)^2-4&<20\\
+(x-1)^2+(y-2)^2&<25
 \end{aligned}" />
 
-The first statement is true. The first part takes **exactly 2 hours**, not 2 hours 30 minutes, so the fourth statement is false.
+That's the inside of the circle with centre <InlineMath math="(1,2)" /> and radius <InlineMath math="5" />. Let <InlineMath math="u=x-1" /> and <InlineMath math="v=y-2" />. Each whole-number pair <InlineMath math="(x,y)" /> matches exactly one whole-number pair <InlineMath math="(u,v)" />, so you only need to count whole-number pairs with <InlineMath math="u^2+v^2<25" />.
 
-# Average speed and the time comparison
+# Counting row by row
 
-<BlockMath math="\bar v=\frac{180}{3.5}=\frac{360}{7}\approx51.4\text{ km/h}" />
+For each value of <InlineMath math="u" />, find the whole numbers <InlineMath math="v" /> with <InlineMath math="v^2<25-u^2" />.
 
-The value 50 is the plain mean of 60 and 40. The car **spends longer on the fast part**, so the speed 60 weighs more and the average is above 50. The second statement is false.
+| Value of <InlineMath math="u" /> | Condition | Values of <InlineMath math="v" /> | Number of points |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="v^2<25" /> | <InlineMath math="-4\le v\le4" /> | <InlineMath math="9" /> |
+| <InlineMath math="\pm1" /> | <InlineMath math="v^2<24" /> | <InlineMath math="-4\le v\le4" /> | <InlineMath math="9" /> each |
+| <InlineMath math="\pm2" /> | <InlineMath math="v^2<21" /> | <InlineMath math="-4\le v\le4" /> | <InlineMath math="9" /> each |
+| <InlineMath math="\pm3" /> | <InlineMath math="v^2<16" /> | <InlineMath math="-3\le v\le3" /> | <InlineMath math="7" /> each |
+| <InlineMath math="\pm4" /> | <InlineMath math="v^2<9" /> | <InlineMath math="-2\le v\le2" /> | <InlineMath math="5" /> each |
+| <InlineMath math="\pm5" /> | <InlineMath math="v^2<0" /> | none | <InlineMath math="0" /> |
 
-If all 180 km were driven at 60, the time would be <InlineMath math="\tfrac{180}{60}=3" /> hours. The difference from 3.5 hours is 0.5 hours, or 30 minutes. The third statement is true.
+Look at the row <InlineMath math="u=\pm3" />: the values <InlineMath math="v=\pm4" /> give <InlineMath math="9+16=25" />, which **doesn't satisfy the strict less-than sign**, so they aren't counted.
 
-So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.
+<BlockMath math="9+2\cdot9+2\cdot9+2\cdot7+2\cdot5=9+18+18+14+10=69" />
+
+# Checking with the points on the circle
+
+Count the points with <InlineMath math="u^2+v^2\le25" /> too. The rows give <InlineMath math="11" /> for <InlineMath math="u=0" />, <InlineMath math="9" /> for each of <InlineMath math="u=\pm1,\pm2,\pm3" />, <InlineMath math="7" /> for each of <InlineMath math="u=\pm4" />, and <InlineMath math="1" /> for each of <InlineMath math="u=\pm5" />, which makes <InlineMath math="81" />. There are <InlineMath math="12" /> points **lying exactly on the circle**: <InlineMath math="(\pm5,0)" />, <InlineMath math="(0,\pm5)" />, <InlineMath math="(\pm3,\pm4)" />, and <InlineMath math="(\pm4,\pm3)" />. The difference <InlineMath math="81-12=69" /> matches the count above.
+
+# The wrong options
+
+- <InlineMath math="61" /> comes from **not adding the constants from completing the squares to the right side**, so you'd count <InlineMath math="u^2+v^2<20" />.
+- <InlineMath math="73" /> comes from removing only the <InlineMath math="8" /> points like <InlineMath math="(3,4)" /> while still counting <InlineMath math="(\pm5,0)" /> and <InlineMath math="(0,\pm5)" />.
+- <InlineMath math="77" /> comes from removing only the <InlineMath math="4" /> points on the axes and forgetting points like <InlineMath math="(3,4)" />.
+- <InlineMath math="81" /> comes from reading the strict less-than sign as less than or equal to.
+
+So the number of whole-number pairs <InlineMath math="(x,y)" /> satisfying the inequality is <InlineMath math="69" />.

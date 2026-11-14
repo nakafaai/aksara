@@ -1,30 +1,46 @@
-Dua titik potong dengan sumbu <InlineMath math="x" /> memberi **bentuk faktor <InlineMath math="f(x)=a(x+1)(x-5)" />**. Titik potong dengan sumbu <InlineMath math="y" /> menentukan nilai <InlineMath math="a" />.
+Kedua ruas punya bilangan pokok yang berbeda, jadi kamu ubah dulu persamaannya menjadi satu pangkat, yaitu <InlineMath math="\left(\tfrac32\right)^x=6" />. Pilihan jawabannya berdekatan, sehingga taksiran logaritma yang kasar bisa menyesatkan. Karena itu, **letak <InlineMath math="x" /> ditentukan dengan membandingkan bilangan bulat secara tepat**.
 
-# Menentukan rumus fungsi
+# Mengubah ke satu bilangan pokok
+
+Sifat <InlineMath math="a^{m+n}=a^m\cdot a^n" /> memecah kedua ruas: <InlineMath math="2^{x+1}=2\cdot2^x" /> dan <InlineMath math="3^{x-1}=\frac{3^x}{3}" />. Kumpulkan pangkat <InlineMath math="x" /> di satu ruas.
 
 <BlockMath math="\begin{aligned}
-f(0)=a(1)(-5)&=10\;\Longrightarrow\; a=-2\\
-f(x)&=-2(x+1)(x-5)=-2x^2+8x+10
+2\cdot2^x&=\frac{3^x}{3}\\
+6&=\frac{3^x}{2^x}\\
+\left(\tfrac32\right)^x&=6
 \end{aligned}" />
 
-Karena <InlineMath math="a<0" />, grafiknya **terbuka ke bawah** dan memiliki nilai maksimum.
+Jadi <InlineMath math="x=\log_{3/2}6" />. Bilangan pokok <InlineMath math="\tfrac32" /> lebih dari <InlineMath math="1" />, jadi **makin besar <InlineMath math="x" />, makin besar <InlineMath math="\left(\tfrac32\right)^x" />**. Untuk tahu letak <InlineMath math="x" />, bandingkan beberapa pangkat <InlineMath math="\tfrac32" /> dengan <InlineMath math="6" />.
 
-# Sumbu simetri dan nilai maksimum
+# Batas bilangan bulat
 
-Sumbu simetri berada **di tengah kedua akar**, yaitu <InlineMath math="x=\tfrac{-1+5}{2}=2" />, bukan <InlineMath math="x=3" />. Pernyataan kedua salah.
+Hitung pangkat keempat dan kelima, lalu bandingkan pecahannya dengan <InlineMath math="6" /> lewat perkalian silang.
 
-<BlockMath math="f(2)=-2(3)(-3)=18" />
+<BlockMath math="\begin{aligned}
+\left(\tfrac32\right)^4&=\tfrac{81}{16}<6 &&\text{karena } 81<96\\
+\left(\tfrac32\right)^5&=\tfrac{243}{32}>6 &&\text{karena } 243>192
+\end{aligned}" />
 
-Nilai maksimumnya 18, jadi pernyataan pertama benar.
+Pangkat keempat masih di bawah <InlineMath math="6" /> dan pangkat kelima sudah di atasnya, jadi **<InlineMath math="x" /> terletak di antara <InlineMath math="4" /> dan <InlineMath math="5" />**.
 
-# Tanda fungsi dan nilai di satu
+# Membandingkan dengan empat setengah
 
-Grafik yang terbuka ke bawah bernilai positif **hanya di antara kedua akar**, yaitu pada <InlineMath math="-1<x<5" />. Untuk <InlineMath math="5<x<6" /> nilainya negatif, misalnya <InlineMath math="f(5{,}5)=-2(6{,}5)(0{,}5)=-6{,}5" />. Pernyataan ketiga salah.
+Sekarang uji <InlineMath math="x=4{,}5" />. Pangkat setengah sulit dihitung langsung, jadi **kuadratkan kedua bilangan yang dibandingkan**. Keduanya positif, jadi urutannya tidak berubah: <InlineMath math="\left(\tfrac32\right)^{4{,}5}" /> dibandingkan dengan <InlineMath math="6" /> sama dengan <InlineMath math="\left(\tfrac32\right)^{9}" /> dibandingkan dengan <InlineMath math="36" />.
 
-Jumlah <InlineMath math="a+b+c" /> sama dengan <InlineMath math="f(1)" />.
+<BlockMath math="\begin{aligned}
+\left(\tfrac32\right)^9&=\tfrac{19{.}683}{512}\\
+36\times512&=18{.}432<19{.}683
+\end{aligned}" />
 
-<BlockMath math="a+b+c=-2+8+10=16" />
+Jadi <InlineMath math="\left(\tfrac32\right)^9>36" />, artinya <InlineMath math="\left(\tfrac32\right)^{4{,}5}>6" />. Pangkat <InlineMath math="4{,}5" /> sudah melewati <InlineMath math="6" />, sehingga <InlineMath math="x<4{,}5" />. Digabung dengan langkah sebelumnya, <InlineMath math="4<x<4{,}5" />.
 
-Pernyataan keempat benar.
+Pemeriksaan dengan nilai logaritma yang teliti, <InlineMath math="\log2\approx0{,}3010" /> dan <InlineMath math="\log3\approx0{,}4771" />, memberi <InlineMath math="x=\frac{\log3+\log2}{\log3-\log2}\approx\frac{0{,}7781}{0{,}1761}\approx4{,}42" />, sesuai dengan selang itu.
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.
+# Pilihan yang keliru
+
+- <InlineMath math="x<0" /> muncul dari salah tanda saat memindahkan <InlineMath math="\log3" />: dari <InlineMath math="(x+1)\log2=(x-1)\log3" /> tertulis <InlineMath math="x(\log3-\log2)=\log2-\log3" />, sehingga <InlineMath math="x=-1" />. Menulis <InlineMath math="3^{x-1}" /> sebagai <InlineMath math="3\cdot3^x" /> juga memberi <InlineMath math="x=-1" />.
+- <InlineMath math="0<x<4" /> muncul dari salah tanda saat memindahkan <InlineMath math="\log2" />, yaitu <InlineMath math="x(\log3-\log2)=\log3-\log2" />, sehingga <InlineMath math="x=1" />.
+- <InlineMath math="4{,}5<x<5" /> muncul dari pembulatan <InlineMath math="\log3\approx0{,}47" />, yang memberi <InlineMath math="\frac{0{,}77}{0{,}17}\approx4{,}53" />. **Selisih <InlineMath math="\log3-\log2" /> kecil**, jadi kesalahan pembulatan kecil pun membesar.
+- <InlineMath math="x\ge5" /> muncul jika <InlineMath math="\frac{x+1}{x-1}" /> disamakan dengan <InlineMath math="\frac32" />, sehingga <InlineMath math="x=5" />, padahal yang benar <InlineMath math="\frac{x+1}{x-1}=\frac{\log3}{\log2}" />.
+
+Jadi, nilai <InlineMath math="x" /> yang memenuhi <InlineMath math="2^{x+1}=3^{x-1}" /> terletak pada <InlineMath math="4<x<4{,}5" />.

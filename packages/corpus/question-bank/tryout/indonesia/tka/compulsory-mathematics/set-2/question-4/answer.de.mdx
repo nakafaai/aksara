@@ -1,17 +1,53 @@
-Es sei <InlineMath math="t" /> die Grundgebühr und <InlineMath math="p" /> der Preis pro Kilometer, in Rupiah. Eine Fahrt über <InlineMath math="x" /> km kostet <InlineMath math="t+px" />, die beiden Fahrten ergeben also ein **lineares Gleichungssystem mit zwei Variablen**.
+# Die Kosten beider Pakete
+
+Gefragt ist, für wie viele ganze Gewichte <InlineMath math="u" /> von <InlineMath math="1" /> bis <InlineMath math="40" /> Paket Kuota **echt billiger** ist, nicht gleich teuer. Jedes Paket hat ein Inklusivkontingent, also ändert sich die Kostenformel bei <InlineMath math="u=3" /> und bei <InlineMath math="u=12" />. Deshalb vergleichst du Abschnitt für Abschnitt.
+
+Rechne in Tausend Rupiah. Hemat verlangt <InlineMath math="6" /> Tausend nur für jedes kg über <InlineMath math="3" />, und Kuota verlangt <InlineMath math="10" /> Tausend nur für jedes kg über <InlineMath math="12" />:
 
 <BlockMath math="\begin{aligned}
-t+6p&=21{.}000 \\
-t+10p&=31{.}000 \\
-4p&=10{.}000\ \Rightarrow\ p=2{.}500,\quad t=21{.}000-15{.}000=6{.}000 \\
-t+15p&=6{.}000+37{.}500=43{.}500
+H(u)&=\begin{cases}30, & u\le3 \\ 30+6(u-3)=6u+12, & u>3\end{cases} \\
+K(u)&=\begin{cases}60, & u\le12 \\ 60+10(u-12)=10u-60, & u>12\end{cases}
 \end{aligned}" />
 
-Zur Kontrolle: Von <InlineMath math="10" /> km auf <InlineMath math="15" /> km steigt der Preis um <InlineMath math="5\cdot2{.}500=12{.}500" />, und <InlineMath math="31{.}000+12{.}500=43{.}500" />.
+# Abschnitt für Abschnitt vergleichen
 
-Eine Fahrt über <InlineMath math="15\text{ km}" /> kostet also <InlineMath math="\text{Rp}43{.}500" />.
+**Erster Abschnitt**, <InlineMath math="1\le u\le3" />: Hemat kostet <InlineMath math="30" /> und Kuota <InlineMath math="60" />, also ist Kuota teurer.
 
-- <InlineMath math="\text{Rp}37{.}500" /> rechnet nur <InlineMath math="15\cdot2{.}500" /> und vergisst die Grundgebühr.
-- <InlineMath math="\text{Rp}46{.}500" /> nimmt den Preis als proportional zur Strecke aus der zweiten Fahrt, <InlineMath math="\frac{31{.}000}{10}\cdot15" />.
-- <InlineMath math="\text{Rp}49{.}500" /> addiert die Preise beider Fahrten für <InlineMath math="16" /> km und zieht <InlineMath math="2{.}500" /> ab, sodass die Grundgebühr doppelt zählt.
-- <InlineMath math="\text{Rp}52{.}500" /> nimmt den Preis als proportional zur Strecke aus der ersten Fahrt, <InlineMath math="\frac{21{.}000}{6}\cdot15" />.
+**Zweiter Abschnitt**, <InlineMath math="3<u\le12" />: Hemat zahlt schon für zusätzliche Kilogramm, Kuota bleibt bei festen <InlineMath math="60" />.
+
+<BlockMath math="\begin{aligned}
+60&<6u+12 \\
+6u&>48 \\
+u&>8
+\end{aligned}" />
+
+Bei <InlineMath math="u=8" /> kosten beide <InlineMath math="60" /> Tausend. Kuota ist also billiger für <InlineMath math="u=9,10,11,12" />.
+
+**Dritter Abschnitt**, <InlineMath math="12<u\le40" />: Beide Pakete haben ihr Kontingent überschritten.
+
+<BlockMath math="\begin{aligned}
+10u-60&<6u+12 \\
+4u&<72 \\
+u&<18
+\end{aligned}" />
+
+Bei <InlineMath math="u=18" /> kosten beide <InlineMath math="120" /> Tausend. Kuota ist also billiger für <InlineMath math="u=13,14,\ldots,17" />. Ab <InlineMath math="19" /> gewinnt wieder Hemat, weil sein Preis pro zusätzlichem kg kleiner ist.
+
+| Gewicht | Billigeres Paket |
+| --- | --- |
+| <InlineMath math="1\le u\le7" /> | Hemat |
+| <InlineMath math="u=8" /> | gleich |
+| <InlineMath math="9\le u\le17" /> | Kuota |
+| <InlineMath math="u=18" /> | gleich |
+| <InlineMath math="19\le u\le40" /> | Hemat |
+
+Probe an einer Stelle: Für <InlineMath math="u=17" /> kostet Hemat <InlineMath math="30+6\cdot14=114" /> Tausend und Kuota <InlineMath math="60+10\cdot5=110" /> Tausend, Kuota ist also wirklich billiger.
+
+Die Anzahl der Werte von <InlineMath math="u" /> ist also <InlineMath math="17-9+1=9" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="32" /> nimmt an, dass Kuota für jedes <InlineMath math="u>8" /> billiger bleibt. Dabei steigt **Kuota nach dem Kontingent von <InlineMath math="12\text{ kg}" /> schneller** und wird bei <InlineMath math="u=18" /> wieder eingeholt.
+- <InlineMath math="29" /> zählt die Gewichte, bei denen Hemat billiger ist, also <InlineMath math="7+22" />, genau das Gegenteil der Frage.
+- <InlineMath math="17" /> vergisst das Kontingent von <InlineMath math="3\text{ kg}" /> bei Hemat und berechnet Hemat ab dem ersten Kilogramm als <InlineMath math="30+6u" />.
+- <InlineMath math="11" /> zählt auch <InlineMath math="u=8" /> und <InlineMath math="u=18" /> mit. Bei diesen beiden Gewichten sind die Kosten gleich, also ist Kuota dort nicht billiger.

@@ -1,30 +1,37 @@
-Misalkan perajin membuat <InlineMath math="x" /> tas jenis A dan <InlineMath math="y" /> tas jenis B. Ini soal **program linear**: keuntungan dimaksimumkan pada daerah yang dibatasi jam kerja dan bahan.
+Sisa pembagian oleh <InlineMath math="6" /> ditentukan oleh dua hal sekaligus: **sisa pembagian oleh <InlineMath math="2" /> dan sisa pembagian oleh <InlineMath math="3" />**. Tabel berikut menunjukkan bahwa setiap sisa <InlineMath math="0" /> sampai <InlineMath math="5" /> punya pasangan yang berbeda, jadi kedua sisa itu harus diketahui. Rencananya: terjemahkan setiap pernyataan menjadi informasi tentang sisa <InlineMath math="n" /> oleh <InlineMath math="2" /> dan oleh <InlineMath math="3" />.
 
-# Model dan titik pojok
+| Sisa oleh <InlineMath math="6" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| Sisa oleh <InlineMath math="2" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
+| Sisa oleh <InlineMath math="3" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> |
+
+# Pernyataan pertama saja
+
+Pernyataan (1) berarti <InlineMath math="n^2" /> bersisa <InlineMath math="1" /> jika dibagi <InlineMath math="3" />. Coba ketiga kemungkinan sisa <InlineMath math="n" /> oleh <InlineMath math="3" />.
 
 <BlockMath math="\begin{aligned}
-\text{jam kerja}&:\quad 2x+3y\le60\\
-\text{bahan}&:\quad x+y\le25\\
-\text{keuntungan}&:\quad K=40{.}000x+50{.}000y
+n=3k&\;\Longrightarrow\; n^2=9k^2 \text{ bersisa } 0\\
+n=3k+1&\;\Longrightarrow\; n^2=9k^2+6k+1 \text{ bersisa } 1\\
+n=3k+2&\;\Longrightarrow\; n^2=9k^2+12k+4 \text{ bersisa } 1
 \end{aligned}" />
 
-Kedua variabel juga tidak negatif, <InlineMath math="x\ge0" /> dan <InlineMath math="y\ge0" />. Nilai maksimum fungsi linear dicapai **di salah satu titik pojok daerah**. Titik potong kedua garis batas didapat dari mengurangkan dua kali persamaan bahan dari persamaan jam kerja.
+Jadi <InlineMath math="n" /> bersisa <InlineMath math="1" /> **atau** <InlineMath math="2" /> jika dibagi <InlineMath math="3" />, dan pernyataan (1) tidak berkata apa pun tentang genap atau ganjilnya <InlineMath math="n" />. Contohnya, <InlineMath math="n=4" /> memberi <InlineMath math="18" /> yang habis dibagi <InlineMath math="3" /> dengan sisa oleh <InlineMath math="6" /> sama dengan <InlineMath math="4" />, sedangkan <InlineMath math="n=5" /> memberi <InlineMath math="27" /> dengan sisa <InlineMath math="5" />. **Dua jawaban berbeda**, jadi pernyataan (1) saja tidak cukup.
+
+# Pernyataan kedua saja
+
+Tulis <InlineMath math="n^2-1=(n-1)(n+1)" />. Jika <InlineMath math="n" /> ganjil, kedua faktornya adalah dua bilangan genap berurutan, dan salah satunya kelipatan <InlineMath math="4" />, jadi hasil kalinya habis dibagi <InlineMath math="2\times4=8" />. Jika <InlineMath math="n" /> genap, <InlineMath math="n^2-1" /> ganjil dan tidak mungkin habis dibagi <InlineMath math="8" />. Jadi **pernyataan (2) hanya berarti <InlineMath math="n" /> ganjil**.
+
+Contohnya, <InlineMath math="n=3" /> memberi <InlineMath math="8" /> dengan sisa oleh <InlineMath math="6" /> sama dengan <InlineMath math="3" />, sedangkan <InlineMath math="n=5" /> memberi <InlineMath math="24" /> dengan sisa <InlineMath math="5" />. Pernyataan (2) saja tidak cukup.
+
+# Kedua pernyataan bersama
+
+Gabungkan: <InlineMath math="n" /> ganjil dan bersisa <InlineMath math="1" /> atau <InlineMath math="2" /> jika dibagi <InlineMath math="3" />. Pada tabel, kolom dengan sisa oleh <InlineMath math="2" /> sama dengan <InlineMath math="1" /> dan sisa oleh <InlineMath math="3" /> bukan <InlineMath math="0" /> adalah kolom <InlineMath math="1" /> dan kolom <InlineMath math="5" />. **Masih ada dua kemungkinan**, dan keduanya benar-benar terjadi.
 
 <BlockMath math="\begin{aligned}
-(2x+3y)-2(x+y)&=60-50\\
-y&=10,\quad x=15
+n=7&: \ 7^2+2=51=3\times17,\quad 7^2-1=48=8\times6,\quad \text{sisa oleh } 6 \text{ adalah } 1\\
+n=5&: \ 5^2+2=27=3\times9,\quad 5^2-1=24=8\times3,\quad \text{sisa oleh } 6 \text{ adalah } 5
 \end{aligned}" />
 
-# Membandingkan keuntungan
+Jebakannya ada pada pernyataan (1). Jika kamu mengira <InlineMath math="n^2" /> bersisa <InlineMath math="1" /> hanya ketika <InlineMath math="n" /> bersisa <InlineMath math="1" />, kamu akan menyimpulkan sisa <InlineMath math="1" /> dan memilih bahwa kedua pernyataan bersama cukup. Padahal <InlineMath math="n" /> bersisa <InlineMath math="2" /> juga memberi kuadrat bersisa <InlineMath math="1" />.
 
-| Titik pojok | Keuntungan |
-| :---: | :---: |
-| <InlineMath math="(25,0)" /> | <InlineMath math="\text{Rp}1{.}000{.}000{,}00" /> |
-| <InlineMath math="(15,10)" /> | <InlineMath math="\text{Rp}1{.}100{.}000{,}00" /> |
-| <InlineMath math="(0,20)" /> | <InlineMath math="\text{Rp}1{.}000{.}000{,}00" /> |
-
-Keuntungan terbesar ada di <InlineMath math="(15,10)" />, yang memakai tepat 60 jam dan tepat 25 tas. **Kedua batasan habis terpakai** di titik ini.
-
-Keuntungan <InlineMath math="\text{Rp}1{.}250{.}000{,}00" /> membuat 25 tas jenis B, padahal itu perlu 75 jam. Keuntungan <InlineMath math="\text{Rp}1{.}200{.}000{,}00" /> membuat 30 tas jenis A dan melanggar batas bahan. Keuntungan <InlineMath math="\text{Rp}1{.}150{.}000{,}00" /> muncul jika jam kerja tas A dan tas B tertukar.
-
-Jadi, keuntungan maksimumnya adalah **<InlineMath math="\text{Rp}1{.}100{.}000{,}00" />**.
+Jadi, pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.

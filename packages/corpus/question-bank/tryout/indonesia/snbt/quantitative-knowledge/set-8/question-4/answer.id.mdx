@@ -1,23 +1,41 @@
-Fungsi ini adalah grafik <InlineMath math="y=2^{x}" /> yang digeser 1 satuan ke kanan dan 4 satuan ke bawah. Sifat terpenting yang terbawa adalah **<InlineMath math="2^{x-1}" /> selalu positif**.
+Sistem ini mencampur logaritma berbasis <InlineMath math="4" /> dan berbasis <InlineMath math="2" />. Rencananya begini: **ubah semua logaritma ke dua huruf baru**, cari jumlah dan hasil kali kedua huruf itu, kembalikan ke <InlineMath math="x" /> dan <InlineMath math="y" />, lalu pakai syarat <InlineMath math="x\ne y" />.
 
-# Titik potong dengan sumbu
+# Menyamakan bentuk kedua persamaan
 
-Titik potong dengan sumbu <InlineMath math="x" /> memenuhi <InlineMath math="f(x)=0" />.
+Misalkan <InlineMath math="p={}^{4}\log x" /> dan <InlineMath math="q={}^{2}\log y" />. Artinya <InlineMath math="x=4^{p}=2^{2p}" />, jadi <InlineMath math="{}^{2}\log x=2p" />. Dengan cara yang sama, <InlineMath math="y=2^{q}=4^{q/2}" />, jadi <InlineMath math="{}^{4}\log y=\tfrac{q}{2}" />. Aturannya: **logaritma berbasis <InlineMath math="4" /> bernilai setengah logaritma berbasis <InlineMath math="2" />**, karena <InlineMath math="4=2^2" />.
 
-<BlockMath math="2^{x-1}=4=2^2\;\Longrightarrow\;x-1=2\;\Longrightarrow\;x=3" />
+<BlockMath math="\begin{aligned}
+p+q&=3\\
+2p\cdot\tfrac{q}{2}&=2\quad\Longrightarrow\quad pq=2
+\end{aligned}" />
 
-Pernyataan pertama benar. Titik potong dengan sumbu <InlineMath math="y" /> didapat dengan **mengganti <InlineMath math="x" /> dengan 0**.
+# Mencari pasangan bilangan
 
-<BlockMath math="f(0)=2^{-1}-4=\tfrac12-4=-3{,}5" />
+Dua bilangan dengan jumlah <InlineMath math="3" /> dan hasil kali <InlineMath math="2" /> adalah akar-akar <InlineMath math="t^2-3t+2=0" />, yaitu <InlineMath math="(t-1)(t-2)=0" />. Jadi, <InlineMath math="(p,q)=(1,2)" /> atau <InlineMath math="(p,q)=(2,1)" />. Kembalikan dengan <InlineMath math="x=4^{p}" /> dan <InlineMath math="y=2^{q}" />, dan **perhatikan bahwa basisnya berbeda untuk <InlineMath math="x" /> dan <InlineMath math="y" />**.
 
-Ordinat titik potongnya <InlineMath math="-3{,}5" />, jadi titik potongnya bukan <InlineMath math="(0,-3)" />. Pernyataan kedua salah.
+<BlockMath math="\begin{aligned}
+(p,q)=(1,2)&:\quad x=4^{1}=4,\quad y=2^{2}=4\\
+(p,q)=(2,1)&:\quad x=4^{2}=16,\quad y=2^{1}=2
+\end{aligned}" />
 
-# Nilai yang tidak pernah dicapai dan nilai di lima
+# Syarat yang membuang satu pasangan
 
-Persamaan <InlineMath math="f(x)=-4" /> berarti <InlineMath math="2^{x-1}=0" />. Pangkat dari 2 **tidak pernah bernilai nol**, jadi tidak ada <InlineMath math="x" /> yang memenuhi. Garis <InlineMath math="y=-4" /> adalah asimtot datar yang didekati grafik tetapi tidak pernah disentuh. Pernyataan ketiga salah.
+Pasangan <InlineMath math="x=y=4" /> memenuhi kedua persamaan: <InlineMath math="1+2=3" /> dan <InlineMath math="2\cdot1=2" />. Jadi, pasangan itu hanya gugur karena **syarat <InlineMath math="x\ne y" /> dari soal**. Yang tersisa adalah <InlineMath math="x=16" /> dan <InlineMath math="y=2" />.
 
-<BlockMath math="f(5)=2^{4}-4=16-4=12" />
+Periksa pasangan itu pada sistem asli.
 
-Pernyataan keempat benar.
+<BlockMath math="\begin{aligned}
+{}^{4}\log16+{}^{2}\log2&=2+1=3\\
+{}^{2}\log16\cdot{}^{4}\log2&=4\cdot\tfrac12=2
+\end{aligned}" />
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.
+Keduanya positif dan berbeda, jadi <InlineMath math="x+y=16+2=18" />.
+
+# Pilihan yang keliru
+
+- <InlineMath math="6" /> muncul jika **semua logaritma dianggap berbasis <InlineMath math="2" />**: jumlah <InlineMath math="3" /> dan hasil kali <InlineMath math="2" /> memberi <InlineMath math="\{x,y\}=\{2,4\}" />.
+- <InlineMath math="8" /> muncul jika pasangan <InlineMath math="x=y=4" /> tidak dibuang.
+- <InlineMath math="20" /> muncul jika <InlineMath math="y" /> dikembalikan dengan basis <InlineMath math="4" />, yaitu <InlineMath math="y=4^{1}=4" />, sehingga <InlineMath math="16+4=20" />.
+- <InlineMath math="26" /> muncul jika hasil kedua pasangan dijumlahkan: <InlineMath math="8+18=26" />.
+
+Jadi, nilai <InlineMath math="x+y" /> adalah <InlineMath math="18" />.

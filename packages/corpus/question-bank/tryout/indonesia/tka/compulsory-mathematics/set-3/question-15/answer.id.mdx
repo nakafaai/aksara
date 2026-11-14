@@ -1,16 +1,90 @@
-Pencerminan terhadap sumbu <InlineMath math="y" /> memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(-x,y)" />. Jadi, **ganti <InlineMath math="x" /> dengan <InlineMath math="-x" />** pada persamaan garis.
+Soal ini menanyakan bayangan titik <InlineMath math="C" />. Ada dua hal yang belum diketahui: **letak titik <InlineMath math="C" /> sendiri** dan nilai <InlineMath math="a" /> serta <InlineMath math="b" />. Kamu cari keduanya dulu, baru memetakan <InlineMath math="C" />.
+
+# Letak titik C
+
+Titik <InlineMath math="C" /> ada di garis <InlineMath math="x=6" />, jadi tulis <InlineMath math="C(6,y)" />. Karena sudut di <InlineMath math="C" /> siku-siku, sisi miring segitiga adalah <InlineMath math="AB=10" />. **Pakai Pythagoras** <InlineMath math="AC^2+BC^2=AB^2" />:
 
 <BlockMath math="\begin{aligned}
-3(-x)-2y+6&=0 \\
--3x-2y+6&=0 \\
-3x+2y-6&=0
+AC^2&=(6+2)^2+(y-1)^2=64+(y-1)^2 \\
+BC^2&=(6-8)^2+(y-1)^2=4+(y-1)^2 \\
+64+(y-1)^2+4+(y-1)^2&=100 \\
+2(y-1)^2&=32 \\
+(y-1)^2&=16
 \end{aligned}" />
 
-Sebagai pemeriksaan, titik <InlineMath math="(-2,0)" /> terletak pada <InlineMath math="g" />, dan bayangannya <InlineMath math="(2,0)" /> memenuhi <InlineMath math="3\cdot2+0-6=0" />. Titik <InlineMath math="(0,3)" /> pada sumbu <InlineMath math="y" /> tidak berpindah dan juga memenuhi <InlineMath math="0+6-6=0" />.
+Jadi <InlineMath math="y-1=4" /> atau <InlineMath math="y-1=-4" />, sehingga <InlineMath math="y=5" /> atau <InlineMath math="y=-3" />. Ada dua titik yang membuat sudut siku-siku, yaitu <InlineMath math="(6,5)" /> dan <InlineMath math="(6,-3)" />. Garis <InlineMath math="AB" /> adalah <InlineMath math="y=1" />, dan soal bilang <InlineMath math="C" /> di bawahnya. Jadi <InlineMath math="C(6,-3)" />.
 
-Jadi, bayangan garis <InlineMath math="g" /> adalah <InlineMath math="3x+2y-6=0" />.
+# Garis cermin dari syarat A ke B
 
-- <InlineMath math="2x-3y-6=0" /> adalah hasil pencerminan terhadap garis <InlineMath math="y=x" />, yang menukar <InlineMath math="x" /> dan <InlineMath math="y" />.
-- <InlineMath math="2x-3y+6=0" /> adalah hasil pencerminan terhadap garis <InlineMath math="y=-x" />.
-- <InlineMath math="3x-2y-6=0" /> mengganti <InlineMath math="x" /> dan <InlineMath math="y" /> sekaligus, yaitu pencerminan terhadap titik asal.
-- <InlineMath math="3x+2y+6=0" /> mengganti <InlineMath math="y" /> dengan <InlineMath math="-y" />, yaitu pencerminan terhadap sumbu <InlineMath math="x" />.
+Pencerminan terhadap <InlineMath math="x=a" /> mengubah <InlineMath math="x" /> menjadi <InlineMath math="2a-x" />, dan <InlineMath math="y" /> tetap. Pencerminan terhadap <InlineMath math="y=b" /> mengubah <InlineMath math="y" /> menjadi <InlineMath math="2b-y" />, dan <InlineMath math="x" /> tetap. Jika dikerjakan berurutan:
+
+<BlockMath math="(x,y)\ \longrightarrow\ (2a-x,\ y)\ \longrightarrow\ (2a-x,\ 2b-y)" />
+
+Ini sama dengan **rotasi <InlineMath math="180^\circ" /> terhadap titik <InlineMath math="(a,b)" />**, titik potong kedua garis cermin. Sekarang pakai syarat bahwa <InlineMath math="A(-2,1)" /> berpindah ke <InlineMath math="B(8,1)" />:
+
+<BlockMath math="\begin{aligned}
+2a-(-2)&=8 &\Rightarrow\quad a&=3 \\
+2b-1&=1 &\Rightarrow\quad b&=1
+\end{aligned}" />
+
+Pusat rotasinya <InlineMath math="(3,1)" />, tepat titik tengah <InlineMath math="AB" />.
+
+# Bayangan titik C
+
+Masukkan <InlineMath math="C(6,-3)" /> ke rumus <InlineMath math="(2a-x,\ 2b-y)" /> dengan <InlineMath math="a=3" /> dan <InlineMath math="b=1" />:
+
+<BlockMath math="C''=(6-6,\ 2-(-3))=(0,5)" />
+
+Cek dengan gambar. Rotasi setengah putaran terhadap titik tengah <InlineMath math="AB" /> menukar <InlineMath math="A" /> dan <InlineMath math="B" />, jadi segi empat <InlineMath math="ACBC''" /> adalah jajargenjang. Karena sudut <InlineMath math="C" /> siku-siku, jajargenjang itu **persegi panjang**, sehingga <InlineMath math="C''=A+B-C=(-2+8-6,\ 1+1+3)=(0,5)" />. Hasilnya sama.
+
+<MathVisual
+  title={<>Segitiga <InlineMath math="ABC" /> dan bayangannya</>}
+  description={<>Segitiga <InlineMath math="ABC" /> dengan <InlineMath math="A(-2,1)" />, <InlineMath math="B(8,1)" />, dan <InlineMath math="C(6,-3)" />. Garis cermin <InlineMath math="x=3" /> dan <InlineMath math="y=1" /> berpotongan di <InlineMath math="M(3,1)" />, titik tengah <InlineMath math="AB" />. Bayangan segitiga itu mempunyai titik sudut <InlineMath math="B" />, <InlineMath math="A" />, dan <InlineMath math="C''(0,5)" />. Titik <InlineMath math="A" />, <InlineMath math="C" />, <InlineMath math="B" />, dan <InlineMath math="C''" /> membentuk persegi panjang.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    image: <InlineMath math="C''" />,
+    centre: <InlineMath math="M" />,
+    "mirror-x": <InlineMath math="x=3" />,
+    "mirror-y": <InlineMath math="y=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 11 },
+      y: { min: -5, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: -2, y: 1 }, { x: 8, y: 1 }, { x: 6, y: -3 }] },
+      { id: "image-triangle", kind: "polygon", appearance: "answer", vertices: [{ x: 8, y: 1 }, { x: -2, y: 1 }, { x: 0, y: 5 }] },
+      { id: "mirror-x", kind: "line", appearance: "reference", through: [{ x: 3, y: 0 }, { x: 3, y: 1 }] },
+      { id: "mirror-y", kind: "line", appearance: "reference", through: [{ x: 0, y: 1 }, { x: 1, y: 1 }] },
+      { id: "point-a", kind: "point", appearance: "primary", at: { x: -2, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "primary", at: { x: 8, y: 1 } },
+      { id: "point-c", kind: "point", appearance: "primary", at: { x: 6, y: -3 } },
+      { id: "point-image", kind: "point", appearance: "answer", at: { x: 0, y: 5 } },
+      { id: "point-centre", kind: "point", appearance: "highlight", at: { x: 3, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: -2, y: 1 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 8, y: 1 }, placement: "above-right" },
+      { key: "c", objectId: "point-c", at: { x: 6, y: -3 }, placement: "below" },
+      { key: "image", objectId: "point-image", at: { x: 0, y: 5 }, placement: "above" },
+      { key: "centre", objectId: "point-centre", at: { x: 3, y: 1 }, placement: "below-right" },
+      { key: "mirror-x", objectId: "mirror-x", at: { x: 3, y: 6 }, placement: "right" },
+      { key: "mirror-y", objectId: "mirror-y", at: { x: 10, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
+Jadi, bayangan titik <InlineMath math="C" /> setelah kedua pencerminan adalah <InlineMath math="(0,5)" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="(0,-3)" /> bisa muncul dari dua kesalahan. Kamu memakai <InlineMath math="C(6,5)" /> yang ada di atas <InlineMath math="AB" />, atau kamu berhenti setelah pencerminan pertama terhadap <InlineMath math="x=3" />. **Syarat di bawah <InlineMath math="AB" /> dan pencerminan kedua sama-sama wajib**.
+- <InlineMath math="(-1,-2)" /> menganggap dua pencerminan itu sama dengan rotasi <InlineMath math="90^\circ" /> searah jarum jam terhadap <InlineMath math="(3,1)" />. Dua garis cermin yang tegak lurus menghasilkan rotasi dua kali sudut antara keduanya, yaitu <InlineMath math="2\cdot90^\circ=180^\circ" />.
+- <InlineMath math="(4,5)" /> datang dari salah tanda saat mencari <InlineMath math="a" />. Persamaannya <InlineMath math="2a-(-2)=8" />, jadi <InlineMath math="2a+2=8" /> dan <InlineMath math="a=3" />, bukan <InlineMath math="2a-2=8" /> yang memberi <InlineMath math="a=5" />.
+- <InlineMath math="(12,-1)" /> menambahkan <InlineMath math="(2a,2b)=(6,2)" /> ke koordinat <InlineMath math="C" />. Rumus yang benar adalah <InlineMath math="(2a-x,\ 2b-y)" />: koordinat <InlineMath math="C" /> dikurangkan dari <InlineMath math="2a" /> dan <InlineMath math="2b" />, bukan ditambahkan.

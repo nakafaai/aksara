@@ -1,16 +1,48 @@
-The ratio <InlineMath math="a:b=3:4" /> means **<InlineMath math="a=3k" /> and <InlineMath math="b=4k" />** for some number <InlineMath math="k\ne0" />. The expression depends only on the ratio, so <InlineMath math="k" /> will cancel.
+You need to find every real root first and only then multiply them. The expression <InlineMath math="x^2-6x" /> looks a lot like the square of <InlineMath math="x-3" />, so the plan is to replace <InlineMath math="\lvert x-3\rvert" /> with one new variable that **can't be negative**.
 
-# Substitution
+# Replacing the absolute value
+
+A number squared equals its absolute value squared, so <InlineMath math="(x-3)^2=\lvert x-3\rvert^2" />. Since <InlineMath math="(x-3)^2=x^2-6x+9" />, you get <InlineMath math="x^2-6x=\lvert x-3\rvert^2-9" />.
+
+Let <InlineMath math="t=\lvert x-3\rvert" />. An absolute value is never negative, so **the condition is <InlineMath math="t\ge 0" />**. Now the left side turns into a quadratic in <InlineMath math="t" />.
 
 <BlockMath math="\begin{aligned}
-\frac{2a+b}{a-3b}&=\frac{2(3k)+4k}{3k-3(4k)}\\
-&=\frac{10k}{-9k}=-\frac{10}{9}
+x^2-6x-4\lvert x-3\rvert-3 &= (t^2-9)-4t-3 \\
+&= t^2-4t-12 \\
+&= (t-6)(t+2)
 \end{aligned}" />
 
-# Checking the sign
+The equation becomes <InlineMath math="(t-6)(t+2)=0" />, so <InlineMath math="t=6" /> or <InlineMath math="t=-2" />. You throw out <InlineMath math="t=-2" /> because it breaks the condition <InlineMath math="t\ge 0" />. No <InlineMath math="x" /> makes <InlineMath math="\lvert x-3\rvert=-2" />.
 
-The denominator <InlineMath math="a-3b" /> is negative because <InlineMath math="3b" /> **is much larger than <InlineMath math="a" />**, while the numerator is positive for <InlineMath math="k>0" />. So the result must be negative. For <InlineMath math="k<0" />, the numerator and denominator both change sign, and the result is still <InlineMath math="-\tfrac{10}{9}" />.
+# Back to the original variable
 
-The value <InlineMath math="\tfrac{10}{9}" /> ignores the negative sign of the denominator. The value <InlineMath math="-\tfrac{9}{10}" /> turns the fraction upside down.
+Only <InlineMath math="\lvert x-3\rvert=6" /> is left. The distance from <InlineMath math="x" /> to <InlineMath math="3" /> is <InlineMath math="6" />, so **there are two points, one on the right and one on the left**.
 
-So the value of the expression is **<InlineMath math="-\tfrac{10}{9}" />**.
+<BlockMath math="\begin{aligned}
+x-3=6 &\;\Longrightarrow\; x=9 \\
+x-3=-6 &\;\Longrightarrow\; x=-3
+\end{aligned}" />
+
+The product of the two roots is <InlineMath math="9\cdot(-3)=-27" />.
+
+# Checking
+
+Put both roots back into the original equation.
+
+<BlockMath math="\begin{aligned}
+x=9:&\quad 81-54-4\cdot 6-3=0 \\
+x=-3:&\quad 9+18-4\cdot 6-3=0
+\end{aligned}" />
+
+A second route is to split into cases. For <InlineMath math="x\ge 3" />, the equation is <InlineMath math="x^2-10x+9=0" /> with roots <InlineMath math="1" /> and <InlineMath math="9" />. You drop <InlineMath math="1" /> because it **doesn't meet the condition of its case**, <InlineMath math="x\ge 3" />. For <InlineMath math="x<3" />, the equation is <InlineMath math="x^2-2x-15=0" /> with roots <InlineMath math="5" /> and <InlineMath math="-3" />. You drop <InlineMath math="5" /> because it doesn't meet <InlineMath math="x<3" />. You're left with <InlineMath math="9" /> and <InlineMath math="-3" /> again.
+
+# The wrong options
+
+Each other option comes from **a root that wasn't checked** or a mixed-up quantity.
+
+- <InlineMath math="-135" /> multiplies all four candidates <InlineMath math="1" />, <InlineMath math="9" />, <InlineMath math="5" /> and <InlineMath math="-3" /> without checking the condition of each case.
+- <InlineMath math="-15" /> uses only the equation of the case <InlineMath math="x<3" />, as if <InlineMath math="\lvert x-3\rvert=3-x" /> for every <InlineMath math="x" />.
+- <InlineMath math="-12" /> is the product of the two values of <InlineMath math="t" />, not of the roots <InlineMath math="x" />.
+- <InlineMath math="9" /> appears if you simply drop the absolute value bars and solve only <InlineMath math="x^2-10x+9=0" />.
+
+So the product of all real roots of the equation is <InlineMath math="-27" />.

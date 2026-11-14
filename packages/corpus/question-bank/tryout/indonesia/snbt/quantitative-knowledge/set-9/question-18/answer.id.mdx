@@ -1,22 +1,36 @@
-Kata PELANGI terdiri atas 7 huruf yang semuanya berbeda: vokal E, A, I dan konsonan P, L, N, G. Cara yang menjamin vokal tidak bersebelahan adalah **menyusun konsonan lebih dulu, lalu menyisipkan vokal di celah-celahnya**.
+Pada lingkaran, pasangan <InlineMath math="10" /> dan <InlineMath math="1" /> juga bersebelahan, dan itulah satu-satunya beda dengan deretan lurus. Rencananya: hitung dulu himpunan renggang pada deretan lurus, lalu **pisahkan kasus berdasarkan bilangan <InlineMath math="1" />** supaya pasangan <InlineMath math="10" /> dan <InlineMath math="1" /> tertangani.
 
-# Menyusun konsonan
+# Menghitung pada deretan lurus
 
-Empat konsonan dapat disusun dalam <InlineMath math="4!=24" /> cara. Setiap susunan memiliki **lima celah**: sebelum huruf pertama, di antara huruf, dan sesudah huruf terakhir.
+Misalkan <InlineMath math="L(n)" /> adalah banyak himpunan renggang dari <InlineMath math="1,2,\dots,n" /> yang berjajar lurus. Lihat bilangan terakhir <InlineMath math="n" />. Kalau <InlineMath math="n" /> tidak dipilih, sisanya himpunan renggang dari <InlineMath math="n-1" /> bilangan pertama. Kalau <InlineMath math="n" /> dipilih, bilangan <InlineMath math="n-1" /> tidak boleh dipilih, jadi sisanya himpunan renggang dari <InlineMath math="n-2" /> bilangan pertama. **Kedua kasus tidak tumpang tindih**, jadi <InlineMath math="L(n)=L(n-1)+L(n-2)" />.
 
-<BlockMath math="\_\,\text{K}\,\_\,\text{K}\,\_\,\text{K}\,\_\,\text{K}\,\_" />
+Mulai dari <InlineMath math="L(1)=2" />, yaitu himpunan kosong dan <InlineMath math="\{1\}" />, dan <InlineMath math="L(2)=3" />.
 
-# Menyisipkan vokal
+| <InlineMath math="n" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> | <InlineMath math="10" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="L(n)" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="5" /> | <InlineMath math="8" /> | <InlineMath math="13" /> | <InlineMath math="21" /> | <InlineMath math="34" /> | <InlineMath math="55" /> | <InlineMath math="89" /> | <InlineMath math="144" /> |
 
-Tiga vokal yang berbeda ditempatkan di **3 celah yang berbeda**, dan urutannya diperhatikan.
+# Memisahkan kasus bilangan satu
 
-<BlockMath math="\begin{aligned}
-P(5,3)&=5\cdot4\cdot3=60\\
-\text{banyak susunan}&=24\cdot60=1{.}440
-\end{aligned}" />
+Kalau <InlineMath math="1" /> tidak dipilih, bilangan <InlineMath math="2" /> sampai <InlineMath math="10" /> tinggal berjajar lurus, karena satu-satunya penghubung ujungnya adalah <InlineMath math="1" />. Banyaknya <InlineMath math="L(9)=89" />.
 
-Karena setiap celah berisi paling banyak satu vokal, dua vokal tidak mungkin bersebelahan.
+Kalau <InlineMath math="1" /> dipilih, **kedua tetangganya, <InlineMath math="2" /> dan <InlineMath math="10" />, tidak boleh dipilih**. Sisanya <InlineMath math="3" /> sampai <InlineMath math="9" />, tujuh bilangan berjajar lurus, dengan banyak <InlineMath math="L(7)=34" />.
 
-Nilai 5.040 adalah <InlineMath math="7!" />, semua susunan tanpa syarat. Nilai 576 hanya memakai 4 celah di antara konsonan dan melupakan kedua ujung. Nilai 720 adalah <InlineMath math="6!" />, dan nilai 2.880 menggandakan hasil tanpa alasan.
+<BlockMath math="89+34=123" />
 
-Jadi, banyak susunan yang mungkin adalah **1.440**.
+# Memeriksa dengan jalan lain
+
+Hitungan deretan lurus <InlineMath math="L(10)=144" /> ikut memuat himpunan yang berisi <InlineMath math="1" /> dan <InlineMath math="10" /> sekaligus, **yang tidak sah pada lingkaran**. Pada himpunan seperti itu, <InlineMath math="2" /> dan <InlineMath math="9" /> tidak boleh dipilih, dan bilangan <InlineMath math="3" /> sampai <InlineMath math="8" /> bebas asal tetap renggang, jadi banyaknya <InlineMath math="L(6)=21" />.
+
+<BlockMath math="144-21=123" />
+
+Hasilnya sama.
+
+# Pilihan yang menjebak
+
+- <InlineMath math="144" /> menghitung seolah bilangan berjajar lurus, **lupa bahwa <InlineMath math="10" /> dan <InlineMath math="1" /> bersebelahan**.
+- <InlineMath math="89" /> hanya menghitung kasus <InlineMath math="1" /> tidak dipilih. Angka ini juga muncul dari <InlineMath math="144-55" />, yaitu lupa bahwa <InlineMath math="2" /> dan <InlineMath math="9" /> ikut terlarang.
+- <InlineMath math="80" /> mengurangkan semua <InlineMath math="2^6=64" /> himpunan bagian dari <InlineMath math="3" /> sampai <InlineMath math="8" />, padahal himpunan itu juga harus renggang.
+- <InlineMath math="68" /> ikut melarang <InlineMath math="2" /> dan <InlineMath math="10" /> pada kasus <InlineMath math="1" /> tidak dipilih, sehingga menghitung <InlineMath math="34+34" />.
+
+Jadi, banyak himpunan bagian yang renggang adalah <InlineMath math="123" />.

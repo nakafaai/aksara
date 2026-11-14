@@ -1,30 +1,37 @@
-Die Handwerkerin stelle <InlineMath math="x" /> Taschen der Sorte A und <InlineMath math="y" /> Taschen der Sorte B her. Das ist **lineare Optimierung**: Der Gewinn wird auf dem Bereich maximiert, den Arbeitszeit und Material begrenzen.
+Der Rest bei Division durch <InlineMath math="6" /> hängt von zwei Dingen zugleich ab: **vom Rest bei Division durch <InlineMath math="2" /> und vom Rest bei Division durch <InlineMath math="3" />**. Die Tabelle zeigt, dass jeder Rest von <InlineMath math="0" /> bis <InlineMath math="5" /> ein eigenes Paar hat, du brauchst also beide. Der Plan: Übersetze jede Aussage in Angaben über die Reste von <InlineMath math="n" /> bei Division durch <InlineMath math="2" /> und durch <InlineMath math="3" />.
 
-# Modell und Eckpunkte
+| Rest bei <InlineMath math="6" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| Rest bei <InlineMath math="2" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
+| Rest bei <InlineMath math="3" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> |
+
+# Nur die erste Aussage
+
+Aussage (1) bedeutet, dass <InlineMath math="n^2" /> bei Division durch <InlineMath math="3" /> den Rest <InlineMath math="1" /> lässt. Probier alle drei möglichen Reste von <InlineMath math="n" /> bei Division durch <InlineMath math="3" /> aus.
 
 <BlockMath math="\begin{aligned}
-\text{Stunden}&:\quad 2x+3y\le60\\
-\text{Material}&:\quad x+y\le25\\
-\text{Gewinn}&:\quad K=40\,000x+50\,000y
+n=3k&\;\Longrightarrow\; n^2=9k^2 \text{ lässt Rest } 0\\
+n=3k+1&\;\Longrightarrow\; n^2=9k^2+6k+1 \text{ lässt Rest } 1\\
+n=3k+2&\;\Longrightarrow\; n^2=9k^2+12k+4 \text{ lässt Rest } 1
 \end{aligned}" />
 
-Beide Variablen sind außerdem nicht negativ, <InlineMath math="x\ge0" /> und <InlineMath math="y\ge0" />. Eine lineare Funktion erreicht ihr Maximum **in einem Eckpunkt des Bereichs**. Den Schnittpunkt der beiden Randgeraden erhältst du, indem du die doppelte Materialgleichung von der Stundengleichung abziehst.
+Also lässt <InlineMath math="n" /> bei Division durch <InlineMath math="3" /> den Rest <InlineMath math="1" /> **oder** <InlineMath math="2" />, und Aussage (1) sagt nichts darüber, ob <InlineMath math="n" /> gerade oder ungerade ist. Zum Beispiel liefert <InlineMath math="n=4" /> die durch <InlineMath math="3" /> teilbare Zahl <InlineMath math="18" />, und der Rest bei Division durch <InlineMath math="6" /> ist <InlineMath math="4" />, während <InlineMath math="n=5" /> die Zahl <InlineMath math="27" /> mit dem Rest <InlineMath math="5" /> liefert. **Zwei verschiedene Antworten**, also reicht Aussage (1) allein nicht.
+
+# Nur die zweite Aussage
+
+Schreib <InlineMath math="n^2-1=(n-1)(n+1)" />. Ist <InlineMath math="n" /> ungerade, sind die beiden Faktoren aufeinanderfolgende gerade Zahlen, und eine davon ist ein Vielfaches von <InlineMath math="4" />, also ist das Produkt durch <InlineMath math="2\times4=8" /> teilbar. Ist <InlineMath math="n" /> gerade, ist <InlineMath math="n^2-1" /> ungerade und kann nicht durch <InlineMath math="8" /> teilbar sein. **Aussage (2) sagt also nur, dass <InlineMath math="n" /> ungerade ist**.
+
+Zum Beispiel liefert <InlineMath math="n=3" /> die Zahl <InlineMath math="8" /> mit Rest <InlineMath math="3" /> bei Division durch <InlineMath math="6" />, während <InlineMath math="n=5" /> die Zahl <InlineMath math="24" /> mit Rest <InlineMath math="5" /> liefert. Aussage (2) allein reicht nicht.
+
+# Beide Aussagen zusammen
+
+Zusammen gilt: <InlineMath math="n" /> ist ungerade und lässt bei Division durch <InlineMath math="3" /> den Rest <InlineMath math="1" /> oder <InlineMath math="2" />. In der Tabelle passen dazu die Spalten mit Rest <InlineMath math="1" /> bei <InlineMath math="2" /> und einem Rest ungleich null bei <InlineMath math="3" />, das sind die Spalten <InlineMath math="1" /> und <InlineMath math="5" />. **Es bleiben zwei Möglichkeiten**, und beide kommen wirklich vor.
 
 <BlockMath math="\begin{aligned}
-(2x+3y)-2(x+y)&=60-50\\
-y&=10,\quad x=15
+n=7&: \ 7^2+2=51=3\times17,\quad 7^2-1=48=8\times6,\quad \text{Rest bei } 6 \text{ ist } 1\\
+n=5&: \ 5^2+2=27=3\times9,\quad 5^2-1=24=8\times3,\quad \text{Rest bei } 6 \text{ ist } 5
 \end{aligned}" />
 
-# Gewinne vergleichen
+Die Falle steckt in Aussage (1). Wenn du glaubst, <InlineMath math="n^2" /> lasse nur dann den Rest <InlineMath math="1" />, wenn <InlineMath math="n" /> den Rest <InlineMath math="1" /> lässt, folgerst du den Rest <InlineMath math="1" /> und wählst "beide Aussagen zusammen reichen". Aber auch <InlineMath math="n" /> mit Rest <InlineMath math="2" /> liefert ein Quadrat mit Rest <InlineMath math="1" />.
 
-| Eckpunkt | Gewinn |
-| :---: | :---: |
-| <InlineMath math="(25,0)" /> | 1 000 000 Rupiah |
-| <InlineMath math="(15,10)" /> | 1 100 000 Rupiah |
-| <InlineMath math="(0,20)" /> | 1 000 000 Rupiah |
-
-Der größte Gewinn liegt bei <InlineMath math="(15,10)" />, wo genau 60 Stunden und genau 25 Taschen verbraucht werden. **Beide Grenzen sind hier ausgeschöpft**.
-
-Ein Gewinn von 1 250 000 Rupiah bedeutet 25 Taschen der Sorte B, wofür 75 Stunden nötig wären. Ein Gewinn von 1 200 000 Rupiah bedeutet 30 Taschen der Sorte A und verletzt die Materialgrenze. Ein Gewinn von 1 150 000 Rupiah entsteht, wenn man die Arbeitszeiten von A und B vertauscht.
-
-Der größte Gewinn beträgt also **1 100 000 Rupiah**.
+Die Aussagen (1) und (2) reichen also auch zusammen nicht aus, um die Frage zu beantworten.

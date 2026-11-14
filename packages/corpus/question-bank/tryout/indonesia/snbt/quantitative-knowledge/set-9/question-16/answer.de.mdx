@@ -1,23 +1,44 @@
-Der Mittelwert gruppierter Daten ist **die Summe aller Noten geteilt durch die Anzahl der Schüler**, und die Anzahl enthält ebenfalls <InlineMath math="x" />.
+Die Worte "alle möglichen Werte" zeigen an, dass **mehr als eine Funktion** die Bedingung erfüllen kann. Der Plan: Schreib <InlineMath math="f(x)=ax+b" />, bilde die Verkettung, vergleiche die Koeffizienten, finde jede mögliche Funktion und addiere dann die Werte von <InlineMath math="f(3)" /> aller dieser Funktionen.
 
-# Die Gleichung aufstellen
+# Die Verkettung bilden
 
-<BlockMath math="\begin{aligned}
-\text{Notensumme}&=3\cdot60+70x+5\cdot80+2\cdot90=760+70x\\
-\text{Anzahl}&=3+x+5+2=10+x
-\end{aligned}" />
+Diese Verkettung heißt: **Die Ausgabe <InlineMath math="f(x)" /> wird wieder in <InlineMath math="f" /> eingesetzt**.
 
 <BlockMath math="\begin{aligned}
-\frac{760+70x}{10+x}&=73\\
-760+70x&=730+73x\\
-30&=3x\\
-x&=10
+f\big(f(x)\big)&=a(ax+b)+b\\
+&=a^2x+ab+b
 \end{aligned}" />
 
-# Kontrolle
+# Koeffizienten vergleichen
 
-Mit <InlineMath math="x=10" /> ist die Notensumme 1 460 bei 20 Schülern, der Mittelwert also <InlineMath math="1\,460:20=73" />. Das ist plausibel: Ein Mittelwert von 73 liegt nahe bei 70, also **muss die Note 70 am häufigsten vorkommen**.
+Zwei lineare Terme sind für jedes <InlineMath math="x" /> gleich, **wenn ihre Koeffizienten von <InlineMath math="x" /> und ihre Konstanten übereinstimmen**. Also gilt <InlineMath math="a^2=4" /> und <InlineMath math="ab+b=b(a+1)=9" />. Die Gleichung <InlineMath math="a^2=4" /> hat zwei Lösungen, <InlineMath math="a=2" /> und <InlineMath math="a=-2" />, und **du musst beide prüfen**.
 
-Ein häufiger Fehler ist, nur durch 10 zu teilen, als würden die Schüler mit 70 Punkten nicht mitgezählt.
+<BlockMath math="\begin{aligned}
+a=2&\;\Longrightarrow\;3b=9,\ b=3,\ f(x)=2x+3\\
+a=-2&\;\Longrightarrow\;-b=9,\ b=-9,\ f(x)=-2x-9
+\end{aligned}" />
 
-Der Wert von <InlineMath math="x" /> ist also **10**.
+# Beide Funktionen prüfen
+
+<BlockMath math="\begin{aligned}
+2(2x+3)+3&=4x+9\\
+-2(-2x-9)-9&=4x+18-9=4x+9
+\end{aligned}" />
+
+**Beide passen**, also zählen beide.
+
+# Die Werte von f an der Stelle drei addieren
+
+<BlockMath math="\begin{aligned}
+f(3)&=2\cdot3+3=9\quad\text{oder}\quad f(3)=-2\cdot3-9=-15\\
+9+(-15)&=-6
+\end{aligned}" />
+
+# Die verlockenden falschen Antworten
+
+- <InlineMath math="9" /> verwendet nur <InlineMath math="a=2" /> und **verliert den Fall <InlineMath math="a=-2" />**.
+- <InlineMath math="6" /> übernimmt <InlineMath math="b=3" /> auch für <InlineMath math="a=-2" />, also <InlineMath math="f(3)=-3" />. Aber <InlineMath math="-2(-2x+3)+3=4x-3" /> ist nicht <InlineMath math="4x+9" />.
+- <InlineMath math="12" /> hat einen Vorzeichenfehler bei <InlineMath math="b" /> und verwendet <InlineMath math="f(x)=-2x+9" /> mit <InlineMath math="f(3)=3" />. Diese Funktion liefert <InlineMath math="-2(-2x+9)+9=4x-9" />.
+- <InlineMath math="21" /> berechnet <InlineMath math="f\big(f(3)\big)=4\cdot3+9" /> statt <InlineMath math="f(3)" />.
+
+Die Summe aller möglichen Werte von <InlineMath math="f(3)" /> ist also <InlineMath math="-6" />.

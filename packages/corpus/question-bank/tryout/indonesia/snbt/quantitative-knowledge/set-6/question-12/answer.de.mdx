@@ -1,14 +1,34 @@
-Die Anzahl der positiven Teiler von <InlineMath math="p_1^{e_1}p_2^{e_2}" /> ist <InlineMath math="(e_1+1)(e_2+1)" />, denn **jeder Exponent wird unabhängig** von 0 bis zu seinem Höchstwert gewählt.
+Schreibe das Passwort als <InlineMath math="d_1d_2d_3d_4" />. Die Regeln lauten <InlineMath math="d_1\ne d_2" />, <InlineMath math="d_2\ne d_3" />, <InlineMath math="d_3\ne d_4" /> und <InlineMath math="d_4\ne d_1" />. Stell dir die vier Ziffern im Kreis sitzend vor, denn **die letzte Ziffer ist auch Nachbarin der ersten**. Zähle für jede Aussage einzeln und prüfe die Ergebnisse dann gegeneinander.
 
-# Beide Größen berechnen
+# Erste Aussage
+
+Die Ziffer <InlineMath math="d_1" /> hat <InlineMath math="10" /> Möglichkeiten, <InlineMath math="d_2" /> hat <InlineMath math="9" /> und <InlineMath math="d_3" /> hat <InlineMath math="9" />. Wie viele Möglichkeiten <InlineMath math="d_4" /> hat, **hängt davon ab, ob <InlineMath math="d_3" /> gleich <InlineMath math="d_1" /> ist**, also teilst du in zwei Fälle.
 
 <BlockMath math="\begin{aligned}
-P&=(4+1)(2+1)=5\cdot3=15\\
-Q&=(3+1)(3+1)=4\cdot4=16
+d_3=d_1:\quad & 10\times9\times1\times9=810 \\
+d_3\ne d_1:\quad & 10\times9\times8\times8=5{.}760 \\
+\text{insgesamt}:\quad & 810+5{.}760=6{.}570
 \end{aligned}" />
 
-# Vergleichen
+Im ersten Fall muss <InlineMath math="d_4" /> nur eine Ziffer meiden und hat <InlineMath math="9" /> Möglichkeiten. Im zweiten Fall muss <InlineMath math="d_3" /> sich von <InlineMath math="d_1" /> und <InlineMath math="d_2" /> unterscheiden (<InlineMath math="8" /> Möglichkeiten), und danach muss <InlineMath math="d_4" /> zwei verschiedene Ziffern meiden (<InlineMath math="8" /> Möglichkeiten). Die Zahl <InlineMath math="6{.}480=10\times9\times9\times8" /> entsteht, wenn du für <InlineMath math="d_4" /> immer <InlineMath math="8" /> Möglichkeiten annimmst. Die erste Aussage ist **falsch**.
 
-Wegen <InlineMath math="16>15" /> **ist <InlineMath math="Q" /> größer als <InlineMath math="P" />**, und dieser Vergleich hängt nicht von der Größe der Zahlen <InlineMath math="M=144" /> und <InlineMath math="N=216" /> ab. Bei beiden Zahlen ergeben die Exponenten zusammen 6, das Produkt <InlineMath math="(e_1+1)(e_2+1)" /> ist aber größer, wenn die Exponenten gleichmäßiger verteilt sind.
+# Zweite Aussage
 
-Die Wahl <InlineMath math="P=Q" /> entsteht, wenn man annimmt, die Teileranzahl hänge nur von der Summe der Exponenten ab. Die richtige Beziehung ist also <InlineMath math="Q>P" />.
+Gibt es nur zwei verschiedene Ziffern und müssen Nachbarn verschieden sein, dann **wechseln sich die Ziffern ab**, nach dem Muster <InlineMath math="abab" />. Die Ziffer <InlineMath math="a" /> hat <InlineMath math="10" /> Möglichkeiten und <InlineMath math="b" /> hat <InlineMath math="9" />, das ergibt <InlineMath math="10\times9=90" /> Passwörter. Die erste Ziffer <InlineMath math="a" /> und die letzte Ziffer <InlineMath math="b" /> sind verschieden, also sind alle sicher. Die zweite Aussage ist **wahr**.
+
+# Dritte Aussage
+
+Sind alle vier Ziffern verschieden, stimmen nirgends zwei Ziffern überein, also ist **jedes solche Passwort automatisch sicher**. Es gibt <InlineMath math="10\times9\times8\times7=5{.}040" /> davon. Die dritte Aussage ist **wahr**.
+
+# Vierte Aussage
+
+Bei genau drei verschiedenen Ziffern kommt eine Ziffer doppelt vor. Die beiden dürfen im Kreis nicht benachbart sein, also **steht die doppelte Ziffer an den Stellen eins und drei oder an den Stellen zwei und vier**.
+
+<BlockMath math="\begin{aligned}
+\text{Anzahl} &= \underbrace{2}_{\text{Stellenpaar}}\times\underbrace{10}_{\text{doppelte Ziffer}}\times\underbrace{9\times8}_{\text{andere zwei Ziffern}} \\
+&= 1{.}440
+\end{aligned}" />
+
+Gegenprobe mit den drei Aussagen davor. Ein sicheres Passwort kann nicht nur aus einer Ziffer bestehen, also hat jedes sichere Passwort zwei, drei oder vier verschiedene Ziffern: <InlineMath math="90+1{.}440+5{.}040=6{.}570" />, genau die Gesamtzahl von oben. Die vierte Aussage ist **wahr**.
+
+Die erste Aussage ist also falsch, die zweite, dritte und vierte Aussage sind wahr.

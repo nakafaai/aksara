@@ -1,17 +1,38 @@
-Pada <InlineMath math="(g\circ f)(a)=g(f(a))" />, **fungsi <InlineMath math="f" /> bekerja lebih dulu**, lalu hasilnya disubstitusikan ke <InlineMath math="g" />.
+# Daerah asal fungsi komposisi
 
-<BlockMath math="\begin{aligned}
-g(f(a))&=(2a+5)^2-4=45 \\
-(2a+5)^2&=49 \\
-2a+5=7\ \text{atau}\ 2a+5&=-7 \\
-a=1\ \text{atau}\ a&=-6
-\end{aligned}" />
+Kata **pasti** berarti pernyataannya harus benar untuk setiap nilai <InlineMath math="k" />. Satu nilai <InlineMath math="k" /> yang membuatnya salah sudah cukup untuk menolaknya.
 
-Sebagai pemeriksaan, <InlineMath math="f(1)=7" /> dan <InlineMath math="g(7)=45" />, serta <InlineMath math="f(-6)=-7" /> dan <InlineMath math="g(-7)=45" />.
+Mulai dari daerah asal. Fungsi <InlineMath math="f" /> hanya menerima masukan <InlineMath math="x\ge0" />, jadi <InlineMath math="f(g(x))" /> hanya ada kalau <InlineMath math="g(x)\ge0" />:
 
-Jadi, jumlah semua nilai <InlineMath math="a" /> adalah <InlineMath math="1+(-6)=-5" />.
+<BlockMath math="3x+k\ge0\iff x\ge-\frac{k}{3}" />
 
-- <InlineMath math="5" /> muncul jika <InlineMath math="5" /> dipindahkan ke ruas lain dengan tanda yang salah: <InlineMath math="2a=\pm7+5" /> menghasilkan <InlineMath math="6" /> dan <InlineMath math="-1" />.
-- <InlineMath math="1" /> hanya penyelesaian yang positif. Padahal <InlineMath math="(2a+5)^2=49" /> mempunyai dua penyelesaian.
-- <InlineMath math="0" /> muncul karena urutannya terbalik: <InlineMath math="f(g(a))=2a^2-3=45" /> mempunyai dua penyelesaian yang berlawanan tanda.
-- <InlineMath math="-6" /> hanya penyelesaian yang negatif. Kebetulan bilangan itu juga hasil kali kedua penyelesaian.
+Daerah asal <InlineMath math="f\circ g" /> ikut bergeser kalau <InlineMath math="k" /> berubah. Sebaliknya, <InlineMath math="g\circ f" /> berdaerah asal tetap <InlineMath math="x\ge0" />.
+
+# Nilai terkecil yang tidak ikut bergeser
+
+Cara paling bersih adalah memandang <InlineMath math="u=g(x)" /> sebagai masukan untuk <InlineMath math="f" />. Saat <InlineMath math="x" /> bergerak di seluruh daerah asal <InlineMath math="x\ge-\frac{k}{3}" />, nilai <InlineMath math="u=3x+k" /> menjalani **semua bilangan <InlineMath math="u\ge0" />**, tepat daerah asal <InlineMath math="f" />. Jadi <InlineMath math="f\circ g" /> menghasilkan nilai-nilai yang persis sama dengan <InlineMath math="f" />.
+
+<BlockMath math="f(u)=(u-3)^2-4,\qquad u\ge0" />
+
+Nilai terkecilnya <InlineMath math="-4" /> di <InlineMath math="u=3" />, dan <InlineMath math="u=3" /> memang termasuk <InlineMath math="u\ge0" />. Kembali ke <InlineMath math="x" />:
+
+<BlockMath math="3x+k=3\iff x=1-\frac{k}{3}" />
+
+Titik ini selalu ada di daerah asal karena <InlineMath math="1-\frac{k}{3}>-\frac{k}{3}" />. Jadi **nilai minimum <InlineMath math="f\circ g" /> adalah <InlineMath math="-4" /> untuk setiap <InlineMath math="k" />**, hanya letaknya yang bergeser.
+
+Tabel ini mengecek beberapa nilai <InlineMath math="k" />:
+
+| <InlineMath math="k" /> | daerah asal <InlineMath math="f\circ g" /> | minimum <InlineMath math="f\circ g" /> | minimum <InlineMath math="g\circ f" /> |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="-6" /> | <InlineMath math="x\ge2" /> | <InlineMath math="-4" /> di <InlineMath math="x=3" /> | <InlineMath math="-18" /> |
+| <InlineMath math="0" /> | <InlineMath math="x\ge0" /> | <InlineMath math="-4" /> di <InlineMath math="x=1" /> | <InlineMath math="-12" /> |
+| <InlineMath math="8" /> | <InlineMath math="x\ge-\frac{8}{3}" /> | <InlineMath math="-4" /> di <InlineMath math="x=-\frac{5}{3}" /> | <InlineMath math="-4" /> |
+
+# Kenapa pilihan lain tidak pasti
+
+- Daerah asal <InlineMath math="f\circ g" /> adalah <InlineMath math="x\ge-\frac{k}{3}" />, sama dengan <InlineMath math="x\ge0" /> **hanya untuk <InlineMath math="k=0" />**. Untuk <InlineMath math="k=8" /> daerah asalnya <InlineMath math="x\ge-\frac{8}{3}" />.
+- <InlineMath math="(g\circ f)(x)=3f(x)+k" />. Fungsi luar mengalikan lalu menggeser nilai, jadi minimumnya <InlineMath math="3(-4)+k=k-12" />. Nilai itu sama dengan <InlineMath math="-4" /> hanya untuk <InlineMath math="k=8" />.
+- Grafik memotong sumbu <InlineMath math="y" /> kalau <InlineMath math="x=0" /> ada di daerah asal, yaitu kalau <InlineMath math="k\ge0" />. Untuk <InlineMath math="k=-6" /> daerah asalnya <InlineMath math="x\ge2" />, jadi grafiknya tidak menyentuh sumbu <InlineMath math="y" />.
+- Minimum <InlineMath math="f\circ g" /> dicapai di <InlineMath math="x=1-\frac{k}{3}" />. Angka <InlineMath math="3" /> adalah titik puncak <InlineMath math="f" />, dan fungsi dalam menggesernya. Posisinya <InlineMath math="x=3" /> hanya untuk <InlineMath math="k=-6" />.
+
+Jadi, pernyataan yang pasti benar adalah nilai minimum <InlineMath math="f\circ g" /> sama dengan <InlineMath math="-4" />.

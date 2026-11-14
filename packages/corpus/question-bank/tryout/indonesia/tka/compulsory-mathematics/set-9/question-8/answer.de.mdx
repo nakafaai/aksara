@@ -1,12 +1,43 @@
-Die Reihe hat das erste Glied <InlineMath math="a=2" /> und **die Differenz <InlineMath math="b=3" />**. Nimm <InlineMath math="S_n=\frac n2\big(2a+(n-1)b\big)" />.
+Gesucht ist die größte Zahl der arithmetischen Folge **vor der Änderung**. Zwei Dinge entscheiden: Die geometrische Bedingung liefert zwei mögliche Differenzen, und das Wort naik (steigend) streicht eine davon.
 
-<BlockMath math="S_{20}=\frac{20}{2}\big(2\cdot2+19\cdot3\big)=10\cdot61=610" />
+# Die drei Zahlen aufschreiben
 
-Probe mit dem letzten Glied: <InlineMath math="U_{20}=2+19\cdot3=59" /> und <InlineMath math="S_{20}=\frac{20}{2}(2+59)=610" />.
+In einer arithmetischen Folge ist **das mittlere Glied der Durchschnitt der drei Glieder**. Die Summe ist <InlineMath math="45" />, also ist das mittlere Glied <InlineMath math="15" />. Schreib die drei Zahlen mit der Differenz <InlineMath math="d" />.
 
-Die Summe der ersten <InlineMath math="20" /> Glieder ist also <InlineMath math="610" />.
+<BlockMath math="\begin{aligned}
+\text{vorher}&:\ 15-d,\ \ 15,\ \ 15+d \\
+\text{nach der Änderung}&:\ 12-d,\ \ 15,\ \ 22+d
+\end{aligned}" />
 
-- <InlineMath math="59" /> ist das <InlineMath math="20" />. Glied, nicht die Summe.
-- <InlineMath math="305" /> halbiert das richtige Ergebnis noch einmal.
-- <InlineMath math="590" /> nimmt <InlineMath math="a+19b" /> in der Klammer, richtig ist <InlineMath math="2a+19b" />.
-- <InlineMath math="1{.}220" /> vergisst, <InlineMath math="n" /> durch <InlineMath math="2" /> zu teilen.
+# Die geometrische Bedingung
+
+Drei Zahlen bilden eine geometrische Folge, wenn **das Quadrat des mittleren Glieds gleich dem Produkt der beiden äußeren Glieder** ist, denn das Verhältnis vom zweiten zum ersten Glied ist dann gleich dem vom dritten zum zweiten.
+
+<BlockMath math="\begin{aligned}
+15^2&=(12-d)(22+d) \\
+225&=264-10d-d^2 \\
+d^2+10d-39&=0 \\
+(d+13)(d-3)&=0
+\end{aligned}" />
+
+Also ist <InlineMath math="d=3" /> oder <InlineMath math="d=-13" />.
+
+# Die richtige Differenz wählen
+
+Probiere beide aus.
+
+| Differenz | Arithmetische Folge | Geometrische Folge | Quotient |
+| --- | --- | --- | --- |
+| <InlineMath math="d=3" /> | <InlineMath math="12,\ 15,\ 18" /> | <InlineMath math="9,\ 15,\ 25" /> | <InlineMath math="\tfrac{5}{3}" /> |
+| <InlineMath math="d=-13" /> | <InlineMath math="28,\ 15,\ 2" /> | <InlineMath math="25,\ 15,\ 9" /> | <InlineMath math="\tfrac{3}{5}" /> |
+
+Beide erfüllen die geometrische Bedingung, aber laut Aufgabe ist die arithmetische Folge **steigend**. Die Folge <InlineMath math="28,\ 15,\ 2" /> fällt, also scheidet <InlineMath math="d=-13" /> aus. Die ursprüngliche Folge ist <InlineMath math="12,\ 15,\ 18" />, ihre größte Zahl ist <InlineMath math="18" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="25" /> ist das größte Glied der geometrischen Folge. Das ist eine Zahl **nach der Änderung**, die addierten <InlineMath math="7" /> sind also noch nicht zurückgenommen.
+- <InlineMath math="32" /> entsteht, wenn du die addierten <InlineMath math="7" /> in die falsche Richtung zurücknimmst, <InlineMath math="25+7" />. Das ursprüngliche dritte Glied bekommst du durch Subtrahieren von <InlineMath math="7" />.
+- <InlineMath math="28" /> ist die größte Zahl der fallenden Folge <InlineMath math="28,\ 15,\ 2" />, die das Wort steigend ausschließt.
+- <InlineMath math="22" /> entsteht, wenn du die fallende geometrische Folge <InlineMath math="25,\ 15,\ 9" /> nimmst und ihr erstes Glied falsch zurückrechnest, <InlineMath math="25-3" />. Diese Folge ist schon ausgeschieden, und ihr ursprüngliches erstes Glied wäre <InlineMath math="25+3=28" />.
+
+Die größte Zahl der ursprünglichen arithmetischen Folge ist also <InlineMath math="18" />.

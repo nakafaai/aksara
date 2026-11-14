@@ -12,23 +12,25 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$f(x)\\ge-2$$ untuk setiap bilangan real $$x$$.",
+          label: "Persamaan $$f(f(x))=0$$ mempunyai tepat $$3$$ penyelesaian.",
         },
         {
           correct: true,
-          label: "Nilai minimum $$f$$ adalah $$-4$$, dicapai saat $$x=3$$.",
+          label: "Persamaan $$f(x)=1$$ mempunyai tepat $$4$$ penyelesaian.",
         },
         {
           correct: true,
-          label: "$$f(x)=0$$ tepat untuk $$x=1$$ dan $$x=5$$.",
+          label: "Nilai $$f(f(f(-3)))$$ adalah $$0$$.",
         },
         {
           correct: true,
-          label: "$$f(-1)=f(7)$$",
+          label:
+            "Terdapat tepat dua bilangan real $$c$$ sehingga persamaan $$f(x)=c$$ mempunyai tepat $$3$$ penyelesaian.",
         },
         {
-          correct: false,
-          label: "Fungsi $$f$$ naik untuk setiap $$x<3$$.",
+          correct: true,
+          label:
+            "Penyelesaian terbesar persamaan $$f(f(x))=0$$ adalah $$x=4$$.",
         },
       ],
     },

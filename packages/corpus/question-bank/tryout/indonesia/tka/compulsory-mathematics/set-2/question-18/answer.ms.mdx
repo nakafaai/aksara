@@ -1,0 +1,52 @@
+Soalan ini bertanya tinggi kotak yang paling besar. Kuncinya ialah ayat **reben untuk sebuah kotak mesti sepotong utuh daripada satu gulungan**. Baki di hujung gulungan yang terlalu pendek untuk sebuah kotak tidak boleh digunakan, jadi jumlah <InlineMath math="8\text{ m}" /> reben tidak boleh dibahagi sama rata begitu sahaja.
+
+# Panjang reben untuk sebuah kotak
+
+Lilitan mengikut panjang melalui penutup (<InlineMath math="20" />), turun pada satu sisi tegak (<InlineMath math="t" />), melalui tapak (<InlineMath math="20" />), kemudian naik pada sisi tegak bertentangan (<InlineMath math="t" />). Lilitan mengikut lebar sama sahaja, cuma dengan <InlineMath math="10" />. Jadi tinggi kotak digunakan **empat kali**.
+
+<BlockMath math="\begin{aligned}
+\text{mengikut panjang}&=2\cdot20+2t \\
+\text{mengikut lebar}&=2\cdot10+2t \\
+p&=40+20+4t+15=75+4t
+\end{aligned}" />
+
+Di sini <InlineMath math="p" /> ialah panjang sepotong reben dalam cm.
+
+# Bilangan potongan daripada setiap gulungan
+
+Gulungan <InlineMath math="500\text{ cm}" /> memberi paling banyak <InlineMath math="\lfloor 500/p\rfloor" /> potongan, dan gulungan <InlineMath math="300\text{ cm}" /> paling banyak <InlineMath math="\lfloor 300/p\rfloor" />. **Jumlahnya mesti sekurang-kurangnya** <InlineMath math="6" />. Cuba setiap kemungkinan pembahagian.
+
+| Had <InlineMath math="p" /> | Gulungan <InlineMath math="5\text{ m}" /> | Gulungan <InlineMath math="3\text{ m}" /> | Jumlah potongan |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="p\le125" /> | <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="6" /> |
+| <InlineMath math="125<p\le150" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="5" /> |
+
+Sebaik sahaja <InlineMath math="p" /> melebihi <InlineMath math="125" />, gulungan panjang hanya memberi <InlineMath math="3" /> potongan dan gulungan pendek <InlineMath math="2" />, kurang daripada <InlineMath math="6" />. Jadi syaratnya ialah **<InlineMath math="p\le125\text{ cm}" />**.
+
+# Tinggi paling besar
+
+Sekarang masukkan <InlineMath math="p=75+4t" /> ke dalam syarat itu dan selesaikan bagi <InlineMath math="t" />.
+
+<BlockMath math="\begin{aligned}
+75+4t&\le125 \\
+4t&\le50 \\
+t&\le12.5
+\end{aligned}" />
+
+Oleh sebab <InlineMath math="t" /> nombor bulat, **bundarkan ke bawah** kepada <InlineMath math="t=12" />. Semak dua nilai di sekitar had ini.
+
+<BlockMath math="\begin{aligned}
+t=12&:\ p=123,\quad 4\cdot123=492\le500,\quad 2\cdot123=246\le300 \\
+t=13&:\ p=127,\quad 4\cdot127=508>500
+\end{aligned}" />
+
+Bagi <InlineMath math="t=13" />, gulungan <InlineMath math="5\text{ m}" /> hanya memberi <InlineMath math="3" /> potongan, dan jumlah potongan tinggal <InlineMath math="5" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="25\text{ cm}" /> mengira tinggi dua kali sahaja, <InlineMath math="75+2t\le125" />. Setiap lilitan ada dua sisi tegak, jadi jumlahnya <InlineMath math="4t" />.
+- <InlineMath math="16\text{ cm}" /> terlupa <InlineMath math="15\text{ cm}" /> reben untuk simpulan, lalu mendapat <InlineMath math="60+4t\le125" />.
+- <InlineMath math="14\text{ cm}" /> menjumlahkan kedua-dua gulungan menjadi <InlineMath math="800\text{ cm}" /> dan membahagikannya kepada <InlineMath math="6" /> kotak. Apabila <InlineMath math="t=14" />, sepotong reben <InlineMath math="131\text{ cm}" />, dan **kedua-dua gulungan hanya memberi <InlineMath math="3+2=5" /> potongan utuh**.
+- <InlineMath math="6\text{ cm}" /> membahagikan kotak sama rata, tiga daripada setiap gulungan. Gulungan <InlineMath math="3\text{ m}" /> kemudian memaksa <InlineMath math="p\le100" />, sedangkan gulungan panjang boleh memberi empat potongan.
+
+Jadi, nilai <InlineMath math="t" /> yang paling besar ialah <InlineMath math="12\text{ cm}" />.

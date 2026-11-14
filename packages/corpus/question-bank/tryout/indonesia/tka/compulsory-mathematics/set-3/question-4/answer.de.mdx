@@ -1,16 +1,42 @@
-Der Bruchteil des Tanks wird erst dann zu Litern, wenn das **Fassungsvermögen** bekannt ist. Die <InlineMath math="27" /> Liter füllen genau den Unterschied zwischen den beiden Füllständen.
+Gesucht ist <InlineMath math="8^{x}-8^{-x}" />, nicht <InlineMath math="x" /> selbst. Du musst <InlineMath math="x" /> also gar nicht direkt ausrechnen. **Schreib alle Basen als <InlineMath math="2" />** und arbeite dann mit algebraischen Identitäten. Die Bedingung <InlineMath math="x<0" /> entscheidet unterwegs über ein Vorzeichen.
+
+# Alles zur Basis zwei
+
+Setze <InlineMath math="a=2^{x}" /> und <InlineMath math="b=2^{-x}" />. Beide sind positiv, und **ihr Produkt ist immer <InlineMath math="1" />**, denn <InlineMath math="ab=2^{x}\cdot2^{-x}=2^{0}=1" />. Jetzt schreibst du beide Summanden links neu.
 
 <BlockMath math="\begin{aligned}
-\frac{15}{16}-\frac38=\frac{15}{16}-\frac{6}{16}=\frac{9}{16}\ &\Rightarrow\ \text{Tank}=27:\frac{9}{16}=48\text{ Liter} \\
-\frac{15}{16}-\frac14=\frac{11}{16}\ &\Rightarrow\ \frac{11}{16}\cdot48=33\text{ Liter} \\
-33\cdot12&=396\text{ km}
+4^{x+1}&=4\cdot4^{x}=4\left(2^{x}\right)^{2}=4a^{2} \\
+2^{2-2x}&=2^{2}\cdot2^{-2x}=4\left(2^{-x}\right)^{2}=4b^{2} \\
+4a^{2}+4b^{2}&=72\ \Rightarrow\ a^{2}+b^{2}=18
 \end{aligned}" />
 
-Zur Kontrolle: <InlineMath math="\frac38\cdot48=18" /> Liter plus <InlineMath math="27" /> Liter ergeben <InlineMath math="45=\frac{15}{16}\cdot48" /> Liter.
+# Das Vorzeichen aus x kleiner null
 
-Das Auto fährt also <InlineMath math="396\text{ km}" />.
+Das Quadrat der Differenz bekommst du aus <InlineMath math="a^{2}+b^{2}" /> und <InlineMath math="ab" />.
 
-- <InlineMath math="144\text{ km}" /> rechnet mit den <InlineMath math="12" /> Litern, die am Ende im Tank bleiben, statt mit dem verbrauchten Benzin.
-- <InlineMath math="324\text{ km}" /> rechnet nur mit den <InlineMath math="27" /> getankten Litern und übersieht das Benzin, das schon im Tank war.
-- <InlineMath math="540\text{ km}" /> fährt den Tank bis auf null leer, also <InlineMath math="45" /> Liter statt bis zu einem Viertel.
-- <InlineMath math="576\text{ km}" /> rechnet mit dem vollen Fassungsvermögen von <InlineMath math="48" /> Litern.
+<BlockMath math="\begin{aligned}
+(a-b)^{2}&=a^{2}+b^{2}-2ab=18-2=16 \\
+a-b&=4\ \text{ oder }\ a-b=-4
+\end{aligned}" />
+
+Es gibt zwei Möglichkeiten, und die Bedingung <InlineMath math="x<0" /> wählt eine aus. Ist <InlineMath math="x" /> negativ, dann ist <InlineMath math="a=2^{x}<1" /> und <InlineMath math="b=2^{-x}>1" />. Also gilt <InlineMath math="a<b" />, und damit **muss <InlineMath math="a-b" /> negativ sein**: <InlineMath math="a-b=-4" />.
+
+# Die Differenz der Kuben
+
+Wegen <InlineMath math="8^{x}=\left(2^{x}\right)^{3}=a^{3}" /> und <InlineMath math="8^{-x}=b^{3}" /> suchst du <InlineMath math="a^{3}-b^{3}" />. Nimm die Formel für die **Differenz zweier Kuben**.
+
+<BlockMath math="\begin{aligned}
+a^{3}-b^{3}&=(a-b)\left(a^{2}+ab+b^{2}\right) \\
+&=(-4)(18+1)=-76
+\end{aligned}" />
+
+Kontrolle mit den echten Werten: Aus <InlineMath math="a-b=-4" /> und <InlineMath math="ab=1" /> folgt <InlineMath math="a=\sqrt5-2" /> und <InlineMath math="b=\sqrt5+2" />. Ihr Produkt ist <InlineMath math="5-4=1" />, und <InlineMath math="a^{2}+b^{2}=(9-4\sqrt5)+(9+4\sqrt5)=18" />. Alles passt.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="-72" /> vergisst den Summanden <InlineMath math="ab" /> im zweiten Faktor und rechnet <InlineMath math="(-4)\cdot18" />.
+- <InlineMath math="-64" /> hält <InlineMath math="a^{3}-b^{3}" /> für <InlineMath math="(a-b)^{3}" />. **Der Kubus einer Differenz ist nicht die Differenz der Kuben**.
+- <InlineMath math="-4" /> bleibt bei <InlineMath math="2^{x}-2^{-x}" /> stehen und geht nicht mehr zu den Kuben weiter.
+- <InlineMath math="76" /> nimmt <InlineMath math="a-b=4" /> und übersieht die Bedingung <InlineMath math="x<0" />.
+
+Also ist <InlineMath math="8^{x}-8^{-x}=-76" />.

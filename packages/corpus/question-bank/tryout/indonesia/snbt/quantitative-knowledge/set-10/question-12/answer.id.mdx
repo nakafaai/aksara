@@ -1,19 +1,51 @@
-Dari luas, cari dulu **panjang sisi setiap bangun**, lalu hitung kelilingnya.
+Keempat pernyataan butuh empat ukuran: banyak siswa, jumlah nilai, rata-rata, dan median setiap kelas. Rencananya, hitung keempat ukuran itu dari grafik, lalu nilai setiap pernyataan dengan **hitungan atau semua kemungkinan kasusnya**, bukan dengan satu contoh.
 
-# Sisi dan keliling segitiga sama sisi
+# Ringkasan data dari grafik
 
-**Luas segitiga sama sisi** dengan sisi <InlineMath math="s" /> adalah <InlineMath math="\tfrac{\sqrt3}{4}s^2" />.
+Jumlah nilai sebuah kelas adalah jumlah dari nilai dikali banyak siswa yang mendapatkannya.
 
 <BlockMath math="\begin{aligned}
-\frac{\sqrt3}{4}s^2&=9\sqrt3\\
-s^2&=36,\quad s=6\\
-P&=3\cdot6=18
+n_A &= 3+3+5+2+2=15, & \text{jumlah}_A &= 15+18+35+16+18=102 \\
+n_B &= 3+5+3+2+7=20, & \text{jumlah}_B &= 15+30+21+16+63=145
 \end{aligned}" />
 
-# Sisi dan keliling persegi
+Rata-ratanya <InlineMath math="\bar{x}_A=\tfrac{102}{15}=6{,}8" /> dan <InlineMath math="\bar{x}_B=\tfrac{145}{20}=7{,}25" />.
 
-Sisi persegi adalah <InlineMath math="\sqrt{25}=5" />, jadi <InlineMath math="Q=4\cdot5=20" />.
+Median adalah nilai di tengah data yang sudah diurutkan. Kelas A punya <InlineMath math="15" /> siswa, jadi mediannya data ke-<InlineMath math="8" />. Nilai <InlineMath math="5" /> dan <InlineMath math="6" /> menempati urutan <InlineMath math="1" /> sampai <InlineMath math="6" />, dan nilai <InlineMath math="7" /> menempati urutan <InlineMath math="7" /> sampai <InlineMath math="11" />. Jadi median kelas A adalah <InlineMath math="7" />. Kelas B punya <InlineMath math="20" /> siswa, jadi mediannya rata-rata data ke-<InlineMath math="10" /> dan ke-<InlineMath math="11" />. Nilai <InlineMath math="5" /> dan <InlineMath math="6" /> menempati urutan <InlineMath math="1" /> sampai <InlineMath math="8" />, dan nilai <InlineMath math="7" /> menempati urutan <InlineMath math="9" /> sampai <InlineMath math="11" />. Jadi **median kelas B juga <InlineMath math="7" />**.
 
-Walaupun luas segitiga, <InlineMath math="9\sqrt3\approx15{,}6" />, lebih kecil daripada luas persegi, **keliling dan luas tidak selalu berurutan sama**, jadi keduanya tetap perlu dihitung. Di sini <InlineMath math="20>18" />.
+# Pernyataan pertama
 
-Jadi, hubungan yang benar adalah **<InlineMath math="Q>P" />**.
+Rata-rata kelas B, <InlineMath math="7{,}25" />, lebih tinggi daripada rata-rata kelas A, <InlineMath math="6{,}8" />. Median keduanya sama, yaitu <InlineMath math="7" />. Rata-rata kelas B terangkat oleh **tujuh siswa yang mendapat nilai <InlineMath math="9" />**, sedangkan median hanya melihat posisi tengah. Pernyataan ini benar.
+
+# Pernyataan kedua
+
+Rata-rata gabungan adalah jumlah semua nilai dibagi banyak semua siswa.
+
+<BlockMath math="\begin{aligned}
+\bar{x}_{\text{gabungan}} &= \frac{102+145}{15+20}=\frac{247}{35}=7+\frac{2}{35} \\
+\frac{\bar{x}_A+\bar{x}_B}{2} &= \frac{6{,}8+7{,}25}{2}=7{,}025=7+\frac{1}{40}
+\end{aligned}" />
+
+Kedua hasil berbeda karena <InlineMath math="\tfrac{2}{35}\ne\tfrac{1}{40}" />. Rata-rata biasa dari dua rata-rata hanya benar kalau **kedua kelas sama besar**, padahal di sini <InlineMath math="15\ne 20" />. Pernyataan ini salah.
+
+# Pernyataan ketiga
+
+Siswa bernilai <InlineMath math="7" /> itu meninggalkan kelas B dan masuk ke kelas A.
+
+<BlockMath math="\begin{aligned}
+\bar{x}_A^{\text{baru}} &= \frac{102+7}{16}=\frac{109}{16}=6{,}8125 \\
+\bar{x}_B^{\text{baru}} &= \frac{145-7}{19}=\frac{138}{19}\approx 7{,}26
+\end{aligned}" />
+
+Rata-rata kelas A naik dari <InlineMath math="6{,}8" />, dan rata-rata kelas B naik dari <InlineMath math="7{,}25" />. Ini masuk akal: nilai <InlineMath math="7" /> **lebih tinggi daripada rata-rata kelas A tetapi lebih rendah daripada rata-rata kelas B**. Menambah nilai di atas rata-rata menaikkan rata-rata, dan membuang nilai di bawah rata-rata juga menaikkan rata-rata. Untuk memastikan <InlineMath math="\tfrac{138}{19}>7{,}25" />, bandingkan <InlineMath math="138\cdot 4=552" /> dengan <InlineMath math="29\cdot 19=551" />. Pernyataan ini benar.
+
+# Pernyataan keempat
+
+Setelah siswa baru masuk, kelas A punya <InlineMath math="16" /> siswa, jadi mediannya rata-rata data ke-<InlineMath math="8" /> dan ke-<InlineMath math="9" />. Periksa **kedua kemungkinan nilai siswa baru**.
+
+- Kalau nilainya paling besar <InlineMath math="7" />, ada paling banyak <InlineMath math="7" /> nilai di bawah <InlineMath math="7" />, dan nilai <InlineMath math="7" /> mengisi paling sedikit urutan <InlineMath math="8" /> sampai <InlineMath math="12" />.
+- Kalau nilainya paling kecil <InlineMath math="8" />, tetap ada <InlineMath math="6" /> nilai di bawah <InlineMath math="7" />, dan lima nilai <InlineMath math="7" /> mengisi urutan <InlineMath math="7" /> sampai <InlineMath math="11" />.
+
+Dalam kedua kasus, data ke-<InlineMath math="8" /> dan ke-<InlineMath math="9" /> sama-sama <InlineMath math="7" />, jadi mediannya tetap <InlineMath math="7" />. Pernyataan ini benar.
+
+Jadi, pernyataan pertama, ketiga, dan keempat benar, sedangkan pernyataan kedua salah.

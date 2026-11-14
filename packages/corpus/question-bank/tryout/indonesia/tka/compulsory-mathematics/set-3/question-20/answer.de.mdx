@@ -1,15 +1,73 @@
-Waagrechte Entfernung, Höhenunterschied und Weg bilden ein rechtwinkliges Dreieck. **Der Tangens eines Winkels ist Gegenkathete durch Ankathete**: Gegenüber von <InlineMath math="\alpha" /> liegt der Höhenunterschied, anliegend die waagrechte Entfernung <InlineMath math="1{.}640\text{ m}" />.
+Gefragt ist der gesamte waagerechte Abstand: die waagerechte Länge des ersten Teils, plus das Podest, plus die waagerechte Länge des zweiten Teils. Die beiden Teile sind verschieden steil, deshalb **musst du die Höhe des zweiten Teils aus der Höhe bestimmen, die der erste Teil noch übrig lässt**.
+
+# Der erste Teil
+
+Jeder schräge Teil ist die Hypotenuse eines rechtwinkligen Dreiecks: Die senkrechte Seite ist die überwundene Höhe, die waagerechte Seite die waagerechte Länge. Aus <InlineMath math="\sin\alpha=\frac{7}{25}" /> ist die Gegenkathete <InlineMath math="7" /> und die Hypotenuse <InlineMath math="25" />, also **bestimmst du die Ankathete mit Pythagoras**:
 
 <BlockMath math="\begin{aligned}
-\tan\alpha&=\frac{h}{1{.}640} \\
-h&=1{.}640\cdot\frac{9}{40}=369\text{ m}
+\text{Ankathete}&=\sqrt{25^2-7^2}=\sqrt{576}=24 \quad\Rightarrow\quad \cos\alpha=\frac{24}{25} \\
+\text{Höhe}_1&=5\cdot\frac{7}{25}=1{,}4\text{ m} \\
+\text{waagerecht}_1&=5\cdot\frac{24}{25}=4{,}8\text{ m}
 \end{aligned}" />
 
-Zur Kontrolle: Das Dreieck ist dem <InlineMath math="9" />-<InlineMath math="40" />-<InlineMath math="41" />-Dreieck mit dem Faktor <InlineMath math="41" /> ähnlich: <InlineMath math="h=369" />, waagrechte Entfernung <InlineMath math="1{.}640" />, Weglänge <InlineMath math="1{.}681" />.
+# Der zweite Teil
 
-Der Höhenunterschied beträgt also <InlineMath math="369\text{ m}" />.
+Das flache Podest bringt keine Höhe. Der zweite Teil muss also den Rest überwinden. Für den Winkel <InlineMath math="\beta" /> ist die Ankathete <InlineMath math="\sqrt{13^2-5^2}=12" />, also <InlineMath math="\cos\beta=\frac{12}{13}" />:
 
-- <InlineMath math="36{,}9\text{ m}" /> rechnet <InlineMath math="0{,}369\text{ km}" /> mit dem Faktor <InlineMath math="100" /> in Meter um, obwohl <InlineMath math="1\text{ km}=1{.}000\text{ m}" />.
-- <InlineMath math="328\text{ m}" /> rundet <InlineMath math="\frac{9}{40}=0{,}225" /> vor dem Multiplizieren auf <InlineMath math="0{,}2" />.
-- <InlineMath math="360\text{ m}" /> wendet <InlineMath math="\sin\alpha=\frac{9}{41}" /> auf die waagrechte Entfernung an, obwohl der Sinus zur Hypotenuse gehört.
-- <InlineMath math="1{.}600\text{ m}" /> nimmt <InlineMath math="\cos\alpha=\frac{40}{41}" />.
+<BlockMath math="\begin{aligned}
+\text{Höhe}_2&=2{,}9-1{,}4=1{,}5\text{ m} \\
+\text{schräge Länge}_2&=\frac{1{,}5}{\sin\beta}=1{,}5\cdot\frac{13}{5}=3{,}9\text{ m} \\
+\text{waagerecht}_2&=3{,}9\cdot\frac{12}{13}=3{,}6\text{ m}
+\end{aligned}" />
+
+**Probe mit Pythagoras**: <InlineMath math="1{,}5^2+3{,}6^2=2{,}25+12{,}96=15{,}21=3{,}9^2" />. Passt.
+
+# Der gesamte waagerechte Abstand
+
+Alle drei Stücke verlaufen in dieselbe Richtung, also **addierst du ihre waagerechten Längen**:
+
+<BlockMath math="4{,}8+1{,}5+3{,}6=9{,}9\text{ m}" />
+
+<MathVisual
+  title={<>Seitenansicht der Rampe</>}
+  description={<>Seitenansicht der Rampe in Metern. Der erste Teil steigt um <InlineMath math="1{,}4" /> auf einer waagerechten Länge von <InlineMath math="4{,}8" />. Das flache Podest ist <InlineMath math="1{,}5" /> lang. Der zweite Teil steigt um <InlineMath math="1{,}5" /> auf einer waagerechten Länge von <InlineMath math="3{,}6" />, bis auf die Höhe <InlineMath math="2{,}9" />. Der gesamte waagerechte Abstand ist <InlineMath math="9{,}9" />.</>}
+  labels={{
+    "run-one": <InlineMath math="4{,}8" />,
+    "rise-one": <InlineMath math="1{,}4" />,
+    landing: <InlineMath math="1{,}5" />,
+    "run-two": <InlineMath math="3{,}6" />,
+    "rise-two": <InlineMath math="1{,}5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 11 },
+      y: { min: -0.6, max: 3.4 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "ramp", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4.8, y: 1.4 }, { x: 6.3, y: 1.4 }, { x: 9.9, y: 2.9 }] },
+      { id: "run-one", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4.8, y: 0 } },
+      { id: "rise-one", kind: "segment", appearance: "construction", from: { x: 4.8, y: 0 }, to: { x: 4.8, y: 1.4 } },
+      { id: "run-two", kind: "segment", appearance: "construction", from: { x: 6.3, y: 1.4 }, to: { x: 9.9, y: 1.4 } },
+      { id: "rise-two", kind: "segment", appearance: "construction", from: { x: 9.9, y: 1.4 }, to: { x: 9.9, y: 2.9 } },
+    ],
+    labels: [
+      { key: "run-one", objectId: "run-one", at: { x: 2.4, y: 0 }, placement: "below" },
+      { key: "rise-one", objectId: "rise-one", at: { x: 4.8, y: 0.7 }, placement: "right" },
+      { key: "landing", objectId: "ramp", at: { x: 5.55, y: 1.4 }, placement: "above" },
+      { key: "run-two", objectId: "run-two", at: { x: 8.1, y: 1.4 }, placement: "below" },
+      { key: "rise-two", objectId: "rise-two", at: { x: 9.9, y: 2.15 }, placement: "right" },
+    ],
+  }}
+/>
+
+Der waagerechte Abstand vom Fuß der Rampe bis zum oberen Ende des zweiten Teils beträgt also <InlineMath math="9{,}9\text{ m}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="13{,}26\text{ m}" /> nimmt die ganze Höhe <InlineMath math="2{,}9\text{ m}" /> für den zweiten Teil: <InlineMath math="2{,}9\cdot\frac{12}{5}=6{,}96" />. **Der erste Teil hat schon <InlineMath math="1{,}4\text{ m}" /> überwunden**.
+- <InlineMath math="10{,}4\text{ m}" /> addiert die schrägen Längen <InlineMath math="5+1{,}5+3{,}9" />. Gefragt ist der waagerechte Abstand, nicht die Länge der Rampenoberfläche.
+- <InlineMath math="8{,}4\text{ m}" /> vergisst das Podest mit <InlineMath math="1{,}5\text{ m}" />.
+- <InlineMath math="7{,}5\text{ m}" /> rechnet die waagerechte Länge als schräge Länge minus Höhe: <InlineMath math="5-1{,}4=3{,}6" /> und <InlineMath math="3{,}9-1{,}5=2{,}4" />. Seiten eines rechtwinkligen Dreiecks darfst du nicht einfach subtrahieren, nimm Pythagoras oder den Kosinus.

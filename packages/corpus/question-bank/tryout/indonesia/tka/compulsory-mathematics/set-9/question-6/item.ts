@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$f(x)=2x+3$$",
+          label: "$$-30$$",
         },
         {
           correct: false,
-          label: "$$f(x)=-2x+3$$",
+          label: "$$-15$$",
         },
         {
           correct: false,
-          label: "$$f(x)=-6x+11$$",
-        },
-        {
-          correct: false,
-          label: "$$f(x)=-\\frac12x+\\frac{11}{2}$$",
+          label: "$$9$$",
         },
         {
           correct: true,
-          label: "$$f(x)=-2x+7$$",
+          label: "$$15$$",
+        },
+        {
+          correct: false,
+          label: "$$30$$",
         },
       ],
     },

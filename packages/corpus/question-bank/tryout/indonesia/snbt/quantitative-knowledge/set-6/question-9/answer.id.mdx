@@ -1,22 +1,52 @@
-Diagonal belah ketupat **berpotongan tegak lurus dan saling membagi dua**. Keduanya membagi belah ketupat menjadi empat segitiga siku-siku kongruen dengan sisi siku-siku 5 cm dan 12 cm.
+Kita cari jumlah suku pertama, ketiga, kelima, dan seterusnya, yaitu <InlineMath math="u_1+u_3+u_5+\dots" />. Untuk itu kamu perlu suku pertama <InlineMath math="a" /> dan rasio <InlineMath math="r" />. Dua jumlah yang diketahui memberi dua persamaan, dan hasilnya membawa kejutan: **rasionya negatif**, sehingga jumlah suku ganjil lebih besar dari jumlah seluruh deret.
 
-# Sisi dan luas
+# Menulis dua rumus jumlah
 
-Sisi belah ketupat adalah sisi miring segitiga itu, sedangkan luasnya setengah hasil kali kedua diagonal.
+Deret geometri tak hingga punya jumlah tepat ketika <InlineMath math="-1<r<1" />, dan jumlahnya <InlineMath math="\tfrac{a}{1-r}" />. Kuadrat suku-sukunya adalah <InlineMath math="a^2,a^2r^2,a^2r^4,\dots" />, yaitu **deret geometri baru dengan rasio <InlineMath math="r^2" />**.
 
 <BlockMath math="\begin{aligned}
-s&=\sqrt{5^2+12^2}=13\\
-L&=\tfrac12\cdot10\cdot24=120
+\frac{a}{1-r} &= 3 \\
+\frac{a^2}{1-r^2} &= 15
 \end{aligned}" />
 
-Kelilingnya <InlineMath math="4\cdot13=52" /> cm, jadi pernyataan pertama **benar**. Luasnya 120, bukan 240, jadi pernyataan kedua salah. Angka 240 lupa faktor <InlineMath math="\tfrac12" />.
+# Membagi kedua persamaan
 
-# Tinggi dan lingkaran dalam
+Penyebut <InlineMath math="1-r^2" /> bisa difaktorkan menjadi <InlineMath math="(1-r)(1+r)" />. Jadi kalau persamaan kedua dibagi persamaan pertama, **satu faktor <InlineMath math="a" /> dan faktor <InlineMath math="1-r" /> saling coret**.
 
-Belah ketupat juga jajargenjang, jadi luasnya sama dengan **sisi kali tinggi**. Tinggi ini adalah jarak antara dua sisi sejajar.
+<BlockMath math="\begin{aligned}
+\frac{a^2}{(1-r)(1+r)}\cdot\frac{1-r}{a} &= \frac{15}{3} \\
+\frac{a}{1+r} &= 5
+\end{aligned}" />
 
-<BlockMath math="13t=120\quad\Rightarrow\quad t=\frac{120}{13}" />
+Sekarang kamu punya <InlineMath math="a=3(1-r)" /> dan <InlineMath math="a=5(1+r)" />.
 
-Pernyataan keempat benar. Lingkaran dalam menyinggung keempat sisi, jadi diameternya sama dengan jarak antara dua sisi sejajar. Jari-jarinya <InlineMath math="\tfrac{60}{13}" />, setengah dari tinggi, sehingga pernyataan ketiga salah.
+<BlockMath math="\begin{aligned}
+3-3r &= 5+5r \\
+-8r &= 2 \\
+r &= -\tfrac14 \\
+a &= 3\left(1+\tfrac14\right)=\tfrac{15}{4}
+\end{aligned}" />
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.
+Rasio <InlineMath math="-\tfrac14" /> memenuhi <InlineMath math="-1<r<1" />, jadi deretnya memang punya jumlah.
+
+# Menjumlahkan suku bernomor ganjil
+
+Suku bernomor ganjil adalah <InlineMath math="a,ar^2,ar^4,\dots" />. Ini juga deret geometri dengan suku pertama <InlineMath math="a" /> dan **rasio <InlineMath math="r^2=\tfrac{1}{16}" />**.
+
+<BlockMath math="\begin{aligned}
+u_1+u_3+u_5+\dots &= \frac{a}{1-r^2} \\
+&= \frac{\tfrac{15}{4}}{1-\tfrac{1}{16}}=\frac{15}{4}\cdot\frac{16}{15}=4
+\end{aligned}" />
+
+Cek lewat suku bernomor genap, <InlineMath math="ar,ar^3,\dots" />, yang jumlahnya <InlineMath math="\tfrac{ar}{1-r^2}=4\cdot\left(-\tfrac14\right)=-1" />. Ganjil ditambah genap memberi <InlineMath math="4+(-1)=3" />, sama dengan jumlah deret semula. Suku genapnya negatif karena <InlineMath math="r<0" />, jadi wajar kalau jumlah suku ganjil melebihi <InlineMath math="3" />.
+
+# Mengapa pilihan lain keliru
+
+Pilihan yang salah muncul dari **berhenti di hasil antara** atau dari anggapan yang tidak dicek.
+
+- <InlineMath math="5" /> adalah nilai <InlineMath math="\tfrac{a}{1+r}" />, hasil antara setelah membagi kedua persamaan.
+- <InlineMath math="\tfrac{15}{4}" /> hanya suku pertama <InlineMath math="a" />, jadi suku <InlineMath math="u_3,u_5,\dots" /> belum ikut dijumlahkan.
+- <InlineMath math="\tfrac32" /> adalah setengah dari <InlineMath math="3" />, dengan anggapan suku ganjil dan genap menyumbang sama besar. Anggapan itu salah karena setiap suku genap adalah <InlineMath math="r" /> kali suku ganjil sebelumnya.
+- <InlineMath math="\tfrac{12}{5}" /> muncul kalau tanda tertukar saat menyelesaikan <InlineMath math="3-3r=5+5r" />, sehingga <InlineMath math="r=\tfrac14" /> dan <InlineMath math="a=\tfrac94" />. Hasilnya <InlineMath math="\tfrac{9/4}{1-1/16}=\tfrac{12}{5}" />, tetapi rasio positif tidak memenuhi jumlah kuadrat <InlineMath math="15" />.
+
+Jadi, jumlah semua suku bernomor ganjil dari deret semula adalah <InlineMath math="4" />.

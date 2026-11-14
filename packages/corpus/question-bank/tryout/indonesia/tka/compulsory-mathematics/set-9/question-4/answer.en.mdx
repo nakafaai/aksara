@@ -1,16 +1,50 @@
-Let the older sibling be <InlineMath math="k" /> years old now and the younger <InlineMath math="d" />. **Both get older by the same amount**, so three years ago they were <InlineMath math="k-3" /> and <InlineMath math="d-3" />, and in four years they will be <InlineMath math="k+4" /> and <InlineMath math="d+4" />.
+The question asks for the smallest order size that makes the profit per shirt **more than** <InlineMath math="20\%" /> of the average cost. The data are average costs, but what's linear is the total cost. So the first step is turning averages into totals.
+
+# Total cost from average cost
+
+The average cost per shirt is the total cost divided by the number of shirts. So **the total cost is the average times the number of shirts**.
 
 <BlockMath math="\begin{aligned}
-k-3&=3(d-3)\ \Rightarrow\ k=3d-6 \\
-k+4&=2(d+4)\ \Rightarrow\ 3d-6+4=2d+8\ \Rightarrow\ d=10 \\
-k&=3\cdot10-6=24
+B(40)&=40\cdot65{,}000=2{,}600{,}000 \\
+B(100)&=100\cdot47{,}000=4{,}700{,}000
 \end{aligned}" />
 
-Check: three years ago <InlineMath math="21=3\cdot7" />, and in four years <InlineMath math="28=2\cdot14" />.
+The total cost is linear, <InlineMath math="B(n)=a+bn" />, where <InlineMath math="a" /> is the fixed cost and <InlineMath math="b" /> the cost per shirt. Get the slope from those two points.
 
-So their ages now add up to <InlineMath math="24+10=34" /> years.
+<BlockMath math="\begin{aligned}
+b&=\frac{4{,}700{,}000-2{,}600{,}000}{100-40}=\frac{2{,}100{,}000}{60}=35{,}000 \\
+a&=2{,}600{,}000-40\cdot35{,}000=1{,}200{,}000
+\end{aligned}" />
 
-- <InlineMath math="10" /> years is only the younger sibling's age.
-- <InlineMath math="24" /> years is only the older sibling's age.
-- <InlineMath math="28" /> years is the sum of their ages three years ago.
-- <InlineMath math="42" /> years is the sum of their ages four years from now.
+So <InlineMath math="B(n)=1{,}200{,}000+35{,}000n" />, and the average cost is <InlineMath math="R(n)=35{,}000+\dfrac{1{,}200{,}000}{n}" />.
+
+# The limit on the average cost
+
+The profit per shirt is the selling price minus the average cost, <InlineMath math="54{,}000-R" />. It has to be more than <InlineMath math="20\%" /> **of the average cost**, not of the selling price.
+
+<BlockMath math="\begin{aligned}
+54{,}000-R&>0.2R \\
+54{,}000&>1.2R \\
+R&<45{,}000
+\end{aligned}" />
+
+# The smallest order
+
+Now plug in <InlineMath math="R(n)" />. Since <InlineMath math="n" /> is positive, you can multiply both sides by <InlineMath math="n" /> without flipping the sign.
+
+<BlockMath math="\begin{aligned}
+35{,}000+\frac{1{,}200{,}000}{n}&<45{,}000 \\
+\frac{1{,}200{,}000}{n}&<10{,}000 \\
+n&>120
+\end{aligned}" />
+
+For <InlineMath math="n=120" />, the average cost is exactly <InlineMath math="45{,}000" /> and the profit is <InlineMath math="9{,}000" />, which is **exactly** <InlineMath math="20\%" />, not more. For <InlineMath math="n=121" />, the average cost is <InlineMath math="35{,}000+9{,}917.36=44{,}917.36" />, already below <InlineMath math="45{,}000" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="64" /> only asks for a positive profit, <InlineMath math="R<54{,}000" />, which gives <InlineMath math="n>63.2" />. The <InlineMath math="20\%" /> condition got lost.
+- <InlineMath math="107" /> comes from drawing a straight line through the two average costs, which drops by <InlineMath math="300" /> per shirt. The average cost isn't linear: the fixed cost is divided by <InlineMath math="n" />, and that share shrinks more and more slowly.
+- <InlineMath math="120" /> gives a profit of exactly <InlineMath math="20\%" />. The condition is **more than** <InlineMath math="20\%" />, so this number doesn't qualify yet.
+- <InlineMath math="147" /> takes <InlineMath math="20\%" /> of the selling price, which gives the limit <InlineMath math="R<43{,}200" />. The question says <InlineMath math="20\%" /> of the average cost.
+
+So the smallest order is <InlineMath math="121" /> shirts.

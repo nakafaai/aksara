@@ -1,14 +1,74 @@
-A <InlineMath math="90^\circ" /> counterclockwise rotation about <InlineMath math="O" /> maps <InlineMath math="(x,y)" /> to <InlineMath math="(-y,x)" />: **swap the coordinates, then put a minus sign on the first one**. Apply that rule to every corner.
+The question asks which single transformation sends <InlineMath math="A" /> to <InlineMath math="A'" /> **and at the same time** <InlineMath math="B" /> to <InlineMath math="B'" />. Careful: every transformation in the first and third statements really does send <InlineMath math="A" /> to <InlineMath math="A'" />. So point <InlineMath math="B" /> is what decides.
+
+# A clue from the direction of the segment
+
+Here's the quick trick: look at the segment from <InlineMath math="A" /> to <InlineMath math="B" />. Each type of transformation changes the vector <InlineMath math="\overrightarrow{AB}" /> in a fixed way, **no matter where its centre or mirror line is**:
 
 <BlockMath math="\begin{aligned}
-P(1,1)&\to P'(-1,1),\qquad Q(5,1)\to Q'(-1,5) \\
-R(5,3)&\to R'(-3,5),\qquad S(1,3)\to S'(-3,1)
+\overrightarrow{AB}&=(3-1,\ 6-4)=(2,2) \\
+\overrightarrow{A'B'}&=(5-7,\ 6-4)=(-2,2)
 \end{aligned}" />
 
-- <InlineMath math="P'=(-1,1)" />, as worked out. This statement is true.
-- <InlineMath math="R'=(-3,5)" />. The point <InlineMath math="(3,-5)" /> comes from a clockwise rotation. This statement is false.
-- <InlineMath math="P'(-1,1)" /> and <InlineMath math="Q'(-1,5)" /> share the same <InlineMath math="x" />-coordinate, so <InlineMath math="P'Q'" /> is vertical. The horizontal side <InlineMath math="PQ" /> turns <InlineMath math="90^\circ" /> and becomes vertical. This statement is true.
-- Every image point has <InlineMath math="x<0" /> and <InlineMath math="y>0" />, so the rectangle lies in quadrant II. This statement is false.
-- A rotation doesn't change size, so the area stays <InlineMath math="4\cdot2=8" /> square units. This statement is true.
+| Transformation | Vector <InlineMath math="(2,2)" /> becomes | Matches <InlineMath math="(-2,2)" />? |
+| :---: | :---: | :---: |
+| Translation | <InlineMath math="(2,2)" /> | no |
+| Dilation with factor <InlineMath math="-1" /> | <InlineMath math="(-2,-2)" /> | no |
+| Rotation by <InlineMath math="90^\circ" /> clockwise | <InlineMath math="(2,-2)" /> | no |
+| Rotation by <InlineMath math="90^\circ" /> anticlockwise | <InlineMath math="(-2,2)" /> | yes |
+| Reflection in a vertical line | <InlineMath math="(-2,2)" /> | yes |
 
-So the true statements are the ones about <InlineMath math="P'(-1,1)" />, the vertical side <InlineMath math="P'Q'" />, and the area of <InlineMath math="8" /> square units.
+This table filters the types. After that, check whether the centre or the mirror line fits too.
+
+<MathVisual
+  title={<>The segment and its image</>}
+  description={<>The segment from <InlineMath math="A(1,4)" /> to <InlineMath math="B(3,6)" /> points up and to the right. Its image from <InlineMath math="A'(7,4)" /> to <InlineMath math="B'(5,6)" /> points up and to the left. The line <InlineMath math="x=4" /> lies exactly halfway between the two segments, and the point <InlineMath math="(4,7)" /> is the centre of the <InlineMath math="90^\circ" /> anticlockwise rotation that carries the first segment onto the second.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    a2: <InlineMath math="A'" />,
+    b2: <InlineMath math="B'" />,
+    center: <InlineMath math="(4,7)" />,
+    mirror: <InlineMath math="x=4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 10 },
+      y: { min: 0, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: 4, y: 9 } },
+      { id: "ab", kind: "vector", appearance: "primary", from: { x: 1, y: 4 }, to: { x: 3, y: 6 } },
+      { id: "ab2", kind: "vector", appearance: "secondary", from: { x: 7, y: 4 }, to: { x: 5, y: 6 } },
+      { id: "center", kind: "point", appearance: "highlight", at: { x: 4, y: 7 } },
+    ],
+    labels: [
+      { key: "a", objectId: "ab", at: { x: 1, y: 4 }, placement: "left" },
+      { key: "b", objectId: "ab", at: { x: 3, y: 6 }, placement: "above-left" },
+      { key: "a2", objectId: "ab2", at: { x: 7, y: 4 }, placement: "right" },
+      { key: "b2", objectId: "ab2", at: { x: 5, y: 6 }, placement: "above-right" },
+      { key: "center", objectId: "center", at: { x: 4, y: 7 }, placement: "above-right" },
+      { key: "mirror", objectId: "mirror", at: { x: 4, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Judging each statement
+
+1. **False**. The translation by <InlineMath math="(6,0)" /> sends <InlineMath math="A(1,4)" /> to <InlineMath math="(7,4)" />, but it sends <InlineMath math="B(3,6)" /> to <InlineMath math="(9,6)" />, not <InlineMath math="(5,6)" />. A translation never changes the direction of a segment.
+2. **False**. A <InlineMath math="90^\circ" /> clockwise rotation always turns <InlineMath math="(2,2)" /> into <InlineMath math="(2,-2)" />, but you need <InlineMath math="(-2,2)" />. So every centre fails. For example, the centre <InlineMath math="(4,1)" /> sends <InlineMath math="A" /> to <InlineMath math="(7,4)" />, but it sends <InlineMath math="B" /> to <InlineMath math="(9,2)" />.
+3. **False**. The dilation with centre <InlineMath math="(4,4)" /> and factor <InlineMath math="-1" /> maps <InlineMath math="(x,y)" /> to <InlineMath math="(8-x,\ 8-y)" />. That gives <InlineMath math="A\mapsto(7,4)" />, which is right, but <InlineMath math="B\mapsto(5,2)" />, which is wrong.
+4. **True**. The reflection in <InlineMath math="x=4" /> maps <InlineMath math="(x,y)" /> to <InlineMath math="(8-x,\ y)" />, so <InlineMath math="A\mapsto(7,4)" /> and <InlineMath math="B\mapsto(5,6)" />. Both are correct.
+5. **True**. The type passed the filter, so now find the centre. A <InlineMath math="90^\circ" /> anticlockwise rotation about <InlineMath math="(a,b)" /> maps <InlineMath math="(x,y)" /> to <InlineMath math="\big(a-(y-b),\ b+(x-a)\big)" />. Use <InlineMath math="A\mapsto A'" />:
+
+<BlockMath math="\begin{aligned}
+a-(4-b)=7\ &\Rightarrow\ a+b=11 \\
+b+(1-a)=4\ &\Rightarrow\ b-a=3 \\
+a=4,\ b&=7
+\end{aligned}" />
+
+Now test <InlineMath math="B(3,6)" /> with the centre <InlineMath math="(4,7)" />: its image is <InlineMath math="\big(4-(6-7),\ 7+(3-4)\big)=(5,6)=B'" />. **Such a centre exists**, so the fifth statement is true.
+
+So the true statements are the fourth and the fifth: the reflection in <InlineMath math="x=4" /> and the <InlineMath math="90^\circ" /> anticlockwise rotation about <InlineMath math="(4,7)" />.

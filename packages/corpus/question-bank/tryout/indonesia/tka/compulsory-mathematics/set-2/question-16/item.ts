@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "ring-mold",
+  stimulus: "kaca",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$5$$ kipas",
+        },
+        {
+          correct: false,
+          label: "$$6$$ kipas",
+        },
+        {
+          correct: false,
+          label: "$$8$$ kipas",
+        },
+        {
+          correct: false,
+          label: "$$9$$ kipas",
+        },
+        {
           correct: true,
-          label: "$$2{.}310\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$3{.}080\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$3{.}850\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$4{.}620\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$9{.}240\\text{ cm}^3$$",
+          label: "$$10$$ kipas",
         },
       ],
     },

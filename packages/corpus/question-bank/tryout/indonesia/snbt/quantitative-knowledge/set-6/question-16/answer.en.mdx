@@ -1,23 +1,47 @@
-An absolute value changes form where its inside equals zero, at <InlineMath math="x=1" /> and <InlineMath math="x=7" />. These two points split the number line into three regions, and **each region is solved separately**.
+The rule <InlineMath math="f(x+1)=f(x)+2x+1" /> only links values of <InlineMath math="f" /> whose inputs differ by a whole number. So <InlineMath math="f(-2)" /> comes from <InlineMath math="f(1)" />, while <InlineMath math="f\left(\tfrac72\right)" /> comes from <InlineMath math="f\left(\tfrac12\right)" />. The key: **the two chains are separate**, so one formula built from one starting value can't serve both.
 
-# Three regions
+# Seeing the two chains
 
-For <InlineMath math="x<1" />, both insides are negative. For <InlineMath math="1\le x\le7" />, only the second inside is negative. For <InlineMath math="x>7" />, both are positive.
+Starting at <InlineMath math="1" />, steps of <InlineMath math="1" /> only reach integers such as <InlineMath math="0" />, <InlineMath math="-1" />, and <InlineMath math="-2" />. Starting at <InlineMath math="\tfrac12" />, they only reach <InlineMath math="\tfrac32" />, <InlineMath math="\tfrac52" />, <InlineMath math="\tfrac72" />, and so on. **No step crosses from the integer chain to the half chain**, so each chain needs its own starting value.
+
+# Stepping back from the value at one
+
+To move left, rearrange the rule: <InlineMath math="f(x)=f(x+1)-2x-1" />. So when you step back, you **subtract** <InlineMath math="2x+1" />, where <InlineMath math="x" /> is the input you're stepping to.
 
 <BlockMath math="\begin{aligned}
-x<1:&\quad (1-x)+(7-x)=10 \;\Rightarrow\; 8-2x=10 \;\Rightarrow\; x=-1\\
-1\le x\le7:&\quad (x-1)+(7-x)=6\ne10\\
-x>7:&\quad (x-1)+(x-7)=10 \;\Rightarrow\; 2x-8=10 \;\Rightarrow\; x=9
+f(0) &= f(1)-2(0)-1=3-1=2 \\
+f(-1) &= f(0)-2(-1)-1=2+2-1=3 \\
+f(-2) &= f(-1)-2(-2)-1=3+4-1=6
 \end{aligned}" />
 
-The value <InlineMath math="x=-1" /> is indeed less than 1 and <InlineMath math="x=9" /> is indeed greater than 7, so **both are accepted**. The middle region gives no solution.
+# Stepping forward from the value at one half
 
-# Meaning as distance
+To move right, use the rule as it is. There are **exactly three steps** from <InlineMath math="\tfrac12" /> to <InlineMath math="\tfrac72" />.
 
-The expression <InlineMath math="\lvert x-1\rvert+\lvert x-7\rvert" /> is **the sum of the distances from <InlineMath math="x" /> to the points 1 and 7**. Between the two points, this sum is always 6. For a sum of 10, the point <InlineMath math="x" /> must lie 2 units outside one of the ends, at <InlineMath math="-1" /> or at <InlineMath math="9" />.
+<BlockMath math="\begin{aligned}
+f\left(\tfrac32\right) &= f\left(\tfrac12\right)+2\cdot\tfrac12+1=2+2=4 \\
+f\left(\tfrac52\right) &= f\left(\tfrac32\right)+2\cdot\tfrac32+1=4+4=8 \\
+f\left(\tfrac72\right) &= f\left(\tfrac52\right)+2\cdot\tfrac52+1=8+6=14
+\end{aligned}" />
 
-<BlockMath math="(-1)(9)=-9" />
+So <InlineMath math="f(-2)+f\left(\tfrac72\right)=6+14=20" />.
 
-The values 9 and <InlineMath math="-1" /> use only one solution. The value 8 is the sum of the two solutions, not their product. The value 7 is the product of the boundary points 1 and 7.
+Check it a second way. The rule can be written as <InlineMath math="f(x+1)-(x+1)^2=f(x)-x^2" />, because <InlineMath math="(x+1)^2=x^2+2x+1" />. So **<InlineMath math="f(x)-x^2" /> stays the same along one chain**.
 
-So the product of all solutions is **<InlineMath math="-9" />**.
+<BlockMath math="\begin{aligned}
+\text{integer chain}:\quad & f(-2)-4=2=f(1)-1 \\
+\text{half chain}:\quad & f\left(\tfrac72\right)-\tfrac{49}{4}=\tfrac74=f\left(\tfrac12\right)-\tfrac14
+\end{aligned}" />
+
+The two chains have different constants, <InlineMath math="2" /> and <InlineMath math="\tfrac74" />. That's why one formula isn't enough.
+
+# Why the other options fail
+
+The wrong options come from **merging the two chains** or from miscounting the steps.
+
+- <InlineMath math="\tfrac{81}{4}" /> uses <InlineMath math="f(x)=x^2+2" /> for both inputs, so <InlineMath math="f\left(\tfrac72\right)" /> comes out as <InlineMath math="\tfrac{57}{4}" />.
+- <InlineMath math="26" /> comes from plugging in the input you're stepping to instead of the one you're stepping from: <InlineMath math="f\left(\tfrac32\right)=2+2\cdot\tfrac32+1=6" />, then <InlineMath math="12" />, then <InlineMath math="20" /> for <InlineMath math="f\left(\tfrac72\right)" />.
+- <InlineMath math="25" /> comes from taking one step too many while stepping back and finding <InlineMath math="f(-3)=6+6-1=11" /> instead of <InlineMath math="f(-2)" />.
+- <InlineMath math="28" /> comes from taking one step too many and finding <InlineMath math="f\left(\tfrac92\right)=22" /> instead of <InlineMath math="f\left(\tfrac72\right)" />.
+
+So the value of <InlineMath math="f(-2)+f\left(\tfrac72\right)" /> is <InlineMath math="20" />.

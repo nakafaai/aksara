@@ -1,15 +1,33 @@
-A reflection in the vertical line <InlineMath math="x=-1" /> **changes only the <InlineMath math="x" />-coordinate**: a point and its image lie the same distance from the line, so <InlineMath math="x'=2\cdot(-1)-x" />. The translation then adds <InlineMath math="-3" /> to <InlineMath math="x" /> and <InlineMath math="5" /> to <InlineMath math="y" />.
+# Writing the point with one letter
+
+You don't know <InlineMath math="P" /> yet, but it lies on the line <InlineMath math="y=x+3" />. So **one letter is enough to write <InlineMath math="P" />**, for example <InlineMath math="P=(a,\,a+3)" />. That leaves only two unknowns, <InlineMath math="a" /> and <InlineMath math="k" />.
+
+# Running both transformations
+
+Reflecting in the line <InlineMath math="y=-x" /> **swaps the coordinates and flips both signs**: <InlineMath math="(x,y)" /> becomes <InlineMath math="(-y,-x)" />. After that, the translation adds <InlineMath math="k" /> to the first coordinate and <InlineMath math="2k" /> to the second.
+
+<BlockMath math="(a,\,a+3)\ \longmapsto\ (-a-3,\,-a)\ \longmapsto\ (-a-3+k,\,-a+2k)" />
+
+# Matching the final image
+
+The final image is <InlineMath math="(1,5)" />, so **set each coordinate equal**:
 
 <BlockMath math="\begin{aligned}
-P(-4,7)&\to P'(-2-(-4),\,7)=P'(2,7) \\
-P'(2,7)&\to P''(2-3,\,7+5)=P''(-1,12)
+-a-3+k&=1\ \Rightarrow\ -a+k=4 \\
+-a+2k&=5
 \end{aligned}" />
 
-As a check, <InlineMath math="P" /> lies <InlineMath math="3" /> units left of the line <InlineMath math="x=-1" />, and <InlineMath math="P'(2,7)" /> lies <InlineMath math="3" /> units right of it.
+Subtract the first equation from the second and you get <InlineMath math="k=1" />. Then <InlineMath math="-a+1=4" />, so <InlineMath math="a=-3" /> and <InlineMath math="P=(-3,0)" />.
 
-So the final image is <InlineMath math="(-1,12)" />.
+Check: <InlineMath math="(-3,0)" /> lies on <InlineMath math="y=x+3" />. Reflecting in <InlineMath math="y=-x" /> gives <InlineMath math="(0,3)" />, and shifting by <InlineMath math="(1,2)" /> gives <InlineMath math="(1,5)" />.
 
-- <InlineMath math="(-7,-4)" /> reflects in the line <InlineMath math="y=-1" /> instead of <InlineMath math="x=-1" />.
-- <InlineMath math="(0,12)" /> takes the image's <InlineMath math="x" />-coordinate as <InlineMath math="-1-(-4)=3" />, the distance to the line rather than the image's position.
-- <InlineMath math="(1,12)" /> reflects in the <InlineMath math="y" />-axis, as if the line were <InlineMath math="x=0" />.
-- <InlineMath math="(5,12)" /> translates first and then reflects <InlineMath math="(-7,12)" />.
+So the coordinates of <InlineMath math="P" /> are <InlineMath math="(-3,0)" />.
+
+# Why the other options are wrong
+
+Each wrong option comes from **one step that got swapped or skipped**.
+
+- <InlineMath math="(-9,-6)" /> reflects in <InlineMath math="y=x" />, which only swaps the coordinates without flipping the signs.
+- <InlineMath math="(-6,-3)" /> translates first and reflects second. You can't reverse the order of the transformations.
+- <InlineMath math="(1,2)" /> is the translation vector for <InlineMath math="k=1" />, not the point <InlineMath math="P" />. It doesn't even lie on <InlineMath math="y=x+3" />.
+- <InlineMath math="(6,9)" /> uses a <InlineMath math="180^\circ" /> rotation about <InlineMath math="O" />, which only flips the signs without swapping the coordinates.

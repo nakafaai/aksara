@@ -1,20 +1,50 @@
-Jedes neue Quadrat wird an das vorige angesetzt und teilt eine Seite, also **kommen bei jedem Muster genau 3 Hölzer dazu**. Die Anzahlen bilden die arithmetische Folge 4, 7, 10 und so weiter.
+Du brauchst den Zähler von <InlineMath math="P_n" /> **nach dem vollständigen Kürzen**, und zwar für jedes <InlineMath math="n" /> von <InlineMath math="2" /> bis <InlineMath math="100" />. Der Plan: Mach aus dem langen Produkt einen kurzen Bruch, kürze ihn je nach Art von <InlineMath math="n" /> und zähle dann.
 
-# Formel für das n-te Glied
+# Eine kurze Form des Produkts
 
-<BlockMath math="U_n=4+(n-1)\cdot3=3n+1" />
+Jeder Faktor zerfällt mit der dritten binomischen Formel <InlineMath math="k^2-1=(k-1)(k+1)" /> in zwei Brüche.
 
-Die Formel <InlineMath math="4n" /> passt nur zum ersten Muster, weil **eine gemeinsame Seite nicht doppelt zählt**. So braucht Muster 2 genau 7 Hölzer, nicht 8. Die erste Aussage ist falsch.
+<BlockMath math="1-\frac{1}{k^2}=\frac{k^2-1}{k^2}=\frac{k-1}{k}\cdot\frac{k+1}{k}" />
 
-# Die Formel anwenden
+Sammle alle Brüche der ersten Sorte und alle Brüche der zweiten Sorte. In jeder Gruppe **kürzt sich der Nenner eines Bruchs mit dem Zähler des nächsten**, sodass nur die Enden übrig bleiben.
 
 <BlockMath math="\begin{aligned}
-U_{10}&=3\cdot10+1=31\\
-U_{20}-U_{10}&=61-31=30
+\frac{1}{2}\cdot\frac{2}{3}\cdot\frac{3}{4}\cdots\frac{n-1}{n} &= \frac{1}{n} \\
+\frac{3}{2}\cdot\frac{4}{3}\cdot\frac{5}{4}\cdots\frac{n+1}{n} &= \frac{n+1}{2} \\
+P_n &= \frac{1}{n}\cdot\frac{n+1}{2}=\frac{n+1}{2n}
 \end{aligned}" />
 
-Die zweite Aussage ist wahr. Die Differenz ist 30, also **10 zusätzliche Muster mal 3 Hölzer**, nicht 31. Die dritte Aussage ist falsch.
+# Den Bruch kürzen
 
-Für 100 Hölzer löst du <InlineMath math="3n+1=100" /> und erhältst <InlineMath math="n=33" />. Da 33 eine ganze Zahl ist, braucht Muster 33 genau 100 Hölzer. Die vierte Aussage ist wahr.
+Die Zahlen <InlineMath math="n" /> und <InlineMath math="n+1" /> folgen direkt aufeinander, ihr größter gemeinsamer Teiler ist also <InlineMath math="1" />. Deshalb kann sich in <InlineMath math="\tfrac{n+1}{2n}" /> höchstens ein Faktor <InlineMath math="2" /> kürzen. **Ob <InlineMath math="n" /> gerade oder ungerade ist, entscheidet** also über die gekürzte Form.
 
-Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **falsch** und die vierte **wahr**.
+- Ist <InlineMath math="n" /> gerade, dann ist <InlineMath math="n+1" /> ungerade, und nichts lässt sich kürzen. Der Zähler ist <InlineMath math="n+1" />, also ungerade.
+- Ist <InlineMath math="n" /> ungerade, dann ist <InlineMath math="n+1" /> gerade, und du teilst Zähler und Nenner durch <InlineMath math="2" />. Du bekommst <InlineMath math="P_n=\dfrac{(n+1)/2}{n}" /> mit dem Zähler <InlineMath math="\tfrac{n+1}{2}" />.
+
+# Wann der Zähler gerade ist
+
+Nur ungerade <InlineMath math="n" /> kommen infrage, und der Zähler <InlineMath math="\tfrac{n+1}{2}" /> muss gerade sein. Das heißt, **<InlineMath math="n+1" /> ist ein Vielfaches von <InlineMath math="4" />**, also <InlineMath math="n=3,7,11,\ldots,99" />.
+
+<BlockMath math="\frac{99-3}{4}+1=25" />
+
+# Probe mit einigen Werten
+
+Rechne die ersten Werte direkt aus.
+
+<BlockMath math="\begin{aligned}
+P_2 &= \tfrac{3}{4}, & P_3 &= \tfrac{3}{4}\cdot\tfrac{8}{9}=\tfrac{2}{3}, & P_4 &= \tfrac{2}{3}\cdot\tfrac{15}{16}=\tfrac{5}{8}, \\
+P_5 &= \tfrac{3}{5}, & P_6 &= \tfrac{7}{12}, & P_7 &= \tfrac{4}{7}
+\end{aligned}" />
+
+Gerade Zähler tauchen genau bei <InlineMath math="n=3" /> und <InlineMath math="n=7" /> auf. Das passt zum Muster: **<InlineMath math="n" /> lässt beim Teilen durch <InlineMath math="4" /> den Rest <InlineMath math="3" />**.
+
+# Die falschen Antworten
+
+Jede andere Antwort entsteht aus **einem falsch gelesenen Fall**.
+
+- <InlineMath math="24" /> zählt <InlineMath math="n=5,9,\ldots,97" />, nimmt also <InlineMath math="n-1" /> statt <InlineMath math="n+1" /> als Vielfaches von <InlineMath math="4" />.
+- <InlineMath math="49" /> zählt alle ungeraden <InlineMath math="n" />, weil <InlineMath math="n+1" /> gerade ist, ohne vorher zu kürzen.
+- <InlineMath math="50" /> ist die Anzahl der <InlineMath math="P_n" /> mit geradem Nenner, also aller geraden <InlineMath math="n" />. Hier wurden Zähler und Nenner verwechselt.
+- <InlineMath math="74" /> ist die Anzahl der <InlineMath math="P_n" /> mit ungeradem Zähler, nämlich <InlineMath math="99-25" />.
+
+Also haben <InlineMath math="25" /> der Werte <InlineMath math="P_n" /> einen geraden Zähler.

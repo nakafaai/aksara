@@ -1,0 +1,53 @@
+# Kos setiap pakej
+
+Soalan ini meminta bilangan berat bulat <InlineMath math="u" /> dari <InlineMath math="1" /> hingga <InlineMath math="40" /> yang menjadikan Paket Kuota **lebih murah**, bukan sama harga. Setiap pakej ada kuota, jadi rumus kosnya berubah pada <InlineMath math="u=3" /> dan pada <InlineMath math="u=12" />. Sebab itu kamu perlu membandingkan kedua-dua pakej bahagian demi bahagian.
+
+Tulis kos dalam ribu rupiah. Paket Hemat mengenakan <InlineMath math="6" /> ribu hanya bagi setiap kg melebihi <InlineMath math="3" />, dan Paket Kuota mengenakan <InlineMath math="10" /> ribu hanya bagi setiap kg melebihi <InlineMath math="12" />:
+
+<BlockMath math="\begin{aligned}
+H(u)&=\begin{cases}30, & u\le3 \\ 30+6(u-3)=6u+12, & u>3\end{cases} \\
+K(u)&=\begin{cases}60, & u\le12 \\ 60+10(u-12)=10u-60, & u>12\end{cases}
+\end{aligned}" />
+
+# Bandingkan bahagian demi bahagian
+
+**Bahagian pertama**, <InlineMath math="1\le u\le3" />: Hemat <InlineMath math="30" /> dan Kuota <InlineMath math="60" />, jadi Kuota lebih mahal.
+
+**Bahagian kedua**, <InlineMath math="3<u\le12" />: Hemat sudah membayar bagi kg tambahan, manakala Kuota masih tetap <InlineMath math="60" />.
+
+<BlockMath math="\begin{aligned}
+60&<6u+12 \\
+6u&>48 \\
+u&>8
+\end{aligned}" />
+
+Pada <InlineMath math="u=8" />, kedua-duanya <InlineMath math="60" /> ribu. Jadi Kuota lebih murah bagi <InlineMath math="u=9,10,11,12" />.
+
+**Bahagian ketiga**, <InlineMath math="12<u\le40" />: kedua-dua pakej sudah melepasi kuotanya.
+
+<BlockMath math="\begin{aligned}
+10u-60&<6u+12 \\
+4u&<72 \\
+u&<18
+\end{aligned}" />
+
+Pada <InlineMath math="u=18" />, kedua-duanya <InlineMath math="120" /> ribu. Jadi Kuota lebih murah bagi <InlineMath math="u=13,14,\ldots,17" />. Selepas <InlineMath math="18" />, Hemat kembali lebih murah kerana kadar bagi kg tambahannya lebih rendah.
+
+| Berat | Pakej yang lebih murah |
+| --- | --- |
+| <InlineMath math="1\le u\le7" /> | Hemat |
+| <InlineMath math="u=8" /> | sama |
+| <InlineMath math="9\le u\le17" /> | Kuota |
+| <InlineMath math="u=18" /> | sama |
+| <InlineMath math="19\le u\le40" /> | Hemat |
+
+Semak satu nilai: bagi <InlineMath math="u=17" />, Hemat <InlineMath math="30+6\cdot14=114" /> ribu dan Kuota <InlineMath math="60+10\cdot5=110" /> ribu, jadi Kuota memang lebih murah.
+
+Jadi, bilangan nilai <InlineMath math="u" /> ialah <InlineMath math="17-9+1=9" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="32" /> menganggap Kuota kekal lebih murah bagi semua <InlineMath math="u>8" />. Sebenarnya **selepas kuota <InlineMath math="12\text{ kg}" /> habis, kos Kuota naik lebih cepat** dan dikejar semula pada <InlineMath math="u=18" />.
+- <InlineMath math="29" /> mengira berat yang menjadikan Hemat lebih murah, iaitu <InlineMath math="7+22" />, berlawanan dengan apa yang ditanya.
+- <InlineMath math="17" /> terlupa kuota <InlineMath math="3\text{ kg}" /> bagi Paket Hemat, lalu mengira Hemat sebagai <InlineMath math="30+6u" /> sejak kg pertama.
+- <InlineMath math="11" /> turut mengira <InlineMath math="u=8" /> dan <InlineMath math="u=18" />. Pada kedua-dua berat itu kosnya sama, jadi Kuota tidak lebih murah.

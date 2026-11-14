@@ -1,15 +1,58 @@
-The probability of drawing red is **the number of red balls divided by the total number of balls**. So to know the number of red balls, we need that probability and the total, or equivalent information.
+You're looking for the length of the angle bisector <InlineMath math="AD" />, but the sides <InlineMath math="AB" /> and <InlineMath math="AC" /> aren't given. The plan has four steps: use the **angle bisector theorem** for the ratio of the sides, use the perimeter for their lengths, find <InlineMath math="\cos B" /> from the big triangle, and then use that <InlineMath math="\cos B" /> in triangle <InlineMath math="ABD" />.
 
-# Statement (1) alone
+# The ratio from the bisector
 
-<BlockMath math="\frac{m}{12}=\frac13\;\Longrightarrow\;m=4" />
+The angle bisector theorem says: the bisector of angle <InlineMath math="A" /> splits the opposite side **in the same ratio as the two sides that form the angle**.
 
-The number of red balls is **unique, namely 4**. Statement (1) alone is sufficient.
+<BlockMath math="\frac{AB}{AC}=\frac{BD}{DC}=\frac{3}{4}" />
 
-# Statement (2) alone
+# Side lengths from the perimeter
 
-Statement (2) only gives the ratio of red to white, <InlineMath math="1:2" />. The bag could hold 1 red and 2 white, 4 red and 8 white, or 10 red and 20 white. **The total number of balls is unknown**, so statement (2) alone is not sufficient.
+The perimeter is the sum of all three sides, and **side <InlineMath math="BC" /> counts too**. The length is <InlineMath math="BC=3+4=7\text{ cm}" />, so the rest goes to <InlineMath math="AB" /> and <InlineMath math="AC" />.
 
-The two statements agree, because 4 red and 8 white satisfy both.
+<BlockMath math="\begin{aligned}
+AB+AC &= 21-7=14 \\
+AB &= \tfrac{3}{7}\cdot 14=6\text{ cm} \\
+AC &= \tfrac{4}{7}\cdot 14=8\text{ cm}
+\end{aligned}" />
 
-So **statement (1) alone is sufficient**, but statement (2) alone is not.
+# The shared angle
+
+Angle <InlineMath math="B" /> belongs to both triangle <InlineMath math="ABC" /> and triangle <InlineMath math="ABD" />. Find its cosine from triangle <InlineMath math="ABC" />, because there **all three sides are known**. The cosine rule links the side opposite an angle with the other two sides.
+
+<BlockMath math="\begin{aligned}
+AC^2 &= AB^2+BC^2-2\cdot AB\cdot BC\cos B \\
+64 &= 36+49-84\cos B \\
+\cos B &= \frac{21}{84}=\frac{1}{4}
+\end{aligned}" />
+
+# The length of the bisector
+
+Now use the cosine rule in triangle <InlineMath math="ABD" />, with sides <InlineMath math="AB=6" /> and <InlineMath math="BD=3" /> and **the same angle <InlineMath math="B" />**.
+
+<BlockMath math="\begin{aligned}
+AD^2 &= AB^2+BD^2-2\cdot AB\cdot BD\cos B \\
+&= 36+9-2\cdot 6\cdot 3\cdot\tfrac{1}{4} \\
+&= 45-9=36
+\end{aligned}" />
+
+A length can't be negative, so <InlineMath math="AD=6\text{ cm}" />.
+
+# Checking through the other angle
+
+Work it out from the other side. In triangle <InlineMath math="ABC" />, the cosine of angle <InlineMath math="C" /> is <InlineMath math="\cos C=\dfrac{64+49-36}{2\cdot 8\cdot 7}=\dfrac{11}{16}" />. In triangle <InlineMath math="ADC" />, with <InlineMath math="AC=8" /> and <InlineMath math="DC=4" />, you get the same result.
+
+<BlockMath math="AD^2=64+16-2\cdot 8\cdot 4\cdot\tfrac{11}{16}=80-44=36" />
+
+Two routes give **the same length**, so the result holds up.
+
+# The wrong options
+
+Each other option comes from **one step that got swapped or skipped**.
+
+- <InlineMath math="2\sqrt{10}\text{ cm}" /> shows up if the ratio is flipped, with <InlineMath math="AB=8" /> and <InlineMath math="AC=6" />. That gives <InlineMath math="AD^2=40" />.
+- <InlineMath math="4\sqrt{3}\text{ cm}" /> comes from the shortcut formula <InlineMath math="AD^2=AB\cdot AC-BD\cdot DC" /> with the term <InlineMath math="BD\cdot DC" /> left out, so <InlineMath math="AD^2=48" />.
+- <InlineMath math="2\sqrt{15}\text{ cm}" /> comes from the same shortcut with the wrong sign, <InlineMath math="AD^2=48+12=60" />.
+- <InlineMath math="4\sqrt{6}\text{ cm}" /> shows up if the whole perimeter <InlineMath math="21" /> is shared between <InlineMath math="AB" /> and <InlineMath math="AC" />, so <InlineMath math="AB=9" />, <InlineMath math="AC=12" /> and <InlineMath math="AD^2=96" />.
+
+So the length of <InlineMath math="AD" /> is <InlineMath math="6\text{ cm}" />.

@@ -4,32 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "application",
     contentDomain: "geometry-measurement",
-    topic: "geometry-objects",
+    topic: "measurement",
   },
-  stimulus: "playground",
+  stimulus: "running-track",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$1\\text{ m}$$",
+          label: "$$241{,}89\\text{ m}$$",
+        },
+        {
+          correct: false,
+          label: "$$247{,}04\\text{ m}$$",
         },
         {
           correct: true,
-          label: "$$2\\text{ m}$$",
+          label: "$$254{,}89\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$3\\text{ m}$$",
+          label: "$$290{,}89\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$6\\text{ m}$$",
-        },
-        {
-          correct: false,
-          label: "$$12\\text{ m}$$",
+          label: "$$375{,}78\\text{ m}$$",
         },
       ],
     },

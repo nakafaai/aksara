@@ -1,14 +1,74 @@
-Der Betrag <InlineMath math="|2x-6|" /> ist bei <InlineMath math="x=3" /> am kleinsten, nämlich <InlineMath math="0" />. Der Graph von <InlineMath math="f" /> ist ein V, **symmetrisch zur Geraden <InlineMath math="x=3" />**, mit dem tiefsten Punkt <InlineMath math="(3,-4)" />.
+# Lösungen mit einer waagerechten Geraden zählen
 
-<BlockMath math="\begin{aligned}
-|2x-6|-4&=0\ \Rightarrow\ |2x-6|=4\ \Rightarrow\ x=1\ \text{oder}\ x=5 \\
-f(-1)&=|-8|-4=4,\quad f(7)=|8|-4=4
-\end{aligned}" />
+Die Zahl der Lösungen von <InlineMath math="f(x)=c" /> ist **die Zahl der Schnittpunkte des Graphen mit der waagerechten Geraden <InlineMath math="y=c" />**. Schieb also eine waagerechte Gerade von unten nach oben und zähl die Schnittpunkte. Denk daran, dass <InlineMath math="x=-4" /> und <InlineMath math="x=4" /> zum Graphen gehören.
 
-- <InlineMath math="f(x)\ge-2" /> ist falsch, denn <InlineMath math="f(3)=-4" />.
-- Das Minimum <InlineMath math="-4" /> bei <InlineMath math="x=3" /> ist richtig.
-- Die Nullstellen <InlineMath math="x=1" /> und <InlineMath math="x=5" /> sind richtig, weitere gibt es nicht.
-- <InlineMath math="f(-1)=f(7)=4" /> ist richtig. Beide Stellen liegen <InlineMath math="4" /> Einheiten von der Symmetrieachse <InlineMath math="x=3" /> entfernt.
-- Für <InlineMath math="x<3" /> ist <InlineMath math="f(x)=-2x+2" />, also fällt <InlineMath math="f" /> und steigt nicht. Die Aussage ist falsch.
+Die vier Teilstücke des Graphen sind:
 
-Richtig sind also die Aussagen über das Minimum, die Nullstellen und <InlineMath math="f(-1)=f(7)" />.
+<BlockMath math="f(x)=\begin{cases}-2x-6, & -4\le x\le-2 \\ 2x+2, & -2\le x\le0 \\ 2-x, & 0\le x\le2 \\ x-2, & 2\le x\le4\end{cases}" />
+
+| Wert von <InlineMath math="c" /> | Zahl der Lösungen von <InlineMath math="f(x)=c" /> |
+| --- | --- |
+| <InlineMath math="c<-2" /> oder <InlineMath math="c>2" /> | <InlineMath math="0" /> |
+| <InlineMath math="c=-2" /> | <InlineMath math="1" />, nämlich <InlineMath math="x=-2" /> |
+| <InlineMath math="-2<c<0" /> | <InlineMath math="2" /> |
+| <InlineMath math="c=0" /> | <InlineMath math="3" />, nämlich <InlineMath math="x=-3,\,-1,\,2" /> |
+| <InlineMath math="0<c<2" /> | <InlineMath math="4" /> |
+| <InlineMath math="c=2" /> | <InlineMath math="3" />, nämlich <InlineMath math="x=-4,\,0,\,4" /> |
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="f" /> mit den Geraden <InlineMath math="y=1" /> und <InlineMath math="y=-1" /></>}
+  description={<>Ein Streckenzug durch <InlineMath math="(-4,2)" />, <InlineMath math="(-2,-2)" />, <InlineMath math="(0,2)" />, <InlineMath math="(2,0)" /> und <InlineMath math="(4,2)" />. Die Gerade <InlineMath math="y=1" /> schneidet den Graphen in vier Punkten, bei <InlineMath math="x=-3{,}5" />, <InlineMath math="-0{,}5" />, <InlineMath math="1" /> und <InlineMath math="3" />. Die Gerade <InlineMath math="y=-1" /> schneidet ihn in zwei Punkten, bei <InlineMath math="x=-2{,}5" /> und <InlineMath math="-1{,}5" />.</>}
+  labels={{
+    p1: <InlineMath math="(-4,2)" />,
+    p2: <InlineMath math="(-2,-2)" />,
+    p3: <InlineMath math="(0,2)" />,
+    p4: <InlineMath math="(2,0)" />,
+    p5: <InlineMath math="(4,2)" />,
+    "level-up": <InlineMath math="y=1" />,
+    "level-down": <InlineMath math="y=-1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -3, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "graph", kind: "polyline", appearance: "primary", vertices: [{ x: -4, y: 2 }, { x: -2, y: -2 }, { x: 0, y: 2 }, { x: 2, y: 0 }, { x: 4, y: 2 }] },
+      { id: "line-up", kind: "segment", appearance: "construction", from: { x: -4.5, y: 1 }, to: { x: 4.5, y: 1 } },
+      { id: "line-down", kind: "segment", appearance: "construction", from: { x: -4.5, y: -1 }, to: { x: 4.5, y: -1 } },
+      { id: "point-1", kind: "point", appearance: "reference", at: { x: -4, y: 2 } },
+      { id: "point-2", kind: "point", appearance: "reference", at: { x: -2, y: -2 } },
+      { id: "point-3", kind: "point", appearance: "reference", at: { x: 0, y: 2 } },
+      { id: "point-4", kind: "point", appearance: "reference", at: { x: 2, y: 0 } },
+      { id: "point-5", kind: "point", appearance: "reference", at: { x: 4, y: 2 } },
+      { id: "cut-1", kind: "point", appearance: "answer", at: { x: -3.5, y: 1 } },
+      { id: "cut-2", kind: "point", appearance: "answer", at: { x: -0.5, y: 1 } },
+      { id: "cut-3", kind: "point", appearance: "answer", at: { x: 1, y: 1 } },
+      { id: "cut-4", kind: "point", appearance: "answer", at: { x: 3, y: 1 } },
+      { id: "cut-5", kind: "point", appearance: "highlight", at: { x: -2.5, y: -1 } },
+      { id: "cut-6", kind: "point", appearance: "highlight", at: { x: -1.5, y: -1 } },
+    ],
+    labels: [
+      { key: "p1", objectId: "point-1", at: { x: -4, y: 2 }, placement: "above-right" },
+      { key: "p2", objectId: "point-2", at: { x: -2, y: -2 }, placement: "below" },
+      { key: "p3", objectId: "point-3", at: { x: 0, y: 2 }, placement: "above" },
+      { key: "p4", objectId: "point-4", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "p5", objectId: "point-5", at: { x: 4, y: 2 }, placement: "above-left" },
+      { key: "level-up", objectId: "line-up", at: { x: 4.5, y: 1 }, placement: "above-left" },
+      { key: "level-down", objectId: "line-down", at: { x: 4.5, y: -1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+# Jede Aussage prüfen
+
+1. **Falsch**. <InlineMath math="f(f(x))=0" /> heißt, dass <InlineMath math="f(x)" /> eine Nullstelle von <InlineMath math="f" /> sein muss, also <InlineMath math="-3" />, <InlineMath math="-1" /> oder <InlineMath math="2" />. Zähl jeden Fall mit der Tabelle. <InlineMath math="f(x)=-3" /> hat keine Lösung, weil der kleinste Wert von <InlineMath math="f" /> gleich <InlineMath math="-2" /> ist. <InlineMath math="f(x)=-1" /> hat <InlineMath math="2" /> Lösungen, <InlineMath math="x=-2{,}5" /> und <InlineMath math="x=-1{,}5" />. <InlineMath math="f(x)=2" /> hat <InlineMath math="3" /> Lösungen, <InlineMath math="x=-4" />, <InlineMath math="0" /> und <InlineMath math="4" />. Zusammen sind das <InlineMath math="0+2+3=5" />, nicht <InlineMath math="3" />. Die <InlineMath math="3" /> ist die Lösungszahl von <InlineMath math="f(x)=0" />, nicht von <InlineMath math="f(f(x))=0" />.
+2. **Richtig**. Der Wert <InlineMath math="1" /> liegt zwischen <InlineMath math="0" /> und <InlineMath math="2" />, also gibt es <InlineMath math="4" /> Lösungen: <InlineMath math="-2x-6=1" /> liefert <InlineMath math="x=-3{,}5" />, <InlineMath math="2x+2=1" /> liefert <InlineMath math="x=-0{,}5" />, <InlineMath math="2-x=1" /> liefert <InlineMath math="x=1" /> und <InlineMath math="x-2=1" /> liefert <InlineMath math="x=3" />.
+3. **Richtig**. Rechne von innen nach außen: <InlineMath math="f(-3)=0" />, dann <InlineMath math="f(0)=2" />, dann <InlineMath math="f(2)=0" />.
+4. **Richtig**. Laut Tabelle gibt es genau drei Lösungen nur bei <InlineMath math="c=0" /> und <InlineMath math="c=2" />. Bei <InlineMath math="c=2" /> sind zwei der drei Lösungen die Randpunkte <InlineMath math="x=-4" /> und <InlineMath math="x=4" />, die man **leicht übersieht**.
+5. **Richtig**. Aus der ersten Aussage sind die Lösungen von <InlineMath math="f(f(x))=0" /> gleich <InlineMath math="-4" />, <InlineMath math="-2{,}5" />, <InlineMath math="-1{,}5" />, <InlineMath math="0" /> und <InlineMath math="4" />. Prüf <InlineMath math="x=4" />: <InlineMath math="f(4)=2" /> und <InlineMath math="f(2)=0" />. Eine größere Lösung gibt es nicht, weil der Definitionsbereich bei <InlineMath math="4" /> endet.
+
+Richtig sind also die zweite, dritte, vierte und fünfte Aussage.

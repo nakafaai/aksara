@@ -1,0 +1,90 @@
+Soalan ini meminta imej titik <InlineMath math="C" />. Ada dua perkara yang belum diketahui: **kedudukan titik <InlineMath math="C" /> itu sendiri** dan nilai <InlineMath math="a" /> serta <InlineMath math="b" />. Cari kedua-duanya dahulu, barulah petakan <InlineMath math="C" />.
+
+# Kedudukan titik C
+
+Titik <InlineMath math="C" /> terletak pada garis <InlineMath math="x=6" />, jadi tulis <InlineMath math="C(6,y)" />. Sudut tegak berada di <InlineMath math="C" />, maka hipotenusnya ialah <InlineMath math="AB=10" />. **Gunakan teorem Pythagoras** <InlineMath math="AC^2+BC^2=AB^2" />:
+
+<BlockMath math="\begin{aligned}
+AC^2&=(6+2)^2+(y-1)^2=64+(y-1)^2 \\
+BC^2&=(6-8)^2+(y-1)^2=4+(y-1)^2 \\
+64+(y-1)^2+4+(y-1)^2&=100 \\
+2(y-1)^2&=32 \\
+(y-1)^2&=16
+\end{aligned}" />
+
+Maka <InlineMath math="y-1=4" /> atau <InlineMath math="y-1=-4" />, iaitu <InlineMath math="y=5" /> atau <InlineMath math="y=-3" />. Ada dua titik yang membentuk sudut tegak, iaitu <InlineMath math="(6,5)" /> dan <InlineMath math="(6,-3)" />. Garis <InlineMath math="AB" /> ialah <InlineMath math="y=1" />, dan soalan menyatakan <InlineMath math="C" /> berada di bawahnya. Jadi <InlineMath math="C(6,-3)" />.
+
+# Garis cermin daripada syarat A ke B
+
+Pantulan pada <InlineMath math="x=a" /> menukar <InlineMath math="x" /> kepada <InlineMath math="2a-x" /> dan mengekalkan <InlineMath math="y" />. Pantulan pada <InlineMath math="y=b" /> menukar <InlineMath math="y" /> kepada <InlineMath math="2b-y" /> dan mengekalkan <InlineMath math="x" />. Apabila dibuat berturutan:
+
+<BlockMath math="(x,y)\ \longrightarrow\ (2a-x,\ y)\ \longrightarrow\ (2a-x,\ 2b-y)" />
+
+Ini sama dengan **putaran <InlineMath math="180^\circ" /> pada titik <InlineMath math="(a,b)" />**, iaitu titik persilangan kedua-dua garis cermin. Sekarang gunakan syarat bahawa <InlineMath math="A(-2,1)" /> berpindah ke <InlineMath math="B(8,1)" />:
+
+<BlockMath math="\begin{aligned}
+2a-(-2)&=8 &\Rightarrow\quad a&=3 \\
+2b-1&=1 &\Rightarrow\quad b&=1
+\end{aligned}" />
+
+Pusat putarannya ialah <InlineMath math="(3,1)" />, tepat titik tengah <InlineMath math="AB" />.
+
+# Imej titik C
+
+Gantikan <InlineMath math="C(6,-3)" /> ke dalam <InlineMath math="(2a-x,\ 2b-y)" /> dengan <InlineMath math="a=3" /> dan <InlineMath math="b=1" />:
+
+<BlockMath math="C''=(6-6,\ 2-(-3))=(0,5)" />
+
+Semak dengan rajah. Putaran separuh pusingan pada titik tengah <InlineMath math="AB" /> menukar tempat <InlineMath math="A" /> dan <InlineMath math="B" />, jadi <InlineMath math="ACBC''" /> ialah segi empat selari. Sudutnya di <InlineMath math="C" /> ialah sudut tegak, maka bentuk itu ialah **segi empat tepat**, dan <InlineMath math="C''=A+B-C=(-2+8-6,\ 1+1+3)=(0,5)" />. Jawapannya sama.
+
+<MathVisual
+  title={<>Segi tiga <InlineMath math="ABC" /> dan imejnya</>}
+  description={<>Segi tiga <InlineMath math="ABC" /> dengan <InlineMath math="A(-2,1)" />, <InlineMath math="B(8,1)" /> dan <InlineMath math="C(6,-3)" />. Garis cermin <InlineMath math="x=3" /> dan <InlineMath math="y=1" /> bersilang di <InlineMath math="M(3,1)" />, titik tengah <InlineMath math="AB" />. Segi tiga imej mempunyai bucu <InlineMath math="B" />, <InlineMath math="A" /> dan <InlineMath math="C''(0,5)" />. Titik <InlineMath math="A" />, <InlineMath math="C" />, <InlineMath math="B" /> dan <InlineMath math="C''" /> membentuk segi empat tepat.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    image: <InlineMath math="C''" />,
+    centre: <InlineMath math="M" />,
+    "mirror-x": <InlineMath math="x=3" />,
+    "mirror-y": <InlineMath math="y=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 11 },
+      y: { min: -5, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: -2, y: 1 }, { x: 8, y: 1 }, { x: 6, y: -3 }] },
+      { id: "image-triangle", kind: "polygon", appearance: "answer", vertices: [{ x: 8, y: 1 }, { x: -2, y: 1 }, { x: 0, y: 5 }] },
+      { id: "mirror-x", kind: "line", appearance: "reference", through: [{ x: 3, y: 0 }, { x: 3, y: 1 }] },
+      { id: "mirror-y", kind: "line", appearance: "reference", through: [{ x: 0, y: 1 }, { x: 1, y: 1 }] },
+      { id: "point-a", kind: "point", appearance: "primary", at: { x: -2, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "primary", at: { x: 8, y: 1 } },
+      { id: "point-c", kind: "point", appearance: "primary", at: { x: 6, y: -3 } },
+      { id: "point-image", kind: "point", appearance: "answer", at: { x: 0, y: 5 } },
+      { id: "point-centre", kind: "point", appearance: "highlight", at: { x: 3, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: -2, y: 1 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 8, y: 1 }, placement: "above-right" },
+      { key: "c", objectId: "point-c", at: { x: 6, y: -3 }, placement: "below" },
+      { key: "image", objectId: "point-image", at: { x: 0, y: 5 }, placement: "above" },
+      { key: "centre", objectId: "point-centre", at: { x: 3, y: 1 }, placement: "below-right" },
+      { key: "mirror-x", objectId: "mirror-x", at: { x: 3, y: 6 }, placement: "right" },
+      { key: "mirror-y", objectId: "mirror-y", at: { x: 10, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
+Jadi, imej titik <InlineMath math="C" /> selepas kedua-dua pantulan ialah <InlineMath math="(0,5)" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="(0,-3)" /> boleh datang daripada dua kesilapan. Kamu menggunakan <InlineMath math="C(6,5)" /> yang terletak di atas <InlineMath math="AB" />, atau kamu berhenti selepas pantulan pertama pada <InlineMath math="x=3" />. **Syarat di bawah <InlineMath math="AB" /> dan pantulan kedua kedua-duanya wajib**.
+- <InlineMath math="(-1,-2)" /> menganggap dua pantulan itu sama dengan putaran <InlineMath math="90^\circ" /> ikut arah jam pada <InlineMath math="(3,1)" />. Dua garis cermin yang berserenjang menghasilkan putaran dua kali sudut di antaranya, iaitu <InlineMath math="2\cdot90^\circ=180^\circ" />.
+- <InlineMath math="(4,5)" /> datang daripada kesilapan tanda semasa mencari <InlineMath math="a" />. Persamaannya <InlineMath math="2a-(-2)=8" />, jadi <InlineMath math="2a+2=8" /> dan <InlineMath math="a=3" />, bukan <InlineMath math="2a-2=8" /> yang memberi <InlineMath math="a=5" />.
+- <InlineMath math="(12,-1)" /> menambah <InlineMath math="(2a,2b)=(6,2)" /> kepada koordinat <InlineMath math="C" />. Petua yang betul ialah <InlineMath math="(2a-x,\ 2b-y)" />: koordinat <InlineMath math="C" /> ditolak daripada <InlineMath math="2a" /> dan <InlineMath math="2b" />, bukan ditambah.
