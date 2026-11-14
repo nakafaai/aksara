@@ -1,0 +1,184 @@
+export const metadata = {
+  title: "Masalah Kuasa Dua Terkecil Linear",
+  description: "Selesaikan sistem linear tak konsisten dengan kuasa dua terkecil, norma reja, unjuran ortogon, persamaan normal dan kaedah berangka yang stabil.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-15",
+  dateModified: "2026-09-13",
+  subject: "Kaedah Linear AI",
+};
+
+## Daripada Sistem Tak Konsisten kepada Padanan Terbaik
+
+Katakan <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="x \in \mathbb{R}^n" /> dan <InlineMath math="b \in \mathbb{R}^m" />. Lihat sistem berikut.
+
+<BlockMath math="Ax=b" />
+
+Jika <InlineMath math="b" /> tidak terletak dalam ruang lajur <InlineMath math="A" />, sistem ini tiada penyelesaian tepat. Keadaan ini selalu berlaku apabila model dipadankan pada <Highlight>ukuran yang mengandungi hingar</Highlight>, atau apabila sistem terlebih tentu mempunyai lebih banyak persamaan daripada pemboleh ubah yang tidak diketahui dan persamaan itu tidak konsisten.
+
+Jika tiada vektor <InlineMath math="x" /> yang memenuhi <InlineMath math="Ax=b" /> dengan tepat, takrifkan reja
+
+<BlockMath math="e(x)=Ax-b" />
+
+Kita mencari vektor <InlineMath math="x" /> yang menghasilkan reja paling kecil. Masalah kuasa dua terkecil linear yang piawai ditulis seperti berikut.
+
+<BlockMath math="\hat{x}\in\operatorname*{arg\,min}_{x\in\mathbb{R}^n}\|Ax-b\|_2^2" />
+
+Oleh sebab reja mempunyai <InlineMath math="m" /> komponen, fungsi objektif itu dikembangkan menjadi
+
+<BlockMath math="\|Ax-b\|_2^2=\sum_{i=1}^{m}(Ax-b)_i^2" />
+
+Apabila dikuasaduakan, setiap sumbangan menjadi tidak negatif, dan komponen reja yang besar dikenakan penalti yang lebih berat daripada komponen yang kecil.
+
+## Syarat Geometri
+
+Vektor <InlineMath math="A\hat{x}" /> ialah titik dalam <InlineMath math="\operatorname{col}(A)" /> yang paling hampir dengan <InlineMath math="b" /> dari segi jarak Euclidean. Pada titik optimum, <Highlight>reja ortogon kepada setiap lajur</Highlight> bagi <InlineMath math="A" />:
+
+<MathContainer>
+<BlockMath math="A^{\mathsf T}(A\hat{x}-b)=0" />
+<BlockMath math="A^{\mathsf T}A\hat{x}=A^{\mathsf T}b" />
+</MathContainer>
+
+Persamaan kedua dipanggil **[persamaan normal](/ms/subjek/ai-ds/kaedah-linear-ai/sistem-persamaan-normal)**.
+
+<MathVisual
+  title={<>Unjuran <InlineMath math="A\hat x" /> bagi <InlineMath math="b=(1,2,6)" /></>}
+  description={<>Tembereng kelabu ialah ruang lajur, iaitu garis yang melalui <InlineMath math="(1,1,1)" />. Tembereng hijau kebiruan berakhir di <InlineMath math="A\hat x=(3,3,3)" />, tembereng oren berakhir di <InlineMath math="b" />, dan reja magenta <InlineMath math="A\hat x-b" /> berserenjang dengan ruang lajur.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 6.5 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 1.5, z: 3 } },
+    objects: [
+      { id: "column", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 4, z: 4 }, appearance: "reference" },
+      { id: "fit", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 3, z: 3 }, appearance: "construction" },
+      { id: "target", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 2, z: 6 }, appearance: "primary" },
+      { id: "residual", kind: "segment", from: { x: 3, y: 3, z: 3 }, to: { x: 1, y: 2, z: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "fit", objectId: "fit", at: { x: 3, y: 3, z: 3 }, placement: "right" },
+      { key: "target", objectId: "target", at: { x: 1, y: 2, z: 6 }, placement: "above" },
+      { key: "residual", objectId: "residual", at: { x: 2, y: 2.5, z: 4.5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "fit": <InlineMath math="A\hat x" />,
+    "target": <InlineMath math="b" />,
+    "residual": <InlineMath math="A\hat x-b" />,
+  }}
+/>
+
+Rajah ini melabelkan vektor sasaran <InlineMath math="b" />, titik unjuran <InlineMath math="A\hat{x}" /> dan reja <InlineMath math="A\hat{x}-b" /> di antara kedua-duanya. Vektor hijau kebiruan <InlineMath math="A\hat{x}" /> terletak dalam ruang lajur. Syarat keortogonan di atas membuktikan bahawa vektor itu ialah titik dalam ruang tersebut yang paling hampir dengan <InlineMath math="b" />.
+
+## Memadankan Satu Pemalar kepada Tiga Cerapan
+
+Katakan satu pemalar <InlineMath math="x" /> mesti dipadankan dengan tiga cerapan <InlineMath math="1" />, <InlineMath math="2" /> dan <InlineMath math="6" />. Gunakan matriks dan vektor berikut.
+
+<BlockMath math="A=\begin{pmatrix}1\\1\\1\end{pmatrix},\qquad b=\begin{pmatrix}1\\2\\6\end{pmatrix}" />
+
+Fungsi objektif bagi contoh ini ialah
+
+<MathContainer>
+<BlockMath math="\begin{aligned} F(x) &amp;=(x-1)^2+(x-2)^2 \\ &amp;\quad{}+(x-6)^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} F'(x) &amp;=2(x-1)+2(x-2) \\ &amp;\quad+2(x-6) \\ &amp;=6x-18 \end{aligned}" />
+</MathContainer>
+
+Apabila kita samakan **terbitan dengan sifar**, kita dapat <InlineMath math="\hat{x}=3" />. Vektor padanan dan rejanya ialah
+
+<MathContainer>
+<BlockMath math="A\hat{x}=\begin{pmatrix}3\\3\\3\end{pmatrix}" />
+<BlockMath math="A\hat{x}-b=\begin{pmatrix}2\\1\\-3\end{pmatrix}" />
+</MathContainer>
+
+Komponen reja berjumlah sifar, jadi
+
+<BlockMath math="A^{\mathsf T}(A\hat{x}-b)=2+1-3=0" />
+
+Hasil sifar ini memenuhi persamaan normal.
+
+Memadankan satu pemalar <InlineMath math="x" /> kepada cerapan <InlineMath math="1" />, <InlineMath math="2" /> dan <InlineMath math="6" /> bermakna kita meminimumkan <InlineMath math="(x-1)^2+(x-2)^2+(x-6)^2" />. Terbitannya menjadi sifar apabila <InlineMath math="3x=9" />, jadi pemalar terbaik ialah min <InlineMath math="x=3" />, dengan jumlah reja kuasa dua <InlineMath math="4+1+9=14" />.
+
+<MathVisual
+  title={<>Pemalar terbaik bagi <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="6" /></>}
+  description={<>Titik ungu ialah cerapan, garis hijau kebiruan ialah pemalar <InlineMath math="x" />, dan tembereng magenta ialah reja. Gerakkan <InlineMath math="x" />: bacaannya turun ke nilai minimum <InlineMath math="14" /> pada <InlineMath math="x=3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "c", min: 0, max: 7, value: 2, step: 0.01, label: "c" },
+    ],
+    objects: [
+      { id: "constant", kind: "function", formula: "c", domain: { min: 0.5, max: 3.5 }, appearance: "construction" },
+      { id: "gap-a", kind: "path", points: [{ x: "1", y: "1" }, { x: "1", y: "c" }], appearance: "answer" },
+      { id: "gap-b", kind: "path", points: [{ x: "2", y: "2" }, { x: "2", y: "c" }], appearance: "answer" },
+      { id: "gap-c", kind: "path", points: [{ x: "3", y: "6" }, { x: "3", y: "c" }], appearance: "answer" },
+      { id: "first", kind: "point", at: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "second", kind: "point", at: { x: 2, y: 2 }, appearance: "secondary" },
+      { id: "third", kind: "point", at: { x: 3, y: 6 }, appearance: "secondary" },
+    ],
+    readouts: [
+      { key: "sum", formula: "(1 - c)^2 + (2 - c)^2 + (6 - c)^2" },
+    ],
+  }}
+  labels={{
+    "c": <InlineMath math="x" />,
+    "sum": <InlineMath math="F(x)=\|x\mathbf 1-b\|_2^2" />,
+  }}
+/>
+
+## Norma Reja yang Lain
+
+Norma menentukan **jenis ralat** yang diutamakan oleh padanan.
+
+| Objektif | Apa yang dikawalnya |
+| --- | --- |
+| <InlineMath math="\displaystyle\min_x\|Ax-b\|_2^2=\min_x\sum_{i=1}^{m}(Ax-b)_i^2" /> | Mengenakan penalti secara kuasa dua pada reja yang besar dan memberikan unjuran kuasa dua terkecil yang biasa. |
+| <InlineMath math="\displaystyle\min_x\|Ax-b\|_1=\min_x\sum_{i=1}^{m}\lvert(Ax-b)_i\rvert" /> | Menggunakan penalti linear, jadi reja besar yang sesekali muncul kurang berpengaruh berbanding dengan kehilangan kuasa dua (squared loss). |
+| <InlineMath math="\displaystyle\min_x\|Ax-b\|_\infty=\min_x\max_{1\le i\le m}\lvert(Ax-b)_i\rvert" /> | Meminimumkan reja mutlak yang paling teruk. |
+
+Rumusan <InlineMath math="\ell_1" /> dan <InlineMath math="\ell_\infty" /> boleh ditulis semula sebagai masalah pengaturcaraan linear. Namun, kesesuaiannya tetap bergantung pada proses yang menjana data dan kriteria ralat yang penting bagi aplikasi tersebut.
+
+Bagi cerapan yang sama, iaitu <InlineMath math="1" />, <InlineMath math="2" /> dan <InlineMath math="6" />, norma yang dipilih mengubah pemalar padanan. Kuasa dua terkecil memilih min, kehilangan mutlak memilih median, dan ralat maksimum yang terkecil mengimbangkan jarak ke dua nilai ekstrem.
+
+| Kriteria | Pemalar optimum | Objektif minimum |
+|---|---|---|
+| <InlineMath math="\ell_2^2" /> | <InlineMath math="(1+2+6)/3=3" /> | <InlineMath math="2^2+1^2+(-3)^2=14" /> |
+| <InlineMath math="\ell_1" /> | <InlineMath math="2" /> | <InlineMath math="1+0+4=5" /> |
+| <InlineMath math="\ell_\infty" /> | <InlineMath math="(1+6)/2=7/2" /> | <InlineMath math="\max(5/2,3/2,5/2)=5/2" /> |
+
+Norma lain memilih pemalar lain bagi data yang sama. Hasil tambah reja mutlak paling kecil pada median <InlineMath math="2" />, norma Euclidean paling kecil pada min <InlineMath math="3" />, dan reja terbesar paling kecil pada titik tengah julat <InlineMath math="\tfrac{1+6}2=3.5" />.
+
+<MathVisual
+  title={<>Tiga norma bagi reja <InlineMath math="x\mathbf 1-b" /></>}
+  description={<>Dengan <InlineMath math="x" /> di sepanjang paksi mendatar, lengkung ungu ialah <InlineMath math="\|x\mathbf 1-b\|_1" />, lengkung hijau kebiruan ialah <InlineMath math="\|x\mathbf 1-b\|_2" />, dan lengkung oren ialah <InlineMath math="\|x\mathbf 1-b\|_\infty" />. Titik magenta menandakan minimum masing-masing pada <InlineMath math="x=2" />, <InlineMath math="3" /> dan <InlineMath math="3.5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 7.3 }, y: { min: 0, max: 13 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "sum", kind: "function", formula: "abs(1 - x) + abs(2 - x) + abs(6 - x)", domain: { min: 0, max: 7 }, appearance: "secondary" },
+      { id: "euclid", kind: "function", formula: "sqrt((1 - x)^2 + (2 - x)^2 + (6 - x)^2)", domain: { min: 0, max: 7 }, appearance: "construction" },
+      { id: "largest", kind: "function", formula: "max(abs(1 - x), max(abs(2 - x), abs(6 - x)))", domain: { min: 0, max: 7 }, appearance: "primary" },
+      { id: "median", kind: "point", at: { x: 2, y: 5 }, appearance: "answer" },
+      { id: "mean", kind: "point", at: { x: 3, y: Math.sqrt(14) }, appearance: "answer" },
+      { id: "midrange", kind: "point", at: { x: 3.5, y: 2.5 }, appearance: "answer" },
+    ],
+  }}
+/>
+
+## Memilih Kaedah Berangka yang Stabil
+
+Jika <InlineMath math="A" /> mempunyai **pangkat lajur penuh**, peminimum kuasa dua terkecil adalah unik. Persamaan normal kemudian memberikan
+
+<BlockMath math="\hat{x}=(A^{\mathsf T}A)^{-1}A^{\mathsf T}b" />
+
+Identiti ini mencirikan peminimum yang unik apabila <InlineMath math="A" /> mempunyai pangkat lajur penuh. Jangan kira peminimum itu dengan membentuk songsangan secara eksplisit. Pilih kaedah berangka berdasarkan pangkat dan nombor syarat matriks:
+
+- gunakan pemfaktoran <InlineMath math="\mathrm{QR}" /> untuk menyelesaikan masalah kuasa dua terkecil berpangkat penuh dengan stabil
+- gunakan <InlineMath math="\mathrm{SVD}" /> apabila kekurangan pangkat atau nombor syarat yang besar (ill-conditioning) menjadi isu
+- gunakan songsangan pseudo untuk memilih penyelesaian dengan norma minimum apabila peminimum tidak unik
+
+Ada juga tafsiran statistik yang tepat. Lihat model berikut.
+
+<BlockMath math="b=Ax_*+\varepsilon,\qquad \varepsilon\sim\mathcal{N}(0,\sigma^2I),\quad \sigma^2>0" />
+
+Jika <InlineMath math="A" /> tetap dan ralat Gauss tak bersandar dengan varians yang sama, kuasa dua terkecil memberikan penganggar kebolehjadian maksimum bagi <InlineMath math="x_*" />. Ralat yang berkorelasi, atau ralat dengan varians yang tidak sama, memerlukan pemberat yang mencerminkan kovarians ralat.

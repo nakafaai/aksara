@@ -1,0 +1,243 @@
+export const metadata = {
+  title: "Transformasi Paksi Utama",
+  description: "Pepenjurukan bentuk kuadratik dengan perubahan koordinat ortogon, lengkapkan kuasa dua, dan kelaskan keratan kon menggunakan nilai eigen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-17",
+  dateModified: "2026-09-13",
+  subject: "Kaedah Linear AI",
+};
+
+## Bentuk Kuadratik dengan Matriks Simetri
+
+Persamaan kuadratik yang ada <Highlight>sebutan silang</Highlight> tidak terus menunjukkan arah utamanya. Bentuk kuadratiknya mengumpulkan pekali dalam satu matriks simetri, dan vektor eigen matriks itu memberikan arah utama tersebut. Dalam dua dimensi, katakan
+
+<MathContainer>
+<BlockMath math="A = \begin{pmatrix} a & b/2 \\ b/2 & c \end{pmatrix}" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="A" /> nyata dan simetri, matriks ini mempunyai nilai eigen nyata <InlineMath math="\lambda_1,\lambda_2" /> dan asas eigen ortonormal <InlineMath math="v_1,v_2" />. Masukkan vektor eigen itu ke dalam <InlineMath math="S=(v_1\quad v_2)" />. Maka <InlineMath math="S^TS=I" /> dan <InlineMath math="S^TAS=\operatorname{diag}(\lambda_1,\lambda_2)" />.
+
+Untuk persamaan <InlineMath math="x^TAx+p^Tx+f=0" />, guna koordinat yang diputar <InlineMath math="\xi=S^Tx" /> dan pekali linear yang diputar <InlineMath math="(\delta,\epsilon)^T=S^Tp" />. Sebutan silang pun hilang:
+
+<MathContainer>
+<BlockMath math="\lambda_1 \xi_1^2 + \lambda_2 \xi_2^2 + \delta \xi_1 + \epsilon \xi_2 + f = 0" />
+</MathContainer>
+
+## Penyempurnaan Kuasa Dua
+
+Untuk kedua-dua pemboleh ubah dengan <InlineMath math="\lambda_1, \lambda_2 \neq 0" />, kita sempurnakan kuasa dua bagi setiap satu secara berasingan:
+
+Beri nama kepada kurungan kuasa dua sempurna supaya **sebutan yang ditambah dan ditolak** kekal kelihatan:
+
+<MathContainer>
+  <BlockMath math="B_1=\xi_1^2+2\frac\delta{2\lambda_1}\xi_1 +\frac{\delta^2}{4\lambda_1^2}" />
+
+  <BlockMath math="B_2=\xi_2^2+2\frac\epsilon{2\lambda_2}\xi_2 +\frac{\epsilon^2}{4\lambda_2^2}" />
+
+  <BlockMath math="0=\lambda_1B_1-\frac{\delta^2}{4\lambda_1} +\lambda_2B_2-\frac{\epsilon^2}{4\lambda_2}+f" />
+</MathContainer>
+
+Apabila kuasa dua sempurna itu dikumpulkan, kita dapat
+
+<MathContainer>
+<BlockMath math="\begin{aligned} 0 &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 \\ &amp;\quad{}+ \lambda_2 \left( \xi_2 + \frac{\epsilon}{2\lambda_2} \right)^2 \\ &amp;\quad{}+ \left( f - \frac{\delta^2}{4\lambda_1} - \frac{\epsilon^2}{4\lambda_2} \right) \end{aligned}" />
+</MathContainer>
+
+Takrifkan pusat dalam koordinat yang diputar dan pemalar selepas translasi sebagai
+
+<MathContainer>
+<BlockMath math="(m_1,m_2)=\left(-\frac{\delta}{2\lambda_1},-\frac{\epsilon}{2\lambda_2}\right)" />
+<BlockMath math="\gamma=\frac{\delta^2}{4\lambda_1}+\frac{\epsilon^2}{4\lambda_2}-f" />
+</MathContainer>
+
+Maka
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\lambda_1 (\xi_1 - m_1)^2 + \lambda_2 (\xi_2 - m_2)^2 - \gamma \\ &amp;= 0 \end{aligned}" />
+</MathContainer>
+
+Tanda <InlineMath math="\lambda_1" />, <InlineMath math="\lambda_2" /> dan <InlineMath math="\gamma" /> menentukan sama ada set penyelesaian nyata ialah elips, hiperbola, parabola, keratan kon merosot, atau set kosong. Dua kes seterusnya menganggap <InlineMath math="\gamma>0" />.
+
+## Pengelasan Lengkung
+
+Dengan **pemalar selepas translasi yang positif** <InlineMath math="\gamma" />, dua nilai eigen bukan sifar yang sama-sama positif memberikan elips, manakala tanda yang berlawanan memberikan hiperbola. Jika ada nilai eigen sifar, kamu perlu semak sebutan linear yang tinggal: hasilnya parabola hanya apabila sebutan itu bukan sifar.
+
+### Dua Nilai Eigen Positif
+
+Jika <InlineMath math="\lambda_1 > 0" /> dan <InlineMath math="\lambda_2 > 0" />, keratan kon yang terbentuk ialah **elips**:
+
+<MathContainer>
+<BlockMath math="\frac{(\xi_1 - m_1)^2}{r_1^2} + \frac{(\xi_2 - m_2)^2}{r_2^2} = 1" />
+</MathContainer>
+
+Panjang separuh paksinya ialah <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" /> pada arah <InlineMath math="v_1" /> dan <InlineMath math="r_2 = \sqrt{\frac{\gamma}{\lambda_2}}" /> pada arah <InlineMath math="v_2" />.
+
+<MathVisual
+  title={<>Visualisasi Elips dalam Koordinat <InlineMath math="\xi_1, \xi_2" /></>}
+  description={<>Lengkung elips dengan kedua-dua nilai eigen positif dan paksi utama yang sejajar dengan arah vektor eigen.</>}
+  labels={{
+    "l1": <InlineMath math="\xi_1" />,
+    "l2": <InlineMath math="\xi_2" />,
+    "l3": <>Pusat <InlineMath math="(m_1,m_2)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((cos((((t / 99) * 2) * pi)) * sqrt((16 / 2))) + 0)", y: "((sin((((t / 99) * 2) * pi)) * sqrt((16 / 1))) + 0)", parameter: { min: 0, max: 99 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: -3 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "s4", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "below-right" },
+      { key: "l2", objectId: "s3", at: { x: 0, y: 3 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: 0, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+### Nilai Eigen dengan Tanda Berlawanan
+
+Apabila <InlineMath math="\lambda_1 > 0" /> dan <InlineMath math="\lambda_2 < 0" />, keratan kon yang terbentuk ialah **hiperbola**:
+
+<MathContainer>
+<BlockMath math="\frac{(\xi_1 - m_1)^2}{r_1^2} - \frac{(\xi_2 - m_2)^2}{r_2^2} = 1" />
+</MathContainer>
+
+Panjang separuh paksinya ialah <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" /> pada arah <InlineMath math="v_1" /> dan <InlineMath math="r_2 = \sqrt{\frac{\gamma}{-\lambda_2}}" /> pada arah <InlineMath math="v_2" />.
+
+<MathVisual
+  title={<>Visualisasi Hiperbola dalam Koordinat <InlineMath math="\xi_1, \xi_2" /></>}
+  description={<>Lengkung hiperbola dengan paksi utama yang sejajar dengan arah vektor eigen dan transformasi pusat.</>}
+  labels={{
+    "l1": <InlineMath math="\xi_2=\sqrt{2}\,\xi_1" />,
+    "l2": <InlineMath math="\xi_2=-\sqrt{2}\,\xi_1" />,
+    "l3": <InlineMath math="\xi_1" />,
+    "l4": <InlineMath math="\xi_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(cosh(((((2 * t) / 59) - 1) * ln(((4 / sqrt(3))) + sqrt(((4 / sqrt(3)))^2 + 1)))) * sqrt((3 / 2)))", y: "(sinh(((((2 * t) / 59) - 1) * ln(((4 / sqrt(3))) + sqrt(((4 / sqrt(3)))^2 + 1)))) * sqrt((3 / (-(-1)))))", parameter: { min: 0, max: 59 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-cosh(((((2 * t) / 59) - 1) * ln(((4 / sqrt(3))) + sqrt(((4 / sqrt(3)))^2 + 1))))) * sqrt((3 / 2)))", y: "(sinh(((((2 * t) / 59) - 1) * ln(((4 / sqrt(3))) + sqrt(((4 / sqrt(3)))^2 + 1)))) * sqrt((3 / (-(-1)))))", parameter: { min: 0, max: 59 }, appearance: "primary" },
+      { id: "s3", kind: "parametric", x: "((t - 0.5) * 6)", y: "((sqrt((3 / (-(-1)))) / sqrt((3 / 2))) * ((t - 0.5) * 6))", parameter: { min: 0, max: 1 }, appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "((t - 0.5) * 6)", y: "(((-sqrt((3 / (-(-1))))) / sqrt((3 / 2))) * ((t - 0.5) * 6))", parameter: { min: 0, max: 1 }, appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "answer" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: -3 }, { x: 0, y: 3 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 3, y: 4.24 }, placement: "below-right" },
+      { key: "l2", objectId: "s4", at: { x: -3, y: 4.24 }, placement: "below-left" },
+      { key: "l3", objectId: "s5", at: { x: 4, y: 0 }, placement: "below-right" },
+      { key: "l4", objectId: "s6", at: { x: 0, y: 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+### Satu Nilai Eigen Sifar
+
+Kes khas berlaku apabila <InlineMath math="\lambda_1\neq0" />, <InlineMath math="\lambda_2=0" /> dan <InlineMath math="\epsilon\neq0" />. Penyempurnaan kuasa dua memberikan
+
+Kekalkan kurungan kuasa dua sempurna yang sama supaya kelihatan, kerana sebutan yang ditambah dan ditolak mesti saling membatalkan secara berasingan:
+
+<MathContainer>
+  <BlockMath math="B_1=\xi_1^2+2\frac\delta{2\lambda_1}\xi_1 +\frac{\delta^2}{4\lambda_1^2}" />
+
+  <BlockMath math="0=\lambda_1B_1-\frac{\delta^2}{4\lambda_1} +\epsilon\xi_2+f" />
+  <BlockMath math="\begin{aligned} 0 &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \epsilon \xi_2 \\ &amp;\quad{}+ \left( f - \frac{\delta^2}{4\lambda_1} \right) \end{aligned}" />
+  <BlockMath math="= \lambda_1 (\xi_1 - m_1)^2 + \epsilon \xi_2 - \gamma" />
+</MathContainer>
+
+Di sini, nilai eigen sifar bermakna kita guna kuasa dua sempurna yang pertama sahaja, jadi takrifkan:
+
+<BlockMath math="m_1=-\frac{\delta}{2\lambda_1},\qquad \gamma=\frac{\delta^2}{4\lambda_1}-f" />
+
+Apabila kita selesaikan untuk <InlineMath math="\xi_2" />, **parabola itu terus kelihatan**:
+
+<MathContainer>
+<BlockMath math="\xi_2 = -\frac{\lambda_1}{\epsilon} (\xi_1 - m_1)^2 + \frac{\gamma}{\epsilon}" />
+</MathContainer>
+
+<MathVisual
+  title={<>Visualisasi Parabola dalam Koordinat <InlineMath math="\xi_1, \xi_2" /></>}
+  description={<>Lengkung parabola dengan satu nilai eigen sifar dan transformasi paksi koordinat yang sejajar dengan vektor eigen.</>}
+  labels={{
+    "l1": <InlineMath math="\xi_1" />,
+    "l2": <InlineMath math="\xi_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -1.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(((t / 154) - 0.5) * 6)", y: "(((-(1 / (-2))) * (((((t / 154) - 0.5) * 6) - 0))^(2)) + (2 / (-2)))", parameter: { min: 0, max: 154 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -3.5, y: 0 }, { x: 3.5, y: 0 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: -0.5 }, { x: 0, y: 4 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 3.5, y: 0 }, placement: "below-right" },
+      { key: "l2", objectId: "s3", at: { x: 0, y: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Memutar dan Mentranslasi Keratan Kon Dua Dimensi
+
+Pertimbangkan
+
+<MathContainer>
+<BlockMath math="5x_1^2+4x_1x_2+2x_2^2-6x_1-9=0" />
+<BlockMath math="A=\begin{pmatrix}5&2\\2&2\end{pmatrix},\qquad p=\begin{pmatrix}-6\\0\end{pmatrix}" />
+</MathContainer>
+
+Pasangan eigennya ialah
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\lambda_1=6, \\ &amp;v_1=\frac1{\sqrt5}\begin{pmatrix}2\\1\end{pmatrix}, \\ &amp;\lambda_2=1, \\ &amp;v_2=\frac1{\sqrt5}\begin{pmatrix}-1\\2\end{pmatrix} \end{aligned}" />
+<BlockMath math="S=\frac1{\sqrt5}\begin{pmatrix}2&-1\\1&2\end{pmatrix},\qquad \xi=S^Tx" />
+</MathContainer>
+
+**Pusat dalam koordinat asal** ialah <InlineMath math="h=(1,-1)^T" /> kerana <InlineMath math="2Ah+p=0" />. Dalam koordinat yang diputar, <InlineMath math="m=S^Th=(1/\sqrt5,-3/\sqrt5)^T" />. Dengan <InlineMath math="\eta=\xi-m" />, persamaan itu menjadi
+
+<MathContainer>
+<BlockMath math="6\eta_1^2+\eta_2^2=12" />
+<BlockMath math="\frac{\eta_1^2}{2}+\frac{\eta_2^2}{12}=1" />
+</MathContainer>
+
+Ini ialah elips yang berpusat di <InlineMath math="(1,-1)" />. Panjang separuh paksinya ialah <InlineMath math="\sqrt2" /> sepanjang <InlineMath math="v_1" /> dan <InlineMath math="2\sqrt3" /> sepanjang <InlineMath math="v_2" />. Apabila pusat itu digantikan ke dalam persamaan asal, kita dapat <InlineMath math="-12" />, dan nilai ini mengesahkan sebelah kanan persamaan selepas translasi.
+
+## Permukaan Kuadratik dan Transformasi
+
+Bagi matriks simetri <InlineMath math="A \in \mathbb{R}^{n \times n}" />, vektor <InlineMath math="b \in \mathbb{R}^n" /> dan skalar <InlineMath math="c \in \mathbb{R}" />, **permukaan kuadratik** <InlineMath math="Q" /> ditakrifkan sebagai set penyelesaian bagi persamaan kuadratik am:
+
+<MathContainer>
+<BlockMath math="x^T A x + b^T x + c = 0" />
+</MathContainer>
+
+Jika persamaan yang sama ditulis unsur demi unsur, kita dapat:
+
+<BlockMath math="\sum_{j=1}^n\sum_{k=1}^n x_ja_{jk}x_k +\sum_{j=1}^n b_jx_j+c=0" />
+
+Jika <InlineMath math="A \in \mathbb{R}^{n \times n}" /> simetri dan <InlineMath math="v_1, \ldots, v_n \in \mathbb{R}^n" /> ialah asas ortonormal yang terdiri daripada vektor eigen dengan <InlineMath math="A \cdot v_i = \lambda_i \cdot v_i" />, maka matriks ortonormal <InlineMath math="S = (v_1 \quad \ldots \quad v_n)" /> membolehkan pempenjuruan <InlineMath math="A \cdot S = S \cdot \Lambda" /> atau <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S = S^T \cdot A \cdot S" />.
+
+Dalam koordinat yang diputar <InlineMath math="\xi=S^Tx" />, tulis <InlineMath math="\mu=S^Tb" />. Koordinat <InlineMath math="\xi\in\mathbb R^n" /> bagi titik pada <InlineMath math="Q" /> memenuhi:
+
+<BlockMath math="\xi^T S^T A S \xi + b^T S \xi + c = 0" />
+
+Pempenjuruan <InlineMath math="A" /> memberikan:
+
+<BlockMath math="\xi^T\Lambda\xi+\mu^T\xi+c=0" />
+
+Apabila ditulis unsur demi unsur:
+
+<BlockMath math="\sum_{j=1}^n\lambda_j\xi_j^2 +\sum_{j=1}^n\mu_j\xi_j+c=0" />
+
+Kumpulkan sebutan dan pindahkan <InlineMath math="c" /> ke sebelah kanan, maka kita dapat:
+
+<BlockMath math="\sum_{j=1}^n (\lambda_j \xi_j^2 + \mu_j \xi_j) = -c" />
+
+Dalam asas ortonormal vektor eigen, bentuk kuadratik mempunyai struktur pepenjuru. Transformasi ini dinamakan **transformasi paksi utama** kerana paksi koordinat yang baharu <Highlight>sejajar dengan arah vektor eigen matriks itu</Highlight>.
