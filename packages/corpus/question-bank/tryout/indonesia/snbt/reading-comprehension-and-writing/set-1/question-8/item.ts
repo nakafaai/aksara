@@ -17,19 +17,23 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Pasien yang sudah memegang nomor dari aplikasi tidak dilayani loket walaupun ia datang terlambat.",
+          label:
+            "Pasien yang sudah memegang nomor dari aplikasi tidak dilayani loket walaupun ia datang terlambat.",
         },
         {
           correct: false,
-          label: "Tidak semua nomor yang dipindahkan ke akhir antrean adalah milik pasien lansia.",
+          label:
+            "Tidak semua nomor yang dipindahkan ke akhir antrean adalah milik pasien lansia.",
         },
         {
           correct: false,
-          label: "Pasien yang nomornya dipindahkan ke akhir antrean lalu belum terpanggil sampai pukul dua belas siang harus mendaftar ulang untuk hari lain.",
+          label:
+            "Pasien yang nomornya dipindahkan ke akhir antrean lalu belum terpanggil sampai pukul dua belas siang harus mendaftar ulang untuk hari lain.",
         },
         {
           correct: false,
-          label: "Perkiraan waktu panggilan yang pertama kali diterima pasien belum tentu sama dengan waktu ia benar-benar dipanggil.",
+          label:
+            "Perkiraan waktu panggilan yang pertama kali diterima pasien belum tentu sama dengan waktu ia benar-benar dipanggil.",
         },
       ],
     },

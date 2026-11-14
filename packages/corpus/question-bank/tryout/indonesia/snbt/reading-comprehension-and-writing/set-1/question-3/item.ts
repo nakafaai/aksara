@@ -13,23 +13,28 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Meskipun lumbung tidak memungut bunga uang, jumlah daripada gabah yang dikembalikan peminjam harus sebelas kilogram untuk setiap sepuluh kilogram pinjaman.",
+          label:
+            "Meskipun lumbung tidak memungut bunga uang, jumlah daripada gabah yang dikembalikan peminjam harus sebelas kilogram untuk setiap sepuluh kilogram pinjaman.",
         },
         {
           correct: true,
-          label: "Meskipun lumbung tidak memungut bunga uang, jumlah gabah yang dikembalikan peminjam harus sebelas kilogram untuk setiap sepuluh kilogram pinjaman.",
+          label:
+            "Meskipun lumbung tidak memungut bunga uang, jumlah gabah yang dikembalikan peminjam harus sebelas kilogram untuk setiap sepuluh kilogram pinjaman.",
         },
         {
           correct: false,
-          label: "Meskipun lumbung tidak memungut bunga uang, namun jumlah gabah yang dikembalikan peminjam harus sebelas kilogram untuk setiap sepuluh kilogram pinjaman.",
+          label:
+            "Meskipun lumbung tidak memungut bunga uang, namun jumlah gabah yang dikembalikan peminjam harus sebelas kilogram untuk setiap sepuluh kilogram pinjaman.",
         },
         {
           correct: false,
-          label: "Karena lumbung tidak memungut bunga uang, jumlah gabah yang dikembalikan peminjam harus sebelas kilogram untuk setiap sepuluh kilogram pinjaman.",
+          label:
+            "Karena lumbung tidak memungut bunga uang, jumlah gabah yang dikembalikan peminjam harus sebelas kilogram untuk setiap sepuluh kilogram pinjaman.",
         },
         {
           correct: false,
-          label: "Lumbung tidak memungut bunga uang, di mana jumlah gabah yang dikembalikan peminjam harus sebelas kilogram untuk setiap sepuluh kilogram pinjaman.",
+          label:
+            "Lumbung tidak memungut bunga uang, di mana jumlah gabah yang dikembalikan peminjam harus sebelas kilogram untuk setiap sepuluh kilogram pinjaman.",
         },
       ],
     },

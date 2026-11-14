@@ -18,7 +18,8 @@ const item: ItemSource = {
         },
         {
           column: 2,
-          label: "Mengganti kata *membuat* pada kalimat (10) dengan *menjadikan*.",
+          label:
+            "Mengganti kata *membuat* pada kalimat (10) dengan *menjadikan*.",
         },
         {
           column: 1,
@@ -26,7 +27,8 @@ const item: ItemSource = {
         },
         {
           column: 1,
-          label: "Menghapus kata *tidak* sebelum *bergeming* pada kalimat (13).",
+          label:
+            "Menghapus kata *tidak* sebelum *bergeming* pada kalimat (13).",
         },
       ],
     },
