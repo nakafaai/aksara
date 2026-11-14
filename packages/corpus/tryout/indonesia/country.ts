@@ -10,10 +10,12 @@ export const indonesiaTryoutCountry: CountrySourceInput = {
     de: "indonesien",
     en: "indonesia",
     id: "indonesia",
+    ms: "indonesia",
   },
   countryTranslations: {
     de: { title: "Indonesien" },
     en: { title: "Indonesia" },
     id: { title: "Indonesia" },
+    ms: { title: "Indonesia" },
   },
 };

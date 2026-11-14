@@ -42,6 +42,7 @@ export const tuDarmstadtEntranceTrack = {
     de: "mathematik",
     en: "mathematics",
     id: "matematika",
+    ms: "matematik",
   },
   sets: Arr.map(darmstadtRatings, (rating, index) => {
     const setNumber = index + 1;
@@ -54,11 +55,13 @@ export const tuDarmstadtEntranceTrack = {
         de: `aufgabensatz-${setNumber}`,
         en: setKey,
         id: setKey,
+        ms: setKey,
       },
       translations: {
         de: { title: `Aufgabensatz ${setNumber}` },
         en: { title: `Set ${setNumber}` },
         id: { title: `Set ${setNumber}` },
+        ms: { title: `Set ${setNumber}` },
       },
     };
   }),
@@ -66,5 +69,6 @@ export const tuDarmstadtEntranceTrack = {
     de: { title: "Mathematik" },
     en: { title: "Mathematics" },
     id: { title: "Matematika" },
+    ms: { title: "Matematik" },
   },
 } satisfies TrackSourceInput;

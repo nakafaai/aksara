@@ -10,10 +10,12 @@ export const germanyTryoutCountry: CountrySourceInput = {
     de: "deutschland",
     en: "germany",
     id: "jerman",
+    ms: "jerman",
   },
   countryTranslations: {
     de: { title: "Deutschland" },
     en: { title: "Germany" },
     id: { title: "Jerman" },
+    ms: { title: "Jerman" },
   },
 };
