@@ -2,33 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "strengthen-weaken",
   },
-  stimulus: "tambora-1816",
+  stimulus: "hawthorne-effect",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Tambora erupted in April 1816.",
-        },
-        {
-          column: 1,
-          label: "Snow fell in parts of New England in June 1816.",
-        },
-        {
-          column: 2,
+          correct: false,
           label:
-            "The sulphur droplets stayed for months because rain kept washing them higher.",
+            "A second relay group, given the same output reports and group pay, was watched just as closely, and its output also climbed.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Ice cores from Greenland and Antarctica contain volcanic sulphate from that time.",
+            "A second relay group, watched just as closely but paid a flat wage and told nothing about its output, showed no climb.",
+        },
+        {
+          correct: false,
+          label:
+            "A second relay group, paid a flat wage and told nothing about its output, still climbed while being watched just as closely.",
+        },
+        {
+          correct: false,
+          label:
+            "Output in the relay room, like output in the lighting tests, tended to be higher on Mondays than later in the week.",
+        },
+        {
+          correct: false,
+          label:
+            "Women from the relay room later said in interviews that they had enjoyed the interest the researchers took in them.",
         },
       ],
     },

@@ -15,6 +15,7 @@ export const singaporeMoeCurriculum = defineCurriculum({
         de: { title: "Schulstufen" },
         en: { title: "School stages" },
         id: { title: "Tahap sekolah" },
+        ms: { title: "Peringkat persekolahan" },
       },
       displayGroupIconKey: "school",
       iconKey: "primary-school",
@@ -30,6 +31,10 @@ export const singaporeMoeCurriculum = defineCurriculum({
           routeSlug: "primary",
           title: "Primary",
         },
+        ms: {
+          routeSlug: "sekolah-rendah",
+          title: "Sekolah Rendah",
+        },
       },
     }),
     stageNode({
@@ -42,6 +47,7 @@ export const singaporeMoeCurriculum = defineCurriculum({
         de: { title: "Schulstufen" },
         en: { title: "School stages" },
         id: { title: "Tahap sekolah" },
+        ms: { title: "Peringkat persekolahan" },
       },
       displayGroupIconKey: "school",
       iconKey: "middle-school",
@@ -57,6 +63,10 @@ export const singaporeMoeCurriculum = defineCurriculum({
           routeSlug: "secondary",
           title: "Secondary",
         },
+        ms: {
+          routeSlug: "sekolah-menengah",
+          title: "Sekolah Menengah",
+        },
       },
     }),
     stageNode({
@@ -64,6 +74,7 @@ export const singaporeMoeCurriculum = defineCurriculum({
         de: { title: "Schulstufen" },
         en: { title: "School stages" },
         id: { title: "Tahap sekolah" },
+        ms: { title: "Peringkat persekolahan" },
       },
       displayGroupIconKey: "school",
       iconKey: "advanced",
@@ -78,6 +89,10 @@ export const singaporeMoeCurriculum = defineCurriculum({
         id: {
           routeSlug: "pre-university",
           title: "Pre-university",
+        },
+        ms: {
+          routeSlug: "prauniversiti",
+          title: "Prauniversiti",
         },
       },
     }),

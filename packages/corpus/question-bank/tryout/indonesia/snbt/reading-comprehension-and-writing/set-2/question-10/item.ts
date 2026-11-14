@@ -3,38 +3,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "reading",
-    topic: "conclusion",
+    contentDomain: "writing",
+    topic: "word-choice",
   },
-  stimulus: "plastic-free-market",
+  stimulus: "jelantah",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Semua pedagang di Pasar Pagi Sukamaju menolak larangan kantong plastik.",
+          label: "kata _menyetor_ pada kalimat (5) diganti _menitipkan_",
+        },
+        {
+          correct: false,
+          label: "kata _mengelolanya_ pada kalimat (7) diganti _mengurusnya_",
         },
         {
           correct: false,
           label:
-            "Pembeli wajib membeli tas kain setiap kali berbelanja di pasar itu.",
+            "frasa _berulang kali_ pada kalimat (3) diganti _terlalu lama_",
         },
         {
           correct: false,
-          label:
-            "Larangan kantong plastik membuat pembeli berpenghasilan rendah berhenti berbelanja di pasar itu.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengelola pasar lain sudah meniru kebijakan Pasar Pagi Sukamaju.",
+          label: "kata _dijernihkan_ pada kalimat (13) diganti _dimurnikan_",
         },
         {
           correct: true,
-          label:
-            "Kekhawatiran pedagang sayur tentang berkurangnya pembeli tidak terjadi di Pasar Pagi Sukamaju.",
+          label: "kata _mengelolanya_ pada kalimat (7) diganti _mengolahnya_",
         },
       ],
     },

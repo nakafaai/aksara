@@ -1,0 +1,212 @@
+export const metadata = {
+    title: "Ruang Vektor Kompleks",
+    description: "Bina ruang vektor kompleks daripada medan kompleks, fahami aksiom ruang vektor, dan lihat sebab medan skalar yang dipilih mengubah dimensi dan kelinearan.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-07-12",
+    dateModified: "2026-09-19",
+    subject: "Kaedah Linear AI",
+};
+
+## Bahagian-bahagian Nombor Kompleks
+
+Unit khayalan <InlineMath math="i" /> memenuhi <InlineMath math="i^2=-1" />. Nombor kompleks menggabungkan satu koordinat nyata dan satu koordinat khayalan, jadi satu skalar sahaja boleh mewakili penskalaan dan putaran sekali gus.
+
+Set nombor kompleks ditakrifkan sebagai <InlineMath math="\mathbb{C} := \{z = x + iy : x, y \in \mathbb{R}\}" />. Dalam setiap nombor kompleks <InlineMath math="z = x + iy" />, bahagian <InlineMath math="x = \text{Re}(z)" /> dipanggil **bahagian nyata** dan bahagian <InlineMath math="y = \text{Im}(z)" /> dipanggil **bahagian khayalan**.
+
+Penambahan, penolakan, pendaraban dan pembahagian dengan nombor bukan sifar semuanya kekal di dalam <InlineMath math="\mathbb C" />. Dengan operasi ini, <InlineMath math="(\mathbb{C}, +, \cdot)" /> ialah sebuah **medan**, jadi unsurnya boleh bertindak sebagai skalar bagi ruang vektor.
+
+### Konjugat dan Modulus
+
+Untuk <InlineMath math="z=x+iy" />, **konjugat kompleks** ialah <InlineMath math="\overline z=x-iy" />. Oleh sebab <InlineMath math="z\overline z=x^2+y^2" />, pengkonjugatan memberikan magnitud dan juga, apabila <InlineMath math="z\neq0" />, salingan <InlineMath math="z^{-1}=\overline z/|z|^2" />.
+
+**Modulus** atau nilai mutlak sesuatu nombor kompleks dikira dengan rumus:
+
+<BlockMath math="|z| = \sqrt{z \cdot \overline{z}} = \sqrt{x^2 + y^2}" />
+
+Modulus ini memberikan "jarak" nombor kompleks itu dari asalan dalam satah kompleks.
+
+
+Untuk <InlineMath math="z=3+4i" />, pengkonjugatan menukar tanda koordinat khayalan tetapi mengekalkan jarak dari sifar. Ikuti dua segmen dalam rajah ini.
+
+<MathContainer>
+<BlockMath math="\overline z=3-4i" />
+<BlockMath math="|z|=|\overline z|=\sqrt{3^2+4^2}=5" />
+</MathContainer>
+
+<MathVisual
+  title={<><InlineMath math="z=a+bi" /> dan konjugatnya <InlineMath math="\bar z=a-bi" /></>}
+  description={<>Gerakkan <InlineMath math="a" /> dan <InlineMath math="b" />. Titik hijau kebiruan <InlineMath math="z" /> dan titik jingga <InlineMath math="\bar z" /> saling mencerminkan merentasi paksi nyata, dan kedua-duanya terletak pada bulatan kelabu berjejari <InlineMath math="|z|=\sqrt{a^2+b^2}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "a", min: -4, max: 4, value: 3, step: 0.1, label: "a" },
+      { name: "b", min: -4, max: 4, value: 4, step: 0.1, label: "b" },
+    ],
+    objects: [
+      { id: "modulus", kind: "implicit", equation: "x^2 + y^2 = a^2 + b^2", appearance: "reference" },
+      { id: "mirror", kind: "path", points: [{ x: "a", y: "b" }, { x: "a", y: "-b" }], appearance: "reference" },
+      { id: "number", kind: "marker", x: "a", y: "b", appearance: "construction" },
+      { id: "conjugate", kind: "marker", x: "a", y: "-b", appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "number", at: { x: "a", y: "b" }, placement: "right" },
+      { key: "zbar", objectId: "conjugate", at: { x: "a", y: "-b" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "abs", formula: "sqrt(a^2 + b^2)" },
+    ],
+  }}
+  labels={{
+    "a": <InlineMath math="\operatorname{Re}z" />,
+    "b": <InlineMath math="\operatorname{Im}z" />,
+    "z": <InlineMath math="z" />,
+    "zbar": <InlineMath math="\bar z" />,
+    "abs": <InlineMath math="|z|=|\bar z|" />,
+  }}
+/>
+
+## Teorem Asas Algebra
+
+Teorem asas algebra menyatakan bahawa setiap polinomial bukan pemalar dengan pekali kompleks mempunyai punca kompleks.
+
+Katakan <InlineMath math="p" /> ialah polinomial bukan pemalar dengan input kompleks <InlineMath math="z" />. Tatatanda <InlineMath math="z\in\mathbb{C}" /> bermaksud <InlineMath math="z" /> boleh jadi sebarang nombor kompleks. Kita tulis polinomial itu sebagai:
+
+<BlockMath math="\begin{aligned} p(z) &amp;= a_n z^n + a_{n-1} z^{n-1} + \cdots \\ &amp;\quad{}+ a_1 z + a_0 \end{aligned}" />
+
+Jika <InlineMath math="n \geq 1" /> dan pekali kompleks <InlineMath math="a_k \in \mathbb{C}" /> untuk <InlineMath math="k = 0, 1, \ldots, n" /> memenuhi <InlineMath math="a_n \neq 0" />, maka <InlineMath math="p" /> mempunyai sekurang-kurangnya satu punca kompleks. Dengan kata lain, ada <InlineMath math="z_* \in \mathbb{C}" /> yang memenuhi <InlineMath math="p(z_*) = 0" />.
+
+Apabila teorem ini digunakan berulang kali, kamu akan dapati polinomial berdarjah <InlineMath math="n" /> boleh difaktorkan sepenuhnya atas <InlineMath math="\mathbb C" />:
+
+<BlockMath math="p(z)=a_n\prod_{j=1}^n(z-z_j)" />
+
+Polinomial itu mempunyai tepat <InlineMath math="n" /> punca kompleks apabila **kegandaan turut dikira**. Syarat "bukan pemalar" itu penting: polinomial pemalar yang bukan sifar tidak mempunyai punca.
+
+Polinomial <InlineMath math="p(z)=z^3-1" /> hanya menyilang paksi nyata pada <InlineMath math="1" />, tetapi teorem ini menjanjikan punca dalam <InlineMath math="\mathbb C" />, dan jika kegandaan dikira, terdapat tepat tiga punca: <InlineMath math="1" /> dan <InlineMath math="-\tfrac12\pm\tfrac{\sqrt3}2i" />. Ketiga-tiga punca ini terletak pada bulatan unit, dengan jarak sudut <InlineMath math="120^\circ" /> antara satu sama lain.
+
+<MathVisual
+  title={<>Tiga punca bagi <InlineMath math="z^3=1" /></>}
+  description={<>Titik magenta ialah punca-punca <InlineMath math="z^3-1" /> dalam satah kompleks, pada bulatan unit kelabu. Segi tiga ungu menyambungkan titik-titik itu, dan hanya punca <InlineMath math="1" /> yang terletak pada paksi nyata.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "triangle", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: -1 / 2, y: Math.sqrt(3) / 2 }, { x: -1 / 2, y: -Math.sqrt(3) / 2 }], appearance: "secondary" },
+      { id: "root-a", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "root-b", kind: "point", at: { x: -1 / 2, y: Math.sqrt(3) / 2 }, appearance: "answer" },
+      { id: "root-c", kind: "point", at: { x: -1 / 2, y: -Math.sqrt(3) / 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "ra", objectId: "root-a", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "rb", objectId: "root-b", at: { x: -1 / 2, y: Math.sqrt(3) / 2 }, placement: "above-left" },
+      { key: "rc", objectId: "root-c", at: { x: -1 / 2, y: -Math.sqrt(3) / 2 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "ra": <InlineMath math="1" />,
+    "rb": <InlineMath math="-\tfrac12+\tfrac{\sqrt3}2i" />,
+    "rc": <InlineMath math="-\tfrac12-\tfrac{\sqrt3}2i" />,
+  }}
+/>
+
+## Definisi dan Aksiom Ruang Vektor Kompleks
+
+Ruang vektor kompleks menggunakan nombor daripada <InlineMath math="\mathbb C" /> sebagai skalar. Operasinya mesti tertutup dalam set yang dinyatakan dan mematuhi peraturan keserasian algebra yang sama seperti ruang vektor nyata.
+
+Penambahan pada set <InlineMath math="V" /> ditakrifkan oleh
+
+<BlockMath math="+ : V \times V \to V : (x, y) \mapsto x + y" />
+
+Pendaraban skalar pada <InlineMath math="V" /> ditakrifkan oleh
+
+<BlockMath math="\cdot : \mathbb{C} \times V \to V : (\lambda, x) \mapsto \lambda \cdot x" />
+
+Set <InlineMath math="V" /> bersama dua operasi ini ialah **ruang vektor kompleks** jika ia memenuhi aksiom berikut:
+
+### Aksiom Penambahan Vektor
+
+Empat aksiom ini menguji operasi penambahan secara tersendiri, jadi setiap satu menamakan sifat yang mesti dimiliki oleh penambahan bagi setiap pilihan vektor dalam <InlineMath math="V" />.
+
+1. **Kalis sekutuan**: <InlineMath math="(x + y) + z = x + (y + z)" /> untuk semua <InlineMath math="x, y, z \in V" />
+
+2. **Kalis tukar tertib**: <InlineMath math="x + y = y + x" /> untuk semua <InlineMath math="x, y \in V" />
+
+3. **Unsur identiti**: Wujud unsur <InlineMath math="0 \in V" /> sedemikian hingga <InlineMath math="x + 0 = x = 0 + x" /> untuk semua <InlineMath math="x \in V" />
+
+4. **Unsur songsang**: Untuk setiap <InlineMath math="x \in V" />, wujud unsur <InlineMath math="-x \in V" /> sedemikian hingga <InlineMath math="x + (-x) = 0 = (-x) + x" />
+
+### Aksiom Pendaraban Skalar
+
+Dua aksiom di sini berkaitan dengan pendaraban oleh skalar kompleks, jadi setiap satu mengekalkan skalar dan vektor dalam peranan masing-masing.
+
+5. **Pendaraban kalis sekutuan**: <InlineMath math="(\lambda \mu) \cdot x = \lambda \cdot (\mu \cdot x)" /> untuk semua <InlineMath math="\lambda, \mu \in \mathbb{C}, x \in V" />
+
+6. **Unsur unit**: <InlineMath math="1 \cdot x = x" /> untuk semua <InlineMath math="x \in V" />
+
+### Aksiom Kalis Agihan
+
+Dua hukum kalis agihan menghubungkan pendaraban skalar dengan penambahan vektor dan penambahan skalar. Hukum ini membolehkan sesuatu hasil tambah dipecahkan sebelum atau selepas penskalaan.
+
+7. **Kalis agihan terhadap penambahan vektor**: <InlineMath math="\lambda \cdot (x + y) = \lambda \cdot x + \lambda \cdot y" /> untuk semua <InlineMath math="\lambda \in \mathbb{C}, x, y \in V" />
+
+8. **Kalis agihan terhadap penambahan skalar**: <InlineMath math="(\lambda + \mu) \cdot x = \lambda \cdot x + \mu \cdot x" /> untuk semua <InlineMath math="\lambda, \mu \in \mathbb{C}, x \in V" />
+
+Unsur <InlineMath math="x \in V" /> dipanggil **vektor**, dan unsur <InlineMath math="\lambda \in \mathbb{C}" /> dipanggil **skalar**.
+
+## Pendaraban Skalar Kompleks dalam Dua Dimensi
+
+Set <InlineMath math="V=\mathbb C^2" /> ialah ruang vektor kompleks dengan operasi mengikut komponen. Sebagai contoh,
+
+<BlockMath math="\begin{aligned} (1+i)\begin{pmatrix}1\\-i\end{pmatrix} &amp;= \begin{pmatrix}(1+i)\cdot1\\(1+i)(-i)\end{pmatrix} \\ &amp;= \begin{pmatrix}1+i\\-i-i^2\end{pmatrix} = \begin{pmatrix}1+i\\1-i\end{pmatrix} \end{aligned}" />
+
+<Highlight>Medan skalar mengubah cara kita membilang dimensi</Highlight>. Set <InlineMath math="\mathbb C" /> itu sendiri mempunyai asas <InlineMath math="\{1\}" /> sebagai ruang vektor kompleks, tetapi asas <InlineMath math="\{1,i\}" /> sebagai ruang vektor nyata:
+
+| Set vektor yang sama | Skalar yang dibenarkan | Dimensi |
+|---|---|---|
+| <InlineMath math="\mathbb C" /> | <InlineMath math="\mathbb C" /> | <InlineMath math="1" /> |
+| <InlineMath math="\mathbb C" /> | <InlineMath math="\mathbb R" /> | <InlineMath math="2" /> |
+
+Mendarab dengan skalar kompleks <InlineMath math="c=\sqrt2\,e^{i\theta}" /> memutarkan setiap komponen sebanyak <InlineMath math="\theta" /> dan meregangkannya dengan faktor <InlineMath math="\sqrt2" />. Pada <InlineMath math="\theta=\tfrac\pi4" />, skalar itu ialah <InlineMath math="1+i" />, dan vektor <InlineMath math="(1,-i)" /> menjadi <InlineMath math="(1+i,\,1-i)" />, tepat seperti pengiraan di atas.
+
+<MathVisual
+  title={<><InlineMath math="c\cdot(1,-i)" /> untuk <InlineMath math="c=\sqrt2\,e^{i\theta}" /></>}
+  description={<>Segmen kelabu ialah komponen <InlineMath math="1" /> dan <InlineMath math="-i" />. Gerakkan <InlineMath math="\theta" />: segmen hijau kebiruan <InlineMath math="c\cdot1" /> dan segmen jingga <InlineMath math="c\cdot(-i)" /> berputar bersama dan sentiasa bersudut tegak. Bacaan pada rajah menunjukkan <InlineMath math="c" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -1.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "a", min: 0, max: 2 * Math.PI, value: Math.PI / 4, step: 0.01, label: "angle" },
+    ],
+    objects: [
+      { id: "one", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "minus-i", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: -1 }, appearance: "reference" },
+      { id: "first", kind: "path", points: [{ x: "0", y: "0" }, { x: "sqrt(2)*cos(a)", y: "sqrt(2)*sin(a)" }], appearance: "construction" },
+      { id: "second", kind: "path", points: [{ x: "0", y: "0" }, { x: "sqrt(2)*sin(a)", y: "-sqrt(2)*cos(a)" }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "first-tip", objectId: "first", at: { x: "sqrt(2)*cos(a)", y: "sqrt(2)*sin(a)" }, placement: "right" },
+      { key: "second-tip", objectId: "second", at: { x: "sqrt(2)*sin(a)", y: "-sqrt(2)*cos(a)" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "re", formula: "sqrt(2)*cos(a)" },
+      { key: "im", formula: "sqrt(2)*sin(a)" },
+    ],
+  }}
+  labels={{
+    "angle": <InlineMath math="\arg c" />,
+    "re": <InlineMath math="\operatorname{Re}c" />,
+    "im": <InlineMath math="\operatorname{Im}c" />,
+    "first-tip": <InlineMath math="c\cdot1" />,
+    "second-tip": <InlineMath math="c\cdot(-i)" />,
+  }}
+/>
+
+## Perbezaan daripada Ruang Vektor Nyata
+
+Keputusan yang bersifat algebra semata-mata dan diterbitkan daripada aksiom ruang vektor berlaku atas <InlineMath math="\mathbb R" /> dan juga <InlineMath math="\mathbb C" />. Keputusan yang menggunakan tertib, atau hasil darab dalam yang khusus untuk nombor nyata, perlu dilaraskan andaiannya. Contohnya, hasil darab dalam kompleks menggunakan pengkonjugatan, dan nombor kompleks tidak mempunyai tertib medan yang serasi dengan aritmetiknya.
+
+**Medan skalar** juga menentukan pemetaan mana yang linear. Pengkonjugatan kompleks bersifat linear atas <InlineMath math="\mathbb R" />. Atas <InlineMath math="\mathbb C" />, pendaraban dengan <InlineMath math="i" /> menunjukkan sebab kelinearan itu gagal: <InlineMath math="\overline{iz}=-i\overline z" />. Jadi, sentiasa nyatakan medan skalar sebelum kamu membincangkan asas, dimensi atau pemetaan linear.

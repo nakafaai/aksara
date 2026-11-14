@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { Array as Arr, Console, Effect, Predicate } from "effect";
 import { issueAtOffset } from "#nakafa-content/math/finding";
+import { findPlainNumbers } from "#nakafa-content/math/number";
 import { findPlainMathText } from "#nakafa-content/math/plain";
 import {
   type MdxAttribute,
@@ -8,6 +9,7 @@ import {
   visitMdxNodes,
 } from "#nakafa-content/mdx/parse";
 import type { CliOptions } from "#nakafa-content/voice/options";
+import { documentProfile } from "#nakafa-content/voice/profile";
 import type {
   LessonVoiceFileIssue,
   LessonVoiceIssue,
@@ -41,6 +43,8 @@ const VISUAL_TEXT_PROPS = new Set([
 const PENDING_FIXES = {
   "plain-math-text":
     'write it with <InlineMath math="..." /> or <BlockMath math="..." />, chemistry as \\mathrm{H_2O} with \\rightarrow',
+  "plain-number":
+    'write the quantity as <InlineMath math="..." />, its unit inside as 5\\text{ cm}; node --conditions=aksara-source .agents/skills/nakafa-content/scripts/math/fix.ts <path> wraps every unambiguous one',
   "retired-visual": "draw it with MathVisual, the one math visual (D36)",
   "string-visual-text":
     'write the prop as JSX, such as description={<>Area <InlineMath math="x^2" /></>}',
@@ -83,14 +87,17 @@ function findVisualIssues(source: string, tree: MdxNode): LessonVoiceIssue[] {
 
 /**
  * Finds every pending finding in one document: math or chemistry written as
- * plain text, a retired visual, and a visual text prop written as a string.
+ * plain text, a plain number used as a quantity (outside public pages), a
+ * retired visual, and a visual text prop written as a string.
  */
 export function findPendingIssues(
+  file: string,
   source: string,
   tree: MdxNode
 ): LessonVoiceIssue[] {
   return [
     ...findPlainMathText(source, tree),
+    ...(documentProfile(file) === "page" ? [] : findPlainNumbers(source, tree)),
     ...findVisualIssues(source, tree),
   ];
 }

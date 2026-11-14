@@ -1,0 +1,216 @@
+export const metadata = {
+  title: "Lengkok",
+  description: "Bezakan lengkok minor, lengkok major dan lengkok semibulatan, kemudian kira panjang lengkok daripada sudut pusat.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Lengkok dan Sektor Bulatan",
+};
+
+
+## Mengikut Lilitan antara Dua Titik
+
+Lengkok bulatan ialah <Highlight>bahagian lilitan bulatan</Highlight> di antara dua titik. Kamu boleh bayangkan lengkok sebagai seutas tali yang diletakkan tepat di sepanjang tepi bulatan. Mana-mana dua titik berbeza pada bulatan menentukan dua lengkok di antara kedua-dua titik itu.
+
+Setiap lengkok ada dua titik hujung pada bulatan. Pada bulatan yang sama, panjang lengkok bergantung pada saiz sudut pusat yang dicangkum oleh lengkok itu: sudut pusat yang lebih besar memberikan lengkok yang lebih panjang.
+
+<MathVisual
+  title={<>Lengkok minor dan major <InlineMath math="AB" /></>}
+  description={<>Pada bulatan berjejari <InlineMath math="4" />, titik <InlineMath math="A" /> dan <InlineMath math="B" /> pada <InlineMath math="30^\circ" /> dan <InlineMath math="150^\circ" /> membahagikan bulatan kepada lengkok minor <InlineMath math="120^\circ" /> dan lengkok major <InlineMath math="240^\circ" />.</>}
+  labels={{
+    minor: <>Lengkok minor</>,
+    major: <>Lengkok major</>,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.6, max: 4.6 }, y: { min: -4.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "major", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 150, sweepDegrees: 240, appearance: "secondary" },
+      { id: "minor", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 30, sweepDegrees: 120, appearance: "primary" },
+      { id: "oa", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 * Math.sqrt(3), y: 2 }, appearance: "construction" },
+      { id: "ob", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2 * Math.sqrt(3), y: 2 }, appearance: "construction" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "a", kind: "point", at: { x: 2 * Math.sqrt(3), y: 2 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: -2 * Math.sqrt(3), y: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "minor", objectId: "minor", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "major", objectId: "major", at: { x: 0, y: -4 }, placement: "below" },
+      { key: "a", objectId: "a", at: { x: 2 * Math.sqrt(3), y: 2 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: -2 * Math.sqrt(3), y: 2 }, placement: "left" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Jenis Lengkok Berdasarkan Saiz
+
+Untuk dua titik hujung yang berbeza, bandingkan sudut lengkok dengan **setengah pusingan**. Dua lengkok yang berkongsi titik hujung ini bersama-sama membentuk satu pusingan lengkap.
+
+| Sudut pusat | Pecahan lilitan |
+| --- | --- |
+| Lengkok minor: <InlineMath math="0^\circ<\alpha<180^\circ" /> | <InlineMath math="0<l/(2\pi r)<1/2" /> |
+| Lengkok major: <InlineMath math="180^\circ<\alpha<360^\circ" /> | <InlineMath math="1/2<l/(2\pi r)<1" /> |
+| Semibulatan: <InlineMath math="\alpha=180^\circ" /> | <InlineMath math="l/(2\pi r)=1/2" /> |
+
+## Rumus Panjang Lengkok
+
+Panjang lengkok boleh dikira menggunakan **nisbah sudut pusat kepada satu pusingan lengkap**. Oleh sebab lilitan penuh bulatan ialah <InlineMath math="2\pi r" />, panjang lengkok boleh ditulis sebagai:
+
+<BlockMath math="\text{Panjang lengkok} = \frac{\alpha}{360^\circ} \times 2\pi r" />
+
+Pemboleh ubah dalam rumus ini ialah:
+- <InlineMath math="\alpha" /> ialah sudut pusat dalam darjah
+- <InlineMath math="r" /> ialah jejari bulatan
+
+Sudut dalam radian ialah **panjang lengkok dibahagi dengan jejari**, jadi kalau sudutnya dalam radian, rumusnya terus menjadi:
+
+<BlockMath math="\text{Panjang lengkok} = \alpha \times r" />
+
+Dalam rumus kedua, <InlineMath math="\alpha" /> ialah sudut pusat dalam radian.
+
+<MathVisual
+  title={<>Panjang lengkok bertambah mengikut sudut</>}
+  description={<>Pada bulatan berjejari <InlineMath math="3" />, ada lengkok <InlineMath math="60^\circ" /> dan lengkok <InlineMath math="120^\circ" />. Lengkok kedua dua kali lebih panjang: <InlineMath math="\pi" /> dan <InlineMath math="2\pi" />.</>}
+  labels={{
+    small: <InlineMath math="60^\circ" />,
+    large: <InlineMath math="120^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "reference" },
+      { id: "r1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "r2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / 2, y: 3 * Math.sqrt(3) / 2 }, appearance: "construction" },
+      { id: "r3", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: 0 }, appearance: "construction" },
+      { id: "r4", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / 2, y: -3 * Math.sqrt(3) / 2 }, appearance: "construction" },
+      { id: "small", kind: "arc", center: { x: 0, y: 0 }, radius: 3, startDegrees: 0, sweepDegrees: 60, appearance: "primary" },
+      { id: "large", kind: "arc", center: { x: 0, y: 0 }, radius: 3, startDegrees: 180, sweepDegrees: 120, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "small", objectId: "small", at: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, placement: "above-right" },
+      { key: "large", objectId: "large", at: { x: -3 * Math.sqrt(3) / 2, y: -3 / 2 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+## Hubungan antara Lengkok dan Sudut Pusat
+
+Pada **bulatan yang sama**, panjang lengkok berkadar terus dengan sudut pusat yang dicangkum oleh lengkok itu:
+
+<BlockMath math="\frac{\text{Panjang lengkok}_1}{\text{Panjang lengkok}_2} = \frac{\alpha_1}{\alpha_2}" />
+
+Nisbah ini berlaku untuk lengkok pada bulatan yang sama. Maksudnya, kalau sudut pusat satu lengkok ialah dua kali sudut pusat lengkok yang lain, lengkok itu juga dua kali lebih panjang.
+
+Nisbah ini boleh membandingkan panjang lengkok walaupun jejarinya tidak diberi secara langsung.
+
+## Soalan Latihan
+
+Soalan-soalan ini meminta panjang lengkok, jejari, nisbah panjang atau sudut. Kenal pasti **kuantiti yang tidak diketahui** dan unit sudutnya sebelum kamu menyusun semula rumus.
+
+1. Satu lengkok bulatan ada jejari <InlineMath math="14 \text{ cm}" /> dan sudut pusat <InlineMath math="90^\circ" />. Tentukan panjang lengkok itu.
+
+2. Diberi panjang lengkok <InlineMath math="AB" /> ialah <InlineMath math="22 \text{ cm}" /> dan sudut <InlineMath math="AOB" /> ialah <InlineMath math="120^\circ" />, dengan O sebagai pusat bulatan. Berapakah jejari bulatan itu?
+
+3. Dalam satu bulatan berjejari <InlineMath math="21 \text{ cm}" />, ada dua lengkok. Lengkok pertama ada sudut pusat <InlineMath math="60^\circ" /> dan lengkok kedua ada sudut pusat <InlineMath math="150^\circ" />. Tentukan nisbah panjang kedua-dua lengkok itu.
+
+4. Satu lengkok bulatan panjangnya <InlineMath math="15.7 \text{ cm}" />. Kalau jejari bulatan itu ialah <InlineMath math="10 \text{ cm}" />, tentukan sudut pusat lengkok itu dalam darjah.
+
+5. Diberi lilitan satu bulatan ialah <InlineMath math="88 \text{ cm}" />. Kalau satu lengkok pada bulatan itu ada sudut pusat <InlineMath math="45^\circ" />, tentukan panjang lengkok itu.
+
+### Jalan Kerja
+
+Sudut pusat yang pertama ialah **suku pusingan**, jadi ambil suku daripada lilitan.
+
+**Penyelesaian 1**: <InlineMath math="7\pi \text{ cm} \approx 21.99 \text{ cm}" />
+
+Diberi: <InlineMath math="r = 14 \text{ cm}" />, <InlineMath math="\alpha = 90^\circ" />
+
+Guna rumus panjang lengkok:
+
+<MathContainer>
+<BlockMath math="\text{Panjang lengkok} = \frac{\alpha}{360^\circ} \times 2\pi r" />
+<BlockMath math="= \frac{90^\circ}{360^\circ} \times 2\pi \times 14" />
+<BlockMath math="= \frac{1}{4} \times 28\pi" />
+<BlockMath math="= 7\pi \text{ cm} \approx 21.99 \text{ cm}" />
+</MathContainer>
+
+**Penyelesaian 2**: <InlineMath math="\frac{33}{\pi} \text{ cm} \approx 10.50 \text{ cm}" />
+
+Diberi: Panjang lengkok <InlineMath math="AB = 22 \text{ cm}" />, <InlineMath math="\alpha = 120^\circ" />
+
+Guna rumus panjang lengkok:
+
+<MathContainer>
+<BlockMath math="22 = \frac{120^\circ}{360^\circ} \times 2\pi r" />
+<BlockMath math="22 = \frac{2\pi r}{3}" />
+<BlockMath math="66 = 2\pi r" />
+<BlockMath math="r = \frac{33}{\pi} \text{ cm} \approx 10.50 \text{ cm}" />
+</MathContainer>
+
+**Penyelesaian 3**: <InlineMath math="2:5" />
+
+Diberi: <InlineMath math="r = 21 \text{ cm}" />, <InlineMath math="\alpha_1 = 60^\circ" />, <InlineMath math="\alpha_2 = 150^\circ" />
+
+Oleh sebab kedua-dua lengkok berada pada bulatan yang sama, nisbah panjang lengkok sama dengan nisbah sudut pusatnya:
+
+<BlockMath math="\frac{\text{Panjang lengkok}_1}{\text{Panjang lengkok}_2} = \frac{\alpha_1}{\alpha_2} = \frac{60^\circ}{150^\circ} = \frac{2}{5}" />
+
+Jadi, nisbah panjang kedua-dua lengkok itu ialah <InlineMath math="2:5" />.
+
+**Penyelesaian 4**: <InlineMath math="\alpha \approx 89.95^\circ" />
+
+Diberi: panjang lengkok = <InlineMath math="15.7 \text{ cm}" />, <InlineMath math="r = 10 \text{ cm}" />
+
+Guna rumus panjang lengkok:
+
+<MathContainer>
+<BlockMath math="15.7 = \frac{\alpha}{360^\circ} \times 2\pi \times 10" />
+<BlockMath math="15.7 = \frac{\alpha\pi}{18}" />
+<BlockMath math="\alpha = \frac{15.7 \times 18^\circ}{\pi}" />
+<BlockMath math="\alpha = \frac{282.6^\circ}{\pi} \approx 89.95^\circ" />
+</MathContainer>
+
+**Penyelesaian 5**: <InlineMath math="11 \text{ cm}" />
+
+Diberi: Lilitan = <InlineMath math="88 \text{ cm}" />, <InlineMath math="\alpha = 45^\circ" />
+
+Guna konsep nisbah:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\text{Panjang lengkok} \\ &amp;= \frac{\alpha}{360^\circ} \times \text{Lilitan} \end{aligned}" />
+<BlockMath math="= \frac{45^\circ}{360^\circ} \times 88" />
+<BlockMath math="= \frac{1}{8} \times 88 = 11 \text{ cm}" />
+</MathContainer>
+
+Dalam Penyelesaian 1, sudut pusat <InlineMath math="90^\circ" /> ialah suku pusingan, jadi lengkoknya ialah suku daripada lilitan: <InlineMath math="\frac{90}{360} \times 2\pi \times 14 = 7\pi \approx 21.99" /> cm.
+
+<MathVisual
+  title={<>Lengkok <InlineMath math="90^\circ" /> pada bulatan berjejari <InlineMath math="14\text{ cm}" /></>}
+  description={<>Lengkok suku bulatan berjejari <InlineMath math="14\text{ cm}" />, dengan panjang <InlineMath math="7\pi \approx 21.99" /> cm.</>}
+  labels={{
+    arc: <InlineMath math="7\pi \approx 21.99" />,
+    r: <InlineMath math="14" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 15 }, y: { min: -15, max: 15 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 14, appearance: "reference" },
+      { id: "r1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 14, y: 0 }, appearance: "construction" },
+      { id: "r2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 14 }, appearance: "construction" },
+      { id: "arc", kind: "arc", center: { x: 0, y: 0 }, radius: 14, startDegrees: 0, sweepDegrees: 90, appearance: "primary" },
+    ],
+    labels: [
+      { key: "arc", objectId: "arc", at: { x: 14 * Math.cos(Math.PI / 4), y: 14 * Math.sin(Math.PI / 4) }, placement: "above-right" },
+      { key: "r", objectId: "r1", at: { x: 7, y: 0 }, placement: "below" },
+    ],
+  }}
+/>

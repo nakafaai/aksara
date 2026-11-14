@@ -1,0 +1,190 @@
+export const metadata = {
+  title: "Darjah Polinomial",
+  description: "Tentukan darjah polinomial daripada indeks tertinggi bagi sebutan bukan sifar, termasuk bagi monomial dan polinomial dalam beberapa pemboleh ubah.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-04",
+  dateModified: "2026-11-08",
+  subject: "Polinomial",
+};
+
+## Darjah Monomial
+
+Petua darjah monomial di bawah mengandaikan <Highlight>pekali bukan sifar</Highlight>. Polinomial sifar dibincangkan secara berasingan kerana ia tiada sebutan bukan sifar.
+
+Setiap monomial dalam polinomial ada satu ciri yang dipanggil **darjah**. Darjah ini ditentukan oleh kuasa (indeks) pemboleh ubahnya. Bagi satu pemboleh ubah, darjahnya ialah indeks itu sendiri, dan bagi beberapa pemboleh ubah, darjahnya ialah hasil tambah semua indeks dalam sebutan itu.
+
+### Darjah Monomial Satu Pemboleh Ubah
+
+Jika monomial hanya ada satu pemboleh ubah, seperti <InlineMath math="ax^n" />, darjahnya ialah **indeks pemboleh ubah itu**, iaitu <InlineMath math="n" />.
+
+<BlockMath math="\deg(ax^n)=n,\quad a\neq0" />
+
+**Contoh**:
+
+- Monomial <InlineMath math="4x^5" /> berdarjah <InlineMath math="5" />.
+- Monomial <InlineMath math="0.12x" /> (atau <InlineMath math="0.12x^1" />) berdarjah <InlineMath math="1" />.
+
+### Darjah Monomial Beberapa Pemboleh Ubah
+
+Jika monomial ada lebih daripada satu pemboleh ubah, darjahnya ialah **hasil tambah** semua indeks pemboleh ubahnya.
+
+<BlockMath math="\deg(cx_1^{p_1}x_2^{p_2}\cdots x_k^{p_k})=p_1+p_2+\cdots+p_k,\quad c\neq0" />
+
+**Contoh**:
+
+- Monomial <InlineMath math="\frac{3}{4}x^2y^7" /> berdarjah <InlineMath math="2 + 7 = 9" />.
+- Monomial <InlineMath math="2.17x^3yz^3" /> (ingat, <InlineMath math="y = y^1" />) berdarjah <InlineMath math="3 + 1 + 3 = 7" />.
+
+### Darjah Pemalar
+
+Bagaimana pula dengan pemalar (nombor tanpa pemboleh ubah), seperti <InlineMath math="5" />? Pemalar bukan sifar dianggap ada **darjah** <InlineMath math="0" />, kerana kita boleh menulisnya sebagai <InlineMath math="5x^0" /> (oleh sebab <InlineMath math="x^0 = 1" />).
+
+Berikut ialah ringkasan contoh darjah monomial dalam bentuk jadual:
+
+| Monomial                                | Darjah | Penerangan                                                        |
+| :-------------------------------------- | :----- | :---------------------------------------------------------------- |
+| <InlineMath math="4x^5" />              | <InlineMath math="5" /> | Indeks bagi <InlineMath math="x" /> ialah <InlineMath math="5" />.                     |
+| <InlineMath math="\frac{3}{4}x^2y^7" /> | <InlineMath math="9" /> | Hasil tambah indeks <InlineMath math="2+7=9" />.                     |
+| <InlineMath math="0.12x" />             | <InlineMath math="1" /> | Indeks bagi <InlineMath math="x" /> ialah <InlineMath math="1" />.                     |
+| <InlineMath math="2.17x^3yz^3" />       | <InlineMath math="7" /> | Hasil tambah indeks <InlineMath math="3+1+3=7" />.                   |
+| <InlineMath math="10" />                | <InlineMath math="0" /> | Pemalar bukan sifar. Boleh ditulis sebagai <InlineMath math="10x^0" />. |
+
+Darjah menentukan bentuk keseluruhan graf. Gantikan <InlineMath math="x = -2" /> ke dalam <InlineMath math="x" />, <InlineMath math="x^2" />, <InlineMath math="x^3" /> dan <InlineMath math="x^4" />: kuasa ganjil memberikan nilai negatif dan kuasa genap memberikan nilai positif, dan setiap kali darjah naik satu, saiznya menjadi dua kali ganda. Sebab itulah graf berdarjah ganjil keluar dari gambar ke arah yang bertentangan di sebelah kiri dan kanan, manakala graf berdarjah genap naik di kedua-dua belah.
+
+<BarChart
+  title={<>Kuasa bagi <InlineMath math="x" /> pada <InlineMath math="x = -2" /></>}
+  description={<>Palang bagi <InlineMath math="(-2)^1" />, <InlineMath math="(-2)^2" />, <InlineMath math="(-2)^3" /> dan <InlineMath math="(-2)^4" />: negatif bagi darjah ganjil, positif bagi darjah genap.</>}
+  yAxisLabel="Nilai"
+  data={[1, 2, 3, 4].map((d) => ({ name: "darjah " + d, value: (-2) ** d }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Menentukan Darjah Polinomial
+
+Darjah polinomial ditentukan daripada darjah sebutan-sebutannya yang bukan sifar.
+
+**Darjah polinomial** ialah **darjah tertinggi** antara semua sebutan (monomial) yang membentuk polinomial itu.
+
+**Langkah untuk menentukan darjah polinomial**:
+
+1.  Kenal pasti semua sebutan (monomial) dalam polinomial itu.
+2.  Tentukan darjah setiap sebutan.
+3.  Pilih darjah tertinggi antara semua sebutan. Itulah darjah polinomial itu.
+
+Gabungkan <Highlight>sebutan serupa sebelum mencari darjah</Highlight>. Sebutan berkuasa tinggi boleh terbatal, jadi membaca indeks terbesar sebelum ungkapan dipermudahkan boleh memberikan darjah yang salah. Contohnya:
+
+<BlockMath math="x^4-x^4+3x^2+1=3x^2+1\quad\Rightarrow\quad\deg(3x^2+1)=2" />
+
+Selepas dipermudahkan, pekali bagi kuasa empat ialah sifar. Sebutan tertinggi yang tinggal berdarjah dua.
+
+**Contoh 1**:
+
+Tentukan darjah polinomial berikut:
+
+<BlockMath math="8x^3 - 36x^2 + 54x - 27" />
+
+- Sebutan <InlineMath math="8x^3" /> berdarjah <InlineMath math="3" />.
+- Sebutan <InlineMath math="-36x^2" /> berdarjah <InlineMath math="2" />.
+- Sebutan <InlineMath math="54x" /> (atau <InlineMath math="54x^1" />) berdarjah <InlineMath math="1" />.
+- Sebutan <InlineMath math="-27" /> (pemalar) berdarjah <InlineMath math="0" />.
+
+Darjah tertinggi antara sebutan-sebutan itu ialah <InlineMath math="3" />. Oleh itu, darjah polinomial ini ialah <InlineMath math="3" />.
+
+**Contoh 2**:
+
+Tentukan darjah polinomial berikut:
+
+<BlockMath math="5x^4y^2 + xy^2 - 2x^5y^6" />
+
+- Sebutan <InlineMath math="5x^4y^2" /> berdarjah <InlineMath math="4 + 2 = 6" />.
+- Sebutan <InlineMath math="xy^2" /> (atau <InlineMath math="x^1y^2" />) berdarjah <InlineMath math="1 + 2 = 3" />.
+- Sebutan <InlineMath math="-2x^5y^6" /> berdarjah <InlineMath math="5 + 6 = 11" />.
+
+Darjah tertinggi antara sebutan-sebutan itu ialah <InlineMath math="11" />. Oleh itu, darjah polinomial ini ialah <InlineMath math="11" />.
+
+**Contoh 3**:
+
+Tentukan darjah polinomial berikut:
+
+<BlockMath math="0.13x^3 + 1.56x^2 - 2.24x + 1.72" />
+
+- Sebutan <InlineMath math="0.13x^3" /> berdarjah <InlineMath math="3" />.
+- Sebutan <InlineMath math="1.56x^2" /> berdarjah <InlineMath math="2" />.
+- Sebutan <InlineMath math="-2.24x" /> berdarjah <InlineMath math="1" />.
+- Sebutan <InlineMath math="1.72" /> berdarjah <InlineMath math="0" />.
+
+Darjah tertinggi ialah <InlineMath math="3" />. Oleh itu, darjah polinomial ini ialah <InlineMath math="3" />.
+
+Polinomial kubik <InlineMath math="8x^3 - 36x^2 + 54x - 27" /> sama dengan <InlineMath math="(2x - 3)^3" />. Apabila dikembangkan dengan corak binomial, kita dapat setiap pekali: <InlineMath math="2^3 = 8" />, <InlineMath math="3 \cdot 2^2 \cdot (-3) = -36" />, <InlineMath math="3 \cdot 2 \cdot (-3)^2 = 54" /> dan <InlineMath math="(-3)^3 = -27" />. Palang pada darjah 3 bukan sifar, jadi darjahnya ialah <InlineMath math="3" />, dan punca berganda tiga <InlineMath math="x = 1.5" /> terletak di tempat <InlineMath math="2x - 3 = 0" />.
+
+<BarChart
+  title={<>Pekali bagi <InlineMath math="(2x - 3)^3" /> mengikut darjah</>}
+  description={<>Palang bagi pekali <InlineMath math="8, -36, 54, -27" /> pada darjah 3, 2, 1 dan 0.</>}
+  yAxisLabel="Pekali"
+  data={[
+    { name: "darjah 3", value: 1 * 2 ** 3 * (-3) ** 0 },
+    { name: "darjah 2", value: 3 * 2 ** 2 * (-3) ** 1 },
+    { name: "darjah 1", value: 3 * 2 ** 1 * (-3) ** 2 },
+    { name: "darjah 0", value: 1 * 2 ** 0 * (-3) ** 3 },
+  ]}
+  chartConfig={{ value: { label: "Pekali", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Kembali kepada contoh pembatalan tadi. Selepas <InlineMath math="x^4 - x^4" /> terbatal, yang tinggal ialah <InlineMath math="3x^2 + 1" />, dan grafnya ialah parabola: berdarjah <InlineMath math="2" />, terbuka ke atas dari titik terendahnya <InlineMath math="(0, 1)" />. Tiada lagi kesan kuasa empat yang tinggal.
+
+<MathVisual
+  title={<>Apa yang tinggal selepas kuasa empat terbatal</>}
+  description={<>Parabola <InlineMath math="y = 3x^2 + 1" /> untuk <InlineMath math="-1.2 \le x \le 1.2" />, dengan titik terendahnya <InlineMath math="(0, 1)" />.</>}
+  labels={{
+    rest: <InlineMath math="3x^2 + 1" />,
+    low: <InlineMath math="(0, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 1.9 }, y: { min: -0.5, max: 5.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "rest", kind: "quadratic", inputAxis: "x", coefficients: { a: 3, b: 0, c: 1 }, domain: { min: -1.2, max: 1.2 }, appearance: "primary" },
+      { id: "low", kind: "point", at: { x: 0, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "rest", objectId: "rest", at: { x: 1.2, y: 5.32 }, placement: "right" },
+      { key: "low", objectId: "low", at: { x: 0, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
+### Darjah Polinomial Sifar
+
+Adakah darjah bagi <InlineMath math="0" /> sama dengan <InlineMath math="0" />, kerana <InlineMath math="0" /> boleh ditulis sebagai <InlineMath math="0x^0" />?
+
+Secara umumnya dalam matematik:
+
+- Pemalar **bukan sifar** (seperti <InlineMath math="5, -27, 1.72" />) berdarjah <InlineMath math="0" />.
+- **Polinomial sifar** tiada sebutan bukan sifar. Satu konvensyen yang lazim membiarkan darjahnya **tidak tertakrif**. Konvensyen lain memberikannya nilai formal **ketakterhinggaan negatif** (<InlineMath math="-\infty" />), dan ini membuatkan petua seperti <InlineMath math="\deg(PQ)=\deg P+\deg Q" /> kekal sah apabila <InlineMath math="P" />, <InlineMath math="Q" />, atau kedua-duanya ialah polinomial sifar.
+
+Latihan di bawah menggunakan konvensyen pertama, jadi darjah polinomial sifar tidak tertakrif. Pemalar bukan sifar berdarjah <InlineMath math="0" />. Setiap polinomial lain mengambil darjah terbesar antara sebutan-sebutannya yang bukan sifar.
+
+## Latihan
+
+Tentukan darjah bagi
+
+<BlockMath math="P(x,y)=4x^3y^2-7x^2y^5+6" />
+
+Kemudian, terangkan mengapa **petua darjah** yang sama tidak boleh memberikan darjah <InlineMath math="0" /> kepada polinomial sifar.
+
+### Jalan Kerja
+
+Cari **jumlah darjah setiap sebutan bukan sifar**:
+
+- <InlineMath math="4x^3y^2" /> berdarjah <InlineMath math="3+2=5" />.
+- <InlineMath math="-7x^2y^5" /> berdarjah <InlineMath math="2+5=7" />.
+- <InlineMath math="6" /> berdarjah <InlineMath math="0" />.
+
+Darjah sebutan yang terbesar ialah <InlineMath math="7" />, jadi <InlineMath math="\deg P=7" />.
+
+Polinomial sifar tiada sebutan bukan sifar yang darjahnya boleh dipilih sebagai yang terbesar. Oleh itu, darjahnya tidak tertakrif. Jika kita memberikannya darjah <InlineMath math="0" />, beberapa petua darjah polinomial akan gagal.
+
+Contohnya, ambil <InlineMath math="P(x)=x" /> dan <InlineMath math="Q(x)=0" />. Jika polinomial sifar diberi darjah sifar, kedua-dua belah petua hasil darab tidak lagi sama:
+
+<BlockMath math="\underbrace{\deg(x\cdot0)}_{0}\ne\underbrace{\deg x+\deg0}_{1+0=1}" />

@@ -1,0 +1,261 @@
+export const metadata = {
+  title: "Beza antara Penumpuan dan Pencapahan",
+  description: "Bezakan penumpuan dengan pencapahan menggunakan hasil tambah separa, kemudian kelaskan contoh siri geometri, siri aritmetik dan siri harmonik.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-08",
+  dateModified: "2026-11-08",
+  subject: "Jujukan dan Siri",
+};
+
+## Hasil Tambah Separa Menentukan Penumpuan Siri
+
+Apabila sebutan bagi jujukan tak terhingga ditambah, kita dapat **siri tak terhingga**. Kita tentukan kelakuan siri itu melalui hasil tambah separanya: jika hasil tambah separa menghampiri satu nombor terhingga, siri itu **menumpu**. Jika tidak, siri itu **mencapah**.
+
+## Penumpuan Jujukan
+
+Jujukan <InlineMath math="(a_n)" /> menumpu kepada <InlineMath math="L" /> apabila sebutannya boleh dibuat **sehampir mana yang kita mahu** dengan <InlineMath math="L" /> dengan mengambil <InlineMath math="n" /> yang cukup besar. Kita tulis:
+
+<BlockMath math="\lim_{n\to\infty}a_n=L" />
+
+Jika tiada had terhingga yang wujud, jujukan itu mencapah. Pencapahan boleh berlaku dalam beberapa bentuk:
+
+- <InlineMath math="a_n=n" /> bertambah tanpa batas.
+- <InlineMath math="a_n=-n" /> berkurang tanpa batas.
+- <InlineMath math="a_n=(-1)^n" /> berayun antara dua nilai.
+
+## Daripada Jujukan kepada Siri
+
+Untuk siri tak terhingga:
+
+<BlockMath math="\sum_{k=1}^{\infty}a_k" />
+
+Untuk menentukan penumpuan, kita kaji jujukan hasil tambah separa:
+
+<BlockMath math="S_n=\sum_{k=1}^{n}a_k" />
+
+Siri itu menumpu tepat apabila <Highlight>jujukan hasil tambah separanya menumpu</Highlight>. Had bagi sebutan <InlineMath math="a_n" /> sahaja tidak menentukan sama ada siri itu menumpu.
+
+## Siri Menumpu
+
+Siri dikatakan **menumpu** apabila hasil tambah separanya menghampiri nilai yang _terhingga_. Contohnya, dalam model bola melantun yang ideal, laluan yang semakin pendek boleh mempunyai jumlah panjang yang terhingga.
+
+### Hasil Tambah Separa Menuju Satu Had
+
+Jika hasil tambah separa <InlineMath math="S_n" /> menghampiri <InlineMath math="L" />, hasil tambah separa sebelumnya juga menghampiri nilai yang sama. Beza antara kedua-duanya ialah sebutan yang baru ditambah:
+
+<BlockMath math="a_n=S_n-S_{n-1}\longrightarrow L-L=0" />
+
+Jadi, sebutan yang menghampiri sifar ialah **syarat perlu**, bukan jaminan bahawa siri itu menumpu. Kita masih perlu memeriksa hasil tambah separanya.
+
+### Contoh Siri Menumpu
+
+Siri geometri menumpu apabila nilai mutlak nisbahnya lebih kecil daripada <InlineMath math="1" />. Ambil siri <InlineMath math="1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \dots" />, yang nisbahnya ialah <InlineMath math="\frac{1}{2}" />. Hasil tambah separanya terus menghampiri <InlineMath math="2" />, dan rumus had mengesahkan nilai itu secara terus.
+
+<BlockMath math="S_\infty = \frac{a}{1 - r} = \frac{1}{1 - \frac{1}{2}} = \frac{1}{\frac{1}{2}} = 2" />
+
+Jika sebutan pertamanya bukan sifar dan **magnitud nisbahnya sekurang-kurangnya satu**, siri geometri itu tiada hasil tambah terhingga. Siri yang semua sebutannya sifar tetap menumpu kepada sifar.
+
+## Siri Mencapah
+
+Siri dikatakan **mencapah** apabila hasil tambah separanya tidak menghampiri nilai terhingga. Hasil tambah separa itu mungkin:
+
+- Terus bertambah ke arah ketakterhinggaan positif (<InlineMath math="\infty" />).
+- Terus berkurang ke arah ketakterhinggaan negatif (<InlineMath math="-\infty" />).
+- Berayun antara beberapa nilai tanpa pernah menetap.
+
+Bandingkan tiga siri melalui hasil tambah separanya <InlineMath math="S_n" /> untuk <InlineMath math="n = 1" /> hingga <InlineMath math="12" />. Hasil tambah bagi <InlineMath math="1 + \frac12 + \frac14 + \cdots" /> menuju <InlineMath math="2" />, jadi siri itu menumpu. Hasil tambah bagi <InlineMath math="1 + \frac12 + \frac13 + \cdots" /> naik perlahan-lahan tanpa batas atas, dan hasil tambah bagi <InlineMath math="1 - 1 + 1 - \cdots" /> melompat antara <InlineMath math="1" /> dengan <InlineMath math="0" />. Kedua-dua siri ini mencapah, dengan dua cara yang berbeza.
+
+<MathVisual
+  title={<>Satu siri menuju had, dua lagi tidak</>}
+  description={<>Hasil tambah separa bagi tiga siri: siri geometri yang menghampiri <InlineMath math="2" />, siri harmonik yang naik tanpa batas, dan siri berselang-seli yang melompat antara <InlineMath math="1" /> dengan <InlineMath math="0" />.</>}
+  labels={{
+    two: <InlineMath math="2" />,
+    g12: <InlineMath math="1 + \tfrac12 + \tfrac14 + \cdots" />,
+    h12: <InlineMath math="1 + \tfrac12 + \tfrac13 + \cdots" />,
+    a12: <InlineMath math="1 - 1 + 1 - \cdots" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: -0.5, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "two", kind: "segment", from: { x: 0, y: 2 }, to: { x: 13, y: 2 }, appearance: "reference" },
+      { id: "g1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "g2", kind: "point", at: { x: 2, y: 3 / 2 }, appearance: "primary" },
+      { id: "g3", kind: "point", at: { x: 3, y: 7 / 4 }, appearance: "primary" },
+      { id: "g4", kind: "point", at: { x: 4, y: 15 / 8 }, appearance: "primary" },
+      { id: "g5", kind: "point", at: { x: 5, y: 31 / 16 }, appearance: "primary" },
+      { id: "g6", kind: "point", at: { x: 6, y: 63 / 32 }, appearance: "primary" },
+      { id: "g7", kind: "point", at: { x: 7, y: 127 / 64 }, appearance: "primary" },
+      { id: "g8", kind: "point", at: { x: 8, y: 255 / 128 }, appearance: "primary" },
+      { id: "g9", kind: "point", at: { x: 9, y: 511 / 256 }, appearance: "primary" },
+      { id: "g10", kind: "point", at: { x: 10, y: 1023 / 512 }, appearance: "primary" },
+      { id: "g11", kind: "point", at: { x: 11, y: 2047 / 1024 }, appearance: "primary" },
+      { id: "g12", kind: "point", at: { x: 12, y: 4095 / 2048 }, appearance: "primary" },
+      { id: "h1", kind: "point", at: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "h2", kind: "point", at: { x: 2, y: 3 / 2 }, appearance: "secondary" },
+      { id: "h3", kind: "point", at: { x: 3, y: 11 / 6 }, appearance: "secondary" },
+      { id: "h4", kind: "point", at: { x: 4, y: 25 / 12 }, appearance: "secondary" },
+      { id: "h5", kind: "point", at: { x: 5, y: 137 / 60 }, appearance: "secondary" },
+      { id: "h6", kind: "point", at: { x: 6, y: 49 / 20 }, appearance: "secondary" },
+      { id: "h7", kind: "point", at: { x: 7, y: 363 / 140 }, appearance: "secondary" },
+      { id: "h8", kind: "point", at: { x: 8, y: 761 / 280 }, appearance: "secondary" },
+      { id: "h9", kind: "point", at: { x: 9, y: 7129 / 2520 }, appearance: "secondary" },
+      { id: "h10", kind: "point", at: { x: 10, y: 7381 / 2520 }, appearance: "secondary" },
+      { id: "h11", kind: "point", at: { x: 11, y: 83711 / 27720 }, appearance: "secondary" },
+      { id: "h12", kind: "point", at: { x: 12, y: 86021 / 27720 }, appearance: "secondary" },
+      { id: "a1", kind: "point", at: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "a2", kind: "point", at: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "a3", kind: "point", at: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "a4", kind: "point", at: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "a5", kind: "point", at: { x: 5, y: 1 }, appearance: "construction" },
+      { id: "a6", kind: "point", at: { x: 6, y: 0 }, appearance: "construction" },
+      { id: "a7", kind: "point", at: { x: 7, y: 1 }, appearance: "construction" },
+      { id: "a8", kind: "point", at: { x: 8, y: 0 }, appearance: "construction" },
+      { id: "a9", kind: "point", at: { x: 9, y: 1 }, appearance: "construction" },
+      { id: "a10", kind: "point", at: { x: 10, y: 0 }, appearance: "construction" },
+      { id: "a11", kind: "point", at: { x: 11, y: 1 }, appearance: "construction" },
+      { id: "a12", kind: "point", at: { x: 12, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "two", objectId: "two", at: { x: 13, y: 2 }, placement: "right" },
+      { key: "g12", objectId: "g12", at: { x: 12, y: 4095 / 2048 }, placement: "below-left" },
+      { key: "h12", objectId: "h12", at: { x: 12, y: 86021 / 27720 }, placement: "above-left" },
+      { key: "a12", objectId: "a12", at: { x: 12, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+### Hasil Tambah Separa Tidak Menuju Satu Had
+
+Siri mencapah sama ada **tiada had tunggal** atau bergerak tanpa batas. Dua syarat di bawah membezakan kes-kes itu.
+
+- Hasil tambah separanya (<InlineMath math="S_n" />) tidak menghampiri nilai tertentu <InlineMath math="L" /> apabila <InlineMath math="n" /> menghampiri ketakterhinggaan.
+- Jika <InlineMath math="u_n\not\to 0" />, siri itu _pasti_ mencapah. Ini merangkumi kedua-dua kes: had sebutan yang bukan sifar, dan jujukan sebutan yang tiada had.
+
+### Siri yang Mencapah
+
+Bandingkan sebutan dengan hasil tambah separanya. Dalam tiga contoh pertama, sebutannya sendiri pun tidak menghampiri sifar. Siri harmonik memerlukan hujah tambahan kerana sebutannya memang menghampiri sifar.
+
+| Siri | Hasil tambah separa yang pertama | Kelakuan |
+| --- | --- | --- |
+| <InlineMath math="1+2+3+4+\cdots" /> | <InlineMath math="1,3,6,10" /> | Bertambah tanpa batas |
+| <InlineMath math="2+4+8+16+\cdots" /> | <InlineMath math="2,6,14,30" /> | Bertambah tanpa batas |
+| <InlineMath math="1-2+4-8+\cdots" /> | <InlineMath math="1,-1,3,-5" /> | Tanda berselang-seli dengan magnitud yang semakin besar |
+
+Untuk **siri harmonik**, kumpulkan sebutan selepas <InlineMath math="1+1/2" /> dalam blok dua, empat, lapan, dan seterusnya. Setiap blok menyumbang sekurang-kurangnya separuh:
+
+<BlockMath math="\begin{aligned}\frac13+\frac14&amp;\ge2\cdot\frac14=\frac12\\\frac15+\frac16+\frac17+\frac18&amp;\ge4\cdot\frac18=\frac12\\\sum_{k=2^{m-1}+1}^{2^m}\frac1k&amp;\ge2^{m-1}\cdot\frac1{2^m}=\frac12\end{aligned}" />
+
+Ada tak terhingga banyaknya blok yang setiap satunya menyumbang sekurang-kurangnya <InlineMath math="1/2" />. Jadi, hasil tambah separa melepasi setiap batas, walaupun <InlineMath math="1/n\to0" />. Oleh itu, siri harmonik menunjukkan bahawa **sebutan yang menghampiri sifar tidak mencukupi**.
+
+## Pengelasan Lengkap Siri Geometri
+
+Lihat siri berikut:
+
+<BlockMath math="a+ar+ar^2+\dots" />
+
+Untuk <InlineMath math="a\ne0" />, **setiap nisbah yang mungkin** termasuk dalam salah satu kes ini:
+
+- Jika <InlineMath math="|r|<1" />, siri itu menumpu kepada <InlineMath math="a/(1-r)" />.
+- Jika <InlineMath math="r=1" />, hasil tambah separanya ialah <InlineMath math="na" /> dan mencapah.
+- Jika <InlineMath math="r=-1" />, hasil tambah separanya berselang-seli antara dua nilai.
+- Jika <InlineMath math="|r|>1" />, sebutannya sendiri pun tidak menghampiri sifar.
+
+Jadi, siri mencapah tidak semestinya bernilai <InlineMath math="\infty" />. Ayunan dan pertumbuhan negatif tanpa batas ialah bentuk-bentuk pencapahan yang berbeza.
+
+Dua siri geometri menumpu dengan <InlineMath math="a = 1" /> menunjukkan bahawa nisbah menentukan cara hasil tambahnya sampai ke had. Dengan <InlineMath math="r = -\frac12" />, hasil tambahnya berzig-zag di atas dan di bawah hadnya, <InlineMath math="\frac{1}{1 + \frac12} = \frac23" />. Dengan <InlineMath math="r = \frac35" />, hasil tambahnya naik dengan mantap ke arah <InlineMath math="\frac{1}{1 - \frac35} = 2.5" />. Kedua-dua had itu datang daripada <InlineMath math="\frac{a}{1 - r}" />.
+
+<MathVisual
+  title={<>Dua cara untuk menumpu</>}
+  description={<>Hasil tambah separa untuk <InlineMath math="r = -\frac12" /> berzig-zag ke arah <InlineMath math="\frac23" />, manakala hasil tambah separa untuk <InlineMath math="r = \frac35" /> naik ke arah <InlineMath math="2.5" />.</>}
+  labels={{
+    lim1: <InlineMath math="\tfrac23" />,
+    lim2: <InlineMath math="2.5" />,
+    p1: <InlineMath math="r = -\tfrac12" />,
+    q1: <InlineMath math="r = \tfrac35" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: 0, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "lim1", kind: "segment", from: { x: 0, y: 2 / 3 }, to: { x: 11, y: 2 / 3 }, appearance: "reference" },
+      { id: "lim2", kind: "segment", from: { x: 0, y: 5 / 2 }, to: { x: 11, y: 5 / 2 }, appearance: "reference" },
+      { id: "p1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "p2", kind: "point", at: { x: 2, y: 1 / 2 }, appearance: "primary" },
+      { id: "p3", kind: "point", at: { x: 3, y: 3 / 4 }, appearance: "primary" },
+      { id: "p4", kind: "point", at: { x: 4, y: 5 / 8 }, appearance: "primary" },
+      { id: "p5", kind: "point", at: { x: 5, y: 11 / 16 }, appearance: "primary" },
+      { id: "p6", kind: "point", at: { x: 6, y: 21 / 32 }, appearance: "primary" },
+      { id: "p7", kind: "point", at: { x: 7, y: 43 / 64 }, appearance: "primary" },
+      { id: "p8", kind: "point", at: { x: 8, y: 85 / 128 }, appearance: "primary" },
+      { id: "p9", kind: "point", at: { x: 9, y: 171 / 256 }, appearance: "primary" },
+      { id: "p10", kind: "point", at: { x: 10, y: 341 / 512 }, appearance: "primary" },
+      { id: "q1", kind: "point", at: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "q2", kind: "point", at: { x: 2, y: 8 / 5 }, appearance: "secondary" },
+      { id: "q3", kind: "point", at: { x: 3, y: 49 / 25 }, appearance: "secondary" },
+      { id: "q4", kind: "point", at: { x: 4, y: 272 / 125 }, appearance: "secondary" },
+      { id: "q5", kind: "point", at: { x: 5, y: 1441 / 625 }, appearance: "secondary" },
+      { id: "q6", kind: "point", at: { x: 6, y: 7448 / 3125 }, appearance: "secondary" },
+      { id: "q7", kind: "point", at: { x: 7, y: 37969 / 15625 }, appearance: "secondary" },
+      { id: "q8", kind: "point", at: { x: 8, y: 192032 / 78125 }, appearance: "secondary" },
+      { id: "q9", kind: "point", at: { x: 9, y: 966721 / 390625 }, appearance: "secondary" },
+      { id: "q10", kind: "point", at: { x: 10, y: 4853288 / 1953125 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "lim1", objectId: "lim1", at: { x: 11, y: 2 / 3 }, placement: "right" },
+      { key: "lim2", objectId: "lim2", at: { x: 11, y: 5 / 2 }, placement: "right" },
+      { key: "p1", objectId: "p1", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "q1", objectId: "q1", at: { x: 1, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+## Jujukan yang Bergerak Satu Arah dan Kekal Terbatas
+
+Setiap jujukan yang monoton dan terbatas akan menumpu. Kriteria ini berguna apabila had sukar dibaca terus daripada rumus.
+
+Hasil tambah separa bagi siri yang sebutannya bukan negatif tidak pernah menyusut. Jika hasil tambah separa itu juga terbatas di atas, siri itu menumpu.
+
+Contohnya, siri <InlineMath math="1+1/2+1/4+\cdots" /> mempunyai <InlineMath math="S_n=2-2^{1-n}<2" />. Setiap sebutan yang ditambah bernilai positif, jadi hasil tambah separanya menokok. Dua ialah **batas atas** bagi setiap hasil tambah separa, jadi siri itu menumpu.
+
+## Membandingkan Siri Menumpu dan Siri Mencapah
+
+Jadual ini mengumpulkan tiga ujian itu, supaya kelakuan hasil tambah separa, syarat sebutan, dan contoh yang sepadan boleh dibaca bersama.
+
+| Ciri | Siri Menumpu | Siri Mencapah |
+| ------------ | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **Hasil tambah separa** | Menghampiri nilai yang _terhingga_ <InlineMath math="L" />. <InlineMath math="S_\infty = L" /> | Tidak menghampiri nilai terhingga. Hasil tambah separa mungkin menghampiri <InlineMath math="+\infty" /> atau <InlineMath math="-\infty" />, atau mungkin berayun |
+| **Sebutan am** | <InlineMath math="u_n\to0" /> ialah syarat perlu | Jika <InlineMath math="u_n\not\to0" />, siri itu pasti mencapah. Namun, <InlineMath math="u_n\to0" /> juga mungkin berlaku |
+| **Contoh** | Siri geometri <InlineMath math="\lvert r\rvert < 1" /> | Siri aritmetik bukan sifar, siri geometri dengan sebutan pertama bukan sifar dan <InlineMath math="\lvert r\rvert \geq 1" />, siri harmonik |
+
+Sebutan yang mengecil belum cukup. Sebutan <InlineMath math="\frac1n" /> bagi siri harmonik turun ke arah <InlineMath math="0" />, seperti yang ditunjukkan oleh palang, tetapi hasil tambah separanya tetap bertambah tanpa batas. Sebutan yang menuju sifar memang perlu untuk penumpuan, tetapi tidak menjaminnya.
+
+<BarChart
+  title={<>Sebutan siri harmonik</>}
+  description={<>Palang <InlineMath math="n" /> menunjukkan sebutan <InlineMath math="\frac1n" /> untuk <InlineMath math="n = 1" /> hingga <InlineMath math="12" />.</>}
+  yAxisLabel="Sebutan"
+  data={[["1", 1 / 1], ["2", 1 / 2], ["3", 1 / 3], ["4", 1 / 4], ["5", 1 / 5], ["6", 1 / 6], ["7", 1 / 7], ["8", 1 / 8], ["9", 1 / 9], ["10", 1 / 10], ["11", 1 / 11], ["12", 1 / 12]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Sebutan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Latihan
+
+Tentukan sama ada setiap siri menumpu atau mencapah. Semak kelakuan sebutannya dahulu, kerana sebutan yang **tidak menghampiri sifar** sudah cukup untuk menjawab soalan itu. Tulis kesimpulan kamu bagi setiap siri sebelum membaca penyelesaian.
+
+1. <InlineMath math="\sum_{k=0}^{\infty}3(1/4)^k" />
+2. <InlineMath math="\sum_{k=1}^{\infty}1" />
+3. <InlineMath math="\sum_{k=0}^{\infty}(-1)^k" />
+
+### Penyelesaian
+
+1. Siri pertama ialah siri geometri dengan <InlineMath math="|r|=1/4<1" />, jadi siri itu menumpu:
+
+   <BlockMath math="\frac{3}{1-1/4}=\frac{3}{3/4}=3\cdot\frac43=4" />
+
+2. Sebutan siri kedua tidak menghampiri sifar, jadi siri itu mencapah.
+
+3. Hasil tambah separa siri ketiga berselang-seli antara dua nilai. Ayunan ini menghalang hasil tambah separa itu daripada menghampiri satu had.
+
+Untuk siri kedua, <InlineMath math="S_n=n" />, jadi hasil tambah separanya tidak terbatas. Untuk siri ketiga, <InlineMath math="S_1=1" />, <InlineMath math="S_2=0" />, <InlineMath math="S_3=1" />, dan <InlineMath math="S_4=0" />. Dua subjujukannya mempunyai had yang berbeza, jadi keseluruhan jujukan hasil tambah separa **tiada had tunggal**.

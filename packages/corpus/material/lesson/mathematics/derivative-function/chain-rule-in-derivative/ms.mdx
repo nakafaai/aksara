@@ -1,0 +1,219 @@
+export const metadata = {
+  title: "Petua Rantai dalam Pembezaan",
+  description: "Bezakan fungsi gubahan dengan petua rantai melalui contoh fungsi kuasa dan fungsi trigonometri.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-05-26",
+    dateModified: "2026-11-08",
+    subject: "Pembezaan",
+};
+
+## Fungsi Gubahan
+
+Dalam **[fungsi gubahan](/ms/subjek/matematik/fungsi-gubahan-dan-fungsi-songsang/fungsi-gubahan)**, output satu fungsi menjadi input bagi fungsi yang lain. Jika <InlineMath math="g(x)" /> ialah **fungsi dalam** dan <InlineMath math="f(u)" /> ialah **fungsi luar**, gubahannya ialah <InlineMath math="y = f(g(x))" />.
+
+Petua rantai memberitahu kita cara membezakan struktur berlapis ini tanpa kehilangan kesan fungsi dalam.
+
+## Teorem Petua Rantai
+
+Fungsi dalam kekal di dalam fungsi luar, jadi terbitan fungsi gubahan mendarabkan dua kadar yang bertindak secara berturutan.
+
+> Jika <InlineMath math="y = f(g(x))" />, dengan <InlineMath math="g" /> boleh dibezakan pada <InlineMath math="x" /> dan <InlineMath math="f" /> boleh dibezakan pada <InlineMath math="g(x)" />, maka terbitannya ialah terbitan fungsi luar yang dinilai pada fungsi dalam, didarab dengan terbitan fungsi dalam.
+
+Secara formal, katakan <InlineMath math="u = g(x)" />, maka <InlineMath math="y = f(u)" />. Terbitannya ditakrifkan sebagai:
+
+<BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}" />
+
+Inilah **petua rantai**. <Highlight>Mulakan dari lapisan paling luar dan bergerak ke dalam</Highlight>, biarkan setiap ungkapan dalam di tempatnya sehingga tiba gilirannya, dan darabkan terbitan-terbitan itu.
+
+Kadar yang berturutan akan didarab. Ambil fungsi dalam <InlineMath math="u = 2x" /> dan fungsi luar <InlineMath math="y = 3u" />, jadi <InlineMath math="y = 6x" />. Satu langkah dalam <InlineMath math="x" /> menaikkan <InlineMath math="u" /> sebanyak <InlineMath math="\frac{du}{dx} = 2" />, dan setiap unit <InlineMath math="u" /> menaikkan <InlineMath math="y" /> sebanyak <InlineMath math="\frac{dy}{du} = 3" />, jadi <InlineMath math="y" /> naik sebanyak <InlineMath math="3 \cdot 2 = 6" />. Bandingkan dua titik di atas <InlineMath math="x = 1" />.
+
+<MathVisual
+  title={<>Dua kadar berturutan didarab</>}
+  description={<>Garis dalam <InlineMath math="u = 2x" /> yang melalui <InlineMath math="(1, 2)" /> dan garis gubahan <InlineMath math="y = 3u = 6x" /> yang melalui <InlineMath math="(1, 6)" />, dengan kecerunan <InlineMath math="3 \cdot 2 = 6" />.</>}
+  labels={{
+    inner: <InlineMath math="u = 2x" />,
+    outer: <InlineMath math="y = 3u = 6x" />,
+    "u-one": <InlineMath math="(1, 2)" />,
+    "y-one": <InlineMath math="(1, 6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 1.9 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "inner", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1.5, y: 3 }, appearance: "secondary" },
+      { id: "outer", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1.1, y: 6.6 }, appearance: "primary" },
+      { id: "u-one", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "y-one", kind: "point", at: { x: 1, y: 6 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "inner", objectId: "inner", at: { x: 1.5, y: 3 }, placement: "right" },
+      { key: "outer", objectId: "outer", at: { x: 1.1, y: 6.6 }, placement: "right" },
+      { key: "u-one", objectId: "u-one", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "y-one", objectId: "y-one", at: { x: 1, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Menggunakan Petua Rantai
+
+Contoh-contoh berikut menunjukkan cara proses yang sama berjalan dengan dua lapisan dan tiga lapisan. Dalam setiap contoh, namakan **fungsi luar dan fungsi dalam** sebelum membezakan, kerana petua rantai mendarabkan terbitan luar dengan terbitan dalam.
+
+### Fungsi Berbentuk Kuasa
+
+Cari terbitan pertama bagi <InlineMath math="y = (x^2 - 4x - 2)^8" />.
+
+**Penyelesaian**:
+
+Mula-mula, kita perlu pecahkan fungsi ini kepada dua bahagian: fungsi luar dan fungsi dalam.
+
+-   **Fungsi dalam** (<InlineMath math="u" />) ialah ungkapan di dalam kurungan: <InlineMath math="u = x^2 - 4x - 2" />.
+-   **Fungsi luar** (<InlineMath math="y" />) ialah operasi kuasa: <InlineMath math="y = u^8" />.
+
+Seterusnya, kita cari terbitan bagi setiap fungsi:
+
+-   Terbitan fungsi dalam: <InlineMath math="\frac{du}{dx} = 2x - 4" />.
+-   Terbitan fungsi luar: <InlineMath math="\frac{dy}{du} = 8u^7" />.
+
+Sekarang, kita boleh gabungkan kedua-duanya menggunakan petua rantai:
+
+<MathContainer>
+    <BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}" />
+    <BlockMath math="\frac{dy}{dx} = 8u^7 \cdot (2x - 4)" />
+</MathContainer>
+
+Akhir sekali, kita gantikan semula <InlineMath math="u" /> dan permudahkan ungkapan itu:
+
+<MathContainer>
+    <BlockMath math="\frac{dy}{dx} = 8(x^2 - 4x - 2)^7 (2x - 4)" />
+    <BlockMath math="\frac{dy}{dx} = (16x - 32)(x^2 - 4x - 2)^7" />
+</MathContainer>
+
+Untuk <InlineMath math="y = (x^2 - 4x - 2)^8" />, lihat fungsi dalam <InlineMath math="u = x^2 - 4x - 2" /> sahaja. Tangennya mengufuk pada <InlineMath math="x = 2" />, iaitu apabila <InlineMath math="\frac{du}{dx} = 2x - 4 = 0" />. Jadi <InlineMath math="\frac{dy}{dx} = 8u^7 (2x - 4)" /> juga <InlineMath math="0" /> di situ, tidak kira berapa pun nilai faktor luar <InlineMath math="8u^7" />.
+
+<MathVisual
+  title={<>Tangen mengufuk pada fungsi dalam menjadikan seluruh terbitan sifar</>}
+  description={<>Fungsi dalam <InlineMath math="u = x^2 - 4x - 2" /> dengan tangen mengufuknya di <InlineMath math="(2, -6)" />.</>}
+  labels={{
+    inner: <InlineMath math="u = x^2 - 4x - 2" />,
+    flat: <InlineMath math="\frac{du}{dx} = 0" />,
+    vertex: <InlineMath math="(2, -6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -7, max: -1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "inner", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: -4, c: -2 }, domain: { min: 0, max: 4 }, appearance: "primary" },
+      { id: "flat", kind: "segment", from: { x: 1.2, y: -6 }, to: { x: 2.8, y: -6 }, appearance: "construction" },
+      { id: "vertex", kind: "point", at: { x: 2, y: -6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "inner", objectId: "inner", at: { x: 4, y: -2 }, placement: "right" },
+      { key: "flat", objectId: "flat", at: { x: 2.8, y: -6 }, placement: "right" },
+      { key: "vertex", objectId: "vertex", at: { x: 2, y: -6 }, placement: "below" },
+    ],
+  }}
+/>
+
+### Fungsi Trigonometri
+
+Sudut dalam fungsi trigonometri diukur dalam **radian**, jadi petua pembezaan sinus dan kosinus boleh digunakan tanpa faktor penukaran sudut.
+
+Cari terbitan pertama bagi <InlineMath math="y = \cos^4(3 - 4x)" />.
+
+**Penyelesaian**:
+
+Kita boleh tulis semula fungsi ini sebagai <InlineMath math="y = (\cos(3 - 4x))^4" />. Dalam kes ini, kita perlu menggunakan petua rantai lebih daripada sekali kerana ada tiga lapisan fungsi.
+
+-   **Fungsi paling dalam**: <InlineMath math="v = 3 - 4x" />
+-   **Fungsi tengah**: <InlineMath math="u = \cos(v)" />
+-   **Fungsi paling luar**: <InlineMath math="y = u^4" />
+
+Kemudian, kita bezakan setiap lapisan:
+
+-   Terbitan fungsi paling luar: <InlineMath math="\frac{dy}{du} = 4u^3" />
+-   Terbitan fungsi tengah: <InlineMath math="\frac{du}{dv} = -\sin(v)" />
+-   Terbitan fungsi paling dalam: <InlineMath math="\frac{dv}{dx} = -4" />
+
+Gabungkan semuanya menggunakan petua rantai:
+
+<MathContainer>
+    <BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dv} \cdot \frac{dv}{dx}" />
+    <BlockMath math="\frac{dy}{dx} = (4u^3) \cdot (-\sin(v)) \cdot (-4)" />
+</MathContainer>
+
+Sekarang, gantikan semula <InlineMath math="u" /> dan <InlineMath math="v" /> langkah demi langkah untuk mendapatkan hasil akhir:
+
+<MathContainer>
+    <BlockMath math="\frac{dy}{dx} = (4\cos^3(v)) \cdot (-\sin(v)) \cdot (-4)" />
+    <BlockMath math="\frac{dy}{dx} = 16\cos^3(v)\sin(v)" />
+    <BlockMath math="\frac{dy}{dx} = 16\cos^3(3 - 4x)\sin(3 - 4x)" />
+</MathContainer>
+
+Fungsi dalam menentukan kelajuan. Untuk <InlineMath math="y = \sin 2x" />, fungsi luarnya ialah <InlineMath math="\sin u" /> dan fungsi dalamnya ialah <InlineMath math="u = 2x" />, jadi <InlineMath math="\frac{dy}{dx} = \cos(2x) \cdot 2" />. Faktor dalam <InlineMath math="2" /> menggandakan setiap kecerunan sinus biasa: pada <InlineMath math="x = 0" />, kecerunan <InlineMath math="\sin x" /> ialah <InlineMath math="1" />, tetapi kecerunan <InlineMath math="\sin 2x" /> ialah <InlineMath math="2" />. Palang-palang di bawah menunjukkan <InlineMath math="2\cos 2x" /> pada lima input, dengan <InlineMath math="x" /> dalam radian.
+
+<BarChart
+  title={<>Kecerunan <InlineMath math="y = \sin 2x" /> pada lima input</>}
+  description={<>Palang <InlineMath math="\frac{{dy}}{{dx}} = 2\cos 2x" /> untuk <InlineMath math="x = 0, 0.25, 0.5, 0.75, 1" />, bermula pada <InlineMath math="2" /> dan jatuh ke bawah sifar sebaik sahaja <InlineMath math="2x" /> melepasi <InlineMath math="\frac{\pi}{2}" />.</>}
+  yAxisLabel="Kecerunan"
+  data={[0, 0.25, 0.5, 0.75, 1].map((x) => ({ name: String(x), value: 2 * Math.cos(2 * x) }))}
+  chartConfig={{ value: { label: "Kecerunan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Latihan
+
+Setiap soalan meletakkan satu fungsi di dalam fungsi yang lain, jadi petua rantai diperlukan. Kenal pasti **fungsi luar dan fungsi dalam** sebelum membezakan.
+
+1.  Cari terbitan pertama bagi <InlineMath math="y = (3x^2 - 1)^3" />.
+2.  Cari terbitan pertama bagi <InlineMath math="y = \sin^3(2x)" />.
+
+### Jalan Kerja
+
+**Soalan 1**. Untuk <InlineMath math="y=(3x^2-1)^3" />, operasi kuasa tiga ialah **fungsi luar** dan ungkapan kuadratik ialah **fungsi dalam**. Biarkan ungkapan kuadratik itu di tempatnya semasa membezakan kuasa tiga.
+
+**Langkah 1**: Kenal pasti fungsinya
+-   **Fungsi dalam**: <InlineMath math="u = 3x^2 - 1" />
+-   **Fungsi luar**: <InlineMath math="y = u^3" />
+
+**Langkah 2**: Cari terbitan bagi setiap fungsi
+-   <InlineMath math="\frac{du}{dx} = 6x" />
+-   <InlineMath math="\frac{dy}{du} = 3u^2" />
+
+**Langkah 3**: Gabungkan dengan petua rantai
+
+<MathContainer>
+    <BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}" />
+    <BlockMath math="\frac{dy}{dx} = 3u^2 \cdot 6x = 18x \cdot u^2" />
+</MathContainer>
+
+**Langkah 4**: Jangan lupa gantikan semula
+
+<BlockMath math="\frac{dy}{dx} = 18x(3x^2 - 1)^2" />
+
+**Soalan 2**. Untuk <InlineMath math="y=\sin^3(2x)" />, **tiga lapisan** menghasilkan tiga faktor terbitan. Tulis fungsi linear, sinus dan kuasa tiga secara berasingan supaya faktor daripada fungsi linear itu tidak tertinggal.
+
+**Langkah 1**: Kenal pasti fungsinya
+-   Fungsi paling dalam: <InlineMath math="v = 2x" />
+-   Fungsi tengah: <InlineMath math="u = \sin(v)" />
+-   Fungsi paling luar: <InlineMath math="y = u^3" />
+
+**Langkah 2**: Cari terbitan bagi setiap fungsi
+-   <InlineMath math="\frac{dv}{dx} = 2" />
+-   <InlineMath math="\frac{du}{dv} = \cos(v)" />
+-   <InlineMath math="\frac{dy}{du} = 3u^2" />
+
+**Langkah 3**: Gabungkan dengan petua rantai
+
+<MathContainer>
+    <BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dv} \cdot \frac{dv}{dx}" />
+    <BlockMath math="\frac{dy}{dx} = (3u^2) \cdot (\cos(v)) \cdot (2)" />
+</MathContainer>
+
+**Langkah 4**: Gantikan semula dan permudahkan
+
+<MathContainer>
+    <BlockMath math="\frac{dy}{dx} = 6u^2 \cos(v)" />
+    <BlockMath math="\frac{dy}{dx} = 6\sin^2(v) \cos(v)" />
+    <BlockMath math="\frac{dy}{dx} = 6\sin^2(2x) \cos(2x)" />
+</MathContainer>

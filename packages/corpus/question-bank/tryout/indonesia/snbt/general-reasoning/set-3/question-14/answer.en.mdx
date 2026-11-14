@@ -1,27 +1,31 @@
-Find every possible arrangement. Start with **the pair K and L**, because they must share a shelf and take two places at once. The shelves are *rak atas* (top), *rak tengah* (middle), and *rak bawah* (bottom).
+A statement that could be true (*MUNGKIN*) only has to hold in **at least one valid arrangement**. The other four statements must be impossible in every arrangement. So the safest route is to find all valid arrangements first and then test each statement.
 
-O already takes one place on the middle shelf, so the middle shelf has only two places left. K and L can be on the top, middle, or bottom shelf.
+Lock down the most constrained people first, then place everyone else one by one.
 
-**K and L on the top shelf**. The top shelf is full. P must be higher than Q, so P is in the middle and Q at the bottom. M and N fill the last middle place and the last bottom place, in two possible ways.
+- Rule 1 gives two cases: Asri in chair 1 and Bonar in chair 5, or Bonar in chair 1 and Asri in chair 5. In both cases, chairs 3 and 7 are two chairs away from Asri.
+- Dimas can't sit next to Asri (rule 3). He can't sit in chair 3 or chair 7 either. If Dimas is in chair 3, Elok faces him from chair 7, and then Fajar has to be two chairs from Elok, in chair 5 or chair 1. Those belong to Asri and Bonar, so Fajar gets no chair. The same happens with Dimas in chair 7. So Dimas sits next to Bonar.
+- Cahya sits next to Dimas (rule 2). Bonar already takes one of Dimas's neighbouring chairs, so Cahya takes the other one, which is chair 3 or chair 7.
+- Elok faces Dimas (rule 4), which puts Elok next to Asri, on the side away from Cahya.
+- Fajar is two chairs from Elok (rule 5). Two empty chairs fit, so the tree splits in two.
+- Galuh and Hamid fill the last two chairs, with Galuh on the smaller number (rule 6). Rule 7 then removes the two arrangements that put Hamid next to Cahya.
 
-**K and L on the middle shelf**. The middle shelf holds K, L, and O. The top and bottom shelves each have two places for M, N, P, and Q. N cannot be on top, so N is at the bottom. M must be on a different shelf from N, so M is on top. P must be higher than Q, so P is on top and Q at the bottom.
+That leaves six valid arrangements. Columns 1 to 8 are chair numbers, and each person is written by the first letter of their name, so A is Asri and F is Fajar.
 
-**K and L on the bottom shelf**. The top shelf and the two remaining middle places hold M, N, P, and Q. N cannot be on top, so N is in the middle. M must be on a different shelf from N, so M is on top. Q cannot be higher than P, so P is on top and Q in the middle.
+| Arrangement | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| I | A | F | C | D | B | G | H | E |
+| II | A | G | C | D | B | F | H | E |
+| III | A | E | G | H | B | D | C | F |
+| IV | B | D | C | F | A | E | G | H |
+| V | B | D | C | G | A | E | H | F |
+| VI | B | G | H | E | A | F | C | D |
 
-| Arrangement | Top shelf | Middle shelf | Bottom shelf |
-| --- | --- | --- | --- |
-| I | K, L | M, O, P | N, Q |
-| II | K, L | N, O, P | M, Q |
-| III | M, P | K, L, O | N, Q |
-| IV | M, P | N, O, Q | K, L |
+Now test each statement.
 
-In all four arrangements, **K is never on the same shelf as M**. This statement must be true.
+- Hamid in chair 4 happens in arrangement III. Check the rules: Asri (1) faces Bonar (5), Dimas (6) sits next to Cahya (7) and not next to Asri, Elok (2) faces Dimas (6), Fajar (8) is two chairs from Elok (2), Galuh (3) has a smaller number than Hamid (4), and Hamid isn't next to Cahya. Every rule holds, so this statement could be true.
+- Dimas in chair 3 is impossible, because Fajar runs out of chairs, as shown above. It's a trap if you only check rules 2 to 4 and forget to make sure Fajar still has a seat.
+- Asri in chair 1 together with Fajar in chair 4 is impossible. With Asri in chair 1, Fajar can only be in chair 4 if Cahya is in chair 7, Dimas in chair 6 and Elok in chair 2. The leftover chairs are 3 and 8, so Galuh takes 3 and Hamid takes 8, but chair 8 is next to Cahya in chair 7. This trap catches anyone who forgets rule 7.
+- Fajar facing Cahya is impossible. Cahya always sits in an odd chair (3 or 7). Elok sits next to Asri, whose chair is odd, so Elok's chair is even, and Fajar, two chairs from Elok, is even too. Facing chairs differ by <InlineMath math="4" />, so they're both odd or both even. This statement looks free only because no rule links Fajar and Cahya directly.
+- Hamid in chair 6 is impossible as well. When Asri is in chair 1 and Cahya in chair 3, Hamid must take chair 7, because his number has to be larger than Galuh's. When Bonar is in chair 1 and Cahya in chair 7, Hamid in chair 6 would sit next to Cahya. In the other two cases, chair 6 belongs to Dimas or Elok. The trap is swapping Galuh and Hamid without checking rules 6 and 7.
 
-The other statements do not hold in every arrangement:
-
-- P is on the top shelf in III and IV.
-- Q is on the middle shelf in IV.
-- N is on the middle shelf in II and IV.
-- M is on the middle shelf in I and on the bottom shelf in II.
-
-So the statement that must be true is that K is not on the same shelf as M.
+So the statement that could be true is that Hamid sits in chair 4.

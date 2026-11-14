@@ -4,37 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "text-relation",
   },
-  stimulus: "machine-pictures",
+  stimulus: "homeschooling",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Many people enjoy making pictures with image generators in their free time.",
+            "Household surveys can show how many of the families who began homeschooling in 2020 are still doing it.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Some image generators can now produce a finished picture in under a second.",
+            "Many homeschooled children reach a high level of achievement.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The Copyright Office receives more applications each year than it did before.",
+            "Test-score studies show that learning at home is what makes homeschooled students do well.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Most pictures made with image generators are shared online without any credit.",
+            "Some children who struggled at school do better once they are taught at home.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Detailed prompts can fix layout, colour and style so each run looks alike.",
+            "Parents without teacher training generally teach their own children less well than trained teachers would.",
         },
       ],
     },

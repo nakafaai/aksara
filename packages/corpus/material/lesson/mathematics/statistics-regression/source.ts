@@ -10,6 +10,7 @@ export const lessonMathematicsStatisticsRegressionMaterial =
       de: "regression-und-korrelation",
       en: "statistics-regression",
       id: "regresi-statistik",
+      ms: "regresi-dan-korelasi",
     },
     sections: [
       {
@@ -17,6 +18,7 @@ export const lessonMathematicsStatisticsRegressionMaterial =
           de: "bestimmtheitsmass",
           en: "coefficient-of-determination",
           id: "koefisien-determinasi",
+          ms: "pekali-penentuan",
         },
         slug: "coefficient-of-determination",
       },
@@ -25,6 +27,7 @@ export const lessonMathematicsStatisticsRegressionMaterial =
           de: "grundidee-der-korrelationsanalyse",
           en: "correlation-analysis-concept",
           id: "konsep-analisis-korelasi",
+          ms: "konsep-analisis-korelasi",
         },
         slug: "correlation-analysis-concept",
       },
@@ -33,6 +36,7 @@ export const lessonMathematicsStatisticsRegressionMaterial =
           de: "methode-der-kleinsten-quadrate",
           en: "least-squares-method",
           id: "metode-kuadrat-terkecil",
+          ms: "kaedah-kuasa-dua-terkecil",
         },
         slug: "least-squares-method",
       },
@@ -41,6 +45,7 @@ export const lessonMathematicsStatisticsRegressionMaterial =
           de: "grundidee-der-linearen-regression",
           en: "linear-regression-concept",
           id: "konsep-regresi-linear",
+          ms: "konsep-regresi-linear",
         },
         slug: "linear-regression-concept",
       },
@@ -49,6 +54,7 @@ export const lessonMathematicsStatisticsRegressionMaterial =
           de: "produkt-moment-korrelation",
           en: "product-moment-correlation",
           id: "korelasi-product-moment",
+          ms: "korelasi-momen-hasil-darab",
         },
         slug: "product-moment-correlation",
       },
@@ -57,6 +63,7 @@ export const lessonMathematicsStatisticsRegressionMaterial =
           de: "streudiagramm",
           en: "scatter-diagram",
           id: "diagram-pencar-atau-diagram-scatter",
+          ms: "gambar-rajah-serakan",
         },
         slug: "scatter-diagram",
       },
@@ -74,6 +81,10 @@ export const lessonMathematicsStatisticsRegressionMaterial =
       id: {
         description: "Tafsirkan koefisien determinasi suatu model.",
         title: "Statistika",
+      },
+      ms: {
+        description: "Tafsirkan pekali penentuan sesuatu model.",
+        title: "Statistik",
       },
     },
   });

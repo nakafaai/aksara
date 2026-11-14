@@ -4,28 +4,30 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "conditional-chain",
+    topic: "quantifiers",
   },
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
+      columns: ["Pasti benar", "Tidak pasti benar"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label: "Pada hari Kamis, hujan tidak turun sebelum pukul $$15.00$$.",
-        },
-        {
           column: 2,
-          label: "Pada hari Kamis, latihan sepak bola dipindahkan ke aula.",
-        },
-        {
-          column: 2,
-          label: "Pada hari Kamis, hujan turun setelah pukul $$15.00$$.",
+          label:
+            "Tidak ada stan penjual anyaman yang menerima pembayaran nontunai.",
         },
         {
           column: 1,
-          label: "Pada hari Kamis, tim basket tidak berlatih di halaman.",
+          label:
+            "Sebagian stan di lantai dua tidak menerima pembayaran nontunai.",
+        },
+        {
+          column: 1,
+          label: "Sebagian stan penjual anyaman tidak menjual batik tulis.",
+        },
+        {
+          column: 2,
+          label: "Sebagian stan penjual batik tulis berada di lantai dua.",
         },
       ],
     },

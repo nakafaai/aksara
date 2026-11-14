@@ -1,19 +1,43 @@
-Nutze die vollständige Liste der vier Anordnungen und **behalte die, in denen M und P auf demselben Brett stehen**.
+Gefragt ist, wie viele Sitzordnungen **alle sieben Regeln zugleich** erfüllen. Die Stühle sind nummeriert, also zählen zwei Sitzordnungen, die sich nur durch ein Weiterrücken aller um einen Stuhl unterscheiden, als zwei.
 
-| Anordnung | Oberes Brett | Mittleres Brett | Unteres Brett | M und P zusammen? |
-| --- | --- | --- | --- | --- |
-| I | K, L | M, O, P | N, Q | Ja, Mitte |
-| II | K, L | N, O, P | M, Q | Nein |
-| III | M, P | K, L, O | N, Q | Ja, oben |
-| IV | M, P | N, O, Q | K, L | Ja, oben |
+Am sichersten legst du zuerst die Personen fest, die am stärksten gebunden sind, und setzt dann alle anderen nacheinander. Gibt es mehr als eine Wahl, notierst du einen neuen Zweig.
 
-Drei Anordnungen erfüllen die Zusatzbedingung: I, III und IV.
+Fang mit Regel 1 an. Es gibt nur zwei Möglichkeiten: Asri auf Stuhl 1 und Bonar auf Stuhl 5, oder Bonar auf Stuhl 1 und Asri auf Stuhl 5. In beiden Fällen sind die Stühle 3 und 7 zwei Stühle von Asri entfernt.
 
-Die anderen Optionen entstehen aus diesen Fehlern:
+Such jetzt den Stuhl von Dimas. Die freien Stühle teilen sich in drei Sorten: Asris zwei Nachbarn, die zwei Stühle, die zwei Plätze von Asri entfernt sind (Stuhl 3 und Stuhl 7), und Bonars zwei Nachbarn.
 
-- <InlineMath math="4" /> ist die Gesamtzahl der Anordnungen ohne Zusatzbedingung.
-- <InlineMath math="2" /> entsteht, wenn man nur die Anordnungen mit M und P oben zählt und Anordnung I übersieht.
-- <InlineMath math="1" /> entsteht, wenn man nur einen Fall prüft.
-- <InlineMath math="6" /> entsteht, wenn man die Reihenfolge der Bücher auf einem Brett als eigene Anordnung zählt, obwohl nur gefragt ist, auf welchem Brett jedes Buch steht.
+- Asris Nachbarn verbietet Regel 3 sofort.
+- Probier Dimas auf Stuhl 3. Nach Regel 4 sitzt Elok auf Stuhl 7. Nach Regel 5 müsste Fajar auf Stuhl 5 oder Stuhl 1, die aber Asri und Bonar gehören. Fajar bekommt keinen Stuhl. Mit Dimas auf Stuhl 7 passiert dasselbe, weil Elok dann auf Stuhl 3 sitzt. Diese Wahl fällt weg.
 
-Es sind also <InlineMath math="3" /> Anordnungen möglich.
+Dimas sitzt also immer neben Bonar. Ab hier rasten alle anderen ein.
+
+- Cahya sitzt neben Dimas (Regel 2). Einen Nachbarstuhl von Dimas hat schon Bonar, also nimmt Cahya den anderen, nämlich Stuhl 3 oder Stuhl 7.
+- Elok sitzt Dimas gegenüber (Regel 4) und landet damit neben Asri, auf der Seite, die von Cahya weg zeigt.
+- Fajar sitzt zwei Stühle von Elok entfernt (Regel 5). Zwei freie Stühle passen: der zwischen Asri und Cahya oder der freie neben Bonar.
+- Galuh und Hamid bekommen die letzten zwei Stühle. Regel 6 gibt Galuh die kleinere Nummer, also gibt es nur eine Möglichkeit.
+- Regel 7 streicht dann jede Sitzordnung, in der Hamid neben Cahya sitzt.
+
+Die Tabelle hält jeden Zweig fest. Die Zahlen darin sind Stuhlnummern. Bonar sitzt Asri immer gegenüber, also auf Stuhl 5, wenn Asri auf Stuhl 1 sitzt, und auf Stuhl 1, wenn Asri auf Stuhl 5 sitzt.
+
+| Asri | Cahya | Dimas | Elok | Fajar | Galuh | Hamid | Regel 7 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 3 | 4 | 8 | 2 | 6 | 7 | erfüllt |
+| 1 | 3 | 4 | 8 | 6 | 2 | 7 | erfüllt |
+| 1 | 7 | 6 | 2 | 4 | 3 | 8 | verletzt |
+| 1 | 7 | 6 | 2 | 8 | 3 | 4 | erfüllt |
+| 5 | 3 | 2 | 6 | 4 | 7 | 8 | erfüllt |
+| 5 | 3 | 2 | 6 | 8 | 4 | 7 | erfüllt |
+| 5 | 7 | 8 | 4 | 2 | 3 | 6 | verletzt |
+| 5 | 7 | 8 | 4 | 6 | 2 | 3 | erfüllt |
+
+Die zwei Zeilen, die Regel 7 verletzen, setzen Hamid direkt neben Cahya: Stuhl 8 neben Stuhl 7 und Stuhl 6 neben Stuhl 7. Die Zählung sieht so aus.
+
+<BlockMath math="\begin{aligned} \text{Kandidaten} &= 2 \times 2 \times 2 = 8 \\ \text{gültige Sitzordnungen} &= 8 - 2 = 6 \end{aligned}" />
+
+Der erste Faktor kommt von den zwei Möglichkeiten für Asris Stuhl, der zweite von den zwei Möglichkeiten für Cahyas Stuhl und der dritte von den zwei Möglichkeiten für Fajars Stuhl. Galuh und Hamid erzeugen keine weiteren Zweige, weil Regel 6 ihre Reihenfolge schon festlegt.
+
+Zur Kontrolle nimm die letzte Zeile: Bonar 1, Galuh 2, Hamid 3, Elok 4, Asri 5, Fajar 6, Cahya 7, Dimas 8. Asri sitzt Bonar gegenüber, Dimas sitzt neben Cahya, aber nicht neben Asri, Elok auf Stuhl 4 sitzt Dimas auf Stuhl 8 gegenüber, Fajar auf Stuhl 6 ist zwei Stühle von Elok entfernt, Galuhs Nummer ist kleiner als Hamids, und Hamid auf Stuhl 3 sitzt nicht neben Cahya auf Stuhl 7. Alle Regeln gelten.
+
+Andere häufige Ergebnisse entstehen durch einen ausgelassenen Schritt. Auf <InlineMath math="8" /> kommst du, wenn du Regel 7 vergisst. Auf <InlineMath math="3" /> kommst du, wenn du nur den Fall mit Asri auf Stuhl 1 zählst. Auf <InlineMath math="12" /> kommst du, wenn du Regel 6 übergehst, weil Galuh und Hamid dann tauschen dürfen.
+
+Die Anzahl der Sitzordnungen, die alle Regeln erfüllen, ist also <InlineMath math="6" />.

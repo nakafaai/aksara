@@ -1,0 +1,322 @@
+export const metadata = {
+  title: "Persilangan Garis dan Bulatan",
+  description: "Garis boleh memotong bulatan pada dua titik, menyentuhnya pada satu titik, atau tidak bertemu langsung. Tentukan kedudukannya dengan pembezalayan atau jarak dari pusat.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Geometri Analitik",
+};
+
+## Tiga Cara Garis Boleh Bertemu Bulatan
+
+Garis dan bulatan pada satah yang sama hanya ada tiga kemungkinan. Garis itu **memotong bulatan pada dua titik**, **menyentuh bulatan pada tepat satu titik**, atau **tidak bertemu bulatan langsung**. Garis yang memotong bulatan dua kali dipanggil sekan, dan garis yang menyentuhnya sekali dipanggil tangen.
+
+Kamu boleh tentukan kes mana yang berlaku dengan dua cara, dan kedua-duanya sentiasa memberikan jawapan yang sama:
+
+| Kedudukan | Pembezalayan selepas penggantian | Jarak dari pusat ke garis |
+| --- | --- | --- |
+| Memotong pada dua titik | <InlineMath math="\Delta > 0" /> | <InlineMath math="d < r" /> |
+| Menyentuh pada satu titik | <InlineMath math="\Delta = 0" /> | <InlineMath math="d = r" /> |
+| Tidak bertemu | <InlineMath math="\Delta < 0" /> | <InlineMath math="d > r" /> |
+
+<MathVisual
+  title={<>Tiga garis mengufuk dan bulatan berjejari <InlineMath math="3" /></>}
+  description={<>Garis <InlineMath math="y = 1" /> memotong bulatan, garis <InlineMath math="y = 3" /> menyentuhnya di <InlineMath math="(0, 3)" />, dan garis <InlineMath math="y = 4.5" /> tidak mengenainya.</>}
+  labels={{
+    "l1": <>Tiada persilangan</>,
+    "l2": <>Tangen</>,
+    "l3": <>Memotong</>,
+    "l4": <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -5, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-5) + (t * (5 - (-5))))", y: "4.5", parameter: { min: 0, max: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-5) + (t * (5 - (-5))))", y: "3", parameter: { min: 0, max: 1 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "((-5) + (t * (5 - (-5))))", y: "1", parameter: { min: 0, max: 1 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "s6", kind: "parametric", x: "((-6) + (t * (6 - (-6))))", y: "0", parameter: { min: 0, max: 1 }, appearance: "warning" },
+      { id: "s7", kind: "parametric", x: "0", y: "((-4) + (t * (5 - (-4))))", parameter: { min: 0, max: 1 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 5, y: 4.5 }, placement: "above-left" },
+      { key: "l2", objectId: "s3", at: { x: 5, y: 3 }, placement: "above-left" },
+      { key: "l3", objectId: "s4", at: { x: 5, y: 1 }, placement: "above-left" },
+      { key: "l4", objectId: "s5", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Bulatan dalam graf ini berpusat <InlineMath math="P(0, 0)" /> dan berjejari <InlineMath math="3" />. Garis <InlineMath math="y = 1" /> berada pada jarak <InlineMath math="1" /> dari pusat, lebih dekat daripada jejari, jadi garis itu melalui bahagian dalam bulatan. Garis <InlineMath math="y = 3" /> berada pada jarak tepat <InlineMath math="3" /> dan hanya menyentuh titik <InlineMath math="(0, 3)" />. Garis <InlineMath math="y = 4.5" /> lalu di atas bulatan tanpa menyentuhnya.
+
+## Mengapa Pembezalayan Mengira Titik Persilangan
+
+Titik persilangan garis dan bulatan mesti memenuhi **kedua-dua persamaan serentak**. Jadi gantikan garis <InlineMath math="y = mx + c" /> ke dalam bulatan <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />. Hasilnya ialah persamaan kuadratik dalam <InlineMath math="x" />:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;x^2 + (mx + c)^2 + Dx \\ &amp;\quad{}+ E(mx + c) + F = 0 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;x^2 + m^2x^2 + 2mcx + c^2 \\ &amp;\quad{}+ Dx + Emx + Ec + F = 0 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;(1 + m^2)x^2 + (2mc + D + Em)x \\ &amp;\quad{}+ (c^2 + Ec + F) = 0 \end{aligned}" />
+</MathContainer>
+
+Pekali-pekalinya ditulis dengan huruf besar supaya tidak tertukar dengan pemalar garis, <InlineMath math="c" />:
+
+<MathContainer>
+  <BlockMath math="A = 1 + m^2" />
+  <BlockMath math="B = 2mc + D + Em" />
+  <BlockMath math="C = c^2 + Ec + F" />
+</MathContainer>
+
+Setiap punca nyata <InlineMath math="x" /> memberikan tepat satu titik persilangan, kerana persamaan garis terus memberikan nilai <InlineMath math="y" /> yang sepadan. Jadi bilangan titik persilangan sama dengan bilangan punca nyata yang berbeza, dan **pembezalayan** memberitahu kamu bilangan itu:
+
+<BlockMath math="\Delta = B^2 - 4AC" />
+
+Pekali <InlineMath math="A = 1 + m^2" /> tidak pernah sifar, jadi penggantian ini sentiasa memberikan persamaan kuadratik. Petua tandanya sama dengan petua bagi [jenis punca persamaan kuadratik](/ms/subjek/matematik/fungsi-kuadratik/jenis-punca-persamaan-kuadratik): dua punca nyata yang berbeza, satu punca berulang, atau tiada punca nyata.
+
+Garis mencancang <InlineMath math="x = k" /> tidak boleh ditulis sebagai <InlineMath math="y = mx + c" />. Bagi garis seperti ini, gantikan <InlineMath math="x = k" /> dan selesaikan persamaan kuadratik dalam <InlineMath math="y" />. Contohnya, <InlineMath math="x = 3" /> dalam <InlineMath math="x^2 + y^2 = 9" /> memberikan <InlineMath math="9 + y^2 = 9" />, jadi <InlineMath math="y = 0" /> ialah punca berulang. Garis <InlineMath math="x = 3" /> menyentuh bulatan di <InlineMath math="(3, 0)" />. Semak: jarak dari pusat <InlineMath math="(0, 0)" /> ke garis <InlineMath math="x = 3" /> ialah <InlineMath math="3 = r" />.
+
+## Membandingkan Jarak dari Pusat dengan Jejari
+
+Cara kedua menggunakan geometri. Tangen sentiasa **berserenjang dengan jejari di titik sentuhan**, jadi jarak terpendek dari pusat ke tangen sama dengan jejari. Garis yang lebih dekat dengan pusat pasti melalui bahagian dalam bulatan, dan garis yang lebih jauh pasti lalu di luarnya.
+
+Bagi bulatan berpusat <InlineMath math="(a, b)" /> dan garis <InlineMath math="px + qy + s = 0" />, jarak dari pusat ke garis itu ialah
+
+<BlockMath math="d = \frac{|pa + qb + s|}{\sqrt{p^2 + q^2}}" />
+
+Bandingkan <InlineMath math="d" /> dengan jejari <InlineMath math="r" />: <InlineMath math="d < r" /> bermaksud dua titik persilangan, <InlineMath math="d = r" /> bermaksud satu titik sentuhan, dan <InlineMath math="d > r" /> bermaksud tiada titik sepunya. Cara ini tidak memerlukan penggantian, jadi sesuai untuk soalan yang hanya bertanya tentang kedudukan. Idea yang sama menentukan [kedudukan titik terhadap bulatan](/ms/subjek/matematik/geometri-analitik/kedudukan-titik-terhadap-bulatan), iaitu jarak dari satu titik ke pusat dibandingkan dengan <InlineMath math="r" />.
+
+<MathVisual
+  title="Tiga garis selari dan satu jejari yang berserenjang"
+  description={<>Bulatan <InlineMath math="x^2 + y^2 = 9" /> dengan garis <InlineMath math="3x + 4y = 10" />, <InlineMath math="3x + 4y = 15" />, dan <InlineMath math="3x + 4y = 20" />. Tembereng dari <InlineMath math="O" /> berserenjang dengan ketiga-tiga garis itu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 6 }, y: { min: -4, max: 6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "primary" },
+      { id: "near", kind: "line", through: [{ x: -2, y: 4 }, { x: 2, y: 1 }], appearance: "secondary" },
+      { id: "touch", kind: "line", through: [{ x: 1, y: 3 }, { x: 5, y: 0 }], appearance: "highlight" },
+      { id: "far", kind: "line", through: [{ x: 0, y: 5 }, { x: 4, y: 2 }], appearance: "warning" },
+      { id: "normal", kind: "segment", from: { x: 0, y: 0 }, to: { x: 12 / 5, y: 16 / 5 }, appearance: "construction" },
+      { id: "touch-point", kind: "point", at: { x: 9 / 5, y: 12 / 5 }, appearance: "highlight" },
+      { id: "center", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "near", objectId: "near", at: { x: -2, y: 4 }, placement: "above-right" },
+      { key: "touch", objectId: "touch", at: { x: 5, y: 0 }, placement: "above-right" },
+      { key: "far", objectId: "far", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "center", objectId: "center", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    near: <InlineMath math="d = 2" />,
+    touch: <InlineMath math="d = 3" />,
+    far: <InlineMath math="d = 4" />,
+    center: <InlineMath math="O" />,
+  }}
+/>
+
+Ketiga-tiga garis itu selari, jadi jaraknya dari <InlineMath math="O" /> diukur sepanjang satu tembereng yang berserenjang. Bagi <InlineMath math="3x + 4y - 15 = 0" />, jaraknya ialah <InlineMath math="d = \frac{|-15|}{\sqrt{3^2 + 4^2}} = \frac{15}{5} = 3 = r" />, jadi garis itu ialah tangen. Hujung tembereng berserenjang itu, <InlineMath math="\left(\frac{9}{5}, \frac{12}{5}\right)" />, ialah titik sentuhan. Semak: <InlineMath math="\frac{81}{25} + \frac{144}{25} = 9" />. Dengan rumus yang sama, <InlineMath math="3x + 4y = 10" /> berada pada jarak <InlineMath math="2" /> dan memotong bulatan, manakala <InlineMath math="3x + 4y = 20" /> berada pada jarak <InlineMath math="4" /> dan tidak mengenainya.
+
+## Contoh Sekan dan Titik Persilangannya
+
+Cari kedudukan garis <InlineMath math="y = 2x - 1" /> terhadap bulatan <InlineMath math="x^2 + y^2 - 4x + 2y - 4 = 0" />, kemudian cari titik-titik persilangannya.
+
+Gantikan <InlineMath math="y = 2x - 1" /> ke dalam persamaan bulatan:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;x^2 + (2x - 1)^2 - 4x \\ &amp;\quad{}+ 2(2x - 1) - 4 = 0 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;x^2 + 4x^2 - 4x + 1 \\ &amp;\quad{}- 4x + 4x - 2 - 4 = 0 \end{aligned}" />
+  <BlockMath math="5x^2 - 4x - 5 = 0" />
+</MathContainer>
+
+Pekalinya ialah <InlineMath math="A = 5" />, <InlineMath math="B = -4" />, dan <InlineMath math="C = -5" />, jadi
+
+<BlockMath math="\Delta = (-4)^2 - 4(5)(-5) = 16 + 100 = 116" />
+
+Oleh sebab <InlineMath math="\Delta = 116 > 0" />, garis itu **memotong bulatan pada dua titik**. Rumus kuadratik memberikan koordinat-x kedua-dua titik itu, dan persamaan garis memberikan koordinat-y:
+
+<MathContainer>
+  <BlockMath math="x=\frac{4\pm\sqrt{116}}{10}=\frac{4\pm2\sqrt{29}}{10}=\frac{2\pm\sqrt{29}}5" />
+  <BlockMath math="y=2x-1=\frac{4\pm2\sqrt{29}}5-1=\frac{-1\pm2\sqrt{29}}5" />
+</MathContainer>
+
+Tanda atas dalam kedua-dua koordinat digunakan bersama. Jadi titik-titik persilangannya ialah <InlineMath math="A\left(\frac{2+\sqrt{29}}5, \frac{-1+2\sqrt{29}}5\right)" /> dan <InlineMath math="B\left(\frac{2-\sqrt{29}}5, \frac{-1-2\sqrt{29}}5\right)" />. Dalam perpuluhan, <InlineMath math="A" /> terletak berhampiran <InlineMath math="x \approx 1.48" /> dan <InlineMath math="B" /> berhampiran <InlineMath math="x \approx -0.68" />.
+
+<MathVisual
+  title="Garis yang memotong bulatan di A dan B"
+  description={<>Bulatan ini berpusat <InlineMath math="C(2, -1)" /> dan berjejari <InlineMath math="3" />. Tembereng <InlineMath math="d" /> berserenjang dengan garis itu dan jatuh di titik tengah perentas <InlineMath math="AB" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 6 }, y: { min: -5, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 2, y: -1 }, radius: 3, appearance: "primary" },
+      { id: "line", kind: "line", through: [{ x: 0, y: -1 }, { x: 2, y: 3 }], appearance: "secondary" },
+      { id: "a", kind: "point", at: { x: (2 + Math.sqrt(29)) / 5, y: (-1 + 2 * Math.sqrt(29)) / 5 }, appearance: "answer" },
+      { id: "b", kind: "point", at: { x: (2 - Math.sqrt(29)) / 5, y: (-1 - 2 * Math.sqrt(29)) / 5 }, appearance: "answer" },
+      { id: "center", kind: "point", at: { x: 2, y: -1 }, appearance: "reference" },
+      { id: "distance", kind: "segment", from: { x: 2, y: -1 }, to: { x: 2 / 5, y: -1 / 5 }, appearance: "construction" },
+      { id: "radius", kind: "segment", from: { x: 2, y: -1 }, to: { x: (2 + Math.sqrt(29)) / 5, y: (-1 + 2 * Math.sqrt(29)) / 5 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: (2 + Math.sqrt(29)) / 5, y: (-1 + 2 * Math.sqrt(29)) / 5 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: (2 - Math.sqrt(29)) / 5, y: (-1 - 2 * Math.sqrt(29)) / 5 }, placement: "right" },
+      { key: "center", objectId: "center", at: { x: 2, y: -1 }, placement: "right" },
+      { key: "distance", objectId: "distance", at: { x: 6 / 5, y: -3 / 5 }, placement: "below" },
+      { key: "radius", objectId: "radius", at: { x: (12 + Math.sqrt(29)) / 10, y: (-6 + 2 * Math.sqrt(29)) / 10 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    center: <InlineMath math="C" />,
+    distance: <InlineMath math="d" />,
+    radius: <InlineMath math="r = 3" />,
+  }}
+/>
+
+Semak dengan kaedah jarak. Penyempurnaan kuasa dua memberikan <InlineMath math="(x - 2)^2 + (y + 1)^2 = 9" />, jadi pusatnya <InlineMath math="C(2, -1)" /> dan <InlineMath math="r = 3" />, seperti dalam [persamaan bulatan](/ms/subjek/matematik/geometri-analitik/persamaan-bulatan). Tulis garis itu sebagai <InlineMath math="2x - y - 1 = 0" />, kemudian kira <InlineMath math="d = \frac{|2 \cdot 2 - (-1) - 1|}{\sqrt{5}} = \frac{4}{\sqrt{5}} \approx 1.79" />. Oleh sebab <InlineMath math="1.79 < 3" />, kaedah jarak juga menunjukkan bahawa garis itu memotong bulatan.
+
+Hujung tembereng <InlineMath math="d" /> jatuh di <InlineMath math="\left(\frac{2}{5}, -\frac{1}{5}\right)" />. Titik itu juga titik tengah <InlineMath math="AB" />, kerana <InlineMath math="CA = CB = r" />, jadi garis serenjang dari <InlineMath math="C" /> membahagi perentas itu kepada dua bahagian yang sama. Kiraannya pun sepadan: tanda <InlineMath math="\pm" /> saling membatalkan apabila kamu mencari purata dua koordinat itu. Panjang perentas itu ialah <InlineMath math="AB = 2\sqrt{r^2 - d^2} = 2\sqrt{9 - \frac{16}{5}} \approx 4.82" />.
+
+## Contoh Syarat untuk Tangen
+
+Cari nilai-nilai <InlineMath math="k" /> supaya garis <InlineMath math="y = x + k" /> menyentuh bulatan <InlineMath math="x^2 + y^2 = 18" />.
+
+Garis itu ialah tangen tepat apabila **pembezalayannya sifar**. Gantikan garis itu ke dalam bulatan:
+
+<MathContainer>
+  <BlockMath math="x^2 + (x + k)^2 = 18" />
+  <BlockMath math="x^2 + x^2 + 2kx + k^2 = 18" />
+  <BlockMath math="2x^2 + 2kx + (k^2 - 18) = 0" />
+</MathContainer>
+
+Pembezalayannya ialah <InlineMath math="\Delta = (2k)^2 - 4(2)(k^2 - 18) = -4k^2 + 144" />. Syarat <InlineMath math="\Delta = 0" /> memberikan:
+
+<MathContainer>
+  <BlockMath math="-4k^2 + 144 = 0" />
+  <BlockMath math="k^2 = 36" />
+  <BlockMath math="k = 6 \quad \text{atau} \quad k = -6" />
+</MathContainer>
+
+Bagi <InlineMath math="k = 6" />, persamaan itu menjadi <InlineMath math="2x^2 + 12x + 18 = 0" />, atau <InlineMath math="(x + 3)^2 = 0" />, jadi titik sentuhannya ialah <InlineMath math="(-3, 3)" />. Bagi <InlineMath math="k = -6" />, titik sentuhannya ialah <InlineMath math="(3, -3)" />.
+
+<MathVisual
+  title={<>Dua tangen dengan kecerunan <InlineMath math="1" /></>}
+  description={<>Bulatan <InlineMath math="x^2 + y^2 = 18" /> berjejari <InlineMath math="3\sqrt{2}" />. Jejari ke setiap titik sentuhan berserenjang dengan garisnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 7 }, y: { min: -7, max: 7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3 * Math.SQRT2, appearance: "primary" },
+      { id: "upper", kind: "line", through: [{ x: -6, y: 0 }, { x: 0, y: 6 }], appearance: "secondary" },
+      { id: "lower", kind: "line", through: [{ x: 0, y: -6 }, { x: 6, y: 0 }], appearance: "highlight" },
+      { id: "upper-radius", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: 3 }, appearance: "construction" },
+      { id: "lower-radius", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -3 }, appearance: "construction" },
+      { id: "upper-point", kind: "point", at: { x: -3, y: 3 }, appearance: "answer" },
+      { id: "lower-point", kind: "point", at: { x: 3, y: -3 }, appearance: "answer" },
+      { id: "center", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "upper", objectId: "upper", at: { x: -6, y: 0 }, placement: "left" },
+      { key: "lower", objectId: "lower", at: { x: 6, y: 0 }, placement: "right" },
+      { key: "upper-point", objectId: "upper-point", at: { x: -3, y: 3 }, placement: "above-left" },
+      { key: "lower-point", objectId: "lower-point", at: { x: 3, y: -3 }, placement: "below-right" },
+      { key: "center", objectId: "center", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    upper: <InlineMath math="y = x + 6" />,
+    lower: <InlineMath math="y = x - 6" />,
+    "upper-point": <InlineMath math="(-3, 3)" />,
+    "lower-point": <InlineMath math="(3, -3)" />,
+    center: <InlineMath math="O" />,
+  }}
+/>
+
+Semak dengan jarak. Garis <InlineMath math="x - y + k = 0" /> berada pada jarak <InlineMath math="\frac{|k|}{\sqrt{2}}" /> dari <InlineMath math="O" />. Syarat <InlineMath math="d = r" /> memberikan <InlineMath math="\frac{|k|}{\sqrt{2}} = 3\sqrt{2}" />, jadi <InlineMath math="|k| = 6" />, sama dengan hasil daripada pembezalayan. Titik <InlineMath math="(-3, 3)" /> juga memenuhi <InlineMath math="(-3)^2 + 3^2 = 18" />, dan jejari ke titik itu berserenjang dengan garis, kerana kecerunan masing-masing, <InlineMath math="-1" /> dan <InlineMath math="1" />, apabila didarab memberikan <InlineMath math="-1" />.
+
+## Jalan Pintas untuk Bulatan Berpusat di O
+
+Bagi bulatan <InlineMath math="x^2 + y^2 = r^2" />, pekali <InlineMath math="D" /> dan <InlineMath math="E" /> ialah sifar dan <InlineMath math="F = -r^2" />. Bagi garis yang tidak mencancang, penggantian <InlineMath math="y = mx + c" /> menjadi lebih pendek:
+
+<MathContainer>
+  <BlockMath math="x^2 + (mx + c)^2 = r^2" />
+  <BlockMath math="(1 + m^2)x^2 + 2mcx + (c^2 - r^2) = 0" />
+  <BlockMath math="\Delta = (2mc)^2 - 4(1 + m^2)(c^2 - r^2) = 4\left[r^2(1 + m^2) - c^2\right]" />
+</MathContainer>
+
+Faktor <InlineMath math="4" /> sentiasa positif, jadi tanda <InlineMath math="\Delta" /> sama dengan tanda <InlineMath math="r^2(1 + m^2) - c^2" />. Garis itu ialah tangen tepat apabila <InlineMath math="c^2 = r^2(1 + m^2)" />. Bahagikan kedua-dua belah dengan <InlineMath math="1 + m^2" /> dan ambil punca kuasa dua: <InlineMath math="\frac{|c|}{\sqrt{1 + m^2}} = r" />. Sebelah kiri ialah jarak dari <InlineMath math="O" /> ke garis <InlineMath math="mx - y + c = 0" />, jadi **jalan pintas ini ialah ujian jarak dalam bentuk lain**.
+
+Syarat yang sama memberikan tangen dengan kecerunan <InlineMath math="m" />, iaitu <InlineMath math="y = mx \pm r\sqrt{1 + m^2}" />, alat utama untuk [persamaan tangen kepada bulatan](/ms/subjek/matematik/geometri-analitik/persamaan-tangen-kepada-bulatan). Bagi garis <InlineMath math="y = x + k" /> dan bulatan <InlineMath math="x^2 + y^2 = 18" />, nilai <InlineMath math="m = 1" /> dan <InlineMath math="r = 3\sqrt{2}" /> memberikan <InlineMath math="c = \pm 3\sqrt{2} \cdot \sqrt{2} = \pm 6" />.
+
+## Kesilapan Lazim
+
+| Kesilapan | Mengapa salah | Cara menyemak |
+| --- | --- | --- |
+| Menggunakan <InlineMath math="c" /> bagi garis sebagai <InlineMath math="C" /> dalam <InlineMath math="\Delta" /> | Pemalar garis berbeza daripada sebutan pemalar persamaan kuadratik | Tulis <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" /> dahulu sebelum mengira |
+| Membandingkan <InlineMath math="d" /> dengan <InlineMath math="r^2" /> | <InlineMath math="d" /> ialah panjang, <InlineMath math="r^2" /> ialah kuasa dua panjang | Bagi <InlineMath math="x^2 + y^2 = 9" />, bandingkan <InlineMath math="d" /> dengan <InlineMath math="3" /> |
+| Membaca pusat dengan tanda yang terbalik | <InlineMath math="x^2 + y^2 - 4x + 2y - 4 = 0" /> berpusat <InlineMath math="(2, -1)" />, bukan <InlineMath math="(-2, 1)" /> | Pusatnya ialah <InlineMath math="\left(-\frac{D}{2}, -\frac{E}{2}\right)" /> |
+| Menggunakan rumus jarak pada <InlineMath math="y = 2x - 1" /> | Rumus itu memerlukan bentuk <InlineMath math="px + qy + s = 0" /> | Pindahkan semua sebutan ke satu belah: <InlineMath math="2x - y - 1 = 0" /> |
+| Membaca saiz <InlineMath math="\Delta" /> sebagai jarak | Mendarab persamaan kuadratik daripada penggantian dengan <InlineMath math="2" /> menjadikan <InlineMath math="\Delta" /> empat kali ganda lebih besar, tetapi garis itu tidak berganjak | Hanya tanda <InlineMath math="\Delta" /> yang penting |
+
+Cara semak paling cepat ialah kaedah yang satu lagi. Kalau pembezalayan dan ujian jarak memberikan kedudukan yang berbeza, **ada satu kiraan yang salah**, biasanya pusat bulatan atau kembangan suatu kuasa dua.
+
+## Soalan Latihan
+
+Cari kedudukan setiap garis dengan pembezalayan, kemudian **semak dengan jarak dari pusat ke garis itu**.
+
+1. Cari kedudukan garis <InlineMath math="y = x + 3" /> terhadap bulatan <InlineMath math="x^2 + y^2 = 8" />.
+
+2. Cari kedudukan garis <InlineMath math="x + y = 7" /> terhadap bulatan <InlineMath math="x^2 + y^2 - 2x - 4y + 1 = 0" />.
+
+3. Cari kedudukan garis <InlineMath math="2x + y - 4 = 0" /> terhadap bulatan <InlineMath math="x^2 + y^2 = 5" />. Kalau garis dan bulatan itu bersilang, cari titik-titik persilangannya.
+
+4. Cari nilai-nilai <InlineMath math="m" /> supaya garis <InlineMath math="y = mx + 5" /> menyentuh bulatan <InlineMath math="x^2 + y^2 = 5" />, kemudian cari titik-titik sentuhannya.
+
+### Penyelesaian
+
+**Soalan 1**. Gantikan <InlineMath math="y = x + 3" />:
+
+<MathContainer>
+  <BlockMath math="x^2 + (x + 3)^2 = 8" />
+  <BlockMath math="2x^2 + 6x + 1 = 0" />
+  <BlockMath math="\Delta = 6^2 - 4(2)(1) = 28" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="\Delta = 28 > 0" />, garis itu **memotong bulatan pada dua titik**. Semak: garis <InlineMath math="x - y + 3 = 0" /> berada pada jarak <InlineMath math="\frac{3}{\sqrt{2}} \approx 2.12" /> dari pusat, kurang daripada <InlineMath math="r = \sqrt{8} \approx 2.83" />.
+
+**Soalan 2**. Tulis garis itu sebagai <InlineMath math="y = 7 - x" />, kemudian gantikan:
+
+<MathContainer>
+  <BlockMath math="x^2 + (7 - x)^2 - 2x - 4(7 - x) + 1 = 0" />
+  <BlockMath math="x^2 + 49 - 14x + x^2 - 2x - 28 + 4x + 1 = 0" />
+  <BlockMath math="2x^2 - 12x + 22 = 0" />
+</MathContainer>
+
+Pembezalayannya ialah <InlineMath math="\Delta = (-12)^2 - 4(2)(22) = 144 - 176 = -32" />. Oleh sebab <InlineMath math="\Delta < 0" />, garis itu **tidak bertemu bulatan**. Semak: bulatan ini berpusat <InlineMath math="(1, 2)" /> dan <InlineMath math="r = \sqrt{1 + 4 - 1} = 2" />, dan jarak pusat itu ke garis <InlineMath math="x + y - 7 = 0" /> ialah <InlineMath math="\frac{|1 + 2 - 7|}{\sqrt{2}} = 2\sqrt{2} \approx 2.83" />, lebih besar daripada <InlineMath math="2" />.
+
+**Soalan 3**. Tulis garis itu sebagai <InlineMath math="y = -2x + 4" />, kemudian gantikan:
+
+<MathContainer>
+  <BlockMath math="x^2 + (-2x + 4)^2 = 5" />
+  <BlockMath math="5x^2 - 16x + 11 = 0" />
+  <BlockMath math="(x - 1)(5x - 11) = 0" />
+</MathContainer>
+
+Pembezalayannya ialah <InlineMath math="256 - 220 = 36 > 0" />, jadi garis itu **memotong bulatan pada dua titik**. Punca <InlineMath math="x = 1" /> memberikan <InlineMath math="y = 2" />, dan <InlineMath math="x = \frac{11}{5}" /> memberikan <InlineMath math="y = -\frac{2}{5}" />. Semak: <InlineMath math="1^2 + 2^2 = 5" /> dan <InlineMath math="\frac{121}{25} + \frac{4}{25} = 5" />, jadi kedua-dua titik terletak pada bulatan.
+
+**Soalan 4**. Gunakan syarat tangen bagi bulatan berpusat di <InlineMath math="O" />, <InlineMath math="c^2 = r^2(1 + m^2)" />, dengan <InlineMath math="c = 5" /> dan <InlineMath math="r^2 = 5" />:
+
+<MathContainer>
+  <BlockMath math="25 = 5(1 + m^2)" />
+  <BlockMath math="m^2 = 4" />
+  <BlockMath math="m = 2 \quad \text{atau} \quad m = -2" />
+</MathContainer>
+
+Bagi <InlineMath math="m = 2" />, penggantian memberikan <InlineMath math="5x^2 + 20x + 20 = 0" />, atau <InlineMath math="(x + 2)^2 = 0" />, jadi titik sentuhannya ialah <InlineMath math="(-2, 1)" />. Bagi <InlineMath math="m = -2" />, titik sentuhannya ialah <InlineMath math="(2, 1)" />. Semak: <InlineMath math="(-2)^2 + 1^2 = 5" />, dan jejari ke <InlineMath math="(-2, 1)" /> ada kecerunan <InlineMath math="-\frac{1}{2}" />, berserenjang dengan garis yang berkecerunan <InlineMath math="2" />.

@@ -1,0 +1,261 @@
+
+export const metadata = {
+  title: "Hubungan antara Panjang Lengkok dan Luas Sektor",
+  description: "Lengkok dan sektornya mengambil bahagian yang sama daripada bulatan, jadi luas sektor sama dengan separuh panjang lengkok darab jejari. Lengkap dengan contoh jalan kerja.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Lengkok dan Sektor Bulatan",
+};
+
+## Lengkok dan Sektornya Mengambil Bahagian yang Sama
+
+Lengkok dan sektor yang dibentuk oleh sudut pusat yang sama mengambil **bahagian yang sama daripada bulatan**. Bahagian lengkok daripada lilitan sama dengan bahagian sektor daripada luas bulatan, dan kedua-duanya sama dengan sudut pusat dibahagi dengan <InlineMath math="360^\circ" />. Kesamaan ini memberikan satu rumus ringkas yang menghubungkan luas sektor <InlineMath math="A" />, panjang lengkok <InlineMath math="s" /> dan jejari <InlineMath math="r" />:
+
+<MathContainer>
+  <BlockMath math="\frac{s}{2\pi r} = \frac{A}{\pi r^2} = \frac{\alpha}{360^\circ}" />
+  <BlockMath math="A = \frac{1}{2} s r" />
+</MathContainer>
+
+Gambar rajah sektor <InlineMath math="45^\circ" /> menggunakan jejari <InlineMath math="4" />. Lengkoknya ialah satu perlapan daripada lilitan, dan sektornya ialah satu perlapan daripada luas bulatan.
+
+<MathVisual
+  title={<>Sudut <InlineMath math="45^\circ" /> mengambil <InlineMath math="\frac{1}{8}" /> daripada bulatan</>}
+  description={<>Dengan jejari <InlineMath math="4" />, panjang lengkoknya ialah <InlineMath math="\pi" /> dan luas sektornya ialah <InlineMath math="2\pi" />, iaitu dua kali panjang lengkok.</>}
+  labels={{
+    "l1": <InlineMath math="45^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((((t / 4) * 2) * pi) / 60)))", y: "(4 * sin(((((t / 4) * 2) * pi) / 60)))", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }], appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(4 * cos(((((t / 14) * pi) / 4) / 15)))", y: "(4 * sin(((((t / 14) * pi) / 4) / 15)))", parameter: { min: 0, max: 210 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s4", at: { x: 3.65, y: 1.63 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Untuk sektor itu, <InlineMath math="s = \frac{1}{8} \times 8\pi = \pi" /> dan <InlineMath math="A = \frac{1}{8} \times 16\pi = 2\pi" />. Rumus ringkas tadi memberikan jawapan yang sama tanpa perlu tahu sudutnya: <InlineMath math="A = \frac{1}{2} \times \pi \times 4 = 2\pi" />.
+
+## Nisbah pada Bulatan yang Sama
+
+Pada satu bulatan, nisbah dua lengkok sama dengan nisbah sektornya dan juga nisbah sudut pusatnya. Sudut yang dua kali lebih besar menjadikan **lengkok dan sektor kedua-duanya dua kali lebih besar**. Tiga gambar rajah seterusnya menggunakan jejari yang sama, iaitu <InlineMath math="4" />.
+
+<ContentStack>
+
+<MathVisual
+  title={<>Sudut <InlineMath math="90^\circ" /> mengambil <InlineMath math="\frac{1}{4}" /> daripada bulatan</>}
+  description={<>Dengan jejari <InlineMath math="4" />, panjang lengkoknya ialah <InlineMath math="2\pi" /> dan luas sektornya ialah <InlineMath math="4\pi" />, iaitu dua kali panjang lengkok.</>}
+  labels={{
+    "l1": <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((((t / 4) * 2) * pi) / 60)))", y: "(4 * sin(((((t / 4) * 2) * pi) / 60)))", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 4 }], appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(4 * cos(((((t / 7) * pi) / 2) / 30)))", y: "(4 * sin(((((t / 7) * pi) / 2) / 30)))", parameter: { min: 0, max: 210 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s4", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+<MathVisual
+  title={<>Sudut <InlineMath math="180^\circ" /> mengambil <InlineMath math="\frac{1}{2}" /> daripada bulatan</>}
+  description={<>Dengan jejari <InlineMath math="4" />, panjang lengkoknya ialah <InlineMath math="4\pi" /> dan luas sektornya ialah <InlineMath math="8\pi" />, iaitu dua kali panjang lengkok.</>}
+  labels={{
+    "l1": <InlineMath math="180^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((((t / 4) * 2) * pi) / 60)))", y: "(4 * sin(((((t / 4) * 2) * pi) / 60)))", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "(4 * cos((((t / 7) * pi) / 30)))", y: "(4 * sin((((t / 7) * pi) / 30)))", parameter: { min: 0, max: 210 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 0, y: 4 }, placement: "below" },
+    ],
+  }}
+/>
+
+<MathVisual
+  title={<>Sudut <InlineMath math="120^\circ" /> mengambil <InlineMath math="\frac{1}{3}" /> daripada bulatan</>}
+  description={<>Dengan jejari <InlineMath math="4" />, panjang lengkoknya ialah <InlineMath math="\frac{8\pi}{3}" /> dan luas sektornya ialah <InlineMath math="\frac{16\pi}{3}" />, iaitu dua kali panjang lengkok.</>}
+  labels={{
+    "l1": <InlineMath math="\alpha=120^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((((t / 4) * 2) * pi) / 60)))", y: "(4 * sin(((((t / 4) * 2) * pi) / 60)))", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(2 * Math.PI / 3), y: 4 * Math.sin(2 * Math.PI / 3) }], appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(4 * cos((((((t / 5) * 2) * pi) / 3) / 40)))", y: "(4 * sin((((((t / 5) * 2) * pi) / 3) / 40)))", parameter: { min: 0, max: 200 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s4", at: { x: 2, y: 3.46 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+</ContentStack>
+
+Dengan <InlineMath math="r = 4" />, keempat-empat gambar rajah memberikan lengkok dan sektor seperti dalam jadual ini. Setiap luas sektor tepat dua kali panjang lengkoknya, kerana <InlineMath math="\frac{A}{s} = \frac{r}{2} = 2" />.
+
+| Sudut pusat | Panjang lengkok | Luas sektor |
+| --- | --- | --- |
+| <InlineMath math="45^\circ" /> | <InlineMath math="\pi" /> | <InlineMath math="2\pi" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="2\pi" /> | <InlineMath math="4\pi" /> |
+| <InlineMath math="120^\circ" /> | <InlineMath math="\frac{8\pi}{3}" /> | <InlineMath math="\frac{16\pi}{3}" /> |
+| <InlineMath math="180^\circ" /> | <InlineMath math="4\pi" /> | <InlineMath math="8\pi" /> |
+
+Nisbah ini hanya berlaku pada bulatan yang sama. Dua lengkok <InlineMath math="45^\circ" /> pada bulatan yang jejarinya berbeza ada panjang yang berbeza.
+
+## Luas Sektor daripada Panjang Lengkok
+
+Rumus <InlineMath math="A = \frac{1}{2} s r" /> datang daripada **membahagikan rumus luas sektor dengan rumus panjang lengkok**. Faktor sudut yang dikongsi oleh kedua-dua rumus itu terbatal, jadi sudut pusat tidak diperlukan lagi:
+
+<BlockMath math="\frac{A}{s} = \frac{\frac{\alpha}{360^\circ}\pi r^2}{\frac{\alpha}{360^\circ}2\pi r} = \frac{r}{2} \quad\Longrightarrow\quad A = \frac{1}{2} s r" />
+
+Rumus ini nampak seperti rumus luas segi tiga, iaitu separuh tapak darab tinggi. Sektor yang sangat nipis hampir sama dengan segi tiga yang tapaknya sama dengan lengkok <InlineMath math="s" /> dan tingginya <InlineMath math="r" />, dan seluruh sektor ialah hasil tambah banyak segi tiga nipis seperti itu. Gunakan rumus ini apabila soalan memberikan panjang lengkok dan jejari, tetapi tidak memberikan sudut.
+
+## Mengukur Bumi dengan Lengkok
+
+Eratosthenes menggunakan nisbah lengkok kepada sudut pusat yang sama untuk menganggar lilitan Bumi. Pengiraannya bergantung pada beberapa andaian yang dipermudahkan: Bumi ialah sfera, kedua-dua bandar terletak pada **meridian yang sama** dan sinar Matahari selari.
+
+Pada tengah hari ketika solstis musim panas, Matahari dianggap berada tegak di atas Syene. Di Iskandariah, arah Matahari membentuk sudut kira-kira <InlineMath math="7.2^\circ" /> dengan garis mencancang. Oleh sebab sinarnya selari, sudut itu sama dengan sudut di antara kedua-dua bandar di pusat Bumi.
+
+<MathVisual
+  title={<>Eratosthenes Mengukur Bumi</>}
+  description={<>Sudut <InlineMath math="7.2^\circ" /> di pusat Bumi sama dengan sudut antara cahaya Matahari dan garis mencancang di Iskandariah, iaitu sudut yang tidak dilukis dalam gambar rajah ini.</>}
+  labels={{
+    "l1": <>Bumi</>,
+    "l2": <>Iskandariah</>,
+    "l3": <>Syene</>,
+    "l4": <InlineMath math="5{,}000\,\text{stadia}" />,
+    "l5": <InlineMath math="7.2^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -2, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(5 * cos(((((-15) + (((t / 3) * 45) / 72)) * pi) / 180)))", y: "(5 * sin(((((-15) + (((t / 3) * 45) / 72)) * pi) / 180)))", parameter: { min: 0, max: 216 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 5 * Math.cos((7.2 * Math.PI) / 180), y: 5 * Math.sin((7.2 * Math.PI) / 180) }], appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(5 * cos(((((t / 20) * (7.2 * pi)) / 180) / 10)))", y: "(5 * sin(((((t / 20) * (7.2 * pi)) / 180) / 10)))", parameter: { min: 0, max: 200 }, appearance: "answer" },
+      { id: "s5", kind: "parametric", x: "(1.5 * cos(((((t / 20) * (7.2 * pi)) / 180) / 10)))", y: "(1.5 * sin(((((t / 20) * (7.2 * pi)) / 180) / 10)))", parameter: { min: 0, max: 200 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 4.33, y: 2.5 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 5, y: 0 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 4.96, y: 0.63 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 4.99, y: 0.31 }, placement: "above-right" },
+      { key: "l5", objectId: "s5", at: { x: 1.5, y: 0.09 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Jarak di permukaan Bumi antara kedua-dua bandar diambil sebagai <InlineMath math="5{,}000" /> stadia. Lengkok <InlineMath math="7.2^\circ" /> ialah satu perlima puluh daripada satu pusingan, jadi:
+
+<MathContainer>
+  <BlockMath math="\frac{5{,}000}{C} = \frac{7.2^\circ}{360^\circ} = \frac{1}{50}" />
+  <BlockMath math="C = 5{,}000 \times 50 = 250{,}000 \text{ stadia}" />
+</MathContainer>
+
+Panjang satu stadion purba **tidak diketahui dengan tepat**. Kalau satu stadion diambil sebagai <InlineMath math="160" /> meter, hasilnya ialah <InlineMath math="40{,}000" /> km. Panjang stadion yang lain memberikan nombor yang berbeza, jadi pengiraan ini menunjukkan kaedahnya, bukan nilai moden yang tepat.
+
+## Contoh Jalan Kerja bagi Lengkok dan Sektor
+
+Setiap contoh bermula dengan **memilih hubungan yang sesuai** dengan maklumat yang diberi: rumus <InlineMath math="A = \frac{1}{2} s r" /> untuk lengkok dan jejari, atau nisbah untuk dua sektor pada bulatan yang sama.
+
+**Contoh 1**. Sebuah bulatan berjejari <InlineMath math="14\text{ cm}" /> ada lengkok sepanjang <InlineMath math="22\text{ cm}" />. Cari luas sektornya.
+
+<BlockMath math="A = \frac{1}{2} \times 22 \times 14 = 154\text{ cm}^2" />
+
+Semak melalui sudut, dengan <InlineMath math="\pi = \frac{22}{7}" />. Lilitannya ialah <InlineMath math="88\text{ cm}" />, jadi lengkok <InlineMath math="22\text{ cm}" /> ialah satu perempat daripada lilitan itu, dan satu perempat daripada luas bulatan <InlineMath math="616\text{ cm}^2" /> memang <InlineMath math="154\text{ cm}^2" />.
+
+**Contoh 2**. Sebuah sektor ada luas <InlineMath math="154\text{ cm}^2" /> dan panjang lengkok <InlineMath math="22\text{ cm}" />. Cari jejarinya.
+
+<BlockMath math="\frac{A}{s} = \frac{r}{2} \quad\Longrightarrow\quad r = \frac{2A}{s} = \frac{2 \times 154}{22} = 14\text{ cm}" />
+
+Semak: <InlineMath math="\frac{1}{2} \times 22 \times 14 = 154" />.
+
+**Contoh 3**. Pada satu bulatan, lengkok dengan sudut pusat <InlineMath math="40^\circ" /> panjangnya <InlineMath math="10\text{ cm}" />. Cari panjang lengkok dengan sudut pusat <InlineMath math="100^\circ" />.
+
+<BlockMath math="\frac{s_2}{10} = \frac{100^\circ}{40^\circ} \quad\Longrightarrow\quad s_2 = 25\text{ cm}" />
+
+Semak: lilitan bulatan itu ialah <InlineMath math="10 \times \frac{360}{40} = 90\text{ cm}" />, dan <InlineMath math="\frac{100}{360} \times 90 = 25\text{ cm}" />. Luas sektor kedua juga <InlineMath math="2.5" /> kali luas sektor pertama, kerana pada bulatan yang sama, luas berkadar terus dengan sudut pusat.
+
+## Kesilapan Lazim
+
+Sebelum kamu mengira, pastikan dua sektor yang kamu bandingkan berada pada **bulatan yang sama**.
+
+| Kesilapan | Mengapa salah | Cara menyemak |
+| --- | --- | --- |
+| Menulis <InlineMath math="A = s \times r" /> | Faktor <InlineMath math="\frac{1}{2}" /> datang daripada <InlineMath math="\frac{\pi r^2}{2\pi r} = \frac{r}{2}" /> | Bandingkan dengan rumus penuh untuk satu sudut |
+| Membandingkan lengkok pada bulatan yang berbeza | Nisbah itu hanya berlaku untuk jejari yang sama | Semak bahawa jejarinya sama |
+| Menggunakan diameter sebagai <InlineMath math="r" /> | Rumus ini menggunakan jarak dari pusat ke lengkok | Bahagi dua diameter sebelum kamu menggunakan rumus |
+| Mencampurkan unit luas dengan unit panjang | Lengkok ada unit panjang, manakala sektor ada unit luas | Semak unit setiap jawapan |
+
+Kalau kamu terlupa faktor setengah, luas sektor akan jadi dua kali lebih besar daripada sepatutnya. Sektor <InlineMath math="180^\circ" /> yang luasnya sama dengan luas seluruh bulatan ialah tanda kesilapan itu.
+
+## Latihan Lengkok dan Sektor
+
+Untuk setiap soalan, tentukan dahulu sama ada kamu perlukan **separuh lengkok darab jejari** atau nisbah. Soalan 4 perlukan kedua-duanya.
+
+1. Lengkok sebuah sektor panjangnya <InlineMath math="6\text{ cm}" /> pada bulatan berjejari <InlineMath math="10\text{ cm}" />. Cari luas sektor itu.
+
+2. Sebuah sektor berjejari <InlineMath math="12\text{ cm}" /> ada luas <InlineMath math="60\text{ cm}^2" />. Cari panjang lengkoknya dan nilai anggaran sudut pusatnya.
+
+3. Dua bandar terletak pada bulatan agung yang sama di Bumi, sejauh <InlineMath math="1{,}000\text{ km}" /> di sepanjang bulatan itu. Sudut di antara kedua-dua bandar di pusat Bumi ialah <InlineMath math="9^\circ" />. Anggarkan lilitan Bumi.
+
+4. Pada sebuah bulatan, lengkok dengan sudut pusat <InlineMath math="60^\circ" /> panjangnya <InlineMath math="4\pi\text{ cm}" />. Cari jejarinya, panjang lengkok dengan sudut pusat <InlineMath math="150^\circ" /> dan luas sektor <InlineMath math="150^\circ" />.
+
+### Jawapan
+
+**Soalan 1**. Lengkok dan jejari sudah diketahui, jadi gunakan **separuh lengkok darab jejari**:
+
+<BlockMath math="A = \frac{1}{2} \times 6 \times 10 = 30\text{ cm}^2" />
+
+Semak melalui sudut: <InlineMath math="\alpha = \frac{6}{20\pi} \times 360^\circ = \frac{108^\circ}{\pi}" />, dan <InlineMath math="\frac{108/\pi}{360} \times 100\pi = 30" />.
+
+**Soalan 2**. Susun semula rumus itu untuk mendapatkan lengkok, kemudian bahagikan lengkok dengan lilitan **untuk mendapatkan sudut**:
+
+<MathContainer>
+  <BlockMath math="s = \frac{2A}{r} = \frac{2 \times 60}{12} = 10\text{ cm}" />
+  <BlockMath math="\alpha = \frac{10}{2\pi \times 12} \times 360^\circ = \frac{150^\circ}{\pi} \approx 47.7^\circ" />
+</MathContainer>
+
+Semak: <InlineMath math="\frac{1}{2} \times 10 \times 12 = 60" />.
+
+**Soalan 3**. Lengkok <InlineMath math="9^\circ" /> ialah **satu perempat puluh daripada satu pusingan**, kerana <InlineMath math="\frac{9}{360} = \frac{1}{40}" />:
+
+<BlockMath math="C = 1{,}000 \times 40 = 40{,}000\text{ km}" />
+
+Semak: <InlineMath math="40 \times 9^\circ = 360^\circ" />, jadi empat puluh lengkok sepanjang itu memang mengelilingi Bumi sepenuhnya.
+
+**Soalan 4**. Lengkok <InlineMath math="60^\circ" /> ialah satu perenam daripada lilitan, jadi lilitannya ialah <InlineMath math="6 \times 4\pi = 24\pi" /> dan <InlineMath math="r = 12\text{ cm}" />. Lengkok <InlineMath math="150^\circ" /> didapati daripada **nisbah sudut**, dan luas sektornya didapati daripada separuh lengkok darab jejari:
+
+<MathContainer>
+  <BlockMath math="s = \frac{150^\circ}{60^\circ} \times 4\pi = 10\pi\text{ cm}" />
+  <BlockMath math="A = \frac{1}{2} \times 10\pi \times 12 = 60\pi\text{ cm}^2" />
+</MathContainer>
+
+Semak dengan rumus penuh: <InlineMath math="\frac{150}{360} \times \pi \times 12^2 = 60\pi" />.

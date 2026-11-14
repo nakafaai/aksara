@@ -1,0 +1,242 @@
+export const metadata = {
+  title: "Penambahan dan Penolakan Fungsi",
+  description: "Tambah dan tolak fungsi titik demi titik, cari persilangan domainnya, dan semak kedua-dua operasi melalui contoh dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-27",
+  dateModified: "2026-11-08",
+  subject: "Fungsi Gubahan dan Fungsi Songsang",
+};
+
+## Menggabungkan Fungsi
+
+Dua fungsi boleh digabungkan titik demi titik. Untuk input <InlineMath math="x" /> yang sama, kira nilai <InlineMath math="f(x)" /> dan <InlineMath math="g(x)" />, kemudian tambah atau tolak kedua-dua output itu. Input itu <Highlight>mesti berada dalam kedua-dua domain</Highlight>, iaitu <InlineMath math="D_f" /> dan <InlineMath math="D_g" />.
+
+<MathVisual
+  title={<><InlineMath math="f(x) = x" />, <InlineMath math="g(x) = 2" /> dan <InlineMath math="(f + g)(x) = x + 2" /></>}
+  description={<>Garis <InlineMath math="f + g" /> berada <InlineMath math="2" /> unit di atas <InlineMath math="f" /> pada setiap input, kerana <InlineMath math="g" /> menambah <InlineMath math="2" /> kepada setiap output. Pada <InlineMath math="x = 1" />: <InlineMath math="1 + 2 = 3" />.</>}
+  labels={{
+    f: <InlineMath math="f(x) = x" />,
+    g: <InlineMath math="g(x) = 2" />,
+    sum: <InlineMath math="(f + g)(x) = x + 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -5.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "segment", from: { x: -5, y: -5 }, to: { x: 5, y: 5 }, appearance: "primary" },
+      { id: "g", kind: "segment", from: { x: -5, y: 2 }, to: { x: 5, y: 2 }, appearance: "construction" },
+      { id: "sum", kind: "segment", from: { x: -5, y: -3 }, to: { x: 5, y: 7 }, appearance: "secondary" },
+      { id: "lift", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 3 }, appearance: "highlight" },
+      { id: "f1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "sum1", kind: "point", at: { x: 1, y: 3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 5, y: 5 }, placement: "right" },
+      { key: "g", objectId: "g", at: { x: 5, y: 2 }, placement: "below" },
+      { key: "sum", objectId: "sum", at: { x: 4, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Penambahan Dua Fungsi
+
+Fungsi hasil tambah menambah **dua output pada input yang sama**:
+
+<BlockMath math="(f+g)(x) = f(x) + g(x)" />
+
+Hasil tambah <InlineMath math="(f+g)" /> hanya tertakrif apabila kedua-dua fungsi asal tertakrif. Jadi domainnya ialah persilangan domain kedua-dua fungsi itu:
+
+<BlockMath math="D_{f+g} = D_f \cap D_g" />
+
+Maksudnya, <InlineMath math="x" /> mesti menjadi unsur <InlineMath math="D_f" /> **DAN** juga unsur <InlineMath math="D_g" />.
+
+### Contoh Penambahan
+
+Katakan kita ada dua fungsi:
+
+1.  <InlineMath math="f(x) = x^2" />, dengan domain <InlineMath math="D_f = \{x | x \in \mathbb{R}\}" /> (semua
+    nombor nyata).
+2.  <InlineMath math="g(x) = \sqrt{x+2}" />, dengan domain <InlineMath math="D_g = \{x | x \ge -2, x \in \mathbb{R}\}" /> (semua
+    nombor nyata yang lebih besar daripada atau sama dengan <InlineMath math="-2" />, kerana ungkapan di bawah tanda punca kuasa dua, iaitu
+    <InlineMath math="x+2" />, **tidak boleh negatif**).
+
+**Langkah 1**: Tentukan fungsi hasil penambahan
+
+<BlockMath math="\begin{aligned} (f+g)(x) &amp;= f(x) + g(x) \\ &amp;= x^2 + \sqrt{x+2} \end{aligned}" />
+
+**Langkah 2**: Tentukan domain fungsi hasil itu
+
+Kita cari **persilangan** <InlineMath math="D_f" /> dan <InlineMath math="D_g" />:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;D_{f+g} = D_f \cap D_g \\ &amp;= \{x | x \in \mathbb{R}\} \cap \{x | x \ge -2, x \in \mathbb{R}\} \end{aligned}" />
+  <BlockMath math="D_{f+g} = \{x | x \ge -2, x \in \mathbb{R}\}" />
+</MathContainer>
+
+Jadi, fungsi hasil penambahan ialah <InlineMath math="(f+g)(x) = x^2 + \sqrt{x+2}" /> dengan domain <InlineMath math="\{x | x \ge -2, x \in \mathbb{R}\}" />.
+
+## Penolakan Dua Fungsi
+
+Prosesnya serupa dengan penambahan. Untuk menolak fungsi <InlineMath math="g" /> daripada fungsi <InlineMath math="f" />, kita tolak hasil <InlineMath math="g(x)" /> daripada <InlineMath math="f(x)" /> untuk nilai <InlineMath math="x" /> yang sama. Hasilnya ialah fungsi baharu <InlineMath math="(f-g)" />.
+
+<BlockMath math="(f-g)(x) = f(x) - g(x)" />
+
+Domainnya juga sama seperti penambahan, iaitu **persilangan domain** <InlineMath math="f" /> dan domain <InlineMath math="g" />. Mengapa? Sebabnya sama seperti tadi: nilai <InlineMath math="x" /> mesti boleh diproses oleh kedua-dua fungsi asal sebelum hasilnya boleh ditolak.
+
+<BlockMath math="D_{f-g} = D_f \cap D_g" />
+
+### Contoh Penolakan
+
+Kita guna fungsi yang sama seperti dalam contoh penambahan:
+
+1.  <InlineMath math="f(x) = x^2" />, <InlineMath math="D_f = \{x | x \in \mathbb{R}\}" />
+2.  <InlineMath math="g(x) = \sqrt{x+2}" />, <InlineMath math="D_g = \{x | x \ge -2, x \in \mathbb{R}\}" />
+
+**Langkah 1**: Tentukan fungsi hasil penolakan
+
+<BlockMath math="\begin{aligned} (f-g)(x) &amp;= f(x) - g(x) \\ &amp;= x^2 - \sqrt{x+2} \end{aligned}" />
+
+**Langkah 2**: Tentukan domain fungsi hasil itu
+
+Domainnya sama dengan domain hasil penambahan kerana petua persilangannya sama:
+
+<BlockMath math="\begin{aligned} &amp;D_{f-g} = D_f \cap D_g \\ &amp;= \{x | x \ge -2, x \in \mathbb{R}\} \end{aligned}" />
+
+Jadi, fungsi hasil penolakan ialah <InlineMath math="(f-g)(x) = x^2 - \sqrt{x+2}" /> dengan domain <InlineMath math="\{x | x \ge -2, x \in \mathbb{R}\}" />.
+
+Untuk input yang sama, bandingkan hasil tambah dan beza di bawah. **Menukar tertib penolakan** mengubah tanda hasilnya.
+
+| <InlineMath math="x" /> | <InlineMath math="f(x)" /> | <InlineMath math="g(x)" /> | <InlineMath math="(f+g)(x)" /> | <InlineMath math="(f-g)(x)" /> |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="-2" /> | <InlineMath math="4" /> | <InlineMath math="0" /> | <InlineMath math="4" /> | <InlineMath math="4" /> |
+| <InlineMath math="-1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="0" /> |
+| <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="2" /> |
+
+Plotkan nilai dalam jadual bersama graf <InlineMath math="f(x) = x^2" />. Pada <InlineMath math="x = -2" />, <InlineMath math="g" /> ialah <InlineMath math="0" />, jadi <InlineMath math="f + g" /> dan <InlineMath math="f - g" /> kedua-duanya sama dengan <InlineMath math="4" />. Pada <InlineMath math="x = -1" /> dan <InlineMath math="x = 2" />, hasil tambah berada <InlineMath math="g(x)" /> di atas parabola dan beza berada <InlineMath math="g(x)" /> di bawahnya: <InlineMath math="2" /> dan <InlineMath math="0" /> pada <InlineMath math="x = -1" />, <InlineMath math="6" /> dan <InlineMath math="2" /> pada <InlineMath math="x = 2" />.
+
+<MathVisual
+  title={<>Hasil tambah dan beza daripada jadual</>}
+  description={<>Parabola <InlineMath math="f(x) = x^2" /> dengan nilai <InlineMath math="f + g" /> dan <InlineMath math="f - g" /> pada <InlineMath math="x = -2, -1, 2" />.</>}
+  labels={{
+    f: <InlineMath math="f(x) = x^2" />,
+    both: <InlineMath math="4" />,
+    s1: <InlineMath math="f + g" />,
+    d1: <InlineMath math="f - g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -0.6, max: 6.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -5 / 2, max: 5 / 2 }, appearance: "primary" },
+      { id: "gap1", kind: "segment", from: { x: -1, y: 0 }, to: { x: -1, y: 2 }, appearance: "reference" },
+      { id: "gap2", kind: "segment", from: { x: 2, y: 2 }, to: { x: 2, y: 6 }, appearance: "reference" },
+      { id: "both", kind: "point", at: { x: -2, y: 4 }, appearance: "answer" },
+      { id: "s1", kind: "point", at: { x: -1, y: 2 }, appearance: "secondary" },
+      { id: "s2", kind: "point", at: { x: 2, y: 6 }, appearance: "secondary" },
+      { id: "d1", kind: "point", at: { x: -1, y: 0 }, appearance: "construction" },
+      { id: "d2", kind: "point", at: { x: 2, y: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 5 / 2, y: 25 / 4 }, placement: "left" },
+      { key: "both", objectId: "both", at: { x: -2, y: 4 }, placement: "left" },
+      { key: "s1", objectId: "s2", at: { x: 2, y: 6 }, placement: "right" },
+      { key: "d1", objectId: "d2", at: { x: 2, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Soalan Latihan
+
+Diberi fungsi <InlineMath math="f(x) = 2x - 1" /> dengan domain <InlineMath math="D_f = \{x | x \in \mathbb{R}\}" /> dan fungsi <InlineMath math="g(x) = x^2 + 3" /> dengan domain <InlineMath math="D_g = \{x | x \in \mathbb{R}\}" />.
+
+1.  Tentukan <InlineMath math="(f+g)(x)" /> dan **domainnya**, <InlineMath math="D_{f+g}" />.
+2.  Tentukan <InlineMath math="(f-g)(x)" /> dan domainnya, <InlineMath math="D_{f-g}" />.
+3.  Kira nilai bagi <InlineMath math="(f+g)(2)" />.
+4.  Kira nilai bagi <InlineMath math="(f-g)(-1)" />.
+
+### Jalan Kerja
+
+**Soalan 1**. Tambah kedua-dua nilai fungsi pada input yang sama, kemudian gabungkan sebutan serupa.
+
+<MathContainer>
+  <BlockMath math="(f+g)(x) = f(x) + g(x)" />
+  <BlockMath math="(f+g)(x) = (2x - 1) + (x^2 + 3)" />
+  <BlockMath math="(f+g)(x) = x^2 + 2x + 2" />
+</MathContainer>
+
+Cari domain <InlineMath math="D_{f+g}" />:
+
+<MathContainer>
+  <BlockMath math="D_{f+g} = D_f \cap D_g" />
+  <BlockMath math="D_{f+g} = \{x | x \in \mathbb{R}\} \cap \{x | x \in \mathbb{R}\}" />
+  <BlockMath math="D_{f+g} = \{x | x \in \mathbb{R}\}" />
+</MathContainer>
+
+Jadi, <InlineMath math="(f+g)(x) = x^2 + 2x + 2" /> dengan domain **semua nombor nyata**.
+
+**Soalan 2**. Tolak seluruh nilai fungsi kedua daripada nilai fungsi pertama. Kenakan tanda tolak pada setiap sebutan dalam kurungan.
+
+<MathContainer>
+  <BlockMath math="(f-g)(x) = f(x) - g(x)" />
+  <BlockMath math="(f-g)(x) = (2x - 1) - (x^2 + 3)" />
+  <BlockMath math="(f-g)(x) = 2x - 1 - x^2 - 3" />
+  <BlockMath math="(f-g)(x) = -x^2 + 2x - 4" />
+</MathContainer>
+
+Cari domain <InlineMath math="D_{f-g}" />:
+
+<MathContainer>
+  <BlockMath math="D_{f-g} = D_f \cap D_g" />
+  <BlockMath math="D_{f-g} = \{x | x \in \mathbb{R}\} \cap \{x | x \in \mathbb{R}\}" />
+  <BlockMath math="D_{f-g} = \{x | x \in \mathbb{R}\}" />
+</MathContainer>
+
+Jadi, <InlineMath math="(f-g)(x) = -x^2 + 2x - 4" /> dengan domain **semua nombor nyata**.
+
+**Soalan 3**. Gantikan input yang diminta ke dalam **hasil tambah yang sudah dikira**: <InlineMath math="(f+g)(x) = x^2 + 2x + 2" />
+
+<MathContainer>
+  <BlockMath math="(f+g)(2) = (2)^2 + 2(2) + 2" />
+  <BlockMath math="(f+g)(2) = 4 + 4 + 2" />
+  <BlockMath math="(f+g)(2) = 10" />
+</MathContainer>
+
+**Soalan 4**. Gantikan input yang diminta ke dalam **beza yang sudah dikira**: <InlineMath math="(f-g)(x) = -x^2 + 2x - 4" />
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;(f-g)(-1) \\ &amp;= -(-1)^2 + 2(-1) - 4 \end{aligned}" />
+  <BlockMath math="(f-g)(-1) = -(1) - 2 - 4" />
+  <BlockMath math="(f-g)(-1) = -7" />
+</MathContainer>
+
+Jawapan Soalan 3 dan 4 boleh dibaca daripada graf ini: <InlineMath math="(f + g)(x) = x^2 + 2x + 2" /> melalui <InlineMath math="(2, 10)" />, dan <InlineMath math="(f - g)(x) = -x^2 + 2x - 4" /> melalui <InlineMath math="(-1, -7)" />.
+
+<MathVisual
+  title={<><InlineMath math="f + g" /> dan <InlineMath math="f - g" /> bagi <InlineMath math="f(x) = 2x - 1" />, <InlineMath math="g(x) = x^2 + 3" /></>}
+  description={<>Parabola <InlineMath math="y = x^2 + 2x + 2" /> yang melalui <InlineMath math="(2, 10)" /> dan parabola <InlineMath math="y = -x^2 + 2x - 4" /> yang melalui <InlineMath math="(-1, -7)" />.</>}
+  labels={{
+    sum: <InlineMath math="f + g" />,
+    diff: <InlineMath math="f - g" />,
+    p: <InlineMath math="(2, 10)" />,
+    q: <InlineMath math="(-1, -7)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 3.1 }, y: { min: -12.6, max: 14 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "sum", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 2, c: 2 }, domain: { min: -2, max: 5 / 2 }, appearance: "secondary" },
+      { id: "diff", kind: "quadratic", inputAxis: "x", coefficients: { a: -1, b: 2, c: -4 }, domain: { min: -2, max: 5 / 2 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 2, y: 10 }, appearance: "answer" },
+      { id: "q", kind: "point", at: { x: -1, y: -7 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "sum", objectId: "sum", at: { x: 5 / 2, y: 53 / 4 }, placement: "left" },
+      { key: "diff", objectId: "diff", at: { x: 5 / 2, y: -21 / 4 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: 2, y: 10 }, placement: "left" },
+      { key: "q", objectId: "q", at: { x: -1, y: -7 }, placement: "right" },
+    ],
+  }}
+/>

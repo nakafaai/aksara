@@ -1,0 +1,511 @@
+export const metadata = {
+    title: "Pemboleh Ubah",
+  description: "Ikat nama kepada objek Python, ikut peraturan penamaan dan kata kunci terpelihara, dan jejaki identiti objek dalam contoh kod.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-09-16",
+    dateModified: "2026-09-19",
+    subject: "Pengaturcaraan AI",
+};
+
+## Nama Pemboleh Ubah Merujuk kepada Objek
+
+Dalam Python, pemboleh ubah ialah nama yang diikat kepada sesuatu objek. <Highlight>Nama itu bukan kotak simpanan yang berjenis tetap</Highlight>: umpukan boleh mengikatnya kepada objek lain, sementara nama lain mungkin masih merujuk kepada objek asal.
+
+Apabila Python melaksanakan `x = 2`, ia menilai ungkapan <InlineMath math="2" /> dan mengikat nama `x` kepada objek integer yang terhasil. Python sendiri yang menentukan tempat objek itu disimpan dan sama ada objek sedia ada digunakan semula. Kod yang betul mesti berfungsi tanpa mengira pilihan pelaksanaan itu.
+
+## Cara Pemboleh Ubah dan Memori Berfungsi
+
+Fungsi terbina dalam `id()` memulangkan integer yang **mengenal pasti sesuatu objek secara unik** sepanjang hayat objek itu. CPython biasanya menghasilkan nombor ini daripada alamat memori, tetapi Python tidak menjanjikan tafsiran itu untuk semua pelaksanaan.
+
+<Mermaid
+  title="Nama Menunjuk kepada Objek"
+  description="Jejaki nama pemboleh ubah hingga ke objeknya dalam memori supaya umpukan tidak disalah anggap sebagai kotak simpanan yang tetap."
+  chart={`graph TB
+    subgraph "Memori"
+        M1["Objek A: int 2"]
+        M2["Objek B: str 'Hello'"]
+        M3["Objek C: list [1, 2, 3]"]
+    end
+
+    subgraph "Pemboleh Ubah"
+        V1["x"]
+        V2["y"]
+        V4["text"]
+        V5["numbers"]
+    end
+
+    V1 --> M1
+    V2 --> M1
+    V4 --> M2
+    V5 --> M3`}
+/>
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "variable_memory.py",
+      code: `# Mencipta pemboleh ubah x dengan nilai 2
+x = 2
+print(x)        # Output: 2
+print(id(x))    # Identiti objek, nilainya bergantung pada pelaksanaan
+
+# Mencipta pemboleh ubah y yang merujuk kepada objek yang sama dengan x
+y = x
+print(y)        # Output: 2
+print(y is x)   # Output: True
+
+# Mencipta pemboleh ubah z dengan nilai yang sama
+z = 2
+print(z)        # Output: 2
+print(z == x)   # Output: True
+# Jangan bergantung pada z is x. Penggunaan semula objek bergantung pada pelaksanaan`
+    }
+  ]}
+/>
+
+Umpukan `y = x` menjamin kedua-dua nama merujuk kepada objek yang sama pada saat itu. Mencipta satu lagi nilai yang sama pula hanya menjamin kedua-dua nilai itu sama apabila dibandingkan. Python mungkin mencipta objek yang berasingan. Sesetengah pelaksanaan Python menggunakan semula objek yang tidak boleh diubah, tetapi kod yang betul tidak pernah bergantung pada pengoptimuman itu.
+
+Jalankan `x = 5`, kemudian `y = x`, kemudian `x = 7`, dan ikut segmen-segmennya. `y = x` tidak menyalin nombor, tetapi menjadikan `y` menunjuk kepada objek `5` yang sama dengan `x`. Apabila `x = 7` dijalankan, hanya segmen `x` yang berpindah ke objek baharu, iaitu daripada segmen kelabu ke segmen ungu. Segmen `y` kekal di tempatnya, jadi `print(y)` masih memaparkan `5`.
+
+<MathVisual
+  title={<>Mengikat semula <code>x</code> tidak mengubah <code>y</code></>}
+  description={<>Python mula-mula mengikat <code>x</code> kepada <code>5</code>, kemudian <code>y</code> kepada objek yang sama, kemudian <code>x</code> kepada <code>7</code>. Segmen kelabu ialah ikatan lama <code>x</code>, segmen ungu ialah ikatan baharunya, dan segmen hijau kebiruan dari <code>y</code> masih menunjuk kepada <code>5</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1.2, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "x", kind: "point", at: { x: 0, y: 0.6 }, appearance: "secondary" },
+      { id: "y", kind: "point", at: { x: 0, y: -0.6 }, appearance: "construction" },
+      { id: "seven", kind: "point", at: { x: 4, y: 1.2 }, appearance: "secondary" },
+      { id: "five", kind: "point", at: { x: 4, y: -0.6 }, appearance: "construction" },
+      { id: "new", kind: "segment", from: { x: 0.2, y: 0.6 }, to: { x: 3.8, y: 1.2 }, appearance: "secondary" },
+      { id: "copy", kind: "segment", from: { x: 0.2, y: -0.6 }, to: { x: 3.8, y: -0.6 }, appearance: "construction" },
+      { id: "old", kind: "segment", from: { x: 0.2, y: 0.6 }, to: { x: 3.8, y: -0.5 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "x", objectId: "x", at: { x: 0, y: 0.6 }, placement: "left" },
+      { key: "y", objectId: "y", at: { x: 0, y: -0.6 }, placement: "left" },
+      { key: "seven", objectId: "seven", at: { x: 4, y: 1.2 }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 4, y: -0.6 }, placement: "right" },
+      { key: "new", objectId: "new", at: { x: 2, y: 0.9 }, placement: "above" },
+      { key: "copy", objectId: "copy", at: { x: 2, y: -0.6 }, placement: "below" },
+      { key: "old", objectId: "old", at: { x: 2, y: 0.6 - 1.8 * 1.1 / 3.6 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "x": "x",
+    "y": "y",
+    "seven": "7",
+    "five": "5",
+    "new": "x = 7",
+    "copy": "y = x",
+    "old": "x = 5",
+  }}
+/>
+
+## Ciri-ciri Pemboleh Ubah Python
+
+Apabila kamu mengumpukkan nilai kepada sesuatu nama, ingat dua perkara. Python mengikat nama itu kepada objek **tanpa pengisytiharan berasingan**. Kemudian, kamu boleh mengikat nama yang sama kepada objek yang jenisnya berbeza.
+
+### Tiada Pengisytiharan Pemboleh Ubah
+
+Tidak seperti bahasa yang memerlukan pengisytiharan pemboleh ubah secara berasingan, Python mengikat nama semasa umpukan dijalankan. **Objeklah yang ada jenis**, dan `type(value)` memberitahu jenis objek yang sedang diikat pada sesuatu nama.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "no_declaration.py",
+      code: `# Python tidak memerlukan pengisytiharan pemboleh ubah
+nama = "Budi"           # Rentetan
+umur = 25               # Integer
+tinggi = 175.5          # Float
+aktif = True            # Boolean
+
+# Python menentukan jenis data secara automatik
+print(type(nama))       # Output: <class 'str'>
+print(type(umur))       # Output: <class 'int'>
+print(type(tinggi))     # Output: <class 'float'>
+print(type(aktif))      # Output: <class 'bool'>`
+    }
+  ]}
+/>
+
+### Jenis Data Dinamik
+
+Python menggunakan penjenisan dinamik: setiap objek ada jenisnya, manakala **nama yang sama boleh diikat semula** kepada objek yang jenisnya berbeza semasa atur cara berjalan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dynamic_typing.py",
+      code: `# Pemboleh ubah dengan jenis data dinamik
+data = 42               # Integer
+print(f"Nilai: {data}, Jenis: {type(data)}")
+
+data = "Hello World"    # Rentetan
+print(f"Nilai: {data}, Jenis: {type(data)}")
+
+data = [1, 2, 3]        # Senarai
+print(f"Nilai: {data}, Jenis: {type(data)}")
+
+data = 3.14             # Float
+print(f"Nilai: {data}, Jenis: {type(data)}")`
+    }
+  ]}
+/>
+
+## Peraturan Menamakan Pemboleh Ubah
+
+Python ada peraturan yang ketat untuk nama pemboleh ubah, dan kamu mesti mengikutnya supaya kod dapat berjalan dengan betul. Nama boleh mengandungi huruf, digit dan garis bawah, tetapi **tidak boleh bermula dengan digit**, dan tidak boleh menjadi kata kunci terpelihara.
+
+### Komponen Nama Pemboleh Ubah
+
+Pengecam (identifier) bermula dengan **garis bawah atau huruf Unicode** dan boleh diikuti oleh huruf pengecam, garis bawah dan digit seperti <InlineMath math="0,1,2,\dots,9" />. Python menerima banyak pengecam bukan ASCII, tetapi nama ASCII `snake_case` yang deskriptif selalunya lebih mudah ditaip, dicari dan dikongsi dalam pelbagai alat.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "valid_names.py",
+      code: `# Nama pemboleh ubah yang sah
+student_name = "Ahmad"      # Guna huruf dan garis bawah
+score1 = 85                 # Guna huruf dan nombor
+_total = 100                # Bermula dengan garis bawah
+MAX_SIZE = 1000             # Semua huruf besar
+camelCase = "valid"         # Gaya camelCase
+snake_case = "valid"        # **Gaya snake_case**
+
+print(student_name, score1, _total, MAX_SIZE, camelCase, snake_case)`
+    }
+  ]}
+/>
+
+### Peraturan Wajib
+
+Ada beberapa peraturan wajib yang kamu mesti ikut semasa menamakan pemboleh ubah Python. Nama pemboleh ubah **tidak boleh bermula dengan nombor**. Python akan menghasilkan ralat sintaks jika kamu cuba mencipta pemboleh ubah yang bermula dengan nombor.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "naming_rules.py",
+      code: `# Nama pemboleh ubah yang BETUL
+data1 = "valid"
+data_2 = "valid"
+_data3 = "valid"
+
+# Nama pemboleh ubah yang SALAH (akan menyebabkan ralat)
+# 1data = "invalid"     # SyntaxError
+# 2nilai = "invalid"    # SyntaxError
+# 9test = "invalid"     # SyntaxError
+
+print(data1, data_2, _data3)`
+    }
+  ]}
+/>
+
+### Kepekaan Huruf Besar dan Kecil
+
+Python membezakan **huruf besar dan huruf kecil** dalam nama pemboleh ubah. Ini bermaksud `nama`, `Nama` dan `NAMA` ialah tiga pemboleh ubah yang berbeza.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "case_sensitive.py",
+      code: `# Python membezakan huruf besar dan huruf kecil
+nama = "budi"
+Nama = "Siti"
+NAMA = "Ahmad"
+
+print(f"nama: {nama}")      # Output: nama: budi
+print(f"Nama: {Nama}")      # Output: Nama: Siti
+print(f"NAMA: {NAMA}")      # Output: NAMA: Ahmad
+
+# Tiga pemboleh ubah ini berbeza antara satu sama lain
+print(nama == Nama)         # Output: False
+print(Nama == NAMA)         # Output: False`
+    }
+  ]}
+/>
+
+Nama pemboleh ubah yang sah bermula dengan huruf atau `_`, hanya mengandungi huruf, digit dan `_`, dan bukan kata kunci. `2nd` gagal peraturan pertama, `my-var` gagal peraturan kedua, dan `class` gagal peraturan ketiga.
+
+<BarChart
+  title={<>Enam calon nama pemboleh ubah</>}
+  description={<>Palang setinggi <InlineMath math="1" /> bermaksud nama di bawahnya sah, dan tiada palang bermaksud Python menolaknya dengan <code>SyntaxError</code>.</>}
+  yAxisLabel="Sah"
+  data={[
+    { name: "total", value: 1 },
+    { name: "_count", value: 1 },
+    { name: "2nd", value: 0 },
+    { name: "my-var", value: 0 },
+    { name: "class", value: 0 },
+    { name: "my_var2", value: 1 },
+  ]}
+  chartConfig={{ value: { label: "Sah", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+## Kata Kunci yang Tidak Boleh Digunakan
+
+Python mengkhaskan beberapa perkataan sebagai sebahagian daripada sintaksnya, jadi perkataan itu **tidak boleh digunakan sebagai nama pemboleh ubah**. Mengumpukkan nilai kepada salah satu perkataan itu menimbulkan `SyntaxError` sebelum atur cara mula berjalan.
+
+### Senarai Kata Kunci Python
+
+**Kata kunci terpelihara** ini tidak boleh menjadi pengecam. Jadual ini mengumpulkannya mengikut peranan masing-masing dalam sintaks.
+
+| Peranan | Kata Kunci |
+| --- | --- |
+| Logik dan nilai | `and`, `or`, `not`, `True`, `False`, `None` |
+| Cabang dan lelaran | `if`, `elif`, `else`, `for`, `while`, `break`, `continue`, `pass` |
+| Definisi dan skop | `def`, `class`, `lambda`, `return`, `yield`, `global`, `nonlocal` |
+| Import dan alias | `import`, `from`, `as` |
+| Ralat dan konteks | `try`, `except`, `finally`, `raise`, `assert`, `with` |
+| Operasi lain | `async`, `await`, `del`, `in`, `is` |
+
+Kata kunci lembut (soft keyword) seperti `match`, `case`, `type` dan `_` hanya istimewa dalam konteks sintaks tertentu. `keyword.iskeyword("match")` memulangkan `False`, manakala `keyword.issoftkeyword("match")` memulangkan `True`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "keywords_example.py",
+      code: `# Contoh penggunaan yang SALAH (akan menyebabkan ralat)
+# if = 10          # SyntaxError: invalid syntax
+# for = "hello"    # SyntaxError: invalid syntax
+# def = 25         # SyntaxError: invalid syntax
+# class = "test"   # SyntaxError: invalid syntax
+
+# Cara yang BETUL untuk nama pemboleh ubah yang hampir sama
+kondisi_if = 10
+loop_for = "hello"
+fungsi_def = 25
+kelas_class = "test"
+
+print(kondisi_if, loop_for, fungsi_def, kelas_class)`
+    }
+  ]}
+/>
+
+### Menyemak Kata Kunci
+
+Python menyediakan modul `keyword` untuk **menyemak sama ada sesuatu perkataan** ialah kata kunci atau tidak.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "check_keywords.py",
+      code: `import keyword
+
+# Lihat semua kata kunci Python
+print("Bilangan kata kunci:", len(keyword.kwlist))
+print("Senarai kata kunci:")
+for i, kw in enumerate(keyword.kwlist, 1):
+    print(f"{i:2d}. {kw}")
+
+# Semak sama ada sesuatu perkataan ialah kata kunci
+print(f"\\nAdakah 'if' kata kunci? {keyword.iskeyword('if')}")
+print(f"Adakah 'nama' kata kunci? {keyword.iskeyword('nama')}")
+print(f"Adakah 'class' kata kunci? {keyword.iskeyword('class')}")`
+    }
+  ]}
+/>
+
+## Amalan Terbaik Menamakan Pemboleh Ubah
+
+Pengecam Python mesti mengikut peraturan sintaks di atas. Dalam lingkungan peraturan itu, pilih nama yang menyatakan **apa yang diwakili oleh setiap nilai**. Nama seperti `total_price` memberitahu pembaca seterusnya lebih banyak perkara berbanding `tp`, dan tabiat yang sama memastikan atur cara yang lebih panjang masih mudah dibaca beberapa bulan kemudian.
+
+### Nama yang Bermakna
+
+Guna nama pemboleh ubah yang menerangkan dengan jelas **apa yang disimpan dalam pemboleh ubah itu**. Nama yang bermakna menjadikan kod lebih mudah difahami, sama ada oleh kamu sendiri atau oleh orang lain.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "meaningful_names.py",
+      code: `# Nama pemboleh ubah yang LEMAH
+h = 175
+w = 70
+a = 25
+
+# Nama pemboleh ubah yang BAIK
+body_height = 175
+body_weight = 70
+age = 25
+
+# Kira BMI dengan nama pemboleh ubah yang jelas
+bmi = body_weight / ((body_height / 100) ** 2)
+print(f"BMI: {bmi:.2f}")
+
+# Nama pemboleh ubah menyatakan apa yang diwakili oleh setiap nilai
+print(f"Tinggi: {body_height} cm")
+print(f"Berat: {body_weight} kg")
+print(f"Umur: {age} tahun")`
+    }
+  ]}
+/>
+
+### Panjang Nama yang Sesuai
+
+Elakkan nama pemboleh ubah yang terlalu panjang kerana ia menjadikan kod sukar dibaca. Sebaliknya, nama yang terlalu pendek mungkin tidak memberikan **maklumat yang cukup**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "name_length.py",
+      code: `# Nama terlalu panjang (LEMAH)
+student_height_class_12_science_odd_semester = 175
+
+# Nama terlalu pendek (LEMAH)
+h = 175
+
+# Nama yang sesuai (BAIK)
+student_height = 175
+height = 175  # Jika konteksnya sudah jelas
+
+# Untuk pemboleh ubah pembilang, nama pendek boleh diterima
+for i in range(10):
+    print(f"Lelaran {i}")
+
+# Untuk data yang lebih kompleks, guna nama yang jelas
+student_count = 30
+average_score = 85.5`
+    }
+  ]}
+/>
+
+### Gaya Penulisan yang Konsisten
+
+Python menggunakan gaya snake_case untuk nama pemboleh ubah, iaitu perkataan **dipisahkan dengan garis bawah** dan semua hurufnya ditulis dalam huruf kecil.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "naming_style.py",
+      code: `# Gaya snake_case (DISYORKAN untuk Python)
+full_name = "Ahmad Budi"
+birth_date = "1995-05-15"
+home_address = "Jl. Merdeka No. 123"
+
+# Gaya camelCase (lebih biasa dalam JavaScript/Java)
+fullName = "Ahmad Budi"  # Sah, tetapi kurang idiomatik dalam Python
+
+# Gaya PascalCase (biasanya untuk nama kelas)
+FullName = "Ahmad Budi"  # Tidak disyorkan untuk pemboleh ubah
+
+# Konsisten dalam satu atur cara
+math_score = 90
+physics_score = 85
+chemistry_score = 88
+average_score = (math_score + physics_score + chemistry_score) / 3
+
+print(f"Purata markah: {average_score:.2f}")`
+    }
+  ]}
+/>
+
+### Mengelakkan Kekeliruan
+
+Elakkan aksara yang boleh mengelirukan, terutamanya **huruf yang kelihatan seperti nombor**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "avoid_confusion.py",
+      code: `# Aksara yang mengelirukan (ELAKKAN)
+# l = 1        # Huruf 'l' nampak seperti nombor '1'
+# I = 1        # Huruf 'I' nampak seperti nombor '1'
+# O = 0        # Huruf 'O' nampak seperti nombor '0'
+
+# Pilihan yang lebih jelas
+length = 1      # Guna perkataan yang jelas
+index = 1       # Atau nama yang lebih deskriptif
+empty = 0       # Nama yang menerangkan maksudnya
+
+# Contoh penggunaan dalam konteks yang jelas
+item_count = 10
+for number in range(1, item_count + 1):
+    print(f"Item nombor {number}")
+
+# Pemboleh ubah Boolean dengan nama yang jelas
+is_active = True
+has_permission = False
+can_edit = True`
+    }
+  ]}
+/>
+
+## Contoh Penggunaan Pemboleh Ubah dalam Atur Cara
+
+Atur cara berikut menggunakan pemboleh ubah untuk mengira **luas dan perimeter segi empat tepat**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "rectangle_calculator.py",
+      code: `import math
+
+# Atur cara untuk mengira luas dan perimeter segi empat tepat
+print("=== Kalkulator Segi Empat Tepat ===")
+
+# Input pengguna
+length = float(input("Masukkan panjang (cm): "))
+width = float(input("Masukkan lebar (cm): "))
+
+if not (math.isfinite(length) and math.isfinite(width) and length > 0 and width > 0):
+    raise ValueError("Dimensi mesti positif dan terhingga")
+
+# Pengiraan
+area = length * width
+perimeter = 2 * (length + width)
+
+# Paparkan hasil
+print(f"\\nHasil Pengiraan:")
+print(f"Panjang: {length} cm")
+print(f"Lebar: {width} cm")
+print(f"Luas: {area} cm²")
+print(f"Perimeter: {perimeter} cm")`
+    }
+  ]}
+/>
+
+Dalam atur cara ini, `length` dan `width` menamakan dua input, manakala `area` dan `perimeter` menamakan hasil pengiraan. Semakan itu menolak dimensi yang bukan positif atau tidak terhingga sebelum pengiraan dibuat. Panjang `5` dan lebar `3` menghasilkan luas `15.0 cm²` dan perimeter `16.0 cm`. Teks yang bukan nombor pula ditolak oleh `float()`.
+
+Pengikatan nama, peraturan pengecam dan konvensyen yang konsisten menjadikan kod Python lebih mudah dibaca. Apabila kamu dapat membezakan kesamaan, identiti dan umpukan semula, kamu juga lebih bersedia untuk memahami sifat boleh diubah, argumen fungsi dan model objek.
+
+Pemboleh ubah memberi nama yang jelas kepada nombor dalam atur cara. Dengan `length = 4` dan `width = 3`, baris `area = length * width` menyimpan <InlineMath math="4\cdot3=12" />, dan nama `area` memberitahu kamu maksud nombor itu apabila kamu membaca kod itu semula.
+
+<MathVisual
+  title={<><code>area = length * width</code></>}
+  description={<>Segi empat tepat ungu berukuran <code>length</code> kali <code>width</code>. Segmen hijau kebiruan ialah panjang <InlineMath math="4" />, segmen jingga ialah lebar <InlineMath math="3" />, dan luasnya ialah <InlineMath math="12" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rectangle", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "length", kind: "segment", from: { x: 0, y: -0.4 }, to: { x: 4, y: -0.4 }, appearance: "construction" },
+      { id: "width", kind: "segment", from: { x: 4.4, y: 0 }, to: { x: 4.4, y: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "length", objectId: "length", at: { x: 2, y: -0.4 }, placement: "below" },
+      { key: "width", objectId: "width", at: { x: 4.4, y: 1.5 }, placement: "right" },
+      { key: "rectangle", objectId: "rectangle", at: { x: 2, y: 1.5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "length": <code>length = 4</code>,
+    "width": <code>width = 3</code>,
+    "rectangle": <code>area = 12</code>,
+  }}
+/>

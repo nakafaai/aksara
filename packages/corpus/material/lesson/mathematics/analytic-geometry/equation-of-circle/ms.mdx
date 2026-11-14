@@ -1,0 +1,230 @@
+export const metadata = {
+  title: "Persamaan Bulatan",
+  description: "Tukarkan persamaan bulatan antara bentuk piawai dan bentuk am, kemudian cari pusat dan jejari dalam setiap bentuk.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Geometri Analitik",
+};
+
+
+
+## Mencari Kedudukan Bulatan daripada Pusat dan Jejarinya
+
+Persamaan bulatan menerangkan setiap titik pada bulatan dalam satah koordinat. Bayangkan kamu melukis dengan jangka lukis di atas kertas graf: jarumnya menetapkan pusat, bukaannya menetapkan jejari, dan pensel melakar tepat titik-titik yang memenuhi persamaan itu.
+
+Persamaan bulatan mengandungi koordinat **pusat** dan **jejari**, jadi kedua-duanya boleh ditentukan tanpa perlu melukis bulatan itu dahulu.
+
+## Bulatan Berpusat di Asalan
+
+Mari mulakan dengan kes paling mudah, iaitu bulatan yang berpusat di asalan <InlineMath math="O(0,0)" />.
+
+Katakan kita ada bulatan yang berpusat di <InlineMath math="O(0,0)" /> dengan jejari <InlineMath math="r>0" />. Setiap titik <InlineMath math="(x,y)" /> pada bulatan itu berada pada jarak yang sama dari pusat, iaitu <InlineMath math="r" />.
+
+Dengan rumus jarak, kita dapat:
+
+<BlockMath math="\sqrt{x^2 + y^2} = r" />
+
+Kalau kita **kuasa duakan kedua-dua belah**, kita dapat persamaan bulatan yang berpusat di asalan:
+
+<BlockMath math="x^2 + y^2 = r^2" />
+
+Graf ini menunjukkan bahawa setiap titik berada pada jarak yang sama dari pusat.
+
+<MathVisual
+  title={<><InlineMath math="x^2 + y^2 = 9" /></>}
+  description={<>Bulatan berpusat <InlineMath math="O(0, 0)" /> dengan jejari <InlineMath math="3" />: setiap titik padanya berada <InlineMath math="3" /> unit dari <InlineMath math="O" />.</>}
+  labels={{
+    o: <InlineMath math="O(0, 0)" />,
+    r: <InlineMath math="r = 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "primary" },
+      { id: "r", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "r", objectId: "r", at: { x: 3 / 2, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+Bagi bulatan di atas, persamaannya ialah <InlineMath math="x^2 + y^2 = 9" /> kerana jejarinya <InlineMath math="3" />, jadi <InlineMath math="r^2 = 3^2 = 9" />.
+
+## Bulatan dengan Pusat Sebarang
+
+Untuk bulatan yang berpusat di <InlineMath math="P(a,b)" />, katakan jejarinya <InlineMath math="r" />.
+
+Setiap titik <InlineMath math="(x,y)" /> pada bulatan ini mesti berada pada jarak yang sama, iaitu <InlineMath math="r" />, dari pusat <InlineMath math="P(a,b)" />. Dengan rumus jarak:
+
+<BlockMath math="\sqrt{(x-a)^2 + (y-b)^2} = r" />
+
+Selepas dikuasaduakan, kita dapat <Highlight>persamaan piawai bulatan</Highlight> dengan pusat sebarang:
+
+<BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
+
+Pusat yang sudah beranjak boleh dilihat pada graf di bawah.
+
+<MathVisual
+  title={<><InlineMath math="(x - 2)^2 + (y + 1)^2 = 4" /></>}
+  description={<>Bulatan berpusat <InlineMath math="P(2, -1)" /> dengan jejari <InlineMath math="2" />.</>}
+  labels={{
+    p: <InlineMath math="P(2, -1)" />,
+    r: <InlineMath math="r = 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -3.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 2, y: -1 }, radius: 2, appearance: "primary" },
+      { id: "r", kind: "segment", from: { x: 2, y: -1 }, to: { x: 4, y: -1 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 2, y: -1 }, placement: "below-left" },
+      { key: "r", objectId: "r", at: { x: 3, y: -1 }, placement: "above" },
+    ],
+  }}
+/>
+
+Persamaan bulatan di atas ialah <InlineMath math="(x-2)^2 + (y+1)^2 = 4" /> kerana pusatnya <InlineMath math="P(2,-1)" /> dan jejarinya <InlineMath math="2" />, jadi <InlineMath math="r^2 = 2^2 = 4" />.
+
+## Bentuk Am Persamaan Bulatan
+
+Kadang-kadang kita jumpa persamaan bulatan yang sudah dikembangkan menjadi bentuk am. Contohnya, kalau kita kembangkan persamaan <InlineMath math="(x-1)^2 + (y-2)^2 = 9" />:
+
+<MathContainer>
+  <BlockMath math="(x-1)^2 + (y-2)^2 = 9" />
+  <BlockMath math="x^2 - 2x + 1 + y^2 - 4y + 4 = 9" />
+  <BlockMath math="x^2 + y^2 - 2x - 4y + 5 = 9" />
+  <BlockMath math="x^2 + y^2 - 2x - 4y - 4 = 0" />
+</MathContainer>
+
+Bentuk terakhir ini dipanggil **bentuk am persamaan bulatan**:
+
+<BlockMath math="x^2 + y^2 + Dx + Ey + F = 0" />
+
+Persamaan dalam bentuk am boleh ditukar semula kepada bentuk piawai dengan **penyempurnaan kuasa dua**.
+
+> Bukan semua persamaan berbentuk <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /> ialah persamaan bulatan. Syaratnya ialah <InlineMath math="D^2 + E^2 - 4F > 0" />. Kalau nilai ini sifar, persamaan itu hanya mewakili satu titik, dan kalau negatif, tiada lengkung langsung.
+
+Penyempurnaan kuasa dua menunjukkan dari mana datangnya rumus pusat dan jejari:
+
+<MathContainer>
+  <BlockMath math="x^2 + Dx = \left(x + \frac{D}{2}\right)^2 - \frac{D^2}{4}" />
+  <BlockMath math="y^2 + Ey = \left(y + \frac{E}{2}\right)^2 - \frac{E^2}{4}" />
+  <BlockMath math="\begin{aligned} &amp;\left(x + \frac{D}{2}\right)^2 + \left(y + \frac{E}{2}\right)^2 \\ &amp;= \frac{D^2 + E^2 - 4F}{4} \end{aligned}" />
+</MathContainer>
+
+## Menentukan Pusat dan Jejari
+
+Daripada **bentuk piawai** <InlineMath math="(x-a)^2 + (y-b)^2 = r^2" />, kita boleh terus tahu:
+
+Pusatnya di <InlineMath math="(a,b)" /> dan jejarinya <InlineMath math="r" /> (diperoleh daripada <InlineMath math="r = \sqrt{r^2}" />).
+
+Daripada bentuk am <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /> pula, kita boleh tentukan:
+
+<MathContainer>
+  <BlockMath math="\text{Pusat: } \left(-\frac{D}{2}, -\frac{E}{2}\right)" />
+  <BlockMath math="\text{Jejari: } r = \frac{1}{2}\sqrt{D^2 + E^2 - 4F}" />
+</MathContainer>
+
+## Soalan Latihan
+
+Pilih bentuk persamaan berdasarkan **maklumat yang diberi**. Gantikan pusat dan jejari yang diketahui terus ke dalam bentuk piawai. Kalau yang diberi ialah titik-titik hujung diameter, cari titik tengahnya dan separuh panjang diameter dahulu.
+
+1. Tentukan persamaan bulatan yang berpusat di <InlineMath math="(3,-2)" /> dengan jejari <InlineMath math="5" />.
+
+2. Diberi bulatan dengan persamaan <InlineMath math="x^2 + y^2 - 6x + 4y - 12 = 0" />. Tentukan pusat dan jejari bulatan itu.
+
+3. Satu bulatan melalui titik <InlineMath math="(6,-8)" /> dan berpusat di <InlineMath math="O(0,0)" />. Tentukan persamaan bulatan itu.
+
+4. Tentukan persamaan bulatan yang diameternya mempunyai titik hujung <InlineMath math="A(1,3)" /> dan <InlineMath math="B(7,-1)" />.
+
+### Jalan Kerja
+
+**Penyelesaian 1**:
+
+Diberi pusat <InlineMath math="(a,b) = (3,-2)" /> dan jejari <InlineMath math="r = 5" />.
+
+Gunakan **rumus persamaan bulatan**:
+
+<MathContainer>
+  <BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
+  <BlockMath math="(x-3)^2 + (y-(-2))^2 = 5^2" />
+  <BlockMath math="(x-3)^2 + (y+2)^2 = 25" />
+</MathContainer>
+
+Jadi persamaan bulatan itu ialah <InlineMath math="(x-3)^2 + (y+2)^2 = 25" />.
+
+**Penyelesaian 2**:
+
+Daripada persamaan <InlineMath math="x^2 + y^2 - 6x + 4y - 12 = 0" />, kita **kenal pasti pekalinya**:
+
+<InlineMath math="D = -6" />, <InlineMath math="E = 4" />, <InlineMath math="F = -12" />
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;\text{Pusat: } \left(-\frac{D}{2}, -\frac{E}{2}\right) \\ &amp;= \left(-\frac{(-6)}{2}, -\frac{4}{2}\right) \\ &amp;= (3, -2) \end{aligned}" />
+  <BlockMath math="\begin{aligned} r &amp;= \frac{1}{2}\sqrt{D^2 + E^2 - 4F} \\ &amp;= \frac{1}{2}\sqrt{(-6)^2 + 4^2 - 4(-12)} \end{aligned}" />
+  <BlockMath math="\begin{aligned} r &amp;= \frac{1}{2}\sqrt{36 + 16 + 48} \\ &amp;= \frac{1}{2}\sqrt{100} \\ &amp;= \frac{1}{2} \times 10 \\ &amp;= 5 \end{aligned}" />
+</MathContainer>
+
+Jadi pusat bulatan itu ialah <InlineMath math="(3,-2)" /> dan jejarinya <InlineMath math="5" />.
+
+**Penyelesaian 3**:
+
+Oleh sebab bulatan itu berpusat di <InlineMath math="O(0,0)" /> dan melalui titik <InlineMath math="(6,-8)" />, jejarinya ialah **jarak dari pusat** ke titik itu.
+
+<BlockMath math="\begin{aligned} r &amp;= \sqrt{(6-0)^2 + (-8-0)^2} \\ &amp;= \sqrt{6^2 + (-8)^2} \\ &amp;= \sqrt{36 + 64} \\ &amp;= \sqrt{100} \\ &amp;= 10 \end{aligned}" />
+
+Persamaan bulatan: <InlineMath math="x^2 + y^2 = r^2 = 10^2 = 100" />
+
+**Penyelesaian 4**:
+
+Pusat bulatan ialah **titik tengah diameter** <InlineMath math="AB" />:
+
+<BlockMath math="\begin{aligned} &amp;\text{Pusat} \\ &amp;= \left(\frac{x_A + x_B}{2}, \frac{y_A + y_B}{2}\right) \\ &amp;= \left(\frac{1+7}{2}, \frac{3+(-1)}{2}\right) \\ &amp;= \left(\frac{8}{2}, \frac{2}{2}\right) \\ &amp;= (4, 1) \end{aligned}" />
+
+Jejarinya ialah separuh panjang diameter:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}AB&amp;=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}\\&amp;=\sqrt{(7-1)^2+(-1-3)^2}\\&amp;=\sqrt{6^2+(-4)^2}\\&amp;=\sqrt{36+16}\\&amp;=\sqrt{52}\\&amp;=2\sqrt{13}\end{aligned}" />
+  <BlockMath math="r = \frac{\text{diameter}}{2} = \frac{2\sqrt{13}}{2} = \sqrt{13}" />
+</MathContainer>
+
+Persamaan bulatan: <InlineMath math="(x-4)^2 + (y-1)^2 = (\sqrt{13})^2 = 13" />
+
+Dalam Penyelesaian 4, diameter <InlineMath math="AB" /> menentukan segala-galanya. Titik tengahnya <InlineMath math="(4, 1)" /> ialah pusat, dan separuh panjangnya, <InlineMath math="\sqrt{13}" />, ialah jejari, jadi kedua-dua <InlineMath math="A(1, 3)" /> dan <InlineMath math="B(7, -1)" /> terletak pada <InlineMath math="(x - 4)^2 + (y - 1)^2 = 13" />.
+
+<MathVisual
+  title={<>Bulatan daripada hujung-hujung diameter</>}
+  description={<>Diameter dari <InlineMath math="A(1, 3)" /> ke <InlineMath math="B(7, -1)" />, titik tengahnya <InlineMath math="(4, 1)" /> dan bulatan berjejari <InlineMath math="\sqrt{13}" /> yang melalui kedua-dua hujung itu.</>}
+  labels={{
+    a: <InlineMath math="A(1, 3)" />,
+    b: <InlineMath math="B(7, -1)" />,
+    c: <InlineMath math="(4, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: -3, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 4, y: 1 }, radius: Math.sqrt(13), appearance: "primary" },
+      { id: "ab", kind: "segment", from: { x: 1, y: 3 }, to: { x: 7, y: -1 }, appearance: "construction" },
+      { id: "a", kind: "point", at: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "b", kind: "point", at: { x: 7, y: -1 }, appearance: "secondary" },
+      { id: "c", kind: "point", at: { x: 4, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1, y: 3 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 7, y: -1 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 4, y: 1 }, placement: "above" },
+    ],
+  }}
+/>

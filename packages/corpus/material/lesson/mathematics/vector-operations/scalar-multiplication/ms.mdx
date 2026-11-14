@@ -1,0 +1,254 @@
+export const metadata = {
+  title: "Pendaraban Vektor dengan Skalar",
+  description: "Terangkan bagaimana pendaraban dengan skalar mengubah magnitud dan arah vektor, kemudian gunakannya dalam pengiraan, fizik dan geometri.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-12",
+  dateModified: "2026-11-08",
+  subject: "Vektor dan Operasinya",
+};
+
+## Bagaimana Pengganda Nombor Nyata Mengubah Vektor
+
+Pendaraban skalar menghasilkan vektor baharu. Magnitudnya ialah magnitud asal didarab dengan **nilai mutlak skalar itu**. Bagi vektor asal yang bukan sifar, tanda skalar menentukan sama ada arahnya kekal atau terbalik.
+
+Jika <InlineMath math="k" /> ialah nombor nyata (skalar) dan <InlineMath math="\vec{v}" /> ialah vektor, maka pendaraban vektor dengan skalar ditandakan sebagai <InlineMath math="k \cdot \vec{v}" />.
+
+## Sifat Pendaraban Vektor dengan Skalar
+
+Pendaraban skalar mengubah vektor mengikut petua berikut:
+
+1. Jika <InlineMath math="k > 0" /> dan vektor asal bukan sifar, vektor yang terhasil mempunyai arah yang sama.
+2. Jika <InlineMath math="k < 0" /> dan vektor asal bukan sifar, vektor yang terhasil menghala ke arah yang bertentangan.
+3. Jika <InlineMath math="k = 0" />, maka vektor yang terhasil ialah vektor sifar.
+4. Magnitud yang terhasil ialah magnitud asal didarab dengan faktor <InlineMath math="|k|" />.
+
+
+Gambar rajah ini menggunakan <InlineMath math="\vec v=(2,1)" />. **Apabila koordinat titik awal setiap anak panah ditolak** daripada koordinat titik akhirnya, kita mendapat <InlineMath math="(2,1)" />, <InlineMath math="(4,2)" /> dan <InlineMath math="(-2,-1)" />.
+
+<ContentBlock>
+  <MathVisual
+    title={<><InlineMath math="\vec v" />, <InlineMath math="2\vec v" /> dan <InlineMath math="-\vec v" /></>}
+    description={<>Vektor <InlineMath math="\vec v = (2, 1)" />, vektor yang diregangkan <InlineMath math="2\vec v = (4, 2)" /> dan vektor yang diterbalikkan <InlineMath math="-\vec v = (-2, -1)" />, dilukis dari titik awal yang berasingan.</>}
+    labels={{
+      v: <InlineMath math="\vec v" />,
+      two: <InlineMath math="2\vec v" />,
+      neg: <InlineMath math="-\vec v" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -2.6, max: 4.6 }, y: { min: -0.5, max: 4.6 } },
+      view: { kind: "fit", padding: 0.3 },
+      objects: [
+        { id: "v", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+        { id: "v-head", kind: "polygon", vertices: [{ x: 2, y: 1 }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)), y: (1) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)) }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)), y: (1) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)) }], appearance: "primary" },
+        { id: "two", kind: "segment", from: { x: 0, y: 2 }, to: { x: 4, y: 4 }, appearance: "secondary" },
+        { id: "two-head", kind: "polygon", vertices: [{ x: 4, y: 4 }, { x: (4) + (-1 / Math.sqrt(20)) + (-1 / 5 / Math.sqrt(20)), y: (4) + (-1 / 2 / Math.sqrt(20)) + (2 / 5 / Math.sqrt(20)) }, { x: (4) + (-1 / Math.sqrt(20)) + (1 / 5 / Math.sqrt(20)), y: (4) + (-1 / 2 / Math.sqrt(20)) + (-2 / 5 / Math.sqrt(20)) }], appearance: "secondary" },
+        { id: "neg", kind: "segment", from: { x: 0, y: 4 }, to: { x: -2, y: 3 }, appearance: "construction" },
+        { id: "neg-head", kind: "polygon", vertices: [{ x: -2, y: 3 }, { x: (-2) + (1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)), y: (3) + (1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)) }, { x: (-2) + (1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)), y: (3) + (1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)) }], appearance: "construction" },
+      ],
+      labels: [
+        { key: "v", objectId: "v", at: { x: 2, y: 1 }, placement: "right" },
+        { key: "two", objectId: "two", at: { x: 4, y: 4 }, placement: "right" },
+        { key: "neg", objectId: "neg", at: { x: -2, y: 3 }, placement: "left" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+## Perwakilan Pendaraban Vektor dengan Skalar
+
+**Nilai mutlak skalar** menentukan panjang yang terhasil, manakala tandanya menentukan sama ada arah kekal atau terbalik. Pendaraban dengan sifar menghasilkan vektor sifar, yang tidak mempunyai arah.
+
+### Magnitud dan Arah Vektor Selepas Pendaraban Skalar
+
+Secara geometri, pendaraban skalar mengubah magnitud vektor dengan faktor <InlineMath math="|k|" />. Bagi vektor bukan sifar, arahnya bergantung pada **tanda** <InlineMath math="k" />:
+
+- Jika <InlineMath math="k > 0" />, arah vektor kekal tidak berubah
+- Jika <InlineMath math="k < 0" />, arah vektor bertentangan dengan vektor asal
+
+Dalam kedua-dua kes, dan juga apabila <InlineMath math="k=0" />, magnitudnya memenuhi:
+
+<BlockMath math="|k \cdot \vec{v}| = |k| \cdot |\vec{v}|" />
+
+Nilai mutlak faktor itulah yang menetapkan panjang. <InlineMath math="\vec v = (4, 2)" /> mempunyai panjang <InlineMath math="2\sqrt5" />. Kedua-dua <InlineMath math="\tfrac12\vec v = (2, 1)" /> dan <InlineMath math="-\tfrac12\vec v = (-2, -1)" /> mempunyai panjang <InlineMath math="\tfrac12 \cdot 2\sqrt5 = \sqrt5" />, dan tanda negatif hanya membalikkan arahnya.
+
+<MathVisual
+  title={<>Separuh daripada <InlineMath math="\vec v" /> dalam kedua-dua arah</>}
+  description={<>Vektor <InlineMath math="\vec v = (4, 2)" /> serta vektor <InlineMath math="\tfrac12\vec v = (2, 1)" /> dan <InlineMath math="-\tfrac12\vec v = (-2, -1)" />, masing-masing dengan panjang <InlineMath math="\sqrt5" />.</>}
+  labels={{
+    v: <InlineMath math="\vec v" />,
+    half: <InlineMath math="\tfrac12\vec v" />,
+    neg: <InlineMath math="-\tfrac12\vec v" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 4.6 }, y: { min: -0.5, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "v", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 2 }, appearance: "primary" },
+      { id: "v-head", kind: "polygon", vertices: [{ x: 4, y: 2 }, { x: (4) + (-1 / Math.sqrt(20)) + (-1 / 5 / Math.sqrt(20)), y: (2) + (-1 / 2 / Math.sqrt(20)) + (2 / 5 / Math.sqrt(20)) }, { x: (4) + (-1 / Math.sqrt(20)) + (1 / 5 / Math.sqrt(20)), y: (2) + (-1 / 2 / Math.sqrt(20)) + (-2 / 5 / Math.sqrt(20)) }], appearance: "primary" },
+      { id: "half", kind: "segment", from: { x: 0, y: 2 }, to: { x: 2, y: 3 }, appearance: "secondary" },
+      { id: "half-head", kind: "polygon", vertices: [{ x: 2, y: 3 }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)), y: (3) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)) }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)), y: (3) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)) }], appearance: "secondary" },
+      { id: "neg", kind: "segment", from: { x: 0, y: 4 }, to: { x: -2, y: 3 }, appearance: "construction" },
+      { id: "neg-head", kind: "polygon", vertices: [{ x: -2, y: 3 }, { x: (-2) + (1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)), y: (3) + (1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)) }, { x: (-2) + (1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)), y: (3) + (1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)) }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "half", objectId: "half", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "neg", objectId: "neg", at: { x: -2, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
+
+### Mendarab Vektor dengan Skalar Mengikut Komponen
+
+Gunakan **faktor yang sama pada setiap komponen**. Pastikan susunan komponen sejajar dengan paksi koordinat.
+
+Jika <InlineMath math="\vec{v} = (v_1, v_2, v_3)" /> ialah vektor dalam ruang <InlineMath math="3" /> dimensi, maka:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} k \cdot \vec{v} &amp;= k(v_1, v_2, v_3) \\ &amp;= (k \cdot v_1, k \cdot v_2, k \cdot v_3) \end{aligned}" />
+</MathContainer>
+
+Dalam tatatanda vektor unit:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} k \cdot \vec{v} &amp;= k(v_1\vec{i} + v_2\vec{j} + v_3\vec{k}) \\ &amp;= k \cdot v_1\vec{i} + k \cdot v_2\vec{j} + k \cdot v_3\vec{k} \end{aligned}" />
+</MathContainer>
+
+## Mendarab Vektor dengan Skalar Positif dan Negatif
+
+Faktor yang lebih besar daripada satu meregangkan vektor, faktor di antara sifar dan satu mengecutkannya, dan <Highlight>faktor negatif juga membalikkan arahnya</Highlight>. Pernyataan tentang arah ini terpakai pada **vektor asal yang bukan sifar**. Vektor sifar kekal sifar selepas didarab dengan sebarang skalar dan tidak mempunyai arah yang tertakrif.
+
+### Mendarab dengan Skalar Positif
+
+Diberi vektor <InlineMath math="\vec{a} = 2\vec{i} + 3\vec{j} + 5\vec{k}" />. Tentukan hasil pendaraban <InlineMath math="2\vec{a}" />.
+
+**Penyelesaian**:
+
+<BlockMath math="\begin{aligned} 2\vec{a} &amp;= 2(2\vec{i} + 3\vec{j} + 5\vec{k}) \\ &amp;= 4\vec{i} + 6\vec{j} + 10\vec{k} \end{aligned}" />
+
+### Mendarab dengan Skalar Negatif
+
+Diberi vektor <InlineMath math="\vec{v} = (4, -2, 3)" />. Tentukan hasil <InlineMath math="-3\vec{v}" />.
+
+**Penyelesaian**:
+
+<BlockMath math="\begin{aligned} -3\vec{v} &amp;= -3(4, -2, 3) \\ &amp;= (-12, 6, -9) \end{aligned}" />
+
+Vektor yang terhasil menghala ke arah yang bertentangan kerana skalarnya negatif.
+
+Dalam ruang, petua yang sama tetap berlaku. <InlineMath math="-3\vec{v} = (-12, 6, -9)" /> menghala tepat bertentangan dengan <InlineMath math="\vec{v} = (4, -2, 3)" /> dan panjangnya <InlineMath math="3" /> kali ganda.
+
+<MathVisual
+  title={<><InlineMath math="\vec v" /> dan <InlineMath math="-3\vec v" /> dalam ruang</>}
+  description={<>Vektor <InlineMath math="\vec{v} = (4, -2, 3)" /> dan vektor <InlineMath math="-3\vec{v} = (-12, 6, -9)" />, pada satu garis yang melalui asalan dalam arah yang bertentangan.</>}
+  labels={{
+    v: <InlineMath math="\vec v" />,
+    neg: <InlineMath math="-3\vec v" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -13, max: 5 }, y: { min: -3, max: 7 }, z: { min: -10, max: 4 } },
+    view: { kind: "isometric", target: { x: -4, y: 2, z: -3 } },
+    objects: [
+      { id: "neg", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: -12, y: 6, z: -9 }, appearance: "secondary" },
+      { id: "neg-head", kind: "polygon", vertices: [{ x: -12, y: 6, z: -9 }, { x: (-294 / 25) + (12 / Math.sqrt(261)), y: (6) + (-6 / Math.sqrt(261)), z: (-233 / 25) + (9 / Math.sqrt(261)) }, { x: (-306 / 25) + (12 / Math.sqrt(261)), y: (6) + (-6 / Math.sqrt(261)), z: (-217 / 25) + (9 / Math.sqrt(261)) }], appearance: "secondary" },
+      { id: "v", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: -2, z: 3 }, appearance: "primary" },
+      { id: "v-head", kind: "polygon", vertices: [{ x: 4, y: -2, z: 3 }, { x: (476 / 125) + (-16 / 5 / Math.sqrt(29)), y: (-2) + (8 / 5 / Math.sqrt(29)), z: (407 / 125) + (-12 / 5 / Math.sqrt(29)) }, { x: (524 / 125) + (-16 / 5 / Math.sqrt(29)), y: (-2) + (8 / 5 / Math.sqrt(29)), z: (343 / 125) + (-12 / 5 / Math.sqrt(29)) }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 4, y: -2, z: 3 }, placement: "right" },
+      { key: "neg", objectId: "neg", at: { x: -12, y: 6, z: -9 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Aplikasi Pendaraban Vektor dengan Skalar
+
+Pendaraban vektor dengan skalar mempunyai banyak aplikasi dalam fizik dan matematik, contohnya:
+
+1. **Daya dan Pecutan**: Jika objek berjisim <InlineMath math="m" /> mengalami pecutan <InlineMath math="\vec{a}" />, maka daya yang bertindak ke atas objek itu ialah <InlineMath math="\vec{F} = m\vec{a}" />.
+
+2. **Halaju**: Jika objek bergerak dengan halaju malar <InlineMath math="\vec{v}" /> selama masa <InlineMath math="t" />, maka sesarannya ialah <InlineMath math="\vec{s} = t\vec{v}" />.
+
+3. **Penskalaan dalam Grafik Komputer**: Apabila setiap vektor kedudukan didarab dengan <InlineMath math="k" />, objek itu diskalakan terhadap asalan koordinat. Untuk menskalakan terhadap pusat lain <InlineMath math="\vec{c}" />, setiap titik <InlineMath math="\vec{p}" /> mesti ditranslasikan, diskalakan, kemudian ditranslasikan semula mengikut <InlineMath math="\vec{p}'=\vec{c}+k(\vec{p}-\vec{c})" />.
+
+## Soalan Latihan
+
+Setiap soalan mendarab vektor dengan satu atau dua skalar. Darab **setiap komponen dengan faktor yang sama**, kemudian gabungkan hasilnya apabila ada dua skalar.
+
+1. Diberi vektor <InlineMath math="\vec{a} = 3\vec{i} - 4\vec{j} + 2\vec{k}" />. Tentukan hasil <InlineMath math="-2\vec{a}" />.
+
+2. Diberi vektor <InlineMath math="\vec{u} = (2, -5, 1)" /> dan <InlineMath math="\vec{v} = (-4, 3, 6)" />. Tentukan vektor <InlineMath math="2\vec{u} - 3\vec{v}" />.
+
+3. Diberi <InlineMath math="|\overrightarrow{BR}| = 3.4 \text{ cm}" />. Jika <InlineMath math="\overrightarrow{BU} = 0.65 \cdot \overrightarrow{BR}" /> dan <InlineMath math="\overrightarrow{UR} = 0.35 \cdot \overrightarrow{BR}" />, buktikan bahawa ketiga-tiga vektor itu mempunyai arah yang sama.
+
+4. Vektor <InlineMath math="\vec{p}" /> mempunyai panjang <InlineMath math="5 \text{ unit}" /> dan vektor <InlineMath math="\vec{q} = 3\vec{p}" />. Tentukan panjang vektor <InlineMath math="\vec{q}" />.
+
+5. Diberi titik <InlineMath math="A(2, 3, -1)" /> dan <InlineMath math="B(5, -2, 4)" />, manakala titik <InlineMath math="C" /> terletak pada garis yang melalui <InlineMath math="A" /> dan <InlineMath math="B" /> dengan keadaan <InlineMath math="\overrightarrow{AC} = 2\overrightarrow{AB}" />. Tentukan koordinat titik <InlineMath math="C" />.
+
+### Kunci Jawapan
+
+Setiap penyelesaian mendarab **setiap komponen dengan faktor yang sama**, kemudian menggabungkan komponen pada paksi yang sepadan. Faktor negatif yang didarab dengan komponen negatif menghasilkan komponen positif. Untuk mendapatkan semula satu titik, tambahkan vektor sesarannya kepada kedudukan awal.
+
+**Soalan 1**. Vektor yang diberi ialah <InlineMath math="\vec{a} = 3\vec{i} - 4\vec{j} + 2\vec{k}" />. Untuk mendapatkan <InlineMath math="-2\vec{a}" />, darab setiap komponen dengan skalar negatif yang sama.
+
+<BlockMath math="\begin{aligned} -2\vec{a} &amp;= -2(3\vec{i} - 4\vec{j} + 2\vec{k}) \\ &amp;= -6\vec{i} + 8\vec{j} - 4\vec{k} \end{aligned}" />
+
+Hasil <InlineMath math="-2\vec{a}" /> ialah <InlineMath math="-6\vec{i} + 8\vec{j} - 4\vec{k}" />.
+
+**Soalan 2**. Vektor yang diberi ialah <InlineMath math="\vec{u} = (2, -5, 1)" /> dan <InlineMath math="\vec{v} = (-4, 3, 6)" />. Untuk mendapatkan <InlineMath math="2\vec{u} - 3\vec{v}" />, kira kedua-dua gandaan skalar itu, kemudian tolak **komponen yang sepadan**.
+
+<BlockMath math="\begin{aligned} 2\vec{u} &amp;= 2(2, -5, 1) = (4, -10, 2) \\ 3\vec{v} &amp;= 3(-4, 3, 6) = (-12, 9, 18) \\ 2\vec{u} - 3\vec{v} &amp;= (4, -10, 2) - (-12, 9, 18) \\ &amp;= (4 - (-12), -10 - 9, 2 - 18) \\ &amp;= (4 + 12, -10 - 9, 2 - 18) \\ &amp;= (16, -19, -16) \end{aligned}" />
+
+Vektor <InlineMath math="2\vec{u} - 3\vec{v}" /> ialah <InlineMath math="(16, -19, -16)" /> atau <InlineMath math="16\vec{i} - 19\vec{j} - 16\vec{k}" />.
+
+**Soalan 3**. Diberi <InlineMath math="|\overrightarrow{BR}| = 3.4 \text{ cm}" />. Jika <InlineMath math="\overrightarrow{BU} = 0.65 \cdot \overrightarrow{BR}" /> dan <InlineMath math="\overrightarrow{UR} = 0.35 \cdot \overrightarrow{BR}" />, buktikan bahawa ketiga-tiga vektor itu mempunyai arah yang sama.
+
+Untuk membuktikan bahawa ketiga-tiga vektor itu mempunyai arah yang sama, kita perlu tunjukkan bahawa semuanya ialah **gandaan skalar positif** bagi vektor yang sama.
+
+Kita tahu:
+
+- <InlineMath math="\overrightarrow{BU} = 0.65 \cdot \overrightarrow{BR}" />
+- <InlineMath math="\overrightarrow{UR} = 0.35 \cdot \overrightarrow{BR}" />
+
+Semak sama ada <InlineMath math="\overrightarrow{BU} + \overrightarrow{UR} = \overrightarrow{BR}" />:
+
+<BlockMath math="\begin{aligned} \overrightarrow{BU} + \overrightarrow{UR} &amp;= 0.65 \cdot \overrightarrow{BR} + 0.35 \cdot \overrightarrow{BR} \\ &amp;= (0.65 + 0.35) \cdot \overrightarrow{BR} \\ &amp;= 1 \cdot \overrightarrow{BR} \\ &amp;= \overrightarrow{BR} \end{aligned}" />
+
+Kesamaan <InlineMath math="\overrightarrow{BU} + \overrightarrow{UR} = \overrightarrow{BR}" /> ialah hukum penambahan vektor bagi titik segaris <InlineMath math="B" />, <InlineMath math="U" /> dan <InlineMath math="R" />.
+
+Oleh sebab <InlineMath math="\overrightarrow{BU} = 0.65 \cdot \overrightarrow{BR}" /> dan <InlineMath math="\overrightarrow{UR} = 0.35 \cdot \overrightarrow{BR}" />, dengan faktor skalar yang positif (<InlineMath math="0.65" /> dan <InlineMath math="0.35" />), ketiga-tiga vektor itu mempunyai arah yang sama. Faktor skalar yang positif bermaksud vektor-vektor ini menghala ke arah yang sama dengan vektor rujukan <InlineMath math="\overrightarrow{BR}" />.
+
+**Soalan 4**. Vektor <InlineMath math="\vec{p}" /> mempunyai panjang <InlineMath math="5 \text{ unit}" /> dan vektor <InlineMath math="\vec{q} = 3\vec{p}" />. Cari panjang <InlineMath math="\vec{q}" /> dengan mendarab panjang asal dengan **nilai mutlak skalar itu**.
+
+Diberi <InlineMath math="|\vec{p}| = 5 \text{ unit}" /> dan <InlineMath math="\vec{q} = 3\vec{p}" />.
+
+Untuk menentukan panjang vektor <InlineMath math="\vec{q}" />, kita gunakan sifat pendaraban skalar:
+
+<BlockMath math="\begin{aligned} |\vec{q}| &amp;= |3\vec{p}| \\ &amp;= |3| \cdot |\vec{p}| \\ &amp;= 3 \cdot 5 \\ &amp;= 15 \end{aligned}" />
+
+Panjang vektor <InlineMath math="\vec{q}" /> ialah <InlineMath math="15 \text{ unit}" />.
+
+**Soalan 5**. Diberi titik <InlineMath math="A(2, 3, -1)" /> dan <InlineMath math="B(5, -2, 4)" />, manakala titik <InlineMath math="C" /> terletak pada garis yang melalui <InlineMath math="A" /> dan <InlineMath math="B" /> dengan keadaan <InlineMath math="\overrightarrow{AC} = 2\overrightarrow{AB}" />. Tentukan koordinat titik <InlineMath math="C" />.
+
+Untuk mencari **sesaran dari titik awal**, kira vektor <InlineMath math="\overrightarrow{AB}" />:
+
+<BlockMath math="\begin{aligned} \overrightarrow{AB} &amp;= B - A \\ &amp;= (5, -2, 4) - (2, 3, -1) \\ &amp;= (5-2, -2-3, 4-(-1)) \\ &amp;= (3, -5, 5) \end{aligned}" />
+
+Kemudian, kita gunakan hubungan <InlineMath math="\overrightarrow{AC} = 2\overrightarrow{AB}" /> untuk menentukan vektor <InlineMath math="\overrightarrow{AC}" />:
+
+<BlockMath math="\begin{aligned} \overrightarrow{AC} &amp;= 2\overrightarrow{AB} \\ &amp;= 2(3, -5, 5) \\ &amp;= (6, -10, 10) \end{aligned}" />
+
+Seterusnya, kita tentukan koordinat titik <InlineMath math="C" />:
+
+<MathContainer>
+  <BlockMath math="\overrightarrow{AC} = C - A" />
+  <BlockMath math="(6, -10, 10) = C - (2, 3, -1)" />
+  <BlockMath math="C = (6, -10, 10) + (2, 3, -1)" />
+  <BlockMath math="C = (6+2, -10+3, 10+(-1))" />
+  <BlockMath math="C = (8, -7, 9)" />
+</MathContainer>
+
+Koordinat titik <InlineMath math="C" /> ialah <InlineMath math="C(8, -7, 9)" />.

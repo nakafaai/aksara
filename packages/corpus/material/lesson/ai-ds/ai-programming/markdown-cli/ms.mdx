@@ -1,0 +1,441 @@
+export const metadata = {
+  title: "Markdown dan Antara Muka Baris Perintah",
+  description: "Tulis Markdown dan gunakan aliran kerja baris perintah yang selamat untuk memeriksa, menukar dan mengawal versi dokumentasi.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-26",
+  dateModified: "2026-09-01",
+  subject: "Pengaturcaraan AI",
+};
+
+## Menulis Teks dengan Markdown
+
+Markdown ialah bahasa penanda yang ringan <Highlight>untuk menyatakan struktur dokumen dalam teks biasa</Highlight>. Tajuk, senarai, pautan, blok kod dan jadual kekal mudah dibaca dalam fail sumber, dan boleh dipaparkan sebagai HTML atau format lain.
+
+Sumber yang mudah dibaca inilah kelebihan utama Markdown. Kamu boleh menyemak perubahan baris demi baris, menyimpannya dalam Git, dan membiarkan pemapar (renderer) menentukan tipografi akhir tanpa menyembunyikan dokumen di sebalik butang pemformatan.
+
+### Sintaks Asas Markdown
+
+Contoh di bawah mengumpulkan sintaks yang biasa digunakan dalam satu fail. **Tanda pagar memulakan tajuk**, manakala penanda yang mengapit teks menyatakan penegasan, pautan, kod dan struktur lain:
+
+Contoh ini menggunakan ciri Markdown yang disokong oleh Pandoc dan GitHub Flavored Markdown. Jadual dan `~~strikethrough~~` ialah sambungan (extension), jadi bukan semua pemapar Markdown menyokongnya. Contoh shell pula menggunakan Bash pada macOS atau Linux. Sesuaikan laluan dalam contoh dengan direktori latihan kamu.
+
+<CodeBlock
+  data={[{
+    language: "markdown",
+    filename: "basic-syntax.md",
+    code: `# Tajuk Aras 1
+## Tajuk Aras Dua
+### Tajuk Aras Tiga
+
+**Teks tebal**
+*Teks condong*
+~~Teks garis lorek~~
+
+> Blok petikan untuk petikan penting
+
+1. Item pertama senarai bernombor
+2. Item kedua senarai bernombor
+3. Item ketiga senarai bernombor
+
+- Item senarai tidak bernombor
+- Satu item lagi
+- Item terakhir
+
+[Teks pautan](https://example.com)
+![Teks alt](image.jpg)
+
+\`kod sebaris\`
+
+\`\`\`python
+# Blok kod
+def hello_world():
+    print("Helo, Dunia!")
+\`\`\`
+
+---
+
+| Lajur 1  | Lajur 2  | Lajur 3  |
+|----------|----------|----------|
+| Data A   | Data B   | Data C   |
+| Data D   | Data E   | Data F   |`
+  }]}
+/>
+
+### Aliran Kerja Markdown
+
+Kekalkan **fail sumber sebagai artifak yang disemak**, dan anggap fail yang dipaparkan sebagai output yang boleh dihasilkan semula. Aliran kerja yang ringkas sudah cukup: cipta, sunting, sahkan, tukar dan pratonton.
+
+Cipta fail dengan sambungan `.md`, tulis isinya, kemudian tukarkan fail itu dengan alat yang sudah dipasang seperti Pandoc. Dengan `--standalone`, output HTML merangkumi pengepala (header) dan badan dokumen. Imej dan gaya yang dipautkan kekal berasingan kecuali kamu benamkannya secara jelas. Output PDF memerlukan satu lagi alat pada mesin itu, iaitu enjin PDF yang serasi.
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "markdown-workflow.sh",
+    code: `# Cipta fail markdown baharu
+touch document.md
+
+# Sunting dengan editor teks
+nano document.md
+
+# Tukar kepada HTML menggunakan pandoc
+pandoc document.md --standalone -o document.html
+
+# Tukar kepada PDF apabila enjin PDF yang disokong sudah dipasang
+pandoc document.md -o document.pdf
+
+# Pratonton pada macOS. Desktop Linux biasanya menggunakan xdg-open
+open document.html`
+  }]}
+/>
+
+Bilangan tanda `#` di awal baris menentukan aras tajuk, dan aras-aras itu membentuk rangka dokumen. Tajuk `##` terletak di bawah `#` yang terdekat di atasnya, dan tajuk `###` pula di bawah `##` yang terdekat.
+
+<MathVisual
+  title={<>Rangka dokumen daripada tajuk Markdown</>}
+  description={<>Titik ungu ialah tajuk <code>#</code>, titik hijau kebiruan ialah dua tajuk <code>##</code>, dan titik jingga ialah tajuk <code>###</code> di bawah bahagian pertama. Garis kelabu menunjukkan bahagian mana yang mengandungi bahagian lain.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -2.6, max: 0.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "to-first", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1.2, y: -1 }, appearance: "reference" },
+      { id: "to-second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1.2, y: -1 }, appearance: "reference" },
+      { id: "to-detail", kind: "segment", from: { x: -1.2, y: -1 }, to: { x: -1.2, y: -2 }, appearance: "reference" },
+      { id: "title", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "first", kind: "point", at: { x: -1.2, y: -1 }, appearance: "construction" },
+      { id: "second", kind: "point", at: { x: 1.2, y: -1 }, appearance: "construction" },
+      { id: "detail", kind: "point", at: { x: -1.2, y: -2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "title", objectId: "title", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "first", objectId: "first", at: { x: -1.2, y: -1 }, placement: "left" },
+      { key: "second", objectId: "second", at: { x: 1.2, y: -1 }, placement: "right" },
+      { key: "detail", objectId: "detail", at: { x: -1.2, y: -2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "title": <code># Nota</code>,
+    "first": <code>## Persediaan</code>,
+    "second": <code>## Penggunaan</code>,
+    "detail": <code>### Pemasangan</code>,
+  }}
+/>
+
+## Asas Antara Muka Baris Perintah
+
+Antara muka baris perintah, atau CLI, menerima **perintah berbentuk teks melalui shell**. Setiap perintah ada nama program, bendera (flag) pilihan dan argumen seperti laluan.
+
+Perintah CLI boleh diperiksa, diulang, dijadikan skrip dan disemak. Shell mengikut laluan yang ditulis dan setiap bendera dengan tepat, jadi pastikan sasarannya dan semak bendera yang boleh memusnahkan data sebelum kamu menjalankan perintah itu.
+
+### Navigasi dan Penerokaan Direktori
+
+Sebelum mengubah fail, pastikan dulu **direktori semasa**, periksa isinya, kemudian bergerak dengan laluan yang jelas:
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "navigation-commands.sh",
+    code: `# Papar direktori kerja semasa
+pwd
+
+# Senaraikan isi direktori
+ls
+ls -l    # format terperinci
+ls -la   # termasuk fail tersembunyi
+
+# Tukar direktori
+mkdir -p "$HOME/markdown-practice"
+cd "$HOME/markdown-practice"
+cd ..    # naik satu aras
+cd ~     # pergi ke direktori utama pengguna
+cd -     # kembali ke direktori sebelumnya
+
+# Cipta direktori baharu
+mkdir new_project
+mkdir -p project/src/components  # cipta hierarki direktori`
+  }]}
+/>
+
+### Operasi Fail dan Direktori
+
+Perintah fail terus bertindak pada laluan sebenar. **Periksa sasaran sebelum memadamnya**, letakkan tanda petik pada laluan yang mungkin mengandungi ruang, dan elakkan bendera paksa rekursif kecuali direktori yang tepat itu sudah terbukti boleh dibuang.
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "file-operations.sh",
+    code: `# Salin fail
+cp source.txt destination.txt
+cp -r source_folder/ destination_folder/
+
+# Alih atau tukar nama fail
+mv old_name.txt new_name.txt
+mv file.txt /path/to/new/location/
+
+# Periksa dahulu sebelum memadam
+pwd
+ls -la unwanted_folder
+rm unwanted_file.txt
+rm -r unwanted_folder  # Rekursif dan tidak boleh diundur. Sahkan laluan tepat ini dahulu
+
+# Lihat isi fail
+cat file.txt        # papar seluruh isi
+head -10 file.txt   # 10 baris pertama
+tail -10 file.txt   # 10 baris terakhir
+less file.txt       # lihat dengan navigasi`
+  }]}
+/>
+
+### Menggabungkan Markdown dengan CLI
+
+Skrip binaan (build script) yang kecil menjadikan penukaran itu boleh diulang. Skrip itu patut **gagal apabila sesuatu perintah gagal**, mencipta direktori outputnya sendiri, meletakkan tanda petik pada setiap laluan, dan mengendalikan keadaan apabila tiada fail sumber:
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "markdown-cli-workflow.sh",
+    code: `# Sediakan projek markdown
+mkdir my-documentation
+cd my-documentation
+
+# Struktur direktori
+mkdir -p {src,build,images,assets}
+
+# Cipta fail markdown
+touch src/index.md src/getting-started.md src/api-reference.md
+
+# Automasikan binaan dengan skrip
+cat << 'EOF' > build.sh
+#!/bin/bash
+set -eu
+
+echo "Membina dokumentasi..."
+mkdir -p build
+
+# Tukar semua fail .md kepada .html
+for file in src/*.md; do
+    [ -e "$file" ] || continue
+    basename=$(basename "$file" .md)
+    pandoc "$file" -o "build/$basename.html" --standalone
+    echo "Ditukar: $file -> build/$basename.html"
+done
+
+echo "Binaan selesai!"
+EOF
+
+# Jadikan skrip boleh dilaksanakan
+chmod +x build.sh
+
+# Jalankan binaan
+./build.sh`
+  }]}
+/>
+
+### Alat CLI untuk Markdown
+
+Pasang alat melalui saluran pemasangan rasminya, kemudian **sahkan perintah yang sudah dipasang** sebelum kamu bergantung padanya dalam skrip. Pandoc menukar dokumen, manakala linter Markdown memeriksa konvensyen fail sumber:
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "markdown-tools.sh",
+    code: `# Sahkan alat yang diperlukan
+command -v pandoc
+command -v markdownlint
+
+# Semak sumber Markdown
+markdownlint "docs/**/*.md"
+
+# Tukar markdown kepada pelbagai format
+pandoc input.md -o output.pdf
+pandoc input.md -o output.docx
+pandoc input.md -o output.epub
+
+# Dengan templat tersuai
+pandoc input.md -o output.html --template=custom.html`
+  }]}
+/>
+
+### Amalan Terbaik untuk CLI dan Markdown
+
+<Highlight>Simpan Markdown yang kamu tulis dalam kawalan versi</Highlight>, sahkan sebelum penukaran, bina ke dalam direktori output yang boleh diganti, dan semak diff sebelum membuat commit:
+
+Direktori `site` dalam contoh ini hanya mengandungi output yang dijana dan akan diganti oleh binaan. Simpan fail yang kamu tulis dalam `docs`, bukan dalam `site`.
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "best-practices.sh",
+    code: `# Binaan dokumentasi tempatan yang boleh dihasilkan semula
+cat << 'EOF' > update-docs.sh
+#!/bin/bash
+set -eu
+
+SOURCE_DIR="docs"
+OUTPUT_DIR="site"
+STAGING_DIR=$(mktemp -d "./.site-build.XXXXXX")
+trap 'rm -rf "$STAGING_DIR"' EXIT
+
+source_files=()
+while IFS= read -r -d '' file; do
+    source_files+=("$file")
+done < <(find "$SOURCE_DIR" -type f -name "*.md" -print0)
+if [ "\${#source_files[@]}" -eq 0 ]; then
+    echo "Tiada sumber Markdown ditemui" >&2
+    exit 1
+fi
+
+markdownlint "\${source_files[@]}"
+
+for file in "\${source_files[@]}"; do
+    relative_path=\${file#"$SOURCE_DIR"/}
+    output_file="$STAGING_DIR/\${relative_path%.md}.html"
+    mkdir -p "$(dirname "$output_file")"
+    pandoc "$file" -o "$output_file" --standalone
+done
+
+[ ! -e "$OUTPUT_DIR" ] || rm -r -- "$OUTPUT_DIR"
+mv "$STAGING_DIR" "$OUTPUT_DIR"
+trap - EXIT
+EOF
+
+chmod +x update-docs.sh
+./update-docs.sh
+
+# Semak perubahan yang kamu tulis sebelum membuat commit
+git diff --check
+git diff -- docs`
+  }]}
+/>
+
+### Contoh Projek Sebenar
+
+Contoh terakhir ini mencipta empat halaman sumber dan menggabungkannya menjadi **satu dokumen HTML yang berdiri sendiri**. Setiap laluan input ditulis dengan jelas, jadi binaan akan gagal apabila ada halaman yang tiada:
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "project-example.sh",
+    code: `# Sediakan struktur projek
+mkdir ai-project-docs
+cd ai-project-docs
+
+# Cipta struktur direktori
+mkdir -p docs/api docs/tutorials docs/guides scripts build
+
+# Cipta fail dokumentasi utama
+cat << 'EOF' > docs/README.md
+# Dokumentasi Projek AI
+
+## Apa yang Dilakukan oleh Alat Ini
+Dokumentasi lengkap untuk projek pengaturcaraan AI.
+
+## Cara Dokumen Disusun
+- [Rujukan API](#api)
+- [Tutorial](#tutorials)
+- [Panduan Pengguna](#guides)
+EOF
+
+# Cipta halaman yang dirujuk
+cat << 'EOF' > docs/api/README.md
+# Rujukan API {#api}
+
+Terangkan setiap antara muka awam dan sertakan satu contoh yang sudah disahkan.
+EOF
+
+cat << 'EOF' > docs/tutorials/README.md
+# Tutorial {#tutorials}
+
+Bimbing pembaca melalui satu tugasan yang lengkap.
+EOF
+
+cat << 'EOF' > docs/guides/README.md
+# Panduan Pengguna {#guides}
+
+Terangkan aliran kerja yang berulang dan batas keselamatannya.
+EOF
+
+# Cipta skrip binaan automatik
+cat << 'EOF' > scripts/build-docs.sh
+#!/bin/bash
+set -eu
+
+mkdir -p build
+
+pandoc \
+    docs/README.md \
+    docs/api/README.md \
+    docs/tutorials/README.md \
+    docs/guides/README.md \
+    --standalone \
+    --output build/index.html
+
+echo "Binaan dokumentasi selesai!"
+EOF
+
+chmod +x scripts/build-docs.sh
+
+# Jalankan binaan
+./scripts/build-docs.sh`
+  }]}
+/>
+
+Markdown memastikan struktur dokumen kekal mudah dibaca dalam kawalan versi. Dengan CLI, langkah pengesahan dan penukaran yang sama boleh dijalankan semula. Aliran kerja yang boleh dipercayai menjaga sempadan itu: sunting sumber, sahkan perintah dan laluan, jana semula output, kemudian semak perubahan yang terhasil.
+
+Bayangkan folder kerja semasa kamu ialah `/home/user`, iaitu titik magenta dalam pokok ini. `cd projects` turun satu aras ke dalam folder anak mengikut segmen hijau kebiruan, dan dari situ `ls` akan menyenaraikan `notes.md`. `cd ..` naik semula ke folder induk mengikut segmen jingga. Laluan relatif seperti `projects` dikira dari folder kerja, manakala laluan mutlak seperti `/home/user/docs` sentiasa bermula dari akar (root).
+
+<MathVisual
+  title={<>Bergerak antara folder dengan <code>cd</code></>}
+  description={<>Setiap titik ialah satu folder atau fail. Titik magenta ialah folder kerja semasa, segmen hijau kebiruan ialah <code>cd projects</code>, dan segmen jingga ialah <code>cd ..</code></>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 4.2 }, y: { min: -3.6, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "home", kind: "point", at: { x: 1.5, y: 1 }, appearance: "reference" },
+      { id: "user", kind: "point", at: { x: 1.5, y: 0 }, appearance: "answer" },
+      { id: "docs", kind: "point", at: { x: 0, y: -1.5 }, appearance: "reference" },
+      { id: "projects", kind: "point", at: { x: 3, y: -1.5 }, appearance: "reference" },
+      { id: "notes", kind: "point", at: { x: 3, y: -3 }, appearance: "reference" },
+      { id: "edge-a", kind: "segment", from: { x: 1.5, y: 1 }, to: { x: 1.5, y: 0 }, appearance: "reference" },
+      { id: "edge-b", kind: "segment", from: { x: 1.5, y: 0 }, to: { x: 0, y: -1.5 }, appearance: "reference" },
+      { id: "edge-c", kind: "segment", from: { x: 1.5, y: 0 }, to: { x: 3, y: -1.5 }, appearance: "reference" },
+      { id: "edge-d", kind: "segment", from: { x: 3, y: -1.5 }, to: { x: 3, y: -3 }, appearance: "reference" },
+      { id: "down", kind: "segment", from: { x: 1.8, y: -0.1 }, to: { x: 2.9, y: -1.2 }, appearance: "construction" },
+      { id: "up", kind: "segment", from: { x: 2.7, y: -1.6 }, to: { x: 1.6, y: -0.4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "home", objectId: "home", at: { x: 1.5, y: 1 }, placement: "above" },
+      { key: "user", objectId: "user", at: { x: 1.5, y: 0 }, placement: "left" },
+      { key: "docs", objectId: "docs", at: { x: 0, y: -1.5 }, placement: "below" },
+      { key: "projects", objectId: "projects", at: { x: 3, y: -1.5 }, placement: "right" },
+      { key: "notes", objectId: "notes", at: { x: 3, y: -3 }, placement: "below" },
+      { key: "down", objectId: "down", at: { x: 2.9, y: -1.2 }, placement: "above-right" },
+      { key: "up", objectId: "up", at: { x: 1.6, y: -0.4 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "home": "/home",
+    "user": "user",
+    "docs": "docs",
+    "projects": "projects",
+    "notes": "notes.md",
+    "down": "cd projects",
+    "up": "cd ..",
+  }}
+/>
+
+Laluan mutlak bermula dari akar `/`, dan setiap garis condong seterusnya turun satu aras. `pwd` mencetak laluan itu untuk folder kerja semasa, dan `cd ..` naik satu aras ke folder induk.
+
+<BarChart
+  title={<>Kedalaman folder sepanjang laluan mutlak</>}
+  description={<>Setiap bar ialah bilangan aras di bawah akar bagi laluan yang ditulis di bawahnya. Akar <code>/</code> berada pada kedalaman <InlineMath math="0" />, dan setiap nama folder menambah satu.</>}
+  yAxisLabel="Kedalaman"
+  data={[
+    { name: "/", value: 0 },
+    { name: "/home", value: 1 },
+    { name: "/home/user", value: 2 },
+    { name: "/home/user/projects", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Kedalaman", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>

@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "grouping",
+    topic: "arrangement",
   },
-  stimulus: "rak",
+  stimulus: "rapat",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -14,19 +14,19 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "P berada di rak atas atau rak tengah.",
+          label: "Cahya duduk di kursi 3.",
         },
         {
           column: 2,
-          label: "Rak bawah selalu berisi Q.",
+          label: "Asri duduk di kursi 1.",
         },
         {
           column: 2,
-          label: "Jika N berada di rak tengah, Q berada di rak bawah.",
+          label: "Fajar bersebelahan dengan Asri.",
         },
         {
           column: 1,
-          label: "Jika K berada di rak atas, P berada di rak tengah.",
+          label: "Galuh berhadapan dengan Fajar.",
         },
       ],
     },

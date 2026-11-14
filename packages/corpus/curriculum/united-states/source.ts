@@ -16,6 +16,7 @@ export const unitedStatesCurriculum = defineCurriculum({
         de: { title: "Schulstufen" },
         en: { title: "School stages" },
         id: { title: "Tahap sekolah" },
+        ms: { title: "Peringkat persekolahan" },
       },
       displayGroupIconKey: "school",
       iconKey: "high-school",
@@ -30,6 +31,10 @@ export const unitedStatesCurriculum = defineCurriculum({
         id: {
           routeSlug: "sma",
           title: "SMA",
+        },
+        ms: {
+          routeSlug: "high-school",
+          title: "High School",
         },
       },
     }),

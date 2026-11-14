@@ -3,35 +3,37 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "writing",
-    topic: "coherence",
+    contentDomain: "reading",
+    topic: "referent",
   },
-  stimulus: "medicine-delivery",
+  stimulus: "debat",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Banyak relawan muda lebih suka bekerja di kota besar.",
-        },
-        {
-          correct: false,
-          label: "Harga obat di apotek swasta terus naik setiap tahun.",
-        },
-        {
-          correct: false,
-          label:
-            "Dokter puskesmas juga melayani pemeriksaan gigi setiap hari Jumat.",
-        },
-        {
-          correct: false,
-          label: "Oleh karena itu, program antar obat sebaiknya dihentikan.",
-        },
-        {
           correct: true,
           label:
-            "Program sederhana itu menunjukkan bahwa perhatian rutin dapat menjaga kesehatan warga lanjut usia.",
+            "naiknya persentase pidato yang langsung menanggapi argumen lawan dari $$40\\%$$ pada lomba tahun lalu menjadi $$65\\%$$ pada lomba tahun ini",
+        },
+        {
+          correct: false,
+          label:
+            "naiknya jumlah pidato yang langsung menanggapi argumen lawan sebanyak $$25$$ pidato",
+        },
+        {
+          correct: false,
+          label:
+            "naiknya persentase pidato yang langsung menanggapi argumen lawan sebesar $$65\\%$$",
+        },
+        {
+          correct: false,
+          label:
+            "naiknya persentase pidato yang dibacakan dari naskah susunan pelatih menjadi $$65\\%$$",
+        },
+        {
+          correct: false,
+          label: "naiknya nilai rata-rata pembicara dari $$40$$ menjadi $$65$$",
         },
       ],
     },

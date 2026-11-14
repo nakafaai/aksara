@@ -2,36 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "vocabulary",
-    topic: "affix-meaning",
+    topic: "contextual-meaning",
   },
-  stimulus: "elektronik",
+  stimulus: "cabai",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "*Penginapan* di dekat pantai itu selalu penuh pada akhir pekan.",
-        },
-        {
-          correct: false,
-          label: "*Pendapatan* para pengepul tidak menentu setiap bulan.",
-        },
-        {
           correct: true,
-          label:
-            "*Pembangunan* jembatan desa selesai lebih cepat daripada jadwal.",
+          label: "masa ketika pasokan cabai di pasar sedang sedikit",
         },
         {
           correct: false,
-          label: "*Pemandian* air panas itu dikelola oleh warga setempat.",
+          label: "masa ketika pasar cabai sepi pembeli",
         },
         {
           correct: false,
-          label: "*Pemandangan* dari puncak bukit itu sangat luas.",
+          label: "musim kemarau ketika tanaman cabai kekurangan air",
+        },
+        {
+          correct: false,
+          label: "masa ketika harga semua bahan pangan naik bersamaan",
+        },
+        {
+          correct: false,
+          label: "masa sulit ketika harga cabai anjlok dan petani merugi",
         },
       ],
     },

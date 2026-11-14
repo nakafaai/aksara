@@ -1,0 +1,444 @@
+export const metadata = {
+  title: "Bentuk Nombor Kompleks",
+  description: "Tukar nombor kompleks antara bentuk Cartesan, polar dan eksponen menggunakan rumus Euler.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-01",
+  dateModified: "2026-11-08",
+  subject: "Nombor Kompleks",
+};
+
+## Bentuk Cartesan atau Bentuk Segi Empat Tepat
+
+Nombor kompleks ada bentuk <InlineMath math="z = x + iy" />, dengan <InlineMath math="x" /> ialah bahagian nyata dan <InlineMath math="y" /> ialah bahagian khayalan. Bentuk <InlineMath math="z = x + iy" /> ini dipanggil **bentuk Cartesan** atau bentuk segi empat tepat.
+
+<BlockMath math="z = x + iy" />
+
+- <InlineMath math="x = \text{Re}(z)" /> (Bahagian Nyata)
+- <InlineMath math="y = \text{Im}(z)" /> (Bahagian Khayalan)
+
+Kita juga boleh melihat nombor kompleks <InlineMath math="z = x + iy" /> sebagai pasangan tertib <InlineMath math="(x, y)" /> pada satah koordinat. Satah khas ini dipanggil **satah kompleks** atau gambar rajah Argand.
+
+- Paksi mengufuk (paksi-<InlineMath math="x" />) mewakili bahagian **nyata**.
+- Paksi mencancang (paksi-<InlineMath math="y" />) mewakili bahagian **khayalan**.
+
+### Visualisasi pada Satah Kompleks
+
+Setiap nombor kompleks <InlineMath math="z = x + iy" /> boleh diletakkan pada titik <InlineMath math="(x, y)" /> dalam satah kompleks. **Vektor kedudukan** dari asalan <InlineMath math="(0, 0)" /> ke titik itu mewakili nombor yang sama secara geometri.
+
+<MathVisual
+  title={<>Empat nombor kompleks pada satah kompleks</>}
+  description={<><InlineMath math="z_1 = 3 + 2i" />, <InlineMath math="z_2 = -1 - i" />, <InlineMath math="z_3 = 2" /> dan <InlineMath math="z_4 = i" /> sebagai vektor kedudukan dari asalan.</>}
+  labels={{
+    z1: <InlineMath math="z_1 = 3 + 2i" />,
+    z2: <InlineMath math="z_2 = -1 - i" />,
+    z3: <InlineMath math="z_3 = 2" />,
+    z4: <InlineMath math="z_4 = i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 3.8 }, y: { min: -1.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "z1-head", kind: "polygon", vertices: [{ x: 3, y: 2 }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)) }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)) }], appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: -1 }, appearance: "secondary" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: -1, y: -1 }, { x: (-1) + (1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)), y: (-1) + (1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)) }, { x: (-1) + (1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)), y: (-1) + (1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)) }], appearance: "secondary" },
+      { id: "z3", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "z3-head", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 7 / 4, y: 1 / 10 }, { x: 7 / 4, y: -1 / 10 }], appearance: "construction" },
+      { id: "z4", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 1 }, appearance: "highlight" },
+      { id: "z4-head", kind: "polygon", vertices: [{ x: 0, y: 1 }, { x: -1 / 10, y: 3 / 4 }, { x: 1 / 10, y: 3 / 4 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "z2", objectId: "z2", at: { x: -1, y: -1 }, placement: "below" },
+      { key: "z3", objectId: "z3", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "z4", objectId: "z4", at: { x: 0, y: 1 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Bentuk Polar
+
+Selain bentuk Cartesan, ada satu lagi cara untuk mewakili nombor kompleks, iaitu **bentuk polar**. Bentuk ini menggunakan:
+
+1.  **Modulus (<InlineMath math="r" />)**: Jarak dari asalan <InlineMath math="(0, 0)" /> ke titik <InlineMath math="(x, y)" /> pada satah kompleks. Nilainya sentiasa tidak negatif.
+2.  **Hujah (<InlineMath math="\theta" />)**: Sudut yang dibentuk oleh garis dari asalan ke titik <InlineMath math="(x, y)" /> dengan paksi nyata positif. Sudut ini biasanya diukur dalam radian atau darjah.
+
+Untuk <InlineMath math="z=0" />, modulusnya ialah <InlineMath math="0" />, tetapi tiada arah yang tertakrif. Jadi sifar tiada hujah dan mesti dikendalikan secara berasingan apabila kamu menggunakan bentuk polar atau bentuk eksponen.
+
+Hubungan antara bentuk Cartesan (<InlineMath math="x, y" />) dengan bentuk polar (<InlineMath math="r, \theta" />) boleh dilihat daripada trigonometri asas:
+
+<MathContainer>
+  <BlockMath math="x = r \cos \theta" />
+  <BlockMath math="y = r \sin \theta" />
+</MathContainer>
+
+Daripada sini, kita boleh mencari <InlineMath math="r" /> dan <InlineMath math="\theta" /> jika <InlineMath math="x" /> dan <InlineMath math="y" /> diketahui:
+
+<MathContainer>
+  <BlockMath math="r = |z| = \sqrt{x^2 + y^2}" />
+  <BlockMath math="\tan \theta = \frac{y}{x} \quad (x \neq 0)" />
+</MathContainer>
+
+Apabila mencari <InlineMath math="\theta" /> daripada <InlineMath math="\tan \theta" />, perhatikan sukuan tempat titik <InlineMath math="(x, y)" /> terletak untuk menentukan sudut yang betul.
+
+Dengan menggantikan <InlineMath math="x" /> dan <InlineMath math="y" /> ke dalam bentuk Cartesan, kita dapat **bentuk polar**:
+
+<MathContainer>
+  <BlockMath math="z = x + iy = (r \cos \theta) + i(r \sin \theta)" />
+  <BlockMath math="z = r (\cos \theta + i \sin \theta)" />
+</MathContainer>
+
+Kadang-kadang, bentuk <InlineMath math="(\cos \theta + i \sin \theta)" /> diringkaskan sebagai <InlineMath math="\text{cis } \theta" />.
+
+<BlockMath math="z = r \text{ cis } \theta" />
+
+### Penukaran kepada Bentuk Polar
+
+Gunakan **modulus untuk panjang** dan sukuan untuk menentukan arah. Dengan cara ini, sudut yang dipilih memang menghala ke nombor kompleks yang sebenar.
+
+Katakan kita ada <InlineMath math="z = 1 + i" />.
+
+- Bahagian nyata <InlineMath math="x = 1" />.
+- Bahagian khayalan <InlineMath math="y = 1" />.
+
+Cari <InlineMath math="r" />:
+
+<BlockMath math="r = \sqrt{1^2 + 1^2} = \sqrt{2}" />
+
+Cari <InlineMath math="\theta" />:
+
+<BlockMath math="\tan \theta = \frac{1}{1} = 1" />
+
+Oleh sebab <InlineMath math="x" /> dan <InlineMath math="y" /> positif, titik <InlineMath math="(1, 1)" /> berada dalam sukuan <InlineMath math="I" />. Dalam sukuan <InlineMath math="I" />, sudut yang memberikan nilai <InlineMath math="\tan" /> bersamaan <InlineMath math="1" /> ialah <InlineMath math="45^\circ" /> atau <InlineMath math="\pi/4" /> radian.
+
+Jadi, bentuk polarnya ialah:
+
+<BlockMath math="z = \sqrt{2} (\cos 45^\circ + i \sin 45^\circ)" />
+
+Untuk <InlineMath math="z = 1 + i" />, anak panahnya mempunyai panjang <InlineMath math="r = \sqrt2" /> dan membentuk sudut <InlineMath math="\theta = 45^\circ" /> dengan paksi nyata positif, jadi <InlineMath math="z = \sqrt2(\cos 45^\circ + i\sin 45^\circ)" />.
+
+<MathVisual
+  title={<><InlineMath math="1 + i" /> dalam bentuk polar</>}
+  description={<>Anak panah ke <InlineMath math="1 + i" /> dengan panjang <InlineMath math="r = \sqrt2" /> dan sudut <InlineMath math="\theta = 45^\circ" />, serta komponennya <InlineMath math="1" /> dan <InlineMath math="1" />.</>}
+  labels={{
+    z: <InlineMath math="r = \sqrt2" />,
+    theta: <InlineMath math="45^\circ" />,
+    x: <InlineMath math="1" />,
+    y: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 1.6 }, y: { min: -0.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: 1 }, appearance: "highlight" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 2 / 5, startDegrees: 0, sweepDegrees: 45, appearance: "highlight" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: (1) + (-1 / 8 / Math.sqrt(2)) + (-1 / 20 / Math.sqrt(2)), y: (1) + (-1 / 8 / Math.sqrt(2)) + (1 / 20 / Math.sqrt(2)) }, { x: (1) + (-1 / 8 / Math.sqrt(2)) + (1 / 20 / Math.sqrt(2)), y: (1) + (-1 / 8 / Math.sqrt(2)) + (-1 / 20 / Math.sqrt(2)) }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 1 / 2, y: 1 / 2 }, placement: "above-left" },
+      { key: "theta", objectId: "theta", at: { x: 0.4 * Math.cos(Math.PI / 8), y: 0.4 * Math.sin(Math.PI / 8) }, placement: "right" },
+      { key: "x", objectId: "x", at: { x: 1 / 2, y: 0 }, placement: "below" },
+      { key: "y", objectId: "y", at: { x: 1, y: 1 / 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+### Latihan Bentuk Polar
+
+Cari **modulus dan hujah** bagi setiap nombor. Untuk titik pada paksi, baca arahnya terus tanpa membahagi dengan komponen nyata yang sifar.
+
+Ungkapkan nombor kompleks berikut dalam bentuk polar:
+
+1.  <InlineMath math="z = 1 + i\sqrt{3}" />
+2.  <InlineMath math="z = -i" />
+
+**Jalan kerja**:
+
+1.  Untuk <InlineMath math="z = 1 + i\sqrt{3}" />:
+
+    Kenal pasti <InlineMath math="x = 1" /> dan <InlineMath math="y = \sqrt{3}" />.
+
+    Kira modulus <InlineMath math="r" />:
+
+    <BlockMath math="\begin{aligned} r &amp;= \sqrt{1^2 + (\sqrt{3})^2} \\ &amp;= \sqrt{1 + 3} \\ &amp;= \sqrt{4} \\ &amp;= 2 \end{aligned}" />
+
+    Kira hujah <InlineMath math="\theta" />:
+
+    <BlockMath math="\tan \theta = \frac{\sqrt{3}}{1} = \sqrt{3}" />
+
+    Oleh sebab <InlineMath math="x" /> dan <InlineMath math="y" /> positif,
+    titik <InlineMath math="(1, \sqrt{3})" /> berada dalam sukuan <InlineMath math="I" />
+    , jadi <InlineMath math="\theta = 60^\circ" />.
+
+    Bentuk Polar:
+
+    <BlockMath math="z = 2(\cos 60^\circ + i \sin 60^\circ)" />
+
+2.  Untuk <InlineMath math="z = -i" />:
+
+    Kenal pasti <InlineMath math="x = 0" /> dan <InlineMath math="y = -1" />.
+
+    Kira modulus <InlineMath math="r" />:
+
+    <BlockMath math="r = \sqrt{0^2 + (-1)^2} = \sqrt{1} = 1" />
+
+    Tentukan hujah <InlineMath math="\theta" />:
+    Titik <InlineMath math="(0, -1)" /> terletak pada paksi khayalan negatif, jadi Hujah Utamanya ialah <InlineMath math="\theta = -90^\circ" />.
+
+    Bentuk polar menggunakan Hujah Utama:
+
+    <BlockMath math="z = 1(\cos (-90^\circ) + i \sin (-90^\circ))" />
+
+    Sudut koterminal <InlineMath math="270^\circ" /> memberikan bentuk yang setara
+
+    <BlockMath math="z = 1(\cos 270^\circ + i \sin 270^\circ)" />
+
+Letakkan kedua-dua nombor latihan pada satu satah. <InlineMath math="1 + i\sqrt3" /> mempunyai <InlineMath math="r = 2" /> dan <InlineMath math="\theta = 60^\circ" />, manakala <InlineMath math="-i" /> mempunyai <InlineMath math="r = 1" /> dan <InlineMath math="\theta = -90^\circ" />, yang diukur ikut arah jam dari paksi nyata positif.
+
+<MathVisual
+  title={<><InlineMath math="1 + i\sqrt3" /> dan <InlineMath math="-i" /> beserta sudut masing-masing</>}
+  description={<>Anak panah ke <InlineMath math="1 + i\sqrt3" /> dengan sudut <InlineMath math="60^\circ" /> dan anak panah ke <InlineMath math="-i" /> dengan sudut <InlineMath math="-90^\circ" />.</>}
+  labels={{
+    a: <InlineMath math="1 + i\sqrt3" />,
+    b: <InlineMath math="-i" />,
+    ta: <InlineMath math="60^\circ" />,
+    tb: <InlineMath math="-90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 1.8 }, y: { min: -1.4, max: 2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ta", kind: "arc", center: { x: 0, y: 0 }, radius: 1 / 2, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
+      { id: "tb", kind: "arc", center: { x: 0, y: 0 }, radius: 2 / 5, startDegrees: 0, sweepDegrees: -90, appearance: "construction" },
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: Math.sqrt(3) }, appearance: "primary" },
+      { id: "a-head", kind: "polygon", vertices: [{ x: 1, y: Math.sqrt(3) }, { x: 1 - 1 / 6 * (1 / 2) - 1 / 15 * (Math.sqrt(3) / 2), y: Math.sqrt(3) - 1 / 6 * (Math.sqrt(3) / 2) + 1 / 15 * (1 / 2) }, { x: 1 - 1 / 6 * (1 / 2) + 1 / 15 * (Math.sqrt(3) / 2), y: Math.sqrt(3) - 1 / 6 * (Math.sqrt(3) / 2) - 1 / 15 * (1 / 2) }], appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "b-head", kind: "polygon", vertices: [{ x: 0, y: -1 }, { x: 1 / 15, y: -5 / 6 }, { x: -1 / 15, y: -5 / 6 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1, y: Math.sqrt(3) }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: 0, y: -1 }, placement: "right" },
+      { key: "ta", objectId: "ta", at: { x: 0.5 * Math.cos(Math.PI / 6), y: 0.5 * Math.sin(Math.PI / 6) }, placement: "right" },
+      { key: "tb", objectId: "tb", at: { x: 0.4 * Math.cos(Math.PI / 4), y: -0.4 * Math.sin(Math.PI / 4) }, placement: "right" },
+    ],
+  }}
+/>
+
+## Bentuk Eksponen
+
+**Bentuk eksponen** diperoleh daripada **rumus Euler**:
+
+<BlockMath math="e^{i\theta} = \cos \theta + i \sin \theta" />
+
+Dalam rumus Euler, sudut mesti dinyatakan dalam **radian**. Menambah dua pi kepada sudut itu membuat satu pusingan penuh, dan nombor kompleksnya tidak berubah.
+
+Di sini, <InlineMath math="e \approx 2.71828\ldots" /> ialah nombor Euler, iaitu asas bagi logaritma jati.
+
+Jika kita gantikan rumus Euler ke dalam bentuk polar <InlineMath math="z = r(\cos \theta + i \sin \theta)" />, kita dapat **bentuk eksponen**:
+
+<BlockMath math="z = r e^{i\theta}" />
+
+Untuk faktor bukan sifar, bentuk ini menukar pendaraban kepada mendarab modulus dan menambah hujah. Pembahagian pula menggunakan hasil bahagi modulus dan beza hujah yang sepadan.
+
+### Penukaran kepada Bentuk Eksponen
+
+Gunakan **radian dalam indeks**. Modulus kekal sama kerana bentuk baharu ini hanya mengubah cara kita menulis arah.
+
+Ambil contoh-contoh sebelum ini:
+
+1.  Untuk <InlineMath math="z = 1 + i" />, kita sudah ada bentuk polar <InlineMath math="\sqrt{2}(\cos 45^\circ + i \sin 45^\circ)" />.
+
+    Modulus <InlineMath math="r = \sqrt{2}" />.
+
+    Hujah <InlineMath math="\theta = 45^\circ = \pi/4" /> radian.
+
+    Bentuk Eksponen:
+
+    <BlockMath math="z = r e^{i\theta} = \sqrt{2} e^{i \pi/4}" />
+
+2.  Untuk <InlineMath math="z = \sqrt{2}(\cos 315^\circ + i \sin 315^\circ)" />:
+
+    Modulus <InlineMath math="r = \sqrt{2}" />.
+
+    Hujah <InlineMath math="\theta = 315^\circ" />. Tukar kepada radian:
+
+    <BlockMath math="\begin{aligned} 315^\circ &amp;= 315 \times \frac{\pi}{180} \\ &amp;= \frac{7 \times 45 \times \pi}{4 \times 45} \\ &amp;= \frac{7\pi}{4} \end{aligned}" />
+
+    Atau gunakan sudut negatif <InlineMath math="315^\circ - 360^\circ = -45^\circ = -\pi/4" /> radian.
+
+    Bentuk Eksponen (pilih satu sudut):
+
+    <BlockMath math="z = \sqrt{2} e^{i 7\pi/4}" />
+
+    atau
+
+    <BlockMath math="z = \sqrt{2} e^{-i \pi/4}" />
+
+### Latihan Bentuk Eksponen
+
+Tukar sudut daripada **darjah kepada radian**, kemudian kekalkan modulus di hadapan faktor eksponen.
+
+Ungkapkan nombor kompleks berikut dalam bentuk eksponen (gunakan sudut dalam radian):
+
+1.  <InlineMath math="z = 2(\cos 60^\circ + i \sin 60^\circ)" />
+2.  <InlineMath math="z = \cos 15^\circ + i \sin 15^\circ" />
+
+**Jalan kerja**:
+
+1.  Untuk <InlineMath math="z = 2(\cos 60^\circ + i \sin 60^\circ)" />:
+
+    Modulus <InlineMath math="r = 2" />.
+
+    Hujah <InlineMath math="\theta = 60^\circ" />. Tukar kepada radian:
+
+    <BlockMath math="\theta = 60^\circ = 60 \times \frac{\pi}{180} = \frac{\pi}{3}" />
+
+    Bentuk Eksponen:
+
+    <BlockMath math="z = 2 e^{i \pi/3}" />
+
+2.  Untuk <InlineMath math="z = \cos 15^\circ + i \sin 15^\circ" />:
+
+    Modulus <InlineMath math="r = 1" /> (kerana tiada pekali di hadapan <InlineMath math="\cos" /> dan <InlineMath math="\sin" />).
+
+    Hujah <InlineMath math="\theta = 15^\circ" />. Tukar kepada radian:
+
+    <BlockMath math="\theta = 15^\circ = 15 \times \frac{\pi}{180} = \frac{\pi}{12}" />
+
+    Bentuk Eksponen:
+
+    <BlockMath math="z = e^{i \pi/12}" />
+
+## Memilih Bentuk yang Sesuai
+
+<Highlight>Bentuk Cartesan biasanya pilihan yang paling jelas</Highlight> untuk penambahan dan penolakan. Bentuk polar atau bentuk eksponen memudahkan pendaraban, pembahagian, kuasa dan punca kuasa kerana modulus dan hujah boleh digabungkan terus.
+
+Untuk kembali daripada bentuk polar kepada bentuk Cartesan, nilaikan sinus dan kosinus. Contohnya:
+
+<BlockMath math="\begin{aligned} w &amp;=4\left(\cos\frac{5\pi}{6}+i\sin\frac{5\pi}{6}\right) \\ &amp;=4\left(-\frac{\sqrt3}{2}+i\frac12\right) \\ &amp;=-2\sqrt{3}+2i \end{aligned}" />
+
+Menukar bentuk ialah satu pilihan semasa menyelesaikan masalah. Nombor kompleks itu sendiri tetap sama.
+
+## Kesamaan Dua Nombor Kompleks
+
+Dua nombor kompleks <InlineMath math="z_1 = x_1 + iy_1" /> dan <InlineMath math="z_2 = x_2 + iy_2" /> dikatakan **sama** jika dan hanya jika bahagian nyatanya sama dan bahagian khayalannya sama.
+
+<BlockMath math="\begin{aligned} &amp;z_1 = z_2 \\ &amp;\iff \\ &amp;x_1 = x_2 \text{ dan } y_1 = y_2 \end{aligned}" />
+
+### Contoh Kesamaan
+
+Bandingkan **komponen yang sepadan**. Perbezaan pada satu komponen sahaja sudah cukup untuk menjadikan nombor-nombor itu tidak sama. Menukar susunan sebutan tidak mengubah nombor itu.
+
+| Pasangan | Komponen nyata | Komponen khayalan | Kesimpulan |
+| --- | --- | --- | --- |
+| <InlineMath math="3-2i" />, <InlineMath math="4+2i" /> | <InlineMath math="3\ne4" /> | <InlineMath math="-2\ne2" /> | Berbeza |
+| <InlineMath math="-1+i" />, <InlineMath math="i-1" /> | <InlineMath math="-1=-1" /> | <InlineMath math="1=1" /> | Sama |
+
+### Latihan Kesamaan
+
+Tentukan sama ada pasangan nombor kompleks berikut sama atau berbeza:
+
+1.  <InlineMath math="z_1 = 4 - (-2i)" /> dan <InlineMath math="z_2 = 4 + 2i" />
+2.  <InlineMath math="z_1 = i" /> dan <InlineMath math="z_2 = 1 - i" />
+3.  <InlineMath math="z_1 = -1 + i" /> dan <InlineMath math="z_2 = i + 1" />
+
+**Jalan kerja**:
+
+1.  <InlineMath math="z_1 = 4 - (-2i) = 4 + 2i" />.
+
+    Jadi, <InlineMath math="z_1" /> **sama** dengan <InlineMath math="z_2 = 4 + 2i" />.
+
+2.  <InlineMath math="z_1 = 0 + 1i" /> dan <InlineMath math="z_2 = 1 - 1i" />.
+
+    Bahagian nyatanya berbeza (<InlineMath math="0 \neq 1" />) dan bahagian khayalannya juga berbeza (<InlineMath math="1 \neq -1" />).
+
+    Bahagian khayalan yang tidak sama itu menunjukkan bahawa <InlineMath math="z_1" /> **berbeza** daripada <InlineMath math="z_2" />.
+
+3.  <InlineMath math="z_1 = -1 + 1i" /> dan <InlineMath math="z_2 = 1 + 1i" />.
+
+    Bahagian nyatanya berbeza (<InlineMath math="-1 \neq 1" />).
+
+    Jadi, <InlineMath math="z_1" /> **berbeza** daripada <InlineMath math="z_2" />.
+
+## Latihan
+
+Semak **komponen, sukuan dan perwakilan** yang diminta oleh setiap soalan. Tiga item pertama ialah soalan betul atau salah. Seterusnya, tukar perwakilan dan gunakan persamaan komponen atau rumus kuadratik untuk menyelesaikan soalan yang selebihnya.
+
+1.  **Betul atau Salah.** Setiap nombor nyata ialah nombor kompleks.
+2.  **Betul atau Salah.** Tiga bentuk piawai yang digunakan di sini ialah bentuk Cartesan, eksponen dan logaritma.
+3.  **Betul atau Salah.** Jika nombor kompleks <InlineMath math="z = 1 - 3i" /> diplot pada satah kompleks, nombor itu terletak dalam sukuan III.
+4.  Ungkapkan nombor kompleks <InlineMath math="2+2i" /> dalam bentuk polar dan bentuk eksponen.
+5.  Cari nombor nyata <InlineMath math="x" /> dan <InlineMath math="y" /> supaya <InlineMath math="z_1 = x + 3i" /> dan <InlineMath math="z_2 = 3 - yi" /> memenuhi <InlineMath math="z_1 = z_2" />.
+6.  Cari penyelesaian bagi persamaan kuadratik <InlineMath math="x^2 - 2x + 6 = 0" />.
+7.  Cari persamaan kuadratik yang penyelesaiannya ialah <InlineMath math="x_1 = 1 + i" /> dan <InlineMath math="x_2 = 1 - i" />.
+
+### Jalan Kerja
+
+1.  **Betul.** Nombor nyata <InlineMath math="a" /> boleh ditulis sebagai <InlineMath math="a + 0i" />.
+2.  **Salah.** Tiga bentuk piawai yang digunakan di sini ialah bentuk Cartesan, polar dan eksponen. Logaritma ialah operasi yang dikenakan pada nombor kompleks. Logaritma bukan salah satu daripada tiga bentuk ini.
+3.  **Salah.** <InlineMath math="z = 1 - 3i" /> mempunyai bahagian nyata positif (<InlineMath math="x=1" />) dan bahagian khayalan negatif (<InlineMath math="y=-3" />). Titik <InlineMath math="(1, -3)" /> terletak dalam **Sukuan IV**.
+4.  Untuk <InlineMath math="z = 2 + 2i" />:
+
+    Kira modulus <InlineMath math="r" />:
+
+    <BlockMath math="\begin{aligned} r &amp;= \sqrt{x^2+y^2} \\ &amp;= \sqrt{2^2+2^2} \\ &amp;= \sqrt{4+4} \\ &amp;= \sqrt{8} \\ &amp;= 2\sqrt{2} \end{aligned}" />
+
+    Kira hujah <InlineMath math="\theta" />:
+
+    <BlockMath math="\tan \theta = \frac{y}{x} = \frac{2}{2} = 1" />
+
+    Oleh sebab <InlineMath math="x=2" /> dan <InlineMath math="y=2" /> (kedua-duanya positif),
+    titik itu berada dalam Sukuan I. Jadi, <InlineMath math="\theta = 45^\circ" /> atau <InlineMath math="\pi/4" /> radian.
+
+    Bentuk Polar:
+
+    <BlockMath math="\begin{aligned} z &amp;= r(\cos \theta + i \sin \theta) \\ &amp;= 2\sqrt{2}(\cos 45^\circ + i \sin 45^\circ) \end{aligned}" />
+
+    Bentuk Eksponen:
+
+    <BlockMath math="z = r e^{i\theta} = 2\sqrt{2} e^{i \pi/4}" />
+
+5.  Supaya <InlineMath math="z_1 = x + 3i" /> sama dengan <InlineMath math="z_2 = 3 - yi" />, bahagian nyata mesti sama dan bahagian khayalan juga mesti sama:
+
+    Bahagian Nyata: <InlineMath math="x = 3" />
+
+    Bahagian Khayalan: <InlineMath math="3 = -y \implies y = -3" />
+    Jadi, <InlineMath math="x=3" /> dan <InlineMath math="y=-3" />.
+6.  Untuk menyelesaikan <InlineMath math="x^2 - 2x + 6 = 0" />, gunakan rumus kuadratik:
+
+    <BlockMath math="x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}" />
+
+    dengan <InlineMath math="a=1, b=-2, c=6" />:
+
+    <MathContainer>
+    <BlockMath math="x = \frac{-(-2) \pm \sqrt{(-2)^2 - 4(1)(6)}}{2(1)}" />
+    <BlockMath math="x = \frac{2 \pm \sqrt{4 - 24}}{2}" />
+    <BlockMath math="x = \frac{2 \pm \sqrt{-20}}{2}" />
+    <BlockMath math="x = \frac{2 \pm i\sqrt{20}}{2}" />
+    <BlockMath math="x = \frac{2 \pm 2\sqrt{5}i}{2}" />
+    <BlockMath math="x = 1 \pm i\sqrt{5}" />
+    </MathContainer>
+
+    Penyelesaiannya ialah <InlineMath math="x_1 = 1 + i\sqrt{5}" /> dan <InlineMath math="x_2 = 1 - i\sqrt{5}" />
+    .
+7.  Jika punca bagi persamaan kuadratik ialah <InlineMath math="x_1 = 1 + i" /> dan <InlineMath math="x_2 = 1 - i" />, persamaan itu boleh dibentuk daripada <InlineMath math="(x - x_1)(x - x_2) = 0" /> atau <InlineMath math="x^2 - (x_1 + x_2)x + (x_1 x_2) = 0" />.
+
+    Kira hasil tambah punca:
+
+    <BlockMath math="\begin{aligned} x_1 + x_2 &amp;= (1+i) + (1-i) \\ &amp;= 1 + i + 1 - i \\ &amp;= 2 \end{aligned}" />
+
+    Kira hasil darab punca:
+
+    <BlockMath math="\begin{aligned} x_1 x_2 &amp;= (1+i)(1-i) \\ &amp;= 1^2 - i^2 \\ &amp;= 1 - (-1) \\ &amp;= 1 + 1 \\ &amp;= 2 \end{aligned}" />
+
+    Bina persamaan kuadratik:
+
+    <MathContainer>
+      <BlockMath math="x^2 - (2)x + (2) = 0" />
+      <BlockMath math="x^2 - 2x + 2 = 0" />
+    </MathContainer>

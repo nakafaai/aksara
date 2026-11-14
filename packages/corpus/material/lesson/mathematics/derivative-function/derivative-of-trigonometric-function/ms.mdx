@@ -1,0 +1,184 @@
+export const metadata = {
+    title: "Pembezaan Fungsi Trigonometri",
+    description: "Bezakan enam fungsi trigonometri asas dalam radian, kemudian gunakan petua hasil tambah, petua hasil darab dan petua hasil bahagi dalam contoh dengan jalan kerja.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-05-26",
+    dateModified: "2026-11-08",
+    subject: "Pembezaan",
+};
+
+## Mengapa Terbitan Trigonometri Menggunakan Radian
+
+Fungsi trigonometri menggunakan [petua hasil tambah, petua hasil darab, petua hasil bahagi dan petua rantai](/ms/subjek/matematik/pembezaan/petua-pembezaan) yang sama seperti fungsi algebra. Yang berubah ialah set terbitan asas yang menjadi titik permulaan kita.
+
+Rumus-rumus di bawah menganggap sudut diukur dalam **radian**. Jika sudut diukur dalam darjah, petua rantai akan menghasilkan faktor tambahan <InlineMath math="\pi/180" />.
+
+## Terbitan Trigonometri Asas
+
+Rumus bagi sinus dan kosinus <Highlight>diperoleh daripada [takrif had bagi terbitan](/ms/subjek/matematik/pembezaan/terbitan-sebagai-kadar-perubahan)</Highlight>. Empat rumus yang lain kemudiannya boleh diterbitkan daripada identiti trigonometri bersama petua hasil darab atau petua hasil bahagi.
+
+Jadual ini memasangkan setiap fungsi dengan terbitannya dan syarat supaya fungsi itu tertakrif. Semua sudut menggunakan **radian**. Sekatan pada penyebut masih berlaku selepas pembezaan.
+
+| Fungsi | Terbitan | Syarat |
+| --- | --- | --- |
+| <InlineMath math="\sin x" /> | <InlineMath math="\cos x" /> | Semua nombor nyata |
+| <InlineMath math="\cos x" /> | <InlineMath math="-\sin x" /> | Semua nombor nyata |
+| <InlineMath math="\tan x" /> | <InlineMath math="\sec^2 x" /> | <InlineMath math="\cos x\ne0" /> |
+| <InlineMath math="\cot x" /> | <InlineMath math="-\csc^2 x" /> | <InlineMath math="\sin x\ne0" /> |
+| <InlineMath math="\sec x" /> | <InlineMath math="\sec x\tan x" /> | <InlineMath math="\cos x\ne0" /> |
+| <InlineMath math="\csc x" /> | <InlineMath math="-\csc x\cot x" /> | <InlineMath math="\sin x\ne0" /> |
+
+## Mengaitkan Sinus dengan Kecerunannya
+
+Untuk <InlineMath math="f(x)=\sin x" />, terbitan <InlineMath math="f'(x)=\cos x" /> memberikan **kecerunan lengkung sinus**. Pada <InlineMath math="x=0" />, kecerunan sinus ialah <InlineMath math="1" />. Pada titik maksimum sinus, <InlineMath math="x=\pi/2" />, kecerunannya menjadi <InlineMath math="0" />.
+
+<BarChart
+  title={<>Kecerunan sinus ialah kosinus</>}
+  description={<>Palang <InlineMath math="\cos x" />, iaitu kecerunan <InlineMath math="\sin x" />, pada <InlineMath math="x = 0, \tfrac{\pi}{6}, \tfrac{\pi}{3}, \tfrac{\pi}{2}, \tfrac{2\pi}{3}, \tfrac{5\pi}{6}, \pi" /> dalam radian. Kecerunannya <InlineMath math="1" /> pada <InlineMath math="0" />, <InlineMath math="0" /> pada titik maksimum <InlineMath math="\tfrac{\pi}{2}" /> dan negatif selepas itu.</>}
+  yAxisLabel="Kecerunan sin x"
+  data={[["0", 0], ["π/6", 1 / 6], ["π/3", 1 / 3], ["π/2", 1 / 2], ["2π/3", 2 / 3], ["5π/6", 5 / 6], ["π", 1]].map(([name, k]) => ({ name, value: Math.round(1000 * Math.cos(k * Math.PI)) / 1000 }))}
+  chartConfig={{ value: { label: "Kecerunan sin x", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Pada <InlineMath math="-\pi/2<x<\pi/2" />, kosinus positif, jadi sinus menokok. Pada <InlineMath math="\pi/2<x<\pi" />, kosinus negatif, jadi sinus menyusut. **Terbitan sifar** pada titik maksimum bermaksud tangennya mengufuk.
+
+Sekarang lihat tinggi <InlineMath math="\sin x" /> pada sudut yang sama: <InlineMath math="0" />, <InlineMath math="\tfrac12" />, lebih kurang <InlineMath math="0.866" />, <InlineMath math="1" />, kemudian turun semula. Palang-palang ini naik tepat di tempat palang kosinus positif dan turun di tempat palang kosinus negatif.
+
+<BarChart
+  title={<>Tinggi <InlineMath math="\sin x" /> dari <InlineMath math="0" /> hingga <InlineMath math="\pi" /></>}
+  description={<>Palang <InlineMath math="\sin x" /> pada <InlineMath math="x = 0, \tfrac{\pi}{6}, \tfrac{\pi}{3}, \tfrac{\pi}{2}, \tfrac{2\pi}{3}, \tfrac{5\pi}{6}, \pi" />.</>}
+  yAxisLabel="sin x"
+  data={[["0", 0], ["π/6", 1 / 6], ["π/3", 1 / 3], ["π/2", 1 / 2], ["2π/3", 2 / 3], ["5π/6", 5 / 6], ["π", 1]].map(([name, k]) => ({ name, value: Math.round(1000 * Math.sin(k * Math.PI)) / 1000 }))}
+  chartConfig={{ value: { label: "sin x", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Menggunakan Petua pada Fungsi Trigonometri
+
+Contoh-contoh di bawah menggabungkan rumus ini dengan petua pembezaan yang sudah kamu kenal. Kenal pasti petua luar dahulu, kemudian **bezakan sudutnya** dan darabkan, kerana terbitan bagi <InlineMath math="\sin u" /> ialah <InlineMath math="\cos u" /> didarab dengan terbitan bagi <InlineMath math="u" />.
+
+### Gabungan Algebra dan Trigonometri
+
+Cari terbitan bagi <InlineMath math="y = 2 \sin x + 5x" />.
+
+**Penyelesaian**:
+
+Kita boleh membezakan fungsi ini sebutan demi sebutan menggunakan petua hasil tambah.
+
+<MathContainer>
+    <BlockMath math="y' = \frac{d}{dx}(2 \sin x) + \frac{d}{dx}(5x)" />
+    <BlockMath math="y' = 2(\cos x) + 5(1)" />
+    <BlockMath math="y' = 2 \cos x + 5" />
+</MathContainer>
+
+### Menggunakan Petua Hasil Darab
+
+Cari terbitan bagi <InlineMath math="y = 2 \sin x \tan x" />.
+
+**Penyelesaian**:
+
+Gunakan petua hasil darab <InlineMath math="y' = u'v + uv'" />.
+
+Biar <InlineMath math="u = 2 \sin x" /> dan <InlineMath math="v = \tan x" />.
+
+Maka <InlineMath math="u' = 2 \cos x" /> dan <InlineMath math="v' = \sec^2 x" />.
+
+<MathContainer>
+    <BlockMath math="\begin{aligned} y' &amp;= (2 \cos x)(\tan x) \\ &amp;\quad{}+ (2 \sin x)(\sec^2 x) \end{aligned}" />
+    <BlockMath math="\begin{aligned} y' &amp;= (2 \cos x)\left(\frac{\sin x}{\cos x}\right) \\ &amp;\quad{}+ (2 \sin x)(\sec^2 x) \end{aligned}" />
+    <BlockMath math="y' = 2 \sin x + 2 \sin x \sec^2 x" />
+</MathContainer>
+
+### Menggunakan Petua Hasil Bahagi
+
+Pada domainnya, <InlineMath math="\sin x \ne 0" />, cari terbitan bagi <InlineMath math="y = \frac{1 + \cos x}{\sin x}" />.
+
+**Penyelesaian**:
+
+Gunakan petua hasil bahagi <InlineMath math="y' = \frac{u'v - uv'}{v^2}" />.
+
+Biar <InlineMath math="u = 1 + \cos x" /> dan <InlineMath math="v = \sin x" />.
+
+Maka <InlineMath math="u' = -\sin x" /> dan <InlineMath math="v' = \cos x" />.
+
+Kira pengangka dahulu:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} N &amp;=(-\sin x)(\sin x) \\ &amp;\quad{}-(1+\cos x)(\cos x) \end{aligned}" />
+
+  <BlockMath math="y'=\frac{N}{(\sin x)^2}" />
+  <BlockMath math="y' = \frac{-\sin^2 x - (\cos x + \cos^2 x)}{\sin^2 x}" />
+  <BlockMath math="y' = \frac{-(\sin^2 x + \cos^2 x) - \cos x}{\sin^2 x}" />
+</MathContainer>
+    Gunakan identiti Pythagoras:
+
+<BlockMath math="y' = \frac{-1 - \cos x}{1 - \cos^2 x}" />
+    Faktorkan ungkapan itu:
+
+<MathContainer>
+  <BlockMath math="y' = \frac{-(1 + \cos x)}{(1 - \cos x)(1 + \cos x)}" />
+  <BlockMath math="y' = \frac{-1}{1 - \cos x} = \frac{1}{\cos x - 1}" />
+</MathContainer>
+
+Rumus yang sudah dipermudahkan ini sah hanya pada domain asal, jadi nilai dengan <InlineMath math="\sin x=0" /> tetap dikecualikan walaupun ungkapan akhir itu nampak tertakrif di situ.
+
+## Latihan
+
+Setiap soalan meminta terbitan pertama bagi satu ungkapan trigonometri, dan **soalan kedua ialah hasil darab**. Pilih petua yang sepadan dengan strukturnya.
+
+1. Cari terbitan pertama bagi <InlineMath math="f(x) = 4x^3 - 5 \cos x" />.
+2. Cari terbitan pertama bagi <InlineMath math="f(x) = \sin x \cos x" />.
+
+### Kunci Jawapan
+
+1.  **Penyelesaian**:
+
+    Gunakan petua penolakan untuk membezakan setiap sebutan secara berasingan.
+
+    **Langkah 1**: Bezakan sebutan pertama
+
+    Dengan petua kuasa, terbitan bagi <InlineMath math="4x^3" /> ialah <InlineMath math="3 \cdot 4x^{3-1} = 12x^2" />.
+
+    **Langkah 2**: Bezakan sebutan kedua
+
+    Terbitan bagi <InlineMath math="-5 \cos x" /> ialah <InlineMath math="-5(-\sin x) = 5 \sin x" />.
+
+    **Langkah 3**: Gabungkan hasilnya
+
+    <BlockMath math="f'(x) = 12x^2 + 5 \sin x" />
+
+    Jadi, terbitan bagi fungsi itu ialah <InlineMath math="12x^2 + 5 \sin x" />.
+
+2.  **Penyelesaian**:
+
+    Gunakan petua hasil darab, <InlineMath math="f'(x) = u'v + uv'" />.
+
+    **Langkah 1**: Tentukan <InlineMath math="u" />, <InlineMath math="v" />, <InlineMath math="u'" /> dan <InlineMath math="v'" />
+
+    Biar <InlineMath math="u = \sin x" /> dan <InlineMath math="v = \cos x" />.
+
+    Maka, <InlineMath math="u' = \cos x" /> dan <InlineMath math="v' = -\sin x" />.
+
+    **Langkah 2**: Gunakan Petua Hasil Darab
+
+    <MathContainer>
+        <BlockMath math="\begin{aligned} f'(x) &amp;= (\cos x)(\cos x) \\ &amp;\quad{}+ (\sin x)(-\sin x) \end{aligned}" />
+        <BlockMath math="f'(x) = \cos^2 x - \sin^2 x" />
+    </MathContainer>
+
+    **Langkah 3**: Gunakan Identiti Trigonometri (Pilihan)
+
+    Hasil ini juga boleh dipermudahkan menggunakan identiti sudut berganda, <InlineMath math="\cos(2x) = \cos^2 x - \sin^2 x" />.
+
+    <BlockMath math="f'(x) = \cos(2x)" />
+
+    Jadi, terbitan bagi fungsi itu ialah <InlineMath math="\cos(2x)" />.
+
+Latihan 2 dalam bentuk carta: terbitan <InlineMath math="\cos 2x" /> bagi <InlineMath math="\sin x \cos x = \tfrac12 \sin 2x" /> positif sehingga <InlineMath math="x = \tfrac{\pi}{4}" /> dan negatif selepas itu, jadi <InlineMath math="\sin x \cos x" /> mencapai nilai terbesarnya, <InlineMath math="\tfrac12" />, pada <InlineMath math="\tfrac{\pi}{4}" />.
+
+<BarChart
+  title={<>Nilai <InlineMath math="\cos 2x" /></>}
+  description={<>Palang <InlineMath math="\cos 2x" /> pada <InlineMath math="x = 0, \tfrac{\pi}{8}, \tfrac{\pi}{4}, \tfrac{3\pi}{8}, \tfrac{\pi}{2}" />.</>}
+  yAxisLabel="cos 2x"
+  data={[["0", 0], ["π/8", 1 / 8], ["π/4", 1 / 4], ["3π/8", 3 / 8], ["π/2", 1 / 2]].map(([name, k]) => ({ name, value: Math.round(1000 * Math.cos(2 * k * Math.PI)) / 1000 }))}
+  chartConfig={{ value: { label: "cos 2x", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

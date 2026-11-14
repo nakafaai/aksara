@@ -1,0 +1,651 @@
+export const metadata = {
+  title: "Putaran Graf Fungsi",
+  description: "Putarkan titik dan graf fungsi sebanyak 90, 180 atau 270 darjah, atau sebarang sudut, pada asalan atau pusat lain, kemudian cari persamaan lengkung yang diputarkan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-10-02",
+  subject: "Penjelmaan Fungsi",
+};
+
+## Memutarkan Setiap Titik pada Graf
+
+Putaran graf fungsi memutarkan setiap titik pada graf itu **sebanyak sudut yang sama pada satu pusat putaran**. Sudut positif bermaksud putaran lawan arah jam, dan sudut negatif bermaksud putaran ikut arah jam. Pada asalan <InlineMath math="O(0, 0)" />, putaran sebanyak <InlineMath math="\theta" /> menggerakkan titik <InlineMath math="(x, y)" /> ke imejnya <InlineMath math="(x', y')" />:
+
+<BlockMath math="\begin{aligned} x' &= x\cos\theta - y\sin\theta \\ y' &= x\sin\theta + y\cos\theta \end{aligned}" />
+
+Untuk gandaan <InlineMath math="90^\circ" />, rumus ini menjadi petua yang ringkas. Putaran <InlineMath math="90^\circ" /> menggerakkan <InlineMath math="(x, y)" /> ke <InlineMath math="(-y, x)" />, putaran <InlineMath math="180^\circ" /> ke <InlineMath math="(-x, -y)" />, dan putaran <InlineMath math="270^\circ" /> ke <InlineMath math="(y, -x)" />. Pada bulatan unit interaktif, kamu boleh menukar <InlineMath math="\theta" /> sendiri dan melihat di mana titik <InlineMath math="(1, 0)" /> berhenti.
+
+Untuk graf fungsi, putaran juga mengubah persamaannya. Untuk mendapat persamaan baharu, tulis koordinat lama dalam sebutan koordinat baharu, kemudian gantikan ungkapan itu ke dalam persamaan asal. Lengkung yang diputarkan **tidak semestinya graf fungsi**, kerana selepas putaran, satu nilai <InlineMath math="x" /> boleh berpasangan dengan dua nilai <InlineMath math="y" />. Petua putaran yang sama juga menggerakkan titik dan bentuk satah dalam [putaran sebagai penjelmaan geometri](/ms/subjek/matematik/transformasi-geometri/putaran).
+
+## Rumus Putaran daripada Bulatan Unit
+
+Mulakan dengan titik <InlineMath math="(1, 0)" />, yang terletak pada jarak <InlineMath math="1" /> dari asalan. Oleh sebab **putaran mengekalkan setiap jarak ke pusat**, imejnya kekal pada bulatan berjejari <InlineMath math="1" />, iaitu di hujung jejari yang membentuk sudut <InlineMath math="\theta" /> dengan paksi-<InlineMath math="x" /> positif. Pada bulatan unit, titik di hujung jejari bersudut <InlineMath math="\theta" /> mempunyai koordinat <InlineMath math="(\cos\theta, \sin\theta)" />. Begitulah kosinus dan sinus ditakrifkan untuk sebarang sudut.
+
+<MathVisual
+  title={<>Imej titik <InlineMath math="(1, 0)" /> selepas putaran sebanyak <InlineMath math="\theta" /></>}
+  description={<>Tukar <InlineMath math="\theta" /> dalam kotak sudut. Hujung jejari ialah imej <InlineMath math="(1, 0)" />, jadi koordinatnya sentiasa <InlineMath math="(\cos\theta, \sin\theta)" /> dan jaraknya dari asalan kekal <InlineMath math="1" />.</>}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 60, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
+/>
+
+Kotak sudut bermula pada <InlineMath math="60" />, jadi hujung jejari berada di <InlineMath math="\left(\tfrac{1}{2}, \tfrac{\sqrt{3}}{2}\right)" />, sepadan dengan nilai <InlineMath math="\cos 60^\circ = \tfrac{1}{2}" /> dan <InlineMath math="\sin 60^\circ = \tfrac{\sqrt{3}}{2}" /> yang ditunjukkan di bawah bulatan.
+
+Sekarang masukkan <InlineMath math="90" />, <InlineMath math="180" /> dan <InlineMath math="270" />. Hujung jejari berhenti di <InlineMath math="(0, 1)" />, <InlineMath math="(-1, 0)" /> dan <InlineMath math="(0, -1)" />, dan titik itu tidak pernah keluar dari bulatan. Kalau kamu masukkan <InlineMath math="-90" />, jejari berputar ikut arah jam dan berhenti di <InlineMath math="(0, -1)" />, iaitu tempat yang sama dengan putaran <InlineMath math="270^\circ" />.
+
+Titik <InlineMath math="(0, 1)" /> sudah membentuk sudut <InlineMath math="90^\circ" /> dengan paksi-<InlineMath math="x" /> positif, jadi memutarkan titik itu sebanyak <InlineMath math="\theta" /> sama dengan **membaca bulatan pada sudut <InlineMath math="\theta + 90^\circ" />**. Masukkan <InlineMath math="150" />, iaitu <InlineMath math="60 + 90" />, dan hujung jejari berada di <InlineMath math="\left(-\tfrac{\sqrt{3}}{2}, \tfrac{1}{2}\right)" />. Pasangan itu sama dengan <InlineMath math="(-\sin 60^\circ, \cos 60^\circ)" />.
+
+Pola yang sama berlaku untuk setiap sudut, kerana <InlineMath math="\cos(\theta + 90^\circ) = -\sin\theta" /> dan <InlineMath math="\sin(\theta + 90^\circ) = \cos\theta" />, jadi imej <InlineMath math="(0, 1)" /> ialah <InlineMath math="(-\sin\theta, \cos\theta)" />.
+
+Dua imej ini sudah cukup untuk memutarkan sebarang titik. Kamu sampai ke <InlineMath math="(x, y)" /> dari asalan dengan mengambil <InlineMath math="x" /> langkah ke arah <InlineMath math="(1, 0)" />, kemudian <InlineMath math="y" /> langkah ke arah <InlineMath math="(0, 1)" />. Putaran memutarkan segi empat tepat yang dibentuk oleh langkah-langkah itu sebagai satu kepingan tegar, jadi kamu sampai ke imejnya dengan mengambil **bilangan langkah yang sama di sepanjang arah yang sudah diputarkan**:
+
+<BlockMath math="\begin{aligned} (x', y') &= x(\cos\theta, \sin\theta) + y(-\sin\theta, \cos\theta) \\ &= (x\cos\theta - y\sin\theta,\ x\sin\theta + y\cos\theta) \end{aligned}" />
+
+Dua komponen ini ialah rumus putaran pada asalan. Kamu juga boleh menulis rumus ini sebagai satu hasil darab [matriks putaran](/ms/subjek/matematik/transformasi-geometri/matriks-putaran) dengan vektor <InlineMath math="(x, y)" />.
+
+Sebagai contoh, titik <InlineMath math="P(2, 4)" /> pada graf <InlineMath math="y = x^2" /> diputarkan sebanyak <InlineMath math="60^\circ" /> pada asalan. Nilai <InlineMath math="\cos 60^\circ = \tfrac{1}{2}" /> dan <InlineMath math="\sin 60^\circ = \tfrac{\sqrt{3}}{2}" /> muncul pada bulatan unit di <InlineMath math="\theta = 60^\circ" /> dan dalam jadual [nilai sudut khas](/ms/subjek/matematik/trigonometri/nisbah-trigonometri-sudut-khas). Dengan <InlineMath math="x = 2" /> dan <InlineMath math="y = 4" />, rumus putaran memberikan:
+
+<BlockMath math="\begin{aligned} x' &= 2 \cdot \tfrac{1}{2} - 4 \cdot \tfrac{\sqrt{3}}{2} = 1 - 2\sqrt{3} \\ y' &= 2 \cdot \tfrac{\sqrt{3}}{2} + 4 \cdot \tfrac{1}{2} = \sqrt{3} + 2 \end{aligned}" />
+
+Imejnya ialah <InlineMath math="P'(1 - 2\sqrt{3}, \sqrt{3} + 2)" />, dengan <InlineMath math="x' \approx -2.46" /> dan <InlineMath math="y' \approx 3.73" />. Jarak dari <InlineMath math="P'" /> ke asalan mesti sama dengan jarak <InlineMath math="OP" />:
+
+<BlockMath math="(1 - 2\sqrt{3})^2 + (\sqrt{3} + 2)^2 = (13 - 4\sqrt{3}) + (7 + 4\sqrt{3}) = 20 = 2^2 + 4^2" />
+
+Arahnya juga betul. Oleh sebab <InlineMath math="P" /> mempunyai <InlineMath math="y > x > 0" />, sudut <InlineMath math="OP" /> dengan paksi-<InlineMath math="x" /> positif terletak antara <InlineMath math="45^\circ" /> dan <InlineMath math="90^\circ" />. Apabila ditambah <InlineMath math="60^\circ" />, sudut itu terletak antara <InlineMath math="105^\circ" /> dan <InlineMath math="150^\circ" />, iaitu dalam sukuan II, dan <InlineMath math="P'" /> memang mempunyai <InlineMath math="x' < 0" /> dan <InlineMath math="y' > 0" />.
+
+<MathVisual
+  title={<>Titik <InlineMath math="P(2, 4)" /> dan parabola <InlineMath math="y = x^2" /> diputarkan sebanyak <InlineMath math="60^\circ" /></>}
+  description={<>Dari asalan, kamu sampai ke <InlineMath math="P" /> melalui <InlineMath math="A(2, 0)" />: <InlineMath math="2" /> langkah mengufuk, kemudian <InlineMath math="4" /> langkah ke atas. Selepas putaran <InlineMath math="60^\circ" />, langkah <InlineMath math="OA'" /> masih sepanjang <InlineMath math="2" /> dan langkah <InlineMath math="A'P'" /> masih sepanjang <InlineMath math="4" />, dan kedua-dua langkah itu kekal berserenjang. Lengkok menunjukkan laluan dari <InlineMath math="P" /> ke <InlineMath math="P'" />.</>}
+  labels={{
+    "l1": <InlineMath math="y = x^2" />,
+    "l2": <InlineMath math="A(2, 0)" />,
+    "l3": <InlineMath math="P(2, 4)" />,
+    "l4": <InlineMath math="A'" />,
+    "l5": <InlineMath math="P'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 3 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(((2 * t) - 210) / 100)", y: "((((2 * t) - 210) / 100) * (((2 * t) - 210) / 100))", parameter: { min: 0, max: 210 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(((((2 * t) - 210) / 100) * (1 / 2)) - (((((2 * t) - 210) / 100) * (((2 * t) - 210) / 100)) * (sqrt(3) / 2)))", y: "(((((2 * t) - 210) / 100) * (sqrt(3) / 2)) + (((((2 * t) - 210) / 100) * (((2 * t) - 210) / 100)) * (1 / 2)))", parameter: { min: 0, max: 210 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 2, y: 0 }, { x: 2, y: 4 }], appearance: "primary" },
+      { id: "s3-p0", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "s3-p1", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 1.73 }, { x: -2.46, y: 3.73 }], appearance: "secondary" },
+      { id: "s4-p1", kind: "point", at: { x: 1, y: 1.73 }, appearance: "secondary" },
+      { id: "s4-p2", kind: "point", at: { x: -2.46, y: 3.73 }, appearance: "secondary" },
+      { id: "s5", kind: "parametric", x: "((2 * cos(((pi / 3) * (t / 60)))) - (4 * sin(((pi / 3) * (t / 60)))))", y: "((2 * sin(((pi / 3) * (t / 60)))) + (4 * cos(((pi / 3) * (t / 60)))))", parameter: { min: 0, max: 60 }, appearance: "answer" },
+      { id: "s5-head", kind: "vector", from: { x: -2.4, y: 3.77 }, to: { x: -2.46, y: 3.73 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.82, y: 3.31 }, placement: "above-right" },
+      { key: "l2", objectId: "s3", at: { x: 2, y: 0 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 2, y: 4 }, placement: "below-right" },
+      { key: "l4", objectId: "s4", at: { x: 1, y: 1.73 }, placement: "above" },
+      { key: "l5", objectId: "s4", at: { x: -2.46, y: 3.73 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Langkah sepanjang <InlineMath math="2" /> dan <InlineMath math="4" /> dalam graf ini ialah langkah dalam rumus putaran, <InlineMath math="P' = 2(\cos 60^\circ, \sin 60^\circ) + 4(-\sin 60^\circ, \cos 60^\circ)" />. Titik <InlineMath math="P'" /> juga terletak pada parabola yang diputarkan, kerana setiap titik parabola itu berputar <InlineMath math="60^\circ" /> bersama-sama dengan <InlineMath math="P" />.
+
+## Putaran dengan Gandaan Sudut Tegak
+
+Pada <InlineMath math="90^\circ" />, <InlineMath math="180^\circ" /> dan <InlineMath math="270^\circ" />, nilai <InlineMath math="\cos\theta" /> dan <InlineMath math="\sin\theta" /> hanyalah <InlineMath math="0" />, <InlineMath math="1" /> atau <InlineMath math="-1" />. Jadi rumus putaran menjadi ringkas, iaitu **menukar tanda koordinat**, dan pada <InlineMath math="90^\circ" /> dan <InlineMath math="270^\circ" /> kedua-dua koordinat juga bertukar tempat. Untuk <InlineMath math="90^\circ" />, menggantikan <InlineMath math="\cos 90^\circ = 0" /> dan <InlineMath math="\sin 90^\circ = 1" /> memberikan:
+
+<BlockMath math="\begin{aligned} x' &= x \cdot 0 - y \cdot 1 = -y \\ y' &= x \cdot 1 + y \cdot 0 = x \end{aligned}" />
+
+Dengan cara yang sama, <InlineMath math="\cos 180^\circ = -1" /> dan <InlineMath math="\sin 180^\circ = 0" /> memberikan <InlineMath math="(-x, -y)" />, manakala <InlineMath math="\cos 270^\circ = 0" /> dan <InlineMath math="\sin 270^\circ = -1" /> memberikan <InlineMath math="(y, -x)" />. Lajur imej <InlineMath math="(1, 0)" /> dalam jadual ialah kedudukan hujung jejari pada bulatan unit bagi sudut yang sama, jadi kamu boleh memadankan setiap petua di situ.
+
+| Sudut | Imej <InlineMath math="(1, 0)" /> | Imej <InlineMath math="(x, y)" /> | Arah |
+| --- | --- | --- | --- |
+| <InlineMath math="90^\circ" /> | <InlineMath math="(0, 1)" /> | <InlineMath math="(-y, x)" /> | Suku putaran lawan arah jam |
+| <InlineMath math="180^\circ" /> | <InlineMath math="(-1, 0)" /> | <InlineMath math="(-x, -y)" /> | Setengah putaran, sama bagi kedua-dua arah |
+| <InlineMath math="270^\circ" /> | <InlineMath math="(0, -1)" /> | <InlineMath math="(y, -x)" /> | Sama dengan <InlineMath math="-90^\circ" />, iaitu suku putaran ikut arah jam |
+
+Contohnya, titik <InlineMath math="P(3, 4)" /> diputarkan <InlineMath math="90^\circ" /> lawan arah jam pada asalan. Petua <InlineMath math="(x, y) \mapsto (-y, x)" /> memberikan:
+
+<BlockMath math="P(3, 4) \longmapsto P'(-4, 3)" />
+
+Semak jarak dan sudutnya. Kedua-dua titik berada pada jarak yang sama dari <InlineMath math="O" />, kerana <InlineMath math="3^2 + 4^2 = (-4)^2 + 3^2 = 25" />. Kecerunan <InlineMath math="OP" /> ialah <InlineMath math="\tfrac{4}{3}" /> dan kecerunan <InlineMath math="OP'" /> ialah <InlineMath math="-\tfrac{3}{4}" />. Hasil darabnya ialah <InlineMath math="-1" />, jadi <InlineMath math="OP" /> berserenjang dengan <InlineMath math="OP'" />. Imej <InlineMath math="P'" /> juga terletak dalam sukuan II, iaitu satu sukuan lawan arah jam dari <InlineMath math="P" />.
+
+<MathVisual
+  title={<>Titik <InlineMath math="P(3, 4)" /> selepas satu, dua dan tiga suku putaran</>}
+  description={<>Titik <InlineMath math="P'" />, <InlineMath math="P''" /> dan <InlineMath math="P'''" /> ialah imej <InlineMath math="P" /> di bawah putaran <InlineMath math="90^\circ" />, <InlineMath math="180^\circ" /> dan <InlineMath math="270^\circ" />. Keempat-empat jejari mempunyai panjang yang sama, iaitu <InlineMath math="5" />, dan jejari yang bersebelahan saling berserenjang.</>}
+  labels={{
+    "l1": <InlineMath math="P(3, 4)" />,
+    "l2": <InlineMath math="P'(-4, 3)" />,
+    "l3": <InlineMath math="P''(-3, -4)" />,
+    "l4": <InlineMath math="P'''(4, -3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "3 cos(t) - 4 sin(t)", y: "3 sin(t) + 4 cos(t)", parameter: { min: 0, max: 1 * Math.PI / 2 }, appearance: "construction" },
+      { id: "s2", kind: "parametric", x: "3 cos(t) - 4 sin(t)", y: "3 sin(t) + 4 cos(t)", parameter: { min: Math.PI / 2, max: Math.PI }, appearance: "construction" },
+      { id: "s3", kind: "parametric", x: "3 cos(t) - 4 sin(t)", y: "3 sin(t) + 4 cos(t)", parameter: { min: 2 * Math.PI / 2, max: 3 * Math.PI / 2 }, appearance: "construction" },
+      { id: "s4", kind: "parametric", x: "3 cos(t) - 4 sin(t)", y: "3 sin(t) + 4 cos(t)", parameter: { min: 3 * Math.PI / 2, max: 2 * Math.PI }, appearance: "construction" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 4 }], appearance: "primary" },
+      { id: "s5-p1", kind: "point", at: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: -4, y: 3 }], appearance: "secondary" },
+      { id: "s6-p1", kind: "point", at: { x: -4, y: 3 }, appearance: "secondary" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: -3, y: -4 }], appearance: "answer" },
+      { id: "s7-p1", kind: "point", at: { x: -3, y: -4 }, appearance: "answer" },
+      { id: "s8", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: -3 }], appearance: "highlight" },
+      { id: "s8-p1", kind: "point", at: { x: 4, y: -3 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s5", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "l2", objectId: "s6", at: { x: -4, y: 3 }, placement: "above-left" },
+      { key: "l3", objectId: "s7", at: { x: -3, y: -4 }, placement: "below-left" },
+      { key: "l4", objectId: "s8", at: { x: 4, y: -3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Setiap suku putaran menukar tempat kedua-dua koordinat dan menukar satu tanda, jadi <InlineMath math="(3, 4)" /> bergerak ke <InlineMath math="(-4, 3)" />, kemudian ke <InlineMath math="(-3, -4)" />, kemudian ke <InlineMath math="(4, -3)" />. Suku putaran yang keempat membawa titik itu kembali ke <InlineMath math="P" />, kerana empat putaran <InlineMath math="90^\circ" /> membentuk satu putaran penuh.
+
+Putaran <InlineMath math="180^\circ" /> menukar tanda kedua-dua koordinat serentak. Kamu mendapat hasil yang sama dengan memantulkan graf pada paksi-<InlineMath math="x" />, yang menukar tanda <InlineMath math="y" />, kemudian pada paksi-<InlineMath math="y" />, yang menukar tanda <InlineMath math="x" />. Dalam bentuk persamaan, **setengah putaran menukar <InlineMath math="y = f(x)" /> kepada <InlineMath math="y = -f(-x)" />**, iaitu gabungan [pantulan pada paksi-<InlineMath math="x" />](/ms/subjek/matematik/penjelmaan-fungsi/pantulan-pada-paksi-x) dengan [pantulan pada paksi-<InlineMath math="y" />](/ms/subjek/matematik/penjelmaan-fungsi/pantulan-pada-paksi-y).
+
+Setiap pantulan itu memberikan kesan yang sama dengan **balikan satah**: seluruh satah membuat setengah putaran dalam ruang pada paksi cermin, jadi setiap titik bergerak pada semibulatan keluar dari satah dan jatuh pada imej cerminnya.
+
+Ambil <InlineMath math="f(x) = (x - 2)^2 + 2" />, iaitu parabola dengan verteks <InlineMath math="V(2, 2)" />. Balikan pada paksi-<InlineMath math="x" /> mengangkat <InlineMath math="V" /> keluar dari satah dan meletakkannya di <InlineMath math="(2, -2)" />. Kemudian balikan pada paksi-<InlineMath math="y" /> membawa titik itu ke <InlineMath math="(-2, -2)" />.
+
+<MathVisual
+  title={<>Dua balikan satah dan setengah putaran untuk <InlineMath math="f(x) = (x - 2)^2 + 2" /></>}
+  description={<>Laluan <InlineMath math="V" /> keluar dari satah dua kali. Semibulatan pertama merentasi paksi-<InlineMath math="x" /> dan turun di <InlineMath math="(2, -2)" />, dan semibulatan kedua merentasi paksi-<InlineMath math="y" /> dan turun di <InlineMath math="V'(-2, -2)" />, iaitu hujung lengkok dalam satah yang memutarkan <InlineMath math="V" /> sebanyak <InlineMath math="180^\circ" /> pada <InlineMath math="O" />.</>}
+  labels={{
+    "l1": <InlineMath math="y = f(x)" />,
+    "l2": <InlineMath math="y = -f(x)" />,
+    "l3": <InlineMath math="y = -f(-x)" />,
+    "l4": <InlineMath math="V" />,
+    "l5": <InlineMath math="(2, -2)" />,
+    "l6": <InlineMath math="V'" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -5.5, max: 5.5 }, z: { min: -0.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 3, y: -9, z: 11 }, target: { x: 0, y: 0, z: 1 } },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(2 + ((-1.5) + ((3 * t) / 200)))", y: "((((-1.5) + ((3 * t) / 200)) * ((-1.5) + ((3 * t) / 200))) + 2)", z: "0", parameter: { min: 0, max: 200 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2 + ((-1.5) + ((3 * t) / 200)))", y: "(-((((-1.5) + ((3 * t) / 200)) * ((-1.5) + ((3 * t) / 200))) + 2))", z: "0", parameter: { min: 0, max: 200 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "(-(2 + ((-1.5) + ((3 * t) / 200))))", y: "(-((((-1.5) + ((3 * t) / 200)) * ((-1.5) + ((3 * t) / 200))) + 2))", z: "0", parameter: { min: 0, max: 200 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "2", y: "(2 * cos((pi * (t / 180))))", z: "(2 * sin((pi * (t / 180))))", parameter: { min: 0, max: 180 }, appearance: "secondary" },
+      { id: "s4-head", kind: "vector", from: { x: 2, y: -2, z: 0.03 }, to: { x: 2, y: -2, z: 0 }, appearance: "secondary" },
+      { id: "s5", kind: "parametric", x: "(2 * cos((pi * (t / 180))))", y: "(-2)", z: "(2 * sin((pi * (t / 180))))", parameter: { min: 0, max: 180 }, appearance: "answer" },
+      { id: "s5-head", kind: "vector", from: { x: -2, y: -2, z: 0.03 }, to: { x: -2, y: -2, z: 0 }, appearance: "answer" },
+      { id: "s6", kind: "parametric", x: "((2 * cos((pi * (t / 180)))) - (2 * sin((pi * (t / 180)))))", y: "((2 * sin((pi * (t / 180)))) + (2 * cos((pi * (t / 180)))))", z: "0", parameter: { min: 0, max: 180 }, appearance: "highlight" },
+      { id: "s6-head", kind: "vector", from: { x: -2.03, y: -1.96, z: 0 }, to: { x: -2, y: -2, z: 0 }, appearance: "highlight" },
+      { id: "s7", kind: "point", at: { x: 2, y: 2, z: 0 }, appearance: "primary" },
+      { id: "s8", kind: "point", at: { x: 2, y: -2, z: 0 }, appearance: "secondary" },
+      { id: "s9", kind: "point", at: { x: -2, y: -2, z: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3.23, y: 3.51, z: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 3.47, y: -4.16, z: 0 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: -0.56, y: -4.07, z: 0 }, placement: "below-left" },
+      { key: "l4", objectId: "s7", at: { x: 2, y: 2, z: 0 }, placement: "below-right" },
+      { key: "l5", objectId: "s8", at: { x: 2, y: -2, z: 0 }, placement: "above-right" },
+      { key: "l6", objectId: "s9", at: { x: -2, y: -2, z: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Putarkan paparan sehingga kamu memandang tepat ke arah satah itu. Laluan <InlineMath math="V" /> melalui kedua-dua balikan berakhir pada titik yang sama dengan lengkok setengah putaran, iaitu <InlineMath math="V'(-2, -2)" />, dan parabola terakhir ialah <InlineMath math="y = -f(-x) = -(x + 2)^2 - 2" />. Semak verteksnya: <InlineMath math="-(-2 + 2)^2 - 2 = -2" />.
+
+Kedua-dua pantulan itu bertindak pada koordinat yang berbeza, jadi kamu boleh menukar urutannya, sama seperti langkah mengufuk dan mencancang apabila kamu [menggabungkan penjelmaan fungsi](/ms/subjek/matematik/penjelmaan-fungsi/gabungan-penjelmaan-fungsi).
+
+## Putaran pada Pusat Lain
+
+Rumus <InlineMath math="x' = x\cos\theta - y\sin\theta" /> dan <InlineMath math="y' = x\sin\theta + y\cos\theta" /> hanya memutarkan titik pada asalan. Untuk pusat <InlineMath math="C(p, q)" />, gerakkan satah dahulu supaya <InlineMath math="C" /> jatuh pada asalan, putarkan dengan rumus asalan, kemudian gerakkan satah itu kembali. Beza <InlineMath math="(x - p, y - q)" /> ialah kedudukan titik itu apabila dilihat dari <InlineMath math="C" />, dan **beza itulah yang diputarkan** sebelum koordinat <InlineMath math="C" /> ditambah semula:
+
+<BlockMath math="\begin{aligned} x' &= p + (x - p)\cos\theta - (y - q)\sin\theta \\ y' &= q + (x - p)\sin\theta + (y - q)\cos\theta \end{aligned}" />
+
+Pusat <InlineMath math="C" /> sendiri tidak bergerak, kerana beza <InlineMath math="C" /> daripada <InlineMath math="C" /> ialah <InlineMath math="(0, 0)" />. Setiap titik lain bergerak pada bulatan yang berpusat di <InlineMath math="C" />, jadi jaraknya ke <InlineMath math="C" /> kekal sama.
+
+Ambil titik <InlineMath math="P(2, 5)" /> yang diputarkan <InlineMath math="90^\circ" /> lawan arah jam pada <InlineMath math="C(1, 1)" />. Beza <InlineMath math="P" /> daripada <InlineMath math="C" /> ialah <InlineMath math="(2 - 1, 5 - 1) = (1, 4)" />. Suku putaran menukar beza itu mengikut petua <InlineMath math="(u, v) \mapsto (-v, u)" />, kemudian koordinat <InlineMath math="C" /> ditambah semula:
+
+<BlockMath math="(1, 4) \longmapsto (-4, 1), \qquad P' = (1 + (-4),\ 1 + 1) = (-3, 2)" />
+
+Jarak ke pusat tidak berubah. Sebelum putaran, <InlineMath math="|CP|^2 = 1^2 + 4^2 = 17" />. Selepas putaran, <InlineMath math="|CP'|^2 = (-3 - 1)^2 + (2 - 1)^2 = 16 + 1 = 17" />. Kecerunan <InlineMath math="CP" /> ialah <InlineMath math="4" /> dan kecerunan <InlineMath math="CP'" /> ialah <InlineMath math="-\tfrac{1}{4}" />, dengan hasil darab <InlineMath math="-1" />, jadi kedua-dua tembereng garis itu berserenjang. Kalau kamu tersilap memutarkan <InlineMath math="P" /> pada <InlineMath math="O" />, kamu mendapat <InlineMath math="(-5, 2)" />. Jarak titik itu ke <InlineMath math="C" /> berubah daripada <InlineMath math="\sqrt{17}" /> kepada <InlineMath math="\sqrt{37}" />, dan ini memberitahu kamu bahawa pusat yang salah telah digunakan.
+
+Untuk sudut yang bukan gandaan <InlineMath math="90^\circ" />, gunakan rumus penuh. Putaran <InlineMath math="60^\circ" /> pada <InlineMath math="C(1, 1)" /> memutarkan beza <InlineMath math="(1, 4)" /> dengan <InlineMath math="\cos 60^\circ = \tfrac{1}{2}" /> dan <InlineMath math="\sin 60^\circ = \tfrac{\sqrt{3}}{2}" />, kemudian menambah <InlineMath math="C" /> semula:
+
+<ContentStack>
+
+<BlockMath math="\begin{aligned} x' &= 1 + 1 \cdot \tfrac{1}{2} - 4 \cdot \tfrac{\sqrt{3}}{2} = \tfrac{3}{2} - 2\sqrt{3} \\ y' &= 1 + 1 \cdot \tfrac{\sqrt{3}}{2} + 4 \cdot \tfrac{1}{2} = 3 + \tfrac{\sqrt{3}}{2} \end{aligned}" />
+
+<MathVisual
+  title={<>Titik <InlineMath math="P(2, 5)" /> diputarkan pada <InlineMath math="C(1, 1)" /></>}
+  description={<>Lengkok ialah laluan <InlineMath math="P" /> pada bulatan yang berpusat di <InlineMath math="C" /> dengan jejari <InlineMath math="\sqrt{17}" />. Lengkok itu melalui <InlineMath math="Q" />, iaitu imej di bawah putaran <InlineMath math="60^\circ" />, dan berhenti di <InlineMath math="P'(-3, 2)" />, iaitu imej di bawah putaran <InlineMath math="90^\circ" />. Tembereng garis <InlineMath math="CP" /> dan <InlineMath math="CP'" /> saling berserenjang.</>}
+  labels={{
+    "l1": <InlineMath math="P(2, 5)" />,
+    "l2": <InlineMath math="Q" />,
+    "l3": <InlineMath math="P'(-3, 2)" />,
+    "l4": <InlineMath math="C(1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 2.5 }, y: { min: 0.5, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((1 + cos(((pi / 2) * (t / 90)))) - (4 * sin(((pi / 2) * (t / 90)))))", y: "((1 + sin(((pi / 2) * (t / 90)))) + (4 * cos(((pi / 2) * (t / 90)))))", parameter: { min: 0, max: 90 }, appearance: "primary" },
+      { id: "s1-head", kind: "vector", from: { x: -2.98, y: 2.07 }, to: { x: -3, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 2, y: 5 }], appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 2, y: 5 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 3 / 2 - 2 * Math.sqrt(3), y: 3 + Math.sqrt(3) / 2 }], appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: -1.96, y: 3.87 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: -3, y: 2 }], appearance: "highlight" },
+      { id: "s4-p1", kind: "point", at: { x: -3, y: 2 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 1, y: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 2, y: 5 }, placement: "above-right" },
+      { key: "l2", objectId: "s3", at: { x: -1.96, y: 3.87 }, placement: "above-left" },
+      { key: "l3", objectId: "s4", at: { x: -3, y: 2 }, placement: "below-left" },
+      { key: "l4", objectId: "s5", at: { x: 1, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+</ContentStack>
+
+Jadi <InlineMath math="Q = \left(\tfrac{3}{2} - 2\sqrt{3},\ 3 + \tfrac{\sqrt{3}}{2}\right)" />, dengan <InlineMath math="x' \approx -1.96" /> dan <InlineMath math="y' \approx 3.87" />. Titik ini terletak pada lengkok yang sama dengan <InlineMath math="P'" />, kerana jaraknya ke <InlineMath math="C" /> juga <InlineMath math="\sqrt{17}" />: <InlineMath math="\left(\tfrac{1}{2} - 2\sqrt{3}\right)^2 + \left(\tfrac{\sqrt{3}}{2} + 2\right)^2 = \left(\tfrac{49}{4} - 2\sqrt{3}\right) + \left(\tfrac{19}{4} + 2\sqrt{3}\right) = 17" />.
+
+## Persamaan Lengkung yang Diputarkan
+
+Rumus putaran memberikan imej bagi satu titik, tetapi persamaan lengkung yang diputarkan memerlukan arah yang bertentangan. Setiap titik baharu <InlineMath math="(x', y')" /> datang daripada titik lama <InlineMath math="(x, y)" /> yang memenuhi persamaan asal. Kamu mencari titik lama itu dengan **memutarkan titik baharu kembali sebanyak <InlineMath math="-\theta" />**:
+
+<BlockMath math="\begin{aligned} x &= x'\cos\theta + y'\sin\theta \\ y &= -x'\sin\theta + y'\cos\theta \end{aligned}" />
+
+Gantikan kedua-dua ungkapan itu ke dalam persamaan asal, permudahkan, kemudian buang tanda prima. Tanda prima hanya membezakan titik baharu daripada titik lama semasa pengiraan, jadi persamaan akhir ditulis semula dengan <InlineMath math="x" /> dan <InlineMath math="y" />.
+
+Untuk parabola <InlineMath math="y = x^2" /> yang diputarkan sebanyak <InlineMath math="90^\circ" />, nilai <InlineMath math="\cos 90^\circ = 0" /> dan <InlineMath math="\sin 90^\circ = 1" /> memberikan <InlineMath math="x = y'" /> dan <InlineMath math="y = -x'" />. Menggantikan kedua-duanya ke dalam <InlineMath math="y = x^2" /> memberikan:
+
+<BlockMath math="\begin{aligned} y &= x^2 \\ -x' &= (y')^2 \\ x' &= -(y')^2 \end{aligned}" />
+
+Selepas tanda prima dibuang, lengkung yang diputarkan ialah **parabola <InlineMath math="x = -y^2" /> yang terbuka ke kiri**. Semak satu titik: <InlineMath math="(2, 4)" /> pada parabola asal bergerak ke <InlineMath math="(-4, 2)" /> di bawah petua <InlineMath math="(x, y) \mapsto (-y, x)" />, dan titik itu memenuhi <InlineMath math="-4 = -(2)^2" />.
+
+Garis <InlineMath math="y = 2x + 1" /> yang diputarkan sebanyak <InlineMath math="90^\circ" /> dikira dengan cara yang sama, dengan <InlineMath math="x = y'" /> dan <InlineMath math="y = -x'" />:
+
+<BlockMath math="\begin{aligned} -x' &= 2y' + 1 \\ y' &= -\frac{x' + 1}{2} \end{aligned}" />
+
+Garis imejnya ialah <InlineMath math="y = -\tfrac{x + 1}{2}" />, atau <InlineMath math="y = -\tfrac{1}{2}x - \tfrac{1}{2}" />. Kecerunannya, <InlineMath math="-\tfrac{1}{2}" />, ialah salingan negatif bagi kecerunan asal <InlineMath math="2" />, seperti yang dijangka untuk garis yang diputarkan satu suku putaran. Titik <InlineMath math="(0, 1)" /> bergerak ke <InlineMath math="(-1, 0)" /> dan titik <InlineMath math="(1, 3)" /> bergerak ke <InlineMath math="(-3, 1)" />. Kedua-duanya memenuhi persamaan baharu, kerana <InlineMath math="-\tfrac{-1 + 1}{2} = 0" /> dan <InlineMath math="-\tfrac{-3 + 1}{2} = 1" />.
+
+Untuk putaran <InlineMath math="45^\circ" />, nilai <InlineMath math="\cos 45^\circ = \sin 45^\circ = \tfrac{\sqrt{2}}{2}" /> memberikan <InlineMath math="x = \tfrac{\sqrt{2}}{2}(x' + y')" /> dan <InlineMath math="y = \tfrac{\sqrt{2}}{2}(y' - x')" />. Gantikan ke dalam <InlineMath math="y = 2x + 1" />, kemudian **darab kedua-dua belah dengan <InlineMath math="\sqrt{2}" />** untuk menghapuskan pecahan:
+
+<BlockMath math="\begin{aligned} \tfrac{\sqrt{2}}{2}(y' - x') &= \sqrt{2}(x' + y') + 1 \\ y' - x' &= 2x' + 2y' + \sqrt{2} \\ y' &= -3x' - \sqrt{2} \end{aligned}" />
+
+<MathVisual
+  title={<>Garis <InlineMath math="y = 2x + 1" /> diputarkan sebanyak <InlineMath math="45^\circ" /> dan <InlineMath math="90^\circ" /></>}
+  description={<>Lengkok-lengkok itu membawa <InlineMath math="(0, 1)" /> dan <InlineMath math="(1, 3)" /> melalui imej <InlineMath math="45^\circ" /> masing-masing di tengah setiap lengkok, hingga ke imej <InlineMath math="90^\circ" /> di hujungnya. Kedua-dua imej masih garis lurus, dan setiap titik berputar sebanyak sudut yang sama.</>}
+  labels={{
+    "l1": <InlineMath math="y = 2x + 1" />,
+    "l2": <InlineMath math="y = -3x - \sqrt{2}" />,
+    "l3": <InlineMath math="y = -\tfrac{1}{2}x - \tfrac{1}{2}" />,
+    "l4": <InlineMath math="(1, 3)" />,
+    "l5": <InlineMath math="(-3, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 3.5 }, y: { min: -3.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-1.75) + (3.5 * t))", y: "((2 * ((-1.75) + (3.5 * t))) + 1)", parameter: { min: 0, max: 1 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-((4.5 - (7 * t)) + sqrt(2))) / 3)", y: "(4.5 - (7 * t))", parameter: { min: 0, max: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-4) + (6.5 * t))", y: "((-(((-4) + (6.5 * t)) + 1)) / 2)", parameter: { min: 0, max: 1 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(-sin(((pi / 2) * (t / 90))))", y: "cos(((pi / 2) * (t / 90)))", parameter: { min: 0, max: 90 }, appearance: "highlight" },
+      { id: "s4-head", kind: "vector", from: { x: -1, y: 0.02 }, to: { x: -1, y: 0 }, appearance: "highlight" },
+      { id: "s4-p0", kind: "point", at: { x: 0, y: 1 }, appearance: "highlight" },
+      { id: "s4-p45", kind: "point", at: { x: -0.71, y: 0.71 }, appearance: "highlight" },
+      { id: "s5", kind: "parametric", x: "(cos(((pi / 2) * (t / 90))) - (3 * sin(((pi / 2) * (t / 90)))))", y: "(sin(((pi / 2) * (t / 90))) + (3 * cos(((pi / 2) * (t / 90)))))", parameter: { min: 0, max: 90 }, appearance: "highlight" },
+      { id: "s5-head", kind: "vector", from: { x: -2.98, y: 1.05 }, to: { x: -3, y: 1 }, appearance: "highlight" },
+      { id: "s5-p0", kind: "point", at: { x: 1, y: 3 }, appearance: "highlight" },
+      { id: "s5-p45", kind: "point", at: { x: -1.41, y: 2.83 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.75, y: 4.5 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: -1.97, y: 4.5 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 2.5, y: -1.75 }, placement: "below-left" },
+      { key: "l4", objectId: "s5", at: { x: 1, y: 3 }, placement: "below-right" },
+      { key: "l5", objectId: "s5", at: { x: -3, y: 1 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Garis imej bagi putaran <InlineMath math="45^\circ" /> ialah <InlineMath math="y = -3x - \sqrt{2}" />. Semak dengan <InlineMath math="(0, 1)" />, yang bergerak ke <InlineMath math="\left(-\tfrac{\sqrt{2}}{2}, \tfrac{\sqrt{2}}{2}\right)" />: <InlineMath math="-3\left(-\tfrac{\sqrt{2}}{2}\right) - \sqrt{2} = \tfrac{\sqrt{2}}{2}" />. Hanya putaran <InlineMath math="90^\circ" /> yang menjadikan kecerunan baharu salingan negatif bagi kecerunan asal. Putaran <InlineMath math="45^\circ" /> menukar kecerunan <InlineMath math="2" /> kepada <InlineMath math="-3" />.
+
+## Apabila Graf yang Diputarkan Bukan Lagi Fungsi
+
+Satu lengkung ialah graf fungsi jika setiap garis mencancang bersilang dengan lengkung itu paling banyak sekali. Semakan ini dipanggil [ujian garis mencancang](/ms/subjek/matematik/fungsi-gubahan-dan-fungsi-songsang/fungsi-dan-hubungan-lain). Parabola <InlineMath math="x = -y^2" />, iaitu <InlineMath math="y = x^2" /> yang diputarkan, **gagal dalam ujian garis mencancang**, kerana garis <InlineMath math="x = -4" /> bersilang dengan parabola itu di <InlineMath math="(-4, 2)" /> dan <InlineMath math="(-4, -2)" />.
+
+<MathVisual
+  title={<>Parabola <InlineMath math="y = x^2" /> dan imejnya selepas putaran <InlineMath math="90^\circ" /></>}
+  description={<>Garis mencancang <InlineMath math="x = -4" /> bersilang dengan lengkung <InlineMath math="x = -y^2" /> di <InlineMath math="(-4, 2)" /> dan <InlineMath math="(-4, -2)" />, iaitu imej bagi <InlineMath math="(2, 4)" /> dan <InlineMath math="(-2, 4)" />, yang kedua-duanya terletak pada garis <InlineMath math="y = 4" />.</>}
+  labels={{
+    "l1": <InlineMath math="y = x^2" />,
+    "l2": <InlineMath math="x = -y^2" />,
+    "l3": <InlineMath math="(-4, 2)" />,
+    "l4": <InlineMath math="(-4, -2)" />,
+    "l5": <InlineMath math="x = -4" />,
+    "l6": <InlineMath math="y = 4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 3.5 }, y: { min: -3.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(((2 * t) - 230) / 100)", y: "((((2 * t) - 230) / 100) * (((2 * t) - 230) / 100))", parameter: { min: 0, max: 230 }, appearance: "primary" },
+      { id: "s1-p15", kind: "point", at: { x: -2, y: 4 }, appearance: "primary" },
+      { id: "s1-p215", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-(((2 * t) - 230) / 100)) * (((2 * t) - 230) / 100))", y: "(((2 * t) - 230) / 100)", parameter: { min: 0, max: 230 }, appearance: "secondary" },
+      { id: "s2-p15", kind: "point", at: { x: -4, y: -2 }, appearance: "secondary" },
+      { id: "s2-p215", kind: "point", at: { x: -4, y: 2 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "(-4)", y: "((-2.6) + (5.2 * t))", parameter: { min: 0, max: 1 }, appearance: "construction" },
+      { id: "s4", kind: "parametric", x: "((-2.6) + (5.2 * t))", y: "4", parameter: { min: 0, max: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -2.02, y: 4.08 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: -1.54, y: -1.24 }, placement: "above-left" },
+      { key: "l3", objectId: "s2", at: { x: -4, y: 2 }, placement: "above-right" },
+      { key: "l4", objectId: "s2", at: { x: -4, y: -2 }, placement: "below-right" },
+      { key: "l5", objectId: "s3", at: { x: -4, y: 2.6 }, placement: "below-right" },
+      { key: "l6", objectId: "s4", at: { x: 2.6, y: 4 }, placement: "left" },
+    ],
+  }}
+/>
+
+Lengkung <InlineMath math="x = -y^2" /> masih satu **hubungan**, iaitu set pasangan bertertib <InlineMath math="(x, y)" />. Pada lengkung ini, setiap nilai <InlineMath math="y" /> mempunyai tepat satu nilai <InlineMath math="x" />. Masalahnya datang dari arah yang satu lagi. Satu nilai <InlineMath math="x" /> di sebelah kiri asalan berpasangan dengan dua nilai <InlineMath math="y" />, jadi lengkung itu tidak boleh ditulis sebagai satu fungsi tunggal <InlineMath math="y = g(x)" />.
+
+Putaran <InlineMath math="90^\circ" /> menukar peranan <InlineMath math="x" /> dan <InlineMath math="y" /> serta menukar satu tanda. Akibatnya, imej selepas putaran <InlineMath math="90^\circ" /> atau <InlineMath math="270^\circ" /> ialah fungsi tepat apabila **setiap garis mengufuk bersilang dengan graf asal paling banyak sekali**. Parabola <InlineMath math="y = x^2" /> gagal kerana garis <InlineMath math="y = 4" /> bersilang dengan parabola itu di <InlineMath math="(2, 4)" /> dan <InlineMath math="(-2, 4)" />. Kedua-dua titik itu bergerak ke garis mencancang yang sama, iaitu <InlineMath math="x = -4" />.
+
+Graf <InlineMath math="y = 2^x" /> memenuhi syarat itu. Setiap garis mengufuk <InlineMath math="y = c" /> dengan <InlineMath math="c > 0" /> bersilang dengan graf itu tepat sekali, dan garis dengan <InlineMath math="c \le 0" /> langsung tidak bersilang dengannya. Putaran <InlineMath math="90^\circ" /> menggerakkan titik <InlineMath math="(x, 2^x)" /> ke <InlineMath math="(-2^x, x)" />. Jadi koordinat baharu memenuhi <InlineMath math="x' = -2^{y'}" />, atau <InlineMath math="2^{y'} = -x'" />, dan lengkung yang diputarkan ialah:
+
+<BlockMath math="y = \log_2(-x), \qquad x < 0" />
+
+Asimptot mengufuk <InlineMath math="y = 0" /> bagi graf asal berputar menjadi asimptot mencancang <InlineMath math="x = 0" />. Semak titik <InlineMath math="(2, 4)" />: imejnya ialah <InlineMath math="(-4, 2)" />, dan <InlineMath math="\log_2(-(-4)) = \log_2 4 = 2" />.
+
+Sama seperti setengah putaran, putaran <InlineMath math="90^\circ" /> juga boleh dipecahkan kepada dua balikan satah: pertukaran <InlineMath math="x" /> dengan <InlineMath math="y" />, kemudian pertukaran tanda. Balikan pada garis <InlineMath math="y = x" /> menukar tempat kedua-dua koordinat, jadi <InlineMath math="y = 2^x" /> menjadi graf fungsi songsangnya, <InlineMath math="y = \log_2 x" />. Kemudian balikan pada paksi-<InlineMath math="y" /> menukar tanda <InlineMath math="x" /> dan memberikan <InlineMath math="y = \log_2(-x)" />.
+
+<MathVisual
+  title={<>Putaran <InlineMath math="90^\circ" /> sebagai balikan pada <InlineMath math="y = x" /> diikuti balikan pada paksi-<InlineMath math="y" /></>}
+  description={<>Balikan pertama membawa titik <InlineMath math="A(2, 4)" /> pada <InlineMath math="y = 2^x" /> keluar dari satah ke <InlineMath math="(4, 2)" /> pada <InlineMath math="y = \log_2 x" />. Balikan kedua membawanya ke <InlineMath math="A'(-4, 2)" /> pada <InlineMath math="y = \log_2(-x)" />, iaitu hujung lengkok suku putaran dalam satah.</>}
+  labels={{
+    "l1": <InlineMath math="y = 2^x" />,
+    "l2": <InlineMath math="y = \log_2 x" />,
+    "l3": <InlineMath math="y = \log_2(-x)" />,
+    "l4": <InlineMath math="y = x" />,
+    "l5": <InlineMath math="A" />,
+    "l6": <InlineMath math="(4, 2)" />,
+    "l7": <InlineMath math="A'" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -4, max: 6 }, z: { min: -0.5, max: 4.5 } },
+    view: { kind: "camera", position: { x: 2, y: -11, z: 9 }, target: { x: 0, y: 1, z: 1 } },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (t / 50))", y: "(2)^(((-3) + (t / 50)))", z: "0", parameter: { min: 0, max: 262 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2)^(((-3) + (t / 50)))", y: "((-3) + (t / 50))", z: "0", parameter: { min: 0, max: 262 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "(-(2)^(((-3) + (t / 50))))", y: "((-3) + (t / 50))", z: "0", parameter: { min: 0, max: 262 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(4.75 * t)", y: "(4.75 * t)", z: "0", parameter: { min: 0, max: 1 }, appearance: "construction" },
+      { id: "s5", kind: "parametric", x: "(3 - cos((pi * (t / 180))))", y: "(3 + cos((pi * (t / 180))))", z: "(sqrt(2) * sin((pi * (t / 180))))", parameter: { min: 0, max: 180 }, appearance: "secondary" },
+      { id: "s5-head", kind: "vector", from: { x: 4, y: 2, z: 0.02 }, to: { x: 4, y: 2, z: 0 }, appearance: "secondary" },
+      { id: "s6", kind: "parametric", x: "(4 * cos((pi * (t / 180))))", y: "2", z: "(4 * sin((pi * (t / 180))))", parameter: { min: 0, max: 180 }, appearance: "answer" },
+      { id: "s6-head", kind: "vector", from: { x: -4, y: 2, z: 0.07 }, to: { x: -4, y: 2, z: 0 }, appearance: "answer" },
+      { id: "s7", kind: "parametric", x: "((2 * cos(((pi / 2) * (t / 90)))) - (4 * sin(((pi / 2) * (t / 90)))))", y: "((2 * sin(((pi / 2) * (t / 90)))) + (4 * cos(((pi / 2) * (t / 90)))))", z: "0", parameter: { min: 0, max: 90 }, appearance: "highlight" },
+      { id: "s7-head", kind: "vector", from: { x: -3.96, y: 2.07, z: 0 }, to: { x: -4, y: 2, z: 0 }, appearance: "highlight" },
+      { id: "s8", kind: "point", at: { x: 2, y: 4, z: 0 }, appearance: "primary" },
+      { id: "s9", kind: "point", at: { x: 4, y: 2, z: 0 }, appearance: "secondary" },
+      { id: "s10", kind: "point", at: { x: -4, y: 2, z: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -2.46, y: 0.18, z: 0 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 0.19, y: -2.4, z: 0 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -0.13, y: -2.94, z: 0 }, placement: "below-left" },
+      { key: "l4", objectId: "s4", at: { x: 4.75, y: 4.75, z: 0 }, placement: "below-right" },
+      { key: "l5", objectId: "s8", at: { x: 2, y: 4, z: 0 }, placement: "above-left" },
+      { key: "l6", objectId: "s9", at: { x: 4, y: 2, z: 0 }, placement: "below-right" },
+      { key: "l7", objectId: "s10", at: { x: -4, y: 2, z: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Di antara dua balikan itu, lengkung <InlineMath math="y = \log_2 x" /> sudah pun graf fungsi, kerana setiap garis mencancang bersilang dengannya paling banyak sekali.
+
+Pantulan pada <InlineMath math="y = x" /> menukar graf <InlineMath math="f" /> kepada graf hubungan songsangnya. Hubungan itu ialah fungsi tepat apabila setiap garis mengufuk bersilang dengan graf asal paling banyak sekali. Balikan pada paksi-<InlineMath math="y" /> tidak mengubah perkara ini, kerana balikan itu hanya menukar tanda <InlineMath math="x" />. Sebab itulah **syarat garis mengufuk menentukan sama ada putaran <InlineMath math="90^\circ" /> masih memberikan fungsi**.
+
+Graf <InlineMath math="y = \sqrt{x}" /> juga lulus ujian garis mengufuk, kerana setiap garis <InlineMath math="y = c" /> dengan <InlineMath math="c \ge 0" /> bersilang dengannya tepat sekali. Putaran <InlineMath math="90^\circ" /> menggerakkan <InlineMath math="(t^2, t)" /> dengan <InlineMath math="t \ge 0" /> ke <InlineMath math="(-t, t^2)" />. Dengan <InlineMath math="x = -t" />, kita dapat <InlineMath math="y = t^2 = x^2" /> untuk <InlineMath math="x \le 0" />, jadi lengkung yang diputarkan ialah **separuh kiri parabola <InlineMath math="y = x^2" />**.
+
+<MathVisual
+  title={<>Graf <InlineMath math="y = \sqrt{x}" /> diputarkan sebanyak <InlineMath math="90^\circ" /></>}
+  description={<>Graf itu berputar menjadi <InlineMath math="y = x^2" /> untuk <InlineMath math="x \le 0" />. Lengkok membawa <InlineMath math="(4, 2)" /> ke <InlineMath math="(-2, 4)" />, dan setiap garis mencancang di sebelah kiri paksi-<InlineMath math="y" /> bersilang dengan imej itu tepat sekali.</>}
+  labels={{
+    "l1": <InlineMath math="y = \sqrt{x}" />,
+    "l2": <InlineMath math="y = x^2" />,
+    "l3": <InlineMath math="(4, 2)" />,
+    "l4": <InlineMath math="(-2, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((t / 100) * (t / 100))", y: "(t / 100)", parameter: { min: 0, max: 220 }, appearance: "primary" },
+      { id: "s1-p200", kind: "point", at: { x: 4, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(-(t / 100))", y: "((t / 100) * (t / 100))", parameter: { min: 0, max: 220 }, appearance: "secondary" },
+      { id: "s2-p200", kind: "point", at: { x: -2, y: 4 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((4 * cos(((pi / 2) * (t / 90)))) - (2 * sin(((pi / 2) * (t / 90)))))", y: "((4 * sin(((pi / 2) * (t / 90)))) + (2 * cos(((pi / 2) * (t / 90)))))", parameter: { min: 0, max: 90 }, appearance: "answer" },
+      { id: "s3-head", kind: "vector", from: { x: -1.93, y: 4.03 }, to: { x: -2, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 0.18, y: 0.42 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: -2.17, y: 4.71 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 4, y: 2 }, placement: "below-right" },
+      { key: "l4", objectId: "s3", at: { x: -2, y: 4 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Graf <InlineMath math="y = \sqrt{x}" /> mempunyai domain <InlineMath math="x \ge 0" /> dan julat <InlineMath math="y \ge 0" />. Imejnya mempunyai domain <InlineMath math="x \le 0" />, dan julatnya masih <InlineMath math="y \ge 0" />. Semak titik <InlineMath math="(4, 2)" />: imejnya ialah <InlineMath math="(-2, 4)" />, dan <InlineMath math="(-2)^2 = 4" />.
+
+Putaran <InlineMath math="180^\circ" /> sentiasa memberikan fungsi, kerana hasilnya ialah <InlineMath math="y = -f(-x)" />. Sebaliknya, garis mengufuk <InlineMath math="y = 3" /> yang diputarkan sebanyak <InlineMath math="90^\circ" /> menjadi garis mencancang <InlineMath math="x = -3" />, dan setiap titik pada garis itu mempunyai nilai <InlineMath math="x" /> yang sama.
+
+## Kesilapan tentang Arah dan Pusat
+
+Putaran mengekalkan jarak setiap titik ke pusat, dan putaran sebanyak <InlineMath math="\theta" /> pada asalan sentiasa membawa <InlineMath math="(1, 0)" /> ke <InlineMath math="(\cos\theta, \sin\theta)" />. Jadi kamu boleh **menguji putaran dengan satu titik yang mudah** sebelum menggunakan hasilnya. Imej <InlineMath math="(1, 0)" /> menyemak arah, jarak ke pusat menyemak pusat, dan imej satu titik pada lengkung menyemak persamaan baharu.
+
+| Kesilapan | Sebab ia salah | Cara mengesannya |
+| --- | --- | --- |
+| Menggunakan <InlineMath math="(y, -x)" /> untuk putaran <InlineMath math="90^\circ" /> lawan arah jam | Petua itu memutarkan <InlineMath math="90^\circ" /> ikut arah jam, sama dengan <InlineMath math="270^\circ" /> | Titik <InlineMath math="(1, 0)" /> mesti jatuh di <InlineMath math="(0, 1)" />, bukan di <InlineMath math="(0, -1)" /> |
+| Memutarkan pada asalan sedangkan pusatnya ialah <InlineMath math="C(p, q)" /> | Rumus tanpa <InlineMath math="p" /> dan <InlineMath math="q" /> hanya mengekalkan jarak ke <InlineMath math="O" /> | Jarak ke <InlineMath math="C" /> mesti sama sebelum dan selepas putaran |
+| Tertukar <InlineMath math="\cos\theta" /> dengan <InlineMath math="\sin\theta" /> | Koordinat-<InlineMath math="x" /> bagi hujung jejari ialah <InlineMath math="\cos\theta" /> | Pada <InlineMath math="\theta = 60^\circ" />, hujung jejari berada di <InlineMath math="\left(\tfrac{1}{2}, \tfrac{\sqrt{3}}{2}\right)" /> |
+| Menggantikan petua ke hadapan ke dalam persamaan asal | Hasilnya ialah lengkung yang diputarkan ke arah lain, contohnya <InlineMath math="x = y^2" /> untuk <InlineMath math="y = x^2" /> | Imej <InlineMath math="(2, 4)" />, iaitu <InlineMath math="(-4, 2)" />, mesti memenuhi persamaan baharu |
+| Menganggap lengkung yang diputarkan sentiasa fungsi | Putaran <InlineMath math="90^\circ" /> boleh memberikan dua nilai <InlineMath math="y" /> untuk satu <InlineMath math="x" /> | Gunakan ujian garis mencancang pada lengkung yang diputarkan |
+
+## Latihan
+
+Dalam soalan 1 kamu memutarkan satu titik, dalam soalan 2 satu garis, dan dalam soalan 3 satu parabola, setiap satunya pada asalan. Soalan 4 meminta kamu memutarkan parabola pada pusat lain. Tulis pusat dan sudutnya sebelum kamu mengira, dan **uji jawapan kamu dengan jarak ke pusat atau dengan satu titik** sebelum kamu membaca jalan kerja.
+
+1. Cari imej titik <InlineMath math="A(-2, 5)" /> di bawah putaran <InlineMath math="-90^\circ" /> pada asalan.
+
+2. Garis <InlineMath math="y = 3x - 2" /> diputarkan <InlineMath math="90^\circ" /> lawan arah jam pada asalan. Cari persamaan garis imejnya.
+
+3. Parabola <InlineMath math="y = x^2 - 4" /> diputarkan <InlineMath math="180^\circ" /> pada asalan. Cari persamaan lengkung yang diputarkan dan semak sama ada lengkung itu masih graf fungsi.
+
+4. Parabola <InlineMath math="y = (x - 3)^2 + 1" /> diputarkan <InlineMath math="90^\circ" /> lawan arah jam pada <InlineMath math="C(1, 2)" />. Cari imej verteksnya dan persamaan lengkung yang diputarkan, kemudian semak sama ada lengkung itu masih graf fungsi.
+
+### Jalan Kerja
+
+**Soalan 1**. Sudut <InlineMath math="-90^\circ" /> bermaksud **suku putaran ikut arah jam**, sama dengan <InlineMath math="270^\circ" />. Petuanya ialah <InlineMath math="(x, y) \mapsto (y, -x)" />:
+
+<BlockMath math="A(-2, 5) \longmapsto A'(5, -(-2)) = A'(5, 2)" />
+
+Jarak ke asalan kekal sama, kerana <InlineMath math="(-2)^2 + 5^2 = 5^2 + 2^2 = 29" />. Kecerunan <InlineMath math="OA" /> ialah <InlineMath math="-\tfrac{5}{2}" /> dan kecerunan <InlineMath math="OA'" /> ialah <InlineMath math="\tfrac{2}{5}" />, dengan hasil darab <InlineMath math="-1" />. Titik <InlineMath math="A" /> terletak dalam sukuan II, dan suku putaran ikut arah jam membawa <InlineMath math="A" /> ke sukuan I. Jadi imej <InlineMath math="A" /> ialah <InlineMath math="A'(5, 2)" />.
+
+**Soalan 2**. Untuk putaran <InlineMath math="90^\circ" />, titik lama ditulis dalam sebutan titik baharu sebagai <InlineMath math="x = y'" /> dan <InlineMath math="y = -x'" />. Gantikan ke dalam <InlineMath math="y = 3x - 2" /> dan **selesaikan untuk <InlineMath math="y'" />**:
+
+<BlockMath math="\begin{aligned} -x' &= 3y' - 2 \\ 3y' &= -x' + 2 \\ y' &= -\tfrac{1}{3}x' + \tfrac{2}{3} \end{aligned}" />
+
+Semak dengan dua titik pada garis asal. Titik <InlineMath math="(0, -2)" /> bergerak ke <InlineMath math="(2, 0)" />, dan <InlineMath math="-\tfrac{2}{3} + \tfrac{2}{3} = 0" />. Titik <InlineMath math="(1, 1)" /> bergerak ke <InlineMath math="(-1, 1)" />, dan <InlineMath math="\tfrac{1}{3} + \tfrac{2}{3} = 1" />. Jadi garis imejnya ialah <InlineMath math="y = -\tfrac{1}{3}x + \tfrac{2}{3}" />.
+
+<MathVisual
+  title={<>Garis <InlineMath math="y = 3x - 2" /> dan imejnya di bawah putaran <InlineMath math="90^\circ" /> dan <InlineMath math="270^\circ" /></>}
+  description={<>Lengkok-lengkok itu membawa <InlineMath math="(0, -2)" /> ke <InlineMath math="(2, 0)" /> dan <InlineMath math="(1, 1)" /> ke <InlineMath math="(-1, 1)" />, iaitu dua titik pada jawapan <InlineMath math="y = -\tfrac{1}{3}x + \tfrac{2}{3}" />. Garis selari <InlineMath math="y = -\tfrac{1}{3}x - \tfrac{2}{3}" /> ialah imej di bawah putaran <InlineMath math="270^\circ" />.</>}
+  labels={{
+    "l1": <InlineMath math="y = 3x - 2" />,
+    "l2": <InlineMath math="y = -\tfrac{1}{3}x + \tfrac{2}{3}" />,
+    "l3": <InlineMath math="y = -\tfrac{1}{3}x - \tfrac{2}{3}" />,
+    "l4": <InlineMath math="(0, -2)" />,
+    "l5": <InlineMath math="(2, 0)" />,
+    "l6": <InlineMath math="(1, 1)" />,
+    "l7": <InlineMath math="(-1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((((-3.5) + (7 * t)) + 2) / 3)", y: "((-3.5) + (7 * t))", parameter: { min: 0, max: 1 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-3.5) + (7 * t))", y: "(((-((-3.5) + (7 * t))) / 3) + (2 / 3))", parameter: { min: 0, max: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-3.5) + (7 * t))", y: "(((-((-3.5) + (7 * t))) / 3) - (2 / 3))", parameter: { min: 0, max: 1 }, appearance: "construction" },
+      { id: "s4", kind: "parametric", x: "(2 * sin(((pi / 2) * (t / 90))))", y: "((-2) * cos(((pi / 2) * (t / 90))))", parameter: { min: 0, max: 90 }, appearance: "answer" },
+      { id: "s4-head", kind: "vector", from: { x: 2, y: -0.03 }, to: { x: 2, y: 0 }, appearance: "answer" },
+      { id: "s4-p0", kind: "point", at: { x: 0, y: -2 }, appearance: "answer" },
+      { id: "s5", kind: "parametric", x: "(cos(((pi / 2) * (t / 90))) - sin(((pi / 2) * (t / 90))))", y: "(sin(((pi / 2) * (t / 90))) + cos(((pi / 2) * (t / 90))))", parameter: { min: 0, max: 90 }, appearance: "answer" },
+      { id: "s5-head", kind: "vector", from: { x: -0.98, y: 1.02 }, to: { x: -1, y: 1 }, appearance: "answer" },
+      { id: "s5-p0", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.83, y: 3.5 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: -3.5, y: 1.83 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 3.5, y: -1.83 }, placement: "below-left" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: -2 }, placement: "above-left" },
+      { key: "l5", objectId: "s4", at: { x: 2, y: 0 }, placement: "above-right" },
+      { key: "l6", objectId: "s5", at: { x: 1, y: 1 }, placement: "above-right" },
+      { key: "l7", objectId: "s5", at: { x: -1, y: 1 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Garis <InlineMath math="y = -\tfrac{1}{3}x - \tfrac{2}{3}" /> ialah hasil yang kamu dapat jika kamu menggunakan petua <InlineMath math="(y, -x)" /> untuk putaran <InlineMath math="90^\circ" />. Garis itu selari dengan jawapan tetapi terletak di sebelah lain asalan, kerana putaran <InlineMath math="90^\circ" /> dan <InlineMath math="270^\circ" /> berbeza sebanyak setengah putaran.
+
+**Soalan 3**. Untuk <InlineMath math="180^\circ" />, nilai <InlineMath math="\cos 180^\circ = -1" /> dan <InlineMath math="\sin 180^\circ = 0" /> memberikan <InlineMath math="x = -x'" /> dan <InlineMath math="y = -y'" />. Gantikan ke dalam <InlineMath math="y = x^2 - 4" />:
+
+<BlockMath math="\begin{aligned} -y' &= (-x')^2 - 4 \\ y' &= -(x')^2 + 4 \end{aligned}" />
+
+Lengkung yang diputarkan ialah <InlineMath math="y = 4 - x^2" />, yang sepadan dengan <InlineMath math="y = -f(-x)" />. Verteks <InlineMath math="(0, -4)" /> bergerak ke <InlineMath math="(0, 4)" />, dan <InlineMath math="4 - 0^2 = 4" />. Pintasan-<InlineMath math="x" />, iaitu <InlineMath math="(2, 0)" />, bergerak ke <InlineMath math="(-2, 0)" />, dan <InlineMath math="4 - (-2)^2 = 0" />. Parabola <InlineMath math="y = 4 - x^2" /> terbuka ke bawah dan setiap garis mencancang bersilang dengannya tepat sekali, jadi lengkung yang diputarkan **masih graf fungsi**.
+
+<MathVisual
+  title={<>Parabola <InlineMath math="y = x^2 - 4" /> dan imejnya di bawah setengah putaran</>}
+  description={<>Verteks <InlineMath math="(0, -4)" /> bergerak ke <InlineMath math="(0, 4)" />. Kedua-dua parabola melalui <InlineMath math="(-2, 0)" /> dan <InlineMath math="(2, 0)" />, dan lengkok setengah putaran membawa salah satu titik ini ke titik yang satu lagi.</>}
+  labels={{
+    "l1": <InlineMath math="y = x^2 - 4" />,
+    "l2": <InlineMath math="(0, -4)" />,
+    "l3": <InlineMath math="y = 4 - x^2" />,
+    "l4": <InlineMath math="(0, 4)" />,
+    "l5": <InlineMath math="(2, 0)" />,
+    "l6": <InlineMath math="(-2, 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((t - 120) / 40)", y: "((((t - 120) / 40) * ((t - 120) / 40)) - 4)", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s1-p40", kind: "point", at: { x: -2, y: 0 }, appearance: "primary" },
+      { id: "s1-p120", kind: "point", at: { x: 0, y: -4 }, appearance: "primary" },
+      { id: "s1-p200", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((t - 120) / 40)", y: "(4 - (((t - 120) / 40) * ((t - 120) / 40)))", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s2-p40", kind: "point", at: { x: -2, y: 0 }, appearance: "secondary" },
+      { id: "s2-p120", kind: "point", at: { x: 0, y: 4 }, appearance: "secondary" },
+      { id: "s2-p200", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "(2 * cos((pi * (t / 180))))", y: "(2 * sin((pi * (t / 180))))", parameter: { min: 0, max: 180 }, appearance: "answer" },
+      { id: "s3-head", kind: "vector", from: { x: -2, y: 0.03 }, to: { x: -2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.4, y: 1.76 }, placement: "below-right" },
+      { key: "l2", objectId: "s1", at: { x: 0, y: -4 }, placement: "below-right" },
+      { key: "l3", objectId: "s2", at: { x: -2.4, y: -1.76 }, placement: "above-left" },
+      { key: "l4", objectId: "s2", at: { x: 0, y: 4 }, placement: "above-left" },
+      { key: "l5", objectId: "s3", at: { x: 2, y: 0 }, placement: "below-right" },
+      { key: "l6", objectId: "s3", at: { x: -2, y: 0 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Kedua-dua parabola merentasi paksi-<InlineMath math="x" /> pada titik yang sama. Setengah putaran membawa <InlineMath math="(2, 0)" /> ke <InlineMath math="(-2, 0)" /> dan <InlineMath math="(-2, 0)" /> ke <InlineMath math="(2, 0)" />, dan kedua-dua titik itu ialah pintasan-<InlineMath math="x" /> bagi <InlineMath math="y = x^2 - 4" />.
+
+**Soalan 4**. Verteks parabola asal ialah <InlineMath math="V(3, 1)" />, dan bezanya daripada <InlineMath math="C(1, 2)" /> ialah <InlineMath math="(2, -1)" />. Suku putaran menukar beza itu kepada <InlineMath math="(1, 2)" />, kemudian koordinat <InlineMath math="C" /> ditambah semula:
+
+<BlockMath math="(2, -1) \longmapsto (1, 2), \qquad V' = (1 + 1,\ 2 + 2) = (2, 4)" />
+
+Jarak ke pusat tidak berubah, kerana <InlineMath math="|CV|^2 = 2^2 + (-1)^2 = 5" /> dan <InlineMath math="|CV'|^2 = 1^2 + 2^2 = 5" />. Untuk persamaan lengkung, **tulis titik lama dalam sebutan titik baharu**. Putaran <InlineMath math="90^\circ" /> pada <InlineMath math="C" /> memberikan <InlineMath math="x' = 1 - (y - 2)" /> dan <InlineMath math="y' = 2 + (x - 1)" />, jadi <InlineMath math="x = y' - 1" /> dan <InlineMath math="y = 3 - x'" />. Gantikan ke dalam <InlineMath math="y = (x - 3)^2 + 1" />:
+
+<BlockMath math="\begin{aligned} 3 - x' &= \left((y' - 1) - 3\right)^2 + 1 \\ 3 - x' &= (y' - 4)^2 + 1 \\ x' &= 2 - (y' - 4)^2 \end{aligned}" />
+
+Selepas tanda prima dibuang, lengkung yang diputarkan ialah <InlineMath math="x = 2 - (y - 4)^2" />, iaitu parabola yang terbuka ke kiri dengan verteks <InlineMath math="(2, 4)" />, sepadan dengan <InlineMath math="V'" />. Lengkung ini **bukan graf fungsi**. Titik <InlineMath math="(2, 2)" /> dan <InlineMath math="(4, 2)" /> pada parabola asal bergerak ke <InlineMath math="(1, 3)" /> dan <InlineMath math="(1, 5)" />, iaitu dua titik pada garis mencancang <InlineMath math="x = 1" />. Kedua-duanya memenuhi persamaan baharu, kerana <InlineMath math="2 - (3 - 4)^2 = 1" /> dan <InlineMath math="2 - (5 - 4)^2 = 1" />.
+
+<MathVisual
+  title={<>Parabola <InlineMath math="y = (x - 3)^2 + 1" /> diputarkan sebanyak <InlineMath math="90^\circ" /> pada <InlineMath math="C(1, 2)" /></>}
+  description={<>Parabola yang terbuka ke atas ialah <InlineMath math="y = (x - 3)^2 + 1" />, dan parabola yang terbuka ke kiri ialah imejnya, <InlineMath math="x = 2 - (y - 4)^2" />. Lengkok membawa <InlineMath math="V(3, 1)" /> ke <InlineMath math="V'(2, 4)" /> pada jarak tetap <InlineMath math="\sqrt{5}" /> dari <InlineMath math="C" />, dan garis <InlineMath math="x = 1" /> bersilang dengan imej itu di <InlineMath math="(1, 3)" /> dan <InlineMath math="(1, 5)" />.</>}
+  labels={{
+    "l1": <InlineMath math="V(3, 1)" />,
+    "l2": <InlineMath math="V'(2, 4)" />,
+    "l3": <InlineMath math="x = 1" />,
+    "l4": <InlineMath math="C(1, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 5.5 }, y: { min: 0, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(1.4 + (t / 100))", y: "((((1.4 + (t / 100)) - 3))^(2) + 1)", parameter: { min: 0, max: 320 }, appearance: "primary" },
+      { id: "s1-p60", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "s1-p160", kind: "point", at: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "s1-p260", kind: "point", at: { x: 4, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2 - (((1.4 + (t / 100)) - 3))^(2))", y: "((1.4 + (t / 100)) + 1)", parameter: { min: 0, max: 320 }, appearance: "secondary" },
+      { id: "s2-p60", kind: "point", at: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "s2-p160", kind: "point", at: { x: 2, y: 4 }, appearance: "secondary" },
+      { id: "s2-p260", kind: "point", at: { x: 1, y: 5 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "1", y: "(2.5 + (4.2 * t))", parameter: { min: 0, max: 1 }, appearance: "construction" },
+      { id: "s4", kind: "parametric", x: "((1 + (2 * cos(((pi / 2) * (t / 90))))) + sin(((pi / 2) * (t / 90))))", y: "((2 + (2 * sin(((pi / 2) * (t / 90))))) - cos(((pi / 2) * (t / 90))))", parameter: { min: 0, max: 90 }, appearance: "answer" },
+      { id: "s4-head", kind: "vector", from: { x: 2.03, y: 3.98 }, to: { x: 2, y: 4 }, appearance: "answer" },
+      { id: "s5", kind: "point", at: { x: 1, y: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 1 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 4 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 1, y: 6.7 }, placement: "below-right" },
+      { key: "l4", objectId: "s5", at: { x: 1, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Garis mencancang <InlineMath math="x = 1" /> bersilang dua kali dengan lengkung yang diputarkan, jadi lengkung itu gagal dalam ujian garis mencancang. Parabola asal gagal dalam ujian garis mengufuk dengan cara yang sama, kerana garis <InlineMath math="y = 2" /> bersilang dengannya di <InlineMath math="(2, 2)" /> dan <InlineMath math="(4, 2)" />.

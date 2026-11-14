@@ -1,0 +1,176 @@
+export const metadata = {
+    title: "Pengiraan Nilai Eigen Terpilih",
+    description: "Guna lelaran kuasa, lelaran songsang beranjak, hasil bahagi Rayleigh dan semakan reja untuk mengira pasangan eigen terpilih dengan cara yang boleh dipercayai.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-07-17",
+    dateModified: "2026-09-19",
+    subject: "Kaedah Linear AI",
+};
+
+## Lelaran Songsang Beranjak
+
+Lelaran songsang beranjak <Highlight>menyasarkan nilai eigen yang paling hampir dengan anjakan yang dipilih</Highlight> <InlineMath math="\mu" />. Mula-mula, kita kaji matriks simetri nyata <InlineMath math="A \in \mathbb{R}^{n \times n}" />. Semua nilai eigennya nyata, dan vektor eigennya boleh dipilih sebagai asas ortonormal.
+
+Pilih <InlineMath math="\mu" /> yang bukan nilai eigen dan vektor permulaan unit <InlineMath math="q_0" /> yang mempunyai komponen bukan sifar pada arah vektor eigen yang dikehendaki. Faktorkan <InlineMath math="A-\mu I" /> sekali sahaja, kemudian guna semula pemfaktoran itu.
+
+Andaikan nilai eigen sasaran ialah **satu-satunya nilai yang paling hampir dengan anjakan**. Nilai eigen yang sama jauh dari anjakan tidak menghasilkan magnitud terjelma dominan yang unik. Penumpuan di sini bermakna penumpuan arah eigen. Nilai eigen terjelma yang negatif boleh membuatkan tanda vektor berselang-seli.
+
+### Satu Lelaran
+
+Untuk <InlineMath math="k=0,1,2,\ldots" />, laksanakan:
+
+<MathContainer>
+<BlockMath math="(A-\mu I)y_{k+1}=q_k" />
+<BlockMath math="q_{k+1}=\frac{y_{k+1}}{\|y_{k+1}\|_2}" />
+<BlockMath math="\rho_{k+1}=q_{k+1}^T A q_{k+1}" />
+<BlockMath math="r_{k+1}=Aq_{k+1}-\rho_{k+1}q_{k+1}" />
+</MathContainer>
+
+Hasil bahagi Rayleigh <InlineMath math="\rho_{k+1}" /> menganggarkan nilai eigen. Petua berhenti yang boleh dipercayai **menyemak reja** dan mengambil kira skala masalah:
+
+<BlockMath math="\|r_{k+1}\|_2 \leq \tau\bigl(\|A\|_2+|\rho_{k+1}|\bigr)" />
+
+Bagi pasangan eigen yang memenuhi <InlineMath math="Av_i=\lambda_i v_i" />, songsangan beranjak bertindak seperti berikut.
+
+<BlockMath math="(A-\mu I)^{-1}v_i=\frac{1}{\lambda_i-\mu}v_i" />
+
+Hubungan ini menunjukkan bahawa nilai eigen yang paling hampir dengan <InlineMath math="\mu" /> menghasilkan magnitud terjelma yang terbesar. Dalam pelaksanaan, kita selesaikan sistem linear itu tanpa membentuk <InlineMath math="(A-\mu I)^{-1}" /> secara eksplisit.
+
+## Lelaran Kuasa
+
+Lelaran kuasa menyasarkan nilai eigen yang mempunyai **magnitud terbesar**. Bermula daripada vektor unit <InlineMath math="q_0" />, ulang:
+
+<MathContainer>
+<BlockMath math="y_{k+1}=Aq_k" />
+<BlockMath math="q_{k+1}=\frac{y_{k+1}}{\|y_{k+1}\|_2}" />
+<BlockMath math="\rho_{k+1}=q_{k+1}^T A q_{k+1}" />
+<BlockMath math="r_{k+1}=Aq_{k+1}-\rho_{k+1}q_{k+1}" />
+</MathContainer>
+
+Bagi matriks simetri, penumpuan kepada vektor eigen dominan memerlukan jurang spektrum berikut.
+
+<BlockMath math="|\lambda_1|>|\lambda_2|" />
+
+Vektor permulaan juga mesti mempunyai komponen bukan sifar pada arah vektor eigen bagi <InlineMath math="\lambda_1" />. Faktor penumpuan asimptotnya lebih kurang <InlineMath math="|\lambda_2/\lambda_1|" />. Magnitud dominan yang sama atau berkelompok rapat boleh melambatkan atau menghalang penumpuan satu vektor.
+
+## Nilai Eigen yang Ditemukan oleh Setiap Kaedah
+
+Perkataan “terkecil” itu taksa, jadi sasarannya mesti sentiasa dinyatakan dengan tepat.
+
+| Kaedah | Sasaran |
+| --- | --- |
+| Lelaran kuasa pada <InlineMath math="A" /> | Nilai eigen dengan nilai mutlak terbesar |
+| Lelaran songsang dengan <InlineMath math="\mu=0" /> dan <InlineMath math="A" /> yang boleh disongsangkan | Nilai eigen bukan sifar dengan nilai mutlak terkecil |
+| Lelaran songsang beranjak | Nilai eigen yang paling hampir dengan <InlineMath math="\mu" /> |
+| Lelaran songsang pada matriks tentu positif | Nilai eigen algebra terkecil, yang juga terkecil dari segi nilai mutlak |
+
+Bagi matriks tak tentu, nilai eigen dengan **nilai mutlak terkecil tidak semestinya** nilai eigen yang paling negatif. Perbezaan ini mengelakkan satu kesilapan tafsiran yang lazim.
+
+Untuk <InlineMath math="A=\operatorname{diag}(2,5)" /> daripada contoh di bawah, lelaran kuasa mendarab komponen pada arah <InlineMath math="\lambda_i" /> dengan <InlineMath math="\lambda_i" />, manakala lelaran songsang dengan anjakan <InlineMath math="\mu=1" /> mendarabnya dengan <InlineMath math="1/(\lambda_i-1)" />. Faktor yang terbesar menang, jadi kaedah pertama menuju ke <InlineMath math="5" /> dan kaedah kedua menuju ke <InlineMath math="2" />.
+
+<ScatterDiagram
+  title={<>Faktor bagi setiap langkah untuk setiap nilai eigen</>}
+  description={<>Paksi mendatar memaparkan nilai eigen <InlineMath math="2" /> dan <InlineMath math="5" />. Titik lelaran kuasa terletak pada <InlineMath math="\lambda_i" />, manakala titik lelaran songsang beranjak terletak pada <InlineMath math="1/(\lambda_i-1)" />, iaitu <InlineMath math="1" /> dan <InlineMath math="1/4" />.</>}
+  xAxisLabel="Nilai eigen"
+  yAxisLabel="Faktor setiap langkah"
+  datasets={[
+    {
+      name: "Lelaran kuasa",
+      color: "var(--chart-1)",
+      points: [
+        { x: 2, y: 2 },
+        { x: 5, y: 5 },
+      ],
+    },
+    {
+      name: "Lelaran songsang beranjak",
+      color: "var(--chart-2)",
+      points: [
+        { x: 2, y: 1 / (2 - 1) },
+        { x: 5, y: 1 / (5 - 1) },
+      ],
+    },
+  ]}
+/>
+
+## Contoh Lengkap Lelaran Songsang Beranjak
+
+Pertimbangkan
+
+<MathContainer>
+<BlockMath math="A=\begin{pmatrix}2&0\\0&5\end{pmatrix}" />
+<BlockMath math="\mu=1,\qquad q_0=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\end{pmatrix}" />
+</MathContainer>
+
+Sistem beranjak untuk lelaran pertama memberikan
+
+<MathContainer>
+<BlockMath math="y_1=(A-I)^{-1}q_0=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\1/4\end{pmatrix}" />
+<BlockMath math="q_1=\frac{1}{\sqrt{17}}\begin{pmatrix}4\\1\end{pmatrix}" />
+<BlockMath math="\rho_1=q_1^TAq_1=\frac{37}{17}\approx2.176" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="2" /> lebih hampir dengan anjakan <InlineMath math="1" /> berbanding <InlineMath math="5" />, lelaran seterusnya menolak **komponen kedua ke arah sifar** dan <InlineMath math="\rho_k" /> ke arah <InlineMath math="2" />.
+
+Semak juga reja yang pertama. Anggaran itu semakin baik tetapi belum menumpu:
+
+<BlockMath math="r_1=\frac1{17\sqrt{17}}\begin{pmatrix}-12\\48\end{pmatrix},\qquad \|r_1\|_2=\frac{12}{17}" />
+
+Kedua-dua kaedah di bawah bermula daripada vektor ungu yang sama, <InlineMath math="q_0" />. Lelaran songsang dengan anjakan <InlineMath math="\mu=1" /> mendarab komponen kedua dengan <InlineMath math="1/4" /> pada setiap langkah, jadi tembereng garis hijau kebiruan <InlineMath math="q_k\propto(1,4^{-k})^T" /> rebah ke paksi pertama, iaitu vektor eigen bagi <InlineMath math="2" />. Lelaran kuasa biasa menggunakan <InlineMath math="A" /> itu sendiri, jadi tembereng garis jingga <InlineMath math="p_k\propto(2^k,5^k)^T" /> naik ke arah vektor eigen bagi <InlineMath math="5" />. Anjakan itulah yang menentukan nilai eigen yang kamu dapat.
+
+<MathVisual
+  title={<>Lelaran songsang beranjak dan lelaran kuasa menuju ke arah yang berbeza</>}
+  description={<>Untuk <InlineMath math="A=\operatorname{diag}(2,5)" /> dan <InlineMath math="q_0=(1,1)^T/\sqrt2" />: tembereng garis hijau kebiruan ialah <InlineMath math="q_k" /> dengan anjakan <InlineMath math="\mu=1" />, manakala tembereng garis jingga ialah lelaran kuasa <InlineMath math="p_k" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 1.3 }, y: { min: -0.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "quarter", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 90, appearance: "reference" },
+      { id: "q0", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "secondary" },
+      { id: "q1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4 / Math.hypot(4, 1), y: 1 / Math.hypot(4, 1) }, appearance: "construction" },
+      { id: "q2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 16 / Math.hypot(16, 1), y: 1 / Math.hypot(16, 1) }, appearance: "construction" },
+      { id: "p1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 / Math.hypot(2, 5), y: 5 / Math.hypot(2, 5) }, appearance: "primary" },
+      { id: "p2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4 / Math.hypot(4, 25), y: 25 / Math.hypot(4, 25) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "q0", objectId: "q0", at: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "above-right" },
+      { key: "q1", objectId: "q1", at: { x: 4 / Math.hypot(4, 1), y: 1 / Math.hypot(4, 1) }, placement: "right" },
+      { key: "q2", objectId: "q2", at: { x: 16 / Math.hypot(16, 1), y: 1 / Math.hypot(16, 1) }, placement: "below-right" },
+      { key: "p1", objectId: "p1", at: { x: 2 / Math.hypot(2, 5), y: 5 / Math.hypot(2, 5) }, placement: "above-right" },
+      { key: "p2", objectId: "p2", at: { x: 4 / Math.hypot(4, 25), y: 25 / Math.hypot(4, 25) }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "q0": <InlineMath math="q_0" />,
+    "q1": <InlineMath math="q_1" />,
+    "q2": <InlineMath math="q_2" />,
+    "p1": <InlineMath math="p_1" />,
+    "p2": <InlineMath math="p_2" />,
+  }}
+/>
+
+## Semakan Praktikal
+
+Semakan ini menentukan sama ada pasangan nilai eigen dan vektor eigen yang dikira itu betul tanpa mengulang keseluruhan penentu. Lalui semakan ini mengikut urutan untuk pasangan yang kamu peroleh.
+
+1. Faktorkan matriks beranjak dengan kaedah yang stabil dan pemangsian jika sesuai. Jika anjakan jatuh tepat pada nilai eigen, matriks beranjak itu singular, jadi penyelesaian itu mesti dikendalikan atau anjakan itu dilaraskan.
+2. Berhenti berdasarkan **norma reja**. Perubahan kecil antara anggaran nilai eigen berturutan sahaja tidak membuktikan bahawa pasangan eigen itu tepat.
+3. Tanda vektor eigen boleh dipilih sesuka hati: <InlineMath math="q" /> dan <InlineMath math="-q" /> mewakili arah eigen yang sama.
+4. Bagi nilai eigen yang berkelompok atau matriks tak normal yang umum, guna algoritma yang direka untuk berbilang vektor atau bentuk Schur, iaitu Lanczos untuk masalah simetri, dan Arnoldi atau penyelesai eigen berasaskan <InlineMath math="\mathrm{QR}" />.
+
+Dalam contoh di atas, <InlineMath math="q_k\propto(4^k,1)" /> memberikan <InlineMath math="\rho_k=\tfrac{2\cdot16^k+5}{16^k+1}" /> dan reja <InlineMath math="\|r_k\|_2=\tfrac{3\cdot4^k}{16^k+1}" />. Untuk <InlineMath math="k=1" />, nilai ini ialah <InlineMath math="12/17" />, iaitu nilai yang dikira di atas, dan setiap langkah membahaginya dengan lebih kurang <InlineMath math="4" />.
+
+<BarChart
+  title={<>Norma reja <InlineMath math="\|r_k\|_2" /> mengecil kira-kira empat kali ganda setiap langkah</>}
+  description={<>Setiap bar ialah <InlineMath math="\tfrac{3\cdot4^k}{16^k+1}" /> untuk lelaran <InlineMath math="k" /> yang ditulis di bawahnya. Hentikan lelaran sebaik sahaja reja ini cukup kecil.</>}
+  yAxisLabel="Norma reja"
+  data={[
+    { name: "1", value: 3 * 4 ** 1 / (16 ** 1 + 1) },
+    { name: "2", value: 3 * 4 ** 2 / (16 ** 2 + 1) },
+    { name: "3", value: 3 * 4 ** 3 / (16 ** 3 + 1) },
+    { name: "4", value: 3 * 4 ** 4 / (16 ** 4 + 1) },
+    { name: "5", value: 3 * 4 ** 5 / (16 ** 5 + 1) },
+  ]}
+  chartConfig={{ value: { label: "Norma reja", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>

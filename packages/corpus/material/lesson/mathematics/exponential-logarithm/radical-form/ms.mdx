@@ -1,0 +1,151 @@
+export const metadata = {
+  title: "Bentuk Surd",
+  description:
+    "Kaitkan indeks pecahan dengan punca, tukar antara kedua-dua bentuk, dan permudahkan ungkapan surd tanpa menggunakan jalan pintas yang tidak sah.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-04",
+  dateModified: "2026-11-08",
+  subject: "Indeks dan Logaritma",
+};
+
+## Hubungan antara Indeks dan Punca
+
+**Indeks pecahan dan punca** menerangkan operasi yang sama. Model susutan di bawah menggunakan input setengah jam untuk menunjukkan sebab indeks satu perdua ialah punca kuasa dua.
+
+Katakan <InlineMath math="f(x)" /> ialah kuantiti ubat yang masih tinggal dalam badan <InlineMath math="x" /> jam selepas satu dos diambil. Kuantiti awalnya ialah <InlineMath math="50" /> unit, dan kuantiti itu menjadi separuh setiap jam:
+
+<BlockMath math="f(x)=50(0.5)^x" />
+
+Tiga puluh minit ialah setengah jam, jadi input yang betul ialah:
+
+<BlockMath math="x=\frac{30}{60}=\frac12" />
+
+Jadi kuantiti ubat yang tinggal selepas tiga puluh minit ialah:
+
+<BlockMath math="\begin{aligned} f\left(\frac12\right) &amp;=50(0.5)^{\frac12} \\ &amp;=50\sqrt{0.5} \\ &amp;\approx35.36 \end{aligned}" />
+
+Kesamaan <InlineMath math="(0.5)^{\frac12}=\sqrt{0.5}" /> mengaitkan tatatanda indeks dengan tatatanda punca. Model ini mengukur <InlineMath math="x" /> dalam jam, jadi <InlineMath math="x=30" /> bermaksud tiga puluh jam.
+
+## Definisi Bentuk Surd
+
+Untuk <InlineMath math="a>0" />, <InlineMath math="m\in\mathbb{Z}" /> dan integer <InlineMath math="n\geq1" />, definisi yang bernilai nyata ialah:
+
+<BlockMath math="a^{\frac{m}{n}}=\left(\sqrt[n]{a}\right)^m=\sqrt[n]{a^m}" />
+
+Kesamaan ini menukar **indeks pecahan** kepada punca, atau punca kepada indeks pecahan, tanpa mengubah nilainya. Jika <InlineMath math="n" /> ganjil, asas nyata yang negatif juga boleh ada punca kuasa ke-<InlineMath math="n" /> yang nyata. Jika <InlineMath math="n" /> genap, radikan yang negatif tiada punca nyata.
+
+Surd boleh jadi satu panjang yang boleh kamu lukis. Panjang pepenjuru segi empat sama unit ialah <InlineMath math="\sqrt{1^2 + 1^2} = \sqrt{2}" />. Putarkan pepenjuru itu ke bawah dengan lengkok jangka lukis, dan hujungnya jatuh pada garis nombor di <InlineMath math="\sqrt 2 = 2^{1/2}" />, sedikit melepasi <InlineMath math="1.4" />.
+
+<MathVisual
+  title={<>Mencari punca kuasa dua bagi <InlineMath math="2" /> pada garis nombor</>}
+  description={<>Segi empat sama unit, pepenjurunya yang panjangnya <InlineMath math="\sqrt 2" />, dan lengkok yang membawa pepenjuru itu turun ke titik <InlineMath math="\sqrt 2" /> pada paksi-x.</>}
+  labels={{
+    diag: <InlineMath math="\sqrt 2" />,
+    root: <InlineMath math="\sqrt 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 1.8 }, y: { min: -0.4, max: 1.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "diag", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "swing", kind: "arc", center: { x: 0, y: 0 }, radius: Math.SQRT2, startDegrees: 0, sweepDegrees: 45, appearance: "construction" },
+      { id: "root", kind: "point", at: { x: Math.SQRT2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "diag", objectId: "diag", at: { x: 0.5, y: 0.5 }, placement: "above-left" },
+      { key: "root", objectId: "root", at: { x: Math.SQRT2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Mempermudahkan Bentuk Surd
+
+Permudahkan <InlineMath math="(2\sqrt{x})(3\sqrt[3]{x})" /> untuk <InlineMath math="x>0" />.
+
+Tulis kedua-dua punca sebagai kuasa. **Darabkan pekalinya** dan **tambahkan indeks** bagi faktor yang mempunyai asas yang sama:
+
+<BlockMath
+  math="\begin{align}
+(2\sqrt{x})(3\sqrt[3]{x}) &= (2x^{\frac{1}{2}})(3x^{\frac{1}{3}}) \\
+&= 2 \cdot 3 \cdot x^{\frac{1}{2} + \frac{1}{3}} \\
+&= 6x^{\frac{3+2}{6}} \\
+&= 6x^{\frac{5}{6}} \\
+&= 6\sqrt[6]{x^5}
+\end{align}"
+/>
+
+Jadi bentuk ringkas yang setara ialah <InlineMath math="6x^{\frac56}" /> dan <InlineMath math="6\sqrt[6]{x^5}" />.
+
+Pemudahan <InlineMath math="\sqrt 8 = 2\sqrt 2" /> juga ada gambarnya. Pepenjuru segi empat sama <InlineMath math="2 \times 2" /> ialah <InlineMath math="\sqrt{2^2 + 2^2} = \sqrt 8" />, dan panjangnya tepat dua kali pepenjuru <InlineMath math="\sqrt 2" /> bagi segi empat sama unit di dalamnya.
+
+<MathVisual
+  title={<>Punca kuasa dua bagi <InlineMath math="8" /> ialah dua kali punca kuasa dua bagi <InlineMath math="2" /></>}
+  description={<>Segi empat sama berukuran <InlineMath math="2" /> kali <InlineMath math="2" /> dengan pepenjuru <InlineMath math="\sqrt 8" />, dan segi empat sama unit di dalamnya dengan pepenjuru <InlineMath math="\sqrt 2" />, iaitu separuh panjangnya.</>}
+  labels={{
+    big: <InlineMath math="\sqrt 8 = 2\sqrt 2" />,
+    small: <InlineMath math="\sqrt 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 2.5 }, y: { min: -0.3, max: 2.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "outer", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }], appearance: "reference" },
+      { id: "inner", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "big", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 }, appearance: "secondary" },
+      { id: "small", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "big", objectId: "big", at: { x: 1.5, y: 1.5 }, placement: "above-left" },
+      { key: "small", objectId: "small", at: { x: 0.5, y: 0.5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+## Satu Jalan Pintas Tidak Sah yang Lazim
+
+Punca **tidak boleh diagihkan ke atas penambahan**. Secara amnya:
+
+<BlockMath math="\sqrt{a+b}\neq\sqrt{a}+\sqrt{b}" />
+
+Satu contoh penyangkal sudah cukup untuk menyangkal identiti yang dicadangkan itu. Ambil <InlineMath math="a=4" /> dan <InlineMath math="b=9" />:
+
+<BlockMath math="\begin{aligned} \sqrt{4+9} &=\sqrt{13} \\ \sqrt4+\sqrt9 &=2+3=5 \\ \sqrt{13} &\neq5 \end{aligned}" />
+
+Pilih kuasa dua sempurna supaya kedua-dua ungkapan menghasilkan integer yang tepat:
+
+<MathContainer>
+  <BlockMath math="\sqrt{16+9}=\sqrt{25}=5" />
+  <BlockMath math="\sqrt{16}+\sqrt9=4+3=7" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="5\neq7" />, kedua-dua ungkapan itu tidak boleh saling menggantikan. Biarkan hasil tambah itu kekal di dalam tanda punca, kecuali ada langkah algebra lain yang sah yang mengubahnya.
+
+Segi tiga bersudut tegak ini menunjukkan sebab <InlineMath math="\sqrt{a + b} \ne \sqrt a + \sqrt b" />. Dua sisi tegaknya ialah <InlineMath math="\sqrt 9 = 3" /> dan <InlineMath math="\sqrt{16} = 4" />, dan hipotenusnya ialah <InlineMath math="\sqrt{9 + 16} = 5" />. Jalan pintas itu akan mendakwa <InlineMath math="3 + 4 = 7" />, tetapi berjalan di sepanjang dua sisi tegak sentiasa lebih jauh daripada mengikut hipotenus yang lurus.
+
+<MathVisual
+  title={<>Punca kuasa dua bagi hasil tambah bukan hasil tambah punca-puncanya</>}
+  description={<>Segi tiga bersudut tegak dengan sisi tegak <InlineMath math="3" /> dan <InlineMath math="4" /> serta hipotenus <InlineMath math="\sqrt{9 + 16} = 5" />, lebih pendek daripada laluan <InlineMath math="3 + 4 = 7" />.</>}
+  labels={{
+    a: <InlineMath math="\sqrt 9 = 3" />,
+    b: <InlineMath math="\sqrt{16} = 4" />,
+    c: <InlineMath math="\sqrt{25} = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: -0.7, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "c", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 1.5, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>

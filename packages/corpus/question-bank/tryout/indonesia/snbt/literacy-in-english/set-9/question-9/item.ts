@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "point-of-view",
   },
-  stimulus: "zoo-purpose",
+  stimulus: "open-offices",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Many visitors say that elephants are their favourite animals at the zoo by far.",
+            "The distance between colleagues affects how often they talk to one another.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Elephants in the wild walk long distances every day in search of food.",
+            "Taking down partitions increases the amount of face-to-face talk among colleagues.",
         },
         {
-          correct: false,
-          label:
-            "Zoos spend a large share of their budgets on elephant and polar bear enclosures.",
+          column: 1,
+          label: "Noise is a real cost of working on an open floor.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Polar bears in the wild are threatened by the loss of sea ice.",
+            "Lower rent per desk is a main reason that firms choose open-plan offices.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Elephants in good enclosures show no more stress than wild elephants.",
+            "Quick, unplanned questions between colleagues can be valuable for their work.",
         },
       ],
     },

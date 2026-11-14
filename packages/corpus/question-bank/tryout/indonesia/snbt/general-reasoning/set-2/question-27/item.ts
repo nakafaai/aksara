@@ -2,9 +2,9 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
-    topic: "motion",
+    topic: "calendar",
   },
   versions: {
     id: {
@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$300\\text{ m}$$",
+          label: "29 Mei 2027",
         },
         {
           correct: true,
-          label: "$$450\\text{ m}$$",
+          label: "30 Mei 2027",
         },
         {
           correct: false,
-          label: "$$525\\text{ m}$$",
+          label: "29 Juni 2027",
         },
         {
           correct: false,
-          label: "$$600\\text{ m}$$",
+          label: "30 Juli 2027",
         },
         {
           correct: false,
-          label: "$$750\\text{ m}$$",
+          label: "27 September 2027",
         },
       ],
     },

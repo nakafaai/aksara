@@ -24,6 +24,10 @@ export const merdekaClass10BiologyTopicNodes = [
         description: "Kenali bentuk bakteri dan perannya.",
         title: "Keanekaragaman Makhluk Hidup",
       },
+      ms: {
+        description: "Kaitkan bentuk bakteria dengan peranannya.",
+        title: "Biodiversiti Organisma Hidup",
+      },
     },
     order: 10,
     translations: {
@@ -38,6 +42,10 @@ export const merdekaClass10BiologyTopicNodes = [
       id: {
         routeSlug: "keanekaragaman-makhluk-hidup",
         title: "Keanekaragaman Makhluk Hidup",
+      },
+      ms: {
+        routeSlug: "biodiversiti",
+        title: "Biodiversiti Organisma Hidup",
       },
     },
   }),
@@ -64,12 +72,17 @@ export const merdekaClass10BiologyTopicNodes = [
         description: "Telusuri aktivitas yang memerangkap panas.",
         title: "Perubahan Iklim",
       },
+      ms: {
+        description: "Jejaki cara aktiviti manusia memerangkap haba.",
+        title: "Perubahan Iklim",
+      },
     },
     order: 20,
     translations: {
       de: { routeSlug: "klimawandel", title: "Klimawandel" },
       en: { routeSlug: "climate-change", title: "Climate Change" },
       id: { routeSlug: "perubahan-iklim", title: "Perubahan Iklim" },
+      ms: { routeSlug: "perubahan-iklim", title: "Perubahan Iklim" },
     },
   }),
   unitNode({
@@ -95,12 +108,17 @@ export const merdekaClass10BiologyTopicNodes = [
         description: "Ikuti cara virus menggandakan diri.",
         title: "Virus dan Peranannya",
       },
+      ms: {
+        description: "Ikuti cara virus membiak dalam sel perumah.",
+        title: "Virus dan Peranannya",
+      },
     },
     order: 30,
     translations: {
       de: { routeSlug: "viren-und-ihre-rolle", title: "Viren und ihre Rolle" },
       en: { routeSlug: "virus-role", title: "Viruses and Their Role" },
       id: { routeSlug: "virus-dan-peranannya", title: "Virus dan Peranannya" },
+      ms: { routeSlug: "virus-dan-peranannya", title: "Virus dan Peranannya" },
     },
   }),
 ];

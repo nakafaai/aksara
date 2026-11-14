@@ -2,39 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "reasoning",
-    contentDomain: "paragraph-meaning",
-    topic: "paragraph-relation",
+    cognitiveLevel: "application",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
   },
-  stimulus: "bahasa",
+  stimulus: "serapan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "menggoreskan",
+        },
+        {
           correct: true,
-          label:
-            "Paragraf pertama menjelaskan tanda bahasa terancam punah, sedangkan paragraf kedua menawarkan upaya untuk mengatasinya.",
+          label: "menetapkan",
         },
         {
           correct: false,
-          label:
-            "Paragraf pertama menyebutkan akibat, sedangkan paragraf kedua menyebutkan penyebabnya.",
+          label: "menggarisbawahi",
         },
         {
           correct: false,
-          label:
-            "Paragraf pertama menyampaikan pendapat, sedangkan paragraf kedua membantah pendapat itu.",
+          label: "mencoret",
         },
         {
           correct: false,
-          label:
-            "Paragraf pertama dan kedua menceritakan peristiwa secara berurutan menurut waktu.",
-        },
-        {
-          correct: false,
-          label:
-            "Paragraf pertama memberikan beberapa contoh bahasa daerah, sedangkan paragraf kedua menarik simpulan umum dari contoh-contoh itu.",
+          label: "merintis",
         },
       ],
     },

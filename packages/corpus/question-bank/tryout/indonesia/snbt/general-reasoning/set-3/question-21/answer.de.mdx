@@ -1,12 +1,31 @@
-Die Differenzen sind nicht konstant, also untersuchst du **die ersten und zweiten Differenzen**:
+Gesucht ist der Wert des ersten Glieds, das über <InlineMath math="500" /> liegt. Du musst also zuerst das Muster finden und die Folge dann fortsetzen, bis sie diese Grenze überschreitet.
+
+Die Differenzen <InlineMath math="2, 1, 10, 2, 17, 3, 74" /> ergeben kein Muster. Schau dir stattdessen den Schritt von einem Glied zum nächsten an. Die Schritte **wechseln zwischen Multiplizieren und Addieren**.
 
 <BlockMath math="\begin{aligned}
-\text{erste Differenzen} &: 1,\ 3,\ 6,\ 10,\ 15 \\
-\text{zweite Differenzen} &: 2,\ 3,\ 4,\ 5
+2 \times 2 &= 4 \\
+4 + 1 &= 5 \\
+5 \times 3 &= 15 \\
+15 + 2 &= 17 \\
+17 \times 2 &= 34 \\
+34 + 3 &= 37 \\
+37 \times 3 &= 111
 \end{aligned}" />
 
-Die zweiten Differenzen wachsen jeweils um eins, die nächste ist also <InlineMath math="6" />. Die nächste erste Differenz ist <InlineMath math="15+6=21" />, und das nächste Glied ist
+Darin stecken zwei kleinere Regeln. Der Faktor wechselt <InlineMath math="2, 3, 2, 3, \ldots" />, und die addierte Zahl wächst jedes Mal um eins: <InlineMath math="1, 2, 3, \ldots" />. Nach <InlineMath math="111" /> kommen also plus <InlineMath math="4" />, mal <InlineMath math="2" />, plus <InlineMath math="5" /> und dann mal <InlineMath math="3" />.
 
-<BlockMath math="39+21=60" />
+<BlockMath math="\begin{aligned}
+111 + 4 &= 115 \\
+115 \times 2 &= 230 \\
+230 + 5 &= 235 \\
+235 \times 3 &= 705
+\end{aligned}" />
 
-Die ersten Differenzen <InlineMath math="1, 3, 6, 10, 15, 21" /> sind Dreieckszahlen, das Muster ist also stimmig. Die nächste Zahl ist <InlineMath math="60" />.
+Prüf die Grenze. Das Glied <InlineMath math="235" /> liegt noch unter <InlineMath math="500" />, das nächste, <InlineMath math="705" />, schon darüber. Dazwischen gibt es kein Glied, also ist <InlineMath math="705" /> wirklich das erste Glied über der Grenze. Es ist das 12. Glied.
+
+Zwei typische Fehler liefern ähnliche Zahlen:
+
+- Wenn du meinst, die addierte Zahl bleibt <InlineMath math="4" />, bekommst du <InlineMath math="115, 230, 234, 702" /> und antwortest <InlineMath math="702" />.
+- Wenn du meinst, der Faktor bleibt nach <InlineMath math="111" /> bei <InlineMath math="3" />, bekommst du <InlineMath math="115, 345, 350, 1{.}050" /> und antwortest <InlineMath math="1{.}050" />.
+
+Das erste Glied der Folge, das größer als <InlineMath math="500" /> ist, lautet also <InlineMath math="705" />.
