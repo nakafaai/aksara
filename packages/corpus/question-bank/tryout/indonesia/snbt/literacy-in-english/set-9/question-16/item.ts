@@ -2,35 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "inference",
   },
-  stimulus: "braille-code",
+  stimulus: "map-projection",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "It could only be used by soldiers who were writing at night.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "It was printed in large raised letters that were slow to read.",
+            "A country near latitude $$60^\\circ$$ appears with about four times the area of an equally large country on the equator.",
         },
         {
-          correct: false,
-          label: "It represented spelling instead of the sounds of words.",
+          column: 2,
+          label:
+            "On Mercator's map, the shortest route between two distant ports is the straight line joining them.",
         },
         {
-          correct: true,
-          label: "Its symbols used too many dots to be felt with one touch.",
+          column: 1,
+          label:
+            "A straight line drawn on Mercator's map shows a route that keeps a single compass bearing.",
         },
         {
-          correct: false,
-          label: "It was too expensive for the school in Paris to buy.",
+          column: 2,
+          label:
+            "Greenland looks as large as Africa because Mercator measured Greenland's size wrongly.",
+        },
+        {
+          column: 1,
+          label:
+            "A small square island near latitude $$60^\\circ$$ would still look square on Mercator's map.",
         },
       ],
     },

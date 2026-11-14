@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "inference",
   },
-  stimulus: "basic-income",
+  stimulus: "nuclear-power",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "A six-month payment to 500 volunteers chosen from across the country",
-        },
-        {
-          correct: false,
-          label:
-            "A detailed survey asking adults how they would spend a basic income",
+            "New nuclear plants generate power more cheaply than new wind and solar.",
         },
         {
           correct: true,
           label:
-            "Payments to every adult in several whole towns for many years",
+            "The source that is cheapest when plants are compared one by one is not necessarily the cheapest for the grid as a whole.",
         },
         {
           correct: false,
           label:
-            "A two-year payment to 2,000 unemployed people, as Finland arranged",
+            "Storage costs will fall fast enough to make steady sources of power unnecessary.",
         },
         {
           correct: false,
           label:
-            "Payments to jobless people that stop as soon as each one finds work",
+            "A grid powered entirely by steady sources would need no spare capacity at all.",
+        },
+        {
+          correct: true,
+          label:
+            "The extra cost of covering weather-dependent power rises faster than the share of power that wind and sun supply.",
         },
       ],
     },

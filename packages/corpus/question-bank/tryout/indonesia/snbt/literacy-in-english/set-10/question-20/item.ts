@@ -2,35 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "application",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "fiction",
+    topic: "theme",
   },
-  stimulus: "golden-record",
+  stimulus: "river-ferry",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Include music only from the town's own region and culture.",
-        },
-        {
-          correct: false,
-          label: "Add a map of pulsars to show where the town is located.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Write every instruction in today's language so it stays clear.",
+            "The story leaves the father's feelings about the bridge for the reader to infer.",
         },
         {
-          correct: true,
-          label: "Explain how to open and use the contents through diagrams.",
+          column: 2,
+          label:
+            "The narrator presents the bridge as a mistake that the town will come to regret.",
         },
         {
-          correct: false,
-          label: "Fill the capsule only with items that can be found quickly.",
+          column: 1,
+          label:
+            "The ending suggests that an old habit carries on in a new setting.",
+        },
+        {
+          column: 2,
+          label:
+            "By the end, the father has decided that the ferry was never important.",
         },
       ],
     },

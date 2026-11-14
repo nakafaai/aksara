@@ -2,36 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "text-structure",
   },
-  stimulus: "braille-code",
+  stimulus: "map-projection",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "A whole symbol could be felt at once under one fingertip.",
-        },
-        {
-          correct: false,
-          label: "Six dots were cheaper to print than twelve dots on paper.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Sighted teachers could read six dots more easily than letters.",
+            "The Peters map gave up correct shapes in order to show correct areas.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Six dots allowed the system to represent sounds instead of spelling.",
+            "Peters was the first person to describe an equal-area world map.",
         },
         {
-          correct: false,
-          label: "Barbier had asked Braille to use fewer dots for the army.",
+          column: 2,
+          label:
+            "The cartographers objected to the Peters map mainly because it made rich countries look smaller.",
+        },
+        {
+          column: 1,
+          label:
+            "The passage implies that an equal-area map must distort shapes somewhere.",
         },
       ],
     },
