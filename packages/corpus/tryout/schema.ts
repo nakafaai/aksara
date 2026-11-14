@@ -17,6 +17,7 @@ import {
   PublicRouteSegmentSchema,
   PublicRouteSlugMapSchema,
 } from "#corpus/route/schema";
+import { SetRatingSchema } from "#corpus/tryout/level";
 
 const PositiveIntSchema = Schema.Int.check(Schema.isGreaterThan(0));
 
@@ -80,10 +81,14 @@ export const ProfileSourceSchema = Schema.Struct({
 });
 export type ProfileSource = typeof ProfileSourceSchema.Type;
 
-/** One set of a track: its names and routes. Its paper sits the track's sections. */
+/**
+ * One set of a track: its names, routes, and the difficulty panel's rating of
+ * it. Its paper sits the track's sections.
+ */
 export const SetSourceSchema = Schema.Struct({
   key: KebabKeySchema,
   order: PositiveIntSchema,
+  rating: SetRatingSchema,
   routeSlugs: PublicRouteSlugMapSchema,
   translations: TranslationMapSchema,
 });

@@ -1,0 +1,221 @@
+export const metadata = {
+  title: "Petala Atom",
+  description:
+    "Petala atom mewakili aras tenaga elektron. Kenali cara kapasiti setiap petala ditentukan dan cara elektron kalsium mengisi petala itu.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-05-01",
+  dateModified: "2026-09-12",
+  subject: "Struktur Atom",
+};
+
+## Petala sebagai Aras Tenaga
+
+Dalam model Bohr yang ringkas, elektron ditunjukkan berada dalam **petala atom**, iaitu aras tenaga tertentu di sekeliling nukleus. Petala yang lebih dekat dengan nukleus mempunyai tenaga yang lebih rendah. Petala yang lebih jauh dari nukleus mempunyai tenaga yang lebih tinggi.
+
+Model Bohr menggunakan <Highlight>orbit dengan tenaga tertentu</Highlight> untuk menerangkan spektrum garis hidrogen.
+
+Dalam rajah petala, setiap bulatan menandakan satu aras tenaga. Bulatan itu bukan laluan tetap yang dilalui oleh elektron. Bulatan itu hanya menunjukkan susunan aras tenaga dalam model ringkas ini.
+
+Petala dinamakan dengan huruf:
+
+| Petala | Nombor petala |
+| :---- | :----------- |
+| <InlineMath math="\mathrm{K}" /> | <InlineMath math="n = 1" /> |
+| <InlineMath math="\mathrm{L}" /> | <InlineMath math="n = 2" /> |
+| <InlineMath math="\mathrm{M}" /> | <InlineMath math="n = 3" /> |
+| <InlineMath math="\mathrm{N}" /> | <InlineMath math="n = 4" /> |
+| <InlineMath math="\mathrm{O}" /> | <InlineMath math="n = 5" /> |
+| <InlineMath math="\mathrm{P}" /> | <InlineMath math="n = 6" /> |
+| <InlineMath math="\mathrm{Q}" /> | <InlineMath math="n = 7" /> |
+
+Huruf <InlineMath math="\mathrm{K}" /> hingga <InlineMath math="\mathrm{Q}" /> ialah nama petala. Nilai <InlineMath math="n" /> ialah **nombor petala**. Apabila <InlineMath math="n" /> bertambah, petala elektron itu secara amnya semakin jauh dari nukleus dan mempunyai tenaga yang lebih tinggi.
+
+## Kapasiti Maksimum Elektron
+
+Petala dinamakan <InlineMath math="\mathrm K" /> hingga <InlineMath math="\mathrm Q" />. Bagi petala bernombor <InlineMath math="n" />, kapasiti maksimumnya ialah <InlineMath math="2n^2" />. Gantikan nombor petala untuk mendapatkan setiap had:
+
+| Petala | Nombor petala | Bilangan maksimum elektron daripada <InlineMath math="2n^2" /> |
+| :---- | :----------- | :----------------------------------------------- |
+| <InlineMath math="\mathrm{K}" /> | <InlineMath math="1" /> | <InlineMath math="2(1)^2 = 2" /> |
+| <InlineMath math="\mathrm{L}" /> | <InlineMath math="2" /> | <InlineMath math="2(2)^2 = 8" /> |
+| <InlineMath math="\mathrm{M}" /> | <InlineMath math="3" /> | <InlineMath math="2(3)^2 = 18" /> |
+| <InlineMath math="\mathrm{N}" /> | <InlineMath math="4" /> | <InlineMath math="2(4)^2 = 32" /> |
+| <InlineMath math="\mathrm{O}" /> | <InlineMath math="5" /> | <InlineMath math="2(5)^2 = 50" /> |
+| <InlineMath math="\mathrm{P}" /> | <InlineMath math="6" /> | <InlineMath math="2(6)^2 = 72" /> |
+| <InlineMath math="\mathrm{Q}" /> | <InlineMath math="7" /> | <InlineMath math="2(7)^2 = 98" /> |
+
+Perhatikan perkataan **maksimum**. Petala <InlineMath math="\mathrm{M}" /> boleh memuatkan sehingga <InlineMath math="18" /> elektron, tetapi ini tidak bermaksud setiap atom mengisi <InlineMath math="\mathrm{M}" /> hingga <InlineMath math="18" /> sebelum menggunakan petala seterusnya. Untuk contoh sehingga kalsium, kita gunakan corak yang lebih ringkas dalam model interaktif.
+
+Petua kapasiti ini memberikan had bagi setiap petala: petala <InlineMath math="n" /> memuatkan paling banyak <InlineMath math="2n^2" /> elektron. Putar palang-palang ini: had itu meningkat dengan cepat, daripada <InlineMath math="2" /> dalam petala K kepada <InlineMath math="32" /> dalam petala N.
+
+<MathVisual
+  title={<>Kapasiti Petala <InlineMath math="2n^2" /></>}
+  description={<>Bilangan elektron paling banyak yang boleh dimuatkan oleh setiap satu daripada empat petala pertama. Satu petak grid ke atas mewakili 4 elektron.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 9 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 9, z: 12 }, target: { x: 3.75, y: 3.5, z: 0 } },
+    objects: [
+      { id: "shell-k", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.25, z: 0 }, size: { length: 1.2, height: 0.5, width: 1.2 } },
+      { id: "shell-l", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "shell-m", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.25, z: 0 }, size: { length: 1.2, height: 4.5, width: 1.2 } },
+      { id: "shell-n", kind: "cuboid", appearance: "answer", center: { x: 7.5, y: 4, z: 0 }, size: { length: 1.2, height: 8, width: 1.2 } },
+    ],
+    labels: [
+      { key: "k", objectId: "shell-k", at: { x: 0, y: 0.5, z: 0 }, placement: "above" },
+      { key: "l", objectId: "shell-l", at: { x: 2.5, y: 2, z: 0 }, placement: "above" },
+      { key: "m", objectId: "shell-m", at: { x: 5, y: 4.5, z: 0 }, placement: "above" },
+      { key: "n", objectId: "shell-n", at: { x: 7.5, y: 8, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    k: <InlineMath math="\mathrm{K}:\ 2\cdot1^2=2" />,
+    l: <InlineMath math="\mathrm{L}:\ 2\cdot2^2=8" />,
+    m: <InlineMath math="\mathrm{M}:\ 2\cdot3^2=18" />,
+    n: <InlineMath math="\mathrm{N}:\ 2\cdot4^2=32" />,
+  }}
+/>
+
+## Model Petala bagi Unsur Ringan
+
+Pilih satu atom neutral. Perhatikan bahawa **bilangan elektron sama dengan nombor proton**, kemudian baca cara elektron itu diagihkan ke petala <InlineMath math="\mathrm{K}" />, <InlineMath math="\mathrm{L}" />, <InlineMath math="\mathrm{M}" /> dan <InlineMath math="\mathrm{N}" />.
+
+<AtomShellLab
+  title={<>Model Petala Atom</>}
+  description={
+    <>
+      Rajah ini menggunakan model petala ringkas bagi atom neutral sehingga kalsium.
+      Fokusnya ialah membaca petala terluar dan membezakan isi petala
+      daripada kapasiti maksimum <InlineMath math="2n^2" />.
+    </>
+  }
+  labels={{
+    chooseAtom: "Pilih atom neutral",
+    atomicNumber: "Nombor proton",
+    configuration: "Susunan elektron",
+    electronTotal: "Bilangan elektron",
+    maximumCapacity: "kapasiti",
+    outerShell: "Petala terluar",
+    samples: {
+      neon: {
+        tab: "Ne",
+        name: "Neon",
+        note: <>Susunan elektronnya ialah <InlineMath math="2, 8" />. Petala <InlineMath math="\mathrm{L}" /> ialah petala terluarnya.</>,
+      },
+      magnesium: {
+        tab: "Mg",
+        name: "Magnesium",
+        note: <>Selepas petala <InlineMath math="\mathrm{K}" /> dan <InlineMath math="\mathrm{L}" /> penuh, baki <InlineMath math="2" /> elektron memasuki petala <InlineMath math="\mathrm{M}" />.</>,
+      },
+      chlorine: {
+        tab: "Cl",
+        name: "Klorin",
+        note: <>Petala terluarnya mengandungi <InlineMath math="7" /> elektron dalam model petala ringkas ini.</>,
+      },
+      argon: {
+        tab: "Ar",
+        name: "Argon",
+        note: <>Corak asasnya ialah <InlineMath math="2, 8, 8" />, jadi petala <InlineMath math="\mathrm{M}" /> mengandungi <InlineMath math="8" /> elektron.</>,
+      },
+      potassium: {
+        tab: "K",
+        name: "Kalium",
+        note: <>Kalium mempunyai simbol unsur <InlineMath math="\mathrm{K}" />. Simbol ini berbeza daripada petala <InlineMath math="\mathrm{K}" />. Selepas <InlineMath math="2, 8, 8" />, baki <InlineMath math="1" /> elektron memasuki petala <InlineMath math="\mathrm{N}" />.</>,
+      },
+      calcium: {
+        tab: "Ca",
+        name: "Kalsium",
+        note: <>Kalsium mempunyai <InlineMath math="20" /> elektron, jadi corak petala ringkasnya ialah <InlineMath math="2, 8, 8, 2" />.</>,
+      },
+    },
+  }}
+/>
+
+## Susunan Elektron Kalsium
+
+Kalsium mempunyai nombor proton <InlineMath math="20" />. Simbol <InlineMath math="Z" /> bermaksud nombor proton. Oleh sebab atom ini neutral, ia juga mempunyai <InlineMath math="20" /> elektron. Isi petala mengikut urutan bermula daripada **tenaga paling rendah**, dan catat bilangan elektron dalam setiap petala sambil kamu mengisinya.
+
+### Langkah Mengisi Petala Kalsium
+
+Dalam **model petala ringkas**, petala kalsium diisi mengikut urutan ini:
+
+<BlockMath math="\begin{aligned}
+\mathrm{Ca}: Z &= 20 \\
+e^- &= 20 \\
+\mathrm{K} &: 2 \quad \text{baki } 18 \\
+\mathrm{L} &: 8 \quad \text{baki } 10 \\
+\mathrm{M} &: 8 \quad \text{baki } 2 \\
+\mathrm{N} &: 2 \quad \text{baki } 0
+\end{aligned}" />
+
+### Mengisi Petala M dan N
+
+Satu soalan yang selalu ditanya: kenapa bukan <InlineMath math="2, 8, 10" />?
+
+Dalam keadaan asas kalsium, elektron mengisi subpetala <InlineMath math="4s" /> sebelum <InlineMath math="3d" />. Nombor sebelum huruf itu menunjukkan petala utama: <InlineMath math="4s" /> ialah sebahagian daripada petala <InlineMath math="\mathrm N" />, manakala <InlineMath math="3d" /> ialah sebahagian daripada petala <InlineMath math="\mathrm M" />. Oleh itu, petala N mula diisi sebelum petala M mencapai kapasitinya.
+
+Selepas petala K dan L, tinggal <InlineMath math="20-2-8=10" /> elektron. Lapan daripadanya mengisi bahagian petala M yang sudah terisi dalam argon, dan dua elektron seterusnya memasuki 4s. Ini menghasilkan **susunan elektron keadaan asas** <InlineMath math="2,8,8,2" />.
+
+Inilah kalsium dalam model petala ringkas: <InlineMath math="2, 8, 8, 2" /> elektron dari petala K ke arah luar. Kira setiap gelang, dan perhatikan dua elektron magenta dalam petala N, walaupun petala M sebenarnya boleh memuatkan lebih banyak elektron.
+
+<MathVisual
+  title={<>Kalsium dalam Model Petala</>}
+  description={<>Kesemua 20 elektron kalsium dalam petala K, L, M dan N, dengan elektron paling luar berwarna magenta.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.8, max: 4.8 }, y: { min: -4.8, max: 4.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "nucleus", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "shell-k", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "electron-k-1", kind: "point", appearance: "secondary", at: { x: 1 * Math.cos((2 * Math.PI * (0 + 0.125)) / 2), y: 1 * Math.sin((2 * Math.PI * (0 + 0.125)) / 2) } },
+      { id: "electron-k-2", kind: "point", appearance: "secondary", at: { x: 1 * Math.cos((2 * Math.PI * (1 + 0.125)) / 2), y: 1 * Math.sin((2 * Math.PI * (1 + 0.125)) / 2) } },
+      { id: "shell-l", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 2 },
+      { id: "electron-l-1", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (0 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (0 + 0.125)) / 8) } },
+      { id: "electron-l-2", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (1 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (1 + 0.125)) / 8) } },
+      { id: "electron-l-3", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (2 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (2 + 0.125)) / 8) } },
+      { id: "electron-l-4", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (3 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (3 + 0.125)) / 8) } },
+      { id: "electron-l-5", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (4 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (4 + 0.125)) / 8) } },
+      { id: "electron-l-6", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (5 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (5 + 0.125)) / 8) } },
+      { id: "electron-l-7", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (6 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (6 + 0.125)) / 8) } },
+      { id: "electron-l-8", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (7 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (7 + 0.125)) / 8) } },
+      { id: "shell-m", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 3 },
+      { id: "electron-m-1", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (0 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (0 + 0.125)) / 8) } },
+      { id: "electron-m-2", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (1 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (1 + 0.125)) / 8) } },
+      { id: "electron-m-3", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (2 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (2 + 0.125)) / 8) } },
+      { id: "electron-m-4", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (3 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (3 + 0.125)) / 8) } },
+      { id: "electron-m-5", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (4 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (4 + 0.125)) / 8) } },
+      { id: "electron-m-6", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (5 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (5 + 0.125)) / 8) } },
+      { id: "electron-m-7", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (6 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (6 + 0.125)) / 8) } },
+      { id: "electron-m-8", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (7 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (7 + 0.125)) / 8) } },
+      { id: "shell-n", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "electron-n-1", kind: "point", appearance: "answer", at: { x: 4 * Math.cos((2 * Math.PI * (0 + 0.125)) / 2), y: 4 * Math.sin((2 * Math.PI * (0 + 0.125)) / 2) } },
+      { id: "electron-n-2", kind: "point", appearance: "answer", at: { x: 4 * Math.cos((2 * Math.PI * (1 + 0.125)) / 2), y: 4 * Math.sin((2 * Math.PI * (1 + 0.125)) / 2) } },
+    ],
+    labels: [
+      { key: "k", objectId: "shell-k", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "l", objectId: "shell-l", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "m", objectId: "shell-m", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "n", objectId: "shell-n", at: { x: 4, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    k: <InlineMath math="\mathrm{K}:\ 2" />,
+    l: <InlineMath math="\mathrm{L}:\ 8" />,
+    m: <InlineMath math="\mathrm{M}:\ 8" />,
+    n: <InlineMath math="\mathrm{N}:\ 2" />,
+  }}
+/>
+
+## Batasan Model
+
+Jangan campur aduk dua idea ini.
+
+| Pernyataan | Maksud yang tepat |
+| :-------- | :--------------- |
+| Petala atom dilukis sebagai bulatan. | Lukisan itu mewakili aras tenaga. Elektron tidak bergerak mengikut laluan bulat yang tetap. |
+| Rumus <InlineMath math="2n^2" /> memberikan kapasiti maksimum. | Kapasiti maksimum berbeza daripada urutan elektron mengisi petala. Unsur yang lebih berat memerlukan model subpetala dan orbital. |
+
+Dalam model orbital moden, elektron selepas argon mengisi <InlineMath math="4s" /> sebelum <InlineMath math="3d" />. Model interaktif di atas menggunakan corak petala ringkas untuk menunjukkan bilangan elektron dalam setiap petala. Susunan elektron yang lebih terperinci menggunakan urutan pengisian orbital moden.
+
+Petala paling luar juga membawa kita kepada idea elektron valens. Elektron dalam petala paling luar dipanggil **elektron valens**, dan elektron ini sangat mempengaruhi sama ada sesuatu atom cenderung membentuk ion atau ikatan kimia.

@@ -1,0 +1,186 @@
+export const metadata = {
+  title: "Usaha Memenuhi Keperluan Tenaga",
+  description:
+    "Rancang sistem elektrik yang boleh diharap, mudah diselenggara dan adil berdasarkan keperluan tenaga, sumber dan keadaan operasi setempat.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-05-01",
+  dateModified: "2026-09-12",
+  subject: "Tenaga Boleh Baharu",
+};
+
+## Penyelesaian Tenaga Mesti Sesuai dengan Keperluan dan Lokasi
+
+**Memenuhi permintaan tenaga** bermaksud membekalkan tenaga yang mencukupi apabila diperlukan, pada kos yang mampu dibayar, sambil mengehadkan kemudaratan kepada manusia dan alam sekitar. Bekalan yang boleh diharap kekal tersedia semasa lampu, pam air atau peralatan perubatan sedang berjalan.
+
+Di sesetengah kawasan, sumber setempat seperti air, cahaya matahari, angin, sisa organik atau haba geoterma boleh memenuhi sebahagian permintaan tenaga.
+
+Pelan yang lengkap menghubungkan keperluan dengan perkhidmatan tenaga akhir:
+
+Mulakan dengan permintaan, <Highlight>kenal pasti sumber setempat yang sesuai</Highlight>, dan rancang cara tenaganya akan ditukar. Kemudian tentukan cara mengagihkan atau menyimpan tenaga itu supaya tenaga itu dapat memberikan perkhidmatan yang diperlukan.
+
+Kos, keselamatan, penyelenggaraan dan perlindungan alam sekitar mesti disemak pada setiap peringkat. Sumber dan peralatan juga mesti sesuai dengan lokasi.
+
+Mulakan daripada keperluan, kemudian semak sumbernya. Sebuah kampung dengan 50 buah rumah yang setiap satunya menggunakan <InlineMath math="1\text{ kWj}" /> sehari memerlukan <InlineMath math="50\text{ kWj}" />, dan mikrohidro <InlineMath math="2.5\text{ kW}" /> yang berjalan sepanjang hari memberikan <InlineMath math="60\text{ kWj}" />. Putar bar-bar itu dan bandingkan.
+
+<MathVisual
+  title={<>Daripada Keperluan kepada Perkhidmatan Tenaga</>}
+  description={<>Keperluan tenaga harian 50 buah rumah (ungu) dan output harian mikrohidro 2.5 kW (hijau kebiruan). Satu petak grid ke atas ialah 10 kWj.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 6, y: 6, z: 10 }, target: { x: 1.25, y: 3, z: 0 } },
+    objects: [
+      { id: "need", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 2.5, z: 0 }, size: { length: 1.2, height: 5, width: 1.2 } },
+      { id: "supply", kind: "cuboid", appearance: "construction", center: { x: 2.5, y: 3, z: 0 }, size: { length: 1.2, height: 6, width: 1.2 } },
+    ],
+    labels: [
+      { key: "need", objectId: "need", at: { x: 0, y: 5, z: 0 }, placement: "above" },
+      { key: "supply", objectId: "supply", at: { x: 2.5, y: 6, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    need: <InlineMath math="50\cdot1=50\text{ kWj}" />,
+    supply: <InlineMath math="2.5\cdot24=60\text{ kWj}" />,
+  }}
+/>
+
+## Contoh Mikrohidro dari Plaosan
+
+Stesen janakuasa mikrohidro ialah sistem kuasa hidro berskala kecil. Istilah "mikro" merujuk kepada kapasiti yang jauh lebih kecil daripada kapasiti stesen janakuasa hidroelektrik yang besar.
+
+Air yang ditakung di atas turbin mempunyai tenaga keupayaan graviti relatif kepada turbin. Semasa air mengalir ke bawah, sebahagian tenaga itu menjadi tenaga kinetik. Aliran itu boleh memutarkan turbin, dan penjana kemudian menghasilkan tenaga elektrik.
+
+[Air mengalir ke arah turbin](https://www.energy.gov/cmei/water/how-hydropower-works), turbin berputar, dan penjana menghasilkan elektrik.
+
+Dalam anggaran ringkas, kuasa air yang boleh digunakan bergantung pada ketumpatan air, pecutan graviti, kadar aliran air, beza ketinggian dan kecekapan alat.
+
+<BlockMath math="P \approx \rho g Q h \eta" />
+
+Nota simbol:
+
+| Simbol | Maksud |
+| :----- | :------ |
+| <InlineMath math="P" /> | anggaran kuasa yang boleh digunakan, diukur dalam watt |
+| <InlineMath math="\rho" /> | ketumpatan air, diukur dalam kilogram per meter padu |
+| <InlineMath math="g" /> | pecutan graviti, diukur dalam meter per saat kuasa dua |
+| <InlineMath math="Q" /> | kadar aliran isi padu, diukur dalam meter padu per saat |
+| <InlineMath math="h" /> | beza ketinggian, diukur dalam meter |
+| <InlineMath math="\eta" /> | kecekapan tanpa dimensi, ditulis sebagai perpuluhan dalam rumus ini |
+
+Rumus ini menganggarkan kuasa yang boleh digunakan daripada ketumpatan air, graviti, kadar aliran, beza ketinggian dan kecekapan. Kadar aliran dan beza ketinggian yang lebih besar menaikkan anggaran itu, tetapi reka bentuk kejuruteraan yang lengkap juga memerlukan data tapak dan keselamatan.
+
+Untuk **pengiraan hipotetikal**, ambil ketumpatan air <InlineMath math="1\,000 \text{ kg/m}^3" />, <InlineMath math="g=10 \text{ m/s}^2" />, kadar aliran <InlineMath math="0.02 \text{ m}^3/\text{s}" />, beza ketinggian <InlineMath math="10 \text{ m}" /> dan kecekapan <InlineMath math="0.7" />. Nilai ini bukan hasil pengukuran daripada projek yang dibincangkan seterusnya.
+
+<BlockMath math="\begin{aligned} P &\approx \rho g Q h \eta \\ &= (1\,000)(10)(0.02)(10)(0.7) \text{ W} \\ &= 1\,400 \text{ W} \end{aligned}" />
+
+Putar permukaan di bawah. Setiap titik padanya ialah rumus tadi dengan satu kadar aliran ke kanan dan satu beza ketinggian ke dalam skrin, dan tingginya ialah kuasa dalam kilowatt. Titik merah keunguan ialah kes hipotetikal di atas, <InlineMath math="1\,400\text{ W}" />. Ikuti mana-mana garis oren, dan kuasa naik secara sekata dengan beza ketinggian. Ikuti garis hijau kebiruan, dan kuasa naik dengan kadar aliran. Sudut paling jauh, tempat paling banyak air jatuh dari paling tinggi, ialah tempat permukaan itu naik paling tinggi.
+
+<MathVisual
+  title={<>Kuasa Mikrohidro daripada Kadar Aliran dan Ketinggian</>}
+  description={<><InlineMath math="P=\rho gQh\eta" /> dengan <InlineMath math="\rho=1000\text{ kg/m}^3" />, <InlineMath math="g=10\text{ m/s}^2" /> dan <InlineMath math="\eta=0.7" />. Ke kanan: kadar aliran dalam unit <InlineMath math="0.01\text{ m}^3\text{/s}" />. Ke dalam skrin: beza ketinggian dalam unit 5 m. Ke atas: kuasa dalam kW.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -0.5, max: 4.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 9 }, target: { x: 2, y: 1.5, z: 2 } },
+    objects: [
+      { id: "head-0", kind: "segment", appearance: "construction", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: (1000 * 10 * 0.04 * 0 * 0.7) / 1000, z: 0 } },
+      { id: "head-5", kind: "segment", appearance: "construction", from: { x: 0, y: 0, z: 1 }, to: { x: 4, y: (1000 * 10 * 0.04 * 5 * 0.7) / 1000, z: 1 } },
+      { id: "head-10", kind: "segment", appearance: "construction", from: { x: 0, y: 0, z: 2 }, to: { x: 4, y: (1000 * 10 * 0.04 * 10 * 0.7) / 1000, z: 2 } },
+      { id: "head-15", kind: "segment", appearance: "construction", from: { x: 0, y: 0, z: 3 }, to: { x: 4, y: (1000 * 10 * 0.04 * 15 * 0.7) / 1000, z: 3 } },
+      { id: "head-20", kind: "segment", appearance: "construction", from: { x: 0, y: 0, z: 4 }, to: { x: 4, y: (1000 * 10 * 0.04 * 20 * 0.7) / 1000, z: 4 } },
+      { id: "flow-0", kind: "segment", appearance: "primary", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: (1000 * 10 * 0.0 * 20 * 0.7) / 1000, z: 4 } },
+      { id: "flow-1", kind: "segment", appearance: "primary", from: { x: 1, y: 0, z: 0 }, to: { x: 1, y: (1000 * 10 * 0.01 * 20 * 0.7) / 1000, z: 4 } },
+      { id: "flow-2", kind: "segment", appearance: "primary", from: { x: 2, y: 0, z: 0 }, to: { x: 2, y: (1000 * 10 * 0.02 * 20 * 0.7) / 1000, z: 4 } },
+      { id: "flow-3", kind: "segment", appearance: "primary", from: { x: 3, y: 0, z: 0 }, to: { x: 3, y: (1000 * 10 * 0.03 * 20 * 0.7) / 1000, z: 4 } },
+      { id: "flow-4", kind: "segment", appearance: "primary", from: { x: 4, y: 0, z: 0 }, to: { x: 4, y: (1000 * 10 * 0.04 * 20 * 0.7) / 1000, z: 4 } },
+      { id: "design", kind: "point", appearance: "answer", at: { x: 2, y: (1000 * 10 * 0.02 * 10 * 0.7) / 1000, z: 2 } },
+    ],
+    labels: [
+      { key: "power", objectId: "design", at: { x: 2, y: (1000 * 10 * 0.02 * 10 * 0.7) / 1000, z: 2 }, placement: "above" },
+      { key: "q", objectId: "head-0", at: { x: 4, y: 0, z: 0 }, placement: "right" },
+      { key: "h", objectId: "flow-0", at: { x: 0, y: 0, z: 4 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    power: <InlineMath math="1\,400\text{ W}" />,
+    q: <InlineMath math="Q" />,
+    h: <InlineMath math="h" />,
+  }}
+/>
+
+[Pengendali projek mikrohidro Kali Pedati](https://paitonenergy.com/en/energy-learning-house-program-for-climate-change-mitigation/) melaporkan kapasiti terpasang sebanyak <InlineMath math="7 \text{ kW}" />. Sekumpulan <InlineMath math="14" /> isi rumah mengurus sistem itu, dan pengendali yang sama melaporkan kira-kira <InlineMath math="500 \text{ W}" /> bagi setiap isi rumah. Semak sama ada angka-angka itu sepadan: <InlineMath math="14\times500 \text{ W}=7\,000 \text{ W}" />, iaitu <InlineMath math="7 \text{ kW}" />. Angka ini dibekalkan oleh pengendali projek. Pengukuran bebas jangka panjang tentang pengeluaran elektrik masih diperlukan untuk menilai prestasi sistem itu dari semasa ke semasa.
+
+Kehadiran air tidak menjamin elektrik. Semak sama ada aliran air cukup stabil, beza ketinggian cukup besar, turbin dilindungi daripada banjir, dan komuniti mampu menyelenggara sistem itu.
+
+## Penyelesaian Tenaga Merangkumi Seluruh Sistem
+
+Permintaan tenaga juga boleh dipenuhi dengan mengurangkan pembaziran. Kecekapan ialah nisbah **tenaga berguna kepada tenaga input**. Jika sesuatu alat lebih cekap, alat itu boleh memberikan pencahayaan, penyejukan, pengepaman atau perkhidmatan lain yang sama dengan tenaga input yang lebih sedikit.
+
+[Kecekapan tenaga](https://www.iea.org/energy-system/energy-efficiency-and-demand/energy-efficiency) boleh mengurangkan permintaan tenaga dan pelepasan.
+
+| Langkah | Soalan semakan |
+| :--- | :------------- |
+| Catat permintaan | Untuk apa tenaga digunakan dan bilakah tenaga paling diperlukan? |
+| Kurangkan pembaziran | Adakah lampu, motor, pam atau alat penyejuk berfungsi dengan cekap? |
+| Pilih sumber setempat | Adakah sumber itu tersedia pada musim dan waktu yang sesuai? |
+| Sediakan penyimpanan tenaga | Bolehkah sistem penyimpanan membekalkan tenaga apabila output sumber menurun? |
+| Selenggara peralatan | Siapa yang membersihkan, memeriksa dan membaiki sistem itu? |
+| Urus kesan | Adakah pelan itu mengambil kira kesan pada air, tanah, tahap bunyi bising, sisa dan penduduk berhampiran? |
+
+Pelan yang lengkap menggabungkan peralatan yang sesuai dengan lokasi, penggunaan yang cekap, rangkaian yang selamat, penyimpanan apabila perlu, penyelenggaraan berkala dan pengurusan kesan.
+
+## Empat Syarat untuk Akses Tenaga
+
+[Matlamat Pembangunan Mampan](https://sdgs.un.org/2030agenda) ialah agenda global yang dipersetujui oleh negara anggota Pertubuhan Bangsa-Bangsa Bersatu untuk meningkatkan kesejahteraan manusia dan melindungi alam sekitar. Agenda <InlineMath math="2030" /> mengandungi <InlineMath math="17" /> matlamat yang saling berkait.
+
+Memenuhi permintaan tenaga berkait secara langsung dengan SDG <InlineMath math="7" />, yang memberi tumpuan kepada **tenaga mampu milik dan bersih**.
+
+SDG <InlineMath math="7" /> bertujuan memastikan [akses kepada tenaga yang mampu milik, boleh diharap, mampan dan moden](https://sdgs.un.org/goals/goal7) untuk semua.
+
+Empat syarat ini boleh disemak dengan soalan. Bolehkah isi rumah dan perkhidmatan awam membayar tenaga itu sambil memenuhi keperluan asas yang lain? Adakah bekalan tenaga tersedia apabila diperlukan? Bolehkah sistem tenaga itu berterusan sambil melindungi manusia, ekosistem dan generasi akan datang? Adakah perkhidmatan tenaga itu selamat dan cukup berupaya untuk pencahayaan, komunikasi, kerja produktif dan penjagaan kesihatan?
+
+Beri skor kepada setiap pilihan berdasarkan empat soalan itu, dan bentuknya akan menunjukkan perbezaannya. Dalam skor contoh daripada 4 ini, grid mini suria dengan bateri meliputi kawasan carta yang lebih luas berbanding penjana diesel, terutamanya pada paksi mampan. Besarkan paparan pada setiap sudut.
+
+<MathVisual
+  title={<>Empat Soalan untuk Akses Tenaga</>}
+  description={<>Skor contoh daripada 4 bagi grid mini suria dengan bateri (hijau kebiruan) dan penjana diesel (merah jambu).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "axis-affordable", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "axis-reliable", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "axis-sustainable", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: -4 } },
+      { id: "axis-modern", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: -4, y: 0 } },
+      { id: "solar", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 3 }, { x: 3, y: 0 }, { x: 0, y: -4 }, { x: -4, y: 0 }] },
+      { id: "diesel", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 2 }, { x: 3, y: 0 }, { x: 0, y: -1 }, { x: -3, y: 0 }] },
+    ],
+    labels: [
+      { key: "affordable", objectId: "axis-affordable", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "reliable", objectId: "axis-reliable", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "sustainable", objectId: "axis-sustainable", at: { x: 0, y: -4 }, placement: "below" },
+      { key: "modern", objectId: "axis-modern", at: { x: -4, y: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    affordable: <>mampu milik</>,
+    reliable: <>boleh diharap</>,
+    sustainable: <>mampan</>,
+    modern: <>moden</>,
+  }}
+/>
+
+## Pelan Tenaga Setempat yang Boleh Diuji
+
+Bagi sebuah kampung kecil yang memerlukan elektrik untuk lampu pada waktu malam, pengecasan telefon, sebuah pam air kecil dan aktiviti belajar, mulakan dengan **keperluan dan keadaan setempat** itu. Ikut urutan di bawah.
+
+| Soalan di lapangan | Akibat kepada pelan |
+| :------------- | :------------- |
+| Beban elektrik manakah yang mesti dibekalkan dahulu? | Sistem mesti memperuntukkan tenaga yang terhad untuk beban itu sebelum kegunaan yang kurang diutamakan. |
+| Sumber setempat manakah yang tersedia apabila elektrik diperlukan? | Bekalan yang lebih tetap mengurangkan kapasiti penyimpanan atau sandaran yang diperlukan. |
+| Alat apakah yang menukar sumber setempat kepada elektrik? | Pelan itu mesti merangkumi turbin, penjana, panel suria atau peralatan lain yang diperlukan untuk penukaran itu. |
+| Siapa yang menyelenggara sistem itu? | Sistem yang kecil pun boleh rosak tanpa penyelenggaraan. |
+| Kesan apakah yang mesti dikurangkan? | Penyelesaian tenaga tetap perlu melindungi air, tanah dan penduduk berhampiran. |
+
+Pelan yang boleh diuji menyatakan permintaan mana yang mesti dipenuhi, sumber mana yang tersedia, alat mana yang menukar tenaga, kesan apa yang mesti dihadkan, dan siapa yang memastikan sistem itu terus berfungsi.

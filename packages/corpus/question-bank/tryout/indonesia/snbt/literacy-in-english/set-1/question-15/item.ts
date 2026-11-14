@@ -4,35 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "conclusion",
+    topic: "data-interpretation",
   },
-  stimulus: "campus-commute",
+  stimulus: "wind-curtailment",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Longer average trips always lead to a higher lateness rate.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Students who travel by car or motorbike are late more often than students who take the train.",
+            "Brackenmoor delivered more than twice as much energy to the grid as Fellside and Gullrock delivered together.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Lateness tends to rise with trip length, yet trip length alone cannot explain the bus-train gap.",
+            "Saltmarsh's small loss shows that the South line was never full during 2025.",
         },
         {
-          correct: false,
-          label: "Walking is the most common way of travelling to campus.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Students who cycle are late more often than students who travel by car or motorbike.",
+            "For each megawatt of installed capacity, Fellside had more energy curtailed than Brackenmoor did.",
+        },
+        {
+          column: 2,
+          label:
+            "Gullrock lost a larger share of the energy it could have produced than any North farm did.",
+        },
+        {
+          column: 1,
+          label:
+            "Had Brackenmoor lost the same share of its potential energy as Fellside, its curtailed energy would have exceeded that of the other three farms together.",
         },
       ],
     },
