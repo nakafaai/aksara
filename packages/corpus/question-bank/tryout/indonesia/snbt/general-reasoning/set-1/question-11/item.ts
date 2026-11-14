@@ -18,8 +18,7 @@ const item: ItemSource = {
         },
         {
           column: 2,
-          label:
-            "Tidak ada penerima kaus panitia yang mengikuti lomba debat.",
+          label: "Tidak ada penerima kaus panitia yang mengikuti lomba debat.",
         },
         {
           column: 2,
