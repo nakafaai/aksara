@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "reading",
-    topic: "explicit-information",
+    cognitiveLevel: "reasoning",
+    contentDomain: "writing",
+    topic: "effective-sentence",
   },
-  stimulus: "cassava-flour",
+  stimulus: "gambut",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "dikupas, lalu diiris tipis",
-        },
-        {
-          correct: false,
-          label: "diberi bakteri baik",
-        },
-        {
           correct: true,
-          label: "dikeringkan, digiling, lalu diayak",
+          label:
+            "Meskipun api di permukaan lahan sudah padam, mereka tetap menusukkan pipa berujung runcing ke dalam gambut, menyemprotkan air sampai lapisan bawahnya basah, dan memantau suhu gambut selama sedikitnya tiga hari.",
         },
         {
           correct: false,
-          label: "dicampur dengan sedikit terigu",
+          label:
+            "Api di permukaan lahan sudah padam, tetapi mereka tetap menusukkan pipa berujung runcing ke dalam gambut, menyemprotkan air sampai lapisan bawahnya basah, dan pemantauan suhu gambut selama sedikitnya tiga hari.",
         },
         {
           correct: false,
-          label: "dijemur sampai berbau singkong",
+          label:
+            "Meskipun api di permukaan lahan sudah padam, tetapi mereka tetap menusukkan pipa berujung runcing ke dalam gambut, menyemprotkan air sampai lapisan bawahnya basah, dan memantau suhu gambut selama sedikitnya tiga hari.",
+        },
+        {
+          correct: false,
+          label:
+            "Meskipun api di permukaan lahan sudah padam, mereka tetap menusukkan pipa berujung runcing ke dalam gambut, penyemprotan air sampai lapisan bawahnya basah, dan pemantauan suhu gambut selama sedikitnya tiga hari.",
+        },
+        {
+          correct: false,
+          label:
+            "Meskipun api di permukaan lahan sudah padam, namun mereka tetap menusukkan pipa berujung runcing ke dalam gambut, menyemprotkan air sampai lapisan bawahnya basah, dan memantau suhu gambut selama sedikitnya tiga hari.",
         },
       ],
     },

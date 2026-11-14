@@ -1,15 +1,30 @@
-Pernyataan itu berbentuk "setiap kios memenuhi <InlineMath math="p \lor q" />", dengan <InlineMath math="p" />: menerima pembayaran nontunai dan <InlineMath math="q" />: memasang daftar harga. Negasinya dibuat dalam **dua langkah**.
+Ingkaran adalah pernyataan yang selalu bernilai kebalikan dari pernyataan asal: kalau yang satu benar, yang lain salah. Soal ini menjebak karena bentuk ingkaran yang biasa kamu tulis tidak ada di pilihan. Jadi, kamu perlu **mencari kalimat yang artinya sama dengan ingkaran itu**, bukan yang bentuknya mirip.
 
-- Negasi dari "setiap" adalah "**ada**".
-- Negasi dari <InlineMath math="p \lor q" /> adalah <InlineMath math="\lnot p \land \lnot q" />, yaitu tidak menerima nontunai **dan** tidak memasang daftar harga.
+Pernyataan asal berkata bahwa ada paling sedikit satu peserta yang punya tiga ciri sekaligus.
 
-Jadi, negasinya adalah "Ada kios di Pasar Baru yang tidak menerima pembayaran nontunai dan tidak memasang daftar harga."
+- Ciri pertama: hadir sejak hari pertama.
+- Ciri kedua: mengumpulkan laporan praktik.
+- Ciri ketiga: tidak menerima sertifikat.
 
-Pilihan lain keliru:
+Ingkarannya: tidak ada satu pun peserta yang punya ketiga ciri itu bersamaan. Bentuk bakunya adalah "Setiap peserta yang hadir sejak hari pertama dan mengumpulkan laporan praktik menerima sertifikat." Bentuk itu tidak tersedia, jadi pakai cara uji ini: ingkaran yang benar hanya melarang satu kombinasi, yaitu hadir, mengumpulkan laporan, tetapi tanpa sertifikat. Kombinasi lain harus tetap boleh.
 
-- "Setiap kios" tidak menegasikan kuantor. Pernyataan itu jauh lebih kuat daripada negasi yang dibutuhkan.
-- Kata *atau* setelah negasi keliru. Negasi dari <InlineMath math="p \lor q" /> memakai *dan*.
-- "Tidak ada kios yang ..." berarti semua kios tidak memenuhi keduanya, sama kuatnya dengan pilihan pertama.
-- Kios yang menerima nontunai masih memenuhi pernyataan awal, jadi tidak membantahnya.
+Sekarang lihat kalimat "Setiap peserta yang hadir sejak hari pertama, tetapi tidak menerima sertifikat, tidak mengumpulkan laporan praktik." Ambil peserta yang hadir sejak hari pertama dan tidak menerima sertifikat. Kalimat ini memaksa peserta itu tidak mengumpulkan laporan. Artinya, kombinasi hadir, mengumpulkan laporan, tanpa sertifikat dilarang, dan tidak ada kombinasi lain yang ikut dilarang. Kalimat ini **melarang tepat satu kombinasi yang sama**, jadi artinya sama dengan ingkaran.
 
-Jadi, negasinya adalah ada kios di Pasar Baru yang tidak menerima pembayaran nontunai dan tidak memasang daftar harga.
+Tabel berikut memeriksa setiap pilihan dengan kombinasi yang dilarangnya. "Ya" berarti peserta punya ciri itu.
+
+| Isi pilihan | Kombinasi (hadir, laporan, sertifikat) yang dilarang | Sama dengan ingkaran? |
+| --- | --- | --- |
+| Tidak bersertifikat, maka tidak hadir dan tidak mengumpulkan laporan | (ya, ya, tidak), (ya, tidak, tidak), dan (tidak, ya, tidak) | Tidak, terlalu banyak yang dilarang |
+| Beberapa peserta tidak hadir atau tidak mengumpulkan laporan, tetapi bersertifikat | Tidak ada, kalimat ini hanya menyatakan bahwa peserta tertentu ada | Tidak |
+| Hadir tetapi tidak bersertifikat, maka tidak mengumpulkan laporan | (ya, ya, tidak) | Ya |
+| Hadir tetapi tidak mengumpulkan laporan, maka tidak bersertifikat | (ya, tidak, ya) | Tidak, kombinasinya berbeda |
+| Bersertifikat, maka hadir dan mengumpulkan laporan | (tidak, ya, ya), (ya, tidak, ya), dan (tidak, tidak, ya) | Tidak |
+
+Setiap pilihan yang salah punya jebakannya sendiri.
+
+- "Setiap peserta yang tidak menerima sertifikat tidak hadir dan tidak mengumpulkan laporan" lahir dari kontrapositif yang salah. Kontrapositif bentuk baku tadi adalah "tidak menerima sertifikat, maka tidak hadir **atau** tidak mengumpulkan laporan", karena ingkaran dari "hadir dan mengumpulkan" adalah "tidak hadir atau tidak mengumpulkan". Kata "dan" membuat pernyataan ini melarang juga peserta yang hadir, tidak mengumpulkan laporan, dan tidak bersertifikat, padahal ingkaran membolehkannya.
+- "Beberapa peserta yang tidak hadir atau tidak mengumpulkan laporan menerima sertifikat" mempertahankan kata "beberapa". Ingkaran dari kalimat "ada yang ..." selalu berbentuk "tidak ada yang ..." atau "setiap ...", tidak pernah "beberapa" lagi.
+- "Setiap peserta yang hadir tetapi tidak mengumpulkan laporan tidak menerima sertifikat" menukar posisi laporan dan sertifikat. Pernyataan ini melarang peserta yang hadir, tidak mengumpulkan laporan, tetapi bersertifikat, dan itu kombinasi yang berbeda.
+- "Setiap peserta yang menerima sertifikat hadir dan mengumpulkan laporan" adalah konvers, yaitu bentuk baku yang arahnya dibalik. Pernyataan ini berbicara tentang peserta bersertifikat, sedangkan ingkaran berbicara tentang peserta yang hadir dan mengumpulkan laporan.
+
+Jadi, ingkaran pernyataan itu adalah "Setiap peserta kursus tata boga yang hadir sejak hari pertama, tetapi tidak menerima sertifikat, tidak mengumpulkan laporan praktik."

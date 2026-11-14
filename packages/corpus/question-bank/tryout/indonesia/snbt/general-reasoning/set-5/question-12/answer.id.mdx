@@ -1,20 +1,28 @@
-Ketiga pernyataan pertama membentuk **rantai implikasi**:
+Soal ini terbalik dari soal premis biasa. Simpulannya sudah diberikan, dan kamu mencari premis keempat yang membuat simpulan itu sah. Caranya, **telusuri rantai dari ujung simpulan ke belakang**, temukan mata rantai yang putus, lalu cari pilihan yang menyambungnya.
 
-<BlockMath math="\text{pintu dibuka}\Rightarrow\text{debit naik}\Rightarrow\text{perahu tidak beroperasi}\Rightarrow\text{lapak ditutup}" />
+Beri lambang pada setiap kejadian supaya rantainya mudah dilihat.
 
-Pernyataan keempat menyatakan lapak **tidak** ditutup. Dengan modus tollens, kita menelusuri rantai dari belakang:
+- <InlineMath math="p" />: hujan deras turun pada hari final.
+- <InlineMath math="q" />: pertandingan final dipindahkan ke gedung olahraga.
+- <InlineMath math="r" />: jumlah penonton dibatasi <InlineMath math="300" /> orang.
+- <InlineMath math="s" />: siswa kelas X mendapat tiket.
+- <InlineMath math="t" />: siswa kelas X menonton pertandingan final secara langsung.
 
-- Lapak tidak ditutup, jadi perahu wisata **beroperasi**.
-- Perahu beroperasi, jadi debit sungai **tidak naik**.
-- Debit tidak naik, jadi pintu air **tidak dibuka**.
+Premis 1 adalah <InlineMath math="p \Rightarrow q" />. Premis 3 adalah <InlineMath math="r \Rightarrow \neg s" />. Premis 2 memakai kata "hanya jika". Kalimat "<InlineMath math="t" /> hanya jika <InlineMath math="s" />" berarti <InlineMath math="t \Rightarrow s" />: siswa bisa menonton langsung hanya kalau punya tiket. Simpulan yang diinginkan adalah <InlineMath math="p \Rightarrow \neg t" />.
 
-Jadi, perahu wisata beroperasi dan pintu air bendungan hulu tidak dibuka.
+Sekarang mundur dari <InlineMath math="\neg t" />. Kontrapositif premis 2, yaitu bentuk "jika tidak <InlineMath math="s" />, maka tidak <InlineMath math="t" />", nilainya sama dengan premis 2. Jadi <InlineMath math="\neg s \Rightarrow \neg t" />. Premis 3 memberi <InlineMath math="r \Rightarrow \neg s" />. Dari depan, premis 1 memberi <InlineMath math="p \Rightarrow q" />. Susun semuanya.
 
-Pilihan lain tidak sah:
+<BlockMath math="p \Rightarrow q \;\overset{?}{\Rightarrow}\; r \Rightarrow \neg s \Rightarrow \neg t" />
 
-- Debit tidak naik, jadi pilihan yang menyebut debit naik bertentangan dengan simpulan di atas.
-- Pintu air tidak dibuka, jadi pilihan yang menyebut pintu air dibuka juga bertentangan.
-- Perahu justru beroperasi.
-- Debit tidak naik, sehingga tidak ada kenaikan debit yang perlu dijelaskan penyebabnya.
+Mata rantai yang hilang adalah <InlineMath math="q \Rightarrow r" />: kalau pertandingan dipindahkan ke gedung olahraga, jumlah penonton dibatasi <InlineMath math="300" /> orang. Bentuk itu tidak muncul apa adanya di pilihan. Yang muncul adalah kontrapositifnya, <InlineMath math="\neg r \Rightarrow \neg q" />: jika jumlah penonton tidak dibatasi <InlineMath math="300" /> orang, pertandingan final tidak dipindahkan ke gedung olahraga. Karena kontrapositif selalu bernilai sama dengan pernyataan aslinya, pilihan ini **tepat menyambung rantai yang putus**.
 
-Jadi, simpulan yang sah adalah perahu wisata beroperasi dan pintu air bendungan hulu tidak dibuka.
+Untuk menguji pilihan yang lain, pakai satu keadaan contoh. Hujan deras turun, pertandingan dipindahkan ke gedung olahraga, jumlah penonton tidak dibatasi, siswa kelas X mendapat tiket, lalu mereka menonton langsung. Ketiga premis terpenuhi, tetapi simpulannya gagal, karena hujan turun dan siswa kelas X tetap menonton. Pilihan yang salah tidak melarang keadaan ini.
+
+- "Jika jumlah penonton dibatasi, pertandingan dipindahkan" adalah konvers mata rantai yang dibutuhkan, yaitu arahnya dibalik. Pada keadaan contoh, penonton tidak dibatasi, jadi pernyataan ini tidak dilanggar.
+- "Jika pertandingan tidak dipindahkan, penonton tidak dibatasi" adalah invers, yaitu kedua bagian dinegasikan tanpa ditukar. Pada keadaan contoh, pertandingan dipindahkan, jadi pernyataan ini juga tidak dilanggar.
+- "Jika siswa mendapat tiket, mereka menonton langsung" membalik arah premis 2. Pernyataan ini justru cocok dengan keadaan contoh.
+- "Jika siswa tidak mendapat tiket, pertandingan dipindahkan" menyambung bagian yang salah. Pada keadaan contoh, siswa mendapat tiket, jadi pernyataan ini tidak menuntut apa pun.
+
+Hanya kontrapositif tadi yang melarang keadaan contoh, sebab di sana penonton tidak dibatasi tetapi pertandingan dipindahkan.
+
+Jadi, premis keempat yang membuat simpulan itu sah adalah "Jika jumlah penonton tidak dibatasi <InlineMath math="300" /> orang, pertandingan final tidak dipindahkan ke gedung olahraga."

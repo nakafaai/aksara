@@ -4,32 +4,17 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "coding-pattern",
+    topic: "letter-pattern",
   },
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "ku, ne, dan ri",
-        },
-        {
-          correct: false,
-          label: "ta, wa, dan ri",
-        },
-        {
-          correct: true,
-          label: "ku, wa, dan ri",
-        },
-        {
-          correct: false,
-          label: "ku, wa, dan bi",
-        },
-        {
-          correct: false,
-          label: "lo, wa, dan ri",
-        },
+        { correct: false, label: "V dan L" },
+        { correct: false, label: "B dan J" },
+        { correct: false, label: "C dan I" },
+        { correct: false, label: "D dan J" },
+        { correct: true, label: "C dan J" },
       ],
     },
   },

@@ -3,35 +3,31 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "paragraph-meaning",
-    topic: "main-idea",
+    contentDomain: "sentence-meaning",
+    topic: "referent",
   },
-  stimulus: "puter",
+  stimulus: "rawa",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "Garam membuat campuran es menjadi jauh lebih dingin daripada es batu biasa.",
-        },
-        {
-          correct: false,
-          label: "Tabung es puter terbuat dari logam.",
-        },
-        {
-          correct: false,
-          label: "Es puter tradisional dibuat dari santan.",
-        },
-        {
-          correct: false,
-          label: "Serutan es lebih disukai daripada es puter.",
-        },
+        { correct: false, label: "tertahannya panas oleh metana di atmosfer" },
         {
           correct: true,
           label:
-            "Pengadukan membuat adonan membeku merata dan teksturnya lembut.",
+            "pengubahan sebagian hasil penguraian sisa tumbuhan menjadi metana oleh mikroba",
+        },
+        {
+          correct: false,
+          label: "penimbunan karbon di dalam tanah yang tergenang",
+        },
+        {
+          correct: false,
+          label: "penguraian sisa tumbuhan dalam keadaan tanpa oksigen",
+        },
+        {
+          correct: false,
+          label: "singkatnya waktu metana bertahan di atmosfer",
         },
       ],
     },

@@ -1,17 +1,27 @@
-Trace the rules **triggered** when Indra is chosen.
+A statement that's certainly true must hold in every team that meets all six rules. To knock out an option, one valid team that contradicts it is enough. To accept an option, you need a proof that covers every possibility.
 
-- Rule 5: Indra is chosen, so Joko is chosen.
-- Rule 3: Joko is chosen, so Kiki is not.
-- Rule 2: Indra is chosen, so Hana is not.
-- Rule 4: Hana is not chosen, so Lusi must be.
+Start with the option "If Gendis is chosen, Danu is chosen too." Suppose Gendis is chosen but Danu isn't. Follow the consequences one at a time.
 
-The team so far is Indra, Joko, and Lusi. The last place goes to Fani or Gilang. Fani is impossible, since Fani brings Gilang and the team would have five members. So the last place goes to **Gilang**.
+1. Gendis is chosen, so Fauzan can't be (rule 6).
+2. The team needs a chemistry member (rule 1). Danu and Fauzan are both out, so Elvira must be chosen.
+3. Elvira is chosen, so Bening can't be (rule 3).
+4. Bening isn't chosen, so Haikal can't be either. Rule 5 means Haikal may join only when Bening joins.
+5. Danu isn't chosen, so Arka can't be either. That's the contrapositive of rule 2. The contrapositive of "if <InlineMath math="p" />, then <InlineMath math="q" />" is "if not <InlineMath math="q" />, then not <InlineMath math="p" />", and it always has the same truth value as the original.
 
-The other options break a rule:
+Now count who's still allowed in. Arka, Bening, Danu, Fauzan and Haikal are crossed out. Only Cempaka, Elvira and Gendis remain, which is three people, but the team needs four. The assumption is impossible, so **every team with Gendis must also have Danu**.
 
-- Kiki is not allowed, since Joko must join Indra, and Joko cannot be with Kiki.
-- The team Indra, Fani, Gilang, and Joko has neither Hana nor Lusi, which breaks rule 4.
-- Hana cannot be with Indra.
-- The team Indra, Fani, Gilang, and Lusi has no Joko, which breaks rule 5.
+For the other four options, you only need one valid team that breaks each of them. These four teams meet all six rules. You can check each one the same way as above.
 
-So the other three athletes are Gilang, Joko, and Lusi.
+| Team name | Members |
+| --- | --- |
+| Team P | Bening, Cempaka, Fauzan, Haikal |
+| Team Q | Bening, Cempaka, Danu, Haikal |
+| Team R | Arka, Danu, Elvira, Gendis |
+| Team S | Arka, Bening, Danu, Gendis |
+
+- "Danu is chosen" fails in team P. Team P uses Fauzan as its chemistry member. That's allowed because Gendis isn't chosen, so rule 6 doesn't block Fauzan. You fall into this trap if you only try teams that include Gendis.
+- "If Danu is chosen, Gendis is chosen too" fails in team Q, which has Danu without Gendis. This statement reverses the one you just proved. A reversed statement like this is called the converse, and a converse isn't true just because the original is.
+- "At least one of Bening and Cempaka is chosen" fails in team R. Team R has only one biology member, Arka, and no rule forbids that.
+- "If Bening is chosen, Haikal is chosen too" fails in team S. Rule 5 makes Haikal depend on Bening, not Bening depend on Haikal.
+
+So the statement that's certainly true is that if Gendis is chosen, Danu is chosen too.

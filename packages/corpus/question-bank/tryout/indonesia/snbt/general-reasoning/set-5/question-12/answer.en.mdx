@@ -1,20 +1,28 @@
-The first three statements form a **chain of implications**:
+This question runs backwards compared with a usual premise question. The conclusion is already given, and you're looking for a fourth premise that makes it valid. The way in is to **trace the chain backwards from the end of the conclusion**, find the missing link, and then pick the option that fills it.
 
-<BlockMath math="\text{gate opened}\Rightarrow\text{flow rises}\Rightarrow\text{no tour boats}\Rightarrow\text{stalls closed}" />
+Give each event a symbol so the chain is easy to see.
 
-The fourth statement says the stalls are **not** closed. With modus tollens, trace the chain backwards:
+- <InlineMath math="p" />: heavy rain falls on the day of the final.
+- <InlineMath math="q" />: the final is moved to the sports hall.
+- <InlineMath math="r" />: the audience is limited to <InlineMath math="300" /> people.
+- <InlineMath math="s" />: the grade 10 students (*kelas X*) get tickets.
+- <InlineMath math="t" />: the grade 10 students watch the final live.
 
-- The stalls are not closed, so the tour boats **run**.
-- The boats run, so the river's flow **did not rise**.
-- The flow did not rise, so the sluice gate **was not opened**.
+Premise 1 is <InlineMath math="p \Rightarrow q" />. Premise 3 is <InlineMath math="r \Rightarrow \neg s" />. Premise 2 uses *hanya jika* ("only if"). The sentence "<InlineMath math="t" /> only if <InlineMath math="s" />" means <InlineMath math="t \Rightarrow s" />: the students can watch live only when they have tickets. The conclusion you want is <InlineMath math="p \Rightarrow \neg t" />.
 
-So the tour boats run and the upstream dam's sluice gate was not opened.
+Now walk back from <InlineMath math="\neg t" />. The contrapositive of premise 2, the form "if not <InlineMath math="s" />, then not <InlineMath math="t" />", always has the same truth value as premise 2. So <InlineMath math="\neg s \Rightarrow \neg t" />. Premise 3 gives <InlineMath math="r \Rightarrow \neg s" />. From the front, premise 1 gives <InlineMath math="p \Rightarrow q" />. Put it all together.
 
-The other options are not valid:
+<BlockMath math="p \Rightarrow q \;\overset{?}{\Rightarrow}\; r \Rightarrow \neg s \Rightarrow \neg t" />
 
-- The flow did not rise, so an option saying it rose contradicts the result above.
-- The gate was not opened, so an option saying it was opened contradicts it too.
-- The boats do run.
-- The flow did not rise, so there is no rise whose cause needs explaining.
+The missing link is <InlineMath math="q \Rightarrow r" />: if the final moves to the sports hall, the audience is limited to <InlineMath math="300" /> people. That exact form isn't among the options. What appears is its contrapositive, <InlineMath math="\neg r \Rightarrow \neg q" />: if the audience isn't limited to <InlineMath math="300" /> people, the final isn't moved to the sports hall. A contrapositive always has the same truth value as the original, so this option **fills exactly the gap in the chain**.
 
-So the valid conclusion is that the tour boats run and the upstream dam's sluice gate was not opened.
+To test the other options, use one sample situation. Heavy rain falls, the final moves to the sports hall, the audience isn't limited, the grade 10 students get tickets, and they watch live. All three premises hold, but the conclusion fails, because it rained and the students still watched. A wrong option doesn't rule this situation out.
+
+- "If the audience is limited, the final is moved" is the converse of the needed link, the same parts in the reverse direction. In the sample situation the audience isn't limited, so this statement isn't broken.
+- "If the final isn't moved, the audience isn't limited" is the inverse, both parts negated but not swapped. In the sample situation the final is moved, so this statement isn't broken either.
+- "If the students get tickets, they watch live" reverses premise 2. It actually fits the sample situation.
+- "If the students don't get tickets, the final is moved" links the wrong pieces. In the sample situation the students do get tickets, so this statement demands nothing.
+
+The correct option does rule out the sample situation, because the audience isn't limited and yet the final is moved.
+
+So the fourth premise that makes the conclusion valid is "If the audience isn't limited to <InlineMath math="300" /> people, the final isn't moved to the sports hall."

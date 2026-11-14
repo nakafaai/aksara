@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
     topic: "data-interpretation",
   },
-  stimulus: "sewa",
+  stimulus: "kuota",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -14,22 +14,23 @@ const item: ItemSource = {
       statements: [
         {
           column: 2,
-          label: "Banyak penyewaan seluruhnya sama pada keempat akhir pekan.",
+          label:
+            "Bagi pelanggan yang tidak pernah memakai internet pada jam malam, harga per GB kuota yang dapat dipakainya lebih murah pada Paket Sedang daripada pada Paket Besar.",
         },
         {
           column: 1,
           label:
-            "Pendapatan sewa pada akhir pekan ke-$$4$$ lebih dari $$30\\%$$ lebih tinggi daripada pendapatan pada akhir pekan ke-$$1$$.",
+            "Jika seluruh kuota dihitung, harga per GB Paket Malam kurang dari separuh harga per GB Paket Besar.",
         },
         {
           column: 1,
           label:
-            "Rata-rata penyewaan sepeda listrik per akhir pekan adalah $$51{,}25$$.",
+            "Bagian kuota malam dari seluruh kuota lebih besar pada Paket Sedang daripada pada Paket Besar.",
         },
         {
           column: 2,
           label:
-            "Selama empat akhir pekan, pendapatan dari sepeda biasa lebih besar daripada pendapatan dari sepeda listrik.",
+            "Dua Paket Sedang lebih murah daripada satu Paket Besar dan memberi kuota utama yang lebih banyak.",
         },
       ],
     },

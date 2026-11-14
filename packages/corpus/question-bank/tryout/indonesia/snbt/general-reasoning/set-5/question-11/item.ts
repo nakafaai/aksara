@@ -4,30 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "categorical-syllogism",
+    topic: "quantifiers",
   },
   versions: {
     id: {
-      columns: ["Ya", "Tidak"],
+      columns: ["Pasti benar", "Tidak pasti benar"],
       kind: "matrix",
       statements: [
         {
           column: 1,
           label:
-            "Tidak ada kurir zona utara yang mengantar paket dengan berat di atas $$20$$ kg.",
-        },
-        {
-          column: 1,
-          label: "Sebagian pekerja sif malam memakai motor listrik.",
-        },
-        {
-          column: 2,
-          label: "Semua pemakai motor listrik adalah kurir zona utara.",
+            "Tidak semua bibit yang diberi pupuk kompos adalah bibit tanaman buah.",
         },
         {
           column: 2,
           label:
-            "Sebagian kurir yang bekerja pada sif malam mengantar paket dengan berat di atas $$20$$ kg.",
+            "Jika sebuah bibit disemai di rumah kaca, bibit itu tidak dikirim ke Desa Sukamaju.",
+        },
+        {
+          column: 2,
+          label:
+            "Semua bibit yang berumur $$3$$ bulan atau lebih adalah bibit tanaman buah.",
+        },
+        {
+          column: 1,
+          label:
+            "Sebagian bibit yang berumur kurang dari $$3$$ bulan tidak dikirim ke Desa Sukamaju.",
         },
       ],
     },

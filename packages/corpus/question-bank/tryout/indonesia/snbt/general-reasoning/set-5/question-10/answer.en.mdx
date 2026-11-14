@@ -1,18 +1,21 @@
-Find each word's code by **comparing pairs of sentences that share a word**. The syllable that appears in both codes is the code of the shared word.
+Turn each letter into its position in the alphabet, from A <InlineMath math="=1" /> to Z <InlineMath math="=26" />. That makes the jumps easy to see. Also remember that the question asks for position <InlineMath math="7" />, so you have to step **twice**, not once.
 
-- *deras* (heavy) is in sentences one and two. The only syllable shared by *bi lo ta* and *ku lo ne* is *lo*, so *deras* = *lo*.
-- *hujan* (rain) is in sentences one and three. The only syllable shared by *bi lo ta* and *ta ri ku* is *ta*, so *hujan* = *ta*.
-- *sungai* (river) is in sentences two and three. The only syllable shared by *ku lo ne* and *ta ri ku* is *ku*, so *sungai* = *ku*.
-- *arus* (current) is in sentences two and four. The only syllable shared by *ku lo ne* and *wa ne* is *ne*, so *arus* = *ne*, and *tenang* (calm) = *wa*.
-- The syllable left in sentence three is *ri*, so *meluap* (overflow) = *ri*. The one left in sentence one is *bi*, so *turun* (fall) = *bi*.
+The top row moves forward with a jump that grows by one each time.
 
-The sentence *sungai tenang meluap* is written with **ku, wa, and ri**.
+<BlockMath math="2\xrightarrow{+2}4\xrightarrow{+3}7\xrightarrow{+4}11\xrightarrow{+5}16\xrightarrow{+6}22\xrightarrow{+7}29" />
 
-The other options are wrong:
+Number <InlineMath math="22" /> is V. Number <InlineMath math="29" /> has gone past Z, so subtract <InlineMath math="26" /> because the alphabet wraps around. That gives <InlineMath math="29-26=3" />, which is C.
 
-- *ne* is the code for *arus*, not *tenang*.
-- *ta* is the code for *hujan*, not *sungai*.
-- *bi* is the code for *turun*, not *meluap*.
-- *lo* is the code for *deras*, not *sungai*.
+The bottom row moves backward with a jump that alternates between <InlineMath math="3" /> and <InlineMath math="2" />.
 
-So the sentence is written with the syllables ku, wa, and ri.
+<BlockMath math="25\xrightarrow{-3}22\xrightarrow{-2}20\xrightarrow{-3}17\xrightarrow{-2}15\xrightarrow{-3}12\xrightarrow{-2}10" />
+
+Number <InlineMath math="12" /> is L, and number <InlineMath math="10" /> is J. So position <InlineMath math="6" /> holds V and L, while **position <InlineMath math="7" /> holds C and J**.
+
+Each wrong answer has a clear source.
+
+- V and L are what sits in position <InlineMath math="6" />. That's what you get if you stop one step too early.
+- B or D in the top row comes from miscounting as you pass Z, subtracting <InlineMath math="27" /> or <InlineMath math="25" /> when the alphabet has <InlineMath math="26" /> letters.
+- I in the bottom row comes from stepping back <InlineMath math="3" /> twice in a row, when the jumps alternate.
+
+So the letters in position <InlineMath math="7" /> are C in the top row and J in the bottom row.

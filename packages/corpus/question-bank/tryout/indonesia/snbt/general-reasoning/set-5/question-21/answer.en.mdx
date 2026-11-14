@@ -1,9 +1,23 @@
-The differences between terms are <InlineMath math="1, 1, 2, 3, 5" />. They are not constant, but **each difference is the sum of the two before it**: <InlineMath math="1+1=2" />, <InlineMath math="1+2=3" />, <InlineMath math="2+3=5" />. The next difference is <InlineMath math="3+5=8" />, so the next term is:
+Turn the letters you have into their numbers, then look at the jump from each letter to the next. Call the number of the first missing letter <InlineMath math="x" /> and the number of the last missing letter <InlineMath math="y" />.
 
-<BlockMath math="14+8=22" />
+<BlockMath math="26\xrightarrow{-1}25\xrightarrow{-3}22\xrightarrow{-2}20\longrightarrow x\longrightarrow13\xrightarrow{-5}8\longrightarrow y" />
 
-The same pattern shows in the terms themselves: from the third term on, each term is the sum of the two before it minus <InlineMath math="1" />.
+The jumps you can see are <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="2" />, then two unknown jumps, then <InlineMath math="5" />. They don't keep growing, so try separating **the odd-numbered jumps from the even-numbered jumps**.
 
-<BlockMath math="2+3-1=4,\quad 3+4-1=6,\quad 4+6-1=9,\quad 6+9-1=14,\quad 9+14-1=22" />
+- Jumps <InlineMath math="1" /> and <InlineMath math="3" /> in the list are <InlineMath math="1" /> and <InlineMath math="2" />. The pattern grows by one, so jump <InlineMath math="5" /> is <InlineMath math="3" /> and jump <InlineMath math="7" /> is <InlineMath math="4" />.
+- Jump <InlineMath math="2" /> in the list is <InlineMath math="3" />. If this pattern grows by one too, jump <InlineMath math="4" /> is <InlineMath math="4" /> and jump <InlineMath math="6" /> is <InlineMath math="5" />. Jump <InlineMath math="6" /> really is <InlineMath math="5" />, so the guess fits.
 
-Both ways give the same result. So the next number is <InlineMath math="22" />.
+Now fill in the missing letters.
+
+<BlockMath math="\begin{aligned}
+x&=20-4=16\\
+y&=8-4=4
+\end{aligned}" />
+
+Check with the letter M. From <InlineMath math="x=16" />, jump <InlineMath math="5" /> of size <InlineMath math="3" /> gives <InlineMath math="16-3=13" />, and number <InlineMath math="13" /> is indeed M. Number <InlineMath math="16" /> is P, and number <InlineMath math="4" /> is D.
+
+<BlockMath math="16+4=20" />
+
+You'd get <InlineMath math="21" /> by swapping the two missing jumps into <InlineMath math="3" /> then <InlineMath math="4" />, so <InlineMath math="x=17" />. Both orders land on M, so only the odd and even patterns above can settle the order.
+
+So the numbers of the two missing letters add up to <InlineMath math="20" />.

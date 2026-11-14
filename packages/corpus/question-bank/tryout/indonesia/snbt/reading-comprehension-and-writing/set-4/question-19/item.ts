@@ -2,36 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "reading",
-    topic: "sentence-relation",
+    topic: "inference",
   },
-  stimulus: "water-tank",
+  stimulus: "kopi",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Kalimat (5) membantah data bulan April pada tabel.",
-        },
-        {
-          correct: false,
-          label: "Kalimat (5) menyimpulkan bahwa tandon tidak berguna.",
-        },
-        {
-          correct: false,
-          label: "Kalimat (5) memberi contoh rumah yang tidak memakai tandon.",
+          label:
+            "Semua kulit dari buah yang dipetik ketika sudah merah penuh diolah menjadi _cascara_.",
         },
         {
           correct: false,
           label:
-            "Kalimat (5) menjelaskan penyebab turunnya pemakaian air rumah tanpa tandon.",
+            "Kulit yang dijadikan kompos pasti berasal dari buah yang belum merah penuh.",
+        },
+        {
+          correct: false,
+          label: "Minuman _cascara_ dari desa itu tidak pernah terasa sepat.",
+        },
+        {
+          correct: false,
+          label:
+            "Kulit yang tiba di para-para kurang dari enam jam setelah buahnya dikupas pasti diolah menjadi _cascara_.",
         },
         {
           correct: true,
           label:
-            "Kalimat (5) menjelaskan penyebab naiknya pemakaian air rumah dengan tandon pada bulan April.",
+            "Kulit dari buah merah penuh yang baru tiba di para-para sepuluh jam setelah buahnya dikupas dijadikan kompos.",
         },
       ],
     },

@@ -1,9 +1,29 @@
-Eine Zahl mit Rest <InlineMath math="2" /> bei Division durch <InlineMath math="5" /> endet auf <InlineMath math="2" /> oder <InlineMath math="7" />. Liste die Zahlen zwischen <InlineMath math="100" /> und <InlineMath math="150" /> auf, die **bei Division durch** <InlineMath math="7" /> **den Rest** <InlineMath math="3" /> lassen, und wähle die mit Endziffer <InlineMath math="2" /> oder <InlineMath math="7" />:
+Der Monat zerfällt in zwei Hälften, und Gutschein P gilt nur eine Hälfte lang. Es reicht also nicht, den niedrigsten Preis pro kg zu suchen. Du musst prüfen, **wie viele kg eines Gutscheins wirklich genutzt werden**, und zwar in jeder Hälfte.
 
-<BlockMath math="101,\ 108,\ 115,\ 122,\ 129,\ 136,\ 143" />
+Gutschein P kostet <InlineMath math="48{.}000:10=4{.}800" /> Rupiah pro kg, Gutschein Q kostet <InlineMath math="130{.}000:25=5{.}200" /> Rupiah pro kg, und der normale Preis ist <InlineMath math="6{.}000" /> Rupiah. Gutschein P ist am billigsten, solange er aufgebraucht wird.
 
-Nur <InlineMath math="122" /> endet auf <InlineMath math="2" /> oder <InlineMath math="7" />. Probe:
+Fang mit den Plänen ohne Gutschein Q an, in tausend Rupiah.
 
-<BlockMath math="122=24\times5+2,\qquad 122=17\times7+3" />
+| Monatshälfte | Bezahlung | Kosten |
+| --- | --- | :---: |
+| Tag <InlineMath math="1" /> bis <InlineMath math="15" />, <InlineMath math="14" /> kg | <InlineMath math="1" /> Gutschein P und <InlineMath math="4" /> kg zum normalen Preis | <InlineMath math="48+4\cdot6=72" /> |
+| Tag <InlineMath math="1" /> bis <InlineMath math="15" />, <InlineMath math="14" /> kg | <InlineMath math="2" /> Gutscheine P, <InlineMath math="6" /> kg verfallen | <InlineMath math="96" /> |
+| Tag <InlineMath math="16" /> bis <InlineMath math="30" />, <InlineMath math="20" /> kg | <InlineMath math="2" /> Gutscheine P, genau aufgebraucht | <InlineMath math="96" /> |
+| Tag <InlineMath math="16" /> bis <InlineMath math="30" />, <InlineMath math="20" /> kg | <InlineMath math="1" /> Gutschein P und <InlineMath math="10" /> kg zum normalen Preis | <InlineMath math="48+60=108" /> |
 
-Weitere Zahlen mit beiden Resten liegen <InlineMath math="5\times7=35" /> auseinander, nämlich <InlineMath math="87" /> und <InlineMath math="157" />, und beide liegen außerhalb des Bereichs. Andi hat also <InlineMath math="122" /> Murmeln.
+Die billigste Wahl in jeder Hälfte ergibt diese Summe.
+
+<BlockMath math="72+96=168" />
+
+Vergleich das jetzt mit den Plänen mit Gutschein Q. Ein Gutschein Q vom <InlineMath math="1." /> Tag deckt <InlineMath math="25" /> der <InlineMath math="14+20=34" /> kg, in der zweiten Hälfte bleiben <InlineMath math="9" /> kg übrig.
+
+<BlockMath math="\begin{aligned}
+\text{Q und 1 Gutschein P}&=130+48=178\\
+\text{Q und 9 kg zum normalen Preis}&=130+9\cdot6=184
+\end{aligned}" />
+
+Beides ist teurer als <InlineMath math="168" />. Auch die anderen Pläne verlieren: Vier Gutscheine P kosten <InlineMath math="4\cdot48=192" />, und ganz ohne Gutschein kostet es <InlineMath math="34\cdot6=204" />.
+
+Es gibt zwei Fallen. Der große Gutschein wirkt sparsam, kostet pro kg aber mehr als Gutschein P. Und Gutschein P lohnt sich nicht immer, denn in der ersten Hälfte würde ein zweiter nur für <InlineMath math="4" /> kg genutzt.
+
+Die niedrigsten Kosten sind also <InlineMath math="\text{Rp}168{.}000" />.

@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "strengthening",
+    topic: "weakening",
   },
-  stimulus: "rumpon",
+  stimulus: "tongkol",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Harga ikan di pasar kabupaten itu tidak berubah selama enam bulan setelah rumpon dipasang.",
+            "Pada kedua musim, TPI desa itu tidak menerima tongkol dari nelayan desa lain.",
         },
         {
           correct: false,
           label:
-            "Sebagian besar ikan dari sekitar rumpon adalah jenis yang sebelumnya tidak pernah tertangkap di perairan kabupaten itu.",
+            "Tongkol yang ditangkap di sekitar rumpon rata-rata lebih kecil daripada tongkol dari perairan dekat pantai, dan tongkol kecil dihargai lebih murah.",
+        },
+        {
+          correct: false,
+          label:
+            "Seluruh tongkol yang dijual kelompok itu di TPI desa naik dari $$320$$ ton pada musim 2024 menjadi $$376$$ ton pada musim 2025.",
+        },
+        {
+          correct: false,
+          label:
+            "Banyak pembeli yang datang ke TPI desa itu pada musim 2025 sama dengan pada musim 2024.",
         },
         {
           correct: true,
           label:
-            "Hasil tangkapan per melaut di perairan yang jauh dari rumpon turun dibandingkan periode yang sama tahun sebelumnya.",
-        },
-        {
-          correct: false,
-          label:
-            "Daun kelapa pada rumpon perlu diganti setiap tiga bulan agar tetap menarik ikan.",
-        },
-        {
-          correct: false,
-          label:
-            "Rumpon di ketiga titik itu dipasang pada kedalaman laut yang berbeda-beda.",
+            "Pada musim 2025, harga tongkol juga turun sekitar seperempat di TPI desa-desa pesisir lain yang nelayannya tidak memakai rumpon dan tidak menerima tongkol dari kelompok itu.",
         },
       ],
     },

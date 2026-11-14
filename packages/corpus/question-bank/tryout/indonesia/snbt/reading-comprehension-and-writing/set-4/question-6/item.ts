@@ -2,36 +2,36 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "reading",
-    topic: "author-purpose",
+    topic: "referent",
   },
-  stimulus: "cassava-flour",
+  stimulus: "gambut",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "mengajak pembaca berhenti memakai tepung terigu",
-        },
-        {
-          correct: false,
-          label: "membandingkan harga tepung terigu dari tahun ke tahun",
-        },
-        {
-          correct: false,
-          label: "membuktikan bahwa kue dari tepung singkong lebih enak",
+          label: "$$12$$ pemilik kebun yang menolak paritnya disekat",
         },
         {
           correct: true,
           label:
-            "menjelaskan cara membuat tepung singkong fermentasi dan alasan pembuat kue memakainya",
+            "$$6$$ pemilik kebun yang berubah pikiran setelah melihat lahan di sekitar sekat tidak terbakar",
+        },
+        {
+          correct: false,
+          label: "$$8$$ pemilik kebun yang sejak awal setuju paritnya disekat",
         },
         {
           correct: false,
           label:
-            "melaporkan hasil penelitian tentang bakteri baik pada singkong",
+            "$$10$$ pemilik kebun, yaitu separuh dari semua pemilik kebun di tepi hutan",
+        },
+        {
+          correct: false,
+          label: "$$14$$ pemilik kebun yang kini setuju paritnya disekat",
         },
       ],
     },

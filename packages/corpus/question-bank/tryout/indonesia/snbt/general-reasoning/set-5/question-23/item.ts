@@ -2,35 +2,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
     topic: "data-interpretation",
   },
-  stimulus: "sewa",
+  stimulus: "kuota",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$46{,}7\\%$$",
-        },
-        {
-          correct: true,
-          label: "$$70\\%$$",
-        },
-        {
-          correct: false,
-          label: "$$72{,}5\\%$$",
-        },
-        {
-          correct: false,
-          label: "$$75\\%$$",
-        },
-        {
-          correct: false,
-          label: "$$80\\%$$",
-        },
+        { correct: false, label: "$$27$$ GB" },
+        { correct: true, label: "$$29$$ GB" },
+        { correct: false, label: "$$30$$ GB" },
+        { correct: false, label: "$$33$$ GB" },
+        { correct: false, label: "$$45$$ GB" },
       ],
     },
   },

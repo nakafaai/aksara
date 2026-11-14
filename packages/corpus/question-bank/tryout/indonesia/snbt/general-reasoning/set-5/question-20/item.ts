@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "ranking",
+    topic: "ordering",
   },
   versions: {
     id: {
@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Sita adalah yang termuda di antara kelima bersaudara itu.",
+          label: "Satria tiba paling awal.",
         },
         {
           correct: false,
-          label: "Tomi lebih tua daripada Umi.",
-        },
-        {
-          correct: false,
-          label: "Selisih usia Rara dan Vino adalah $$6$$ tahun.",
-        },
-        {
-          correct: false,
-          label: "Umi $$2$$ tahun lebih tua daripada Sita.",
+          label: "Olivia tiba sebelum Tiara.",
         },
         {
           correct: true,
-          label: "Selisih usia Umi dan Vino adalah $$6$$ tahun.",
+          label: "Olivia tiba sebelum Ratri.",
+        },
+        {
+          correct: false,
+          label: "Ratri tiba pada urutan keempat.",
+        },
+        {
+          correct: false,
+          label: "Naufal tiba sebelum Pandu.",
         },
       ],
     },

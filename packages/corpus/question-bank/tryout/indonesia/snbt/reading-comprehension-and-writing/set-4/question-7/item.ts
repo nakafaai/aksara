@@ -2,34 +2,30 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "writing",
-    topic: "conjunction",
+    topic: "revision",
   },
-  stimulus: "cassava-flour",
+  stimulus: "gambut",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Tepat", "Tidak tepat"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "Karena",
+          column: 1,
+          label:
+            "Pada kalimat (8), _baru mereka akan tinggalkan_ diubah menjadi _baru akan mereka tinggalkan_.",
+        },
+        { column: 1, label: "Pada kalimat (9), kata _saling_ dihapus." },
+        {
+          column: 2,
+          label:
+            "Pada kalimat (9), kata _para_ dihapus karena kata _relawan_ sudah bermakna jamak.",
         },
         {
-          correct: false,
-          label: "Meskipun",
-        },
-        {
-          correct: false,
-          label: "Sehingga",
-        },
-        {
-          correct: false,
-          label: "Bahkan",
-        },
-        {
-          correct: false,
-          label: "Agar",
+          column: 2,
+          label: "Pada kalimat (11), kata _daripada_ diganti dengan _dari_.",
         },
       ],
     },

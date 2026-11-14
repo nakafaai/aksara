@@ -3,39 +3,25 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "paragraph-meaning",
-    topic: "paragraph-relation",
+    contentDomain: "vocabulary",
+    topic: "affix-meaning",
   },
-  stimulus: "rempah",
+  stimulus: "purnama",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "Paragraf pertama dan kedua membandingkan cengkih dengan pala.",
-        },
-        {
-          correct: false,
-          label:
-            "Paragraf kedua membantah keterangan harga pada paragraf pertama.",
-        },
-        {
-          correct: false,
-          label:
-            "Paragraf pertama berisi contoh-contoh perdagangan rempah, sedangkan paragraf kedua berisi definisi tentang rempah dan cara menanamnya di luar Maluku.",
-        },
-        {
-          correct: false,
-          label:
-            "Kedua paragraf menceritakan riwayat hidup seorang pedagang rempah.",
-        },
+        { correct: false, label: "Kemeja itu _kebesaran_ untuk adikku." },
         {
           correct: true,
-          label:
-            "Paragraf pertama menjelaskan kelangkaan dan mahalnya rempah, sedangkan paragraf kedua menjelaskan akibat yang ditimbulkannya.",
+          label: "Daun yang mulai layu itu tampak _kekuningan_.",
         },
+        { correct: false, label: "Para pendaki _kemalaman_ di lereng gunung." },
+        {
+          correct: false,
+          label: "_Kemerahan_ pada kulitnya hilang setelah diolesi salep.",
+        },
+        { correct: false, label: "Ia _kehilangan_ dompet di pasar." },
       ],
     },
   },

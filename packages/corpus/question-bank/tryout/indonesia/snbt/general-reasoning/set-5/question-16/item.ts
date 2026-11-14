@@ -6,27 +6,27 @@ const item: ItemSource = {
     contentDomain: "deductive-reasoning",
     topic: "selection",
   },
-  stimulus: "estafet",
+  stimulus: "sains",
   versions: {
     id: {
-      columns: ["Mungkin", "Tidak mungkin"],
+      columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
           column: 1,
-          label: "Tim terdiri atas Fani, Gilang, Kiki, dan Lusi.",
+          label: "Tepat satu dari Arka dan Haikal dipilih.",
         },
         {
           column: 2,
-          label: "Tim terdiri atas Gilang, Hana, Joko, dan Kiki.",
+          label: "Gendis dipilih.",
         },
         {
           column: 2,
-          label: "Tim terdiri atas Fani, Hana, Joko, dan Lusi.",
+          label: "Bening dipilih.",
         },
         {
           column: 1,
-          label: "Tim terdiri atas Gilang, Hana, Kiki, dan Lusi.",
+          label: "Jika Elvira dipilih, Arka juga dipilih.",
         },
       ],
     },

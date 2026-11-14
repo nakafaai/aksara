@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "reading",
-    topic: "explicit-information",
+    topic: "assumption",
   },
-  stimulus: "rain-gauge",
+  stimulus: "peron",
   versions: {
     id: {
       kind: "choice",
@@ -14,25 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Lapangan tergenang setiap curah hujan lebih dari 20 milimeter.",
-        },
-        {
-          correct: false,
-          label:
-            "Sekolah langsung memperbesar saluran air di sekitar lapangan.",
+            "Sebagian besar peminjam mengembalikan buku di rak stasiun tempat mereka mengambilnya.",
         },
         {
           correct: true,
           label:
-            "Lapangan tetap kering walaupun curah hujan mencapai 25 milimeter.",
+            "Buku milik penumpang yang ditaruh di rak tidak menutupi kekurangan akibat buku pinjaman yang tidak kembali.",
         },
         {
           correct: false,
-          label: "Upacara dipindahkan ke tempat yang tidak tergenang.",
+          label:
+            "Buku yang dikembalikan umumnya sudah dibaca sampai tamat oleh peminjamnya.",
         },
         {
           correct: false,
-          label: "Siswa berhenti mencatat tinggi air hujan.",
+          label:
+            "Buku yang sedang dipinjam pada Jumat malam sudah kembali ke rak sebelum penghitungan dimulai.",
+        },
+        {
+          correct: false,
+          label:
+            "Penumpang yang menaruh buku miliknya di rak tidak mengambil buku itu kembali selama enam bulan itu.",
         },
       ],
     },

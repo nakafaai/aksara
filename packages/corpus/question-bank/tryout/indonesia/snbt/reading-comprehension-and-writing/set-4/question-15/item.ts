@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "reading",
-    topic: "title",
+    topic: "author-purpose",
   },
-  stimulus: "rain-gauge",
+  stimulus: "peron",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Musim Hujan di Lembang",
+          label:
+            "membantah simpulan pengelola bahwa hampir semua peminjam mengembalikan buku yang mereka ambil",
         },
         {
           correct: true,
           label:
-            "Penakar Hujan Siswa Mengungkap Penyebab Genangan di Lapangan Sekolah",
+            "membatasi apa yang dapat disimpulkan dari hitungan itu, sebab buku yang kembali belum tentu dibaca, padahal membaca adalah tujuan gerakan itu",
         },
         {
           correct: false,
-          label: "Cara Membuat Penakar Hujan dari Botol Bekas",
+          label:
+            "menunjukkan bahwa gerakan itu gagal membuat penumpang membaca selama menunggu kereta",
         },
         {
           correct: false,
-          label: "Biaya Memperbesar Saluran Air Sekolah",
+          label:
+            "menjelaskan mengapa jumlah buku setiap Jumat tidak pernah kurang dari $$95\\%$$ jumlah awal",
         },
         {
           correct: false,
-          label: "Upacara Sekolah yang Sering Dibatalkan",
+          label:
+            "mengusulkan agar kartu pinjam diganti dengan cara pencatatan yang lebih teliti",
         },
       ],
     },

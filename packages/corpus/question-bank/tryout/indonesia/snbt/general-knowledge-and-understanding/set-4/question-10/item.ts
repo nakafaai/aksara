@@ -3,32 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "paragraph-meaning",
-    topic: "cause",
+    contentDomain: "vocabulary",
+    topic: "polysemy",
   },
-  stimulus: "rempah",
+  stimulus: "purnama",
   versions: {
     id: {
-      columns: ["Ya", "Tidak"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Cengkih dan pala hanya dihasilkan di Maluku.",
-        },
-        {
-          column: 1,
+          correct: true,
           label:
-            "Rempah berpindah melalui banyak pedagang sebelum sampai ke Eropa.",
+            "Petugas _membaca_ angka pada meteran listrik setiap awal bulan.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Bibit cengkih dan pala ditanam di wilayah lain di luar Maluku.",
+            "Nelayan tua itu _membaca_ arah angin dari gerak awan di kaki langit.",
         },
         {
-          column: 2,
-          label: "Bangsa Eropa berusaha memotong peran para perantara.",
+          correct: false,
+          label:
+            "Dokter itu _membaca_ kelelahan pasiennya dari cara pasien itu berjalan.",
+        },
+        {
+          correct: false,
+          label:
+            "Petani _membaca_ datangnya musim hujan dari kemunculan rasi bintang tertentu.",
+        },
+        {
+          correct: false,
+          label:
+            "Pemain catur itu _membaca_ rencana lawannya dari tiga langkah pembukaannya.",
         },
       ],
     },

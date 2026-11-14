@@ -3,38 +3,25 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "reading",
-    topic: "argument-evaluation",
+    contentDomain: "writing",
+    topic: "word-choice",
   },
-  stimulus: "rain-gauge",
+  stimulus: "peron",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Biaya membersihkan saluran setiap minggu lebih mahal daripada biaya memperbesar saluran.",
+          label: "kata _menghitung_ diganti dengan _mencatat_",
         },
+        { correct: false, label: "kata _kelima_ diganti dengan _setiap_" },
         {
           correct: false,
-          label:
-            "Lapangan sekolah lain di Lembang juga sering tergenang pada musim hujan.",
+          label: "kata _bergiliran_ diganti dengan _bergantian_",
         },
-        {
-          correct: false,
-          label:
-            "Siswa kelompok ilmiah remaja juga mencatat suhu udara setiap pagi.",
-        },
-        {
-          correct: true,
-          label:
-            "Selama tiga minggu saluran dibersihkan rutin, lapangan tidak pernah tergenang walaupun hujan deras turun.",
-        },
-        {
-          correct: false,
-          label: "Sebagian guru lebih suka upacara diadakan di dalam aula.",
-        },
+        { correct: false, label: "kata _terhitung_ diganti dengan _terbaca_" },
+        { correct: true, label: "kata _bergiliran_ diganti dengan _serentak_" },
       ],
     },
   },

@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "paragraph-meaning",
-    topic: "detail",
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "paraphrase",
   },
-  stimulus: "hoaks",
+  stimulus: "pusaka",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "Tampilan situs yang meyakinkan sudah cukup untuk memastikan sebuah berita benar.",
+            "Harta pusaka tinggi, seperti sawah, ladang, dan rumah gadang, diwariskan melalui garis perempuan sehingga menjadi milik anak perempuan yang menerimanya dan tidak boleh dijual sesuka hati.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Judul yang memancing emosi mendorong orang membagikan berita sebelum membacanya.",
+            "Harta pusaka tinggi, seperti sawah, ladang, dan rumah gadang, diturunkan dari ibu kepada anak perempuannya, tetapi tetap dimiliki bersama oleh kaum sehingga tidak boleh dijual sama sekali.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Membaca secara lateral selalu lebih lambat daripada membaca berita sampai habis.",
+            "Walaupun dimiliki bersama oleh kaum, harta pusaka tinggi seperti sawah, ladang, dan rumah gadang boleh dijual oleh anak perempuan yang mewarisinya.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Berita lama dapat disebarkan ulang seolah-olah peristiwa baru.",
+            "Semua harta keluarga Minangkabau, seperti sawah, ladang, dan rumah gadang, diturunkan dari ibu kepada anak perempuannya sebagai milik bersama kaum yang tidak boleh dijual sesuka hati.",
+        },
+        {
+          correct: true,
+          label:
+            "Walaupun diturunkan dari ibu kepada anak perempuannya, harta pusaka tinggi seperti sawah, ladang, dan rumah gadang tetap merupakan milik bersama kaum yang tidak dapat dijual semaunya.",
         },
       ],
     },

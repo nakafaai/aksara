@@ -2,33 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "paragraph-meaning",
-    topic: "detail",
+    topic: "paragraph-relation",
   },
-  stimulus: "awan",
+  stimulus: "garam",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Hujan buatan dapat dibuat walaupun langit benar-benar cerah.",
-        },
-        {
-          column: 1,
-          label: "Garam membantu uap air membentuk tetes yang lebih besar.",
-        },
-        {
-          column: 1,
+          correct: false,
           label:
-            "Penyemaian awan dapat dipakai untuk mengurangi hujan yang menumpuk di atas kota.",
+            "Paragraf ketiga memberi contoh cara kerja garam yang diuraikan pada paragraf kedua.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Hasil penyemaian paling mudah dipastikan pada musim kemarau panjang.",
+            "Paragraf ketiga membantah uraian paragraf kedua bahwa garam mengurangi air bebas di dalam daging.",
+        },
+        {
+          correct: false,
+          label:
+            "Paragraf ketiga merinci tahap yang berlangsung setelah proses pada paragraf kedua selesai.",
+        },
+        {
+          correct: true,
+          label:
+            "Paragraf ketiga membatasi simpulan paragraf kedua dengan menunjukkan bahwa garam tidak menyingkirkan semua mikroba.",
+        },
+        {
+          correct: false,
+          label:
+            "Paragraf ketiga menguraikan syarat yang harus dipenuhi agar proses pada paragraf kedua dapat terjadi.",
         },
       ],
     },

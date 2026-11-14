@@ -3,36 +3,22 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "reading",
-    topic: "inference",
+    contentDomain: "writing",
+    topic: "word-choice",
   },
-  stimulus: "mangrove-nursery",
+  stimulus: "kecapi",
   versions: {
     id: {
       kind: "choice",
       options: [
+        { correct: true, label: "kata _seluruh_ diganti dengan _semua_" },
+        { correct: false, label: "kata _dapat_ diganti dengan _akan_" },
         {
           correct: false,
-          label: "Bibit bakau tumbuh lebih cepat karena tidak terhalang pagar.",
+          label: "kata _sekaligus_ diganti dengan _berturut-turut_",
         },
-        {
-          correct: false,
-          label: "Abrasi di Desa Pasir Putih langsung berhenti.",
-        },
-        {
-          correct: true,
-          label:
-            "Sebagian bibit dapat hanyut tersapu ombak sebelum akarnya kuat.",
-        },
-        {
-          correct: false,
-          label:
-            "Kepiting dan ikan kecil tidak mau tinggal di sela-sela akar bakau.",
-        },
-        {
-          correct: false,
-          label: "Para nelayan tidak perlu lagi menyemai buah bakau.",
-        },
+        { correct: false, label: "kata _merusak_ diganti dengan _menyerang_" },
+        { correct: false, label: "kata _jika_ diganti dengan _karena_" },
       ],
     },
   },
