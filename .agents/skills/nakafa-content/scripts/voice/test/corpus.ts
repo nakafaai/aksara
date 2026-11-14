@@ -15,11 +15,9 @@ export function corpusParts(root: string, depth: number): string[] {
     readdirSync(root, { withFileTypes: true }),
     (entry) => entry.isDirectory()
   );
-  return Arr.flatMap(
-    Arr.sort(
-      Arr.map(children, (entry) => entry.name),
-      Order.string
-    ),
-    (name) => corpusParts(join(root, name), depth - 1)
+  const names = Arr.sort(
+    Arr.map(children, (entry): string => entry.name),
+    Order.String
   );
+  return Arr.flatMap(names, (name) => corpusParts(join(root, name), depth - 1));
 }
