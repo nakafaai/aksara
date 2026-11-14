@@ -32,7 +32,7 @@ Setiap kenaikan pangkat menggandakan batangnya: <InlineMath math="2^0 = 1" />, <
 
 <BarChart
   title={<>Perpangkatan dua</>}
-  description={<>Batang <InlineMath math="2^n" /> untuk <InlineMath math="n = 0" /> sampai 5.</>}
+  description={<>Batang <InlineMath math="2^n" /> untuk <InlineMath math="n = 0" /> sampai <InlineMath math="5" />.</>}
   yAxisLabel="Nilai"
   data={[0, 1, 2, 3, 4, 5].map((x) => ({ name: String(x), value: 2 ** x }))}
   chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -75,11 +75,11 @@ Alasannya, <InlineMath math="a^n a^{-n}=a^0=1" />. Jadi, pangkat negatif menyata
 
 <InlineMath math="3^{-2}=\frac{1}{3^2}=\frac{1}{9}=0{,}111\ldots" />.
 
-Pangkat negatif meneruskan pola ke kiri: setiap langkah membagi dengan 3, jadi <InlineMath math="3^0 = 1" />, <InlineMath math="3^{-1} = \tfrac13" />, dan <InlineMath math="3^{-2} = \tfrac19" />. Nilainya mengecil menuju 0 tetapi tetap positif.
+Pangkat negatif meneruskan pola ke kiri: setiap langkah membagi dengan <InlineMath math="3" />, jadi <InlineMath math="3^0 = 1" />, <InlineMath math="3^{-1} = \tfrac13" />, dan <InlineMath math="3^{-2} = \tfrac19" />. Nilainya mengecil menuju <InlineMath math="0" /> tetapi tetap positif.
 
 <BarChart
-  title={<>Perpangkatan 3 dari <InlineMath math="3^{-2}" /> sampai <InlineMath math="3^2" /></>}
-  description={<>Batang <InlineMath math="3^n" /> untuk <InlineMath math="n = -2" /> sampai 2.</>}
+  title={<>Perpangkatan <InlineMath math="3" /> dari <InlineMath math="3^{-2}" /> sampai <InlineMath math="3^2" /></>}
+  description={<>Batang <InlineMath math="3^n" /> untuk <InlineMath math="n = -2" /> sampai <InlineMath math="2" />.</>}
   yAxisLabel="Nilai"
   data={[-2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: 3 ** x }))}
   chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
