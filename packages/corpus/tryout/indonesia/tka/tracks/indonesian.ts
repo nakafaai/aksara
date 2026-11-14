@@ -1,4 +1,5 @@
 import { Array as Arr } from "effect";
+import { indonesianRatings } from "#corpus/tryout/indonesia/tka/ratings";
 import type { TrackSourceInput } from "#corpus/tryout/schema";
 
 /** Active official-format TKA Bahasa Indonesia sets. */
@@ -35,11 +36,13 @@ export const tkaIndonesianTrack = {
     en: "indonesian",
     id: "bahasa-indonesia",
   },
-  sets: Arr.map([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], (setNumber) => {
+  sets: Arr.map(indonesianRatings, (rating, index) => {
+    const setNumber = index + 1;
     const setKey = `set-${setNumber}`;
     return {
       key: setKey,
       order: setNumber,
+      rating,
       routeSlugs: {
         de: `aufgabensatz-${setNumber}`,
         en: setKey,
