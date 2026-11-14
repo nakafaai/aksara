@@ -130,6 +130,7 @@ function joinTuples(text: string, matches: NumberMatch[]): NumberMatch[] {
   for (const tuple of text.matchAll(TUPLE_PATTERN)) {
     const start = tuple.index;
     const end = start + tuple[0].length;
+    /** Whether a number lies strictly between this tuple's parentheses. */
     const isInside = (match: NumberMatch) =>
       match.start > start && match.end < end;
     const numbers = [...tuple[0].matchAll(NUMBER_PATTERN)].length;
