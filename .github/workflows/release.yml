@@ -336,10 +336,24 @@ jobs:
           repositories: nakafa.com
           permission-actions: write
 
+      # A release keeps its result catalog here, and the next release of the same
+      # target proves it against its base's signed count and digest instead of
+      # reading every head of the base from Convex (apps/cli/src/production/heads.ts).
+      # The cache saves the folder when the job succeeds.
+      - name: Cache the heads of the active release
+        if: inputs.operation == 'release'
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/aksara-heads
+          key: heads-${{ matrix.target }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            heads-${{ matrix.target }}-
+
       - name: Publish release
         if: inputs.operation == 'release'
         working-directory: ${{ runner.temp }}/aksara-operation
         env:
+          AKSARA_HEADS_CACHE: ${{ runner.temp }}/aksara-heads
           AKSARA_PUBLICATION_ENDPOINT: ${{ vars[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_ENDPOINT' || 'AKSARA_PUBLICATION_ENDPOINT'] }}
           AKSARA_PUBLICATION_TOKEN: ${{ secrets[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_TOKEN' || 'AKSARA_PUBLICATION_TOKEN'] }}
           NAKAFA_DEPLOY_SURFACE: ${{ matrix.target == 'development' && 'none' || 'deployed' }}

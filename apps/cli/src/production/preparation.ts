@@ -14,7 +14,6 @@ import {
   type ContentCatalogPublication,
   prepareContentCatalog,
 } from "@nakafa/aksara-publisher/catalog/publication";
-import { streamContentHeads } from "@nakafa/aksara-publisher/heads";
 import { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
 import { reuseStoredGitRelease } from "@nakafa/aksara-publisher/preparation/recovery";
 import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
@@ -35,6 +34,7 @@ import {
   selectSourceBase,
   validateRecoveryBase,
 } from "#cli/production/base";
+import { keepResultHeads, readBaseHeads } from "#cli/production/heads";
 import { selectRendererManifest } from "#cli/production/renderer";
 import { validateRecoveryRevision } from "#cli/recovery";
 
@@ -81,21 +81,22 @@ type PrepareProductionGit = (
   input: GitPreparationInput
 ) => Effect.Effect<PreparedGit, ProductionError, PreparationServices>;
 
-/** Streams no prior heads for genesis and every exact target-owned family later. */
-function publishedContentHeads(base: ActiveCatalogIdentity | null) {
-  if (base === null) {
-    return {
-      article: Stream.empty,
-      material: Stream.empty,
-      page: Stream.empty,
-    };
+/**
+ * Streams no prior heads for genesis, and later every head of the base catalog,
+ * from the heads cache when it keeps them and from the target otherwise.
+ */
+const publishedContentHeads = Effect.fn("AksaraCli.publishedContentHeads")(
+  function* (base: ActiveCatalogIdentity | null) {
+    if (base === null) {
+      return {
+        article: Stream.empty,
+        material: Stream.empty,
+        page: Stream.empty,
+      };
+    }
+    return yield* readBaseHeads(base);
   }
-  return {
-    article: streamContentHeads(base.releaseId, base.manifestHash, "article"),
-    material: streamContentHeads(base.releaseId, base.manifestHash, "material"),
-    page: streamContentHeads(base.releaseId, base.manifestHash, "page"),
-  };
-}
+);
 
 /** Prepares a Git publication and restores its stored envelope on recovery. */
 export const prepareProductionGit: PrepareProductionGit = Effect.fn(
@@ -137,10 +138,15 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
               releaseId: base.releaseId,
             },
       checkoutRoot: input.checkoutRoot,
-      published: publishedContentHeads(base),
+      published: yield* publishedContentHeads(base),
       rebuild: input.rebuild,
       rendererManifest,
       scope: input.scope,
+    });
+    yield* keepResultHeads({
+      baseReleaseId: base?.releaseId ?? null,
+      releaseId: input.releaseId,
+      result: catalog.result,
     });
     const snapshots =
       input.scope.snapshots.length === 0
