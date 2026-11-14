@@ -4,20 +4,20 @@ import type { SetRating } from "#corpus/tryout/level";
  * The level rating of each TKA Compulsory Mathematics set,
  * set 1 to 10 in order.
  * One rater rated ten evenly spaced items
- * of the set alone on 13 Nov 2026. A rewritten set replaces its entry with
- * a rating of its new items.
+ * of the set alone on 15 Nov 2026, after the rewrites that reached every set.
+ * A rewritten set replaces its entry with a rating of its new items.
  */
 export const compulsoryRatings: readonly SetRating[] = [
-  { items: 10, level: 2.8, raters: 1 },
-  { items: 10, level: 2.6, raters: 1 },
-  { items: 10, level: 2.5, raters: 1 },
-  { items: 10, level: 3.1, raters: 1 },
-  { items: 10, level: 2.9, raters: 1 },
-  { items: 10, level: 2.9, raters: 1 },
-  { items: 10, level: 2.5, raters: 1 },
-  { items: 10, level: 2.5, raters: 1 },
-  { items: 10, level: 2.1, raters: 1 },
-  { items: 10, level: 2.3, raters: 1 },
+  { items: 10, level: 3.7, raters: 1 },
+  { items: 10, level: 3.7, raters: 1 },
+  { items: 10, level: 3.7, raters: 1 },
+  { items: 10, level: 3.8, raters: 1 },
+  { items: 10, level: 3.7, raters: 1 },
+  { items: 10, level: 3.85, raters: 1 },
+  { items: 10, level: 3.6, raters: 1 },
+  { items: 10, level: 4.05, raters: 1 },
+  { items: 10, level: 3.8, raters: 1 },
+  { items: 10, level: 3.85, raters: 1 },
 ];
 
 /**
@@ -44,12 +44,12 @@ export const advancedRatings: readonly SetRating[] = [
  * The level rating of each TKA English set,
  * set 1 to 10 in order.
  * One rater rated ten evenly spaced items
- * of the set alone on 13 Nov 2026. A rewritten set replaces its entry with
- * a rating of its new items.
+ * of the set alone on 13 Nov 2026, and set 2 again on 15 Nov 2026 after its
+ * rewrite. A rewritten set replaces its entry with a rating of its new items.
  */
 export const englishRatings: readonly SetRating[] = [
   { items: 10, level: 2.8, raters: 1 },
-  { items: 10, level: 2.1, raters: 1 },
+  { items: 10, level: 3, raters: 1 },
   { items: 10, level: 2.2, raters: 1 },
   { items: 10, level: 2.6, raters: 1 },
   { items: 10, level: 1.9, raters: 1 },
