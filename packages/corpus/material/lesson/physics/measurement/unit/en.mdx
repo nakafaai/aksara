@@ -18,6 +18,30 @@ A quantity value is the numerical value multiplied by the unit.
 
 The numerical value answers *how much*. The unit answers *which reference it is compared with*.
 
+Here three friends measure the same <InlineMath math="1.20\text{ m}" /> desk, each with their own pencil. Ayu's pencil is <InlineMath math="15\text{ cm}" /> long and fits <InlineMath math="8" /> times, Budi's <InlineMath math="19\text{ cm}" /> pencil about <InlineMath math="6.3" /> times, and Citra's <InlineMath math="22\text{ cm}" /> pencil about <InlineMath math="5.5" /> times. One desk, three numbers. Pick the metre rule, and everyone gets <InlineMath math="1.20\text{ m}" />.
+
+<CommonReferenceLab
+  title={<>Why We Need a Shared Unit</>}
+  description={
+    <>
+      Switch between the three pencils and the metre rule and watch the count change for the same desk.
+    </>
+  }
+  labels={{
+    chooseReference: "Choose what to measure with",
+    count: <>Count</>,
+    desk: <>Desk length</>,
+    length: <>Length of one reference</>,
+    references: {
+      long: <>Citra</>,
+      medium: <>Budi</>,
+      rule: <>Metre rule</>,
+      short: <>Ayu</>,
+    },
+    viewLabel: "Desk measured with pencils and a metre rule, with a close-up of the reference",
+  }}
+/>
+
 ## From Many Systems to SI
 
 Before one standard became widely used, several unit systems existed side by side. Three names often appear in physics books:
@@ -35,6 +59,29 @@ These differences make measurements hard to compare when the unit system is uncl
 [BIPM defines SI](https://www.bipm.org/en/measurement-units) so the units share an international reference.
 
 > SI is an agreement that <InlineMath math="1 \text{ m}" />, <InlineMath math="1 \text{ kg}" />, and <InlineMath math="1 \text{ s}" /> mean the same thing in different schools, laboratories, factories, and countries.
+
+One object makes the point. The bowling ball below is the heaviest the rules allow: <InlineMath math="16.0\text{ lb}" /> and <InlineMath math="0.708\text{ ft}" /> across in FPS. In CGS it is <InlineMath math="7.26\times10^{3}\text{ g}" /> and <InlineMath math="21.6\text{ cm}" />, and in MKS <InlineMath math="7.26\text{ kg}" /> and <InlineMath math="0.216\text{ m}" />. Switch systems: the needle and the ball never move, only the numbers change.
+
+<UnitSystemsLab
+  title={<>One Ball, Three Unit Systems</>}
+  description={
+    <>
+      Switch between FPS, CGS and MKS and watch the needle and the ball stay put while only the numbers change.
+    </>
+  }
+  labels={{
+    chooseSystem: "Choose a unit system",
+    diameter: <>Diameter</>,
+    mass: <>Mass</>,
+    systems: {
+      cgs: <>CGS</>,
+      fps: <>FPS</>,
+      mks: <>MKS</>,
+    },
+    time: <>Unit of time</>,
+    viewLabel: "Bowling ball on a dial scale beside an inch and centimetre ruler",
+  }}
+/>
 
 ## The Seven SI Base Units
 
@@ -76,7 +123,7 @@ Turn the cube below. Along each edge you count <InlineMath math="10" /> small cu
 
 <MathVisual
   title={<>A Cubic Meter Built from Cubic Decimeters</>}
-  description={<>One grid step is 1 dm. The small cubes run along three edges of a cube that is 1 m on each side. Rotate it to count them.</>}
+  description={<>One grid step is <InlineMath math="1\text{ dm}" />. The small cubes run along three edges of a cube that is <InlineMath math="1\text{ m}" /> on each side. Rotate it to count them.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1.5, max: 12 }, z: { min: -1, max: 11 } },

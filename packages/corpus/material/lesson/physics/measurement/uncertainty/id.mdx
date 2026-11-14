@@ -18,6 +18,24 @@ Simpangan baku sampel <InlineMath math="s" /> menunjukkan seberapa jauh hasil ba
 
 > Pengukuran berulang menunjukkan variasi acak melalui perubahan kecil antarpembacaan. Galat sistematis, misalnya alat tidak menunjukkan nol sebelum digunakan atau skala alat rusak, harus diperiksa melalui kalibrasi.
 
+Membaca skala dari sudut yang sedikit berbeda adalah salah satu perubahan kecil itu. Pada gelas ukur di bawah, dasar permukaan air yang melengkung ada di sumbu gelas, padahal skalanya tercetak di dinding depan. Kalau matamu <InlineMath math="6{,}0\text{ cm}" /> di atas permukaan air, garis pandangmu memotong dinding lebih tinggi, sehingga <InlineMath math="42{,}0\text{ mL}" /> terbaca <InlineMath math="44{,}1\text{ mL}" />. Sejajarkan matamu dengan permukaan air, dan kesalahannya hilang.
+
+<ParallaxReadingLab
+  title={<>Paralaks pada Gelas Ukur</>}
+  description={
+    <>
+      Geser matamu ke atas atau ke bawah, lalu perhatikan di mana garis pandangmu ke air memotong skala.
+    </>
+  }
+  labels={{
+    error: <>Kesalahan paralaks</>,
+    eye: "Tinggi mata di atas air",
+    reading: <>Bacaan yang terlihat</>,
+    trueVolume: <>Volume sebenarnya</>,
+    viewLabel: "Mata membaca air dalam gelas ukur, dengan kaca pembesar pada skala",
+  }}
+/>
+
 ## Rata-rata Pengukuran
 
 Diameter satu tutup botol diukur <InlineMath math="5" /> kali dengan jangka sorong. Semua pembacaan memakai satuan yang sama, yaitu <InlineMath math="\text{cm}" />.
@@ -46,6 +64,24 @@ Jumlahkan dahulu nilai pembacaan dalam sentimeter:
 
 Nilai rata-rata menunjukkan pusat data, tetapi belum menunjukkan <Highlight>seberapa jauh hasil pengukuran menyebar</Highlight>. Untuk melihat penyebaran itu, kita menghitung simpangan baku.
 
+Ide yang sama berlaku untuk waktu. Di bawah, waktu sepuluh ayunan bandul sepanjang <InlineMath math="0{,}80\text{ m}" /> diukur berkali-kali, dan jempolmu menyalakan serta menghentikan stopwatch sedikit terlalu cepat atau terlambat setiap kali. Dengan <InlineMath math="N=10" /> percobaan, rata-ratanya <InlineMath math="\bar t=17{,}933\text{ s}" />, dekat dengan nilai sebenarnya <InlineMath math="17{,}943\text{ s}" />. Geser <InlineMath math="N" /> dan lihat rata-ratanya makin mantap, sementara sebaran tiap bacaan tetap kira-kira sama.
+
+<StopwatchSpreadLab
+  title={<>Mengukur Waktu Ayunan dengan Tangan</>}
+  description={
+    <>
+      Tambah jumlah percobaan, lalu perhatikan rata-rata berwarna fuchsia makin mantap sementara sebaran tiap bacaan tetap kira-kira sama.
+    </>
+  }
+  labels={{
+    mean: <>Rata-rata</>,
+    spread: <>Sebaran satu bacaan</>,
+    trials: "Jumlah percobaan",
+    uncertainty: <>Ketidakpastian rata-rata</>,
+    viewLabel: "Bandul yang diukur waktunya dengan stopwatch, dengan diagram titik hasil bacaan",
+  }}
+/>
+
 ## Sebaran Data di Sekitar Rata-rata
 
 Untuk data berulang, sebaran sampel dapat dihitung dari **jarak setiap data terhadap nilai rata-rata**.
@@ -72,7 +108,7 @@ Inilah kelima bacaan dari tabel pada satu garis. Garis fuchsia adalah rata-ratan
 
 <MathVisual
   title={<>Dari Bacaan ke Sebaran</>}
-  description={<>Lima bacaan diameter (oranye), rata-ratanya (fuchsia), dan pita satu simpangan baku (teal). Satu kotak grid berarti 0,01 cm mulai dari 3,10 cm.</>}
+  description={<>Lima bacaan diameter (oranye), rata-ratanya (fuchsia), dan pita satu simpangan baku (teal). Satu kotak grid berarti <InlineMath math="0{,}01\text{ cm}" /> mulai dari <InlineMath math="3{,}10\text{ cm}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 2.4 } },
@@ -128,7 +164,7 @@ Adegan di bawah menjajarkan kelima bacaan. Setiap batang hijau toska adalah jara
 
 <MathVisual
   title={<>Lima Bacaan di Sekitar Rata-ratanya</>}
-  description={<>Setiap batang adalah bacaan dikurangi rata-rata, dalam satuan 0,01 cm. Garis oranye menandai sebaran s, garis ungu ketidakpastian rata-rata u.</>}
+  description={<>Setiap batang adalah bacaan dikurangi rata-rata, dalam satuan <InlineMath math="0{,}01\text{ cm}" />. Garis oranye menandai sebaran s, garis ungu ketidakpastian rata-rata u.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: -2.8, max: 2.5 } },
@@ -183,7 +219,7 @@ Grafik di bawah memakai sebaran <InlineMath math="s_d" /> yang sama lalu bertany
 
 <MathVisual
   title={<>Bacaan Lebih Banyak, Rata-rata Lebih Tajam</>}
-  description={<><InlineMath math="u=s/\sqrt N" /> untuk <InlineMath math="N=1" /> sampai 20 bacaan dengan sebaran <InlineMath math="s_d" /> tutup botol. Mendatar: N dalam satuan 4. Tegak: u dalam satuan 0,004 cm.</>}
+  description={<><InlineMath math="u=s/\sqrt N" /> untuk <InlineMath math="N=1" /> sampai <InlineMath math="20" /> bacaan dengan sebaran <InlineMath math="s_d" /> tutup botol. Mendatar: N dalam satuan <InlineMath math="4" />. Tegak: u dalam satuan <InlineMath math="0{,}004\text{ cm}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 5.5 }, y: { min: -0.3, max: 4.6 } },

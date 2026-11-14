@@ -18,6 +18,31 @@ Nilai numerik <InlineMath math="0{,}60" /> memberi tahu *berapa banyak*. Satuan 
 
 > Tanpa nama besaran, angka tidak memiliki makna fisika. Tanpa satuan, angka itu tidak dapat dibandingkan dengan acuan pengukuran.
 
+Setiap hasil ukur di lab berikut adalah angka dikali satuan. Rusuk balok aluminium panjangnya <InlineMath math="5{,}0\text{ cm}" />, <InlineMath math="4{,}0\text{ cm}" />, dan <InlineMath math="2{,}5\text{ cm}" />, lalu timbangan terbaca <InlineMath math="135\text{ g}" />. Dari empat nilai itu kamu mendapat volumenya, <InlineMath math="50\text{ cm}^3" />, dan massa jenisnya, <InlineMath math="2{,}70\text{ g/cm}^3" />. Ganti bahannya, lalu perhatikan nilai mana yang berubah.
+
+<DensityMeasurementLab
+  title={<>Massa Jenis dari Empat Hasil Ukur</>}
+  description={
+    <>
+      Ganti bahannya, lalu perhatikan massa dan massa jenis berubah sementara rusuk dan volumenya tetap.
+    </>
+  }
+  labels={{
+    chooseMaterial: "Pilih bahan",
+    density: <>Massa jenis</>,
+    densitySi: <>Massa jenis dalam satuan SI</>,
+    mass: <>Massa</>,
+    materials: {
+      aluminium: <>Aluminium</>,
+      brass: <>Kuningan</>,
+      pine: <>Kayu pinus</>,
+    },
+    sides: <>Rusuk</>,
+    viewLabel: "Balok di atas timbangan jarum dengan tiga rusuknya ditandai",
+    volume: <>Volume</>,
+  }}
+/>
+
 ## Besaran Pokok dan Besaran Turunan
 
 Dalam SI, yaitu **Sistem Satuan Internasional**, ada <InlineMath math="7" /> besaran pokok yang dipakai sebagai dasar. Besaran lain diturunkan dari gabungan besaran pokok tersebut.
@@ -52,7 +77,7 @@ Kelajuan dibangun dari dua besaran pokok, <InlineMath math="v=s/t" />, jadi satu
 
 <MathVisual
   title={<>Kelajuan dari Besaran Pokok</>}
-  description={<>Jarak terhadap waktu pada 2 m/s (ungu) dan 5 m/s (oranye). Mendatar: sekon. Tegak: satu kotak grid berarti 2 m.</>}
+  description={<>Jarak terhadap waktu pada <InlineMath math="2\text{ m/s}" /> (ungu) dan <InlineMath math="5\text{ m/s}" /> (oranye). Mendatar: sekon. Tegak: satu kotak grid berarti <InlineMath math="2\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5.5 } },
@@ -71,6 +96,23 @@ Kelajuan dibangun dari dua besaran pokok, <InlineMath math="v=s/t" />, jadi satu
   labels={{
     slow: <InlineMath math="v=\frac{2\text{ m}}{1\text{ s}}=2\text{ m/s}" />,
     fast: <InlineMath math="v=\frac{2\text{ m}}{0{,}4\text{ s}}=5\text{ m/s}" />,
+  }}
+/>
+
+Kamu juga bisa mengukur kelajuan langsung dari dua besaran pokoknya. Di bawah, troli melaju melewati dua gerbang cahaya yang berjarak <InlineMath math="0{,}60\text{ m}" />, dan pencatat waktu terbaca <InlineMath math="1{,}250\text{ s}" /> di antara kedua berkas cahaya. Jadi <InlineMath math="v=\frac{0{,}60\text{ m}}{1{,}250\text{ s}}=0{,}48\text{ m/s}" />. Jauhkan gerbangnya: jarak dan waktunya sama-sama bertambah, tapi perbandingannya tetap.
+
+<LightGateSpeedLab
+  title={<>Kelajuan dari Dua Gerbang Cahaya</>}
+  description={
+    <>
+      Jauhkan gerbangnya, lalu perhatikan jarak dan waktunya bertambah sementara kelajuannya tetap.
+    </>
+  }
+  labels={{
+    distance: "Jarak antargerbang",
+    speed: <>Kelajuan</>,
+    time: <>Waktu di antara kedua berkas</>,
+    viewLabel: "Troli melaju melewati dua gerbang cahaya di atas lintasan",
   }}
 />
 
@@ -94,7 +136,7 @@ Besaran turunan dibangun dari besaran pokok. Volume mengalikan tiga panjang, <In
 
 <MathVisual
   title={<>Volume dari Tiga Panjang</>}
-  description={<>Kotak berukuran 0,30 m kali 0,20 m kali 0,10 m (oranye) dan satu baris kubus 0,10 m di atasnya (teal).</>}
+  description={<>Kotak berukuran <InlineMath math="0{,}30\text{ m}" /> kali <InlineMath math="0{,}20\text{ m}" /> kali <InlineMath math="0{,}10\text{ m}" /> (oranye) dan satu baris kubus <InlineMath math="0{,}10\text{ m}" /> di atasnya (teal).</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: 0, max: 2.5 }, z: { min: -0.5, max: 2.5 } },
@@ -134,7 +176,7 @@ Adegan di bawah menggambar kertas itu dengan satu kotak grid untuk setiap <Inlin
 
 <MathVisual
   title={<>Luas Dihitung dengan Persegi</>}
-  description={<>Kertas digambar dengan satu kotak grid untuk setiap 0,10 m. Setiap persegi kecil luasnya <InlineMath math="0{,}010\text{ m}^2" />.</>}
+  description={<>Kertas digambar dengan satu kotak grid untuk setiap <InlineMath math="0{,}10\text{ m}" />. Setiap persegi kecil luasnya <InlineMath math="0{,}010\text{ m}^2" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 2.8 } },

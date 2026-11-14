@@ -18,7 +18,7 @@ Zoom auf die fuchsiafarbene Linie am rechten Rand des Deckels. Sie liegt schon h
 
 <MathVisual
   title={<>Einen Deckel am Lineal ablesen</>}
-  description={<>Ein Lineal mit einer Marke alle 0,1 cm unter einem Flaschendeckel. Zoom dorthin, wo die fuchsiafarbene Linie das Lineal trifft.</>}
+  description={<>Ein Lineal mit einer Marke alle <InlineMath math="0{,}1\text{ cm}" /> unter einem Flaschendeckel. Zoom dorthin, wo die fuchsiafarbene Linie das Lineal trifft.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 4.5 } },
@@ -121,6 +121,32 @@ Mit <InlineMath math="4" /> signifikanten Stellen:
 
 <BlockMath math="1000\text{ m}=1{,}000\times10^3\text{ m}" />
 
+Hier liest du einen Stahlstab mit drei Werkzeugen ab. Mit dem Lineal sind es <InlineMath math="31{,}0\text{ cm}" />: drei signifikante Stellen, und die letzte Null ist wirklich gemessen. Nimm das Maßband, und die Null verschwindet (<InlineMath math="31\text{ cm}" />). Nimm den Messschieber, und du bekommst noch eine (<InlineMath math="31{,}00\text{ cm}" />). Schreib die Lineal-Ablesung jetzt in Metern, <InlineMath math="0{,}310\text{ m}" />: Die Null vorne markiert nur die Stelle des Kommas, also bleiben es drei signifikante Stellen.
+
+<SignificantZerosLab
+  title={<>Wann eine Null zählt</>}
+  description={
+    <>
+      Wechsel Werkzeug und Einheit und achte darauf, welche Nullen gemessen sind und welche nur die Stelle des Kommas markieren.
+    </>
+  }
+  labels={{
+    chooseTool: "Messwerkzeug wählen",
+    chooseUnit: "Einheit wählen",
+    figures: <>Signifikante Stellen</>,
+    measuredZeros: <>Gemessene Nullen</>,
+    placeZeros: <>Platzhalter-Nullen</>,
+    reading: <>Ablesung</>,
+    scientific: <>Wissenschaftliche Schreibweise</>,
+    tools: {
+      caliper: <>Messschieber</>,
+      ruler: <>Lineal</>,
+      tape: <>Maßband</>,
+    },
+    viewLabel: "Stahlstab auf einem Messwerkzeug, mit Lupe am Ende",
+  }}
+/>
+
 ## Einmal anhand der ersten wegfallenden Ziffer runden
 
 Steht die zulässige Stellenzahl fest, entscheidet die **erste wegfallende Ziffer** über das Runden.
@@ -148,11 +174,11 @@ Bei einem exakten Halbwert verhindert die Rundung zur geraden Zahl, dass eine la
 
 Runde direkt vom ungerundeten Wert auf die endgültige Genauigkeit. Runde nicht über mehrere Zwischenwerte.
 
-Schau nur auf die erste weggelassene Ziffer. Unter 5 bleibt die letzte Ziffer, über 5 wird sie erhöht, und eine genaue 5 ohne weitere Ziffern geht zum geraden Nachbarn. Zoom auf die drei Messwerte zwischen 3,140 und 3,150.
+Schau nur auf die erste weggelassene Ziffer. Unter <InlineMath math="5" /> bleibt die letzte Ziffer, über <InlineMath math="5" /> wird sie erhöht, und eine genaue <InlineMath math="5" /> ohne weitere Ziffern geht zum geraden Nachbarn. Zoom auf die drei Messwerte zwischen <InlineMath math="3{,}140" /> und <InlineMath math="3{,}150" />.
 
 <MathVisual
   title={<>Runden ab der ersten weggelassenen Ziffer</>}
-  description={<>Drei Messwerte, auf zwei Dezimalstellen gerundet, auf einem vergrößerten Zahlenstrahl. Ein Gitterschritt entspricht 0,001.</>}
+  description={<>Drei Messwerte, auf zwei Dezimalstellen gerundet, auf einem vergrößerten Zahlenstrahl. Ein Gitterschritt entspricht <InlineMath math="0{,}001" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -0.8, max: 2.4 } },
@@ -198,6 +224,29 @@ Ein Eisenstab mit <InlineMath math="8{,}235 \text{ cm}" /> Länge wird mit einem
 
 Der Wert <InlineMath math="12{,}735 \text{ cm}" /> wird auf <InlineMath math="1" /> Nachkommastelle gerundet, weil <InlineMath math="4{,}5 \text{ cm}" /> ebenfalls nur <InlineMath math="1" /> Nachkommastelle besitzt.
 
+Warum entscheidet die Lineal-Ablesung? Leg die beiden Stäbe unten aneinander. Der Messschieber liest den Eisenstab auf <InlineMath math="0{,}005\text{ cm}" /> genau ab, das Lineal den Kupferstab aber nur auf <InlineMath math="0{,}1\text{ cm}" />. Das gemeinsame Ende kann also irgendwo im türkisfarbenen Band liegen. Das Band ist breiter als jedes Hundertstel, deshalb gibst du <InlineMath math="12{,}735\text{ cm}" /> als <InlineMath math="12{,}7\text{ cm}" /> an. Miss auch den Kupferstab mit dem Messschieber, dann wird das Band schmal und alle drei Dezimalstellen bleiben.
+
+<DecimalSumLab
+  title={<>Zwei gemessene Längen addieren</>}
+  description={
+    <>
+      Wechsel das Werkzeug für den Kupferstab und achte darauf, wie breit das Band der möglichen Enden in der Lupe wird.
+    </>
+  }
+  labels={{
+    chooseTool: "Werkzeug für den Kupferstab wählen",
+    copper: <>Kupferstab</>,
+    iron: <>Eisenstab</>,
+    raw: <>Summe im Taschenrechner</>,
+    reported: <>Angegebene Summe</>,
+    tools: {
+      caliper: <>Messschieber</>,
+      ruler: <>Lineal</>,
+    },
+    viewLabel: "Eisen- und Kupferstab aneinander auf einem Lineal, mit Lupe am Ende",
+  }}
+/>
+
 ## Produkte nach der kleinsten Anzahl signifikanter Stellen runden
 
 Wenn eine Rechnung nur signifikante Stellen berücksichtigt, wird das Ergebnis einer Multiplikation oder Division auf die **kleinste Anzahl signifikanter Stellen** der Messwerte gerundet. Diese Kurzregel ersetzt keine Berechnung der Messunsicherheit.
@@ -232,7 +281,7 @@ Wähl die Regel nach der Rechenart und runde einmal am Ende. Eine Summe behält 
 
 <MathVisual
   title={<>Welche Rundungsregel gilt</>}
-  description={<>Eine Summe (orange, ein Gitterschritt entspricht 0,01) und ein Produkt (violett, ein Gitterschritt entspricht 0,01), nach ihren Regeln gerundet.</>}
+  description={<>Eine Summe (orange, ein Gitterschritt entspricht <InlineMath math="0{,}01" />) und ein Produkt (violett, ein Gitterschritt entspricht <InlineMath math="0{,}01" />), nach ihren Regeln gerundet.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.8, max: 2.5 } },

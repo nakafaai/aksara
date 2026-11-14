@@ -18,6 +18,24 @@ Die Stichprobenstandardabweichung <InlineMath math="s" /> beschreibt die Streuun
 
 > Wiederholte Messungen zeigen zufällige Abweichungen, die von einer Ablesung zur nächsten in beide Richtungen schwanken. Systematische Abweichungen verschwinden dadurch nicht. Ein Gerät mit verschobenem Nullpunkt oder beschädigter Skala muss geprüft und gegebenenfalls kalibriert werden.
 
+Die Skala aus einem leicht anderen Winkel abzulesen, ist eine dieser kleinen Änderungen. Im Messzylinder unten liegt der tiefste Punkt der gewölbten Wasseroberfläche auf der Achse, die Skala ist aber auf die Vorderwand gedruckt. Ist dein Auge <InlineMath math="6{,}0\text{ cm}" /> über dem Wasser, schneidet deine Sichtlinie die Wand weiter oben, und aus <InlineMath math="42{,}0\text{ mL}" /> werden abgelesene <InlineMath math="44{,}1\text{ mL}" />. Bring dein Auge auf Höhe des Wassers, dann verschwindet der Fehler.
+
+<ParallaxReadingLab
+  title={<>Parallaxe am Messzylinder</>}
+  description={
+    <>
+      Beweg dein Auge nach oben oder unten und achte darauf, wo deine Sichtlinie zum Wasser die Skala schneidet.
+    </>
+  }
+  labels={{
+    error: <>Parallaxenfehler</>,
+    eye: "Augenhöhe über dem Wasser",
+    reading: <>Abgelesener Wert</>,
+    trueVolume: <>Wahres Volumen</>,
+    viewLabel: "Auge liest das Wasser in einem Messzylinder ab, mit Lupe auf der Skala",
+  }}
+/>
+
 ## Mittelwert der wiederholten Messungen
 
 Der Durchmesser eines Flaschendeckels wird mit einem Messschieber <InlineMath math="5" />-mal gemessen. Alle Ablesungen verwenden dieselbe Einheit <InlineMath math="\text{cm}" />.
@@ -46,6 +64,24 @@ Addiere zunächst die Zahlenwerte der Messungen in Zentimetern:
 
 Der Mittelwert allein reicht nicht. Ebenso wichtig ist, ob die Messwerte dicht bei ihm liegen oder weit streuen.
 
+Bei der Zeit funktioniert es genauso. Unten wird ein <InlineMath math="0{,}80\text{ m}" /> langes Pendel immer wieder für zehn Schwingungen gestoppt, und dein Daumen startet und stoppt die Uhr jedes Mal etwas zu früh oder zu spät. Bei <InlineMath math="N=10" /> Versuchen liegt der Mittelwert bei <InlineMath math="\bar t=17{,}933\text{ s}" />, nah am wahren Wert <InlineMath math="17{,}943\text{ s}" />. Verschieb <InlineMath math="N" /> und schau, wie sich der Mittelwert beruhigt, während die Streuung der einzelnen Werte etwa gleich bleibt.
+
+<StopwatchSpreadLab
+  title={<>Ein Pendel von Hand stoppen</>}
+  description={
+    <>
+      Füg Versuche hinzu und achte darauf, wie sich der Mittelwert in Fuchsia beruhigt, während die Streuung der einzelnen Werte etwa gleich bleibt.
+    </>
+  }
+  labels={{
+    mean: <>Mittelwert</>,
+    spread: <>Streuung eines Messwerts</>,
+    trials: "Anzahl der Versuche",
+    uncertainty: <>Unsicherheit des Mittelwerts</>,
+    viewLabel: "Pendel, mit einer Stoppuhr gemessen, mit Punktdiagramm der Messwerte",
+  }}
+/>
+
 ## Die Streuung um den Mittelwert
 
 Die Stichprobenstandardabweichung erfasst <Highlight>die Abstände der einzelnen Messwerte vom Mittelwert</Highlight>.
@@ -72,7 +108,7 @@ Hier sind die fünf Messwerte aus der Tabelle auf einer Linie. Die fuchsia Linie
 
 <MathVisual
   title={<>Von Messwerten zur Streuung</>}
-  description={<>Fünf Messwerte des Durchmessers (orange), ihr Mittelwert (fuchsia) und das Band einer Standardabweichung (türkis). Ein Gitterschritt entspricht 0,01 cm ab 3,10 cm.</>}
+  description={<>Fünf Messwerte des Durchmessers (orange), ihr Mittelwert (fuchsia) und das Band einer Standardabweichung (türkis). Ein Gitterschritt entspricht <InlineMath math="0{,}01\text{ cm}" /> ab <InlineMath math="3{,}10\text{ cm}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 2.4 } },
@@ -128,7 +164,7 @@ Die Szene unten stellt die fünf Messwerte nebeneinander. Jeder türkise Stab is
 
 <MathVisual
   title={<>Fünf Messwerte um ihren Mittelwert</>}
-  description={<>Jeder Stab ist ein Messwert minus Mittelwert, in Einheiten von 0,01 cm. Orange Linien markieren die Streuung s, violette die Unsicherheit des Mittelwerts u.</>}
+  description={<>Jeder Stab ist ein Messwert minus Mittelwert, in Einheiten von <InlineMath math="0{,}01\text{ cm}" />. Orange Linien markieren die Streuung s, violette die Unsicherheit des Mittelwerts u.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: -2.8, max: 2.5 } },
@@ -183,7 +219,7 @@ Das Diagramm unten behält dieselbe Streuung <InlineMath math="s_d" /> und fragt
 
 <MathVisual
   title={<>Mehr Messwerte, schärferer Mittelwert</>}
-  description={<><InlineMath math="u=s/\sqrt N" /> für <InlineMath math="N=1" /> bis 20 Messwerte mit der Streuung <InlineMath math="s_d" /> des Deckels. Waagrecht: N in Einheiten von 4. Senkrecht: u in Einheiten von 0,004 cm.</>}
+  description={<><InlineMath math="u=s/\sqrt N" /> für <InlineMath math="N=1" /> bis <InlineMath math="20" /> Messwerte mit der Streuung <InlineMath math="s_d" /> des Deckels. Waagrecht: N in Einheiten von <InlineMath math="4" />. Senkrecht: u in Einheiten von <InlineMath math="0{,}004\text{ cm}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 5.5 }, y: { min: -0.3, max: 4.6 } },

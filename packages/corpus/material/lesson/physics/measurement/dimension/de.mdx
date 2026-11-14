@@ -60,6 +60,25 @@ Das Internationale Einheitensystem, kurz SI, verwendet <InlineMath math="7" /> G
 
 Eckige Klammern unterscheiden Dimensionen von Einheiten. So bezeichnet <InlineMath math="[\mathrm{L}]" /> die Dimension Länge, während <InlineMath math="\text{m}" /> für die Einheit Meter steht.
 
+Mit den Basisdimensionen kannst du sogar eine Formel vorhersagen. Angenommen, die Periode <InlineMath math="T" /> eines Pendels hängt von der Masse des Pendelkörpers <InlineMath math="[\mathrm{M}]" />, der Fadenlänge <InlineMath math="[\mathrm{L}]" /> und der Fallbeschleunigung <InlineMath math="[\mathrm{L}][\mathrm{T}]^{-2}" /> ab. Damit <InlineMath math="[\mathrm{T}]" /> herauskommt, braucht die Masse den Exponenten <InlineMath math="0" />, die Länge <InlineMath math="\tfrac12" /> und die Fallbeschleunigung <InlineMath math="-\tfrac12" />, also <InlineMath math="T=k\sqrt{l/g}" />. Experimente liefern <InlineMath math="k=2\pi" />. Unten schwingen drei Pendelkörper mit <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" /> und <InlineMath math="500\text{ g}" /> an <InlineMath math="0{,}80\text{ m}" /> langen Fäden im Gleichtakt, einmal alle <InlineMath math="1{,}79\text{ s}" /> bei <InlineMath math="g=9{,}81\text{ m/s}^2" />. Ändere die Länge und such den, der zurückbleibt: Es gibt keinen.
+
+<PendulumPeriodLab
+  title={<>Was die Periode eines Pendels bestimmt</>}
+  description={
+    <>
+      Ändere die Fadenlänge und achte darauf, dass die Pendelkörper mit <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" /> und <InlineMath math="500\text{ g}" /> im Gleichtakt bleiben.
+    </>
+  }
+  labels={{
+    check: <>Dimensionsprobe</>,
+    gravity: <>Fallbeschleunigung</>,
+    length: "Fadenlänge",
+    masses: <>Massen der Pendelkörper</>,
+    period: <>Periode</>,
+    viewLabel: "Drei Pendel mit Holz-, Messing- und Bleikugel an einer Stange",
+  }}
+/>
+
 ## Dimensionen aus Formeln ableiten
 
 Bei einer Dimensionsanalyse ersetzt man **jede Größe in der Formel durch ihre Dimension** und vereinfacht anschließend die Potenzen.
@@ -181,3 +200,28 @@ Schraube und Mutter sind kleine Gegenstände, an denen dennoch mehrere Größen 
 Zwei Geräte können also dieselbe Dimension messen und trotzdem für verschiedene Situationen gedacht sein. Für eine größere Länge ohne hohe Genauigkeitsanforderung genügt ein Lineal. Bei einem kleinen Durchmesser, der genauer abgelesen werden muss, eignet sich ein Messschieber oder eine Mikrometerschraube besser.
 
 Die Grenze der Prüfung zeigt sich, wenn wir <InlineMath math="\frac{1}{2}" /> aus der Verschiebungsformel weglassen. Auch <InlineMath math="s=v_0t+at^2" /> besitzt auf beiden Seiten die Dimension Länge, ergibt bei konstanter Beschleunigung ungleich null aber eine falsche Verschiebung. **Dimensionen bestimmen keine Zahlenfaktoren** wie <InlineMath math="\frac{1}{2}" />.
+
+Probier es an einer echten Schraube. Das Labor unten nimmt eine <InlineMath math="\text{M}10" />-Schraube, deren Schaft als Zylinder mit <InlineMath math="10\text{ mm}" /> Durchmesser und <InlineMath math="50\text{ mm}" /> Länge zählt, und zeigt jede Größe aus der Tabelle: ihren Wert in SI-Einheiten und ihre Dimension. Länge und Durchmesser teilen sich <InlineMath math="[\mathrm{L}]" />, die Dichte als Masse durch Volumen landet bei <InlineMath math="[\mathrm{M}][\mathrm{L}]^{-3}" />.
+
+<BoltDimensionsLab
+  title={<>Eine Schraube, viele Größen</>}
+  description={
+    <>
+      Wähl eine Größe dieser <InlineMath math="\text{M}10" />-Schraube und achte darauf, welchen Teil sie misst, welchen Wert sie in SI-Einheiten hat und welche Dimension.
+    </>
+  }
+  labels={{
+    chooseQuantity: "Größe wählen",
+    dimension: <>Dimension</>,
+    quantities: {
+      area: <>Querschnitt</>,
+      density: <>Dichte</>,
+      diameter: <>Durchmesser</>,
+      length: <>Länge</>,
+      mass: <>Masse</>,
+      volume: <>Volumen</>,
+    },
+    value: <>Wert in SI-Einheiten</>,
+    viewLabel: "Stahlschraube mit markierter Größe",
+  }}
+/>

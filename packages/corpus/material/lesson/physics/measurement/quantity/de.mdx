@@ -18,6 +18,31 @@ Der Zahlenwert <InlineMath math="0{,}60" /> sagt, *wie viel* gemessen wurde. Die
 
 > Ohne benannte Größe hat eine Zahl keine physikalische Bedeutung. Ohne Einheit lässt sich ihr Maßstab nicht vergleichen.
 
+Jeder Messwert im Labor unten ist eine Zahl mal einer Einheit. Der Aluminiumblock hat die Kanten <InlineMath math="5{,}0\text{ cm}" />, <InlineMath math="4{,}0\text{ cm}" /> und <InlineMath math="2{,}5\text{ cm}" />, und die Waage zeigt <InlineMath math="135\text{ g}" />. Aus diesen vier Werten bekommst du das Volumen, <InlineMath math="50\text{ cm}^3" />, und die Dichte, <InlineMath math="2{,}70\text{ g/cm}^3" />. Wechsel das Material und schau, welche Werte sich ändern.
+
+<DensityMeasurementLab
+  title={<>Dichte aus vier Messwerten</>}
+  description={
+    <>
+      Wechsel das Material und achte darauf, dass Masse und Dichte sich ändern, während Kanten und Volumen gleich bleiben.
+    </>
+  }
+  labels={{
+    chooseMaterial: "Material wählen",
+    density: <>Dichte</>,
+    densitySi: <>Dichte in SI-Einheiten</>,
+    mass: <>Masse</>,
+    materials: {
+      aluminium: <>Aluminium</>,
+      brass: <>Messing</>,
+      pine: <>Kiefer</>,
+    },
+    sides: <>Kanten</>,
+    viewLabel: "Block auf einer Zeigerwaage mit markierten Kanten",
+    volume: <>Volumen</>,
+  }}
+/>
+
 ## Basisgrößen und abgeleitete Größen
 
 Das **Internationale Einheitensystem**, kurz SI, verwendet <InlineMath math="7" /> Grundgrößen. Weitere Größen entstehen durch Kombinationen dieser Grundgrößen.
@@ -52,7 +77,7 @@ Das Tempo setzt sich aus zwei Basisgrößen zusammen, <InlineMath math="v=s/t" /
 
 <MathVisual
   title={<>Tempo aus Basisgrößen</>}
-  description={<>Weg über der Zeit bei 2 m/s (violett) und 5 m/s (orange). Waagerecht: Sekunden. Senkrecht: Ein Gitterschritt entspricht 2 m.</>}
+  description={<>Weg über der Zeit bei <InlineMath math="2\text{ m/s}" /> (violett) und <InlineMath math="5\text{ m/s}" /> (orange). Waagerecht: Sekunden. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="2\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5.5 } },
@@ -71,6 +96,23 @@ Das Tempo setzt sich aus zwei Basisgrößen zusammen, <InlineMath math="v=s/t" /
   labels={{
     slow: <InlineMath math="v=\frac{2\text{ m}}{1\text{ s}}=2\text{ m/s}" />,
     fast: <InlineMath math="v=\frac{2\text{ m}}{0{,}4\text{ s}}=5\text{ m/s}" />,
+  }}
+/>
+
+Du kannst eine Geschwindigkeit auch direkt aus ihren zwei Basisgrößen messen. Unten rollt ein Wagen durch zwei Lichtschranken im Abstand von <InlineMath math="0{,}60\text{ m}" />, und der Zähler zeigt <InlineMath math="1{,}250\text{ s}" /> zwischen den Strahlen. Also ist <InlineMath math="v=\frac{0{,}60\text{ m}}{1{,}250\text{ s}}=0{,}48\text{ m/s}" />. Schieb die Schranken auseinander: Strecke und Zeit wachsen beide, ihr Verhältnis bleibt gleich.
+
+<LightGateSpeedLab
+  title={<>Geschwindigkeit aus zwei Lichtschranken</>}
+  description={
+    <>
+      Schieb die Schranken auseinander und achte darauf, dass Strecke und Zeit wachsen, während die Geschwindigkeit gleich bleibt.
+    </>
+  }
+  labels={{
+    distance: "Abstand der Lichtschranken",
+    speed: <>Geschwindigkeit</>,
+    time: <>Zeit zwischen den Strahlen</>,
+    viewLabel: "Wagen rollt auf einer Bahn durch zwei Lichtschranken",
   }}
 />
 
@@ -94,7 +136,7 @@ Eine abgeleitete Größe entsteht aus Basisgrößen. Das Volumen multipliziert d
 
 <MathVisual
   title={<>Ein Volumen aus drei Längen</>}
-  description={<>Eine Kiste von 0,30 m mal 0,20 m mal 0,10 m (orange) und eine Reihe Würfel mit 0,10 m Kante obendrauf (türkis).</>}
+  description={<>Eine Kiste von <InlineMath math="0{,}30\text{ m}" /> mal <InlineMath math="0{,}20\text{ m}" /> mal <InlineMath math="0{,}10\text{ m}" /> (orange) und eine Reihe Würfel mit <InlineMath math="0{,}10\text{ m}" /> Kante obendrauf (türkis).</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: 0, max: 2.5 }, z: { min: -0.5, max: 2.5 } },
@@ -134,7 +176,7 @@ Die Szene unten zeichnet das Blatt mit einem Gitterschritt pro <InlineMath math=
 
 <MathVisual
   title={<>Fläche in Quadraten gezählt</>}
-  description={<>Das Blatt Papier mit einem Gitterschritt pro 0,10 m. Jedes kleine Quadrat hat <InlineMath math="0{,}010\text{ m}^2" /> Fläche.</>}
+  description={<>Das Blatt Papier mit einem Gitterschritt pro <InlineMath math="0{,}10\text{ m}" />. Jedes kleine Quadrat hat <InlineMath math="0{,}010\text{ m}^2" /> Fläche.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 2.8 } },

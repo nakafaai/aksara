@@ -18,7 +18,7 @@ Zoom in on the fuchsia line at the right edge of the cap. It sits past the <Inli
 
 <MathVisual
   title={<>Reading a Cap on a Ruler</>}
-  description={<>A ruler with a mark every 0.1 cm under a bottle cap. Zoom in where the fuchsia line crosses the ruler.</>}
+  description={<>A ruler with a mark every <InlineMath math="0.1\text{ cm}" /> under a bottle cap. Zoom in where the fuchsia line crosses the ruler.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 4.5 } },
@@ -121,6 +121,32 @@ With <InlineMath math="4" /> significant figures:
 
 <BlockMath math="1000\text{ m}=1.000\times10^3\text{ m}" />
 
+Here one steel rod is read with three tools. With the ruler it reads <InlineMath math="31.0\text{ cm}" />: three significant figures, and that last zero was measured. Switch to the tape and the zero is gone (<InlineMath math="31\text{ cm}" />). Switch to the caliper and you get one more (<InlineMath math="31.00\text{ cm}" />). Now write the ruler reading in metres, <InlineMath math="0.310\text{ m}" />: the zero in front only places the decimal point, so the count stays at three.
+
+<SignificantZerosLab
+  title={<>When a Zero Counts</>}
+  description={
+    <>
+      Switch the tool and the unit, and watch which zeros the tool measured and which only hold the decimal point's place.
+    </>
+  }
+  labels={{
+    chooseTool: "Choose a measuring tool",
+    chooseUnit: "Choose a unit",
+    figures: <>Significant figures</>,
+    measuredZeros: <>Measured zeros</>,
+    placeZeros: <>Place-holding zeros</>,
+    reading: <>Reading</>,
+    scientific: <>Scientific notation</>,
+    tools: {
+      caliper: <>Caliper</>,
+      ruler: <>Ruler</>,
+      tape: <>Tape</>,
+    },
+    viewLabel: "Steel rod on a measuring tool, with a magnifier on its end",
+  }}
+/>
+
 ## Round Once Using the First Dropped Digit
 
 After the allowed number of digits is known, inspect the **first digit that will be dropped**.
@@ -148,11 +174,11 @@ For an exact halfway case, round-to-even avoids a long series of values being bi
 
 Round directly from the unrounded value to the final precision. Do not round through several intermediate values.
 
-Look only at the first dropped digit. Below 5 you keep the last digit, above 5 you raise it, and an exact 5 followed by nothing goes to the even neighbor. Zoom in on the three readings between 3.140 and 3.150.
+Look only at the first dropped digit. Below <InlineMath math="5" /> you keep the last digit, above <InlineMath math="5" /> you raise it, and an exact <InlineMath math="5" /> followed by nothing goes to the even neighbor. Zoom in on the three readings between <InlineMath math="3.140" /> and <InlineMath math="3.150" />.
 
 <MathVisual
   title={<>Rounding from the First Dropped Digit</>}
-  description={<>Three readings rounded to two decimal places on a magnified number line. One grid step is 0.001.</>}
+  description={<>Three readings rounded to two decimal places on a magnified number line. One grid step is <InlineMath math="0.001" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -0.8, max: 2.4 } },
@@ -198,6 +224,29 @@ Suppose an iron rod of length <InlineMath math="8.235 \text{ cm}" /> is joined t
 
 The value <InlineMath math="12.735 \text{ cm}" /> is rounded to <InlineMath math="1" /> decimal place because <InlineMath math="4.5 \text{ cm}" /> has only <InlineMath math="1" /> digit after the decimal point.
 
+Why does the ruler reading decide? Join the two rods below. The caliper reads the iron rod to <InlineMath math="0.005\text{ cm}" />, but the ruler reads the copper rod only to <InlineMath math="0.1\text{ cm}" />, so the joined end could sit anywhere in the teal band. That band is wider than every hundredth, so <InlineMath math="12.735\text{ cm}" /> is reported as <InlineMath math="12.7\text{ cm}" />. Read the copper rod with the caliper too, and the band shrinks so all three decimals stay.
+
+<DecimalSumLab
+  title={<>Adding Two Measured Lengths</>}
+  description={
+    <>
+      Switch the tool for the copper rod and watch how wide the band of possible ends becomes in the magnifier.
+    </>
+  }
+  labels={{
+    chooseTool: "Choose the tool for the copper rod",
+    copper: <>Copper rod</>,
+    iron: <>Iron rod</>,
+    raw: <>Calculator sum</>,
+    reported: <>Reported sum</>,
+    tools: {
+      caliper: <>Caliper</>,
+      ruler: <>Ruler</>,
+    },
+    viewLabel: "Iron and copper rods joined on a ruler, with a magnifier on the joined end",
+  }}
+/>
+
 ## Rounding Products by the Fewest Significant Figures
 
 When a calculation tracks only significant figures, multiplication and division results are rounded to the **fewest significant figures** among the measured values. This shortcut does not replace a calculation of measurement uncertainty.
@@ -232,7 +281,7 @@ Pick the rule from the operation, then round once at the end. A sum keeps the fe
 
 <MathVisual
   title={<>Which Rounding Rule Applies</>}
-  description={<>A sum (orange, one grid step is 0.01) and a product (violet, one grid step is 0.01) rounded by their rules.</>}
+  description={<>A sum (orange, one grid step is <InlineMath math="0.01" />) and a product (violet, one grid step is <InlineMath math="0.01" />) rounded by their rules.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.8, max: 2.5 } },

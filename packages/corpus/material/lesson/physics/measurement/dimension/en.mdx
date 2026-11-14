@@ -60,6 +60,25 @@ The International System of Units or SI uses <InlineMath math="7" /> base quanti
 
 Dimensions are written in square brackets so they are not confused with units. For example, <InlineMath math="[\mathrm{L}]" /> is the dimension of length, while <InlineMath math="\text{m}" /> is the unit meter.
 
+Base dimensions can even predict a formula. Suppose a pendulum's period <InlineMath math="T" /> depends on the bob's mass <InlineMath math="[\mathrm{M}]" />, the string's length <InlineMath math="[\mathrm{L}]" /> and gravity <InlineMath math="[\mathrm{L}][\mathrm{T}]^{-2}" />. To end up with <InlineMath math="[\mathrm{T}]" />, mass must get the power <InlineMath math="0" />, length <InlineMath math="\tfrac12" /> and gravity <InlineMath math="-\tfrac12" />, so <InlineMath math="T=k\sqrt{l/g}" />. Experiments give <InlineMath math="k=2\pi" />. Below, three bobs of <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" /> and <InlineMath math="500\text{ g}" /> on <InlineMath math="0.80\text{ m}" /> strings swing in step, once every <InlineMath math="1.79\text{ s}" /> with <InlineMath math="g=9.81\text{ m/s}^2" />. Change the length and look for the one that falls behind: there is none.
+
+<PendulumPeriodLab
+  title={<>What Sets a Pendulum's Period</>}
+  description={
+    <>
+      Change the string length and watch the bobs of <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" /> and <InlineMath math="500\text{ g}" /> keep swinging in step.
+    </>
+  }
+  labels={{
+    check: <>Dimension check</>,
+    gravity: <>Gravitational acceleration</>,
+    length: "String length",
+    masses: <>Bob masses</>,
+    period: <>Period</>,
+    viewLabel: "Three pendulums with wooden, brass and lead bobs swinging from one bar",
+  }}
+/>
+
 ## Deriving Dimensions from Formulas
 
 Dimensional analysis works by **replacing every quantity in a formula with its dimension**, then simplifying the powers.
@@ -181,3 +200,28 @@ A bolt and a nut look like small objects, but measuring them can involve several
 So, two measuring tools can measure quantities with the same dimension, but they serve different contexts. A ruler is enough for a large length that does not need high precision. A vernier caliper or micrometer screw gauge is better when a small diameter must be read more carefully.
 
 The limit of the check becomes clear if we omit <InlineMath math="\frac{1}{2}" /> from the displacement formula. The expression <InlineMath math="s=v_0t+at^2" /> still has length dimensions on both sides, but gives the wrong displacement for constant nonzero acceleration. **Dimensions do not determine numerical factors** such as <InlineMath math="\frac{1}{2}" />.
+
+Try it on a real bolt. The lab below takes one <InlineMath math="\text{M}10" /> bolt whose shank counts as a cylinder <InlineMath math="10\text{ mm}" /> across and <InlineMath math="50\text{ mm}" /> long, and shows each quantity from the table on it: its value in SI units and its dimension. Length and diameter share <InlineMath math="[\mathrm{L}]" />, while density, mass over volume, ends at <InlineMath math="[\mathrm{M}][\mathrm{L}]^{-3}" />.
+
+<BoltDimensionsLab
+  title={<>One Bolt, Many Quantities</>}
+  description={
+    <>
+      Pick a quantity of this <InlineMath math="\text{M}10" /> bolt and watch which part it measures, its value in SI units and its dimension.
+    </>
+  }
+  labels={{
+    chooseQuantity: "Choose a quantity",
+    dimension: <>Dimension</>,
+    quantities: {
+      area: <>Cross-section</>,
+      density: <>Density</>,
+      diameter: <>Diameter</>,
+      length: <>Length</>,
+      mass: <>Mass</>,
+      volume: <>Volume</>,
+    },
+    value: <>Value in SI units</>,
+    viewLabel: "Steel bolt with the chosen quantity marked on it",
+  }}
+/>

@@ -18,6 +18,31 @@ In <InlineMath math="0.60 \text{ m}" />, <InlineMath math="0.60" /> is the numer
 
 > Without a named quantity, a number has no physical meaning. Without a unit, its scale cannot be compared.
 
+Every reading in the lab below is a number times a unit. The aluminium block measures <InlineMath math="5.0\text{ cm}" />, <InlineMath math="4.0\text{ cm}" /> and <InlineMath math="2.5\text{ cm}" /> along its edges, and the scale reads <InlineMath math="135\text{ g}" />. From those four values you get its volume, <InlineMath math="50\text{ cm}^3" />, and its density, <InlineMath math="2.70\text{ g/cm}^3" />. Swap the material and watch which values change.
+
+<DensityMeasurementLab
+  title={<>Density from Four Readings</>}
+  description={
+    <>
+      Swap the material and watch the mass and density change while the edges and the volume stay the same.
+    </>
+  }
+  labels={{
+    chooseMaterial: "Choose a material",
+    density: <>Density</>,
+    densitySi: <>Density in SI units</>,
+    mass: <>Mass</>,
+    materials: {
+      aluminium: <>Aluminium</>,
+      brass: <>Brass</>,
+      pine: <>Pine</>,
+    },
+    sides: <>Edges</>,
+    viewLabel: "Block on a dial scale with its three edges marked",
+    volume: <>Volume</>,
+  }}
+/>
+
 ## Base and Derived Quantities
 
 SI defines <InlineMath math="7" /> base quantities. Other physical quantities are derived from **combinations of those base quantities**.
@@ -52,7 +77,7 @@ Speed is built from two base quantities, <InlineMath math="v=s/t" />, so its uni
 
 <MathVisual
   title={<>Speed Built from Base Quantities</>}
-  description={<>Distance against time at 2 m/s (violet) and 5 m/s (orange). Horizontal: seconds. Vertical: one grid step is 2 m.</>}
+  description={<>Distance against time at <InlineMath math="2\text{ m/s}" /> (violet) and <InlineMath math="5\text{ m/s}" /> (orange). Horizontal: seconds. Vertical: one grid step is <InlineMath math="2\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5.5 } },
@@ -71,6 +96,23 @@ Speed is built from two base quantities, <InlineMath math="v=s/t" />, so its uni
   labels={{
     slow: <InlineMath math="v=\frac{2\text{ m}}{1\text{ s}}=2\text{ m/s}" />,
     fast: <InlineMath math="v=\frac{2\text{ m}}{0.4\text{ s}}=5\text{ m/s}" />,
+  }}
+/>
+
+You can also measure a speed straight from its two base quantities. Below, a trolley rolls through two light gates <InlineMath math="0.60\text{ m}" /> apart, and the timer reads <InlineMath math="1.250\text{ s}" /> between the beams. So <InlineMath math="v=\frac{0.60\text{ m}}{1.250\text{ s}}=0.48\text{ m/s}" />. Move the gates apart: the distance and the time both grow, and their ratio stays the same.
+
+<LightGateSpeedLab
+  title={<>Speed from Two Light Gates</>}
+  description={
+    <>
+      Move the gates apart and watch the distance and the time grow while the speed stays the same.
+    </>
+  }
+  labels={{
+    distance: "Distance between the gates",
+    speed: <>Speed</>,
+    time: <>Time between the beams</>,
+    viewLabel: "Trolley rolling through two light gates on a track",
   }}
 />
 
@@ -94,7 +136,7 @@ A derived quantity is built from base quantities. Volume multiplies three length
 
 <MathVisual
   title={<>A Volume from Three Lengths</>}
-  description={<>A 0.30 m by 0.20 m by 0.10 m box (orange) and one row of 0.10 m cubes on top (teal).</>}
+  description={<>A <InlineMath math="0.30\text{ m}" /> by <InlineMath math="0.20\text{ m}" /> by <InlineMath math="0.10\text{ m}" /> box (orange) and one row of <InlineMath math="0.10\text{ m}" /> cubes on top (teal).</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: 0, max: 2.5 }, z: { min: -0.5, max: 2.5 } },
@@ -134,7 +176,7 @@ The scene below draws the sheet at one grid step per <InlineMath math="0.10\text
 
 <MathVisual
   title={<>Area Counted in Squares</>}
-  description={<>The sheet of paper drawn at one grid step per 0.10 m. Each small square has an area of <InlineMath math="0.010\text{ m}^2" />.</>}
+  description={<>The sheet of paper drawn at one grid step per <InlineMath math="0.10\text{ m}" />. Each small square has an area of <InlineMath math="0.010\text{ m}^2" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 2.8 } },

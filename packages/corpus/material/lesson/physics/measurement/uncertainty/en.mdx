@@ -18,6 +18,24 @@ The sample standard deviation <InlineMath math="s" /> describes how far individu
 
 > Repeated measurements show random variation through small changes between readings. Systematic errors, such as a tool that does not start at zero or a damaged scale, must be checked through inspection or calibration.
 
+Reading the scale from a slightly different angle is one of those small changes. In the measuring cylinder below, the bottom of the water's curved surface sits on the cylinder's axis, but the scale is printed on the front wall. With your eye <InlineMath math="6.0\text{ cm}" /> above the water, your sight line crosses the wall higher up, and <InlineMath math="42.0\text{ mL}" /> reads as <InlineMath math="44.1\text{ mL}" />. Bring your eye level with the water, and the error drops to zero.
+
+<ParallaxReadingLab
+  title={<>Parallax on a Measuring Cylinder</>}
+  description={
+    <>
+      Move your eye up or down and watch where your sight line to the water crosses the scale.
+    </>
+  }
+  labels={{
+    error: <>Parallax error</>,
+    eye: "Eye height above the water",
+    reading: <>Reading you see</>,
+    trueVolume: <>True volume</>,
+    viewLabel: "Eye reading the water in a measuring cylinder, with a magnifier on the scale",
+  }}
+/>
+
 ## Mean of Repeated Measurements
 
 The diameter of one bottle cap is measured <InlineMath math="5" /> times with a vernier caliper. Every reading uses the same unit, <InlineMath math="\text{cm}" />.
@@ -46,6 +64,24 @@ Add the numerical readings in centimetres first:
 
 The mean is not enough. We also need to know <Highlight>whether the data cluster tightly around the mean</Highlight> or spread farther away.
 
+The same idea works for time. Below, an <InlineMath math="0.80\text{ m}" /> pendulum is timed for ten swings again and again, and your thumb starts and stops the stopwatch a little early or late each time. With <InlineMath math="N=10" /> trials, the mean is <InlineMath math="\bar t=17.933\text{ s}" />, close to the true <InlineMath math="17.943\text{ s}" />. Slide <InlineMath math="N" /> and watch the mean settle while the spread of single readings stays about the same.
+
+<StopwatchSpreadLab
+  title={<>Timing a Pendulum by Hand</>}
+  description={
+    <>
+      Add trials and watch the mean in fuchsia settle while the spread of single readings stays about the same.
+    </>
+  }
+  labels={{
+    mean: <>Mean</>,
+    spread: <>Spread of one reading</>,
+    trials: "Number of trials",
+    uncertainty: <>Uncertainty of the mean</>,
+    viewLabel: "Pendulum timed with a stopwatch, with a dot plot of the readings",
+  }}
+/>
+
 ## Data Spread Around the Mean
 
 For repeated data, sample spread can be calculated from the **distance between each reading and the mean**.
@@ -72,7 +108,7 @@ Here are the five readings from the table on one line. The fuchsia line is their
 
 <MathVisual
   title={<>From Readings to Spread</>}
-  description={<>Five readings of the diameter (orange), their mean (fuchsia) and the band of one standard deviation (teal). One grid step is 0.01 cm from 3.10 cm.</>}
+  description={<>Five readings of the diameter (orange), their mean (fuchsia) and the band of one standard deviation (teal). One grid step is <InlineMath math="0.01\text{ cm}" /> from <InlineMath math="3.10\text{ cm}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 2.4 } },
@@ -128,7 +164,7 @@ The scene below puts the five readings side by side. Each teal stem is one readi
 
 <MathVisual
   title={<>Five Readings around Their Mean</>}
-  description={<>Each stem is a reading minus the mean, in units of 0.01 cm. Orange lines mark the spread s, violet lines the uncertainty of the mean u.</>}
+  description={<>Each stem is a reading minus the mean, in units of <InlineMath math="0.01\text{ cm}" />. Orange lines mark the spread s, violet lines the uncertainty of the mean u.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: -2.8, max: 2.5 } },
@@ -183,7 +219,7 @@ The graph below keeps the same spread <InlineMath math="s_d" /> and asks what ha
 
 <MathVisual
   title={<>More Readings, a Sharper Mean</>}
-  description={<><InlineMath math="u=s/\sqrt N" /> for <InlineMath math="N=1" /> to 20 readings with the cap's spread <InlineMath math="s_d" />. Horizontal: N in units of 4. Vertical: u in units of 0.004 cm.</>}
+  description={<><InlineMath math="u=s/\sqrt N" /> for <InlineMath math="N=1" /> to <InlineMath math="20" /> readings with the cap's spread <InlineMath math="s_d" />. Horizontal: N in units of <InlineMath math="4" />. Vertical: u in units of <InlineMath math="0.004\text{ cm}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 5.5 }, y: { min: -0.3, max: 4.6 } },
