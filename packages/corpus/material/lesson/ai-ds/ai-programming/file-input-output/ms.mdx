@@ -1,0 +1,344 @@
+export const metadata = {
+    title: "Input dan Output Fail",
+    description: "Baca dan tulis fail teks dan fail binari dengan selamat dalam Python, pilih mod pembukaan yang sesuai dan urus kedudukan strim.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-09-18",
+    dateModified: "2026-09-19",
+    subject: "Pengaturcaraan AI",
+};
+
+## Membaca Fail
+
+Python <Highlight>membaca dan menulis fail melalui objek fail</Highlight>. Dalam mod teks, objek fail menyahkod bait yang disimpan kepada rentetan menggunakan pengekodan yang dipilih. Dalam mod binari, objek fail memberikan bait itu tanpa sebarang perubahan.
+
+Sediakan empat fail teks UTF-8 dalam direktori latihan kamu: `file.txt`, `data.txt`, `sample.txt` dan `input.txt`. Setiap fail berisi `Halo Python` tanpa baris baharu di hujungnya. Jalankan contoh membaca dahulu sebelum contoh menulis, kerana `w` menggantikan kandungan fail. Dalam contoh kedudukan, bacaan pertama menghasilkan `Halo `, bacaan kedua `Pyt`, dan bacaan ulangan juga `Pyt`.
+
+### Membaca Seluruh Kandungan Fail
+
+Kaedah `read()` memuatkan **semua baki kandungan fail** ke dalam memori sekali gus:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "read_entire_file.py",
+      code: `# Baca seluruh fail teks UTF-8 sekali gus
+with open('file.txt', 'r', encoding='utf-8') as f:
+    txt = f.read()
+
+print(txt)
+# Output:
+# Halo Python`
+    }
+  ]}
+/>
+
+`open()` mencipta objek fail, `read()` mengambil teksnya, dan blok `with` menutup fail secara automatik apabila blok itu tamat, termasuk apabila pengecualian mengganggu operasi tersebut.
+
+### Membaca Fail Baris demi Baris
+
+Untuk fail yang besar, **membaca baris demi baris** lebih cekap kerana cara ini tidak memuatkan seluruh fail ke dalam memori sekali gus.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "read_line_by_line.py",
+      code: `# Baca fail teks UTF-8 baris demi baris
+with open('file.txt', 'r', encoding='utf-8') as f:
+    for line in f:
+        print(line, end='')
+
+# Nota: setiap baris mengekalkan aksara baris baharunya
+# Parameter end='' menghalang print daripada menambah baris baharu lagi`
+    }
+  ]}
+/>
+
+Setiap baris mengekalkan aksara baris baharu di hujungnya jika ada. Baris terakhir mungkin tidak mempunyai baris baharu. Dengan menetapkan `end=''`, `print()` tidak menambah baris baharu yang kedua.
+
+## Menulis ke Fail
+
+Apabila kamu menulis ke fail, data atau hasil pengiraan masih tersedia selepas atur cara berhenti berjalan. Python membuka fail dalam mod yang menentukan sama ada **kandungan sedia ada diganti atau disambung**, kemudian menulis melalui objek fail yang dipulangkan.
+
+### Menulis Rentetan ke Fail
+
+Contoh ini menggunakan `w` untuk **menggantikan seluruh kandungan fail**. Sepuluh panggilan `write()` berlaku di dalam satu blok `with` sebelum fail ditutup.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "write_string_to_file.py",
+      code: `# Tulis rentetan ke fail teks UTF-8
+with open('file.txt', 'w', encoding='utf-8') as f:
+    for i in range(1, 11):
+        f.write(f'Baris {i}\\n')
+
+# Fail akan mengandungi:
+# Baris 1
+# Baris 2
+# Baris 3
+# ... (hingga Baris 10)`
+    }
+  ]}
+/>
+
+### Menghalakan Output Print ke Fail
+
+Kamu boleh menghalakan output fungsi `print()` terus ke fail menggunakan **parameter `file`**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "redirect_print_output.py",
+      code: `# Halakan output print ke fail teks UTF-8
+with open('file.txt', 'w', encoding='utf-8') as f:
+    for i in range(1, 21):
+        print("Baris", i, file=f)
+
+# Fail akan mengandungi output print yang dihalakan
+# Baris 1
+# Baris 2
+# ... (hingga Baris 20)`
+    }
+  ]}
+/>
+
+Argumen `file` menggunakan semula pemformatan `print()`, tetapi teks yang terhasil dihantar ke objek fail yang dipilih.
+
+`f.write(text)` memulangkan bilangan aksara yang ditulis, dan baris baharu `\n` dikira sebagai satu aksara. Jika kamu menulis `'Hello\n'`, `'Python\n'` dan kemudian `'!'`, fail itu akan mengandungi <InlineMath math="6+7+1=14" /> aksara.
+
+<BarChart
+  title={<>Nilai pulangan <code>f.write()</code> untuk tiga rentetan</>}
+  description={<>Setiap palang ialah nombor yang dipulangkan oleh <code>f.write()</code> untuk rentetan di bawahnya. Setiap <code>\n</code> menambah satu aksara.</>}
+  yAxisLabel="Aksara ditulis"
+  data={[
+    { name: "'Hello\\n'", value: 6 },
+    { name: "'Python\\n'", value: 7 },
+    { name: "'!'", value: 1 },
+  ]}
+  chartConfig={{ value: { label: "Aksara ditulis", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+## Mod Pembukaan Fail
+
+Python menyediakan pelbagai **mod untuk membuka fail** mengikut keperluan operasi yang hendak dilakukan.
+
+<Mermaid
+  title="Pilih Mod Sebelum Menyentuh Fail"
+  description="Bandingkan mod baca, tulis, tambah dan binari supaya operasi fail tidak memusnahkan kandungan sedia ada secara tidak sengaja."
+  chart={`
+    flowchart LR
+        A[Mod Fail] --> B[Mod Teks]
+        A --> C[Mod Binari]
+
+        B --> B1[r - baca fail sedia ada]
+        B --> B2[w - cipta atau pangkas]
+        B --> B3[a - cipta atau tambah di hujung]
+        B --> B4[r+ - baca dan tulis fail sedia ada]
+
+        C --> C1[rb - baca binari]
+        C --> C2[wb - cipta atau pangkas binari]
+        C --> C3[ab - cipta atau tambah di hujung binari]
+        C --> C4[rb+ - baca tulis binari sedia ada]
+  `}
+/>
+
+### Sintaks Membuka Fail
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "file_opening_syntax.py",
+      code: `# Baca fail teks yang sedia ada
+with open('data.txt', 'r', encoding='utf-8') as f:
+    first_line = f.readline()
+
+# Cipta fail atau pangkas kandungan lamanya
+with open('output.txt', 'w', encoding='utf-8') as f:
+    f.write('kandungan baharu')
+
+# Cipta fail atau tambah selepas kandungan sedia ada
+with open('log.txt', 'a', encoding='utf-8') as f:
+    f.write('peristiwa seterusnya\\n')
+
+# Baca dan tulis fail sedia ada tanpa memangkasnya semasa dibuka
+with open('data.txt', 'r+', encoding='utf-8') as f:
+    original = f.read()`
+    }
+  ]}
+/>
+
+Mod mengawal **sama ada fail mesti sudah wujud**, sama ada membuka fail itu memangkas kandungan sedia ada, dan operasi yang dibenarkan. `r` dan `r+` memerlukan fail yang sudah wujud. `w` mencipta atau memangkas, manakala `a` mencipta atau menambah di hujung. Menambah `b` memilih mod binari, dan dalam mod ini `encoding` tidak digunakan.
+
+Mulakan dengan fail yang berisi `'abc\n'`, iaitu empat aksara. Membuka dengan `'r'` dan membaca tidak mengubah apa-apa. Membuka dengan `'w'` dan menulis `'xy'` memadamkan kandungan lama, manakala `'a'` menambah `'xy'` di hujung.
+
+<BarChart
+  title={<>Saiz fail selepas setiap mod</>}
+  description={<>Setiap palang ialah bilangan aksara dalam fail selepas fail itu dibuka dengan mod di bawahnya dan, bagi <code>'w'</code> dan <code>'a'</code>, selepas <code>'xy'</code> ditulis. Setiap mod bermula semula daripada fail empat aksara itu.</>}
+  yAxisLabel="Aksara dalam fail"
+  data={[
+    { name: "awal", value: 4 },
+    { name: "'r'", value: 4 },
+    { name: "'w'", value: 2 },
+    { name: "'a'", value: 4 + 2 },
+  ]}
+  chartConfig={{ value: { label: "Aksara dalam fail", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
+## Kaedah Membaca Fail
+
+Python menawarkan lebih daripada satu cara untuk membaca fail. Pilihannya bergantung pada **berapa banyak kandungan** yang kamu perlukan sekali gus dan sama ada kedudukan bacaan penting selepas itu. `read()` mengambil seluruh baki kandungan, atau paling banyak bilangan aksara yang diminta. `readline()` mengambil satu baris, manakala `readlines()` tanpa argumen memuatkan semua baris yang tinggal ke dalam senarai.
+
+### Kaedah Read dengan Parameter
+
+`read()` menerima **argumen saiz**, jadi kamu boleh mengambil bilangan aksara yang tetap pada satu masa. Contoh ini membandingkan tiga bacaan: paling banyak sepuluh aksara, seluruh kandungan dan satu baris.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "read_methods.py",
+      code: `# Teroka beberapa kaedah membaca teks
+with open('file.txt', 'r', encoding='utf-8') as f:
+    # Baca paling banyak 10 aksara
+    s = f.read(10)
+    print("10 aksara:", s)
+
+    # Kembali ke awal dan baca baki fail
+    f.seek(0)
+    s = f.read()
+    print("Seluruh fail:", s)
+
+    # Kembali sekali lagi dan baca satu baris, termasuk baris baharunya jika ada
+    f.seek(0)
+    s = f.readline()
+    print("Satu baris:", repr(s))`
+    }
+  ]}
+/>
+
+### Kedudukan Fail dan Pembacaan
+
+Fail yang dibuka dalam mod `r` bermula pada kedudukan awal strimnya. Setiap bacaan memajukan kedudukan itu. Dalam mod teks, `tell()` mungkin memulangkan **penanda kedudukan khas**. Simpan penanda itu dan berikan semula kepada Python apabila kamu perlukan kedudukan yang sama.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "file_position.py",
+      code: `# Demonstrasi kedudukan fail
+with open('sample.txt', 'r', encoding='utf-8') as f:
+    first_read = f.read(5)   # Baca paling banyak 5 aksara
+    saved_position = f.tell()
+    print("Bacaan pertama:", first_read)
+
+    second_read = f.read(3)  # Sambung dari kedudukan semasa
+    print("Bacaan kedua:", second_read)
+
+    f.seek(saved_position)   # Kembali ke kedudukan strim teks yang disimpan
+    repeated = f.read(3)
+    print("Bacaan ulangan:", repeated)`
+    }
+  ]}
+/>
+
+Dalam mod teks, `read()` dan `readline()` memulangkan rentetan, dan memulangkan `''` apabila tiada lagi teks. Dalam mod binari, kedua-duanya memulangkan `bytes` dan menggunakan `b''` di hujung fail. Lelaran berhenti secara automatik apabila sampai ke hujung.
+
+Fail yang terbuka mempunyai kedudukan, dan setiap bacaan memajukannya. Untuk kandungan `"Hi!\nPython\n"`, kedudukan bermula di awal selepas `open()`. `read(3)` mengambil `Hi!` dan berhenti pada kedudukan `3`, `readline()` yang pertama mengambil baki baris itu hingga `\n`, dan `readline()` yang kedua mengambil `Python\n` hingga hujung fail. Bacaan seterusnya memulangkan rentetan kosong, kerana kedudukan sudah berada di hujung.
+
+<MathVisual
+  title={<>Kedudukan fail semasa membaca</>}
+  description={<>Setiap aksara dalam fail ialah satu titik, dan ↵ ialah baris baharu. Segmen menunjukkan kedudukan selepas setiap panggilan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -2.4, max: 0.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "char-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "char-b", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "char-c", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "char-d", kind: "point", at: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "char-e", kind: "point", at: { x: 4, y: 0 }, appearance: "reference" },
+      { id: "char-f", kind: "point", at: { x: 5, y: 0 }, appearance: "reference" },
+      { id: "char-g", kind: "point", at: { x: 6, y: 0 }, appearance: "reference" },
+      { id: "char-h", kind: "point", at: { x: 7, y: 0 }, appearance: "reference" },
+      { id: "char-i", kind: "point", at: { x: 8, y: 0 }, appearance: "reference" },
+      { id: "char-j", kind: "point", at: { x: 9, y: 0 }, appearance: "reference" },
+      { id: "char-k", kind: "point", at: { x: 10, y: 0 }, appearance: "reference" },
+      { id: "stop-a", kind: "segment", from: { x: -1 / 2, y: -0.6 }, to: { x: -1 / 2, y: -0.2 }, appearance: "reference" },
+      { id: "stop-b", kind: "segment", from: { x: 5 / 2, y: -1.1 }, to: { x: 5 / 2, y: -0.2 }, appearance: "secondary" },
+      { id: "stop-c", kind: "segment", from: { x: 7 / 2, y: -1.6 }, to: { x: 7 / 2, y: -0.2 }, appearance: "construction" },
+      { id: "stop-d", kind: "segment", from: { x: 21 / 2, y: -2.1 }, to: { x: 21 / 2, y: -0.2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "char-a", objectId: "char-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "char-b", objectId: "char-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "char-c", objectId: "char-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "char-d", objectId: "char-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "char-e", objectId: "char-e", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "char-f", objectId: "char-f", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "char-g", objectId: "char-g", at: { x: 6, y: 0 }, placement: "above" },
+      { key: "char-h", objectId: "char-h", at: { x: 7, y: 0 }, placement: "above" },
+      { key: "char-i", objectId: "char-i", at: { x: 8, y: 0 }, placement: "above" },
+      { key: "char-j", objectId: "char-j", at: { x: 9, y: 0 }, placement: "above" },
+      { key: "char-k", objectId: "char-k", at: { x: 10, y: 0 }, placement: "above" },
+      { key: "stop-a", objectId: "stop-a", at: { x: -1 / 2, y: -0.6 }, placement: "right" },
+      { key: "stop-b", objectId: "stop-b", at: { x: 5 / 2, y: -1.1 }, placement: "right" },
+      { key: "stop-c", objectId: "stop-c", at: { x: 7 / 2, y: -1.6 }, placement: "right" },
+      { key: "stop-d", objectId: "stop-d", at: { x: 21 / 2, y: -2.1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "char-a": "H",
+    "char-b": "i",
+    "char-c": "!",
+    "char-d": "↵",
+    "char-e": "P",
+    "char-f": "y",
+    "char-g": "t",
+    "char-h": "h",
+    "char-i": "o",
+    "char-j": "n",
+    "char-k": "↵",
+    "stop-a": "open()",
+    "stop-b": "read(3)",
+    "stop-c": "readline()",
+    "stop-d": "readline()",
+  }}
+/>
+
+## Pengendalian Fail yang Selamat
+
+Pernyataan `with` <Highlight>menutup fail secara automatik apabila bloknya tamat</Highlight>, termasuk apabila operasi di dalam blok itu menimbulkan pengecualian.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "safe_file_handling.py",
+      code: `# Guna pernyataan with untuk mengendalikan fail dengan selamat
+with open('file.txt', 'r', encoding='utf-8') as f:
+    content = f.read()
+    print(content)
+# Fail ditutup secara automatik selepas keluar dari blok with
+
+# Menulis dengan pernyataan with
+with open('output.txt', 'w', encoding='utf-8') as f:
+    f.write("Hello World!")
+    f.write("\\nBaris kedua")
+# Fail ditutup dan disimpan secara automatik
+
+# Membaca dan menulis serentak
+with open('input.txt', 'r', encoding='utf-8') as input_file, open('output.txt', 'w', encoding='utf-8') as output_file:
+    data = input_file.read()
+    output_file.write(data.upper())
+# Kedua-dua fail ditutup secara automatik`
+    }
+  ]}
+/>
+
+Pernyataan `with` memastikan fail sentiasa ditutup dengan betul, walaupun ralat berlaku dalam atur cara. Dengan cara ini, kamu mengelakkan masalah seperti fail yang terus terbuka dan menggunakan sumber sistem.

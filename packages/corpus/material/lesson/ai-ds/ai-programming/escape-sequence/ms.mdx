@@ -1,0 +1,257 @@
+export const metadata = {
+    title: "Jujukan Lepas",
+    description: "Jujukan lepas Python dengan notasi backslash untuk tanda petik, baris baharu, tab dan aksara khas dalam rentetan.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-09-17",
+    dateModified: "2026-09-19",
+    subject: "Pengaturcaraan AI",
+};
+
+## Mewakili Aksara Khas dalam Rentetan
+
+Jujukan lepas (escape sequence) bermula dengan backslash (`\`) yang diikuti satu atau lebih aksara yang Python tafsir secara khas. Jujukan ini <Highlight>membolehkan literal rentetan mewakili aksara seperti pemisah baris atau tanda petik</Highlight>, iaitu aksara yang akan menamatkan literal itu kalau ditulis terus.
+
+Backslash mengubah cara Python membaca aksara selepasnya. Backslash itu sebahagian daripada notasi dalam kod sumber, manakala rentetan yang terhasil mengandungi aksara yang diwakili oleh notasi itu.
+
+## Masalah Semasa Menulis Rentetan
+
+**Tanda petik dan backslash** perlu dijaga di dalam rentetan, kerana Python membacanya sebelum rentetan itu wujud. Tanda petik di dalam rentetan yang sama dengan pembatasnya akan menutup literal terlalu awal, dan backslash dalam rentetan biasa memulakan notasi lepas. Kalau kamu letakkan backslash di depan aksara itu, aksara tersebut kekal di dalam teks, dan dua backslash berturut-turut menghasilkan satu backslash dalam nilainya.
+
+### Konflik Tanda Petik
+
+Apabila aksara tanda petik yang sama menjadi pembatas rentetan dan juga muncul di dalamnya, tanda petik di dalam yang tidak didahului backslash akan **menutup literal terlalu awal**. Aksara selebihnya kemudian dibaca sebagai kod Python yang tidak sah.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "quote_problem.py",
+      code: `# Masalah: tanda petik tunggal di dalam rentetan
+>>> 'I'm Bob.'
+SyntaxError: invalid syntax
+
+# Penyelesaian: guna tanda petik berganda untuk rentetan
+>>> "I'm Bob."
+"I'm Bob."
+
+# Masalah: kedua-dua jenis tanda petik ada dalam rentetan
+>>> 'He said: "I'm Bob."'
+SyntaxError: invalid syntax`
+    }
+  ]}
+/>
+
+Apabila kamu guna tanda petik tunggal untuk membuat rentetan, tetapi ada juga tanda petik tunggal di dalam rentetan itu, Python akan menganggap tanda petik kedua sebagai penutup rentetan. Akibatnya, bahagian selepasnya dianggap kod yang tidak sah.
+
+### Penyelesaian dengan Backslash
+
+Letakkan backslash (`\`) sebelum tanda petik di dalam rentetan. Python membaca tanda petik yang didahului backslash itu sebagai <Highlight>sebahagian daripada rentetan</Highlight>, bukan sebagai pembatas penutupnya.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "escape_solution.py",
+      code: `# Menggunakan jujukan lepas untuk tanda petik tunggal
+>>> 'He said: "I\\'m Bob."'
+'He said: "I\\'m Bob."'
+
+# print memaparkan nilai rentetan selepas jujukan lepas diproses
+>>> print('He said: "I\\'m Bob."')
+He said: "I'm Bob."`
+    }
+  ]}
+/>
+
+Dalam contoh ini, `\'` memberitahu Python supaya mengekalkan tanda petik tunggal di dalam teks. Rentetan itu masih bersambung selepas tanda petik tersebut.
+
+### Memaparkan Aksara Backslash
+
+Backslash mempunyai makna khas dalam jujukan lepas, jadi untuk memaparkan backslash itu sendiri, kamu perlu menulis **dua backslash** berturut-turut.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "escape_backslash.py",
+      code: `# Memaparkan backslash dalam rentetan
+>>> print('Jujukan lepas untuk baris baharu ialah \\\\n.')
+Jujukan lepas untuk baris baharu ialah \\n.
+
+# Menggunakan rentetan mentah (awalan r)
+>>> text = r'Jujukan lepas untuk baris baharu ialah \\n.'
+>>> text
+'Jujukan lepas untuk baris baharu ialah \\\\n.'
+>>> print(text)
+Jujukan lepas untuk baris baharu ialah \\n.`
+    }
+  ]}
+/>
+
+Awalan rentetan mentah (raw string) seperti `r` mengekalkan kebanyakan backslash seperti yang ditulis. Tanda petik masih perlu mematuhi peraturan pembatas literal itu, dan rentetan mentah tidak boleh berakhir dengan bilangan backslash yang ganjil.
+
+Backslash sebelum tanda petik hanya memberitahu Python bahawa tanda petik itu sebahagian daripada teks. Backslash itu sendiri tidak pernah masuk ke dalam rentetan, jadi `'It\'s'` dan `"It's"` kedua-duanya mengandungi empat aksara.
+
+<BarChart
+  title={<><code>len()</code> bagi rentetan yang mengandungi tanda petik</>}
+  description={<>Setiap palang ialah <code>len()</code> bagi literal yang ditulis di bawahnya. Versi yang menggunakan backslash dan versi yang menggunakan jenis tanda petik yang lain mempunyai panjang yang sama, <InlineMath math="4" /> dan <InlineMath math="8" />.</>}
+  yAxisLabel="Panjang rentetan"
+  data={[
+    { name: "'It\\'s'", value: 4 },
+    { name: "\"It's\"", value: 4 },
+    { name: "'Say \"hi\"'", value: 8 },
+    { name: "\"Say \\\"hi\\\"\"", value: 8 },
+  ]}
+  chartConfig={{ value: { label: "Panjang rentetan", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
+## Rujukan Jujukan Lepas
+
+**Jujukan lepas** berikut mewakili aksara dalam literal rentetan Python:
+
+| Jujukan Lepas | Maksud |
+|---|---|
+| `\'` | Tanda petik tunggal (') |
+| `\"` | Tanda petik berganda (") |
+| `\n` | Baris baharu (newline) |
+| `\r` | Kembali ke awal baris (carriage return) |
+| `\t` | Tab mendatar |
+| `\b` | Undur satu ruang (backspace) |
+| `\\` | Aksara backslash (\) |
+| `\uxxxx` | Aksara Unicode dengan titik kod perenambelasan empat digit |
+| `\Uxxxxxxxx` | Aksara Unicode dengan titik kod perenambelasan lapan digit |
+| `\N{name}` | Aksara Unicode mengikut nama berdaftarnya |
+| `\xhh` | Aksara dengan nilai perenambelasan dua digit |
+
+Setiap jujukan lepas mempunyai fungsi tertentu untuk mengawal paparan atau format teks dalam atur cara.
+
+### Melepaskan Tanda Kurung Kerinting dalam Rentetan Format
+
+Dalam `str.format()` dan f-string, tanda kurung kerinting menandakan **medan gantian** (replacement field). Kalau kamu tulis tanda kurung itu dua kali, sintaks pemformatan menganggapnya sebagai teks biasa. Cara ini berbeza daripada jujukan lepas backslash dalam literal rentetan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "escape_braces.py",
+      code: `# Tanda kurung kerinting yang dilepaskan dalam rentetan format: {{ }}
+>>> '{{}}'.format('text')
+'{}'
+
+# Memaparkan teks bersama tanda kurung kerinting
+>>> '{{{}}}'.format('text')
+'{text}'`
+    }
+  ]}
+/>
+
+Tulis `{{` untuk menghasilkan `{` dan `}}` untuk menghasilkan `}`. Dalam `'{{{}}}'`, tanda kurung berganda di bahagian luar menjadi tanda kurung literal, manakala `{}` di tengah kekal sebagai medan gantian.
+
+Setiap jujukan lepas menghasilkan tepat satu aksara, dan `ord()` membaca kod Unicode aksara itu. Tab dan baris baharu ialah aksara kawalan dengan kod <InlineMath math="9" /> dan <InlineMath math="10" />, manakala tanda petik dan backslash ialah aksara biasa dengan kod yang lebih besar.
+
+<BarChart
+  title={<><code>ord()</code> bagi aksara daripada setiap jujukan lepas</>}
+  description={<>Setiap palang ialah kod Unicode bagi aksara yang dihasilkan oleh jujukan lepas di bawahnya, daripada <code>\t</code> dengan kod <InlineMath math="9" /> hingga <code>\\</code> dengan kod <InlineMath math="92" />.</>}
+  yAxisLabel="Kod Unicode"
+  data={[
+    { name: "\\t", value: 9 },
+    { name: "\\n", value: 10 },
+    { name: "\\\"", value: 34 },
+    { name: "\\'", value: 39 },
+    { name: "\\\\", value: 92 },
+  ]}
+  chartConfig={{ value: { label: "Kod Unicode", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>
+
+## Menggabungkan Jujukan Lepas
+
+Contoh di bawah menggunakan jujukan lepas untuk mengawal **tab dan pemisah baris** bersama tanda petik dan backslash literal dalam satu output.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "practical_example.py",
+      code: `# Membuat output yang kemas dengan tab dan baris baharu
+print("Nama\\t: John Doe")
+print("Umur\\t: 25 tahun")
+print("Alamat\\t: Jakarta\\n")
+
+# Memaparkan dialog dengan tanda petik
+print('Dia berkata: "Cuaca hari ini sangat cerah!"')
+
+# Memaparkan laluan fail dengan backslash
+print("Fail disimpan di: C:\\\\Users\\\\Documents\\\\data.txt")
+
+# Gabungan pelbagai jujukan lepas
+print("Baris pertama\\nBaris kedua\\t(dengan tab)\\nBaris ketiga")`
+    }
+  ]}
+/>
+
+Dalam contoh ini, `\t` menghasilkan lajur yang kemas, `\n` memisahkan baris dan `\\` memaparkan laluan fail Windows dengan betul.
+
+Perkara penting di sini ialah beza antara notasi dalam kod sumber dengan rentetan yang terhasil. Contohnya, `\n` mengambil dua aksara dalam kod sumber tetapi mewakili satu aksara baris baharu dalam rentetan.
+
+Gambar ini mencetak `"Name\tAge\nBob\t25"` dalam terminal yang mempunyai hentian tab setiap lapan lajur. Segmen ambar menunjukkan `\t` melompat ke gandaan lapan yang seterusnya, jadi `Age` dan `25` bermula pada lajur yang sama walaupun panjang `Name` dan `Bob` berbeza. Segmen jingga menunjukkan `\n` membawa kursor ke permulaan baris seterusnya. Walau selebar mana pun rupanya, setiap jujukan lepas tetap satu aksara, jadi `len()` bagi rentetan ini ialah <InlineMath math="15" />.
+
+<MathVisual
+  title={<>Ke mana kursor pergi untuk <code>\t</code> dan <code>\n</code></>}
+  description={<>Aksara ungu ialah teks biasa, segmen ambar ialah lompatan tab dan segmen jingga ialah baris baharu, bagi terminal dengan hentian tab setiap lapan lajur.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11.5 }, y: { min: -1.6, max: 0.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "name-a", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "name-b", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "name-c", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "name-d", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "age-a", kind: "point", at: { x: 8, y: 0 }, appearance: "secondary" },
+      { id: "age-b", kind: "point", at: { x: 9, y: 0 }, appearance: "secondary" },
+      { id: "age-c", kind: "point", at: { x: 10, y: 0 }, appearance: "secondary" },
+      { id: "bob-a", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "bob-b", kind: "point", at: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "bob-c", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+      { id: "num-a", kind: "point", at: { x: 8, y: -1 }, appearance: "secondary" },
+      { id: "num-b", kind: "point", at: { x: 9, y: -1 }, appearance: "secondary" },
+      { id: "tab-a", kind: "segment", from: { x: 4, y: 0 }, to: { x: 8, y: 0 }, appearance: "highlight" },
+      { id: "newline", kind: "segment", from: { x: 11, y: 0 }, to: { x: 0, y: -1 }, appearance: "primary" },
+      { id: "tab-b", kind: "segment", from: { x: 3, y: -1 }, to: { x: 8, y: -1 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "name-a", objectId: "name-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "name-b", objectId: "name-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "name-c", objectId: "name-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "name-d", objectId: "name-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "age-a", objectId: "age-a", at: { x: 8, y: 0 }, placement: "above" },
+      { key: "age-b", objectId: "age-b", at: { x: 9, y: 0 }, placement: "above" },
+      { key: "age-c", objectId: "age-c", at: { x: 10, y: 0 }, placement: "above" },
+      { key: "bob-a", objectId: "bob-a", at: { x: 0, y: -1 }, placement: "above" },
+      { key: "bob-b", objectId: "bob-b", at: { x: 1, y: -1 }, placement: "above" },
+      { key: "bob-c", objectId: "bob-c", at: { x: 2, y: -1 }, placement: "above" },
+      { key: "num-a", objectId: "num-a", at: { x: 8, y: -1 }, placement: "above" },
+      { key: "num-b", objectId: "num-b", at: { x: 9, y: -1 }, placement: "above" },
+      { key: "tab-a", objectId: "tab-a", at: { x: 6, y: 0 }, placement: "above" },
+      { key: "newline", objectId: "newline", at: { x: 11 / 2, y: -1 / 2 }, placement: "below-right" },
+      { key: "tab-b", objectId: "tab-b", at: { x: 11 / 2, y: -1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "name-a": "N",
+    "name-b": "a",
+    "name-c": "m",
+    "name-d": "e",
+    "age-a": "A",
+    "age-b": "g",
+    "age-c": "e",
+    "bob-a": "B",
+    "bob-b": "o",
+    "bob-c": "b",
+    "num-a": "2",
+    "num-b": "5",
+    "tab-a": "\\t",
+    "newline": "\\n",
+    "tab-b": "\\t",
+  }}
+/>
