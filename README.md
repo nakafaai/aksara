@@ -110,6 +110,7 @@ bun run lines
 bun run boundaries
 bun run locales
 bun run points
+bun run visuals
 bun run workflows
 bun run native
 bun run typecheck
