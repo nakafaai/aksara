@@ -36,6 +36,13 @@ const PATH_BEFORE_PATTERN = /[\p{L}\p{N}][/#@\\.]$|[#@\\^&]$/u;
 const YEAR_PATTERN =
   /^(?:(?:1[5-9]|2[01])\d\d(?:\/\d{2,4})?|\d{1,4}\/(?:1[5-9]|2[01])\d\d)$/u;
 
+/**
+ * A clock time with a two-digit hour, such as `08.00`, `12:30` or the midnight `24.00`. No locale
+ * writes a quantity this way with no unit: Indonesian, German and Malay
+ * decimals take a comma, and a time names a moment, so it stays text.
+ */
+const CLOCK_PATTERN = /^(?:(?:[01]\d|2[0-3])[.:][0-5]\d|24[.:]00)$/u;
+
 /** Whether a character exists and is a letter, a mark, or an underscore. */
 function isLetter(character: string | undefined): boolean {
   return character !== undefined && LETTER_PATTERN.test(character);
@@ -147,7 +154,7 @@ function joinTuples(text: string, matches: NumberMatch[]): NumberMatch[] {
 /**
  * Returns every plain number in one text that a learner reads as a quantity:
  * a count, a measurement, an amount, a percentage, or a value. Years, dates,
- * document labels, list and citation markers, and numbers glued into a name
+ * clock times, document labels, list and citation markers, and numbers glued into a name
  * stay text (see `textSpans`).
  */
 export function findNumbers(text: string): NumberMatch[] {
@@ -169,7 +176,8 @@ export function findNumbers(text: string): NumberMatch[] {
     }
     const quantity = quantityStart(text, start);
     const bare = end === numberEnd && quantity === start;
-    if (!(bare && YEAR_PATTERN.test(match[0]))) {
+    const isName = YEAR_PATTERN.test(match[0]) || CLOCK_PATTERN.test(match[0]);
+    if (!(bare && isName)) {
       matches.push({ end, start: quantity });
     }
   }
