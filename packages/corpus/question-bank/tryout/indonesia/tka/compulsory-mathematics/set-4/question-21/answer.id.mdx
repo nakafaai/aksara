@@ -1,12 +1,53 @@
-Pertanyaan ini hanya tentang siswa kelas X, jadi **pembaginya jumlah siswa kelas X**, yaitu <InlineMath math="80" />, bukan seluruh <InlineMath math="200" /> siswa.
+Soal ini menanyakan berapa hari yang pendapatannya dekat dengan rata-rata, dengan jarak **kurang dari** satu simpangan baku. Rencanakan dua langkah: cari rata-rata dan simpangan baku pendapatan yang baru, lalu terjemahkan syarat itu kembali ke banyak gelas pada tabel.
 
-<BlockMath math="\frac{20}{80}\cdot100\,\%=25\,\%" />
+# Rata-rata dan simpangan baku pendapatan
 
-Sebagai pemeriksaan, seperempat dari <InlineMath math="80" /> siswa adalah <InlineMath math="20" /> siswa.
+Harga naik <InlineMath math="20\%" />, jadi harga baru <InlineMath math="1{,}2\cdot\text{Rp}5{.}000=\text{Rp}6{.}000" />. Jika pada suatu hari terjual <InlineMath math="x" /> gelas, pendapatannya <InlineMath math="P=6{.}000x+30{.}000" />.
 
-Jadi, persentasenya <InlineMath math="25\,\%" />.
+Setiap data dikali <InlineMath math="6{.}000" /> lalu ditambah <InlineMath math="30{.}000" />. Rata-rata ikut dikali dan ikut ditambah. Simpangan baku hanya ikut dikali, karena **menambah bilangan yang sama ke setiap data tidak mengubah sebaran data**.
 
-- <InlineMath math="20\,\%" /> adalah persentase seluruh pesepeda dari semua kelas, <InlineMath math="\frac{40}{200}" />.
-- <InlineMath math="40\,\%" /> adalah bagian siswa kelas X dari seluruh siswa, <InlineMath math="\frac{80}{200}" />.
-- <InlineMath math="50\,\%" /> adalah bagian kelas X di antara pesepeda, <InlineMath math="\frac{20}{40}" />.
-- <InlineMath math="75\,\%" /> adalah persentase siswa kelas X yang tidak bersepeda, <InlineMath math="\frac{60}{80}" />.
+<BlockMath math="\begin{aligned}
+\bar{P}&=6{.}000\cdot40+30{.}000=270{.}000 \\
+S_P&=6{.}000\cdot6=36{.}000
+\end{aligned}" />
+
+# Kembali ke banyak gelas
+
+Syaratnya selisih pendapatan dengan rata-rata kurang dari <InlineMath math="36{.}000" />. Ubah ke <InlineMath math="x" />:
+
+<BlockMath math="\begin{aligned}
+\left|6{.}000x+30{.}000-270{.}000\right|&<36{.}000 \\
+\left|6{.}000x-240{.}000\right|&<36{.}000 \\
+|x-40|&<6 \\
+34<x&<46
+\end{aligned}" />
+
+Hasil ini sama dengan syarat **kurang dari satu simpangan baku pada data gelas**: rata-rata <InlineMath math="40" /> dan simpangan baku <InlineMath math="6" />. Mengali dengan bilangan positif dan menambah bilangan tetap tidak mengubah posisi setiap hari jika diukur dalam satuan simpangan baku.
+
+# Menghitung harinya
+
+Cek setiap hari pada tabel terhadap <InlineMath math="34<x<46" />:
+
+| Hari ke- | Banyak gelas <InlineMath math="x" /> | <InlineMath math="\lvert x-40\rvert" /> | Memenuhi |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="41" /> | <InlineMath math="1" /> | ya |
+| <InlineMath math="2" /> | <InlineMath math="33" /> | <InlineMath math="7" /> | tidak |
+| <InlineMath math="3" /> | <InlineMath math="46" /> | <InlineMath math="6" /> | tidak |
+| <InlineMath math="4" /> | <InlineMath math="38" /> | <InlineMath math="2" /> | ya |
+| <InlineMath math="5" /> | <InlineMath math="31" /> | <InlineMath math="9" /> | tidak |
+| <InlineMath math="6" /> | <InlineMath math="45" /> | <InlineMath math="5" /> | ya |
+| <InlineMath math="7" /> | <InlineMath math="40" /> | <InlineMath math="0" /> | ya |
+| <InlineMath math="8" /> | <InlineMath math="48" /> | <InlineMath math="8" /> | tidak |
+| <InlineMath math="9" /> | <InlineMath math="32" /> | <InlineMath math="8" /> | tidak |
+| <InlineMath math="10" /> | <InlineMath math="46" /> | <InlineMath math="6" /> | tidak |
+
+Dua hari dengan <InlineMath math="46" /> gelas tepat berjarak satu simpangan baku, bukan kurang dari satu simpangan baku, jadi keduanya **tidak ikut dihitung**. Yang memenuhi hanya hari dengan <InlineMath math="41" />, <InlineMath math="38" />, <InlineMath math="45" />, dan <InlineMath math="40" /> gelas.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="5" /> hari muncul kalau rata-rata pendapatan dihitung <InlineMath math="6{.}000\cdot40=240{.}000" /> tanpa tambahan tetap, padahal pendapatan tiap hari memuatnya. Syaratnya bergeser menjadi <InlineMath math="29<x<41" />.
+- <InlineMath math="6" /> hari ikut menghitung dua hari dengan <InlineMath math="46" /> gelas. Selisihnya tepat satu simpangan baku, sedangkan soal meminta **kurang dari**.
+- <InlineMath math="7" /> hari memakai simpangan baku <InlineMath math="1{,}2^2\cdot30{.}000=43{.}200" />, seolah-olah faktor <InlineMath math="1{,}2" /> dikalikan dua kali. Syaratnya melebar menjadi <InlineMath math="|x-40|<7{,}2" />.
+- <InlineMath math="10" /> hari menambahkan <InlineMath math="30{.}000" /> ke simpangan baku, sehingga <InlineMath math="S_P=66{.}000" /> dan syaratnya <InlineMath math="|x-40|<11" />. Tambahan yang sama untuk setiap hari tidak memperlebar sebaran.
+
+Jadi, banyak hari yang pendapatannya berselisih kurang dari satu simpangan baku dari rata-rata adalah <InlineMath math="4" /> hari.

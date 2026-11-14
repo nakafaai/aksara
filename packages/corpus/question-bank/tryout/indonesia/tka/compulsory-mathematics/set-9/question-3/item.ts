@@ -6,31 +6,26 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  stimulus: "cookie-recipe",
+  stimulus: "obat",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label:
-            "Perbandingan berat mentega dan berat tepung terigu pada resep itu adalah $$1:2$$.",
-        },
-        {
           column: 2,
           label:
-            "Berat gula halus kurang dari $$15\\,\\%$$ dari jumlah berat tepung terigu, mentega, dan gula halus.",
+            "Seandainya pasien terus minum satu tablet setiap $$6$$ jam tanpa berhenti, suatu saat banyak zat aktif tepat setelah minum tablet akan melebihi $$320\\text{ mg}$$.",
         },
         {
           column: 1,
           label:
-            "Untuk membuat $$36$$ kue kering diperlukan $$3$$ butir telur.",
+            "Seandainya tablet pukul 12.00 baru diminum pukul 15.00, sedangkan dua tablet lainnya tetap, banyak zat aktif tepat setelah tablet pukul 18.00 lebih dari $$300\\text{ mg}$$.",
         },
         {
           column: 2,
           label:
-            "Dengan $$1$$ kg tepung terigu dan bahan lain yang cukup, dapat dibuat lebih dari $$80$$ kue kering.",
+            "Seandainya setiap tablet berisi $$320\\text{ mg}$$ dengan jadwal yang sama, waktu sejak tablet pukul 18.00 sampai banyak zat aktif tinggal $$70\\text{ mg}$$ menjadi dua kali lebih lama.",
         },
       ],
     },

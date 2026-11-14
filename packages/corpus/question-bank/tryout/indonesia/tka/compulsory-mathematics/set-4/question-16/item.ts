@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "milk-cans",
+  stimulus: "atap",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$110\\text{ cm}^3$$",
+          label: "$$115{,}2\\text{ m}^2$$",
         },
         {
           correct: false,
-          label: "$$220\\text{ cm}^3$$",
+          label: "$$120\\text{ m}^2$$",
         },
         {
           correct: false,
-          label: "$$1{.}540\\text{ cm}^3$$",
+          label: "$$132\\text{ m}^2$$",
         },
         {
           correct: false,
-          label: "$$770\\text{ cm}^3$$",
+          label: "$$139{,}2\\text{ m}^2$$",
         },
         {
           correct: true,
-          label: "$$385\\text{ cm}^3$$",
+          label: "$$144\\text{ m}^2$$",
         },
       ],
     },

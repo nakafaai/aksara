@@ -1,19 +1,37 @@
-Yang dicari adalah **lamanya selang waktu** ketika <InlineMath math="h(t)>34" />. Susun pertidaksamaannya, lalu ubah ke bentuk baku.
+# Luas sebagai fungsi kuadrat
+
+Soal ini meminta luas terbesar kandang. Ada dua hal yang sering terlewat: **celah pintu menghemat kawat**, dan sisi yang menempel tembok **tidak boleh lebih dari <InlineMath math="20\text{ m}" />**.
+
+Misalkan setiap sisi yang tegak lurus tembok panjangnya <InlineMath math="x" /> meter, dan sisi yang sejajar tembok <InlineMath math="y" /> meter. Kawat dipasang pada dua sisi <InlineMath math="x" /> dan pada sisi <InlineMath math="y" /> kecuali celah <InlineMath math="2\text{ m}" />:
 
 <BlockMath math="\begin{aligned}
--2t^2+16t+10&>34 \\
--2t^2+16t-24&>0 \\
-t^2-8t+12&<0 \\
-(t-2)(t-6)&<0
+2x+(y-2)&=46 \\
+y&=48-2x \\
+L(x)&=x(48-2x)=-2x^2+48x=-2(x-12)^2+288
 \end{aligned}" />
 
-Saat dibagi <InlineMath math="-2" />, tanda pertidaksamaan berbalik. Hasil kali itu negatif jika kedua faktor berlawanan tanda, yaitu untuk <InlineMath math="2<t<6" />. Lamanya <InlineMath math="6-2=4" /> detik.
+# Puncak parabola tidak boleh dipakai
 
-Sebagai pemeriksaan, <InlineMath math="h(2)=-8+32+10=34" /> dan <InlineMath math="h(4)=-32+64+10=42>34" />.
+Bentuk terakhir menunjukkan puncaknya di <InlineMath math="x=12" /> dengan luas <InlineMath math="288" />. Tapi untuk <InlineMath math="x=12" />, sisi yang menempel tembok menjadi <InlineMath math="y=48-24=24\text{ m}" />, lebih panjang dari tembok. Jadi puncak itu **tidak memenuhi syarat**.
 
-Jadi, drone itu berada di atas <InlineMath math="34" /> meter selama <InlineMath math="4" /> detik.
+Syarat tembok membatasi nilai <InlineMath math="x" />:
 
-- <InlineMath math="2" /> detik adalah saat drone mencapai <InlineMath math="34" /> meter, bukan lamanya.
-- <InlineMath math="6" /> detik adalah saat drone turun lagi di bawah <InlineMath math="34" /> meter.
-- <InlineMath math="8" /> detik menjumlahkan kedua waktu itu, bukan mengurangkannya.
-- <InlineMath math="5" /> detik muncul jika tanda ketaksamaan tidak dibalik saat dibagi <InlineMath math="-2" />, sehingga diperoleh <InlineMath math="t<2" /> atau <InlineMath math="t>6" />, lalu dijumlahkan <InlineMath math="2+3" /> detik pada selang <InlineMath math="0\le t\le9" />.
+<BlockMath math="\begin{aligned}
+48-2x&\le20 \\
+x&\ge14
+\end{aligned}" />
+
+Untuk <InlineMath math="x\ge14" />, kita sudah berada di sebelah kanan puncak, tempat <InlineMath math="L(x)" /> terus turun ketika <InlineMath math="x" /> naik. Maka luas terbesar dicapai di batasnya, <InlineMath math="x=14" />:
+
+<BlockMath math="L(14)=14\cdot(48-28)=14\cdot20=280" />
+
+Cek: kawatnya <InlineMath math="2\cdot14+(20-2)=46\text{ m}" />, dan sisi <InlineMath math="20\text{ m}" /> pas sepanjang tembok. Sebagai pembanding, <InlineMath math="x=15" /> memberi <InlineMath math="15\cdot18=270" />, lebih kecil.
+
+Jadi, luas kandang terbesar adalah <InlineMath math="280\text{ m}^2" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="288\text{ m}^2" /> adalah luas di puncak parabola. Ukurannya <InlineMath math="12\times24" />, padahal **sisi <InlineMath math="24\text{ m}" /> tidak muat di tembok <InlineMath math="20\text{ m}" />**.
+- <InlineMath math="264{,}5\text{ m}^2" /> lupa celah pintu dan juga lupa batas tembok. Dari <InlineMath math="2x+y=46" /> puncaknya <InlineMath math="11{,}5\times23" />.
+- <InlineMath math="260\text{ m}^2" /> sudah memakai batas tembok, tetapi lupa celah pintu. Dari <InlineMath math="2x+20=46" /> didapat <InlineMath math="x=13" />, jadi luasnya <InlineMath math="13\cdot20" />.
+- <InlineMath math="252\text{ m}^2" /> mengurangi celah dari panjang sisi, sehingga sisi sejajar tembok dianggap <InlineMath math="18\text{ m}" />. Celah itu mengurangi kawat yang dipakai, bukan panjang sisi kandang.

@@ -1,20 +1,32 @@
-Titik dipilih menurut luas, jadi peluangnya adalah **luas daerah yang memenuhi dibagi luas seluruh segitiga**.
+Setiap pernyataan menanyakan berapa kali kurva bertemu sebuah garis, yaitu berapa banyak penyelesaian persamaan yang menyamakan <InlineMath math="2^x" /> dengan rumus garis itu. Kamu butuh tiga sifat kurva <InlineMath math="y=2^x" />: nilainya **selalu positif**, kurvanya **selalu naik**, dan kurvanya **melengkung ke atas**. Melengkung ke atas artinya ruas garis yang menghubungkan dua titik kurva selalu ada di atas kurva di antara kedua titik itu, sedangkan di luar kedua titik itu kurvanya ada di atas garis. Akibatnya, sebuah garis memotong kurva ini paling banyak di dua titik.
 
-# Daerah yang memenuhi
+# Pernyataan pertama
 
-Garis <InlineMath math="x+y=2" /> memotong kedua sisi siku-siku di <InlineMath math="(2,0)" /> dan <InlineMath math="(0,2)" />. Titik dengan <InlineMath math="x+y<2" /> membentuk **segitiga kecil di dekat titik asal** dengan titik sudut <InlineMath math="(0,0)" />, <InlineMath math="(2,0)" />, dan <InlineMath math="(0,2)" />.
+Coba <InlineMath math="x=1" /> dan <InlineMath math="x=2" /> pada <InlineMath math="2^x=2x" />: <InlineMath math="2^1=2=2\cdot1" /> dan <InlineMath math="2^2=4=2\cdot2" />. Jadi titik <InlineMath math="(1,2)" /> dan <InlineMath math="(2,4)" /> ada pada kurva dan garis. Karena garis memotong kurva **paling banyak di dua titik**, tidak ada titik potong lain.
+
+<BlockMath math="\text{jarak}=\sqrt{(2-1)^2+(4-2)^2}=\sqrt{1+4}=\sqrt5" />
+
+Pernyataan ini **benar**.
+
+# Pernyataan kedua
+
+Garis mendatar berbentuk <InlineMath math="y=c" />. Kalau <InlineMath math="c\le0" />, misalnya <InlineMath math="y=-1" />, persamaan <InlineMath math="2^x=-1" /> tidak punya penyelesaian, karena **<InlineMath math="2^x" /> selalu positif**. Garis itu sama sekali tidak memotong kurva. Kalimat "setiap garis mendatar" gagal oleh satu contoh ini, jadi pernyataan ini **salah**. Kalimat itu hanya benar untuk <InlineMath math="c>0" />.
+
+# Pernyataan ketiga
+
+Garis <InlineMath math="y=-x+k" /> selalu turun, sedangkan kurva selalu naik. Selisih <InlineMath math="2^x-(-x+k)=2^x+x-k" /> adalah jumlah dua bagian yang naik, jadi **selisih itu selalu naik** dan paling banyak sekali bernilai nol.
+
+Selisih itu juga pasti berganti tanda. Di <InlineMath math="x=k" />, garis bernilai <InlineMath math="0" /> dan kurva bernilai <InlineMath math="2^k>0" />, jadi kurva di atas garis. Ambil <InlineMath math="x" /> yang sekaligus <InlineMath math="x\le-1" /> dan <InlineMath math="x\le k-1" />. Di sana kurva paling besar <InlineMath math="2^{-1}=\frac{1}{2}" />, sedangkan garis paling kecil <InlineMath math="-(k-1)+k=1" />, jadi garis di atas kurva. Keduanya bertukar posisi tepat sekali, jadi ada tepat satu titik potong untuk setiap <InlineMath math="k" />. Pernyataan ini **benar**.
+
+# Pernyataan keempat
+
+Tunjukkan bahwa <InlineMath math="2^x>x" /> untuk setiap <InlineMath math="x" />. Garis <InlineMath math="y=x+1" /> memotong kurva di <InlineMath math="(0,1)" /> dan <InlineMath math="(1,2)" />. Karena kurvanya melengkung ke atas, **di luar selang dari <InlineMath math="0" /> sampai <InlineMath math="1" /> kurva ada di atas garis itu**.
 
 <BlockMath math="\begin{aligned}
-L_{\text{kecil}}&=\tfrac12\cdot2\cdot2=2\\
-L_{\text{besar}}&=\tfrac12\cdot4\cdot4=8
+x\le0\ \text{atau}\ x\ge1&\;\Longrightarrow\;2^x\ge x+1>x\\
+0<x<1&\;\Longrightarrow\;2^x>2^0=1>x
 \end{aligned}" />
 
-# Peluang
+Kurva selalu di atas garis <InlineMath math="y=x" />, jadi keduanya tidak pernah berpotongan. Pernyataan ini **salah**.
 
-<BlockMath math="P=\frac{2}{8}=\frac14" />
-
-Segitiga kecil sebangun dengan segitiga besar dengan perbandingan sisi <InlineMath math="1:2" />, jadi **perbandingan luasnya <InlineMath math="1:4" />**.
-
-Nilai <InlineMath math="\tfrac12" /> memakai perbandingan sisi, bukan perbandingan luas. Nilai <InlineMath math="\tfrac34" /> adalah peluang kejadian sebaliknya, dan <InlineMath math="\tfrac18" /> membagi dengan luas persegi berukuran 4 kali 4.
-
-Jadi, peluang titik terpilih memenuhi <InlineMath math="x+y<2" /> adalah **<InlineMath math="\tfrac14" />**.
+Jadi, pernyataan pertama dan ketiga benar, sedangkan pernyataan kedua dan keempat salah.

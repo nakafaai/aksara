@@ -1,13 +1,39 @@
-A stone that sinks completely **pushes aside exactly its own volume of water**. So the stone's volume equals the volume of the rise, a cuboid with the aquarium's base and the rise as its height.
+The question asks how many rolls of wire you need to fence the whole garden with <InlineMath math="3" /> strands. The chain is long: find the missing side, convert to real lengths, work out the total wire, then **round up, because rolls aren't sold by the metre**.
+
+# The missing side
+
+The perimeter needs all four sides, but <InlineMath math="AD" /> wasn't measured. Drop a perpendicular from <InlineMath math="C" /> to <InlineMath math="AB" /> with foot <InlineMath math="E" />. Since <InlineMath math="AECD" /> is a rectangle, <InlineMath math="AE=DC=5" /> cm, so <InlineMath math="EB=11-5=6" /> cm. Triangle <InlineMath math="CEB" /> has its right angle at <InlineMath math="E" />:
 
 <BlockMath math="\begin{aligned}
-\text{rise}&=37.5-35=2.5\text{ cm} \\
-V_{\text{stone}}&=80\cdot40\cdot2.5=8{,}000\text{ cm}^3
+AD=CE&=\sqrt{BC^2-EB^2} \\
+&=\sqrt{10^2-6^2}=\sqrt{64}=8\text{ cm}
 \end{aligned}" />
 
-So the stone's volume is <InlineMath math="8{,}000\text{ cm}^3" />.
+Remember, **you subtract the squares**, not the lengths. <InlineMath math="10-6=4" /> cm isn't <InlineMath math="AD" />.
 
-- <InlineMath math="80{,}000\text{ cm}^3" /> reads the <InlineMath math="2.5\text{ cm}" /> rise as <InlineMath math="25" />.
-- <InlineMath math="112{,}000\text{ cm}^3" /> is the water before the stone went in.
-- <InlineMath math="120{,}000\text{ cm}^3" /> is the water and stone up to <InlineMath math="37.5\text{ cm}" />, not the stone alone.
-- <InlineMath math="160{,}000\text{ cm}^3" /> is the full aquarium.
+# Perimeter and wire length
+
+The bar scale means <InlineMath math="4\text{ cm}" /> stands for <InlineMath math="100\text{ m}" />, so <InlineMath math="1\text{ cm}" /> stands for <InlineMath math="25\text{ m}" />. Multiply the map perimeter by <InlineMath math="25" />, then **by the <InlineMath math="3" /> strands**:
+
+<BlockMath math="\begin{aligned}
+P_{\text{map}}&=11+10+5+8=34\text{ cm} \\
+P&=34\cdot25=850\text{ m} \\
+\text{wire length}&=3\cdot850=2{,}550\text{ m}
+\end{aligned}" />
+
+# Number of rolls
+
+One roll holds <InlineMath math="100\text{ m}" />:
+
+<BlockMath math="\frac{2{,}550}{100}=25.5" />
+
+With <InlineMath math="25" /> rolls you'd only have <InlineMath math="2{,}500\text{ m}" />, which is still <InlineMath math="50\text{ m}" /> short. You can't buy half a roll, so **you need <InlineMath math="26" /> rolls**. Check: <InlineMath math="26\cdot100=2{,}600\ge2{,}550" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="9" /> rolls counts only one strand: <InlineMath math="850\div100=8.5" />, rounded up.
+- <InlineMath math="20" /> rolls leaves out side <InlineMath math="AD" />, because its length isn't in the table: <InlineMath math="3\cdot650=1{,}950\text{ m}" />, which needs <InlineMath math="20" /> rolls.
+- <InlineMath math="23" /> rolls uses <InlineMath math="AD=10-6=4" /> cm, subtracting the side lengths instead of their squares.
+- <InlineMath math="25" /> rolls rounds <InlineMath math="25.5" /> **down**, which leaves you <InlineMath math="50\text{ m}" /> of wire short.
+
+So Pak Harun has to buy at least <InlineMath math="26" /> rolls of wire.

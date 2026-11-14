@@ -1,16 +1,44 @@
-The two eggs are drawn **at the same time**, so without replacement and without order. Count the favourable pairs and all pairs with binomial coefficients.
+The question counts committees of <InlineMath math="4" /> people. All members have the same role, so the order of choosing doesn't matter and you use **combinations**. Rani can't join, which leaves <InlineMath math="10" /> candidates: <InlineMath math="5" /> boys and <InlineMath math="5" /> girls.
+
+# The boys and girls condition
+
+The quickest route is the complement: count every committee from the <InlineMath math="10" /> people, then throw out the ones that are **all boys** or **all girls**.
 
 <BlockMath math="\begin{aligned}
-\text{all pairs}&=\binom{12}{2}=66 \\
-\text{pairs of sound eggs}&=\binom92=36 \\
-P&=\frac{36}{66}=\frac{6}{11}
+\binom{10}{4}&=210 \\
+\text{all boys}&=\binom54=5,\qquad\text{all girls}=\binom54=5 \\
+210-5-5&=200
 \end{aligned}" />
 
-As a check, drawing one after the other, <InlineMath math="\frac{9}{12}\cdot\frac{8}{11}=\frac{72}{132}=\frac{6}{11}" />.
+# The Andi and Budi condition
 
-So the probability is <InlineMath math="\frac{6}{11}" />.
+From those <InlineMath math="200" /> committees, remove the ones with both Andi and Budi. If both are in, the other two seats are filled from the remaining <InlineMath math="8" /> people: <InlineMath math="3" /> boys and <InlineMath math="5" /> girls.
 
-- <InlineMath math="\frac{1}{22}=\frac{3}{66}" /> is the probability that both eggs are cracked.
-- <InlineMath math="\frac{9}{22}=\frac{27}{66}" /> is the probability of exactly one cracked egg.
-- <InlineMath math="\frac{9}{16}=\left(\frac34\right)^2" /> works with replacement, as if the first egg went back into the container.
-- <InlineMath math="\frac34" /> is the probability for a single sound egg.
+| The other two members | Number of ways | Already thrown out? |
+| :---: | :---: | :---: |
+| <InlineMath math="2" /> girls | <InlineMath math="\binom52=10" /> | no |
+| <InlineMath math="1" /> boy, <InlineMath math="1" /> girl | <InlineMath math="3\cdot5=15" /> | no |
+| <InlineMath math="2" /> boys | <InlineMath math="\binom32=3" /> | yes, all boys |
+
+Those last three committees were already thrown out as all-boy committees, so **don't remove them twice**. Only <InlineMath math="10+15=25" /> still need to go.
+
+<BlockMath math="200-25=175" />
+
+Check it another way, by how many of Andi and Budi are in.
+
+<BlockMath math="\begin{aligned}
+\text{neither Andi nor Budi}&:\ \binom84-\binom54=70-5=65 \\
+\text{exactly one of them}&:\ 2\cdot\left[\binom83-\binom33\right]=2\cdot(56-1)=110 \\
+\text{total}&=65+110=175
+\end{aligned}" />
+
+In the first line the candidates are <InlineMath math="3" /> boys and <InlineMath math="5" /> girls, and the all-girl committees have to go. In the second line there's already one boy, so the other three just can't all be boys.
+
+# Why the other options are wrong
+
+- <InlineMath math="172" /> removes all <InlineMath math="\binom82=28" /> committees with Andi and Budi. Three of them were already removed as all-boy committees, so they get **removed twice**.
+- <InlineMath math="180" /> removes only one single-gender group, <InlineMath math="210-5-25" />. All-boy and all-girl committees are both banned.
+- <InlineMath math="200" /> forgets the Andi and Budi condition.
+- <InlineMath math="277" /> still includes Rani, so there are <InlineMath math="11" /> candidates.
+
+So there are <InlineMath math="175" /> ways to form the committee.

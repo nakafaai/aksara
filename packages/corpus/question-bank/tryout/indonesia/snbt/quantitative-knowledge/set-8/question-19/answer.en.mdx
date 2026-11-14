@@ -1,27 +1,43 @@
-Whether the sum of two numbers is divisible by 3 depends on **the remainder of each number when divided by 3**. Group the numbers 1 to 20 by remainder.
+These two conditions don't necessarily give just one sequence. Here's the plan: write <InlineMath math="u_2" /> and <InlineMath math="u_4" /> using <InlineMath math="u_3" /> and the ratio <InlineMath math="r" />, find every possible ratio, then **judge each statement on every sequence that fits**.
 
-# Three remainder groups
+# Finding the ratio
 
-| Remainder | Numbers | Count |
-| :---: | :---: | :---: |
-| 0 | 3, 6, 9, 12, 15, 18 | 6 |
-| 1 | 1, 4, 7, 10, 13, 16, 19 | 7 |
-| 2 | 2, 5, 8, 11, 14, 17, 20 | 7 |
-
-The groups **are not equal in size**, because 20 is not a multiple of 3.
-
-# Pairs whose sum is a multiple of 3
-
-The sum is divisible by 3 if **both numbers leave remainder 0**, or **one leaves 1 and the other leaves 2**.
+In a geometric sequence you get the next term by multiplying by the ratio. So <InlineMath math="u_4=u_3r=-6r" /> and <InlineMath math="u_2=\tfrac{u_3}{r}=-\tfrac6r" />, with <InlineMath math="r\ne0" /> because <InlineMath math="u_3\ne0" />.
 
 <BlockMath math="\begin{aligned}
-\text{remainders 0 and 0}&:\quad \binom62=15\\
-\text{remainders 1 and 2}&:\quad 7\cdot7=49\\
-n(A)&=15+49=64,\qquad n(S)=\binom{20}{2}=190
+-\tfrac6r-6r&=15\\
+r+\tfrac1r&=-\tfrac52\\
+2r^2+5r+2&=0\\
+(2r+1)(r+2)&=0
 \end{aligned}" />
 
-<BlockMath math="P(A)=\frac{64}{190}=\frac{32}{95}" />
+There are **two ratios that both work**: <InlineMath math="r=-2" /> and <InlineMath math="r=-\tfrac12" />. The first term is <InlineMath math="u_1=\tfrac{u_3}{r^2}" />, so you get two sequences.
 
-The value <InlineMath math="\tfrac13" /> assumes the three groups are equal. The value <InlineMath math="\tfrac{3}{38}=\tfrac{15}{190}" /> counts only the pairs of multiples of 3, and <InlineMath math="\tfrac{49}{190}" /> counts only the pairs with remainders 1 and 2.
+<BlockMath math="\begin{aligned}
+r=-2&:\quad -\tfrac32,\ 3,\ -6,\ 12,\ -24,\ 48,\ -96,\ \dots\\
+r=-\tfrac12&:\quad -24,\ 12,\ -6,\ 3,\ -\tfrac32,\ \tfrac34,\ -\tfrac38,\ \dots
+\end{aligned}" />
 
-So the probability that the sum is divisible by 3 is **<InlineMath math="\tfrac{32}{95}" />**.
+Check: <InlineMath math="3+12=15" /> and <InlineMath math="12+3=15" />.
+
+# The first statement
+
+Notice that **the first <InlineMath math="5" /> terms of the two sequences are the same numbers in reverse order**. So their sums must be equal.
+
+<BlockMath math="-\tfrac32+3-6+12-24=-\tfrac{33}{2}" />
+
+The first statement holds for both sequences, so it's true.
+
+# The second statement
+
+A geometric sequence has an infinite sum only if <InlineMath math="|r|<1" />. The sequence with <InlineMath math="r=-\tfrac12" /> does have the infinite sum <InlineMath math="\tfrac{-24}{1+\frac12}=-16" />. But the sequence with <InlineMath math="r=-2" /> also meets both conditions, and its terms grow without limit. Since **a claim that must hold has to hold for every sequence**, the second statement is false.
+
+# The third statement
+
+For <InlineMath math="r>0" />, you have <InlineMath math="r+\tfrac1r\ge2" />, because <InlineMath math="(r-1)^2\ge0" /> is the same as <InlineMath math="r^2+1\ge2r" />, and then you divide by the positive <InlineMath math="r" />. So <InlineMath math="r+\tfrac1r" /> **can't equal <InlineMath math="-\tfrac52" /> when <InlineMath math="r" /> is positive**. No sequence has a positive ratio, so the third statement is false.
+
+# The fourth statement
+
+The seventh term is <InlineMath math="u_7=u_3r^4=-6r^4" />. An even power of a nonzero real number is always positive, so **<InlineMath math="u_7" /> is always negative**, whatever the sign of the ratio. It's <InlineMath math="-96" /> for <InlineMath math="r=-2" /> and <InlineMath math="-\tfrac38" /> for <InlineMath math="r=-\tfrac12" />. The fourth statement is false.
+
+So the first statement is **true**, and the second, third, and fourth are **false**.

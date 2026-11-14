@@ -1,15 +1,54 @@
-Kelvin diubah dulu ke Celsius, lalu Celsius ke Fahrenheit. Itulah **komposisi <InlineMath math="(f\circ g)(K)=f\big(g(K)\big)" />**, dengan <InlineMath math="g" /> dikerjakan lebih dulu.
+# Menemukan fungsi kuadratnya
+
+Soal ini punya dua bagian. Pertama, cari <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" /> dari tiga titik. Kedua, cari **semua <InlineMath math="x" /> real** yang membuat salah satu faktor bernilai nol, lalu kalikan.
+
+Substitusikan ketiga titik ke <InlineMath math="f(x)=ax^2+bx+c" />.
 
 <BlockMath math="\begin{aligned}
-g(302)&=302-273=29 \\
-f(29)&=\frac95\cdot29+32=52{,}2+32=84{,}2
+f(-1)=19:&\quad a-b+c=19 \\
+f(1)=-5:&\quad a+b+c=-5 \\
+f(4)=-11:&\quad 16a+4b+c=-11
 \end{aligned}" />
 
-Sebagai pemeriksaan, rumus komposisinya <InlineMath math="(f\circ g)(K)=\frac95\,(K-273)+32" />, dan untuk <InlineMath math="K=302" /> hasilnya tetap <InlineMath math="84{,}2" />.
+Kurangi persamaan kedua dengan persamaan pertama untuk mendapat <InlineMath math="2b=-24" />, jadi <InlineMath math="b=-12" /> dan <InlineMath math="a+c=7" />. Masukkan <InlineMath math="b=-12" /> ke persamaan ketiga.
 
-Jadi, suhu ruangan itu <InlineMath math="84{,}2^\circ\text{F}" />.
+<BlockMath math="\begin{aligned}
+16a-48+c&=-11 \\
+16a+c&=37 \\
+(16a+c)-(a+c)&=37-7 \\
+15a=30,\quad a=2,\quad c&=5
+\end{aligned}" />
 
-- <InlineMath math="1{.}067^\circ\text{F}" /> menambahkan <InlineMath math="273" />, bukan mengurangkannya, sehingga memakai <InlineMath math="575^\circ\text{C}" />.
-- <InlineMath math="575{,}6^\circ\text{F}" /> memasukkan <InlineMath math="302" /> langsung ke <InlineMath math="f" /> tanpa mengubah kelvin ke Celsius.
-- <InlineMath math="357{,}2^\circ\text{F}" /> menambahkan <InlineMath math="273" /> lagi pada hasil yang benar.
-- <InlineMath math="109{,}8^\circ\text{F}" /> menambahkan <InlineMath math="32" /> sebelum mengalikan dengan <InlineMath math="\frac95" />.
+Jadi <InlineMath math="f(x)=2x^2-12x+5=2(x-3)^2-13" />. Nilai terkecil <InlineMath math="f" /> adalah <InlineMath math="-13" />, di <InlineMath math="x=3" />.
+
+# Dua kasus dari perkalian nol
+
+Hasil kali dua faktor bernilai nol kalau salah satu faktornya nol. Jadi ada **dua kasus**: <InlineMath math="f(x)=-7" /> atau <InlineMath math="f(x)=-15" />.
+
+Kasus <InlineMath math="f(x)=-15" /> tidak punya penyelesaian real, karena nilai terkecil <InlineMath math="f" /> adalah <InlineMath math="-13" />. Cek dengan diskriminan. Untuk <InlineMath math="px^2+qx+r=0" />, diskriminannya <InlineMath math="D=q^2-4pr" />, dan akar real ada hanya kalau <InlineMath math="D\ge0" />.
+
+<BlockMath math="\begin{aligned}
+2x^2-12x+20=0 &\iff x^2-6x+10=0 \\
+D&=(-6)^2-4\cdot1\cdot10=-4<0
+\end{aligned}" />
+
+Kasus <InlineMath math="f(x)=-7" /> memberi persamaan baru dengan **konstanta yang sudah berubah**:
+
+<BlockMath math="\begin{aligned}
+2x^2-12x+5&=-7 \\
+2x^2-12x+12&=0 \\
+x^2-6x+6&=0,\qquad D=(-6)^2-4\cdot1\cdot6=12>0
+\end{aligned}" />
+
+Ada dua akar real, <InlineMath math="x=3\pm\sqrt3" />. Menurut Vieta, hasil kali akar <InlineMath math="px^2+qx+r=0" /> adalah <InlineMath math="\frac{r}{p}" />, di sini <InlineMath math="\frac{6}{1}=6" />. Cek langsung: <InlineMath math="(3+\sqrt3)(3-\sqrt3)=9-3=6" />.
+
+# Pilihan yang menjebak
+
+Setiap pilihan lain **salah pada satu langkah Vieta atau kasus**.
+
+- <InlineMath math="-6" /> muncul kalau tanda minus dari rumus jumlah akar, <InlineMath math="-\frac{q}{p}" />, ikut terbawa ke hasil kali. Hasil kali akar adalah <InlineMath math="\frac{r}{p}" />, tanpa tanda minus.
+- <InlineMath math="\frac52" /> memakai konstanta asli <InlineMath math="c=5" /> dari <InlineMath math="f(x)=0" />. Persamaannya <InlineMath math="f(x)=-7" />, jadi konstantanya menjadi <InlineMath math="5+7=12" />.
+- <InlineMath math="10" /> adalah hasil kali dari kasus <InlineMath math="f(x)=-15" />, yaitu <InlineMath math="\frac{20}{2}" />. Kasus ini justru tidak punya akar real.
+- <InlineMath math="60" /> mengalikan hasil kali kedua kasus, <InlineMath math="6\cdot10" />. Akar kasus kedua tidak real, jadi tidak boleh ikut.
+
+Jadi, hasil kali semua <InlineMath math="x" /> real yang memenuhi persamaan itu adalah <InlineMath math="6" />.

@@ -1,0 +1,47 @@
+# Dua persamaan untuk tiga nombor
+
+Katakan <InlineMath math="a" />, <InlineMath math="b" /> dan <InlineMath math="c" /> ialah bilangan kupon A, B dan C yang terjual. Soalan memberikan dua persamaan, sedangkan nombornya ada tiga. **Dua persamaan sahaja belum menentukan satu jawapan**, jadi syarat-syarat lain yang akan memilih jawapannya.
+
+Tulis kedua-dua persamaan dengan harga dalam ribu rupiah, kemudian tolak <InlineMath math="20" /> kali persamaan pertama daripada persamaan kedua supaya <InlineMath math="c" /> hilang:
+
+<BlockMath math="\begin{aligned}
+a+b+c&=120 \\
+50a+30b+20c&=4{,}200 \\
+30a+10b&=4{,}200-2{,}400=1{,}800 \\
+b&=180-3a
+\end{aligned}" />
+
+Gantikan ke dalam persamaan pertama untuk mendapatkan <InlineMath math="c" />:
+
+<BlockMath math="c=120-a-(180-3a)=2a-60" />
+
+Sekarang nilai <InlineMath math="b" /> dan <InlineMath math="c" /> kedua-duanya ditentukan oleh <InlineMath math="a" />.
+
+# Syarat yang mengehadkan kupon A
+
+Ada tiga syarat. Setiap jenis kupon terjual sekurang-kurangnya satu, dan kupon A **lebih banyak** daripada kupon B. Semua nombor juga mesti integer.
+
+<BlockMath math="\begin{aligned}
+b\ge1&\iff 180-3a\ge1\iff a\le59 \\
+c\ge1&\iff 2a-60\ge1\iff a\ge31 \\
+a>b&\iff a>180-3a\iff 4a>180\iff a>45
+\end{aligned}" />
+
+Ketaksamaan terakhir ialah ketaksamaan **ketat**. Untuk <InlineMath math="a=45" /> kita dapat <InlineMath math="b=45" />, jadi kupon A tidak lebih banyak, cuma sama banyak. Integer terkecil yang memenuhi semua syarat ialah <InlineMath math="a=46" />.
+
+# Kupon C paling sedikit
+
+Rumus <InlineMath math="c=2a-60" /> semakin besar apabila <InlineMath math="a" /> semakin besar, jadi <InlineMath math="c" /> paling kecil apabila <InlineMath math="a" /> paling kecil, iaitu <InlineMath math="a=46" />:
+
+<BlockMath math="b=180-138=42,\qquad c=2\cdot46-60=32" />
+
+Semak semula: <InlineMath math="46+42+32=120" /> dan <InlineMath math="50\cdot46+30\cdot42+20\cdot32=2{,}300+1{,}260+640=4{,}200" /> ribu rupiah. Syarat <InlineMath math="46>42" /> juga dipenuhi, jadi **jualan ini memang boleh berlaku**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="30" /> datang daripada <InlineMath math="a=45" />. Ketika itu <InlineMath math="a=b=45" />, sedangkan kupon A mesti **lebih banyak**, bukan sama banyak.
+- <InlineMath math="2" /> muncul jika syarat <InlineMath math="a>b" /> dilupakan, sehingga <InlineMath math="a" /> boleh turun hingga <InlineMath math="31" />.
+- <InlineMath math="46" /> ialah bilangan kupon A, bukan kupon C.
+- <InlineMath math="58" /> ialah bilangan kupon C yang **paling banyak**, iaitu ketika <InlineMath math="a=59" />, sedangkan soalan meminta yang paling sedikit.
+
+Jadi, bilangan kupon C yang terjual paling sedikit ialah <InlineMath math="32" /> keping.

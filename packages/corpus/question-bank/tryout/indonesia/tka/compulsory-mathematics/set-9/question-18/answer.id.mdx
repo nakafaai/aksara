@@ -1,14 +1,72 @@
-Dalam satu putaran tanpa selip, roda menempuh jarak **sepanjang kelilingnya**. Samakan satuan jarak dan keliling dalam sentimeter.
+Soal ini menanyakan lama pengisian sampai air di ujung dalam sedalam <InlineMath math="1{,}2\text{ m}" />. Jebakannya ada di bentuk airnya: dasar kolam miring, jadi pada saat itu **air belum menutupi seluruh dasar kolam**. Bentuk airnya bukan balok.
+
+# Debit air dari pipa
+
+Debit adalah volume air yang keluar tiap detik, yaitu luas penampang pipa dikali kecepatan air. Jari-jari pipa <InlineMath math="3{,}5\text{ cm}" /> dan kecepatan <InlineMath math="2\text{ m/s}=200\text{ cm/s}" />:
 
 <BlockMath math="\begin{aligned}
-K&=\pi d=\frac{22}{7}\cdot70=220\text{ cm} \\
-1{,}1\text{ km}&=110{.}000\text{ cm} \\
-n&=\frac{110{.}000}{220}=500
+A&=\frac{22}{7}\cdot3{,}5^2=38{,}5\text{ cm}^2 \\
+Q&=38{,}5\cdot200=7{.}700\text{ cm}^3/\text{s}=7{,}7\text{ liter/s}
 \end{aligned}" />
 
-Jadi, roda itu berputar <InlineMath math="500" /> kali.
+Perhatikan bahwa **yang dikuadratkan adalah jari-jari**, setengah dari diameter <InlineMath math="7\text{ cm}" />.
 
-- <InlineMath math="250" /> memakai <InlineMath math="2\pi d" /> sebagai keliling, padahal <InlineMath math="2\pi" /> dikalikan dengan jari-jari, bukan diameter.
-- <InlineMath math="1{.}000" /> memakai <InlineMath math="\pi r" /> sebagai keliling.
-- <InlineMath math="5{.}000" /> mengubah <InlineMath math="1{,}1" /> km menjadi <InlineMath math="1{.}100{.}000" /> cm.
-- <InlineMath math="50{.}000" /> mengubah <InlineMath math="1{,}1" /> km menjadi <InlineMath math="11{.}000{.}000" /> cm.
+# Bentuk air di kolam
+
+Dasar kolam turun <InlineMath math="2{,}0-0{,}4=1{,}6\text{ m}" /> sepanjang <InlineMath math="11\text{ m}" />. Air di ujung dalam baru <InlineMath math="1{,}2\text{ m}" />, kurang dari <InlineMath math="1{,}6\text{ m}" />, jadi permukaan air belum sampai ke ujung dangkal. Kalau dilihat dari samping, air membentuk **segitiga siku-siku yang sebangun** dengan segitiga turunnya dasar kolam (alas <InlineMath math="11" />, tinggi <InlineMath math="1{,}6" />).
+
+<MathVisual
+  title={<>Penampang samping kolam</>}
+  description={<>Kolam dilihat dari samping. Bibir kolam ada di garis atas sepanjang <InlineMath math="11" /> meter. Dasar kolam turun lurus dari kedalaman <InlineMath math="0{,}4" /> meter di ujung dangkal ke <InlineMath math="2{,}0" /> meter di ujung dalam. Air berbentuk segitiga di ujung dalam: tingginya <InlineMath math="1{,}2" /> meter dan panjang permukaannya <InlineMath math="\ell=8{,}25" /> meter.</>}
+  labels={{
+    shallow: <InlineMath math="0{,}4\text{ m}" />,
+    depth: <InlineMath math="1{,}2\text{ m}" />,
+    surface: <InlineMath math="\ell" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 13 },
+      y: { min: -2.6, max: 0.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rim", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 11, y: 0 } },
+      { id: "pool", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 0, y: -0.4 }, { x: 11, y: -2 }, { x: 11, y: 0 }] },
+      { id: "water", kind: "polygon", appearance: "highlight", vertices: [{ x: 2.75, y: -0.8 }, { x: 11, y: -0.8 }, { x: 11, y: -2 }] },
+    ],
+    labels: [
+      { key: "shallow", objectId: "pool", at: { x: 0, y: -0.2 }, placement: "left" },
+      { key: "depth", objectId: "water", at: { x: 11, y: -1.4 }, placement: "right" },
+      { key: "surface", objectId: "water", at: { x: 6.875, y: -0.8 }, placement: "above" },
+    ],
+  }}
+/>
+
+Panjang permukaan air <InlineMath math="\ell" /> didapat dari kesebangunan, lalu volume air adalah luas segitiga dikali lebar kolam:
+
+<BlockMath math="\begin{aligned}
+\frac{\ell}{11}&=\frac{1{,}2}{1{,}6}\ \Rightarrow\ \ell=8{,}25\text{ m} \\
+V&=\tfrac12\cdot8{,}25\cdot1{,}2\cdot7=34{,}65\text{ m}^3=34{.}650\text{ liter}
+\end{aligned}" />
+
+# Waktu pengisian
+
+**Bagi volume dengan debit**:
+
+<BlockMath math="\begin{aligned}
+t&=\frac{34{.}650}{7{,}7}=4{.}500\text{ s} \\
+&=75\text{ menit}=1\text{ jam }15\text{ menit}
+\end{aligned}" />
+
+Cek: dalam <InlineMath math="4{.}500" /> detik pipa mengalirkan <InlineMath math="7{,}7\cdot4{.}500=34{.}650" /> liter, tepat sama dengan volume segitiga air tadi.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="18" /> menit <InlineMath math="45" /> detik muncul kalau diameter <InlineMath math="7\text{ cm}" /> dipakai sebagai jari-jari. Luas penampang jadi empat kali lipat, waktunya seperempat.
+- <InlineMath math="1" /> jam muncul kalau kesebangunan memakai kedalaman ujung dalam <InlineMath math="2{,}0\text{ m}" />, padahal dasar kolam hanya turun <InlineMath math="1{,}6\text{ m}" />. Hasilnya <InlineMath math="\ell=6{,}6\text{ m}" />, terlalu pendek.
+- <InlineMath math="1" /> jam <InlineMath math="40" /> menit muncul kalau segitiga air dianggap sepanjang kolam, <InlineMath math="11\text{ m}" />. Itu baru benar saat air tepat menyentuh ujung dangkal.
+- <InlineMath math="3" /> jam <InlineMath math="20" /> menit muncul kalau air dianggap balok <InlineMath math="11\times7\times1{,}2" />, seolah-olah **dasar kolam datar**.
+
+Jadi, waktu yang diperlukan adalah <InlineMath math="1" /> jam <InlineMath math="15" /> menit.

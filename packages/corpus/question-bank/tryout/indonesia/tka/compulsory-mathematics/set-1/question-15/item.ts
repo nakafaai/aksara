@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "reasoning",
+    cognitiveLevel: "knowledge-understanding",
     contentDomain: "geometry-measurement",
     topic: "geometry-transformations",
   },
@@ -12,28 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "Pernyataan (1) SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan (2) SAJA tidak cukup.",
+          label: "$$22$$ satuan luas",
         },
         {
           correct: false,
-          label:
-            "Pernyataan (2) SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan (1) SAJA tidak cukup.",
+          label: "$$17$$ satuan luas",
+        },
+        {
+          correct: false,
+          label: "$$16$$ satuan luas",
         },
         {
           correct: true,
-          label:
-            "DUA pernyataan BERSAMA-SAMA cukup untuk menjawab pertanyaan, tetapi SATU pernyataan SAJA tidak cukup.",
+          label: "$$12$$ satuan luas",
         },
         {
           correct: false,
-          label:
-            "Pernyataan (1) SAJA cukup untuk menjawab pertanyaan dan pernyataan (2) SAJA cukup.",
-        },
-        {
-          correct: false,
-          label:
-            "Pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.",
+          label: "$$8$$ satuan luas",
         },
       ],
     },

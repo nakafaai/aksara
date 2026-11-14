@@ -1,0 +1,84 @@
+Soalan ini memberi imej <InlineMath math="P'(2,5)" /> dan meminta objeknya, iaitu titik <InlineMath math="P" />. Jadi kamu perlu dua langkah: **cari dahulu peraturan <InlineMath math="T" /> daripada rajah**, kemudian jalankan peraturan itu secara songsang.
+
+# Jenis transformasi
+
+Bandingkan arah sisi segi tiga sebelum dan selepas dipetakan. Sisi <InlineMath math="AB" /> panjangnya <InlineMath math="4" /> dan menghala ke kanan. Sisi <InlineMath math="A'B'" /> juga panjangnya <InlineMath math="4" />, tetapi menghala ke atas. Sisi <InlineMath math="AC" /> panjangnya <InlineMath math="3" /> dan menghala ke atas, manakala <InlineMath math="A'C'" /> panjangnya <InlineMath math="3" /> dan menghala ke kiri.
+
+Kanan menjadi atas, dan atas menjadi kiri. Kedua-dua sisi berpusing dengan cara yang sama, iaitu <InlineMath math="90^\circ" /> lawan arah jam, dan panjangnya tidak berubah. Itulah tanda **putaran <InlineMath math="90^\circ" /> lawan arah jam**.
+
+Berhati-hati dengan pantulan. Pantulan pada garis <InlineMath math="y=x+2" /> memang membawa <InlineMath math="A" /> ke <InlineMath math="A'" /> dan <InlineMath math="B" /> ke <InlineMath math="B'" />. Tetapi titik <InlineMath math="C(1,4)" /> akan pergi ke <InlineMath math="(2,3)" />, di sebelah kanan <InlineMath math="A'" />, sedangkan <InlineMath math="C'" /> berada di <InlineMath math="(-4,3)" />, di sebelah kiri. Pantulan menterbalikkan urutan pusingan bucu, sedangkan dalam rajah urutan itu kekal. Jadi memadankan dua titik sahaja tidak cukup.
+
+# Peraturan T
+
+Putaran <InlineMath math="90^\circ" /> lawan arah jam menukar arah <InlineMath math="(x,y)" /> kepada <InlineMath math="(-y,x)" />. Pusatnya belum tentu di <InlineMath math="O" />, jadi tulis peraturannya sebagai putaran itu ditambah satu anjakan, kemudian cari anjakan itu dengan titik <InlineMath math="A" />.
+
+<BlockMath math="\begin{aligned}
+T(x,y)&=(-y+a,\;x+b) \\
+T(1,1)&=(-1+a,\;1+b)=(-1,3) \\
+a&=0,\quad b=2 \\
+T(x,y)&=(-y,\;x+2)
+\end{aligned}" />
+
+Semak dengan dua bucu yang lain: <InlineMath math="T(5,1)=(-1,7)=B'" /> dan <InlineMath math="T(1,4)=(-4,3)=C'" />. Kedua-duanya sepadan. Titik yang tidak bergerak memenuhi <InlineMath math="-y=x" /> dan <InlineMath math="x+2=y" />, iaitu <InlineMath math="K(-1,1)" />. Jadi <InlineMath math="T" /> ialah putaran <InlineMath math="90^\circ" /> lawan arah jam dengan **pusat <InlineMath math="K(-1,1)" />, bukan pusat <InlineMath math="O" />**.
+
+# Mencari objek P
+
+Katakan <InlineMath math="P=(x,y)" />. Imejnya mesti <InlineMath math="(2,5)" />, jadi samakan setiap koordinat:
+
+<BlockMath math="\begin{aligned}
+-y&=2 &&\Rightarrow\; y=-2 \\
+x+2&=5 &&\Rightarrow\; x=3
+\end{aligned}" />
+
+Semak: <InlineMath math="T(3,-2)=(2,\;3+2)=(2,5)" />. Hasilnya **tepat sama dengan <InlineMath math="P'" />**, jadi objek yang dicari memang <InlineMath math="(3,-2)" />.
+
+<MathVisual
+  title={<>Putaran berpusat <InlineMath math="K" /></>}
+  description={<>Segi tiga <InlineMath math="ABC" /> dengan <InlineMath math="A(1,1)" />, <InlineMath math="B(5,1)" />, <InlineMath math="C(1,4)" /> diputarkan <InlineMath math="90^\circ" /> lawan arah jam pada pusat <InlineMath math="K(-1,1)" /> menjadi segi tiga <InlineMath math="A'(-1,3)" />, <InlineMath math="B'(-1,7)" />, <InlineMath math="C'(-4,3)" />. Putaran yang sama membawa <InlineMath math="P(3,-2)" /> ke <InlineMath math="P'(2,5)" />.</>}
+  labels={{
+    "label-k": <InlineMath math="K(-1,1)" />,
+    "label-p": <InlineMath math="P(3,-2)" />,
+    "label-p-image": <InlineMath math="P'(2,5)" />,
+    "label-a": <InlineMath math="A" />,
+    "label-a-image": <InlineMath math="A'" />,
+    "label-c-image": <InlineMath math="C'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 7 },
+      y: { min: -4, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 1 }, { x: 5, y: 1 }, { x: 1, y: 4 }] },
+      { id: "triangle-image", kind: "polygon", appearance: "secondary", vertices: [{ x: -1, y: 3 }, { x: -1, y: 7 }, { x: -4, y: 3 }] },
+      { id: "arm-p", kind: "segment", appearance: "construction", from: { x: -1, y: 1 }, to: { x: 3, y: -2 } },
+      { id: "arm-p-image", kind: "segment", appearance: "construction", from: { x: -1, y: 1 }, to: { x: 2, y: 5 } },
+      { id: "point-k", kind: "point", appearance: "highlight", at: { x: -1, y: 1 } },
+      { id: "point-p", kind: "point", appearance: "answer", at: { x: 3, y: -2 } },
+      { id: "point-p-image", kind: "point", appearance: "reference", at: { x: 2, y: 5 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+      { id: "point-a-image", kind: "point", appearance: "reference", at: { x: -1, y: 3 } },
+      { id: "point-c-image", kind: "point", appearance: "reference", at: { x: -4, y: 3 } },
+    ],
+    labels: [
+      { key: "label-k", objectId: "point-k", at: { x: -1, y: 1 }, placement: "left" },
+      { key: "label-p", objectId: "point-p", at: { x: 3, y: -2 }, placement: "right" },
+      { key: "label-p-image", objectId: "point-p-image", at: { x: 2, y: 5 }, placement: "above-right" },
+      { key: "label-a", objectId: "point-a", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "label-a-image", objectId: "point-a-image", at: { x: -1, y: 3 }, placement: "above-right" },
+      { key: "label-c-image", objectId: "point-c-image", at: { x: -4, y: 3 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="(-5,4)" /> ialah <InlineMath math="T(2,5)" />, iaitu imej bagi <InlineMath math="P'" />. Soalan meminta titik yang **dipetakan ke** <InlineMath math="P'" />, jadi peraturannya mesti dijalankan secara songsang.
+- <InlineMath math="(3,4)" /> muncul jika kamu menganggap <InlineMath math="T" /> pantulan pada <InlineMath math="y=x+2" /> selepas menyemak <InlineMath math="A" /> dan <InlineMath math="B" /> sahaja. Bucu <InlineMath math="C" /> membuktikan ia bukan pantulan.
+- <InlineMath math="(4,3)" /> menganggap <InlineMath math="T" /> translasi sejauh <InlineMath math="\overrightarrow{AA'}=(-2,2)" />. Segi tiga itu berpusing, jadi titik lain tidak beranjak sejauh vektor itu.
+- <InlineMath math="(5,-2)" /> menganggap pusat putaran di <InlineMath math="O" />. Putaran berpusat <InlineMath math="O" /> membawa <InlineMath math="A(1,1)" /> ke <InlineMath math="(-1,1)" />, bukan ke <InlineMath math="A'(-1,3)" />.
+
+Jadi, koordinat titik <InlineMath math="P" /> ialah <InlineMath math="(3,-2)" />.

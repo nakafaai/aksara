@@ -1,18 +1,44 @@
-Persentase 40% dan 25% dihitung dari kelompok yang berbeda ukurannya. Jadi kedua persentase **tidak boleh dirata-ratakan begitu saja**, tetapi harus diberi bobot sesuai bagian masing-masing kelompok.
+Kita cari satu pernyataan yang mustahil untuk setiap suku banyak berkoefisien bulat dengan <InlineMath math="P(1)=6" /> dan <InlineMath math="P(4)=12" />. Rencananya: pakai satu sifat yang selalu dimiliki suku banyak berkoefisien bulat untuk menguji setiap pilihan, lalu **buktikan bahwa pilihan yang lolos memang bisa terjadi** dengan menunjukkan suku banyaknya.
 
-# Bagian setiap kelompok
+# Sifat selisih nilai
 
-Misalkan **banyak siswa 100 orang**, sehingga ada 60 siswa perempuan dan 40 siswa laki-laki.
+Untuk bilangan bulat <InlineMath math="a\ne b" />, berlaku <InlineMath math="a-b" /> membagi <InlineMath math="P(a)-P(b)" />. Alasannya, <InlineMath math="P(a)-P(b)" /> adalah jumlah suku-suku <InlineMath math="c_k\left(a^k-b^k\right)" /> dengan <InlineMath math="c_k" /> bulat, dan setiap <InlineMath math="a^k-b^k" /> bisa difaktorkan.
+
+<BlockMath math="a^k-b^k=(a-b)\left(a^{k-1}+a^{k-2}b+\dots+b^{k-1}\right)" />
+
+Faktor kedua bilangan bulat, jadi **setiap suku habis dibagi <InlineMath math="a-b" />**, begitu juga jumlahnya. Data soal lolos sifat ini: <InlineMath math="4-1=3" /> membagi <InlineMath math="12-6=6" />.
+
+# Menguji setiap pilihan
+
+Setiap pilihan harus lolos uji terhadap **kedua nilai yang diketahui**, bukan hanya terhadap yang terdekat.
+
+| Pilihan | Uji dengan <InlineMath math="P(1)=6" /> | Uji dengan <InlineMath math="P(4)=12" /> |
+| :---: | :---: | :---: |
+| <InlineMath math="P(-1)=7" /> | <InlineMath math="\tfrac{7-6}{-1-1}=-\tfrac12" /> | <InlineMath math="\tfrac{7-12}{-1-4}=1" /> |
+| <InlineMath math="P(0)=0" /> | <InlineMath math="\tfrac{0-6}{0-1}=6" /> | <InlineMath math="\tfrac{0-12}{0-4}=3" /> |
+| <InlineMath math="P(5)=14" /> | <InlineMath math="\tfrac{14-6}{5-1}=2" /> | <InlineMath math="\tfrac{14-12}{5-4}=2" /> |
+| <InlineMath math="P(6)=6" /> | <InlineMath math="\tfrac{6-6}{6-1}=0" /> | <InlineMath math="\tfrac{6-12}{6-4}=-3" /> |
+| <InlineMath math="P(7)=0" /> | <InlineMath math="\tfrac{0-6}{7-1}=-1" /> | <InlineMath math="\tfrac{0-12}{7-4}=-4" /> |
+
+Hanya <InlineMath math="P(-1)=7" /> yang gagal, karena <InlineMath math="-1-1=-2" /> tidak membagi <InlineMath math="7-6=1" />. Dengan kata lain, **<InlineMath math="P(-1)" /> dan <InlineMath math="P(1)" /> harus sama-sama genap atau sama-sama ganjil**, padahal <InlineMath math="7" /> ganjil dan <InlineMath math="6" /> genap. Uji dengan <InlineMath math="P(4)" /> saja tidak menangkapnya, karena <InlineMath math="-1-4=-5" /> memang membagi <InlineMath math="7-12=-5" />.
+
+# Memastikan pilihan lain mungkin
+
+Lolos uji belum berarti pasti mungkin, jadi **tunjukkan suku banyak berkoefisien bulat yang benar-benar memenuhinya**.
 
 <BlockMath math="\begin{aligned}
-\text{perempuan berkacamata}&=40\%\times60=24\\
-\text{laki-laki berkacamata}&=25\%\times40=10
+P(x)=2x+4:\quad & P(1)=6,\ P(4)=12,\ P(5)=14 \\
+P(x)=7x-x^2:\quad & P(1)=6,\ P(4)=12,\ P(0)=0,\ P(6)=6,\ P(7)=0
 \end{aligned}" />
 
-# Persentase keseluruhan
+Cek suku banyak kedua: <InlineMath math="P(0)=0" />, <InlineMath math="P(4)=28-16=12" />, <InlineMath math="P(6)=42-36=6" />, dan <InlineMath math="P(7)=49-49=0" />. Jadi keempat pernyataan lain bisa benar.
 
-Jumlah siswa berkacamata adalah **gabungan kedua kelompok**, <InlineMath math="24+10=34" /> dari 100 siswa, yaitu 34%.
+# Mengapa pilihan lain keliru
 
-Nilai 32,5% adalah rata-rata biasa dari 40% dan 25%, yang menganggap kedua kelompok sama besar. Nilai 31% menukar persentase kedua kelompok. Nilai 24% dan 10% masing-masing hanya menghitung satu kelompok.
+Pilihan lain terlihat mustahil kalau kamu **menganggap suku banyaknya pasti linear** atau salah memasangkan nilai.
 
-Jadi, persentase siswa yang memakai kacamata adalah **34%**.
+- <InlineMath math="P(0)=0" /> dan <InlineMath math="P(7)=0" /> terlihat mustahil kalau kamu mengira suku banyak ini tidak boleh punya akar bulat. Suku banyak <InlineMath math="7x-x^2=x(7-x)" /> menunjukkan akar <InlineMath math="0" /> dan <InlineMath math="7" /> memang mungkin.
+- <InlineMath math="P(6)=6" /> terlihat mustahil kalau kamu mengira <InlineMath math="P" /> selalu naik karena <InlineMath math="P(1)<P(4)" />. Suku banyak <InlineMath math="7x-x^2" /> naik lalu turun.
+- <InlineMath math="P(5)=14" /> terlihat mustahil kalau <InlineMath math="5-1=4" /> dipasangkan dengan <InlineMath math="14-12=2" />, padahal selisih nilai harus memakai pasangan titik yang sama.
+
+Jadi, pernyataan yang tidak mungkin benar adalah <InlineMath math="P(-1)=7" />.

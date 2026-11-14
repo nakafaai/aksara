@@ -1,16 +1,40 @@
-Potenzen mit verschiedenen Basen vergleichst du, indem du sie auf **denselben Exponenten** bringst. Dann entscheidet allein die neue Basis.
+Hier geht es um eine Kette von Prozentänderungen. Entscheidend ist: **Jeder Prozentsatz bezieht sich auf den Preis direkt davor**, nicht auf <InlineMath math="h" />. Deshalb darfst du die Prozentsätze nicht einfach addieren. Am sichersten machst du aus jeder Änderung einen Faktor.
+
+# Der Preis in jedem Monat
+
+Plus <InlineMath math="25\%" /> heißt mal <InlineMath math="1{,}25" />, minus <InlineMath math="20\%" /> heißt mal <InlineMath math="0{,}8" />.
 
 <BlockMath math="\begin{aligned}
-p&=2^{48}=\left(2^{3}\right)^{16}=8^{16}, & q&=3^{32}=\left(3^{2}\right)^{16}=9^{16} \\
-p&=2^{48}=\left(2^{12}\right)^{4}=4{.}096^{4}, & r&=5^{20}=\left(5^{5}\right)^{4}=3{.}125^{4}
+\text{Preis im Januar}&=1{,}25h \\
+\text{Preis im Februar}&=0{,}8\cdot1{,}25h=h
 \end{aligned}" />
 
-Daraus folgt <InlineMath math="r<p<q" />.
+**Der Februarpreis ist wieder genau der Anfangspreis**.
 
-- Wegen <InlineMath math="9^{16}>8^{16}" /> gilt <InlineMath math="q>p" />. Die Aussage ist richtig.
-- Wegen <InlineMath math="4{.}096^{4}>3{.}125^{4}" /> gilt <InlineMath math="p>r" />. Die Aussage ist richtig.
-- Aus <InlineMath math="r<p<q" /> folgt <InlineMath math="r<q" />. Die Aussage ist falsch.
-- Fasse je einen Faktor <InlineMath math="2" /> mit einem Faktor <InlineMath math="5" /> zu <InlineMath math="10" /> zusammen: <InlineMath math="p\cdot r=2^{28}\cdot10^{20}" />. Mit <InlineMath math="2^{28}=2^{20}\cdot2^{8}=1{.}048{.}576\cdot256=268{.}435{.}456" /> hat die Zahl <InlineMath math="9+20=29" /> Ziffern. Die Aussage ist richtig.
-- Es gilt <InlineMath math="q=9^{16}=81^{8}>80^{8}=8^{8}\cdot10^{8}=16{.}777{.}216\cdot10^{8}" />, und das ist größer als <InlineMath math="10^{15}" />. Die Aussage ist falsch.
+# Die zwei Zahlungsarten
 
-Richtig sind also <InlineMath math="q>p" />, <InlineMath math="p>r" /> und die Aussage über die <InlineMath math="29" /> Ziffern.
+Beide Arten starten beim Februarpreis, also bei <InlineMath math="h" />. Ein Rabatt von <InlineMath math="15\%" /> heißt mal <InlineMath math="0{,}85" />, ein Rabatt von <InlineMath math="10\%" /> mal <InlineMath math="0{,}9" />, ein Rabatt von <InlineMath math="25\%" /> mal <InlineMath math="0{,}75" /> und eine Gebühr von <InlineMath math="2\%" /> mal <InlineMath math="1{,}02" />.
+
+<BlockMath math="\begin{aligned}
+\text{Art I}&=0{,}85\cdot0{,}9\cdot h=0{,}765h \\
+\text{Art II}&=0{,}75\cdot1{,}02\cdot h=0{,}765h
+\end{aligned}" />
+
+Beide Ergebnisse hängen nur von den Faktoren ab, also sind sie **für jeden Wert von <InlineMath math="h" /> gleich**.
+
+# Jede Aussage einzeln
+
+1. **Falsch**. Der Februarpreis ist <InlineMath math="h" />, nicht <InlineMath math="1{,}05h" />. Die <InlineMath math="5\%" /> kommen aus <InlineMath math="25\%-20\%" />, aber die <InlineMath math="25\%" /> beziehen sich auf <InlineMath math="h" /> und die <InlineMath math="20\%" /> auf den größeren Januarpreis.
+2. **Richtig**. Die Erhöhung im Januar beträgt <InlineMath math="0{,}25h" />. Die Senkung im Februar beträgt <InlineMath math="20\%" /> von <InlineMath math="1{,}25h" />, also <InlineMath math="0{,}2\cdot1{,}25h=0{,}25h" />. Der Prozentsatz ist kleiner, die Basis aber größer, deshalb sind die Beträge in Rupiah gleich.
+3. **Richtig**. Beide Arten ergeben <InlineMath math="0{,}765h" />, egal wie groß <InlineMath math="h" /> ist. Lass dich nicht von <InlineMath math="15\%+10\%=25\%" /> täuschen: Der zweite Rabatt bei Art I bezieht sich auf einen schon reduzierten Preis, insgesamt sind es nur <InlineMath math="23{,}5\%" />.
+4. **Richtig**. Art I kostet <InlineMath math="0{,}765h" />, also <InlineMath math="h-0{,}765h=0{,}235h" /> weniger, das sind <InlineMath math="23{,}5\%" /> unter <InlineMath math="h" />. Das stützt sich darauf, dass der Februarpreis genau <InlineMath math="h" /> ist.
+5. **Richtig**. Erhöhst du den Preis um <InlineMath math="x" /> (als Dezimalzahl), brauchst du <InlineMath math="0{,}765h(1+x)=h" />.
+
+<BlockMath math="\begin{aligned}
+1+x&=\frac{1}{0{,}765} \\
+x&=\frac{0{,}235}{0{,}765}=\frac{47}{153}\approx0{,}307
+\end{aligned}" />
+
+Schnelle Kontrolle ohne Division: Eine Erhöhung um <InlineMath math="30\%" /> ergibt <InlineMath math="0{,}765h\cdot1{,}3=0{,}9945h" />, das ist noch weniger als <InlineMath math="h" />. Die Erhöhung muss also mehr als <InlineMath math="30\%" /> betragen, ungefähr <InlineMath math="30{,}7\%" />. Eine Erhöhung um <InlineMath math="23{,}5\%" /> reicht sicher nicht, weil ihre Basis schon kleiner als <InlineMath math="h" /> ist.
+
+Richtig sind also die Aussagen 2, 3, 4 und 5.

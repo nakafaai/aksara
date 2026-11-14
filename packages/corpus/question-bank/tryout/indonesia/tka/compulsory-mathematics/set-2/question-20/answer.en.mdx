@@ -1,16 +1,75 @@
-An angle of depression from the top equals the angle of elevation from the boat to the top, because they are alternate angles at parallel lines. So there are **two right triangles** sharing the leg <InlineMath math="30\text{ m}" />. The tangent gives each boat's horizontal distance from the foot of the lighthouse.
+The question asks for the height <InlineMath math="h" /> of the tower. The trap is where the tower stands: its foot <InlineMath math="F" /> is beside the road, not on it. Since <InlineMath math="B" /> is the point on the road closest to <InlineMath math="F" />, **segment <InlineMath math="FB" /> is perpendicular to the road**. So on the ground there's a triangle <InlineMath math="FBA" /> with its right angle at <InlineMath math="B" />.
+
+# Horizontal distances to the foot
+
+The tower, the line of sight and the horizontal distance form an upright right triangle with the right angle at <InlineMath math="F" />. In such a triangle, <InlineMath math="\tan(\text{angle of elevation})=\frac{h}{\text{horizontal distance}}" />. Use this **to write both distances in terms of <InlineMath math="h" />**.
 
 <BlockMath math="\begin{aligned}
-\tan45^\circ=\frac{30}{d_1}\ &\Rightarrow\ d_1=30\text{ m} \\
-\tan30^\circ=\frac{30}{d_2}\ &\Rightarrow\ d_2=\frac{30}{\frac{1}{\sqrt3}}=30\sqrt3\text{ m} \\
-d_2-d_1&=30\sqrt3-30=30(\sqrt3-1)\text{ m}
+\tan60^\circ&=\frac{h}{FB}&&\Rightarrow\ FB=\frac{h}{\sqrt3} \\
+\tan30^\circ&=\frac{h}{FA}&&\Rightarrow\ FA=\frac{h}{1/\sqrt3}=h\sqrt3
 \end{aligned}" />
 
-As a check, <InlineMath math="30(\sqrt3-1)\approx30\cdot0.732\approx22\text{ m}" />. The farther boat is about <InlineMath math="52\text{ m}" /> from the lighthouse, and the nearer one <InlineMath math="30\text{ m}" />.
+# The triangle on the ground
 
-So the boats are <InlineMath math="30(\sqrt3-1)\text{ m}" /> apart.
+Now look from above. Segment <InlineMath math="FB" /> is perpendicular to the road, so in triangle <InlineMath math="FBA" /> **the hypotenuse is <InlineMath math="FA" />**, the side opposite the right angle at <InlineMath math="B" />.
 
-- <InlineMath math="10(3-\sqrt3)\text{ m}" /> multiplies the height by the tangent of each angle of depression, <InlineMath math="d_1=30\cdot\tan45^\circ=30" /> and <InlineMath math="d_2=30\cdot\tan30^\circ=10\sqrt3" />, although a horizontal distance is the height divided by the tangent, and then takes <InlineMath math="30-10\sqrt3" />.
-- <InlineMath math="30\text{ m}" /> is the nearer boat's distance from the lighthouse, not the distance between the boats.
-- <InlineMath math="30\sqrt3\text{ m}" /> is the farther boat's distance from the lighthouse, not the distance between the boats.
-- <InlineMath math="30(2-\sqrt2)\text{ m}" /> subtracts the lines of sight, <InlineMath math="\frac{30}{\sin30^\circ}=60" /> and <InlineMath math="\frac{30}{\sin45^\circ}=30\sqrt2" />, instead of the horizontal distances of the boats from the foot of the lighthouse.
+<MathVisual
+  title={<>Top view of the road and the tower's foot</>}
+  description={<>A straight level road passes through <InlineMath math="B" /> and <InlineMath math="A" />. The tower's foot <InlineMath math="F" /> is beside the road, with <InlineMath math="FB" /> perpendicular to the road. The lengths are <InlineMath math="FB=\frac{h}{\sqrt3}" />, <InlineMath math="AB=20\sqrt6" /> and <InlineMath math="FA=h\sqrt3" />. Triangle <InlineMath math="FBA" /> has a right angle at <InlineMath math="B" />.</>}
+  labels={{
+    f: <InlineMath math="F" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    fb: <InlineMath math="\tfrac{h}{\sqrt3}" />,
+    fa: <InlineMath math="h\sqrt3" />,
+    ab: <InlineMath math="20\sqrt6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 56 },
+      y: { min: -6, max: 24 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "road", kind: "segment", appearance: "reference", from: { x: -6, y: 0 }, to: { x: 54, y: 0 } },
+      { id: "segment-fb", kind: "segment", appearance: "secondary", from: { x: 0, y: 10 * Math.sqrt(3) }, to: { x: 0, y: 0 } },
+      { id: "segment-fa", kind: "segment", appearance: "highlight", from: { x: 0, y: 10 * Math.sqrt(3) }, to: { x: 20 * Math.sqrt(6), y: 0 } },
+      { id: "segment-ab", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 20 * Math.sqrt(6), y: 0 } },
+      { id: "point-f", kind: "point", appearance: "answer", at: { x: 0, y: 10 * Math.sqrt(3) } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 20 * Math.sqrt(6), y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "f", objectId: "point-f", at: { x: 0, y: 10 * Math.sqrt(3) }, placement: "above" },
+      { key: "a", objectId: "point-a", at: { x: 20 * Math.sqrt(6), y: 0 }, placement: "below" },
+      { key: "b", objectId: "point-b", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "fb", objectId: "segment-fb", at: { x: 0, y: 5 * Math.sqrt(3) }, placement: "left" },
+      { key: "fa", objectId: "segment-fa", at: { x: 10 * Math.sqrt(6), y: 5 * Math.sqrt(3) }, placement: "above-right" },
+      { key: "ab", objectId: "segment-ab", at: { x: 10 * Math.sqrt(6), y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Pythagoras' theorem in this triangle gives an equation for <InlineMath math="h" />.
+
+<BlockMath math="\begin{aligned}
+FA^2&=FB^2+AB^2 \\
+3h^2&=\frac{h^2}{3}+\left(20\sqrt6\right)^2 \\
+3h^2-\frac{h^2}{3}&=2{,}400 \\
+\frac{8h^2}{3}&=2{,}400 \\
+h^2&=900 \\
+h&=30\text{ m}
+\end{aligned}" />
+
+Check: with <InlineMath math="h=30" />, <InlineMath math="FB=10\sqrt3" /> and <InlineMath math="FA=30\sqrt3" />. Then <InlineMath math="FB^2+AB^2=300+2{,}400=2{,}700=FA^2" />, which matches.
+
+# Why the other options are wrong
+
+- <InlineMath math="12\sqrt5\text{ m}" /> puts the right angle at the tower's foot, <InlineMath math="FA^2+FB^2=AB^2" />. The right angle is at <InlineMath math="B" />, because <InlineMath math="B" /> is the closest point to the foot.
+- <InlineMath math="20\sqrt2\text{ m}" /> uses <InlineMath math="AB" /> as the horizontal distance from <InlineMath math="A" /> to the foot, <InlineMath math="h=20\sqrt6\cdot\tan30^\circ" />. But <InlineMath math="B" /> isn't the foot of the tower.
+- <InlineMath math="30\sqrt2\text{ m}" /> assumes the foot is on the road, so that <InlineMath math="FA-FB=AB" />. The question says the foot is **not** on the road.
+- <InlineMath math="30\sqrt3\text{ m}" /> is <InlineMath math="FA" />, the horizontal distance from <InlineMath math="A" /> to the foot, not the height.
+
+So the tower is <InlineMath math="30\text{ m}" /> tall.

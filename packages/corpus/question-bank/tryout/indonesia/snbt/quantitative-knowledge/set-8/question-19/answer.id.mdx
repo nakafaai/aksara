@@ -1,27 +1,43 @@
-Jumlah dua bilangan habis dibagi 3 bergantung pada **sisa pembagian masing-masing bilangan oleh 3**. Kelompokkan bilangan 1 sampai 20 menurut sisanya.
+Kedua syarat itu belum tentu menghasilkan satu barisan saja. Rencananya begini: tulis <InlineMath math="u_2" /> dan <InlineMath math="u_4" /> dengan <InlineMath math="u_3" /> dan rasio <InlineMath math="r" />, cari semua rasio yang mungkin, lalu **nilai setiap pernyataan pada semua barisan yang memenuhi**.
 
-# Tiga kelompok sisa
+# Mencari rasio
 
-| Sisa | Bilangan | Banyak |
-| :---: | :---: | :---: |
-| 0 | 3, 6, 9, 12, 15, 18 | 6 |
-| 1 | 1, 4, 7, 10, 13, 16, 19 | 7 |
-| 2 | 2, 5, 8, 11, 14, 17, 20 | 7 |
-
-Ketiga kelompok **tidak sama besar**, karena 20 bukan kelipatan 3.
-
-# Pasangan yang jumlahnya kelipatan 3
-
-Jumlahnya habis dibagi 3 jika **kedua bilangan bersisa 0**, atau **satu bersisa 1 dan yang lain bersisa 2**.
+Pada barisan geometri, suku berikutnya didapat dengan mengalikan rasio. Jadi, <InlineMath math="u_4=u_3r=-6r" /> dan <InlineMath math="u_2=\tfrac{u_3}{r}=-\tfrac6r" />, dengan <InlineMath math="r\ne0" /> karena <InlineMath math="u_3\ne0" />.
 
 <BlockMath math="\begin{aligned}
-\text{sisa 0 dan 0}&:\quad \binom62=15\\
-\text{sisa 1 dan 2}&:\quad 7\cdot7=49\\
-n(A)&=15+49=64,\qquad n(S)=\binom{20}{2}=190
+-\tfrac6r-6r&=15\\
+r+\tfrac1r&=-\tfrac52\\
+2r^2+5r+2&=0\\
+(2r+1)(r+2)&=0
 \end{aligned}" />
 
-<BlockMath math="P(A)=\frac{64}{190}=\frac{32}{95}" />
+Ada **dua rasio yang sama-sama memenuhi**, yaitu <InlineMath math="r=-2" /> dan <InlineMath math="r=-\tfrac12" />. Suku pertamanya <InlineMath math="u_1=\tfrac{u_3}{r^2}" />, sehingga kamu mendapat dua barisan.
 
-Nilai <InlineMath math="\tfrac13" /> menganggap ketiga kelompok sama besar. Nilai <InlineMath math="\tfrac{3}{38}=\tfrac{15}{190}" /> hanya menghitung pasangan kelipatan 3, dan nilai <InlineMath math="\tfrac{49}{190}" /> hanya menghitung pasangan sisa 1 dan 2.
+<BlockMath math="\begin{aligned}
+r=-2&:\quad -\tfrac32,\ 3,\ -6,\ 12,\ -24,\ 48,\ -96,\ \dots\\
+r=-\tfrac12&:\quad -24,\ 12,\ -6,\ 3,\ -\tfrac32,\ \tfrac34,\ -\tfrac38,\ \dots
+\end{aligned}" />
 
-Jadi, peluang jumlah kedua bilangan habis dibagi 3 adalah **<InlineMath math="\tfrac{32}{95}" />**.
+Pemeriksaan: <InlineMath math="3+12=15" /> dan <InlineMath math="12+3=15" />.
+
+# Pernyataan pertama
+
+Perhatikan bahwa **<InlineMath math="5" /> suku pertama kedua barisan berisi bilangan yang sama dalam urutan terbalik**. Jadi, jumlahnya pasti sama.
+
+<BlockMath math="-\tfrac32+3-6+12-24=-\tfrac{33}{2}" />
+
+Pernyataan pertama berlaku untuk kedua barisan, jadi benar.
+
+# Pernyataan kedua
+
+Jumlah tak hingga barisan geometri hanya ada jika <InlineMath math="|r|<1" />. Barisan dengan <InlineMath math="r=-\tfrac12" /> memang punya jumlah tak hingga <InlineMath math="\tfrac{-24}{1+\frac12}=-16" />. Namun, barisan dengan <InlineMath math="r=-2" /> juga memenuhi kedua syarat, dan sukunya makin besar tanpa batas. Karena **kata pasti menuntut semua barisan**, pernyataan kedua salah.
+
+# Pernyataan ketiga
+
+Untuk <InlineMath math="r>0" />, berlaku <InlineMath math="r+\tfrac1r\ge2" />, karena <InlineMath math="(r-1)^2\ge0" /> sama dengan <InlineMath math="r^2+1\ge2r" />, lalu bagi dengan <InlineMath math="r" /> yang positif. Jadi, <InlineMath math="r+\tfrac1r" /> **tidak mungkin sama dengan <InlineMath math="-\tfrac52" /> jika <InlineMath math="r" /> positif**. Tidak ada barisan dengan rasio positif, jadi pernyataan ketiga salah.
+
+# Pernyataan keempat
+
+Suku ke-<InlineMath math="7" /> adalah <InlineMath math="u_7=u_3r^4=-6r^4" />. Pangkat genap dari bilangan real tak nol selalu positif, jadi **<InlineMath math="u_7" /> selalu negatif** apa pun tanda rasionya. Nilainya <InlineMath math="-96" /> untuk <InlineMath math="r=-2" /> dan <InlineMath math="-\tfrac38" /> untuk <InlineMath math="r=-\tfrac12" />. Pernyataan keempat salah.
+
+Jadi, pernyataan pertama **benar**, sedangkan pernyataan kedua, ketiga, dan keempat **salah**.

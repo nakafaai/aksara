@@ -1,15 +1,17 @@
-Baca **setiap ciri grafik sebagai syarat tanda** pada <InlineMath math="a" />, <InlineMath math="b" />, atau <InlineMath math="c" />.
+# Rumus biaya parkir
 
-<BlockMath math="\begin{aligned}
-\text{terbuka ke bawah}&\ \Rightarrow\ a<0 \\
-f(0)=c>0&\ \Rightarrow\ \text{memotong sumbu }y\text{ di atas }O \\
-x_p=-\frac{b}{2a}>0\ \text{dengan}\ a<0&\ \Rightarrow\ b>0
-\end{aligned}" />
+Setiap pernyataan harus diuji untuk semua lama parkir, jadi tulis dulu rumus <InlineMath math="f" />. Kuncinya ada di kata **dimulai**: jam yang baru terpakai sebagian tetap dihitung penuh, jadi banyak jam tambahan adalah <InlineMath math="t-1" /> yang dibulatkan ke atas.
 
-- Parabola yang terbuka ke bawah mempunyai <InlineMath math="a<0" />. Pernyataan ini benar.
-- Puncak di kanan sumbu <InlineMath math="y" /> berarti <InlineMath math="-\frac{b}{2a}>0" />. Karena <InlineMath math="2a" /> negatif, <InlineMath math="b" /> harus positif. Pernyataan ini salah.
-- Titik potong dengan sumbu <InlineMath math="y" /> adalah <InlineMath math="(0,c)" />, dan letaknya di atas <InlineMath math="O" />, jadi <InlineMath math="c>0" />. Pernyataan ini benar.
-- Grafik terbuka ke bawah dan <InlineMath math="f(0)>0" />, jadi grafik naik dari bawah ke atas sumbu <InlineMath math="x" /> lalu turun lagi. Grafik memotong sumbu <InlineMath math="x" /> di dua titik. Cara lain: <InlineMath math="b^2-4ac>0" /> karena <InlineMath math="-4ac>0" />. Pernyataan ini benar.
-- Dengan <InlineMath math="a<0" />, <InlineMath math="b>0" />, dan <InlineMath math="c>0" />, hasil kali <InlineMath math="abc" /> negatif. Pernyataan ini salah.
+<BlockMath math="f(t)=\begin{cases}5{.}000, & 0<t\le1\\[2pt] \min\left(5{.}000+3{.}000\cdot\lceil t-1\rceil,\ 20{.}000\right), & 1<t\le24\end{cases}" />
 
-Jadi, pernyataan yang pasti benar adalah <InlineMath math="a<0" />, <InlineMath math="c>0" />, dan dua akar real yang berbeda.
+Batas <InlineMath math="20{.}000" /> tercapai saat <InlineMath math="5{.}000+3{.}000k\ge20{.}000" />, yaitu <InlineMath math="k\ge5" /> jam tambahan. Itu terjadi untuk setiap <InlineMath math="t>5" />.
+
+# Menilai setiap pernyataan
+
+1. **Benar**. <InlineMath math="\lceil2{,}5-1\rceil=2" /> dan <InlineMath math="\lceil3-1\rceil=2" />, jadi keduanya <InlineMath math="5{.}000+6{.}000=11{.}000" />.
+2. **Salah**. Grafik <InlineMath math="f" /> berbentuk tangga. Contohnya <InlineMath math="f(1{,}2)=f(1{,}5)=8{.}000" />, jadi tidak selalu naik.
+3. **Salah**. Sebelum batas, biayanya <InlineMath math="5{.}000+3{.}000k" />, yaitu <InlineMath math="8{.}000, 11{.}000, 14{.}000, 17{.}000" />, lalu langsung <InlineMath math="20{.}000" />. Nilai <InlineMath math="18{.}000" /> tidak pernah muncul.
+4. **Benar**. Untuk <InlineMath math="t\ge6" /> berlaku <InlineMath math="t>5" />, jadi biayanya sudah terkena batas <InlineMath math="20{.}000" />.
+5. **Salah**. Untuk <InlineMath math="t=1" />, <InlineMath math="f(2)=8{.}000" />, sedangkan <InlineMath math="2f(1)=10{.}000" />. Satu contoh penyangkal sudah cukup.
+
+Jadi, pernyataan yang benar adalah pernyataan pertama dan keempat.

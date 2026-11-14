@@ -1,24 +1,46 @@
-Read the eight values from the chart: Taman Kota (the city park) 80, 96, 72, 112 and Pantai (the beach) 60, 90, 108, 102. Each statement **compares a different quantity**, so compute those quantities one at a time.
+You're counting the terms that meet three conditions at once: between <InlineMath math="100" /> and <InlineMath math="1{,}000" />, a multiple of <InlineMath math="4" />, and not a multiple of <InlineMath math="3" />. The plan: find the formula for the <InlineMath math="n" />th term, turn each condition into **a condition on the term number <InlineMath math="n" />**, then count multiples of <InlineMath math="4" /> minus multiples of <InlineMath math="12" />.
 
-# Means and weekly totals
+# Finding the term formula
+
+From the third term to the eighth term there are <InlineMath math="5" /> steps of the common difference <InlineMath math="d" />. Once you know <InlineMath math="d" />, step back twice from the third term to **get the first term**.
 
 <BlockMath math="\begin{aligned}
-\bar x_{\text{Taman}}&=\frac{80+96+72+112}{4}=\frac{360}{4}=90\\
-\bar x_{\text{Pantai}}&=\frac{60+90+108+102}{4}=\frac{360}{4}=90
+5d &= 59-24=35 \\
+d &= 7 \\
+u_1 &= 24-2\cdot7=10 \\
+u_n &= 10+7(n-1)=7n+3
 \end{aligned}" />
 
-The two means are **equal**, so the first statement is false.
+# Finding the range of term numbers
 
-The weekly totals of both locations are 140, 186, 180 and 214. The largest is in week four, so the second statement is true.
+The condition <InlineMath math="100<u_n<1{,}000" /> applies to whole-number term numbers <InlineMath math="n" />, so **take the whole numbers inside the bounds**.
 
-# Changes and ratios
+<BlockMath math="\begin{aligned}
+100<7n+3<1{,}000 \\
+97<7n<997 \\
+14\le n\le142
+\end{aligned}" />
 
-A percentage decrease is measured against **the starting value, week two**.
+Check the ends: <InlineMath math="u_{13}=94" /> is too small, <InlineMath math="u_{14}=101" /> is in, <InlineMath math="u_{142}=997" /> is in, and <InlineMath math="u_{143}=1{,}004" /> is too big.
 
-<BlockMath math="\frac{96-72}{96}\times100\%=\frac{24}{96}\times100\%=25\%" />
+# Finding the multiples of four
 
-The number 24 is the difference in bicycles, not the percentage. The third statement is false.
+Write <InlineMath math="7n+3=8n+4-(n+1)" />. The part <InlineMath math="8n+4" /> is always divisible by <InlineMath math="4" />, so **<InlineMath math="u_n" /> is divisible by <InlineMath math="4" /> exactly when <InlineMath math="n+1" /> is**, that is, for <InlineMath math="n=3,7,11,\dots" />. Between <InlineMath math="14" /> and <InlineMath math="142" />, those term numbers are <InlineMath math="15,19,\dots,139" />.
 
-In week three, <InlineMath math="\tfrac{108}{72}=1.5" />, so the fourth statement is true.
+<BlockMath math="\text{count}=\frac{139-15}{4}+1=32" />
 
-So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.
+For example, <InlineMath math="u_{15}=108=4\cdot27" />.
+
+# Removing the multiples of three
+
+A term divisible by both <InlineMath math="4" /> and <InlineMath math="3" /> is a multiple of <InlineMath math="12" />. For the multiple-of-<InlineMath math="3" /> condition, write <InlineMath math="7n+3=6n+3+n" />. The part <InlineMath math="6n+3" /> is always a multiple of <InlineMath math="3" />, so <InlineMath math="u_n" /> is a multiple of <InlineMath math="3" /> exactly when <InlineMath math="n" /> is. Among the term numbers <InlineMath math="15,19,23,27,\dots" />, **every third one is a multiple of <InlineMath math="3" />**, starting at <InlineMath math="15" />: that's <InlineMath math="15,27,39,\dots,135" />.
+
+<BlockMath math="\text{count}=\frac{135-15}{12}+1=11" />
+
+For example, <InlineMath math="u_{15}=108=12\cdot9" /> and <InlineMath math="u_{135}=948=12\cdot79" />.
+
+<BlockMath math="\text{answer}=32-11=21" />
+
+Check with the pattern: group the <InlineMath math="32" /> term numbers in threes, and the first number of each group is a multiple of three. There are <InlineMath math="10" /> full groups and two numbers left over, <InlineMath math="135" /> and <InlineMath math="139" />. Of those two, only <InlineMath math="135" /> is a multiple of three, so the count is <InlineMath math="10+1=11" />, matching the count above. A common slip is forgetting to remove the multiples of <InlineMath math="12" />, which gives <InlineMath math="32" />.
+
+So the number of terms that meet all the conditions is <InlineMath math="21" />.

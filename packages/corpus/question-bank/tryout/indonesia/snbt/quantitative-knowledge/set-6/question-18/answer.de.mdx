@@ -1,22 +1,45 @@
-Zähle zuerst die Zahlen, die durch 4 oder 6 teilbar sind, und entferne dann diejenigen, die auch durch 9 teilbar sind. Für den ersten Schritt brauchst du **das Prinzip von Inklusion und Exklusion**, weil die Vielfachen von 12 doppelt gezählt werden.
+Es gibt zwei Bedingungen: Jede Person bekommt etwas, und das Wörterbuch bleibt vom Atlas getrennt. Sauber geht es so: **Zähle alle Verteilungen, die die erste Bedingung erfüllen, und ziehe die ab, die die zweite verletzen**. Beide Zählungen verwenden das Prinzip von Inklusion und Exklusion.
 
-# Teilbar durch 4 oder 6
+# Alle fairen Verteilungen
 
-Die gemeinsamen Vielfachen von 4 und 6 sind **die Vielfachen ihres kleinsten gemeinsamen Vielfachen** 12.
+Ohne jede Bedingung kann jedes Buch an eine der <InlineMath math="3" /> Personen gehen, also gibt es <InlineMath math="3^5=243" /> Möglichkeiten. Davon streichst du die Verteilungen, bei denen jemand leer ausgeht. Es gibt <InlineMath math="2^5" /> Verteilungen, bei denen eine bestimmte Person leer ausgeht, und <InlineMath math="3" /> Möglichkeiten für diese Person. Verteilungen, bei denen zwei Personen leer ausgehen, wurden dabei doppelt gestrichen, also **zählst du sie einmal wieder dazu**.
 
 <BlockMath math="\begin{aligned}
-\left\lfloor\tfrac{300}{4}\right\rfloor+\left\lfloor\tfrac{300}{6}\right\rfloor-\left\lfloor\tfrac{300}{12}\right\rfloor&=75+50-25\\
-&=100
+3^5-3\cdot2^5+3\cdot1^5 &= 243-96+3 \\
+&= 150
 \end{aligned}" />
 
-# Auch durch 9 teilbar
+# Verteilungen mit Wörterbuch und Atlas zusammen
 
-Eine Zahl aus dieser Gruppe, die durch 9 teilbar ist, ist ein Vielfaches von <InlineMath math="\text{kgV}(4,9)=36" /> oder von <InlineMath math="\text{kgV}(6,9)=18" />. Jedes Vielfache von 36 ist auch ein Vielfaches von 18, also **genügt es, die Vielfachen von 18 zu zählen**.
+Gehen Wörterbuch und Atlas an dieselbe Person, **betrachtest du die beiden als ein Paket**. Dann gibt es <InlineMath math="4" /> verschiedene Dinge, das Paket und die anderen <InlineMath math="3" /> Bücher, die so verteilt werden, dass jede Person etwas bekommt.
 
-<BlockMath math="\left\lfloor\tfrac{300}{18}\right\rfloor=16" />
+<BlockMath math="\begin{aligned}
+3^4-3\cdot2^4+3\cdot1^4 &= 81-48+3 \\
+&= 36
+\end{aligned}" />
 
-Übrig bleiben <InlineMath math="100-16=84" /> Zahlen.
+# Die verbotenen Verteilungen abziehen
 
-Der Wert 100 vergisst, die Vielfachen von 9 zu entfernen. Der Wert 92 entfernt nur die 8 Vielfachen von 36. Der Wert 76 entfernt die 8 Vielfachen von 36 und die 16 Vielfachen von 18 zusammen, obwohl die Vielfachen von 36 schon unter den Vielfachen von 18 sind. Der Wert 67 entfernt alle 33 Vielfachen von 9 von 1 bis 300, auch die, die nie in der ersten Gruppe waren.
+Gesucht sind die fairen Verteilungen, bei denen Wörterbuch und Atlas nicht zusammen landen.
 
-Es gibt also **84** solche Zahlen.
+<BlockMath math="150-36=114" />
+
+Prüfe das auf direktem Weg. Für das Wörterbuch gibt es <InlineMath math="3" /> mögliche Empfänger, für den Atlas <InlineMath math="2" />, zusammen <InlineMath math="6" /> Möglichkeiten. Die drei übrigen Bücher sind frei, solange **die dritte Person, die noch nichts hat, mindestens ein Buch bekommt**.
+
+<BlockMath math="\begin{aligned}
+6\times\left(3^3-2^3\right) &= 6\times(27-8) \\
+&= 6\times19=114
+\end{aligned}" />
+
+Beide Wege liefern dasselbe Ergebnis.
+
+# Warum die anderen Antworten nicht passen
+
+Jede falsche Antwort **übergeht eine Bedingung** oder zählt den falschen Teil.
+
+- <InlineMath math="72=6\times3\times2^2" /> entsteht, wenn die dritte Person genau ein Buch bekommen soll, obwohl die Bedingung mindestens eins lautet.
+- <InlineMath math="162=6\times27" /> trennt Wörterbuch und Atlas, vergisst aber, dass die dritte Person ein Buch bekommen muss.
+- <InlineMath math="150" /> sorgt dafür, dass jede Person etwas bekommt, vergisst aber die Bedingung für Wörterbuch und Atlas.
+- <InlineMath math="36" /> ist die Anzahl der verbotenen Verteilungen, also derjenigen mit Wörterbuch und Atlas bei derselben Person.
+
+Es gibt also <InlineMath math="114" /> Möglichkeiten, die Bücher zu verteilen.

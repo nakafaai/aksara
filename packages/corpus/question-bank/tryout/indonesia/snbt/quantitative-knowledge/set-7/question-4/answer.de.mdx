@@ -1,30 +1,46 @@
-Die beiden Schnittpunkte mit der x-Achse liefern **die faktorisierte Form <InlineMath math="f(x)=a(x+1)(x-5)" />**. Der Schnittpunkt mit der y-Achse legt <InlineMath math="a" /> fest.
+Die beiden Seiten haben verschiedene Basen, also formst du die Gleichung zuerst in eine einzige Potenz um, nämlich <InlineMath math="\left(\tfrac32\right)^x=6" />. Die Antworten liegen dicht beieinander, deshalb können grobe Logarithmuswerte dich täuschen. Darum **bestimmst du die Lage von <InlineMath math="x" /> durch exakte Vergleiche ganzer Zahlen**.
 
-# Die Funktion bestimmen
+# Auf eine Basis bringen
+
+Die Regel <InlineMath math="a^{m+n}=a^m\cdot a^n" /> zerlegt beide Seiten: <InlineMath math="2^{x+1}=2\cdot2^x" /> und <InlineMath math="3^{x-1}=\frac{3^x}{3}" />. Sammle die Potenzen mit <InlineMath math="x" /> auf einer Seite.
 
 <BlockMath math="\begin{aligned}
-f(0)=a(1)(-5)&=10\;\Longrightarrow\; a=-2\\
-f(x)&=-2(x+1)(x-5)=-2x^2+8x+10
+2\cdot2^x&=\frac{3^x}{3}\\
+6&=\frac{3^x}{2^x}\\
+\left(\tfrac32\right)^x&=6
 \end{aligned}" />
 
-Wegen <InlineMath math="a<0" /> ist die Parabel **nach unten geöffnet** und hat einen Höchstwert.
+Also ist <InlineMath math="x=\log_{3/2}6" />. Die Basis <InlineMath math="\tfrac32" /> ist größer als <InlineMath math="1" />, deshalb gilt: **Je größer <InlineMath math="x" />, desto größer <InlineMath math="\left(\tfrac32\right)^x" />**. Um <InlineMath math="x" /> einzuordnen, vergleichst du einige Potenzen von <InlineMath math="\tfrac32" /> mit <InlineMath math="6" />.
 
-# Symmetrieachse und Höchstwert
+# Ganzzahlige Schranken
 
-Die Symmetrieachse liegt **in der Mitte zwischen den beiden Nullstellen**, also bei <InlineMath math="x=\tfrac{-1+5}{2}=2" /> und nicht bei <InlineMath math="x=3" />. Die zweite Aussage ist falsch.
+Berechne die vierte und die fünfte Potenz und vergleiche jeden Bruch über Kreuzmultiplikation mit <InlineMath math="6" />.
 
-<BlockMath math="f(2)=-2(3)(-3)=18" />
+<BlockMath math="\begin{aligned}
+\left(\tfrac32\right)^4&=\tfrac{81}{16}<6 &&\text{weil } 81<96\\
+\left(\tfrac32\right)^5&=\tfrac{243}{32}>6 &&\text{weil } 243>192
+\end{aligned}" />
 
-Der Höchstwert ist 18, also ist die erste Aussage wahr.
+Die vierte Potenz liegt noch unter <InlineMath math="6" />, die fünfte schon darüber, also **liegt <InlineMath math="x" /> zwischen <InlineMath math="4" /> und <InlineMath math="5" />**.
 
-# Vorzeichen und der Wert an der Stelle eins
+# Vergleich mit viereinhalb
 
-Eine nach unten geöffnete Parabel ist **nur zwischen ihren Nullstellen positiv**, also für <InlineMath math="-1<x<5" />. Für <InlineMath math="5<x<6" /> ist sie negativ, zum Beispiel <InlineMath math="f(5{,}5)=-2(6{,}5)(0{,}5)=-6{,}5" />. Die dritte Aussage ist falsch.
+Teste jetzt <InlineMath math="x=4{,}5" />. Eine halbe Potenz lässt sich schlecht direkt ausrechnen, also **quadrierst du beide Zahlen, die du vergleichst**. Beide sind positiv, also bleibt die Reihenfolge gleich: <InlineMath math="\left(\tfrac32\right)^{4{,}5}" /> mit <InlineMath math="6" /> zu vergleichen ist dasselbe, wie <InlineMath math="\left(\tfrac32\right)^{9}" /> mit <InlineMath math="36" /> zu vergleichen.
 
-Die Summe <InlineMath math="a+b+c" /> ist gleich <InlineMath math="f(1)" />.
+<BlockMath math="\begin{aligned}
+\left(\tfrac32\right)^9&=\tfrac{19{.}683}{512}\\
+36\times512&=18{.}432<19{.}683
+\end{aligned}" />
 
-<BlockMath math="a+b+c=-2+8+10=16" />
+Also ist <InlineMath math="\left(\tfrac32\right)^9>36" />, das heißt <InlineMath math="\left(\tfrac32\right)^{4{,}5}>6" />. Die Potenz mit <InlineMath math="4{,}5" /> ist schon über <InlineMath math="6" /> hinaus, also gilt <InlineMath math="x<4{,}5" />. Zusammen mit dem vorigen Schritt folgt <InlineMath math="4<x<4{,}5" />.
 
-Die vierte Aussage ist wahr.
+Eine Probe mit genauen Logarithmen, <InlineMath math="\log2\approx0{,}3010" /> und <InlineMath math="\log3\approx0{,}4771" />, ergibt <InlineMath math="x=\frac{\log3+\log2}{\log3-\log2}\approx\frac{0{,}7781}{0{,}1761}\approx4{,}42" />, passend zu diesem Intervall.
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.
+# Die falschen Antworten
+
+- <InlineMath math="x<0" /> entsteht durch einen Vorzeichenfehler beim Verschieben von <InlineMath math="\log3" />: Aus <InlineMath math="(x+1)\log2=(x-1)\log3" /> wird dann <InlineMath math="x(\log3-\log2)=\log2-\log3" />, also <InlineMath math="x=-1" />. Auch <InlineMath math="3^{x-1}" /> als <InlineMath math="3\cdot3^x" /> zu schreiben liefert <InlineMath math="x=-1" />.
+- <InlineMath math="0<x<4" /> entsteht durch einen Vorzeichenfehler beim Verschieben von <InlineMath math="\log2" />, also <InlineMath math="x(\log3-\log2)=\log3-\log2" /> und damit <InlineMath math="x=1" />.
+- <InlineMath math="4{,}5<x<5" /> entsteht aus der Rundung <InlineMath math="\log3\approx0{,}47" />, die <InlineMath math="\frac{0{,}77}{0{,}17}\approx4{,}53" /> liefert. **Die Differenz <InlineMath math="\log3-\log2" /> ist klein**, deshalb wird selbst ein kleiner Rundungsfehler stark vergrößert.
+- <InlineMath math="x\ge5" /> entsteht, wenn du <InlineMath math="\frac{x+1}{x-1}" /> gleich <InlineMath math="\frac32" /> setzt und so <InlineMath math="x=5" /> erhältst, obwohl richtig <InlineMath math="\frac{x+1}{x-1}=\frac{\log3}{\log2}" /> gilt.
+
+Der Wert von <InlineMath math="x" />, der <InlineMath math="2^{x+1}=3^{x-1}" /> erfüllt, liegt also im Bereich <InlineMath math="4<x<4{,}5" />.

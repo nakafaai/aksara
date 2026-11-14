@@ -1,15 +1,43 @@
-In the composition <InlineMath math="(g\circ f)(3)=g\big(f(3)\big)" />, **the function next to <InlineMath math="x" /> acts first**. Work out <InlineMath math="f(3)" />, then put the result into <InlineMath math="g" />.
+The question asks how many integers <InlineMath math="x" /> squeeze <InlineMath math="f(x)" /> strictly between <InlineMath math="-4" /> and <InlineMath math="12" />. You first need the formula for <InlineMath math="f" />, and then you have to respect **two strict inequality signs**.
+
+# The formula of the function
+
+The graph of a quadratic function is symmetric about its axis. Since <InlineMath math="f(-2)=f(8)" />, the axis of symmetry is exactly halfway between <InlineMath math="-2" /> and <InlineMath math="8" />, at <InlineMath math="x=\frac{-2+8}{2}=3" />. The range <InlineMath math="y\ge-6" /> means the graph opens upward and **its minimum value <InlineMath math="-6" /> is at the vertex**. So <InlineMath math="f(x)=a(x-3)^2-6" /> with <InlineMath math="a>0" />.
 
 <BlockMath math="\begin{aligned}
-f(3)&=5-2\cdot3=-1 \\
-g(-1)&=(-1)^2+4\cdot(-1)=1-4=-3
+f(1)&=a(1-3)^2-6=-4 \\
+4a&=2\ \Rightarrow\ a=\tfrac12 \\
+f(x)&=\tfrac12(x-3)^2-6
 \end{aligned}" />
 
-As a check, the composite is <InlineMath math="(g\circ f)(x)=(5-2x)^2+4(5-2x)" />, and at <InlineMath math="x=3" /> it gives <InlineMath math="1-4=-3" />.
+# The conditions as a distance from the axis
 
-So <InlineMath math="(g\circ f)(3)=-3" />.
+Let <InlineMath math="d=|x-3|" />, the distance from <InlineMath math="x" /> to the axis of symmetry. Since <InlineMath math="x" /> is an integer, so is <InlineMath math="d" />. Turn both inequalities into conditions on <InlineMath math="d" />.
 
-- <InlineMath math="-37" /> works out <InlineMath math="(f\circ g)(3)=f(21)=5-42" />, the reversed order.
-- <InlineMath math="-21" /> multiplies <InlineMath math="g(3)=21" /> by <InlineMath math="f(3)=-1" />, but a composition is not a product.
-- <InlineMath math="-5" /> takes <InlineMath math="(-1)^2" /> as <InlineMath math="-1" />.
-- <InlineMath math="5" /> takes <InlineMath math="4\cdot(-1)" /> as <InlineMath math="4" />.
+<BlockMath math="\begin{aligned}
+-4<\tfrac12d^2-6\ &\Rightarrow\ d^2>4\ \Rightarrow\ d>2 \\
+\tfrac12d^2-6<12\ &\Rightarrow\ d^2<36\ \Rightarrow\ d<6
+\end{aligned}" />
+
+So <InlineMath math="2<d<6" />, which means <InlineMath math="d=3,4,5" />. **Each value of <InlineMath math="d" /> gives two values of <InlineMath math="x" />**, one on each side of the axis.
+
+| <InlineMath math="d" /> | <InlineMath math="x" /> | <InlineMath math="f(x)" /> | Works? |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="3" /> | <InlineMath math="-6" /> | no |
+| <InlineMath math="1" /> | <InlineMath math="2" /> and <InlineMath math="4" /> | <InlineMath math="-5.5" /> | no |
+| <InlineMath math="2" /> | <InlineMath math="1" /> and <InlineMath math="5" /> | <InlineMath math="-4" /> | no, it must be more than <InlineMath math="-4" /> |
+| <InlineMath math="3" /> | <InlineMath math="0" /> and <InlineMath math="6" /> | <InlineMath math="-1.5" /> | yes |
+| <InlineMath math="4" /> | <InlineMath math="-1" /> and <InlineMath math="7" /> | <InlineMath math="2" /> | yes |
+| <InlineMath math="5" /> | <InlineMath math="-2" /> and <InlineMath math="8" /> | <InlineMath math="6.5" /> | yes |
+| <InlineMath math="6" /> | <InlineMath math="-3" /> and <InlineMath math="9" /> | <InlineMath math="12" /> | no, it must be less than <InlineMath math="12" /> |
+
+The integers that work are <InlineMath math="-2,-1,0,6,7,8" />, so there are <InlineMath math="6" /> of them. Notice that <InlineMath math="x=1" /> from the question sits exactly on the lower boundary and drops out.
+
+# Why the other options are wrong
+
+- <InlineMath math="11" /> only uses <InlineMath math="f(x)<12" /> and forgets <InlineMath math="f(x)>-4" />, so the integers near the vertex, <InlineMath math="1" /> to <InlineMath math="5" />, get counted too.
+- <InlineMath math="10" /> treats both signs as <InlineMath math="\le" />, so <InlineMath math="d=2" /> and <InlineMath math="d=6" /> get counted.
+- <InlineMath math="8" /> treats one of the signs as <InlineMath math="\le" />, so one boundary pair gets counted.
+- <InlineMath math="3" /> only counts the right side of the axis, <InlineMath math="x=6,7,8" />. **A parabola has two branches**, so the left side counts as well.
+
+So there are <InlineMath math="6" /> integers <InlineMath math="x" /> that satisfy the condition.

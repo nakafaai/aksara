@@ -1,22 +1,63 @@
-Weil der ggT 12 ist, lassen sich die beiden Zahlen als <InlineMath math="a=12m" /> und <InlineMath math="b=12n" /> schreiben, wobei <InlineMath math="m" /> und <InlineMath math="n" /> **außer 1 keinen gemeinsamen Teiler haben**. In dieser Form ist das kgV gleich <InlineMath math="12mn" />.
+Gesucht ist die größte Differenz zweier periodischer Dezimalzahlen. Der Plan: Wandle jede periodische Dezimalzahl in einen Bruch um, gewinne aus der Summengleichung <InlineMath math="a+b" /> und wähle dann das Ziffernpaar mit der größten Differenz. Im letzten Schritt steckt eine Bedingung, die man leicht übersieht: **<InlineMath math="a" /> und <InlineMath math="b" /> sind einzelne Ziffern**, also höchstens <InlineMath math="9" />.
 
-# Mögliche Paare finden
+# Periodische Dezimalzahlen als Brüche
 
-<BlockMath math="12mn=180\quad\Rightarrow\quad mn=15" />
+Setze <InlineMath math="x=0{,}\overline{ab}" />. Die Periode ist zwei Ziffern lang, also multiplizierst du <InlineMath math="x" /> mit <InlineMath math="100" />. Dadurch rutscht genau eine Periode vor das Komma, und der Rest hinter dem Komma bleibt gleich. Weil die Reste gleich sind, **fällt der Rest weg, wenn du <InlineMath math="x" /> von <InlineMath math="100x" /> abziehst**.
 
-Die teilerfremden Paare <InlineMath math="(m,n)" /> mit dem Produkt 15 sind <InlineMath math="(1,15)" /> und <InlineMath math="(3,5)" />. **Die Summenbedingung wählt eines davon aus**.
+<BlockMath math="\begin{aligned}
+100x &= (10a+b)+0{,}\overline{ab} \\
+100x-x &= 10a+b \\
+x &= \dfrac{10a+b}{99}
+\end{aligned}" />
 
-| <InlineMath math="(m,n)" /> | Zahlen | Summe |
-| :---: | :---: | :---: |
-| <InlineMath math="(1,15)" /> | 12 und 180 | 192 |
-| <InlineMath math="(3,5)" /> | 36 und 60 | 96 |
+Dabei ist <InlineMath math="10a+b" /> die zweistellige Zahl mit der Zehnerziffer <InlineMath math="a" /> und der Einerziffer <InlineMath math="b" />. Genauso gilt <InlineMath math="0{,}\overline{ba}=\dfrac{10b+a}{99}" />. Die Zahl <InlineMath math="1{,}\overline{3}" /> hat nur eine Ziffer in der Periode, deshalb reicht hier der Faktor <InlineMath math="10" />.
 
-# Differenz berechnen
+<BlockMath math="\begin{aligned}
+y &= 1{,}\overline{3} \\
+10y &= 13{,}\overline{3} \\
+10y-y &= 12 \\
+y &= \dfrac{12}{9}=\dfrac{4}{3}
+\end{aligned}" />
 
-Die Zahlen sind 36 und 60. Probe: Ihr ggT ist 12, ihr kgV ist 180, und ihre Summe ist 96.
+# Die Summe der Ziffern
 
-<BlockMath math="60-36=24" />
+Addiere jetzt die beiden Brüche. Im Zähler kannst du ausklammern, denn <InlineMath math="10a+b+10b+a=11a+11b" />.
 
-Der Wert 168 ist die Differenz des anderen Paares, 12 und 180, dessen Summe nicht 96 ist. Der Wert 12 ist der ggT, der Wert 15 das Produkt <InlineMath math="mn" />, und der Wert 36 ist die kleinere Zahl.
+<BlockMath math="\begin{aligned}
+\dfrac{10a+b}{99}+\dfrac{10b+a}{99} &= \dfrac{11(a+b)}{99}=\dfrac{a+b}{9} \\
+\dfrac{a+b}{9} &= \dfrac{12}{9} \\
+a+b &= 12
+\end{aligned}" />
 
-Die Differenz der beiden Zahlen ist also **24**.
+Also ist **die Summe der beiden Ziffern genau <InlineMath math="12" />**.
+
+# Die Differenz so groß wie möglich machen
+
+Die Differenz rechnest du genauso aus. Diesmal ist der Zähler <InlineMath math="10a+b-10b-a=9a-9b" />.
+
+<BlockMath math="\begin{aligned}
+0{,}\overline{ab}-0{,}\overline{ba} &= \dfrac{9(a-b)}{99} \\
+&= \dfrac{a-b}{11}
+\end{aligned}" />
+
+Die Differenz wird umso größer, je größer <InlineMath math="a-b" /> ist. Aus <InlineMath math="a+b=12" /> folgt <InlineMath math="a-b=12-2b" />, also soll <InlineMath math="b" /> möglichst klein sein. Aber **<InlineMath math="a=12-b" /> darf nicht größer als <InlineMath math="9" /> sein**, deshalb gilt <InlineMath math="b\ge3" />. Möglich sind nur die Paare <InlineMath math="(9,3)" />, <InlineMath math="(8,4)" /> und <InlineMath math="(7,5)" />. Die größte Differenz <InlineMath math="a-b" /> ist <InlineMath math="9-3=6" />, der größte Wert also <InlineMath math="\dfrac{6}{11}" />.
+
+Prüfe das mit <InlineMath math="a=9" /> und <InlineMath math="b=3" />.
+
+<BlockMath math="\begin{aligned}
+0{,}\overline{93}+0{,}\overline{39} &= \dfrac{93+39}{99}=\dfrac{132}{99}=\dfrac{4}{3} \\
+0{,}\overline{93}-0{,}\overline{39} &= \dfrac{93-39}{99}=\dfrac{54}{99}=\dfrac{6}{11}
+\end{aligned}" />
+
+Die Summe ist tatsächlich <InlineMath math="1{,}\overline{3}" />, und die Differenz ist <InlineMath math="\dfrac{6}{11}=0{,}\overline{54}" />.
+
+# Warum die anderen Antworten nicht passen
+
+Jede falsche Antwort entsteht aus **einem ausgelassenen oder vertauschten Schritt**.
+
+- <InlineMath math="\dfrac{10}{11}" /> entsteht, wenn du für eine große Differenz <InlineMath math="a=11" /> und <InlineMath math="b=1" /> nimmst, aber <InlineMath math="11" /> ist keine einzelne Ziffer.
+- <InlineMath math="\dfrac{2}{3}" /> entsteht, wenn du die Differenz als <InlineMath math="\dfrac{a-b}{9}" /> schreibst, als hätte die Periode nur eine Ziffer.
+- <InlineMath math="\dfrac{2}{33}" /> entsteht, wenn du den Zähler der Differenz als <InlineMath math="a-b" /> schreibst, obwohl <InlineMath math="(10a+b)-(10b+a)=9(a-b)" /> gilt.
+- <InlineMath math="\dfrac{31}{33}" /> ist nur der Wert von <InlineMath math="0{,}\overline{93}" />, du hörst also vor dem Abziehen von <InlineMath math="0{,}\overline{39}" /> auf.
+
+Der größte mögliche Wert von <InlineMath math="0{,}\overline{ab}-0{,}\overline{ba}" /> ist also <InlineMath math="\dfrac{6}{11}" />.

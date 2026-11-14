@@ -1,20 +1,35 @@
-Bangun ruang lain itu adalah kubus tanpa limas <InlineMath math="E.ABD" />. Jadi hitung **volume kubus dikurangi volume limas**.
+Kamu mencari jarak dari titik sudut <InlineMath math="A" /> ke titik singgung <InlineMath math="T" />. Rencananya begini: cari panjang kedua diagonal dari jumlahnya dan panjang sisi, letakkan pusat lingkaran dalam, lalu **pakai segitiga siku-siku yang terbentuk oleh jari-jari ke titik singgung**.
 
-# Volume limas yang terpotong
+# Panjang kedua diagonal
 
-Alas limas adalah segitiga <InlineMath math="ABD" />, yaitu setengah dari persegi <InlineMath math="ABCD" />. Tinggi limas adalah rusuk <InlineMath math="AE" />, karena <InlineMath math="AE" /> **tegak lurus bidang alas**.
+Misalkan kedua diagonal berpotongan di <InlineMath math="O" />. Diagonal belah ketupat saling membagi dua sama panjang dan tegak lurus, jadi segitiga <InlineMath math="AOB" /> siku-siku di <InlineMath math="O" /> dengan <InlineMath math="AO=\tfrac12AC" /> dan <InlineMath math="BO=\tfrac12BD" />. Teorema Pythagoras memberi <InlineMath math="AC^2+BD^2=4\cdot15^2=900" />. Gabungkan dengan jumlah kedua diagonal.
 
 <BlockMath math="\begin{aligned}
-L_{ABD}&=\tfrac12\cdot6\cdot6=18\\
-V_{\text{limas}}&=\tfrac13\cdot18\cdot6=36
+(AC+BD)^2&=AC^2+BD^2+2\,AC\cdot BD\\
+42^2&=900+2\,AC\cdot BD\\
+AC\cdot BD&=\tfrac{1764-900}{2}=432
 \end{aligned}" />
 
-# Volume bangun sisa
+Dua bilangan dengan jumlah <InlineMath math="42" /> dan hasil kali <InlineMath math="432" /> adalah akar <InlineMath math="t^2-42t+432=0" />, yaitu <InlineMath math="(t-24)(t-18)=0" />. Karena **diagonal <InlineMath math="AC" /> yang lebih panjang**, kamu dapat <InlineMath math="AC=24\text{ cm}" /> dan <InlineMath math="BD=18\text{ cm}" />. Jadi, <InlineMath math="AO=12\text{ cm}" /> dan <InlineMath math="BO=9\text{ cm}" />. Pemeriksaan: <InlineMath math="12^2+9^2=225=15^2" />.
 
-<BlockMath math="V_{\text{sisa}}=6^3-36=216-36=180" />
+# Titik singgung pada sisi
 
-Limas ini **memakan seperenam bagian kubus**, yaitu <InlineMath math="\tfrac{36}{216}=\tfrac16" />, sehingga bangun sisanya <InlineMath math="\tfrac56" /> bagian kubus.
+Belah ketupat simetris terhadap kedua diagonalnya, jadi titik <InlineMath math="O" /> berjarak sama ke keempat sisi dan menjadi pusat lingkaran dalam. Jari-jari ke titik singgung selalu tegak lurus garis singgungnya, jadi **<InlineMath math="OT" /> adalah garis tinggi dari sudut siku-siku <InlineMath math="O" /> ke sisi miring <InlineMath math="AB" />**.
 
-Nilai 36 adalah volume limas, bukan sisanya. Nilai 144 muncul jika luas alas limas diambil seluas persegi penuh, sehingga limasnya bervolume 72. Nilai 108 menganggap bidang potong membagi kubus menjadi dua bagian sama besar.
+Segitiga <InlineMath math="ATO" /> dan <InlineMath math="AOB" /> sebangun, karena keduanya siku-siku dan sama-sama memuat sudut <InlineMath math="A" />. Perbandingan sisi yang bersesuaian memberi panjang <InlineMath math="AT" />.
 
-Jadi, volume bangun ruang lain itu adalah **<InlineMath math="180\text{ cm}^3" />**.
+<BlockMath math="\begin{aligned}
+\frac{AT}{AO}&=\frac{AO}{AB}\\
+AT&=\frac{AO^2}{AB}=\frac{144}{15}=9{,}6\text{ cm}
+\end{aligned}" />
+
+Dengan cara yang sama, <InlineMath math="BT=\tfrac{BO^2}{AB}=\tfrac{81}{15}=5{,}4\text{ cm}" /> dan jari-jarinya <InlineMath math="OT=\tfrac{AO\cdot BO}{AB}=\tfrac{108}{15}=7{,}2\text{ cm}" />. Pemeriksaan: <InlineMath math="AT+BT=9{,}6+5{,}4=15" />, sama dengan panjang sisi, dan <InlineMath math="AT^2+OT^2=92{,}16+51{,}84=144=AO^2" />.
+
+# Pilihan yang keliru
+
+- <InlineMath math="5{,}4\text{ cm}" /> adalah <InlineMath math="BT" />, muncul jika **titik sudut pada diagonal yang lebih pendek** dipakai sebagai <InlineMath math="A" />.
+- <InlineMath math="7{,}2\text{ cm}" /> adalah jari-jari <InlineMath math="OT" />, muncul jika perhitungan berhenti satu langkah terlalu awal.
+- <InlineMath math="8\text{ cm}" /> muncul jika <InlineMath math="AO^2" /> dibagi diagonal <InlineMath math="BD" />, bukan sisi <InlineMath math="AB" />: <InlineMath math="\tfrac{144}{18}" />.
+- <InlineMath math="9\text{ cm}" /> muncul jika lingkaran yang dipakai adalah **lingkaran dalam segitiga <InlineMath math="AOB" />**, bukan lingkaran dalam belah ketupat: jarak singgungnya dari <InlineMath math="A" /> adalah <InlineMath math="\tfrac{12+15+9}{2}-9=9" />.
+
+Jadi, panjang <InlineMath math="AT" /> adalah <InlineMath math="9{,}6\text{ cm}" />.

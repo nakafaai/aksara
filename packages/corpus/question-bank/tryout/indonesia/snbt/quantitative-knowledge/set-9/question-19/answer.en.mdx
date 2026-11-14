@@ -1,20 +1,32 @@
-The point is chosen by area, so the probability is **the area of the favourable region divided by the area of the whole triangle**.
+Each statement asks how often the curve meets a line, that is, how many solutions the equation setting <InlineMath math="2^x" /> equal to the line's formula has. You need three facts about the curve <InlineMath math="y=2^x" />: its values are **always positive**, it **always rises**, and it **bends upward**. Bending upward means the segment joining two points of the curve lies above the curve between those points, while outside those points the curve lies above the line. As a result, a line cuts this curve at most twice.
 
-# The favourable region
+# Statement one
 
-The line <InlineMath math="x+y=2" /> meets the two legs at <InlineMath math="(2,0)" /> and <InlineMath math="(0,2)" />. The points with <InlineMath math="x+y<2" /> form **a small triangle near the origin** with vertices <InlineMath math="(0,0)" />, <InlineMath math="(2,0)" /> and <InlineMath math="(0,2)" />.
+Try <InlineMath math="x=1" /> and <InlineMath math="x=2" /> in <InlineMath math="2^x=2x" />: <InlineMath math="2^1=2=2\cdot1" /> and <InlineMath math="2^2=4=2\cdot2" />. So the points <InlineMath math="(1,2)" /> and <InlineMath math="(2,4)" /> lie on both the curve and the line. Since a line cuts the curve **at most twice**, there's no other intersection.
+
+<BlockMath math="\text{distance}=\sqrt{(2-1)^2+(4-2)^2}=\sqrt{1+4}=\sqrt5" />
+
+This statement is **true**.
+
+# Statement two
+
+A horizontal line has the form <InlineMath math="y=c" />. If <InlineMath math="c\le0" />, say <InlineMath math="y=-1" />, the equation <InlineMath math="2^x=-1" /> has no solution, because **<InlineMath math="2^x" /> is always positive**. That line never touches the curve. The claim about "every horizontal line" fails with this one example, so the statement is **false**. It only holds for <InlineMath math="c>0" />.
+
+# Statement three
+
+The line <InlineMath math="y=-x+k" /> always falls, while the curve always rises. The difference <InlineMath math="2^x-(-x+k)=2^x+x-k" /> is a sum of two rising parts, so **the difference always rises** and can be zero at most once.
+
+The difference also has to change sign. At <InlineMath math="x=k" />, the line is <InlineMath math="0" /> and the curve is <InlineMath math="2^k>0" />, so the curve is above the line. Now take an <InlineMath math="x" /> with both <InlineMath math="x\le-1" /> and <InlineMath math="x\le k-1" />. There the curve is at most <InlineMath math="2^{-1}=\frac{1}{2}" />, while the line is at least <InlineMath math="-(k-1)+k=1" />, so the line is above the curve. They swap places exactly once, so there's exactly one intersection for every <InlineMath math="k" />. This statement is **true**.
+
+# Statement four
+
+Show that <InlineMath math="2^x>x" /> for every <InlineMath math="x" />. The line <InlineMath math="y=x+1" /> cuts the curve at <InlineMath math="(0,1)" /> and <InlineMath math="(1,2)" />. Because the curve bends upward, **outside the interval from <InlineMath math="0" /> to <InlineMath math="1" /> the curve lies above that line**.
 
 <BlockMath math="\begin{aligned}
-L_{\text{small}}&=\tfrac12\cdot2\cdot2=2\\
-L_{\text{large}}&=\tfrac12\cdot4\cdot4=8
+x\le0\ \text{or}\ x\ge1&\;\Longrightarrow\;2^x\ge x+1>x\\
+0<x<1&\;\Longrightarrow\;2^x>2^0=1>x
 \end{aligned}" />
 
-# Probability
+The curve always stays above the line <InlineMath math="y=x" />, so they never meet. This statement is **false**.
 
-<BlockMath math="P=\frac{2}{8}=\frac14" />
-
-The small triangle is similar to the large one with side ratio <InlineMath math="1:2" />, so **their area ratio is <InlineMath math="1:4" />**.
-
-The value <InlineMath math="\tfrac12" /> uses the side ratio instead of the area ratio. The value <InlineMath math="\tfrac34" /> is the probability of the opposite event, and <InlineMath math="\tfrac18" /> divides by the area of a 4 by 4 square.
-
-So the probability that the point satisfies <InlineMath math="x+y<2" /> is **<InlineMath math="\tfrac14" />**.
+So statements one and three are true, while statements two and four are false.

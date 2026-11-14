@@ -1,15 +1,38 @@
-Each turn of the cable uses **a length equal to the spool's circumference**. The number of turns is the cable's length divided by the circumference, in the same unit.
+This question uses two different volumes. The rise of the water tells you the **outer volume of the ball**, because the sealed hollow pushes water aside too. The mass of the weight comes only from the **volume of the metal**, which is the outer volume minus the hollow.
+
+# Outer radius from the water rise
+
+The displaced water forms a cylinder with radius <InlineMath math="12\text{ cm}" /> and height <InlineMath math="2\text{ cm}" />. Its volume **equals the volume of the outer ball** with radius <InlineMath math="R" />.
 
 <BlockMath math="\begin{aligned}
-C&=\pi d=\frac{22}{7}\cdot14=44\text{ cm} \\
-n&=\frac{2{,}200}{44}=50
+\tfrac43\pi R^3&=\pi\cdot12^2\cdot2=288\pi \\
+R^3&=288\cdot\tfrac34=216 \\
+R&=6\text{ cm}
 \end{aligned}" />
 
-As a check, <InlineMath math="50\cdot44=2{,}200\text{ cm}=22\text{ m}" />.
+# Volume of the metal
 
-So the cable makes <InlineMath math="50" /> turns.
+The wall thickness of <InlineMath math="1\text{ cm}" /> runs from the outer surface to the inner surface, so the **radius of the hollow** is <InlineMath math="r=6-1=5\text{ cm}" />. The metal's volume is the difference of two ball volumes:
 
-- <InlineMath math="5" /> turns converts <InlineMath math="22\text{ m}" /> into <InlineMath math="220\text{ cm}" />, although <InlineMath math="1\text{ m}=100\text{ cm}" />.
-- <InlineMath math="25" /> turns uses <InlineMath math="2\pi d=88\text{ cm}" /> as the circumference.
-- <InlineMath math="100" /> turns puts the radius <InlineMath math="7\text{ cm}" /> into <InlineMath math="\pi d" />, so the circumference becomes <InlineMath math="22\text{ cm}" />.
-- <InlineMath math="500" /> turns converts <InlineMath math="22\text{ m}" /> into <InlineMath math="22{,}000\text{ cm}" />.
+<BlockMath math="\begin{aligned}
+V_{\text{metal}}&=\tfrac43\pi\left(R^3-r^3\right) \\
+&=\tfrac43\pi\,(216-125) \\
+&=\tfrac43\pi\cdot91=\tfrac{364}{3}\pi\text{ cm}^3
+\end{aligned}" />
+
+# Mass of the weight
+
+Mass is density times the volume of the metal:
+
+<BlockMath math="m=6\cdot\tfrac{364}{3}\pi=728\pi\text{ grams}" />
+
+Quick sense check: the average mass per unit of outer volume is <InlineMath math="\tfrac{728\pi}{288\pi}\approx2.5\text{ g/cm}^3" />. That's more than the density of water, <InlineMath math="1\text{ g/cm}^3" />, so the weight **really does sink**, just as the question says.
+
+# Why the other options are wrong
+
+- <InlineMath math="397\pi\text{ grams}" /> subtracts the <InlineMath math="1\text{ cm}" /> thickness from the diameter <InlineMath math="12" /> only once, which makes the hollow's radius <InlineMath math="5.5\text{ cm}" />. The wall sits at both ends of a diameter, so the hollow's diameter is <InlineMath math="12-2\cdot1=10\text{ cm}" />.
+- <InlineMath math="864\pi\text{ grams}" /> uses surface area times thickness, <InlineMath math="4\pi\cdot6^2\cdot1" />. That's only an estimate for a very thin wall.
+- <InlineMath math="1{,}216\pi\text{ grams}" /> subtracts the thickness twice from the radius, giving <InlineMath math="r=4\text{ cm}" />. Twice the thickness only comes off the diameter.
+- <InlineMath math="1{,}728\pi\text{ grams}" /> uses the outer volume <InlineMath math="288\pi" /> as the metal's volume, as if the displaced water were all metal. The hollow pushes water aside too, but **the hollow has no mass**.
+
+So the mass of the weight is <InlineMath math="728\pi" /> grams.

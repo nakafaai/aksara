@@ -1,18 +1,43 @@
-Der Interquartilsabstand ist **die Differenz zwischen oberem und unterem Quartil**, <InlineMath math="Q_3-Q_1" />. Quartile lassen sich erst an den geordneten Daten ablesen.
+Du zählst die reellen Zahlen <InlineMath math="x" /> mit <InlineMath math="f\big(f(x)\big)=0" />. Du gehst so vor: **Löse zuerst die äußere Schicht**, also die Werte <InlineMath math="y" /> mit <InlineMath math="f(y)=0" />, und löse dann <InlineMath math="f(x)=y" /> für jeden dieser Werte. Wegen <InlineMath math="x^2=|x|^2" /> lässt sich jede Gleichung mit <InlineMath math="t=|x|" /> schreiben, solange <InlineMath math="t\ge0" /> gilt.
 
-# Ordnen und Quartile bestimmen
+# Die Nullstellen der äußeren Funktion
 
-<BlockMath math="4,\;7,\;9,\;10,\;13,\;15,\;20" />
+Schreibe <InlineMath math="f(y)" /> mit <InlineMath math="|y|" /> und faktorisiere.
 
-Es sind 7 Werte, also steht das <InlineMath math="i" />-te Quartil an der Stelle <InlineMath math="\tfrac{i(7+1)}{4}=2i" />. **Das untere Quartil ist der 2. Wert** und das obere Quartil der 6. Wert.
+<BlockMath math="f(y)=|y|^2-2|y|-3=\big(|y|-3\big)\big(|y|+1\big)=0" />
+
+Der Faktor <InlineMath math="|y|+1" /> ist nie null, also gilt <InlineMath math="|y|=3" />, das heißt <InlineMath math="y=3" /> oder <InlineMath math="y=-3" />. Du brauchst beide Vorzeichen, denn **der Wert <InlineMath math="f(x)" /> kann negativ sein**, zum Beispiel <InlineMath math="f(0)=-3" />. Zu lösen sind also <InlineMath math="f(x)=3" /> und <InlineMath math="f(x)=-3" />.
+
+# Die erste Gleichung lösen
+
+Für <InlineMath math="f(x)=3" /> setze <InlineMath math="t=|x|" />.
 
 <BlockMath math="\begin{aligned}
-Q_1&=7,\quad Q_2=10,\quad Q_3=15\\
-Q_3-Q_1&=15-7=8
+t^2-2t-3&=3\\
+t^2-2t-6&=0\\
+t&=1\pm\sqrt7
 \end{aligned}" />
 
-Dasselbe ergibt sich als Median der drei kleinsten Werte (4, 7, 9) und der drei größten Werte (13, 15, 20).
+Wegen <InlineMath math="\sqrt7>1" /> ist <InlineMath math="t=1-\sqrt7" /> negativ und **fällt weg, weil ein Betrag nie negativ ist**. Der Wert <InlineMath math="t=1+\sqrt7" /> liefert <InlineMath math="x=1+\sqrt7" /> oder <InlineMath math="x=-(1+\sqrt7)" />, also <InlineMath math="2" /> Lösungen.
 
-Der Wert 4 ist der halbe Interquartilsabstand. Der Wert 16 ist die Spannweite aller Daten, <InlineMath math="20-4" />. Der Wert 3 ist die Differenz zwischen Median und unterem Quartil, und 7 ist das untere Quartil selbst.
+# Die zweite Gleichung lösen
 
-Der Interquartilsabstand der Daten ist also **8**.
+Für <InlineMath math="f(x)=-3" /> nimm wieder <InlineMath math="t=|x|" />.
+
+<BlockMath math="\begin{aligned}
+t^2-2t-3&=-3\\
+t(t-2)&=0
+\end{aligned}" />
+
+Also ist <InlineMath math="t=0" /> oder <InlineMath math="t=2" />. Der Wert <InlineMath math="t=2" /> liefert <InlineMath math="x=2" /> und <InlineMath math="x=-2" />. Der Wert <InlineMath math="t=0" /> liefert **nur eine Zahl, nämlich <InlineMath math="x=0" />**, denn <InlineMath math="0" /> und <InlineMath math="-0" /> sind dieselbe Zahl. Die zweite Gleichung liefert <InlineMath math="3" /> Lösungen.
+
+Insgesamt sind das <InlineMath math="2+3=5" />. Prüfe einige Werte: <InlineMath math="f(2)=4-4-3=-3" /> und dann <InlineMath math="f(-3)=9-6-3=0" />, sowie <InlineMath math="f(1+\sqrt7)=8+2\sqrt7-2-2\sqrt7-3=3" /> und dann <InlineMath math="f(3)=0" />.
+
+# Die falschen Antworten
+
+- <InlineMath math="2" /> entsteht, wenn nur <InlineMath math="y=3" /> verwendet und <InlineMath math="y=-3" /> vergessen wird.
+- <InlineMath math="4" /> entsteht, wenn <InlineMath math="t^2-2t=0" /> durch <InlineMath math="t" /> geteilt wird und dadurch **die Lösung <InlineMath math="t=0" /> verloren geht**.
+- <InlineMath math="6" /> entsteht, wenn <InlineMath math="x=0" /> doppelt gezählt wird, als <InlineMath math="+0" /> und <InlineMath math="-0" />.
+- <InlineMath math="7" /> entsteht, wenn <InlineMath math="t=1-\sqrt7" /> nicht gestrichen wird und dadurch <InlineMath math="2" /> falsche Werte mitgezählt werden.
+
+Es gibt also <InlineMath math="5" /> reelle Zahlen <InlineMath math="x" /> mit <InlineMath math="f\big(f(x)\big)=0" />.

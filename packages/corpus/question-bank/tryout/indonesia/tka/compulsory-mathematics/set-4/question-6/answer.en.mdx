@@ -1,15 +1,77 @@
-The natural domain holds every <InlineMath math="x" /> for which the formula makes sense. There are **two conditions**: the number under the root is not negative, and the denominator is not zero.
+# The domain from the absolute value
+
+The range is the set of all values <InlineMath math="f(x)" /> for the <InlineMath math="x" /> you're allowed to use. So first find out **which <InlineMath math="x" /> are allowed**. The inequality <InlineMath math="2\le|x-1|\le5" /> holds two conditions at once.
+
+<InlineMath math="|x-1|\le5" /> says the distance from <InlineMath math="x" /> to <InlineMath math="1" /> is at most <InlineMath math="5" />. <InlineMath math="|x-1|\ge2" /> says that distance is at least <InlineMath math="2" />, and this one has **two branches**, to the left and to the right.
 
 <BlockMath math="\begin{aligned}
-12-3x\ge0\ &\Rightarrow\ x\le4 \\
-x+1\ne0\ &\Rightarrow\ x\ne-1
+|x-1|\le5 &\iff -4\le x\le 6 \\
+|x-1|\ge2 &\iff x-1\le-2 \ \lor\ x-1\ge2 \\
+&\iff x\le-1 \ \lor\ x\ge3
 \end{aligned}" />
 
-As a check, <InlineMath math="f(4)=\frac{0}{5}=0" /> is defined, while <InlineMath math="x=-1" /> makes the denominator zero and <InlineMath math="x=5" /> makes the number under the root negative.
+Put them together. The domain of <InlineMath math="f" /> is made of two intervals, <InlineMath math="-4\le x\le-1" /> and <InlineMath math="3\le x\le6" />. The gap <InlineMath math="-1<x<3" /> is left out.
 
-So the natural domain is <InlineMath math="\{x\mid x\le4,\ x\ne-1\}" />.
+# The values on each interval
 
-- <InlineMath math="\{x\mid x\le4\}" /> forgets that the denominator must not be zero.
-- <InlineMath math="\{x\mid x<4,\ x\ne-1\}" /> drops <InlineMath math="x=4" />, although the root of zero is defined.
-- <InlineMath math="\{x\mid x\ge4\}" /> does not reverse the inequality when dividing by <InlineMath math="-3" />.
-- <InlineMath math="\{x\mid x\ge-4,\ x\ne-1\}" /> gets a sign wrong when moving the <InlineMath math="12" />, which gives <InlineMath math="3x\ge-12" />.
+Complete the square so you can see the vertex.
+
+<BlockMath math="f(x)=x^2-4x+1=(x-2)^2-3" />
+
+The vertex is at <InlineMath math="x=2" /> with value <InlineMath math="-3" />. But <InlineMath math="x=2" /> sits in the gap <InlineMath math="-1<x<3" />, so **the value <InlineMath math="-3" /> is never reached**. On each interval, <InlineMath math="f" /> only goes down or only goes up, so its smallest and largest values are at the ends of the interval.
+
+<BlockMath math="\begin{aligned}
+-4\le x\le-1:&\quad f(-1)=6,\ \ f(-4)=33,\ \text{ values } 6\le y\le 33 \\
+3\le x\le 6:&\quad f(3)=-2,\ \ f(6)=13,\ \text{ values } -2\le y\le 13
+\end{aligned}" />
+
+The two sets of values overlap, since <InlineMath math="6" /> to <InlineMath math="13" /> is in both. Together they give <InlineMath math="-2\le y\le33" />.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="f(x)=(x-2)^2-3" /> on its domain</>}
+  description={<>An upward parabola with vertex <InlineMath math="(2,-3)" />. Only two parts are used: for <InlineMath math="-4\le x\le-1" /> it goes down from <InlineMath math="(-4,33)" /> to <InlineMath math="(-1,6)" />, and for <InlineMath math="3\le x\le6" /> it goes up from <InlineMath math="(3,-2)" /> to <InlineMath math="(6,13)" />. The vertex lies in the gap that isn't part of the domain.</>}
+  labels={{
+    vertex: <InlineMath math="(2,-3)" />,
+    "low-end": <InlineMath math="(3,-2)" />,
+    "high-end": <InlineMath math="(-4,33)" />,
+    "left-end": <InlineMath math="(-1,6)" />,
+    "right-end": <InlineMath math="(6,13)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 9 },
+      y: { min: -6, max: 37 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "whole", kind: "quadratic", appearance: "construction", coefficients: { a: 1, b: -4, c: 1 }, domain: { min: -4, max: 6 }, inputAxis: "x" },
+      { id: "left-piece", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 1 }, domain: { min: -4, max: -1 }, inputAxis: "x" },
+      { id: "right-piece", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 1 }, domain: { min: 3, max: 6 }, inputAxis: "x" },
+      { id: "vertex-point", kind: "point", appearance: "warning", at: { x: 2, y: -3 } },
+      { id: "low-point", kind: "point", appearance: "answer", at: { x: 3, y: -2 } },
+      { id: "high-point", kind: "point", appearance: "answer", at: { x: -4, y: 33 } },
+      { id: "left-point", kind: "point", appearance: "reference", at: { x: -1, y: 6 } },
+      { id: "right-point", kind: "point", appearance: "reference", at: { x: 6, y: 13 } },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex-point", at: { x: 2, y: -3 }, placement: "below-left" },
+      { key: "low-end", objectId: "low-point", at: { x: 3, y: -2 }, placement: "right" },
+      { key: "high-end", objectId: "high-point", at: { x: -4, y: 33 }, placement: "right" },
+      { key: "left-end", objectId: "left-point", at: { x: -1, y: 6 }, placement: "left" },
+      { key: "right-end", objectId: "right-point", at: { x: 6, y: 13 }, placement: "right" },
+    ],
+  }}
+/>
+
+# The tempting options
+
+Each of the other options **forgets one part of the domain**.
+
+- <InlineMath math="\{y\mid -3\le y\le33\}" /> uses the vertex value <InlineMath math="-3" />, but <InlineMath math="x=2" /> isn't in the domain.
+- <InlineMath math="\{y\mid y\ge-3\}" /> is the range when <InlineMath math="x" /> can be any real number. The absolute value condition was ignored.
+- <InlineMath math="\{y\mid -2\le y\le13\}" /> only uses the branch <InlineMath math="x\ge3" /> and loses the branch <InlineMath math="x\le-1" />.
+- <InlineMath math="\{y\mid 6\le y\le33\}" /> only uses the branch <InlineMath math="x\le-1" />.
+
+So the range of <InlineMath math="f" /> is <InlineMath math="\{y\mid -2\le y\le33\}" />.

@@ -1,0 +1,76 @@
+Katakan dua sisi yang membentuk sudut tegak ialah <InlineMath math="p" /> dan <InlineMath math="q" />, dan hipotenusnya <InlineMath math="c" />. Kamu memerlukan tiga maklumat tentang tiga nombor ini, jadi gunakan **dua sifat bulatan terterap** serta luas segi tiga.
+
+# Perimeter daripada luas
+
+Sambungkan pusat bulatan terterap kepada ketiga-tiga bucu. Segi tiga itu terbahagi kepada tiga segi tiga kecil dengan tapak <InlineMath math="p" />, <InlineMath math="q" />, <InlineMath math="c" />, dan setiap satu mempunyai tinggi yang sama dengan jejari <InlineMath math="r=5" />. Jumlahkan luasnya untuk mendapat luas seluruh segi tiga <InlineMath math="L" />, dan tulis <InlineMath math="s" /> untuk separuh perimeter.
+
+<BlockMath math="\begin{aligned}
+L&=\tfrac12 r p+\tfrac12 r q+\tfrac12 r c=r\cdot s \\
+210&=5s\ \Rightarrow\ s=42 \\
+p+q+c&=84
+\end{aligned}" />
+
+Jadi **luas sama dengan jejari darab separuh perimeter**, dan perimeternya <InlineMath math="84\text{ cm}" />.
+
+# Hipotenus daripada jejari
+
+Pada sudut tegak, dua jejari ke titik sentuhan membentuk segi empat sama bersisi <InlineMath math="r" />. Jadi dari bucu sudut tegak, panjang tangen ke bulatan ialah <InlineMath math="r" />. Dari dua bucu yang lain, panjang tangennya ialah <InlineMath math="p-r" /> dan <InlineMath math="q-r" />, dan **dua bahagian itu tepat membentuk hipotenus**.
+
+<BlockMath math="\begin{aligned}
+c&=(p-r)+(q-r)\ \Rightarrow\ p+q-c=2r=10 \\
+c&=\frac{84-10}{2}=37,\qquad p+q=47
+\end{aligned}" />
+
+<MathVisual
+  title={<>Segi tiga bersudut tegak dan bulatan terterapnya</>}
+  description={<>Segi tiga bersudut tegak dengan sudut tegak di <InlineMath math="(0,0)" />, sisi mengufuk <InlineMath math="35" />, sisi mencancang <InlineMath math="12" /> dan hipotenus <InlineMath math="37" />. Bulatan terterap berpusat di <InlineMath math="(5,5)" /> dengan jejari <InlineMath math="5" />. Titik sentuhan pada hipotenus membahagikannya kepada bahagian <InlineMath math="30" /> berhampiran bucu kanan bawah dan bahagian <InlineMath math="7" /> berhampiran bucu atas.</>}
+  labels={{
+    long: <InlineMath math="35" />,
+    short: <InlineMath math="12" />,
+    hypotenuse: <InlineMath math="37" />,
+    radius: <InlineMath math="r=5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 37 },
+      y: { min: -3, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 35, y: 0 }, { x: 0, y: 12 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 5, y: 5 }, radius: 5 },
+      { id: "radius-segment", kind: "segment", appearance: "highlight", from: { x: 5, y: 5 }, to: { x: 5, y: 0 } },
+      { id: "center", kind: "point", appearance: "reference", at: { x: 5, y: 5 } },
+      { id: "touch-point", kind: "point", appearance: "reference", at: { x: 245 / 37, y: 360 / 37 } },
+    ],
+    labels: [
+      { key: "long", objectId: "triangle", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "short", objectId: "triangle", at: { x: 0, y: 6 }, placement: "left" },
+      { key: "hypotenuse", objectId: "triangle", at: { x: 17.5, y: 6 }, placement: "above-right" },
+      { key: "radius", objectId: "radius-segment", at: { x: 5, y: 2.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Kedua-dua sisi sudut tegak
+
+Daripada luas, <InlineMath math="\tfrac12pq=210" />, jadi <InlineMath math="pq=420" />. Dua nombor dengan hasil tambah <InlineMath math="47" /> dan hasil darab <InlineMath math="420" /> ialah punca persamaan kuadratik berikut.
+
+<BlockMath math="\begin{aligned}
+t^2-47t+420&=0 \\
+t&=\frac{47\pm\sqrt{2209-1680}}{2}=\frac{47\pm23}{2} \\
+t&=35\ \text{ atau }\ t=12
+\end{aligned}" />
+
+Semak: <InlineMath math="12^2+35^2=144+1225=1369=37^2" />, dan <InlineMath math="\frac{12+35-37}{2}=5" />. **Semua maklumat dipenuhi**, jadi sisi sudut tegak yang lebih panjang ialah <InlineMath math="35\text{ cm}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="12\text{ cm}" /> ialah sisi sudut tegak yang lebih pendek, iaitu punca yang satu lagi.
+- <InlineMath math="30\text{ cm}" /> ialah bahagian hipotenus dari titik sentuhan ke bucu kanan bawah. **Sisi itu masih perlu ditambah dengan <InlineMath math="r=5" />**.
+- <InlineMath math="37\text{ cm}" /> ialah hipotenus, bukan sisi sudut tegak.
+- <InlineMath math="84\text{ cm}" /> muncul jika luas ditulis sebagai <InlineMath math="\tfrac12 r s" />. Maka <InlineMath math="s=84" />, <InlineMath math="c=79" />, <InlineMath math="p+q=89" />, dan puncanya <InlineMath math="84" /> dan <InlineMath math="5" />. Sedangkan separuh itu sudah ada dalam <InlineMath math="s" />.
+
+Jadi, panjang sisi sudut tegak yang lebih panjang ialah <InlineMath math="35\text{ cm}" />.

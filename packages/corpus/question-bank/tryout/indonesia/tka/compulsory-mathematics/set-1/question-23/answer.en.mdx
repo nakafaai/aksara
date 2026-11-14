@@ -1,11 +1,39 @@
-Check each statistic separately. Five new values at the **top end of the data** move the mean, but not necessarily the median.
+# The numbers you need first
 
-- **Mean**: before, <InlineMath math="\frac{1{,}515}{30}=50.5" />, and after, <InlineMath math="\frac{1{,}515+300}{35}=\frac{1{,}815}{35}\approx51.86" />. It rises, so the statement about a higher mean is true.
-- **Mean above 52**: <InlineMath math="51.86<52" />, so this statement is false.
-- **Median**: with <InlineMath math="35" /> values the median is the <InlineMath math="18" />th value. Up to <InlineMath math="45" /> there are <InlineMath math="10" /> values, and up to <InlineMath math="50" /> there are <InlineMath math="19" />. So the <InlineMath math="18" />th value is <InlineMath math="50" />, and the statement is true.
-- **Mode**: <InlineMath math="50" /> and <InlineMath math="60" /> now each occur <InlineMath math="9" /> times. The data have two modes, so the statement about a single mode of <InlineMath math="60" /> is false.
-- **Range**: the smallest and largest values stay <InlineMath math="40" /> and <InlineMath math="60" />, so the range stays <InlineMath math="20" />. The statement is true.
+All four statements use the same two ingredients: the estimated total call time and the estimated mode. Work both out once and reuse them. **The estimated total is each frequency times its class midpoint, added up**, and the estimated mean is that total divided by <InlineMath math="80" />.
 
-The total <InlineMath math="1{,}515" /> comes from <InlineMath math="40\cdot2+45\cdot8+50\cdot9+55\cdot7+60\cdot4=80+360+450+385+240" />.
+<BlockMath math="\begin{aligned}
+\sum f\cdot x&=6\cdot2.5+22\cdot7.5+14\cdot12.5+18\cdot17.5+12\cdot22.5+8\cdot27.5 \\
+&=15+165+175+315+270+220=1{,}160 \\
+\bar x&=\frac{1{,}160}{80}=14.5\text{ minutes}
+\end{aligned}" />
 
-So the true statements are the ones about the higher mean, the median of <InlineMath math="50" /> and the unchanged range.
+The modal class is <InlineMath math="5\le t<10" />, because its frequency <InlineMath math="22" /> is the largest. The class before it has frequency <InlineMath math="6" /> and the class after it has <InlineMath math="14" />.
+
+<BlockMath math="\begin{aligned}
+d_1&=22-6=16,\qquad d_2=22-14=8 \\
+Mo&=5+\frac{16}{16+8}\cdot5=5+\frac{10}{3}=8\tfrac13\text{ minutes}
+\end{aligned}" />
+
+# Judging each statement
+
+**First statement.** There are <InlineMath math="12+8=20" /> calls of at least <InlineMath math="20" /> minutes, exactly a quarter of <InlineMath math="80" />. Their estimated total time is <InlineMath math="270+220=490" /> minutes. The <InlineMath math="40\%" /> mark is <InlineMath math="0.4\cdot1{,}160=464" /> minutes, and <InlineMath math="490>464" />. Their share of the time is about <InlineMath math="42\%" />, well above their share of the calls. Long calls are few, but each one takes a lot of time. The statement is **True**.
+
+**Second statement.** The new table has frequencies <InlineMath math="6+22=28" />, <InlineMath math="14+18=32" /> and <InlineMath math="12+8=20" />, with midpoints <InlineMath math="5" />, <InlineMath math="15" /> and <InlineMath math="25" />.
+
+<BlockMath math="\bar x_{\text{new}}=\frac{28\cdot5+32\cdot15+20\cdot25}{80}=\frac{140+480+500}{80}=\frac{1{,}120}{80}=14" />
+
+The estimate drops from <InlineMath math="14.5" /> to <InlineMath math="14" />. Here's why: every call in the lower half of a merged class is now counted <InlineMath math="2.5" /> minutes longer, and every call in the upper half <InlineMath math="2.5" /> minutes shorter. The lower halves hold <InlineMath math="6+14+12=32" /> calls and the upper halves <InlineMath math="22+18+8=48" />, so the change is <InlineMath math="2.5\cdot\frac{32-48}{80}=-0.5" />. The data are the same, but the estimate depends on the grouping. The statement is **False**.
+
+**Third statement.** The difference is <InlineMath math="14.5-8\tfrac13=6\tfrac16" /> minutes, a little more than <InlineMath math="6" />. So the mode is smaller and the gap is more than <InlineMath math="6" /> minutes. The statement is **True**.
+
+**Fourth statement.** After moving <InlineMath math="7" /> calls, the frequencies become <InlineMath math="6, 22, 21, 11, 12, 8" />. Class <InlineMath math="10\le t<15" /> rises to <InlineMath math="21" />, but that's still below <InlineMath math="22" />, so the modal class stays <InlineMath math="5\le t<10" />. Only <InlineMath math="d_2" /> changes.
+
+<BlockMath math="\begin{aligned}
+d_1&=22-6=16,\qquad d_2=22-21=1 \\
+Mo&=5+\frac{16}{17}\cdot5=9\tfrac{12}{17}\approx9.71\text{ minutes}
+\end{aligned}" />
+
+The mode goes up, but it stays below <InlineMath math="10" /> minutes. The modal class would only move once class <InlineMath math="10\le t<15" /> has more than <InlineMath math="22" /> calls. The statement is **False**.
+
+So the order is True, False, True, False.

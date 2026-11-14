@@ -1,19 +1,45 @@
-Jari-jari kedua lingkaran tidak diketahui satu per satu, tetapi luas cincin hanya memerlukan **selisih kuadrat kedua jari-jari**, yaitu <InlineMath math="\pi(R^2-r^2)" />.
+Luas kolam bergantung pada dua sisinya, tetapi kedua sisi itu saling terikat oleh sisi miring segitiga. Rencananya: nyatakan satu sisi dengan sisi lainnya, cari luas terbesar tanpa syarat tambahan, lalu **periksa apakah syarat sisi paling sedikit <InlineMath math="6\text{ m}" /> menggeser jawabannya**.
 
-# Segitiga siku-siku dari titik singgung
+# Hubungan kedua sisi kolam
 
-Misalkan pusatnya <InlineMath math="O" />, tali busurnya <InlineMath math="AB" />, dan titik singgungnya <InlineMath math="T" />. Jari-jari lingkaran kecil <InlineMath math="OT" /> **tegak lurus tali busur di titik singgung**. Garis dari pusat yang tegak lurus tali busur membagi tali busur itu sama panjang, jadi <InlineMath math="AT=8" />.
+Misalkan sisi kolam pada kaki <InlineMath math="12\text{ m}" /> panjangnya <InlineMath math="x" /> meter dan sisi pada kaki <InlineMath math="9\text{ m}" /> panjangnya <InlineMath math="y" /> meter. Di atas kolam tersisa segitiga siku-siku kecil dengan alas <InlineMath math="x" /> dan tinggi <InlineMath math="9-y" />. Segitiga kecil itu **sebangun dengan segitiga taman**, karena sisi miringnya terletak pada garis yang sama dan keduanya punya sudut siku-siku, jadi perbandingan tinggi terhadap alasnya sama.
 
-Segitiga <InlineMath math="OTA" /> siku-siku di <InlineMath math="T" />, dengan <InlineMath math="OA=R" /> dan <InlineMath math="OT=r" />.
+<BlockMath math="\begin{aligned}
+\frac{9-y}{x}&=\frac{9}{12}\\
+y&=9-\tfrac34x
+\end{aligned}" />
 
-<BlockMath math="R^2=r^2+8^2\;\Longrightarrow\;R^2-r^2=64" />
+# Luas tanpa syarat tambahan
 
-# Luas cincin
+Luas kolam adalah <InlineMath math="L(x)=x\left(9-\tfrac34x\right)=9x-\tfrac34x^2" />. Ini parabola terbuka ke bawah, jadi nilai terbesarnya ada di puncak.
 
-<BlockMath math="L=\pi R^2-\pi r^2=\pi(R^2-r^2)=64\pi" />
+<BlockMath math="\begin{aligned}
+x_{\text{puncak}}&=\frac{-9}{2\left(-\tfrac34\right)}=6\\
+y&=9-\tfrac34(6)=4{,}5\\
+L&=6\times4{,}5=27
+\end{aligned}" />
 
-Hasilnya **tidak bergantung pada ukuran masing-masing lingkaran**, asalkan tali busur sepanjang 16 cm menyinggung lingkaran kecil.
+Namun sisi <InlineMath math="y=4{,}5\text{ m}" /> kurang dari <InlineMath math="6\text{ m}" />, jadi **kolam di puncak parabola tidak memenuhi syarat**.
 
-Nilai <InlineMath math="256\pi" /> memakai panjang tali busur penuh 16 sebagai pengganti setengahnya. Nilai <InlineMath math="32\pi" /> mengambil setengah dari <InlineMath math="64\pi" />, seolah-olah menghitung luas segitiga. Nilai <InlineMath math="128\pi" /> menghitung <InlineMath math="\pi\cdot16\cdot8" />, dan nilai <InlineMath math="192\pi" /> mengurangkan <InlineMath math="64\pi" /> dari <InlineMath math="256\pi" />.
+# Menerapkan syarat sisi
 
-Jadi, luas daerah di antara kedua lingkaran adalah **<InlineMath math="64\pi\text{ cm}^2" />**.
+Syarat <InlineMath math="y\ge6" /> membatasi <InlineMath math="x" />.
+
+<BlockMath math="\begin{aligned}
+9-\tfrac34x&\ge6\\
+\tfrac34x&\le3\\
+x&\le4
+\end{aligned}" />
+
+Pada <InlineMath math="0<x\le4" />, semua nilai <InlineMath math="x" /> ada di sebelah kiri puncak <InlineMath math="x=6" />, tempat parabola masih naik. Jadi **luas terbesar tercapai di batas <InlineMath math="x=4" />**, dengan <InlineMath math="y=9-3=6" /> dan <InlineMath math="L=4\times6=24" />.
+
+Pemeriksaan: hubungan kedua sisi juga bisa ditulis <InlineMath math="\frac{x}{12}+\frac{y}{9}=1" />, dan pasangan <InlineMath math="x=4" />, <InlineMath math="y=6" /> memenuhinya karena <InlineMath math="\frac{4}{12}+\frac{6}{9}=\frac13+\frac23=1" />. Nilai yang lebih kecil, misalnya <InlineMath math="x=3" />, memberi <InlineMath math="y=6{,}75" /> dan luas <InlineMath math="20{,}25" />, lebih kecil dari <InlineMath math="24" />.
+
+# Pilihan yang keliru
+
+- <InlineMath math="27\text{ m}^2" /> adalah luas di puncak parabola, yang **mengabaikan syarat sisi paling sedikit <InlineMath math="6\text{ m}" />**.
+- <InlineMath math="20{,}25\text{ m}^2" /> muncul jika batasnya keliru dihitung sebagai <InlineMath math="x\le9-6=3" />, yaitu mengurangkan pada kaki yang salah, lalu <InlineMath math="y=6{,}75" /> dihitung dengan benar.
+- <InlineMath math="18\text{ m}^2" /> muncul dari kekeliruan yang sama, <InlineMath math="x=3" />, tetapi sisi lainnya langsung diambil <InlineMath math="6" />.
+- <InlineMath math="13{,}5\text{ m}^2" /> muncul jika kedua kaki tertukar dalam perbandingan, <InlineMath math="\frac{9-y}{12}=\frac{x}{9}" />, sehingga <InlineMath math="x=2{,}25" />.
+
+Jadi, luas kolam terbesar yang mungkin adalah <InlineMath math="24\text{ m}^2" />.

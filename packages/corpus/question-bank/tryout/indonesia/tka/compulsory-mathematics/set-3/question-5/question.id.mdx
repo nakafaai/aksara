@@ -1,3 +1,38 @@
-Sebuah perahu motor pengangkut barang di sungai dapat memuat paling banyak <InlineMath math="1{.}200\text{ kg}" />, termasuk nakhodanya yang beratnya <InlineMath math="64\text{ kg}" />. Perahu itu mengangkut karung beras yang masing-masing beratnya <InlineMath math="50\text{ kg}" /> dan karung gula yang masing-masing beratnya <InlineMath math="35\text{ kg}" />. Lantai perahu hanya muat paling banyak <InlineMath math="28" /> karung.
+Daerah yang diarsir pada gambar berikut, termasuk seluruh garis batasnya, adalah daerah penyelesaian suatu sistem pertidaksamaan linear. Garis pertama melalui titik <InlineMath math="(0,9)" /> dan <InlineMath math="(6,0)" />, sedangkan garis kedua melalui titik <InlineMath math="(0,4)" /> dan <InlineMath math="(12,0)" />.
 
-Tentukan Benar atau Salah untuk setiap pernyataan berikut.
+<MathVisual
+  title={<>Daerah penyelesaian</>}
+  description={<>Bidang koordinat dengan dua garis. Garis pertama melalui <InlineMath math="(0,9)" /> dan <InlineMath math="(6,0)" />. Garis kedua melalui <InlineMath math="(0,4)" /> dan <InlineMath math="(12,0)" />. Daerah yang diarsir adalah segi empat yang dibatasi sumbu <InlineMath math="x" />, sumbu <InlineMath math="y" />, dan kedua garis, dengan titik sudut <InlineMath math="(0,0)" />, <InlineMath math="(6,0)" />, titik potong kedua garis, dan <InlineMath math="(0,4)" />.</>}
+  labels={{
+    "top-first": <InlineMath math="(0,9)" />,
+    "base-first": <InlineMath math="(6,0)" />,
+    "top-second": <InlineMath math="(0,4)" />,
+    "base-second": <InlineMath math="(12,0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 13 },
+      y: { min: -1, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 30 / 7, y: 18 / 7 }, { x: 0, y: 4 }] },
+      { id: "first-line", kind: "segment", appearance: "primary", from: { x: 0, y: 9 }, to: { x: 6, y: 0 } },
+      { id: "second-line", kind: "segment", appearance: "secondary", from: { x: 0, y: 4 }, to: { x: 12, y: 0 } },
+      { id: "top-first-point", kind: "point", appearance: "reference", at: { x: 0, y: 9 } },
+      { id: "base-first-point", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "top-second-point", kind: "point", appearance: "reference", at: { x: 0, y: 4 } },
+      { id: "base-second-point", kind: "point", appearance: "reference", at: { x: 12, y: 0 } },
+    ],
+    labels: [
+      { key: "top-first", objectId: "top-first-point", at: { x: 0, y: 9 }, placement: "right" },
+      { key: "base-first", objectId: "base-first-point", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "top-second", objectId: "top-second-point", at: { x: 0, y: 4 }, placement: "left" },
+      { key: "base-second", objectId: "base-second-point", at: { x: 12, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Tentukan benar atau salah setiap pernyataan berikut.

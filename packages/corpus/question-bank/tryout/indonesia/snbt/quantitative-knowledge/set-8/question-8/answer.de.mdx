@@ -1,18 +1,40 @@
-Miss die Lage jedes Zeigers als Winkel ab der 12 im Uhrzeigersinn. Oft vergessen wird, dass **sich auch der Stundenzeiger bewegt**, und zwar während dieser 40 Minuten.
+Schreibe das heutige Alter von Ani, Budi und Cici als <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" />. Eine Angabe reicht aus, wenn **jede erlaubte Situation dieselbe Antwort ja oder nein liefert**. Du gehst so vor: Prüfe Aussage (1) allein, Aussage (2) allein und dann beide zusammen, und achte darauf, was Aussage (2) stillschweigend über das Alter verrät.
 
-# Lage der beiden Zeiger
+# Aussage eins allein
 
-Der Minutenzeiger bewegt sich <InlineMath math="\tfrac{360^\circ}{60}=6^\circ" /> pro Minute. Der Stundenzeiger bewegt sich <InlineMath math="\tfrac{360^\circ}{12}=30^\circ" /> pro Stunde, also **<InlineMath math="0{,}5^\circ" /> pro Minute**.
+Aussage (1) bedeutet <InlineMath math="A+B=2C" />, also ist <InlineMath math="C" /> der Mittelwert von <InlineMath math="A" /> und <InlineMath math="B" />. Der Mittelwert zweier Zahlen liegt zwischen ihnen, also ist **Ani genau dann älter als Cici, wenn Ani älter als Budi ist**, und das steht nicht fest.
+
+- Antwort ja: <InlineMath math="A=10" />, <InlineMath math="B=6" />, <InlineMath math="C=8" />.
+- Antwort nein: <InlineMath math="A=6" />, <InlineMath math="B=10" />, <InlineMath math="C=8" />.
+
+Aussage (1) allein reicht nicht.
+
+# Aussage zwei allein
+
+Aussage (2) bedeutet <InlineMath math="B-6=3(C-6)" />, also <InlineMath math="B=3C-12" />. Diese Gleichung **sagt überhaupt nichts über Anis Alter**.
+
+- Antwort ja: <InlineMath math="C=8" />, <InlineMath math="B=12" />, <InlineMath math="A=20" />.
+- Antwort nein: <InlineMath math="C=8" />, <InlineMath math="B=12" />, <InlineMath math="A=5" />.
+
+Aussage (2) allein reicht nicht.
+
+# Beide Aussagen zusammen
+
+Setze <InlineMath math="B=3C-12" /> in <InlineMath math="A=2C-B" /> ein.
 
 <BlockMath math="\begin{aligned}
-\text{Minutenzeiger}&:\quad 40\cdot6^\circ=240^\circ\\
-\text{Stundenzeiger}&:\quad 4\cdot30^\circ+40\cdot0{,}5^\circ=140^\circ
+A&=2C-(3C-12)=12-C\\
+A>C&\iff12-C>C\iff C<6
 \end{aligned}" />
 
-# Der kleinere Winkel
+Jetzt kommt die versteckte Bedingung. Aussage (2) spricht über Cicis Alter vor <InlineMath math="6" /> Jahren, also **war Cici damals schon geboren**, das heißt <InlineMath math="C-6\ge0" /> oder <InlineMath math="C\ge6" />. Damit ist <InlineMath math="C<6" /> unmöglich, und Ani ist nie älter als Cici. Die Antwort lautet immer nein.
 
-Die Differenz der Lagen ist <InlineMath math="240^\circ-140^\circ=100^\circ" />. Der Winkel auf der anderen Seite ist <InlineMath math="360^\circ-100^\circ=260^\circ" />, also ist **der kleinere Winkel <InlineMath math="100^\circ" />**.
+Ein Beispiel, das beide Aussagen erfüllt, ist <InlineMath math="C=8" />, <InlineMath math="B=12" />, <InlineMath math="A=4" />. Probe: <InlineMath math="4+12=16=2\cdot8" /> und <InlineMath math="12-6=6=3(8-6)" />. Ani ist tatsächlich jünger als Cici.
 
-Der Winkel <InlineMath math="120^\circ" /> lässt den Stundenzeiger auf der 4 stehen. Der Winkel <InlineMath math="110^\circ" /> nimmt <InlineMath math="0{,}25^\circ" /> pro Minute für den Stundenzeiger an. Der Winkel <InlineMath math="140^\circ" /> ist die Lage des Stundenzeigers und nicht die Differenz, und <InlineMath math="260^\circ" /> ist der größere Winkel.
+Verlangst du nur ein positives heutiges Alter, nimmst du vielleicht <InlineMath math="C=5" />, <InlineMath math="B=3" />, <InlineMath math="A=7" />, und Ani wäre älter. Vor <InlineMath math="6" /> Jahren wären Budi und Cici aber <InlineMath math="-3" /> und <InlineMath math="-1" /> Jahre alt gewesen, also noch nicht geboren. Diese Situation ist nicht erlaubt und kann kein Beispiel für ja sein.
 
-Der kleinere Winkel zwischen den Zeigern beträgt also **<InlineMath math="100^\circ" />**.
+# Das Urteil über jede Antwort
+
+Aussage (1) allein und Aussage (2) allein reichen jeweils nicht, weil es jeweils ein Beispiel für ja und eines für nein gibt. **Zusammen reichen sie aus**, weil die Bedingung <InlineMath math="C\ge6" /> die Antwort nein erzwingt. Die Antwort, keine der beiden Aussagen reiche, entsteht, wenn du die versteckte Bedingung übersiehst.
+
+Beide Aussagen zusammen reichen also aus, um die Frage zu beantworten, eine allein aber nicht.

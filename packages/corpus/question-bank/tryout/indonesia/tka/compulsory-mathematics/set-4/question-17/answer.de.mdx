@@ -1,17 +1,44 @@
-Eine aufrecht stehende Dose **belegt auf dem Kartonboden ein quadratisches Feld so breit wie ihr Durchmesser**, <InlineMath math="7\text{ cm}" />. Zähle die Dosen entlang jeder Kante und dann die Lagen.
+Die Ziegel werden **Reihe für Reihe** verlegt, und ein Ziegel, der zugeschnitten werden muss, zählt trotzdem als ganzer Ziegel. Du kannst also nicht einfach die Dachfläche durch die Fläche eines Ziegels teilen. Zähl zuerst die Reihen und die Ziegel pro Reihe, dann kommen die Firstziegel dazu.
+
+# Die Maße einer Dachfläche
+
+Die schräge Länge von der Wandoberkante bis zum First ist die Hypotenuse eines rechtwinkligen Dreiecks mit den Katheten <InlineMath math="4\text{ m}" /> (halbe Hausbreite) und <InlineMath math="3\text{ m}" />. Der waagerechte Überstand von <InlineMath math="80\text{ cm}" /> hat dieselbe Neigung, also wird **seine schräge Länge im Verhältnis <InlineMath math="5:4" /> vergrößert**.
 
 <BlockMath math="\begin{aligned}
-\frac{42}{7}&=6,\quad\frac{28}{7}=4,\quad\frac{20}{10}=2 \\
-6\cdot4\cdot2&=48
+\sqrt{4^2+3^2}&=5\text{ m} \\
+0{,}8\cdot\tfrac54&=1\text{ m} \\
+\text{schräge Länge}&=5+1=6\text{ m}=600\text{ cm} \\
+\text{Länge parallel zum First}&=11+0{,}5+0{,}5=12\text{ m}=1{.}200\text{ cm}
 \end{aligned}" />
 
-Das Kartonvolumen durch das Dosenvolumen zu teilen geht nicht, denn zwischen runden Dosen bleibt Platz frei.
+# Die normalen Ziegel
 
-Zur Kontrolle: Eine Lage fasst <InlineMath math="6\cdot4=24" /> Dosen, und die Kartonhöhe von <InlineMath math="20\text{ cm}" /> reicht für genau zwei Lagen.
+Jede Reihe deckt <InlineMath math="35\text{ cm}" /> entlang der Neigung, und jeder Ziegel in einer Reihe deckt <InlineMath math="24\text{ cm}" /> parallel zum First. Eine letzte Reihe, die nur teilweise gebraucht wird, braucht trotzdem volle Ziegel, deshalb wird der Quotient **aufgerundet**.
 
-Es passen also höchstens <InlineMath math="48" /> Dosen hinein.
+<BlockMath math="\begin{aligned}
+\text{Reihen}&=\frac{600}{35}=17\tfrac17\;\Rightarrow\;18 \\
+\text{Ziegel pro Reihe}&=\frac{1{.}200}{24}=50 \\
+\text{Ziegel auf beiden Flächen}&=2\cdot18\cdot50=1{.}800
+\end{aligned}" />
 
-- <InlineMath math="192" /> Dosen nimmt den Radius <InlineMath math="3{,}5\text{ cm}" /> als Breite einer Dose entlang beider Bodenkanten, <InlineMath math="12\cdot8\cdot2" />.
-- <InlineMath math="96" /> Dosen nimmt den Radius nur entlang einer Kante als Breite, <InlineMath math="12\cdot4\cdot2" />.
-- <InlineMath math="61" /> Dosen teilt das Kartonvolumen <InlineMath math="23{.}520\text{ cm}^3" /> durch das Dosenvolumen <InlineMath math="385\text{ cm}^3" />, als bliebe kein Platz frei.
-- <InlineMath math="24" /> Dosen zählt nur eine Lage.
+Die <InlineMath math="18" />. Reihe deckt nur noch <InlineMath math="600-17\cdot35=5\text{ cm}" /> der Neigung ab, trotzdem zählt jeder Ziegel darin als ein Ziegel.
+
+# Die Firstziegel und die Summe
+
+Die Firstziegel decken den ganzen First ab, auch die überstehenden Teile:
+
+<BlockMath math="\begin{aligned}
+\text{Firstziegel}&=\frac{1{.}200}{30}=40 \\
+\text{alle Ziegel}&=1{.}800+40=1{.}840
+\end{aligned}" />
+
+Teilst du die Dachfläche <InlineMath math="144\text{ m}^2" /> durch die Fläche, die ein Ziegel deckt, <InlineMath math="0{,}35\cdot0{,}24=0{,}084\text{ m}^2" />, kommst du nur auf etwa <InlineMath math="1{.}714{,}3" />. Diese Abkürzung verwendet stillschweigend die Reststücke der obersten Reihe wieder, laut Text werden **Reststücke aber nicht wiederverwendet**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="1{.}540" /> rechnet mit einer schrägen Länge von <InlineMath math="5\text{ m}" /> ohne Überstand und kommt so nur auf <InlineMath math="\lceil 500/35\rceil=15" /> Reihen.
+- <InlineMath math="1{.}740" /> rundet <InlineMath math="17\tfrac17" /> **ab** auf <InlineMath math="17" /> Reihen, dann bleiben die obersten <InlineMath math="5\text{ cm}" /> unbedeckt.
+- <InlineMath math="1{.}755" /> teilt die Dachfläche durch die Fläche eines Ziegels, <InlineMath math="1{.}714{,}3\Rightarrow1{.}715" />, und addiert dann <InlineMath math="40" />. Dabei gehen die zugeschnittenen Ziegel verloren, die als ganze zählen.
+- <InlineMath math="1{.}800" /> vergisst die <InlineMath math="40" /> Firstziegel.
+
+Für das Dach werden also insgesamt <InlineMath math="1{.}840" /> Ziegel gebraucht.

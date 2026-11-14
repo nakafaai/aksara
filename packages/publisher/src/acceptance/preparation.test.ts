@@ -73,7 +73,8 @@ layer(NodeServices.layer)("acceptance release preparation", (it) => {
           manifest: {
             counts: {
               catalog: 6 * ACTIVE_APP_LOCALES.length,
-              explanation: 25 * ACTIVE_APP_LOCALES.length,
+              // The paper's set carries answers in id, en, de and the declared ms.
+              explanation: 25 * 4,
               family: 25,
               item: 25,
               key: 25,

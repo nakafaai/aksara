@@ -1,17 +1,41 @@
-Faktorisiere den Term: <InlineMath math="n^3-n=(n-1)n(n+1)" />. Also ist <InlineMath math="n^3-n" /> **das Produkt dreier aufeinanderfolgender ganzer Zahlen**, und daran liest du die Teilbarkeit ab.
+Die Gleichung <InlineMath math="f(x)=k" /> hat genau dann keine Lösung, wenn <InlineMath math="k" /> **nicht zur Wertemenge von <InlineMath math="f" /> gehört**. Der Plan: Vereinfache <InlineMath math="f" />, ohne die verbotenen Werte von <InlineMath math="x" /> zu verlieren, finde den Wert, den die vereinfachte Form nie erreicht, und prüf dann, welcher Wert wegen des verbotenen Punkts verschwindet.
 
-# Teilbarkeit durch 6 und durch 4
+# Die Funktion vereinfachen
 
-Unter drei aufeinanderfolgenden ganzen Zahlen ist immer eine gerade Zahl und immer ein Vielfaches von 3. Ihr Produkt ist **immer durch <InlineMath math="2\cdot3=6" /> teilbar**, also ist die erste Aussage wahr.
+Faktorisiere Zähler und Nenner. Die Definitionsmenge besteht aus allen <InlineMath math="x" /> außer <InlineMath math="1" /> und <InlineMath math="-1" />.
 
-Für <InlineMath math="n=2" /> ergibt sich <InlineMath math="1\cdot2\cdot3=6" />, und 6 ist nicht durch 4 teilbar. Ein Gegenbeispiel genügt, also ist die zweite Aussage falsch.
+<BlockMath math="\begin{aligned}
+f(x)&=\frac{(2x+3)(x-1)}{(x-1)(x+1)}\\
+&=\frac{2x+3}{x+1}=2+\frac{1}{x+1},\quad x\ne1,\ x\ne-1
+\end{aligned}" />
 
-# Der Fall eines ungeraden n
+Den Faktor <InlineMath math="x-1" /> darfst du kürzen, weil <InlineMath math="x\ne1" /> ist, aber **das Kürzen hebt die Einschränkung <InlineMath math="x\ne1" /> nicht auf**. Der Graph von <InlineMath math="f" /> ist der Graph von <InlineMath math="2+\frac{1}{x+1}" /> mit einem Loch bei <InlineMath math="x=1" />.
 
-Ist <InlineMath math="n" /> ungerade, dann sind <InlineMath math="n-1" /> und <InlineMath math="n+1" /> **zwei aufeinanderfolgende gerade Zahlen**. Eine davon ist ein Vielfaches von 4, also ist ihr Produkt durch <InlineMath math="2\cdot4=8" /> teilbar. Ein Vielfaches von 3 ist weiterhin unter den drei Zahlen, und 8 und 3 haben außer 1 keinen gemeinsamen Teiler, also ist das Produkt durch 24 teilbar. Beispiel: <InlineMath math="n=5" /> liefert <InlineMath math="4\cdot5\cdot6=120=5\cdot24" />. Die dritte Aussage ist wahr.
+# Werte, die nie erreicht werden
 
-# Teilbarkeit durch 5
+Löse <InlineMath math="2+\frac{1}{x+1}=k" />, also <InlineMath math="\frac{1}{x+1}=k-2" />.
 
-Das Beispiel <InlineMath math="n=2" /> liefert 6, und 6 ist nicht durch 5 teilbar. Drei aufeinanderfolgende Zahlen **enthalten nicht immer ein Vielfaches von 5**, also ist die vierte Aussage falsch.
+- Für <InlineMath math="k=2" /> wird daraus <InlineMath math="\frac{1}{x+1}=0" />. Ein Bruch mit Zähler <InlineMath math="1" /> ist nie null, also **wird <InlineMath math="k=2" /> nie erreicht**.
+- Für <InlineMath math="k\ne2" /> ist der einzige Kandidat <InlineMath math="x=\frac{1}{k-2}-1=\frac{3-k}{k-2}" />. Er ist gültig, solange er weder <InlineMath math="1" /> noch <InlineMath math="-1" /> ist.
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **wahr** und die vierte **falsch**.
+Der Kandidat kann nicht <InlineMath math="-1" /> sein, weil <InlineMath math="\frac{1}{k-2}" /> nie null ist. Er ist gleich <InlineMath math="1" />, wenn <InlineMath math="\frac{1}{k-2}=2" /> gilt, also für <InlineMath math="k=\frac52" />. Für <InlineMath math="k=\frac52" /> ist der einzige Kandidat das verbotene <InlineMath math="x=1" />, also **wird auch <InlineMath math="k=\frac52" /> nie erreicht**. Das ist der Wert der vereinfachten Form am Loch <InlineMath math="x=1" />, nämlich <InlineMath math="2+\frac12=\frac52" />.
+
+# Probe mit einer quadratischen Gleichung
+
+Multipliziere über Kreuz, ohne vorher zu kürzen. Für <InlineMath math="x\ne\pm1" /> ist <InlineMath math="f(x)=k" /> gleichwertig mit der folgenden Gleichung.
+
+<BlockMath math="\begin{aligned}
+2x^2+x-3&=k(x^2-1)\\
+(2-k)x^2+x+(k-3)&=0
+\end{aligned}" />
+
+Ihre Diskriminante ist <InlineMath math="1-4(2-k)(k-3)=(2k-5)^2\ge0" />, also hat diese Gleichung immer eine reelle Lösung. Aber **<InlineMath math="x=1" /> ist immer eine ihrer Lösungen**, denn <InlineMath math="(2-k)+1+(k-3)=0" />, und diese Lösung ist verboten. Übrig bleibt nur die andere Lösung <InlineMath math="\frac{3-k}{k-2}" />. Diese andere Lösung gibt es für <InlineMath math="k=2" /> nicht (die Gleichung wird zur linearen Gleichung <InlineMath math="x-1=0" />), und für <InlineMath math="k=\frac52" /> ist sie gleich <InlineMath math="1" /> (die Gleichung wird zu <InlineMath math="-\frac12(x-1)^2=0" />). Dasselbe Ergebnis.
+
+# Die falschen Antworten
+
+- <InlineMath math="\{-1,1\}" /> sind die verbotenen Werte von <InlineMath math="x" /> in der Definitionsmenge, nicht die Werte von <InlineMath math="k" />, die in der Wertemenge fehlen.
+- <InlineMath math="\varnothing" /> entsteht, wenn du nur auf die Diskriminante <InlineMath math="(2k-5)^2\ge0" /> schaust und **vergisst zu prüfen, ob die Lösung verboten ist**.
+- <InlineMath math="\{2\}" /> berücksichtigt nur die waagerechte Asymptote und vergisst das Loch bei <InlineMath math="x=1" />.
+- <InlineMath math="\left\{\frac52\right\}" /> entsteht, wenn du die doppelte Lösung bei <InlineMath math="k=\frac52" /> prüfst, aber übersiehst, dass für <InlineMath math="k=2" /> die einzige Lösung ebenfalls <InlineMath math="x=1" /> ist.
+
+Die Menge aller <InlineMath math="k" />, für die <InlineMath math="f(x)=k" /> keine Lösung hat, ist also <InlineMath math="\left\{2,\frac52\right\}" />.

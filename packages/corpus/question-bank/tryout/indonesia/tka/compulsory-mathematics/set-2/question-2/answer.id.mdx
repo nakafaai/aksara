@@ -1,16 +1,33 @@
-Potongan hanya berlaku untuk **paket Jumbo kedua**, jadi hitung harga paket kedua setelah potongan, lalu tambahkan harga penuh paket pertama.
+# Energi September
+
+Soal ini menanyakan harga ekspor paling kecil yang membuat tagihan September turun sampai biaya tetap saja. Artinya, **kredit ekspor harus menutup seluruh biaya energi impor**. Kredit tidak bisa mengurangi biaya tetap, jadi biaya tetap tidak ikut ditutup.
+
+Hitung dulu energinya per hari, karena impor dan ekspor tercatat setiap hari. Hari cerah mengekspor <InlineMath math="14-4=10\text{ kWh}" /> dan mengimpor <InlineMath math="4\text{ kWh}" /> untuk malam. Hari mendung tidak mengekspor apa pun dan mengimpor <InlineMath math="(4-2)+4=6\text{ kWh}" />, karena pemakaian siangnya masih kurang <InlineMath math="2\text{ kWh}" />.
+
+September punya <InlineMath math="20" /> hari cerah dan <InlineMath math="10" /> hari mendung:
 
 <BlockMath math="\begin{aligned}
-\text{potongan}&=15\,\%\cdot110{.}000=16{.}500 \\
-\text{paket kedua}&=110{.}000-16{.}500=93{.}500 \\
-\text{biaya}&=110{.}000+93{.}500=203{.}500
+\text{ekspor}&=20\cdot10=200\text{ kWh} \\
+\text{impor}&=20\cdot4+10\cdot6=140\text{ kWh} \\
+\text{biaya impor}&=140\cdot1{.}500=210{.}000
 \end{aligned}" />
 
-Sebagai pemeriksaan, potongan <InlineMath math="16{.}500" /> sama dengan <InlineMath math="7{,}5\,\%" /> dari <InlineMath math="220{.}000" />, karena potongan itu hanya mengenai separuh belanjaan.
+# Syarat tagihan sama dengan biaya tetap
 
-Jadi, Dinda membayar <InlineMath math="\text{Rp}203{.}500" />.
+Dengan harga ekspor <InlineMath math="\text{Rp}b" />, kreditnya <InlineMath math="200b" /> rupiah. Tagihan tinggal biaya tetap tepat saat kredit **paling sedikit sama dengan** biaya impor. Kalau kredit lebih besar, kelebihannya hangus dan tagihan tidak turun lagi.
 
-- <InlineMath math="\text{Rp}93{.}500" /> hanya harga paket kedua dan melupakan paket pertama.
-- <InlineMath math="\text{Rp}187{.}000" /> memberi potongan <InlineMath math="15\,\%" /> pada kedua paket.
-- <InlineMath math="\text{Rp}205{.}000" /> mengurangkan <InlineMath math="\text{Rp}15{.}000" />, bukan <InlineMath math="15\,\%" /> dari harga paket.
-- <InlineMath math="\text{Rp}220{.}000" /> tidak memakai potongan sama sekali.
+<BlockMath math="\begin{aligned}
+200b&\ge210{.}000 \\
+b&\ge1{.}050
+\end{aligned}" />
+
+Cek dengan <InlineMath math="b=1{.}050" />: kreditnya <InlineMath math="200\cdot1{.}050=210{.}000" />, sama persis dengan biaya impor, jadi tagihannya <InlineMath math="\text{Rp}30{.}000" />. Dengan harga sekarang <InlineMath math="\text{Rp}800" />, tagihannya masih <InlineMath math="30{.}000+210{.}000-160{.}000=80{.}000" />.
+
+Jadi, nilai <InlineMath math="b" /> paling kecil adalah <InlineMath math="\text{Rp}1{.}050" /> per kWh.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\text{Rp}600" /> hanya mengecek satu hari cerah: <InlineMath math="10b\ge4\cdot1{.}500" />. **Hari mendung juga punya biaya impor** yang harus ditutup.
+- <InlineMath math="\text{Rp}900" /> lupa bahwa hari mendung mengimpor kekurangan siang <InlineMath math="2\text{ kWh}" />, sehingga impornya dihitung <InlineMath math="30\cdot4=120\text{ kWh}" />.
+- <InlineMath math="\text{Rp}1{.}000" /> menjumlahkan produksi sebulan dulu (<InlineMath math="300\text{ kWh}" />) lalu menganggap ekspornya <InlineMath math="300-120=180\text{ kWh}" />. Padahal kelebihan hari cerah tidak bisa menutup kekurangan hari mendung.
+- <InlineMath math="\text{Rp}1{.}200" /> membuat kredit menutup biaya tetap juga: <InlineMath math="200b\ge240{.}000" />. Aturannya bilang kredit hanya mengurangi biaya energi impor.

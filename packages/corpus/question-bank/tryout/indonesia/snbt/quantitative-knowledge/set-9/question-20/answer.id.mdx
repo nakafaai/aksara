@@ -1,21 +1,30 @@
-Baca kesepuluh nilai dari grafik: Toko P 20, 24, 18, 30, 33 dan Toko Q 25, 22, 26, 27, 35. Setiap pernyataan **memakai bagian data yang berbeda**.
+Setiap suku hasil penjabaran berbentuk <InlineMath math="a^ib^jc^k" /> dengan <InlineMath math="i+j+k=10" />. Rencananya: hitung semua bentuk suku yang mungkin, lalu periksa **suku mana yang saling menghapus** saat kedua penjabaran dikurangkan.
 
-# Perubahan dan rata-rata
+# Suku pada satu penjabaran
 
-Kenaikan dihitung terhadap **nilai bulan Maret** sebagai nilai awal.
+Pada <InlineMath math="(a+b+c)^{10}" />, setiap pasangan pangkat <InlineMath math="(i,j,k)" /> dari bilangan cacah dengan <InlineMath math="i+j+k=10" /> muncul sebagai **satu suku dengan koefisien positif**. Untuk setiap <InlineMath math="i" />, pangkat <InlineMath math="j" /> bisa <InlineMath math="0" /> sampai <InlineMath math="10-i" />, jadi ada <InlineMath math="11-i" /> pilihan, dan <InlineMath math="k" /> ikut tertentu.
 
-<BlockMath math="\frac{30-18}{18}\times100\%=\frac{12}{18}\times100\%\approx66{,}7\%" />
+<BlockMath math="11+10+9+\dots+1=66=\binom{12}{2}" />
 
-Kenaikannya sekitar 66,7%, bukan 50%. Pernyataan pertama salah.
+# Tanda pada penjabaran kedua
 
-<BlockMath math="\bar x_{Q}=\frac{25+22+26+27+35}{5}=\frac{135}{5}=27" />
+Tulis <InlineMath math="(a-b-c)^{10}=\big(a+(-b)+(-c)\big)^{10}" />. Suku yang sepadan adalah <InlineMath math="a^i(-b)^j(-c)^k=(-1)^{j+k}a^ib^jc^k" /> dengan koefisien yang sama. Setelah dikurangkan, koefisien suku <InlineMath math="a^ib^jc^k" /> dikali <InlineMath math="1-(-1)^{j+k}" />.
 
-Rata-ratanya 27 juta rupiah, jadi pernyataan kedua salah.
+<BlockMath math="\begin{aligned}
+j+k\ \text{genap}&\;\Longrightarrow\;1-1=0\\
+j+k\ \text{ganjil}&\;\Longrightarrow\;1-(-1)=2
+\end{aligned}" />
 
-# Perbandingan kedua toko
+Jadi **suku bertahan hanya jika <InlineMath math="j+k" /> ganjil**. Karena <InlineMath math="j+k=10-i" /> dan <InlineMath math="10" /> genap, syarat itu sama dengan <InlineMath math="i" /> ganjil.
 
-Bandingkan setiap bulan: Toko P lebih besar pada Februari (24 dan 22) dan April (30 dan 27), sedangkan pada tiga bulan lain Toko Q lebih besar. **Tepat dua bulan**, jadi pernyataan ketiga benar.
+# Menghitung suku yang bertahan
 
-Total Toko P adalah <InlineMath math="20+24+18+30+33=125" />, sedangkan total Toko Q adalah 135. Pernyataan keempat benar.
+Untuk <InlineMath math="i=1,3,5,7,9" />, banyak pilihan <InlineMath math="(j,k)" /> adalah <InlineMath math="11-i" />.
 
-Jadi, pernyataan pertama **salah**, kedua **salah**, ketiga **benar**, dan keempat **benar**.
+<BlockMath math="10+8+6+4+2=30" />
+
+Cek dengan sisi lain: suku dengan <InlineMath math="i" /> genap ada <InlineMath math="11+9+7+5+3+1=36" />, semuanya hilang, dan <InlineMath math="30+36=66" />, cocok dengan banyak suku awal.
+
+Jawaban <InlineMath math="66" /> muncul kalau kamu **lupa ada suku yang saling menghapus**. Jawaban <InlineMath math="36" /> muncul kalau kamu mengambil suku yang justru hilang, seolah kedua bentuk dijumlahkan. Jawaban <InlineMath math="33" /> muncul kalau kamu menganggap tepat separuh suku bertahan.
+
+Jadi, hasil penyederhanaan itu memuat <InlineMath math="30" /> suku.

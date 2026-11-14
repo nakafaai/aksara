@@ -1,21 +1,40 @@
-The lengthwise cross-section of the pool is a trapezium with parallel sides 1 m and 3 m and width 20 m between them. The volume is **the trapezium area times the width of the pool**.
+The circle through all four vertices also passes through <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" />. Through three points that aren't on one line there's **exactly one circle**, so you only need the circumradius of triangle <InlineMath math="ABC" />. The plan: get the trapezoid's height from the diagonal, find the leg, then use the law of sines.
 
-# Volume of the pool
+# The height of the trapezoid
 
-<BlockMath math="\begin{aligned}
-L_{\text{trapezium}}&=\frac{1+3}{2}\cdot20=40\text{ m}^2\\
-V&=40\cdot10=400\text{ m}^3
-\end{aligned}" />
-
-# Converting units and finding the time
-
-One cubic metre equals **1,000 litres**, so the volume is 400,000 litres.
+Drop a perpendicular from <InlineMath math="C" /> to <InlineMath math="AB" />, with foot <InlineMath math="E" />. An isosceles trapezoid is symmetric, so the extra length of the bottom side splits evenly on both ends: <InlineMath math="EB=\frac{14-4}{2}=5" />. That makes <InlineMath math="AE=14-5=9" />. **The diagonal's shadow on the base equals the average of the two parallel sides**, <InlineMath math="\frac{14+4}{2}=9" />.
 
 <BlockMath math="\begin{aligned}
-t&=\frac{400{,}000}{1{,}000}=400\text{ min}\\
-&=6\text{ h }40\text{ min}
+CE&=\sqrt{AC^2-AE^2}=\sqrt{225-81}=\sqrt{144}=12\\
+BC&=\sqrt{EB^2+CE^2}=\sqrt{25+144}=13
 \end{aligned}" />
 
-The time 10 hours uses the depth 3 m for the whole pool, giving 600 cubic metres. The time 13 hours 20 minutes forgets to halve in the trapezium formula, giving 800 cubic metres.
+# The radius from the law of sines
 
-So the time needed to fill the pool is **6 hours 40 minutes**.
+In the right triangle <InlineMath math="BEC" />, the sine of angle <InlineMath math="B" /> is opposite over hypotenuse, <InlineMath math="\sin B=\frac{CE}{BC}=\frac{12}{13}" />. This angle <InlineMath math="B" /> is also angle <InlineMath math="ABC" /> in triangle <InlineMath math="ABC" />, and the side opposite it is <InlineMath math="AC" />. **The law of sines** says a side divided by the sine of the opposite angle equals the diameter of the circumcircle.
+
+<BlockMath math="\begin{aligned}
+2R&=\frac{AC}{\sin B}=\frac{15}{12/13}=\frac{65}{4}\\
+R&=\frac{65}{8}
+\end{aligned}" />
+
+# Checking with coordinates
+
+Place <InlineMath math="A(-7,0)" />, <InlineMath math="B(7,0)" />, <InlineMath math="C(2,12)" />, and <InlineMath math="D(-2,12)" />. By symmetry, the centre lies on the axis of symmetry, say at <InlineMath math="(0,k)" />. The centre is **the same distance from <InlineMath math="A" /> and from <InlineMath math="C" />**.
+
+<BlockMath math="\begin{aligned}
+49+k^2&=4+(12-k)^2\\
+49+k^2&=148-24k+k^2\\
+k&=\frac{99}{24}=\frac{33}{8}
+\end{aligned}" />
+
+Then <InlineMath math="R^2=49+\frac{1089}{64}=\frac{4225}{64}" />, so <InlineMath math="R=\frac{65}{8}" />, matching the result above.
+
+# The tempting wrong options
+
+- <InlineMath math="\frac{15}{2}\text{ cm}" /> treats the diagonal <InlineMath math="AC" /> as a diameter. That only works if <InlineMath math="\angle ABC=90^\circ" />, but <InlineMath math="\sin B=\frac{12}{13}" />, **not <InlineMath math="1" />**.
+- <InlineMath math="\sqrt{85}\text{ cm}" /> puts the centre exactly at mid-height, <InlineMath math="k=6" />, giving <InlineMath math="R^2=49+36" />. The centre is actually at <InlineMath math="k=\frac{33}{8}" />.
+- <InlineMath math="\frac{65}{4}\text{ cm}" /> stops at <InlineMath math="2R" /> and forgets to halve it.
+- <InlineMath math="\frac{39}{2}\text{ cm}" /> uses <InlineMath math="\cos B=\frac{5}{13}" /> in place of <InlineMath math="\sin B" />.
+
+So the radius of the circle is <InlineMath math="\frac{65}{8}\text{ cm}" />.

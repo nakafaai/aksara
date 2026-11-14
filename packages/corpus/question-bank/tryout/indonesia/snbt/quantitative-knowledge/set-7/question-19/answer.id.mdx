@@ -1,23 +1,37 @@
-Tiga siswa dipilih sekaligus tanpa memperhatikan urutan, jadi ruang sampelnya dihitung dengan **kombinasi**. Paling sedikit 2 perempuan berarti tepat 2 perempuan atau tepat 3 perempuan.
+Keterangan soal tidak menentukan nilai <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" />, hanya letak grafiknya. Rencananya: terjemahkan gambaran itu menjadi data akar, yaitu dua akar <InlineMath math="r" /> dan <InlineMath math="s" /> yang **positif dan berbeda**, serta <InlineMath math="c=f(0)<0" />, lalu uji setiap pernyataan dengan jumlah dan hasil kali akar.
 
-# Ruang sampel dan kejadian
+# Tanda dua koefisien pertama
 
-<BlockMath math="n(S)=\binom{10}{3}=120" />
-
-Hitung **setiap kasus terpisah**, lalu jumlahkan karena kedua kasus tidak mungkin terjadi bersamaan.
+Menurut rumus Vieta, <InlineMath math="rs=\frac ca" /> dan <InlineMath math="r+s=-\frac ba" />. Kedua akar positif, jadi hasil kali dan jumlahnya positif.
 
 <BlockMath math="\begin{aligned}
-\text{tepat 2 perempuan}&:\quad \binom42\binom61=6\cdot6=36\\
-\text{tepat 3 perempuan}&:\quad \binom43=4\\
-n(A)&=36+4=40
+\frac ca&>0 \;\Longrightarrow\; a<0 \quad\text{karena } c<0\\
+-\frac ba&>0 \;\Longrightarrow\; b>0 \quad\text{karena } a<0
 \end{aligned}" />
 
-# Peluang
+**Hasil kali akar yang positif memaksa <InlineMath math="a" /> bertanda sama dengan <InlineMath math="c" />**, jadi grafiknya terbuka ke bawah. Karena <InlineMath math="a<0" /> dan <InlineMath math="b>0" />, berlaku <InlineMath math="ab<0" />. Pernyataan pertama **benar**.
 
-Peluang adalah **banyak hasil kejadian dibagi banyak hasil ruang sampel**.
+# Nilai fungsi di minus satu
 
-<BlockMath math="P(A)=\frac{40}{120}=\frac13" />
+Perhatikan bahwa <InlineMath math="a-b+c=f(-1)" />. Tulis fungsi dalam bentuk akar, <InlineMath math="f(x)=a(x-r)(x-s)" />, lalu periksa tanda setiap faktor di <InlineMath math="x=-1" />.
 
-Nilai <InlineMath math="\tfrac{44}{125}" /> menganggap setiap pilihan bebas dengan peluang perempuan tetap <InlineMath math="\tfrac25" />, seolah-olah siswa yang sama bisa terpilih lagi. Nilai <InlineMath math="\tfrac23" /> adalah peluang kejadian sebaliknya, yaitu paling banyak 1 perempuan. Nilai <InlineMath math="\tfrac25" /> dan <InlineMath math="\tfrac35" /> adalah peluang satu siswa perempuan atau laki-laki pada satu kali pilih.
+<BlockMath math="f(-1)=\underbrace{a}_{<0}\,\underbrace{(-1-r)}_{<0}\,\underbrace{(-1-s)}_{<0}<0" />
 
-Jadi, peluang terpilih paling sedikit 2 siswa perempuan adalah **<InlineMath math="\tfrac13" />**.
+Dua faktor negatif memberi hasil positif, lalu dikali <InlineMath math="a" /> yang negatif. Artinya, **di sebelah kiri kedua akar, parabola yang terbuka ke bawah berada di bawah sumbu <InlineMath math="x" />**. Pernyataan kedua **benar**.
+
+# Nilai fungsi di satu
+
+Sekarang <InlineMath math="a+b+c=f(1)" />, dan tandanya bergantung pada letak <InlineMath math="1" /> terhadap kedua akar. Ambil <InlineMath math="a=-1" /> untuk dua contoh yang sama-sama memenuhi keterangan soal.
+
+<BlockMath math="\begin{aligned}
+r=2,\ s=3&: \ f(1)=-(1-2)(1-3)=-2<0\\
+r=\tfrac12,\ s=3&: \ f(1)=-\left(1-\tfrac12\right)(1-3)=1>0
+\end{aligned}" />
+
+Pada kedua contoh, <InlineMath math="c=a\cdot rs" /> bernilai <InlineMath math="-6" /> dan <InlineMath math="-\frac32" />, jadi keduanya sah. Nilai <InlineMath math="f(1)" /> bisa negatif atau positif, jadi <InlineMath math="a+b+c>0" /> **tidak pasti berlaku**. Pernyataan ketiga **salah**.
+
+# Nilai maksimum fungsi
+
+Karena <InlineMath math="a<0" />, parabola terbuka ke bawah dan punya nilai maksimum di puncaknya. Grafik memotong sumbu <InlineMath math="x" /> di dua titik berbeda, jadi **puncaknya pasti berada di atas sumbu <InlineMath math="x" />**. Dengan rumus, nilai maksimumnya <InlineMath math="-\frac{D}{4a}" />, dengan diskriminan <InlineMath math="D=b^2-4ac>0" /> dan <InlineMath math="a<0" />, sehingga hasilnya positif. Pernyataan keempat **benar**.
+
+Jadi, pernyataan pertama benar, kedua benar, ketiga salah, dan keempat benar.

@@ -1,17 +1,38 @@
-In <InlineMath math="(g\circ f)(a)=g(f(a))" />, **<InlineMath math="f" /> acts first**, and its result is then substituted into <InlineMath math="g" />.
+# The domain of the composition
 
-<BlockMath math="\begin{aligned}
-g(f(a))&=(2a+5)^2-4=45 \\
-(2a+5)^2&=49 \\
-2a+5=7\ \text{or}\ 2a+5&=-7 \\
-a=1\ \text{or}\ a&=-6
-\end{aligned}" />
+The word **pasti** (certainly) means the statement has to hold for every value of <InlineMath math="k" />. One value of <InlineMath math="k" /> that breaks it is enough to reject it.
 
-As a check, <InlineMath math="f(1)=7" /> and <InlineMath math="g(7)=45" />, and <InlineMath math="f(-6)=-7" /> and <InlineMath math="g(-7)=45" />.
+Start with the domain. The function <InlineMath math="f" /> only accepts inputs <InlineMath math="x\ge0" />, so <InlineMath math="f(g(x))" /> exists only when <InlineMath math="g(x)\ge0" />:
 
-So the sum of all solutions is <InlineMath math="1+(-6)=-5" />.
+<BlockMath math="3x+k\ge0\iff x\ge-\frac{k}{3}" />
 
-- <InlineMath math="5" /> appears if the <InlineMath math="5" /> moves to the other side with the wrong sign: <InlineMath math="2a=\pm7+5" /> gives <InlineMath math="6" /> and <InlineMath math="-1" />.
-- <InlineMath math="1" /> is only the positive solution. The equation <InlineMath math="(2a+5)^2=49" /> has two solutions.
-- <InlineMath math="0" /> comes from the wrong order: <InlineMath math="f(g(a))=2a^2-3=45" /> has two solutions of opposite sign.
-- <InlineMath math="-6" /> is only the negative solution. By coincidence it is also the product of the two solutions.
+The domain of <InlineMath math="f\circ g" /> moves when <InlineMath math="k" /> changes. The domain of <InlineMath math="g\circ f" />, on the other hand, stays <InlineMath math="x\ge0" />.
+
+# The minimum of f after g
+
+The cleanest way is to treat <InlineMath math="u=g(x)" /> as the input of <InlineMath math="f" />. As <InlineMath math="x" /> runs through the whole domain <InlineMath math="x\ge-\frac{k}{3}" />, the value <InlineMath math="u=3x+k" /> runs through **every number <InlineMath math="u\ge0" />**, which is exactly the domain of <InlineMath math="f" />. So <InlineMath math="f\circ g" /> produces exactly the same values as <InlineMath math="f" />.
+
+<BlockMath math="f(u)=(u-3)^2-4,\qquad u\ge0" />
+
+Its smallest value is <InlineMath math="-4" /> at <InlineMath math="u=3" />, and <InlineMath math="u=3" /> does satisfy <InlineMath math="u\ge0" />. Back to <InlineMath math="x" />:
+
+<BlockMath math="3x+k=3\iff x=1-\frac{k}{3}" />
+
+This point is always in the domain because <InlineMath math="1-\frac{k}{3}>-\frac{k}{3}" />. So **the minimum of <InlineMath math="f\circ g" /> is <InlineMath math="-4" /> for every <InlineMath math="k" />**, only its position moves.
+
+This table checks a few values of <InlineMath math="k" />:
+
+| <InlineMath math="k" /> | domain of <InlineMath math="f\circ g" /> | minimum of <InlineMath math="f\circ g" /> | minimum of <InlineMath math="g\circ f" /> |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="-6" /> | <InlineMath math="x\ge2" /> | <InlineMath math="-4" /> at <InlineMath math="x=3" /> | <InlineMath math="-18" /> |
+| <InlineMath math="0" /> | <InlineMath math="x\ge0" /> | <InlineMath math="-4" /> at <InlineMath math="x=1" /> | <InlineMath math="-12" /> |
+| <InlineMath math="8" /> | <InlineMath math="x\ge-\frac{8}{3}" /> | <InlineMath math="-4" /> at <InlineMath math="x=-\frac{5}{3}" /> | <InlineMath math="-4" /> |
+
+# Why the other options aren't certain
+
+- The domain of <InlineMath math="f\circ g" /> is <InlineMath math="x\ge-\frac{k}{3}" />, which equals <InlineMath math="x\ge0" /> **only for <InlineMath math="k=0" />**. For <InlineMath math="k=8" /> the domain is <InlineMath math="x\ge-\frac{8}{3}" />.
+- <InlineMath math="(g\circ f)(x)=3f(x)+k" />. The outer function multiplies and then shifts the values, so its minimum is <InlineMath math="3(-4)+k=k-12" />. That equals <InlineMath math="-4" /> only for <InlineMath math="k=8" />.
+- The graph meets the <InlineMath math="y" />-axis when <InlineMath math="x=0" /> is in the domain, which means <InlineMath math="k\ge0" />. For <InlineMath math="k=-6" /> the domain is <InlineMath math="x\ge2" />, so the graph never touches the <InlineMath math="y" />-axis.
+- The minimum of <InlineMath math="f\circ g" /> sits at <InlineMath math="x=1-\frac{k}{3}" />. The number <InlineMath math="3" /> is the vertex of <InlineMath math="f" />, and the inner function shifts it. The position is <InlineMath math="x=3" /> only for <InlineMath math="k=-6" />.
+
+So the statement that's certainly true is that the minimum of <InlineMath math="f\circ g" /> equals <InlineMath math="-4" />.

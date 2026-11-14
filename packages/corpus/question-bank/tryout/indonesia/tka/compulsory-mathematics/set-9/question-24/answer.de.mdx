@@ -1,10 +1,37 @@
-Der Ergebnisraum besteht aus **allen zehn Buchstaben des Wortes**, Wiederholungen eingeschlossen: M, A, T, E, M, A, T, I, K, A. Der Buchstabe A kommt <InlineMath math="3" />-mal vor.
+Gesucht ist eine erwartete Häufigkeit: Anzahl der Runden mal Gewinnwahrscheinlichkeit pro Runde. Ein Gewinn hat zwei Stufen: **Die Münze wird nur geworfen, wenn die Kartensumme gerade ist**, also zählt ein Gewinn erst, wenn die erste Stufe geklappt hat.
 
-<BlockMath math="P(\text{A})=\frac{3}{10}" />
+# Die Kartenstufe
 
-Die Wahrscheinlichkeit, dass ein A gewählt wird, ist also <InlineMath math="\frac{3}{10}" />.
+Zwei Karten werden gleichzeitig gezogen, die Reihenfolge spielt also keine Rolle, und beide Karten sind verschieden. Es gibt <InlineMath math="\binom52=10" /> mögliche Paare. Eine Summe ist gerade, wenn beide Zahlen ungerade oder beide gerade sind:
 
-- <InlineMath math="\frac{1}{10}" /> zählt nur ein A.
-- <InlineMath math="\frac16" /> nimmt die <InlineMath math="6" /> verschiedenen Buchstaben M, A, T, E, I, K als Ergebnisraum, doch auch wiederholte Buchstaben können gewählt werden.
-- <InlineMath math="\frac15" /> findet nur <InlineMath math="2" />-mal A.
-- <InlineMath math="\frac13" /> zählt die Buchstaben falsch als <InlineMath math="9" />.
+<BlockMath math="\begin{aligned}
+\text{beide ungerade}&:\ \{1,3\},\{1,5\},\{3,5\}\ \to\ 3 \\
+\text{beide gerade}&:\ \{2,4\}\ \to\ 1 \\
+P(\text{Summe gerade})&=\frac{3+1}{10}=\frac25
+\end{aligned}" />
+
+Achte darauf: Die Wahrscheinlichkeit ist **nicht <InlineMath math="\frac12" />**. Es gibt drei ungerade, aber nur zwei gerade Karten, und dieselbe Karte kann nicht zweimal gezogen werden.
+
+# Die Münzstufe
+
+Drei Würfe haben <InlineMath math="2^3=8" /> gleich wahrscheinliche Ergebnisse. Mindestens zweimal die Zahlseite (auf der indonesischen Münze die Seite „angka“) heißt **genau zweimal oder genau dreimal**:
+
+<BlockMath math="P(\text{mindestens 2-mal Zahl})=\frac{\binom32+\binom33}{8}=\frac{3+1}{8}=\frac12" />
+
+# Die erwartete Häufigkeit
+
+Für einen Gewinn müssen beide Stufen klappen, also **multiplizierst du die Wahrscheinlichkeiten**:
+
+<BlockMath math="\begin{aligned}
+P(\text{Gewinn})&=\frac25\cdot\frac12=\frac15 \\
+H_e&=60\cdot\frac15=12\text{ Runden}
+\end{aligned}" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="15" /> Runden setzen die Wahrscheinlichkeit einer geraden Summe auf <InlineMath math="\frac12" />: <InlineMath math="60\cdot\frac12\cdot\frac12" />.
+- <InlineMath math="21" /> Runden lesen **mindestens zweimal** als mindestens einmal, mit Wahrscheinlichkeit <InlineMath math="\frac78" />: <InlineMath math="60\cdot\frac25\cdot\frac78" />.
+- <InlineMath math="24" /> Runden vergessen die Münzstufe und zählen jede gerade Summe als Gewinn: <InlineMath math="60\cdot\frac25" />.
+- <InlineMath math="30" /> Runden vergessen die Kartenstufe und nehmen nur die Münzwahrscheinlichkeit: <InlineMath math="60\cdot\frac12" />.
+
+Die erwartete Anzahl gewonnener Runden ist also <InlineMath math="12" />.

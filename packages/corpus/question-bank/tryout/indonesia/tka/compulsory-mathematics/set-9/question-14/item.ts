@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$2x+3y=3$$",
-        },
-        {
-          correct: false,
-          label: "$$3x+2y=12$$",
-        },
-        {
-          correct: false,
-          label: "$$2x+3y=24$$",
-        },
-        {
-          correct: false,
-          label: "$$4x+6y=12$$",
-        },
-        {
           correct: true,
-          label: "$$2x+3y=12$$",
+          label: "$$(-8,12)$$",
+        },
+        {
+          correct: false,
+          label: "$$(-4,4)$$",
+        },
+        {
+          correct: false,
+          label: "$$(0,8)$$",
+        },
+        {
+          correct: false,
+          label: "$$(4,6)$$",
+        },
+        {
+          correct: false,
+          label: "$$(10,-6)$$",
         },
       ],
     },

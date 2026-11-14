@@ -1,21 +1,39 @@
-Bei einer zentrischen Streckung mit Zentrum <InlineMath math="M" /> und Faktor <InlineMath math="k" /> wird **der Vektor von <InlineMath math="M" /> zum Punkt mit <InlineMath math="k" /> multipliziert**. Flächen werden dabei mit <InlineMath math="k^2" /> multipliziert, denn jede Länge wird mit <InlineMath math="|k|" /> multipliziert.
+# Den Radius finden
+
+Gefragt ist die Länge der Bahn aller Punkte <InlineMath math="C" />, die die Strecke <InlineMath math="AB" /> unter einem Winkel von <InlineMath math="45^\circ" /> sehen. Diese Punkte liegen auf einem Kreis durch <InlineMath math="A" /> und <InlineMath math="B" />. Du brauchst also zwei Dinge: den Radius dieses Kreises und den Teil des Kreises, der wirklich zählt.
+
+Das Werkzeug ist der Satz **der Umfangswinkel ist halb so groß wie der Mittelpunktswinkel** über demselben Bogen. Sei <InlineMath math="O" /> der Mittelpunkt des Kreises. Der Umfangswinkel <InlineMath math="\angle ACB" /> steht über dem Bogen <InlineMath math="AB" />, der <InlineMath math="C" /> nicht enthält. Der Mittelpunktswinkel ist also doppelt so groß.
 
 <BlockMath math="\begin{aligned}
-B'&=M+k\,(B-M)=(1,2)+(-2)\,(0,3)=(1,-4)
+\angle AOB&=2\cdot\angle ACB=2\cdot45^\circ=90^\circ \\
+AB^2&=OA^2+OB^2=2R^2 \\
+64&=2R^2 \\
+R&=4\sqrt{2}\text{ cm}
 \end{aligned}" />
 
-Den Flächeninhalt des ursprünglichen Dreiecks erhältst du mit der Determinantenformel.
+Das Dreieck <InlineMath math="AOB" /> hat bei <InlineMath math="O" /> einen rechten Winkel, und beide Katheten sind gleich dem Radius <InlineMath math="R" />. Die Strecke <InlineMath math="AB" /> ist die Hypotenuse, keine Kathete.
+
+# Den richtigen Bogen wählen
+
+Die Sehne <InlineMath math="AB" /> teilt den Kreis in zwei Bögen. Der kleine Bogen misst <InlineMath math="90^\circ" />: Über ihm steht der Mittelpunktswinkel. Der große Bogen misst <InlineMath math="360^\circ-90^\circ=270^\circ" />.
+
+Ein Punkt auf dem großen Bogen sieht <InlineMath math="AB" /> unter <InlineMath math="45^\circ" />. Ein Punkt auf dem kleinen Bogen sieht die Strecke unter <InlineMath math="180^\circ-45^\circ=135^\circ" />, denn gegenüberliegende Winkel im Sehnenviereck ergeben zusammen <InlineMath math="180^\circ" />. Der kleine Bogen liegt außerdem auf der anderen Seite der Geraden <InlineMath math="AB" />. Also **bilden die Punkte auf einer Seite nur den großen Bogen**.
 
 <BlockMath math="\begin{aligned}
-L_{ABC}&=\frac12\,\bigl|(1-3)(1-2)-(-1-3)(5-2)\bigr|=\frac12\,|2+12|=7 \\
-L_{A'B'C'}&=(-2)^2\cdot7=28
+\text{Bogenlänge}&=\frac{270^\circ}{360^\circ}\cdot2\pi R \\
+&=\frac{3}{4}\cdot2\pi\cdot4\sqrt{2} \\
+&=6\sqrt{2}\,\pi\text{ cm}
 \end{aligned}" />
 
-Zur Kontrolle: <InlineMath math="A'=(1,2)+(-2)(2,0)=(-3,2)" /> und <InlineMath math="C'=(1,2)+(-2)(-2,-1)=(5,4)" />. Die Determinantenformel für <InlineMath math="A'B'C'" /> ergibt <InlineMath math="\frac12\,|4\cdot2-8\cdot(-6)|=\frac12\cdot56=28" />.
+Prüf das mit einem besonderen Punkt. Wähle <InlineMath math="C" /> so, dass <InlineMath math="AC" /> ein Durchmesser ist. Der Winkel <InlineMath math="ABC" /> steht über einem Durchmesser, er ist also <InlineMath math="90^\circ" /> groß. Mit <InlineMath math="\angle ACB=45^\circ" /> ist das Dreieck <InlineMath math="ABC" /> gleichschenklig rechtwinklig, also <InlineMath math="BC=AB=8" /> und <InlineMath math="AC=8\sqrt{2}=2R" />. Das passt zu <InlineMath math="R=4\sqrt{2}" />.
 
-Also ist <InlineMath math="B'(1,-4)" />, und das Bilddreieck hat den Flächeninhalt <InlineMath math="28" />.
+# Warum die anderen Antworten falsch sind
 
-- Der Flächeninhalt <InlineMath math="14" /> entsteht, wenn die Fläche <InlineMath math="7" /> mit <InlineMath math="|k|=2" /> statt mit <InlineMath math="k^2=4" /> multipliziert wird.
-- <InlineMath math="B'(1,8)" /> rechnet mit dem Faktor <InlineMath math="+2" /> statt <InlineMath math="-2" />.
-- <InlineMath math="B'(-2,-10)" /> streckt vom Ursprung aus statt von <InlineMath math="M" /> aus.
-- Der Flächeninhalt <InlineMath math="7" /> ist der des ursprünglichen Dreiecks. Eine Streckung mit <InlineMath math="|k|\neq1" /> verändert die Fläche.
+Jede falsche Antwort entsteht aus einem einzigen verrutschten Schritt. Achte darauf, **welchen Bogen und welchen Radius** du nimmst.
+
+- <InlineMath math="2\sqrt{2}\,\pi\text{ cm}" /> ist der kleine Bogen mit <InlineMath math="90^\circ" />. Dort ist der Winkel <InlineMath math="ACB" /> gleich <InlineMath math="135^\circ" />, nicht <InlineMath math="45^\circ" />.
+- <InlineMath math="8\sqrt{2}\,\pi\text{ cm}" /> ist der ganze Kreisumfang. Damit zählt der kleine Bogen mit, obwohl seine Punkte die Bedingung nicht erfüllen.
+- <InlineMath math="12\pi\text{ cm}" /> entsteht, wenn du <InlineMath math="AB=8" /> als Radius nimmst. Im Dreieck <InlineMath math="AOB" /> ist <InlineMath math="AB" /> die Hypotenuse, also <InlineMath math="R=\frac{8}{\sqrt{2}}" />.
+- <InlineMath math="12\sqrt{2}\,\pi\text{ cm}" /> zählt einen großen Bogen auf beiden Seiten der Geraden <InlineMath math="AB" />. Gefragt sind nur die Punkte auf einer Seite.
+
+Der Bogen, auf dem alle Punkte <InlineMath math="C" /> liegen, ist also <InlineMath math="6\sqrt{2}\,\pi\text{ cm}" /> lang.

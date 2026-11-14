@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "algebra",
     topic: "linear-equations-inequalities",
   },
-  stimulus: "streaming-plans",
+  stimulus: "tiket",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$2{.}880$$",
+          label: "$$3$$",
+        },
+        {
+          correct: false,
+          label: "$$4$$",
+        },
+        {
+          correct: false,
+          label: "$$6$$",
         },
         {
           correct: true,
-          label: "$$3{.}920$$",
+          label: "$$7$$",
         },
         {
           correct: false,
-          label: "$$4{.}000$$",
-        },
-        {
-          correct: false,
-          label: "$$4{.}080$$",
-        },
-        {
-          correct: false,
-          label: "$$6{.}000$$",
+          label: "$$9$$",
         },
       ],
     },

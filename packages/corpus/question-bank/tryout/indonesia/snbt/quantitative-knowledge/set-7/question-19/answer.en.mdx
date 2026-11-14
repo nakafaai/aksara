@@ -1,23 +1,37 @@
-Three students are chosen at once, with no order, so the sample space is counted with **combinations**. At least 2 girls means exactly 2 girls or exactly 3 girls.
+The description doesn't fix the values of <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" />, only where the graph sits. Here's the plan: translate the picture into facts about the roots, namely two roots <InlineMath math="r" /> and <InlineMath math="s" /> that are **positive and distinct**, plus <InlineMath math="c=f(0)<0" />, then test each statement with the sum and product of the roots.
 
-# Sample space and event
+# The signs of the first two coefficients
 
-<BlockMath math="n(S)=\binom{10}{3}=120" />
-
-Count **each case separately**, then add, because the two cases cannot happen together.
+By Vieta's formulas, <InlineMath math="rs=\frac ca" /> and <InlineMath math="r+s=-\frac ba" />. Both roots are positive, so their product and sum are positive.
 
 <BlockMath math="\begin{aligned}
-\text{exactly 2 girls}&:\quad \binom42\binom61=6\cdot6=36\\
-\text{exactly 3 girls}&:\quad \binom43=4\\
-n(A)&=36+4=40
+\frac ca&>0 \;\Longrightarrow\; a<0 \quad\text{because } c<0\\
+-\frac ba&>0 \;\Longrightarrow\; b>0 \quad\text{because } a<0
 \end{aligned}" />
 
-# Probability
+**A positive product of roots forces <InlineMath math="a" /> to have the same sign as <InlineMath math="c" />**, so the graph opens downward. Since <InlineMath math="a<0" /> and <InlineMath math="b>0" />, you get <InlineMath math="ab<0" />. The first statement is **true**.
 
-The probability is **the number of outcomes in the event divided by the size of the sample space**.
+# The value of the function at minus one
 
-<BlockMath math="P(A)=\frac{40}{120}=\frac13" />
+Notice that <InlineMath math="a-b+c=f(-1)" />. Write the function in root form, <InlineMath math="f(x)=a(x-r)(x-s)" />, and check the sign of each factor at <InlineMath math="x=-1" />.
 
-The value <InlineMath math="\tfrac{44}{125}" /> treats each choice as independent with a fixed probability <InlineMath math="\tfrac25" /> for a girl, as if the same student could be chosen again. The value <InlineMath math="\tfrac23" /> is the probability of the opposite event, at most 1 girl. The values <InlineMath math="\tfrac25" /> and <InlineMath math="\tfrac35" /> are the probabilities of a girl or a boy in a single choice.
+<BlockMath math="f(-1)=\underbrace{a}_{<0}\,\underbrace{(-1-r)}_{<0}\,\underbrace{(-1-s)}_{<0}<0" />
 
-So the probability of choosing at least 2 girls is **<InlineMath math="\tfrac13" />**.
+Two negative factors make a positive product, which is then multiplied by the negative <InlineMath math="a" />. In other words, **to the left of both roots, a downward parabola lies below the <InlineMath math="x" />-axis**. The second statement is **true**.
+
+# The value of the function at one
+
+Now <InlineMath math="a+b+c=f(1)" />, and its sign depends on where <InlineMath math="1" /> sits compared with the two roots. Take <InlineMath math="a=-1" /> for two examples that both fit the description.
+
+<BlockMath math="\begin{aligned}
+r=2,\ s=3&: \ f(1)=-(1-2)(1-3)=-2<0\\
+r=\tfrac12,\ s=3&: \ f(1)=-\left(1-\tfrac12\right)(1-3)=1>0
+\end{aligned}" />
+
+In both examples <InlineMath math="c=a\cdot rs" /> equals <InlineMath math="-6" /> and <InlineMath math="-\frac32" />, so both are valid. The value <InlineMath math="f(1)" /> can be negative or positive, so <InlineMath math="a+b+c>0" /> **doesn't have to hold**. The third statement is **false**.
+
+# The maximum value of the function
+
+Since <InlineMath math="a<0" />, the parabola opens downward and has a maximum at its vertex. The graph crosses the <InlineMath math="x" />-axis at two different points, so **the vertex has to lie above the <InlineMath math="x" />-axis**. With the formula, the maximum is <InlineMath math="-\frac{D}{4a}" />, with discriminant <InlineMath math="D=b^2-4ac>0" /> and <InlineMath math="a<0" />, so it's positive. The fourth statement is **true**.
+
+So the first statement is true, the second is true, the third is false, and the fourth is true.

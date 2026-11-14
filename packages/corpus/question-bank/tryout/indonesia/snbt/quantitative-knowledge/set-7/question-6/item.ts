@@ -3,14 +3,9 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "$$-6$$" },
-        { correct: false, label: "$$-4$$" },
-        { correct: false, label: "$$2$$" },
-        { correct: true, label: "$$6$$" },
-        { correct: false, label: "$$9$$" },
-      ],
+      kind: "numericEntry",
+      unit: "lintasan",
+      value: "64",
     },
   },
 };

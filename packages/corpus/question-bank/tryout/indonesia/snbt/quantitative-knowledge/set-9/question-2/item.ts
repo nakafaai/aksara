@@ -5,11 +5,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$\\dfrac32$$" },
-        { correct: false, label: "$$2$$" },
-        { correct: false, label: "$$\\dfrac52$$" },
-        { correct: true, label: "$$3$$" },
-        { correct: false, label: "$$\\dfrac72$$" },
+        { correct: false, label: "$$3x^2+36x+16=0$$" },
+        { correct: false, label: "$$3x^2-12x+16=0$$" },
+        { correct: false, label: "$$3x^2-18x+16=0$$" },
+        { correct: false, label: "$$3x^2-27x+16=0$$" },
+        { correct: true, label: "$$3x^2-36x+16=0$$" },
       ],
     },
   },

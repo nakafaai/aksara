@@ -1,25 +1,43 @@
-Membagi kedua ruas dengan <InlineMath math="x" /> berbahaya karena tanda <InlineMath math="x" /> belum diketahui. Yang aman adalah **memindahkan semua suku ke satu ruas lalu memfaktorkan**.
+Semua pernyataan memakai pusat dan jari-jari lingkaran, jadi cari keduanya dalam <InlineMath math="c" /> lebih dulu. Setelah itu, setiap pernyataan **menentukan nilai <InlineMath math="c" /> sendiri**, dan kamu menguji akibatnya dengan alasan yang berbeda-beda.
 
-# Menyelesaikan pertidaksamaan
+# Pusat dan jari-jari
+
+Lengkapkan kuadrat untuk <InlineMath math="x" /> dan untuk <InlineMath math="y" />.
 
 <BlockMath math="\begin{aligned}
-x^3-4x&>0\\
-x(x-2)(x+2)&>0
+x^2-6x+y^2+8y+c&=0\\
+(x-3)^2-9+(y+4)^2-16+c&=0\\
+(x-3)^2+(y+4)^2&=25-c
 \end{aligned}" />
 
-Pembuat nolnya <InlineMath math="-2" />, <InlineMath math="0" />, dan <InlineMath math="2" />. Periksa **tanda hasil kali pada setiap selang**.
+Pusatnya <InlineMath math="(3,-4)" /> dan kuadrat jari-jarinya <InlineMath math="r^2=25-c" />. Persamaan ini menyatakan lingkaran sungguhan **hanya jika <InlineMath math="25-c>0" />**, yaitu <InlineMath math="c<25" />.
 
-| Selang | Tanda <InlineMath math="x(x-2)(x+2)" /> |
-| :---: | :---: |
-| <InlineMath math="x<-2" /> | negatif |
-| <InlineMath math="-2<x<0" /> | positif |
-| <InlineMath math="0<x<2" /> | negatif |
-| <InlineMath math="x>2" /> | positif |
+# Pernyataan pertama
 
-Penyelesaiannya adalah <InlineMath math="-2<x<0" /> atau <InlineMath math="x>2" />.
+Untuk <InlineMath math="c=25" />, ruas kanan menjadi <InlineMath math="0" />. Jumlah dua kuadrat bernilai nol hanya jika keduanya nol, jadi kurva itu **hanya titik <InlineMath math="(3,-4)" />**, bukan lingkaran berjari-jari positif. Pernyataan ini **salah**.
 
-# Membandingkan x dengan 2
+# Pernyataan kedua
 
-Untuk <InlineMath math="x=3" />, <InlineMath math="P>Q" />. Untuk <InlineMath math="x=-1" />, yang juga memenuhi karena <InlineMath math="-1>-4" />, berlaku <InlineMath math="P<Q" />. **Kedua hubungan mungkin terjadi**, jadi tidak ada satu hubungan yang pasti. Membagi dengan <InlineMath math="x" /> tanpa memeriksa tanda akan menghasilkan <InlineMath math="x^2>4" /> lalu <InlineMath math="x>2" />, dan selang negatif terlewat.
+Lingkaran menyinggung sumbu <InlineMath math="x" /> jika jarak pusat ke sumbu <InlineMath math="x" /> sama dengan jari-jarinya. Jarak itu <InlineMath math="|-4|=4" />, jadi <InlineMath math="r=4" /> dan <InlineMath math="25-c=16" />, atau <InlineMath math="c=9" />. Jarak pusat ke sumbu <InlineMath math="y" /> hanya <InlineMath math="3" />, **lebih kecil dari jari-jari** <InlineMath math="4" />, jadi sumbu <InlineMath math="y" /> memotong lingkaran di dua titik. Cek dengan substitusi <InlineMath math="x=0" />.
 
-Jadi, informasi yang diberikan **tidak cukup** untuk memutuskan hubungan <InlineMath math="P" /> dan <InlineMath math="Q" />.
+<BlockMath math="\begin{aligned}
+(0-3)^2+(y+4)^2&=16\\
+(y+4)^2&=7\\
+y&=-4\pm\sqrt7
+\end{aligned}" />
+
+Ada dua nilai <InlineMath math="y" />, jadi pernyataan ini **benar**.
+
+# Pernyataan ketiga
+
+Lingkaran melalui titik asal jika <InlineMath math="0+0-0+0+c=0" />, jadi <InlineMath math="c=0" /> dan <InlineMath math="r=5" />. Garis <InlineMath math="4x-3y=0" /> memang melalui titik asal yang ada di lingkaran, tetapi **melalui satu titik lingkaran belum berarti menyinggung**. Garis menyinggung jika jarak pusat ke garis sama dengan jari-jari.
+
+<BlockMath math="d=\frac{|4\cdot3-3\cdot(-4)|}{\sqrt{4^2+3^2}}=\frac{24}{5}<5" />
+
+Jaraknya kurang dari jari-jari, jadi garis itu memotong lingkaran di dua titik, yaitu di titik asal dan di <InlineMath math="\left(-\frac{42}{25},-\frac{56}{25}\right)" />. Garis singgung di titik asal harus tegak lurus jari-jari ke arah <InlineMath math="(3,-4)" />, yaitu <InlineMath math="3x-4y=0" />. Pernyataan ini **salah**.
+
+# Pernyataan keempat
+
+Lingkaran menyinggung sumbu <InlineMath math="y" /> jika <InlineMath math="r=|3|=3" />, jadi <InlineMath math="25-c=9" /> dan <InlineMath math="c=16" />. Jarak titik asal ke pusat adalah <InlineMath math="\sqrt{3^2+4^2}=5" />, **lebih besar dari jari-jari** <InlineMath math="3" />. Cara lain: substitusi titik asal ke ruas kiri memberi <InlineMath math="c=16>0" />, tanda bahwa titik itu di luar lingkaran. Pernyataan ini **salah**.
+
+Jadi, pernyataan kedua benar, sedangkan pernyataan pertama, ketiga, dan keempat salah.

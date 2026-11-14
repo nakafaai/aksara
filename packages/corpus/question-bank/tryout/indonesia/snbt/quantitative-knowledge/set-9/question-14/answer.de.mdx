@@ -1,19 +1,43 @@
-Berechne zuerst drei Grundkennwerte und prüfe dann, wie jeder Kennwert **auf Änderungen der Daten reagiert**.
+Für den neuen Mittelwert der Gruppe B brauchst du **die Anzahl der Mitglieder in Gruppe B** und ihre Punktsumme. Die Aufgabe nennt keine einzige Gruppengröße, also musst du sie bestimmen. Der Plan: Bestimme die Gesamtzahl aus dem Austritt eines Mitglieds, teile sie mit dem gemeinsamen Mittelwert auf die Gruppen A und B auf und berechne dann den neuen Mittelwert der Gruppe B.
 
-# Mittelwert, Median und Spannweite
+# Die ursprüngliche Anzahl
+
+Sei <InlineMath math="n" /> die ursprüngliche Anzahl der Mitglieder. **Eine Summe ist Mittelwert mal Anzahl**. Vor dem Austritt ist die Summe <InlineMath math="71n" />. Nachdem das Mitglied mit <InlineMath math="98" /> Punkten ausgetreten ist, haben die übrigen <InlineMath math="n-1" /> Mitglieder den Mittelwert <InlineMath math="68" />.
 
 <BlockMath math="\begin{aligned}
-\bar x&=\frac{70+75+80+80+85+90}{6}=\frac{480}{6}=80\\
-\text{Median}&=\frac{80+80}{2}=80\\
-\text{Spannweite}&=90-70=20
+71n-98&=68(n-1)\\
+71n-98&=68n-68\\
+3n&=30\\
+n&=10
 \end{aligned}" />
 
-Die zweite Aussage ist wahr. Die Spannweite ist **größter minus kleinster Wert**, also 20, und die dritte Aussage ist falsch.
+# Die Größe der Gruppe B
 
-# Wirkung von Änderungen
+Gruppe B habe <InlineMath math="b" /> Mitglieder, Gruppe A also <InlineMath math="10-b" />. Die gemeinsame Summe ist <InlineMath math="71\cdot10=710" />.
 
-Ersetzt man 90 durch 100, bleibt die Reihenfolge gleich, und die beiden mittleren Werte bleiben 80 und 80. **Der Median hängt nicht von der Größe eines Extremwerts ab**, er bleibt also 80, und die erste Aussage ist falsch. Die Änderung erhöht nur den Mittelwert.
+<BlockMath math="\begin{aligned}
+65(10-b)+80b&=710\\
+650+15b&=710\\
+b&=4
+\end{aligned}" />
 
-Addiert man 5 zu jedem Wert, verschiebt sich der ganze Datensatz um 5, und die beiden mittleren Werte werden 85 und 85. Der Median wird 85, also ist die vierte Aussage wahr.
+Gruppe B hat also <InlineMath math="4" /> Mitglieder und Gruppe A <InlineMath math="6" />. Das passt zur Verhältnisregel: Der Mittelwert von A liegt <InlineMath math="71-65=6" /> vom gemeinsamen Mittelwert entfernt, der von B <InlineMath math="80-71=9" />, also <InlineMath math="n_A:n_B=9:6=3:2" />. **Die Gruppe, deren Mittelwert näher am gemeinsamen Mittelwert liegt, hat mehr Mitglieder**. Das Verhältnis <InlineMath math="3:2" /> allein liefert aber noch nicht die echten Größen, dafür war der erste Schritt nötig.
 
-Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **falsch** und die vierte **wahr**.
+# Der neue Mittelwert der Gruppe B
+
+Die ursprüngliche Summe der Gruppe B ist <InlineMath math="80\cdot4=320" />. Das ausgetretene Mitglied kam aus Gruppe B, also **sinken sowohl die Summe als auch die Größe der Gruppe B**.
+
+<BlockMath math="\bar{x}_B=\frac{320-98}{4-1}=\frac{222}{3}=74" />
+
+# Die Probe
+
+**Gruppe A ändert sich nicht**, ihre Summe ist <InlineMath math="6\cdot65=390" />. Die verbliebenen Mitglieder haben zusammen <InlineMath math="390+222=612" /> Punkte bei <InlineMath math="9" /> Personen, und <InlineMath math="\frac{612}{9}=68" />, wie in der Aufgabe.
+
+# Die verlockenden falschen Antworten
+
+- <InlineMath math="77" /> nimmt an, dass der Mittelwert der Gruppe B **um genauso viel sinkt wie der gemeinsame Mittelwert**, also um <InlineMath math="3" />.
+- <InlineMath math="55{,}5" /> teilt <InlineMath math="222" /> durch <InlineMath math="4" /> und vergisst, dass Gruppe B nur noch <InlineMath math="3" /> Mitglieder hat.
+- <InlineMath math="62" /> nimmt das Verhältnis <InlineMath math="3:2" /> als echte Größen, gibt Gruppe B also <InlineMath math="2" /> Mitglieder und erhält <InlineMath math="\frac{160-98}{1}=62" />.
+- <InlineMath math="76{,}4" /> dreht das Verhältnis um, gibt Gruppe B also <InlineMath math="6" /> Mitglieder und erhält <InlineMath math="\frac{480-98}{5}=76{,}4" />.
+
+Der Mittelwert der Gruppe B nach dem Austritt ist also <InlineMath math="74" />.

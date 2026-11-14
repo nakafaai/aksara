@@ -1,9 +1,49 @@
-Translation, reflection and rotation are **isometries**: they keep all lengths and therefore also angles and areas. A dilation with factor <InlineMath math="k" /> multiplies lengths by <InlineMath math="|k|" /> and areas by <InlineMath math="k^2" />.
+A <InlineMath math="180^\circ" /> rotation about <InlineMath math="O" /> sends every point <InlineMath math="(x,y)" /> to <InlineMath math="(-x,-y)" />. So for each composition, **work out the image of a general point <InlineMath math="(x,y)" />** and compare it with <InlineMath math="(-x,-y)" />. Testing one or two points isn't enough, because two different transformations can happen to agree at a few points.
 
-- A translation moves every point by the same vector, so each side keeps its length. The statement is true.
-- A reflection is an isometry, so the image is congruent and has the same area. The statement is true.
-- With <InlineMath math="k=-2" /> every length doubles, so the area is multiplied by <InlineMath math="(-2)^2=4" />, not by <InlineMath math="2" />. The statement is false.
-- The rotation by <InlineMath math="180^\circ" /> maps <InlineMath math="(x,y)" /> to <InlineMath math="(-x,-y)" />, exactly like the dilation with <InlineMath math="k=-1" />. The statement is true.
-- Reflecting in the <InlineMath math="x" />-axis gives <InlineMath math="(x,-y)" />, then reflecting in the <InlineMath math="y" />-axis gives <InlineMath math="(-x,-y)" />. That is the rotation by <InlineMath math="180^\circ" />. A translation would move every point by the same vector, but here, for example, <InlineMath math="(1,0)" /> moves by <InlineMath math="(-2,0)" /> and <InlineMath math="(2,0)" /> by <InlineMath math="(-4,0)" />. The statement is false.
+# The rules you need
 
-So the statements about the translation, the reflection and the rotation by <InlineMath math="180^\circ" /> are true.
+For a centre <InlineMath math="P(a,b)" />, start from the vector <InlineMath math="(x-a,\ y-b)" />: turn the vector, then add <InlineMath math="(a,b)" /> back.
+
+<BlockMath math="\begin{aligned}
+R_{P,90^\circ}:&\ (x,y)\mapsto\big(a-(y-b),\ b+(x-a)\big) \\
+R_{P,180^\circ}:&\ (x,y)\mapsto(2a-x,\ 2b-y) \\
+\text{reflection in } x=h:&\ (x,y)\mapsto(2h-x,\ y) \\
+\text{reflection in } y=k:&\ (x,y)\mapsto(x,\ 2k-y)
+\end{aligned}" />
+
+One more fact helps. Two <InlineMath math="90^\circ" /> rotations in a row always give **a <InlineMath math="180^\circ" /> rotation about some centre**, but that centre isn't necessarily <InlineMath math="O" />. So angles adding up to <InlineMath math="180^\circ" /> aren't enough on their own. You also have to check the centre.
+
+# Checking each composition
+
+**False**. In the first composition, the rotation about <InlineMath math="(1,0)" /> gives <InlineMath math="(1-y,\ x-1)" />. The rotation about <InlineMath math="(0,1)" /> sends <InlineMath math="(u,v)" /> to <InlineMath math="(1-v,\ 1+u)" />.
+
+<BlockMath math="(x,y)\mapsto(1-y,\ x-1)\mapsto\big(1-(x-1),\ 1+(1-y)\big)=(2-x,\ 2-y)" />
+
+That's a <InlineMath math="180^\circ" /> rotation about <InlineMath math="(1,1)" />. The point <InlineMath math="O" /> itself moves to <InlineMath math="(2,2)" />, while a rotation about <InlineMath math="O" /> never moves <InlineMath math="O" />.
+
+**True**. In the second composition, do the two reflections and then the translation in order.
+
+<BlockMath math="(x,y)\mapsto(6-x,\ y)\mapsto(6-x,\ -2-y)\mapsto(6-x-6,\ -2-y+2)=(-x,-y)" />
+
+The two reflections in perpendicular lines give a <InlineMath math="180^\circ" /> rotation about <InlineMath math="(3,-1)" />, and the translation shifts the result so the centre lands exactly on <InlineMath math="O" />.
+
+**True**. In the third composition, the line <InlineMath math="y=2x" /> has gradient <InlineMath math="2" /> and the line <InlineMath math="x+2y=0" /> has gradient <InlineMath math="-\tfrac12" />. The product of the gradients is <InlineMath math="-1" />, so the lines are perpendicular and meet at <InlineMath math="O" />. Two reflections in lines that meet at <InlineMath math="90^\circ" /> equal a rotation by <InlineMath math="2\cdot90^\circ=180^\circ" /> about the crossing point. Check with two points that aren't in line with <InlineMath math="O" />.
+
+<BlockMath math="\begin{aligned}
+(1,2)&\mapsto(1,2)\mapsto(-1,-2) \\
+(2,-1)&\mapsto(-2,1)\mapsto(-2,1)
+\end{aligned}" />
+
+The point <InlineMath math="(1,2)" /> lies on the first line, so it stays, and then it's mirrored straight across the second line. The point <InlineMath math="(2,-1)" /> gets mirrored first and then lands right on the second line. Both end at <InlineMath math="(-x,-y)" />.
+
+**True**. In the fourth composition, the first rotation is the same as before, <InlineMath math="(1-y,\ x-1)" />. The rotation about <InlineMath math="(0,-1)" /> sends <InlineMath math="(u,v)" /> to <InlineMath math="(-(v+1),\ -1+u)" />.
+
+<BlockMath math="(x,y)\mapsto(1-y,\ x-1)\mapsto\big(-(x-1+1),\ -1+1-y\big)=(-x,-y)" />
+
+Compare it with the first composition: the angles are the same, only the second centre is different, and **that different centre is what decides it**.
+
+**True**. In the fifth composition, the translation comes first, then the <InlineMath math="180^\circ" /> rotation about <InlineMath math="(2,1)" />.
+
+<BlockMath math="(x,y)\mapsto(x+4,\ y+2)\mapsto\big(4-(x+4),\ 2-(y+2)\big)=(-x,-y)" />
+
+So the compositions that equal the <InlineMath math="180^\circ" /> rotation about <InlineMath math="O" /> are the second, third, fourth and fifth.

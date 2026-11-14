@@ -1,8 +1,39 @@
-Beide Zahlen sind negativ, und <InlineMath math="a" /> liegt weiter links auf dem Zahlenstrahl. Prüfe jede Aussage mit einer **allgemeinen Begründung** und kontrolliere sie an einem Beispiel wie <InlineMath math="a=-3" />, <InlineMath math="b=-2" />.
+# Die erste Aussage
 
-- <InlineMath math="a^2>b^2" /> ist richtig. Weil <InlineMath math="a" /> weiter von <InlineMath math="0" /> entfernt ist, gilt <InlineMath math="|a|>|b|" />, und Quadrate vergleichen die Beträge. Im Beispiel ist <InlineMath math="9>4" />.
-- <InlineMath math="\frac1a>\frac1b" /> ist richtig. Aus <InlineMath math="a<b" /> wird durch Teilen durch die positive Zahl <InlineMath math="ab" /> die Ungleichung <InlineMath math="\frac1b<\frac1a" />. Im Beispiel ist <InlineMath math="-\frac13>-\frac12" />.
-- <InlineMath math="a-b>0" /> ist falsch, denn aus <InlineMath math="a<b" /> folgt <InlineMath math="a-b<0" />. Im Beispiel ist <InlineMath math="-3-(-2)=-1" />.
-- <InlineMath math="ab<b^2" /> ist falsch. Es gilt <InlineMath math="ab-b^2=b(a-b)" />, und das ist ein Produkt aus zwei negativen Zahlen, also positiv. Im Beispiel ist <InlineMath math="6>4" />.
+Du kannst <InlineMath math="\sqrt{9-4\sqrt{5}}" /> vereinfachen, wenn <InlineMath math="9-4\sqrt{5}" /> das Quadrat eines Ausdrucks wie <InlineMath math="p-q" /> ist. Probier <InlineMath math="p=\sqrt{5}" /> und <InlineMath math="q=2" />:
 
-Richtig sind also die Aussagen über <InlineMath math="a^2" /> und über die Kehrwerte.
+<BlockMath math="\left(\sqrt{5}-2\right)^2=5-4\sqrt{5}+4=9-4\sqrt{5}" />
+
+Vorsicht: Auch <InlineMath math="\left(2-\sqrt{5}\right)^2" /> ergibt <InlineMath math="9-4\sqrt{5}" />. Das Wurzelzeichen liefert immer ein **nicht negatives** Ergebnis, also nimmst du den positiven Ausdruck. Weil <InlineMath math="\sqrt{5}\approx2{,}24" /> größer als <InlineMath math="2" /> ist, ist <InlineMath math="\sqrt{5}-2" /> der positive.
+
+<BlockMath math="\sqrt{9-4\sqrt{5}}+\sqrt{5}=\left(\sqrt{5}-2\right)+\sqrt{5}=2\sqrt{5}-2" />
+
+**Falsch**. Das Ergebnis ist <InlineMath math="2\sqrt{5}-2" />, und <InlineMath math="2\sqrt{5}" /> ist irrational, also ist das Ergebnis irrational. Wenn du <InlineMath math="2-\sqrt{5}" /> nimmst, das in Wahrheit negativ ist, erhältst du <InlineMath math="2" /> und hältst die Aussage für richtig.
+
+# Die zweite Aussage
+
+Die Regel für die Potenz einer Potenz liefert <InlineMath math="\left(2^m\right)^n=2^{mn}" />. Rechts steht <InlineMath math="2^{\left(m^n\right)}" />, also <InlineMath math="2" /> hoch die Zahl <InlineMath math="m^n" />. Zwei Potenzen von <InlineMath math="2" /> sind nur gleich, wenn ihre Exponenten gleich sind. Die Bedingung lautet also:
+
+<BlockMath math="\begin{aligned}
+mn&=m^n \\
+n&=m^{n-1}
+\end{aligned}" />
+
+Prüfe jetzt jeden Wert von <InlineMath math="n" />. Für <InlineMath math="n=2" /> heißt die Bedingung <InlineMath math="2=m" />, also passt das Paar <InlineMath math="(2,2)" />. Probe: <InlineMath math="\left(2^2\right)^2=16" /> und <InlineMath math="2^{\left(2^2\right)}=2^4=16" />.
+
+Für <InlineMath math="n\ge3" /> ist die rechte Seite bei <InlineMath math="m=2" /> am kleinsten, nämlich <InlineMath math="2^{n-1}" />. Aber <InlineMath math="2^{n-1}" /> ist schon größer als <InlineMath math="n" />: <InlineMath math="2^2=4>3" />, <InlineMath math="2^3=8>4" />, und jedes Mal, wenn <InlineMath math="n" /> um eins wächst, wächst die linke Seite nur um <InlineMath math="1" />, während sich <InlineMath math="2^{n-1}" /> verdoppelt. Für <InlineMath math="n\ge3" /> gibt es also **kein weiteres Paar**.
+
+**Richtig**. Nur <InlineMath math="(m,n)=(2,2)" /> erfüllt die Gleichung. Die Annahme, die beiden Ausdrücke seien nie gleich oder für viele Paare gleich, ist in beiden Fällen falsch.
+
+# Die dritte Aussage
+
+Vereinfache zuerst den Inhalt der Klammer. Es gilt <InlineMath math="\sqrt{12}=\sqrt{4\cdot3}=2\sqrt{3}" />, also lässt sich der Inhalt als eine einzige Potenz von <InlineMath math="3" /> schreiben:
+
+<BlockMath math="\begin{aligned}
+\sqrt{3}+\sqrt{12}&=\sqrt{3}+2\sqrt{3}=3\sqrt{3}=3^{\frac{3}{2}} \\
+\left(3^{\frac{3}{2}}\right)^{\frac{2}{3}}&=3^{\frac{3}{2}\cdot\frac{2}{3}}=3^1=3
+\end{aligned}" />
+
+**Richtig**. Das Ergebnis ist <InlineMath math="3" />, eine rationale Zahl. Die Falle ist, **den Exponenten auf jeden Summanden zu verteilen**, als ob <InlineMath math="(a+b)^{\frac{2}{3}}=a^{\frac{2}{3}}+b^{\frac{2}{3}}" /> wäre. So erhältst du <InlineMath math="\sqrt[3]{3}+\sqrt[3]{12}" />, das irrational ist, aber die Potenzgesetze gelten nicht für Summen.
+
+Also ist die erste Aussage falsch, die zweite richtig und die dritte richtig.

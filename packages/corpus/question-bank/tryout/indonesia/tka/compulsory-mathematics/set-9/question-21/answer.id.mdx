@@ -1,16 +1,40 @@
-Ada <InlineMath math="25" /> data, banyak yang ganjil, jadi **median adalah data ke-<InlineMath math="13" />** setelah diurutkan. Urutkan dari <InlineMath math="0" /> buku dan jumlahkan banyak siswa secara kumulatif.
+Soal ini menanyakan berapa siswa yang saudara kandungnya lebih banyak daripada rata-rata **seluruh** siswa. Masalahnya, rata-rata <InlineMath math="3{,}2" /> di tabel bukan rata-rata seluruh siswa. Itu **rata-rata siswa yang bukan anak tunggal saja**. Jadi kamu perlu tiga langkah: cari <InlineMath math="x" />, hitung rata-rata seluruh siswa, lalu hitung siswa di atasnya.
 
-| Banyak buku | Banyak siswa | Kumulatif |
-| --- | --- | --- |
-| <InlineMath math="0" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
-| <InlineMath math="1" /> | <InlineMath math="5" /> | <InlineMath math="7" /> |
-| <InlineMath math="2" /> | <InlineMath math="8" /> | <InlineMath math="15" /> |
+# Frekuensi yang belum tercatat
 
-Data ke-<InlineMath math="8" /> sampai ke-<InlineMath math="15" /> bernilai <InlineMath math="2" />, jadi data ke-<InlineMath math="13" /> juga <InlineMath math="2" />.
+Siswa yang bukan anak tunggal adalah semua baris kecuali baris <InlineMath math="0" /> saudara. Banyaknya <InlineMath math="6+4+11+x+9=30+x" />. Jumlah saudara kandung mereka adalah **jumlah dari banyak saudara dikali banyak siswa**:
 
-Jadi, median banyak buku yang dibaca adalah <InlineMath math="2" />.
+<BlockMath math="\begin{aligned}
+1\cdot6+2\cdot4+3\cdot11+4x+5\cdot9&=92+4x \\
+\frac{92+4x}{30+x}&=3{,}2 \\
+92+4x&=96+3{,}2x \\
+0{,}8x&=4 \\
+x&=5
+\end{aligned}" />
 
-- <InlineMath math="2{,}24" /> adalah rata-ratanya, <InlineMath math="\frac{56}{25}" />.
-- <InlineMath math="2{,}5" /> adalah nilai tengah antara <InlineMath math="0" /> dan <InlineMath math="5" /> buku, tanpa memperhatikan banyak siswa.
-- <InlineMath math="4" /> adalah median dari banyak siswa per kategori, bukan median banyak buku.
-- <InlineMath math="8" /> adalah banyak siswa pada kategori terbanyak, bukan banyak buku.
+# Rata-rata seluruh siswa
+
+Sekarang anak tunggal ikut dihitung. Mereka menambah <InlineMath math="5" /> siswa tetapi tidak menambah jumlah saudara, karena saudara mereka <InlineMath math="0" />:
+
+<BlockMath math="\begin{aligned}
+n&=5+6+4+11+5+9=40 \\
+\text{jumlah saudara}&=92+4\cdot5=112 \\
+\bar x&=\frac{112}{40}=2{,}8
+\end{aligned}" />
+
+Rata-rata seluruh siswa <InlineMath math="2{,}8" />, **lebih kecil daripada <InlineMath math="3{,}2" />** karena anak tunggal menarik rata-rata ke bawah.
+
+# Siswa di atas rata-rata
+
+Banyak saudara selalu bilangan bulat, jadi "lebih dari <InlineMath math="2{,}8" />" berarti **paling sedikit <InlineMath math="3" /> saudara**:
+
+<BlockMath math="11+5+9=25\text{ siswa}" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="14" /> siswa memakai <InlineMath math="3{,}2" /> sebagai batas, sehingga hanya menghitung siswa dengan <InlineMath math="4" /> dan <InlineMath math="5" /> saudara. Itu **rata-rata kelompok yang salah**.
+- <InlineMath math="20" /> siswa lupa memasukkan <InlineMath math="x=5" /> siswa yang mempunyai <InlineMath math="4" /> saudara.
+- <InlineMath math="29" /> siswa memakai rata-rata biasa <InlineMath math="\frac{0+3{,}2}{2}=1{,}6" />, seolah-olah kedua kelompok sama besar. Batasnya jadi <InlineMath math="2" /> saudara.
+- <InlineMath math="34" /> siswa menganggap <InlineMath math="3{,}2" /> rata-rata seluruh siswa. Persamaannya jadi <InlineMath math="\frac{92+4x}{35+x}=3{,}2" />, sehingga <InlineMath math="x=25" />, lalu menghitung siswa dengan lebih dari <InlineMath math="3{,}2" /> saudara: <InlineMath math="25+9=34" />.
+
+Jadi, ada <InlineMath math="25" /> siswa yang banyak saudara kandungnya lebih dari rata-rata seluruh siswa.

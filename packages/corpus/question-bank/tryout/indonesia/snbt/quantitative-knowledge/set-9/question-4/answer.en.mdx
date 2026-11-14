@@ -1,21 +1,46 @@
-This function has two conditions. The number under the root **must not be negative**, and the denominator **must not be zero**.
+The number <InlineMath math="N" /> has dozens of digits, so you can't multiply it out by hand. The plan: expand the square, write each part as a string of digits, then combine the parts while watching **whether any borrowing or carrying happens** between digits.
 
-# The root condition
+# Expanding the square
 
-<BlockMath math="x^2-5x+6=(x-2)(x-3)\ge0" />
+Use <InlineMath math="(a-b)^2=a^2-2ab+b^2" /> with <InlineMath math="a=10^{20}" /> and <InlineMath math="b=9" />. **The middle term <InlineMath math="-2ab" /> can't disappear**, because the square of a difference isn't the difference of the squares.
 
-A product of two factors is non-negative **outside its two zeros or exactly at them**, so <InlineMath math="x\le2" /> or <InlineMath math="x\ge3" />. Numbers between 2 and 3 make the radicand negative.
+<BlockMath math="\begin{aligned}
+N&=\left(10^{20}\right)^2-2\cdot9\cdot10^{20}+9^2\\
+&=10^{40}-18\cdot10^{20}+81
+\end{aligned}" />
 
-# The denominator and the domain
+# Writing the first two terms
 
-The denominator is zero at <InlineMath math="x=4" />, so that value is removed. The domain is **<InlineMath math="x\le2" /> or <InlineMath math="x\ge3" />, with <InlineMath math="x\ne4" />**.
+Factor <InlineMath math="10^{20}" /> out of the first two terms: <InlineMath math="10^{40}-18\cdot10^{20}=10^{20}\left(10^{20}-18\right)" />. The number <InlineMath math="10^{20}" /> is a <InlineMath math="1" /> followed by <InlineMath math="20" /> zeros. Subtract <InlineMath math="18" /> and you get a <InlineMath math="20" />-digit number: **<InlineMath math="18" /> nines, then an eight and a two**. A small example is <InlineMath math="10^4-18=9982" />, two nines and then an eight and a two.
 
-| Value | Radicand | Denominator | In the domain? |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="x=3" /> | <InlineMath math="0" /> | <InlineMath math="-1" /> | yes |
-| <InlineMath math="x=2.5" /> | <InlineMath math="-0.25" /> | <InlineMath math="-1.5" /> | no |
-| <InlineMath math="x=4" /> | <InlineMath math="2" /> | <InlineMath math="0" /> | no |
+Multiplying by <InlineMath math="10^{20}" /> just adds <InlineMath math="20" /> zeros at the end. So <InlineMath math="10^{40}-18\cdot10^{20}" /> is <InlineMath math="18" /> nines, an eight, a two, and then <InlineMath math="20" /> zeros.
 
-For every <InlineMath math="x<0" />, both factors <InlineMath math="x-2" /> and <InlineMath math="x-3" /> are negative, so their product is positive, and the denominator is not zero. The fourth statement is true.
+# Adding the last term
 
-So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.
+The last two digits of that number are zeros, so adding <InlineMath math="81" /> just turns those two zeros into an eight and a one. **Nothing carries** into any other digit. The result is <InlineMath math="18" /> nines, an eight and a two, <InlineMath math="18" /> zeros, then an eight and a one.
+
+Check the pattern with a small number of the same shape.
+
+<BlockMath math="\left(10^{3}-9\right)^2=991^2=982081" />
+
+The pattern fits: one nine, an eight and a two, one zero, then an eight and a one.
+
+# Adding the digits
+
+**Zeros add nothing**, so you only need the nonzero digits.
+
+<BlockMath math="\begin{aligned}
+18\cdot9+8+2+8+1&=162+19\\
+&=181
+\end{aligned}" />
+
+A quick check: a number and its digit sum leave the same remainder when divided by <InlineMath math="9" />. Since <InlineMath math="10^{20}" /> leaves remainder <InlineMath math="1" />, the number <InlineMath math="N" /> leaves <InlineMath math="(1-0)^2=1" />, and <InlineMath math="181" /> leaves <InlineMath math="1" /> too. All five options pass this check, so it can't replace the work above.
+
+# The tempting wrong options
+
+- <InlineMath math="172" /> **forgets to add the final <InlineMath math="81" />**, so it only counts <InlineMath math="162+8+2" />.
+- <InlineMath math="190" /> thinks <InlineMath math="10^{20}-18" /> has <InlineMath math="19" /> nines, but its last two places hold the eight and the two.
+- <InlineMath math="343" /> has a sign error and uses <InlineMath math="10^{40}-18\cdot10^{20}-81" />. That subtraction borrows from the two, which creates <InlineMath math="18" /> new nines and inflates the sum.
+- <InlineMath math="352" /> uses <InlineMath math="(a-b)^2=a^2-b^2" />, that is <InlineMath math="10^{40}-81" />, which is <InlineMath math="38" /> nines followed by a one and a nine.
+
+So the sum of all the digits of <InlineMath math="N" /> is <InlineMath math="181" />.

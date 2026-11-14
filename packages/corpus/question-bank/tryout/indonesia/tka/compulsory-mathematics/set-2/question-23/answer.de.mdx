@@ -1,10 +1,37 @@
-Nur ein einziger Wert ändert sich, von <InlineMath math="36" /> auf <InlineMath math="30" />. Prüfe, wie **jede Kennzahl auf diese Änderung reagiert**. Die korrigierten Daten sind der Größe nach:
+Alle drei Aussagen betreffen Mittelwerte und Mediane, die Tabelle nennt aber nur fünf Werte pro Klasse. Eine Aussage ist **nur dann richtig, wenn sie für jeden Datensatz gilt, der zur Tabelle passt**. Ein passender Datensatz, der die Aussage verletzt, genügt, um sie zu widerlegen.
 
-<BlockMath math="30,\ 30,\ 31,\ 31,\ 32,\ 32,\ 32,\ 32,\ 33,\ 33,\ 34,\ 34" />
+# Wo die Quartile in den sortierten Daten liegen
 
-- **Mittelwert**: Die Summe sinkt um <InlineMath math="6" />, also sinkt der Mittelwert um <InlineMath math="\frac{6}{12}=0{,}5" /> auf <InlineMath math="32^\circ\text{C}" />. Die Aussage ist richtig.
-- **Median**: Der <InlineMath math="6" />. und <InlineMath math="7" />. Wert sind weiterhin <InlineMath math="32" /> und <InlineMath math="32" />, der Median bleibt <InlineMath math="32^\circ\text{C}" />. Die Aussage ist falsch.
-- **Spannweite**: Der größte Wert ist jetzt <InlineMath math="34" />, der kleinste <InlineMath math="30" />, also <InlineMath math="34-30=4^\circ\text{C}" />. Die Aussage ist richtig.
-- **Modalwert**: <InlineMath math="32" /> kommt weiterhin viermal vor, <InlineMath math="30" /> nur zweimal. Der Modalwert bleibt <InlineMath math="32^\circ\text{C}" />. Die Aussage ist falsch.
+Sortiere die Noten von Klasse A als <InlineMath math="a_1\le\dots\le a_{31}" /> und die von Klasse B als <InlineMath math="b_1\le\dots\le b_{27}" />. Der Median von Klasse A ist **der <InlineMath math="16" />. Wert**. Das untere Quartil ist die Mitte der ersten <InlineMath math="15" /> Werte, also der <InlineMath math="8" />., und das obere Quartil der <InlineMath math="24" />. Wert. Genauso nutzt Klasse B den <InlineMath math="7" />., <InlineMath math="14" />. und <InlineMath math="21" />. Wert.
 
-Richtig sind also die Aussagen über den Mittelwert und über die Spannweite.
+<BlockMath math="\begin{aligned}
+\text{Klasse A}&:\ a_1=40,\quad a_8=56,\quad a_{16}=70,\quad a_{24}=82,\quad a_{31}=98 \\
+\text{Klasse B}&:\ b_1=50,\quad b_7=62,\quad b_{14}=68,\quad b_{21}=76,\quad b_{27}=92
+\end{aligned}" />
+
+# Kleinster und größter möglicher Mittelwert
+
+Ein Wert zwischen zwei bekannten Positionen kann alles zwischen diesen beiden bekannten Werten sein, auch gleich einem von ihnen. **Die kleinste Summe** entsteht also, wenn jeder unbekannte Wert gleich dem bekannten Wert direkt darunter ist, die größte, wenn er gleich dem bekannten Wert direkt darüber ist.
+
+<BlockMath math="\begin{aligned}
+\text{kleinste A}&=7\cdot40+8\cdot56+8\cdot70+7\cdot82+98=1{.}960,\quad \bar a=\tfrac{1{.}960}{31}\approx63{,}23 \\
+\text{größte B}&=50+6\cdot62+7\cdot68+7\cdot76+6\cdot92=1{.}982,\quad \bar b=\tfrac{1{.}982}{27}\approx73{,}41
+\end{aligned}" />
+
+In den kleinsten A-Daten sind zum Beispiel <InlineMath math="a_1" /> bis <InlineMath math="a_7" /> gleich <InlineMath math="40" /> und <InlineMath math="a_8" /> bis <InlineMath math="a_{15}" /> gleich <InlineMath math="56" />. Das ergibt weiterhin <InlineMath math="Q_1=a_8=56" />, den Median <InlineMath math="a_{16}=70" /> und so weiter, passt also zur Tabelle.
+
+# Jede Aussage prüfen
+
+**Falsch**. Erste Aussage: Klasse A kann die kleinsten A-Daten mit einem Mittelwert von etwa <InlineMath math="63{,}23" /> haben, während Klasse B die größten B-Daten mit etwa <InlineMath math="73{,}41" /> hat. Beides passt zur Tabelle, und dann ist der Mittelwert von A **kleiner**. Ein höherer Median und höhere Quartile garantieren keinen höheren Mittelwert.
+
+**Falsch**. Zweite Aussage: Mit dem neuen Schüler hat Klasse B <InlineMath math="28" /> Schüler, der Median ist also der Mittelwert aus dem <InlineMath math="14" />. und <InlineMath math="15" />. Wert. Die <InlineMath math="100" /> kommt ans obere Ende, also bleibt der <InlineMath math="14" />. Wert <InlineMath math="b_{14}=68" />, und der <InlineMath math="15" />. ist <InlineMath math="b_{15}" />, der alles von <InlineMath math="68" /> bis <InlineMath math="76" /> sein kann.
+
+<BlockMath math="\text{falls } b_{15}=76:\quad \text{neuer Median}=\frac{68+76}{2}=72\ne68" />
+
+Der neue Median bleibt nur dann <InlineMath math="68" />, wenn <InlineMath math="b_{15}=68" /> ist, und das ist nicht sicher.
+
+**Richtig**. Dritte Aussage: Jedes <InlineMath math="a_i" /> ist mindestens so groß wie der Wert in den kleinsten A-Daten, denn dieser Wert ist der bekannte Wert an derselben oder einer früheren Position. Die Summe von Klasse A ist also immer mindestens <InlineMath math="1{.}960" />.
+
+<BlockMath math="\bar a\ge\frac{1{.}960}{31}\approx63{,}23>63" />
+
+Die erste Aussage ist also falsch, die zweite falsch und die dritte richtig.

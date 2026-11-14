@@ -1,22 +1,38 @@
-Der Kreis hat kein konstantes Glied, also liegt der Punkt <InlineMath math="(0,0)" /> auf ihm. Die Gerade <InlineMath math="y=kx" /> geht ebenfalls immer durch den Ursprung, also **muss die Gerade den Kreis genau im Ursprung berühren**.
+Der Umfang ist nicht angegeben, aber das heißt noch nicht, dass Angaben fehlen. Beide Flächeninhalte sind proportional zum Quadrat des Umfangs, deshalb **hängt das Verhältnis der beiden Flächen nicht vom Umfang ab**. Der Plan: Drücke beide Flächen durch den Umfang <InlineMath math="K" /> aus, berechne das Verhältnis und vergleiche es mit sicheren Abschätzungen mit <InlineMath math="90\%" />.
 
-# Gerade in den Kreis einsetzen
+# Beide Flächen durch den Umfang ausdrücken
 
-Ersetze <InlineMath math="y" /> durch <InlineMath math="kx" />.
+Ein regelmäßiges Sechseck mit dem Umfang <InlineMath math="K" /> hat die Seite <InlineMath math="\tfrac{K}{6}" />. Es besteht aus **sechs gleichseitigen Dreiecken** mit derselben Seite. Ein Kreis mit dem Umfang <InlineMath math="K" /> hat den Radius <InlineMath math="r=\tfrac{K}{2\pi}" />.
 
 <BlockMath math="\begin{aligned}
-x^2+k^2x^2-6x+8kx&=0\\
-x\left[(1+k^2)x-(6-8k)\right]&=0
+A_{\text{Sechseck}} &= 6\cdot\frac{\sqrt3}{4}\left(\frac{K}{6}\right)^2=\frac{\sqrt3\,K^2}{24} \\
+A_{\text{Kreis}} &= \pi\left(\frac{K}{2\pi}\right)^2=\frac{K^2}{4\pi}
 \end{aligned}" />
 
-Die Lösung <InlineMath math="x=0" /> ist der Ursprung. Die zweite Lösung ist <InlineMath math="x=\dfrac{6-8k}{1+k^2}" />. Die Gerade hat nur dann einen einzigen gemeinsamen Punkt mit dem Kreis, wenn **auch die zweite Lösung null ist**.
+# Das Verhältnis vergleichen
 
-<BlockMath math="6-8k=0\quad\Longrightarrow\quad k=\frac34" />
+Teile die Fläche des Sechsecks durch die Fläche des Kreises. Der Faktor <InlineMath math="K^2" /> kürzt sich weg, also ist **das Ergebnis für jeden Umfang gleich**.
 
-# Kontrolle mit dem Radius
+<BlockMath math="\begin{aligned}
+\frac{A_{\text{Sechseck}}}{A_{\text{Kreis}}} &= \frac{\sqrt3\,K^2}{24}\cdot\frac{4\pi}{K^2}=\frac{\pi\sqrt3}{6}
+\end{aligned}" />
 
-Der Mittelpunkt des Kreises ist <InlineMath math="(3,-4)" />, also hat der Radius zum Ursprung die Steigung <InlineMath math="-\tfrac43" />. Eine Tangente steht **senkrecht auf dem Radius**, also ist ihre Steigung <InlineMath math="\tfrac34" />, denn <InlineMath math="-\tfrac43\cdot\tfrac34=-1" />.
+Also gilt <InlineMath math="P>Q" /> genau dann, wenn <InlineMath math="\tfrac{\pi\sqrt3}{6}>\tfrac{9}{10}" /> ist, das heißt <InlineMath math="\pi\sqrt3>\tfrac{27}{5}=5{,}4" />.
 
-Der Wert <InlineMath math="-\tfrac43" /> ist die Steigung dieses Radius selbst, und eine Gerade durch den Mittelpunkt schneidet den Kreis in zwei Punkten. Der Wert <InlineMath math="-\tfrac34" /> entsteht durch einen Vorzeichenfehler beim Glied <InlineMath math="8kx" />. Der Wert <InlineMath math="\tfrac43" /> kehrt die Steigung um, ohne das Vorzeichen zu wechseln. Die Gerade <InlineMath math="y=0" /> schneidet den Kreis in <InlineMath math="(0,0)" /> und <InlineMath math="(6,0)" />.
+# Mit sicheren Abschätzungen prüfen
 
-Also ist <InlineMath math="k" /> gleich **<InlineMath math="\tfrac34" />**.
+Der Abstand ist klein, also nimmst du untere Schranken, die sicher stimmen: <InlineMath math="\pi>3{,}14" /> und <InlineMath math="\sqrt3>1{,}73" />, weil <InlineMath math="1{,}73^2=2{,}9929<3" /> ist. **Eine untere Schranke, die schon über <InlineMath math="5{,}4" /> liegt, ist Beweis genug**.
+
+<BlockMath math="\pi\sqrt3>3{,}14\times1{,}73=5{,}4322>5{,}4" />
+
+Die Fläche des Sechsecks ist also größer als <InlineMath math="90\%" /> der Kreisfläche, und damit gilt <InlineMath math="P>Q" />. Prüfe auch die andere Seite: <InlineMath math="\pi\sqrt3<6" />, weil <InlineMath math="3\pi^2<36" /> ist, also <InlineMath math="\pi^2<12" />. Das Sechseck bleibt also kleiner als der Kreis, aber nur knapp, mit etwa <InlineMath math="91\%" /> seiner Fläche.
+
+# Warum die anderen Antworten nicht passen
+
+Die falschen Antworten entstehen aus **einer Annahme ohne Rechnung** oder aus einer zu groben Abschätzung.
+
+- <InlineMath math="Q>P" /> entsteht, wenn du dir merkst, dass der Kreis immer die größere Fläche hat, aber vergisst, dass <InlineMath math="Q" /> nur <InlineMath math="90\%" /> davon ist. Dieselbe Antwort entsteht mit den groben Werten <InlineMath math="\pi\approx3" /> und <InlineMath math="\sqrt3\approx1{,}7" />, denn ihr Produkt <InlineMath math="5{,}1" /> liegt unter <InlineMath math="5{,}4" />.
+- <InlineMath math="P=Q" /> entsteht aus der Annahme, gleicher Umfang bedeute fast gleiche Fläche, ohne das Verhältnis auszurechnen.
+- Die Antwort, die Angaben reichten nicht, entsteht, wenn du glaubst, der Umfang müsse bekannt sein, obwohl sich <InlineMath math="K^2" /> wegkürzt.
+
+Die richtige Beziehung ist also <InlineMath math="P>Q" />.

@@ -1,25 +1,54 @@
-By **the remainder theorem**, the remainder of <InlineMath math="p(x)" /> divided by <InlineMath math="x-c" /> is <InlineMath math="p(c)" />. So the two known remainders give two equations for <InlineMath math="a" /> and <InlineMath math="b" />.
+You're looking for every integer that satisfies the inequality, and then their sum. Three things need care: **the domain comes from the original form**, **the sign flips because the base is less than one**, and the two conditions get combined at the end.
 
-# Finding a and b
+# Finding the domain
 
-<BlockMath math="\begin{aligned}
-p(1)&=1-2+a+b=4 &&\Rightarrow\quad a+b=5\\
-p(-1)&=-1-2-a+b=-8 &&\Rightarrow\quad -a+b=-5
-\end{aligned}" />
-
-Adding the two equations gives <InlineMath math="2b=0" />, so <InlineMath math="b=0" /> and <InlineMath math="a=5" />. The polynomial is <InlineMath math="p(x)=x^3-2x^2+5x" />. The first statement is **true**. Because <InlineMath math="b=0" />, every term contains <InlineMath math="x" />, so <InlineMath math="x" /> is a factor. The third statement is true.
-
-# A value at another point and a linear remainder
-
-<BlockMath math="p(2)=8-8+10=10" />
-
-The value is 10, not 12, so the second statement is false. The divisor <InlineMath math="x^2-1" /> has degree two, so **the remainder has the form <InlineMath math="rx+s" />**. Substitute <InlineMath math="x=1" /> and <InlineMath math="x=-1" />, which make the divisor zero.
+A logarithm is only defined for positive inputs. This inequality has two logarithms, so both inputs must be positive.
 
 <BlockMath math="\begin{aligned}
-r+s&=p(1)=4\\
--r+s&=p(-1)=-8
+x-1>0 &\quad\text{and}\quad x-3>0 \\
+x>1 &\quad\text{and}\quad x>3
 \end{aligned}" />
 
-This gives <InlineMath math="s=-2" /> and <InlineMath math="r=6" />, so the remainder is <InlineMath math="6x-2" />, not <InlineMath math="6x+2" />. The fourth statement is false.
+Both must hold at once, so the condition is <InlineMath math="x>3" />. It **has to come from the original form**, before the two logarithms are merged. After merging, the input becomes <InlineMath math="(x-1)(x-3)" />, which is also positive for <InlineMath math="x<1" />, even though both original logarithms are undefined there.
 
-So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.
+# Merging the logarithms
+
+A sum of two logarithms with the same base is **the logarithm of the product**, not of the sum. Write the right side as a base <InlineMath math="\tfrac12" /> logarithm too, since <InlineMath math="\left(\tfrac12\right)^{-3}=2^3=8" />.
+
+<BlockMath math="\log_{\frac{1}{2}}\big((x-1)(x-3)\big)\ge\log_{\frac{1}{2}}8" />
+
+# Flipping the sign because of the base
+
+With base <InlineMath math="\tfrac12" />, a larger input gives a smaller logarithm. For example, <InlineMath math="\log_{\frac12}2=-1" /> but <InlineMath math="\log_{\frac12}8=-3" />. So **when you drop the logarithms, the inequality sign flips**.
+
+<BlockMath math="\begin{aligned}
+(x-1)(x-3) &\le 8 \\
+x^2-4x+3 &\le 8 \\
+x^2-4x-5 &\le 0 \\
+(x-5)(x+1) &\le 0 \\
+-1\le x &\le 5
+\end{aligned}" />
+
+# Combining both conditions
+
+The overlap of <InlineMath math="x>3" /> and <InlineMath math="-1\le x\le5" /> is <InlineMath math="3<x\le5" />. **The only integers are <InlineMath math="4" /> and <InlineMath math="5" />**, so the sum is <InlineMath math="4+5=9" />.
+
+Check against the original inequality. At <InlineMath math="x=5" /> the value sits exactly on the boundary, and at <InlineMath math="x=6" /> it has already gone past it.
+
+<BlockMath math="\begin{aligned}
+x=5:\quad \log_{\frac{1}{2}}4+\log_{\frac{1}{2}}2 &= -2+(-1)=-3 \\
+x=6:\quad \log_{\frac{1}{2}}5+\log_{\frac{1}{2}}3 &= \log_{\frac{1}{2}}15<\log_{\frac{1}{2}}8=-3
+\end{aligned}" />
+
+The value <InlineMath math="-3" /> satisfies greater than or equal to, while <InlineMath math="x=6" /> doesn't. At <InlineMath math="x=4" /> the sum is <InlineMath math="\log_{\frac12}3" />, which is more than <InlineMath math="\log_{\frac12}8=-3" />.
+
+# Why the other options fail
+
+Each wrong option **breaks one of the three rules above**.
+
+- <InlineMath math="14" /> is the sum of the integers from <InlineMath math="-1" /> to <InlineMath math="5" />, which is what you get if you forget the domain. You get the same sum if you only use <InlineMath math="x>1" />.
+- <InlineMath math="8" /> is <InlineMath math="-1+0+4+5" />, which comes from taking the domain from <InlineMath math="(x-1)(x-3)>0" />. But at <InlineMath math="x=0" /> the term <InlineMath math="\log_{\frac12}(-1)" /> isn't defined.
+- <InlineMath math="4" /> comes from reading greater than or equal to as greater than, which throws out <InlineMath math="x=5" />.
+- <InlineMath math="15" /> comes from merging the two logarithms into <InlineMath math="\log_{\frac12}\big((x-1)+(x-3)\big)" />. Then <InlineMath math="2x-4\le8" /> and <InlineMath math="x>3" /> give <InlineMath math="4+5+6=15" />, but at <InlineMath math="x=6" /> the product <InlineMath math="5\cdot3=15" /> is more than <InlineMath math="8" />.
+
+So the sum of all integers that satisfy the inequality is <InlineMath math="9" />.

@@ -1,21 +1,39 @@
-Die Lösungen <InlineMath math="x=\tfrac{-1\pm\sqrt5}{2}" /> zu berechnen und hoch vier zu nehmen dauert lange. Schneller ist es, **im Term nach <InlineMath math="x^2+x" /> zu suchen**, denn die Gleichung liefert <InlineMath math="x^2+x=1" />.
+Du musst beide Größen berechnen. <InlineMath math="Q" /> kommt aus dem Dreieck <InlineMath math="ABC" />, das vollständig gegeben ist. <InlineMath math="P" /> kommt aus der Bedingung gleicher Flächen, und genau dort liegt die Falle: **Zwei verschiedene gleichschenklige Dreiecke mit Schenkeln von <InlineMath math="17\text{ cm}" /> haben diesen Flächeninhalt**, und die Bedingung "nicht kongruent" wählt eines davon aus.
 
-# Den Term faktorisieren
+# Höhe und Fläche des Dreiecks ABC
+
+In einem gleichschenkligen Dreieck trifft die Höhe von der Spitze <InlineMath math="A" /> genau die Mitte der Basis <InlineMath math="BC" />. Diese Höhe, die halbe Basis und der Schenkel <InlineMath math="AB" /> bilden also **ein rechtwinkliges Dreieck**, und der Satz des Pythagoras gilt.
 
 <BlockMath math="\begin{aligned}
-x^4+2x^3+x^2&=x^2\left(x^2+2x+1\right)\\
-&=x^2(x+1)^2\\
-&=\left(x^2+x\right)^2
+h_{ABC}&=\sqrt{17^2-8^2}=\sqrt{289-64}=\sqrt{225}=15\\
+A_{ABC}&=\tfrac{1}{2}\cdot16\cdot15=120
 \end{aligned}" />
 
-# Einsetzen
+Also ist <InlineMath math="Q=2\cdot15=30" />.
 
-Aus der Gleichung folgt **<InlineMath math="x^2+x=1" />**.
+# Zwei mögliche Dreiecke DEF
 
-<BlockMath math="\left(x^2+x\right)^2=1^2=1" />
+Sei die halbe Basis <InlineMath math="EF" /> gleich <InlineMath math="u" /> und die Höhe von <InlineMath math="D" /> gleich <InlineMath math="h" />. Pythagoras liefert <InlineMath math="u^2+h^2=17^2=289" />. Die Fläche ist <InlineMath math="\frac{1}{2}\cdot2u\cdot h=uh" />, also <InlineMath math="uh=120" />. **Addiere und subtrahiere <InlineMath math="2uh" />**, damit vollständige Quadrate entstehen.
 
-Das gilt für beide Lösungen zugleich, du musst also keine auswählen.
+<BlockMath math="\begin{aligned}
+(u+h)^2&=u^2+h^2+2uh=289+240=529\\
+(u-h)^2&=u^2+h^2-2uh=289-240=49
+\end{aligned}" />
 
-Der Wert 0 entsteht, wenn man <InlineMath math="x^2+x" /> als 0 nimmt und die Konstante <InlineMath math="-1" /> übersieht. Der Wert <InlineMath math="-1" /> vergisst, dass der Term quadriert wird.
+Da <InlineMath math="u" /> und <InlineMath math="h" /> positiv sind, gilt <InlineMath math="u+h=23" />, und sie unterscheiden sich um <InlineMath math="7" />. Es bleiben nur <InlineMath math="u=8,\ h=15" /> oder <InlineMath math="u=15,\ h=8" />, also <InlineMath math="EF=16" /> oder <InlineMath math="EF=30" />.
 
-Der Wert von <InlineMath math="x^4+2x^3+x^2" /> ist also **1**.
+# Die Bedingung nicht kongruent
+
+Bei <InlineMath math="EF=16" /> hat das Dreieck <InlineMath math="DEF" /> die Seiten <InlineMath math="17" />, <InlineMath math="17" /> und <InlineMath math="16" />, genau wie das Dreieck <InlineMath math="ABC" />. Zwei Dreiecke mit denselben drei Seiten **sind immer kongruent**, also fällt dieser Fall weg. Übrig bleibt <InlineMath math="EF=30" />, also <InlineMath math="P=30" />.
+
+Probe für dieses Dreieck: Basis <InlineMath math="30" /> und Höhe <InlineMath math="8" /> ergeben die Fläche <InlineMath math="\frac{1}{2}\cdot30\cdot8=120" />, und der Schenkel ist <InlineMath math="\sqrt{15^2+8^2}=\sqrt{289}=17" />. Beides passt.
+
+# Vergleich und die verlockenden falschen Antworten
+
+Beide Größen sind gleich, <InlineMath math="P=Q=30" />. Das ist kein Zufall: Im Dreieck <InlineMath math="DEF" /> tauschen halbe Basis und Höhe die Rollen mit denen des Dreiecks <InlineMath math="ABC" />, also **ist die Hälfte von <InlineMath math="EF" /> gleich der Höhe des Dreiecks <InlineMath math="ABC" />**.
+
+- <InlineMath math="Q>P" /> entsteht, wenn du <InlineMath math="EF=16" /> nimmst, also das Dreieck, das zu <InlineMath math="ABC" /> kongruent ist.
+- Die Antwort "Informationen reichen nicht" entsteht, wenn du beide Werte für <InlineMath math="EF" /> findest, aber die Bedingung "nicht kongruent" vergisst.
+- <InlineMath math="P>Q" /> entsteht, wenn du <InlineMath math="Q" /> mit der Höhe des Dreiecks <InlineMath math="DEF" /> berechnest, also <InlineMath math="2\cdot8=16" />, obwohl <InlineMath math="Q" /> die Höhe des Dreiecks <InlineMath math="ABC" /> verwendet.
+
+Die richtige Beziehung ist also <InlineMath math="P=Q" />, denn beide Größen betragen <InlineMath math="30\text{ cm}" />.

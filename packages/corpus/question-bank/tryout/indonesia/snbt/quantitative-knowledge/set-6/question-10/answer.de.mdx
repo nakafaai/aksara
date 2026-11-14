@@ -1,17 +1,47 @@
-Der Radius zum Berührpunkt **steht senkrecht auf der Tangente**, die Winkel <InlineMath math="OAP" /> und <InlineMath math="OBP" /> sind also rechte Winkel. Das Viereck <InlineMath math="OAPB" /> besteht aus zwei kongruenten rechtwinkligen Dreiecken.
+Das ist eine bedingte Wahrscheinlichkeit. Die Information, dass das Produkt durch <InlineMath math="4" /> teilbar ist, **verkleinert den Ergebnisraum**: Du zählst nur die Würfe, die diese Bedingung erfüllen, und schaust dann, wie viele davon eine Primzahl als Summe haben. Die beiden Würfel sind unterscheidbar, also zählen <InlineMath math="(1,4)" /> und <InlineMath math="(4,1)" /> getrennt, und alle <InlineMath math="36" /> geordneten Paare sind gleich wahrscheinlich.
 
-# Länge des Tangentenabschnitts
+# Den neuen Ergebnisraum aufstellen
 
-Im Dreieck <InlineMath math="OAP" /> ist **die Hypotenuse** <InlineMath math="OP=13" /> und eine Kathete <InlineMath math="OA=5" />.
+Ein Produkt ist durch <InlineMath math="4" /> teilbar, wenn es mindestens zwei Faktoren <InlineMath math="2" /> enthält. Die Augenzahlen <InlineMath math="2" /> und <InlineMath math="6" /> enthalten je einen Faktor <InlineMath math="2" />, die <InlineMath math="4" /> enthält zwei, und die ungeraden Augenzahlen keinen. Die Bedingung gilt also, **wenn ein Würfel eine <InlineMath math="4" /> zeigt oder beide Würfel eine <InlineMath math="2" /> oder <InlineMath math="6" /> zeigen**.
 
-<BlockMath math="PA=\sqrt{13^2-5^2}=\sqrt{144}=12" />
+| Erster Würfel | Passende Augenzahlen des zweiten Würfels | Anzahl |
+| :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="4" /> | <InlineMath math="1" /> |
+| <InlineMath math="2" /> | <InlineMath math="2,4,6" /> | <InlineMath math="3" /> |
+| <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="1" /> |
+| <InlineMath math="4" /> | <InlineMath math="1,2,3,4,5,6" /> | <InlineMath math="6" /> |
+| <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="1" /> |
+| <InlineMath math="6" /> | <InlineMath math="2,4,6" /> | <InlineMath math="3" /> |
 
-# Flächeninhalt des Vierecks
+Der neue Ergebnisraum hat <InlineMath math="1+3+1+6+1+3=15" /> Ergebnisse.
 
-Jedes Dreieck hat **die Katheten 5 und 12**, sein Flächeninhalt ist also <InlineMath math="\tfrac12\cdot5\cdot12=30" />.
+# Die Primzahlsummen finden
 
-<BlockMath math="[OAPB]=2\cdot30=60\text{ cm}^2" />
+Die Summe <InlineMath math="2" /> entsteht nur aus <InlineMath math="(1,1)" />, und dort ist das Produkt <InlineMath math="1" />, also ist sie unmöglich. Alle anderen Primzahlen sind ungerade. Zwei Augenzahlen haben genau dann eine ungerade Summe, wenn **ein Würfel gerade und der andere ungerade zeigt**. Der ungerade Würfel liefert keinen Faktor <InlineMath math="2" />, also muss der gerade Würfel beide Faktoren allein liefern, das heißt **der gerade Würfel muss eine <InlineMath math="4" /> zeigen**.
 
-Der Wert 30 zählt nur ein Dreieck. Der Wert 120 vergisst den Faktor <InlineMath math="\tfrac12" />. Der Wert 65 verwendet <InlineMath math="OP" /> als Kathete, <InlineMath math="2\cdot\tfrac12\cdot5\cdot13" />, obwohl <InlineMath math="OP" /> die Hypotenuse ist. Der Wert 130 macht denselben Fehler ohne den Faktor <InlineMath math="\tfrac12" />.
+<BlockMath math="\begin{aligned}
+4+1 &= 5\ \text{(Primzahl)} \\
+4+3 &= 7\ \text{(Primzahl)} \\
+4+5 &= 9\ \text{(keine Primzahl)}
+\end{aligned}" />
 
-Das Viereck <InlineMath math="OAPB" /> hat also den Flächeninhalt **<InlineMath math="60\text{ cm}^2" />**.
+Jedes Paar kann in zwei Reihenfolgen auftreten, die passenden Ergebnisse sind also <InlineMath math="(4,1)" />, <InlineMath math="(1,4)" />, <InlineMath math="(4,3)" /> und <InlineMath math="(3,4)" />. Das sind <InlineMath math="4" /> Ergebnisse.
+
+# Die Wahrscheinlichkeit berechnen
+
+Eine bedingte Wahrscheinlichkeit ist **die Anzahl der passenden Ergebnisse geteilt durch die Größe des neuen Ergebnisraums**.
+
+<BlockMath math="P=\frac{4}{15}" />
+
+Zur Plausibilität: Der Wert ist größer als <InlineMath math="\tfrac{4}{36}" /> ohne Bedingung, weil die Bedingung <InlineMath math="21" /> unpassende Ergebnisse streicht, während alle vier passenden Ergebnisse bleiben.
+
+# Warum die anderen Antworten nicht passen
+
+Jede falsche Antwort **verwendet den falschen Ergebnisraum** oder zählt die Reihenfolgen falsch.
+
+- <InlineMath math="\tfrac19=\tfrac{4}{36}" /> verwendet alle <InlineMath math="36" /> Ergebnisse und übergeht damit die Bedingung.
+- <InlineMath math="\tfrac{2}{15}" /> zählt nur <InlineMath math="(4,1)" /> und <InlineMath math="(4,3)" /> und vergisst die umgekehrten Reihenfolgen.
+- <InlineMath math="\tfrac29" /> zählt ungeordnete Paare, <InlineMath math="2" /> von <InlineMath math="9" />. Ungeordnete Paare sind aber nicht gleich wahrscheinlich, denn <InlineMath math="\{4,4\}" /> entsteht nur auf eine Weise.
+- <InlineMath math="\tfrac14=\tfrac{4}{16}" /> entsteht, wenn du <InlineMath math="(4,4)" /> doppelt zählst, einmal als erster und einmal als zweiter Würfel mit einer <InlineMath math="4" />.
+
+Die Wahrscheinlichkeit, dass die Augensumme eine Primzahl ist, beträgt also <InlineMath math="\tfrac{4}{15}" />.

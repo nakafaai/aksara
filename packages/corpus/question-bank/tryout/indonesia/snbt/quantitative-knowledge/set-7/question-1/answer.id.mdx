@@ -1,25 +1,60 @@
-Banyak faktor positif ditentukan oleh pangkat-pangkat pada faktorisasi prima. Jika <InlineMath math="n=p^{a}q^{b}\cdots" />, maka **banyak faktornya adalah <InlineMath math="(a+1)(b+1)\cdots" />**.
+Kamu mencari pangkat terbesar dari <InlineMath math="8" /> yang membagi <InlineMath math="P" />. Karena <InlineMath math="8=2^3" />, rencananya begini: **hitung dulu banyak faktor <InlineMath math="2" /> di dalam <InlineMath math="P" />**, lalu bagi banyak itu dengan <InlineMath math="3" /> dan ambil bagian bulatnya.
 
-# Bentuk yang memberi 10 faktor
+# Mengeluarkan satu faktor dua dari setiap suku
 
-Hasil kali <InlineMath math="(a+1)(b+1)\cdots" /> harus 10. Bilangan 10 hanya dapat ditulis sebagai <InlineMath math="10" /> atau <InlineMath math="2\times5" />, jadi ada **dua bentuk faktorisasi** yang mungkin.
-
-<BlockMath math="\begin{aligned}
-n&=p^{9}\\
-n&=p^{4}q^{1}
-\end{aligned}" />
-
-# Nilai terkecil setiap bentuk
-
-Bilangan terkecil didapat dengan memberi **pangkat terbesar kepada prima terkecil**.
+Setiap suku <InlineMath math="P" /> adalah bilangan genap, jadi **setiap suku bisa ditulis sebagai dua kali sebuah bilangan bulat**: <InlineMath math="22=2\times11" />, <InlineMath math="24=2\times12" />, dan seterusnya sampai <InlineMath math="60=2\times30" />. Banyak suku dari <InlineMath math="22" /> sampai <InlineMath math="60" /> dengan selisih <InlineMath math="2" /> adalah <InlineMath math="\frac{60-22}{2}+1=20" />.
 
 <BlockMath math="\begin{aligned}
-p^{9}&:\quad 2^{9}=512\\
-p^{4}q&:\quad 2^{4}\cdot3=48
+P&=(2\times11)(2\times12)\cdots(2\times30)\\
+&=2^{20}\times(11\times12\times\cdots\times30)\\
+&=2^{20}\times\frac{30!}{10!}
 \end{aligned}" />
 
-Pemeriksaan: faktor positif 48 adalah 1, 2, 3, 4, 6, 8, 12, 16, 24, dan 48, tepat 10 buah.
+Bentuk ini menunjukkan bahwa faktor <InlineMath math="2" /> datang dari dua sumber: <InlineMath math="20" /> faktor yang baru dikeluarkan, dan faktor <InlineMath math="2" /> yang masih tersimpan di dalam <InlineMath math="\frac{30!}{10!}" />.
 
-Bilangan 80 dan 162 juga memiliki 10 faktor, tetapi lebih besar dari 48 karena memakai prima 5 atau memberi pangkat 4 kepada prima 3. Bilangan 36 memiliki 9 faktor dan bilangan 24 memiliki 8 faktor.
+# Menghitung faktor dua di dalam faktorial
 
-Jadi, bilangan terkecil yang memiliki tepat 10 faktor positif adalah **48**.
+Tulis <InlineMath math="v_2(N)" /> untuk banyak faktor <InlineMath math="2" /> di dalam bilangan <InlineMath math="N" />. Untuk faktorial, pakai **rumus Legendre**: jumlahkan banyak kelipatan <InlineMath math="2" />, kelipatan <InlineMath math="4" />, kelipatan <InlineMath math="8" />, dan seterusnya. Rumus ini benar karena setiap kelipatan <InlineMath math="2" /> menyumbang satu faktor <InlineMath math="2" />, setiap kelipatan <InlineMath math="4" /> menyumbang satu faktor lagi, dan begitu seterusnya.
+
+<BlockMath math="\begin{aligned}
+v_2(30!)&=15+7+3+1=26\\
+v_2(10!)&=5+2+1=8\\
+v_2(P)&=20+(26-8)=38
+\end{aligned}" />
+
+Pembagian dengan <InlineMath math="10!" /> membuang <InlineMath math="8" /> faktor <InlineMath math="2" />, sebab bilangan <InlineMath math="1" /> sampai <InlineMath math="10" /> tidak ikut dikalikan di dalam <InlineMath math="11\times12\times\cdots\times30" />.
+
+# Memeriksa dengan menghitung langsung
+
+Coba hitung ulang dari suku-suku <InlineMath math="P" /> sendiri. Sebuah suku yang merupakan kelipatan <InlineMath math="2^j" /> **menyumbang satu faktor tambahan** untuk setiap tingkat <InlineMath math="2, 4, 8, \ldots, 2^j" /> yang dibaginya.
+
+| Suku yang merupakan kelipatan | Suku-sukunya | Banyak |
+| :---: | :---: | :---: |
+| <InlineMath math="2" /> | semua suku | <InlineMath math="20" /> |
+| <InlineMath math="4" /> | <InlineMath math="24, 28, \ldots, 60" /> | <InlineMath math="10" /> |
+| <InlineMath math="8" /> | <InlineMath math="24, 32, 40, 48, 56" /> | <InlineMath math="5" /> |
+| <InlineMath math="16" /> | <InlineMath math="32, 48" /> | <InlineMath math="2" /> |
+| <InlineMath math="32" /> | <InlineMath math="32" /> | <InlineMath math="1" /> |
+
+Jumlahnya <InlineMath math="20+10+5+2+1=38" />, sama dengan hasil rumus Legendre.
+
+# Mengubah ke pangkat delapan
+
+Karena <InlineMath math="8^n=2^{3n}" />, bilangan <InlineMath math="P" /> habis dibagi <InlineMath math="8^n" /> tepat ketika <InlineMath math="3n\le38" />. **Nilai <InlineMath math="n" /> harus bulat, jadi bagian pecahannya dibuang**, bukan dibulatkan ke atas.
+
+<BlockMath math="\begin{aligned}
+3n&\le38\\
+n&\le12\tfrac23\\
+n_{\text{maks}}&=12
+\end{aligned}" />
+
+Pemeriksaan: <InlineMath math="8^{12}=2^{36}" /> membagi <InlineMath math="P" /> karena <InlineMath math="36\le38" />, sedangkan <InlineMath math="8^{13}=2^{39}" /> tidak membagi <InlineMath math="P" /> karena <InlineMath math="39>38" />.
+
+# Pilihan yang keliru
+
+- <InlineMath math="6" /> muncul jika kamu **lupa faktor yang dikeluarkan dari setiap suku**, yaitu <InlineMath math="20" /> faktor <InlineMath math="2" /> yang tadi dikeluarkan, sehingga hanya memakai <InlineMath math="18" /> faktor.
+- <InlineMath math="10" /> muncul jika kamu hanya menghitung kelipatan <InlineMath math="2" /> dan kelipatan <InlineMath math="4" />, sehingga mendapat <InlineMath math="30" /> faktor.
+- <InlineMath math="15" /> muncul jika kamu lupa membagi dengan <InlineMath math="10!" />, sehingga mendapat <InlineMath math="20+26=46" /> faktor.
+- <InlineMath math="38" /> adalah pangkat terbesar dari <InlineMath math="2" />, belum diubah menjadi pangkat dari <InlineMath math="8" />.
+
+Jadi, bilangan bulat positif terbesar <InlineMath math="n" /> sehingga <InlineMath math="P" /> habis dibagi <InlineMath math="8^n" /> adalah <InlineMath math="12" />.
