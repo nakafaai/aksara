@@ -1,17 +1,16 @@
-import {
-  chmodSync,
-  mkdirSync,
-  mkdtempSync,
-  rmSync,
-  symlinkSync,
-  writeFileSync,
-} from "node:fs";
+import { chmodSync, symlinkSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { dirname, join } from "node:path";
+import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { NodeFileSystem } from "@effect/platform-node";
 import { assert, it } from "@effect/vitest";
-import { Effect, type FileSystem, Schema, type Scope } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  type FileSystem,
+  Schema,
+  type Scope,
+} from "effect";
 
 import { loggedLines } from "#nakafa-content/points/test/console";
 import {
@@ -21,6 +20,8 @@ import {
   runMain,
 } from "#nakafa-content/voice/check";
 import type { LessonVoiceCheckError } from "#nakafa-content/voice/error";
+import { corpusParts } from "#nakafa-content/voice/test/corpus";
+import { temporaryRoot } from "#nakafa-content/voice/test/root";
 
 const PASSING_REPORT_PATTERN = /passed for 3 files/u;
 const JSON_TEXT = Schema.fromJsonString(Schema.Unknown);
@@ -39,47 +40,41 @@ const checkTest = (
     timeout
   );
 
-/** Creates a temporary lesson root and removes it afterwards. */
-const temporaryRoot = (
-  entries: Record<string, string>,
-  setup: (root: string) => void = () => undefined
-): Effect.Effect<string, never, Scope.Scope> =>
-  Effect.acquireRelease(
-    Effect.sync(() => {
-      const root = mkdtempSync(join(tmpdir(), "nakafa-lesson-voice-"));
-      for (const [path, source] of Object.entries(entries)) {
-        const file = join(root, path);
-        mkdirSync(dirname(file), { recursive: true });
-        writeFileSync(file, source);
-      }
-      setup(root);
-      return root;
-    }),
-    (root) => Effect.sync(() => rmSync(root, { force: true, recursive: true }))
-  );
-
 /**
- * The corpus whose every root must pass the gate, one test per root. A root
- * gets ten minutes: the 1,560 lessons took 130 to 205 seconds under coverage
- * on the free runners, and the corpus keeps growing.
+ * The corpus whose every root must pass the gate. A root is checked in parts,
+ * the directories a number of levels below it, one test per part: the lesson
+ * root as one test took 130 to 205 seconds for 1,560 files and outgrew its
+ * timeout, while a part holds one topic or one try-out section and stays far
+ * inside it however many parts the corpus gains.
  */
 const CORPUS = join(process.cwd(), "packages/corpus");
 
-for (const [root, minimum] of [
-  ["material/lesson", 1149],
-  ["articles", 21],
-  ["pages", 18],
-  ["question-bank", 7300],
+for (const [root, depth, minimum] of [
+  ["material/lesson", 2, 1149],
+  ["articles", 0, 21],
+  ["pages", 0, 18],
+  ["question-bank", 4, 7300],
 ] as const) {
+  const parts = corpusParts(join(CORPUS, root), depth);
   checkTest(
-    `checks every current document in ${root}`,
+    `splits ${root} into parts that hold every document`,
     Effect.gen(function* () {
-      const report = yield* checkLessonRoot(join(CORPUS, root));
-      assert.ok(report.fileCount >= minimum);
-      assert.deepEqual(report.issues, []);
-    }),
-    600_000
+      const documents = yield* collectLessonFiles(join(CORPUS, root));
+      const held = yield* Effect.forEach(parts, collectLessonFiles);
+      assert.ok(documents.length >= minimum);
+      assert.strictEqual(Arr.flatten(held).length, documents.length);
+    })
   );
+  for (const part of parts) {
+    checkTest(
+      `checks every current document in ${relative(CORPUS, part)}`,
+      Effect.gen(function* () {
+        const report = yield* checkLessonRoot(part);
+        assert.deepEqual(report.issues, []);
+      }),
+      60_000
+    );
+  }
 }
 
 checkTest(
