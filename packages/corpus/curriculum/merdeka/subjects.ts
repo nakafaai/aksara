@@ -23,6 +23,10 @@ export const merdekaClass10SubjectNodes = [
         routeSlug: "biologi",
         title: "Biologi",
       },
+      ms: {
+        routeSlug: "biologi",
+        title: "Biologi",
+      },
     },
   }),
   subjectNode({
@@ -37,6 +41,10 @@ export const merdekaClass10SubjectNodes = [
         title: "Chemistry",
       },
       id: {
+        routeSlug: "kimia",
+        title: "Kimia",
+      },
+      ms: {
         routeSlug: "kimia",
         title: "Kimia",
       },
@@ -57,6 +65,10 @@ export const merdekaClass10SubjectNodes = [
         routeSlug: "matematika",
         title: "Matematika",
       },
+      ms: {
+        routeSlug: "matematik",
+        title: "Matematik",
+      },
     },
   }),
   subjectNode({
@@ -73,6 +85,10 @@ export const merdekaClass10SubjectNodes = [
       id: {
         routeSlug: "fisika",
         title: "Fisika",
+      },
+      ms: {
+        routeSlug: "fizik",
+        title: "Fizik",
       },
     },
   }),
@@ -94,6 +110,10 @@ export const merdekaClass11SubjectNodes = [
         routeSlug: "matematika",
         title: "Matematika",
       },
+      ms: {
+        routeSlug: "matematik",
+        title: "Matematik",
+      },
     },
   }),
   subjectNode({
@@ -110,6 +130,10 @@ export const merdekaClass11SubjectNodes = [
       id: {
         routeSlug: "fisika",
         title: "Fisika",
+      },
+      ms: {
+        routeSlug: "fizik",
+        title: "Fizik",
       },
     },
   }),
@@ -130,6 +154,10 @@ export const merdekaClass12SubjectNodes = [
       id: {
         routeSlug: "matematika",
         title: "Matematika",
+      },
+      ms: {
+        routeSlug: "matematik",
+        title: "Matematik",
       },
     },
   }),
