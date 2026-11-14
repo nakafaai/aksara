@@ -1,0 +1,253 @@
+
+export const metadata = {
+  title: "Korelasi Momen Hasil Darab",
+  description: "Kira pekali korelasi Pearson (r) untuk mengukur hubungan linear. Pelajari rumusnya, analisis gambar rajah serakan, dan tafsirkan nilai r daripada -1 hingga +1.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-30",
+  dateModified: "2026-09-24",
+  subject: "Statistik",
+};
+
+## Arah dan Kekuatan Hubungan Linear
+
+Korelasi momen hasil darab, yang sering dipanggil **korelasi Pearson** dan ditandakan dengan <InlineMath math="r" />, ialah ukuran statistik yang lazim bagi arah dan kekuatan **hubungan linear** antara dua pemboleh ubah kuantitatif.
+
+Nilai <InlineMath math="r" /> memberitahu kita sama ada dua pemboleh ubah itu cenderung bergerak ke arah yang sama (positif), ke arah yang bertentangan (negatif), atau langsung tiada hubungan linear.
+
+## Korelasi daripada Gambar Rajah Serakan
+
+Gambar rajah serakan menunjukkan arah dan kekuatan yang diwakili oleh <InlineMath math="r" />. Titik yang **naik dari kiri ke kanan** membayangkan korelasi positif, titik yang **turun dari kiri ke kanan** membayangkan korelasi negatif, dan kelompok titik yang tiada bentuk membayangkan tiada korelasi. Pekali korelasi menukar gambaran kasar itu kepada satu nombor.
+
+### Korelasi Positif yang Kuat
+
+<InlineMath math="r" /> yang menghampiri <InlineMath math="+1" /> bermaksud kedua-dua pemboleh ubah cenderung bergerak ke arah yang
+sama.
+
+<ScatterDiagram
+  title="Contoh Korelasi Positif yang Kuat"
+  description="Titik data berkelompok sangat rapat dan membentuk corak garis lurus yang condong ke atas."
+  xAxisLabel="Pemboleh Ubah X"
+  yAxisLabel="Pemboleh Ubah Y"
+  datasets={[
+    {
+      name: "Data",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 2 },
+        { x: 2, y: 3.1 },
+        { x: 3, y: 3.9 },
+        { x: 4, y: 5.2 },
+        { x: 5, y: 6.1 },
+        { x: 6, y: 6.8 },
+        { x: 7, y: 8.1 },
+        { x: 8, y: 9.0 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  showResiduals
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+/>
+
+Kalau titik data kamu kelihatan seperti ini (**naik dari kiri bawah ke kanan atas** dan berkelompok rapat), nilai <InlineMath math="r" /> akan hampir dengan <InlineMath math="+1" />.
+### Korelasi Positif yang Lemah
+
+<InlineMath math="r" /> yang positif tetapi hampir dengan <InlineMath math="0" /> bermaksud kedua-dua pemboleh ubah cenderung
+bergerak ke arah yang sama, tetapi tidak begitu kuat.
+
+<ScatterDiagram
+  title="Contoh Korelasi Positif yang Lemah"
+  description="Titik-titik cenderung naik, tetapi lebih jauh bertaburan dari garis lurus."
+  xAxisLabel="Pemboleh Ubah X"
+  yAxisLabel="Pemboleh Ubah Y"
+  datasets={[
+    {
+      name: "Data",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 2 },
+        { x: 2, y: 8 },
+        { x: 3, y: 3 },
+        { x: 4, y: 6 },
+        { x: 5, y: 1 },
+        { x: 6, y: 9 },
+        { x: 7, y: 4 },
+        { x: 8, y: 7 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  showResiduals
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+/>
+
+Bagi lapan titik ini, pengiraan memberikan <InlineMath math="r\approx0.279" />. Kecenderungan linear yang menaik itu **positif tetapi lemah** kerana titik-titik masih bertaburan luas di sekitarnya.
+### Korelasi Negatif yang Kuat
+
+<InlineMath math="r" /> yang menghampiri <InlineMath math="-1" /> bermaksud kedua-dua pemboleh ubah cenderung bergerak ke arah yang
+bertentangan.
+
+<ScatterDiagram
+  title="Contoh Korelasi Negatif yang Kuat"
+  description="Titik data berkelompok sangat rapat dan membentuk corak garis lurus yang condong ke bawah."
+  xAxisLabel="Pemboleh Ubah X"
+  yAxisLabel="Pemboleh Ubah Y"
+  datasets={[
+    {
+      name: "Data",
+      color: "var(--chart-3)",
+      points: [
+        { x: 1, y: 10 },
+        { x: 2, y: 8.9 },
+        { x: 3, y: 8.1 },
+        { x: 4, y: 6.8 },
+        { x: 5, y: 6.0 },
+        { x: 6, y: 5.1 },
+        { x: 7, y: 4.0 },
+        { x: 8, y: 3.1 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  showResiduals
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+/>
+
+Kalau titik-titik turun dari **kiri atas ke kanan bawah** dan berkelompok sangat rapat, nilai <InlineMath math="r" /> akan hampir dengan <InlineMath math="-1" />.
+### Korelasi Linear yang Hampir Sifar
+
+<InlineMath math="r" /> yang menghampiri <InlineMath math="0" /> bermaksud dua pemboleh ubah itu hampir tiada atau langsung tiada hubungan linear.
+
+<ScatterDiagram
+  title="Korelasi Linear yang Sangat Lemah"
+  description="Titik data bertaburan secara rawak tanpa membentuk corak garis lurus."
+  xAxisLabel="Pemboleh Ubah X"
+  yAxisLabel="Pemboleh Ubah Y"
+  datasets={[
+    {
+      name: "Data",
+      color: "var(--chart-5)",
+      points: [
+        { x: 1, y: 5 },
+        { x: 2, y: 2 },
+        { x: 3, y: 7 },
+        { x: 4, y: 4 },
+        { x: 5, y: 9 },
+        { x: 6, y: 3 },
+        { x: 7, y: 8 },
+        { x: 8, y: 1 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  showResiduals
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+/>
+
+Bagi titik-titik yang diplot, <InlineMath math="r\approx-0.050" />. Perkaitan linearnya **sangat lemah**, bukannya sifar tepat. Corak tak linear masih perlu disemak walaupun korelasi Pearson hampir sifar.
+
+## Mengira Pekali Korelasi Langkah demi Langkah
+
+Pekali korelasi Pearson (<InlineMath math="r" />) membandingkan **sisihan berpasangan** bagi dua pemboleh ubah, <InlineMath math="X" /> dan <InlineMath math="Y" />, dengan variasi dalam setiap pemboleh ubah.
+
+Pengiraan ini ada tiga bahagian:
+
+Asingkan serakan setiap pemboleh ubah daripada kecenderungan sisihan berpasangannya. Dengan cara ini, unit kedua-dua pemboleh ubah tidak menentukan magnitud pekali korelasi.
+### Serakan Setiap Pemboleh Ubah
+
+<InlineMath math="X" /> dan <InlineMath math="Y" /> boleh ada serakan yang berbeza. <InlineMath math="SS_{xx}" /> ialah **hasil tambah kuasa dua sisihan** nilai-nilai <InlineMath math="X" /> daripada min <InlineMath math="X" />, manakala <InlineMath math="SS_{yy}" /> mengukur kuantiti yang sama bagi <InlineMath math="Y" />. Kedua-dua rumus itu ditunjukkan di bawah.
+### Sisihan Berpasangan
+
+Kita juga perlu tahu bagaimana <InlineMath math="X" /> dan <InlineMath math="Y" /> berubah _bersama-sama_. Apabila <InlineMath math="X" /> bertambah, adakah <InlineMath math="Y" /> juga cenderung bertambah atau berkurang? Hasil tambah <InlineMath math="SS_{xy}" /> mengukur **sisihan silang berpasangan** ini. Hasil tambah ini ialah pengangka yang digunakan untuk mengira kovarians. Kovarians membahagikan lagi hasil tambah ini dengan <InlineMath math="n" /> atau <InlineMath math="n-1" />, bergantung pada konvensyen yang digunakan.
+
+- Kalau <InlineMath math="SS_{xy}" /> positif, sisihan berpasangan cenderung mempunyai tanda yang sama.
+- Kalau <InlineMath math="SS_{xy}" /> negatif, sisihan berpasangan cenderung mempunyai tanda yang bertentangan.
+- Kalau <InlineMath math="SS_{xy}" /> hampir sifar, kovariasi linear bersihnya sangat kecil.
+### Menskalakan dengan Serakan Dua Pemboleh Ubah
+
+Nilai <InlineMath math="SS_{xy}" /> sangat dipengaruhi oleh unit data. Contohnya, hasil tambah sisihan silang bagi tinggi dan berat berubah apabila tinggi ditukar daripada sentimeter kepada meter, walaupun hubungan sebenar antara kedua-duanya tidak berubah.
+
+Untuk mengatasi masalah ini, kita **piawaikan** hasil tambah sisihan silang dengan membahagikan <InlineMath math="SS_{xy}" /> dengan gabungan geometri dua ukuran variasi individu itu, iaitu <InlineMath math="\sqrt{SS_{xx} SS_{yy}}" />.
+
+<BlockMath math="r=\frac{SS_{xy}}{\sqrt{SS_{xx}SS_{yy}}}" />
+
+Hasil pembahagian ini ialah <InlineMath math="r" />, iaitu pekali korelasi Pearson. Selagi kedua-dua pemboleh ubah ada variasi bukan sifar, pemiawaian memastikan nilainya sentiasa berada dalam selang dari <InlineMath math="-1" /> hingga <InlineMath math="+1" />, <Highlight>tanpa mengira unit asalnya</Highlight>. Oleh sebab setiap pasangan yang sah menggunakan skala yang sama, perkaitan linear daripada pasangan pemboleh ubah yang berbeza boleh dibandingkan secara terus.
+
+<InlineMath math="r" /> membandingkan sisihan berpasangan bagi <InlineMath math="X" /> dan <InlineMath math="Y" /> dengan variasi berasingan dalam setiap pemboleh ubah.
+
+## Rumus Korelasi Momen Hasil Darab
+
+Untuk mengira nilai <InlineMath math="r" /> dengan tepat, kita gunakan rumus yang melibatkan **Hasil Tambah Kuasa Dua**:
+
+<BlockMath math="r = \frac{SS_{xy}}{\sqrt{SS_{xx} SS_{yy}}}" />
+
+Apakah <InlineMath math="SS_{xy}" />, <InlineMath math="SS_{xx}" /> dan <InlineMath math="SS_{yy}" />?
+
+Tiga kuantiti ini ada peranan yang berbeza. <InlineMath math="SS_{xx}" /> dan <InlineMath math="SS_{yy}" /> mengukur serakan setiap pemboleh ubah, manakala <InlineMath math="SS_{xy}" /> mengukur variasi berpasangan:
+
+1.  **<InlineMath math="SS_{xx}" /> (Hasil Tambah Kuasa Dua bagi <InlineMath math="x" />)**: Mengukur sejauh mana data <InlineMath math="x" /> tersebar daripada minnya.
+
+    <BlockMath math="\begin{aligned} SS_{xx} &amp;= \sum (x - \bar{x})^2 \\ &amp;= \sum x^2 - \frac{(\sum x)^2}{n} \end{aligned}" />
+
+2.  **<InlineMath math="SS_{yy}" /> (Hasil Tambah Kuasa Dua bagi <InlineMath math="y" />)**: Mengukur sejauh mana data <InlineMath math="y" /> tersebar daripada minnya.
+
+    <BlockMath math="\begin{aligned} SS_{yy} &amp;= \sum (y - \bar{y})^2 \\ &amp;= \sum y^2 - \frac{(\sum y)^2}{n} \end{aligned}" />
+
+3.  **<InlineMath math="SS_{xy}" /> (Hasil Tambah Hasil Darab sisihan bagi <InlineMath math="x" /> dan <InlineMath math="y" />)**: Mengukur bagaimana <InlineMath math="x" /> dan <InlineMath math="y" /> berubah _bersama-sama_.
+
+    <BlockMath math="\begin{aligned} SS_{xy} &amp;= \sum (x - \bar{x})(y - \bar{y}) \\ &amp;= \sum xy - \frac{(\sum x)(\sum y)}{n} \end{aligned}" />
+
+Keterangan:
+
+- <InlineMath math="n" />: Bilangan pasangan data <InlineMath math="(x, y)" />.
+- <InlineMath math="\sum x" />, <InlineMath math="\sum y" />: Hasil tambah semua nilai <InlineMath math="x" /> dan <InlineMath math="y" />
+  masing-masing.
+- <InlineMath math="\sum x^2" />, <InlineMath math="\sum y^2" />: Hasil tambah kuasa dua
+  setiap nilai <InlineMath math="x" /> dan <InlineMath math="y" />.
+- <InlineMath math="\sum xy" />: Hasil tambah hasil darab setiap pasangan <InlineMath math="x" /> dan <InlineMath math="y" />.
+- <InlineMath math="\bar{x}" />, <InlineMath math="\bar{y}" />: Min bagi nilai-nilai <InlineMath math="x" /> dan <InlineMath math="y" />.
+
+Dengan mengira tiga nilai <InlineMath math="SS" /> ini dan menggantikannya ke dalam rumus <InlineMath math="r" />, kita memperoleh Pekali Korelasi Momen Hasil Darab.
+
+Rumus ini memerlukan <InlineMath math="SS_{xx}>0" /> dan <InlineMath math="SS_{yy}>0" />. Kalau nilai salah satu pemboleh ubah itu tetap, penyebutnya sifar dan nilai <InlineMath math="r" /> Pearson tidak tertakrif.
+
+### Mengira Korelasi bagi Lapan Pasangan
+
+Gunakan data korelasi positif yang lemah tadi. Kira **hasil darab setiap pasangan yang sepadan** dan kuasa dua setiap nilai, kemudian jumlahkan setiap lajur.
+
+| <InlineMath math="x" /> | <InlineMath math="y" /> | <InlineMath math="x^2" /> | <InlineMath math="y^2" /> | <InlineMath math="xy" /> |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="4" /> | <InlineMath math="2" /> |
+| <InlineMath math="2" /> | <InlineMath math="8" /> | <InlineMath math="4" /> | <InlineMath math="64" /> | <InlineMath math="16" /> |
+| <InlineMath math="3" /> | <InlineMath math="3" /> | <InlineMath math="9" /> | <InlineMath math="9" /> | <InlineMath math="9" /> |
+| <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="16" /> | <InlineMath math="36" /> | <InlineMath math="24" /> |
+| <InlineMath math="5" /> | <InlineMath math="1" /> | <InlineMath math="25" /> | <InlineMath math="1" /> | <InlineMath math="5" /> |
+| <InlineMath math="6" /> | <InlineMath math="9" /> | <InlineMath math="36" /> | <InlineMath math="81" /> | <InlineMath math="54" /> |
+| <InlineMath math="7" /> | <InlineMath math="4" /> | <InlineMath math="49" /> | <InlineMath math="16" /> | <InlineMath math="28" /> |
+| <InlineMath math="8" /> | <InlineMath math="7" /> | <InlineMath math="64" /> | <InlineMath math="49" /> | <InlineMath math="56" /> |
+| <InlineMath math="36" /> | <InlineMath math="40" /> | <InlineMath math="204" /> | <InlineMath math="260" /> | <InlineMath math="194" /> |
+
+Baris terakhir memberikan **hasil tambah setiap lajur**. Dengan <InlineMath math="n=8" />, tiga hasil tambah sisihan itu ialah:
+
+<MathContainer>
+  <BlockMath math="SS_{xx}=204-\frac{36^2}{8}=204-162=42" />
+  <BlockMath math="SS_{yy}=260-\frac{40^2}{8}=260-200=60" />
+  <BlockMath math="SS_{xy}=194-\frac{36\cdot40}{8}=194-180=14" />
+  <BlockMath math="r=\frac{14}{\sqrt{42\cdot60}}=\frac{14}{\sqrt{2520}}\approx0.279" />
+</MathContainer>
+
+## Mentafsir Pekali Korelasi
+
+Selepas kita dapat nilai <InlineMath math="r" />, kita boleh gunakan **garis panduan deskriptif kasar** berikut. Penyelidik menggunakan nilai sempadan ini sebagai konvensyen, dan bidang lain mungkin memilih nilai yang berbeza. Maksud praktikalnya bergantung pada bidang, kualiti pengukuran, saiz sampel dan konteks, jadi sentiasa teliti gambar rajah serakan juga.
+
+| Nilai <InlineMath math="r" />         | Kekuatan Korelasi     | Keterangan                                         |
+| :------------------------------------ | :-------------------- | :------------------------------------------------- |
+| <InlineMath math="1" />               | Positif Sempurna      | Semua titik terletak tepat pada garis yang condong ke atas. |
+| <InlineMath math="0.7 \le r < 1" />   | Positif Kuat          | <InlineMath math="r" /> positif dan hampir dengan <InlineMath math="1" />. |
+| <InlineMath math="0.3 < r < 0.7" />   | Positif Sederhana     | <InlineMath math="r" /> positif dan terletak di antara <InlineMath math="0.3" /> dan <InlineMath math="0.7" />. |
+| <InlineMath math="0 < r \le 0.3" />   | Positif Lemah         | <InlineMath math="r" /> positif dan hampir dengan <InlineMath math="0" />. |
+| <InlineMath math="0" />               | Tiada Korelasi Linear | Tiada corak linear. Hubungan tak linear mungkin masih wujud. |
+| <InlineMath math="-0.3 \le r < 0" />  | Negatif Lemah         | <InlineMath math="r" /> negatif dan hampir dengan <InlineMath math="0" />. |
+| <InlineMath math="-0.7 < r < -0.3" /> | Negatif Sederhana     | <InlineMath math="r" /> negatif dan terletak di antara <InlineMath math="-0.7" /> dan <InlineMath math="-0.3" />. |
+| <InlineMath math="-1 < r \le -0.7" /> | Negatif Kuat          | <InlineMath math="r" /> negatif dan hampir dengan <InlineMath math="-1" />. |
+| <InlineMath math="-1" />              | Negatif Sempurna      | Semua titik terletak tepat pada garis yang condong ke bawah. |

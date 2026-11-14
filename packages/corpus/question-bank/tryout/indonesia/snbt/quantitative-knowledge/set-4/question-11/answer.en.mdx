@@ -1,17 +1,43 @@
-Angle <InlineMath math="ADB" /> stands on the chord <InlineMath math="AB" />. Another inscribed angle on the same chord from the same side is angle <InlineMath math="ACB" />, and **inscribed angles on the same arc are equal**.
+You're looking for the shortest trip from <InlineMath math="A" /> to a point <InlineMath math="P" /> and then on to <InlineMath math="B" />, with <InlineMath math="P" /> on segment <InlineMath math="CD" />. The usual trick is to reflect one point in the line, but here **<InlineMath math="P" /> may only lie on the segment, not on the whole line**. Here's the plan: find the line's equation, reflect <InlineMath math="A" />, find the best point on the whole line, then check whether that point is on segment <InlineMath math="CD" />.
 
-# The angles of an isosceles triangle
+# The line and where the points sit
 
-Triangle <InlineMath math="ABC" /> is isosceles because <InlineMath math="AB=BC" />, so **angles <InlineMath math="BAC" /> and <InlineMath math="BCA" /> are equal**.
+The slope of line <InlineMath math="CD" /> is <InlineMath math="\frac{9-5}{7-5}=2" />, so its equation is <InlineMath math="y=2x-5" />, or <InlineMath math="2x-y-5=0" />. Segment <InlineMath math="CD" /> is the part of that line with <InlineMath math="5\le x\le7" />.
 
-<BlockMath math="\angle BCA=\frac{180^\circ-110^\circ}{2}=35^\circ" />
+Plug <InlineMath math="A" /> and <InlineMath math="B" /> into the left side of the line's equation: <InlineMath math="2(0)-5-5=-10" /> and <InlineMath math="2(2)-1-5=-2" />. Both are negative, so **<InlineMath math="A" /> and <InlineMath math="B" /> are on the same side of the line**. That means segment <InlineMath math="AB" /> never touches the line, and the straight path from <InlineMath math="A" /> to <InlineMath math="B" /> can't pass through <InlineMath math="P" />.
 
-# Moving the angle to point D
+# Reflecting point A
 
-Points <InlineMath math="C" /> and <InlineMath math="D" /> both lie on the arc opposite <InlineMath math="AB" />, because the points are in the order <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, <InlineMath math="D" />. Angles <InlineMath math="ACB" /> and <InlineMath math="ADB" /> **stand on the same arc <InlineMath math="AB" />**.
+The mirror image of <InlineMath math="A(0,5)" /> in the line is <InlineMath math="A'(8,1)" />. Check the two mirror conditions. The midpoint of <InlineMath math="AA'" /> is <InlineMath math="(4,3)" />, and <InlineMath math="2(4)-3-5=0" />, so the midpoint is on the line. The direction of <InlineMath math="AA'" /> is <InlineMath math="(8,-4)" /> and the line's direction is <InlineMath math="(1,2)" />. Their dot product is <InlineMath math="8-8=0" />, so <InlineMath math="AA'" /> is perpendicular to the line.
 
-<BlockMath math="\angle ADB=\angle ACB=35^\circ" />
+Since the line acts as a mirror, **every point <InlineMath math="P" /> on the line is equally far from <InlineMath math="A" /> and from <InlineMath math="A'" />**. So <InlineMath math="PA+PB=PA'+PB" />, and that sum is smallest when <InlineMath math="P" /> lies on line <InlineMath math="A'B" />. Line <InlineMath math="A'B" /> is horizontal: <InlineMath math="y=1" />.
 
-The value 70 is the central angle on arc <InlineMath math="AB" />, twice the inscribed angle. The value 55 is half of 110. The value 110 equates <InlineMath math="ADB" /> with angle <InlineMath math="ABC" />. The value 145 is the supplement of 35, which applies to an inscribed angle from the other side of the chord.
+<BlockMath math="\begin{aligned}
+1&=2x-5\quad\Rightarrow\quad x=3\quad\Rightarrow\quad P^*=(3,1)\\
+A'B&=8-2=6
+\end{aligned}" />
 
-So angle <InlineMath math="ADB" /> measures <InlineMath math="35^\circ" />.
+# Checking the ends of the segment
+
+The best point on the whole line is <InlineMath math="P^*(3,1)" />, but <InlineMath math="x=3" /> isn't between <InlineMath math="5" /> and <InlineMath math="7" />. So **the value <InlineMath math="6" /> can't be reached**.
+
+The distance from a fixed point to a point moving along a straight line always has a valley shape: it falls until the closest point, then keeps rising. The sum of two valley shapes is also a valley, with its bottom at <InlineMath math="P^*" />. Every point of segment <InlineMath math="CD" /> is to the right of <InlineMath math="P^*" />, where the sum keeps rising, so the smallest value is at the point of the segment closest to <InlineMath math="P^*" />, which is <InlineMath math="C(5,5)" />.
+
+<BlockMath math="\begin{aligned}
+CA&=\sqrt{(5-0)^2+(5-5)^2}=5\\
+CB&=\sqrt{(5-2)^2+(5-1)^2}=\sqrt{9+16}=5\\
+CA+CB&=10
+\end{aligned}" />
+
+Compare with other points of the segment. At the midpoint <InlineMath math="(6,7)" />, the sum is <InlineMath math="2\sqrt{10}+2\sqrt{13}" />, which is more than <InlineMath math="6+7=13" />. At <InlineMath math="D" />, it's <InlineMath math="\sqrt{65}+\sqrt{89}" />, which is more than <InlineMath math="8+9=17" />. Both are bigger than <InlineMath math="10" />.
+
+# The tempting wrong options
+
+The other options come from **ignoring the ends of the segment** or guessing the point.
+
+- <InlineMath math="6" /> is the minimum over the whole line, but the point <InlineMath math="P^*(3,1)" /> isn't on segment <InlineMath math="CD" />.
+- <InlineMath math="2\sqrt5" /> is the length of <InlineMath math="AB" />, as if the straight path from <InlineMath math="A" /> to <InlineMath math="B" /> were allowed, but that path never touches segment <InlineMath math="CD" />.
+- <InlineMath math="2\sqrt{10}+2\sqrt{13}" /> comes from guessing that the midpoint of the segment is best.
+- <InlineMath math="\sqrt{65}+\sqrt{89}" /> comes from picking the wrong end, <InlineMath math="D" />.
+
+So the minimum of <InlineMath math="PA+PB" /> is <InlineMath math="10" />, reached when <InlineMath math="P" /> is at <InlineMath math="C(5,5)" />.

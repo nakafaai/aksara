@@ -1,15 +1,32 @@
-Mark each conclusion Benar (certainly true) or Salah (not certainly true). The key is the phrase **jika dan hanya jika** (if and only if). Rule 1 works in both directions: paying with a member card means earning bonus points, and earning bonus points means paying with a member card.
+Mark each statement *pasti benar* (it must be true) or *tidak pasti benar* (it need not be true). The task is to separate the statements **guaranteed by all four facts** from the ones that are only possible. A statement must be true when no situation meets all four facts while making that statement false. The word *sebagian* means at least one.
 
-<BlockMath math="\text{bonus} \Leftrightarrow \text{member card},\qquad \text{member card} \Rightarrow \text{registered}" />
+First turn each fact into an "if ..., then ..." form so its direction is clear.
 
-**Conclusion 1** is true. Rara earned bonus points, and by the direction "bonus means member card", Rara paid with a member card.
+- Fact 1 says "only applicants who pass the history test are called for an interview". So if an applicant is called for an interview, they passed the history test. You can't flip this direction, because passing the test doesn't guarantee a call.
+- Fact 2: if an applicant hands in the documents late, they don't pass the history test. Its contrapositive, the equivalent form you get by flipping the direction and negating both parts, is: if they pass the history test, they aren't late.
+- Fact 4: if an applicant speaks English fluently, they're called for an interview.
+- Fact 3 isn't an "if ..., then ..." rule. It guarantees that at least one applicant was called for an interview and has volunteered at the museum before.
 
-**Conclusion 2** is true. Rara paid with a member card, so by rule 2 Rara is registered.
+The three rules join into one chain.
 
-**Conclusion 3** is true. The contrapositive of rule 2 is "not registered means not paying with a member card". Dimas is not registered, so Dimas did not pay with a member card, and by rule 1 Dimas earns no bonus points.
+<BlockMath math="\text{fluent} \Rightarrow \text{interviewed} \Rightarrow \text{passed test} \Rightarrow \text{not late}" />
 
-**Conclusion 4** is false. Rule 2 only says member-card payers are registered. A registered customer need not pay with a member card, so need not earn a bonus.
+Statement 1 must be true. Follow the chain from left to right. Every applicant who speaks English fluently ends up at the last link, not late.
 
-**Conclusion 5** is false. Without a member card, rule 1 rules out bonus points.
+Statement 2 need not be true. The chain only protects volunteers who were interviewed. No fact says every volunteer gets an interview, so there may be a volunteer who wasn't called, and that volunteer is allowed to be late.
 
-So conclusions 1, 2, and 3 are true, and conclusions 4 and 5 are false.
+Statement 3 need not be true. It flips the direction of fact 1. Fact 1 only says that anyone interviewed passed, not that anyone who passed gets interviewed.
+
+Statement 4 must be true. Take the volunteer guaranteed by fact 3. That person was interviewed, so by fact 1 they passed the history test. So there really is an applicant who passed the history test and has volunteered at the museum.
+
+Three applicants are enough to break statements 2 and 3.
+
+| Applicant | Interviewed | Passed history test | Late | Museum volunteer | Fluent in English |
+| --- | --- | --- | --- | --- | --- |
+| X | yes | yes | no | yes | no |
+| Y | no | no | yes | yes | no |
+| Z | no | yes | no | no | no |
+
+Check all four facts. The only applicant interviewed, X, passed the test, so fact 1 holds. The only late applicant, Y, didn't pass, so fact 2 holds. X satisfies fact 3. Nobody is fluent, so fact 4 isn't broken. In this situation, Y is a volunteer who was late, so statement 2 is false. Z passed the test but wasn't interviewed, so statement 3 is false.
+
+So statements 1 and 4 must be true, while statements 2 and 3 need not be true.

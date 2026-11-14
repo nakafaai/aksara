@@ -1,16 +1,37 @@
-<InlineMath math="(f\circ g)(x)" /> means <InlineMath math="f" /> acts **on the output <InlineMath math="g(x)" />**. So put <InlineMath math="g(x)" /> into the rule for <InlineMath math="f" /> and solve for <InlineMath math="g(x)" />.
+# The first steps at the boundaries
+
+The question asks you to apply <InlineMath math="f" /> <InlineMath math="2026" /> times, starting from <InlineMath math="2" />. You won't do that one step at a time. Work out the first few steps until **the values start to repeat**, then use the pattern.
+
+Be careful at the boundary points. The input <InlineMath math="x=2" /> belongs to the branch <InlineMath math="x\ge2" />, not the middle branch, because the middle branch stops before <InlineMath math="2" /> <InlineMath math="(x<2)" />. The input <InlineMath math="x=0" /> belongs to the middle branch <InlineMath math="0\le x<2" />, not to <InlineMath math="x<0" />.
+
+| <InlineMath math="n" /> | Input | Branch used | <InlineMath math="f^{(n)}(2)" /> |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="x\ge2" /> | <InlineMath math="2-4=-2" /> |
+| <InlineMath math="2" /> | <InlineMath math="-2" /> | <InlineMath math="x<0" /> | <InlineMath math="-2+1=-1" /> |
+| <InlineMath math="3" /> | <InlineMath math="-1" /> | <InlineMath math="x<0" /> | <InlineMath math="-1+1=0" /> |
+| <InlineMath math="4" /> | <InlineMath math="0" /> | <InlineMath math="0\le x<2" /> | <InlineMath math="3-0=3" /> |
+| <InlineMath math="5" /> | <InlineMath math="3" /> | <InlineMath math="x\ge2" /> | <InlineMath math="3-4=-1" /> |
+| <InlineMath math="6" /> | <InlineMath math="-1" /> | <InlineMath math="x<0" /> | <InlineMath math="0" /> |
+| <InlineMath math="7" /> | <InlineMath math="0" /> | <InlineMath math="0\le x<2" /> | <InlineMath math="3" /> |
+
+# The repeating pattern
+
+From <InlineMath math="n=2" /> on, the values cycle through <InlineMath math="-1,\ 0,\ 3,\ -1,\ 0,\ 3,\ \dots" /> with period <InlineMath math="3" />. **The value <InlineMath math="-2" /> shows up only once at the start** and isn't part of the cycle.
+
+The value <InlineMath math="3" /> appears at <InlineMath math="n=4,7,10,\dots" />, that is, when <InlineMath math="n" /> leaves remainder <InlineMath math="1" /> on division by <InlineMath math="3" /> and <InlineMath math="n\ge4" />. Now check <InlineMath math="2026" />:
 
 <BlockMath math="\begin{aligned}
-f(g(x))&=2g(x)-3=4x^2+6x-1 \\
-2g(x)&=4x^2+6x+2 \\
-g(x)&=2x^2+3x+1
+2026&=3\cdot675+1 \\
+2026&=4+3\cdot674
 \end{aligned}" />
 
-Check: <InlineMath math="f(2x^2+3x+1)=4x^2+6x+2-3=4x^2+6x-1" />.
+So <InlineMath math="n=2026" /> sits in the same place in the cycle as <InlineMath math="n=4" />, and <InlineMath math="f^{(2026)}(2)=3" />.
 
-So <InlineMath math="g(x)=2x^2+3x+1" />.
+# Why the other options are wrong
 
-- <InlineMath math="8x^2+12x-5" /> is <InlineMath math="f(4x^2+6x-1)" />, which feeds the composition into <InlineMath math="f" /> once more.
-- <InlineMath math="4x^2+6x+2" /> forgets to divide both sides by <InlineMath math="2" />.
-- <InlineMath math="2x^2+3x-2" /> subtracts <InlineMath math="3" />, but the <InlineMath math="3" /> has to move to the right side as <InlineMath math="+3" />.
-- <InlineMath math="2x^2+3x-1" /> halves only the terms with <InlineMath math="x" /> and forgets to add <InlineMath math="3" />.
+- <InlineMath math="-2" /> comes from putting <InlineMath math="x=0" /> into the branch <InlineMath math="x+1" />. The sequence becomes <InlineMath math="-2,-1,0,1,2" /> and repeats with period <InlineMath math="5" />, and <InlineMath math="2026" /> leaves remainder <InlineMath math="1" /> on division by <InlineMath math="5" />.
+- <InlineMath math="-1" /> comes from assuming the cycle <InlineMath math="-1,0,3" /> starts at <InlineMath math="n=1" />. **The first value <InlineMath math="-2" /> shifts the whole sequence by one step**.
+- <InlineMath math="0" /> comes from counting the starting value <InlineMath math="2" /> as the first step. That's the same as working out <InlineMath math="f^{(2025)}(2)" />.
+- <InlineMath math="2" /> comes from putting <InlineMath math="x=2" /> into the middle branch. Then the values alternate <InlineMath math="1,2,1,2,\dots" />, and for even <InlineMath math="n" /> you get <InlineMath math="2" />.
+
+So <InlineMath math="f^{(2026)}(2)" /> equals <InlineMath math="3" />.

@@ -1,27 +1,35 @@
-The number <InlineMath math="3+2\sqrt2" /> has the conjugate <InlineMath math="3-2\sqrt2" />, and their product is 1. This fact **determines <InlineMath math="\frac1x" />**, which three of the statements need.
+The graph of <InlineMath math="f" /> is a downward parabola with its vertex at <InlineMath math="x=a" />. The maximum on the interval sits at the vertex **only if the vertex is inside the interval**. Otherwise, the maximum sits at the end of the interval closest to the vertex. So work through three cases based on where <InlineMath math="a" /> is.
 
-<BlockMath math="\left(3+2\sqrt2\right)\left(3-2\sqrt2\right)=9-8=1\quad\Rightarrow\quad\frac1x=3-2\sqrt2" />
+# Values at the ends and at the vertex
 
-The fourth statement is false because the sign in front of <InlineMath math="2\sqrt2" /> must be negative.
+Compute the three values that could be the maximum.
 
-# The square root and the sum with the reciprocal
+<BlockMath math="\begin{aligned}
+f(-1)&=-1-2a+1=-2a\\
+f(2)&=-4+4a+1=4a-3\\
+f(a)&=-a^2+2a^2+1=a^2+1
+\end{aligned}" />
 
-Square <InlineMath math="1+\sqrt2" /> to test the first statement.
+A downward parabola rises to the left of its vertex and falls to the right of it. That's **why the maximum moves to an end** when the vertex is outside the interval.
 
-<BlockMath math="\left(1+\sqrt2\right)^2=1+2\sqrt2+2=3+2\sqrt2" />
+# Three cases for the vertex
 
-Since <InlineMath math="1+\sqrt2" /> is positive and its square equals <InlineMath math="x" />, <InlineMath math="\sqrt x=1+\sqrt2" /> is true. The sum of <InlineMath math="x" /> and its reciprocal is also quick, because **the root terms cancel**.
+Solve each case, then **check whether the result fits that case's own condition**.
 
-<BlockMath math="x+\frac1x=\left(3+2\sqrt2\right)+\left(3-2\sqrt2\right)=6" />
+<BlockMath math="\begin{aligned}
+a\le -1&:\quad -2a=5 \implies a=-\tfrac{5}{2}\ \text{(fits)}\\
+-1<a<2&:\quad a^2+1=5 \implies a=2\ \text{or}\ a=-2\ \text{(both outside the case)}\\
+a\ge 2&:\quad 4a-3=5 \implies a=2\ \text{(fits)}
+\end{aligned}" />
 
-The second statement is true.
+In the first case, the vertex is left of the interval, so <InlineMath math="f" /> falls across the whole interval and the maximum is <InlineMath math="f(-1)" />. In the third case, the vertex is to the right or exactly at <InlineMath math="x=2" />, so the maximum is <InlineMath math="f(2)" />. The only possible values are <InlineMath math="a=-\tfrac{5}{2}" /> and <InlineMath math="a=2" />, and their sum is <InlineMath math="-\tfrac{5}{2}+2=-\tfrac{1}{2}" />.
 
-# The sum of the squared reciprocals
+# Checking each parameter value
 
-Square <InlineMath math="x+\frac1x" /> and subtract the middle term. That middle term is <InlineMath math="2\cdot x\cdot\frac1x=2" />, **not zero**.
+For <InlineMath math="a=-\tfrac{5}{2}" />: <InlineMath math="f(-1)=5" /> and <InlineMath math="f(2)=-13" />, with the vertex outside the interval, so the maximum is <InlineMath math="5" />. For <InlineMath math="a=2" />: <InlineMath math="f(2)=5" /> and <InlineMath math="f(-1)=-4" />, so the maximum is <InlineMath math="5" />. For <InlineMath math="a=-2" />, the vertex is at <InlineMath math="x=-2" />, outside the interval, so **the maximum on the interval is only <InlineMath math="f(-1)=4" />**, not <InlineMath math="5" />. The value <InlineMath math="a=-2" /> really has to go.
 
-<BlockMath math="x^2+\frac1{x^2}=\left(x+\frac1x\right)^2-2=36-2=34" />
+# Checking the other options
 
-The third statement is false. The number 36 appears when <InlineMath math="\left(x+\frac1x\right)^2" /> is taken to equal <InlineMath math="x^2+\frac1{x^2}" />.
+The option <InlineMath math="0" /> uses only the vertex formula <InlineMath math="a^2+1=5" /> and **accepts both <InlineMath math="a=2" /> and <InlineMath math="a=-2" /> without checking the interval**. The option <InlineMath math="-\tfrac{5}{2}" /> works all three cases but still adds <InlineMath math="a=-2" />, giving <InlineMath math="-\tfrac{5}{2}-2+2" />. The option <InlineMath math="\tfrac{3}{2}" /> counts <InlineMath math="a=2" /> twice, once from the vertex case and once from the right-end case. The option <InlineMath math="2" /> misses the case with the vertex left of the interval.
 
-So the first statement is **true**, the second is **true**, the third is **false**, and the fourth is **false**.
+So the sum of all possible values of <InlineMath math="a" /> is <InlineMath math="-\tfrac{1}{2}" />.

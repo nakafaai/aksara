@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "evaluation",
+    topic: "flaw",
   },
-  stimulus: "kantong",
+  stimulus: "denda",
   versions: {
     id: {
       kind: "choice",
@@ -14,24 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Perbandingan jumlah plastik dari kantong belanja yang berkurang dengan jumlah plastik dari kantong sampah yang bertambah, misalnya dalam satuan berat.",
-        },
-        {
-          correct: false,
-          label: "Harga satu kantong sampah plastik di minimarket.",
-        },
-        {
-          correct: false,
-          label: "Banyak minimarket di kota tersebut.",
+            "Angka $$40\\%$$ adalah bagian penunggak di antara pengunjung ruang baca, padahal survei di ruang baca tidak mungkin menjangkau penunggak yang belum kembali ke perpustakaan.",
         },
         {
           correct: false,
           label:
-            "Alasan warga membawa tas belanja sendiri, misalnya karena ingin menghemat pengeluaran atau karena mengikuti anjuran pemerintah kota tentang sampah plastik.",
+            "Survei terhadap $$300$$ orang terlalu kecil untuk menggambarkan keadaan $$1{.}500$$ anggota yang menunggak denda.",
         },
         {
           correct: false,
-          label: "Warna kantong sampah yang paling banyak terjual.",
+          label:
+            "Survei tidak menanyakan apakah para penunggak kembali karena dendanya dihapus atau karena menerima pesan pengingat.",
+        },
+        {
+          correct: false,
+          label:
+            "Kepala perpustakaan seharusnya membagi $$120$$ dengan $$1{.}500$$, sehingga penunggak yang sudah kembali aktif tepat $$8\\%$$.",
+        },
+        {
+          correct: false,
+          label:
+            "Penunggak yang ikut survei mungkin malu mengaku pernah menunggak denda, sehingga angka $$120$$ terlalu besar.",
         },
       ],
     },

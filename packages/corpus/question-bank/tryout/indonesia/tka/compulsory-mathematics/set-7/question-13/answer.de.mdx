@@ -1,10 +1,27 @@
-Verschiebungen, Drehungen und Spiegelungen sind **Kongruenzabbildungen**: Sie bewegen, drehen oder spiegeln eine Figur, ohne ihre Seitenlängen zu ändern. Eine Streckung mit Faktor <InlineMath math="k" /> multipliziert jede Länge mit <InlineMath math="|k|" />, die Größe ändert sich also genau für <InlineMath math="|k|\ne1" />.
+# Zwei Spiegel ergeben eine Drehung
 
-<BlockMath math="\left|\tfrac12\right|=\tfrac12\ne1,\qquad|-1|=1" />
+Gefragt ist das Bild von <InlineMath math="P" />, nachdem <InlineMath math="T" /> dreimal angewendet wurde. Du musst nicht sechsmal einzeln spiegeln, denn **zwei Spiegelungen an zwei sich schneidenden Geraden ergeben eine Drehung**.
 
-Die Streckung mit Zentrum <InlineMath math="(2,0)" /> und Faktor <InlineMath math="\frac12" /> liefert also ein Bild anderer Größe, jede Länge wird halbiert.
+Beide Geraden gehen durch den Ursprung <InlineMath math="O" />. Die Gerade <InlineMath math="g" /> bildet mit der positiven <InlineMath math="x" />-Achse den Winkel <InlineMath math="45^\circ" />, weil ihre Steigung <InlineMath math="1" /> ist. Die Gerade <InlineMath math="h" /> bildet den Winkel <InlineMath math="60^\circ" />, weil ihre Steigung <InlineMath math="\sqrt3=\tan60^\circ" /> ist.
 
-- Die Verschiebung um <InlineMath math="\begin{pmatrix}3\\-2\end{pmatrix}" /> schiebt die Figur nur.
-- Die Drehung um <InlineMath math="90^\circ" /> dreht die Figur nur, egal wo das Zentrum liegt.
-- Die Spiegelung an <InlineMath math="y=x" /> klappt die Figur nur um.
-- Die Streckung mit Faktor <InlineMath math="-1" /> spiegelt die Figur durch <InlineMath math="O" />, doch <InlineMath math="|-1|=1" />, die Größe bleibt also gleich.
+Die Regel: Erst am ersten Spiegel, dann am zweiten Spiegel spiegeln ist eine Drehung um den Schnittpunkt, und zwar um das **Doppelte** des Winkels von der ersten zur zweiten Geraden, in Richtung von der ersten zur zweiten Geraden.
+
+<BlockMath math="\begin{aligned}
+\text{Winkel von } g \text{ nach } h&=60^\circ-45^\circ=15^\circ \\
+T&=\text{Drehung um } 2\cdot15^\circ=30^\circ \text{ gegen den Uhrzeigersinn}
+\end{aligned}" />
+
+# Drei Drehungen
+
+Dreimal <InlineMath math="T" /> heißt, um <InlineMath math="3\cdot30^\circ=90^\circ" /> gegen den Uhrzeigersinn um <InlineMath math="O" /> zu drehen. Eine Drehung um <InlineMath math="90^\circ" /> macht aus <InlineMath math="(x,y)" /> den Punkt <InlineMath math="(-y,x)" />.
+
+<BlockMath math="P(4,2)\ \longmapsto\ (-2,4)" />
+
+Zur Kontrolle: **Der Abstand zum Zentrum ändert sich nicht**, nämlich <InlineMath math="\sqrt{16+4}=\sqrt{4+16}" />, und das Skalarprodukt ist <InlineMath math="(4,2)\cdot(-2,4)=-8+8=0" />. Die Drehung ist also wirklich ein rechter Winkel.
+
+Das Bild von <InlineMath math="P" /> ist also <InlineMath math="(-2,4)" />.
+
+- <InlineMath math="(2,-4)" /> entsteht mit vertauschter Reihenfolge, also erst an <InlineMath math="h" />, dann an <InlineMath math="g" />. Dann läuft die Drehung im Uhrzeigersinn.
+- <InlineMath math="(\sqrt2,\ 3\sqrt2)" /> vergisst das Verdoppeln, jedes <InlineMath math="T" /> zählt nur <InlineMath math="15^\circ" />, insgesamt also nur <InlineMath math="45^\circ" />.
+- <InlineMath math="(-4,-2)" /> hält jede einzelne Spiegelung für eine Drehung um <InlineMath math="30^\circ" />, sodass sechs Spiegelungen <InlineMath math="180^\circ" /> ergeben.
+- <InlineMath math="(2\sqrt3-1,\ \sqrt3+2)" /> wendet <InlineMath math="T" /> nur einmal an, also eine Drehung um <InlineMath math="30^\circ" />.

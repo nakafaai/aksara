@@ -1,14 +1,48 @@
-Setiap pernyataan memakai kurs yang sesuai dengan arah transaksinya: pelanggan **membeli** dengan kurs jual dan **menjual** dengan kurs beli.
+# Biaya termurah untuk setiap kebutuhan
+
+Ketiga pernyataan membahas semua kemungkinan banyak lembar, jadi satu contoh saja tidak cukup. Buat dulu gambaran lengkapnya. Biaya memesan **tepat** <InlineMath math="n" /> lembar adalah <InlineMath math="500n" /> untuk <InlineMath math="n\le199" />, <InlineMath math="400n" /> untuk <InlineMath math="200\le n\le499" />, dan <InlineMath math="300n" /> untuk <InlineMath math="n\ge500" />.
+
+Lembar kosong hanya berguna kalau membuat pesanan mencapai batas tingkat harga, yaitu <InlineMath math="200" /> atau <InlineMath math="500" /> lembar. Memesan lebih dari batas itu cuma menambah lembar dengan harga yang sama. Jadi cukup bandingkan dua angka penting ini:
 
 <BlockMath math="\begin{aligned}
-\frac{12{.}000-11{.}800}{12{.}000}&=\frac{200}{12{.}000}\approx1{,}67\,\% \\
-\frac{3{.}500-3{.}400}{3{.}500}&=\frac{100}{3{.}500}\approx2{,}86\,\% \\
-\frac{11{.}800}{3{.}500}&\approx3{,}37 \\
-\frac{12{.}000{.}000}{12{.}000}\cdot11{.}800&=1{.}000\cdot11{.}800=11{.}800{.}000 \\
-1{,}04\cdot3{.}500&=3{.}640
+\text{biaya }200\text{ lembar}&=200\cdot400=80{.}000 \\
+\text{biaya }500\text{ lembar}&=500\cdot300=150{.}000
 \end{aligned}" />
 
-- Selisih kurs dolar Singapura sekitar <InlineMath math="1{,}67\,\%" />, lebih kecil daripada selisih kurs ringgit yang sekitar <InlineMath math="2{,}86\,\%" />. Pernyataan ini benar.
-- Menjual <InlineMath math="1" /> dolar Singapura memberi <InlineMath math="\text{Rp}11{.}800" />, dan uang itu hanya cukup untuk sekitar <InlineMath math="3{,}37" /> ringgit. Pernyataan ini salah.
-- Uang <InlineMath math="\text{Rp}12{.}000{.}000" /> menjadi <InlineMath math="1{.}000" /> dolar, lalu dijual kembali menjadi <InlineMath math="\text{Rp}11{.}800{.}000" />. Kerugiannya tepat <InlineMath math="\text{Rp}200{.}000" />. Pernyataan ini benar.
-- Kurs jual ringgit naik menjadi <InlineMath math="\text{Rp}3{.}640" />, belum lebih dari <InlineMath math="\text{Rp}3{.}650" />. Pernyataan ini salah.
+Menambah sampai <InlineMath math="200" /> lembar lebih murah kalau <InlineMath math="500n>80{.}000" />, yaitu <InlineMath math="n>160" />. Menambah sampai <InlineMath math="500" /> lembar lebih murah kalau <InlineMath math="400n>150{.}000" />, yaitu <InlineMath math="n>375" />. Untuk <InlineMath math="n\le199" />, memesan <InlineMath math="500" /> lembar tidak pernah membantu karena <InlineMath math="150{.}000" /> lebih besar daripada <InlineMath math="500\cdot199=99{.}500" />. Hasilnya:
+
+| Kebutuhan <InlineMath math="n" /> | Cara termurah | Biaya termurah |
+| --- | --- | --- |
+| <InlineMath math="1" /> sampai <InlineMath math="160" /> | tepat <InlineMath math="n" /> lembar | <InlineMath math="500n" /> |
+| <InlineMath math="161" /> sampai <InlineMath math="199" /> | <InlineMath math="200" /> lembar | <InlineMath math="80{.}000" /> |
+| <InlineMath math="200" /> sampai <InlineMath math="375" /> | tepat <InlineMath math="n" /> lembar | <InlineMath math="400n" /> |
+| <InlineMath math="376" /> sampai <InlineMath math="499" /> | <InlineMath math="500" /> lembar | <InlineMath math="150{.}000" /> |
+
+Perhatikan <InlineMath math="n=160" /> dan <InlineMath math="n=375" />: di sana biaya dengan lembar tambahan **sama persis**, bukan lebih murah.
+
+# Pernyataan pertama
+
+Pesanan gabungan punya lebih banyak lembar, jadi harga per lembarnya tidak pernah lebih tinggi daripada harga masing-masing pesanan. Artinya, menggabungkan pesanan tidak pernah lebih mahal. Tapi kata **pasti lebih murah** gagal kalau gabungannya masih di tingkat harga yang sama. Contohnya pesanan <InlineMath math="100" /> lembar dan <InlineMath math="50" /> lembar:
+
+<BlockMath math="\begin{aligned}
+\text{terpisah}&=100\cdot500+50\cdot500=75{.}000 \\
+\text{digabung}&=150\cdot500=75{.}000
+\end{aligned}" />
+
+Biayanya sama, jadi pernyataan ini **Salah**.
+
+# Pernyataan kedua
+
+Dari tabel, lembar tambahan membuat biaya **lebih kecil** tepat untuk <InlineMath math="n=161" /> sampai <InlineMath math="199" /> dan <InlineMath math="n=376" /> sampai <InlineMath math="499" />:
+
+<BlockMath math="(199-161+1)+(499-376+1)=39+124=163" />
+
+Kalau kamu ikut menghitung <InlineMath math="n=160" /> dan <InlineMath math="n=375" />, hasilnya <InlineMath math="165" />, padahal di dua nilai itu biayanya hanya sama. Kalau kamu lupa batas <InlineMath math="200" /> lembar, hasilnya <InlineMath math="124" />. Banyaknya tepat <InlineMath math="163" />, jadi pernyataan ini **Benar**.
+
+# Pernyataan ketiga
+
+Cari biaya termurah yang paling besar di setiap baris tabel. Baris pertama paling besar <InlineMath math="500\cdot160=80{.}000" />, baris kedua <InlineMath math="80{.}000" />, baris ketiga paling besar <InlineMath math="400\cdot375=150{.}000" />, dan baris keempat <InlineMath math="150{.}000" />. Jadi **biaya termurah tidak pernah lebih dari <InlineMath math="\text{Rp}150{.}000" />**.
+
+Biaya memesan tepat <InlineMath math="499" /> lembar memang <InlineMath math="499\cdot400=199{.}600" />, tetapi itu bukan biaya termurah karena <InlineMath math="500" /> lembar hanya <InlineMath math="150{.}000" />. Pernyataan ini **Benar**.
+
+Jadi, urutan jawabannya adalah Salah, Benar, Benar.

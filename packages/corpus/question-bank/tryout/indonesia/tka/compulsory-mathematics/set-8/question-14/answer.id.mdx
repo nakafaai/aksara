@@ -1,15 +1,101 @@
-Bayangan akhirnya diketahui, jadi **kerjakan kedua transformasi mundur dengan urutan terbalik**: batalkan translasi lebih dulu, baru batalkan pencerminan.
+Soal ini menanyakan **titik sudut yang sampai di posisi paling atas** setelah putaran ke-<InlineMath math="2026" />. Itu berbeda dari pertanyaan ke mana titik <InlineMath math="A" /> pindah, jadi lacak dulu putaran papannya, baru cari titik yang mendarat di atas.
+
+# Putaran bersih tiap dua langkah
+
+Semua putaran memakai pusat yang sama, jadi sudut-sudutnya boleh dijumlahkan. Beri tanda positif untuk putaran berlawanan arah jarum jam dan tanda negatif untuk putaran searah jarum jam. Satu putaran ganjil yang langsung diikuti satu putaran genap menghasilkan
+
+<BlockMath math="(+72^\circ)+(-144^\circ)=-72^\circ" />
+
+Artinya, **setiap pasang putaran sama saja dengan satu putaran searah jarum jam sebesar** <InlineMath math="72^\circ" />. Putaran ke-<InlineMath math="2026" /> adalah putaran genap, jadi <InlineMath math="2026" /> putaran terbagi habis menjadi pasangan:
 
 <BlockMath math="\begin{aligned}
-(5,2)-(3,-1)&=(2,3) \\
-(2,3)&\xrightarrow{\ y=x\ }(3,2)
+\text{banyak pasangan}&=\frac{2026}{2}=1013 \\
+\text{putaran total}&=1013\cdot(-72^\circ)
 \end{aligned}" />
 
-Pencerminan terhadap <InlineMath math="y=x" /> menukar koordinat, dan dibatalkan dengan menukarnya sekali lagi. Cek maju: <InlineMath math="(3,2)" /> dicerminkan menjadi <InlineMath math="(2,3)" />, lalu ditranslasikan menjadi <InlineMath math="(5,2)" />.
+# Membuang putaran penuh
 
-Jadi, koordinat titik <InlineMath math="A" /> adalah <InlineMath math="(3,2)" />.
+Lima pasang putaran memberi <InlineMath math="5\cdot(-72^\circ)=-360^\circ" />, yaitu satu putaran penuh, dan papan kembali tepat seperti semula. Jadi yang menentukan hanyalah sisa pembagian <InlineMath math="1013" /> oleh <InlineMath math="5" />:
 
-- <InlineMath math="(2,3)" /> baru membatalkan translasi, pencerminannya belum dibatalkan.
-- <InlineMath math="(8,1)" /> menambahkan vektor translasi lagi, bukan mengurangkannya, dan tidak membatalkan pencerminan.
-- <InlineMath math="(1,8)" /> menambahkan vektor translasi lagi, lalu menukar koordinatnya.
-- <InlineMath math="(-1,6)" /> membatalkan pencerminan lebih dulu, lalu mengurangkan vektor translasi, sehingga urutannya terbalik.
+<BlockMath math="\begin{aligned}
+1013&=5\cdot202+3 \\
+1013\cdot(-72^\circ)&=202\cdot(-360^\circ)+3\cdot(-72^\circ) \\
+3\cdot(-72^\circ)&=-216^\circ
+\end{aligned}" />
+
+Putaran <InlineMath math="216^\circ" /> searah jarum jam membawa papan ke keadaan yang sama dengan putaran <InlineMath math="360^\circ-216^\circ=144^\circ" /> berlawanan arah jarum jam. Jadi **hasil akhirnya setara dengan satu putaran berlawanan arah jarum jam sebesar** <InlineMath math="144^\circ" />, sehingga setiap titik sudut bergeser dua tempat ke arah itu.
+
+# Titik yang sampai di atas
+
+Ukur posisi setiap titik sudut sebagai sudut dari posisi paling atas, berlawanan arah jarum jam. Mula-mula <InlineMath math="A" /> ada di <InlineMath math="0^\circ" />, <InlineMath math="B" /> di <InlineMath math="72^\circ" />, dan seterusnya. Tambahkan <InlineMath math="144^\circ" /> ke setiap posisi, lalu buang kelipatan <InlineMath math="360^\circ" />.
+
+| Titik sudut | Posisi awal | Posisi akhir |
+| :---: | :---: | :---: |
+| <InlineMath math="A" /> | <InlineMath math="0^\circ" /> | <InlineMath math="144^\circ" /> |
+| <InlineMath math="B" /> | <InlineMath math="72^\circ" /> | <InlineMath math="216^\circ" /> |
+| <InlineMath math="C" /> | <InlineMath math="144^\circ" /> | <InlineMath math="288^\circ" /> |
+| <InlineMath math="D" /> | <InlineMath math="216^\circ" /> | <InlineMath math="360^\circ=0^\circ" /> |
+| <InlineMath math="E" /> | <InlineMath math="288^\circ" /> | <InlineMath math="432^\circ=72^\circ" /> |
+
+Hanya <InlineMath math="D" /> yang berakhir di <InlineMath math="0^\circ" />, yaitu **posisi paling atas**. Gambar berikut menunjukkan letak semua label setelah putaran terakhir.
+
+<MathVisual
+  title={<>Letak label setelah putaran terakhir</>}
+  description={<>Segi lima beraturan berpusat di titik asal. Titik <InlineMath math="D" /> berada di posisi paling atas yang ditunjuk panah. Berlawanan arah jarum jam dari <InlineMath math="D" /> berturut-turut ada <InlineMath math="E" />, <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" />. Titik <InlineMath math="A" /> sekarang menempati tempat semula titik <InlineMath math="C" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    top: "posisi paling atas",
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 6 },
+      y: { min: -5, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      {
+        id: "pentagon",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 4 },
+          { x: -4 * Math.cos((18 * Math.PI) / 180), y: 4 * Math.sin((18 * Math.PI) / 180) },
+          { x: -4 * Math.cos((54 * Math.PI) / 180), y: -4 * Math.sin((54 * Math.PI) / 180) },
+          { x: 4 * Math.cos((54 * Math.PI) / 180), y: -4 * Math.sin((54 * Math.PI) / 180) },
+          { x: 4 * Math.cos((18 * Math.PI) / 180), y: 4 * Math.sin((18 * Math.PI) / 180) },
+        ],
+      },
+      { id: "point-d", kind: "point", appearance: "answer", at: { x: 0, y: 4 } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: -4 * Math.cos((18 * Math.PI) / 180), y: 4 * Math.sin((18 * Math.PI) / 180) } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: -4 * Math.cos((54 * Math.PI) / 180), y: -4 * Math.sin((54 * Math.PI) / 180) } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 4 * Math.cos((54 * Math.PI) / 180), y: -4 * Math.sin((54 * Math.PI) / 180) } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 4 * Math.cos((18 * Math.PI) / 180), y: 4 * Math.sin((18 * Math.PI) / 180) } },
+      { id: "pointer", kind: "vector", appearance: "highlight", from: { x: 0, y: 6 }, to: { x: 0, y: 4.5 } },
+    ],
+    labels: [
+      { key: "d", objectId: "point-d", at: { x: 0, y: 4 }, placement: "right" },
+      { key: "e", objectId: "point-e", at: { x: -4 * Math.cos((18 * Math.PI) / 180), y: 4 * Math.sin((18 * Math.PI) / 180) }, placement: "left" },
+      { key: "a", objectId: "point-a", at: { x: -4 * Math.cos((54 * Math.PI) / 180), y: -4 * Math.sin((54 * Math.PI) / 180) }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 4 * Math.cos((54 * Math.PI) / 180), y: -4 * Math.sin((54 * Math.PI) / 180) }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 4 * Math.cos((18 * Math.PI) / 180), y: 4 * Math.sin((18 * Math.PI) / 180) }, placement: "right" },
+      { key: "top", objectId: "pointer", at: { x: 0, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
+
+Cek cepat: kalau berjalan searah jarum jam dari <InlineMath math="A" />, kamu bertemu <InlineMath math="E" /> lalu <InlineMath math="D" />. Jadi <InlineMath math="D" /> mula-mula berada dua tempat searah jarum jam dari puncak, dan geseran dua tempat berlawanan arah jarum jam membawanya tepat ke puncak.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="C" /> adalah tempat semula yang sekarang ditempati <InlineMath math="A" />. Itu menjawab ke mana <InlineMath math="A" /> pergi, **bukan titik yang berada di atas**.
+- <InlineMath math="E" /> muncul kalau semua putaran dianggap <InlineMath math="72^\circ" /> berlawanan arah jarum jam. Totalnya <InlineMath math="2026\cdot72^\circ" />, dan karena <InlineMath math="2026=5\cdot405+1" />, sisanya hanya <InlineMath math="72^\circ" />, sehingga yang naik ke atas adalah <InlineMath math="E" />.
+- <InlineMath math="B" /> muncul kalau putaran <InlineMath math="144^\circ" /> ikut dianggap berlawanan arah jarum jam. Setiap pasang lalu bernilai <InlineMath math="216^\circ" />, sisanya <InlineMath math="3\cdot216^\circ=648^\circ" />, atau <InlineMath math="288^\circ" />, sehingga yang naik ke atas adalah <InlineMath math="B" />.
+- <InlineMath math="A" /> muncul kalau kamu mengira label tidak bergeser karena setiap putaran kelipatan <InlineMath math="72^\circ" /> memetakan segi lima ke dirinya sendiri. Bentuknya memang menutupi tempat yang sama, tetapi labelnya berpindah.
+
+Jadi, titik sudut yang berada di posisi paling atas setelah putaran ke-<InlineMath math="2026" /> adalah <InlineMath math="D" />.

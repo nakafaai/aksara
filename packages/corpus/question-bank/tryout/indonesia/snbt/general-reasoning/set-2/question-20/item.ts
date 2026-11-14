@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "truth-teller",
+    topic: "ordering",
   },
   versions: {
     id: {
@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Rafi",
+          label: "Oki adalah peserta yang pertama tiba.",
         },
         {
           correct: false,
-          label: "Sela",
+          label: "Umar tiba sebelum Taufik.",
+        },
+        {
+          correct: false,
+          label: "Vina tiba sebelum Sinta.",
+        },
+        {
+          correct: false,
+          label: "Taufik adalah peserta keempat yang tiba.",
         },
         {
           correct: true,
-          label: "Tomi",
-        },
-        {
-          correct: false,
-          label: "Umar",
-        },
-        {
-          correct: false,
-          label: "Tidak dapat ditentukan",
+          label: "Sinta adalah peserta kelima yang tiba.",
         },
       ],
     },

@@ -1,0 +1,223 @@
+export const metadata = {
+    title: "Sifat Kamiran Tak Tentu",
+    description: "Gunakan petua kuasa, gandaan pemalar, hasil tambah, beza dan penggantian pada kamiran tak tentu, berserta jalan kerja.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-05-26",
+    dateModified: "2026-11-08",
+    subject: "Pengamiran",
+};
+
+## Petua Kuasa
+
+Untuk kuasa bagi pemboleh ubah pengamiran, gunakan rumus ini:
+
+<BlockMath math="\begin{aligned} &amp;\int x^n \, dx = \frac{1}{n+1}x^{n+1} + C, \\ &amp;\text{dengan } n \neq -1 \end{aligned}" />
+
+Tambah indeks itu dengan satu, kemudian bahagi dengan **indeks yang baharu**. Gunakan rumus ini pada selang tempat kamiranan itu tertakrif. Untuk sebarang indeks nombor nyata, kita boleh menggunakan selang dengan <InlineMath math="x>0" />.
+
+Nilai <InlineMath math="n=-1" /> dikecualikan kerana nilai ini menjadikan penyebut sifar. Kes itu mengikut [petua logaritma](/ms/subjek/matematik/indeks-dan-logaritma/definisi-logaritma) <InlineMath math="\int x^{-1}\,dx=\ln|x|+C" />.
+
+Contohnya, nilaikan <InlineMath math="\int x^5 \, dx" />.
+
+Di sini, <InlineMath math="n=5" />, jadi:
+
+<MathContainer>
+<BlockMath math="\int x^5 \, dx = \frac{1}{5+1}x^{5+1} + C" />
+<BlockMath math="= \frac{1}{6}x^6 + C" />
+</MathContainer>
+
+Setiap antiterbitan bagi <InlineMath math="2x" /> berbentuk <InlineMath math="x^2 + C" />, dan pemalar itu hanya mengalihkan parabola ke atas atau ke bawah. Pada <InlineMath math="x = 1" />, ketiga-tiga tangen selari dengan kecerunan <InlineMath math="2" />, kerana setiap lengkung mempunyai terbitan yang sama, iaitu <InlineMath math="2x" />.
+
+<MathVisual
+  title={<>Keluarga x kuasa dua tambah C</>}
+  description={<>Parabola <InlineMath math="x^2 - 2" />, <InlineMath math="x^2" /> dan <InlineMath math="x^2 + 2" /> dengan tangen selari berkecerunan <InlineMath math="2" /> pada <InlineMath math="x = 1" />.</>}
+  labels={{
+    c0: <InlineMath math="x^2 - 2" />,
+    c1: <InlineMath math="x^2" />,
+    c2: <InlineMath math="x^2 + 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -2.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c0", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: -2 }, domain: { min: -2, max: 2 }, appearance: "secondary" },
+      { id: "c1", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -2, max: 2 }, appearance: "primary" },
+      { id: "c2", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 2 }, domain: { min: -2, max: 2 }, appearance: "construction" },
+      { id: "t0", kind: "segment", from: { x: 0.4, y: -2 - 0.2 }, to: { x: 1.6, y: -2 + 2.2 }, appearance: "secondary" },
+      { id: "t1", kind: "segment", from: { x: 0.4, y: 0 - 0.2 }, to: { x: 1.6, y: 0 + 2.2 }, appearance: "primary" },
+      { id: "t2", kind: "segment", from: { x: 0.4, y: 2 - 0.2 }, to: { x: 1.6, y: 2 + 2.2 }, appearance: "construction" },
+      { id: "p0", kind: "point", at: { x: 1, y: 1 + -2 }, appearance: "secondary" },
+      { id: "p1", kind: "point", at: { x: 1, y: 1 + 0 }, appearance: "primary" },
+      { id: "p2", kind: "point", at: { x: 1, y: 1 + 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "c0", objectId: "c0", at: { x: -1.8, y: 3.24 + -2 }, placement: "left" },
+      { key: "c1", objectId: "c1", at: { x: -1.8, y: 3.24 + 0 }, placement: "left" },
+      { key: "c2", objectId: "c2", at: { x: -1.8, y: 3.24 + 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Petua Gandaan Pemalar
+
+Faktor pemalar <Highlight>boleh dikeluarkan ke luar kamiran</Highlight>:
+
+Jika <InlineMath math="F'(x)=f(x)" />, apabila kita darabkan antiterbitan dengan satu pemalar, kita dapat:
+
+<BlockMath math="\int a f(x)\,dx=aF(x)+C" />
+
+Kekalkan pemalar pengamiran, termasuk apabila <InlineMath math="a=0" />. Contohnya, faktor <InlineMath math="-3" /> dalam <InlineMath math="-3x^2" /> kekal selepas pengamiran:
+
+<BlockMath math="\int -3x^2\,dx=-3\frac{x^3}{3}+C=-x^3+C" />
+
+> Untuk petua ini, <InlineMath math="a" /> mesti pemalar terhadap pemboleh ubah pengamiran.
+
+Faktor pemalar terus melalui kamiran tanpa berubah. Oleh sebab <InlineMath math="\int 2x\,dx = x^2 + C" />, kamiran bagi tiga kali fungsi itu ialah tiga kali antiterbitannya: <InlineMath math="\int 6x\,dx = 3x^2 + C" />. Parabola ungu ialah parabola jingga yang diregangkan dengan faktor <InlineMath math="3" />.
+
+<MathVisual
+  title={<>Tiga kali fungsi, tiga kali antiterbitan</>}
+  description={<>Antiterbitan <InlineMath math="x^2" /> bagi <InlineMath math="2x" /> dan <InlineMath math="3x^2" /> bagi <InlineMath math="6x" />, dengan <InlineMath math="3x^2" /> tiga kali lebih tinggi pada setiap titik.</>}
+  labels={{
+    one: <InlineMath math="x^2" />,
+    three: <InlineMath math="3x^2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 1.6 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "one", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -1.5, max: 1.5 }, appearance: "primary" },
+      { id: "three", kind: "quadratic", inputAxis: "x", coefficients: { a: 3, b: 0, c: 0 }, domain: { min: -1.5, max: 1.5 }, appearance: "secondary" },
+      { id: "lift", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1.5, y: 2.25 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: 1.5, y: 6.75 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Petua Hasil Tambah dan Beza
+
+Hasil tambah atau beza boleh dikamirkan **sebutan demi sebutan**.
+
+<BlockMath math="\begin{aligned} &amp;\int [f(x) \pm g(x)] \, dx = \int f(x) \, dx \\ &amp;\pm \int g(x) \, dx \end{aligned}" />
+
+Contohnya, untuk menyelesaikan <InlineMath math="\int (x^4 - x^3) \, dx" />, kita pisahkan sebutannya dahulu:
+
+<MathContainer>
+<BlockMath math="\int (x^4 - x^3) \, dx = \int x^4 \, dx - \int x^3 \, dx" />
+<BlockMath math="= \left( \frac{1}{4+1}x^5 \right) - \left( \frac{1}{3+1}x^4 \right) + C" />
+<BlockMath math="= \frac{1}{5}x^5 - \frac{1}{4}x^4 + C" />
+</MathContainer>
+
+Tulis satu pemalar <InlineMath math="C" /> sahaja di hujung. Secara formal, kita boleh menggunakan pemalar berasingan <InlineMath math="C_1" /> dan <InlineMath math="C_2" /> untuk dua antiterbitan itu, tetapi hasil tambah atau beza kedua-duanya juga ialah pemalar sebarang. Oleh itu, satu <InlineMath math="C" /> sahaja sudah merangkumi setiap nilai yang mungkin bagi pemalar itu.
+
+Mari kamirkan sebutan demi sebutan pada hasil tambah yang lebih mudah, <InlineMath math="\int (2x + 1)\,dx" />. Antiterbitan bagi <InlineMath math="2x" /> ialah <InlineMath math="x^2" /> dan antiterbitan bagi <InlineMath math="1" /> ialah <InlineMath math="x" />, jadi hasilnya ialah <InlineMath math="x^2 + x + C" />. Dengan <InlineMath math="C = 0" />, lengkung hijau kebiruan <InlineMath math="x^2 + x" /> ialah lengkung jingga <InlineMath math="x^2" /> ditambah garis ungu <InlineMath math="x" /> pada setiap input, contohnya <InlineMath math="2.25 + 1.5 = 3.75" /> pada <InlineMath math="x = 1.5" />.
+
+<MathVisual
+  title={<>Satu antiterbitan bagi <InlineMath math="2x + 1" /> sebagai hasil tambah</>}
+  description={<>Lengkung <InlineMath math="x^2" /> dan <InlineMath math="x" /> serta hasil tambahnya <InlineMath math="x^2 + x" />, iaitu satu antiterbitan bagi <InlineMath math="2x + 1" />, dengan ketiga-tiga tinggi pada <InlineMath math="x = 1.5" />.</>}
+  labels={{
+    square: <InlineMath math="x^2" />,
+    linear: <InlineMath math="x" />,
+    sum: <InlineMath math="x^2 + x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.9, max: 2 }, y: { min: -2.5, max: 4.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -2, max: 1.5 }, appearance: "primary" },
+      { id: "linear", kind: "segment", from: { x: -2, y: -2 }, to: { x: 1.5, y: 1.5 }, appearance: "secondary" },
+      { id: "sum", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 1, c: 0 }, domain: { min: -2, max: 1.5 }, appearance: "construction" },
+      { id: "p-square", kind: "point", at: { x: 1.5, y: 2.25 }, appearance: "primary" },
+      { id: "p-linear", kind: "point", at: { x: 1.5, y: 1.5 }, appearance: "secondary" },
+      { id: "p-sum", kind: "point", at: { x: 1.5, y: 3.75 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: -2, y: 4 }, placement: "left" },
+      { key: "linear", objectId: "linear", at: { x: -2, y: -2 }, placement: "left" },
+      { key: "sum", objectId: "sum", at: { x: -2, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Petua Penggantian
+
+Apabila kamiranan mengandungi [ungkapan gubahan](/ms/subjek/matematik/fungsi-gubahan-dan-fungsi-songsang/fungsi-gubahan) bersama terbitannya, atau gandaan pemalar bagi terbitan itu, samakan ungkapan di bahagian dalam dengan satu pemboleh ubah baharu, biasanya <InlineMath math="u=g(x)" />. Kemudian, <InlineMath math="du=g'(x)\,dx" /> menggantikan faktor terbitan yang sepadan.
+
+<BlockMath math="\int f(g(x)) \cdot g'(x) \, dx = \int f(u) \, du" />
+
+Penukaran pemboleh ubah ini dipanggil **penggantian u**. Kaedah ini menukar kamiranan yang bersarang itu menjadi <InlineMath math="f(u)" /> apabila faktor terbitan yang sepadan ada.
+
+## Latihan
+
+Dua soalan pertama menggunakan **kelinearan pengamiran** dan petua kuasa. Dalam soalan ketiga, ungkapan <InlineMath math="x^2+3" /> muncul bersama terbitannya <InlineMath math="2x" />, dan ini petunjuk untuk menggunakan penggantian.
+
+1.  Cari hasil <InlineMath math="\int 6x^2 \, dx" />.
+2.  Cari hasil <InlineMath math="\int (3x^2 + 2x - 5) \, dx" />.
+3.  Selesaikan kamiran <InlineMath math="\int 2x(x^2 + 3)^4 \, dx" /> menggunakan petua penggantian.
+
+### Jalan Kerja
+
+**Soalan 1**. Untuk menyelesaikan <InlineMath math="\int 6x^2 \, dx" />, kita boleh menggunakan **Petua Gandaan Pemalar** dan **Petua Kuasa**.
+
+**Langkah 1**: Keluarkan pemalar <InlineMath math="6" /> daripada kamiran.
+
+<BlockMath math="\int 6x^2 \, dx = 6 \int x^2 \, dx" />
+
+**Langkah 2**: Gunakan petua kuasa pada <InlineMath math="\int x^2 \, dx" />, dengan <InlineMath math="n=2" />.
+
+<MathContainer>
+<BlockMath math="\int 6x^2\,dx=6\left(\frac{x^{2+1}}{2+1}\right)+C" />
+<BlockMath math="= 6 \left( \frac{1}{3}x^3 \right) + C" />
+</MathContainer>
+
+**Langkah 3**: Darabkan pemalar-pemalar itu untuk mendapat hasil akhir.
+
+<BlockMath math="\int 6x^2\,dx=2x^3+C" />
+
+**Soalan 2**. Untuk kamiran <InlineMath math="\int (3x^2 + 2x - 5) \, dx" />, kita gunakan **Petua Hasil Tambah dan Beza** untuk memecahkannya kepada tiga kamiran yang berasingan.
+
+**Langkah 1**: Pisahkan setiap sebutan kepada kamirannya sendiri.
+
+<BlockMath math="\int(3x^2+2x-5)\,dx=\int3x^2\,dx+\int2x\,dx-\int5\,dx" />
+
+**Langkah 2**: Selesaikan setiap kamiran satu demi satu menggunakan petua kuasa dan petua pemalar.
+
+<MathContainer>
+<BlockMath math="\int(3x^2+2x-5)\,dx=3\left(\frac{x^3}{3}\right)+2\left(\frac{x^2}{2}\right)-5x+C" />
+<BlockMath math="= x^3 + x^2 - 5x + C" />
+</MathContainer>
+
+Jadi, jawapannya ialah <InlineMath math="x^3 + x^2 - 5x + C" />.
+
+**Soalan 3**. Kamiran <InlineMath math="\int 2x(x^2 + 3)^4 \, dx" /> boleh diselesaikan dengan **penggantian** kerana faktor <InlineMath math="2x" /> ialah terbitan bagi ungkapan di dalam kurungan.
+
+**Langkah 1**: Pilih satu bahagian fungsi untuk dijadikan <InlineMath math="u" />. Pilihan yang baik ialah bahagian di dalam kurungan.
+
+Katakan <InlineMath math="u = x^2 + 3" />.
+
+**Langkah 2**: Cari terbitan <InlineMath math="u" /> terhadap <InlineMath math="x" />, iaitu <InlineMath math="du/dx" />.
+
+<BlockMath math="\frac{du}{dx} = 2x" />
+
+Daripada sini, kita boleh tulis <InlineMath math="du = 2x \, dx" />.
+
+**Langkah 3**: Lakukan penggantian. Gantikan <InlineMath math="x^2+3" /> dengan <InlineMath math="u" /> dan <InlineMath math="2x \, dx" /> dengan <InlineMath math="du" />.
+
+<BlockMath math="\int (x^2 + 3)^4 (2x \, dx) = \int u^4 \, du" />
+
+**Langkah 4**: Selesaikan kamiran yang telah dipermudahkan itu menggunakan petua kuasa.
+
+<BlockMath math="\int u^4 \, du = \frac{1}{5}u^5 + C" />
+
+**Langkah 5**: Gantikan semula <InlineMath math="u" /> dengan bentuk asalnya.
+
+<BlockMath math="\int2x(x^2+3)^4\,dx=\frac15(x^2+3)^5+C" />
+
+Semak jawapan dengan **membezakannya**. Petua rantai mengembalikan kamiranan asal:
+
+<BlockMath math="\frac{d}{dx}\left[\frac15(x^2+3)^5+C\right]=\frac15\cdot5(x^2+3)^4\cdot2x=2x(x^2+3)^4" />

@@ -2,34 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "reading",
-    topic: "text-structure",
+    cognitiveLevel: "reasoning",
+    contentDomain: "writing",
+    topic: "word-choice",
   },
-  stimulus: "grain-barn",
+  stimulus: "kenikir",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "kalimat (3) dan (4)",
+          label: "mengganti kata *memusnahkan* dengan *mengurangi*",
         },
         {
           correct: false,
-          label: "kalimat (1) dan (2)",
+          label: "mengganti kata *memusnahkan* dengan *membasmi*",
         },
         {
           correct: false,
-          label: "kalimat (5) dan (6)",
+          label: "mengganti kata *memusnahkan* dengan *mengusir*",
         },
         {
           correct: false,
-          label: "kalimat (6) dan (7)",
+          label: "mengganti kata *menunjukkan* dengan *membuktikan*",
         },
         {
           correct: false,
-          label: "kalimat (2) dan (6)",
+          label:
+            "mengganti frasa *bedeng yang dikelilingi kenikir* dengan *seluruh bedeng cabai*",
         },
       ],
     },

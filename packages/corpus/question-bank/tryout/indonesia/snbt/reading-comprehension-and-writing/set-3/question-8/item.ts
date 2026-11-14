@@ -2,34 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "writing",
-    topic: "conjunction",
+    topic: "effective-sentence",
   },
-  stimulus: "stingless-bees",
+  stimulus: "tenun",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Tepat", "Tidak tepat"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "karena",
+          column: 1,
+          label:
+            "Kalimat (3) diubah menjadi *Setelah ditenun selama berminggu-minggu, barulah selendang buatan peserta terlihat utuh.*",
         },
         {
-          correct: false,
-          label: "tetapi",
+          column: 2,
+          label:
+            "Kalimat (3) diubah menjadi *Setelah menenun selama berminggu-minggu, barulah selendang buatan peserta terlihat utuh.*",
         },
         {
-          correct: false,
-          label: "agar",
+          column: 2,
+          label:
+            "Kalimat (6) diubah menjadi *Peserta baru kini memulai dengan menenun pembatas buku, lalu menenun taplak kecil, sehingga dapat menenun selendang pada bulan keenam.*",
         },
         {
-          correct: false,
-          label: "meskipun",
-        },
-        {
-          correct: false,
-          label: "bahkan",
+          column: 1,
+          label:
+            "Kalimat (6) diubah menjadi *Peserta baru kini memulai dengan menenun pembatas buku, lalu menenun taplak kecil, dan baru menenun selendang pada bulan keenam.*",
         },
       ],
     },

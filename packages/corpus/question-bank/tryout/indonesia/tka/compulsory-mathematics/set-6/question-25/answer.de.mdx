@@ -1,15 +1,23 @@
-Der Ergebnisraum besteht aus allen Sitzordnungen der fünf Schüler, <InlineMath math="5!=120" /> Ordnungen. Um die Ordnungen zu zählen, in denen Ani und Budi nebeneinandersitzen, **fasst du Ani und Budi zu einem Block zusammen**. Dieser Block und die anderen drei lassen sich auf <InlineMath math="4!" /> Arten anordnen, und im Block können Ani und Budi auf <InlineMath math="2!" /> Arten tauschen.
+# Der Ergebnisraum der Dreiecke
+
+Die Angabe **die drei Punkte bilden ein Dreieck** heißt: Der Ergebnisraum besteht nicht aus allen Dreiergruppen, sondern nur aus denen, die nicht auf einer Geraden liegen.
+
+Es gibt <InlineMath math="\binom93=84" /> Möglichkeiten, drei der neun Punkte zu wählen. Auf diesem Gitter liegen drei Punkte in einer Linie auf <InlineMath math="3" /> Zeilen, <InlineMath math="3" /> Spalten und <InlineMath math="2" /> Diagonalen, also sind <InlineMath math="8" /> Gruppen kollinear.
+
+<BlockMath math="\text{Dreiecke}=84-8=76" />
+
+# Dreiecke mit dem Mittelpunkt
+
+Wird <InlineMath math="(1,1)" /> gewählt, kommen die beiden anderen Punkte aus den restlichen acht, also gibt es <InlineMath math="\binom82=28" /> Möglichkeiten. Manche Paare liegen aber mit <InlineMath math="(1,1)" /> auf einer Linie: eines in der mittleren Zeile, eines in der mittleren Spalte und je eines auf den Diagonalen. **Also fallen <InlineMath math="4" /> Paare weg**.
 
 <BlockMath math="\begin{aligned}
-n(A)&=4!\cdot2!=24\cdot2=48 \\
-P(A)&=\frac{48}{120}=\frac25
+\text{Dreiecke mit } (1,1)&=28-4=24 \\
+P&=\frac{24}{76}=\frac{6}{19}
 \end{aligned}" />
 
-Probe auf anderem Weg: Von den <InlineMath math="\binom52=10" /> Stuhlpaaren für Ani und Budi liegen <InlineMath math="4" /> nebeneinander, und <InlineMath math="\frac{4}{10}=\frac25" />.
+Die Wahrscheinlichkeit ist also <InlineMath math="\tfrac{6}{19}" />.
 
-Die Wahrscheinlichkeit, dass Ani und Budi nebeneinandersitzen, ist also <InlineMath math="\frac25" />.
-
-- <InlineMath math="\frac{1}{10}" /> zählt nur ein benachbartes Stuhlpaar von <InlineMath math="10" /> Paaren.
-- <InlineMath math="\frac15" /> vergisst, dass Ani und Budi im Block tauschen können.
-- <InlineMath math="\frac12" /> nimmt an, nebeneinander und getrennt seien gleich wahrscheinlich.
-- <InlineMath math="\frac35" /> ist die Wahrscheinlichkeit, dass Ani und Budi **nicht** nebeneinandersitzen.
+- <InlineMath math="\tfrac13" /> entfernt die kollinearen Gruppen gar nicht, also <InlineMath math="\tfrac{28}{84}" />.
+- <InlineMath math="\tfrac{7}{19}" /> entfernt sie im Nenner, vergisst aber die <InlineMath math="4" /> kollinearen Paare im Zähler, also <InlineMath math="\tfrac{28}{76}" />.
+- <InlineMath math="\tfrac{13}{19}" /> ist das Gegenereignis: <InlineMath math="(1,1)" /> ist **keine** Ecke.
+- <InlineMath math="\tfrac{19}{21}" /> bleibt bei der Wahrscheinlichkeit für ein Dreieck stehen, <InlineMath math="\tfrac{76}{84}" />.

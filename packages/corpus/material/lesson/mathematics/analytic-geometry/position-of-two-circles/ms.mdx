@@ -1,0 +1,392 @@
+export const metadata = {
+  title: "Kedudukan Dua Bulatan",
+  description: "Bandingkan jarak antara dua pusat dengan hasil tambah dan beza jejari untuk melihat sama ada dua bulatan bersilang, bersentuhan, atau terpisah.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Geometri Analitik",
+};
+
+## Tujuh Kedudukan Dua Bulatan
+
+Kedudukan dua bulatan bergantung pada **jarak antara pusat <InlineMath math="d" />** berbanding dengan **hasil tambah jejari <InlineMath math="r_1 + r_2" />** dan **beza jejari <InlineMath math="|r_1 - r_2|" />**. Untuk pusat <InlineMath math="(x_1, y_1)" /> dan <InlineMath math="(x_2, y_2)" />, jarak antara kedua-duanya ialah
+
+<BlockMath math="d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}" />
+
+Selepas kamu tahu nilai <InlineMath math="d" />, padankan nilai itu dengan jadual ini. Setiap pasangan bulatan yang jejarinya positif jatuh dalam tepat satu baris.
+
+| Kedudukan | Syarat | Titik sepunya |
+| --- | --- | --- |
+| Terpisah, di luar satu sama lain | <InlineMath math="d > r_1 + r_2" /> | tiada |
+| Bersentuhan di luar | <InlineMath math="d = r_1 + r_2" /> | satu |
+| Bersilang | <InlineMath math="\lvert r_1 - r_2 \rvert < d < r_1 + r_2" /> | dua |
+| Bersentuhan di dalam | <InlineMath math="d = \lvert r_1 - r_2 \rvert > 0" /> | satu |
+| Satu bulatan di dalam bulatan yang lain | <InlineMath math="0 < d < \lvert r_1 - r_2 \rvert" /> | tiada |
+| Sepusat | <InlineMath math="d = 0" /> dan <InlineMath math="r_1 \ne r_2" /> | tiada |
+| Bertindih | <InlineMath math="d = 0" /> dan <InlineMath math="r_1 = r_2" /> | setiap titik |
+
+Bayangkan kamu menggerakkan bulatan kedua lurus ke arah bulatan pertama. Kalau jejarinya berbeza, jarak <InlineMath math="d" /> makin kecil dan kedudukannya berubah **tepat mengikut susunan baris dalam jadual**, daripada terpisah hingga sepusat. Kalau jejarinya sama, pergerakan itu melompat terus daripada bersilang kepada bertindih.
+
+## Dua Bulatan yang Bersilang
+
+Dua bulatan **bersilang** apabila lilitannya bertemu pada tepat dua titik. Bahagian yang dikongsi oleh kedua-dua bulatan berbentuk kanta, dibatasi oleh dua lengkok yang menyambungkan dua titik itu.
+
+<MathVisual
+  title={<>Dua Bulatan yang Bersilang</>}
+  description={<>Kedua-dua bulatan bertemu pada dua titik yang berbeza.</>}
+  labels={{
+    "l1": <InlineMath math="P_1" />,
+    "l2": <InlineMath math="P_2" />,
+    "l3": <InlineMath math="A" />,
+    "l4": <InlineMath math="B" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-1) + (3 * cos(((t * pi) / 180))))", y: "(0 + (3 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(1.5 + (2.5 * cos(((t * pi) / 180))))", y: "(0 + (2.5 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: -1, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 1.5, y: 0 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0.8, y: 2.4 }, { x: 0.8, y: -2.4 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -1, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 1.5, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s5", at: { x: 0.8, y: 2.4 }, placement: "above-right" },
+      { key: "l4", objectId: "s5", at: { x: 0.8, y: -2.4 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Syaratnya ialah
+
+<BlockMath math="|r_1 - r_2| < d < r_1 + r_2" />
+
+Syarat ini datang daripada sebuah segi tiga. Titik persilangan <InlineMath math="A" />, pusat <InlineMath math="P_1" />, dan pusat <InlineMath math="P_2" /> membentuk segi tiga dengan sisi <InlineMath math="r_1" />, <InlineMath math="r_2" />, dan <InlineMath math="d" />. Setiap sisi segi tiga lebih pendek daripada hasil tambah dua sisi yang lain, jadi <InlineMath math="d < r_1 + r_2" /> dan <InlineMath math="d > |r_1 - r_2|" />. Apabila satu tanda <InlineMath math="<" /> bertukar menjadi <InlineMath math="=" />, **segi tiga itu menjadi leper dan tinggal satu garis sahaja**, dan dua titik persilangan bercantum menjadi satu titik sentuhan. Sebaliknya, apabila ketaksamaan itu dipenuhi, segi tiga dengan sisi <InlineMath math="r_1" />, <InlineMath math="r_2" />, dan <InlineMath math="d" /> boleh dibina pada kedua-dua belah garis <InlineMath math="P_1P_2" />, dan dua puncaknya ialah titik-titik persilangan itu.
+
+## Bersentuhan di Luar dan di Dalam
+
+Dua bulatan **bersentuhan** apabila lilitannya bertemu pada tepat satu titik <InlineMath math="T" />. Titik sentuhan itu sentiasa terletak pada garis yang melalui kedua-dua pusat.
+
+<MathVisual
+  title={<>Bulatan yang Bersentuhan di Luar</>}
+  description={<>Kedua-dua bulatan bersentuhan di luar dan bertemu pada satu titik.</>}
+  labels={{
+    "l1": <InlineMath math="P_1" />,
+    "l2": <InlineMath math="P_2" />,
+    "l3": <InlineMath math="T" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2.5) + (2.5 * cos(((t * pi) / 180))))", y: "(0 + (2.5 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2 + (2 * cos(((t * pi) / 180))))", y: "(0 + (2 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: -2.5, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+      { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -4 }, { x: 0, y: 4 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -2.5, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 2, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s5", at: { x: 0, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+**Sentuhan luar** berlaku apabila <InlineMath math="d = r_1 + r_2" />. Kedua-dua bulatan terletak pada dua belah <InlineMath math="T" /> yang bertentangan. Dalam kes ini, dua [tangen sepunya dalam](/ms/subjek/matematik/bulatan/tangen-sepunya-luar-dan-dalam) bercantum menjadi satu garis yang melalui <InlineMath math="T" /> dan berserenjang dengan <InlineMath math="P_1P_2" />.
+
+**Sentuhan dalam** berlaku apabila <InlineMath math="d = |r_1 - r_2| > 0" />. Bulatan kecil terletak di dalam bulatan besar dan menyentuhnya dari dalam.
+
+<MathVisual
+  title={<>Bulatan yang Bersentuhan di Dalam</>}
+  description={<>Bulatan kecil berada di dalam bulatan besar dan kedua-duanya bersentuhan.</>}
+  labels={{
+    "l1": <InlineMath math="P_1" />,
+    "l2": <InlineMath math="P_2" />,
+    "l3": <InlineMath math="T" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(0 + (4 * cos(((t * pi) / 180))))", y: "(0 + (4 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2.5 + (1.5 * cos(((t * pi) / 180))))", y: "(0 + (1.5 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 2.5, y: 0 }, appearance: "answer" },
+      { id: "s5", kind: "point", at: { x: 4, y: 0 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -5 }, { x: 0, y: 5 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "l3", objectId: "s5", at: { x: 4, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Untuk sentuhan dalam, ambil <InlineMath math="P_1" /> sebagai pusat bulatan yang lebih besar. Dengan pilihan itu, dalam kedua-dua jenis sentuhan, titik sentuhan terletak pada jarak <InlineMath math="r_1" /> dari <InlineMath math="P_1" /> mengikut arah <InlineMath math="P_1P_2" />:
+
+<BlockMath math="T = P_1 + \frac{r_1}{d}\,(P_2 - P_1)" />
+
+## Terpisah atau Satu di Dalam yang Lain
+
+Ada dua keadaan apabila dua bulatan yang pusatnya berbeza tidak mempunyai titik sepunya. Keadaan pertama, kedua-duanya **terpisah, di luar satu sama lain**, apabila <InlineMath math="d > r_1 + r_2" />.
+
+<MathVisual
+  title={<>Dua Bulatan yang Terpisah</>}
+  description={<>Kedua-dua bulatan berjauhan dan tidak bersentuhan.</>}
+  labels={{
+    "l1": <InlineMath math="P_1" />,
+    "l2": <InlineMath math="P_2" />,
+    "l3": <InlineMath math="d" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (2 * cos(((t * pi) / 180))))", y: "(0 + (2 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(3 + (1.5 * cos(((t * pi) / 180))))", y: "(0 + (1.5 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -4 }, { x: 0, y: 4 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -3, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s5", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+Jarak terpendek antara dua lilitan itu terletak pada garis yang melalui kedua-dua pusat, dan panjangnya <InlineMath math="d - (r_1 + r_2)" />. Tiada satu titik pun yang berada dalam kedua-dua cakera sekali gus.
+
+Keadaan kedua ialah **satu bulatan di dalam bulatan yang lain tanpa bersentuhan**, apabila <InlineMath math="0 < d < |r_1 - r_2|" />. Ambil bulatan besar berjejari <InlineMath math="4" />, bulatan kecil berjejari <InlineMath math="1" />, dan jarak antara pusatnya <InlineMath math="1" />.
+
+<MathVisual
+  title={<>Bulatan di Dalam Bulatan tanpa Sentuhan</>}
+  description={<>Pusatnya berbeza dan lilitannya tidak bertemu.</>}
+  labels={{
+    "l1": <InlineMath math="P_1" />,
+    "l2": <InlineMath math="P_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(1 + cos(((t * pi) / 90)))", y: "sin(((t * pi) / 90))", parameter: { min: 0, max: 180 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 1, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Oleh sebab <InlineMath math="0 < 1 < 4 - 1" />, bulatan kecil terletak sepenuhnya di dalam bulatan besar. Jarak terpendek antara dua lilitan itu ialah <InlineMath math="|r_1 - r_2| - d = 3 - 1 = 2" />.
+
+## Bulatan Sepusat dan Bulatan Bertindih
+
+**Bulatan sepusat** berkongsi pusat yang sama tetapi jejarinya berbeza, seperti gelang-gelang pada papan sasaran memanah.
+
+<MathVisual
+  title={<>Bulatan Sepusat</>}
+  description={<>Dua bulatan dengan pusat yang sama tetapi jejari yang berbeza.</>}
+  labels={{
+    "l1": <InlineMath math="P" />,
+    "l2": <InlineMath math="r_1" />,
+    "l3": <InlineMath math="r_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(0 + (3.5 * cos(((t * pi) / 180))))", y: "(0 + (3.5 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(0 + (2 * cos(((t * pi) / 180))))", y: "(0 + (2 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: Math.sqrt(2), y: Math.sqrt(2) }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3.5, y: 0 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }], appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -5 }, { x: 0, y: 5 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 1.41, y: 1.41 }, placement: "below" },
+      { key: "l3", objectId: "s5", at: { x: 3.5, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+Untuk bulatan sepusat, <InlineMath math="d = 0" /> dan <InlineMath math="r_1 \ne r_2" />. Lilitannya tidak pernah bertemu, dan jarak antara kedua-duanya sama ke semua arah, iaitu <InlineMath math="|r_1 - r_2|" />.
+
+**Bulatan bertindih** mempunyai pusat yang sama dan jejari yang sama. Kedua-dua lilitan menindih satu sama lain dengan tepat, jadi setiap titik pada satu bulatan juga terletak pada bulatan yang lain:
+
+<MathContainer>
+  <BlockMath math="d = 0" />
+  <BlockMath math="r_1 = r_2" />
+</MathContainer>
+
+## Contoh Kedudukan daripada Persamaan
+
+Tentukan kedudukan bulatan <InlineMath math="x^2 + y^2 = 9" /> dan <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />.
+
+Bulatan pertama mempunyai pusat <InlineMath math="(0, 0)" /> dan <InlineMath math="r_1 = 3" />. Untuk bulatan kedua, gunakan penyempurnaan kuasa dua seperti dalam [persamaan bulatan](/ms/subjek/matematik/geometri-analitik/persamaan-bulatan):
+
+<MathContainer>
+  <BlockMath math="x^2 + y^2 - 6x - 8y = 0" />
+  <BlockMath math="\begin{aligned} &amp;(x^2 - 6x + 9) + (y^2 - 8y + 16) \\ &amp;= 9 + 16 \end{aligned}" />
+  <BlockMath math="(x - 3)^2 + (y - 4)^2 = 25" />
+</MathContainer>
+
+Bulatan kedua mempunyai pusat <InlineMath math="(3, 4)" /> dan <InlineMath math="r_2 = 5" />. Kira jarak antara pusat, kemudian bandingkan:
+
+<MathContainer>
+  <BlockMath math="d = \sqrt{(3 - 0)^2 + (4 - 0)^2} = \sqrt{25} = 5" />
+  <BlockMath math="|r_1 - r_2| = |3 - 5| = 2, \qquad r_1 + r_2 = 3 + 5 = 8" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="2 < 5 < 8" />, kedua-dua bulatan **bersilang pada dua titik**.
+
+<MathVisual
+  title="Dua bulatan yang bersilang dan perentas sepunyanya"
+  description={<>Bulatan <InlineMath math="L_1" /> berpusat di <InlineMath math="O" /> dengan jejari <InlineMath math="3" />, dan <InlineMath math="L_2" /> berpusat di <InlineMath math="P(3, 4)" /> dengan jejari <InlineMath math="5" />. Garis <InlineMath math="6x + 8y = 9" /> melalui kedua-dua titik persilangan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 9 }, y: { min: -4, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "primary" },
+      { id: "second", kind: "circle", center: { x: 3, y: 4 }, radius: 5, appearance: "secondary" },
+      { id: "chord", kind: "line", through: [{ x: 3 / 2, y: 0 }, { x: -7 / 2, y: 15 / 4 }], appearance: "highlight" },
+      { id: "centers", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "upper", kind: "point", at: { x: (27 - 12 * Math.sqrt(91)) / 50, y: (9 - (6 * (27 - 12 * Math.sqrt(91))) / 50) / 8 }, appearance: "answer" },
+      { id: "lower", kind: "point", at: { x: (27 + 12 * Math.sqrt(91)) / 50, y: (9 - (6 * (27 + 12 * Math.sqrt(91))) / 50) / 8 }, appearance: "answer" },
+      { id: "origin", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "center", kind: "point", at: { x: 3, y: 4 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: -3, y: 0 }, placement: "left" },
+      { key: "second", objectId: "second", at: { x: 8, y: 4 }, placement: "right" },
+      { key: "chord", objectId: "chord", at: { x: -7 / 2, y: 15 / 4 }, placement: "above" },
+      { key: "origin", objectId: "origin", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "center", objectId: "center", at: { x: 3, y: 4 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="L_1" />,
+    second: <InlineMath math="L_2" />,
+    chord: <InlineMath math="6x + 8y = 9" />,
+    origin: <InlineMath math="O" />,
+    center: <InlineMath math="P" />,
+  }}
+/>
+
+Semak dengan cara lain. Tolak persamaan kedua daripada persamaan pertama: <InlineMath math="(x^2 + y^2 - 9) - (x^2 + y^2 - 6x - 8y) = 6x + 8y - 9" />. Garis <InlineMath math="6x + 8y = 9" /> mengandungi kedua-dua titik persilangan, kerana setiap titik yang memenuhi kedua-dua persamaan juga memenuhi beza kedua-duanya. Jarak dari <InlineMath math="O" /> ke garis itu ialah <InlineMath math="\frac{9}{10}" />, kurang daripada <InlineMath math="r_1 = 3" />, jadi menurut petua [persilangan garis dengan bulatan](/ms/subjek/matematik/geometri-analitik/kedudukan-garis-terhadap-bulatan), garis itu memotong <InlineMath math="L_1" /> pada dua titik. Hasilnya sepadan.
+
+## Contoh Jejari untuk Bulatan yang Bersentuhan
+
+Diberi bulatan <InlineMath math="L_1: x^2 + y^2 = 25" /> dan bulatan <InlineMath math="L_2" /> yang berpusat di <InlineMath math="P(6, 8)" /> dengan jejari <InlineMath math="r" />. Cari <InlineMath math="r" /> supaya kedua-dua bulatan bersentuhan, kemudian cari titik sentuhannya.
+
+Jarak antara pusat ialah <InlineMath math="d = \sqrt{6^2 + 8^2} = 10" />. Sentuhan luar dan sentuhan dalam memberikan dua persamaan:
+
+<MathContainer>
+  <BlockMath math="\text{luar: } 5 + r = 10 \quad\Longrightarrow\quad r = 5" />
+  <BlockMath math="\text{dalam: } |r - 5| = 10 \quad\Longrightarrow\quad r = 15" />
+</MathContainer>
+
+Nilai <InlineMath math="r = -5" /> daripada persamaan sentuhan dalam tidak diterima, kerana **jejari mesti positif**. Untuk <InlineMath math="r = 5" />, rumus titik sentuhan memberikan <InlineMath math="T = (0, 0) + \frac{5}{10}(6, 8) = (3, 4)" />. Untuk <InlineMath math="r = 15" />, bulatan <InlineMath math="L_2" /> ialah bulatan yang lebih besar, jadi <InlineMath math="T = (6, 8) + \frac{15}{10}(-6, -8) = (-3, -4)" />.
+
+<MathVisual
+  title="Dua jejari yang menjadikan bulatan bersentuhan"
+  description={<>Bulatan berpusat di <InlineMath math="O" /> dengan jejari <InlineMath math="5" />. Bulatan yang berpusat di <InlineMath math="P(6, 8)" /> menyentuhnya dari luar apabila <InlineMath math="r = 5" />, dan melingkunginya sambil menyentuh dari dalam apabila <InlineMath math="r = 15" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 22 }, y: { min: -8, max: 24 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "base", kind: "circle", center: { x: 0, y: 0 }, radius: 5, appearance: "primary" },
+      { id: "outer", kind: "circle", center: { x: 6, y: 8 }, radius: 5, appearance: "secondary" },
+      { id: "inner", kind: "circle", center: { x: 6, y: 8 }, radius: 15, appearance: "highlight" },
+      { id: "centers", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "construction" },
+      { id: "outer-point", kind: "point", at: { x: 3, y: 4 }, appearance: "answer" },
+      { id: "inner-point", kind: "point", at: { x: -3, y: -4 }, appearance: "answer" },
+      { id: "origin", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "center", kind: "point", at: { x: 6, y: 8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "outer", objectId: "outer", at: { x: 11, y: 8 }, placement: "right" },
+      { key: "inner", objectId: "inner", at: { x: 6, y: 23 }, placement: "below" },
+      { key: "outer-point", objectId: "outer-point", at: { x: 3, y: 4 }, placement: "left" },
+      { key: "inner-point", objectId: "inner-point", at: { x: -3, y: -4 }, placement: "left" },
+      { key: "origin", objectId: "origin", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "center", objectId: "center", at: { x: 6, y: 8 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    outer: <InlineMath math="r = 5" />,
+    inner: <InlineMath math="r = 15" />,
+    "outer-point": <InlineMath math="(3, 4)" />,
+    "inner-point": <InlineMath math="(-3, -4)" />,
+    origin: <InlineMath math="O" />,
+    center: <InlineMath math="P" />,
+  }}
+/>
+
+Semak setiap titik sentuhan pada kedua-dua bulatan. Titik <InlineMath math="(3, 4)" /> memenuhi <InlineMath math="3^2 + 4^2 = 25" /> dan <InlineMath math="(3 - 6)^2 + (4 - 8)^2 = 25 = 5^2" />. Titik <InlineMath math="(-3, -4)" /> memenuhi <InlineMath math="(-3)^2 + (-4)^2 = 25" /> dan <InlineMath math="(-9)^2 + (-12)^2 = 225 = 15^2" />.
+
+## Kesilapan Lazim
+
+| Kesilapan | Mengapa salah | Cara menyemak |
+| --- | --- | --- |
+| Membandingkan <InlineMath math="d" /> dengan <InlineMath math="r_1 + r_2" /> sahaja | <InlineMath math="x^2 + y^2 = 25" /> dan <InlineMath math="(x - 1)^2 + y^2 = 1" /> mempunyai <InlineMath math="d = 1 < 6" /> tetapi tidak bersilang | Kira juga <InlineMath math="\lvert r_1 - r_2 \rvert = 4" /> |
+| Menulis <InlineMath math="r_1 - r_2" /> tanpa nilai mutlak | Untuk <InlineMath math="r_1 = 3" /> dan <InlineMath math="r_2 = 5" />, hasilnya <InlineMath math="-2" /> dan batas bawahnya hilang | Gunakan <InlineMath math="\lvert 3 - 5 \rvert = 2" /> |
+| Membaca <InlineMath math="r^2" /> sebagai <InlineMath math="r" /> | <InlineMath math="(x - 3)^2 + (y - 4)^2 = 25" /> mempunyai jejari <InlineMath math="5" />, bukan <InlineMath math="25" /> | Ambil punca kuasa dua bagi sebelah kanan |
+| Menyempurnakan kuasa dua apabila pekali <InlineMath math="x^2" /> bukan <InlineMath math="1" /> | Pusat bagi <InlineMath math="2x^2 + 2y^2 - 8x = 0" /> yang diperoleh menjadi salah | Bahagikan dengan <InlineMath math="2" /> dahulu untuk mendapat <InlineMath math="x^2 + y^2 - 4x = 0" /> |
+| Menganggap bulatan sepusat sebagai bulatan bertindih | Bulatan sepusat mempunyai jejari yang berbeza dan tiada titik sepunya | Bulatan bertindih memerlukan <InlineMath math="d = 0" /> dan <InlineMath math="r_1 = r_2" /> |
+
+Untuk dua bulatan yang bersilang, **menolak dua persamaan itu** ialah cara semakan yang berguna. Hasilnya ialah garis yang mengandungi kedua-dua titik persilangan, dan garis itu mesti memotong setiap bulatan pada dua titik.
+
+## Soalan Latihan
+
+Cari pusat, jejari, dan jarak antara pusat dahulu, kemudian **padankan dengan jadual kedudukan**.
+
+1. Tentukan kedudukan bulatan <InlineMath math="x^2 + y^2 = 4" /> dan <InlineMath math="x^2 + y^2 - 10x + 16 = 0" />. Jika kedua-duanya bersentuhan, cari titik sentuhannya.
+
+2. Tentukan kedudukan bulatan <InlineMath math="x^2 + y^2 - 2x - 4y - 4 = 0" /> dan <InlineMath math="x^2 + y^2 - 14x - 20y + 140 = 0" />, kemudian cari jarak terpendek antara lilitannya.
+
+3. Tentukan kedudukan bulatan <InlineMath math="x^2 + y^2 = 36" /> dan <InlineMath math="x^2 + y^2 - 4x - 2y + 1 = 0" />.
+
+4. Bulatan <InlineMath math="(x - a)^2 + y^2 = 16" /> dan <InlineMath math="x^2 + y^2 = 1" /> bersentuhan. Cari semua nilai <InlineMath math="a" /> yang mungkin.
+
+### Penyelesaian
+
+**Soalan 1**. Bulatan pertama mempunyai pusat <InlineMath math="O" /> dan <InlineMath math="r_1 = 2" />. Bulatan kedua boleh ditulis sebagai <InlineMath math="(x - 5)^2 + y^2 = 9" />, jadi pusatnya <InlineMath math="(5, 0)" /> dan <InlineMath math="r_2 = 3" />. Jaraknya ialah <InlineMath math="d = 5 = 2 + 3" />, jadi kedua-dua bulatan **bersentuhan di luar**. Titik sentuhannya ialah <InlineMath math="T = (0, 0) + \frac{2}{5}(5, 0) = (2, 0)" />. Semak: <InlineMath math="2^2 + 0^2 = 4" /> dan <InlineMath math="(2 - 5)^2 + 0^2 = 9" />.
+
+**Soalan 2**. Sempurnakan kuasa dua dalam kedua-dua persamaan:
+
+<MathContainer>
+  <BlockMath math="(x - 1)^2 + (y - 2)^2 = 1 + 4 + 4 = 9" />
+  <BlockMath math="(x - 7)^2 + (y - 10)^2 = 49 + 100 - 140 = 9" />
+</MathContainer>
+
+Kedua-dua bulatan berjejari <InlineMath math="3" />, dengan pusat <InlineMath math="(1, 2)" /> dan <InlineMath math="(7, 10)" />. Jaraknya ialah <InlineMath math="d = \sqrt{6^2 + 8^2} = 10" />, lebih besar daripada <InlineMath math="3 + 3 = 6" />, jadi kedua-dua bulatan **terpisah, di luar satu sama lain**. Jarak terpendek antara lilitannya ialah <InlineMath math="10 - 6 = 4" />. Semak: titik <InlineMath math="(1, 2) + \frac{3}{10}(6, 8) = \left(\frac{14}{5}, \frac{22}{5}\right)" /> pada bulatan pertama dan titik <InlineMath math="(7, 10) - \frac{3}{10}(6, 8) = \left(\frac{26}{5}, \frac{38}{5}\right)" /> pada bulatan kedua berjarak <InlineMath math="\sqrt{\left(\frac{12}{5}\right)^2 + \left(\frac{16}{5}\right)^2} = 4" /> antara satu sama lain. Kedua-dua titik itu memang terletak pada bulatan masing-masing, kerana <InlineMath math="\left(\frac{9}{5}\right)^2 + \left(\frac{12}{5}\right)^2 = 9" /> dan <InlineMath math="\left(-\frac{9}{5}\right)^2 + \left(-\frac{12}{5}\right)^2 = 9" />.
+
+**Soalan 3**. Bulatan pertama mempunyai pusat <InlineMath math="O" /> dan <InlineMath math="r_1 = 6" />. Bulatan kedua boleh ditulis sebagai <InlineMath math="(x - 2)^2 + (y - 1)^2 = 4" />, jadi pusatnya <InlineMath math="(2, 1)" /> dan <InlineMath math="r_2 = 2" />. Jaraknya ialah <InlineMath math="d = \sqrt{5} \approx 2.24" />, dan <InlineMath math="0 < \sqrt{5} < |6 - 2| = 4" />, jadi bulatan kecil **terletak di dalam bulatan besar tanpa menyentuhnya**. Semak: titik pada bulatan kecil yang paling jauh dari <InlineMath math="O" /> berjarak <InlineMath math="\sqrt{5} + 2 \approx 4.24" />, masih kurang daripada <InlineMath math="6" />.
+
+**Soalan 4**. Jarak antara pusat ialah <InlineMath math="d = |a|" />, dengan jejari <InlineMath math="4" /> dan <InlineMath math="1" />. Sentuhan luar memberikan <InlineMath math="|a| = 4 + 1 = 5" />, dan sentuhan dalam memberikan <InlineMath math="|a| = 4 - 1 = 3" />. Jadi <InlineMath math="a = 5" />, <InlineMath math="a = -5" />, <InlineMath math="a = 3" />, atau <InlineMath math="a = -3" />. Semak untuk <InlineMath math="a = 3" />: titik <InlineMath math="(-1, 0)" /> memenuhi <InlineMath math="(-1)^2 + 0^2 = 1" /> dan <InlineMath math="(-1 - 3)^2 + 0^2 = 16" />, jadi kedua-dua bulatan bertemu di situ, dan bulatan kecil terletak di dalam bulatan besar.

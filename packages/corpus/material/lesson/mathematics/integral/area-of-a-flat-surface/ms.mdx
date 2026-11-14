@@ -1,0 +1,218 @@
+export const metadata = {
+  title: "Luas di Antara Lengkung dan Paksi",
+  description: "Gunakan kamiran tentu untuk mengira luas rantau yang dibatasi oleh lengkung, dengan contoh lengkap bagi fungsi kuadratik dan fungsi punca kuasa dua.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Pengamiran",
+};
+
+
+
+## Daripada Jalur Segi Empat Tepat kepada Kamiran Tentu
+
+Rumus luas segi empat tepat dan segi tiga yang biasa kamu guna tidak boleh terus digunakan pada rantau yang sempadannya melengkung.
+
+**Kamiran tentu** menangani rantau seperti ini dengan <Highlight>mengumpulkan luas jalur yang semakin sempit</Highlight>. [Hasil tambah Riemann](/ms/subjek/matematik/pengamiran/hasil-tambah-riemann) membahagikan selang kepada beberapa bahagian, menganggarkan setiap jalur dengan sebuah segi empat tepat, kemudian mengambil had bagi jumlah luasnya.
+
+Katakan fungsi <InlineMath math="f(x)" /> membatasi suatu rantau dari <InlineMath math="x = a" /> hingga <InlineMath math="x = b" />. Kita bahagikan <InlineMath math="[a, b]" /> kepada <InlineMath math="n" /> subselang yang lebarnya <InlineMath math="\Delta x" />.
+
+Bagi fungsi selanjar yang **tidak negatif** pada <InlineMath math="[a,b]" /> dengan <InlineMath math="a<b" />, rumus luasnya ialah:
+
+<MathContainer>
+<BlockMath math="A = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \cdot \Delta x" />
+<BlockMath math="A = \int_{a}^{b} f(x) \, dx" />
+</MathContainer>
+
+## Menentukan Luas Menggunakan Kamiran Tentu
+
+Untuk mencari luas, kenal pasti dahulu **had kamiran dan tinggi jalur** sebelum kamu mencari antiterbitan. Contoh <InlineMath math="f(x)=x" /> pada <InlineMath math="[0,2]" /> menunjukkan ketiga-tiga keputusan itu.
+
+| Keputusan | Contoh | Sebab |
+| --- | --- | --- |
+| Had kamiran | <InlineMath math="a=0,\ b=2" /> | Diberikan oleh selang dalam soalan. |
+| Tinggi | <InlineMath math="x-0=x" /> | Lengkung terletak di atas paksi pada selang ini. |
+| Antiterbitan | <InlineMath math="F(x)=x^2/2" /> | Apabila dibezakan, hasilnya ialah <InlineMath math="x" />. |
+
+Fungsi <InlineMath math="F" /> ialah [satu antiterbitan](/ms/subjek/matematik/pengamiran/definisi-kamiran-tak-tentu) bagi <InlineMath math="f" />.
+
+<BlockMath math="A=F(2)-F(0)=\frac{2^2}{2}-\frac{0^2}{2}=2" />
+
+Jika lengkung terletak di bawah paksi, gunakan **nilai mutlak** sebagai tinggi. Jika fungsi itu bertukar tanda, pecahkan selang itu pada pensifarnya supaya luas tidak saling membatalkan.
+
+## Aplikasi pada Fungsi Kuadratik
+
+Perhatikan rantau yang dibatasi oleh <InlineMath math="f(x) = x^2 - 4x" />, paksi-<InlineMath math="x" />, <InlineMath math="x = 1" />, dan <InlineMath math="x = 3" />.
+
+<MathVisual
+  title={<>Graf <InlineMath math="f(x) = x^2 - 4x" /></>}
+  description={<>Lengkung <InlineMath math="f(x) = x^2 - 4x" /> dengan sempadan <InlineMath math="x = 1" /> dan <InlineMath math="x = 3" />. Pada <InlineMath math="[1, 3]" />, lengkung itu terletak di bawah paksi-x, menurun dari <InlineMath math="f(1) = -3" /> ke <InlineMath math="f(2) = -4" /> dan naik semula ke <InlineMath math="f(3) = -3" />.</>}
+  labels={{
+    curve: <InlineMath math="f(x) = x^2 - 4x" />,
+    left: <InlineMath math="x = 1" />,
+    right: <InlineMath math="x = 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -4.6, max: 1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: -4, c: 0 }, domain: { min: 0, max: 4 }, appearance: "primary" },
+      { id: "left", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: -3 }, appearance: "construction" },
+      { id: "right", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: -3 }, appearance: "construction" },
+      { id: "base", kind: "segment", from: { x: 1, y: 0 }, to: { x: 3, y: 0 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "left", objectId: "left", at: { x: 1, y: -3 / 2 }, placement: "left" },
+      { key: "right", objectId: "right", at: { x: 3, y: -3 / 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+Pada <InlineMath math="[1,3]" />, faktorkan fungsi itu sebagai <InlineMath math="f(x)=x(x-4)" />. Setiap titik dalam selang ini memenuhi <InlineMath math="x>0" /> dan <InlineMath math="x-4<0" />, jadi <InlineMath math="f(x)<0" /> di sepanjang selang itu. Nilai pada titik hujung, <InlineMath math="f(1)=-3" /> dan <InlineMath math="f(3)=-3" />, sepadan dengan analisis tanda ini.
+
+**Luas geometri** tidak boleh negatif. Oleh sebab fungsi itu negatif di sepanjang selang ini, nilai mutlaknya sama dengan negatif fungsi itu, jadi:
+
+<MathContainer>
+<BlockMath math="A = \int_{1}^{3} |x^2 - 4x| \, dx" />
+<BlockMath math="A = \int_{1}^{3} -(x^2 - 4x) \, dx" />
+<BlockMath math="A = \int_{1}^{3} (-x^2 + 4x) \, dx" />
+</MathContainer>
+
+Sekarang, nilaikan kamiran tentu itu:
+
+<MathContainer>
+<BlockMath math="A = \left[-\frac{x^3}{3} + 2x^2\right]_{1}^{3}" />
+<BlockMath math="A = \left(-\frac{27}{3} + 18\right) - \left(-\frac{1}{3} + 2\right)" />
+<BlockMath math="A = 9 - \frac{5}{3} = \frac{22}{3}" />
+</MathContainer>
+
+Luas rantau itu ialah <InlineMath math="\frac{22}{3}" /> unit persegi.
+
+## Aplikasi pada Fungsi Punca Kuasa Dua
+
+Untuk contoh kedua, kira luas di bawah <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /> dari <InlineMath math="x = 0" /> hingga <InlineMath math="x = 2" />.
+
+<MathVisual
+  title={<>Graf <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /></>}
+  description={<>Lengkung <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /> dari <InlineMath math="x = 0" /> hingga <InlineMath math="x = 2" />, dengan sempadan <InlineMath math="x = 2" /> dan titik <InlineMath math="f(2) = 6" />.</>}
+  labels={{
+    curve: <InlineMath math="f(x) = x\sqrt{x^2 + 5}" />,
+    edge: <InlineMath math="x = 2" />,
+    top: <InlineMath math="f(2) = 6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.6 }, y: { min: -0.5, max: 6.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "polyline", vertices: [{ x: 0, y: (0) * Math.sqrt((0) ** 2 + 5) }, { x: 1 / 20, y: (1 / 20) * Math.sqrt((1 / 20) ** 2 + 5) }, { x: 1 / 10, y: (1 / 10) * Math.sqrt((1 / 10) ** 2 + 5) }, { x: 3 / 20, y: (3 / 20) * Math.sqrt((3 / 20) ** 2 + 5) }, { x: 1 / 5, y: (1 / 5) * Math.sqrt((1 / 5) ** 2 + 5) }, { x: 1 / 4, y: (1 / 4) * Math.sqrt((1 / 4) ** 2 + 5) }, { x: 3 / 10, y: (3 / 10) * Math.sqrt((3 / 10) ** 2 + 5) }, { x: 7 / 20, y: (7 / 20) * Math.sqrt((7 / 20) ** 2 + 5) }, { x: 2 / 5, y: (2 / 5) * Math.sqrt((2 / 5) ** 2 + 5) }, { x: 9 / 20, y: (9 / 20) * Math.sqrt((9 / 20) ** 2 + 5) }, { x: 1 / 2, y: (1 / 2) * Math.sqrt((1 / 2) ** 2 + 5) }, { x: 11 / 20, y: (11 / 20) * Math.sqrt((11 / 20) ** 2 + 5) }, { x: 3 / 5, y: (3 / 5) * Math.sqrt((3 / 5) ** 2 + 5) }, { x: 13 / 20, y: (13 / 20) * Math.sqrt((13 / 20) ** 2 + 5) }, { x: 7 / 10, y: (7 / 10) * Math.sqrt((7 / 10) ** 2 + 5) }, { x: 3 / 4, y: (3 / 4) * Math.sqrt((3 / 4) ** 2 + 5) }, { x: 4 / 5, y: (4 / 5) * Math.sqrt((4 / 5) ** 2 + 5) }, { x: 17 / 20, y: (17 / 20) * Math.sqrt((17 / 20) ** 2 + 5) }, { x: 9 / 10, y: (9 / 10) * Math.sqrt((9 / 10) ** 2 + 5) }, { x: 19 / 20, y: (19 / 20) * Math.sqrt((19 / 20) ** 2 + 5) }, { x: 1, y: (1) * Math.sqrt((1) ** 2 + 5) }, { x: 21 / 20, y: (21 / 20) * Math.sqrt((21 / 20) ** 2 + 5) }, { x: 11 / 10, y: (11 / 10) * Math.sqrt((11 / 10) ** 2 + 5) }, { x: 23 / 20, y: (23 / 20) * Math.sqrt((23 / 20) ** 2 + 5) }, { x: 6 / 5, y: (6 / 5) * Math.sqrt((6 / 5) ** 2 + 5) }, { x: 5 / 4, y: (5 / 4) * Math.sqrt((5 / 4) ** 2 + 5) }, { x: 13 / 10, y: (13 / 10) * Math.sqrt((13 / 10) ** 2 + 5) }, { x: 27 / 20, y: (27 / 20) * Math.sqrt((27 / 20) ** 2 + 5) }, { x: 7 / 5, y: (7 / 5) * Math.sqrt((7 / 5) ** 2 + 5) }, { x: 29 / 20, y: (29 / 20) * Math.sqrt((29 / 20) ** 2 + 5) }, { x: 3 / 2, y: (3 / 2) * Math.sqrt((3 / 2) ** 2 + 5) }, { x: 31 / 20, y: (31 / 20) * Math.sqrt((31 / 20) ** 2 + 5) }, { x: 8 / 5, y: (8 / 5) * Math.sqrt((8 / 5) ** 2 + 5) }, { x: 33 / 20, y: (33 / 20) * Math.sqrt((33 / 20) ** 2 + 5) }, { x: 17 / 10, y: (17 / 10) * Math.sqrt((17 / 10) ** 2 + 5) }, { x: 7 / 4, y: (7 / 4) * Math.sqrt((7 / 4) ** 2 + 5) }, { x: 9 / 5, y: (9 / 5) * Math.sqrt((9 / 5) ** 2 + 5) }, { x: 37 / 20, y: (37 / 20) * Math.sqrt((37 / 20) ** 2 + 5) }, { x: 19 / 10, y: (19 / 10) * Math.sqrt((19 / 10) ** 2 + 5) }, { x: 39 / 20, y: (39 / 20) * Math.sqrt((39 / 20) ** 2 + 5) }, { x: 2, y: (2) * Math.sqrt((2) ** 2 + 5) }], appearance: "primary" },
+      { id: "edge", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 6 }, appearance: "construction" },
+      { id: "origin", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "top", kind: "point", at: { x: 2, y: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 1, y: Math.sqrt(6) }, placement: "left" },
+      { key: "edge", objectId: "edge", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "top", objectId: "top", at: { x: 2, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
+
+Ungkapan <InlineMath math="x\sqrt{x^2 + 5}" /> memberi petunjuk supaya kita guna **kaedah penggantian**, kerana faktor <InlineMath math="x" /> berkadar dengan terbitan ungkapan di dalam punca kuasa dua.
+
+Tetapkan <InlineMath math="u = x^2 + 5" />. Maka <InlineMath math="du = 2x \, dx" />, jadi <InlineMath math="x \, dx = \frac{1}{2} du" />.
+
+Had kamiran mesti menggunakan pemboleh ubah yang sama dengan kamiranan: <InlineMath math="x = 0" /> memberikan <InlineMath math="u = 5" />, manakala <InlineMath math="x = 2" /> memberikan <InlineMath math="u = 9" />.
+
+Sekarang, kamiran kita menjadi:
+
+<MathContainer>
+<BlockMath math="A = \int_{0}^{2} x\sqrt{x^2 + 5} \, dx" />
+<BlockMath math="A = \int_{5}^{9} \frac{1}{2}\sqrt{u} \, du" />
+<BlockMath math="A = \frac{1}{2} \int_{5}^{9} u^{1/2} \, du" />
+<BlockMath math="A = \frac{1}{2} \left[\frac{2}{3}u^{3/2}\right]_{5}^{9}" />
+<BlockMath math="A = \frac{1}{3}\left[u^{3/2}\right]_{5}^{9}" />
+<BlockMath math="A = \frac{1}{3}\left(27 - 5\sqrt{5}\right)" />
+</MathContainer>
+
+Di sini, <InlineMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" /> dan <InlineMath math="5^{3/2} = 5 \cdot \sqrt{5}" />.
+
+> Apabila menggunakan penggantian dalam kamiran tentu, jangan lupa tukar had kamiran mengikut pemboleh ubah penggantian yang baharu.
+
+## Latihan
+
+Had kamiran mungkin diberikan terus atau perlu dicari daripada titik persilangan. Semak tanda fungsi di sepanjang selang supaya kamiran itu menghasilkan **luas geometri**.
+
+1. Kira luas rantau yang dibatasi oleh lengkung <InlineMath math="y = x^2 + 1" />, paksi-<InlineMath math="x" />, serta garis <InlineMath math="x = 0" /> dan <InlineMath math="x = 2" />.
+
+2. Tentukan luas rantau di bawah lengkung <InlineMath math="y = \frac{1}{x^2 + 1}" /> dari <InlineMath math="x = 0" /> hingga <InlineMath math="x = 1" />.
+
+3. Kira luas rantau yang dibatasi oleh lengkung <InlineMath math="y = 2x - x^2" /> dan paksi-<InlineMath math="x" />.
+
+### Jalan Kerja
+
+**Soalan 1**. Oleh sebab fungsi ini **sentiasa positif**, kita boleh terus menulis kamirannya:
+
+<BlockMath math="A = \int_{0}^{2} (x^2 + 1) \, dx" />
+
+Selepas kita kamirkan dan nilaikan, kita peroleh:
+
+<MathContainer>
+<BlockMath math="A = \left[\frac{x^3}{3} + x\right]_{0}^{2}" />
+<BlockMath math="A = \left(\frac{8}{3} + 2\right) - 0 = \frac{14}{3}" />
+</MathContainer>
+
+Jadi, luas rantau itu ialah <InlineMath math="\frac{14}{3}" /> unit persegi.
+
+**Soalan 2**. **Antiterbitan** yang digunakan dalam kamiran ini ialah <InlineMath math="\arctan(x)" /> kerana terbitannya ialah <InlineMath math="\frac{1}{x^2 + 1}" />.
+
+<MathContainer>
+<BlockMath math="A = \int_{0}^{1} \frac{1}{x^2 + 1} \, dx" />
+<BlockMath math="A = [\arctan(x)]_{0}^{1}" />
+<BlockMath math="A = \arctan(1) - \arctan(0) = \frac{\pi}{4}" />
+</MathContainer>
+
+Luas rantau itu ialah <InlineMath math="\frac{\pi}{4}" /> unit persegi.
+
+**Soalan 3**. Mula-mula, cari titik lengkung itu bersilang dengan paksi-<InlineMath math="x" />:
+
+<BlockMath math="2x - x^2 = 0 \Rightarrow x(2 - x) = 0" />
+
+Jadi, titik persilangannya ialah pada <InlineMath math="x = 0" /> dan <InlineMath math="x = 2" />. Oleh sebab fungsi ini **positif di antara dua titik ini**, kita boleh terus mengamirkannya:
+
+<MathContainer>
+<BlockMath math="A = \int_{0}^{2} (2x - x^2) \, dx" />
+<BlockMath math="A = \left[x^2 - \frac{x^3}{3}\right]_{0}^{2}" />
+<BlockMath math="A = 4 - \frac{8}{3} = \frac{4}{3}" />
+</MathContainer>
+
+Luas rantau itu ialah <InlineMath math="\frac{4}{3}" /> unit persegi.
+
+Soalan 3 pada graf: <InlineMath math="y = 2x - x^2" /> bermula pada <InlineMath math="0" />, naik ke <InlineMath math="1" /> pada <InlineMath math="x = 1" />, dan kembali ke <InlineMath math="0" /> pada <InlineMath math="x = 2" />. Rantau di antara lengkung gerbang itu dengan paksi-x mempunyai luas <InlineMath math="\int_0^2 (2x - x^2)\,dx = \tfrac43" />.
+
+<MathVisual
+  title={<>Lengkung gerbang <InlineMath math="y = 2x - x^2" /></>}
+  description={<>Parabola <InlineMath math="y = 2x - x^2" /> di antara punca <InlineMath math="0" /> dan <InlineMath math="2" />, yang membentuk rantau seluas <InlineMath math="\tfrac43" /> bersama paksi-x.</>}
+  labels={{
+    arch: <InlineMath math="y = 2x - x^2" />,
+    area: <InlineMath math="A = \tfrac43" />,
+    top: <InlineMath math="(1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 2.4 }, y: { min: -0.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "arch", kind: "quadratic", inputAxis: "x", coefficients: { a: -1, b: 2, c: 0 }, domain: { min: 0, max: 2 }, appearance: "primary" },
+      { id: "base", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "top", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "arch", objectId: "arch", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "area", objectId: "base", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "top", objectId: "top", at: { x: 1, y: 1 }, placement: "above" },
+    ],
+  }}
+/>

@@ -1,14 +1,71 @@
-Für die Trapezfläche brauchst du **die senkrechte Höhe**, nicht die Länge der schrägen Wand. Fälle von beiden Enden der Sohle Lote nach oben. Die breitere Oberkante teilt sich in <InlineMath math="1\text{ m}" /> in der Mitte und zwei gleiche Stücke links und rechts.
+# Das Grundstück folgt der Zaunreihenfolge
+
+Gesucht ist der tatsächliche Flächeninhalt des Grundstücks. Zwei Dinge entscheiden. Erstens **folgt die Form der Zaunreihenfolge** <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, <InlineMath math="E" />, <InlineMath math="D" />, nicht dem Alphabet. Zweitens gilt der Maßstab für Längen, Flächen ändern sich also mit dem Quadrat des Maßstabs.
+
+Zeichne die Punkte in der Zaunreihenfolge ein. Das Grundstück ist ein Fünfeck mit einer Einbuchtung bei <InlineMath math="E" />.
+
+<MathVisual
+  title={<>Grundstück <InlineMath math="ABCED" /> auf dem Plan</>}
+  description={<>Ein Fünfeck mit den Ecken in der Reihenfolge <InlineMath math="A(0,0)" />, <InlineMath math="B(10,0)" />, <InlineMath math="C(10,6)" />, <InlineMath math="E(2,4)" /> und <InlineMath math="D(0,8)" />. Die senkrechte Gerade <InlineMath math="x=2" /> durch <InlineMath math="E" /> teilt das Grundstück in zwei Trapeze: das linke zwischen <InlineMath math="x=0" /> und <InlineMath math="x=2" />, das rechte zwischen <InlineMath math="x=2" /> und <InlineMath math="x=10" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 12 },
+      y: { min: -2, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "plot", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 6 }, { x: 2, y: 4 }, { x: 0, y: 8 }] },
+      { id: "split", kind: "segment", appearance: "highlight", from: { x: 2, y: 4 }, to: { x: 2, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 10, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 10, y: 6 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 8 } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 10, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 10, y: 6 }, placement: "above-right" },
+      { key: "d", objectId: "point-d", at: { x: 0, y: 8 }, placement: "above-left" },
+      { key: "e", objectId: "point-e", at: { x: 2, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Der Flächeninhalt auf dem Plan
+
+Die senkrechte Gerade <InlineMath math="x=2" /> durch <InlineMath math="E" /> teilt das Grundstück in **zwei Trapeze mit senkrechten parallelen Seiten**. Das linke wird von <InlineMath math="AD" /> mit Länge <InlineMath math="8" /> und der Strecke von <InlineMath math="(2,0)" /> bis <InlineMath math="E" /> mit Länge <InlineMath math="4" /> begrenzt. Das rechte von derselben Strecke mit Länge <InlineMath math="4" /> und von <InlineMath math="BC" /> mit Länge <InlineMath math="6" />.
 
 <BlockMath math="\begin{aligned}
-\text{Randstück}&=\frac{2{,}2-1}{2}=0{,}6\text{ m} \\
-t&=\sqrt{1^2-0{,}6^2}=\sqrt{0{,}64}=0{,}8\text{ m} \\
-L&=\frac{1+2{,}2}{2}\cdot0{,}8=1{,}6\cdot0{,}8=1{,}28\text{ m}^2
+A_{\text{links}}&=\frac{8+4}{2}\cdot2=12 \\
+A_{\text{rechts}}&=\frac{4+6}{2}\cdot8=40 \\
+A_{\text{Plan}}&=12+40=52\text{ cm}^2
 \end{aligned}" />
 
-Der Querschnitt des Kanals ist also <InlineMath math="1{,}28\text{ m}^2" /> groß.
+Probe mit der Flächenformel für Vielecke aus Koordinaten, in der Zaunreihenfolge <InlineMath math="A,B,C,E,D" />: <InlineMath math="\tfrac{1}{2}\left|0+60+28+16+0\right|=52" />. Dasselbe Ergebnis.
 
-- <InlineMath math="0{,}64\text{ m}^2" /> halbiert das richtige Ergebnis noch einmal.
-- <InlineMath math="1{,}6\text{ m}^2" /> nimmt die schräge Wand mit <InlineMath math="1\text{ m}" /> als Höhe.
-- <InlineMath math="2{,}56\text{ m}^2" /> vergisst, die Summe der parallelen Seiten zu halbieren.
-- <InlineMath math="3{,}2\text{ m}^2" /> vergisst das Halbieren und nimmt die schräge Wand als Höhe.
+# Vom Plan zur wirklichen Größe
+
+Der Maßstab <InlineMath math="1:500" /> bedeutet: <InlineMath math="1\text{ cm}" /> auf dem Plan sind <InlineMath math="500\text{ cm}=5\text{ m}" /> in Wirklichkeit. Ein Quadrat von <InlineMath math="1\text{ cm}\times1\text{ cm}" /> auf dem Plan wird zu <InlineMath math="5\text{ m}\times5\text{ m}" />, also **wird der Flächeninhalt mit <InlineMath math="25" /> multipliziert, nicht mit <InlineMath math="5" />**:
+
+<BlockMath math="A_{\text{wirklich}}=52\cdot25=1{.}300\text{ m}^2" />
+
+# Warum die anderen Antworten falsch sind
+
+Jede falsche Antwort **übersieht einen der beiden entscheidenden Punkte oder einen Rechenschritt**.
+
+- <InlineMath math="260\text{ m}^2" /> multipliziert den Planinhalt nur mit <InlineMath math="5" />, als gälte der Längenmaßstab für Flächen.
+- <InlineMath math="1{.}550\text{ m}^2" /> nimmt die alphabetische Reihenfolge <InlineMath math="A,B,C,D,E" />. Sie ergibt ein anderes Fünfeck mit <InlineMath math="62\text{ cm}^2" /> auf dem Plan, also <InlineMath math="62\cdot25=1{.}550" />.
+- <InlineMath math="2{.}000\text{ m}^2" /> nimmt das umschließende Rechteck <InlineMath math="10\times8" /> und vergisst die Einbuchtung bei <InlineMath math="E" />.
+- <InlineMath math="2{.}600\text{ m}^2" /> vergisst den Faktor <InlineMath math="\tfrac{1}{2}" /> in der Flächenformel für Vielecke: <InlineMath math="104\cdot25=2{.}600" />.
+
+Der tatsächliche Flächeninhalt des Grundstücks beträgt also <InlineMath math="1{.}300\text{ m}^2" />.

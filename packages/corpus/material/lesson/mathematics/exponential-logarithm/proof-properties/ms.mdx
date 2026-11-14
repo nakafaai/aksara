@@ -1,0 +1,225 @@
+export const metadata = {
+  title: "Membuktikan Hukum Indeks",
+  description:
+    "Buktikan tujuh hukum indeks berserta syarat domain yang sah, kemudian gunakan hukum itu dalam contoh pemudahan dengan jalan kerja yang lengkap.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-01",
+  dateModified: "2026-11-08",
+  subject: "Indeks dan Logaritma",
+};
+
+## Nyatakan Domain Sebelum Menggunakan Hukum
+
+Hukum indeks bergantung pada **jenis indeks** dan **tanda asas**. Tujuh identiti berikut berguna, tetapi syarat-syaratnya juga sebahagian daripada setiap pernyataan.
+
+| Sifat | Identiti | Syarat yang digunakan di sini |
+| -------- | -------- | -------------------- |
+| Hasil darab asas sama | <InlineMath math="a^m a^n=a^{m+n}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Hasil bahagi asas sama | <InlineMath math="\frac{a^m}{a^n}=a^{m-n}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Kuasa bagi kuasa | <InlineMath math="(a^m)^n=a^{mn}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Kuasa bagi hasil darab | <InlineMath math="(ab)^m=a^m b^m" /> | <InlineMath math="a,b\neq0" />, <InlineMath math="m\in\mathbb{Z}" /> |
+| Kuasa bagi hasil bahagi | <InlineMath math="\left(\frac ab\right)^m=\frac{a^m}{b^m}" /> | <InlineMath math="a,b\neq0" />, <InlineMath math="m\in\mathbb{Z}" /> |
+| Kuasa nisbah dengan penyebut sama | <InlineMath math="a^{m/n}a^{p/n}=a^{(m+p)/n}" /> | <InlineMath math="a>0" />, <InlineMath math="m,n,p\in\mathbb{Z}" />, <InlineMath math="n\neq0" /> |
+| Kuasa nisbah am | <InlineMath math="a^{m/n}a^{p/q}=a^{(mq+pn)/(nq)}" /> | <InlineMath math="a>0" />, <InlineMath math="m,n,p,q\in\mathbb{Z}" />, <InlineMath math="n,q\neq0" /> |
+
+Hukum untuk indeks integer kadang-kadang boleh diperluas kepada domain lain, tetapi perluasan itu memerlukan syarat tambahan. Dengan syarat yang disenaraikan dalam jadual, setiap ungkapan tertakrif dengan baik dalam nombor nyata.
+
+## Bukti untuk Indeks Integer
+
+Bukti di bawah menulis setiap kuasa sebagai **pendaraban berulang**. Bentuk itu terus menunjukkan sebab indeks ditambah, ditolak atau didarab. Baca setiap bukti sebagai rantai kesamaan yang pendek, dan semak bahawa setiap langkah hanya menggunakan definisi kuasa.
+
+### Hasil Darab Asas Sama
+
+Untuk integer positif <InlineMath math="m" /> dan <InlineMath math="n" />, tulis setiap kuasa sebagai **pendaraban berulang**:
+
+<MathContainer>
+  <BlockMath math="a^m=\underbrace{a\cdot a\cdots a}_{m\text{ faktor}}" />
+  <BlockMath math="a^n=\underbrace{a\cdot a\cdots a}_{n\text{ faktor}}" />
+  <BlockMath math="a^m a^n=\underbrace{a\cdot a\cdots a}_{m+n\text{ faktor}}=a^{m+n}" />
+</MathContainer>
+
+Kes sifar datang daripada <InlineMath math="a^0=1" />. Indeks integer negatif datang daripada <InlineMath math="a^{-k}=\frac1{a^k}" />, dan itulah sebabnya <InlineMath math="a" /> mesti bukan sifar.
+
+Kira faktornya, dan hukum ini terbukti dengan sendirinya. Setiap petak ialah satu faktor <InlineMath math="a" />. <InlineMath math="a^3" /> memberikan tiga petak dan <InlineMath math="a^4" /> memberikan empat, jadi hasil darabnya ada <InlineMath math="3 + 4 = 7" /> faktor dalam satu baris: <InlineMath math="a^3 \cdot a^4 = a^7" />.
+
+<MathVisual
+  title={<>Tujuh faktor dalam satu baris</>}
+  description={<>Tiga petak untuk <InlineMath math="a^3" /> dan empat petak untuk <InlineMath math="a^4" /> membentuk tujuh faktor <InlineMath math="a" />.</>}
+  labels={{
+    a: <InlineMath math="a^3" />,
+    b: <InlineMath math="a^4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7.5 }, y: { min: -0.5, max: 1.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "q00", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0 + 0.8, y: 0 }, { x: 0 + 0.8, y: 0 + 0.8 }, { x: 0, y: 0 + 0.8 }], appearance: "primary" },
+      { id: "q01", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 1 + 0.8, y: 0 }, { x: 1 + 0.8, y: 0 + 0.8 }, { x: 1, y: 0 + 0.8 }], appearance: "primary" },
+      { id: "q02", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 2 + 0.8, y: 0 }, { x: 2 + 0.8, y: 0 + 0.8 }, { x: 2, y: 0 + 0.8 }], appearance: "primary" },
+      { id: "q10", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 3 + 0.8, y: 0 }, { x: 3 + 0.8, y: 0 + 0.8 }, { x: 3, y: 0 + 0.8 }], appearance: "secondary" },
+      { id: "q11", kind: "polygon", vertices: [{ x: 4, y: 0 }, { x: 4 + 0.8, y: 0 }, { x: 4 + 0.8, y: 0 + 0.8 }, { x: 4, y: 0 + 0.8 }], appearance: "secondary" },
+      { id: "q12", kind: "polygon", vertices: [{ x: 5, y: 0 }, { x: 5 + 0.8, y: 0 }, { x: 5 + 0.8, y: 0 + 0.8 }, { x: 5, y: 0 + 0.8 }], appearance: "secondary" },
+      { id: "q13", kind: "polygon", vertices: [{ x: 6, y: 0 }, { x: 6 + 0.8, y: 0 }, { x: 6 + 0.8, y: 0 + 0.8 }, { x: 6, y: 0 + 0.8 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "q00", at: { x: 0, y: 0 + 0.4 }, placement: "left" },
+      { key: "b", objectId: "q10", at: { x: 3, y: 0 + 0.4 }, placement: "left" },
+    ],
+  }}
+/>
+
+### Hasil Bahagi Asas Sama
+
+Pembahagian membuang <InlineMath math="n" /> **faktor daripada pengangka** apabila <InlineMath math="m\geq n" />:
+
+<BlockMath math="\frac{a^m}{a^n}=\frac{\overbrace{a\cdots a}^{m\text{ faktor}}}{\underbrace{a\cdots a}_{n\text{ faktor}}}=a^{m-n}" />
+
+Jika <InlineMath math="m<n" />, faktor yang tidak terbatal kekal dalam penyebut. Definisi indeks negatif memberikan hasil yang sama:
+
+<BlockMath math="\frac{a^m}{a^n}=\frac1{a^{n-m}}=a^{-(n-m)}=a^{m-n}" />
+
+Batalkan secara berpasangan. Tulis <InlineMath math="\frac{a^5}{a^2}" /> sebagai lima faktor di atas dua faktor. Setiap faktor dalam penyebut membatalkan satu faktor dalam pengangka, jadi dua pasangan hilang dan tinggal <InlineMath math="5 - 2 = 3" /> faktor: <InlineMath math="a^3" />.
+
+<MathVisual
+  title={<>Lima faktor di atas dua</>}
+  description={<>Lima petak untuk faktor <InlineMath math="a^5" /> di atas dua petak untuk <InlineMath math="a^2" />. Dua pasangan terbatal dan tinggal tiga petak, iaitu <InlineMath math="a^3" />.</>}
+  labels={{
+    top: <InlineMath math="a^5" />,
+    bottom: <InlineMath math="a^2" />,
+    rest: <InlineMath math="a^3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "t0", kind: "polygon", vertices: [{ x: 0, y: 1.4 }, { x: 0 + 0.8, y: 1.4 }, { x: 0 + 0.8, y: 1.4 + 0.8 }, { x: 0, y: 1.4 + 0.8 }], appearance: "reference" },
+      { id: "t1", kind: "polygon", vertices: [{ x: 1, y: 1.4 }, { x: 1 + 0.8, y: 1.4 }, { x: 1 + 0.8, y: 1.4 + 0.8 }, { x: 1, y: 1.4 + 0.8 }], appearance: "reference" },
+      { id: "t2", kind: "polygon", vertices: [{ x: 2, y: 1.4 }, { x: 2 + 0.8, y: 1.4 }, { x: 2 + 0.8, y: 1.4 + 0.8 }, { x: 2, y: 1.4 + 0.8 }], appearance: "answer" },
+      { id: "t3", kind: "polygon", vertices: [{ x: 3, y: 1.4 }, { x: 3 + 0.8, y: 1.4 }, { x: 3 + 0.8, y: 1.4 + 0.8 }, { x: 3, y: 1.4 + 0.8 }], appearance: "answer" },
+      { id: "t4", kind: "polygon", vertices: [{ x: 4, y: 1.4 }, { x: 4 + 0.8, y: 1.4 }, { x: 4 + 0.8, y: 1.4 + 0.8 }, { x: 4, y: 1.4 + 0.8 }], appearance: "answer" },
+      { id: "b0", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0 + 0.8, y: 0 }, { x: 0 + 0.8, y: 0 + 0.8 }, { x: 0, y: 0 + 0.8 }], appearance: "reference" },
+      { id: "b1", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 1 + 0.8, y: 0 }, { x: 1 + 0.8, y: 0 + 0.8 }, { x: 1, y: 0 + 0.8 }], appearance: "reference" },
+      { id: "p0", kind: "segment", from: { x: 0 + 0.4, y: 0.8 }, to: { x: 0 + 0.4, y: 1.4 }, appearance: "warning" },
+      { id: "p1", kind: "segment", from: { x: 1 + 0.4, y: 0.8 }, to: { x: 1 + 0.4, y: 1.4 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "top", objectId: "t4", at: { x: 4.8, y: 1.8 }, placement: "right" },
+      { key: "bottom", objectId: "b1", at: { x: 1.8, y: 0.4 }, placement: "right" },
+      { key: "rest", objectId: "t3", at: { x: 3.4, y: 2.2 }, placement: "above" },
+    ],
+  }}
+/>
+
+### Kuasa bagi Kuasa
+
+Untuk <InlineMath math="n" /> positif, faktor <InlineMath math="a^m" /> **muncul** sebanyak <InlineMath math="n" /> kali:
+
+<BlockMath math="\begin{aligned} (a^m)^n &amp;=\underbrace{a^m a^m\cdots a^m}_{n\text{ faktor}} \\ &amp;=a^{m+m+\cdots+m} \\ &amp;=a^{mn} \end{aligned}" />
+
+Indeks sifar meliputi kes <InlineMath math="n=0" />, dan salingan meliputi <InlineMath math="n" /> negatif.
+
+Kuasa bagi kuasa menyusun salinan secara bertindan. <InlineMath math="(a^2)^3" /> bermaksud tiga salinan <InlineMath math="a^2" />, satu salinan bagi setiap baris, dan setiap salinan ada dua faktor. Grid itu mengandungi <InlineMath math="2 \cdot 3 = 6" /> petak, jadi <InlineMath math="(a^2)^3 = a^6" />.
+
+<MathVisual
+  title={<>Tiga baris dengan dua faktor</>}
+  description={<>Tiga baris, satu bagi setiap salinan <InlineMath math="a^2" />, dengan dua petak dalam setiap baris: enam faktor <InlineMath math="a" />.</>}
+  labels={{
+    a: <InlineMath math="a^2" />,
+    b: <InlineMath math="a^2" />,
+    c: <InlineMath math="a^2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 2.5 }, y: { min: -2.5, max: 1.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "q00", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0 + 0.8, y: 0 }, { x: 0 + 0.8, y: 0 + 0.8 }, { x: 0, y: 0 + 0.8 }], appearance: "primary" },
+      { id: "q01", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 1 + 0.8, y: 0 }, { x: 1 + 0.8, y: 0 + 0.8 }, { x: 1, y: 0 + 0.8 }], appearance: "primary" },
+      { id: "q10", kind: "polygon", vertices: [{ x: 0, y: -1 }, { x: 0 + 0.8, y: -1 }, { x: 0 + 0.8, y: -1 + 0.8 }, { x: 0, y: -1 + 0.8 }], appearance: "secondary" },
+      { id: "q11", kind: "polygon", vertices: [{ x: 1, y: -1 }, { x: 1 + 0.8, y: -1 }, { x: 1 + 0.8, y: -1 + 0.8 }, { x: 1, y: -1 + 0.8 }], appearance: "secondary" },
+      { id: "q20", kind: "polygon", vertices: [{ x: 0, y: -2 }, { x: 0 + 0.8, y: -2 }, { x: 0 + 0.8, y: -2 + 0.8 }, { x: 0, y: -2 + 0.8 }], appearance: "construction" },
+      { id: "q21", kind: "polygon", vertices: [{ x: 1, y: -2 }, { x: 1 + 0.8, y: -2 }, { x: 1 + 0.8, y: -2 + 0.8 }, { x: 1, y: -2 + 0.8 }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "a", objectId: "q00", at: { x: 0, y: 0 + 0.4 }, placement: "left" },
+      { key: "b", objectId: "q10", at: { x: 0, y: -1 + 0.4 }, placement: "left" },
+      { key: "c", objectId: "q20", at: { x: 0, y: -2 + 0.4 }, placement: "left" },
+    ],
+  }}
+/>
+
+### Kuasa bagi Hasil Darab dan Hasil Bahagi
+
+Untuk <InlineMath math="m" /> positif, **mengumpulkan semula faktor-faktornya** memberikan:
+
+<MathContainer>
+  <BlockMath math="(ab)^m=\underbrace{(ab)(ab)\cdots(ab)}_{m\text{ faktor}}=a^m b^m" />
+  <BlockMath math="\left(\frac ab\right)^m=\underbrace{\frac ab\cdot\frac ab\cdots\frac ab}_{m\text{ faktor}}=\frac{a^m}{b^m}" />
+</MathContainer>
+
+Kes sifar dan kes negatif sekali lagi datang daripada <InlineMath math="x^0=1" /> dan <InlineMath math="x^{-k}=\frac1{x^k}" />. Dengan mensyaratkan asas bukan sifar, semua salingan yang diperlukan menjadi sah.
+
+## Bukti untuk Indeks Nisbah
+
+Untuk indeks nisbah, gunakan **asas positif**. Kita tulis kedua-dua faktor sebagai kuasa integer bagi punca positif yang sama. Ambil penyebutnya sebagai positif. Jika penyebut pada mulanya negatif, darabkan dahulu pengangka dan penyebut dengan negatif satu.
+
+### Penyebut Sama
+
+Katakan <InlineMath math="t=\sqrt[n]{a}>0" />. Oleh sebab <InlineMath math="a^{m/n}=t^m" /> dan <InlineMath math="a^{p/n}=t^p" />, kita boleh menggunakan **hukum kuasa integer** yang sudah dibuktikan:
+
+<BlockMath math="\begin{aligned} a^{m/n}a^{p/n} &=t^m t^p \\ &=t^{m+p} \\ &=a^{(m+p)/n} \end{aligned}" />
+
+### Penyebut Berbeza
+
+Ambil **punca sepunya** <InlineMath math="t=\sqrt[nq]{a}>0" />. Oleh sebab <InlineMath math="(t^q)^n=a" /> dan <InlineMath math="(t^n)^q=a" />, punca positif <InlineMath math="\sqrt[n]{a}" /> sama dengan <InlineMath math="t^q" />, dan <InlineMath math="\sqrt[q]{a}" /> sama dengan <InlineMath math="t^n" />. Oleh itu:
+
+<BlockMath math="\begin{aligned} a^{m/n}a^{p/q} &=(t^q)^m(t^n)^p \\ &=t^{mq}t^{np} \\ &=t^{mq+np} \\ &=a^{(mq+pn)/(nq)} \end{aligned}" />
+
+## Menggunakan dan Mengesahkan Hukum Indeks
+
+Contoh di bawah menggunakan hukum-hukum itu, kemudian **menyemak jawapannya**. Setiap contoh menyebut hukum yang digunakan, jadi langkahnya boleh dijejak semula. Tutup jawapannya, selesaikan sendiri soalan itu, kemudian gunakan hukum yang disebut untuk mencari di mana dua penyelesaian itu berbeza.
+
+### Menentukan Indeks yang Tidak Diketahui
+
+Untuk mencari indeks, tulis kedua-dua belah dengan **asas positif yang sama selain satu**. Dengan syarat ini, indeks yang berbeza menghasilkan nilai fungsi yang berbeza. Contoh pendaraban di antara dua persamaan itu juga menyemak hukum penambahan indeks.
+
+1. Tentukan <InlineMath math="p" /> dalam <InlineMath math="(3^4)^2=3^p" />.
+
+    <MathContainer>
+      <BlockMath math="(3^4)^2=3^{4\cdot2}=3^8" />
+      <BlockMath math="p=8" />
+    </MathContainer>
+
+2. Sahkan <InlineMath math="b^4 b^5=b^9" /> untuk <InlineMath math="b\neq0" />.
+
+    <MathContainer>
+      <BlockMath math="b^4 b^5=b^{4+5}" />
+      <BlockMath math="b^{4+5}=b^9" />
+    </MathContainer>
+
+    Kedua-dua belah ada asas dan indeks yang sama, jadi identiti itu disahkan.
+
+3. Tentukan <InlineMath math="p" /> dalam <InlineMath math="(3\pi)^p=27\pi^3" />.
+
+    <MathContainer>
+      <BlockMath math="27\pi^3=3^3\pi^3=(3\pi)^3" />
+      <BlockMath math="p=3" />
+    </MathContainer>
+
+### Mempermudahkan Ungkapan
+
+Setiap ungkapan di bawah menggabungkan beberapa hukum indeks. Kerjakan **dari dalam ke luar**, dan ringkaskan nombor dan pemboleh ubah secara berasingan supaya kesilapan di satu bahagian tidak tersembunyi di bahagian yang lain.
+
+1. Permudahkan <InlineMath math="\left(\frac{2^4 3^6}{2^3 3^2}\right)^3" />.
+
+    <BlockMath math="\begin{aligned} \left(\frac{2^4 3^6}{2^3 3^2}\right)^3 &=\left(2^{4-3}3^{6-2}\right)^3 \\ &=\left(2\cdot3^4\right)^3 \\ &=2^3 3^{12} \end{aligned}" />
+
+2. Permudahkan <InlineMath math="(3u^3v^5)(9u^4v)" />.
+
+    <BlockMath math="\begin{aligned} (3u^3v^5)(9u^4v) &=27u^{3+4}v^{5+1} \\ &=27u^7v^6 \end{aligned}" />
+
+3. Untuk <InlineMath math="n\neq0" /> dan <InlineMath math="r\neq0" />, permudahkan <InlineMath math="\left(\frac{n^{-1}r^4}{5n^{-6}r^{-4}}\right)^2" />.
+
+    <BlockMath math="\begin{aligned} \left(\frac{n^{-1}r^4}{5n^{-6}r^{-4}}\right)^2 &=\left(\frac{n^{-1-(-6)}r^{4-(-4)}}5\right)^2 \\ &=\left(\frac{n^5r^8}{5}\right)^2 \\ &=\frac{n^{10}r^{16}}{25} \end{aligned}" />

@@ -1,21 +1,48 @@
-Mittelwerte kann man nicht direkt voneinander abziehen. Wandle jeden Mittelwert in **eine Punktsumme** um und ziehe die Summen ab.
+Beide Ausdrücke unter den Wurzeln sind Quadrate, also ist das eigentlich eine Betragsgleichung. Der Plan: Mach aus den Wurzeln Beträge, nutze die Bedingung **unendlich vieler Lösungen, um <InlineMath math="a" /> zu bestimmen**, und addiere dann alle ganzen Zahlen, die passen.
 
-# Summe jeder Gruppe
+# Wurzeln, hinter denen Beträge stecken
+
+Die Ausdrücke unter den Wurzeln lassen sich faktorisieren: <InlineMath math="x^2-2ax+a^2=(x-a)^2" /> und <InlineMath math="x^2+2x+1=(x+1)^2" />. Eine Wurzel ist nie negativ, also **ist <InlineMath math="\sqrt{t^2}" /> gleich <InlineMath math="|t|" /> und nicht <InlineMath math="t" />**.
+
+<BlockMath math="|x-a|+|x+1|=6" />
+
+# Wann es unendlich viele Lösungen gibt
+
+Der Ausdruck <InlineMath math="|x-a|" /> ist der Abstand von <InlineMath math="x" /> zu <InlineMath math="a" /> auf der Zahlengeraden, und <InlineMath math="|x+1|" /> ist der Abstand von <InlineMath math="x" /> zu <InlineMath math="-1" />. **Die Summe dieser beiden Abstände ist mindestens der Abstand von <InlineMath math="a" /> zu <InlineMath math="-1" />**, also <InlineMath math="|a+1|" />, und jedes <InlineMath math="x" /> zwischen den beiden Punkten erreicht diesen kleinsten Wert. Es gibt also drei Möglichkeiten. Ist <InlineMath math="|a+1|=6" />, passt jeder Punkt dazwischen, und es gibt unendlich viele Lösungen. Ist <InlineMath math="|a+1|<6" />, gibt es nur <InlineMath math="2" /> Punkte, einen auf jeder Seite. Für <InlineMath math="a=3" /> sind zum Beispiel <InlineMath math="x=-2" /> und <InlineMath math="x=4" /> die einzigen Lösungen. Ist <InlineMath math="|a+1|>6" />, gibt es keine Lösung.
 
 <BlockMath math="\begin{aligned}
-\text{Summe der ganzen Klasse}&=25\times70=1750\\
-\text{Summe der fünf Schüler}&=5\times86=430\\
-\text{Summe der übrigen 20 Schüler}&=1750-430=1320
+|a+1|&=6\\
+a+1=6\quad&\text{oder}\quad a+1=-6\\
+a=5\quad&\text{oder}\quad a=-7
 \end{aligned}" />
 
-# Mittelwert der übrigen Gruppe
+Die Zahl <InlineMath math="a" /> ist eine natürliche Zahl, also **schließt diese Bedingung <InlineMath math="a=-7" /> aus**, und es bleibt <InlineMath math="a=5" />.
 
-Teile diese Summe durch **die Anzahl der Schüler dieser Gruppe**, also 20.
+# Die Gleichung lösen
 
-<BlockMath math="\bar x=\frac{1320}{20}=66" />
+Für <InlineMath math="a=5" /> lautet die Gleichung <InlineMath math="|x-5|+|x+1|=6" />. Prüfe die drei Teile der Zahlengeraden, die <InlineMath math="-1" /> und <InlineMath math="5" /> trennen.
 
-Probe mit Abweichungen: Die fünf Schüler liegen im Mittel 16 über 70, zusammen also 80 darüber. Die übrigen 20 Schüler gleichen das aus, im Mittel jeweils 4 unter 70, also bei 66.
+<BlockMath math="\begin{aligned}
+x<-1:&\quad(5-x)+(-x-1)=6\ \Rightarrow\ x=-1\ \text{(nicht in diesem Fall)}\\
+-1\le x\le5:&\quad(5-x)+(x+1)=6\ \Rightarrow\ 6=6\ \text{(immer wahr)}\\
+x>5:&\quad(x-5)+(x+1)=6\ \Rightarrow\ x=5\ \text{(nicht in diesem Fall)}
+\end{aligned}" />
 
-Der Wert 52,8 teilt 1320 durch 25 statt durch 20. Der Wert 74 addiert 4, statt es abzuziehen. Der Wert 70 nimmt an, dass sich der Mittelwert der übrigen Gruppe nicht ändert. Der Wert 83,2 zieht 86 statt 430 von der Klassensumme ab.
+Die Lösungsmenge ist <InlineMath math="-1\le x\le5" />, und **beide Ränder zählen mit**.
 
-Der Mittelwert der übrigen 20 Schüler ist also **66**.
+# Die ganzen Zahlen addieren
+
+Die ganzen Zahlen in diesem Intervall, **beide Ränder eingeschlossen**, sind <InlineMath math="-1" />, <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" /> und <InlineMath math="5" />.
+
+<BlockMath math="-1+0+1+2+3+4+5=14" />
+
+Prüfe zwei Werte. Für <InlineMath math="x=2" /> ist die linke Seite <InlineMath math="\sqrt{9}+\sqrt{9}=6" />, das passt. Für <InlineMath math="x=6" /> außerhalb des Intervalls ist sie <InlineMath math="\sqrt1+\sqrt{49}=8" />, das passt nicht.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="10" /> lässt beide Ränder <InlineMath math="-1" /> und <InlineMath math="5" /> weg, obwohl beide die Gleichung erfüllen.
+- <InlineMath math="9" /> lässt nur den Rand <InlineMath math="5" /> weg und addiert <InlineMath math="-1" /> bis <InlineMath math="4" />.
+- <InlineMath math="4" /> addiert nur <InlineMath math="-1" /> und <InlineMath math="5" />, weil der immer wahre mittlere Fall für lösungslos gehalten wird.
+- <InlineMath math="-28" /> benutzt <InlineMath math="a=-7" /> und damit das Intervall <InlineMath math="-7\le x\le-1" />. Diese Antwort **übersieht, dass <InlineMath math="a" /> eine natürliche Zahl ist**.
+
+Die Summe aller ganzen Zahlen <InlineMath math="x" />, die die Gleichung erfüllen, ist also <InlineMath math="14" />.

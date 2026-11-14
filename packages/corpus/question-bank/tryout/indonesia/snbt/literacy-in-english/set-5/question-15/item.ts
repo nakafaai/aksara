@@ -2,39 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "calculation",
   },
-  stimulus: "screens-sleep",
+  stimulus: "measles-coverage",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Students who used screens the most also tended to fall asleep the latest.",
+            "Northgate's coverage was $$15$$ percentage points below the level that agencies aim for.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Almost every student in the survey owned a smartphone or a laptop.",
+            "Every district reached at least $$95\\%$$ coverage except Northgate and Eastport.",
         },
         {
-          correct: false,
-          label:
-            "Students who slept less also had lower marks in morning lessons.",
+          column: 2,
+          label: "The table shows that the outbreak began in Northgate.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Students who switched off screens at 9 p.m. reported feeling more rested.",
-        },
-        {
-          correct: true,
-          label:
-            "In a controlled trial, students who cut evening screens slept no more than others.",
+            "Raising Northgate's coverage to $$95\\%$$ would have meant vaccinating about $$1{,}500$$ more of its children.",
         },
       ],
     },

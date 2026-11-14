@@ -2,38 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "reading",
-    topic: "author-purpose",
+    cognitiveLevel: "reasoning",
+    contentDomain: "writing",
+    topic: "word-choice",
   },
-  stimulus: "stingless-bees",
+  stimulus: "tenun",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "*Menyewakan* tidak perlu diganti karena kalimat (1) hanya membebaskan biaya kelas, bukan biaya alat yang dibawa pulang.",
+        },
+        {
+          correct: false,
+          label:
+            "*Meminjam* tepat karena kalimat (14) menyebut alat itu dikembalikan setiap akhir bulan.",
+        },
+        {
+          correct: false,
+          label:
+            "*Menghibahkan* tepat karena kalimat (1) menyebut sanggar tidak memungut biaya apa pun dari pesertanya.",
+        },
+        {
+          correct: false,
+          label:
+            "*Meminjami* tepat karena kalimat (1) dan (14) menunjukkan alat itu dipakai sementara tanpa bayaran.",
+        },
+        {
           correct: true,
           label:
-            "memaparkan cara warga Dusun Sumberwangi beternak lebah klanceng beserta manfaatnya",
-        },
-        {
-          correct: false,
-          label:
-            "membujuk pembaca agar membeli madu klanceng dari Dusun Sumberwangi",
-        },
-        {
-          correct: false,
-          label:
-            "membandingkan rasa madu klanceng dengan rasa madu lebah biasa",
-        },
-        {
-          correct: false,
-          label:
-            "mengkritik petani kopi yang tidak memelihara lebah di kebunnya",
-        },
-        {
-          correct: false,
-          label: "menjelaskan cara membuat kotak kayu untuk sarang lebah",
+            "*Meminjamkan* tepat karena kalimat (1) dan (14) menunjukkan alat itu dipakai sementara tanpa bayaran.",
         },
       ],
     },

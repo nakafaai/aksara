@@ -1,15 +1,74 @@
-Straße, waagerechter Abstand und Höhenunterschied bilden ein rechtwinkliges Dreieck. Bekannt ist die waagerechte Seite, gesucht die senkrechte, also **passt das Verhältnis <InlineMath math="\tan\alpha" />**. Aus <InlineMath math="\sin\alpha=\frac{7}{25}" /> ist die senkrechte Seite <InlineMath math="7" /> und die Hypotenuse <InlineMath math="25" />, also die waagerechte Seite <InlineMath math="\sqrt{25^2-7^2}=24" />.
+Die Höhe des Mastes ist nicht direkt gegeben. Du musst sie aus dem Schatten an der Wand gewinnen. Danach prüfst du **bei jedem Höhenwinkel, ob der Schatten die Wand noch erreicht**, denn die Wand schneidet den Teil des Schattens ab, der auf dem Boden liegt.
+
+# Die Höhe des Mastes
+
+Der Sonnenstrahl über die Mastspitze bildet mit dem Boden einen Winkel von <InlineMath math="45^\circ" />. Wegen <InlineMath math="\tan45^\circ=1" /> sinkt der Strahl um <InlineMath math="1\text{ m}" /> pro <InlineMath math="1\text{ m}" /> waagerecht. Bis zur Wand ist er <InlineMath math="6\text{ m}" /> waagerecht gelaufen und <InlineMath math="6\text{ m}" /> gesunken, und er trifft die Wand in <InlineMath math="3\text{ m}" /> Höhe:
 
 <BlockMath math="\begin{aligned}
-\tan\alpha&=\frac{7}{24} \\
-h&=840\cdot\frac{7}{24}=245\text{ m}
+h-6\cdot\tan45^\circ&=3 \\
+h-6&=3 \\
+h&=9\text{ m}
 \end{aligned}" />
 
-Probe: Die Straße ist <InlineMath math="\sqrt{840^2+245^2}=875\text{ m}" /> lang, und <InlineMath math="\frac{245}{875}=\frac{7}{25}=\sin\alpha" />.
+Also ist **der Mast <InlineMath math="9\text{ m}" /> hoch**, nicht <InlineMath math="6\text{ m}" />. Bei <InlineMath math="45^\circ" /> ist der Schattenteil auf dem Boden nur <InlineMath math="6\text{ m}" /> lang, weil die Wand ihn stoppt.
 
-Der Punkt <InlineMath math="Q" /> liegt also <InlineMath math="245\text{ m}" /> höher als <InlineMath math="P" />.
+# Der Schatten bei sechzig Grad
 
-- <InlineMath math="235{,}2\text{ m}" /> multipliziert den waagerechten Abstand mit <InlineMath math="\sin\alpha" />, doch <InlineMath math="\sin\alpha" /> vergleicht die senkrechte Seite mit der Straßenlänge.
-- <InlineMath math="806{,}4\text{ m}" /> multipliziert den waagerechten Abstand mit <InlineMath math="\cos\alpha" />.
-- <InlineMath math="875\text{ m}" /> ist die Länge der Straße, nicht der Höhenunterschied.
-- <InlineMath math="2{.}880\text{ m}" /> teilt den waagerechten Abstand durch <InlineMath math="\tan\alpha" /> und dreht so das Verhältnis um.
+Ohne Wand wäre der Schatten so lang wie die Masthöhe geteilt durch <InlineMath math="\tan60^\circ" />:
+
+<BlockMath math="\frac{9}{\tan60^\circ}=\frac{9}{\sqrt3}=3\sqrt3\approx5{,}2\text{ m}" />
+
+Weil <InlineMath math="3\sqrt3\approx5{,}2" /> kleiner als <InlineMath math="6" /> ist, **erreicht der Schatten die Wand nicht** und liegt ganz auf dem Boden.
+
+<MathVisual
+  title={<>Mast, Wand und zwei Sonnenstrahlen</>}
+  description={<>Ein <InlineMath math="9\text{ m}" /> hoher Mast steht <InlineMath math="6\text{ m}" /> vor einer Wand. Der Strahl mit Höhenwinkel <InlineMath math="45^\circ" /> von der Mastspitze trifft die Wand in <InlineMath math="3\text{ m}" /> Höhe. Der Strahl mit Höhenwinkel <InlineMath math="60^\circ" /> trifft den Boden <InlineMath math="3\sqrt3\approx5{,}2\text{ m}" /> vom Mastfuß entfernt, noch vor der Wand.</>}
+  labels={{
+    pole: <InlineMath math="9" />,
+    gap: <InlineMath math="6" />,
+    mark: <InlineMath math="3" />,
+    low: <InlineMath math="45^\circ" />,
+    high: <InlineMath math="60^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 8 },
+      y: { min: -1, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -1, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 6, y: 0 }, to: { x: 6, y: 10 } },
+      { id: "pole", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 9 } },
+      { id: "ray-low", kind: "segment", appearance: "highlight", from: { x: 0, y: 9 }, to: { x: 6, y: 3 } },
+      { id: "ray-high", kind: "segment", appearance: "answer", from: { x: 0, y: 9 }, to: { x: Math.sqrt(27), y: 0 } },
+      { id: "wall-mark", kind: "segment", appearance: "highlight", from: { x: 6, y: 0 }, to: { x: 6, y: 3 } },
+    ],
+    labels: [
+      { key: "pole", objectId: "pole", at: { x: 0, y: 4.5 }, placement: "left" },
+      { key: "gap", objectId: "ground", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "mark", objectId: "wall-mark", at: { x: 6, y: 1.5 }, placement: "right" },
+      { key: "low", objectId: "ray-low", at: { x: 3, y: 6 }, placement: "above-right" },
+      { key: "high", objectId: "ray-high", at: { x: Math.sqrt(27) / 2, y: 4.5 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+# Die Änderung auf dem Boden
+
+Vergleiche jetzt den Schattenteil auf dem Boden zu beiden Zeitpunkten: <InlineMath math="6\text{ m}" /> bei <InlineMath math="45^\circ" /> und <InlineMath math="3\sqrt3\text{ m}" /> bei <InlineMath math="60^\circ" />.
+
+<BlockMath math="\text{Abnahme}=6-3\sqrt3\approx6-5{,}2=0{,}8\text{ m}" />
+
+Der Bodenschatten wird nur wenig kürzer, weil bei <InlineMath math="45^\circ" /> der größte Teil des überschüssigen Schattens **an der Wand hochsteigt**, statt über den Boden zu reichen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac32" /> entsteht, wenn der Mast als Hypotenuse gilt und der Schatten als <InlineMath math="9\cos60^\circ=4{,}5" /> berechnet wird. Der Schatten ist die waagerechte Kathete am Höhenwinkel, also gilt <InlineMath math="\frac{h}{\tan\theta}" />.
+- <InlineMath math="6-2\sqrt3" /> benutzt die Masthöhe <InlineMath math="6\text{ m}" />. Die <InlineMath math="3\text{ m}" /> Schatten an der Wand wurden vergessen.
+- <InlineMath math="9-3\sqrt3" /> nimmt <InlineMath math="9\text{ m}" /> als Bodenschatten bei <InlineMath math="45^\circ" />. **Die Wand stoppt diesen Schatten bei <InlineMath math="6\text{ m}" />**.
+- <InlineMath math="3\sqrt3" /> ist die Schattenlänge bei <InlineMath math="60^\circ" />, noch nicht von der früheren Länge abgezogen.
+
+Der Schatten auf dem Boden wird also um <InlineMath math="6-3\sqrt3" /> Meter kürzer.

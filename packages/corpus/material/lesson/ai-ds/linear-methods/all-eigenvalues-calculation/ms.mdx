@@ -1,0 +1,172 @@
+export const metadata = {
+    title: "Mengira Semua Nilai Eigen dengan Lelaran QR",
+    description: "Ikuti lelaran QR daripada pemfaktoran ortogon hingga bentuk Schur, kemudian baca nilai eigen nyata dan kompleks tanpa membentuk polinomial ciri.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-07-17",
+    dateModified: "2026-09-19",
+    subject: "Kaedah Linear AI",
+};
+
+## Perubahan Asas Berulang Mengekalkan Nilai Eigen
+
+Algoritma <InlineMath math="\mathrm{QR}" /> mengira semua nilai eigen bagi matriks segi empat sama melalui perubahan asas yang berulang. Setiap langkah menghasilkan <Highlight>matriks serupa</Highlight>, jadi nilai eigennya kekal sama. Lelaran ini menuju ke bentuk pepenjuru atau bentuk Schur, dan di situ kamu boleh membaca nilai eigen daripada unsur pepenjuru atau blok pepenjuru yang kecil. Untuk menumpu, lelaran ini memerlukan strategi anjakan dan deflasi yang sesuai.
+
+Versi di bawah ialah lelaran <InlineMath math="\mathrm{QR}" /> tanpa anjakan. Penyelesai nilai eigen dalam perisian sebenar turut menggunakan anjakan, menurunkan matriks kepada bentuk Hessenberg, dan mendeflasikan blok yang sudah menumpu supaya pengiraan lebih laju dan lebih boleh dipercayai dari segi berangka.
+
+## Satu Lelaran QR
+
+Untuk ujian deflasi di bawah, turunkan dahulu matriks itu melalui keserupaan uniter kepada **bentuk Hessenberg atas**, iaitu bentuk yang semua unsurnya di bawah subpepenjuru pertama bernilai sifar. Mulakan lelaran dengan matriks tersebut. Dalam contoh <InlineMath math="2\times2" /> di bawah, syarat ini sudah dipenuhi.
+
+1. Mulakan dengan <InlineMath math="A_0=A" />.
+
+2. Faktorkan matriks semasa kepada faktor uniter atau ortogon <InlineMath math="Q_k" /> dan faktor segi tiga atas <InlineMath math="R_k" />:
+
+   <BlockMath math="A_k=Q_kR_k" />
+
+3. Terbalikkan susunan faktor itu untuk mendapatkan lelaran seterusnya:
+
+   <BlockMath math="A_{k+1}=R_kQ_k" />
+
+4. Ulang pemfaktoran dan pendaraban terbalik itu. Unsur subpepenjuru yang kecil boleh ditetapkan kepada sifar apabila nilainya boleh diabaikan berbanding unsur pepenjuru di sebelahnya. Pemisahan ini, yang dipanggil **deflasi**, mengasingkan satu nilai eigen atau blok yang sudah menumpu.
+
+   <BlockMath math="\begin{aligned} &amp;|(A_k)_{j+1,j}| \\ &amp;\leq \tau\left(|(A_k)_{j,j}|+|(A_k)_{j+1,j+1}|\right) \end{aligned}" />
+
+Di sini <InlineMath math="\tau" /> ialah toleransi yang dipilih mengikut kepersisan berangka dan skala masalah. Melihat perubahan kecil pada pepenjuru sahaja tidak cukup sebagai ujian untuk berhenti, kerana matriks itu mungkin masih mempunyai unsur yang besar di bawah pepenjuru.
+
+## Sebab Nilai Eigen Kekal Sama
+
+Oleh sebab <InlineMath math="Q_k" /> uniter, <InlineMath math="Q_k^{*}Q_k=I" />. Gantikan <InlineMath math="R_k=Q_k^{*}A_k" /> ke dalam hasil darab terbalik, dan kamu dapat
+
+<MathContainer>
+<BlockMath math="A_{k+1}=R_kQ_k" />
+<BlockMath math="A_{k+1}=Q_k^{*}A_kQ_k" />
+</MathContainer>
+
+<InlineMath math="A_{k+1}" /> serupa secara uniter dengan <InlineMath math="A_k" />. <Highlight>Matriks serupa mempunyai polinomial ciri yang sama</Highlight>, jadi nilai eigennya juga sama. Setiap langkah <InlineMath math="\mathrm{QR}" /> menyatakan transformasi linear yang sama dalam koordinat baharu.
+
+Untuk matriks simetri <InlineMath math="A_0=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> daripada contoh lengkap di bawah, unsur pepenjuru <InlineMath math="A_k" /> ialah <InlineMath math="3-\tfrac2{9^k+1}" /> dan <InlineMath math="1+\tfrac2{9^k+1}" />. Kedua-duanya berubah pada setiap langkah, tetapi hasil tambahnya kekal <InlineMath math="\operatorname{tr}A_k=4" />, kerana setiap <InlineMath math="A_k" /> serupa dengan <InlineMath math="A_0" />.
+
+<ScatterDiagram
+  title={<>Unsur pepenjuru <InlineMath math="A_k" /> menuju ke <InlineMath math="3" /> dan <InlineMath math="1" /></>}
+  description={<>Untuk lelaran <InlineMath math="k=0" /> hingga <InlineMath math="6" />, siri pertama menunjukkan <InlineMath math="3-\tfrac2{9^k+1}" /> dan siri kedua menunjukkan <InlineMath math="1+\tfrac2{9^k+1}" />. Pada setiap <InlineMath math="k" />, hasil tambah dua nilai itu ialah <InlineMath math="4" />.</>}
+  xAxisLabel="Lelaran"
+  yAxisLabel="Unsur pepenjuru"
+  datasets={[
+    {
+      name: "Unsur pepenjuru pertama",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0, y: 3 - 2 / (9 ** 0 + 1) },
+        { x: 1, y: 3 - 2 / (9 ** 1 + 1) },
+        { x: 2, y: 3 - 2 / (9 ** 2 + 1) },
+        { x: 3, y: 3 - 2 / (9 ** 3 + 1) },
+        { x: 4, y: 3 - 2 / (9 ** 4 + 1) },
+        { x: 5, y: 3 - 2 / (9 ** 5 + 1) },
+        { x: 6, y: 3 - 2 / (9 ** 6 + 1) },
+      ],
+    },
+    {
+      name: "Unsur pepenjuru kedua",
+      color: "var(--chart-2)",
+      points: [
+        { x: 0, y: 1 + 2 / (9 ** 0 + 1) },
+        { x: 1, y: 1 + 2 / (9 ** 1 + 1) },
+        { x: 2, y: 1 + 2 / (9 ** 2 + 1) },
+        { x: 3, y: 1 + 2 / (9 ** 3 + 1) },
+        { x: 4, y: 1 + 2 / (9 ** 4 + 1) },
+        { x: 5, y: 1 + 2 / (9 ** 5 + 1) },
+        { x: 6, y: 1 + 2 / (9 ** 6 + 1) },
+      ],
+    },
+  ]}
+/>
+
+## Bentuk Hasil Penumpuan Lelaran
+
+Bentuk akhirnya bergantung pada matriks itu dan **sistem nombor** yang digunakan.
+
+| Matriks | Bentuk selepas menumpu | Cara membaca nilai eigen |
+|---|---|---|
+| Simetri nyata atau Hermitian kompleks | Matriks pepenjuru | Unsur pepenjuru ialah nilai eigen nyata |
+| Kompleks umum | Bentuk Schur segi tiga atas | Unsur pepenjuru ialah nilai eigen |
+| Nyata umum | Bentuk Schur nyata kuasi segi tiga atas | Setiap blok <InlineMath math="1\times1" /> memberikan satu nilai eigen nyata. Setiap blok <InlineMath math="2\times2" /> memberikan satu pasangan konjugat kompleks |
+
+Nilai eigen boleh muncul dalam sebarang susunan. Nilai yang berulang dan susunan yang istimewa perlu dikendalikan secara berasingan, kerana susunan magnitud yang ketat tidak meliputi kes-kes itu.
+
+Lelaran tanpa anjakan **tidak selalu menumpu kepada bentuk dalam jadual**. Contohnya, matriks simetri di bawah membenarkan <InlineMath math="Q=C" /> dan <InlineMath math="R=I" />, jadi lelaran seterusnya tidak berubah langsung:
+
+<BlockMath math="C=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad C=CI,\qquad RQ=IC=C" />
+
+Nilai eigennya ialah <InlineMath math="1" /> dan <InlineMath math="-1" />. Magnitud kedua-duanya sama, dan inilah sebabnya algoritma praktikal memerlukan anjakan dan semakan penumpuan yang sesuai.
+
+Dalam contoh lengkap di bawah, unsur luar pepenjuru <InlineMath math="A_k" /> mempunyai magnitud <InlineMath math="\tfrac{2\cdot3^k}{9^k+1}" />. Setiap lelaran mendarabnya dengan kira-kira <InlineMath math="\lambda_2/\lambda_1=1/3" />, jadi kelajuan penumpuan bergantung pada sejauh mana magnitud nilai eigen itu berbeza.
+
+<BarChart
+  title={<>Unsur luar pepenjuru mengecil dengan faktor kira-kira <InlineMath math="1/3" /> pada setiap langkah</>}
+  description={<>Setiap bar ialah <InlineMath math="\tfrac{2\cdot3^k}{9^k+1}" /> untuk lelaran <InlineMath math="k" /> yang tertulis di bawahnya, bermula dengan <InlineMath math="1" /> untuk <InlineMath math="k=0" /> dan <InlineMath math="3/5" /> untuk <InlineMath math="k=1" />.</>}
+  yAxisLabel="Magnitud luar pepenjuru"
+  data={[
+    { name: "0", value: 2 * 3 ** 0 / (9 ** 0 + 1) },
+    { name: "1", value: 2 * 3 ** 1 / (9 ** 1 + 1) },
+    { name: "2", value: 2 * 3 ** 2 / (9 ** 2 + 1) },
+    { name: "3", value: 2 * 3 ** 3 / (9 ** 3 + 1) },
+    { name: "4", value: 2 * 3 ** 4 / (9 ** 4 + 1) },
+    { name: "5", value: 2 * 3 ** 5 / (9 ** 5 + 1) },
+    { name: "6", value: 2 * 3 ** 6 / (9 ** 6 + 1) },
+  ]}
+  chartConfig={{ value: { label: "Magnitud luar pepenjuru", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
+## Contoh Lengkap Matriks Simetri
+
+Pertimbangkan matriks simetri
+
+<BlockMath math="A_0=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />
+
+Satu pemfaktoran <InlineMath math="\mathrm{QR}" /> diikuti pendaraban terbalik memberikan
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;Q_0=\frac{1}{\sqrt5}\begin{pmatrix}2&amp;-1\\1&amp;2\end{pmatrix}, \\ &amp;R_0=\begin{pmatrix}\sqrt5&amp;\frac4{\sqrt5}\\0&amp;\frac3{\sqrt5}\end{pmatrix} \end{aligned}" />
+<BlockMath math="A_1=R_0Q_0=\begin{pmatrix}\frac{14}{5}&\frac35\\\frac35&\frac65\end{pmatrix}" />
+</MathContainer>
+
+**Magnitud luar pepenjuru** sudah turun daripada <InlineMath math="1" /> kepada <InlineMath math="3/5" />. Lelaran seterusnya terus menolak kedua-dua unsur luar pepenjuru ke arah sifar:
+
+<BlockMath math="A_k\longrightarrow\begin{pmatrix}3&0\\0&1\end{pmatrix}" />
+
+Pepenjuru had ini mengandungi nilai eigen <InlineMath math="3" /> dan <InlineMath math="1" />. Setiap lelaran serupa dengan <InlineMath math="A_0" />, jadi nilai-nilai ini memang milik matriks asal.
+
+Untuk matriks ini, vektor eigen <InlineMath math="A_k" /> bagi nilai eigen <InlineMath math="3" /> menghala sepanjang <InlineMath math="(3^k,1)^T" />, dan vektor eigen bagi <InlineMath math="1" /> berserenjang dengannya. Zum ke dalam paparan di bawah: arah eigen <InlineMath math="A_0" /> condong sebanyak <InlineMath math="45^\circ" />, kemudian <InlineMath math="A_1" /> dan <InlineMath math="A_2" /> memutarkannya lebih dekat kepada paksi, sehinggalah pada had <InlineMath math="\operatorname{diag}(3,1)" /> arah itu terletak tepat pada paksi. Nilai eigen tidak pernah berubah, kerana setiap langkah ialah keserupaan <InlineMath math="A_{k+1}=Q_k^TA_kQ_k" />. Hanya arahnya yang berputar, dan unsur luar pepenjuru <InlineMath math="2\cdot3^k/(9^k+1)" /> mengecil daripada <InlineMath math="1" /> kepada <InlineMath math="3/5" /> dan kemudian <InlineMath math="9/41" />.
+
+<MathVisual
+  title={<>Lelaran <InlineMath math="\mathrm{QR}" /> memutarkan arah eigen ke atas paksi</>}
+  description={<>Setiap pasangan segmen yang berserenjang menunjukkan arah eigen bagi satu lelaran <InlineMath math="A_k" />: ungu untuk <InlineMath math="A_0" />, ambar untuk <InlineMath math="A_1" />, jingga untuk <InlineMath math="A_2" />, dan magenta untuk had <InlineMath math="\operatorname{diag}(3,1)" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 1.3 }, y: { min: -1.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "a0", kind: "segment", from: { x: -(3 ** 0 / Math.sqrt(9 ** 0 + 1)), y: -(1 / Math.sqrt(9 ** 0 + 1)) }, to: { x: 3 ** 0 / Math.sqrt(9 ** 0 + 1), y: 1 / Math.sqrt(9 ** 0 + 1) }, appearance: "secondary" },
+      { id: "a1", kind: "segment", from: { x: -(3 ** 1 / Math.sqrt(9 ** 1 + 1)), y: -(1 / Math.sqrt(9 ** 1 + 1)) }, to: { x: 3 ** 1 / Math.sqrt(9 ** 1 + 1), y: 1 / Math.sqrt(9 ** 1 + 1) }, appearance: "highlight" },
+      { id: "a2", kind: "segment", from: { x: -(3 ** 2 / Math.sqrt(9 ** 2 + 1)), y: -(1 / Math.sqrt(9 ** 2 + 1)) }, to: { x: 3 ** 2 / Math.sqrt(9 ** 2 + 1), y: 1 / Math.sqrt(9 ** 2 + 1) }, appearance: "primary" },
+      { id: "a0-small", kind: "segment", from: { x: 1 / Math.sqrt(9 ** 0 + 1), y: -(3 ** 0 / Math.sqrt(9 ** 0 + 1)) }, to: { x: -(1 / Math.sqrt(9 ** 0 + 1)), y: 3 ** 0 / Math.sqrt(9 ** 0 + 1) }, appearance: "secondary" },
+      { id: "a1-small", kind: "segment", from: { x: 1 / Math.sqrt(9 ** 1 + 1), y: -(3 ** 1 / Math.sqrt(9 ** 1 + 1)) }, to: { x: -(1 / Math.sqrt(9 ** 1 + 1)), y: 3 ** 1 / Math.sqrt(9 ** 1 + 1) }, appearance: "highlight" },
+      { id: "a2-small", kind: "segment", from: { x: 1 / Math.sqrt(9 ** 2 + 1), y: -(3 ** 2 / Math.sqrt(9 ** 2 + 1)) }, to: { x: -(1 / Math.sqrt(9 ** 2 + 1)), y: 3 ** 2 / Math.sqrt(9 ** 2 + 1) }, appearance: "primary" },
+      { id: "limit", kind: "segment", from: { x: -1, y: 0 }, to: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "limit-small", kind: "segment", from: { x: 0, y: -1 }, to: { x: 0, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a0", objectId: "a0", at: { x: 3 ** 0 / Math.sqrt(9 ** 0 + 1), y: 1 / Math.sqrt(9 ** 0 + 1) }, placement: "above-right" },
+      { key: "a1", objectId: "a1", at: { x: 3 ** 1 / Math.sqrt(9 ** 1 + 1), y: 1 / Math.sqrt(9 ** 1 + 1) }, placement: "right" },
+      { key: "a2", objectId: "a2", at: { x: 3 ** 2 / Math.sqrt(9 ** 2 + 1), y: 1 / Math.sqrt(9 ** 2 + 1) }, placement: "right" },
+      { key: "limit", objectId: "limit-small", at: { x: 0, y: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "a0": <InlineMath math="A_0" />,
+    "a1": <InlineMath math="A_1" />,
+    "a2": <InlineMath math="A_2" />,
+    "limit": <InlineMath math="A_\infty" />,
+  }}
+/>

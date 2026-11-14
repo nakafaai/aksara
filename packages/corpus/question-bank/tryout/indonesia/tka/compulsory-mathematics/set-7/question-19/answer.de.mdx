@@ -1,16 +1,76 @@
-Gleiches Volumen **garantiert keine gleiche Oberfläche**, also berechne die Oberfläche jedes Entwurfs mit <InlineMath math="L=2(pl+pt+lt)" />.
+Gefragt ist ein Verhältnis von **Flächen**, nicht von Seiten. Das Quadrat <InlineMath math="PQRS" /> hat nur zwei Ecken auf dem Kreis, es ist also nicht das übliche Quadrat, das in einen Kreis eingezeichnet wird. Du brauchst zuerst den Kreisradius und dann die Seite von <InlineMath math="PQRS" /> mit dem Satz des Pythagoras.
+
+# Radius des Kreises
+
+Der Kreis <InlineMath math="L" /> berührt alle vier Seiten des Quadrats <InlineMath math="ABCD" />, also **ist sein Durchmesser so lang wie eine Quadratseite**, <InlineMath math="20\text{ cm}" />. Die zwei Berührpunkte auf gegenüberliegenden Seiten liegen genau an den beiden Enden eines Durchmessers. Der Radius ist <InlineMath math="r=10\text{ cm}" />, und die Gerade <InlineMath math="g" /> ist ein Durchmesser des Kreises.
+
+# Seite des Quadrats PQRS
+
+Nenn die Seite von <InlineMath math="PQRS" /> <InlineMath math="s" />. Die Punkte <InlineMath math="R" /> und <InlineMath math="S" /> liegen auf dem Kreis, und <InlineMath math="SR" /> ist parallel zu <InlineMath math="g" />. Das Lot vom Mittelpunkt <InlineMath math="O" /> auf die Sehne <InlineMath math="SR" /> halbiert diese Sehne immer. Dasselbe Lot halbiert auch <InlineMath math="PQ" />, weil <InlineMath math="PS" /> und <InlineMath math="QR" /> beide senkrecht auf <InlineMath math="g" /> stehen. Also **liegt <InlineMath math="O" /> genau in der Mitte von <InlineMath math="PQ" />**, und <InlineMath math="OQ=\tfrac{s}{2}" />.
+
+<MathVisual
+  title={<>Rechtwinkliges Dreieck <InlineMath math="OQR" /></>}
+  description={<>Die Abbildung aus der Aufgabe mit der eingezeichneten Strecke <InlineMath math="OR" />. Das Dreieck <InlineMath math="OQR" /> ist bei <InlineMath math="Q" /> rechtwinklig, mit <InlineMath math="OQ" /> als halber Quadratseite, <InlineMath math="QR" /> als ganzer Seite und <InlineMath math="OR" /> als Radius <InlineMath math="10" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    r: <InlineMath math="R" />,
+    s: <InlineMath math="S" />,
+    radius: <InlineMath math="10" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -12, max: 12 },
+      y: { min: -12, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "outer", kind: "polygon", appearance: "primary", vertices: [{ x: -10, y: -10 }, { x: 10, y: -10 }, { x: 10, y: 10 }, { x: -10, y: 10 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 10 },
+      { id: "line-g", kind: "segment", appearance: "reference", from: { x: -10, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "inner", kind: "polygon", appearance: "highlight", vertices: [{ x: -2 * Math.sqrt(5), y: 0 }, { x: 2 * Math.sqrt(5), y: 0 }, { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }] },
+      { id: "radius-r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: -2 * Math.sqrt(5), y: 0 } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(5), y: 0 } },
+      { id: "point-r", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
+      { id: "point-s", kind: "point", appearance: "reference", at: { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
+    ],
+    labels: [
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "p", objectId: "point-p", at: { x: -2 * Math.sqrt(5), y: 0 }, placement: "below" },
+      { key: "q", objectId: "point-q", at: { x: 2 * Math.sqrt(5), y: 0 }, placement: "below" },
+      { key: "r", objectId: "point-r", at: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, placement: "above-right" },
+      { key: "s", objectId: "point-s", at: { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, placement: "above-left" },
+      { key: "radius", objectId: "radius-r", at: { x: Math.sqrt(5), y: 2 * Math.sqrt(5) }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Das Dreieck <InlineMath math="OQR" /> ist bei <InlineMath math="Q" /> rechtwinklig, mit <InlineMath math="OQ=\tfrac{s}{2}" />, <InlineMath math="QR=s" /> und der Hypotenuse <InlineMath math="OR=10" />, weil <InlineMath math="R" /> auf dem Kreis liegt.
 
 <BlockMath math="\begin{aligned}
-L_P&=2(200+100+50)=700\text{ cm}^2 \\
-L_Q&=2(200+125+40)=730\text{ cm}^2 \\
-L_R&=2(100+100+100)=600\text{ cm}^2
+\left(\frac{s}{2}\right)^2+s^2&=10^2 \\
+\frac{5s^2}{4}&=100 \\
+s^2&=80
 \end{aligned}" />
 
-Entwurf R, der Würfel, hat die kleinste Oberfläche. Je näher eine Schachtel am Würfel liegt, desto weniger Material braucht sie für dasselbe Volumen.
+# Verhältnis der Flächen
 
-Entwurf R braucht also am wenigsten Material.
+Die Fläche von <InlineMath math="PQRS" /> ist <InlineMath math="s^2=80\text{ cm}^2" />, die Fläche von <InlineMath math="ABCD" /> ist <InlineMath math="20^2=400\text{ cm}^2" />. Teil die kleine Fläche durch die große, dann hast du das Verhältnis.
 
-- Alle drei haben dasselbe Volumen, aber die Oberflächen <InlineMath math="700" />, <InlineMath math="730" /> und <InlineMath math="600\text{ cm}^2" />.
-- Entwurf Q braucht sogar am meisten Material.
-- Entwurf P braucht <InlineMath math="100\text{ cm}^2" /> **mehr** als R, nicht weniger.
-- Entwurf Q braucht <InlineMath math="30\text{ cm}^2" /> **mehr** als P.
+<BlockMath math="\frac{A_{PQRS}}{A_{ABCD}}=\frac{80}{400}=\frac{1}{5}" />
+
+Die Seiten selbst stehen im Verhältnis <InlineMath math="\sqrt{80}:20=1:\sqrt{5}" />. **Das Flächenverhältnis ist das Quadrat des Seitenverhältnisses**, also <InlineMath math="\left(1:\sqrt{5}\right)^2=1:5" />, passend zur Rechnung oben.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="1:8" /> entsteht, wenn <InlineMath math="O" /> im Punkt <InlineMath math="P" /> angenommen wird. Dann wäre <InlineMath math="OR" /> eine Diagonale, <InlineMath math="s\sqrt{2}=10" />, und <InlineMath math="s^2=50" />.
+- <InlineMath math="1:4" /> entsteht, wenn du ohne Grund annimmst, dass die Quadratseite gleich dem Radius ist, <InlineMath math="s=10" />.
+- <InlineMath math="1:\sqrt{5}" /> ist das Verhältnis der Seiten. **Gefragt ist das Flächenverhältnis**, das Seitenverhältnis muss also noch quadriert werden.
+- <InlineMath math="1:2" /> gehört zu einem Quadrat, dessen vier Ecken alle auf dem Kreis liegen, mit Diagonale <InlineMath math="20" /> und Fläche <InlineMath math="200" />. Hier liegen <InlineMath math="P" /> und <InlineMath math="Q" /> auf einem Durchmesser, nicht auf dem Kreis.
+
+Die Fläche des Quadrats <InlineMath math="PQRS" /> verhält sich zur Fläche von <InlineMath math="ABCD" /> also wie <InlineMath math="1:5" />.

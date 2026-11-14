@@ -1,28 +1,44 @@
-The first three statements use the basic lengths of a cube with edge <InlineMath math="a=9" />, namely **the face diagonal and the space diagonal**. The fourth statement is easiest to check with coordinates.
+The cross-section of a plane and a cube is the flat shape bounded by every point where the plane cuts an edge of the cube. That shape **isn't necessarily triangle <InlineMath math="PQR" />**, because the plane can cut other edges too. The plan: set up coordinates, find the equation of the plane, find every point where it cuts an edge, and then compute the area of the shape.
+
+# Setting up coordinates
+
+Put <InlineMath math="A" /> at the origin, with **the edges <InlineMath math="AB" />, <InlineMath math="AD" />, and <InlineMath math="AE" /> along the coordinate axes**.
 
 <BlockMath math="\begin{aligned}
-AC&=a\sqrt2=9\sqrt2\\
-AG&=\sqrt{AC^2+CG^2}=\sqrt{162+81}=9\sqrt3
+A&=(0,0,0),\quad B=(6,0,0),\quad C=(6,6,0),\quad D=(0,6,0)\\
+E&=(0,0,6),\quad F=(6,0,6),\quad G=(6,6,6),\quad H=(0,6,6)
 \end{aligned}" />
 
-# Space diagonal and diagonal plane
+The midpoints are <InlineMath math="P=(3,0,0)" />, <InlineMath math="Q=(6,3,0)" />, and <InlineMath math="R=(3,6,6)" />.
 
-The second statement is **true** because <InlineMath math="AG=9\sqrt3\text{ cm}" />. The diagonal plane <InlineMath math="ACGE" /> is a rectangle with sides <InlineMath math="AC=9\sqrt2" /> and <InlineMath math="AE=9" />, so its area is <InlineMath math="81\sqrt2\approx114.6\text{ cm}^2" />. The number 162 is <InlineMath math="AC^2" />, not the area of the plane, so the first statement is false.
+# Finding the equation of the plane
 
-# Angle between a line and a plane
+Write the plane as <InlineMath math="ax+by+cz=d" /> and plug in the three points. Point <InlineMath math="P" /> gives <InlineMath math="3a=d" />. Point <InlineMath math="Q" /> gives <InlineMath math="6a+3b=3a" />, so <InlineMath math="b=-a" />. Point <InlineMath math="R" /> gives <InlineMath math="3a-6a+6c=3a" />, so <InlineMath math="c=a" />. With <InlineMath math="a=1" />, **the plane is <InlineMath math="x-y+z=3" />**.
 
-The projection of <InlineMath math="AG" /> onto the base is <InlineMath math="AC" />, because <InlineMath math="G" /> lies directly above <InlineMath math="C" />. The required angle is angle <InlineMath math="GAC" /> in the right triangle <InlineMath math="ACG" />.
+# Finding every cut point
 
-<BlockMath math="\tan\angle GAC=\frac{CG}{AC}=\frac{9}{9\sqrt2}=\frac{1}{\sqrt2}" />
+Test the other edge midpoints in <InlineMath math="x-y+z=3" />.
 
-An angle of <InlineMath math="45^\circ" /> needs a tangent of 1. Since <InlineMath math="\tfrac{1}{\sqrt2}<1" />, **the angle is less than <InlineMath math="45^\circ" />** (about <InlineMath math="35.3^\circ" />). The third statement is false.
+<BlockMath math="\begin{aligned}
+\text{midpoint of } CG&=(6,6,3):\quad 6-6+3=3\\
+\text{midpoint of } HE&=(0,3,6):\quad 0-3+6=3\\
+\text{midpoint of } EA&=(0,0,3):\quad 0-0+3=3
+\end{aligned}" />
 
-# Distance from a point to a plane
+So the plane passes through six edge midpoints: those of <InlineMath math="AB" />, <InlineMath math="BC" />, <InlineMath math="CG" />, <InlineMath math="GH" />, <InlineMath math="HE" />, and <InlineMath math="EA" />. A cube has only six faces, so a cross-section has at most six sides. **The cross-section is a hexagon** with these six midpoints as its corners.
 
-Place the cube at <InlineMath math="A(0,0,0)" />, <InlineMath math="B(9,0,0)" />, <InlineMath math="D(0,9,0)" />, <InlineMath math="E(0,0,9)" />, and <InlineMath math="G(9,9,9)" />. All three points <InlineMath math="B" />, <InlineMath math="D" />, and <InlineMath math="G" /> satisfy <InlineMath math="x+y-z=9" />, so that is **the equation of the plane <InlineMath math="BDG" />**. The distance from <InlineMath math="E" /> to this plane is
+# Computing the area of the hexagon
 
-<BlockMath math="d=\frac{\lvert 0+0-9-9\rvert}{\sqrt{1^2+1^2+(-1)^2}}=\frac{18}{\sqrt3}=6\sqrt3" />
+Two neighbouring midpoints, such as <InlineMath math="P" /> and <InlineMath math="Q" />, are <InlineMath math="\sqrt{3^2+3^2+0^2}=3\sqrt2" /> apart. The same work shows all six sides are equal. The centre of the cube, <InlineMath math="(3,3,3)" />, also satisfies <InlineMath math="3-3+3=3" />, and its distance to each corner is <InlineMath math="3\sqrt2" /> as well, for example to <InlineMath math="P" /> through the difference <InlineMath math="(0,-3,-3)" />. So the hexagon **splits into six equilateral triangles** with side <InlineMath math="3\sqrt2" />. The hexagon's area <InlineMath math="L" /> is six times the area of one of them.
 
-The result can also be seen geometrically. The space diagonal <InlineMath math="CE" /> is perpendicular to the plane <InlineMath math="BDG" />, the distance from <InlineMath math="C" /> to that plane is <InlineMath math="\frac{9}{\sqrt3}=3\sqrt3" />, and the rest is <InlineMath math="9\sqrt3-3\sqrt3=6\sqrt3" />. The fourth statement is true.
+<BlockMath math="L=6\cdot\frac{\sqrt3}{4}\left(3\sqrt2\right)^2=6\cdot\frac{\sqrt3}{4}\cdot18=27\sqrt3" />
 
-So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.
+# Checking the result
+
+In this hexagon, <InlineMath math="P" /> and <InlineMath math="R" /> are opposite corners, because the midpoint of <InlineMath math="PR" /> is the centre <InlineMath math="(3,3,3)" />. So <InlineMath math="PR=6\sqrt2" /> is a diameter, and angle <InlineMath math="PQR" /> is a right angle. Triangle <InlineMath math="PQR" /> has area <InlineMath math="\frac12\cdot3\sqrt2\cdot3\sqrt6=9\sqrt3" />, which is **exactly one third of the hexagon**. That matches the area of two of the six equilateral triangles, <InlineMath math="2\cdot\frac{\sqrt3}{4}\cdot18=9\sqrt3" />.
+
+# The wrong options
+
+The option <InlineMath math="\frac{9\sqrt3}{2}\text{ cm}^2" /> is the area of the triangle that only cuts off corner <InlineMath math="B" />, the equilateral triangle through the midpoints of <InlineMath math="AB" />, <InlineMath math="BC" />, and <InlineMath math="BF" /> with side <InlineMath math="3\sqrt2" />. The option <InlineMath math="9\sqrt3\text{ cm}^2" /> treats **triangle <InlineMath math="PQR" /> as the cross-section**. The option <InlineMath math="\frac{27\sqrt3}{2}\text{ cm}^2" /> uses a hexagon side of <InlineMath math="3\text{ cm}" />, half an edge. The option <InlineMath math="18\sqrt3\text{ cm}^2" /> treats the cross-section as a rectangle with sides <InlineMath math="PQ" /> and <InlineMath math="QR" />, because angle <InlineMath math="PQR" /> is a right angle.
+
+So the area of the cross-section of plane <InlineMath math="PQR" /> and the cube is <InlineMath math="27\sqrt3\text{ cm}^2" />.

@@ -1,17 +1,31 @@
-Selesaikan dulu pertidaksamaannya, lalu uji setiap pernyataan pada **seluruh selang penyelesaian**, bukan hanya pada satu contoh.
+Kata "tetapi tidak keduanya" berarti kamu mencari bilangan yang **tepat memenuhi satu syarat**. Misalkan <InlineMath math="A" /> himpunan bilangan kuadrat dan <InlineMath math="B" /> himpunan bilangan pangkat tiga di rentang itu. Rencananya: hitung <InlineMath math="|A|" />, <InlineMath math="|B|" />, dan <InlineMath math="|A\cap B|" />, lalu gabungkan dengan benar.
 
-<BlockMath math="x^2-5x+4=(x-1)(x-4)<0\quad\Rightarrow\quad 1<x<4" />
+# Bilangan kuadrat di rentang itu
 
-# Pernyataan yang tidak selalu berlaku
+Cari bilangan bulat positif <InlineMath math="k" /> dengan <InlineMath math="10\le k^2\le10{.}000" />. Karena <InlineMath math="3^2=9<10" /> dan <InlineMath math="4^2=16" />, nilai <InlineMath math="k" /> **mulai dari <InlineMath math="4" />**, bukan dari <InlineMath math="1" />. Batas atasnya <InlineMath math="100^2=10{.}000" />. Jadi <InlineMath math="k=4,\ 5,\ \ldots,\ 100" />, dan <InlineMath math="|A|=97" />.
 
-Pernyataan <InlineMath math="x-2>0" /> gagal untuk <InlineMath math="x=1{,}5" />, yang termasuk selang tetapi kurang dari 2. Satu **contoh penyangkal** sudah cukup, jadi pernyataan pertama salah.
+# Bilangan pangkat tiga di rentang itu
 
-Untuk <InlineMath math="1<x<4" />, kebalikan bilangan positif membalik urutan: <InlineMath math="\frac1x>\frac14" />. Pernyataan ketiga menyatakan sebaliknya, jadi salah untuk setiap <InlineMath math="x" /> dalam selang.
+Cari <InlineMath math="k" /> dengan <InlineMath math="10\le k^3\le10{.}000" />. Karena <InlineMath math="2^3=8<10" />, nilai <InlineMath math="k" /> mulai dari <InlineMath math="3" />. Di atas, <InlineMath math="21^3=9{.}261\le10{.}000" /> tetapi <InlineMath math="22^3=10{.}648" /> **sudah terlalu besar**. Jadi <InlineMath math="k=3,\ 4,\ \ldots,\ 21" />, dan <InlineMath math="|B|=19" />.
 
-# Pernyataan yang selalu berlaku
+# Bilangan yang termasuk keduanya
 
-Karena <InlineMath math="0<x<4" />, kedua ruas positif dan **pengkuadratan mempertahankan urutan**, sehingga <InlineMath math="x^2<16" />. Pernyataan kedua benar.
+Bilangan yang sekaligus kuadrat dan pangkat tiga adalah **bilangan pangkat enam**. Alasannya, setiap faktor primanya harus berpangkat kelipatan <InlineMath math="2" /> dan kelipatan <InlineMath math="3" />, jadi berpangkat kelipatan <InlineMath math="6" />. Di rentang itu ada <InlineMath math="2^6=64" />, <InlineMath math="3^6=729" />, dan <InlineMath math="4^6=4{.}096" />, sedangkan <InlineMath math="5^6=15{.}625" /> terlalu besar dan <InlineMath math="1^6=1" /> di bawah <InlineMath math="10" />. Jadi <InlineMath math="|A\cap B|=3" />.
 
-Pada selang <InlineMath math="1<x<4" />, faktor <InlineMath math="x-1" /> positif dan faktor <InlineMath math="x-5" /> negatif. Hasil kalinya negatif, jadi pernyataan keempat benar.
+# Menghitung yang tepat satu
 
-Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **salah**, dan keempat **benar**.
+Ketiga bilangan pangkat enam muncul di <InlineMath math="|A|" /> dan juga di <InlineMath math="|B|" />, padahal bilangan itu tidak boleh dihitung sama sekali. Jadi bilangan itu **dikurangkan dua kali**.
+
+<BlockMath math="\begin{aligned}
+|A|+|B|-2|A\cap B|&=97+19-2\times3\\
+&=110
+\end{aligned}" />
+
+Cek dengan jalur lain. Bilangan kuadrat yang bukan pangkat tiga ada <InlineMath math="97-3=94" />, dan bilangan pangkat tiga yang bukan kuadrat ada <InlineMath math="19-3=16" />. Jumlahnya <InlineMath math="94+16=110" />, sama.
+
+# Kesalahan yang sering terjadi
+
+- Hasil <InlineMath math="113" /> mengurangkan irisan **hanya sekali**. Itu banyak bilangan yang kuadrat atau pangkat tiga, termasuk yang keduanya.
+- Hasil <InlineMath math="116" /> tidak mengurangkan irisan sama sekali, sehingga <InlineMath math="64" />, <InlineMath math="729" />, dan <InlineMath math="4{.}096" /> terhitung dua kali.
+
+Jadi, banyak bilangan yang dimaksud adalah <InlineMath math="110" />.

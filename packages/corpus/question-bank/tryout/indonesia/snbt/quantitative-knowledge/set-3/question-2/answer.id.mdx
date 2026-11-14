@@ -1,18 +1,42 @@
-Nilai <InlineMath math="a" /> dan <InlineMath math="b" /> masing-masing bukan bilangan bulat, tetapi hasil kalinya bisa dihitung tepat. Tulis keduanya sebagai logaritma, lalu pakai sifat **dua logaritma yang saling berkebalikan**, yaitu <InlineMath math="{}^{p}\log q\cdot{}^{q}\log p=1" />.
+Kedua persamaan tidak berubah kalau <InlineMath math="x" /> dan <InlineMath math="y" /> ditukar, jadi lebih mudah bekerja dengan **jumlah dan hasil kali**, yaitu <InlineMath math="s=x+y" /> dan <InlineMath math="p=xy" />. Rencananya: cari pasangan <InlineMath math="(s,p)" />, buang pasangan yang membuat <InlineMath math="x" /> dan <InlineMath math="y" /> tidak real, lalu hitung <InlineMath math="x^3+y^3" /> dari <InlineMath math="s" /> dan <InlineMath math="p" />.
 
-# Menulis sebagai logaritma
+# Menulis ulang dengan jumlah dan hasil kali
+
+Faktorkan persamaan pertama: <InlineMath math="x^2y+xy^2=xy(x+y)=ps" />. Persamaan kedua adalah <InlineMath math="p+s=12" />. Dua bilangan yang jumlahnya <InlineMath math="12" /> dan hasil kalinya <InlineMath math="35" /> adalah **akar-akar persamaan kuadrat** <InlineMath math="t^2-12t+35=0" />.
 
 <BlockMath math="\begin{aligned}
-a&={}^{2}\log9={}^{2}\log3^2=2\cdot{}^{2}\log3\\
-b&={}^{3}\log16={}^{3}\log2^4=4\cdot{}^{3}\log2
+t^2-12t+35&=0\\
+(t-5)(t-7)&=0\\
+t=5 \quad&\text{atau}\quad t=7
 \end{aligned}" />
 
-# Mengalikan keduanya
+Jadi ada dua kemungkinan, yaitu <InlineMath math="s=5" /> dengan <InlineMath math="p=7" />, atau <InlineMath math="s=7" /> dengan <InlineMath math="p=5" />.
 
-Faktor <InlineMath math="{}^{2}\log3" /> dan <InlineMath math="{}^{3}\log2" /> **saling berkebalikan**, karena <InlineMath math="{}^{2}\log3=\frac{\log3}{\log2}" /> dan <InlineMath math="{}^{3}\log2=\frac{\log2}{\log3}" />.
+# Syarat agar kedua bilangan real
 
-<BlockMath math="ab=2\cdot4\cdot{}^{2}\log3\cdot{}^{3}\log2=8\cdot1=8" />
+Bilangan <InlineMath math="x" /> dan <InlineMath math="y" /> adalah akar-akar <InlineMath math="z^2-sz+p=0" />. Keduanya real hanya kalau **diskriminannya tidak negatif**, yaitu <InlineMath math="s^2-4p\ge 0" />.
 
-Nilai 1 hanya mengalikan kedua logaritma dan lupa koefisien 2 dan 4. Nilai 6 menjumlahkan koefisien, padahal keduanya dikalikan. Nilai 24 menganggap <InlineMath math="a=\tfrac92" /> dan <InlineMath math="b=\tfrac{16}3" />, seolah-olah pangkat sama dengan pembagian. Nilai 12 menaksir <InlineMath math="a\approx3" /> dan <InlineMath math="b\approx4" />, yang terlalu kasar untuk hasil tepat.
+<BlockMath math="\begin{aligned}
+s=5,\ p=7&:\quad 5^2-4\cdot 7=-3<0\\
+s=7,\ p=5&:\quad 7^2-4\cdot 5=29\ge 0
+\end{aligned}" />
 
-Jadi, nilai <InlineMath math="ab" /> adalah **8**.
+Pasangan pertama membuat <InlineMath math="x" /> dan <InlineMath math="y" /> tidak real, jadi pasangan itu dibuang. Yang tersisa hanya <InlineMath math="s=7" /> dan <InlineMath math="p=5" />.
+
+# Menghitung jumlah pangkat tiga
+
+Jabarkan <InlineMath math="(x+y)^3=x^3+3x^2y+3xy^2+y^3=x^3+y^3+3xy(x+y)" />. Dari situ, **<InlineMath math="x^3+y^3" /> sama dengan <InlineMath math="s^3-3ps" />**.
+
+<BlockMath math="\begin{aligned}
+x^3+y^3&=s^3-3ps\\
+&=7^3-3\cdot 5\cdot 7\\
+&=343-105=238
+\end{aligned}" />
+
+Sebagai pemeriksaan, akar-akarnya adalah <InlineMath math="x,y=\tfrac{7\pm\sqrt{29}}{2}" />. Jumlahnya <InlineMath math="7" /> dan hasil kalinya <InlineMath math="\tfrac{49-29}{4}=5" />, cocok. Jalan lain juga memberi hasil yang sama: <InlineMath math="x^3+y^3=s\left(s^2-3p\right)=7\cdot 34=238" />.
+
+# Memeriksa pilihan lain
+
+Pilihan <InlineMath math="20" /> berasal dari **pasangan yang dibuang**, karena <InlineMath math="5^3-3\cdot 7\cdot 5=20" />, padahal pasangan itu tidak memberi <InlineMath math="x" /> dan <InlineMath math="y" /> real. Pilihan <InlineMath math="258" /> menjumlahkan hasil kedua pasangan, <InlineMath math="20+238" />. Pilihan <InlineMath math="273" /> memakai <InlineMath math="x^3+y^3=(x+y)\left(x^2+y^2\right)=7\cdot 39" /> dan lupa mengurangkan suku <InlineMath math="xy" />. Pilihan <InlineMath math="448" /> salah tanda, yaitu <InlineMath math="s^3+3ps" />.
+
+Jadi, nilai <InlineMath math="x^3+y^3" /> adalah <InlineMath math="238" />.

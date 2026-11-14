@@ -1,16 +1,36 @@
-Ganti setiap <InlineMath math="x" /> pada rumus <InlineMath math="f" /> dengan <InlineMath math="a+1" />, lalu dengan <InlineMath math="a-1" />. **Kurung dulu setiap input** supaya tanda minus ikut terbawa.
+# Cara membaca invers fungsi bercabang
+
+Soal ini meminta invers yang dipakai dua kali. Arti <InlineMath math="f^{-1}(k)" /> sederhana: cari <InlineMath math="x" /> yang membuat <InlineMath math="f(x)=k" />. Karena <InlineMath math="f" /> punya dua rumus, setiap calon <InlineMath math="x" /> **harus dicek terhadap syarat cabangnya sendiri**. Rumus pertama hanya berlaku untuk <InlineMath math="x<2" />, rumus kedua hanya untuk <InlineMath math="x\ge2" />.
+
+Ada cara cek cepat. Cabang pertama menghasilkan nilai di bawah <InlineMath math="\frac22+4=5" />, sedangkan cabang kedua menghasilkan nilai mulai <InlineMath math="3\cdot2-1=5" /> ke atas. Jadi nilai fungsi <InlineMath math="5" /> atau lebih datang dari cabang kedua, dan nilai di bawah <InlineMath math="5" /> datang dari cabang pertama.
+
+# Langkah pertama
+
+Cari <InlineMath math="x" /> dengan <InlineMath math="f(x)=11" />. Coba kedua rumus:
 
 <BlockMath math="\begin{aligned}
-f(a+1)&=(a+1)^2-2(a+1)=a^2+2a+1-2a-2=a^2-1 \\
-f(a-1)&=(a-1)^2-2(a-1)=a^2-2a+1-2a+2=a^2-4a+3 \\
-f(a+1)-f(a-1)&=(a^2-1)-(a^2-4a+3)=4a-4
+\tfrac{x}{2}+4=11\ &\Rightarrow\ x=14,\ \text{tetapi }14\not<2\ \text{(ditolak)} \\
+3x-1=11\ &\Rightarrow\ x=4,\ \text{dan }4\ge2\ \text{(diterima)}
 \end{aligned}" />
 
-Cek dengan <InlineMath math="a=2" />: <InlineMath math="f(3)-f(1)=3-(-1)=4" />, dan <InlineMath math="4\cdot2-4=4" />.
+Jadi <InlineMath math="f^{-1}(11)=4" />. Cek: <InlineMath math="f(4)=3\cdot4-1=11" />. **Hasil <InlineMath math="4" /> ini menjadi masukan langkah kedua**.
 
-Jadi, <InlineMath math="f(a+1)-f(a-1)=4a-4" />.
+# Langkah kedua
 
-- <InlineMath math="4a" /> hanya menghitung selisih kedua kuadrat dan melupakan suku <InlineMath math="-2x" />.
-- <InlineMath math="4a+4" /> salah tanda saat mengurangkan <InlineMath math="-2(a+1)" /> dan <InlineMath math="-2(a-1)" />.
-- <InlineMath math="2a-4" /> menganggap <InlineMath math="(a+1)^2-(a-1)^2=2a" />, padahal hasilnya <InlineMath math="4a" />.
-- <InlineMath math="-4" /> menganggap kedua kuadrat saling menghapus seluruhnya.
+Sekarang cari <InlineMath math="x" /> dengan <InlineMath math="f(x)=4" />:
+
+<BlockMath math="\begin{aligned}
+\tfrac{x}{2}+4=4\ &\Rightarrow\ x=0,\ \text{dan }0<2\ \text{(diterima)} \\
+3x-1=4\ &\Rightarrow\ x=\tfrac53,\ \text{tetapi }\tfrac53\not\ge2\ \text{(ditolak)}
+\end{aligned}" />
+
+Jadi <InlineMath math="f^{-1}(4)=0" />. Cek: <InlineMath math="f(0)=\frac02+4=4" />. Kali ini **yang ditolak justru cabang kedua**, kebalikan dari langkah pertama.
+
+Jadi, nilai <InlineMath math="f^{-1}\left(f^{-1}(11)\right)" /> adalah <InlineMath math="0" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\frac53" /> memakai rumus cabang kedua di langkah kedua tanpa cek. Padahal <InlineMath math="\frac53<2" />, jadi rumus itu **tidak berlaku** di sana.
+- <InlineMath math="4" /> berhenti setelah satu invers. Itu baru <InlineMath math="f^{-1}(11)" />, belum <InlineMath math="f^{-1}" /> dari hasilnya.
+- <InlineMath math="20" /> selalu memakai cabang pertama: <InlineMath math="11\to14\to20" />. Kedua nilai itu tidak memenuhi <InlineMath math="x<2" />.
+- <InlineMath math="95" /> menghitung <InlineMath math="f\left(f(11)\right)=f(32)=95" />. Itu komposisi <InlineMath math="f" /> dengan dirinya sendiri, bukan invers.

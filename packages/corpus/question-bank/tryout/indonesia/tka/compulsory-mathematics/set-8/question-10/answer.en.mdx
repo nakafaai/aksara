@@ -1,12 +1,27 @@
-In two similar triangles, **all matching sides have the same ratio**. The shortest side matches the shortest side, so the scale factor is <InlineMath math="\frac96=1.5" />.
+# Side lengths from the angle bisector
 
-<BlockMath math="\text{longest side of }PQR=1.5\cdot10=15" />
+The question asks for the length of the angle bisector <InlineMath math="AD" />. The first step is to find the sides <InlineMath math="AB" /> and <InlineMath math="AC" />, because neither is given.
 
-Check: the sides of <InlineMath math="PQR" /> are <InlineMath math="9" />, <InlineMath math="12" />, and <InlineMath math="15" />, and <InlineMath math="9:12:15=6:8:10" />.
+An angle bisector splits the opposite side **in the ratio of the two sides next to the angle**. So <InlineMath math="AB:AC=BD:DC=6:10=3:5" />. The perimeter is <InlineMath math="48" /> and <InlineMath math="BC=6+10=16" />, so <InlineMath math="AB+AC=48-16=32" />.
 
-So the longest side of triangle <InlineMath math="PQR" /> is <InlineMath math="15\text{ cm}" />.
+<BlockMath math="\begin{aligned}
+AB&=\tfrac{3}{8}\cdot32=12 \\
+AC&=\tfrac{5}{8}\cdot32=20
+\end{aligned}" />
 
-- <InlineMath math="12\text{ cm}" /> is the middle side of <InlineMath math="PQR" />.
-- <InlineMath math="13\text{ cm}" /> adds the difference <InlineMath math="9-6=3" />, but similar sides are multiplied, not increased by a fixed amount.
-- <InlineMath math="13.5\text{ cm}" /> multiplies the <InlineMath math="9\text{ cm}" /> side by the scale factor, but it is the <InlineMath math="10\text{ cm}" /> side that gets multiplied.
-- <InlineMath math="20\text{ cm}" /> uses a scale factor of <InlineMath math="2" />.
+# A hidden right triangle
+
+Now look at the three sides: <InlineMath math="12" />, <InlineMath math="16" /> and <InlineMath math="20" />. They're multiples of <InlineMath math="3,4,5" />, and indeed <InlineMath math="12^2+16^2=144+256=400=20^2" />. So **the angle at <InlineMath math="B" /> is a right angle**.
+
+Since the angle at <InlineMath math="B" /> is a right angle, triangle <InlineMath math="ABD" /> is also right-angled at <InlineMath math="B" />, with <InlineMath math="AB=12" /> and <InlineMath math="BD=6" />.
+
+<BlockMath math="AD=\sqrt{12^2+6^2}=\sqrt{180}=6\sqrt5\text{ cm}" />
+
+As a check, the bisector length formula <InlineMath math="AD^2=AB\cdot AC-BD\cdot DC=240-60=180" /> gives the same result.
+
+So <InlineMath math="AD" /> is <InlineMath math="6\sqrt5\text{ cm}" /> long.
+
+- <InlineMath math="6\sqrt{10}\text{ cm}" /> uses <InlineMath math="AB+AC=48" />, forgetting that the perimeter also includes <InlineMath math="BC" />.
+- <InlineMath math="16\text{ cm}" /> treats <InlineMath math="AD" /> as the average of <InlineMath math="AB" /> and <InlineMath math="AC" />.
+- <InlineMath math="2\sqrt{61}\text{ cm}" /> flips the ratio to <InlineMath math="AB:AC=5:3" />, which moves the right angle to <InlineMath math="C" />.
+- <InlineMath math="4\sqrt{13}\text{ cm}" /> treats <InlineMath math="AD" /> as a median, as if <InlineMath math="D" /> were the midpoint of <InlineMath math="BC" />.

@@ -2,9 +2,9 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
-    topic: "calendar",
+    topic: "calendar-cycle",
   },
   versions: {
     id: {
@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$18$$",
+          label: "Selasa Pon",
         },
         {
           correct: true,
-          label: "$$19$$",
+          label: "Selasa Legi",
         },
         {
           correct: false,
-          label: "$$20$$",
+          label: "Rabu Pahing",
         },
         {
           correct: false,
-          label: "$$23$$",
+          label: "Kamis Pon",
         },
         {
           correct: false,
-          label: "$$24$$",
+          label: "Senin Kliwon",
         },
       ],
     },

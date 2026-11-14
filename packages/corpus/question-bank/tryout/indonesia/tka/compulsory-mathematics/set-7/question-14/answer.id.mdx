@@ -1,15 +1,94 @@
-Pencerminan terhadap garis <InlineMath math="y=2" /> mempertahankan koordinat <InlineMath math="x" /> dan **memindahkan titik ke sisi lain garis <InlineMath math="y=2" /> dengan jarak yang sama**. Jadi <InlineMath math="(x,y)" /> dipetakan ke <InlineMath math="(x,\,4-y)" />, karena titik tengah <InlineMath math="y" /> dan <InlineMath math="4-y" /> adalah <InlineMath math="2" />. Titik asal dari bayangan <InlineMath math="(x,y)" /> adalah <InlineMath math="(x,\,4-y)" />, lalu substitusikan ke persamaan garis semula.
+Soal ini meminta pusat dilatasi <InlineMath math="P" />. Masalahnya, titik-titik bayangan **tidak diberi nama**. Jadi kamu harus memasangkan dulu setiap titik dengan bayangannya, lalu mencari faktor skala <InlineMath math="k" /> lengkap dengan tandanya.
+
+# Pasangkan titik sudutnya
+
+Dilatasi dengan faktor <InlineMath math="k" /> mengalikan setiap vektor sisi dengan <InlineMath math="k" />, yaitu <InlineMath math="\overrightarrow{X'Y'}=k\,\overrightarrow{XY}" />. Akibatnya besar sudut tidak berubah, dan setiap panjang dikali <InlineMath math="|k|" />.
+
+Segitiga <InlineMath math="ABC" /> siku-siku di <InlineMath math="A" />, dengan <InlineMath math="AB=3" /> mendatar dan <InlineMath math="AC=4" /> tegak. Pada bayangannya, titik <InlineMath math="(-3,0)" /> berjarak <InlineMath math="6" /> mendatar dari <InlineMath math="(-9,0)" /> dan <InlineMath math="8" /> tegak dari <InlineMath math="(-3,-8)" />, jadi sudut siku-sikunya ada di <InlineMath math="(-3,0)" />. **Sudut siku-siku dipetakan ke sudut siku-siku**, dan kaki pendek ke kaki pendek:
+
+<BlockMath math="A'=(-3,0),\qquad B'=(-9,0),\qquad C'=(-3,-8)" />
+
+# Tentukan faktor skalanya
+
+Bandingkan vektor sisi sebelum dan sesudah dilatasi.
 
 <BlockMath math="\begin{aligned}
-4-y&=3x-1 \\
-y&=-3x+5
+\overrightarrow{AB}&=(3,0), & \overrightarrow{A'B'}&=(-6,0)=-2\,(3,0) \\
+\overrightarrow{AC}&=(0,4), & \overrightarrow{A'C'}&=(0,-8)=-2\,(0,4)
 \end{aligned}" />
 
-Cek: garis <InlineMath math="y=3x-1" /> memotong <InlineMath math="y=2" /> di <InlineMath math="(1,2)" />, dan titik pada garis cermin tidak berpindah. Garis <InlineMath math="y=-3x+5" /> memang melalui <InlineMath math="(1,2)" />.
+Kedua sisi memberi hasil yang sama, jadi <InlineMath math="k=-2" />. Panjang sisi saja hanya memberi tahu <InlineMath math="|k|=2" />. **Tanda negatif datang dari arah sisi yang berbalik**: <InlineMath math="B" /> ada di kanan <InlineMath math="A" />, tetapi <InlineMath math="B'" /> ada di kiri <InlineMath math="A'" />.
 
-Jadi, persamaan garis bayangannya adalah <InlineMath math="y=-3x+5" />.
+# Hitung pusat dilatasi
 
-- <InlineMath math="y=-3x+1" /> adalah hasil pencerminan terhadap sumbu <InlineMath math="x" />, bukan terhadap <InlineMath math="y=2" />.
-- <InlineMath math="y=-3x+3" /> memakai <InlineMath math="(x,\,2-y)" />, padahal jarak ke garis cermin harus dikali dua.
-- <InlineMath math="y=3x+3" /> menggeser garis ke atas sejauh <InlineMath math="4" />, bukan mencerminkannya.
-- <InlineMath math="y=-3x+11" /> mencerminkan terhadap garis tegak <InlineMath math="x=2" />, bukan garis mendatar <InlineMath math="y=2" />.
+Dilatasi dengan pusat <InlineMath math="P" /> berarti <InlineMath math="A'-P=k\,(A-P)" />. Kumpulkan semua <InlineMath math="P" /> di satu ruas, lalu masukkan <InlineMath math="k=-2" />.
+
+<BlockMath math="\begin{aligned}
+A'-P&=kA-kP \\
+A'-kA&=(1-k)\,P \\
+P&=\frac{A'-kA}{1-k}=\frac{(-3,0)+2\,(3,3)}{1+2}=\frac{(3,6)}{3}=(1,2)
+\end{aligned}" />
+
+Sekarang cek dengan dua titik lainnya. **Pusat yang benar harus cocok untuk ketiga titik**, bukan hanya untuk <InlineMath math="A" />.
+
+<BlockMath math="\begin{aligned}
+P+k\,(B-P)&=(1,2)-2\,(5,1)=(-9,0)=B' \\
+P+k\,(C-P)&=(1,2)-2\,(2,5)=(-3,-8)=C'
+\end{aligned}" />
+
+Pada gambar, ketiga garis yang menghubungkan setiap titik dengan bayangannya bertemu di satu titik, yaitu <InlineMath math="P" />.
+
+<MathVisual
+  title={<>Dilatasi segitiga <InlineMath math="ABC" /></>}
+  description={<>Segitiga <InlineMath math="ABC" /> dengan <InlineMath math="A(3,3)" />, <InlineMath math="B(6,3)" />, <InlineMath math="C(3,7)" /> dan bayangannya dengan <InlineMath math="A'(-3,0)" />, <InlineMath math="B'(-9,0)" />, <InlineMath math="C'(-3,-8)" />. Ruas <InlineMath math="AA'" />, <InlineMath math="BB'" />, dan <InlineMath math="CC'" /> melewati pusat <InlineMath math="P(1,2)" />, dan bayangan terletak di seberang pusat dari segitiga asal.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    "a-image": <InlineMath math="A'" />,
+    "b-image": <InlineMath math="B'" />,
+    "c-image": <InlineMath math="C'" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 7 },
+      y: { min: -9, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "original", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 3 }, { x: 6, y: 3 }, { x: 3, y: 7 }] },
+      { id: "image", kind: "polygon", appearance: "secondary", vertices: [{ x: -3, y: 0 }, { x: -9, y: 0 }, { x: -3, y: -8 }] },
+      { id: "line-a", kind: "segment", appearance: "construction", from: { x: 3, y: 3 }, to: { x: -3, y: 0 } },
+      { id: "line-b", kind: "segment", appearance: "construction", from: { x: 6, y: 3 }, to: { x: -9, y: 0 } },
+      { id: "line-c", kind: "segment", appearance: "construction", from: { x: 3, y: 7 }, to: { x: -3, y: -8 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 3, y: 3 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 6, y: 3 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 3, y: 7 } },
+      { id: "point-a-image", kind: "point", appearance: "reference", at: { x: -3, y: 0 } },
+      { id: "point-b-image", kind: "point", appearance: "reference", at: { x: -9, y: 0 } },
+      { id: "point-c-image", kind: "point", appearance: "reference", at: { x: -3, y: -8 } },
+      { id: "point-p", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 3, y: 3 }, placement: "below-right" },
+      { key: "b", objectId: "point-b", at: { x: 6, y: 3 }, placement: "right" },
+      { key: "c", objectId: "point-c", at: { x: 3, y: 7 }, placement: "above" },
+      { key: "a-image", objectId: "point-a-image", at: { x: -3, y: 0 }, placement: "below-right" },
+      { key: "b-image", objectId: "point-b-image", at: { x: -9, y: 0 }, placement: "left" },
+      { key: "c-image", objectId: "point-c-image", at: { x: -3, y: -8 }, placement: "below" },
+      { key: "p", objectId: "point-p", at: { x: 1, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="(9,6)" /> muncul kalau kamu memakai <InlineMath math="k=2" /> hanya karena panjang sisinya dua kali lipat. Dengan pusat itu, <InlineMath math="B" /> dipetakan ke <InlineMath math="(3,0)" />, yang bukan titik sudut bayangan. **Arah sisi yang berbalik menuntut <InlineMath math="k" /> negatif**.
+- <InlineMath math="\left(0,\tfrac{3}{2}\right)" /> adalah titik tengah <InlineMath math="A" /> dan <InlineMath math="A'" />. Pusat berada tepat di tengah hanya kalau <InlineMath math="k=-1" />. Di sini <InlineMath math="PA'=2\,PA" />.
+- <InlineMath math="(-1,1)" /> muncul dari <InlineMath math="k=-\tfrac{1}{2}" />, yaitu perbandingan yang terbalik. Faktor itu membawa bayangan kembali ke segitiga asal, bukan sebaliknya.
+- <InlineMath math="(-1,-2)" /> adalah salah tanda saat memindahkan ruas, yaitu menghitung <InlineMath math="\frac{kA-A'}{1-k}" />. Hasilnya titik <InlineMath math="P" /> yang dicerminkan terhadap titik asal.
+
+Jadi, pusat dilatasinya adalah <InlineMath math="P(1,2)" />, dengan faktor skala <InlineMath math="k=-2" />.

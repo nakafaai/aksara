@@ -1,23 +1,38 @@
-Setiap perubahan persen dihitung dari harga **sesaat sebelum perubahan itu**, bukan dari harga semula. Karena itu perubahan berurutan harus dikalikan, tidak dijumlahkan.
+Kamu mencari banyak air yang ditambahkan. Kuncinya ada pada posisi wadah: karena kerucut berdiri di atas alasnya, **air mengisi bagian bawah yang lebar dan membentuk kerucut terpancung**, sedangkan bagian kosong di atas air berbentuk kerucut kecil. Rencananya: hitung bagian kosong itu, cari volume seluruh wadah, lalu hitung air pada ketinggian yang baru.
 
-# Faktor perubahan berurutan
+# Volume seluruh wadah
 
-Misalkan harga semula <InlineMath math="H" />. Naik 20% berarti **dikali 1,2**, dan turun 25% berarti dikali 0,75.
+Bagian kosong di atas air adalah kerucut kecil dengan puncak yang sama, jadi bentuknya sebangun dengan seluruh kerucut. Jika semua ukuran panjang dikali <InlineMath math="k" />, **volume bangun ruang dikali <InlineMath math="k^3" />**, karena volume kerucut memuat tiga ukuran panjang: jari-jari dua kali (lewat luas alas) dan tinggi satu kali.
 
-<BlockMath math="H\times1{,}2\times0{,}75=0{,}9H" />
-
-Harga terakhir adalah 90% dari harga semula.
-
-# Kenaikan yang diperlukan
-
-Kenaikan <InlineMath math="k\%" /> harus membawa <InlineMath math="0{,}9H" /> kembali ke <InlineMath math="H" />. Persentase ini **dihitung dari <InlineMath math="0{,}9H" />**, jadi pembaginya 0,9.
+Mula-mula air setinggi setengah tinggi kerucut, jadi bagian kosongnya juga setinggi setengah tinggi kerucut. Misalkan volume seluruh wadah <InlineMath math="V" /> liter. Volume bagian kosong <InlineMath math="\left(\frac12\right)^3V=\frac18V" />, dan sisanya adalah air.
 
 <BlockMath math="\begin{aligned}
-0{,}9H\left(1+\frac{k}{100}\right)&=H\\
-1+\frac{k}{100}&=\frac{10}{9}\\
-k&=\frac{100}{9}=11\tfrac19
+V-\tfrac18V&=7\\
+\tfrac78V&=7\\
+V&=8
 \end{aligned}" />
 
-Nilai 10% menganggap penurunan 10% dibatalkan oleh kenaikan 10%, padahal 10% dari harga yang lebih kecil tidak cukup. Nilai 5% menjumlahkan persentase, <InlineMath math="20-25=-5" />. Nilai 25% hanya membalik penurunan terakhir, dan nilai 20% hanya membalik kenaikan pertama.
+Jadi wadah itu bervolume <InlineMath math="8" /> liter.
 
-Jadi, harga terakhir harus dinaikkan sebesar <InlineMath math="11\tfrac19\%" />.
+# Air pada ketinggian yang baru
+
+Setelah ditambah, air setinggi <InlineMath math="\frac34" /> tinggi kerucut. Artinya **bagian kosong tinggal setinggi <InlineMath math="\frac14" /> tinggi kerucut**, dan volumenya <InlineMath math="\left(\frac14\right)^3" /> dari volume wadah.
+
+<BlockMath math="\begin{aligned}
+\text{volume kosong}&=\left(\tfrac14\right)^3\cdot8=\tfrac{8}{64}=\tfrac18\text{ liter}\\
+\text{volume air}&=8-\tfrac18=\tfrac{63}{8}\text{ liter}\\
+\text{air yang ditambahkan}&=\tfrac{63}{8}-7=\tfrac{63}{8}-\tfrac{56}{8}=\tfrac78\text{ liter}
+\end{aligned}" />
+
+Coba cek lewat bagian kosongnya. Mula-mula kosongnya <InlineMath math="8-7=1" /> liter, dan akhirnya <InlineMath math="\frac18" /> liter. Ruang kosong berkurang <InlineMath math="1-\frac18=\frac78" /> liter, sama dengan air yang masuk. Hasil sekecil ini juga masuk akal, karena lapisan antara setengah dan <InlineMath math="\frac34" /> tinggi berada di bagian kerucut yang sudah sempit.
+
+# Pilihan yang menjebak
+
+Hampir semua pilihan lain lahir dari **perbandingan volume yang salah pangkat atau salah arah**.
+
+- <InlineMath math="\frac{133}{8}" /> liter muncul jika air dianggap kerucut kecil di bawah, seolah puncak kerucut di bawah. Hasilnya <InlineMath math="V=56" /> dan tambahan <InlineMath math="56\cdot\frac{27}{64}-7" />.
+- <InlineMath math="\frac72" /> liter muncul dari perbandingan lurus dengan tinggi, yaitu <InlineMath math="7\cdot\frac{3/4}{1/2}-7" />.
+- <InlineMath math="\frac{35}{4}" /> liter muncul dari memakai kuadrat perbandingan tinggi, padahal kuadrat hanya berlaku untuk luas: <InlineMath math="7\cdot\left(\frac32\right)^2-7" />.
+- <InlineMath math="\frac18" /> liter adalah volume bagian yang masih kosong di akhir, bukan air yang ditambahkan.
+
+Jadi, volume air yang ditambahkan adalah <InlineMath math="\frac78" /> liter.

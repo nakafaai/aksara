@@ -2,36 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "argument-evaluation",
   },
-  stimulus: "recycling-rate",
+  stimulus: "solar-heat",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Asking residents to put many more mixed food trays into their recycling bins",
+            "The months with panel temperatures above $$25$$ °C were also the four months in which the most sunlight arrived.",
         },
         {
-          correct: false,
-          label: "Reporting the share of waste that goes into bins more often",
-        },
-        {
-          correct: false,
-          label: "Sending all sorting plant rejects to a larger landfill site",
-        },
-        {
-          correct: false,
-          label: "Counting glass by volume instead of by weight in the report",
-        },
-        {
-          correct: true,
+          column: 2,
           label:
-            "Persuading residents to keep paper dry and free of food before binning it",
+            "Because summer output is high, a fall in efficiency in summer costs less electricity than the same fall would in spring.",
+        },
+        {
+          column: 1,
+          label:
+            "In July, one percentage point of efficiency was worth more electricity than in March.",
+        },
+        {
+          column: 2,
+          label:
+            "With the frames in place, July's output would reach what the panels produce at March efficiency.",
         },
       ],
     },

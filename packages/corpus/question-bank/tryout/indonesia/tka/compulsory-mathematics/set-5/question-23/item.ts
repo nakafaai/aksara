@@ -6,31 +6,35 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "run-times",
+  stimulus: "klub",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "Rata-rata waktu tempuh kelompok A turun $$1$$ menit.",
-        },
-        {
-          correct: false,
-          label: "Median waktu tempuh kelompok A tidak berubah.",
-        },
-        {
-          correct: true,
-          label: "Jangkauan waktu tempuh kelompok A menjadi $$9$$ menit.",
-        },
-        {
-          correct: true,
-          label: "Modus waktu tempuh kelompok A tetap $$27$$ menit.",
+          label:
+            "Kelas X menyumbang anggota Robotik paling banyak, walaupun persentase siswa kelas X yang memilih Robotik paling kecil di antara ketiga kelas.",
         },
         {
           correct: false,
           label:
-            "Rata-rata waktu tempuh kelompok A menjadi lebih besar daripada rata-rata kelompok B.",
+            "Banyak anggota Paduan Suara dari kelas X tepat dua kali banyak anggota Paduan Suara dari kelas XII.",
+        },
+        {
+          correct: true,
+          label:
+            "Jika $$8$$ siswa kelas XII pindah dari Robotik ke Futsal, persentase pemilih Robotik dan persentase pemilih Futsal di kelas XII menjadi sama dengan persentase pemilih kedua klub itu di kelas X.",
+        },
+        {
+          correct: false,
+          label:
+            "Di antara ketiga kelas, kelas XII menyumbang siswa paling banyak untuk gabungan klub Robotik dan Jurnalistik.",
+        },
+        {
+          correct: false,
+          label:
+            "Jika sekolah menerima $$40$$ siswa baru kelas XII dan semuanya memilih Robotik, lebih dari $$60\\%$$ siswa kelas XII menjadi anggota Robotik.",
         },
       ],
     },

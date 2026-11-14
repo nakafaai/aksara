@@ -1,16 +1,27 @@
-Eine Implikation <InlineMath math="p \Rightarrow q" /> ist nur falsch, wenn <InlineMath math="p" /> wahr und <InlineMath math="q" /> falsch ist. Daher ist **die Verneinung einer Implikation "p und nicht q"**:
+Gesucht ist die Verneinung (*ingkaran*), also die Aussage, die genau dann wahr ist, wenn die ursprüngliche falsch ist. Die ursprüngliche Aussage hat die Form wenn-dann, und ihr Dann-Teil verbindet zwei Dinge mit *dan* ("und"). Außerdem stecken Quantoren darin: *tidak ada* ("kein") und *semua* ("alle").
 
-<BlockMath math="\neg(p \Rightarrow q) \equiv p \wedge \neg q" />
+Gib jedem Teil einen Namen, damit die Form sichtbar wird.
 
-Hier ist <InlineMath math="p" /> "heute ist ein Feiertag" und <InlineMath math="q" /> "alle Läden auf dem Markt sind geschlossen". Die Verneinung von <InlineMath math="q" /> ist nicht "alle Läden sind offen", sondern **"es gibt einen Laden, der nicht geschlossen ist"**, denn ein einziger offener Laden widerlegt schon "alle Läden sind geschlossen".
+- <InlineMath math="p" />: Kein Freiwilliger fehlt beim Morgenappell.
+- <InlineMath math="q" />: Der Posten öffnet pünktlich.
+- <InlineMath math="r" />: Alle Freiwilligen bekommen eine Mittagsration.
 
-Ergebnis: Heute ist ein Feiertag, und es gibt einen Laden auf dem Markt, der nicht geschlossen ist.
+Die ursprüngliche Aussage ist <InlineMath math="p \Rightarrow (q \wedge r)" />. Eine Wenn-dann-Aussage ist nur in einer Lage falsch: Der Wenn-Teil tritt ein, der Dann-Teil aber nicht. Also **bleibt der Wenn-Teil genau so, wie er ist**, samt seinem *tidak ada*, und nur der Dann-Teil wird verneint.
 
-Die anderen Optionen sind falsch:
+<BlockMath math="\neg\big(p \Rightarrow (q \wedge r)\big) \equiv p \wedge \neg(q \wedge r) \equiv p \wedge (\neg q \vee \neg r)" />
 
-- "Heute ist kein Feiertag, und alle Läden sind offen" verneint fälschlich <InlineMath math="p" /> und <InlineMath math="q" /> zugleich.
-- "Wenn heute kein Feiertag ist, ist ein Laden offen" ist weiterhin eine Implikation, keine Verneinung.
-- "Heute ist ein Feiertag, und alle Läden sind offen" ist zu stark. Die Verneinung braucht nur einen Laden, der nicht geschlossen ist.
-- "Heute ist kein Feiertag, oder alle Läden sind geschlossen" ist eine andere Form der ursprünglichen Aussage, <InlineMath math="\neg p \vee q" />, also gleichwertig und keine Verneinung.
+Der zweite Schritt nutzt das Gesetz von De Morgan: Die Verneinung von "<InlineMath math="q" /> und <InlineMath math="r" />" ist "nicht <InlineMath math="q" /> oder nicht <InlineMath math="r" />". Jetzt übersetzt du jeden Teil zurück.
 
-Die Verneinung lautet also "Heute ist ein Feiertag, und es gibt einen Laden auf dem Markt, der nicht geschlossen ist".
+- <InlineMath math="\neg q" />: Der Posten öffnet nicht pünktlich.
+- <InlineMath math="\neg r" />: Die Verneinung von "alle Freiwilligen bekommen eine Mittagsration" (*semua relawan mendapat jatah makan siang*) ist "irgendein Freiwilliger bekommt keine Mittagsration" (*ada relawan yang tidak mendapat jatah makan siang*). Um "alle" zu widerlegen, reicht ein einziger, der leer ausgeht.
+
+Ergebnis: Kein Freiwilliger fehlt beim Morgenappell, aber der Posten öffnet nicht pünktlich oder irgendein Freiwilliger bekommt keine Mittagsration. Prüf die Bedeutung: Die ursprüngliche Aussage ist genau dann gebrochen, wenn alle da sind, aber eines ihrer beiden Versprechen scheitert.
+
+Jede andere Option verfehlt die Verneinung an einer Stelle.
+
+- Die Version, die mit "irgendein Freiwilliger fehlt" (*ada relawan yang absen*) beginnt, verneint auch den Wenn-Teil. Wenn jemand fehlt, ist die ursprüngliche Aussage aber gar nicht gebrochen.
+- Die Version mit "öffnet nicht pünktlich und irgendein Freiwilliger bekommt keine Ration" vergisst, dass De Morgan aus "und" ein "oder" macht. Sie erfasst nur den Fall, dass beide Versprechen zugleich scheitern, dabei reicht schon ein Scheitern.
+- Die Version mit "alle Freiwilligen bekommen keine Ration" (*semua relawan tidak mendapat jatah*) verneint den Quantor falsch. Dieser Satz heißt, dass überhaupt niemand eine Ration bekommt, und ist viel stärker als die Verneinung, die nur einen einzigen Freiwilligen braucht.
+- Die Version, die noch die Wenn-dann-Form hat, verneint nur beide Teile. Die Verneinung einer Wenn-dann-Aussage ist aber keine Wenn-dann-Aussage mehr, sondern eine Und-Aussage.
+
+Die Verneinung lautet also "Kein Freiwilliger fehlt beim Morgenappell, aber der Posten öffnet nicht pünktlich oder irgendein Freiwilliger bekommt keine Mittagsration" (*Tidak ada relawan yang absen pada apel pagi, tetapi posko tidak dibuka tepat waktu atau ada relawan yang tidak mendapat jatah makan siang*).

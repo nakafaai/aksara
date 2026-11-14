@@ -1,14 +1,68 @@
-Die Punkte <InlineMath math="P" />, <InlineMath math="B" /> und <InlineMath math="D" /> liegen auf einer Linie, also **sind die Dreiecke <InlineMath math="PAB" /> und <InlineMath math="DCB" /> ähnlich**: Beide sind rechtwinklig, bei <InlineMath math="A" /> und bei <InlineMath math="C" />, und ihre Winkel bei <InlineMath math="B" /> sind Scheitelwinkel. Einander entsprechen <InlineMath math="AP" /> und <InlineMath math="CD" /> sowie <InlineMath math="AB" /> und <InlineMath math="CB" />.
+# Der Radius der ersten Kugel
+
+Die Aufgabe hat zwei Stufen: erst den Radius der ersten Kugel, dann die zweite Kugel. Schneide den Kegel genau entlang seiner Achse. Der Querschnitt ist ein gleichschenkliges Dreieck mit Grundseite <InlineMath math="12" />, Höhe <InlineMath math="8" /> und Seitenkante <InlineMath math="\sqrt{6^2+8^2}=10" />. Beide Kugeln erscheinen als Kreise mit Mittelpunkt auf der Achse.
+
+Nenne die Spitze <InlineMath math="T" />, den Mittelpunkt der Grundfläche <InlineMath math="C" />, ein Ende der Grundseite <InlineMath math="D" />, den Mittelpunkt der ersten Kugel <InlineMath math="M" /> und den Berührpunkt mit der Seitenkante <InlineMath math="K" />. Die Kugel berührt die Grundfläche, also ist <InlineMath math="MC=r" /> und <InlineMath math="TM=8-r" />. Die Dreiecke <InlineMath math="TKM" /> und <InlineMath math="TCD" /> haben beide einen rechten Winkel und denselben Winkel bei <InlineMath math="T" />, **sie sind also ähnlich**.
 
 <BlockMath math="\begin{aligned}
-\frac{AP}{AB}&=\frac{CD}{CB} \\
-\frac{AP}{12}&=\frac{3}{4} \\
-AP&=9
+\frac{MK}{TM}&=\frac{CD}{TD} \\
+\frac{r}{8-r}&=\frac{6}{10} \\
+10r&=48-6r \\
+r&=3\text{ cm}
 \end{aligned}" />
 
-Der Fluss ist also <InlineMath math="9" /> m breit.
+# Der kleine Kegel über der ersten Kugel
 
-- <InlineMath math="12" /> m ist der Abstand von <InlineMath math="A" /> nach <InlineMath math="B" /> am Ufer, nicht die Breite des Flusses.
-- <InlineMath math="16" /> m dreht das Verhältnis um und rechnet <InlineMath math="\frac{12\cdot4}{3}" />.
-- <InlineMath math="36" /> m multipliziert <InlineMath math="12" /> mit <InlineMath math="3" />, ohne durch <InlineMath math="4" /> zu teilen.
-- <InlineMath math="48" /> m multipliziert <InlineMath math="12" /> mit <InlineMath math="4" /> und paart damit Seiten, die sich nicht entsprechen.
+Der höchste Punkt der ersten Kugel liegt <InlineMath math="2r=6\text{ cm}" /> über der Grundfläche. Stell dir die waagerechte Ebene vor, die die erste Kugel dort berührt. Die zweite Kugel berührt die erste genau in diesem Punkt, weil beide Mittelpunkte auf der Achse liegen. Also berührt die zweite Kugel diese Ebene und den Kegelmantel.
+
+Die zweite Kugel spielt damit für **den kleinen Kegel über dieser Ebene** dieselbe Rolle wie die erste Kugel für den großen. Der kleine Kegel ist dem großen ähnlich:
+
+<BlockMath math="\begin{aligned}
+\text{Höhe des kleinen Kegels}&=8-6=2\text{ cm} \\
+\text{Streckfaktor}&=\frac{2}{8}=\frac14 \\
+r_2&=\frac14\cdot3=\frac34\text{ cm}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Querschnitt durch den Kegel und beide Kugeln</>}
+  description={<>Ein gleichschenkliges Dreieck mit Grundseite von <InlineMath math="(-6,0)" /> bis <InlineMath math="(6,0)" /> und Spitze <InlineMath math="(0,8)" />. Die erste Kugel erscheint als Kreis um <InlineMath math="(0,3)" /> mit Radius <InlineMath math="3" />. Eine waagerechte Linie in Höhe <InlineMath math="6" /> berührt die erste Kugel oben und schneidet einen kleinen Kegel der Höhe <InlineMath math="2" /> ab. Die zweite Kugel erscheint als kleiner Kreis mit Mittelpunkt auf der Achse in Höhe <InlineMath math="6{,}75" /> und Radius <InlineMath math="0{,}75" />.</>}
+  labels={{
+    apex: <InlineMath math="T" />,
+    first: <InlineMath math="r=3" />,
+    second: <InlineMath math="r_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 8 },
+      y: { min: -1, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cone", kind: "polygon", appearance: "reference", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }, { x: 0, y: 8 }] },
+      { id: "first-ball", kind: "circle", appearance: "primary", center: { x: 0, y: 3 }, radius: 3 },
+      { id: "second-ball", kind: "circle", appearance: "answer", center: { x: 0, y: 6.75 }, radius: 0.75 },
+      { id: "tangent-plane", kind: "segment", appearance: "secondary", from: { x: -1.5, y: 6 }, to: { x: 1.5, y: 6 } },
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 8 } },
+      { id: "apex-point", kind: "point", appearance: "reference", at: { x: 0, y: 8 } },
+      { id: "first-radius", kind: "segment", appearance: "highlight", from: { x: 0, y: 3 }, to: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "apex", objectId: "apex-point", at: { x: 0, y: 8 }, placement: "above" },
+      { key: "first", objectId: "first-radius", at: { x: 0, y: 1.5 }, placement: "right" },
+      { key: "second", objectId: "second-ball", at: { x: 0.75, y: 6.75 }, placement: "right" },
+    ],
+  }}
+/>
+
+Zur Kontrolle: Der Mittelpunkt der zweiten Kugel ist <InlineMath math="8-6{,}75=1{,}25\text{ cm}" /> von der Spitze entfernt. Sein Abstand zur Seitenkante ist <InlineMath math="1{,}25\cdot\frac{6}{10}=0{,}75\text{ cm}" />, genau der Radius. **Die zweite Kugel berührt den Mantel also wirklich**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac{3}{16}\text{ cm}" /> multipliziert mit <InlineMath math="\left(\tfrac14\right)^2" />. Der quadrierte Streckfaktor gilt für Flächen. **Ein Radius ist eine Länge**, der Faktor ist also nur <InlineMath math="\tfrac14" />.
+- <InlineMath math="\frac{3}{5}\text{ cm}" /> teilt die Höhe des kleinen Kegels durch die Seitenkante des großen, <InlineMath math="\tfrac{2}{10}" />. Ein Streckfaktor vergleicht einander entsprechende Längen, Höhe mit Höhe.
+- <InlineMath math="1\text{ cm}" /> nimmt an, die zweite Kugel fülle die <InlineMath math="2\text{ cm}" /> bis zur Spitze ganz aus, ihr Durchmesser sei also <InlineMath math="2" />. Der Kegel wird zur Spitze hin enger, die Kugel bleibt vorher an den Seiten hängen.
+- <InlineMath math="\frac{3}{2}\text{ cm}" /> ist der Grundkreisradius des kleinen Kegels, <InlineMath math="\tfrac14\cdot6" />, nicht der Radius der Kugel darin.
+
+Der Radius der zweiten Kugel beträgt also <InlineMath math="\frac34\text{ cm}" />.

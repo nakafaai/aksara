@@ -1,13 +1,47 @@
-Siswa-siswanya berbeda dan bernama, jadi pembagian dapat dilakukan **berurutan dari satu siswa ke siswa berikutnya**. Urutan buku di tangan seorang siswa tidak penting, sehingga setiap langkah adalah kombinasi.
+Kamu perlu menilai empat pernyataan tentang matriks yang memuat parameter <InlineMath math="k" />. Sebelum menghitung, bandingkan dulu kedua matriks, karena ada **hubungan tersembunyi antara <InlineMath math="A" /> dan <InlineMath math="B" />** yang memutuskan dua pernyataan sekaligus.
 
-# Memilih buku untuk setiap siswa
+# Hubungan antara kedua matriks
 
-Rani memilih 2 buku dari 6, Sena memilih 2 dari 4 yang tersisa, dan Tio menerima 2 buku terakhir. **Ketiga pilihan dikalikan** karena dilakukan berurutan.
+Kurangkan <InlineMath math="B" /> dari <InlineMath math="A" />.
 
-<BlockMath math="\binom62\cdot\binom42\cdot\binom22=15\cdot6\cdot1=90" />
+<BlockMath math="A-B=\begin{pmatrix} k-1 & 0 \\ 0 & k-1 \end{pmatrix}=(k-1)I" />
 
-# Memeriksa pilihan lain
+Jadi <InlineMath math="A=B+(k-1)I" />, dengan <InlineMath math="I" /> matriks identitas. Matriks identitas dapat ditukar urutannya dengan matriks apa pun, sehingga **<InlineMath math="A" /> selalu bisa ditukar urutannya dengan <InlineMath math="B" />**.
 
-Nilai 15 membagi lagi dengan <InlineMath math="3!" />, seolah-olah ketiga siswa tidak dibedakan. Nilai 540 justru mengalikan dengan <InlineMath math="3!" />, padahal nama siswa sudah dibedakan sejak langkah pertama sehingga **setiap pembagian terhitung enam kali**. Nilai 360 menghitung <InlineMath math="\frac{6!}{2!}" />, yang hanya menghapus urutan buku pada satu siswa. Nilai 729 adalah <InlineMath math="3^6" />, yang membolehkan seorang siswa menerima berapa pun banyak buku.
+<BlockMath math="\begin{aligned}
+AB&=\bigl(B+(k-1)I\bigr)B=B^2+(k-1)B\\
+BA&=B\bigl(B+(k-1)I\bigr)=B^2+(k-1)B
+\end{aligned}" />
 
-Jadi, banyak cara pembagian adalah **90**.
+Hasilnya sama untuk setiap <InlineMath math="k" />. Coba cek dengan <InlineMath math="k=0" />: <InlineMath math="AB" /> dan <InlineMath math="BA" /> sama-sama <InlineMath math="\begin{pmatrix} 6 & 0 \\ 0 & 6 \end{pmatrix}" />.
+
+# Pernyataan pertama dan kedua
+
+Matriks tidak mempunyai invers jika determinannya <InlineMath math="0" />.
+
+<BlockMath math="\det A=k(k-1)-3\cdot2=k^2-k-6=(k-3)(k+2)" />
+
+Determinannya nol untuk <InlineMath math="k=3" /> dan <InlineMath math="k=-2" />, jadi ada **dua nilai, bukan satu**. Pernyataan pertama salah.
+
+Pernyataan kedua juga salah. Hubungan <InlineMath math="AB=BA" /> berlaku untuk setiap <InlineMath math="k" />, bukan hanya saat <InlineMath math="k=1" /> (ketika <InlineMath math="A=B" />). Contohnya <InlineMath math="k=0" /> tadi.
+
+# Pernyataan ketiga
+
+Hitung kedua ruas sebagai fungsi <InlineMath math="k" />, dengan <InlineMath math="\det B=1\cdot0-3\cdot2=-6" />.
+
+<BlockMath math="\begin{aligned}
+\det(A+B)&=(k+1)(k-1)-6\cdot4=k^2-25\\
+\det A+\det B&=k^2-k-6-6=k^2-k-12
+\end{aligned}" />
+
+Kedua ruas sama hanya jika <InlineMath math="-25=-k-12" />, yaitu <InlineMath math="k=13" />. Untuk <InlineMath math="k=0" />, ruas kiri <InlineMath math="-25" /> tetapi ruas kanan <InlineMath math="-12" />. **Determinan tidak bersifat menjumlah**, jadi pernyataan ketiga salah.
+
+# Pernyataan keempat
+
+Untuk <InlineMath math="k=4" />, <InlineMath math="\det A=16-4-6=6" /> dan <InlineMath math="\det B=-6" />, jadi kedua invers ada. Aturan umumnya <InlineMath math="(AB)^{-1}=B^{-1}A^{-1}" />, dengan urutan terbalik. Sementara itu, <InlineMath math="A^{-1}B^{-1}" /> adalah invers dari <InlineMath math="BA" />.
+
+<BlockMath math="A^{-1}B^{-1}=(BA)^{-1}=(AB)^{-1}" />
+
+Langkah terakhir sah karena <InlineMath math="BA=AB" />. Jadi **di soal ini urutan invers tidak berpengaruh**, dan pernyataan keempat benar. Siswa yang hanya mengingat bahwa urutan invers harus dibalik akan menganggapnya salah.
+
+Jadi, pernyataan pertama salah, kedua salah, ketiga salah, dan keempat benar.

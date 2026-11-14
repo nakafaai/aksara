@@ -1,17 +1,44 @@
-Nach **der Umkehrung des Satzes des Pythagoras** ist das Dreieck genau dann rechtwinklig, wenn das Quadrat der längsten Seite gleich der Summe der Quadrate der beiden anderen ist. Vergleiche <InlineMath math="a^2+b^2" /> mit <InlineMath math="c^2" /> für jede Auswahl.
+# Der Winkel zwischen Seitenfläche und Grundfläche
 
-| Seiten | <InlineMath math="a^2+b^2" /> | <InlineMath math="c^2" /> |
-| --- | --- | --- |
-| <InlineMath math="4" />, <InlineMath math="7" />, <InlineMath math="9" /> | <InlineMath math="16+49=65" /> | <InlineMath math="81" /> |
-| <InlineMath math="5" />, <InlineMath math="11" />, <InlineMath math="12" /> | <InlineMath math="25+121=146" /> | <InlineMath math="144" /> |
-| <InlineMath math="6" />, <InlineMath math="9" />, <InlineMath math="11" /> | <InlineMath math="36+81=117" /> | <InlineMath math="121" /> |
-| <InlineMath math="7" />, <InlineMath math="24" />, <InlineMath math="26" /> | <InlineMath math="49+576=625" /> | <InlineMath math="676" /> |
-| <InlineMath math="8" />, <InlineMath math="15" />, <InlineMath math="17" /> | <InlineMath math="64+225=289" /> | <InlineMath math="289" /> |
+Gesucht ist das Volumen, bekannt sind aber nur der Oberflächeninhalt und ein Winkel. **Den Winkel musst du deshalb zuerst in eine Beziehung zwischen Längen übersetzen**.
 
-Nur bei <InlineMath math="8" />, <InlineMath math="15" /> und <InlineMath math="17" /> sind beide Werte gleich.
+Sei <InlineMath math="s" /> die Grundkante, <InlineMath math="M" /> der Mittelpunkt der Grundfläche und <InlineMath math="N" /> der Mittelpunkt der Kante <InlineMath math="BC" />. Die Strecken <InlineMath math="TN" /> und <InlineMath math="MN" /> stehen beide senkrecht auf <InlineMath math="BC" />, also ist der Winkel zwischen der Fläche <InlineMath math="TBC" /> und der Grundfläche der Winkel <InlineMath math="TNM" />. Das Dreieck <InlineMath math="TMN" /> ist bei <InlineMath math="M" /> rechtwinklig, mit <InlineMath math="MN=\tfrac{s}{2}" />.
 
-Die Stäbe mit <InlineMath math="8\text{ cm}" />, <InlineMath math="15\text{ cm}" /> und <InlineMath math="17\text{ cm}" /> bilden also ein rechtwinkliges Dreieck.
+<BlockMath math="\begin{aligned}
+\cos60^\circ=\frac{MN}{TN} \;&\Rightarrow\; TN=\frac{s/2}{1/2}=s \\
+\tan60^\circ=\frac{TM}{MN} \;&\Rightarrow\; TM=\frac{s}{2}\sqrt{3}
+\end{aligned}" />
 
-- Bei <InlineMath math="4" />, <InlineMath math="7" />, <InlineMath math="9" /> und <InlineMath math="6" />, <InlineMath math="9" />, <InlineMath math="11" /> ist <InlineMath math="c^2" /> größer, das Dreieck ist also stumpfwinklig.
-- Bei <InlineMath math="5" />, <InlineMath math="11" />, <InlineMath math="12" /> beträgt der Unterschied nur <InlineMath math="2" />, doch <InlineMath math="146\ne144" />, das Dreieck ist also spitzwinklig.
-- <InlineMath math="7" />, <InlineMath math="24" />, <InlineMath math="26" /> ähnelt dem Tripel <InlineMath math="7" />, <InlineMath math="24" />, <InlineMath math="25" />, doch die längste Seite ist <InlineMath math="26" />, nicht <InlineMath math="25" />.
+Die Strecke <InlineMath math="TN" /> ist die Höhe einer dreieckigen Seitenfläche, <InlineMath math="TM" /> dagegen die Höhe der Pyramide. Beide sind verschieden, und für das Volumen brauchst du <InlineMath math="TM" />.
+
+# Die Grundkante aus der Oberfläche
+
+Die Oberfläche besteht aus einem Quadrat und vier Dreiecken mit Grundseite <InlineMath math="s" /> und Höhe <InlineMath math="TN=s" />. **Die Höhe jeder Seitenfläche ist schon durch <InlineMath math="s" /> ausgedrückt**, der Flächeninhalt hängt also nur von <InlineMath math="s" /> ab:
+
+<BlockMath math="\begin{aligned}
+s^{2}+4\cdot\tfrac{1}{2}\cdot s\cdot s&=144 \\
+3s^{2}&=144 \\
+s^{2}&=48 \quad\Rightarrow\quad s=4\sqrt{3}
+\end{aligned}" />
+
+# Höhe und Volumen
+
+Setz <InlineMath math="s=4\sqrt{3}" /> in die Formel für die Pyramidenhöhe ein und berechne das Volumen:
+
+<BlockMath math="\begin{aligned}
+TM&=\frac{4\sqrt{3}}{2}\cdot\sqrt{3}=6\text{ cm} \\
+V&=\tfrac{1}{3}\cdot s^{2}\cdot TM=\tfrac{1}{3}\cdot48\cdot6=96\text{ cm}^3
+\end{aligned}" />
+
+Probe mit dem Satz des Pythagoras im Dreieck <InlineMath math="TMN" />: <InlineMath math="TM^{2}+MN^{2}=36+12=48=TN^{2}" />. **Die drei Längen passen zusammen**.
+
+# Warum die anderen Antworten falsch sind
+
+Jede falsche Antwort **nimmt die falsche Länge als Höhe oder liest den Flächeninhalt falsch**.
+
+- <InlineMath math="288\text{ cm}^3" /> vergisst den Faktor <InlineMath math="\tfrac{1}{3}" />: <InlineMath math="48\cdot6=288" />.
+- <InlineMath math="72\sqrt{6}\text{ cm}^3" /> hält <InlineMath math="144\text{ cm}^2" /> für den Inhalt der vier Seitenflächen allein: <InlineMath math="2s^{2}=144" /> ergibt <InlineMath math="s^{2}=72" /> und die Höhe <InlineMath math="3\sqrt{6}" />.
+- <InlineMath math="32\sqrt{15}\text{ cm}^3" /> nimmt die Seitenkante <InlineMath math="TB=\sqrt{36+24}=2\sqrt{15}" /> als Höhe.
+- <InlineMath math="64\sqrt{3}\text{ cm}^3" /> nimmt die Höhe der Seitenfläche <InlineMath math="TN=4\sqrt{3}" /> als Pyramidenhöhe.
+
+Das Volumen der Pyramide beträgt also <InlineMath math="96\text{ cm}^3" />.

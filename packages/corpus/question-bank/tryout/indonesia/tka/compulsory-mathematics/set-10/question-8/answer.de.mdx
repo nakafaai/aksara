@@ -1,15 +1,31 @@
-Vom <InlineMath math="2" />. bis zum <InlineMath math="5" />. Glied wird **dreimal** mit dem Quotienten multipliziert. Teile also <InlineMath math="U_5" /> durch <InlineMath math="U_2" />, um <InlineMath math="r^3" /> zu erhalten.
+# Das Muster der Nenner erkennen
+
+Bevor du addierst, brauchst du die allgemeine Form der Summanden und den ersten und letzten Index der Reihe. Schau dir die Nenner an.
+
+<BlockMath math="35=5\cdot7,\quad 63=7\cdot9,\quad 99=9\cdot11,\quad 143=11\cdot13,\quad 2499=49\cdot51" />
+
+Jeder Nenner ist das Produkt zweier aufeinanderfolgender ungerader Zahlen, <InlineMath math="(2k-1)(2k+1)" />. Den Nenner <InlineMath math="2499" /> erkennst du an <InlineMath math="2499=50^2-1=49\cdot51" />. Der erste Summand gehört also zu <InlineMath math="k=3" /> und der letzte zu <InlineMath math="k=25" />, das sind <InlineMath math="25-3+1=23" /> Summanden. **Diese Reihe beginnt nicht bei <InlineMath math="\frac{1}{1\cdot3}" />**.
+
+# Zerlegen und wegheben
+
+Jeder Summand lässt sich als Differenz zweier Brüche schreiben.
+
+<BlockMath math="\frac{1}{(2k-1)(2k+1)}=\frac{1}{2}\left(\frac{1}{2k-1}-\frac{1}{2k+1}\right)" />
+
+Prüf das mit dem gemeinsamen Nenner: <InlineMath math="\frac{1}{2}\cdot\frac{(2k+1)-(2k-1)}{(2k-1)(2k+1)}=\frac{1}{2}\cdot\frac{2}{(2k-1)(2k+1)}" />, das passt. Wenn du alle Summanden hintereinander schreibst, **taucht jeder Bruch in der Mitte einmal mit Plus und einmal mit Minus auf**, also heben sie sich weg.
 
 <BlockMath math="\begin{aligned}
-r^3&=\frac{U_5}{U_2}=\frac{162}{6}=27\ \Rightarrow\ r=3 \\
-U_1&=\frac{U_2}{r}=\frac63=2
+\text{Summe}&=\frac{1}{2}\left[\left(\frac{1}{5}-\frac{1}{7}\right)+\left(\frac{1}{7}-\frac{1}{9}\right)+\cdots+\left(\frac{1}{49}-\frac{1}{51}\right)\right] \\
+&=\frac{1}{2}\left(\frac{1}{5}-\frac{1}{51}\right)=\frac{1}{2}\cdot\frac{46}{255}=\frac{23}{255}
 \end{aligned}" />
 
-Probe: Die Folge lautet <InlineMath math="2" />, <InlineMath math="6" />, <InlineMath math="18" />, <InlineMath math="54" />, <InlineMath math="162" />.
+Prüf es auf einem zweiten Weg. Die Summe von <InlineMath math="k=1" /> bis <InlineMath math="n" /> ist <InlineMath math="S_n=\frac{n}{2n+1}" />. Unsere Reihe ist <InlineMath math="S_{25}" /> ohne die ersten beiden Summanden, also <InlineMath math="S_{25}-S_2=\frac{25}{51}-\frac{2}{5}=\frac{125-102}{255}=\frac{23}{255}" />.
 
-Das erste Glied ist also <InlineMath math="2" />.
+Die Summe der Reihe ist also <InlineMath math="\frac{23}{255}" />.
 
-- <InlineMath math="3" /> ist der Quotient.
-- <InlineMath math="6" /> ist das <InlineMath math="2" />. Glied.
-- <InlineMath math="18" /> ist das <InlineMath math="3" />. Glied.
-- <InlineMath math="54" /> ist das <InlineMath math="4" />. Glied.
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac{25}{51}" /> ist <InlineMath math="S_{25}" /> und zählt <InlineMath math="\frac{1}{3}" /> und <InlineMath math="\frac{1}{15}" /> mit. Diese beiden Summanden stehen nicht in der Reihe.
+- <InlineMath math="\frac{23}{47}" /> setzt die Anzahl der Summanden, <InlineMath math="23" />, in die Formel <InlineMath math="\frac{n}{2n+1}" /> ein. **Die Formel gilt nur, wenn die Reihe bei <InlineMath math="\frac{1}{1\cdot3}" /> beginnt**.
+- <InlineMath math="\frac{46}{255}" /> vergisst beim Zerlegen den Faktor <InlineMath math="\frac{1}{2}" />.
+- <InlineMath math="\frac{22}{357}" /> ist <InlineMath math="S_{25}-S_3" />. Dabei wird ein Summand zu viel abgezogen, denn <InlineMath math="S_3" /> enthält schon <InlineMath math="\frac{1}{35}" />, den ersten Summanden dieser Reihe.

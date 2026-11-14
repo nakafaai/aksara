@@ -1,0 +1,258 @@
+export const metadata = {
+   title: "Kebarangkalian Suatu Peristiwa",
+   description: "Modelkan peristiwa dengan ruang sampel, kira kebarangkalian peristiwa itu, dan terangkan maksud kebarangkalian tersebut dalam konteksnya.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   datePublished: "2025-05-26",
+   dateModified: "2026-11-08",
+   subject: "Kombinatorik",
+};
+
+## Nombor daripada Sifar hingga Satu Menggambarkan Ketidakpastian
+
+Adakah hari ini akan hujan? Adakah sesebuah pasukan akan menang dalam perlawanan seterusnya? Kesudahan seperti ini tidak pasti. **Kebarangkalian** menyatakan sejauh mana setiap kesudahan mungkin berlaku dengan nombor daripada <InlineMath math="0" /> hingga <InlineMath math="1" />.
+
+Dalam **ruang sampel terhingga dengan kesudahan yang sama kemungkinan**, nilai kebarangkalian membawa maksud berikut:
+- Kebarangkalian <InlineMath math="0" /> bermaksud peristiwa itu **mustahil** berlaku
+- Kebarangkalian <InlineMath math="1" /> bermaksud peristiwa itu **pasti** berlaku
+- Kebarangkalian <InlineMath math="0.5" /> bermaksud peristiwa itu dan pelengkapnya **sama kemungkinan** berlaku
+
+Kebarangkalian tidak meramalkan satu kesudahan dengan pasti. Kebarangkalian mengukur ketidakpastian supaya kesudahan yang berulang boleh dibandingkan, dan sesuatu keputusan boleh menyatakan ketidakpastiannya dengan jelas.
+
+## Ruang Sampel dan Peristiwa
+
+Ada dua idea yang kita perlukan sebelum mengira kebarangkalian:
+
+**Ruang sampel (S)** ialah <Highlight>set semua kesudahan yang mungkin</Highlight> bagi suatu eksperimen. Contohnya, apabila dua biji dadu dilambung, setiap kesudahan ialah pasangan tertib nilai muka dadu.
+
+Peristiwa (A) ialah subset bagi ruang sampel yang mengandungi kesudahan yang ingin kita kaji.
+
+**Contoh konkrit**: untuk dua lambungan syiling, katakan <InlineMath math="H" /> mewakili gambar dan <InlineMath math="T" /> mewakili angka. Ruang sampelnya ialah <InlineMath math="\{HH, HT, TH, TT\}" />. Peristiwa “sekurang-kurangnya satu angka” ialah <InlineMath math="A = \{HT, TH, TT\}" />.
+
+## Rumus Kebarangkalian
+
+Untuk mengira kebarangkalian sesuatu peristiwa, kita gunakan **rumus kebarangkalian klasik**:
+
+<BlockMath math="P(A) = \frac{n(A)}{n(S)}" />
+
+Kuantiti dalam rumus ini ialah:
+- <InlineMath math="P(A)" /> = kebarangkalian peristiwa <InlineMath math="A" /> berlaku
+- <InlineMath math="n(A)" /> = bilangan kesudahan yang dikehendaki (unsur peristiwa <InlineMath math="A" />)
+- <InlineMath math="n(S)" /> = bilangan semua kesudahan yang mungkin (unsur ruang sampel)
+
+**Syarat**: Rumus kiraan ini hanya boleh digunakan apabila semua kesudahan dalam ruang sampel **sama kemungkinan**.
+
+**Setiap kebarangkalian peristiwa memenuhi**:
+- <InlineMath math="0 \leq P(A) \leq 1" /> (kebarangkalian sentiasa di antara <InlineMath math="0" /> dan <InlineMath math="1" />)
+- <InlineMath math="P(A) + P(A') = 1" />, dengan <InlineMath math="A'" /> ialah **pelengkap** bagi peristiwa <InlineMath math="A" />
+
+**Pelengkap**: Pelengkap bagi <InlineMath math="A" /> mengandungi setiap kesudahan dalam ruang sampel yang **tidak** berada dalam <InlineMath math="A" />. Jika <InlineMath math="A" /> ialah “mendapat nombor genap”, maka <InlineMath math="A'" /> ialah “mendapat nombor ganjil”.
+
+Peristiwa dan pelengkapnya berkongsi keseluruhan kebarangkalian. Untuk dua biji dadu, <InlineMath math="P(\text{hasil tambah} = 9) = \frac{4}{36}" /> dan <InlineMath math="P(\text{hasil tambah} \neq 9) = \frac{32}{36}" />. Dua palang itu sentiasa berjumlah <InlineMath math="1" />, sebab itulah mengira bahagian yang lebih kecil selalunya lebih cepat.
+
+<BarChart
+  title={<>Peristiwa dan pelengkapnya</>}
+  description={<>Kebarangkalian hasil tambah dua biji dadu ialah <InlineMath math="9" /> dan kebarangkalian hasil tambahnya bukan <InlineMath math="9" />, yang berjumlah <InlineMath math="1" />.</>}
+  yAxisLabel="Kebarangkalian"
+  data={[["hasil tambah 9", 4 / 36], ["hasil tambah bukan 9", 32 / 36]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Kebarangkalian", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Kebarangkalian Dua Dadu Berjumlah Sembilan
+
+**Analisis Lambungan Dua Biji Dadu**:
+
+Dua biji dadu adil yang dilambung secara tak bersandar menghasilkan <InlineMath math="6 \times 6 = 36" /> pasangan tertib yang sama kemungkinan. Cari kebarangkalian hasil tambahnya ialah <InlineMath math="9" />.
+
+Senaraikan **pasangan tertib** yang hasil tambahnya sembilan. Jika nilai dadu pertama dan dadu kedua ditukar, kamu mendapat kesudahan eksperimen yang berbeza.
+
+| Dadu pertama | Dadu kedua | Hasil tambah |
+| --- | --- | --- |
+| <InlineMath math="3" /> | <InlineMath math="6" /> | <InlineMath math="9" /> |
+| <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="9" /> |
+| <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="9" /> |
+| <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="9" /> |
+
+Empat pasangan memenuhi syarat ini, jadi <InlineMath math="n(A)=4" />.
+
+<BlockMath math="P(\text{hasil tambah}=9)=\frac{4}{36}=\frac{1}{9}\approx 0.111" />
+
+Setiap titik ialah satu kesudahan bagi dua biji dadu: dadu pertama pada paksi mengufuk, dadu kedua pada paksi mencancang, <InlineMath math="36" /> titik kesemuanya. Empat titik yang ditonjolkan terletak pada garis <InlineMath math="x + y = 9" />: <InlineMath math="(3, 6)" />, <InlineMath math="(4, 5)" />, <InlineMath math="(5, 4)" /> dan <InlineMath math="(6, 3)" />. Jadi <InlineMath math="P(\text{hasil tambah} = 9) = \frac{4}{36} = \frac19" />.
+
+<MathVisual
+  title={<>Empat daripada <InlineMath math="36" /> kesudahan berjumlah sembilan</>}
+  description={<><InlineMath math="36" /> kesudahan dua biji dadu sebagai grid <InlineMath math="6" /> kali <InlineMath math="6" />, dengan empat kesudahan pada <InlineMath math="x + y = 9" /> ditonjolkan.</>}
+  labels={{
+    nine: <InlineMath math="x + y = 9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "nine", kind: "line", through: [{ x: 3, y: 6 }, { x: 6, y: 3 }], appearance: "construction" },
+      { id: "d11", kind: "point", at: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "d12", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "d13", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "d14", kind: "point", at: { x: 1, y: 4 }, appearance: "reference" },
+      { id: "d15", kind: "point", at: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "d16", kind: "point", at: { x: 1, y: 6 }, appearance: "reference" },
+      { id: "d21", kind: "point", at: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "d22", kind: "point", at: { x: 2, y: 2 }, appearance: "reference" },
+      { id: "d23", kind: "point", at: { x: 2, y: 3 }, appearance: "reference" },
+      { id: "d24", kind: "point", at: { x: 2, y: 4 }, appearance: "reference" },
+      { id: "d25", kind: "point", at: { x: 2, y: 5 }, appearance: "reference" },
+      { id: "d26", kind: "point", at: { x: 2, y: 6 }, appearance: "reference" },
+      { id: "d31", kind: "point", at: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "d32", kind: "point", at: { x: 3, y: 2 }, appearance: "reference" },
+      { id: "d33", kind: "point", at: { x: 3, y: 3 }, appearance: "reference" },
+      { id: "d34", kind: "point", at: { x: 3, y: 4 }, appearance: "reference" },
+      { id: "d35", kind: "point", at: { x: 3, y: 5 }, appearance: "reference" },
+      { id: "d36", kind: "point", at: { x: 3, y: 6 }, appearance: "answer" },
+      { id: "d41", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "d42", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "d43", kind: "point", at: { x: 4, y: 3 }, appearance: "reference" },
+      { id: "d44", kind: "point", at: { x: 4, y: 4 }, appearance: "reference" },
+      { id: "d45", kind: "point", at: { x: 4, y: 5 }, appearance: "answer" },
+      { id: "d46", kind: "point", at: { x: 4, y: 6 }, appearance: "reference" },
+      { id: "d51", kind: "point", at: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "d52", kind: "point", at: { x: 5, y: 2 }, appearance: "reference" },
+      { id: "d53", kind: "point", at: { x: 5, y: 3 }, appearance: "reference" },
+      { id: "d54", kind: "point", at: { x: 5, y: 4 }, appearance: "answer" },
+      { id: "d55", kind: "point", at: { x: 5, y: 5 }, appearance: "reference" },
+      { id: "d56", kind: "point", at: { x: 5, y: 6 }, appearance: "reference" },
+      { id: "d61", kind: "point", at: { x: 6, y: 1 }, appearance: "reference" },
+      { id: "d62", kind: "point", at: { x: 6, y: 2 }, appearance: "reference" },
+      { id: "d63", kind: "point", at: { x: 6, y: 3 }, appearance: "answer" },
+      { id: "d64", kind: "point", at: { x: 6, y: 4 }, appearance: "reference" },
+      { id: "d65", kind: "point", at: { x: 6, y: 5 }, appearance: "reference" },
+      { id: "d66", kind: "point", at: { x: 6, y: 6 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "nine", objectId: "nine", at: { x: 6, y: 3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+### Menganggar Bilangan Kupon Hadiah
+
+Katakan sebuah syarikat minuman memasukkan kupon hadiah ke dalam sebahagian kotak susu. Dalam model promosi ini, kebarangkalian sebuah kotak yang dibeli mengandungi hadiah ialah <InlineMath math="\frac{3}{32}" />.
+
+Selepas banyak pembelian, kadaran kotak yang ada hadiah dijangka hampir dengan <InlineMath math="3/32" />. Untuk <InlineMath math="320" /> pembelian, bilangan kupon yang dijangka ialah
+
+<BlockMath math="320\times\frac{3}{32}=10\times3=30" />
+
+Bilangan jangkaan ini membantu menganggar kos hadiah. Nilai ini **bukan bilangan kupon yang dijamin** bagi satu kelompok pembelian.
+
+### Membandingkan Hasil Tambah Dadu
+
+Untuk dua biji dadu adil, hasil tambah <InlineMath math="7" /> ada **lebih banyak pasangan tertib yang dikehendaki** berbanding hasil tambah yang lain:
+
+Ada <InlineMath math="6" /> cara untuk mendapat hasil tambah <InlineMath math="7" />: <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" />.
+
+<BlockMath math="P(\text{hasil tambah} = 7) = \frac{6}{36} = \frac{1}{6} \approx 0.167" />
+
+Ini ialah kebarangkalian paling besar antara semua hasil tambah yang mungkin. Nilai ini tidak menjamin lambungan seterusnya akan memberi <InlineMath math="7" />. Nilai ini menerangkan model dalam jangka panjang.
+
+Kira kesudahan bagi setiap hasil tambah dan coraknya akan kelihatan: <InlineMath math="1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1" /> daripada <InlineMath math="36" /> untuk hasil tambah <InlineMath math="2" /> hingga <InlineMath math="12" />. Hasil tambah <InlineMath math="7" /> paling mungkin dengan <InlineMath math="\frac{6}{36}" />, dan hasil tambah <InlineMath math="9" /> ada <InlineMath math="\frac{4}{36}" />.
+
+<BarChart
+  title={<>Kebarangkalian setiap hasil tambah dua biji dadu</>}
+  description={<>Palang <InlineMath math="s" /> menunjukkan kebarangkalian <InlineMath math="\frac{6 - |s - 7|}{36}" /> bahawa hasil tambah dua biji dadu ialah <InlineMath math="s" />.</>}
+  yAxisLabel="Kebarangkalian"
+  data={Array.from({ length: 11 }, (_, i) => {
+    const s = i + 2;
+    return { name: `${s}`, value: (6 - Math.abs(s - 7)) / 36 };
+  })}
+  chartConfig={{ value: { label: "Kebarangkalian", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Soalan Latihan
+
+Selesaikan setiap soalan sebelum membaca jalan kerja. Tentukan ruang sampel dan peristiwa dengan jelas sebelum menggantikan nombor ke dalam rumus. Keempat-empat soalan mengira **kesudahan yang sama kemungkinan**, jadi tulis bilangannya dahulu dan bahagikan pada langkah terakhir.
+
+1. Apabila dua biji dadu adil dilambung secara tak bersandar, tentukan kebarangkalian hasil tambahnya ialah nombor genap.
+
+2. Sebuah kotak mengandungi <InlineMath math="5 \text{ bola merah}" />, <InlineMath math="3 \text{ bola biru}" /> dan <InlineMath math="2 \text{ bola hijau}" />. Jika sebiji bola dikeluarkan secara rawak, tentukan kebarangkalian mendapat bola yang bukan merah.
+
+3. Tiga keping syiling adil dilambung secara tak bersandar. Tentukan kebarangkalian mendapat tepat dua angka.
+
+4. Satu pemeriksaan kualiti mendapati tepat <InlineMath math="50" /> barang rosak dalam satu kelompok <InlineMath math="1000 \text{ unit}" />. Jika satu barang dipilih secara rawak seragam, berapakah kebarangkalian barang itu tidak rosak?
+### Jalan Kerja
+
+**Soalan 1**
+
+<InlineMath math="\frac{1}{2}" />
+
+**Langkah penyelesaian yang sistematik**:
+
+Ruang sampel bagi lambungan dua biji dadu: <InlineMath math="n(S) = 36" />
+
+**Kenal pasti semua hasil tambah genap dan cara untuk mendapatkannya**:
+- Hasil tambah <InlineMath math="2" />: <InlineMath math="(1,1)" /> <InlineMath math="\rightarrow 1" /> cara
+- Hasil tambah <InlineMath math="4" />: <InlineMath math="(1,3), (2,2), (3,1)" /> <InlineMath math="\rightarrow 3 \text{ cara}" />
+- Hasil tambah <InlineMath math="6" />: <InlineMath math="(1,5), (2,4), (3,3), (4,2), (5,1)" /> <InlineMath math="\rightarrow 5 \text{ cara}" />
+- Hasil tambah <InlineMath math="8" />: <InlineMath math="(2,6), (3,5), (4,4), (5,3), (6,2)" /> <InlineMath math="\rightarrow 5 \text{ cara}" />
+- Hasil tambah <InlineMath math="10" />: <InlineMath math="(4,6), (5,5), (6,4)" /> <InlineMath math="\rightarrow 3 \text{ cara}" />
+- Hasil tambah <InlineMath math="12" />: <InlineMath math="(6,6)" /> <InlineMath math="\rightarrow 1" /> cara
+
+**Jumlah kesudahan yang dikehendaki**: <InlineMath math="n(A) = 1 + 3 + 5 + 5 + 3 + 1 = 18" />
+
+**Pengiraan kebarangkalian**:
+
+<BlockMath math="P(\text{genap}) = \frac{18}{36} = \frac{1}{2} = 0.5" />
+
+**Soalan 2**
+
+<InlineMath math="\frac{1}{2}" />
+
+**Langkah penyelesaian**:
+
+**Kira jumlah bola**: <InlineMath math="5 + 3 + 2 = 10" /> biji bola
+
+**Kenal pasti bola yang bukan merah**: <InlineMath math="3 \text{ biru} + 2 \text{ hijau} = 5" /> biji bola
+
+**Pengiraan kebarangkalian**:
+
+<BlockMath math="P(\text{bukan merah}) = \frac{5}{10} = \frac{1}{2} = 0.5" />
+
+**Soalan 3**
+
+<InlineMath math="\frac{3}{8}" />
+
+**Langkah penyelesaian**:
+
+**Ruang sampel bagi tiga lambungan syiling**:
+
+<BlockMath math="\left\{\begin{gathered}
+HHH, HHT, HTH, \\
+HTT, THH, THT, \\
+TTH, TTT
+\end{gathered}\right\}" />
+
+**Jumlah kemungkinan**: <InlineMath math="n(S) = 2^3 = 8" />
+
+**Peristiwa tepat dua angka**: <InlineMath math="\{HTT, THT, TTH\}" />
+
+**Bilangan kesudahan yang dikehendaki**: <InlineMath math="n(A) = 3" />
+
+**Pengiraan kebarangkalian**:
+
+<BlockMath math="P(\text{tepat 2 angka}) = \frac{3}{8} = 0.375" />
+
+**Soalan 4**
+
+<InlineMath math="\frac{19}{20}" /> atau <InlineMath math="95\%" />
+
+**Langkah penyelesaian**:
+
+**Jumlah produk**: <InlineMath math="1000 \text{ unit}" />
+
+**Produk rosak**: <InlineMath math="50 \text{ unit}" />
+
+**Produk tidak rosak**: <InlineMath math="1000 - 50 = 950 \text{ unit}" />
+
+**Pengiraan kebarangkalian**:
+
+<BlockMath math="P(\text{tidak rosak}) = \frac{950}{1000} = \frac{19}{20} = 0.95 = 95\%" />
+
+**Tafsiran**: Dengan pemilihan rawak seragam daripada kelompok yang diperiksa ini, sesuatu barang tidak rosak dengan kebarangkalian <InlineMath math="95\%" />. Hal ini tidak menjamin keputusan bagi satu pemilihan.

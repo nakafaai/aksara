@@ -4,37 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "strengthening",
+    topic: "weakening",
   },
-  stimulus: "sekolah",
+  stimulus: "pesepeda",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Di ruas jalan koridor lain yang tidak diberi pembatas, jumlah kecelakaan pada 2025 juga turun separuh, sedangkan jumlah perjalanan sepeda di sana hampir tidak berubah.",
+        },
+        {
+          correct: false,
+          label:
+            "Mulai Januari 2025, batas kecepatan kendaraan di semua persimpangan Kota Sagara diturunkan untuk melindungi pejalan kaki dan pesepeda.",
+        },
+        {
           correct: true,
           label:
-            "Di sekolah yang memundurkan jam masuk, penurunan keterlambatan paling besar terjadi pada siswa yang rumahnya paling jauh.",
+            "Di ruas jalan koridor lain yang tidak diberi pembatas, risiko kecelakaan per perjalanan pada 2025 juga turun menjadi sekitar seperlima risiko pada 2024.",
         },
         {
           correct: false,
           label:
-            "Pada tahun yang sama, sekolah yang memundurkan jam masuk juga memperberat sanksi bagi siswa yang datang terlambat ke sekolah.",
+            "Sebagian besar pesepeda baru di keempat koridor pada 2025 adalah pelajar yang belum terbiasa bersepeda di tengah lalu lintas kota.",
         },
         {
           correct: false,
           label:
-            "Siswa di kedua kelompok sekolah memakai jenis transportasi yang beragam.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian siswa tetap terlambat walaupun jam masuk sudah dimundurkan.",
-        },
-        {
-          correct: false,
-          label:
-            "Nilai ujian semester tidak bergantung pada jam masuk sekolah.",
+            "Kecelakaan di ruas jalan keempat koridor sudah turun dari $$60$$ pada 2022 menjadi $$30$$ pada 2024, dengan jumlah perjalanan yang hampir sama setiap tahun.",
         },
       ],
     },

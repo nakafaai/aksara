@@ -1,15 +1,32 @@
-Teile die Aufgabe in zwei Schritte: **Zähle die Zahlen, die durch 4 oder 6 teilbar sind**, und **streiche dann die, die auch durch 5 teilbar sind**.
+Einen Gutschein bekommt jedes Mitglied der Gruppe „Yoga oder Pilates“, das nicht schwimmt. Zähl also zuerst die ganze Gruppe „Yoga oder Pilates“ und nimm dann die Mitglieder dieser Gruppe heraus, die auch schwimmen. **Beide Zählungen nutzen das Prinzip von Inklusion und Exklusion**: Zwei Gruppen addieren und dann den Teil abziehen, der doppelt gezählt wurde.
 
-**Schritt 1** nutzt Ein- und Ausschluss. Zahlen, die durch <InlineMath math="4" /> und <InlineMath math="6" /> teilbar sind, sind Vielfache des kleinsten gemeinsamen Vielfachen <InlineMath math="12" /> und dürfen nicht doppelt gezählt werden.
+Schritt eins: die Mitglieder, die Yoga oder Pilates machen. Addiere Yoga und Pilates und zieh die <InlineMath math="25" /> Mitglieder, die beides machen, einmal ab, weil sie doppelt gezählt wurden:
 
-<BlockMath math="\left\lfloor\frac{200}{4}\right\rfloor+\left\lfloor\frac{200}{6}\right\rfloor-\left\lfloor\frac{200}{12}\right\rfloor=50+33-16=67" />
+<BlockMath math="85+60-25 = 120" />
 
-**Schritt 2** zählt, wie viele dieser <InlineMath math="67" /> Zahlen auch durch <InlineMath math="5" /> teilbar sind. Durch <InlineMath math="4" /> und <InlineMath math="5" /> teilbar sind die Vielfachen von <InlineMath math="20" />, durch <InlineMath math="6" /> und <InlineMath math="5" /> die Vielfachen von <InlineMath math="30" />, und die Überschneidung sind die Vielfachen von <InlineMath math="60" />.
+Schritt zwei: die Mitglieder dieser Gruppe, die auch schwimmen. Das sind die Mitglieder mit Yoga und Schwimmen oder mit Pilates und Schwimmen. Beide Gruppen enthalten die <InlineMath math="8" /> Mitglieder, die alle drei Kurse besuchen, also ziehst du diese <InlineMath math="8" /> einmal ab:
 
-<BlockMath math="\left\lfloor\frac{200}{20}\right\rfloor+\left\lfloor\frac{200}{30}\right\rfloor-\left\lfloor\frac{200}{60}\right\rfloor=10+6-3=13" />
+<BlockMath math="40+30-8 = 62" />
 
-Ziehe Schritt 2 von Schritt 1 ab:
+Schritt drei: Nimm sie aus der ersten Gruppe heraus:
 
-<BlockMath math="67-13=54" />
+<BlockMath math="120-62 = 58" />
 
-Zur Probe: <InlineMath math="60" /> ist durch <InlineMath math="4" />, <InlineMath math="6" /> und <InlineMath math="5" /> teilbar. Die Zahl wird in Schritt 1 einmal gezählt und in Schritt 2 einmal gestrichen, wie die Bedingungen verlangen. Es gibt also <InlineMath math="54" /> passende Zahlen.
+Prüf das Ergebnis, indem du die Gruppe „Yoga oder Pilates ohne Schwimmen“ in drei Teile ohne Überschneidung zerlegst:
+
+| Teil | Rechnung | Mitglieder |
+| --- | --- | --- |
+| Yoga und Pilates, ohne Schwimmen | <InlineMath math="25-8" /> | <InlineMath math="17" /> |
+| nur Yoga | <InlineMath math="85-17-(40-8)-8" /> | <InlineMath math="28" /> |
+| nur Pilates | <InlineMath math="60-17-(30-8)-8" /> | <InlineMath math="13" /> |
+| Summe | <InlineMath math="17+28+13" /> | <InlineMath math="58" /> |
+
+Das Ergebnis stimmt überein: <InlineMath math="58" />.
+
+Einige falsche Ergebnisse tauchen oft auf:
+
+- <InlineMath math="50" /> entsteht, wenn du <InlineMath math="40+30=70" /> herausnimmst. Dann fallen die <InlineMath math="8" /> Mitglieder mit allen drei Kursen doppelt weg.
+- <InlineMath math="83" /> entsteht, wenn du die <InlineMath math="25" /> Mitglieder mit Yoga und Pilates nicht abziehst, sodass die erste Gruppe <InlineMath math="145" /> zählt.
+- <InlineMath math="120" /> entsteht, wenn du die Bedingung „schwimmt nicht“ vergisst.
+
+Das Fitnesszentrum verteilt also <InlineMath math="58" /> Gutscheine.

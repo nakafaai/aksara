@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$265\\text{ m}^2$$",
+          label: "$$\\left(30\\pi+9\\sqrt{3}\\right)\\text{ m}^2$$",
         },
         {
           correct: true,
-          label: "$$266\\text{ m}^2$$",
+          label: "$$\\left(24\\pi+9\\sqrt{3}\\right)\\text{ m}^2$$",
         },
         {
           correct: false,
-          label: "$$267\\text{ m}^2$$",
+          label: "$$24\\pi\\text{ m}^2$$",
         },
         {
           correct: false,
-          label: "$$280\\text{ m}^2$$",
+          label: "$$\\left(24\\pi-9\\sqrt{3}\\right)\\text{ m}^2$$",
         },
         {
           correct: false,
-          label: "$$285\\text{ m}^2$$",
+          label: "$$\\left(12\\pi-9\\sqrt{3}\\right)\\text{ m}^2$$",
         },
       ],
     },

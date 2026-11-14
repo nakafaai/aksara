@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "data-inference",
+    topic: "assumption",
   },
-  stimulus: "kipas",
+  stimulus: "bangsal",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Penjualan kipas angin naik karena kolam renang semakin ramai.",
+            "Angka kesalahan sif pagi dan sif sore tidak akan naik setelah jadwal baru berlaku.",
         },
         {
           correct: false,
           label:
-            "Penutupan kolam renang pada bulan Mei menurunkan penjualan kipas angin karena warga yang biasanya berenang memilih tetap tinggal di rumah tanpa membeli kipas baru.",
+            "Perawat sif pagi dan sif sore yang bekerja lembur lebih dari $$7$$ jam juga lebih sering salah mencatat.",
         },
         {
           correct: false,
-          label: "Suhu udara tidak berkaitan dengan penjualan kipas angin.",
+          label:
+            "Pemberian obat pada pukul 04.00 sampai 07.00 kurang dari separuh seluruh pemberian obat sif malam.",
         },
         {
           correct: true,
           label:
-            "Penjualan kipas angin dan pengunjung kolam renang cenderung lebih tinggi pada bulan yang lebih panas, kecuali pengunjung kolam pada bulan Mei ketika kolam ditutup.",
+            "Pemberian obat pada pukul 04.00 sampai 07.00 kurang dari dua pertiga seluruh pemberian obat sif malam.",
         },
         {
           correct: false,
           label:
-            "Pengunjung kolam renang pada bulan Mei sedikit karena suhu udara terlalu panas.",
+            "Banyak pemberian obat pada malam hari tidak berubah setelah jadwal baru berlaku.",
         },
       ],
     },

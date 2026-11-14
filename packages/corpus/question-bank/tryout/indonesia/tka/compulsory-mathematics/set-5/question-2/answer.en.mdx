@@ -1,14 +1,37 @@
-There are two transactions at different rates. When Sinta **buys** ringgit she pays the selling rate, <InlineMath math="\text{Rp}3{,}500" />. When she **sells** what is left she gets the buying rate, <InlineMath math="\text{Rp}3{,}400" />.
+# The cost of one module
+
+The question asks for the largest number of modules whose total cost doesn't go over <InlineMath math="\text{Rp}275{,}000" />. The key is the rule that **blank sheets may be added**: ordering more sheets can lower the price per sheet.
+
+A <InlineMath math="30" />-page module is printed on both sides, so one module needs <InlineMath math="\frac{30}{2}=15" /> sheets. With <InlineMath math="n" /> modules you really need <InlineMath math="15n" /> sheets, and binding costs <InlineMath math="4{,}000n" />.
+
+# Without extra sheets
+
+For <InlineMath math="14\le n\le33" /> the order has <InlineMath math="210" /> to <InlineMath math="495" /> sheets, so the price is <InlineMath math="\text{Rp}400" /> per sheet. One module then costs <InlineMath math="15\cdot400+4{,}000=10{,}000" /> rupiah:
 
 <BlockMath math="\begin{aligned}
-\text{ringgit bought}&=\frac{7{,}000{,}000}{3{,}500}=2{,}000 \\
-\text{ringgit left}&=2{,}000-1{,}450=550 \\
-\text{rupiah received}&=550\cdot3{,}400=1{,}870{,}000
+10{,}000n&\le275{,}000 \\
+n&\le27.5
 \end{aligned}" />
 
-So Sinta receives <InlineMath math="\text{Rp}1{,}870{,}000" />.
+This way **gives at most <InlineMath math="27" /> modules**. Without extra sheets, the <InlineMath math="\text{Rp}300" /> price only starts when <InlineMath math="15n\ge500" />, that is <InlineMath math="n\ge34" />, and <InlineMath math="34" /> modules already cost <InlineMath math="34\cdot(15\cdot300+4{,}000)=289{,}000" /> rupiah. That's over the budget.
 
-- <InlineMath math="\text{Rp}1{,}897{,}500" /> sells the leftover ringgit at the average rate, <InlineMath math="\text{Rp}3{,}450" />.
-- <InlineMath math="\text{Rp}1{,}925{,}000" /> sells the leftover ringgit at the selling rate, <InlineMath math="\text{Rp}3{,}500" />.
-- <InlineMath math="\text{Rp}2{,}070{,}000" /> subtracts <InlineMath math="1{,}450\cdot3{,}400" /> from the starting money, which mixes up the two rates.
-- <InlineMath math="\text{Rp}4{,}930{,}000" /> is the value of the <InlineMath math="1{,}450" /> ringgit she spent, not of the ringgit left.
+# With extra sheets
+
+Now order exactly <InlineMath math="500" /> sheets: the module sheets plus blank ones. As long as <InlineMath math="15n\le500" />, printing stays at <InlineMath math="500\cdot300=150{,}000" /> rupiah, whatever <InlineMath math="n" /> is. **Only the binding still grows**:
+
+<BlockMath math="\begin{aligned}
+150{,}000+4{,}000n&\le275{,}000 \\
+4{,}000n&\le125{,}000 \\
+n&\le31.25
+\end{aligned}" />
+
+So <InlineMath math="n=31" />. Check: <InlineMath math="31" /> modules need <InlineMath math="465" /> sheets, plus <InlineMath math="35" /> blank sheets makes <InlineMath math="500" />, and the total is <InlineMath math="150{,}000+124{,}000=274{,}000" /> rupiah. For <InlineMath math="32" /> modules the cheapest way is also <InlineMath math="500" /> sheets, with a total of <InlineMath math="150{,}000+128{,}000=278{,}000" /> rupiah, which is over the budget.
+
+So the largest number of modules that can be ordered is <InlineMath math="31" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="27" /> stops at the <InlineMath math="\text{Rp}400" /> price and **forgets that blank sheets may be added** to reach <InlineMath math="500" /> sheets.
+- <InlineMath math="25" /> treats the prices like steps: the first <InlineMath math="199" /> sheets at <InlineMath math="\text{Rp}500" />, the rest at <InlineMath math="\text{Rp}400" />. That way <InlineMath math="25" /> modules cost <InlineMath math="269{,}900" /> and <InlineMath math="26" /> modules cost <InlineMath math="279{,}900" />. But one price applies to all sheets.
+- <InlineMath math="23" /> uses the tier of a single module. One module is only <InlineMath math="15" /> sheets, so it gets <InlineMath math="\text{Rp}500" /> per sheet and <InlineMath math="11{,}500" /> rupiah per module. The tier depends on the sheets of the whole order.
+- <InlineMath math="21" /> reads <InlineMath math="30" /> pages as <InlineMath math="30" /> sheets, so one module costs <InlineMath math="30\cdot300+4{,}000=13{,}000" /> rupiah. The modules are printed on both sides, so it's only <InlineMath math="15" /> sheets.

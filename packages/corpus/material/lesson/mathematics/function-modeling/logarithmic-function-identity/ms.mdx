@@ -1,0 +1,352 @@
+export const metadata = {
+  title: "Identiti Fungsi Logaritma",
+  description: "Gunakan identiti hasil darab, hasil bahagi, kuasa dan penukaran asas untuk mempermudahkan ungkapan, menyelesaikan persamaan dan mentafsir model logaritma.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-11-08",
+  subject: "Fungsi dan Pemodelannya",
+};
+
+## Menulis Semula Hasil Darab dan Kuasa dengan Logaritma
+
+Identiti logaritma <Highlight>menukar pendaraban menjadi penambahan</Highlight>, pembahagian menjadi penolakan, dan kuasa menjadi pekali. Gunakan identiti ini untuk memecahkan satu logaritma kepada beberapa sebutan, atau untuk menggabungkan beberapa sebutan menjadi satu logaritma.
+
+Logaritma membatalkan operasi kuasa. Jika <InlineMath math="b^x = a" />, maka <InlineMath math="\log_b a = x" />. Setiap contoh di bawah menggunakan nilai positif di dalam logaritma, dan asas yang memenuhi <InlineMath math="b>0" /> dan <InlineMath math="b\neq1" />.
+
+## Identiti Asas Logaritma
+
+Gunakan **nilai positif di dalam logaritma** untuk setiap petua di bawah. Untuk petua kuasa, asas bagi kuasa itu tetap positif, walaupun kuasa itu sendiri boleh juga dinilai pada nombor negatif.
+
+### Identiti Hasil Darab
+
+<BlockMath math="\log_b(MN) = {\log_b M} + {\log_b N}" />
+
+Logaritma bagi suatu hasil darab sama dengan **hasil tambah logaritma** bagi setiap nombor itu.
+
+**Contoh**:
+
+<BlockMath math="\begin{aligned} \log_2(8 \times 4) &amp;= {\log_2 8} + {\log_2 4} \\ &amp;= 3 + 2 \\ &amp;= 5 \end{aligned}" />
+
+### Identiti Hasil Bahagi
+
+<BlockMath math="\log_b\left(\frac{M}{N}\right) = {\log_b M} - {\log_b N}" />
+
+Logaritma bagi suatu hasil bahagi sama dengan **beza antara logaritma** pengangka dengan logaritma penyebut.
+
+**Contoh**:
+
+<BlockMath math="\begin{aligned} \log_3\left(\frac{81}{9}\right) &amp;= {\log_3 81} - {\log_3 9} \\ &amp;= 4 - 2 \\ &amp;= 2 \end{aligned}" />
+
+### Identiti Kuasa
+
+<BlockMath math="\log_b(M^p) = p \cdot {\log_b M}" />
+
+Logaritma bagi suatu nombor yang dinaikkan kepada suatu kuasa sama dengan **kuasa itu didarab dengan logaritma** nombor tersebut.
+
+**Contoh**:
+
+<BlockMath math="\log_2(4^3) = 3 \cdot {\log_2 4} = 3 \times 2 = 6" />
+
+## Identiti Khas Logaritma
+
+Semak **syarat bagi asas** sebelum menggunakan sesuatu petua: asas asal dan asas gantian mesti positif dan tidak sama dengan satu.
+
+Contohnya, menukar daripada asas dua kepada asas sepuluh tidak mengubah nilainya. Penyebutnya bukan sifar kerana asas asalnya bukan satu.
+
+<BlockMath math="\log_2 8=\frac{\log_{10}8}{\log_{10}2}=\frac{3\log_{10}2}{\log_{10}2}=3" />
+
+### Penukaran Asas
+
+<BlockMath math="\log_b M = \frac{\log_a M}{\log_a b}" />
+
+Gunakan identiti ini untuk menulis semula logaritma dalam **asas yang tersedia atau lebih mudah dinilai**.
+
+**Contoh**:
+
+Oleh sebab <InlineMath math="9=3^2" />, pengangkanya tepat dua kali ganda penyebutnya:
+
+<BlockMath math="\log_3 9 = \frac{\log_{10} 9}{\log_{10} 3} = \frac{2\log_{10}3}{\log_{10}3} = 2" />
+
+### Identiti Kesamaan
+
+Jika <InlineMath math="\log_b M = {\log_b N}" />, maka <InlineMath math="M = N" />
+
+Dua nombor yang ada **nilai logaritma yang sama** (dengan asas yang sama) mesti nombor yang sama. Contohnya, <InlineMath math="\log_2 8 = \log_2 2^3" /> dan kedua-dua belah bernilai <InlineMath math="3" />, jadi nilai di dalam logaritma, iaitu <InlineMath math="8" /> dan <InlineMath math="2^3" />, memang sama. Petua ini betul kerana setiap nilai logaritma yang asasnya tetap datang daripada tepat satu nilai di dalam logaritma.
+
+### Membandingkan Dua Logaritma
+
+Perbandingan ini bergantung pada **arah graf**. Asas yang lebih besar daripada satu mengekalkan susunan nilai di dalam logaritma. Asas antara sifar dengan satu menterbalikkan susunan itu.
+
+- Jika <InlineMath math="b > 1" /> dan <InlineMath math="\log_b M < {\log_b N}" />, maka <InlineMath math="M < N" />
+- Jika <InlineMath math="0 < b < 1" /> dan <InlineMath math="\log_b M < {\log_b N}" />, maka <InlineMath math="M > N" />
+
+<MathVisual
+  title={<>Susunan dengan dua asas</>}
+  description={<>Lengkung <InlineMath math="y = \log_2 x" /> dan <InlineMath math="y = \log_{1/2} x" /> untuk <InlineMath math="\tfrac18 \le x \le 8" />. Pada input <InlineMath math="2" /> dan <InlineMath math="4" />, asas <InlineMath math="2" /> memberikan <InlineMath math="1" /> dan <InlineMath math="2" />, manakala asas <InlineMath math="\tfrac12" /> memberikan <InlineMath math="-1" /> dan <InlineMath math="-2" />.</>}
+  labels={{
+    up: <InlineMath math="\log_2 x" />,
+    down: <InlineMath math="\log_{1/2} x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 8.6 }, y: { min: -3.4, max: 3.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "up", kind: "polyline", vertices: [{ x: 2 ** (-3), y: (-3) }, { x: 2 ** (-29 / 10), y: (-29 / 10) }, { x: 2 ** (-14 / 5), y: (-14 / 5) }, { x: 2 ** (-27 / 10), y: (-27 / 10) }, { x: 2 ** (-13 / 5), y: (-13 / 5) }, { x: 2 ** (-5 / 2), y: (-5 / 2) }, { x: 2 ** (-12 / 5), y: (-12 / 5) }, { x: 2 ** (-23 / 10), y: (-23 / 10) }, { x: 2 ** (-11 / 5), y: (-11 / 5) }, { x: 2 ** (-21 / 10), y: (-21 / 10) }, { x: 2 ** (-2), y: (-2) }, { x: 2 ** (-19 / 10), y: (-19 / 10) }, { x: 2 ** (-9 / 5), y: (-9 / 5) }, { x: 2 ** (-17 / 10), y: (-17 / 10) }, { x: 2 ** (-8 / 5), y: (-8 / 5) }, { x: 2 ** (-3 / 2), y: (-3 / 2) }, { x: 2 ** (-7 / 5), y: (-7 / 5) }, { x: 2 ** (-13 / 10), y: (-13 / 10) }, { x: 2 ** (-6 / 5), y: (-6 / 5) }, { x: 2 ** (-11 / 10), y: (-11 / 10) }, { x: 2 ** (-1), y: (-1) }, { x: 2 ** (-9 / 10), y: (-9 / 10) }, { x: 2 ** (-4 / 5), y: (-4 / 5) }, { x: 2 ** (-7 / 10), y: (-7 / 10) }, { x: 2 ** (-3 / 5), y: (-3 / 5) }, { x: 2 ** (-1 / 2), y: (-1 / 2) }, { x: 2 ** (-2 / 5), y: (-2 / 5) }, { x: 2 ** (-3 / 10), y: (-3 / 10) }, { x: 2 ** (-1 / 5), y: (-1 / 5) }, { x: 2 ** (-1 / 10), y: (-1 / 10) }, { x: 2 ** (0), y: (0) }, { x: 2 ** (1 / 10), y: (1 / 10) }, { x: 2 ** (1 / 5), y: (1 / 5) }, { x: 2 ** (3 / 10), y: (3 / 10) }, { x: 2 ** (2 / 5), y: (2 / 5) }, { x: 2 ** (1 / 2), y: (1 / 2) }, { x: 2 ** (3 / 5), y: (3 / 5) }, { x: 2 ** (7 / 10), y: (7 / 10) }, { x: 2 ** (4 / 5), y: (4 / 5) }, { x: 2 ** (9 / 10), y: (9 / 10) }, { x: 2 ** (1), y: (1) }, { x: 2 ** (11 / 10), y: (11 / 10) }, { x: 2 ** (6 / 5), y: (6 / 5) }, { x: 2 ** (13 / 10), y: (13 / 10) }, { x: 2 ** (7 / 5), y: (7 / 5) }, { x: 2 ** (3 / 2), y: (3 / 2) }, { x: 2 ** (8 / 5), y: (8 / 5) }, { x: 2 ** (17 / 10), y: (17 / 10) }, { x: 2 ** (9 / 5), y: (9 / 5) }, { x: 2 ** (19 / 10), y: (19 / 10) }, { x: 2 ** (2), y: (2) }, { x: 2 ** (21 / 10), y: (21 / 10) }, { x: 2 ** (11 / 5), y: (11 / 5) }, { x: 2 ** (23 / 10), y: (23 / 10) }, { x: 2 ** (12 / 5), y: (12 / 5) }, { x: 2 ** (5 / 2), y: (5 / 2) }, { x: 2 ** (13 / 5), y: (13 / 5) }, { x: 2 ** (27 / 10), y: (27 / 10) }, { x: 2 ** (14 / 5), y: (14 / 5) }, { x: 2 ** (29 / 10), y: (29 / 10) }, { x: 2 ** (3), y: (3) }], appearance: "primary" },
+      { id: "down", kind: "polyline", vertices: [{ x: 2 ** (-3), y: -(-3) }, { x: 2 ** (-29 / 10), y: -(-29 / 10) }, { x: 2 ** (-14 / 5), y: -(-14 / 5) }, { x: 2 ** (-27 / 10), y: -(-27 / 10) }, { x: 2 ** (-13 / 5), y: -(-13 / 5) }, { x: 2 ** (-5 / 2), y: -(-5 / 2) }, { x: 2 ** (-12 / 5), y: -(-12 / 5) }, { x: 2 ** (-23 / 10), y: -(-23 / 10) }, { x: 2 ** (-11 / 5), y: -(-11 / 5) }, { x: 2 ** (-21 / 10), y: -(-21 / 10) }, { x: 2 ** (-2), y: -(-2) }, { x: 2 ** (-19 / 10), y: -(-19 / 10) }, { x: 2 ** (-9 / 5), y: -(-9 / 5) }, { x: 2 ** (-17 / 10), y: -(-17 / 10) }, { x: 2 ** (-8 / 5), y: -(-8 / 5) }, { x: 2 ** (-3 / 2), y: -(-3 / 2) }, { x: 2 ** (-7 / 5), y: -(-7 / 5) }, { x: 2 ** (-13 / 10), y: -(-13 / 10) }, { x: 2 ** (-6 / 5), y: -(-6 / 5) }, { x: 2 ** (-11 / 10), y: -(-11 / 10) }, { x: 2 ** (-1), y: -(-1) }, { x: 2 ** (-9 / 10), y: -(-9 / 10) }, { x: 2 ** (-4 / 5), y: -(-4 / 5) }, { x: 2 ** (-7 / 10), y: -(-7 / 10) }, { x: 2 ** (-3 / 5), y: -(-3 / 5) }, { x: 2 ** (-1 / 2), y: -(-1 / 2) }, { x: 2 ** (-2 / 5), y: -(-2 / 5) }, { x: 2 ** (-3 / 10), y: -(-3 / 10) }, { x: 2 ** (-1 / 5), y: -(-1 / 5) }, { x: 2 ** (-1 / 10), y: -(-1 / 10) }, { x: 2 ** (0), y: -(0) }, { x: 2 ** (1 / 10), y: -(1 / 10) }, { x: 2 ** (1 / 5), y: -(1 / 5) }, { x: 2 ** (3 / 10), y: -(3 / 10) }, { x: 2 ** (2 / 5), y: -(2 / 5) }, { x: 2 ** (1 / 2), y: -(1 / 2) }, { x: 2 ** (3 / 5), y: -(3 / 5) }, { x: 2 ** (7 / 10), y: -(7 / 10) }, { x: 2 ** (4 / 5), y: -(4 / 5) }, { x: 2 ** (9 / 10), y: -(9 / 10) }, { x: 2 ** (1), y: -(1) }, { x: 2 ** (11 / 10), y: -(11 / 10) }, { x: 2 ** (6 / 5), y: -(6 / 5) }, { x: 2 ** (13 / 10), y: -(13 / 10) }, { x: 2 ** (7 / 5), y: -(7 / 5) }, { x: 2 ** (3 / 2), y: -(3 / 2) }, { x: 2 ** (8 / 5), y: -(8 / 5) }, { x: 2 ** (17 / 10), y: -(17 / 10) }, { x: 2 ** (9 / 5), y: -(9 / 5) }, { x: 2 ** (19 / 10), y: -(19 / 10) }, { x: 2 ** (2), y: -(2) }, { x: 2 ** (21 / 10), y: -(21 / 10) }, { x: 2 ** (11 / 5), y: -(11 / 5) }, { x: 2 ** (23 / 10), y: -(23 / 10) }, { x: 2 ** (12 / 5), y: -(12 / 5) }, { x: 2 ** (5 / 2), y: -(5 / 2) }, { x: 2 ** (13 / 5), y: -(13 / 5) }, { x: 2 ** (27 / 10), y: -(27 / 10) }, { x: 2 ** (14 / 5), y: -(14 / 5) }, { x: 2 ** (29 / 10), y: -(29 / 10) }, { x: 2 ** (3), y: -(3) }], appearance: "secondary" },
+      { id: "u2", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "u4", kind: "point", at: { x: 4, y: 2 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+      { id: "d4", kind: "point", at: { x: 4, y: -2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "up", objectId: "u4", at: { x: 4, y: 2 }, placement: "above" },
+      { key: "down", objectId: "d4", at: { x: 4, y: -2 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Aplikasi Identiti Logaritma
+
+Di sini, identiti bertemu dengan ungkapan algebra, jadi ungkapan itu perlu dibawa ke bentuk yang sesuai dahulu. Selesaikan langkah demi langkah dan catat **identiti mana yang kamu gunakan** pada setiap langkah.
+
+Identiti ini paling berguna apabila sesuatu ungkapan perlu dipermudahkan sebelum ia boleh diselesaikan.
+
+### Mempermudahkan Ungkapan
+
+Gunakan **identiti hasil darab, kemudian identiti hasil bahagi** untuk menggabungkan ketiga-tiga sebutan itu.
+
+Permudahkan <InlineMath math="\log_2 32 + {\log_2 8} - {\log_2 4}" />
+
+**Penyelesaian**:
+
+<MathContainer>
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4}" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4} = {\log_2(32 \times 8)} - {\log_2 4}" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4} = {\log_2 256} - {\log_2 4}" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4} = {\log_2\left(\frac{256}{4}\right)}" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4} = {\log_2 64} = 6" />
+</MathContainer>
+
+### Menyelesaikan Persamaan
+
+Syarat awalnya ialah **nilai di dalam logaritma mesti positif**, jadi input mesti lebih besar daripada sifar. Penyelesaiannya, iaitu sembilan, memenuhi syarat itu.
+
+Cari nilai <InlineMath math="x" /> jika <InlineMath math="\log_3 x + {\log_3 9} = {\log_3 81}" />
+
+**Penyelesaian**:
+
+<MathContainer>
+
+<BlockMath math="\log_3 x + {\log_3 9} = {\log_3 81}" />
+
+<BlockMath math="\log_3(x \times 9) = {\log_3 81}" />
+
+<BlockMath math="x \times 9 = 81" />
+
+<BlockMath math="x = \frac{81}{9} = 9" />
+</MathContainer>
+
+## Aplikasi dalam Model
+
+Dalam sesuatu model, **kuantiti yang tidak diketahui berada pada indeks**, dan logaritma menurunkannya. Contoh di bawah menunjukkan identiti yang diperlukan oleh setiap satu.
+
+Identiti logaritma juga muncul apabila sesuatu model mengandungi pertumbuhan atau susutan eksponen.
+
+### Skala Magnitud Logaritma
+
+Model ini membandingkan **nisbah amplitud** dengan menggunakan logaritma asas sepuluh.
+
+Skala magnitud yang dipermudahkan boleh membandingkan amplitud gelombang seismik yang diukur, <InlineMath math="A" />, dengan amplitud rujukan <InlineMath math="A_0" />:
+
+<BlockMath math="M = \log\left(\frac{A}{A_0}\right)" />
+
+Dalam rumus ini:
+
+- <InlineMath math="M" /> ialah magnitud dalam model yang dipermudahkan ini
+- <InlineMath math="A" /> ialah amplitud yang diukur
+- <InlineMath math="A_0" /> ialah amplitud rujukan
+
+**Contoh**: Katakan amplitud yang diukur ialah <InlineMath math="10^7" /> kali amplitud rujukan. Apakah magnitud yang diberikan oleh model yang dipermudahkan ini?
+
+**Penyelesaian**:
+
+<MathContainer>
+
+<BlockMath math="M = \log\left(\frac{A}{A_0}\right)" />
+
+<BlockMath math="M = \log\left(\frac{10^7 A_0}{A_0}\right)" />
+
+<BlockMath math="M = \log(10^7)" />
+
+<BlockMath math="M = 7" />
+</MathContainer>
+
+Jadi nisbah amplitud ini sepadan dengan magnitud <InlineMath math="7" /> dalam model yang dipermudahkan ini. Pengiraan magnitud gempa bumi yang sebenar turut mengambil kira alat pengukur, jenis gelombang dan jarak dari sumber gempa.
+
+### Pengecasan Bateri
+
+Dalam model pengecasan peringkat pertama yang ideal, masa yang diperlukan untuk mencapai satu pecahan daripada kapasiti maksimum ialah:
+
+<BlockMath math="t = -\frac{1}{k}\ln\left(1 - \frac{C}{C_0}\right)" />
+
+Dalam rumus ini:
+
+- <InlineMath math="t" /> = masa pengecasan (dalam minit)
+- <InlineMath math="k" /> = pemalar pengecasan
+- <InlineMath math="C" /> = kapasiti yang dikehendaki
+- <InlineMath math="C_0" /> = kapasiti maksimum
+
+**Contoh**: Tentukan masa yang diperlukan untuk mengecas sebuah bateri daripada kosong hingga <InlineMath math="90\%" /> penuh. Anggap <InlineMath math="k = 0.02\ \text{min}^{-1}" />.
+
+**Penyelesaian**:
+
+<MathContainer>
+
+<BlockMath math="t = -\frac{1}{k}\ln\left(1 - \frac{C}{C_0}\right)" />
+
+<BlockMath math="t = -\frac{1}{0.02}\ln\left(1 - \frac{0.9C_0}{C_0}\right)" />
+
+<BlockMath math="t = -50\ln(1 - 0.9)" />
+
+<BlockMath math="t = -50\ln(0.1)" />
+
+<BlockMath math="t \approx 115.13" />
+</MathContainer>
+
+Dalam model yang ideal ini, mencapai <InlineMath math="90\%" /> mengambil masa lebih kurang <InlineMath math="115 \text{ minit}" />. Sistem pengecasan sebenar boleh mengubah kadarnya apabila menghampiri kapasiti penuh.
+
+**Domain model pengecasan** merangkumi cas tersimpan dari sifar hingga kurang daripada maksimum.
+
+<BlockMath math="C_0>0,\quad k>0,\quad0\leq C<C_0" />
+
+Dalam model ini, **cas penuh dihampiri tanpa dicapai** dalam masa yang terhingga. Perbandingan sasaran menunjukkan sebab satu peratus tambahan berhampiran cas penuh boleh mengambil masa yang lebih lama.
+
+| Sasaran cas | Masa (minit) |
+| --- | --- |
+| <InlineMath math="50\%" /> | <InlineMath math="-50\ln(0.5)\approx34.66" /> |
+| <InlineMath math="90\%" /> | <InlineMath math="-50\ln(0.1)\approx115.13" /> |
+| <InlineMath math="99\%" /> | <InlineMath math="-50\ln(0.01)\approx230.26" /> |
+
+Masa pengecasan <InlineMath math="t = -50\ln\left(1 - \tfrac{C}{C_0}\right)" /> bertambah lebih cepat daripada sasarannya: <InlineMath math="50\%" /> mengambil masa kira-kira <InlineMath math="34.66" /> minit, <InlineMath math="90\%" /> kira-kira <InlineMath math="115.13" /> dan <InlineMath math="99\%" /> kira-kira <InlineMath math="230.26" />, iaitu dua kali ganda masa untuk <InlineMath math="90\%" /> hanya kerana tambahan <InlineMath math="9\%" /> yang terakhir.
+
+<BarChart
+  title={<>Masa untuk mencapai setiap aras cas</>}
+  description={<>Palang <InlineMath math="-50\ln(1 - p)" /> dalam minit untuk sasaran <InlineMath math="50\%" />, <InlineMath math="90\%" /> dan <InlineMath math="99\%" />.</>}
+  yAxisLabel="Masa (min)"
+  data={[0.5, 0.9, 0.99].map((p) => ({ name: Math.round(100 * p) + "% dicas", value: -50 * Math.log(1 - p) }))}
+  chartConfig={{ value: { label: "Masa (min)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Susut Nilai Harga Kereta
+
+Kadar tetap dalam model ini ialah **andaian sepanjang selang yang dimodelkan**. Nilai kereta itu berkurang separuh setiap lima tahun.
+
+Jika kadar susut nilai seketika berkadar dengan nilai semasa kereta, model eksponennya ada bentuk:
+
+<BlockMath math="H(t) = ce^{kt}" />
+
+Dalam model ini, <InlineMath math="H(t)" /> ialah nilai kereta pada masa <InlineMath math="t" />.
+
+**Contoh**: Sebuah kereta baharu berharga <InlineMath math="200 \text{ juta rupiah}" /> dan nilainya menurut model selepas <InlineMath math="5 \text{ tahun}" /> ialah <InlineMath math="100 \text{ juta rupiah}" />. Dengan andaian kadar susut nilai eksponen yang sama berterusan, tentukan nilai kereta itu menurut model selepas <InlineMath math="10 \text{ tahun}" />.
+
+**Penyelesaian**:
+
+Ukur <InlineMath math="H(t)" /> dalam juta rupiah dan <InlineMath math="t" /> dalam tahun. Semasa kereta itu dibeli:
+
+<MathContainer>
+
+<BlockMath math="\begin{aligned} &amp;H(0)=200 \\ &amp;200=ce^0=c \end{aligned}" />
+
+<BlockMath math="\begin{aligned} &amp;H(5)=100 \\ &amp;100=200e^{5k} \end{aligned}" />
+
+<BlockMath math="e^{5k} = \frac{1}{2} \text{, maka } 5k = \ln\left(\frac{1}{2}\right)" />
+
+<BlockMath math="k = \frac{1}{5}\ln\left(\frac{1}{2}\right) \approx -0.1386" />
+</MathContainer>
+
+Daripada keputusan ini, harga kereta pada sebarang masa <InlineMath math="t" /> ialah:
+
+<BlockMath math="H(t) = 200e^{\frac{\ln(1/2)}{5}t} \approx 200e^{-0.1386t}" />
+
+Harga kereta selepas digunakan selama <InlineMath math="10 \text{ tahun}" /> ialah:
+
+<BlockMath math="\begin{aligned} H(10) &amp;= 200e^{2\ln(1/2)} \\ &amp;= 200\left(\frac{1}{2}\right)^2 \\ &amp;= 50 \text{ juta rupiah} \end{aligned}" />
+
+Nilainya berkurang separuh setiap <InlineMath math="5" /> tahun: <InlineMath math="H(t) = 200\left(\tfrac12\right)^{t/5}" /> memberikan <InlineMath math="200" />, <InlineMath math="100" />, <InlineMath math="50" /> dan <InlineMath math="25" /> juta rupiah selepas <InlineMath math="0" />, <InlineMath math="5" />, <InlineMath math="10" /> dan <InlineMath math="15" /> tahun, sepadan dengan <InlineMath math="H(10) = 50" />.
+
+<BarChart
+  title={<>Harga kereta setiap <InlineMath math="5" /> tahun</>}
+  description={<>Palang <InlineMath math="H(t) = 200e^{\frac{\ln(1/2)}{5}t}" /> dalam juta rupiah untuk <InlineMath math="t = 0, 5, 10, 15" />.</>}
+  yAxisLabel="Harga (juta rupiah)"
+  data={[0, 5, 10, 15].map((x) => ({ name: String(x), value: 200 * Math.exp((Math.log(1 / 2) / 5) * x) }))}
+  chartConfig={{ value: { label: "Harga (juta rupiah)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Latihan
+
+Setiap satu daripada tiga soalan ini memerlukan cara menulis semula yang berbeza, jadi catat **petua mana yang kamu perlukan** sebelum mengira. Kemudian, bandingkan jalan kamu dengan jalan yang diambil dalam penyelesaian.
+
+**Soalan 1**
+
+Permudahkan: <InlineMath math="\log_5 125 + {\log_5 25} - {\log_5 5}" />
+
+**Soalan 2**
+
+Jika <InlineMath math="\log_2 x = 3" /> dan <InlineMath math="\log_2 y = 5" />, cari nilai <InlineMath math="\log_2(xy)" />
+
+**Soalan 3**
+
+Cari nilai <InlineMath math="x" /> jika <InlineMath math="\log_4(x-1) = {\log_4 16} - {\log_4 2}" />
+
+### Jalan Kerja
+
+**Jawapan 1**
+
+Setiap nombor ialah kuasa bagi <InlineMath math="5" />. **Nilaikan ketiga-tiga logaritma** sebelum menggabungkannya:
+
+<MathContainer>
+
+<BlockMath math="125=5^3,\quad25=5^2,\quad5=5^1" />
+
+<BlockMath math="\begin{aligned} &amp;\log_5 125 + {\log_5 25} - {\log_5 5} \\ &amp;=3+2-1 \\ &amp;=4 \end{aligned}" />
+</MathContainer>
+
+Nilai yang telah dipermudahkan ialah <InlineMath math="4" />.
+
+**Jawapan 2**
+
+Gunakan **identiti hasil darab** kerana ungkapan yang dicari mengandungi <InlineMath math="xy" />:
+
+<MathContainer>
+
+<BlockMath math="\log_2(xy) = {\log_2 x} + {\log_2 y}" />
+
+<BlockMath math="\log_2(xy) = 3 + 5 = 8" />
+</MathContainer>
+
+<InlineMath math="\log_2(xy)=8" />.
+
+**Jawapan 3**
+
+Gunakan **identiti hasil bahagi** pada sebelah kanan, kemudian gunakan kesamaan logaritma yang **asasnya sama**:
+
+<MathContainer>
+
+<BlockMath math="\log_4(x-1) = {\log_4 16} - {\log_4 2}" />
+
+<BlockMath math="\log_4(x-1) = {\log_4\left(\frac{16}{2}\right)}" />
+
+<BlockMath math="\log_4(x-1) = {\log_4 8}" />
+
+<BlockMath math="x - 1 = 8" />
+
+<BlockMath math="x = 9" />
+</MathContainer>
+
+Logaritma ini memerlukan <InlineMath math="x-1>0" />. Oleh sebab <InlineMath math="9-1=8>0" />, penyelesaian ini sah.

@@ -1,0 +1,236 @@
+export const metadata = {
+  title: "Konjugat Kompleks",
+  description: "Konjugat bagi z = x + iy ialah x − iy, iaitu pantulan z pada paksi nyata. Gunakannya untuk membahagi nombor kompleks dan mencari modulus.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-01",
+  dateModified: "2026-11-08",
+  subject: "Nombor Kompleks",
+};
+
+## Konjugat Menukar Tanda Bahagian Khayalan
+
+**Konjugat** bagi nombor kompleks <InlineMath math="z = x + iy" /> ialah <InlineMath math="\bar{z} = x - iy" />: bahagian nyata kekal, dan **tanda bahagian khayalan bertukar**. Pada satah kompleks, <InlineMath math="\bar{z}" /> ialah pantulan <InlineMath math="z" /> pada paksi nyata.
+
+<BlockMath math="z = x + iy \quad\Longrightarrow\quad \bar{z} = x - iy" />
+
+Hasil darab sesuatu nombor dengan konjugatnya sentiasa nyata, <InlineMath math="z\bar{z} = x^2 + y^2" />. Dengan sifat ini, penyebut kompleks boleh ditukar menjadi nombor nyata, jadi kamu boleh **membahagi nombor kompleks**.
+
+## Contoh Mencari Konjugat
+
+Tulis **komponen khayalan bersama tandanya** sebelum kamu menukar tanda itu. Nombor nyata tidak berubah kerana komponen khayalannya sifar, manakala nombor khayalan tulen bertukar menjadi negatifnya.
+
+| Nombor | Komponen nyata | Komponen khayalan | Konjugat |
+| --- | --- | --- | --- |
+| <InlineMath math="2+i" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="2-i" /> |
+| <InlineMath math="2=2+0i" /> | <InlineMath math="2" /> | <InlineMath math="0" /> | <InlineMath math="2-0i=2" /> |
+| <InlineMath math="3-2i" /> | <InlineMath math="3" /> | <InlineMath math="-2" /> | <InlineMath math="3-(-2)i=3+2i" /> |
+| <InlineMath math="3i=0+3i" /> | <InlineMath math="0" /> | <InlineMath math="3" /> | <InlineMath math="0-3i=-3i" /> |
+
+Nombor <InlineMath math="3 - 2i" /> paling kerap dijawab salah. Bahagian khayalan bagi <InlineMath math="3 - 2i" /> ialah <InlineMath math="-2" />, jadi apabila tandanya ditukar kita dapat <InlineMath math="+2" />, dan konjugatnya ialah <InlineMath math="3 + 2i" />.
+
+## Konjugat sebagai Pantulan
+
+Titik <InlineMath math="(x, y)" /> dan <InlineMath math="(x, -y)" /> terletak pada jarak yang sama dari paksi nyata, satu di atasnya dan satu di bawahnya. Jadi <InlineMath math="\bar{z}" /> ialah **pantulan <InlineMath math="z" /> pada paksi nyata**.
+
+<MathVisual
+  title={<><InlineMath math="z = 3 + 2i" /> dan konjugatnya <InlineMath math="\bar{z} = 3 - 2i" /></>}
+  description={<>Titik <InlineMath math="z" /> dan <InlineMath math="\bar{z}" /> ialah imej cermin pada paksi nyata, disambungkan oleh tembereng mencancang yang dibahagi dua sama panjang oleh paksi itu.</>}
+  labels={{
+    z: <InlineMath math="z = 3 + 2i" />,
+    bar: <InlineMath math="\bar{z} = 3 - 2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "segment", from: { x: 3, y: 2 }, to: { x: 3, y: -2 }, appearance: "construction" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 3, y: 2 }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)) }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)) }], appearance: "primary" },
+      { id: "bar", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -2 }, appearance: "secondary" },
+      { id: "bar-head", kind: "polygon", vertices: [{ x: 3, y: -2 }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)), y: (-2) + (1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)) }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)), y: (-2) + (1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)) }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "bar", objectId: "bar", at: { x: 3, y: -2 }, placement: "right" },
+    ],
+  }}
+/>
+
+Pantulan mengekalkan panjang, jadi <InlineMath math="|\bar{z}| = |z|" />. Hanya arahnya yang terbalik: jika <InlineMath math="z" /> membentuk sudut <InlineMath math="\theta" /> dengan paksi nyata positif, <InlineMath math="\bar{z}" /> membentuk sudut <InlineMath math="-\theta" />. Untuk <InlineMath math="z = 3 + 2i" />, kedua-duanya mempunyai [modulus](/ms/subjek/matematik/nombor-kompleks/modulus-dan-hujah-nombor-kompleks) <InlineMath math="\sqrt{13}" />, dan hujahnya lebih kurang <InlineMath math="33.7^\circ" /> dan <InlineMath math="-33.7^\circ" />. Petua hujah bertentangan ini berlaku untuk <InlineMath math="z \ne 0" />, dengan mengabaikan beza pusingan penuh <InlineMath math="360^\circ" />: untuk nombor nyata negatif seperti <InlineMath math="-2" />, hujah bagi <InlineMath math="z" /> dan <InlineMath math="\bar{z}" /> kedua-duanya sama dengan <InlineMath math="180^\circ" />.
+
+## Menambah dan Mendarab dengan Konjugat
+
+Apabila kamu menambah <InlineMath math="z" /> dan <InlineMath math="\bar{z}" />, **bahagian khayalannya saling membatalkan**. Apabila kamu menolak kedua-duanya, bahagian nyatanya pula yang saling membatalkan:
+
+<BlockMath math="\begin{aligned}z+\bar z&amp;=(x+iy)+(x-iy)=2x=2\operatorname{Re}(z)\\z-\bar z&amp;=(x+iy)-(x-iy)=2iy=2i\operatorname{Im}(z)\end{aligned}" />
+
+<MathVisual
+  title={<>Segi empat selari bagi z dan konjugatnya</>}
+  description={<>Vektor <InlineMath math="z = 3 + 2i" /> dan <InlineMath math="\bar{z} = 3 - 2i" /> ditambah seperti vektor. Hasil tambahnya ialah <InlineMath math="6" />, tepat pada paksi nyata.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "conjugate", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -2 }, appearance: "secondary" },
+      { id: "upper-side", kind: "segment", from: { x: 3, y: 2 }, to: { x: 6, y: 0 }, appearance: "construction" },
+      { id: "lower-side", kind: "segment", from: { x: 3, y: -2 }, to: { x: 6, y: 0 }, appearance: "construction" },
+      { id: "difference", kind: "segment", from: { x: 3, y: -2 }, to: { x: 3, y: 2 }, appearance: "highlight" },
+      { id: "sum", kind: "point", at: { x: 6, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 3, y: 2 }, placement: "above" },
+      { key: "conjugate", objectId: "conjugate", at: { x: 3, y: -2 }, placement: "below" },
+      { key: "sum", objectId: "sum", at: { x: 6, y: 0 }, placement: "right" },
+      { key: "difference", objectId: "difference", at: { x: 3, y: 1 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    z: <InlineMath math="z = 3 + 2i" />,
+    conjugate: <InlineMath math="\bar{z} = 3 - 2i" />,
+    sum: <InlineMath math="z + \bar{z} = 6" />,
+    difference: <InlineMath math="z - \bar{z} = 4i" />,
+  }}
+/>
+
+Untuk <InlineMath math="z = 3 + 2i" />, hasil tambahnya ialah <InlineMath math="6 = 2\operatorname{Re}(z)" /> dan bezanya ialah <InlineMath math="4i = 2i\operatorname{Im}(z)" />. Dalam hasil darab, sebutan silang saling membatalkan, dan hasilnya sentiasa **nyata dan tidak negatif**:
+
+<BlockMath math="\begin{aligned}z\bar z&amp;=(x+iy)(x-iy)\\&amp;=x^2-ixy+ixy-i^2y^2\\&amp;=x^2+y^2=|z|^2\end{aligned}" />
+
+Semak dengan <InlineMath math="z = 3 + 2i" />: <InlineMath math="(3 + 2i)(3 - 2i) = 9 - 4i^2 = 9 + 4 = 13" />, sama dengan <InlineMath math="|z|^2 = 3^2 + 2^2" />.
+
+## Membahagi Nombor Kompleks dengan Konjugat
+
+Untuk membahagi dengan nombor kompleks, darabkan pengangka dan penyebut dengan **konjugat penyebut**. Penyebut menjadi nombor nyata <InlineMath math="|z|^2" />, jadi hasilnya boleh ditulis sebagai <InlineMath math="a + bi" />.
+
+Kira <InlineMath math="\frac{3 + 4i}{1 - 2i}" />. Konjugat penyebut ialah <InlineMath math="1 + 2i" />:
+
+<MathContainer>
+  <BlockMath math="\frac{3 + 4i}{1 - 2i} \cdot \frac{1 + 2i}{1 + 2i} = \frac{(3 + 4i)(1 + 2i)}{1^2 + 2^2}" />
+  <BlockMath math="= \frac{3 + 6i + 4i + 8i^2}{5} = \frac{-5 + 10i}{5} = -1 + 2i" />
+</MathContainer>
+
+Semak dengan mendarab semula: <InlineMath math="(-1 + 2i)(1 - 2i) = -1 + 2i + 2i - 4i^2 = 3 + 4i" />, iaitu pengangka asal. Kaedah yang sama juga digunakan untuk mengira [songsangan nombor kompleks](/ms/subjek/matematik/nombor-kompleks/songsangan-nombor-kompleks), kerana <InlineMath math="\frac{1}{z} = \frac{\bar{z}}{|z|^2}" /> untuk <InlineMath math="z \ne 0" />.
+
+<Mermaid
+  title={<>Langkah membahagi dengan nombor kompleks</>}
+  description={<>Konjugat penyebut menukar penyebut menjadi nombor nyata, dan pendaraban digunakan untuk menyemak hasilnya.</>}
+  chart={`flowchart LR
+  A["Tulis pengangka dan penyebut"] --> B["Darab atas dan bawah dengan konjugat penyebut"]
+  B --> C["Penyebut menjadi kuasa dua modulus"]
+  C --> D["Asingkan bahagian nyata dan bahagian khayalan"]
+  D --> E["Darab hasilnya dengan penyebut untuk menyemak"]`}
+/>
+
+Semak hasil bahagi itu pada satah. <InlineMath math="-1 + 2i" /> mempunyai modulus <InlineMath math="\sqrt5" />, iaitu <InlineMath math="5 \div \sqrt5" />: modulus <InlineMath math="3 + 4i" /> dibahagi dengan modulus <InlineMath math="1 - 2i" />.
+
+<MathVisual
+  title={<><InlineMath math="\frac{3 + 4i}{1 - 2i} = -1 + 2i" /></>}
+  description={<>Pengangka <InlineMath math="3 + 4i" /> dengan modulus <InlineMath math="5" />, penyebut <InlineMath math="1 - 2i" /> dengan modulus <InlineMath math="\sqrt5" />, dan hasil bahagi <InlineMath math="-1 + 2i" /> dengan modulus <InlineMath math="\sqrt5" />.</>}
+  labels={{
+    num: <InlineMath math="3 + 4i" />,
+    den: <InlineMath math="1 - 2i" />,
+    q: <InlineMath math="-1 + 2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 3.6 }, y: { min: -2.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "num", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "num-head", kind: "polygon", vertices: [{ x: 3, y: 4 }, { x: 277 / 100, y: 193 / 50 }, { x: 293 / 100, y: 187 / 50 }], appearance: "primary" },
+      { id: "den", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -2 }, appearance: "secondary" },
+      { id: "den-head", kind: "polygon", vertices: [{ x: 1, y: -2 }, { x: (1) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)), y: (-2) + (1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)) }, { x: (1) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)), y: (-2) + (1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)) }], appearance: "secondary" },
+      { id: "q", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 2 }, appearance: "answer" },
+      { id: "q-head", kind: "polygon", vertices: [{ x: -1, y: 2 }, { x: (-1) + (1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)), y: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)) }, { x: (-1) + (1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)), y: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "num", objectId: "num", at: { x: 3, y: 4 }, placement: "right" },
+      { key: "den", objectId: "den", at: { x: 1, y: -2 }, placement: "right" },
+      { key: "q", objectId: "q", at: { x: -1, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Apabila Nombor Sama dengan Konjugatnya
+
+Katakan <InlineMath math="z = \bar{z}" />, iaitu <InlineMath math="x + iy = x - iy" />. Tolak <InlineMath math="x" /> daripada kedua-dua belah untuk mendapat <InlineMath math="iy = -iy" />, atau <InlineMath math="2iy = 0" />. Oleh sebab <InlineMath math="i \ne 0" />, maka <InlineMath math="y = 0" />.
+
+Jadi nombor kompleks sama dengan konjugatnya **jika dan hanya jika nombor itu nyata**. Secara geometri, hanya titik pada paksi nyata yang kekal di tempatnya apabila dipantulkan pada paksi nyata.
+
+## Petua Konjugat dalam Operasi
+
+Untuk penambahan, penolakan, pendaraban, pembahagian dan songsangan, konjugat **boleh diambil sebelum atau selepas operasi** dengan hasil yang sama. Petua di bawah datang daripada operasi ke atas komponen nyata dan komponen khayalan. Contoh-contohnya menggunakan <InlineMath math="z_1 = 1 + i" /> dan <InlineMath math="z_2 = 2 - i" />, dan penyebut dalam pembahagian dan songsangan tidak boleh sifar.
+
+| Operasi | Identiti | Contoh |
+| --- | --- | --- |
+| Hasil tambah | <InlineMath math="\overline{z_1+z_2}=\bar z_1+\bar z_2" /> | <InlineMath math="\overline{(1+i)+(2-i)}=\bar3=3=(1-i)+(2+i)" /> |
+| Beza | <InlineMath math="\overline{z_1-z_2}=\bar z_1-\bar z_2" /> | <InlineMath math="\overline{-1+2i}=-1-2i=(1-i)-(2+i)" /> |
+| Hasil darab | <InlineMath math="\overline{z_1z_2}=\bar z_1\bar z_2" /> | <InlineMath math="\overline{3+i}=3-i=(1-i)(2+i)" /> |
+| Hasil bahagi | <InlineMath math="\overline{z_1/z_2}=\bar z_1/\bar z_2,\ z_2\ne0" /> | <InlineMath math="\overline{(1+3i)/5}=(1-3i)/5=(1-i)/(2+i)" /> |
+| Songsangan | <InlineMath math="\overline{z^{-1}}=(\bar z)^{-1},\ z\ne0" /> | <InlineMath math="\overline{1/(1+i)}=(1+i)/2=1/(1-i)" /> |
+| Konjugat dua kali | <InlineMath math="\overline{\bar z}=z" /> | <InlineMath math="\overline{\overline{1+i}}=\overline{1-i}=1+i" /> |
+
+Petua hasil darab dibuktikan dengan mengembangkan kedua-dua belah:
+
+<BlockMath math="\begin{aligned}\overline{z_1z_2}&amp;=(x_1x_2-y_1y_2)-i(x_1y_2+y_1x_2)\\&amp;=(x_1-iy_1)(x_2-iy_2)=\bar z_1\bar z_2\end{aligned}" />
+
+Petua ini menerangkan mengapa [punca khayalan persamaan kuadratik](/ms/subjek/matematik/fungsi-kuadratik/punca-tidak-nyata) yang pekalinya nyata sentiasa datang berpasangan. Jika <InlineMath math="az^2 + bz + c = 0" /> dengan <InlineMath math="a" />, <InlineMath math="b" />, <InlineMath math="c" /> nyata, maka <InlineMath math="a\bar{z}^2 + b\bar{z} + c = \overline{az^2 + bz + c} = \bar{0} = 0" />, jadi <InlineMath math="\bar{z}" /> juga ialah punca.
+
+## Kesilapan Lazim
+
+| Kesilapan | Mengapa salah | Cara menyemak |
+| --- | --- | --- |
+| Turut menukar tanda bahagian nyata | <InlineMath math="\overline{3 + 2i}" /> bukan <InlineMath math="-3 - 2i" /> | Hanya sebutan yang ada <InlineMath math="i" /> bertukar tanda |
+| Menganggap <InlineMath math="3 - 2i" /> sebagai konjugatnya sendiri | Bahagian khayalannya ialah <InlineMath math="-2" />, jadi tandanya menjadi <InlineMath math="+2" /> | Pantulan mesti jatuh di seberang paksi nyata |
+| Menukar tanda sebutan <InlineMath math="i^2" />, contohnya menulis konjugat <InlineMath math="2 + i^2" /> sebagai <InlineMath math="2 - i^2 = 3" /> | <InlineMath math="2 + i^2" /> sebenarnya nombor nyata <InlineMath math="1" /> | Gantikan <InlineMath math="i^2" /> dengan <InlineMath math="-1" /> dahulu |
+| Mendarab dengan konjugat pengangka semasa membahagi | Penyebut kekal kompleks | Darab dengan konjugat penyebut supaya penyebut menjadi <InlineMath math="\lvert z \rvert^2" /> |
+| Menulis <InlineMath math="z\bar{z} = x^2 - y^2" /> | <InlineMath math="-i^2 y^2 = +y^2" /> | <InlineMath math="z\bar{z}" /> mesti sama dengan kuasa dua modulus |
+
+Cara paling cepat untuk menyemak selepas membahagi ialah **mendarab hasilnya dengan penyebut**. Hasil darab itu mesti memberikan semula pengangka.
+
+## Soalan Latihan
+
+Tulis setiap nombor sebagai <InlineMath math="x + iy" /> dahulu, kemudian **semak hasilnya dengan mendarab**.
+
+1. Cari konjugat bagi <InlineMath math="2 + i^2" /> dan bagi <InlineMath math="1 + \frac{1}{i}" />.
+
+2. Kira <InlineMath math="\frac{2 - i}{3 + 4i}" /> dalam bentuk <InlineMath math="a + bi" />.
+
+3. Cari nombor kompleks <InlineMath math="z" /> yang memenuhi <InlineMath math="z + 2\bar{z} = 9 - 2i" />.
+
+4. Untuk <InlineMath math="z = 5 - 12i" />, kira <InlineMath math="z\bar{z}" /> dan gunakannya untuk mencari <InlineMath math="|z|" />.
+
+### Penyelesaian
+
+**Soalan 1**. **Permudahkan dahulu**. Oleh sebab <InlineMath math="i^2 = -1" />, nombor <InlineMath math="2 + i^2 = 1" /> ialah nombor nyata, jadi konjugatnya juga <InlineMath math="1" />. Untuk nombor kedua, darab <InlineMath math="\frac{1}{i}" /> dengan <InlineMath math="\frac{-i}{-i}" />:
+
+<BlockMath math="\frac{1}{i} = \frac{-i}{-i^2} = \frac{-i}{1} = -i \quad\Longrightarrow\quad 1 + \frac{1}{i} = 1 - i" />
+
+Jadi konjugatnya ialah <InlineMath math="1 + i" />. Semak: <InlineMath math="i \cdot (-i) = -i^2 = 1" />, jadi <InlineMath math="-i" /> memang salingan bagi <InlineMath math="i" />.
+
+**Soalan 2**. Darab dengan konjugat penyebut, <InlineMath math="3 - 4i" />:
+
+<MathContainer>
+  <BlockMath math="\frac{(2 - i)(3 - 4i)}{3^2 + 4^2} = \frac{6 - 8i - 3i + 4i^2}{25}" />
+  <BlockMath math="= \frac{2 - 11i}{25} = \frac{2}{25} - \frac{11}{25}i" />
+</MathContainer>
+
+Semak: <InlineMath math="\left(\frac{2}{25} - \frac{11}{25}i\right)(3 + 4i) = \frac{6 + 8i - 33i - 44i^2}{25} = \frac{50 - 25i}{25} = 2 - i" />.
+
+**Soalan 3**. Tulis <InlineMath math="z = x + iy" />, jadi <InlineMath math="\bar{z} = x - iy" />:
+
+<MathContainer>
+  <BlockMath math="(x + iy) + 2(x - iy) = 3x - iy" />
+  <BlockMath math="3x - iy = 9 - 2i \quad\Longrightarrow\quad x = 3, \quad y = 2" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="x" /> dan <InlineMath math="y" /> nyata, bahagian nyata dan bahagian khayalan pada kedua-dua belah mesti sepadan. Jadi <InlineMath math="z = 3 + 2i" />. Semak: <InlineMath math="(3 + 2i) + 2(3 - 2i) = 3 + 2i + 6 - 4i = 9 - 2i" />.
+
+**Soalan 4**. Darab dengan konjugat:
+
+<BlockMath math="(5 - 12i)(5 + 12i) = 25 - 144i^2 = 25 + 144 = 169" />
+
+Oleh sebab <InlineMath math="z\bar{z} = |z|^2" />, modulusnya ialah <InlineMath math="|z| = \sqrt{169} = 13" />. Semak dengan rumus modulus: <InlineMath math="\sqrt{5^2 + (-12)^2} = \sqrt{169} = 13" />.

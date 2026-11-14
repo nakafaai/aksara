@@ -1,15 +1,44 @@
-Write the information as one equation. **One equation in two unknowns doesn't fix <InlineMath math="x" /> and <InlineMath math="y" />**, but it can fix how they are related.
+# The model and its corners
+
+Let <InlineMath math="x" /> be the number of small cabinets and <InlineMath math="y" /> the number of bookshelves. The profit in hundred thousands of rupiah is <InlineMath math="P=6x+5y" />. The three supplies give three inequalities.
 
 <BlockMath math="\begin{aligned}
-3x+2y&=2x+3y+500 \\
-x-y&=500
+4x+3y&\le32 \quad \text{(boards)} \\
+4x+2y&\le31 \quad \text{(assembly)} \\
+x+2y&\le12 \quad \text{(painting)}
 \end{aligned}" />
 
-Only the difference is certain: an exercise book always costs <InlineMath math="\text{Rp}500" /> more than a pencil. For example, <InlineMath math="x=3{,}000" /> and <InlineMath math="y=2{,}500" /> satisfy the equation, and so do <InlineMath math="x=5{,}000" /> and <InlineMath math="y=4{,}500" />.
+Apart from <InlineMath math="(0,0)" />, the corners of this region are <InlineMath math="(0,6)" />, where the board line meets the painting line, where the board line meets the assembly line, and <InlineMath math="(7.75,\ 0)" />.
 
-So the statement that must be true is that an exercise book costs <InlineMath math="\text{Rp}500" /> more than a pencil.
+<BlockMath math="\begin{aligned}
+\text{boards and painting}&:\ x=12-2y,\ 4(12-2y)+3y=32 \Rightarrow (5.6,\ 3.2),\ P=49.6 \\
+\text{boards and assembly}&:\ (4x+3y)-(4x+2y)=32-31 \Rightarrow (7.25,\ 1),\ P=48.5 \\
+\text{other corners}&:\ P(0,6)=30,\quad P(7.75,\ 0)=46.5
+\end{aligned}" />
 
-- The price of the exercise book can't be pinned down, since <InlineMath math="x=3{,}000" /> and <InlineMath math="x=5{,}000" /> are both possible.
-- The book costs twice the pencil only when <InlineMath math="x=1{,}000" /> and <InlineMath math="y=500" />, not in every case.
-- The difference is the wrong way round. From <InlineMath math="x-y=500" />, the exercise book is the dearer one.
-- The sum <InlineMath math="x+y" /> can't be pinned down. In the two examples above it is <InlineMath math="\text{Rp}5{,}500" /> and <InlineMath math="\text{Rp}9{,}500" />.
+The best corner is <InlineMath math="(5.6,\ 3.2)" />, and it's **not a pair of whole numbers**, so a profit of <InlineMath math="\text{Rp}4{,}960{,}000" /> can't actually happen. You have to look for the best whole-number point inside the region.
+
+# Finding the best whole-number point
+
+For each value of <InlineMath math="y" />, take the largest <InlineMath math="x" /> that satisfies **all three** inequalities, because a bigger <InlineMath math="x" /> always adds profit.
+
+| <InlineMath math="y" /> | Limits on <InlineMath math="x" /> from boards, assembly, painting | Largest <InlineMath math="x" /> | <InlineMath math="P" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="8,\ 7.75,\ 12" /> | <InlineMath math="7" /> | <InlineMath math="42" /> |
+| <InlineMath math="1" /> | <InlineMath math="7.25,\ 7.25,\ 10" /> | <InlineMath math="7" /> | <InlineMath math="47" /> |
+| <InlineMath math="2" /> | <InlineMath math="6.5,\ 6.75,\ 8" /> | <InlineMath math="6" /> | <InlineMath math="46" /> |
+| <InlineMath math="3" /> | <InlineMath math="5.75,\ 6.25,\ 6" /> | <InlineMath math="5" /> | <InlineMath math="45" /> |
+| <InlineMath math="4" /> | <InlineMath math="5,\ 5.75,\ 4" /> | <InlineMath math="4" /> | <InlineMath math="44" /> |
+| <InlineMath math="5" /> | <InlineMath math="4.25,\ 5.25,\ 2" /> | <InlineMath math="2" /> | <InlineMath math="37" /> |
+| <InlineMath math="6" /> | <InlineMath math="3.5,\ 4.75,\ 0" /> | <InlineMath math="0" /> | <InlineMath math="30" /> |
+
+The largest value is <InlineMath math="47" /> at <InlineMath math="(7,1)" />. Check: boards <InlineMath math="28+3=31\le32" />, assembly <InlineMath math="28+2=30\le31" />, painting <InlineMath math="7+2=9\le12" />. This point is far from the corner <InlineMath math="(5.6,\ 3.2)" />, so rounding the corner would never find it.
+
+So the maximum profit is <InlineMath math="\text{Rp}4{,}700{,}000" /> per week, with <InlineMath math="7" /> small cabinets and <InlineMath math="1" /> bookshelf.
+
+# Why the other options are wrong
+
+- <InlineMath math="\text{Rp}4{,}960{,}000" /> is the profit at the corner <InlineMath math="(5.6,\ 3.2)" />. You can't make a fraction of a cabinet.
+- <InlineMath math="\text{Rp}4{,}800{,}000" /> comes from <InlineMath math="(8,0)" />. It passes the board and painting limits, but it needs <InlineMath math="32" /> hours of assembly, **more than the <InlineMath math="31" /> available**.
+- <InlineMath math="\text{Rp}4{,}600{,}000" /> comes from <InlineMath math="(6,2)" />, the best whole-number point right next to the corner. The search stopped too close to the corner.
+- <InlineMath math="\text{Rp}4{,}500{,}000" /> comes from rounding the corner down to <InlineMath math="(5,3)" />.

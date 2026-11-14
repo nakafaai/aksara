@@ -1,0 +1,105 @@
+export const metadata = {
+  title: "Fungsi Polinomial",
+  description: "Baca tatatanda polinomial dan kenal pasti sebutan pelopor, pekali dan darjah melalui contoh berserta jalan kerja.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-04",
+  dateModified: "2026-11-08",
+  subject: "Polinomial",
+};
+
+## Memetakan Input kepada Nilai Polinomial
+
+Setiap input menghasilkan <Highlight>tepat satu nilai fungsi</Highlight>. Untuk <InlineMath math="P(x)=2x^2-3x+1" />, nilaikan pada <InlineMath math="x=2" /> dengan mengira kuasa dahulu, kemudian pendaraban, dan akhir sekali penambahan:
+
+<BlockMath math="P(2)=2(2)^2-3(2)+1=8-6+1=3" />
+
+<MathVisual
+  title={<>Daripada input kepada titik pada graf</>}
+  description={<>Graf <InlineMath math="P(x) = 2x^2 - 3x + 1" />. Titik <InlineMath math="(2,3)" /> menunjukkan bahawa input <InlineMath math="2" /> menghasilkan output <InlineMath math="3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.25, max: 2.25 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: 1 }, domain: { min: 0, max: 2 }, appearance: "primary" },
+      { id: "value", kind: "point", at: { x: 2, y: 3 }, appearance: "answer" },
+    ],
+    labels: [{ key: "value", objectId: "value", at: { x: 2, y: 3 }, placement: "above-left" }],
+  }}
+  labels={{ value: <InlineMath math="(2,3)" /> }}
+/>
+
+Pekali nyata dan indeks integer bukan negatif membuatkan polinomial tertakrif bagi **setiap input nyata**. Tiada pemboleh ubah dalam penyebut atau di bawah tanda punca yang memaksa kita mengecualikan sesuatu input.
+
+## Bentuk Am Fungsi Polinomial
+
+Bagi polinomial bukan sifar, bentuk am menyusun **kuasa dan pekali**. Pekali pelopor bukan sifar, dan indeks terbesar menentukan darjah:
+
+<BlockMath math="P(x)=\sum_{k=0}^{n}a_kx^k,\qquad a_n\ne0,\quad n\in\{0,1,2,\ldots\}" />
+
+| Tatatanda | Maksud |
+| --- | --- |
+| <InlineMath math="P(x)" /> | Nilai fungsi pada input x. |
+| <InlineMath math="x" /> | Pemboleh ubah input. |
+| <InlineMath math="n" /> | Darjah, iaitu integer bukan negatif. |
+| <InlineMath math="a_0,a_1,\ldots,a_n" /> | Pekali nyata bagi setiap kuasa. |
+| <InlineMath math="a_nx^n" /> | Sebutan pelopor, iaitu sebutan dengan kuasa tertinggi. |
+| <InlineMath math="a_n" /> | Pekali pelopor, yang mesti bukan sifar. |
+| <InlineMath math="a_0" /> | Pemalar, yang sama dengan nilai fungsi pada input sifar. |
+
+Fungsi <InlineMath math="P(x)=0" /> juga ialah polinomial. Namun, **polinomial sifar tiada sebutan pelopor bukan sifar**, jadi bentuk bukan sifar yang dipaparkan di atas tidak menentukan darjahnya.
+
+## Contoh Fungsi Polinomial
+
+Katakan kita ada fungsi: <InlineMath math="f(x) = 5x^3 - 2x^2 + 7x - 1" />
+
+- Ini ialah fungsi polinomial dalam pemboleh ubah <InlineMath math="x" />.
+- Darjahnya ialah <InlineMath math="3" /> (kuasa tertinggi bagi <InlineMath math="x" />).
+- Sebutan pelopornya ialah <InlineMath math="5x^3" />.
+- Pekali pelopornya ialah <InlineMath math="5" /> (<InlineMath math="a_3 = 5" />).
+- Pekali yang lain ialah <InlineMath math="a_2 = -2" />, <InlineMath math="a_1 = 7" />.
+- Sebutan pemalarnya ialah <InlineMath math="-1" /> (<InlineMath math="a_0 = -1" />).
+
+Polinomial bukan sifar ada <Highlight>pekali pelopor yang bukan sifar</Highlight>. Pekali lain boleh jadi sifar, seperti pekali kuasa tiga dalam latihan di bawah.
+
+Baca pekali bagi <InlineMath math="f(x) = 5x^3 - 2x^2 + 7x - 1" /> bermula dari darjah tertinggi ke bawah. Pekali pelopornya ialah <InlineMath math="5" />, diikuti <InlineMath math="a_2 = -2" />, <InlineMath math="a_1 = 7" /> dan pemalar <InlineMath math="a_0 = -1" />.
+
+<BarChart
+  title={<>Pekali bagi <InlineMath math="5x^3 - 2x^2 + 7x - 1" /></>}
+  description={<>Palang bagi pekali <InlineMath math="5" />, <InlineMath math="-2" />, <InlineMath math="7" /> dan <InlineMath math="-1" /> pada darjah 3, 2, 1 dan 0.</>}
+  yAxisLabel="Pekali"
+  data={[["darjah 3", 5], ["darjah 2", -2], ["darjah 1", 7], ["darjah 0", -1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Pekali", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Latihan
+
+<BlockMath math="p(t)=-2t^4+3t^2-t+8" />
+
+Kenal pasti darjah, sebutan pelopor, **pekali pelopor**, pekali bagi <InlineMath math="t^3" />, dan sebutan pemalarnya. Kemudian, kira <InlineMath math="p(2)" />.
+
+### Jalan Kerja
+
+Tulis **kuasa yang hilang** secara jelas:
+
+<BlockMath math="p(t)=-2t^4+0t^3+3t^2-t+8" />
+
+- Darjah: <InlineMath math="4" />
+- Sebutan pelopor: <InlineMath math="-2t^4" />
+- Pekali pelopor: <InlineMath math="-2" />
+- Pekali bagi <InlineMath math="t^3" />: <InlineMath math="0" />
+- Sebutan pemalar: <InlineMath math="8" />
+
+Nilaikan fungsi itu dengan menggantikan <InlineMath math="t=2" />:
+
+<BlockMath math="\begin{aligned}p(2)&amp;=-2(2)^4+3(2)^2-2+8\\&amp;=-32+12-2+8\\&amp;=-14\end{aligned}" />
+
+Nilaikan <InlineMath math="p(t) = -2t^4 + 3t^2 - t + 8" /> pada <InlineMath math="t = -2" /> hingga <InlineMath math="2" />. Sebutan pelopor <InlineMath math="-2t^4" /> menguasai nilai di kedua-dua hujung: <InlineMath math="p(-2) = -10" /> dan <InlineMath math="p(2) = -14" />, sama seperti dalam jalan kerja.
+
+<BarChart
+  title={<>Nilai <InlineMath math="p(t) = -2t^4 + 3t^2 - t + 8" /></>}
+  description={<>Palang bagi <InlineMath math="p(t)" /> untuk <InlineMath math="t = -2, -1, 0, 1, 2" />: <InlineMath math="-10" />, <InlineMath math="10" />, <InlineMath math="8" />, <InlineMath math="8" /> dan <InlineMath math="-14" />.</>}
+  yAxisLabel="p(t)"
+  data={[-2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: -2 * x ** 4 + 3 * x ** 2 - x + 8 }))}
+  chartConfig={{ value: { label: "p(t)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

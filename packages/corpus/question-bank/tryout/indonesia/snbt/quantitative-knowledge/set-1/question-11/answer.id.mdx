@@ -1,23 +1,44 @@
-Dua tali busur yang berpotongan di dalam lingkaran memenuhi **teorema tali busur berpotongan**: hasil kali kedua bagian pada satu tali busur sama dengan hasil kali kedua bagian pada tali busur lain.
+Kamu perlu menjumlahkan hanya suku-suku yang habis dibagi <InlineMath math="3" />. Rencananya: tentukan suku pertama dan beda dari dua syarat soal, cari **pola letak suku yang habis dibagi <InlineMath math="3" />**, hitung berapa banyak suku itu di antara <InlineMath math="50" /> suku, lalu jumlahkan.
 
-<BlockMath math="AE\cdot EB=CE\cdot ED" />
+# Menentukan suku pertama dan beda
 
-# Mengapa hasil kalinya sama
-
-Segitiga <InlineMath math="AEC" /> dan <InlineMath math="DEB" /> sebangun. Sudut <InlineMath math="AEC" /> dan <InlineMath math="DEB" /> bertolak belakang, sedangkan sudut <InlineMath math="CAB" /> dan <InlineMath math="CDB" /> menghadap busur <InlineMath math="CB" /> yang sama. Dari kesebangunan, <InlineMath math="\frac{AE}{DE}=\frac{CE}{BE}" />, yang **setara dengan <InlineMath math="AE\cdot EB=CE\cdot ED" />**.
-
-# Menghitung panjang CD
-
-Tulis <InlineMath math="CE=3k" /> dan <InlineMath math="ED=2k" /> sesuai perbandingan <InlineMath math="3:2" />.
+Misalkan suku pertamanya <InlineMath math="a" /> dan bedanya <InlineMath math="b" />, sehingga suku ke-<InlineMath math="n" /> adalah <InlineMath math="u_n=a+(n-1)b" />. Jumlah <InlineMath math="10" /> suku pertama ditulis <InlineMath math="S_{10}" />. Kedua syarat soal memberi **dua persamaan**.
 
 <BlockMath math="\begin{aligned}
-8\cdot3&=3k\cdot2k\\
-24&=6k^2\\
-k&=2
+S_{10}=\frac{10}{2}(2a+9b)=250\quad&\Rightarrow\quad 2a+9b=50\\
+a+7b=5a\quad&\Rightarrow\quad 7b=4a
 \end{aligned}" />
 
-Jadi <InlineMath math="CE=6" />, <InlineMath math="ED=4" />, dan <InlineMath math="CD=6+4=10\text{ cm}" />. **Cek hasil kalinya**: <InlineMath math="6\cdot4=24=8\cdot3" />.
+Dari persamaan kedua, <InlineMath math="a=\frac{7b}{4}" />. Substitusi ke persamaan pertama.
 
-Nilai 6 dan 4 adalah bagian <InlineMath math="CE" /> dan <InlineMath math="ED" /> saja. Nilai 5 berhenti di <InlineMath math="5k" /> dengan <InlineMath math="k=1" />, tanpa memakai teorema. Nilai 11 menganggap kedua tali busur sama panjang, padahal <InlineMath math="AB=11" /> dan <InlineMath math="CD" /> tidak harus sama dengannya.
+<BlockMath math="\begin{aligned}
+\frac{7b}{2}+9b&=50\\
+\frac{25b}{2}&=50\\
+b&=4,\qquad a=7
+\end{aligned}" />
 
-Jadi, panjang tali busur <InlineMath math="CD" /> adalah **<InlineMath math="10\text{ cm}" />**.
+Jadi <InlineMath math="u_n=7+4(n-1)=4n+3" />.
+
+# Mencari suku yang habis dibagi tiga
+
+Tulis <InlineMath math="4n+3=3(n+1)+n" />. Bagian <InlineMath math="3(n+1)" /> selalu habis dibagi <InlineMath math="3" />, jadi **<InlineMath math="4n+3" /> habis dibagi <InlineMath math="3" /> tepat ketika <InlineMath math="n" /> habis dibagi <InlineMath math="3" />**. Suku yang dicari adalah suku ke-<InlineMath math="3" />, ke-<InlineMath math="6" />, dan seterusnya sampai ke-<InlineMath math="48" />, karena <InlineMath math="51" /> sudah melewati <InlineMath math="50" />.
+
+<BlockMath math="\text{banyak suku}=\frac{48-3}{3}+1=16" />
+
+Suku-suku itu dimulai dari <InlineMath math="u_3=15" />, diakhiri <InlineMath math="u_{48}=195" />, dan membentuk barisan aritmetika baru dengan beda <InlineMath math="3\cdot4=12" />.
+
+# Menjumlahkan suku terpilih
+
+Jumlah barisan aritmetika adalah **banyak suku dikali rata-rata suku pertama dan terakhir**.
+
+<BlockMath math="\frac{16}{2}(15+195)=8\cdot210=1{.}680" />
+
+# Memeriksa hasil
+
+Beberapa suku pertama barisan itu adalah <InlineMath math="7, 11, 15, 19, 23, 27, \ldots" />. Kelipatan <InlineMath math="3" /> muncul di setiap suku ketiga, yaitu <InlineMath math="15" /> dan <InlineMath math="27" />, dengan selisih <InlineMath math="12" />. Syarat soal juga terpenuhi: <InlineMath math="u_8=35=5\cdot7" />, dan <InlineMath math="S_{10}=5(7+43)=250" />. Suku terakhir <InlineMath math="u_{50}=203" /> **tidak habis dibagi <InlineMath math="3" />**, jadi suku terpilih terakhir memang <InlineMath math="195" />.
+
+# Pilihan yang keliru
+
+Pilihan <InlineMath math="720" /> muncul jika suku terpilih dianggap berbeda <InlineMath math="4" />, padahal bedanya <InlineMath math="12" />. Pilihan <InlineMath math="1{.}485" /> muncul jika banyak suku dihitung <InlineMath math="15" />, yaitu **lupa menambahkan <InlineMath math="1" />** saat menghitung dari ke-<InlineMath math="3" /> sampai ke-<InlineMath math="48" />. Pilihan <InlineMath math="1{.}632" /> muncul jika jumlahnya dihitung sebagai <InlineMath math="4(3+6+\cdots+48)" /> dari rumus <InlineMath math="4n+3" />, tetapi tambahan <InlineMath math="3" /> pada setiap suku terlupa, yaitu <InlineMath math="16\cdot3=48" />. Pilihan <InlineMath math="1{.}887" /> muncul jika <InlineMath math="17" /> suku dijumlahkan, termasuk <InlineMath math="u_{51}=207" /> yang tidak ada di barisan.
+
+Jadi, jumlah semua suku yang habis dibagi <InlineMath math="3" /> adalah <InlineMath math="1{.}680" />.

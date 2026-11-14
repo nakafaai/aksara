@@ -2,31 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "recount",
-    topic: "outline",
+    cognitiveLevel: "inferential",
+    contentDomain: "analytical-exposition",
+    topic: "comparison",
   },
-  stimulus: "accessible-fair",
+  stimulus: "meadow",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "Signs were lowered.",
-        },
-        {
           correct: false,
-          label:
-            "Every display was moved out of the experiment room after the test walk.",
+          label: "I only",
         },
         {
           correct: true,
-          label: "Pale text was replaced with darker lettering.",
+          label: "I and IV only",
         },
         {
           correct: false,
-          label: "The portable ramp was permanently removed.",
+          label: "I, II, and IV only",
+        },
+        {
+          correct: false,
+          label: "III and IV only",
+        },
+        {
+          correct: false,
+          label: "I, III, and IV only",
         },
       ],
     },

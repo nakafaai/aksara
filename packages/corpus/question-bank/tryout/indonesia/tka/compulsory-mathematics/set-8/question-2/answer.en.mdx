@@ -1,16 +1,41 @@
-Work backwards. The money received is <InlineMath math="98\,\%" /> of the gross pay, so **first get back to the gross pay**, then separate regular and overtime pay.
+# Two possible totals after the promo
+
+This question runs backwards: from a bill of <InlineMath math="\text{Rp}380{,}000" />, find every possible number of bottles. A member's bill depends on the total after the promo, call it <InlineMath math="T" />. **A bill below <InlineMath math="\text{Rp}400{,}000" /> doesn't have to mean there was no discount**, so check both cases.
 
 <BlockMath math="\begin{aligned}
-\text{gross pay}&=\frac{1{,}347{,}500}{0.98}=1{,}375{,}000 \\
-\text{overtime pay}&=1{,}375{,}000-40\cdot25{,}000=375{,}000 \\
-\text{overtime hours}&=\frac{375{,}000}{37{,}500}=10
+\text{no discount}&:\quad T=380{,}000 \quad (T<400{,}000,\ \text{fits}) \\
+\text{discount}&:\quad 0.95\,T=380{,}000 \Rightarrow T=400{,}000 \quad (T\ge400{,}000,\ \text{fits})
 \end{aligned}" />
 
-The gross pay is above <InlineMath math="\text{Rp}1{,}000{,}000" />, so Andi did work more than <InlineMath math="40" /> hours. In total that is <InlineMath math="40+10=50" /> hours. Check: <InlineMath math="0.98\cdot(1{,}000{,}000+10\cdot37{,}500)=1{,}347{,}500" />.
+Both cases agree with the rules. So there are two possible totals after the promo: <InlineMath math="\text{Rp}380{,}000" /> and <InlineMath math="\text{Rp}400{,}000" />.
 
-So Andi worked <InlineMath math="50" /> hours that week.
+# Are there cartons in the basket
 
-- <InlineMath math="10" /> hours is only the overtime.
-- <InlineMath math="49" /> hours forgets to undo the deduction, so the overtime pay is taken as <InlineMath math="\text{Rp}347{,}500" /> and rounded down to <InlineMath math="9" /> hours.
-- <InlineMath math="54" /> hours divides the money received by <InlineMath math="\text{Rp}25{,}000" />, ignoring the deduction and the overtime rate.
-- <InlineMath math="55" /> hours divides the gross pay by <InlineMath math="\text{Rp}25{,}000" />, as if there were no overtime rate.
+Loose bottles always add a multiple of <InlineMath math="\text{Rp}20{,}000" />. With <InlineMath math="d" /> cartons, the rest <InlineMath math="T-168{,}000d" /> must be divisible by <InlineMath math="20{,}000" />.
+
+<BlockMath math="\begin{aligned}
+T=380{,}000&:\quad 380{,}000-168{,}000=212{,}000,\quad 380{,}000-336{,}000=44{,}000 \\
+T=400{,}000&:\quad 400{,}000-168{,}000=232{,}000,\quad 400{,}000-336{,}000=64{,}000
+\end{aligned}" />
+
+None of these is divisible by <InlineMath math="20{,}000" />, and <InlineMath math="3" /> cartons alone already cost <InlineMath math="\text{Rp}504{,}000" />. **The basket can only hold loose bottles**. The number of paid bottles is <InlineMath math="19" /> in the first case and <InlineMath math="20" /> in the second.
+
+# From paid bottles to bottles taken home
+
+If you take <InlineMath math="4k+s" /> loose bottles with a remainder <InlineMath math="s" /> from <InlineMath math="0" /> to <InlineMath math="3" />, you pay for <InlineMath math="3k+s" /> bottles. **Write each paid count in that form**.
+
+<BlockMath math="\begin{aligned}
+19&=3(6)+1 \Rightarrow \text{taken home } 4(6)+1=25 \\
+20&=3(6)+2 \Rightarrow \text{taken home } 4(6)+2=26
+\end{aligned}" />
+
+Check: <InlineMath math="25" /> bottles make <InlineMath math="6" /> complete groups with <InlineMath math="1" /> left over, so you pay <InlineMath math="18+1=19" />. <InlineMath math="26" /> bottles make <InlineMath math="6" /> complete groups with <InlineMath math="2" /> left over, so you pay <InlineMath math="18+2=20" />. A <InlineMath math="27" />th bottle would push the payment to <InlineMath math="21" /> bottles.
+
+So the member could have taken home <InlineMath math="25" /> or <InlineMath math="26" /> bottles.
+
+# Why the other options are wrong
+
+- <InlineMath math="25" /> bottles only comes from assuming a bill below <InlineMath math="\text{Rp}400{,}000" /> means no discount. The discount rule is checked on the total after the promo, not on the bill.
+- <InlineMath math="26" /> bottles only comes from undoing the discount and forgetting that a total of <InlineMath math="\text{Rp}380{,}000" /> with no discount is also possible.
+- <InlineMath math="19" /> or <InlineMath math="20" /> bottles comes from **forgetting the buy 3 get 1 promo** and paying for every bottle.
+- <InlineMath math="26" /> or <InlineMath math="27" /> bottles comes from applying the promo proportionally, paying <InlineMath math="\tfrac{3}{4}" /> of the bottles rounded down. The promo only works on complete groups of <InlineMath math="4" /> bottles.

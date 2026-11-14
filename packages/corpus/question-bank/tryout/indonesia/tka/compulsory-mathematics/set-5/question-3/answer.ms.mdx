@@ -1,0 +1,48 @@
+# Kos paling murah bagi setiap keperluan
+
+Ketiga-tiga pernyataan melibatkan semua bilangan helaian yang mungkin, jadi satu contoh tidak memadai. Bina gambaran penuh dahulu. Kos menempah **tepat** <InlineMath math="n" /> helai ialah <InlineMath math="500n" /> bagi <InlineMath math="n\le199" />, <InlineMath math="400n" /> bagi <InlineMath math="200\le n\le499" />, dan <InlineMath math="300n" /> bagi <InlineMath math="n\ge500" />.
+
+Helaian kosong hanya membantu jika ia menaikkan tempahan ke sempadan peringkat harga, iaitu <InlineMath math="200" /> atau <InlineMath math="500" /> helai. Melepasi sempadan itu cuma menambah helaian pada harga yang sama. Jadi kamu hanya perlu dua nombor ini:
+
+<BlockMath math="\begin{aligned}
+\text{kos }200\text{ helai}&=200\cdot400=80{,}000 \\
+\text{kos }500\text{ helai}&=500\cdot300=150{,}000
+\end{aligned}" />
+
+Menambah hingga <InlineMath math="200" /> helai lebih murah apabila <InlineMath math="500n>80{,}000" />, iaitu <InlineMath math="n>160" />. Menambah hingga <InlineMath math="500" /> helai lebih murah apabila <InlineMath math="400n>150{,}000" />, iaitu <InlineMath math="n>375" />. Bagi <InlineMath math="n\le199" />, menempah <InlineMath math="500" /> helai tidak pernah membantu kerana <InlineMath math="150{,}000" /> lebih besar daripada <InlineMath math="500\cdot199=99{,}500" />. Hasilnya:
+
+| Keperluan <InlineMath math="n" /> | Cara paling murah | Kos paling murah |
+| --- | --- | --- |
+| <InlineMath math="1" /> hingga <InlineMath math="160" /> | tepat <InlineMath math="n" /> helai | <InlineMath math="500n" /> |
+| <InlineMath math="161" /> hingga <InlineMath math="199" /> | <InlineMath math="200" /> helai | <InlineMath math="80{,}000" /> |
+| <InlineMath math="200" /> hingga <InlineMath math="375" /> | tepat <InlineMath math="n" /> helai | <InlineMath math="400n" /> |
+| <InlineMath math="376" /> hingga <InlineMath math="499" /> | <InlineMath math="500" /> helai | <InlineMath math="150{,}000" /> |
+
+Perhatikan <InlineMath math="n=160" /> dan <InlineMath math="n=375" />: pada dua nilai itu kos dengan helaian tambahan **betul-betul sama**, bukan lebih murah.
+
+# Pernyataan pertama
+
+Tempahan gabungan mempunyai lebih banyak helaian, jadi harga sehelainya tidak pernah lebih tinggi daripada harga mana-mana tempahan asal. Maksudnya, menggabungkan tempahan tidak pernah lebih mahal. Tetapi frasa **pasti lebih murah** gagal apabila gabungan itu masih dalam peringkat harga yang sama. Contohnya tempahan <InlineMath math="100" /> helai dan <InlineMath math="50" /> helai:
+
+<BlockMath math="\begin{aligned}
+\text{berasingan}&=100\cdot500+50\cdot500=75{,}000 \\
+\text{digabung}&=150\cdot500=75{,}000
+\end{aligned}" />
+
+Kosnya sama, jadi pernyataan ini **Salah**.
+
+# Pernyataan kedua
+
+Daripada jadual, helaian tambahan menjadikan kos **lebih kecil** tepat bagi <InlineMath math="n=161" /> hingga <InlineMath math="199" /> dan <InlineMath math="n=376" /> hingga <InlineMath math="499" />:
+
+<BlockMath math="(199-161+1)+(499-376+1)=39+124=163" />
+
+Jika kamu turut mengira <InlineMath math="n=160" /> dan <InlineMath math="n=375" />, kamu dapat <InlineMath math="165" />, sedangkan pada dua nilai itu kosnya cuma sama. Jika kamu terlupa sempadan <InlineMath math="200" /> helai, kamu dapat <InlineMath math="124" />. Bilangannya tepat <InlineMath math="163" />, jadi pernyataan ini **Betul**.
+
+# Pernyataan ketiga
+
+Cari kos paling murah yang paling besar dalam setiap baris jadual. Baris pertama paling besar <InlineMath math="500\cdot160=80{,}000" />, baris kedua <InlineMath math="80{,}000" />, baris ketiga paling besar <InlineMath math="400\cdot375=150{,}000" />, dan baris keempat <InlineMath math="150{,}000" />. Jadi **kos paling murah tidak pernah melebihi <InlineMath math="\text{Rp}150{,}000" />**.
+
+Kos menempah tepat <InlineMath math="499" /> helai memang <InlineMath math="499\cdot400=199{,}600" />, tetapi itu bukan kos paling murah kerana <InlineMath math="500" /> helai hanya <InlineMath math="150{,}000" />. Pernyataan ini **Betul**.
+
+Jadi, jawapannya ialah Salah, Betul, Betul.

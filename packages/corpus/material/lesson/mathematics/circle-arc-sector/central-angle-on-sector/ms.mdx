@@ -1,0 +1,267 @@
+
+export const metadata = {
+  title: "Sudut Pusat bagi Sektor",
+  description: "Sudut pusat menentukan berapa bahagian bulatan yang diambil oleh sektor. Cari sudut itu daripada luas sektor, panjang lengkok atau data carta pai.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Lengkok dan Sektor Bulatan",
+};
+
+## Sudut Pusat Menentukan Bahagian Sektor
+
+Sudut pusat sektor ialah sudut di pusat bulatan yang dibentuk oleh **dua jejari yang membatasi sektor itu**. Sudut ini menentukan berapa bahagian bulatan yang diambil oleh sektor: sektor dengan sudut pusat <InlineMath math="\alpha" /> mengambil <InlineMath math="\frac{\alpha}{360^\circ}" /> daripada luas bulatan dan juga daripada lilitannya. Kalau kamu tahu luas sektor atau panjang lengkok, kamu boleh kira balik sudut pusatnya:
+
+<MathContainer>
+  <BlockMath math="\alpha = \frac{A}{\pi r^2} \times 360^\circ" />
+  <BlockMath math="\alpha = \frac{s}{2\pi r} \times 360^\circ" />
+</MathContainer>
+
+Dalam kedua-dua rumus, <InlineMath math="A" /> ialah luas sektor, <InlineMath math="s" /> ialah panjang lengkok dan <InlineMath math="r" /> ialah jejari. Gambar rajah sektor di bawah ada jejari <InlineMath math="4" />, dan lengannya <InlineMath math="OA" /> dan <InlineMath math="OB" /> membentuk sudut pusat <InlineMath math="\alpha = 120^\circ" />.
+
+<MathVisual
+  title={<>Sudut Pusat yang Membentuk Sektor</>}
+  description={<>Jejari <InlineMath math="OA" /> dan <InlineMath math="OB" /> membentuk sudut pusat <InlineMath math="\alpha = 120^\circ" />, jadi sektor itu mengambil satu pertiga daripada bulatan.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <>Lengkok</>,
+    "l5": <InlineMath math="\alpha" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((((t / 2) / 100) * 2) * pi)))", y: "(4 * sin(((((t / 2) / 100) * 2) * pi)))", parameter: { min: 0, max: 200 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(Math.PI / 6), y: 2 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(5 * Math.PI / 6), y: 2 }], appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(4 * cos(((pi / 6) + (((t / 5) / 40) * ((2 * pi) / 3)))))", y: "(4 * sin(((pi / 6) + (((t / 5) / 40) * ((2 * pi) / 3)))))", parameter: { min: 0, max: 200 }, appearance: "answer" },
+      { id: "s5", kind: "parametric", x: "(1.5 * cos(((pi / 6) + (((t / 10) / 20) * ((2 * pi) / 3)))))", y: "(1.5 * sin(((pi / 6) + (((t / 10) / 20) * ((2 * pi) / 3)))))", parameter: { min: 0, max: 200 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 3.46, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -3.46, y: 2 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: 4 }, placement: "above-left" },
+      { key: "l5", objectId: "s5", at: { x: 0, y: 1.5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Sudut <InlineMath math="120^\circ" /> ialah satu pertiga daripada satu pusingan lengkap, jadi sektor itu mengambil satu pertiga daripada luas bulatan. Luasnya ialah <InlineMath math="\frac{1}{3} \times \pi \times 4^2 = \frac{16\pi}{3}" />, dan panjang lengkoknya ialah <InlineMath math="\frac{1}{3} \times 8\pi = \frac{8\pi}{3}" />.
+
+## Sektor dengan Sudut Berbeza pada Satu Bulatan
+
+Pada bulatan yang sama, luas sektor **berkadar terus dengan sudut pusatnya**. Sudut yang dua kali lebih besar memberikan sektor yang dua kali lebih besar. Gambar rajah sektor bersebelahan meletakkan sektor <InlineMath math="45^\circ" />, <InlineMath math="90^\circ" /> dan <InlineMath math="135^\circ" /> pada satu bulatan.
+
+<MathVisual
+  title={<>Sektor Bersebelahan pada Satu Bulatan</>}
+  description={<>Sektor <InlineMath math="45^\circ" />, <InlineMath math="90^\circ" /> dan <InlineMath math="135^\circ" /> ada jejari yang sama, jadi nisbah luasnya ialah <InlineMath math="1:2:3" />.</>}
+  labels={{
+    "l1": <InlineMath math="45^\circ" />,
+    "l2": <InlineMath math="90^\circ" />,
+    "l3": <InlineMath math="135^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 3.5, appearance: "primary" },
+      { id: "s2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3.5, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2.47, y: 2.47 }, appearance: "secondary" },
+      { id: "s4", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2.47, y: 2.47 }, appearance: "secondary" },
+      { id: "s5", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: -3.5 }, appearance: "secondary" },
+      { id: "s6", kind: "arc", center: { x: 0, y: 0 }, radius: 3.5, startDegrees: 0, sweepDegrees: 45, appearance: "answer" },
+      { id: "s7", kind: "arc", center: { x: 0, y: 0 }, radius: 3.5, startDegrees: 45, sweepDegrees: 90, appearance: "highlight" },
+      { id: "s8", kind: "arc", center: { x: 0, y: 0 }, radius: 3.5, startDegrees: 135, sweepDegrees: 135, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s6", at: { x: 3.23, y: 1.34 }, placement: "above-right" },
+      { key: "l2", objectId: "s7", at: { x: 0, y: 3.5 }, placement: "above" },
+      { key: "l3", objectId: "s8", at: { x: -3.23, y: -1.34 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Setiap sektor dalam gambar rajah mengambil bahagian bulatan yang berbeza. Kalau setiap luas ditulis sebagai gandaan <InlineMath math="\frac{\pi r^2}{8}" />, perbandingannya terus nampak.
+
+| Sudut pusat | Bahagian bulatan | Luas sektor |
+| --- | --- | --- |
+| <InlineMath math="45^\circ" /> | <InlineMath math="\frac{45}{360}=\frac{1}{8}" /> | <InlineMath math="1 \times \frac{\pi r^2}{8}" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="\frac{90}{360}=\frac{2}{8}" /> | <InlineMath math="2 \times \frac{\pi r^2}{8}" /> |
+| <InlineMath math="135^\circ" /> | <InlineMath math="\frac{135}{360}=\frac{3}{8}" /> | <InlineMath math="3 \times \frac{\pi r^2}{8}" /> |
+
+Dua sektor bersebelahan yang tidak bertindih boleh digabungkan dengan menambah sudutnya. Sektor <InlineMath math="45^\circ" /> dan <InlineMath math="90^\circ" /> bersama-sama membentuk sektor <InlineMath math="135^\circ" />, dan luasnya juga boleh ditambah:
+
+<BlockMath math="\frac{45^\circ}{360^\circ}\pi r^2+\frac{90^\circ}{360^\circ}\pi r^2=\frac{135^\circ}{360^\circ}\pi r^2" />
+
+## Mencari Sudut Pusat daripada Luas atau Lengkok
+
+Rumus sudut pusat ialah rumus luas sektor dan rumus panjang lengkok yang **disusun semula**. Kamu tulis bahagian bulatan dua kali, sekali daripada luas dan sekali daripada lengkok, kemudian darab dengan <InlineMath math="360^\circ" />. Gambar rajah parameter menunjukkan sektor berjejari <InlineMath math="4" /> dengan lengkok <InlineMath math="s" /> dan sudut pusat <InlineMath math="72^\circ" />.
+
+<MathVisual
+  title={<>Parameter Sektor</>}
+  description={<>Sektor berjejari <InlineMath math="r = 4" /> dengan sudut pusat <InlineMath math="72^\circ" /> ada lengkok <InlineMath math="s = \frac{8\pi}{5}" />.</>}
+  labels={{
+    "l1": <InlineMath math="r" />,
+    "l2": <InlineMath math="s" />,
+    "l3": <InlineMath math="72^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((((t / 2) / 100) * 2) * pi)))", y: "(4 * sin(((((t / 2) / 100) * 2) * pi)))", parameter: { min: 0, max: 200 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(2 * Math.PI / 5), y: 4 * Math.sin(2 * Math.PI / 5) }], appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(4 * cos((((t / 8) / 28) * ((2 * pi) / 5))))", y: "(4 * sin((((t / 8) / 28) * ((2 * pi) / 5))))", parameter: { min: 0, max: 224 }, appearance: "answer" },
+      { id: "s5", kind: "parametric", x: "(1.5 * cos((((t / 21) / 14) * ((2 * pi) / 5))))", y: "(1.5 * sin((((t / 21) / 14) * ((2 * pi) / 5))))", parameter: { min: 0, max: 294 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 3.24, y: 2.35 }, placement: "above-right" },
+      { key: "l3", objectId: "s5", at: { x: 1.21, y: 0.88 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Katakan kita tahu luas sektor itu ialah <InlineMath math="\frac{16\pi}{5}" /> unit persegi. Bahagian bulatannya ialah luas sektor dibahagi dengan luas bulatan:
+
+<BlockMath math="\alpha = \frac{16\pi/5}{\pi \times 4^2} \times 360^\circ = \frac{1}{5} \times 360^\circ = 72^\circ" />
+
+Lengkok sektor yang sama panjangnya <InlineMath math="\frac{8\pi}{5}" /> unit. Rumus lengkok memberikan sudut yang sama, jadi kedua-dua cara ini saling menyemak:
+
+<BlockMath math="\alpha = \frac{8\pi/5}{2\pi \times 4} \times 360^\circ = \frac{1}{5} \times 360^\circ = 72^\circ" />
+
+## Sudut Pusat dalam Radian
+
+Sudut pusat juga boleh diberi dalam radian. Satu pusingan lengkap ialah <InlineMath math="2\pi" /> radian, jadi **bahagian bulatan** ialah <InlineMath math="\frac{\theta}{2\pi}" /> untuk sudut <InlineMath math="\theta" /> radian. Rumus lengkok dan rumus luas menjadi lebih pendek:
+
+<MathContainer>
+  <BlockMath math="s = r\theta" />
+  <BlockMath math="A = \frac{1}{2}\theta r^2" />
+</MathContainer>
+
+Sektor <InlineMath math="72^\circ" /> dalam gambar rajah parameter ialah <InlineMath math="\theta = \frac{72}{180}\pi = \frac{2\pi}{5}" /> radian. Rumus radian memberikan hasil yang sama dengan rumus darjah:
+
+<MathContainer>
+  <BlockMath math="s = 4 \times \frac{2\pi}{5} = \frac{8\pi}{5}" />
+  <BlockMath math="A = \frac{1}{2} \times \frac{2\pi}{5} \times 4^2 = \frac{16\pi}{5}" />
+</MathContainer>
+
+Guna rumus radian hanya apabila sudutnya memang dalam radian. Kalau <InlineMath math="72" /> terus dimasukkan ke dalam <InlineMath math="s = r\theta" />, panjang lengkok yang terhasil ialah <InlineMath math="288" />, jauh lebih panjang daripada seluruh lilitan.
+
+## Membahagikan Bulatan kepada Sektor yang Sama Besar
+
+Apabila bulatan dibahagikan kepada <InlineMath math="n" /> sektor yang sama besar, setiap sektor ada sudut pusat yang sama, iaitu **satu pusingan lengkap dibahagi dengan** <InlineMath math="n" />:
+
+<BlockMath math="\alpha = \frac{360^\circ}{n}" />
+
+Kek bulat yang dipotong kepada <InlineMath math="6" /> potongan yang sama besar memberikan <InlineMath math="\frac{360^\circ}{6} = 60^\circ" /> bagi setiap potongan. Gambar rajah pengukuran menunjukkan satu sektor <InlineMath math="60^\circ" /> seperti itu.
+
+<MathVisual
+  title={<>Mengukur Sudut Pusat</>}
+  description={<>Dua jejari itu membatasi sudut pusat <InlineMath math="60^\circ" />, iaitu satu perenam daripada satu pusingan lengkap.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <>Lengkok</>,
+    "l3": <InlineMath math="60^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((((t / 2) / 100) * 2) * pi)))", y: "(3 * sin(((((t / 2) / 100) * 2) * pi)))", parameter: { min: 0, max: 200 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1.5, y: 3 * Math.sin(Math.PI / 3) }], appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(3 * cos((((t / 10) / 20) * (pi / 3))))", y: "(3 * sin((((t / 10) / 20) * (pi / 3))))", parameter: { min: 0, max: 200 }, appearance: "answer" },
+      { id: "s5", kind: "parametric", x: "(1.2 * cos((((t / 20) / 10) * (pi / 3))))", y: "(1.2 * sin((((t / 20) / 10) * (pi / 3))))", parameter: { min: 0, max: 200 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 2.6, y: 1.5 }, placement: "above-right" },
+      { key: "l3", objectId: "s5", at: { x: 1.04, y: 0.6 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Untuk mengukur sudut pusat dengan protraktor, letakkan pusat protraktor tepat pada pusat bulatan dan garis dasarnya di sepanjang satu jejari. Bacaan pada jejari kedua ialah sudut pusat itu. Dalam gambar rajah, bacaannya ialah <InlineMath math="60^\circ" />, sama dengan <InlineMath math="360^\circ" /> dibahagi dengan <InlineMath math="6" />.
+
+## Contoh Jalan Kerja bagi Sudut Pusat Sektor
+
+Setiap contoh bermula dengan **menulis bahagian bulatan** sebagai pecahan. Selepas kamu dapat pecahan itu, darabkan dengan <InlineMath math="360^\circ" />.
+
+**Contoh 1**. Satu sektor bulatan berjejari <InlineMath math="6\text{ cm}" /> ada luas <InlineMath math="6\pi\text{ cm}^2" />. Cari sudut pusatnya.
+
+<BlockMath math="\alpha = \frac{6\pi}{\pi \times 6^2} \times 360^\circ = \frac{1}{6} \times 360^\circ = 60^\circ" />
+
+Semak dengan rumus luas: <InlineMath math="\frac{60}{360} \times 36\pi = 6\pi" />.
+
+**Contoh 2**. Lengkok satu sektor panjangnya <InlineMath math="5\pi\text{ cm}" /> pada bulatan berjejari <InlineMath math="10\text{ cm}" />. Cari sudut pusatnya.
+
+<BlockMath math="\alpha = \frac{5\pi}{2\pi \times 10} \times 360^\circ = \frac{1}{4} \times 360^\circ = 90^\circ" />
+
+Semak: lengkok <InlineMath math="90^\circ" /> ialah suku daripada lilitan <InlineMath math="20\pi" />, iaitu <InlineMath math="5\pi" />.
+
+**Contoh 3**. Dalam satu tinjauan terhadap <InlineMath math="120" /> murid, <InlineMath math="54" /> orang memilih bola sepak. Hasilnya dilukis sebagai carta pai. Cari sudut pusat bagi sektor bola sepak.
+
+Carta pai berfungsi dengan cara yang sama: bahagian sesuatu sektor ialah bilangan murid yang memilihnya dibahagi dengan jumlah murid.
+
+<BlockMath math="\alpha = \frac{54}{120} \times 360^\circ = 0.45 \times 360^\circ = 162^\circ" />
+
+Semak dengan bahagian carta yang lain. Baki <InlineMath math="66" /> murid mengambil <InlineMath math="\frac{66}{120} \times 360^\circ = 198^\circ" />, dan <InlineMath math="162^\circ + 198^\circ = 360^\circ" />.
+
+## Kesilapan Lazim
+
+Sebelum kamu mengira, pastikan **unit sudut dan jejari** betul.
+
+| Kesilapan | Mengapa salah | Cara menyemak |
+| --- | --- | --- |
+| Menggunakan diameter sebagai jejari | Luas bulatan menggunakan <InlineMath math="r^2" />, jadi luasnya menjadi empat kali lebih besar daripada sepatutnya | Bahagi dua diameter dahulu |
+| Memasukkan darjah ke dalam rumus radian | <InlineMath math="s = r\theta" /> dan <InlineMath math="A = \frac{1}{2}\theta r^2" /> hanya sah dalam radian | Lengkok tidak boleh lebih panjang daripada lilitan |
+| Membahagikan luas sektor dengan lilitan | Bandingkan luas dengan luas, dan lengkok dengan lilitan | Bahagian bulatan mesti terletak di antara <InlineMath math="0" /> dan <InlineMath math="1" /> |
+| Terlupa mendarab pecahan dengan <InlineMath math="360^\circ" /> | Pecahan itu hanya bahagian bulatan, belum lagi sudut | Sudut pusat sektor terletak di antara <InlineMath math="0^\circ" /> dan <InlineMath math="360^\circ" /> |
+
+Kesilapan diameter boleh dikesan apabila sudut yang kamu dapat empat kali lebih kecil daripada sepatutnya. Kalau kamu dapat <InlineMath math="15^\circ" /> untuk sektor yang nampak seperti satu perenam bulatan, maksudnya diameter telah digunakan sebagai jejari.
+
+## Latihan Sudut Pusat Sektor
+
+Untuk setiap soalan, tulis dahulu **bahagian bulatan** sebagai pecahan. Soalan 4 menggunakan radian.
+
+1. Satu bulatan dibahagikan kepada <InlineMath math="9" /> sektor yang sama besar. Cari sudut pusat bagi setiap sektor.
+
+2. Satu sektor bulatan berjejari <InlineMath math="12\text{ cm}" /> ada luas <InlineMath math="36\pi\text{ cm}^2" />. Cari sudut pusatnya.
+
+3. Satu bulatan berdiameter <InlineMath math="28\text{ cm}" /> ada lengkok sepanjang <InlineMath math="22\text{ cm}" />. Dengan menggunakan <InlineMath math="\pi = \frac{22}{7}" />, cari sudut pusat bagi lengkok itu.
+
+4. Satu sektor berjejari <InlineMath math="5\text{ cm}" /> ada lengkok sepanjang <InlineMath math="4\text{ cm}" />. Cari sudut pusatnya dalam radian dan luas sektor itu.
+
+### Jawapan
+
+**Soalan 1**. Satu pusingan lengkap dikongsi sama rata oleh <InlineMath math="9" /> sektor, jadi **setiap sudut pusat** ialah <InlineMath math="\frac{360^\circ}{9} = 40^\circ" />. Semak: <InlineMath math="9 \times 40^\circ = 360^\circ" />.
+
+**Soalan 2**. Bahagian bulatan ialah luas sektor dibahagi dengan **luas bulatan** <InlineMath math="\pi \times 12^2 = 144\pi" />:
+
+<BlockMath math="\alpha = \frac{36\pi}{144\pi} \times 360^\circ = \frac{1}{4} \times 360^\circ = 90^\circ" />
+
+Semak: <InlineMath math="\frac{90}{360} \times 144\pi = 36\pi" />.
+
+**Soalan 3**. Jejarinya ialah **setengah daripada diameter**, iaitu <InlineMath math="14\text{ cm}" />, jadi lilitannya ialah <InlineMath math="2 \times \frac{22}{7} \times 14 = 88\text{ cm}" />:
+
+<BlockMath math="\alpha = \frac{22}{88} \times 360^\circ = \frac{1}{4} \times 360^\circ = 90^\circ" />
+
+Semak: suku daripada <InlineMath math="88\text{ cm}" /> ialah <InlineMath math="22\text{ cm}" />.
+
+**Soalan 4**. Dalam radian, <InlineMath math="s = r\theta" />, jadi **sudut ialah lengkok dibahagi dengan jejari**:
+
+<MathContainer>
+  <BlockMath math="\theta = \frac{s}{r} = \frac{4}{5} = 0.8\text{ radian}" />
+  <BlockMath math="A = \frac{1}{2} \times 0.8 \times 5^2 = 10\text{ cm}^2" />
+</MathContainer>
+
+Semak dengan hubungan <InlineMath math="A = \frac{1}{2} s r = \frac{1}{2} \times 4 \times 5 = 10" />. Dalam darjah, sudut itu lebih kurang <InlineMath math="0.8 \times \frac{180^\circ}{\pi} \approx 45.8^\circ" />.

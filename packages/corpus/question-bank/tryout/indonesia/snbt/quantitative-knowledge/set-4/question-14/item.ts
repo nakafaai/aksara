@@ -3,23 +3,15 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
-        { column: 1, label: "Volume tabung adalah $$72\\pi\\text{ cm}^3$$." },
+      kind: "choice",
+      options: [
+        { correct: true, label: "$$P>Q$$" },
+        { correct: false, label: "$$Q>P$$" },
+        { correct: false, label: "$$P=Q$$" },
         {
-          column: 1,
+          correct: false,
           label:
-            "Jarak terjauh antara dua titik pada tabung adalah $$10\\text{ cm}$$.",
-        },
-        {
-          column: 2,
-          label: "Luas selimut tabung adalah $$24\\pi\\text{ cm}^2$$.",
-        },
-        {
-          column: 2,
-          label:
-            "Jika tingginya dijadikan dua kali semula dan jari-jarinya tetap, volume tabung menjadi empat kali semula.",
+            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
         },
       ],
     },

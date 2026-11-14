@@ -1,25 +1,52 @@
-Beide Seiten zu quadrieren ist nur sicher, wenn **keine Seite negativ ist**. Bestimme deshalb zuerst, wann die Ungleichung sinnvoll ist, und quadriere erst danach.
+Du suchst alle ganzen Zahlen <InlineMath math="m" />, für die <InlineMath math="f(x)=x^2-2mx+m+6" /> positiv bleibt, aber **nur für <InlineMath math="x\ge0" /> und nicht für alle reellen Zahlen**. Eine negative Diskriminante ist also nicht der einzige Weg. Der Plan: Bestimm die Lage des Scheitels, trenn zwei Fälle und prüf dann die Ränder.
 
-# Bedingungen vor dem Quadrieren
+# Die Lage des Scheitels
 
-Die Wurzel ist für <InlineMath math="x+3\ge0" /> definiert, also für <InlineMath math="x\ge-3" />. Die linke Seite ist nie negativ, deshalb muss die rechte Seite **positiv** sein, damit die linke kleiner sein kann.
+Ergänz quadratisch, damit der Scheitel sichtbar wird.
 
-<BlockMath math="x-3>0\quad\Rightarrow\quad x>3" />
+<BlockMath math="f(x)=x^2-2mx+m+6=(x-m)^2-m^2+m+6" />
 
-Die Bedingung <InlineMath math="x>3" /> enthält bereits <InlineMath math="x\ge-3" />.
+Die Parabel ist nach oben geöffnet, und **ihr tiefster Punkt liegt bei <InlineMath math="x=m" />**. Der kleinste Wert von <InlineMath math="f" /> im Bereich <InlineMath math="x\ge0" /> hängt davon ab, ob <InlineMath math="x=m" /> in diesem Bereich liegt.
 
-# Beide Seiten quadrieren
+# Scheitel links
 
-Für <InlineMath math="x>3" /> sind beide Seiten positiv, deshalb **bleibt die Richtung der Ungleichung beim Quadrieren erhalten**.
+Für <InlineMath math="m\le0" /> liegt der Scheitel links vom Bereich oder genau bei <InlineMath math="x=0" />. Für <InlineMath math="x\ge0" /> steigt die Parabel nur noch, also **ist ihr kleinster Wert <InlineMath math="f(0)" />**.
 
 <BlockMath math="\begin{aligned}
-x+3&<x^2-6x+9\\
-0&<x^2-7x+6\\
-0&<(x-1)(x-6)
+f(0)=m+6&>0\\
+m&>-6
 \end{aligned}" />
 
-Das Produkt ist positiv für <InlineMath math="x<1" /> oder <InlineMath math="x>6" />. Die Schnittmenge mit <InlineMath math="x>3" /> ist <InlineMath math="x>6" />. Probe mit <InlineMath math="x=7" />: <InlineMath math="\sqrt{10}\approx3{,}16<4" />, dagegen liefert <InlineMath math="x=6" /> die falsche Aussage <InlineMath math="3<3" />.
+Die ganzen Zahlen mit <InlineMath math="-6<m\le0" /> sind <InlineMath math="-5, -4, -3, -2, -1, 0" />. Der Wert <InlineMath math="m=-6" /> zählt nicht, denn dann ist <InlineMath math="f(0)=0" />, und die Ungleichung ist streng.
 
-Die Menge <InlineMath math="x<1" /> oder <InlineMath math="x>6" /> quadriert ohne jede Bedingung. Die Menge mit <InlineMath math="-3\le x<1" /> nutzt nur die Wurzelbedingung, obwohl die rechte Seite dort negativ ist. Die Menge <InlineMath math="1<x<6" /> dreht das Zeichen um, und die Menge <InlineMath math="x\ge3" /> bleibt bei der Bedingung für die rechte Seite stehen.
+# Scheitel rechts
 
-Die Lösungsmenge ist also <InlineMath math="\{x\mid x>6\}" />.
+Für <InlineMath math="m>0" /> liegt der Scheitel im Bereich, also **ist der kleinste Wert der Wert im Scheitel**.
+
+<BlockMath math="\begin{aligned}
+f(m)=-m^2+m+6&>0\\
+m^2-m-6&<0\\
+(m-3)(m+2)&<0\\
+-2<m&<3
+\end{aligned}" />
+
+Zusammen mit <InlineMath math="m>0" /> bleiben die ganzen Zahlen <InlineMath math="1" /> und <InlineMath math="2" />. Der Wert <InlineMath math="m=3" /> zählt nicht, denn <InlineMath math="f(3)=9-18+9=0" />.
+
+# Alle Werte addieren
+
+**Beide Fälle zusammen** ergeben <InlineMath math="m=-5, -4, \ldots, 2" />.
+
+<BlockMath math="(-5)+(-4)+(-3)+(-2)+(-1)+0+1+2=-12" />
+
+Prüf je einen Wert aus jedem Fall. Für <InlineMath math="m=-5" /> ist <InlineMath math="f(x)=x^2+10x+1" />, und für <InlineMath math="x\ge0" /> ist jeder Summand positiv. Für <InlineMath math="m=2" /> ist <InlineMath math="f(x)=(x-2)^2+4>0" />.
+
+# Die verlockenden falschen Optionen
+
+Jede andere Option entsteht durch **den falschen Bereich oder einen Rand, der mitgezählt wurde**.
+
+- <InlineMath math="2" /> entsteht aus der Bedingung negative Diskriminante, also <InlineMath math="-2<m<3" />. Diese Bedingung gilt für alle reellen Zahlen und wirft deshalb <InlineMath math="-5" /> bis <InlineMath math="-2" /> weg, obwohl diese Werte passen.
+- <InlineMath math="-18" /> entsteht, wenn du <InlineMath math="m=-6" /> mitzählst, obwohl <InlineMath math="f(0)=0" /> ist.
+- <InlineMath math="-9" /> entsteht, wenn du <InlineMath math="m=3" /> mitzählst, obwohl <InlineMath math="f(3)=0" /> ist.
+- <InlineMath math="-15" /> entsteht, wenn du nur den Fall <InlineMath math="m\le0" /> zählst oder beide Ränder <InlineMath math="-6" /> und <InlineMath math="3" /> mitnimmst.
+
+Die Summe aller passenden ganzen Zahlen <InlineMath math="m" /> ist also <InlineMath math="-12" />.

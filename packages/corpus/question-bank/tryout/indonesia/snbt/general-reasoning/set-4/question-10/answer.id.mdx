@@ -1,19 +1,36 @@
-Bentuk aturannya sudah diketahui, jadi tugasmu adalah **menemukan pangkat** <InlineMath math="m" /> dan <InlineMath math="n" />. Mulailah dari contoh yang memuat angka <InlineMath math="1" />, karena <InlineMath math="1" /> dipangkatkan berapa pun tetap <InlineMath math="1" />.
+Setiap suku menunjukkan sekumpulan sel menyala yang berdampingan. Tugasmu menemukan aturan dari enam suku pertama, lalu memakainya untuk suku ke-<InlineMath math="32" />. Ternyata ada **dua aturan yang berjalan bersamaan**, satu mengatur banyak sel yang menyala dan satu lagi mengatur letaknya.
 
-<BlockMath math="\begin{aligned}
-3\star1=28 &\Rightarrow 3^m+1=28 \Rightarrow 3^m=27 \Rightarrow m=3 \\
-1\star4=17 &\Rightarrow 1+4^n=17 \Rightarrow 4^n=16 \Rightarrow n=2
-\end{aligned}" />
+Catat dua hal pada setiap suku: banyak sel yang menyala, dan sel paling kiri dari kelompok sel menyala itu (sel awal).
 
-Periksa dengan contoh pertama: <InlineMath math="2\star3=2^3+3^2=8+9=17" />, cocok. Jadi, aturannya <InlineMath math="a\star b=a^3+b^2" />. Pangkat untuk bilangan pertama dan kedua **berbeda**, sehingga urutan bilangan berpengaruh.
+| Suku ke- | Banyak sel menyala | Sel awal |
+| :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
+| <InlineMath math="3" /> | <InlineMath math="3" /> | <InlineMath math="5" /> |
+| <InlineMath math="4" /> | <InlineMath math="1" /> | <InlineMath math="7" /> |
+| <InlineMath math="5" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
+| <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="4" /> |
 
-<BlockMath math="4\star3=4^3+3^2=64+9=73" />
+Dari tabel itu terlihat dua aturan:
 
-Pilihan lain berasal dari pangkat yang keliru:
+- Banyak sel menyala berulang <InlineMath math="1, 2, 3, 1, 2, 3, \ldots" />, jadi polanya kembali setiap <InlineMath math="3" /> suku.
+- Sel awal bergeser <InlineMath math="2" /> sel ke kanan setiap suku. Karena deretannya melingkar, dari sel <InlineMath math="7" /> geser dua sel sampai di sel <InlineMath math="2" />, cocok dengan suku ke-<InlineMath math="5" />. Letaknya kembali setiap <InlineMath math="7" /> suku.
 
-- <InlineMath math="25" /> adalah <InlineMath math="4^2+3^2" />, seolah-olah kedua pangkat sama dengan <InlineMath math="2" />.
-- <InlineMath math="43" /> adalah <InlineMath math="4^2+3^3" />, hasil menukar kedua pangkat.
-- <InlineMath math="67" /> adalah <InlineMath math="4^3+3" />, pangkat bilangan kedua terlupa.
-- <InlineMath math="91" /> adalah <InlineMath math="4^3+3^3" />, seolah-olah kedua pangkat sama dengan <InlineMath math="3" />.
+Dari suku ke-<InlineMath math="1" /> ke suku ke-<InlineMath math="32" /> ada <InlineMath math="31" /> langkah. Hitung sisa pembagian untuk setiap aturan:
 
-Jadi, nilai <InlineMath math="4\star3" /> adalah <InlineMath math="73" />.
+<BlockMath math="\begin{aligned} 31 &= 3 \times 10 + 1 \\ 2 \times 31 = 62 &= 7 \times 8 + 6 \end{aligned}" />
+
+Baris pertama berarti banyak sel menyala sama seperti setelah <InlineMath math="1" /> langkah, yaitu seperti suku ke-<InlineMath math="2" />: dua sel. Baris kedua berarti sel awal bergeser <InlineMath math="6" /> sel dari sel <InlineMath math="1" />, jadi sel awalnya sel <InlineMath math="7" />.
+
+Dua sel yang dimulai dari sel <InlineMath math="7" /> adalah sel <InlineMath math="7" /> dan sel berikutnya. Karena deretannya melingkar, sel sesudah sel <InlineMath math="7" /> adalah sel <InlineMath math="1" />. Jadi, yang menyala adalah sel paling kanan dan sel paling kiri: ● ○ ○ ○ ○ ○ ●.
+
+Cek dengan cara lain. Kedua aturan kembali bersamaan setiap <InlineMath math="3 \times 7 = 21" /> suku, jadi suku ke-<InlineMath math="32" /> sama dengan suku ke-<InlineMath math="11" />. Lanjutkan dari suku ke-<InlineMath math="6" />: suku ke-<InlineMath math="7" /> satu sel di sel <InlineMath math="6" />, suku ke-<InlineMath math="8" /> dua sel di sel <InlineMath math="1" /> dan <InlineMath math="2" />, suku ke-<InlineMath math="9" /> tiga sel di sel <InlineMath math="3" /> sampai <InlineMath math="5" />, suku ke-<InlineMath math="10" /> satu sel di sel <InlineMath math="5" />, dan suku ke-<InlineMath math="11" /> dua sel di sel <InlineMath math="7" /> dan <InlineMath math="1" />. Hasilnya sama.
+
+Ini asal pilihan yang keliru:
+
+- ○ ○ ○ ○ ○ ○ ● sama dengan suku ke-<InlineMath math="4" />. Pilihan ini muncul jika kamu hanya memakai aturan letak (<InlineMath math="32" /> dibagi <InlineMath math="7" /> bersisa <InlineMath math="4" />) dan lupa aturan banyak sel, atau jika kamu memotong kelompok sel di ujung kanan alih-alih meneruskannya ke sel <InlineMath math="1" />.
+- ○ ○ ● ● ○ ○ ○ sama dengan suku ke-<InlineMath math="2" />. Pilihan ini muncul jika kamu hanya memakai aturan banyak sel (<InlineMath math="32" /> dibagi <InlineMath math="3" /> bersisa <InlineMath math="2" />) lalu menyalin suku ke-<InlineMath math="2" /> tanpa menggeser letaknya.
+- ○ ○ ○ ○ ○ ● ● sudah benar banyak selnya, tetapi kelompok selnya didorong mundur supaya muat di dalam deretan. Padahal deretannya melingkar, jadi sel kedua harus pindah ke sel <InlineMath math="1" />.
+- ○ ● ● ● ○ ○ ○ adalah suku ke-<InlineMath math="33" />. Pilihan ini muncul jika kamu menghitung <InlineMath math="32" /> langkah, padahal dari suku ke-<InlineMath math="1" /> hanya ada <InlineMath math="31" /> langkah.
+
+Jadi, pada suku ke-<InlineMath math="32" /> yang menyala hanya sel paling kiri dan sel paling kanan: ● ○ ○ ○ ○ ○ ●.

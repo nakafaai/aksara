@@ -1,13 +1,24 @@
-**Die erwartete Häufigkeit ist die Wahrscheinlichkeit des Ereignisses mal die Anzahl der Versuche**. Die Primzahlen von <InlineMath math="1" /> bis <InlineMath math="10" /> sind <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="5" /> und <InlineMath math="7" />. Denk daran, dass <InlineMath math="1" /> keine Primzahl ist. Keine Primzahlen sind also <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="8" />, <InlineMath math="9" /> und <InlineMath math="10" />, das sind <InlineMath math="6" /> Zahlen.
+# Der neue Ergebnisraum
 
-<BlockMath math="\begin{aligned}
-P(\text{keine Primzahl})&=\frac{6}{10} \\
-F_h&=\frac{6}{10}\cdot150=90
-\end{aligned}" />
+Die Angabe **das Produkt ist gerade** ändert den Ergebnisraum. Du zählst nicht mehr unter allen <InlineMath math="216" /> Ergebnissen, sondern nur unter denen mit geradem Produkt.
 
-Die erwartete Häufigkeit ist also <InlineMath math="90" />-mal.
+Ein Produkt aus drei Zahlen ist nur dann ungerade, wenn alle drei ungerade sind. Jeder Würfel hat <InlineMath math="3" /> ungerade Augenzahlen, also haben <InlineMath math="3^3=27" /> Ergebnisse ein ungerades Produkt.
 
-- <InlineMath math="15" />-mal ist die erwartete Häufigkeit für eine einzelne Zahl.
-- <InlineMath math="60" />-mal ist die erwartete Häufigkeit für eine Primzahl.
-- <InlineMath math="75" />-mal zählt <InlineMath math="1" /> als Primzahl, dann bleiben nur <InlineMath math="5" /> Zahlen übrig, die keine Primzahl sind.
-- <InlineMath math="105" />-mal zählt <InlineMath math="2" /> nicht als Primzahl, dann sind es <InlineMath math="7" /> Zahlen.
+<BlockMath math="\text{gerades Produkt}=216-27=189" />
+
+# Ergebnisse mit einer Sechs zählen
+
+Zähle zuerst die Ergebnisse **ohne** <InlineMath math="6" />: Jeder Würfel hat <InlineMath math="5" /> Möglichkeiten, also gibt es <InlineMath math="5^3=125" />. Die übrigen <InlineMath math="216-125=91" /> Ergebnisse haben mindestens eine <InlineMath math="6" />.
+
+Alle <InlineMath math="91" /> haben automatisch ein gerades Produkt, weil <InlineMath math="6" /> gerade ist. Sie liegen also alle im neuen Ergebnisraum.
+
+<BlockMath math="P=\frac{91}{189}=\frac{13}{27}" />
+
+Das passt: Der Wert ist größer als <InlineMath math="\tfrac{91}{216}" />, weil die Angabe "gerade" Ergebnisse streicht, die sicher keine <InlineMath math="6" /> enthalten.
+
+Die Wahrscheinlichkeit ist also <InlineMath math="\tfrac{13}{27}" />.
+
+- <InlineMath math="\tfrac{91}{216}" /> übersieht die Angabe "gerade" und teilt weiter durch <InlineMath math="216" />.
+- <InlineMath math="\tfrac{25}{63}" /> zählt nur Ergebnisse mit **genau** einer <InlineMath math="6" />, also <InlineMath math="\tfrac{75}{189}" />.
+- <InlineMath math="\tfrac12" /> addiert <InlineMath math="\tfrac16+\tfrac16+\tfrac16" />, obwohl sich die Ereignisse nicht ausschließen.
+- <InlineMath math="\tfrac{19}{27}" /> meint, ein gerades Produkt heiße, dass alle drei Augenzahlen gerade sind, und nimmt so nur <InlineMath math="27" /> Ergebnisse.

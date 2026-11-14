@@ -1,22 +1,40 @@
-Das Verhältnis <InlineMath math="AP:PB=1:2" /> bedeutet, dass <InlineMath math="P" /> **ein Drittel des Weges von <InlineMath math="A" /> nach <InlineMath math="B" />** liegt, also weder in der Mitte noch ein Drittel von <InlineMath math="B" /> entfernt.
+Das wichtigste Werkzeug ist **der Restsatz**: Der Rest bei Division eines Polynoms durch <InlineMath math="x-a" /> ist sein Wert an der Stelle <InlineMath math="x=a" />. Also gilt <InlineMath math="P(1)=3" /> und <InlineMath math="P(2)=5" />. Ein Rest bei Division durch ein Polynom vom Grad zwei hat höchstens Grad eins und ist durch die Werte an den beiden Nullstellen des Teilers festgelegt.
 
-# Koordinaten von P bestimmen
-
-Der Vektor von <InlineMath math="A" /> nach <InlineMath math="B" /> ist <InlineMath math="(8-(-1),\,-5-7)=(9,-12)" />. Den Punkt <InlineMath math="P" /> erhältst du, indem du **ein Drittel dieses Vektors** zu <InlineMath math="A" /> addierst.
+Bestimme zuerst den Rest von <InlineMath math="P(x)" /> bei Division durch <InlineMath math="(x-1)(x-2)" />. Schreibe <InlineMath math="P(x)=(x-1)(x-2)H(x)+px+q" /> mit dem Quotienten <InlineMath math="H(x)" /> und setze <InlineMath math="x=1" /> und <InlineMath math="x=2" /> ein.
 
 <BlockMath math="\begin{aligned}
-P&=A+\tfrac13(9,-12)\\
-&=(-1+3,\ 7-4)=(2,3)
+p+q&=3\\
+2p+q&=5\\
+p=2,\quad q&=1
 \end{aligned}" />
 
-Probe: <InlineMath math="AP=\sqrt{3^2+4^2}=5" /> und <InlineMath math="PB=\sqrt{6^2+8^2}=10" />, also gilt <InlineMath math="AP:PB=1:2" />.
+Also ist <InlineMath math="P(x)=(x-1)(x-2)H(x)+2x+1" />, wobei <InlineMath math="H(x)" /> ein beliebiges Polynom ist.
 
-# Abstand zum Ursprung
+# Der Rest des Quadrats
 
-Verwende **den Abstand vom Ursprung**, die Wurzel aus der Summe der quadrierten Koordinaten.
+Der Wert von <InlineMath math="\left(P(x)\right)^2" /> ist <InlineMath math="9" /> bei <InlineMath math="x=1" /> und <InlineMath math="25" /> bei <InlineMath math="x=2" />. Der Rest hat die Form <InlineMath math="sx+t" />, also gilt <InlineMath math="s+t=9" /> und <InlineMath math="2s+t=25" />, und damit <InlineMath math="s=16" /> und <InlineMath math="t=-7" />. Der Rest ist **nicht <InlineMath math="(2x+1)^2" />**, denn dieser Term hat Grad zwei und lässt sich noch weiter teilen.
 
-<BlockMath math="OP=\sqrt{2^2+3^2}=\sqrt{13}" />
+<BlockMath math="(2x+1)^2=4x^2+4x+1=4\left(x^2-3x+2\right)+16x-7" />
 
-Der Wert 5 ist die Länge <InlineMath math="AP" /> und nicht der Abstand von <InlineMath math="P" /> zum Ursprung. Der Wert <InlineMath math="\sqrt{26}" /> verwendet den Punkt <InlineMath math="(5,-1)" />, der ein Drittel des Weges von <InlineMath math="B" /> aus liegt. Der Wert <InlineMath math="\tfrac12\sqrt{53}" /> verwendet den Mittelpunkt von <InlineMath math="AB" />, und der Wert 15 ist die Länge von <InlineMath math="AB" />.
+Die erste Aussage ist **wahr**.
 
-Der Abstand von <InlineMath math="P" /> zum Ursprung ist also <InlineMath math="\sqrt{13}" />.
+# Der Wert an der Stelle drei
+
+Setze <InlineMath math="x=3" /> in die allgemeine Form ein: <InlineMath math="P(3)=2\cdot1\cdot H(3)+7=2H(3)+7" />. Dieser Wert hängt von <InlineMath math="H" /> ab, **Werte außerhalb von eins und zwei sind also nicht festgelegt**. Für <InlineMath math="H(x)=0" /> ist <InlineMath math="P(3)=7" />. Für <InlineMath math="H(x)=1" /> ist <InlineMath math="P(x)=x^2-x+3" /> und <InlineMath math="P(3)=9" />. Beide Polynome erfüllen die Angaben, haben bei <InlineMath math="3" /> aber verschiedene Werte. Die zweite Aussage ist **falsch**.
+
+# Der Rest nach einer Verschiebung
+
+Setze <InlineMath math="G(x)=P(x+1)" />. Der Teiler <InlineMath math="x^2-x=x(x-1)" /> hat die Nullstellen <InlineMath math="0" /> und <InlineMath math="1" />, du brauchst also **die Werte an den Nullstellen des neuen Teilers**: <InlineMath math="G(0)=P(1)=3" /> und <InlineMath math="G(1)=P(2)=5" />. Der Rest ist <InlineMath math="ux+v" /> mit <InlineMath math="v=3" /> und <InlineMath math="u+v=5" />, also <InlineMath math="u=2" />, und der Rest lautet <InlineMath math="2x+3" />. Die dritte Aussage ist **wahr**.
+
+# Ein Polynom vom Grad drei
+
+Für das Wort „es gibt“ **reicht ein einziges Beispiel**. Aus <InlineMath math="P(3)=2H(3)+7=0" /> folgt, dass du <InlineMath math="H(3)=-\tfrac72" /> brauchst. Wähle <InlineMath math="H(x)=x-\tfrac{13}{2}" />, das Grad eins hat, sodass <InlineMath math="P" /> Grad drei hat.
+
+<BlockMath math="\begin{aligned}
+P(x)&=(x-1)(x-2)\left(x-\tfrac{13}{2}\right)+2x+1\\
+P(3)&=2\cdot1\cdot\left(-\tfrac72\right)+7=0
+\end{aligned}" />
+
+Dieses Polynom erfüllt auch <InlineMath math="P(1)=3" /> und <InlineMath math="P(2)=5" />, weil das Produkt davor an beiden Stellen null ist. Die vierte Aussage ist **wahr**.
+
+Die erste Aussage ist also wahr, die zweite falsch, die dritte wahr und die vierte wahr.

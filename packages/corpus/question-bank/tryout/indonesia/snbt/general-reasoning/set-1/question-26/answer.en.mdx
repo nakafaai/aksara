@@ -1,15 +1,22 @@
-The question only asks yes or no about **the parity** of <InlineMath math="x+y" />. A statement is sufficient if the answer is the same for every pair <InlineMath math="(x,y)" /> that satisfies it, even when <InlineMath math="x" /> and <InlineMath math="y" /> are not unique.
+Let each leg (*kaki*, one of the two equal sides) be <InlineMath math="k" /> and the base (*alas*) be <InlineMath math="a" />. From the perimeter, <InlineMath math="2k+a=20" />. The three sides also have to form a real triangle: the two legs together must be longer than the base, so <InlineMath math="2k>a" />. A statement is sufficient if it leaves exactly one value of <InlineMath math="a" />.
 
-The key property is that <InlineMath math="x+y" /> and <InlineMath math="x-y" /> **always have the same parity**, both even or both odd, because they differ by <InlineMath math="2y" />, an even number.
+**Statement (1) alone**. "One side is <InlineMath math="8\text{ cm}" />" doesn't say which side, so **there are two cases to check**:
 
-**Statement (1) alone**. Factor the expression:
+| Case | Sides | Triangle condition | Base |
+| --- | --- | --- | --- |
+| leg <InlineMath math="8" /> | <InlineMath math="8, 8, 4" /> | <InlineMath math="16>4" />, holds | <InlineMath math="4" /> |
+| base <InlineMath math="8" /> | <InlineMath math="6, 6, 8" /> | <InlineMath math="12>8" />, holds | <InlineMath math="8" /> |
 
-<BlockMath math="x^2-y^2=(x-y)(x+y)=40" />
+Both cases give a valid triangle with a different base. Statement (1) alone isn't sufficient. An equilateral triangle isn't possible either, because <InlineMath math="20" /> isn't divisible by <InlineMath math="3" />.
 
-If <InlineMath math="x-y" /> and <InlineMath math="x+y" /> were both odd, their product would be odd. But <InlineMath math="40" /> is even. So both are even, and <InlineMath math="x+y" /> is even. For example, the pairs <InlineMath math="(11,9)" /> and <InlineMath math="(7,3)" /> satisfy it, with sums <InlineMath math="20" /> and <InlineMath math="10" />. The answer is always yes, so statement (1) is sufficient.
+**Statement (2) alone**. The condition is <InlineMath math="a<k" />. With <InlineMath math="a=20-2k" />, it becomes <InlineMath math="20-2k<k" />, so <InlineMath math="k>6.67" />. The base must also be at least <InlineMath math="1" />, so <InlineMath math="k\le9" />. The options are <InlineMath math="(7, 7, 6)" />, <InlineMath math="(8, 8, 4)" />, and <InlineMath math="(9, 9, 2)" />. Three bases are possible, so statement (2) alone isn't sufficient.
 
-**Statement (2) alone**. <InlineMath math="x-y=4" /> is even. Since <InlineMath math="x+y" /> has the same parity as <InlineMath math="x-y" />, <InlineMath math="x+y" /> is even too. For example, <InlineMath math="(5,1)" /> gives a sum of <InlineMath math="6" />, and <InlineMath math="(10,6)" /> gives <InlineMath math="16" />. The answer is always yes, so statement (2) is sufficient.
+**Both statements together**. Of the two cases from statement (1), only <InlineMath math="(8, 8, 4)" /> has a base shorter than the legs. The case <InlineMath math="(6, 6, 8)" /> is ruled out because its base is longer. There's exactly one answer, a base of <InlineMath math="4\text{ cm}" />, so the two statements together are sufficient.
 
-The options saying only one statement is sufficient miss the parity property above. The option "both statements together" comes from thinking you must find unique values of <InlineMath math="x" /> and <InlineMath math="y" />, although the question is only about even or odd.
+The other options come from a missed case:
 
-So statement (1) alone is sufficient, and statement (2) alone is also sufficient.
+- "Statement (1) alone is sufficient" comes from taking the <InlineMath math="8\text{ cm}" /> side to be a leg straight away. The case with an <InlineMath math="8\text{ cm}" /> base and <InlineMath math="6\text{ cm}" /> legs gets missed, even though it's a valid triangle.
+- "Neither statement is sufficient, even together" comes from listing the cases for statement (2) without using statement (1), so three possibilities seem to remain.
+- Statement (2) alone still leaves three triangles and statement (1) alone leaves two, so the options claiming statement (2) alone is sufficient, or that each statement alone is sufficient, can't be right.
+
+So the two statements together are sufficient to answer the question, but neither statement alone is.

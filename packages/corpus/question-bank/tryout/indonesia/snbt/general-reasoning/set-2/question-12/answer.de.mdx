@@ -1,17 +1,39 @@
-Verbinde die Prämisse mit dem Wort **sebagian** (einige) mit den anderen, denn daraus ergibt sich ein Mitglied, das sicher existiert.
+Gesucht ist die eine Implikation, die sicher aus allen vier Prämissen folgt. Damit du die Kette gut siehst, gib jedem Satz ein Symbol.
 
-Prämisse 2 garantiert, dass ein Chormitglied an der Mathematikolympiade teilnimmt. Nenne diesen Schüler X.
+- <InlineMath math="L" />: Das Team erreicht die nationale Runde.
+- <InlineMath math="W" />: Der Roboter schafft die Strecke in weniger als <InlineMath math="90" /> Sekunden.
+- <InlineMath math="B" />: Der Ersatzakku ist eingebaut.
+- <InlineMath math="H" />: Der Roboter läuft im Energiesparmodus.
+- <InlineMath math="S" />: Der Liniensensor ist defekt.
 
-- Nach Prämisse 1 ist X in Klasse XI, weil X im Chor ist.
-- Nach Prämisse 3 ist X vom Samstagsdienst befreit, weil X an der Olympiade teilnimmt.
+Die Prämissen sehen dann so aus.
 
-Also gibt es einen Schüler der Klasse XI, der vom Samstagsdienst befreit ist. Das heißt, **einige Schüler der Klasse XI sind vom Samstagsdienst befreit**.
+<BlockMath math="\begin{aligned}
+&(1)\quad L \Leftrightarrow W \\
+&(2)\quad B \Rightarrow W \\
+&(3)\quad \neg B \Rightarrow H \\
+&(4)\quad S \Rightarrow \neg W
+\end{aligned}" />
 
-Die anderen Optionen sind nicht sicher:
+Prämisse 1 ist eine Äquivalenz. **"Genau dann, wenn" gilt in beide Richtungen**: <InlineMath math="L \Rightarrow W" /> und auch <InlineMath math="W \Rightarrow L" />. Die Prämissen 2, 3 und 4 gelten nur in eine Richtung. Das zweite Werkzeug ist die Kontraposition: <InlineMath math="P \Rightarrow Q" /> bedeutet immer dasselbe wie <InlineMath math="\neg Q \Rightarrow \neg P" />, das Umdrehen zu <InlineMath math="Q \Rightarrow P" /> ist dagegen nicht erlaubt.
 
-- "Alle Schüler der Klasse XI sind im Chor" kehrt Prämisse 1 um.
-- Prämisse 2 sagt nur, dass **einige** Chormitglieder teilnehmen, die übrigen sind also nicht unbedingt befreit.
-- Teilnehmer der Olympiade können auch außerhalb des Chors sein. Die Prämissen sagen nur, dass einige Chormitglieder teilnehmen.
-- "Einige Chormitglieder sind nicht in Klasse XI" widerspricht Prämisse 1.
+Bau jetzt die Kette ab "Der Roboter läuft nicht im Energiesparmodus" auf.
 
-Sicher wahr ist also, dass einige Schüler der Klasse XI vom Samstagsdienst befreit sind.
+- Die Kontraposition von Prämisse 3 ist <InlineMath math="\neg H \Rightarrow B" />. Läuft der Roboter nicht im Energiesparmodus, ist der Ersatzakku sicher eingebaut.
+- Prämisse 2 führt mit <InlineMath math="B \Rightarrow W" /> weiter. Der Roboter schafft die Strecke in weniger als <InlineMath math="90" /> Sekunden.
+- Die zweite Richtung von Prämisse 1 führt mit <InlineMath math="W \Rightarrow L" /> weiter. Das Team erreicht die nationale Runde.
+
+<BlockMath math="\neg H \Rightarrow B \Rightarrow W \Rightarrow L" />
+
+Also ist "Wenn der Roboter nicht im Energiesparmodus läuft, erreicht das Team die nationale Runde" gültig. Der letzte Schritt klappt nur, weil Prämisse 1 ein "genau dann, wenn" ist. Würde Prämisse 1 nur sagen "Wenn das Team weiterkommt, schafft der Roboter die Strecke in weniger als <InlineMath math="90" /> Sekunden", würde die Kette bei <InlineMath math="W" /> abreißen.
+
+Prüf es vom anderen Ende. Die Kontraposition der Schlussfolgerung ist <InlineMath math="\neg L \Rightarrow H" />. Kommt das Team nicht weiter, war der Roboter nicht unter <InlineMath math="90" /> Sekunden (Prämisse 1), also war der Ersatzakku nicht eingebaut (Kontraposition von Prämisse 2), also läuft der Roboter im Energiesparmodus (Prämisse 3). Das gleiche Ergebnis.
+
+Jede der anderen vier Antworten benutzt einen Schritt in der falschen Richtung.
+
+- "Wenn das Team weiterkommt, ist der Ersatzakku eingebaut" benutzt <InlineMath math="W \Rightarrow B" />, die Umkehrung von Prämisse 2. Prämisse 2 sagt nur, dass der Akku reicht, um den Roboter schnell zu machen, nicht dass er der einzige Weg ist.
+- "Wenn der Roboter im Energiesparmodus läuft, kommt das Team nicht weiter" benutzt <InlineMath math="H \Rightarrow \neg B" />, die Umkehrung von Prämisse 3. Der Roboter könnte Ersatzakku und Energiesparmodus gleichzeitig nutzen, trotzdem schnell sein und weiterkommen.
+- "Wenn der Sensor nicht defekt ist, kommt das Team weiter" verneint beide Seiten von Prämisse 4, ohne sie zu tauschen. Ein funktionierender Sensor garantiert keinen schnellen Roboter, zum Beispiel wenn der Ersatzakku fehlt.
+- "Wenn das Team nicht weiterkommt, ist der Sensor defekt" stimmt bis <InlineMath math="\neg L \Rightarrow \neg W" />, benutzt dann aber <InlineMath math="\neg W \Rightarrow S" />, die Umkehrung von Prämisse 4. Der Roboter kann auch aus anderen Gründen langsam sein.
+
+Gültig ist also die Schlussfolgerung, dass das Robotikteam der Schule die nationale Runde erreicht, wenn der Roboter nicht im Energiesparmodus läuft.

@@ -1,0 +1,199 @@
+export const metadata = {
+    title: "Sistem Persamaan Normal",
+    description: "Terbitkan persamaan normal bagi kuasa dua terkecil daripada keortogonan, selesaikan bentuk tertutupnya jika wujud, dan kenal pasti kes singular.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-07-15",
+    dateModified: "2026-09-19",
+    subject: "Kaedah Linear AI",
+};
+
+## Syarat bagi Minimum Kuasa Dua Terkecil
+
+Persamaan normal menukarkan syarat keoptimuman peringkat pertama bagi masalah kuasa dua terkecil linear kepada satu sistem linear.
+
+Masalah kuasa dua terkecil mencari <InlineMath math="x" /> yang menjadikan <InlineMath math="A \cdot x" /> sedekat mungkin dengan <InlineMath math="b" />:
+
+<BlockMath math="\min_x \|A \cdot x - b\|_2^2" />
+
+Setiap titik minimum memenuhi sistem linear berikut:
+
+<BlockMath math="A^T A \cdot x = A^T b" />
+
+Persamaan ini dinamakan **persamaan normal** kerana reja pada titik minimum <Highlight>bersifat normal, iaitu berserenjang, terhadap ruang lajur</Highlight> bagi <InlineMath math="A" />.
+
+Untuk contoh di hujung pelajaran ini, <InlineMath math="\|Ax-b\|_2^2=(x-2)^2+(2x-1)^2=5x^2-8x+5" />. Minimumnya terletak di tempat terbitan <InlineMath math="10x-8" /> menjadi sifar, dan syarat itu tepat sama dengan persamaan normal <InlineMath math="A^TAx=A^Tb" />, di sini <InlineMath math="5x=4" />.
+
+<MathVisual
+  title={<>Fungsi objektif <InlineMath math="5x^2-8x+5" /> dan minimumnya</>}
+  description={<>Parabola ungu ialah kuasa dua reja bagi setiap <InlineMath math="x" />. Titik terendahnya yang berwarna magenta ialah <InlineMath math="(\tfrac45,\tfrac95)" />, iaitu penyelesaian bagi <InlineMath math="5x=4" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.2 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "objective", kind: "function", formula: "5*x^2 - 8*x + 5", domain: { min: -0.4, max: 2 }, appearance: "secondary" },
+      { id: "minimum", kind: "point", at: { x: 4 / 5, y: 9 / 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "minimum", objectId: "minimum", at: { x: 4 / 5, y: 9 / 5 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "minimum": <InlineMath math="(\tfrac45,\tfrac95)" />,
+  }}
+/>
+
+## Kuasa Dua Terkecil dan Persamaan Normal
+
+Vektor <InlineMath math="\hat{x} \in \mathbb{R}^n" /> meminimumkan <InlineMath math="\|A \cdot x - b\|_2^2" /> jika dan hanya jika vektor itu memenuhi <InlineMath math="A^T A \cdot \hat{x} = A^T b" />. Oleh itu, masalah pengoptimuman dan persamaan normal mempunyai **set penyelesaian yang sama**. Kesetaraan inilah yang menukarkan masalah peminimuman kepada sistem linear yang boleh kamu selesaikan dengan penghapusan atau pemfaktoran.
+
+## Reja Ortogon terhadap Ruang Lajur
+
+Apabila <InlineMath math="\hat{x}" /> meminimumkan <InlineMath math="\|A\hat{x} - b\|_2^2" />, vektor reja <InlineMath math="A\hat{x} - b" /> **ortogon terhadap setiap vektor** dalam ruang lajur <InlineMath math="A" />.
+
+Ruang lajur ini terdiri daripada semua vektor yang boleh ditulis sebagai <InlineMath math="Ax" /> untuk <InlineMath math="x \in \mathbb{R}^n" />. Syarat keortogonan ini bermaksud
+
+<BlockMath math="0 = \langle Ax, A\hat{x} - b \rangle" />
+
+Syarat keortogonan ini berlaku untuk setiap vektor <InlineMath math="x \in \mathbb{R}^n" />. Sifat-sifat hasil darab dalam memberi
+
+<MathContainer>
+<BlockMath math="\begin{aligned} 0 &amp;= (Ax)^T (A\hat{x} - b) \\ &amp;= x^T (A^T A\hat{x} - A^T b) \end{aligned}" />
+</MathContainer>
+
+Oleh sebab kesamaan ini berlaku untuk setiap vektor <InlineMath math="x" />, vektor di dalam kurungan mesti sifar:
+
+<BlockMath math="A^T A\hat{x} - A^T b = 0" />
+
+Apabila persamaan ini disusun semula, kita dapat <InlineMath math="A^TA\hat{x}=A^Tb" />, iaitu persamaan normal.
+
+## Bukti Menggunakan Teorem Pythagoras
+
+Kita juga boleh mengesahkan keputusan ini dengan cara lain. Katakan <InlineMath math="\hat{x}" /> ialah penyelesaian sistem persamaan normal dan <InlineMath math="x" /> ialah sebarang vektor dalam <InlineMath math="\mathbb{R}^n" />.
+
+Dengan teorem Pythagoras, kita boleh menulis
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;\|Ax - b\|_2^2 \\ &amp;= \|A\hat{x} - b - A(\hat{x} - x)\|_2^2 \end{aligned}" />
+  <BlockMath math="\begin{aligned}  &amp;= \|A\hat{x} - b\|_2^2 + \|A(\hat{x} - x)\|_2^2 \\ &amp;\quad{}- 2 \langle A\hat{x} - b, A(\hat{x} - x) \rangle \end{aligned}" />
+  <BlockMath math="\begin{aligned}  &amp;=\|A\hat x-b\|_2^2 \\ &amp;\quad{}+\underbrace{\|A(\hat x-x)\|_2^2}_{\ge0} \\ &amp;\quad{}-2\underbrace{(\hat x-x)^T(A^TA\hat x-A^Tb)}_{=0} \end{aligned}" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="\hat{x}" /> memenuhi persamaan normal, **sebutan silang bernilai sifar**. Yang tinggal ialah:
+
+<BlockMath math="\begin{aligned} \|Ax - b\|_2^2 &amp;= \|A\hat{x} - b\|_2^2 \\ &amp;\quad{}+ \|A(\hat{x} - x)\|_2^2 \end{aligned}" />
+
+Kuasa dua norma yang ditambah itu tidak negatif. Oleh itu, kuasa dua norma reja pada sebarang <InlineMath math="x" /> tidak mungkin lebih kecil daripada nilainya pada <InlineMath math="\hat{x}" />:
+
+<BlockMath math="\|Ax-b\|_2^2\geq\|A\hat{x}-b\|_2^2" />
+
+Ketaksamaan ini membuktikan bahawa <InlineMath math="\hat{x}" /> memang memberi nilai minimum.
+
+## Kewujudan dan Keunikan
+
+Persamaan normal sentiasa konsisten untuk setiap matriks <InlineMath math="A \in \mathbb{R}^{m\times n}" /> dan setiap vektor <InlineMath math="b \in \mathbb{R}^m" /> kerana titik minimum kuasa dua terkecil sentiasa wujud dalam dimensi terhingga. Titik minimum itu unik tepat apabila <InlineMath math="A" /> mempunyai **pangkat lajur penuh**:
+
+<BlockMath math="\operatorname{rank}(A)=n" />
+
+Dalam kes itu, <InlineMath math="A^{\mathsf T}A" /> boleh disongsangkan dan
+
+<BlockMath math="\hat{x}=(A^{\mathsf T}A)^{-1}A^{\mathsf T}b" />
+
+Jika pangkat <InlineMath math="A" /> tidak penuh, persamaan normal masih mempunyai penyelesaian, tetapi penyelesaiannya tidak unik. Untuk sebarang penyelesaian khusus <InlineMath math="\hat{x}" />, set lengkapnya ialah
+
+<BlockMath math="\hat{x}+\ker(A)" />
+
+Semua vektor parameter ini menghasilkan vektor padanan <InlineMath math="A\hat{x}" /> yang sama.
+
+Apabila <InlineMath math="A" /> tidak mempunyai pangkat lajur penuh, titik minimumnya tidak unik. Untuk <InlineMath math="A=\begin{pmatrix}1&2\\2&4\end{pmatrix}" /> dan <InlineMath math="b=(1,2)" />, setiap <InlineMath math="x" /> dengan <InlineMath math="x_1+2x_2=1" /> menyelesaikan <InlineMath math="Ax=b" /> dengan tepat. Antara semuanya, <InlineMath math="(\tfrac15,\tfrac25)" /> mempunyai norma terkecil, kerana vektor itu berserenjang dengan garis tersebut.
+
+<MathVisual
+  title={<>Satu garis penuh titik minimum</>}
+  description={<>Dalam satah <InlineMath math="(x_1,x_2)" />, garis hijau kebiruan ialah <InlineMath math="x_1+2x_2=1" />. Segmen jingga dari asalan bertemu garis itu secara tegak di titik magenta <InlineMath math="(\tfrac15,\tfrac25)" />, iaitu titik minimum dengan norma terkecil.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 2.5 }, y: { min: -1, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "minimizers", kind: "function", formula: "(1 - x)/2", domain: { min: -1.5, max: 2.5 }, appearance: "construction" },
+      { id: "shortest", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1 / 5, y: 2 / 5 }, appearance: "primary" },
+      { id: "minimum", kind: "point", at: { x: 1 / 5, y: 2 / 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "minimum", objectId: "minimum", at: { x: 1 / 5, y: 2 / 5 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "minimum": <InlineMath math="(\tfrac15,\tfrac25)" />,
+  }}
+/>
+
+## Ruang Nol dan Bukti Sifat Tentu Positif
+
+Untuk setiap <InlineMath math="z\in\mathbb{R}^n" />,
+
+<BlockMath math="z^{\mathsf T}A^{\mathsf T}Az=\|Az\|_2^2\ge0" />
+
+Persamaan ini menunjukkan bahawa <InlineMath math="A^{\mathsf T}A" /> sentiasa simetri dan separa tentu positif. Tambahan pula,
+
+<BlockMath math="\begin{aligned} &amp;A^{\mathsf T}Az=0 \\ &amp;\Longleftrightarrow \\ &amp;z^{\mathsf T}A^{\mathsf T}Az=0 \\ &amp;\Longleftrightarrow \\ &amp;Az=0 \end{aligned}" />
+
+Pengiraan ini memberi:
+
+<BlockMath math="\ker(A^{\mathsf T}A)=\ker(A)" />
+
+**Kesamaan ruang nol** ini menunjukkan bahawa <InlineMath math="A^{\mathsf T}A" /> tentu positif tepat apabila <InlineMath math="A" /> mempunyai pangkat lajur penuh.
+
+## Amaran Berangka
+
+Sifat tentu positif memberi keunikan dan membolehkan penyelesaian Cholesky, tetapi sifat ini **tidak menjamin keadaan berangka yang baik**. Untuk matriks berpangkat lajur penuh,
+
+<BlockMath math="\kappa_2(A^{\mathsf T}A)=\kappa_2(A)^2" />
+
+Oleh itu, membentuk <InlineMath math="A^{\mathsf T}A" /> secara eksplisit boleh membesarkan kepekaan dan kesan pembundaran. Rumus songsangan itu membuktikan satu identiti algebra. Dalam perisian, gunakan <InlineMath math="\mathrm{QR}" /> untuk penyelesaian kuasa dua terkecil yang berpangkat penuh dan ditentukan dengan baik, dan gunakan <InlineMath math="\mathrm{SVD}" /> apabila kekurangan pangkat atau keadaan berangka yang sangat buruk menjadi isu.
+
+## Contoh dengan Dua Cerapan
+
+Katakan <InlineMath math="A=(1,2)^T" /> dan <InlineMath math="b=(2,1)^T" />. Satu parameter skalar tidak boleh sepadan dengan kedua-dua cerapan: persamaan pertama meminta <InlineMath math="x=2" />, manakala persamaan kedua meminta <InlineMath math="x=1/2" />. Penyelesaian kuasa dua terkecil mengimbangkan **kuasa dua reja** kedua-duanya.
+
+<MathContainer>
+<BlockMath math="A^TA=1^2+2^2=5,\qquad A^Tb=1\cdot2+2\cdot1=4" />
+<BlockMath math="5\hat x=4\Rightarrow\hat x=\frac45" />
+<BlockMath math="A\hat x=\begin{pmatrix}4/5\\8/5\end{pmatrix},\qquad r=A\hat x-b=\begin{pmatrix}-6/5\\3/5\end{pmatrix}" />
+<BlockMath math="A^Tr=1\cdot(-6/5)+2\cdot(3/5)=0" />
+</MathContainer>
+
+Reja itu berserenjang dengan garis semua ramalan yang mungkin. Bergerak di sepanjang garis itu menambah jarak kuasa dua yang tidak negatif, seperti yang dituntut oleh bukti Pythagoras tadi.
+
+<MathVisual
+  title={<>Calon <InlineMath math="Ax" /> pada garis dan cerapan <InlineMath math="b=(2,1)" /></>}
+  description={<>Garis hijau kebiruan memuatkan setiap ramalan <InlineMath math="Ax=(x,2x)" />, dan titik ungu ialah ramalan yang ditetapkan oleh gelangsar. Reja magenta paling pendek, dengan bacaan <InlineMath math="\tfrac95" />, pada titik kelabu <InlineMath math="A\hat x=(\tfrac45,\tfrac85)" />, iaitu tempat reja itu berserenjang dengan garis.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.8, max: 3.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "s", min: -0.3, max: 1.5, value: 0.3, step: 0.01, label: "s" },
+    ],
+    objects: [
+      { id: "predictions", kind: "function", formula: "2*x", domain: { min: -0.3, max: 1.6 }, appearance: "construction" },
+      { id: "residual", kind: "path", points: [{ x: "s", y: "2*s" }, { x: "2", y: "1" }], appearance: "answer" },
+      { id: "observation", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "projection", kind: "point", at: { x: 4 / 5, y: 8 / 5 }, appearance: "reference" },
+      { id: "candidate", kind: "marker", x: "s", y: "2*s", appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b", objectId: "observation", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "best", objectId: "projection", at: { x: 4 / 5, y: 8 / 5 }, placement: "left" },
+    ],
+    readouts: [
+      { key: "distance", formula: "5*s^2 - 8*s + 5" },
+    ],
+  }}
+  labels={{
+    "s": <InlineMath math="x" />,
+    "b": <InlineMath math="b" />,
+    "best": <InlineMath math="A\hat x" />,
+    "distance": <InlineMath math="\|Ax-b\|_2^2" />,
+  }}
+/>

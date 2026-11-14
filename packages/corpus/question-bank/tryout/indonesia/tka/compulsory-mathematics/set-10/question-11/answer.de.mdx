@@ -1,10 +1,81 @@
-Osten und Norden stehen senkrecht aufeinander, also bilden Hafen und Schiffe **ein rechtwinkliges Dreieck mit dem rechten Winkel am Hafen**. Der Abstand der Schiffe ist die Hypotenuse.
+# Das Lot vom Mittelpunkt
 
-<BlockMath math="d=\sqrt{24^2+18^2}=\sqrt{576+324}=\sqrt{900}=30" />
+Der Teil des Parks außerhalb des Teichs ist ein Kreisring, und sein Flächeninhalt ist <InlineMath math="\pi R^2-\pi r^2=\pi(R^2-r^2)" />, wobei <InlineMath math="R" /> der Radius des Parks und <InlineMath math="r" /> der Radius des Teichs ist. Du **brauchst <InlineMath math="R" /> und <InlineMath math="r" /> nicht einzeln**, nur die Differenz ihrer Quadrate.
 
-Die Schiffe sind also jetzt <InlineMath math="30" /> km voneinander entfernt.
+Fäll vom Mittelpunkt <InlineMath math="O" /> das Lot auf den Weg und nenn den Fußpunkt <InlineMath math="M" />. Das Lot vom Mittelpunkt auf eine Sehne halbiert diese Sehne immer. <InlineMath math="AB" /> ist eine Sehne des Parks, <InlineMath math="CD" /> eine Sehne des Teichs, und beide liegen auf derselben Geraden. Also ist <InlineMath math="M" /> der Mittelpunkt von beiden.
 
-- <InlineMath math="42" /> km addiert beide Strecken, doch die Schiffe liegen nicht mit dem Hafen auf einer Geraden.
-- <InlineMath math="216" /> ist die Dreiecksfläche, <InlineMath math="\tfrac12\cdot24\cdot18" />, kein Abstand.
-- <InlineMath math="432" /> ist das Produkt der beiden Strecken.
-- <InlineMath math="900" /> ist das Quadrat des Abstands, die Wurzel fehlt noch.
+<BlockMath math="\begin{aligned}
+CM&=MD=\tfrac{1}{2}\cdot6=3 \\
+AM&=MB \;\Rightarrow\; DB=AC=5 \\
+AM&=AC+CM=5+3=8
+\end{aligned}" />
+
+<MathVisual
+  title={<>Rechtwinklige Dreiecke mit gemeinsamer Seite <InlineMath math="OM" /></>}
+  description={<>Die Figur aus der Aufgabe mit dem zusätzlichen Punkt <InlineMath math="M" />, dem Fußpunkt des Lots von <InlineMath math="O" /> auf <InlineMath math="AB" />. Die Strecke <InlineMath math="OA" /> ist der Parkradius <InlineMath math="R" /> und <InlineMath math="OC" /> der Teichradius <InlineMath math="r" />. Die Dreiecke <InlineMath math="OMA" /> und <InlineMath math="OMC" /> haben bei <InlineMath math="M" /> einen rechten Winkel, mit <InlineMath math="AM=8" /> und <InlineMath math="CM=3" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    m: <InlineMath math="M" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    "radius-r": <InlineMath math="R" />,
+    "radius-small": <InlineMath math="r" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 10 },
+      y: { min: -10, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "park", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: Math.sqrt(80) },
+      { id: "pond", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "path", kind: "segment", appearance: "highlight", from: { x: -8, y: -4 }, to: { x: 8, y: -4 } },
+      { id: "perpendicular", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: -4 } },
+      { id: "radius-oa", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -8, y: -4 } },
+      { id: "radius-oc", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -3, y: -4 } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 0, y: -4 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: -8, y: -4 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 8, y: -4 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: -3, y: -4 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 3, y: -4 } },
+    ],
+    labels: [
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "m", objectId: "point-m", at: { x: 0, y: -4 }, placement: "below" },
+      { key: "a", objectId: "point-a", at: { x: -8, y: -4 }, placement: "left" },
+      { key: "b", objectId: "point-b", at: { x: 8, y: -4 }, placement: "right" },
+      { key: "c", objectId: "point-c", at: { x: -3, y: -4 }, placement: "below-left" },
+      { key: "d", objectId: "point-d", at: { x: 3, y: -4 }, placement: "below-right" },
+      { key: "radius-r", objectId: "radius-oa", at: { x: -4, y: -2 }, placement: "above-left" },
+      { key: "radius-small", objectId: "radius-oc", at: { x: -1.5, y: -2 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Die Differenz der Radiusquadrate
+
+Die Dreiecke <InlineMath math="OMA" /> und <InlineMath math="OMC" /> haben beide bei <InlineMath math="M" /> einen rechten Winkel und die gemeinsame Seite <InlineMath math="OM" />. Schreib für beide den Satz des Pythagoras auf und zieh ab. **Die unbekannte Seite <InlineMath math="OM" /> fällt dabei weg**.
+
+<BlockMath math="\begin{aligned}
+R^2&=OM^2+AM^2=OM^2+64 \\
+r^2&=OM^2+CM^2=OM^2+9 \\
+R^2-r^2&=64-9=55 \\
+\text{Ringfläche}&=\pi(R^2-r^2)=55\pi\text{ m}^2
+\end{aligned}" />
+
+Probe auf einem zweiten Weg: <InlineMath math="AC\cdot AD=5\cdot11=55" />, also dasselbe wie <InlineMath math="R^2-r^2" />. Das Ergebnis hängt nicht davon ab, wie weit der Weg vom Mittelpunkt entfernt ist.
+
+Der Teil des Parks außerhalb des Teichs hat also den Flächeninhalt <InlineMath math="55\pi\text{ m}^2" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="110\pi\text{ m}^2" /> rechnet <InlineMath math="\frac{AB^2-CD^2}{2}=\frac{256-36}{2}" />. Wenn du die halbe Länge quadrierst, teilst du durch <InlineMath math="4" />, nicht durch <InlineMath math="2" />.
+- <InlineMath math="80\pi\text{ m}^2" /> benutzt <InlineMath math="AC\cdot AB=5\cdot16" />. Richtig ist das Produkt <InlineMath math="AC\cdot AD" />, also die beiden Abstände von <InlineMath math="A" /> zu den Schnittpunkten mit dem Teich.
+- <InlineMath math="73\pi\text{ m}^2" /> addiert <InlineMath math="AM^2+CM^2=64+9" />. Die beiden Pythagoras-Gleichungen müssen subtrahiert werden, damit <InlineMath math="OM^2" /> wegfällt.
+- <InlineMath math="64\pi\text{ m}^2" /> benutzt <InlineMath math="\pi\cdot AM^2" />, die Formel für eine Sehne, die den Teich nur **berührt**. Dieser Weg schneidet den Teich, also muss <InlineMath math="CM^2" /> noch abgezogen werden.

@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "exam-summary",
+  stimulus: "ogif",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "$$20$$",
-        },
-        {
-          correct: false,
-          label: "$$22$$",
-        },
-        {
-          correct: false,
-          label: "$$34$$",
-        },
-        {
-          correct: false,
           label: "$$37$$",
         },
         {
           correct: false,
-          label: "$$51$$",
+          label: "$$40$$",
+        },
+        {
+          correct: false,
+          label: "$$42$$",
+        },
+        {
+          correct: false,
+          label: "$$44$$",
+        },
+        {
+          correct: false,
+          label: "$$50$$",
         },
       ],
     },

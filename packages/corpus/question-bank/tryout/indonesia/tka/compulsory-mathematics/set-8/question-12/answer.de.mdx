@@ -1,12 +1,26 @@
-Die Diagonalen einer Raute **halbieren sich gegenseitig und stehen senkrecht aufeinander** im Schnittpunkt <InlineMath math="O" />. Also ist <InlineMath math="AO=8" />, <InlineMath math="BO=6" />, und das Dreieck <InlineMath math="AOB" /> ist bei <InlineMath math="O" /> rechtwinklig.
+# Die möglichen Werte von c
 
-<BlockMath math="\begin{aligned}
-AB&=\sqrt{8^2+6^2}=10 \\
-L&=\tfrac12\cdot16\cdot12=96 \\
-t&=\frac{L}{AB}=\frac{96}{10}=9{,}6
-\end{aligned}" />
+Alle drei Aussagen betreffen jedes mögliche Dreieck, also musst du **jeden erlaubten Wert von <InlineMath math="c" /> prüfen**, nicht nur ein Beispiel.
 
-- Alle vier Seiten sind gleich lang, der Umfang ist also <InlineMath math="4\cdot10=40\text{ cm}" />. Die Aussage ist richtig.
-- Die Fläche ist das halbe Produkt der Diagonalen, <InlineMath math="96\text{ cm}^2" />. Der Wert <InlineMath math="192" /> vergisst das Halbieren. Die Aussage ist falsch.
-- Eine Raute ist ein Parallelogramm, ihre Fläche ist also auch Seite mal Höhe. Der Abstand zwischen <InlineMath math="AB" /> und <InlineMath math="CD" /> beträgt <InlineMath math="\frac{96}{10}=9{,}6\text{ cm}" />. Die Aussage ist richtig.
-- Im Dreieck <InlineMath math="AOB" /> liegt <InlineMath math="\angle BAO" /> gegenüber <InlineMath math="BO=6" />, und das ist kürzer als <InlineMath math="AO=8" />, also <InlineMath math="\angle BAO<45^\circ" />. Wegen <InlineMath math="\angle BAD=2\angle BAO" /> ist dieser Winkel kleiner als <InlineMath math="90^\circ" />. Die Aussage ist falsch.
+Die Dreiecksungleichung: Jede Seite ist kürzer als die Summe der beiden anderen. Mit den Seiten <InlineMath math="6" /> und <InlineMath math="10" /> heißt das <InlineMath math="10-6<c<10+6" />, also <InlineMath math="4<c<16" />.
+
+<BlockMath math="c\in\{5,6,7,\dots,15\}" />
+
+Für die Art des größten Winkels vergleichst du das Quadrat der längsten Seite mit der Summe der Quadrate der beiden anderen. Die längste Seite ist <InlineMath math="10" /> oder <InlineMath math="c" />, je nachdem, wie groß <InlineMath math="c" /> ist.
+
+| <InlineMath math="c" /> | Längste Seite | Test | Art |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="5,6,7" /> | <InlineMath math="10" /> | <InlineMath math="100>36+c^2" /> | stumpfwinklig |
+| <InlineMath math="8" /> | <InlineMath math="10" /> | <InlineMath math="100=36+64" /> | rechtwinklig |
+| <InlineMath math="9,10,11" /> | <InlineMath math="10" /> oder <InlineMath math="c" /> | größtes Quadrat kleiner als die Summe der anderen | spitzwinklig |
+| <InlineMath math="12" /> bis <InlineMath math="15" /> | <InlineMath math="c" /> | <InlineMath math="c^2>136" /> | stumpfwinklig |
+
+# Jede Aussage prüfen
+
+Erste Aussage: Die erlaubten Werte von <InlineMath math="c" /> sind <InlineMath math="5" /> bis <InlineMath math="15" />, also <InlineMath math="15-5+1=11" /> Werte. Die Aussage ist **Richtig**.
+
+Zweite Aussage: Das Dreieck ist stumpfwinklig für <InlineMath math="c=5,6,7" /> und für <InlineMath math="c=12,13,14,15" />, also für <InlineMath math="7" /> Werte. Auf <InlineMath math="4" /> kommst du nur, wenn du **vergisst, dass der stumpfe Winkel auch gegenüber der Seite <InlineMath math="10" /> liegen kann**. Die Aussage ist **Falsch**.
+
+Dritte Aussage: Der Umfang <InlineMath math="16+c" /> ist genau dann gerade, wenn <InlineMath math="c" /> gerade ist, also <InlineMath math="c=6,8,10,12,14" />. Davon liefert <InlineMath math="c=6" /> ein stumpfwinkliges und <InlineMath math="c=8" /> ein rechtwinkliges Dreieck. Ein Gegenbeispiel genügt, die Aussage ist also **Falsch**.
+
+Die Reihenfolge ist also Richtig, Falsch, Falsch.

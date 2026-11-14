@@ -1,18 +1,39 @@
-Ada <InlineMath math="40" /> data, jadi **median adalah rata-rata data ke-<InlineMath math="20" /> dan ke-<InlineMath math="21" />** setelah data diurutkan. Tabel sudah urut dari ukuran terkecil, jadi cukup jumlahkan banyak siswa secara kumulatif.
+Soal ini berjalan dalam tiga langkah. Bulan-bulannya dipilih memakai data **Kota P**, tetapi rata-rata yang ditanyakan memakai data **Kota Q** pada bulan-bulan itu. Kata "lebih dari" juga penting, karena ada bulan yang curah hujannya tepat sama dengan rata-rata.
 
-| Ukuran | Banyak siswa | Kumulatif |
-| --- | --- | --- |
-| <InlineMath math="37" /> | <InlineMath math="4" /> | <InlineMath math="4" /> |
-| <InlineMath math="38" /> | <InlineMath math="7" /> | <InlineMath math="11" /> |
-| <InlineMath math="39" /> | <InlineMath math="12" /> | <InlineMath math="23" /> |
+# Rata-rata Kota P
 
-Data ke-<InlineMath math="12" /> sampai ke-<InlineMath math="23" /> semuanya berukuran <InlineMath math="39" />, jadi data ke-<InlineMath math="20" /> dan ke-<InlineMath math="21" /> sama-sama <InlineMath math="39" />.
+Batas pemilihan bulan adalah rata-rata enam bulan Kota P. Jumlahkan keenam data Kota P dari tabel, lalu **bagi dengan enam**, banyak bulan yang dicatat:
 
-<BlockMath math="\text{median}=\frac{39+39}{2}=39" />
+<BlockMath math="\bar x_P=\frac{330+270+240+200+120+40}{6}=\frac{1{.}200}{6}=200\text{ mm}" />
 
-Jadi, median ukuran sepatu adalah <InlineMath math="39" />.
+# Memilih bulan
 
-- <InlineMath math="6" /> adalah median kolom banyak siswa, bukan median ukuran sepatu.
-- <InlineMath math="38" /> adalah kuartil bawah, yaitu rata-rata data ke-<InlineMath math="10" /> dan ke-<InlineMath math="11" />.
-- <InlineMath math="39{,}325" /> adalah rata-rata ukuran sepatu.
-- <InlineMath math="39{,}5" /> adalah nilai tengah keenam ukuran yang tertulis di tabel, tanpa memperhatikan banyak siswanya.
+Bandingkan setiap bulan Kota P dengan <InlineMath math="200\text{ mm}" />. **Bulan yang tepat <InlineMath math="200\text{ mm}" /> tidak lebih dari rata-rata**, jadi tidak ikut dipilih.
+
+| Bulan | Kota P | Lebih dari <InlineMath math="200" />? | Kota Q |
+| :---: | :---: | :---: | :---: |
+| Januari | <InlineMath math="330" /> | ya | <InlineMath math="250" /> |
+| Februari | <InlineMath math="270" /> | ya | <InlineMath math="230" /> |
+| Maret | <InlineMath math="240" /> | ya | <InlineMath math="180" /> |
+| April | <InlineMath math="200" /> | tidak, sama dengan rata-rata | <InlineMath math="320" /> |
+| Mei | <InlineMath math="120" /> | tidak | <InlineMath math="300" /> |
+| Juni | <InlineMath math="40" /> | tidak | <InlineMath math="280" /> |
+
+Bulan yang terpilih adalah Januari, Februari, dan Maret.
+
+# Rata-rata Kota Q pada bulan terpilih
+
+Sekarang ambil data Kota Q pada ketiga bulan itu:
+
+<BlockMath math="\frac{250+230+180}{3}=\frac{660}{3}=220\text{ mm}" />
+
+Cek kewajaran: pada ketiga bulan itu Kota Q memang lebih kering daripada Kota P, jadi wajar kalau hasilnya **lebih kecil daripada rata-rata enam bulan Kota Q** yang <InlineMath math="260\text{ mm}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="245\text{ mm}" /> ikut memasukkan April, padahal curah hujan Kota P pada April tepat sama dengan rata-rata: <InlineMath math="\frac{660+320}{4}=245" />.
+- <InlineMath math="260\text{ mm}" /> adalah rata-rata Kota Q selama enam bulan. **Langkah memilih bulan terlewat**.
+- <InlineMath math="280\text{ mm}" /> adalah rata-rata Kota P pada bulan terpilih, <InlineMath math="\frac{330+270+240}{3}" />. Kotanya tertukar.
+- <InlineMath math="300\text{ mm}" /> muncul kalau bulan dipilih dari Kota Q yang di atas rata-ratanya sendiri, yaitu April, Mei, dan Juni. Syarat di soal memakai Kota P.
+
+Jadi, rata-rata curah hujan Kota Q pada bulan-bulan itu adalah <InlineMath math="220\text{ mm}" />.

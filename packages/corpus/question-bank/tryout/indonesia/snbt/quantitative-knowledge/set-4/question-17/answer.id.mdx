@@ -1,15 +1,41 @@
-Informasi awal bahwa <InlineMath math="n" /> **bilangan bulat positif** ikut berlaku untuk setiap pernyataan. Syarat ini sering menentukan apakah sebuah pernyataan menyisakan satu nilai atau lebih.
+Kamu mencari jumlah lima suku pertama barisan geometri yang terbentuk. Rencananya: tulis barisan aritmetika dengan satu bilangan yang belum diketahui, pakai syarat barisan geometri untuk mendapat persamaan kuadrat, lalu **buang akar yang membuat bilangan semula tidak positif**.
 
-# Pernyataan pertama saja
+# Menulis barisan aritmetika
 
-<BlockMath math="n^2-2n-15=(n-5)(n+3)=0\quad\Rightarrow\quad n=5\ \text{atau}\ n=-3" />
+Jumlah tiga suku barisan aritmetika sama dengan tiga kali suku tengahnya, karena suku pertama dan ketiga sama jauhnya dari suku tengah. Jadi suku tengahnya <InlineMath math="\frac{15}{3}=5" />, dan **ketiga bilangan bisa ditulis <InlineMath math="5-d" />, <InlineMath math="5" />, <InlineMath math="5+d" />** dengan beda <InlineMath math="d" />.
 
-Nilai <InlineMath math="-3" /> **bukan bilangan bulat positif**, jadi hanya <InlineMath math="n=5" /> yang tersisa. Pernyataan (1) saja cukup.
+Setelah ditambah, bilangan barunya <InlineMath math="6-d" />, <InlineMath math="6" />, dan <InlineMath math="9+d" />.
 
-# Pernyataan kedua saja
+# Syarat barisan geometri
 
-Karena <InlineMath math="32=2^5" /> dan fungsi <InlineMath math="2^n" /> naik, persamaan <InlineMath math="2^n=32" /> **hanya dipenuhi oleh <InlineMath math="n=5" />**. Pernyataan (2) saja juga cukup.
+Pada barisan geometri, suku tengah dibagi suku pertama sama dengan suku ketiga dibagi suku tengah. Akibatnya **kuadrat suku tengah sama dengan hasil kali kedua suku di sampingnya**.
 
-Siswa yang lupa syarat positif akan menganggap pernyataan (1) menyisakan dua nilai, lalu keliru memilih bahwa hanya pernyataan (2) yang cukup.
+<BlockMath math="\begin{aligned}
+6^2&=(6-d)(9+d)\\
+36&=54-3d-d^2\\
+d^2+3d-18&=0\\
+(d+6)(d-3)&=0
+\end{aligned}" />
 
-Jadi, **setiap pernyataan saja sudah cukup** untuk menjawab pertanyaan.
+Jadi <InlineMath math="d=3" /> atau <InlineMath math="d=-6" />.
+
+# Memilih akar yang sah
+
+Untuk <InlineMath math="d=-6" />, bilangan semula <InlineMath math="11" />, <InlineMath math="5" />, <InlineMath math="-1" />. Bilangan <InlineMath math="-1" /> tidak positif, jadi **akar ini melanggar syarat soal** dan harus dibuang, meskipun <InlineMath math="12" />, <InlineMath math="6" />, <InlineMath math="3" /> memang barisan geometri.
+
+Untuk <InlineMath math="d=3" />, bilangan semula <InlineMath math="2" />, <InlineMath math="5" />, <InlineMath math="8" />, semuanya positif. Barisan geometrinya <InlineMath math="3" />, <InlineMath math="6" />, <InlineMath math="12" /> dengan rasio <InlineMath math="2" />.
+
+<BlockMath math="S_5=\frac{3\left(2^5-1\right)}{2-1}=3\cdot31=93" />
+
+Coba cek dengan menjumlahkan langsung: <InlineMath math="3+6+12+24+48=93" />.
+
+# Pilihan yang menjebak
+
+Pilihan lain muncul dari **akar yang tidak diperiksa** atau dari berhenti di suku yang salah.
+
+- <InlineMath math="\frac{93}{4}" /> muncul jika akar <InlineMath math="d=-6" /> dipakai, sehingga barisannya <InlineMath math="12" />, <InlineMath math="6" />, <InlineMath math="3" /> dengan rasio <InlineMath math="\frac12" />.
+- <InlineMath math="21" /> adalah jumlah tiga suku yang terbentuk saja, <InlineMath math="3+6+12" />.
+- <InlineMath math="45" /> adalah jumlah empat suku pertama.
+- <InlineMath math="48" /> adalah suku kelima, bukan jumlah lima suku.
+
+Jadi, jumlah lima suku pertama barisan geometri itu adalah <InlineMath math="93" />.

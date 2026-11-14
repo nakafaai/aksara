@@ -1,16 +1,83 @@
-The translation by <InlineMath math="T" /> maps <InlineMath math="(x,y)" /> to <InlineMath math="(x-2,\,y+5)" />. So the original point of an image <InlineMath math="(x,y)" /> is <InlineMath math="(x+2,\,y-5)" />. **Substitute that original point into the original equation**.
+The question asks for the area of only part of the image: the part above the <InlineMath math="x" />-axis. Knowing the area of the whole image isn't enough, because the axis cuts through it. You need **where the image's vertices really land**.
+
+# The image of each vertex
+
+A dilation with centre <InlineMath math="P" /> and factor <InlineMath math="k" /> sends a point <InlineMath math="X" /> to <InlineMath math="P+k(X-P)" />. In words: take the step from <InlineMath math="P" /> to the point, multiply that step by <InlineMath math="k" />, and start again from <InlineMath math="P" />. A negative factor reverses the step, so the image lands on the far side of <InlineMath math="P" />. **The translation comes after the dilation**, in the order the question gives.
+
+| Point | <InlineMath math="X-P" /> | <InlineMath math="-\frac12(X-P)" /> | After the dilation | After the translation |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="A" /> | <InlineMath math="(-6,-4)" /> | <InlineMath math="(3,2)" /> | <InlineMath math="(5,4)" /> | <InlineMath math="A''(4,1)" /> |
+| <InlineMath math="B" /> | <InlineMath math="(6,-4)" /> | <InlineMath math="(-3,2)" /> | <InlineMath math="(-1,4)" /> | <InlineMath math="B''(-2,1)" /> |
+| <InlineMath math="C" /> | <InlineMath math="(2,4)" /> | <InlineMath math="(-1,-2)" /> | <InlineMath math="(1,0)" /> | <InlineMath math="C''(0,-3)" /> |
+| <InlineMath math="D" /> | <InlineMath math="(-2,4)" /> | <InlineMath math="(1,-2)" /> | <InlineMath math="(3,0)" /> | <InlineMath math="D''(2,-3)" /> |
+
+Look at side <InlineMath math="AB" />. The long side started at the bottom, and now <InlineMath math="A''B''" /> sits at the top, on the line <InlineMath math="y=1" />. **A negative factor flips the shape top to bottom and left to right**. The image is a trapezoid with parallel sides <InlineMath math="A''B''=6" /> on <InlineMath math="y=1" /> and <InlineMath math="C''D''=2" /> on <InlineMath math="y=-3" />, and its height is <InlineMath math="4" />.
 
 <BlockMath math="\begin{aligned}
-y-5&=(x+2)^2-4(x+2)+3 \\
-y-5&=x^2+4x+4-4x-8+3=x^2-1 \\
-y&=x^2+4
+\text{area of the original trapezoid}&=\frac{12+4}{2}\cdot8=64 \\
+\text{area of the image}&=\frac{6+2}{2}\cdot4=16=\left(-\tfrac12\right)^2\cdot64
 \end{aligned}" />
 
-Check with the vertex: <InlineMath math="y=x^2-4x+3=(x-2)^2-1" /> has its vertex at <InlineMath math="(2,-1)" />. It moves to <InlineMath math="(2-2,\,-1+5)=(0,4)" />, and <InlineMath math="y=x^2+4" /> does have its vertex at <InlineMath math="(0,4)" />.
+# The part above the x-axis
 
-So the image graph has the equation <InlineMath math="y=x^2+4" />.
+The <InlineMath math="x" />-axis lies <InlineMath math="1" /> unit below side <InlineMath math="A''B''" />. Find where the two slanted sides cross it. Side <InlineMath math="B''C''" /> drops <InlineMath math="4" /> units while moving <InlineMath math="2" /> units right, so for every unit it drops it moves <InlineMath math="\frac12" /> to the right. Side <InlineMath math="A''D''" /> moves <InlineMath math="\frac12" /> to the left for every unit it drops.
 
-- <InlineMath math="y=x^2-1" /> does only the horizontal shift.
-- <InlineMath math="y=x^2-4x+8" /> does only the vertical shift.
-- <InlineMath math="y=x^2-8x+20" /> shifts the graph right, but the first component of <InlineMath math="T" /> is <InlineMath math="-2" />.
-- <InlineMath math="y=x^2-6" /> shifts the graph down, but the second component of <InlineMath math="T" /> is <InlineMath math="5" />.
+<BlockMath math="\begin{aligned}
+B''C''\text{ meets the }x\text{-axis}&\text{ at }\left(-2+\tfrac12,\,0\right)=\left(-\tfrac32,\,0\right) \\
+A''D''\text{ meets the }x\text{-axis}&\text{ at }\left(4-\tfrac12,\,0\right)=\left(\tfrac72,\,0\right) \\
+\text{length of the cut}&=\tfrac72-\left(-\tfrac32\right)=5
+\end{aligned}" />
+
+The part above the <InlineMath math="x" />-axis is a small trapezoid with parallel sides <InlineMath math="6" /> and <InlineMath math="5" /> and height <InlineMath math="1" />:
+
+<BlockMath math="\text{area of the upper part}=\frac{6+5}{2}\cdot1=5.5" />
+
+<MathVisual
+  title={<>The final image and the <InlineMath math="x" />-axis</>}
+  description={<>The final image is trapezoid <InlineMath math="A''B''C''D''" /> with <InlineMath math="A''(4,1)" />, <InlineMath math="B''(-2,1)" />, <InlineMath math="C''(0,-3)" />, and <InlineMath math="D''(2,-3)" />. The <InlineMath math="x" />-axis cuts it from <InlineMath math="\left(-\tfrac32,0\right)" /> to <InlineMath math="\left(\tfrac72,0\right)" />, a length of <InlineMath math="5" />. The part above the <InlineMath math="x" />-axis is marked: its top side is <InlineMath math="6" /> and its height is <InlineMath math="1" />.</>}
+  labels={{
+    a: <InlineMath math="A''" />,
+    b: <InlineMath math="B''" />,
+    c: <InlineMath math="C''" />,
+    d: <InlineMath math="D''" />,
+    top: <InlineMath math="6" />,
+    cut: <InlineMath math="5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 6 },
+      y: { min: -5, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "image", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 1 }, { x: -2, y: 1 }, { x: 0, y: -3 }, { x: 2, y: -3 }] },
+      { id: "upper-part", kind: "polygon", appearance: "highlight", vertices: [{ x: -2, y: 1 }, { x: 4, y: 1 }, { x: 3.5, y: 0 }, { x: -1.5, y: 0 }] },
+      { id: "cut", kind: "segment", appearance: "answer", from: { x: -1.5, y: 0 }, to: { x: 3.5, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 4, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: -2, y: 1 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 0, y: -3 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 2, y: -3 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 4, y: 1 }, placement: "above-right" },
+      { key: "b", objectId: "point-b", at: { x: -2, y: 1 }, placement: "above-left" },
+      { key: "c", objectId: "point-c", at: { x: 0, y: -3 }, placement: "below-left" },
+      { key: "d", objectId: "point-d", at: { x: 2, y: -3 }, placement: "below-right" },
+      { key: "top", objectId: "image", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "cut", objectId: "cut", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Check: the part below the <InlineMath math="x" />-axis has area <InlineMath math="\frac{5+2}{2}\cdot3=10.5" />, and <InlineMath math="5.5+10.5=16" />, **which matches the area of the whole image**.
+
+# Why the other options are wrong
+
+- <InlineMath math="2.5" /> comes from using the factor <InlineMath math="+\frac12" />. Then the image isn't flipped, the long side stays at the bottom, and the part above the axis is only <InlineMath math="\frac{3+2}{2}\cdot1" />.
+- <InlineMath math="4" /> comes from splitting the area <InlineMath math="16" /> by height alone, <InlineMath math="1" /> out of <InlineMath math="4" />. The trapezoid is widest at the top, so **the top strip holds more than a quarter of the area**.
+- <InlineMath math="10.5" /> comes from cutting the original trapezoid at the <InlineMath math="x" />-axis and multiplying that area by <InlineMath math="\frac14" />. Because the shape flips, the original part above the axis turns into the image's part below the axis.
+- <InlineMath math="16" /> is the area of the whole image, with nothing cut off. You also get it if you translate first, because then the whole image lies above the <InlineMath math="x" />-axis.
+
+So the area of the part of the final image above the <InlineMath math="x" />-axis is <InlineMath math="5.5" /> square units.

@@ -13,26 +13,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Semua peserta yang tidak terlambat diizinkan masuk ruang ujian.",
-        },
-        {
-          correct: false,
-          label: "Ada peserta terlambat yang diizinkan masuk ruang ujian.",
+            "Semua mahasiswa yang sudah mengikuti pelatihan keselamatan dan membawa kartu laboratorium boleh meminjam alat laboratorium.",
         },
         {
           correct: false,
           label:
-            "Sebagian peserta yang terlambat tidak diizinkan masuk ruang ujian.",
+            "Ada mahasiswa yang boleh meminjam alat laboratorium meskipun ia belum mengikuti pelatihan keselamatan atau tidak membawa kartu laboratorium.",
+        },
+        {
+          correct: false,
+          label:
+            "Jika seorang mahasiswa tidak membawa kartu laboratorium, ia tidak boleh meminjam alat laboratorium.",
+        },
+        {
+          correct: false,
+          label:
+            "Jika seorang mahasiswa belum mengikuti pelatihan keselamatan dan tidak membawa kartu laboratorium, ia tidak boleh meminjam alat laboratorium.",
         },
         {
           correct: true,
           label:
-            "Semua peserta yang diizinkan masuk ruang ujian tidak terlambat.",
-        },
-        {
-          correct: false,
-          label:
-            "Setiap peserta yang tidak diizinkan masuk ruang ujian pasti terlambat.",
+            "Jika seorang mahasiswa belum mengikuti pelatihan keselamatan atau tidak membawa kartu laboratorium, ia tidak boleh meminjam alat laboratorium.",
         },
       ],
     },

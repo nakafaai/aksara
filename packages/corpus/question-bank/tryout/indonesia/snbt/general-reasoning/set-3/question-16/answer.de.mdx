@@ -1,18 +1,29 @@
-Eine Aussage ist Benar (richtig) nur, wenn sie in **allen vier Anordnungen** gilt, sonst ist sie Salah (falsch). Bei einer Wenn-Aussage prüfst du nur die Anordnungen, in denen der Wenn-Teil zutrifft.
+Die Zusatzbedingung setzt Hamid auf Stuhl 7. Eine Aussage ist *Benar* ("richtig") nur, wenn sie in **jeder Sitzordnung gilt, die danach noch gültig ist**. Sonst ist sie *Salah*.
 
-| Anordnung | Oberes Brett | Mittleres Brett | Unteres Brett |
-| --- | --- | --- | --- |
-| I | K, L | M, O, P | N, Q |
-| II | K, L | N, O, P | M, Q |
-| III | M, P | K, L, O | N, Q |
-| IV | M, P | N, O, Q | K, L |
+Nutz zuerst die Struktur, die für alle Sitzordnungen gilt.
 
-**Aussage 1** ist richtig. P steht in I und II in der Mitte und in III und IV oben. Unten steht P nie, weil es höher stehen muss als Q.
+- Regel 1 ergibt zwei Fälle: Asri auf Stuhl 1 und Bonar auf Stuhl 5, oder Bonar auf Stuhl 1 und Asri auf Stuhl 5.
+- Dimas darf nicht neben Asri sitzen (Regel 3) und kann auch nicht auf Stuhl 3 oder Stuhl 7 sitzen. Nähme Dimas einen davon, säße Elok ihm gegenüber auf dem anderen, und Fajar bräuchte einen Stuhl zwei Plätze von Elok entfernt, also Stuhl 1 oder Stuhl 5. Die gehören Asri und Bonar. Dimas sitzt also neben Bonar.
+- Cahya nimmt den anderen Nachbarstuhl von Dimas (Regel 2), also Stuhl 3 oder Stuhl 7. Elok sitzt Dimas gegenüber und damit neben Asri (Regel 4). Fajar sitzt zwei Stühle von Elok entfernt (Regel 5).
 
-**Aussage 2** ist falsch. In Anordnung IV stehen unten K und L, Q steht in der Mitte.
+Setz jetzt Hamid auf Stuhl 7. Dieser Stuhl ist besetzt, also **sitzt Cahya sicher auf Stuhl 3**. Hamid auf Stuhl 7 sitzt nicht neben Cahya, Regel 7 ist also erfüllt. Es bleiben zwei Fälle.
 
-**Aussage 3** ist falsch. N steht in II und IV in der Mitte. In II steht Q unten, in IV aber in der Mitte.
+- Asri auf Stuhl 1. Dimas sitzt auf Stuhl 4, Bonar auf Stuhl 5 und Elok auf Stuhl 8. Fajar sitzt zwei Stühle von Elok entfernt, also auf Stuhl 2 oder Stuhl 6, und Galuh nimmt den übrigen. Galuhs Nummer bleibt in beiden Fällen kleiner als Hamids, also sind beide Wege gültig.
+- Asri auf Stuhl 5. Bonar sitzt auf Stuhl 1, Dimas auf Stuhl 2 und Elok auf Stuhl 6. Fajar sitzt auf Stuhl 4 oder Stuhl 8. Frei sind noch die Stühle 4 und 8, und Galuh braucht eine kleinere Nummer als Hamid auf Stuhl 7. Also bekommt Galuh Stuhl 4 und Fajar Stuhl 8.
 
-**Aussage 4** ist richtig. K steht in I und II oben, und in beiden steht P in der Mitte.
+Das ergibt drei Sitzordnungen. Die Spalten 1 bis 8 sind Stuhlnummern, und jede Person steht mit dem Anfangsbuchstaben ihres Namens da.
 
-Die Aussagen 1 und 4 sind also richtig, die Aussagen 2 und 3 falsch.
+| Sitzordnung | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| I | A | F | C | D | B | G | H | E |
+| II | A | G | C | D | B | F | H | E |
+| III | B | D | C | G | A | E | H | F |
+
+Jetzt bewertest du jede Aussage.
+
+- Cahya auf Stuhl 3 ist *Benar*. Cahya sitzt in allen drei Sitzordnungen auf Stuhl 3, weil Hamid Stuhl 7 schon hat.
+- Asri auf Stuhl 1 ist *Salah*. Die Aussage gilt in den Sitzordnungen I und II, aber Sitzordnung III setzt Asri auf Stuhl 5. Den Fall mit Bonar auf Stuhl 1 übersieht man leicht, weil Galuh dort auf Stuhl 4 ausweichen muss, um unter Hamid zu bleiben.
+- Fajar neben Asri ist *Salah*. Nur Sitzordnung I setzt Fajar neben Asri. In Sitzordnung II sitzt Fajar auf Stuhl 6, und in Sitzordnung III sitzt Fajar auf Stuhl 8, während Asri auf Stuhl 5 sitzt.
+- Galuh gegenüber von Fajar ist *Benar*. Ihre Stuhlpaare sind 6 und 2, 2 und 6 sowie 4 und 8. Jedes Paar unterscheidet sich um <InlineMath math="4" />, also sitzen die beiden immer einander gegenüber.
+
+Richtig sind also die Aussagen über Cahya auf Stuhl 3 und über Galuh gegenüber von Fajar, falsch die Aussagen über Asri auf Stuhl 1 und über Fajar neben Asri.

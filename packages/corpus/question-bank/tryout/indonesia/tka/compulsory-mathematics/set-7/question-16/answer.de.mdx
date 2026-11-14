@@ -1,10 +1,32 @@
-Das Eis in der Waffel bildet einen Kegel, sein Volumen ist also **ein Drittel von Grundfläche mal Höhe**. Der Radius ist der halbe Öffnungsdurchmesser, <InlineMath math="3\text{ cm}" />.
+Gesucht ist der Durchmesser des Vollzylinders, der aus einem eingeschmolzenen Rohr gegossen wird. Entscheidend ist: **Das Volumen des Eisens ändert sich nicht**. Das Volumen der Rohrwand ist also gleich dem Volumen des neuen Vollzylinders. Berechne zuerst das Eisenvolumen im Rohr und dann den Radius eines Zylinders mit diesem Volumen.
 
-<BlockMath math="V=\tfrac13\pi r^2t=\tfrac13\cdot3{,}14\cdot3^2\cdot12=3{,}14\cdot36=113{,}04" />
+# Eisenvolumen im Rohr
 
-Das Eis in der Waffel hat also ein Volumen von <InlineMath math="113{,}04\text{ cm}^3" />.
+Das Eisen steckt nur in der Wand, also im Ring zwischen dem äußeren Kreis und dem Hohlraum. Der Außenradius ist <InlineMath math="R=\frac{10}{2}=5\text{ cm}" />. **Die Wand von <InlineMath math="1\text{ cm}" /> liegt auf beiden Seiten des Hohlraums**, der Hohlraum hat also den Durchmesser <InlineMath math="10-2\cdot1=8\text{ cm}" /> und den Innenradius <InlineMath math="r=4\text{ cm}" />. Auch die Länge muss in Zentimetern stehen, <InlineMath math="5\text{ m}=500\text{ cm}" />.
 
-- <InlineMath math="37{,}68\text{ cm}^3" /> vergisst, den Radius zu quadrieren.
-- <InlineMath math="56{,}52\text{ cm}^3" /> ist das Volumen der Halbkugel oben.
-- <InlineMath math="339{,}12\text{ cm}^3" /> vergisst den Faktor <InlineMath math="\tfrac13" />, als wäre die Waffel ein Zylinder.
-- <InlineMath math="452{,}16\text{ cm}^3" /> nimmt den Durchmesser <InlineMath math="6\text{ cm}" /> als Radius.
+<BlockMath math="\begin{aligned}
+V_{\text{Eisen}}&=\left(\pi R^2-\pi r^2\right)\cdot L \\
+&=\pi\,(5^2-4^2)\cdot500 \\
+&=\pi\cdot9\cdot500=4500\pi\text{ cm}^3
+\end{aligned}" />
+
+# Radius des Vollzylinders
+
+Nenn den Radius des Vollzylinders <InlineMath math="\rho" />. Er ist <InlineMath math="20\text{ cm}" /> hoch, und sein Volumen muss dem Eisenvolumen entsprechen. Der Faktor <InlineMath math="\pi" /> steht auf beiden Seiten, deshalb **brauchst du <InlineMath math="\tfrac{22}{7}" /> hier gar nicht einzusetzen**.
+
+<BlockMath math="\begin{aligned}
+\pi\rho^2\cdot20&=4500\pi \\
+\rho^2&=\frac{4500}{20}=225 \\
+\rho&=15\text{ cm}
+\end{aligned}" />
+
+Gefragt ist der Durchmesser, also <InlineMath math="d=2\rho=30\text{ cm}" />. Kurze Plausibilitätsprüfung: Aus dem <InlineMath math="500\text{ cm}" /> langen Rohr wird ein <InlineMath math="25" />-mal kürzerer Zylinder, sein Querschnitt muss also <InlineMath math="25" />-mal so groß sein wie der Ring, <InlineMath math="25\cdot9\pi=225\pi" />. Das ist genau die Fläche eines Kreises mit Radius <InlineMath math="15" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="3\text{ cm}" /> entsteht, wenn die Länge als <InlineMath math="5" /> stehen bleibt statt <InlineMath math="500\text{ cm}" />. **Alle Maße müssen in derselben Einheit stehen**.
+- <InlineMath math="6\text{ cm}" /> entsteht, wenn du nur die Querschnitte gleichsetzt, als wäre die Höhe noch <InlineMath math="500\text{ cm}" />. Der neue Zylinder ist viel kürzer, sein Querschnitt muss also viel größer sein.
+- <InlineMath math="10\text{ cm}" /> entsteht, wenn du die Ringfläche als <InlineMath math="\pi\,(R-r)^2=\pi" /> nimmst. Die Ringfläche ist die Differenz zweier Kreisflächen, nicht die Fläche eines Kreises mit der Wandstärke als Radius.
+- <InlineMath math="15\text{ cm}" /> ist der Radius. Der letzte Schritt, das Verdoppeln zum Durchmesser, fehlt.
+
+Der Vollzylinder hat also einen Durchmesser von <InlineMath math="30\text{ cm}" />.

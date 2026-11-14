@@ -1,16 +1,76 @@
-Volume yang sama **tidak menjamin luas permukaan yang sama**, jadi hitung luas permukaan setiap rancangan dengan <InlineMath math="L=2(pl+pt+lt)" />.
+Soal ini meminta perbandingan **luas**, bukan perbandingan sisi. Persegi <InlineMath math="PQRS" /> hanya punya dua titik sudut pada lingkaran, jadi ia bukan persegi yang biasa digambar di dalam lingkaran. Kamu perlu jari-jari lingkaran dulu, lalu sisi <InlineMath math="PQRS" /> dari teorema Pythagoras.
+
+# Jari-jari lingkaran
+
+Lingkaran <InlineMath math="L" /> menyinggung keempat sisi persegi <InlineMath math="ABCD" />, jadi **diameternya sama dengan sisi persegi**, yaitu <InlineMath math="20\text{ cm}" />. Dua titik singgung pada sisi yang berhadapan terletak tepat di kedua ujung satu diameter. Jari-jarinya <InlineMath math="r=10\text{ cm}" />, dan garis <InlineMath math="g" /> adalah salah satu diameter lingkaran.
+
+# Sisi persegi PQRS
+
+Misalkan sisi <InlineMath math="PQRS" /> adalah <InlineMath math="s" />. Titik <InlineMath math="R" /> dan <InlineMath math="S" /> ada pada lingkaran, dan <InlineMath math="SR" /> sejajar <InlineMath math="g" />. Garis tegak lurus dari pusat <InlineMath math="O" /> ke tali busur <InlineMath math="SR" /> selalu membagi tali busur itu sama panjang. Garis tegak itu juga membagi <InlineMath math="PQ" /> sama panjang, karena <InlineMath math="PS" /> dan <InlineMath math="QR" /> sama-sama tegak lurus <InlineMath math="g" />. Jadi **<InlineMath math="O" /> tepat di tengah <InlineMath math="PQ" />**, dan <InlineMath math="OQ=\tfrac{s}{2}" />.
+
+<MathVisual
+  title={<>Segitiga siku-siku <InlineMath math="OQR" /></>}
+  description={<>Gambar soal dengan ruas <InlineMath math="OR" /> yang ditebalkan. Segitiga <InlineMath math="OQR" /> siku-siku di <InlineMath math="Q" />, dengan <InlineMath math="OQ" /> setengah sisi persegi, <InlineMath math="QR" /> satu sisi persegi, dan <InlineMath math="OR" /> jari-jari <InlineMath math="10" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    r: <InlineMath math="R" />,
+    s: <InlineMath math="S" />,
+    radius: <InlineMath math="10" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -12, max: 12 },
+      y: { min: -12, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "outer", kind: "polygon", appearance: "primary", vertices: [{ x: -10, y: -10 }, { x: 10, y: -10 }, { x: 10, y: 10 }, { x: -10, y: 10 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 10 },
+      { id: "line-g", kind: "segment", appearance: "reference", from: { x: -10, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "inner", kind: "polygon", appearance: "highlight", vertices: [{ x: -2 * Math.sqrt(5), y: 0 }, { x: 2 * Math.sqrt(5), y: 0 }, { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }] },
+      { id: "radius-r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: -2 * Math.sqrt(5), y: 0 } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(5), y: 0 } },
+      { id: "point-r", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
+      { id: "point-s", kind: "point", appearance: "reference", at: { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
+    ],
+    labels: [
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "p", objectId: "point-p", at: { x: -2 * Math.sqrt(5), y: 0 }, placement: "below" },
+      { key: "q", objectId: "point-q", at: { x: 2 * Math.sqrt(5), y: 0 }, placement: "below" },
+      { key: "r", objectId: "point-r", at: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, placement: "above-right" },
+      { key: "s", objectId: "point-s", at: { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, placement: "above-left" },
+      { key: "radius", objectId: "radius-r", at: { x: Math.sqrt(5), y: 2 * Math.sqrt(5) }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Segitiga <InlineMath math="OQR" /> siku-siku di <InlineMath math="Q" />, dengan <InlineMath math="OQ=\tfrac{s}{2}" />, <InlineMath math="QR=s" />, dan sisi miring <InlineMath math="OR=10" /> karena <InlineMath math="R" /> ada pada lingkaran.
 
 <BlockMath math="\begin{aligned}
-L_P&=2(200+100+50)=700\text{ cm}^2 \\
-L_Q&=2(200+125+40)=730\text{ cm}^2 \\
-L_R&=2(100+100+100)=600\text{ cm}^2
+\left(\frac{s}{2}\right)^2+s^2&=10^2 \\
+\frac{5s^2}{4}&=100 \\
+s^2&=80
 \end{aligned}" />
 
-Rancangan R, yang berbentuk kubus, mempunyai luas permukaan paling kecil. Makin mendekati kubus, makin sedikit bahan untuk volume yang sama.
+# Perbandingan luas
 
-Jadi, rancangan R memerlukan bahan paling sedikit.
+Luas <InlineMath math="PQRS" /> adalah <InlineMath math="s^2=80\text{ cm}^2" />, dan luas <InlineMath math="ABCD" /> adalah <InlineMath math="20^2=400\text{ cm}^2" />. Bagi luas yang kecil dengan luas yang besar untuk mendapat perbandingannya.
 
-- Volume ketiganya sama, tetapi luas permukaannya <InlineMath math="700" />, <InlineMath math="730" />, dan <InlineMath math="600\text{ cm}^2" />.
-- Rancangan Q justru memerlukan bahan paling banyak.
-- Rancangan P memerlukan <InlineMath math="100\text{ cm}^2" /> lebih **banyak** daripada R, bukan lebih sedikit.
-- Rancangan Q memerlukan <InlineMath math="30\text{ cm}^2" /> lebih **banyak** daripada P.
+<BlockMath math="\frac{L_{PQRS}}{L_{ABCD}}=\frac{80}{400}=\frac{1}{5}" />
+
+Perbandingan sisinya sendiri adalah <InlineMath math="\sqrt{80}:20=1:\sqrt{5}" />. **Perbandingan luas adalah kuadrat perbandingan sisi**, jadi <InlineMath math="\left(1:\sqrt{5}\right)^2=1:5" />, cocok dengan hitungan di atas.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="1:8" /> muncul kalau <InlineMath math="O" /> dianggap berada di titik <InlineMath math="P" />. Maka <InlineMath math="OR" /> menjadi diagonal, <InlineMath math="s\sqrt{2}=10" />, dan <InlineMath math="s^2=50" />.
+- <InlineMath math="1:4" /> muncul kalau sisi persegi dianggap sama dengan jari-jari, <InlineMath math="s=10" />, tanpa alasan.
+- <InlineMath math="1:\sqrt{5}" /> adalah perbandingan sisi. **Soal menanyakan perbandingan luas**, jadi perbandingan sisi masih harus dikuadratkan.
+- <InlineMath math="1:2" /> adalah perbandingan untuk persegi yang keempat titik sudutnya ada pada lingkaran, dengan diagonal <InlineMath math="20" /> dan luas <InlineMath math="200" />. Di sini <InlineMath math="P" /> dan <InlineMath math="Q" /> ada pada diameter, bukan pada lingkaran.
+
+Jadi, perbandingan luas persegi <InlineMath math="PQRS" /> terhadap luas persegi <InlineMath math="ABCD" /> adalah <InlineMath math="1:5" />.

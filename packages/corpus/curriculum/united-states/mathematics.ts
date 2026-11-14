@@ -37,18 +37,20 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           description: "Gunakan bilangan kompleks, vektor, dan matriks.",
           title: "Bilangan dan Kuantitas",
         },
+        ms: {
+          description: "Guna nombor kompleks, vektor dan matriks.",
+          title: "Nombor dan Kuantiti",
+        },
       },
       order: 10,
       translations: {
         de: { routeSlug: "zahlen-und-groessen", title: "Zahlen und Größen" },
-        en: {
-          routeSlug: "number-and-quantity",
-          title: "Number and Quantity",
-        },
+        en: { routeSlug: "number-and-quantity", title: "Number and Quantity" },
         id: {
           routeSlug: "bilangan-dan-kuantitas",
           title: "Bilangan dan Kuantitas",
         },
+        ms: { routeSlug: "nombor-dan-kuantiti", title: "Nombor dan Kuantiti" },
       },
     }),
     unitNode({
@@ -92,18 +94,17 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           description: "Selesaikan persamaan, polinom, dan eksponen.",
           title: "Aljabar",
         },
+        ms: {
+          description: "Selesaikan persamaan, polinomial dan eksponen.",
+          title: "Algebra",
+        },
       },
       order: 20,
       translations: {
         de: { routeSlug: "algebra", title: "Algebra" },
-        en: {
-          routeSlug: "algebra",
-          title: "Algebra",
-        },
-        id: {
-          routeSlug: "aljabar",
-          title: "Aljabar",
-        },
+        en: { routeSlug: "algebra", title: "Algebra" },
+        id: { routeSlug: "aljabar", title: "Aljabar" },
+        ms: { routeSlug: "algebra", title: "Algebra" },
       },
     }),
     unitNode({
@@ -143,18 +144,17 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           description: "Modelkan, susun, dan ubah fungsi.",
           title: "Fungsi",
         },
+        ms: {
+          description: "Modelkan, gubah dan transformasikan fungsi.",
+          title: "Fungsi",
+        },
       },
       order: 30,
       translations: {
         de: { routeSlug: "funktionen", title: "Funktionen" },
-        en: {
-          routeSlug: "functions",
-          title: "Functions",
-        },
-        id: {
-          routeSlug: "fungsi",
-          title: "Fungsi",
-        },
+        en: { routeSlug: "functions", title: "Functions" },
+        id: { routeSlug: "fungsi", title: "Fungsi" },
+        ms: { routeSlug: "fungsi", title: "Fungsi" },
       },
     }),
     unitNode({
@@ -192,18 +192,17 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           description: "Gunakan lingkaran, koordinat, dan trigonometri.",
           title: "Geometri",
         },
+        ms: {
+          description: "Guna bulatan, koordinat dan trigonometri.",
+          title: "Geometri",
+        },
       },
       order: 40,
       translations: {
         de: { routeSlug: "geometrie", title: "Geometrie" },
-        en: {
-          routeSlug: "geometry",
-          title: "Geometry",
-        },
-        id: {
-          routeSlug: "geometri",
-          title: "Geometri",
-        },
+        en: { routeSlug: "geometry", title: "Geometry" },
+        id: { routeSlug: "geometri", title: "Geometri" },
+        ms: { routeSlug: "geometri", title: "Geometri" },
       },
     }),
     unitNode({
@@ -241,6 +240,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           description: "Baca data, peluang, dan model regresi.",
           title: "Statistika dan Peluang",
         },
+        ms: {
+          description: "Baca data, kebarangkalian dan model regresi.",
+          title: "Statistik dan Kebarangkalian",
+        },
       },
       order: 50,
       translations: {
@@ -256,6 +259,10 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           routeSlug: "statistika-dan-peluang",
           title: "Statistika dan Peluang",
         },
+        ms: {
+          routeSlug: "statistik-dan-kebarangkalian",
+          title: "Statistik dan Kebarangkalian",
+        },
       },
     }),
   ],
@@ -265,13 +272,8 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
   order: 10,
   translations: {
     de: { routeSlug: "mathematik", title: "Mathematik" },
-    en: {
-      routeSlug: "mathematics",
-      title: "Mathematics",
-    },
-    id: {
-      routeSlug: "matematika",
-      title: "Matematika",
-    },
+    en: { routeSlug: "mathematics", title: "Mathematics" },
+    id: { routeSlug: "matematika", title: "Matematika" },
+    ms: { routeSlug: "matematik", title: "Matematik" },
   },
 });

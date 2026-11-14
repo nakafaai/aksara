@@ -4,35 +4,30 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "categorical-syllogism",
+    topic: "quantifiers",
   },
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
+      columns: ["Pasti benar", "Tidak pasti benar"],
       kind: "matrix",
       statements: [
         {
           column: 1,
-          label: "Dimas boleh bertugas di posko.",
+          label:
+            "Sebagian pengurus OSIS tidak lolos babak penyisihan olimpiade.",
         },
         {
           column: 2,
-          label: "Dimas adalah tenaga kesehatan.",
-        },
-        {
-          column: 1,
-          label:
-            "Sebagian relawan yang boleh bertugas di posko tidak bertugas di dapur umum.",
-        },
-        {
-          column: 1,
-          label:
-            "Jika Dimas bertugas di dapur umum, Dimas bukan tenaga kesehatan.",
+          label: "Tidak ada penerima kaus panitia yang mengikuti lomba debat.",
         },
         {
           column: 2,
           label:
-            "Semua relawan yang boleh bertugas di posko telah lolos pelatihan dasar.",
+            "Semua pengurus OSIS yang lolos babak penyisihan olimpiade menerima kaus panitia.",
+        },
+        {
+          column: 1,
+          label: "Sebagian peserta pelatihan intensif adalah pengurus OSIS.",
         },
       ],
     },

@@ -1,18 +1,38 @@
-Diagram memberi frekuensi setiap nilai. Rata-rata harus **memakai frekuensi sebagai bobot**, sedangkan median dibaca dari posisi data setelah diurutkan.
+Kamu perlu memutuskan apakah informasi yang ada selalu memberi jawaban yang sama, ya atau tidak. Jika masih ada satu garis yang memotong di dua titik dan satu garis lain yang tidak, informasinya belum cukup. Rencananya: cari pusat dan jari-jari lingkaran, cek letak titik <InlineMath math="(5,1)" />, lalu **perhatikan garis singgung di titik itu**.
 
-# Menghitung rata-rata
+# Pusat dan jari-jari lingkaran
+
+Lengkapkan kuadrat untuk <InlineMath math="x" /> dan <InlineMath math="y" />.
 
 <BlockMath math="\begin{aligned}
-\bar x&=\frac{4(60)+7(70)+6(80)+3(90)}{20}\\
-&=\frac{240+490+480+270}{20}=\frac{1480}{20}=74
+x^2-4x+y^2+6y&=12\\
+(x-2)^2+(y+3)^2&=12+4+9=25
 \end{aligned}" />
 
-# Menentukan median
+Pusatnya <InlineMath math="M(2,-3)" /> dan jari-jarinya <InlineMath math="5" />. Titik <InlineMath math="(5,1)" /> memenuhi <InlineMath math="(5-2)^2+(1+3)^2=9+16=25" />, jadi **titik itu terletak tepat pada lingkaran**.
 
-Dua puluh data diurutkan dari nilai terkecil. Median adalah rata-rata data ke-10 dan ke-11. Frekuensi kumulatifnya 4 untuk nilai 60 dan 11 untuk nilai 70, jadi **data ke-5 sampai ke-11 bernilai 70**. Mediannya 70.
+# Garis singgung di titik itu
 
-Selisihnya <InlineMath math="74-70=4" />.
+Garis yang melalui titik pada lingkaran memotong lingkaran di dua titik, kecuali garis singgung di titik itu, yang hanya menyentuh di satu titik. Garis singgung **tegak lurus jari-jari** ke titik singgung. Jari-jari dari <InlineMath math="M(2,-3)" /> ke <InlineMath math="(5,1)" /> bergradien <InlineMath math="\frac{1-(-3)}{5-2}=\frac43" />, jadi gradien garis singgungnya <InlineMath math="-\frac34" />, karena hasil kali kedua gradien harus <InlineMath math="-1" />.
 
-Nilai 5 muncul jika rata-rata dihitung sebagai rata-rata keempat nilai tanpa bobot, <InlineMath math="\tfrac{60+70+80+90}{4}=75" />. Nilai 1 memakai median 75, yaitu rata-rata dua kategori tengah, bukan dua data tengah. Nilai 6 memakai median 80, dan nilai 10 memakai rata-rata 80.
+<BlockMath math="\begin{aligned}
+y-1&=-\tfrac34(x-5)\\
+3x+4y-19&=0\\
+\text{jarak dari }M&=\frac{|3(2)+4(-3)-19|}{\sqrt{3^2+4^2}}=\frac{25}{5}=5
+\end{aligned}" />
 
-Jadi, selisih rata-rata dan median adalah **4**.
+Jaraknya sama dengan jari-jari, jadi garis ini memang hanya menyinggung lingkaran.
+
+# Setiap pernyataan saja
+
+Pernyataan (1) saja tidak cukup. Garis singgung <InlineMath math="3x+4y-19=0" /> melalui <InlineMath math="(5,1)" /> tetapi hanya menyentuh di satu titik, jadi jawabannya tidak. Garis <InlineMath math="y=1" /> juga melalui <InlineMath math="(5,1)" /> dan memotong lingkaran di <InlineMath math="(5,1)" /> serta <InlineMath math="(-1,1)" />, jadi jawabannya ya. Melalui titik pada lingkaran **belum menjamin dua titik potong**.
+
+Pernyataan (2) saja juga tidak cukup. Garis <InlineMath math="x+y-20=0" /> bergradien <InlineMath math="-1" /> dan berjarak <InlineMath math="\frac{21}{\sqrt2}" /> dari pusat, lebih dari <InlineMath math="5" />, jadi tidak memotong. Garis bergradien <InlineMath math="-1" /> yang melalui pusat <InlineMath math="M" /> pasti memotong di dua titik.
+
+# Kedua pernyataan bersama
+
+Gradien garis singgung tadi adalah <InlineMath math="-\frac34" />, yang **juga negatif**. Jadi garis singgung itu memenuhi kedua pernyataan, dan jawabannya tidak. Sementara itu, garis yang melalui <InlineMath math="(5,1)" /> dan <InlineMath math="(2,2)" /> bergradien <InlineMath math="\frac{2-1}{2-5}=-\frac13" />, juga negatif. Titik <InlineMath math="(2,2)" /> ada pada lingkaran, karena <InlineMath math="0^2+5^2=25" />, jadi garis ini memotong di dua titik berbeda dan jawabannya ya.
+
+Kedua garis memenuhi pernyataan (1) dan (2), tetapi jawabannya berbeda. Siswa yang langsung menganggap titik pada lingkaran berarti dua titik potong akan memilih pernyataan (1) cukup. Siswa yang tidak menghitung gradien garis singgung akan mengira gradien negatif menyingkirkan kemungkinan menyinggung.
+
+Jadi, **pernyataan (1) dan (2) tidak cukup** untuk menjawab pertanyaan, bahkan jika digabungkan.

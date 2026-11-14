@@ -1,13 +1,47 @@
-The graph of <InlineMath math="f" /> is a parabola that opens upward, so every statement can be checked through **its vertex**. The axis of symmetry is <InlineMath math="x=-\frac{-2k}{2}=k" />, and the minimum value is <InlineMath math="f(k)" />.
+# A table of the three functions
+
+The five statements compare the exponential function <InlineMath math="f(x)=2^x" />, the linear function <InlineMath math="g(x)=10x+5" />, and the quadratic function <InlineMath math="h(x)=x^2" /> at integers. Start with a table, then **for any statement that says for every, find a general reason or one counterexample**.
+
+| <InlineMath math="x" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="10" /> | <InlineMath math="11" /> |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| <InlineMath math="f(x)" /> | <InlineMath math="\frac12" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="8" /> | <InlineMath math="16" /> | <InlineMath math="32" /> | <InlineMath math="64" /> | <InlineMath math="128" /> | <InlineMath math="1{,}024" /> | <InlineMath math="2{,}048" /> |
+| <InlineMath math="g(x)" /> | <InlineMath math="-5" /> | <InlineMath math="5" /> | <InlineMath math="15" /> | <InlineMath math="25" /> | <InlineMath math="35" /> | <InlineMath math="45" /> | <InlineMath math="55" /> | <InlineMath math="65" /> | <InlineMath math="75" /> | <InlineMath math="105" /> | <InlineMath math="115" /> |
+| <InlineMath math="h(x)" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="4" /> | <InlineMath math="9" /> | <InlineMath math="16" /> | <InlineMath math="25" /> | <InlineMath math="36" /> | <InlineMath math="49" /> | <InlineMath math="100" /> | <InlineMath math="121" /> |
+
+# The first statement
+
+For <InlineMath math="x=1" /> to <InlineMath math="6" />, <InlineMath math="f" /> always stays below <InlineMath math="g" />. The closest call is <InlineMath math="x=6" />: <InlineMath math="64<65" />, **a gap of only <InlineMath math="1" />**, so <InlineMath math="6" /> doesn't work yet. At <InlineMath math="x=7" />, <InlineMath math="128>75" />. The statement is **True**.
+
+# The second statement
+
+Look at what happens when <InlineMath math="x" /> goes up by <InlineMath math="1" />:
 
 <BlockMath math="\begin{aligned}
-f(k)&=k^2-2k^2+k+6=-k^2+k+6=-(k-3)(k+2)
+f(x+1)-f(x)&=2^{x+1}-2^x=2^x \\
+g(x+1)-g(x)&=10
 \end{aligned}" />
 
-- For <InlineMath math="k=3" /> the minimum is <InlineMath math="-(0)(5)=0" />. The vertex sits on the <InlineMath math="x" />-axis, so the graph touches the <InlineMath math="x" />-axis. This statement is true.
-- The axis of symmetry is <InlineMath math="x=k" />, not <InlineMath math="x=-k" />. This statement is false.
-- For <InlineMath math="-2<k<3" /> the factor <InlineMath math="k-3" /> is negative and <InlineMath math="k+2" /> is positive, so <InlineMath math="f(k)=-(k-3)(k+2)>0" />. Even the smallest value of <InlineMath math="f" /> is positive, so every value <InlineMath math="f(x)" /> is positive. This statement is true.
-- For <InlineMath math="k=-2" />, <InlineMath math="f(x)=x^2+4x+4=(x+2)^2" />, so the minimum is <InlineMath math="0" />, not <InlineMath math="4" />. This statement is false.
-- For <InlineMath math="k=4" />, <InlineMath math="f(x)=x^2-8x+10" />. The discriminant is <InlineMath math="64-40=24>0" />, so there are two different real roots, <InlineMath math="4\pm\sqrt6\approx1.55" /> and <InlineMath math="6.45" />. Both are positive. This statement is true.
+For <InlineMath math="x\ge7" />, <InlineMath math="f" /> grows by at least <InlineMath math="2^7=128" /> per step, far more than the <InlineMath math="10" /> that <InlineMath math="g" /> always adds. At <InlineMath math="x=7" />, <InlineMath math="f" /> is already ahead by <InlineMath math="128-75=53" />, and **every further step makes that lead bigger**. The statement is **True**.
 
-So the true statements are the ones about <InlineMath math="k=3" />, about <InlineMath math="-2<k<3" />, and about <InlineMath math="k=4" />.
+# The third statement
+
+Check every integer, including the negative ones. For <InlineMath math="x\le-1" />, <InlineMath math="2^x" /> is always positive, while <InlineMath math="10x+5\le-5" />, so <InlineMath math="f(x)>g(x)" />. For <InlineMath math="x\ge7" />, the second statement already showed <InlineMath math="f(x)>g(x)" />. That leaves <InlineMath math="x=0,1,2,3,4,5,6" />, and the table shows <InlineMath math="f(x)<g(x)" /> for all seven, including <InlineMath math="x=0" />, because <InlineMath math="1<5" />.
+
+There are **seven, not six**. The statement is **False**.
+
+# The fourth statement
+
+One counterexample is enough. At <InlineMath math="x=3" />, <InlineMath math="f(3)=8" /> and <InlineMath math="h(3)=9" />, so <InlineMath math="f(3)<h(3)" />. At <InlineMath math="x=4" /> they're equal, <InlineMath math="16=16" />, and only from <InlineMath math="x=5" /> on is <InlineMath math="2^x" /> bigger. **The statement fails at <InlineMath math="x=3" />**, so it's **False**.
+
+# The fifth statement
+
+The hard part is <InlineMath math="g(x)<h(x)" />, that is <InlineMath math="x^2>10x+5" />. The quadratic only passes the linear function after <InlineMath math="x=10" />:
+
+<BlockMath math="\begin{aligned}
+x=10&:\ 100<105 \\
+x=11&:\ 121>115
+\end{aligned}" />
+
+At <InlineMath math="x=11" /> the three values line up as <InlineMath math="115<121<2{,}048" />, so <InlineMath math="g(11)<h(11)<f(11)" />. One example is enough for the word there is. The statement is **True**.
+
+So the true statements are the first, the second, and the fifth.

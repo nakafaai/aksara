@@ -1,16 +1,83 @@
-Die Verschiebung um <InlineMath math="T" /> bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(x-2,\,y+5)" /> ab. Der Urpunkt eines Bildpunkts <InlineMath math="(x,y)" /> ist also <InlineMath math="(x+2,\,y-5)" />. **Setz diesen Urpunkt in die ursprüngliche Gleichung ein**.
+Gefragt ist nur ein Teil der Bildfläche, nämlich der Teil oberhalb der <InlineMath math="x" />-Achse. Die Fläche des ganzen Bildes reicht nicht, weil die Achse das Bild durchschneidet. Du brauchst also **die genaue Lage der Bildecken**.
+
+# Das Bild jeder Ecke
+
+Eine zentrische Streckung mit Zentrum <InlineMath math="P" /> und Faktor <InlineMath math="k" /> schickt einen Punkt <InlineMath math="X" /> nach <InlineMath math="P+k(X-P)" />. In Worten: Nimm den Schritt von <InlineMath math="P" /> zum Punkt, multipliziere ihn mit <InlineMath math="k" /> und setze ihn wieder bei <InlineMath math="P" /> an. Ein negativer Faktor dreht den Schritt um, das Bild liegt also auf der anderen Seite von <InlineMath math="P" />. **Die Verschiebung kommt erst nach der Streckung**, so wie es die Aufgabe vorgibt.
+
+| Punkt | <InlineMath math="X-P" /> | <InlineMath math="-\frac12(X-P)" /> | Nach der Streckung | Nach der Verschiebung |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="A" /> | <InlineMath math="(-6,-4)" /> | <InlineMath math="(3,2)" /> | <InlineMath math="(5,4)" /> | <InlineMath math="A''(4,1)" /> |
+| <InlineMath math="B" /> | <InlineMath math="(6,-4)" /> | <InlineMath math="(-3,2)" /> | <InlineMath math="(-1,4)" /> | <InlineMath math="B''(-2,1)" /> |
+| <InlineMath math="C" /> | <InlineMath math="(2,4)" /> | <InlineMath math="(-1,-2)" /> | <InlineMath math="(1,0)" /> | <InlineMath math="C''(0,-3)" /> |
+| <InlineMath math="D" /> | <InlineMath math="(-2,4)" /> | <InlineMath math="(1,-2)" /> | <InlineMath math="(3,0)" /> | <InlineMath math="D''(2,-3)" /> |
+
+Schau dir die Seite <InlineMath math="AB" /> an. Die lange Seite lag unten, jetzt liegt <InlineMath math="A''B''" /> oben, auf der Geraden <InlineMath math="y=1" />. **Ein negativer Faktor stellt die Figur auf den Kopf und spiegelt sie links und rechts**. Das Bild ist ein Trapez mit den parallelen Seiten <InlineMath math="A''B''=6" /> auf <InlineMath math="y=1" /> und <InlineMath math="C''D''=2" /> auf <InlineMath math="y=-3" />, seine Höhe ist <InlineMath math="4" />.
 
 <BlockMath math="\begin{aligned}
-y-5&=(x+2)^2-4(x+2)+3 \\
-y-5&=x^2+4x+4-4x-8+3=x^2-1 \\
-y&=x^2+4
+\text{Fläche des Ausgangstrapezes}&=\frac{12+4}{2}\cdot8=64 \\
+\text{Fläche des Bildes}&=\frac{6+2}{2}\cdot4=16=\left(-\tfrac12\right)^2\cdot64
 \end{aligned}" />
 
-Probe mit dem Scheitel: <InlineMath math="y=x^2-4x+3=(x-2)^2-1" /> hat den Scheitel <InlineMath math="(2,-1)" />. Er wandert nach <InlineMath math="(2-2,\,-1+5)=(0,4)" />, und <InlineMath math="y=x^2+4" /> hat tatsächlich den Scheitel <InlineMath math="(0,4)" />.
+# Der Teil oberhalb der x-Achse
 
-Der verschobene Graph hat also die Gleichung <InlineMath math="y=x^2+4" />.
+Die <InlineMath math="x" />-Achse liegt <InlineMath math="1" /> Einheit unter der Seite <InlineMath math="A''B''" />. Bestimme, wo die beiden Schenkel sie schneiden. Der Schenkel <InlineMath math="B''C''" /> fällt um <InlineMath math="4" /> Einheiten und rückt dabei <InlineMath math="2" /> Einheiten nach rechts, pro Einheit Abstieg also <InlineMath math="\frac12" /> nach rechts. Der Schenkel <InlineMath math="A''D''" /> rückt pro Einheit Abstieg <InlineMath math="\frac12" /> nach links.
 
-- <InlineMath math="y=x^2-1" /> führt nur die waagerechte Verschiebung aus.
-- <InlineMath math="y=x^2-4x+8" /> führt nur die senkrechte Verschiebung aus.
-- <InlineMath math="y=x^2-8x+20" /> verschiebt nach rechts, doch die erste Komponente von <InlineMath math="T" /> ist <InlineMath math="-2" />.
-- <InlineMath math="y=x^2-6" /> verschiebt nach unten, doch die zweite Komponente von <InlineMath math="T" /> ist <InlineMath math="5" />.
+<BlockMath math="\begin{aligned}
+B''C''\text{ trifft die }x\text{-Achse}&\text{ in }\left(-2+\tfrac12,\,0\right)=\left(-\tfrac32,\,0\right) \\
+A''D''\text{ trifft die }x\text{-Achse}&\text{ in }\left(4-\tfrac12,\,0\right)=\left(\tfrac72,\,0\right) \\
+\text{Länge des Schnitts}&=\tfrac72-\left(-\tfrac32\right)=5
+\end{aligned}" />
+
+Der Teil oberhalb der <InlineMath math="x" />-Achse ist ein kleines Trapez mit den parallelen Seiten <InlineMath math="6" /> und <InlineMath math="5" /> und der Höhe <InlineMath math="1" />:
+
+<BlockMath math="\text{Fläche des oberen Teils}=\frac{6+5}{2}\cdot1=5{,}5" />
+
+<MathVisual
+  title={<>Das Endbild und die <InlineMath math="x" />-Achse</>}
+  description={<>Das Endbild ist das Trapez <InlineMath math="A''B''C''D''" /> mit <InlineMath math="A''(4,1)" />, <InlineMath math="B''(-2,1)" />, <InlineMath math="C''(0,-3)" /> und <InlineMath math="D''(2,-3)" />. Die <InlineMath math="x" />-Achse schneidet es von <InlineMath math="\left(-\tfrac32,0\right)" /> bis <InlineMath math="\left(\tfrac72,0\right)" />, auf einer Länge von <InlineMath math="5" />. Der Teil oberhalb der <InlineMath math="x" />-Achse ist markiert: Seine obere Seite ist <InlineMath math="6" /> lang, seine Höhe ist <InlineMath math="1" />.</>}
+  labels={{
+    a: <InlineMath math="A''" />,
+    b: <InlineMath math="B''" />,
+    c: <InlineMath math="C''" />,
+    d: <InlineMath math="D''" />,
+    top: <InlineMath math="6" />,
+    cut: <InlineMath math="5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 6 },
+      y: { min: -5, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "image", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 1 }, { x: -2, y: 1 }, { x: 0, y: -3 }, { x: 2, y: -3 }] },
+      { id: "upper-part", kind: "polygon", appearance: "highlight", vertices: [{ x: -2, y: 1 }, { x: 4, y: 1 }, { x: 3.5, y: 0 }, { x: -1.5, y: 0 }] },
+      { id: "cut", kind: "segment", appearance: "answer", from: { x: -1.5, y: 0 }, to: { x: 3.5, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 4, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: -2, y: 1 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 0, y: -3 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 2, y: -3 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 4, y: 1 }, placement: "above-right" },
+      { key: "b", objectId: "point-b", at: { x: -2, y: 1 }, placement: "above-left" },
+      { key: "c", objectId: "point-c", at: { x: 0, y: -3 }, placement: "below-left" },
+      { key: "d", objectId: "point-d", at: { x: 2, y: -3 }, placement: "below-right" },
+      { key: "top", objectId: "image", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "cut", objectId: "cut", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Probe: Der Teil unterhalb der <InlineMath math="x" />-Achse hat die Fläche <InlineMath math="\frac{5+2}{2}\cdot3=10{,}5" />, und <InlineMath math="5{,}5+10{,}5=16" />, **genau die Fläche des ganzen Bildes**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="2{,}5" /> entsteht mit dem Faktor <InlineMath math="+\frac12" />. Dann steht das Bild nicht auf dem Kopf, die lange Seite bleibt unten, und oberhalb der Achse liegt nur <InlineMath math="\frac{3+2}{2}\cdot1" />.
+- <InlineMath math="4" /> entsteht, wenn du die Fläche <InlineMath math="16" /> nur nach der Höhe aufteilst, <InlineMath math="1" /> von <InlineMath math="4" />. Das Trapez ist oben am breitesten, deshalb **enthält der obere Streifen mehr als ein Viertel der Fläche**.
+- <InlineMath math="10{,}5" /> entsteht, wenn du das Ausgangstrapez an der <InlineMath math="x" />-Achse schneidest und diese Fläche mit <InlineMath math="\frac14" /> multiplizierst. Weil die Figur kopfsteht, wird der ursprüngliche Teil oberhalb der Achse zum Bildteil unterhalb der Achse.
+- <InlineMath math="16" /> ist die Fläche des ganzen Bildes, ohne Schnitt. Diesen Wert bekommst du auch, wenn du zuerst verschiebst, denn dann liegt das ganze Bild oberhalb der <InlineMath math="x" />-Achse.
+
+Die Fläche des Teils des Endbildes oberhalb der <InlineMath math="x" />-Achse beträgt also <InlineMath math="5{,}5" /> Flächeneinheiten.

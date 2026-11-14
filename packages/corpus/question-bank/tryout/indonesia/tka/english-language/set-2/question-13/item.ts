@@ -2,34 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "narrative",
-    topic: "supporting-detail",
+    cognitiveLevel: "textual",
+    contentDomain: "procedure",
+    topic: "outline",
   },
-  stimulus: "last-bus",
+  stimulus: "sprout",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "The timetable above Niko's desk",
+          label: "I and III only",
         },
         {
           correct: false,
-          label: "The bus normally arriving at 9:20",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label: "The receptionist answering the phone",
+          label: "III and IV only",
         },
         {
           correct: false,
-          label: "The notes added the next day",
+          label: "II, III, and IV only",
         },
         {
           correct: true,
-          label: "Heavy rain and a route without streetlights",
+          label: "I, III, and IV only",
         },
       ],
     },

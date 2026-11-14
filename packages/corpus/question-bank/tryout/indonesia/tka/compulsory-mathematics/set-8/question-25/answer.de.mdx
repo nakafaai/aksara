@@ -1,16 +1,43 @@
-Die Farbe der zweiten Kugel hängt von der ersten ab, also **teilst du nach der Farbe der ersten Kugel in zwei Fälle** und addierst ihre Wahrscheinlichkeiten.
+Die Aufgabe nennt das Ergebnis, zwei rote Kugeln, und fragt, **aus welchem Beutel sie wahrscheinlich stammen**. Das ist eine bedingte Wahrscheinlichkeit in umgekehrter Richtung: vom Ergebnis zurück zur Ursache. Der Weg hat drei Schritte: die Wahrscheinlichkeit für jeden Beutel, die Wahrscheinlichkeit für zwei rote Kugeln aus jedem Beutel, dann der Vergleich.
+
+# Wahrscheinlichkeit für jeden Beutel
+
+Vielfache von <InlineMath math="3" /> auf einem Würfel sind nur <InlineMath math="3" /> und <InlineMath math="6" />, also **wird Beutel I mit der Wahrscheinlichkeit** <InlineMath math="\tfrac26" /> **gewählt**:
+
+<BlockMath math="P(\text{I})=\frac26=\frac13,\qquad P(\text{II})=1-\frac13=\frac23" />
+
+Beutel II wird öfter gewählt, also ist vor dem Blick auf die Farben sogar Beutel II wahrscheinlicher. Erst die Farbe verschiebt dieses Verhältnis.
+
+# Zwei rote Kugeln aus jedem Beutel
+
+Die zwei Kugeln werden gleichzeitig gezogen, also **wird die erste Kugel nicht zurückgelegt**. Nimm Kombinationen: die Anzahl der Möglichkeiten für zwei rote Kugeln geteilt durch die Anzahl der Möglichkeiten für zwei beliebige Kugeln. Jeder Beutel enthält <InlineMath math="5" /> Kugeln, also ist <InlineMath math="C(5,2)=10" />.
 
 <BlockMath math="\begin{aligned}
-P(\text{R, dann R})&=\frac35\cdot\frac24=\frac{6}{20} \\
-P(\text{B, dann R})&=\frac25\cdot\frac34=\frac{6}{20} \\
-P(\text{zweite rot})&=\frac{6}{20}+\frac{6}{20}=\frac{12}{20}=\frac35
+P(\text{RR}\mid\text{I})&=\frac{C(3,2)}{C(5,2)}=\frac{3}{10} \\
+P(\text{RR}\mid\text{II})&=\frac{C(2,2)}{C(5,2)}=\frac{1}{10}
 \end{aligned}" />
 
-Das ist dieselbe Wahrscheinlichkeit wie für eine rote erste Kugel. Solange du die erste Kugel nicht kennst, kann jede Kugel gleich wahrscheinlich als zweite kommen.
+# Die Bedingung umdrehen
 
-Die Wahrscheinlichkeit, dass die zweite Kugel rot ist, beträgt also <InlineMath math="\frac35" />.
+Berechne die Wahrscheinlichkeit jedes Weges, der mit zwei roten Kugeln endet, und addiere:
 
-- <InlineMath math="\frac{3}{10}" /> ist die Wahrscheinlichkeit, dass beide Kugeln rot sind, nicht nur die zweite.
-- <InlineMath math="\frac25" /> ist die Wahrscheinlichkeit, dass die zweite Kugel blau ist.
-- <InlineMath math="\frac12" /> nimmt an, die erste Kugel sei sicher rot, also bleiben <InlineMath math="2" /> rote von <InlineMath math="4" />.
-- <InlineMath math="\frac34" /> nimmt an, die erste Kugel sei sicher blau, also bleiben <InlineMath math="3" /> rote von <InlineMath math="4" />.
+<BlockMath math="\begin{aligned}
+P(\text{I und RR})&=\frac13\cdot\frac{3}{10}=\frac{1}{10}=\frac{3}{30} \\
+P(\text{II und RR})&=\frac23\cdot\frac{1}{10}=\frac{2}{30} \\
+P(\text{RR})&=\frac{3}{30}+\frac{2}{30}=\frac{5}{30}
+\end{aligned}" />
+
+Von allen Ausgängen mit zwei roten Kugeln ist **der Anteil über Beutel I**
+
+<BlockMath math="P(\text{I}\mid\text{RR})=\frac{3/30}{5/30}=\frac35" />
+
+Probe: Stell dir vor, das Experiment läuft <InlineMath math="30" />-mal. Etwa <InlineMath math="10" />-mal wird Beutel I gewählt, und <InlineMath math="3" /> davon ergeben zwei rote Kugeln. Etwa <InlineMath math="20" />-mal wird Beutel II gewählt, und <InlineMath math="2" /> davon ergeben zwei rote Kugeln. Von den <InlineMath math="5" /> Ausgängen mit zwei roten Kugeln kommen <InlineMath math="3" /> aus Beutel I.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac{1}{10}" /> ist die Wahrscheinlichkeit, dass Beutel I gewählt wird **und** beide Kugeln rot sind. Sie ist noch nicht durch die Wahrscheinlichkeit für zwei rote Kugeln geteilt.
+- <InlineMath math="\frac{3}{10}" /> ist die Wahrscheinlichkeit für zwei rote Kugeln, wenn Beutel I schon feststeht. Die Bedingung zeigt in die falsche Richtung.
+- <InlineMath math="\frac13" /> ist nur die Anfangswahrscheinlichkeit für Beutel I. Die Information, dass beide Kugeln rot sind, wird nicht genutzt.
+- <InlineMath math="\frac{9}{17}" /> entsteht, wenn du das Ziehen mit Zurücklegen rechnest, also mit <InlineMath math="\left(\frac35\right)^2" /> und <InlineMath math="\left(\frac25\right)^2" />. Die Kugeln werden aber gleichzeitig gezogen, die erste kommt nie zurück.
+
+Die Wahrscheinlichkeit, dass die zwei roten Kugeln aus Beutel I stammen, ist also <InlineMath math="\frac35" />.

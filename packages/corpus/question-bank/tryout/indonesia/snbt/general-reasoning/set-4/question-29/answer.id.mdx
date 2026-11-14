@@ -1,9 +1,25 @@
-Hitung semua pasangan dulu, lalu **buang pasangan yang dilarang**. Urutan tidak penting, karena pasangan Lala dan Miko sama dengan pasangan Miko dan Lala, jadi gunakan kombinasi.
+Ada dua syarat, jadi pakai dua langkah: hitung dulu susunan yang memenuhi syarat Ayu dan Banu, lalu **buang susunan yang menempatkan Candra di ujung**.
 
-<BlockMath math="C(6,2)=\frac{6\times5}{2}=15" />
+Langkah 1. Anggap Ayu dan Banu satu blok. Sekarang ada <InlineMath math="5" /> unit, yaitu blok AB, Candra, Dewi, Eko, dan Fajar. Di dalam blok, urutannya bisa AB atau BA.
 
-Dari <InlineMath math="15" /> pasangan itu, hanya satu pasangan yang dilarang, yaitu Lala bersama Miko:
+<BlockMath math="5! \times 2 = 120 \times 2 = 240" />
 
-<BlockMath math="15-1=14" />
+Langkah 2. Hitung susunan dari langkah 1 yang menempatkan Candra di ujung kiri. Sisa <InlineMath math="5" /> tempat diisi blok AB, Dewi, Eko, dan Fajar, yaitu <InlineMath math="4" /> unit.
 
-Lala atau Miko tetap boleh terpilih bersama siswa lain. Larangan hanya berlaku jika keduanya terpilih bersama. Jadi, ada <InlineMath math="14" /> pasangan perwakilan yang mungkin.
+<BlockMath math="4! \times 2 = 24 \times 2 = 48" />
+
+Ujung kanan memberi <InlineMath math="48" /> susunan juga, jadi ada <InlineMath math="96" /> susunan dengan Candra di ujung.
+
+Langkah 3. Kurangkan.
+
+<BlockMath math="240 - 96 = 144" />
+
+Cek dengan cara lain: tempat Candra yang boleh adalah posisi <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" />, atau <InlineMath math="5" />. Kalau semua kemungkinan itu dihitung satu per satu, hasilnya juga <InlineMath math="144" />.
+
+Jawaban keliru yang sering muncul:
+
+- <InlineMath math="240" /> muncul kalau syarat Candra dilupakan.
+- <InlineMath math="72" /> muncul kalau urutan di dalam blok, AB atau BA, tidak dikali <InlineMath math="2" />.
+- <InlineMath math="192" /> muncul kalau hanya satu ujung barisan yang dibuang.
+
+Jadi, ada <InlineMath math="144" /> susunan barisan.

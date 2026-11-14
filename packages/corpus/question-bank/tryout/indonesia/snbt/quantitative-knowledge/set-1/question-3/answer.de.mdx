@@ -1,14 +1,42 @@
-Aus <InlineMath math="a^2=49" /> und <InlineMath math="b^2=36" /> folgt, dass <InlineMath math="a" /> gleich 7 oder <InlineMath math="-7" /> und <InlineMath math="b" /> gleich 6 oder <InlineMath math="-6" /> sein kann. Die Bedingung <InlineMath math="ab<0" /> sagt nur, dass **die beiden Zahlen entgegengesetzte Vorzeichen haben**. Welche von beiden positiv ist, bleibt offen.
+Du kannst beide Größen exakt berechnen, ohne <InlineMath math="x" /> zu bestimmen. Der Schlüssel sind **zwei Hilfsausdrücke, <InlineMath math="x+\frac1x" /> und <InlineMath math="x-\frac1x" />**. Bestimme beide aus der Bedingung, schreibe <InlineMath math="P" /> und <InlineMath math="Q" /> mit ihnen und vergleiche dann.
 
-# Alle Möglichkeiten prüfen
+# Die Summe aus Zahl und Kehrwert finden
 
-Zwei Paare erfüllen alle Bedingungen. Berechne beide Größen für jedes Paar.
+Quadriere <InlineMath math="x+\frac1x" />. Der mittlere Summand ist <InlineMath math="2\cdot x\cdot\frac1x=2" />.
 
-| <InlineMath math="(a,b)" /> | <InlineMath math="P=a-b" /> | <InlineMath math="Q=\lvert a+b\rvert+12" /> | Beziehung |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="(7,-6)" /> | <InlineMath math="13" /> | <InlineMath math="\lvert1\rvert+12=13" /> | <InlineMath math="P=Q" /> |
-| <InlineMath math="(-7,6)" /> | <InlineMath math="-13" /> | <InlineMath math="\lvert-1\rvert+12=13" /> | <InlineMath math="Q>P" /> |
+<BlockMath math="\left(x+\frac1x\right)^2=x^2+2+\frac1{x^2}=3+2=5" />
 
-Beide Paare sind zulässig, liefern aber **verschiedene Beziehungen**. Probierst du nur <InlineMath math="a=7" />, kommst du auf <InlineMath math="P=Q" />. Probierst du nur <InlineMath math="a=-7" />, kommst du auf <InlineMath math="Q>P" />. Die Beziehung <InlineMath math="P>Q" /> tritt nie auf.
+Also gilt <InlineMath math="x+\frac1x=\sqrt5" /> oder <InlineMath math="x+\frac1x=-\sqrt5" />. Weil **<InlineMath math="x" /> positiv ist**, ist auch <InlineMath math="\frac1x" /> positiv und damit ihre Summe. Es bleibt nur <InlineMath math="x+\frac1x=\sqrt5" />.
 
-Die **gegebenen Informationen reichen also nicht aus**, um die Beziehung zwischen <InlineMath math="P" /> und <InlineMath math="Q" /> festzulegen.
+# Die erste Größe berechnen
+
+Multipliziere die dritte Potenz von <InlineMath math="x+\frac1x" /> aus. Die beiden mittleren Summanden ergeben zusammen **das Dreifache von <InlineMath math="x+\frac1x" />**.
+
+<BlockMath math="\begin{aligned}
+\left(x+\frac1x\right)^3&=x^3+3x+\frac3x+\frac1{x^3}=x^3+\frac1{x^3}+3\left(x+\frac1x\right)\\
+P=x^3+\frac1{x^3}&=\left(\sqrt5\right)^3-3\sqrt5=5\sqrt5-3\sqrt5=2\sqrt5
+\end{aligned}" />
+
+# Die zweite Größe berechnen
+
+Quadriere auch <InlineMath math="x-\frac1x" />.
+
+<BlockMath math="\left(x-\frac1x\right)^2=x^2-2+\frac1{x^2}=3-2=1" />
+
+Der Wert von <InlineMath math="x-\frac1x" /> kann <InlineMath math="1" /> oder <InlineMath math="-1" /> sein, weil <InlineMath math="x" /> größer oder kleiner als <InlineMath math="1" /> sein darf. Dieses Vorzeichen lässt sich wirklich nicht festlegen. Aber <InlineMath math="Q" /> ist ein Quadrat, also **verschwindet das Vorzeichen beim Quadrieren**.
+
+<BlockMath math="Q=\left(x^2-\frac1{x^2}\right)^2=\left(x+\frac1x\right)^2\left(x-\frac1x\right)^2=5\cdot1=5" />
+
+# Die beiden Größen vergleichen
+
+Beide Zahlen sind positiv, deshalb darfst du **ihre Quadrate vergleichen**.
+
+<BlockMath math="P^2=\left(2\sqrt5\right)^2=20<25=5^2=Q^2" />
+
+Also gilt <InlineMath math="P<Q" />. Zur Probe nimm <InlineMath math="x=\frac{1+\sqrt5}{2}\approx1{,}618" />. Diese Zahl erfüllt die Bedingung und liefert <InlineMath math="P\approx4{,}472" /> und <InlineMath math="Q=5" />.
+
+# Die falschen Antworten
+
+Die Antwort <InlineMath math="P>Q" /> entsteht, wenn du <InlineMath math="P" /> als <InlineMath math="\left(x+\frac1x\right)^3=5\sqrt5" /> berechnest und damit **vergisst, <InlineMath math="3\left(x+\frac1x\right)" /> abzuziehen**. Die Antwort <InlineMath math="P=Q" /> würde <InlineMath math="2\sqrt5=5" /> verlangen, aber <InlineMath math="20\neq25" />. Die Antwort, dass die Angaben nicht reichen, entsteht, wenn du meinst, das unbekannte Vorzeichen von <InlineMath math="x-\frac1x" /> verändere <InlineMath math="Q" />. Durch das Quadrat liefern aber beide Vorzeichen denselben Wert.
+
+Es gilt also <InlineMath math="Q>P" />, denn <InlineMath math="Q=5" /> und <InlineMath math="P=2\sqrt5" />.

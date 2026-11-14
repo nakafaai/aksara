@@ -1,0 +1,37 @@
+# Kos bagi satu modul
+
+Soalan ini bertanya bilangan modul terbesar yang jumlah kosnya tidak melebihi <InlineMath math="\text{Rp}275{,}000" />. Kuncinya ialah peraturan **helaian kosong boleh ditambah**: menempah lebih banyak helaian boleh menurunkan harga sehelai.
+
+Modul <InlineMath math="30" /> muka surat dicetak dua muka, jadi satu modul memerlukan <InlineMath math="\frac{30}{2}=15" /> helai. Jika ada <InlineMath math="n" /> modul, helaian yang benar-benar diperlukan ialah <InlineMath math="15n" />, dan kos jilidnya <InlineMath math="4{,}000n" />.
+
+# Tanpa helaian tambahan
+
+Bagi <InlineMath math="14\le n\le33" />, tempahan itu ada <InlineMath math="210" /> hingga <InlineMath math="495" /> helai, jadi harganya <InlineMath math="\text{Rp}400" /> sehelai. Satu modul kemudian menelan <InlineMath math="15\cdot400+4{,}000=10{,}000" /> rupiah:
+
+<BlockMath math="\begin{aligned}
+10{,}000n&\le275{,}000 \\
+n&\le27.5
+\end{aligned}" />
+
+Cara ini **memberi paling banyak <InlineMath math="27" /> modul**. Tanpa helaian tambahan, harga <InlineMath math="\text{Rp}300" /> hanya bermula apabila <InlineMath math="15n\ge500" />, iaitu <InlineMath math="n\ge34" />, dan <InlineMath math="34" /> modul sudah berharga <InlineMath math="34\cdot(15\cdot300+4{,}000)=289{,}000" /> rupiah. Jumlah itu melebihi bajet.
+
+# Dengan helaian tambahan
+
+Sekarang tempah tepat <InlineMath math="500" /> helai: helaian modul ditambah helaian kosong. Selagi <InlineMath math="15n\le500" />, kos cetak tetap <InlineMath math="500\cdot300=150{,}000" /> rupiah, berapa pun nilai <InlineMath math="n" />. **Hanya kos jilid yang masih bertambah**:
+
+<BlockMath math="\begin{aligned}
+150{,}000+4{,}000n&\le275{,}000 \\
+4{,}000n&\le125{,}000 \\
+n&\le31.25
+\end{aligned}" />
+
+Jadi <InlineMath math="n=31" />. Semak: <InlineMath math="31" /> modul memerlukan <InlineMath math="465" /> helai, ditambah <InlineMath math="35" /> helai kosong menjadi <InlineMath math="500" />, dan jumlahnya <InlineMath math="150{,}000+124{,}000=274{,}000" /> rupiah. Bagi <InlineMath math="32" /> modul, cara paling murah juga <InlineMath math="500" /> helai, dengan jumlah <InlineMath math="150{,}000+128{,}000=278{,}000" /> rupiah, dan ini sudah melebihi bajet.
+
+Jadi, bilangan modul paling banyak yang boleh ditempah ialah <InlineMath math="31" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="27" /> berhenti pada harga <InlineMath math="\text{Rp}400" /> dan **terlupa bahawa helaian kosong boleh ditambah** untuk mencapai <InlineMath math="500" /> helai.
+- <InlineMath math="25" /> membaca harga seperti anak tangga: <InlineMath math="199" /> helai pertama <InlineMath math="\text{Rp}500" />, bakinya <InlineMath math="\text{Rp}400" />. Dengan cara itu <InlineMath math="25" /> modul berharga <InlineMath math="269{,}900" /> dan <InlineMath math="26" /> modul <InlineMath math="279{,}900" />. Sebenarnya satu harga dikenakan pada semua helaian.
+- <InlineMath math="23" /> menggunakan peringkat harga bagi satu modul sahaja. Satu modul hanya <InlineMath math="15" /> helai, jadi dianggap <InlineMath math="\text{Rp}500" /> sehelai dan <InlineMath math="11{,}500" /> rupiah bagi setiap modul. Peringkat harga bergantung pada helaian seluruh tempahan.
+- <InlineMath math="21" /> menganggap <InlineMath math="30" /> muka surat sama dengan <InlineMath math="30" /> helai, jadi satu modul berharga <InlineMath math="30\cdot300+4{,}000=13{,}000" /> rupiah. Modul dicetak dua muka, jadi hanya <InlineMath math="15" /> helai.

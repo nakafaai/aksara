@@ -1,16 +1,36 @@
-Rina kauft <InlineMath math="x" /> Briefmarken zu <InlineMath math="\text{Rp}3{.}000" /> und <InlineMath math="y" /> zu <InlineMath math="\text{Rp}5{.}000" />. In Tausend Rupiah lautet die Bedingung
+Die beiden Präsentkörbe konkurrieren auf entgegengesetzte Weise um den Vorrat. Der *Parsel Sirup* (Sirupkorb) braucht wenig Gebäck, aber viel Sirup, der *Parsel Kue* (Gebäckkorb) braucht wenig Sirup, aber viel Gebäck. Wer fast nur eine Sorte packt, verbraucht also eine Zutat und lässt die andere liegen. Die größte Anzahl liegt meist bei **einer Mischung, die beide Zutaten fast aufbraucht**, und weil die Anzahlen ganzzahlig sein müssen, prüfst du diese Mischung sorgfältig.
 
-<BlockMath math="3x+5y=100,\qquad x\ge1,\ y\ge1" />
+Sei <InlineMath math="x" /> die Anzahl der Sirupkörbe und <InlineMath math="y" /> die Anzahl der Gebäckkörbe. Die Bedingungen lauten:
 
-Forme um zu <InlineMath math="3x=100-5y" />. Damit <InlineMath math="x" /> ganzzahlig ist, **muss <InlineMath math="100-5y" /> durch <InlineMath math="3" /> teilbar sein**. Probiere kleine Werte für <InlineMath math="y" />: <InlineMath math="y=2" /> ergibt <InlineMath math="90" />, teilbar durch <InlineMath math="3" />. Jedes Mal, wenn <InlineMath math="y" /> um <InlineMath math="3" /> steigt, sinkt <InlineMath math="100-5y" /> um <InlineMath math="15" /> und bleibt durch <InlineMath math="3" /> teilbar.
+<BlockMath math="\begin{aligned}
+\text{Gläser Gebäck} &: x+4y\le44 \\
+\text{Flaschen Sirup} &: 2x+y\le28 \\
+\text{Mindestzahl} &: x\ge3,\ y\ge3
+\end{aligned}" />
 
-| <InlineMath math="y" /> | <InlineMath math="100-5y" /> | <InlineMath math="x" /> |
-| --- | --- | --- |
-| <InlineMath math="2" /> | <InlineMath math="90" /> | <InlineMath math="30" /> |
-| <InlineMath math="5" /> | <InlineMath math="75" /> | <InlineMath math="25" /> |
-| <InlineMath math="8" /> | <InlineMath math="60" /> | <InlineMath math="20" /> |
-| <InlineMath math="11" /> | <InlineMath math="45" /> | <InlineMath math="15" /> |
-| <InlineMath math="14" /> | <InlineMath math="30" /> | <InlineMath math="10" /> |
-| <InlineMath math="17" /> | <InlineMath math="15" /> | <InlineMath math="5" /> |
+Am klarsten testest du eine Zielsumme <InlineMath math="T=x+y" />. Ersetze <InlineMath math="y" /> in beiden Vorratsbedingungen durch <InlineMath math="T-x" />.
 
-Der nächste Wert, <InlineMath math="y=20" />, ergibt <InlineMath math="x=0" />, Rina möchte aber von jeder Sorte mindestens eine Briefmarke. Es gibt also <InlineMath math="6" /> mögliche Paare von Briefmarkenanzahlen.
+<BlockMath math="\begin{aligned}
+\text{Sirup} &: 2x+(T-x)\le28 \quad\Rightarrow\quad x\le28-T \\
+\text{Gebäck} &: x+4(T-x)\le44 \quad\Rightarrow\quad x\ge\frac{4T-44}{3}
+\end{aligned}" />
+
+Probier <InlineMath math="T=19" />. Die Sirupbedingung verlangt <InlineMath math="x\le9" />, die Gebäckbedingung aber <InlineMath math="x\ge\frac{32}{3}\approx10{,}7" />. Keine Zahl erfüllt beides, also sind <InlineMath math="19" /> Körbe unmöglich. Für jedes größere <InlineMath math="T" /> sinkt die obere Grenze und steigt die untere, also ist auch das unmöglich.
+
+Probier <InlineMath math="T=18" />. Die Sirupbedingung verlangt <InlineMath math="x\le10" />, die Gebäckbedingung <InlineMath math="x\ge\frac{28}{3}\approx9{,}3" />. Die einzige ganze Zahl dazwischen ist <InlineMath math="x=10" />, also <InlineMath math="y=8" />.
+
+<BlockMath math="\begin{aligned}
+\text{Gläser Gebäck} &: 10+4(8) = 42 \le 44 \\
+\text{Flaschen Sirup} &: 2(10)+8 = 28 \le 28
+\end{aligned}" />
+
+Beide Sorten liegen auch bei mindestens <InlineMath math="3" />. Mit <InlineMath math="10" /> Sirupkörben und <InlineMath math="8" /> Gebäckkörben kommst du also auf <InlineMath math="18" /> Körbe, und keine Aufteilung schafft mehr.
+
+Die anderen Optionen entstehen durch zu schnelle Strategien:
+
+- <InlineMath math="13" /> entsteht, wenn du <InlineMath math="3" /> Sirupkörbe packst und dann so viele Gebäckkörbe wie möglich. Das Gebäck reicht nur für <InlineMath math="10" /> Gebäckkörbe, während viel Sirup übrig bleibt.
+- <InlineMath math="15" /> entsteht, wenn du <InlineMath math="3" /> Gebäckkörbe packst und dann so viele Sirupkörbe wie möglich, weil sie weniger enthalten. Der Sirup reicht nur für <InlineMath math="12" /> Sirupkörbe, während noch <InlineMath math="20" /> Gläser Gebäck übrig sind.
+- <InlineMath math="17" /> entsteht aus dem Schnittpunkt von <InlineMath math="x+4y=44" /> und <InlineMath math="2x+y=28" />, also <InlineMath math="x\approx9{,}7" /> und <InlineMath math="y\approx8{,}6" />, abgerundet zu <InlineMath math="9+8" />, ohne die ganzzahligen Aufteilungen in der Nähe zu prüfen.
+- <InlineMath math="19" /> rundet diesen Schnittpunkt auf die nächsten ganzen Zahlen, <InlineMath math="10+9" />, aber diese Aufteilung braucht <InlineMath math="29" /> Flaschen Sirup und <InlineMath math="46" /> Gläser Gebäck.
+
+Der Laden kann also höchstens <InlineMath math="18" /> Präsentkörbe packen.

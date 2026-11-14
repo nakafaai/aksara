@@ -1,16 +1,41 @@
-The perimeter is <InlineMath math="60\text{ cm}" />, so **length plus width is <InlineMath math="30\text{ cm}" />**. That is why the length is <InlineMath math="30-x" />. Set <InlineMath math="L(x)" /> equal to the given area and factor.
+# Both colonies as exponential functions
+
+The question asks for the first on-the-hour count at which colony P is larger than colony Q. Let <InlineMath math="t" /> be the number of hours since 05:00. Colony P is multiplied by <InlineMath math="2" /> every <InlineMath math="2" /> hours and colony Q by <InlineMath math="\tfrac{1}{2}" /> every <InlineMath math="3" /> hours, so
+
+<BlockMath math="P(t)=500\cdot2^{\frac{t}{2}}, \qquad Q(t)=32{,}000\cdot2^{-\frac{t}{3}}" />
+
+Both colonies change at the same time, one up and one down. **Compare them together**, rather than following each one until it reaches the other's starting count.
+
+# When P overtakes Q
+
+Solve the inequality <InlineMath math="P(t)>Q(t)" /> by writing everything with base <InlineMath math="2" />. Notice that <InlineMath math="32{,}000\div500=64=2^{6}" />:
 
 <BlockMath math="\begin{aligned}
-x(30-x)&=216 \\
-x^2-30x+216&=0 \\
-(x-12)(x-18)&=0
+500\cdot2^{\frac{t}{2}}&>32{,}000\cdot2^{-\frac{t}{3}} \\
+2^{\frac{t}{2}}\cdot2^{\frac{t}{3}}&>64 \\
+2^{\frac{5t}{6}}&>2^{6} \\
+\frac{5t}{6}&>6 \\
+t&>7.2
 \end{aligned}" />
 
-So <InlineMath math="x=12" /> or <InlineMath math="x=18" />. If the width were <InlineMath math="18" />, the length would be <InlineMath math="12" />, which breaks the condition that the length is longer. So the width is <InlineMath math="12\text{ cm}" /> and the length is <InlineMath math="30-12=18\text{ cm}" />. Check: <InlineMath math="12\cdot18=216" /> and <InlineMath math="2(12+18)=60" />.
+Going from the third line to the fourth is allowed because <InlineMath math="2^{x}" /> always increases, so a bigger exponent gives a bigger value. The colonies are equal at exactly <InlineMath math="t=7.2" /> hours, which is 12:12. **There's no count at 12:12**, because counts only happen on the hour. The smallest whole number above <InlineMath math="7.2" /> is <InlineMath math="8" />, so the answer is 13:00.
 
-So the length of the rectangle is <InlineMath math="18\text{ cm}" />.
+# Checking two counts
 
-- <InlineMath math="6\text{ cm}" /> is the difference between the length and the width.
-- <InlineMath math="12\text{ cm}" /> is the width.
-- <InlineMath math="15\text{ cm}" /> is the side of a square with the same perimeter, but that square has an area of <InlineMath math="225\text{ cm}^2" />.
-- <InlineMath math="30\text{ cm}" /> is the length plus the width.
+<BlockMath math="\begin{aligned}
+t=7&: \quad \tfrac{5\cdot7}{6}=\tfrac{35}{6}<6, \text{ so } P(7)\lt Q(7) \\
+t=8&: \quad \tfrac{5\cdot8}{6}=\tfrac{40}{6}>6, \text{ so } P(8)>Q(8)
+\end{aligned}" />
+
+In numbers, <InlineMath math="P(8)=500\cdot2^{4}=8{,}000" /> cells while <InlineMath math="Q(8)\approx5{,}040" /> cells. **At 12:00 colony Q is still ahead**, with about <InlineMath math="6{,}350" /> cells against <InlineMath math="5{,}657" />.
+
+# Why the other options are wrong
+
+The wrong options come from **dropping one of the changes or the on-the-hour rule**.
+
+- 12:00 comes from rounding <InlineMath math="7.2" /> down. At that count colony Q is still larger.
+- 12:12 is when the colonies are equal, not a counting time. At that moment P isn't larger yet, only equal.
+- 17:00 comes from ignoring Q's decline: <InlineMath math="500\cdot2^{\frac{t}{2}}=32{,}000" /> gives <InlineMath math="t=12" />.
+- 23:00 comes from ignoring P's growth: <InlineMath math="32{,}000\cdot2^{-\frac{t}{3}}=500" /> gives <InlineMath math="t=18" />.
+
+So colony P is first recorded as larger than colony Q at the 13:00 count.

@@ -1,0 +1,216 @@
+export const metadata = {
+  title: "Unjuran Ortogon",
+  description: "Terbitkan unjuran ortogon daripada teorem penghampiran terbaik, kira unjuran dengan asas ortonormal dan sebarang asas, lalu semak geometrinya secara berangka.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-15",
+  dateModified: "2026-09-12",
+  subject: "Kaedah Linear AI",
+};
+
+## Teorem Penghampiran Terbaik
+
+Katakan <InlineMath math="V" /> ialah ruang hasil darab dalam nyata, dan <InlineMath math="S\subseteq V" /> ialah subruang berdimensi terhingga. Untuk setiap <InlineMath math="f\in V" />, terdapat tepat satu vektor <InlineMath math="g\in S" /> yang memenuhi
+
+<BlockMath math="\|f-g\|=\min_{\varphi\in S}\|f-\varphi\|" />
+
+Vektor <InlineMath math="g" /> ialah unjuran ortogon <InlineMath math="f" /> ke atas <InlineMath math="S" />, dan kita tulis <InlineMath math="g=P_Sf" />. Vektor ini dicirikan oleh dua syarat:
+
+<MathContainer>
+<BlockMath math="g\in S" />
+<BlockMath math="f-g\in S^{\perp}" />
+</MathContainer>
+
+Secara setara,
+
+<BlockMath math="\begin{aligned} &amp;\langle f-g,\varphi\rangle=0 \\ &amp;\text{untuk setiap }\varphi\in S \end{aligned}" />
+
+Dalam ruang Hilbert, teorem yang sama berlaku untuk <Highlight>setiap subruang tertutup</Highlight>. Subruang berdimensi terhingga dengan sendirinya tertutup.
+
+## Sebab Keortogonan Memberi Nilai Minimum
+
+Katakan <InlineMath math="g=P_Sf" />, kemudian pilih sebarang <InlineMath math="\varphi\in S" />. Oleh sebab <InlineMath math="g-\varphi\in S" /> dan <InlineMath math="f-g\perp S" />, **identiti Pythagoras** memberi
+
+<MathContainer>
+<BlockMath math="f-\varphi=(f-g)+(g-\varphi)" />
+<BlockMath math="\|f-\varphi\|^2=\|f-g\|^2+\|g-\varphi\|^2" />
+<BlockMath math="\|f-\varphi\|^2\ge\|f-g\|^2" />
+</MathContainer>
+
+Kesamaan berlaku hanya apabila <InlineMath math="\varphi=g" />. Inilah yang membuktikan keoptimuman dan keunikan sekali gus.
+
+## Rumus untuk Asas Ortonormal
+
+Jika <InlineMath math="\varphi_1,\ldots,\varphi_n" /> ialah asas ortonormal bagi <InlineMath math="S" />, maka
+
+<MathContainer>
+<BlockMath math="P_Sf=\sum_{i=1}^n\langle f,\varphi_i\rangle\varphi_i" />
+<BlockMath math="\|f-P_Sf\|^2=\|f\|^2-\sum_{i=1}^n|\langle f,\varphi_i\rangle|^2" />
+</MathContainer>
+
+Baris kedua diperoleh apabila kamu memecahkan <InlineMath math="f" /> kepada **komponen yang saling berserenjang**, iaitu <InlineMath math="P_Sf" /> dan <InlineMath math="f-P_Sf" />.
+
+Bagi matriks nyata <InlineMath math="Q\in\mathbb{R}^{m\times n}" /> dengan lajur ortonormal,
+
+<BlockMath math="P=QQ^T" />
+
+Matriks <InlineMath math="P" /> mengunjurkan vektor dalam <InlineMath math="\mathbb{R}^m" /> ke atas <InlineMath math="\operatorname{col}(Q)" />.
+
+## Mengunjurkan Vektor ke atas Subruang Satu Dimensi
+
+Dua vektor dalam contoh ini ialah
+
+<MathContainer>
+<BlockMath math="f=\begin{pmatrix}1\\3\end{pmatrix}" />
+<BlockMath math="u=\begin{pmatrix}2\\1\end{pmatrix}" />
+</MathContainer>
+
+Kita unjurkan vektor <InlineMath math="f" /> ke atas <InlineMath math="S=\operatorname{span}\{u\}" />. **Pekali unjurannya** ialah
+
+<BlockMath math="\frac{\langle f,u\rangle}{\langle u,u\rangle}=\frac{1\cdot2+3\cdot1}{2^2+1^2}=1" />
+
+Pengiraan ini memberi:
+
+<MathContainer>
+<BlockMath math="g=P_Sf=u=\begin{pmatrix}2\\1\end{pmatrix}" />
+<BlockMath math="r=f-g=\begin{pmatrix}-1\\2\end{pmatrix}" />
+<BlockMath math="\langle r,u\rangle=(-1)2+(2)1=0" />
+<BlockMath math="\|f-g\|_2=\sqrt5" />
+</MathContainer>
+
+<MathVisual
+  title={<>Unjuran <InlineMath math="f" /> ke atas <InlineMath math="\operatorname{span}\{u\}" /></>}
+  description={<>Garis kelabu ialah <InlineMath math="S=\operatorname{span}\{u\}" /> dengan <InlineMath math="u=(2,1)" />, dan segmen hijau kebiruan ialah <InlineMath math="f=(1,3)" />. Gerakkan <InlineMath math="s" />: segmen magenta menyambungkan <InlineMath math="su" /> kepada <InlineMath math="f" />, dan bacaannya paling kecil, <InlineMath math="5" />, pada <InlineMath math="s=1" />. Di situ, <InlineMath math="su" /> ialah titik jingga <InlineMath math="g=P_Sf" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 3.8 }, y: { min: -0.8, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "s", min: -0.5, max: 1.8, value: 0.5, step: 0.01, label: "s" },
+    ],
+    objects: [
+      { id: "span", kind: "function", formula: "x/2", domain: { min: -1, max: 3.6 }, appearance: "reference" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "construction" },
+      { id: "residual", kind: "path", points: [{ x: "2*s", y: "s" }, { x: "1", y: "3" }], appearance: "answer" },
+      { id: "projection", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "candidate", kind: "marker", x: "2*s", y: "s", appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "vector", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "g", objectId: "projection", at: { x: 2, y: 1 }, placement: "below" },
+    ],
+    readouts: [
+      { key: "distance", formula: "5*s^2 - 10*s + 10" },
+    ],
+  }}
+  labels={{
+    "s": <InlineMath math="s" />,
+    "f": <InlineMath math="f" />,
+    "g": <InlineMath math="g=P_Sf" />,
+    "distance": <InlineMath math="\|f-su\|_2^2" />,
+  }}
+/>
+
+## Pembinaan daripada Sebarang Asas
+
+Katakan <InlineMath math="\psi_1,\ldots,\psi_n" /> ialah sebarang asas bagi <InlineMath math="S" />, dan tulis
+
+<BlockMath math="g=\sum_{i=1}^n\alpha_i\psi_i" />
+
+Syarat keortogonan memberi **sistem Gram**
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\sum_{i=1}^n\langle\psi_i,\psi_k\rangle\alpha_i=\langle f,\psi_k\rangle, \\ &amp;k=1,\ldots,n \end{aligned}" />
+<BlockMath math="G\alpha=c" />
+</MathContainer>
+
+Dalam sistem ini, <InlineMath math="G_{ki}=\langle\psi_i,\psi_k\rangle" /> dan <InlineMath math="c_k=\langle f,\psi_k\rangle" />. Oleh sebab vektor asas itu tak bersandar linear,
+
+<BlockMath math="\begin{aligned} &amp;z^TGz=\left\|\sum_{i=1}^nz_i\psi_i\right\|^2>0 \\ &amp;\text{untuk }z\ne0 \end{aligned}" />
+
+Ketaksamaan di atas menunjukkan bahawa <InlineMath math="G" /> ialah matriks simetri tentu positif, jadi pekali unjurannya unik.
+
+Jika vektor asas itu disusun sebagai lajur bagi matriks <InlineMath math="A" /> yang berpangkat lajur penuh, maka
+
+<BlockMath math="P=A(A^TA)^{-1}A^T" />
+
+Matriks <InlineMath math="P" /> ialah pengunjur ortogon (orthogonal projector) yang sama. Rumus ini memberi bentuk algebra bagi pengunjur itu. Untuk pengiraan berangka, dapatkan unjuran melalui <InlineMath math="\mathrm{QR}" /> atau <InlineMath math="\mathrm{SVD}" />, kerana apabila kamu membentuk <InlineMath math="A^TA" />, nombor syaratnya menjadi kuasa dua nombor syarat asal.
+
+## Contoh dalam Ruang Fungsi
+
+Kita unjurkan <InlineMath math="f(x)=x^2" /> ke atas <InlineMath math="S=\operatorname{span}\{1,x\}" /> menggunakan hasil darab dalam
+
+<BlockMath math="\langle f,g\rangle=\int_{-1}^{1}f(x)g(x)\,dx" />
+
+Fungsi <InlineMath math="1" /> dan <InlineMath math="x" /> saling ortogon. Pekali kedua-duanya ialah
+
+<MathContainer>
+<BlockMath math="c_0=\frac{\langle x^2,1\rangle}{\langle1,1\rangle}=\frac{2/3}{2}=\frac13" />
+<BlockMath math="c_1=\frac{\langle x^2,x\rangle}{\langle x,x\rangle}=0" />
+</MathContainer>
+
+Pengiraan ini memberi:
+
+<MathContainer>
+<BlockMath math="P_Sf(x)=\frac13" />
+<BlockMath math="\begin{aligned} \|f-P_Sf\|_2^2 &amp;=\int_{-1}^{1}\left(x^2-\frac13\right)^2dx \\ &amp;=\int_{-1}^1\left(x^4-\frac23x^2+\frac19\right)dx\\&amp;=\frac25-\frac49+\frac29=\frac{8}{45} \end{aligned}" />
+</MathContainer>
+
+Sebutan linear menjadi sifar kerana <InlineMath math="x^3" /> **ganjil pada selang simetri**.
+
+Kawasan berlorek menunjukkan ralat yang ditinggalkan oleh unjuran. Kuasa dua normanya, <InlineMath math="\int_{-1}^1\bigl(x^2-\tfrac13\bigr)^2dx=\tfrac8{45}" />, ialah nilai terkecil antara semua fungsi <InlineMath math="c_0+c_1x" />.
+
+<MathVisual
+  title={<><InlineMath math="x^2" /> dan unjurannya <InlineMath math="\tfrac13" /> ke atas <InlineMath math="\operatorname{span}\{1,x\}" /></>}
+  description={<>Lengkung hijau kebiruan ialah <InlineMath math="x^2" /> dan garis jingga ialah <InlineMath math="P_Sf=\tfrac13" />. Kawasan magenta terletak di antara kedua-duanya, di atas garis berhampiran hujung selang dan di bawah garis berhampiran <InlineMath math="0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 1.2 }, y: { min: -0.2, max: 1.15 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "above", kind: "region", inequalities: ["y <= x^2", "y >= 1/3", "x >= -1", "x <= 1"], appearance: "answer" },
+      { id: "below", kind: "region", inequalities: ["y >= x^2", "y <= 1/3"], appearance: "answer" },
+      { id: "square", kind: "function", formula: "x^2", domain: { min: -1, max: 1 }, appearance: "construction" },
+      { id: "projection", kind: "function", formula: "1/3", domain: { min: -1, max: 1 }, appearance: "primary" },
+    ],
+  }}
+/>
+
+## Sifat Pengunjur Ortogon
+
+| Sifat | Maksud |
+| --- | --- |
+| <InlineMath math="P^2=P" /> | mengunjur dua kali tidak mengubah apa-apa |
+| <InlineMath math="P^T=P" /> | julat dan ruang nol saling ortogon |
+| <InlineMath math="\operatorname{range}(P)=S" /> | setiap output terletak dalam subruang sasaran |
+| <InlineMath math="\ker(P)=S^\perp" /> | komponen yang berserenjang dibuang |
+
+Sifat idempoten sahaja belum cukup. Pengunjur serong juga memenuhi <InlineMath math="P^2=P" />, tetapi pengunjur itu boleh jadi tidak simetri. <Highlight>Kesimetrianlah yang membezakan pengunjur ortogon Euclidean</Highlight> daripada pengunjur serong.
+
+Untuk <InlineMath math="u=(2,1)" />, pengunjurnya ialah <InlineMath math="P=\tfrac{uu^T}{u^Tu}=\tfrac15\begin{pmatrix}4&2\\2&1\end{pmatrix}" />. Maka <InlineMath math="Pf=(2,1)" /> terletak pada <InlineMath math="S" />, <InlineMath math="(I-P)f=(-1,2)" /> terletak pada <InlineMath math="S^\perp" />, dan <InlineMath math="P(Pf)=Pf" /> kerana vektor yang sudah berada dalam <InlineMath math="S" /> tidak berganjak.
+
+<MathVisual
+  title={<><InlineMath math="P" /> dan <InlineMath math="I-P" /> memecahkan <InlineMath math="f=(1,3)" /></>}
+  description={<>Garis hijau kebiruan ialah <InlineMath math="S" /> dan garis ungu ialah <InlineMath math="S^\perp" />. Segmen kelabu <InlineMath math="f" /> ialah hasil tambah segmen jingga <InlineMath math="Pf" /> pada <InlineMath math="S" /> dan segmen magenta <InlineMath math="(I-P)f" /> pada <InlineMath math="S^\perp" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 2.5 }, y: { min: -1, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "subspace", kind: "function", formula: "x/2", domain: { min: -1.5, max: 2.5 }, appearance: "construction" },
+      { id: "complement", kind: "function", formula: "-2*x", domain: { min: -1.75, max: 0.5 }, appearance: "secondary" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "inside", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "outside", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "f", objectId: "vector", at: { x: 1, y: 3 }, placement: "right" },
+      { key: "pf", objectId: "inside", at: { x: 2, y: 1 }, placement: "below" },
+      { key: "qf", objectId: "outside", at: { x: -1, y: 2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "f": <InlineMath math="f" />,
+    "pf": <InlineMath math="Pf" />,
+    "qf": <InlineMath math="(I-P)f" />,
+  }}
+/>

@@ -1,14 +1,54 @@
-The table only gives **five position measures**, so a statement must be true only if those five measures settle it.
+All five statements use estimates, so every one of them is worked out with **the rules in the reading**. First set up each class's frequency and the way to find the <InlineMath math="k" />th value, then judge each statement.
+
+# Frequencies and the kth value
+
+Each class's frequency is the difference between two neighbouring cumulative rows:
+
+| Class | <InlineMath math="0\text{ to }10" /> | <InlineMath math="10\text{ to }20" /> | <InlineMath math="20\text{ to }30" /> | <InlineMath math="30\text{ to }40" /> | <InlineMath math="40\text{ to }50" /> | <InlineMath math="50\text{ to }60" /> | <InlineMath math="60\text{ to }70" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Frequency | <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="24" /> | <InlineMath math="20" /> | <InlineMath math="16" /> | <InlineMath math="6" /> | <InlineMath math="6" /> |
+
+To find the <InlineMath math="k" />th value, find the class it's in, then **move forward proportionally inside that class**. If the class's lower boundary is <InlineMath math="L" />, the number of values before the class is <InlineMath math="F" />, and the class frequency is <InlineMath math="f" />, then
+
+<BlockMath math="k\text{th value}=L+\frac{k-F}{f}\cdot10" />
+
+# Judging each statement
+
+**Statement 1**. The median is the <InlineMath math="40" />th value. Before the class <InlineMath math="30\le t<40" /> there are <InlineMath math="32" /> values, and up to the end of that class there are <InlineMath math="52" />, so the <InlineMath math="40" />th value is in that class:
+
+<BlockMath math="\text{median}=30+\frac{40-32}{20}\cdot10=30+4=34\text{ minutes}" />
+
+The number <InlineMath math="35" /> is just the class midpoint. The <InlineMath math="40" />th value is only the <InlineMath math="8" />th of the <InlineMath math="20" /> values in that class, not yet halfway. **False**.
+
+**Statement 2**. The lower quartile is the <InlineMath math="20" />th value. Before the class <InlineMath math="20\le t<30" /> there are <InlineMath math="8" /> values, and up to its end there are <InlineMath math="32" />:
+
+<BlockMath math="Q_1=20+\frac{20-8}{24}\cdot10=20+5=25\text{ minutes}" />
+
+**True**.
+
+**Statement 3**. The upper quartile is the <InlineMath math="60" />th value. Before the class <InlineMath math="40\le t<50" /> there are <InlineMath math="52" /> values, and up to its end there are <InlineMath math="68" />:
 
 <BlockMath math="\begin{aligned}
-\text{range of XI-1}&=96-45=51 \\
-\text{range of XI-2}&=90-52=38
+Q_3&=40+\frac{60-52}{16}\cdot10=40+5=45\text{ minutes} \\
+Q_3-Q_1&=45-25=20\text{ minutes}
 \end{aligned}" />
 
-- The range of XI-2 is <InlineMath math="38" />, smaller than <InlineMath math="51" />. This statement must be true.
-- The median of XI-1 is <InlineMath math="74" /> and that of XI-2 is <InlineMath math="70" />. This statement must be true.
-- The mean can't be worked out from the table. The median of <InlineMath math="74" /> is only the middle value, and the mean could be higher or lower. This statement need not be true.
-- There are <InlineMath math="32" /> different scores, so the median of <InlineMath math="74" /> lies between the <InlineMath math="16" />th and <InlineMath math="17" />th values. Values <InlineMath math="17" /> to <InlineMath math="32" />, exactly <InlineMath math="16" /> students, are above <InlineMath math="74" />. This statement must be true.
-- The lowest score in XI-2 is <InlineMath math="52" />, so no student in XI-2 scored below <InlineMath math="50" />. This statement is false.
+**True**.
 
-So the statements that must be true are the ones about the ranges, the medians, and exactly <InlineMath math="16" /> students in XI-1 scoring above <InlineMath math="74" />.
+**Statement 4**. The mean is estimated with the class midpoints <InlineMath math="5,15,25,\ldots,65" />:
+
+<BlockMath math="\begin{aligned}
+\sum f\cdot x&=2\cdot5+6\cdot15+24\cdot25+20\cdot35+16\cdot45+6\cdot55+6\cdot65 \\
+&=10+90+600+700+720+330+390=2{,}840 \\
+\bar{x}&=\frac{2{,}840}{80}=35.5\text{ minutes}
+\end{aligned}" />
+
+The estimated mean <InlineMath math="35.5" /> is bigger than the estimated median <InlineMath math="34" />. The long readers in the top classes pull the mean up. **True**.
+
+**Statement 5**. The <InlineMath math="80" />th percentile is the <InlineMath math="\tfrac{80}{100}\cdot80=64" />th value, still in the class <InlineMath math="40\le t<50" />:
+
+<BlockMath math="P_{80}=40+\frac{64-52}{16}\cdot10=40+7.5=47.5\text{ minutes}" />
+
+The number <InlineMath math="50" /> comes from grabbing the boundary of the row <InlineMath math="t<50" /> because its cumulative <InlineMath math="68" /> already passes <InlineMath math="64" />, without moving proportionally inside the class. **False**.
+
+So the true statements are statements 2, 3, and 4.

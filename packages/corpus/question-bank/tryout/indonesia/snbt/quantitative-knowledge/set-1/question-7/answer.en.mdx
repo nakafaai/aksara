@@ -1,19 +1,38 @@
-The question asks for a definite yes or a definite no. A statement is sufficient only when **every pair of numbers that satisfies it gives the same answer**. To show that a statement is not sufficient, one yes example and one no example are enough.
+You're looking for the area of the small triangle above the trapezoid, but the problem only gives the areas of two triangles inside it. The bridge is **the ratio of the parallel sides**. From the two areas, find the ratio of <InlineMath math="AB" /> to <InlineMath math="CD" />, compute the area of the trapezoid, and then use the similar triangles <InlineMath math="EAB" /> and <InlineMath math="ECD" />.
 
-# Statement one alone
+# Finding the ratio of the parallel sides
 
-The pair <InlineMath math="x=3,\ y=1" /> satisfies <InlineMath math="9>1" /> and gives <InlineMath math="x>y" />. The pair <InlineMath math="x=-3,\ y=1" /> also satisfies <InlineMath math="9>1" />, but <InlineMath math="x<y" />. Squaring **erases the sign information**, so statement (1) alone is not sufficient.
+Since <InlineMath math="AB\parallel CD" />, angle <InlineMath math="OAB" /> equals angle <InlineMath math="OCD" />, and angle <InlineMath math="OBA" /> equals angle <InlineMath math="ODC" /> (alternate angles). So triangle <InlineMath math="AOB" /> is similar to triangle <InlineMath math="COD" />. The ratio of the areas of two similar shapes **is the square of the ratio of their sides**.
 
-# Statement two alone
+<BlockMath math="\left(\frac{AB}{CD}\right)^2=\frac{9}{25}\quad\Rightarrow\quad\frac{AB}{CD}=\frac35=\frac{AO}{OC}" />
 
-The pair <InlineMath math="x=3,\ y=1" /> satisfies <InlineMath math="x+y>0" /> and gives <InlineMath math="x>y" />. The pair <InlineMath math="x=1,\ y=3" /> also satisfies <InlineMath math="x+y>0" />, but <InlineMath math="x<y" />. A positive sum **does not decide which number is larger**, so statement (2) alone is not sufficient.
+# Computing the area of the trapezoid
 
-# Both statements together
+Triangles <InlineMath math="AOB" /> and <InlineMath math="BOC" /> both have their top vertex at <InlineMath math="B" />, and their bases <InlineMath math="AO" /> and <InlineMath math="OC" /> lie on one line. They have the same height, so **their areas are in the ratio of their bases**. The same goes for triangles <InlineMath math="AOD" /> and <InlineMath math="COD" />, which share the vertex <InlineMath math="D" />. The symbol <InlineMath math="[\,\cdot\,]" /> means area, in <InlineMath math="\text{cm}^2" />.
 
-Write statement (1) as a product of two factors.
+<BlockMath math="\begin{aligned}
+[BOC]&=\frac53\cdot[AOB]=\frac53\cdot9=15\\
+[AOD]&=\frac35\cdot[COD]=\frac35\cdot25=15\\
+[ABCD]&=9+15+15+25=64
+\end{aligned}" />
 
-<BlockMath math="x^2-y^2=(x-y)(x+y)>0" />
+# Computing the area of the small triangle
 
-A product is positive only when both factors have the same sign. Statement (2) guarantees <InlineMath math="x+y>0" />, so **the factor <InlineMath math="x-y" /> must be positive too**. This gives <InlineMath math="x>y" /> for every pair that satisfies both statements.
+Since <InlineMath math="AB\parallel CD" />, triangle <InlineMath math="EAB" /> is similar to triangle <InlineMath math="ECD" /> with side ratio <InlineMath math="3:5" />. Their area ratio is **the square of the side ratio**, which is <InlineMath math="9:25" />. Write <InlineMath math="[EAB]=9k" /> and <InlineMath math="[ECD]=25k" />. The trapezoid is the big triangle minus the small one.
 
-So **both statements together are sufficient**, but neither statement alone is sufficient.
+<BlockMath math="\begin{aligned}
+[ECD]-[EAB]&=[ABCD]\\
+25k-9k&=64\\
+k&=4\\
+[EAB]&=9\cdot4=36
+\end{aligned}" />
+
+# Checking the result
+
+Take one trapezoid that fits: <InlineMath math="AB=3\text{ cm}" />, <InlineMath math="CD=5\text{ cm}" />, and height <InlineMath math="16\text{ cm}" />. The point <InlineMath math="O" /> splits the height in the ratio <InlineMath math="3:5" />, so it's <InlineMath math="6\text{ cm}" /> from <InlineMath math="AB" /> and <InlineMath math="10\text{ cm}" /> from <InlineMath math="CD" />. The areas match: <InlineMath math="\frac12\cdot3\cdot6=9" /> and <InlineMath math="\frac12\cdot5\cdot10=25" />. If <InlineMath math="E" /> is <InlineMath math="t" /> above <InlineMath math="AB" />, then <InlineMath math="\frac{t}{t+16}=\frac35" />, so <InlineMath math="t=24" /> and <InlineMath math="[EAB]=\frac12\cdot3\cdot24=36" />. The result **agrees with the ratio method**.
+
+# The wrong options
+
+The option <InlineMath math="24\text{ cm}^2" /> comes from placing <InlineMath math="E" /> one trapezoid height above <InlineMath math="AB" />, so <InlineMath math="[EAB]=\frac12\cdot AB\cdot h" />, where the trapezoid height <InlineMath math="h" /> gives <InlineMath math="AB\cdot h=48" />. The option <InlineMath math="64\text{ cm}^2" /> stops at the area of the trapezoid. The option <InlineMath math="96\text{ cm}^2" /> comes from **using the side ratio <InlineMath math="3:5" /> directly for the areas**, so <InlineMath math="\frac23[EAB]=64" />. The option <InlineMath math="100\text{ cm}^2" /> is the area of triangle <InlineMath math="ECD" />, the big triangle instead of the small one.
+
+So the area of triangle <InlineMath math="EAB" /> is <InlineMath math="36\text{ cm}^2" />.

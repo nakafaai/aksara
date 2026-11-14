@@ -1,23 +1,44 @@
-Two chords that cross inside a circle satisfy **the intersecting chords theorem**: the product of the two parts of one chord equals the product of the two parts of the other.
+You need to add up only the terms that are divisible by <InlineMath math="3" />. The plan: find the first term and the common difference from the two conditions, find **the pattern of where the multiples of <InlineMath math="3" /> sit**, count how many of them fall among the <InlineMath math="50" /> terms, and then add them.
 
-<BlockMath math="AE\cdot EB=CE\cdot ED" />
+# Finding the first term and the difference
 
-# Why the products are equal
-
-Triangles <InlineMath math="AEC" /> and <InlineMath math="DEB" /> are similar. Angles <InlineMath math="AEC" /> and <InlineMath math="DEB" /> are vertical angles, and angles <InlineMath math="CAB" /> and <InlineMath math="CDB" /> stand on the same arc <InlineMath math="CB" />. Similarity gives <InlineMath math="\frac{AE}{DE}=\frac{CE}{BE}" />, which **is equivalent to <InlineMath math="AE\cdot EB=CE\cdot ED" />**.
-
-# Computing the length of CD
-
-Write <InlineMath math="CE=3k" /> and <InlineMath math="ED=2k" /> according to the ratio <InlineMath math="3:2" />.
+Let the first term be <InlineMath math="a" /> and the common difference <InlineMath math="b" />, so the <InlineMath math="n" />th term is <InlineMath math="u_n=a+(n-1)b" />. Write <InlineMath math="S_{10}" /> for the sum of the first <InlineMath math="10" /> terms. The two conditions give **two equations**.
 
 <BlockMath math="\begin{aligned}
-8\cdot3&=3k\cdot2k\\
-24&=6k^2\\
-k&=2
+S_{10}=\frac{10}{2}(2a+9b)=250\quad&\Rightarrow\quad 2a+9b=50\\
+a+7b=5a\quad&\Rightarrow\quad 7b=4a
 \end{aligned}" />
 
-So <InlineMath math="CE=6" />, <InlineMath math="ED=4" />, and <InlineMath math="CD=6+4=10\text{ cm}" />. **Check the products**: <InlineMath math="6\cdot4=24=8\cdot3" />.
+From the second equation, <InlineMath math="a=\frac{7b}{4}" />. Substitute it into the first one.
 
-The values 6 and 4 are only the parts <InlineMath math="CE" /> and <InlineMath math="ED" />. The value 5 stops at <InlineMath math="5k" /> with <InlineMath math="k=1" />, without using the theorem. The value 11 assumes the two chords are equal, although <InlineMath math="AB=11" /> and <InlineMath math="CD" /> need not match it.
+<BlockMath math="\begin{aligned}
+\frac{7b}{2}+9b&=50\\
+\frac{25b}{2}&=50\\
+b&=4,\qquad a=7
+\end{aligned}" />
 
-So the length of chord <InlineMath math="CD" /> is **<InlineMath math="10\text{ cm}" />**.
+So <InlineMath math="u_n=7+4(n-1)=4n+3" />.
+
+# Finding the terms divisible by three
+
+Write <InlineMath math="4n+3=3(n+1)+n" />. The part <InlineMath math="3(n+1)" /> is always divisible by <InlineMath math="3" />, so **<InlineMath math="4n+3" /> is divisible by <InlineMath math="3" /> exactly when <InlineMath math="n" /> is**. The terms you want are the <InlineMath math="3" />rd, the <InlineMath math="6" />th, and so on up to the <InlineMath math="48" />th, because <InlineMath math="51" /> is already past <InlineMath math="50" />.
+
+<BlockMath math="\text{number of terms}=\frac{48-3}{3}+1=16" />
+
+These terms start at <InlineMath math="u_3=15" />, end at <InlineMath math="u_{48}=195" />, and form a new arithmetic sequence with difference <InlineMath math="3\cdot4=12" />.
+
+# Adding the chosen terms
+
+The sum of an arithmetic sequence is **the number of terms times the average of the first and last terms**.
+
+<BlockMath math="\frac{16}{2}(15+195)=8\cdot210=1{,}680" />
+
+# Checking the result
+
+The first few terms are <InlineMath math="7, 11, 15, 19, 23, 27, \ldots" />. A multiple of <InlineMath math="3" /> shows up every third term, at <InlineMath math="15" /> and <InlineMath math="27" />, which are <InlineMath math="12" /> apart. The given conditions hold too: <InlineMath math="u_8=35=5\cdot7" />, and <InlineMath math="S_{10}=5(7+43)=250" />. The last term <InlineMath math="u_{50}=203" /> **isn't divisible by <InlineMath math="3" />**, so the last chosen term really is <InlineMath math="195" />.
+
+# The wrong options
+
+The option <InlineMath math="720" /> comes from giving the chosen terms a difference of <InlineMath math="4" />, when their difference is <InlineMath math="12" />. The option <InlineMath math="1{,}485" /> comes from counting <InlineMath math="15" /> terms, which means **forgetting to add <InlineMath math="1" />** when counting from the <InlineMath math="3" />rd to the <InlineMath math="48" />th term. The option <InlineMath math="1{,}632" /> comes from computing the sum as <InlineMath math="4(3+6+\cdots+48)" /> from the formula <InlineMath math="4n+3" /> but forgetting the extra <InlineMath math="3" /> in each term, which is <InlineMath math="16\cdot3=48" />. The option <InlineMath math="1{,}887" /> comes from adding <InlineMath math="17" /> terms, including <InlineMath math="u_{51}=207" />, which isn't in the sequence.
+
+So the sum of all terms that are divisible by <InlineMath math="3" /> is <InlineMath math="1{,}680" />.

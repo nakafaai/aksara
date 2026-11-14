@@ -1,16 +1,34 @@
-Mehrere Paare <InlineMath math="(a,b)" /> erfüllen die Bedingungen, zum Beispiel <InlineMath math="(7,5)" /> und <InlineMath math="(11,1)" />. Statt sie einzeln durchzuprobieren, **faktorisierst du <InlineMath math="P" />** als Differenz zweier Quadrate.
+Jede neue Strecke bildet mit der vorigen ein gleichschenkliges Dreieck. Der Plan: das Muster der Basiswinkel dieser Dreiecke finden, klären, **wann sich kein neuer Punkt mehr konstruieren lässt**, und dann die Strecken zählen.
 
-# Differenz von Quadraten faktorisieren
+# Das Muster der Basiswinkel
+
+Das Dreieck <InlineMath math="AP_1P_2" /> ist gleichschenklig, weil <InlineMath math="AP_1=P_1P_2" /> gilt, mit der Spitze <InlineMath math="P_1" />. Beide Basiswinkel betragen also <InlineMath math="12^\circ" />. Das nächste Dreieck <InlineMath math="P_1P_2P_3" /> hat seine Spitze in <InlineMath math="P_2" />, und sein Basiswinkel bei <InlineMath math="P_1" /> ist ein Außenwinkel des Dreiecks <InlineMath math="AP_1P_2" />. Die Regel lautet: **Ein Außenwinkel eines Dreiecks ist so groß wie die Summe der beiden nicht anliegenden Innenwinkel**.
 
 <BlockMath math="\begin{aligned}
-P=a^2-b^2&=(a+b)(a-b)\\
-&=12(a-b)
+\text{Basiswinkel im Dreieck } P_1P_2P_3&=12^\circ+12^\circ=24^\circ\\
+\text{Basiswinkel im Dreieck } P_2P_3P_4&=12^\circ+24^\circ=36^\circ
 \end{aligned}" />
 
-Der letzte Ausdruck ist **genau <InlineMath math="Q" />**, und zwar für jedes Paar mit <InlineMath math="a+b=12" />.
+Die zweite Zeile nutzt das Dreieck <InlineMath math="AP_2P_3" />, dessen Winkel bei <InlineMath math="A" /> <InlineMath math="12^\circ" /> und bei <InlineMath math="P_3" /> <InlineMath math="24^\circ" /> beträgt. Jeder Schritt addiert <InlineMath math="12^\circ" />, also hat das <InlineMath math="k" />-te Dreieck mit der Spitze <InlineMath math="P_k" /> die Basiswinkel <InlineMath math="12k^\circ" />.
 
-# Mit Beispielen prüfen
+# Wann ein neuer Punkt noch möglich ist
 
-Für <InlineMath math="(7,5)" />: <InlineMath math="P=49-25=24" /> und <InlineMath math="Q=12(2)=24" />. Für <InlineMath math="(11,1)" />: <InlineMath math="P=121-1=120" /> und <InlineMath math="Q=12(10)=120" />. Die Werte von <InlineMath math="P" /> und <InlineMath math="Q" /> ändern sich gemeinsam, sind aber **immer gleich**.
+Der neue Punkt ist der zweite Schnittpunkt des Kreises um die Spitze mit dem Radius <InlineMath math="1" /> mit dem Strahl. Er liegt nur dann weiter von <InlineMath math="A" /> entfernt als der alte Punkt, wenn **der Basiswinkel des Dreiecks spitz ist**. Beträgt der Basiswinkel <InlineMath math="90^\circ" /> oder mehr, fällt der zweite Schnittpunkt auf den alten Punkt oder näher an <InlineMath math="A" />. Die Winkelsumme zeigt dasselbe: Zwei Basiswinkel von je <InlineMath math="90^\circ" /> oder mehr passen nicht in <InlineMath math="180^\circ" />.
 
-Die Wahl, die Informationen reichten nicht aus, wirkt naheliegend, weil <InlineMath math="a" /> und <InlineMath math="b" /> nicht eindeutig sind. Die gefragte Beziehung ist aber für jedes Paar dieselbe, also gilt <InlineMath math="P=Q" />.
+<BlockMath math="\begin{aligned}
+12k&<90\\
+k&<7{,}5\\
+k&\le 7
+\end{aligned}" />
+
+Das siebte Dreieck hat Basiswinkel von <InlineMath math="84^\circ" /> und den Spitzenwinkel <InlineMath math="180^\circ-2\cdot 84^\circ=12^\circ" />, es existiert also. Das achte Dreieck bräuchte Basiswinkel von <InlineMath math="96^\circ" />, das ist unmöglich.
+
+# Die Strecken zählen
+
+Die erste Strecke <InlineMath math="AP_1" /> bildet kein neues Dreieck. Danach **fügt jedes Dreieck genau eine Strecke hinzu**, von <InlineMath math="P_1P_2" /> bis <InlineMath math="P_7P_8" />. Es sind also <InlineMath math="1+7=8" /> Strecken.
+
+# Die anderen Antworten prüfen
+
+Die Antwort <InlineMath math="7" /> zählt nur die Dreiecke und **vergisst die erste Strecke** <InlineMath math="AP_1" />. Die Antwort <InlineMath math="9" /> zählt die Punkte <InlineMath math="A,P_1,\ldots,P_8" /> statt der Strecken. Die Antwort <InlineMath math="15" /> verlangt nur, dass der Basiswinkel kleiner als <InlineMath math="180^\circ" /> ist, sodass <InlineMath math="12k<180" /> auf <InlineMath math="14" /> Dreiecke führt. Die Antwort <InlineMath math="4" /> nimmt an, dass sich die Basiswinkel verdoppeln, also <InlineMath math="12^\circ" />, <InlineMath math="24^\circ" />, <InlineMath math="48^\circ" /> und dann <InlineMath math="96^\circ" />, dabei kommt bei jedem Schritt nur <InlineMath math="12^\circ" /> hinzu.
+
+Es lassen sich also <InlineMath math="8" /> Strecken der Länge <InlineMath math="1\text{ Einheit}" /> zeichnen.

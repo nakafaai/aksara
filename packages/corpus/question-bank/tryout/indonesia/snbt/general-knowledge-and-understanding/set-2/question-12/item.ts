@@ -2,34 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "vocabulary",
-    topic: "idiom",
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
   },
-  stimulus: "tabungan",
+  stimulus: "fansur",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Rasa lelah sesudah bekerja seharian",
+          column: 1,
+          label:
+            "Berbeda dengan kapur barus, kemenyan dapat diperoleh tanpa membelah batang pohonnya.",
         },
         {
-          correct: false,
-          label: "Upah tetap yang diterima setiap bulan",
+          column: 2,
+          label:
+            "Temuan di Lobu Tua membuktikan bahwa kapal-kapal dari Barus sudah berlayar langsung ke Tiongkok pada abad ke-11.",
         },
         {
-          correct: false,
-          label: "Keluhan warga kepada pengurus",
+          column: 2,
+          label:
+            "Ketika Barus berada di bawah pengaruh Kesultanan Aceh, kapur barus sudah harus bersaing dengan kamper buatan pabrik.",
         },
         {
-          correct: false,
-          label: "Pekerjaan ringan yang tidak memerlukan tenaga",
-        },
-        {
-          correct: true,
-          label: "Usaha keras yang telah dilakukan",
+          column: 1,
+          label:
+            "Kapur yang dipuji dalam sumber-sumber Arab hanya dapat diperoleh dengan mengorbankan pohon yang menghasilkannya.",
         },
       ],
     },

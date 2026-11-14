@@ -1,22 +1,37 @@
-Compute three measures for each class: the mean, the median, and the range. Both data sets are **already in order**, so the median is the third of the five values.
+The divisor is built from a few primes, so first break it into prime powers. Then count how many times each prime appears in <InlineMath math="n!" />. The answer is decided by **the prime that is satisfied last**, which isn't necessarily the largest prime.
 
-# The measures of each class
+# The prime factorization of the divisor
 
-| Measure | Class A | Class B |
-| :--- | :---: | :---: |
-| Total | 375 | 375 |
-| Mean | <InlineMath math="\tfrac{375}{5}=75" /> | <InlineMath math="\tfrac{375}{5}=75" /> |
-| Median | 70 | 75 |
-| Range | <InlineMath math="95-60=35" /> | <InlineMath math="90-65=25" /> |
+Use <InlineMath math="6=2\cdot 3" /> and <InlineMath math="10=2\cdot 5" />.
 
-The two means are **equal**, so the first statement is false. The median of class A is smaller, so the second statement is false. The range of class A is larger, so the third statement is true.
+<BlockMath math="6^{12}\cdot 10^{6}=2^{12}\cdot 3^{12}\cdot 2^{6}\cdot 5^{6}=2^{18}\cdot 3^{12}\cdot 5^{6}" />
 
-# Replacing one score
+So <InlineMath math="n!" /> needs **at least <InlineMath math="18" /> factors of <InlineMath math="2" />, <InlineMath math="12" /> factors of <InlineMath math="3" />, and <InlineMath math="6" /> factors of <InlineMath math="5" />**.
 
-Replacing 95 with 85 **lowers the total of class A by 10**.
+# Counting prime factors in a factorial
 
-<BlockMath math="\bar x_A=\frac{375-10}{5}=\frac{365}{5}=73<75" />
+Every multiple of <InlineMath math="p" /> from <InlineMath math="1" /> to <InlineMath math="n" /> gives one factor of <InlineMath math="p" />. Every multiple of <InlineMath math="p^2" /> gives one extra factor, every multiple of <InlineMath math="p^3" /> one more, and so on. The symbol <InlineMath math="\lfloor y\rfloor" /> means the greatest integer not exceeding <InlineMath math="y" />. With it, the number of factors of <InlineMath math="p" /> in <InlineMath math="n!" /> is
 
-The new mean of class A is smaller than the mean of class B, so the fourth statement is true.
+<BlockMath math="\left\lfloor\frac{n}{p}\right\rfloor+\left\lfloor\frac{n}{p^2}\right\rfloor+\left\lfloor\frac{n}{p^3}\right\rfloor+\cdots" />
 
-So the first statement is **false**, the second is **false**, the third is **true**, and the fourth is **true**.
+This shows that numbers like <InlineMath math="9" /> or <InlineMath math="27" /> **give more than one factor of <InlineMath math="3" />**.
+
+# The condition for each prime
+
+Find the smallest <InlineMath math="n" /> that works for each prime on its own.
+
+<BlockMath math="\begin{aligned}
+\text{prime } 5&:\quad 24!\ \text{has } 4,\quad 25!\ \text{has } 5+1=6\\
+\text{prime } 3&:\quad 26!\ \text{has } 8+2=10,\quad 27!\ \text{has } 9+3+1=13\\
+\text{prime } 2&:\quad 19!\ \text{has } 9+4+2+1=16,\quad 20!\ \text{has } 10+5+2+1=18
+\end{aligned}" />
+
+So the prime <InlineMath math="5" /> needs <InlineMath math="n\ge 25" />, the prime <InlineMath math="3" /> needs <InlineMath math="n\ge 27" />, and the prime <InlineMath math="2" /> needs <InlineMath math="n\ge 20" />. The count of factors of <InlineMath math="3" /> **jumps from <InlineMath math="10" /> to <InlineMath math="13" />** at <InlineMath math="n=27" />, because <InlineMath math="27=3^3" /> brings three factors at once. All three conditions hold together exactly when <InlineMath math="n\ge 27" />.
+
+# Checking the result
+
+For <InlineMath math="n=27" />, the number of factors of <InlineMath math="2" /> is <InlineMath math="13+6+3+1=23\ge 18" />, there are <InlineMath math="13\ge 12" /> factors of <InlineMath math="3" />, and <InlineMath math="5+1=6" /> factors of <InlineMath math="5" />. For <InlineMath math="n=26" />, there are **only <InlineMath math="10" /> factors of <InlineMath math="3" />**, so <InlineMath math="26!" /> isn't divisible yet.
+
+Common traps: answering <InlineMath math="25" /> because the largest prime <InlineMath math="5" /> seems to decide, answering <InlineMath math="20" /> because <InlineMath math="2^{18}" /> has the biggest exponent, or answering <InlineMath math="36" /> because you think you need <InlineMath math="12" /> multiples of <InlineMath math="3" /> and forget that <InlineMath math="9" />, <InlineMath math="18" />, and <InlineMath math="27" /> give extra factors.
+
+So the smallest natural number is <InlineMath math="n=27" />.

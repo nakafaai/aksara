@@ -1,25 +1,26 @@
-Start from the fact that is certain and draw conclusions step by step. Write the statements as symbols:
+The only fact you hold is that new costumes weren't made. From that fact, you follow the premises one by one and stop whenever a premise no longer gives you anything new.
 
-- <InlineMath math="p" />: the warehouse receives a rice delivery on Monday
-- <InlineMath math="q" />: the staff reweigh every sack
-- <InlineMath math="r" />: the stock report is sent late
-- <InlineMath math="s" />: the warehouse head calls the supplier
+Use symbols so the shape of each premise shows. Let <InlineMath math="p" />: a new sponsor joins, <InlineMath math="k" />: new costumes are made, <InlineMath math="g" />: the rehearsal hall is rented with the choir's cash, <InlineMath math="s" />: extra rehearsals are held every Saturday, <InlineMath math="f" />: the choir enters the national festival, and <InlineMath math="v" />: a guest vocal coach is invited.
 
-The premises are <InlineMath math="p \Rightarrow q" />, <InlineMath math="q \Rightarrow r" />, <InlineMath math="\neg r \vee s" />, and the fact <InlineMath math="\neg s" />.
+The first key is the meaning of *hanya jika* ("only if"). **"A only if B" means A can't happen without B**, so it has the same shape as "if A, then B". Premise 1 becomes <InlineMath math="p \Rightarrow k" />, and premise 4 becomes <InlineMath math="f \Rightarrow s" />. The other premises are <InlineMath math="p \vee g" />, <InlineMath math="g \Rightarrow s" />, and <InlineMath math="p \Rightarrow v" />. The fact is <InlineMath math="\neg k" />.
 
-**Step 1** uses the disjunction. In <InlineMath math="\neg r \vee s" />, at least one part must be true. Since <InlineMath math="s" /> is false, <InlineMath math="\neg r" /> must be true. So **the stock report is not late**.
+Now follow the chain.
 
-**Step 2** uses modus tollens twice. From <InlineMath math="q \Rightarrow r" /> and <InlineMath math="\neg r" />, we get <InlineMath math="\neg q" />. From <InlineMath math="p \Rightarrow q" /> and <InlineMath math="\neg q" />, we get <InlineMath math="\neg p" />.
+1. Premise 1 says that if a sponsor joins, new costumes are definitely made. No new costumes were made, so no new sponsor joined. This step is called modus tollens: when the "then" part fails, the "if" part fails too.
+2. Premise 2 says at least one of two things happens: a sponsor joins, or the hall is rented with cash. No sponsor joined, so the hall is definitely rented with cash. This step is called disjunctive syllogism.
+3. Premise 3 says that if the hall is rented with cash, extra rehearsals are held every Saturday. The hall is rented with cash, so extra rehearsals are held every Saturday.
 
-<BlockMath math="\neg s,\; \neg r \vee s \;\Rightarrow\; \neg r \;\Rightarrow\; \neg q \;\Rightarrow\; \neg p" />
+<BlockMath math="\neg k \;\xrightarrow{\ (1)\ }\; \neg p \;\xrightarrow{\ (2)\ }\; g \;\xrightarrow{\ (3)\ }\; s" />
 
-So the warehouse did not receive a rice delivery on Monday.
+The chain stops here. Premise 4 only works if you know <InlineMath math="f" /> is true or <InlineMath math="s" /> is false, but what you know is that <InlineMath math="s" /> is true. Premise 5 only works if you know <InlineMath math="p" /> is true or <InlineMath math="v" /> is false, but what you know is that <InlineMath math="p" /> is false. So the festival and the guest coach both stay unknown.
 
-The other options are wrong:
+The conclusion that contains <InlineMath math="\neg p" /> and <InlineMath math="s" /> is "no new sponsor joins and extra rehearsals are held every Saturday". Both parts are proven.
 
-- Reweighing every sack contradicts <InlineMath math="\neg q" />.
-- A late report contradicts <InlineMath math="\neg r" />.
-- The premises say nothing about other days, so a delivery on another day may or may not have happened.
-- The premises only concern this week, so nothing follows about next week.
+Each of the other options has one part that isn't proven.
 
-So the conclusion that is certainly true is that the warehouse did not receive a rice delivery on Monday this week.
+- Hall rented with cash and the choir enters the festival: the second part reverses premise 4. Extra rehearsals are a requirement for the festival, not a guarantee of going.
+- No sponsor joins and the hall isn't rented with cash: the second part is false. When one side of an "or" fails, the other side has to be true, not fail along with it.
+- Extra rehearsals are held and no guest coach is invited: the second part uses the inverse of premise 5, thinking "if no sponsor joins, no guest coach is invited". Premise 5 only talks about what happens when a sponsor joins, so "no sponsor joins" tells you nothing about the coach.
+- A new sponsor joins and extra rehearsals are held: the first part contradicts step 1. This option shows up when you skip the modus tollens step on premise 1 and read the "or" in premise 2 as "and".
+
+So the conclusion that must be true is that no new sponsor joins and extra rehearsals are held every Saturday.

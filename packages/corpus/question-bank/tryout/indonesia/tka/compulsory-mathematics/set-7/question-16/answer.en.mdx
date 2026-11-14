@@ -1,10 +1,32 @@
-The ice cream inside the cone is a cone, so its volume is **one third of the base area times the height**. The radius is half the opening's diameter, <InlineMath math="3\text{ cm}" />.
+The question asks for the diameter of the solid cylinder made by melting one pipe. The key idea is that **the volume of iron doesn't change**: the volume of the pipe wall equals the volume of the new solid cylinder. So first find the volume of iron in the pipe, then find the radius of a cylinder with that volume.
 
-<BlockMath math="V=\tfrac13\pi r^2t=\tfrac13\cdot3.14\cdot3^2\cdot12=3.14\cdot36=113.04" />
+# Volume of iron in the pipe
 
-So the ice cream inside the cone has a volume of <InlineMath math="113.04\text{ cm}^3" />.
+The iron sits only in the wall, the ring between the outer circle and the hollow. The outer radius is <InlineMath math="R=\frac{10}{2}=5\text{ cm}" />. **The <InlineMath math="1\text{ cm}" /> wall is on both sides of the hollow**, so the hollow has diameter <InlineMath math="10-2\cdot1=8\text{ cm}" /> and the inner radius is <InlineMath math="r=4\text{ cm}" />. The length has to be in centimetres too, <InlineMath math="5\text{ m}=500\text{ cm}" />.
 
-- <InlineMath math="37.68\text{ cm}^3" /> forgets to square the radius.
-- <InlineMath math="56.52\text{ cm}^3" /> is the volume of the hemisphere on top.
-- <InlineMath math="339.12\text{ cm}^3" /> forgets the factor <InlineMath math="\tfrac13" />, as if the cone were a cylinder.
-- <InlineMath math="452.16\text{ cm}^3" /> uses the <InlineMath math="6\text{ cm}" /> diameter as the radius.
+<BlockMath math="\begin{aligned}
+V_{\text{iron}}&=\left(\pi R^2-\pi r^2\right)\cdot L \\
+&=\pi\,(5^2-4^2)\cdot500 \\
+&=\pi\cdot9\cdot500=4500\pi\text{ cm}^3
+\end{aligned}" />
+
+# Radius of the solid cylinder
+
+Call the radius of the solid cylinder <InlineMath math="\rho" />. Its height is <InlineMath math="20\text{ cm}" />, and its volume has to match the iron volume. The factor <InlineMath math="\pi" /> appears on both sides, so **you don't need to put in <InlineMath math="\tfrac{22}{7}" /> at all**.
+
+<BlockMath math="\begin{aligned}
+\pi\rho^2\cdot20&=4500\pi \\
+\rho^2&=\frac{4500}{20}=225 \\
+\rho&=15\text{ cm}
+\end{aligned}" />
+
+The question wants the diameter, so <InlineMath math="d=2\rho=30\text{ cm}" />. Quick sense check: the <InlineMath math="500\text{ cm}" /> pipe becomes a cylinder <InlineMath math="25" /> times shorter, so its cross section has to be <InlineMath math="25" /> times the ring area, <InlineMath math="25\cdot9\pi=225\pi" />. That's exactly the area of a circle with radius <InlineMath math="15" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="3\text{ cm}" /> comes from leaving the length as <InlineMath math="5" /> instead of <InlineMath math="500\text{ cm}" />. **Every measurement has to be in the same unit**.
+- <InlineMath math="6\text{ cm}" /> comes from matching only the cross sections, as if the height were still <InlineMath math="500\text{ cm}" />. The new cylinder is much shorter, so its cross section must be much bigger.
+- <InlineMath math="10\text{ cm}" /> comes from taking the ring area as <InlineMath math="\pi\,(R-r)^2=\pi" />. A ring's area is the difference of two circle areas, not the area of a circle whose radius is the wall thickness.
+- <InlineMath math="15\text{ cm}" /> is the radius. The last step, doubling it to get the diameter, got skipped.
+
+So the solid cylinder has a diameter of <InlineMath math="30\text{ cm}" />.

@@ -1,21 +1,25 @@
-Start with **the pair Q and R**, because together they need a whole day. Saturday is already used by P, so Q and R perform on Friday or Sunday. The remaining day, other than Saturday and the Q and R day, goes to two other performers.
+The question names only the activities for the three morning sessions. A list is **possible** if the three afternoon sessions can still take the three remaining activities so that all six conditions hold. A list is impossible if every way of filling the afternoons breaks at least one condition.
 
-Now test whether S can perform on Saturday. If S takes Saturday evening, P takes Saturday afternoon and Saturday is full. Only one day is left for T and U, so they would perform on the same day. That breaks condition 4, since T must perform on an earlier day than U. So **S cannot perform on Saturday**.
+Here's how to check: place the three morning activities first, then use the tightest conditions. Condition 1 ties batik and gamelan to two sessions in a row. Remember that the session right before Tuesday morning is Monday afternoon, and the session right before Wednesday morning is Tuesday afternoon. Conditions 2 and 3 limit which day wayang can take.
 
-In the same way, all possible schedules can be built. S performs in the evening on Friday or Sunday, while T and U take one place on Saturday and one on another day, with T earlier:
+The list wayang, gamelan, dongeng can be completed.
 
-| Group | Friday | Saturday | Sunday |
-| --- | --- | --- | --- |
-| A | Q and R | P and T | U afternoon, S evening |
-| B | T afternoon, S evening | P and U | Q and R |
+- Gamelan is on Tuesday morning, so by condition 1 batik is on Monday afternoon.
+- Angklung and kuliner fill Tuesday afternoon and Wednesday afternoon.
+- Condition 2 holds because gamelan is on Tuesday while wayang is on Monday. Condition 3 holds because Monday comes before Wednesday, the dongeng day. Dongeng is in a morning session, so condition 4 holds. Kuliner is in an afternoon session, so condition 5 asks for nothing. Batik is on Monday, earlier than the kuliner day, so condition 6 holds.
 
-In group A, T performs on Saturday and U on Sunday. In group B, T performs on Friday and U on Saturday. In each group, Q and R can swap sessions, and so can P with T or U, giving <InlineMath math="8" /> schedules.
+This list gives two complete valid schedules.
 
-The other statements are not certain:
+| Schedule | Monday morning | Monday afternoon | Tuesday morning | Tuesday afternoon | Wednesday morning | Wednesday afternoon |
+| --- | --- | --- | --- | --- | --- | --- |
+| I | wayang | batik | gamelan | angklung | dongeng | kuliner |
+| II | wayang | batik | gamelan | kuliner | dongeng | angklung |
 
-- T performs on Saturday only in group A.
-- Q performs in the afternoon in some schedules and in the evening in others.
-- P can perform in the afternoon or the evening.
-- U performs on Sunday only in group A.
+The other four lists fail, each because of one condition that's easy to miss.
 
-So the statement that must be true is that S does not perform on Saturday.
+- Angklung, gamelan, dongeng fails because wayang has nowhere to go. Gamelan on Tuesday morning puts batik on Monday afternoon, so Monday is full. Wayang can't be on Tuesday, where gamelan is (condition 2), and it can't be on Wednesday, because its day must come before the dongeng day (condition 3).
+- Batik, kuliner, dongeng fails because of condition 5. Batik on Monday morning puts gamelan on Monday afternoon. Kuliner is in a morning session, so wayang must be on Monday, but Monday is already full.
+- Wayang, angklung, dongeng fails because of condition 1. The empty sessions are Monday afternoon, Tuesday afternoon and Wednesday afternoon. No two of them come in a row, because Tuesday morning sits between Monday afternoon and Tuesday afternoon. This list traps you if you read "exactly one session before" as the same session on the previous day.
+- Wayang, dongeng, batik fails because of condition 6. Batik on Wednesday morning puts gamelan on Wednesday afternoon, so kuliner would need a day after Wednesday, and there isn't one.
+
+So the possible list of morning activities is wayang on Monday, gamelan on Tuesday and dongeng on Wednesday.

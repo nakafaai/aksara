@@ -1,16 +1,71 @@
-Gewinn heißt <InlineMath math="R(x)>C(x)" />. **Jede Packung trägt die Differenz aus Verkaufspreis und Stückkosten bei**, <InlineMath math="\text{Rp}5{.}000" />, um die Fixkosten zu decken.
+# Die Steigung aus dem Mittelpunkt
+
+Die Gerade ist nicht gegeben, also bestimmst du zuerst ihre Steigung und dann die Länge von <InlineMath math="AB" />. Der Mittelpunkt von <InlineMath math="AB" /> liegt auf der Geraden <InlineMath math="AB" />, die Gerade geht also durch <InlineMath math="P(2,-3)" />. Die senkrechte Gerade <InlineMath math="x=2" /> schneidet die Parabel nur in einem Punkt, also hat die Gerade eine Steigung <InlineMath math="m" />.
+
+<BlockMath math="y=m(x-2)-3" />
+
+Die <InlineMath math="x" />-Koordinaten der Schnittpunkte sind die Lösungen der Gleichung, die entsteht, wenn du beide Terme für <InlineMath math="y" /> gleichsetzt.
 
 <BlockMath math="\begin{aligned}
-12{.}000x&>7{.}000x+600{.}000 \\
-5{.}000x&>600{.}000 \\
-x&>120
+x^2-3x-4&=m(x-2)-3 \\
+x^2-(3+m)x+(2m-1)&=0
 \end{aligned}" />
 
-Bei <InlineMath math="x=120" /> sind Erlös und Kosten beide <InlineMath math="\text{Rp}1{.}440{.}000" />, das Geschäft ist also erst bei null. Die kleinste ganze Zahl über <InlineMath math="120" /> ist <InlineMath math="121" />.
+Nenn die Lösungen <InlineMath math="x_1" /> und <InlineMath math="x_2" />. Nach Vieta ist <InlineMath math="x_1+x_2=3+m" />. **Die <InlineMath math="x" />-Koordinate des Mittelpunkts ist der Mittelwert beider Lösungen**, und sie muss <InlineMath math="2" /> sein.
 
-Es müssen also mindestens <InlineMath math="121" /> Packungen verkauft werden.
+<BlockMath math="\frac{x_1+x_2}{2}=\frac{3+m}{2}=2 \quad\Rightarrow\quad m=1" />
 
-- <InlineMath math="32" /> teilt die Fixkosten durch Verkaufspreis plus Stückkosten, <InlineMath math="19{.}000" />, und rundet auf.
-- <InlineMath math="50" /> teilt die Fixkosten nur durch den Verkaufspreis.
-- <InlineMath math="86" /> teilt die Fixkosten durch die Stückkosten und rundet auf.
-- <InlineMath math="120" /> ist die Gewinnschwelle. Dort gibt es noch keinen Gewinn.
+Die Gerade ist also <InlineMath math="y=x-5" />, und die Schnittgleichung wird zu <InlineMath math="x^2-4x+1=0" />.
+
+# Die Länge der Sehne
+
+Aus <InlineMath math="x^2-4x+1=0" /> liefert Vieta <InlineMath math="x_1+x_2=4" /> und <InlineMath math="x_1x_2=1" />. Beide Punkte liegen auf einer Geraden mit Steigung <InlineMath math="1" />, also ist **der Unterschied in <InlineMath math="y" /> genau <InlineMath math="m" /> mal der Unterschied in <InlineMath math="x" />**.
+
+<BlockMath math="\begin{aligned}
+(x_1-x_2)^2&=(x_1+x_2)^2-4x_1x_2=16-4=12 \\
+AB^2&=(x_1-x_2)^2+(y_1-y_2)^2=(1+m^2)(x_1-x_2)^2=2\cdot12=24 \\
+AB&=\sqrt{24}=2\sqrt{6}
+\end{aligned}" />
+
+Eine direkte Probe: Die Lösungen sind <InlineMath math="x=2\pm\sqrt{3}" />, also <InlineMath math="A(2-\sqrt{3},\,-3-\sqrt{3})" /> und <InlineMath math="B(2+\sqrt{3},\,-3+\sqrt{3})" />. Ihr Mittelpunkt ist tatsächlich <InlineMath math="(2,-3)" />.
+
+<MathVisual
+  title={<>Sehne <InlineMath math="AB" /> mit Mittelpunkt <InlineMath math="P" /></>}
+  description={<>Die Parabel <InlineMath math="y=x^2-3x-4" /> und die Gerade <InlineMath math="y=x-5" />. Die Gerade schneidet die Parabel in <InlineMath math="A(2-\sqrt{3},-3-\sqrt{3})" /> und <InlineMath math="B(2+\sqrt{3},-3+\sqrt{3})" />. Der Punkt <InlineMath math="P(2,-3)" /> liegt genau in der Mitte von <InlineMath math="AB" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 6 },
+      y: { min: -7, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -3, c: -4 }, domain: { min: -1.5, max: 4.5 }, inputAxis: "x" },
+      { id: "line", kind: "segment", appearance: "secondary", from: { x: -1, y: -6 }, to: { x: 5, y: 0 } },
+      { id: "chord", kind: "segment", appearance: "highlight", from: { x: 2 - Math.sqrt(3), y: -3 - Math.sqrt(3) }, to: { x: 2 + Math.sqrt(3), y: -3 + Math.sqrt(3) } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 2 - Math.sqrt(3), y: -3 - Math.sqrt(3) } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 2 + Math.sqrt(3), y: -3 + Math.sqrt(3) } },
+      { id: "point-p", kind: "point", appearance: "answer", at: { x: 2, y: -3 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 2 - Math.sqrt(3), y: -3 - Math.sqrt(3) }, placement: "left" },
+      { key: "b", objectId: "point-b", at: { x: 2 + Math.sqrt(3), y: -3 + Math.sqrt(3) }, placement: "right" },
+      { key: "p", objectId: "point-p", at: { x: 2, y: -3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Die Strecke <InlineMath math="AB" /> ist also <InlineMath math="2\sqrt{6}" /> lang.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="2\sqrt{3}" /> ist nur der waagerechte Abstand <InlineMath math="|x_1-x_2|" />. Die Gerade ist schräg, also musst du noch mit <InlineMath math="\sqrt{1+m^2}=\sqrt{2}" /> multiplizieren.
+- <InlineMath math="5" /> ist der Abstand der Nullstellen der Parabel, <InlineMath math="x=-1" /> und <InlineMath math="x=4" />. **<InlineMath math="A" /> und <InlineMath math="B" /> sind die Schnittpunkte mit der Geraden, nicht mit der <InlineMath math="x" />-Achse**.
+- <InlineMath math="2\sqrt{7}" /> benutzt die falsche Formel <InlineMath math="(x_1-x_2)^2=(x_1+x_2)^2-2x_1x_2=14" />. Richtig wird <InlineMath math="4x_1x_2" /> abgezogen.
+- <InlineMath math="4\sqrt{2}" /> setzt <InlineMath math="x_1+x_2=2" /> und vergisst damit das Halbieren beim Mittelpunkt. Das ergibt <InlineMath math="m=-1" />, und die Gerade <InlineMath math="y=-x-1" /> schneidet die Parabel bei <InlineMath math="x=-1" /> und <InlineMath math="x=3" />. Deren Mittelpunkt ist <InlineMath math="(1,-2)" />, nicht <InlineMath math="P" />.

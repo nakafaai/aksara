@@ -1,13 +1,77 @@
-Luas segitiga <InlineMath math="DEF" /> paling mudah dihitung sebagai **luas persegi dikurangi tiga segitiga siku-siku di pojok**: <InlineMath math="ADE" />, <InlineMath math="EBF" />, dan <InlineMath math="FCD" />. Panjang sisinya dihitung dengan teorema Pythagoras.
+# Mengenali prisma dari jaring-jaringnya
+
+Dua segi lima yang kongruen adalah alas dan tutup prisma. Lima persegi panjang adalah sisi tegaknya: lebarnya <InlineMath math="6" />, <InlineMath math="4" />, <InlineMath math="4" />, <InlineMath math="5" />, dan <InlineMath math="5" /> cocok dengan kelima sisi segi lima, dan panjang <InlineMath math="10\text{ cm}" /> adalah tinggi prisma. Jadi, bangun ini **prisma segi lima dengan tinggi <InlineMath math="10\text{ cm}" />**.
+
+Segi lima itu berbentuk seperti rumah. Karena <InlineMath math="\angle A=\angle B=90^\circ" /> dan <InlineMath math="BC=EA=4" />, bagian bawahnya persegi panjang <InlineMath math="ABCE" /> berukuran <InlineMath math="6\times4" />. Di atasnya ada segitiga sama kaki <InlineMath math="CDE" /> dengan alas <InlineMath math="CE=6" /> dan kaki <InlineMath math="5" />. Tinggi segitiga itu dihitung dengan Pythagoras pada setengah alasnya:
 
 <BlockMath math="\begin{aligned}
-L_{DEF}&=100-\tfrac12\cdot10\cdot5-\tfrac12\cdot5\cdot5-\tfrac12\cdot5\cdot10=100-25-12{,}5-25=37{,}5 \\
-DE&=\sqrt{10^2+5^2}=\sqrt{125}\approx11{,}18 \\
-DF&=\sqrt{5^2+10^2}=\sqrt{125}\approx11{,}18 \\
-EF&=\sqrt{5^2+5^2}=\sqrt{50}\approx7{,}07
+t&=\sqrt{5^2-3^2}=\sqrt{16}=4\text{ cm} \\
+L_{\text{alas}}&=6\cdot4+\tfrac12\cdot6\cdot4=24+12=36\text{ cm}^2
 \end{aligned}" />
 
-- <InlineMath math="DE" /> dan <InlineMath math="DF" /> sama-sama <InlineMath math="\sqrt{125}\text{ cm}" />, karena segitiga <InlineMath math="ADE" /> dan <InlineMath math="CDF" /> kongruen. Pernyataan ini benar.
-- Luasnya <InlineMath math="37{,}5\text{ cm}^2" />. Pernyataan ini benar.
-- Jika siku-siku di <InlineMath math="E" />, maka <InlineMath math="DE^2+EF^2=DF^2" />. Ternyata <InlineMath math="125+50=175" />, bukan <InlineMath math="125" />. Pernyataan ini salah.
-- Kelilingnya sekitar <InlineMath math="11{,}18+11{,}18+7{,}07=29{,}43\text{ cm}" />, kurang dari <InlineMath math="30\text{ cm}" />. Pernyataan ini benar.
+<MathVisual
+  title={<>Segi lima <InlineMath math="ABCDE" /></>}
+  description={<>Segi lima dengan titik <InlineMath math="A(0,0)" />, <InlineMath math="B(6,0)" />, <InlineMath math="C(6,4)" />, <InlineMath math="D(3,8)" />, dan <InlineMath math="E(0,4)" />. Ruas <InlineMath math="CE" /> membagi segi lima menjadi persegi panjang <InlineMath math="6\times4" /> dan segitiga sama kaki dengan tinggi <InlineMath math="4" />, sehingga titik <InlineMath math="D" /> berada <InlineMath math="8" /> di atas <InlineMath math="AB" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    height: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 8 },
+      y: { min: -1.5, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pentagon", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 4 }, { x: 3, y: 8 }, { x: 0, y: 4 }] },
+      { id: "split", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 6, y: 4 } },
+      { id: "roof-height", kind: "segment", appearance: "highlight", from: { x: 3, y: 4 }, to: { x: 3, y: 8 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 6, y: 4 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 3, y: 8 } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: 0, y: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 6, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "d", objectId: "point-d", at: { x: 3, y: 8 }, placement: "above" },
+      { key: "e", objectId: "point-e", at: { x: 0, y: 4 }, placement: "left" },
+      { key: "height", objectId: "roof-height", at: { x: 3, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Pernyataan pertama
+
+**Benar**. Prisma segi lima punya <InlineMath math="5" /> rusuk di alas, <InlineMath math="5" /> rusuk di tutup, dan <InlineMath math="5" /> rusuk tegak, jadi <InlineMath math="15" /> rusuk. Rusuk alas dan tutup masing-masing sepanjang keliling segi lima, sedangkan setiap rusuk tegak panjangnya <InlineMath math="10\text{ cm}" />.
+
+<BlockMath math="\begin{aligned}
+\text{keliling segi lima}&=6+4+4+5+5=24\text{ cm} \\
+\text{jumlah panjang rusuk}&=2\cdot24+5\cdot10=98\text{ cm}
+\end{aligned}" />
+
+Hati-hati kalau kamu menjumlahkan keliling semua sisi pada jaring-jaring. Hasilnya <InlineMath math="196\text{ cm}" />, dua kali lipat, karena **setiap rusuk dipakai bersama oleh dua sisi**.
+
+# Pernyataan kedua
+
+**Salah**. Volume prisma adalah luas alas kali tinggi.
+
+<BlockMath math="V=36\cdot10=360\text{ cm}^3" />
+
+Nilai ini kurang dari <InlineMath math="375\text{ cm}^3" />. Pernyataan ini tampak benar kalau kaki segitiga <InlineMath math="5" /> dipakai sebagai tingginya, karena luas alasnya menjadi <InlineMath math="24+15=39" /> dan volumenya <InlineMath math="390\text{ cm}^3" />. **Tinggi segitiga harus tegak lurus alasnya**, dan nilainya <InlineMath math="4" />, bukan <InlineMath math="5" />.
+
+# Pernyataan ketiga
+
+**Benar**. Sisi <InlineMath math="6\times10" /> berasal dari rusuk <InlineMath math="AB" />. Jika sisi itu menjadi alas, kedua segi lima berdiri tegak dengan <InlineMath math="AB" /> di bawah. Titik-titik tertingginya ada pada rusuk yang melalui <InlineMath math="D" />. Tingginya sama dengan tinggi persegi panjang ditambah tinggi segitiga:
+
+<BlockMath math="BC+t=4+4=8\text{ cm}" />
+
+Jadi, pernyataan pertama benar, pernyataan kedua salah, dan pernyataan ketiga benar.

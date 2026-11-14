@@ -1,0 +1,168 @@
+export const metadata = {
+title: "Prosedur Asas Pempenjuruan",
+description: "Pepenjurukan matriks dalam tiga langkah: kira nilai eigennya, cari ruang eigennya, dan semak sama ada vektor eigennya cukup.",
+authors: [{ name: "Nabil Akbarazzima Fatih" }],
+datePublished: "2025-07-16",
+dateModified: "2026-09-19",
+subject: "Kaedah Linear AI",
+};
+
+## Bertukar kepada Asas Vektor Eigen
+
+Pempenjuruan tidak mengubah <Highlight>transformasi linear itu sendiri</Highlight>. Yang berubah ialah asas koordinat, supaya transformasi itu bertindak secara berasingan di sepanjang arah setiap vektor eigen. Dalam perwakilan pepenjuru, pendaraban matriks menjadi sekadar penskalaan setiap koordinat vektor eigen.
+
+Untuk mempepenjurukan matriks <InlineMath math="A \in \mathbb{K}^{n \times n}" />, kira nilai eigen dan ruang eigennya. Jika terdapat <InlineMath math="n" /> vektor eigen yang tak bersandar linear, letakkan vektor-vektor itu dalam matriks perubahan asas.
+
+Dalam asas vektor eigen, matriks yang boleh dipepenjurukan hanya menskalakan koordinat. Untuk matriks dalam contoh di bawah, tulis <InlineMath math="w=(2,3,3)" /> sebagai <InlineMath math="v_1+v_3" /> dengan <InlineMath math="v_1=(1,0,1)" /> dalam satah <InlineMath math="E_A(1)" /> dan <InlineMath math="v_3=(1,3,2)" /> dalam <InlineMath math="E_A(-1)" />. Maka <InlineMath math="Aw=v_1-v_3=(0,-3,-1)" />: bahagian dalam satah kekal, dan bahagian <InlineMath math="v_3" /> bertukar arah.
+
+<MathVisual
+  title={<><InlineMath math="Aw=v_1-v_3" /> dalam asas vektor eigen</>}
+  description={<>Permukaan hijau kebiruan ialah satah <InlineMath math="E_A(1)" />, dengan segmen ungu <InlineMath math="v_1" /> di dalamnya. Segmen oren ialah <InlineMath math="v_3" />. Segmen kelabu <InlineMath math="w=v_1+v_3" /> dipetakan kepada segmen magenta <InlineMath math="Aw=v_1-v_3" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 2.5 }, y: { min: -3.5, max: 3.5 }, z: { min: -3.5, max: 3.5 } },
+    view: { kind: "isometric", target: { x: 0.5, y: 0, z: 0 } },
+    objects: [
+      { id: "fixed", kind: "function", formula: "x + y", domain: { x: { min: -1, max: 2 }, y: { min: -1.5, max: 1.5 } }, appearance: "construction" },
+      { id: "inside", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 0, z: 1 }, appearance: "secondary" },
+      { id: "outside", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 3, z: 2 }, appearance: "primary" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 3, z: 3 }, appearance: "reference" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: -3, z: -1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "w", objectId: "vector", at: { x: 2, y: 3, z: 3 }, placement: "right" },
+      { key: "aw", objectId: "image", at: { x: 0, y: -3, z: -1 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "w": <InlineMath math="w" />,
+    "aw": <InlineMath math="Aw" />,
+  }}
+/>
+
+## Langkah Pempenjuruan
+
+Prosedur pempenjuruan terdiri daripada tiga langkah utama yang mesti dibuat mengikut urutan:
+
+1. **Kira polinomial ciri** untuk mencari semua nilai eigen <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> bersama kegandaan algebranya <InlineMath math="\mu_A(\lambda_1), \ldots, \mu_A(\lambda_k)" />.
+
+   Atas medan <InlineMath math="\mathbb{K}" /> yang dipilih, polinomial ciri <InlineMath math="\chi_A(t)" /> mesti terfaktor sepenuhnya kepada faktor linear:
+
+   <MathContainer>
+   <BlockMath math="\chi_A(t) = \prod_{i=1}^k (\lambda_i - t)^{\mu_A(\lambda_i)}" />
+   <BlockMath math="\sum_{i=1}^k \mu_A(\lambda_i) = n" />
+   </MathContainer>
+
+   Jika polinomial itu tidak terfaktor sepenuhnya, matriks itu tidak boleh dipepenjurukan atas medan tersebut.
+
+2. **Kira ruang eigen** bagi setiap nilai eigen dengan menyelesaikan sistem linear homogen:
+
+   <BlockMath math="(A - \lambda_i \cdot I) \cdot v = 0" />
+
+   Di sini kita mencari setiap vektor yang dipetakan oleh matriks <InlineMath math="A" /> kepada gandaan skalar dirinya sendiri. Faktornya ialah nilai eigen <InlineMath math="\lambda_i" />. Faktor negatif menterbalikkan arah vektor itu, tetapi vektor itu kekal pada garis yang sama.
+
+3. **Semak syarat pempenjuruan** dengan memastikan kegandaan algebra sama dengan kegandaan geometri bagi semua nilai eigen. Secara matematik, untuk semua <InlineMath math="i = 1, \ldots, k" /> kita mesti ada <InlineMath math="\mu_A(\lambda_i) = \dim E_A(\lambda_i)" />.
+
+   Syarat ini memastikan kita ada <Highlight>vektor eigen tak bersandar yang cukup untuk membentuk asas yang lengkap</Highlight>. Jika syarat ini dipenuhi, vektor asas daripada semua ruang eigen membentuk lajur matriks transformasi <InlineMath math="S" />, dan kita dapat:
+
+   <BlockMath math="\Lambda = S^{-1} \cdot A \cdot S" />
+
+Langkah pertama memfaktorkan polinomial ciri. Untuk contoh di bawah, <InlineMath math="\chi_A(t)=(1-t)^2(-1-t)" /> memotong paksi di <InlineMath math="t=-1" /> dan hanya menyentuh paksi di <InlineMath math="t=1" />, jadi <InlineMath math="\mu_A(-1)=1" /> dan <InlineMath math="\mu_A(1)=2" />. Oleh itu, prosedur ini memerlukan dua vektor eigen tak bersandar untuk <InlineMath math="1" /> dan satu untuk <InlineMath math="-1" />.
+
+<MathVisual
+  title={<><InlineMath math="\chi_A(t)=(1-t)^2(-1-t)" /> untuk matriks contoh</>}
+  description={<>Lengkung ungu ialah polinomial ciri, dengan <InlineMath math="t" /> pada paksi mendatar. Lengkung itu memotong paksi pada punca magenta <InlineMath math="-1" /> dan menyentuhnya pada punca berganda oren <InlineMath math="1" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2.5 }, y: { min: -4.2, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "polynomial", kind: "function", formula: "(1 - x)^2*(-1 - x)", domain: { min: -1.6, max: 2.1 }, appearance: "secondary" },
+      { id: "simple", kind: "point", at: { x: -1, y: 0 }, appearance: "answer" },
+      { id: "double", kind: "point", at: { x: 1, y: 0 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "simple", objectId: "simple", at: { x: -1, y: 0 }, placement: "above-left" },
+      { key: "double", objectId: "double", at: { x: 1, y: 0 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "simple": <InlineMath math="-1" />,
+    "double": <InlineMath math="1" />,
+  }}
+/>
+
+## Contoh Penggunaan Prosedur
+
+Pertimbangkan matriks:
+
+<BlockMath math="A = \begin{pmatrix} 0 & -1 & 1 \\ -3 & -2 & 3 \\ -2 & -2 & 3 \end{pmatrix}" />
+
+Gunakan prosedur pempenjuruan pada contoh ini:
+
+1. Kita kira polinomial ciri dan faktorkannya:
+
+   <BlockMath math="\begin{aligned} \chi_A(t) &amp;= \det(A - t \cdot I) \\ &amp;= -t^3 + t^2 + t - 1 \end{aligned}" />
+
+   Selepas pemfaktoran, kita dapat:
+
+   <BlockMath math="\chi_A(t) = (1 - t)^2 \cdot (-1 - t)" />
+
+   Faktor-faktor itu memberi nilai eigen <InlineMath math="\lambda_1 = 1" /> dengan kegandaan algebra <InlineMath math="\mu_A(1) = 2" /> dan <InlineMath math="\lambda_2 = -1" /> dengan kegandaan algebra <InlineMath math="\mu_A(-1) = 1" />. Jumlah kegandaannya ialah <InlineMath math="2 + 1 = 3" />, sama dengan dimensi matriks.
+
+2. Kita tentukan ruang eigen bagi setiap nilai eigen:
+
+   <MathContainer>
+   <BlockMath math="\begin{aligned} E_A(1) &amp;= \ker(A - I) \\ &amp;= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}\right\} \end{aligned}" />
+   <BlockMath math="\begin{aligned} E_A(-1) &amp;= \ker(A + I) \\ &amp;= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}\right\} \end{aligned}" />
+   </MathContainer>
+
+   Untuk nilai eigen <InlineMath math="1" />, setiap baris <InlineMath math="A-I" /> memberi **persamaan satah** yang sama, iaitu <InlineMath math="z=x+y" />. Untuk nilai eigen <InlineMath math="-1" />, selesaikan dua persamaan pertama dalam <InlineMath math="(A+I)v=0" />:
+
+   <BlockMath math="\begin{aligned}x-y+z&=0\Rightarrow y=x+z\\-3x-y+3z&=0\Rightarrow -4x+2z=0\\z&=2x,\qquad y=3x\end{aligned}" />
+
+   Di sini, ruang nol (kernel) mengandungi setiap vektor yang dipetakan oleh matriks kepada vektor sifar, manakala rentang bagi sekumpulan vektor mengandungi semua gabungan linear vektor-vektor itu.
+
+3. Kita semak sama ada syarat pempenjuruan dipenuhi. Untuk nilai eigen <InlineMath math="\lambda_1 = 1" />, kegandaan algebranya ialah <InlineMath math="2" /> dan ruang eigennya berdimensi <InlineMath math="2" /> (dua vektor asas yang tak bersandar). Untuk nilai eigen <InlineMath math="\lambda_2 = -1" />, kegandaan algebranya ialah <InlineMath math="1" /> dan ruang eigennya berdimensi <InlineMath math="1" />.
+
+   Oleh sebab <InlineMath math="\mu_A(1) = 2 = \dim E_A(1)" /> dan <InlineMath math="\mu_A(-1) = 1 = \dim E_A(-1)" />, syarat pempenjuruan dipenuhi.
+
+Sekarang kita boleh bentuk matriks transformasi <InlineMath math="S" /> dengan menyusun semua vektor eigen sebagai lajur, dan matriks pepenjuru <InlineMath math="\Lambda" /> dengan nilai eigen pada pepenjuru utama:
+
+<MathContainer>
+<BlockMath math="S = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 3 \\ 1 & 1 & 2 \end{pmatrix}" />
+<BlockMath math="\Lambda = \begin{pmatrix} 1 & & \\ & 1 & \\ & & -1 \end{pmatrix}" />
+</MathContainer>
+
+Lajur-lajur <InlineMath math="S" /> dan unsur pepenjuru <InlineMath math="\Lambda" /> yang sepadan mesti kekal dalam **urutan yang sama**. Di sini, pembinaan ini sah kerana:
+
+<BlockMath math="\det S = -2 \neq 0, \qquad S^{-1}AS = \Lambda" />
+
+Matriks <InlineMath math="A" /> berjaya dipepenjurukan kepada <InlineMath math="\Lambda" /> melalui transformasi <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" />.
+
+Jadi, prosedur ini membuktikan kedua-dua perkara yang diperlukan: vektor eigen membentuk asas, dan perwakilan matriks dalam asas itu ialah pepenjuru.
+
+Putarkan model untuk memisahkan **dua ruang eigen** itu. Setiap titik pada satah hijau kebiruan <InlineMath math="z=x+y" /> kekal di tempatnya kerana nilai eigennya ialah <InlineMath math="1" />. Vektor oren <InlineMath math="v_3" /> terletak di luar satah itu dan dipetakan kepada vektor magenta <InlineMath math="Av_3=-v_3" />. Bersama-sama, arah-arah ini merentang seluruh ruang.
+
+<MathVisual
+  title={<>Ruang eigen <InlineMath math="A" /> dalam ruang tiga dimensi</>}
+  description={<>Permukaan hijau kebiruan ialah satah <InlineMath math="z=x+y" />, iaitu ruang eigen <InlineMath math="E_A(1)" /> yang dikekalkan tetap oleh <InlineMath math="A" />. Segmen oren ialah <InlineMath math="v_3=(1,3,2)" /> dan segmen magenta ialah imejnya, <InlineMath math="Av_3=-v_3" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -3.5, max: 3.5 }, z: { min: -3.5, max: 3.5 } },
+    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
+    objects: [
+      { id: "fixed", kind: "function", formula: "x + y", domain: { x: { min: -1.5, max: 1.5 }, y: { min: -1.5, max: 1.5 } }, appearance: "construction" },
+      { id: "outside", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 3, z: 2 }, appearance: "primary" },
+      { id: "flipped", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: -1, y: -3, z: -2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "v3", objectId: "outside", at: { x: 1, y: 3, z: 2 }, placement: "right" },
+      { key: "av3", objectId: "flipped", at: { x: -1, y: -3, z: -2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "v3": <InlineMath math="v_3" />,
+    "av3": <InlineMath math="Av_3=-v_3" />,
+  }}
+/>

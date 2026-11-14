@@ -4,31 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "impossibility",
+    topic: "quantifiers",
   },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Tidak ada tanaman berdaun lebar yang berada di petak teduh.",
+        },
+        {
           correct: true,
-          label: "Ada panitia yang merupakan guru.",
+          label:
+            "Sebagian tanaman yang diberi pupuk organik cair tidak berada di petak teduh.",
         },
         {
           correct: false,
-          label: "Ada peserta pelatihan yang merupakan guru.",
+          label:
+            "Sebagian tanaman di petak teduh tidak diberi pupuk organik cair.",
         },
         {
           correct: false,
-          label: "Semua guru menerima sertifikat.",
+          label: "Sebagian tanaman berdaun lebar tidak disiram setiap hari.",
         },
         {
           correct: false,
-          label: "Ada penerima sertifikat yang menjadi panitia.",
-        },
-        {
-          correct: false,
-          label: "Tidak ada panitia yang menjadi peserta pelatihan.",
+          label: "Semua tanaman yang diberi pupuk organik cair berdaun lebar.",
         },
       ],
     },

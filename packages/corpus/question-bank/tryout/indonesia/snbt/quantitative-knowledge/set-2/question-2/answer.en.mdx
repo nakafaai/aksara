@@ -1,20 +1,49 @@
-You could rationalize each fraction separately, but it is quicker to **put both fractions over a common denominator** first.
+You're looking for the number of integers <InlineMath math="m" /> for which the equation has two different real roots, <InlineMath math="x_1" /> and <InlineMath math="x_2" />, both greater than <InlineMath math="1" />. The equation **has to be a real quadratic**, so <InlineMath math="m\ne0" />. The plan: check the discriminant, then shift both roots by <InlineMath math="1" /> so that "greater than <InlineMath math="1" />" becomes "positive".
 
-<BlockMath math="\frac xy+\frac yx=\frac{x^2+y^2}{xy}" />
+# The condition for two different roots
 
-# Computing the numerator and denominator
-
-The denominator is a difference of squares, and the numerator adds two squares whose **middle terms cancel**.
+Two different real roots appear exactly when **the discriminant is positive**, not just non-negative.
 
 <BlockMath math="\begin{aligned}
-xy&=\left(\sqrt5+\sqrt3\right)\left(\sqrt5-\sqrt3\right)=5-3=2\\
-x^2+y^2&=\left(8+2\sqrt{15}\right)+\left(8-2\sqrt{15}\right)=16
+D&=(8-3m)^2-4m(3m-1)\\
+&=64-48m+9m^2-12m^2+4m\\
+&=-3m^2-44m+64\\
+&=-(3m-4)(m+16)
 \end{aligned}" />
 
-So <InlineMath math="\frac{x^2+y^2}{xy}=\frac{16}{2}=8" />. A check with the separate fractions: <InlineMath math="\frac xy=4+\sqrt{15}" /> and <InlineMath math="\frac yx=4-\sqrt{15}" />, which add up to 8.
+So <InlineMath math="D>0" /> means <InlineMath math="(3m-4)(m+16)<0" />, that is, <InlineMath math="-16<m<\tfrac43" />. At <InlineMath math="m=-16" />, the equation becomes <InlineMath math="-(4x-7)^2=0" />, with two equal roots, <InlineMath math="\tfrac74" />.
 
-# The wrong options
+# Shifting the roots
 
-The value 2 is only the product <InlineMath math="xy" />, the denominator. The value <InlineMath math="4+\sqrt{15}" /> computes only <InlineMath math="\frac xy" />. The value <InlineMath math="2\sqrt{15}" /> is the **difference** of the two fractions, not their sum. The value 4 divides the numerator by <InlineMath math="2xy" />.
+Let <InlineMath math="y_1=x_1-1" /> and <InlineMath math="y_2=x_2-1" />. Both roots are greater than <InlineMath math="1" /> exactly when <InlineMath math="y_1" /> and <InlineMath math="y_2" /> are positive. Two real numbers are **both positive exactly when their product is positive and their sum is positive**: a positive product gives them the same sign, and a positive sum makes that sign positive.
 
-So the value of <InlineMath math="\frac xy+\frac yx" /> is **8**.
+From the sum and product of roots, <InlineMath math="x_1+x_2=\tfrac{3m-8}{m}" /> and <InlineMath math="x_1x_2=\tfrac{3m-1}{m}" />.
+
+<BlockMath math="\begin{aligned}
+y_1+y_2&=(x_1+x_2)-2=\frac{3m-8-2m}{m}=\frac{m-8}{m}\\
+y_1y_2&=x_1x_2-(x_1+x_2)+1=\frac{3m-1-3m+8+m}{m}=\frac{m+7}{m}
+\end{aligned}" />
+
+# The sign of the leading coefficient
+
+A fraction is positive exactly when its numerator and denominator have the same sign. So **don't multiply by <InlineMath math="m" /> before you know its sign**.
+
+<BlockMath math="\begin{aligned}
+\frac{m-8}{m}>0&\iff m<0\ \text{or}\ m>8\\
+\frac{m+7}{m}>0&\iff m<-7\ \text{or}\ m>0
+\end{aligned}" />
+
+The discriminant forces <InlineMath math="m<\tfrac43" />, so <InlineMath math="m>8" /> is impossible. What's left is <InlineMath math="m<0" /> and <InlineMath math="m<-7" />, together with <InlineMath math="m>-16" />, so <InlineMath math="-16<m<-7" />. The integers are <InlineMath math="-15" />, <InlineMath math="-14" />, up to <InlineMath math="-8" />, which is <InlineMath math="8" /> values.
+
+# Checking the edges
+
+Check both ends. For <InlineMath math="m=-7" />, the equation is <InlineMath math="-7x^2+29x-22=-(x-1)(7x-22)=0" />, so one root is exactly <InlineMath math="1" /> and **this end really has to go**. For <InlineMath math="m=-8" />, the equation is <InlineMath math="-8x^2+32x-25=0" /> with roots <InlineMath math="x=2\pm\tfrac{\sqrt{14}}{4}" />. Since <InlineMath math="\sqrt{14}<4" />, both roots lie between <InlineMath math="1" /> and <InlineMath math="3" />, so <InlineMath math="m=-8" /> works.
+
+# Traps in the other options
+
+- <InlineMath math="6" /> comes from using the condition <InlineMath math="f(1)=m+7>0" />, which only holds for a parabola that opens upward. Here <InlineMath math="m" /> is negative, so **that condition flips**, and the result wrongly becomes <InlineMath math="-7<m<0" />.
+- <InlineMath math="9" /> uses <InlineMath math="D\ge0" />, so it also counts <InlineMath math="m=-16" />, where the two roots are equal.
+- <InlineMath math="15" /> uses <InlineMath math="x_1+x_2>2" /> and <InlineMath math="x_1x_2>1" />, which don't guarantee that both roots exceed <InlineMath math="1" />. For example, <InlineMath math="m=-3" /> gives <InlineMath math="-3x^2+17x-10=0" /> with roots <InlineMath math="5" /> and <InlineMath math="\tfrac23" />.
+- <InlineMath math="16" /> only uses <InlineMath math="D>0" /> and <InlineMath math="m\ne0" />, with no condition on where the roots lie.
+
+So <InlineMath math="8" /> integers <InlineMath math="m" /> satisfy the condition.

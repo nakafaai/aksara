@@ -1,0 +1,181 @@
+export const metadata = {
+  title: "Vektor Sifar",
+  description: "Gunakan vektor sifar sebagai identiti penambahan dan tafsirkan vektor ini dalam algebra, fizik dan grafik komputer.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-12",
+  dateModified: "2026-11-08",
+  subject: "Vektor dan Operasinya",
+};
+
+## Vektor yang Titik Awal dan Titik Akhirnya Bertindih
+
+Vektor sifar ialah vektor yang magnitudnya sifar dan tidak mempunyai arah yang tertakrif. <Highlight>Titik awal dan titik akhirnya bertindih</Highlight>, jadi anak panahnya mengecut menjadi satu titik dalam lukisan geometri.
+
+Vektor sifar dilambangkan dengan <InlineMath math="\vec{0}" />, iaitu nombor <InlineMath math="0" /> dengan anak panah di atasnya.
+
+## Sifat Vektor Sifar
+
+Vektor sifar mempunyai beberapa sifat istimewa yang membezakannya daripada vektor lain:
+
+1. Vektor sifar ialah unsur identiti bagi penambahan vektor. Jika <InlineMath math="\vec{a}" /> ialah sebarang vektor, maka <InlineMath math="\vec{a} + \vec{0} = \vec{a}" />
+
+2. Magnitudnya ialah sifar: <InlineMath math="|\vec{0}| = 0" />
+
+3. Vektor ini **tidak boleh dinormalkan** kerana pembahagian dengan magnitudnya yang sifar tidak tertakrif.
+
+4. Setiap ruang vektor mempunyai tepat satu identiti penambahan, jadi vektor sifar dalam ruang itu unik.
+
+5. Bagi setiap vektor <InlineMath math="\vec{v}" />, <InlineMath math="\vec{0} \cdot \vec{v} = 0" />, jadi vektor sifar memenuhi syarat algebra hasil darab titik untuk keortogonan. Namun, kerana vektor ini tidak mempunyai arah, vektor sifar tidak patut digambarkan sebagai selari dengan sesuatu arah secara geometri.
+
+6. Mendarab vektor sifar dengan sebarang skalar nyata tetap memberikan vektor sifar: <InlineMath math="k \cdot \vec{0} = \vec{0}" />
+
+## Perwakilan Vektor Sifar
+
+**Setiap komponen Cartesan** bagi vektor sifar bernilai sifar, jadi panjangnya sifar dan vektor ini tidak mempunyai arah. Senarai di bawah menunjukkan koordinatnya dalam satu, dua dan tiga dimensi.
+
+- Dalam ruang <InlineMath math="1" /> dimensi: <InlineMath math="\vec{0} = (0)" />
+- Dalam ruang <InlineMath math="2" /> dimensi: <InlineMath math="\vec{0} = (0, 0)" />
+- Dalam ruang <InlineMath math="3" /> dimensi: <InlineMath math="\vec{0} = (0, 0, 0)" />
+
+## Kembali ke Titik Awal
+
+Satu contoh vektor sifar dalam kehidupan seharian ialah sesaran seseorang yang kembali ke kedudukan asalnya. Contohnya:
+
+Jika Andi berjalan <InlineMath math="100 \text{ m}" /> ke timur dan kemudian <InlineMath math="100 \text{ m}" /> ke barat, jumlah sesarannya ialah sifar. Walaupun jumlah jarak yang Andi lalui ialah <InlineMath math="200 \text{ m}" />, sesarannya (beza antara kedudukan akhir dan kedudukan awal) tetap sifar.
+
+Ambil arah timur sebagai positif dan kedudukan awal sebagai <InlineMath math="0\text{ m}" />. **Jarak yang dilalui bertambah** semasa perjalanan pulang, manakala kedudukannya kembali kepada nilai asal.
+
+| Peringkat | Kedudukan dari titik awal | Jarak yang dilalui |
+| --- | --- | --- |
+| Mula | <InlineMath math="0\text{ m}" /> | <InlineMath math="0\text{ m}" /> |
+| Selepas berjalan ke timur | <InlineMath math="100\text{ m}" /> | <InlineMath math="100\text{ m}" /> |
+| Selepas kembali ke barat | <InlineMath math="0\text{ m}" /> | <InlineMath math="200\text{ m}" /> |
+
+<BlockMath math="\Delta x=100\text{ m}+(-100\text{ m})=0\text{ m}" />
+
+Katakan kamu berjalan dari <InlineMath math="A" /> ke <InlineMath math="B" />, kemudian ke <InlineMath math="C" />, dan akhirnya kembali ke <InlineMath math="A" />. Tiga sesaran <InlineMath math="\overrightarrow{AB} + \overrightarrow{BC} + \overrightarrow{CA}" /> membawa kamu kembali ke tempat kamu bermula, jadi hasil tambahnya ialah vektor sifar <InlineMath math="\vec 0" />: tiada perubahan kedudukan langsung.
+
+<MathVisual
+  title={<>Hasil tambah laluan tertutup ialah vektor sifar</>}
+  description={<>Laluan segi tiga dari A ke B, ke C dan kembali ke A, dengan hasil tambah tiga vektor sesarannya ialah <InlineMath math="\vec 0" />.</>}
+  labels={{
+    pa: <InlineMath math="A" />,
+    pb: <InlineMath math="B" />,
+    pc: <InlineMath math="C" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ab", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "bc", kind: "segment", from: { x: 4, y: 1 }, to: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "ca", kind: "segment", from: { x: 1, y: 3 }, to: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "pa", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "pb", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "pc", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "pa", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "pb", objectId: "pb", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "pc", objectId: "pc", at: { x: 1, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Vektor Sifar dalam Operasi Vektor
+
+Menambah vektor sifar dan menolak vektor sifar kedua-duanya **mengekalkan vektor asal**. Tertib penolakan itu penting: menolak satu vektor daripada vektor sifar memberikan vektor bertentangan bagi vektor itu.
+
+### Penambahan dengan Vektor Sifar
+
+Jika <InlineMath math="\vec{a}" /> ialah sebarang vektor, maka:
+
+<BlockMath math="\vec{a} + \vec{0} = \vec{a},\qquad (3,-2)+(0,0)=(3,-2)" />
+
+Oleh itu, vektor sifar ialah **unsur identiti** bagi penambahan vektor.
+
+### Penolakan dengan Vektor Sifar
+
+Menolak vektor sifar **mengekalkan vektor asal**. Jika tertib penolakan diterbalikkan, kita mendapat vektor bertentangan bagi vektor asal itu.
+
+Bagi sebarang vektor <InlineMath math="\vec{a}" />:
+
+<MathContainer>
+  <BlockMath math="\vec{a} - \vec{0} = \vec{a},\qquad (3,-2)-(0,0)=(3,-2)" />
+  <BlockMath math="\vec{0} - \vec{a} = -\vec{a},\qquad (0,0)-(3,-2)=(-3,2)" />
+</MathContainer>
+
+Satu vektor tolak dirinya sendiri tidak meninggalkan apa-apa. <InlineMath math="\vec a = (3, 1)" /> dan <InlineMath math="-\vec a = (-3, -1)" /> mempunyai panjang yang sama dan arah yang bertentangan, jadi <InlineMath math="\vec a - \vec a = \vec a + (-\vec a) = \vec 0" />, iaitu vektor dengan panjang <InlineMath math="0" /> yang terletak di asalan.
+
+<MathVisual
+  title={<>Vektor dan vektor bertentangannya saling membatalkan</>}
+  description={<>Vektor <InlineMath math="(3, 1)" /> dan <InlineMath math="(-3, -1)" /> dari asalan, yang hasil tambahnya ialah vektor sifar di asalan.</>}
+  labels={{
+    a: <InlineMath math="\vec a" />,
+    neg: <InlineMath math="-\vec a" />,
+    zero: <InlineMath math="\vec 0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "neg", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: -1 }, appearance: "secondary" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "neg", objectId: "neg", at: { x: -3, y: -1 }, placement: "left" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+### Pendaraban Vektor Sifar dengan Skalar
+
+Setiap komponen sifar kekal sifar selepas didarab, jadi hasilnya **tetap vektor sifar** bagi setiap skalar.
+
+Bagi sebarang skalar <InlineMath math="k" />:
+
+<BlockMath math="k \cdot \vec{0} = \vec{0}" />
+
+Kecilkan satu vektor dengan skalar yang semakin kecil, dan hujungnya akan menggelongsor ke arah asalan: <InlineMath math="2\vec a" />, <InlineMath math="\vec a" />, <InlineMath math="\tfrac12 \vec a" />. Pada skalar <InlineMath math="0" />, hujungnya jatuh tepat pada titik awal, jadi <InlineMath math="0\vec a = \vec 0" /> bagi setiap vektor.
+
+<MathVisual
+  title={<>Gandaan skalar yang mengecut menjadi vektor sifar</>}
+  description={<>Hujung <InlineMath math="2\vec a" />, <InlineMath math="\vec a" />, <InlineMath math="\tfrac12 \vec a" /> dan <InlineMath math="0\vec a" /> bagi <InlineMath math="\vec a = (2, 1)" />.</>}
+  labels={{
+    two: <InlineMath math="2\vec a" />,
+    one: <InlineMath math="\vec a" />,
+    half: <InlineMath math="\tfrac12 \vec a" />,
+    zero: <InlineMath math="0\vec a = \vec 0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.8 }, y: { min: -0.8, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ray", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "two", kind: "point", at: { x: 4, y: 2 }, appearance: "primary" },
+      { id: "one", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "half", kind: "point", at: { x: 1, y: 0.5 }, appearance: "primary" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "two", objectId: "two", at: { x: 4, y: 2 }, placement: "above-left" },
+      { key: "one", objectId: "one", at: { x: 2, y: 1 }, placement: "above-left" },
+      { key: "half", objectId: "half", at: { x: 1, y: 0.5 }, placement: "above-left" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+## Aplikasi Konsep Vektor Sifar
+
+Vektor sifar muncul dalam beberapa situasi berikut:
+
+1. Dalam sistem persamaan linear homogen, vektor sifar sentiasa menjadi penyelesaian remeh.
+2. Dalam fizik, daya paduan sifar pada objek yang jisimnya bukan sifar bermaksud **pecutan sifar**. Dalam kerangka rujukan inersia, objek itu kekal pegun atau terus bergerak dengan halaju seragam, seperti yang diterangkan oleh Hukum Gerakan Newton Pertama.
+3. Dalam grafik komputer, vektor sifar mewakili tiada sesaran, jadi vektor ini tidak mengubah sesuatu kedudukan apabila digunakan sebagai vektor translasi.

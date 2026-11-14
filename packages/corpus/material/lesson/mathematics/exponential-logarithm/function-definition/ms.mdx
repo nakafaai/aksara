@@ -1,0 +1,120 @@
+export const metadata = {
+  title: "Mentakrifkan Fungsi Eksponen",
+  description:
+    "Fungsi eksponen mempunyai domain, julat, pintasan dan kelakuan monoton yang tertentu, dengan asas sah yang khusus dan kes yang dikecualikan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-02",
+  dateModified: "2026-11-08",
+  subject: "Indeks dan Logaritma",
+};
+
+## Fungsi Eksponen Piawai
+
+Fungsi eksponen meletakkan pemboleh ubahnya pada indeks:
+
+<BlockMath math="f(x)=a^x" />
+
+Untuk fungsi eksponen yang bernilai nyata bagi semua input nyata, asasnya mesti memenuhi:
+
+<BlockMath math="a>0\qquad\text{dan}\qquad a\neq1" />
+
+Syarat <InlineMath math="a>0" /> memastikan <InlineMath math="a^x" /> bernilai nyata untuk setiap nilai nyata <InlineMath math="x" />. Mengecualikan <InlineMath math="a=1" /> memisahkan pertumbuhan atau susutan yang sebenar daripada fungsi pemalar.
+
+Fungsi eksponen berskala berbentuk:
+
+<BlockMath math="g(x)=k\,a^x" />
+
+Dalam bentuk ini, <InlineMath math="k\neq0" /> ialah faktor skala mencancang. Asas menetapkan **faktor pendarab bagi setiap unit input**, manakala <InlineMath math="k" /> mengawal nilai awal dan sebelah paksi-<InlineMath math="x" /> tempat graf itu terletak.
+
+## Domain Julat dan Pintasan
+
+Untuk fungsi piawai <InlineMath math="f(x)=a^x" />:
+
+1. **Domain** fungsi ini ialah <InlineMath math="\mathbb{R}" />.
+2. Julatnya ialah <InlineMath math="(0,\infty)" />.
+3. Graf itu memotong paksi-<InlineMath math="y" /> pada <InlineMath math="(0,1)" /> kerana <InlineMath math="a^0=1" />.
+4. Graf itu tidak pernah memotong paksi-<InlineMath math="x" /> kerana <InlineMath math="a^x>0" />.
+5. Jika <InlineMath math="a>1" />, fungsi itu menokok secara tegas.
+6. Jika <InlineMath math="0<a<1" />, fungsi itu menyusut secara tegas.
+
+Untuk <InlineMath math="g(x)=k\,a^x" />, pintasan-<InlineMath math="y" /> ialah <InlineMath math="(0,k)" />. Jika <InlineMath math="k>0" />, julatnya ialah <InlineMath math="(0,\infty)" />. Jika <InlineMath math="k<0" />, graf itu dipantulkan pada paksi-<InlineMath math="x" /> dan julatnya ialah <InlineMath math="(-\infty,0)" />.
+
+## Mengapa Dua Asas Dikecualikan
+
+Kita kecualikan asas satu kerana asas itu menghasilkan **fungsi pemalar**. Kita kecualikan asas sifar kerana **kuasa negatifnya tidak tertakrif**. Dua sebab ini berbeza: fungsi pemalar masih ada nilai pada setiap input nyata, tetapi asas sifar tidak.
+
+### Asas Satu
+
+Jika <InlineMath math="a=1" />, maka:
+
+<BlockMath math="g(x)=k\cdot1^x=k" />
+
+Outputnya tidak pernah berubah, jadi ini ialah **fungsi pemalar**. Pertumbuhan dan susutan eksponen memerlukan perubahan berulang dengan faktor yang sama.
+
+<FunctionChart
+  a={1}
+  p={1}
+  title={<>Fungsi Pemalar</>}
+  description={
+    <>
+      Setiap input memberikan <InlineMath math="y=1" />.
+    </>
+  }
+/>
+
+### Asas Sifar
+
+Ungkapan <InlineMath math="0^x" /> tidak boleh mempunyai **semua nombor nyata sebagai domainnya**:
+
+<MathContainer>
+  <BlockMath math="0^x=0\qquad\text{untuk }x>0" />
+  <BlockMath math="0^x\text{ tidak tertakrif untuk }x<0" />
+</MathContainer>
+
+Pada <InlineMath math="x=0" />, ungkapan <InlineMath math="0^0" /> tidak diberikan nilai dalam definisi fungsi ini. Oleh itu, asas sifar tidak boleh memenuhi domain <InlineMath math="\mathbb{R}" /> yang diperlukan.
+
+## Bentuk dan Kelakuan Fungsi Eksponen
+
+1. <InlineMath math="f(x)=4^x" /> mempunyai <InlineMath math="a=4>1" />, jadi **fungsi ini menokok**. Nilai-nilai pertamanya termasuk <InlineMath math="f(0)=1" />, <InlineMath math="f(1)=4" /> dan <InlineMath math="f(2)=16" />.
+
+2. <InlineMath math="f(x)=3^{x+1}" /> boleh ditulis semula sebagai <InlineMath math="f(x)=3\cdot3^x" />. Faktor <InlineMath math="3" /> mengubah pintasan-<InlineMath math="y" /> daripada <InlineMath math="1" /> kepada <InlineMath math="3" />.
+
+3. <InlineMath math="f(x)=5^{2x-1}" /> menokok kerana indeks <InlineMath math="2x-1" /> bertambah apabila <InlineMath math="x" /> bertambah. Contohnya, <InlineMath math="f(0)=5^{-1}=\frac15" /> dan <InlineMath math="f(1)=5" />.
+
+4. <InlineMath math="f(x)=0.5^x" /> mempunyai <InlineMath math="0<a<1" />, jadi fungsi ini menyusut. Nilai-nilai pertamanya termasuk <InlineMath math="f(0)=1" />, <InlineMath math="f(1)=0.5" /> dan <InlineMath math="f(2)=0.25" />.
+
+<FunctionChart
+  a={0.5}
+  p={1}
+  title={<>Susutan Eksponen</>}
+  description={
+    <>
+      Faktor <InlineMath math="0.5" /> mengurangkan output kepada separuh bagi setiap pertambahan <InlineMath math="1" /> pada <InlineMath math="x" />.
+    </>
+  }
+/>
+
+## Model Lazim
+
+1. **Penggandaan berulang**: <InlineMath math="P(t)=P_0\,2^{t/d}" />, dengan <InlineMath math="d" /> ialah masa penggandaan.
+2. **Pertumbuhan kompaun**: <InlineMath math="A(t)=P(1+r)^t" />, dengan <InlineMath math="r" /> ialah kadar bagi setiap selang pengkompaunan.
+3. **Setengah hayat**: <InlineMath math="A(t)=A_0\left(\frac12\right)^{t/h}" />, dengan <InlineMath math="h" /> ialah setengah hayat.
+4. **Penularan awal**: <InlineMath math="C(n)=C_0R^n" />, dengan <InlineMath math="R" /> ialah faktor purata yang diandaikan bagi setiap kitaran.
+
+Dalam model penggandaan, <InlineMath math="P_0" /> ialah jumlah awal, dan <InlineMath math="t" /> serta <InlineMath math="d" /> menggunakan unit masa yang sama. Dalam model setengah hayat, <InlineMath math="A_0" /> ialah jumlah awal, dan <InlineMath math="t" /> serta <InlineMath math="h" /> juga menggunakan unit masa yang sama. Dalam model penularan, <InlineMath math="C_0" /> ialah bilangan awal dan <InlineMath math="n" /> membilang kitaran. Setiap model menganggap faktor pendarabnya tetap sepanjang selang yang dipertimbangkan.
+
+Untuk pertumbuhan kompaun, <InlineMath math="P" /> ialah nilai awal dan <InlineMath math="t" /> membilang selang. Katakan nilai awal <InlineMath math="100" /> bertambah <InlineMath math="10\%" /> bagi setiap selang, jadi <InlineMath math="r=0.1" />. Selepas dua selang:
+
+<BlockMath math="A(2)=100(1+0.1)^2=100(1.21)=121" />
+
+Pertambahan kedua dikira daripada <InlineMath math="110" />, jadi **jumlah yang ditambah juga bertambah** walaupun peratusnya kekal tetap.
+
+Pertumbuhan kompaun mendarab dengan <InlineMath math="1.1" /> setiap tempoh: <InlineMath math="A(t) = 100(1.1)^t" /> memberikan <InlineMath math="100" />, <InlineMath math="110" />, <InlineMath math="121" />, <InlineMath math="133.1" /> dan seterusnya. Pertambahan kedua ialah <InlineMath math="11" />, bukan <InlineMath math="10" />, kerana pertambahan itu dikira daripada <InlineMath math="110" />.
+
+<BarChart
+  title={<>Pertumbuhan kompaun pada kadar <InlineMath math="10\%" /></>}
+  description={<>Palang <InlineMath math="A(t) = 100(1.1)^t" /> untuk <InlineMath math="t = 0" /> hingga <InlineMath math="5" />.</>}
+  yAxisLabel="Jumlah"
+  data={[0, 1, 2, 3, 4, 5].map((x) => ({ name: String(x), value: 100 * 1.1 ** x }))}
+  chartConfig={{ value: { label: "Jumlah", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

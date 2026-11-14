@@ -1,21 +1,29 @@
-In einem gleichschenkligen Dreieck mit <InlineMath math="AB=AC" /> **sind die Basiswinkel <InlineMath math="B" /> und <InlineMath math="C" /> gleich groß**. Der Winkel <InlineMath math="A" /> ist also bekannt, sobald eine weitere Gleichung <InlineMath math="A" /> und <InlineMath math="B" /> verbindet.
-
-<BlockMath math="A+2B=180^\circ" />
+Gefragt ist **ein einziger Wert von <InlineMath math="x+y" />**. Eine Aussage reicht nur, wenn jedes Paar <InlineMath math="(x,y)" />, das sie erfüllt, dieselbe Summe liefert. Ein nützliches Werkzeug ist die Identität <InlineMath math="(x+y)^2=(x-y)^2+4xy" />, aber eine Quadratwurzel lässt immer zwei Vorzeichen offen.
 
 # Erste Aussage allein
 
-Mit <InlineMath math="B=50^\circ" /> ist auch <InlineMath math="C=50^\circ" />, also <InlineMath math="A=180^\circ-100^\circ=80^\circ" />. Der Winkel <InlineMath math="A" /> ist **eindeutig**, Aussage (1) allein reicht also aus.
+Mit <InlineMath math="x>0" /> und <InlineMath math="xy=-12" /> ist <InlineMath math="x" /> ein positiver Teiler von <InlineMath math="12" /> und <InlineMath math="y=-\tfrac{12}{x}" />. Das Paar <InlineMath math="(3,-4)" /> liefert <InlineMath math="x+y=-1" />, das Paar <InlineMath math="(12,-1)" /> dagegen <InlineMath math="x+y=11" />. **Es gibt mehr als einen Wert**, Aussage (1) allein reicht also nicht aus.
 
 # Zweite Aussage allein
 
-Aussage (2) liefert die Gleichung <InlineMath math="A=B+30^\circ" />. Zusammen mit der Winkelbeziehung im gleichschenkligen Dreieck ergeben sich **zwei Gleichungen mit zwei Unbekannten**.
+Aus <InlineMath math="(x-y)^2=49" /> folgt <InlineMath math="x-y=7" /> oder <InlineMath math="x-y=-7" />, mit unendlich vielen Paaren. Das Paar <InlineMath math="(8,1)" /> liefert <InlineMath math="x+y=9" />, das Paar <InlineMath math="(9,2)" /> dagegen <InlineMath math="x+y=11" />. **Der Wert ist nicht eindeutig**, Aussage (2) allein reicht also nicht aus.
+
+# Beide Aussagen zusammen
+
+Setze beide Aussagen in die Identität ein.
 
 <BlockMath math="\begin{aligned}
-(B+30^\circ)+2B&=180^\circ\\
-3B&=150^\circ\\
-B=50^\circ,\quad A&=80^\circ
+(x+y)^2&=(x-y)^2+4xy=49+4(-12)=1\\
+x+y&=1\ \text{oder}\ x+y=-1
 \end{aligned}" />
 
-Auch hier ist der Winkel <InlineMath math="A" /> eindeutig, Aussage (2) allein reicht also aus. Ein häufiger Fehler ist, die Angabe <InlineMath math="AB=AC" /> zu vergessen und zu glauben, Aussage (2) brauche Aussage (1).
+Prüfe jetzt, ob beide Vorzeichen mit <InlineMath math="x>0" /> wirklich vorkommen.
 
-**Jede Aussage reicht also schon allein aus**, um die Frage zu beantworten.
+<BlockMath math="\begin{aligned}
+x-y=7&:\quad x(x-7)=-12\ \Rightarrow\ x^2-7x+12=0\ \Rightarrow\ x=3\ \text{oder}\ x=4\\
+x-y=-7&:\quad x(x+7)=-12\ \Rightarrow\ x^2+7x+12=0\ \Rightarrow\ x=-3\ \text{oder}\ x=-4
+\end{aligned}" />
+
+Der zweite Fall fällt wegen <InlineMath math="x>0" /> weg. Der erste Fall liefert das Paar <InlineMath math="(3,-4)" /> mit <InlineMath math="x+y=-1" /> und das Paar <InlineMath math="(4,-3)" /> mit <InlineMath math="x+y=1" />. **Die Bedingung <InlineMath math="x>0" /> streicht also einen Fall, legt aber das Vorzeichen von <InlineMath math="x+y" /> nicht fest**. Es bleiben zwei Werte.
+
+**Aussage (1) und Aussage (2) reichen also auch zusammen nicht aus**, um die Frage zu beantworten.

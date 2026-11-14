@@ -1,22 +1,38 @@
-Die Schnittebene trennt einen kleinen Kegel oben vom unteren Teil, der die Grundfläche enthält. Das Volumen des unteren Teils ist **das Volumen des ganzen Kegels minus das Volumen des kleinen Kegels**.
+Der gesuchte leere Raum ist **das Volumen des Kegelstumpfs minus das Volumen der Kugel**. Der Plan: Bestimme den Kugelradius aus einem Schnitt durch den Kegel, dann das Volumen des kleinen Kegels über Ähnlichkeit, und ziehe dann ab.
 
-# Der ähnliche kleine Kegel
+# Der Radius der Kugel
 
-Der kleine Kegel hat dieselbe Spitze wie der ganze Kegel und die Höhe <InlineMath math="8-4=4\text{ cm}" />, also die halbe ursprüngliche Höhe. Beide Kegel sind **ähnlich mit dem Streckfaktor <InlineMath math="\tfrac12" />**, der Grundkreisradius des kleinen Kegels ist also 3 cm.
+Schneide den Kegel genau entlang seiner Achse. Der Schnitt ist ein gleichschenkliges Dreieck mit Grundseite <InlineMath math="12" />, Höhe <InlineMath math="8" /> und Schenkeln <InlineMath math="\sqrt{6^2+8^2}=10" />. Die Kugel erscheint als **Inkreis dieses Dreiecks**, also ist ihr Radius der Flächeninhalt des Dreiecks geteilt durch seinen halben Umfang.
+
+<BlockMath math="r=\frac{\tfrac12\times12\times8}{\tfrac12(12+10+10)}=\frac{48}{16}=3" />
+
+# Der kleine Kegel über der Kugel
+
+Der höchste Punkt der Kugel liegt auf der Höhe <InlineMath math="2r=6" />, also hat der kleine Kegel darüber die Höhe <InlineMath math="8-6=2" />. Er ist zum großen Kegel ähnlich mit dem Faktor <InlineMath math="k=\tfrac28=\tfrac14" />, und **Volumen skalieren mit der dritten Potenz des Faktors**.
 
 <BlockMath math="\begin{aligned}
-V_{\text{ganz}}&=\tfrac13\pi(6)^2(8)=96\pi\\
-V_{\text{klein}}&=\tfrac13\pi(3)^2(4)=12\pi
+V_{\text{groß}}&=\tfrac13\pi\times6^2\times8=96\pi\\
+V_{\text{klein}}&=\left(\tfrac14\right)^3\times96\pi=\tfrac{3}{2}\pi
 \end{aligned}" />
 
-Der kleine Kegel hat <InlineMath math="\left(\tfrac12\right)^3=\tfrac18" /> des Volumens des ganzen Kegels, denn Volumina skalieren mit der dritten Potenz des Streckfaktors.
+Direkte Probe: Der kleine Kegel hat den Radius <InlineMath math="\tfrac64=\tfrac32" />, also das Volumen <InlineMath math="\tfrac13\pi\times\tfrac94\times2=\tfrac32\pi" />. Dasselbe Ergebnis.
 
-# Unteren Teil berechnen
+# Der leere Raum im Kegelstumpf
 
-Der untere Teil ist **der Rest des ganzen Kegels, wenn der kleine Kegel entfernt ist**.
+Die Kugel liegt zwischen den Höhen <InlineMath math="0" /> und <InlineMath math="6" />, also **liegt die ganze Kugel im Kegelstumpf**.
 
-<BlockMath math="V=96\pi-12\pi=84\pi\text{ cm}^3" />
+<BlockMath math="\begin{aligned}
+V_{\text{Stumpf}}&=96\pi-\tfrac32\pi=\tfrac{189}{2}\pi\\
+V_{\text{Kugel}}&=\tfrac43\pi\times3^3=36\pi\\
+V_{\text{leer}}&=\tfrac{189}{2}\pi-36\pi=\tfrac{117}{2}\pi\\
+\frac{V_{\text{leer}}}{V_{\text{Kugel}}}&=\frac{117}{72}=\frac{13}{8}
+\end{aligned}" />
 
-Der Wert <InlineMath math="48\pi" /> nimmt an, dass ein Schnitt auf halber Höhe auch das Volumen halbiert. Der Wert <InlineMath math="72\pi" /> verwendet das Flächenverhältnis <InlineMath math="\tfrac14" /> als Volumenverhältnis und zieht deshalb <InlineMath math="24\pi" /> ab. Der Wert <InlineMath math="12\pi" /> ist der kleine Kegel, <InlineMath math="96\pi" /> der ganze Kegel.
+# Fallen in den anderen Antworten
 
-Das Volumen des Teils mit der Grundfläche beträgt also **<InlineMath math="84\pi\text{ cm}^3" />**.
+- <InlineMath math="1:1" /> verwendet den Längenfaktor <InlineMath math="\tfrac14" /> für das Volumen, sodass der kleine Kegel fälschlich <InlineMath math="24\pi" /> und der leere Raum <InlineMath math="96\pi-24\pi-36\pi=36\pi" /> wird, genauso groß wie die Kugel.
+- <InlineMath math="3:2" /> verwendet den Flächenfaktor <InlineMath math="\left(\tfrac14\right)^2" /> für das Volumen, sodass der kleine Kegel fälschlich <InlineMath math="6\pi" /> und der leere Raum <InlineMath math="54\pi" /> wird.
+- <InlineMath math="5:3" /> nimmt **den ganzen Kegel** statt nur den Kegelstumpf, sodass der leere Raum <InlineMath math="96\pi-36\pi=60\pi" /> wird.
+- <InlineMath math="21:8" /> vergisst, das Kugelvolumen abzuziehen, und vergleicht <InlineMath math="\tfrac{189}{2}\pi" /> mit <InlineMath math="36\pi" />.
+
+Das Verhältnis des leeren Raums im Kegelstumpf zum Kugelvolumen ist also <InlineMath math="13:8" />.

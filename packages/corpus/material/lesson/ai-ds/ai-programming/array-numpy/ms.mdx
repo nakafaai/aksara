@@ -1,0 +1,620 @@
+export const metadata = {
+  title: "Membina Tatasusunan dengan NumPy",
+  description: "Bina tatasusunan NumPy secara manual, dengan fungsi terbina dalam, daripada jujukan, dan melalui operasi asas.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-09-18",
+  dateModified: "2026-09-12",
+  subject: "Pengaturcaraan AI",
+};
+
+## Bekerja dengan Tatasusunan dalam Python
+
+NumPy membantu Python memproses data berangka dengan cekap. Senarai (list) Python boleh menyimpan jenis data yang bercampur, manakala tatasusunan (array) NumPy biasanya menyimpan nilai daripada satu jenis data dalam struktur yang padat. Untuk operasi berangka tervektor ke atas banyak nilai, susunan ini selalunya lebih pantas daripada gelung Python yang setara.
+
+[Objek teras `ndarray`](https://numpy.org/doc/stable/) ialah bekas n-dimensi bersaiz tetap, dan semua unsurnya berkongsi satu jenis data. Reka bentuk ini membolehkan operasi tervektor, iaitu satu ungkapan menerangkan kerja ke atas seluruh tatasusunan.
+
+Tatasusunan NumPy memberi kelebihan berikut untuk pengaturcaraan saintifik:
+
+1. **Gelung berangka yang cekap** kerana dilaksanakan dalam kod natif yang dikompil
+2. **Pemvektoran** membolehkan operasi ke atas seluruh tatasusunan tanpa gelung eksplisit
+3. **Storan padat** untuk nilai berangka yang homogen
+4. **Koleksi besar operasi matematik yang sedia digunakan**
+
+Pemvektoran bermaksud <Highlight>menyatakan satu operasi untuk seluruh tatasusunan</Highlight>. NumPy tetap melalui setiap unsur secara dalaman, tetapi gelung itu berjalan dalam kod dikompil yang sudah dioptimumkan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "vectorization_comparison.py",
+      code: `# Pendaraban unsur menggunakan senarai Python
+x = [1, 2, 3, 4, 5]
+y = [2, 3, 4, 5, 6]
+z = []
+for i in range(len(x)):
+    z.append(x[i] * y[i])
+print("Hasil senarai:", z)  # Output: Hasil senarai: [2, 6, 12, 20, 30]
+
+# Pendaraban unsur menggunakan NumPy
+import numpy as np
+x_np = np.array([1, 2, 3, 4, 5])
+y_np = np.array([2, 3, 4, 5, 6])
+z_np = x_np * y_np
+print("Hasil NumPy:", z_np)  # Output: Hasil NumPy: [ 2  6 12 20 30]`
+    }
+  ]}
+/>
+
+## Membina Tatasusunan secara Manual
+
+Gunakan `np.array()` untuk menukar **struktur data Python yang sedia ada** kepada tatasusunan NumPy.
+
+Tatasusunan satu dimensi umpama jujukan nombor dalam satu baris. Kamu boleh membinanya daripada senarai Python menggunakan fungsi `np.array()`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "array_1d.py",
+      code: `import numpy as np
+
+# Bina tatasusunan 1D daripada senarai
+a = np.array([0, 1, 2, 3])
+print("Tatasusunan 1D:", a)  # Output: Tatasusunan 1D: [0 1 2 3]
+print("Jenis data:", type(a))  # Output: Jenis data: <class 'numpy.ndarray'>
+print("Bentuk:", a.shape)  # Output: Bentuk: (4,)
+print("Dimensi:", a.ndim)  # Output: Dimensi: 1`
+    }
+  ]}
+/>
+
+Tatasusunan dua dimensi umpama jadual yang ada baris dan lajur. Kamu boleh membinanya daripada senarai bersarang.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "array_2d.py",
+      code: `import numpy as np
+
+# Bina tatasusunan 2D daripada senarai bersarang
+a = np.array([[0, 1], [2, 3]])
+print("Tatasusunan 2D:")
+print(a)
+# Output:
+# [[0 1]
+#  [2 3]]
+
+print("Bentuk:", a.shape)  # Output: Bentuk: (2, 2)
+print("Dimensi:", a.ndim)  # Output: Dimensi: 2
+print("Jumlah unsur:", a.size)  # Output: Jumlah unsur: 4`
+    }
+  ]}
+/>
+
+Tatasusunan tiga dimensi boleh dibayangkan sebagai timbunan jadual. Setiap lapisan ada baris dan lajur, dan paksi tambahan itu memilih satu lapisan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "array_3d.py",
+      code: `import numpy as np
+
+# Bina tatasusunan 3D
+a = np.array([[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]])
+print("Tatasusunan 3D:")
+print(a)
+# Output:
+# [[[ 1  2  3]
+#   [ 4  5  6]]
+#  [[ 7  8  9]
+#   [10 11 12]]]
+
+print("Bentuk:", a.shape)  # Output: Bentuk: (2, 2, 3)
+print("Paksi 0 (satah):", a.shape[0])  # Output: Paksi 0 (satah): 2
+print("Paksi 1 (baris):", a.shape[1])  # Output: Paksi 1 (baris): 2
+print("Paksi 2 (lajur):", a.shape[2])  # Output: Paksi 2 (lajur): 3`
+    }
+  ]}
+/>
+
+### Struktur Berbilang Dimensi
+
+| Dimensi | Bentuk | Struktur | Contoh | Paksi |
+|-----------|-------|-----------|---------|------|
+| **Satu dimensi** | `(4,)` | Jujukan nombor dalam satu baris | `[0, 1, 2, 3]` | Paksi <InlineMath math="0" /> untuk indeks unsur |
+| **Dua dimensi** | `(2, 2)` | Jadual dengan baris dan lajur | `[[0, 1], [2, 3]]` | Paksi <InlineMath math="0" /> untuk baris, Paksi <InlineMath math="1" /> untuk lajur |
+| **Tiga dimensi** | `(2, 2, 3)` | Timbunan jadual (satah) | <InlineMath math="2" /> satah, setiap satah <InlineMath math="2 \times 3" /> | Paksi <InlineMath math="0" /> kedalaman, Paksi <InlineMath math="1" /> ketinggian, Paksi <InlineMath math="2" /> lebar |
+
+Makin tinggi dimensi tatasusunan, makin kompleks struktur datanya, tetapi prinsip asasnya tetap sama. **Setiap paksi** mewakili satu dimensi dalam penyusunan data.
+
+NumPy boleh membina tatasusunan daripada pelbagai struktur data Python, termasuk senarai, tuple, dan campuran kedua-duanya.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "array_from_various_types.py",
+      code: `import numpy as np
+
+# Daripada senarai
+arr_from_list = np.array([0, 1, 2, 3])
+print("Daripada senarai:", arr_from_list)  # Output: Daripada senarai: [0 1 2 3]
+
+# Daripada tuple
+arr_from_tuple = np.array((0, 1, 2, 3))
+print("Daripada tuple:", arr_from_tuple)  # Output: Daripada tuple: [0 1 2 3]
+
+# Daripada campuran (akan ditukar kepada jenis yang serasi)
+arr_mixed = np.array([0, 1, 2.5, 3])
+print("Daripada campuran:", arr_mixed)  # Output: Daripada campuran: [0.  1.  2.5 3. ]
+print("Jenis data automatik:", arr_mixed.dtype)  # Output: Jenis data automatik: float64`
+    }
+  ]}
+/>
+
+Senarai bersarang menjadi tatasusunan dua dimensi. `np.array([[1, 2, 3], [4, 5, 6]])` ada dua baris dan tiga lajur, jadi `shape` ialah `(2, 3)`, `ndim` ialah <InlineMath math="2" />, dan `size` ialah <InlineMath math="6" />. Semua unsurnya berkongsi satu `dtype`.
+
+<MathVisual
+  title={<>Tatasusunan dengan <code>shape</code> <code>(2, 3)</code></>}
+  description={<>Setiap titik ungu ialah satu unsur bersama nilainya. Tembereng hijau kebiruan menunjuk sepanjang <code>axis 0</code> dari baris ke baris, dan tembereng jingga menunjuk sepanjang <code>axis 1</code> dari lajur ke lajur.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 2.6 }, y: { min: -1.8, max: 0.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis-one", kind: "segment", from: { x: -0.5, y: 0.5 }, to: { x: 2.3, y: 0.5 }, appearance: "primary" },
+      { id: "axis-zero", kind: "segment", from: { x: -0.5, y: 0.5 }, to: { x: -0.5, y: -1.4 }, appearance: "construction" },
+      { id: "cell-0-0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "cell-0-1", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "cell-0-2", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "cell-1-0", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "cell-1-1", kind: "point", at: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "cell-1-2", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "cell-0-0", objectId: "cell-0-0", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "cell-0-1", objectId: "cell-0-1", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "cell-0-2", objectId: "cell-0-2", at: { x: 2, y: 0 }, placement: "below-right" },
+      { key: "cell-1-0", objectId: "cell-1-0", at: { x: 0, y: -1 }, placement: "below-right" },
+      { key: "cell-1-1", objectId: "cell-1-1", at: { x: 1, y: -1 }, placement: "below-right" },
+      { key: "cell-1-2", objectId: "cell-1-2", at: { x: 2, y: -1 }, placement: "below-right" },
+      { key: "axis-one", objectId: "axis-one", at: { x: 2.3, y: 0.5 }, placement: "right" },
+      { key: "axis-zero", objectId: "axis-zero", at: { x: -0.5, y: -1.4 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "cell-0-0": <InlineMath math="1" />,
+    "cell-0-1": <InlineMath math="2" />,
+    "cell-0-2": <InlineMath math="3" />,
+    "cell-1-0": <InlineMath math="4" />,
+    "cell-1-1": <InlineMath math="5" />,
+    "cell-1-2": <InlineMath math="6" />,
+    "axis-one": <code>axis 1</code>,
+    "axis-zero": <code>axis 0</code>,
+  }}
+/>
+
+## Fungsi Pembina Tatasusunan
+
+Menulis setiap unsur dengan tangan hanya sesuai untuk contoh yang sangat kecil. Sebab itu NumPy menyediakan fungsi pembina khas yang membina **tatasusunan daripada satu peraturan**, bukan daripada senarai literal, supaya kod kekal pendek dan bentuknya jelas. Fungsi di bawah terbahagi kepada tiga kumpulan: tatasusunan yang diisi dengan nilai pemalar, tatasusunan nombor rawak, dan tatasusunan yang mengikut corak matematik.
+
+### Fungsi Nilai Pemalar
+
+Fungsi `np.ones()` membina tatasusunan yang diisi dengan <InlineMath math="1" />. Fungsi ini berguna apabila setiap unsur perlu bermula dengan **nilai awal yang sama**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "ones_arrays.py",
+      code: `import numpy as np
+
+# Tatasusunan 1D dengan nilai 1
+a = np.ones(3)
+print("ones 1D:", a)  # Output: ones 1D: [1. 1. 1.]
+
+# Tatasusunan 2D dengan nilai 1
+a = np.ones((2, 3))
+print("ones 2D:")
+print(a)
+# Output:
+# [[1. 1. 1.]
+#  [1. 1. 1.]]
+
+# Tatasusunan 3D dengan nilai 1
+a = np.ones((2, 2, 3))
+print("Bentuk ones 3D:", a.shape)  # Output: Bentuk ones 3D: (2, 2, 3)
+print("ones 3D:")
+print(a)
+# Output:
+# [[[1. 1. 1.]
+#   [1. 1. 1.]]
+#  [[1. 1. 1.]
+#   [1. 1. 1.]]]`
+    }
+  ]}
+/>
+
+Selain `np.ones()`, ada fungsi lain untuk membina tatasusunan dengan corak khas:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "special_arrays.py",
+      code: `import numpy as np
+
+# Tatasusunan dengan nilai sifar
+a = np.zeros((2, 3))
+print("Tatasusunan sifar:")
+print(a)
+# Output:
+# [[0. 0. 0.]
+#  [0. 0. 0.]]
+
+# Tatasusunan identiti (pepenjuru 1, yang lain 0)
+a = np.eye(3, 3)
+print("Matriks identiti:")
+print(a)
+# Output:
+# [[1. 0. 0.]
+#  [0. 1. 0.]
+#  [0. 0. 1.]]
+
+# Tatasusunan pepenjuru dengan nilai tertentu
+a = np.diag((1, 2, 3))
+print("Tatasusunan pepenjuru:")
+print(a)
+# Output:
+# [[1 0 0]
+#  [0 2 0]
+#  [0 0 3]]`
+    }
+  ]}
+/>
+
+### Fungsi Rawak
+
+Gunakan **penjana nombor rawak** `np.random.default_rng()` untuk membina data simulasi. Benih (seed) yang sama menghasilkan semula jujukan yang sama selagi penjana dan versi NumPy juga sama. Nilai seragam di bawah terletak dalam `[0, 1)`: sifar termasuk, manakala satu tidak termasuk.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "random_arrays.py",
+      code: `import numpy as np
+
+# Tetapkan benih supaya hasilnya konsisten
+rng = np.random.default_rng(10)
+
+# Tatasusunan dengan nilai rawak seragam antara 0 dan 1
+a = rng.random((2, 3))
+print("Rawak seragam [0,1):")
+print(a)
+# Output:
+# [[0.95600171 0.20768181 0.82844489]
+#  [0.14928212 0.51280462 0.1359196 ]]
+
+# Tatasusunan dengan taburan normal (min=0, sisihan piawai=1)
+a = rng.standard_normal(3)
+print("Rawak normal:", a)  # Output: Rawak normal: [0.84304257 0.85793655 0.47518364]
+
+# Tatasusunan integer rawak dalam julat tertentu
+a = rng.integers(1, 10, size=(2, 3))
+print("Integer rawak [1,10):")
+print(a)
+# Output:
+# [[5 9 3]
+#  [8 1 4]]`
+    }
+  ]}
+/>
+
+### Fungsi Matematik
+
+Fungsi `np.fromfunction` menghantar **tatasusunan koordinat indeks** kepada fungsi kamu. Di sini, `f(i, j)` menerima tatasusunan indeks baris dalam `i` dan tatasusunan indeks lajur dalam `j`. Penambahan `i + j` berlaku unsur demi unsur: contohnya, kedudukan `[1, 2]` menerima `3`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "fromfunction_array.py",
+      code: `import numpy as np
+
+# Bina tatasusunan menggunakan fungsi
+def f(i, j):
+    return i + j
+
+# Tatasusunan 2x3 dengan nilai berdasarkan fungsi f(i,j) = i + j
+a = np.fromfunction(f, (2, 3))
+print("Tatasusunan daripada fungsi f(i,j) = i + j:")
+print(a)
+# Output:
+# [[0. 1. 2.]
+#  [1. 2. 3.]]
+
+# Fungsi yang lebih kompleks
+def g(i, j):
+    return i * j + 1
+
+b = np.fromfunction(g, (3, 3))
+print("Tatasusunan daripada fungsi g(i,j) = i*j + 1:")
+print(b)
+# Output:
+# [[1. 1. 1.]
+#  [1. 2. 3.]
+#  [1. 3. 5.]]`
+    }
+  ]}
+/>
+
+Fungsi `np.empty` memperuntukkan tatasusunan tanpa memberi nilai awal kepada unsurnya. Kandungan memori yang sedia ada tidak menentu, jadi setiap unsur mesti diberi nilai sebelum dibaca. Gunakan fungsi ini hanya apabila tatasusunan itu akan terus diisi.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "empty_array.py",
+      code: `import numpy as np
+
+# Bina tatasusunan kosong (nilai tidak ditentukan)
+a = np.empty((3, 2))
+a.fill(0)  # Isi setiap unsur sebelum membaca nilainya
+print("Tatasusunan selepas diisi:")
+print(a)
+# Output:
+# [[0. 0.]
+#  [0. 0.]
+#  [0. 0.]]
+
+print("Bentuk:", a.shape)  # Output: Bentuk: (3, 2)
+print("Dtype:", a.dtype)  # Output: Dtype: float64`
+    }
+  ]}
+/>
+
+Bandingkan dua baris titik di bawah. `np.linspace(0, 10, 5)` membahagi selang itu kepada lima titik yang sama jarak dan turut memasukkan hujung `10`. `np.arange(0, 10, 2.5)` melangkah sebanyak `2.5` setiap kali dan berhenti sebelum `10`, jadi ia hanya ada empat nilai. Ingat peraturan ini: `linspace` menetapkan bilangan titik, `arange` menetapkan saiz langkah.
+
+<MathVisual
+  title={<><code>np.linspace</code> dan <code>np.arange</code> pada garis nombor</>}
+  description={<>Baris atas ialah <code>np.linspace(0, 10, 5)</code>, manakala baris bawah ialah <code>np.arange(0, 10, 2.5)</code>. Nilai <InlineMath math="10" /> tiada pada baris bawah.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "lin-a", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "lin-b", kind: "point", at: { x: 5 / 2, y: 1 }, appearance: "secondary" },
+      { id: "lin-c", kind: "point", at: { x: 5, y: 1 }, appearance: "secondary" },
+      { id: "lin-d", kind: "point", at: { x: 15 / 2, y: 1 }, appearance: "secondary" },
+      { id: "lin-e", kind: "point", at: { x: 10, y: 1 }, appearance: "secondary" },
+      { id: "ar-a", kind: "point", at: { x: 0, y: 0 }, appearance: "construction" },
+      { id: "ar-b", kind: "point", at: { x: 5 / 2, y: 0 }, appearance: "construction" },
+      { id: "ar-c", kind: "point", at: { x: 5, y: 0 }, appearance: "construction" },
+      { id: "ar-d", kind: "point", at: { x: 15 / 2, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "lin-a", objectId: "lin-a", at: { x: 0, y: 1 }, placement: "above" },
+      { key: "lin-b", objectId: "lin-b", at: { x: 5 / 2, y: 1 }, placement: "above" },
+      { key: "lin-c", objectId: "lin-c", at: { x: 5, y: 1 }, placement: "above" },
+      { key: "lin-d", objectId: "lin-d", at: { x: 15 / 2, y: 1 }, placement: "above" },
+      { key: "lin-e", objectId: "lin-e", at: { x: 10, y: 1 }, placement: "above" },
+      { key: "ar-a", objectId: "ar-a", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "ar-b", objectId: "ar-b", at: { x: 5 / 2, y: 0 }, placement: "below" },
+      { key: "ar-c", objectId: "ar-c", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "ar-d", objectId: "ar-d", at: { x: 15 / 2, y: 0 }, placement: "below" },
+      { key: "lin-row", objectId: "lin-a", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "ar-row", objectId: "ar-a", at: { x: 0, y: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "lin-a": "0",
+    "lin-b": "2.5",
+    "lin-c": "5",
+    "lin-d": "7.5",
+    "lin-e": "10",
+    "ar-a": "0",
+    "ar-b": "2.5",
+    "ar-c": "5",
+    "ar-d": "7.5",
+    "lin-row": "np.linspace(0, 10, 5)",
+    "ar-row": "np.arange(0, 10, 2.5)",
+  }}
+/>
+
+## Tatasusunan daripada Jujukan
+
+Sesetengah tatasusunan lebih mudah diterangkan sebagai jujukan berbanding sebagai peraturan bagi setiap unsur: setiap nilai di antara dua had, atau **bilangan tetap titik yang sama jarak**. `np.arange` dan `np.linspace` membina tatasusunan seperti ini, dan perbezaan antara kedua-duanya terletak pada cara hujung jujukan ditentukan.
+
+### Fungsi Arange dalam NumPy
+
+Fungsi `np.arange` menyerupai `range()` dalam Python, tetapi ia memulangkan tatasusunan dan menerima argumen titik apungan. Untuk langkah bukan integer, **pembundaran titik apungan** boleh membuat nilai terakhir sukar dijangka, jadi `np.linspace` selalunya lebih jelas apabila bilangan titik itu penting.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "arange_arrays.py",
+      code: `import numpy as np
+
+# Tatasusunan dari 0 hingga 4
+a = np.arange(5)
+print("arange(5):", a)  # Output: arange(5): [0 1 2 3 4]
+
+# Tatasusunan dengan nilai mula, nilai henti, dan langkah
+a = np.arange(1.5, 3., 0.5)
+print("arange(1.5, 3., 0.5):", a)  # Output: arange(1.5, 3., 0.5): [1.5 2.  2.5]
+
+# Tatasusunan dengan langkah yang menghasilkan nilai perpuluhan
+a = np.arange(1.5, 4.)
+print("arange(1.5, 4.):", a)  # Output: arange(1.5, 4.): [1.5 2.5 3.5]
+
+# Demonstrasi parameter
+print("\\nParameter arange(start, end, step):")
+print("- start, end, step boleh bernilai float")
+print("- end tidak termasuk dalam hasil")
+print("- step lalai ialah 1")
+print("- start lalai ialah 0")`
+    }
+  ]}
+/>
+
+### Fungsi Linspace dalam NumPy
+
+Berbeza dengan `np.arange` yang menggunakan langkah tetap, `np.linspace` membahagi satu julat kepada **sejumlah titik yang sama jarak**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "linspace_arrays.py",
+      code: `import numpy as np
+
+# Bina 5 titik yang sama jarak antara 0 dan 10
+a = np.linspace(0, 10, 5)
+print("linspace(0, 10, 5):", a)  # Output: linspace(0, 10, 5): [ 0.   2.5  5.   7.5 10. ]
+
+# Bina 11 titik yang sama jarak antara -1 dan 1
+a = np.linspace(-1, 1, 11)
+print("linspace(-1, 1, 11):", a)
+# Output: linspace(-1, 1, 11): [-1.  -0.8 -0.6 -0.4 -0.2  0.   0.2  0.4  0.6  0.8  1. ]
+
+# Perbandingan linspace dengan arange
+print("\\nPerbezaan linspace dengan arange:")
+print("linspace: bilangan unsur diberi, jarak dikira")
+print("arange: langkah diberi, bilangan unsur mengikutinya")`
+    }
+  ]}
+/>
+
+### Membandingkan arange dan linspace
+
+Kedua-dua fungsi membina tatasusunan daripada satu julat, dan parameter yang kamu hantar menentukan perbezaannya. `arange` menetapkan **jarak antara unsur**, manakala `linspace` menetapkan berapa banyak unsur yang kamu mahu.
+
+| Aspek | `np.arange` | `np.linspace` |
+|--------|-------------|---------------|
+| Parameter utama | start, stop, step | start, stop, num |
+| Kawalan | Jarak antara unsur | Jumlah bilangan unsur |
+| Titik akhir | Tidak termasuk | Termasuk (lalai) |
+| Jenis data | Disimpulkan daripada input | Menggunakan jenis titik apungan secara lalai. Tetapkan `dtype` untuk memilih jenis lain |
+| Kegunaan | Jujukan dengan jarak tetap | Pembahagian julat yang sekata |
+
+## Operasi Asas
+
+Sebelum menukar bentuk tatasusunan, semak dahulu **bilangan unsur dan bentuknya**. Tatasusunan di bawah ada dua baris dan tiga lajur, jadi `size` ialah `6`. Dtype `int64` yang ditetapkan secara eksplisit menggunakan lapan bait bagi setiap unsur.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "array_info.py",
+      code: `import numpy as np
+
+# Bina tatasusunan contoh
+a = np.array([[1, 2, 3], [4, 5, 6]], dtype=np.int64)
+print("Tatasusunan:")
+print(a)
+# Output:
+# [[1 2 3]
+#  [4 5 6]]
+
+print("Bentuk:", a.shape)  # Output: Bentuk: (2, 3)
+print("Size (jumlah unsur):", a.size)  # Output: Size (jumlah unsur): 6
+print("Ndim (dimensi):", a.ndim)  # Output: Ndim (dimensi): 2
+print("Dtype (jenis data):", a.dtype)  # Output: Dtype (jenis data): int64
+print("Itemsize (bait bagi setiap unsur):", a.itemsize)  # Output: Itemsize (bait bagi setiap unsur): 8`
+    }
+  ]}
+/>
+
+**Bilangan unsur mesti kekal sama** apabila kamu menggunakan `reshape()`: `3 * 4`, `2 * 6`, dan `4 * 3` semuanya sama dengan `12`. Jika kamu menghantar `-1`, NumPy akan mengira sendiri satu dimensi yang tidak diberi. Penukaran bentuk mungkin memulangkan pandangan (view) atau salinan, bergantung pada susun atur tatasusunan itu dalam memori.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "array_reshape.py",
+      code: `import numpy as np
+
+# Tatasusunan 1D dengan 12 unsur
+a = np.arange(12)
+print("Tatasusunan asal:", a)  # Output: Tatasusunan asal: [ 0  1  2  3  4  5  6  7  8  9 10 11]
+
+# Tukar bentuk kepada 3x4
+b = a.reshape(3, 4)
+print("Reshape 3x4:")
+print(b)
+# Output:
+# [[ 0  1  2  3]
+#  [ 4  5  6  7]
+#  [ 8  9 10 11]]
+
+# Tukar bentuk kepada 2x6
+c = a.reshape(2, 6)
+print("Reshape 2x6:")
+print(c)
+# Output:
+# [[ 0  1  2  3  4  5]
+#  [ 6  7  8  9 10 11]]
+
+# Reshape dengan -1 (dimensi dikira secara automatik)
+d = a.reshape(4, -1)
+print("Reshape 4x-1 (automatik):")
+print(d)
+# Output:
+# [[ 0  1  2]
+#  [ 3  4  5]
+#  [ 6  7  8]
+#  [ 9 10 11]]`
+    }
+  ]}
+/>
+
+Operasi aritmetik pada tatasusunan berlaku pada setiap unsur sekali gus, tanpa gelung. Untuk `arr = np.array([1, 2, 3])`, `arr + 1` memberi `[2, 3, 4]`, `arr * 2` memberi `[2, 4, 6]`, dan `arr ** 2` memberi `[1, 4, 9]`.
+
+<ScatterDiagram
+  title={<>Tiga operasi unsur demi unsur pada <code>[1, 2, 3]</code></>}
+  description={<>Paksi mendatar menunjukkan indeks <InlineMath math="0" />, <InlineMath math="1" />, dan <InlineMath math="2" />. Setiap siri ialah satu hasil: tatasusunan asal, <code>arr + 1</code>, <code>arr * 2</code>, dan <code>arr ** 2</code>. Pada satu indeks, setiap operasi hanya menggunakan unsur pada indeks itu.</>}
+  xAxisLabel="Indeks"
+  yAxisLabel="Nilai"
+  datasets={[
+    {
+      name: "asal",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0, y: 1 },
+        { x: 1, y: 2 },
+        { x: 2, y: 3 },
+      ],
+    },
+    {
+      name: "tambah satu",
+      color: "var(--chart-2)",
+      points: [
+        { x: 0, y: 1 + 1 },
+        { x: 1, y: 2 + 1 },
+        { x: 2, y: 3 + 1 },
+      ],
+    },
+    {
+      name: "darab dua",
+      color: "var(--chart-3)",
+      points: [
+        { x: 0, y: 1 * 2 },
+        { x: 1, y: 2 * 2 },
+        { x: 2, y: 3 * 2 },
+      ],
+    },
+    {
+      name: "kuasa dua",
+      color: "var(--chart-4)",
+      points: [
+        { x: 0, y: 1 ** 2 },
+        { x: 1, y: 2 ** 2 },
+        { x: 2, y: 3 ** 2 },
+      ],
+    },
+  ]}
+/>

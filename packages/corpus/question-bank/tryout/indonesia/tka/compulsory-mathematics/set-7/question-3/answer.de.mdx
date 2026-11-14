@@ -1,14 +1,42 @@
-Mach aus jeder Aussage **einen Preis pro mL oder eine Wassermenge pro Packung** und vergleiche dann.
+# Das Werkzeug für alle Aussagen
+
+Alle drei Aussagen vergleichen zwei Schallsituationen. Aus der Formel im Text folgt: **Der Unterschied der Pegel hängt nur vom Verhältnis der Intensitäten ab**.
+
+<BlockMath math="\mathrm{TI}_2-\mathrm{TI}_1=10\log\frac{I_2}{10^{-12}}-10\log\frac{I_1}{10^{-12}}=10\log\frac{I_2}{I_1}" />
+
+Für jede Aussage brauchst du also nur das Intensitätsverhältnis. Dann prüfst du, ob die Behauptung in jeder Situation gilt und nicht nur in einem Beispiel.
+
+# Die erste Aussage
+
+**Falsch**. Bei <InlineMath math="n" /> gleichen großen Trommeln ist die Intensität <InlineMath math="nI" />. Eine Trommel mehr macht daraus <InlineMath math="(n+1)I" />, der Anstieg ist also <InlineMath math="10\log\frac{n+1}{n}" />. Der hängt von <InlineMath math="n" /> ab:
 
 <BlockMath math="\begin{aligned}
-\frac{24{.}000}{250}&=96,\qquad\frac{84{.}000}{1{.}000}=84 \\
-\frac{96-84}{96}&=\frac{12}{96}=12{,}5\,\% \\
-\frac{250}{10}\cdot4&=100\text{ Liter} \\
-\frac{1{.}000}{20}\cdot4&=200\text{ Liter} \\
-\frac{24{.}000}{100}&=240
+n=1:&\quad 10\log2=10\cdot0{,}30=3\text{ dB} \\
+n=2:&\quad 10\log\tfrac32=10\,(0{,}48-0{,}30)=1{,}8\text{ dB}
 \end{aligned}" />
 
-- Die große Packung kostet <InlineMath math="\text{Rp}84" /> pro mL, die kleine <InlineMath math="\text{Rp}96" /> pro mL. Der Unterschied von <InlineMath math="\text{Rp}12" /> sind <InlineMath math="12{,}5\,\%" /> von <InlineMath math="\text{Rp}96" />. Die Aussage ist richtig.
-- Eine kleine Packung reicht für genau <InlineMath math="100" /> Liter Wasser, nicht mehr. Die Aussage ist falsch.
-- Bei <InlineMath math="20" /> mL pro Dosis enthält die große Packung <InlineMath math="50" /> Dosen, genug für <InlineMath math="50\cdot4=200" /> Liter Wasser. Die Aussage ist richtig.
-- Die kleine Packung kostet <InlineMath math="\text{Rp}24{.}000" /> und reicht für <InlineMath math="100" /> Liter, also <InlineMath math="\text{Rp}240" /> pro Liter, nicht mehr als <InlineMath math="\text{Rp}250" />. Die Aussage ist falsch.
+Den Sprung um <InlineMath math="3\text{ dB}" /> gibt es nur von einer auf zwei Trommeln, wenn sich die Intensität verdoppelt. Je mehr Trommeln es vorher sind, desto kleiner wird der Anstieg.
+
+# Die zweite Aussage
+
+**Falsch**. Ein Abfall um <InlineMath math="10\text{ dB}" /> heißt, dass die Intensität in Q ein Zehntel der Intensität in P ist. Die Intensität ist umgekehrt proportional zum Quadrat des Abstands, also ist das Abstandsverhältnis die Wurzel aus <InlineMath math="10" />:
+
+<BlockMath math="\begin{aligned}
+10\log\frac{I_Q}{I_P}&=-10 \quad\Rightarrow\quad \frac{I_Q}{I_P}=\frac1{10} \\
+\frac{I_Q}{I_P}&=\frac{r_P^2}{r_Q^2}=\frac1{10} \quad\Rightarrow\quad \frac{r_Q}{r_P}=\sqrt{10}\approx3{,}16
+\end{aligned}" />
+
+Q ist etwa <InlineMath math="3{,}16" />-mal so weit entfernt wie P, nicht <InlineMath math="10" />-mal. Der zehnfache Abstand würde die Intensität auf <InlineMath math="\tfrac1{100}" /> senken, also um <InlineMath math="20\text{ dB}" />.
+
+# Die dritte Aussage
+
+**Richtig**. Eine große Trommel habe in <InlineMath math="1\text{ m}" /> die Intensität <InlineMath math="I" />, eine kleine also <InlineMath math="\tfrac14I" />. Vergleiche beide Situationen allgemein:
+
+<BlockMath math="\begin{aligned}
+k\text{ große Trommeln aus dem Abstand }d&:\quad k\cdot\frac{I}{d^2} \\
+16k\text{ kleine Trommeln aus dem Abstand }2d&:\quad 16k\cdot\frac{\tfrac14 I}{(2d)^2}=16k\cdot\frac{I}{16d^2}=k\cdot\frac{I}{d^2}
+\end{aligned}" />
+
+Die Intensitäten sind für jedes <InlineMath math="d" /> und jedes <InlineMath math="k" /> genau gleich, also auch die Pegel. Der Faktor <InlineMath math="16" /> gleicht zwei Verluste auf einmal aus: ein Viertel, weil die Trommeln klein sind, und noch ein Viertel, weil der Abstand doppelt so groß ist.
+
+Die erste Aussage ist also falsch, die zweite falsch und die dritte richtig.

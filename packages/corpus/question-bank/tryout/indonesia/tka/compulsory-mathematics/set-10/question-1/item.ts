@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  stimulus: "store-promo",
+  stimulus: "cicilan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$\\text{Rp}175{.}000$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}180{.}000$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}190{.}000$$",
-        },
-        {
           correct: true,
-          label: "$$\\text{Rp}195{.}000$$",
+          label: "$$\\text{Rp}531{.}000$$",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}200{.}000$$",
+          label: "$$\\text{Rp}560{.}500$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}679{.}500$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}708{.}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}835{.}500$$",
         },
       ],
     },

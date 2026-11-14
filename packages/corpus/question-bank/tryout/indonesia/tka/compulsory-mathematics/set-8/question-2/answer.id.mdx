@@ -1,16 +1,41 @@
-Kerjakan mundur. Uang yang diterima adalah <InlineMath math="98\,\%" /> dari upah kotor, jadi **kembalikan dulu ke upah kotor**, lalu pisahkan upah biasa dan upah lembur.
+# Dua kemungkinan total setelah promo
+
+Soal ini berjalan mundur: dari tagihan <InlineMath math="\text{Rp}380{.}000" />, cari semua banyak botol yang mungkin. Tagihan anggota bergantung pada total setelah promo, yang kita sebut <InlineMath math="T" />. **Tagihan di bawah <InlineMath math="\text{Rp}400{.}000" /> belum tentu berarti tidak ada potongan**, jadi periksa kedua kasus.
 
 <BlockMath math="\begin{aligned}
-\text{upah kotor}&=\frac{1{.}347{.}500}{0{,}98}=1{.}375{.}000 \\
-\text{upah lembur}&=1{.}375{.}000-40\cdot25{.}000=375{.}000 \\
-\text{jam lembur}&=\frac{375{.}000}{37{.}500}=10
+\text{tanpa potongan}&:\quad T=380{.}000 \quad (T<400{.}000,\ \text{cocok}) \\
+\text{dengan potongan}&:\quad 0{,}95\,T=380{.}000 \Rightarrow T=400{.}000 \quad (T\ge400{.}000,\ \text{cocok})
 \end{aligned}" />
 
-Upah kotor lebih dari <InlineMath math="\text{Rp}1{.}000{.}000" />, jadi Andi memang bekerja lebih dari <InlineMath math="40" /> jam. Totalnya <InlineMath math="40+10=50" /> jam. Cek: <InlineMath math="0{,}98\cdot(1{.}000{.}000+10\cdot37{.}500)=1{.}347{.}500" />.
+Kedua kasus konsisten dengan aturan. Jadi ada dua kemungkinan total setelah promo: <InlineMath math="\text{Rp}380{.}000" /> dan <InlineMath math="\text{Rp}400{.}000" />.
 
-Jadi, Andi bekerja <InlineMath math="50" /> jam pada minggu itu.
+# Apakah ada dus di dalamnya
 
-- <InlineMath math="10" /> jam hanya banyak jam lembur.
-- <InlineMath math="49" /> jam lupa mengembalikan potongan iuran, sehingga upah lembur dianggap <InlineMath math="\text{Rp}347{.}500" /> dan jam lemburnya dibulatkan menjadi <InlineMath math="9" />.
-- <InlineMath math="54" /> jam membagi uang yang diterima dengan <InlineMath math="\text{Rp}25{.}000" />, tanpa iuran dan tanpa tarif lembur.
-- <InlineMath math="55" /> jam membagi upah kotor dengan <InlineMath math="\text{Rp}25{.}000" />, seolah tidak ada tarif lembur.
+Botol lepas selalu menyumbang kelipatan <InlineMath math="\text{Rp}20{.}000" />. Kalau ada <InlineMath math="d" /> dus, sisa <InlineMath math="T-168{.}000d" /> harus habis dibagi <InlineMath math="20{.}000" />.
+
+<BlockMath math="\begin{aligned}
+T=380{.}000&:\quad 380{.}000-168{.}000=212{.}000,\quad 380{.}000-336{.}000=44{.}000 \\
+T=400{.}000&:\quad 400{.}000-168{.}000=232{.}000,\quad 400{.}000-336{.}000=64{.}000
+\end{aligned}" />
+
+Tidak ada sisa yang habis dibagi <InlineMath math="20{.}000" />, dan <InlineMath math="3" /> dus saja sudah <InlineMath math="\text{Rp}504{.}000" />. **Belanjaannya pasti hanya botol lepas**. Banyak botol yang dibayar adalah <InlineMath math="19" /> pada kasus pertama dan <InlineMath math="20" /> pada kasus kedua.
+
+# Dari botol dibayar ke botol dibawa pulang
+
+Kalau ia membawa <InlineMath math="4k+s" /> botol lepas dengan sisa <InlineMath math="s" /> antara <InlineMath math="0" /> dan <InlineMath math="3" />, ia membayar <InlineMath math="3k+s" /> botol. **Tulis banyak botol yang dibayar dalam bentuk itu**.
+
+<BlockMath math="\begin{aligned}
+19&=3(6)+1 \Rightarrow \text{dibawa pulang } 4(6)+1=25 \\
+20&=3(6)+2 \Rightarrow \text{dibawa pulang } 4(6)+2=26
+\end{aligned}" />
+
+Cek: <InlineMath math="25" /> botol berisi <InlineMath math="6" /> kelompok utuh dan sisa <InlineMath math="1" />, jadi dibayar <InlineMath math="18+1=19" />. <InlineMath math="26" /> botol berisi <InlineMath math="6" /> kelompok utuh dan sisa <InlineMath math="2" />, jadi dibayar <InlineMath math="18+2=20" />. Botol ke-<InlineMath math="27" /> sudah membuat bayarannya menjadi <InlineMath math="21" /> botol.
+
+Jadi, banyak botol yang mungkin ia bawa pulang adalah <InlineMath math="25" /> atau <InlineMath math="26" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="25" /> botol saja muncul kalau kamu menganggap tagihan di bawah <InlineMath math="\text{Rp}400{.}000" /> pasti tanpa potongan. Syarat potongan dicek pada total setelah promo, bukan pada tagihan.
+- <InlineMath math="26" /> botol saja muncul kalau kamu hanya membalik potongan dan lupa bahwa total <InlineMath math="\text{Rp}380{.}000" /> tanpa potongan juga mungkin.
+- <InlineMath math="19" /> atau <InlineMath math="20" /> botol muncul kalau kamu **lupa promo Beli 3 Gratis 1** dan menganggap setiap botol dibayar.
+- <InlineMath math="26" /> atau <InlineMath math="27" /> botol muncul kalau promo dihitung sebanding, yaitu bayar <InlineMath math="\tfrac{3}{4}" /> dari banyak botol lalu dibulatkan ke bawah. Promo hanya berlaku untuk kelompok utuh berisi <InlineMath math="4" /> botol.

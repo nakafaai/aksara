@@ -1,20 +1,31 @@
-The stock at the end of a month depends on **all earlier months**, not just that month's production. Compute each month-end stock in turn with
+This question compares two ways of paying for the same usage: two separate meters or one shared meter. From the table, the Hasan family used <InlineMath math="2{,}495-2{,}385=110\text{ kWh}" /> in May, and the Lestari family used <InlineMath math="6{,}952-6{,}917=35\text{ kWh}" />.
 
-<BlockMath math="\text{end stock}=\text{starting stock}+\text{production}-\text{sales}" />
+The key is the sentence saying that **blocks are counted separately for each meter**. With two meters, each family gets its own first <InlineMath math="40" /> kWh at the Block I rate. With one meter, that cheap allowance exists only once, but the fixed charge is also paid only once. These two effects pull in opposite directions, so the safest move is to work out both totals in full.
 
-The table rows run from *Januari* (January) to *Juni* (June), with *Produksi* (production) and *Penjualan* (sales).
+Start with two separate meters. The Hasan family goes past <InlineMath math="40" /> kWh, so its remaining <InlineMath math="70" /> kWh fall in Block II. All of the Lestari family's usage stays in Block I.
 
-| Month | Calculation | End stock |
-| --- | --- | --- |
-| January | <InlineMath math="10+30-25" /> | <InlineMath math="15" /> |
-| February | <InlineMath math="15+40-30" /> | <InlineMath math="25" /> |
-| March | <InlineMath math="25+25-35" /> | <InlineMath math="15" /> |
-| April | <InlineMath math="15+35-20" /> | <InlineMath math="30" /> |
-| May | <InlineMath math="30+30-40" /> | <InlineMath math="20" /> |
-| June | <InlineMath math="20+20-25" /> | <InlineMath math="15" /> |
+<BlockMath math="\begin{aligned}
+\text{Hasan} &= 40(1{,}200)+70(1{,}600)+25{,}000 = 48{,}000+112{,}000+25{,}000 = 185{,}000 \\
+\text{Lestari} &= 35(1{,}200)+25{,}000 = 42{,}000+25{,}000 = 67{,}000 \\
+\text{separate total} &= 185{,}000+67{,}000 = 252{,}000
+\end{aligned}" />
 
-The largest stock is <InlineMath math="30" /> wardrobes at the end of April.
+With one meter, the usage is <InlineMath math="110+35=145\text{ kWh}" />. That passes the <InlineMath math="120" /> kWh limit, so the last <InlineMath math="25" /> kWh fall in Block III. The fixed charge is paid once.
 
-February is a trap because its production is the largest, <InlineMath math="40" />. But the February end stock is only <InlineMath math="25" />, because sales were also high and the month started with less stock. March, May, and June sold more than they produced, so stock fell in those months.
+<BlockMath math="\begin{aligned}
+\text{one meter} &= 40(1{,}200)+80(1{,}600)+25(2{,}200)+25{,}000 \\
+&= 48{,}000+128{,}000+55{,}000+25{,}000 = 256{,}000
+\end{aligned}" />
 
-So the stock of wardrobes is largest at the end of April.
+The difference is <InlineMath math="256{,}000-252{,}000=4{,}000" />. The fixed charge you save, <InlineMath math="\text{Rp}25{,}000" />, loses to the rise in usage cost. Without the fixed charge, one meter pays <InlineMath math="231{,}000" />, while two meters pay <InlineMath math="160{,}000+42{,}000=202{,}000" />, so the usage cost goes up by <InlineMath math="29{,}000" /> rupiah.
+
+Check that rise kWh by kWh. All <InlineMath math="35" /> of the Lestari family's kWh lose the Block I rate and move up to the Block II rate, which is <InlineMath math="400" /> rupiah more per kWh, so <InlineMath math="35\times400=14{,}000" />. As a result, <InlineMath math="25" /> kWh get pushed from Block II into Block III and cost <InlineMath math="600" /> rupiah more per kWh, so <InlineMath math="25\times600=15{,}000" />. Together that's <InlineMath math="29{,}000" />, the same as above.
+
+The other options are tempting because each one catches only part of the change:
+
+- *Lebih murah* (cheaper) by <InlineMath math="\text{Rp}25{,}000" /> counts only the fixed charge you save and assumes the usage cost doesn't change.
+- *Lebih murah* by <InlineMath math="\text{Rp}10{,}000" /> counts only the <InlineMath math="25" /> kWh that enter Block III (<InlineMath math="15{,}000" />) and forgets that the Lestari family's kWh lose the Block I rate.
+- *Lebih mahal* (more expensive) by <InlineMath math="\text{Rp}29{,}000" /> gets the rise in usage cost right but forgets that one fixed charge disappears.
+- *Lebih mahal* by <InlineMath math="\text{Rp}76{,}000" /> charges every kWh at the highest block reached, but each block's rate only applies to the kWh inside that block.
+
+So with one shared meter, the two families' June total is **more expensive** by <InlineMath math="\text{Rp}4{,}000" />.

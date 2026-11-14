@@ -1,14 +1,43 @@
-The multiples of <InlineMath math="7" /> between <InlineMath math="100" /> and <InlineMath math="200" /> form **an arithmetic sequence with common difference <InlineMath math="7" />**. Its first term is the smallest multiple of <InlineMath math="7" /> above <InlineMath math="100" />, and its last term is the largest multiple of <InlineMath math="7" /> below <InlineMath math="200" />.
+# The first row and the step between rows
+
+The question asks how many seats are in the last row, but the number of rows isn't known yet. So the order is: find the first row <InlineMath math="a" /> and the common difference <InlineMath math="b" />, then the number of rows <InlineMath math="n" />, and only then row <InlineMath math="n" />. **Each step uses the result of the step before**.
+
+The <InlineMath math="k" />-th term of an arithmetic sequence is <InlineMath math="u_k=a+(k-1)b" />.
 
 <BlockMath math="\begin{aligned}
-U_1&=105,\qquad U_n=196 \\
-n&=\frac{196-105}{7}+1=13+1=14 \\
-S_{14}&=\frac{14}{2}(105+196)=7\cdot301=2{,}107
+u_{12}-u_5&=(a+11b)-(a+4b)=7b=40-26=14 \\
+b&=2 \\
+a&=26-4\cdot2=18
 \end{aligned}" />
 
-So the sum of all these multiples of <InlineMath math="7" /> is <InlineMath math="2{,}107" />.
+The first row has <InlineMath math="18" /> seats, and each row after it has <InlineMath math="2" /> more.
 
-- <InlineMath math="1{,}911" /> forgets to add <InlineMath math="1" /> when counting the terms, so <InlineMath math="196" /> is left out.
-- <InlineMath math="2{,}100" /> uses <InlineMath math="150" /> as the average, but the average of the first and last terms is <InlineMath math="150.5" />.
-- <InlineMath math="2{,}205" /> also adds <InlineMath math="98" />, which is less than <InlineMath math="100" />.
-- <InlineMath math="4{,}214" /> forgets to divide by <InlineMath math="2" /> in the sum formula.
+# The number of rows
+
+The sum of the first <InlineMath math="n" /> terms is <InlineMath math="S_n=\frac n2\left(2a+(n-1)b\right)" />. Set it equal to <InlineMath math="1{,}050" />.
+
+<BlockMath math="\begin{aligned}
+\frac n2\left(36+2(n-1)\right)&=1{,}050 \\
+n(n+17)&=1{,}050 \\
+n^2+17n-1{,}050&=0 \\
+(n-25)(n+42)&=0
+\end{aligned}" />
+
+The roots are <InlineMath math="n=25" /> and <InlineMath math="n=-42" />. **A number of rows can't be negative**, so <InlineMath math="n=25" />.
+
+# The last row
+
+The last row is row <InlineMath math="25" />. Use the <InlineMath math="k" />-th term formula again with <InlineMath math="a=18" /> and <InlineMath math="b=2" />.
+
+<BlockMath math="u_{25}=18+24\cdot2=66" />
+
+As a check, <InlineMath math="S_{25}=\frac{25}{2}(18+66)=25\cdot42=1{,}050" />. **The total matches the question**.
+
+# Why the other options are wrong
+
+- <InlineMath math="42" /> is the average number of seats per row, <InlineMath math="1{,}050\div25" />. In an arithmetic sequence that average equals the middle row (row <InlineMath math="13" />), **not the last row**.
+- <InlineMath math="68" /> uses the wrong formula <InlineMath math="u_n=a+nb=18+25\cdot2" />. The first row hasn't had any step added yet, so the multiplier is <InlineMath math="n-1" />.
+- <InlineMath math="84" /> comes from <InlineMath math="S_n=\frac n2(a+u_n)" /> but forgets to subtract <InlineMath math="a" />. The correct value is <InlineMath math="u_n=\frac{2S_n}{n}-a=84-18=66" />.
+- <InlineMath math="100" /> uses <InlineMath math="n=42" />, the root <InlineMath math="-42" /> with its sign dropped. With <InlineMath math="42" /> rows the total would be far more than <InlineMath math="1{,}050" />.
+
+So row <InlineMath math="n" /> has <InlineMath math="66" /> seats.

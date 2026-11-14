@@ -1,0 +1,215 @@
+export const metadata = {
+  title: "Janjang Geometri",
+  description: "Bina janjang geometri daripada nisbah yang tetap, terbitkan rumus sebutan amnya, dan uji model pertumbuhan yang diidealkan melalui contoh yang lengkap.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-06",
+  dateModified: "2026-11-08",
+  subject: "Jujukan dan Siri",
+};
+
+## Mendarab Setiap Sebutan dengan Faktor yang Sama
+
+Dalam janjang geometri, setiap sebutan selepas sebutan pertama diperoleh dengan **mendarab sebutan sebelumnya dengan satu faktor tetap**. Nisbah ini diwakili oleh huruf <InlineMath math="r" />.
+
+Bagi sebutan yang bukan sifar, kita boleh cari faktor itu melalui pembahagian:
+
+<BlockMath math="\frac{U_2}{U_1} = \frac{U_3}{U_2} = \frac{U_4}{U_3} = ... = r" />
+
+Setiap sebutan diperoleh dengan mendarab sebutan sebelumnya dengan nisbah <InlineMath math="r" />. Bentuk hasil bahagi di atas memerlukan penyebut yang bukan sifar, tetapi petua pendaraban tetap boleh digunakan walaupun ada sebutan yang bernilai sifar:
+
+<BlockMath math="U_{n+1}=rU_n" />
+
+## Penerokaan Melipat Kertas
+
+Dalam model lipatan yang mudah, **setiap lipatan menggandakan** bilangan lapisan. Lipat dua sehelai kertas segi empat tepat beberapa kali.
+
+Kalau kertas itu dilipat <InlineMath math="1 \text{ kali}" />, kertas itu terbahagi kepada <InlineMath math="2 \text{ bahagian}" /> yang sama besar. Kalau dilipat lagi (<InlineMath math="2 \text{ kali}" />), terbentuk <InlineMath math="4 \text{ bahagian}" /> yang sama besar. Kita dapat corak ini:
+
+| Bilangan lipatan | Bilangan bahagian yang sama besar |
+| --------------- | --------------------- |
+| <InlineMath math="1 \text{ lipatan}" />          | <InlineMath math="2 \text{ bahagian}" />               |
+| <InlineMath math="2 \text{ lipatan}" />         | <InlineMath math="4 \text{ bahagian}" />               |
+| <InlineMath math="3 \text{ lipatan}" />         | <InlineMath math="8 \text{ bahagian}" />               |
+| <InlineMath math="4 \text{ lipatan}" />         | <InlineMath math="16 \text{ bahagian}" />              |
+
+Perhatikan bahawa bilangan bahagian yang terbentuk menghasilkan satu jujukan: <InlineMath math="2, 4, 8, 16, \ldots" />
+
+Dalam jujukan ini, setiap sebutan diperoleh dengan mendarab sebutan sebelumnya dengan <InlineMath math="2" />, jadi nisbahnya ialah <InlineMath math="2" />.
+
+## Rumus Am bagi Janjang Geometri
+
+Kalau **nisbahnya bukan sifar** dan nombor sebutan ialah integer positif, sebutan am ialah:
+
+<BlockMath math="U_n = a \cdot r^{n-1}" />
+
+Kalau <InlineMath math="r=0" />, gunakan <InlineMath math="U_1=a" /> dan <InlineMath math="U_n=0" /> untuk <InlineMath math="n\ge2" />. Cara ini mengelakkan kita daripada menilai <InlineMath math="0^0" /> bagi sebutan pertama.
+
+Kuantiti dalam rumus ini ialah:
+
+- <InlineMath math="U_n" /> = sebutan am
+- <InlineMath math="a" /> = sebutan pertama
+- <InlineMath math="r" /> = nisbah
+- <InlineMath math="n" /> = nombor sebutan
+
+Indeks dalam rumus ini ialah <InlineMath math="n-1" /> kerana untuk bergerak dari sebutan pertama ke sebutan ke-<InlineMath math="n" />, kita perlu mendarab dengan <InlineMath math="r" /> tepat <InlineMath math="n-1" /> kali.
+
+## Kelakuan Jujukan bagi Nisbah yang Berbeza
+
+Bagi **sebutan pertama yang positif**, nisbah menentukan kelakuan keseluruhan jujukan:
+
+| Nisbah | Sebutan awal yang bermula pada <InlineMath math="8" /> | Kelakuan |
+| --- | --- | --- |
+| <InlineMath math="2" /> | <InlineMath math="8,16,32,64" /> | Menokok |
+| <InlineMath math="1/2" /> | <InlineMath math="8,4,2,1" /> | Menghampiri sifar |
+| <InlineMath math="1" /> | <InlineMath math="8,8,8,8" /> | Malar |
+| <InlineMath math="0" /> | <InlineMath math="8,0,0,0" /> | Sifar selepas sebutan pertama |
+| <InlineMath math="-2" /> | <InlineMath math="8,-16,32,-64" /> | Tanda berselang-seli, magnitud semakin besar |
+| <InlineMath math="-1" /> | <InlineMath math="8,-8,8,-8" /> | Tanda berselang-seli, magnitud tetap |
+| <InlineMath math="-1/2" /> | <InlineMath math="8,-4,2,-1" /> | Tanda berselang-seli, magnitud menghampiri sifar |
+
+Inilah sebabnya janjang geometri tidak semestinya mewakili pertumbuhan.
+
+Mulakan setiap jujukan pada <InlineMath math="8" /> dan ubah nisbahnya sahaja. Dengan <InlineMath math="r = 1" />, sebutannya kekal pada <InlineMath math="8" />. Dengan <InlineMath math="r = \tfrac12" />, sebutannya menjadi separuh setiap kali dan menghampiri <InlineMath math="0" />. Dengan <InlineMath math="r = -\tfrac12" />, sebutannya juga mengecil tetapi melompat dari satu belah <InlineMath math="0" /> ke belah yang lain. Pada <InlineMath math="n = 3" />, kedua-dua jujukan yang menjadi separuh itu bertemu pada <InlineMath math="2" />, kerana <InlineMath math="\left(-\tfrac12\right)^2 = \left(\tfrac12\right)^2" />.
+
+<MathVisual
+  title={<>Satu sebutan pertama, tiga nisbah</>}
+  description={<>Sebutan <InlineMath math="U_1" /> hingga <InlineMath math="U_4" /> untuk <InlineMath math="a = 8" /> dengan <InlineMath math="r = 1" />, <InlineMath math="r = \tfrac12" /> dan <InlineMath math="r = -\tfrac12" />, semuanya bermula pada <InlineMath math="8" />.</>}
+  labels={{
+    one: <InlineMath math="r = 1" />,
+    half: <InlineMath math="r = \tfrac12" />,
+    neg: <InlineMath math="r = -\tfrac12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.4, max: 4.8 }, y: { min: -5, max: 9.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "start", kind: "point", at: { x: 1, y: 8 }, appearance: "answer" },
+      { id: "one2", kind: "point", at: { x: 2, y: 8 }, appearance: "construction" },
+      { id: "one3", kind: "point", at: { x: 3, y: 8 }, appearance: "construction" },
+      { id: "one4", kind: "point", at: { x: 4, y: 8 }, appearance: "construction" },
+      { id: "half2", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "half4", kind: "point", at: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "neg2", kind: "point", at: { x: 2, y: -4 }, appearance: "secondary" },
+      { id: "neg4", kind: "point", at: { x: 4, y: -1 }, appearance: "secondary" },
+      { id: "meet3", kind: "point", at: { x: 3, y: 2 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "one", objectId: "one4", at: { x: 4, y: 8 }, placement: "right" },
+      { key: "half", objectId: "half4", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "neg", objectId: "neg4", at: { x: 4, y: -1 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Model Pertumbuhan Bakteria yang Diidealkan
+
+Katakan bilangan bakteria dalam satu kultur yang ideal **menjadi tiga kali ganda** setiap <InlineMath math="2 \text{ jam}" />. Faktor <InlineMath math="3" /> menerangkan perubahan jumlah bakteria dalam setiap selang masa.
+
+Kalau bilangan awal bakteria ialah <InlineMath math="2 \text{ sel}" />, maka:
+
+- Bilangan awal (<InlineMath math="N_0" />) <InlineMath math="=2" />
+- Faktor pertumbuhan (<InlineMath math="r" />) <InlineMath math="=3" />
+
+Dalam <InlineMath math="20 \text{ jam}" />, kultur itu melalui <InlineMath math="10 \text{ selang pertumbuhan}" /> kerana <InlineMath math="20 \div 2=10" />.
+
+Indeks yang bermula pada <InlineMath math="0" /> memastikan bilangan awal terasing daripada selang pertumbuhan pertama yang sudah lengkap. Selepas <InlineMath math="10" /> selang:
+
+<BlockMath math="N_{10}=N_0\cdot r^{10}=2\cdot3^{10}=118{,}098" />
+
+Jadi, mengikut model yang diidealkan ini, kultur itu mengandungi <InlineMath math="118{,}098 \text{ sel bakteria}" /> selepas <InlineMath math="20 \text{ jam}" />.
+
+<ContentBlock>
+  <BacterialGrowth
+    formulaType="geometric"
+    ratio={3}
+    initialCount={2}
+    maxGenerations={3}
+    timeInterval={2}
+    timeUnit="jam"
+    labels={{
+      title: "Pertumbuhan Bakteria yang Ideal",
+      bacterial: "Bakteria",
+    }}
+  />
+</ContentBlock>
+
+## Model Pertumbuhan dan Susutan dengan Nisbah yang Tetap
+
+Setiap proses di bawah mengulang satu pendaraban yang sama pada setiap langkah, jadi nisbah yang sama mengawal keseluruhan senarai itu:
+
+1. Pertumbuhan populasi (seperti dalam contoh bakteria)
+2. Faedah kompaun dalam ekonomi
+3. Reputan radioaktif dalam fizik
+4. Pertumbuhan sel dalam biologi
+
+Janjang geometri memodelkan pertumbuhan atau susutan yang berulang hanya apabila <Highlight>nisbah yang sama digunakan pada setiap langkah</Highlight>.
+
+Sentiasa semak sama ada model faktor tetap ini munasabah untuk situasi itu dan untuk tempoh masa yang dikaji. Populasi sebenar akhirnya akan berdepan dengan batasan yang tidak diambil kira oleh model mudah ini.
+
+## Mencari Nisbah dan Sebutan yang Tidak Diketahui
+
+Kedua-dua contoh ini memberikan sebahagian daripada satu janjang geometri dan meminta nilai yang hilang. Gantikan **sebutan yang diketahui** ke dalam rumus am, kemudian selesaikan untuk nilai yang tidak diketahui.
+
+### Mencari Nisbah
+
+Sebutan pertama suatu janjang geometri ialah <InlineMath math="4" /> dan sebutan ke-<InlineMath math="4" /> ialah <InlineMath math="108" />. Tentukan nisbah janjang ini.
+
+**Penyelesaian**:
+
+Diberi:
+
+- <InlineMath math="a = 4" /> (sebutan pertama)
+- <InlineMath math="U_4 = 108" /> (sebutan ke-<InlineMath math="4" />)
+
+Gunakan rumus am janjang geometri:
+
+<MathContainer>
+  <BlockMath math="U_4 = a \cdot r^{4-1}" />
+  <BlockMath math="108 = 4 \cdot r^3" />
+  <BlockMath math="r^3 = \frac{108}{4} = 27" />
+  <BlockMath math="r = \sqrt[3]{27} = 3" />
+</MathContainer>
+
+Nisbah janjang geometri itu ialah <InlineMath math="3" />.
+
+### Panjang Bahagian Tali
+
+Seutas tali dibahagikan kepada <InlineMath math="5 \text{ bahagian}" />. Panjang setiap bahagian positif, dan apabila disusun dari yang paling pendek hingga yang paling panjang, panjang-panjang itu membentuk janjang geometri. Bahagian paling pendek ialah <InlineMath math="16 \text{ cm}" /> dan bahagian paling panjang ialah <InlineMath math="81 \text{ cm}" />. Tentukan panjang bahagian ketiga.
+
+**Penyelesaian**:
+
+Diberi:
+
+- <InlineMath math="a = 16" /> (bahagian paling pendek)
+- <InlineMath math="U_5 = 81" /> (bahagian paling panjang)
+
+Setiap bahagian ada **panjang yang positif**, jadi nisbahnya juga positif. Oleh itu, kita ambil punca kuasa empat yang positif:
+
+<MathContainer>
+  <BlockMath math="U_5 = a \cdot r^{5-1}" />
+  <BlockMath math="81 = 16 \cdot r^4" />
+  <BlockMath math="r^4 = \frac{81}{16}" />
+  <BlockMath math="r = \sqrt[4]{\frac{81}{16}} = \frac{3}{2}" />
+</MathContainer>
+
+Kemudian, cari panjang bahagian ketiga (<InlineMath math="U_3" />):
+
+<MathContainer>
+  <BlockMath math="U_3 = a \cdot r^{3-1}" />
+  <BlockMath math="U_3 = 16 \cdot \left(\frac{3}{2}\right)^2" />
+  <BlockMath math="U_3 = 16 \cdot \frac{9}{4}" />
+  <BlockMath math="U_3 = 36" />
+</MathContainer>
+
+Panjang bahagian ketiga ialah <InlineMath math="36 \text{ cm}" />.
+
+Kelima-lima bahagian tali dalam satu carta: setiap palang ialah <InlineMath math="\tfrac32" /> kali palang sebelumnya, dari <InlineMath math="16\text{ cm}" /> hingga <InlineMath math="81\text{ cm}" />, dan palang di tengah ialah <InlineMath math="U_3 = 36" /> cm.
+
+<BarChart
+  title={<>Lima bahagian tali</>}
+  description={<>Palang <InlineMath math="U_n = 16\left(\tfrac32\right)^{n-1}" /> untuk <InlineMath math="n = 1" /> hingga <InlineMath math="5" />: <InlineMath math="16" />, <InlineMath math="24" />, <InlineMath math="36" />, <InlineMath math="54" /> dan <InlineMath math="81\text{ cm}" />.</>}
+  yAxisLabel="Panjang (cm)"
+  data={[1, 2, 3, 4, 5].map((n) => ({ name: String(n), value: 16 * (3 / 2) ** (n - 1) }))}
+  chartConfig={{ value: { label: "Panjang (cm)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

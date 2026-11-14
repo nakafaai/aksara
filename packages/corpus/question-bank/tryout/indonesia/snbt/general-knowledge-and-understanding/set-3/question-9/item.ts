@@ -3,38 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "sentence-meaning",
-    topic: "sentence-function",
+    contentDomain: "vocabulary",
+    topic: "polysemy",
   },
-  stimulus: "tsunami",
+  stimulus: "kedelai",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Ia ingin *membalas* jasa gurunya dengan merawat beliau di hari tua.",
+        },
+        {
+          correct: false,
+          label:
+            "Hutan yang dijaga warga *membalas* mereka dengan mata air yang tak pernah kering.",
+        },
+        {
+          correct: false,
+          label:
+            "Warga *membalas* kiriman bibit dari dinas pertanian dengan sekeranjang hasil panen pertama.",
+        },
+        {
+          correct: false,
+          label:
+            "Pemilik sawah *membalas* bantuan para tetangganya dengan sebagian hasil panen.",
+        },
+        {
           correct: true,
           label:
-            "Menegaskan bahwa peringatan resmi tetap diperlukan karena tsunami tidak selalu didahului surutnya air laut.",
-        },
-        {
-          correct: false,
-          label:
-            "Membuktikan bahwa surutnya air laut tidak berkaitan dengan tsunami.",
-        },
-        {
-          correct: false,
-          label:
-            "Menyarankan agar warga mendekati pantai ketika air laut surut.",
-        },
-        {
-          correct: false,
-          label:
-            "Menjelaskan cara lembaga resmi mengukur tinggi dan kecepatan gelombang tsunami sebelum peringatan dini disebarkan kepada warga.",
-        },
-        {
-          correct: false,
-          label:
-            "Mengulang isi kalimat (6) tentang kecepatan gelombang di laut lepas.",
+            "Setelah ditraktir makan siang, ia *membalas* pesan temannya dengan ucapan terima kasih yang singkat.",
         },
       ],
     },

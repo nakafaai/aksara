@@ -1,21 +1,80 @@
-Untuk mencari bayangan garis, nyatakan titik asal dengan koordinat bayangannya, lalu **substitusikan ke persamaan garis asal**.
+# Persamaan bayangan garis
 
-Translasi oleh <InlineMath math="T" /> memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(x+1,y-2)" />. Jadi titik asal adalah <InlineMath math="(x-1,y+2)" /> jika bayangannya <InlineMath math="(x,y)" />.
+Soal ini meminta luas segitiga yang dibatasi tiga garis: garis <InlineMath math="g" />, bayangannya <InlineMath math="g'" />, dan sumbu <InlineMath math="Y" />. Jadi kamu perlu persamaan <InlineMath math="g'" /> dulu, lalu ketiga titik sudut segitiganya.
+
+Rotasi <InlineMath math="90^\circ" /> **searah jarum jam** dengan pusat <InlineMath math="O" /> memindahkan titik <InlineMath math="(x,y)" /> ke <InlineMath math="(y,-x)" />. Contohnya, titik <InlineMath math="(1,0)" /> di sumbu <InlineMath math="X" /> positif turun ke <InlineMath math="(0,-1)" />. Untuk mencari persamaan bayangan, nyatakan koordinat lama dengan koordinat baru, lalu substitusikan ke persamaan <InlineMath math="g" />:
 
 <BlockMath math="\begin{aligned}
-2(x-1)-(y+2)+3&=0 \\
-2x-y-1&=0
+x'=y,\quad y'=-x\quad&\Rightarrow\quad x=-y',\quad y=x' \\
+x+2y=10\quad&\Rightarrow\quad -y'+2x'=10 \\
+g'&: 2x-y=10
 \end{aligned}" />
 
-Pencerminan terhadap sumbu <InlineMath math="x" /> memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(x,-y)" />, jadi ganti <InlineMath math="y" /> dengan <InlineMath math="-y" />.
+Cek dengan satu titik. Titik <InlineMath math="(10,0)" /> ada di <InlineMath math="g" />, dan bayangannya <InlineMath math="(0,-10)" /> memenuhi <InlineMath math="2\cdot0-(-10)=10" />. Persamaannya cocok.
 
-<BlockMath math="2x-(-y)-1=0\ \Rightarrow\ 2x+y-1=0" />
+# Tiga titik sudut segitiga
 
-Cek dengan titik <InlineMath math="(0,3)" /> pada <InlineMath math="g" />: translasi memberi <InlineMath math="(1,1)" />, lalu pencerminan memberi <InlineMath math="(1,-1)" />. Titik itu memenuhi <InlineMath math="2(1)+(-1)-1=0" />.
+Dua titik sudut ada di sumbu <InlineMath math="Y" />, yaitu tempat <InlineMath math="g" /> dan <InlineMath math="g'" /> memotong sumbu itu. Titik sudut ketiga adalah **titik potong <InlineMath math="g" /> dan <InlineMath math="g'" />**.
 
-Jadi, persamaan bayangan akhirnya adalah <InlineMath math="2x+y-1=0" />.
+<BlockMath math="\begin{aligned}
+g\text{ dengan }x=0&: 2y=10\Rightarrow P(0,5) \\
+g'\text{ dengan }x=0&: -y=10\Rightarrow Q(0,-10) \\
+y=2x-10\text{ ke }g&: x+2(2x-10)=10\Rightarrow x=6,\ y=2\Rightarrow R(6,2)
+\end{aligned}" />
 
-- <InlineMath math="2x-y-1=0" /> baru hasil translasi, pencerminannya belum dikerjakan.
-- <InlineMath math="2x+y+1=0" /> salah tanda pada konstanta saat mengganti <InlineMath math="y" /> dengan <InlineMath math="-y" />.
-- <InlineMath math="2x+y+3=0" /> mencerminkan dulu, baru mentranslasikan.
-- <InlineMath math="2x+y+7=0" /> mentranslasikan ke arah yang berlawanan, yaitu mengganti <InlineMath math="x" /> dengan <InlineMath math="x+1" /> dan <InlineMath math="y" /> dengan <InlineMath math="y-2" />.
+<MathVisual
+  title={<>Segitiga di antara <InlineMath math="g" />, <InlineMath math="g'" />, dan sumbu <InlineMath math="Y" /></>}
+  description={<>Garis <InlineMath math="g" /> melalui <InlineMath math="(0,5)" /> dan <InlineMath math="(10,0)" />. Garis <InlineMath math="g'" /> melalui <InlineMath math="(0,-10)" /> dan <InlineMath math="(5,0)" />. Segitiga <InlineMath math="PQR" /> diarsir dengan <InlineMath math="P(0,5)" /> dan <InlineMath math="Q(0,-10)" /> di sumbu <InlineMath math="Y" /> serta <InlineMath math="R(6,2)" /> di titik potong kedua garis.</>}
+  labels={{
+    g: <InlineMath math="g" />,
+    "g-image": <InlineMath math="g'" />,
+    p: <InlineMath math="P(0,5)" />,
+    q: <InlineMath math="Q(0,-10)" />,
+    r: <InlineMath math="R(6,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 13 },
+      y: { min: -13, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 5 }, { x: 0, y: -10 }, { x: 6, y: 2 }] },
+      { id: "line-g", kind: "line", appearance: "primary", through: [{ x: 0, y: 5 }, { x: 10, y: 0 }] },
+      { id: "line-g-image", kind: "line", appearance: "secondary", through: [{ x: 0, y: -10 }, { x: 5, y: 0 }] },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 0, y: 5 } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 0, y: -10 } },
+      { id: "point-r", kind: "point", appearance: "reference", at: { x: 6, y: 2 } },
+    ],
+    labels: [
+      { key: "g", objectId: "line-g", at: { x: -2, y: 6 }, placement: "above" },
+      { key: "g-image", objectId: "line-g-image", at: { x: 8.5, y: 7 }, placement: "left" },
+      { key: "p", objectId: "point-p", at: { x: 0, y: 5 }, placement: "left" },
+      { key: "q", objectId: "point-q", at: { x: 0, y: -10 }, placement: "right" },
+      { key: "r", objectId: "point-r", at: { x: 6, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Luas segitiga
+
+Alas segitiga adalah <InlineMath math="PQ" /> yang terletak pada sumbu <InlineMath math="Y" />. Karena alasnya tegak, **tingginya adalah jarak mendatar dari <InlineMath math="R" /> ke sumbu <InlineMath math="Y" />**, yaitu koordinat <InlineMath math="x" /> titik <InlineMath math="R" />.
+
+<BlockMath math="\begin{aligned}
+PQ&=5-(-10)=15 \\
+\text{tinggi}&=6 \\
+\text{luas}&=\tfrac12\cdot15\cdot6=45
+\end{aligned}" />
+
+Ada cara cek yang enak. Rotasi <InlineMath math="90^\circ" /> membuat <InlineMath math="g'" /> tegak lurus <InlineMath math="g" /> (gradiennya <InlineMath math="-\tfrac12" /> dan <InlineMath math="2" />), jadi sudut di <InlineMath math="R" /> siku-siku. Dengan <InlineMath math="RP=\sqrt{45}" /> dan <InlineMath math="RQ=\sqrt{180}" />, luasnya <InlineMath math="\tfrac12\sqrt{45\cdot180}=\tfrac12\cdot90=45" />. Hasilnya sama.
+
+Jadi, luas segitiga yang dibatasi <InlineMath math="g" />, <InlineMath math="g'" />, dan sumbu <InlineMath math="Y" /> adalah <InlineMath math="45" /> satuan luas.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="5" /> muncul kalau kamu memakai aturan rotasi **berlawanan** arah jarum jam, <InlineMath math="(x,y)\mapsto(-y,x)" />, atau langsung mengganti <InlineMath math="x" /> dengan <InlineMath math="y" /> dan <InlineMath math="y" /> dengan <InlineMath math="-x" /> di persamaan <InlineMath math="g" />. Bayangannya jadi <InlineMath math="-2x+y=10" />, titik potongnya <InlineMath math="(-2,6)" />, alasnya <InlineMath math="10-5=5" />, dan luasnya <InlineMath math="5" />.
+- <InlineMath math="15" /> memakai koordinat <InlineMath math="y" /> titik <InlineMath math="R" />, yaitu <InlineMath math="2" />, sebagai tinggi. Alasnya tegak, jadi tingginya harus mendatar.
+- <InlineMath math="25" /> adalah luas segitiga yang dibentuk <InlineMath math="g'" /> dengan kedua sumbu, yaitu <InlineMath math="\tfrac12\cdot5\cdot10" />. Itu bukan segitiga yang ditanyakan.
+- <InlineMath math="90" /> lupa mengalikan <InlineMath math="\tfrac12" /> pada rumus luas segitiga.

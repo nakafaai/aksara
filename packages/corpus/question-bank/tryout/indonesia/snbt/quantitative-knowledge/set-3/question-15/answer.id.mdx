@@ -1,22 +1,39 @@
-Tarik garis tegak lurus dari <InlineMath math="O" /> ke tali busur dan sebut kakinya <InlineMath math="M" />. Garis dari pusat yang tegak lurus tali busur **membagi tali busur itu sama panjang**, jadi <InlineMath math="AM=MB=8" />.
+Kedua kuantitas menanyakan kejadian yang sama dengan dua cara pengambilan. Rencananya: cari isi kotak dari peluang yang diketahui, hitung <InlineMath math="P" /> dan <InlineMath math="Q" />, lalu bandingkan. Hati-hati, **arah perbandingannya bergantung pada isi kotak**, jadi syarat tentang warna mana yang lebih banyak ikut menentukan jawaban.
 
-# Jarak pusat dan luas segitiga
+# Isi kotak
 
-Segitiga <InlineMath math="OMA" /> siku-siku di <InlineMath math="M" />, dengan sisi miring <InlineMath math="OA=10" />.
+Misalkan ada <InlineMath math="r" /> bola merah dan <InlineMath math="10-r" /> bola putih. Dua bola berbeda warna jika satu merah dan satu putih, dan ada <InlineMath math="\binom{10}{2}=45" /> pasangan yang sama mungkin.
 
 <BlockMath math="\begin{aligned}
-OM&=\sqrt{10^2-8^2}=\sqrt{36}=6\\
-[AOB]&=\tfrac12\cdot AB\cdot OM=\tfrac12\cdot16\cdot6=48
+\frac{r(10-r)}{45}&=\frac{7}{15}\\
+r^2-10r+21&=0\\
+(r-3)(r-7)&=0
 \end{aligned}" />
 
-Pernyataan kedua dan ketiga **benar**.
+Kedua akar masuk akal sebagai banyak bola, jadi **syarat bola merah lebih banyak yang memilih**, yaitu <InlineMath math="r=7" />. Kotak berisi <InlineMath math="7" /> bola merah dan <InlineMath math="3" /> bola putih.
 
-# Besar sudut pusat
+# Peluang dengan pengembalian
 
-Pada segitiga <InlineMath math="OMA" />, sisi <InlineMath math="AM=8" /> lebih panjang daripada <InlineMath math="OM=6" />. **Sudut di hadapan sisi yang lebih panjang lebih besar**, jadi sudut <InlineMath math="AOM" /> lebih besar daripada sudut <InlineMath math="OAM" />. Kedua sudut itu berjumlah <InlineMath math="90^\circ" />, sehingga <InlineMath math="\angle AOM>45^\circ" /> dan <InlineMath math="\angle AOB=2\angle AOM>90^\circ" />. Sudut <InlineMath math="AOB" /> tumpul, jadi pernyataan pertama salah.
+Setiap pengambilan memakai isi kotak yang sama, jadi peluang merah selalu <InlineMath math="\tfrac{7}{10}" /> dan peluang putih <InlineMath math="\tfrac{3}{10}" />. Bola putih yang satu itu bisa muncul di **salah satu dari tiga urutan**.
 
-# Busur dan tali busur
+<BlockMath math="P=3\cdot\left(\frac{7}{10}\right)^2\cdot\frac{3}{10}=\frac{441}{1000}" />
 
-Tali busur adalah ruas garis lurus antara <InlineMath math="A" /> dan <InlineMath math="B" />, sedangkan busur adalah lengkungan di antara kedua titik itu. **Garis lurus adalah lintasan terpendek** antara dua titik, jadi busur kecil pasti lebih panjang daripada 16 cm. Pernyataan keempat salah.
+# Peluang tanpa pengembalian
 
-Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **benar**, dan keempat **salah**.
+Tanpa pengembalian, urutan pengambilan tidak memengaruhi bola mana saja yang akhirnya terambil, jadi **hitung seperti mengambil tiga bola sekaligus**: pilih <InlineMath math="2" /> dari <InlineMath math="7" /> bola merah dan <InlineMath math="1" /> dari <InlineMath math="3" /> bola putih.
+
+<BlockMath math="Q=\frac{\binom{7}{2}\binom{3}{1}}{\binom{10}{3}}=\frac{21\cdot 3}{120}=\frac{21}{40}" />
+
+Cek dengan diagram pohon: setiap urutan MMT, MTM, dan TMM (M untuk merah, T untuk putih) berpeluang <InlineMath math="\tfrac{7\cdot 6\cdot 3}{720}=\tfrac{126}{720}" />, dan jumlahnya <InlineMath math="\tfrac{378}{720}=\tfrac{21}{40}" />.
+
+# Membandingkan kedua peluang
+
+Samakan penyebutnya: <InlineMath math="Q=\tfrac{21}{40}=\tfrac{525}{1000}" /> dan <InlineMath math="P=\tfrac{441}{1000}" />. Jadi **<InlineMath math="Q" /> lebih besar daripada <InlineMath math="P" />**.
+
+Sekarang lihat mengapa syarat warna itu penting. Untuk <InlineMath math="r=3" />, diperoleh <InlineMath math="P=3\cdot\left(\tfrac{3}{10}\right)^2\cdot\tfrac{7}{10}=\tfrac{189}{1000}" /> dan <InlineMath math="Q=\tfrac{\binom{3}{2}\binom{7}{1}}{120}=\tfrac{175}{1000}" />, sehingga <InlineMath math="P>Q" />. Tanpa syarat bola merah lebih banyak, jawabannya tidak bisa diputuskan.
+
+# Memeriksa pilihan lain
+
+Pilihan <InlineMath math="P>Q" /> muncul kalau kamu memakai <InlineMath math="r=3" />, atau menduga tanpa pengembalian **selalu memperkecil peluang**. Pilihan <InlineMath math="P=Q" /> muncul karena peluang satu pengambilan merah memang <InlineMath math="\tfrac{7}{10}" /> pada kedua cara, lalu kesamaan itu dianggap berlaku juga untuk kejadian gabungan tiga pengambilan. Pilihan informasi tidak cukup muncul kalau syarat bola merah lebih banyak tidak dipakai untuk membuang <InlineMath math="r=3" />.
+
+Jadi, <InlineMath math="Q>P" />, karena <InlineMath math="\tfrac{21}{40}" /> lebih besar daripada <InlineMath math="\tfrac{441}{1000}" />.

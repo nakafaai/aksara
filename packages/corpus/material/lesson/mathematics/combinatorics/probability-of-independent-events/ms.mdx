@@ -1,0 +1,323 @@
+export const metadata = {
+   title: "Kebarangkalian Peristiwa Tak Bersandar",
+   description: "Uji sama ada dua peristiwa tak bersandar dan kira kebarangkalian kedua-duanya berlaku tanpa bergantung pada kata kunci yang mengelirukan.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   datePublished: "2025-05-26",
+   dateModified: "2026-11-08",
+   subject: "Kombinatorik",
+};
+
+## Mengetahui Satu Kesudahan Tidak Mengubah Kebarangkalian yang Lain
+
+Dalam sesetengah model kebarangkalian, mengetahui satu keputusan **tidak mengubah kebarangkalian** peristiwa yang lain. Lambung sekeping duit syiling adil dan sebiji dadu adil. Mengetahui keputusan duit syiling tidak memberi apa-apa maklumat tentang keputusan dadu, jadi kedua-dua peristiwa itu tak bersandar.
+
+Peristiwa <InlineMath math="A" /> dan <InlineMath math="B" /> **tak bersandar** apabila syarat bahawa salah satu peristiwa berlaku <Highlight>tidak mengubah kebarangkalian peristiwa yang satu lagi</Highlight>. Model kebarangkalian yang menentukan sifat ini. Peristiwa yang berlaku pada masa yang sama tidak semestinya tak bersandar.
+
+Dua peristiwa boleh berkongsi punca tersembunyi walaupun tiada satu pun yang mengawal peristiwa yang lain secara langsung. Contohnya, dua penggera boleh sama-sama bertindak balas terhadap kejadian yang sama. Anggap peristiwa tak bersandar hanya apabila model kebarangkalian menyatakannya atau kebarangkalian bersyarat mengesahkannya.
+
+## Bagaimana Ketaksandaran Kelihatan dalam Kebarangkalian
+
+Bagi peristiwa tak bersandar, maklumat tentang satu peristiwa **tidak mengubah kebarangkalian** peristiwa yang lain. Peristiwa itu boleh datang daripada percubaan yang sama atau daripada percubaan yang berasingan. Kita mesti menyemak kebarangkaliannya, bukan sekadar melihat dari mana percubaan itu datang.
+
+### Kebarangkalian Bersyarat yang Tidak Berubah
+
+Ciri utama peristiwa tak bersandar ialah keputusan satu peristiwa **tidak mengubah kebarangkalian** peristiwa yang lain. Dalam tatatanda matematik, kalau <InlineMath math="A" /> dan <InlineMath math="B" /> tak bersandar dan <InlineMath math="P(B) > 0" />, maka:
+
+<BlockMath math="P(A|B) = P(A)" />
+
+Maksudnya, kebarangkalian <InlineMath math="A" /> berlaku apabila <InlineMath math="B" /> sudah berlaku sama dengan kebarangkalian <InlineMath math="A" /> berlaku secara umum.
+### Percubaan Rawak yang Berasingan
+
+Antara contoh yang jelas ada **mekanisme tak bersandar** ialah:
+
+- melambung dua keping duit syiling adil yang berasingan
+- mencabut sekeping kad daripada setiap satu daripada dua pek kad yang dikocok secara berasingan
+- melambung dua biji dadu adil yang berasingan
+- menjana dua digit rawak dengan percubaan yang tak bersandar
+### Mengenal Pasti Peristiwa Tak Bersandar
+
+Untuk menguji ketaksandaran, tanya: “Adakah mengetahui keputusan pertama mengubah taburan kebarangkalian keputusan kedua?” Sangkaan bahawa ada hubungan sebab dan akibat sahaja tidak cukup. Gunakan model yang dinyatakan, atau bandingkan kebarangkalian bersyarat dengan kebarangkalian biasa.
+
+Sebagai contoh daripada **satu lambungan dadu adil**, ambil <InlineMath math="A=\{2,4,6\}" /> dan <InlineMath math="B=\{3,6\}" />. Jadual ini menunjukkan keahlian bagi keenam-enam kesudahan.
+
+| Kesudahan | Tergolong dalam A | Tergolong dalam B |
+| --- | --- | --- |
+| <InlineMath math="1" /> | Tidak | Tidak |
+| <InlineMath math="2" /> | Ya | Tidak |
+| <InlineMath math="3" /> | Tidak | Ya |
+| <InlineMath math="4" /> | Ya | Tidak |
+| <InlineMath math="5" /> | Tidak | Tidak |
+| <InlineMath math="6" /> | Ya | Ya |
+
+<BlockMath math="P(A)=\frac36=\frac12,\quad P(B)=\frac26=\frac13,\quad P(A\cap B)=\frac16=\frac12\times\frac13" />
+
+Peristiwa itu tak bersandar walaupun kedua-duanya datang daripada satu lambungan dan bertindih pada <InlineMath math="\{6\}" />.
+
+## Rumus Kebarangkalian Peristiwa Tak Bersandar
+
+Oleh sebab peristiwa tak bersandar tidak mempengaruhi satu sama lain, kebarangkalian kedua-duanya berlaku menjadi mudah untuk dikira. **Rumus asas** bagi kebarangkalian peristiwa tak bersandar ialah:
+
+<BlockMath math="P(A \cap B) = P(A) \times P(B)" />
+
+Rumus ini menunjukkan bahawa kebarangkalian kedua-dua peristiwa <InlineMath math="A" /> dan <InlineMath math="B" /> berlaku bersama sama dengan hasil darab kebarangkalian setiap peristiwa.
+
+Bayangkan semua kesudahan sebagai segi empat sama unit kebarangkalian. Peristiwa <InlineMath math="A" />, iaitu dadu pertama menunjukkan nombor genap, mengambil separuh bahagian kiri, dengan lebar <InlineMath math="\tfrac12" />. Peristiwa <InlineMath math="B" />, iaitu dadu kedua menunjukkan <InlineMath math="1" /> atau <InlineMath math="2" />, mengambil satu pertiga bahagian bawah, dengan tinggi <InlineMath math="\tfrac13" />. Oleh sebab kedua-dua dadu tidak mempengaruhi satu sama lain, bahagian yang bertindih ialah segi empat tepat dengan luas <InlineMath math="\tfrac12 \cdot \tfrac13 = \tfrac16" />, iaitu <InlineMath math="P(A \cap B)" />.
+
+<MathVisual
+  title={<>Ketaksandaran sebagai segi empat tepat dengan luas P(A)P(B)</>}
+  description={<>Segi empat sama unit dengan jalur <InlineMath math="A" /> yang lebarnya separuh, jalur <InlineMath math="B" /> yang tingginya satu pertiga, dan bahagian bertindih yang luasnya satu perenam.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    ab: <InlineMath math="\tfrac16" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 1.1 }, y: { min: -0.1, max: 1.1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "a", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1 / 2, y: 0 }, { x: 1 / 2, y: 1 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "b", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 / 3 }, { x: 0, y: 1 / 3 }], appearance: "secondary" },
+      { id: "ab", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1 / 2, y: 0 }, { x: 1 / 2, y: 1 / 3 }, { x: 0, y: 1 / 3 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1 / 4, y: 2 / 3 }, placement: "center" },
+      { key: "b", objectId: "b", at: { x: 3 / 4, y: 1 / 6 }, placement: "center" },
+      { key: "ab", objectId: "ab", at: { x: 1 / 4, y: 1 / 6 }, placement: "center" },
+    ],
+  }}
+/>
+
+### Sebab Kebarangkalian Boleh Didarabkan
+
+Bagi peristiwa tak bersandar, **kebarangkalian bersyarat** sama dengan kebarangkalian biasa. Oleh sebab <InlineMath math="P(A|B) = P(A)" />, petua pendaraban menjadi:
+
+<BlockMath math="P(A \cap B) = P(A|B) \times P(B) = P(A) \times P(B)" />
+
+Gantikan <InlineMath math="P(A|B)=P(A)" /> ke dalam petua pendaraban, dan kamu akan dapat <InlineMath math="P(A\cap B)=P(A)P(B)" />.
+## Pengiraan dengan Peristiwa Tak Bersandar
+
+Setiap pengiraan di bawah **mendarabkan kebarangkalian** dua peristiwa tak bersandar. Contoh-contohnya bermula dengan dua biji dadu, kemudian sebiji dadu dan sekeping duit syiling, dan akhirnya ujian kendiri dua penderia.
+### Melambung Dua Biji Dadu
+
+Dua biji dadu adil dilambung secara tak bersandar, iaitu sebiji dadu merah dan sebiji dadu putih. Cari kebarangkalian mendapat nombor <InlineMath math="2" /> pada dadu merah dan nombor <InlineMath math="5" /> pada dadu putih.
+
+**Penyelesaian**:
+
+- Peristiwa <InlineMath math="A" />: mendapat nombor <InlineMath math="2" /> pada dadu merah
+- Peristiwa <InlineMath math="B" />: mendapat nombor <InlineMath math="5" /> pada dadu putih
+
+Kedua-dua peristiwa itu **tak bersandar** kerana keputusan dadu merah tidak mempengaruhi keputusan dadu putih.
+
+<MathContainer>
+<BlockMath math="P(A) = \frac{1}{6}" />
+<BlockMath math="P(B) = \frac{1}{6}" />
+<BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{6} \times \frac{1}{6} = \frac{1}{36}" />
+</MathContainer>
+
+Jadi kebarangkalian mendapat nombor <InlineMath math="2" /> pada dadu merah dan nombor <InlineMath math="5" /> pada dadu putih ialah <InlineMath math="\frac{1}{36}" />.
+
+### Melambung Sebiji Dadu dan Sekeping Duit Syiling
+
+Sebiji dadu adil dan sekeping duit syiling adil dilambung secara tak bersandar. Cari kebarangkalian mendapat nombor genap pada dadu dan angka pada duit syiling.
+
+**Penyelesaian**:
+
+<MathContainer>
+<BlockMath math="S_1 = \{1, 2, 3, 4, 5, 6\}" />
+<BlockMath math="S_2 = \{0, 1\}" />
+</MathContainer>
+
+- Peristiwa <InlineMath math="A" />: mendapat nombor genap pada dadu, iaitu <InlineMath math="\{2, 4, 6\}" />
+- Peristiwa <InlineMath math="B" />: mendapat angka pada duit syiling, yang diwakili oleh <InlineMath math="1" />, iaitu <InlineMath math="\{1\}" />
+
+Kedua-dua peristiwa itu **tak bersandar** kerana keputusan dadu tidak mempengaruhi keputusan duit syiling.
+
+<MathContainer>
+<BlockMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
+<BlockMath math="P(B) = \frac{1}{2}" />
+<BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
+</MathContainer>
+
+Lambung sebiji dadu dan sekeping duit syiling: ada <InlineMath math="6 \cdot 2 = 12" /> pasangan yang sama kemungkinan. Tiga pasangan yang ditonjolkan ialah nombor genap dengan gambar, jadi <InlineMath math="P = \frac{3}{12} = \frac12 \cdot \frac12" />. Setiap lajur grid ada bahagian gambar yang sama, dan beginilah rupa ketaksandaran.
+
+<MathVisual
+  title={<>Dua belas kesudahan sebiji dadu dan sekeping duit syiling</>}
+  description={<>Keputusan dadu dari kiri ke kanan dan keputusan duit syiling dari bawah ke atas, dengan tiga kesudahan nombor genap dan gambar ditonjolkan.</>}
+  labels={{
+    c12: <>gambar</>,
+    c11: <>angka</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c11", kind: "point", at: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "c12", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "c21", kind: "point", at: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "c22", kind: "point", at: { x: 2, y: 2 }, appearance: "answer" },
+      { id: "c31", kind: "point", at: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "c32", kind: "point", at: { x: 3, y: 2 }, appearance: "reference" },
+      { id: "c41", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "c42", kind: "point", at: { x: 4, y: 2 }, appearance: "answer" },
+      { id: "c51", kind: "point", at: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "c52", kind: "point", at: { x: 5, y: 2 }, appearance: "reference" },
+      { id: "c61", kind: "point", at: { x: 6, y: 1 }, appearance: "reference" },
+      { id: "c62", kind: "point", at: { x: 6, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "c12", objectId: "c12", at: { x: 1, y: 2 }, placement: "left" },
+      { key: "c11", objectId: "c11", at: { x: 1, y: 1 }, placement: "left" },
+    ],
+  }}
+/>
+
+### Ujian Kendiri Penderia yang Tak Bersandar
+
+Dua penderia pemantauan, masing-masing dengan bekalan kuasa sendiri, menjalankan ujian kendiri setiap hari. Penderia <InlineMath math="A" /> berjaya dengan kebarangkalian <InlineMath math="0.98" />, manakala penderia <InlineMath math="B" /> berjaya dengan kebarangkalian <InlineMath math="0.92" />. Berdasarkan model ketaksandaran yang dinyatakan, apakah kebarangkalian kedua-dua ujian itu berjaya?
+
+Andaian ketaksandaran ialah sebahagian daripada model ini. Kalau kedua-dua penderia berkongsi bekalan kuasa atau rangkaian, kita perlu menguji andaian itu semula.
+
+**Penyelesaian**:
+
+- Peristiwa <InlineMath math="A" />: penderia pertama lulus ujian kendirinya
+- Peristiwa <InlineMath math="B" />: penderia kedua lulus ujian kendirinya
+
+Soalan menyatakan bahawa dua ujian kendiri itu **tak bersandar**, jadi satu keputusan tidak mengubah kebarangkalian keputusan yang lain.
+
+**Pengiraan terperinci**:
+
+<MathContainer>
+<BlockMath math="P(A \cap B) = P(A) \times P(B)" />
+<BlockMath math="P(A \cap B) = 0.98 \times 0.92 = 0.9016" />
+</MathContainer>
+
+Jadi kebarangkalian kedua-dua penderia lulus ialah <InlineMath math="0.9016" /> atau <InlineMath math="90.16\%" />.
+
+## Cara Menyelesaikan Masalah Ketaksandaran
+
+Mendarab kebarangkalian boleh memberikan jawapan yang salah kalau **ketaksandaran belum disemak**. Langkah-langkah di bawah meletakkan semakan itu di awal dan diakhiri dengan pengesahan jawapan. Kalau semakan itu gagal, petua pendaraban bagi peristiwa tak bersandar langsung tidak boleh digunakan.
+
+### Semak Ketaksandaran Sebelum Mendarab
+
+Untuk menyelesaikan masalah kebarangkalian yang melibatkan peristiwa tak bersandar, ikut langkah-langkah ini:
+
+1. **Kenal pasti peristiwa** yang terlibat dalam soalan
+2. **Sahkan ketaksandaran** daripada model yang dinyatakan atau daripada kebarangkalian bersyarat
+3. **Kira kebarangkalian individu** bagi setiap peristiwa
+4. **Gunakan rumus** <InlineMath math="P(A \cap B) = P(A) \times P(B)" />
+5. **Semak jawapan** untuk melihat sama ada jawapan itu munasabah dalam konteks soalan
+
+Bagi peristiwa tak bersandar, palang ketiga ialah hasil darab dua palang yang pertama. Nombor genap pada dadu pertama ada kebarangkalian <InlineMath math="\frac12" />, nombor 1 atau 2 pada dadu kedua ada <InlineMath math="\frac13" />, dan kedua-duanya bersama ada <InlineMath math="\frac12 \cdot \frac13 = \frac16" />.
+
+<BarChart
+  title={<>Petua pendaraban bagi peristiwa tak bersandar</>}
+  description={<>Palang bagi <InlineMath math="P(A) = \frac12" />, <InlineMath math="P(B) = \frac13" /> dan <InlineMath math="P(A \cap B) = \frac16" />.</>}
+  yAxisLabel="Kebarangkalian"
+  data={[["A", 1 / 2], ["B", 1 / 3], ["A dan B", 1 / 6]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Kebarangkalian", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Semakan untuk Jawapan Akhir
+
+Kebarangkalian **kedua-dua peristiwa berlaku** tidak boleh melebihi kebarangkalian mana-mana satu peristiwa. Persilangan hanya mengandungi kesudahan yang sudah ada dalam setiap peristiwa.
+
+<BlockMath math="0\le P(A\cap B)\le\min\{P(A),P(B)\}" />
+
+Dalam contoh penderia, <InlineMath math="0.9016\le0.92" />, jadi batas ini dipenuhi. Batas ini **tidak membuktikan ketaksandaran**. Ketaksandaran tetap mesti datang daripada model atau daripada kesamaan kebarangkalian bersyarat.
+
+### Mengecam Peristiwa Tak Bersandar
+
+Perhatikan ciri-ciri berikut untuk mengenal pasti peristiwa tak bersandar:
+
+**Tak bersandar mengikut model yang dinyatakan**:
+- lambungan duit syiling adil yang berasingan
+- cabutan kad dengan pengembalian, dan pek dikocok semula
+- lambungan dadu adil yang berasingan
+- percubaan nombor rawak yang tak bersandar
+
+**Situasi yang tidak boleh terus dianggap tak bersandar**:
+- Mencabut kad tanpa pengembalian
+- Tinggi dan berat badan seseorang, kecuali ada model atau data yang mewajarkan ketaksandaran
+- Markah ujian murid yang sama dalam subjek yang berlainan, kecuali ketaksandarannya sudah dipastikan
+- Suhu udara dan kelembapan, kecuali ketaksandarannya sudah dipastikan bagi model yang dinyatakan
+
+## Latihan
+
+1. Dua keping duit syiling adil dilambung secara tak bersandar. Cari kebarangkalian mendapat gambar pada duit syiling pertama dan angka pada duit syiling kedua.
+
+2. Sebiji dadu adil dilambung, dan secara tak bersandar, sekeping kad dicabut daripada satu pek kad terup biasa yang sudah dikocok. Kira kebarangkalian mendapat nombor perdana pada dadu dan kad merah.
+
+3. Dalam sebuah kelas, kebarangkalian seorang murid lulus matematik ialah <InlineMath math="0.85" /> dan kebarangkalian lulus fizik ialah <InlineMath math="0.78" />. Kalau kedua-dua subjek itu tak bersandar, apakah kebarangkalian murid itu lulus kedua-dua subjek?
+
+4. Tiga keping duit syiling adil dilambung secara tak bersandar. Cari kebarangkalian mendapat tepat dua angka.
+
+Cuba setiap latihan dahulu sebelum membaca jalan kerjanya. Nyatakan **mengapa peristiwa itu tak bersandar** sebelum kamu mendarab kebarangkaliannya.
+### Jalan Kerja
+
+**Soalan 1**
+
+- Peristiwa <InlineMath math="A" />: gambar pada duit syiling pertama, <InlineMath math="P(A) = \frac{1}{2}" />
+- Peristiwa <InlineMath math="B" />: angka pada duit syiling kedua, <InlineMath math="P(B) = \frac{1}{2}" />
+
+Kedua-dua peristiwa itu tak bersandar kerana keputusan duit syiling pertama tidak mempengaruhi duit syiling kedua.
+
+<BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
+
+**Soalan 2**
+
+- Peristiwa <InlineMath math="A" />: nombor perdana pada dadu, iaitu <InlineMath math="\{2, 3, 5\}" />, jadi <InlineMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
+- Peristiwa <InlineMath math="B" />: kad merah (lekuk dan daiman), jadi <InlineMath math="P(B) = \frac{26}{52} = \frac{1}{2}" />
+
+Kedua-dua peristiwa itu tak bersandar.
+
+<BlockMath math="P(A \cap B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
+
+**Soalan 3**
+
+- Peristiwa <InlineMath math="A" />: lulus matematik, <InlineMath math="P(A) = 0.85" />
+- Peristiwa <InlineMath math="B" />: lulus fizik, <InlineMath math="P(B) = 0.78" />
+
+Oleh sebab kedua-dua subjek itu tak bersandar:
+
+<BlockMath math="P(A \cap B) = 0.85 \times 0.78 = 0.663" />
+
+Jadi kebarangkalian lulus kedua-dua subjek ialah <InlineMath math="0.663" /> atau <InlineMath math="66.3\%" />.
+
+**Soalan 4**
+
+**Kaedah 1: Penyenaraian Terus**
+
+Gunakan <InlineMath math="0" /> untuk gambar dan <InlineMath math="1" /> untuk angka. Ruang sampel bagi <InlineMath math="3" /> keping duit syiling mengandungi <InlineMath math="8" /> kesudahan:
+
+<BlockMath math="\left\{\begin{gathered}
+000, 001, 010, 011, \\
+100, 101, 110, 111
+\end{gathered}\right\}" />
+
+Tepat dua angka berlaku dalam <InlineMath math="\{011, 101, 110\}" />, jadi ada <InlineMath math="3" /> kesudahan yang dikehendaki.
+
+<BlockMath math="P(\text{tepat 2 angka}) = \frac{3}{8}" />
+
+**Kaedah 2: Menggunakan Taburan Binomial**
+
+Untuk <InlineMath math="n = 3" /> lambungan dengan kebarangkalian kejayaan (angka) <InlineMath math="p = \frac{1}{2}" />, kebarangkalian mendapat tepat <InlineMath math="k = 2" /> kejayaan ialah:
+
+<BlockMath math="P(X = k) = \binom{n}{k} \times p^k \times (1-p)^{n-k}" />
+
+Gantikan nilai-nilainya:
+
+<BlockMath math="P(\text{tepat 2 angka}) = \binom{3}{2} \times \left(\frac{1}{2}\right)^2 \times \left(\frac{1}{2}\right)^1" />
+
+**Penerangan langkah demi langkah**:
+- <InlineMath math="\binom{3}{2} = 3" /> (bilangan cara memilih <InlineMath math="2" /> kedudukan daripada <InlineMath math="3" /> untuk angka)
+- <InlineMath math="\left(\frac{1}{2}\right)^2 = \frac{1}{4}" /> (kebarangkalian <InlineMath math="2" /> angka)
+- <InlineMath math="\left(\frac{1}{2}\right)^1 = \frac{1}{2}" /> (kebarangkalian <InlineMath math="1" /> gambar)
+
+Jadi, pengiraannya ialah:
+
+<BlockMath math="P(\text{tepat 2 angka}) = 3 \times \frac{1}{4} \times \frac{1}{2} = 3 \times \frac{1}{8} = \frac{3}{8}" />
+
+Jadi kebarangkalian mendapat tepat dua angka ialah <InlineMath math="\frac{3}{8}" />.

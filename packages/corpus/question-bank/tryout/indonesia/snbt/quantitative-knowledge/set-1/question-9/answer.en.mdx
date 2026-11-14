@@ -1,22 +1,50 @@
-Every statement is about factors, so the first step is **writing <InlineMath math="n" /> as a product of primes**.
+The two logarithms in the equation are reciprocals of each other, so the equation turns into a quadratic in one variable. After that, every candidate has to pass **the conditions on the base and the argument**. The plan: write the conditions first, replace the logarithm with one variable, solve each case, and then filter the candidates.
+
+# Writing the conditions
+
+The base of a logarithm must be positive and not equal to <InlineMath math="1" />, and its argument (the number you take the logarithm of) must be positive. Here <InlineMath math="x" /> and <InlineMath math="6-x" /> each act as a base and as an argument.
+
+<BlockMath math="0<x<6,\qquad x\neq1,\qquad x\neq5" />
+
+Any candidate outside these conditions **has to be thrown out**, even if the arithmetic looks neat.
+
+# Replacing with one variable
+
+Swapping the base and the argument turns a logarithm into its reciprocal: <InlineMath math="{}^{b}\log a=\frac{1}{{}^{a}\log b}" />. Let <InlineMath math="u={}^{x}\log(6-x)" />. Then the second term equals <InlineMath math="\frac1u" />.
 
 <BlockMath math="\begin{aligned}
-n&=1\times2\times3\times4\times5\times6=720\\
-&=2^4\times3^2\times5
+u+\frac1u&=\frac52\\
+2u^2-5u+2&=0\\
+(2u-1)(u-2)&=0
 \end{aligned}" />
 
-# Counting the factors
+So there are **two cases**, <InlineMath math="u=2" /> or <InlineMath math="u=\frac12" />.
 
-Every positive factor of <InlineMath math="n" /> has the form <InlineMath math="2^a3^b5^c" /> with <InlineMath math="0\le a\le4" />, <InlineMath math="0\le b\le2" />, and <InlineMath math="0\le c\le1" />. **Each exponent is chosen independently**, so the number of factors is the product of the numbers of choices.
+# Solving each case
 
-<BlockMath math="(4+1)(2+1)(1+1)=5\times3\times2=30" />
+For <InlineMath math="u=2" />, the definition of a logarithm gives <InlineMath math="6-x=x^2" />.
 
-The third statement is **true**. An odd factor contains no 2, so only <InlineMath math="a=0" /> is allowed. There are <InlineMath math="1\times3\times2=6" /> of them, so the first statement is false.
+<BlockMath math="x^2+x-6=0\quad\Rightarrow\quad(x+3)(x-2)=0\quad\Rightarrow\quad x=-3\ \text{or}\ x=2" />
 
-# Checking perfect squares
+For <InlineMath math="u=\frac12" />, the definition gives <InlineMath math="6-x=\sqrt x" />. Square both sides. **Squaring can create a fake candidate**, so you must check the results again.
 
-A perfect square has **an even exponent on every prime factor**. In <InlineMath math="5n=2^4\times3^2\times5^2" /> every exponent is even, so <InlineMath math="5n=3600=60^2" />. The second statement is true.
+<BlockMath math="(6-x)^2=x\quad\Rightarrow\quad x^2-13x+36=0\quad\Rightarrow\quad(x-4)(x-9)=0" />
 
-A factor of <InlineMath math="n" /> that is a perfect square needs <InlineMath math="a\in\{0,2,4\}" />, <InlineMath math="b\in\{0,2\}" />, and <InlineMath math="c=0" />. There are <InlineMath math="3\times2\times1=6" /> of them, namely 1, 4, 9, 16, 36, and 144. The fourth statement is false because it says 4.
+The candidates from this case are <InlineMath math="x=4" /> and <InlineMath math="x=9" />.
 
-So the first statement is **false**, the second is **true**, the third is **true**, and the fourth is **false**.
+# Filtering the candidates
+
+The candidate <InlineMath math="x=-3" /> is thrown out because the base <InlineMath math="x" /> is negative. The candidate <InlineMath math="x=9" /> is thrown out because <InlineMath math="6-9=-3" /> is negative. It also **fails the equation before squaring**, since <InlineMath math="6-9=-3" /> isn't equal to <InlineMath math="\sqrt9=3" />. The candidates <InlineMath math="x=2" /> and <InlineMath math="x=4" /> meet every condition.
+
+<BlockMath math="\begin{aligned}
+x=2:&\quad {}^{2}\log4+{}^{4}\log2=2+\frac12=\frac52\\
+x=4:&\quad {}^{4}\log2+{}^{2}\log4=\frac12+2=\frac52
+\end{aligned}" />
+
+The sum of the solutions is <InlineMath math="2+4=6" />.
+
+# The wrong options
+
+The option <InlineMath math="2" /> comes from solving only the case <InlineMath math="u=2" />. The option <InlineMath math="3" /> comes from keeping <InlineMath math="-3" />, which gives <InlineMath math="-3+2+4" />. The option <InlineMath math="12" /> comes from checking no condition at all and adding all four candidates: <InlineMath math="-3+2+4+9" />. The option <InlineMath math="15" /> comes from **adding the fake candidate <InlineMath math="9" />**, which gives <InlineMath math="2+4+9" />.
+
+So the sum of all real numbers that satisfy the equation is <InlineMath math="6" />.

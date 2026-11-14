@@ -1,20 +1,33 @@
-Soal ini membutuhkan **hari pertama bulan Februari**, karena hari itu menentukan tanggal berapa saja yang jatuh pada hari Minggu. Setelah itu, periksa apakah ada hari Minggu yang juga tanggal kelipatan <InlineMath math="5" />, supaya hari tutup tidak dihitung dua kali.
+Ada dua siklus yang berjalan bersamaan: nama hari berulang setiap <InlineMath math="7" /> hari, dan hari pasaran berulang setiap <InlineMath math="5" /> hari. Jadi, cukup hitung **berapa hari jarak dari 20 Juli ke 1 Desember**, lalu cari sisa pembagiannya oleh <InlineMath math="7" /> dan oleh <InlineMath math="5" /> secara terpisah.
 
-Januari memiliki <InlineMath math="31" /> hari, jadi <InlineMath math="1" /> Februari berada <InlineMath math="31" /> hari setelah <InlineMath math="1" /> Januari. Satu minggu berisi <InlineMath math="7" /> hari, sehingga yang menentukan adalah sisa pembagiannya:
+Hitung jaraknya bulan demi bulan. Ingat panjang setiap bulan: Juli <InlineMath math="31" /> hari, Agustus <InlineMath math="31" />, September <InlineMath math="30" />, Oktober <InlineMath math="31" />, dan November <InlineMath math="30" />.
 
-<BlockMath math="31=4\times7+3" />
+| Bagian | Banyak hari |
+| --- | --- |
+| 21 sampai 31 Juli | <InlineMath math="11" /> |
+| Agustus | <InlineMath math="31" /> |
+| September | <InlineMath math="30" /> |
+| Oktober | <InlineMath math="31" /> |
+| November | <InlineMath math="30" /> |
+| 1 Desember | <InlineMath math="1" /> |
+| Jumlah | <InlineMath math="134" /> |
 
-Hari Jumat maju <InlineMath math="3" /> hari menjadi Senin. Jadi, <InlineMath math="1" /> Februari <InlineMath math="2027" /> jatuh pada hari Senin.
+Tanggal 1 Desember adalah <InlineMath math="134" /> hari setelah 20 Juli. Sekarang bagi jarak itu dengan panjang tiap siklus:
 
-Februari <InlineMath math="2027" /> memiliki <InlineMath math="28" /> hari. Hari Minggu jatuh pada tanggal <InlineMath math="7" />, <InlineMath math="14" />, <InlineMath math="21" />, dan <InlineMath math="28" />. Tanggal kelipatan <InlineMath math="5" /> adalah <InlineMath math="5" />, <InlineMath math="10" />, <InlineMath math="15" />, <InlineMath math="20" />, dan <InlineMath math="25" />. Tidak ada tanggal yang muncul di kedua daftar, jadi **tidak ada hari tutup yang terhitung dua kali**.
+<BlockMath math="\begin{aligned}
+134 &= 7\times19+1 \\
+134 &= 5\times26+4
+\end{aligned}" />
 
-<BlockMath math="\text{Hari buka}=28-4-5=19" />
+Sisa <InlineMath math="1" /> pada siklus tujuh hari berarti nama hari maju satu langkah dari Senin, yaitu Selasa. Sisa <InlineMath math="4" /> pada siklus lima hari berarti pasaran maju empat langkah dari Pahing: Pon, Wage, Kliwon, Legi. Jadi, 1 Desember jatuh pada Selasa Legi.
 
-Pilihan lain berasal dari kesalahan berikut:
+Cek dengan jalan lain. Pasangan nama hari dan pasaran yang sama berulang setiap <InlineMath math="7\times5=35" /> hari. Setelah <InlineMath math="3\times35=105" /> hari, yaitu pada 2 November, tanggalnya kembali Senin Pahing. Dari 2 November ke 1 Desember ada <InlineMath math="29" /> hari, dengan <InlineMath math="29=7\times4+1" /> dan <InlineMath math="29=5\times5+4" />. Hasilnya sama: Selasa Legi.
 
-- <InlineMath math="24" /> muncul jika hanya hari Minggu yang dikurangi.
-- <InlineMath math="23" /> muncul jika hanya tanggal kelipatan <InlineMath math="5" /> yang dikurangi.
-- <InlineMath math="20" /> muncul jika <InlineMath math="1" /> Februari dianggap tetap hari Jumat. Hari Minggu lalu jatuh pada tanggal <InlineMath math="3" />, <InlineMath math="10" />, <InlineMath math="17" />, dan <InlineMath math="24" />, sehingga tanggal <InlineMath math="10" /> terhitung sekali dan hanya <InlineMath math="8" /> hari yang tutup.
-- <InlineMath math="18" /> muncul jika Februari dianggap memiliki lima hari Minggu.
+Pilihan lain berasal dari salah hitung yang berbeda:
 
-Jadi, toko roti itu buka <InlineMath math="19" /> hari pada bulan Februari <InlineMath math="2027" />.
+- Selasa Pon muncul jika sisa <InlineMath math="1" /> dari siklus tujuh hari juga dipakai untuk pasaran. Pasaran harus memakai sisa pembagian oleh <InlineMath math="5" />, yaitu <InlineMath math="4" />.
+- Rabu Pahing muncul jika jaraknya dihitung <InlineMath math="135" /> hari karena 20 Juli ikut dihitung. Jarak dari suatu tanggal tidak menghitung tanggal awalnya.
+- Kamis Pon muncul jika September dan November dianggap <InlineMath math="31" /> hari, sehingga jaraknya menjadi <InlineMath math="136" /> hari.
+- Senin Kliwon muncul jika perhitungan berhenti pada 30 November, yaitu <InlineMath math="133" /> hari, dan hari terakhir menuju 1 Desember terlupa.
+
+Jadi, tanggal 1 Desember tahun itu jatuh pada Selasa Legi.

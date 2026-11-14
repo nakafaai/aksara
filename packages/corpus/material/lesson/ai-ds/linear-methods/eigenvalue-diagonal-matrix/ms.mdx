@@ -1,0 +1,206 @@
+export const metadata = {
+    title: "Nilai Eigen Matriks Pepenjuru dan Matriks Segi Tiga",
+    description: "Baca nilai eigen terus daripada unsur pepenjuru matriks pepenjuru dan segi tiga, termasuk hubungan penentu dengan surih.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-07-12",
+    dateModified: "2026-09-19",
+    subject: "Kaedah Linear AI",
+};
+
+## Matriks Pepenjuru dan Sifat Istimewanya
+
+Bagi matriks pepenjuru dan matriks segi tiga, setiap nilai eigen boleh <Highlight>dibaca terus daripada pepenjuru utama</Highlight>, bersama kegandaan algebranya. Matriks itu mungkin mempunyai salah satu bentuk berikut:
+
+Tiga bentuk di bawah mewakili matriks pepenjuru, matriks segi tiga atas dan matriks segi tiga bawah <InlineMath math="A \in \mathbb{K}^{n \times n}" />.
+
+<MathContainer>
+<BlockMath math="A = \begin{pmatrix} a_{11} & 0 & \cdots & 0 \\ 0 & a_{22} & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & a_{nn} \end{pmatrix}" />
+<BlockMath math="A = \begin{pmatrix} a_{11} & * & \cdots & * \\ 0 & a_{22} & \cdots & * \\ \vdots & \ddots & \ddots & \vdots \\ 0 & \cdots & 0 & a_{nn} \end{pmatrix}" />
+<BlockMath math="A = \begin{pmatrix} a_{11} & 0 & \cdots & 0 \\ * & a_{22} & \ddots & \vdots \\ \vdots & \vdots & \ddots & 0 \\ * & * & \cdots & a_{nn} \end{pmatrix}" />
+</MathContainer>
+
+Bagi ketiga-tiga bentuk ini, nilai eigennya ialah unsur pepenjuru utama:
+
+<BlockMath math="\lambda_1 = a_{11}, \ldots, \lambda_n = a_{nn}" />
+
+Kenapa perkara ini benar? Kerana <InlineMath math="\chi_A(t) = \det(A - t \cdot I) = (a_{11} - t) \cdots (a_{nn} - t)" />, dengan punca <InlineMath math="a_{11}, \ldots, a_{nn}" />.
+
+Bagi matriks segi tiga, kamu tidak perlu kembangan penentu penuh atau prosedur mencari punca.
+
+Matriks pepenjuru menskalakan setiap paksi koordinat dengan unsur pepenjurunya sendiri. Bagi <InlineMath math="D=\operatorname{diag}(2,\tfrac12)" />, vektor <InlineMath math="e_1" /> dan <InlineMath math="e_2" /> ialah vektor eigen dengan nilai eigen <InlineMath math="2" /> dan <InlineMath math="\tfrac12" />, manakala vektor campuran seperti <InlineMath math="(1,1)" /> berubah arah.
+
+<MathVisual
+  title={<><InlineMath math="D=\operatorname{diag}(2,\tfrac12)" /> meregangkan paksi</>}
+  description={<>Segi empat sama unit yang kelabu menjadi segi empat tepat ungu. Vektor paksi hanya berubah panjang, mengikut unsur pepenjuru <InlineMath math="2" /> dan <InlineMath math="\tfrac12" />. Vektor hijau kebiruan <InlineMath math="(1,1)" /> berubah menjadi vektor magenta <InlineMath math="(2,\tfrac12)" />, yang keluar dari garisnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1 / 2 }, { x: 0, y: 1 / 2 }], appearance: "secondary" },
+      { id: "mixed", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "turned", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 / 2 }, appearance: "answer" },
+    ],
+  }}
+/>
+
+## Matriks Segi Tiga Atas dan Segi Tiga Bawah
+
+Matriks segi tiga mempunyai sifat yang sama dengan matriks pepenjuru. Bagi matriks segi tiga atas dan segi tiga bawah, nilai eigennya tetap unsur pepenjuru utama.
+
+Ini berlaku kerana apabila kita mengira <InlineMath math="\det(A - tI)" />, unsur di atas atau di bawah pepenjuru utama tidak mempengaruhi pengiraan penentu. Struktur segi tiga membolehkan penentu dikira sebagai **hasil darab unsur pepenjuru**.
+
+Sebagai contoh, unsur luar pepenjuru boleh berubah sementara **nilai eigen yang sama** kekal:
+
+<BlockMath math="T=\begin{pmatrix}2&4&1\\0&2&3\\0&0&-1\end{pmatrix},\qquad \chi_T(t)=(2-t)^2(-1-t)" />
+
+Jadi, <InlineMath math="2" /> muncul dua kali dan <InlineMath math="-1" /> sekali. Ini memberikan nilai eigen, tetapi dengan sendirinya tidak membuktikan bahawa matriks itu boleh dipepenjurukan.
+
+Bagi <InlineMath math="T" /> di atas, nilai eigen <InlineMath math="2" /> dan <InlineMath math="-1" /> boleh dibaca terus daripada pepenjuru. Putar rajah tiga dimensi ini: vektor <InlineMath math="e_1" /> hanya diregangkan dua kali ganda di sepanjang paksinya sendiri, kerana lajur pertama <InlineMath math="T" /> ialah <InlineMath math="(2,0,0)^T" />. Vektor <InlineMath math="v=(1,-1,1)^T" /> memenuhi <InlineMath math="Tv=-v" />, jadi imejnya menghala tepat ke arah bertentangan. Unsur <InlineMath math="4" />, <InlineMath math="1" /> dan <InlineMath math="3" /> di atas pepenjuru mengubah vektor eigen, tetapi tidak pernah mengubah nilai eigen.
+
+<MathVisual
+  title={<>Arah eigen bagi matriks segi tiga <InlineMath math="T" /></>}
+  description={<>Tembereng ungu <InlineMath math="e_1" /> dan imej orennya <InlineMath math="Te_1=2e_1" />. Tembereng hijau kebiruan <InlineMath math="v=(1,-1,1)^T" /> dan imej magentanya <InlineMath math="Tv=-v" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 2.5 }, y: { min: -1.5, max: 1.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "isometric", target: { x: 0.5, y: 0, z: 0 } },
+    objects: [
+      { id: "te1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 0, z: 0 }, appearance: "primary" },
+      { id: "e1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 0, z: 0 }, appearance: "secondary" },
+      { id: "v", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: -1, z: 1 }, appearance: "construction" },
+      { id: "tv", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: -1, y: 1, z: -1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "te1", objectId: "te1", at: { x: 2, y: 0, z: 0 }, placement: "right" },
+      { key: "e1", objectId: "e1", at: { x: 1, y: 0, z: 0 }, placement: "below" },
+      { key: "v", objectId: "v", at: { x: 1, y: -1, z: 1 }, placement: "below-right" },
+      { key: "tv", objectId: "tv", at: { x: -1, y: 1, z: -1 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "te1": <InlineMath math="Te_1=2e_1" />,
+    "e1": <InlineMath math="e_1" />,
+    "v": <InlineMath math="v=(1,-1,1)^T" />,
+    "tv": <InlineMath math="Tv=-v" />,
+  }}
+/>
+
+## Mengira Nilai Eigen Matriks Bukan Segi Tiga
+
+Peraturan pepenjuru ini khas untuk matriks segi tiga. Sebaik sahaja matriks tidak lagi berbentuk segi tiga, nilai eigennya tersembunyi dalam polinomial ciri. Jadi, kerja kita beralih daripada membaca unsur pepenjuru kepada **mencari punca**.
+
+### Nilai Eigen Kompleks
+
+Ambil matriks berikut:
+
+<BlockMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" />
+
+Polinomial cirinya ialah:
+
+<MathContainer>
+<BlockMath math="\chi_A(t) = \det \begin{pmatrix} 1-t & -1 \\ 1 & 1-t \end{pmatrix}" />
+<BlockMath math="\begin{aligned}  &amp;= (1-t) \cdot (1-t) - 1 \cdot (-1) \\ &amp;= t^2 - 2t + 2 \end{aligned}" />
+</MathContainer>
+
+<BlockMath math="t^2-2t+2=0\iff(t-1)^2=-1\iff t=1\pm i" />
+
+**Punca polinomial ciri ini** ialah <InlineMath math="\lambda_1 = 1 + i" /> dan <InlineMath math="\lambda_2 = 1 - i" />.
+
+### Nilai Eigen Sifar
+
+Ambil matriks berikut:
+
+<BlockMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" />
+
+Polinomial cirinya ialah:
+
+<MathContainer>
+<BlockMath math="\chi_A(t) = \det \begin{pmatrix} 1-t & -i \\ i & 1-t \end{pmatrix}" />
+<BlockMath math="\begin{aligned}  &amp;= (1-t) \cdot (1-t) - i \cdot (-i) \\ &amp;= t^2 - 2t \end{aligned}" />
+</MathContainer>
+
+**Punca polinomial ciri ini** ialah <InlineMath math="\lambda_1 = 2" /> dan <InlineMath math="\lambda_2 = 0" />.
+
+Nilai eigen <InlineMath math="1\pm i=\sqrt2\,e^{\pm i\pi/4}" /> mempunyai modulus <InlineMath math="\sqrt2" /> dan sudut <InlineMath math="45^\circ" />. Kenakan <InlineMath math="A" /> pada <InlineMath math="e_1" /> berulang kali, dan setiap langkah memutarkan vektor itu sebanyak sudut tersebut serta meregangkannya mengikut modulus itu.
+
+<MathVisual
+  title={<>Kuasa <InlineMath math="A=\begin{pmatrix}1&-1\\1&1\end{pmatrix}" /> memutar dan meregang</>}
+  description={<>Rantaian tembereng magenta menyambungkan <InlineMath math="e_1" />, <InlineMath math="Ae_1" />, <InlineMath math="A^2e_1" />, <InlineMath math="A^3e_1" /> dan <InlineMath math="A^4e_1=(-4,0)" />. Setiap langkah berputar sebanyak <InlineMath math="45^\circ" /> dan meregang sebanyak <InlineMath math="\sqrt2" />, jadi tiada arah nyata yang kekal pada garisnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 1.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "start", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "fourth", kind: "segment", from: { x: 0, y: 0 }, to: { x: -4, y: 0 }, appearance: "construction" },
+      { id: "iterates", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 2 }, { x: -2, y: 2 }, { x: -4, y: 0 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "fourth", objectId: "fourth", at: { x: -4, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "start": <InlineMath math="e_1" />,
+    "fourth": <InlineMath math="A^4e_1" />,
+  }}
+/>
+
+## Pemfaktoran Polinomial Ciri
+
+Apabila <InlineMath math="A \in \mathbb{C}^{n \times n}" /> mempunyai nilai eigen <InlineMath math="\lambda_1, \ldots, \lambda_n" /> yang **dibilang bersama kegandaan algebra**, polinomial cirinya terfaktor seperti berikut:
+
+<BlockMath math="\chi_A(t) = (\lambda_1 - t) \cdots (\lambda_n - t)" />
+
+Katakan <InlineMath math="\sigma(A)" /> ialah set terhingga bagi nilai eigen <InlineMath math="A" /> yang berbeza. Jumlah kegandaan algebranya ialah <InlineMath math="n" />:
+
+<BlockMath math="\sum_{\lambda \in \sigma(A)} \mu_A(\lambda) = n" />
+
+Dalam bentuk yang lebih padat:
+
+<BlockMath math="\chi_A(t) = \prod_{\lambda \in \sigma(A)} (\lambda - t)^{\mu_A(\lambda)}" />
+
+Sifat ini juga berlaku secara semula jadi bagi nilai eigen kompleks matriks yang unsurnya nyata. Nilai eigen boleh jadi nombor nyata atau pasangan konjugat kompleks.
+
+## Hubungan antara Penentu dan Surih
+
+Jika polinomial ciri <InlineMath math="\chi_A(t)" /> terfaktor sepenuhnya kepada faktor linear atas <InlineMath math="\mathbb{K}" />, matriks <InlineMath math="A" /> mempunyai <InlineMath math="n" /> nilai eigen <InlineMath math="\lambda_1, \ldots, \lambda_n" /> di situ, yang dibilang bersama kegandaannya. Hasil tambah dan hasil darabnya memenuhi:
+
+<MathContainer>
+<BlockMath math="\det A = \prod_{i=1}^n \lambda_i" />
+<BlockMath math="\text{tr } A = \sum_{i=1}^n \lambda_i" />
+</MathContainer>
+
+**Penentu ialah hasil darab** semua nilai eigen, dan **surih ialah hasil tambah** semua nilai eigen.
+
+Mari semak dengan contoh kita tadi:
+
+Bagi matriks berikut dengan nilai eigen <InlineMath math="\lambda_1 = 1 + i" /> dan <InlineMath math="\lambda_2 = 1 - i" />:
+
+<BlockMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" />
+
+Kita boleh semak nilai eigen ini menggunakan penentu dan surih:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} \det A &amp;= 1 \cdot 1 - 1 \cdot (-1) \\ &amp;= 2 \\ &amp;= \lambda_1 \cdot \lambda_2 \end{aligned}" />
+<BlockMath math="\text{tr } A = 1 + 1 = 2 = \lambda_1 + \lambda_2" />
+</MathContainer>
+
+Bagi matriks berikut dengan nilai eigen <InlineMath math="\lambda_1 = 2" /> dan <InlineMath math="\lambda_2 = 0" />:
+
+<BlockMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" />
+
+Kita boleh semak nilai eigen ini menggunakan penentu dan surih:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} \det A &amp;= 1 \cdot 1 - i \cdot (-i) \\ &amp;= 0 \\ &amp;= \lambda_1 \cdot \lambda_2 \end{aligned}" />
+<BlockMath math="\text{tr } A = 1 + 1 = 2 = \lambda_1 + \lambda_2" />
+</MathContainer>
+
+Identiti ini berguna sebagai semakan, tetapi tidak menentukan setiap nilai eigen bagi matriks am apabila <InlineMath math="n > 2" />. Satu akibat langsungnya ialah:
+
+<BlockMath math="\det A = 0 \quad \Longleftrightarrow \quad 0 \in \sigma(A)" />
+
+Jadi, matriks segi empat sama itu singular tepat apabila sifar ialah salah satu nilai eigennya.

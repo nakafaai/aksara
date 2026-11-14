@@ -1,18 +1,26 @@
-Count the edge dots of a <InlineMath math="k\times k" /> arrangement carefully, because **each corner dot lies on two sides at once**.
+This question uses three different bases for its percentages. The <InlineMath math="40\%" /> rise is taken from the starting price, store P's discount from the raised price, and store Q's discount from the starting price. The cut you're asked for is taken from **the price store Q is charging now**, because that's the price being lowered.
 
-Each side has <InlineMath math="k" /> dots. Adding the four sides directly counts every corner twice. There are <InlineMath math="4" /> corners, so
+Both stores start at the same price, so say the starting price is <InlineMath math="100" />. It's only a reference, so the percentage you get works for any starting price.
 
-<BlockMath math="\text{edge dots}=4k-4=4(k-1)" />
+Work out store P's price first. After the <InlineMath math="40\%" /> rise it's <InlineMath math="140" />. The discount is <InlineMath math="40\%" /> of <InlineMath math="140" />:
 
-Check with the table: <InlineMath math="4(2-1)=4" />, <InlineMath math="4(3-1)=8" />, and <InlineMath math="4(4-1)=12" />. For a <InlineMath math="15\times15" /> arrangement:
+<BlockMath math="\text{Store P}: \quad 140 - 0.4\times140 = 140-56 = 84" />
 
-<BlockMath math="4(15-1)=56" />
+Now store Q's price. It also rises to <InlineMath math="140" />, but its discount is <InlineMath math="20\%" /> of the starting price <InlineMath math="100" />, which is <InlineMath math="20" />:
 
-The other options come from these mistakes:
+<BlockMath math="\text{Store Q}: \quad 140 - 0.2\times100 = 140-20 = 120" />
 
-- <InlineMath math="60" /> is <InlineMath math="4\times15" />, counting the corners twice.
-- <InlineMath math="64" /> is <InlineMath math="4\times16" />, as if each side had <InlineMath math="16" /> dots.
-- <InlineMath math="169" /> is <InlineMath math="13^2" />, the dots **inside** the square, not on the edge.
-- <InlineMath math="225" /> is <InlineMath math="15^2" />, all the dots.
+Store Q has to go from <InlineMath math="120" /> down to <InlineMath math="84" />. Compare the gap with store Q's current price:
 
-So there are <InlineMath math="56" /> dots on the edge.
+<BlockMath math="\frac{120-84}{120}\times100\% = \frac{36}{120}\times100\% = 30\%" />
+
+Check it: <InlineMath math="120" /> minus <InlineMath math="30\%" /> of <InlineMath math="120" /> is <InlineMath math="120-36=84" />, exactly store P's price.
+
+Each other option comes from mixing up a base:
+
+- <InlineMath math="20\%" /> comes from thinking that a <InlineMath math="40\%" /> rise and then a <InlineMath math="40\%" /> cut brings store P back to the starting price, or from simply subtracting <InlineMath math="40\%-20\%" />. Store P's cut is taken from <InlineMath math="140" />, so its price actually ends at <InlineMath math="84" />.
+- <InlineMath math="25\%" /> comes from taking store Q's discount from <InlineMath math="140" />, which makes Q's price <InlineMath math="112" /> and the cut <InlineMath math="28/112" />. The question says store Q's discount is taken from the starting price.
+- <InlineMath math="28\%" /> comes from the same slip plus one more: Q's price is taken as <InlineMath math="112" />, and then the gap of <InlineMath math="28" /> is read against the starting price <InlineMath math="100" />.
+- <InlineMath math="36\%" /> uses the right prices, but compares the gap of <InlineMath math="36" /> with the starting price <InlineMath math="100" /> instead of store Q's current price.
+
+So store Q has to cut its current price by <InlineMath math="30\%" />.

@@ -1,15 +1,74 @@
-Jalan, jarak mendatar, dan selisih ketinggian membentuk segitiga siku-siku. Yang diketahui sisi mendatar dan yang ditanya sisi tegak, jadi **perbandingan yang tepat adalah <InlineMath math="\tan\alpha" />**. Dari <InlineMath math="\sin\alpha=\frac{7}{25}" />, sisi tegak <InlineMath math="7" /> dan sisi miring <InlineMath math="25" />, sehingga sisi mendatar <InlineMath math="\sqrt{25^2-7^2}=24" />.
+Soal ini tidak memberi tinggi tiang secara langsung. Tinggi itu harus dicari dari bayangan pada dinding. Setelah itu, kamu perlu memeriksa **apakah bayangan masih mengenai dinding** pada setiap sudut elevasi, karena dinding memotong bagian bayangan yang jatuh di tanah.
+
+# Tinggi tiang
+
+Sinar matahari yang melewati puncak tiang membentuk sudut <InlineMath math="45^\circ" /> dengan tanah. Karena <InlineMath math="\tan45^\circ=1" />, sinar itu turun <InlineMath math="1\text{ m}" /> untuk setiap <InlineMath math="1\text{ m}" /> mendatar. Sampai di dinding, sinar sudah berjalan <InlineMath math="6\text{ m}" /> mendatar dan turun <InlineMath math="6\text{ m}" />, lalu mengenai dinding pada ketinggian <InlineMath math="3\text{ m}" />:
 
 <BlockMath math="\begin{aligned}
-\tan\alpha&=\frac{7}{24} \\
-h&=840\cdot\frac{7}{24}=245\text{ m}
+h-6\cdot\tan45^\circ&=3 \\
+h-6&=3 \\
+h&=9\text{ m}
 \end{aligned}" />
 
-Cek: panjang jalan <InlineMath math="\sqrt{840^2+245^2}=875\text{ m}" />, dan <InlineMath math="\frac{245}{875}=\frac{7}{25}=\sin\alpha" />.
+Jadi **tinggi tiang <InlineMath math="9\text{ m}" />**, bukan <InlineMath math="6\text{ m}" />. Pada elevasi <InlineMath math="45^\circ" />, bagian bayangan di tanah hanya <InlineMath math="6\text{ m}" /> karena terhenti oleh dinding.
 
-Jadi, titik <InlineMath math="Q" /> lebih tinggi <InlineMath math="245\text{ m}" /> daripada titik <InlineMath math="P" />.
+# Bayangan pada elevasi enam puluh derajat
 
-- <InlineMath math="235{,}2\text{ m}" /> mengalikan jarak mendatar dengan <InlineMath math="\sin\alpha" />, padahal <InlineMath math="\sin\alpha" /> membandingkan sisi tegak dengan panjang jalan.
-- <InlineMath math="806{,}4\text{ m}" /> mengalikan jarak mendatar dengan <InlineMath math="\cos\alpha" />.
-- <InlineMath math="875\text{ m}" /> adalah panjang jalan, bukan selisih ketinggian.
-- <InlineMath math="2{.}880\text{ m}" /> membagi jarak mendatar dengan <InlineMath math="\tan\alpha" />, sehingga perbandingannya terbalik.
+Kalau tidak ada dinding, panjang bayangan adalah tinggi tiang dibagi <InlineMath math="\tan60^\circ" />:
+
+<BlockMath math="\frac{9}{\tan60^\circ}=\frac{9}{\sqrt3}=3\sqrt3\approx5{,}2\text{ m}" />
+
+Nilai <InlineMath math="3\sqrt3\approx5{,}2" /> kurang dari <InlineMath math="6" />, jadi **bayangan tidak sampai ke dinding** dan seluruhnya jatuh di tanah.
+
+<MathVisual
+  title={<>Tiang, dinding, dan dua sinar matahari</>}
+  description={<>Tiang setinggi <InlineMath math="9\text{ m}" /> berdiri <InlineMath math="6\text{ m}" /> dari dinding. Sinar dengan elevasi <InlineMath math="45^\circ" /> dari puncak tiang mengenai dinding pada ketinggian <InlineMath math="3\text{ m}" />. Sinar dengan elevasi <InlineMath math="60^\circ" /> mengenai tanah <InlineMath math="3\sqrt3\approx5{,}2\text{ m}" /> dari kaki tiang, sebelum dinding.</>}
+  labels={{
+    pole: <InlineMath math="9" />,
+    gap: <InlineMath math="6" />,
+    mark: <InlineMath math="3" />,
+    low: <InlineMath math="45^\circ" />,
+    high: <InlineMath math="60^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 8 },
+      y: { min: -1, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -1, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 6, y: 0 }, to: { x: 6, y: 10 } },
+      { id: "pole", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 9 } },
+      { id: "ray-low", kind: "segment", appearance: "highlight", from: { x: 0, y: 9 }, to: { x: 6, y: 3 } },
+      { id: "ray-high", kind: "segment", appearance: "answer", from: { x: 0, y: 9 }, to: { x: Math.sqrt(27), y: 0 } },
+      { id: "wall-mark", kind: "segment", appearance: "highlight", from: { x: 6, y: 0 }, to: { x: 6, y: 3 } },
+    ],
+    labels: [
+      { key: "pole", objectId: "pole", at: { x: 0, y: 4.5 }, placement: "left" },
+      { key: "gap", objectId: "ground", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "mark", objectId: "wall-mark", at: { x: 6, y: 1.5 }, placement: "right" },
+      { key: "low", objectId: "ray-low", at: { x: 3, y: 6 }, placement: "above-right" },
+      { key: "high", objectId: "ray-high", at: { x: Math.sqrt(27) / 2, y: 4.5 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+# Selisih bayangan di tanah
+
+Sekarang bandingkan bagian bayangan di tanah pada kedua waktu: <InlineMath math="6\text{ m}" /> pada elevasi <InlineMath math="45^\circ" /> dan <InlineMath math="3\sqrt3\text{ m}" /> pada elevasi <InlineMath math="60^\circ" />.
+
+<BlockMath math="\text{berkurang}=6-3\sqrt3\approx6-5{,}2=0{,}8\text{ m}" />
+
+Bayangan di tanah hanya memendek sedikit, karena pada elevasi <InlineMath math="45^\circ" /> sebagian besar kelebihan bayangannya **naik ke dinding**, bukan terbentang di tanah.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\frac32" /> muncul kalau tiang dianggap sisi miring, sehingga bayangan dihitung sebagai <InlineMath math="9\cos60^\circ=4{,}5" />. Bayangan adalah sisi mendatar di depan sudut elevasi, jadi rumusnya <InlineMath math="\frac{h}{\tan\theta}" />.
+- <InlineMath math="6-2\sqrt3" /> memakai tinggi tiang <InlineMath math="6\text{ m}" />. Bagian bayangan setinggi <InlineMath math="3\text{ m}" /> di dinding terlupa.
+- <InlineMath math="9-3\sqrt3" /> memakai <InlineMath math="9\text{ m}" /> sebagai bayangan di tanah pada elevasi <InlineMath math="45^\circ" />. **Dinding menghentikan bayangan itu pada <InlineMath math="6\text{ m}" />**.
+- <InlineMath math="3\sqrt3" /> adalah panjang bayangan pada elevasi <InlineMath math="60^\circ" />, belum dikurangkan dari panjang semula.
+
+Jadi, panjang bayangan tiang di tanah berkurang sebesar <InlineMath math="6-3\sqrt3" /> meter.

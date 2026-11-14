@@ -1,14 +1,42 @@
-From <InlineMath math="a^2=49" /> and <InlineMath math="b^2=36" />, the value of <InlineMath math="a" /> can be 7 or <InlineMath math="-7" />, and <InlineMath math="b" /> can be 6 or <InlineMath math="-6" />. The condition <InlineMath math="ab<0" /> only says that **the two numbers have opposite signs**. It does not say which one is positive.
+You can compute both quantities exactly without finding <InlineMath math="x" />. The key is **two helper expressions, <InlineMath math="x+\frac1x" /> and <InlineMath math="x-\frac1x" />**. Get both from the given condition, write <InlineMath math="P" /> and <InlineMath math="Q" /> with them, and then compare.
 
-# Checking every possibility
+# Finding the sum of the number and its reciprocal
 
-Two pairs satisfy all the conditions. Compute both quantities for each pair.
+Square <InlineMath math="x+\frac1x" />. The middle term is <InlineMath math="2\cdot x\cdot\frac1x=2" />.
 
-| <InlineMath math="(a,b)" /> | <InlineMath math="P=a-b" /> | <InlineMath math="Q=\lvert a+b\rvert+12" /> | Relation |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="(7,-6)" /> | <InlineMath math="13" /> | <InlineMath math="\lvert1\rvert+12=13" /> | <InlineMath math="P=Q" /> |
-| <InlineMath math="(-7,6)" /> | <InlineMath math="-13" /> | <InlineMath math="\lvert-1\rvert+12=13" /> | <InlineMath math="Q>P" /> |
+<BlockMath math="\left(x+\frac1x\right)^2=x^2+2+\frac1{x^2}=3+2=5" />
 
-Both pairs are valid, but they give **different relations**. If you try only <InlineMath math="a=7" />, you conclude <InlineMath math="P=Q" />. If you try only <InlineMath math="a=-7" />, you conclude <InlineMath math="Q>P" />. The relation <InlineMath math="P>Q" /> never occurs.
+So <InlineMath math="x+\frac1x=\sqrt5" /> or <InlineMath math="x+\frac1x=-\sqrt5" />. Since **<InlineMath math="x" /> is positive**, <InlineMath math="\frac1x" /> is positive too, so their sum is positive. Only <InlineMath math="x+\frac1x=\sqrt5" /> works.
 
-So **the information given is not enough** to decide the relation between <InlineMath math="P" /> and <InlineMath math="Q" />.
+# Computing the first quantity
+
+Expand the cube of <InlineMath math="x+\frac1x" />. Its two middle terms group into **three times <InlineMath math="x+\frac1x" />**.
+
+<BlockMath math="\begin{aligned}
+\left(x+\frac1x\right)^3&=x^3+3x+\frac3x+\frac1{x^3}=x^3+\frac1{x^3}+3\left(x+\frac1x\right)\\
+P=x^3+\frac1{x^3}&=\left(\sqrt5\right)^3-3\sqrt5=5\sqrt5-3\sqrt5=2\sqrt5
+\end{aligned}" />
+
+# Computing the second quantity
+
+Square <InlineMath math="x-\frac1x" /> as well.
+
+<BlockMath math="\left(x-\frac1x\right)^2=x^2-2+\frac1{x^2}=3-2=1" />
+
+The value of <InlineMath math="x-\frac1x" /> can be <InlineMath math="1" /> or <InlineMath math="-1" />, because <InlineMath math="x" /> may be bigger or smaller than <InlineMath math="1" />. You really can't pin down that sign. But <InlineMath math="Q" /> is a square, so **the sign disappears once it's squared**.
+
+<BlockMath math="Q=\left(x^2-\frac1{x^2}\right)^2=\left(x+\frac1x\right)^2\left(x-\frac1x\right)^2=5\cdot1=5" />
+
+# Comparing the two quantities
+
+Both numbers are positive, so you can **compare their squares**.
+
+<BlockMath math="P^2=\left(2\sqrt5\right)^2=20<25=5^2=Q^2" />
+
+So <InlineMath math="P<Q" />. As a check, take <InlineMath math="x=\frac{1+\sqrt5}{2}\approx1.618" />. It meets the condition, and it gives <InlineMath math="P\approx4.472" /> and <InlineMath math="Q=5" />.
+
+# The wrong options
+
+The option <InlineMath math="P>Q" /> comes from computing <InlineMath math="P" /> as <InlineMath math="\left(x+\frac1x\right)^3=5\sqrt5" />, which means **forgetting to subtract <InlineMath math="3\left(x+\frac1x\right)" />**. The option <InlineMath math="P=Q" /> would need <InlineMath math="2\sqrt5=5" />, but <InlineMath math="20\neq25" />. The option that the information isn't enough comes from thinking the unknown sign of <InlineMath math="x-\frac1x" /> changes <InlineMath math="Q" />, but squaring makes both signs give the same value.
+
+So <InlineMath math="Q>P" />, because <InlineMath math="Q=5" /> and <InlineMath math="P=2\sqrt5" />.

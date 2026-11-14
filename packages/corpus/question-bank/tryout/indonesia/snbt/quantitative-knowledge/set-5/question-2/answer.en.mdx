@@ -1,19 +1,45 @@
-Each number is a sum of two square roots, and in every case the numbers under the roots add up to 9. Compare the **squares** of the three numbers, because for positive numbers the order of the squares is the order of the numbers.
+You need <InlineMath math="\tfrac{1}{p^2}+\tfrac{1}{q^2}+\tfrac{1}{r^2}" />, but the coefficient <InlineMath math="k" /> isn't known yet. The plan: use the condition <InlineMath math="pq=1" /> to **find the third root first** and <InlineMath math="k" />, then build the sum of reciprocal squares from the sums and products of the roots. For <InlineMath math="x^3-5x^2+kx-2=0" />, Vieta's formulas (the links between roots and coefficients) give <InlineMath math="p+q+r=5" />, <InlineMath math="pq+qr+rp=k" />, and <InlineMath math="pqr=2" />.
 
-# Squaring each number
+# The third root and the value of k
 
-Use **the square of a sum**, <InlineMath math="(\sqrt p+\sqrt q)^2=p+q+2\sqrt{pq}" />.
+The product of all three roots is <InlineMath math="2" />, and <InlineMath math="pq=1" />. So **the condition <InlineMath math="pq=1" /> hands you the third root right away**: <InlineMath math="r=\tfrac{2}{1}=2" />. Since <InlineMath math="2" /> is a root, substitute <InlineMath math="x=2" /> into the equation to get <InlineMath math="k" />.
 
 <BlockMath math="\begin{aligned}
-a^2&=2+7+2\sqrt{14}=9+2\sqrt{14}\\
-b^2&=3+6+2\sqrt{18}=9+2\sqrt{18}\\
-c^2&=4+5+2\sqrt{20}=9+2\sqrt{20}
+2^3-5\cdot2^2+2k-2&=0\\
+8-20+2k-2&=0\\
+2k&=14\\
+k&=7
 \end{aligned}" />
 
-# Comparing the products
+The other two roots satisfy <InlineMath math="p+q=5-2=3" /> and <InlineMath math="pq=1" />, so they're the roots of <InlineMath math="t^2-3t+1=0" />. Its discriminant <InlineMath math="9-4=5" /> is positive, so <InlineMath math="p" /> and <InlineMath math="q" /> are real.
 
-The part 9 is the same in all three, so the order is decided by **the product of the two numbers under the roots**: <InlineMath math="14<18<20" />. Hence <InlineMath math="a^2<b^2<c^2" />, and since all three are positive, <InlineMath math="a<b<c" />.
+# The sum of reciprocal squares
 
-The order <InlineMath math="c<b<a" /> comes from assuming that the roots of the most spread-out numbers, like 2 and 7, give the largest sum. The other orders contradict <InlineMath math="14<18<20" />. In general, for a fixed total, two numbers that are closer together give a larger sum of square roots.
+Squaring a sum of reciprocals creates cross terms. That's why **the sum of reciprocal squares equals the square of the sum of reciprocals minus twice the sum of the cross terms**. Vieta's formulas give both pieces.
 
-So the order from smallest to largest is <InlineMath math="a<b<c" />.
+<BlockMath math="\begin{aligned}
+\frac1p+\frac1q+\frac1r&=\frac{pq+qr+rp}{pqr}=\frac72\\
+\frac{1}{pq}+\frac{1}{qr}+\frac{1}{rp}&=\frac{p+q+r}{pqr}=\frac52\\
+\frac{1}{p^2}+\frac{1}{q^2}+\frac{1}{r^2}&=\left(\frac72\right)^2-2\cdot\frac52=\frac{49}{4}-5=\frac{29}{4}
+\end{aligned}" />
+
+# A check by another route
+
+Work out the <InlineMath math="p" /> and <InlineMath math="q" /> part separately from the <InlineMath math="r" /> part. Since <InlineMath math="pq=1" />, the denominator <InlineMath math="(pq)^2" /> equals <InlineMath math="1" />.
+
+<BlockMath math="\begin{aligned}
+p^2+q^2&=(p+q)^2-2pq=9-2=7\\
+\frac{1}{p^2}+\frac{1}{q^2}&=\frac{p^2+q^2}{(pq)^2}=7\\
+7+\frac{1}{2^2}&=\frac{29}{4}
+\end{aligned}" />
+
+You get the same result, so **the value you want is <InlineMath math="\tfrac{29}{4}" />**.
+
+# Why the other options are wrong
+
+- <InlineMath math="7" /> only adds <InlineMath math="\tfrac{1}{p^2}+\tfrac{1}{q^2}" /> and **forgets the third root's term**, <InlineMath math="\tfrac{1}{r^2}=\tfrac14" />.
+- <InlineMath math="\tfrac{49}{4}" /> is the square of the sum of reciprocals **without subtracting the cross terms**.
+- <InlineMath math="\tfrac{29}{2}" /> comes from dividing <InlineMath math="49-20" /> by <InlineMath math="pqr=2" />, when the denominator should be <InlineMath math="(pqr)^2=4" />.
+- <InlineMath math="\tfrac{69}{4}" /> comes from adding the cross terms instead of subtracting them.
+
+So the value of <InlineMath math="\tfrac{1}{p^2}+\tfrac{1}{q^2}+\tfrac{1}{r^2}" /> is <InlineMath math="\tfrac{29}{4}" />.

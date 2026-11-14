@@ -1,19 +1,35 @@
-Titik <InlineMath math="F" /> adalah perpotongan dua ruas garis, jadi cari **dua segitiga sebangun** yang sama-sama memuat <InlineMath math="F" />. Segitiga <InlineMath math="FAB" /> dan <InlineMath math="FED" /> cocok, karena <InlineMath math="AB" /> sejajar <InlineMath math="DE" />.
+Sebuah pernyataan cukup jika **memaksa satu jawaban**, yaitu pasti ganjil atau pasti genap. Kedua pernyataan berbicara tentang habis dibagi <InlineMath math="4" />, jadi periksa <InlineMath math="n" /> menurut sisanya jika dibagi <InlineMath math="4" />.
 
-# Kesebangunan segitiga
+# Mengapa cukup memeriksa empat sisa
 
-Sisi <InlineMath math="AB" /> sejajar <InlineMath math="CD" />, dan <InlineMath math="DE" /> terletak pada <InlineMath math="CD" />. Akibatnya sudut <InlineMath math="FAB" /> sama dengan sudut <InlineMath math="FED" /> dan sudut <InlineMath math="FBA" /> sama dengan sudut <InlineMath math="FDE" /> (sudut dalam berseberangan). Jadi **segitiga <InlineMath math="FAB" /> sebangun dengan segitiga <InlineMath math="FED" />**, dan sisi-sisi yang bersesuaian sebanding.
+Kalau <InlineMath math="n" /> diganti <InlineMath math="n+4" />, kedua bentuk berubah sebesar kelipatan <InlineMath math="4" />.
 
-<BlockMath math="\frac{BF}{FD}=\frac{AB}{ED}" />
+<BlockMath math="\begin{aligned}
+(n+4)^2+3(n+4)&=\left(n^2+3n\right)+4(2n+7)\\
+(n+4)^2+(n+4)+2&=\left(n^2+n+2\right)+4(2n+5)
+\end{aligned}" />
 
-# Menghitung perbandingan
+Jadi **habis atau tidaknya dibagi <InlineMath math="4" /> hanya bergantung pada sisa <InlineMath math="n" />** jika dibagi <InlineMath math="4" />. Cukup coba <InlineMath math="n=0" />, <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="3" />.
 
-Pada jajargenjang, <InlineMath math="AB=CD" />. Dengan <InlineMath math="DE:EC=1:2" />, tulis <InlineMath math="DE=k" /> dan <InlineMath math="EC=2k" />, sehingga <InlineMath math="AB=CD=3k" />.
+| Sisa <InlineMath math="n" /> dibagi <InlineMath math="4" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
+| :--- | :---: | :---: | :---: | :---: |
+| <InlineMath math="n^2+3n" /> | <InlineMath math="0" /> | <InlineMath math="4" /> | <InlineMath math="10" /> | <InlineMath math="18" /> |
+| Habis dibagi <InlineMath math="4" />? | ya | ya | tidak | tidak |
+| <InlineMath math="n^2+n+2" /> | <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="8" /> | <InlineMath math="14" /> |
+| Habis dibagi <InlineMath math="4" />? | tidak | ya | ya | tidak |
 
-<BlockMath math="\frac{BF}{FD}=\frac{3k}{k}=\frac31" />
+# Pernyataan pertama saja
 
-Jadi <InlineMath math="BF:FD=3:1" />. **Titik <InlineMath math="F" /> lebih dekat ke <InlineMath math="D" />**, sesuai dengan <InlineMath math="E" /> yang dekat ke <InlineMath math="D" />.
+Pernyataan (1) berlaku untuk sisa <InlineMath math="0" /> dan sisa <InlineMath math="1" />, jadi **bisa genap dan bisa ganjil**. Untuk <InlineMath math="n=4" />, nilai <InlineMath math="16+12=28" /> habis dibagi <InlineMath math="4" /> dan <InlineMath math="n" /> genap. Untuk <InlineMath math="n=1" />, nilai <InlineMath math="1+3=4" /> habis dibagi <InlineMath math="4" /> dan <InlineMath math="n" /> ganjil. Pernyataan (1) saja tidak cukup.
 
-Pilihan <InlineMath math="1:3" /> membalik urutan perbandingan. Pilihan <InlineMath math="1:2" /> dan <InlineMath math="2:1" /> memakai perbandingan <InlineMath math="DE:EC" /> secara langsung. Pilihan <InlineMath math="3:2" /> membandingkan <InlineMath math="AB" /> dengan <InlineMath math="EC" />, padahal sisi yang bersesuaian dengan <InlineMath math="AB" /> adalah <InlineMath math="ED" />.
+# Pernyataan kedua saja
 
-Jadi, <InlineMath math="BF:FD=3:1" />.
+Pernyataan (2) berlaku untuk sisa <InlineMath math="1" /> dan sisa <InlineMath math="2" />, jadi **lagi-lagi kedua kemungkinan terbuka**. Untuk <InlineMath math="n=2" />, nilai <InlineMath math="4+2+2=8" /> habis dibagi <InlineMath math="4" /> dan <InlineMath math="n" /> genap. Untuk <InlineMath math="n=1" />, nilai <InlineMath math="1+1+2=4" /> habis dibagi <InlineMath math="4" /> dan <InlineMath math="n" /> ganjil. Pernyataan (2) saja tidak cukup.
+
+# Kedua pernyataan bersama
+
+Sisa yang memenuhi keduanya hanya <InlineMath math="1" />, jadi <InlineMath math="n=4m+1" /> untuk suatu bilangan bulat <InlineMath math="m" />, dan **<InlineMath math="n" /> pasti ganjil**. Contohnya <InlineMath math="n=5" />: nilai <InlineMath math="25+15=40" /> dan <InlineMath math="25+5+2=32" /> sama-sama habis dibagi <InlineMath math="4" />, dan <InlineMath math="5" /> memang ganjil.
+
+Pilihan "pernyataan (1) saja cukup" biasanya muncul karena mengira <InlineMath math="n(n+3)" /> habis dibagi <InlineMath math="4" /> hanya untuk <InlineMath math="n" /> genap, padahal <InlineMath math="n=1" /> juga memenuhi. Pilihan "kedua pernyataan tidak cukup" muncul kalau irisan kedua himpunan sisa tidak diperiksa.
+
+Jadi, kedua pernyataan bersama-sama cukup untuk memastikan <InlineMath math="n" /> ganjil, tetapi satu pernyataan saja tidak cukup.

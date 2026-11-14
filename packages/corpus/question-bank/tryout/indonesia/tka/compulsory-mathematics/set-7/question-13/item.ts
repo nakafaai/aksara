@@ -11,25 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "translasi oleh $$\\begin{pmatrix}3\\\\-2\\end{pmatrix}$$",
-        },
-        {
-          correct: false,
-          label: "rotasi $$90^\\circ$$ dengan pusat $$(1,1)$$",
-        },
-        {
-          correct: false,
-          label: "pencerminan terhadap garis $$y=x$$",
-        },
-        {
-          correct: false,
-          label: "dilatasi dengan pusat $$O(0,0)$$ dan faktor skala $$-1$$",
-        },
-        {
           correct: true,
-          label:
-            "dilatasi dengan pusat $$(2,0)$$ dan faktor skala $$\\frac12$$",
+          label: "$$(-2,4)$$",
+        },
+        {
+          correct: false,
+          label: "$$(-4,-2)$$",
+        },
+        {
+          correct: false,
+          label: "$$(2,-4)$$",
+        },
+        {
+          correct: false,
+          label: "$$(\\sqrt2,\\ 3\\sqrt2)$$",
+        },
+        {
+          correct: false,
+          label: "$$(2\\sqrt3-1,\\ \\sqrt3+2)$$",
         },
       ],
     },

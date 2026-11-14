@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "inference",
+    contentDomain: "fiction",
+    topic: "characterization",
   },
-  stimulus: "great-stink",
+  stimulus: "night-orchard",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,26 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "It proved that the miasma theory of disease had been correct all along.",
+            "The thermometer by the post reads minus one at two in the morning.",
         },
         {
           correct: false,
           label:
-            "It was a failure, because cholera returned to London in 1866.",
-        },
-        {
-          correct: false,
-          label:
-            "It came from John Snow's own design to stop diseases spread by water.",
+            "The water rises in thin arcs over the trees when the valve is turned.",
         },
         {
           correct: true,
           label:
-            "It reduced cholera even though the sewers were built for a mistaken reason.",
+            "He makes her say back why the valve stays open until the ice has run off.",
         },
         {
           correct: false,
-          label: "It made the smell worse in the eastern parts of the city.",
+          label: "The Hallers' trees across the road stand bare in May.",
+        },
+        {
+          correct: true,
+          label:
+            "He leaves a list of the steps, in his own handwriting, in the pocket of the green coat.",
         },
       ],
     },

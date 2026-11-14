@@ -1,16 +1,45 @@
-Let the tens digit be <InlineMath math="a" /> and the units digit <InlineMath math="b" />, so **the number is worth <InlineMath math="10a+b" />**, not <InlineMath math="a+b" />. With the digits swapped it is worth <InlineMath math="10b+a" />.
+# Keeping one variable
+
+The question asks how many arrangements there are, not for one arrangement. There are three unknowns but only two equations, so **write everything in terms of one variable and then filter with the conditions**.
+
+Let <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> be the numbers of <InlineMath math="\text{Rp}1{,}000" />, <InlineMath math="\text{Rp}2{,}000" />, and <InlineMath math="\text{Rp}5{,}000" /> notes. Count the money in thousands of rupiah.
 
 <BlockMath math="\begin{aligned}
-a+b&=11 \\
-(10b+a)-(10a+b)&=27\ \Rightarrow\ 9(b-a)=27\ \Rightarrow\ b-a=3 \\
-b&=7,\qquad a=4
+x+y+z&=50 \\
+x+2y+5z&=110
 \end{aligned}" />
 
-Check: <InlineMath math="4+7=11" /> and <InlineMath math="74-47=27" />.
+Subtract the first equation from the second, then put the result back into the first.
 
-So the original number is <InlineMath math="47" />.
+<BlockMath math="\begin{aligned}
+y+4z&=60 \quad\Rightarrow\quad y=60-4z \\
+x&=50-y-z=50-(60-4z)-z=3z-10
+\end{aligned}" />
 
-- <InlineMath math="29" /> has digit sum <InlineMath math="11" />, but <InlineMath math="92-29=63" />, not <InlineMath math="27" />.
-- <InlineMath math="38" /> has digit sum <InlineMath math="11" />, but <InlineMath math="83-38=45" />.
-- <InlineMath math="56" /> has digit sum <InlineMath math="11" />, but <InlineMath math="65-56=9" />.
-- <InlineMath math="74" /> is the number after the digits are swapped.
+# Filtering with the conditions
+
+Now <InlineMath math="x" /> and <InlineMath math="y" /> depend on <InlineMath math="z" />, and <InlineMath math="z" /> must be a whole number. Each kind of note appears at least once, and <InlineMath math="y" /> must be more than <InlineMath math="2z" />.
+
+<BlockMath math="\begin{aligned}
+x\ge1&:\quad 3z-10\ge1 \;\Rightarrow\; z\ge\tfrac{11}{3} \;\Rightarrow\; z\ge4 \\
+y>2z&:\quad 60-4z>2z \;\Rightarrow\; z<10 \;\Rightarrow\; z\le9 \\
+y\ge1&:\quad 60-4z\ge1 \;\Rightarrow\; z\le14
+\end{aligned}" />
+
+The condition <InlineMath math="y\ge1" /> is already covered by <InlineMath math="z\le9" />. So **<InlineMath math="z" /> can only be <InlineMath math="4,5,6,7,8,9" />**, six values.
+
+| <InlineMath math="z" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> |
+| --- | --- | --- | --- | --- | --- | --- |
+| <InlineMath math="y=60-4z" /> | <InlineMath math="44" /> | <InlineMath math="40" /> | <InlineMath math="36" /> | <InlineMath math="32" /> | <InlineMath math="28" /> | <InlineMath math="24" /> |
+| <InlineMath math="x=3z-10" /> | <InlineMath math="2" /> | <InlineMath math="5" /> | <InlineMath math="8" /> | <InlineMath math="11" /> | <InlineMath math="14" /> | <InlineMath math="17" /> |
+
+Check one column, say <InlineMath math="(2,44,4)" />: that's <InlineMath math="2+44+4=50" /> notes worth <InlineMath math="2+88+20=110" /> thousand. The value <InlineMath math="z=10" /> gives <InlineMath math="y=20" />, exactly <InlineMath math="2z" />, so it fails "lebih dari" (more than).
+
+So there are <InlineMath math="6" /> possible arrangements.
+
+# Why the other options are wrong
+
+- <InlineMath math="14" /> counts <InlineMath math="z=1" /> to <InlineMath math="14" />. It forgets both <InlineMath math="x\ge1" /> and the "more than twice" condition.
+- <InlineMath math="11" /> counts <InlineMath math="z=4" /> to <InlineMath math="14" />, which forgets the condition <InlineMath math="y>2z" />.
+- <InlineMath math="9" /> counts <InlineMath math="z=1" /> to <InlineMath math="9" />. **For <InlineMath math="z=1,2,3" /> the number of <InlineMath math="\text{Rp}1{,}000" /> notes comes out negative**: <InlineMath math="-7" />, <InlineMath math="-4" />, and <InlineMath math="-1" />.
+- <InlineMath math="7" /> also counts <InlineMath math="z=10" />, but there <InlineMath math="y=2z" />, which isn't more than <InlineMath math="2z" />.

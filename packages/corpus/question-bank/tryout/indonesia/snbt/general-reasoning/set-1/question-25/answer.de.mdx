@@ -1,9 +1,35 @@
-Ziel ist **der Anteil der Naturwissenschaftsbücher** (*Sains*) **aus Semester I**, die Gesamtzahl richtet sich aber nach **Semester II**. Berechne diesen Anteil als Bruch, damit das Ergebnis exakt bleibt:
+Die Aufgabe läuft in drei Schritten: Bestimme, wann die Lastwagen kommen, berechne den Bestand von Bakung zu diesem Zeitpunkt und bestimme dann, wie viele Lastwagen für die fünf Wochen danach reichen. Entscheidend ist: **Der Bestand von Bakung muss mit Schwund gerechnet werden**, weil der Schwund den Bestand jede Woche senkt.
 
-<BlockMath math="\frac{800}{3{.}000}=\frac{4}{15}" />
+Der Bestand von Bakung ändert sich pro Woche um
 
-Die Gesamtzahl in Semester III entspricht der in Semester II, also <InlineMath math="3{.}450" />. Benötigt werden:
+<BlockMath math="38-48-1 = -11" />
 
-<BlockMath math="\frac{4}{15}\times3{.}450=\frac{13{.}800}{15}=920" />
+Am Ende von Woche <InlineMath math="w" /> beträgt er also <InlineMath math="150-11w" />. Die Lastwagen kommen in der ersten Woche, in der der Bestand unter <InlineMath math="60" /> Tonnen liegt:
 
-Prüfe das Ergebnis: <InlineMath math="\frac{920}{3{.}450}=\frac{4}{15}\approx26{,}7\%" />, genau der Anteil aus Semester I. Rundest du den Anteil auf <InlineMath math="27\%" />, erhältst du <InlineMath math="931{,}5" />, also bleib beim Bruch. Die Bibliothek braucht in Semester III daher <InlineMath math="920" /> Ausleihen von Naturwissenschaftsbüchern.
+<BlockMath math="\begin{aligned}
+150-11\times8 &= 62 \quad (\text{noch nicht unter } 60) \\
+150-11\times9 &= 51 \quad (\text{jetzt unter } 60)
+\end{aligned}" />
+
+Die Lastwagen kommen am Ende von Woche <InlineMath math="9" />, wenn Bakung <InlineMath math="51" /> Tonnen hat. Das liegt noch über dem Sicherheitsbestand von <InlineMath math="40" /> Tonnen, vor der Lieferung wird die Regel also nicht verletzt.
+
+Angenommen, es kommen <InlineMath math="k" /> Lastwagen, also <InlineMath math="6k" /> Tonnen mehr. Danach sinkt der Bestand jede Woche um <InlineMath math="11" /> Tonnen, der tiefste Bestand der nächsten fünf Wochen liegt also am Ende der fünften Woche. Er darf nicht unter <InlineMath math="40" /> liegen:
+
+<BlockMath math="\begin{aligned}
+51+6k-5\times11 &\ge 40 \\
+6k-4 &\ge 40 \\
+6k &\ge 44 \\
+k &\ge 7{,}33\ldots
+\end{aligned}" />
+
+Die Zahl der Lastwagen muss ganz sein, also braucht es mindestens <InlineMath math="8" /> Lastwagen.
+
+Prüf beide Seiten der Grenze. Mit <InlineMath math="8" /> Lastwagen steigt der Bestand auf <InlineMath math="51+48=99" />, danach liegt er am Ende der fünf Wochen bei <InlineMath math="88, 77, 66, 55, 44" />. Alle Werte sind mindestens <InlineMath math="40" />. Mit <InlineMath math="7" /> Lastwagen steigt er auf <InlineMath math="93" />, danach <InlineMath math="82, 71, 60, 49, 38" />. In der fünften Woche fällt er unter <InlineMath math="40" />, also reichen <InlineMath math="7" /> Lastwagen nicht.
+
+Einige falsche Antworten tauchen oft auf:
+
+- <InlineMath math="7" /> Lastwagen entstehen, wenn du <InlineMath math="7{,}33" /> abrundest. Dasselbe passiert, wenn du den Schwund vergisst: Dann kommen die Lastwagen in Woche <InlineMath math="10" /> bei <InlineMath math="50" /> Tonnen, und der Bestand sinkt nur um <InlineMath math="10" /> Tonnen pro Woche.
+- <InlineMath math="6" /> Lastwagen entstehen, wenn die Lieferung schon in Woche <InlineMath math="8" /> angesetzt wird, obwohl <InlineMath math="62" /> Tonnen nicht unter <InlineMath math="60" /> liegen, oder wenn du nur vier Wochen prüfst.
+- <InlineMath math="11" /> Lastwagen entstehen, wenn du den Bestand bei mindestens <InlineMath math="60" /> halten willst, obwohl die Grenze der Sicherheitsbestand von <InlineMath math="40" /> Tonnen ist.
+
+Die Genossenschaft muss also mindestens <InlineMath math="8" /> Lastwagen zum Lager Bakung schicken.

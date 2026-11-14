@@ -1,12 +1,25 @@
-A mean of <InlineMath math="12" /> for five numbers fixes **their sum**:
+You're looking for a mix of medium buses and minibuses that seats at least <InlineMath math="96" /> people, includes at least one medium bus, and costs as little as possible. The number of vehicles has to be whole, so a "cost per seat" rule alone won't settle it. The safe method is **checking every possible number of medium buses**, then adding just enough minibuses for the remaining passengers.
 
-<BlockMath math="5\times12=60" />
+For each number of medium buses <InlineMath math="b" />, the passengers left over are <InlineMath math="96-31b" />. The number of minibuses is that remainder divided by <InlineMath math="14" />, rounded up, since you can't rent part of a minibus. The case <InlineMath math="b=0" /> isn't allowed, because at least one medium bus is required. With <InlineMath math="b=4" />, there are already <InlineMath math="124" /> seats, so a fifth bus would only add cost.
 
-Order the numbers from smallest: <InlineMath math="a<b<10<d<e" />. A median of <InlineMath math="10" /> means the third number is <InlineMath math="10" />. To make <InlineMath math="e" /> as large as possible, **the other four numbers must be as small as possible**, because the sum stays <InlineMath math="60" />.
+| Medium buses | Passengers left | Minibuses | Seats | Cost |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="65" /> | <InlineMath math="5" /> | <InlineMath math="101" /> | <InlineMath math="\text{Rp}6{,}850{,}000" /> |
+| <InlineMath math="2" /> | <InlineMath math="34" /> | <InlineMath math="3" /> | <InlineMath math="104" /> | <InlineMath math="\text{Rp}7{,}050{,}000" /> |
+| <InlineMath math="3" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="107" /> | <InlineMath math="\text{Rp}7{,}250{,}000" /> |
+| <InlineMath math="4" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="124" /> | <InlineMath math="\text{Rp}8{,}400{,}000" /> |
 
-- <InlineMath math="a" /> and <InlineMath math="b" /> are the two smallest different positive integers, <InlineMath math="1" /> and <InlineMath math="2" />.
-- <InlineMath math="d" /> must be greater than <InlineMath math="10" /> and different from it, so its smallest value is <InlineMath math="11" />.
+Here's the cost in the first row:
 
-<BlockMath math="e=60-(1+2+10+11)=60-24=36" />
+<BlockMath math="1\times2{,}100{,}000+5\times950{,}000 = 2{,}100{,}000+4{,}750{,}000 = 6{,}850{,}000" />
 
-Check: <InlineMath math="1, 2, 10, 11, 36" /> are all different, the median is <InlineMath math="10" />, and the mean is <InlineMath math="\frac{60}{5}=12" />. Setting <InlineMath math="d=10" /> would repeat a number, so <InlineMath math="d=11" /> really is the smallest choice. The largest possible value is <InlineMath math="36" />.
+The lowest cost is <InlineMath math="\text{Rp}6{,}850{,}000" />, with one medium bus and five minibuses. Check that four minibuses wouldn't do: <InlineMath math="31+4\times14=87" /> seats, fewer than <InlineMath math="96" />.
+
+The other options come from different traps:
+
+- <InlineMath math="\text{Rp}6{,}650{,}000" /> is the cost of seven minibuses (<InlineMath math="98" /> seats). It's the cheapest plan if you ignore the conditions, but it has no medium bus, so it's ruled out.
+- <InlineMath math="\text{Rp}7{,}250{,}000" /> comes from a greedy approach: a medium bus is slightly cheaper per seat (about <InlineMath math="\text{Rp}67{,}742" /> against <InlineMath math="\text{Rp}67{,}857" />), so you use as many as possible. That gives three medium buses and one minibus with <InlineMath math="11" /> empty seats. You still pay for those empty seats, so this plan costs more.
+- <InlineMath math="\text{Rp}8{,}400{,}000" /> is the cost of using medium buses only.
+- <InlineMath math="\text{Rp}8{,}750{,}000" /> comes from adding one medium bus to the seven-minibus plan without removing any minibuses.
+
+So the cheapest rental that meets every condition costs <InlineMath math="\text{Rp}6{,}850{,}000" />.

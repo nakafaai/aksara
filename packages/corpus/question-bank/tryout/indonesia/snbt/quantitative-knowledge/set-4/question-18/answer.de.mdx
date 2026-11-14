@@ -1,13 +1,47 @@
-Die Schüler sind verschieden und haben Namen, die Bücher lassen sich also **nacheinander an einen Schüler nach dem anderen** verteilen. Die Reihenfolge der Bücher bei einem Schüler spielt keine Rolle, jeder Schritt ist also eine Kombination.
+Du sollst vier Aussagen über Matrizen mit einem Parameter <InlineMath math="k" /> beurteilen. Vergleich vor dem Rechnen die beiden Matrizen, denn es gibt **einen versteckten Zusammenhang zwischen <InlineMath math="A" /> und <InlineMath math="B" />**, der zwei Aussagen auf einmal entscheidet.
 
-# Bücher für jeden Schüler auswählen
+# Der Zusammenhang der beiden Matrizen
 
-Rani wählt 2 von 6 Büchern, Sena 2 der übrigen 4, und Tio bekommt die letzten 2. **Die drei Auswahlen werden multipliziert**, weil sie nacheinander geschehen.
+Zieh <InlineMath math="B" /> von <InlineMath math="A" /> ab.
 
-<BlockMath math="\binom62\cdot\binom42\cdot\binom22=15\cdot6\cdot1=90" />
+<BlockMath math="A-B=\begin{pmatrix} k-1 & 0 \\ 0 & k-1 \end{pmatrix}=(k-1)I" />
 
-# Andere Wahlmöglichkeiten prüfen
+Also ist <InlineMath math="A=B+(k-1)I" />, wobei <InlineMath math="I" /> die Einheitsmatrix ist. Die Einheitsmatrix ist mit jeder Matrix vertauschbar, also **ist <InlineMath math="A" /> immer mit <InlineMath math="B" /> vertauschbar**.
 
-Der Wert 15 teilt zusätzlich durch <InlineMath math="3!" />, als wären die drei Schüler nicht unterscheidbar. Der Wert 540 multipliziert dagegen mit <InlineMath math="3!" />, obwohl die Schüler schon ab dem ersten Schritt unterschieden werden, sodass **jede Verteilung sechsmal gezählt wird**. Der Wert 360 berechnet <InlineMath math="\frac{6!}{2!}" /> und entfernt die Reihenfolge der Bücher nur bei einem Schüler. Der Wert 729 ist <InlineMath math="3^6" /> und erlaubt einem Schüler beliebig viele Bücher.
+<BlockMath math="\begin{aligned}
+AB&=\bigl(B+(k-1)I\bigr)B=B^2+(k-1)B\\
+BA&=B\bigl(B+(k-1)I\bigr)=B^2+(k-1)B
+\end{aligned}" />
 
-Es gibt also **90** Möglichkeiten, die Bücher zu verteilen.
+Die Ergebnisse stimmen für jedes <InlineMath math="k" /> überein. Prüf das mit <InlineMath math="k=0" />: <InlineMath math="AB" /> und <InlineMath math="BA" /> sind beide <InlineMath math="\begin{pmatrix} 6 & 0 \\ 0 & 6 \end{pmatrix}" />.
+
+# Die erste und die zweite Aussage
+
+Eine Matrix hat keine Inverse, wenn ihre Determinante <InlineMath math="0" /> ist.
+
+<BlockMath math="\det A=k(k-1)-3\cdot2=k^2-k-6=(k-3)(k+2)" />
+
+Die Determinante ist null für <InlineMath math="k=3" /> und <InlineMath math="k=-2" />, es gibt also **zwei Werte und nicht einen**. Die erste Aussage ist falsch.
+
+Auch die zweite Aussage ist falsch. Die Beziehung <InlineMath math="AB=BA" /> gilt für jedes <InlineMath math="k" />, nicht nur für <InlineMath math="k=1" /> (dann ist <InlineMath math="A=B" />). Der Fall <InlineMath math="k=0" /> von oben ist ein Beispiel.
+
+# Die dritte Aussage
+
+Rechne beide Seiten als Funktionen von <InlineMath math="k" /> aus, mit <InlineMath math="\det B=1\cdot0-3\cdot2=-6" />.
+
+<BlockMath math="\begin{aligned}
+\det(A+B)&=(k+1)(k-1)-6\cdot4=k^2-25\\
+\det A+\det B&=k^2-k-6-6=k^2-k-12
+\end{aligned}" />
+
+Beide Seiten stimmen nur überein, wenn <InlineMath math="-25=-k-12" /> ist, also für <InlineMath math="k=13" />. Für <InlineMath math="k=0" /> ist die linke Seite <InlineMath math="-25" />, die rechte aber <InlineMath math="-12" />. **Die Determinante einer Summe ist nicht die Summe der Determinanten**, die dritte Aussage ist also falsch.
+
+# Die vierte Aussage
+
+Für <InlineMath math="k=4" /> ist <InlineMath math="\det A=16-4-6=6" /> und <InlineMath math="\det B=-6" />, beide Inversen existieren also. Allgemein gilt <InlineMath math="(AB)^{-1}=B^{-1}A^{-1}" />, mit umgekehrter Reihenfolge. Dagegen ist <InlineMath math="A^{-1}B^{-1}" /> die Inverse von <InlineMath math="BA" />.
+
+<BlockMath math="A^{-1}B^{-1}=(BA)^{-1}=(AB)^{-1}" />
+
+Der letzte Schritt stimmt, weil <InlineMath math="BA=AB" /> ist. In dieser Aufgabe **spielt die Reihenfolge der Inversen also keine Rolle**, und die vierte Aussage ist wahr. Wer sich nur merkt, dass die Reihenfolge umgedreht werden muss, hält sie für falsch.
+
+Die erste Aussage ist also falsch, die zweite falsch, die dritte falsch und die vierte wahr.

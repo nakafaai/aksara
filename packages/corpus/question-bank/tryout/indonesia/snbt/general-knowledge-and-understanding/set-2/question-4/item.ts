@@ -4,36 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "paragraph-meaning",
-    topic: "main-idea",
+    topic: "inference",
   },
-  stimulus: "gamelan",
+  stimulus: "delta",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Alat musik Barat modern disetel mengikuti nada acuan yang sama.",
+            "Delta dapat mundur ke arah daratan walaupun sungainya masih membawa sedimen sampai ke muara.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Pembuat gamelan menyetel setiap instrumen dengan mengikir atau menempa bagian logamnya sampai bunyinya cocok.",
+            "Di air asin, lempung yang sangat halus mengendap lebih dekat ke mulut sungai daripada butir pasir.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Setiap perangkat gamelan memiliki penyeteman sendiri yang membedakannya dari perangkat lain.",
+            "Permukaan delta turun hanya jika air tanah di bawahnya diambil secara berlebihan.",
         },
         {
-          correct: false,
-          label: "Bilah gamelan dapat dipinjam dari perangkat mana pun.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Laras pelog memiliki lebih banyak nada daripada laras slendro.",
+            "Delta di pantai yang gelombangnya kuat tetap tersusun dari sedimen yang dibawa sungai.",
         },
       ],
     },

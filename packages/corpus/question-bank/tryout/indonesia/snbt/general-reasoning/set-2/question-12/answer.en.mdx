@@ -1,17 +1,39 @@
-Combine the premise with the word **sebagian** (some) with the others, because that is where a member who certainly exists comes from.
+You're looking for the one implication that must follow from all four premises. To see the chain clearly, give each sentence a symbol.
 
-Premise 2 guarantees that some choir member joins the mathematics olympiad. Call that student X.
+- <InlineMath math="L" />: the team qualifies for the national round.
+- <InlineMath math="W" />: the robot finishes the track in under <InlineMath math="90" /> seconds.
+- <InlineMath math="B" />: the backup battery is installed.
+- <InlineMath math="H" />: the robot runs in power-saving mode.
+- <InlineMath math="S" />: the line sensor is broken.
 
-- By premise 1, X is in grade XI because X is in the choir.
-- By premise 3, X is excused from Saturday duty because X joins the olympiad.
+The premises become these.
 
-So some grade XI student is excused from Saturday duty. That means **some grade XI students are excused from Saturday duty**.
+<BlockMath math="\begin{aligned}
+&(1)\quad L \Leftrightarrow W \\
+&(2)\quad B \Rightarrow W \\
+&(3)\quad \neg B \Rightarrow H \\
+&(4)\quad S \Rightarrow \neg W
+\end{aligned}" />
 
-The other options are not certain:
+Premise 1 is a biconditional. **"If and only if" works in both directions**: <InlineMath math="L \Rightarrow W" /> and also <InlineMath math="W \Rightarrow L" />. Premises 2, 3 and 4 work in one direction only. The other tool you need is the contrapositive: <InlineMath math="P \Rightarrow Q" /> always means the same as <InlineMath math="\neg Q \Rightarrow \neg P" />, while flipping it to <InlineMath math="Q \Rightarrow P" /> isn't valid.
 
-- "All grade XI students are in the choir" reverses premise 1.
-- Premise 2 says only **some** choir members join the olympiad, so the others are not necessarily excused.
-- Olympiad participants may come from outside the choir. The premises only say some choir members join the olympiad.
-- "Some choir members are not in grade XI" contradicts premise 1.
+Now build the chain starting from "the robot isn't in power-saving mode".
 
-So the conclusion that must be true is that some grade XI students are excused from Saturday duty.
+- The contrapositive of premise 3 is <InlineMath math="\neg H \Rightarrow B" />. If the robot isn't in power-saving mode, the backup battery must be installed.
+- Premise 2 continues with <InlineMath math="B \Rightarrow W" />. The robot finishes in under <InlineMath math="90" /> seconds.
+- The second direction of premise 1 continues with <InlineMath math="W \Rightarrow L" />. The team qualifies for the national round.
+
+<BlockMath math="\neg H \Rightarrow B \Rightarrow W \Rightarrow L" />
+
+So "if the robot doesn't run in power-saving mode, the team qualifies for the national round" is valid. The last step only works because premise 1 is an "if and only if". If premise 1 just said "if the team qualifies, the robot finishes in under <InlineMath math="90" /> seconds", the chain would break at <InlineMath math="W" />.
+
+Check it from the other end. The contrapositive of the conclusion is <InlineMath math="\neg L \Rightarrow H" />. If the team doesn't qualify, the robot didn't finish in under <InlineMath math="90" /> seconds (premise 1), so the backup battery wasn't installed (contrapositive of premise 2), so the robot runs in power-saving mode (premise 3). Same result.
+
+Each of the other four options uses one step in the wrong direction.
+
+- "If the team qualifies, the backup battery is installed" uses <InlineMath math="W \Rightarrow B" />, the reverse of premise 2. Premise 2 only says the battery is enough to make the robot fast, not that it's the only way.
+- "If the robot is in power-saving mode, the team doesn't qualify" uses <InlineMath math="H \Rightarrow \neg B" />, the reverse of premise 3. The robot could use the backup battery and power-saving mode at the same time, still be fast, and qualify.
+- "If the sensor isn't broken, the team qualifies" negates both sides of premise 4 without swapping them. A working sensor doesn't guarantee a fast robot, for example when the backup battery isn't installed.
+- "If the team doesn't qualify, the sensor is broken" is fine up to <InlineMath math="\neg L \Rightarrow \neg W" />, then uses <InlineMath math="\neg W \Rightarrow S" />, the reverse of premise 4. The robot can be slow for other reasons.
+
+So the valid conclusion is that if the robot doesn't run in power-saving mode, the school robotics team qualifies for the national round.

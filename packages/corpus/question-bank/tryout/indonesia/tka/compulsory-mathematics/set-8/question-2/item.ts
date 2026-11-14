@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  stimulus: "overtime-pay",
+  stimulus: "grosir",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$10$$ jam",
+          label: "$$25$$ botol saja",
         },
         {
           correct: false,
-          label: "$$49$$ jam",
+          label: "$$26$$ botol saja",
+        },
+        {
+          correct: false,
+          label: "$$19$$ atau $$20$$ botol",
         },
         {
           correct: true,
-          label: "$$50$$ jam",
+          label: "$$25$$ atau $$26$$ botol",
         },
         {
           correct: false,
-          label: "$$54$$ jam",
-        },
-        {
-          correct: false,
-          label: "$$55$$ jam",
+          label: "$$26$$ atau $$27$$ botol",
         },
       ],
     },

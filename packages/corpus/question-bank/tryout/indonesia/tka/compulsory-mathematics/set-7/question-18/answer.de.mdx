@@ -1,15 +1,85 @@
-Rechne Gartenfläche minus Wege. Die beiden Wege **überlappen in einem Quadrat von <InlineMath math="1\text{ m}\times1\text{ m}" />**, das zu beiden Wegen gehört, also darf es nur einmal abgezogen werden.
+Gesucht ist die Fläche des Rasens, die nass wird. Ohne Mauer wäre das ein Kreis mit Radius <InlineMath math="6\text{ m}" />. Die Mauer schneidet den Kreis, also **muss der Teil des Kreises hinter der Mauer weg**. Dieser Teil ist ein Kreisabschnitt, die Fläche zwischen einer Sehne und ihrem Bogen.
+
+# Mittelpunktswinkel des Abschnitts
+
+Fäll das Lot von <InlineMath math="S" /> auf die Mauer und nenn den Fußpunkt <InlineMath math="M" />, also <InlineMath math="SM=3" />. Die Mauer schneidet den Kreis in <InlineMath math="P" /> und <InlineMath math="Q" />, und beide sind <InlineMath math="6" /> von <InlineMath math="S" /> entfernt, weil sie auf dem Kreis liegen. Das Dreieck <InlineMath math="SMP" /> hat bei <InlineMath math="M" /> einen rechten Winkel.
+
+<MathVisual
+  title={<>Sprühkreis, von der Mauer abgeschnitten</>}
+  description={<>Ein Kreis mit Mittelpunkt <InlineMath math="S" /> und Radius <InlineMath math="6" />. Die Mauer ist eine senkrechte Gerade im Abstand <InlineMath math="3" /> von <InlineMath math="S" />, mit Lotfußpunkt <InlineMath math="M" />. Die Mauer schneidet den Kreis in <InlineMath math="P" /> und <InlineMath math="Q" />, und die Radien <InlineMath math="SP" /> und <InlineMath math="SQ" /> bilden das Dreieck <InlineMath math="SPQ" />.</>}
+  labels={{
+    s: <InlineMath math="S" />,
+    m: <InlineMath math="M" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    radius: <InlineMath math="6" />,
+    distance: <InlineMath math="3" />,
+    wall: <>Mauer</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 8 },
+      y: { min: -7, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "spray", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 6 },
+      { id: "wall-line", kind: "line", appearance: "warning", through: [{ x: 3, y: -7 }, { x: 3, y: 7 }] },
+      { id: "radius-p", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 3, y: 3 * Math.sqrt(3) } },
+      { id: "radius-q", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 3, y: -3 * Math.sqrt(3) } },
+      { id: "foot", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "point-s", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 3, y: 3 * Math.sqrt(3) } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 3, y: -3 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "s", objectId: "point-s", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "m", objectId: "point-m", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "p", objectId: "point-p", at: { x: 3, y: 3 * Math.sqrt(3) }, placement: "right" },
+      { key: "q", objectId: "point-q", at: { x: 3, y: -3 * Math.sqrt(3) }, placement: "right" },
+      { key: "radius", objectId: "radius-p", at: { x: 1.5, y: 1.5 * Math.sqrt(3) }, placement: "above-left" },
+      { key: "distance", objectId: "foot", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "wall", objectId: "wall-line", at: { x: 3, y: 6.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Nutz den Kosinus in diesem rechtwinkligen Dreieck.
 
 <BlockMath math="\begin{aligned}
-L_{\text{Wege}}&=20\cdot1+15\cdot1-1\cdot1=34\text{ m}^2 \\
-L_{\text{Gemüse}}&=20\cdot15-34=300-34=266\text{ m}^2
+\cos\angle PSM&=\frac{SM}{SP}=\frac{3}{6}=\frac{1}{2} \\
+\angle PSM&=60^\circ \\
+\angle PSQ&=2\cdot60^\circ=120^\circ
 \end{aligned}" />
 
-Probe durch Verschieben beider Wege an den Rand: Übrig bleibt ein Rechteck von <InlineMath math="19\text{ m}\times14\text{ m}" />, und <InlineMath math="19\cdot14=266" />.
+Das Dreieck <InlineMath math="SMQ" /> ist das genaue Spiegelbild von <InlineMath math="SMP" /> an der Geraden <InlineMath math="SM" />. Deshalb ist **der Mittelpunktswinkel des Abschnitts doppelt so groß wie <InlineMath math="60^\circ" />**.
 
-Die Gemüsefläche beträgt also <InlineMath math="266\text{ m}^2" />.
+# Fläche des Abschnitts
 
-- <InlineMath math="265\text{ m}^2" /> zieht beide Wege ganz ab, das Überlappungsquadrat also doppelt.
-- <InlineMath math="267\text{ m}^2" /> nimmt das Überlappungsquadrat aus beiden Wegen heraus, sodass es gar nicht abgezogen wird.
-- <InlineMath math="280\text{ m}^2" /> zieht nur den Weg parallel zur langen Seite ab.
-- <InlineMath math="285\text{ m}^2" /> zieht nur den Weg parallel zur kurzen Seite ab.
+Ein Sektor ist die Fläche zwischen zwei Radien und dem Bogen dazwischen. Der Kreisabschnitt ist der <InlineMath math="120^\circ" />-Sektor minus das Dreieck <InlineMath math="SPQ" />. Das Dreieck liegt auf der Seite von <InlineMath math="S" />, also **wird das Dreieck trotzdem nass**, und nur der Abschnitt fällt weg.
+
+<BlockMath math="\begin{aligned}
+A_{\text{Sektor}}&=\frac{120^\circ}{360^\circ}\cdot\pi\cdot6^2=12\pi \\
+A_{\triangle SPQ}&=\frac{1}{2}\cdot6\cdot6\cdot\sin120^\circ=18\cdot\frac{\sqrt{3}}{2}=9\sqrt{3} \\
+A_{\text{Abschnitt}}&=12\pi-9\sqrt{3}
+\end{aligned}" />
+
+# Nasse Fläche
+
+Zieh den Abschnitt vom ganzen Kreis ab, <InlineMath math="\pi\cdot6^2=36\pi" />. Achte auf die Klammer, denn **wer eine Differenz abzieht, addiert das Dreieck wieder dazu**.
+
+<BlockMath math="36\pi-\left(12\pi-9\sqrt{3}\right)=24\pi+9\sqrt{3}\approx75{,}4+15{,}6=91{,}0\text{ m}^2" />
+
+Plausibilitätsprüfung: Die Mauer liegt jenseits des Mittelpunkts <InlineMath math="S" />, also muss die nasse Fläche größer als der halbe Kreis sein, <InlineMath math="18\pi\approx56{,}5" />, und kleiner als der ganze Kreis, <InlineMath math="36\pi\approx113{,}1" />. Das Ergebnis <InlineMath math="91{,}0" /> liegt genau dazwischen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\left(30\pi+9\sqrt{3}\right)\text{ m}^2" /> nimmt <InlineMath math="60^\circ" /> als Mittelpunktswinkel des Abschnitts. Diese <InlineMath math="60^\circ" /> sind nur die Hälfte, nämlich der Winkel <InlineMath math="PSM" />.
+- <InlineMath math="24\pi\text{ m}^2" /> wirft den ganzen <InlineMath math="120^\circ" />-Sektor weg. **Das Dreieck <InlineMath math="SPQ" /> liegt vor der Mauer** und wird also auch nass.
+- <InlineMath math="\left(24\pi-9\sqrt{3}\right)\text{ m}^2" /> ist ein Vorzeichenfehler beim Abziehen des Abschnitts, dadurch fallen Sektor und Dreieck beide weg.
+- <InlineMath math="\left(12\pi-9\sqrt{3}\right)\text{ m}^2" /> ist die Fläche des Abschnitts hinter der Mauer. Das ist der trockene Teil, nicht der gefragte.
+
+Die nasse Rasenfläche beträgt also <InlineMath math="\left(24\pi+9\sqrt{3}\right)\text{ m}^2" />.

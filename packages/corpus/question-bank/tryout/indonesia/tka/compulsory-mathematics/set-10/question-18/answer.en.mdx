@@ -1,13 +1,44 @@
-The whole train is out when its back end leaves the tunnel. So **the front of the train travels the tunnel's length plus the train's length**. Convert the speed to metres per second first.
+# When the hands are perpendicular
+
+The question asks for the arc length covered by the tip of the minute hand, but the end time isn't given. So first find when the two hands make a <InlineMath math="90^\circ" /> angle for the second time after 04.00.
+
+Measure angles clockwise from the 12. The minute hand turns <InlineMath math="360^\circ" /> in <InlineMath math="60" /> minutes, so <InlineMath math="6^\circ" /> per minute. The hour hand turns <InlineMath math="30^\circ" /> in <InlineMath math="60" /> minutes, so <InlineMath math="0.5^\circ" /> per minute. At 04.00 the minute hand is at <InlineMath math="0^\circ" /> and the hour hand at <InlineMath math="120^\circ" />. After <InlineMath math="t" /> minutes:
 
 <BlockMath math="\begin{aligned}
-72\text{ km per hour}&=\frac{72{,}000\text{ m}}{3{,}600\text{ s}}=20\text{ m per s} \\
-t&=\frac{250+110}{20}=\frac{360}{20}=18\text{ s}
+\text{position of the minute hand}&=6t \\
+\text{position of the hour hand}&=120+0.5t
 \end{aligned}" />
 
-So it takes <InlineMath math="18" /> seconds.
+Remember that **the hour hand keeps moving too**, so the minute hand closes in by only <InlineMath math="6-0.5=5.5^\circ" /> per minute. A right angle can happen in two situations:
 
-- <InlineMath math="5" /> seconds divides <InlineMath math="360" /> by <InlineMath math="72" /> without converting the speed.
-- <InlineMath math="5.5" /> seconds uses only the train's length.
-- <InlineMath math="7" /> seconds subtracts the train's length from the tunnel's.
-- <InlineMath math="12.5" /> seconds uses only the tunnel's length, so the back of the train is still inside.
+| Situation | Equation | Time |
+| :--- | :---: | :---: |
+| Minute hand <InlineMath math="90^\circ" /> behind the hour hand | <InlineMath math="120+0.5t-6t=90" /> | <InlineMath math="t=\frac{60}{11}\approx5.45" /> minutes |
+| Minute hand <InlineMath math="90^\circ" /> ahead of the hour hand | <InlineMath math="6t-(120+0.5t)=90" /> | <InlineMath math="t=\frac{420}{11}\approx38.18" /> minutes |
+
+The first right angle comes at about 04.05, before the minute hand has caught up with the hour hand. The second comes at <InlineMath math="t=\frac{420}{11}" /> minutes, at about 04.38.
+
+# The arc length
+
+In <InlineMath math="\frac{420}{11}" /> minutes the minute hand turns through:
+
+<BlockMath math="\theta=6\cdot\frac{420}{11}=\frac{2{,}520}{11}\text{ degrees}" />
+
+The tip moves along a circle of radius <InlineMath math="11\text{ cm}" />, so **the arc length is the fraction of a full turn times the circumference**:
+
+<BlockMath math="\begin{aligned}
+\text{arc length}&=\frac{\theta}{360^\circ}\cdot2\pi r \\
+&=\frac{2{,}520}{11\cdot360}\cdot2\pi\cdot11 \\
+&=7\cdot2\pi=14\pi\text{ cm}
+\end{aligned}" />
+
+Check: <InlineMath math="\frac{2{,}520}{11}\approx229^\circ" />, a bit more than half a turn, which fits about <InlineMath math="38" /> minutes.
+
+So the tip of the minute hand travels <InlineMath math="14\pi" /> cm.
+
+# Why the other options are wrong
+
+- <InlineMath math="2\pi" /> cm is the arc up to the **first** right angle, at <InlineMath math="t=\frac{60}{11}" /> minutes. The question asks for the second one.
+- <InlineMath math="\frac{77}{6}\pi" /> cm comes from treating the hour hand as frozen on the 4. Then the minute hand would only need to turn <InlineMath math="120^\circ+90^\circ=210^\circ" />, but the hour hand has moved about <InlineMath math="19^\circ" /> by then.
+- <InlineMath math="26\pi" /> cm comes from missing the right angle at 04.05, so the one at about 05.11 gets counted as the second.
+- <InlineMath math="28\pi" /> cm comes from using the diameter, <InlineMath math="22\text{ cm}" />, where the radius belongs in the circumference formula.

@@ -4,37 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "writing",
-    topic: "coherence",
+    topic: "redundancy",
   },
-  stimulus: "stingless-bees",
+  stimulus: "tenun",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Madu klanceng paling enak diminum bersama air hangat pada pagi hari.",
+          label: "kalimat (2)",
         },
         {
           correct: false,
-          label:
-            "Oleh karena itu, semua petani kopi di Indonesia wajib beternak lebah klanceng.",
+          label: "kalimat (7)",
         },
         {
           correct: false,
-          label:
-            "Lebah klanceng biasa bersarang di rongga batang kayu atau bambu.",
+          label: "kalimat (8)",
+        },
+        {
+          correct: false,
+          label: "kalimat (9)",
         },
         {
           correct: true,
-          label:
-            "Jadi, lebah klanceng tidak hanya menghasilkan madu, tetapi juga membantu panen kopi warga.",
-        },
-        {
-          correct: false,
-          label:
-            "Pakaian pelindung peternak lebah biasanya dibuat dari kain tebal.",
+          label: "kalimat (10)",
         },
       ],
     },

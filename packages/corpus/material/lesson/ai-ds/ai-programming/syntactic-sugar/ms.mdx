@@ -1,0 +1,342 @@
+export const metadata = {
+    title: "Gula Sintaksis",
+  description: "Tulis ungkapan Python dengan list comprehension, fungsi lambda dan operator umpukan majmuk.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-09-20",
+    dateModified: "2026-09-19",
+    subject: "Pengaturcaraan AI",
+};
+
+## Tatatanda Lebih Ringkas untuk Corak Kod yang Biasa
+
+Gula sintaksis (syntactic sugar) ialah <Highlight>tatatanda ringkas</Highlight> untuk tingkah laku yang sebenarnya boleh juga ditulis dengan lebih eksplisit. Gula sintaksis boleh membuang penulisan berulang yang tidak perlu, tetapi sintaks yang lebih pendek hanya berguna jika pembaca masih dapat melihat apa yang dilakukan oleh kod itu.
+
+Python menawarkan beberapa bentuk padat untuk corak yang biasa. Bentuk ini tidak semestinya menjadikan atur cara berjalan lebih laju, dan bentuk ini juga tidak boleh ditukar ganti dalam setiap perincian. Pilih bentuk yang menjadikan niat kamu paling mudah difahami.
+
+## List Comprehension
+
+List comprehension mencipta **senarai baharu daripada objek boleh lelar (iterable)**. List comprehension boleh menukar nilai, menapisnya, atau menggabungkan kedua-dua operasi itu dalam satu ungkapan.
+
+List comprehension mempunyai beberapa bentuk sintaks:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "basic_syntax.py",
+      code: `# Bentuk asas
+newlist = [expression for item in iterable]
+
+# Dengan syarat
+newlist = [expression for item in iterable if condition]
+
+# Dengan if-else (ungkapan bersyarat mesti muncul sebelum for)
+newlist = [if_expr if condition else else_expr for item in iterable]`
+    }
+  ]}
+/>
+
+Dalam bentuk ketiga, ungkapan if-else muncul sebelum gelung `for`. Dalam bentuk kedua pula, syarat `if` muncul selepas gelung itu.
+
+### Pelaksanaan List Comprehension
+
+Contoh berikut memisahkan dua kes: **ungkapan bersyarat dan penapis**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "list_comprehension_example.py",
+      code: `# Data awal
+x = [1, 2, 3, 4, 5, 6]
+
+# Ungkapan bersyarat di dalam list comprehension
+parity = ["odd" if i % 2 else "even" for i in x]
+print(parity)
+# Output: ['odd', 'even', 'odd', 'even', 'odd', 'even']
+
+# Contoh lain dengan syarat
+numbers = [1, 2, 3, 4, 5, 6]
+result = [i**2 for i in numbers if i%2 == 0]
+print(result)
+# Output: [4, 16, 36]`
+    }
+  ]}
+/>
+
+### List Comprehension Bersarang
+
+Python juga menyokong list comprehension bersarang untuk mengendalikan struktur data yang lebih kompleks:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "nested_comprehension.py",
+      code: `# Data matriks
+x = [[1, 2], [3, 4], [5, 6]]
+
+# List comprehension bersarang
+y = [col for row in x for col in row]
+print(y)
+# Output: [1, 2, 3, 4, 5, 6]
+
+# Bandingkan dengan sintaks biasa
+y_standard = []
+for row in x:
+    for col in row:
+        y_standard.append(col)
+print(y_standard)
+# Output yang sama: [1, 2, 3, 4, 5, 6]`
+    }
+  ]}
+/>
+
+List comprehension boleh menulis transformasi atau penapisan yang ringkas dengan padat. Cara ini selalunya cekap, tetapi <Highlight>kejelasan lebih penting daripada menjimatkan baris</Highlight>: gunakan gelung biasa apabila ungkapan itu menjadi sukar dibaca. Tatatandanya menyerupai tatatanda pembina set dalam matematik, walaupun senarai Python mengekalkan susunan dan nilai berulang, manakala set matematik tidak.
+
+Contohnya, `[i**2 for i in range(4)]` menghasilkan `[0, 1, 4, 9]`. Senarai kuasa dua ini berkait dengan tatatanda matematik <InlineMath math="\{i^2 : i \in \{0,1,2,3\}\}" />.
+
+Jalankan list comprehension `[x**2 for x in range(-3, 4) if x % 2 == 0]` sambil melihat gambar ini. Bahagian `for` mengambil setiap <InlineMath math="x" /> dari <InlineMath math="-3" /> hingga <InlineMath math="3" />, bahagian `if` hanya membenarkan nombor genap lalu, dan ungkapan di hadapan mengira `x**2`. Hasilnya ialah tiga titik magenta pada lengkung itu, iaitu `[4, 0, 4]`. Titik hijau kebiruan untuk <InlineMath math="x" /> ganjil masih berada pada lengkung, tetapi titik itu tidak pernah masuk ke dalam senarai.
+
+<MathVisual
+  title={<>Unsur yang dipilih oleh <code>[x**2 for x in range(-3, 4) if x % 2 == 0]</code></>}
+  description={<>Lengkung kelabu ialah <InlineMath math="y=x^2" />. Titik magenta ialah unsur yang lulus syarat <code>if</code>, manakala titik hijau kebiruan dilangkau.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -1, max: 9.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "quadratic", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -3, max: 3 }, inputAxis: "x", appearance: "reference" },
+      { id: "value-a", kind: "point", at: { x: -3, y: 9 }, appearance: "construction" },
+      { id: "value-b", kind: "point", at: { x: -2, y: 4 }, appearance: "answer" },
+      { id: "value-c", kind: "point", at: { x: -1, y: 1 }, appearance: "construction" },
+      { id: "value-d", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "value-e", kind: "point", at: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "value-f", kind: "point", at: { x: 2, y: 4 }, appearance: "answer" },
+      { id: "value-g", kind: "point", at: { x: 3, y: 9 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 3, y: 9 }, placement: "right" },
+      { key: "value-a", objectId: "value-a", at: { x: -3, y: 9 }, placement: "below" },
+      { key: "value-b", objectId: "value-b", at: { x: -2, y: 4 }, placement: "below" },
+      { key: "value-c", objectId: "value-c", at: { x: -1, y: 1 }, placement: "below" },
+      { key: "value-d", objectId: "value-d", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "value-e", objectId: "value-e", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "value-f", objectId: "value-f", at: { x: 2, y: 4 }, placement: "below" },
+      { key: "value-g", objectId: "value-g", at: { x: 3, y: 9 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "square": "x**2",
+    "value-a": "-3",
+    "value-b": "-2",
+    "value-c": "-1",
+    "value-d": "0",
+    "value-e": "1",
+    "value-f": "2",
+    "value-g": "3",
+  }}
+/>
+
+## Fungsi Lambda
+
+Ungkapan lambda mencipta **objek fungsi** tanpa pernyataan `def`. Ungkapan ini paling berguna untuk fungsi kecil yang dihantar terus sebagai argumen.
+
+Badannya mengandungi tepat satu ungkapan, dan ungkapan itu menjadi nilai pulangan. Badan itu boleh memanggil fungsi seperti `print()`, tetapi tidak boleh mengandungi bentuk pernyataan seperti `return`, umpukan biasa, `for` atau `while`. Lambda boleh diumpukkan kepada pemboleh ubah, tetapi `def` yang bernama biasanya lebih jelas apabila fungsi itu akan digunakan semula.
+
+### Cara Menggunakan Lambda
+
+Lambda menulis fungsi kecil dalam **satu ungkapan**. Contoh ini menunjukkan sintaksnya dan mengumpukkan satu lambda kepada satu nama.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "lambda_syntax.py",
+      code: `# Sintaks asas lambda
+lambda parameters : expression
+
+# Contoh lambda ringkas
+square = lambda x: x**2
+print(square(5))  # Output: 25
+
+# Lambda dengan beberapa parameter
+add = lambda x, y: x + y
+print(add(3, 4))  # Output: 7
+
+# Bandingkan dengan fungsi biasa
+def square_normal(x):
+    return x**2
+
+def add_normal(x, y):
+    return x + y`
+    }
+  ]}
+/>
+
+### Lambda dengan Fungsi Terbina Dalam
+
+Lambda yang pendek sesuai digunakan sebagai fungsi panggil balik (callback), terutamanya sebagai **kunci isihan** yang dihantar kepada `sorted()`. `map()` dan `filter()` juga menerima lambda, walaupun comprehension yang setara mungkin lebih mudah dibaca:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "lambda_with_builtins.py",
+      code: `# Dengan map()
+numbers = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x**2, numbers))
+print(squared)  # Output: [1, 4, 9, 16, 25]
+
+# Dengan filter()
+even_numbers = list(filter(lambda x: x%2 == 0, numbers))
+print(even_numbers)  # Output: [2, 4]
+
+# Dengan sorted()
+students = [('Alice', 85), ('Bob', 90), ('Charlie', 78)]
+sorted_by_grade = sorted(students, key=lambda student: student[1])
+print(sorted_by_grade)  # Output: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]`
+    }
+  ]}
+/>
+
+`f = lambda x: x * 2` membina fungsi yang sama dengan `def` yang memulangkan `x * 2`. Panggil fungsi itu untuk setiap `x` dalam `range(-3, 4)`, dan setiap hasilnya jatuh pada garis <InlineMath math="y=2x" />.
+
+<MathVisual
+  title={<><code>lambda x: x * 2</code> untuk <code>x</code> dari <InlineMath math="-3" /> hingga <InlineMath math="3" /></>}
+  description={<>Garis ungu ialah <InlineMath math="y=2x" />. Titik magenta ialah tujuh panggilan <code>f(x)</code>, dari <InlineMath math="f(-3)=-6" /> hingga <InlineMath math="f(3)=6" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -6.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "double", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 2 }], appearance: "secondary" },
+      { id: "call-0", kind: "point", at: { x: -3, y: -6 }, appearance: "answer" },
+      { id: "call-1", kind: "point", at: { x: -2, y: -4 }, appearance: "answer" },
+      { id: "call-2", kind: "point", at: { x: -1, y: -2 }, appearance: "answer" },
+      { id: "call-3", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "call-4", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+      { id: "call-5", kind: "point", at: { x: 2, y: 4 }, appearance: "answer" },
+      { id: "call-6", kind: "point", at: { x: 3, y: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "call-6", objectId: "call-6", at: { x: 3, y: 6 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "call-6": <code>f(3) = 6</code>,
+  }}
+/>
+
+## Ciri Gula Sintaksis yang Lain
+
+Python mempunyai sintaks padat lain untuk operasi yang biasa. Bentuk ini boleh menjadikan kod lebih mudah dibaca, tetapi **tidak menjamin prestasi masa larian yang lebih baik**. Semak sama ada tingkah lakunya benar-benar setara sebelum kamu menggantikan bentuk yang panjang, terutamanya apabila sesuatu operasi boleh mengubah objek.
+
+### Operator Umpukan
+
+Python menyediakan **operator umpukan** yang lebih ringkas untuk operasi yang biasa:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "assignment_operators.py",
+      code: `# Umpukan majmuk
+a = 10
+a += 1    # sama seperti: a = a + 1
+print(a)  # Output: 11
+
+a -= 2    # sama seperti: a = a - 2
+print(a)  # Output: 9
+
+a *= 3    # sama seperti: a = a * 3
+print(a)  # Output: 27
+
+a /= 3    # sama seperti: a = a / 3
+print(a)  # Output: 9.0`
+    }
+  ]}
+/>
+
+Untuk nombor yang tidak boleh diubah (immutable), contoh ini menghasilkan nilai yang sama dengan bentuk panjangnya. Untuk objek yang boleh diubah (mutable) atau objek takrifan pengguna, `+=` boleh melakukan operasi di tempat (in-place), jadi tingkah lakunya tidak selalu sama dengan pengikatan semula melalui `a = a + value`.
+
+### Pengindeksan Negatif
+
+Python membenarkan penggunaan indeks negatif untuk **mencapai unsur dari belakang**:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "negative_indexing.py",
+      code: `# Pengindeksan negatif
+data = [10, 20, 30, 40, 50]
+
+# Capai unsur terakhir
+print(data[-1])    # Output: 50
+# sama seperti: data[len(data) - 1]
+
+print(data[-2])    # Output: 40
+print(data[-3])    # Output: 30
+
+# Penghirisan dengan indeks negatif
+print(data[-3:])   # Output: [30, 40, 50]
+print(data[:-2])   # Output: [10, 20, 30]`
+    }
+  ]}
+/>
+
+### Umpukan Berbilang
+
+Python membenarkan **umpukan beberapa pemboleh ubah** dalam satu baris:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "multiple_assignment.py",
+      code: `# Umpukan berbilang
+x, y, z = 1, 2, 3
+print(f"x={x}, y={y}, z={z}")  # Output: x=1, y=2, z=3
+
+# Membongkar senarai (unpacking)
+coordinates = [10, 20]
+x, y = coordinates
+print(f"x={x}, y={y}")  # Output: x=10, y=20
+
+# Menukar nilai pemboleh ubah
+a, b = 5, 10
+print(f"Sebelum: a={a}, b={b}")
+a, b = b, a  # Tukar tanpa pemboleh ubah sementara
+print(f"Selepas: a={a}, b={b}")  # Output: Selepas: a=10, b=5`
+    }
+  ]}
+/>
+
+Umpukan majmuk mengira menggunakan nilai lama, kemudian menyimpan hasilnya di bawah nama yang sama. Mulakan dengan `x = 10`, kemudian jalankan `x += 5`, `x -= 3`, `x *= 2`, `x //= 5` dan `x **= 2`. Nilainya menjadi <InlineMath math="15" />, <InlineMath math="12" />, <InlineMath math="24" />, <InlineMath math="4" />, kemudian <InlineMath math="16" />.
+
+<BarChart
+  title={<>Nilai <code>x</code> selepas setiap umpukan majmuk</>}
+  description={<>Setiap palang ialah <code>x</code> selepas operator yang ditulis di bawahnya, dengan operan <InlineMath math="5" />, <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="5" /> dan <InlineMath math="2" /> mengikut urutan itu.</>}
+  yAxisLabel="Nilai"
+  data={[
+    { name: "mula", value: 10 },
+    { name: "+=", value: 10 + 5 },
+    { name: "-=", value: 10 + 5 - 3 },
+    { name: "*=", value: (10 + 5 - 3) * 2 },
+    { name: "//=", value: Math.floor((10 + 5 - 3) * 2 / 5) },
+    { name: "**=", value: Math.floor((10 + 5 - 3) * 2 / 5) ** 2 },
+  ]}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Perbandingan Sintaks
+
+| Konsep | Sintaks Biasa | Gula Sintaksis |
+|---------|-----------------|-----------------|
+| Cipta senarai kuasa dua | `result = []` kemudian gelung dengan `append()` | `result = [i**2 for i in range(5)]` |
+| Fungsi ringkas | `def double(x): return x * 2` | `double = lambda x: x * 2` |
+| Umpukan | `a = a + 5` | `a += 5` |
+| Capai unsur terakhir | `data[len(data) - 1]` | `data[-1]` |
+
+Gunakan bentuk padat hanya apabila pembaca boleh **mengenal pasti operasi itu** tanpa perlu menjejak aliran kawalan atau kesan sampingan yang tersembunyi. Jika tidak, gunakan bentuk yang eksplisit.

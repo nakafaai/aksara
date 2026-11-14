@@ -1,0 +1,78 @@
+# Panjang setiap tembereng tangen
+
+Gelang getah itu terdiri daripada tiga bahagian: tembereng <InlineMath math="PA" />, tembereng <InlineMath math="PB" />, dan lengkok yang melekat pada tin. Kamu perlukan panjang tangen dan sudut pusat lengkok itu. Kuncinya ialah sifat ini: **jejari yang dilukis ke titik sentuhan sentiasa berserenjang dengan tangen**.
+
+Jarak terdekat paku ke dinding tin diukur di sepanjang garis <InlineMath math="OP" />, jadi <InlineMath math="OP=12+12=24\text{ cm}" />. Segi tiga <InlineMath math="OAP" /> bersudut tegak di <InlineMath math="A" />.
+
+<BlockMath math="\begin{aligned}
+PA&=\sqrt{OP^2-OA^2}=\sqrt{24^2-12^2}=\sqrt{432}=12\sqrt3\text{ cm} \\
+\sin\angle OPA&=\frac{OA}{OP}=\frac{12}{24}=\frac12 \quad\Rightarrow\quad \angle OPA=30^\circ
+\end{aligned}" />
+
+Oleh sebab simetri, <InlineMath math="PB=PA=12\sqrt3\text{ cm}" />, dan sudut di antara kedua-dua tangen ialah <InlineMath math="\angle APB=60^\circ" />.
+
+<MathVisual
+  title={<>Gelang getah mengelilingi tin dan paku <InlineMath math="P" /></>}
+  description={<>Bulatan berpusat <InlineMath math="O" /> dengan jejari <InlineMath math="12" />. Paku <InlineMath math="P" /> berada <InlineMath math="24" /> dari <InlineMath math="O" />. Tembereng <InlineMath math="PA" /> dan <InlineMath math="PB" /> menyentuh bulatan, dan jejari <InlineMath math="OA" /> serta <InlineMath math="OB" /> berserenjang dengannya. Gelang getah mengikut lengkok major dari <InlineMath math="A" /> ke <InlineMath math="B" /> pada sisi tin yang jauh dari paku, dengan sudut pusat <InlineMath math="240^\circ" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    p: <InlineMath math="P" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    tangent: <InlineMath math="12\sqrt3" />,
+    angle: <InlineMath math="120^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -15, max: 28 },
+      y: { min: -15, max: 15 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "can", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 12 },
+      { id: "band-arc", kind: "arc", appearance: "highlight", center: { x: 0, y: 0 }, radius: 12, startDegrees: 60, sweepDegrees: 240 },
+      { id: "band-a", kind: "segment", appearance: "highlight", from: { x: 24, y: 0 }, to: { x: 6, y: 6 * Math.sqrt(3) } },
+      { id: "band-b", kind: "segment", appearance: "highlight", from: { x: 24, y: 0 }, to: { x: 6, y: -6 * Math.sqrt(3) } },
+      { id: "radius-a", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 6, y: 6 * Math.sqrt(3) } },
+      { id: "radius-b", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 6, y: -6 * Math.sqrt(3) } },
+      { id: "center-line", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 24, y: 0 } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-p", kind: "point", appearance: "primary", at: { x: 24, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 6, y: 6 * Math.sqrt(3) } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 6, y: -6 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "p", objectId: "point-p", at: { x: 24, y: 0 }, placement: "right" },
+      { key: "a", objectId: "point-a", at: { x: 6, y: 6 * Math.sqrt(3) }, placement: "above" },
+      { key: "b", objectId: "point-b", at: { x: 6, y: -6 * Math.sqrt(3) }, placement: "below" },
+      { key: "tangent", objectId: "band-a", at: { x: 15, y: 3 * Math.sqrt(3) }, placement: "above-right" },
+      { key: "angle", objectId: "radius-a", at: { x: 2, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+# Lengkok yang dilekati gelang getah
+
+Lihat sisi empat <InlineMath math="OAPB" />. Sudut di <InlineMath math="A" /> dan <InlineMath math="B" /> masing-masing <InlineMath math="90^\circ" />, dan sudut di <InlineMath math="P" /> ialah <InlineMath math="60^\circ" />. Hasil tambah sudut sisi empat ialah <InlineMath math="360^\circ" />, jadi sudut pusat lengkok minor ialah:
+
+<BlockMath math="\angle AOB=360^\circ-90^\circ-90^\circ-60^\circ=120^\circ" />
+
+Gelang getah yang tegang **melekat pada sisi tin yang jauh dari paku**, iaitu lengkok major <InlineMath math="AB" />. Sudut pusatnya <InlineMath math="360^\circ-120^\circ=240^\circ" />.
+
+<BlockMath math="\begin{aligned}
+\text{lengkok major }AB&=\frac{240^\circ}{360^\circ}\cdot2\pi\cdot12=16\pi\text{ cm} \\
+\text{panjang gelang}&=PA+PB+\text{lengkok major }AB \\
+&=12\sqrt3+12\sqrt3+16\pi=(24\sqrt3+16\pi)\text{ cm}
+\end{aligned}" />
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="(24\sqrt3+8\pi)\text{ cm}" /> menggunakan lengkok minor <InlineMath math="120^\circ" />. Lengkok minor berada di sisi yang menghadap paku, dan gelang getah tidak menyentuh sisi itu.
+- <InlineMath math="(24\sqrt3+20\pi)\text{ cm}" /> menganggap sudut <InlineMath math="60^\circ" /> di <InlineMath math="P" /> sebagai sudut pusat lengkok minor, jadi lengkok majornya dianggap <InlineMath math="300^\circ" />. **Sudut pusat dan sudut di antara tangen ialah sudut penggenap**, iaitu hasil tambahnya <InlineMath math="180^\circ" />.
+- <InlineMath math="(24+16\pi)\text{ cm}" /> menganggap panjang tangen sama dengan jarak terdekat <InlineMath math="12\text{ cm}" />. Jarak terdekat itu menghala ke pusat, bukan di sepanjang tangen.
+- <InlineMath math="(48+16\pi)\text{ cm}" /> menganggap panjang tangen sama dengan <InlineMath math="OP=24\text{ cm}" />. Sebenarnya <InlineMath math="OP" /> ialah hipotenus segi tiga bersudut tegak, jadi tangen pasti lebih pendek.
+
+Jadi, panjang gelang getah yang tegang ialah <InlineMath math="(24\sqrt3+16\pi)\text{ cm}" />.

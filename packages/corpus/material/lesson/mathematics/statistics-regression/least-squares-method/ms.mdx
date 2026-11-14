@@ -1,0 +1,152 @@
+
+export const metadata = {
+  title: "Kaedah Kuasa Dua Terkecil",
+  description: "Cari garis penyuaian terbaik dengan meminimumkan hasil tambah kuasa dua reja, kemudian kira dan tafsirkan pekalinya.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-01",
+  dateModified: "2026-11-08",
+  subject: "Statistik",
+};
+
+## Memilih Garis yang Paling Sepadan dengan Data
+
+Katakan satu set cerapan atau keputusan eksperimen terdiri daripada pasangan nilai <InlineMath math="(x, y)" />. Apabila gambar rajah serakannya mengikut trend yang lebih kurang lurus, banyak garis yang berbeza boleh dilukis melalui kelompok titik itu.
+
+Persoalannya, daripada banyak garis lurus yang boleh kita lukis melalui titik-titik ini, yang manakah **garis lurus terbaik** yang paling baik mewakili keseluruhan set data?
+
+Kaedah Kuasa Dua Terkecil ialah **prosedur matematik** untuk mencari garis lurus yang paling sepadan dengan set titik data berdasarkan satu kriteria yang tepat: <Highlight>hasil tambah kuasa dua reja mencancang yang paling kecil</Highlight>. Kecerunan garis yang disuaikan itu unik selagi nilai-nilai <InlineMath math="x" /> yang dicerap tidak semuanya sama.
+
+## Meminimumkan Kuasa Dua Reja
+
+Garis yang disuaikan ditentukan daripada **reja** mencancang pada setiap titik cerapan:
+
+1.  **Garis Ramalan**: Kita cuba lukis satu garis lurus (<InlineMath math="\hat{y} = a + bx" />) di antara titik-titik data.
+2.  **Reja**: Bagi setiap nilai cerapan <InlineMath math="y_i" />, garis itu memberikan nilai ramalan <InlineMath math="\hat{y}_i" />. Beza mencancang bertanda antara kedua-duanya ialah **reja**:
+
+    <BlockMath math="e_i = y_i - \hat{y}_i" />
+
+3.  **Minimumkan hasil tambah kuasa dua reja**: Garis kuasa dua terkecil menjadikan <InlineMath math="\sum e_i^2" /> sekecil yang mungkin antara semua garis calon.
+
+Mengapa reja perlu dikuasaduakan?
+
+- Apabila dikuasaduakan, reja positif dan reja negatif tidak lagi saling membatalkan.
+- Reja yang magnitudnya dua kali ganda menyumbang empat kali ganda kepada hasil tambah itu, jadi penyimpangan yang besar diberi pemberat yang lebih besar.
+
+## Menyuaikan Data Pengiklanan dan Jualan
+
+Contohnya, sebuah syarikat mahu melihat hubungan antara **kos pengiklanan** yang dibelanjakan (dalam juta rupiah) dan bilangan produk yang dijual (dalam ribu unit). Berikut ialah data yang mereka kumpulkan:
+
+<ScatterDiagram
+  title={<>Garis Hasil Kaedah Kuasa Dua Terkecil (Iklan lawan Jualan)</>}
+  description={<>Garis itu menunjukkan hubungan trend linear antara kos pengiklanan dan jualan, dengan meminimumkan kuasa dua ralat.</>}
+  xAxisLabel="Kos Pengiklanan (Juta Rupiah)"
+  yAxisLabel="Jualan Produk (Ribu Unit)"
+  datasets={[
+    {
+      name: "Data Pemasaran",
+      color: "var(--chart-1)",
+      points: [
+        { x: 2, y: 50 },
+        { x: 3, y: 65 },
+        { x: 4, y: 42 },
+        { x: 4.5, y: 75 },
+        { x: 5, y: 70 },
+        { x: 6, y: 90 },
+        { x: 7, y: 85 },
+        { x: 7.5, y: 65 },
+        { x: 8, y: 112 },
+        { x: 9, y: 115 },
+        { x: 10, y: 105 },
+        { x: 11, y: 125 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  showResiduals
+  regressionLineStyle={{
+    color: "var(--chart-4)",
+  }}
+/>
+
+Garis lurus dalam gambar rajah itu ialah garis _penyuaian terbaik_ bagi data pengiklanan dan jualan. Garis putus-putus menunjukkan reja bagi setiap titik. Kaedah kuasa dua terkecil memilih garis yang hasil tambah kuasa dua rejanya paling kecil.
+## Mencari Garis dengan Meminimumkan Kuasa Dua Reja
+
+Secara matematik, kita mencari garis yang persamaannya:
+
+<BlockMath math="\hat{y} = a + bx" />
+
+Pintasan <InlineMath math="a" /> dan kecerunan <InlineMath math="b" /> dipilih supaya **hasil tambah kuasa dua reja** yang berikut menjadi minimum:
+
+<BlockMath math="\begin{aligned} \sum e_i^2 &amp;= \sum (y_i - \hat{y}_i)^2 \\ &amp;= \sum (y_i - (a + bx_i))^2 \end{aligned}" />
+
+Pekali yang meminimumkan hasil tambah kuasa dua reja dikira daripada hasil tambah, hasil darab dan kuasa dua cerapan:
+
+<MathContainer>
+  <BlockMath math="b = \frac{n(\sum xy) - (\sum x)(\sum y)}{n(\sum x^2) - (\sum x)^2}" />
+  <BlockMath math="a = \bar{y} - b\bar{x}" />
+</MathContainer>
+
+Keterangan rumus:
+
+- <InlineMath math="n" /> = Bilangan pasangan data.
+- <InlineMath math="\sum x" />, <InlineMath math="\sum y" /> = Hasil tambah semua nilai <InlineMath math="x" /> dan
+  <InlineMath math="y" />.
+- <InlineMath math="\sum xy" /> = Hasil tambah hasil darab setiap pasangan <InlineMath math="x" /> dan <InlineMath math="y" />.
+- <InlineMath math="\sum x^2" /> = Hasil tambah kuasa dua setiap nilai <InlineMath math="x" />.
+- <InlineMath math="\bar{x}" /> = Min bagi <InlineMath math="x" /> (<InlineMath math="\frac{\sum x}{n}" />
+  ).
+- <InlineMath math="\bar{y}" /> = Min bagi <InlineMath math="y" /> (<InlineMath math="\frac{\sum y}{n}" />
+  ).
+
+Kaedah kuasa dua terkecil memberikan kriteria yang sistematik bagi garis yang mewakili trend linear: hasil tambah kuasa dua rejanya minimum.
+
+Kalau setiap nilai <InlineMath math="x" /> sama, maka <InlineMath math="n(\sum x^2)-(\sum x)^2=0" /> dan penyebut rumus kecerunan itu menjadi sifar. Dalam kes itu, data tidak dapat menentukan satu kecerunan regresi linear yang unik.
+
+### Mengira Pekali daripada Data
+
+Gunakan setiap pasangan dalam plot itu. Lajur hasil darab dan lajur kuasa dua memastikan setiap cerapan masuk ke dalam pengiraan tepat sekali. Kemudian **hasil tambah setiap lajur** dimasukkan ke dalam rumus kecerunan.
+
+| <InlineMath math="x" /> | <InlineMath math="y" /> | <InlineMath math="xy" /> | <InlineMath math="x^2" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="2" /> | <InlineMath math="50" /> | <InlineMath math="100" /> | <InlineMath math="4" /> |
+| <InlineMath math="3" /> | <InlineMath math="65" /> | <InlineMath math="195" /> | <InlineMath math="9" /> |
+| <InlineMath math="4" /> | <InlineMath math="42" /> | <InlineMath math="168" /> | <InlineMath math="16" /> |
+| <InlineMath math="4.5" /> | <InlineMath math="75" /> | <InlineMath math="337.5" /> | <InlineMath math="20.25" /> |
+| <InlineMath math="5" /> | <InlineMath math="70" /> | <InlineMath math="350" /> | <InlineMath math="25" /> |
+| <InlineMath math="6" /> | <InlineMath math="90" /> | <InlineMath math="540" /> | <InlineMath math="36" /> |
+| <InlineMath math="7" /> | <InlineMath math="85" /> | <InlineMath math="595" /> | <InlineMath math="49" /> |
+| <InlineMath math="7.5" /> | <InlineMath math="65" /> | <InlineMath math="487.5" /> | <InlineMath math="56.25" /> |
+| <InlineMath math="8" /> | <InlineMath math="112" /> | <InlineMath math="896" /> | <InlineMath math="64" /> |
+| <InlineMath math="9" /> | <InlineMath math="115" /> | <InlineMath math="1035" /> | <InlineMath math="81" /> |
+| <InlineMath math="10" /> | <InlineMath math="105" /> | <InlineMath math="1050" /> | <InlineMath math="100" /> |
+| <InlineMath math="11" /> | <InlineMath math="125" /> | <InlineMath math="1375" /> | <InlineMath math="121" /> |
+| <InlineMath math="\sum x=77" /> | <InlineMath math="\sum y=999" /> | <InlineMath math="\sum xy=7129" /> | <InlineMath math="\sum x^2=581.5" /> |
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}b&=\frac{12(7129)-(77)(999)}{12(581.5)-(77)^2} \\ &=\frac{8625}{1049} \\ &=\frac{8625}{1049}\approx8.222\end{aligned}" />
+  <BlockMath math="a=\frac{999}{12}-\frac{8625}{1049}\cdot\frac{77}{12}=\frac{63971}{2098}\approx30.491" />
+</MathContainer>
+
+Gunakan pekali yang belum dibundarkan semasa mengira ramalan. Kalau kita bundarkan pekali yang dipaparkan sahaja, kita dapat:
+
+<BlockMath math="\hat y\approx30.491+8.222x" />
+
+Kekalkan garis itu melalui titik min <InlineMath math="(\bar x, \bar y) = \left(\tfrac{77}{12}, \tfrac{999}{12}\right)" /> dan ubah kecerunannya <InlineMath math="b" /> sahaja. Bagi data pengiklanan itu, hasil tambah kuasa dua reja ialah <InlineMath math="S_{yy} - 2bS_{xy} + b^2S_{xx}" />, iaitu satu parabola dalam <InlineMath math="b" />: nilainya paling kecil pada <InlineMath math="b = \tfrac{8625}{1049} \approx 8.222" /> dan bertambah di kedua-dua belah.
+
+<BarChart
+  title={<>Hasil tambah kuasa dua reja melawan kecerunan</>}
+  description={<>Palang hasil tambah kuasa dua reja bagi kecerunan <InlineMath math="b = 6, 7, 8.222, 9, 10" />, dengan setiap garis melalui titik min.</>}
+  yAxisLabel="Hasil tambah kuasa dua reja"
+  data={[6, 7, 8625 / 1049, 9, 10].map((b) => ({ name: b === 8625 / 1049 ? "8.222" : String(b), value: 31265 / 4 - 2 * b * (2875 / 4) + b ** 2 * (1049 / 12) }))}
+  chartConfig={{ value: { label: "Hasil tambah kuasa dua reja", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Sekarang kekalkan kecerunan <InlineMath math="b \approx 8.222" /> dan anjakkan garis itu ke atas atau ke bawah sebanyak <InlineMath math="d" /> ribu unit. Setiap anjakan menambah <InlineMath math="12d^2" /> kepada hasil tambah kuasa dua reja, iaitu satu <InlineMath math="d^2" /> bagi setiap satu daripada <InlineMath math="12" /> pasangan, jadi pintasan <InlineMath math="a \approx 30.491" /> ialah pintasan yang terbaik.
+
+<BarChart
+  title={<>Hasil tambah kuasa dua reja melawan anjakan</>}
+  description={<>Palang hasil tambah kuasa dua reja bagi garis yang disuaikan apabila dianjakkan sebanyak <InlineMath math="d = -10, -5, 0, 5, 10" />. Palang paling rendah, kira-kira <InlineMath math="1906.6" />, ialah garis yang disuaikan itu sendiri.</>}
+  yAxisLabel="Hasil tambah kuasa dua reja"
+  data={[-10, -5, 0, 5, 10].map((d) => ({ name: String(d), value: 31265 / 4 - 2875 ** 2 / (16 * (1049 / 12)) + 12 * d ** 2 }))}
+  chartConfig={{ value: { label: "Hasil tambah kuasa dua reja", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

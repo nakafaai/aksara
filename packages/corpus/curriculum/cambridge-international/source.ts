@@ -11,6 +11,7 @@ export const cambridgeInternationalCurriculum = defineCurriculum({
         de: { title: "Lernstufen" },
         en: { title: "Learning stages" },
         id: { title: "Tahap belajar" },
+        ms: { title: "Peringkat pembelajaran" },
       },
       displayGroupIconKey: "school",
       iconKey: "early-years",
@@ -26,6 +27,10 @@ export const cambridgeInternationalCurriculum = defineCurriculum({
           routeSlug: "early-years",
           title: "Early Years",
         },
+        ms: {
+          routeSlug: "pendidikan-awal-kanak-kanak",
+          title: "Pendidikan Awal Kanak-kanak",
+        },
       },
     }),
     stageNode({
@@ -33,6 +38,7 @@ export const cambridgeInternationalCurriculum = defineCurriculum({
         de: { title: "Lernstufen" },
         en: { title: "Learning stages" },
         id: { title: "Tahap belajar" },
+        ms: { title: "Peringkat pembelajaran" },
       },
       displayGroupIconKey: "school",
       iconKey: "primary-school",
@@ -48,6 +54,10 @@ export const cambridgeInternationalCurriculum = defineCurriculum({
           routeSlug: "primary",
           title: "Primary",
         },
+        ms: {
+          routeSlug: "sekolah-rendah",
+          title: "Sekolah Rendah",
+        },
       },
     }),
     stageNode({
@@ -55,6 +65,7 @@ export const cambridgeInternationalCurriculum = defineCurriculum({
         de: { title: "Lernstufen" },
         en: { title: "Learning stages" },
         id: { title: "Tahap belajar" },
+        ms: { title: "Peringkat pembelajaran" },
       },
       displayGroupIconKey: "school",
       iconKey: "middle-school",
@@ -70,6 +81,10 @@ export const cambridgeInternationalCurriculum = defineCurriculum({
           routeSlug: "lower-secondary",
           title: "Lower Secondary",
         },
+        ms: {
+          routeSlug: "menengah-rendah",
+          title: "Menengah Rendah",
+        },
       },
     }),
     stageNode({
@@ -78,6 +93,7 @@ export const cambridgeInternationalCurriculum = defineCurriculum({
         de: { title: "Lernstufen" },
         en: { title: "Learning stages" },
         id: { title: "Tahap belajar" },
+        ms: { title: "Peringkat pembelajaran" },
       },
       displayGroupIconKey: "school",
       iconKey: "high-school",
@@ -93,6 +109,10 @@ export const cambridgeInternationalCurriculum = defineCurriculum({
           routeSlug: "upper-secondary",
           title: "Upper Secondary",
         },
+        ms: {
+          routeSlug: "menengah-atas",
+          title: "Menengah Atas",
+        },
       },
     }),
     stageNode({
@@ -100,6 +120,7 @@ export const cambridgeInternationalCurriculum = defineCurriculum({
         de: { title: "Lernstufen" },
         en: { title: "Learning stages" },
         id: { title: "Tahap belajar" },
+        ms: { title: "Peringkat pembelajaran" },
       },
       displayGroupIconKey: "school",
       iconKey: "advanced",
@@ -114,6 +135,10 @@ export const cambridgeInternationalCurriculum = defineCurriculum({
         id: {
           routeSlug: "advanced",
           title: "Advanced",
+        },
+        ms: {
+          routeSlug: "peringkat-lanjutan",
+          title: "Peringkat Lanjutan",
         },
       },
     }),
