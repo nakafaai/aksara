@@ -68,7 +68,7 @@ The capacity rule gives each shell its limit: shell <InlineMath math="n" /> hold
 
 <MathVisual
   title={<>Shell Capacity <InlineMath math="2n^2" /></>}
-  description={<>The most electrons each of the first four shells can hold. One grid step up is 4 electrons.</>}
+  description={<>The most electrons each of the first four shells can hold. One grid step up is <InlineMath math="4" /> electrons.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 9 }, z: { min: -1.5, max: 1.5 } },
@@ -91,6 +91,25 @@ The capacity rule gives each shell its limit: shell <InlineMath math="n" /> hold
     l: <InlineMath math="\mathrm{L}:\ 2\cdot2^2=8" />,
     m: <InlineMath math="\mathrm{M}:\ 2\cdot3^2=18" />,
     n: <InlineMath math="\mathrm{N}:\ 2\cdot4^2=32" />,
+  }}
+/>
+
+### Atoms Trade to Fill Shells
+
+A shell holds a fixed number of electrons, and atoms **move electrons to reach a full outer shell**. Watch <InlineMath math="\mathrm{Na}" /> hand its single outer electron to <InlineMath math="\mathrm{Cl}" />, so both end with eight in the outer shell.
+
+<IonFormationLab
+  title={<>Filling Shells by Transfer</>}
+  description={<>Pick a metal and nonmetal pair and slide the electron across.</>}
+  pairs={["sodium-chlorine", "lithium-fluorine"]}
+  labels={{
+    choose: "Choose a pair of atoms",
+    metalRadius: <>Metal radius</>,
+    metalShells: <>Metal shells</>,
+    nonmetalRadius: <>Nonmetal radius</>,
+    nonmetalShells: <>Nonmetal shells</>,
+    progress: "Electron transfer",
+    view: "Metal and nonmetal atoms becoming ions",
   }}
 />
 
@@ -149,6 +168,25 @@ Choose a neutral atom. Notice that the **electron count equals the atomic number
   }}
 />
 
+### One Outer Electron in Water
+
+Lithium, sodium and potassium each carry one outer electron, but **each sits one shell farther from the nucleus**. The farther shell lets go more easily, so the reaction in water grows wilder down the list.
+
+<AlkaliWaterLab
+  title={<>Shells and Reactivity</>}
+  description={<>Drop each metal into water and compare the fizz with its atomic radius.</>}
+  metals={["lithium", "sodium", "potassium"]}
+  labels={{
+    choose: "Choose a metal",
+    density: <>Density</>,
+    equation: <>Equation</>,
+    ionization: <>First ionization energy</>,
+    melting: <>Melting point</>,
+    radius: <>Atomic radius</>,
+    view: "Metal in a beaker of water",
+  }}
+/>
+
 ## Calcium Electron Configuration
 
 Calcium has atomic number <InlineMath math="20" />. The symbol <InlineMath math="Z" /> means atomic number. Since the atom is neutral, it also has <InlineMath math="20" /> electrons. Fill the shells in order from the **lowest energy**, and record the electron count of each shell as you go.
@@ -178,7 +216,7 @@ Here is calcium in the simple shell model: <InlineMath math="2, 8, 8, 2" /> elec
 
 <MathVisual
   title={<>Calcium in the Shell Model</>}
-  description={<>Calcium's 20 electrons in shells K, L, M and N, with the outermost electrons in fuchsia.</>}
+  description={<>Calcium's <InlineMath math="20" /> electrons in shells K, L, M and N, with the outermost electrons in fuchsia.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.8, max: 4.8 }, y: { min: -4.8, max: 4.8 } },

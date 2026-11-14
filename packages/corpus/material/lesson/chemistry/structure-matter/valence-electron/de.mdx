@@ -114,7 +114,7 @@ Hier ist Chlor, <InlineMath math="2, 8, 7" />. Seine äußerste besetzte Schale 
 
 <MathVisual
   title={<>Die sieben Valenzelektronen von Chlor</>}
-  description={<>Die 17 Elektronen von Chlor in den Schalen K, L und M, die Valenzelektronen in Fuchsia.</>}
+  description={<>Die <InlineMath math="17" /> Elektronen von Chlor in den Schalen K, L und M, die Valenzelektronen in Fuchsia.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
@@ -193,6 +193,25 @@ Die Anzahl der besetzten Schalen nimmt innerhalb der Gruppe zu, während die äu
 
 Wasserstoff ist eine Einschränkung dieser Gruppierungsregel: Er besitzt ebenfalls <InlineMath math="1" /> Valenzelektron, verhält sich aber nicht wie ein typisches Alkalimetall. Die Valenzelektronenzahl gibt einen starken Hinweis auf die Eigenschaften eines Elements. Andere Teile der Atomstruktur spielen ebenfalls eine Rolle.
 
+### Gleiche Valenz und gleiche Reaktion
+
+Jedes Metall hier hat <InlineMath math="1" /> Valenzelektron, also **reagieren alle auf dieselbe Weise mit Wasser**, zu Wasserstoff und einem Hydroxid. Nur das Tempo ändert sich nach unten.
+
+<AlkaliWaterLab
+  title={<>Ein Valenzelektron im Wasser</>}
+  description={<>Wirf jedes Metall hinein und vergleiche die Gleichungen, die sie schreiben.</>}
+  metals={["lithium", "sodium", "potassium"]}
+  labels={{
+    choose: "Metall wählen",
+    density: <>Dichte</>,
+    equation: <>Reaktionsgleichung</>,
+    ionization: <>Erste Ionisierungsenergie</>,
+    melting: <>Schmelzpunkt</>,
+    radius: <>Atomradius</>,
+    view: "Metall in einem Becherglas mit Wasser",
+  }}
+/>
+
 ## Verbindung zu chemischen Eigenschaften
 
 An chemischen Reaktionen sind häufig Valenzelektronen beteiligt, also die Elektronen der äußersten Schale. Atome können diese **Elektronen verlieren, gewinnen oder teilen**.
@@ -212,6 +231,25 @@ Für Hauptgruppenelemente lautet das Schnellmuster:
 Helium ist eine Ausnahme: Es gehört zur Gruppe <InlineMath math="18" />, hat aber nur <InlineMath math="2" /> Valenzelektronen, da seine erste Schale mit <InlineMath math="2" /> Elektronen voll ist.
 
 Bei Übergangselementen können Elektronen aus der äußersten <InlineMath math="s" />-Unterschale und aus benachbarten <InlineMath math="d" />-Unterschalen an Bindungen beteiligt sein. Die einfache Zuordnung über die Gruppennummer liefert deshalb nicht immer eine einzige Valenzelektronenzahl. Die folgenden Beispiele verwenden Hauptgruppenelemente und das einfache Schalenmodell.
+
+### Valenzelektronen bestimmen die Ladung
+
+Natrium hat <InlineMath math="1" /> Valenzelektron und Magnesium <InlineMath math="2" />, also **geben sie genau so viele ab**: Natrium wird zu <InlineMath math="\mathrm{Na^+}" />, Magnesium zu <InlineMath math="\mathrm{Mg^{2+}}" />.
+
+<IonFormationLab
+  title={<>Von Valenzelektronen zu Ionen</>}
+  description={<>Schieb die Elektronen bei jedem Paar hinüber und zähle, wie viele das Metall verlassen.</>}
+  pairs={["sodium-chlorine", "magnesium-oxygen"]}
+  labels={{
+    choose: "Atompaar wählen",
+    metalRadius: <>Radius des Metalls</>,
+    metalShells: <>Schalen des Metalls</>,
+    nonmetalRadius: <>Radius des Nichtmetalls</>,
+    nonmetalShells: <>Schalen des Nichtmetalls</>,
+    progress: "Elektronenübergang",
+    view: "Metall- und Nichtmetallatom werden zu Ionen",
+  }}
+/>
 
 ### Bindungen folgen den Valenzelektronen
 
@@ -239,7 +277,7 @@ Valenzelektronen bestimmen, wie viele Bindungen ein Atom eingeht. Kohlenstoff ha
 
 ## Selbstkontrolle an der äußersten Schale
 
-Lies die Schalenkonfiguration und nimm die Elektronenzahl der äußersten besetzten Schale als Valenzelektronenzahl. In den Gruppen 1 und 2 entspricht sie der Gruppennummer. In den Gruppen 13 bis 18 ziehst du 10 von der Gruppennummer ab. Beachte die **Ausnahme Helium**: 2 Valenzelektronen, aber Gruppe 18.
+Lies die Schalenkonfiguration und nimm die Elektronenzahl der äußersten besetzten Schale als Valenzelektronenzahl. In den Gruppen 1 und 2 entspricht sie der Gruppennummer. In den Gruppen 13 bis 18 ziehst du <InlineMath math="10" /> von der Gruppennummer ab. Beachte die **Ausnahme Helium**: <InlineMath math="2" /> Valenzelektronen, aber Gruppe 18.
 
 ### Die ersten zwanzig Elemente
 
@@ -272,13 +310,13 @@ Die Tabelle enthält die Schalenkonfiguration und die Anzahl der Valenzelektrone
 
 Die Elemente <InlineMath math="\mathrm{B}" />, <InlineMath math="\mathrm{Al}" />, <InlineMath math="\mathrm{Ga}" />, <InlineMath math="\mathrm{In}" /> und <InlineMath math="\mathrm{Tl}" /> stehen in Gruppe <InlineMath math="13" />. Im schnellen Hauptgruppenmuster besitzen sie <InlineMath math="3" /> Valenzelektronen.
 
-<InlineMath math="\mathrm{Na}" /> und <InlineMath math="\mathrm{K}" /> stehen in Gruppe <InlineMath math="1" />. Nach demselben Muster besitzen beide <InlineMath math="1" /> leicht abzugebendes Valenzelektron und bilden daher häufig <InlineMath math="+1" />-Ionen. Argon ist reaktionsträger als Chlor, weil es ein stabiles **Valenzoktett** besitzt. Ein Oktett bedeutet acht Valenzelektronen, nicht die vollständige Belegung der Schale M mit 18 Elektronen. Chlor nimmt bei der Ionenbildung häufig ein Elektron auf oder teilt Elektronen in kovalenten Bindungen.
+<InlineMath math="\mathrm{Na}" /> und <InlineMath math="\mathrm{K}" /> stehen in Gruppe <InlineMath math="1" />. Nach demselben Muster besitzen beide <InlineMath math="1" /> leicht abzugebendes Valenzelektron und bilden daher häufig <InlineMath math="+1" />-Ionen. Argon ist reaktionsträger als Chlor, weil es ein stabiles **Valenzoktett** besitzt. Ein Oktett bedeutet acht Valenzelektronen, nicht die vollständige Belegung der Schale M mit <InlineMath math="18" /> Elektronen. Chlor nimmt bei der Ionenbildung häufig ein Elektron auf oder teilt Elektronen in kovalenten Bindungen.
 
-Schreib die Schalenbesetzung auf, such die äußerste besetzte Schale und zähl ihre Elektronen. Mach das für die Ordnungszahlen 1 bis 20, und die Zahl steigt bis acht und fällt dann auf eins zurück, sobald eine neue Schale beginnt. Zoom auf den Abfall nach Neon und auf Chlor, dem ein Elektron bis acht fehlt.
+Schreib die Schalenbesetzung auf, such die äußerste besetzte Schale und zähl ihre Elektronen. Mach das für die Ordnungszahlen <InlineMath math="1" /> bis <InlineMath math="20" />, und die Zahl steigt bis acht und fällt dann auf eins zurück, sobald eine neue Schale beginnt. Zoom auf den Abfall nach Neon und auf Chlor, dem ein Elektron bis acht fehlt.
 
 <MathVisual
   title={<>Valenzelektronen steigen und beginnen neu</>}
-  description={<>Valenzelektronen für die Ordnungszahlen 1 bis 20. Waagerecht: Ein Gitterschritt entspricht 2 Ordnungszahlen. Senkrecht: Anzahl der Valenzelektronen.</>}
+  description={<>Valenzelektronen für die Ordnungszahlen <InlineMath math="1" /> bis <InlineMath math="20" />. Waagerecht: Ein Gitterschritt entspricht <InlineMath math="2" /> Ordnungszahlen. Senkrecht: Anzahl der Valenzelektronen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: -0.5, max: 9 } },

@@ -25,6 +25,25 @@ Baca lambang atom tersebut seperti ini.
 - <InlineMath math="Z" /> adalah nomor atom
 - <InlineMath math="A" /> adalah nomor massa
 
+### Muatan di Sudut Simbol
+
+Simbol atom juga bisa membawa muatan di kanan atas, seperti <InlineMath math="\mathrm{Mg^{2+}}" /> dan <InlineMath math="\mathrm{O^{2-}}" />. **Muatan itu menghitung elektron yang lepas atau diterima**, dan di sini kamu bisa melihat elektronnya berpindah.
+
+<IonFormationLab
+  title={<>Asal Muatan Sebuah Ion</>}
+  description={<>Pilih magnesium dengan oksigen atau kalium dengan klorin, lalu hitung elektron yang berpindah.</>}
+  pairs={["magnesium-oxygen", "potassium-chlorine"]}
+  labels={{
+    choose: "Pilih pasangan atom",
+    metalRadius: <>Jari-jari logam</>,
+    metalShells: <>Kulit logam</>,
+    nonmetalRadius: <>Jari-jari nonlogam</>,
+    nonmetalShells: <>Kulit nonlogam</>,
+    progress: "Perpindahan elektron",
+    view: "Atom logam dan nonlogam menjadi ion",
+  }}
+/>
+
 ## Membaca Nomor Massa dan Nomor Atom
 
 Pilih atom di bawah ini, lalu cocokkan kedua angka pada lambangnya. Angka di **kiri atas adalah nomor massa** <InlineMath math="A" />, sedangkan angka di kiri bawah adalah nomor atom <InlineMath math="Z" />. Posisi tersebut menentukan jumlah proton, neutron, atau elektron yang dihitung.
@@ -93,7 +112,7 @@ Setiap jumlah partikel berasal dari dua angka pada lambang <InlineMath math="^{A
 
 <MathVisual
   title={<>Dari A dan Z ke Jumlah Partikel</>}
-  description={<>Proton (oranye), neutron (abu-abu), dan elektron (ungu) pada atom netral karbon-12, natrium-23, dan klorin-35. Satu kotak grid ke atas berarti 4 partikel.</>}
+  description={<>Proton (oranye), neutron (abu-abu), dan elektron (ungu) pada atom netral karbon-12, natrium-23, dan klorin-35. Satu kotak grid ke atas berarti <InlineMath math="4" /> partikel.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -2, max: 11 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -122,6 +141,22 @@ Setiap jumlah partikel berasal dari dua angka pada lambang <InlineMath math="^{A
   }}
 />
 
+### Membedakan Tiga Partikel
+
+Angka pada simbol menghitung tiga partikel yang berbeda, dan **medan magnet membedakannya lewat muatan dan massa**: proton dan elektron melengkung berlawanan arah, sedangkan neutron melaju lurus.
+
+<ParticleTrackLab
+  title={<>Proton, Elektron, dan Neutron dalam Medan</>}
+  description={<>Perkuat medannya dan bandingkan seberapa rapat setiap lintasan melengkung.</>}
+  labels={{
+    electron: <>Jari-jari lintasan elektron</>,
+    field: "Kuat medan magnet",
+    proton: <>Jari-jari lintasan proton</>,
+    ratio: <>Perbandingan jari-jari</>,
+    view: "Jejak partikel dalam medan magnet",
+  }}
+/>
+
 ## Contoh Karbon
 
 Untuk atom karbon dengan nomor massa <InlineMath math="12" />, lambangnya ditulis:
@@ -142,7 +177,7 @@ Inilah tiga jumlah partikel untuk karbon-12 sebagai kolom, dengan satu kotak gri
 
 <MathVisual
   title={<>Partikel dalam Karbon-12</>}
-  description={<>Proton, neutron, dan elektron atom karbon-12 yang netral. Satu kotak grid ke atas sama dengan 2 partikel.</>}
+  description={<>Proton, neutron, dan elektron atom karbon-12 yang netral. Satu kotak grid ke atas sama dengan <InlineMath math="2" /> partikel.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },

@@ -59,7 +59,7 @@ Uji pertanyaan Demokritus dengan angka. Belah butiran berukuran <InlineMath math
 
 <MathVisual
   title={<>Dua Puluh Tujuh Kali Dibelah sampai Seukuran Atom</>}
-  description={<>Ukuran butiran setelah tiap pembelahan, mulai dari 1 cm. Mendatar: satu kotak grid berarti 3 kali pembelahan. Tegak: satu kotak grid ke bawah berarti sepuluh kali lebih kecil.</>}
+  description={<>Ukuran butiran setelah tiap pembelahan, mulai dari <InlineMath math="1\text{ cm}" />. Mendatar: satu kotak grid berarti <InlineMath math="3" /> kali pembelahan. Tegak: satu kotak grid ke bawah berarti sepuluh kali lebih kecil.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.5, max: 9.5 } },
@@ -140,7 +140,7 @@ Ikuti percobaan pikiran itu dengan angka. Setiap potongan membagi dua kepinganny
 
 <MathVisual
   title={<>Membagi Dua Keping Berkali-kali</>}
-  description={<>Keping setinggi 8 satuan dipotong dua sebanyak empat kali. Setiap kolom separuh dari kolom sebelumnya.</>}
+  description={<>Keping setinggi <InlineMath math="8" /> satuan dipotong dua sebanyak empat kali. Setiap kolom separuh dari kolom sebelumnya.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 11.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
@@ -163,11 +163,50 @@ Ikuti percobaan pikiran itu dengan angka. Setiap potongan membagi dua kepinganny
   }}
 />
 
+### Bentuk dari Partikel Kecil
+
+Demokritos menebak bahwa **bentuk kepingan kecil menentukan bentuk benda yang kita lihat**. Kristal garam adalah cara modern untuk menguji tebakan itu: bentuk kubusnya berasal dari ion yang tersusun dalam pola kubus.
+
+<IonLatticeLab
+  title={<>Kubus Garam dari Partikel yang Tersusun</>}
+  description={<>Ganti garam dapur dan kalium klorida, lalu besarkan kristalnya sel demi sel.</>}
+  crystals={["sodium-chloride", "potassium-chloride"]}
+  labels={{
+    cells: "Sel satuan per rusuk",
+    choose: "Pilih kristal",
+    count: <>Jumlah ion</>,
+    formula: <>Rumus</>,
+    ions: <>Ion dan jari-jarinya</>,
+    lattice: <>Rusuk sel satuan</>,
+    view: "Kisi kristal ion",
+  }}
+/>
+
 ## Mengapa Gagasan Atom Kuno Belum Menjadi Teori Modern
 
 Demokritos mengusulkan penjelasan filsafat tanpa data hasil pengukuran. Ia berpendapat bahwa <Highlight>materi tersusun dari satuan yang sangat kecil</Highlight>. Kimia modern juga menjelaskan materi melalui partikel, tetapi atom memiliki proton dan elektron, serta umumnya neutron. Hidrogen-1 adalah contoh atom tanpa neutron. Ungkapan “tidak dapat dibagi” hanya berlaku pada model Demokritos pada masa itu.
 
 Pada pandangan Aristoteles, pembagian materi tidak berakhir pada satuan terkecil. Perbedaan pendapat ini belum diputuskan oleh pengukuran struktur atom.
+
+### Menimbang Atom Masa Kini
+
+Demokritos hanya bisa bernalar, sedangkan sekarang **spektrometer massa mengukur atom berkas demi berkas**. Atom yang lebih berat lebih sedikit berbelok di dalam magnet, jadi lintasannya memilah atom menurut massa.
+
+<MassSpectrometerLab
+  title={<>Dari Tebakan ke Pengukuran</>}
+  description={<>Pilih neon atau tembaga, lalu bandingkan tempat setiap isotop mendarat di detektor.</>}
+  samples={["neon", "copper"]}
+  labels={{
+    average: <>Massa atom relatif rata-rata</>,
+    choose: "Pilih unsur",
+    isotopes: <>Isotop dan kelimpahannya</>,
+    north: "U",
+    radius: <>Jari-jari lintasan</>,
+    ratio: <>Perbandingan jari-jari</>,
+    south: "S",
+    view: "Spektrometer massa",
+  }}
+/>
 
 ## Dari Filsafat Menuju Kimia
 

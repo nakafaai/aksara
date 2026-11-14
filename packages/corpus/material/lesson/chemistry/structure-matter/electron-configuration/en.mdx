@@ -78,6 +78,25 @@ The symbol <InlineMath math="e^-" /> is the number of electrons, while <InlineMa
 
 This simple shell model is limited to light elements up to calcium, which means <InlineMath math="Z \le 20" />. Heavier elements require subshells and orbitals.
 
+### Configurations in a Beaker
+
+Sodium is <InlineMath math="2, 8, 1" /> and magnesium is <InlineMath math="2, 8, 2" />: **one outer electron leaves more easily than two**, so sodium races across the water while magnesium barely stirs.
+
+<AlkaliWaterLab
+  title={<>Outer Electrons and Reaction Speed</>}
+  description={<>Compare sodium, magnesium and calcium and read their ionization energies.</>}
+  metals={["sodium", "magnesium", "calcium"]}
+  labels={{
+    choose: "Choose a metal",
+    density: <>Density</>,
+    equation: <>Equation</>,
+    ionization: <>First ionization energy</>,
+    melting: <>Melting point</>,
+    radius: <>Atomic radius</>,
+    view: "Metal in a beaker of water",
+  }}
+/>
+
 ## Interactive Electron Shell Model
 
 Choose a neutral atom below. First read its atomic number, then see how its electrons spread **from the inner shell to the outer shell**.
@@ -165,11 +184,11 @@ e^- &= 17 \\
 \text{configuration} &= 2, 8, 7
 \end{aligned}" />
 
-Fill the shells in order for the first 20 elements, from hydrogen with <InlineMath math="Z=1" /> to calcium with <InlineMath math="Z=20" />. Each row is one shell and each column one element, so every column holds <InlineMath math="Z" /> electrons in all. Rotate the scene: the L shell fills up at neon, and from potassium on the next electrons go into the N shell.
+Fill the shells in order for the first <InlineMath math="20" /> elements, from hydrogen with <InlineMath math="Z=1" /> to calcium with <InlineMath math="Z=20" />. Each row is one shell and each column one element, so every column holds <InlineMath math="Z" /> electrons in all. Rotate the scene: the L shell fills up at neon, and from potassium on the next electrons go into the N shell.
 
 <MathVisual
   title={<>Twenty Atoms, Shell by Shell</>}
-  description={<>Electrons in the K (gray), L (violet), M (orange) and N (fuchsia) shells for atomic numbers 1 to 20. One grid step up is 2 electrons.</>}
+  description={<>Electrons in the K (gray), L (violet), M (orange) and N (fuchsia) shells for atomic numbers <InlineMath math="1" /> to <InlineMath math="20" />. One grid step up is <InlineMath math="2" /> electrons.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: 0, max: 4.5 }, z: { min: -0.6, max: 4.2 } },
@@ -240,6 +259,25 @@ Fill the shells in order for the first 20 elements, from hydrogen with <InlineMa
     m: <InlineMath math="\mathrm{M}" />,
     n: <InlineMath math="\mathrm{N}" />,
     calcium: <InlineMath math="\mathrm{Ca}:\ 2,8,8,2" />,
+  }}
+/>
+
+### Ions Reach a Noble Gas Pattern
+
+After the transfer, <InlineMath math="\mathrm{Na^+}" /> and <InlineMath math="\mathrm{Cl^-}" /> have the configurations of neon and argon. **Ions end on a full noble gas pattern**, which is why these configurations are so common.
+
+<IonFormationLab
+  title={<>Configurations Before and After</>}
+  description={<>Move the electrons across and compare each atom's shells before and after.</>}
+  pairs={["sodium-chlorine", "magnesium-oxygen"]}
+  labels={{
+    choose: "Choose a pair of atoms",
+    metalRadius: <>Metal radius</>,
+    metalShells: <>Metal shells</>,
+    nonmetalRadius: <>Nonmetal radius</>,
+    nonmetalShells: <>Nonmetal shells</>,
+    progress: "Electron transfer",
+    view: "Metal and nonmetal atoms becoming ions",
   }}
 />
 

@@ -111,8 +111,8 @@ Nisbah <InlineMath math="1:2" /> ialah nisbah nombor bulat yang ringkas. Corak i
 Dengan jisim karbon ditetapkan pada <InlineMath math="12\ \mathrm{g}" />, karbon monoksida mengandungi <InlineMath math="16\ \mathrm{g}" /> oksigen dan karbon dioksida mengandungi <InlineMath math="32\ \mathrm{g}" />, dengan satu langkah grid bersamaan <InlineMath math="8\ \mathrm{g}" />. Palang kedua tepat dua kali ganda palang pertama, dan Dalton mentafsirkannya sebagai satu atom oksigen berbanding dua.
 
 <MathVisual
-  title={<>Oksigen bagi Setiap 12 g Karbon</>}
-  description={<>Oksigen yang bergabung dengan 12 g karbon dalam <InlineMath math="\mathrm{CO}" /> dan <InlineMath math="\mathrm{CO_2}" />. Satu langkah grid ke atas ialah 8 g.</>}
+  title={<>Oksigen bagi Setiap <InlineMath math="12\text{ g}" /> Karbon</>}
+  description={<>Oksigen yang bergabung dengan <InlineMath math="12\text{ g}" /> karbon dalam <InlineMath math="\mathrm{CO}" /> dan <InlineMath math="\mathrm{CO_2}" />. Satu langkah grid ke atas ialah <InlineMath math="8\text{ g}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 5 }, z: { min: -1.5, max: 1.5 } },
@@ -156,7 +156,7 @@ Sfera pejal Dalton tidak dapat menerangkan zarah alfa yang melantun balik dari k
 
 <MathVisual
   title={<>Hanya Lintasan Paling Dekat Melantun Balik</>}
-  description={<>Sudut pesongan zarah alfa melawan jarak lintasannya dari nukleus. Paksi mengufuk: satu langkah grid ialah separuh jarak <InlineMath math="b_0" />. Paksi menegak: satu langkah grid ialah 30 darjah.</>}
+  description={<>Sudut pesongan zarah alfa melawan jarak lintasannya dari nukleus. Paksi mengufuk: satu langkah grid ialah separuh jarak <InlineMath math="b_0" />. Paksi menegak: satu langkah grid ialah <InlineMath math="30" /> darjah.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 10.5 }, y: { min: -0.3, max: 5.5 } },
@@ -180,6 +180,22 @@ Sfera pejal Dalton tidak dapat menerangkan zarah alfa yang melantun balik dari k
   }}
 />
 
+### Thomson Menemui Elektron
+
+Retakan pertama pada atom pejal Dalton datang daripada tiub yang bercahaya. **Alur itu membelok ke arah plat positif**, jadi ia bercas negatif, dan Thomson menamakan zarahnya elektron.
+
+<CathodeRayLab
+  title={<>Alur yang Membelok</>}
+  description={<>Naikkan voltan plat dan lihat titik itu beralih pada skrin.</>}
+  labels={{
+    anode: <>Voltan pemecut</>,
+    field: <>Medan elektrik antara plat</>,
+    plates: "Voltan plat",
+    spot: <>Anjakan titik pada skrin</>,
+    view: "Tiub sinar katod",
+  }}
+/>
+
 ### Rutherford Menemui Nukleus
 
 Model Dalton menganggap atom sebagai bola pejal. Eksperimen Geiger dan Marsden menembakkan zarah alfa ke kepingan emas yang nipis. Kebanyakan zarah melalui hampir lurus, tetapi sebilangan kecil terpesong tajam dan ada yang melantun balik. Rutherford membuat kesimpulan bahawa **jisim dan cas positif atom terkumpul dalam nukleus yang sangat kecil**, kira-kira dua puluh ribu kali lebih kecil daripada atomnya.
@@ -194,6 +210,22 @@ Model Dalton menganggap atom sebagai bola pejal. Eksperimen Geiger dan Marsden m
     nucleus: <>Jejari nukleus emas</>,
     ratio: <>Atom berbanding nukleus</>,
     view: "Lintasan zarah alfa berhampiran nukleus emas",
+  }}
+/>
+
+Nukleus Rutherford meninggalkan teka-teki: mengapa elektron tidak berpusing jatuh ke dalamnya? Bohr menjawab dengan orbit tetap, dan **setiap lompatan antara orbit memancarkan cahaya satu warna yang tepat**, iaitu garis yang ditunjukkan oleh hidrogen.
+
+<BohrEmissionLab
+  title={<>Orbit Tetap Bohr</>}
+  description={<>Pilih lompatan turun ke aras kedua dan baca warna yang dipancarkannya.</>}
+  falls={[{ from: 3, to: 2 }, { from: 4, to: 2 }, { from: 5, to: 2 }]}
+  labels={{
+    choose: "Pilih lompatan elektron",
+    energy: <>Tenaga foton</>,
+    frequency: <>Frekuensi foton</>,
+    transition: <>Lompatan elektron</>,
+    view: "Atom hidrogen model Bohr",
+    wavelength: <>Panjang gelombang</>,
   }}
 />
 

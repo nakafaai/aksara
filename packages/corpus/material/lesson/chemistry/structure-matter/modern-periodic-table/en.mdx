@@ -80,6 +80,26 @@ Increasing atomic number <InlineMath math="Z" /> produces repeating patterns in 
   }}
 />
 
+### Mass Is Not the Order
+
+A mass spectrometer shows that one element can have atoms of different masses. That is why **the table is ordered by proton number, not by mass**: every isotope of an element still has the same number of protons.
+
+<MassSpectrometerLab
+  title={<>Isotopes behind Each Element</>}
+  description={<>Choose boron, carbon or neon and read the average mass from its isotopes.</>}
+  samples={["boron", "carbon", "neon"]}
+  labels={{
+    average: <>Average relative atomic mass</>,
+    choose: "Choose an element",
+    isotopes: <>Isotopes and abundance</>,
+    north: "N",
+    radius: <>Path radius</>,
+    ratio: <>Ratio of radii</>,
+    south: "S",
+    view: "Mass spectrometer",
+  }}
+/>
+
 ## Periods and Groups
 
 A **period** is a horizontal row. Periods are read from left to right and numbered <InlineMath math="1" /> to <InlineMath math="7" />. In the simple shell model, elements in the same period have the same number of main occupied shells.
@@ -92,7 +112,7 @@ Count the elements in each period of the modern table and a pattern appears: <In
 
 <MathVisual
   title={<>Elements in Each Period</>}
-  description={<>The number of elements in periods 1 to 7 of the modern periodic table. One grid step up is 4 elements.</>}
+  description={<>The number of elements in periods <InlineMath math="1" /> to <InlineMath math="7" /> of the modern periodic table. One grid step up is <InlineMath math="4" /> elements.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
@@ -124,6 +144,25 @@ Count the elements in each period of the modern table and a pattern appears: <In
     p5: <InlineMath math="18" />,
     p6: <InlineMath math="32" />,
     p7: <InlineMath math="32" />,
+  }}
+/>
+
+### Groups One and Seventeen Pair Up
+
+A metal from group <InlineMath math="1" /> and a halogen from group <InlineMath math="17" /> always meet one to one, because **each group has the same charge on its ions**. Every crystal here has the formula pattern <InlineMath math="\mathrm{MX}" />.
+
+<IonLatticeLab
+  title={<>Crystals from Two Groups</>}
+  description={<>Switch between three salts and compare their ion sizes and cell edges.</>}
+  crystals={["lithium-fluoride", "sodium-fluoride", "potassium-chloride"]}
+  labels={{
+    cells: "Unit cells per edge",
+    choose: "Choose a crystal",
+    count: <>Number of ions</>,
+    formula: <>Formula</>,
+    ions: <>Ions and their radii</>,
+    lattice: <>Unit cell edge</>,
+    view: "Ionic crystal lattice",
   }}
 />
 
@@ -178,11 +217,11 @@ Use the periodic-table model in the interactive card to check your own answers.
 
 The [modern periodic table](https://iupac.org/what-we-do/periodic-table-of-elements/) lists element names and atomic numbers. Arranging the elements by atomic number <Highlight>into periods and groups reveals recurring patterns</Highlight>.
 
-Follow the atomic numbers from 1 to 18 and you trace the table row by row. The path runs across a period, then jumps back to the left to start the next one, so every element's row gives its period and its column gives its group. Zoom in on the three fuchsia points that start a new period.
+Follow the atomic numbers from <InlineMath math="1" /> to <InlineMath math="18" /> and you trace the table row by row. The path runs across a period, then jumps back to the left to start the next one, so every element's row gives its period and its column gives its group. Zoom in on the three fuchsia points that start a new period.
 
 <MathVisual
   title={<>Reading the Table in Atomic-Number Order</>}
-  description={<>The first 18 elements in order of atomic number, placed by group (across) and period (rows).</>}
+  description={<>The first <InlineMath math="18" /> elements in order of atomic number, placed by group (across) and period (rows).</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: 0, max: 5 } },
