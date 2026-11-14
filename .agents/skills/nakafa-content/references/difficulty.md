@@ -139,3 +139,22 @@ the same skill show the step:
   another set and in any language.
 - Keep the panel records, the blind solves and the originality reviews outside
   the publication source, and cite them in the pull request.
+
+## Publishing a set's level
+
+- Every set carries its rating in its exam's ratings module
+  (`packages/corpus/tryout/<country>/<exam>/ratings.ts`): the mean level its
+  raters gave the rated items, how many raters, and how many items. The set
+  source schema requires it, so a set without a rating does not load.
+- The rating is measured on the set alone: its raters see only that set's
+  items with their keys (all of them, or evenly spaced items of every section)
+  and rate each from 1 to 5 against the real exam. The mixed panel above
+  measures how much harder a rewrite is and does not set the level, because
+  new items rated beside old ones read harder than they are.
+- `setLevel` in `packages/corpus/tryout/level.ts` publishes the level learners
+  see from that mean, on a scale that starts at the real exam: below 3.5 easy
+  (the real exam's own level), from 3.5 medium, from 4 hard, from 4.5 cooked.
+  Nobody picks a level by hand, and a set rated below 3 is rewritten, never
+  published as anything other than easy.
+- A rewritten set replaces its rating with a rating of its new items, in the
+  same pull request as the items.
