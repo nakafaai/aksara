@@ -1,0 +1,16 @@
+Direct substitution gives <InlineMath math="\frac{1-1}{0}=\frac00" />. **Turn the difference of cosines into a product of sines**, because the basic limit <InlineMath math="\lim_{u\to0}\frac{\sin u}{u}=1" /> only works on sines.
+
+<BlockMath math="\cos A-\cos B=-2\sin\frac{A+B}{2}\sin\frac{A-B}{2}\ \Rightarrow\ \cos3x-\cos x=-2\sin2x\sin x" />
+
+Now split into basic limits.
+
+<BlockMath math="\lim_{x\to0}\frac{-2\sin2x\sin x}{x^2}=-2\cdot\lim_{x\to0}\frac{\sin2x}{x}\cdot\lim_{x\to0}\frac{\sin x}{x}=-2\cdot2\cdot1=-4" />
+
+Numerical check: for <InlineMath math="x=0.01" />, <InlineMath math="\cos0.03-\cos0.01\approx-0.0004" />, so <InlineMath math="k(0.01)\approx\frac{-0.0004}{0.0001}=-4" />.
+
+So the limit is <InlineMath math="-4" />.
+
+- <InlineMath math="4" /> drops the minus sign in the difference formula.
+- <InlineMath math="-2" /> uses <InlineMath math="\frac{\sin2x}{x}\to1" />, but that limit is <InlineMath math="2" />.
+- <InlineMath math="-8" /> uses <InlineMath math="\cos u\approx1-u^2" />, but the approximation is <InlineMath math="1-\frac{u^2}{2}" />.
+- <InlineMath math="0" /> only looks at the numerator tending to zero.

@@ -1,0 +1,21 @@
+Di <InlineMath math="x=\pi" />, pembilang <InlineMath math="1+\cos\pi=0" /> dan penyebut juga <InlineMath math="0" />. Agar limit dasar di sekitar nol bisa dipakai, **geser titiknya ke nol** dengan memisalkan <InlineMath math="t=x-\pi" />. Saat <InlineMath math="x\to\pi" />, <InlineMath math="t\to0" />.
+
+Rumus sudut <InlineMath math="\pi+t" /> memberi <InlineMath math="\cos(\pi+t)=-\cos t" /> dan <InlineMath math="\sin(\pi+t)=-\sin t" />.
+
+<BlockMath math="\begin{aligned}
+\lim_{x\to\pi}h(x)&=\lim_{t\to0}\frac{1-\cos t}{t\cdot(-\sin t)} \\
+&=-\lim_{t\to0}\frac{2\sin^2\frac t2}{t\sin t}
+\end{aligned}" />
+
+Baris kedua memakai <InlineMath math="1-\cos t=2\sin^2\frac t2" />. Pecah menjadi limit-limit dasar.
+
+<BlockMath math="-\lim_{t\to0}\frac{2\sin^2\frac t2}{t\sin t}=-2\cdot\lim_{t\to0}\left(\frac{\sin\frac t2}{t}\right)^2\cdot\lim_{t\to0}\frac{t}{\sin t}=-2\cdot\left(\frac12\right)^2\cdot1=-\frac12" />
+
+Pemeriksaan numerik: untuk <InlineMath math="x=\pi+0{,}01" />, nilainya kira-kira <InlineMath math="\frac{0{,}0000500}{0{,}01\cdot(-0{,}0099998)}\approx-0{,}50" />.
+
+Jadi, nilai limit tersebut adalah <InlineMath math="-\frac12" />.
+
+- <InlineMath math="\frac12" /> menganggap <InlineMath math="\sin(\pi+t)=\sin t" />, sehingga tanda minusnya hilang.
+- <InlineMath math="-1" /> memakai <InlineMath math="1-\cos t\approx t^2" />, padahal pendekatannya <InlineMath math="\frac{t^2}{2}" />.
+- <InlineMath math="0" /> hanya melihat pembilang yang menuju nol.
+- <InlineMath math="-2" /> membalik pecahan <InlineMath math="\frac12" /> di akhir perhitungan.

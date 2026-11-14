@@ -176,6 +176,7 @@ describe("curriculum route contract", () => {
     });
 
     expect(curriculumNamespace(AppLocaleSchema.make("de"))).toBe("lehrplaene");
+    expect(curriculumNamespace(AppLocaleSchema.make("ms"))).toBe("kurikulum");
     expect(root.publicPath).toBe("lehrplaene/merdeka");
   });
 

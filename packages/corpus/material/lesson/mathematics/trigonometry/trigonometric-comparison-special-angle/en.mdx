@@ -14,8 +14,8 @@ Special angles are angles whose <Highlight>trigonometric values can be written e
 
 The most common special angles are <InlineMath math="0^\circ" />, <InlineMath math="30^\circ" />, <InlineMath math="45^\circ" />, <InlineMath math="60^\circ" />, and <InlineMath math="90^\circ" />.
 
-<UnitCircle
-  title="Visualization of Special Angles on the Unit Circle"
+<MathVisual
+  title={<>Visualization of Special Angles on the Unit Circle</>}
   description={
     <>
       Set the angle input to <InlineMath math="0^\circ" />,{" "}
@@ -24,7 +24,32 @@ The most common special angles are <InlineMath math="0^\circ" />, <InlineMath ma
       positions of special angles.
     </>
   }
-  angle={45}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 45, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
 />
 
 ## Where the Exact Values Come From
@@ -36,15 +61,39 @@ The exact values for <InlineMath math="30^\circ" />, <InlineMath math="45^\circ"
 Cutting a square along a diagonal produces an **isosceles right triangle**. If both legs have length <InlineMath math="1" />, the Pythagorean theorem gives a hypotenuse of <InlineMath math="\sqrt{2}" />:
 
 <ContentBlock>
-  <Triangle
-    title="Isosceles Right Triangle"
-    description="Both legs have the same length at the initial angle. Change the angle and observe when the legs cease to be equal."
-    angle={45}
-    size={Math.sqrt(2)}
+  <MathVisual
+    title={<>Isosceles Right Triangle</>}
+    description={<>Both legs have the same length at the initial angle. Change the angle and observe when the legs cease to be equal.</>}
     labels={{
-      opposite: "Opposite side",
-      adjacent: "Adjacent side",
-      hypotenuse: "Hypotenuse",
+      angle: <InlineMath math="\theta" />,
+      opposite: <>Opposite side</>,
+      adjacent: <>Adjacent side</>,
+      hypotenuse: <>Hypotenuse</>,
+      sine: <InlineMath math="\sin\theta" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.424264, max: 1.83848 }, y: { min: -0.424264, max: 1.69706 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 45, label: "angle" }],
+      objects: [
+        { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "1.41421 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "opposite", kind: "path", points: [{ x: "1.41421 cos(a pi / 180)", y: "0" }, { x: "1.41421 cos(a pi / 180)", y: "1.41421 sin(a pi / 180)" }], appearance: "answer" },
+        { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "1.41421 cos(a pi / 180)", y: "1.41421 sin(a pi / 180)" }], appearance: "primary" },
+        { id: "vertex", kind: "marker", x: "1.41421 cos(a pi / 180)", y: "1.41421 sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [
+        { key: "adjacent", objectId: "adjacent", at: { x: "0.707107 cos(a pi / 180)", y: "0" }, placement: "below" },
+        { key: "opposite", objectId: "opposite", at: { x: "1.41421 cos(a pi / 180)", y: "0.707107 sin(a pi / 180)" }, placement: "right" },
+        { key: "hypotenuse", objectId: "hypotenuse", at: { x: "0.707107 cos(a pi / 180)", y: "0.707107 sin(a pi / 180)" }, placement: "above-left" },
+      ],
+      readouts: [
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
     }}
   />
 </ContentBlock>
@@ -60,15 +109,39 @@ Cutting a square along a diagonal produces an **isosceles right triangle**. If b
 Bisecting an **equilateral triangle** of side length <InlineMath math="2" /> produces two right triangles. Their side lengths, opposite <InlineMath math="30^\circ" />, opposite <InlineMath math="60^\circ" />, and along the hypotenuse, are <InlineMath math="1" />, <InlineMath math="\sqrt{3}" />, and <InlineMath math="2" />:
 
 <ContentBlock>
-  <Triangle
-    title="Half an Equilateral Triangle"
-    description="The initial triangle is half an equilateral triangle. The side opposite its smaller angle has half the hypotenuse length."
-    angle={30}
-    size={2}
+  <MathVisual
+    title={<>Half an Equilateral Triangle</>}
+    description={<>The initial triangle is half an equilateral triangle. The side opposite its smaller angle has half the hypotenuse length.</>}
     labels={{
-      opposite: "Opposite side",
-      adjacent: "Adjacent side",
-      hypotenuse: "Hypotenuse",
+      angle: <InlineMath math="\theta" />,
+      opposite: <>Opposite side</>,
+      adjacent: <>Adjacent side</>,
+      hypotenuse: <>Hypotenuse</>,
+      sine: <InlineMath math="\sin\theta" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 30, label: "angle" }],
+      objects: [
+        { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+        { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+        { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [
+        { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+        { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+        { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+      ],
+      readouts: [
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
     }}
   />
 </ContentBlock>

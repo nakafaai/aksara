@@ -328,11 +328,11 @@ True`
 Python bietet die Funktion `math.isclose(a, b, rel_tol=1e-09, abs_tol=0.0)` zum Testen der ungefähren Gleichheit. Diese Funktion verwendet **relative und absolute Toleranzen** über `rel_tol` und `abs_tol`, um zu bestimmen, ob zwei Werte nahe genug beieinander liegen.
 
 
-Bei `math.isclose(100, 95, rel_tol=0.05)` beträgt der absolute Unterschied 5. Die relative Toleranz verwendet den größeren Absolutwert, hier 100.
+Bei `math.isclose(100, 95, rel_tol=0.05)` beträgt der absolute Unterschied <InlineMath math="5" />. Die relative Toleranz verwendet den größeren Absolutwert, hier <InlineMath math="100" />.
 
 <BlockMath math="\begin{aligned} |100-95| &= 5 \\ 0{,}05\max(|100|,|95|) &= 5 \\ 5 &\leq \max(5,0) \end{aligned}" />
 
-Der Unterschied überschreitet die Toleranz nicht. Deshalb ist das Ergebnis `True`. Mit `abs_tol=5` reicht die absolute Toleranz von 5 ebenfalls für diesen Unterschied aus.
+Der Unterschied überschreitet die Toleranz nicht. Deshalb ist das Ergebnis `True`. Mit `abs_tol=5` reicht die absolute Toleranz von <InlineMath math="5" /> ebenfalls für diesen Unterschied aus.
 
 
 > Verwende exakte Gleichheit, wenn wirklich der genaue Gleitkommawert übereinstimmen muss. Wähle für gemessene oder berechnete Größen fachlich begründete Toleranzen und nutze `math.isclose()`. In der Nähe von null ist eine passende `abs_tol` unverzichtbar, weil die relative Toleranz mit den verglichenen Werten schrumpft.

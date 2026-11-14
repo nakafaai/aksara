@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$3$$",
+          label: "$$\\frac{2+b}{a+b}$$",
         },
         {
           correct: false,
-          label: "$$4$$",
+          label: "$$\\frac{2+ab}{a+b}$$",
         },
         {
           correct: false,
-          label: "$$5$$",
+          label: "$$\\frac{2ab}{a+ab}$$",
         },
         {
           correct: true,
-          label: "$$6$$",
+          label: "$$\\frac{2+ab}{a+ab}$$",
         },
         {
           correct: false,
-          label: "$$7$$",
+          label: "$$\\frac{2+ab}{a^2b}$$",
         },
         {
           correct: false,
-          label: "$$8$$",
+          label: "$$\\frac{a+ab}{2+ab}$$",
         },
       ],
     },

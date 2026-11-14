@@ -1,0 +1,16 @@
+Direktes Einsetzen ergibt <InlineMath math="\frac00" />. Im Zähler steht eine Differenz mit Wurzel, also **erweiterst du mit dem konjugierten Term** <InlineMath math="\sqrt{x+4}+2" />.
+
+<BlockMath math="\frac{\sqrt{x+4}-2}{\sin\frac{x}{4}}\cdot\frac{\sqrt{x+4}+2}{\sqrt{x+4}+2}=\frac{x}{\sin\frac{x}{4}\,\left(\sqrt{x+4}+2\right)}" />
+
+Zerlege in einen Standardgrenzwert mit Sinus und einen Teil, in den du direkt einsetzen kannst. Wegen <InlineMath math="\lim_{x\to0}\frac{x}{\sin\frac{x}{4}}=4" /> ergibt sich Folgendes.
+
+<BlockMath math="\lim_{x\to0}\frac{x}{\sin\frac{x}{4}}\cdot\lim_{x\to0}\frac{1}{\sqrt{x+4}+2}=4\cdot\frac14=1" />
+
+Numerische Probe: Für <InlineMath math="x=0{,}01" /> ist der Bruch etwa <InlineMath math="0{,}9994" />.
+
+Der Grenzwert ist also <InlineMath math="1" />.
+
+- <InlineMath math="0" /> schaut nur auf den Zähler, der gegen <InlineMath math="0" /> geht, aber der Nenner geht ebenfalls gegen <InlineMath math="0" />.
+- <InlineMath math="2" /> nimmt <InlineMath math="\sqrt{x+4}+2" /> bei <InlineMath math="x=0" /> als <InlineMath math="2" /> an, es ist aber <InlineMath math="4" />.
+- <InlineMath math="\frac14" /> behandelt <InlineMath math="\sin\frac{x}{4}" /> wie <InlineMath math="\sin x" /> und verliert so den Faktor <InlineMath math="4" /> aus dem Sinusgrenzwert.
+- <InlineMath math="\infty" /> schaut nur auf den Nenner, der gegen <InlineMath math="0" /> geht.

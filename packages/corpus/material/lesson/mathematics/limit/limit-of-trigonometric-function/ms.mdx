@@ -1,0 +1,241 @@
+export const metadata = {
+   title: "Had Fungsi Trigonometri",
+   description: "Nilaikan had trigonometri menggunakan had asas sinus, identiti trigonometri dan penggantian.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   datePublished: "2025-05-26",
+   dateModified: "2026-11-08",
+   subject: "Had",
+};
+
+## Apabila Penggantian Menyelesaikan Had Trigonometri
+
+**Had trigonometri** bertanya soalan setempat yang sama seperti had algebra: nilai apakah yang dihampiri oleh suatu ungkapan berhampiran input yang dipilih? Sinus dan kosinus selanjar di mana-mana sahaja, manakala tangen selanjar di mana-mana kosinus bukan sifar, jadi penggantian terus masih boleh digunakan setiap kali ungkapan yang terhasil tertakrif.
+
+Kerja khas bermula apabila penggantian menghasilkan bentuk tak tentu seperti <InlineMath math="\frac{0}{0}" />. Berhampiran sifar, gunakan **had asas sinus** dan [identiti trigonometri](/ms/subjek/matematik/fungsi-dan-pemodelannya/identiti-trigonometri) yang biasa untuk menulis semula ungkapan itu dalam bentuk yang hadnya boleh dinilai.
+
+## Had Sinus pada Sifar
+
+Apabila sudut yang diukur dalam radian menghampiri sifar, <Highlight>nisbah sinusnya kepada sudut itu</Highlight> menghampiri satu. Pengukuran sudut dalam radianlah yang menjadikan nilainya tepat satu, dan satu fakta ini menentukan nilai setiap nisbah yang dibina daripada sinus dan kosinus.
+
+### Had Asas Sinus
+
+Hadnya ialah:
+
+<BlockMath math="\lim_{x \to 0} \frac{\sin x}{x} = 1" />
+
+Ungkapan ini tidak tertakrif pada <InlineMath math="x=0" />, jadi penggantian terus tidak dapat menentukan had itu. Bukti geometri menggunakan bulatan unit dan teorem apit.
+
+> Dalam teorem ini, ukur <InlineMath math="x" /> dalam **radian**. Jika kamu guna darjah, hasilnya berbeza.
+
+Pada bulatan unit, untuk <InlineMath math="0<x<\pi/2" />, perbandingan luas segi tiga dan luas sektor memberikan <InlineMath math="\sin x<x<\tan x" />. Pembahagian dengan kuantiti positif menghasilkan **dua batas yang mengapit**:
+
+<BlockMath math="\cos x<\frac{\sin x}{x}<1" />
+
+Apabila <InlineMath math="x\to0^+" />, kedua-dua batas menghampiri <InlineMath math="1" />. Di sebelah kiri, <InlineMath math="\sin(-x)/(-x)=\sin x/x" />, jadi hadnya sama. Graf menggambarkan hampiran ini, manakala ungkapan itu tetap tidak tertakrif pada <InlineMath math="x=0" />.
+
+<MathVisual
+  title={<>Nisbah <InlineMath math="\frac{\sin x}{x}" /> menghampiri <InlineMath math="1" /></>}
+  description={<>Lengkung <InlineMath math="y = \frac{\sin x}{x}" /> untuk <InlineMath math="0 < |x| \le 3" />, dengan sudut dalam radian. Kedua-dua belah menghampiri garis <InlineMath math="y = 1" />, dan bulatan kosong pada <InlineMath math="(0, 1)" /> menandakan tempat ungkapan itu tidak tertakrif.</>}
+  labels={{
+    one: <InlineMath math="y = 1" />,
+    hole: <InlineMath math="(0, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.3, max: 3.3 }, y: { min: -0.4, max: 1.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "one", kind: "line", through: [{ x: 0, y: 1 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "left", kind: "polyline", vertices: [{ x: -3, y: Math.sin((-3)) / (-3) }, { x: -59 / 20, y: Math.sin((-59 / 20)) / (-59 / 20) }, { x: -29 / 10, y: Math.sin((-29 / 10)) / (-29 / 10) }, { x: -57 / 20, y: Math.sin((-57 / 20)) / (-57 / 20) }, { x: -14 / 5, y: Math.sin((-14 / 5)) / (-14 / 5) }, { x: -11 / 4, y: Math.sin((-11 / 4)) / (-11 / 4) }, { x: -27 / 10, y: Math.sin((-27 / 10)) / (-27 / 10) }, { x: -53 / 20, y: Math.sin((-53 / 20)) / (-53 / 20) }, { x: -13 / 5, y: Math.sin((-13 / 5)) / (-13 / 5) }, { x: -51 / 20, y: Math.sin((-51 / 20)) / (-51 / 20) }, { x: -5 / 2, y: Math.sin((-5 / 2)) / (-5 / 2) }, { x: -49 / 20, y: Math.sin((-49 / 20)) / (-49 / 20) }, { x: -12 / 5, y: Math.sin((-12 / 5)) / (-12 / 5) }, { x: -47 / 20, y: Math.sin((-47 / 20)) / (-47 / 20) }, { x: -23 / 10, y: Math.sin((-23 / 10)) / (-23 / 10) }, { x: -9 / 4, y: Math.sin((-9 / 4)) / (-9 / 4) }, { x: -11 / 5, y: Math.sin((-11 / 5)) / (-11 / 5) }, { x: -43 / 20, y: Math.sin((-43 / 20)) / (-43 / 20) }, { x: -21 / 10, y: Math.sin((-21 / 10)) / (-21 / 10) }, { x: -41 / 20, y: Math.sin((-41 / 20)) / (-41 / 20) }, { x: -2, y: Math.sin((-2)) / (-2) }, { x: -39 / 20, y: Math.sin((-39 / 20)) / (-39 / 20) }, { x: -19 / 10, y: Math.sin((-19 / 10)) / (-19 / 10) }, { x: -37 / 20, y: Math.sin((-37 / 20)) / (-37 / 20) }, { x: -9 / 5, y: Math.sin((-9 / 5)) / (-9 / 5) }, { x: -7 / 4, y: Math.sin((-7 / 4)) / (-7 / 4) }, { x: -17 / 10, y: Math.sin((-17 / 10)) / (-17 / 10) }, { x: -33 / 20, y: Math.sin((-33 / 20)) / (-33 / 20) }, { x: -8 / 5, y: Math.sin((-8 / 5)) / (-8 / 5) }, { x: -31 / 20, y: Math.sin((-31 / 20)) / (-31 / 20) }, { x: -3 / 2, y: Math.sin((-3 / 2)) / (-3 / 2) }, { x: -29 / 20, y: Math.sin((-29 / 20)) / (-29 / 20) }, { x: -7 / 5, y: Math.sin((-7 / 5)) / (-7 / 5) }, { x: -27 / 20, y: Math.sin((-27 / 20)) / (-27 / 20) }, { x: -13 / 10, y: Math.sin((-13 / 10)) / (-13 / 10) }, { x: -5 / 4, y: Math.sin((-5 / 4)) / (-5 / 4) }, { x: -6 / 5, y: Math.sin((-6 / 5)) / (-6 / 5) }, { x: -23 / 20, y: Math.sin((-23 / 20)) / (-23 / 20) }, { x: -11 / 10, y: Math.sin((-11 / 10)) / (-11 / 10) }, { x: -21 / 20, y: Math.sin((-21 / 20)) / (-21 / 20) }, { x: -1, y: Math.sin((-1)) / (-1) }, { x: -19 / 20, y: Math.sin((-19 / 20)) / (-19 / 20) }, { x: -9 / 10, y: Math.sin((-9 / 10)) / (-9 / 10) }, { x: -17 / 20, y: Math.sin((-17 / 20)) / (-17 / 20) }, { x: -4 / 5, y: Math.sin((-4 / 5)) / (-4 / 5) }, { x: -3 / 4, y: Math.sin((-3 / 4)) / (-3 / 4) }, { x: -7 / 10, y: Math.sin((-7 / 10)) / (-7 / 10) }, { x: -13 / 20, y: Math.sin((-13 / 20)) / (-13 / 20) }, { x: -3 / 5, y: Math.sin((-3 / 5)) / (-3 / 5) }, { x: -11 / 20, y: Math.sin((-11 / 20)) / (-11 / 20) }, { x: -1 / 2, y: Math.sin((-1 / 2)) / (-1 / 2) }, { x: -9 / 20, y: Math.sin((-9 / 20)) / (-9 / 20) }, { x: -2 / 5, y: Math.sin((-2 / 5)) / (-2 / 5) }, { x: -7 / 20, y: Math.sin((-7 / 20)) / (-7 / 20) }, { x: -3 / 10, y: Math.sin((-3 / 10)) / (-3 / 10) }, { x: -1 / 4, y: Math.sin((-1 / 4)) / (-1 / 4) }, { x: -1 / 5, y: Math.sin((-1 / 5)) / (-1 / 5) }, { x: -3 / 20, y: Math.sin((-3 / 20)) / (-3 / 20) }], appearance: "secondary" },
+      { id: "right", kind: "polyline", vertices: [{ x: 3 / 20, y: Math.sin((3 / 20)) / (3 / 20) }, { x: 1 / 5, y: Math.sin((1 / 5)) / (1 / 5) }, { x: 1 / 4, y: Math.sin((1 / 4)) / (1 / 4) }, { x: 3 / 10, y: Math.sin((3 / 10)) / (3 / 10) }, { x: 7 / 20, y: Math.sin((7 / 20)) / (7 / 20) }, { x: 2 / 5, y: Math.sin((2 / 5)) / (2 / 5) }, { x: 9 / 20, y: Math.sin((9 / 20)) / (9 / 20) }, { x: 1 / 2, y: Math.sin((1 / 2)) / (1 / 2) }, { x: 11 / 20, y: Math.sin((11 / 20)) / (11 / 20) }, { x: 3 / 5, y: Math.sin((3 / 5)) / (3 / 5) }, { x: 13 / 20, y: Math.sin((13 / 20)) / (13 / 20) }, { x: 7 / 10, y: Math.sin((7 / 10)) / (7 / 10) }, { x: 3 / 4, y: Math.sin((3 / 4)) / (3 / 4) }, { x: 4 / 5, y: Math.sin((4 / 5)) / (4 / 5) }, { x: 17 / 20, y: Math.sin((17 / 20)) / (17 / 20) }, { x: 9 / 10, y: Math.sin((9 / 10)) / (9 / 10) }, { x: 19 / 20, y: Math.sin((19 / 20)) / (19 / 20) }, { x: 1, y: Math.sin((1)) / (1) }, { x: 21 / 20, y: Math.sin((21 / 20)) / (21 / 20) }, { x: 11 / 10, y: Math.sin((11 / 10)) / (11 / 10) }, { x: 23 / 20, y: Math.sin((23 / 20)) / (23 / 20) }, { x: 6 / 5, y: Math.sin((6 / 5)) / (6 / 5) }, { x: 5 / 4, y: Math.sin((5 / 4)) / (5 / 4) }, { x: 13 / 10, y: Math.sin((13 / 10)) / (13 / 10) }, { x: 27 / 20, y: Math.sin((27 / 20)) / (27 / 20) }, { x: 7 / 5, y: Math.sin((7 / 5)) / (7 / 5) }, { x: 29 / 20, y: Math.sin((29 / 20)) / (29 / 20) }, { x: 3 / 2, y: Math.sin((3 / 2)) / (3 / 2) }, { x: 31 / 20, y: Math.sin((31 / 20)) / (31 / 20) }, { x: 8 / 5, y: Math.sin((8 / 5)) / (8 / 5) }, { x: 33 / 20, y: Math.sin((33 / 20)) / (33 / 20) }, { x: 17 / 10, y: Math.sin((17 / 10)) / (17 / 10) }, { x: 7 / 4, y: Math.sin((7 / 4)) / (7 / 4) }, { x: 9 / 5, y: Math.sin((9 / 5)) / (9 / 5) }, { x: 37 / 20, y: Math.sin((37 / 20)) / (37 / 20) }, { x: 19 / 10, y: Math.sin((19 / 10)) / (19 / 10) }, { x: 39 / 20, y: Math.sin((39 / 20)) / (39 / 20) }, { x: 2, y: Math.sin((2)) / (2) }, { x: 41 / 20, y: Math.sin((41 / 20)) / (41 / 20) }, { x: 21 / 10, y: Math.sin((21 / 10)) / (21 / 10) }, { x: 43 / 20, y: Math.sin((43 / 20)) / (43 / 20) }, { x: 11 / 5, y: Math.sin((11 / 5)) / (11 / 5) }, { x: 9 / 4, y: Math.sin((9 / 4)) / (9 / 4) }, { x: 23 / 10, y: Math.sin((23 / 10)) / (23 / 10) }, { x: 47 / 20, y: Math.sin((47 / 20)) / (47 / 20) }, { x: 12 / 5, y: Math.sin((12 / 5)) / (12 / 5) }, { x: 49 / 20, y: Math.sin((49 / 20)) / (49 / 20) }, { x: 5 / 2, y: Math.sin((5 / 2)) / (5 / 2) }, { x: 51 / 20, y: Math.sin((51 / 20)) / (51 / 20) }, { x: 13 / 5, y: Math.sin((13 / 5)) / (13 / 5) }, { x: 53 / 20, y: Math.sin((53 / 20)) / (53 / 20) }, { x: 27 / 10, y: Math.sin((27 / 10)) / (27 / 10) }, { x: 11 / 4, y: Math.sin((11 / 4)) / (11 / 4) }, { x: 14 / 5, y: Math.sin((14 / 5)) / (14 / 5) }, { x: 57 / 20, y: Math.sin((57 / 20)) / (57 / 20) }, { x: 29 / 10, y: Math.sin((29 / 10)) / (29 / 10) }, { x: 59 / 20, y: Math.sin((59 / 20)) / (59 / 20) }, { x: 3, y: Math.sin((3)) / (3) }], appearance: "secondary" },
+      { id: "hole", kind: "circle", center: { x: 0, y: 1 }, radius: 3 / 25, appearance: "warning" },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 3, y: 1 }, placement: "above" },
+      { key: "hole", objectId: "hole", at: { x: 0, y: 1 }, placement: "above" },
+    ],
+  }}
+/>
+
+### Akibat daripada Had Asas
+
+Gunakan had ini untuk menerbitkan hasil berikut:
+
+Oleh sebab <InlineMath math="\tan x=\frac{\sin x}{\cos x}" /> dan <InlineMath math="\cos x\to1" />:
+
+<BlockMath math="\lim_{x \to 0} \frac{\tan x}{x} = 1" />
+
+Gunakan identiti <InlineMath math="1-\cos x=2\sin^2\frac x2" />:
+
+<BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x} = 0" />
+
+Gunakan identiti <InlineMath math="1-\cos x=2\sin^2\frac x2" />:
+
+<BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac{1}{2}" />
+
+Identiti ini memberikan kedua-dua had kosinus secara terus, tanpa menggunakan **petua pembezaan** yang akan dibina kemudian:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\frac{1-\cos x}{x} \\ &amp;=\sin\frac{x}{2}\cdot\frac{\sin(x/2)}{x/2}\;\\ &amp;\longrightarrow\;0\cdot 1 \\ &amp;=0 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\frac{1-\cos x}{x^2} =\frac{1}{2}\left(\frac{\sin(x/2)}{x/2}\right)^2\; \\ &amp;\longrightarrow\;\frac{1}{2} \end{aligned}" />
+</MathContainer>
+
+Semak <InlineMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac12" /> dengan nombor. Pada <InlineMath math="x = 1" />, <InlineMath math="0.5" />, <InlineMath math="0.1" /> dan <InlineMath math="0.01" />, nisbahnya lebih kurang <InlineMath math="0.460" />, <InlineMath math="0.490" />, <InlineMath math="0.4996" /> dan <InlineMath math="0.499996" />, iaitu menghampiri <InlineMath math="\tfrac12" /> dari bawah.
+
+<BarChart
+  title={<><InlineMath math="\frac{1 - \cos x}{x^2}" /> berhampiran <InlineMath math="0" /></>}
+  description={<>Palang <InlineMath math="\frac{1 - \cos x}{x^2}" /> untuk <InlineMath math="x = 1, 0.5, 0.1, 0.01" />.</>}
+  yAxisLabel="Nisbah"
+  data={[1, 0.5, 0.1, 0.01].map((x) => ({ name: String(x), value: (1 - Math.cos(x)) / x ** 2 }))}
+  chartConfig={{ value: { label: "Nisbah", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Sifat Had Trigonometri
+
+**Had asas** menentukan beberapa nisbah yang berkaitan, kerana faktor pemalar di dalam sudut boleh dikeluarkan daripada had, dan salingan nisbah itu berkelakuan dengan cara yang sama.
+
+### Nisbah Trigonometri
+
+Untuk pemalar nyata <InlineMath math="a" /> dan <InlineMath math="b \neq 0" />, **semua had berikut diambil apabila <InlineMath math="x \to 0" />**:
+
+| Had | Hasil | Catatan |
+|-------|--------|-------|
+| <InlineMath math="\lim_{x \to 0} \frac{\sin ax}{bx}" /> | <InlineMath math="\frac{a}{b}" /> | Manipulasi daripada teorem asas |
+| <InlineMath math="\lim_{x \to 0} \frac{\tan ax}{bx}" /> | <InlineMath math="\frac{a}{b}" /> | Kerana <InlineMath math="\tan ax = \frac{\sin ax}{\cos ax}" /> |
+| <InlineMath math="\lim_{x \to 0} \frac{\sin ax}{\sin bx}" /> | <InlineMath math="\frac{a}{b}" /> | Gabungan dua had sinus |
+| <InlineMath math="\lim_{x \to 0} \frac{\tan ax}{\tan bx}" /> | <InlineMath math="\frac{a}{b}" /> | Gabungan dua had tangen |
+
+### Gabungan Trigonometri
+
+Nisbah campuran tangen dan sinus mengikut petua yang sama. Untuk <InlineMath math="a\ne0" /> dan <InlineMath math="b\ne0" />, pisahkan nisbah itu kepada had asas:
+
+<BlockMath math="\begin{aligned}\lim_{x\to0}\frac{\tan ax}{\sin bx}&=\lim_{x\to0}\left(\frac{\tan ax}{ax}\cdot\frac{bx}{\sin bx}\cdot\frac ab\right)\\&=1\cdot1\cdot\frac ab=\frac ab\end{aligned}" />
+
+Jika <InlineMath math="a=0" />, **pengangka** sentiasa sifar, jadi hasilnya sifar. Oleh itu, petua terakhir ini benar untuk setiap pemalar nyata <InlineMath math="a" /> dengan <InlineMath math="b\ne0" />.
+
+## Teknik Menyelesaikan Had Trigonometri
+
+Sesetengah had trigonometri selesai dengan penggantian, dan yang lain memerlukan **identiti atau had yang diketahui**. Ungkapan itu sendiri memberitahu kamu kes mana yang berlaku, kerana hasil tambah atau beza di dalam fungsi trigonometri ialah tanda bahawa identiti diperlukan.
+
+### Teknik Penggantian dan Manipulasi
+
+Apabila berdepan dengan had trigonometri yang rumit, kita selalunya perlu memanipulasi ungkapan supaya dapat menggunakan teorem asas.
+
+**Kira**: <InlineMath math="\lim_{x \to 0} \frac{\sin 2x}{3x}" />
+
+Kita manipulasi ungkapan itu untuk mendapatkan bentuk piawai:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} \lim_{x \to 0} \frac{\sin 2x}{3x} &amp;= \lim_{x \to 0} \frac{2 \sin 2x}{2 \cdot 3x} \\ &amp;= \lim_{x \to 0} \frac{2}{3} \cdot \frac{\sin 2x}{2x} \end{aligned}" />
+<BlockMath math="= \frac{2}{3} \lim_{x \to 0} \frac{\sin 2x}{2x} = \frac{2}{3} \cdot 1 = \frac{2}{3}" />
+</MathContainer>
+
+Semak <InlineMath math="\lim_{x \to 0} \frac{\sin 2x}{3x} = \frac23" /> dengan nombor. Pada <InlineMath math="x = 0.5" />, <InlineMath math="0.1" /> dan <InlineMath math="0.01" />, nisbahnya lebih kurang <InlineMath math="0.561" />, <InlineMath math="0.662" /> dan <InlineMath math="0.6666" />, semakin hampir kepada <InlineMath math="\tfrac23 \approx 0.667" />.
+
+<BarChart
+  title={<><InlineMath math="\frac{\sin 2x}{3x}" /> berhampiran <InlineMath math="0" /></>}
+  description={<>Palang <InlineMath math="\frac{\sin 2x}{3x}" /> untuk <InlineMath math="x = 0.5, 0.1, 0.01" />.</>}
+  yAxisLabel="Nisbah"
+  data={[0.5, 0.1, 0.01].map((x) => ({ name: String(x), value: Math.sin(2 * x) / (3 * x) }))}
+  chartConfig={{ value: { label: "Nisbah", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Penggantian Terus dengan Penyebut Bukan Sifar
+
+**Penggantian terus** boleh digunakan apabila fungsi selanjar pada titik sasaran dan penyebutnya bukan sifar. Secara umumnya, had tidak memerlukan fungsi tertakrif pada titik itu.
+
+**Kira**: <InlineMath math="\lim_{x \to \frac{\pi}{4}} \frac{\sin x + \cos x}{\sin x}" />
+
+Oleh sebab <InlineMath math="\sin(\frac{\pi}{4}) = \frac{\sqrt{2}}{2} \neq 0" />, penyebut bukan sifar pada <InlineMath math="x = \frac{\pi}{4}" />.
+
+Penggantian terus:
+
+<MathContainer>
+<BlockMath math="\lim_{x \to \frac{\pi}{4}} \frac{\sin x + \cos x}{\sin x} = \frac{\sin \frac{\pi}{4} + \cos \frac{\pi}{4}}{\sin \frac{\pi}{4}}" />
+<BlockMath math="\begin{aligned}  &amp;= \frac{\frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}} \\ &amp;= \frac{2 \cdot \frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}} \\ &amp;= \frac{\sqrt{2}}{\frac{\sqrt{2}}{2}} \\ &amp;= \sqrt{2} \cdot \frac{2}{\sqrt{2}} \\ &amp;= 2 \end{aligned}" />
+</MathContainer>
+
+### Teknik untuk Bentuk Khas
+
+Untuk had yang melibatkan bentuk <InlineMath math="\frac{0}{0}" />, kita perlu teknik khas.
+
+**Kira**: <InlineMath math="\lim_{x \to \frac{\pi}{2}} \frac{\sin^2(x - \frac{\pi}{2})}{x(x - \frac{\pi}{2})}" />
+
+Biar <InlineMath math="u = x - \frac{\pi}{2}" />, maka apabila <InlineMath math="x \to \frac{\pi}{2}" />, kita dapat <InlineMath math="u \to 0" /> dan <InlineMath math="x = u + \frac{\pi}{2}" />.
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\lim_{u \to 0} \frac{\sin^2 u}{(u + \frac{\pi}{2}) \cdot u} \\ &amp;= \lim_{u \to 0} \frac{\sin^2 u}{u^2} \cdot \frac{u}{u + \frac{\pi}{2}} \end{aligned}" />
+<BlockMath math="= \lim_{u \to 0} \left(\frac{\sin u}{u}\right)^2 \cdot \lim_{u \to 0} \frac{u}{u + \frac{\pi}{2}}" />
+<BlockMath math="= 1^2 \cdot \lim_{u \to 0} \frac{u}{\frac{\pi}{2} + u} = 1 \cdot \frac{0}{\frac{\pi}{2}} = 0" />
+</MathContainer>
+
+## Nisbah Fungsi Kotangen
+
+Tulis **kotangen sebagai kosinus dibahagi dengan sinus**. Nisbah kosinus menghampiri satu, manakala nisbah sinus menyumbang nisbah faktor sudut.
+
+**Kira**: <InlineMath math="\lim_{t \to 0} \frac{\cot 5t}{\cot 10t}" />
+
+Dengan takrif kotangen:
+
+<MathContainer>
+<BlockMath math="\begin{aligned}\lim_{t \to 0} \frac{\cot 5t}{\cot 10t} &= \lim_{t \to 0} \frac{\frac{\cos 5t}{\sin 5t}}{\frac{\cos 10t}{\sin 10t}} \\ &= \lim_{t \to 0} \frac{\cos 5t \sin 10t}{\sin 5t \cos 10t}\end{aligned}" />
+<BlockMath math="= \lim_{t \to 0} \frac{\cos 5t}{\cos 10t} \cdot \frac{\sin 10t}{\sin 5t} = 1 \cdot \frac{10}{5} = 2" />
+</MathContainer>
+
+## Latihan
+
+Setiap soalan meminta had trigonometri. Sebelum mengira, tentukan sama ada penggantian sudah cukup atau identiti diperlukan. Tulis had yang kamu gunakan pada setiap langkah, dan semak hasilnya dengan **had asas** setiap kali sudut itu diskalakan.
+
+1. Kira <InlineMath math="\lim_{x \to 0} \frac{\sin 3x}{4x}" />
+
+2. Kira <InlineMath math="\lim_{x \to 0} \frac{\tan 2x}{\sin 5x}" />
+
+3. Kira <InlineMath math="\lim_{x \to 0} \frac{1 - \cos 3x}{x^2}" />
+
+4. Kira <InlineMath math="\lim_{x \to \frac{\pi}{6}} \frac{\sin x - \frac{1}{2}}{x - \frac{\pi}{6}}" />
+
+5. Kira <InlineMath math="\lim_{x \to 0} \frac{\sin x \cos x}{x}" />
+
+### Jalan Kerja
+
+**Soalan 1**. Gunakan manipulasi algebra untuk mendapatkan **bentuk piawai**:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} \lim_{x \to 0} \frac{\sin 3x}{4x} &amp;= \lim_{x \to 0} \frac{3 \sin 3x}{3 \cdot 4x} \\ &amp;= \lim_{x \to 0} \frac{3}{4} \cdot \frac{\sin 3x}{3x} \end{aligned}" />
+<BlockMath math="= \frac{3}{4} \lim_{x \to 0} \frac{\sin 3x}{3x} = \frac{3}{4} \cdot 1 = \frac{3}{4}" />
+</MathContainer>
+
+**Soalan 2**. Gunakan sifat **nisbah trigonometri**:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to 0} \frac{\tan 2x}{\sin 5x} \\ &amp;= \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \frac{5x}{\sin 5x} \cdot \frac{2x}{5x} \end{aligned}" />
+<BlockMath math="= \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \lim_{x \to 0} \frac{5x}{\sin 5x} \cdot \frac{2}{5}" />
+<BlockMath math="= 1 \cdot 1 \cdot \frac{2}{5} = \frac{2}{5}" />
+</MathContainer>
+
+**Soalan 3**. Gunakan **identiti sudut separuh** untuk menukar beza kosinus itu kepada sinus kuasa dua:
+
+<MathContainer>
+<BlockMath math="\lim_{x \to 0} \frac{1 - \cos 3x}{x^2} = \lim_{x \to 0} \frac{2\sin^2\frac{3x}{2}}{x^2}" />
+<BlockMath math="= \lim_{x \to 0} 2 \cdot \left(\frac{\sin\frac{3x}{2}}{\frac{3x}{2}}\right)^2 \cdot \left(\frac{3}{2}\right)^2" />
+<BlockMath math="= 2 \cdot 1^2 \cdot \frac{9}{4} = \frac{9}{2}" />
+</MathContainer>
+
+**Soalan 4**. Tukar pemboleh ubah supaya **sudut menghampiri sifar**, kemudian gunakan had asas sinus. Biar <InlineMath math="h = x - \frac{\pi}{6}" />, maka <InlineMath math="x = h + \frac{\pi}{6}" /> dan apabila <InlineMath math="x \to \frac{\pi}{6}" />, kita dapat <InlineMath math="h \to 0" />:
+
+<MathContainer>
+<BlockMath math="\lim_{h \to 0} \frac{\sin(h + \frac{\pi}{6}) - \frac{1}{2}}{h}" />
+<BlockMath math="= \lim_{h \to 0} \frac{\sin h \cos\frac{\pi}{6} + \cos h \sin\frac{\pi}{6} - \frac{1}{2}}{h}" />
+<BlockMath math="= \lim_{h \to 0} \frac{\sin h \cdot \frac{\sqrt{3}}{2} + \cos h \cdot \frac{1}{2} - \frac{1}{2}}{h}" />
+<BlockMath math="= \lim_{h \to 0} \frac{\frac{\sqrt{3}}{2}\sin h + \frac{1}{2}(\cos h - 1)}{h}" />
+<BlockMath math="= \frac{\sqrt{3}}{2} \lim_{h \to 0} \frac{\sin h}{h} + \frac{1}{2} \lim_{h \to 0} \frac{\cos h - 1}{h}" />
+<BlockMath math="= \frac{\sqrt{3}}{2} \cdot 1 + \frac{1}{2} \cdot 0 = \frac{\sqrt{3}}{2}" />
+</MathContainer>
+
+**Soalan 5**. Gunakan **identiti sudut berganda** sebelum membatalkan faktor sepunya:
+
+<MathContainer>
+<BlockMath math="\lim_{x \to 0} \frac{\sin x \cos x}{x} = \lim_{x \to 0} \frac{\frac{1}{2}\sin 2x}{x}" />
+<BlockMath math="= \frac{1}{2} \lim_{x \to 0} \frac{\sin 2x}{x} = \frac{1}{2} \lim_{x \to 0} \frac{2 \sin 2x}{2x}" />
+<BlockMath math="= \frac{1}{2} \cdot 2 \lim_{x \to 0} \frac{\sin 2x}{2x} = 1 \cdot 1 = 1" />
+</MathContainer>

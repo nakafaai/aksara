@@ -1,0 +1,339 @@
+export const metadata = {
+  title: "Kesamaan Matriks",
+  description: "Tentukan bila dua matriks sama dengan membandingkan peringkat dan unsur sepadannya, kemudian cari unsur yang tidak diketahui.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-06",
+  dateModified: "2026-11-08",
+  subject: "Matriks",
+};
+
+## Memadankan Peringkat Matriks dan Unsur Sepadan
+
+Kesamaan matriks membandingkan struktur dan kandungannya. Nilai yang sepadan tidak mencukupi kalau nilai itu berada pada kedudukan yang berbeza atau kalau peringkat matriksnya berbeza.
+
+Matriks <InlineMath math="A" /> dan <InlineMath math="B" /> adalah **sama**, ditulis <InlineMath math="A=B" />, jika dan hanya jika kedua-dua syarat di bawah dipenuhi:
+
+1.  **Peringkat yang sama**: Matriks <InlineMath math="A" /> dan matriks <InlineMath math="B" /> mesti ada bilangan baris dan lajur yang sama. Kalau <InlineMath math="A" /> berperingkat <InlineMath math="m \times n" />, maka <InlineMath math="B" /> juga mesti berperingkat <InlineMath math="m \times n" />.
+2.  **Unsur Sepadan adalah Sama**: Setiap unsur sepadan (yang berada pada kedudukan baris dan lajur yang sama) dalam matriks <InlineMath math="A" /> dan matriks <InlineMath math="B" /> mesti ada nilai yang sama. Kalau <InlineMath math="A = [a_{ij}]" /> dan <InlineMath math="B = [b_{ij}]" />, maka <InlineMath math="a_{ij} = b_{ij}" /> bagi semua nilai <InlineMath math="i" /> (indeks baris) dan <InlineMath math="j" /> (indeks lajur).
+
+Kalau salah satu daripada dua syarat ini tidak dipenuhi, maka matriks <InlineMath math="A" /> tidak sama dengan matriks <InlineMath math="B" /> (ditulis <InlineMath math="A \neq B" />).
+
+## Contoh Kesamaan Matriks
+
+Kesamaan matriks ditentukan oleh dua semakan. Dua matriks itu mesti ada format yang sama, dan kemudian setiap unsur pada kedudukan yang sama mesti sepadan. Contoh di bawah menunjukkan satu pasangan yang lulus kedua-dua semakan dan dua pasangan yang <Highlight>gagal tepat satu</Highlight> daripadanya, diikuti satu kes dengan unsur yang mengandungi pemboleh ubah yang tidak diketahui.
+
+### Matriks yang Sama
+
+Diberi dua matriks:
+
+<BlockMath math="P = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \quad \text{dan} \quad Q = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}" />
+
+Matriks <InlineMath math="P" /> dan matriks <InlineMath math="Q" /> adalah sama (<InlineMath math="P=Q" />) kerana:
+
+- Kedua-duanya berperingkat <InlineMath math="2 \times 2" />.
+- **Unsur sepadan** ada nilai yang sama:
+
+  <InlineMath math="p_{11} = q_{11} = 1" />, <InlineMath math="p_{12} = q_{12} = 2" />
+  , <InlineMath math="p_{21} = q_{21} = 3" />, <InlineMath math="p_{22} = q_{22} = 4" />
+  .
+### Matriks Tidak Sama dengan Peringkat Berbeza
+
+Diberi dua matriks:
+
+<BlockMath math="\begin{aligned} &amp;R = \begin{bmatrix} 4 &amp; -9 \\ 7 &amp; 1 \end{bmatrix} \\ &amp;\text{dan} \\ &amp;C = \begin{bmatrix} 4 &amp; -9 \\ 7 &amp; 1 \\ 0 &amp; 0 \end{bmatrix} \end{aligned}" />
+
+Matriks <InlineMath math="R" /> tidak sama dengan matriks <InlineMath math="C" /> (<InlineMath math="R \neq C" />) kerana <InlineMath math="R" /> **berperingkat** <InlineMath math="2 \times 2" />, manakala <InlineMath math="C" /> berperingkat <InlineMath math="3 \times 2" />.
+### Matriks Tidak Sama dengan Unsur Sepadan Berbeza
+
+Diberi dua matriks:
+
+<BlockMath math="S = \begin{bmatrix} 5 & 0 \\ -2 & 8 \end{bmatrix} \quad \text{dan} \quad T = \begin{bmatrix} 5 & 0 \\ 2 & 8 \end{bmatrix}" />
+
+Walaupun matriks <InlineMath math="S" /> dan matriks <InlineMath math="T" /> ada peringkat yang sama, <InlineMath math="2 \times 2" />, kedua-duanya tidak sama (<InlineMath math="S \neq T" />). **Unsur-unsurnya** pada baris <InlineMath math="2" />, lajur <InlineMath math="1" /> berbeza: <InlineMath math="s_{21} = -2" />, manakala <InlineMath math="t_{21} = 2" />.
+
+Bayangkan setiap baris sebagai satu titik <InlineMath math="(x, y)" />. Matriks yang sama meletakkan setiap baris pada titik yang betul-betul sama. <InlineMath math="S" /> dan <InlineMath math="T" /> berkongsi baris <InlineMath math="1" />, iaitu titik <InlineMath math="(5, 0)" />, tetapi baris kedua masing-masing jatuh pada <InlineMath math="(-2, 8)" /> dan <InlineMath math="(2, 8)" />. Satu unsur, <InlineMath math="s_{21} = -2" /> berbanding <InlineMath math="t_{21} = 2" />, sudah cukup untuk memisahkan dua gambar itu, jadi <InlineMath math="S \neq T" />.
+
+<MathVisual
+  title={<><InlineMath math="S" /> dan <InlineMath math="T" /> berkongsi satu baris tetapi bukan baris yang lain</>}
+  description={<>Baris <InlineMath math="S" /> dan <InlineMath math="T" /> dilukis sebagai segmen dari titik baris <InlineMath math="1" /> ke titik baris <InlineMath math="2" />. Baris <InlineMath math="1" /> ialah titik yang sama bagi kedua-dua matriks, manakala baris <InlineMath math="2" /> jatuh pada dua titik yang berbeza.</>}
+  labels={{
+    shared: <>baris <InlineMath math="1" /> bagi kedua-duanya <InlineMath math="(5, 0)" /></>,
+    s: <><InlineMath math="S" /> baris <InlineMath math="2" /> <InlineMath math="(-2, 8)" /></>,
+    t: <><InlineMath math="T" /> baris <InlineMath math="2" /> <InlineMath math="(2, 8)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 7 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "s", kind: "segment", from: { x: 5, y: 0 }, to: { x: -2, y: 8 }, appearance: "primary" },
+      { id: "t", kind: "segment", from: { x: 5, y: 0 }, to: { x: 2, y: 8 }, appearance: "secondary" },
+      { id: "shared", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "shared", objectId: "shared", at: { x: 5, y: 0 }, placement: "right" },
+      { key: "s", objectId: "s", at: { x: -2, y: 8 }, placement: "left" },
+      { key: "t", objectId: "t", at: { x: 2, y: 8 }, placement: "right" },
+    ],
+  }}
+/>
+
+Pasangan unsur terakhir memberikan <InlineMath math="z^2 = 9" />. Lukis lengkung <InlineMath math="z^2" /> dan aras <InlineMath math="9" />: kedua-duanya bertemu dua kali, pada <InlineMath math="z = -3" /> dan <InlineMath math="z = 3" />. Kedua-dua nilai menjadikan <InlineMath math="A" /> dan <InlineMath math="B" /> sama, jadi satu persamaan matriks boleh ada lebih daripada satu penyelesaian bagi sesuatu pemboleh ubah.
+
+<MathVisual
+  title={<>Menyelesaikan <InlineMath math="z^2 = 9" /> daripada <InlineMath math="a_{22} = b_{22}" /></>}
+  description={<>Parabola <InlineMath math="z^2" /> bertemu aras <InlineMath math="9" /> pada <InlineMath math="z = -3" /> dan <InlineMath math="z = 3" />.</>}
+  labels={{
+    square: <InlineMath math="z^2" />,
+    level: <InlineMath math="9" />,
+    left: <InlineMath math="z = -3" />,
+    right: <InlineMath math="z = 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 16 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -4, max: 4 }, appearance: "primary" },
+      { id: "level", kind: "line", through: [{ x: -4, y: 9 }, { x: 4, y: 9 }], appearance: "reference" },
+      { id: "left", kind: "point", at: { x: -3, y: 9 }, appearance: "answer" },
+      { id: "right", kind: "point", at: { x: 3, y: 9 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 3.5, y: 12.25 }, placement: "right" },
+      { key: "level", objectId: "level", at: { x: 0, y: 9 }, placement: "above" },
+      { key: "left", objectId: "left", at: { x: -3, y: 9 }, placement: "below-left" },
+      { key: "right", objectId: "right", at: { x: 3, y: 9 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Peringkat diperiksa sebelum mana-mana unsur. <InlineMath math="R" /> ada <InlineMath math="2" /> baris dan <InlineMath math="C" /> ada <InlineMath math="3" /> baris, jadi bloknya berlainan bentuk. Walaupun dua baris pertamanya sepadan, <InlineMath math="C" /> ada satu baris tambahan yang tiada pasangan untuk dibandingkan, jadi <InlineMath math="R \neq C" />.
+
+<MathVisual
+  title={<>Matriks dengan peringkat berbeza tidak pernah sama</>}
+  description={<>Blok <InlineMath math="R" />, <InlineMath math="2" /> baris kali <InlineMath math="2" /> lajur, di sebelah blok <InlineMath math="C" />, <InlineMath math="3" /> baris kali <InlineMath math="2" /> lajur.</>}
+  labels={{
+    r: <InlineMath math="R" />,
+    c: <InlineMath math="C" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: -4, max: 0.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "r11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "r12", kind: "point", at: { x: 2, y: -1 }, appearance: "primary" },
+      { id: "r21", kind: "point", at: { x: 1, y: -2 }, appearance: "primary" },
+      { id: "r22", kind: "point", at: { x: 2, y: -2 }, appearance: "primary" },
+      { id: "c11", kind: "point", at: { x: 4, y: -1 }, appearance: "secondary" },
+      { id: "c12", kind: "point", at: { x: 5, y: -1 }, appearance: "secondary" },
+      { id: "c21", kind: "point", at: { x: 4, y: -2 }, appearance: "secondary" },
+      { id: "c22", kind: "point", at: { x: 5, y: -2 }, appearance: "secondary" },
+      { id: "c31", kind: "point", at: { x: 4, y: -3 }, appearance: "secondary" },
+      { id: "c32", kind: "point", at: { x: 5, y: -3 }, appearance: "secondary" },
+      { id: "rl", kind: "segment", from: { x: 1, y: -2.6 }, to: { x: 2, y: -2.6 }, appearance: "primary" },
+      { id: "cl", kind: "segment", from: { x: 4, y: -3.6 }, to: { x: 5, y: -3.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "r", objectId: "rl", at: { x: 1.5, y: -2.6 }, placement: "below" },
+      { key: "c", objectId: "cl", at: { x: 4.5, y: -3.6 }, placement: "below" },
+    ],
+  }}
+/>
+
+### Menentukan Nilai Pemboleh Ubah daripada Kesamaan Matriks
+
+Diberi matriks-matriks berikut:
+
+<MathContainer>
+  <BlockMath math="A = \begin{bmatrix} -x & 2 \\ -3y & z^2 \end{bmatrix}" />
+  <BlockMath math="B = \begin{bmatrix} -1 & 2 \\ 6 & 9 \end{bmatrix}" />
+</MathContainer>
+
+Kalau matriks <InlineMath math="A" /> sama dengan matriks <InlineMath math="B" /> (<InlineMath math="A=B" />), tentukan nilai <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" />.
+
+**Penyelesaian**:
+
+Oleh sebab <InlineMath math="A=B" />, **unsur-unsur sepadan mesti sama**:
+
+| Kedudukan | Persamaan dan penyelesaian |
+| --- | --- |
+| <InlineMath math="(1, 1)" /> | <InlineMath math="a_{11} = b_{11} \implies -x = -1 \implies x = 1" /> |
+| <InlineMath math="(1, 2)" /> | <InlineMath math="a_{12} = b_{12} \implies 2 = 2" /> (sudah sama) |
+| <InlineMath math="(2, 1)" /> | <InlineMath math="a_{21} = b_{21} \implies -3y = 6 \implies y = \frac{6}{-3} \implies y = -2" /> |
+| <InlineMath math="(2, 2)" /> | <InlineMath math="a_{22} = b_{22} \implies z^2 = 9 \implies z = \pm\sqrt{9} \implies z = 3 \text{ atau } z = -3" /> |
+
+Nilainya ialah <InlineMath math="x=1" />, <InlineMath math="y=-2" />, dan <InlineMath math="z = \pm 3" />.
+
+## Latihan
+
+Tentukan sama ada tiga pernyataan pertama **Benar** atau **Palsu**.
+
+1.  Peringkat yang sama ialah satu syarat yang mesti dipenuhi oleh dua matriks yang sama.
+2.  Dua matriks yang tidak sama sentiasa berlainan peringkat.
+3.  Dua matriks di bawah adalah sama.
+
+    <MathContainer>
+      <BlockMath math="K = \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix}" />
+      <BlockMath math="L = \begin{bmatrix} 2 & 0 \\ 0 & 2 \\ 0 & 0 \end{bmatrix}" />
+    </MathContainer>
+
+4.  Bagi matriks berikut, <InlineMath math="P=Q" />. Tentukan <InlineMath math="x" /> dan <InlineMath math="y" />.
+
+    <MathContainer>
+      <BlockMath math="P = \begin{bmatrix} 2x & 4 \\ -1 & y+3 \end{bmatrix}" />
+      <BlockMath math="Q = \begin{bmatrix} -10 & 4 \\ -1 & 2 \end{bmatrix}" />
+    </MathContainer>
+
+5.  Matriks <InlineMath math="I" /> ialah matriks identiti <InlineMath math="2 \times 2" />. Bagi matriks <InlineMath math="A" /> berikut, <InlineMath math="A = I" />. Tentukan <InlineMath math="x+y" />.
+
+    <BlockMath math="A = \begin{bmatrix} -x-3y & 0 \\ (x-2y)^2 & 1 \end{bmatrix}" />
+
+6.  Hitung nilai <InlineMath math="a+b+c+d" /> yang memenuhi kesamaan matriks berikut:
+
+    <BlockMath math="\begin{bmatrix} a+2b & 2a+b \\ c+d & 2c+d \end{bmatrix} = \begin{bmatrix} 3 & -3 \\ 7 & 1 \end{bmatrix}" />
+
+### Penyelesaian
+
+1.  **Benar**. Matriks yang sama mesti ada peringkat yang sama, walaupun syarat itu sahaja tidak mencukupi.
+2.  **Palsu**. Dua matriks yang tidak sama boleh ada peringkat yang sama tetapi berbeza pada satu atau lebih unsur sepadan, seperti dalam Contoh 3.
+3.  **Palsu**. Matriks <InlineMath math="K" /> berperingkat <InlineMath math="2 \times 2" />, manakala matriks <InlineMath math="L" /> berperingkat <InlineMath math="3 \times 2" />. Matriks dengan peringkat berbeza tidak boleh sama.
+
+**Soalan 4**. Diberi <InlineMath math="P=Q" />:
+
+<BlockMath math="\begin{bmatrix} 2x & 4 \\ -1 & y+3 \end{bmatrix} = \begin{bmatrix} -10 & 4 \\ -1 & 2 \end{bmatrix}" />
+
+Daripada **kesamaan unsur sepadan**:
+
+- <InlineMath math="2x = -10 \implies x = -5" />
+- <InlineMath math="y+3 = 2 \implies y = 2-3 \implies y = -1" />
+
+  Jadi, <InlineMath math="x=-5" /> dan <InlineMath math="y=-1" />.
+
+**Soalan 5**. Matriks identiti <InlineMath math="2 \times 2" /> ialah:
+
+<BlockMath math="I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
+
+Diberi <InlineMath math="A=I" />:
+
+<BlockMath math="\begin{bmatrix} -x-3y & 0 \\ (x-2y)^2 & 1 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
+
+Daripada **kesamaan unsur sepadan**, kita dapat satu sistem persamaan:
+
+1.  <InlineMath math="-x-3y = 1" /> (Persamaan 1)
+2.  <InlineMath math="(x-2y)^2 = 0" /> (Persamaan 2)
+
+Selesaikan Persamaan 2 dahulu:
+
+<MathContainer>
+  <BlockMath math="(x-2y)^2 = 0" />
+  <BlockMath math="x-2y = \sqrt{0}" />
+  <BlockMath math="x-2y = 0" />
+  <BlockMath math="x = 2y \quad \text{(Persamaan 2')}" />
+</MathContainer>
+
+Gantikan Persamaan 2' ke dalam Persamaan 1:
+
+<MathContainer>
+  <BlockMath math="-(2y)-3y = 1" />
+  <BlockMath math="-2y-3y = 1" />
+  <BlockMath math="-5y = 1" />
+  <BlockMath math="y = -\frac{1}{5}" />
+</MathContainer>
+
+Gantikan nilai <InlineMath math="y = -\frac{1}{5}" /> ke dalam Persamaan 2':
+
+<MathContainer>
+  <BlockMath math="x = 2\left(-\frac{1}{5}\right)" />
+  <BlockMath math="x = -\frac{2}{5}" />
+</MathContainer>
+
+Kemudian, nilai <InlineMath math="x+y" /> ialah:
+
+<MathContainer>
+  <BlockMath math="x+y = \left(-\frac{2}{5}\right) + \left(-\frac{1}{5}\right)" />
+  <BlockMath math="= -\frac{2}{5} - \frac{1}{5}" />
+  <BlockMath math="= \frac{-2-1}{5}" />
+  <BlockMath math="= -\frac{3}{5}" />
+</MathContainer>
+
+**Soalan 6**. Diberi kesamaan matriks:
+
+<BlockMath math="\begin{bmatrix} a+2b & 2a+b \\ c+d & 2c+d \end{bmatrix} = \begin{bmatrix} 3 & -3 \\ 7 & 1 \end{bmatrix}" />
+
+Daripada **kesamaan unsur sepadan**, kita dapat satu sistem persamaan:
+
+1.  <InlineMath math="a+2b = 3" />
+2.  <InlineMath math="2a+b = -3" />
+3.  <InlineMath math="c+d = 7" />
+4.  <InlineMath math="2c+d = 1" />
+
+Selesaikan sistem persamaan untuk <InlineMath math="a" /> dan <InlineMath math="b" /> (persamaan 1 dan 2):
+
+Persamaan awal:
+
+<MathContainer>
+  <BlockMath math="a+2b = 3 \quad \text{(1)}" />
+  <BlockMath math="2a+b = -3 \quad \text{(2)}" />
+</MathContainer>
+
+Untuk menghapuskan <InlineMath math="b" />, darab persamaan (2) dengan <InlineMath math="2" />:
+
+<MathContainer>
+  <BlockMath math="2(2a+b) = 2(-3)" />
+  <BlockMath math="4a+2b = -6 \quad \text{(2')}" />
+</MathContainer>
+
+Tolak persamaan (1) daripada persamaan (2'):
+
+<MathContainer>
+  <BlockMath math="(4a+2b) - (a+2b) = -6 - 3" />
+  <BlockMath math="4a - a + 2b - 2b = -9" />
+  <BlockMath math="3a = -9" />
+  <BlockMath math="a = \frac{-9}{3}" />
+  <BlockMath math="a = -3" />
+</MathContainer>
+
+Gantikan nilai <InlineMath math="a=-3" /> ke dalam persamaan (1):
+
+<MathContainer>
+  <BlockMath math="-3+2b=3" />
+  <BlockMath math="2b=3+3" />
+  <BlockMath math="2b=6" />
+  <BlockMath math="b = \frac{6}{2}" />
+  <BlockMath math="b = 3" />
+</MathContainer>
+
+Selesaikan sistem persamaan untuk <InlineMath math="c" /> dan <InlineMath math="d" /> (persamaan 3 dan 4):
+
+Persamaan awal:
+
+<MathContainer>
+  <BlockMath math="c+d = 7 \quad \text{(3)}" />
+  <BlockMath math="2c+d = 1 \quad \text{(4)}" />
+</MathContainer>
+
+Tolak persamaan (3) daripada persamaan (4) untuk menghapuskan <InlineMath math="d" />:
+
+<MathContainer>
+  <BlockMath math="(2c+d) - (c+d) = 1 - 7" />
+  <BlockMath math="2c - c + d - d = -6" />
+  <BlockMath math="c = -6" />
+</MathContainer>
+
+Gantikan nilai <InlineMath math="c=-6" /> ke dalam persamaan (3):
+
+<MathContainer>
+  <BlockMath math="-6+d=7" />
+  <BlockMath math="d=7+6" />
+  <BlockMath math="d=13" />
+</MathContainer>
+
+Kemudian, nilai <InlineMath math="a+b+c+d" /> ialah:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;a+b+c +d \\ &amp;= (-3) + 3 + (-6) + 13 \end{aligned}" />
+  <BlockMath math="= 0 - 6 + 13" />
+  <BlockMath math="= 7" />
+</MathContainer>

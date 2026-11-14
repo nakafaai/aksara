@@ -28,6 +28,7 @@ export function testSet(number: number) {
   return {
     key: `set-${number}`,
     order: number,
+    rating: { items: 2, level: 3, raters: 2 },
     routeSlugs: slugged(`set-${number}`),
     translations: titled(`Set ${number}`),
   };

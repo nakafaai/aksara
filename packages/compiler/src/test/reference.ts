@@ -157,6 +157,10 @@ function corpusDocuments(
   });
 }
 
+/** Whether a document's props compute data, such as a prop that runs a function. */
+export const computesData = (rawMdx: string) =>
+  DATA_COMPUTING_ATTRIBUTE.test(rawMdx);
+
 /** Reads every corpus document whose props compute data, with its repository-relative path. */
 export const dataComputingDocuments = Effect.gen(function* () {
   const fs = yield* FileSystem.FileSystem;
@@ -168,9 +172,7 @@ export const dataComputingDocuments = Effect.gen(function* () {
       sourcePath: path.relative(path.resolve("../.."), document),
     }))
   );
-  return Arr.filter(sources, ({ rawMdx }) =>
-    DATA_COMPUTING_ATTRIBUTE.test(rawMdx)
-  );
+  return Arr.filter(sources, ({ rawMdx }) => computesData(rawMdx));
 });
 
 /** Lists the renderer components that a document names, with the placeholder every document has. */

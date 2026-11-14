@@ -67,6 +67,10 @@ describe("math visual bounds", () => {
         from: p2(-2, -2),
         to: p2(2, 2),
       }),
+      planeObject("vector", {
+        from: p2(0, 0),
+        to: p2(3, 4),
+      }),
       planeObject("polyline", {
         vertices: [p2(-2, 0), p2(0, 2)],
       }),
@@ -186,6 +190,10 @@ describe("math visual bounds", () => {
       spaceObject("cuboid", {
         center: p3(0, 0, 0),
         size: { height: 4, length: 6, width: 4 },
+      }),
+      spaceObject("vector", {
+        from: p3(0, 0, 0),
+        to: p3(0, 0, 3),
       }),
     ];
     const infinite = [

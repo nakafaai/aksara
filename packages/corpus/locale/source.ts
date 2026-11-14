@@ -3,6 +3,8 @@ import {
   compareContentHeads,
 } from "@nakafa/aksara-contracts/content";
 import {
+  ACTIVE_APP_LOCALE_CODES,
+  type ActiveAppLocaleList,
   APP_LOCALE_CODES,
   type AppLocale,
   type AppLocaleCode,
@@ -59,6 +61,30 @@ export const requireSourceLocale = Effect.fn(
   }
   return value;
 });
+
+/** The declared locales that are not served yet, such as Malay before its launch. */
+const DECLARED_ONLY_LOCALE_CODES = Arr.filter(
+  APP_LOCALE_CODES,
+  (code) => !Arr.contains(ACTIVE_APP_LOCALE_CODES, code)
+);
+
+/**
+ * The locales one source is published in: the active locales asked for, then
+ * each declared locale that is not served yet, once the source writes it. A
+ * source that writes such a locale must write all of it, which the projection
+ * then requires, so no page mixes languages (ADR 0018).
+ */
+export function carriedAppLocales(
+  activeLocales: ActiveAppLocaleList,
+  writes: (localeCode: AppLocaleCode) => boolean
+): readonly AppLocale[] {
+  return [
+    ...activeLocales,
+    ...Arr.flatMap(DECLARED_ONLY_LOCALE_CODES, (code) =>
+      writes(code) ? [AppLocaleSchema.make(code)] : []
+    ),
+  ];
+}
 
 /** Maps every present localized value without manufacturing absent copy. */
 export function mapLocalizedSource<Value, Result>(

@@ -15,37 +15,29 @@ Eine **vertikale Spiegelung** an der x-Achse macht aus <InlineMath math="y = f(x
 
 Die Formel liefert dasselbe Ergebnis. Liegt der Punkt <InlineMath math="(x_0, y_0)" /> auf <InlineMath math="f" />, dann gilt <InlineMath math="y_0 = f(x_0)" />. Die neue Funktion gibt bei derselben Eingabe <InlineMath math="-f(x_0) = -y_0" />, daher liegt der Punkt <InlineMath math="(x_0, -y_0)" /> auf <InlineMath math="-f(x)" />.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Graphen von <InlineMath math="f(x) = x^2 - 1" /> und <InlineMath math="g(x) = -f(x)" /></>}
   description={<>Der Pfeil bringt den Punkt <InlineMath math="(2, 3)" /> auf <InlineMath math="f" /> nach <InlineMath math="(2, -3)" /> auf <InlineMath math="g" />. Der tiefste Punkt <InlineMath math="(0, -1)" /> von <InlineMath math="f" /> wird zum höchsten Punkt <InlineMath math="(0, 1)" /> von <InlineMath math="g" />.</>}
-  cameraPosition={[0, 0, 14]}
-  cameraTarget={[0, 0, 0]}
-  data={(() => {
-    const f = (x) => x * x - 1;
-    const g = (x) => -f(x);
-    const xs = Array.from({ length: 201 }, (_, i) => -2.5 + i / 40);
-    const index = (x) => Math.round((x + 2.5) * 40);
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [index(0)],
-        labels: [{ text: <InlineMath math="f" />, at: index(-2), offset: [-0.3, 0.3, 0], anchorX: "right" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: true,
-        pointIndices: [index(0)],
-        labels: [{ text: <InlineMath math="g" />, at: index(-2), offset: [-0.3, -0.3, 0], anchorX: "right" }],
-      },
-      { points: [{ x: 2, y: 3, z: 0 }, { x: 2, y: -3, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -6.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2.5) + (t / 40))", y: "((((-2.5) + (t / 40)) * ((-2.5) + (t / 40))) - 1)", parameter: { min: 0, max: 200 }, appearance: "primary" },
+      { id: "s1-p100", kind: "point", at: { x: 0, y: -1 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2.5) + (t / 40))", y: "(-((((-2.5) + (t / 40)) * ((-2.5) + (t / 40))) - 1))", parameter: { min: 0, max: 200 }, appearance: "secondary" },
+      { id: "s2-p100", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 2, y: 3 }, to: { x: 2, y: -3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -2, y: 3 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: -2, y: -3 }, placement: "below-left" },
+    ],
+  }}
 />
 
 Der Pfeil zeigt die Regel bei der Arbeit. Die Höhe des Punktes wird mit <InlineMath math="-1" /> multipliziert, während seine waagerechte Lage unverändert bleibt. Der höchste Punkt des ersten Graphen ist zum tiefsten Punkt des zweiten geworden.
@@ -149,37 +141,31 @@ Sei <InlineMath math="f(x) = x^2 - 2x - 3 = (x - 1)^2 - 4" />. Die vertikale Spi
 
 Prüfe die drei besonderen Punkte. Die Nullstellen von <InlineMath math="g" /> bleiben <InlineMath math="-1" /> und <InlineMath math="3" />, denn <InlineMath math="g(-1) = -1 - 2 + 3 = 0" /> und <InlineMath math="g(3) = -9 + 6 + 3 = 0" />. Das Minimum <InlineMath math="(1, -4)" /> von <InlineMath math="f" /> wird zum Maximum <InlineMath math="(1, 4)" /> von <InlineMath math="g" />, denn <InlineMath math="g(1) = -1 + 2 + 3 = 4" />. Der Schnittpunkt mit der y-Achse wandert von <InlineMath math="(0, -3)" /> nach <InlineMath math="(0, 3)" />, da <InlineMath math="g(0) = 3" /> ist.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Graphen von <InlineMath math="f(x) = x^2 - 2x - 3" /> und <InlineMath math="g(x) = -x^2 + 2x + 3" /></>}
   description={<>Die senkrechten Pfeile bringen das Minimum von <InlineMath math="f" /> zum Maximum von <InlineMath math="g" /> und den Schnittpunkt <InlineMath math="(0, -3)" /> nach <InlineMath math="(0, 3)" />. Die Nullstellen bleiben bei <InlineMath math="-1" /> und <InlineMath math="3" />.</>}
-  cameraPosition={[1, 1, 16]}
-  cameraTarget={[1, 1, 0]}
-  data={(() => {
-    const f = (x) => x * x - 2 * x - 3;
-    const g = (x) => -f(x);
-    const xs = Array.from({ length: 241 }, (_, i) => -2 + i / 40);
-    const index = (x) => Math.round((x + 2) * 40);
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [index(1), index(-1), index(3)],
-        labels: [{ text: <InlineMath math="f" />, at: index(3.5), offset: [0.3, 0, 0], anchorX: "left" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="g" />, at: index(3.5), offset: [0.3, 0, 0], anchorX: "left" }],
-      },
-      { points: [{ x: 1, y: -4, z: 0 }, { x: 1, y: 4, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-      { points: [{ x: 0, y: -3, z: 0 }, { x: 0, y: 3, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + (t / 40))", y: "(((((-2) + (t / 40)) * ((-2) + (t / 40))) - (2 * ((-2) + (t / 40)))) - 3)", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s1-p120", kind: "point", at: { x: 1, y: -4 }, appearance: "primary" },
+      { id: "s1-p40", kind: "point", at: { x: -1, y: 0 }, appearance: "primary" },
+      { id: "s1-p200", kind: "point", at: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2) + (t / 40))", y: "(-(((((-2) + (t / 40)) * ((-2) + (t / 40))) - (2 * ((-2) + (t / 40)))) - 3))", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 1, y: -4 }, to: { x: 1, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 0, y: -3 }, to: { x: 0, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3.5, y: 2.25 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: 3.5, y: -2.25 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Wertebereich und Asymptote kehren sich um
@@ -190,169 +176,124 @@ Nimm <InlineMath math="f(x) = 2^x - 1" />. Ihre waagerechte Asymptote ist <Inlin
 
 Die Asymptote wandert nach <InlineMath math="y = 1" />, weil die Höhe <InlineMath math="-1" /> zu <InlineMath math="1" /> wird. **Der Wertebereich kehrt sich um** zu <InlineMath math="(-\infty, 1)" />, denn jeder Wert von <InlineMath math="f" /> über <InlineMath math="-1" /> wird zu einem Wert unter <InlineMath math="1" />. Der Punkt <InlineMath math="(0, 0)" /> bleibt liegen, weil er auf der x-Achse liegt. Prüfe zwei Werte: <InlineMath math="-f(1) = -(2 - 1) = -1" /> und <InlineMath math="-f(-1) = -\left(\tfrac{1}{2} - 1\right) = \tfrac{1}{2}" />.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Graphen von <InlineMath math="f(x) = 2^x - 1" /> und <InlineMath math="g(x) = -2^x + 1" /></>}
   description={<>Die Pfeile bringen <InlineMath math="(1, 1)" /> nach <InlineMath math="(1, -1)" /> und <InlineMath math="(-1, -\tfrac{1}{2})" /> nach <InlineMath math="(-1, \tfrac{1}{2})" />. Die Asymptote wandert von <InlineMath math="y = -1" /> nach <InlineMath math="y = 1" />.</>}
-  cameraPosition={[0, 0, 14]}
-  cameraTarget={[0, 0, 0]}
-  data={(() => {
-    const f = (x) => 2 ** x - 1;
-    const g = (x) => -f(x);
-    const xs = Array.from({ length: 241 }, (_, i) => -3 + i / 40);
-    const index = (x) => Math.round((x + 3) * 40);
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="f" />, at: index(2), offset: [0.3, -0.3, 0], anchorX: "left" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="g" />, at: index(2), offset: [0.3, 0.3, 0], anchorX: "left" }],
-      },
-      {
-        points: [{ x: -3, y: -1, z: 0 }, { x: 3, y: -1, z: 0 }],
-        smooth: false,
-        color: "#475569",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="y = -1" />, at: 0, offset: [0, -0.4, 0], anchorX: "left" }],
-      },
-      {
-        points: [{ x: -3, y: 1, z: 0 }, { x: 3, y: 1, z: 0 }],
-        smooth: false,
-        color: "#475569",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="y = 1" />, at: 0, offset: [0, 0.4, 0], anchorX: "left" }],
-      },
-      { points: [{ x: 1, y: 1, z: 0 }, { x: 1, y: -1, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-      { points: [{ x: -1, y: -0.5, z: 0 }, { x: -1, y: 0.5, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+    "l3": <InlineMath math="y = -1" />,
+    "l4": <InlineMath math="y = 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -8.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (t / 40))", y: "((2)^(((-3) + (t / 40))) - 1)", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-3) + (t / 40))", y: "(-((2)^(((-3) + (t / 40))) - 1))", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: -1 }, { x: 3, y: -1 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3, y: 1 }, { x: 3, y: 1 }], appearance: "answer" },
+      { id: "s5", kind: "vector", from: { x: 1, y: 1 }, to: { x: 1, y: -1 }, appearance: "highlight" },
+      { id: "s6", kind: "vector", from: { x: -1, y: -0.5 }, to: { x: -1, y: 0.5 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 3 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: -3 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -3, y: -1 }, placement: "below" },
+      { key: "l4", objectId: "s4", at: { x: -3, y: 1 }, placement: "above" },
+    ],
+  }}
 />
 
 ## Hochpunkte und Tiefpunkte tauschen die Plätze
 
 Für <InlineMath math="y = \sin x" /> erreicht der Graph seinen höchsten Punkt bei <InlineMath math="\left(\tfrac{\pi}{2}, 1\right)" /> und seinen tiefsten bei <InlineMath math="\left(-\tfrac{\pi}{2}, -1\right)" />. Die Spiegelung <InlineMath math="y = -\sin x" /> **vertauscht beide**. Der höchste Punkt des neuen Graphen liegt bei <InlineMath math="\left(-\tfrac{\pi}{2}, 1\right)" />, der tiefste bei <InlineMath math="\left(\tfrac{\pi}{2}, -1\right)" />. Die Nullstellen bei Vielfachen von <InlineMath math="\pi" /> bleiben liegen, und die Periode <InlineMath math="2\pi" /> ändert sich nicht.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Graphen von <InlineMath math="y = \sin x" /> und <InlineMath math="y = -\sin x" /></>}
   description={<>Die Pfeile bringen den höchsten Punkt der Sinuskurve zum tiefsten Punkt ihres Spiegelbilds und den tiefsten Punkt zum höchsten. Die Nullstellen bei <InlineMath math="0" /> und <InlineMath math="\pi" /> bewegen sich nicht.</>}
-  cameraPosition={[0, 0, 16]}
-  cameraTarget={[0, 0, 0]}
-  data={(() => {
-    // y = sin x and y = -sin x are declared as curves over -2 pi <= x <= 2 pi, sampled at 401 points that
-    // are one pi / 100 apart, so index(x) names the sample at x and every named point is exact.
-    const index = (x) => Math.round((x + 2 * Math.PI) * 100 / Math.PI);
-    return [
-      {
-        curve: { kind: "sin", amplitude: 1, frequency: 1, phase: 0, shift: 0, samples: 401, domain: [-2 * Math.PI, 2 * Math.PI] },
-        smooth: false,
-        color: "#ea580c",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="\sin x" />, at: index(5.5), offset: [0, 0.4, 0], anchorX: "left" }],
-      },
-      {
-        curve: { kind: "sin", amplitude: -1, frequency: 1, phase: 0, shift: 0, samples: 401, domain: [-2 * Math.PI, 2 * Math.PI] },
-        smooth: false,
-        color: "#0d9488",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="-\sin x" />, at: index(-5.5), offset: [0, -0.4, 0], anchorX: "right" }],
-      },
-      { points: [{ x: 0, y: 0, z: 0 }, { x: Math.PI, y: 0, z: 0 }], smooth: false, color: "#ea580c", showPoints: true },
-      { points: [{ x: Math.PI / 2, y: 1, z: 0 }, { x: Math.PI / 2, y: -1, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-      { points: [{ x: -Math.PI / 2, y: -1, z: 0 }, { x: -Math.PI / 2, y: 1, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="\sin x" />,
+    "l2": <InlineMath math="-\sin x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "-1 sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3.14, y: 0 }], appearance: "primary" },
+      { id: "s4", kind: "vector", from: { x: 1.57, y: 1 }, to: { x: 1.57, y: -1 }, appearance: "answer" },
+      { id: "s5", kind: "vector", from: { x: -1.57, y: -1 }, to: { x: -1.57, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 5.5, y: -0.71 }, placement: "above" },
+      { key: "l2", objectId: "s2", at: { x: -5.5, y: -0.71 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Das Minuszeichen außen und innen
 
 Ein Minuszeichen außerhalb der Funktion und ein Minuszeichen innerhalb **haben verschiedene Aufgaben**. Der Faktor außen, wie bei <InlineMath math="-f(x)" />, kehrt die Höhen um. Das Zeichen innen, wie bei <InlineMath math="f(-x)" />, kehrt die Eingaben um. Nimm <InlineMath math="f(x) = 2^x" /> und den Punkt <InlineMath math="P(1, 2)" />. Die vertikale Spiegelung <InlineMath math="-2^x" /> schickt <InlineMath math="P" /> nach <InlineMath math="(1, -2)" />, während die horizontale Spiegelung <InlineMath math="2^{-x}" /> ihn nach <InlineMath math="(-1, 2)" /> schickt. Bei <InlineMath math="x = 1" /> unterscheiden sich die beiden Ergebnisse: <InlineMath math="-f(1) = -2" /> und <InlineMath math="f(-1) = \tfrac{1}{2}" />.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Der Punkt <InlineMath math="P(1, 2)" /> bei zwei Spiegelungen von <InlineMath math="2^x" /></>}
   description={<>Der Pfeil nach rechts geht nach unten zu <InlineMath math="(1, -2)" /> auf <InlineMath math="-2^x" />. Der Pfeil nach links bleibt auf Höhe zwei auf <InlineMath math="2^{-x}" />.</>}
-  cameraPosition={[0, 0, 11]}
-  cameraTarget={[0, 0, 0]}
-  data={(() => {
-    const f = (x) => 2 ** x;
-    const xs = Array.from({ length: 161 }, (_, i) => -2 + i / 40);
-    const index = (x) => Math.round((x + 2) * 40);
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [index(1)],
-        labels: [{ text: <InlineMath math="2^x" />, at: index(1.8), offset: [0.3, 0.3, 0], anchorX: "left" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: -f(x), z: 0 })),
-        smooth: false,
-        color: "#7c3aed",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="-2^x" />, at: index(1.8), offset: [0.3, -0.3, 0], anchorX: "left" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: f(-x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="2^{-x}" />, at: index(-1.8), offset: [-0.3, 0.3, 0], anchorX: "right" }],
-      },
-      { points: [{ x: 1, y: 2, z: 0 }, { x: 1, y: -2, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-      { points: [{ x: 1, y: 2, z: 0 }, { x: -1, y: 2, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="2^x" />,
+    "l2": <InlineMath math="-2^x" />,
+    "l3": <InlineMath math="2^{-x}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + (t / 40))", y: "(2)^(((-2) + (t / 40)))", parameter: { min: 0, max: 160 }, appearance: "primary" },
+      { id: "s1-p120", kind: "point", at: { x: 1, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2) + (t / 40))", y: "(-(2)^(((-2) + (t / 40))))", parameter: { min: 0, max: 160 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-2) + (t / 40))", y: "(2)^((-((-2) + (t / 40))))", parameter: { min: 0, max: 160 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 1, y: 2 }, to: { x: 1, y: -2 }, appearance: "highlight" },
+      { id: "s5", kind: "vector", from: { x: 1, y: 2 }, to: { x: -1, y: 2 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.8, y: 3.48 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 1.8, y: -3.48 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: -1.8, y: 3.48 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Ungerade Funktionen sind die Ausnahme. Für <InlineMath math="f(x) = x^3 - 3x" /> gilt <InlineMath math="f(-x) = -f(x)" />, daher liefern die Spiegelung an der y-Achse und die Spiegelung an der x-Achse denselben Graphen. Die Grafik zeigt <InlineMath math="f" /> zusammen mit beiden Spiegelungen. Der Punkt <InlineMath math="(-1, 2)" /> wandert nach <InlineMath math="(-1, -2)" />, und <InlineMath math="(1, -2)" /> wandert nach <InlineMath math="(1, 2)" />, und die beiden gespiegelten Kurven liegen übereinander.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Die ungerade Funktion <InlineMath math="x^3 - 3x" /> und ihre zwei Spiegelungen</>}
   description={<>Die Pfeile bringen <InlineMath math="(-1, 2)" /> nach <InlineMath math="(-1, -2)" /> und <InlineMath math="(1, -2)" /> nach <InlineMath math="(1, 2)" />. Die Kurven von <InlineMath math="f(-x)" /> und <InlineMath math="-f(x)" /> fallen zusammen.</>}
-  cameraPosition={[0, 0, 11]}
-  cameraTarget={[0, 0, 0]}
-  data={(() => {
-    const f = (x) => x * x * x - 3 * x;
-    const xs = Array.from({ length: 177 }, (_, i) => -2.2 + i / 40);
-    const index = (x) => Math.round((x + 2.2) * 40);
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="f" />, at: index(1.9), offset: [0.3, 0, 0], anchorX: "left" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: f(-x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="f(-x)" />, at: index(-1.9), offset: [-0.3, 0.3, 0], anchorX: "right" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: -f(x), z: 0 })),
-        smooth: false,
-        color: "#475569",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="-f(x)" />, at: index(0.3), offset: [0, -0.4, 0], anchorX: "left" }],
-      },
-      { points: [{ x: -1, y: 2, z: 0 }, { x: -1, y: -2, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-      { points: [{ x: 1, y: -2, z: 0 }, { x: 1, y: 2, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="f(-x)" />,
+    "l3": <InlineMath math="-f(x)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2.2) + (t / 40))", y: "(((((-2.2) + (t / 40)) * ((-2.2) + (t / 40))) * ((-2.2) + (t / 40))) - (3 * ((-2.2) + (t / 40))))", parameter: { min: 0, max: 176 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2.2) + (t / 40))", y: "((((-((-2.2) + (t / 40))) * (-((-2.2) + (t / 40)))) * (-((-2.2) + (t / 40)))) - (3 * (-((-2.2) + (t / 40)))))", parameter: { min: 0, max: 176 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-2.2) + (t / 40))", y: "(-(((((-2.2) + (t / 40)) * ((-2.2) + (t / 40))) * ((-2.2) + (t / 40))) - (3 * ((-2.2) + (t / 40)))))", parameter: { min: 0, max: 176 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: -1, y: 2 }, to: { x: -1, y: -2 }, appearance: "highlight" },
+      { id: "s5", kind: "vector", from: { x: 1, y: -2 }, to: { x: 1, y: 2 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.9, y: 1.16 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: -1.9, y: 1.16 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 0.3, y: 0.87 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Fehler beim Verteilen des Minuszeichens

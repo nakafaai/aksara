@@ -14,7 +14,7 @@ Jeder Vektor, der nicht der Nullvektor ist, <Highlight>besitzt zwei kennzeichnen
 
 Am Vektor <InlineMath math="\overrightarrow{CD}" /> sind beide Eigenschaften direkt ablesbar:
 
-<VectorChart
+<MathVisual
   title={
     <>
       Vektor <InlineMath math="CD" />
@@ -27,16 +27,21 @@ Am Vektor <InlineMath math="\overrightarrow{CD}" /> sind beide Eigenschaften dir
       <InlineMath math="45^\circ" /> zur Waagerechten.
     </>
   }
-  vectors={[
-    {
-      id: "cd",
-      name: <InlineMath math="CD" />,
-      points: [
-        { x: 0, y: 0 },
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) },
-      ],
-    },
-  ]}
+  labels={{
+    cd: <InlineMath math="CD" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 3.83 }, y: { min: -1, max: 3.83 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "cd", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }, appearance: "primary" },
+      { id: "cd-tip", kind: "point", at: { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "cd", objectId: "cd", at: { x: (4 * Math.cos(Math.PI / 4)) / 2, y: (4 * Math.sin(Math.PI / 4)) / 2 }, placement: "above-left" },
+    ],
+  }}
 />
 
 - Der **Betrag des Vektors** <InlineMath math="\overrightarrow{CD}" /> ist <InlineMath math="4 \text{ cm}" />. Er gibt die Größe des Vektors an. Den Betrag eines Vektors <InlineMath math="\vec{v}" /> schreibt man als <InlineMath math="|\vec{v}|" />. Somit gilt <InlineMath math="|\overrightarrow{CD}| = 4 \text{ cm}" />.
@@ -48,33 +53,33 @@ Für einen Vektor ungleich null hat sein negativer Vektor, auch Gegenvektor gena
 
 Stell dir vor, Andi geht <InlineMath math="100 \text{ m}" /> in einem Winkel von <InlineMath math="30^\circ" />. Wir nennen diese Verschiebung <InlineMath math="\vec{A}" />. Geht Andi anschließend auf demselben Weg direkt zurück, ist die Rückbewegung der Gegenvektor von <InlineMath math="\vec{A}" />. Wir schreiben ihn als <InlineMath math="-\vec{A}" />.
 
-<VectorChart
-  title="Vektor und Gegenvektor"
+<MathVisual
+  title={<>Vektor und Gegenvektor</>}
   description={
     <>
       Vektor <InlineMath math="A" /> und Vektor <InlineMath math="-A" /> haben
       denselben Betrag, aber entgegengesetzte Richtungen.
     </>
   }
-  vectors={[
-    {
-      id: "A",
-      name: <InlineMath math="A" />,
-      points: [
-        { x: 0, y: 0 },
-        { x: 50 * Math.sqrt(3), y: 50 },
-      ],
-    },
-    {
-      id: "-A",
-      name: <InlineMath math="-A" />,
-      points: [
-        { x: 0, y: 10 },
-        { x: 50 * Math.sqrt(3), y: 60 },
-      ],
-      direction: "backward",
-    },
-  ]}
+  labels={{
+    a: <InlineMath math="A" />,
+    "minus-a": <InlineMath math="-A" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12.99, max: 99.59 }, y: { min: -9, max: 69 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 50 * Math.sqrt(3), y: 50 }, appearance: "primary" },
+      { id: "a-tip", kind: "point", at: { x: 50 * Math.sqrt(3), y: 50 }, appearance: "primary" },
+      { id: "minus-a", kind: "segment", from: { x: 50 * Math.sqrt(3), y: 60 }, to: { x: 0, y: 10 }, appearance: "secondary" },
+      { id: "minus-a-tip", kind: "point", at: { x: 0, y: 10 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: (50 * Math.sqrt(3)) / 2, y: 25 }, placement: "above-left" },
+      { key: "minus-a", objectId: "minus-a", at: { x: (50 * Math.sqrt(3)) / 2, y: 35 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Die Anfangspunkte der Pfeile sind versetzt, damit beide sichtbar bleiben. Das Verschieben eines Pfeils ändert weder Betrag noch Richtung. Der Hinweg hat die Komponenten <InlineMath math="(50\sqrt3,50)\,\text{m}" />, der Rückweg die negativen Komponenten.
@@ -100,40 +105,37 @@ Zwei Vektoren sind **gleich**, wenn ihre entsprechenden Komponenten gleich sind.
 
 Das folgende Diagramm zeigt drei gleiche Vektoren: <InlineMath math="\overrightarrow{CD}" />, <InlineMath math="\overrightarrow{EF}" /> und <InlineMath math="\overrightarrow{KL}" />.
 
-<VectorChart
-  title="Äquivalente Vektoren"
+<MathVisual
+  title={<>Äquivalente Vektoren</>}
   description={
     <>
       Die Vektoren <InlineMath math="CD" />, <InlineMath math="EF" /> und{" "}
       <InlineMath math="KL" /> haben denselben Betrag und dieselbe Richtung.
     </>
   }
-  vectors={[
-    {
-      id: "CD",
-      name: <InlineMath math="CD" />,
-      points: [
-        { x: 2, y: 1 }, // C
-        { x: 5, y: 3 }, // D
-      ],
-    },
-    {
-      id: "EF",
-      name: <InlineMath math="EF" />,
-      points: [
-        { x: 4, y: 2 }, // E
-        { x: 7, y: 4 }, // F
-      ],
-    },
-    {
-      id: "KL",
-      name: <InlineMath math="KL" />,
-      points: [
-        { x: 3, y: 0 }, // K
-        { x: 6, y: 2 }, // L
-      ],
-    },
-  ]}
+  labels={{
+    cd: <InlineMath math="CD" />,
+    ef: <InlineMath math="EF" />,
+    kl: <InlineMath math="KL" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.05, max: 8.05 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "cd", kind: "segment", from: { x: 2, y: 1 }, to: { x: 5, y: 3 }, appearance: "primary" },
+      { id: "cd-tip", kind: "point", at: { x: 5, y: 3 }, appearance: "primary" },
+      { id: "ef", kind: "segment", from: { x: 4, y: 2 }, to: { x: 7, y: 4 }, appearance: "secondary" },
+      { id: "ef-tip", kind: "point", at: { x: 7, y: 4 }, appearance: "secondary" },
+      { id: "kl", kind: "segment", from: { x: 3, y: 0 }, to: { x: 6, y: 2 }, appearance: "answer" },
+      { id: "kl-tip", kind: "point", at: { x: 6, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "cd", objectId: "cd", at: { x: 3.5, y: 2 }, placement: "above-left" },
+      { key: "ef", objectId: "ef", at: { x: 5.5, y: 3 }, placement: "above-left" },
+      { key: "kl", objectId: "kl", at: { x: 4.5, y: 1 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Die drei Vektoren haben denselben Betrag und dieselbe Richtung. Deshalb können wir schreiben:
@@ -144,33 +146,33 @@ Ihre Anfangspunkte unterscheiden sich, doch jeder Pfeil führt drei Einheiten na
 
 ## Übung
 
-<VectorChart
+<MathVisual
   title={
     <>
       Vergleich von Vektor <InlineMath math="A" /> und Vektor{" "}
       <InlineMath math="B" />
     </>
   }
-  description="Vergleiche die Längen und Richtungen der beiden Pfeile."
-  vectors={[
-    {
-      id: "A",
-      name: <InlineMath math="A" />,
-      points: [
-        { x: 1, y: 4 },
-        { x: 0, y: 0 },
-      ],
-      direction: "forward",
-    },
-    {
-      id: "B",
-      name: <InlineMath math="B" />,
-      points: [
-        { x: 1, y: 4 },
-        { x: 5, y: 5 },
-      ],
-    },
-  ]}
+  description={<>Vergleiche die Längen und Richtungen der beiden Pfeile.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 1, y: 4 }, to: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "a-tip", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 1, y: 4 }, to: { x: 5, y: 5 }, appearance: "secondary" },
+      { id: "b-tip", kind: "point", at: { x: 5, y: 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0.5, y: 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 3, y: 4.5 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Ist der Vektor <InlineMath math="\vec{A}" /> der Gegenvektor von <InlineMath math="\vec{B}" />?
@@ -188,33 +190,32 @@ Wie werden <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}" /> zu Ge
 
 Wenn <InlineMath math="\vec{A}" /> unverändert bleibt, wird <InlineMath math="\vec{B}" /> durch eine Änderung des Endpunkts von <InlineMath math="\vec{B}" /> zum Gegenvektor:
 
-<VectorChart
+<MathVisual
   title={
     <>
       Gegenvektoren <InlineMath math="A" /> und <InlineMath math="B" />
     </>
   }
-  description="Die beiden Vektoren sind gleich lang und zeigen in entgegengesetzte Richtungen."
-  vectors={[
-    {
-      id: "A",
-      name: <InlineMath math="A" />,
-      points: [
-        { x: 1, y: 4 },
-        { x: 0, y: 0 },
-      ],
-      direction: "forward",
-    },
-    {
-      id: "B",
-      name: <InlineMath math="B" />,
-      points: [
-        { x: 1, y: 4 },
-        { x: 2, y: 8 },
-      ],
-      direction: "forward",
-    },
-  ]}
+  description={<>Die beiden Vektoren sind gleich lang und zeigen in entgegengesetzte Richtungen.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 3 }, y: { min: -1.2, max: 9.2 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 1, y: 4 }, to: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "a-tip", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 1, y: 4 }, to: { x: 2, y: 8 }, appearance: "secondary" },
+      { id: "b-tip", kind: "point", at: { x: 2, y: 8 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0.5, y: 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 1.5, y: 6 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Bei festem Anfangspunkt <InlineMath math="(1,4)" /> und den benötigten Komponenten <InlineMath math="-\vec A=(1,4)" /> ergibt sich der neue Endpunkt so:

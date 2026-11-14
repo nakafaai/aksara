@@ -1,0 +1,19 @@
+Direct substitution gives <InlineMath math="\frac{1-1}{0}=\frac00" />. **Write <InlineMath math="\sec(2x)" /> as <InlineMath math="\frac{1}{\cos2x}" />** so the numerator takes the form <InlineMath math="1-\cos2x" />.
+
+<BlockMath math="\sec(2x)-1=\frac{1-\cos2x}{\cos2x}=\frac{2\sin^2x}{\cos2x}" />
+
+That line uses <InlineMath math="1-\cos2x=2\sin^2x" />. Now split it into standard limits.
+
+<BlockMath math="\begin{aligned}
+\lim_{x\to0}\frac{2\sin^2x}{\cos2x\cdot x\tan x}&=2\cdot\lim_{x\to0}\frac{\sin x}{x}\cdot\lim_{x\to0}\frac{\sin x}{\tan x}\cdot\lim_{x\to0}\frac{1}{\cos2x} \\
+&=2\cdot1\cdot1\cdot1=2
+\end{aligned}" />
+
+Numerical check: at <InlineMath math="x=0.01" /> the fraction is about <InlineMath math="2.0003" />.
+
+So the limit is <InlineMath math="2" />.
+
+- <InlineMath math="0" /> only looks at the numerator tending to <InlineMath math="0" />, but the denominator tends to <InlineMath math="0" /> too.
+- <InlineMath math="\frac12" /> uses <InlineMath math="1-\cos2x\approx\frac{x^2}{2}" />, the rule for <InlineMath math="1-\cos x" />, not for <InlineMath math="1-\cos2x" />.
+- <InlineMath math="1" /> forgets the factor <InlineMath math="2" /> in <InlineMath math="1-\cos2x=2\sin^2x" />.
+- <InlineMath math="4" /> uses <InlineMath math="1-\cos2x\approx(2x)^2" /> without the factor <InlineMath math="\frac12" />.

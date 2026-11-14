@@ -23,39 +23,26 @@ The denominator <InlineMath math="|\overrightarrow{PQ}|" /> is the magnitude of 
 
 A unit vector always points in the same direction as the original vector but has its length normalized to <InlineMath math="1 \text{ unit}" />.
 
-<LineEquation
-  cameraPosition={[1.5, 2, 7]}
-  cameraTarget={[1.5, 2, 0]}
-  title="Vector and Unit Vector"
-  description="Visualization of the original vector and the unit vector that have the same direction but different lengths."
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }],
-      color: "#9333ea",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="v" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0.6, y: 0.8, z: 0 }],
-      color: "#d97706",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\hat{v}" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-  ]}
+<MathVisual
+  title={<>Vector and Unit Vector</>}
+  description={<>Visualization of the original vector and the unit vector that have the same direction but different lengths.</>}
+  labels={{
+    "l1": <InlineMath math="v" />,
+    "l2": <InlineMath math="\hat{v}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 0.6, y: 0.8 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0.6, y: 0.8 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Calculating a Unit Vector
@@ -83,44 +70,31 @@ The unit vector is therefore:
 <BlockMath math="\hat{v} = \left(\frac{3}{\sqrt{61}}, \frac{6}{\sqrt{61}}, \frac{4}{\sqrt{61}}\right)" />
 
 <ContentBlock>
-  <LineEquation
-    cameraPosition={[7.5, 6.5, -7]}
-    cameraTarget={[1.5, 2.9, 1.8]}
-    title="Example of Unit Vector in 3D Space"
+  <MathVisual
+    title={<>Example of Unit Vector in 3D Space</>}
     description={
-      <>
-        Visualization of vector <InlineMath math="v(3,6,4)" /> and its unit
-        vector <InlineMath math="\hat{v}" /> pointing in the same direction.
-      </>
-    }
-    data={[
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 6, z: 4 }],
-      color: "#db2777",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="v" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3 / Math.sqrt(61), y: 6 / Math.sqrt(61), z: 4 / Math.sqrt(61) }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\hat{v}" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    ]}
+        <>
+          Visualization of vector <InlineMath math="v(3,6,4)" /> and its unit
+          vector <InlineMath math="\hat{v}" /> pointing in the same direction.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="v" />,
+      "l2": <InlineMath math="\hat{v}" />,
+    }}
+    scene={{
+      space: "space",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -1, max: 7 }, z: { min: -0.5, max: 4.5 } },
+      view: { kind: "camera", position: { x: 7.5, y: 6.5, z: -7 }, target: { x: 1.5, y: 2.9, z: 1.8 } },
+      objects: [
+        { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 6, z: 4 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0.38, y: 0.77, z: 0.51 }, appearance: "secondary" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 3, y: 6, z: 4 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 0.38, y: 0.77, z: 0.51 }, placement: "above-right" },
+      ],
+    }}
   />
 </ContentBlock>
 
@@ -147,52 +121,29 @@ In a three-dimensional coordinate system, there are three standard unit vectors 
 
 Every vector in <InlineMath math="\mathbb{R}^3" /> can be expressed as a linear combination of these three unit vectors.
 
-<LineEquation
-  cameraPosition={[2, 1.5, 2.2]}
-  cameraTarget={[0.3, 0.35, 0.3]}
-  title="Standard Unit Vectors"
-  description="Standard unit vectors on the coordinate axes."
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
-      color: "#e11d48",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\hat{\imath}" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\hat{\jmath}" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 1 }],
-      color: "#ea580c",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\hat{k}" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-  ]}
+<MathVisual
+  title={<>Standard Unit Vectors</>}
+  description={<>Standard unit vectors on the coordinate axes.</>}
+  labels={{
+    "l1": <InlineMath math="\hat{\imath}" />,
+    "l2": <InlineMath math="\hat{\jmath}" />,
+    "l3": <InlineMath math="\hat{k}" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.5, max: 1.5 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 2, y: 1.5, z: 2.2 }, target: { x: 0.3, y: 0.35, z: 0.3 } },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 0, z: 0 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 1, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1, y: 0, z: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 1, z: 0 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 0, z: 1 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Recording Direction with a Unit Vector

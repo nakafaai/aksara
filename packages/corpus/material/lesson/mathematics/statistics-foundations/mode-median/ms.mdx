@@ -1,0 +1,144 @@
+export const metadata = {
+  title: "Mod dan Median",
+  description: "Cari median, mod, dan julat bagi satu set data melalui contoh lengkap untuk saiz sampel ganjil dan genap.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-22",
+  dateModified: "2026-11-08",
+  subject: "Statistik",
+};
+
+## Sukatan Kecenderungan Memusat
+
+Sukatan kecenderungan memusat menerangkan **pusat bagi satu set data**. Median dan mod menerangkan pusat itu dengan cara yang berbeza. Median membahagikan nilai yang sudah disusun kepada dua bahagian sama banyak, manakala mod melaporkan nilai yang paling kerap muncul.
+
+## Median sebagai Nilai Tengah
+
+Median ialah **nilai tengah bagi satu set data yang sudah disusun**.
+
+**Cara mencari median**:
+
+1. Susun data daripada yang terkecil kepada yang terbesar.
+2. Cari kedudukan tengah atau kedudukan-kedudukan tengah.
+
+### Bilangan Nilai yang Ganjil
+
+Median ialah nilai pada kedudukan <InlineMath math="\frac{n+1}{2}" /> dalam data yang sudah disusun.
+
+**Contoh dengan bilangan nilai yang ganjil**:
+
+Katakan markah <InlineMath math="5 \text{ orang murid}" /> ialah <InlineMath math="7, 8, 6, 9, 7" />.
+
+Susun: <InlineMath math="6, 7, 7, 8, 9" /> (ada <InlineMath math="5" /> data, <InlineMath math="n=5" />)
+
+Kedudukan tengah: <InlineMath math="(5+1)/2 = 3" />. Data pada kedudukan <InlineMath math="3" /> ialah <InlineMath math="7" />.
+
+Jadi, <InlineMath math="\text{Median} = 7" />.
+
+Susun lima markah itu mengikut kedudukan. Bar pada kedudukan tengah <InlineMath math="\frac{5 + 1}{2} = 3" /> setinggi <InlineMath math="7" />, jadi mediannya <InlineMath math="7" />, dengan dua markah di setiap sisi.
+
+<BarChart
+  title={<>Lima markah yang sudah disusun</>}
+  description={<>Bar markah yang sudah disusun <InlineMath math="6, 7, 7, 8, 9" /> pada kedudukan <InlineMath math="1" /> hingga <InlineMath math="5" />. Bar ketiga ialah median.</>}
+  yAxisLabel="Markah"
+  data={[6, 7, 7, 8, 9].map((value, i) => ({ name: "position " + (i + 1), value }))}
+  chartConfig={{ value: { label: "Markah", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Bilangan Nilai yang Genap
+
+Tulis <InlineMath math="x_{(i)}" /> untuk nilai pada kedudukan <InlineMath math="i" /> selepas data disusun daripada yang terkecil kepada yang terbesar. Median ialah min bagi nilai pada kedudukan <InlineMath math="n/2" /> dan <InlineMath math="n/2+1" />:
+
+<BlockMath math="\text{Median}=\frac{x_{(n/2)}+x_{(n/2+1)}}{2}" />
+
+**Contoh dengan bilangan nilai yang genap**:
+
+Katakan markah <InlineMath math="6 \text{ orang murid}" /> ialah <InlineMath math="7, 8, 6, 9, 7, 10" />.
+
+Susun: <InlineMath math="6, 7, 7, 8, 9, 10" /> (ada <InlineMath math="6" /> data, <InlineMath math="n=6" />)
+
+Kedudukan tengah: Kedudukan <InlineMath math="6/2 = 3" /> dan kedudukan <InlineMath math="(6/2) + 1 = 4" />.
+
+Dua nombor di tengah ialah <InlineMath math="7" /> dan <InlineMath math="8" />.
+
+Ambil **min bagi dua nilai tengah itu**:
+
+<BlockMath math="\text{Median}=\frac{7+8}{2}=\frac{15}{2}=7.5" />
+
+Jadi, mediannya ialah <InlineMath math="7.5" />.
+
+Median bergantung pada **nilai pada kedudukan tengah**. Kalau nilai terbesar diubah tetapi susunan dan bilangan cerapan dikekalkan, median tidak berubah. Kalau cerapan ditambah atau dibuang, kedudukan tengah boleh beralih, jadi median perlu dikira semula.
+
+Dengan enam markah, tiada satu bar tengah. Kedudukan <InlineMath math="3" /> dan <InlineMath math="4" /> memegang <InlineMath math="7" /> dan <InlineMath math="8" />, jadi mediannya ialah purata kedua-duanya, <InlineMath math="\frac{7 + 8}{2} = 7.5" />, iaitu nilai yang bukan salah satu markah itu.
+
+<BarChart
+  title={<>Enam markah yang sudah disusun</>}
+  description={<>Bar markah yang sudah disusun <InlineMath math="6, 7, 7, 8, 9, 10" /> pada kedudukan <InlineMath math="1" /> hingga <InlineMath math="6" />. Median terletak antara bar ketiga dan bar keempat.</>}
+  yAxisLabel="Markah"
+  data={[6, 7, 7, 8, 9, 10].map((value, i) => ({ name: "position " + (i + 1), value }))}
+  chartConfig={{ value: { label: "Markah", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Mod sebagai Nilai yang Paling Kerap
+
+Mod ialah **nilai yang paling kerap muncul**, iaitu <Highlight>nilai yang kekerapannya paling tinggi</Highlight>.
+
+**Cara mencari mod**:
+
+1. Kira berapa kali setiap nilai muncul.
+2. Kenal pasti nilai atau nilai-nilai yang kekerapannya paling tinggi.
+
+**Contoh**:
+
+Markah ujian:
+
+<BlockMath math="7, 8, 6, 9, 7, 8, 7" />
+
+| Nilai | Kekerapan |
+| --- | --- |
+| <InlineMath math="6" /> | <InlineMath math="1" /> |
+| <InlineMath math="7" /> | <InlineMath math="3" /> |
+| <InlineMath math="8" /> | <InlineMath math="2" /> |
+| <InlineMath math="9" /> | <InlineMath math="1" /> |
+
+<BarChart
+  title={<>Kekerapan Setiap Nilai</>}
+  description={<>Nilai dengan bar paling tinggi ialah mod.</>}
+  data={[{ name: "6", value: 1 }, { name: "7", value: 3 }, { name: "8", value: 2 }, { name: "9", value: 1 }]}
+  chartConfig={{ value: { label: "Kekerapan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  yAxisLabel="Kekerapan"
+/>
+
+Markah yang paling kerap ialah <InlineMath math="7" /> (muncul <InlineMath math="3 \text{ kali}" />).
+
+Jadi, modnya ialah <InlineMath math="7" />.
+
+**Perkara penting tentang mod**:
+
+- Kalau setiap nilai ada kekerapan yang sama, tiada nilai yang paling kerap secara unik. Mengikut konvensyen yang digunakan di sini, set data itu dilaporkan sebagai **tiada mod**.
+- Satu set data boleh ada **satu mod** (unimod).
+- Satu set data boleh ada **dua mod** (bimod), kalau dua nilai berkongsi kekerapan paling tinggi.
+- Satu set data boleh ada **lebih daripada dua mod** (multimod).
+
+Satu nilai ekstrem yang terpencil biasanya tidak mengubah mod kerana kekerapannya hanya satu.
+
+## Julat Menunjukkan Serakan Data
+
+Selain mencari pusat dengan median dan mod, kita mungkin juga mahu tahu sejauh mana data itu **terserak**. **Julat** memberikan satu sukatan yang cepat.
+
+Julat ialah **beza antara nilai data terbesar dengan nilai data terkecil**.
+
+<BlockMath math="\begin{aligned} \text{Julat} &amp;= \text{Data Terbesar} \\ &amp;\quad{}- \text{Data Terkecil} \end{aligned}" />
+
+**Contoh**:
+
+Data: <InlineMath math="6, 7, 7, 8, 9, 10" />
+
+Data terbesar <InlineMath math="= 10" />
+
+Data terkecil <InlineMath math="= 6" />
+
+Julat <InlineMath math="= 10 - 6 = 4" />
+
+Julat menunjukkan jarak antara dua titik hujung, tetapi tidak menerangkan bagaimana nilai-nilai bertaburan di antaranya.
+
+Median dan mod menerangkan pusat satu set data, manakala julat menerangkan lebar keseluruhannya.
