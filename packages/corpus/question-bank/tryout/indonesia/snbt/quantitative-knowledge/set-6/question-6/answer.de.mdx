@@ -1,26 +1,53 @@
-Zerlege die linke Seite in lineare Faktoren und **prüfe das Vorzeichen des Produkts auf jedem Intervall** zwischen den Nullstellen.
+Die Rechtecke, die beide Felder meiden, direkt zu zählen ist mühsam, weil es so viele Formen gibt. Leichter geht es über das **Gegenereignis**: Zähle alle Rechtecke und ziehe die ab, die mindestens ein schraffiertes Feld enthalten. Diesen letzten Teil zählst du mit dem **Prinzip von Inklusion und Exklusion**, damit Rechtecke mit beiden Feldern nicht doppelt abgezogen werden.
 
-<BlockMath math="\left(x^2-9\right)(x-5)=(x+3)(x-3)(x-5)" />
+# Alle Rechtecke zählen
 
-# Vorzeichen auf jedem Intervall
+Nummeriere die waagrechten Linien von oben mit <InlineMath math="0" /> bis <InlineMath math="4" />, sodass Zeile <InlineMath math="i" /> zwischen Linie <InlineMath math="i-1" /> und Linie <InlineMath math="i" /> liegt. Nummeriere die senkrechten Linien genauso von links mit <InlineMath math="0" /> bis <InlineMath math="6" />. **Jedes Rechteck ist durch genau zwei waagrechte und zwei senkrechte Linien festgelegt**, du wählst also zwei der <InlineMath math="5" /> waagrechten und zwei der <InlineMath math="7" /> senkrechten Linien.
 
-Die Nullstellen sind <InlineMath math="-3" />, 3 und 5. Das Vorzeichen des Produkts wechselt an jeder Nullstelle.
+<BlockMath math="\begin{aligned}
+\binom{5}{2}\times\binom{7}{2} &= 10\times21 \\
+&= 210
+\end{aligned}" />
 
-| Intervall | <InlineMath math="x+3" /> | <InlineMath math="x-3" /> | <InlineMath math="x-5" /> | Produkt |
-| :---: | :---: | :---: | :---: | :---: |
-| <InlineMath math="x<-3" /> | negativ | negativ | negativ | negativ |
-| <InlineMath math="-3<x<3" /> | positiv | negativ | negativ | positiv |
-| <InlineMath math="3<x<5" /> | positiv | positiv | negativ | negativ |
-| <InlineMath math="x>5" /> | positiv | positiv | positiv | positiv |
+# Rechtecke mit dem ersten Feld
 
-Weil das Zeichen „kleiner oder gleich“ lautet, **gehören die Nullstellen dazu**. Die Lösung ist <InlineMath math="x\le-3" /> oder <InlineMath math="3\le x\le5" />.
+Das Feld in Zeile <InlineMath math="1" />, Spalte <InlineMath math="2" /> liegt zwischen den waagrechten Linien <InlineMath math="0" /> und <InlineMath math="1" /> und zwischen den senkrechten Linien <InlineMath math="1" /> und <InlineMath math="2" />. Ein Rechteck enthält es genau dann, wenn **seine obere Linie nicht unter dem Feld und seine untere Linie nicht über dem Feld liegt**, und genauso für links und rechts.
 
-# Ganze Zahlen zählen
+<BlockMath math="\begin{aligned}
+\text{oben} &\in\{0\}, & \text{unten} &\in\{1,2,3,4\} \\
+\text{links} &\in\{0,1\}, & \text{rechts} &\in\{2,3,4,5,6\} \\
+\text{Anzahl} &= 1\times4\times2\times5=40
+\end{aligned}" />
 
-Auf <InlineMath math="-10\le x\le-3" /> liegen 8 ganze Zahlen, auf <InlineMath math="3\le x\le5" /> liegen 3, nämlich 3, 4 und 5.
+# Rechtecke mit dem zweiten Feld
 
-<BlockMath math="8+3=11" />
+Das Feld in Zeile <InlineMath math="3" />, Spalte <InlineMath math="5" /> liegt zwischen den waagrechten Linien <InlineMath math="2" /> und <InlineMath math="3" /> und zwischen den senkrechten Linien <InlineMath math="4" /> und <InlineMath math="5" />. Hier gilt **dieselbe Regel für die Wahl der Linien**.
 
-Der Wert 8 verwendet ein echtes Kleiner und lässt <InlineMath math="-3" />, 3 und 5 weg. Der Wert 13 verwendet den positiven Bereich. Der Wert 3 zählt nur den Teil <InlineMath math="3\le x\le5" />, und der Wert 7 zählt den linken Teil ohne <InlineMath math="-3" />.
+<BlockMath math="\begin{aligned}
+\text{oben} &\in\{0,1,2\}, & \text{unten} &\in\{3,4\} \\
+\text{links} &\in\{0,1,2,3,4\}, & \text{rechts} &\in\{5,6\} \\
+\text{Anzahl} &= 3\times2\times5\times2=60
+\end{aligned}" />
 
-Es gibt also **11** solche ganze Zahlen.
+# Rechtecke mit beiden Feldern
+
+Jetzt muss die obere Linie über beiden Feldern liegen, die untere unter beiden und so weiter. **Jede Linie muss also die strengere der beiden Bedingungen erfüllen**.
+
+<BlockMath math="\begin{aligned}
+\text{oben} &\in\{0\}, & \text{unten} &\in\{3,4\} \\
+\text{links} &\in\{0,1\}, & \text{rechts} &\in\{5,6\} \\
+\text{Anzahl} &= 1\times2\times2\times2=8
+\end{aligned}" />
+
+# Mit Inklusion und Exklusion zusammensetzen
+
+Die Rechtecke mit beiden Feldern stecken sowohl in den <InlineMath math="40" /> als auch in den <InlineMath math="60" />, also **ziehst du diese Doppelzählung einmal ab**.
+
+<BlockMath math="\begin{aligned}
+\text{mit mindestens einem Feld} &= 40+60-8=92 \\
+\text{ohne schraffiertes Feld} &= 210-92=118
+\end{aligned}" />
+
+Zur Plausibilität: <InlineMath math="92" /> ist kleiner als <InlineMath math="40+60=100" />, und der Unterschied sind genau die <InlineMath math="8" /> Rechtecke mit beiden Feldern. Ein häufiger Fehler ist, bei <InlineMath math="210-40-60=110" /> stehen zu bleiben, denn dann werden diese acht Rechtecke doppelt abgezogen.
+
+Die Anzahl der Rechtecke ohne schraffiertes Feld ist also <InlineMath math="118" />.

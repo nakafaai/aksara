@@ -1,19 +1,37 @@
-Order the four numbers as <InlineMath math="a\le b\le c\le d" />. Three conditions fix all four: the sum <InlineMath math="4\times15=60" />, the median <InlineMath math="\frac{b+c}{2}=14" />, and **12 appearing most often**.
+You're looking for which score was recorded wrongly and what its true value is. The rise in the mean gives **the size of the correction**, and then the median and mode conditions filter which score it could be. You need both conditions, because either one alone still leaves more than one candidate.
 
-# Finding the four numbers
+# Finding the size of the correction
 
-For 12 to be the mode, it must appear at least twice. Neither <InlineMath math="c" /> nor <InlineMath math="d" /> can be 12, because <InlineMath math="b+c=28" /> forces <InlineMath math="c\ge14" />. So **12 must fill <InlineMath math="a" /> and <InlineMath math="b" />**.
+The original data add up to <InlineMath math="2+5+6+7+9+10+10=49" />, so the mean is <InlineMath math="\tfrac{49}{7}=7" />. The median is the fourth value in order, which is <InlineMath math="7" />, and the mode is <InlineMath math="10" />. A mean of seven values rising by <InlineMath math="1" /> means **the sum rises by <InlineMath math="7\times1=7" />**.
+
+<BlockMath math="\text{true value}=\text{recorded score}+7" />
+
+# Testing the median condition
+
+The median is still the fourth value. If the corrected score is <InlineMath math="2" />, <InlineMath math="5" />, <InlineMath math="6" />, or <InlineMath math="7" />, it jumps above <InlineMath math="7" />, so **the new fourth value becomes <InlineMath math="9" />**. Here's the example where <InlineMath math="7" /> is corrected to <InlineMath math="14" />.
+
+<BlockMath math="2,\ 5,\ 6,\ 9,\ 10,\ 10,\ 14\quad\Rightarrow\quad\text{median}=9" />
+
+So the wrong score has to be one above the median, either <InlineMath math="9" /> or <InlineMath math="10" />.
+
+# Testing the mode condition
+
+If one score of <InlineMath math="10" /> is corrected to <InlineMath math="17" />, the value <InlineMath math="10" /> appears only once. Then every value appears once, so **the mode <InlineMath math="10" /> disappears**. That leaves the score <InlineMath math="9" />, corrected to <InlineMath math="16" />.
 
 <BlockMath math="\begin{aligned}
-a=b&=12\\
-c&=28-12=16\\
-d&=60-12-12-16=20
+\text{new data} &: 2,\ 5,\ 6,\ 7,\ 10,\ 10,\ 16 \\
+\text{mean} &= \tfrac{56}{7}=8=7+1 \\
+\text{median} &= 7,\quad \text{mode}=10
 \end{aligned}" />
 
-The data are 12, 12, 16, 20. Check: the mean is <InlineMath math="\tfrac{60}{4}=15" />, the median is <InlineMath math="\tfrac{12+16}{2}=14" />, and 12 is the only mode.
+All three conditions hold, so the true value is <InlineMath math="16" />.
 
-# Checking the statements
+# Why the other options fail
 
-The largest number is 20 and the range is <InlineMath math="20-12=8" />, so the first and second statements are **true**. The third number is 16, not 14, because 14 is the mean of the two middle numbers. The third statement is false. The two largest numbers add up to <InlineMath math="16+20=36" />, so the fourth statement is false.
+Each wrong option is a candidate that **passes one condition but fails another**.
 
-So the first statement is **true**, the second is **true**, the third is **false**, and the fourth is **false**.
+- <InlineMath math="17" /> comes from the score <InlineMath math="10" />. The median stays <InlineMath math="7" />, but the mode <InlineMath math="10" /> disappears.
+- <InlineMath math="14" /> comes from the score <InlineMath math="7" />, and <InlineMath math="12" /> from the score <InlineMath math="5" />. The mode stays <InlineMath math="10" />, but the median changes to <InlineMath math="9" />.
+- <InlineMath math="9" /> comes from the score <InlineMath math="2" />. The median becomes <InlineMath math="9" />, and there are now two modes, <InlineMath math="9" /> and <InlineMath math="10" />.
+
+So the true value of the wrongly recorded score is <InlineMath math="16" />.

@@ -1,26 +1,43 @@
-Sebuah garis ditentukan oleh **satu titik dan gradiennya**. Titiknya adalah titik potong dua garis pertama, dan gradiennya diturunkan dari syarat tegak lurus.
+Kuantitas <InlineMath math="P" /> adalah peluang biasa, sedangkan <InlineMath math="Q" /> adalah **peluang bersyarat yang memakai ruang sampel yang lebih kecil**. Rencananya begini: hitung <InlineMath math="P" /> dari semua hasil, hitung <InlineMath math="Q" /> hanya dari hasil yang memuat mata <InlineMath math="6" />, lalu bandingkan kedua pecahan secara tepat.
 
-# Titik potong
+# Ruang sampel
 
-Jumlahkan kedua persamaan agar **variabel y hilang**.
+Ketiga dadu berbeda warna, jadi setiap hasil adalah susunan berurutan (merah, biru, hijau). Banyak hasil adalah <InlineMath math="6\cdot6\cdot4=144" />, dan karena semua dadu seimbang, **setiap susunan berpeluang sama**.
 
-<BlockMath math="\begin{aligned}
-(x+y)+(2x-y)&=5+1\\
-3x=6\;\Longrightarrow\;x&=2,\quad y=3
-\end{aligned}" />
+# Menghitung peluang pertama
 
-# Gradien garis g
-
-Garis <InlineMath math="3x+2y=6" /> dapat ditulis <InlineMath math="y=-\tfrac32x+3" />, jadi gradiennya <InlineMath math="-\tfrac32" />. Dua garis tegak lurus jika **hasil kali gradiennya <InlineMath math="-1" />**, sehingga gradien <InlineMath math="g" /> adalah <InlineMath math="\tfrac23" />.
+Tetapkan mata dadu hijau <InlineMath math="h" />, maka dadu merah dan biru harus berjumlah <InlineMath math="9-h" />. Dua dadu bermata <InlineMath math="1" /> sampai <InlineMath math="6" /> membentuk jumlah <InlineMath math="k" /> dengan <InlineMath math="k-1" /> cara untuk <InlineMath math="k\le7" />, dan dengan <InlineMath math="13-k" /> cara untuk <InlineMath math="k\ge7" />. Jadi, **setiap nilai <InlineMath math="h" /> memberi kasus sendiri**.
 
 <BlockMath math="\begin{aligned}
-y-3&=\tfrac23(x-2)\\
-3y-9&=2x-4\\
-2x-3y+5&=0
+h=1,2,3,4&:\quad \text{merah}+\text{biru}=8,\ 7,\ 6,\ 5\\
+\text{banyak susunan}&=5+6+5+4=20\\
+P&=\frac{20}{144}=\frac{5}{36}
 \end{aligned}" />
 
-Pemeriksaan: <InlineMath math="2(2)-3(3)+5=0" />, jadi titik <InlineMath math="(2,3)" /> terletak pada garis itu.
+# Menghitung peluang bersyarat
 
-Garis <InlineMath math="3x+2y-12=0" /> melalui titik yang benar tetapi sejajar, bukan tegak lurus. Garis <InlineMath math="3x-2y=0" /> hanya membalik tanda gradien, dan <InlineMath math="2x+3y-13=0" /> hanya membalik pecahannya. Garis <InlineMath math="2x-3y-5=0" /> memiliki gradien yang benar tetapi tidak melalui <InlineMath math="(2,3)" />.
+Dadu hijau paling besar bermata <InlineMath math="4" />, jadi **mata <InlineMath math="6" /> hanya bisa muncul pada dadu merah atau biru**. Susunan tanpa mata <InlineMath math="6" /> pada kedua dadu itu ada <InlineMath math="5\cdot5\cdot4=100" />, jadi susunan yang memenuhi syarat ada <InlineMath math="144-100=44" />. Ke-<InlineMath math="44" /> susunan inilah ruang sampel baru untuk <InlineMath math="Q" />.
 
-Jadi, persamaan garis <InlineMath math="g" /> adalah **<InlineMath math="2x-3y+5=0" />**.
+Di antara susunan itu, cari yang berjumlah <InlineMath math="10" />.
+
+- Merah bermata <InlineMath math="6" />: biru dan hijau berjumlah <InlineMath math="4" />, yaitu <InlineMath math="(1,3)" />, <InlineMath math="(2,2)" />, <InlineMath math="(3,1)" />, jadi <InlineMath math="3" /> susunan.
+- Biru bermata <InlineMath math="6" />: dengan alasan yang sama ada <InlineMath math="3" /> susunan.
+- Merah dan biru sama-sama bermata <InlineMath math="6" />: jumlahnya paling kecil <InlineMath math="13" />, jadi tidak ada.
+
+<BlockMath math="Q=\frac{6}{44}=\frac{3}{22}" />
+
+# Membandingkan kedua pecahan
+
+Kedua pecahan berdekatan, jadi bandingkan dengan perkalian silang.
+
+<BlockMath math="\frac{5}{36}\ \text{dan}\ \frac{3}{22}:\qquad 5\cdot22=110>108=3\cdot36" />
+
+Jadi, <InlineMath math="P>Q" />. Dalam desimal, <InlineMath math="P\approx0{,}1389" /> dan <InlineMath math="Q\approx0{,}1364" />. Keduanya dibulatkan menjadi <InlineMath math="0{,}14" />, itulah sebabnya **taksiran kasar tidak cukup**.
+
+# Pilihan yang keliru
+
+- <InlineMath math="Q>P" /> muncul jika ruang sampel bersyarat dihitung <InlineMath math="11" /> seperti pada dua dadu, sehingga dadu hijau terlupa dan <InlineMath math="Q=\tfrac{6}{11}" />. Pilihan ini juga muncul jika satu kasus untuk <InlineMath math="P" /> terlewat, misalnya mendapat <InlineMath math="\tfrac{18}{144}=\tfrac18" /> yang lebih kecil daripada <InlineMath math="\tfrac{3}{22}" />.
+- <InlineMath math="P=Q" /> muncul jika kedua peluang **hanya dibandingkan setelah dibulatkan** menjadi <InlineMath math="0{,}14" />.
+- Pilihan bahwa informasinya tidak cukup keliru, karena dadu seimbang membuat kedua peluang menjadi bilangan tetap yang dapat dihitung.
+
+Jadi, hubungan yang benar adalah <InlineMath math="P>Q" />.

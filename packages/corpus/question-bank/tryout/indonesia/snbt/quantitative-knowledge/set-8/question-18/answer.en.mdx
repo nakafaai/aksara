@@ -1,15 +1,35 @@
-The sweets are identical, so one way differs from another only in **how many sweets each child receives**. Count the triples <InlineMath math="(a,b,c)" /> with <InlineMath math="a+b+c=8" /> and every number at least 1.
+You need the probability that the first, second, and third numbers drawn form an arithmetic sequence **in the order they were drawn**. Here's the plan: count the ordered sample space, count the increasing arithmetic sequences, add the decreasing ones, then divide.
 
-# Using dividers between the sweets
+# The ordered sample space
 
-Line up the 8 sweets. There are 7 gaps between them. Choosing **2 gaps as dividers** splits the line into 3 non-empty groups, and each choice gives one way to share.
+The drawing order is recorded, so **order counts**, and each outcome is an ordered list of <InlineMath math="3" /> different numbers. The first draw has <InlineMath math="20" /> possibilities, the second <InlineMath math="19" />, and the third <InlineMath math="18" />.
 
-<BlockMath math="\binom72=\frac{7\cdot6}{2}=21" />
+<BlockMath math="n(S)=20\cdot19\cdot18=6840" />
 
-# Check by another method
+Every ordered list is equally likely, since each draw is random.
 
-First give one sweet to each child. The remaining 5 sweets are shared freely, zero allowed, in <InlineMath math="\binom{5+2}{2}=\binom72=21" /> ways.
+# Counting the increasing sequences
 
-The value 45 is <InlineMath math="\binom{10}{2}" />, the count when a child may receive nothing. The value 28 chooses 2 of the 8 sweets as dividers, although the dividers go in the gaps. The value 56 is <InlineMath math="\binom83" />.
+An increasing sequence looks like <InlineMath math="(a,\,a+d,\,a+2d)" /> with common difference <InlineMath math="d\ge1" />. The difference can't be zero, because the three numbers are different. The last term is at most <InlineMath math="20" />, so <InlineMath math="a" /> can be <InlineMath math="1" /> up to <InlineMath math="20-2d" />, which is <InlineMath math="20-2d" /> choices, and <InlineMath math="d" /> is at most <InlineMath math="9" />.
 
-So the number of ways to share the sweets is **21**.
+<BlockMath math="\sum_{d=1}^{9}(20-2d)=18+16+14+\dots+2=90" />
+
+Check it another way. The middle term is the average of the first and third, so **the first and third terms must have the same parity**, both odd or both even. There are <InlineMath math="10" /> odd numbers and <InlineMath math="10" /> even numbers, so the number of end pairs is <InlineMath math="2\binom{10}{2}=90" />. Same result.
+
+# Adding the decreasing sequences
+
+Reversing an increasing sequence gives an arithmetic sequence with a negative difference, and **a decreasing sequence is still arithmetic**. So there are another <InlineMath math="90" /> decreasing sequences.
+
+<BlockMath math="\begin{aligned}
+n(A)&=90+90=180\\
+P(A)&=\frac{180}{6840}=\frac{1}{38}
+\end{aligned}" />
+
+# The wrong options
+
+- <InlineMath math="\tfrac{1}{76}" /> comes from **forgetting the decreasing sequences**: <InlineMath math="\tfrac{90}{6840}" />.
+- <InlineMath math="\tfrac{11}{380}" /> comes from counting <InlineMath math="21-2d" /> choices for <InlineMath math="a" />, one too many, so each direction gives <InlineMath math="99" />: <InlineMath math="\tfrac{198}{6840}" />.
+- <InlineMath math="\tfrac{3}{38}" /> is the probability that the three numbers can be arranged into an arithmetic sequence when order is ignored: <InlineMath math="\tfrac{90}{1140}" /> with <InlineMath math="\binom{20}{3}=1140" />.
+- <InlineMath math="\tfrac{3}{19}" /> comes from an ordered numerator over an unordered denominator: <InlineMath math="\tfrac{180}{1140}" />.
+
+So the probability that the three numbers, in drawing order, form an arithmetic sequence is <InlineMath math="\tfrac{1}{38}" />.

@@ -3,15 +3,27 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "$$P>Q$$" },
-        { correct: false, label: "$$Q>P$$" },
-        { correct: true, label: "$$P=Q$$" },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
+          label: "Volume balok baru sama dengan volume balok semula.",
+        },
+        {
+          column: 1,
           label:
-            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
+            "Jika balok semula berbentuk kubus, luas permukaan balok baru lebih besar daripada luas permukaan balok semula.",
+        },
+        {
+          column: 2,
+          label:
+            "Untuk setiap ukuran awal, luas permukaan balok baru lebih besar daripada luas permukaan balok semula.",
+        },
+        {
+          column: 1,
+          label:
+            "Ada ukuran awal tabung yang membuat luas permukaan tabung baru tepat $$2$$ kali luas permukaan tabung semula.",
         },
       ],
     },

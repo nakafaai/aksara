@@ -1,19 +1,43 @@
-First compute three basic measures, then check how each measure **reacts to changes in the data**.
+For group B's new mean, you need **the number of members in group B** and their total score. The question never gives any group size, so you have to find it. The plan: find the total number of members from the moment one member leaves, split them into groups A and B with the combined mean, then compute group B's new mean.
 
-# Mean, median and range
+# The original number of members
+
+Let the original number of members be <InlineMath math="n" />. **A total equals the mean times the number of members**. Before anyone leaves, the total is <InlineMath math="71n" />. After the member with score <InlineMath math="98" /> leaves, the remaining <InlineMath math="n-1" /> members have mean <InlineMath math="68" />.
 
 <BlockMath math="\begin{aligned}
-\bar x&=\frac{70+75+80+80+85+90}{6}=\frac{480}{6}=80\\
-\text{median}&=\frac{80+80}{2}=80\\
-\text{range}&=90-70=20
+71n-98&=68(n-1)\\
+71n-98&=68n-68\\
+3n&=30\\
+n&=10
 \end{aligned}" />
 
-The second statement is true. The range is **the largest value minus the smallest**, 20, so the third statement is false.
+# The size of group B
 
-# Effect of changing the data
+Let group B have <InlineMath math="b" /> members, so group A has <InlineMath math="10-b" />. The combined total is <InlineMath math="71\cdot10=710" />.
 
-Replacing 90 with 100 does not change the order, and the two middle values stay 80 and 80. **The median does not depend on the size of an extreme value**, so it stays 80 and the first statement is false. The change only raises the mean.
+<BlockMath math="\begin{aligned}
+65(10-b)+80b&=710\\
+650+15b&=710\\
+b&=4
+\end{aligned}" />
 
-Adding 5 to every value shifts the whole data set by 5, so the two middle values become 85 and 85. The median becomes 85, so the fourth statement is true.
+So group B has <InlineMath math="4" /> members and group A has <InlineMath math="6" />. This fits the ratio rule: group A's mean is <InlineMath math="71-65=6" /> away from the combined mean, and group B's is <InlineMath math="80-71=9" /> away, so <InlineMath math="n_A:n_B=9:6=3:2" />. **The group whose mean is closer to the combined mean has more members**. The ratio <InlineMath math="3:2" /> alone doesn't give the actual sizes, which is why you needed the first step.
 
-So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.
+# Group B's new mean
+
+Group B's original total is <InlineMath math="80\cdot4=320" />. The member who left came from group B, so **both group B's total and its size go down**.
+
+<BlockMath math="\bar{x}_B=\frac{320-98}{4-1}=\frac{222}{3}=74" />
+
+# Checking the result
+
+**Group A doesn't change**, and its total is <InlineMath math="6\cdot65=390" />. The remaining members have a total of <InlineMath math="390+222=612" /> for <InlineMath math="9" /> people, and <InlineMath math="\frac{612}{9}=68" />, just as the question says.
+
+# The tempting wrong options
+
+- <InlineMath math="77" /> assumes group B's mean **drops by the same amount as the combined mean**, which is <InlineMath math="3" />.
+- <InlineMath math="55.5" /> divides <InlineMath math="222" /> by <InlineMath math="4" />, forgetting that group B has only <InlineMath math="3" /> members left.
+- <InlineMath math="62" /> uses the ratio <InlineMath math="3:2" /> as the actual sizes, so group B gets <InlineMath math="2" /> members and <InlineMath math="\frac{160-98}{1}=62" />.
+- <InlineMath math="76.4" /> flips the ratio, so group B gets <InlineMath math="6" /> members and <InlineMath math="\frac{480-98}{5}=76.4" />.
+
+So group B's mean score after that member leaves is <InlineMath math="74" />.

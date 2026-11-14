@@ -1,23 +1,33 @@
-Since <InlineMath math="DE" /> is parallel to <InlineMath math="BC" />, triangle <InlineMath math="ADE" /> is similar to triangle <InlineMath math="ABC" />. For similar figures, **the ratio of areas is the square of the ratio of sides**.
+The event in the question has two conditions at once: **three different floors** and **Ani gets off first**. The plan: pick a sample space whose outcomes are equally likely, count the outcomes that meet both conditions, then check another way.
 
-# Ratio of sides and areas
+# The sample space
 
-**The corresponding sides** are <InlineMath math="AD" /> and <InlineMath math="AB=4+6=10" />.
+Each person picks one of <InlineMath math="8" /> floors, and the choices are independent. Record the outcome in order: Ani's floor, Budi's floor, Cici's floor. **These ordered outcomes are the equally likely ones**. Unordered sets of floors aren't equally likely, because one set can come from many different assignments of people.
+
+<BlockMath math="n(S)=8\cdot8\cdot8=512" />
+
+# The outcomes that count
+
+First choose three different floors, in <InlineMath math="\binom{8}{3}=56" /> ways. The lift only goes up, so the person on the lowest floor gets off first. For Ani to get off first, **Ani must get the lowest of the three floors**, which is one way. Budi and Cici fill the other two floors in <InlineMath math="2" /> ways.
 
 <BlockMath math="\begin{aligned}
-\frac{AD}{AB}&=\frac{4}{10}=\frac25\\
-\frac{L_{ADE}}{L_{ABC}}&=\left(\frac25\right)^2=\frac{4}{25}
+n(A)&=56\cdot1\cdot2=112\\
+P(A)&=\frac{112}{512}=\frac{7}{32}
 \end{aligned}" />
 
-# Area of quadrilateral DBCE
+# Checking another way
 
-<BlockMath math="\begin{aligned}
-L_{ABC}&=8\cdot\frac{25}{4}=50\\
-L_{DBCE}&=L_{ABC}-L_{ADE}=50-8=42
-\end{aligned}" />
+The probability that all three floors differ is <InlineMath math="\frac{8\cdot7\cdot6}{512}=\frac{21}{32}" />. Once the three floors differ, **each person is equally likely** to have the lowest one, so the chance that it's Ani is <InlineMath math="\frac{1}{3}" />.
 
-The quadrilateral <InlineMath math="DBCE" /> is **what remains of the large triangle after removing the small one**, so its area is 42.
+<BlockMath math="\frac{21}{32}\cdot\frac{1}{3}=\frac{7}{32}" />
 
-The value 50 is the area of the whole triangle <InlineMath math="ABC" />. The values 20 and 12 use the side ratio directly without squaring, <InlineMath math="8\cdot\tfrac{10}{4}" /> and <InlineMath math="8\cdot\tfrac64" />.
+The result matches.
 
-So the area of quadrilateral <InlineMath math="DBCE" /> is **<InlineMath math="42\text{ cm}^2" />**.
+# The tempting wrong options
+
+- <InlineMath math="\frac{21}{32}" /> uses only the three-different-floors condition and **forgets that Ani must get off first**.
+- <InlineMath math="\frac{1}{3}" /> is the chance that Ani gets off first when three different floors are already certain. But the three different floors are part of the event, with probability <InlineMath math="\frac{21}{32}" />.
+- <InlineMath math="\frac{35}{128}" /> lets Budi and Cici get off on the same floor, counting <InlineMath math="7^2+6^2+\dots+1^2=140" /> outcomes where Ani is lowest. That breaks the three-different-floors condition.
+- <InlineMath math="\frac{1}{4}" /> computes the chance of three different floors as <InlineMath math="\frac{7}{8}\cdot\frac{6}{7}=\frac{3}{4}" />, as if a chosen floor couldn't be chosen again. Cici still picks from <InlineMath math="8" /> floors, so the second factor is <InlineMath math="\frac{6}{8}" />.
+
+So the probability that the three get off on three different floors and Ani gets off first is <InlineMath math="\frac{7}{32}" />.

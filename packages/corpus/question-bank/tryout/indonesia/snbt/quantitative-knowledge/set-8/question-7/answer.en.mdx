@@ -1,15 +1,48 @@
-A statement is sufficient if **every pair of positive integers satisfying it gives the same value of <InlineMath math="a+b" />**. List the possible pairs.
+You need the area of the quadrilateral bounded by four lines. Here's the plan: find every intersection point, spot the parallel pair, **decide which intersection points really are corners**, then compute the area with the coordinate formula.
 
-# Statement (1) alone
+# Where the four lines meet
 
-Pairs with <InlineMath math="ab=12" /> include <InlineMath math="(1,12)" />, <InlineMath math="(2,6)" /> and <InlineMath math="(3,4)" />, together with their reverses. Their sums are 13, 8 and 7, so **the sum is not unique**. Statement (1) alone is not sufficient.
+The lines <InlineMath math="x-4y=-3" /> and <InlineMath math="x-4y=-18" /> have the same left side but different right sides, so they're **parallel and never meet**. The other <InlineMath math="5" /> pairs do meet. Solve each pair by elimination.
 
-# Statement (2) alone
+<BlockMath math="\begin{aligned}
+x-4y=-3\ \text{and}\ 4x-y=3&\ \Longrightarrow\ (1,1)\\
+x-4y=-3\ \text{and}\ x+y=12&\ \Longrightarrow\ (9,3)\\
+x-4y=-18\ \text{and}\ 4x-y=3&\ \Longrightarrow\ (2,5)\\
+x-4y=-18\ \text{and}\ x+y=12&\ \Longrightarrow\ (6,6)\\
+4x-y=3\ \text{and}\ x+y=12&\ \Longrightarrow\ (3,9)
+\end{aligned}" />
 
-Factor it as <InlineMath math="(a-b)(a+b)=7" />. Since 7 is prime and <InlineMath math="a+b" /> is larger than <InlineMath math="a-b" />, **the only factor pair** is <InlineMath math="a-b=1" /> and <InlineMath math="a+b=7" />.
+You can check each point by substituting it into both of its lines. For example, <InlineMath math="(6,6)" /> gives <InlineMath math="6-24=-18" /> and <InlineMath math="6+6=12" />.
 
-<BlockMath math="a=4,\quad b=3,\quad a+b=7" />
+# Picking the right corners
 
-Check: <InlineMath math="16-9=7" />. Statement (2) alone is sufficient.
+There are <InlineMath math="5" /> intersection points, but a quadrilateral has only <InlineMath math="4" /> corners. Work out <InlineMath math="x-4y" /> at each point to see where it sits relative to the two parallel lines.
 
-So **statement (2) alone is sufficient**, but statement (1) alone is not.
+<BlockMath math="\begin{aligned}
+(1,1)\ \text{and}\ (9,3)&:\quad x-4y=-3\\
+(2,5)\ \text{and}\ (6,6)&:\quad x-4y=-18\\
+(3,9)&:\quad x-4y=3-36=-33
+\end{aligned}" />
+
+The value <InlineMath math="-33" /> is less than <InlineMath math="-18" />, so **the point <InlineMath math="(3,9)" /> lies outside the strip between the parallel lines**. The four lines bound two closed regions: a trapezoid with corners <InlineMath math="(1,1)" />, <InlineMath math="(9,3)" />, <InlineMath math="(6,6)" />, <InlineMath math="(2,5)" />, and a small triangle <InlineMath math="(2,5)" />, <InlineMath math="(6,6)" />, <InlineMath math="(3,9)" />. The quadrilateral is the trapezoid.
+
+# The area from the coordinates
+
+The coordinate formula, often called the shoelace formula, gives the area of a polygon from its corners. The one condition is that **the corners are listed in order around the boundary**: <InlineMath math="(1,1)\to(9,3)\to(6,6)\to(2,5)" />.
+
+<BlockMath math="\begin{aligned}
+A&=\tfrac12\left|(1\cdot3-9\cdot1)+(9\cdot6-6\cdot3)+(6\cdot5-2\cdot6)+(2\cdot1-1\cdot5)\right|\\
+&=\tfrac12\left|-6+36+18-3\right|\\
+&=\tfrac12\cdot45=22.5
+\end{aligned}" />
+
+Check it another way. The big triangle <InlineMath math="(1,1)" />, <InlineMath math="(9,3)" />, <InlineMath math="(3,9)" /> has area <InlineMath math="\tfrac12\left|8\cdot8-2\cdot2\right|=30" />. The small triangle <InlineMath math="(2,5)" />, <InlineMath math="(6,6)" />, <InlineMath math="(3,9)" /> has area <InlineMath math="\tfrac12\left|4\cdot4-1\cdot1\right|=7.5" />. Their difference is <InlineMath math="30-7.5=22.5" />, the same result.
+
+# The wrong options
+
+- <InlineMath math="30" /> square units comes from using <InlineMath math="(3,9)" /> as a corner, so **the line <InlineMath math="x-4y=-18" /> is forgotten** and you get the big triangle.
+- <InlineMath math="37.5" /> square units comes from adding the small triangle instead of subtracting it: <InlineMath math="30+7.5" />.
+- <InlineMath math="45" /> square units comes from forgetting the factor <InlineMath math="\tfrac12" /> in the coordinate formula.
+- <InlineMath math="60" /> square units comes from the big triangle without the factor <InlineMath math="\tfrac12" />.
+
+So the area of the quadrilateral is <InlineMath math="22.5" /> square units.

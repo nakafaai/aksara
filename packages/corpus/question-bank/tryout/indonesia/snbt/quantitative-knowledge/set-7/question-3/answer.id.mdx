@@ -1,18 +1,61 @@
-Kedua bilangan adalah selisih kecil antara akar dan bilangan bulat di dekatnya, jadi taksiran desimal kasar mudah menyesatkan. Cara yang pasti adalah **mengalikan dengan bentuk sekawan** agar selisihnya menjadi pecahan.
+Data ini tidak menentukan setiap bagian diagram Venn, jadi setiap pernyataan harus diuji terhadap **semua pembagian siswa yang mungkin**. Pernyataan "pasti" butuh bukti yang berlaku untuk semua pembagian, sedangkan pernyataan "mungkin" cukup dibuktikan dengan satu contoh, atau dibantah dengan alasan bahwa tidak ada pembagian yang bisa.
 
-# Bentuk sekawan
+# Menamai setiap bagian diagram
+
+Tulis <InlineMath math="F" />, <InlineMath math="M" />, dan <InlineMath math="P" /> untuk himpunan siswa Futsal, Musik, dan Pramuka. Diagram Venn tiga himpunan punya tujuh bagian, dan setiap bagian diberi huruf seperti pada tabel.
+
+| Bagian | Huruf |
+| :--- | :---: |
+| Hanya Futsal, hanya Musik, hanya Pramuka | <InlineMath math="a,\ b,\ c" /> |
+| Futsal dan Musik saja, Futsal dan Pramuka saja, Musik dan Pramuka saja | <InlineMath math="x,\ y,\ z" /> |
+| Ketiga ekstrakurikuler | <InlineMath math="t" /> |
+
+Ada <InlineMath math="40-5=35" /> siswa yang mengikuti paling sedikit satu ekstrakurikuler. **Kedelapan siswa Futsal dan Musik termasuk yang juga ikut Pramuka**, jadi data kedua berarti <InlineMath math="x+t=8" />.
 
 <BlockMath math="\begin{aligned}
-P&=\sqrt{17}-4=\frac{(\sqrt{17}-4)(\sqrt{17}+4)}{\sqrt{17}+4}=\frac{17-16}{\sqrt{17}+4}=\frac{1}{\sqrt{17}+4}\\
-Q&=5-\sqrt{24}=\frac{(5-\sqrt{24})(5+\sqrt{24})}{5+\sqrt{24}}=\frac{25-24}{5+\sqrt{24}}=\frac{1}{5+\sqrt{24}}
+a+x+y+t&=20\\
+b+x+z+t&=18\\
+c+y+z+t&=15\\
+x+t&=8\\
+a+b+c+x+y+z+t&=35
 \end{aligned}" />
 
-# Membandingkan penyebut
+# Siswa yang hanya mengikuti Pramuka
 
-Kedua pecahan berpembilang 1, jadi **pecahan dengan penyebut lebih kecil bernilai lebih besar**. Bandingkan kedua penyebut.
+Hitung dulu siswa yang mengikuti Futsal atau Musik. **Rumus gabungan dua himpunan** mengurangi irisan supaya siswa Futsal dan Musik tidak terhitung dua kali.
 
-<BlockMath math="\sqrt{17}+4<\sqrt{25}+4=9<5+\sqrt{24}" />
+<BlockMath math="n(F\cup M)=20+18-8=30" />
 
-Ketidaksamaan terakhir benar karena <InlineMath math="\sqrt{24}>4" />. Penyebut <InlineMath math="P" /> lebih kecil, sehingga <InlineMath math="P>Q" />. Sebagai pemeriksaan, <InlineMath math="P\approx0{,}123" /> dan <InlineMath math="Q\approx0{,}101" />.
+Dari <InlineMath math="35" /> siswa yang ikut sesuatu, <InlineMath math="30" /> ikut Futsal atau Musik. Sisanya hanya mungkin ikut Pramuka saja, jadi <InlineMath math="c=35-30=5" /> untuk setiap pembagian. Pernyataan pertama **benar**.
 
-Jadi, hubungan yang benar adalah **<InlineMath math="P>Q" />**.
+# Siswa Musik dan Pramuka
+
+Siswa yang ikut Musik dan Pramuka sekaligus ada <InlineMath math="z+t" />. Coba cari pembagian dengan <InlineMath math="z=0" /> dan <InlineMath math="t=0" />. Dari <InlineMath math="x+t=8" /> diperoleh <InlineMath math="x=8" />, dari persamaan Pramuka diperoleh <InlineMath math="5+y=15" />, jadi <InlineMath math="y=10" />, lalu persamaan Futsal dan Musik memberi <InlineMath math="a=2" /> dan <InlineMath math="b=10" />.
+
+| <InlineMath math="a" /> | <InlineMath math="b" /> | <InlineMath math="c" /> | <InlineMath math="x" /> | <InlineMath math="y" /> | <InlineMath math="z" /> | <InlineMath math="t" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="2" /> | <InlineMath math="10" /> | <InlineMath math="5" /> | <InlineMath math="8" /> | <InlineMath math="10" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+
+Pemeriksaan: <InlineMath math="2+10+5+8+10+0+0=35" />, dan ketiga jumlah anggota himpunan tetap <InlineMath math="20" />, <InlineMath math="18" />, dan <InlineMath math="15" />. Pembagian ini sah, tetapi **tidak ada satu pun siswa yang ikut Musik dan Pramuka**. Pernyataan kedua **salah**.
+
+# Siswa yang mengikuti tepat dua kegiatan
+
+Misalkan <InlineMath math="e_1" />, <InlineMath math="e_2" />, dan <InlineMath math="e_3" /> adalah banyak siswa yang mengikuti tepat satu, tepat dua, dan tepat tiga ekstrakurikuler. Jumlah <InlineMath math="20+18+15" /> **menghitung setiap siswa sebanyak kegiatan yang diikutinya**, sedangkan <InlineMath math="35" /> menghitung setiap siswa sekali.
+
+<BlockMath math="\begin{aligned}
+e_1+2e_2+3e_3&=53\\
+e_1+e_2+e_3&=35\\
+e_2+2e_3&=18
+\end{aligned}" />
+
+Baris ketiga adalah selisih dua baris pertama. Jadi <InlineMath math="e_2=18-2e_3" />, yaitu bilangan genap dikurangi bilangan genap. Hasilnya selalu genap, jadi pernyataan ketiga **benar**.
+
+# Siswa yang mengikuti ketiga kegiatan
+
+Dari <InlineMath math="e_2+2e_3=18" /> kamu hanya mendapat <InlineMath math="e_3\le9" />, dan batas ini menggoda. Padahal setiap siswa yang ikut ketiga kegiatan pasti juga ikut Futsal dan Musik, jadi **mereka termasuk di antara delapan siswa Futsal dan Musik**.
+
+<BlockMath math="t=8-x\le8" />
+
+Jadi banyak siswa yang ikut ketiga kegiatan paling banyak <InlineMath math="8" />, dan tepat <InlineMath math="9" /> tidak mungkin terjadi. Pernyataan keempat **salah**.
+
+Jadi, pernyataan pertama benar, kedua salah, ketiga benar, dan keempat salah.

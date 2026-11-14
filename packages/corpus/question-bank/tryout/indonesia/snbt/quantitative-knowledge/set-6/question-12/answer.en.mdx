@@ -1,14 +1,34 @@
-The number of positive factors of <InlineMath math="p_1^{e_1}p_2^{e_2}" /> is <InlineMath math="(e_1+1)(e_2+1)" />, because **each exponent is chosen independently** from 0 up to its highest value.
+Write the password as <InlineMath math="d_1d_2d_3d_4" />. The rules are <InlineMath math="d_1\ne d_2" />, <InlineMath math="d_2\ne d_3" />, <InlineMath math="d_3\ne d_4" />, and <InlineMath math="d_4\ne d_1" />. Picture the four digits sitting in a circle, because **the last digit is also a neighbour of the first**. Count each statement on its own, then cross-check the results.
 
-# Computing both quantities
+# Statement one
+
+The digit <InlineMath math="d_1" /> has <InlineMath math="10" /> choices, <InlineMath math="d_2" /> has <InlineMath math="9" />, and <InlineMath math="d_3" /> has <InlineMath math="9" />. The number of choices for <InlineMath math="d_4" /> **depends on whether <InlineMath math="d_3" /> equals <InlineMath math="d_1" />**, so split into two cases.
 
 <BlockMath math="\begin{aligned}
-P&=(4+1)(2+1)=5\cdot3=15\\
-Q&=(3+1)(3+1)=4\cdot4=16
+d_3=d_1:\quad & 10\times9\times1\times9=810 \\
+d_3\ne d_1:\quad & 10\times9\times8\times8=5{,}760 \\
+\text{total}:\quad & 810+5{,}760=6{,}570
 \end{aligned}" />
 
-# Comparing
+In the first case, <InlineMath math="d_4" /> only has to avoid one digit, so it has <InlineMath math="9" /> choices. In the second case, <InlineMath math="d_3" /> must differ from both <InlineMath math="d_1" /> and <InlineMath math="d_2" /> (<InlineMath math="8" /> choices), and then <InlineMath math="d_4" /> has to avoid two different digits (<InlineMath math="8" /> choices). The number <InlineMath math="6{,}480=10\times9\times9\times8" /> comes from assuming <InlineMath math="d_4" /> always has <InlineMath math="8" /> choices. Statement one is **false**.
 
-Since <InlineMath math="16>15" />, **<InlineMath math="Q" /> is greater than <InlineMath math="P" />**, and this comparison is not decided by the sizes of the numbers, <InlineMath math="M=144" /> and <InlineMath math="N=216" />. Both numbers have exponents adding up to 6, but the product <InlineMath math="(e_1+1)(e_2+1)" /> is larger when the exponents are more even.
+# Statement two
 
-The option <InlineMath math="P=Q" /> appears when the number of factors is assumed to depend only on the sum of the exponents. So the correct relation is <InlineMath math="Q>P" />.
+If there are only two different digits and neighbours must differ, **the digits have to alternate**, in the pattern <InlineMath math="abab" />. The digit <InlineMath math="a" /> has <InlineMath math="10" /> choices and <InlineMath math="b" /> has <InlineMath math="9" />, giving <InlineMath math="10\times9=90" /> passwords. The first digit <InlineMath math="a" /> and the last digit <InlineMath math="b" /> differ, so all of them are safe. Statement two is **true**.
+
+# Statement three
+
+If all four digits are different, no two digits match anywhere, so **every such password is automatically safe**. There are <InlineMath math="10\times9\times8\times7=5{,}040" /> of them. Statement three is **true**.
+
+# Statement four
+
+With exactly three different digits, one digit appears twice. Those two copies can't be neighbours in the circle, so **the repeated digit must sit in positions one and three, or in positions two and four**.
+
+<BlockMath math="\begin{aligned}
+\text{count} &= \underbrace{2}_{\text{position pair}}\times\underbrace{10}_{\text{repeated digit}}\times\underbrace{9\times8}_{\text{other two digits}} \\
+&= 1{,}440
+\end{aligned}" />
+
+Cross-check with the three statements before. A safe password can't use just one digit, so every safe password has two, three, or four different digits: <InlineMath math="90+1{,}440+5{,}040=6{,}570" />, exactly the total from before. Statement four is **true**.
+
+So statement one is false, and statements two, three, and four are true.

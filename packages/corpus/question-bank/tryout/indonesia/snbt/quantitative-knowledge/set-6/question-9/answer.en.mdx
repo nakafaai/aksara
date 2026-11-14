@@ -1,22 +1,52 @@
-The diagonals of a rhombus **cross at right angles and bisect each other**. They split the rhombus into four congruent right triangles with legs 5 cm and 12 cm.
+You're looking for the sum of the first, third, fifth, and every later odd-numbered term, <InlineMath math="u_1+u_3+u_5+\dots" />. For that you need the first term <InlineMath math="a" /> and the ratio <InlineMath math="r" />. The two given sums give two equations, and the result holds a surprise: **the ratio is negative**, so the odd terms add up to more than the whole series.
 
-# Side and area
+# Writing the two sum formulas
 
-The side of the rhombus is the hypotenuse of that triangle, and the area is half the product of the diagonals.
+An infinite geometric series has a sum exactly when <InlineMath math="-1<r<1" />, and the sum is <InlineMath math="\tfrac{a}{1-r}" />. The squares of its terms are <InlineMath math="a^2,a^2r^2,a^2r^4,\dots" />, which form **a new geometric series with ratio <InlineMath math="r^2" />**.
 
 <BlockMath math="\begin{aligned}
-s&=\sqrt{5^2+12^2}=13\\
-A&=\tfrac12\cdot10\cdot24=120
+\frac{a}{1-r} &= 3 \\
+\frac{a^2}{1-r^2} &= 15
 \end{aligned}" />
 
-The perimeter is <InlineMath math="4\cdot13=52" /> cm, so the first statement is **true**. The area is 120, not 240, so the second statement is false. The number 240 forgets the factor <InlineMath math="\tfrac12" />.
+# Dividing the two equations
 
-# Height and incircle
+The denominator <InlineMath math="1-r^2" /> factors as <InlineMath math="(1-r)(1+r)" />. So when you divide the second equation by the first, **one factor <InlineMath math="a" /> and the factor <InlineMath math="1-r" /> cancel**.
 
-A rhombus is also a parallelogram, so its area equals **side times height**. This height is the distance between two parallel sides.
+<BlockMath math="\begin{aligned}
+\frac{a^2}{(1-r)(1+r)}\cdot\frac{1-r}{a} &= \frac{15}{3} \\
+\frac{a}{1+r} &= 5
+\end{aligned}" />
 
-<BlockMath math="13t=120\quad\Rightarrow\quad t=\frac{120}{13}" />
+Now you have <InlineMath math="a=3(1-r)" /> and <InlineMath math="a=5(1+r)" />.
 
-The fourth statement is true. The incircle touches all four sides, so its diameter equals the distance between two parallel sides. Its radius is <InlineMath math="\tfrac{60}{13}" />, half the height, so the third statement is false.
+<BlockMath math="\begin{aligned}
+3-3r &= 5+5r \\
+-8r &= 2 \\
+r &= -\tfrac14 \\
+a &= 3\left(1+\tfrac14\right)=\tfrac{15}{4}
+\end{aligned}" />
 
-So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.
+The ratio <InlineMath math="-\tfrac14" /> satisfies <InlineMath math="-1<r<1" />, so the series really does have a sum.
+
+# Adding the odd-numbered terms
+
+The odd-numbered terms are <InlineMath math="a,ar^2,ar^4,\dots" />. That's also a geometric series, with first term <InlineMath math="a" /> and **ratio <InlineMath math="r^2=\tfrac{1}{16}" />**.
+
+<BlockMath math="\begin{aligned}
+u_1+u_3+u_5+\dots &= \frac{a}{1-r^2} \\
+&= \frac{\tfrac{15}{4}}{1-\tfrac{1}{16}}=\frac{15}{4}\cdot\frac{16}{15}=4
+\end{aligned}" />
+
+Check it through the even-numbered terms, <InlineMath math="ar,ar^3,\dots" />, whose sum is <InlineMath math="\tfrac{ar}{1-r^2}=4\cdot\left(-\tfrac14\right)=-1" />. Odd plus even gives <InlineMath math="4+(-1)=3" />, the sum of the original series. The even terms are negative because <InlineMath math="r<0" />, so it makes sense that the odd terms add up to more than <InlineMath math="3" />.
+
+# Why the other options fail
+
+The wrong options come from **stopping at an in-between result** or from an assumption nobody checked.
+
+- <InlineMath math="5" /> is the value of <InlineMath math="\tfrac{a}{1+r}" />, the in-between result after dividing the equations.
+- <InlineMath math="\tfrac{15}{4}" /> is only the first term <InlineMath math="a" />, so the terms <InlineMath math="u_3,u_5,\dots" /> were never added.
+- <InlineMath math="\tfrac32" /> is half of <InlineMath math="3" />, assuming the odd and even terms contribute equally. That's wrong, because each even term is <InlineMath math="r" /> times the odd term before it.
+- <InlineMath math="\tfrac{12}{5}" /> comes from a sign slip while solving <InlineMath math="3-3r=5+5r" />, which gives <InlineMath math="r=\tfrac14" /> and <InlineMath math="a=\tfrac94" />. That leads to <InlineMath math="\tfrac{9/4}{1-1/16}=\tfrac{12}{5}" />, but a positive ratio doesn't give a sum of squares of <InlineMath math="15" />.
+
+So the sum of all odd-numbered terms of the original series is <InlineMath math="4" />.

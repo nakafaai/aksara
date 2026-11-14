@@ -1,18 +1,31 @@
-Gefragt ist ein sicheres Ja oder ein sicheres Nein. Wegen <InlineMath math="12=2^2\cdot3" /> musst du wissen, ob **die Primfaktorzerlegung von <InlineMath math="n" /> mindestens zweimal den Faktor 2 und einmal den Faktor 3 enthält**.
+Eine Aussage reicht aus, wenn **jede Wahl von <InlineMath math="x" />, <InlineMath math="y" /> und <InlineMath math="k" />, die sie erfüllt, denselben einen Wert von <InlineMath math="x+y" /> liefert**. Beachte, dass nur nach der Summe gefragt ist, nicht nach <InlineMath math="x" /> und <InlineMath math="y" /> einzeln. Dieser kleine Unterschied entscheidet die Antwort.
 
-# Nur Aussage (1)
+# Erste Aussage allein
 
-Schreibe <InlineMath math="72=2^3\cdot3^2" />. Enthält <InlineMath math="n" /> den Faktor 2 genau <InlineMath math="a" />-mal und den Faktor 3 genau <InlineMath math="b" />-mal, dann enthält <InlineMath math="n^2" /> den Faktor 2 genau <InlineMath math="2a" />-mal und den Faktor 3 genau <InlineMath math="2b" />-mal. **Die Exponenten eines Quadrats sind immer gerade**.
+Der Wert von <InlineMath math="k" /> ist noch unbekannt, also probierst du zwei verschiedene Werte für <InlineMath math="k" /> aus. **Sind die Ergebnisse verschieden, reicht die Aussage nicht aus**.
 
 <BlockMath math="\begin{aligned}
-2a\ge3&\;\Longrightarrow\; a\ge2\\
-2b\ge2&\;\Longrightarrow\; b\ge1
+k=0:\quad & x=4,\ y=4,\ x+y=8 \\
+k=3:\quad & x+3y=4,\ 3x+y=4\ \Rightarrow\ x=y=1,\ x+y=2
 \end{aligned}" />
 
-Also hat <InlineMath math="n" /> den Teiler <InlineMath math="2^2\cdot3=12" />, und die Antwort ist sicher Ja. Zum Beispiel liefert <InlineMath math="n=12" /> den Wert <InlineMath math="n^2=144=2\cdot72" />. Aussage (1) allein reicht.
+Für <InlineMath math="k=3" /> ziehst du die beiden Gleichungen voneinander ab: <InlineMath math="-2x+2y=0" />, also <InlineMath math="x=y" />, und dann <InlineMath math="4y=4" />. Es gibt zwei verschiedene Werte von <InlineMath math="x+y" />, Aussage (1) allein reicht also nicht aus.
 
-# Nur Aussage (2)
+# Zweite Aussage allein
 
-Die Zahl <InlineMath math="n=6" /> ist durch 6 teilbar, aber **nicht durch 12 teilbar**, während <InlineMath math="n=12" /> durch beide teilbar ist. Die Antwort kann Ja oder Nein sein, also reicht Aussage (2) allein nicht.
+Aussage (2) nennt nur <InlineMath math="k" /> und **schränkt weder <InlineMath math="x" /> noch <InlineMath math="y" /> ein**. Das Paar <InlineMath math="x=y=0" /> liefert <InlineMath math="x+y=0" />, das Paar <InlineMath math="x=y=1" /> dagegen <InlineMath math="x+y=2" />. Aussage (2) allein reicht nicht aus.
 
-Also **reicht Aussage (1) allein**, Aussage (2) allein aber nicht.
+# Beide Aussagen zusammen
+
+Setze <InlineMath math="k=1" /> in beide Gleichungen von Aussage (1) ein.
+
+<BlockMath math="\begin{aligned}
+x+1\cdot y &= 4 \\
+1\cdot x+y &= 4
+\end{aligned}" />
+
+Beide Gleichungen sind genau gleich, nämlich <InlineMath math="x+y=4" />. Das System ist **abhängig**, es hat also unendlich viele Lösungen, zum Beispiel <InlineMath math="(0,4)" />, <InlineMath math="(1,3)" /> und <InlineMath math="(4,0)" />. Die Werte von <InlineMath math="x" /> und <InlineMath math="y" /> sind tatsächlich nicht eindeutig, aber **jede Lösung hat <InlineMath math="x+y=4" />**. Gefragt ist nur <InlineMath math="x+y" />, also reichen beide Aussagen zusammen aus.
+
+Hier liegt die Falle: Wenn du ein abhängiges System siehst und sofort auf nicht ausreichend schließt, beantwortest du eine andere Frage, nämlich die nach den Werten von <InlineMath math="x" /> und <InlineMath math="y" />.
+
+Beide Aussagen zusammen reichen also aus, um die Frage zu beantworten, eine Aussage allein aber nicht.

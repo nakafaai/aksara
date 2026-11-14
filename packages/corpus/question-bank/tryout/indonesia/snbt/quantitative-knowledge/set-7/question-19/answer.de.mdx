@@ -1,23 +1,37 @@
-Drei Schüler werden gleichzeitig und ohne Reihenfolge gewählt, also zählst du den Ergebnisraum mit **Kombinationen**. Mindestens 2 Mädchen heißt genau 2 oder genau 3 Mädchen.
+Die Beschreibung legt die Werte von <InlineMath math="a" />, <InlineMath math="b" /> und <InlineMath math="c" /> nicht fest, nur die Lage des Graphen. Der Plan: Übersetze das Bild in Angaben über die Nullstellen, nämlich zwei Nullstellen <InlineMath math="r" /> und <InlineMath math="s" />, die **positiv und verschieden** sind, dazu <InlineMath math="c=f(0)<0" />, und teste dann jede Aussage mit Summe und Produkt der Nullstellen.
 
-# Ergebnisraum und Ereignis
+# Die Vorzeichen der ersten beiden Koeffizienten
 
-<BlockMath math="n(S)=\binom{10}{3}=120" />
-
-Zähle **jeden Fall einzeln** und addiere dann, weil beide Fälle nicht zugleich eintreten können.
+Nach dem Satz von Vieta gilt <InlineMath math="rs=\frac ca" /> und <InlineMath math="r+s=-\frac ba" />. Beide Nullstellen sind positiv, also sind Produkt und Summe positiv.
 
 <BlockMath math="\begin{aligned}
-\text{genau 2 Mädchen}&:\quad \binom42\binom61=6\cdot6=36\\
-\text{genau 3 Mädchen}&:\quad \binom43=4\\
-n(A)&=36+4=40
+\frac ca&>0 \;\Longrightarrow\; a<0 \quad\text{weil } c<0\\
+-\frac ba&>0 \;\Longrightarrow\; b>0 \quad\text{weil } a<0
 \end{aligned}" />
 
-# Wahrscheinlichkeit
+**Ein positives Produkt der Nullstellen zwingt <InlineMath math="a" /> zum selben Vorzeichen wie <InlineMath math="c" />**, also ist der Graph nach unten geöffnet. Wegen <InlineMath math="a<0" /> und <InlineMath math="b>0" /> gilt <InlineMath math="ab<0" />. Die erste Aussage ist **wahr**.
 
-Die Wahrscheinlichkeit ist **die Anzahl der günstigen Ergebnisse geteilt durch die Größe des Ergebnisraums**.
+# Der Funktionswert an der Stelle minus eins
 
-<BlockMath math="P(A)=\frac{40}{120}=\frac13" />
+Beachte, dass <InlineMath math="a-b+c=f(-1)" /> ist. Schreib die Funktion in Nullstellenform, <InlineMath math="f(x)=a(x-r)(x-s)" />, und prüf das Vorzeichen jedes Faktors bei <InlineMath math="x=-1" />.
 
-Der Wert <InlineMath math="\tfrac{44}{125}" /> behandelt jede Wahl als unabhängig mit fester Wahrscheinlichkeit <InlineMath math="\tfrac25" /> für ein Mädchen, als könnte dieselbe Person erneut gewählt werden. Der Wert <InlineMath math="\tfrac23" /> ist die Wahrscheinlichkeit des Gegenereignisses, höchstens 1 Mädchen. Die Werte <InlineMath math="\tfrac25" /> und <InlineMath math="\tfrac35" /> sind die Wahrscheinlichkeiten für ein Mädchen oder einen Jungen bei einer einzelnen Wahl.
+<BlockMath math="f(-1)=\underbrace{a}_{<0}\,\underbrace{(-1-r)}_{<0}\,\underbrace{(-1-s)}_{<0}<0" />
 
-Die Wahrscheinlichkeit für mindestens 2 Mädchen ist also **<InlineMath math="\tfrac13" />**.
+Zwei negative Faktoren ergeben ein positives Produkt, das dann mit dem negativen <InlineMath math="a" /> multipliziert wird. Anders gesagt: **Links von beiden Nullstellen liegt eine nach unten geöffnete Parabel unterhalb der <InlineMath math="x" />-Achse**. Die zweite Aussage ist **wahr**.
+
+# Der Funktionswert an der Stelle eins
+
+Jetzt ist <InlineMath math="a+b+c=f(1)" />, und sein Vorzeichen hängt davon ab, wo <InlineMath math="1" /> im Vergleich zu den beiden Nullstellen liegt. Nimm <InlineMath math="a=-1" /> für zwei Beispiele, die beide zur Beschreibung passen.
+
+<BlockMath math="\begin{aligned}
+r=2,\ s=3&: \ f(1)=-(1-2)(1-3)=-2<0\\
+r=\tfrac12,\ s=3&: \ f(1)=-\left(1-\tfrac12\right)(1-3)=1>0
+\end{aligned}" />
+
+In beiden Beispielen ist <InlineMath math="c=a\cdot rs" /> gleich <InlineMath math="-6" /> bzw. <InlineMath math="-\frac32" />, also sind beide gültig. Der Wert <InlineMath math="f(1)" /> kann negativ oder positiv sein, also **muss <InlineMath math="a+b+c>0" /> nicht gelten**. Die dritte Aussage ist **falsch**.
+
+# Der Höchstwert der Funktion
+
+Wegen <InlineMath math="a<0" /> ist die Parabel nach unten geöffnet und hat am Scheitel einen Höchstwert. Der Graph schneidet die <InlineMath math="x" />-Achse in zwei verschiedenen Punkten, also **muss der Scheitel oberhalb der <InlineMath math="x" />-Achse liegen**. Mit der Formel ist der Höchstwert <InlineMath math="-\frac{D}{4a}" />, mit der Diskriminante <InlineMath math="D=b^2-4ac>0" /> und <InlineMath math="a<0" />, also positiv. Die vierte Aussage ist **wahr**.
+
+Die erste Aussage ist also wahr, die zweite wahr, die dritte falsch und die vierte wahr.

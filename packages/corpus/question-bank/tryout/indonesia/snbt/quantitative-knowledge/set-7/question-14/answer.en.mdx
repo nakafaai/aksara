@@ -1,27 +1,43 @@
-Rewrite the equation in centre and radius form by **completing the square** in <InlineMath math="x" /> and in <InlineMath math="y" />.
+A combined mean is **a mean weighted by the number of students** in each class. The class sizes aren't given, but their ratios can be found from the two combined means you do have. Here's the plan: find the ratio of classes A and B, use it to find the size of class C, then compute the combined mean of B and C.
 
-# Centre and radius
+# The ratio of class A to class B
 
-<BlockMath math="\begin{aligned}
-(x^2-4x+4)+(y^2+2y+1)&=20+4+1\\
-(x-2)^2+(y+1)^2&=25
-\end{aligned}" />
-
-The centre is <InlineMath math="(2,-1)" /> and **the radius is <InlineMath math="\sqrt{25}=5" />, not 25**. The first statement is false.
-
-# Position of the points
-
-A point lies on the circle when **its distance to the centre equals 5**, inside when it is less, and outside when it is more.
+Let classes A, B, and C have <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" /> students. A class's total score is its mean times its number of students.
 
 <BlockMath math="\begin{aligned}
-(5,3)&:\quad (5-2)^2+(3+1)^2=9+16=25\\
-(0,0)&:\quad (0-2)^2+(0+1)^2=4+1=5<25
+50a+70b&=65(a+b)\\
+5b&=15a\\
+b&=3a
 \end{aligned}" />
 
-The point <InlineMath math="(5,3)" /> lies exactly on the circle, so the second statement is true. The origin lies inside the circle, so the third statement is false.
+That makes sense: <InlineMath math="65" /> is closer to <InlineMath math="70" /> than to <InlineMath math="50" />, so **class B has to be bigger**. Write <InlineMath math="a=k" /> and <InlineMath math="b=3k" />.
 
-# Position of the line
+# The size of class C
 
-The distance from the centre <InlineMath math="(2,-1)" /> to the horizontal line <InlineMath math="y=4" /> is <InlineMath math="4-(-1)=5" />. This distance **equals the radius**, so the line touches the circle exactly at <InlineMath math="(2,4)" />. The fourth statement is true.
+Classes A and B together hold <InlineMath math="4k" /> students with mean <InlineMath math="65" />, so their total is <InlineMath math="260k" />. **The result of the previous step feeds in here** to build the equation for all three classes.
 
-So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.
+<BlockMath math="\begin{aligned}
+260k+95c&=75(4k+c)\\
+260k+95c&=300k+75c\\
+20c&=40k\\
+c&=2k
+\end{aligned}" />
+
+So the class sizes of A, B, and C are in the ratio <InlineMath math="1:3:2" />.
+
+# The combined mean of class B and class C
+
+Use the class sizes you now know and **weight each mean by its number of students**.
+
+<BlockMath math="\bar x_{BC}=\frac{70(3k)+95(2k)}{3k+2k}=\frac{210k+190k}{5k}=\frac{400k}{5k}=80" />
+
+A check by another route: the total of all three classes is <InlineMath math="75\times6k=450k" />. Take out class A, whose total is <InlineMath math="50k" />, and <InlineMath math="400k" /> is left for <InlineMath math="5k" /> students, a mean of <InlineMath math="80" />.
+
+# The wrong options
+
+- <InlineMath math="90" /> comes from flipping the ratio of A to B to <InlineMath math="3:1" />, which also makes the size of class C wrong, <InlineMath math="4k" />.
+- <InlineMath math="85" /> comes from treating <InlineMath math="75" /> as the midpoint of <InlineMath math="65" /> and the combined mean of B and C, that is <InlineMath math="2(75)-65" />.
+- <InlineMath math="82.5" /> is the plain average <InlineMath math="\frac{70+95}{2}" />, which **ignores the different class sizes**.
+- <InlineMath math="77" /> comes from using the combined mean of A and B, <InlineMath math="65" />, as if it were the mean of class B: <InlineMath math="\frac{65(3)+95(2)}{5}=77" />.
+
+So the combined mean of class B and class C is <InlineMath math="80" />.

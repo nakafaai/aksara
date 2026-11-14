@@ -1,15 +1,35 @@
-Die Bonbons sind gleich, also unterscheiden sich zwei Verteilungen nur darin, **wie viele Bonbons jedes Kind bekommt**. Zähle die Tripel <InlineMath math="(a,b,c)" /> mit <InlineMath math="a+b+c=8" /> und jeder Zahl mindestens 1.
+Gesucht ist die Wahrscheinlichkeit, dass die erste, zweite und dritte gezogene Zahl **in der Reihenfolge des Ziehens** eine arithmetische Folge bilden. Du gehst so vor: Zähle den geordneten Ergebnisraum, zähle die steigenden arithmetischen Folgen, nimm die fallenden dazu und teile.
 
-# Trennstriche zwischen den Bonbons
+# Der geordnete Ergebnisraum
 
-Lege die 8 Bonbons in eine Reihe. Dazwischen gibt es 7 Lücken. Wählst du **2 Lücken als Trennstriche**, entsteht eine Aufteilung in 3 nicht leere Gruppen, und jede Wahl ergibt eine Verteilung.
+Die Reihenfolge wird notiert, also **zählt die Reihenfolge mit**, und jedes Ergebnis ist eine geordnete Liste von <InlineMath math="3" /> verschiedenen Zahlen. Der erste Zug hat <InlineMath math="20" /> Möglichkeiten, der zweite <InlineMath math="19" /> und der dritte <InlineMath math="18" />.
 
-<BlockMath math="\binom72=\frac{7\cdot6}{2}=21" />
+<BlockMath math="n(S)=20\cdot19\cdot18=6840" />
 
-# Kontrolle auf anderem Weg
+Jede geordnete Liste ist gleich wahrscheinlich, weil jeder Zug zufällig ist.
 
-Gib zuerst jedem Kind ein Bonbon. Die übrigen 5 werden frei verteilt, null erlaubt, und dafür gibt es <InlineMath math="\binom{5+2}{2}=\binom72=21" /> Möglichkeiten.
+# Die steigenden Folgen zählen
 
-Der Wert 45 ist <InlineMath math="\binom{10}{2}" />, die Anzahl, wenn ein Kind leer ausgehen darf. Der Wert 28 wählt 2 der 8 Bonbons als Trennstriche, obwohl die Striche in die Lücken gehören. Der Wert 56 ist <InlineMath math="\binom83" />.
+Eine steigende Folge hat die Form <InlineMath math="(a,\,a+d,\,a+2d)" /> mit Differenz <InlineMath math="d\ge1" />. Die Differenz kann nicht null sein, weil die drei Zahlen verschieden sind. Das letzte Glied ist höchstens <InlineMath math="20" />, also kann <InlineMath math="a" /> von <InlineMath math="1" /> bis <InlineMath math="20-2d" /> gehen, das sind <InlineMath math="20-2d" /> Möglichkeiten, und <InlineMath math="d" /> ist höchstens <InlineMath math="9" />.
 
-Es gibt also **21** Möglichkeiten, die Bonbons zu verteilen.
+<BlockMath math="\sum_{d=1}^{9}(20-2d)=18+16+14+\dots+2=90" />
+
+Prüfe auf einem zweiten Weg. Das mittlere Glied ist der Mittelwert aus erstem und drittem, also **müssen erstes und drittes Glied dieselbe Parität haben**, beide ungerade oder beide gerade. Es gibt <InlineMath math="10" /> ungerade und <InlineMath math="10" /> gerade Zahlen, also <InlineMath math="2\binom{10}{2}=90" /> Endpaare. Das Ergebnis stimmt überein.
+
+# Die fallenden Folgen dazunehmen
+
+Kehrst du eine steigende Folge um, erhältst du eine arithmetische Folge mit negativer Differenz, und **auch eine fallende Folge ist arithmetisch**. Es kommen also noch <InlineMath math="90" /> fallende Folgen hinzu.
+
+<BlockMath math="\begin{aligned}
+n(A)&=90+90=180\\
+P(A)&=\frac{180}{6840}=\frac{1}{38}
+\end{aligned}" />
+
+# Die falschen Antworten
+
+- <InlineMath math="\tfrac{1}{76}" /> entsteht, wenn **die fallenden Folgen vergessen werden**: <InlineMath math="\tfrac{90}{6840}" />.
+- <InlineMath math="\tfrac{11}{380}" /> entsteht, wenn für <InlineMath math="a" /> eine Möglichkeit zu viel gezählt wird, also <InlineMath math="21-2d" />, sodass jede Richtung <InlineMath math="99" /> liefert: <InlineMath math="\tfrac{198}{6840}" />.
+- <InlineMath math="\tfrac{3}{38}" /> ist die Wahrscheinlichkeit, dass sich die drei Zahlen ohne Rücksicht auf die Reihenfolge zu einer arithmetischen Folge ordnen lassen: <InlineMath math="\tfrac{90}{1140}" /> mit <InlineMath math="\binom{20}{3}=1140" />.
+- <InlineMath math="\tfrac{3}{19}" /> entsteht, wenn ein geordneter Zähler über einem ungeordneten Nenner steht: <InlineMath math="\tfrac{180}{1140}" />.
+
+Die Wahrscheinlichkeit, dass die drei Zahlen in der Reihenfolge des Ziehens eine arithmetische Folge bilden, beträgt also <InlineMath math="\tfrac{1}{38}" />.

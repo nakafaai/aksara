@@ -1,22 +1,42 @@
-Gabungkan kedua logaritma dengan sifat **jumlah logaritma sama dengan logaritma hasil kali**, lalu ingat bahwa setiap bilangan yang dilogaritmakan harus positif.
+Setiap lintasan robot dari <InlineMath math="O" /> ke <InlineMath math="T" /> terdiri atas tepat <InlineMath math="3" /> langkah <InlineMath math="x" />, <InlineMath math="3" /> langkah <InlineMath math="y" />, dan <InlineMath math="2" /> langkah <InlineMath math="z" />, karena koordinat hanya bisa naik. Rencananya: potong lintasan di titik wajib <InlineMath math="A" />, cari tahu **titik terlarang mana yang mengganggu bagian mana**, buang lintasan terlarang di setiap bagian, lalu kalikan.
 
-# Syarat numerus
+# Menghitung lintasan sebagai susunan huruf
 
-Agar kedua logaritma terdefinisi, <InlineMath math="x+2>0" /> dan <InlineMath math="x-4>0" />. Keduanya berlaku bersamaan tepat ketika <InlineMath math="x>4" />, jadi **setiap penyelesaian harus lebih dari 4**.
-
-# Menyelesaikan persamaan
+Sebuah lintasan dari satu titik ke titik lain sama dengan sebuah susunan huruf. Misalnya, dari <InlineMath math="O" /> ke <InlineMath math="A(1,2,1)" /> robot butuh satu huruf <InlineMath math="x" />, dua huruf <InlineMath math="y" />, dan satu huruf <InlineMath math="z" />. Banyak lintasannya adalah **banyak susunan huruf dengan huruf yang berulang**.
 
 <BlockMath math="\begin{aligned}
-{}^{2}\log\big[(x+2)(x-4)\big]&=4\\
-(x+2)(x-4)&=2^4=16\\
-x^2-2x-24&=0\\
-(x-6)(x+4)&=0
+O\to A&: \frac{4!}{1!\,2!\,1!}=12\\
+A\to T&: \frac{4!}{2!\,1!\,1!}=12
 \end{aligned}" />
 
-Akar <InlineMath math="x=-4" /> **ditolak** karena tidak memenuhi <InlineMath math="x>4" />, sebab <InlineMath math="{}^{2}\log(-2)" /> tidak terdefinisi. Akar yang tersisa hanya <InlineMath math="x=6" />.
+Dari <InlineMath math="A" /> ke <InlineMath math="T(3,3,2)" /> robot butuh dua <InlineMath math="x" />, satu <InlineMath math="y" />, dan satu <InlineMath math="z" />. Tanpa larangan, ada <InlineMath math="12\times12=144" /> lintasan melalui <InlineMath math="A" />.
 
-Pemeriksaan: <InlineMath math="{}^{2}\log8+{}^{2}\log2=3+1=4" />.
+# Menempatkan titik terlarang
 
-Nilai 2 menjumlahkan kedua akar tanpa memeriksa syarat. Nilai <InlineMath math="-4" /> adalah akar yang ditolak, dan nilai <InlineMath math="-6" /> berasal dari salah tanda saat memfaktorkan. Nilai 9 muncul jika jumlah logaritma diubah menjadi logaritma dari jumlah, yaitu <InlineMath math="(x+2)+(x-4)=16" />.
+Kuncinya, **koordinat robot tidak pernah turun**. Jadi sebelum tiba di <InlineMath math="A" />, setiap koordinat robot paling besar sama dengan koordinat <InlineMath math="A" />, dan sesudah <InlineMath math="A" />, setiap koordinatnya paling kecil sama dengan koordinat <InlineMath math="A" />.
 
-Jadi, jumlah semua penyelesaiannya adalah **6**.
+- Titik <InlineMath math="B(0,1,1)" /> punya koordinat yang semuanya tidak lebih dari koordinat <InlineMath math="A" />, jadi <InlineMath math="B" /> hanya bisa dilewati sebelum <InlineMath math="A" />.
+- Titik <InlineMath math="C(2,3,1)" /> punya koordinat yang semuanya tidak kurang dari koordinat <InlineMath math="A" />, jadi <InlineMath math="C" /> hanya bisa dilewati sesudah <InlineMath math="A" />.
+
+# Membuang lintasan terlarang di setiap bagian
+
+Setiap bagian cukup dibersihkan dari satu titik terlarang saja, yaitu **lintasan yang melewati titik terlarang dikurangkan dari bagiannya sendiri**. Lintasan <InlineMath math="O\to A" /> yang melewati <InlineMath math="B" /> terdiri atas <InlineMath math="O\to B" /> (satu <InlineMath math="y" /> dan satu <InlineMath math="z" />) lalu <InlineMath math="B\to A" /> (satu <InlineMath math="x" /> dan satu <InlineMath math="y" />). Lintasan <InlineMath math="A\to T" /> yang melewati <InlineMath math="C" /> terdiri atas <InlineMath math="A\to C" /> (satu <InlineMath math="x" /> dan satu <InlineMath math="y" />) lalu <InlineMath math="C\to T" /> (satu <InlineMath math="x" /> dan satu <InlineMath math="z" />).
+
+<BlockMath math="\begin{aligned}
+O\to A \text{ tanpa } B&: 12-(2\times2)=8\\
+A\to T \text{ tanpa } C&: 12-(2\times2)=8
+\end{aligned}" />
+
+# Menggabungkan kedua bagian
+
+Setiap bagian pertama yang aman bisa dipasangkan dengan setiap bagian kedua yang aman, jadi pakai **aturan perkalian**.
+
+<BlockMath math="8\times8=64" />
+
+Pemeriksaan dengan prinsip inklusi-eksklusi pada seluruh <InlineMath math="144" /> lintasan memberi hasil yang sama. Lintasan melalui <InlineMath math="A" /> dan <InlineMath math="B" /> ada <InlineMath math="4\times12=48" />, melalui <InlineMath math="A" /> dan <InlineMath math="C" /> ada <InlineMath math="12\times4=48" />, dan melalui ketiganya ada <InlineMath math="4\times4=16" />.
+
+<BlockMath math="144-48-48+16=64" />
+
+Jika kamu lupa menambahkan kembali <InlineMath math="16" /> lintasan yang melewati <InlineMath math="B" /> dan <InlineMath math="C" /> sekaligus, kamu mendapat <InlineMath math="48" />, karena lintasan itu terbuang dua kali.
+
+Jadi, banyak lintasan berbeda yang dapat ditempuh robot adalah <InlineMath math="64" /> lintasan.

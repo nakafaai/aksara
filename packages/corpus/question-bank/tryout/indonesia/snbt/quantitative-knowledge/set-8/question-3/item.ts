@@ -3,16 +3,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "$$P>Q$$" },
-        { correct: true, label: "$$Q>P$$" },
-        { correct: false, label: "$$P=Q$$" },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 2, label: "$$f(2027)=1$$" },
         {
-          correct: false,
+          column: 1,
           label:
-            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
+            "Persamaan $$f(x)=\\dfrac12$$ mempunyai tepat $$4$$ penyelesaian pada selang $$0\\le x\\le8$$.",
         },
+        {
+          column: 1,
+          label: "$$f(x)+f(x+2)=0$$ untuk setiap bilangan real $$x$$.",
+        },
+        { column: 2, label: "Fungsi $$g(x)=f(x+1)$$ adalah fungsi ganjil." },
       ],
     },
   },

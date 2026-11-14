@@ -1,21 +1,38 @@
-Read the five values from the chart: 84, 60, 36, 48 and 12. Their total is **240 books**, and this total is the divisor for percentages and sector angles.
+You're counting the numbers <InlineMath math="n" /> from <InlineMath math="1" /> to <InlineMath math="100" /> that make <InlineMath math="n^2+n+1" /> divisible by <InlineMath math="7" /> but not by <InlineMath math="49" />. Here's the plan: find which remainders of <InlineMath math="n" /> on division by <InlineMath math="7" /> work, count those numbers up to <InlineMath math="100" />, then **remove the ones that turn out to be divisible by <InlineMath math="49" /> as well**.
 
-# Percentage and median
+# The remainders that work
 
-<BlockMath math="\frac{84}{240}\times100\%=35\%" />
+The remainder of <InlineMath math="n^2+n+1" /> on division by <InlineMath math="7" /> depends only on the remainder of <InlineMath math="n" />, because adding and multiplying keep remainders consistent. So you only need to try the remainders <InlineMath math="r" /> from <InlineMath math="0" /> to <InlineMath math="6" />.
 
-The first statement is true.
+| Remainder <InlineMath math="r" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="r^2+r+1" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="7" /> | <InlineMath math="13" /> | <InlineMath math="21" /> | <InlineMath math="31" /> | <InlineMath math="43" /> |
+| Remainder on division by <InlineMath math="7" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="0" /> | <InlineMath math="6" /> | <InlineMath math="0" /> | <InlineMath math="3" /> | <InlineMath math="1" /> |
 
-Sort the counts per type: 12, 36, 48, 60, 84. There are five values, so **the median is the third value**, 48. The second statement is true.
+So <InlineMath math="n^2+n+1" /> is divisible by <InlineMath math="7" /> **exactly when <InlineMath math="n" /> leaves remainder <InlineMath math="2" /> or <InlineMath math="4" />** on division by <InlineMath math="7" />.
 
-# Sector angle and comparison
+# Counting up to the limit
 
-The central angle of a sector is **its share of the whole times <InlineMath math="360^\circ" />**.
+Numbers with remainder <InlineMath math="2" /> are <InlineMath math="n=7k+2" />. The condition <InlineMath math="7k+2\le100" /> gives <InlineMath math="k\le14" />, so there are <InlineMath math="15" /> numbers, from <InlineMath math="2" /> to <InlineMath math="100" />. Notice that **<InlineMath math="100=7\cdot14+2" /> is included**. Numbers with remainder <InlineMath math="4" /> are <InlineMath math="n=7k+4" />, with <InlineMath math="k\le13" />, so there are <InlineMath math="14" /> numbers, from <InlineMath math="4" /> to <InlineMath math="95" />. That's <InlineMath math="15+14=29" /> in total.
 
-<BlockMath math="\frac{48}{240}\times360^\circ=\frac15\times360^\circ=72^\circ" />
+# Removing the forbidden cases
 
-The angle is <InlineMath math="72^\circ" />, not <InlineMath math="60^\circ" />, so the third statement is false.
+Expand <InlineMath math="n^2+n+1" /> for each form of <InlineMath math="n" />. A factor <InlineMath math="7" /> comes out, and what's left decides whether a second factor <InlineMath math="7" /> appears.
 
-Twice the number of history books is <InlineMath math="2\cdot36=72" />, while there are only 60 science books. The fourth statement is false.
+<BlockMath math="\begin{aligned}
+n=7k+2&:\quad n^2+n+1=49k^2+35k+7=7\left(7k^2+5k+1\right)\\
+n=7k+4&:\quad n^2+n+1=49k^2+63k+21=7\left(7k^2+9k+3\right)
+\end{aligned}" />
 
-So the first statement is **true**, the second is **true**, the third is **false**, and the fourth is **false**.
+The number <InlineMath math="n^2+n+1" /> is divisible by <InlineMath math="49" /> exactly when **the bracket is divisible by <InlineMath math="7" />**. The term <InlineMath math="7k^2" /> is already divisible by <InlineMath math="7" />, so what decides it is <InlineMath math="5k+1" /> and <InlineMath math="9k+3" />.
+
+- <InlineMath math="5k+1" /> is divisible by <InlineMath math="7" /> for <InlineMath math="k=4" /> and <InlineMath math="k=11" /> (out of <InlineMath math="0" /> to <InlineMath math="14" />), giving <InlineMath math="n=30" /> and <InlineMath math="n=79" />.
+- <InlineMath math="9k+3" /> is divisible by <InlineMath math="7" /> for <InlineMath math="k=2" /> and <InlineMath math="k=9" /> (out of <InlineMath math="0" /> to <InlineMath math="13" />), giving <InlineMath math="n=18" /> and <InlineMath math="n=67" />.
+
+Check directly: <InlineMath math="18^2+18+1=343=7\cdot49" />, <InlineMath math="30^2+30+1=931=19\cdot49" />, <InlineMath math="67^2+67+1=4557=93\cdot49" />, and <InlineMath math="79^2+79+1=6321=129\cdot49" />. That's <InlineMath math="4" /> numbers to remove.
+
+<BlockMath math="29-4=25" />
+
+Common mistakes are stopping at <InlineMath math="29" />, which forgets the condition about <InlineMath math="49" />, or missing <InlineMath math="n=100" /> and getting <InlineMath math="24" />.
+
+So there are <InlineMath math="25" /> positive integers <InlineMath math="n\le100" /> that meet the conditions.

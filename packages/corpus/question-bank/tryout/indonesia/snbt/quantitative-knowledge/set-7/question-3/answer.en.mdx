@@ -1,18 +1,61 @@
-Both numbers are small differences between a root and a nearby integer, so rough decimal estimates can mislead. The reliable method is **multiplying by the conjugate** so that each difference becomes a fraction.
+The data doesn't fix every region of the Venn diagram, so each statement has to be tested against **every possible way of splitting the students**. A "must" statement needs a proof that works for every split, while a "possible" statement is settled by one example, or ruled out by showing that no split can do it.
 
-# Conjugate form
+# Naming each region of the diagram
+
+Write <InlineMath math="F" />, <InlineMath math="M" />, and <InlineMath math="P" /> for the sets of students in Futsal, Music, and Pramuka (scouting). A Venn diagram of three sets has seven regions, and each region gets a letter as in the table.
+
+| Region | Letter |
+| :--- | :---: |
+| Only Futsal, only Music, only Pramuka | <InlineMath math="a,\ b,\ c" /> |
+| Futsal and Music only, Futsal and Pramuka only, Music and Pramuka only | <InlineMath math="x,\ y,\ z" /> |
+| All three activities | <InlineMath math="t" /> |
+
+There are <InlineMath math="40-5=35" /> students who take at least one activity. **The eight Futsal and Music students include those who also take Pramuka**, so the second fact means <InlineMath math="x+t=8" />.
 
 <BlockMath math="\begin{aligned}
-P&=\sqrt{17}-4=\frac{(\sqrt{17}-4)(\sqrt{17}+4)}{\sqrt{17}+4}=\frac{17-16}{\sqrt{17}+4}=\frac{1}{\sqrt{17}+4}\\
-Q&=5-\sqrt{24}=\frac{(5-\sqrt{24})(5+\sqrt{24})}{5+\sqrt{24}}=\frac{25-24}{5+\sqrt{24}}=\frac{1}{5+\sqrt{24}}
+a+x+y+t&=20\\
+b+x+z+t&=18\\
+c+y+z+t&=15\\
+x+t&=8\\
+a+b+c+x+y+z+t&=35
 \end{aligned}" />
 
-# Comparing the denominators
+# Students who take only Pramuka
 
-Both fractions have numerator 1, so **the fraction with the smaller denominator is larger**. Compare the denominators.
+First count the students who take Futsal or Music. **The union rule for two sets** subtracts the overlap so the Futsal and Music students aren't counted twice.
 
-<BlockMath math="\sqrt{17}+4<\sqrt{25}+4=9<5+\sqrt{24}" />
+<BlockMath math="n(F\cup M)=20+18-8=30" />
 
-The last inequality holds because <InlineMath math="\sqrt{24}>4" />. The denominator of <InlineMath math="P" /> is smaller, so <InlineMath math="P>Q" />. As a check, <InlineMath math="P\approx0.123" /> and <InlineMath math="Q\approx0.101" />.
+Of the <InlineMath math="35" /> students who take something, <InlineMath math="30" /> take Futsal or Music. The rest can only be in Pramuka alone, so <InlineMath math="c=35-30=5" /> in every split. The first statement is **true**.
 
-So the correct relation is **<InlineMath math="P>Q" />**.
+# Students in Music and Pramuka
+
+The students who take both Music and Pramuka number <InlineMath math="z+t" />. Try to build a split with <InlineMath math="z=0" /> and <InlineMath math="t=0" />. From <InlineMath math="x+t=8" /> you get <InlineMath math="x=8" />, the Pramuka equation gives <InlineMath math="5+y=15" />, so <InlineMath math="y=10" />, and then the Futsal and Music equations give <InlineMath math="a=2" /> and <InlineMath math="b=10" />.
+
+| <InlineMath math="a" /> | <InlineMath math="b" /> | <InlineMath math="c" /> | <InlineMath math="x" /> | <InlineMath math="y" /> | <InlineMath math="z" /> | <InlineMath math="t" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="2" /> | <InlineMath math="10" /> | <InlineMath math="5" /> | <InlineMath math="8" /> | <InlineMath math="10" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+
+Check: <InlineMath math="2+10+5+8+10+0+0=35" />, and the three set sizes are still <InlineMath math="20" />, <InlineMath math="18" />, and <InlineMath math="15" />. This split is valid, yet **not a single student takes both Music and Pramuka**. The second statement is **false**.
+
+# Students who take exactly two activities
+
+Let <InlineMath math="e_1" />, <InlineMath math="e_2" />, and <InlineMath math="e_3" /> be the numbers of students who take exactly one, exactly two, and exactly three activities. The sum <InlineMath math="20+18+15" /> **counts each student once for every activity they take**, while <InlineMath math="35" /> counts each student once.
+
+<BlockMath math="\begin{aligned}
+e_1+2e_2+3e_3&=53\\
+e_1+e_2+e_3&=35\\
+e_2+2e_3&=18
+\end{aligned}" />
+
+The third line is the difference of the first two. So <InlineMath math="e_2=18-2e_3" />, an even number minus an even number. The result is always even, so the third statement is **true**.
+
+# Students who take all three activities
+
+From <InlineMath math="e_2+2e_3=18" /> you only get <InlineMath math="e_3\le9" />, and that bound is tempting. But every student who takes all three activities also takes Futsal and Music, so **they're among the eight Futsal and Music students**.
+
+<BlockMath math="t=8-x\le8" />
+
+So at most <InlineMath math="8" /> students take all three activities, and exactly <InlineMath math="9" /> is impossible. The fourth statement is **false**.
+
+So the first statement is true, the second is false, the third is true, and the fourth is false.

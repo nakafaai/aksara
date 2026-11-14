@@ -1,22 +1,36 @@
-The word PELANGI has 7 letters, all different: the vowels E, A, I and the consonants P, L, N, G. The way to guarantee that no two vowels touch is **arranging the consonants first, then inserting the vowels into the gaps**.
+A subset is called *renggang*, which means spread out, when it holds no two numbers that are neighbours on the circle. On the circle, the pair <InlineMath math="10" /> and <InlineMath math="1" /> are also neighbours, and that's the only difference from a straight row. The plan: first count the spread-out subsets in a straight row, then **split into cases on the number <InlineMath math="1" />** so the pair <InlineMath math="10" /> and <InlineMath math="1" /> is handled.
 
-# Arranging the consonants
+# Counting in a straight row
 
-The four consonants can be arranged in <InlineMath math="4!=24" /> ways. Each arrangement has **five gaps**: before the first letter, between letters, and after the last letter.
+Let <InlineMath math="L(n)" /> be the number of spread-out subsets of <InlineMath math="1,2,\dots,n" /> in a straight row. Look at the last number <InlineMath math="n" />. If <InlineMath math="n" /> isn't chosen, what's left is a spread-out subset of the first <InlineMath math="n-1" /> numbers. If <InlineMath math="n" /> is chosen, <InlineMath math="n-1" /> can't be, so what's left is a spread-out subset of the first <InlineMath math="n-2" /> numbers. **The two cases don't overlap**, so <InlineMath math="L(n)=L(n-1)+L(n-2)" />.
 
-<BlockMath math="\_\,\text{K}\,\_\,\text{K}\,\_\,\text{K}\,\_\,\text{K}\,\_" />
+Start from <InlineMath math="L(1)=2" />, the empty set and <InlineMath math="\{1\}" />, and <InlineMath math="L(2)=3" />.
 
-# Inserting the vowels
+| <InlineMath math="n" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> | <InlineMath math="10" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="L(n)" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="5" /> | <InlineMath math="8" /> | <InlineMath math="13" /> | <InlineMath math="21" /> | <InlineMath math="34" /> | <InlineMath math="55" /> | <InlineMath math="89" /> | <InlineMath math="144" /> |
 
-The three different vowels go into **3 different gaps**, and their order matters.
+# Splitting on the number one
 
-<BlockMath math="\begin{aligned}
-P(5,3)&=5\cdot4\cdot3=60\\
-\text{arrangements}&=24\cdot60=1{,}440
-\end{aligned}" />
+If <InlineMath math="1" /> isn't chosen, the numbers <InlineMath math="2" /> to <InlineMath math="10" /> sit in a straight row, because <InlineMath math="1" /> was the only link between their ends. That gives <InlineMath math="L(9)=89" />.
 
-Since each gap holds at most one vowel, no two vowels can be next to each other.
+If <InlineMath math="1" /> is chosen, **both its neighbours, <InlineMath math="2" /> and <InlineMath math="10" />, are off limits**. What's left is <InlineMath math="3" /> to <InlineMath math="9" />, seven numbers in a straight row, which gives <InlineMath math="L(7)=34" />.
 
-The value 5,040 is <InlineMath math="7!" />, all arrangements without the condition. The value 576 uses only the 4 gaps between consonants and forgets both ends. The value 720 is <InlineMath math="6!" />, and 2,880 doubles the result for no reason.
+<BlockMath math="89+34=123" />
 
-So the number of possible arrangements is **1,440**.
+# Checking another way
+
+The straight-row count <InlineMath math="L(10)=144" /> also includes subsets that contain both <InlineMath math="1" /> and <InlineMath math="10" />, **which aren't allowed on the circle**. In such a subset, <InlineMath math="2" /> and <InlineMath math="9" /> are off limits, and the numbers <InlineMath math="3" /> to <InlineMath math="8" /> are free as long as they stay spread out, so there are <InlineMath math="L(6)=21" /> of them.
+
+<BlockMath math="144-21=123" />
+
+The result matches.
+
+# The tempting wrong options
+
+- <InlineMath math="144" /> counts as if the numbers sat in a straight row and **forgets that <InlineMath math="10" /> and <InlineMath math="1" /> are neighbours**.
+- <InlineMath math="89" /> counts only the case where <InlineMath math="1" /> isn't chosen. The same number also comes from <InlineMath math="144-55" />, which forgets that <InlineMath math="2" /> and <InlineMath math="9" /> are off limits too.
+- <InlineMath math="80" /> subtracts all <InlineMath math="2^6=64" /> subsets of <InlineMath math="3" /> to <InlineMath math="8" />, but those subsets also have to be spread out.
+- <InlineMath math="68" /> also bans <InlineMath math="2" /> and <InlineMath math="10" /> in the case where <InlineMath math="1" /> isn't chosen, so it counts <InlineMath math="34+34" />.
+
+So the number of spread-out subsets is <InlineMath math="123" />.

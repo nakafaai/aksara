@@ -1,19 +1,33 @@
-Setelah empat angka berbeda dipilih, **susunan naik dan susunan turun masing-masing hanya ada satu**. Jadi setiap jenis dihitung dengan memilih himpunan empat angka, dengan perhatian khusus pada angka 0.
+Ada dua syarat yang saling memengaruhi. Angka ribuan dibatasi oleh <InlineMath math="3{.}400" />, dan angka satuan harus genap serta belum dipakai di tempat lain. Rencananya: bagi kasus menurut angka ribuan (dan angka ratusan jika ribuannya <InlineMath math="3" />), lalu **isi tempat yang paling dibatasi lebih dulu**, yaitu angka satuan, baru sisanya.
 
-# Susunan naik
+# Angka ribuan tiga
 
-Pada susunan naik, angka terkecil berada paling kiri. Jika 0 ikut terpilih, bilangannya akan diawali 0 dan **bukan bilangan empat angka**. Jadi keempat angka dipilih dari 1 sampai 9.
+Bilangan berawalan <InlineMath math="3" /> harus lebih dari <InlineMath math="3{.}400" />, jadi **angka ratusannya harus <InlineMath math="4" /> atau <InlineMath math="5" />**. Semua bilangan berawalan <InlineMath math="34" /> sudah lebih dari <InlineMath math="3{.}400" />, karena <InlineMath math="3{.}400" /> sendiri memakai angka <InlineMath math="0" /> dua kali.
 
-<BlockMath math="\binom94=\frac{9\cdot8\cdot7\cdot6}{4\cdot3\cdot2\cdot1}=126" />
+- Berawalan <InlineMath math="34" />: angka satuan genap yang belum dipakai hanya <InlineMath math="0" /> atau <InlineMath math="2" />, jadi ada <InlineMath math="2" /> pilihan. Angka puluhan dipilih dari <InlineMath math="3" /> angka sisa. Banyaknya <InlineMath math="2\times3=6" />.
+- Berawalan <InlineMath math="35" />: angka satuan bisa <InlineMath math="0" />, <InlineMath math="2" />, atau <InlineMath math="4" />, jadi ada <InlineMath math="3" /> pilihan. Angka puluhan dipilih dari <InlineMath math="3" /> angka sisa. Banyaknya <InlineMath math="3\times3=9" />.
 
-# Susunan turun
+# Angka ribuan empat atau lima
 
-Pada susunan turun, angka terbesar berada paling kiri, sehingga 0 selalu berada paling kanan jika terpilih. **Angka 0 boleh ikut**, jadi keempat angka dipilih dari 0 sampai 9.
+Jika angka ribuannya <InlineMath math="4" />, angka <InlineMath math="4" /> sudah terpakai, jadi **angka satuan genap tinggal <InlineMath math="0" /> atau <InlineMath math="2" />**. Jika angka ribuannya <InlineMath math="5" />, angka satuan bisa <InlineMath math="0" />, <InlineMath math="2" />, atau <InlineMath math="4" />. Dalam kedua kasus, angka ratusan dan puluhan diisi berurutan dari <InlineMath math="4" /> angka sisa, yaitu <InlineMath math="4\times3=12" /> cara.
 
-<BlockMath math="\binom{10}{4}=\frac{10\cdot9\cdot8\cdot7}{4\cdot3\cdot2\cdot1}=210" />
+<BlockMath math="\begin{aligned}
+\text{ribuan } 4&: 2\times12=24\\
+\text{ribuan } 5&: 3\times12=36\\
+\text{total}&: 6+9+24+36=75
+\end{aligned}" />
 
-Tidak ada bilangan yang sekaligus naik dan turun, jadi kedua hitungan dijumlahkan: <InlineMath math="126+210=336" />.
+# Memeriksa dengan komplemen
 
-Nilai 126 dan 210 masing-masing hanya menghitung satu jenis susunan. Nilai 252 melarang 0 pada kedua jenis, dan nilai 420 membolehkan 0 pada kedua jenis.
+Jalan kedua: hitung dulu semua bilangan genap yang lebih dari <InlineMath math="3{.}000" />, lalu **buang yang berada di bawah batas**, yaitu yang berada di antara <InlineMath math="3{.}000" /> dan <InlineMath math="3{.}400" />. Bilangan berawalan <InlineMath math="3" /> punya <InlineMath math="3" /> pilihan satuan dan <InlineMath math="4\times3=12" /> cara mengisi tengah, jadi ada <InlineMath math="36" />. Ditambah <InlineMath math="24+36" />, totalnya <InlineMath math="96" />.
 
-Jadi, banyak bilangan empat angka yang menarik adalah **336**.
+Yang dibuang adalah bilangan berawalan <InlineMath math="30" />, <InlineMath math="31" />, dan <InlineMath math="32" />. Berawalan <InlineMath math="30" /> ada <InlineMath math="2\times3=6" /> (satuan <InlineMath math="2" /> atau <InlineMath math="4" />), berawalan <InlineMath math="31" /> ada <InlineMath math="3\times3=9" />, dan berawalan <InlineMath math="32" /> ada <InlineMath math="2\times3=6" /> (satuan <InlineMath math="0" /> atau <InlineMath math="4" />). Hasilnya <InlineMath math="96-(6+9+6)=75" />, sama.
+
+# Pilihan yang keliru
+
+- <InlineMath math="69" /> muncul jika bilangan berawalan <InlineMath math="34" /> ikut dibuang, seolah-olah angka ratusan harus lebih dari <InlineMath math="4" />.
+- <InlineMath math="90" /> muncul jika angka satuan selalu diberi <InlineMath math="3" /> pilihan, **lupa bahwa angka <InlineMath math="4" /> mungkin sudah terpakai**.
+- <InlineMath math="96" /> menghitung semua bilangan genap yang lebih dari <InlineMath math="3{.}000" />, bukan <InlineMath math="3{.}400" />.
+- <InlineMath math="108" /> menggabungkan kedua kesalahan itu, yaitu <InlineMath math="3\times3\times4\times3" />.
+
+Jadi, banyak bilangan genap yang dapat disusun dan lebih besar dari <InlineMath math="3{.}400" /> adalah <InlineMath math="75" />.

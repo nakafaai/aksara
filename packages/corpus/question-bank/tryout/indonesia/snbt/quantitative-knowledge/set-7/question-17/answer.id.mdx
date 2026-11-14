@@ -1,22 +1,33 @@
-Luas lingkaran ditentukan oleh jari-jarinya. Jadi sebuah pernyataan cukup jika **jari-jari lingkaran dapat ditentukan secara tunggal** dari pernyataan itu.
+Pertanyaan ini berjenis ya atau tidak, jadi sebuah informasi cukup jika jawabannya **pasti "ya" atau pasti "tidak"**. Rencananya: tulis harga akhir sebagai kelipatan harga awal, cari syarat kapan harga akhir lebih tinggi, lalu uji setiap pernyataan dengan contoh.
+
+# Syarat harga akhir lebih tinggi
+
+Kenaikan <InlineMath math="a\%" /> mengalikan harga dengan <InlineMath math="1+\frac{a}{100}" />, dan penurunan <InlineMath math="b\%" /> dihitung dari harga yang baru, jadi mengalikannya dengan <InlineMath math="1-\frac{b}{100}" />. Ingat, **perubahan persen dikalikan, bukan dijumlahkan**.
+
+<BlockMath math="\left(1+\tfrac{a}{100}\right)\left(1-\tfrac{b}{100}\right)=1+\frac{a-b}{100}-\frac{ab}{10{.}000}" />
+
+Harga akhir lebih tinggi tepat ketika faktor itu lebih dari <InlineMath math="1" />, yaitu ketika <InlineMath math="100(a-b)>ab" />.
 
 # Pernyataan pertama saja
 
-Busur dengan sudut pusat <InlineMath math="60^\circ" /> adalah <InlineMath math="\tfrac{60}{360}=\tfrac16" /> keliling lingkaran. Panjang busur **sebanding dengan sudut pusatnya**.
-
-<BlockMath math="\begin{aligned}
-\tfrac16\cdot2\pi r&=2\pi\\
-r&=6,\quad \text{luas}=36\pi
-\end{aligned}" />
-
-Pernyataan (1) saja cukup.
+Jika <InlineMath math="a=b+5" />, syaratnya menjadi <InlineMath math="500>ab" />, dan nilai <InlineMath math="ab" /> belum diketahui. Untuk <InlineMath math="a=15" /> dan <InlineMath math="b=10" />, faktornya <InlineMath math="1{,}15\times0{,}9=1{,}035" />, jadi harga naik. Untuk <InlineMath math="a=35" /> dan <InlineMath math="b=30" />, faktornya <InlineMath math="1{,}35\times0{,}7=0{,}945" />, jadi harga turun. **Selisih persen yang positif belum menjamin harga naik**, jadi pernyataan (1) saja tidak cukup.
 
 # Pernyataan kedua saja
 
-Keempat titik sudut persegi terletak pada lingkaran, jadi **diagonal persegi adalah diameter lingkaran**. Diagonal itu melalui pusat dan menghubungkan dua titik pada lingkaran yang berhadapan.
+Jika <InlineMath math="ab=500" />, syaratnya menjadi <InlineMath math="100(a-b)>500" />, yaitu <InlineMath math="a-b>5" />, dan selisih itu belum diketahui. Untuk <InlineMath math="a=50" /> dan <InlineMath math="b=10" />, faktornya <InlineMath math="1{,}5\times0{,}9=1{,}35" />, jadi harga naik. Untuk <InlineMath math="a=10" /> dan <InlineMath math="b=50" />, faktornya <InlineMath math="1{,}1\times0{,}5=0{,}55" />, jadi harga turun. **Hasil kali persen yang tetap juga belum menjamin arah perubahan**, jadi pernyataan (2) saja tidak cukup.
 
-<BlockMath math="2r=12\;\Longrightarrow\;r=6,\quad \text{luas}=36\pi" />
+# Kedua pernyataan bersama
 
-Pernyataan (2) saja juga cukup, dan kedua pernyataan memberi luas yang sama.
+Substitusikan <InlineMath math="a=b+5" /> ke <InlineMath math="ab=500" />.
 
-Jadi, **pernyataan (1) saja cukup dan pernyataan (2) saja juga cukup**.
+<BlockMath math="\begin{aligned}
+(b+5)b&=500\\
+b^2+5b-500&=0\\
+(b+25)(b-20)&=0
+\end{aligned}" />
+
+Karena <InlineMath math="b>0" />, nilai <InlineMath math="b=-25" /> ditolak, jadi <InlineMath math="b=20" /> dan <InlineMath math="a=25" />. Faktor perubahannya <InlineMath math="1{,}25\times0{,}8=1" />, sama dengan memakai rumus tadi: <InlineMath math="100(a-b)=500=ab" />. Harga akhir **tepat sama dengan harga mula-mula**, jadi tidak lebih tinggi. Jawabannya pasti "tidak", dan jawaban yang pasti berarti informasinya cukup.
+
+Jebakannya ada dua. Melihat <InlineMath math="a>b" /> lalu menyimpulkan harga naik adalah keliru, dan menganggap "harga tetap" sebagai keadaan yang tidak menjawab pertanyaan juga keliru.
+
+Jadi, dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.

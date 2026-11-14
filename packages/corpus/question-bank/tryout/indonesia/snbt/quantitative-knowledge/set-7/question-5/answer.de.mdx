@@ -1,32 +1,31 @@
-Schreibe die drei Glieder als <InlineMath math="\tfrac{a}{r}" />, <InlineMath math="a" /> und <InlineMath math="ar" />. Der Schlüssel ist, **die Quadratsumme durch die Summe der Glieder zu teilen**, denn der Quotient ist ein Term, der der Summe sehr ähnlich ist.
+Die Anzahl der Nullen am rechten Ende einer Zahl ist gleich der Anzahl der Faktoren <InlineMath math="10" /> in ihr. Jeder Faktor <InlineMath math="10" /> braucht ein Paar aus einem Faktor <InlineMath math="2" /> und einem Faktor <InlineMath math="5" />, also ist **die Zahl der Endnullen die kleinere der beiden Anzahlen von Faktoren <InlineMath math="2" /> und Faktoren <InlineMath math="5" />**. Addieren und Subtrahieren verändern diese Faktoren, deshalb musst du beide Zahlen zuerst faktorisieren.
 
-# Die Identität für die Quadratsumme
+# Beide Zahlen faktorisieren
 
-Für drei geometrische Glieder gilt
-
-<BlockMath math="\frac{a^2}{r^2}+a^2+a^2r^2=\left(\frac ar+a+ar\right)\left(\frac ar-a+ar\right)" />
-
-Die rechte Seite kannst du durch Ausmultiplizieren prüfen: Die gemischten Glieder heben sich auf. Also ist **die Quadratsumme geteilt durch die Summe** gleich <InlineMath math="\tfrac ar-a+ar" />.
+Zieh die kleinere Fakultät als gemeinsamen Faktor heraus. Das geht, weil <InlineMath math="26!=26\times25!" /> und <InlineMath math="35!=35\times34!" /> gilt.
 
 <BlockMath math="\begin{aligned}
-\frac ar+a+ar&=38\\
-\frac ar-a+ar&=\frac{532}{38}=14
+26!-25!&=25!\,(26-1)=25!\times25\\
+34!+35!&=34!\,(1+35)=34!\times36
 \end{aligned}" />
 
-# Die Glieder bestimmen
+**Der Faktor <InlineMath math="25=5^2" /> bringt zwei zusätzliche Faktoren <InlineMath math="5" />**, während <InlineMath math="36=2^2\times3^2" /> überhaupt keinen Faktor <InlineMath math="5" /> hinzufügt.
 
-Ziehe die beiden Gleichungen voneinander ab: <InlineMath math="2a=24" />, also <InlineMath math="a=12" />, und **die Summe der beiden äußeren Glieder** ist <InlineMath math="\tfrac{12}{r}+12r=26" />.
+# Fünfen und Zweien zählen
+
+Die Anzahl der Faktoren <InlineMath math="5" /> in <InlineMath math="n!" /> liefert die **Formel von Legendre**: die Anzahl der Vielfachen von <InlineMath math="5" />, plus die Anzahl der Vielfachen von <InlineMath math="25" /> und so weiter. Für Faktoren <InlineMath math="2" /> geht es genauso.
 
 <BlockMath math="\begin{aligned}
-12r^2-26r+12&=0\\
-6r^2-13r+6&=0\\
-(3r-2)(2r-3)&=0
+\text{Faktoren 5 in } 25!\times25&=(5+1)+2=8\\
+\text{Faktoren 2 in } 25!\times25&=12+6+3+1=22\\
+\text{Faktoren 5 in } 34!\times36&=6+1=7\\
+\text{Faktoren 2 in } 34!\times36&=(17+8+4+2+1)+2=34
 \end{aligned}" />
 
-Der Wert <InlineMath math="r=\tfrac32" /> liefert 8, 12, 18, und <InlineMath math="r=\tfrac23" /> dieselben Zahlen rückwärts. Kontrolle: <InlineMath math="8+12+18=38" /> und <InlineMath math="64+144+324=532" />.
+In beiden Zahlen gibt es viel mehr Faktoren <InlineMath math="2" />, also entscheiden die Faktoren <InlineMath math="5" />. Damit ist <InlineMath math="P=8" /> und <InlineMath math="Q=7" />, also <InlineMath math="P>Q" />.
 
-Die Differenz zwischen größter und kleinster Zahl ist <InlineMath math="18-8=10" />.
+# Die Falle der schnellen Schätzung
 
-Der Wert 12 ist das mittlere Glied, 14 der Quotient <InlineMath math="532:38" />, 18 das größte Glied und 26 die Summe der beiden äußeren Glieder.
+Eine schnelle Schätzung schaut oft nur auf die größte Fakultät. Die Fakultät <InlineMath math="26!" /> endet auf <InlineMath math="5+1=6" /> Nullen und <InlineMath math="35!" /> auf <InlineMath math="7+1=8" /> Nullen, damit sieht es nach <InlineMath math="Q>P" /> aus. Wenn du nur <InlineMath math="P" /> richtig faktorisierst, erhältst du <InlineMath math="8" /> gegen <InlineMath math="8" /> und bist versucht, <InlineMath math="P=Q" /> zu wählen. **Beide Zahlen müssen faktorisiert werden**, und jede hat einen festen Wert, also reichen die Angaben aus.
 
-Die Differenz zwischen größter und kleinster Zahl ist also **10**.
+Die richtige Beziehung ist also <InlineMath math="P>Q" />, denn <InlineMath math="P=8" /> und <InlineMath math="Q=7" />.

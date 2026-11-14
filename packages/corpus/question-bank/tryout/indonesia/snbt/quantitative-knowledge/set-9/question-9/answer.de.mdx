@@ -1,23 +1,47 @@
-Schreibe <InlineMath math="a=2m" /> und <InlineMath math="b=2n+1" /> mit ganzen Zahlen <InlineMath math="m" /> und <InlineMath math="n" />. So lässt sich jede Aussage **für alle Paare zugleich** prüfen und nicht nur an einem Beispiel.
+Der Exponent <InlineMath math="x^2-2x" /> kommt zweimal vor, also ist das eigentlich **eine verkleidete quadratische Ungleichung**. Der Plan: Ersetze <InlineMath math="3^{x^2-2x}" /> durch einen Buchstaben, löse die quadratische Ungleichung, geh zurück zum Exponenten und löse dann zwei Bedingungen für <InlineMath math="x" />.
 
-# Summe und Produkt
+# Umformen in eine quadratische Ungleichung
 
-<BlockMath math="\begin{aligned}
-a+b&=2(m+n)+1\\
-ab&=2m(2n+1)
-\end{aligned}" />
-
-Die Summe ist immer eine gerade Zahl plus 1, also **immer ungerade**. Die erste Aussage ist wahr. Das Produkt enthält den Faktor 2, ist also immer gerade. Die zweite Aussage ist falsch.
-
-# Differenz und Summe der Quadrate
-
-Das Quadrat einer geraden Zahl ist durch 4 teilbar, dagegen **lässt das Quadrat einer ungeraden Zahl bei Division durch 4 den Rest 1**.
+Setze <InlineMath math="y=x^2-2x" /> und <InlineMath math="t=3^y" /> mit <InlineMath math="t>0" />. Wegen <InlineMath math="9=3^2" /> gilt <InlineMath math="9^y=\left(3^y\right)^2=t^2" />.
 
 <BlockMath math="\begin{aligned}
-a^2&=4m^2\\
-b^2&=4n^2+4n+1=4(n^2+n)+1
+t^2-28t+27&\le0\\
+(t-1)(t-27)&\le0\\
+1\le t&\le27
 \end{aligned}" />
 
-Also ist <InlineMath math="a^2-b^2=4(m^2-n^2-n)-1" /> immer ungerade, und die dritte Aussage ist wahr. Dagegen lässt <InlineMath math="a^2+b^2=4(m^2+n^2+n)+1" /> immer den Rest 1. Zum Beispiel liefern <InlineMath math="a=2" /> und <InlineMath math="b=1" /> die Zahl 5. Die vierte Aussage ist falsch.
+Ein Produkt zweier Faktoren ist nur dann null oder negativ, wenn <InlineMath math="t" /> **zwischen den beiden Nullstellen** liegt, die Ränder eingeschlossen.
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **wahr** und die vierte **falsch**.
+# Zurück zum Exponenten
+
+Die Funktion <InlineMath math="3^y" /> wächst immer, also haben die Werte von <InlineMath math="t" /> dieselbe Reihenfolge wie die Werte von <InlineMath math="y" />. Schreib zuerst beide Grenzen als Dreierpotenzen: <InlineMath math="1=3^0" /> und <InlineMath math="27=3^3" />. **Die Grenzen gelten für den Exponenten, nicht für die Zahlen <InlineMath math="1" /> und <InlineMath math="27" /> selbst**.
+
+<BlockMath math="3^0\le3^{x^2-2x}\le3^3\iff0\le x^2-2x\le3" />
+
+# Zwei Bedingungen für x
+
+Diese Doppelungleichung enthält zwei Bedingungen, und beide müssen gleichzeitig gelten.
+
+<BlockMath math="\begin{aligned}
+x^2-2x\le3&\iff(x-3)(x+1)\le0\iff-1\le x\le3\\
+x^2-2x\ge0&\iff x(x-2)\ge0\iff x\le0\ \text{oder}\ x\ge2
+\end{aligned}" />
+
+Die zweite Bedingung **streicht die Zahlen zwischen <InlineMath math="0" /> und <InlineMath math="2" />**. Beide zusammen gelten für <InlineMath math="-1\le x\le0" /> oder <InlineMath math="2\le x\le3" />. Die ganzen Zahlen darin sind <InlineMath math="-1" />, <InlineMath math="0" />, <InlineMath math="2" /> und <InlineMath math="3" />, also <InlineMath math="4" /> Stück.
+
+# Die Probe
+
+Für <InlineMath math="x=3" /> und <InlineMath math="x=-1" /> ist der Exponent <InlineMath math="3" /> und <InlineMath math="t=27" />: <InlineMath math="729-756+27=0" />, das passt. Für <InlineMath math="x=0" /> ist der Exponent <InlineMath math="0" /> und <InlineMath math="t=1" />: <InlineMath math="1-28+27=0" />, das passt. Für <InlineMath math="x=1" /> ist der Exponent <InlineMath math="-1" /> und <InlineMath math="t=\frac{1}{3}" />:
+
+<BlockMath math="\frac{1}{9}-\frac{28}{3}+27=\frac{1-84+243}{9}=\frac{160}{9}>0" />
+
+Also **erfüllt <InlineMath math="x=1" /> die Ungleichung wirklich nicht**.
+
+# Die verlockenden falschen Antworten
+
+- <InlineMath math="5" /> **vergisst die Bedingung <InlineMath math="x^2-2x\ge0" />**, sodass <InlineMath math="x=1" /> mitgezählt wird.
+- <InlineMath math="10" /> rechnet die untere Grenze richtig um, verwendet aber <InlineMath math="27" /> direkt als obere Grenze für den Exponenten, also <InlineMath math="0\le x^2-2x\le27" />. Die ganzen Zahlen dazu sind <InlineMath math="-4" /> bis <InlineMath math="0" /> und <InlineMath math="2" /> bis <InlineMath math="6" />.
+- <InlineMath math="8" /> verwendet die Grenzen für <InlineMath math="t" /> direkt als Grenzen für den Exponenten, also <InlineMath math="1\le x^2-2x\le27" />. Die ganzen Zahlen dazu sind <InlineMath math="-4,-3,-2,-1,3,4,5,6" />.
+- <InlineMath math="11" /> macht denselben Fehler und lässt zusätzlich die untere Grenze weg, zählt also alle ganzen Zahlen von <InlineMath math="-4" /> bis <InlineMath math="6" />.
+
+Also erfüllen <InlineMath math="4" /> ganze Zahlen <InlineMath math="x" /> die Ungleichung.

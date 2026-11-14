@@ -1,21 +1,38 @@
-Lies die fünf Werte aus dem Diagramm ab: 84, 60, 36, 48 und 12. Zusammen sind das **240 Bücher**, und diese Summe ist der Nenner für Prozentsätze und Sektorwinkel.
+Du zählst die Zahlen <InlineMath math="n" /> von <InlineMath math="1" /> bis <InlineMath math="100" />, für die <InlineMath math="n^2+n+1" /> durch <InlineMath math="7" />, aber nicht durch <InlineMath math="49" /> teilbar ist. Du gehst so vor: Finde die passenden Reste von <InlineMath math="n" /> bei Division durch <InlineMath math="7" />, zähle diese Zahlen bis <InlineMath math="100" /> und **streiche dann die, die zusätzlich durch <InlineMath math="49" /> teilbar sind**.
 
-# Prozentsatz und Median
+# Die passenden Reste
 
-<BlockMath math="\frac{84}{240}\times100\%=35\%" />
+Der Rest von <InlineMath math="n^2+n+1" /> bei Division durch <InlineMath math="7" /> hängt nur vom Rest von <InlineMath math="n" /> ab, weil Addieren und Multiplizieren die Reste respektieren. Du musst also nur die Reste <InlineMath math="r" /> von <InlineMath math="0" /> bis <InlineMath math="6" /> ausprobieren.
 
-Die erste Aussage ist wahr.
+| Rest <InlineMath math="r" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="r^2+r+1" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="7" /> | <InlineMath math="13" /> | <InlineMath math="21" /> | <InlineMath math="31" /> | <InlineMath math="43" /> |
+| Rest bei Division durch <InlineMath math="7" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="0" /> | <InlineMath math="6" /> | <InlineMath math="0" /> | <InlineMath math="3" /> | <InlineMath math="1" /> |
 
-Ordne die Anzahlen pro Sorte: 12, 36, 48, 60, 84. Es sind fünf Werte, also ist **der Median der dritte Wert**, 48. Die zweite Aussage ist wahr.
+Also ist <InlineMath math="n^2+n+1" /> durch <InlineMath math="7" /> teilbar, **genau wenn <InlineMath math="n" /> bei Division durch <InlineMath math="7" /> den Rest <InlineMath math="2" /> oder <InlineMath math="4" /> lässt**.
 
-# Sektorwinkel und Vergleich
+# Bis zur Grenze zählen
 
-Der Mittelpunktswinkel eines Sektors ist **sein Anteil am Ganzen mal <InlineMath math="360^\circ" />**.
+Zahlen mit Rest <InlineMath math="2" /> haben die Form <InlineMath math="n=7k+2" />. Aus <InlineMath math="7k+2\le100" /> folgt <InlineMath math="k\le14" />, also gibt es <InlineMath math="15" /> Zahlen, von <InlineMath math="2" /> bis <InlineMath math="100" />. Beachte, dass **<InlineMath math="100=7\cdot14+2" /> mitzählt**. Zahlen mit Rest <InlineMath math="4" /> haben die Form <InlineMath math="n=7k+4" /> mit <InlineMath math="k\le13" />, das sind <InlineMath math="14" /> Zahlen, von <InlineMath math="4" /> bis <InlineMath math="95" />. Zusammen sind es <InlineMath math="15+14=29" />.
 
-<BlockMath math="\frac{48}{240}\times360^\circ=\frac15\times360^\circ=72^\circ" />
+# Die verbotenen Fälle streichen
 
-Der Winkel ist <InlineMath math="72^\circ" /> und nicht <InlineMath math="60^\circ" />, also ist die dritte Aussage falsch.
+Multipliziere <InlineMath math="n^2+n+1" /> für jede Form von <InlineMath math="n" /> aus. Ein Faktor <InlineMath math="7" /> lässt sich ausklammern, und der Rest entscheidet, ob ein zweiter Faktor <InlineMath math="7" /> dazukommt.
 
-Das Doppelte der Geschichtsbücher ist <InlineMath math="2\cdot36=72" />, Naturwissenschaftsbücher gibt es aber nur 60. Die vierte Aussage ist falsch.
+<BlockMath math="\begin{aligned}
+n=7k+2&:\quad n^2+n+1=49k^2+35k+7=7\left(7k^2+5k+1\right)\\
+n=7k+4&:\quad n^2+n+1=49k^2+63k+21=7\left(7k^2+9k+3\right)
+\end{aligned}" />
 
-Die erste Aussage ist also **wahr**, die zweite **wahr**, die dritte **falsch** und die vierte **falsch**.
+Die Zahl <InlineMath math="n^2+n+1" /> ist genau dann durch <InlineMath math="49" /> teilbar, wenn **die Klammer durch <InlineMath math="7" /> teilbar ist**. Der Term <InlineMath math="7k^2" /> ist schon durch <InlineMath math="7" /> teilbar, entscheidend sind also <InlineMath math="5k+1" /> und <InlineMath math="9k+3" />.
+
+- <InlineMath math="5k+1" /> ist durch <InlineMath math="7" /> teilbar für <InlineMath math="k=4" /> und <InlineMath math="k=11" /> (unter <InlineMath math="0" /> bis <InlineMath math="14" />), also <InlineMath math="n=30" /> und <InlineMath math="n=79" />.
+- <InlineMath math="9k+3" /> ist durch <InlineMath math="7" /> teilbar für <InlineMath math="k=2" /> und <InlineMath math="k=9" /> (unter <InlineMath math="0" /> bis <InlineMath math="13" />), also <InlineMath math="n=18" /> und <InlineMath math="n=67" />.
+
+Direkte Probe: <InlineMath math="18^2+18+1=343=7\cdot49" />, <InlineMath math="30^2+30+1=931=19\cdot49" />, <InlineMath math="67^2+67+1=4557=93\cdot49" /> und <InlineMath math="79^2+79+1=6321=129\cdot49" />. Es fallen also <InlineMath math="4" /> Zahlen weg.
+
+<BlockMath math="29-4=25" />
+
+Häufige Fehler sind, bei <InlineMath math="29" /> stehen zu bleiben und damit die Bedingung mit <InlineMath math="49" /> zu vergessen, oder <InlineMath math="n=100" /> zu übersehen und <InlineMath math="24" /> zu erhalten.
+
+Es gibt also <InlineMath math="25" /> positive ganze Zahlen <InlineMath math="n\le100" />, die die Bedingungen erfüllen.
