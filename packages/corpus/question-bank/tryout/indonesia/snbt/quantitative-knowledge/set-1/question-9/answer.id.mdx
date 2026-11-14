@@ -1,22 +1,50 @@
-Semua pernyataan membicarakan faktor, jadi langkah pertamanya adalah **memfaktorkan <InlineMath math="n" /> menjadi bilangan prima**.
+Kedua logaritma di persamaan itu saling berkebalikan, jadi persamaannya bisa diubah menjadi persamaan kuadrat dalam satu variabel. Setelah itu, setiap calon harus lolos **syarat bilangan pokok dan numerus**. Rencananya: tulis syaratnya dulu, ganti logaritma dengan satu variabel, selesaikan setiap kasus, lalu saring calonnya.
+
+# Menuliskan syarat
+
+Bilangan pokok logaritma harus positif dan tidak sama dengan <InlineMath math="1" />, sedangkan numerusnya (bilangan yang dilogaritmakan) harus positif. Di sini <InlineMath math="x" /> dan <InlineMath math="6-x" /> masing-masing menjadi bilangan pokok sekaligus numerus.
+
+<BlockMath math="0<x<6,\qquad x\neq1,\qquad x\neq5" />
+
+Setiap calon di luar syarat ini **harus dibuang**, walaupun hasil hitungannya rapi.
+
+# Mengganti dengan satu variabel
+
+Menukar bilangan pokok dan numerus membuat nilai logaritma menjadi kebalikannya, yaitu <InlineMath math="{}^{b}\log a=\frac{1}{{}^{a}\log b}" />. Misalkan <InlineMath math="u={}^{x}\log(6-x)" />. Maka suku kedua sama dengan <InlineMath math="\frac1u" />.
 
 <BlockMath math="\begin{aligned}
-n&=1\times2\times3\times4\times5\times6=720\\
-&=2^4\times3^2\times5
+u+\frac1u&=\frac52\\
+2u^2-5u+2&=0\\
+(2u-1)(u-2)&=0
 \end{aligned}" />
 
-# Menghitung banyak faktor
+Jadi ada **dua kasus**, <InlineMath math="u=2" /> atau <InlineMath math="u=\frac12" />.
 
-Setiap faktor positif <InlineMath math="n" /> berbentuk <InlineMath math="2^a3^b5^c" /> dengan <InlineMath math="0\le a\le4" />, <InlineMath math="0\le b\le2" />, dan <InlineMath math="0\le c\le1" />. **Setiap pangkat dipilih bebas**, jadi banyak faktornya adalah hasil kali banyak pilihan pangkat.
+# Menyelesaikan setiap kasus
 
-<BlockMath math="(4+1)(2+1)(1+1)=5\times3\times2=30" />
+Untuk <InlineMath math="u=2" />, definisi logaritma memberi <InlineMath math="6-x=x^2" />.
 
-Pernyataan ketiga **benar**. Faktor ganjil tidak memuat 2, jadi hanya <InlineMath math="a=0" /> yang boleh. Banyaknya <InlineMath math="1\times3\times2=6" />, sehingga pernyataan pertama salah.
+<BlockMath math="x^2+x-6=0\quad\Rightarrow\quad(x+3)(x-2)=0\quad\Rightarrow\quad x=-3\ \text{atau}\ x=2" />
 
-# Memeriksa kuadrat sempurna
+Untuk <InlineMath math="u=\frac12" />, definisi logaritma memberi <InlineMath math="6-x=\sqrt x" />. Kuadratkan kedua ruas. **Pengkuadratan bisa memunculkan calon palsu**, jadi hasilnya wajib dicek ulang.
 
-Bilangan kuadrat sempurna memiliki **pangkat genap untuk setiap faktor prima**. Pada <InlineMath math="5n=2^4\times3^2\times5^2" />, semua pangkatnya genap, sehingga <InlineMath math="5n=3600=60^2" />. Pernyataan kedua benar.
+<BlockMath math="(6-x)^2=x\quad\Rightarrow\quad x^2-13x+36=0\quad\Rightarrow\quad(x-4)(x-9)=0" />
 
-Faktor <InlineMath math="n" /> yang kuadrat sempurna memerlukan <InlineMath math="a\in\{0,2,4\}" />, <InlineMath math="b\in\{0,2\}" />, dan <InlineMath math="c=0" />. Banyaknya <InlineMath math="3\times2\times1=6" />, yaitu 1, 4, 9, 16, 36, dan 144. Pernyataan keempat salah karena menyebut 4.
+Calon dari kasus ini adalah <InlineMath math="x=4" /> dan <InlineMath math="x=9" />.
 
-Jadi, pernyataan pertama **salah**, pernyataan kedua **benar**, pernyataan ketiga **benar**, dan pernyataan keempat **salah**.
+# Menyaring calon
+
+Calon <InlineMath math="x=-3" /> dibuang karena bilangan pokok <InlineMath math="x" /> negatif. Calon <InlineMath math="x=9" /> dibuang karena <InlineMath math="6-9=-3" /> negatif. Calon ini juga **tidak memenuhi persamaan sebelum dikuadratkan**, sebab <InlineMath math="6-9=-3" /> tidak sama dengan <InlineMath math="\sqrt9=3" />. Calon <InlineMath math="x=2" /> dan <InlineMath math="x=4" /> memenuhi semua syarat.
+
+<BlockMath math="\begin{aligned}
+x=2:&\quad {}^{2}\log4+{}^{4}\log2=2+\frac12=\frac52\\
+x=4:&\quad {}^{4}\log2+{}^{2}\log4=\frac12+2=\frac52
+\end{aligned}" />
+
+Jumlah penyelesaiannya adalah <InlineMath math="2+4=6" />.
+
+# Pilihan yang keliru
+
+Pilihan <InlineMath math="2" /> muncul jika hanya kasus <InlineMath math="u=2" /> yang diselesaikan. Pilihan <InlineMath math="3" /> muncul jika <InlineMath math="-3" /> tidak dibuang, yaitu <InlineMath math="-3+2+4" />. Pilihan <InlineMath math="12" /> muncul jika tidak ada syarat yang diperiksa sama sekali, sehingga keempat calon dijumlahkan: <InlineMath math="-3+2+4+9" />. Pilihan <InlineMath math="15" /> muncul jika **calon palsu <InlineMath math="9" /> ikut dijumlahkan**, yaitu <InlineMath math="2+4+9" />.
+
+Jadi, jumlah semua bilangan real yang memenuhi persamaan itu adalah <InlineMath math="6" />.

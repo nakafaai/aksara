@@ -1,19 +1,45 @@
-Ketiga bilangan adalah jumlah dua akar, dan jumlah bilangan di bawah akarnya sama-sama 9. Bandingkan **kuadrat** ketiganya, karena untuk bilangan positif urutan kuadrat sama dengan urutan bilangannya.
+Kamu perlu nilai <InlineMath math="\tfrac{1}{p^2}+\tfrac{1}{q^2}+\tfrac{1}{r^2}" />, tetapi koefisien <InlineMath math="k" /> belum diketahui. Rencananya, **cari dulu akar ketiga** dan nilai <InlineMath math="k" /> dari syarat <InlineMath math="pq=1" />, lalu susun jumlah kebalikan kuadrat dari jumlah dan hasil kali akar. Untuk persamaan <InlineMath math="x^3-5x^2+kx-2=0" />, rumus Vieta (hubungan akar dengan koefisien) memberi <InlineMath math="p+q+r=5" />, <InlineMath math="pq+qr+rp=k" />, dan <InlineMath math="pqr=2" />.
 
-# Mengkuadratkan setiap bilangan
+# Akar ketiga dan nilai k
 
-Pakai **rumus kuadrat jumlah** <InlineMath math="(\sqrt p+\sqrt q)^2=p+q+2\sqrt{pq}" />.
+Hasil kali ketiga akar adalah <InlineMath math="2" />, dan <InlineMath math="pq=1" />. Jadi **syarat <InlineMath math="pq=1" /> langsung memberi akar ketiga**: <InlineMath math="r=\tfrac{2}{1}=2" />. Karena <InlineMath math="2" /> adalah akar, substitusikan <InlineMath math="x=2" /> ke persamaan untuk mendapat <InlineMath math="k" />.
 
 <BlockMath math="\begin{aligned}
-a^2&=2+7+2\sqrt{14}=9+2\sqrt{14}\\
-b^2&=3+6+2\sqrt{18}=9+2\sqrt{18}\\
-c^2&=4+5+2\sqrt{20}=9+2\sqrt{20}
+2^3-5\cdot2^2+2k-2&=0\\
+8-20+2k-2&=0\\
+2k&=14\\
+k&=7
 \end{aligned}" />
 
-# Membandingkan hasil kali
+Dua akar lainnya memenuhi <InlineMath math="p+q=5-2=3" /> dan <InlineMath math="pq=1" />, jadi keduanya akar dari <InlineMath math="t^2-3t+1=0" />. Diskriminannya <InlineMath math="9-4=5" /> positif, jadi <InlineMath math="p" /> dan <InlineMath math="q" /> real.
 
-Bagian 9 sama pada ketiganya, jadi urutan ditentukan oleh **hasil kali kedua bilangan di bawah akar**: <InlineMath math="14<18<20" />. Akibatnya <InlineMath math="a^2<b^2<c^2" />, dan karena ketiganya positif, <InlineMath math="a<b<c" />.
+# Jumlah kebalikan kuadrat
 
-Urutan <InlineMath math="c<b<a" /> muncul jika mengira akar dari bilangan yang paling berjauhan, seperti 2 dan 7, memberi jumlah terbesar. Urutan lain bertentangan dengan perbandingan <InlineMath math="14<18<20" />. Secara umum, untuk jumlah tetap, dua bilangan yang lebih berdekatan memberi jumlah akar yang lebih besar.
+Kuadrat dari jumlah kebalikan memuat suku silang. Itu sebabnya **jumlah kebalikan kuadrat sama dengan kuadrat jumlah kebalikan dikurangi dua kali jumlah suku silangnya**. Kedua bagian itu bisa ditulis dengan rumus Vieta.
 
-Jadi, urutan dari yang terkecil adalah <InlineMath math="a<b<c" />.
+<BlockMath math="\begin{aligned}
+\frac1p+\frac1q+\frac1r&=\frac{pq+qr+rp}{pqr}=\frac72\\
+\frac{1}{pq}+\frac{1}{qr}+\frac{1}{rp}&=\frac{p+q+r}{pqr}=\frac52\\
+\frac{1}{p^2}+\frac{1}{q^2}+\frac{1}{r^2}&=\left(\frac72\right)^2-2\cdot\frac52=\frac{49}{4}-5=\frac{29}{4}
+\end{aligned}" />
+
+# Pemeriksaan dengan jalan lain
+
+Hitung bagian <InlineMath math="p" /> dan <InlineMath math="q" /> terpisah dari bagian <InlineMath math="r" />. Karena <InlineMath math="pq=1" />, penyebut <InlineMath math="(pq)^2" /> bernilai <InlineMath math="1" />.
+
+<BlockMath math="\begin{aligned}
+p^2+q^2&=(p+q)^2-2pq=9-2=7\\
+\frac{1}{p^2}+\frac{1}{q^2}&=\frac{p^2+q^2}{(pq)^2}=7\\
+7+\frac{1}{2^2}&=\frac{29}{4}
+\end{aligned}" />
+
+Hasilnya sama, jadi **nilai yang dicari adalah <InlineMath math="\tfrac{29}{4}" />**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="7" /> hanya menjumlahkan <InlineMath math="\tfrac{1}{p^2}+\tfrac{1}{q^2}" /> dan **lupa suku akar ketiga**, yaitu <InlineMath math="\tfrac{1}{r^2}=\tfrac14" />.
+- <InlineMath math="\tfrac{49}{4}" /> adalah kuadrat jumlah kebalikan **tanpa dikurangi suku silangnya**.
+- <InlineMath math="\tfrac{29}{2}" /> muncul kalau <InlineMath math="49-20" /> dibagi <InlineMath math="pqr=2" />, padahal penyebutnya <InlineMath math="(pqr)^2=4" />.
+- <InlineMath math="\tfrac{69}{4}" /> muncul kalau suku silang ditambahkan, bukan dikurangkan.
+
+Jadi, nilai <InlineMath math="\tfrac{1}{p^2}+\tfrac{1}{q^2}+\tfrac{1}{r^2}" /> adalah <InlineMath math="\tfrac{29}{4}" />.

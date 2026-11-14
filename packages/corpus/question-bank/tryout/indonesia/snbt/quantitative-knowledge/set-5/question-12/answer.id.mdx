@@ -1,17 +1,44 @@
-Jari-jari lingkaran tidak diberikan, jadi nyatakan kedua luas dalam jari-jari <InlineMath math="r" /> yang sama. Kedua bangun **berbagi lingkaran luar yang sama**, sehingga perbandingannya tidak bergantung pada nilai <InlineMath math="r" />.
+Kedua garis memuat parameter <InlineMath math="a" />, jadi kedudukannya berubah-ubah. Rencananya, cari dulu kapan kedua garis sejajar atau berimpit, lalu periksa kemiringan untuk syarat tegak lurus dan rumus jarak untuk dua pernyataan terakhir. Setiap pernyataan dinilai dengan **bukti atau satu contoh penyangkal**.
 
-# Luas segi enam beraturan
+# Pernyataan pertama
 
-Segi enam beraturan dengan titik sudut pada lingkaran terdiri atas **enam segitiga sama sisi** bersisi <InlineMath math="r" />.
+Dua garis <InlineMath math="p_1x+q_1y=r_1" /> dan <InlineMath math="p_2x+q_2y=r_2" /> sejajar atau berimpit tepat ketika <InlineMath math="p_1q_2=p_2q_1" />, karena saat itu kemiringannya sama.
 
-<BlockMath math="P=6\cdot\frac{\sqrt3}{4}r^2=\frac{3\sqrt3}{2}r^2\approx2{,}60\,r^2" />
+<BlockMath math="\begin{aligned}
+a(a+1)&=3\cdot2\\
+a^2+a-6&=0\\
+(a+3)(a-2)&=0
+\end{aligned}" />
 
-# Luas persegi
+Ada <InlineMath math="2" /> calon, <InlineMath math="a=-3" /> dan <InlineMath math="a=2" />, tetapi keduanya harus dicek. Untuk <InlineMath math="a=2" />, garis <InlineMath math="g" /> menjadi <InlineMath math="2x+2y=6" /> dan garis <InlineMath math="h" /> menjadi <InlineMath math="3x+3y=9" />. Keduanya sama dengan <InlineMath math="x+y=3" />, jadi **kedua garis berimpit** dan punya tak hingga banyak titik persekutuan. Untuk <InlineMath math="a=-3" />, garis <InlineMath math="g" /> adalah <InlineMath math="-3x+2y=6" /> dan garis <InlineMath math="h" /> adalah <InlineMath math="3x-2y=9" />, yaitu <InlineMath math="-3x+2y=-9" />. Ruas kanannya berbeda, jadi kedua garis sejajar tanpa titik persekutuan. Hanya <InlineMath math="1" /> nilai <InlineMath math="a" /> yang cocok, jadi pernyataan pertama salah.
 
-Diagonal persegi adalah diameter <InlineMath math="2r" />. Luas persegi sama dengan **setengah hasil kali kedua diagonalnya**.
+# Pernyataan kedua
 
-<BlockMath math="Q=\tfrac12\cdot2r\cdot2r=2r^2" />
+Kemiringan garis <InlineMath math="g" /> adalah <InlineMath math="-\tfrac a2" />, dan kemiringan garis <InlineMath math="h" /> adalah <InlineMath math="-\tfrac{3}{a+1}" /> untuk <InlineMath math="a\ne-1" />. **Dua garis tegak lurus ketika hasil kali kemiringannya <InlineMath math="-1" />**.
 
-Karena <InlineMath math="\frac{3\sqrt3}{2}\approx2{,}60>2" />, berlaku <InlineMath math="P>Q" /> untuk setiap jari-jari. Pilihan informasi tidak cukup keliru karena perbandingan kedua luas tidak bergantung pada <InlineMath math="r" />. Secara umum, segi-<InlineMath math="n" /> beraturan dalam lingkaran yang sama makin luas jika <InlineMath math="n" /> makin besar.
+<BlockMath math="\begin{aligned}
+\left(-\frac a2\right)\left(-\frac{3}{a+1}\right)&=-1\\
+3a&=-2(a+1)\\
+5a&=-2\\
+a&=-\tfrac25
+\end{aligned}" />
 
-Jadi, hubungan yang benar adalah **luas segi enam lebih besar**, yaitu <InlineMath math="P>Q" />.
+Cek langsung: untuk <InlineMath math="a=-\tfrac25" />, kemiringan <InlineMath math="g" /> adalah <InlineMath math="\tfrac15" /> dan kemiringan <InlineMath math="h" /> adalah <InlineMath math="-\tfrac{3}{3/5}=-5" />, dan hasil kalinya <InlineMath math="-1" />. Untuk <InlineMath math="a=-1" />, garis <InlineMath math="h" /> tegak (<InlineMath math="x=3" />) sedangkan garis <InlineMath math="g" /> tidak mendatar, jadi kasus itu tidak memberi garis tegak lurus. Pernyataan kedua benar.
+
+# Pernyataan ketiga
+
+Untuk <InlineMath math="a=-3" />, kedua garis sejajar. Rumus jarak dua garis sejajar <InlineMath math="px+qy=r_1" /> dan <InlineMath math="px+qy=r_2" /> adalah <InlineMath math="\tfrac{|r_1-r_2|}{\sqrt{p^2+q^2}}" />, tetapi rumus itu hanya berlaku kalau **koefisien <InlineMath math="x" /> dan <InlineMath math="y" /> kedua persamaan sudah disamakan**. Tulis <InlineMath math="h" /> sebagai <InlineMath math="-3x+2y=-9" />.
+
+<BlockMath math="d=\frac{|6-(-9)|}{\sqrt{(-3)^2+2^2}}=\frac{15}{\sqrt{13}}" />
+
+Cek dengan titik <InlineMath math="(0,3)" /> pada <InlineMath math="g" />: jaraknya ke <InlineMath math="3x-2y-9=0" /> adalah <InlineMath math="\tfrac{|0-6-9|}{\sqrt{13}}=\tfrac{15}{\sqrt{13}}" />. Nilai <InlineMath math="\tfrac{3}{\sqrt{13}}" /> muncul kalau <InlineMath math="9-6" /> dihitung tanpa menyamakan koefisien. Pernyataan ketiga salah.
+
+# Pernyataan keempat
+
+Jarak titik <InlineMath math="(0,0)" /> ke garis <InlineMath math="ax+2y-6=0" /> dihitung dengan rumus jarak titik ke garis.
+
+<BlockMath math="d(a)=\frac{|a\cdot0+2\cdot0-6|}{\sqrt{a^2+4}}=\frac{6}{\sqrt{a^2+4}}" />
+
+Penyebut paling kecil ketika <InlineMath math="a=0" />, dan saat itu <InlineMath math="d(0)=\tfrac62=3" />. Jadi untuk <InlineMath math="a=0" /> jaraknya tepat <InlineMath math="3" />, tidak kurang dari <InlineMath math="3" />. **Kata setiap gugur oleh satu contoh**, jadi pernyataan keempat salah.
+
+Jadi, pernyataan pertama salah, pernyataan kedua benar, pernyataan ketiga salah, dan pernyataan keempat salah.

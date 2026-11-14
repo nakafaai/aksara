@@ -1,21 +1,40 @@
-Segitiga <InlineMath math="DEF" /> miring terhadap sisi persegi, jadi alas dan tingginya tidak mudah dibaca. Lebih mudah menghitung **luas persegi dikurangi tiga segitiga siku-siku di pojok**: <InlineMath math="AED" />, <InlineMath math="EBF" />, dan <InlineMath math="FCD" />.
+Kamu mencari semua <InlineMath math="x" /> yang membuat suatu bilangan berpangkat bernilai <InlineMath math="1" />. Bentuk seperti ini punya **tiga jalan menuju nilai <InlineMath math="1" />**, dan setiap jalan punya syaratnya sendiri. Rencananya: periksa ketiga jalan satu per satu, uji setiap calon, lalu jumlahkan yang lolos.
 
-# Tiga segitiga di pojok
+# Tiga jalan menuju satu
 
-Setiap segitiga pojok siku-siku, jadi luasnya **setengah hasil kali kedua sisi siku-sikunya**. Titik tengah membagi sisi 12 cm menjadi dua bagian 6 cm.
+Misalkan bilangan pokoknya <InlineMath math="h(x)=x-4" /> dan pangkatnya <InlineMath math="g(x)=x^2-11x+28=(x-4)(x-7)" />. Hasil <InlineMath math="h^g" /> bernilai <InlineMath math="1" /> hanya pada tiga keadaan berikut.
 
-| Segitiga | Sisi siku-siku | Luas |
-| :---: | :---: | :---: |
-| <InlineMath math="AED" /> | <InlineMath math="AE=6" />, <InlineMath math="AD=12" /> | 36 |
-| <InlineMath math="EBF" /> | <InlineMath math="EB=6" />, <InlineMath math="BF=6" /> | 18 |
-| <InlineMath math="FCD" /> | <InlineMath math="FC=6" />, <InlineMath math="CD=12" /> | 36 |
+- Bilangan pokoknya <InlineMath math="1" />, karena <InlineMath math="1" /> dipangkatkan berapa pun tetap <InlineMath math="1" />.
+- Bilangan pokoknya <InlineMath math="-1" /> dan pangkatnya bilangan genap, karena <InlineMath math="(-1)" /> berpangkat genap bernilai <InlineMath math="1" />.
+- Pangkatnya <InlineMath math="0" /> dan **bilangan pokoknya bukan <InlineMath math="0" />**, karena <InlineMath math="0^0" /> tidak terdefinisi.
 
-# Menghitung luas segitiga DEF
+Selain itu tidak ada jalan lain. Bilangan selain <InlineMath math="0" />, <InlineMath math="1" />, dan <InlineMath math="-1" /> hanya menghasilkan <InlineMath math="1" /> jika dipangkatkan <InlineMath math="0" />.
 
-Ketiga segitiga pojok dan segitiga <InlineMath math="DEF" /> **tepat menutup persegi tanpa tumpang tindih**.
+# Menguji setiap jalan
 
-<BlockMath math="[DEF]=144-36-18-36=54\text{ cm}^2" />
+Uji setiap jalan beserta syaratnya.
 
-Nilai 72 hanya mengurangkan kedua segitiga besar dan melupakan <InlineMath math="EBF" />. Nilai 90 hanya mengurangkan satu segitiga besar dan <InlineMath math="EBF" />. Nilai 108 hanya mengurangkan satu segitiga besar, dan nilai 126 hanya mengurangkan <InlineMath math="EBF" />.
+<BlockMath math="\begin{aligned}
+x-4=1&\ \Rightarrow\ x=5,\quad g(5)=25-55+28=-2,\quad1^{-2}=1\\
+x-4=-1&\ \Rightarrow\ x=3,\quad g(3)=9-33+28=4,\quad(-1)^4=1\\
+g(x)=0&\ \Rightarrow\ x=4\ \text{atau}\ x=7
+\end{aligned}" />
 
-Jadi, luas segitiga <InlineMath math="DEF" /> adalah **<InlineMath math="54\text{ cm}^2" />**.
+Dari jalan ketiga, <InlineMath math="x=4" /> membuat bilangan pokoknya <InlineMath math="0" />, sehingga muncul <InlineMath math="0^0" /> yang tidak terdefinisi. Jadi **<InlineMath math="x=4" /> harus dibuang**. Untuk <InlineMath math="x=7" />, bilangan pokoknya <InlineMath math="3" />, dan <InlineMath math="3^0=1" />, jadi <InlineMath math="x=7" /> sah.
+
+Pada jalan kedua, pangkat <InlineMath math="4" /> memang genap. Jalan ini mudah terlewat karena orang sering hanya memeriksa bilangan pokok <InlineMath math="1" /> dan pangkat <InlineMath math="0" />.
+
+# Menjumlahkan penyelesaian
+
+**Tiga nilai yang lolos** adalah <InlineMath math="x=3" />, <InlineMath math="x=5" />, dan <InlineMath math="x=7" />. Jumlahnya <InlineMath math="3+5+7=15" />. Coba cek <InlineMath math="x=3" /> sekali lagi langsung ke soal: <InlineMath math="(3-4)^{9-33+28}=(-1)^4=1" />.
+
+# Pilihan yang menjebak
+
+Setiap pilihan lain muncul karena **satu jalan terlewat atau satu calon tidak diuji**.
+
+- <InlineMath math="19" /> muncul jika <InlineMath math="x=4" /> ikut dihitung, padahal <InlineMath math="0^0" /> tidak terdefinisi.
+- <InlineMath math="12" /> muncul jika jalan bilangan pokok <InlineMath math="-1" /> terlewat, sehingga <InlineMath math="x=3" /> hilang.
+- <InlineMath math="10" /> muncul jika jalan bilangan pokok <InlineMath math="1" /> terlewat, sehingga <InlineMath math="x=5" /> hilang.
+- <InlineMath math="8" /> muncul jika jalan pangkat <InlineMath math="0" /> terlewat, sehingga <InlineMath math="x=7" /> hilang.
+
+Jadi, jumlah semua nilai <InlineMath math="x" /> yang memenuhi adalah <InlineMath math="15" />.

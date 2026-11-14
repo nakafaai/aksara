@@ -1,20 +1,44 @@
-Every statement uses the basic cylinder formulas with <InlineMath math="r=3" /> and <InlineMath math="t=8" />. The point to watch is **which quantity is squared** in each formula.
+You're comparing two huge numbers without a calculator. Here's the plan: turn <InlineMath math="P" /> into a power of <InlineMath math="2" /> and <InlineMath math="Q" /> into a power of <InlineMath math="3" />. Their exponents can't be matched, so you'll need to **compare through two small powers that are almost equal**, then estimate with the binomial expansion.
 
-# Volume and lateral area
+# Simplifying both numbers
+
+Adding four equal terms means multiplying that term by <InlineMath math="4" />. Careful: **adding doesn't add exponents**.
 
 <BlockMath math="\begin{aligned}
-V&=\pi r^2t=\pi\cdot9\cdot8=72\pi\\
-A_{\text{lateral}}&=2\pi rt=2\pi\cdot3\cdot8=48\pi
+P&=4\cdot8^{29}=2^2\cdot\left(2^3\right)^{29}=2^2\cdot2^{87}=2^{89}\\
+Q&=9\cdot27^{18}=3^2\cdot\left(3^3\right)^{18}=3^2\cdot3^{54}=3^{56}
 \end{aligned}" />
 
-The first statement is **true**. The lateral area is <InlineMath math="48\pi" />, not <InlineMath math="24\pi" />, so the third statement is false. The value <InlineMath math="24\pi" /> appears when the factor 2 in the circumference of the base is forgotten.
+# Why matching exponents isn't enough
 
-# The greatest distance and a change of height
+The number <InlineMath math="89" /> is prime, so <InlineMath math="2^{89}" /> and <InlineMath math="3^{56}" /> can't be written with the same exponent. The tempting shortcut is to drop one factor <InlineMath math="2" />: <InlineMath math="2^{88}=\left(2^{11}\right)^8=2048^8" /> is smaller than <InlineMath math="3^{56}=2187^8" />. But that only shows <InlineMath math="Q" /> is bigger than <InlineMath math="\frac P2" />. **The dropped factor <InlineMath math="2" /> can flip the result**, so this comparison doesn't decide anything.
 
-The two farthest points of the cylinder lie on the rim of the base and the rim of the top, on opposite sides of the axis. They form the diagonal of a rectangle measuring the 6 cm diameter by the 8 cm height, which is **the cross-section through the axis**.
+# Using two almost equal powers
 
-<BlockMath math="d=\sqrt{6^2+8^2}=\sqrt{100}=10" />
+Notice that <InlineMath math="2^8=256" /> and <InlineMath math="3^5=243" /> are almost equal. Write both numbers using their <InlineMath math="11" />th powers.
 
-The second statement is true. The volume <InlineMath math="\pi r^2t" /> is proportional to <InlineMath math="t" /> to the first power, so doubling the height doubles the volume, not quadruples it. The fourth statement is false.
+<BlockMath math="\begin{aligned}
+P&=2\cdot2^{88}=2\cdot256^{11}\\
+Q&=3\cdot3^{55}=3\cdot243^{11}\\
+\frac PQ&=\frac23\left(\frac{256}{243}\right)^{11}=\frac23\left(1+\frac{13}{243}\right)^{11}
+\end{aligned}" />
 
-So the first statement is **true**, the second is **true**, the third is **false**, and the fourth is **false**.
+So <InlineMath math="P>Q" /> exactly when <InlineMath math="\left(1+\frac{13}{243}\right)^{11}>\frac32" />. By the binomial expansion, <InlineMath math="(1+x)^{11}=1+11x+\ldots" />, and every remaining term is positive when <InlineMath math="x>0" />. So **the first two terms alone already give a lower bound**.
+
+<BlockMath math="\begin{aligned}
+\left(1+\frac{13}{243}\right)^{11}&>1+11\cdot\frac{13}{243}=1+\frac{143}{243}\\
+\frac{143}{243}&>\frac12\quad\text{because}\quad2\cdot143=286>243\\
+\frac PQ&>\frac23\cdot\frac32=1
+\end{aligned}" />
+
+So <InlineMath math="P>Q" />. Check both bounds together. The previous section gave <InlineMath math="Q>\frac P2" />, and this one gives <InlineMath math="Q<P" />. That puts <InlineMath math="Q" /> between <InlineMath math="\frac P2" /> and <InlineMath math="P" />, so the two results don't clash.
+
+# The tempting wrong options
+
+The other options come from **stopping the comparison too early**.
+
+- <InlineMath math="Q>P" /> comes from dropping the factor <InlineMath math="2" /> and comparing <InlineMath math="2048^8" /> with <InlineMath math="2187^8" />, or from assuming base <InlineMath math="3" /> must win.
+- <InlineMath math="P=Q" /> is impossible, because <InlineMath math="P=2^{89}" /> is even while <InlineMath math="Q=3^{56}" /> is odd.
+- The not-enough-information option comes from stopping after seeing <InlineMath math="2^8>3^5" />. That only gives <InlineMath math="2^{88}>3^{55}" />, but you're comparing <InlineMath math="2\cdot2^{88}" /> with <InlineMath math="3\cdot3^{55}" />. The binomial estimate above settles it.
+
+So the quantity <InlineMath math="P" /> is greater than the quantity <InlineMath math="Q" />, which means <InlineMath math="P>Q" />.

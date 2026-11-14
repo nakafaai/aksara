@@ -1,26 +1,37 @@
-Ubah persamaan <InlineMath math="g" /> ke bentuk <InlineMath math="y=mx+c" /> agar gradien dan titik potongnya terbaca. Garis yang tegak lurus <InlineMath math="g" /> memiliki **gradien yang hasil kalinya dengan gradien <InlineMath math="g" /> sama dengan <InlineMath math="-1" />**.
+Yang ditanya adalah peluang bersyarat: **di antara orang yang dua kali positif, berapa bagian yang benar-benar sakit**. Cara paling aman adalah membayangkan <InlineMath math="1{.}000" /> penduduk, lalu mengikuti mereka melewati tes pertama dan tes kedua.
 
-# Persamaan kedua garis
+# Hasil tes pertama
 
-<BlockMath math="\begin{aligned}
-g:\ 2x-3y=6\quad&\Rightarrow\quad y=\tfrac23x-2\\
-h:\ m_h=-\tfrac32\quad&\Rightarrow\quad y=-\tfrac32x+4
-\end{aligned}" />
-
-Gradien <InlineMath math="g" /> adalah <InlineMath math="\tfrac23" />, jadi pernyataan pertama **benar**. Garis <InlineMath math="h" /> memotong sumbu <InlineMath math="x" /> saat <InlineMath math="y=0" />, yaitu <InlineMath math="x=\tfrac83" />, bukan 6. Pernyataan kedua salah.
-
-# Titik potong dan luas segitiga
-
-Substitusikan persamaan <InlineMath math="h" /> ke persamaan <InlineMath math="g" />.
+Dari <InlineMath math="1{.}000" /> orang, sebanyak <InlineMath math="10\%" /> sakit dan sisanya sehat. Tes pertama positif pada <InlineMath math="90\%" /> orang sakit dan **juga pada <InlineMath math="20\%" /> orang sehat**.
 
 <BlockMath math="\begin{aligned}
-2x-3\left(-\tfrac32x+4\right)&=6\\
-\tfrac{13}{2}x&=18\\
-x=\tfrac{36}{13},\qquad y&=-\tfrac32\cdot\tfrac{36}{13}+4=-\tfrac{2}{13}
+\text{sakit}&=100,\qquad \text{sehat}=900\\
+\text{sakit dan positif}&=90\%\times100=90\\
+\text{sehat dan positif}&=20\%\times900=180
 \end{aligned}" />
 
-Titik potongnya memiliki ordinat negatif, jadi **berada di kuadran IV**, bukan kuadran I. Pernyataan ketiga salah.
+# Hasil tes kedua
 
-Garis <InlineMath math="g" /> memotong sumbu <InlineMath math="x" /> di <InlineMath math="(3,0)" /> dan sumbu <InlineMath math="y" /> di <InlineMath math="(0,-2)" />. Segitiga yang terbentuk bersama kedua sumbu siku-siku dengan sisi 3 dan 2, sehingga luasnya <InlineMath math="\tfrac12\cdot3\cdot2=3" />. Pernyataan keempat benar.
+**Tes kedua hanya diberikan kepada <InlineMath math="90+180=270" /> orang yang positif di tes pertama**. Karena hasil kedua tes saling bebas untuk orang dengan kondisi yang sama, persentase positifnya sama seperti di tes pertama.
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.
+<BlockMath math="\begin{aligned}
+\text{sakit dan positif dua kali}&=90\%\times90=81\\
+\text{sehat dan positif dua kali}&=20\%\times180=36
+\end{aligned}" />
+
+# Peluang bersyarat
+
+Orang yang dua kali positif ada <InlineMath math="81+36=117" />, dan yang sakit di antaranya <InlineMath math="81" />.
+
+<BlockMath math="P(\text{sakit}\mid\text{dua kali positif})=\frac{81}{117}=\frac{9}{13}" />
+
+Cek dengan rumus peluang tanpa memakai <InlineMath math="1{.}000" /> orang: <InlineMath math="\tfrac{0{,}1\times0{,}9^2}{0{,}1\times0{,}9^2+0{,}9\times0{,}2^2}=\tfrac{0{,}081}{0{,}117}=\tfrac{9}{13}" />. Nilainya lebih besar daripada peluang setelah satu tes positif, dan itu masuk akal karena **tes kedua menyaring lebih banyak orang sehat**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\tfrac13" /> **berhenti setelah tes pertama**: <InlineMath math="\tfrac{90}{90+180}" />.
+- <InlineMath math="\tfrac{9}{29}" /> menghitung orang sehat yang positif di tes kedua dari seluruh <InlineMath math="900" /> orang sehat, sehingga mendapat <InlineMath math="\tfrac{81}{81+180}" />.
+- <InlineMath math="\tfrac{81}{100}" /> adalah peluang dua kali positif jika sakit, yaitu kebalikan dari peluang yang ditanya.
+- <InlineMath math="\tfrac{81}{85}" /> mengabaikan bahwa hanya <InlineMath math="10\%" /> penduduk yang sakit: <InlineMath math="\tfrac{0{,}81}{0{,}81+0{,}04}" />.
+
+Jadi, peluang orang yang dua kali positif itu benar-benar mengidap penyakit adalah <InlineMath math="\tfrac{9}{13}" />.

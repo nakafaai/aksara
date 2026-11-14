@@ -1,19 +1,44 @@
-Let <InlineMath math="t=2^x" />, so <InlineMath math="t>0" /> and <InlineMath math="2^{-x}=\frac1t" />. The function becomes <InlineMath math="f(x)=t+\frac1t" />, **a positive number plus its reciprocal**.
+You're after the probability that the product is divisible by <InlineMath math="4" /> but not by <InlineMath math="8" />. That condition means **the product contains exactly two factors of <InlineMath math="2" />**. Here's the plan: sort the numbers by how many factors of <InlineMath math="2" /> they have, find the pairs whose factors add up to exactly two, then divide by the number of all pairs.
 
-# The minimum value of the function
+# The sample space
 
-The difference <InlineMath math="f(x)-2" /> can be written as a square.
+The two numbers are taken at the same time, so order doesn't matter and **the sample space is made of combinations**.
 
-<BlockMath math="t+\frac1t-2=\frac{t^2-2t+1}{t}=\frac{(t-1)^2}{t}\ge0" />
+<BlockMath math="n(S)=\binom{20}{2}=\frac{20\cdot19}{2}=190" />
 
-The numerator is a square and the denominator is positive, so **<InlineMath math="f(x)\ge2" /> for every <InlineMath math="x" />**. The second statement is true. Equality holds only when <InlineMath math="t=1" />, that is, <InlineMath math="x=0" />. So the equation <InlineMath math="f(x)=2" /> has only one solution, and the first statement is false.
+# Grouping by factors of two
 
-# The other two statements
+The number of factors of <InlineMath math="2" /> in a product is the sum of the factors of <InlineMath math="2" /> in its two numbers. So for each number you only need to record how many times it can be divided by <InlineMath math="2" />.
 
-Square <InlineMath math="f(1)" />. Its middle term is <InlineMath math="2\cdot2^1\cdot2^{-1}=2" />, so **subtracting 2 leaves <InlineMath math="f(2)" />**.
+| Group | Members | Factors of two | Size |
+| :---: | :---: | :---: | :---: |
+| odd | <InlineMath math="1, 3, 5, \ldots, 19" /> | <InlineMath math="0" /> | <InlineMath math="10" /> |
+| plain even | <InlineMath math="2, 6, 10, 14, 18" /> | <InlineMath math="1" /> | <InlineMath math="5" /> |
+| multiples of four only | <InlineMath math="4, 12, 20" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
+| multiples of eight | <InlineMath math="8, 16" /> | <InlineMath math="3" /> or more | <InlineMath math="2" /> |
 
-<BlockMath math="\bigl(f(1)\bigr)^2-2=\left(2+\tfrac12\right)^2-2=4+2+\tfrac14-2=4\tfrac14=f(2)" />
+Notice that <InlineMath math="8" /> and <InlineMath math="16" /> **don't belong to the multiples of four only**, because they already contain three or more factors of <InlineMath math="2" />.
 
-The third statement is true. For the fourth statement one counterexample is enough: <InlineMath math="f(1)=2.5" />, while <InlineMath math="2f(0)=2\cdot2=4" />. The factor 2 multiplies only the term <InlineMath math="2^x" />, while the term <InlineMath math="2^{-x}" /> is halved. The fourth statement is false.
+# Counting the right pairs
 
-So the first statement is **false**, the second is **true**, the third is **true**, and the fourth is **false**.
+The factors of <InlineMath math="2" /> add up to exactly two in only two ways: one odd number with one number from the multiples of four only, or **two numbers from the plain even group**, such as <InlineMath math="2\cdot6=12" />.
+
+<BlockMath math="\begin{aligned}
+\text{odd and multiple of four only}&=10\cdot3=30\\
+\text{two plain even}&=\binom{5}{2}=10\\
+n(A)&=30+10=40\\
+P(A)&=\frac{40}{190}=\frac{4}{19}
+\end{aligned}" />
+
+Check it another way. The pairs whose product is divisible by <InlineMath math="4" /> number <InlineMath math="95" />, and those divisible by <InlineMath math="8" /> number <InlineMath math="55" />. The difference is <InlineMath math="95-55=40" />, matching the count above.
+
+# The tempting wrong options
+
+Each other option comes from **a forgotten group or a mix-up about order**.
+
+- <InlineMath math="\frac{3}{19}" /> comes from forgetting the pairs of two plain even numbers, like <InlineMath math="2" /> and <InlineMath math="6" />, so only <InlineMath math="30" /> pairs get counted.
+- <InlineMath math="\frac{5}{19}" /> comes from counting the plain even pairs in order, <InlineMath math="5\cdot4=20" />, even though taking two at once ignores order.
+- <InlineMath math="\frac{6}{19}" /> comes from treating <InlineMath math="8" /> and <InlineMath math="16" /> as having only two factors of <InlineMath math="2" />, which makes the odd and multiple of four pairs <InlineMath math="10\cdot5=50" />.
+- <InlineMath math="\frac{8}{19}" /> comes from counting the favorable pairs in order, <InlineMath math="80" />, while keeping <InlineMath math="190" /> as the sample space.
+
+So the probability that the product is divisible by <InlineMath math="4" /> but not by <InlineMath math="8" /> is <InlineMath math="\frac{4}{19}" />.

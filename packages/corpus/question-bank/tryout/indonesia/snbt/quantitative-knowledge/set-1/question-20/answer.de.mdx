@@ -1,25 +1,35 @@
-Die Angabe, dass das Produkt gerade ist, macht dies zu einer **bedingten Wahrscheinlichkeit**. Der Ergebnisraum besteht nicht mehr aus allen 36 Paaren, sondern nur aus den Paaren mit geradem Produkt.
+Das Wort MAMALIA hat <InlineMath math="3" />-mal den Buchstaben A, <InlineMath math="2" />-mal M und je einmal L und I. Zwei Bedingungen gelten gleichzeitig: **keine zwei A nebeneinander und keine zwei M nebeneinander**. Der Plan: Erfülle zuerst die Bedingung für A mit der Lückenmethode, dann wirf die Anordnungen weg, in denen die beiden M noch zusammenhängen.
 
-# Der neue Ergebnisraum
+# Die Bedingung für A erfüllen
 
-Ein Produkt zweier Zahlen ist genau dann ungerade, wenn beide Zahlen ungerade sind. Von den 36 Paaren sind <InlineMath math="3\times3=9" /> ungerade-ungerade, also **haben 27 Paare ein gerades Produkt**. Weil die Würfel fair sind, ist jedes Paar gleich wahrscheinlich.
+Ordne zuerst die vier Buchstaben ohne A an, also M, M, L und I. Die beiden M sind gleich, daher gibt es
 
-# Das gesuchte Ereignis
+<BlockMath math="\frac{4!}{2!}=12" />
 
-Es gibt 15 Paare, deren Summe mindestens 8 ist.
+Anordnungen. Diese vier Buchstaben bilden <InlineMath math="5" /> Lücken, beide Enden mitgezählt. Setz jedes A in eine andere Lücke, dann **stehen nie zwei A nebeneinander**. Die drei A sind gleich, also wählst du einfach <InlineMath math="3" /> der <InlineMath math="5" /> Lücken.
 
-| Summe | Paare | Anzahl |
-| :---: | :---: | :---: |
-| 8 | (2,6), (3,5), (4,4), (5,3), (6,2) | 5 |
-| 9 | (3,6), (4,5), (5,4), (6,3) | 4 |
-| 10 | (4,6), (5,5), (6,4) | 3 |
-| 11 | (5,6), (6,5) | 2 |
-| 12 | (6,6) | 1 |
+<BlockMath math="12\cdot\binom{5}{3}=12\cdot10=120" />
 
-Von diesen 15 Paaren **fallen die mit zwei ungeraden Augenzahlen weg**: (3,5), (5,3) und (5,5). Es bleiben 12 Paare.
+# Anordnungen mit zusammenhängenden M streichen
 
-<BlockMath math="P=\frac{12}{27}=\frac49" />
+Zähle unter diesen <InlineMath math="120" /> Anordnungen die, in denen die beiden M nebeneinander stehen. Das passiert, wenn die beiden M unter den vier Buchstaben benachbart sind **und** kein A zwischen sie kommt.
 
-Der Wert <InlineMath math="\tfrac13=\tfrac{12}{36}" /> vergisst, den Ergebnisraum zu ändern. Der Wert <InlineMath math="\tfrac59=\tfrac{15}{27}" /> vergisst, die drei ungeraden Paare aus dem Ereignis zu nehmen. Der Wert <InlineMath math="\tfrac23=\tfrac{12}{18}" /> nimmt an, dass nur die Hälfte der Paare ein gerades Produkt hat. Der Wert <InlineMath math="\tfrac45=\tfrac{12}{15}" /> vertauscht die Bedingung: Er ist die Wahrscheinlichkeit für ein gerades Produkt, wenn die Summe mindestens 8 ist.
+Klebe MM zu einem Block zusammen und ordne diesen Block mit L und I an: Das geht auf <InlineMath math="3!=6" /> Arten. Jetzt gibt es <InlineMath math="4" /> Lücken um diese drei Einheiten, und die Lücke im Block MM **darf nicht benutzt werden**, weil ein A dort die beiden M trennen würde. Wähle <InlineMath math="3" /> der <InlineMath math="4" /> Lücken.
 
-Die gesuchte Wahrscheinlichkeit ist also <InlineMath math="\tfrac49" />.
+<BlockMath math="6\cdot\binom{4}{3}=6\cdot4=24" />
+
+Also erfüllen
+
+<BlockMath math="120-24=96" />
+
+Anordnungen beide Bedingungen.
+
+# Das Ergebnis prüfen
+
+Das Wort MAMALIA selbst erfüllt die Bedingung, denn die Folge M, A, M, A, L, I, A hat keine zwei gleichen Buchstaben nebeneinander. Wenn du alle <InlineMath math="420" /> Anordnungen einzeln durchgehst, bleiben ebenfalls **genau <InlineMath math="96" /> Anordnungen** übrig.
+
+# Typische Fehler
+
+Die Antwort <InlineMath math="120" /> entsteht, wenn du **die Bedingung für M vergisst**. Die Antwort <InlineMath math="192" /> entsteht, wenn du die beiden M als verschiedene Buchstaben behandelst und so jede Anordnung doppelt zählst. Die Antwort <InlineMath math="420" /> ist die Anzahl aller Anordnungen ganz ohne Bedingung.
+
+Also gibt es <InlineMath math="96" /> Anordnungen ohne zwei gleiche Buchstaben nebeneinander.

@@ -1,17 +1,34 @@
-Bilangan satu, dua, dan tiga angka bisa dihitung sekaligus jika setiap bilangan ditulis **sebagai tiga angka dengan nol di depan**, misalnya 5 menjadi 005 dan 42 menjadi 042. Penulisan ini tidak menambah atau menghapus angka 7.
+Hitung dulu semua lintasan yang melewati <InlineMath math="P" />, lalu kurangkan lintasan yang memakai ruas tertutup. Yang ditutup adalah **ruas jalan, bukan persimpangan**, jadi lintasan yang hanya singgah di <InlineMath math="(3,2)" /> atau <InlineMath math="(4,2)" /> tetap boleh.
 
-# Menghitung susunan tiga angka
+# Lintasan yang melewati titik P
 
-Setiap posisi boleh diisi angka 0 sampai 9 kecuali 7, jadi ada 9 pilihan untuk setiap posisi. Ketiga posisi **dipilih bebas**.
+Lintasan terpendek dari satu titik ke titik lain terdiri atas sejumlah langkah ke kanan dan ke atas, dan banyaknya sama dengan **banyak cara memilih posisi langkah ke atas**. Setiap bagian pertama dapat disambung dengan setiap bagian kedua, jadi kalikan.
 
-<BlockMath math="9\times9\times9=729" />
+<BlockMath math="\begin{aligned}
+A\to P&:\ 2 \text{ kanan},\ 1 \text{ atas},\quad \binom{3}{1}=3\\
+P\to B&:\ 4 \text{ kanan},\ 3 \text{ atas},\quad \binom{7}{3}=35\\
+\text{melewati } P&:\ 3\cdot 35=105
+\end{aligned}" />
 
-Hitungan ini memuat susunan 000, yang bukan bilangan bulat positif.
+# Lintasan yang memakai ruas tertutup
 
-<BlockMath math="729-1=728" />
+Lintasan memakai ruas tertutup jika ia melangkah dari <InlineMath math="(3,2)" /> langsung ke <InlineMath math="(4,2)" />. Pecah lintasan seperti itu menjadi tiga bagian dan **kalikan banyak cara setiap bagian**.
+
+<BlockMath math="\begin{aligned}
+A\to P&:\ 3\\
+P\to(3,2)&:\ 1 \text{ kanan},\ 1 \text{ atas},\quad \binom{2}{1}=2\\
+(4,2)\to B&:\ 2 \text{ kanan},\ 2 \text{ atas},\quad \binom{4}{2}=6\\
+\text{memakai ruas tertutup}&:\ 3\cdot 2\cdot 6=36
+\end{aligned}" />
+
+Banyak lintasan yang boleh dipilih adalah <InlineMath math="105-36=69" />.
+
+# Memeriksa dengan cara lain
+
+Bagi lintasan yang melewati <InlineMath math="P" /> menurut apakah ia singgah di <InlineMath math="(3,2)" />. Lintasan yang singgah di <InlineMath math="(3,2)" /> ada <InlineMath math="3\cdot 2\cdot\binom{5}{2}=60" />, jadi yang tidak singgah ada <InlineMath math="105-60=45" />, dan semuanya aman. Dari <InlineMath math="(3,2)" />, lintasan yang aman **harus naik dulu ke <InlineMath math="(3,3)" />**, lalu menuju <InlineMath math="B" /> dengan <InlineMath math="\binom{4}{1}=4" /> cara, jadi ada <InlineMath math="3\cdot 2\cdot 4=24" /> lintasan aman yang singgah di <InlineMath math="(3,2)" />. Totalnya <InlineMath math="45+24=69" />, sama dengan hasil tadi.
 
 # Memeriksa pilihan lain
 
-Nilai 729 lupa membuang 000. Nilai 648 hanya menghitung bilangan tiga angka, <InlineMath math="8\times9\times9" />, dan melupakan bilangan satu dan dua angka. Nilai 700 mengurangkan 100 bilangan untuk setiap posisi angka 7 tanpa memperhatikan bilangan yang memuat angka 7 lebih dari sekali. Nilai 810 hanya melarang angka 7 di dua posisi, <InlineMath math="9\times9\times10" />.
+Pilihan <InlineMath math="105" /> **mengabaikan ruas yang ditutup**. Pilihan <InlineMath math="36" /> berhenti pada banyak lintasan yang harus dibuang. Pilihan <InlineMath math="45" /> muncul kalau persimpangan <InlineMath math="(3,2)" /> dianggap ikut ditutup, atau kalau yang dikurangkan adalah semua <InlineMath math="10\cdot 6=60" /> lintasan dari <InlineMath math="A" /> yang memakai ruas itu, termasuk yang tidak melewati <InlineMath math="P" />. Pilihan <InlineMath math="51" /> muncul kalau persimpangan <InlineMath math="(4,2)" /> dianggap ditutup, sehingga yang dibuang <InlineMath math="3\cdot 3\cdot 6=54" /> lintasan.
 
-Jadi, banyak bilangan yang dimaksud adalah **728**.
+Jadi, kurir itu dapat memilih <InlineMath math="69" /> lintasan terpendek yang berbeda.

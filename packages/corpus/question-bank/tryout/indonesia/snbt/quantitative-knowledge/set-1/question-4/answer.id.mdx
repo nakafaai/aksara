@@ -1,32 +1,48 @@
-Keempat pernyataan dapat diperiksa tanpa mencari akar satu per satu. Pakai **jumlah dan hasil kali akar** dari koefisien persamaan.
+Setiap pernyataan perlu diperiksa sendiri, dan dua di antaranya bergantung pada **bilangan yang dikecualikan dari daerah asal**. Rencananya: susun <InlineMath math="f\circ f" /> beserta daerah asalnya, cari daerah hasilnya, cari <InlineMath math="f^{-1}" /> beserta daerah asalnya, lalu cari titik potong grafik <InlineMath math="f" /> dan <InlineMath math="f^{-1}" />.
 
-<BlockMath math="p+q=6,\qquad pq=k" />
+# Menyusun fungsi komposisi
 
-# Menentukan nilai k
-
-Selisih akar terhubung dengan jumlah dan hasil kali akar melalui identitas kuadrat selisih.
+Nilai <InlineMath math="f(f(x))" /> ada hanya jika <InlineMath math="f(x)" /> ada dan <InlineMath math="f(x)" /> boleh dimasukkan lagi ke <InlineMath math="f" />. Jadi **<InlineMath math="x\neq-1" /> dan <InlineMath math="f(x)\neq-1" />**. Syarat kedua gagal hanya di <InlineMath math="x=0" />, karena <InlineMath math="3x-1=-(x+1)" /> memberi <InlineMath math="x=0" />.
 
 <BlockMath math="\begin{aligned}
-(p-q)^2&=(p+q)^2-4pq\\
-\left(2\sqrt2\right)^2&=6^2-4k\\
-8&=36-4k\\
-k&=7
+f(f(x))&=\frac{3\cdot\frac{3x-1}{x+1}-1}{\frac{3x-1}{x+1}+1}=\frac{3(3x-1)-(x+1)}{(3x-1)+(x+1)}\\
+&=\frac{8x-4}{4x}=\frac{2x-1}{x}
 \end{aligned}" />
 
-Pernyataan <InlineMath math="k=7" /> **benar**. Diskriminannya <InlineMath math="36-28=8>0" />, jadi kedua akar memang real.
+Rumus ini benar, tetapi hanya untuk <InlineMath math="x\neq-1" /> dan <InlineMath math="x\neq0" />. Pernyataan pertama mencakup <InlineMath math="x=-1" />, padahal <InlineMath math="f(-1)" /> tidak terdefinisi. Rumus memberi <InlineMath math="\frac{-3}{-1}=3" /> di titik itu, tetapi <InlineMath math="f(f(-1))" /> tidak ada. Jadi **pernyataan pertama salah**.
 
-# Memeriksa ketiga pernyataan lain
+# Mencari daerah hasil komposisi
 
-Dengan <InlineMath math="p+q=6" /> dan <InlineMath math="pq=7" />, nyatakan setiap bentuk dalam jumlah dan hasil kali akar.
+Tulis <InlineMath math="f(f(x))=2-\frac1x" />. Karena <InlineMath math="x\neq0" />, nilai <InlineMath math="\frac1x" /> tidak pernah nol, jadi hasilnya tidak pernah <InlineMath math="2" />. Karena <InlineMath math="x\neq-1" />, hasil <InlineMath math="2-\frac{1}{-1}=3" /> juga tidak pernah muncul, sebab hanya <InlineMath math="x=-1" /> yang memberi <InlineMath math="3" />. Nilai <InlineMath math="y" /> lain selalu tercapai oleh <InlineMath math="x=\frac{1}{2-y}" />, yang bukan <InlineMath math="0" /> dan bukan <InlineMath math="-1" /> ketika <InlineMath math="y\neq2" /> dan <InlineMath math="y\neq3" />. Jadi **daerah hasil <InlineMath math="f\circ f" /> adalah semua bilangan real kecuali <InlineMath math="2" /> dan <InlineMath math="3" />**, dan pernyataan kedua benar.
+
+# Mencari invers dan daerah asalnya
+
+Tulis <InlineMath math="y=f(x)" /> lalu nyatakan <InlineMath math="x" /> dalam <InlineMath math="y" />.
 
 <BlockMath math="\begin{aligned}
-p^2+q^2&=(p+q)^2-2pq=36-14=22\\
-\frac1p+\frac1q&=\frac{p+q}{pq}=\frac67\\
-p^3+q^3&=(p+q)^3-3pq(p+q)=216-126=90
+y(x+1)&=3x-1\\
+x(y-3)&=-1-y\\
+x&=\frac{y+1}{3-y}
 \end{aligned}" />
 
-Pernyataan <InlineMath math="p^2+q^2=22" /> **benar**. Pernyataan <InlineMath math="\frac1p+\frac1q=\frac76" /> salah karena pecahannya terbalik, nilai yang benar <InlineMath math="\frac67" />. Pernyataan <InlineMath math="p^3+q^3=132" /> salah karena nilainya 90. Angka 132 muncul dari <InlineMath math="(p+q)(p^2+q^2)=6\times22" />, yang melupakan suku <InlineMath math="-pq" /> dalam <InlineMath math="p^3+q^3=(p+q)(p^2-pq+q^2)" />.
+Jadi <InlineMath math="f^{-1}(x)=\frac{x+1}{3-x}" />. Daerah asal invers **sama dengan daerah hasil fungsi asalnya**. Nilai <InlineMath math="3" /> tidak pernah dicapai <InlineMath math="f" />, karena <InlineMath math="3x-1=3x+3" /> mustahil. Sebaliknya, <InlineMath math="-1" /> dicapai, yaitu <InlineMath math="f(0)=-1" />, sehingga <InlineMath math="f^{-1}(-1)=0" /> ada. Daerah asal <InlineMath math="f^{-1}" /> adalah semua bilangan real kecuali <InlineMath math="3" />, jadi pernyataan keempat salah.
 
-Sebagai cek, akar-akarnya adalah <InlineMath math="3+\sqrt2" /> dan <InlineMath math="3-\sqrt2" />. Kuadrat keduanya berjumlah <InlineMath math="(11+6\sqrt2)+(11-6\sqrt2)=22" />.
+# Mencari titik potong grafik
 
-Jadi, pernyataan pertama dan kedua **benar**, sedangkan pernyataan ketiga dan keempat **salah**.
+Titik potong memenuhi <InlineMath math="f(x)=f^{-1}(x)" /> dengan <InlineMath math="x\neq-1" /> dan <InlineMath math="x\neq3" />. Kalikan silang kedua pecahan.
+
+<BlockMath math="\begin{aligned}
+\frac{3x-1}{x+1}&=\frac{x+1}{3-x}\\
+(3x-1)(3-x)&=(x+1)^2\\
+-3x^2+10x-3&=x^2+2x+1\\
+4x^2-8x+4&=0\\
+4(x-1)^2&=0
+\end{aligned}" />
+
+Satu-satunya penyelesaian adalah <InlineMath math="x=1" />, dan <InlineMath math="f(1)=\frac22=1" />. Kedua grafik **berpotongan tepat di titik <InlineMath math="(1,1)" />**, jadi pernyataan ketiga benar.
+
+# Memeriksa hasil
+
+Uji rumus komposisi di <InlineMath math="x=2" />. Hitungan langsung memberi <InlineMath math="f(2)=\frac53" /> dan <InlineMath math="f\left(\frac53\right)=\frac{4}{\frac83}=\frac32" />. Rumus <InlineMath math="\frac{2x-1}{x}" /> juga memberi <InlineMath math="\frac32" />, jadi **rumusnya cocok di titik yang sah**. Uji juga inversnya: <InlineMath math="f^{-1}(2)=\frac{2+1}{3-2}=3" />, dan memang <InlineMath math="f(3)=\frac{8}{4}=2" />.
+
+Jadi, pernyataan pertama salah, pernyataan kedua benar, pernyataan ketiga benar, dan pernyataan keempat salah.

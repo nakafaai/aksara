@@ -1,21 +1,41 @@
-Tulis <InlineMath math="n^2+n=n(n+1)" />. Bentuk ini adalah **hasil kali dua bilangan bulat berurutan**, jadi salah satu faktornya pasti genap. Karena <InlineMath math="6=2\times3" />, syarat habis dibagi 6 tinggal bergantung pada faktor 3.
+Dua digit terakhir sebuah bilangan adalah **sisanya jika dibagi <InlineMath math="100" />**. Karena <InlineMath math="100=4\times25" /> dan <InlineMath math="4" /> serta <InlineMath math="25" /> tidak punya faktor persekutuan selain <InlineMath math="1" />, kamu bisa mencari sisa pembagian oleh <InlineMath math="4" /> dan oleh <InlineMath math="25" /> secara terpisah, lalu menggabungkannya. Tulisan <InlineMath math="a\equiv b\pmod{25}" /> artinya <InlineMath math="a" /> dan <InlineMath math="b" /> punya sisa yang sama jika dibagi <InlineMath math="25" />.
 
-# Syarat faktor tiga
+# Mengecilkan pangkat
 
-Bilangan prima 3 membagi <InlineMath math="n(n+1)" /> jika dan hanya jika 3 membagi <InlineMath math="n" /> atau 3 membagi <InlineMath math="n+1" />. Kondisi kedua berarti <InlineMath math="n" /> **bersisa 2 jika dibagi 3**.
+Mulai dari pangkat dua yang sisanya mudah dihitung. Karena <InlineMath math="2^{10}=1{.}024=41\times25-1" />, berlaku <InlineMath math="2^{10}\equiv-1\pmod{25}" />, sehingga <InlineMath math="2^{20}\equiv1\pmod{25}" />. Jadi sisa pangkat dua jika dibagi <InlineMath math="25" /> **berulang setiap <InlineMath math="20" /> langkah pangkat**, dan kamu cukup tahu sisa pangkatnya jika dibagi <InlineMath math="20" />.
 
-| Sisa <InlineMath math="n" /> jika dibagi 3 | Contoh | <InlineMath math="n(n+1)" /> habis dibagi 3? |
-| :---: | :---: | :---: |
-| 0 | <InlineMath math="3\times4=12" /> | Ya |
-| 1 | <InlineMath math="1\times2=2" /> | Tidak |
-| 2 | <InlineMath math="2\times3=6" /> | Ya |
+Cari sisa <InlineMath math="4^{2026}" /> jika dibagi <InlineMath math="20" /> lewat pembagi <InlineMath math="4" /> dan <InlineMath math="5" />. Bilangan <InlineMath math="4^{2026}" /> jelas kelipatan <InlineMath math="4" />. Untuk pembagi <InlineMath math="5" />, pakai <InlineMath math="4\equiv-1\pmod 5" />, dan pangkat genap membuat tanda minusnya hilang.
 
-# Menghitung bilangan
+<BlockMath math="\begin{aligned}
+4^{2026}&\equiv(-1)^{2026}=1\pmod 5\\
+4^{2026}&\equiv0\pmod 4
+\end{aligned}" />
 
-Bilangan kelipatan 3 dari 1 sampai 100 adalah 3, 6, sampai 99, yaitu 33 bilangan. Bilangan bersisa 2 adalah 2, 5, sampai 98, yaitu <InlineMath math="\frac{98-2}{3}+1=33" /> bilangan.
+Dari <InlineMath math="0" /> sampai <InlineMath math="19" />, bilangan yang kelipatan <InlineMath math="4" /> dan bersisa <InlineMath math="1" /> jika dibagi <InlineMath math="5" /> hanya <InlineMath math="16" />. Jadi <InlineMath math="4^{2026}=20k+16" /> untuk suatu bilangan bulat <InlineMath math="k\ge0" />. **Pangkat genap memberi sisa <InlineMath math="16" />**, bukan <InlineMath math="4" /> seperti pada pangkat ganjil.
 
-<BlockMath math="33+33=66" />
+# Sisa terhadap dua puluh lima dan empat
 
-Nilai 33 hanya menghitung kelipatan 3. Nilai 67 memakai sisa 1, padahal <InlineMath math="n+1" /> habis dibagi 3 berarti <InlineMath math="n" /> bersisa 2. Nilai 50 hanya menghitung bilangan genap, padahal faktor 2 sudah selalu ada. Nilai 100 menganggap hasil kali dua bilangan berurutan selalu habis dibagi 6, padahal yang selalu habis dibagi 6 adalah hasil kali tiga bilangan berurutan.
+Sekarang pakai bentuk pangkat tadi. Faktor <InlineMath math="2^{20}" /> bersisa <InlineMath math="1" />, jadi faktor itu **tidak mengubah sisa**.
 
-Jadi, banyak bilangan <InlineMath math="n" /> yang memenuhi adalah **66**.
+<BlockMath math="\begin{aligned}
+N=2^{20k+16}&=\left(2^{20}\right)^{k}\times2^{16}\\
+&\equiv1^{k}\times65{.}536\\
+&\equiv11\pmod{25}
+\end{aligned}" />
+
+Baris terakhir benar karena <InlineMath math="65{.}536=2{.}621\times25+11" />. Untuk pembagi <InlineMath math="4" />, pangkat <InlineMath math="N" /> jauh lebih besar dari <InlineMath math="2" />, jadi <InlineMath math="N" /> memuat faktor <InlineMath math="2^2=4" /> dan sisanya <InlineMath math="0" />.
+
+# Menggabungkan kedua sisa
+
+Dari <InlineMath math="0" /> sampai <InlineMath math="99" />, bilangan yang bersisa <InlineMath math="11" /> jika dibagi <InlineMath math="25" /> hanya <InlineMath math="11" />, <InlineMath math="36" />, <InlineMath math="61" />, dan <InlineMath math="86" />. Dari keempatnya, yang habis dibagi <InlineMath math="4" /> hanya <InlineMath math="36" />. Syaratnya **harus kelipatan empat, bukan sekadar genap**, karena <InlineMath math="86" /> genap tetapi <InlineMath math="86=4\times21+2" />.
+
+Cek dengan jalur kedua. Sisa pangkat dua jika dibagi <InlineMath math="100" /> berulang setiap <InlineMath math="20" /> langkah mulai dari <InlineMath math="2^2" />, sebab <InlineMath math="2^{22}=4{.}194{.}304" /> berakhiran <InlineMath math="04" />, sama seperti <InlineMath math="2^2" />. Pangkat <InlineMath math="20k+16" /> paling kecil <InlineMath math="16" />, jadi <InlineMath math="N" /> berakhiran sama dengan <InlineMath math="2^{16}=65{.}536" />, yaitu <InlineMath math="36" />. Hasilnya cocok.
+
+# Jebakan pada pilihan lain
+
+- <InlineMath math="16" /> muncul jika kamu memakai pola pangkat ganjil, <InlineMath math="4^{2026}\equiv4\pmod{20}" />, lalu menghitung <InlineMath math="2^4=16" />.
+- <InlineMath math="64" /> muncul jika pangkat dikecilkan dengan digit satuan <InlineMath math="4^{2026}" />, yaitu <InlineMath math="6" />, seolah siklusnya <InlineMath math="10" />, lalu menghitung <InlineMath math="2^6=64" />.
+- <InlineMath math="76" /> muncul jika kamu menganggap <InlineMath math="4^{2026}" /> kelipatan <InlineMath math="20" /> hanya karena kelipatan <InlineMath math="4" />. Padahal <InlineMath math="4^{2026}" /> bersisa <InlineMath math="1" /> jika dibagi <InlineMath math="5" />, jadi **pangkatnya bukan kelipatan dua puluh**, dan bentuk <InlineMath math="2^{20k}" /> yang berakhiran <InlineMath math="76" /> tidak berlaku.
+- <InlineMath math="96" /> muncul jika kamu menulis <InlineMath math="4^{2026}=2^{4052}" /> lalu mengecilkan <InlineMath math="4052" /> dengan sisa pembagian oleh <InlineMath math="20" />, yaitu <InlineMath math="12" />, sehingga mendapat <InlineMath math="2^{12}=4{.}096" />. Yang dibutuhkan adalah sisa <InlineMath math="2^{4052}" /> jika dibagi <InlineMath math="20" />, bukan sisa <InlineMath math="4052" />.
+
+Jadi, dua digit terakhir bilangan <InlineMath math="N=2^{4^{2026}}" /> adalah <InlineMath math="36" />.

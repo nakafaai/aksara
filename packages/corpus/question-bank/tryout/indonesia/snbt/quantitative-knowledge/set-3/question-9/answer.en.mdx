@@ -1,15 +1,43 @@
-The question asks for the value of the expression <InlineMath math="2x-y" />, **not for <InlineMath math="x" /> and <InlineMath math="y" /> separately**. A statement can be sufficient even if it does not fix both unknowns.
+You're given the third term, not the first. The plan: show that the rule repeats every four steps, find <InlineMath math="a_1" /> and <InlineMath math="a_2" />, add up one period, and then **add the leftover terms** that don't fill a whole period.
 
-# Statement one alone
+# A rule that repeats every four steps
 
-The left side of statement (1) is **twice the expression asked for**.
+Write the rule as the function <InlineMath math="f(x)=\tfrac{x-1}{x+1}" />. Apply <InlineMath math="f" /> twice, and simplify by multiplying the numerator and the denominator by <InlineMath math="x+1" />.
 
-<BlockMath math="4x-2y=2(2x-y)=10\quad\Rightarrow\quad 2x-y=5" />
+<BlockMath math="\begin{aligned}
+f\big(f(x)\big)&=\frac{\frac{x-1}{x+1}-1}{\frac{x-1}{x+1}+1}=\frac{(x-1)-(x+1)}{(x-1)+(x+1)}=\frac{-2}{2x}=-\frac{1}{x}\\
+f\Big(f\big(f(f(x))\big)\Big)&=-\frac{1}{-\frac{1}{x}}=x
+\end{aligned}" />
 
-The value of <InlineMath math="2x-y" /> is unique, so statement (1) alone is sufficient, even though <InlineMath math="x" /> and <InlineMath math="y" /> themselves are still unknown.
+So <InlineMath math="a_{n+4}=a_n" /> for every <InlineMath math="n" />. That means **the sequence repeats with period <InlineMath math="4" />**, so <InlineMath math="a_1=a_5" /> and <InlineMath math="a_2=a_6" />. This step is valid as long as no term equals <InlineMath math="-1" /> or <InlineMath math="0" />, and the next section checks that.
 
-# Statement two alone
+# Finding the first and second terms
 
-The pairs <InlineMath math="(x,y)=(3,4)" /> and <InlineMath math="(4,3)" /> both satisfy <InlineMath math="x+y=7" />, but they give <InlineMath math="2x-y=2" /> and <InlineMath math="2x-y=5" />. The sum <InlineMath math="x+y" /> **does not fix the weighted difference** <InlineMath math="2x-y" />, so statement (2) alone is not sufficient.
+Work forward from <InlineMath math="a_3=-\tfrac{1}{2}" />.
 
-Combining both statements does give <InlineMath math="x=4" /> and <InlineMath math="y=3" />, but that is not needed. The answer is that **statement (1) alone is sufficient**, but statement (2) alone is not.
+<BlockMath math="\begin{aligned}
+a_4&=\frac{-\frac{1}{2}-1}{-\frac{1}{2}+1}=\frac{-\frac{3}{2}}{\frac{1}{2}}=-3\\
+a_5&=\frac{-3-1}{-3+1}=\frac{-4}{-2}=2\\
+a_6&=\frac{2-1}{2+1}=\frac{1}{3}
+\end{aligned}" />
+
+Since the period is <InlineMath math="4" />, you get <InlineMath math="a_1=2" /> and <InlineMath math="a_2=\tfrac{1}{3}" />. Check forward: <InlineMath math="f(2)=\tfrac{1}{3}" /> and <InlineMath math="f\left(\tfrac{1}{3}\right)=\tfrac{-2/3}{4/3}=-\tfrac{1}{2}" />, which matches <InlineMath math="a_3" />. Among the four terms <InlineMath math="2" />, <InlineMath math="\tfrac{1}{3}" />, <InlineMath math="-\tfrac{1}{2}" />, <InlineMath math="-3" />, **none equals <InlineMath math="-1" />**, so every term is defined.
+
+# The periods and the leftover terms
+
+One period adds up to <InlineMath math="2+\tfrac{1}{3}-\tfrac{1}{2}-3=-\tfrac{7}{6}" />. Since <InlineMath math="2026=4\cdot 506+2" />, there are <InlineMath math="506" /> full periods from <InlineMath math="a_1" /> to <InlineMath math="a_{2024}" />, followed by **two leftover terms** <InlineMath math="a_{2025}=a_1=2" /> and <InlineMath math="a_{2026}=a_2=\tfrac{1}{3}" />.
+
+<BlockMath math="\begin{aligned}
+a_1+\cdots+a_{2026}&=506\cdot\left(-\frac{7}{6}\right)+2+\frac{1}{3}\\
+&=-\frac{1771}{3}+\frac{7}{3}=-\frac{1764}{3}=-588
+\end{aligned}" />
+
+# Checking with a different grouping
+
+Count <InlineMath math="507" /> full periods up to <InlineMath math="a_{2028}" /> instead, and subtract the two extra terms <InlineMath math="a_{2027}+a_{2028}=a_3+a_4=-\tfrac{7}{2}" />. That gives <InlineMath math="507\cdot\left(-\tfrac{7}{6}\right)+\tfrac{7}{2}=-\tfrac{1183}{2}+\tfrac{7}{2}=-588" />, **the same as the first count**.
+
+# Checking the other options
+
+The option <InlineMath math="-\tfrac{1771}{3}" /> adds only the <InlineMath math="506" /> periods and **forgets the two leftover terms**. The option <InlineMath math="-590" /> adds only <InlineMath math="a_{2026}=\tfrac{1}{3}" /> and forgets <InlineMath math="a_{2025}=2" />. The option <InlineMath math="-\tfrac{1183}{2}" /> rounds up to <InlineMath math="507" /> periods, so it also adds <InlineMath math="a_{2027}" /> and <InlineMath math="a_{2028}" />. The option <InlineMath math="\tfrac{1}{3}" /> is just the term <InlineMath math="a_{2026}" />, not the sum up to that term.
+
+So <InlineMath math="a_1+a_2+\cdots+a_{2026}=-588" />.

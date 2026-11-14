@@ -1,21 +1,40 @@
-Triangle <InlineMath math="DEF" /> is tilted relative to the sides of the square, so its base and height are hard to read. It is easier to take **the area of the square minus three right triangles in the corners**: <InlineMath math="AED" />, <InlineMath math="EBF" />, and <InlineMath math="FCD" />.
+You're looking for every <InlineMath math="x" /> that makes a power equal <InlineMath math="1" />. A power like this has **three routes to the value <InlineMath math="1" />**, and each route has its own condition. Here's the plan: check the three routes one by one, test every candidate, then add up the ones that survive.
 
-# The three corner triangles
+# Three routes to one
 
-Each corner triangle has a right angle, so its area is **half the product of its legs**. The midpoints split each 12 cm side into two 6 cm parts.
+Call the base <InlineMath math="h(x)=x-4" /> and the exponent <InlineMath math="g(x)=x^2-11x+28=(x-4)(x-7)" />. The power <InlineMath math="h^g" /> equals <InlineMath math="1" /> only in these three situations.
 
-| Triangle | Legs | Area |
-| :---: | :---: | :---: |
-| <InlineMath math="AED" /> | <InlineMath math="AE=6" />, <InlineMath math="AD=12" /> | 36 |
-| <InlineMath math="EBF" /> | <InlineMath math="EB=6" />, <InlineMath math="BF=6" /> | 18 |
-| <InlineMath math="FCD" /> | <InlineMath math="FC=6" />, <InlineMath math="CD=12" /> | 36 |
+- The base is <InlineMath math="1" />, because <InlineMath math="1" /> to any power is still <InlineMath math="1" />.
+- The base is <InlineMath math="-1" /> and the exponent is even, because <InlineMath math="(-1)" /> to an even power is <InlineMath math="1" />.
+- The exponent is <InlineMath math="0" /> and **the base isn't <InlineMath math="0" />**, because <InlineMath math="0^0" /> is undefined.
 
-# Computing the area of triangle DEF
+There's no other route. A base other than <InlineMath math="0" />, <InlineMath math="1" />, and <InlineMath math="-1" /> only gives <InlineMath math="1" /> with exponent <InlineMath math="0" />.
 
-The three corner triangles and triangle <InlineMath math="DEF" /> **cover the square exactly, without overlap**.
+# Testing each route
 
-<BlockMath math="[DEF]=144-36-18-36=54\text{ cm}^2" />
+Test each route together with its condition.
 
-The value 72 subtracts only the two large triangles and forgets <InlineMath math="EBF" />. The value 90 subtracts only one large triangle and <InlineMath math="EBF" />. The value 108 subtracts only one large triangle, and the value 126 subtracts only <InlineMath math="EBF" />.
+<BlockMath math="\begin{aligned}
+x-4=1&\ \Rightarrow\ x=5,\quad g(5)=25-55+28=-2,\quad1^{-2}=1\\
+x-4=-1&\ \Rightarrow\ x=3,\quad g(3)=9-33+28=4,\quad(-1)^4=1\\
+g(x)=0&\ \Rightarrow\ x=4\ \text{or}\ x=7
+\end{aligned}" />
 
-So the area of triangle <InlineMath math="DEF" /> is **<InlineMath math="54\text{ cm}^2" />**.
+On the third route, <InlineMath math="x=4" /> makes the base <InlineMath math="0" />, which produces the undefined <InlineMath math="0^0" />. So **<InlineMath math="x=4" /> has to go**. For <InlineMath math="x=7" />, the base is <InlineMath math="3" /> and <InlineMath math="3^0=1" />, so <InlineMath math="x=7" /> is valid.
+
+On the second route, the exponent <InlineMath math="4" /> really is even. This route is easy to miss, because people often check only base <InlineMath math="1" /> and exponent <InlineMath math="0" />.
+
+# Adding the solutions
+
+**The three values that survive** are <InlineMath math="x=3" />, <InlineMath math="x=5" />, and <InlineMath math="x=7" />. Their sum is <InlineMath math="3+5+7=15" />. Check <InlineMath math="x=3" /> once more straight in the equation: <InlineMath math="(3-4)^{9-33+28}=(-1)^4=1" />.
+
+# The tempting wrong options
+
+Each other option shows up when **one route is skipped or one candidate isn't tested**.
+
+- <InlineMath math="19" /> comes from keeping <InlineMath math="x=4" />, even though <InlineMath math="0^0" /> is undefined.
+- <InlineMath math="12" /> comes from skipping the base <InlineMath math="-1" /> route, which loses <InlineMath math="x=3" />.
+- <InlineMath math="10" /> comes from skipping the base <InlineMath math="1" /> route, which loses <InlineMath math="x=5" />.
+- <InlineMath math="8" /> comes from skipping the exponent <InlineMath math="0" /> route, which loses <InlineMath math="x=7" />.
+
+So the sum of all values of <InlineMath math="x" /> that satisfy the equation is <InlineMath math="15" />.

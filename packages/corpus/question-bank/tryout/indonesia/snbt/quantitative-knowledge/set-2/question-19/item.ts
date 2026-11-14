@@ -3,13 +3,27 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "$$\\dfrac{1}{10}$$" },
-        { correct: true, label: "$$\\dfrac{1}{5}$$" },
-        { correct: false, label: "$$\\dfrac{3}{10}$$" },
-        { correct: false, label: "$$\\dfrac{2}{5}$$" },
-        { correct: false, label: "$$\\dfrac{8}{15}$$" },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        {
+          column: 2,
+          label: "Setiap penyelesaian pertidaksamaan itu memenuhi $$x>1$$.",
+        },
+        {
+          column: 1,
+          label:
+            "Banyak bilangan bulat $$x$$ yang memenuhi pertidaksamaan itu adalah $$9$$.",
+        },
+        {
+          column: 2,
+          label:
+            "Setiap $$x$$ yang memenuhi pertidaksamaan itu juga memenuhi $$\\sqrt{x+3}>3-x$$.",
+        },
+        {
+          column: 1,
+          label: "Ada penyelesaian pertidaksamaan itu yang memenuhi $$x-3>2$$.",
+        },
       ],
     },
   },

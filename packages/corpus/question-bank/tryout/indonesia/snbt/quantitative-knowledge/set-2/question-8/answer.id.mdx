@@ -1,26 +1,26 @@
-Untuk barisan aritmetika tiga suku, cara paling ringkas adalah menulis sukunya **simetris terhadap suku tengah**: <InlineMath math="u-b" />, <InlineMath math="u" />, dan <InlineMath math="u+b" /> dengan beda <InlineMath math="b>0" />.
-
-# Suku tengah dari jumlah
-
-<BlockMath math="(u-b)+u+(u+b)=3u=18\quad\Rightarrow\quad u=6" />
-
-Barisan semula adalah <InlineMath math="6-b" />, 6, dan <InlineMath math="6+b" />. Setelah diubah, **barisan barunya** menjadi <InlineMath math="7-b" />, 6, dan <InlineMath math="13+b" />.
-
-# Syarat barisan geometri
-
-Pada barisan geometri, **kuadrat suku tengah sama dengan hasil kali suku pertama dan ketiga**.
+Pertanyaannya bisa diubah menjadi soal tanda. Tulis jarak setiap data ke median: <InlineMath math="a=x_3-x_1" />, <InlineMath math="b=x_3-x_2" />, <InlineMath math="c=x_4-x_3" />, dan <InlineMath math="d=x_5-x_3" />. Keempatnya tidak negatif karena data sudah urut. **Rata-rata dikurangi median sama dengan rata-rata simpangan terhadap median**, jadi
 
 <BlockMath math="\begin{aligned}
-6^2&=(7-b)(13+b)\\
-36&=91-6b-b^2\\
-b^2+6b-55&=0\\
-(b+11)(b-5)&=0
+\bar x-x_3&=\frac{(x_1-x_3)+(x_2-x_3)+(x_4-x_3)+(x_5-x_3)}{5}\\
+&=\frac{(c-b)+(d-a)}{5}
 \end{aligned}" />
 
-Karena beda positif, <InlineMath math="b=5" />. Barisan semula adalah 1, 6, dan 11. Cek: barisan baru 2, 6, dan 18 memang geometri dengan rasio 3.
+Jadi rata-rata lebih besar daripada median tepat ketika <InlineMath math="(c-b)+(d-a)>0" />. Pernyataan (1) berarti <InlineMath math="c=b" />, dan pernyataan (2) berarti <InlineMath math="d>a" />.
 
-<BlockMath math="1\times6\times11=66" />
+# Pernyataan pertama saja
 
-Nilai <InlineMath math="-510" /> berasal dari <InlineMath math="b=-11" />, yang memberi barisan 17, 6, dan <InlineMath math="-5" /> dengan beda negatif. Nilai 216 adalah hasil kali barisan geometri yang baru, <InlineMath math="2\times6\times18" />. Nilai 108 mencampur kedua barisan, yaitu <InlineMath math="1\times6\times18" />.
+Dari <InlineMath math="c=b" />, selisihnya menjadi <InlineMath math="\tfrac{d-a}{5}" />, dan **tanda <InlineMath math="d-a" /> belum diketahui**. Data <InlineMath math="2,\ 9,\ 10,\ 11,\ 19" /> memenuhi pernyataan (1) dengan rata-rata <InlineMath math="\tfrac{51}{5}>10" />, jadi jawabannya ya. Data <InlineMath math="1,\ 9,\ 10,\ 11,\ 12" /> juga memenuhi pernyataan (1), tetapi rata-ratanya <InlineMath math="\tfrac{43}{5}<10" />, jadi jawabannya tidak. Pernyataan (1) saja tidak cukup.
 
-Jadi, hasil kali ketiga bilangan semula adalah **66**.
+# Pernyataan kedua saja
+
+Dari <InlineMath math="d>a" />, suku <InlineMath math="d-a" /> positif, tetapi <InlineMath math="c-b" /> bisa negatif dan menarik rata-rata ke bawah. Jadi **ujung atas yang lebih jauh belum menjamin rata-rata di atas median**. Data <InlineMath math="2,\ 10,\ 10,\ 10,\ 19" /> memenuhi pernyataan (2), karena <InlineMath math="19-10=9>8=10-2" />, dan rata-ratanya <InlineMath math="\tfrac{51}{5}>10" />. Data <InlineMath math="2,\ 8,\ 10,\ 10,\ 19" /> juga memenuhi pernyataan (2), tetapi rata-ratanya <InlineMath math="\tfrac{49}{5}<10" />. Pernyataan (2) saja tidak cukup.
+
+# Kedua pernyataan bersama
+
+Gabungkan <InlineMath math="c=b" /> dan <InlineMath math="d>a" />. Suku <InlineMath math="c-b" /> **hilang karena bernilai nol**, dan suku yang tersisa positif.
+
+<BlockMath math="\bar x-x_3=\frac{0+(d-a)}{5}>0" />
+
+Untuk setiap data yang memenuhi kedua pernyataan, rata-ratanya pasti lebih besar daripada median. Jawabannya selalu ya.
+
+Jadi, **dua pernyataan bersama-sama cukup**, tetapi satu pernyataan saja tidak cukup untuk menjawab pertanyaan.

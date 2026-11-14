@@ -1,21 +1,37 @@
-Quadrilateral <InlineMath math="DBCE" /> is triangle <InlineMath math="ABC" /> minus triangle <InlineMath math="ADE" />. So you only need the area of <InlineMath math="ADE" />, which **shares angle <InlineMath math="A" />** with triangle <InlineMath math="ABC" />.
+The sample space is every choice of three points from the seven, including choices that **don't form a triangle**. The plan: count the sample space, then sort each choice by where <InlineMath math="O" /> sits relative to its triangle.
 
-# Area ratio with a shared angle
+# The size of the sample space
 
-The area of a triangle can be written as <InlineMath math="\tfrac12\cdot\text{side}\cdot\text{side}\cdot\sin A" />. Since angle <InlineMath math="A" /> is the same, the area ratio is **the product of the ratios of the two sides that enclose that angle**.
+The order of choosing doesn't matter, so the number of choices is a combination.
 
-<BlockMath math="\frac{[ADE]}{[ABC]}=\frac{\tfrac12\,AD\cdot AE\sin A}{\tfrac12\,AB\cdot AC\sin A}=\frac{AD}{AB}\cdot\frac{AE}{AC}" />
+<BlockMath math="\binom{7}{3}=\frac{7\cdot 6\cdot 5}{3\cdot 2\cdot 1}=35" />
 
-From <InlineMath math="AD:DB=1:2" /> we get <InlineMath math="\frac{AD}{AB}=\frac13" />, and from <InlineMath math="AE:EC=3:1" /> we get <InlineMath math="\frac{AE}{AC}=\frac34" />.
+These <InlineMath math="35" /> choices are equally likely, so the probability will be **the number of suitable choices divided by <InlineMath math="35" />**.
 
-<BlockMath math="[ADE]=\frac13\cdot\frac34\cdot48=12" />
+# Choices that include the centre
 
-# Computing the quadrilateral
+There are <InlineMath math="\binom{6}{2}=15" /> choices containing <InlineMath math="O" /> and two vertices. Three of them are collinear, namely <InlineMath math="O" /> with an opposite pair <InlineMath math="A" /> and <InlineMath math="D" />, <InlineMath math="B" /> and <InlineMath math="E" />, or <InlineMath math="C" /> and <InlineMath math="F" />, so they don't form a triangle. The other <InlineMath math="12" /> are triangles that **make <InlineMath math="O" /> a vertex**, not a point inside. None of these <InlineMath math="15" /> choices works.
 
-The quadrilateral is **what remains of the triangle after <InlineMath math="ADE" /> is removed**.
+# Choices of three vertices
 
-<BlockMath math="[DBCE]=48-12=36\text{ cm}^2" />
+There are <InlineMath math="\binom{6}{3}=20" /> triangles whose vertices come from the hexagon. Group them by their sides.
 
-The value 12 is the area of triangle <InlineMath math="ADE" />, not yet subtracted from 48. The value 30 reads <InlineMath math="AD:DB=1:2" /> as <InlineMath math="\frac{AD}{AB}=\frac12" />. The value 44 uses <InlineMath math="\frac{AE}{AC}=\frac14" />, which is the part <InlineMath math="EC" />, not <InlineMath math="AE" />. The value 24 takes only half the area of the triangle.
+| Type of triangle | Count | Where <InlineMath math="O" /> is |
+| :--- | :---: | :---: |
+| Uses a long diagonal, such as <InlineMath math="ABD" /> | <InlineMath math="3\cdot 4=12" /> | on a side |
+| Three neighbouring vertices, such as <InlineMath math="ABC" /> | <InlineMath math="6" /> | outside |
+| Equilateral, namely <InlineMath math="ACE" /> and <InlineMath math="BDF" /> | <InlineMath math="2" /> | inside |
 
-So the area of quadrilateral <InlineMath math="DBCE" /> is **<InlineMath math="36\text{ cm}^2" />**.
+A long diagonal passes through <InlineMath math="O" />, so a triangle that uses that diagonal as a side has <InlineMath math="O" /> right on its side. Three neighbouring vertices lie on one side of the line joining the two outer ones, and that line misses <InlineMath math="O" />, so <InlineMath math="O" /> is outside. **Only the equilateral triangles <InlineMath math="ACE" /> and <InlineMath math="BDF" />** contain <InlineMath math="O" /> inside, because the centre of each of them is exactly <InlineMath math="O" />.
+
+# The probability and a check
+
+<BlockMath math="P=\frac{2}{35}" />
+
+Check that every choice is counted: <InlineMath math="3" /> collinear choices, <InlineMath math="12" /> with <InlineMath math="O" /> as a vertex, <InlineMath math="12" /> with <InlineMath math="O" /> on a side, <InlineMath math="6" /> with <InlineMath math="O" /> outside, and <InlineMath math="2" /> with <InlineMath math="O" /> inside. The total is <InlineMath math="3+12+12+6+2=35" />, **the same as the sample space**.
+
+# Checking the other options
+
+The option <InlineMath math="\tfrac{1}{10}=\tfrac{2}{20}" /> uses only the <InlineMath math="20" /> vertex triangles and **forgets that <InlineMath math="O" /> can be chosen too**. The option <InlineMath math="\tfrac{1}{16}=\tfrac{2}{32}" /> removes the <InlineMath math="3" /> collinear choices from the sample space, even though those choices can still happen. The option <InlineMath math="\tfrac{2}{5}=\tfrac{14}{35}" /> also counts the <InlineMath math="12" /> triangles with <InlineMath math="O" /> on a side. The option <InlineMath math="\tfrac{26}{35}" /> counts every triangle that touches <InlineMath math="O" />, that is <InlineMath math="2+12+12" />.
+
+So the probability that the triangle contains <InlineMath math="O" /> in its interior is <InlineMath math="\tfrac{2}{35}" />.

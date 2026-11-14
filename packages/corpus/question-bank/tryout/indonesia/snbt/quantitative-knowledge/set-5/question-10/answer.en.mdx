@@ -1,26 +1,37 @@
-Rewrite the equation of <InlineMath math="g" /> in the form <InlineMath math="y=mx+c" /> so that its gradient and intercepts can be read. A line perpendicular to <InlineMath math="g" /> has **a gradient whose product with the gradient of <InlineMath math="g" /> is <InlineMath math="-1" />**.
+The question asks for a conditional probability: **among the people who test positive twice, what fraction is really sick**. The safest way is to picture <InlineMath math="1{,}000" /> residents and follow them through the first test and the second test.
 
-# The equations of both lines
+# The first test
 
-<BlockMath math="\begin{aligned}
-g:\ 2x-3y=6\quad&\Rightarrow\quad y=\tfrac23x-2\\
-h:\ m_h=-\tfrac32\quad&\Rightarrow\quad y=-\tfrac32x+4
-\end{aligned}" />
-
-The gradient of <InlineMath math="g" /> is <InlineMath math="\tfrac23" />, so the first statement is **true**. Line <InlineMath math="h" /> meets the <InlineMath math="x" />-axis where <InlineMath math="y=0" />, at <InlineMath math="x=\tfrac83" />, not 6. The second statement is false.
-
-# The intersection and the triangle area
-
-Substitute the equation of <InlineMath math="h" /> into the equation of <InlineMath math="g" />.
+Out of <InlineMath math="1{,}000" /> people, <InlineMath math="10\%" /> are sick and the rest are healthy. The first test is positive for <InlineMath math="90\%" /> of the sick people and **also for <InlineMath math="20\%" /> of the healthy people**.
 
 <BlockMath math="\begin{aligned}
-2x-3\left(-\tfrac32x+4\right)&=6\\
-\tfrac{13}{2}x&=18\\
-x=\tfrac{36}{13},\qquad y&=-\tfrac32\cdot\tfrac{36}{13}+4=-\tfrac{2}{13}
+\text{sick}&=100,\qquad \text{healthy}=900\\
+\text{sick and positive}&=90\%\times100=90\\
+\text{healthy and positive}&=20\%\times900=180
 \end{aligned}" />
 
-The intersection has a negative <InlineMath math="y" />-coordinate, so it **lies in quadrant IV**, not quadrant I. The third statement is false.
+# The second test
 
-Line <InlineMath math="g" /> meets the <InlineMath math="x" />-axis at <InlineMath math="(3,0)" /> and the <InlineMath math="y" />-axis at <InlineMath math="(0,-2)" />. The triangle it forms with the two axes is right-angled with legs 3 and 2, so its area is <InlineMath math="\tfrac12\cdot3\cdot2=3" />. The fourth statement is true.
+**The second test only goes to the <InlineMath math="90+180=270" /> people who were positive the first time**. Since the two results are independent for people in the same condition, the positive rates are the same as in the first test.
 
-So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.
+<BlockMath math="\begin{aligned}
+\text{sick and positive twice}&=90\%\times90=81\\
+\text{healthy and positive twice}&=20\%\times180=36
+\end{aligned}" />
+
+# The conditional probability
+
+There are <InlineMath math="81+36=117" /> people who tested positive twice, and <InlineMath math="81" /> of them are sick.
+
+<BlockMath math="P(\text{sick}\mid\text{positive twice})=\frac{81}{117}=\frac{9}{13}" />
+
+Check it with the probability formula, without the <InlineMath math="1{,}000" /> people: <InlineMath math="\tfrac{0.1\times0.9^2}{0.1\times0.9^2+0.9\times0.2^2}=\tfrac{0.081}{0.117}=\tfrac{9}{13}" />. The value is bigger than the probability after one positive test, and that makes sense because **the second test filters out more healthy people**.
+
+# Why the other options are wrong
+
+- <InlineMath math="\tfrac13" /> **stops after the first test**: <InlineMath math="\tfrac{90}{90+180}" />.
+- <InlineMath math="\tfrac{9}{29}" /> counts the healthy people who test positive the second time out of all <InlineMath math="900" /> healthy people, which gives <InlineMath math="\tfrac{81}{81+180}" />.
+- <InlineMath math="\tfrac{81}{100}" /> is the probability of testing positive twice if you're sick, which is the reverse of what's asked.
+- <InlineMath math="\tfrac{81}{85}" /> ignores that only <InlineMath math="10\%" /> of the residents are sick: <InlineMath math="\tfrac{0.81}{0.81+0.04}" />.
+
+So the probability that a person who tested positive twice really has the disease is <InlineMath math="\tfrac{9}{13}" />.

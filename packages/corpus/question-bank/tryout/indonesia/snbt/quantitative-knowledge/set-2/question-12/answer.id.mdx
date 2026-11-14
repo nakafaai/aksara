@@ -1,18 +1,31 @@
-Kuantitas <InlineMath math="P" /> bergantung pada <InlineMath math="n" />, jadi tentukan dulu apakah syaratnya **hanya menyisakan satu bilangan**.
+Kalimat "diketahui ketiga mata dadu saling berbeda" membuat ini **peluang bersyarat**: kamu hanya melihat hasil lemparan yang ketiga matanya berbeda. Rencananya: tentukan ruang sampel yang baru, lalu hitung hasil yang gagal dengan komplemen, lalu kurangkan.
 
-# Menentukan bilangan n
+# Ruang sampel yang menyusut
 
-Kelipatan 6 di sekitar selang itu adalah 48, 54, dan 60. Hanya 54 yang memenuhi <InlineMath math="50<n<60" />, karena kedua ujung selang tidak termasuk. Jadi <InlineMath math="n=54" /> **satu-satunya kemungkinan**.
+Hasil lemparan berurutan dengan tiga mata berbeda ada <InlineMath math="6\times5\times4=120" />. Setiap himpunan tiga bilangan berbeda muncul dalam <InlineMath math="3!=6" /> urutan, jadi **cukup melihat himpunannya**. Banyak himpunan tiga bilangan dari <InlineMath math="\{1,2,3,4,5,6\}" /> adalah <InlineMath math="\binom63=20" />, dan semuanya sama mungkin.
 
-# Menghitung banyak faktor
+# Komplemen dan irisan
 
-Faktorkan 54 menjadi bilangan prima, lalu kalikan banyak pilihan setiap pangkat.
+Hasil kali kelipatan <InlineMath math="6" /> berarti ada bilangan genap dan ada kelipatan <InlineMath math="3" />. Hitung himpunan yang gagal.
+
+- Tanpa bilangan genap, ketiganya dari <InlineMath math="\{1,3,5\}" />: <InlineMath math="1" /> himpunan.
+- Tanpa kelipatan <InlineMath math="3" />, ketiganya dari <InlineMath math="\{1,2,4,5\}" />: <InlineMath math="\binom43=4" /> himpunan.
+- Tanpa keduanya, ketiganya dari <InlineMath math="\{1,5\}" />: <InlineMath math="0" /> himpunan, karena **tiga bilangan berbeda tidak bisa diambil dari dua bilangan**.
 
 <BlockMath math="\begin{aligned}
-54&=2^1\times3^3\\
-\text{banyak faktor}&=(1+1)(3+1)=8
+\text{gagal}&=1+4-0=5\\
+P&=\frac{20-5}{20}=\frac{15}{20}=\frac34
 \end{aligned}" />
 
-Faktor-faktornya adalah 1, 2, 3, 6, 9, 18, 27, dan 54, **tepat delapan bilangan**.
+# Memeriksa dengan hitungan langsung
 
-Karena <InlineMath math="P=8" /> dan <InlineMath math="Q=8" />, berlaku **<InlineMath math="P=Q" />**. Pilihan informasi tidak cukup keliru karena syarat pada soal menentukan <InlineMath math="n" /> secara tunggal.
+Himpunan yang memuat <InlineMath math="6" /> **sudah pasti berhasil**: <InlineMath math="\binom52=10" /> himpunan. Tanpa <InlineMath math="6" />, himpunan harus memuat <InlineMath math="3" /> dan paling sedikit satu dari <InlineMath math="2" /> atau <InlineMath math="4" />, yaitu <InlineMath math="\{1,2,3\}" />, <InlineMath math="\{2,3,5\}" />, <InlineMath math="\{1,3,4\}" />, <InlineMath math="\{3,4,5\}" />, dan <InlineMath math="\{2,3,4\}" />. Totalnya <InlineMath math="10+5=15" />, sama dengan hasil komplemen.
+
+# Jebakan pada pilihan lain
+
+- <InlineMath math="\tfrac{5}{12}" /> membagi <InlineMath math="15\times6=90" /> hasil berurutan yang berhasil dengan <InlineMath math="216" />, padahal **penyebutnya harus <InlineMath math="120" />**.
+- <InlineMath math="\tfrac12" /> mengira harus ada mata <InlineMath math="6" />, sehingga hanya menghitung <InlineMath math="10" /> dari <InlineMath math="20" /> himpunan.
+- <InlineMath math="\tfrac{13}{20}" /> mengira **faktor dua hanya datang dari mata dua**, lupa mata <InlineMath math="4" />. Akibatnya hanya himpunan yang memuat <InlineMath math="6" /> atau memuat <InlineMath math="2" /> dan <InlineMath math="3" /> sekaligus yang terhitung, yaitu <InlineMath math="10+3=13" /> himpunan.
+- <InlineMath math="\tfrac{7}{10}" /> melewatkan himpunan <InlineMath math="\{2,3,4\}" /> saat menghitung langsung.
+
+Jadi, peluang hasil kali ketiga mata dadu merupakan kelipatan <InlineMath math="6" /> adalah <InlineMath math="\tfrac34" />.

@@ -1,22 +1,45 @@
-Kedua persamaan simetris terhadap <InlineMath math="x" /> dan <InlineMath math="y" />, jadi **misalkan <InlineMath math="s=x+y" /> dan <InlineMath math="p=xy" />**. Persamaan kedua dapat difaktorkan menjadi <InlineMath math="xy(x+y)" />.
+Bentuk <InlineMath math="S(x)=|x-2|+|x+7|" /> adalah **jumlah jarak** dari <InlineMath math="x" /> ke <InlineMath math="2" /> dan ke <InlineMath math="-7" /> pada garis bilangan. Rencananya: tulis <InlineMath math="S(x)" /> tanpa tanda mutlak, cari himpunan penyelesaian untuk setiap <InlineMath math="k" />, hitung bilangan bulatnya, lalu cari <InlineMath math="k" /> yang memberi tepat <InlineMath math="20" />.
 
-<BlockMath math="s+p=11,\qquad sp=30" />
+# Bentuk fungsi jarak
 
-# Menemukan nilai s dan p
+Tanda mutlak berganti bentuk di <InlineMath math="x=-7" /> dan <InlineMath math="x=2" />, jadi ada tiga daerah.
 
-Bilangan <InlineMath math="s" /> dan <InlineMath math="p" /> berjumlah 11 dan berhasil kali 30, sehingga keduanya adalah akar <InlineMath math="t^2-11t+30=0" />, yaitu 5 dan 6. Ada **dua kemungkinan**: <InlineMath math="(s,p)=(5,6)" /> atau <InlineMath math="(s,p)=(6,5)" />.
+<BlockMath math="\begin{aligned}
+x\le-7&:\quad S(x)=(2-x)+(-x-7)=-2x-5\\
+-7\le x\le2&:\quad S(x)=(2-x)+(x+7)=9\\
+x\ge2&:\quad S(x)=(x-2)+(x+7)=2x+5
+\end{aligned}" />
 
-Setiap kemungkinan harus menghasilkan <InlineMath math="x" /> dan <InlineMath math="y" /> yang real. Keduanya adalah akar <InlineMath math="t^2-st+p=0" />.
+Di antara <InlineMath math="-7" /> dan <InlineMath math="2" />, **nilai <InlineMath math="S(x)" /> tetap <InlineMath math="9" />**, karena jarak ke kedua titik selalu berjumlah panjang ruas itu. Jadi <InlineMath math="S(x)\ge9" /> untuk setiap <InlineMath math="x" />, dan untuk <InlineMath math="k<9" /> tidak ada penyelesaian.
 
-| <InlineMath math="(s,p)" /> | Persamaan | <InlineMath math="(x,y)" /> | <InlineMath math="x^2+y^2=s^2-2p" /> |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="(5,6)" /> | <InlineMath math="t^2-5t+6=0" /> | 2 dan 3 | <InlineMath math="25-12=13" /> |
-| <InlineMath math="(6,5)" /> | <InlineMath math="t^2-6t+5=0" /> | 1 dan 5 | <InlineMath math="36-10=26" /> |
+# Himpunan penyelesaian
 
-# Memilih nilai terbesar
+Untuk <InlineMath math="k\ge9" />, seluruh daerah tengah ikut memenuhi. Di kanan, <InlineMath math="2x+5\le k" /> memberi <InlineMath math="x\le\tfrac{k-5}{2}" />. Di kiri, <InlineMath math="-2x-5\le k" /> memberi <InlineMath math="x\ge-\tfrac{k+5}{2}" />. Gabungannya
 
-Kedua pasangan real dan memenuhi sistem. Cek pasangan kedua: <InlineMath math="1+5+5=11" /> dan <InlineMath math="1^2(5)+1(5^2)=30" />. Nilai **terbesar** adalah 26.
+<BlockMath math="-\frac{k+5}{2}\le x\le\frac{k-5}{2}" />
 
-Nilai 13 hanya memakai kemungkinan pertama. Nilai 25 dan 36 adalah <InlineMath math="s^2" />, yang lupa mengurangkan <InlineMath math="2p" />. Nilai 31 mengurangkan <InlineMath math="p" />, bukan <InlineMath math="2p" />.
+Selang ini berpusat di <InlineMath math="-\tfrac52" /> dan panjangnya <InlineMath math="k" />. Bilangan bulat di daerah tengah, yaitu <InlineMath math="-6" /> sampai <InlineMath math="1" />, **ikut terhitung sebagai penyelesaian**.
 
-Jadi, nilai terbesar <InlineMath math="x^2+y^2" /> adalah **26**.
+# Menghitung menurut paritas
+
+Banyak bilangan bulat di selang itu bergantung pada **apakah ujung selangnya bulat**, dan itu ditentukan oleh paritas <InlineMath math="k" />.
+
+<BlockMath math="\begin{aligned}
+k\ \text{ganjil}&:\quad \text{bilangan bulat } -\tfrac{k+5}{2},\ \ldots,\ \tfrac{k-5}{2},\ \text{banyaknya } \tfrac{k-5}{2}+\tfrac{k+5}{2}+1=k+1\\
+k\ \text{genap}&:\quad \text{bilangan bulat } -\tfrac{k+4}{2},\ \ldots,\ \tfrac{k-6}{2},\ \text{banyaknya } \tfrac{k-6}{2}+\tfrac{k+4}{2}+1=k
+\end{aligned}" />
+
+Untuk <InlineMath math="k" /> ganjil, <InlineMath math="k+1=20" /> memberi <InlineMath math="k=19" />, dan <InlineMath math="19" /> memang ganjil. Untuk <InlineMath math="k" /> genap, <InlineMath math="k=20" />, dan <InlineMath math="20" /> memang genap. Jadi ada dua nilai <InlineMath math="k" />, dan jumlahnya <InlineMath math="19+20=39" />.
+
+# Memeriksa hasil
+
+Untuk <InlineMath math="k=19" />, penyelesaiannya <InlineMath math="-12\le x\le7" />, berisi <InlineMath math="7-(-12)+1=20" /> bilangan bulat. Untuk <InlineMath math="k=20" />, penyelesaiannya <InlineMath math="-12{,}5\le x\le7{,}5" />, berisi bilangan bulat <InlineMath math="-12" /> sampai <InlineMath math="7" />, juga <InlineMath math="20" />. Untuk <InlineMath math="k=21" />, selangnya menjadi <InlineMath math="-13\le x\le8" /> dan berisi <InlineMath math="22" /> bilangan bulat, jadi **lompatan dari dua puluh langsung ke dua puluh dua**.
+
+# Jebakan pada pilihan lain
+
+- <InlineMath math="19" /> menganggap banyaknya selalu <InlineMath math="k+1" />, sehingga kasus <InlineMath math="k" /> genap terlewat.
+- <InlineMath math="20" /> menganggap banyaknya selalu <InlineMath math="k" />, sehingga kasus <InlineMath math="k" /> ganjil terlewat.
+- <InlineMath math="55" /> hanya menghitung penyelesaian dari dua daerah luar dan **melupakan delapan bilangan bulat di daerah tengah**. Akibatnya tepat <InlineMath math="20" /> bilangan dicapai di <InlineMath math="k=27" /> dan <InlineMath math="k=28" />.
+- <InlineMath math="60" /> menganggap <InlineMath math="19\le k\le21" />, padahal di <InlineMath math="k=21" /> banyaknya sudah <InlineMath math="22" />.
+
+Jadi, jumlah semua nilai <InlineMath math="k" /> yang mungkin adalah <InlineMath math="39" />.

@@ -1,21 +1,46 @@
-Tulis bilangannya sebagai <InlineMath math="\overline{abc}" /> dengan <InlineMath math="a" /> antara 1 dan 9, <InlineMath math="b" /> antara 0 dan 9, dan <InlineMath math="c" /> genap karena bilangannya genap. Tetapkan dulu <InlineMath math="c" />, lalu **hitung pasangan <InlineMath math="(a,b)" /> yang jumlahnya <InlineMath math="10-c" />**.
+Setiap orang di ruangan bisa berjabat tangan dengan paling banyak <InlineMath math="6" /> orang lain, jadi setiap jawaban adalah salah satu bilangan <InlineMath math="0" /> sampai <InlineMath math="6" />. Rencananya, tentukan dulu jawaban mana yang mungkin muncul, lalu **pasangkan orang dengan jawaban terbesar dan orang dengan jawaban terkecil** sampai jabat tangan Ani terlihat.
 
-# Menghitung per angka satuan
+# Jawaban yang mungkin
 
-Untuk jumlah <InlineMath math="a+b=s" /> dengan <InlineMath math="1\le s\le10" />, nilai <InlineMath math="a" /> boleh 1 sampai <InlineMath math="s" /> asalkan <InlineMath math="b=s-a" /> **tidak lebih dari 9**. Pada <InlineMath math="s=10" />, nilai <InlineMath math="a=10" /> tidak mungkin, jadi tersisa 9 pasangan.
+Ada <InlineMath math="7" /> nilai, dari <InlineMath math="0" /> sampai <InlineMath math="6" />, dan <InlineMath math="6" /> jawaban berbeda. Jawaban <InlineMath math="0" /> dan <InlineMath math="6" /> tidak bisa muncul bersama: orang yang menjawab <InlineMath math="6" /> sudah berjabat tangan dengan semua orang, termasuk orang yang mengaku tidak pernah berjabat tangan. Jadi **ada dua kasus**: jawabannya <InlineMath math="0" /> sampai <InlineMath math="5" />, atau <InlineMath math="1" /> sampai <InlineMath math="6" />. Sebut orang yang menjawab <InlineMath math="k" /> sebagai <InlineMath math="P_k" />.
 
-| Angka satuan <InlineMath math="c" /> | <InlineMath math="a+b" /> | Banyak pasangan <InlineMath math="(a,b)" /> |
-| :---: | :---: | :---: |
-| 0 | 10 | 9 |
-| 2 | 8 | 8 |
-| 4 | 6 | 6 |
-| 6 | 4 | 4 |
-| 8 | 2 | 2 |
+# Kasus jawaban nol sampai lima
 
-<BlockMath math="9+8+6+4+2=29" />
+Orang <InlineMath math="P_5" /> tidak berjabat tangan dengan <InlineMath math="P_0" />, jadi <InlineMath math="5" /> jabat tangannya harus dengan semua orang lain, termasuk Ani. Lalu <InlineMath math="P_1" /> sudah penuh dengan <InlineMath math="P_5" /> saja. Orang <InlineMath math="P_4" /> tidak bisa memakai <InlineMath math="P_0" /> dan <InlineMath math="P_1" />, jadi ia harus berjabat tangan dengan semua sisanya. Langkah yang sama berlanjut sampai semua jawaban terpenuhi.
 
-# Memeriksa pilihan lain
+| Orang | Berjabat tangan dengan |
+| :---: | :---: |
+| <InlineMath math="P_5" /> | Ani, <InlineMath math="P_1" />, <InlineMath math="P_2" />, <InlineMath math="P_3" />, <InlineMath math="P_4" /> |
+| <InlineMath math="P_4" /> | Ani, <InlineMath math="P_2" />, <InlineMath math="P_3" />, <InlineMath math="P_5" /> |
+| <InlineMath math="P_3" /> | Ani, <InlineMath math="P_4" />, <InlineMath math="P_5" /> |
+| <InlineMath math="P_2" /> | <InlineMath math="P_4" />, <InlineMath math="P_5" /> |
+| <InlineMath math="P_1" /> | <InlineMath math="P_5" /> |
+| <InlineMath math="P_0" /> | tidak ada |
 
-Semua bilangan tiga angka dengan jumlah angka 10 ada 54, dan 25 di antaranya ganjil. **Bilangan genap dan ganjil tidak terbagi rata**, jadi nilai 27, yaitu setengah dari 54, keliru. Nilai 54 menghitung semua bilangan tanpa syarat genap, dan nilai 25 menghitung bilangan ganjil. Nilai 31 menghitung kasus <InlineMath math="c=0" /> dengan 11 pasangan, seolah-olah <InlineMath math="a=0" /> atau <InlineMath math="a=10" /> boleh.
+**Setiap baris dipaksa oleh baris sebelumnya**, jadi tidak ada pilihan lain. Ani berjabat tangan dengan <InlineMath math="P_5" />, <InlineMath math="P_4" />, dan <InlineMath math="P_3" />, yaitu <InlineMath math="3" /> orang.
 
-Jadi, banyak bilangan yang dimaksud adalah **29**.
+# Kasus jawaban satu sampai enam
+
+Sekarang <InlineMath math="P_6" /> berjabat tangan dengan semua orang, termasuk Ani, sehingga <InlineMath math="P_1" /> sudah penuh dengan <InlineMath math="P_6" /> saja. Orang <InlineMath math="P_5" /> tidak bisa memakai <InlineMath math="P_1" />, jadi ia berjabat tangan dengan semua sisanya. Pola yang sama berlanjut.
+
+| Orang | Berjabat tangan dengan |
+| :---: | :---: |
+| <InlineMath math="P_6" /> | Ani, <InlineMath math="P_1" />, <InlineMath math="P_2" />, <InlineMath math="P_3" />, <InlineMath math="P_4" />, <InlineMath math="P_5" /> |
+| <InlineMath math="P_5" /> | Ani, <InlineMath math="P_2" />, <InlineMath math="P_3" />, <InlineMath math="P_4" />, <InlineMath math="P_6" /> |
+| <InlineMath math="P_4" /> | Ani, <InlineMath math="P_3" />, <InlineMath math="P_5" />, <InlineMath math="P_6" /> |
+| <InlineMath math="P_3" /> | <InlineMath math="P_4" />, <InlineMath math="P_5" />, <InlineMath math="P_6" /> |
+| <InlineMath math="P_2" /> | <InlineMath math="P_5" />, <InlineMath math="P_6" /> |
+| <InlineMath math="P_1" /> | <InlineMath math="P_6" /> |
+
+Ani berjabat tangan dengan <InlineMath math="P_6" />, <InlineMath math="P_5" />, dan <InlineMath math="P_4" />, lagi-lagi <InlineMath math="3" /> orang. **Kedua kasus memberi jawaban yang sama**, jadi jawabannya pasti.
+
+# Pemeriksaan dengan paritas
+
+Setiap jabat tangan dihitung oleh <InlineMath math="2" /> orang, jadi **jumlah semua jawaban harus genap**. Kasus pertama memberi <InlineMath math="0+1+2+3+4+5+3=18" />, dan kasus kedua memberi <InlineMath math="1+2+3+4+5+6+3=24" />. Keduanya genap.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="0" /> dan <InlineMath math="6" /> muncul kalau Ani dianggap memegang satu nilai yang tidak dipakai orang lain. Paritas menolaknya: <InlineMath math="15+6=21" /> dan <InlineMath math="21+0=21" /> sama-sama ganjil.
+- <InlineMath math="1" /> dan <InlineMath math="5" /> lolos uji paritas karena ganjil, tetapi tabel di atas memaksa tepat <InlineMath math="3" /> orang berjabat tangan dengan Ani. **Berhenti di uji paritas tidak cukup** untuk memilih satu bilangan.
+
+Jadi, banyak orang yang berjabat tangan dengan Ani adalah <InlineMath math="3" />.

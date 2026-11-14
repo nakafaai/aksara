@@ -1,21 +1,29 @@
-In an isosceles triangle with <InlineMath math="AB=AC" />, **the base angles <InlineMath math="B" /> and <InlineMath math="C" /> are equal**. So angle <InlineMath math="A" /> is known as soon as one more equation links <InlineMath math="A" /> and <InlineMath math="B" />.
-
-<BlockMath math="A+2B=180^\circ" />
+The question asks for **a single value of <InlineMath math="x+y" />**. A statement is enough only if every pair <InlineMath math="(x,y)" /> that satisfies it gives the same sum. A useful tool is the identity <InlineMath math="(x+y)^2=(x-y)^2+4xy" />, but a square root always leaves two signs.
 
 # Statement one alone
 
-With <InlineMath math="B=50^\circ" />, angle <InlineMath math="C" /> is also <InlineMath math="50^\circ" />, so <InlineMath math="A=180^\circ-100^\circ=80^\circ" />. The value of angle <InlineMath math="A" /> is **unique**, so statement (1) alone is sufficient.
+With <InlineMath math="x>0" /> and <InlineMath math="xy=-12" />, the value of <InlineMath math="x" /> is a positive divisor of <InlineMath math="12" /> and <InlineMath math="y=-\tfrac{12}{x}" />. The pair <InlineMath math="(3,-4)" /> gives <InlineMath math="x+y=-1" />, while the pair <InlineMath math="(12,-1)" /> gives <InlineMath math="x+y=11" />. **There's more than one value**, so statement (1) alone isn't enough.
 
 # Statement two alone
 
-Statement (2) gives the equation <InlineMath math="A=B+30^\circ" />. Together with the angle relation of the isosceles triangle, this gives **two equations in two unknowns**.
+From <InlineMath math="(x-y)^2=49" />, the difference is <InlineMath math="x-y=7" /> or <InlineMath math="x-y=-7" />, with infinitely many pairs. The pair <InlineMath math="(8,1)" /> gives <InlineMath math="x+y=9" />, while the pair <InlineMath math="(9,2)" /> gives <InlineMath math="x+y=11" />. **The value isn't unique**, so statement (2) alone isn't enough.
+
+# Both statements together
+
+Put both statements into the identity.
 
 <BlockMath math="\begin{aligned}
-(B+30^\circ)+2B&=180^\circ\\
-3B&=150^\circ\\
-B=50^\circ,\quad A&=80^\circ
+(x+y)^2&=(x-y)^2+4xy=49+4(-12)=1\\
+x+y&=1\ \text{or}\ x+y=-1
 \end{aligned}" />
 
-The value of angle <InlineMath math="A" /> is unique again, so statement (2) alone is sufficient. A common mistake is forgetting the given fact <InlineMath math="AB=AC" /> and thinking that statement (2) needs statement (1).
+Now check whether both signs really happen with <InlineMath math="x>0" />.
 
-So **each statement alone is sufficient** to answer the question.
+<BlockMath math="\begin{aligned}
+x-y=7&:\quad x(x-7)=-12\ \Rightarrow\ x^2-7x+12=0\ \Rightarrow\ x=3\ \text{or}\ x=4\\
+x-y=-7&:\quad x(x+7)=-12\ \Rightarrow\ x^2+7x+12=0\ \Rightarrow\ x=-3\ \text{or}\ x=-4
+\end{aligned}" />
+
+The second case drops out because <InlineMath math="x>0" />. The first case gives the pair <InlineMath math="(3,-4)" /> with <InlineMath math="x+y=-1" /> and the pair <InlineMath math="(4,-3)" /> with <InlineMath math="x+y=1" />. So **the condition <InlineMath math="x>0" /> removes one case but doesn't fix the sign of <InlineMath math="x+y" />**. There are still two values.
+
+So **statement (1) and statement (2) aren't enough** to answer the question, even together.

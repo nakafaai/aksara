@@ -1,26 +1,44 @@
-Die Ungleichung <InlineMath math="\lvert A\rvert<B" /> ist gleichwertig mit <InlineMath math="-B<A<B" />. Diese Form erzwingt zugleich <InlineMath math="B>0" />, deshalb **müssen beide Schranken gleichzeitig gelten**.
+Du zählst geordnete Tripel, die Reihenfolge der Zahlen zählt also mit. Zähle in drei Schichten: **alle positiven Tripel mit der Summe <InlineMath math="30" />**, dann wirf die heraus, die die Grenze <InlineMath math="15" /> überschreiten, und dann die mit einer doppelten Zahl.
 
-# Beide Schranken lösen
+# Alle positiven Tripel zählen
 
-Mit <InlineMath math="A=2x-5" /> und <InlineMath math="B=x+1" /> lautet die Ungleichung
+Stell dir <InlineMath math="30" /> Einheiten in einer Reihe vor. Zwischen ihnen gibt es <InlineMath math="29" /> Lücken. Wählst du <InlineMath math="2" /> Lücken als Schnittstellen, zerfällt die Reihe in drei positive Teile <InlineMath math="a" />, <InlineMath math="b" /> und <InlineMath math="c" />. Jede Wahl der Lücken liefert **genau ein geordnetes Tripel**, und jedes Tripel entsteht aus genau einer Wahl.
 
-<BlockMath math="-(x+1)<2x-5<x+1" />
+<BlockMath math="\binom{29}{2}=\frac{29\cdot28}{2}=406" />
 
-Löse die rechte und die linke Schranke getrennt.
+# Tripel über der Grenze herauswerfen
+
+Zähle die Tripel mit <InlineMath math="a\ge16" />. Schreibe <InlineMath math="a=a'+15" /> mit <InlineMath math="a'\ge1" />. Dann lautet die Bedingung <InlineMath math="a'+b+c=15" /> mit drei positiven Zahlen.
+
+<BlockMath math="\binom{14}{2}=\frac{14\cdot13}{2}=91" />
+
+Dasselbe gilt für <InlineMath math="b\ge16" /> und <InlineMath math="c\ge16" />. Zwei Zahlen können nicht beide mindestens <InlineMath math="16" /> sein, denn schon diese zwei ergeben zusammen <InlineMath math="32>30" />. Also **überschneiden sich die drei Gruppen nicht**, und du ziehst einfach alle ab.
+
+<BlockMath math="406-3\cdot91=406-273=133" />
+
+# Tripel mit doppelter Zahl herauswerfen
+
+Zähle die Tripel mit <InlineMath math="a=b" />. Die Bedingung wird zu <InlineMath math="2a+c=30" /> mit <InlineMath math="1\le c\le15" />.
 
 <BlockMath math="\begin{aligned}
-2x-5&<x+1 &&\Rightarrow\quad x<6\\
-2x-5&>-x-1 &&\Rightarrow\quad 3x>4 \quad\Rightarrow\quad x>\tfrac43
+1\le 30-2a&\le15\\
+15\le 2a&\le29\\
+8\le a&\le14
 \end{aligned}" />
 
-Die **Schnittmenge beider Schranken** ist <InlineMath math="\tfrac43<x<6" />. Auf diesem Intervall gilt <InlineMath math="x+1>0" />, die Bedingung <InlineMath math="B>0" /> ist also von selbst erfüllt.
+Es gibt <InlineMath math="7" /> Tripel mit <InlineMath math="a=b" />. Genauso gibt es <InlineMath math="7" /> Tripel mit <InlineMath math="b=c" /> und <InlineMath math="7" /> mit <InlineMath math="a=c" />. Das Tripel <InlineMath math="(10,10,10)" /> **gehört zu allen drei Gruppen zugleich**, und es ist das einzige Tripel, das in zwei Gruppen liegt. Mit Inklusion und Exklusion zählst du es genau einmal.
 
-# Ganze Zahlen addieren
+<BlockMath math="\begin{aligned}
+\text{Tripel mit Wiederholung}&=7+7+7-1-1-1+1=19\\
+\text{gesuchte Tripel}&=133-19=114
+\end{aligned}" />
 
-Im Intervall <InlineMath math="\tfrac43<x<6" /> liegen die ganzen Zahlen 2, 3, 4 und 5. **Prüfe die Ränder**: <InlineMath math="x=5" /> liefert <InlineMath math="5<6" />, dagegen ergibt <InlineMath math="x=6" /> die falsche Aussage <InlineMath math="7<7" /> und <InlineMath math="x=1" /> die falsche Aussage <InlineMath math="3<2" />.
+# Das Ergebnis prüfen
 
-<BlockMath math="2+3+4+5=14" />
+Drei verschiedene Zahlen lassen sich auf <InlineMath math="3!=6" /> Arten anordnen. Die Anzahl der gesuchten geordneten Tripel muss also ein Vielfaches von <InlineMath math="6" /> sein. Das Ergebnis ist <InlineMath math="114=6\cdot19" />, also gibt es **<InlineMath math="19" /> Mengen aus drei verschiedenen Zahlen**, die passen, zum Beispiel <InlineMath math="\{1,14,15\}" /> und <InlineMath math="\{9,10,11\}" />.
 
-Der Wert 12 verwendet nur den Fall <InlineMath math="2x-5\ge0" /> und verliert dadurch <InlineMath math="x=2" />. Der Wert 15 rundet die Schranke <InlineMath math="\tfrac43" /> ab und nimmt <InlineMath math="x=1" /> mit. Der Wert 20 nimmt <InlineMath math="x=6" /> mit, obwohl das Zeichen ein echtes Kleiner ist. Der Wert 21 macht beide Fehler.
+# Häufige Fehler
 
-Die Summe aller ganzzahligen Lösungen ist also **14**.
+Die Antwort <InlineMath math="406" /> entsteht, wenn du die Grenze <InlineMath math="15" /> vergisst. Die Antwort <InlineMath math="133" /> entsteht, wenn du vergisst, dass die Zahlen verschieden sein müssen. Die Antwort <InlineMath math="112" /> entsteht, wenn du <InlineMath math="3\cdot7=21" /> Tripel mit Wiederholung direkt abziehst, sodass **<InlineMath math="(10,10,10)" /> dreimal entfernt wird**. Diese Antwort scheitert auch daran, dass <InlineMath math="112" /> kein Vielfaches von <InlineMath math="6" /> ist.
+
+Die Anzahl der geordneten Tripel, die alle drei Bedingungen erfüllen, ist also <InlineMath math="114" />.

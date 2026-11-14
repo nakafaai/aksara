@@ -1,20 +1,46 @@
-Das neue Quadrat schneidet an den Ecken des großen Quadrats vier rechtwinklige Dreiecke ab. Weil jede Seite gleich geteilt wird, sind die vier Dreiecke **kongruent**, jedes mit den Katheten 3 und 1.
+Gesucht ist der kleinste Wert von <InlineMath math="2x+y" /> unter zwei Bedingungen. Die AM-GM-Ungleichung (das arithmetische Mittel ist mindestens so groß wie das geometrische) liefert eine untere Schranke, aber **diese Schranke ist nur dann das Minimum, wenn ihr Gleichheitsfall erlaubt ist**. Der Plan: Prüfe den Gleichheitsfall und mach dann aus der Aufgabe eine Funktion mit einer Variablen auf dem erlaubten Bereich.
 
-# Flächeninhalt des neuen Quadrats
+# Eine untere Schranke aus AM-GM
 
-Zwei Wege führen zum selben Ergebnis. Die Seite des neuen Quadrats ist die Hypotenuse eines Eckdreiecks, oder sein Flächeninhalt ist das große Quadrat minus **die vier Eckdreiecke**.
+Für die beiden positiven Zahlen <InlineMath math="2x" /> und <InlineMath math="y" /> liefert AM-GM die folgende Schranke. Gleichheit gilt bei <InlineMath math="2x=y" />.
 
 <BlockMath math="\begin{aligned}
-s^2&=3^2+1^2=10\\
-16-4\cdot\tfrac12\cdot3\cdot1&=16-6=10
+2x+y&\ge2\sqrt{2x\cdot y}=2\sqrt{24}=4\sqrt6\\
+2x=y\ \text{und}\ xy=12\quad&\Rightarrow\quad x=\sqrt6,\ y=2\sqrt6
 \end{aligned}" />
 
-# Verhältnis der Flächeninhalte
+Dieser Punkt liefert <InlineMath math="3y=6\sqrt6" />, viel mehr als <InlineMath math="x=\sqrt6" />, also ist die Bedingung <InlineMath math="x\ge3y" /> verletzt. **Der Gleichheitsfall von AM-GM wird hier nicht erreicht**, also ist <InlineMath math="4\sqrt6" /> nicht das Minimum.
 
-Teile **den Flächeninhalt des neuen Quadrats durch den des großen Quadrats**.
+# Die erlaubten Werte von x
 
-<BlockMath math="\frac{10}{16}=\frac58" />
+Aus <InlineMath math="xy=12" /> folgt <InlineMath math="y=\tfrac{12}{x}" />. Setze das in die zweite Bedingung ein. Weil <InlineMath math="x" /> positiv ist, darfst du **beide Seiten mit <InlineMath math="x" /> multiplizieren**, ohne das Zeichen umzudrehen.
 
-Der Wert <InlineMath math="\tfrac12" /> gilt, wenn die Punkte Seitenmitten sind, nicht bei einer Teilung <InlineMath math="3:1" />. Der Wert <InlineMath math="\tfrac9{16}" /> verwendet nur <InlineMath math="3^2" /> als Fläche des neuen Quadrats. Der Wert <InlineMath math="\tfrac34" /> nimmt das Längenverhältnis <InlineMath math="3:4" /> als Flächenverhältnis. Der Wert <InlineMath math="\tfrac14" /> vergisst den Faktor <InlineMath math="\tfrac12" /> in der Dreiecksfläche und zieht deshalb 12 ab.
+<BlockMath math="\begin{aligned}
+x&\ge3\cdot\frac{12}{x}\\
+x^2&\ge36\\
+x&\ge6
+\end{aligned}" />
 
-Das Verhältnis der Flächeninhalte ist also <InlineMath math="\tfrac58" />.
+Du brauchst also den kleinsten Wert von <InlineMath math="f(x)=2x+\tfrac{12}{x}" /> für <InlineMath math="x\ge6" />.
+
+# Der kleinste Wert in diesem Bereich
+
+Vergleiche <InlineMath math="f(x)" /> mit dem Wert am Rand des Bereichs, <InlineMath math="f(6)=12+2=14" />.
+
+<BlockMath math="\begin{aligned}
+f(x)-14&=\frac{2x^2-14x+12}{x}\\
+&=\frac{2(x-1)(x-6)}{x}
+\end{aligned}" />
+
+Für <InlineMath math="x\ge6" /> ist der Faktor <InlineMath math="x-1" /> positiv, der Faktor <InlineMath math="x-6" /> nicht negativ und <InlineMath math="x" /> positiv. Also gilt <InlineMath math="f(x)-14\ge0" />, mit Gleichheit genau bei <InlineMath math="x=6" />. **Das Minimum liegt am Rand des Bereichs**, bei <InlineMath math="x=6" /> und <InlineMath math="y=2" />, und dieses Paar erfüllt <InlineMath math="6\ge3\cdot2" />.
+
+Probe mit einem anderen Wert aus dem Bereich: <InlineMath math="x=12" /> und <InlineMath math="y=1" /> liefern <InlineMath math="2x+y=25" />, mehr als <InlineMath math="14" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="4\sqrt6" /> ist die AM-GM-Schranke, deren **Gleichheitsfall die Bedingung <InlineMath math="x\ge3y" /> verletzt**.
+- <InlineMath math="4\sqrt3" /> entsteht aus einem falschen AM-GM, <InlineMath math="2x+y\ge2\sqrt{xy}" />, bei dem der Koeffizient <InlineMath math="2" /> unter der Wurzel fehlt.
+- <InlineMath math="8" /> ist der Wert von <InlineMath math="x+y" /> im Punkt <InlineMath math="(6,2)" />, nicht der Wert von <InlineMath math="2x+y" />.
+- <InlineMath math="10" /> entsteht, wenn du die Bedingung zu <InlineMath math="y\ge3x" /> umdrehst, denn dann liegt der beste Punkt bei <InlineMath math="x=2" /> und <InlineMath math="y=6" />.
+
+Der kleinste Wert von <InlineMath math="2x+y" /> ist also <InlineMath math="14" />.

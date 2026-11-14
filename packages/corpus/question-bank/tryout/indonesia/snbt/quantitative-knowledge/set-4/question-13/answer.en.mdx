@@ -1,17 +1,45 @@
-When the lateral surface is unrolled, the slant height becomes the radius of the sector, and the circumference of the base becomes the arc of the sector. So **the arc length of the sector equals the circumference of the base**.
+You're looking for the smallest <InlineMath math="n" /> that pushes the sum <InlineMath math="S_n" /> past <InlineMath math="0.245" />. Adding the terms one by one takes too long, so here's the plan: **split every term into a difference of two fractions** so that the sum cancels itself, find a formula for <InlineMath math="S_n" />, then solve the inequality.
 
-# Matching the arc length
+# Splitting each term
 
-A sector of radius 9 cm with central angle <InlineMath math="\theta" /> has arc length <InlineMath math="\frac{\theta}{360^\circ}\cdot2\pi\cdot9" />. The circumference of the base is <InlineMath math="2\pi\cdot3" />, and **the two lengths are set equal**.
+Try subtracting two fractions whose denominators are neighbors.
+
+<BlockMath math="\frac{1}{k(k+1)}-\frac{1}{(k+1)(k+2)}=\frac{(k+2)-k}{k(k+1)(k+2)}=\frac{2}{k(k+1)(k+2)}" />
+
+That's twice the term we need. So **each term equals half of that difference**.
+
+<BlockMath math="\frac{1}{k(k+1)(k+2)}=\frac12\left(\frac{1}{k(k+1)}-\frac{1}{(k+1)(k+2)}\right)" />
+
+# A formula for the sum
+
+When you add the terms, the second part of each term **cancels the first part of the next one**. Only the first part of the first term and the second part of the last term are left.
 
 <BlockMath math="\begin{aligned}
-\frac{\theta}{360^\circ}\cdot2\pi\cdot9&=2\pi\cdot3\\
-\frac{\theta}{360^\circ}&=\frac39=\frac13\\
-\theta&=120^\circ
+S_n&=\frac12\left(\frac{1}{1\cdot2}-\frac{1}{(n+1)(n+2)}\right)\\
+&=\frac14-\frac{1}{2(n+1)(n+2)}
 \end{aligned}" />
 
-# Checking the other options
+# Solving the inequality
 
-The central angle is <InlineMath math="360^\circ" /> times **the ratio of the base radius to the slant height**. The value <InlineMath math="240^\circ" /> uses the base diameter, 6 cm, as the numerator. The value <InlineMath math="60^\circ" /> uses <InlineMath math="180^\circ" /> as the multiplier. The value <InlineMath math="180^\circ" /> assumes the surface is always a semicircle, and <InlineMath math="90^\circ" /> assumes it is a quarter circle.
+Since <InlineMath math="0.245=\frac14-0.005" />, the condition becomes **the subtracted remainder has to be less than <InlineMath math="0.005" />**.
 
-So the central angle of the sector is <InlineMath math="120^\circ" />.
+<BlockMath math="\begin{aligned}
+\frac{1}{2(n+1)(n+2)}&<0.005=\frac{1}{200}\\
+2(n+1)(n+2)&>200\\
+(n+1)(n+2)&>100
+\end{aligned}" />
+
+For <InlineMath math="n=8" />, <InlineMath math="9\cdot10=90" /> isn't enough. For <InlineMath math="n=9" />, <InlineMath math="10\cdot11=110>100" />. So the smallest <InlineMath math="n" /> is <InlineMath math="9" />.
+
+Check with ordinary fractions. <InlineMath math="S_8=\frac14-\frac{1}{180}=\frac{11}{45}" /> and <InlineMath math="S_9=\frac14-\frac{1}{220}=\frac{27}{110}" />, while <InlineMath math="0.245=\frac{49}{200}" />. Cross-multiply: <InlineMath math="11\cdot200=2200<2205=49\cdot45" />, so <InlineMath math="S_8" /> hasn't passed it yet. Then <InlineMath math="27\cdot200=5400>5390=49\cdot110" />, so <InlineMath math="S_9" /> has.
+
+# The tempting wrong options
+
+The other options come from **a half factor, an index, or an estimate that slipped** while splitting the terms and solving the inequality.
+
+- <InlineMath math="13" /> comes from writing the remainder as <InlineMath math="\frac{1}{(n+1)(n+2)}" /> without the half, which turns the condition into <InlineMath math="(n+1)(n+2)>200" />.
+- <InlineMath math="11" /> comes from estimating <InlineMath math="(n+1)(n+2)" /> by <InlineMath math="n^2" />, so the condition becomes <InlineMath math="n^2>100" /> and the smallest <InlineMath math="n" /> looks like <InlineMath math="11" />.
+- <InlineMath math="10" /> comes from shifting the last term one index back, to <InlineMath math="\frac{1}{2n(n+1)}" />, which makes the condition <InlineMath math="n(n+1)>100" />.
+- <InlineMath math="6" /> comes from using the half twice on the remainder, which makes the condition <InlineMath math="(n+1)(n+2)>50" />.
+
+So the smallest natural number <InlineMath math="n" /> with <InlineMath math="S_n>0.245" /> is <InlineMath math="9" />.

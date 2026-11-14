@@ -1,21 +1,48 @@
-Rata-rata gabungan tidak dapat dikurangkan langsung. Ubah setiap rata-rata menjadi **jumlah nilai**, lalu kurangkan jumlahnya.
+Kedua bilangan di bawah tanda akar adalah kuadrat sempurna, jadi persamaan ini sebenarnya persamaan nilai mutlak. Rencananya, ubah akarnya menjadi nilai mutlak, pakai syarat **tak hingga banyak penyelesaian untuk menentukan <InlineMath math="a" />**, lalu cari semua bilangan bulat yang memenuhi dan jumlahkan.
 
-# Jumlah nilai setiap kelompok
+# Akar yang menyembunyikan nilai mutlak
+
+Bentuk di bawah akar bisa difaktorkan: <InlineMath math="x^2-2ax+a^2=(x-a)^2" /> dan <InlineMath math="x^2+2x+1=(x+1)^2" />. Akar kuadrat tidak pernah negatif, jadi **<InlineMath math="\sqrt{t^2}" /> sama dengan <InlineMath math="|t|" />, bukan <InlineMath math="t" />**.
+
+<BlockMath math="|x-a|+|x+1|=6" />
+
+# Syarat tak hingga banyak penyelesaian
+
+Bentuk <InlineMath math="|x-a|" /> adalah jarak <InlineMath math="x" /> ke <InlineMath math="a" /> pada garis bilangan, dan <InlineMath math="|x+1|" /> adalah jarak <InlineMath math="x" /> ke <InlineMath math="-1" />. **Jumlah dua jarak itu paling kecil sama dengan jarak <InlineMath math="a" /> ke <InlineMath math="-1" />**, yaitu <InlineMath math="|a+1|" />, dan nilai terkecil itu dicapai oleh setiap <InlineMath math="x" /> di antara kedua titik. Jadi ada tiga kemungkinan. Kalau <InlineMath math="|a+1|=6" />, setiap titik di antara keduanya memenuhi, sehingga penyelesaiannya tak hingga. Kalau <InlineMath math="|a+1|<6" />, hanya ada <InlineMath math="2" /> titik, satu di setiap sisi. Contohnya, untuk <InlineMath math="a=3" /> penyelesaiannya hanya <InlineMath math="x=-2" /> dan <InlineMath math="x=4" />. Kalau <InlineMath math="|a+1|>6" />, tidak ada penyelesaian.
 
 <BlockMath math="\begin{aligned}
-\text{jumlah seluruh kelas}&=25\times70=1750\\
-\text{jumlah lima siswa}&=5\times86=430\\
-\text{jumlah 20 siswa lainnya}&=1750-430=1320
+|a+1|&=6\\
+a+1=6\quad&\text{atau}\quad a+1=-6\\
+a=5\quad&\text{atau}\quad a=-7
 \end{aligned}" />
 
-# Rata-rata kelompok lainnya
+Bilangan <InlineMath math="a" /> adalah bilangan asli, jadi **syarat bilangan asli membuang <InlineMath math="a=-7" />**, dan tersisa <InlineMath math="a=5" />.
 
-Bagi jumlah itu dengan **banyak siswa di kelompoknya sendiri**, yaitu 20.
+# Penyelesaian persamaannya
 
-<BlockMath math="\bar x=\frac{1320}{20}=66" />
+Untuk <InlineMath math="a=5" />, persamaannya <InlineMath math="|x-5|+|x+1|=6" />. Periksa tiga bagian garis bilangan yang dipisahkan oleh <InlineMath math="-1" /> dan <InlineMath math="5" />.
 
-Cek dengan selisih: lima siswa masing-masing rata-rata 16 di atas 70, total kelebihan 80. Kelebihan itu harus diimbangi 20 siswa lainnya, masing-masing rata-rata 4 di bawah 70, yaitu 66.
+<BlockMath math="\begin{aligned}
+x<-1:&\quad(5-x)+(-x-1)=6\ \Rightarrow\ x=-1\ \text{(bukan bagian kasus ini)}\\
+-1\le x\le5:&\quad(5-x)+(x+1)=6\ \Rightarrow\ 6=6\ \text{(selalu benar)}\\
+x>5:&\quad(x-5)+(x+1)=6\ \Rightarrow\ x=5\ \text{(bukan bagian kasus ini)}
+\end{aligned}" />
 
-Nilai 52,8 membagi 1320 dengan 25, bukan 20. Nilai 74 menambahkan 4, bukan mengurangkannya. Nilai 70 menganggap rata-rata kelompok lain tidak berubah. Nilai 83,2 mengurangkan 86, bukan 430, dari jumlah seluruh kelas.
+Himpunan penyelesaiannya adalah <InlineMath math="-1\le x\le5" />, dan **kedua ujungnya ikut terhitung**.
 
-Jadi, rata-rata nilai 20 siswa lainnya adalah **66**.
+# Jumlah bilangan bulatnya
+
+Bilangan bulat pada selang itu, **termasuk kedua ujungnya**, adalah <InlineMath math="-1" />, <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" />, dan <InlineMath math="5" />.
+
+<BlockMath math="-1+0+1+2+3+4+5=14" />
+
+Cek dua nilai. Untuk <InlineMath math="x=2" />, ruas kiri <InlineMath math="\sqrt{9}+\sqrt{9}=6" />, cocok. Untuk <InlineMath math="x=6" /> di luar selang, ruas kiri <InlineMath math="\sqrt1+\sqrt{49}=8" />, tidak cocok.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="10" /> membuang kedua ujung <InlineMath math="-1" /> dan <InlineMath math="5" />, padahal keduanya memenuhi persamaan.
+- <InlineMath math="9" /> hanya membuang ujung <InlineMath math="5" />, sehingga menjumlahkan <InlineMath math="-1" /> sampai <InlineMath math="4" />.
+- <InlineMath math="4" /> hanya menjumlahkan <InlineMath math="-1" /> dan <InlineMath math="5" />, karena kasus tengah yang selalu benar dianggap tidak punya penyelesaian.
+- <InlineMath math="-28" /> memakai <InlineMath math="a=-7" />, sehingga selangnya <InlineMath math="-7\le x\le-1" />. Pilihan ini **mengabaikan syarat bilangan asli**.
+
+Jadi, jumlah semua bilangan bulat <InlineMath math="x" /> yang memenuhi persamaan itu adalah <InlineMath math="14" />.

@@ -1,22 +1,38 @@
-Two conditions affect each other: Banu and Citra take **two adjacent seats**, while Ayu must sit in one of the middle seats. The safest way is to count by the position of the Banu and Citra pair.
+How many solutions this system has depends on <InlineMath math="k" />. The plan: remove <InlineMath math="x" /> with the first equation, see when the system **gets stuck on one factor**, then check the four statements one at a time.
 
-# Counting by the position of the pair
+# Simplifying the system
 
-Number the seats 1 to 5. The pair can take seats 1 and 2, 2 and 3, 3 and 4, or 4 and 5. For each position, count the free middle seats for Ayu, then Dodi and Eka fill the remaining two seats in 2 ways.
+From the first equation, <InlineMath math="x=2-y-z" />. Put this into the second and third equations.
 
-| Seats of Banu and Citra | Free seats | Seats for Ayu | Arrangements of Ayu, Dodi, Eka |
-| :---: | :---: | :---: | :---: |
-| 1 and 2 | 3, 4, 5 | 3 or 4 | <InlineMath math="2\times2=4" /> |
-| 2 and 3 | 1, 4, 5 | 4 | <InlineMath math="1\times2=2" /> |
-| 3 and 4 | 1, 2, 5 | 2 | <InlineMath math="1\times2=2" /> |
-| 4 and 5 | 1, 2, 3 | 2 or 3 | <InlineMath math="2\times2=4" /> |
+<BlockMath math="\begin{aligned}
+2(2-y-z)+3y+kz&=5 &&\Longrightarrow\quad y+(k-2)z=1\\
+3(2-y-z)+ky+3z&=6 &&\Longrightarrow\quad (k-3)y=0
+\end{aligned}" />
 
-The total is <InlineMath math="4+2+2+4=12" />. **Banu and Citra can swap places**, so each arrangement comes in two orders.
+The new second equation, <InlineMath math="(k-3)y=0" />, is the key. **If <InlineMath math="k\ne3" />, then <InlineMath math="y=0" />**, while if <InlineMath math="k=3" />, the equation holds for every <InlineMath math="y" />.
 
-<BlockMath math="12\times2=24" />
+# Three cases for k
 
-# Checking the other options
+For <InlineMath math="k\ne2" /> and <InlineMath math="k\ne3" />, you get <InlineMath math="y=0" />, then <InlineMath math="(k-2)z=1" />, so <InlineMath math="z=\tfrac{1}{k-2}" /> and <InlineMath math="x=2-\tfrac{1}{k-2}" />. There's **exactly one solution**.
 
-The value 48 counts arrangements with Banu and Citra adjacent but ignores Ayu's condition, namely <InlineMath math="4!\times2" />. The value 12 forgets that Banu and Citra can swap places. The value 16 counts only the pair in seats 1 and 2 or 4 and 5. The value 36 puts Ayu in one of the 3 middle seats and then assumes the pair **always fits** in the remaining seats, although Ayu can split the free seats apart.
+For <InlineMath math="k=2" />, you still get <InlineMath math="y=0" />, but the equation <InlineMath math="y+0\cdot z=1" /> asks for <InlineMath math="y=1" />. These two demands clash, so **the system has no solution**.
 
-So **24** seating arrangements are possible.
+For <InlineMath math="k=3" />, the only condition left is <InlineMath math="y+z=1" />, and <InlineMath math="y" /> can be anything. Each choice of <InlineMath math="y" /> gives one solution, so **there are infinitely many solutions**.
+
+Check with the determinant of the coefficients:
+
+<BlockMath math="\begin{vmatrix}1&1&1\\2&3&k\\3&k&3\end{vmatrix}=(9-k^2)-(6-3k)+(2k-9)=-(k-2)(k-3)" />
+
+The determinant is zero exactly for <InlineMath math="k=2" /> and <InlineMath math="k=3" />, **the same two special cases**.
+
+# Checking each statement
+
+The first statement is false. For <InlineMath math="k=2" />, the system has **no solution at all**, not infinitely many.
+
+The second statement is false. For <InlineMath math="k=3" />, the system has infinitely many solutions, so **there definitely is a solution**.
+
+The third statement is false. For <InlineMath math="k=3" />, choose <InlineMath math="y=1" />, so <InlineMath math="z=0" /> and <InlineMath math="x=1" />. Check: <InlineMath math="1+1+0=2" />, <InlineMath math="2+3+0=5" />, and <InlineMath math="3+3+0=6" />. So **some value of <InlineMath math="k" /> does give a solution with <InlineMath math="z=0" />**.
+
+The fourth statement is true. For every <InlineMath math="k" /> other than <InlineMath math="2" /> and <InlineMath math="3" />, the solution is unique and **always has <InlineMath math="y=0" />**, as the first case showed.
+
+So the first, second, and third statements are false, and the fourth statement is true.

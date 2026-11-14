@@ -1,23 +1,40 @@
-First compute the measures of the original data, then check **what actually changes** in each modified data set. Ordered from the smallest score, positions 1 to 3 are 5, positions 4 to 8 are 6, positions 9 to 14 are 7, positions 15 to 18 are 8, and positions 19 to 20 are 9.
+Divisors of <InlineMath math="N" /> are easiest to count through **the exponent of each prime factor**. The plan: factor <InlineMath math="N" /> into primes, write "perfect square" and "divisible by <InlineMath math="12" />" as conditions on the exponents, and then count the choices of exponents.
 
-# Measures of the original data
+# Factoring the number N
 
-<BlockMath math="\bar x=\frac{3(5)+5(6)+6(7)+4(8)+2(9)}{20}=\frac{137}{20}=6.85" />
+Factor each factorial and add up the exponent of each prime.
 
-The median of 20 values is the mean of the 10th and 11th values. Both are 7, so the median is 7. **The mean 6.85 is smaller than the median 7**, so the third statement is true.
+<BlockMath math="\begin{aligned}
+2!&=2,\quad 3!=2\cdot3,\quad 4!=2^3\cdot3,\quad 5!=2^3\cdot3\cdot5,\quad 6!=2^4\cdot3^2\cdot5\\
+N&=2^{1+1+3+3+4}\cdot3^{1+1+1+2}\cdot5^{1+1}=2^{12}\cdot3^5\cdot5^2
+\end{aligned}" />
 
-# Adding new students
+**The factor <InlineMath math="5" /> shows up twice**, once in <InlineMath math="5!" /> and once in <InlineMath math="6!" />.
 
-With two students scoring 9, there are 22 values and the median is the mean of the 11th and 12th values. Adding at the top end does not move the 7s, which still fill positions 9 to 14. The median stays 7, so the first statement is false.
+# Writing the exponent conditions
 
-With three students scoring 6, the frequency of 6 becomes <InlineMath math="5+3=8" />, which **exceeds the frequency of 7**, still 6. The mode becomes 6, so the second statement is false.
+Every positive divisor of <InlineMath math="N" /> has the form <InlineMath math="d=2^p\cdot3^q\cdot5^r" /> with <InlineMath math="0\le p\le12" />, <InlineMath math="0\le q\le5" />, and <InlineMath math="0\le r\le2" />. The number <InlineMath math="d" /> is a perfect square when **all its exponents are even**. Since <InlineMath math="12=2^2\cdot3" />, the number <InlineMath math="d" /> is divisible by <InlineMath math="12" /> when <InlineMath math="p\ge2" /> and <InlineMath math="q\ge1" />.
 
-# Removing the students who scored five
+<BlockMath math="\begin{aligned}
+p&\in\{2,4,6,8,10,12\}\\
+q&\in\{2,4\}\\
+r&\in\{0,2\}
+\end{aligned}" />
 
-Without the three students who scored 5, 17 students remain, with total score <InlineMath math="137-15=122" />.
+The exponent <InlineMath math="q" /> has to be even and at least <InlineMath math="1" />, so the smallest it can be is <InlineMath math="2" />.
 
-<BlockMath math="\bar x=\frac{122}{17}\approx7.18>7" />
+# Counting the divisors
 
-The new mean is **greater than 7**, so the fourth statement is true.
+Each choice of <InlineMath math="p" />, <InlineMath math="q" />, and <InlineMath math="r" /> gives a different divisor, so **the count is the product of the numbers of choices**.
 
-So the first statement is **false**, the second is **false**, the third is **true**, and the fourth is **true**.
+<BlockMath math="6\cdot2\cdot2=24" />
+
+# Checking the result
+
+A perfect square with a factor <InlineMath math="3" /> must contain <InlineMath math="3^2" />, so a square divisible by <InlineMath math="12" /> must be divisible by <InlineMath math="36" />. Such a divisor looks like <InlineMath math="36\cdot e" />, where <InlineMath math="e" /> is a perfect square dividing <InlineMath math="\frac{N}{36}=2^{10}\cdot3^3\cdot5^2" />. There are <InlineMath math="6\cdot2\cdot2=24" /> choices for <InlineMath math="e" />, **the same as the count above**.
+
+# The wrong options
+
+The option <InlineMath math="20" /> comes from thinking the divisor must be divisible by <InlineMath math="12^2=144" />, so <InlineMath math="p\ge4" />. The option <InlineMath math="28" /> only makes sure of the factor <InlineMath math="3" /> and **forgets that <InlineMath math="12" /> also needs <InlineMath math="2^2" />**, so <InlineMath math="p=0" /> gets counted too. The option <InlineMath math="36" /> counts the square divisors of <InlineMath math="\frac{N}{12}" />, when the factor to take out is <InlineMath math="36" />. The option <InlineMath math="42" /> counts every perfect-square divisor without the condition of being divisible by <InlineMath math="12" />.
+
+So the number of positive divisors of <InlineMath math="N" /> that are perfect squares and divisible by <InlineMath math="12" /> is <InlineMath math="24" />.

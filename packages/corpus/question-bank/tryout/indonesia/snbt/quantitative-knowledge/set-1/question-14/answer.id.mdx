@@ -1,28 +1,44 @@
-Tiga pernyataan pertama memakai panjang dasar kubus dengan rusuk <InlineMath math="a=9" />, yaitu **diagonal sisi dan diagonal ruang**. Pernyataan keempat paling mudah diperiksa dengan koordinat.
+Irisan bidang dengan kubus adalah bangun datar yang dibatasi semua titik potong bidang itu dengan rusuk kubus. Bangun itu **belum tentu segitiga <InlineMath math="PQR" />**, karena bidangnya bisa memotong rusuk lain juga. Rencananya: pasang koordinat, cari persamaan bidang, cari semua titik potong pada rusuk, lalu hitung luas bangunnya.
+
+# Memasang koordinat
+
+Letakkan <InlineMath math="A" /> di titik asal, dengan **rusuk <InlineMath math="AB" />, <InlineMath math="AD" />, dan <InlineMath math="AE" /> pada sumbu koordinat**.
 
 <BlockMath math="\begin{aligned}
-AC&=a\sqrt2=9\sqrt2\\
-AG&=\sqrt{AC^2+CG^2}=\sqrt{162+81}=9\sqrt3
+A&=(0,0,0),\quad B=(6,0,0),\quad C=(6,6,0),\quad D=(0,6,0)\\
+E&=(0,0,6),\quad F=(6,0,6),\quad G=(6,6,6),\quad H=(0,6,6)
 \end{aligned}" />
 
-# Diagonal ruang dan bidang diagonal
+Titik tengahnya adalah <InlineMath math="P=(3,0,0)" />, <InlineMath math="Q=(6,3,0)" />, dan <InlineMath math="R=(3,6,6)" />.
 
-Pernyataan kedua **benar** karena <InlineMath math="AG=9\sqrt3\text{ cm}" />. Bidang diagonal <InlineMath math="ACGE" /> adalah persegi panjang dengan sisi <InlineMath math="AC=9\sqrt2" /> dan <InlineMath math="AE=9" />, jadi luasnya <InlineMath math="81\sqrt2\approx114{,}6\text{ cm}^2" />. Angka 162 adalah <InlineMath math="AC^2" />, bukan luas bidang, jadi pernyataan pertama salah.
+# Mencari persamaan bidang
 
-# Sudut garis terhadap bidang
+Tulis bidang sebagai <InlineMath math="ax+by+cz=d" /> lalu masukkan ketiga titik. Titik <InlineMath math="P" /> memberi <InlineMath math="3a=d" />. Titik <InlineMath math="Q" /> memberi <InlineMath math="6a+3b=3a" />, jadi <InlineMath math="b=-a" />. Titik <InlineMath math="R" /> memberi <InlineMath math="3a-6a+6c=3a" />, jadi <InlineMath math="c=a" />. Dengan <InlineMath math="a=1" />, **persamaan bidangnya <InlineMath math="x-y+z=3" />**.
 
-Proyeksi <InlineMath math="AG" /> pada alas adalah <InlineMath math="AC" />, karena <InlineMath math="G" /> tepat di atas <InlineMath math="C" />. Sudut yang dicari adalah sudut <InlineMath math="GAC" /> pada segitiga siku-siku <InlineMath math="ACG" />.
+# Mencari semua titik potong
 
-<BlockMath math="\tan\angle GAC=\frac{CG}{AC}=\frac{9}{9\sqrt2}=\frac{1}{\sqrt2}" />
+Uji titik tengah rusuk yang lain pada persamaan <InlineMath math="x-y+z=3" />.
 
-Sudut <InlineMath math="45^\circ" /> memerlukan tangen 1. Karena <InlineMath math="\tfrac{1}{\sqrt2}<1" />, **sudutnya kurang dari <InlineMath math="45^\circ" />** (sekitar <InlineMath math="35{,}3^\circ" />). Pernyataan ketiga salah.
+<BlockMath math="\begin{aligned}
+\text{tengah } CG&=(6,6,3):\quad 6-6+3=3\\
+\text{tengah } HE&=(0,3,6):\quad 0-3+6=3\\
+\text{tengah } EA&=(0,0,3):\quad 0-0+3=3
+\end{aligned}" />
 
-# Jarak titik ke bidang
+Jadi bidang itu melalui enam titik tengah rusuk: <InlineMath math="AB" />, <InlineMath math="BC" />, <InlineMath math="CG" />, <InlineMath math="GH" />, <InlineMath math="HE" />, dan <InlineMath math="EA" />. Kubus hanya punya enam sisi, sehingga irisannya paling banyak segi enam. **Irisannya adalah segi enam** yang titik sudutnya keenam titik tengah itu.
 
-Pasang koordinat <InlineMath math="A(0,0,0)" />, <InlineMath math="B(9,0,0)" />, <InlineMath math="D(0,9,0)" />, <InlineMath math="E(0,0,9)" />, dan <InlineMath math="G(9,9,9)" />. Ketiga titik <InlineMath math="B" />, <InlineMath math="D" />, dan <InlineMath math="G" /> memenuhi <InlineMath math="x+y-z=9" />, jadi itulah **persamaan bidang <InlineMath math="BDG" />**. Jarak <InlineMath math="E" /> ke bidang itu:
+# Menghitung luas segi enam
 
-<BlockMath math="d=\frac{\lvert 0+0-9-9\rvert}{\sqrt{1^2+1^2+(-1)^2}}=\frac{18}{\sqrt3}=6\sqrt3" />
+Dua titik tengah yang berurutan, misalnya <InlineMath math="P" /> dan <InlineMath math="Q" />, berjarak <InlineMath math="\sqrt{3^2+3^2+0^2}=3\sqrt2" />. Keenam sisinya sama panjang dengan cara yang sama. Pusat kubus <InlineMath math="(3,3,3)" /> juga memenuhi <InlineMath math="3-3+3=3" />, dan jaraknya ke setiap titik sudut juga <InlineMath math="3\sqrt2" />, misalnya ke <InlineMath math="P" /> lewat selisih <InlineMath math="(0,-3,-3)" />. Jadi segi enam itu **terbagi menjadi enam segitiga sama sisi** dengan sisi <InlineMath math="3\sqrt2" />. Luas segi enam, <InlineMath math="L" />, adalah enam kali luas satu segitiga itu.
 
-Hasil ini juga terlihat secara geometris. Diagonal ruang <InlineMath math="CE" /> tegak lurus bidang <InlineMath math="BDG" />, jarak <InlineMath math="C" /> ke bidang itu <InlineMath math="\frac{9}{\sqrt3}=3\sqrt3" />, dan sisanya <InlineMath math="9\sqrt3-3\sqrt3=6\sqrt3" />. Pernyataan keempat benar.
+<BlockMath math="L=6\cdot\frac{\sqrt3}{4}\left(3\sqrt2\right)^2=6\cdot\frac{\sqrt3}{4}\cdot18=27\sqrt3" />
 
-Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **salah**, dan keempat **benar**.
+# Memeriksa hasil
+
+Pada segi enam ini, <InlineMath math="P" /> dan <InlineMath math="R" /> berseberangan, karena titik tengah <InlineMath math="PR" /> adalah pusat <InlineMath math="(3,3,3)" />. Jadi <InlineMath math="PR=6\sqrt2" /> adalah diameter dan sudut <InlineMath math="PQR" /> siku-siku. Segitiga <InlineMath math="PQR" /> mempunyai luas <InlineMath math="\frac12\cdot3\sqrt2\cdot3\sqrt6=9\sqrt3" />, yaitu **tepat sepertiga luas segi enam**. Hasil ini cocok dengan luas dua dari enam segitiga sama sisi tadi, yaitu <InlineMath math="2\cdot\frac{\sqrt3}{4}\cdot18=9\sqrt3" />.
+
+# Pilihan yang keliru
+
+Pilihan <InlineMath math="\frac{9\sqrt3}{2}\text{ cm}^2" /> adalah luas segitiga yang hanya memotong pojok <InlineMath math="B" />, yaitu segitiga sama sisi melalui titik tengah <InlineMath math="AB" />, <InlineMath math="BC" />, dan <InlineMath math="BF" /> dengan sisi <InlineMath math="3\sqrt2" />. Pilihan <InlineMath math="9\sqrt3\text{ cm}^2" /> menganggap **segitiga <InlineMath math="PQR" /> sebagai irisannya**. Pilihan <InlineMath math="\frac{27\sqrt3}{2}\text{ cm}^2" /> memakai sisi segi enam <InlineMath math="3\text{ cm}" />, yaitu setengah rusuk. Pilihan <InlineMath math="18\sqrt3\text{ cm}^2" /> menganggap irisannya persegi panjang bersisi <InlineMath math="PQ" /> dan <InlineMath math="QR" /> karena sudut <InlineMath math="PQR" /> siku-siku.
+
+Jadi, luas irisan bidang <InlineMath math="PQR" /> dengan kubus adalah <InlineMath math="27\sqrt3\text{ cm}^2" />.

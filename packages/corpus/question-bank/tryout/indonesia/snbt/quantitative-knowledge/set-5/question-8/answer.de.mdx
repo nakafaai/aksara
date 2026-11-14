@@ -1,17 +1,35 @@
-Gewinn ist Erlös minus alle Kosten. „Gewinn machen“ bedeutet, dass der Gewinn **größer als null** ist und nicht gleich null.
+Die Frage verlangt ein Ja oder ein Nein. Eine Aussage reicht aus, wenn **jeder Wert von <InlineMath math="x" />, der sie erfüllt, dieselbe Antwort liefert**, also immer Ja oder immer Nein. Der Plan: Schreib die Frage als leicht lesbare Bedingung um und prüfe dann jede Aussage sorgfältig, vor allem bei <InlineMath math="x=0" />.
 
-# Gewinnfunktion aufstellen
+# Wann die Antwort Ja lautet
 
-Für <InlineMath math="n" /> Stück beträgt der Erlös <InlineMath math="4500n" /> Rupiah und die Kosten <InlineMath math="500{.}000+2000n" /> Rupiah. **Jedes Stück trägt** <InlineMath math="4500-2000=2500" /> Rupiah zur Deckung der Fixkosten bei.
+Bring <InlineMath math="x" /> auf die linke Seite und klammere aus.
 
-<BlockMath math="L(n)=4500n-(500{.}000+2000n)=2500n-500{.}000" />
+<BlockMath math="\begin{aligned}
+x^2-x&>0\\
+x(x-1)&>0
+\end{aligned}" />
 
-# Bedingung für positiven Gewinn
+Ein Produkt aus zwei Faktoren ist positiv, wenn beide dasselbe Vorzeichen haben, also für <InlineMath math="x<0" /> oder <InlineMath math="x>1" />. Damit **lautet die Antwort Nein für <InlineMath math="0\le x\le1" />**, auch für <InlineMath math="x=0" />, denn <InlineMath math="0^2=0" /> ist nicht größer als <InlineMath math="0" />.
 
-<BlockMath math="2500n-500{.}000>0\quad\Rightarrow\quad n>200" />
+# Die erste Aussage allein
 
-Bei <InlineMath math="n=200" /> ist der Gewinn genau null (die Gewinnschwelle), es gibt also noch keinen Gewinn. Die kleinste ganze Zahl über 200 ist 201, mit einem Gewinn von <InlineMath math="2500" /> Rupiah.
+Eine Wurzel ist nie negativ, also **ist <InlineMath math="\sqrt{x^2}" /> gleich <InlineMath math="|x|" /> und nicht <InlineMath math="x" />**. Aussage (1) bedeutet <InlineMath math="|x|=-x" />, und das gilt genau für <InlineMath math="x\le0" />. Der Wert <InlineMath math="x=-1" /> liefert <InlineMath math="1>-1" />, also Ja. Der Wert <InlineMath math="x=0" /> erfüllt (1) ebenfalls, aber <InlineMath math="0>0" /> ist falsch, also Nein. Aussage (1) allein reicht nicht aus.
 
-Der Wert 200 ist die Gewinnschwelle und noch kein Gewinn. Die Werte 111 und 112 teilen die Fixkosten nur durch den Verkaufspreis und vergessen die Stückkosten. Der Wert 250 teilt die Fixkosten durch die Stückkosten.
+Wenn du <InlineMath math="\sqrt{x^2}" /> als <InlineMath math="x" /> schreibst, erhältst du nur <InlineMath math="2x=0" /> und hältst die Antwort fälschlich für ein sicheres Nein.
 
-Es müssen also mindestens **201** Stück hergestellt und verkauft werden.
+# Die zweite Aussage allein
+
+Der Bruch <InlineMath math="\tfrac1x" /> existiert nur für <InlineMath math="x\ne0" />. Um <InlineMath math="\tfrac1x<2" /> zu lösen, brauchst du eine **Fallunterscheidung nach dem Vorzeichen von <InlineMath math="x" />**, denn beim Multiplizieren mit einer negativen Zahl dreht sich das Ungleichheitszeichen um.
+
+<BlockMath math="\begin{aligned}
+x>0:&\quad 1<2x\ \Rightarrow\ x>\tfrac12\\
+x<0:&\quad \tfrac1x<0<2\ \text{(immer wahr)}
+\end{aligned}" />
+
+Aussage (2) bedeutet also <InlineMath math="x<0" /> oder <InlineMath math="x>\tfrac12" />. Der Wert <InlineMath math="x=-1" /> liefert Ja, der Wert <InlineMath math="x=\tfrac34" /> liefert <InlineMath math="\tfrac{9}{16}<\tfrac34" />, also Nein. Aussage (2) allein reicht nicht aus.
+
+# Beide Aussagen zusammen
+
+Aussage (1) liefert <InlineMath math="x\le0" />, und der einzige Wert dort mit der Antwort Nein ist <InlineMath math="x=0" />. **Aussage (2) schließt den Fall <InlineMath math="x=0" /> aus**, weil <InlineMath math="\tfrac10" /> nicht definiert ist, und ihr Teil <InlineMath math="x>\tfrac12" /> passt nicht zu <InlineMath math="x\le0" />. Übrig bleibt <InlineMath math="x<0" />, und für jedes negative <InlineMath math="x" /> gilt <InlineMath math="x^2>0>x" />. Die Antwort ist immer Ja, also reichen beide Aussagen zusammen aus.
+
+Beide Aussagen zusammen reichen also aus, um die Frage zu beantworten, aber keine Aussage allein.

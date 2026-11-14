@@ -21,12 +21,12 @@ const item: ItemSource = {
             "Dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.",
         },
         {
-          correct: true,
+          correct: false,
           label:
             "Pernyataan (1) saja cukup untuk menjawab pertanyaan dan pernyataan (2) saja cukup.",
         },
         {
-          correct: false,
+          correct: true,
           label:
             "Pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.",
         },
