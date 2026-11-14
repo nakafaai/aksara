@@ -1,15 +1,58 @@
-Peluang terambil bola merah adalah **banyak bola merah dibagi banyak seluruh bola**. Jadi untuk mengetahui banyak bola merah, kita perlu peluang itu dan banyak seluruh bola, atau keterangan lain yang setara.
+Kamu mencari panjang garis bagi <InlineMath math="AD" />, padahal sisi <InlineMath math="AB" /> dan <InlineMath math="AC" /> belum diketahui. Rencananya ada empat langkah: pakai **teorema garis bagi** untuk perbandingan sisi, pakai keliling untuk panjang sisinya, hitung <InlineMath math="\cos B" /> dari segitiga besar, lalu pakai <InlineMath math="\cos B" /> itu di segitiga <InlineMath math="ABD" />.
 
-# Pernyataan pertama saja
+# Perbandingan dari garis bagi
 
-<BlockMath math="\frac{m}{12}=\frac13\;\Longrightarrow\;m=4" />
+Teorema garis bagi berkata: garis bagi sudut <InlineMath math="A" /> membagi sisi di depannya **dengan perbandingan yang sama dengan dua sisi yang mengapit sudut itu**.
 
-Banyak bola merah **tunggal, yaitu 4**. Pernyataan (1) saja cukup.
+<BlockMath math="\frac{AB}{AC}=\frac{BD}{DC}=\frac{3}{4}" />
 
-# Pernyataan kedua saja
+# Panjang sisi dari keliling
 
-Pernyataan (2) hanya memberi perbandingan merah dan putih <InlineMath math="1:2" />. Kantong bisa berisi 1 merah dan 2 putih, 4 merah dan 8 putih, atau 10 merah dan 20 putih. **Banyak bola seluruhnya tidak diketahui**, jadi pernyataan (2) saja tidak cukup.
+Keliling adalah jumlah ketiga sisi, dan **sisi <InlineMath math="BC" /> ikut dihitung**. Panjang <InlineMath math="BC=3+4=7\text{ cm}" />, jadi sisanya untuk <InlineMath math="AB" /> dan <InlineMath math="AC" />.
 
-Kedua pernyataan sejalan, karena 4 merah dan 8 putih memenuhi keduanya.
+<BlockMath math="\begin{aligned}
+AB+AC &= 21-7=14 \\
+AB &= \tfrac{3}{7}\cdot 14=6\text{ cm} \\
+AC &= \tfrac{4}{7}\cdot 14=8\text{ cm}
+\end{aligned}" />
 
-Jadi, **pernyataan (1) saja cukup**, tetapi pernyataan (2) saja tidak cukup.
+# Sudut yang dipakai bersama
+
+Sudut <InlineMath math="B" /> dipakai bersama oleh segitiga <InlineMath math="ABC" /> dan segitiga <InlineMath math="ABD" />. Hitung kosinusnya dari segitiga <InlineMath math="ABC" />, karena di sana **ketiga sisinya sudah diketahui**. Aturan kosinus menghubungkan sisi di depan sudut dengan dua sisi lainnya.
+
+<BlockMath math="\begin{aligned}
+AC^2 &= AB^2+BC^2-2\cdot AB\cdot BC\cos B \\
+64 &= 36+49-84\cos B \\
+\cos B &= \frac{21}{84}=\frac{1}{4}
+\end{aligned}" />
+
+# Panjang garis bagi
+
+Sekarang pakai aturan kosinus di segitiga <InlineMath math="ABD" />, dengan sisi <InlineMath math="AB=6" />, <InlineMath math="BD=3" />, dan **sudut <InlineMath math="B" /> yang sama**.
+
+<BlockMath math="\begin{aligned}
+AD^2 &= AB^2+BD^2-2\cdot AB\cdot BD\cos B \\
+&= 36+9-2\cdot 6\cdot 3\cdot\tfrac{1}{4} \\
+&= 45-9=36
+\end{aligned}" />
+
+Panjang tidak mungkin negatif, jadi <InlineMath math="AD=6\text{ cm}" />.
+
+# Pemeriksaan lewat sudut lain
+
+Hitung lagi dari sisi lain. Di segitiga <InlineMath math="ABC" />, kosinus sudut <InlineMath math="C" /> adalah <InlineMath math="\cos C=\dfrac{64+49-36}{2\cdot 8\cdot 7}=\dfrac{11}{16}" />. Di segitiga <InlineMath math="ADC" />, dengan <InlineMath math="AC=8" /> dan <InlineMath math="DC=4" />, kamu dapat hasil yang sama.
+
+<BlockMath math="AD^2=64+16-2\cdot 8\cdot 4\cdot\tfrac{11}{16}=80-44=36" />
+
+Dua jalan memberi **panjang yang sama**, jadi hasilnya meyakinkan.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain muncul dari **satu langkah yang tertukar atau terlewat**.
+
+- <InlineMath math="2\sqrt{10}\text{ cm}" /> muncul kalau perbandingannya terbalik, yaitu <InlineMath math="AB=8" /> dan <InlineMath math="AC=6" />. Hasilnya <InlineMath math="AD^2=40" />.
+- <InlineMath math="4\sqrt{3}\text{ cm}" /> muncul dari rumus pintas <InlineMath math="AD^2=AB\cdot AC-BD\cdot DC" /> yang suku <InlineMath math="BD\cdot DC" />-nya lupa dikurangkan, sehingga <InlineMath math="AD^2=48" />.
+- <InlineMath math="2\sqrt{15}\text{ cm}" /> muncul dari rumus pintas yang sama dengan tanda salah, yaitu <InlineMath math="AD^2=48+12=60" />.
+- <InlineMath math="4\sqrt{6}\text{ cm}" /> muncul kalau seluruh keliling <InlineMath math="21" /> dibagi untuk <InlineMath math="AB" /> dan <InlineMath math="AC" />, sehingga <InlineMath math="AB=9" />, <InlineMath math="AC=12" />, dan <InlineMath math="AD^2=96" />.
+
+Jadi, panjang <InlineMath math="AD" /> adalah <InlineMath math="6\text{ cm}" />.

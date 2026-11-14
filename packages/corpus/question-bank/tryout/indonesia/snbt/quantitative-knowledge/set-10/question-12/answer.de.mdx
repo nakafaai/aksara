@@ -1,19 +1,51 @@
-Bestimme aus jeder Fläche zuerst **die Seitenlänge der Figur** und berechne dann die Umfänge.
+Die vier Aussagen brauchen vier Kennzahlen: Anzahl der Lernenden, Punktsumme, Mittelwert und Median jeder Klasse. Der Plan: Lies diese Kennzahlen aus dem Diagramm ab und prüfe dann jede Aussage mit **einer Rechnung oder allen möglichen Fällen**, nie mit einem einzigen Beispiel.
 
-# Seite und Umfang des gleichseitigen Dreiecks
+# Die Daten aus dem Diagramm
 
-**Die Fläche eines gleichseitigen Dreiecks** mit Seite <InlineMath math="s" /> ist <InlineMath math="\tfrac{\sqrt3}{4}s^2" />.
+Die Punktsumme einer Klasse ist die Summe aus jeder Note mal der Anzahl derer, die sie bekommen haben.
 
 <BlockMath math="\begin{aligned}
-\frac{\sqrt3}{4}s^2&=9\sqrt3\\
-s^2&=36,\quad s=6\\
-P&=3\cdot6=18
+n_A &= 3+3+5+2+2=15, & \text{Summe}_A &= 15+18+35+16+18=102 \\
+n_B &= 3+5+3+2+7=20, & \text{Summe}_B &= 15+30+21+16+63=145
 \end{aligned}" />
 
-# Seite und Umfang des Quadrats
+Die Mittelwerte sind <InlineMath math="\bar{x}_A=\tfrac{102}{15}=6{,}8" /> und <InlineMath math="\bar{x}_B=\tfrac{145}{20}=7{,}25" />.
 
-Die Quadratseite ist <InlineMath math="\sqrt{25}=5" />, also <InlineMath math="Q=4\cdot5=20" />.
+Der Median ist der mittlere Wert der geordneten Daten. Klasse A hat <InlineMath math="15" /> Lernende, ihr Median ist also der <InlineMath math="8" />. Wert. Die Noten <InlineMath math="5" /> und <InlineMath math="6" /> belegen die Plätze <InlineMath math="1" /> bis <InlineMath math="6" />, die Note <InlineMath math="7" /> belegt die Plätze <InlineMath math="7" /> bis <InlineMath math="11" />. Der Median von Klasse A ist also <InlineMath math="7" />. Klasse B hat <InlineMath math="20" /> Lernende, ihr Median ist also der Mittelwert aus dem <InlineMath math="10" />. und dem <InlineMath math="11" />. Wert. Die Noten <InlineMath math="5" /> und <InlineMath math="6" /> belegen die Plätze <InlineMath math="1" /> bis <InlineMath math="8" />, die Note <InlineMath math="7" /> belegt die Plätze <InlineMath math="9" /> bis <InlineMath math="11" />. Also ist **auch der Median von Klasse B gleich <InlineMath math="7" />**.
 
-Obwohl die Dreiecksfläche <InlineMath math="9\sqrt3\approx15{,}6" /> kleiner ist als die Quadratfläche, **stehen Umfang und Fläche nicht immer in derselben Reihenfolge**, beide müssen also berechnet werden. Hier gilt <InlineMath math="20>18" />.
+# Die erste Aussage
 
-Die richtige Beziehung ist also **<InlineMath math="Q>P" />**.
+Der Mittelwert von Klasse B, <InlineMath math="7{,}25" />, ist höher als der von Klasse A, <InlineMath math="6{,}8" />. Beide Mediane sind <InlineMath math="7" />. Den Mittelwert von Klasse B heben **die sieben Lernenden mit der Note <InlineMath math="9" />**, während der Median nur auf die mittlere Position schaut. Diese Aussage ist wahr.
+
+# Die zweite Aussage
+
+Der gemeinsame Mittelwert ist die Summe aller Noten geteilt durch die Anzahl aller Lernenden.
+
+<BlockMath math="\begin{aligned}
+\bar{x}_{\text{gesamt}} &= \frac{102+145}{15+20}=\frac{247}{35}=7+\frac{2}{35} \\
+\frac{\bar{x}_A+\bar{x}_B}{2} &= \frac{6{,}8+7{,}25}{2}=7{,}025=7+\frac{1}{40}
+\end{aligned}" />
+
+Die beiden Ergebnisse unterscheiden sich, weil <InlineMath math="\tfrac{2}{35}\ne\tfrac{1}{40}" /> ist. Der einfache Durchschnitt zweier Mittelwerte stimmt nur, wenn **beide Klassen gleich groß sind**, und hier gilt <InlineMath math="15\ne 20" />. Diese Aussage ist falsch.
+
+# Die dritte Aussage
+
+Die Person mit der Note <InlineMath math="7" /> verlässt Klasse B und wechselt in Klasse A.
+
+<BlockMath math="\begin{aligned}
+\bar{x}_A^{\text{neu}} &= \frac{102+7}{16}=\frac{109}{16}=6{,}8125 \\
+\bar{x}_B^{\text{neu}} &= \frac{145-7}{19}=\frac{138}{19}\approx 7{,}26
+\end{aligned}" />
+
+Der Mittelwert von Klasse A steigt über <InlineMath math="6{,}8" />, und der Mittelwert von Klasse B steigt über <InlineMath math="7{,}25" />. Das ergibt Sinn: Die Note <InlineMath math="7" /> liegt **über dem Mittelwert von Klasse A, aber unter dem Mittelwert von Klasse B**. Ein Wert über dem Mittelwert hebt den Mittelwert, und das Entfernen eines Werts unter dem Mittelwert hebt ihn ebenfalls. Um <InlineMath math="\tfrac{138}{19}>7{,}25" /> sicher zu prüfen, vergleich <InlineMath math="138\cdot 4=552" /> mit <InlineMath math="29\cdot 19=551" />. Diese Aussage ist wahr.
+
+# Die vierte Aussage
+
+Mit der neuen Person hat Klasse A <InlineMath math="16" /> Lernende, ihr Median ist also der Mittelwert aus dem <InlineMath math="8" />. und dem <InlineMath math="9" />. Wert. Prüf **beide Möglichkeiten für die neue Note**.
+
+- Ist die neue Note höchstens <InlineMath math="7" />, liegen höchstens <InlineMath math="7" /> Werte unter <InlineMath math="7" />, und die Note <InlineMath math="7" /> belegt mindestens die Plätze <InlineMath math="8" /> bis <InlineMath math="12" />.
+- Ist die neue Note mindestens <InlineMath math="8" />, liegen weiterhin <InlineMath math="6" /> Werte unter <InlineMath math="7" />, und die fünf Noten <InlineMath math="7" /> belegen die Plätze <InlineMath math="7" /> bis <InlineMath math="11" />.
+
+In beiden Fällen sind der <InlineMath math="8" />. und der <InlineMath math="9" />. Wert gleich <InlineMath math="7" />, der Median bleibt also <InlineMath math="7" />. Diese Aussage ist wahr.
+
+Die erste, dritte und vierte Aussage sind also wahr, die zweite Aussage ist falsch.

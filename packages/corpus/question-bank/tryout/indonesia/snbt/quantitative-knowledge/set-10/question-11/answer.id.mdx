@@ -1,17 +1,48 @@
-Cari dulu banyak sisinya. Cara tercepat memakai **sudut luar**, karena jumlah sudut luar setiap segi banyak selalu <InlineMath math="360^\circ" />.
+Kamu perlu tahu **semua** nilai <InlineMath math="x" /> yang membuat <InlineMath math="f" /> minimum, bukan hanya satu. Rencananya, tulis <InlineMath math="f" /> sebagai jumlah jarak dari <InlineMath math="x" /> ke beberapa titik, periksa kemiringan grafiknya di setiap bagian, lalu jumlahkan bilangan bulat di bagian yang paling rendah.
 
-# Banyak sisi
+# Menulis ulang sebagai jarak
 
-Sudut luar dan sudut dalam **bersebelahan pada satu garis lurus**, jadi sudut luarnya <InlineMath math="180^\circ-156^\circ=24^\circ" />.
+Keluarkan koefisien <InlineMath math="x" /> dari setiap tanda mutlak, karena <InlineMath math="\lvert cu\rvert=c\lvert u\rvert" /> untuk <InlineMath math="c>0" />.
 
-<BlockMath math="n=\frac{360^\circ}{24^\circ}=15" />
+<BlockMath math="f(x)=\lvert x-1\rvert+2\lvert x-4\rvert+3\lvert x-13\rvert" />
 
-# Banyak diagonal
+Bentuk <InlineMath math="\lvert x-a\rvert" /> adalah jarak dari <InlineMath math="x" /> ke titik <InlineMath math="a" />. Jadi <InlineMath math="f(x)" /> adalah jumlah jarak dari <InlineMath math="x" /> ke enam titik: titik <InlineMath math="1" /> satu kali, titik <InlineMath math="4" /> dua kali, dan titik <InlineMath math="13" /> tiga kali. Koefisien itu berarti titiknya **dihitung beberapa kali**.
 
-Setiap titik sudut dihubungkan ke titik sudut lain yang **bukan dirinya dan bukan dua tetangganya**, yaitu <InlineMath math="15-3=12" /> titik. Setiap diagonal terhitung dua kali, sekali dari setiap ujungnya.
+# Kemiringan di setiap bagian
 
-<BlockMath math="\frac{15\cdot12}{2}=90" />
+Setiap jarak <InlineMath math="\lvert x-a\rvert" /> berkurang <InlineMath math="1" /> per satuan ketika <InlineMath math="x" /> di kiri <InlineMath math="a" /> dan bertambah <InlineMath math="1" /> per satuan ketika <InlineMath math="x" /> di kanan <InlineMath math="a" />. Kemiringan <InlineMath math="f" /> adalah jumlah semua perubahan itu.
 
-Nilai 105 adalah <InlineMath math="\binom{15}{2}" />, yang ikut menghitung 15 sisi. Nilai 15 adalah banyak sisi, dan nilai 75 mengurangkan sisi dua kali dari 105.
+<BlockMath math="\begin{aligned}
+x<1:&\quad -1-2-3=-6 \\
+1<x<4:&\quad +1-2-3=-4 \\
+4<x<13:&\quad +1+2-3=0 \\
+x>13:&\quad +1+2+3=+6
+\end{aligned}" />
 
-Jadi, banyak diagonal segi-<InlineMath math="n" /> itu adalah **90**.
+Grafik <InlineMath math="f" /> turun sampai <InlineMath math="x=4" />, lalu **datar sepanjang <InlineMath math="4\le x\le 13" />**, lalu naik. Jadi nilai minimum tercapai di seluruh interval itu, bukan di satu titik.
+
+<BlockMath math="\begin{aligned}
+f(4) &= 3+0+27=30 \\
+f(13) &= 12+18+0=30
+\end{aligned}" />
+
+# Menjumlahkan bilangan bulat
+
+Bilangan bulat di <InlineMath math="[4,13]" /> adalah <InlineMath math="4,5,\ldots,13" />, ada <InlineMath math="10" /> bilangan. **Kedua ujung ikut dihitung** karena di ujung pun nilainya <InlineMath math="30" />.
+
+<BlockMath math="4+5+\cdots+13=\frac{(4+13)\cdot 10}{2}=85" />
+
+# Pemeriksaan
+
+Urutkan keenam titik tadi: <InlineMath math="1,4,4,13,13,13" />. Untuk banyak titik yang genap, jumlah jarak minimum di **setiap titik di antara dua titik tengah**, yaitu titik ketiga <InlineMath math="4" /> dan titik keempat <InlineMath math="13" />. Hasilnya cocok. Coba juga beberapa nilai: <InlineMath math="f(8)=7+8+15=30" />, sedangkan <InlineMath math="f(3)=34" /> dan <InlineMath math="f(14)=36" /> lebih besar.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain muncul dari **titik yang dihitung tanpa bobotnya** atau interval yang terpotong.
+
+- <InlineMath math="4" /> memakai median dari tiga titik <InlineMath math="1" />, <InlineMath math="4" />, dan <InlineMath math="13" /> tanpa memperhatikan bahwa titik-titik itu dihitung beberapa kali.
+- <InlineMath math="13" /> menganggap titik dengan bobot terbesar sebagai satu-satunya titik minimum.
+- <InlineMath math="17" /> hanya memeriksa titik patah <InlineMath math="4" /> dan <InlineMath math="13" />, lalu lupa bahwa di antaranya grafik datar.
+- <InlineMath math="68" /> adalah <InlineMath math="5+6+\cdots+12" />, yang membuang kedua ujung interval.
+
+Jadi, jumlah semua bilangan bulat <InlineMath math="x" /> yang membuat <InlineMath math="f(x)" /> minimum adalah <InlineMath math="85" />.

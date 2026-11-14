@@ -1,17 +1,55 @@
-Besi tidak bertambah dan tidak berkurang, jadi **volume kerucut sama dengan volume bola**.
+Kamu perlu menemukan lingkarannya dulu, yaitu pusat dan jari-jarinya, baru mencari titik potong keduanya dengan sisi <InlineMath math="BC" />. Ada satu jebakan: persamaan jari-jarinya punya dua penyelesaian, dan **hanya satu yang benar-benar menyinggung sisi persegi**.
 
-# Menyamakan volume
+# Letak pusat lingkaran
+
+Pasang koordinat dengan <InlineMath math="A=(0,0)" />, <InlineMath math="B=(s,0)" />, <InlineMath math="C=(s,s)" />, dan <InlineMath math="D=(0,s)" />, dengan <InlineMath math="s=2+\sqrt{2}" />. Lingkaran yang menyinggung sebuah garis berjarak tepat <InlineMath math="r" /> dari garis itu. Lingkaran ini menyinggung <InlineMath math="AB" /> dan <InlineMath math="AD" /> di dalam sudut <InlineMath math="A" />, jadi pusatnya <InlineMath math="O=(r,r)" />. Artinya **pusatnya terletak pada diagonal <InlineMath math="AC" />**.
+
+# Panjang jari-jari
+
+Titik <InlineMath math="C" /> ada pada lingkaran, jadi jaraknya ke <InlineMath math="O" /> sama dengan <InlineMath math="r" />.
+
+<BlockMath math="OC=\sqrt{(s-r)^2+(s-r)^2}=\sqrt{2}\,\lvert s-r\rvert=r" />
+
+Tanda mutlak memberi dua kasus.
 
 <BlockMath math="\begin{aligned}
-\tfrac43\pi\cdot6^3&=\tfrac13\pi\cdot6^2\cdot t\\
-288\pi&=12\pi t\\
-t&=24
+s-r=\tfrac{r}{\sqrt{2}} &\;\Longrightarrow\; r=\frac{\sqrt{2}\,s}{\sqrt{2}+1}=s(2-\sqrt{2})=(2+\sqrt{2})(2-\sqrt{2})=2 \\
+r-s=\tfrac{r}{\sqrt{2}} &\;\Longrightarrow\; r=\frac{\sqrt{2}\,s}{\sqrt{2}-1}=s(2+\sqrt{2})=(2+\sqrt{2})^2=6+4\sqrt{2}
 \end{aligned}" />
 
-# Pemeriksaan umum
+Lingkaran kedua menyinggung garis <InlineMath math="AB" /> di <InlineMath math="(6+4\sqrt{2},0)" />, jauh di luar sisi <InlineMath math="AB" /> yang panjangnya hanya <InlineMath math="2+\sqrt{2}" />. Soal meminta **titik singgung terletak pada sisi**, jadi lingkaran kedua dibuang. Jari-jarinya <InlineMath math="r=2" /> dan pusatnya <InlineMath math="O=(2,2)" />.
 
-Dengan jari-jari yang sama, persamaan <InlineMath math="\tfrac43\pi r^3=\tfrac13\pi r^2t" /> memberi **tinggi empat kali jari-jari**, yaitu <InlineMath math="t=4r" />. Untuk <InlineMath math="r=6" />, tingginya 24, sesuai hasil di atas.
+# Titik potong kedua
 
-Nilai 8 lupa faktor <InlineMath math="\tfrac13" /> pada volume kerucut, sehingga memperlakukannya seperti tabung. Nilai 4 memakai <InlineMath math="r^2" /> pada volume bola. Nilai 12 menganggap tinggi kerucut sama dengan diameter bola.
+Sisi <InlineMath math="BC" /> terletak pada garis <InlineMath math="x=s" />. Jarak <InlineMath math="O" /> ke garis itu adalah <InlineMath math="s-2=\sqrt{2}" />. Garis tegak lurus dari pusat ke sebuah tali busur **membagi tali busur itu menjadi dua sama panjang**, jadi hitung setengah tali busur <InlineMath math="CP" /> dengan teorema Pythagoras.
 
-Jadi, tinggi kerucut itu adalah **<InlineMath math="24\text{ cm}" />**.
+<BlockMath math="\begin{aligned}
+\tfrac{1}{2}CP &= \sqrt{r^2-(\sqrt{2})^2}=\sqrt{4-2}=\sqrt{2} \\
+CP &= 2\sqrt{2}
+\end{aligned}" />
+
+Titik tengah tali busur ada di <InlineMath math="(s,2)" />. Jadi <InlineMath math="C" /> ada di ketinggian <InlineMath math="2+\sqrt{2}" /> dan <InlineMath math="P" /> ada di ketinggian <InlineMath math="2-\sqrt{2}" />. Ketinggian <InlineMath math="P" /> ada di antara <InlineMath math="0" /> dan <InlineMath math="s" />, jadi <InlineMath math="P" /> memang terletak pada sisi <InlineMath math="BC" />.
+
+# Pemeriksaan dengan kuasa titik
+
+Lingkaran menyinggung <InlineMath math="AB" /> di <InlineMath math="T=(2,0)" />, jadi <InlineMath math="BT=s-2=\sqrt{2}" />. Dari titik <InlineMath math="B" />, **kuadrat panjang garis singgung sama dengan hasil kali kedua potongan garis** yang menembus lingkaran, yaitu <InlineMath math="BP" /> dan <InlineMath math="BC" />.
+
+<BlockMath math="\begin{aligned}
+BT^2 &= BP\cdot BC \\
+2 &= BP\cdot(2+\sqrt{2}) \\
+BP &= \frac{2}{2+\sqrt{2}}=2-\sqrt{2} \\
+CP &= (2+\sqrt{2})-(2-\sqrt{2})=2\sqrt{2}
+\end{aligned}" />
+
+Hasilnya sama dengan cara pertama.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain muncul dari **ruas yang tertukar atau lingkaran yang salah**.
+
+- <InlineMath math="(2-\sqrt{2})\text{ cm}" /> adalah panjang <InlineMath math="BP" />, bukan <InlineMath math="CP" />.
+- <InlineMath math="\sqrt{2}\text{ cm}" /> hanya setengah tali busur, karena lupa dikali <InlineMath math="2" />.
+- <InlineMath math="(2+\sqrt{2})\text{ cm}" /> menganggap lingkaran juga melalui <InlineMath math="B" />, sehingga <InlineMath math="P=B" />.
+- <InlineMath math="(8+6\sqrt{2})\text{ cm}" /> memakai lingkaran kedua dengan <InlineMath math="r=6+4\sqrt{2}" />, yang titik singgungnya di luar sisi persegi.
+
+Jadi, panjang <InlineMath math="CP" /> adalah <InlineMath math="2\sqrt{2}\text{ cm}" />.

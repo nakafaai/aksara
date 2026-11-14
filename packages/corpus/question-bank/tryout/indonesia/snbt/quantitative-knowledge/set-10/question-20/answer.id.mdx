@@ -1,22 +1,32 @@
-Setiap pernyataan membaca **baris atau kolom yang berbeda** dari tabel. Hitung besaran yang diperlukan satu per satu.
+Kamu perlu menghitung semua persegi yang keempat titik sudutnya titik yang ditandai, **termasuk persegi yang miring**. Rencananya, kelompokkan persegi menurut kotak tegak terkecil yang memuatnya, hitung banyak persegi di dalam satu kotak, lalu hitung banyak letak kotak itu.
 
-# Perubahan dan total
+# Kotak pembungkus setiap persegi
 
-Kenaikan Desa Mekarsari dari 2024 ke 2025 dihitung terhadap **produksi tahun 2024**.
+Titik yang ditandai membentuk <InlineMath math="6" /> kolom dan <InlineMath math="5" /> baris. Setiap persegi, tegak ataupun miring, **muat tepat di dalam satu persegi tegak terkecil**, yaitu persegi bersisi sejajar sumbu yang setiap sisinya memuat satu titik sudut persegi tadi. Sebut panjang sisi kotak itu <InlineMath math="s" />.
 
-<BlockMath math="\frac{108-90}{90}\times100\%=\frac{18}{90}\times100\%=20\%" />
+Di dalam kotak bersisi <InlineMath math="s" />, titik sudut persegi terletak pada keempat sisi kotak. Geser titik sudut pertama sejauh <InlineMath math="a" /> dari pojok kiri bawah sepanjang sisi bawah, dengan <InlineMath math="a=0,1,\ldots,s-1" />. Keempat titik sudutnya menjadi seperti berikut.
 
-Pernyataan pertama benar. Total kolom 2026 adalah <InlineMath math="150+99+165=414" /> ton, jadi pernyataan kedua benar.
+<BlockMath math="(a,0),\quad (s,a),\quad (s-a,s),\quad (0,s-a)" />
 
-# Rata-rata dan arah perubahan
+Untuk <InlineMath math="a=0" /> hasilnya kotak itu sendiri, dan setiap nilai <InlineMath math="a" /> lainnya memberi satu persegi miring. Jadi **satu kotak bersisi <InlineMath math="s" /> memuat tepat <InlineMath math="s" /> persegi**.
 
-<BlockMath math="\begin{aligned}
-\bar x_{\text{Sukamaju}}&=\frac{120+132+150}{3}=\frac{402}{3}=134\\
-\bar x_{\text{Harapan}}&=\frac{150+141+165}{3}=\frac{456}{3}=152
-\end{aligned}" />
+# Banyak letak kotak
 
-Rata-rata Sukamaju **lebih rendah** daripada Harapan, jadi pernyataan ketiga salah.
+Kotak bersisi <InlineMath math="s" /> dapat digeser ke kanan dalam <InlineMath math="6-s" /> cara dan ke atas dalam <InlineMath math="5-s" /> cara. Titik-titik itu hanya setinggi <InlineMath math="4" /> satuan, jadi **sisi kotak paling besar <InlineMath math="4" />**.
 
-Dari 2025 ke 2026, produksi Mekarsari turun dari 108 menjadi 99 ton. Satu contoh penurunan sudah cukup, jadi pernyataan keempat salah.
+| <InlineMath math="s" /> | Banyak letak kotak | Persegi per kotak | Banyak persegi |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="5\cdot 4=20" /> | <InlineMath math="1" /> | <InlineMath math="20" /> |
+| <InlineMath math="2" /> | <InlineMath math="4\cdot 3=12" /> | <InlineMath math="2" /> | <InlineMath math="24" /> |
+| <InlineMath math="3" /> | <InlineMath math="3\cdot 2=6" /> | <InlineMath math="3" /> | <InlineMath math="18" /> |
+| <InlineMath math="4" /> | <InlineMath math="2\cdot 1=2" /> | <InlineMath math="4" /> | <InlineMath math="8" /> |
 
-Jadi, pernyataan pertama **benar**, kedua **benar**, ketiga **salah**, dan keempat **salah**.
+<BlockMath math="20+24+18+8=70" />
+
+# Pemeriksaan dengan papan kecil
+
+Coba cara yang sama untuk <InlineMath math="9" /> titik yang membentuk <InlineMath math="3" /> kolom dan <InlineMath math="3" /> baris. Rumusnya memberi <InlineMath math="1\cdot 2\cdot 2+2\cdot 1\cdot 1=6" />. Daftarnya memang enam: empat persegi kecil, satu persegi besar, dan **satu persegi miring** yang titik sudutnya titik tengah keempat sisi. Jadi cara menghitungnya cocok.
+
+Kesalahan yang sering muncul adalah menjawab <InlineMath math="40" /> karena hanya menghitung persegi yang sisinya sejajar sumbu, yaitu <InlineMath math="20+12+6+2" />.
+
+Jadi, banyak persegi yang dapat dibentuk adalah <InlineMath math="70" />.

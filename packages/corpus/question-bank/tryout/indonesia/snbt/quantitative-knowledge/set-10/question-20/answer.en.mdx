@@ -1,22 +1,32 @@
-Each statement reads **a different row or column** of the table. Compute the needed quantities one at a time.
+You need to count every square whose four corners are marked points, **including the tilted ones**. The plan: group the squares by the smallest upright box that holds each one, count the squares inside one box, then count where that box can sit.
 
-# Change and total
+# The box around each square
 
-The increase for Mekarsari from 2024 to 2025 is measured against **the 2024 harvest**.
+The marked points form <InlineMath math="6" /> columns and <InlineMath math="5" /> rows. Every square, upright or tilted, **fits exactly inside one smallest upright square**, the square with sides parallel to the axes whose four sides each carry one corner of it. Call the side length of that box <InlineMath math="s" />.
 
-<BlockMath math="\frac{108-90}{90}\times100\%=\frac{18}{90}\times100\%=20\%" />
+Inside a box of side <InlineMath math="s" />, the corners of the square lie on the four sides of the box. Move the first corner a distance <InlineMath math="a" /> from the bottom left corner along the bottom side, with <InlineMath math="a=0,1,\ldots,s-1" />. The four corners are then as follows.
 
-The first statement is true. The 2026 column adds up to <InlineMath math="150+99+165=414" /> tonnes, so the second statement is true.
+<BlockMath math="(a,0),\quad (s,a),\quad (s-a,s),\quad (0,s-a)" />
 
-# Means and direction of change
+For <InlineMath math="a=0" /> you get the box itself, and every other value of <InlineMath math="a" /> gives one tilted square. So **one box of side <InlineMath math="s" /> holds exactly <InlineMath math="s" /> squares**.
 
-<BlockMath math="\begin{aligned}
-\bar x_{\text{Sukamaju}}&=\frac{120+132+150}{3}=\frac{402}{3}=134\\
-\bar x_{\text{Harapan}}&=\frac{150+141+165}{3}=\frac{456}{3}=152
-\end{aligned}" />
+# Where the box can sit
 
-The mean for Sukamaju is **lower** than for Harapan, so the third statement is false.
+A box of side <InlineMath math="s" /> can shift right in <InlineMath math="6-s" /> ways and up in <InlineMath math="5-s" /> ways. The points are only <InlineMath math="4" /> units tall, so **the side of the box is at most <InlineMath math="4" />**.
 
-From 2025 to 2026, Mekarsari fell from 108 to 99 tonnes. One decrease is enough, so the fourth statement is false.
+| <InlineMath math="s" /> | Positions of the box | Squares per box | Squares |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="5\cdot 4=20" /> | <InlineMath math="1" /> | <InlineMath math="20" /> |
+| <InlineMath math="2" /> | <InlineMath math="4\cdot 3=12" /> | <InlineMath math="2" /> | <InlineMath math="24" /> |
+| <InlineMath math="3" /> | <InlineMath math="3\cdot 2=6" /> | <InlineMath math="3" /> | <InlineMath math="18" /> |
+| <InlineMath math="4" /> | <InlineMath math="2\cdot 1=2" /> | <InlineMath math="4" /> | <InlineMath math="8" /> |
 
-So the first statement is **true**, the second is **true**, the third is **false**, and the fourth is **false**.
+<BlockMath math="20+24+18+8=70" />
+
+# Checking on a small board
+
+Try the same method on <InlineMath math="9" /> points in <InlineMath math="3" /> columns and <InlineMath math="3" /> rows. The formula gives <InlineMath math="1\cdot 2\cdot 2+2\cdot 1\cdot 1=6" />. The list really has six: four small squares, one large square, and **one tilted square** whose corners are the midpoints of the four sides. So the method checks out.
+
+A common mistake is to answer <InlineMath math="40" /> by counting only the squares with sides parallel to the axes, which is <InlineMath math="20+12+6+2" />.
+
+So <InlineMath math="70" /> squares can be formed.

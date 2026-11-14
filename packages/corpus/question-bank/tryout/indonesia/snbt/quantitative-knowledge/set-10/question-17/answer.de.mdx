@@ -1,19 +1,50 @@
-Eine Aussage reicht, wenn **nur eine reelle Zahl** sie erfüllt. Löse jede Aussage und vergleiche dann die Lösungsmengen.
+Eine Aussage reicht, wenn **jedes Polynom, das sie erfüllt, denselben Wert <InlineMath math="P(2)" /> liefert**. Der Plan: Übersetze jede Aussage in eine allgemeine Form von <InlineMath math="P(x)" />, such zwei Beispiele mit verschiedenen Werten von <InlineMath math="P(2)" />, wenn eine Aussage nicht reicht, und kombiniere dann beide.
 
-# Jede Aussage allein
+# Aussage eins allein
 
-Aussage (1) bedeutet, dass <InlineMath math="x" /> von 2 den Abstand 3 hat.
+Eine Polynomdivision lässt sich immer als Divisor mal Quotient plus Rest schreiben.
 
-<BlockMath math="x-2=3\;\text{oder}\;x-2=-3\;\Longrightarrow\;x=5\;\text{oder}\;x=-1" />
+<BlockMath math="P(x)=(x-1)(x-3)\,H(x)+2x+1" />
 
-Aussage (2) lässt sich faktorisieren.
+Setz <InlineMath math="x=1" /> und <InlineMath math="x=3" /> ein, weil der erste Teil dort null ist. Du bekommst <InlineMath math="P(1)=3" /> und <InlineMath math="P(3)=7" />. Aber <InlineMath math="x=2" /> **ist keine Nullstelle des Divisors**, also hängt <InlineMath math="P(2)=-H(2)+5" /> noch von <InlineMath math="H" /> ab.
 
-<BlockMath math="x^2-4x-5=(x-5)(x+1)=0\;\Longrightarrow\;x=5\;\text{oder}\;x=-1" />
+- Für <InlineMath math="H(x)=0" /> ist <InlineMath math="P(x)=2x+1" /> und <InlineMath math="P(2)=5" />.
+- Für <InlineMath math="H(x)=1" /> ist <InlineMath math="P(x)=x^2-2x+4" /> und <InlineMath math="P(2)=4" />.
 
-Jede liefert **zwei Werte**, keine reicht also allein.
+Zwei verschiedene Antworten, also reicht Aussage (1) allein nicht.
+
+# Aussage zwei allein
+
+Eine Parabel, die zur Geraden <InlineMath math="x=1" /> symmetrisch ist, hat ihren Scheitel bei <InlineMath math="x=1" />, sie hat also die Form <InlineMath math="P(x)=a(x-1)^2+c" /> mit <InlineMath math="a\ne 0" />. Damit ist <InlineMath math="P(2)=a+c" />, und **die Werte von <InlineMath math="a" /> und <InlineMath math="c" /> sind noch unbekannt**.
+
+- Für <InlineMath math="a=1" /> und <InlineMath math="c=0" /> ist <InlineMath math="P(2)=1" />.
+- Für <InlineMath math="a=1" /> und <InlineMath math="c=1" /> ist <InlineMath math="P(2)=2" />.
+
+Zwei verschiedene Antworten, also reicht auch Aussage (2) allein nicht.
 
 # Beide Aussagen zusammen
 
-Beide Aussagen haben **genau dieselbe Lösungsmenge**, <InlineMath math="\{-1,5\}" />. Die Kombination schließt keinen Wert aus, <InlineMath math="x" /> kann also weiterhin 5 oder <InlineMath math="-1" /> sein. Das ist kein Zufall: Quadrieren von <InlineMath math="\lvert x-2\rvert=3" /> liefert <InlineMath math="x^2-4x+4=9" />, also Gleichung (2).
+Nimm die Form aus Aussage (2) und setz die beiden Werte aus Aussage (1) ein. **Zwei Bedingungen reichen für zwei Unbekannte**, nämlich <InlineMath math="a" /> und <InlineMath math="c" />.
 
-Also **reichen Aussage (1) und Aussage (2) zusammen nicht** aus, um die Frage zu beantworten.
+<BlockMath math="\begin{aligned}
+P(1) &= a\cdot 0+c=3 &&\Longrightarrow\; c=3 \\
+P(3) &= 4a+c=7 &&\Longrightarrow\; a=1 \\
+P(2) &= a+c=1+3=4
+\end{aligned}" />
+
+Das Polynom ist also sicher <InlineMath math="P(x)=(x-1)^2+3=x^2-2x+4" />, und <InlineMath math="P(2)=4" />.
+
+# Probe
+
+Teile <InlineMath math="x^2-2x+4" /> durch <InlineMath math="(x-1)(x-3)=x^2-4x+3" />. Der Quotient ist <InlineMath math="1" />, der Rest <InlineMath math="(x^2-2x+4)-(x^2-4x+3)=2x+1" />, wie Aussage (1) verlangt. Der Graph hat seinen Scheitel bei <InlineMath math="x=1" />, wie Aussage (2) verlangt. **Dieses Polynom erfüllt also beide Bedingungen**.
+
+# Die falschen Antworten
+
+Jede andere Antwort entsteht aus **einer unzulässigen Abkürzung** oder aus zu wenig gezählten Bedingungen.
+
+- Die Antwort „Aussage (1) allein reicht“ entsteht meist, wenn man <InlineMath math="x=2" /> in den Rest <InlineMath math="2x+1" /> einsetzt und <InlineMath math="5" /> bekommt. Diese Abkürzung gilt nur an den Nullstellen des Divisors, also bei <InlineMath math="1" /> und <InlineMath math="3" />.
+- Die Antwort „Aussage (2) allein reicht“ glaubt, die Symmetrie lege die Parabel fest. Sie liefert aber nur <InlineMath math="P(2)=P(0)" />.
+- Die Antwort „jede allein reicht“ verbindet beide Fehler.
+- Die Antwort „reichen nicht“ übersieht, dass Grad <InlineMath math="2" /> und Symmetrie nur zwei Unbekannte übrig lassen und Aussage (1) genau zwei Bedingungen liefert.
+
+Beide Aussagen zusammen reichen also, mit <InlineMath math="P(2)=4" />, während keine Aussage allein reicht.
