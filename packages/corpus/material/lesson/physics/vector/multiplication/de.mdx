@@ -37,6 +37,27 @@ Für eine während der Verschiebung **konstante Kraft** lautet die von dieser Kr
 
 Die Kraftkomponente **entlang der Verschiebungsachse** bestimmt die Arbeit. Sie ist positiv in Bewegungsrichtung und negativ entgegen der Bewegungsrichtung.
 
+### Sonnenlicht auf einem Solarmodul
+
+Ein Modul fängt **das Skalarprodukt aus Sonnenlicht und Fläche** ein: <InlineMath math="P=IA\cos\theta" />. Steht die Sonne <InlineMath math="60^\circ" /> hoch und ist das Modul um <InlineMath math="10^\circ" /> geneigt, liegt zwischen <InlineMath math="\hat n" /> und <InlineMath math="\hat s" /> ein Winkel von <InlineMath math="20^\circ" />, und es nimmt <InlineMath math="1597\text{ W}" /> auf. Neig es auf <InlineMath math="30^\circ" />, dann sind es volle <InlineMath math="1700\text{ W}" />.
+
+<SolarPanelFluxLab
+  title={<>Leistung als Skalarprodukt</>}
+  description={<>Ein Modul mit <InlineMath math="1{,}7\text{ m}^2" /> in Sonnenlicht von <InlineMath math="1000\text{ W/m}^2" />. Neig das Modul.</>}
+  area={1.7}
+  elevation={60}
+  sunlight={1000}
+  tilt={10}
+  labels={{
+    between: <>Winkel zwischen <InlineMath math="\hat n" /> und <InlineMath math="\hat s" /></>,
+    cosine: <><InlineMath math="\cos\theta" /></>,
+    power: <>Aufgenommene Leistung</>,
+    tilt: <>Neigung des Moduls</>,
+    tiltName: "Neigung des Moduls",
+    viewLabel: "Solarmodul auf einer Wiese",
+  }}
+/>
+
 ### Arbeit mit dem Skalarprodukt
 
 Eine Person zieht eine Kiste mit einer konstanten Kraft von <InlineMath math="40\text{ N}" /> über eine Strecke von <InlineMath math="5\text{ m}" />. Die Kraft schließt mit der Verschiebungsrichtung einen Winkel von <InlineMath math="60^\circ" /> ein. Für die Arbeit gilt:
@@ -58,7 +79,7 @@ Das Diagramm unten nimmt denselben Zug von <InlineMath math="40\text{ N}" /> üb
 
 <MathVisual
   title={<>Arbeit folgt dem Kosinus des Winkels</>}
-  description={<><InlineMath math="W=Fs\cos\theta" /> für <InlineMath math="F=40\text{ N}" /> und <InlineMath math="s=5\text{ m}" />. Waagrecht: Winkel in Einheiten von 30°. Senkrecht: Arbeit in Einheiten von 50 J.</>}
+  description={<><InlineMath math="W=Fs\cos\theta" /> für <InlineMath math="F=40\text{ N}" /> und <InlineMath math="s=5\text{ m}" />. Waagrecht: Winkel in Einheiten von <InlineMath math="30^\circ" />. Senkrecht: Arbeit in Einheiten von <InlineMath math="50\text{ J}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.6 } },
@@ -79,6 +100,26 @@ Das Diagramm unten nimmt denselben Zug von <InlineMath math="40\text{ N}" /> üb
     zero: <InlineMath math="0^\circ:\ W=200\text{ J}" />,
     right: <InlineMath math="90^\circ:\ W=0" />,
     back: <InlineMath math="180^\circ:\ W=-200\text{ J}" />,
+  }}
+/>
+
+Hier ist dieser Zug an einem Schlitten: <InlineMath math="40\text{ N}" /> unter <InlineMath math="60^\circ" /> über <InlineMath math="5\text{ m}" /> verrichten <InlineMath math="100\text{ J}" />, weil nur <InlineMath math="20\text{ N}" /> davon entlang dem Schnee liegen. Senk das Seil Richtung <InlineMath math="0^\circ" />, und die Arbeit steigt auf <InlineMath math="200\text{ J}" />.
+
+<SledPullWorkLab
+  title={<>Nur der Anteil in Bewegungsrichtung arbeitet</>}
+  description={<>Ein <InlineMath math="15\text{ kg}" /> schwerer Schlitten wird mit <InlineMath math="40\text{ N}" /> über <InlineMath math="5\text{ m}" /> gezogen. Heb oder senk das Seil.</>}
+  angle={60}
+  distance={5}
+  force={40}
+  mass={15}
+  labels={{
+    along: <>Entlang dem Schnee <InlineMath math="F\cos\theta" /></>,
+    angle: <>Seilwinkel über dem Schnee</>,
+    angleName: "Seilwinkel über dem Schnee",
+    normal: <>Normalkraft des Schnees</>,
+    up: <>Anteil nach oben <InlineMath math="F\sin\theta" /></>,
+    viewLabel: "Schlitten mit Brennholz wird über Schnee gezogen",
+    work: <>Arbeit auf <InlineMath math="5\text{ m}" /></>,
   }}
 />
 
@@ -138,6 +179,25 @@ Für das Drehmoment lautet das Kreuzprodukt:
 
 Der Vektor <InlineMath math="\vec{r}" /> ist der Ortsvektor von einem Bezugspunkt am Scharnier bis zum Angriffspunkt der Kraft. Der senkrechte Hebelarm hat die Länge <InlineMath math="r\sin\theta" />. Bei gleichem Winkel erzeugt dieselbe Kraft ein größeres Drehmoment, wenn sie weiter vom Türscharnier entfernt angreift.
 
+### Eine Radmutter lösen
+
+Eine Hand drückt mit <InlineMath math="200\text{ N}" /> auf ein Radkreuz, <InlineMath math="0{,}4\text{ m}" /> von der Mutter entfernt. Das Drehmoment <InlineMath math="\vec\tau=\vec r\times\vec F" /> **zeigt entlang der Achse der Mutter**, <InlineMath math="80\text{ N}\cdot\text{m}" />, wenn der Druck senkrecht zum Griff steht. Dreh den Druck unter den Griff, und das Drehmoment kippt auf die andere Seite.
+
+<WrenchTorqueLab
+  title={<>Drehmoment an einer Radmutter</>}
+  description={<>Ein Druck von <InlineMath math="200\text{ N}" /> in <InlineMath math="0{,}4\text{ m}" /> Abstand von der Mutter. Dreh den Druck.</>}
+  angle={90}
+  arm={0.4}
+  force={200}
+  labels={{
+    angle: <>Winkel vom Griff zur Kraft</>,
+    angleName: "Winkel vom Griff zur Kraft",
+    square: <>Kraftanteil senkrecht zum Griff <InlineMath math="F\sin\theta" /></>,
+    torque: <>Drehmoment <InlineMath math="\tau" /></>,
+    viewLabel: "Radkreuz an einer Radmutter",
+  }}
+/>
+
 ### Drehmoment einer senkrechten Kraft
 
 Wähle am Scharnier einen Bezugspunkt auf der Höhe des Kraftangriffspunkts. Eine Tür wird horizontal im Abstand <InlineMath math="0{,}8\text{ m}" /> vom Scharnier mit einer Kraft von <InlineMath math="30\text{ N}" /> gedrückt. Die Kraft wirkt **senkrecht zur Tür**, also gilt <InlineMath math="\theta=90^\circ" />.
@@ -149,6 +209,27 @@ Wähle am Scharnier einen Bezugspunkt auf der Höhe des Kraftangriffspunkts. Ein
 \end{aligned}" />
 
 Bei festen Werten von <InlineMath math="r" /> und <InlineMath math="F" /> erzeugt eine senkrechte Kraft das maximale Drehmoment, weil <InlineMath math="\sin90^\circ=1" /> gilt. Eine fast parallel zum Ortsvektor <InlineMath math="\vec{r}" /> wirkende Kraft erzeugt nur ein kleines Drehmoment, weil ihr Sinusfaktor nahe null liegt.
+
+Hier ist diese Tür von der Decke aus: <InlineMath math="30\text{ N}" /> senkrecht zur Tür in <InlineMath math="0{,}8\text{ m}" /> Abstand ergeben <InlineMath math="24\text{ N}\cdot\text{m}" />, und die Tür schwingt auf. Schieb die Hand zum Scharnier oder drück schräg, dann werden Drehmoment und Schwung kleiner.
+
+<DoorHingeTorqueLab
+  title={<>Eine Tür aufdrücken</>}
+  description={<>Eine <InlineMath math="18\text{ kg}" /> schwere, <InlineMath math="0{,}9\text{ m}" /> breite Tür, mit <InlineMath math="30\text{ N}" /> gedrückt.</>}
+  angle={90}
+  arm={0.8}
+  force={30}
+  mass={18}
+  width={0.9}
+  labels={{
+    angle: <>Winkel zwischen Tür und Kraft</>,
+    angleName: "Winkel zwischen Tür und Kraft",
+    arm: <>Abstand vom Scharnier</>,
+    armName: "Abstand vom Scharnier",
+    square: <>Kraftanteil senkrecht zur Tür <InlineMath math="F\sin\theta" /></>,
+    torque: <>Drehmoment <InlineMath math="\tau" /></>,
+    viewLabel: "Tür von der Decke aus gesehen",
+  }}
+/>
 
 ## Skalarprodukt und Kreuzprodukt vergleichen
 
@@ -166,7 +247,7 @@ Halt beide Beträge fest und dreh den Winkel. Das orange Skalarprodukt ist am gr
 
 <MathVisual
   title={<>Skalar- und Kreuzprodukt gegen den Winkel</>}
-  description={<><InlineMath math="AB\cos\theta" /> und <InlineMath math="AB\sin\theta" /> mit <InlineMath math="AB=200" /> für Winkel von 0° bis 180°. Waagrecht: Winkel in Einheiten von 30°. Senkrecht: Wert in Einheiten von 50.</>}
+  description={<><InlineMath math="AB\cos\theta" /> und <InlineMath math="AB\sin\theta" /> mit <InlineMath math="AB=200" /> für Winkel von <InlineMath math="0^\circ" /> bis <InlineMath math="180^\circ" />. Waagrecht: Winkel in Einheiten von <InlineMath math="30^\circ" />. Senkrecht: Wert in Einheiten von <InlineMath math="50" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.8 } },
@@ -183,5 +264,27 @@ Halt beide Beträge fest und dreh den Winkel. Das orange Skalarprodukt ist am gr
   labels={{
     dot: <InlineMath math="\vec A\cdot\vec B" />,
     cross: <InlineMath math="\lvert\vec A\times\vec B\rvert" />,
+  }}
+/>
+
+### Beide Produkte an einer Rampe
+
+Rutscht der Klotz <InlineMath math="0{,}5\text{ m}" /> hangabwärts, verrichtet die Gewichtskraft die Arbeit <InlineMath math="\vec W\cdot\vec s" />, und die nutzt nur den Anteil entlang des Hangs, <InlineMath math="9{,}8\text{ N}" />: <InlineMath math="4{,}9\text{ J}" />. Der Anteil senkrecht ins Brett, <InlineMath math="16{,}97\text{ N}" />, **verrichtet gar keine Arbeit**.
+
+<RampBlockComponentLab
+  title={<>Welcher Anteil Arbeit verrichtet</>}
+  description={<>Ein <InlineMath math="2\text{ kg}" /> schwerer Klotz auf einem Brett. Er rutscht, sobald <InlineMath math="\tan\theta" /> größer als <InlineMath math="0{,}4" /> ist.</>}
+  angle={30}
+  distance={0.5}
+  friction={0.4}
+  mass={2}
+  labels={{
+    along: <>Hangabwärts <InlineMath math="W\sin\theta" /></>,
+    angle: <>Neigungswinkel</>,
+    angleName: "Neigungswinkel",
+    into: <>Senkrecht zur Ebene <InlineMath math="W\cos\theta" /></>,
+    viewLabel: "Holzklotz auf einem schrägen Brett",
+    weight: <>Gewichtskraft <InlineMath math="W" /></>,
+    work: <>Arbeit der Gewichtskraft auf <InlineMath math="0{,}5\text{ m}" /></>,
   }}
 />

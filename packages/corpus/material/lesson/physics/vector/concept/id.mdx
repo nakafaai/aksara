@@ -89,6 +89,26 @@ Tanyakan apakah besaran itu butuh arah. Dua troli ini punya kelajuan yang sama, 
   }}
 />
 
+### Angin pada Peta Cuaca
+
+Peta cuaca **butuh vektor untuk angin**: angka <InlineMath math="12\text{ m/s}" /> saja belum memberi tahu nelayan ke mana perahunya terbawa. Putar arahnya, lalu lihat semua panah di peta ikut berputar, sedangkan kelajuan hanya mengatur panjangnya.
+
+<WindMapVectorLab
+  title={<>Angin di Atas Pulau-Pulau</>}
+  description={<>Angin tetap <InlineMath math="12\text{ m/s}" /> bertiup ke arah <InlineMath math="30^\circ" /> dari timur. Ubah kelajuan dan arahnya.</>}
+  angle={30}
+  speed={12}
+  labels={{
+    angle: <>Arah dari timur</>,
+    angleName: "Arah dari timur",
+    east: <>Komponen timur <InlineMath math="v_x" /></>,
+    north: <>Komponen utara <InlineMath math="v_y" /></>,
+    speed: <>Kelajuan angin</>,
+    speedName: "Kelajuan angin",
+    viewLabel: "Peta cuaca angin di atas pulau-pulau",
+  }}
+/>
+
 ## Membaca Panah Vektor
 
 Vektor sering digambar sebagai panah. **Pangkal panah** menunjukkan titik awal vektor, **ujung panah** menunjukkan arah, dan **panjang panah** mewakili besar vektor.
@@ -101,6 +121,27 @@ Ada juga vektor yang ditulis dari satu titik ke titik lain, seperti <InlineMath 
 
 Tanda mutlak di sekitar vektor menyatakan besar vektor. Arah tidak termasuk dalam besar vektor itu.
 
+### Drone Meninggalkan Landasan
+
+Panah ungu berpangkal di landasan, yaitu ekornya, dan berujung di drone, yaitu kepalanya. Panjangnya adalah **jarak lurus dari landasan**, <InlineMath math="10{,}8\text{ m}" />, walaupun drone menempuh <InlineMath math="18\text{ m}" /> di sepanjang lintasannya. Tekan putar untuk melihatnya terbang.
+
+<DroneDisplacementLab
+  title={<>Ekor di Landasan, Kepala di Drone</>}
+  description={<>Drone naik <InlineMath math="4\text{ m}" />, terbang <InlineMath math="6\text{ m}" /> ke timur, lalu <InlineMath math="8\text{ m}" /> ke utara.</>}
+  hops={[
+    { east: 0, north: 0, up: 4 },
+    { east: 6, north: 0, up: 0 },
+    { east: 0, north: 8, up: 0 },
+  ]}
+  labels={{
+    chooseFactor: "Kalikan rencana terbang dengan k",
+    displacement: <>Perpindahan</>,
+    path: <>Panjang lintasan terbang</>,
+    size: <>Jarak dari landasan</>,
+    viewLabel: "Drone terbang dari landasannya",
+  }}
+/>
+
 ## Kesamaan Vektor Ditentukan oleh Besar dan Arah
 
 Dua vektor dikatakan sama <Highlight>jika besar dan arahnya sama</Highlight>. Letaknya boleh berbeda.
@@ -108,6 +149,28 @@ Dua vektor dikatakan sama <Highlight>jika besar dan arahnya sama</Highlight>. Le
 Dua gaya sebesar <InlineMath math="15 \text{ N}" /> yang sama-sama mengarah ke kanan memiliki nilai vektor yang sama, meskipun panahnya digambar di tempat berbeda. Pada benda tegar, titik kerja gaya tetap perlu diperhatikan karena dapat mengubah momen gaya.
 
 Sebaliknya, gaya <InlineMath math="15 \text{ N}" /> ke kanan dan gaya <InlineMath math="15 \text{ N}" /> ke kiri bukan vektor yang sama. Besarnya sama, tetapi arahnya berlawanan.
+
+### Dua Regu pada Satu Tali
+
+Kedua regu mulai dengan tiga penarik yang masing-masing menarik <InlineMath math="400\text{ N}" />, jadi besar kedua gaya sama-sama <InlineMath math="1200\text{ N}" />. Tetap saja keduanya bukan vektor yang sama, karena **arahnya berlawanan**, dan bersama-sama gaya totalnya <InlineMath math="0\text{ N}" />. Tambah satu penarik di salah satu sisi, lalu lihat talinya bergeser.
+
+<TugOfWarForceLab
+  title={<>Besar Sama, Tarikan Berlawanan</>}
+  description={<>Setiap penarik menarik dengan <InlineMath math="400\text{ N}" />. Ubah jumlah anggota tiap regu.</>}
+  left={3}
+  pull={400}
+  right={3}
+  labels={{
+    left: <>Regu kiri <InlineMath math="\vec F_L" /></>,
+    leftCount: <>Penarik di kiri</>,
+    leftName: "Penarik di kiri",
+    net: <>Gaya total <InlineMath math="\Sigma F" /></>,
+    right: <>Regu kanan <InlineMath math="\vec F_R" /></>,
+    rightCount: <>Penarik di kanan</>,
+    rightName: "Penarik di kanan",
+    viewLabel: "Lomba tarik tambang saat senja",
+  }}
+/>
 
 ## Jarak dan Perpindahan Mengukur Hal Berbeda
 
@@ -131,8 +194,8 @@ Jarak yang ditempuh adalah <InlineMath math="7 \text{ m}" />. Besar perpindahann
 Lintasan di bawah adalah <InlineMath math="7\text{ m}" /> berjalan, tetapi panah fuchsia, yaitu perpindahannya, hanya <InlineMath math="5\text{ m}" /> dan mengarah sekitar <InlineMath math="36{,}9^\circ" /> ke utara dari timur.
 
 <MathVisual
-  title={<>Berjalan 7 m, Berpindah 5 m</>}
-  description={<>4 m ke timur, lalu 3 m ke utara. Satu kotak grid sama dengan 1 m.</>}
+  title={<>Berjalan <InlineMath math="7\text{ m}" />, Berpindah <InlineMath math="5\text{ m}" /></>}
+  description={<><InlineMath math="4\text{ m}" /> ke timur, lalu <InlineMath math="3\text{ m}" /> ke utara. Satu kotak grid sama dengan <InlineMath math="1\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 3.8 } },
@@ -155,5 +218,27 @@ Lintasan di bawah adalah <InlineMath math="7\text{ m}" /> berjalan, tetapi panah
     east: <InlineMath math="4\text{ m}" />,
     north: <InlineMath math="3\text{ m}" />,
     walk: <InlineMath math="5\text{ m}" />,
+  }}
+/>
+
+### Jalan Kaki Keliling Kota
+
+Pejalan kaki menyusuri jalan <InlineMath math="300\text{ m}" /> ke timur lalu <InlineMath math="400\text{ m}" /> ke utara, jadi jarak tempuhnya <InlineMath math="700\text{ m}" />. Perpindahannya adalah **panah ungu lurus dari awal ke akhir**, yang panjangnya hanya <InlineMath math="500\text{ m}" />.
+
+<CityWalkDisplacementLab
+  title={<>Jarak Tempuh dan Perpindahan</>}
+  description={<>Jalan kaki <InlineMath math="1{,}25\text{ m/s}" /> menyusuri dua jalan di kota.</>}
+  legs={[
+    { east: 300, north: 0 },
+    { east: 0, north: 400 },
+  ]}
+  pace={1.25}
+  labels={{
+    averageSpeed: <>Kelajuan rata-rata</>,
+    averageVelocity: <>Kecepatan rata-rata</>,
+    displacement: <>Perpindahan</>,
+    distance: <>Jarak tempuh</>,
+    time: <>Waktu</>,
+    viewLabel: "Jalan kaki di kota dilihat dari atas",
   }}
 />

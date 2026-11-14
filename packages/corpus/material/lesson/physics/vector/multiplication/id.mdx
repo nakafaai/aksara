@@ -37,6 +37,27 @@ Untuk **gaya konstan** selama perpindahan, usaha oleh gaya tersebut adalah:
 
 Komponen gaya **sepanjang sumbu perpindahan** menentukan usaha. Komponen ini positif jika searah gerak dan negatif jika berlawanan arah.
 
+### Cahaya Matahari pada Panel Surya
+
+Panel menangkap **perkalian titik antara cahaya matahari dan luasnya**: <InlineMath math="P=IA\cos\theta" />. Dengan matahari setinggi <InlineMath math="60^\circ" /> dan panel miring <InlineMath math="10^\circ" />, sudut antara <InlineMath math="\hat n" /> dan <InlineMath math="\hat s" /> adalah <InlineMath math="20^\circ" /> dan daya yang ditangkap <InlineMath math="1597\text{ W}" />. Miringkan ke <InlineMath math="30^\circ" /> untuk mendapat penuh <InlineMath math="1700\text{ W}" />.
+
+<SolarPanelFluxLab
+  title={<>Daya sebagai Perkalian Titik</>}
+  description={<>Panel <InlineMath math="1{,}7\text{ m}^2" /> di bawah cahaya <InlineMath math="1000\text{ W/m}^2" />. Miringkan panelnya.</>}
+  area={1.7}
+  elevation={60}
+  sunlight={1000}
+  tilt={10}
+  labels={{
+    between: <>Sudut antara <InlineMath math="\hat n" /> dan <InlineMath math="\hat s" /></>,
+    cosine: <><InlineMath math="\cos\theta" /></>,
+    power: <>Daya yang ditangkap</>,
+    tilt: <>Kemiringan panel</>,
+    tiltName: "Kemiringan panel",
+    viewLabel: "Panel surya di lapangan",
+  }}
+/>
+
 ### Contoh Usaha dengan Perkalian Titik
 
 Seseorang menarik kotak dengan gaya konstan <InlineMath math="40\text{ N}" /> sehingga kotak berpindah <InlineMath math="5\text{ m}" />. Gaya membentuk sudut <InlineMath math="60^\circ" /> terhadap arah perpindahan. Usahanya:
@@ -58,7 +79,7 @@ Grafik di bawah menjalankan tarikan <InlineMath math="40\text{ N}" /> sejauh <In
 
 <MathVisual
   title={<>Usaha Mengikuti Kosinus Sudut</>}
-  description={<><InlineMath math="W=Fs\cos\theta" /> untuk <InlineMath math="F=40\text{ N}" /> dan <InlineMath math="s=5\text{ m}" />. Mendatar: sudut dalam satuan 30°. Tegak: usaha dalam satuan 50 J.</>}
+  description={<><InlineMath math="W=Fs\cos\theta" /> untuk <InlineMath math="F=40\text{ N}" /> dan <InlineMath math="s=5\text{ m}" />. Mendatar: sudut dalam satuan <InlineMath math="30^\circ" />. Tegak: usaha dalam satuan <InlineMath math="50\text{ J}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.6 } },
@@ -79,6 +100,26 @@ Grafik di bawah menjalankan tarikan <InlineMath math="40\text{ N}" /> sejauh <In
     zero: <InlineMath math="0^\circ:\ W=200\text{ J}" />,
     right: <InlineMath math="90^\circ:\ W=0" />,
     back: <InlineMath math="180^\circ:\ W=-200\text{ J}" />,
+  }}
+/>
+
+Ini tarikan yang sama pada kereta luncur: <InlineMath math="40\text{ N}" /> pada <InlineMath math="60^\circ" /> sejauh <InlineMath math="5\text{ m}" /> menghasilkan usaha <InlineMath math="100\text{ J}" />, karena hanya <InlineMath math="20\text{ N}" /> yang sejajar salju. Turunkan tali ke arah <InlineMath math="0^\circ" />, maka usahanya naik menuju <InlineMath math="200\text{ J}" />.
+
+<SledPullWorkLab
+  title={<>Hanya Bagian Searah Gerak yang Berusaha</>}
+  description={<>Kereta luncur <InlineMath math="15\text{ kg}" /> ditarik sejauh <InlineMath math="5\text{ m}" /> dengan <InlineMath math="40\text{ N}" />. Naikkan atau turunkan talinya.</>}
+  angle={60}
+  distance={5}
+  force={40}
+  mass={15}
+  labels={{
+    along: <>Sejajar salju <InlineMath math="F\cos\theta" /></>,
+    angle: <>Sudut tali terhadap salju</>,
+    angleName: "Sudut tali terhadap salju",
+    normal: <>Gaya normal dari salju</>,
+    up: <>Bagian ke atas <InlineMath math="F\sin\theta" /></>,
+    viewLabel: "Kereta luncur berisi kayu ditarik di atas salju",
+    work: <>Usaha sepanjang <InlineMath math="5\text{ m}" /></>,
   }}
 />
 
@@ -138,6 +179,25 @@ Dalam momen gaya, perkalian silang ditulis:
 
 Vektor <InlineMath math="\vec{r}" /> adalah vektor posisi dari titik acuan pada engsel ke titik kerja gaya. Panjang lengan momen yang tegak lurus adalah <InlineMath math="r\sin\theta" />. Pada sudut yang sama, gaya yang bekerja lebih jauh dari engsel pintu menghasilkan momen gaya yang lebih besar.
 
+### Mengendurkan Mur Roda
+
+Sebuah tangan mendorong <InlineMath math="200\text{ N}" /> pada kunci roda yang berjarak <InlineMath math="0{,}4\text{ m}" /> dari mur. Momen gaya <InlineMath math="\vec\tau=\vec r\times\vec F" /> **mengarah sepanjang sumbu mur**, sebesar <InlineMath math="80\text{ N}\cdot\text{m}" /> saat dorongan tegak lurus gagang. Putar dorongan ke bawah gagang, maka momen gayanya berbalik ke sisi lain.
+
+<WrenchTorqueLab
+  title={<>Momen Gaya pada Mur Roda</>}
+  description={<>Dorongan <InlineMath math="200\text{ N}" /> pada jarak <InlineMath math="0{,}4\text{ m}" /> dari mur. Putar arah dorongannya.</>}
+  angle={90}
+  arm={0.4}
+  force={200}
+  labels={{
+    angle: <>Sudut dari gagang ke gaya</>,
+    angleName: "Sudut dari gagang ke gaya",
+    square: <>Gaya tegak lurus gagang <InlineMath math="F\sin\theta" /></>,
+    torque: <>Momen gaya <InlineMath math="\tau" /></>,
+    viewLabel: "Kunci roda pada mur roda mobil",
+  }}
+/>
+
 ### Contoh Momen Gaya
 
 Ambil titik acuan pada engsel yang setinggi titik dorong. Sebuah pintu didorong horizontal dengan gaya <InlineMath math="30\text{ N}" /> pada jarak <InlineMath math="0{,}8\text{ m}" /> dari engsel. Arah gaya **tegak lurus terhadap pintu**, sehingga <InlineMath math="\theta=90^\circ" />.
@@ -149,6 +209,27 @@ Ambil titik acuan pada engsel yang setinggi titik dorong. Sebuah pintu didorong 
 \end{aligned}" />
 
 Jika <InlineMath math="r" /> dan <InlineMath math="F" /> tetap, gaya tegak lurus menghasilkan torsi maksimum karena <InlineMath math="\sin90^\circ=1" />. Gaya yang hampir sejajar dengan vektor posisi <InlineMath math="\vec{r}" /> menghasilkan torsi kecil karena faktor sinusnya mendekati nol.
+
+Ini pintu yang sama dilihat dari langit-langit: <InlineMath math="30\text{ N}" /> tegak lurus pintu pada jarak <InlineMath math="0{,}8\text{ m}" /> menghasilkan <InlineMath math="24\text{ N}\cdot\text{m}" />, dan pintunya terbuka. Geser tangan mendekati engsel atau miringkan dorongannya, maka momen gaya dan ayunannya sama-sama berkurang.
+
+<DoorHingeTorqueLab
+  title={<>Mendorong Pintu Terbuka</>}
+  description={<>Pintu <InlineMath math="18\text{ kg}" /> selebar <InlineMath math="0{,}9\text{ m}" />, didorong dengan <InlineMath math="30\text{ N}" />.</>}
+  angle={90}
+  arm={0.8}
+  force={30}
+  mass={18}
+  width={0.9}
+  labels={{
+    angle: <>Sudut antara pintu dan dorongan</>,
+    angleName: "Sudut antara pintu dan dorongan",
+    arm: <>Jarak dari engsel</>,
+    armName: "Jarak dari engsel",
+    square: <>Dorongan tegak lurus pintu <InlineMath math="F\sin\theta" /></>,
+    torque: <>Momen gaya <InlineMath math="\tau" /></>,
+    viewLabel: "Pintu dilihat dari langit-langit",
+  }}
+/>
 
 ## Membandingkan Titik dan Silang
 
@@ -166,7 +247,7 @@ Tetapkan kedua besar vektornya lalu putar sudutnya. Hasil kali titik yang oranye
 
 <MathVisual
   title={<>Hasil Kali Titik dan Silang terhadap Sudut</>}
-  description={<><InlineMath math="AB\cos\theta" /> dan <InlineMath math="AB\sin\theta" /> dengan <InlineMath math="AB=200" /> untuk sudut 0° sampai 180°. Mendatar: sudut dalam satuan 30°. Tegak: nilai dalam satuan 50.</>}
+  description={<><InlineMath math="AB\cos\theta" /> dan <InlineMath math="AB\sin\theta" /> dengan <InlineMath math="AB=200" /> untuk sudut <InlineMath math="0^\circ" /> sampai <InlineMath math="180^\circ" />. Mendatar: sudut dalam satuan <InlineMath math="30^\circ" />. Tegak: nilai dalam satuan <InlineMath math="50" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.8 } },
@@ -183,5 +264,27 @@ Tetapkan kedua besar vektornya lalu putar sudutnya. Hasil kali titik yang oranye
   labels={{
     dot: <InlineMath math="\vec A\cdot\vec B" />,
     cross: <InlineMath math="\lvert\vec A\times\vec B\rvert" />,
+  }}
+/>
+
+### Dua Perkalian pada Satu Papan
+
+Saat balok meluncur <InlineMath math="0{,}5\text{ m}" /> menuruni lereng, gaya berat melakukan usaha <InlineMath math="\vec W\cdot\vec s" />, yang hanya memakai bagian sejajar lereng, <InlineMath math="9{,}8\text{ N}" />: <InlineMath math="4{,}9\text{ J}" />. Bagian yang menekan papan, <InlineMath math="16{,}97\text{ N}" />, **sama sekali tidak melakukan usaha**.
+
+<RampBlockComponentLab
+  title={<>Bagian Mana yang Berusaha</>}
+  description={<>Balok <InlineMath math="2\text{ kg}" /> di atas papan. Balok tergelincir begitu <InlineMath math="\tan\theta" /> melewati <InlineMath math="0{,}4" />.</>}
+  angle={30}
+  distance={0.5}
+  friction={0.4}
+  mass={2}
+  labels={{
+    along: <>Sejajar lereng <InlineMath math="W\sin\theta" /></>,
+    angle: <>Sudut papan miring</>,
+    angleName: "Sudut papan miring",
+    into: <>Tegak lurus lereng <InlineMath math="W\cos\theta" /></>,
+    viewLabel: "Balok kayu di atas papan miring",
+    weight: <>Berat <InlineMath math="W" /></>,
+    work: <>Usaha gaya berat sepanjang <InlineMath math="0{,}5\text{ m}" /></>,
   }}
 />

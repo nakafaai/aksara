@@ -59,6 +59,28 @@ Split every vector into its x and y parts, add the parts on each axis, then rebu
   }}
 />
 
+### Components on a Force Table
+
+Two strings pull with <InlineMath math="1.96\text{ N}" /> at <InlineMath math="30^\circ" /> and <InlineMath math="2.94\text{ N}" /> at <InlineMath math="120^\circ" />. The card **adds their components** along <InlineMath math="0^\circ" /> and <InlineMath math="90^\circ" />, <InlineMath math="0.23\text{ N}" /> and <InlineMath math="3.53\text{ N}" />, then rebuilds the resultant, <InlineMath math="3.53\text{ N}" /> at <InlineMath math="86.3^\circ" />. Turn the second pulley and redo the sum.
+
+<ForceTableResultantLab
+  title={<>Adding Pulls by Components</>}
+  description={<>Hangers of <InlineMath math="200\text{ g}" /> and <InlineMath math="300\text{ g}" />. Turn the second pulley.</>}
+  pulls={[
+    { angle: 30, mass: 200 },
+    { angle: 120, mass: 300 },
+  ]}
+  labels={{
+    angle: <>Angle of the last string</>,
+    angleName: "Angle of the last string",
+    direction: <>Direction of <InlineMath math="\vec R" /></>,
+    resultant: <>Resultant <InlineMath math="R" /></>,
+    sumX: <>Sum along <InlineMath math="0^\circ" /></>,
+    sumY: <>Sum along <InlineMath math="90^\circ" /></>,
+    viewLabel: "Force table with hanging masses",
+  }}
+/>
+
 ## Steps for Vector Addition
 
 Suppose several forces <InlineMath math="\vec{F}_1" />, <InlineMath math="\vec{F}_2" />, and <InlineMath math="\vec{F}_3" /> act on an object. Each force is first split into **horizontal and vertical components**.
@@ -81,6 +103,28 @@ Use the two-argument arctangent for the direction of the resultant relative to t
 Unlike <InlineMath math="\tan^{-1}(R_y/R_x)" />, <InlineMath math="\operatorname{atan2}" /> uses the signs of both components to place the direction in the correct quadrant.
 
 If both components are zero, the resultant is the zero vector and its **direction is undefined**. Do not assign a physical direction to a calculator or program output for <InlineMath math="\operatorname{atan2}(0,0)" />.
+
+### Flight Plan in a Crosswind
+
+Pilots **add vectors by components every day**. With the nose on <InlineMath math="30^\circ" /> at <InlineMath math="400\text{ km/h}" /> and the wind <InlineMath math="300\text{ km/h}" /> toward the east, the parts add to a ground speed of <InlineMath math="608\text{ km/h}" /> on a track of <InlineMath math="55.3^\circ" />.
+
+<AircraftCrosswindLab
+  title={<>Ground Velocity by Components</>}
+  description={<>Airspeed <InlineMath math="400\text{ km/h}" />, wind <InlineMath math="300\text{ km/h}" /> toward the east. Turn the nose.</>}
+  airspeed={400}
+  heading={30}
+  toward={90}
+  wind={300}
+  labels={{
+    between: <>Angle between airspeed and wind</>,
+    drift: <>Drift angle</>,
+    groundSpeed: <>Speed over the ground</>,
+    heading: <>Heading of the nose</>,
+    headingName: "Heading of the nose",
+    track: <>Track over the ground</>,
+    viewLabel: "Airliner over farmland in a crosswind",
+  }}
+/>
 
 ### Two Stage Displacement
 
@@ -118,7 +162,7 @@ Add the stages component by component and the resultant drops out: <InlineMath m
 
 <MathVisual
   title={<>Two Stages Added by Components</>}
-  description={<>Stage displacements (80, 60) m and (120, 90) m placed head to tail. One grid step is 50 m.</>}
+  description={<>Stage displacements <InlineMath math="(80, 60)\text{ m}" /> and <InlineMath math="(120, 90)\text{ m}" /> placed head to tail. One grid step is <InlineMath math="50\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 4 } },
@@ -141,6 +185,46 @@ Add the stages component by component and the resultant drops out: <InlineMath m
     first: <InlineMath math="(80,60)" />,
     second: <InlineMath math="(120,90)" />,
     result: <InlineMath math="R=\sqrt{200^2+150^2}=250\text{ m}" />,
+  }}
+/>
+
+A ferry makes the same kind of two stage trip: <InlineMath math="6\text{ km}" /> due east, then <InlineMath math="10\text{ km}" /> on a bearing of <InlineMath math="30^\circ" />. The east parts add to <InlineMath math="11\text{ km}" /> and the north parts to <InlineMath math="8.66\text{ km}" />, so it ends <InlineMath math="14\text{ km}" /> from the harbour.
+
+<ShipBearingComponentLab
+  title={<>A Ferry in Two Legs</>}
+  description={<>First leg <InlineMath math="6\text{ km}" /> east, second leg <InlineMath math="10\text{ km}" />. Turn the second bearing.</>}
+  courses={[
+    { bearing: 90, distance: 6 },
+    { bearing: 30, distance: 10 },
+  ]}
+  labels={{
+    bearing: <>Bearing of the last leg</>,
+    bearingName: "Bearing of the last leg",
+    direction: <>Bearing from the harbour</>,
+    distance: <>Distance from the harbour</>,
+    east: <>East component</>,
+    north: <>North component</>,
+    viewLabel: "Ferry sailing from a harbour",
+  }}
+/>
+
+### Two Stages in Space
+
+The same steps work in space **with a third component**. A drone climbs to <InlineMath math="3\text{ m}" /> while flying <InlineMath math="4\text{ m}" /> east, then flies <InlineMath math="12\text{ m}" /> north: the sums are <InlineMath math="4\text{ m}" />, <InlineMath math="12\text{ m}" /> and <InlineMath math="3\text{ m}" />, and the displacement is <InlineMath math="13\text{ m}" />.
+
+<DroneDisplacementLab
+  title={<>Adding Two Flight Stages</>}
+  description={<>Stage one rises <InlineMath math="3\text{ m}" /> over <InlineMath math="4\text{ m}" /> east. Stage two goes <InlineMath math="12\text{ m}" /> north.</>}
+  hops={[
+    { east: 4, north: 0, up: 3 },
+    { east: 0, north: 12, up: 0 },
+  ]}
+  labels={{
+    chooseFactor: "Multiply the flight plan by k",
+    displacement: <>Displacement</>,
+    path: <>Path flown</>,
+    size: <>Distance from the pad</>,
+    viewLabel: "Drone flying from its pad",
   }}
 />
 
@@ -200,3 +284,32 @@ The component signs give a rightward and downward direction. To find the arrow l
 
 
 So subtraction does not need a new rule. Keep the same axes, subtract matching components, then read the signs to recover the direction of the result.
+
+### Subtracting Map Positions
+
+Checkpoint <InlineMath math="A" /> sits at <InlineMath math="60\text{ m}" /> east and <InlineMath math="20\text{ m}" /> north of the start, <InlineMath math="B" /> at <InlineMath math="20\text{ m}" /> east and <InlineMath math="50\text{ m}" /> north. **Subtract component by component**: <InlineMath math="\vec b-\vec a" /> is <InlineMath math="-40\text{ m}" /> east and <InlineMath math="30\text{ m}" /> north, <InlineMath math="50\text{ m}" /> long.
+
+<OrienteeringMapVectorLab
+  title={<>Difference of Two Positions</>}
+  description={<>The start <InlineMath math="O" /> is the fuchsia triangle. Compare <InlineMath math="\vec b-\vec a" /> with the leg from <InlineMath math="B" /> to <InlineMath math="A" />.</>}
+  marks={{
+    a: { east: 60, north: 20 },
+    b: { east: 20, north: 50 },
+    c: { east: 110, north: 70 },
+  }}
+  views={["difference", "back"]}
+  labels={{
+    angle: <>Direction from east</>,
+    chooseView: "Choose which vector to show",
+    east: <>East part</>,
+    north: <>North part</>,
+    size: <>Length</>,
+    viewLabel: "Orienteering map of a park",
+    views: {
+      back: <><InlineMath math="B" /> to <InlineMath math="A" /></>,
+      copy: <>Same vector from <InlineMath math="C" /></>,
+      difference: <><InlineMath math="\vec b-\vec a" /></>,
+      forward: <><InlineMath math="A" /> to <InlineMath math="B" /></>,
+    },
+  }}
+/>

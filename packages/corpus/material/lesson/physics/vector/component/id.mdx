@@ -16,6 +16,26 @@ Komponen horizontal menunjukkan seberapa besar vektor bergerak ke arah sumbu <In
 
 > Sebuah vektor sama dengan jumlah komponennya pada setiap sumbu koordinat.
 
+### Balok di Papan Miring
+
+Berat balok <InlineMath math="2\text{ kg}" /> mengarah lurus ke bawah, <InlineMath math="19{,}6\text{ N}" />, padahal **balok hanya bisa meluncur sepanjang papan**. Memecah berat itu menunjukkan bagian yang penting: <InlineMath math="9{,}8\text{ N}" /> sejajar lereng pada <InlineMath math="30^\circ" /> dan <InlineMath math="16{,}97\text{ N}" /> menekan papan. Miringkan papan sampai bagian sejajar lereng menang dan balok meluncur.
+
+<RampBlockComponentLab
+  title={<>Berat yang Dipecah di Lereng</>}
+  description={<>Balok kayu <InlineMath math="2\text{ kg}" /> di atas papan pinus. Balok tergelincir begitu <InlineMath math="\tan\theta" /> melewati <InlineMath math="0{,}7" />.</>}
+  angle={30}
+  friction={0.7}
+  mass={2}
+  labels={{
+    along: <>Sejajar lereng <InlineMath math="W\sin\theta" /></>,
+    angle: <>Sudut papan miring</>,
+    angleName: "Sudut papan miring",
+    into: <>Tegak lurus lereng <InlineMath math="W\cos\theta" /></>,
+    viewLabel: "Balok kayu di atas papan miring",
+    weight: <>Berat <InlineMath math="W" /></>,
+  }}
+/>
+
 ## Membaca Komponen pada Bidang
 
 Pada bidang datar, vektor <InlineMath math="\vec{A}" /> dapat ditulis sebagai gabungan komponen pada sumbu <InlineMath math="x" /> dan sumbu <InlineMath math="y" />.
@@ -23,6 +43,28 @@ Pada bidang datar, vektor <InlineMath math="\vec{A}" /> dapat ditulis sebagai ga
 <BlockMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" />
 
 Notasi <InlineMath math="\hat{i}" /> adalah **vektor satuan** arah sumbu <InlineMath math="x" />, sedangkan <InlineMath math="\hat{j}" /> adalah vektor satuan arah sumbu <InlineMath math="y" />. Skalar bertanda <InlineMath math="A_x" /> dan <InlineMath math="A_y" /> memberi komponen pada kedua sumbu. Tanda <InlineMath math="A_x" /> menunjukkan arah komponen pada sumbu <InlineMath math="x" />, sedangkan tanda <InlineMath math="A_y" /> menunjukkan arah komponen pada sumbu <InlineMath math="y" />.
+
+### Kereta Luncur pada Tali
+
+Tali menarik kereta luncur dengan <InlineMath math="80\text{ N}" /> pada <InlineMath math="30^\circ" /> di atas salju. Pada sumbu, tarikan itu menjadi <InlineMath math="69{,}3\text{ N}" /> sejajar salju dan <InlineMath math="40\text{ N}" /> ke atas, **digambar ujung ke pangkal di bawah tali**.
+
+<SledPullWorkLab
+  title={<>Tarikan Tali pada Dua Sumbu</>}
+  description={<>Kereta luncur <InlineMath math="25\text{ kg}" /> ditarik sejauh <InlineMath math="5\text{ m}" /> dengan <InlineMath math="80\text{ N}" />. Naikkan atau turunkan talinya.</>}
+  angle={30}
+  distance={5}
+  force={80}
+  mass={25}
+  labels={{
+    along: <>Sejajar salju <InlineMath math="F\cos\theta" /></>,
+    angle: <>Sudut tali terhadap salju</>,
+    angleName: "Sudut tali terhadap salju",
+    normal: <>Gaya normal dari salju</>,
+    up: <>Bagian ke atas <InlineMath math="F\sin\theta" /></>,
+    viewLabel: "Kereta luncur berisi kayu ditarik di atas salju",
+    work: <>Usaha sepanjang <InlineMath math="5\text{ m}" /></>,
+  }}
+/>
 
 ### Menghitung Panjang dari Dua Komponen
 
@@ -36,7 +78,7 @@ Kedua panah komponen di bawah dan vektornya membentuk segitiga siku-siku, jadi p
 
 <MathVisual
   title={<>Vektor dan Dua Komponennya</>}
-  description={<><InlineMath math="\vec A=6\hat i+8\hat j" /> dengan komponen x dan y-nya. Satu kotak grid sama dengan 2 satuan.</>}
+  description={<><InlineMath math="\vec A=6\hat i+8\hat j" /> dengan komponen x dan y-nya. Satu kotak grid sama dengan <InlineMath math="2" /> satuan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.5 } },
@@ -116,6 +158,25 @@ Putar model untuk melihat bahwa komponen <InlineMath math="z" /> **tegak lurus t
 
 <BlockMath math="\begin{aligned}\lvert\vec{A}\rvert &= \sqrt{4^2+3^2+2^2} \\ &= \sqrt{16+9+4} \\ &= \sqrt{29}\end{aligned}" />
 
+Drone berakhir <InlineMath math="2\text{ m}" /> di timur, <InlineMath math="3\text{ m}" /> di utara, dan <InlineMath math="6\text{ m}" /> di atas landasannya. Tiga panah berwarna adalah komponen-komponen itu, disusun ujung ke pangkal, dan panah ungu adalah jumlahnya, panjangnya <InlineMath math="\sqrt{2^2+3^2+6^2}=7" /> meter.
+
+<DroneDisplacementLab
+  title={<>Tiga Komponen Penerbangan</>}
+  description={<>Drone naik <InlineMath math="6\text{ m}" />, lalu terbang <InlineMath math="2\text{ m}" /> ke timur dan <InlineMath math="3\text{ m}" /> ke utara.</>}
+  hops={[
+    { east: 0, north: 0, up: 6 },
+    { east: 2, north: 0, up: 0 },
+    { east: 0, north: 3, up: 0 },
+  ]}
+  labels={{
+    chooseFactor: "Kalikan rencana terbang dengan k",
+    displacement: <>Perpindahan</>,
+    path: <>Panjang lintasan terbang</>,
+    size: <>Jarak dari landasan</>,
+    viewLabel: "Drone terbang dari landasannya",
+  }}
+/>
+
 
 ## Tanda Positif dan Negatif pada Komponen
 
@@ -128,6 +189,25 @@ Besar vektor selalu nol atau positif. Tanda suatu komponen menunjukkan <Highligh
 | <InlineMath math="A_z" /> | ke arah <InlineMath math="z" /> positif | ke arah <InlineMath math="z" /> negatif |
 
 Jika <InlineMath math="\vec{B}=-5\hat{i}+2\hat{j}" />, vektor itu memiliki komponen <InlineMath math="5" /> satuan ke arah <InlineMath math="x" /> negatif dan <InlineMath math="2" /> satuan ke arah <InlineMath math="y" /> positif.
+
+### Feri Menuju Barat Daya
+
+Dengan arah kompas <InlineMath math="225^\circ" />, feri menuju barat daya, sehingga **kedua komponennya negatif**: <InlineMath math="-5{,}66\text{ km}" /> ke timur dan <InlineMath math="-5{,}66\text{ km}" /> ke utara. Putar arah kompasnya melewati tiap kuadran, lalu perhatikan tandanya berganti.
+
+<ShipBearingComponentLab
+  title={<>Tanda dari Kompas</>}
+  description={<>Feri berlayar <InlineMath math="8\text{ km}" /> dari pelabuhan. Putar arah kompasnya.</>}
+  courses={[{ bearing: 225, distance: 8 }]}
+  labels={{
+    bearing: <>Arah kompas tahap terakhir</>,
+    bearingName: "Arah kompas tahap terakhir",
+    direction: <>Arah kompas dari pelabuhan</>,
+    distance: <>Jarak dari pelabuhan</>,
+    east: <>Komponen timur</>,
+    north: <>Komponen utara</>,
+    viewLabel: "Kapal feri berlayar dari pelabuhan",
+  }}
+/>
 
 ## Contoh Menulis Vektor dari Perpindahan
 
@@ -152,7 +232,7 @@ Inilah perjalanan itu sebagai komponen. Bagian ke timur dan ke utara adalah komp
 
 <MathVisual
   title={<>Perjalanan Ditulis sebagai Komponen</>}
-  description={<>3 m ke timur, lalu 4 m ke utara. Satu kotak grid sama dengan 1 m.</>}
+  description={<><InlineMath math="3\text{ m}" /> ke timur, lalu <InlineMath math="4\text{ m}" /> ke utara. Satu kotak grid sama dengan <InlineMath math="1\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.5 } },
@@ -175,5 +255,28 @@ Inilah perjalanan itu sebagai komponen. Bagian ke timur dan ke utara adalah komp
     east: <InlineMath math="3\text{ m}" />,
     north: <InlineMath math="4\text{ m}" />,
     walk: <InlineMath math="5\text{ m},\ 53{,}1^\circ" />,
+  }}
+/>
+
+### Jalan Kaki dalam Tiga Bagian
+
+Jalannya <InlineMath math="400\text{ m}" /> ke timur, <InlineMath math="300\text{ m}" /> ke utara, lalu <InlineMath math="100\text{ m}" /> kembali ke barat. **Jumlahkan komponennya**: <InlineMath math="300\text{ m}" /> ke timur dan <InlineMath math="300\text{ m}" /> ke utara, jadi perpindahannya <InlineMath math="424\text{ m}" />, walaupun lintasannya <InlineMath math="800\text{ m}" />.
+
+<CityWalkDisplacementLab
+  title={<>Menjumlahkan Bagian Perjalanan</>}
+  description={<>Jalan kaki <InlineMath math="1{,}25\text{ m/s}" /> menyusuri jalan-jalan kota.</>}
+  legs={[
+    { east: 400, north: 0 },
+    { east: 0, north: 300 },
+    { east: -100, north: 0 },
+  ]}
+  pace={1.25}
+  labels={{
+    averageSpeed: <>Kelajuan rata-rata</>,
+    averageVelocity: <>Kecepatan rata-rata</>,
+    displacement: <>Perpindahan</>,
+    distance: <>Jarak tempuh</>,
+    time: <>Waktu</>,
+    viewLabel: "Jalan kaki di kota dilihat dari atas",
   }}
 />

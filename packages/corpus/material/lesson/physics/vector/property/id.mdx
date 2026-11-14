@@ -52,6 +52,26 @@ Pada visual tersebut, <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b
 
 Kebebasan menggeser vektor abstrak pada diagram tidak berarti setiap titik kerja fisik dapat saling menggantikan. Gaya yang bekerja pada titik berbeda dapat menghasilkan momen gaya yang berbeda.
 
+### Angin yang Sama di Setiap Pulau
+
+Angin laut yang tetap <InlineMath math="10\text{ m/s}" /> adalah **vektor yang sama di atas setiap pulau**: lima belas panah di lima belas tempat, semuanya sama, karena panjang dan arahnya sama. Ubah anginnya, maka semua panah berubah bersamaan.
+
+<WindMapVectorLab
+  title={<>Satu Angin, Banyak Tempat</>}
+  description={<>Angin <InlineMath math="10\text{ m/s}" /> ke arah <InlineMath math="150^\circ" /> dari timur.</>}
+  angle={150}
+  speed={10}
+  labels={{
+    angle: <>Arah dari timur</>,
+    angleName: "Arah dari timur",
+    east: <>Komponen timur <InlineMath math="v_x" /></>,
+    north: <>Komponen utara <InlineMath math="v_y" /></>,
+    speed: <>Kelajuan angin</>,
+    speedName: "Kelajuan angin",
+    viewLabel: "Peta cuaca angin di atas pulau-pulau",
+  }}
+/>
+
 ## Vektor Negatif Membalik Arah
 
 <Highlight>Vektor negatif</Highlight> dari <InlineMath math="\vec{a}" /> ditulis sebagai <InlineMath math="-\vec{a}" />. Besarnya sama dengan <InlineMath math="\vec{a}" />, tetapi arahnya berlawanan.
@@ -62,6 +82,35 @@ Kebebasan menggeser vektor abstrak pada diagram tidak berarti setiap titik kerja
 </MathContainer>
 
 Contohnya, gaya <InlineMath math="12\text{ N}" /> ke kanan dan gaya <InlineMath math="12\text{ N}" /> ke kiri adalah pasangan vektor yang saling berlawanan. Jika keduanya bekerja pada benda yang sama sepanjang garis yang sama, resultan kedua gaya adalah vektor nol.
+
+### Berlari Balik dari Pos
+
+Rute dari <InlineMath math="A" /> ke <InlineMath math="B" /> adalah <InlineMath math="60\text{ m}" /> ke timur dan <InlineMath math="80\text{ m}" /> ke utara. Berlari balik dari <InlineMath math="B" /> ke <InlineMath math="A" /> memberi <InlineMath math="-60\text{ m}" /> dan <InlineMath math="-80\text{ m}" />: tetap <InlineMath math="100\text{ m}" />, tetapi menjadi **vektor negatifnya**. Digambar dari <InlineMath math="C" />, rute semula tetap vektor yang sama persis.
+
+<OrienteeringMapVectorLab
+  title={<>Maju, Balik, Dipindah</>}
+  description={<>Pos <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" /> di lingkaran hijau toska, kuning, dan merah muda. Pilih vektornya.</>}
+  marks={{
+    a: { east: 20, north: 10 },
+    b: { east: 80, north: 90 },
+    c: { east: 120, north: -20 },
+  }}
+  views={["forward", "back", "copy"]}
+  labels={{
+    angle: <>Arah dari timur</>,
+    chooseView: "Pilih vektor yang ditampilkan",
+    east: <>Bagian timur</>,
+    north: <>Bagian utara</>,
+    size: <>Panjang</>,
+    viewLabel: "Peta orienteering sebuah taman",
+    views: {
+      back: <><InlineMath math="B" /> ke <InlineMath math="A" /></>,
+      copy: <>Vektor sama dari <InlineMath math="C" /></>,
+      difference: <><InlineMath math="\vec b-\vec a" /></>,
+      forward: <><InlineMath math="A" /> ke <InlineMath math="B" /></>,
+    },
+  }}
+/>
 
 ## Perkalian Skalar Mengubah Besar dan Arah
 
@@ -75,6 +124,28 @@ Skalar adalah bilangan biasa yang tidak memiliki arah. Ketika vektor dikalikan d
 | <InlineMath math="0\vec{a}" /> | <InlineMath math="0" /> | menjadi vektor nol |
 
 Tanda negatif pada skalar <Highlight>tidak membuat besar vektor menjadi negatif</Highlight>. Tanda itu membalik arah vektor.
+
+### Lebih Banyak Tangan pada Tali
+
+Setiap penarik menambah <InlineMath math="350\text{ N}" /> yang sama, jadi **regu berisi empat orang menarik dengan** <InlineMath math="4\vec F" />, yaitu <InlineMath math="1400\text{ N}" />, dan regu berisi dua orang menarik setengahnya. Gaya regu kiri bertanda negatif karena arahnya berlawanan.
+
+<TugOfWarForceLab
+  title={<>Satu Regu adalah Kelipatan Satu Tarikan</>}
+  description={<>Setiap penarik menarik dengan <InlineMath math="350\text{ N}" />. Ubah banyak penarik di tiap sisi.</>}
+  left={2}
+  pull={350}
+  right={4}
+  labels={{
+    left: <>Regu kiri <InlineMath math="\vec F_L" /></>,
+    leftCount: <>Penarik di kiri</>,
+    leftName: "Penarik di kiri",
+    net: <>Gaya total <InlineMath math="\Sigma F" /></>,
+    right: <>Regu kanan <InlineMath math="\vec F_R" /></>,
+    rightCount: <>Penarik di kanan</>,
+    rightName: "Penarik di kanan",
+    viewLabel: "Lomba tarik tambang saat senja",
+  }}
+/>
 
 ### Mengalikan Setiap Komponen
 
@@ -121,6 +192,26 @@ Setiap panah di bawah adalah <InlineMath math="k\vec a" /> untuk <InlineMath mat
   }}
 />
 
+Kalikan seluruh rencana terbang dengan <InlineMath math="k" />. Dengan <InlineMath math="k=2" />, setiap komponen menjadi dua kali, dari <InlineMath math="4\,\hat\imath+4\,\hat\jmath+2\,\hat k" /> meter menjadi dua kalinya, dan jarak dari landasan bertambah dari <InlineMath math="6\text{ m}" /> menjadi <InlineMath math="12\text{ m}" />. Dengan <InlineMath math="k=-1" />, drone menerbangkan rencana yang sama ke arah sebaliknya.
+
+<DroneDisplacementLab
+  title={<>Skalakan Penerbangan dengan <InlineMath math="k" /></>}
+  description={<>Rencananya naik <InlineMath math="2\text{ m}" />, terbang <InlineMath math="4\text{ m}" /> ke timur dan <InlineMath math="4\text{ m}" /> ke utara. Pilih <InlineMath math="k" />.</>}
+  factors={[-1, 0.5, 1, 2]}
+  hops={[
+    { east: 0, north: 0, up: 2 },
+    { east: 4, north: 0, up: 0 },
+    { east: 0, north: 4, up: 0 },
+  ]}
+  labels={{
+    chooseFactor: "Kalikan rencana terbang dengan k",
+    displacement: <>Perpindahan</>,
+    path: <>Panjang lintasan terbang</>,
+    size: <>Jarak dari landasan</>,
+    viewLabel: "Drone terbang dari landasannya",
+  }}
+/>
+
 ## Vektor Nol sebagai Hasil Saling Meniadakan
 
 Vektor nol ditulis sebagai <InlineMath math="\vec{0}" />. Besarnya <InlineMath math="0" /> dan <Highlight>tidak memiliki arah tertentu</Highlight> karena pangkal dan ujungnya berhimpit.
@@ -135,7 +226,7 @@ Mengalikan dengan <InlineMath math="k" /> mengubah panjangnya menjadi <InlineMat
 
 <MathVisual
   title={<>Pengaruh Skalar pada Vektor</>}
-  description={<>Panjang <InlineMath math="k\vec a" /> terhadap <InlineMath math="k" /> untuk vektor sepanjang 1. Tanda abu-abu menunjukkan <InlineMath math="k=\tfrac12" /> dan <InlineMath math="k=1" />.</>}
+  description={<>Panjang <InlineMath math="k\vec a" /> terhadap <InlineMath math="k" /> untuk vektor sepanjang <InlineMath math="1" />. Tanda abu-abu menunjukkan <InlineMath math="k=\tfrac12" /> dan <InlineMath math="k=1" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -0.8, max: 2.6 } },
@@ -156,5 +247,28 @@ Mengalikan dengan <InlineMath math="k" /> mengubah panjangnya menjadi <InlineMat
     neg: <InlineMath math="k<0:\ \text{arah berbalik}" />,
     pos: <InlineMath math="k>0:\ \text{arah sama}" />,
     zero: <InlineMath math="k=0:\ \vec 0" />,
+  }}
+/>
+
+### Tiga Tali yang Sama
+
+Tiga tali masing-masing menarik dengan berat <InlineMath math="200\text{ g}" />, yaitu <InlineMath math="1{,}96\text{ N}" />. Putar katrol terakhir ke <InlineMath math="240^\circ" />: ketiga tarikan lalu berselisih <InlineMath math="120^\circ" />, **saling meniadakan**, dan resultannya menjadi vektor nol.
+
+<ForceTableResultantLab
+  title={<>Tarikan yang Saling Meniadakan</>}
+  description={<>Tiga gantungan beban, masing-masing <InlineMath math="200\text{ g}" />. Putar katrol terakhir.</>}
+  pulls={[
+    { angle: 0, mass: 200 },
+    { angle: 120, mass: 200 },
+    { angle: 200, mass: 200 },
+  ]}
+  labels={{
+    angle: <>Sudut tali terakhir</>,
+    angleName: "Sudut tali terakhir",
+    direction: <>Arah <InlineMath math="\vec R" /></>,
+    resultant: <>Resultan <InlineMath math="R" /></>,
+    sumX: <>Jumlah sepanjang <InlineMath math="0^\circ" /></>,
+    sumY: <>Jumlah sepanjang <InlineMath math="90^\circ" /></>,
+    viewLabel: "Meja gaya dengan beban tergantung",
   }}
 />

@@ -37,6 +37,27 @@ For a **constant force** throughout the displacement, the work done by that forc
 
 The force component **along the displacement axis** determines the work. This component is positive with the motion and negative against the motion.
 
+### Sunlight on a Solar Panel
+
+A panel catches **the dot product of the sunlight and its area**: <InlineMath math="P=IA\cos\theta" />. With the sun <InlineMath math="60^\circ" /> high and the panel tilted <InlineMath math="10^\circ" />, the angle between <InlineMath math="\hat n" /> and <InlineMath math="\hat s" /> is <InlineMath math="20^\circ" /> and it catches <InlineMath math="1597\text{ W}" />. Tilt it to <InlineMath math="30^\circ" /> for the full <InlineMath math="1700\text{ W}" />.
+
+<SolarPanelFluxLab
+  title={<>Power as a Dot Product</>}
+  description={<>A <InlineMath math="1.7\text{ m}^2" /> panel in sunlight of <InlineMath math="1000\text{ W/m}^2" />. Tilt the panel.</>}
+  area={1.7}
+  elevation={60}
+  sunlight={1000}
+  tilt={10}
+  labels={{
+    between: <>Angle between <InlineMath math="\hat n" /> and <InlineMath math="\hat s" /></>,
+    cosine: <><InlineMath math="\cos\theta" /></>,
+    power: <>Power caught</>,
+    tilt: <>Panel tilt</>,
+    tiltName: "Panel tilt",
+    viewLabel: "Solar panel in a field",
+  }}
+/>
+
 ### Work from Dot Product
 
 A person pulls a box with a constant <InlineMath math="40\text{ N}" /> force while the box moves <InlineMath math="5\text{ m}" />. The force makes a <InlineMath math="60^\circ" /> angle with the displacement direction. The work is:
@@ -58,7 +79,7 @@ The graph below runs the same <InlineMath math="40\text{ N}" /> pull over <Inlin
 
 <MathVisual
   title={<>Work Follows the Cosine of the Angle</>}
-  description={<><InlineMath math="W=Fs\cos\theta" /> for <InlineMath math="F=40\text{ N}" /> and <InlineMath math="s=5\text{ m}" />. Horizontal: angle in units of 30°. Vertical: work in units of 50 J.</>}
+  description={<><InlineMath math="W=Fs\cos\theta" /> for <InlineMath math="F=40\text{ N}" /> and <InlineMath math="s=5\text{ m}" />. Horizontal: angle in units of <InlineMath math="30^\circ" />. Vertical: work in units of <InlineMath math="50\text{ J}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.6 } },
@@ -79,6 +100,26 @@ The graph below runs the same <InlineMath math="40\text{ N}" /> pull over <Inlin
     zero: <InlineMath math="0^\circ:\ W=200\text{ J}" />,
     right: <InlineMath math="90^\circ:\ W=0" />,
     back: <InlineMath math="180^\circ:\ W=-200\text{ J}" />,
+  }}
+/>
+
+Here is that pull on a sled: <InlineMath math="40\text{ N}" /> at <InlineMath math="60^\circ" /> over <InlineMath math="5\text{ m}" /> does <InlineMath math="100\text{ J}" />, because only <InlineMath math="20\text{ N}" /> of it lies along the snow. Lower the rope toward <InlineMath math="0^\circ" /> and the work climbs toward <InlineMath math="200\text{ J}" />.
+
+<SledPullWorkLab
+  title={<>Only the Part Along the Motion Works</>}
+  description={<>A <InlineMath math="15\text{ kg}" /> sled pulled <InlineMath math="5\text{ m}" /> with <InlineMath math="40\text{ N}" />. Raise or lower the rope.</>}
+  angle={60}
+  distance={5}
+  force={40}
+  mass={15}
+  labels={{
+    along: <>Along the snow <InlineMath math="F\cos\theta" /></>,
+    angle: <>Rope angle above the snow</>,
+    angleName: "Rope angle above the snow",
+    normal: <>Normal force from the snow</>,
+    up: <>Upward part <InlineMath math="F\sin\theta" /></>,
+    viewLabel: "Sled of firewood pulled across snow",
+    work: <>Work over <InlineMath math="5\text{ m}" /></>,
   }}
 />
 
@@ -138,6 +179,25 @@ For torque, the cross product is written:
 
 Vector <InlineMath math="\vec{r}" /> is the position vector from a reference point on the hinge to the point where the force acts. The perpendicular lever arm has length <InlineMath math="r\sin\theta" />. At the same angle, the same force produces a larger torque when applied farther from a door hinge.
 
+### Loosening a Wheel Nut
+
+A hand pushes <InlineMath math="200\text{ N}" /> on a wheel brace <InlineMath math="0.4\text{ m}" /> from the nut. The torque <InlineMath math="\vec\tau=\vec r\times\vec F" /> **points along the nut's axis**, <InlineMath math="80\text{ N}\cdot\text{m}" /> when the push is square to the handle. Turn the push below the handle and the torque flips to the other side.
+
+<WrenchTorqueLab
+  title={<>Torque on a Wheel Nut</>}
+  description={<>A push of <InlineMath math="200\text{ N}" /> at <InlineMath math="0.4\text{ m}" /> from the nut. Turn the push.</>}
+  angle={90}
+  arm={0.4}
+  force={200}
+  labels={{
+    angle: <>Angle from handle to force</>,
+    angleName: "Angle from handle to force",
+    square: <>Force square to the handle <InlineMath math="F\sin\theta" /></>,
+    torque: <>Torque <InlineMath math="\tau" /></>,
+    viewLabel: "Wheel brace on a car wheel nut",
+  }}
+/>
+
 ### Torque from Perpendicular Force
 
 Choose a reference point on the hinge at the height of the push. A door is pushed horizontally with a <InlineMath math="30\text{ N}" /> force at a distance of <InlineMath math="0.8\text{ m}" /> from the hinge. The force is **perpendicular to the door**, so <InlineMath math="\theta=90^\circ" />.
@@ -149,6 +209,27 @@ Choose a reference point on the hinge at the height of the push. A door is pushe
 \end{aligned}" />
 
 For fixed <InlineMath math="r" /> and <InlineMath math="F" />, a perpendicular force gives the maximum torque because <InlineMath math="\sin90^\circ=1" />. A force almost parallel to the position vector <InlineMath math="\vec{r}" /> gives little torque because its sine factor is close to zero.
+
+Here is that door from the ceiling: <InlineMath math="30\text{ N}" /> square to the door at <InlineMath math="0.8\text{ m}" /> gives <InlineMath math="24\text{ N}\cdot\text{m}" />, and the door swings open. Slide the hand toward the hinge or slant the push, and the torque and the swing both fall.
+
+<DoorHingeTorqueLab
+  title={<>Pushing a Door Open</>}
+  description={<>An <InlineMath math="18\text{ kg}" /> door <InlineMath math="0.9\text{ m}" /> wide, pushed with <InlineMath math="30\text{ N}" />.</>}
+  angle={90}
+  arm={0.8}
+  force={30}
+  mass={18}
+  width={0.9}
+  labels={{
+    angle: <>Angle between door and push</>,
+    angleName: "Angle between door and push",
+    arm: <>Distance from the hinge</>,
+    armName: "Distance from the hinge",
+    square: <>Push square to the door <InlineMath math="F\sin\theta" /></>,
+    torque: <>Torque <InlineMath math="\tau" /></>,
+    viewLabel: "Door seen from the ceiling",
+  }}
+/>
 
 ## Comparing Dot and Cross Products
 
@@ -166,7 +247,7 @@ Keep both magnitudes fixed and turn the angle. The orange dot product is largest
 
 <MathVisual
   title={<>Dot and Cross Products against the Angle</>}
-  description={<><InlineMath math="AB\cos\theta" /> and <InlineMath math="AB\sin\theta" /> with <InlineMath math="AB=200" /> for angles from 0° to 180°. Horizontal: angle in units of 30°. Vertical: value in units of 50.</>}
+  description={<><InlineMath math="AB\cos\theta" /> and <InlineMath math="AB\sin\theta" /> with <InlineMath math="AB=200" /> for angles from <InlineMath math="0^\circ" /> to <InlineMath math="180^\circ" />. Horizontal: angle in units of <InlineMath math="30^\circ" />. Vertical: value in units of <InlineMath math="50" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.8 } },
@@ -183,5 +264,27 @@ Keep both magnitudes fixed and turn the angle. The orange dot product is largest
   labels={{
     dot: <InlineMath math="\vec A\cdot\vec B" />,
     cross: <InlineMath math="\lvert\vec A\times\vec B\rvert" />,
+  }}
+/>
+
+### Both Products on One Ramp
+
+As the block slides <InlineMath math="0.5\text{ m}" /> down the slope, the weight does work <InlineMath math="\vec W\cdot\vec s" />, which uses only the part along the slope, <InlineMath math="9.8\text{ N}" />: <InlineMath math="4.9\text{ J}" />. The part into the plank, <InlineMath math="16.97\text{ N}" />, **does no work at all**.
+
+<RampBlockComponentLab
+  title={<>Which Part Does Work</>}
+  description={<>A <InlineMath math="2\text{ kg}" /> block on a plank. It slips once <InlineMath math="\tan\theta" /> passes <InlineMath math="0.4" />.</>}
+  angle={30}
+  distance={0.5}
+  friction={0.4}
+  mass={2}
+  labels={{
+    along: <>Down the slope <InlineMath math="W\sin\theta" /></>,
+    angle: <>Ramp angle</>,
+    angleName: "Ramp angle",
+    into: <>Into the slope <InlineMath math="W\cos\theta" /></>,
+    viewLabel: "Wooden block on a tilted plank",
+    weight: <>Weight <InlineMath math="W" /></>,
+    work: <>Work of the weight over <InlineMath math="0.5\text{ m}" /></>,
   }}
 />

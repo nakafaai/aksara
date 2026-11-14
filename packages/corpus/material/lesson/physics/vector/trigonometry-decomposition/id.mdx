@@ -23,6 +23,26 @@ Untuk vektor di kuadran I, sudut <InlineMath math="\theta" /> diukur dari sumbu 
 
 > Tentukan sisi yang berdekatan dengan sudut acuan sebelum memakai <InlineMath math="\cos" />, lalu tentukan sisi di hadapannya sebelum memakai <InlineMath math="\sin" />.
 
+### Memiringkan Papan
+
+Pada papan miring <InlineMath math="37^\circ" />, berat <InlineMath math="19{,}6\text{ N}" /> terpecah menjadi <InlineMath math="W\sin\theta" />, sekitar <InlineMath math="11{,}8\text{ N}" /> sejajar lereng, dan <InlineMath math="W\cos\theta" />, sekitar <InlineMath math="15{,}65\text{ N}" /> menekan papan. Ubah sudutnya, maka kedua bagian saling bertukar besar, sedangkan **beratnya sendiri tidak berubah**.
+
+<RampBlockComponentLab
+  title={<>Sinus dan Kosinus pada Papan Miring</>}
+  description={<>Balok <InlineMath math="2\text{ kg}" /> di atas papan. Balok tergelincir begitu <InlineMath math="\tan\theta" /> melewati <InlineMath math="0{,}8" />.</>}
+  angle={37}
+  friction={0.8}
+  mass={2}
+  labels={{
+    along: <>Sejajar lereng <InlineMath math="W\sin\theta" /></>,
+    angle: <>Sudut papan miring</>,
+    angleName: "Sudut papan miring",
+    into: <>Tegak lurus lereng <InlineMath math="W\cos\theta" /></>,
+    viewLabel: "Balok kayu di atas papan miring",
+    weight: <>Berat <InlineMath math="W" /></>,
+  }}
+/>
+
 ## Gaya Miring pada Sumbu Koordinat
 
 Bayangkan tali menarik kotak dengan gaya <InlineMath math="\vec{F}" /> miring ke kanan atas. Tarikan itu memiliki **komponen gaya ke kanan dan ke atas**. Komponen ke atas belum tentu mengangkat kotak: gerak kotak juga bergantung pada berat dan gaya normal lantai.
@@ -90,7 +110,7 @@ Inilah gaya tali yang diuraikan ke sumbu. Kosinus memberi bagian mendatar dan si
 
 <MathVisual
   title={<>Menguraikan Gaya Tarik</>}
-  description={<><InlineMath math="F=50\text{ N}" /> dengan sudut 37° di atas mendatar beserta komponennya. Satu kotak grid sama dengan 10 N.</>}
+  description={<><InlineMath math="F=50\text{ N}" /> dengan sudut <InlineMath math="37^\circ" /> di atas mendatar beserta komponennya. Satu kotak grid sama dengan <InlineMath math="10\text{ N}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.8, max: 3.8 } },
@@ -116,6 +136,26 @@ Inilah gaya tali yang diuraikan ke sumbu. Kosinus memberi bagian mendatar dan si
   }}
 />
 
+Ini tarikan <InlineMath math="50\text{ N}" /> pada <InlineMath math="37^\circ" /> yang sama, tetapi pada kereta luncur sungguhan. Kartu menghitung tanpa pembulatan awal, jadi terbaca <InlineMath math="39{,}9\text{ N}" /> sejajar salju dan <InlineMath math="30{,}1\text{ N}" /> ke atas, dekat dengan <InlineMath math="40\text{ N}" /> dan <InlineMath math="30\text{ N}" /> di atas.
+
+<SledPullWorkLab
+  title={<>Menarik Kereta Luncur dengan Sudut</>}
+  description={<>Kereta luncur <InlineMath math="20\text{ kg}" /> berisi kayu bakar, ditarik <InlineMath math="10\text{ m}" /> dengan <InlineMath math="50\text{ N}" />.</>}
+  angle={37}
+  distance={10}
+  force={50}
+  mass={20}
+  labels={{
+    along: <>Sejajar salju <InlineMath math="F\cos\theta" /></>,
+    angle: <>Sudut tali terhadap salju</>,
+    angleName: "Sudut tali terhadap salju",
+    normal: <>Gaya normal dari salju</>,
+    up: <>Bagian ke atas <InlineMath math="F\sin\theta" /></>,
+    viewLabel: "Kereta luncur berisi kayu ditarik di atas salju",
+    work: <>Usaha sepanjang <InlineMath math="10\text{ m}" /></>,
+  }}
+/>
+
 ## Jika Sudut Diukur dari Sumbu Vertikal
 
 Sekarang pertahankan gaya di kuadran I, tetapi ukur **sudut dari sumbu vertikal positif** ke arah gaya. Komponen yang berdekatan dengan sudut <InlineMath math="\theta" /> sekarang adalah <InlineMath math="F_y" />, sedangkan <InlineMath math="F_x" /> berada di hadapannya.
@@ -126,6 +166,44 @@ Sekarang pertahankan gaya di kuadran I, tetapi ukur **sudut dari sumbu vertikal 
 </MathContainer>
 
 Jadi, sebelum memakai rumus, selalu tanyakan: sudutnya diukur dari sumbu mana? Pertanyaan kecil ini mencegah kesalahan yang sering terjadi saat menguraikan vektor.
+
+### Tali Layang-Layang
+
+Tali layang-layang menarik patoknya dengan <InlineMath math="40\text{ N}" /> pada <InlineMath math="60^\circ" /> dari arah vertikal. Karena sudut diukur dari sumbu itu, **bagian tegak memakai kosinus**, <InlineMath math="20\text{ N}" />, dan bagian mendatar memakai sinus, <InlineMath math="34{,}6\text{ N}" />.
+
+<KiteStringTensionLab
+  title={<>Sudut Diukur dari Arah Vertikal</>}
+  description={<>Tali <InlineMath math="30\text{ m}" /> dengan tegangan <InlineMath math="40\text{ N}" />. Miringkan dari arah vertikal.</>}
+  angle={60}
+  length={30}
+  tension={40}
+  labels={{
+    across: <>Bagian mendatar <InlineMath math="T\sin\theta" /></>,
+    angle: <>Sudut dari arah vertikal</>,
+    angleName: "Sudut dari arah vertikal",
+    up: <>Bagian tegak <InlineMath math="T\cos\theta" /></>,
+    viewLabel: "Layang-layang terikat pada patok di pantai",
+  }}
+/>
+
+### Arah Kompas dari Utara
+
+Arah kompas kapal **juga merupakan sudut dari sumbu vertikal**, yaitu utara. Dengan arah kompas <InlineMath math="30^\circ" />, pelayaran <InlineMath math="10\text{ km}" /> menjadi <InlineMath math="10\cos30^\circ" />, sekitar <InlineMath math="8{,}66\text{ km}" />, ke utara dan <InlineMath math="10\sin30^\circ" />, yaitu <InlineMath math="5\text{ km}" />, ke timur.
+
+<ShipBearingComponentLab
+  title={<>Kosinus ke Utara, Sinus ke Timur</>}
+  description={<>Feri berlayar <InlineMath math="10\text{ km}" />. Putar arah kompasnya, yang diukur searah jarum jam dari utara.</>}
+  courses={[{ bearing: 30, distance: 10 }]}
+  labels={{
+    bearing: <>Arah kompas tahap terakhir</>,
+    bearingName: "Arah kompas tahap terakhir",
+    direction: <>Arah kompas dari pelabuhan</>,
+    distance: <>Jarak dari pelabuhan</>,
+    east: <>Komponen timur</>,
+    north: <>Komponen utara</>,
+    viewLabel: "Kapal feri berlayar dari pelabuhan",
+  }}
+/>
 
 ## Tanda Komponen Mengikuti Kuadran
 
@@ -144,7 +222,7 @@ Ukur sudutnya dari sumbu x positif, berlawanan arah jarum jam, maka kuadrannya m
 
 <MathVisual
   title={<>Tanda Komponen Menurut Kuadran</>}
-  description={<>Empat gaya yang sama besar pada sudut 30, 150, 210, dan 330 derajat.</>}
+  description={<>Empat gaya yang sama besar pada sudut <InlineMath math="30^\circ" />, <InlineMath math="150^\circ" />, <InlineMath math="210^\circ" />, dan <InlineMath math="330^\circ" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -3, max: 3 } },
@@ -173,5 +251,25 @@ Ukur sudutnya dari sumbu x positif, berlawanan arah jarum jam, maka kuadrannya m
     q150: <InlineMath math="F_x<0,\ F_y>0" />,
     q210: <InlineMath math="F_x<0,\ F_y<0" />,
     q330: <InlineMath math="F_x>0,\ F_y<0" />,
+  }}
+/>
+
+### Angin dari Setiap Kuadran
+
+Angin <InlineMath math="10\text{ m/s}" /> ke arah <InlineMath math="210^\circ" /> bertiup ke kuadran ketiga, jadi **kosinus dan sinusnya sama-sama negatif**: <InlineMath math="-8{,}66\text{ m/s}" /> ke timur dan <InlineMath math="-5\text{ m/s}" /> ke utara. Putar arahnya melewati keempat kuadran, lalu baca tandanya.
+
+<WindMapVectorLab
+  title={<>Tanda Komponen Angin</>}
+  description={<>Angin <InlineMath math="10\text{ m/s}" />. Arahnya diukur berlawanan jarum jam dari timur.</>}
+  angle={210}
+  speed={10}
+  labels={{
+    angle: <>Arah dari timur</>,
+    angleName: "Arah dari timur",
+    east: <>Komponen timur <InlineMath math="v_x" /></>,
+    north: <>Komponen utara <InlineMath math="v_y" /></>,
+    speed: <>Kelajuan angin</>,
+    speedName: "Kelajuan angin",
+    viewLabel: "Peta cuaca angin di atas pulau-pulau",
   }}
 />

@@ -52,6 +52,26 @@ In the visual, <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> a
 
 This freedom to slide an abstract vector in a diagram does not mean every physical application point is interchangeable. A force applied at a different point may produce a different torque.
 
+### The Same Wind over Every Island
+
+A steady sea wind of <InlineMath math="10\text{ m/s}" /> is **the same vector over every island**: fifteen arrows in fifteen places, all equal, because each has the same length and the same direction. Change the wind and all of them change together.
+
+<WindMapVectorLab
+  title={<>One Wind, Many Places</>}
+  description={<>Wind of <InlineMath math="10\text{ m/s}" /> toward <InlineMath math="150^\circ" /> from east.</>}
+  angle={150}
+  speed={10}
+  labels={{
+    angle: <>Direction from east</>,
+    angleName: "Direction from east",
+    east: <>East component <InlineMath math="v_x" /></>,
+    north: <>North component <InlineMath math="v_y" /></>,
+    speed: <>Wind speed</>,
+    speedName: "Wind speed",
+    viewLabel: "Weather map of wind over islands",
+  }}
+/>
+
 ## A Negative Vector Reverses Direction
 
 The <Highlight>negative vector</Highlight> of <InlineMath math="\vec{a}" /> is written as <InlineMath math="-\vec{a}" />. It has the same magnitude as <InlineMath math="\vec{a}" />, but points in the opposite direction.
@@ -62,6 +82,35 @@ The <Highlight>negative vector</Highlight> of <InlineMath math="\vec{a}" /> is w
 </MathContainer>
 
 For example, a <InlineMath math="12\text{ N}" /> force to the right and a <InlineMath math="12\text{ N}" /> force to the left form an opposite-vector pair. If both act on the same object along the same line, their resultant is the zero vector.
+
+### Running a Leg Backward
+
+The leg from <InlineMath math="A" /> to <InlineMath math="B" /> is <InlineMath math="60\text{ m}" /> east and <InlineMath math="80\text{ m}" /> north. Running it back from <InlineMath math="B" /> to <InlineMath math="A" /> gives <InlineMath math="-60\text{ m}" /> and <InlineMath math="-80\text{ m}" />: the same <InlineMath math="100\text{ m}" />, **the negative vector**. Drawn from <InlineMath math="C" />, the original leg stays the very same vector.
+
+<OrienteeringMapVectorLab
+  title={<>Forward, Backward, Moved</>}
+  description={<>Checkpoints <InlineMath math="A" />, <InlineMath math="B" /> and <InlineMath math="C" /> in teal, amber and pink rings. Choose a vector.</>}
+  marks={{
+    a: { east: 20, north: 10 },
+    b: { east: 80, north: 90 },
+    c: { east: 120, north: -20 },
+  }}
+  views={["forward", "back", "copy"]}
+  labels={{
+    angle: <>Direction from east</>,
+    chooseView: "Choose which vector to show",
+    east: <>East part</>,
+    north: <>North part</>,
+    size: <>Length</>,
+    viewLabel: "Orienteering map of a park",
+    views: {
+      back: <><InlineMath math="B" /> to <InlineMath math="A" /></>,
+      copy: <>Same vector from <InlineMath math="C" /></>,
+      difference: <><InlineMath math="\vec b-\vec a" /></>,
+      forward: <><InlineMath math="A" /> to <InlineMath math="B" /></>,
+    },
+  }}
+/>
 
 ## Scalar Multiplication Changes Magnitude and Direction
 
@@ -75,6 +124,28 @@ A scalar is an ordinary number with no direction. When a vector is multiplied by
 | <InlineMath math="0\vec{a}" /> | <InlineMath math="0" /> | becomes the zero vector |
 
 A negative scalar <Highlight>does not make the magnitude negative</Highlight>. It reverses the vector direction.
+
+### More Hands on the Rope
+
+Every puller adds the same <InlineMath math="350\text{ N}" />, so **a team of four pulls with** <InlineMath math="4\vec F" />, <InlineMath math="1400\text{ N}" />, and a team of two with half of that. The left team's force carries a negative sign because it points the other way.
+
+<TugOfWarForceLab
+  title={<>A Team Is a Multiple of One Pull</>}
+  description={<>Each puller pulls with <InlineMath math="350\text{ N}" />. Change how many pull on each side.</>}
+  left={2}
+  pull={350}
+  right={4}
+  labels={{
+    left: <>Left team <InlineMath math="\vec F_L" /></>,
+    leftCount: <>Pullers on the left</>,
+    leftName: "Pullers on the left",
+    net: <>Net force <InlineMath math="\Sigma F" /></>,
+    right: <>Right team <InlineMath math="\vec F_R" /></>,
+    rightCount: <>Pullers on the right</>,
+    rightName: "Pullers on the right",
+    viewLabel: "Tug of war at sunset",
+  }}
+/>
 
 ### Multiplying Every Component
 
@@ -121,6 +192,26 @@ Every arrow below is <InlineMath math="k\vec a" /> for <InlineMath math="\vec a=
   }}
 />
 
+Multiply the whole flight plan by <InlineMath math="k" />. With <InlineMath math="k=2" /> every component doubles, from <InlineMath math="4\,\hat\imath+4\,\hat\jmath+2\,\hat k" /> metres to twice that, and the distance from the pad grows from <InlineMath math="6\text{ m}" /> to <InlineMath math="12\text{ m}" />. With <InlineMath math="k=-1" /> the drone flies the same plan the opposite way.
+
+<DroneDisplacementLab
+  title={<>Scale the Flight by <InlineMath math="k" /></>}
+  description={<>The plan climbs <InlineMath math="2\text{ m}" />, flies <InlineMath math="4\text{ m}" /> east and <InlineMath math="4\text{ m}" /> north. Choose <InlineMath math="k" />.</>}
+  factors={[-1, 0.5, 1, 2]}
+  hops={[
+    { east: 0, north: 0, up: 2 },
+    { east: 4, north: 0, up: 0 },
+    { east: 0, north: 4, up: 0 },
+  ]}
+  labels={{
+    chooseFactor: "Multiply the flight plan by k",
+    displacement: <>Displacement</>,
+    path: <>Path flown</>,
+    size: <>Distance from the pad</>,
+    viewLabel: "Drone flying from its pad",
+  }}
+/>
+
 ## The Zero Vector as Cancellation
 
 The zero vector is written as <InlineMath math="\vec{0}" />. Its magnitude is <InlineMath math="0" />, and its <Highlight>direction is undefined</Highlight> because the tail and tip coincide.
@@ -135,7 +226,7 @@ Multiplying by <InlineMath math="k" /> scales the length to <InlineMath math="\l
 
 <MathVisual
   title={<>What a Scalar Does to a Vector</>}
-  description={<>Length of <InlineMath math="k\vec a" /> against <InlineMath math="k" /> for a vector of length 1. The gray marks show <InlineMath math="k=\tfrac12" /> and <InlineMath math="k=1" />.</>}
+  description={<>Length of <InlineMath math="k\vec a" /> against <InlineMath math="k" /> for a vector of length <InlineMath math="1" />. The gray marks show <InlineMath math="k=\tfrac12" /> and <InlineMath math="k=1" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -0.8, max: 2.6 } },
@@ -156,5 +247,28 @@ Multiplying by <InlineMath math="k" /> scales the length to <InlineMath math="\l
     neg: <InlineMath math="k<0:\ \text{reversed}" />,
     pos: <InlineMath math="k>0:\ \text{same direction}" />,
     zero: <InlineMath math="k=0:\ \vec 0" />,
+  }}
+/>
+
+### Three Equal Strings
+
+Three strings each pull with the weight of <InlineMath math="200\text{ g}" />, <InlineMath math="1.96\text{ N}" />. Turn the last pulley to <InlineMath math="240^\circ" />: the three pulls are then <InlineMath math="120^\circ" /> apart, **they cancel**, and the resultant is the zero vector.
+
+<ForceTableResultantLab
+  title={<>Pulls That Cancel</>}
+  description={<>Three hangers of <InlineMath math="200\text{ g}" /> each. Turn the last pulley.</>}
+  pulls={[
+    { angle: 0, mass: 200 },
+    { angle: 120, mass: 200 },
+    { angle: 200, mass: 200 },
+  ]}
+  labels={{
+    angle: <>Angle of the last string</>,
+    angleName: "Angle of the last string",
+    direction: <>Direction of <InlineMath math="\vec R" /></>,
+    resultant: <>Resultant <InlineMath math="R" /></>,
+    sumX: <>Sum along <InlineMath math="0^\circ" /></>,
+    sumY: <>Sum along <InlineMath math="90^\circ" /></>,
+    viewLabel: "Force table with hanging masses",
   }}
 />

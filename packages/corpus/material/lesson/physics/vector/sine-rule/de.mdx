@@ -23,6 +23,27 @@ Dieses Dreieck setzt **zwei von null verschiedene, nicht kollineare Vektoren** v
 
 > Der Sinussatz wird gewöhnlich erst angewendet, wenn der Betrag der Resultierenden bekannt ist.
 
+### Wohin das Boot wirklich fährt
+
+Zu wissen, dass das Boot mit <InlineMath math="5\text{ m/s}" /> fährt, reicht zum Anlegen nicht: **Du brauchst auch den Winkel zur Querrichtung**, <InlineMath math="36{,}9^\circ" />, mit <InlineMath math="\sin\alpha=3/5" />. Genau dieser Winkel entscheidet, dass es <InlineMath math="45\text{ m}" /> flussabwärts anlegt.
+
+<RiverBoatCrossingLab
+  title={<>Die Geschwindigkeit allein reicht nicht</>}
+  description={<>Boot <InlineMath math="4\text{ m/s}" />, Strömung <InlineMath math="3\text{ m/s}" />, Fluss <InlineMath math="60\text{ m}" /> breit.</>}
+  boatSpeed={4}
+  current={3}
+  width={60}
+  labels={{
+    angle: <>Winkel zur Querrichtung</>,
+    drift: <>Abdrift flussabwärts</>,
+    groundSpeed: <>Geschwindigkeit über Grund</>,
+    heading: <>Kurs des Boots</>,
+    headingName: "Kurs des Boots",
+    time: <>Überfahrtszeit</>,
+    viewLabel: "Boot überquert einen Fluss",
+  }}
+/>
+
 ## Den gesuchten Winkel richtig ablesen
 
 Vor der Rechnung muss die **Bezugsrichtung** feststehen. Ist die Richtung der Resultierenden relativ zu <InlineMath math="\vec{A}" /> gesucht, wird der Winkel von <InlineMath math="\vec{A}" /> zu <InlineMath math="\vec{R}" /> gemessen.
@@ -39,6 +60,28 @@ Häufig wird folgende Beziehung verwendet:
 Der Wert <InlineMath math="\phi_0" /> ist zunächst ein **spitzer oder rechter Winkel als Kandidat**. Prüfe die Komponenten der Resultierenden, um zwischen <InlineMath math="\phi=\phi_0" /> und <InlineMath math="\phi=180^\circ-\phi_0" /> zu entscheiden.
 
 Diese Formel liefert den Winkel der Resultierenden relativ zu <InlineMath math="\vec{A}" />. Der Seite gegenüber dem Winkel <InlineMath math="\phi" /> entspricht der Vektorbetrag <InlineMath math="B" />. Deshalb steht <InlineMath math="B" /> im Zähler.
+
+### Abdriftwinkel eines Flugzeugs
+
+Piloten fragen nach dem Winkel zwischen der Richtung der Nase und der Flugrichtung, **der Abdrift**. Er liegt zwischen Eigengeschwindigkeit und Geschwindigkeit über Grund, gegenüber der Windseite: <InlineMath math="\sin\delta=300\sin60^\circ/608" />, also <InlineMath math="25{,}3^\circ" />.
+
+<AircraftCrosswindLab
+  title={<>Welcher Winkel die Abdrift ist</>}
+  description={<>Eigengeschwindigkeit <InlineMath math="400\text{ km/h}" />, Wind <InlineMath math="300\text{ km/h}" /> nach Osten. Dreh die Nase.</>}
+  airspeed={400}
+  heading={30}
+  toward={90}
+  wind={300}
+  labels={{
+    between: <>Winkel zwischen Eigengeschwindigkeit und Wind</>,
+    drift: <>Abdriftwinkel</>,
+    groundSpeed: <>Geschwindigkeit über Grund</>,
+    heading: <>Steuerkurs der Nase</>,
+    headingName: "Steuerkurs der Nase",
+    track: <>Kurs über Grund</>,
+    viewLabel: "Verkehrsflugzeug über Feldern bei Seitenwind",
+  }}
+/>
 
 ## Richtung der resultierenden Kraft
 
@@ -63,7 +106,7 @@ Hier sind die beiden Kräfte mit ihrem Parallelogramm. Die fuchsiafarbene Result
 
 <MathVisual
   title={<>Richtung der Resultierenden</>}
-  description={<><InlineMath math="A=10\text{ N}" /> und <InlineMath math="B=8\text{ N}" /> unter 60° mit dem Parallelogramm, das R liefert. Ein Gitterschritt entspricht 2 N.</>}
+  description={<><InlineMath math="A=10\text{ N}" /> und <InlineMath math="B=8\text{ N}" /> unter <InlineMath math="60^\circ" /> mit dem Parallelogramm, das R liefert. Ein Gitterschritt entspricht <InlineMath math="2\text{ N}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.8, max: 4.5 } },
@@ -87,6 +130,26 @@ Hier sind die beiden Kräfte mit ihrem Parallelogramm. Die fuchsiafarbene Result
     a: <InlineMath math="A=10\text{ N}" />,
     b: <InlineMath math="B=8\text{ N}" />,
     r: <InlineMath math="R\approx15{,}62\text{ N},\ \phi\approx26{,}3^\circ" />,
+  }}
+/>
+
+### Richtung eines Schleppzugs
+
+Schlepper, die mit <InlineMath math="10\text{ kN}" /> und <InlineMath math="8\text{ kN}" /> bei <InlineMath math="60^\circ" /> zwischen den Trossen ziehen, ergeben <InlineMath math="15{,}6\text{ kN}" />. **Ihr Winkel zur ersten Trosse** ist <InlineMath math="26{,}3^\circ" />, dasselbe <InlineMath math="\phi" /> wie oben, also weicht das Schiff nur <InlineMath math="3{,}7^\circ" /> von seiner eigenen Linie ab.
+
+<TugboatResultantLab
+  title={<>Der Sinussatz im Hafen</>}
+  description={<>Züge von <InlineMath math="10\text{ kN}" /> und <InlineMath math="8\text{ kN}" />. Öffne oder schließe die Trossen.</>}
+  between={60}
+  first={10}
+  second={8}
+  labels={{
+    between: <>Winkel zwischen den Seilen</>,
+    betweenName: "Winkel zwischen den Seilen",
+    fromFirst: <>Winkel von <InlineMath math="\vec R" /> zu <InlineMath math="\vec F_1" /></>,
+    fromLine: <>Winkel zur Schiffslinie</>,
+    resultant: <>Resultierende <InlineMath math="R" /></>,
+    viewLabel: "Zwei Schlepper ziehen ein Schiff",
   }}
 />
 
@@ -161,7 +224,7 @@ Häng die Vektoren Spitze an Fuß, und du bekommst ein Dreieck. Der Kosinussatz 
 
 <MathVisual
   title={<>Betrag, Richtung, Probe</>}
-  description={<>Das Vektordreieck aus A (orange), B (violett) und ihrer Resultierenden R (fuchsia), mit dem Winkel zwischen A und B (türkis) und der Richtung von R (gelb). Ein Gitterschritt entspricht 2 N.</>}
+  description={<>Das Vektordreieck aus A (orange), B (violett) und ihrer Resultierenden R (fuchsia), mit dem Winkel zwischen A und B (türkis) und der Richtung von R (gelb). Ein Gitterschritt entspricht <InlineMath math="2\text{ N}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.8, max: 4.5 } },
@@ -193,8 +256,51 @@ Häng die Vektoren Spitze an Fuß, und du bekommst ein Dreieck. Der Kosinussatz 
   }}
 />
 
+Ein schwacher Zug von <InlineMath math="0{,}98\text{ N}" /> bei <InlineMath math="0^\circ" /> und ein starker von <InlineMath math="3{,}92\text{ N}" /> bei <InlineMath math="150^\circ" /> ergeben eine Resultierende bei <InlineMath math="140{,}9^\circ" />. Der Sinussatz allein liefert <InlineMath math="39{,}1^\circ" />, aber die Komponenten zeigen die stumpfe Antwort, <InlineMath math="180^\circ-39{,}1^\circ" />.
+
+<ForceTableResultantLab
+  title={<>Eine stumpfwinklige Resultierende</>}
+  description={<>Massestücke von <InlineMath math="100\text{ g}" /> bei <InlineMath math="0^\circ" /> und <InlineMath math="400\text{ g}" /> bei dem Winkel, den du wählst.</>}
+  pulls={[
+    { angle: 0, mass: 100 },
+    { angle: 150, mass: 400 },
+  ]}
+  labels={{
+    angle: <>Winkel der letzten Schnur</>,
+    angleName: "Winkel der letzten Schnur",
+    direction: <>Richtung von <InlineMath math="\vec R" /></>,
+    resultant: <>Resultierende <InlineMath math="R" /></>,
+    sumX: <>Summe entlang <InlineMath math="0^\circ" /></>,
+    sumY: <>Summe entlang <InlineMath math="90^\circ" /></>,
+    viewLabel: "Kräftetisch mit Massestücken",
+  }}
+/>
+
 ## Komponentenverfahren für mehr als zwei Vektoren
 
 Bei mehr als zwei Vektoren zerlegt die Komponentenmethode jeden Vektor entlang derselben <InlineMath math="x" />- und <InlineMath math="y" />-Achse und addiert anschließend die Komponenten. So müssen nicht mehrere Dreiecke konstruiert und die jeweils passenden Winkel für den Sinussatz ausgewählt werden. Dasselbe Verfahren passt direkt zu Richtungen, die bereits gegenüber den Koordinatenachsen angegeben sind.
 
 Der Sinussatz eignet sich für eine klar abgegrenzte Situation: zwei Vektoren, ein bekannter Zwischenwinkel, ein bereits bekannter Betrag der Resultierenden und eine gesuchte Richtung relativ zu einem der beiden Vektoren. Vor der Richtungsangabe muss <Highlight>die Mehrdeutigkeit der Sinusumkehrung</Highlight> aufgelöst werden.
+
+### Eine Fahrt in drei Etappen
+
+Bei drei Etappen werden Dreiecke unübersichtlich, also **addier die Komponenten**. Die Etappen ergeben <InlineMath math="2{,}46\text{ km}" /> nach Osten und <InlineMath math="7{,}54\text{ km}" /> nach Norden, also endet die Fähre <InlineMath math="7{,}93\text{ km}" /> entfernt bei einem Kurswinkel von <InlineMath math="18{,}1^\circ" />. Dreh die letzte Etappe, und die Summen ändern sich sofort.
+
+<ShipBearingComponentLab
+  title={<>Drei Etappen nach Komponenten addiert</>}
+  description={<>Etappen von <InlineMath math="6\text{ km}" /> nach Osten, <InlineMath math="4\text{ km}" /> nach Norden und <InlineMath math="5\text{ km}" /> mit einem Kurswinkel deiner Wahl.</>}
+  courses={[
+    { bearing: 90, distance: 6 },
+    { bearing: 0, distance: 4 },
+    { bearing: 315, distance: 5 },
+  ]}
+  labels={{
+    bearing: <>Kurswinkel der letzten Etappe</>,
+    bearingName: "Kurswinkel der letzten Etappe",
+    direction: <>Kurswinkel vom Hafen aus</>,
+    distance: <>Abstand vom Hafen</>,
+    east: <>Ostkomponente</>,
+    north: <>Nordkomponente</>,
+    viewLabel: "Fähre fährt aus einem Hafen",
+  }}
+/>

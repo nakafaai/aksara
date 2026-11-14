@@ -52,6 +52,26 @@ In der Darstellung liegen <InlineMath math="\vec{a}" /> und <InlineMath math="\v
 
 Die freie Verschiebung eines abstrakten Vektors in einer Zeichnung bedeutet nicht, dass jeder physikalische Angriffspunkt austauschbar ist. Eine Kraft kann an einem anderen Punkt ein anderes Drehmoment erzeugen.
 
+### Derselbe Wind über jeder Insel
+
+Ein gleichmäßiger Seewind mit <InlineMath math="10\text{ m/s}" /> ist **über jeder Insel derselbe Vektor**: fünfzehn Pfeile an fünfzehn Orten, alle gleich, weil jeder dieselbe Länge und dieselbe Richtung hat. Ändere den Wind, und alle ändern sich gemeinsam.
+
+<WindMapVectorLab
+  title={<>Ein Wind, viele Orte</>}
+  description={<>Wind mit <InlineMath math="10\text{ m/s}" /> in Richtung <InlineMath math="150^\circ" /> ab Osten.</>}
+  angle={150}
+  speed={10}
+  labels={{
+    angle: <>Richtung ab Osten</>,
+    angleName: "Richtung ab Osten",
+    east: <>Ostkomponente <InlineMath math="v_x" /></>,
+    north: <>Nordkomponente <InlineMath math="v_y" /></>,
+    speed: <>Windgeschwindigkeit</>,
+    speedName: "Windgeschwindigkeit",
+    viewLabel: "Wetterkarte mit Wind über Inseln",
+  }}
+/>
+
 ## Ein Gegenvektor kehrt die Richtung um
 
 Der <Highlight>Gegenvektor</Highlight> zu <InlineMath math="\vec{a}" /> wird als <InlineMath math="-\vec{a}" /> geschrieben. Er hat denselben Betrag wie <InlineMath math="\vec{a}" />, zeigt aber in die entgegengesetzte Richtung.
@@ -62,6 +82,35 @@ Der <Highlight>Gegenvektor</Highlight> zu <InlineMath math="\vec{a}" /> wird als
 </MathContainer>
 
 Eine Kraft von <InlineMath math="12\text{ N}" /> nach rechts und eine Kraft von <InlineMath math="12\text{ N}" /> nach links bilden zum Beispiel ein Paar entgegengesetzter Vektoren. Wirken beide entlang derselben Geraden auf denselben Körper, ist ihre Resultierende der Nullvektor.
+
+### Eine Etappe rückwärts laufen
+
+Die Etappe von <InlineMath math="A" /> nach <InlineMath math="B" /> geht <InlineMath math="60\text{ m}" /> nach Osten und <InlineMath math="80\text{ m}" /> nach Norden. Läufst du sie von <InlineMath math="B" /> nach <InlineMath math="A" /> zurück, bekommst du <InlineMath math="-60\text{ m}" /> und <InlineMath math="-80\text{ m}" />: wieder <InlineMath math="100\text{ m}" />, aber **der Gegenvektor**. Ab <InlineMath math="C" /> gezeichnet bleibt die ursprüngliche Etappe genau derselbe Vektor.
+
+<OrienteeringMapVectorLab
+  title={<>Hin, zurück, verschoben</>}
+  description={<>Die Posten <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" /> in türkisen, bernsteinfarbenen und rosa Ringen. Wähle einen Vektor.</>}
+  marks={{
+    a: { east: 20, north: 10 },
+    b: { east: 80, north: 90 },
+    c: { east: 120, north: -20 },
+  }}
+  views={["forward", "back", "copy"]}
+  labels={{
+    angle: <>Richtung ab Osten</>,
+    chooseView: "Wähle den gezeigten Vektor",
+    east: <>Ostanteil</>,
+    north: <>Nordanteil</>,
+    size: <>Länge</>,
+    viewLabel: "Orientierungslaufkarte eines Parks",
+    views: {
+      back: <><InlineMath math="B" /> nach <InlineMath math="A" /></>,
+      copy: <>Gleicher Vektor ab <InlineMath math="C" /></>,
+      difference: <><InlineMath math="\vec b-\vec a" /></>,
+      forward: <><InlineMath math="A" /> nach <InlineMath math="B" /></>,
+    },
+  }}
+/>
 
 ## Die Skalarmultiplikation ändert Betrag und Richtung
 
@@ -75,6 +124,28 @@ Ein Skalar ist eine gewöhnliche Zahl ohne Richtung. Wird ein Vektor mit dem Ska
 | <InlineMath math="0\vec{a}" /> | <InlineMath math="0" /> | wird zum Nullvektor |
 
 Ein negativer Skalar <Highlight>macht den Betrag nicht negativ</Highlight>. Sein Minuszeichen kehrt die Richtung des Vektors um.
+
+### Mehr Hände am Seil
+
+Jede Person fügt dieselben <InlineMath math="350\text{ N}" /> hinzu, also **zieht ein Team aus vier Personen mit** <InlineMath math="4\vec F" />, <InlineMath math="1400\text{ N}" />, und ein Team aus zwei mit der Hälfte. Die Kraft des linken Teams hat ein negatives Vorzeichen, weil sie in die andere Richtung zeigt.
+
+<TugOfWarForceLab
+  title={<>Ein Team ist ein Vielfaches eines Zugs</>}
+  description={<>Jede Person zieht mit <InlineMath math="350\text{ N}" />. Ändere, wie viele auf jeder Seite ziehen.</>}
+  left={2}
+  pull={350}
+  right={4}
+  labels={{
+    left: <>Linkes Team <InlineMath math="\vec F_L" /></>,
+    leftCount: <>Ziehende links</>,
+    leftName: "Ziehende links",
+    net: <>Gesamtkraft <InlineMath math="\Sigma F" /></>,
+    right: <>Rechtes Team <InlineMath math="\vec F_R" /></>,
+    rightCount: <>Ziehende rechts</>,
+    rightName: "Ziehende rechts",
+    viewLabel: "Tauziehen bei Sonnenuntergang",
+  }}
+/>
 
 ### Jede Komponente multiplizieren
 
@@ -121,6 +192,26 @@ Jeder Pfeil unten ist <InlineMath math="k\vec a" /> für <InlineMath math="\vec 
   }}
 />
 
+Multipliziere den ganzen Flugplan mit <InlineMath math="k" />. Mit <InlineMath math="k=2" /> verdoppelt sich jede Komponente, von <InlineMath math="4\,\hat\imath+4\,\hat\jmath+2\,\hat k" /> Metern auf das Doppelte, und der Abstand vom Startplatz wächst von <InlineMath math="6\text{ m}" /> auf <InlineMath math="12\text{ m}" />. Mit <InlineMath math="k=-1" /> fliegt die Drohne denselben Plan in die Gegenrichtung.
+
+<DroneDisplacementLab
+  title={<>Den Flug mit <InlineMath math="k" /> skalieren</>}
+  description={<>Der Plan steigt <InlineMath math="2\text{ m}" /> und fliegt <InlineMath math="4\text{ m}" /> nach Osten und <InlineMath math="4\text{ m}" /> nach Norden. Wähle <InlineMath math="k" />.</>}
+  factors={[-1, 0.5, 1, 2]}
+  hops={[
+    { east: 0, north: 0, up: 2 },
+    { east: 4, north: 0, up: 0 },
+    { east: 0, north: 4, up: 0 },
+  ]}
+  labels={{
+    chooseFactor: "Flugplan mit k multiplizieren",
+    displacement: <>Verschiebung</>,
+    path: <>Geflogene Strecke</>,
+    size: <>Abstand vom Startplatz</>,
+    viewLabel: "Drohne fliegt von ihrem Startplatz",
+  }}
+/>
+
 ## Der Nullvektor als Ergebnis einer Aufhebung
 
 Der Nullvektor wird als <InlineMath math="\vec{0}" /> geschrieben. Sein Betrag ist <InlineMath math="0" />, und seine <Highlight>Richtung ist nicht definiert</Highlight>, weil Fußpunkt und Spitze zusammenfallen.
@@ -135,7 +226,7 @@ Mit <InlineMath math="k" /> zu multiplizieren skaliert die Länge auf <InlineMat
 
 <MathVisual
   title={<>Was ein Skalar mit einem Vektor macht</>}
-  description={<>Länge von <InlineMath math="k\vec a" /> über <InlineMath math="k" /> für einen Vektor der Länge 1. Die grauen Marken zeigen <InlineMath math="k=\tfrac12" /> und <InlineMath math="k=1" />.</>}
+  description={<>Länge von <InlineMath math="k\vec a" /> über <InlineMath math="k" /> für einen Vektor der Länge <InlineMath math="1" />. Die grauen Marken zeigen <InlineMath math="k=\tfrac12" /> und <InlineMath math="k=1" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -0.8, max: 2.6 } },
@@ -156,5 +247,28 @@ Mit <InlineMath math="k" /> zu multiplizieren skaliert die Länge auf <InlineMat
     neg: <InlineMath math="k<0:\ \text{umgekehrt}" />,
     pos: <InlineMath math="k>0:\ \text{gleiche Richtung}" />,
     zero: <InlineMath math="k=0:\ \vec 0" />,
+  }}
+/>
+
+### Drei gleiche Schnüre
+
+Drei Schnüre ziehen jeweils mit der Gewichtskraft von <InlineMath math="200\text{ g}" />, also <InlineMath math="1{,}96\text{ N}" />. Dreh die letzte Rolle auf <InlineMath math="240^\circ" />: Dann liegen die drei Züge <InlineMath math="120^\circ" /> auseinander, **heben sich auf**, und die Resultierende ist der Nullvektor.
+
+<ForceTableResultantLab
+  title={<>Züge, die sich aufheben</>}
+  description={<>Drei Massestücke zu je <InlineMath math="200\text{ g}" />. Dreh die letzte Rolle.</>}
+  pulls={[
+    { angle: 0, mass: 200 },
+    { angle: 120, mass: 200 },
+    { angle: 200, mass: 200 },
+  ]}
+  labels={{
+    angle: <>Winkel der letzten Schnur</>,
+    angleName: "Winkel der letzten Schnur",
+    direction: <>Richtung von <InlineMath math="\vec R" /></>,
+    resultant: <>Resultierende <InlineMath math="R" /></>,
+    sumX: <>Summe entlang <InlineMath math="0^\circ" /></>,
+    sumY: <>Summe entlang <InlineMath math="90^\circ" /></>,
+    viewLabel: "Kräftetisch mit Massestücken",
   }}
 />

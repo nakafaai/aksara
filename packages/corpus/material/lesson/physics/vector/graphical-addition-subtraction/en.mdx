@@ -18,6 +18,27 @@ The graphical method finds the resultant using a scaled drawing. Arrow lengths a
 
 > In the graphical method, the accuracy depends on drawing scale, ruler work, and angle measurement.
 
+### A Boat across a River
+
+The boat's own velocity of <InlineMath math="4\text{ m/s}" /> (teal) and the current of <InlineMath math="3\text{ m/s}" /> (amber) **are drawn tip to tail**, and the arrow from the first tail to the last tip (violet) is their sum, <InlineMath math="5\text{ m/s}" />. Turn the heading and the triangle changes shape.
+
+<RiverBoatCrossingLab
+  title={<>Boat and Current Added</>}
+  description={<>A river <InlineMath math="60\text{ m}" /> wide flowing at <InlineMath math="3\text{ m/s}" />.</>}
+  boatSpeed={4}
+  current={3}
+  width={60}
+  labels={{
+    angle: <>Angle from straight across</>,
+    drift: <>Drift downstream</>,
+    groundSpeed: <>Speed over the ground</>,
+    heading: <>Boat heading</>,
+    headingName: "Boat heading",
+    time: <>Crossing time</>,
+    viewLabel: "Boat crossing a flowing river",
+  }}
+/>
+
 ### Head to Tail Triangle Method
 
 The triangle method is used to add two vectors. Draw the first vector, then place the tail of the second vector at the tip of the first. The resultant is drawn from the tail of the first vector to the tip of the second.
@@ -60,6 +81,25 @@ Place the **tail of the second vector at the tip of the first**. Coordinate unit
 
 <BlockMath math="\vec{R}=(4+2,1+3)\text{ m}=(6,4)\text{ m}" />
 
+An airliner points north at <InlineMath math="400\text{ km/h}" /> while a <InlineMath math="300\text{ km/h}" /> wind blows east. Put the wind's tail on the tip of the air velocity: the third side of the triangle is the velocity over the ground, <InlineMath math="500\text{ km/h}" /> on a track of <InlineMath math="36.9^\circ" />.
+
+<AircraftCrosswindLab
+  title={<>Crosswind Triangle</>}
+  description={<>Airspeed <InlineMath math="400\text{ km/h}" />, wind <InlineMath math="300\text{ km/h}" /> toward the east. Turn the nose.</>}
+  airspeed={400}
+  toward={90}
+  wind={300}
+  labels={{
+    between: <>Angle between airspeed and wind</>,
+    drift: <>Drift angle</>,
+    groundSpeed: <>Speed over the ground</>,
+    heading: <>Heading of the nose</>,
+    headingName: "Heading of the nose",
+    track: <>Track over the ground</>,
+    viewLabel: "Airliner over farmland in a crosswind",
+  }}
+/>
+
 ### Parallelogram Method for Two Vectors with One Tail
 
 Two forces acting at one point can be drawn from a **shared tail**. For example, two ropes pull a ring. The copied vectors in the model keep the original arrow lengths and directions. Follow the lower side then the right side, or the left side then the upper side: both paths end at the same point.
@@ -100,6 +140,24 @@ Two forces acting at one point can be drawn from a **shared tail**. For example,
   }}
 />
 
+Both tug cables start at the ship's bow, one tail. Their pulls of <InlineMath math="40\text{ kN}" /> and <InlineMath math="30\text{ kN}" /> span a parallelogram (dashed), and its diagonal from the bow is the resultant, <InlineMath math="50\text{ kN}" /> when the cables are square.
+
+<TugboatResultantLab
+  title={<>Two Tugs, One Diagonal</>}
+  description={<>Tug pulls of <InlineMath math="40\text{ kN}" /> and <InlineMath math="30\text{ kN}" />. Open or close the cables.</>}
+  between={90}
+  first={40}
+  second={30}
+  labels={{
+    between: <>Angle between the cables</>,
+    betweenName: "Angle between the cables",
+    fromFirst: <>Angle of <InlineMath math="\vec R" /> from <InlineMath math="\vec F_1" /></>,
+    fromLine: <>Angle from the ship's line</>,
+    resultant: <>Resultant <InlineMath math="R" /></>,
+    viewLabel: "Two tugboats towing a ship",
+  }}
+/>
+
 ### Polygon Method for Many Vectors
 
 The drawing order may be rearranged as long as <Highlight>each vector keeps its magnitude and direction</Highlight>. The resultant is drawn from the tail of the first chosen vector to the tip of the last vector.
@@ -111,6 +169,28 @@ If the polygon returns to the starting point, the vector sum is zero. For forces
 For example, add <InlineMath math="\vec{c}=(-6,-4)" /> after the two displacements in the model. The third arrow follows the diagonal back to the starting point. The journey still has a length, but the total displacement is zero.
 
 <BlockMath math="\vec{a}+\vec{b}+\vec{c}=(4+2-6,1+3-4)=(0,0)" />
+
+A walk of four legs is a polygon of four vectors, each starting where the last one ended. The violet arrow closes the polygon from start to finish: <InlineMath math="200\text{ m}" /> east and <InlineMath math="300\text{ m}" /> north, <InlineMath math="361\text{ m}" /> long.
+
+<CityWalkDisplacementLab
+  title={<>Four Legs, One Resultant</>}
+  description={<>A walk at <InlineMath math="1.25\text{ m/s}" /> along four streets.</>}
+  legs={[
+    { east: 300, north: 0 },
+    { east: 0, north: 200 },
+    { east: -100, north: 0 },
+    { east: 0, north: 100 },
+  ]}
+  pace={1.25}
+  labels={{
+    averageSpeed: <>Average speed</>,
+    averageVelocity: <>Average velocity</>,
+    displacement: <>Displacement</>,
+    distance: <>Distance walked</>,
+    time: <>Time</>,
+    viewLabel: "Walk through a town seen from above",
+  }}
+/>
 
 ## Graphical Vector Subtraction
 
@@ -147,3 +227,32 @@ For subtraction, **reverse the vector being subtracted**. With the same pair, th
     }}
   />
 </ContentStack>
+
+### From Start Positions to a Leg
+
+From the start <InlineMath math="O" />, the teal arrow <InlineMath math="\vec a" /> reaches checkpoint <InlineMath math="A" /> and the amber arrow <InlineMath math="\vec b" /> reaches <InlineMath math="B" />. **Their difference** <InlineMath math="\vec b-\vec a" /> is the arrow from the tip of <InlineMath math="\vec a" /> to the tip of <InlineMath math="\vec b" />: the leg from <InlineMath math="A" /> to <InlineMath math="B" />, <InlineMath math="100\text{ m}" /> long.
+
+<OrienteeringMapVectorLab
+  title={<>Subtracting Positions <InlineMath math="\vec b-\vec a" /></>}
+  description={<>The start <InlineMath math="O" /> is the fuchsia triangle. Switch between the difference and the leg.</>}
+  marks={{
+    a: { east: 40, north: 30 },
+    b: { east: 100, north: 110 },
+    c: { east: 150, north: -10 },
+  }}
+  views={["difference", "forward"]}
+  labels={{
+    angle: <>Direction from east</>,
+    chooseView: "Choose which vector to show",
+    east: <>East part</>,
+    north: <>North part</>,
+    size: <>Length</>,
+    viewLabel: "Orienteering map of a park",
+    views: {
+      back: <><InlineMath math="B" /> to <InlineMath math="A" /></>,
+      copy: <>Same vector from <InlineMath math="C" /></>,
+      difference: <><InlineMath math="\vec b-\vec a" /></>,
+      forward: <><InlineMath math="A" /> to <InlineMath math="B" /></>,
+    },
+  }}
+/>

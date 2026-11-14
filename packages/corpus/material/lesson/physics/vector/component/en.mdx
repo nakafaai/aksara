@@ -16,6 +16,26 @@ The horizontal component shows how much of the vector lies along the <InlineMath
 
 > A vector equals the sum of its components along the coordinate axes.
 
+### A Block on a Ramp
+
+The weight of a <InlineMath math="2\text{ kg}" /> block points straight down, <InlineMath math="19.6\text{ N}" />, but **the block can only slide along the plank**. Splitting the weight shows what matters: <InlineMath math="9.8\text{ N}" /> down the slope at <InlineMath math="30^\circ" /> and <InlineMath math="16.97\text{ N}" /> into it. Tilt the plank until the slope part wins and the block slides.
+
+<RampBlockComponentLab
+  title={<>Weight Split on a Slope</>}
+  description={<>A <InlineMath math="2\text{ kg}" /> oak block on a pine plank. The block slips once <InlineMath math="\tan\theta" /> passes <InlineMath math="0.7" />.</>}
+  angle={30}
+  friction={0.7}
+  mass={2}
+  labels={{
+    along: <>Down the slope <InlineMath math="W\sin\theta" /></>,
+    angle: <>Ramp angle</>,
+    angleName: "Ramp angle",
+    into: <>Into the slope <InlineMath math="W\cos\theta" /></>,
+    viewLabel: "Wooden block on a tilted plank",
+    weight: <>Weight <InlineMath math="W" /></>,
+  }}
+/>
+
 ## Reading Components in a Plane
 
 In a plane, vector <InlineMath math="\vec{A}" /> can be written as the combination of its <InlineMath math="x" /> and <InlineMath math="y" /> components.
@@ -23,6 +43,28 @@ In a plane, vector <InlineMath math="\vec{A}" /> can be written as the combinati
 <BlockMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" />
 
 The notation <InlineMath math="\hat{i}" /> is the **unit vector** in the <InlineMath math="x" /> direction, while <InlineMath math="\hat{j}" /> is the unit vector in the <InlineMath math="y" /> direction. The signed scalars <InlineMath math="A_x" /> and <InlineMath math="A_y" /> give the components along those axes. Each sign records which way along its axis the vector points.
+
+### A Sled on a Rope
+
+The rope pulls the sled with <InlineMath math="80\text{ N}" /> at <InlineMath math="30^\circ" /> above the snow. On the axes that pull is <InlineMath math="69.3\text{ N}" /> along the snow and <InlineMath math="40\text{ N}" /> up, **drawn tip to tail under the rope**.
+
+<SledPullWorkLab
+  title={<>The Rope's Pull on Two Axes</>}
+  description={<>A <InlineMath math="25\text{ kg}" /> sled pulled <InlineMath math="5\text{ m}" /> with <InlineMath math="80\text{ N}" />. Raise or lower the rope.</>}
+  angle={30}
+  distance={5}
+  force={80}
+  mass={25}
+  labels={{
+    along: <>Along the snow <InlineMath math="F\cos\theta" /></>,
+    angle: <>Rope angle above the snow</>,
+    angleName: "Rope angle above the snow",
+    normal: <>Normal force from the snow</>,
+    up: <>Upward part <InlineMath math="F\sin\theta" /></>,
+    viewLabel: "Sled of firewood pulled across snow",
+    work: <>Work over <InlineMath math="5\text{ m}" /></>,
+  }}
+/>
 
 ### Calculating Length from Two Components
 
@@ -36,7 +78,7 @@ The two component arrows below and the vector form a right triangle, so the leng
 
 <MathVisual
   title={<>A Vector and Its Two Components</>}
-  description={<><InlineMath math="\vec A=6\hat i+8\hat j" /> with its x and y components. One grid step is 2 units.</>}
+  description={<><InlineMath math="\vec A=6\hat i+8\hat j" /> with its x and y components. One grid step is <InlineMath math="2" /> units.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.5 } },
@@ -116,6 +158,25 @@ Rotate the model to see that the <InlineMath math="z" /> component is **perpendi
 
 <BlockMath math="\begin{aligned}\lvert\vec{A}\rvert &= \sqrt{4^2+3^2+2^2} \\ &= \sqrt{16+9+4} \\ &= \sqrt{29}\end{aligned}" />
 
+The drone ends <InlineMath math="2\text{ m}" /> east, <InlineMath math="3\text{ m}" /> north and <InlineMath math="6\text{ m}" /> up from its pad. The three coloured arrows are those components, tip to tail, and the violet arrow is their sum, <InlineMath math="\sqrt{2^2+3^2+6^2}=7" /> metres long.
+
+<DroneDisplacementLab
+  title={<>Three Components of a Flight</>}
+  description={<>The drone climbs <InlineMath math="6\text{ m}" />, then flies <InlineMath math="2\text{ m}" /> east and <InlineMath math="3\text{ m}" /> north.</>}
+  hops={[
+    { east: 0, north: 0, up: 6 },
+    { east: 2, north: 0, up: 0 },
+    { east: 0, north: 3, up: 0 },
+  ]}
+  labels={{
+    chooseFactor: "Multiply the flight plan by k",
+    displacement: <>Displacement</>,
+    path: <>Path flown</>,
+    size: <>Distance from the pad</>,
+    viewLabel: "Drone flying from its pad",
+  }}
+/>
+
 
 ## Positive and Negative Component Signs
 
@@ -128,6 +189,25 @@ The vector's magnitude stays zero or positive. A component's sign marks <Highlig
 | <InlineMath math="A_z" /> | toward positive <InlineMath math="z" /> | toward negative <InlineMath math="z" /> |
 
 If <InlineMath math="\vec{B}=-5\hat{i}+2\hat{j}" />, the vector has a <InlineMath math="5" /> unit component toward negative <InlineMath math="x" /> and a <InlineMath math="2" /> unit component toward positive <InlineMath math="y" />.
+
+### A Ferry Heading South West
+
+On a bearing of <InlineMath math="225^\circ" /> the ferry heads south west, so **both components are negative**: <InlineMath math="-5.66\text{ km}" /> east and <InlineMath math="-5.66\text{ km}" /> north. Turn the bearing through each quadrant and watch the signs flip.
+
+<ShipBearingComponentLab
+  title={<>Signs from the Compass</>}
+  description={<>A ferry sails <InlineMath math="8\text{ km}" /> from the harbour. Turn its bearing.</>}
+  courses={[{ bearing: 225, distance: 8 }]}
+  labels={{
+    bearing: <>Bearing of the last leg</>,
+    bearingName: "Bearing of the last leg",
+    direction: <>Bearing from the harbour</>,
+    distance: <>Distance from the harbour</>,
+    east: <>East component</>,
+    north: <>North component</>,
+    viewLabel: "Ferry sailing from a harbour",
+  }}
+/>
 
 ## Displacement Written as Components
 
@@ -152,7 +232,7 @@ Here is the walk as components. The east and north parts are the components, and
 
 <MathVisual
   title={<>A Walk Written as Components</>}
-  description={<>3 m east, then 4 m north. One grid step is 1 m.</>}
+  description={<><InlineMath math="3\text{ m}" /> east, then <InlineMath math="4\text{ m}" /> north. One grid step is <InlineMath math="1\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.5 } },
@@ -175,5 +255,28 @@ Here is the walk as components. The east and north parts are the components, and
     east: <InlineMath math="3\text{ m}" />,
     north: <InlineMath math="4\text{ m}" />,
     walk: <InlineMath math="5\text{ m},\ 53.1^\circ" />,
+  }}
+/>
+
+### A Walk in Three Legs
+
+The walk goes <InlineMath math="400\text{ m}" /> east, <InlineMath math="300\text{ m}" /> north and <InlineMath math="100\text{ m}" /> back west. **Add the components**: <InlineMath math="300\text{ m}" /> east and <InlineMath math="300\text{ m}" /> north, so the displacement is <InlineMath math="424\text{ m}" /> even though the path is <InlineMath math="800\text{ m}" /> long.
+
+<CityWalkDisplacementLab
+  title={<>Adding the Legs of a Walk</>}
+  description={<>A walk at <InlineMath math="1.25\text{ m/s}" /> through the town's streets.</>}
+  legs={[
+    { east: 400, north: 0 },
+    { east: 0, north: 300 },
+    { east: -100, north: 0 },
+  ]}
+  pace={1.25}
+  labels={{
+    averageSpeed: <>Average speed</>,
+    averageVelocity: <>Average velocity</>,
+    displacement: <>Displacement</>,
+    distance: <>Distance walked</>,
+    time: <>Time</>,
+    viewLabel: "Walk through a town seen from above",
   }}
 />

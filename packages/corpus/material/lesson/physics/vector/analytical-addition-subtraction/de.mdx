@@ -59,6 +59,28 @@ Zerleg jeden Vektor in seinen x- und y-Anteil, addiere die Anteile auf jeder Ach
   }}
 />
 
+### Komponenten auf dem Kräftetisch
+
+Zwei Schnüre ziehen mit <InlineMath math="1{,}96\text{ N}" /> bei <InlineMath math="30^\circ" /> und <InlineMath math="2{,}94\text{ N}" /> bei <InlineMath math="120^\circ" />. Die Karte **addiert ihre Komponenten** entlang <InlineMath math="0^\circ" /> und <InlineMath math="90^\circ" />, <InlineMath math="0{,}23\text{ N}" /> und <InlineMath math="3{,}53\text{ N}" />, und setzt daraus die Resultierende zusammen, <InlineMath math="3{,}53\text{ N}" /> bei <InlineMath math="86{,}3^\circ" />. Dreh die zweite Rolle und rechne die Summe neu.
+
+<ForceTableResultantLab
+  title={<>Züge komponentenweise addieren</>}
+  description={<>Massestücke von <InlineMath math="200\text{ g}" /> und <InlineMath math="300\text{ g}" />. Dreh die zweite Rolle.</>}
+  pulls={[
+    { angle: 30, mass: 200 },
+    { angle: 120, mass: 300 },
+  ]}
+  labels={{
+    angle: <>Winkel der letzten Schnur</>,
+    angleName: "Winkel der letzten Schnur",
+    direction: <>Richtung von <InlineMath math="\vec R" /></>,
+    resultant: <>Resultierende <InlineMath math="R" /></>,
+    sumX: <>Summe entlang <InlineMath math="0^\circ" /></>,
+    sumY: <>Summe entlang <InlineMath math="90^\circ" /></>,
+    viewLabel: "Kräftetisch mit Massestücken",
+  }}
+/>
+
 ## Schritte für die Vektoraddition
 
 Angenommen, auf einen Körper wirken die Kräfte <InlineMath math="\vec{F}_1" />, <InlineMath math="\vec{F}_2" /> und <InlineMath math="\vec{F}_3" />. Zunächst wird jede Kraft in **horizontale und vertikale Komponenten** zerlegt.
@@ -81,6 +103,28 @@ Verwende den zweistelligen Arkustangens für den Winkel der Resultierenden gegen
 Anders als <InlineMath math="\tan^{-1}(R_y/R_x)" /> verwendet <InlineMath math="\operatorname{atan2}" /> die Vorzeichen beider Komponenten und ordnet die Richtung dadurch dem richtigen Quadranten zu.
 
 Sind beide Komponenten null, ist die Resultierende der Nullvektor und ihre **Richtung ist nicht definiert**. Weise einem Rechner- oder Programmausgabewert für <InlineMath math="\operatorname{atan2}(0,0)" /> keine physikalische Richtung zu.
+
+### Flugplanung bei Seitenwind
+
+Pilotinnen **addieren jeden Tag Vektoren nach Komponenten**. Mit der Nase auf <InlineMath math="30^\circ" /> bei <InlineMath math="400\text{ km/h}" /> und Wind mit <InlineMath math="300\text{ km/h}" /> nach Osten ergeben die Anteile eine Geschwindigkeit über Grund von <InlineMath math="608\text{ km/h}" /> auf einem Kurs von <InlineMath math="55{,}3^\circ" />.
+
+<AircraftCrosswindLab
+  title={<>Geschwindigkeit über Grund aus Komponenten</>}
+  description={<>Eigengeschwindigkeit <InlineMath math="400\text{ km/h}" />, Wind <InlineMath math="300\text{ km/h}" /> nach Osten. Dreh die Nase.</>}
+  airspeed={400}
+  heading={30}
+  toward={90}
+  wind={300}
+  labels={{
+    between: <>Winkel zwischen Eigengeschwindigkeit und Wind</>,
+    drift: <>Abdriftwinkel</>,
+    groundSpeed: <>Geschwindigkeit über Grund</>,
+    heading: <>Steuerkurs der Nase</>,
+    headingName: "Steuerkurs der Nase",
+    track: <>Kurs über Grund</>,
+    viewLabel: "Verkehrsflugzeug über Feldern bei Seitenwind",
+  }}
+/>
 
 ### Verschiebung in zwei Etappen
 
@@ -118,7 +162,7 @@ Addier die Etappen Komponente für Komponente, dann ergibt sich die Resultierend
 
 <MathVisual
   title={<>Zwei Etappen über Komponenten addiert</>}
-  description={<>Etappen (80, 60) m und (120, 90) m, Spitze an Fuß gelegt. Ein Gitterschritt entspricht 50 m.</>}
+  description={<>Etappen <InlineMath math="(80, 60)\text{ m}" /> und <InlineMath math="(120, 90)\text{ m}" />, Spitze an Fuß gelegt. Ein Gitterschritt entspricht <InlineMath math="50\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 4 } },
@@ -141,6 +185,46 @@ Addier die Etappen Komponente für Komponente, dann ergibt sich die Resultierend
     first: <InlineMath math="(80,60)" />,
     second: <InlineMath math="(120,90)" />,
     result: <InlineMath math="R=\sqrt{200^2+150^2}=250\text{ m}" />,
+  }}
+/>
+
+Eine Fähre macht dieselbe Art von Reise in zwei Etappen: <InlineMath math="6\text{ km}" /> genau nach Osten, dann <InlineMath math="10\text{ km}" /> mit dem Kurswinkel <InlineMath math="30^\circ" />. Die Ostanteile ergeben zusammen <InlineMath math="11\text{ km}" /> und die Nordanteile <InlineMath math="8{,}66\text{ km}" />, also endet sie <InlineMath math="14\text{ km}" /> vom Hafen entfernt.
+
+<ShipBearingComponentLab
+  title={<>Eine Fähre in zwei Etappen</>}
+  description={<>Erste Etappe <InlineMath math="6\text{ km}" /> nach Osten, zweite Etappe <InlineMath math="10\text{ km}" />. Dreh den zweiten Kurswinkel.</>}
+  courses={[
+    { bearing: 90, distance: 6 },
+    { bearing: 30, distance: 10 },
+  ]}
+  labels={{
+    bearing: <>Kurswinkel der letzten Etappe</>,
+    bearingName: "Kurswinkel der letzten Etappe",
+    direction: <>Kurswinkel vom Hafen aus</>,
+    distance: <>Abstand vom Hafen</>,
+    east: <>Ostkomponente</>,
+    north: <>Nordkomponente</>,
+    viewLabel: "Fähre fährt aus einem Hafen",
+  }}
+/>
+
+### Zwei Etappen im Raum
+
+Im Raum funktionieren dieselben Schritte **mit einer dritten Komponente**. Eine Drohne steigt auf <InlineMath math="3\text{ m}" /> und fliegt dabei <InlineMath math="4\text{ m}" /> nach Osten, dann <InlineMath math="12\text{ m}" /> nach Norden: Die Summen sind <InlineMath math="4\text{ m}" />, <InlineMath math="12\text{ m}" /> und <InlineMath math="3\text{ m}" />, und die Verschiebung ist <InlineMath math="13\text{ m}" />.
+
+<DroneDisplacementLab
+  title={<>Zwei Flugetappen addieren</>}
+  description={<>Etappe eins steigt <InlineMath math="3\text{ m}" /> auf <InlineMath math="4\text{ m}" /> nach Osten. Etappe zwei geht <InlineMath math="12\text{ m}" /> nach Norden.</>}
+  hops={[
+    { east: 4, north: 0, up: 3 },
+    { east: 0, north: 12, up: 0 },
+  ]}
+  labels={{
+    chooseFactor: "Flugplan mit k multiplizieren",
+    displacement: <>Verschiebung</>,
+    path: <>Geflogene Strecke</>,
+    size: <>Abstand vom Startplatz</>,
+    viewLabel: "Drohne fliegt von ihrem Startplatz",
   }}
 />
 
@@ -200,3 +284,32 @@ Die Vorzeichen ergeben eine Richtung nach rechts und unten. Für die Pfeillänge
 
 
 Für die Subtraktion ist also keine neue Regel nötig. Die Achsen bleiben gleich, gleichartige Komponenten werden voneinander abgezogen, und die Vorzeichen zeigen anschließend die Richtung der resultierenden Komponenten an.
+
+### Positionen auf der Karte subtrahieren
+
+Posten <InlineMath math="A" /> liegt <InlineMath math="60\text{ m}" /> östlich und <InlineMath math="20\text{ m}" /> nördlich vom Start, <InlineMath math="B" /> <InlineMath math="20\text{ m}" /> östlich und <InlineMath math="50\text{ m}" /> nördlich. **Subtrahier komponentenweise**: <InlineMath math="\vec b-\vec a" /> ist <InlineMath math="-40\text{ m}" /> nach Osten und <InlineMath math="30\text{ m}" /> nach Norden, <InlineMath math="50\text{ m}" /> lang.
+
+<OrienteeringMapVectorLab
+  title={<>Differenz zweier Positionen</>}
+  description={<>Der Start <InlineMath math="O" /> ist das magentafarbene Dreieck. Vergleich <InlineMath math="\vec b-\vec a" /> mit der Etappe von <InlineMath math="B" /> nach <InlineMath math="A" />.</>}
+  marks={{
+    a: { east: 60, north: 20 },
+    b: { east: 20, north: 50 },
+    c: { east: 110, north: 70 },
+  }}
+  views={["difference", "back"]}
+  labels={{
+    angle: <>Richtung ab Osten</>,
+    chooseView: "Wähle den gezeigten Vektor",
+    east: <>Ostanteil</>,
+    north: <>Nordanteil</>,
+    size: <>Länge</>,
+    viewLabel: "Orientierungslaufkarte eines Parks",
+    views: {
+      back: <><InlineMath math="B" /> nach <InlineMath math="A" /></>,
+      copy: <>Gleicher Vektor ab <InlineMath math="C" /></>,
+      difference: <><InlineMath math="\vec b-\vec a" /></>,
+      forward: <><InlineMath math="A" /> nach <InlineMath math="B" /></>,
+    },
+  }}
+/>

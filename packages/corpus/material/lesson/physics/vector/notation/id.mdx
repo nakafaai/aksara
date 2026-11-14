@@ -16,6 +16,26 @@ Kalau sebuah gaya ditampilkan dengan panah lebih panjang, artinya gaya itu lebih
 
 > Notasi vektor yang lengkap menunjukkan besar dan arah.
 
+### Panah pada Peta Angin
+
+Setiap panah di peta ini digambar dari suatu tempat, yaitu ekornya, ke arah tiupan angin, yaitu kepalanya, dan **panjangnya bertambah seiring kelajuan**. Geser kelajuan dari <InlineMath math="8\text{ m/s}" /> ke atas, lalu perhatikan bahwa hanya panjangnya yang berubah.
+
+<WindMapVectorLab
+  title={<>Panjang dan Arah Angin</>}
+  description={<>Angin <InlineMath math="8\text{ m/s}" /> ke arah <InlineMath math="45^\circ" /> dari timur.</>}
+  angle={45}
+  speed={8}
+  labels={{
+    angle: <>Arah dari timur</>,
+    angleName: "Arah dari timur",
+    east: <>Komponen timur <InlineMath math="v_x" /></>,
+    north: <>Komponen utara <InlineMath math="v_y" /></>,
+    speed: <>Kelajuan angin</>,
+    speedName: "Kelajuan angin",
+    viewLabel: "Peta cuaca angin di atas pulau-pulau",
+  }}
+/>
+
 ## Notasi dengan Dua Titik
 
 Vektor dapat ditulis dari titik awal ke titik akhir. Misalnya <InlineMath math="\overrightarrow{AB}" /> dibaca sebagai vektor dari titik <InlineMath math="A" /> ke titik <InlineMath math="B" />.
@@ -34,7 +54,7 @@ Kedua panah di bawah sama panjang, tetapi urutan hurufnya membalik arahnya: <Inl
 
 <MathVisual
   title={<>Urutan Titik Menentukan Arah</>}
-  description={<>Vektor AB dan BA di antara titik A(1, 1) dan B(4, 3), yang kedua digeser ke bawah supaya berdampingan dengan yang pertama.</>}
+  description={<>Vektor <InlineMath math="\overrightarrow{AB}" /> dan <InlineMath math="\overrightarrow{BA}" /> di antara titik <InlineMath math="A(1, 1)" /> dan <InlineMath math="B(4, 3)" />, yang kedua digeser ke bawah supaya berdampingan dengan yang pertama.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: -1, max: 3.8 } },
@@ -63,6 +83,35 @@ Kedua panah di bawah sama panjang, tetapi urutan hurufnya membalik arahnya: <Inl
   }}
 />
 
+### Pos pada Peta Taman
+
+Pada peta orienteering, <InlineMath math="\overrightarrow{AB}" /> berjalan dari pos <InlineMath math="A" /> di lingkaran hijau toska ke pos <InlineMath math="B" /> di lingkaran kuning: <InlineMath math="60\text{ m}" /> ke timur dan <InlineMath math="80\text{ m}" /> ke utara, panjangnya <InlineMath math="100\text{ m}" />. Ganti ke <InlineMath math="\overrightarrow{BA}" />, maka **panjangnya tetap, tetapi arahnya berbalik**.
+
+<OrienteeringMapVectorLab
+  title={<>Dari <InlineMath math="A" /> ke <InlineMath math="B" /> dan Sebaliknya</>}
+  description={<>Titik awal <InlineMath math="O" /> adalah segitiga magenta. Pilih vektor yang ditampilkan peta.</>}
+  marks={{
+    a: { east: 40, north: 30 },
+    b: { east: 100, north: 110 },
+    c: { east: 150, north: -10 },
+  }}
+  views={["forward", "back"]}
+  labels={{
+    angle: <>Arah dari timur</>,
+    chooseView: "Pilih vektor yang ditampilkan",
+    east: <>Bagian timur</>,
+    north: <>Bagian utara</>,
+    size: <>Panjang</>,
+    viewLabel: "Peta orienteering sebuah taman",
+    views: {
+      back: <><InlineMath math="B" /> ke <InlineMath math="A" /></>,
+      copy: <>Vektor sama dari <InlineMath math="C" /></>,
+      difference: <><InlineMath math="\vec b-\vec a" /></>,
+      forward: <><InlineMath math="A" /> ke <InlineMath math="B" /></>,
+    },
+  }}
+/>
+
 ## Notasi dengan Satu Huruf
 
 Dalam perhitungan, vektor sering diberi nama **satu huruf dengan tanda panah** seperti <InlineMath math="\vec{a}" />, <InlineMath math="\vec{v}" />, atau <InlineMath math="\vec{F}" />. Pilih huruf sesuai besarannya, misalnya <InlineMath math="\vec{v}" /> untuk kecepatan dan <InlineMath math="\vec{F}" /> untuk gaya.
@@ -76,6 +125,25 @@ Contohnya, <InlineMath math="\vec{F}" /> sering dipakai untuk gaya, <InlineMath 
 
 Baris pertama masih memuat arah. Baris kedua hanya menyatakan besar gaya.
 
+### Satu Huruf untuk Rute Feri
+
+Sebut perpindahan feri dengan <InlineMath math="\vec s" />. **Satu huruf itu memuat semuanya**: <InlineMath math="10\text{ km}" /> dengan arah kompas <InlineMath math="60^\circ" />, yang juga ditulis kartu sebagai <InlineMath math="8{,}66\text{ km}" /> ke timur dan <InlineMath math="5\text{ km}" /> ke utara. Putar arah kompasnya, dan <InlineMath math="\vec s" /> tetap menamai seluruh panah.
+
+<ShipBearingComponentLab
+  title={<>Vektor Feri <InlineMath math="\vec s" /></>}
+  description={<>Feri berlayar <InlineMath math="10\text{ km}" /> dari pelabuhan. Arah kompas diukur searah jarum jam dari utara.</>}
+  courses={[{ bearing: 60, distance: 10 }]}
+  labels={{
+    bearing: <>Arah kompas tahap terakhir</>,
+    bearingName: "Arah kompas tahap terakhir",
+    direction: <>Arah kompas dari pelabuhan</>,
+    distance: <>Jarak dari pelabuhan</>,
+    east: <>Komponen timur</>,
+    north: <>Komponen utara</>,
+    viewLabel: "Kapal feri berlayar dari pelabuhan",
+  }}
+/>
+
 ## Vektor Nol dan Vektor Satuan
 
 Saat menghitung komponen, kamu perlu membedakan vektor yang tidak memiliki panjang dari vektor yang dipakai sebagai penunjuk arah. **Vektor nol** dan **vektor satuan** memenuhi dua peran tersebut.
@@ -87,6 +155,27 @@ Saat menghitung komponen, kamu perlu membedakan vektor yang tidak memiliki panja
 Misalnya, tetapkan kanan sebagai arah positif. Gaya ke kanan dan ke kiri yang masing-masing sebesar <InlineMath math="20\text{ N}" /> memiliki jumlah:
 
 <BlockMath math="\begin{aligned}\vec{F}_1+\vec{F}_2 &= 20\hat{i}\text{ N}-20\hat{i}\text{ N} \\ &= (20-20)\hat{i}\text{ N} \\ &= \vec{0}\text{ N}\end{aligned}" />
+
+Pada meja gaya ini, tiga tali menarik satu cincin. Putar katrol ketiga dari <InlineMath math="200^\circ" /> menuju <InlineMath math="233^\circ" />: resultannya mengecil sampai hampir <InlineMath math="0\text{ N}" />, yaitu vektor nol, dan cincin diam di pasak.
+
+<ForceTableResultantLab
+  title={<>Seimbangkan Cincinnya</>}
+  description={<>Beban <InlineMath math="300\text{ g}" />, <InlineMath math="400\text{ g}" />, dan <InlineMath math="500\text{ g}" /> tergantung pada <InlineMath math="0^\circ" />, <InlineMath math="90^\circ" />, dan sudut yang kamu pilih.</>}
+  pulls={[
+    { angle: 0, mass: 300 },
+    { angle: 90, mass: 400 },
+    { angle: 200, mass: 500 },
+  ]}
+  labels={{
+    angle: <>Sudut tali terakhir</>,
+    angleName: "Sudut tali terakhir",
+    direction: <>Arah <InlineMath math="\vec R" /></>,
+    resultant: <>Resultan <InlineMath math="R" /></>,
+    sumX: <>Jumlah sepanjang <InlineMath math="0^\circ" /></>,
+    sumY: <>Jumlah sepanjang <InlineMath math="90^\circ" /></>,
+    viewLabel: "Meja gaya dengan beban tergantung",
+  }}
+/>
 
 ### Vektor sebagai Penunjuk Arah
 
@@ -133,7 +222,7 @@ Letakkan kedua gaya ujung ke pangkal. Panah kedua berakhir tepat di tempat panah
 
 <MathVisual
   title={<>Dua Gaya yang Saling Meniadakan</>}
-  description={<><InlineMath math="\vec F_1=20\hat i\text{ N}" /> dan <InlineMath math="\vec F_2=-20\hat i\text{ N}" /> disusun ujung ke pangkal. Satu kotak grid sama dengan 5 N.</>}
+  description={<><InlineMath math="\vec F_1=20\hat i\text{ N}" /> dan <InlineMath math="\vec F_2=-20\hat i\text{ N}" /> disusun ujung ke pangkal. Satu kotak grid sama dengan <InlineMath math="5\text{ N}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1, max: 1.5 } },
@@ -155,6 +244,25 @@ Letakkan kedua gaya ujung ke pangkal. Panah kedua berakhir tepat di tempat panah
     f1: <InlineMath math="\vec F_1=20\hat i\text{ N}" />,
     f2: <InlineMath math="\vec F_2=-20\hat i\text{ N}" />,
     sum: <InlineMath math="\vec F_1+\vec F_2=\vec 0" />,
+  }}
+/>
+
+Tiga panah pendek di landasan adalah vektor satuan <InlineMath math="\hat\imath" />, <InlineMath math="\hat\jmath" />, dan <InlineMath math="\hat k" />, masing-masing sepanjang <InlineMath math="1\text{ m}" /> ke timur, utara, dan atas. Perpindahan drone adalah <InlineMath math="3\,\hat\imath+4\,\hat\jmath+12\,\hat k" /> meter, panjangnya <InlineMath math="13\text{ m}" />.
+
+<DroneDisplacementLab
+  title={<>Vektor Satuan di Landasan</>}
+  description={<>Drone naik <InlineMath math="12\text{ m}" />, lalu terbang <InlineMath math="3\text{ m}" /> ke timur sekaligus <InlineMath math="4\text{ m}" /> ke utara.</>}
+  hops={[
+    { east: 0, north: 0, up: 12 },
+    { east: 3, north: 4, up: 0 },
+  ]}
+  units
+  labels={{
+    chooseFactor: "Kalikan rencana terbang dengan k",
+    displacement: <>Perpindahan</>,
+    path: <>Panjang lintasan terbang</>,
+    size: <>Jarak dari landasan</>,
+    viewLabel: "Drone terbang dari landasannya",
   }}
 />
 

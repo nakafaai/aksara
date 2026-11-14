@@ -16,6 +16,26 @@ Komponen mengufuk menunjukkan berapa banyak bahagian vektor yang terletak di sep
 
 > Vektor sama dengan hasil tambah semua komponennya di sepanjang paksi koordinat.
 
+### Bongkah pada Satah Condong
+
+Berat bongkah <InlineMath math="2\text{ kg}" /> menghala tegak ke bawah, <InlineMath math="19.6\text{ N}" />, tetapi **bongkah hanya boleh menggelongsor di sepanjang papan**. Leraian berat menunjukkan bahagian yang penting: <InlineMath math="9.8\text{ N}" /> menuruni cerun pada <InlineMath math="30^\circ" /> dan <InlineMath math="16.97\text{ N}" /> menekan ke dalam cerun. Condongkan papan sehingga bahagian di sepanjang cerun menang dan bongkah menggelongsor.
+
+<RampBlockComponentLab
+  title={<>Berat Dileraikan pada Cerun</>}
+  description={<>Bongkah kayu oak <InlineMath math="2\text{ kg}" /> di atas papan kayu pain. Bongkah mula menggelongsor apabila <InlineMath math="\tan\theta" /> melebihi <InlineMath math="0.7" />.</>}
+  angle={30}
+  friction={0.7}
+  mass={2}
+  labels={{
+    along: <>Menuruni cerun <InlineMath math="W\sin\theta" /></>,
+    angle: <>Sudut satah condong</>,
+    angleName: "Sudut satah condong",
+    into: <>Ke dalam cerun <InlineMath math="W\cos\theta" /></>,
+    viewLabel: "Bongkah kayu di atas papan yang condong",
+    weight: <>Berat <InlineMath math="W" /></>,
+  }}
+/>
+
 ## Membaca Komponen dalam Satah
 
 Dalam satah, vektor <InlineMath math="\vec{A}" /> boleh ditulis sebagai gabungan komponen <InlineMath math="x" /> dan komponen <InlineMath math="y" /> vektor itu.
@@ -23,6 +43,28 @@ Dalam satah, vektor <InlineMath math="\vec{A}" /> boleh ditulis sebagai gabungan
 <BlockMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" />
 
 Tatatanda <InlineMath math="\hat{i}" /> ialah **vektor unit** dalam arah <InlineMath math="x" />, manakala <InlineMath math="\hat{j}" /> ialah vektor unit dalam arah <InlineMath math="y" />. Skalar bertanda <InlineMath math="A_x" /> dan <InlineMath math="A_y" /> memberikan komponen di sepanjang paksi-paksi itu. Setiap tanda menunjukkan ke arah mana vektor itu menghala di sepanjang paksinya.
+
+### Kereta Luncur Ditarik dengan Tali
+
+Tali menarik kereta luncur dengan <InlineMath math="80\text{ N}" /> pada <InlineMath math="30^\circ" /> di atas salji. Pada paksi-paksinya, tarikan itu ialah <InlineMath math="69.3\text{ N}" /> di sepanjang salji dan <InlineMath math="40\text{ N}" /> ke atas, **dilukis hujung ke pangkal di bawah tali**.
+
+<SledPullWorkLab
+  title={<>Tarikan Tali pada Dua Paksi</>}
+  description={<>Kereta luncur <InlineMath math="25\text{ kg}" /> ditarik sejauh <InlineMath math="5\text{ m}" /> dengan <InlineMath math="80\text{ N}" />. Naikkan atau turunkan tali.</>}
+  angle={30}
+  distance={5}
+  force={80}
+  mass={25}
+  labels={{
+    along: <>Di sepanjang salji <InlineMath math="F\cos\theta" /></>,
+    angle: <>Sudut tali di atas salji</>,
+    angleName: "Sudut tali di atas salji",
+    normal: <>Daya normal daripada salji</>,
+    up: <>Bahagian ke atas <InlineMath math="F\sin\theta" /></>,
+    viewLabel: "Kereta luncur berisi kayu api ditarik di atas salji",
+    work: <>Kerja sepanjang <InlineMath math="5\text{ m}" /></>,
+  }}
+/>
 
 ### Mengira Panjang daripada Dua Komponen
 
@@ -36,7 +78,7 @@ Dua anak panah komponen di bawah dan vektor itu membentuk segi tiga bersudut teg
 
 <MathVisual
   title={<>Satu Vektor dan Dua Komponennya</>}
-  description={<><InlineMath math="\vec A=6\hat i+8\hat j" /> bersama komponen x dan komponen y. Satu petak grid ialah 2 unit.</>}
+  description={<><InlineMath math="\vec A=6\hat i+8\hat j" /> bersama komponen x dan komponen y. Satu petak grid ialah <InlineMath math="2" /> unit.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.5 } },
@@ -116,6 +158,25 @@ Putar model itu untuk melihat bahawa komponen <InlineMath math="z" /> **berseren
 
 <BlockMath math="\begin{aligned}\lvert\vec{A}\rvert &= \sqrt{4^2+3^2+2^2} \\ &= \sqrt{16+9+4} \\ &= \sqrt{29}\end{aligned}" />
 
+Dron itu berakhir <InlineMath math="2\text{ m}" /> ke timur, <InlineMath math="3\text{ m}" /> ke utara dan <InlineMath math="6\text{ m}" /> ke atas dari tapaknya. Tiga anak panah berwarna itu ialah komponen-komponen tersebut, hujung ke pangkal, dan anak panah ungu ialah jumlahnya, sepanjang <InlineMath math="\sqrt{2^2+3^2+6^2}=7" /> meter.
+
+<DroneDisplacementLab
+  title={<>Tiga Komponen Satu Penerbangan</>}
+  description={<>Dron naik <InlineMath math="6\text{ m}" />, kemudian terbang <InlineMath math="2\text{ m}" /> ke timur dan <InlineMath math="3\text{ m}" /> ke utara.</>}
+  hops={[
+    { east: 0, north: 0, up: 6 },
+    { east: 2, north: 0, up: 0 },
+    { east: 0, north: 3, up: 0 },
+  ]}
+  labels={{
+    chooseFactor: "Darabkan pelan penerbangan dengan k",
+    displacement: <>Sesaran</>,
+    path: <>Lintasan yang diterbangi</>,
+    size: <>Jarak dari tapak</>,
+    viewLabel: "Dron terbang dari tapaknya",
+  }}
+/>
+
 
 ## Tanda Positif dan Negatif Komponen
 
@@ -128,6 +189,25 @@ Magnitud vektor sentiasa sifar atau positif. Tanda sesuatu komponen pula menunju
 | <InlineMath math="A_z" /> | ke arah <InlineMath math="z" /> positif | ke arah <InlineMath math="z" /> negatif |
 
 Jika <InlineMath math="\vec{B}=-5\hat{i}+2\hat{j}" />, vektor itu mempunyai komponen <InlineMath math="5" /> unit ke arah <InlineMath math="x" /> negatif dan komponen <InlineMath math="2" /> unit ke arah <InlineMath math="y" /> positif.
+
+### Feri Menuju ke Barat Daya
+
+Pada bearing <InlineMath math="225^\circ" />, feri menuju ke barat daya, jadi **kedua-dua komponen negatif**: <InlineMath math="-5.66\text{ km}" /> ke timur dan <InlineMath math="-5.66\text{ km}" /> ke utara. Putar bearing melalui setiap sukuan dan perhatikan tandanya bertukar.
+
+<ShipBearingComponentLab
+  title={<>Tanda daripada Kompas</>}
+  description={<>Feri belayar <InlineMath math="8\text{ km}" /> dari pelabuhan. Putar bearingnya.</>}
+  courses={[{ bearing: 225, distance: 8 }]}
+  labels={{
+    bearing: <>Bearing peringkat terakhir</>,
+    bearingName: "Bearing peringkat terakhir",
+    direction: <>Bearing dari pelabuhan</>,
+    distance: <>Jarak dari pelabuhan</>,
+    east: <>Komponen timur</>,
+    north: <>Komponen utara</>,
+    viewLabel: "Feri belayar dari pelabuhan",
+  }}
+/>
 
 ## Sesaran Ditulis sebagai Komponen
 
@@ -152,7 +232,7 @@ Inilah perjalanan itu dalam bentuk komponen. Bahagian ke timur dan ke utara iala
 
 <MathVisual
   title={<>Perjalanan yang Ditulis sebagai Komponen</>}
-  description={<>3 m ke timur, kemudian 4 m ke utara. Satu petak grid ialah 1 m.</>}
+  description={<><InlineMath math="3\text{ m}" /> ke timur, kemudian <InlineMath math="4\text{ m}" /> ke utara. Satu petak grid ialah <InlineMath math="1\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.5 } },
@@ -175,5 +255,28 @@ Inilah perjalanan itu dalam bentuk komponen. Bahagian ke timur dan ke utara iala
     east: <InlineMath math="3\text{ m}" />,
     north: <InlineMath math="4\text{ m}" />,
     walk: <InlineMath math="5\text{ m},\ 53.1^\circ" />,
+  }}
+/>
+
+### Berjalan dalam Tiga Peringkat
+
+Perjalanan itu ialah <InlineMath math="400\text{ m}" /> ke timur, <InlineMath math="300\text{ m}" /> ke utara dan <InlineMath math="100\text{ m}" /> kembali ke barat. **Tambah komponennya**: <InlineMath math="300\text{ m}" /> ke timur dan <InlineMath math="300\text{ m}" /> ke utara, jadi sesarannya <InlineMath math="424\text{ m}" /> walaupun lintasannya sepanjang <InlineMath math="800\text{ m}" />.
+
+<CityWalkDisplacementLab
+  title={<>Menambah Peringkat Satu Perjalanan</>}
+  description={<>Berjalan pada <InlineMath math="1.25\text{ m/s}" /> melalui jalan-jalan di bandar.</>}
+  legs={[
+    { east: 400, north: 0 },
+    { east: 0, north: 300 },
+    { east: -100, north: 0 },
+  ]}
+  pace={1.25}
+  labels={{
+    averageSpeed: <>Laju purata</>,
+    averageVelocity: <>Halaju purata</>,
+    displacement: <>Sesaran</>,
+    distance: <>Jarak yang dilalui</>,
+    time: <>Masa</>,
+    viewLabel: "Perjalanan melalui bandar dilihat dari atas",
   }}
 />
