@@ -37,7 +37,7 @@ Before dividing, the dividend needs a place for every power. <InlineMath math="4
 
 <BarChart
   title={<>Coefficients of the dividend, zero included</>}
-  description={<>The coefficient of each power of x in the dividend, with 0 for the missing x squared term.</>}
+  description={<>The coefficient of each power of x in the dividend, with <InlineMath math="0" /> for the missing x squared term.</>}
   yAxisLabel="Coefficient"
   data={[["x⁴", 4], ["x³", 17], ["x²", 0], ["x", -3], ["1", 1]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Coefficient", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -62,7 +62,7 @@ The quotient is <InlineMath math="4x^2+x" /> and the remainder is <InlineMath ma
 
 **Step 3**. Step-by-Step Explanation
 
-**Iteration 1**:
+**Iteration <InlineMath math="1" />**:
 
 **Divide**: Divide the first term <InlineMath math="4x^4" /> by the first term of the divisor <InlineMath math="x^2" />:
 
@@ -82,7 +82,7 @@ Write <InlineMath math="4x^2" /> as the first term of the quotient.
 
 <InlineMath math="x^3 + 4x^2 - 3x" />
 
-**Iteration 2**:
+**Iteration <InlineMath math="2" />**:
 
 **Divide**: Divide the first term of the new polynomial <InlineMath math="x^3" /> by the first term of the divisor <InlineMath math="x^2" />:
 
@@ -125,11 +125,11 @@ Long division records every quotient, multiplication, and subtraction step. That
 
 The fractional form is valid only for inputs with <InlineMath math="Q(x)\ne0" />. The multiplication identity remains valid for every input.
 
-Each step of the long division lowers the degree of what is left. The dividend <InlineMath math="4x^4 + 17x^3 - 3x + 1" /> has degree 4. After subtracting <InlineMath math="4x^2(x^2 + 4x - 1)" /> the rest has degree 3, and after subtracting <InlineMath math="x(x^2 + 4x - 1)" /> only <InlineMath math="-2x + 1" /> remains, degree 1. That is below the divisor's degree 2, so the division stops.
+Each step of the long division lowers the degree of what is left. The dividend <InlineMath math="4x^4 + 17x^3 - 3x + 1" /> has degree <InlineMath math="4" />. After subtracting <InlineMath math="4x^2(x^2 + 4x - 1)" /> the rest has degree <InlineMath math="3" />, and after subtracting <InlineMath math="x(x^2 + 4x - 1)" /> only <InlineMath math="-2x + 1" /> remains, degree <InlineMath math="1" />. That is below the divisor's degree <InlineMath math="2" />, so the division stops.
 
 <BarChart
   title={<>The degree drops at every step</>}
-  description={<>The degree of the dividend and of each remainder during the long division by x squared plus 4x minus 1.</>}
+  description={<>The degree of the dividend and of each remainder during the long division by x squared plus 4x minus <InlineMath math="1" />.</>}
   yAxisLabel="Degree"
   data={[["start", 4], ["step 1", 3], ["step 2", 1]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Degree", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

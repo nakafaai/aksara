@@ -51,7 +51,7 @@ Suatu kejadian dan komplemennya berbagi seluruh peluang. Untuk dua dadu, <Inline
 
 <BarChart
   title={<>Suatu kejadian dan komplemennya</>}
-  description={<>Peluang jumlah dua dadu sama dengan 9 dan tidak sama dengan 9, yang berjumlah 1.</>}
+  description={<>Peluang jumlah dua dadu sama dengan <InlineMath math="9" /> dan tidak sama dengan <InlineMath math="9" />, yang berjumlah <InlineMath math="1" />.</>}
   yAxisLabel="Peluang"
   data={[["jumlah 9", 4 / 36], ["jumlah bukan 9", 32 / 36]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Peluang", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -67,10 +67,10 @@ Daftarkan **pasangan terurut** yang jumlahnya sembilan. Menukar hasil dadu perta
 
 | Dadu pertama | Dadu kedua | Jumlah |
 | --- | --- | --- |
-| 3 | 6 | 9 |
-| 4 | 5 | 9 |
-| 5 | 4 | 9 |
-| 6 | 3 | 9 |
+| <InlineMath math="3" /> | <InlineMath math="6" /> | <InlineMath math="9" /> |
+| <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="9" /> |
+| <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="9" /> |
+| <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="9" /> |
 
 Empat pasangan memenuhi syarat, sehingga <InlineMath math="n(A)=4" />.
 
@@ -79,8 +79,8 @@ Empat pasangan memenuhi syarat, sehingga <InlineMath math="n(A)=4" />.
 Setiap titik adalah satu hasil dua dadu: dadu pertama ke kanan, dadu kedua ke atas, semuanya <InlineMath math="36" /> titik. Empat titik yang disorot terletak pada garis <InlineMath math="x + y = 9" />: <InlineMath math="(3, 6)" />, <InlineMath math="(4, 5)" />, <InlineMath math="(5, 4)" />, dan <InlineMath math="(6, 3)" />. Jadi <InlineMath math="P(\text{jumlah} = 9) = \frac{4}{36} = \frac19" />.
 
 <MathVisual
-  title={<>Empat dari 36 hasil berjumlah sembilan</>}
-  description={<>Ke-36 hasil dua dadu sebagai kisi 6 kali 6, dengan empat hasil pada <InlineMath math="x + y = 9" /> disorot.</>}
+  title={<>Empat dari <InlineMath math="36" /> hasil berjumlah sembilan</>}
+  description={<>Ke-<InlineMath math="36" /> hasil dua dadu sebagai kisi <InlineMath math="6" /> kali <InlineMath math="6" />, dengan empat hasil pada <InlineMath math="x + y = 9" /> disorot.</>}
   labels={{
     nine: <InlineMath math="x + y = 9" />,
   }}

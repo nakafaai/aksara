@@ -141,11 +141,11 @@ Keep the line through the point of means <InlineMath math="(\bar x, \bar y) = \l
   chartConfig={{ value: { label: "Sum of squared residuals", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-Now keep the slope <InlineMath math="b \approx 8.222" /> and shift the line up or down by <InlineMath math="d" /> thousand units. Each shift adds <InlineMath math="12d^2" /> to the sum of squared residuals, one <InlineMath math="d^2" /> for each of the 12 pairs, so the intercept <InlineMath math="a \approx 30.491" /> is the best one.
+Now keep the slope <InlineMath math="b \approx 8.222" /> and shift the line up or down by <InlineMath math="d" /> thousand units. Each shift adds <InlineMath math="12d^2" /> to the sum of squared residuals, one <InlineMath math="d^2" /> for each of the <InlineMath math="12" /> pairs, so the intercept <InlineMath math="a \approx 30.491" /> is the best one.
 
 <BarChart
   title={<>Sum of squared residuals against a shift</>}
-  description={<>Bars of the sum of squared residuals for the fitted line shifted by <InlineMath math="d = -10, -5, 0, 5, 10" />. The smallest bar, about 1906.6, is the fitted line itself.</>}
+  description={<>Bars of the sum of squared residuals for the fitted line shifted by <InlineMath math="d = -10, -5, 0, 5, 10" />. The smallest bar, about <InlineMath math="1906.6" />, is the fitted line itself.</>}
   yAxisLabel="Sum of squared residuals"
   data={[-10, -5, 0, 5, 10].map((d) => ({ name: String(d), value: 31265 / 4 - 2875 ** 2 / (16 * (1049 / 12)) + 12 * d ** 2 }))}
   chartConfig={{ value: { label: "Sum of squared residuals", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

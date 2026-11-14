@@ -96,7 +96,7 @@ Dabei bedeutet:
 Diese Formeln bestimmen eine eindeutige Kleinste-Quadrate-Gerade, solange die beobachteten <InlineMath math="x" />-Werte nicht alle gleich sind. Sind alle <InlineMath math="x" />-Werte identisch, ist der Nenner der Steigungsformel null und die Daten bestimmen keine eindeutige Regressionssteigung.
 
 
-Lass die Gerade durch den Schwerpunkt gehen und änder ihre Steigung <InlineMath math="b" />. Für die Lerndaten ist die Summe der quadrierten Residuen <InlineMath math="S_{yy} - 2bS_{xy} + b^2S_{xx}" /> bei <InlineMath math="b = \tfrac{9184}{1331} \approx 6{,}900" /> am kleinsten, etwa 94,45, und für jede andere Steigung größer.
+Lass die Gerade durch den Schwerpunkt gehen und änder ihre Steigung <InlineMath math="b" />. Für die Lerndaten ist die Summe der quadrierten Residuen <InlineMath math="S_{yy} - 2bS_{xy} + b^2S_{xx}" /> bei <InlineMath math="b = \tfrac{9184}{1331} \approx 6{,}900" /> am kleinsten, etwa <InlineMath math="94{,}45" />, und für jede andere Steigung größer.
 
 <BarChart
   title={<>Summe der quadrierten Residuen gegen die Steigung</>}
@@ -147,11 +147,11 @@ Für <InlineMath math="7\text{ Stunden}" /> ergibt dieselbe Rechnung:
 
 Die beobachteten Lernzeiten reichen nur von <InlineMath math="1" /> bis <InlineMath math="6\text{ Stunden}" />. Die zweite Vorhersage ist eine **Extrapolation**. Die vorhandenen Daten prüfen nicht, ob der lineare Trend außerhalb dieses Bereichs anhält. Falls die Prüfung höchstens <InlineMath math="100" /> Punkte zulässt, überschreitet die zweite Vorhersage sogar diese Grenze. Prüfe eine Regressionsgerade sowohl am beobachteten Bereich als auch an den Grenzen der vorhergesagten Größe.
 
-Vorhergesagte Noten aus <InlineMath math="\hat y = \frac{73066 + 9184x}{1331}" /> für 1 bis 7 Stunden. Innerhalb des beobachteten Bereichs von 1 bis 6 Stunden bleiben die Vorhersagen realistisch, aber bei 7 Stunden sagt die Gerade etwa 103,2 voraus, mehr als die Höchstpunktzahl 100.
+Vorhergesagte Noten aus <InlineMath math="\hat y = \frac{73066 + 9184x}{1331}" /> für <InlineMath math="1" /> bis <InlineMath math="7" /> Stunden. Innerhalb des beobachteten Bereichs von <InlineMath math="1" /> bis <InlineMath math="6" /> Stunden bleiben die Vorhersagen realistisch, aber bei <InlineMath math="7" /> Stunden sagt die Gerade etwa <InlineMath math="103{,}2" /> voraus, mehr als die Höchstpunktzahl <InlineMath math="100" />.
 
 <BarChart
   title={<>Vorhersagen innerhalb und außerhalb der Daten</>}
-  description={<>Balken der vorhergesagten Punktzahl <InlineMath math="\hat y" /> für <InlineMath math="x = 1" /> bis 7 Lernstunden.</>}
+  description={<>Balken der vorhergesagten Punktzahl <InlineMath math="\hat y" /> für <InlineMath math="x = 1" /> bis <InlineMath math="7" /> Lernstunden.</>}
   yAxisLabel="Vorhergesagte Punktzahl"
   data={[1, 2, 3, 4, 5, 6, 7].map((x) => ({ name: String(x), value: (73066 + 9184 * x) / 1331 }))}
   chartConfig={{ value: { label: "Vorhergesagte Punktzahl", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

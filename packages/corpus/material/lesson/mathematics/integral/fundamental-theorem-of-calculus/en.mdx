@@ -47,7 +47,7 @@ Evaluate <InlineMath math="G'(x) = 2x\sqrt{2 + x^2}" /> at five inputs from <Inl
 
 <BarChart
   title={<>The rate <InlineMath math="G'(x)" /> at five inputs</>}
-  description={<>Bars of <InlineMath math="G'(x) = 2x\sqrt{2 + x^2}" /> for <InlineMath math="x" /> from 0 to 2 in steps of <InlineMath math="0.5" />, starting at 0.</>}
+  description={<>Bars of <InlineMath math="G'(x) = 2x\sqrt{2 + x^2}" /> for <InlineMath math="x" /> from <InlineMath math="0" /> to <InlineMath math="2" /> in steps of <InlineMath math="0.5" />, starting at <InlineMath math="0" />.</>}
   yAxisLabel="Rate"
   data={[0, 0.5, 1, 1.5, 2].map((x) => ({ name: String(x), value: 2 * x * Math.sqrt(2 + x ** 2) }))}
   chartConfig={{ value: { label: "Rate", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -63,7 +63,7 @@ Here <InlineMath math="F(x)" /> is an **antiderivative** of <InlineMath math="f(
 
 That difference is often written with the bracket notation <InlineMath math="[F(x)]_{a}^{b}" />, which means <InlineMath math="F(b) - F(a)" />.
 
-**Example** 1:
+**Example 1**:
 
 Find the value of <InlineMath math="\int_{1}^{3} x^2 \, dx" />.
 
@@ -78,7 +78,7 @@ Find the value of <InlineMath math="\int_{1}^{3} x^2 \, dx" />.
     <BlockMath math="= \frac{27}{3} - \frac{1}{3} = \frac{26}{3}" />
     </MathContainer>
 
-**Example** 2:
+**Example 2**:
 
 Find the value of <InlineMath math="\int_{1}^{5} (2x-1) \, dx" />.
 
@@ -99,8 +99,8 @@ The Fundamental Theorem of Calculus calculates a definite integral from an antid
 Check the second example against a shape you can measure. Under <InlineMath math="y = 2x - 1" /> from <InlineMath math="1" /> to <InlineMath math="5" /> sits a trapezoid with parallel sides <InlineMath math="1" /> and <InlineMath math="9" /> and width <InlineMath math="4" />: area <InlineMath math="\tfrac{1 + 9}{2} \cdot 4 = 20" />. The antiderivative gives the same number, <InlineMath math="F(5) - F(1) = 20 - 0 = 20" /> with <InlineMath math="F(x) = x^2 - x" />.
 
 <MathVisual
-  title={<>F(5) minus F(1) is the trapezoid area</>}
-  description={<>The line <InlineMath math="y = 2x - 1" /> and the trapezoid under it from 1 to 5, whose area 20 equals <InlineMath math="F(5) - F(1)" />.</>}
+  title={<><InlineMath math="F(5)" /> minus <InlineMath math="F(1)" /> is the trapezoid area</>}
+  description={<>The line <InlineMath math="y = 2x - 1" /> and the trapezoid under it from <InlineMath math="1" /> to <InlineMath math="5" />, whose area <InlineMath math="20" /> equals <InlineMath math="F(5) - F(1)" />.</>}
   labels={{
     f: <InlineMath math="y = 2x - 1" />,
     area: <InlineMath math="20" />,
@@ -123,7 +123,7 @@ Check the second example against a shape you can measure. Under <InlineMath math
 The first example works the same way under a curve. The region under <InlineMath math="y = x^2" /> between <InlineMath math="x = 1" /> and <InlineMath math="x = 3" /> has area <InlineMath math="\left[\tfrac13 x^3\right]_1^3 = 9 - \tfrac13 = \tfrac{26}{3}" />. No rectangles are needed once you know an antiderivative.
 
 <MathVisual
-  title={<>The area under x squared from 1 to 3</>}
+  title={<>The area under x squared from <InlineMath math="1" /> to <InlineMath math="3" /></>}
   description={<>The parabola <InlineMath math="y = x^2" /> with the region between <InlineMath math="x = 1" /> and <InlineMath math="x = 3" /> outlined, area <InlineMath math="\tfrac{26}{3}" />.</>}
   labels={{
     f: <InlineMath math="y = x^2" />,

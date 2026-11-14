@@ -44,7 +44,7 @@ Each month prepares three times as many seedlings as the month before: <InlineMa
 
 ## Finding the Formula for the Sum of the First Terms
 
-The key is **subtracting two nearly identical sums**. For the first three months, multiply the seedling total by the ratio three. The terms 12 and 36 then occur in both sums and cancel.
+The key is **subtracting two nearly identical sums**. For the first three months, multiply the seedling total by the ratio three. The terms <InlineMath math="12" /> and <InlineMath math="36" /> then occur in both sums and cancel.
 
 <BlockMath math="\begin{aligned}S_3&amp;=4+12+36\\3S_3&amp;=12+36+108\\3S_3-S_3&amp;=108-4\\2S_3&amp;=104\\S_3&amp;=52\end{aligned}" />
 
@@ -64,7 +64,7 @@ Check the ratio month by month: <InlineMath math="\frac{12}{4}" />, <InlineMath 
 
 <BarChart
   title={<>The ratio between consecutive months</>}
-  description={<>The ratio of each month to the month before it, always 3.</>}
+  description={<>The ratio of each month to the month before it, always <InlineMath math="3" />.</>}
   yAxisLabel="Ratio"
   data={[["Feb", (4 * 3 ** 1) / (4 * 3 ** 0)], ["Mar", (4 * 3 ** 2) / (4 * 3 ** 1)], ["Apr", (4 * 3 ** 3) / (4 * 3 ** 2)], ["May", (4 * 3 ** 4) / (4 * 3 ** 3)]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Ratio", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

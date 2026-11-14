@@ -34,8 +34,8 @@ The first three rules come directly from <InlineMath math="a^1=a" />, <InlineMat
 A logarithm counts doublings. <InlineMath math="\log_2 x" /> asks how many factors of <InlineMath math="2" /> make <InlineMath math="x" />, so the bars for <InlineMath math="x = 1, 2, 4, 8, 16, 32" /> climb by exactly <InlineMath math="1" /> each time <InlineMath math="x" /> doubles: <InlineMath math="0, 1, 2, 3, 4, 5" />.
 
 <BarChart
-  title={<>Base 2 logarithms of powers of two</>}
-  description={<>Bars for <InlineMath math="\log_2 x" /> at <InlineMath math="x = 1, 2, 4, 8, 16, 32" />, rising by 1 each time x doubles.</>}
+  title={<>Base <InlineMath math="2" /> logarithms of powers of two</>}
+  description={<>Bars for <InlineMath math="\log_2 x" /> at <InlineMath math="x = 1, 2, 4, 8, 16, 32" />, rising by <InlineMath math="1" /> each time x doubles.</>}
   yAxisLabel="log₂ x"
   data={[1, 2, 4, 8, 16, 32].map((x) => ({ name: `${x}`, value: Math.log2(x) }))}
   chartConfig={{ value: { label: "log₂ x", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -66,7 +66,7 @@ The product rule is the exponent rule seen from the other side. <InlineMath math
 
 <MathVisual
   title={<>Logarithms add when numbers multiply</>}
-  description={<>Steps of length <InlineMath math="\log_2 8 = 3" /> and <InlineMath math="\log_2 4 = 2" /> end at 5, which is <InlineMath math="\log_2 32" />.</>}
+  description={<>Steps of length <InlineMath math="\log_2 8 = 3" /> and <InlineMath math="\log_2 4 = 2" /> end at <InlineMath math="5" />, which is <InlineMath math="\log_2 32" />.</>}
   labels={{
     s0: <InlineMath math="\log_2 8" />,
     s1: <InlineMath math="\log_2 4" />,
@@ -100,11 +100,11 @@ The calculation gives:
 
 <BlockMath math="\log_a\left(\frac bc\right)=x-y=\log_a b-\log_a c" />
 
-Division walks the exponent line backward. <InlineMath math="\log_2 32 = 5" /> is a step of 5, and dividing by <InlineMath math="4" /> takes back a step of <InlineMath math="\log_2 4 = 2" />. The walk ends at <InlineMath math="3" />, and <InlineMath math="\log_2 \frac{32}{4} = \log_2 8 = 3" />.
+Division walks the exponent line backward. <InlineMath math="\log_2 32 = 5" /> is a step of <InlineMath math="5" />, and dividing by <InlineMath math="4" /> takes back a step of <InlineMath math="\log_2 4 = 2" />. The walk ends at <InlineMath math="3" />, and <InlineMath math="\log_2 \frac{32}{4} = \log_2 8 = 3" />.
 
 <MathVisual
   title={<>Logarithms subtract when numbers divide</>}
-  description={<>A step of <InlineMath math="\log_2 32 = 5" /> followed by a step back of <InlineMath math="\log_2 4 = 2" /> ends at 3, which is <InlineMath math="\log_2 8" />.</>}
+  description={<>A step of <InlineMath math="\log_2 32 = 5" /> followed by a step back of <InlineMath math="\log_2 4 = 2" /> ends at <InlineMath math="3" />, which is <InlineMath math="\log_2 8" />.</>}
   labels={{
     s0: <InlineMath math="\log_2 32" />,
     s1: <InlineMath math="\log_2 4" />,

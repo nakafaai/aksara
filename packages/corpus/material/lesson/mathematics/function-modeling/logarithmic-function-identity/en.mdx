@@ -82,7 +82,7 @@ The comparison depends on the **direction of the graph**. A base above one prese
 
 <MathVisual
   title={<>Ordering with two bases</>}
-  description={<>The curves <InlineMath math="y = \log_2 x" /> and <InlineMath math="y = \log_{1/2} x" /> for <InlineMath math="\tfrac18 \le x \le 8" />. At the inputs 2 and 4, base 2 gives 1 and 2, while base <InlineMath math="\tfrac12" /> gives <InlineMath math="-1" /> and <InlineMath math="-2" />.</>}
+  description={<>The curves <InlineMath math="y = \log_2 x" /> and <InlineMath math="y = \log_{1/2} x" /> for <InlineMath math="\tfrac18 \le x \le 8" />. At the inputs <InlineMath math="2" /> and <InlineMath math="4" />, base <InlineMath math="2" /> gives <InlineMath math="1" /> and <InlineMath math="2" />, while base <InlineMath math="\tfrac12" /> gives <InlineMath math="-1" /> and <InlineMath math="-2" />.</>}
   labels={{
     up: <InlineMath math="\log_2 x" />,
     down: <InlineMath math="\log_{1/2} x" />,
@@ -233,11 +233,11 @@ In this model, **full charge is approached without being reached** in finite tim
 | <InlineMath math="90\%" /> | <InlineMath math="-50\ln(0.1)\approx115.13" /> |
 | <InlineMath math="99\%" /> | <InlineMath math="-50\ln(0.01)\approx230.26" /> |
 
-The charging times <InlineMath math="t = -50\ln\left(1 - \tfrac{C}{C_0}\right)" /> grow faster than the targets: 50% takes about 34.66 minutes, 90% about 115.13 and 99% about 230.26, twice as long as 90% for the last 9%.
+The charging times <InlineMath math="t = -50\ln\left(1 - \tfrac{C}{C_0}\right)" /> grow faster than the targets: <InlineMath math="50\%" /> takes about <InlineMath math="34.66" /> minutes, <InlineMath math="90\%" /> about <InlineMath math="115.13" /> and <InlineMath math="99\%" /> about <InlineMath math="230.26" />, twice as long as <InlineMath math="90\%" /> for the last <InlineMath math="9\%" />.
 
 <BarChart
   title={<>Time to reach each charge level</>}
-  description={<>Bars of <InlineMath math="-50\ln(1 - p)" /> in minutes for the targets 50%, 90% and 99%.</>}
+  description={<>Bars of <InlineMath math="-50\ln(1 - p)" /> in minutes for the targets <InlineMath math="50\%" />, <InlineMath math="90\%" /> and <InlineMath math="99\%" />.</>}
   yAxisLabel="Time (min)"
   data={[0.5, 0.9, 0.99].map((p) => ({ name: Math.round(100 * p) + "% charged", value: -50 * Math.log(1 - p) }))}
   chartConfig={{ value: { label: "Time (min)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -278,10 +278,10 @@ The car's price after <InlineMath math="10 \text{ years}" /> of use is:
 
 <BlockMath math="\begin{aligned} H(10) &amp;= 200e^{2\ln(1/2)} \\ &amp;= 200\left(\frac{1}{2}\right)^2 \\ &amp;= 50 \text{ million rupiah} \end{aligned}" />
 
-Halving every 5 years: <InlineMath math="H(t) = 200\left(\tfrac12\right)^{t/5}" /> gives 200, 100, 50 and 25 million rupiah after 0, 5, 10 and 15 years, matching <InlineMath math="H(10) = 50" />.
+Halving every <InlineMath math="5" /> years: <InlineMath math="H(t) = 200\left(\tfrac12\right)^{t/5}" /> gives <InlineMath math="200" />, <InlineMath math="100" />, <InlineMath math="50" /> and <InlineMath math="25" /> million rupiah after <InlineMath math="0" />, <InlineMath math="5" />, <InlineMath math="10" /> and <InlineMath math="15" /> years, matching <InlineMath math="H(10) = 50" />.
 
 <BarChart
-  title={<>Car price every 5 years</>}
+  title={<>Car price every <InlineMath math="5" /> years</>}
   description={<>Bars of <InlineMath math="H(t) = 200e^{\frac{\ln(1/2)}{5}t}" /> in millions of rupiah for <InlineMath math="t = 0, 5, 10, 15" />.</>}
   yAxisLabel="Price (million rupiah)"
   data={[0, 5, 10, 15].map((x) => ({ name: String(x), value: 200 * Math.exp((Math.log(1 / 2) / 5) * x) }))}

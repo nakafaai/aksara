@@ -44,11 +44,11 @@ Peluang angka <InlineMath math="1" /> sama dengan peluang angka <InlineMath math
 
 <BlockMath math="P(X\text{ genap})=\frac{3}{6}=\frac{1}{2}" />
 
-Setiap mata dadu yang adil mendapat batang yang sama, <InlineMath math="\tfrac16 \approx 16{,}67\%" />. Keenam batang yang sama itu berjumlah 1, dan kejadian "genap" mengumpulkan tiga di antaranya: <InlineMath math="\tfrac36 = \tfrac12" />.
+Setiap mata dadu yang adil mendapat batang yang sama, <InlineMath math="\tfrac16 \approx 16{,}67\%" />. Keenam batang yang sama itu berjumlah <InlineMath math="1" />, dan kejadian "genap" mengumpulkan tiga di antaranya: <InlineMath math="\tfrac36 = \tfrac12" />.
 
 <BarChart
   title={<>Satu lemparan dadu adil</>}
-  description={<>Enam batang sama tinggi <InlineMath math="P(X = x) = \tfrac16" /> untuk <InlineMath math="x = 1" /> sampai 6.</>}
+  description={<>Enam batang sama tinggi <InlineMath math="P(X = x) = \tfrac16" /> untuk <InlineMath math="x = 1" /> sampai <InlineMath math="6" />.</>}
   yAxisLabel="Peluang"
   data={[1, 2, 3, 4, 5, 6].map((x) => ({ name: String(x), value: 1 / 6 }))}
   chartConfig={{ value: { label: "Peluang", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -60,7 +60,7 @@ Roda putar adil dibagi menjadi delapan **sektor sama besar**, bernomor <InlineMa
 
 <MathVisual
   title={<>Delapan sektor yang sama besar</>}
-  description={<>Setiap nomor menempati satu sektor bersudut 45 derajat. Luas semua sektor sama.</>}
+  description={<>Setiap nomor menempati satu sektor bersudut <InlineMath math="45" /> derajat. Luas semua sektor sama.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1.25, max: 1.25 }, y: { min: -1.25, max: 1.25 } },
@@ -95,11 +95,11 @@ Ruang sampelnya adalah <InlineMath math="S=\{1,2,3,4,5,6,7,8\}" /> dan <InlineMa
 
 <BlockMath math="P(X=5)=\frac{1}{8}=0{,}125=12{,}5\%" />
 
-Jumlahkan peluang yang sama itu satu juring demi satu juring. <InlineMath math="P(X \le x) = \frac{x}{8}" /> naik dengan langkah sama sebesar <InlineMath math="\tfrac18" /> dan mencapai 1 di <InlineMath math="x = 8" />.
+Jumlahkan peluang yang sama itu satu juring demi satu juring. <InlineMath math="P(X \le x) = \frac{x}{8}" /> naik dengan langkah sama sebesar <InlineMath math="\tfrac18" /> dan mencapai <InlineMath math="1" /> di <InlineMath math="x = 8" />.
 
 <BarChart
   title={<>Peluang kumulatif pada roda</>}
-  description={<>Batang <InlineMath math="P(X \le x) = \frac{x}{8}" /> untuk <InlineMath math="x = 1" /> sampai 8.</>}
+  description={<>Batang <InlineMath math="P(X \le x) = \frac{x}{8}" /> untuk <InlineMath math="x = 1" /> sampai <InlineMath math="8" />.</>}
   yAxisLabel="Peluang kumulatif"
   data={[1, 2, 3, 4, 5, 6, 7, 8].map((x) => ({ name: String(x), value: x / 8 }))}
   chartConfig={{ value: { label: "Peluang kumulatif", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -110,7 +110,7 @@ Jumlahkan peluang yang sama itu satu juring demi satu juring. <InlineMath math="
 Tentukan himpunan hasil, banyak **hasil yang sama mungkin**, dan peluang kejadian yang diminta. Pastikan objek yang ditanyakan memang ada dalam himpunan hasil sebelum kamu membagi.
 
 1. Sebuah kantong berisi sepuluh bola yang identik kecuali warnanya. Ada satu bola merah, satu biru, satu hijau, satu kuning, dan enam bola lain yang masing-masing berwarna berbeda. Setiap bola mempunyai peluang yang sama untuk terambil. Tuliskan fungsi massa peluang warna bola dan hitung peluang mengambil bola kuning.
-2. Satu set kartu bridge standar berisi 52 kartu berbeda. Setiap kartu mempunyai peluang yang sama untuk ditarik. Tentukan jenis distribusi peluang penarikan satu kartu dan hitung peluang memperoleh King Hati.
+2. Satu set kartu bridge standar berisi <InlineMath math="52" /> kartu berbeda. Setiap kartu mempunyai peluang yang sama untuk ditarik. Tentukan jenis distribusi peluang penarikan satu kartu dan hitung peluang memperoleh King Hati.
 ### Pembahasan
 
 **Soal 1**. Ada **sepuluh warna**, sehingga <InlineMath math="k=10" />. Untuk setiap warna <InlineMath math="x" /> dalam himpunan warna <InlineMath math="S" />,
@@ -120,6 +120,6 @@ Tentukan himpunan hasil, banyak **hasil yang sama mungkin**, dan peluang kejadia
 Kejadian mengambil bola kuning memuat tepat satu hasil. Maka,
 
 <BlockMath math="P(\text{bola kuning})=\frac{1}{10}=0{,}1=10\%" />
-**Soal 2**. Penarikan satu kartu mengikuti **distribusi seragam diskret**, karena semua 52 kartu sama mungkin. Dari 52 hasil, hanya satu hasil memenuhi kejadian King Hati.
+**Soal 2**. Penarikan satu kartu mengikuti **distribusi seragam diskret**, karena semua <InlineMath math="52" /> kartu sama mungkin. Dari <InlineMath math="52" /> hasil, hanya satu hasil memenuhi kejadian King Hati.
 
 <BlockMath math="P(\text{King Hati})=\frac{1}{52}\approx0{,}01923\approx1{,}92\%" />
