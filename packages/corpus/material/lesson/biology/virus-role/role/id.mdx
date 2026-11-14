@@ -5,7 +5,7 @@ export const metadata = {
     "Virus dapat menyebabkan penyakit, memengaruhi populasi mikroba, atau dipakai sebagai alat bioteknologi, bergantung pada hubungan antara virus dan inang.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Virus dan Peranannya",
 };
 
@@ -78,6 +78,30 @@ Infeksi virus dapat terjadi pada manusia, hewan lain, dan tumbuhan. Pada manusia
 
 Untuk memahami penyakit akibat virus, periksa **jalur penularan** dan jaringan yang terkena. Virus dengue terutama ditularkan melalui gigitan nyamuk Aedes yang terinfeksi. Virus pernapasan dapat menyebar ketika orang menghirup partikel pernapasan yang dilepaskan oleh orang yang terinfeksi. Virus tumbuhan dapat berpindah melalui serangga pembawa, luka tanaman, atau bahan tanam yang terinfeksi.
 
+Jalur penularan menentukan tindakan mana yang berhasil. Ganti jalurnya, lalu coba masker dan cuci tangan.
+
+<EpidemicSpreadLab
+  title={<>Jalur Penularan Menentukan Tindakan</>}
+  description={<>Pilih apakah virus menyebar lewat udara atau lewat sentuhan, lalu atur masker dan cuci tangan.</>}
+  measures={["masks", "washing"]}
+  routes={["air", "touch"]}
+  labels={{
+    chooseRoute: "Pilih jalur penularan",
+    routes: { air: <>Lewat udara</>, touch: <>Lewat sentuhan</> },
+    masks: "Orang yang bermasker",
+    washing: "Orang yang mencuci tangan",
+    reproduction: <>Satu kasus menulari</>,
+    peak: <>Paling banyak sakit bersamaan</>,
+    susceptible: <>Masih rentan</>,
+    infected: <>Sedang tertular</>,
+    recovered: <>Sudah sembuh</>,
+    immune: <>Kebal karena vaksin</>,
+    viewLabel: "Alun-alun kota dengan orang yang berjalan dan grafik wabah",
+  }}
+/>
+
+Lewat udara, masker menurunkan angka penularan dari <InlineMath math="3" /> menjadi <InlineMath math="0{,}75" /> kalau semua orang memakainya, sedangkan cuci tangan tidak mengubah apa pun. Lewat sentuhan, cuci tangan memangkas angkanya separuh menjadi <InlineMath math="1{,}5" />, sedangkan masker tidak berpengaruh. Jadi, kenali jalurnya dulu, baru pilih tindakannya.
+
 ### Pilih Pencegahan Sesuai Jalur Penularan
 
 Partikel pernapasan, gigitan nyamuk, dan cairan tubuh tertentu merupakan jalur penularan yang berbeda. Pemilihan tindakan pencegahan memerlukan informasi tentang **jalur, sel target, dan kondisi** yang mendukung perpindahan virus.
@@ -139,6 +163,24 @@ Putar vektor virus ini. Selubung proteinnya, bagian yang sudah tahu cara masuk k
     removed: <>gen penyebab penyakit dibuang</>,
   }}
 />
+
+Vaksin adalah salah satu pemanfaatan virus yang terkendali. Vaksin dari virus yang dilemahkan atau dimatikan, atau dari bagian virus seperti protein duri, melatih tubuh tanpa menimbulkan penyakitnya.
+
+<AntibodyNeutralizeLab
+  title={<>Antibodi Bertambah setelah Vaksinasi</>}
+  description={<>Geser hari setelah dosis pertama, lalu tekan putar untuk melihat apakah virion masih bisa menempel.</>}
+  mode="days"
+  labels={{
+    day: "Hari setelah dosis",
+    level: <>Kadar antibodi</>,
+    covered: <>Duri yang tertutup</>,
+    blocked: <>Virion yang terhalang</>,
+    chance: <>Peluang satu virion terhalang</>,
+    viewLabel: "Virion SARS-CoV-2 mendekati reseptor ACE2 di permukaan sel, dengan antibodi pada duri",
+  }}
+/>
+
+Pada minggu pertama hampir belum ada antibodi, jadi virion masih bisa menempel. Pada hari ke-<InlineMath math="7" />, model ini memberi peluang terhalang sekitar <InlineMath math="41\%" /> untuk setiap virion. Pada minggu kedua kadarnya naik, dan menjelang hari ke-<InlineMath math="14" /> hampir semua virion terhalang. Karena itulah perlindungan muncul beberapa waktu setelah vaksinasi, bukan pada hari yang sama.
 
 ## Cara Menilai Dampak Virus
 

@@ -5,7 +5,7 @@ export const metadata = {
     "Viruses use host cells to replicate. In bacteriophages, the lytic cycle produces virions, while lysogeny maintains the phage genome within bacteria.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-04",
+  dateModified: "2026-11-13",
   subject: "Viruses and Their Role",
 };
 
@@ -63,6 +63,25 @@ Virulent phages follow the lytic cycle. Temperate phages can also undergo lysoge
     ],
   }}
 />
+
+Each lytic cycle releases many new virions. In a population, the same multiplication happens from person to person.
+
+<EpidemicSpreadLab
+  title={<>One Case Grows into an Outbreak</>}
+  description={<>People stroll through a town square. Press play to watch one infection spread when nobody takes any measure.</>}
+  measures={[]}
+  labels={{
+    reproduction: <>Each case infects</>,
+    peak: <>Most ill at once</>,
+    susceptible: <>Still susceptible</>,
+    infected: <>Infected now</>,
+    recovered: <>Recovered</>,
+    immune: <>Immune from a vaccine</>,
+    viewLabel: "Town square with people walking and a graph of the outbreak",
+  }}
+/>
+
+In this model each case infects <InlineMath math="3" /> others on average and stays infectious for <InlineMath math="7" /> days. Cases climb fast at first, peak when about <InlineMath math="30\%" /> of the town is ill at once, and the outbreak ends after about <InlineMath math="94\%" /> have been infected. A virus needs hosts to multiply, so the spread slows once few people are left who are not immune.
 
 ## The Lytic Cycle Starts with Attachment
 
@@ -152,6 +171,25 @@ Rotate this bacteriophage at the moment of attachment. Its tail fibers grip the 
     genome: <>injected genome</>,
   }}
 />
+
+Copying the genome relies on base pairing. In a DNA phage the two strands open, and each base takes its partner: A with T, G with C.
+
+<DnaHelixLab
+  title={<>A Viral Genome Is Copied Base by Base</>}
+  description={<>An example stretch of DNA, <InlineMath math="27" /> base pairs long. Slide the copying or press play, and watch new nucleotides pair with both old strands.</>}
+  copy
+  sequence="ATG GCT AGC TTA GGC ATC GAT CCG TAA"
+  labels={{
+    copy: "Copying progress",
+    length: <>Base pairs</>,
+    span: <>Length</>,
+    copied: <>New bases paired</>,
+    turns: <>Turns of the helix</>,
+    viewLabel: "DNA helix opening and being copied",
+  }}
+/>
+
+Each new strand pairs with one old strand, so both copies match the original exactly. This stretch of <InlineMath math="27" /> base pairs is only <InlineMath math="27 \times 0.34\text{ nm} \approx 9.2\text{ nm}" /> long. The genome of phage lambda has <InlineMath math="48{,}502" /> base pairs, and the host cell supplies the nucleotides and the energy to copy them all.
 
 ## A Prophage Can Remain in the Host Genome
 

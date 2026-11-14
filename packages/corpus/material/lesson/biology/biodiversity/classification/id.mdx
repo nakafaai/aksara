@@ -4,7 +4,7 @@ export const metadata = {
     "Klasifikasi buatan, alami, dan filogenetik menata makhluk hidup dengan kriteria pengelompokan yang berbeda.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Keanekaragaman Makhluk Hidup",
 };
 
@@ -96,6 +96,36 @@ Sistem lima kingdom dalam sejarah klasifikasi memakai gabungan ciri besar untuk 
 
 Klasifikasi alami membandingkan beberapa ciri biologis sekaligus agar hasil pengelompokan tidak ditentukan oleh satu ciri saja.
 
+Klasifikasi alami membandingkan banyak ciri sekaligus, dan sel menyimpan beberapa ciri penting itu. Pilih tiap sel di bawah, lalu bandingkan letak materi genetiknya, dinding yang membungkusnya, dan organel yang menyediakan energinya.
+
+<CellCutawayLab
+  title={<>Sel dari Empat Kelompok Makhluk Hidup</>}
+  description={<>Tiap sel dipotong separuh dan digambar sesuai ukuran aslinya. Pilih sel, lalu bandingkan inti, dinding, dan organel energinya.</>}
+  cells={["bacterium", "yeast", "plant", "animal"]}
+  labels={{
+    choose: "Pilih sel",
+    cells: {
+      animal: "Sel hewan",
+      bacterium: "Bakteri",
+      plant: "Sel daun",
+      yeast: "Khamir",
+    },
+    facts: {
+      animal: { nucleus: <>di dalam membran inti</>, wall: <>tidak ada</>, power: <>mitokondria</> },
+      bacterium: { nucleus: <>nukleoid tanpa membran</>, wall: <>peptidoglikan</>, power: <>membran sel</> },
+      plant: { nucleus: <>di dalam membran inti</>, wall: <>selulosa</>, power: <>kloroplas dan mitokondria</> },
+      yeast: { nucleus: <>di dalam membran inti</>, wall: <>glukan dan kitin</>, power: <>mitokondria</> },
+    },
+    size: <>Panjang</>,
+    nucleus: <>Materi genetik</>,
+    wall: <>Dinding sel</>,
+    power: <>Organel energi</>,
+    viewLabel: "Sel yang dipotong separuh dengan organelnya",
+  }}
+/>
+
+Bakteri tidak punya inti sel, jadi DNA-nya berada di **nukleoid**. Khamir, sel daun, dan sel hewan menyimpan DNA di dalam membran inti, sehingga ketiganya termasuk **eukariot**. Dinding sel memisahkan mereka lagi: selulosa pada tumbuhan, glukan dan kitin pada jamur, dan tidak ada dinding pada hewan. Ukurannya juga jauh berbeda. Sel daun sepanjang <InlineMath math="40\ \mu\text{m}" /> kira-kira <InlineMath math="20" /> kali panjang bakteri yang hanya <InlineMath math="2\ \mu\text{m}" />. Jadi, organisme masuk satu kelompok karena **banyak ciri yang cocok**, bukan karena satu ciri saja.
+
 ### Klasifikasi Filogenetik Menelusuri Kekerabatan
 
 Klasifikasi filogenetik menyimpulkan hubungan evolusi. Bukti yang dipakai dapat mencakup struktur tubuh, perkembangan, fosil, dan data molekuler seperti urutan DNA atau RNA. Kelompok yang memuat satu nenek moyang bersama beserta seluruh keturunannya disebut **monofiletik**. Bukti baru dapat mengubah posisi organisme, jadi periksa dasar pengelompokan dan bukti pendukung setiap kelompok.
@@ -164,6 +194,26 @@ Kunci dengan pertanyaan ya atau tidak membelah tiap kelompok jadi dua. Setelah <
     three: <InlineMath math="2^3=8" />,
   }}
 />
+
+Klasifikasi filogenetik membandingkan urutan basa DNA. Semakin sedikit perbedaan pada gen yang sama, semakin dekat kekerabatan dua spesies, karena keduanya baru berpisah dari nenek moyang bersama.
+
+<DnaHelixLab
+  title={<>Membandingkan DNA Dua Spesies</>}
+  description={<>Potongan contoh dari gen yang sama pada dua spesies, sepanjang <InlineMath math="27" /> pasangan basa. Ganti spesiesnya dan lihat basa yang berbeda menyala.</>}
+  sequence="ATG GCT AAC CTG GTA CAG TTC GAA AGC"
+  variant="ATG GCC AAC CTG GTG CAG TTT GAA AGC"
+  labels={{
+    choose: "Pilih spesies",
+    strands: { first: <>Spesies A</>, second: <>Spesies B</> },
+    length: <>Pasangan basa</>,
+    span: <>Panjang</>,
+    differences: <>Basa berbeda</>,
+    identity: <>Basa sama</>,
+    viewLabel: "Heliks ganda DNA dengan basa yang berbeda menyala",
+  }}
+/>
+
+Dari <InlineMath math="27" /> basa, ada <InlineMath math="3" /> yang berbeda, jadi kesamaannya <InlineMath math="\tfrac{24}{27} \approx 88{,}9\%" />. Ini potongan contoh supaya kamu bisa menghitungnya sendiri. Perbandingan sungguhan memakai ribuan basa dari beberapa gen, tetapi caranya sama: hitung perbedaannya, lalu kelompokkan spesies yang paling mirip.
 
 ## Takson dan Peringkat dalam Hierarki
 

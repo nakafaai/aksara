@@ -5,7 +5,7 @@ export const metadata = {
     "Viren sind azelluläre Partikel mit einem Genom, einem Kapsid und manchmal einer Hülle. Für ihre Vermehrung brauchen sie Wirtszellen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Viren und ihre Rolle",
 };
 
@@ -96,6 +96,23 @@ Das nächste Modell zeigt die Oberfläche von **SARS-CoV-2** genauer als die all
   }}
 />
 
+Virionen sind viel kleiner als die Zellen, die sie befallen. Zoome von einer ganzen Tierzelle bis zu einem einzelnen Virion.
+
+<CellScaleLab
+  title={<>Von der Zelle bis zum Virus</>}
+  description={<>Verschieb den Zoom. Jeder Schritt verengt den Blick um denselben Faktor, wie der Wechsel zu einem stärkeren Mikroskopobjektiv.</>}
+  labels={{
+    zoom: "Zoom",
+    view: <>Breite des Blickfelds</>,
+    cell: <>Tierzelle</>,
+    bacterium: <>Bakterium</>,
+    virion: <>SARS-CoV-2-Virion</>,
+    viewLabel: "Eine Tierzelle, ein Bakterium und ein Virion nebeneinander in echter Größe",
+  }}
+/>
+
+Eine Tierzelle von <InlineMath math="20\ \mu\text{m}" /> ist <InlineMath math="200" />-mal so breit wie ein Virion mit nur <InlineMath math="0{,}1\ \mu\text{m}" />. Selbst ein Escherichia-coli-Stäbchen mit <InlineMath math="2\ \mu\text{m}" /> ist noch <InlineMath math="20" />-mal so lang. Deshalb zeigt ein Lichtmikroskop Bakterien, einzelne Virionen aber erst ein Elektronenmikroskop.
+
 ## Virusvermehrung nutzt eine Wirtszelle
 
 Lebende Zellen besitzen normalerweise eine Zellmembran, Zytoplasma, Ribosomen und einen eigenen Stoffwechsel. Als **Stoffwechsel** bezeichnet man die chemischen Reaktionen, mit denen eine Zelle Energie gewinnt und ihre Bestandteile aufbaut. <Highlight>Ein Virus besitzt weder Ribosomen</Highlight> noch einen vollständigen eigenen Stoffwechsel.
@@ -107,6 +124,25 @@ Außerhalb einer Wirtszelle kann ein Virion eine Zeit lang bestehen, an eine gee
 ### Virusaktivität innerhalb und außerhalb von Zellen
 
 Außerhalb einer Zelle betreibt ein Virion keinen Stoffwechsel, stellt keine Proteine her und kopiert sein Genom nicht. In einer geeigneten Zelle kann das Virusgenom die Herstellung von Virusproteinen und neuen Genomkopien steuern. Ein Virus vermehrt sich daher **nur in einer passenden Wirtszelle**.
+
+Manche Viren tragen DNA, andere RNA. SARS-CoV-2 trägt einen einzigen RNA-Strang von fast <InlineMath math="30{.}000" /> Basen.
+
+<DnaHelixLab
+  title={<>Der Anfang des RNA-Genoms eines Virus</>}
+  description={<>Das sind die ersten <InlineMath math="30" /> Basen des SARS-CoV-2-Referenzgenoms als ein RNA-Strang. Dreh den Strang und lies seine Basen.</>}
+  nucleic="rna"
+  genome={29903}
+  sequence="AUUAAAGGUUUAUACCUUCCCAGGUAACAA"
+  labels={{
+    length: <>Gezeigte Basen</>,
+    whole: <>Basen im ganzen Genom</>,
+    share: <>Gezeigter Anteil des Genoms</>,
+    gc: <>Anteil von G und C</>,
+    viewLabel: "Ein einzelner RNA-Strang mit seinen Basen",
+  }}
+/>
+
+Das ganze Genom umfasst <InlineMath math="29{.}903" /> Basen, dieses Stück ist also nur etwa <InlineMath math="0{,}1\%" /> davon. Achte darauf, dass RNA U statt T verwendet und der Strang einzeln ist. Um sich zu vermehren, kopiert dieses Virus seine RNA mit einem eigenen Enzym in der Wirtszelle.
 
 ## Kapsid und Hülle bestimmen die Virusform
 

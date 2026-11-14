@@ -4,7 +4,7 @@ export const metadata = {
     "Pengelasan buatan, semula jadi dan filogenetik menyusun benda hidup menggunakan kriteria pengelompokan yang berbeza.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Biodiversiti",
 };
 
@@ -96,6 +96,36 @@ Sistem lima alam yang digunakan dahulu memakai gabungan ciri yang luas untuk mel
 
 Pengelasan semula jadi membandingkan beberapa ciri biologi supaya pengelompokan tidak bergantung pada satu tabiat yang kelihatan sahaja.
 
+Pengelasan semula jadi membandingkan banyak ciri sekali gus, dan sel itu sendiri membawa beberapa daripadanya. Pilih setiap sel di bawah dan bandingkan kedudukan bahan genetiknya, dinding yang mengelilinginya, dan organel yang membekalkan tenaganya.
+
+<CellCutawayLab
+  title={<>Sel daripada Empat Kumpulan Organisma</>}
+  description={<>Setiap sel dipotong dua dan dilukis pada saiz sebenarnya. Pilih satu sel dan bandingkan nukleus, dinding dan organel tenaganya.</>}
+  cells={["bacterium", "yeast", "plant", "animal"]}
+  labels={{
+    choose: "Pilih sel",
+    cells: {
+      animal: "Sel haiwan",
+      bacterium: "Bakteria",
+      plant: "Sel daun",
+      yeast: "Yis",
+    },
+    facts: {
+      animal: { nucleus: <>di dalam membran nukleus</>, wall: <>tiada</>, power: <>mitokondria</> },
+      bacterium: { nucleus: <>nukleoid, tanpa membran</>, wall: <>peptidoglikan</>, power: <>membran sel</> },
+      plant: { nucleus: <>di dalam membran nukleus</>, wall: <>selulosa</>, power: <>kloroplas dan mitokondria</> },
+      yeast: { nucleus: <>di dalam membran nukleus</>, wall: <>glukan dan kitin</>, power: <>mitokondria</> },
+    },
+    size: <>Panjang</>,
+    nucleus: <>Bahan genetik</>,
+    wall: <>Dinding sel</>,
+    power: <>Organel tenaga</>,
+    viewLabel: "Sebuah sel yang dipotong dua bersama organelnya",
+  }}
+/>
+
+Bakteria tiada nukleus, jadi DNAnya terletak di dalam **nukleoid**. Sel yis, sel daun dan sel haiwan menyimpan DNA di dalam membran nukleus, jadi ketiga-tiganya ialah **eukariot**. Dinding sel membezakannya lagi: selulosa pada tumbuhan, glukan dan kitin pada fungi, dan tiada dinding langsung pada haiwan. Saiznya juga jauh berbeza. Sel daun sepanjang <InlineMath math="40\ \mu\text{m}" /> kira-kira <InlineMath math="20" /> kali lebih panjang daripada bakteria yang hanya <InlineMath math="2\ \mu\text{m}" />. Jadi organisma berada dalam satu kumpulan kerana **banyak cirinya sepadan**, bukan kerana satu ciri sahaja.
+
 ### Pengelasan Filogenetik Menyimpulkan Nenek Moyang Sepunya
 
 Pengelasan filogenetik menyimpulkan hubungan evolusi. Buktinya boleh termasuk struktur badan, perkembangan, fosil dan data molekul seperti jujukan DNA atau RNA. Kumpulan yang mengandungi satu nenek moyang sepunya dan semua keturunannya dipanggil **monofiletik**. Bukti baharu boleh mengubah kedudukan sesuatu organisma, jadi semak asas pengelompokan dan bukti sokongan bagi setiap kumpulan.
@@ -164,6 +194,26 @@ Kekunci dengan soalan ya atau tidak membahagikan setiap kumpulan kepada dua. Sel
     three: <InlineMath math="2^3=8" />,
   }}
 />
+
+Pengelasan filogenetik membandingkan jujukan bes DNA. Semakin sedikit perbezaan antara dua spesies pada gen yang sama, semakin rapat hubungannya, kerana kedua-duanya berpisah daripada moyang yang sama pada masa yang lebih hampir.
+
+<DnaHelixLab
+  title={<>Membandingkan DNA Dua Spesies</>}
+  description={<>Contoh satu bahagian gen yang sama pada dua spesies, sepanjang <InlineMath math="27" /> pasangan bes. Tukar spesies dan perhatikan bes yang berbeza menyala.</>}
+  sequence="ATG GCT AAC CTG GTA CAG TTC GAA AGC"
+  variant="ATG GCC AAC CTG GTG CAG TTT GAA AGC"
+  labels={{
+    choose: "Pilih spesies",
+    strands: { first: <>Spesies A</>, second: <>Spesies B</> },
+    length: <>Pasangan bes</>,
+    span: <>Panjang</>,
+    differences: <>Bes yang berbeza</>,
+    identity: <>Bes yang sama</>,
+    viewLabel: "Heliks ganda dua DNA dengan bes yang berbeza menyala",
+  }}
+/>
+
+Daripada <InlineMath math="27" /> bes, <InlineMath math="3" /> berbeza, jadi kedua-dua bahagian itu <InlineMath math="\tfrac{24}{27} \approx 88.9\%" /> sama. Ini hanya contoh supaya kamu boleh mengiranya sendiri. Perbandingan sebenar menggunakan beribu-ribu bes daripada beberapa gen, tetapi kaedahnya sama: kira perbezaannya, kemudian kumpulkan spesies yang paling sepadan.
 
 ## Takson dan Peringkat dalam Hierarki
 

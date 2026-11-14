@@ -5,7 +5,7 @@ export const metadata = {
     "Viruses are acellular particles with a genome, a capsid, sometimes an envelope, and dependence on host cells for reproduction.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Viruses and Their Role",
 };
 
@@ -96,6 +96,23 @@ The next model shows the surface of **SARS-CoV-2** in more detail than the gener
   }}
 />
 
+Virions are far smaller than the cells they infect. Zoom from a whole animal cell down to a single virion.
+
+<CellScaleLab
+  title={<>From a Cell Down to a Virus</>}
+  description={<>Slide the zoom. Each step narrows the view by the same factor, like switching to a stronger microscope objective.</>}
+  labels={{
+    zoom: "Zoom",
+    view: <>Width of the view</>,
+    cell: <>Animal cell</>,
+    bacterium: <>Bacterium</>,
+    virion: <>SARS-CoV-2 virion</>,
+    viewLabel: "An animal cell, a bacterium and a virion in a row at their real sizes",
+  }}
+/>
+
+An animal cell <InlineMath math="20\ \mu\text{m}" /> across is <InlineMath math="200" /> times as wide as a virion of only <InlineMath math="0.1\ \mu\text{m}" />. Even an Escherichia coli rod <InlineMath math="2\ \mu\text{m}" /> long is <InlineMath math="20" /> times longer. That is why a light microscope can show bacteria, while single virions show up only under an electron microscope.
+
 ## Viral Replication Uses a Host Cell
 
 Living cells usually have a cell membrane, cytoplasm, ribosomes, and metabolic reactions. **Metabolism** is the set of chemical reactions that lets a cell obtain energy and build its own parts. <Highlight>A virus has no ribosomes</Highlight> or complete metabolic system of its own.
@@ -107,6 +124,25 @@ Outside a host cell, a virion may persist for a while, attach to a suitable cell
 ### Viral Activity inside and outside Cells
 
 Outside a cell, a virion does not perform metabolism, make proteins, or copy its genome. Inside a suitable cell, the viral genome can direct the production of viral proteins and new genome copies. The virus therefore reproduces **only in a compatible host cell**.
+
+Some viruses carry DNA, others RNA. SARS-CoV-2 carries one strand of RNA almost <InlineMath math="30{,}000" /> bases long.
+
+<DnaHelixLab
+  title={<>The Start of a Virus's RNA Genome</>}
+  description={<>These are the first <InlineMath math="30" /> bases of the SARS-CoV-2 reference genome, as one strand of RNA. Rotate the strand and read its bases.</>}
+  nucleic="rna"
+  genome={29903}
+  sequence="AUUAAAGGUUUAUACCUUCCCAGGUAACAA"
+  labels={{
+    length: <>Bases shown</>,
+    whole: <>Bases in the whole genome</>,
+    share: <>Share of the genome shown</>,
+    gc: <>Share of G and C</>,
+    viewLabel: "A single strand of RNA with its bases",
+  }}
+/>
+
+The whole genome holds <InlineMath math="29{,}903" /> bases, so this stretch is only about <InlineMath math="0.1\%" /> of it. Notice that RNA uses U instead of T, and the strand is single. To multiply, this virus uses its own enzyme to copy that RNA inside the host cell.
 
 ## Capsid and Envelope Structures Determine Viral Shape
 

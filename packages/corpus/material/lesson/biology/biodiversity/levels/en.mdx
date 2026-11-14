@@ -4,7 +4,7 @@ export const metadata = {
     "Biodiversity can be examined at genetic, species, and ecosystem levels through rice, organisms at a rice field edge, and flowing water as habitat.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Biodiversity of Living Organisms",
 };
 
@@ -88,6 +88,26 @@ Picture two rice populations of 10 plants, each plant placed by how well it tole
     spread: <>2 of 10 cope</>,
   }}
 />
+
+Genetic variation can be as small as one base. The card below compares the start of the human beta-globin gene (HBB), a gene that helps build hemoglobin, in two alleles.
+
+<DnaHelixLab
+  title={<>One Base Makes a Different Allele</>}
+  description={<>The start of the human HBB gene, <InlineMath math="27" /> base pairs. Switch between the usual allele and the sickle-cell allele and watch the changed base glow.</>}
+  sequence="ATG GTG CAT CTG ACT CCT GAG GAG AAG"
+  variant="ATG GTG CAT CTG ACT CCT GTG GAG AAG"
+  labels={{
+    choose: "Choose an allele",
+    strands: { first: <>Usual allele</>, second: <>Sickle-cell allele</> },
+    length: <>Base pairs</>,
+    span: <>Length</>,
+    differences: <>Different bases</>,
+    identity: <>Same bases</>,
+    viewLabel: "DNA double helix of the HBB gene with the changed base glowing",
+  }}
+/>
+
+Only <InlineMath math="1" /> of the <InlineMath math="27" /> bases differs: the codon GAG becomes GTG. That codon now codes for valine instead of glutamic acid. Hemoglobin made from this allele can turn red blood cells into a sickle shape when oxygen is low. Both alleles belong to the same species, so this is **genetic diversity**, the smallest level.
 
 ## Comparing Diversity at Larger Scales
 
@@ -203,6 +223,23 @@ Species richness counts how many kinds live in a place. Both plots hold 12 indiv
     b: <>2 species</>,
   }}
 />
+
+Ecosystem diversity also covers relationships, such as hunters and their prey. At the edge of a rice field, barn owls hunt rice-field rats.
+
+<PredatorPreyLab
+  title={<>Rats and Owls Rise and Fall Together</>}
+  description={<>Set how many owls start in the field, then press play to run the model for <InlineMath math="20" /> years.</>}
+  labels={{
+    start: "Owls at the start",
+    prey: <>Rats</>,
+    predators: <>Owls</>,
+    peak: <>Most rats</>,
+    year: <>Year</>,
+    viewLabel: "Rice field with rice-field rats and barn owls",
+  }}
+/>
+
+When owls are few, rats multiply fast. The owls then eat well and multiply too, so the rats fall, and the owls follow them down. This Lotka-Volterra model balances at <InlineMath math="100" /> rats and <InlineMath math="20" /> owls and swings around that balance about every <InlineMath math="4.4" /> years. That is why farmers in Indonesia put up nest boxes for barn owls: the hunters keep the rats in check.
 
 ## Choose the Level of Biodiversity First
 

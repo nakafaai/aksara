@@ -4,7 +4,7 @@ export const metadata = {
     "Schutzmaßnahmen passend zu Übertragungswegen wie Tröpfchen, Kontakt, Körperflüssigkeiten und Mücken auswählen und die Rollen von Hygiene, Impfungen und Virostatika unterscheiden.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Viren und ihre Rolle",
 };
 
@@ -72,6 +72,28 @@ Deshalb lohnt es sich, Maßnahmen zu kombinieren. Nenn <InlineMath math="R" /> d
 
 Dengueviren gelangen hauptsächlich durch [Stiche von Aedes-Mücken](https://www.cdc.gov/dengue/prevention/index.html) zum Menschen. Deshalb konzentriert sich die Prävention auf den Schutz vor Stichen und die Mückenbekämpfung rund um Wohnorte. Bei Atemwegsviren geht es dagegen um Partikel in gemeinsam genutzter Luft und Exposition aus kurzer Entfernung.
 
+Jede Maßnahme trennt ein anderes Glied der Kette. Kombiniere sie auf dem Marktplatz und sieh, wie der Ausbruch schrumpft.
+
+<EpidemicSpreadLab
+  title={<>Maßnahmen verkleinern einen Ausbruch</>}
+  description={<>Stell den Anteil der Menschen ein, die Masken tragen, geimpft sind oder zu Hause bleiben.</>}
+  measures={["masks", "vaccinated", "distancing"]}
+  labels={{
+    masks: "Menschen mit Maske",
+    vaccinated: "Geimpfte Menschen",
+    distancing: "Menschen, die zu Hause bleiben",
+    reproduction: <>Ein Fall steckt an</>,
+    peak: <>Höchstens gleichzeitig krank</>,
+    susceptible: <>Noch empfänglich</>,
+    infected: <>Gerade angesteckt</>,
+    recovered: <>Genesen</>,
+    immune: <>Durch Impfung immun</>,
+    viewLabel: "Marktplatz mit spazierenden Menschen und einer Kurve des Ausbruchs",
+  }}
+/>
+
+Ohne Maßnahmen steckt jeder Fall <InlineMath math="3" /> Menschen an. In diesem Modell halbiert eine Maske das Risiko für ihren Träger, tragen also alle eine, sinkt die Zahl auf <InlineMath math="3 \times 0{,}5 \times 0{,}5 = 0{,}75" />. Liegt diese Zahl unter <InlineMath math="1" />, steckt jeder Fall weniger als einen Menschen an, und der Ausbruch erlischt. Echte Werte hängen vom Virus und vom Produkt ab, aber die Logik bleibt gleich.
+
 ### Wie Seife Schmutz und Mikroorganismen entfernt
 
 Händehygiene entfernt Schmutz, Fett und Mikroorganismen, die nicht immer sichtbar sind. Ein Seifenmolekül besitzt einen wasserliebenden und einen fettliebenden Teil. Durch Reiben löst sich das Material, **beim Abspülen wird es von der Haut entfernt**.
@@ -127,6 +149,25 @@ Das folgende Diagramm ordnet jede Maßnahme dem Schritt zu, an dem sie wirkt. Ma
     C --> F["Impfung"]
     D --> G["Virostatikum"]`}
 />
+
+Eine Impfung trainiert das Immunsystem, Antikörper zu bilden, bevor das echte Virus kommt.
+
+<AntibodyNeutralizeLab
+  title={<>Antikörper hindern Virionen am Andocken</>}
+  description={<>Vergleiche einen Menschen ohne und mit Antikörpern aus einer Impfung. Drück auf Abspielen, um die Virionen zur Zelle zu schicken.</>}
+  mode="vaccine"
+  labels={{
+    choose: "Person wählen",
+    people: { unvaccinated: <>Nicht geimpft</>, vaccinated: <>Geimpft</> },
+    level: <>Antikörperspiegel</>,
+    covered: <>Bedeckte Spikes</>,
+    blocked: <>Blockierte Virionen</>,
+    chance: <>Chance, dass ein Virion blockiert ist</>,
+    viewLabel: "SARS-CoV-2-Virionen nähern sich ACE2-Rezeptoren einer Zelloberfläche, mit Antikörpern an ihren Spikes",
+  }}
+/>
+
+Ohne Antikörper erreicht jedes Virion die Rezeptoren und dockt an. Bei einem Antikörperspiegel von <InlineMath math="12\text{ nM}" /> sind etwa <InlineMath math="\tfrac{12}{12+1} \approx 92\%" /> der Spikes bedeckt, also wird fast jedes Virion blockiert. In diesem Modell kann ein Virion nur andocken, wenn mindestens ein Viertel seiner <InlineMath math="24" /> Spikes frei ist.
 
 ## Der Übertragungsweg bestimmt die Maßnahme
 

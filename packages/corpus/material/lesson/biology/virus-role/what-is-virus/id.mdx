@@ -5,7 +5,7 @@ export const metadata = {
     "Virus adalah partikel aseluler yang memiliki genom, kapsid, kadang selubung, dan hanya dapat memperbanyak diri dengan bantuan sel inang.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Virus dan Peranannya",
 };
 
@@ -96,6 +96,23 @@ Model berikut menunjukkan permukaan **SARS-CoV-2** secara lebih rinci daripada d
   }}
 />
 
+Virion jauh lebih kecil daripada sel yang diinfeksinya. Perbesar pandangan dari satu sel hewan utuh sampai satu virion.
+
+<CellScaleLab
+  title={<>Dari Sel sampai Virus</>}
+  description={<>Geser perbesarannya. Setiap langkah menyempitkan pandangan dengan faktor yang sama, seperti mengganti lensa objektif mikroskop.</>}
+  labels={{
+    zoom: "Perbesaran",
+    view: <>Lebar pandangan</>,
+    cell: <>Sel hewan</>,
+    bacterium: <>Bakteri</>,
+    virion: <>Virion SARS-CoV-2</>,
+    viewLabel: "Sel hewan, bakteri, dan virion berjajar sesuai ukuran aslinya",
+  }}
+/>
+
+Sel hewan selebar <InlineMath math="20\ \mu\text{m}" /> berarti <InlineMath math="200" /> kali lebar virion yang hanya <InlineMath math="0{,}1\ \mu\text{m}" />. Bakteri Escherichia coli sepanjang <InlineMath math="2\ \mu\text{m}" /> pun masih <InlineMath math="20" /> kali lebih panjang. Itulah sebabnya mikroskop cahaya bisa memperlihatkan bakteri, tetapi virion satu per satu hanya terlihat dengan mikroskop elektron.
+
 ## Replikasi Virus Memakai Sel Inang
 
 Sel hidup biasanya memiliki membran sel, sitoplasma, ribosom, dan reaksi metabolisme. **Metabolisme** adalah rangkaian reaksi kimia yang digunakan sel untuk memperoleh energi dan membangun bagian sel. <Highlight>Virus tidak memiliki ribosom</Highlight> atau sistem metabolisme yang lengkap.
@@ -107,6 +124,25 @@ Di luar sel inang, virion dapat bertahan sementara, menempel pada sel yang sesua
 ### Aktivitas Virus di Dalam dan di Luar Sel
 
 Di luar sel, virion tidak menjalankan metabolisme, membuat protein, atau menyalin genom. Di dalam sel yang sesuai, genom virus dapat mengarahkan pembuatan protein virus dan salinan genom baru. Karena itu, virus hanya dapat memperbanyak diri **di dalam sel inang yang sesuai**.
+
+Sebagian virus membawa DNA, sebagian lagi RNA. SARS-CoV-2 membawa satu untai RNA yang panjangnya hampir <InlineMath math="30{.}000" /> basa.
+
+<DnaHelixLab
+  title={<>Awal Genom RNA Sebuah Virus</>}
+  description={<>Ini <InlineMath math="30" /> basa pertama genom rujukan SARS-CoV-2, sebagai satu untai RNA. Putar untainya dan baca basanya.</>}
+  nucleic="rna"
+  genome={29903}
+  sequence="AUUAAAGGUUUAUACCUUCCCAGGUAACAA"
+  labels={{
+    length: <>Basa yang ditampilkan</>,
+    whole: <>Basa seluruh genom</>,
+    share: <>Bagian genom yang ditampilkan</>,
+    gc: <>Bagian G dan C</>,
+    viewLabel: "Satu untai RNA dengan basa-basanya",
+  }}
+/>
+
+Genom utuhnya berisi <InlineMath math="29{.}903" /> basa, jadi potongan ini hanya sekitar <InlineMath math="0{,}1\%" /> darinya. Perhatikan bahwa RNA memakai U, bukan T, dan untainya tunggal. Untuk memperbanyak diri, virus ini memakai enzimnya sendiri untuk menyalin RNA itu di dalam sel inang.
 
 ## Susunan Kapsid dan Selubung Menentukan Bentuk Virus
 
