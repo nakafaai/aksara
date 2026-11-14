@@ -23,6 +23,27 @@ Gunakan segi tiga ini untuk **dua vektor bukan sifar yang tidak segaris**, denga
 
 > Petua sinus biasanya digunakan selepas magnitud paduan diketahui.
 
+### Ke Mana Bot Sebenarnya Pergi
+
+Mengetahui bot bergerak pada <InlineMath math="5\text{ m/s}" /> belum cukup untuk mendaratkannya: **kamu juga memerlukan sudut dari arah tepat ke seberang**, <InlineMath math="36.9^\circ" />, dengan <InlineMath math="\sin\alpha=3/5" />. Sudut itulah yang menentukan bot mendarat <InlineMath math="45\text{ m}" /> ke hilir.
+
+<RiverBoatCrossingLab
+  title={<>Laju Sahaja Tidak Mendaratkan Bot</>}
+  description={<>Bot <InlineMath math="4\text{ m/s}" />, arus <InlineMath math="3\text{ m/s}" />, sungai selebar <InlineMath math="60\text{ m}" />.</>}
+  boatSpeed={4}
+  current={3}
+  width={60}
+  labels={{
+    angle: <>Sudut dari arah tepat ke seberang</>,
+    drift: <>Hanyutan ke hilir</>,
+    groundSpeed: <>Laju bumi</>,
+    heading: <>Haluan bot</>,
+    headingName: "Haluan bot",
+    time: <>Masa menyeberang</>,
+    viewLabel: "Bot menyeberangi sungai yang mengalir",
+  }}
+/>
+
 ## Membaca Sudut yang Ditanya
 
 Sebelum mengira, tentukan dahulu **arah rujukan**. Jika soalan bertanya arah paduan relatif kepada <InlineMath math="\vec{A}" />, sudut yang dikehendaki ialah sudut dari <InlineMath math="\vec{A}" /> ke arah <InlineMath math="\vec{R}" />.
@@ -39,6 +60,28 @@ Hubungan yang biasa digunakan ialah:
 Nilai <InlineMath math="\phi_0" /> ialah **calon sudut tirus atau sudut tegak**. Semak komponen paduan untuk memilih antara <InlineMath math="\phi=\phi_0" /> dengan <InlineMath math="\phi=180^\circ-\phi_0" />.
 
 Rumus ini mencari sudut paduan relatif kepada vektor <InlineMath math="\vec{A}" />. Oleh sebab sisi yang bertentangan dengan sudut <InlineMath math="\phi" /> mempunyai magnitud <InlineMath math="B" />, <InlineMath math="B" /> muncul pada pengangka.
+
+### Sudut Hanyut Sebuah Pesawat
+
+Juruterbang bertanya tentang sudut di antara arah muncung pesawat dengan arah pesawat bergerak, iaitu **hanyutan**. Di sini sudut itu terletak di antara halaju udara dengan halaju bumi, bertentangan dengan sisi angin: <InlineMath math="\sin\delta=300\sin60^\circ/608" />, jadi <InlineMath math="25.3^\circ" />.
+
+<AircraftCrosswindLab
+  title={<>Sudut Mana yang Dinamakan Hanyutan</>}
+  description={<>Laju udara <InlineMath math="400\text{ km/j}" />, angin <InlineMath math="300\text{ km/j}" /> ke arah timur. Putar muncung pesawat.</>}
+  airspeed={400}
+  heading={30}
+  toward={90}
+  wind={300}
+  labels={{
+    between: <>Sudut di antara halaju udara dengan angin</>,
+    drift: <>Sudut hanyut</>,
+    groundSpeed: <>Laju bumi</>,
+    heading: <>Haluan muncung pesawat</>,
+    headingName: "Haluan muncung pesawat",
+    track: <>Jejak di atas tanah</>,
+    viewLabel: "Pesawat penumpang di atas kawasan ladang dalam angin lintang",
+  }}
+/>
 
 ## Arah Daya Paduan
 
@@ -63,7 +106,7 @@ Berikut ialah dua daya itu bersama segi empat selarinya. Paduan berwarna magenta
 
 <MathVisual
   title={<>Arah Paduan</>}
-  description={<><InlineMath math="A=10\text{ N}" /> dan <InlineMath math="B=8\text{ N}" /> pada sudut 60° bersama segi empat selari yang memberikan R. Satu petak grid ialah 2 N.</>}
+  description={<><InlineMath math="A=10\text{ N}" /> dan <InlineMath math="B=8\text{ N}" /> pada sudut <InlineMath math="60^\circ" /> bersama segi empat selari yang memberikan R. Satu petak grid ialah <InlineMath math="2\text{ N}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.8, max: 4.5 } },
@@ -87,6 +130,26 @@ Berikut ialah dua daya itu bersama segi empat selarinya. Paduan berwarna magenta
     a: <InlineMath math="A=10\text{ N}" />,
     b: <InlineMath math="B=8\text{ N}" />,
     r: <InlineMath math="R\approx15.62\text{ N},\ \phi\approx26.3^\circ" />,
+  }}
+/>
+
+### Arah Tundaan
+
+Kapal tunda yang menarik dengan <InlineMath math="10\text{ kN}" /> dan <InlineMath math="8\text{ kN}" /> dengan sudut <InlineMath math="60^\circ" /> di antara kabelnya memberikan <InlineMath math="15.6\text{ kN}" />. **Sudutnya dari kabel pertama** ialah <InlineMath math="26.3^\circ" />, iaitu <InlineMath math="\phi" /> yang sama seperti di atas, jadi kapal itu hanya bergerak <InlineMath math="3.7^\circ" /> dari garisnya sendiri.
+
+<TugboatResultantLab
+  title={<>Petua Sinus di Pelabuhan</>}
+  description={<>Tarikan <InlineMath math="10\text{ kN}" /> dan <InlineMath math="8\text{ kN}" />. Buka atau rapatkan kabelnya.</>}
+  between={60}
+  first={10}
+  second={8}
+  labels={{
+    between: <>Sudut di antara kabel</>,
+    betweenName: "Sudut di antara kabel",
+    fromFirst: <>Sudut <InlineMath math="\vec R" /> dari <InlineMath math="\vec F_1" /></>,
+    fromLine: <>Sudut dari garis kapal</>,
+    resultant: <>Paduan <InlineMath math="R" /></>,
+    viewLabel: "Dua kapal tunda menunda sebuah kapal",
   }}
 />
 
@@ -161,7 +224,7 @@ Sambungkan vektor-vektor itu secara hujung ke pangkal dan kamu akan mendapat seb
 
 <MathVisual
   title={<>Magnitud, Arah dan Semakan</>}
-  description={<>Segi tiga vektor bagi A (jingga), B (ungu) dan paduannya R (magenta), dengan sudut di antara A dan B (hijau kebiruan) serta arah R (kuning ambar). Satu petak grid ialah 2 N.</>}
+  description={<>Segi tiga vektor bagi A (jingga), B (ungu) dan paduannya R (magenta), dengan sudut di antara A dan B (hijau kebiruan) serta arah R (kuning ambar). Satu petak grid ialah <InlineMath math="2\text{ N}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.8, max: 4.5 } },
@@ -193,8 +256,51 @@ Sambungkan vektor-vektor itu secara hujung ke pangkal dan kamu akan mendapat seb
   }}
 />
 
+Tarikan lemah <InlineMath math="0.98\text{ N}" /> pada <InlineMath math="0^\circ" /> dan tarikan kuat <InlineMath math="3.92\text{ N}" /> pada <InlineMath math="150^\circ" /> memberikan paduan pada <InlineMath math="140.9^\circ" />. Petua sinus sahaja memberikan <InlineMath math="39.1^\circ" />, tetapi komponennya menunjukkan jawapan sudut cakah, <InlineMath math="180^\circ-39.1^\circ" />.
+
+<ForceTableResultantLab
+  title={<>Paduan Bersudut Cakah</>}
+  description={<>Penggantung beban <InlineMath math="100\text{ g}" /> pada <InlineMath math="0^\circ" /> dan <InlineMath math="400\text{ g}" /> pada sudut yang kamu pilih.</>}
+  pulls={[
+    { angle: 0, mass: 100 },
+    { angle: 150, mass: 400 },
+  ]}
+  labels={{
+    angle: <>Sudut tali terakhir</>,
+    angleName: "Sudut tali terakhir",
+    direction: <>Arah <InlineMath math="\vec R" /></>,
+    resultant: <>Paduan <InlineMath math="R" /></>,
+    sumX: <>Jumlah di sepanjang <InlineMath math="0^\circ" /></>,
+    sumY: <>Jumlah di sepanjang <InlineMath math="90^\circ" /></>,
+    viewLabel: "Meja daya dengan beban yang tergantung",
+  }}
+/>
+
 ## Kaedah Komponen bagi Lebih daripada Dua Vektor
 
 Apabila terdapat lebih daripada dua vektor, kaedah komponen meletakkan setiap vektor pada paksi <InlineMath math="x" /> dan <InlineMath math="y" /> yang sama, kemudian menjumlahkan komponennya. Cara ini mengelakkan kamu daripada membina beberapa segi tiga dan menentukan sudut segi tiga mana yang sesuai bagi setiap persamaan petua sinus. Kaedah komponen yang sama juga sesuai untuk arah yang sudah diukur dari paksi koordinat.
 
 Gunakan petua sinus apabila soalannya jelas: dua vektor, sudut di antara yang diketahui, magnitud paduan yang diketahui, dan arah paduan yang diminta relatif kepada salah satu vektor. Sentiasa <Highlight>selesaikan ambiguiti sinus songsang</Highlight> sebelum menyatakan arahnya.
+
+### Pelayaran Tiga Peringkat
+
+Dengan tiga peringkat, segi tiga menjadi rumit, jadi **tambah komponennya**. Peringkat-peringkat itu memberikan <InlineMath math="2.46\text{ km}" /> ke timur dan <InlineMath math="7.54\text{ km}" /> ke utara, jadi feri berakhir <InlineMath math="7.93\text{ km}" /> jauhnya pada bearing <InlineMath math="18.1^\circ" />. Putar peringkat terakhir dan jumlahnya dikemas kini serta-merta.
+
+<ShipBearingComponentLab
+  title={<>Tiga Peringkat Ditambah Melalui Komponen</>}
+  description={<>Peringkat <InlineMath math="6\text{ km}" /> ke timur, <InlineMath math="4\text{ km}" /> ke utara dan <InlineMath math="5\text{ km}" /> pada bearing yang kamu pilih.</>}
+  courses={[
+    { bearing: 90, distance: 6 },
+    { bearing: 0, distance: 4 },
+    { bearing: 315, distance: 5 },
+  ]}
+  labels={{
+    bearing: <>Bearing peringkat terakhir</>,
+    bearingName: "Bearing peringkat terakhir",
+    direction: <>Bearing dari pelabuhan</>,
+    distance: <>Jarak dari pelabuhan</>,
+    east: <>Komponen timur</>,
+    north: <>Komponen utara</>,
+    viewLabel: "Feri belayar dari pelabuhan",
+  }}
+/>

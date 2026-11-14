@@ -37,6 +37,27 @@ Jika **daya malar** bertindak sepanjang sesaran, kerja yang dilakukan oleh daya 
 
 Komponen daya **di sepanjang paksi sesaran** yang menentukan kerja. Komponen ini positif jika searah dengan gerakan dan negatif jika menentang gerakan.
 
+### Cahaya Matahari pada Panel Suria
+
+Panel menerima **hasil darab skalar cahaya matahari dengan luasnya**: <InlineMath math="P=IA\cos\theta" />. Dengan matahari setinggi <InlineMath math="60^\circ" /> dan panel condong <InlineMath math="10^\circ" />, sudut di antara <InlineMath math="\hat n" /> dengan <InlineMath math="\hat s" /> ialah <InlineMath math="20^\circ" /> dan panel menerima <InlineMath math="1597\text{ W}" />. Condongkannya kepada <InlineMath math="30^\circ" /> untuk mendapat <InlineMath math="1700\text{ W}" /> sepenuhnya.
+
+<SolarPanelFluxLab
+  title={<>Kuasa sebagai Hasil Darab Skalar</>}
+  description={<>Panel seluas <InlineMath math="1.7\text{ m}^2" /> dalam cahaya matahari <InlineMath math="1000\text{ W/m}^2" />. Condongkan panel.</>}
+  area={1.7}
+  elevation={60}
+  sunlight={1000}
+  tilt={10}
+  labels={{
+    between: <>Sudut di antara <InlineMath math="\hat n" /> dengan <InlineMath math="\hat s" /></>,
+    cosine: <><InlineMath math="\cos\theta" /></>,
+    power: <>Kuasa yang diterima</>,
+    tilt: <>Kecondongan panel</>,
+    tiltName: "Kecondongan panel",
+    viewLabel: "Panel suria di padang",
+  }}
+/>
+
 ### Kerja daripada Hasil Darab Skalar
 
 Seseorang menarik sebuah kotak dengan daya malar <InlineMath math="40\text{ N}" /> sementara kotak itu bergerak sejauh <InlineMath math="5\text{ m}" />. Daya itu membentuk sudut <InlineMath math="60^\circ" /> dengan arah sesaran. Kerjanya ialah:
@@ -58,7 +79,7 @@ Graf di bawah menggunakan tarikan <InlineMath math="40\text{ N}" /> yang sama se
 
 <MathVisual
   title={<>Kerja Mengikut Kosinus Sudut</>}
-  description={<><InlineMath math="W=Fs\cos\theta" /> bagi <InlineMath math="F=40\text{ N}" /> dan <InlineMath math="s=5\text{ m}" />. Paksi mengufuk: sudut, setiap unit 30°. Paksi menegak: kerja, setiap unit 50 J.</>}
+  description={<><InlineMath math="W=Fs\cos\theta" /> bagi <InlineMath math="F=40\text{ N}" /> dan <InlineMath math="s=5\text{ m}" />. Paksi mengufuk: sudut, setiap unit <InlineMath math="30^\circ" />. Paksi menegak: kerja, setiap unit <InlineMath math="50\text{ J}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.6 } },
@@ -79,6 +100,26 @@ Graf di bawah menggunakan tarikan <InlineMath math="40\text{ N}" /> yang sama se
     zero: <InlineMath math="0^\circ:\ W=200\text{ J}" />,
     right: <InlineMath math="90^\circ:\ W=0" />,
     back: <InlineMath math="180^\circ:\ W=-200\text{ J}" />,
+  }}
+/>
+
+Inilah tarikan itu pada sebuah kereta luncur: <InlineMath math="40\text{ N}" /> pada <InlineMath math="60^\circ" /> sepanjang <InlineMath math="5\text{ m}" /> melakukan kerja <InlineMath math="100\text{ J}" />, kerana hanya <InlineMath math="20\text{ N}" /> daripadanya terletak di sepanjang salji. Turunkan tali ke arah <InlineMath math="0^\circ" /> dan kerjanya meningkat ke arah <InlineMath math="200\text{ J}" />.
+
+<SledPullWorkLab
+  title={<>Hanya Bahagian di Sepanjang Gerakan Melakukan Kerja</>}
+  description={<>Kereta luncur <InlineMath math="15\text{ kg}" /> ditarik sejauh <InlineMath math="5\text{ m}" /> dengan <InlineMath math="40\text{ N}" />. Naikkan atau turunkan tali.</>}
+  angle={60}
+  distance={5}
+  force={40}
+  mass={15}
+  labels={{
+    along: <>Di sepanjang salji <InlineMath math="F\cos\theta" /></>,
+    angle: <>Sudut tali di atas salji</>,
+    angleName: "Sudut tali di atas salji",
+    normal: <>Daya normal daripada salji</>,
+    up: <>Bahagian ke atas <InlineMath math="F\sin\theta" /></>,
+    viewLabel: "Kereta luncur berisi kayu api ditarik di atas salji",
+    work: <>Kerja sepanjang <InlineMath math="5\text{ m}" /></>,
   }}
 />
 
@@ -138,6 +179,25 @@ Bagi tork, hasil darab vektor ditulis sebagai:
 
 Vektor <InlineMath math="\vec{r}" /> ialah vektor kedudukan dari titik rujukan pada engsel ke titik tempat daya bertindak. Lengan tuas yang berserenjang mempunyai panjang <InlineMath math="r\sin\theta" />. Pada sudut yang sama, daya yang sama menghasilkan tork yang lebih besar apabila dikenakan lebih jauh dari engsel pintu.
 
+### Melonggarkan Nat Roda
+
+Tangan menolak dengan <InlineMath math="200\text{ N}" /> pada spanar roda <InlineMath math="0.4\text{ m}" /> dari nat. Tork <InlineMath math="\vec\tau=\vec r\times\vec F" /> **menghala di sepanjang paksi nat**, <InlineMath math="80\text{ N}\cdot\text{m}" /> apabila tolakan itu bersudut tegak dengan pemegang. Putar tolakan ke bawah pemegang dan tork bertukar ke sebelah yang lain.
+
+<WrenchTorqueLab
+  title={<>Tork pada Nat Roda</>}
+  description={<>Tolakan <InlineMath math="200\text{ N}" /> pada <InlineMath math="0.4\text{ m}" /> dari nat. Putar tolakan itu.</>}
+  angle={90}
+  arm={0.4}
+  force={200}
+  labels={{
+    angle: <>Sudut dari pemegang ke daya</>,
+    angleName: "Sudut dari pemegang ke daya",
+    square: <>Daya yang bersudut tegak dengan pemegang <InlineMath math="F\sin\theta" /></>,
+    torque: <>Tork <InlineMath math="\tau" /></>,
+    viewLabel: "Spanar roda pada nat roda kereta",
+  }}
+/>
+
 ### Tork daripada Daya Berserenjang
 
 Pilih titik rujukan pada engsel, sama tinggi dengan tempat pintu ditolak. Sebuah pintu ditolak secara mengufuk dengan daya <InlineMath math="30\text{ N}" /> pada jarak <InlineMath math="0.8\text{ m}" /> dari engsel. Daya itu **berserenjang dengan pintu**, jadi <InlineMath math="\theta=90^\circ" />.
@@ -149,6 +209,27 @@ Pilih titik rujukan pada engsel, sama tinggi dengan tempat pintu ditolak. Sebuah
 \end{aligned}" />
 
 Bagi <InlineMath math="r" /> dan <InlineMath math="F" /> yang tetap, daya yang berserenjang memberikan tork maksimum kerana <InlineMath math="\sin90^\circ=1" />. Daya yang hampir selari dengan vektor kedudukan <InlineMath math="\vec{r}" /> memberikan tork yang kecil kerana faktor sinusnya hampir sifar.
+
+Inilah pintu itu dilihat dari siling: <InlineMath math="30\text{ N}" /> yang bersudut tegak dengan pintu pada <InlineMath math="0.8\text{ m}" /> memberikan <InlineMath math="24\text{ N}\cdot\text{m}" />, dan pintu terbuka. Gerakkan tangan ke arah engsel atau serongkan tolakan, dan tork serta ayunan pintu sama-sama berkurang.
+
+<DoorHingeTorqueLab
+  title={<>Menolak Pintu hingga Terbuka</>}
+  description={<>Pintu <InlineMath math="18\text{ kg}" /> selebar <InlineMath math="0.9\text{ m}" />, ditolak dengan <InlineMath math="30\text{ N}" />.</>}
+  angle={90}
+  arm={0.8}
+  force={30}
+  mass={18}
+  width={0.9}
+  labels={{
+    angle: <>Sudut di antara pintu dengan tolakan</>,
+    angleName: "Sudut di antara pintu dengan tolakan",
+    arm: <>Jarak dari engsel</>,
+    armName: "Jarak dari engsel",
+    square: <>Tolakan yang bersudut tegak dengan pintu <InlineMath math="F\sin\theta" /></>,
+    torque: <>Tork <InlineMath math="\tau" /></>,
+    viewLabel: "Pintu dilihat dari siling",
+  }}
+/>
 
 ## Membandingkan Hasil Darab Skalar dan Hasil Darab Vektor
 
@@ -166,7 +247,7 @@ Kekalkan kedua-dua magnitud dan ubah sudutnya. Hasil darab skalar yang berwarna 
 
 <MathVisual
   title={<>Hasil Darab Skalar dan Vektor Berbanding Sudut</>}
-  description={<><InlineMath math="AB\cos\theta" /> dan <InlineMath math="AB\sin\theta" /> dengan <InlineMath math="AB=200" /> bagi sudut dari 0° hingga 180°. Paksi mengufuk: sudut, setiap unit 30°. Paksi menegak: nilai, setiap unit 50.</>}
+  description={<><InlineMath math="AB\cos\theta" /> dan <InlineMath math="AB\sin\theta" /> dengan <InlineMath math="AB=200" /> bagi sudut dari <InlineMath math="0^\circ" /> hingga <InlineMath math="180^\circ" />. Paksi mengufuk: sudut, setiap unit <InlineMath math="30^\circ" />. Paksi menegak: nilai, setiap unit <InlineMath math="50" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.8 } },
@@ -183,5 +264,27 @@ Kekalkan kedua-dua magnitud dan ubah sudutnya. Hasil darab skalar yang berwarna 
   labels={{
     dot: <InlineMath math="\vec A\cdot\vec B" />,
     cross: <InlineMath math="\lvert\vec A\times\vec B\rvert" />,
+  }}
+/>
+
+### Dua Hasil Darab pada Satu Satah Condong
+
+Semasa bongkah menggelongsor <InlineMath math="0.5\text{ m}" /> menuruni cerun, berat melakukan kerja <InlineMath math="\vec W\cdot\vec s" />, yang hanya menggunakan bahagian di sepanjang cerun, <InlineMath math="9.8\text{ N}" />: <InlineMath math="4.9\text{ J}" />. Bahagian yang menekan ke dalam papan, <InlineMath math="16.97\text{ N}" />, **tidak melakukan kerja langsung**.
+
+<RampBlockComponentLab
+  title={<>Bahagian Mana yang Melakukan Kerja</>}
+  description={<>Bongkah <InlineMath math="2\text{ kg}" /> di atas papan. Bongkah mula menggelongsor apabila <InlineMath math="\tan\theta" /> melebihi <InlineMath math="0.4" />.</>}
+  angle={30}
+  distance={0.5}
+  friction={0.4}
+  mass={2}
+  labels={{
+    along: <>Menuruni cerun <InlineMath math="W\sin\theta" /></>,
+    angle: <>Sudut satah condong</>,
+    angleName: "Sudut satah condong",
+    into: <>Ke dalam cerun <InlineMath math="W\cos\theta" /></>,
+    viewLabel: "Bongkah kayu di atas papan yang condong",
+    weight: <>Berat <InlineMath math="W" /></>,
+    work: <>Kerja oleh berat sepanjang <InlineMath math="0.5\text{ m}" /></>,
   }}
 />

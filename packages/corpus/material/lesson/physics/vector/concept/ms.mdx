@@ -89,6 +89,26 @@ Tanya diri kamu sama ada kuantiti itu memerlukan arah. Dua troli ini mempunyai l
   }}
 />
 
+### Angin pada Peta Cuaca
+
+Peta cuaca **memerlukan vektor untuk angin**: <InlineMath math="12\text{ m/s}" /> sahaja tidak memberitahu pelaut ke mana botnya hanyut. Putar arahnya dan perhatikan setiap anak panah pada peta turut berputar, sedangkan laju hanya menentukan panjangnya.
+
+<WindMapVectorLab
+  title={<>Angin di Atas Pulau-pulau</>}
+  description={<>Angin mantap <InlineMath math="12\text{ m/s}" /> bertiup ke arah <InlineMath math="30^\circ" /> dari timur. Ubah laju dan arahnya.</>}
+  angle={30}
+  speed={12}
+  labels={{
+    angle: <>Arah dari timur</>,
+    angleName: "Arah dari timur",
+    east: <>Komponen timur <InlineMath math="v_x" /></>,
+    north: <>Komponen utara <InlineMath math="v_y" /></>,
+    speed: <>Laju angin</>,
+    speedName: "Laju angin",
+    viewLabel: "Peta cuaca angin di atas pulau-pulau",
+  }}
+/>
+
 ## Membaca Anak Panah Vektor
 
 Vektor selalunya dilukis sebagai anak panah. **Pangkal** anak panah ialah titik mula vektor, **hujung** anak panah menunjukkan arah, dan **panjang** anak panah mewakili magnitud vektor.
@@ -101,6 +121,27 @@ Vektor juga boleh ditulis dari satu titik ke titik lain, contohnya <InlineMath m
 
 Tanda nilai mutlak di sekeliling vektor menandakan magnitudnya. Arah tidak termasuk dalam nilai itu.
 
+### Dron Meninggalkan Tapaknya
+
+Anak panah ungu bermula di tapak, iaitu pangkalnya, dan berakhir di dron, iaitu hujungnya. Panjangnya ialah **jarak lurus dari tapak**, <InlineMath math="10.8\text{ m}" />, walaupun dron itu terbang <InlineMath math="18\text{ m}" /> di sepanjang lintasannya. Tekan main untuk melihatnya terbang.
+
+<DroneDisplacementLab
+  title={<>Pangkal di Tapak, Hujung di Dron</>}
+  description={<>Dron naik <InlineMath math="4\text{ m}" />, terbang <InlineMath math="6\text{ m}" /> ke timur, kemudian <InlineMath math="8\text{ m}" /> ke utara.</>}
+  hops={[
+    { east: 0, north: 0, up: 4 },
+    { east: 6, north: 0, up: 0 },
+    { east: 0, north: 8, up: 0 },
+  ]}
+  labels={{
+    chooseFactor: "Darabkan pelan penerbangan dengan k",
+    displacement: <>Sesaran</>,
+    path: <>Lintasan yang diterbangi</>,
+    size: <>Jarak dari tapak</>,
+    viewLabel: "Dron terbang dari tapaknya",
+  }}
+/>
+
 ## Kesamaan Vektor Bergantung pada Magnitud dan Arah
 
 Dua vektor adalah sama jika kedua-duanya mempunyai <Highlight>magnitud yang sama dan arah yang sama</Highlight>. Kedudukan kedua-dua vektor itu boleh berbeza.
@@ -108,6 +149,28 @@ Dua vektor adalah sama jika kedua-duanya mempunyai <Highlight>magnitud yang sama
 Dua daya <InlineMath math="15 \text{ N}" /> yang berarah ke kanan mempunyai nilai vektor yang sama, walaupun anak panahnya dilukis di tempat yang berbeza. Titik tindakan daya mempengaruhi tork pada jasad tegar. Jika titik itu dialihkan, tork boleh berubah walaupun magnitud dan arah daya kekal sama.
 
 Sebaliknya, daya <InlineMath math="15 \text{ N}" /> ke kanan dan daya <InlineMath math="15 \text{ N}" /> ke kiri bukan vektor yang sama. Magnitudnya sama, tetapi arahnya bertentangan.
+
+### Dua Pasukan pada Satu Tali
+
+Kedua-dua pasukan bermula dengan tiga orang penarik yang masing-masing menarik <InlineMath math="400\text{ N}" />, jadi kedua-dua daya bermagnitud <InlineMath math="1200\text{ N}" />. Namun kedua-duanya bukan vektor yang sama, kerana **arahnya bertentangan**, dan bersama-sama memberikan daya bersih <InlineMath math="0\text{ N}" />. Tambah seorang penarik pada satu pihak dan lihat tali bergerak.
+
+<TugOfWarForceLab
+  title={<>Magnitud Sama, Tarikan Bertentangan</>}
+  description={<>Setiap penarik menarik dengan <InlineMath math="400\text{ N}" />. Ubah saiz setiap pasukan.</>}
+  left={3}
+  pull={400}
+  right={3}
+  labels={{
+    left: <>Pasukan kiri <InlineMath math="\vec F_L" /></>,
+    leftCount: <>Penarik di sebelah kiri</>,
+    leftName: "Penarik di sebelah kiri",
+    net: <>Daya bersih <InlineMath math="\Sigma F" /></>,
+    right: <>Pasukan kanan <InlineMath math="\vec F_R" /></>,
+    rightCount: <>Penarik di sebelah kanan</>,
+    rightName: "Penarik di sebelah kanan",
+    viewLabel: "Lumba tarik tali ketika matahari terbenam",
+  }}
+/>
 
 ## Jarak dan Sesaran Mengukur Kuantiti Berbeza
 
@@ -131,8 +194,8 @@ Jaraknya ialah <InlineMath math="7 \text{ m}" />. Sesaran pula mempunyai magnitu
 Dalam rajah di bawah, kamu berjalan sejauh <InlineMath math="7\text{ m}" />, tetapi anak panah magenta, iaitu sesaran, hanya sepanjang <InlineMath math="5\text{ m}" /> dan berarah kira-kira <InlineMath math="36.9^\circ" /> dari timur ke arah utara.
 
 <MathVisual
-  title={<>Berjalan 7 m, Beranjak 5 m</>}
-  description={<>4 m ke timur, kemudian 3 m ke utara. Satu petak grid ialah 1 m.</>}
+  title={<>Berjalan <InlineMath math="7\text{ m}" />, Beranjak <InlineMath math="5\text{ m}" /></>}
+  description={<><InlineMath math="4\text{ m}" /> ke timur, kemudian <InlineMath math="3\text{ m}" /> ke utara. Satu petak grid ialah <InlineMath math="1\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 3.8 } },
@@ -155,5 +218,27 @@ Dalam rajah di bawah, kamu berjalan sejauh <InlineMath math="7\text{ m}" />, tet
     east: <InlineMath math="4\text{ m}" />,
     north: <InlineMath math="3\text{ m}" />,
     walk: <InlineMath math="5\text{ m}" />,
+  }}
+/>
+
+### Berjalan Melalui Bandar
+
+Pejalan kaki itu mengikut jalan <InlineMath math="300\text{ m}" /> ke timur dan kemudian <InlineMath math="400\text{ m}" /> ke utara, jadi jaraknya <InlineMath math="700\text{ m}" />. Sesarannya ialah **anak panah ungu yang lurus dari mula hingga akhir**, hanya sepanjang <InlineMath math="500\text{ m}" />.
+
+<CityWalkDisplacementLab
+  title={<>Jarak yang Dilalui dan Sesaran</>}
+  description={<>Berjalan pada <InlineMath math="1.25\text{ m/s}" /> di sepanjang dua jalan di bandar.</>}
+  legs={[
+    { east: 300, north: 0 },
+    { east: 0, north: 400 },
+  ]}
+  pace={1.25}
+  labels={{
+    averageSpeed: <>Laju purata</>,
+    averageVelocity: <>Halaju purata</>,
+    displacement: <>Sesaran</>,
+    distance: <>Jarak yang dilalui</>,
+    time: <>Masa</>,
+    viewLabel: "Perjalanan melalui bandar dilihat dari atas",
   }}
 />

@@ -18,6 +18,27 @@ Kaedah grafik mencari vektor paduan menggunakan lukisan berskala. Panjang anak p
 
 > Dalam kaedah grafik, ketepatan jawapan bergantung pada skala lukisan, penggunaan pembaris dan pengukuran sudut.
 
+### Bot Menyeberangi Sungai
+
+Halaju bot sendiri <InlineMath math="4\text{ m/s}" /> (hijau kebiruan) dan arus <InlineMath math="3\text{ m/s}" /> (kuning ambar) **dilukis hujung ke pangkal**, dan anak panah dari pangkal pertama ke hujung terakhir (ungu) ialah jumlahnya, <InlineMath math="5\text{ m/s}" />. Putar haluannya dan segi tiga itu berubah bentuk.
+
+<RiverBoatCrossingLab
+  title={<>Bot dan Arus Ditambah</>}
+  description={<>Sungai selebar <InlineMath math="60\text{ m}" /> yang mengalir pada <InlineMath math="3\text{ m/s}" />.</>}
+  boatSpeed={4}
+  current={3}
+  width={60}
+  labels={{
+    angle: <>Sudut dari arah tepat ke seberang</>,
+    drift: <>Hanyutan ke hilir</>,
+    groundSpeed: <>Laju bumi</>,
+    heading: <>Haluan bot</>,
+    headingName: "Haluan bot",
+    time: <>Masa menyeberang</>,
+    viewLabel: "Bot menyeberangi sungai yang mengalir",
+  }}
+/>
+
 ### Kaedah Segi Tiga Hujung ke Pangkal
 
 Kaedah segi tiga digunakan untuk menambah dua vektor. Lukis vektor pertama, kemudian letakkan pangkal vektor kedua pada hujung vektor pertama. Vektor paduan dilukis dari pangkal vektor pertama ke hujung vektor kedua.
@@ -60,6 +81,25 @@ Letakkan **pangkal vektor kedua pada hujung vektor pertama**. Unit koordinat dal
 
 <BlockMath math="\vec{R}=(4+2,1+3)\text{ m}=(6,4)\text{ m}" />
 
+Sebuah pesawat penumpang menghala ke utara pada <InlineMath math="400\text{ km/j}" /> sementara angin <InlineMath math="300\text{ km/j}" /> bertiup ke timur. Letakkan pangkal vektor angin pada hujung halaju udara: sisi ketiga segi tiga itu ialah halaju bumi, <InlineMath math="500\text{ km/j}" /> pada jejak <InlineMath math="36.9^\circ" />.
+
+<AircraftCrosswindLab
+  title={<>Segi Tiga Angin Lintang</>}
+  description={<>Laju udara <InlineMath math="400\text{ km/j}" />, angin <InlineMath math="300\text{ km/j}" /> ke arah timur. Putar muncung pesawat.</>}
+  airspeed={400}
+  toward={90}
+  wind={300}
+  labels={{
+    between: <>Sudut di antara halaju udara dengan angin</>,
+    drift: <>Sudut hanyut</>,
+    groundSpeed: <>Laju bumi</>,
+    heading: <>Haluan muncung pesawat</>,
+    headingName: "Haluan muncung pesawat",
+    track: <>Jejak di atas tanah</>,
+    viewLabel: "Pesawat penumpang di atas kawasan ladang dalam angin lintang",
+  }}
+/>
+
 ### Kaedah Segi Empat Selari bagi Dua Vektor dengan Pangkal Sepunya
 
 Dua daya yang bertindak pada satu titik boleh dilukis dari **pangkal yang sama**. Contohnya, dua tali menarik sebentuk cincin. Vektor salinan dalam model mengekalkan panjang dan arah anak panah asal. Ikut sisi bawah kemudian sisi kanan, atau sisi kiri kemudian sisi atas. Kedua-dua laluan berakhir pada titik yang sama.
@@ -100,6 +140,24 @@ Dua daya yang bertindak pada satu titik boleh dilukis dari **pangkal yang sama**
   }}
 />
 
+Kedua-dua kabel kapal tunda bermula di haluan kapal, iaitu satu pangkal yang sama. Tarikan <InlineMath math="40\text{ kN}" /> dan <InlineMath math="30\text{ kN}" /> membentuk segi empat selari (garis putus-putus), dan pepenjurunya dari haluan ialah paduan, <InlineMath math="50\text{ kN}" /> apabila kabel-kabel itu bersudut tegak.
+
+<TugboatResultantLab
+  title={<>Dua Kapal Tunda, Satu Pepenjuru</>}
+  description={<>Tarikan kapal tunda <InlineMath math="40\text{ kN}" /> dan <InlineMath math="30\text{ kN}" />. Buka atau rapatkan kabelnya.</>}
+  between={90}
+  first={40}
+  second={30}
+  labels={{
+    between: <>Sudut di antara kabel</>,
+    betweenName: "Sudut di antara kabel",
+    fromFirst: <>Sudut <InlineMath math="\vec R" /> dari <InlineMath math="\vec F_1" /></>,
+    fromLine: <>Sudut dari garis kapal</>,
+    resultant: <>Paduan <InlineMath math="R" /></>,
+    viewLabel: "Dua kapal tunda menunda sebuah kapal",
+  }}
+/>
+
 ### Kaedah Poligon bagi Banyak Vektor
 
 Susunan lukisan boleh ditukar asalkan <Highlight>setiap vektor mengekalkan magnitud dan arahnya</Highlight>. Vektor paduan dilukis dari pangkal vektor pertama yang dipilih ke hujung vektor terakhir.
@@ -111,6 +169,28 @@ Jika poligon kembali ke titik mula, hasil tambah vektornya ialah sifar. Bagi day
 Sebagai contoh, tambahkan <InlineMath math="\vec{c}=(-6,-4)" /> selepas dua sesaran dalam model tadi. Anak panah ketiga mengikut pepenjuru kembali ke titik mula. Perjalanan itu masih ada panjangnya, tetapi jumlah sesarannya ialah sifar.
 
 <BlockMath math="\vec{a}+\vec{b}+\vec{c}=(4+2-6,1+3-4)=(0,0)" />
+
+Perjalanan empat peringkat ialah poligon empat vektor, setiap satunya bermula di tempat vektor sebelumnya berakhir. Anak panah ungu menutup poligon itu dari mula hingga akhir: <InlineMath math="200\text{ m}" /> ke timur dan <InlineMath math="300\text{ m}" /> ke utara, sepanjang <InlineMath math="361\text{ m}" />.
+
+<CityWalkDisplacementLab
+  title={<>Empat Peringkat, Satu Paduan</>}
+  description={<>Berjalan pada <InlineMath math="1.25\text{ m/s}" /> di sepanjang empat jalan.</>}
+  legs={[
+    { east: 300, north: 0 },
+    { east: 0, north: 200 },
+    { east: -100, north: 0 },
+    { east: 0, north: 100 },
+  ]}
+  pace={1.25}
+  labels={{
+    averageSpeed: <>Laju purata</>,
+    averageVelocity: <>Halaju purata</>,
+    displacement: <>Sesaran</>,
+    distance: <>Jarak yang dilalui</>,
+    time: <>Masa</>,
+    viewLabel: "Perjalanan melalui bandar dilihat dari atas",
+  }}
+/>
 
 ## Penolakan Vektor secara Grafik
 
@@ -147,3 +227,32 @@ Untuk penolakan, **terbalikkan arah vektor yang ditolak**. Dengan pasangan yang 
     }}
   />
 </ContentStack>
+
+### Daripada Kedudukan Mula kepada Satu Laluan
+
+Dari titik mula <InlineMath math="O" />, anak panah hijau kebiruan <InlineMath math="\vec a" /> sampai ke titik kawalan <InlineMath math="A" /> dan anak panah kuning ambar <InlineMath math="\vec b" /> sampai ke <InlineMath math="B" />. **Beza kedua-duanya**, <InlineMath math="\vec b-\vec a" />, ialah anak panah dari hujung <InlineMath math="\vec a" /> ke hujung <InlineMath math="\vec b" />: laluan dari <InlineMath math="A" /> ke <InlineMath math="B" />, sepanjang <InlineMath math="100\text{ m}" />.
+
+<OrienteeringMapVectorLab
+  title={<>Menolak Kedudukan <InlineMath math="\vec b-\vec a" /></>}
+  description={<>Titik mula <InlineMath math="O" /> ialah segi tiga fuchsia. Tukar antara beza dengan laluan.</>}
+  marks={{
+    a: { east: 40, north: 30 },
+    b: { east: 100, north: 110 },
+    c: { east: 150, north: -10 },
+  }}
+  views={["difference", "forward"]}
+  labels={{
+    angle: <>Arah dari timur</>,
+    chooseView: "Pilih vektor untuk ditunjukkan",
+    east: <>Bahagian timur</>,
+    north: <>Bahagian utara</>,
+    size: <>Panjang</>,
+    viewLabel: "Peta orienteering sebuah taman",
+    views: {
+      back: <><InlineMath math="B" /> ke <InlineMath math="A" /></>,
+      copy: <>Vektor yang sama dari <InlineMath math="C" /></>,
+      difference: <><InlineMath math="\vec b-\vec a" /></>,
+      forward: <><InlineMath math="A" /> ke <InlineMath math="B" /></>,
+    },
+  }}
+/>

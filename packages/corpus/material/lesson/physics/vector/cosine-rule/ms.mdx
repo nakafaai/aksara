@@ -18,6 +18,28 @@ Petua ini digunakan apabila magnitud dua vektor <InlineMath math="\vec{A}" /> da
 
 > Sudut <InlineMath math="\theta" /> dalam petua kosinus ialah sudut di antara dua vektor apabila pangkal kedua-duanya diletakkan bersama.
 
+### Dua Tali pada Satu Sudut
+
+Tarikan <InlineMath math="2.94\text{ N}" /> dan <InlineMath math="3.92\text{ N}" /> dengan sudut <InlineMath math="60^\circ" /> di antaranya memberikan paduan <InlineMath math="5.96\text{ N}" />, **kurang daripada jumlah biasanya**, iaitu <InlineMath math="6.86\text{ N}" />. Besarkan sudutnya dan perhatikan paduan mengecil.
+
+<ForceTableResultantLab
+  title={<>Sudut Mengecilkan Jumlah</>}
+  description={<>Penggantung beban <InlineMath math="300\text{ g}" /> pada <InlineMath math="0^\circ" /> dan <InlineMath math="400\text{ g}" /> pada sudut yang kamu pilih.</>}
+  pulls={[
+    { angle: 0, mass: 300 },
+    { angle: 60, mass: 400 },
+  ]}
+  labels={{
+    angle: <>Sudut tali terakhir</>,
+    angleName: "Sudut tali terakhir",
+    direction: <>Arah <InlineMath math="\vec R" /></>,
+    resultant: <>Paduan <InlineMath math="R" /></>,
+    sumX: <>Jumlah di sepanjang <InlineMath math="0^\circ" /></>,
+    sumY: <>Jumlah di sepanjang <InlineMath math="90^\circ" /></>,
+    viewLabel: "Meja daya dengan beban yang tergantung",
+  }}
+/>
+
 ## Kosinus dalam Rumus Segi Tiga
 
 Petua kosinus muncul kerana paduan dua vektor membentuk segi tiga dengan dua sisi yang diketahui. Jika sudut di antara vektor kecil, vektor-vektor itu saling menguatkan dengan lebih kuat. Jika sudut menghampiri <InlineMath math="180^\circ" />, vektor-vektor itu lebih banyak saling membatalkan.
@@ -70,13 +92,35 @@ Jadual di bawah menunjukkan cara <InlineMath math="\cos\theta" /> berubah mengik
 
 Apabila <InlineMath math="\theta=90^\circ" />, petua kosinus menjadi bentuk teorem Pythagoras kerana <InlineMath math="\cos90^\circ=0" />.
 
+### Pesawat Melawan Angin Sisi
+
+Dengan muncung pesawat pada <InlineMath math="330^\circ" />, halaju udara <InlineMath math="400\text{ km/j}" /> dan angin <InlineMath math="300\text{ km/j}" /> terpisah <InlineMath math="120^\circ" />, jadi **laju buminya ialah** <InlineMath math="\sqrt{400^2+300^2+2(400)(300)\cos120^\circ}" />, kira-kira <InlineMath math="361\text{ km/j}" />. Putar muncung pesawat dan bandingkan kad ini dengan rumusnya.
+
+<AircraftCrosswindLab
+  title={<>Laju Bumi Melalui Petua Kosinus</>}
+  description={<>Laju udara <InlineMath math="400\text{ km/j}" />, angin <InlineMath math="300\text{ km/j}" /> ke arah timur. Putar muncung pesawat.</>}
+  airspeed={400}
+  heading={330}
+  toward={90}
+  wind={300}
+  labels={{
+    between: <>Sudut di antara halaju udara dengan angin</>,
+    drift: <>Sudut hanyut</>,
+    groundSpeed: <>Laju bumi</>,
+    heading: <>Haluan muncung pesawat</>,
+    headingName: "Haluan muncung pesawat",
+    track: <>Jejak di atas tanah</>,
+    viewLabel: "Pesawat penumpang di atas kawasan ladang dalam angin lintang",
+  }}
+/>
+
 ## Paduan Dua Daya
 
 Dua daya bertindak pada satu titik. Daya pertama ialah <InlineMath math="10\text{ N}" />, daya kedua ialah <InlineMath math="8\text{ N}" />, dan sudut di antara kedua-duanya ialah <InlineMath math="60^\circ" />. Cari magnitud paduannya.
 
 <MathVisual
   title={<>Segi Tiga Paduan bagi Dua Daya</>}
-  description={<>Gerakkan peluncur sudut di antara daya. Anak panah jingga bermula pada hujung anak panah hijau kebiruan, dan anak panah ungu ialah vektor paduan yang menutup segi tiga. Satu petak grid ialah 2 N.</>}
+  description={<>Gerakkan peluncur sudut di antara daya. Anak panah jingga bermula pada hujung anak panah hijau kebiruan, dan anak panah ungu ialah vektor paduan yang menutup segi tiga. Satu petak grid ialah <InlineMath math="2\text{ N}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 10 }, y: { min: -1, max: 5 } },
@@ -122,6 +166,26 @@ R&=\sqrt{A^2+B^2+2AB\cos\theta} \\
 
 Sudut di antara dua daya itu menjadikan paduan kurang daripada <InlineMath math="18\text{ N}" />. Oleh sebab daya-daya itu masih menghala ke arah yang agak sama, paduannya lebih besar daripada setiap daya secara bersendirian. Semak hadnya: <InlineMath math="15.6" /> terletak di antara <InlineMath math="10 - 8 = 2" /> dan <InlineMath math="10 + 8 = 18" />. Arah paduan relatif kepada daya pertama diperoleh daripada [petua sinus](/ms/subjek/fizik/vektor/arah-vektor-paduan-dengan-petua-sinus): <InlineMath math="\sin\varphi = \frac{8\sin 60^\circ}{\sqrt{244}}" />, maka <InlineMath math="\varphi \approx 26.3^\circ" />.
 
+### Dua Kapal Tunda pada Satu Kapal
+
+Inilah nombor yang sama di sebuah pelabuhan: kapal tunda yang menarik dengan <InlineMath math="10\text{ kN}" /> dan <InlineMath math="8\text{ kN}" /> dengan sudut <InlineMath math="60^\circ" /> di antara kabelnya memberikan <InlineMath math="15.6\text{ kN}" />, **pepenjuru segi empat selari bergaris putus-putus**.
+
+<TugboatResultantLab
+  title={<>Paduan Dua Kapal Tunda</>}
+  description={<>Tarikan <InlineMath math="10\text{ kN}" /> dan <InlineMath math="8\text{ kN}" />. Buka atau rapatkan kabelnya.</>}
+  between={60}
+  first={10}
+  second={8}
+  labels={{
+    between: <>Sudut di antara kabel</>,
+    betweenName: "Sudut di antara kabel",
+    fromFirst: <>Sudut <InlineMath math="\vec R" /> dari <InlineMath math="\vec F_1" /></>,
+    fromLine: <>Sudut dari garis kapal</>,
+    resultant: <>Paduan <InlineMath math="R" /></>,
+    viewLabel: "Dua kapal tunda menunda sebuah kapal",
+  }}
+/>
+
 ## Contoh Mencari Sudut daripada Paduan
 
 Dua daya <InlineMath math="5\text{ N}" /> dan <InlineMath math="3\text{ N}" /> menghasilkan paduan <InlineMath math="7\text{ N}" />. Cari sudut di antara kedua-dua daya itu.
@@ -148,11 +212,11 @@ Jika sudutnya <InlineMath math="180^\circ" />, rumus itu sepatutnya memberikan b
 
 Semakan ini menunjukkan bahawa petua kosinus berkait dengan kes yang lebih mudah, iaitu vektor sama arah, vektor bertentangan arah dan vektor berserenjang.
 
-Semak setiap jawapan dengan hujung lengkung ini. <InlineMath math="R=\sqrt{A^2+B^2+2AB\cos\theta}" /> menurun daripada <InlineMath math="A+B" /> apabila daya menghala ke arah yang sama hingga <InlineMath math="\lvert A-B\rvert" /> apabila daya menghala ke arah bertentangan. Jadi, setiap paduan bagi <InlineMath math="10\text{ N}" /> dan <InlineMath math="8\text{ N}" /> terletak di antara 2 N dan 18 N.
+Semak setiap jawapan dengan hujung lengkung ini. <InlineMath math="R=\sqrt{A^2+B^2+2AB\cos\theta}" /> menurun daripada <InlineMath math="A+B" /> apabila daya menghala ke arah yang sama hingga <InlineMath math="\lvert A-B\rvert" /> apabila daya menghala ke arah bertentangan. Jadi, setiap paduan bagi <InlineMath math="10\text{ N}" /> dan <InlineMath math="8\text{ N}" /> terletak di antara <InlineMath math="2\text{ N}" /> dan <InlineMath math="18\text{ N}" />.
 
 <MathVisual
   title={<>Paduan di antara Kes Sempadannya</>}
-  description={<>Paduan bagi daya 10 N dan daya 8 N melawan sudut di antara kedua-duanya. Paksi mengufuk: satu petak grid ialah <InlineMath math="30^\circ" />. Paksi menegak: satu petak grid ialah 2 N.</>}
+  description={<>Paduan bagi daya <InlineMath math="10\text{ N}" /> dan daya <InlineMath math="8\text{ N}" /> melawan sudut di antara kedua-duanya. Paksi mengufuk: satu petak grid ialah <InlineMath math="30^\circ" />. Paksi menegak: satu petak grid ialah <InlineMath math="2\text{ N}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 10 } },
@@ -179,6 +243,28 @@ Semak setiap jawapan dengan hujung lengkung ini. <InlineMath math="R=\sqrt{A^2+B
   }}
 />
 
+### Tali sebagai Kes Sempadan
+
+Dalam lumba tarik tali, dua daya itu terpisah <InlineMath math="180^\circ" />, jadi <InlineMath math="\cos180^\circ=-1" /> dan **petua itu tinggal** <InlineMath math="R=|F_R-F_L|" />: <InlineMath math="900\text{ N}" /> melawan <InlineMath math="600\text{ N}" /> memberikan <InlineMath math="300\text{ N}" />. Samakan kedua-dua pasukan dan paduannya menjadi sifar.
+
+<TugOfWarForceLab
+  title={<>Daya pada Arah Bertentangan</>}
+  description={<>Setiap penarik menarik dengan <InlineMath math="300\text{ N}" />. Ubah pasukannya.</>}
+  left={2}
+  pull={300}
+  right={3}
+  labels={{
+    left: <>Pasukan kiri <InlineMath math="\vec F_L" /></>,
+    leftCount: <>Penarik di sebelah kiri</>,
+    leftName: "Penarik di sebelah kiri",
+    net: <>Daya bersih <InlineMath math="\Sigma F" /></>,
+    right: <>Pasukan kanan <InlineMath math="\vec F_R" /></>,
+    rightCount: <>Penarik di sebelah kanan</>,
+    rightName: "Penarik di sebelah kanan",
+    viewLabel: "Lumba tarik tali ketika matahari terbenam",
+  }}
+/>
+
 ## Bila Memilih Petua Kosinus
 
 Semua syarat berikut mesti dipenuhi:
@@ -198,6 +284,27 @@ Bagi lebih daripada dua vektor, leraikan setiap vektor kepada komponen koordinat
   A -->|"magnitud paduan diketahui, cari arah"| C["Petua sinus"]
   A -->|"lebih daripada dua vektor"| D["Leraikan kepada komponen x dan y"]
   B -->|"arah juga ditanya"| C`}
+/>
+
+### Sudut Tegak di Sungai
+
+Apabila bot menghala tepat ke seberang, halaju bot <InlineMath math="4\text{ m/s}" /> dan arus <InlineMath math="3\text{ m/s}" /> terpisah <InlineMath math="90^\circ" />, <InlineMath math="\cos90^\circ=0" />, dan **petua kosinus menjadi teorem Pythagoras**: <InlineMath math="5\text{ m/s}" />. Putar haluannya dan kamu memerlukan petua yang lengkap semula.
+
+<RiverBoatCrossingLab
+  title={<>Pythagoras sebagai Kes Khas</>}
+  description={<>Sungai selebar <InlineMath math="60\text{ m}" /> yang mengalir pada <InlineMath math="3\text{ m/s}" />.</>}
+  boatSpeed={4}
+  current={3}
+  width={60}
+  labels={{
+    angle: <>Sudut dari arah tepat ke seberang</>,
+    drift: <>Hanyutan ke hilir</>,
+    groundSpeed: <>Laju bumi</>,
+    heading: <>Haluan bot</>,
+    headingName: "Haluan bot",
+    time: <>Masa menyeberang</>,
+    viewLabel: "Bot menyeberangi sungai yang mengalir",
+  }}
 />
 
 ## Kesilapan Lazim

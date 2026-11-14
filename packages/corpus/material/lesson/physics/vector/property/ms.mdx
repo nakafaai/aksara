@@ -52,6 +52,26 @@ Dalam rajah ini, <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" />
 
 Kebebasan untuk menggelongsorkan vektor abstrak dalam rajah tidak bermaksud setiap titik tindakan fizikal boleh ditukar ganti. Daya yang dikenakan pada titik yang berbeza mungkin menghasilkan tork yang berbeza.
 
+### Angin yang Sama di Atas Setiap Pulau
+
+Angin laut yang mantap <InlineMath math="10\text{ m/s}" /> ialah **vektor yang sama di atas setiap pulau**: lima belas anak panah di lima belas tempat, semuanya sama, kerana setiap satunya mempunyai panjang dan arah yang sama. Ubah angin itu dan semuanya berubah bersama.
+
+<WindMapVectorLab
+  title={<>Satu Angin, Banyak Tempat</>}
+  description={<>Angin <InlineMath math="10\text{ m/s}" /> ke arah <InlineMath math="150^\circ" /> dari timur.</>}
+  angle={150}
+  speed={10}
+  labels={{
+    angle: <>Arah dari timur</>,
+    angleName: "Arah dari timur",
+    east: <>Komponen timur <InlineMath math="v_x" /></>,
+    north: <>Komponen utara <InlineMath math="v_y" /></>,
+    speed: <>Laju angin</>,
+    speedName: "Laju angin",
+    viewLabel: "Peta cuaca angin di atas pulau-pulau",
+  }}
+/>
+
 ## Vektor Negatif Membalikkan Arah
 
 <Highlight>Vektor negatif</Highlight> bagi <InlineMath math="\vec{a}" /> ditulis sebagai <InlineMath math="-\vec{a}" />. Vektor ini mempunyai magnitud yang sama dengan <InlineMath math="\vec{a}" />, tetapi menghala ke arah yang bertentangan.
@@ -62,6 +82,35 @@ Kebebasan untuk menggelongsorkan vektor abstrak dalam rajah tidak bermaksud seti
 </MathContainer>
 
 Contohnya, daya <InlineMath math="12\text{ N}" /> ke kanan dan daya <InlineMath math="12\text{ N}" /> ke kiri membentuk sepasang vektor bertentangan. Jika kedua-duanya bertindak pada objek yang sama di sepanjang garis yang sama, paduannya ialah vektor sifar.
+
+### Melalui Satu Laluan secara Songsang
+
+Laluan dari <InlineMath math="A" /> ke <InlineMath math="B" /> ialah <InlineMath math="60\text{ m}" /> ke timur dan <InlineMath math="80\text{ m}" /> ke utara. Melaluinya kembali dari <InlineMath math="B" /> ke <InlineMath math="A" /> memberikan <InlineMath math="-60\text{ m}" /> dan <InlineMath math="-80\text{ m}" />: <InlineMath math="100\text{ m}" /> yang sama, **vektor negatif**. Dilukis dari <InlineMath math="C" />, laluan asal itu tetap vektor yang sama.
+
+<OrienteeringMapVectorLab
+  title={<>Ke Hadapan, Ke Belakang, Dialihkan</>}
+  description={<>Titik kawalan <InlineMath math="A" />, <InlineMath math="B" /> dan <InlineMath math="C" /> dalam gelang hijau kebiruan, kuning ambar dan merah jambu. Pilih satu vektor.</>}
+  marks={{
+    a: { east: 20, north: 10 },
+    b: { east: 80, north: 90 },
+    c: { east: 120, north: -20 },
+  }}
+  views={["forward", "back", "copy"]}
+  labels={{
+    angle: <>Arah dari timur</>,
+    chooseView: "Pilih vektor untuk ditunjukkan",
+    east: <>Bahagian timur</>,
+    north: <>Bahagian utara</>,
+    size: <>Panjang</>,
+    viewLabel: "Peta orienteering sebuah taman",
+    views: {
+      back: <><InlineMath math="B" /> ke <InlineMath math="A" /></>,
+      copy: <>Vektor yang sama dari <InlineMath math="C" /></>,
+      difference: <><InlineMath math="\vec b-\vec a" /></>,
+      forward: <><InlineMath math="A" /> ke <InlineMath math="B" /></>,
+    },
+  }}
+/>
 
 ## Pendaraban Skalar Mengubah Magnitud dan Arah
 
@@ -75,6 +124,28 @@ Skalar ialah nombor biasa yang tiada arah. Apabila vektor didarab dengan skalar 
 | <InlineMath math="0\vec{a}" /> | <InlineMath math="0" /> | menjadi vektor sifar |
 
 Skalar negatif <Highlight>tidak menjadikan magnitud negatif</Highlight>. Skalar itu membalikkan arah vektor.
+
+### Lebih Banyak Tangan pada Tali
+
+Setiap penarik menambah <InlineMath math="350\text{ N}" /> yang sama, jadi **pasukan empat orang menarik dengan** <InlineMath math="4\vec F" />, <InlineMath math="1400\text{ N}" />, dan pasukan dua orang dengan separuh daripadanya. Daya pasukan kiri bertanda negatif kerana menghala ke arah yang bertentangan.
+
+<TugOfWarForceLab
+  title={<>Satu Pasukan Ialah Gandaan Satu Tarikan</>}
+  description={<>Setiap penarik menarik dengan <InlineMath math="350\text{ N}" />. Ubah bilangan penarik pada setiap pihak.</>}
+  left={2}
+  pull={350}
+  right={4}
+  labels={{
+    left: <>Pasukan kiri <InlineMath math="\vec F_L" /></>,
+    leftCount: <>Penarik di sebelah kiri</>,
+    leftName: "Penarik di sebelah kiri",
+    net: <>Daya bersih <InlineMath math="\Sigma F" /></>,
+    right: <>Pasukan kanan <InlineMath math="\vec F_R" /></>,
+    rightCount: <>Penarik di sebelah kanan</>,
+    rightName: "Penarik di sebelah kanan",
+    viewLabel: "Lumba tarik tali ketika matahari terbenam",
+  }}
+/>
 
 ### Mendarab Setiap Komponen
 
@@ -121,6 +192,26 @@ Setiap anak panah di bawah ialah <InlineMath math="k\vec a" /> bagi <InlineMath 
   }}
 />
 
+Darabkan keseluruhan pelan penerbangan dengan <InlineMath math="k" />. Dengan <InlineMath math="k=2" /> setiap komponen berganda, daripada <InlineMath math="4\,\hat\imath+4\,\hat\jmath+2\,\hat k" /> meter kepada dua kali ganda, dan jarak dari tapak bertambah daripada <InlineMath math="6\text{ m}" /> kepada <InlineMath math="12\text{ m}" />. Dengan <InlineMath math="k=-1" /> dron menerbangi pelan yang sama pada arah bertentangan.
+
+<DroneDisplacementLab
+  title={<>Skalakan Penerbangan dengan <InlineMath math="k" /></>}
+  description={<>Pelan ini naik <InlineMath math="2\text{ m}" />, terbang <InlineMath math="4\text{ m}" /> ke timur dan <InlineMath math="4\text{ m}" /> ke utara. Pilih <InlineMath math="k" />.</>}
+  factors={[-1, 0.5, 1, 2]}
+  hops={[
+    { east: 0, north: 0, up: 2 },
+    { east: 4, north: 0, up: 0 },
+    { east: 0, north: 4, up: 0 },
+  ]}
+  labels={{
+    chooseFactor: "Darabkan pelan penerbangan dengan k",
+    displacement: <>Sesaran</>,
+    path: <>Lintasan yang diterbangi</>,
+    size: <>Jarak dari tapak</>,
+    viewLabel: "Dron terbang dari tapaknya",
+  }}
+/>
+
 ## Vektor Sifar sebagai Hasil Pembatalan
 
 Vektor sifar ditulis sebagai <InlineMath math="\vec{0}" />. Magnitudnya ialah <InlineMath math="0" />, dan <Highlight>arahnya tidak tertakrif</Highlight> kerana pangkal dan hujungnya bertindih.
@@ -135,7 +226,7 @@ Pendaraban dengan <InlineMath math="k" /> menskalakan panjangnya menjadi <Inline
 
 <MathVisual
   title={<>Kesan Skalar pada Vektor</>}
-  description={<>Panjang <InlineMath math="k\vec a" /> berbanding <InlineMath math="k" /> bagi vektor yang panjangnya 1. Tanda kelabu menunjukkan <InlineMath math="k=\tfrac12" /> dan <InlineMath math="k=1" />.</>}
+  description={<>Panjang <InlineMath math="k\vec a" /> berbanding <InlineMath math="k" /> bagi vektor yang panjangnya <InlineMath math="1" />. Tanda kelabu menunjukkan <InlineMath math="k=\tfrac12" /> dan <InlineMath math="k=1" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -0.8, max: 2.6 } },
@@ -156,5 +247,28 @@ Pendaraban dengan <InlineMath math="k" /> menskalakan panjangnya menjadi <Inline
     neg: <InlineMath math="k<0:\ \text{terbalik}" />,
     pos: <InlineMath math="k>0:\ \text{arah sama}" />,
     zero: <InlineMath math="k=0:\ \vec 0" />,
+  }}
+/>
+
+### Tiga Tali yang Sama
+
+Tiga tali masing-masing menarik dengan berat <InlineMath math="200\text{ g}" />, iaitu <InlineMath math="1.96\text{ N}" />. Putar takal terakhir kepada <InlineMath math="240^\circ" />: tiga tarikan itu kemudian terpisah <InlineMath math="120^\circ" />, **saling membatalkan**, dan paduannya ialah vektor sifar.
+
+<ForceTableResultantLab
+  title={<>Tarikan yang Saling Membatalkan</>}
+  description={<>Tiga penggantung beban <InlineMath math="200\text{ g}" /> setiap satu. Putar takal terakhir.</>}
+  pulls={[
+    { angle: 0, mass: 200 },
+    { angle: 120, mass: 200 },
+    { angle: 200, mass: 200 },
+  ]}
+  labels={{
+    angle: <>Sudut tali terakhir</>,
+    angleName: "Sudut tali terakhir",
+    direction: <>Arah <InlineMath math="\vec R" /></>,
+    resultant: <>Paduan <InlineMath math="R" /></>,
+    sumX: <>Jumlah di sepanjang <InlineMath math="0^\circ" /></>,
+    sumY: <>Jumlah di sepanjang <InlineMath math="90^\circ" /></>,
+    viewLabel: "Meja daya dengan beban yang tergantung",
   }}
 />
