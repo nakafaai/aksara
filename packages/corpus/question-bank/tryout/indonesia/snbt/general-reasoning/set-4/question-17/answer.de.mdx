@@ -1,11 +1,40 @@
-Teile die Zählung nach **dem Tag von Q und R**, denn sie füllen immer einen ganzen Tag, Freitag oder Sonntag.
+Gefragt ist, wie viele Pläne **alle sechs Bedingungen zugleich** erfüllen. Am sichersten teilst du nach der Sitzung von Batik in Fälle ein, weil Batik und Gamelan immer zwei direkt aufeinanderfolgende Sitzungen belegen. Steht Batik fest, rasten die anderen Aktivitäten eine nach der anderen ein.
 
-**Q und R am Freitag**. Am Samstag treten P und eine weitere Person auf, am Sonntag zwei. Wäre S am Samstag, landeten T und U am selben Tag, dem Sonntag, was verboten ist. Also tritt S am Sonntagabend auf. T muss früher sein als U, also tritt T am Samstag auf und U am Sonntagnachmittag. Frei sind die Reihenfolge von Q und R am Freitag (<InlineMath math="2" /> Möglichkeiten) und von P und T am Samstag (<InlineMath math="2" /> Möglichkeiten), also <InlineMath math="2\times2=4" /> Pläne.
+Sammle zuerst drei Tatsachen, die in jedem Fall gelten.
 
-**Q und R am Sonntag**. Ebenso tritt S am Freitagabend auf, T am Freitagnachmittag und U am Samstag mit P. Die Reihenfolge von Q und R und die von P und U ergeben je <InlineMath math="2" /> Möglichkeiten, also <InlineMath math="4" /> Pläne.
+- Batik kann nicht am Mittwoch liegen. Bedingung 6 verlangt Kuliner an einem Tag nach dem Batik-Tag, und nach dem Mittwoch gibt es keinen Tag mehr.
+- Wayang kann nicht am Mittwoch liegen, weil Dongeng an einem Tag nach dem Wayang-Tag liegen muss (Bedingung 3).
+- Dongeng kann nicht am Montag liegen (Bedingung 3) und muss vormittags stattfinden (Bedingung 4). Also liegt Dongeng am Dienstagvormittag oder am Mittwochvormittag.
 
-<BlockMath math="\text{Anzahl der Pläne}=4+4=8" />
+Für Batik bleiben vier Möglichkeiten: Montagvormittag, Montagnachmittag, Dienstagvormittag oder Dienstagnachmittag. Gamelan liegt immer in der Sitzung direkt danach. Beachte, dass auf Montagnachmittag der Dienstagvormittag folgt und auf Dienstagnachmittag der Mittwochvormittag.
 
-Die Antwort <InlineMath math="4" /> entsteht, wenn man nur einen Fall zählt. <InlineMath math="6" /> und <InlineMath math="10" /> passen nicht zur Fallunterscheidung, weil jeder Fall ein Vielfaches von <InlineMath math="4" /> liefert. <InlineMath math="12" /> entsteht, wenn man S am Samstag zulässt, ohne Bedingung 4 zu prüfen.
+Fall 1, Batik am Montagvormittag und Gamelan am Montagnachmittag. Der Montag ist voll, und Wayang darf nicht auf den Mittwoch, also liegt Wayang am Dienstag. Dongeng muss an einem Tag nach dem Dienstag liegen, also am Mittwochvormittag. Angklung und Kuliner füllen die übrige Dienstagssitzung und den Mittwochnachmittag.
 
-Es gibt also <InlineMath math="8" /> Pläne, die alle Bedingungen erfüllen.
+- Liegt Kuliner am Mittwochnachmittag, können Wayang und Angklung am Dienstag die Sitzungen tauschen. Das sind <InlineMath math="2" /> Pläne.
+- Liegt Kuliner am Dienstag, dann nicht am Dienstagvormittag, weil Bedingung 5 sonst Wayang am Montag verlangt. Also liegt Kuliner am Dienstagnachmittag, Wayang am Dienstagvormittag und Angklung am Mittwochnachmittag. Das ist <InlineMath math="1" /> Plan.
+
+Fall 2, Batik am Montagnachmittag und Gamelan am Dienstagvormittag. Wayang darf nicht auf den Dienstag (Bedingung 2) und nicht auf den Mittwoch, also liegt Wayang am Montagvormittag. Der Dienstagvormittag ist belegt, also liegt Dongeng am Mittwochvormittag. Angklung und Kuliner füllen Dienstagnachmittag und Mittwochnachmittag in beliebiger Reihenfolge. Das sind <InlineMath math="2" /> Pläne.
+
+Fall 3, Batik am Dienstagvormittag und Gamelan am Dienstagnachmittag. Wayang darf weder auf den Dienstag noch auf den Mittwoch, also liegt Wayang am Montag. Der Dienstagvormittag ist belegt, also liegt Dongeng am Mittwochvormittag. Kuliner muss an einem Tag nach dem Dienstag liegen, also am Mittwochnachmittag. Angklung kommt zu Wayang auf den Montag, und beide können die Sitzungen tauschen. Das sind <InlineMath math="2" /> Pläne.
+
+Fall 4, Batik am Dienstagnachmittag und Gamelan am Mittwochvormittag. Für Dongeng bleibt nur der Dienstagvormittag, also muss Wayang am Montag liegen. Kuliner muss an einem Tag nach dem Dienstag liegen, also am Mittwochnachmittag. Angklung kommt in zwei Reihenfolgen zu Wayang auf den Montag. Das sind <InlineMath math="2" /> Pläne.
+
+Die Tabelle zeigt alle gültigen Pläne.
+
+| Fall | Montag vormittags | Montag nachmittags | Dienstag vormittags | Dienstag nachmittags | Mittwoch vormittags | Mittwoch nachmittags |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | Batik | Gamelan | Wayang | Angklung | Dongeng | Kuliner |
+| 1 | Batik | Gamelan | Angklung | Wayang | Dongeng | Kuliner |
+| 1 | Batik | Gamelan | Wayang | Kuliner | Dongeng | Angklung |
+| 2 | Wayang | Batik | Gamelan | Angklung | Dongeng | Kuliner |
+| 2 | Wayang | Batik | Gamelan | Kuliner | Dongeng | Angklung |
+| 3 | Wayang | Angklung | Batik | Gamelan | Dongeng | Kuliner |
+| 3 | Angklung | Wayang | Batik | Gamelan | Dongeng | Kuliner |
+| 4 | Wayang | Angklung | Dongeng | Batik | Gamelan | Kuliner |
+| 4 | Angklung | Wayang | Dongeng | Batik | Gamelan | Kuliner |
+
+<BlockMath math="3 + 2 + 2 + 2 = 9" />
+
+Andere Ergebnisse entstehen meist durch einen übersehenen Schritt. Auf <InlineMath math="5" /> kommst du, wenn du Batik und Gamelan nur am selben Tag suchst, denn dann fehlen die Fälle 2 und 4. Auf <InlineMath math="10" /> kommst du, wenn du Bedingung 5 vergisst, denn dann bekommt Fall 1 einen zusätzlichen Plan mit Kuliner am Dienstagvormittag und Wayang am Dienstagnachmittag.
+
+Es gibt also <InlineMath math="9" /> Pläne, die alle Bedingungen erfüllen.

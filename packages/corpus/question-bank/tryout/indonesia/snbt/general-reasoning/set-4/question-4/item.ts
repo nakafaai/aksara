@@ -4,34 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "data-inference",
+    topic: "assumption",
   },
-  stimulus: "cabai",
+  stimulus: "dompet",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Harga cabai hanya ditentukan oleh banyaknya pasokan.",
+          label:
+            "Pedagang yang belum memakai dompet digital bersedia memakainya walaupun tidak diwajibkan.",
         },
         {
           correct: false,
-          label: "Pasokan cabai naik karena harganya turun.",
+          label:
+            "Biaya layanan dompet digital yang ditanggung setiap pedagang lebih kecil daripada tambahan omzet yang diperolehnya.",
         },
         {
           correct: true,
           label:
-            "Harga cabai cenderung turun ketika pasokan naik, kecuali pada minggu menjelang hari raya.",
-        },
-        {
-          correct: false,
-          label: "Pasokan cabai selalu naik dari minggu ke minggu.",
+            "Tambahan omzet para pengguna tidak seluruhnya berasal dari pembeli yang beralih dari pedagang lain di pasar itu.",
         },
         {
           correct: false,
           label:
-            "Harga cabai pada minggu menjelang hari raya turun karena pasokan dari petani melimpah.",
+            "Tidak ada pembeli yang beralih dari pedagang bukan pengguna ke pedagang pengguna dompet digital.",
+        },
+        {
+          correct: false,
+          label:
+            "Omzet harian setiap pengguna dompet digital naik dengan besar yang sama, yaitu $$\\text{Rp}0{,}8$$ juta.",
         },
       ],
     },
