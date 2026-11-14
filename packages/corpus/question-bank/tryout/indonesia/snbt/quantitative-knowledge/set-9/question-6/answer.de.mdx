@@ -1,24 +1,31 @@
-Die kleinste Zahl sei <InlineMath math="a" />. Die sieben Zahlen sind <InlineMath math="a,a+1,\dots,a+6" />, also **lässt sich ihre Summe mit <InlineMath math="a" /> schreiben**.
+Gezählt werden die Zahlen von <InlineMath math="1" /> bis <InlineMath math="100" />, die sich nicht als <InlineMath math="10a+14b" /> schreiben lassen, wobei <InlineMath math="a" /> und <InlineMath math="b" /> natürliche Zahlen mit Null sind. Der Schlüssel: <InlineMath math="10" /> und <InlineMath math="14" /> sind **beide gerade**. Der Plan: Trenne ungerade und gerade Punktstände und mach aus den geraden eine kleinere Aufgabe mit <InlineMath math="5" /> und <InlineMath math="7" />.
 
-# Die Gleichung aufstellen
+# Ungerade Punktstände
 
-<BlockMath math="\begin{aligned}
-a+(a+1)+\cdots+(a+6)&=7a+(0+1+\cdots+6)\\
-&=7a+21
-\end{aligned}" />
+Jeder Punktstand hat die Form <InlineMath math="10a+14b=2(5a+7b)" />, also **ist jeder Punktstand gerade**. Damit kann keine ungerade Zahl von <InlineMath math="1" /> bis <InlineMath math="100" /> ein Punktstand sein. Das sind <InlineMath math="50" /> Zahlen.
 
-Die Summe ist **viermal die kleinste Zahl**.
+# Gerade Punktstände
 
-<BlockMath math="\begin{aligned}
-7a+21&=4a\\
-3a&=-21\\
-a&=-7
-\end{aligned}" />
+Eine gerade Zahl <InlineMath math="2m" /> mit <InlineMath math="1\le m\le50" /> ist genau dann ein Punktstand, wenn <InlineMath math="m=5a+7b" /> gilt. Du brauchst also nur die Werte von <InlineMath math="m" />, die sich **nicht aus <InlineMath math="5" /> und <InlineMath math="7" /> bilden lassen**.
 
-# Kontrolle
+Teile die Werte von <InlineMath math="m" /> nach ihrem Rest beim Teilen durch <InlineMath math="5" /> in Gruppen ein. Eine zusätzliche <InlineMath math="5" /> ändert den Rest nicht, also brauchst du in jeder Gruppe nur die kleinste bildbare Zahl, und das ist das erste Vielfache von <InlineMath math="7" />, das in diese Gruppe fällt. Jede positive Zahl darunter in derselben Gruppe lässt sich nicht bilden.
 
-Die Zahlen sind <InlineMath math="-7,-6,-5,-4,-3,-2,-1" />. Ihre Summe ist <InlineMath math="-28" />, und <InlineMath math="4\cdot(-7)=-28" />. Ein negatives Ergebnis ist plausibel, denn **die Summe von sieben positiven Zahlen ist immer größer als das Vierfache der kleinsten**.
+| Rest beim Teilen durch <InlineMath math="5" /> | Kleinste bildbare Zahl | Nicht bildbar |
+| :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="0" /> | keine |
+| <InlineMath math="1" /> | <InlineMath math="21" /> | <InlineMath math="1,\ 6,\ 11,\ 16" /> |
+| <InlineMath math="2" /> | <InlineMath math="7" /> | <InlineMath math="2" /> |
+| <InlineMath math="3" /> | <InlineMath math="28" /> | <InlineMath math="3,\ 8,\ 13,\ 18,\ 23" /> |
+| <InlineMath math="4" /> | <InlineMath math="14" /> | <InlineMath math="4,\ 9" /> |
 
-Der Wert <InlineMath math="-1" /> ist die größte Zahl, und <InlineMath math="-4" /> die mittlere. Die Werte 7 und 3 entstehen durch einen Vorzeichenfehler beim Verschieben der 21.
+Das sind <InlineMath math="4+1+5+2=12" /> Werte von <InlineMath math="m" />, die scheitern. Der größte ist <InlineMath math="23" />, also höchstens <InlineMath math="50" />, und damit **liegen alle zwölf im Bereich der Aufgabe**. Diese Werte gehören zu den geraden Punktständen <InlineMath math="2,4,6,8,12,16,18,22,26,32,36,46" />.
 
-Die kleinste Zahl ist also **<InlineMath math="-7" />**.
+# Zusammenzählen und prüfen
+
+<BlockMath math="50+12=62" />
+
+Prüf den Punktstand <InlineMath math="46" />. Zieh <InlineMath math="14b" /> für <InlineMath math="b=0,1,2,3" /> ab: Es bleiben <InlineMath math="46" />, <InlineMath math="32" />, <InlineMath math="18" /> und <InlineMath math="4" />, und keine davon ist ein Vielfaches von <InlineMath math="10" />. Also scheitert <InlineMath math="46" /> wirklich. Dagegen klappt <InlineMath math="48=2\cdot10+2\cdot14" />. Die Anzahl der scheiternden Werte von <InlineMath math="m" /> passt auch zur Formel für zwei teilerfremde Zahlen, <InlineMath math="\frac{(5-1)(7-1)}{2}=12" />.
+
+Die Antwort <InlineMath math="12" /> entsteht, wenn du **alle ungeraden Punktstände vergisst**. Die Antwort <InlineMath math="50" /> entsteht, wenn du nur die ungeraden zählst und annimmst, dass jeder gerade Punktstand erreichbar ist.
+
+Es gibt also <InlineMath math="62" /> ganze Zahlen von <InlineMath math="1" /> bis <InlineMath math="100" />, die kein Punktstand sein können.

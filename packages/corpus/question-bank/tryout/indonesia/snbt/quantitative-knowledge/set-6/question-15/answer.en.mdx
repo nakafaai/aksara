@@ -1,22 +1,38 @@
-The circle has no constant term, so the point <InlineMath math="(0,0)" /> lies on it. The line <InlineMath math="y=kx" /> always passes through the origin as well, so **the line must touch the circle exactly at the origin**.
+The perimeter isn't given, but that doesn't mean the information falls short. Both areas are proportional to the square of the perimeter, so **the ratio of the two areas doesn't depend on the perimeter**. The plan: write both areas in terms of the perimeter <InlineMath math="K" />, work out the ratio, then compare it with <InlineMath math="90\%" /> using safe estimates.
 
-# Substituting the line into the circle
+# Writing both areas in terms of the perimeter
 
-Replace <InlineMath math="y" /> with <InlineMath math="kx" />.
+A regular hexagon with perimeter <InlineMath math="K" /> has side <InlineMath math="\tfrac{K}{6}" />. The hexagon is made of **six equilateral triangles** with that same side. A circle with circumference <InlineMath math="K" /> has radius <InlineMath math="r=\tfrac{K}{2\pi}" />.
 
 <BlockMath math="\begin{aligned}
-x^2+k^2x^2-6x+8kx&=0\\
-x\left[(1+k^2)x-(6-8k)\right]&=0
+A_{\text{hexagon}} &= 6\cdot\frac{\sqrt3}{4}\left(\frac{K}{6}\right)^2=\frac{\sqrt3\,K^2}{24} \\
+A_{\text{circle}} &= \pi\left(\frac{K}{2\pi}\right)^2=\frac{K^2}{4\pi}
 \end{aligned}" />
 
-The root <InlineMath math="x=0" /> is the origin. The second root is <InlineMath math="x=\dfrac{6-8k}{1+k^2}" />. The line meets the circle at one point only when **the second root is also zero**.
+# Comparing the ratio
 
-<BlockMath math="6-8k=0\quad\Longrightarrow\quad k=\frac34" />
+Divide the hexagon's area by the circle's area. The factor <InlineMath math="K^2" /> cancels, so **the result is the same for any perimeter**.
 
-# Checking with the radius
+<BlockMath math="\begin{aligned}
+\frac{A_{\text{hexagon}}}{A_{\text{circle}}} &= \frac{\sqrt3\,K^2}{24}\cdot\frac{4\pi}{K^2}=\frac{\pi\sqrt3}{6}
+\end{aligned}" />
 
-The centre of the circle is <InlineMath math="(3,-4)" />, so the radius to the origin has slope <InlineMath math="-\tfrac43" />. A tangent is **perpendicular to the radius**, so its slope is <InlineMath math="\tfrac34" />, because <InlineMath math="-\tfrac43\cdot\tfrac34=-1" />.
+So <InlineMath math="P>Q" /> exactly when <InlineMath math="\tfrac{\pi\sqrt3}{6}>\tfrac{9}{10}" />, that is, when <InlineMath math="\pi\sqrt3>\tfrac{27}{5}=5.4" />.
 
-The value <InlineMath math="-\tfrac43" /> is the slope of that radius itself, and a line through the centre cuts the circle at two points. The value <InlineMath math="-\tfrac34" /> comes from a sign error in the term <InlineMath math="8kx" />. The value <InlineMath math="\tfrac43" /> flips the slope without changing its sign. The line <InlineMath math="y=0" /> cuts the circle at <InlineMath math="(0,0)" /> and <InlineMath math="(6,0)" />.
+# Checking with safe estimates
 
-So the value of <InlineMath math="k" /> is **<InlineMath math="\tfrac34" />**.
+The gap is small, so use lower bounds that are certainly true: <InlineMath math="\pi>3.14" /> and <InlineMath math="\sqrt3>1.73" />, because <InlineMath math="1.73^2=2.9929<3" />. **A lower bound that already beats <InlineMath math="5.4" /> is enough proof**.
+
+<BlockMath math="\pi\sqrt3>3.14\times1.73=5.4322>5.4" />
+
+So the hexagon's area is more than <InlineMath math="90\%" /> of the circle's area, which gives <InlineMath math="P>Q" />. Check the other side too: <InlineMath math="\pi\sqrt3<6" /> because <InlineMath math="3\pi^2<36" />, that is, <InlineMath math="\pi^2<12" />. So the hexagon is still smaller than the circle, but only slightly, at about <InlineMath math="91\%" /> of its area.
+
+# Why the other options fail
+
+The wrong options come from **an assumption nobody calculated** or an estimate that's too rough.
+
+- <InlineMath math="Q>P" /> comes from remembering that the circle always has the larger area, but forgetting that <InlineMath math="Q" /> is only <InlineMath math="90\%" /> of it. It also comes from estimating <InlineMath math="\pi\approx3" /> and <InlineMath math="\sqrt3\approx1.7" />, since their product <InlineMath math="5.1" /> falls below <InlineMath math="5.4" />.
+- <InlineMath math="P=Q" /> comes from assuming that equal perimeters mean nearly equal areas, without working out the ratio.
+- Not enough information comes from thinking the perimeter must be known, when <InlineMath math="K^2" /> cancels.
+
+So the correct relation is <InlineMath math="P>Q" />.

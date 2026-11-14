@@ -1,19 +1,45 @@
-Die Radien sind einzeln nicht bekannt, aber die Fläche des Kreisrings braucht nur **die Differenz der Radienquadrate**, also <InlineMath math="\pi(R^2-r^2)" />.
+Die Fläche des Teichs hängt von seinen beiden Seiten ab, aber die Seiten sind über die Hypotenuse des Dreiecks aneinander gebunden. Der Plan: Drück eine Seite durch die andere aus, finde die größte Fläche ohne Zusatzbedingung und **prüf dann, ob die Regel "mindestens <InlineMath math="6\text{ m}" />" die Antwort verschiebt**.
 
-# Ein rechtwinkliges Dreieck am Berührpunkt
+# Wie die beiden Seiten zusammenhängen
 
-Der Mittelpunkt sei <InlineMath math="O" />, die Sehne <InlineMath math="AB" /> und der Berührpunkt <InlineMath math="T" />. Der Radius <InlineMath math="OT" /> des kleinen Kreises steht **im Berührpunkt senkrecht auf der Sehne**. Eine Senkrechte vom Mittelpunkt auf eine Sehne halbiert diese, also ist <InlineMath math="AT=8" />.
+Die Teichseite auf der Kathete mit <InlineMath math="12\text{ m}" /> sei <InlineMath math="x" /> Meter lang, die Seite auf der Kathete mit <InlineMath math="9\text{ m}" /> sei <InlineMath math="y" /> Meter lang. Über dem Teich bleibt ein kleines rechtwinkliges Dreieck mit der Grundseite <InlineMath math="x" /> und der Höhe <InlineMath math="9-y" />. Dieses kleine Dreieck ist **ähnlich zum Gartendreieck**, weil seine Hypotenuse auf derselben Geraden liegt und beide einen rechten Winkel haben, also ist das Verhältnis von Höhe zu Grundseite gleich.
 
-Das Dreieck <InlineMath math="OTA" /> ist bei <InlineMath math="T" /> rechtwinklig, mit <InlineMath math="OA=R" /> und <InlineMath math="OT=r" />.
+<BlockMath math="\begin{aligned}
+\frac{9-y}{x}&=\frac{9}{12}\\
+y&=9-\tfrac34x
+\end{aligned}" />
 
-<BlockMath math="R^2=r^2+8^2\;\Longrightarrow\;R^2-r^2=64" />
+# Die Fläche ohne Zusatzbedingung
 
-# Fläche des Kreisrings
+Die Fläche des Teichs ist <InlineMath math="L(x)=x\left(9-\tfrac34x\right)=9x-\tfrac34x^2" />. Das ist eine nach unten geöffnete Parabel, ihr größter Wert liegt also am Scheitel.
 
-<BlockMath math="L=\pi R^2-\pi r^2=\pi(R^2-r^2)=64\pi" />
+<BlockMath math="\begin{aligned}
+x_{\text{Scheitel}}&=\frac{-9}{2\left(-\tfrac34\right)}=6\\
+y&=9-\tfrac34(6)=4{,}5\\
+L&=6\times4{,}5=27
+\end{aligned}" />
 
-Das Ergebnis **hängt nicht von der Größe der einzelnen Kreise ab**, solange eine 16 cm lange Sehne den kleinen Kreis berührt.
+Die Seite <InlineMath math="y=4{,}5\text{ m}" /> ist aber kürzer als <InlineMath math="6\text{ m}" />, also **verletzt der Teich am Scheitel die Regel**.
 
-Der Wert <InlineMath math="256\pi" /> verwendet die ganze Sehne 16 statt ihrer Hälfte. Der Wert <InlineMath math="32\pi" /> halbiert <InlineMath math="64\pi" />, als ginge es um eine Dreiecksfläche. Der Wert <InlineMath math="128\pi" /> rechnet <InlineMath math="\pi\cdot16\cdot8" />, und <InlineMath math="192\pi" /> zieht <InlineMath math="64\pi" /> von <InlineMath math="256\pi" /> ab.
+# Die Bedingung an die Seite anwenden
 
-Die Fläche zwischen den beiden Kreisen beträgt also **<InlineMath math="64\pi\text{ cm}^2" />**.
+Die Bedingung <InlineMath math="y\ge6" /> schränkt <InlineMath math="x" /> ein.
+
+<BlockMath math="\begin{aligned}
+9-\tfrac34x&\ge6\\
+\tfrac34x&\le3\\
+x&\le4
+\end{aligned}" />
+
+Für <InlineMath math="0<x\le4" /> liegt jeder Wert von <InlineMath math="x" /> links vom Scheitel <InlineMath math="x=6" />, wo die Parabel noch steigt. Deshalb **liegt die größte Fläche am Rand <InlineMath math="x=4" />**, mit <InlineMath math="y=9-3=6" /> und <InlineMath math="L=4\times6=24" />.
+
+Probe: Der Zusammenhang der Seiten lässt sich auch als <InlineMath math="\frac{x}{12}+\frac{y}{9}=1" /> schreiben, und das Paar <InlineMath math="x=4" />, <InlineMath math="y=6" /> erfüllt ihn, denn <InlineMath math="\frac{4}{12}+\frac{6}{9}=\frac13+\frac23=1" />. Ein kleinerer Wert, etwa <InlineMath math="x=3" />, liefert <InlineMath math="y=6{,}75" /> und die Fläche <InlineMath math="20{,}25" />, also weniger als <InlineMath math="24" />.
+
+# Die falschen Antworten
+
+- <InlineMath math="27\text{ m}^2" /> ist die Fläche am Scheitel und **übergeht die Regel von mindestens <InlineMath math="6\text{ m}" />**.
+- <InlineMath math="20{,}25\text{ m}^2" /> entsteht, wenn du die Schranke falsch als <InlineMath math="x\le9-6=3" /> berechnest, also an der falschen Kathete abziehst, und dann <InlineMath math="y=6{,}75" /> richtig bestimmst.
+- <InlineMath math="18\text{ m}^2" /> entsteht aus demselben Fehler, <InlineMath math="x=3" />, wobei die andere Seite direkt als <InlineMath math="6" /> genommen wird.
+- <InlineMath math="13{,}5\text{ m}^2" /> entsteht, wenn du die Katheten im Verhältnis vertauschst, <InlineMath math="\frac{9-y}{12}=\frac{x}{9}" />, was <InlineMath math="x=2{,}25" /> ergibt.
+
+Die größte mögliche Fläche des Teichs ist also <InlineMath math="24\text{ m}^2" />.

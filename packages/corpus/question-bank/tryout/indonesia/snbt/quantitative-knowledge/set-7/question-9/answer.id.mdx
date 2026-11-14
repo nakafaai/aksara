@@ -1,17 +1,41 @@
-Faktorkan bentuknya: <InlineMath math="n^3-n=(n-1)n(n+1)" />. Jadi <InlineMath math="n^3-n" /> adalah **hasil kali tiga bilangan bulat berurutan**, dan sifat keterbagiannya dibaca dari sana.
+Persamaan <InlineMath math="f(x)=k" /> tidak punya penyelesaian tepat ketika <InlineMath math="k" /> **tidak termasuk daerah hasil <InlineMath math="f" />**. Rencananya: sederhanakan <InlineMath math="f" /> tanpa melupakan nilai <InlineMath math="x" /> yang dilarang, cari nilai yang tidak pernah dicapai bentuk sederhananya, lalu periksa nilai yang hilang karena titik yang dilarang.
 
-# Keterbagian oleh 6 dan oleh 4
+# Menyederhanakan fungsi
 
-Di antara tiga bilangan berurutan selalu ada bilangan genap dan selalu ada kelipatan 3. Hasil kalinya **selalu habis dibagi <InlineMath math="2\cdot3=6" />**, jadi pernyataan pertama benar.
+Faktorkan pembilang dan penyebut. Daerah asalnya adalah semua <InlineMath math="x" /> kecuali <InlineMath math="1" /> dan <InlineMath math="-1" />.
 
-Untuk <InlineMath math="n=2" />, nilainya <InlineMath math="1\cdot2\cdot3=6" />, yang tidak habis dibagi 4. Satu contoh penyangkal cukup, jadi pernyataan kedua salah.
+<BlockMath math="\begin{aligned}
+f(x)&=\frac{(2x+3)(x-1)}{(x-1)(x+1)}\\
+&=\frac{2x+3}{x+1}=2+\frac{1}{x+1},\quad x\ne1,\ x\ne-1
+\end{aligned}" />
 
-# Kasus n ganjil
+Faktor <InlineMath math="x-1" /> boleh dicoret karena <InlineMath math="x\ne1" />, tetapi **pencoretan itu tidak menghapus larangan <InlineMath math="x\ne1" />**. Grafik <InlineMath math="f" /> sama dengan grafik <InlineMath math="2+\frac{1}{x+1}" /> yang dilubangi di <InlineMath math="x=1" />.
 
-Jika <InlineMath math="n" /> ganjil, maka <InlineMath math="n-1" /> dan <InlineMath math="n+1" /> adalah **dua bilangan genap berurutan**. Salah satunya kelipatan 4, sehingga hasil kali keduanya habis dibagi <InlineMath math="2\cdot4=8" />. Kelipatan 3 tetap ada di antara ketiga bilangan, dan 8 dan 3 tidak memiliki faktor persekutuan selain 1, jadi hasil kalinya habis dibagi 24. Contoh: <InlineMath math="n=5" /> memberi <InlineMath math="4\cdot5\cdot6=120=5\cdot24" />. Pernyataan ketiga benar.
+# Nilai yang tidak pernah dicapai
 
-# Keterbagian oleh 5
+Selesaikan <InlineMath math="2+\frac{1}{x+1}=k" />, yaitu <InlineMath math="\frac{1}{x+1}=k-2" />.
 
-Contoh <InlineMath math="n=2" /> memberi 6, yang tidak habis dibagi 5. Tiga bilangan berurutan **tidak selalu memuat kelipatan 5**, jadi pernyataan keempat salah.
+- Jika <InlineMath math="k=2" />, persamaannya menjadi <InlineMath math="\frac{1}{x+1}=0" />. Pecahan berpembilang <InlineMath math="1" /> tidak pernah nol, jadi **<InlineMath math="k=2" /> tidak pernah dicapai**.
+- Jika <InlineMath math="k\ne2" />, satu-satunya calon adalah <InlineMath math="x=\frac{1}{k-2}-1=\frac{3-k}{k-2}" />. Calon ini sah selama bukan <InlineMath math="1" /> dan bukan <InlineMath math="-1" />.
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **benar**, dan keempat **salah**.
+Calon itu tidak mungkin <InlineMath math="-1" />, sebab <InlineMath math="\frac{1}{k-2}" /> tidak pernah nol. Calon itu sama dengan <InlineMath math="1" /> ketika <InlineMath math="\frac{1}{k-2}=2" />, yaitu <InlineMath math="k=\frac52" />. Untuk <InlineMath math="k=\frac52" />, satu-satunya calon adalah <InlineMath math="x=1" /> yang dilarang, jadi **<InlineMath math="k=\frac52" /> juga tidak pernah dicapai**. Nilai ini adalah nilai bentuk sederhana di lubang <InlineMath math="x=1" />, yaitu <InlineMath math="2+\frac12=\frac52" />.
+
+# Memeriksa lewat persamaan kuadrat
+
+Kalikan silang tanpa menyederhanakan dulu. Untuk <InlineMath math="x\ne\pm1" />, persamaan <InlineMath math="f(x)=k" /> setara dengan persamaan berikut.
+
+<BlockMath math="\begin{aligned}
+2x^2+x-3&=k(x^2-1)\\
+(2-k)x^2+x+(k-3)&=0
+\end{aligned}" />
+
+Diskriminannya <InlineMath math="1-4(2-k)(k-3)=(2k-5)^2\ge0" />, jadi persamaan ini selalu punya akar real. Namun **<InlineMath math="x=1" /> selalu menjadi akarnya**, karena <InlineMath math="(2-k)+1+(k-3)=0" />, dan akar itu dilarang. Yang tersisa hanya akar lainnya, <InlineMath math="\frac{3-k}{k-2}" />. Akar lain itu tidak ada untuk <InlineMath math="k=2" /> (persamaannya menjadi linear <InlineMath math="x-1=0" />) dan sama dengan <InlineMath math="1" /> untuk <InlineMath math="k=\frac52" /> (persamaannya menjadi <InlineMath math="-\frac12(x-1)^2=0" />). Hasilnya sama.
+
+# Pilihan yang keliru
+
+- <InlineMath math="\{-1,1\}" /> adalah nilai <InlineMath math="x" /> yang dilarang di daerah asal, bukan nilai <InlineMath math="k" /> yang tidak dicapai di daerah hasil.
+- <InlineMath math="\varnothing" /> muncul jika kamu hanya melihat diskriminan <InlineMath math="(2k-5)^2\ge0" /> dan **lupa memeriksa apakah akarnya dilarang**.
+- <InlineMath math="\{2\}" /> hanya mencatat asimtot datar dan melupakan lubang di <InlineMath math="x=1" />.
+- <InlineMath math="\left\{\frac52\right\}" /> muncul jika kamu memeriksa akar kembar untuk <InlineMath math="k=\frac52" />, tetapi lupa bahwa untuk <InlineMath math="k=2" /> akar satu-satunya juga <InlineMath math="x=1" />.
+
+Jadi, himpunan semua <InlineMath math="k" /> sehingga <InlineMath math="f(x)=k" /> tidak mempunyai penyelesaian adalah <InlineMath math="\left\{2,\frac52\right\}" />.

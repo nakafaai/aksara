@@ -1,19 +1,35 @@
-Führe beide Abbildungen **in der gegebenen Reihenfolge** aus: zuerst die Drehung, dann die Streckung des gedrehten Punkts.
+<InlineMath math="P" /> und <InlineMath math="Q" /> hängen beide von <InlineMath math="n" /> ab, also bestimme zuerst **alle zulässigen ganzen Zahlen <InlineMath math="n" />**. Vergleiche dann <InlineMath math="P" /> und <InlineMath math="Q" /> für jeden dieser Werte. Ändert sich die Beziehung von einem zulässigen <InlineMath math="n" /> zum nächsten, reichen die Informationen nicht.
 
-# Drehung um 90 Grad
+# Der Definitionsbereich der Logarithmen
 
-Eine Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um <InlineMath math="O" /> bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(-y,x)" /> ab. Schnelle Kontrolle: Der Punkt <InlineMath math="(1,0)" /> auf der positiven x-Achse **wandert nach <InlineMath math="(0,1)" />** auf der positiven y-Achse.
+Ein Logarithmus ist nur für positive Zahlen definiert. Also gilt <InlineMath math="n>0" /> und <InlineMath math="n-2>0" />, zusammen <InlineMath math="n>2" />. **Diese Bedingung gilt schon, bevor du die Ungleichung löst**.
 
-<BlockMath math="P(3,-1)\;\longmapsto\;P'(1,3)" />
+# Die Ungleichung lösen
 
-# Streckung mit Faktor 2
+Die Summe zweier Logarithmen zur selben Basis ist der Logarithmus des Produkts, und <InlineMath math="3={}^{2}\log8" />. Die Basis <InlineMath math="2" /> ist größer als <InlineMath math="1" />, also **behält die Ungleichung ihre Richtung**, wenn du die Logarithmen weglässt.
 
-Eine Streckung an <InlineMath math="O" /> mit Faktor 2 **multipliziert beide Koordinaten mit 2**.
+<BlockMath math="\begin{aligned}
+{}^{2}\log\big(n(n-2)\big)&\le{}^{2}\log8\\
+n^2-2n-8&\le0\\
+(n-4)(n+2)&\le0\\
+-2\le n&\le4
+\end{aligned}" />
 
-<BlockMath math="P'(1,3)\;\longmapsto\;P''(2,6)" />
+Zusammen mit <InlineMath math="n>2" /> bleiben nur die ganzen Zahlen <InlineMath math="n=3" /> und <InlineMath math="n=4" />. Prüf den Rand: Für <InlineMath math="n=4" /> ist die linke Seite <InlineMath math="{}^{2}\log4+{}^{2}\log2=3" />, das passt. Für <InlineMath math="n=5" /> ist sie <InlineMath math="{}^{2}\log15>{}^{2}\log8=3" />, das passt nicht.
 
-Kontrolle: Der Abstand von <InlineMath math="P" /> zu <InlineMath math="O" /> ist <InlineMath math="\sqrt{10}" />, der Abstand des Endbilds <InlineMath math="\sqrt{40}=2\sqrt{10}" />, passend zum Faktor 2.
+# P und Q vergleichen
 
-Der Punkt <InlineMath math="(-2,-6)" /> verwendet eine Drehung im Uhrzeigersinn. Der Punkt <InlineMath math="(-2,6)" /> spiegelt an der Geraden <InlineMath math="y=x" />, und <InlineMath math="(-6,2)" /> verwendet eine Drehung um <InlineMath math="180^\circ" />. Der Punkt <InlineMath math="(6,2)" /> übersieht das Minuszeichen der y-Koordinate.
+<BlockMath math="\begin{aligned}
+n=3&\;\Longrightarrow\;P=2^3=8,\quad Q=3^2=9\\
+n=4&\;\Longrightarrow\;P=2^4=16,\quad Q=4^2=16
+\end{aligned}" />
 
-Das Endbild von <InlineMath math="P" /> ist also **<InlineMath math="(2,6)" />**.
+Für <InlineMath math="n=3" /> gilt <InlineMath math="Q>P" />, für <InlineMath math="n=4" /> dagegen <InlineMath math="P=Q" />. Beide Werte sind zulässig, also **gibt es keine Beziehung, die immer gilt**.
+
+# Die verlockenden falschen Antworten
+
+- <InlineMath math="Q>P" /> **prüft nur <InlineMath math="n=3" />**. Zwar ist <InlineMath math="Q" /> hier nie kleiner als <InlineMath math="P" />, aber für <InlineMath math="n=4" /> sind beide gleich.
+- <InlineMath math="P=Q" /> prüft nur <InlineMath math="n=4" /> und vergisst <InlineMath math="n=3" />.
+- <InlineMath math="P>Q" /> ignoriert die Ungleichung und verwendet die allgemeine Tatsache <InlineMath math="2^n>n^2" /> für <InlineMath math="n\ge5" />, obwohl <InlineMath math="n" /> hier höchstens <InlineMath math="4" /> ist.
+
+Die gegebenen Informationen reichen also nicht, um die Beziehung zwischen <InlineMath math="P" /> und <InlineMath math="Q" /> festzulegen.

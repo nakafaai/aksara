@@ -1,18 +1,61 @@
-Beide Zahlen sind kleine Differenzen zwischen einer Wurzel und einer nahen ganzen Zahl, grobe Dezimalschätzungen können also täuschen. Sicher ist es, **mit dem konjugierten Term zu erweitern**, sodass jede Differenz zu einem Bruch wird.
+Die Daten legen nicht jedes Feld des Venn-Diagramms fest, also musst du jede Aussage an **allen möglichen Aufteilungen der Schüler** prüfen. Eine Aussage mit "sicher" braucht einen Beweis, der für jede Aufteilung gilt. Eine Aussage mit "möglich" ist mit einem Beispiel erledigt, oder sie fällt, wenn keine Aufteilung sie erfüllen kann.
 
-# Erweitern mit dem konjugierten Term
+# Jedes Feld des Diagramms benennen
+
+Schreib <InlineMath math="F" />, <InlineMath math="M" /> und <InlineMath math="P" /> für die Mengen der Schüler in Futsal, Musik und Pramuka (Pfadfinder). Ein Venn-Diagramm mit drei Mengen hat sieben Felder, und jedes Feld bekommt einen Buchstaben wie in der Tabelle.
+
+| Feld | Buchstabe |
+| :--- | :---: |
+| Nur Futsal, nur Musik, nur Pramuka | <InlineMath math="a,\ b,\ c" /> |
+| Nur Futsal und Musik, nur Futsal und Pramuka, nur Musik und Pramuka | <InlineMath math="x,\ y,\ z" /> |
+| Alle drei Angebote | <InlineMath math="t" /> |
+
+Es gibt <InlineMath math="40-5=35" /> Schüler, die mindestens ein Angebot besuchen. **Die acht Schüler in Futsal und Musik schließen die ein, die zusätzlich Pramuka machen**, also bedeutet die zweite Angabe <InlineMath math="x+t=8" />.
 
 <BlockMath math="\begin{aligned}
-P&=\sqrt{17}-4=\frac{(\sqrt{17}-4)(\sqrt{17}+4)}{\sqrt{17}+4}=\frac{17-16}{\sqrt{17}+4}=\frac{1}{\sqrt{17}+4}\\
-Q&=5-\sqrt{24}=\frac{(5-\sqrt{24})(5+\sqrt{24})}{5+\sqrt{24}}=\frac{25-24}{5+\sqrt{24}}=\frac{1}{5+\sqrt{24}}
+a+x+y+t&=20\\
+b+x+z+t&=18\\
+c+y+z+t&=15\\
+x+t&=8\\
+a+b+c+x+y+z+t&=35
 \end{aligned}" />
 
-# Nenner vergleichen
+# Schüler nur in Pramuka
 
-Beide Brüche haben den Zähler 1, also ist **der Bruch mit dem kleineren Nenner größer**. Vergleiche die Nenner.
+Zähl zuerst die Schüler in Futsal oder Musik. **Die Formel für die Vereinigung zweier Mengen** zieht die Schnittmenge ab, damit die Schüler in Futsal und Musik nicht doppelt zählen.
 
-<BlockMath math="\sqrt{17}+4<\sqrt{25}+4=9<5+\sqrt{24}" />
+<BlockMath math="n(F\cup M)=20+18-8=30" />
 
-Die letzte Ungleichung gilt, weil <InlineMath math="\sqrt{24}>4" /> ist. Der Nenner von <InlineMath math="P" /> ist kleiner, also gilt <InlineMath math="P>Q" />. Zur Kontrolle: <InlineMath math="P\approx0{,}123" /> und <InlineMath math="Q\approx0{,}101" />.
+Von den <InlineMath math="35" /> Schülern mit mindestens einem Angebot sind <InlineMath math="30" /> in Futsal oder Musik. Die übrigen können nur in Pramuka allein sein, also gilt <InlineMath math="c=35-30=5" /> für jede Aufteilung. Die erste Aussage ist **wahr**.
 
-Die richtige Beziehung ist also **<InlineMath math="P>Q" />**.
+# Schüler in Musik und Pramuka
+
+Die Schüler in Musik und Pramuka zugleich sind <InlineMath math="z+t" /> viele. Versuch eine Aufteilung mit <InlineMath math="z=0" /> und <InlineMath math="t=0" /> zu bauen. Aus <InlineMath math="x+t=8" /> folgt <InlineMath math="x=8" />, die Gleichung für Pramuka gibt <InlineMath math="5+y=15" />, also <InlineMath math="y=10" />, und die Gleichungen für Futsal und Musik liefern <InlineMath math="a=2" /> und <InlineMath math="b=10" />.
+
+| <InlineMath math="a" /> | <InlineMath math="b" /> | <InlineMath math="c" /> | <InlineMath math="x" /> | <InlineMath math="y" /> | <InlineMath math="z" /> | <InlineMath math="t" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="2" /> | <InlineMath math="10" /> | <InlineMath math="5" /> | <InlineMath math="8" /> | <InlineMath math="10" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+
+Probe: <InlineMath math="2+10+5+8+10+0+0=35" />, und die drei Mengengrößen sind weiterhin <InlineMath math="20" />, <InlineMath math="18" /> und <InlineMath math="15" />. Diese Aufteilung ist gültig, und trotzdem **besucht kein einziger Schüler Musik und Pramuka zugleich**. Die zweite Aussage ist **falsch**.
+
+# Schüler mit genau zwei Angeboten
+
+Seien <InlineMath math="e_1" />, <InlineMath math="e_2" /> und <InlineMath math="e_3" /> die Anzahlen der Schüler mit genau einem, genau zwei und genau drei Angeboten. Die Summe <InlineMath math="20+18+15" /> **zählt jeden Schüler so oft, wie er Angebote besucht**, während <InlineMath math="35" /> jeden Schüler einmal zählt.
+
+<BlockMath math="\begin{aligned}
+e_1+2e_2+3e_3&=53\\
+e_1+e_2+e_3&=35\\
+e_2+2e_3&=18
+\end{aligned}" />
+
+Die dritte Zeile ist die Differenz der ersten beiden. Also ist <InlineMath math="e_2=18-2e_3" />, eine gerade Zahl minus eine gerade Zahl. Das Ergebnis ist immer gerade, also ist die dritte Aussage **wahr**.
+
+# Schüler mit allen drei Angeboten
+
+Aus <InlineMath math="e_2+2e_3=18" /> bekommst du nur <InlineMath math="e_3\le9" />, und diese Schranke ist verlockend. Aber jeder Schüler mit allen drei Angeboten besucht auch Futsal und Musik, also **gehört er zu den acht Schülern in Futsal und Musik**.
+
+<BlockMath math="t=8-x\le8" />
+
+Höchstens <InlineMath math="8" /> Schüler besuchen also alle drei Angebote, und genau <InlineMath math="9" /> ist unmöglich. Die vierte Aussage ist **falsch**.
+
+Die erste Aussage ist also wahr, die zweite falsch, die dritte wahr und die vierte falsch.

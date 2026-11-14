@@ -3,15 +3,28 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "$$P>Q$$" },
-        { correct: false, label: "$$Q>P$$" },
-        { correct: true, label: "$$P=Q$$" },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
+            "Banyak bilangan bulat yang memenuhi pertidaksamaan itu adalah $$7$$.",
+        },
+        {
+          column: 2,
+          label:
+            "Setiap bilangan real yang memenuhi pertidaksamaan itu juga memenuhi $$\\lvert x+2\\rvert<3$$.",
+        },
+        {
+          column: 2,
+          label:
+            "Untuk setiap bilangan real $$x$$, berlaku $$\\lvert x-4\\rvert-\\lvert 2x+1\\rvert\\le4$$.",
+        },
+        {
+          column: 1,
+          label:
+            "Untuk setiap pasangan bilangan real $$a$$ dan $$b$$, pertidaksamaan $$\\lvert x-a\\rvert\\ge\\lvert 2x+b\\rvert$$ mempunyai paling sedikit satu penyelesaian real.",
         },
       ],
     },

@@ -1,22 +1,47 @@
-First make **the bases of both sides** equal. Since <InlineMath math="\tfrac{1}{27}=\left(\tfrac13\right)^3" />, the inequality becomes a comparison of two powers of <InlineMath math="\tfrac13" />.
+The condition <InlineMath math="\alpha=3\beta" /> on its own works for two values of <InlineMath math="m" />, and **the condition <InlineMath math="\alpha>\beta" /> is what picks one of them**. Here's the plan: write both roots with one letter, use the sum and product of the roots, find every possibility, then throw out the one that breaks the order.
 
-# Direction for a base less than one
+# Writing both roots with one letter
 
-The function <InlineMath math="\left(\tfrac13\right)^t" /> is decreasing, so a smaller exponent gives a larger value. That is why **the inequality sign reverses** when we compare the exponents.
+Let <InlineMath math="\beta=r" />, so <InlineMath math="\alpha=3r" />. For an equation <InlineMath math="x^2+px+q=0" />, **Vieta's formulas** say the roots add up to <InlineMath math="-p" /> and multiply to <InlineMath math="q" />. Here the sum of the roots is <InlineMath math="m+1" /> and the product is <InlineMath math="12-3m" />.
 
 <BlockMath math="\begin{aligned}
-\left(\tfrac13\right)^{x^2-2x}&>\left(\tfrac13\right)^{3}\\
-x^2-2x&<3\\
-x^2-2x-3&<0\\
-(x-3)(x+1)&<0
+\alpha+\beta&=r+3r=4r=m+1\\
+\alpha\beta&=r\times3r=3r^2=12-3m
 \end{aligned}" />
 
-# The solution interval
+# Finding every possibility
 
-The product <InlineMath math="(x-3)(x+1)" /> is negative **between its two zeros**, so <InlineMath math="-1<x<3" />. The points <InlineMath math="-1" /> and <InlineMath math="3" /> are excluded because the sign is strict.
+The first equation gives <InlineMath math="m=4r-1" />. Substitute it into the second one so that only the letter <InlineMath math="r" /> is left.
 
-The integers in this interval are 0, 1 and 2. Check with <InlineMath math="x=1" />: the exponent is <InlineMath math="-1" />, so the left side equals 3, and <InlineMath math="3>\tfrac{1}{27}" />.
+<BlockMath math="\begin{aligned}
+3r^2&=12-3(4r-1)\\
+3r^2&=15-12r\\
+r^2+4r-5&=0\\
+(r+5)(r-1)&=0
+\end{aligned}" />
 
-The value 5 also counts both endpoints. Without reversing the sign, the solution would be <InlineMath math="x<-1" /> or <InlineMath math="x>3" />, which contains infinitely many integers.
+So <InlineMath math="r=1" /> or <InlineMath math="r=-5" />. **Both values really satisfy <InlineMath math="\alpha=3\beta" />**, as the table shows.
 
-So the number of integers that satisfy the inequality is **3**.
+| <InlineMath math="r" /> | <InlineMath math="m" /> | Equation | Roots |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="x^2-4x+3=0" /> | <InlineMath math="\alpha=3,\ \beta=1" /> |
+| <InlineMath math="-5" /> | <InlineMath math="-21" /> | <InlineMath math="x^2+20x+75=0" /> | <InlineMath math="\alpha=-15,\ \beta=-5" /> |
+
+# Applying the order condition
+
+Look at the second row. Multiplying a negative number by <InlineMath math="3" /> makes it **smaller**, so <InlineMath math="-15<-5" />, which means <InlineMath math="\alpha<\beta" />. In general <InlineMath math="\alpha-\beta=3\beta-\beta=2\beta" />, so **the condition <InlineMath math="\alpha>\beta" /> forces <InlineMath math="\beta" /> to be positive**. Only <InlineMath math="r=1" /> survives, which gives <InlineMath math="m=3" />, <InlineMath math="\alpha=3" />, and <InlineMath math="\beta=1" />.
+
+<BlockMath math="\alpha^2+\beta^2=3^2+1^2=10" />
+
+A check with the sum-of-squares identity gives the same result.
+
+<BlockMath math="\alpha^2+\beta^2=(\alpha+\beta)^2-2\alpha\beta=4^2-2(3)=10" />
+
+# The wrong options
+
+- <InlineMath math="13" /> comes from <InlineMath math="(\alpha+\beta)^2-\alpha\beta" />, which drops the factor <InlineMath math="2" /> in <InlineMath math="2\alpha\beta" />.
+- <InlineMath math="16" /> is <InlineMath math="(\alpha+\beta)^2" />, stopping before you subtract <InlineMath math="2\alpha\beta" />.
+- <InlineMath math="250" /> comes from the case <InlineMath math="m=-21" />, that is <InlineMath math="(-15)^2+(-5)^2" />, but **that case breaks the required order** <InlineMath math="\alpha>\beta" />.
+- <InlineMath math="260" /> adds the results of both cases, as if both were allowed.
+
+So the value of <InlineMath math="\alpha^2+\beta^2" /> is <InlineMath math="10" />.

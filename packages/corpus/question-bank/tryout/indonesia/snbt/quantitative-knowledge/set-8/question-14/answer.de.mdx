@@ -1,30 +1,32 @@
-Die Würfel haben verschiedene Farben, der Ergebnisraum besteht also aus **36 gleich wahrscheinlichen geordneten Paaren**, von <InlineMath math="(1,1)" /> bis <InlineMath math="(6,6)" />.
+Gesucht ist die Endnote zum Rohwert <InlineMath math="26" />. Du gehst so vor: Mit den Regeln für Mittelwert und Standardabweichung bestimmst du den Betrag von <InlineMath math="a" />, mit der Reihenfolgebedingung **legst du das Vorzeichen von <InlineMath math="a" /> fest**, aus dem Mittelwert folgt <InlineMath math="b" />, und dann rechnest du die Note aus.
 
-# Mindestens eine Sechs
+# Wie sich Mittelwert und Standardabweichung ändern
 
-Einfacher ist es, **das Gegenereignis** zu zählen, also gar keine Sechs. Jeder Würfel hat 5 Ergebnisse außer der 6.
+Jeder Wert läuft durch dieselbe Formel, also auch der Mittelwert: <InlineMath math="\bar y=a\bar x+b" />. Die Standardabweichung misst, wie weit die Werte von ihrem Mittelwert entfernt liegen. Addierst du <InlineMath math="b" />, verschieben sich alle Werte gleich weit, die Abstände bleiben also gleich. Multiplizierst du mit <InlineMath math="a" />, wird jeder Abstand <InlineMath math="|a|" />-mal so groß, denn ein Abstand ist nie negativ. Also **sieht die Standardabweichung nur den Betrag von <InlineMath math="a" />**.
 
-<BlockMath math="P=1-\frac{5\cdot5}{36}=\frac{11}{36}" />
+<BlockMath math="\begin{aligned}
+s_y&=|a|\,s_x\\
+10&=|a|\cdot4\\
+|a|&=\tfrac52
+\end{aligned}" />
 
-Der Wert <InlineMath math="\tfrac{11}{36}" /> ist kleiner als <InlineMath math="\tfrac{12}{36}=\tfrac13" />, weil das Paar <InlineMath math="(6,6)" /> nur einmal zählt. Die erste Aussage ist falsch.
+# Vorzeichen und Konstante bestimmen
 
-# Summe 7 und Summe 8
+Wer weniger Fehler macht, also ein kleineres <InlineMath math="x" /> hat, muss ein größeres <InlineMath math="y" /> bekommen. Dann fällt <InlineMath math="y" />, wenn <InlineMath math="x" /> steigt, und **die Reihenfolgebedingung erzwingt ein negatives <InlineMath math="a" />**: <InlineMath math="a=-\tfrac52" />. Bestimme <InlineMath math="b" /> aus dem Mittelwert und berechne dann die Endnote für <InlineMath math="x=26" />.
 
-Liste die Paare zu jeder Summe auf.
+<BlockMath math="\begin{aligned}
+60&=-\tfrac52\cdot20+b\\
+b&=60+50=110\\
+y&=-\tfrac52\cdot26+110=-65+110=45
+\end{aligned}" />
 
-| Summe | Paare (rot, blau) | Anzahl |
-| :---: | :---: | :---: |
-| 7 | <InlineMath math="(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)" /> | 6 |
-| 8 | <InlineMath math="(2,6),(3,5),(4,4),(5,3),(6,2)" /> | 5 |
+Prüfe auf einem zweiten Weg. Der Rohwert <InlineMath math="26" /> liegt <InlineMath math="6" /> über dem Mittelwert, also <InlineMath math="1{,}5" /> Standardabweichungen. Weil die Richtung umgedreht wird, liegt die Endnote <InlineMath math="1{,}5\cdot10=15" /> unter <InlineMath math="60" />, also bei <InlineMath math="45" />.
 
-Die Wahrscheinlichkeit für die Summe 7 ist <InlineMath math="\tfrac{6}{36}=\tfrac16" />, also ist die zweite Aussage wahr. Die Wahrscheinlichkeit für die Summe 8 ist <InlineMath math="\tfrac{5}{36}" />, weil **das Paar <InlineMath math="(4,4)" /> kein Spiegelpaar hat**. Die dritte Aussage ist falsch.
+# Die falschen Antworten
 
-# Ungerades Produkt
+- <InlineMath math="22{,}5" /> entsteht, wenn das Verhältnis der Varianzen <InlineMath math="\tfrac{100}{16}" /> als <InlineMath math="|a|" /> genommen wird: <InlineMath math="60-\tfrac{25}{4}\cdot6" />.
+- <InlineMath math="54" /> entsteht, wenn die Richtung umgedreht, der Abstand aber nicht gestreckt wird: <InlineMath math="60-6" />.
+- <InlineMath math="57{,}6" /> entsteht, wenn das Verhältnis umgekehrt wird, also <InlineMath math="|a|=\tfrac{4}{10}" />: <InlineMath math="60-0{,}4\cdot6" />.
+- <InlineMath math="75" /> entsteht, wenn **<InlineMath math="a" /> positiv gewählt wird** und damit die Reihenfolgebedingung verletzt ist: <InlineMath math="60+15" />.
 
-Das Produkt ist nur dann ungerade, wenn **beide Würfel ungerade Zahlen zeigen**. Jeder Würfel hat 3 ungerade Seiten.
-
-<BlockMath math="P=\frac{3\cdot3}{36}=\frac14" />
-
-Die vierte Aussage ist wahr.
-
-Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **falsch** und die vierte **wahr**.
+Die Endnote eines Teilnehmers mit dem Rohwert <InlineMath math="26" /> ist also <InlineMath math="45" />.

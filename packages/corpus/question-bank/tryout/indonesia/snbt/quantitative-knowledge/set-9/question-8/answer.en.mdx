@@ -1,21 +1,21 @@
-Growth of 10% of the previous year's population is **compound growth**: each year the population is multiplied by 1.1. Let the population at the start of 2025 be <InlineMath math="P" />.
+A statement is sufficient when **the answer is always the same**, always "yes" or always "no", for every pair <InlineMath math="x,y" /> that satisfies it. Don't forget that the condition <InlineMath math="|x|>|y|" /> from the start of the question holds the whole time. That condition decides the answer.
 
-# Finding the starting population
+# Statement one alone
 
-After two years the population is <InlineMath math="P\cdot1.1^2=1.21P" />. The increase is **the final population minus the starting population**.
+First, show that <InlineMath math="x" /> must be positive. Suppose <InlineMath math="x\le0" />. Then <InlineMath math="|x|=-x" />, and from <InlineMath math="|y|<|x|" /> you get <InlineMath math="y\le|y|<-x" />, so <InlineMath math="x+y<0" />. That contradicts statement (1). So **statement (1) together with the starting condition forces <InlineMath math="x>0" />**.
 
-<BlockMath math="\begin{aligned}
-1.21P-P&=4{,}200\\
-0.21P&=4{,}200\\
-P&=20{,}000
-\end{aligned}" />
+The sign of <InlineMath math="y" /> is still free. The pair <InlineMath math="x=2,\ y=1" /> meets every condition and gives <InlineMath math="xy=2>0" />, so the answer is yes. The pair <InlineMath math="x=2,\ y=-1" /> also fits, since <InlineMath math="x+y=1>0" /> and <InlineMath math="|2|>|-1|" />, but <InlineMath math="xy=-2" />, so the answer is no. Statement (1) alone isn't sufficient.
 
-# Population at the start of 2027
+# Statement two alone
 
-<BlockMath math="1.21\cdot20{,}000=24{,}200" />
+For <InlineMath math="x^2y>0" />, the factor <InlineMath math="x^2" /> can't be zero, and since <InlineMath math="x^2" /> is positive, **<InlineMath math="y" /> must be positive**. The sign of <InlineMath math="x" /> is still free. The pair <InlineMath math="x=2,\ y=1" /> gives yes. The pair <InlineMath math="x=-2,\ y=1" /> satisfies <InlineMath math="x^2y=4>0" /> and <InlineMath math="|-2|>|1|" />, but <InlineMath math="xy=-2" />, so the answer is no. Statement (2) alone isn't sufficient.
 
-Year by year: 20,000 becomes 22,000 at the start of 2026, then 24,200 at the start of 2027. The second year's increase is larger, 2,200, because **the 10% is taken of a population that has already grown**.
+# Both statements together
 
-The values 20,000 and 22,000 are the populations at the start of 2025 and 2026. The value 21,000 treats the increase as 20% of the starting population, like simple interest. The value 24,000 assumes the second year adds the same as the first.
+Statement (1) with the starting condition gives <InlineMath math="x>0" />, and statement (2) gives <InlineMath math="y>0" />. The product of two positive numbers is always positive, so <InlineMath math="xy>0" /> for every pair that fits. The answer is **always yes**, so the two statements together are sufficient.
 
-So the population at the start of 2027 is **24,200 people**.
+# Why the starting condition matters
+
+Without <InlineMath math="|x|>|y|" />, the two statements together wouldn't be enough. The pair <InlineMath math="x=-1,\ y=2" /> satisfies <InlineMath math="x+y=1>0" /> and <InlineMath math="x^2y=2>0" />, but <InlineMath math="xy=-2" />. This pair breaks <InlineMath math="|x|>|y|" />, so it isn't allowed. If you **forget the starting condition**, you'll pick the option that says neither statement is enough.
+
+So the two statements together are sufficient to answer the question, but neither statement alone is.

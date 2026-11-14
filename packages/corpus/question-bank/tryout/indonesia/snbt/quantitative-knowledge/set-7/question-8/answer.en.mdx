@@ -1,30 +1,37 @@
-Let the craftsperson make <InlineMath math="x" /> bags of type A and <InlineMath math="y" /> bags of type B. This is **linear programming**: the profit is maximised over the region bounded by working hours and material.
+The remainder on division by <InlineMath math="6" /> is fixed by two things at once: **the remainder on division by <InlineMath math="2" /> and the remainder on division by <InlineMath math="3" />**. The table shows that each remainder from <InlineMath math="0" /> to <InlineMath math="5" /> has its own pair, so you need both. Here's the plan: translate each statement into facts about the remainders of <InlineMath math="n" /> on division by <InlineMath math="2" /> and by <InlineMath math="3" />.
 
-# Model and corner points
+| Remainder by <InlineMath math="6" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| Remainder by <InlineMath math="2" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
+| Remainder by <InlineMath math="3" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> |
+
+# Statement one alone
+
+Statement (1) says that <InlineMath math="n^2" /> leaves remainder <InlineMath math="1" /> on division by <InlineMath math="3" />. Try all three possible remainders of <InlineMath math="n" /> on division by <InlineMath math="3" />.
 
 <BlockMath math="\begin{aligned}
-\text{hours}&:\quad 2x+3y\le60\\
-\text{material}&:\quad x+y\le25\\
-\text{profit}&:\quad K=40{,}000x+50{,}000y
+n=3k&\;\Longrightarrow\; n^2=9k^2 \text{ leaves } 0\\
+n=3k+1&\;\Longrightarrow\; n^2=9k^2+6k+1 \text{ leaves } 1\\
+n=3k+2&\;\Longrightarrow\; n^2=9k^2+12k+4 \text{ leaves } 1
 \end{aligned}" />
 
-Both variables are also non-negative, <InlineMath math="x\ge0" /> and <InlineMath math="y\ge0" />. A linear function reaches its maximum **at one of the corner points of the region**. The intersection of the two boundary lines comes from subtracting twice the material equation from the hours equation.
+So <InlineMath math="n" /> leaves remainder <InlineMath math="1" /> **or** <InlineMath math="2" /> on division by <InlineMath math="3" />, and statement (1) says nothing about whether <InlineMath math="n" /> is even or odd. For example, <InlineMath math="n=4" /> gives <InlineMath math="18" />, which is divisible by <InlineMath math="3" />, and its remainder on division by <InlineMath math="6" /> is <InlineMath math="4" />, while <InlineMath math="n=5" /> gives <InlineMath math="27" /> with remainder <InlineMath math="5" />. **Two different answers**, so statement (1) alone isn't sufficient.
+
+# Statement two alone
+
+Write <InlineMath math="n^2-1=(n-1)(n+1)" />. If <InlineMath math="n" /> is odd, the two factors are consecutive even numbers, and one of them is a multiple of <InlineMath math="4" />, so the product is divisible by <InlineMath math="2\times4=8" />. If <InlineMath math="n" /> is even, <InlineMath math="n^2-1" /> is odd and can't be divisible by <InlineMath math="8" />. So **statement (2) only tells you that <InlineMath math="n" /> is odd**.
+
+For example, <InlineMath math="n=3" /> gives <InlineMath math="8" /> with remainder <InlineMath math="3" /> on division by <InlineMath math="6" />, while <InlineMath math="n=5" /> gives <InlineMath math="24" /> with remainder <InlineMath math="5" />. Statement (2) alone isn't sufficient.
+
+# Both statements together
+
+Put them together: <InlineMath math="n" /> is odd and leaves remainder <InlineMath math="1" /> or <InlineMath math="2" /> on division by <InlineMath math="3" />. In the table, the columns with remainder <InlineMath math="1" /> by <InlineMath math="2" /> and a nonzero remainder by <InlineMath math="3" /> are columns <InlineMath math="1" /> and <InlineMath math="5" />. **Two possibilities are still left**, and both really happen.
 
 <BlockMath math="\begin{aligned}
-(2x+3y)-2(x+y)&=60-50\\
-y&=10,\quad x=15
+n=7&: \ 7^2+2=51=3\times17,\quad 7^2-1=48=8\times6,\quad \text{remainder by } 6 \text{ is } 1\\
+n=5&: \ 5^2+2=27=3\times9,\quad 5^2-1=24=8\times3,\quad \text{remainder by } 6 \text{ is } 5
 \end{aligned}" />
 
-# Comparing the profits
+The trap sits in statement (1). If you think <InlineMath math="n^2" /> leaves remainder <InlineMath math="1" /> only when <InlineMath math="n" /> leaves remainder <InlineMath math="1" />, you'll conclude remainder <InlineMath math="1" /> and pick "both statements together are sufficient". But <InlineMath math="n" /> with remainder <InlineMath math="2" /> also gives a square with remainder <InlineMath math="1" />.
 
-| Corner point | Profit |
-| :---: | :---: |
-| <InlineMath math="(25,0)" /> | Rp1,000,000 |
-| <InlineMath math="(15,10)" /> | Rp1,100,000 |
-| <InlineMath math="(0,20)" /> | Rp1,000,000 |
-
-The largest profit is at <InlineMath math="(15,10)" />, which uses exactly 60 hours and exactly 25 bags. **Both constraints are used up** at this point.
-
-A profit of Rp1,250,000 makes 25 bags of type B, which would need 75 hours. A profit of Rp1,200,000 makes 30 bags of type A and breaks the material limit. A profit of Rp1,150,000 appears if the working hours of bags A and B are swapped.
-
-So the maximum profit is **Rp1,100,000**.
+So statements (1) and (2) together are still not sufficient to answer the question.

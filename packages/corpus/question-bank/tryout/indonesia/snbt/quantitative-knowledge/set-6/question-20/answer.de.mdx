@@ -1,24 +1,46 @@
-Lies die acht Werte aus dem Diagramm ab: Taman Kota (Stadtpark) 80, 96, 72, 112 und Pantai (Strand) 60, 90, 108, 102. Jede Aussage **vergleicht eine andere Größe**, also berechne diese Größen einzeln.
+Gezählt werden die Glieder, die drei Bedingungen zugleich erfüllen: zwischen <InlineMath math="100" /> und <InlineMath math="1{.}000" />, ein Vielfaches von <InlineMath math="4" /> und kein Vielfaches von <InlineMath math="3" />. Der Plan: Bestimme die Formel für das <InlineMath math="n" />-te Glied, mach aus jeder Bedingung **eine Bedingung an die Gliednummer <InlineMath math="n" />** und zähle dann die Vielfachen von <InlineMath math="4" /> minus die Vielfachen von <InlineMath math="12" />.
 
-# Mittelwerte und Wochensummen
+# Die Formel für die Glieder bestimmen
+
+Vom dritten bis zum achten Glied sind es <InlineMath math="5" /> Schritte der Differenz <InlineMath math="d" />. Kennst du <InlineMath math="d" />, gehst du vom dritten Glied zwei Schritte zurück und **erhältst das erste Glied**.
 
 <BlockMath math="\begin{aligned}
-\bar x_{\text{Taman}}&=\frac{80+96+72+112}{4}=\frac{360}{4}=90\\
-\bar x_{\text{Pantai}}&=\frac{60+90+108+102}{4}=\frac{360}{4}=90
+5d &= 59-24=35 \\
+d &= 7 \\
+u_1 &= 24-2\cdot7=10 \\
+u_n &= 10+7(n-1)=7n+3
 \end{aligned}" />
 
-Die beiden Mittelwerte sind **gleich groß**, also ist die erste Aussage falsch.
+# Den Bereich der Gliednummern bestimmen
 
-Die Wochensummen beider Standorte sind 140, 186, 180 und 214. Die größte liegt in der vierten Woche, also ist die zweite Aussage wahr.
+Die Bedingung <InlineMath math="100<u_n<1{.}000" /> gilt für ganzzahlige Gliednummern <InlineMath math="n" />, also **nimmst du die ganzen Zahlen innerhalb der Grenzen**.
 
-# Änderungen und Verhältnisse
+<BlockMath math="\begin{aligned}
+100<7n+3<1{.}000 \\
+97<7n<997 \\
+14\le n\le142
+\end{aligned}" />
 
-Ein prozentualer Rückgang bezieht sich auf **den Ausgangswert, also die zweite Woche**.
+Prüfe die Ränder: <InlineMath math="u_{13}=94" /> ist zu klein, <InlineMath math="u_{14}=101" /> liegt drin, <InlineMath math="u_{142}=997" /> liegt drin, und <InlineMath math="u_{143}=1{.}004" /> ist zu groß.
 
-<BlockMath math="\frac{96-72}{96}\times100\%=\frac{24}{96}\times100\%=25\%" />
+# Die Vielfachen von vier finden
 
-Die Zahl 24 ist der Unterschied in Fahrrädern und nicht der Prozentsatz. Die dritte Aussage ist falsch.
+Schreibe <InlineMath math="7n+3=8n+4-(n+1)" />. Der Teil <InlineMath math="8n+4" /> ist immer durch <InlineMath math="4" /> teilbar, also ist **<InlineMath math="u_n" /> genau dann durch <InlineMath math="4" /> teilbar, wenn <InlineMath math="n+1" /> es ist**, also für <InlineMath math="n=3,7,11,\dots" />. Zwischen <InlineMath math="14" /> und <InlineMath math="142" /> sind das die Nummern <InlineMath math="15,19,\dots,139" />.
 
-In der dritten Woche gilt <InlineMath math="\tfrac{108}{72}=1{,}5" />, also ist die vierte Aussage wahr.
+<BlockMath math="\text{Anzahl}=\frac{139-15}{4}+1=32" />
 
-Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **falsch** und die vierte **wahr**.
+Zum Beispiel ist <InlineMath math="u_{15}=108=4\cdot27" />.
+
+# Die Vielfachen von drei entfernen
+
+Ein Glied, das durch <InlineMath math="4" /> und durch <InlineMath math="3" /> teilbar ist, ist ein Vielfaches von <InlineMath math="12" />. Für die Bedingung mit <InlineMath math="3" /> schreibst du <InlineMath math="7n+3=6n+3+n" />. Der Teil <InlineMath math="6n+3" /> ist immer ein Vielfaches von <InlineMath math="3" />, also ist <InlineMath math="u_n" /> genau dann ein Vielfaches von <InlineMath math="3" />, wenn <InlineMath math="n" /> es ist. Unter den Nummern <InlineMath math="15,19,23,27,\dots" /> ist **jede dritte ein Vielfaches von <InlineMath math="3" />**, beginnend bei <InlineMath math="15" />: also <InlineMath math="15,27,39,\dots,135" />.
+
+<BlockMath math="\text{Anzahl}=\frac{135-15}{12}+1=11" />
+
+Zum Beispiel ist <InlineMath math="u_{15}=108=12\cdot9" /> und <InlineMath math="u_{135}=948=12\cdot79" />.
+
+<BlockMath math="\text{Antwort}=32-11=21" />
+
+Prüfe das am Muster: Teile die <InlineMath math="32" /> Nummern in Dreiergruppen, dann ist die erste Nummer jeder Gruppe ein Vielfaches von drei. Es gibt <InlineMath math="10" /> volle Gruppen und zwei übrige Nummern, <InlineMath math="135" /> und <InlineMath math="139" />. Davon ist nur <InlineMath math="135" /> ein Vielfaches von drei, also ergibt sich <InlineMath math="10+1=11" />, passend zur Zählung oben. Ein häufiger Fehler ist, die Vielfachen von <InlineMath math="12" /> nicht abzuziehen, dann kommt <InlineMath math="32" /> heraus.
+
+Die Anzahl der Glieder, die alle Bedingungen erfüllen, ist also <InlineMath math="21" />.

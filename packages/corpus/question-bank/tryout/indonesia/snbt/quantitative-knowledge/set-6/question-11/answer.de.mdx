@@ -1,18 +1,44 @@
-Die Anteile 40 % und 25 % beziehen sich auf unterschiedlich große Gruppen. Die beiden Prozentsätze **dürfen also nicht einfach gemittelt werden**, sondern müssen nach dem Anteil ihrer Gruppe gewichtet werden.
+Gesucht ist die eine Aussage, die für jedes Polynom mit ganzzahligen Koeffizienten, <InlineMath math="P(1)=6" /> und <InlineMath math="P(4)=12" /> unmöglich ist. Der Plan: Prüfe jede Antwort mit einer Eigenschaft, die jedes Polynom mit ganzzahligen Koeffizienten hat, und **zeige für die Antworten, die den Test bestehen, ein passendes Polynom**.
 
-# Anteil jeder Gruppe
+# Die Eigenschaft der Differenzen
 
-Nimm **100 Schüler** an, also 60 Mädchen und 40 Jungen.
+Für ganze Zahlen <InlineMath math="a\ne b" /> teilt <InlineMath math="a-b" /> die Differenz <InlineMath math="P(a)-P(b)" />. Der Grund: <InlineMath math="P(a)-P(b)" /> ist eine Summe von Termen <InlineMath math="c_k\left(a^k-b^k\right)" /> mit ganzzahligem <InlineMath math="c_k" />, und jedes <InlineMath math="a^k-b^k" /> lässt sich zerlegen.
+
+<BlockMath math="a^k-b^k=(a-b)\left(a^{k-1}+a^{k-2}b+\dots+b^{k-1}\right)" />
+
+Der zweite Faktor ist ganzzahlig, also ist **jeder Term durch <InlineMath math="a-b" /> teilbar**, und damit auch die Summe. Die gegebenen Werte bestehen diesen Test: <InlineMath math="4-1=3" /> teilt <InlineMath math="12-6=6" />.
+
+# Jede Antwort prüfen
+
+Jede Antwort muss den Test mit **beiden bekannten Werten** bestehen, nicht nur mit dem nächstgelegenen.
+
+| Antwort | Test mit <InlineMath math="P(1)=6" /> | Test mit <InlineMath math="P(4)=12" /> |
+| :---: | :---: | :---: |
+| <InlineMath math="P(-1)=7" /> | <InlineMath math="\tfrac{7-6}{-1-1}=-\tfrac12" /> | <InlineMath math="\tfrac{7-12}{-1-4}=1" /> |
+| <InlineMath math="P(0)=0" /> | <InlineMath math="\tfrac{0-6}{0-1}=6" /> | <InlineMath math="\tfrac{0-12}{0-4}=3" /> |
+| <InlineMath math="P(5)=14" /> | <InlineMath math="\tfrac{14-6}{5-1}=2" /> | <InlineMath math="\tfrac{14-12}{5-4}=2" /> |
+| <InlineMath math="P(6)=6" /> | <InlineMath math="\tfrac{6-6}{6-1}=0" /> | <InlineMath math="\tfrac{6-12}{6-4}=-3" /> |
+| <InlineMath math="P(7)=0" /> | <InlineMath math="\tfrac{0-6}{7-1}=-1" /> | <InlineMath math="\tfrac{0-12}{7-4}=-4" /> |
+
+Nur <InlineMath math="P(-1)=7" /> fällt durch, denn <InlineMath math="-1-1=-2" /> teilt <InlineMath math="7-6=1" /> nicht. Anders gesagt: **<InlineMath math="P(-1)" /> und <InlineMath math="P(1)" /> müssen beide gerade oder beide ungerade sein**, aber <InlineMath math="7" /> ist ungerade und <InlineMath math="6" /> gerade. Der Test mit <InlineMath math="P(4)" /> allein bemerkt das nicht, weil <InlineMath math="-1-4=-5" /> tatsächlich <InlineMath math="7-12=-5" /> teilt.
+
+# Die anderen Antworten als möglich nachweisen
+
+Ein bestandener Test beweist noch nicht, dass eine Antwort möglich ist, also **gibst du ein ganzzahliges Polynom an, das tatsächlich passt**.
 
 <BlockMath math="\begin{aligned}
-\text{Mädchen mit Brille}&=40\,\%\times60=24\\
-\text{Jungen mit Brille}&=25\,\%\times40=10
+P(x)=2x+4:\quad & P(1)=6,\ P(4)=12,\ P(5)=14 \\
+P(x)=7x-x^2:\quad & P(1)=6,\ P(4)=12,\ P(0)=0,\ P(6)=6,\ P(7)=0
 \end{aligned}" />
 
-# Gesamtanteil
+Probe für das zweite Polynom: <InlineMath math="P(0)=0" />, <InlineMath math="P(4)=28-16=12" />, <InlineMath math="P(6)=42-36=6" /> und <InlineMath math="P(7)=49-49=0" />. Die anderen vier Aussagen können also alle stimmen.
 
-Die Zahl der Brillenträger ist **die Summe beider Gruppen**, <InlineMath math="24+10=34" /> von 100 Schülern, also 34 %.
+# Warum die anderen Antworten nicht passen
 
-Der Wert 32,5 % ist der einfache Mittelwert aus 40 % und 25 % und behandelt beide Gruppen als gleich groß. Der Wert 31 % vertauscht die Prozentsätze der beiden Gruppen. Die Werte 24 % und 10 % zählen jeweils nur eine Gruppe.
+Die anderen Antworten wirken nur unmöglich, wenn du **annimmst, das Polynom müsse linear sein**, oder die Werte falsch paarst.
 
-Es tragen also **34 %** der Schüler eine Brille.
+- <InlineMath math="P(0)=0" /> und <InlineMath math="P(7)=0" /> wirken unmöglich, wenn du glaubst, dieses Polynom könne keine ganzzahlige Nullstelle haben. Das Polynom <InlineMath math="7x-x^2=x(7-x)" /> zeigt, dass Nullstellen bei <InlineMath math="0" /> und <InlineMath math="7" /> möglich sind.
+- <InlineMath math="P(6)=6" /> wirkt unmöglich, wenn du glaubst, <InlineMath math="P" /> müsse wegen <InlineMath math="P(1)<P(4)" /> immer steigen. Das Polynom <InlineMath math="7x-x^2" /> steigt erst und fällt dann.
+- <InlineMath math="P(5)=14" /> wirkt unmöglich, wenn du <InlineMath math="5-1=4" /> mit <InlineMath math="14-12=2" /> paarst, dabei muss die Differenz der Werte zum selben Punktepaar gehören.
+
+Die Aussage, die nicht stimmen kann, ist also <InlineMath math="P(-1)=7" />.

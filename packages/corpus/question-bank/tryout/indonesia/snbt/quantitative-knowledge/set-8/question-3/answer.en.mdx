@@ -1,20 +1,56 @@
-Both shapes have the same area, so this compares **the perimeters of two shapes with equal area**. Compute both exactly, then compare.
+The three properties pin down <InlineMath math="f" /> on the whole number line. Here's the plan: use oddness to get a formula on <InlineMath math="-2\le x\le0" />, shift that formula by <InlineMath math="4" /> using periodicity, then **judge each statement with the formula that belongs to its piece**.
 
-# The two perimeters
+# The formula over one period
+
+For <InlineMath math="-2\le x\le0" />, the number <InlineMath math="-x" /> lies in <InlineMath math="0\le -x\le2" />, so oddness gives <InlineMath math="f(x)=-f(-x)=-(-x)(2+x)=x(2+x)" />. For <InlineMath math="2\le x\le4" />, the number <InlineMath math="x-4" /> lies in <InlineMath math="-2\le x-4\le0" />, so periodicity gives the formula below.
 
 <BlockMath math="\begin{aligned}
-P&=2\pi\cdot7=14\pi\\
-\text{area of the square}&=\pi\cdot7^2=49\pi\\
-\text{side of the square}&=\sqrt{49\pi}=7\sqrt\pi\\
-Q&=4\cdot7\sqrt\pi=28\sqrt\pi
+f(x)&=x(2-x)&&\text{for } 0\le x\le2\\
+f(x)&=f(x-4)=(x-4)(x-2)&&\text{for } 2\le x\le4
 \end{aligned}" />
 
-# Comparison
+On <InlineMath math="0\le x\le2" /> both factors <InlineMath math="x" /> and <InlineMath math="2-x" /> are non-negative. On <InlineMath math="2\le x\le4" /> the factor <InlineMath math="x-4" /> is non-positive and <InlineMath math="x-2" /> is non-negative. So **<InlineMath math="f" /> is non-negative on the first half of each period and non-positive on the second half**.
 
-Divide both quantities by <InlineMath math="14\sqrt\pi" /> to compare them easily.
+# The first statement
 
-<BlockMath math="P:Q=14\pi:28\sqrt\pi=\sqrt\pi:2" />
+Divide <InlineMath math="2027" /> by the period <InlineMath math="4" />, then use the formula on <InlineMath math="2\le x\le4" />.
 
-Since <InlineMath math="\pi<4" />, we have <InlineMath math="\sqrt\pi<2" />, so <InlineMath math="Q>P" />. In decimals, <InlineMath math="P\approx44" /> and <InlineMath math="Q\approx49.6" />. This matches the fact that among shapes of equal area, **the circle has the smallest perimeter**.
+<BlockMath math="\begin{aligned}
+2027&=4\cdot506+3\\
+f(2027)&=f(3)=(3-4)(3-2)=-1
+\end{aligned}" />
 
-So the correct relation is **<InlineMath math="Q>P" />**.
+Another route gives the same thing: <InlineMath math="f(3)=f(-1)=-f(1)=-1" />. The value <InlineMath math="1" /> comes from **forgetting that <InlineMath math="f" /> is odd**, that is, treating <InlineMath math="f(-1)" /> as <InlineMath math="f(1)" />. The first statement is false.
+
+# The second statement
+
+On <InlineMath math="0\le x\le2" />, solve <InlineMath math="x(2-x)=\tfrac12" />.
+
+<BlockMath math="\begin{aligned}
+x(2-x)&=\tfrac12\\
+2x^2-4x+1&=0\\
+x&=1\pm\tfrac{\sqrt2}{2}
+\end{aligned}" />
+
+Since <InlineMath math="\tfrac{\sqrt2}{2}" /> is less than <InlineMath math="1" />, both solutions lie inside <InlineMath math="0\le x\le2" />. Periodicity copies them to <InlineMath math="x=5\pm\tfrac{\sqrt2}{2}" /> in <InlineMath math="4\le x\le6" />. On <InlineMath math="2\le x\le4" /> and <InlineMath math="6\le x\le8" /> the values of <InlineMath math="f" /> are non-positive, so there are no solutions there. Careful: **a piece's formula only holds on its own piece**. The equation <InlineMath math="(x-4)(x-2)=\tfrac12" /> does have the roots <InlineMath math="x=3\pm\tfrac{\sqrt6}{2}" />, but <InlineMath math="\tfrac{\sqrt6}{2}" /> is more than <InlineMath math="1" />, so both roots fall outside <InlineMath math="2\le x\le4" /> and must be thrown out. That leaves exactly <InlineMath math="4" /> solutions, so the second statement is true.
+
+# The third statement
+
+Check one full period. Both sides repeat every <InlineMath math="4" />, so **checking <InlineMath math="0\le x\le4" /> is enough**.
+
+<BlockMath math="\begin{aligned}
+0\le x\le2:&\quad f(x+2)=(x-2)x=-x(2-x)=-f(x)\\
+2\le x\le4:&\quad f(x+2)=f(x-2)=(x-2)(4-x)=-(x-4)(x-2)=-f(x)
+\end{aligned}" />
+
+In the second row, <InlineMath math="x+2" /> is replaced by <InlineMath math="x-2" /> because the period is <InlineMath math="4" />, and <InlineMath math="x-2" /> lies in <InlineMath math="0\le x-2\le2" />. So <InlineMath math="f(x)+f(x+2)=0" /> for every real number <InlineMath math="x" />. The third statement is true.
+
+# The fourth statement
+
+An odd function <InlineMath math="g" /> must satisfy <InlineMath math="g(0)=-g(0)" />, so **an odd function has to be zero at zero**. Here <InlineMath math="g(0)=f(1)=1(2-1)=1" />, not <InlineMath math="0" />. So <InlineMath math="g" /> isn't odd. In fact, <InlineMath math="g" /> is even. Use oddness, then the result of the third statement with <InlineMath math="x=t-1" />.
+
+<BlockMath math="g(-t)=f(1-t)=-f(t-1)=f(t+1)=g(t)" />
+
+The fourth statement is false.
+
+So the first statement is **false**, the second is **true**, the third is **true**, and the fourth is **false**.

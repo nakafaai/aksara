@@ -1,18 +1,40 @@
-Ukur posisi setiap jarum sebagai sudut dari angka 12, searah jarum jam. Yang sering terlupa adalah **jarum jam juga bergerak** selama 40 menit itu.
+Tulis umur Ani, Budi, dan Cici saat ini sebagai <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" />. Sebuah keterangan cukup jika **semua keadaan yang mungkin memberi jawaban ya atau tidak yang sama**. Rencananya begini: uji pernyataan (1) saja, pernyataan (2) saja, lalu keduanya bersama, sambil memperhatikan apa yang diam-diam dikatakan pernyataan (2) tentang umur.
 
-# Posisi kedua jarum
+# Pernyataan pertama saja
 
-Jarum menit bergerak <InlineMath math="\tfrac{360^\circ}{60}=6^\circ" /> per menit. Jarum jam bergerak <InlineMath math="\tfrac{360^\circ}{12}=30^\circ" /> per jam, atau **<InlineMath math="0{,}5^\circ" /> per menit**.
+Pernyataan (1) berarti <InlineMath math="A+B=2C" />, jadi <InlineMath math="C" /> adalah rata-rata <InlineMath math="A" /> dan <InlineMath math="B" />. Rata-rata dua bilangan terletak di antara keduanya, jadi **Ani lebih tua daripada Cici tepat ketika Ani lebih tua daripada Budi**, dan hal itu tidak ditentukan.
+
+- Jawaban ya: <InlineMath math="A=10" />, <InlineMath math="B=6" />, <InlineMath math="C=8" />.
+- Jawaban tidak: <InlineMath math="A=6" />, <InlineMath math="B=10" />, <InlineMath math="C=8" />.
+
+Pernyataan (1) saja tidak cukup.
+
+# Pernyataan kedua saja
+
+Pernyataan (2) berarti <InlineMath math="B-6=3(C-6)" />, yaitu <InlineMath math="B=3C-12" />. Persamaan ini **sama sekali tidak menyebut umur Ani**.
+
+- Jawaban ya: <InlineMath math="C=8" />, <InlineMath math="B=12" />, <InlineMath math="A=20" />.
+- Jawaban tidak: <InlineMath math="C=8" />, <InlineMath math="B=12" />, <InlineMath math="A=5" />.
+
+Pernyataan (2) saja tidak cukup.
+
+# Kedua pernyataan bersama
+
+Substitusikan <InlineMath math="B=3C-12" /> ke <InlineMath math="A=2C-B" />.
 
 <BlockMath math="\begin{aligned}
-\text{jarum menit}&:\quad 40\cdot6^\circ=240^\circ\\
-\text{jarum jam}&:\quad 4\cdot30^\circ+40\cdot0{,}5^\circ=140^\circ
+A&=2C-(3C-12)=12-C\\
+A>C&\iff12-C>C\iff C<6
 \end{aligned}" />
 
-# Sudut terkecil
+Sekarang perhatikan syarat yang tersembunyi. Pernyataan (2) membicarakan umur Cici <InlineMath math="6" /> tahun yang lalu, jadi **Cici sudah lahir pada saat itu**, yaitu <InlineMath math="C-6\ge0" /> atau <InlineMath math="C\ge6" />. Akibatnya <InlineMath math="C<6" /> tidak mungkin, sehingga Ani tidak pernah lebih tua daripada Cici. Jawabannya selalu tidak.
 
-Selisih kedua posisi adalah <InlineMath math="240^\circ-140^\circ=100^\circ" />. Sudut di sisi lain adalah <InlineMath math="360^\circ-100^\circ=260^\circ" />, jadi **sudut terkecilnya <InlineMath math="100^\circ" />**.
+Contoh yang memenuhi keduanya adalah <InlineMath math="C=8" />, <InlineMath math="B=12" />, <InlineMath math="A=4" />. Pemeriksaan: <InlineMath math="4+12=16=2\cdot8" /> dan <InlineMath math="12-6=6=3(8-6)" />. Ani memang lebih muda daripada Cici.
 
-Sudut <InlineMath math="120^\circ" /> menganggap jarum jam tetap di angka 4. Sudut <InlineMath math="110^\circ" /> memakai gerak jarum jam <InlineMath math="0{,}25^\circ" /> per menit. Sudut <InlineMath math="140^\circ" /> adalah posisi jarum jam, bukan selisihnya, dan <InlineMath math="260^\circ" /> adalah sudut yang lebih besar.
+Jika kamu hanya meminta umur saat ini positif, kamu mungkin mengambil <InlineMath math="C=5" />, <InlineMath math="B=3" />, <InlineMath math="A=7" />, yang membuat Ani lebih tua. Namun, <InlineMath math="6" /> tahun yang lalu umur Budi dan Cici menjadi <InlineMath math="-3" /> dan <InlineMath math="-1" />, artinya keduanya belum lahir. Keadaan itu tidak sah, jadi tidak bisa menjadi contoh jawaban ya.
 
-Jadi, sudut terkecil kedua jarum adalah **<InlineMath math="100^\circ" />**.
+# Kesimpulan untuk setiap pilihan
+
+Pernyataan (1) saja dan pernyataan (2) saja masing-masing tidak cukup, karena ada contoh ya dan contoh tidak. **Bersama-sama keduanya cukup**, karena syarat <InlineMath math="C\ge6" /> memaksa jawaban tidak. Pilihan bahwa kedua pernyataan tidak cukup muncul jika syarat tersembunyi itu terlewat.
+
+Jadi, kedua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.

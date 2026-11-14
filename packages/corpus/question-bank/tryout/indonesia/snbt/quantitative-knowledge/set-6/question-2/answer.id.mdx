@@ -1,19 +1,64 @@
-Pecahan ini lebih mudah diperiksa jika pembilangnya **diubah agar memuat penyebut**. Dengan begitu, syarat bilangan bulat hanya bergantung pada satu pecahan sederhana.
+Kita cari titik puncak parabola yang sumbu simetrinya <InlineMath math="x=1" />. Rencananya: tulis <InlineMath math="f" /> dalam bentuk puncak, masukkan ketiga titik, cari <InlineMath math="k" />, lalu **periksa apakah setiap nilai <InlineMath math="k" /> benar-benar memberi fungsi kuadrat**.
 
-# Menulis ulang pecahan
+# Menulis fungsi dari sumbu simetrinya
 
-<BlockMath math="\frac{n+6}{n-2}=\frac{(n-2)+8}{n-2}=1+\frac{8}{n-2}" />
+Titik puncak selalu terletak pada sumbu simetri, jadi absis puncaknya <InlineMath math="1" />. Karena itu <InlineMath math="f" /> bisa ditulis dalam **bentuk puncak** berikut, dengan <InlineMath math="(1,q)" /> sebagai titik puncak.
 
-Bentuk ini bilangan bulat tepat ketika <InlineMath math="n-2" /> **membagi 8**. Pembagi 8 mencakup bilangan negatif.
+<BlockMath math="f(x)=a(x-1)^2+q,\qquad a\ne0" />
 
-<BlockMath math="n-2\in\{-8,-4,-2,-1,1,2,4,8\}" />
+Syarat <InlineMath math="a\ne0" /> datang dari kata fungsi kuadrat: tanpa suku <InlineMath math="x^2" />, grafiknya bukan parabola.
 
-# Menjumlahkan nilai n
+# Menyusun tiga persamaan
 
-Setiap pembagi <InlineMath math="d" /> memberi <InlineMath math="n=d+2" />, yaitu <InlineMath math="-6,-2,0,1,3,4,6,10" />. Pembagi positif dan negatif saling meniadakan, sehingga jumlahnya <InlineMath math="8\times2=16" />.
+Masukkan ketiga titik. Jarak absisnya ke sumbu simetri adalah <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="5" />, jadi kuadratnya <InlineMath math="1" />, <InlineMath math="4" />, dan <InlineMath math="25" />.
 
-<BlockMath math="-6-2+0+1+3+4+6+10=16" />
+<BlockMath math="\begin{aligned}
+f(2) &= a+q=1 \\
+f(3) &= 4a+q=k \\
+f(6) &= 25a+q=k^2
+\end{aligned}" />
 
-Nilai 23 hanya memakai pembagi positif. Nilai 8 adalah banyak nilai <InlineMath math="n" />, bukan jumlahnya. Nilai 15 menjumlahkan pembagi positif 8, yaitu nilai <InlineMath math="n-2" />, bukan <InlineMath math="n" />. Nilai 12 muncul dari kesalahan menulis <InlineMath math="1+\frac{4}{n-2}" />.
+**Kurangkan persamaan pertama dari dua persamaan lainnya** supaya <InlineMath math="q" /> hilang.
 
-Jadi, jumlah semua nilai <InlineMath math="n" /> adalah **16**.
+<BlockMath math="\begin{aligned}
+3a &= k-1 \\
+24a &= k^2-1
+\end{aligned}" />
+
+# Mencari nilai parameternya
+
+Persamaan kedua sama dengan delapan kali persamaan pertama di ruas kiri, jadi **ruas kanannya juga harus berlipat delapan**: <InlineMath math="24a=8\cdot3a=8(k-1)" />.
+
+<BlockMath math="\begin{aligned}
+k^2-1 &= 8(k-1) \\
+k^2-8k+7 &= 0 \\
+(k-1)(k-7) &= 0
+\end{aligned}" />
+
+Ada dua kandidat, <InlineMath math="k=1" /> dan <InlineMath math="k=7" />.
+
+# Membuang kandidat yang tidak sah
+
+Untuk <InlineMath math="k=1" />, persamaan <InlineMath math="3a=k-1" /> memberi <InlineMath math="a=0" />. Fungsinya menjadi <InlineMath math="f(x)=1" />, yaitu garis mendatar lewat ketiga titik <InlineMath math="(2,1)" />, <InlineMath math="(3,1)" />, dan <InlineMath math="(6,1)" />. **Garis mendatar bukan fungsi kuadrat dan tidak punya titik puncak**, jadi <InlineMath math="k=1" /> dibuang.
+
+Untuk <InlineMath math="k=7" /> kamu dapat <InlineMath math="a=2" /> dan <InlineMath math="q=1-a=-1" />.
+
+<BlockMath math="\begin{aligned}
+f(x) &= 2(x-1)^2-1 \\
+f(2) &= 2-1=1 \\
+f(3) &= 8-1=7 \\
+f(6) &= 50-1=49=7^2
+\end{aligned}" />
+
+Ketiga titik cocok, dan titik puncaknya <InlineMath math="(1,-1)" />.
+
+# Mengapa pilihan lain keliru
+
+Pilihan yang salah muncul dari **kandidat yang tidak diperiksa** atau dari membaca nilai yang salah.
+
+- <InlineMath math="(1,1)" /> muncul kalau kamu memakai <InlineMath math="k=1" />, padahal grafiknya lalu berupa garis <InlineMath math="y=1" />.
+- <InlineMath math="(1,-1)" /> atau <InlineMath math="(1,1)" /> muncul kalau kedua akar dipakai tanpa memeriksa syarat <InlineMath math="a\ne0" />.
+- <InlineMath math="(1,2)" /> muncul kalau koefisien <InlineMath math="a=2" /> dikira ordinat puncak, padahal ordinat puncak adalah <InlineMath math="q" />.
+- <InlineMath math="(1,7)" /> muncul kalau nilai <InlineMath math="k=7" /> dikira ordinat puncak, padahal <InlineMath math="7" /> adalah nilai <InlineMath math="f(3)" />.
+
+Jadi, koordinat titik puncak grafik <InlineMath math="f" /> adalah <InlineMath math="(1,-1)" />.

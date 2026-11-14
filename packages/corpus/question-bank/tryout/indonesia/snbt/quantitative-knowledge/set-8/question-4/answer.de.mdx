@@ -1,23 +1,41 @@
-Diese Funktion ist der Graph von <InlineMath math="y=2^{x}" />, um 1 nach rechts und um 4 nach unten verschoben. Die wichtigste Eigenschaft bleibt: **<InlineMath math="2^{x-1}" /> ist immer positiv**.
+Das System mischt Logarithmen zur Basis <InlineMath math="4" /> und zur Basis <InlineMath math="2" />. Du gehst so vor: **Schreibe jeden Logarithmus mit zwei neuen Buchstaben**, bestimme deren Summe und Produkt, rechne zurück auf <InlineMath math="x" /> und <InlineMath math="y" /> und nutze dann die Bedingung <InlineMath math="x\ne y" />.
 
-# Schnittpunkte mit den Achsen
+# Beide Gleichungen angleichen
 
-Der Schnittpunkt mit der x-Achse erfüllt <InlineMath math="f(x)=0" />.
+Setze <InlineMath math="p={}^{4}\log x" /> und <InlineMath math="q={}^{2}\log y" />. Dann ist <InlineMath math="x=4^{p}=2^{2p}" />, also <InlineMath math="{}^{2}\log x=2p" />. Genauso ist <InlineMath math="y=2^{q}=4^{q/2}" />, also <InlineMath math="{}^{4}\log y=\tfrac{q}{2}" />. Die Regel lautet: **Ein Logarithmus zur Basis <InlineMath math="4" /> ist halb so groß wie der zur Basis <InlineMath math="2" />**, weil <InlineMath math="4=2^2" /> ist.
 
-<BlockMath math="2^{x-1}=4=2^2\;\Longrightarrow\;x-1=2\;\Longrightarrow\;x=3" />
+<BlockMath math="\begin{aligned}
+p+q&=3\\
+2p\cdot\tfrac{q}{2}&=2\quad\Longrightarrow\quad pq=2
+\end{aligned}" />
 
-Die erste Aussage ist wahr. Den Schnittpunkt mit der y-Achse erhältst du, indem du **für <InlineMath math="x" /> die 0 einsetzt**.
+# Die Paare bestimmen
 
-<BlockMath math="f(0)=2^{-1}-4=\tfrac12-4=-3{,}5" />
+Zwei Zahlen mit Summe <InlineMath math="3" /> und Produkt <InlineMath math="2" /> sind die Lösungen von <InlineMath math="t^2-3t+2=0" />, also <InlineMath math="(t-1)(t-2)=0" />. Damit ist <InlineMath math="(p,q)=(1,2)" /> oder <InlineMath math="(p,q)=(2,1)" />. Rechne mit <InlineMath math="x=4^{p}" /> und <InlineMath math="y=2^{q}" /> zurück und **beachte, dass <InlineMath math="x" /> und <InlineMath math="y" /> verschiedene Basen haben**.
 
-Der Schnittpunkt hat die y-Koordinate <InlineMath math="-3{,}5" /> und ist also nicht <InlineMath math="(0,-3)" />. Die zweite Aussage ist falsch.
+<BlockMath math="\begin{aligned}
+(p,q)=(1,2)&:\quad x=4^{1}=4,\quad y=2^{2}=4\\
+(p,q)=(2,1)&:\quad x=4^{2}=16,\quad y=2^{1}=2
+\end{aligned}" />
 
-# Ein nie erreichter Wert und der Wert bei fünf
+# Die Bedingung streicht ein Paar
 
-Die Gleichung <InlineMath math="f(x)=-4" /> bedeutet <InlineMath math="2^{x-1}=0" />. Eine Potenz von 2 **ist nie null**, also gibt es kein solches <InlineMath math="x" />. Die Gerade <InlineMath math="y=-4" /> ist eine waagerechte Asymptote, der sich der Graph nähert, ohne sie zu berühren. Die dritte Aussage ist falsch.
+Das Paar <InlineMath math="x=y=4" /> erfüllt beide Gleichungen: <InlineMath math="1+2=3" /> und <InlineMath math="2\cdot1=2" />. Es fällt nur wegen **der Bedingung <InlineMath math="x\ne y" /> aus der Aufgabe** weg. Übrig bleiben <InlineMath math="x=16" /> und <InlineMath math="y=2" />.
 
-<BlockMath math="f(5)=2^{4}-4=16-4=12" />
+Prüfe dieses Paar im ursprünglichen System.
 
-Die vierte Aussage ist wahr.
+<BlockMath math="\begin{aligned}
+{}^{4}\log16+{}^{2}\log2&=2+1=3\\
+{}^{2}\log16\cdot{}^{4}\log2&=4\cdot\tfrac12=2
+\end{aligned}" />
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.
+Beide Zahlen sind positiv und verschieden, also gilt <InlineMath math="x+y=16+2=18" />.
+
+# Die falschen Antworten
+
+- <InlineMath math="6" /> entsteht, wenn **alle Logarithmen als Basis <InlineMath math="2" /> gelesen werden**: Summe <InlineMath math="3" /> und Produkt <InlineMath math="2" /> liefern dann <InlineMath math="\{x,y\}=\{2,4\}" />.
+- <InlineMath math="8" /> entsteht, wenn das Paar <InlineMath math="x=y=4" /> nicht gestrichen wird.
+- <InlineMath math="20" /> entsteht, wenn <InlineMath math="y" /> mit der Basis <InlineMath math="4" /> zurückgerechnet wird, also <InlineMath math="y=4^{1}=4" /> und <InlineMath math="16+4=20" />.
+- <InlineMath math="26" /> entsteht, wenn die Ergebnisse beider Paare addiert werden: <InlineMath math="8+18=26" />.
+
+Der Wert von <InlineMath math="x+y" /> ist also <InlineMath math="18" />.

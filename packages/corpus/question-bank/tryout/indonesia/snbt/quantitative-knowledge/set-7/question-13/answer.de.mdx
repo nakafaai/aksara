@@ -1,22 +1,39 @@
-Die beiden Kugeln hängen über die Kantenlänge des Würfels zusammen. Die Kante sei <InlineMath math="s" />. Das Kugelvolumen ist proportional zur dritten Potenz des Radius, also genügt es, **die Radien zu vergleichen und das Verhältnis hoch drei zu nehmen**.
+Das Volumen hängt vom Radius des Lochs ab, und dieser Radius steckt in der Angabe zur Oberfläche. Der Plan: Schreib die Änderung der Oberfläche als Gleichung in <InlineMath math="r" />, löse sie, **streich den Radius, bei dem das Loch nicht in den Würfel passt**, und berechne dann das Volumen.
 
-# Die beiden Radien
+# Die Änderung der Oberfläche
 
-Die kleine Kugel berührt zwei gegenüberliegende Seitenflächen, also ist **ihr Durchmesser gleich der Kante** und <InlineMath math="r=\tfrac{s}{2}" />.
-
-Die große Kugel geht durch zwei gegenüberliegende Ecken, also ist **ihr Durchmesser gleich der Raumdiagonale** des Würfels.
+Der Radius des Lochs sei <InlineMath math="r" /> Zentimeter. Das Bohren verändert die Oberfläche auf zwei Arten. **Zwei Kreise fallen weg** aus zwei Seitenflächen des Würfels, jeder mit dem Flächeninhalt <InlineMath math="\pi r^2" />, und **die Lochwand kommt hinzu**, also der Mantel eines Zylinders mit der Höhe der Würfelkante und dem Flächeninhalt <InlineMath math="2\pi r\times9" />.
 
 <BlockMath math="\begin{aligned}
-\text{Raumdiagonale}&=\sqrt{s^2+s^2+s^2}=s\sqrt3\\
-R&=\tfrac{s\sqrt3}{2}
+-2\pi r^2+18\pi r&=40\pi\\
+r^2-9r+20&=0\\
+(r-4)(r-5)&=0
 \end{aligned}" />
 
-# Verhältnis der Volumen
+Die zweite Zeile entsteht, wenn du beide Seiten durch <InlineMath math="-2\pi" /> teilst. Also ist <InlineMath math="r=4" /> oder <InlineMath math="r=5" />.
 
-Das Volumenverhältnis ist **die dritte Potenz des Radienverhältnisses**.
+# Den möglichen Radius wählen
 
-<BlockMath math="\frac{V_{\text{groß}}}{V_{\text{klein}}}=\left(\frac Rr\right)^3=\left(\sqrt3\right)^3=3\sqrt3" />
+Das Loch muss in eine Seitenfläche des Würfels passen, ein Quadrat mit <InlineMath math="9\text{ cm}" /> mal <InlineMath math="9\text{ cm}" />, also **muss der Durchmesser des Lochs kleiner als <InlineMath math="9\text{ cm}" /> sein**, das heißt <InlineMath math="r<4{,}5" />. Der Radius <InlineMath math="r=5" /> ergibt einen Durchmesser von <InlineMath math="10\text{ cm}" />, breiter als der Würfel selbst, und fällt deshalb weg. Übrig bleibt nur <InlineMath math="r=4" />.
 
-Das Verhältnis <InlineMath math="\sqrt3:1" /> ist das Verhältnis der Radien, und <InlineMath math="3:1" /> das der Oberflächen. Die Verhältnisse <InlineMath math="27:1" /> und <InlineMath math="9:1" /> entstehen, wenn man das Radienverhältnis als 3 nimmt oder 3 quadriert.
+Beachte, dass der gestrichene Radius kein negatives Volumen liefert: <InlineMath math="729-225\pi" /> ist noch positiv, weil <InlineMath math="225\pi<225\times3{,}2=720" /> ist. Dieser Fehler **fällt also nur auf, wenn du prüfst, ob das Loch passt**.
 
-Das Volumen der großen Kugel verhält sich zur kleinen also wie **<InlineMath math="3\sqrt3:1" />**.
+# Das Volumen berechnen
+
+Das Volumen ist **das Würfelvolumen minus das Volumen des entfernten Zylinders**. Der Zylinder ist so hoch wie die Würfelkante, <InlineMath math="9\text{ cm}" />.
+
+<BlockMath math="\begin{aligned}
+V&=9^3-\pi(4)^2(9)\\
+&=729-144\pi
+\end{aligned}" />
+
+Probe: Für <InlineMath math="r=4" /> ist die Änderung der Oberfläche <InlineMath math="-2\pi(16)+18\pi(4)=-32\pi+72\pi=40\pi" />, wie angegeben.
+
+# Die falschen Antworten
+
+- <InlineMath math="(729-16\pi)\text{ cm}^3" /> entsteht, wenn du das Zylindervolumen nur als <InlineMath math="\pi r^2" /> schreibst und **vergisst, mit der Höhe zu multiplizieren**, also mit <InlineMath math="9\text{ cm}" />.
+- <InlineMath math="(729-36\pi)\text{ cm}^3" /> entsteht, wenn du <InlineMath math="4" /> für den Durchmesser hältst, sodass der Radius <InlineMath math="2" /> und das Zylindervolumen <InlineMath math="\pi(2)^2(9)" /> wird.
+- <InlineMath math="(729-72\pi)\text{ cm}^3" /> entsteht, wenn du den Flächeninhalt der Lochwand <InlineMath math="2\pi(4)(9)" /> abziehst statt des Zylindervolumens.
+- <InlineMath math="(729-225\pi)\text{ cm}^3" /> verwendet <InlineMath math="r=5" />, aber ein <InlineMath math="10\text{ cm}" /> breites Loch passt nicht in den Würfel.
+
+Das Volumen des Körpers nach dem Bohren ist also <InlineMath math="(729-144\pi)\text{ cm}^3" />.

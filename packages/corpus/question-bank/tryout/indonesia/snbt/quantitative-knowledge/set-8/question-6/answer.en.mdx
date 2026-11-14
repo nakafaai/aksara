@@ -1,25 +1,34 @@
-Square both sides to remove the root. This step can create false roots, so **every result must be checked in the original equation**.
+You're counting the ways to cover the <InlineMath math="2\times10" /> board with more vertical dominoes than horizontal ones. Here's the plan: first show that **horizontal dominoes always come in pairs**, turn each covering into a row of blocks, then count the cases that meet the condition.
 
-# Squaring both sides
+# Horizontal dominoes always come in pairs
+
+Look at the leftmost column that isn't fully covered yet. Suppose its top cell is covered by a horizontal domino, which reaches into this column and the one to its right. The bottom cell of that column can't take a vertical domino, because the top cell is already used. It can't take a horizontal domino reaching left either, because the columns on the left are already full. So the bottom cell is **covered by a horizontal domino on the same two columns**.
+
+That means every covering is a row of two kinds of blocks, from left to right:
+
+- one vertical domino, <InlineMath math="1" /> column wide,
+- two stacked horizontal dominoes, <InlineMath math="2" /> columns wide.
+
+# Counting the cases that work
+
+Say there are <InlineMath math="k" /> vertical dominoes and <InlineMath math="m" /> horizontal blocks, so there are <InlineMath math="2m" /> horizontal dominoes. The blocks must fill a width of <InlineMath math="10" />, so <InlineMath math="k+2m=10" />. The condition in the question is <InlineMath math="k>2m=10-k" />, which means <InlineMath math="k>5" />. Since <InlineMath math="2m=10-k" /> is even, **the number of vertical dominoes must be even too**, so <InlineMath math="k" /> can only be <InlineMath math="6" />, <InlineMath math="8" />, or <InlineMath math="10" />.
+
+In each case there are <InlineMath math="k+m" /> blocks in a row, and you just choose the positions of the <InlineMath math="m" /> horizontal blocks among them.
 
 <BlockMath math="\begin{aligned}
-x+10&=(x-2)^2\\
-x+10&=x^2-4x+4\\
-x^2-5x-6&=0\\
-(x-6)(x+1)&=0
+k=6,\ m=2&:\quad \binom{8}{2}=28\\
+k=8,\ m=1&:\quad \binom{9}{1}=9\\
+k=10,\ m=0&:\quad \binom{10}{0}=1
 \end{aligned}" />
 
-# Checking both candidates
+That's <InlineMath math="28+9+1=38" /> ways.
 
-The left side is a square root, so it is never negative. Therefore **the right side must also be non-negative**, which means <InlineMath math="x\ge2" />.
+# Checking against all cases
 
-<BlockMath math="\begin{aligned}
-x=6&:\quad \sqrt{16}=4=6-2\\
-x=-1&:\quad \sqrt{9}=3\ne-1-2
-\end{aligned}" />
+Count the cases that don't meet the condition as well: <InlineMath math="k=0" /> gives <InlineMath math="\binom{5}{5}=1" />, <InlineMath math="k=2" /> gives <InlineMath math="\binom{6}{4}=15" />, and <InlineMath math="k=4" /> gives <InlineMath math="\binom{7}{3}=35" />. All cases together make <InlineMath math="1+15+35+28+9+1=89" />. The number of coverings of a <InlineMath math="2\times n" /> board satisfies <InlineMath math="T_n=T_{n-1}+T_{n-2}" />, because the first column is covered either by one vertical domino or by one horizontal block. That sequence is <InlineMath math="1,2,3,5,8,13,21,34,55,89" /> for <InlineMath math="n=1" /> to <InlineMath math="n=10" />. **The total of <InlineMath math="89" /> matches**, so the case split is complete.
 
-Only <InlineMath math="x=6" /> works. The candidate <InlineMath math="x=-1" /> appears because <InlineMath math="3^2" /> and <InlineMath math="(-3)^2" /> are both 9.
+# Common mistakes
 
-The value 5 adds both candidates without checking. The value <InlineMath math="-1" /> is the false root, 4 is the value of <InlineMath math="\sqrt{x+10}" />, and 1 comes from a sign error in the factorisation.
+If you treat horizontal dominoes as free to go anywhere, you might choose the places of the <InlineMath math="6" /> vertical dominoes among <InlineMath math="10" /> columns and get <InlineMath math="\binom{10}{6}=210" />, but **the leftover columns have to pair up into blocks <InlineMath math="2" /> wide**. If you forget that <InlineMath math="k" /> is even, you might look for the impossible cases <InlineMath math="k=7" /> or <InlineMath math="k=9" />. If you answer <InlineMath math="89" />, you haven't used the condition about having more vertical dominoes.
 
-So the sum of all solutions is **6**.
+So there are <InlineMath math="38" /> ways to cover the board with more vertical dominoes than horizontal ones.

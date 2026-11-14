@@ -1,23 +1,36 @@
-Luas segitiga pertama tetap karena ketiga sisinya diketahui. Luas segitiga kedua **bergantung pada sudut di antara kedua sisi yang diketahui**, jadi periksa apakah luas itu bisa lebih kecil dan bisa lebih besar daripada <InlineMath math="P" />.
+Setiap pernyataan mengubah data dengan cara berbeda, jadi setiap pernyataan perlu dihitung ulang sendiri. Rencananya: hitung dulu rata-rata, median, dan modus data awal, lalu **lacak posisi data tengah setelah setiap perubahan**, karena median ditentukan oleh posisi, bukan oleh besar nilainya.
 
-# Luas segitiga pertama
+# Statistik data awal
 
-Tarik garis tinggi ke sisi 14. Garis tinggi itu membagi sisi 14 menjadi bagian 5 dan 9, karena <InlineMath math="13^2-5^2=15^2-9^2=144" />. Jadi **tingginya 12 cm**.
+Jumlah semua nilai adalah <InlineMath math="3(5)+5(6)+6(7)+4(8)+2(9)=15+30+42+32+18=137" />, jadi rata-ratanya <InlineMath math="\frac{137}{20}=6{,}85" />. Frekuensi kumulatif menunjukkan nilai ke berapa yang ditempati setiap nilai.
 
-<BlockMath math="P=\tfrac12\cdot14\cdot12=84" />
+| Nilai | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| Data urutan ke | <InlineMath math="1" /> sampai <InlineMath math="3" /> | <InlineMath math="4" /> sampai <InlineMath math="8" /> | <InlineMath math="9" /> sampai <InlineMath math="14" /> | <InlineMath math="15" /> sampai <InlineMath math="18" /> | <InlineMath math="19" /> sampai <InlineMath math="20" /> |
 
-# Rentang luas segitiga kedua
+Ada <InlineMath math="20" /> data, jadi **median adalah rata-rata data ke-<InlineMath math="10" /> dan ke-<InlineMath math="11" />**. Keduanya bernilai <InlineMath math="7" />, jadi median <InlineMath math="7" />. Modusnya juga <InlineMath math="7" />, karena frekuensinya <InlineMath math="6" /> paling besar.
 
-Jika sudut di antara sisi 13 dan 15 adalah <InlineMath math="\theta" />, maka
+# Koreksi nilai sembilan menjadi lima
 
-<BlockMath math="Q=\tfrac12\cdot13\cdot15\cdot\sin\theta=97{,}5\sin\theta" />
+Jumlah nilai berkurang <InlineMath math="9-5=4" />, sedangkan banyak data tetap <InlineMath math="20" />, jadi **rata-rata turun <InlineMath math="\frac{4}{20}=0{,}2" />**, dari <InlineMath math="6{,}85" /> menjadi <InlineMath math="6{,}65" />. Frekuensi nilai <InlineMath math="5" /> menjadi <InlineMath math="4" /> dan nilai <InlineMath math="9" /> menjadi <InlineMath math="1" />, sehingga nilai <InlineMath math="7" /> kini menempati urutan <InlineMath math="10" /> sampai <InlineMath math="15" />. Data ke-<InlineMath math="10" /> dan ke-<InlineMath math="11" /> tetap <InlineMath math="7" />, jadi median tidak berubah. Pernyataan pertama **benar**.
 
-Sudutnya memenuhi <InlineMath math="0^\circ<\theta<180^\circ" />. Nilai <InlineMath math="Q" /> **dapat berupa bilangan positif berapa pun hingga 97,5**.
+# Satu siswa tambahan
 
-- Jika sisi ketiganya 14, segitiga kedua sama dengan segitiga pertama dan <InlineMath math="Q=84=P" />.
-- Jika <InlineMath math="\theta=90^\circ" />, maka <InlineMath math="Q=97{,}5>P" />.
-- Jika <InlineMath math="\theta=30^\circ" />, maka <InlineMath math="Q=48{,}75<P" />.
+Dengan satu siswa tambahan, banyak data menjadi <InlineMath math="21" />, yaitu ganjil. **Jika banyak data ganjil, median adalah satu data tepat di tengah**, yaitu data ke-<InlineMath math="11" />. Data itu adalah nilai seorang siswa, jadi pasti bilangan bulat dan tidak mungkin <InlineMath math="6{,}5" />. Pernyataan kedua **salah**.
 
-Ketiga hubungan mungkin terjadi, jadi hubungan <InlineMath math="P" /> dan <InlineMath math="Q" /> **tidak dapat dipastikan**.
+# Dua siswa baru bernilai enam
 
-Jadi, informasi yang diberikan **tidak cukup** untuk memutuskan hubungan <InlineMath math="P" /> dan <InlineMath math="Q" />.
+Frekuensi nilai <InlineMath math="6" /> naik menjadi <InlineMath math="7" />, lebih besar dari frekuensi nilai <InlineMath math="7" /> yang tetap <InlineMath math="6" />, jadi modusnya berubah menjadi <InlineMath math="6" />. Namun ada <InlineMath math="22" /> data, nilai <InlineMath math="6" /> kini berakhir di urutan ke-<InlineMath math="10" />, dan nilai <InlineMath math="7" /> menempati urutan <InlineMath math="11" /> sampai <InlineMath math="16" />. Median adalah rata-rata data ke-<InlineMath math="11" /> dan ke-<InlineMath math="12" />, yaitu tetap <InlineMath math="7" />. **Hanya modus yang berubah**, jadi pernyataan ketiga **salah**.
+
+# Siswa baru bernilai delapan
+
+Tambahan nilai <InlineMath math="8" /> tidak menggeser urutan nilai <InlineMath math="7" />, yang tetap menempati urutan <InlineMath math="9" /> sampai <InlineMath math="14" />. Median tetap <InlineMath math="7" /> selama posisi tengah tidak melewati urutan ke-<InlineMath math="14" />. Banyak data <InlineMath math="n=20+k" />, dan **posisi tengah bergantung pada genap atau ganjilnya <InlineMath math="n" />**.
+
+<BlockMath math="\begin{aligned}
+n \text{ genap}&: \ \tfrac n2+1\le14 \;\Longrightarrow\; n\le26 \;\Longrightarrow\; k\le6\\
+n \text{ ganjil}&: \ \tfrac{n+1}{2}\le14 \;\Longrightarrow\; n\le27 \;\Longrightarrow\; k\le7
+\end{aligned}" />
+
+Untuk <InlineMath math="k=7" /> ada <InlineMath math="27" /> data, dan median adalah data ke-<InlineMath math="14" />, yang masih bernilai <InlineMath math="7" />. Untuk <InlineMath math="k=8" /> ada <InlineMath math="28" /> data, dan median menjadi <InlineMath math="\frac{7+8}{2}=7{,}5" />. Jadi median tetap <InlineMath math="7" /> untuk <InlineMath math="k\le7" />, bukan hanya <InlineMath math="k\le6" />. Pernyataan keempat **salah**.
+
+Jadi, pernyataan pertama benar, sedangkan pernyataan kedua, ketiga, dan keempat salah.

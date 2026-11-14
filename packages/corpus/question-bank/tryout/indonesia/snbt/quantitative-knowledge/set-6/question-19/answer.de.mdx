@@ -1,23 +1,46 @@
-Dass die gezogene Kugel rot ist, steht schon fest. Gesucht ist also **die bedingte Wahrscheinlichkeit für Kiste I unter der Bedingung einer roten Kugel**. Der Ergebnisraum schrumpft auf alle Wege zu einer roten Kugel.
+Alle vier Aussagen prüfen dieselbe Idee von verschiedenen Seiten: **eine Wurzel mit geradem Exponenten liefert nie eine negative Zahl**, eine Wurzel mit ungeradem Exponenten behält dagegen das Vorzeichen. Beurteile jede Aussage mit einem Beweis oder einem Gegenbeispiel.
 
-# Wahrscheinlichkeit jedes roten Pfads
+# Zwei Grundregeln
 
-Eine rote Kugel kann über zwei Pfade kommen. Multipliziere die Wahrscheinlichkeit für die Wahl der Kiste mit **der Wahrscheinlichkeit für Rot aus dieser Kiste**.
+Für jede reelle Zahl <InlineMath math="t" /> ist das Quadrat <InlineMath math="t^2" /> nicht negativ, und seine Quadratwurzel muss ebenfalls nicht negativ sein. Also ist <InlineMath math="\sqrt{t^2}" /> gleich <InlineMath math="t" /> für <InlineMath math="t\ge0" /> und gleich <InlineMath math="-t" /> für <InlineMath math="t<0" />. Das ist der **Betrag**, <InlineMath math="\lvert t\rvert" />. Die dritte Wurzel hat diese Grenze nicht, weil die dritte Potenz einer negativen Zahl negativ bleibt.
 
 <BlockMath math="\begin{aligned}
-P(\text{I und rot})&=\tfrac12\cdot\tfrac35=\tfrac{3}{10}\\
-P(\text{II und rot})&=\tfrac12\cdot\tfrac15=\tfrac{1}{10}\\
-P(\text{rot})&=\tfrac{3}{10}+\tfrac{1}{10}=\tfrac{4}{10}
+\sqrt{t^2} &= \lvert t\rvert, & \sqrt{(-3)^2} &= \sqrt9=3 \\
+\sqrt[3]{t^3} &= t, & \sqrt[3]{(-2)^3} &= \sqrt[3]{-8}=-2
 \end{aligned}" />
 
-# Bedingte Wahrscheinlichkeit
+# Erste Aussage
 
-Teile die Wahrscheinlichkeit des Pfads über Kiste I durch **die Wahrscheinlichkeit des ganzen Ereignisses Rot**.
+Setze <InlineMath math="t=1-\sqrt3" />. Weil <InlineMath math="\sqrt3>1" /> ist, **ist <InlineMath math="t" /> negativ**, also gilt <InlineMath math="\lvert t\rvert=\sqrt3-1" />.
 
-<BlockMath math="P(\text{I}\mid\text{rot})=\frac{3/10}{4/10}=\frac34" />
+<BlockMath math="\begin{aligned}
+\sqrt{t^2}+\sqrt[3]{t^3} &= \lvert t\rvert+t \\
+&= \left(\sqrt3-1\right)+\left(1-\sqrt3\right)=0
+\end{aligned}" />
 
-Das Ergebnis passt: Von den 4 roten Kugeln liegen 3 in Kiste I, und beide Kisten enthalten 5 Kugeln.
+Die erste Aussage ist **wahr**. Kürzt du Wurzel und Quadrat sofort gegeneinander, erhältst du <InlineMath math="2-2\sqrt3" />, und das ist falsch, weil der erste Teil nicht negativ sein kann.
 
-Der Wert <InlineMath math="\tfrac{3}{10}" /> ist die Wahrscheinlichkeit, Kiste I zu wählen und Rot zu ziehen, noch ohne Division durch die Wahrscheinlichkeit für Rot. Der Wert <InlineMath math="\tfrac25" /> ist die Wahrscheinlichkeit für Rot. Der Wert <InlineMath math="\tfrac35" /> ist die Wahrscheinlichkeit für Rot, wenn Kiste I schon gewählt ist, also die umgekehrte Bedingung. Der Wert <InlineMath math="\tfrac12" /> übersieht die Farbe der Kugel.
+# Zweite Aussage
 
-Die Wahrscheinlichkeit, dass die rote Kugel aus Kiste I stammt, ist also **<InlineMath math="\tfrac34" />**.
+Ziehe den quadratischen Faktor heraus: <InlineMath math="\sqrt{a^2b}=\sqrt{a^2}\cdot\sqrt b=\lvert a\rvert\sqrt b" />. Für <InlineMath math="a<0" /> ist <InlineMath math="\lvert a\rvert=-a" />, das Ergebnis ist also <InlineMath math="-a\sqrt b" /> und **nicht <InlineMath math="a\sqrt b" />**. Ein Gegenbeispiel ist <InlineMath math="a=-1" /> und <InlineMath math="b=1" />: Links steht <InlineMath math="\sqrt1=1" />, rechts <InlineMath math="-1" />. Die zweite Aussage ist **falsch**.
+
+# Dritte Aussage
+
+Die linke Seite ist <InlineMath math="\sqrt{(x+1)^2}=\lvert x+1\rvert" /> und damit nicht negativ. Also muss auch die rechte Seite nicht negativ sein: <InlineMath math="2x-1\ge0" />, das heißt <InlineMath math="x\ge\tfrac12" />. Für <InlineMath math="x\ge\tfrac12" /> ist <InlineMath math="x+1" /> positiv, also <InlineMath math="\lvert x+1\rvert=x+1" />.
+
+<BlockMath math="\begin{aligned}
+x+1 &= 2x-1 \\
+x &= 2
+\end{aligned}" />
+
+Es gibt nur eine Lösung. Zwei Lösungen erscheinen, wenn du beide Seiten ohne Bedingung quadrierst: <InlineMath math="(x+1)^2=(2x-1)^2" /> liefert <InlineMath math="3x^2-6x=0" />, also <InlineMath math="x=0" /> oder <InlineMath math="x=2" />. Bei <InlineMath math="x=0" /> ist die linke Seite <InlineMath math="\sqrt1=1" />, die rechte aber <InlineMath math="-1" />, also ist **<InlineMath math="x=0" /> eine Scheinlösung** aus dem Quadrieren. Die dritte Aussage ist **falsch**.
+
+# Vierte Aussage
+
+Für <InlineMath math="a\le0" /> ist <InlineMath math="-a" /> nicht negativ, also ist <InlineMath math="\sqrt{-a}" /> definiert. Nach der Bedeutung der Quadratwurzel gilt: **Eine Quadratwurzel mal sich selbst ergibt wieder die Zahl unter der Wurzel**, also <InlineMath math="-a" /> und nicht <InlineMath math="a" />. Ein Gegenbeispiel ist <InlineMath math="a=-4" />.
+
+<BlockMath math="\sqrt{4}\cdot\sqrt{4}=2\cdot2=4\ne-4" />
+
+Die Gleichung gilt nur für <InlineMath math="a=0" />, also nicht für jedes <InlineMath math="a\le0" />. Die vierte Aussage ist **falsch**.
+
+Die erste Aussage ist also wahr, die zweite, dritte und vierte Aussage sind falsch.

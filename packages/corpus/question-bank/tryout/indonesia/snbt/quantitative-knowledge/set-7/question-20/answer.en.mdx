@@ -1,28 +1,46 @@
-Each statement uses **a different measure**: a count of families, a percentage change, a mean and a median. Compute each from the table.
+The sign of a product is decided by the sign of each factor, so the first step is to factor everything. Here's the plan: factor, watch out for **the factor that is a square**, build a sign table, then count the integers that work between <InlineMath math="-10" /> and <InlineMath math="10" />.
 
-# Direction and percentage of change
+# Factoring each part
 
-Use fell for family B (25 to 20) and family D (30 to 27). The others rose, so **only two families decreased**. The first statement is false.
-
-A percentage increase is measured against the July use.
+The first part has roots <InlineMath math="1" /> and <InlineMath math="4" />, and **the second part is a perfect square**.
 
 <BlockMath math="\begin{aligned}
-\text{A}&:\quad \tfrac{6}{18}\approx33\%\\
-\text{C}&:\quad \tfrac{3}{12}=25\%\\
-\text{E}&:\quad \tfrac{9}{15}=60\%
+x^2-5x+4&=(x-1)(x-4)\\
+x^2-14x+49&=(x-7)^2
 \end{aligned}" />
 
-The largest percentage increase belongs to family E, not A. Family E rose by 9 cubic metres from **a smaller starting use**, 15, so its percentage is the largest. The second statement is false.
+So the inequality becomes <InlineMath math="(x-1)(x-4)(x-7)^2(x+3)\le0" />.
 
-# Mean and median
+# What the square factor does
+
+The factor <InlineMath math="(x-7)^2" /> is never negative. For <InlineMath math="x\ne7" /> it's positive, so it **doesn't change the sign of the product**, and the inequality is the same as <InlineMath math="(x-1)(x-4)(x+3)\le0" />. At <InlineMath math="x=7" /> that factor is zero, so the whole product equals <InlineMath math="0" />, and <InlineMath math="x=7" /> **counts as a solution** because the sign is <InlineMath math="\le" />.
+
+# A sign table for three factors
+
+The three factors are zero at <InlineMath math="-3" />, <InlineMath math="1" />, and <InlineMath math="4" />. **A sign can only change at a zero**, so one test point in each interval is enough to work out the signs.
+
+| Interval | <InlineMath math="x+3" /> | <InlineMath math="x-1" /> | <InlineMath math="x-4" /> | Product |
+| :--- | :---: | :---: | :---: | :---: |
+| <InlineMath math="x<-3" /> | <InlineMath math="-" /> | <InlineMath math="-" /> | <InlineMath math="-" /> | <InlineMath math="-" /> |
+| <InlineMath math="-3<x<1" /> | <InlineMath math="+" /> | <InlineMath math="-" /> | <InlineMath math="-" /> | <InlineMath math="+" /> |
+| <InlineMath math="1<x<4" /> | <InlineMath math="+" /> | <InlineMath math="+" /> | <InlineMath math="-" /> | <InlineMath math="-" /> |
+| <InlineMath math="x>4" /> | <InlineMath math="+" /> | <InlineMath math="+" /> | <InlineMath math="+" /> | <InlineMath math="+" /> |
+
+The product is negative or zero for <InlineMath math="x\le-3" /> and for <InlineMath math="1\le x\le4" />. Add the isolated point <InlineMath math="x=7" />, and the solution set is <InlineMath math="x\le-3" />, <InlineMath math="1\le x\le4" />, or <InlineMath math="x=7" />.
+
+# Counting the integers
+
+Restrict to <InlineMath math="-10\le x\le10" /> and count each part, **including both ends** because the sign is <InlineMath math="\le" />.
 
 <BlockMath math="\begin{aligned}
-\bar x_{\text{July}}&=\frac{18+25+12+30+15}{5}=\frac{100}{5}=20\\
-\bar x_{\text{August}}&=\frac{24+20+15+27+24}{5}=\frac{110}{5}=22
+-10\le x\le-3&: \ 8 \text{ integers}\\
+1\le x\le4&: \ 4 \text{ integers}\\
+x=7&: \ 1 \text{ integer}\\
+\text{total}&: \ 8+4+1=13
 \end{aligned}" />
 
-The difference is 2 cubic metres, so the third statement is true.
+A check at a few points in the original form: at <InlineMath math="x=7" /> the value is <InlineMath math="(18)(0)(10)=0" />, so it works. At <InlineMath math="x=6" /> the value is <InlineMath math="(10)(1)(9)=90>0" />, and at <InlineMath math="x=0" /> it's <InlineMath math="(4)(49)(3)=588>0" />, so neither works.
 
-The July data in order are 12, 15, 18, 25, 30. **The middle value is 18**, so the fourth statement is true.
+If you divide both sides by <InlineMath math="(x-7)^2" /> without checking <InlineMath math="x=7" />, you lose one solution and get <InlineMath math="12" />. If you treat <InlineMath math="(x-7)^2" /> like an ordinary factor that changes sign, you get <InlineMath math="-3\le x\le1" /> or <InlineMath math="4\le x\le7" />, which is <InlineMath math="9" /> integers.
 
-So the first statement is **false**, the second is **false**, the third is **true**, and the fourth is **true**.
+So the number of integers <InlineMath math="x" /> with <InlineMath math="-10\le x\le10" /> that satisfy the inequality is <InlineMath math="13" />.

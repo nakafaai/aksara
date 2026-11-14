@@ -1,22 +1,44 @@
-Bestimme zuerst das erste Glied und die Differenz aus den beiden gegebenen Gliedern. **Zähle dann die Glieder sorgfältig**: Vom fünften bis zum zwölften Glied sind es <InlineMath math="12-5+1=8" /> Glieder.
+Der Wert von <InlineMath math="x" /> ist nicht angegeben, also musst du die Beziehung zwischen <InlineMath math="P" /> und <InlineMath math="Q" /> für **jede positive ganze Zahl** prüfen. Ändert sich die Beziehung je nach <InlineMath math="x" />, reichen die Angaben nicht aus. Das Vorgehen: zweimal quadrieren, bis die Wurzeln verschwinden, und dann auf das Vorzeichen der Differenz schauen.
 
-# Erstes Glied und Differenz
+# Die Quadrate vergleichen
+
+Beide Größen sind positiv. Von zwei positiven Zahlen hat die größere auch das größere Quadrat, deshalb **reicht der Vergleich von <InlineMath math="P^2" /> und <InlineMath math="Q^2" />**.
 
 <BlockMath math="\begin{aligned}
-u_8-u_3&=5b=31-11=20\quad\Rightarrow\quad b=4\\
-a&=u_3-2b=11-8=3
+P^2 &= x+2\sqrt{x}\sqrt{x+8}+(x+8)=2x+8+2\sqrt{x^2+8x} \\
+Q^2 &= 4(x+3)=4x+12 \\
+P^2-Q^2 &= 2\left(\sqrt{x^2+8x}-(x+2)\right)
 \end{aligned}" />
 
-**Die Gliedformel** lautet <InlineMath math="u_n=3+4(n-1)=4n-1" />, also <InlineMath math="u_5=19" /> und <InlineMath math="u_{12}=47" />.
+# Noch einmal quadrieren
 
-# Summe von acht Gliedern
+Das Vorzeichen von <InlineMath math="P^2-Q^2" /> ist das von <InlineMath math="\sqrt{x^2+8x}-(x+2)" />. Beide Terme sind ebenfalls positiv, also **vergleichst du wieder ihre Quadrate**.
 
-Das fünfte bis zwölfte Glied bilden wieder eine arithmetische Folge, ihre Summe ist also **Anzahl der Glieder mal Mittelwert aus erstem und letztem**.
+<BlockMath math="\begin{aligned}
+(x^2+8x)-(x+2)^2 &= x^2+8x-x^2-4x-4 \\
+&= 4x-4 \\
+&= 4(x-1)
+\end{aligned}" />
 
-<BlockMath math="S=\frac{8}{2}\left(19+47\right)=4\cdot66=264" />
+Also gilt <InlineMath math="P>Q" /> genau für <InlineMath math="x>1" />, <InlineMath math="P=Q" /> genau für <InlineMath math="x=1" /> und <InlineMath math="P<Q" /> nur für <InlineMath math="x<1" />.
 
-Probe mit einer Differenz von Summen: <InlineMath math="S_{12}-S_4=300-36=264" />.
+# Alle positiven ganzen Zahlen prüfen
 
-Der Wert 300 ist die Summe der ersten zwölf Glieder ohne Abzug. Der Wert 245 ist <InlineMath math="S_{12}-S_5" /> und entfernt dabei auch das fünfte Glied. Der Wert 297 zählt neun Glieder, der Wert 330 zehn.
+Die kleinste positive ganze Zahl ist <InlineMath math="1" />, und **dort sind beide Größen gleich**.
 
-Die Summe vom fünften bis zum zwölften Glied ist also **264**.
+<BlockMath math="\begin{aligned}
+x=1:\quad P &= \sqrt1+\sqrt9=1+3=4 \\
+Q &= 2\sqrt4=4
+\end{aligned}" />
+
+Bei <InlineMath math="x=2" /> ist die Differenz der Quadrate <InlineMath math="4(2-1)=4" /> positiv, also gilt <InlineMath math="P>Q" />. Das gilt genauso für jedes <InlineMath math="x\ge2" />. Weil <InlineMath math="x=1" /> zu <InlineMath math="P=Q" /> und <InlineMath math="x=2" /> zu <InlineMath math="P>Q" /> führt, **lässt sich keine einzelne Beziehung festlegen**.
+
+# Warum die anderen Antworten nicht passen
+
+Jede der drei anderen Antworten stimmt nur für **einen Teil der Werte von <InlineMath math="x" />**.
+
+- <InlineMath math="P>Q" /> entsteht, wenn du nur Zahlen größer als <InlineMath math="1" /> ausprobierst und den Fall <InlineMath math="x=1" /> übersiehst.
+- <InlineMath math="P=Q" /> entsteht, wenn du nur <InlineMath math="x=1" /> ausprobierst.
+- <InlineMath math="Q>P" /> entsteht, wenn du <InlineMath math="x=0" /> ausprobierst, wo <InlineMath math="\sqrt8<2\sqrt3" /> gilt, aber <InlineMath math="0" /> ist keine positive ganze Zahl.
+
+Die Angaben reichen also nicht aus, um die Beziehung zwischen <InlineMath math="P" /> und <InlineMath math="Q" /> festzulegen.

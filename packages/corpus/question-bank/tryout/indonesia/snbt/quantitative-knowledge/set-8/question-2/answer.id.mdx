@@ -1,21 +1,46 @@
-Bentuk <InlineMath math="x^3+y^3" /> dapat ditulis dengan jumlah dan hasil kali, jadi cukup **mencari <InlineMath math="xy" /> lebih dulu**, tanpa menentukan <InlineMath math="x" /> dan <InlineMath math="y" /> satu per satu.
+Kamu mencari <InlineMath math="x^4+y^4" /> untuk bilangan real <InlineMath math="x" /> dan <InlineMath math="y" />. Kedua persamaan tidak berubah jika <InlineMath math="x" /> dan <InlineMath math="y" /> ditukar, jadi rencananya begini: tulis ulang semuanya dengan jumlah dan hasil kali, cari pasangan yang mungkin, **buang pasangan yang tidak memberi bilangan real**, lalu hitung pangkat empatnya.
 
-# Hasil kali dari jumlah kuadrat
+# Menulis ulang dengan jumlah dan hasil kali
+
+Misalkan <InlineMath math="s=x+y" /> dan <InlineMath math="p=xy" />. Karena <InlineMath math="(x+y)^2=x^2+2xy+y^2" />, kamu punya <InlineMath math="x^2+y^2=s^2-2p" />. Persamaan kedua berbunyi <InlineMath math="p-s=2" />, jadi <InlineMath math="p=s+2" />. **Substitusikan <InlineMath math="p" /> ke persamaan pertama** supaya tinggal satu huruf.
 
 <BlockMath math="\begin{aligned}
-(x+y)^2&=x^2+y^2+2xy\\
-49&=29+2xy\\
-xy&=10
+s^2-2p&=11\\
+s^2-2(s+2)&=11\\
+s^2-2s-15&=0\\
+(s-5)(s+3)&=0
 \end{aligned}" />
 
-# Jumlah pangkat tiga
+Ada dua calon: <InlineMath math="s=5" /> dengan <InlineMath math="p=7" />, atau <InlineMath math="s=-3" /> dengan <InlineMath math="p=-1" />.
 
-Pakai **pemfaktoran jumlah pangkat tiga**, <InlineMath math="x^3+y^3=(x+y)(x^2-xy+y^2)" />.
+# Syarat bilangan real
 
-<BlockMath math="x^3+y^3=7\,(29-10)=7\cdot19=133" />
+Bilangan <InlineMath math="x" /> dan <InlineMath math="y" /> adalah akar-akar <InlineMath math="t^2-st+p=0" />, karena jumlah akarnya <InlineMath math="s" /> dan hasil kalinya <InlineMath math="p" />. Kedua akar itu real **hanya jika diskriminan <InlineMath math="s^2-4p" /> tidak negatif**. Periksa kedua calon.
 
-Pemeriksaan: kedua bilangan itu adalah 2 dan 5, dan <InlineMath math="8+125=133" />.
+<BlockMath math="\begin{aligned}
+s=5,\ p=7&:\quad s^2-4p=25-28=-3\\
+s=-3,\ p=-1&:\quad s^2-4p=9+4=13
+\end{aligned}" />
 
-Nilai 203 lupa mengurangkan <InlineMath math="xy" />, yaitu <InlineMath math="7\cdot29" />. Nilai 63 memakai <InlineMath math="xy=20" /> karena lupa membagi dua.
+Calon pertama memberi diskriminan negatif, jadi <InlineMath math="x" /> dan <InlineMath math="y" /> tidak real dan calon itu dibuang. Yang tersisa hanya <InlineMath math="s=-3" /> dan <InlineMath math="p=-1" />.
 
-Jadi, nilai <InlineMath math="x^3+y^3" /> adalah **133**.
+# Menghitung pangkat empat
+
+Kuadratkan <InlineMath math="x^2+y^2" />: hasilnya <InlineMath math="x^4+2x^2y^2+y^4" />. Jadi, **kurangkan dua kali kuadrat hasil kali** untuk mendapat <InlineMath math="x^4+y^4" />.
+
+<BlockMath math="\begin{aligned}
+x^4+y^4&=\left(x^2+y^2\right)^2-2(xy)^2\\
+&=11^2-2(-1)^2\\
+&=121-2=119
+\end{aligned}" />
+
+Periksa dengan nilai <InlineMath math="x" /> dan <InlineMath math="y" /> sebenarnya, yaitu <InlineMath math="\tfrac{-3\pm\sqrt{13}}{2}" />. Kuadratnya adalah <InlineMath math="\tfrac{11\mp3\sqrt{13}}{2}" />, yang jumlahnya <InlineMath math="11" />. Pangkat empatnya berjumlah <InlineMath math="\tfrac{(11-3\sqrt{13})^2+(11+3\sqrt{13})^2}{4}=\tfrac{242+234}{4}=119" />. Hasilnya cocok.
+
+# Pilihan yang keliru
+
+- <InlineMath math="23" /> muncul jika **calon yang tidak real tetap dipakai**: <InlineMath math="121-2\cdot7^2=23" />.
+- <InlineMath math="107" /> muncul jika calon yang tidak real dipakai dan yang dikurangkan <InlineMath math="2xy" />, bukan <InlineMath math="2(xy)^2" />: <InlineMath math="121-2\cdot7=107" />.
+- <InlineMath math="117" /> muncul dari bentuk <InlineMath math="x^4+y^4=s^4-4s^2p+2p^2" /> jika suku <InlineMath math="2p^2" /> terlupa: <InlineMath math="81+36=117" />.
+- <InlineMath math="121" /> muncul jika suku <InlineMath math="2x^2y^2" /> terlupa, seolah-olah <InlineMath math="x^4+y^4=\left(x^2+y^2\right)^2" />.
+
+Jadi, nilai <InlineMath math="x^4+y^4" /> adalah <InlineMath math="119" />.

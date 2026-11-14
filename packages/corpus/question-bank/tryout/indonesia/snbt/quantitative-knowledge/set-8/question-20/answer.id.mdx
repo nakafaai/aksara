@@ -1,21 +1,38 @@
-Baca kelima nilai dari diagram: 84, 60, 36, 48, dan 12. Jumlahnya **240 buku**, dan angka ini menjadi pembagi untuk persentase dan sudut sektor.
+Kamu menghitung bilangan <InlineMath math="n" /> dari <InlineMath math="1" /> sampai <InlineMath math="100" /> yang membuat <InlineMath math="n^2+n+1" /> habis dibagi <InlineMath math="7" /> tetapi tidak habis dibagi <InlineMath math="49" />. Rencananya begini: cari sisa pembagian <InlineMath math="n" /> oleh <InlineMath math="7" /> yang cocok, hitung bilangannya sampai <InlineMath math="100" />, lalu **buang bilangan yang ternyata juga habis dibagi <InlineMath math="49" />**.
 
-# Persentase dan median
+# Sisa pembagian yang cocok
 
-<BlockMath math="\frac{84}{240}\times100\%=35\%" />
+Sisa pembagian <InlineMath math="n^2+n+1" /> oleh <InlineMath math="7" /> hanya bergantung pada sisa pembagian <InlineMath math="n" /> oleh <InlineMath math="7" />, karena penjumlahan dan perkalian menjaga sisa. Jadi, cukup coba sisa <InlineMath math="r" /> dari <InlineMath math="0" /> sampai <InlineMath math="6" />.
 
-Pernyataan pertama benar.
+| Sisa <InlineMath math="r" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="r^2+r+1" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="7" /> | <InlineMath math="13" /> | <InlineMath math="21" /> | <InlineMath math="31" /> | <InlineMath math="43" /> |
+| Sisa dibagi <InlineMath math="7" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="0" /> | <InlineMath math="6" /> | <InlineMath math="0" /> | <InlineMath math="3" /> | <InlineMath math="1" /> |
 
-Urutkan banyak buku per jenis: 12, 36, 48, 60, 84. Ada lima nilai, jadi **median adalah nilai ketiga**, yaitu 48. Pernyataan kedua benar.
+Jadi, <InlineMath math="n^2+n+1" /> habis dibagi <InlineMath math="7" /> **tepat ketika <InlineMath math="n" /> bersisa <InlineMath math="2" /> atau <InlineMath math="4" />** jika dibagi <InlineMath math="7" />.
 
-# Sudut sektor dan perbandingan
+# Menghitung sampai batasnya
 
-Sudut pusat sebuah sektor adalah **bagiannya dari keseluruhan dikali <InlineMath math="360^\circ" />**.
+Bilangan bersisa <InlineMath math="2" /> adalah <InlineMath math="n=7k+2" />. Syarat <InlineMath math="7k+2\le100" /> memberi <InlineMath math="k\le14" />, jadi ada <InlineMath math="15" /> bilangan, dari <InlineMath math="2" /> sampai <InlineMath math="100" />. Perhatikan bahwa **<InlineMath math="100=7\cdot14+2" /> ikut terhitung**. Bilangan bersisa <InlineMath math="4" /> adalah <InlineMath math="n=7k+4" />, dengan <InlineMath math="k\le13" />, jadi ada <InlineMath math="14" /> bilangan, dari <InlineMath math="4" /> sampai <InlineMath math="95" />. Totalnya <InlineMath math="15+14=29" />.
 
-<BlockMath math="\frac{48}{240}\times360^\circ=\frac15\times360^\circ=72^\circ" />
+# Membuang kasus yang dilarang
 
-Sudutnya <InlineMath math="72^\circ" />, bukan <InlineMath math="60^\circ" />, jadi pernyataan ketiga salah.
+Uraikan <InlineMath math="n^2+n+1" /> untuk setiap bentuk <InlineMath math="n" />. Faktor <InlineMath math="7" /> keluar, dan sisanya menentukan apakah faktor <InlineMath math="7" /> kedua muncul.
 
-Dua kali banyak buku sejarah adalah <InlineMath math="2\cdot36=72" />, sedangkan buku sains hanya 60. Pernyataan keempat salah.
+<BlockMath math="\begin{aligned}
+n=7k+2&:\quad n^2+n+1=49k^2+35k+7=7\left(7k^2+5k+1\right)\\
+n=7k+4&:\quad n^2+n+1=49k^2+63k+21=7\left(7k^2+9k+3\right)
+\end{aligned}" />
 
-Jadi, pernyataan pertama **benar**, kedua **benar**, ketiga **salah**, dan keempat **salah**.
+Bilangan <InlineMath math="n^2+n+1" /> habis dibagi <InlineMath math="49" /> tepat ketika **isi kurungnya habis dibagi <InlineMath math="7" />**. Suku <InlineMath math="7k^2" /> sudah habis dibagi <InlineMath math="7" />, jadi yang menentukan adalah <InlineMath math="5k+1" /> dan <InlineMath math="9k+3" />.
+
+- <InlineMath math="5k+1" /> habis dibagi <InlineMath math="7" /> untuk <InlineMath math="k=4" /> dan <InlineMath math="k=11" /> (dari <InlineMath math="0" /> sampai <InlineMath math="14" />), yaitu <InlineMath math="n=30" /> dan <InlineMath math="n=79" />.
+- <InlineMath math="9k+3" /> habis dibagi <InlineMath math="7" /> untuk <InlineMath math="k=2" /> dan <InlineMath math="k=9" /> (dari <InlineMath math="0" /> sampai <InlineMath math="13" />), yaitu <InlineMath math="n=18" /> dan <InlineMath math="n=67" />.
+
+Periksa langsung: <InlineMath math="18^2+18+1=343=7\cdot49" />, <InlineMath math="30^2+30+1=931=19\cdot49" />, <InlineMath math="67^2+67+1=4557=93\cdot49" />, dan <InlineMath math="79^2+79+1=6321=129\cdot49" />. Ada <InlineMath math="4" /> bilangan yang harus dibuang.
+
+<BlockMath math="29-4=25" />
+
+Kesalahan yang sering terjadi adalah berhenti di <InlineMath math="29" />, yaitu lupa syarat tidak habis dibagi <InlineMath math="49" />, atau melewatkan <InlineMath math="n=100" /> sehingga mendapat <InlineMath math="24" />.
+
+Jadi, ada <InlineMath math="25" /> bilangan bulat positif <InlineMath math="n\le100" /> yang memenuhi syarat itu.

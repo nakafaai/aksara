@@ -1,22 +1,36 @@
-Das Wort PELANGI hat 7 Buchstaben, alle verschieden: die Vokale E, A, I und die Konsonanten P, L, N, G. Damit keine zwei Vokale nebeneinander stehen, **ordnest du zuerst die Konsonanten an und setzt dann die Vokale in die Lücken**.
+Eine Teilmenge heißt *renggang*, also locker, wenn sie keine zwei Zahlen enthält, die auf dem Kreis Nachbarn sind. Auf dem Kreis sind auch <InlineMath math="10" /> und <InlineMath math="1" /> Nachbarn, und das ist der einzige Unterschied zu einer geraden Reihe. Der Plan: Zähl zuerst die lockeren Teilmengen in einer geraden Reihe und **unterscheide dann Fälle nach der Zahl <InlineMath math="1" />**, damit das Paar <InlineMath math="10" /> und <InlineMath math="1" /> berücksichtigt wird.
 
-# Die Konsonanten anordnen
+# Zählen in einer geraden Reihe
 
-Die vier Konsonanten lassen sich auf <InlineMath math="4!=24" /> Arten anordnen. Jede Anordnung hat **fünf Lücken**: vor dem ersten Buchstaben, zwischen den Buchstaben und nach dem letzten.
+Sei <InlineMath math="L(n)" /> die Anzahl der lockeren Teilmengen von <InlineMath math="1,2,\dots,n" /> in einer geraden Reihe. Schau auf die letzte Zahl <InlineMath math="n" />. Wird <InlineMath math="n" /> nicht gewählt, bleibt eine lockere Teilmenge der ersten <InlineMath math="n-1" /> Zahlen. Wird <InlineMath math="n" /> gewählt, darf <InlineMath math="n-1" /> nicht gewählt werden, also bleibt eine lockere Teilmenge der ersten <InlineMath math="n-2" /> Zahlen. **Die beiden Fälle überschneiden sich nicht**, also gilt <InlineMath math="L(n)=L(n-1)+L(n-2)" />.
 
-<BlockMath math="\_\,\text{K}\,\_\,\text{K}\,\_\,\text{K}\,\_\,\text{K}\,\_" />
+Beginne mit <InlineMath math="L(1)=2" />, der leeren Menge und <InlineMath math="\{1\}" />, und <InlineMath math="L(2)=3" />.
 
-# Die Vokale einsetzen
+| <InlineMath math="n" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> | <InlineMath math="10" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="L(n)" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="5" /> | <InlineMath math="8" /> | <InlineMath math="13" /> | <InlineMath math="21" /> | <InlineMath math="34" /> | <InlineMath math="55" /> | <InlineMath math="89" /> | <InlineMath math="144" /> |
 
-Die drei verschiedenen Vokale kommen in **3 verschiedene Lücken**, und ihre Reihenfolge zählt.
+# Fallunterscheidung nach der Eins
 
-<BlockMath math="\begin{aligned}
-P(5,3)&=5\cdot4\cdot3=60\\
-\text{Anordnungen}&=24\cdot60=1\,440
-\end{aligned}" />
+Wird <InlineMath math="1" /> nicht gewählt, stehen die Zahlen <InlineMath math="2" /> bis <InlineMath math="10" /> in einer geraden Reihe, denn nur die <InlineMath math="1" /> hat ihre Enden verbunden. Das ergibt <InlineMath math="L(9)=89" />.
 
-Da jede Lücke höchstens einen Vokal enthält, können keine zwei Vokale nebeneinander stehen.
+Wird <InlineMath math="1" /> gewählt, **sind beide Nachbarn, <InlineMath math="2" /> und <InlineMath math="10" />, gesperrt**. Übrig bleiben <InlineMath math="3" /> bis <InlineMath math="9" />, sieben Zahlen in einer geraden Reihe, also <InlineMath math="L(7)=34" />.
 
-Der Wert 5 040 ist <InlineMath math="7!" />, alle Anordnungen ohne Bedingung. Der Wert 576 verwendet nur die 4 Lücken zwischen den Konsonanten und vergisst beide Enden. Der Wert 720 ist <InlineMath math="6!" />, und 2 880 verdoppelt das Ergebnis ohne Grund.
+<BlockMath math="89+34=123" />
 
-Es gibt also **1 440** mögliche Anordnungen.
+# Probe auf einem zweiten Weg
+
+Die Zählung in der geraden Reihe, <InlineMath math="L(10)=144" />, enthält auch Teilmengen mit <InlineMath math="1" /> und <InlineMath math="10" /> zugleich, **die auf dem Kreis verboten sind**. In so einer Teilmenge sind <InlineMath math="2" /> und <InlineMath math="9" /> gesperrt, und die Zahlen <InlineMath math="3" /> bis <InlineMath math="8" /> sind frei, solange sie locker bleiben, also gibt es <InlineMath math="L(6)=21" /> davon.
+
+<BlockMath math="144-21=123" />
+
+Das Ergebnis stimmt überein.
+
+# Die verlockenden falschen Antworten
+
+- <InlineMath math="144" /> zählt, als stünden die Zahlen in einer geraden Reihe, und **vergisst, dass <InlineMath math="10" /> und <InlineMath math="1" /> Nachbarn sind**.
+- <InlineMath math="89" /> zählt nur den Fall, in dem <InlineMath math="1" /> nicht gewählt wird. Dieselbe Zahl entsteht auch aus <InlineMath math="144-55" />, wenn man vergisst, dass auch <InlineMath math="2" /> und <InlineMath math="9" /> gesperrt sind.
+- <InlineMath math="80" /> zieht alle <InlineMath math="2^6=64" /> Teilmengen von <InlineMath math="3" /> bis <InlineMath math="8" /> ab, aber diese Teilmengen müssen ebenfalls locker sein.
+- <InlineMath math="68" /> sperrt <InlineMath math="2" /> und <InlineMath math="10" /> auch in dem Fall, in dem <InlineMath math="1" /> nicht gewählt wird, und zählt so <InlineMath math="34+34" />.
+
+Es gibt also <InlineMath math="123" /> lockere Teilmengen.

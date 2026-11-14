@@ -1,22 +1,36 @@
-Eine Winkelhalbierende teilt die gegenüberliegende Seite im **Verhältnis der beiden Seiten, die den Winkel bilden**. Das ist der Satz über die Winkelhalbierende.
+Die Aufgabe gibt dir eine Zusatzinformation, gesucht ist also eine **bedingte Wahrscheinlichkeit**: die Wahrscheinlichkeit eines Ereignisses, wenn ein anderes Ereignis sicher eingetreten ist. Nenne <InlineMath math="G" /> das Ereignis "die Nummern der ersten beiden Karten haben eine gerade Summe" und <InlineMath math="E" /> das Ereignis "die erste gerade Karte erscheint beim dritten Zug". Der Plan: Berechne <InlineMath math="P(G)" />, berechne die Wahrscheinlichkeit, dass <InlineMath math="E" /> und <InlineMath math="G" /> gemeinsam eintreten, und teile dann.
 
-# Das Verhältnis aus dem Satz
+<BlockMath math="P(E\mid G)=\frac{P(E\cap G)}{P(G)}" />
 
-Die Winkelhalbierende von <InlineMath math="A" /> trifft <InlineMath math="BC" />, also teilt <InlineMath math="D" /> die Seite <InlineMath math="BC" /> im Verhältnis <InlineMath math="AB:AC" />. Die Strecke <InlineMath math="DC" /> **gehört zu <InlineMath math="AC" />**, weil sich beide in <InlineMath math="C" /> treffen.
+# Wann die ersten beiden Karten eine gerade Summe haben
 
-<BlockMath math="\frac{BD}{DC}=\frac{AB}{AC}=\frac69=\frac23" />
-
-# BC aufteilen
-
-Die Seite <InlineMath math="BC=10" /> zerfällt in <InlineMath math="2+3=5" /> gleiche Teile, und **<InlineMath math="DC" /> erhält drei davon**.
+Es gibt <InlineMath math="5" /> ungerade und <InlineMath math="5" /> gerade Karten. Die Summe zweier ganzer Zahlen ist **genau dann gerade, wenn beide ungerade oder beide gerade sind**. Ohne Zurücklegen kommt die zweite Karte aus den <InlineMath math="9" /> übrigen Karten.
 
 <BlockMath math="\begin{aligned}
-BD&=\tfrac25\cdot10=4\\
-DC&=\tfrac35\cdot10=6
+P(\text{ungerade, ungerade})&=\tfrac{5}{10}\cdot\tfrac49=\tfrac29\\
+P(\text{gerade, gerade})&=\tfrac{5}{10}\cdot\tfrac49=\tfrac29\\
+P(G)&=\tfrac29+\tfrac29=\tfrac49
 \end{aligned}" />
 
-Kontrolle: <InlineMath math="4+6=10" /> und <InlineMath math="4:6=2:3" />.
+# Das gefragte Ereignis
 
-Die Länge 4 cm ist <InlineMath math="BD" />, das Ergebnis vertauschter Seiten. Die Länge 5 cm halbiert <InlineMath math="BC" />, wie es eine Seitenhalbierende täte, nicht die Winkelhalbierende. Die Länge 4,5 cm ist die Hälfte von <InlineMath math="AC" /> und 3 cm die Hälfte von <InlineMath math="AB" />.
+Die erste gerade Karte erscheint beim dritten Zug, wenn die Reihenfolge ungerade, ungerade, gerade ist. Zwei ungerade Karten am Anfang ergeben eine gerade Summe, also **liegt das Ereignis <InlineMath math="E" /> schon ganz in <InlineMath math="G" />** und <InlineMath math="E\cap G=E" />. Nach zwei ungeraden Karten sind noch <InlineMath math="8" /> Karten übrig, davon <InlineMath math="5" /> gerade.
 
-Die Strecke <InlineMath math="DC" /> ist also **<InlineMath math="6\text{ cm}" />** lang.
+<BlockMath math="P(E\cap G)=\tfrac{5}{10}\cdot\tfrac49\cdot\tfrac58=\tfrac{100}{720}=\tfrac{5}{36}" />
+
+# Die bedingte Wahrscheinlichkeit berechnen
+
+**Teile die gemeinsame Wahrscheinlichkeit durch die Wahrscheinlichkeit der Bedingung**, weil die Bedingung zum neuen Ergebnisraum wird.
+
+<BlockMath math="P(E\mid G)=\frac{5/36}{4/9}=\frac{5}{36}\cdot\frac94=\frac{45}{144}=\frac{5}{16}" />
+
+Probe auf einem anderen Weg: Wenn <InlineMath math="G" /> eingetreten ist, sind ungerade-ungerade und gerade-gerade gleich wahrscheinlich (je <InlineMath math="\tfrac29" />), also hat jeder Fall die Wahrscheinlichkeit <InlineMath math="\tfrac12" />. Im Fall ungerade-ungerade ist die dritte Karte mit Wahrscheinlichkeit <InlineMath math="\tfrac58" /> gerade, im Fall gerade-gerade ist die erste gerade Karte schon früher erschienen. Das ergibt <InlineMath math="\tfrac12\cdot\tfrac58=\tfrac{5}{16}" />.
+
+# Die falschen Antworten
+
+- <InlineMath math="\frac{13}{16}" /> entsteht, wenn du "genau beim dritten Zug" als "spätestens beim dritten Zug" liest und so den Fall gerade-gerade mitzählst: <InlineMath math="\tfrac12+\tfrac{5}{16}=\tfrac{13}{16}" />.
+- <InlineMath math="\frac58" /> entsteht, wenn du annimmst, dass die ersten beiden Karten ungerade sein müssen, und den Fall gerade-gerade vergisst.
+- <InlineMath math="\frac12" /> ist die Wahrscheinlichkeit, dass die dritte Karte gerade ist, wenn **das Wort "erste" übergangen wird**: <InlineMath math="\tfrac12\cdot\tfrac58+\tfrac12\cdot\tfrac38=\tfrac12" />.
+- <InlineMath math="\frac14" /> entsteht, wenn du so rechnest, als würde zurückgelegt, sodass jeder Zug mit Wahrscheinlichkeit <InlineMath math="\tfrac12" /> gerade ist: <InlineMath math="\frac{(1/2)^3}{1/2}=\frac14" />.
+
+Die Wahrscheinlichkeit, dass die erste gerade Karte genau beim dritten Zug erscheint, ist also <InlineMath math="\frac{5}{16}" />.
