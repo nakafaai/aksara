@@ -250,9 +250,15 @@ Terminal repair operations take exactly one target because a failed or recovered
 target need not share its peer's current state. The standalone development
 publisher is removed.
 
-A publication reads every head of its target's active release even when it
-changes little, so a second target adds that cost to every release. Development
-therefore publishes on demand instead of with each release.
+A publication diffs its source against every head of its target's active
+release and proves that catalog against the base's signed result count and
+digest. The release workflow keeps each release's result catalog in its cache
+(`apps/cli/src/production/heads.ts`), so the next release of the same target
+reads those heads from the cache when they pass the same proof, and from Convex
+only when the cache misses or fails it; on 9 November 2026 reading them cost
+about 27 MB of Convex Database I/O a release. A second target still adds its own
+publication proofs to every release. Development therefore publishes on demand
+instead of with each release.
 
 Each target retains the existing signed release protocol and its own base history.
 The workflow does not create a distributed transaction. When both targets are
