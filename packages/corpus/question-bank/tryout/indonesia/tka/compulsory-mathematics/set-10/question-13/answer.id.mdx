@@ -1,10 +1,51 @@
-Garis <InlineMath math="x=1" /> tegak, jadi pencerminan terhadapnya **hanya mengubah koordinat <InlineMath math="x" />**. Titik <InlineMath math="A" /> berjarak <InlineMath math="4-1=3" /> satuan di kanan garis, sehingga bayangannya berjarak <InlineMath math="3" /> satuan di kiri garis.
+# Dua kemungkinan pusat
 
-<BlockMath math="x'=2\cdot1-4=-2,\qquad y'=-3" />
+Soal ini punya dua bagian. Pertama, cari pusat rotasi <InlineMath math="P" />. Kedua, putar titik <InlineMath math="B" /> dengan pusat dan arah yang sama. Kuncinya, **arah rotasi tidak diberikan**, jadi kamu perlu mencoba kedua arah lalu membuang satu.
 
-Jadi, bayangan titik <InlineMath math="A" /> adalah <InlineMath math="(-2,-3)" />.
+Rotasi <InlineMath math="90^\circ" /> memutar vektor yang berpangkal di pusat. Berlawanan arah jarum jam, vektor <InlineMath math="(a,b)" /> menjadi <InlineMath math="(-b,a)" />. Searah jarum jam, vektor itu menjadi <InlineMath math="(b,-a)" />. Tulis <InlineMath math="P(p,q)" />, maka <InlineMath math="\overrightarrow{PA}=(5-p,\ 1-q)" />.
 
-- <InlineMath math="(-4,-3)" /> adalah hasil pencerminan terhadap sumbu <InlineMath math="y" />, yaitu garis <InlineMath math="x=0" />.
-- <InlineMath math="(-2,3)" /> ikut mengubah tanda koordinat <InlineMath math="y" />, padahal garis cermin tegak.
-- <InlineMath math="(4,5)" /> mencerminkan terhadap garis mendatar <InlineMath math="y=1" />.
-- <InlineMath math="(6,-3)" /> menambahkan dua kali jarak garis ke sumbu <InlineMath math="y" />, sehingga titik bergerak ke arah yang salah.
+Untuk rotasi berlawanan arah jarum jam:
+
+<BlockMath math="\begin{aligned}
+A'&=P+(q-1,\ 5-p)=(p+q-1,\ q-p+5)=(3,7) \\
+p+q&=4,\quad q-p=2 \\
+P&=(1,3)
+\end{aligned}" />
+
+Untuk rotasi searah jarum jam:
+
+<BlockMath math="\begin{aligned}
+A'&=P+(1-q,\ p-5)=(p-q+1,\ p+q-5)=(3,7) \\
+p-q&=2,\quad p+q=12 \\
+P&=(7,5)
+\end{aligned}" />
+
+Kedua pusat itu sama-sama terletak pada garis sumbu ruas <InlineMath math="AA'" />, yaitu <InlineMath math="x-3y+8=0" />. Jadi garis sumbu saja belum cukup untuk memilih pusatnya.
+
+# Memilih pusat yang benar
+
+Sekarang pakai syarat jarak pusat ke titik asal.
+
+<BlockMath math="\begin{aligned}
+|OP_1|&=\sqrt{1^2+3^2}=\sqrt{10}<5 \\
+|OP_2|&=\sqrt{7^2+5^2}=\sqrt{74}>5
+\end{aligned}" />
+
+Jadi pusatnya <InlineMath math="P(1,3)" /> dan **rotasinya berlawanan arah jarum jam**. Cek dulu: <InlineMath math="\overrightarrow{PA}=(4,-2)" /> dan <InlineMath math="\overrightarrow{PA'}=(2,4)" /> sama panjang, yaitu <InlineMath math="\sqrt{20}" />, dan hasil kali titiknya <InlineMath math="8-8=0" />, jadi keduanya memang tegak lurus.
+
+# Bayangan titik B
+
+Putar <InlineMath math="\overrightarrow{PB}" /> berlawanan arah jarum jam, lalu **tambahkan hasilnya ke titik pusat**.
+
+<BlockMath math="\begin{aligned}
+\overrightarrow{PB}&=(4-1,\ 6-3)=(3,3) \\
+(3,3)&\longmapsto(-3,3) \\
+B'&=(1-3,\ 3+3)=(-2,6)
+\end{aligned}" />
+
+Jadi, bayangan titik <InlineMath math="B" /> adalah <InlineMath math="(-2,6)" />.
+
+- <InlineMath math="(8,8)" /> adalah bayangan dengan pusat <InlineMath math="(7,5)" /> dan rotasi searah jarum jam. Pusat itu lolos perhitungan pertama, tetapi jaraknya ke <InlineMath math="O" /> lebih dari <InlineMath math="5" />.
+- <InlineMath math="(4,0)" /> memakai pusat yang benar, tetapi memutar searah jarum jam.
+- <InlineMath math="(2,4)" /> menganggap pusat rotasi adalah titik tengah <InlineMath math="AA'" />, yaitu <InlineMath math="(4,4)" />. Itu hanya benar untuk rotasi <InlineMath math="180^\circ" />.
+- <InlineMath math="(-6,4)" /> memutar <InlineMath math="B" /> terhadap titik asal, seolah-olah pusatnya <InlineMath math="O" />.

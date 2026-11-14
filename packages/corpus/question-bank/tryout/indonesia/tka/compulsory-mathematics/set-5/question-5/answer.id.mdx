@@ -1,16 +1,47 @@
-Misalkan lama parkir yang ditagih adalah <InlineMath math="n" /> jam, dengan <InlineMath math="n" /> bilangan bulat positif. Kalau tarif A ditulis per jam, **jam pertama** <InlineMath math="\text{Rp}5{.}000" /> dan **<InlineMath math="n-1" /> jam berikutnya** masing-masing <InlineMath math="\text{Rp}3{.}000" />.
+# Cara cepat yang perlu dicek
+
+Soal ini menanyakan jam ketika Budi menyusul Andi. Ada dua hal penting: Budi **berangkat <InlineMath math="30" /> menit lebih lambat**, dan Andi melambat setelah <InlineMath math="60\text{ km}" />, yaitu setengah dari <InlineMath math="120\text{ km}" />.
+
+Saat Budi berangkat pukul <InlineMath math="07.15" />, Andi sudah berjalan setengah jam dengan kecepatan <InlineMath math="48\text{ km/jam}" />:
+
+<BlockMath math="\text{jarak Andi pukul }07.15=48\cdot\tfrac12=24\text{ km}" />
+
+Kalau Andi tetap <InlineMath math="48\text{ km/jam}" />, jarak <InlineMath math="24\text{ km}" /> itu tertutup dengan selisih kecepatan <InlineMath math="72-48=24\text{ km/jam}" />, jadi butuh <InlineMath math="1" /> jam. Mereka akan bertemu pukul <InlineMath math="08.15" /> di <InlineMath math="72\cdot1=72\text{ km}" /> dari <InlineMath math="P" />. Tapi <InlineMath math="72\text{ km}" /> sudah melewati <InlineMath math="60\text{ km}" />, tempat Andi melambat. **Hasil cara cepat ini tidak berlaku**, jadi hitung ulang dengan dua tahap.
+
+# Posisi saat Andi mulai melambat
+
+Andi mencapai <InlineMath math="60\text{ km}" /> setelah <InlineMath math="\frac{60}{48}=1{,}25" /> jam, yaitu <InlineMath math="1" /> jam <InlineMath math="15" /> menit setelah <InlineMath math="06.45" />. Pada saat itu Budi sudah berjalan <InlineMath math="45" /> menit:
 
 <BlockMath math="\begin{aligned}
-A(n)&=5{.}000+3{.}000(n-1)=3{.}000n+2{.}000 \\
-B(n)&=4{.}000n \\
-A(n)<B(n)&\iff3{.}000n+2{.}000<4{.}000n\iff n>2
+\text{Andi di }60\text{ km}&:\ 06.45+1\text{ jam }15\text{ menit}=08.00 \\
+\text{jarak Budi pukul }08.00&=72\cdot\tfrac{45}{60}=54\text{ km} \\
+\text{selisih}&=60-54=6\text{ km}
 \end{aligned}" />
 
-Jadi tarif A lebih murah tepat saat <InlineMath math="n\ge3" />. Karena jam yang belum genap dihitung penuh, <InlineMath math="n\ge3" /> terjadi tepat saat lama parkir **lebih dari <InlineMath math="2" /> jam**. Untuk tepat <InlineMath math="2" /> jam kedua tarif sama, yaitu <InlineMath math="\text{Rp}8{.}000" />, dan untuk paling lama <InlineMath math="1" /> jam tarif B lebih murah.
+Budi masih di belakang, jadi **pertemuan terjadi setelah Andi melambat**.
 
-Jadi, tarif A lebih murah tepat untuk lama parkir lebih dari <InlineMath math="2" /> jam.
+# Menutup selisih terakhir
 
-- Tarif A tidak selalu lebih murah, karena parkir <InlineMath math="1" /> jam di A <InlineMath math="\text{Rp}5{.}000" /> dan di B <InlineMath math="\text{Rp}4{.}000" />.
-- Untuk <InlineMath math="3" /> jam, A menagih <InlineMath math="\text{Rp}11{.}000" /> dan B menagih <InlineMath math="\text{Rp}12{.}000" />, jadi tidak sama.
-- Setelah lewat <InlineMath math="2" /> jam, justru A yang lebih murah, bukan B.
-- Lama parkir tepat <InlineMath math="2" /> jam membuat kedua tarif sama, jadi kata **paling sedikit** membuat pernyataan salah.
+Mulai pukul <InlineMath math="08.00" />, Andi bergerak <InlineMath math="36\text{ km/jam}" /> dan Budi <InlineMath math="72\text{ km/jam}" />. Selisih kecepatannya <InlineMath math="36\text{ km/jam}" />:
+
+<BlockMath math="\begin{aligned}
+t&=\frac{6}{72-36}=\frac{6}{36}=\frac16\text{ jam}=10\text{ menit} \\
+\text{pukul}&=08.00+10\text{ menit}=08.10
+\end{aligned}" />
+
+Cek posisinya. Budi: <InlineMath math="54+72\cdot\frac16=66\text{ km}" />. Andi: <InlineMath math="60+36\cdot\frac16=66\text{ km}" />. **Posisinya sama** dan masih sebelum <InlineMath math="Q" />.
+
+| Pukul | Posisi Andi | Posisi Budi |
+| --- | --- | --- |
+| <InlineMath math="07.15" /> | <InlineMath math="24\text{ km}" /> | <InlineMath math="0\text{ km}" /> |
+| <InlineMath math="08.00" /> | <InlineMath math="60\text{ km}" /> | <InlineMath math="54\text{ km}" /> |
+| <InlineMath math="08.10" /> | <InlineMath math="66\text{ km}" /> | <InlineMath math="66\text{ km}" /> |
+
+Jadi, Budi menyusul Andi pukul <InlineMath math="08.10" />.
+
+# Kenapa pilihan lain salah
+
+- Pukul <InlineMath math="08.15" /> menganggap Andi tetap <InlineMath math="48\text{ km/jam}" />. Titik temunya <InlineMath math="72\text{ km}" />, padahal Andi **sudah melambat di <InlineMath math="60\text{ km}" />**.
+- Pukul <InlineMath math="07.55" /> memakai kecepatan <InlineMath math="36\text{ km/jam}" /> sejak <InlineMath math="07.15" />, sehingga mendapat <InlineMath math="\frac{24}{36}\text{ jam}=40\text{ menit}" />. Andi baru melambat pukul <InlineMath math="08.00" />.
+- Pukul <InlineMath math="07.40" /> menambahkan waktu tempuh Budi, <InlineMath math="55" /> menit, ke jam berangkat Andi. Budi berangkat pukul <InlineMath math="07.15" />, bukan <InlineMath math="06.45" />.
+- Pukul <InlineMath math="08.40" /> menambahkan waktu tempuh Andi, <InlineMath math="85" /> menit, ke jam berangkat Budi. Waktu Andi dihitung dari <InlineMath math="06.45" />.

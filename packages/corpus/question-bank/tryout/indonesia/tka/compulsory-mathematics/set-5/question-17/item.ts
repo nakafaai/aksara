@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "village-pool",
+  stimulus: "menara",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Pukul $$16{.}42$$",
+        },
+        {
+          correct: false,
+          label: "Pukul $$17{.}24$$",
+        },
+        {
+          correct: false,
+          label: "Pukul $$17{.}45$$",
+        },
+        {
+          correct: false,
+          label: "Pukul $$17{.}52$$",
+        },
+        {
           correct: true,
-          label: "$$25$$ jam",
-        },
-        {
-          correct: false,
-          label: "$$33$$ jam $$20$$ menit",
-        },
-        {
-          correct: false,
-          label: "$$50$$ jam",
-        },
-        {
-          correct: false,
-          label: "$$66$$ jam $$40$$ menit",
-        },
-        {
-          correct: false,
-          label: "$$100$$ jam",
+          label: "Pukul $$18{.}06$$",
         },
       ],
     },

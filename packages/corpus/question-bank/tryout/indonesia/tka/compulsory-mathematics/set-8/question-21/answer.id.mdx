@@ -1,10 +1,35 @@
-**Jangkauan antarkuartil adalah kuartil atas dikurangi kuartil bawah**. Ukuran ini menunjukkan lebar sebaran setengah data yang ada di tengah.
+Soal ini menanyakan taksiran banyak siswa dengan <InlineMath math="15\le t<35" />. Tabel hanya memberi angka di batas <InlineMath math="10" />, <InlineMath math="20" />, <InlineMath math="30" />, dan seterusnya, sedangkan <InlineMath math="15" /> dan <InlineMath math="35" /> berada **di tengah-tengah sebuah kelas**. Jadi kamu perlu frekuensi tiap kelas dulu, lalu memotong kelas dengan anggapan sebaran merata.
 
-<BlockMath math="Q_3-Q_1=82-62=20" />
+# Frekuensi setiap kelas
 
-Jadi, jangkauan antarkuartil nilai kelas XI-1 adalah <InlineMath math="20" />.
+Frekuensi kumulatif adalah jumlah berjalan. Frekuensi sebuah kelas didapat dari selisih dua baris yang berurutan, **bukan dari angka kumulatifnya langsung**:
 
-- <InlineMath math="22" /> adalah nilai tertinggi dikurangi median, <InlineMath math="96-74" />.
-- <InlineMath math="34" /> adalah nilai tertinggi dikurangi kuartil bawah, <InlineMath math="96-62" />.
-- <InlineMath math="37" /> adalah kuartil atas dikurangi nilai terendah, <InlineMath math="82-45" />.
-- <InlineMath math="51" /> adalah jangkauan seluruh data, <InlineMath math="96-45" />.
+| Kelas | Hitungan | Frekuensi |
+| :---: | :---: | :---: |
+| <InlineMath math="10\le t<20" /> | <InlineMath math="8-2" /> | <InlineMath math="6" /> |
+| <InlineMath math="20\le t<30" /> | <InlineMath math="32-8" /> | <InlineMath math="24" /> |
+| <InlineMath math="30\le t<40" /> | <InlineMath math="52-32" /> | <InlineMath math="20" /> |
+
+Hanya tiga kelas ini yang menyentuh rentang yang ditanyakan, jadi kelas lain tidak perlu dihitung.
+
+# Memotong kelas di ujung rentang
+
+Karena siswa dianggap menyebar merata, **banyak siswa pada sepotong kelas sebanding dengan lebar potongan itu**. Rentang <InlineMath math="15\le t<35" /> terdiri atas tiga potong. Potongan <InlineMath math="15\le t<20" /> adalah setengah lebar kelas <InlineMath math="10\le t<20" />, jadi mendapat setengah frekuensinya. Kelas <InlineMath math="20\le t<30" /> masuk seluruhnya. Potongan <InlineMath math="30\le t<35" /> adalah setengah lebar kelas <InlineMath math="30\le t<40" />.
+
+<BlockMath math="\begin{aligned}
+15\le t<20&:\quad\tfrac{5}{10}\cdot6=3 \\
+20\le t<30&:\quad24 \\
+30\le t<35&:\quad\tfrac{5}{10}\cdot20=10 \\
+\text{jumlah}&=3+24+10=37
+\end{aligned}" />
+
+Cek lewat frekuensi kumulatif: taksiran banyak siswa dengan <InlineMath math="t<35" /> adalah <InlineMath math="32+10=42" />, dan dengan <InlineMath math="t<15" /> adalah <InlineMath math="2+3=5" />. Selisihnya <InlineMath math="42-5=37" />. Cocok.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="40" /> muncul kalau kelas <InlineMath math="10\le t<20" /> diambil utuh, <InlineMath math="6+24+10" />. Siswa dengan <InlineMath math="t<15" /> ikut terhitung.
+- <InlineMath math="42" /> adalah taksiran siswa dengan <InlineMath math="t<35" />. **Siswa yang membaca kurang dari** <InlineMath math="15" /> **menit belum dikurangkan**.
+- <InlineMath math="44" /> muncul kalau <InlineMath math="35" /> dan <InlineMath math="15" /> diganti baris tabel berikutnya, <InlineMath math="52-8" />. Itu menghitung rentang <InlineMath math="20\le t<40" />.
+- <InlineMath math="50" /> muncul kalau kedua kelas di ujung diambil utuh, <InlineMath math="52-2" />, yaitu rentang <InlineMath math="10\le t<40" />.
+
+Jadi, taksiran banyak siswa yang membaca paling sedikit <InlineMath math="15" /> menit tetapi kurang dari <InlineMath math="35" /> menit adalah <InlineMath math="37" /> siswa.

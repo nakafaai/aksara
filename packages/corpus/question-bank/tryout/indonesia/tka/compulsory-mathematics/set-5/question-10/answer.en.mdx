@@ -1,16 +1,42 @@
-**An exterior angle of a triangle equals the sum of the two interior angles that are not next to it**. The exterior angle at <InlineMath math="C" /> is not next to <InlineMath math="\angle A" /> and <InlineMath math="\angle B" />.
+# The corner that the plane cuts off
+
+The question asks for the distance from <InlineMath math="H" /> to the plane through <InlineMath math="A" />, <InlineMath math="C" />, and <InlineMath math="F" />. First, see where that plane sits inside the cube.
+
+The points <InlineMath math="A" />, <InlineMath math="C" />, and <InlineMath math="F" /> are all neighbours of <InlineMath math="B" />, because <InlineMath math="BA" />, <InlineMath math="BC" />, and <InlineMath math="BF" /> are edges of the cube. So the plane <InlineMath math="ACF" /> cuts off the corner <InlineMath math="B" />. The point <InlineMath math="H" /> is **the vertex opposite <InlineMath math="B" />**, since <InlineMath math="BH" /> is a space diagonal:
+
+<BlockMath math="BH=6\sqrt3\text{ cm}" />
+
+# The space diagonal is perpendicular to the plane
+
+The line <InlineMath math="AC" /> is perpendicular to <InlineMath math="BD" /> because both are diagonals of the square <InlineMath math="ABCD" />, and <InlineMath math="AC" /> is perpendicular to <InlineMath math="DH" /> because <InlineMath math="DH" /> stands straight up from the base. So <InlineMath math="AC" /> is perpendicular to the plane <InlineMath math="BDH" />, including the line <InlineMath math="BH" /> inside it. In the same way, <InlineMath math="AF" /> is perpendicular to <InlineMath math="BE" /> and <InlineMath math="EH" />, so <InlineMath math="AF" /> is perpendicular to <InlineMath math="BH" />.
+
+The line <InlineMath math="BH" /> is perpendicular to two intersecting lines of the plane <InlineMath math="ACF" />, so **<InlineMath math="BH" /> is perpendicular to the plane <InlineMath math="ACF" />**. That means the distances from <InlineMath math="B" /> and from <InlineMath math="H" /> to the plane are both measured along the diagonal <InlineMath math="BH" />.
+
+# The distance from the corner
+
+Work out the volume of the pyramid <InlineMath math="B.ACF" /> in two ways. With base <InlineMath math="ABC" /> and height <InlineMath math="BF" />, the volume is easy. With base <InlineMath math="ACF" />, the height is the distance <InlineMath math="d_B" /> you want. The triangle <InlineMath math="ACF" /> is equilateral, and its sides are face diagonals of length <InlineMath math="6\sqrt2" />:
 
 <BlockMath math="\begin{aligned}
-(2x+10)+(3x-5)&=125 \\
-5x+5&=125 \\
-x&=24
+V&=\tfrac13\cdot\tfrac12\cdot6\cdot6\cdot6=36 \\
+\text{area }ACF&=\tfrac{\sqrt3}{4}\left(6\sqrt2\right)^2=\tfrac{\sqrt3}{4}\cdot72=18\sqrt3 \\
+d_B&=\frac{3V}{\text{area }ACF}=\frac{108}{18\sqrt3}=\frac{6}{\sqrt3}=2\sqrt3
 \end{aligned}" />
 
-With <InlineMath math="x=24" />, <InlineMath math="\angle A=58^\circ" /> and <InlineMath math="\angle B=67^\circ" />. The interior angle at <InlineMath math="C" /> sits next to the exterior angle, so <InlineMath math="\angle C=180^\circ-125^\circ=55^\circ" />. Check: <InlineMath math="58^\circ+67^\circ+55^\circ=180^\circ" />.
+So the plane <InlineMath math="ACF" /> crosses the diagonal <InlineMath math="BH" /> at <InlineMath math="2\sqrt3" /> from <InlineMath math="B" />, which is **one third of the diagonal**.
 
-So the largest angle of triangle <InlineMath math="ABC" /> is <InlineMath math="67^\circ" />.
+# The distance from the opposite vertex
 
-- <InlineMath math="24^\circ" /> is the value of <InlineMath math="x" />, not an angle.
-- <InlineMath math="55^\circ" /> is <InlineMath math="\angle C" />, the smallest angle.
-- <InlineMath math="58^\circ" /> is <InlineMath math="\angle A" />.
-- <InlineMath math="125^\circ" /> is the exterior angle, not an interior angle of the triangle.
+The point <InlineMath math="H" /> is at the other end of the diagonal, on the far side of the plane. What's left of the diagonal is:
+
+<BlockMath math="d_H=BH-d_B=6\sqrt3-2\sqrt3=4\sqrt3\text{ cm}" />
+
+Check with the pyramid <InlineMath math="H.ACF" />. The solid <InlineMath math="ACFH" /> is the cube minus four corners like <InlineMath math="B.ACF" />, so its volume is <InlineMath math="216-4\cdot36=72" />, and <InlineMath math="\frac{3\cdot72}{18\sqrt3}=\frac{12}{\sqrt3}=4\sqrt3" />. **It matches**.
+
+So the distance from <InlineMath math="H" /> to the plane <InlineMath math="ACF" /> is <InlineMath math="4\sqrt3\text{ cm}" />, which is two thirds of the space diagonal.
+
+# Why the other options are wrong
+
+- <InlineMath math="2\sqrt3\text{ cm}" /> is the distance from <InlineMath math="B" />, the corner that gets cut off. The one-third rule only works for that corner, **not for <InlineMath math="H" /> on the far side**.
+- <InlineMath math="3\sqrt3\text{ cm}" /> assumes the plane <InlineMath math="ACF" /> goes through the centre of the cube, cutting the diagonal in half. It cuts it at one third.
+- <InlineMath math="6\text{ cm}" /> takes the area of <InlineMath math="ACF" /> as if it were a right triangle, <InlineMath math="\frac12\left(6\sqrt2\right)^2=36" />, and then gets <InlineMath math="\frac{3\cdot72}{36}=6" />. The triangle <InlineMath math="ACF" /> is equilateral.
+- <InlineMath math="\frac43\sqrt3\text{ cm}" /> uses <InlineMath math="\frac{V}{\text{area}}" /> without the <InlineMath math="3" />. From <InlineMath math="V=\frac13\cdot\text{area}\cdot d" />, the height is <InlineMath math="d=\frac{3V}{\text{area}}" />.

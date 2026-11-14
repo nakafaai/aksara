@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$\\left(40+12\\sqrt{3}+10\\pi\\right)\\text{ cm}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\left(64+10\\pi\\right)\\text{ cm}$$",
+        },
+        {
           correct: true,
-          label: "$$108\\text{ cm}^2$$",
+          label: "$$\\left(40+12\\sqrt{3}+12\\pi\\right)\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$135\\text{ cm}^2$$",
+          label: "$$\\left(64+12\\pi\\right)\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$180\\text{ cm}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$216\\text{ cm}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$270\\text{ cm}^2$$",
+          label: "$$\\left(40+12\\sqrt{3}+14\\pi\\right)\\text{ cm}$$",
         },
       ],
     },

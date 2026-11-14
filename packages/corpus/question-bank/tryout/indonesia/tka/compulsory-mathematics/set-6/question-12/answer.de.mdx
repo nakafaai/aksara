@@ -1,13 +1,30 @@
-Im Sehnenviereck **ergänzen sich gegenüberliegende Winkel zu <InlineMath math="180^\circ" />**. Gegenüber liegen <InlineMath math="\angle A" /> und <InlineMath math="\angle C" /> sowie <InlineMath math="\angle B" /> und <InlineMath math="\angle D" />.
+# Was jede Ansicht verlangt
 
-<BlockMath math="\begin{aligned}
-\angle A+\angle C=2\angle C+\angle C&=180^\circ\ \Rightarrow\ \angle C=60^\circ,\ \angle A=120^\circ \\
-\angle D&=180^\circ-85^\circ=95^\circ
-\end{aligned}" />
+Gefragt ist die **kleinste** Anzahl Würfel, also suchst du eine Anordnung, die alle drei Ansichten mit möglichst wenigen Würfeln erfüllt. Jede Ansicht stellt ihre eigene Bedingung:
 
-Sicher richtig ist also <InlineMath math="\angle D=95^\circ" />.
+- Draufsicht: Die sieben Felder mit ■ tragen mindestens einen Würfel, die zwei Felder mit □ sind leer.
+- Vorderansicht: In der linken Spalte steht ein Stapel der Höhe <InlineMath math="3" />, in der mittleren einer der Höhe <InlineMath math="2" />, in der rechten einer der Höhe <InlineMath math="3" />.
+- Seitenansicht: In der vorderen Reihe steht ein Stapel der Höhe <InlineMath math="3" />, in der mittleren einer der Höhe <InlineMath math="3" />, in der hinteren einer der Höhe <InlineMath math="2" />.
 
-- <InlineMath math="\angle A=60^\circ" /> verwechselt <InlineMath math="\angle A" /> mit <InlineMath math="\angle C" />. Tatsächlich ist <InlineMath math="\angle A=120^\circ" />.
-- Wäre <InlineMath math="AC" /> ein Durchmesser, müsste <InlineMath math="\angle B" />, der Umfangswinkel über <InlineMath math="AC" />, genau <InlineMath math="90^\circ" /> betragen. Wegen <InlineMath math="\angle B=85^\circ" /> ist <InlineMath math="AC" /> sicher kein Durchmesser.
-- <InlineMath math="\angle B=85^\circ" /> und <InlineMath math="\angle D=95^\circ" /> sind nicht gleich.
-- <InlineMath math="\angle A+\angle B=120^\circ+85^\circ=205^\circ" />. Die Winkel <InlineMath math="A" /> und <InlineMath math="B" /> liegen nebeneinander, nicht gegenüber.
+Außerdem darf kein Stapel höher sein, als es seine Spalten- oder Reihenansicht erlaubt.
+
+# Ein Stapel für zwei Bedingungen
+
+Der Trick: **Ein hoher Stapel kann eine Spaltenbedingung und eine Reihenbedingung zugleich erfüllen**. Ein Stapel der Höhe <InlineMath math="3" /> vorne rechts erfüllt die rechte Spalte und die vordere Reihe. Ein Stapel der Höhe <InlineMath math="3" /> in der Mitte links erfüllt die linke Spalte und die mittlere Reihe. Ein Stapel der Höhe <InlineMath math="2" /> hinten in der Mitte erfüllt die mittlere Spalte und die hintere Reihe. Alle anderen Felder mit ■ brauchen nur einen Würfel.
+
+| Reihe | Links | Mitte | Rechts |
+| :---: | :---: | :---: | :---: |
+| Hinten | leer | <InlineMath math="2" /> | <InlineMath math="1" /> |
+| Mitte | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| Vorne | <InlineMath math="1" /> | leer | <InlineMath math="3" /> |
+
+<BlockMath math="3+3+2+1+1+1+1=12" />
+
+Weniger geht nicht. Die drei hohen Stapel müssen da sein, und kein anderes Feld kann zwei solche Bedingungen zugleich erfüllen, weil die Felder vorne in der Mitte und hinten links leer sind. Die übrigen vier Felder mit ■ brauchen je mindestens einen Würfel.
+
+Die kleinste mögliche Anzahl ist also <InlineMath math="12" />.
+
+- <InlineMath math="8" /> übersieht die Draufsicht, sodass vier Felder mit ■ leer bleiben dürften.
+- <InlineMath math="16" /> addiert die Zahlen der Vorder- und der Seitenansicht, als könnte kein Stapel doppelt zählen.
+- <InlineMath math="18" /> ist die **größte** mögliche Anzahl, bei der jeder Stapel so hoch ist, wie Spalte und Reihe es erlauben.
+- <InlineMath math="21" /> nimmt an, dass auf allen sieben Feldern mit ■ Stapel der Höhe <InlineMath math="3" /> stehen.

@@ -1,15 +1,73 @@
-Jedes Seil, der Mast und der Boden bilden ein rechtwinkliges Dreieck mit **dem Seil als Hypotenuse** und dem Mast als Gegenkathete von <InlineMath math="\alpha" />. Also ist <InlineMath math="\sin\alpha" /> die Masthöhe geteilt durch die Seillänge.
+Gefragt ist, wie weit das obere Ende der Leiter nach unten rutscht. Die Länge der Leiter ist nicht angegeben, aber **sie ist in beiden Lagen gleich**. Bestimm also zuerst mit dem Wegrutschen des Fußes die Länge und berechne erst dann, wie weit das obere Ende sinkt.
+
+# Länge der Leiter
+
+Nenn die Länge der Leiter <InlineMath math="L" />. Leiter, Wand und Boden bilden ein rechtwinkliges Dreieck mit dem Winkel <InlineMath math="\theta" /> am Fuß. Der Abstand des Fußes zur Wand ist die Ankathete, <InlineMath math="L\cos\theta" />, und die Höhe des oberen Endes ist die Gegenkathete, <InlineMath math="L\sin\theta" />.
+
+<MathVisual
+  title={<>Zwei Lagen der Leiter</>}
+  description={<>Eine senkrechte Wand und ein waagrechter Boden. Erste Lage: Fuß bei <InlineMath math="K" />, oberes Ende bei <InlineMath math="T" />, Winkel <InlineMath math="60^\circ" /> zum Boden. Zweite Lage: Fuß bei <InlineMath math="K'" />, also <InlineMath math="1\text{ m}" /> weiter von der Wand weg, oberes Ende bei <InlineMath math="T'" />, tiefer, Winkel <InlineMath math="45^\circ" />. Beide Leitern sind gleich lang.</>}
+  labels={{
+    k: <InlineMath math="K" />,
+    "k-new": <InlineMath math="K'" />,
+    t: <InlineMath math="T" />,
+    "t-new": <InlineMath math="T'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 5 },
+      y: { min: -1, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 4.8 } },
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 4.6, y: 0 } },
+      { id: "ladder-before", kind: "segment", appearance: "secondary", from: { x: 1 + Math.sqrt(2), y: 0 }, to: { x: 0, y: (1 + Math.sqrt(2)) * Math.sqrt(3) } },
+      { id: "ladder-after", kind: "segment", appearance: "primary", from: { x: 2 + Math.sqrt(2), y: 0 }, to: { x: 0, y: 2 + Math.sqrt(2) } },
+      { id: "point-k", kind: "point", appearance: "reference", at: { x: 1 + Math.sqrt(2), y: 0 } },
+      { id: "point-k-new", kind: "point", appearance: "reference", at: { x: 2 + Math.sqrt(2), y: 0 } },
+      { id: "point-t", kind: "point", appearance: "reference", at: { x: 0, y: (1 + Math.sqrt(2)) * Math.sqrt(3) } },
+      { id: "point-t-new", kind: "point", appearance: "reference", at: { x: 0, y: 2 + Math.sqrt(2) } },
+    ],
+    labels: [
+      { key: "k", objectId: "point-k", at: { x: 1 + Math.sqrt(2), y: 0 }, placement: "below" },
+      { key: "k-new", objectId: "point-k-new", at: { x: 2 + Math.sqrt(2), y: 0 }, placement: "below" },
+      { key: "t", objectId: "point-t", at: { x: 0, y: (1 + Math.sqrt(2)) * Math.sqrt(3) }, placement: "left" },
+      { key: "t-new", objectId: "point-t-new", at: { x: 0, y: 2 + Math.sqrt(2) }, placement: "left" },
+    ],
+  }}
+/>
+
+Der Fuß rutscht <InlineMath math="1\text{ m}" />, also unterscheiden sich die beiden Abstände des Fußes zur Wand um <InlineMath math="1" />.
 
 <BlockMath math="\begin{aligned}
-\sin\alpha=\frac{9}{s}=0{,}6\ &\Rightarrow\ s=\frac{9}{0{,}6}=15\text{ m} \\
-3s&=45\text{ m}
+L\cos45^\circ-L\cos60^\circ&=1 \\
+L\left(\frac{\sqrt{2}}{2}-\frac{1}{2}\right)&=1 \\
+L&=\frac{2}{\sqrt{2}-1}\cdot\frac{\sqrt{2}+1}{\sqrt{2}+1}=\frac{2\left(\sqrt{2}+1\right)}{2-1}=2\sqrt{2}+2
 \end{aligned}" />
 
-Probe: Der Fuß jedes Seils liegt <InlineMath math="\sqrt{15^2-9^2}=12" /> m vom Mast entfernt, die Seiten sind also <InlineMath math="9" />, <InlineMath math="12" /> und <InlineMath math="15" />.
+In der letzten Zeile wird **der Nenner <InlineMath math="\sqrt{2}-1" /> mit seinem konjugierten Term rational gemacht**, <InlineMath math="\sqrt{2}+1" />, denn <InlineMath math="\left(\sqrt{2}-1\right)\left(\sqrt{2}+1\right)=2-1=1" />.
 
-Die drei Seile sind also zusammen <InlineMath math="45" /> m lang.
+# Wie weit das obere Ende sinkt
 
-- <InlineMath math="15" /> m ist die Länge eines einzigen Seils.
-- <InlineMath math="16{,}2" /> m multipliziert die Höhe mit <InlineMath math="\sin\alpha" />, dabei muss man durch <InlineMath math="\sin\alpha" /> teilen.
-- <InlineMath math="27" /> m nimmt jedes Seil so lang wie den Mast an.
-- <InlineMath math="36" /> m addiert den waagerechten Abstand von <InlineMath math="12" /> m für drei Seile statt der Seillängen.
+Das obere Ende sinkt von <InlineMath math="L\sin60^\circ" /> auf <InlineMath math="L\sin45^\circ" />. **Die Länge <InlineMath math="L" /> aus dem letzten Schritt kommt hier wieder zum Einsatz**.
+
+<BlockMath math="\begin{aligned}
+L\sin60^\circ-L\sin45^\circ&=L\cdot\frac{\sqrt{3}-\sqrt{2}}{2} \\
+&=\left(\sqrt{2}+1\right)\left(\sqrt{3}-\sqrt{2}\right) \\
+&=\sqrt{6}-2+\sqrt{3}-\sqrt{2} \\
+&=\sqrt{6}+\sqrt{3}-\sqrt{2}-2
+\end{aligned}" />
+
+Prüf mit Näherungswerten: <InlineMath math="2{,}449+1{,}732-1{,}414-2\approx0{,}77\text{ m}" />. Die Höhe ändert sich von etwa <InlineMath math="4{,}18\text{ m}" /> auf etwa <InlineMath math="3{,}41\text{ m}" />, und der Unterschied beträgt tatsächlich etwa <InlineMath math="0{,}77\text{ m}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\left(\sqrt{6}-\sqrt{3}+\sqrt{2}-2\right)\text{ m}" /> kommt von <InlineMath math="L=2\left(\sqrt{2}-1\right)" />. Das passiert, wenn du mit <InlineMath math="\sqrt{2}-1" /> multiplizierst, obwohl du dividieren musst.
+- <InlineMath math="\left(\sqrt{3}-\sqrt{2}\right)\text{ m}" /> entsteht, wenn du <InlineMath math="1\text{ m}" /> als Anfangsabstand des Fußes zur Wand liest, dann wäre <InlineMath math="L=2" />. Die <InlineMath math="1\text{ m}" /> sind aber **die Strecke, um die der Fuß rutscht**, nicht sein Startpunkt.
+- <InlineMath math="\left(\sqrt{6}-\sqrt{3}-\sqrt{2}+2\right)\text{ m}" /> entsteht, wenn Sinus und Kosinus vertauscht werden, also der Abstand des Fußes als <InlineMath math="L\sin\theta" /> und die Höhe als <InlineMath math="L\cos\theta" /> genommen wird.
+- <InlineMath math="\left(2\sqrt{2}+2\right)\text{ m}" /> ist die Länge der Leiter. Die Rechnung hört einen Schritt zu früh auf.
+
+Das obere Ende der Leiter sinkt also um <InlineMath math="\left(\sqrt{6}+\sqrt{3}-\sqrt{2}-2\right)\text{ m}" />.

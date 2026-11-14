@@ -12,27 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "Memakai voucher lebih dahulu lebih murah $$\\text{Rp}10{.}000$$.",
-        },
-        {
-          correct: false,
-          label:
-            "Memakai diskon lebih dahulu lebih murah $$\\text{Rp}40{.}000$$.",
-        },
-        {
-          correct: false,
-          label:
-            "Memakai voucher lebih dahulu lebih murah $$\\text{Rp}50{.}000$$.",
-        },
-        {
-          correct: false,
-          label: "Kedua urutan menghasilkan harga yang sama.",
+          label: "$$-11$$",
         },
         {
           correct: true,
-          label:
-            "Memakai diskon lebih dahulu lebih murah $$\\text{Rp}10{.}000$$.",
+          label: "$$-6$$",
+        },
+        {
+          correct: false,
+          label: "$$5$$",
+        },
+        {
+          correct: false,
+          label: "$$9$$",
+        },
+        {
+          correct: false,
+          label: "$$12$$",
         },
       ],
     },

@@ -1,14 +1,54 @@
-Faktorisiere zuerst <InlineMath math="f" />, denn **einer der Faktoren ist <InlineMath math="g(x)" />**.
+# Was du vorher brauchst
+
+Jede Aussage braucht einen eigenen Beweis oder ein Gegenbeispiel. Denk daran, dass <InlineMath math="f" /> zuerst <InlineMath math="2" /> addiert und dann den Logarithmus zur Basis <InlineMath math="3" /> nimmt. Also gilt <InlineMath math="f(\text{etwas})={}^{3}\log(\text{etwas}+2)" />, und **die Zahl im Logarithmus muss positiv sein**.
+
+Die Umkehrfunktion bekommst du, indem du die Schritte rückgängig machst: <InlineMath math="3" /> hoch nehmen, dann <InlineMath math="2" /> abziehen.
+
+<BlockMath math="y={}^{3}\log(x+2) \;\Longleftrightarrow\; x+2=3^y \;\Longleftrightarrow\; f^{-1}(y)=3^y-2" />
+
+# Erste Aussage
 
 <BlockMath math="\begin{aligned}
-f(x)&=x^2-6x+8=(x-2)(x-4)=(x-4)\cdot g(x) \\
-f(x)-g(x)&=(x-2)(x-4)-(x-2)=(x-2)(x-5)
+f(a)+f(b)&={}^{3}\log\big((a+2)(b+2)\big)={}^{3}\log(ab+2a+2b+4) \\
+&={}^{3}\log\big((ab+2a+2b+2)+2\big)=f(ab+2a+2b+2)
 \end{aligned}" />
 
-- Der Scheitel von <InlineMath math="f" /> liegt bei <InlineMath math="x=3" />, und <InlineMath math="f(3)=9-18+8=-1" />. Der kleinste Wert ist <InlineMath math="-1" />, nicht <InlineMath math="-2" />. Die Aussage ist falsch.
-- Die Faktorisierung zeigt <InlineMath math="f(x)=(x-4)\cdot g(x)" /> für jedes <InlineMath math="x" />. Die Aussage ist richtig.
-- Bei <InlineMath math="x=3" /> ist <InlineMath math="f(3)=-1" />, aber <InlineMath math="g(3)=1" />, also gilt <InlineMath math="f(x)\ge g(x)" /> nicht für jedes <InlineMath math="x" />. Die Aussage ist falsch.
-- <InlineMath math="f(x)=g(x)" /> genau dann, wenn <InlineMath math="(x-2)(x-5)=0" />, also <InlineMath math="x=2" /> oder <InlineMath math="x=5" />. Die Schnittpunkte sind <InlineMath math="(2,0)" /> und <InlineMath math="(5,3)" />. Die Aussage ist richtig.
-- <InlineMath math="(x-2)(x-4)<0" /> genau dann, wenn <InlineMath math="x" /> zwischen den beiden Nullstellen liegt, also <InlineMath math="2<x<4" />. Die Aussage ist richtig.
+Für <InlineMath math="a>-2" /> und <InlineMath math="b>-2" /> ist das Produkt <InlineMath math="(a+2)(b+2)" /> positiv, also **liegt die Zahl <InlineMath math="ab+2a+2b+2" /> immer im Definitionsbereich**. Diese Aussage ist **Richtig**.
 
-Richtig sind also <InlineMath math="f(x)=(x-4)\cdot g(x)" />, die zwei Schnittpunkte und <InlineMath math="f(x)<0" /> genau für <InlineMath math="2<x<4" />.
+# Zweite Aussage
+
+Arbeite von innen nach außen. Die <InlineMath math="1" /> wird innen addiert, bevor die Umkehrfunktion angewendet wird.
+
+<BlockMath math="\begin{aligned}
+f(5)+1&={}^{3}\log7+{}^{3}\log3={}^{3}\log21 \\
+f^{-1}\big({}^{3}\log21\big)&=3^{{}^{3}\log21}-2=21-2=19
+\end{aligned}" />
+
+Die Falle ist, <InlineMath math="f^{-1}(f(5))+1=6" /> zu rechnen. **Die <InlineMath math="1" /> steht innerhalb der Klammer**, also wirkt <InlineMath math="f^{-1}" /> auch auf sie. Diese Aussage ist **Richtig**.
+
+# Dritte Aussage
+
+Der Logarithmus zur Basis <InlineMath math="3" /> ist streng steigend, also sind zwei Werte nur dann gleich, wenn die Eingaben gleich sind.
+
+<BlockMath math="x+2=\frac{1}{x}+2 \;\Longrightarrow\; x^2=1 \;\Longrightarrow\; x=1 \;\text{oder}\; x=-1" />
+
+Prüf jetzt den Definitionsbereich. Für <InlineMath math="x=1" /> sind beide Eingaben <InlineMath math="1" />, das passt. Für <InlineMath math="x=-1" /> sind <InlineMath math="x" /> und <InlineMath math="\frac{1}{x}" /> beide <InlineMath math="-1" />, also größer als <InlineMath math="-2" />, und <InlineMath math="f(-1)={}^{3}\log1=0" />. **Die negative Zahl <InlineMath math="-1" /> ist trotzdem erlaubt**, denn positiv sein muss <InlineMath math="x+2" />, nicht <InlineMath math="x" />. Es gibt genau zwei Lösungen, also ist diese Aussage **Richtig**.
+
+# Vierte Aussage
+
+Für <InlineMath math="-2<x<2" /> liegen <InlineMath math="x" /> und <InlineMath math="-x" /> beide im Definitionsbereich.
+
+<BlockMath math="\begin{aligned}
+f(x)+f(-x)&={}^{3}\log\big((2+x)(2-x)\big)={}^{3}\log(4-x^2) \\
+&\le{}^{3}\log4={}^{3}\log2^2=2\cdot{}^{3}\log2=2f(0)
+\end{aligned}" />
+
+Die Ungleichung gilt, weil <InlineMath math="4-x^2\le4" /> ist und der Logarithmus zur Basis <InlineMath math="3" /> steigt. **Gleichheit gibt es nur bei <InlineMath math="x=0" />**. Diese Aussage ist **Richtig**.
+
+# Fünfte Aussage
+
+<BlockMath math="f(2x)-f(x)={}^{3}\log\frac{2x+2}{x+2}" />
+
+Probier zwei Werte. Für <InlineMath math="x=0" /> kommt <InlineMath math="{}^{3}\log1=0" /> heraus, für <InlineMath math="x=1" /> dagegen <InlineMath math="{}^{3}\log\frac{4}{3}\ne0" />. Der Wert ändert sich, also ist diese Aussage **Falsch**. Die Regel <InlineMath math="{}^{3}\log(2x)-{}^{3}\log x={}^{3}\log2" /> gilt nur, wenn im Logarithmus keine zusätzliche <InlineMath math="2" /> steht.
+
+Richtig sind also die erste, zweite, dritte und vierte Aussage.

@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$8x^2+12x-5$$",
+          label: "$$-2$$",
         },
         {
           correct: false,
-          label: "$$4x^2+6x+2$$",
+          label: "$$-1$$",
         },
         {
           correct: false,
-          label: "$$2x^2+3x-2$$",
+          label: "$$0$$",
+        },
+        {
+          correct: false,
+          label: "$$2$$",
         },
         {
           correct: true,
-          label: "$$2x^2+3x+1$$",
-        },
-        {
-          correct: false,
-          label: "$$2x^2+3x-1$$",
+          label: "$$3$$",
         },
       ],
     },

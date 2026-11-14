@@ -13,19 +13,17 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "Panjang $$DE$$ sama dengan panjang $$DF$$.",
-        },
-        {
-          column: 1,
-          label: "Luas segitiga $$DEF$$ adalah $$37{,}5\\text{ cm}^2$$.",
+          label:
+            "Prisma itu mempunyai $$15$$ rusuk, dan jumlah panjang seluruh rusuknya $$98\\text{ cm}$$.",
         },
         {
           column: 2,
-          label: "Segitiga $$DEF$$ siku-siku di $$E$$.",
+          label: "Volume prisma itu lebih dari $$375\\text{ cm}^3$$.",
         },
         {
           column: 1,
-          label: "Keliling segitiga $$DEF$$ kurang dari $$30\\text{ cm}$$.",
+          label:
+            "Jika prisma itu diletakkan dengan sisi persegi panjang berukuran $$6\\text{ cm}\\times10\\text{ cm}$$ sebagai alas, titik tertinggi prisma berada $$8\\text{ cm}$$ di atas alas.",
         },
       ],
     },

@@ -1,16 +1,36 @@
-Replace every <InlineMath math="x" /> in the rule for <InlineMath math="f" /> with <InlineMath math="a+1" />, then with <InlineMath math="a-1" />. **Put each input in brackets first** so the minus signs come along.
+# How to read the inverse of a split function
+
+The question uses the inverse twice. The meaning of <InlineMath math="f^{-1}(k)" /> is simple: find the <InlineMath math="x" /> that makes <InlineMath math="f(x)=k" />. Since <InlineMath math="f" /> has two formulas, every candidate <InlineMath math="x" /> **has to be checked against the condition of its own branch**. The first formula only works for <InlineMath math="x<2" />, the second only for <InlineMath math="x\ge2" />.
+
+There's a quick check. The first branch gives values below <InlineMath math="\frac22+4=5" />, and the second branch gives values from <InlineMath math="3\cdot2-1=5" /> upward. So an output of <InlineMath math="5" /> or more comes from the second branch, and an output below <InlineMath math="5" /> comes from the first.
+
+# The first step
+
+Find <InlineMath math="x" /> with <InlineMath math="f(x)=11" />. Try both formulas:
 
 <BlockMath math="\begin{aligned}
-f(a+1)&=(a+1)^2-2(a+1)=a^2+2a+1-2a-2=a^2-1 \\
-f(a-1)&=(a-1)^2-2(a-1)=a^2-2a+1-2a+2=a^2-4a+3 \\
-f(a+1)-f(a-1)&=(a^2-1)-(a^2-4a+3)=4a-4
+\tfrac{x}{2}+4=11\ &\Rightarrow\ x=14,\ \text{but }14\not<2\ \text{(rejected)} \\
+3x-1=11\ &\Rightarrow\ x=4,\ \text{and }4\ge2\ \text{(accepted)}
 \end{aligned}" />
 
-Check with <InlineMath math="a=2" />: <InlineMath math="f(3)-f(1)=3-(-1)=4" />, and <InlineMath math="4\cdot2-4=4" />.
+So <InlineMath math="f^{-1}(11)=4" />. Check: <InlineMath math="f(4)=3\cdot4-1=11" />. **This <InlineMath math="4" /> is the input of the second step**.
 
-So <InlineMath math="f(a+1)-f(a-1)=4a-4" />.
+# The second step
 
-- <InlineMath math="4a" /> only takes the difference of the two squares and forgets the <InlineMath math="-2x" /> term.
-- <InlineMath math="4a+4" /> gets a sign wrong when subtracting <InlineMath math="-2(a+1)" /> and <InlineMath math="-2(a-1)" />.
-- <InlineMath math="2a-4" /> takes <InlineMath math="(a+1)^2-(a-1)^2" /> as <InlineMath math="2a" />, but it is <InlineMath math="4a" />.
-- <InlineMath math="-4" /> assumes the two squares cancel completely.
+Now find <InlineMath math="x" /> with <InlineMath math="f(x)=4" />:
+
+<BlockMath math="\begin{aligned}
+\tfrac{x}{2}+4=4\ &\Rightarrow\ x=0,\ \text{and }0<2\ \text{(accepted)} \\
+3x-1=4\ &\Rightarrow\ x=\tfrac53,\ \text{but }\tfrac53\not\ge2\ \text{(rejected)}
+\end{aligned}" />
+
+So <InlineMath math="f^{-1}(4)=0" />. Check: <InlineMath math="f(0)=\frac02+4=4" />. This time **it's the second branch that gets rejected**, the opposite of the first step.
+
+So <InlineMath math="f^{-1}\left(f^{-1}(11)\right)=0" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\frac53" /> uses the second formula in the second step without checking. But <InlineMath math="\frac53<2" />, so that formula **doesn't apply** there.
+- <InlineMath math="4" /> stops after one inverse. That's only <InlineMath math="f^{-1}(11)" />, not <InlineMath math="f^{-1}" /> of it.
+- <InlineMath math="20" /> always uses the first branch: <InlineMath math="11\to14\to20" />. Neither value satisfies <InlineMath math="x<2" />.
+- <InlineMath math="95" /> computes <InlineMath math="f\left(f(11)\right)=f(32)=95" />. That's <InlineMath math="f" /> composed with itself, not the inverse.

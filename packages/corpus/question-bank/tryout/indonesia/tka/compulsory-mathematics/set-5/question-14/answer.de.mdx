@@ -1,21 +1,80 @@
-Für das Bild einer Geraden drückst du den Urpunkt durch die Bildkoordinaten aus und **setzt ihn in die ursprüngliche Gleichung ein**.
+# Die Gleichung der Bildgeraden
 
-Die Verschiebung um <InlineMath math="T" /> bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(x+1,y-2)" /> ab. Ist das Bild <InlineMath math="(x,y)" />, dann ist der Urpunkt <InlineMath math="(x-1,y+2)" />.
+Gesucht ist die Fläche eines Dreiecks, das von drei Geraden begrenzt wird: der Geraden <InlineMath math="g" />, ihrem Bild <InlineMath math="g'" /> und der <InlineMath math="y" />-Achse. Du brauchst also zuerst die Gleichung von <InlineMath math="g'" /> und dann die drei Ecken des Dreiecks.
+
+Eine Drehung um <InlineMath math="90^\circ" /> **im Uhrzeigersinn** um <InlineMath math="O" /> schickt den Punkt <InlineMath math="(x,y)" /> nach <InlineMath math="(y,-x)" />. Zum Beispiel wandert der Punkt <InlineMath math="(1,0)" /> auf der positiven <InlineMath math="x" />-Achse nach unten zu <InlineMath math="(0,-1)" />. Für die Bildgleichung drückst du die alten Koordinaten durch die neuen aus und setzt sie in die Gleichung von <InlineMath math="g" /> ein:
 
 <BlockMath math="\begin{aligned}
-2(x-1)-(y+2)+3&=0 \\
-2x-y-1&=0
+x'=y,\quad y'=-x\quad&\Rightarrow\quad x=-y',\quad y=x' \\
+x+2y=10\quad&\Rightarrow\quad -y'+2x'=10 \\
+g'&: 2x-y=10
 \end{aligned}" />
 
-Die Spiegelung an der <InlineMath math="x" />-Achse bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(x,-y)" /> ab, also ersetzt du <InlineMath math="y" /> durch <InlineMath math="-y" />.
+Prüf das mit einem Punkt. Der Punkt <InlineMath math="(10,0)" /> liegt auf <InlineMath math="g" />, und sein Bild <InlineMath math="(0,-10)" /> erfüllt <InlineMath math="2\cdot0-(-10)=10" />. Die Gleichung passt.
 
-<BlockMath math="2x-(-y)-1=0\ \Rightarrow\ 2x+y-1=0" />
+# Die drei Ecken
 
-Probe mit dem Punkt <InlineMath math="(0,3)" /> auf <InlineMath math="g" />: Die Verschiebung ergibt <InlineMath math="(1,1)" />, die Spiegelung <InlineMath math="(1,-1)" />. Dieser Punkt erfüllt <InlineMath math="2(1)+(-1)-1=0" />.
+Zwei Ecken liegen auf der <InlineMath math="y" />-Achse, dort wo <InlineMath math="g" /> und <InlineMath math="g'" /> sie schneiden. Die dritte Ecke ist **der Schnittpunkt von <InlineMath math="g" /> und <InlineMath math="g'" />**.
 
-Das endgültige Bild hat also die Gleichung <InlineMath math="2x+y-1=0" />.
+<BlockMath math="\begin{aligned}
+g\text{ mit }x=0&: 2y=10\Rightarrow P(0,5) \\
+g'\text{ mit }x=0&: -y=10\Rightarrow Q(0,-10) \\
+y=2x-10\text{ in }g&: x+2(2x-10)=10\Rightarrow x=6,\ y=2\Rightarrow R(6,2)
+\end{aligned}" />
 
-- <InlineMath math="2x-y-1=0" /> ist erst die verschobene Gerade, die Spiegelung fehlt noch.
-- <InlineMath math="2x+y+1=0" /> hat beim Ersetzen von <InlineMath math="y" /> durch <InlineMath math="-y" /> das Vorzeichen der Konstanten falsch.
-- <InlineMath math="2x+y+3=0" /> spiegelt zuerst und verschiebt danach.
-- <InlineMath math="2x+y+7=0" /> verschiebt in die Gegenrichtung, also mit <InlineMath math="x+1" /> statt <InlineMath math="x" /> und <InlineMath math="y-2" /> statt <InlineMath math="y" />.
+<MathVisual
+  title={<>Das Dreieck zwischen <InlineMath math="g" />, <InlineMath math="g'" /> und der <InlineMath math="y" />-Achse</>}
+  description={<>Die Gerade <InlineMath math="g" /> geht durch <InlineMath math="(0,5)" /> und <InlineMath math="(10,0)" />. Die Gerade <InlineMath math="g'" /> geht durch <InlineMath math="(0,-10)" /> und <InlineMath math="(5,0)" />. Das schraffierte Dreieck <InlineMath math="PQR" /> hat <InlineMath math="P(0,5)" /> und <InlineMath math="Q(0,-10)" /> auf der <InlineMath math="y" />-Achse und <InlineMath math="R(6,2)" /> im Schnittpunkt der beiden Geraden.</>}
+  labels={{
+    g: <InlineMath math="g" />,
+    "g-image": <InlineMath math="g'" />,
+    p: <InlineMath math="P(0,5)" />,
+    q: <InlineMath math="Q(0,-10)" />,
+    r: <InlineMath math="R(6,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 13 },
+      y: { min: -13, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 5 }, { x: 0, y: -10 }, { x: 6, y: 2 }] },
+      { id: "line-g", kind: "line", appearance: "primary", through: [{ x: 0, y: 5 }, { x: 10, y: 0 }] },
+      { id: "line-g-image", kind: "line", appearance: "secondary", through: [{ x: 0, y: -10 }, { x: 5, y: 0 }] },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 0, y: 5 } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 0, y: -10 } },
+      { id: "point-r", kind: "point", appearance: "reference", at: { x: 6, y: 2 } },
+    ],
+    labels: [
+      { key: "g", objectId: "line-g", at: { x: -2, y: 6 }, placement: "above" },
+      { key: "g-image", objectId: "line-g-image", at: { x: 8.5, y: 7 }, placement: "left" },
+      { key: "p", objectId: "point-p", at: { x: 0, y: 5 }, placement: "left" },
+      { key: "q", objectId: "point-q", at: { x: 0, y: -10 }, placement: "right" },
+      { key: "r", objectId: "point-r", at: { x: 6, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Der Flächeninhalt
+
+Die Grundseite des Dreiecks ist <InlineMath math="PQ" />, die auf der <InlineMath math="y" />-Achse liegt. Weil die Grundseite senkrecht steht, ist **die Höhe der waagerechte Abstand von <InlineMath math="R" /> zur <InlineMath math="y" />-Achse**, also die <InlineMath math="x" />-Koordinate von <InlineMath math="R" />.
+
+<BlockMath math="\begin{aligned}
+PQ&=5-(-10)=15 \\
+\text{Höhe}&=6 \\
+\text{Fläche}&=\tfrac12\cdot15\cdot6=45
+\end{aligned}" />
+
+Es gibt eine schöne Probe. Die Drehung um <InlineMath math="90^\circ" /> macht <InlineMath math="g'" /> senkrecht zu <InlineMath math="g" /> (die Steigungen sind <InlineMath math="-\tfrac12" /> und <InlineMath math="2" />), also ist der Winkel bei <InlineMath math="R" /> ein rechter Winkel. Mit <InlineMath math="RP=\sqrt{45}" /> und <InlineMath math="RQ=\sqrt{180}" /> ist die Fläche <InlineMath math="\tfrac12\sqrt{45\cdot180}=\tfrac12\cdot90=45" />. Dasselbe Ergebnis.
+
+Der Flächeninhalt des Dreiecks zwischen <InlineMath math="g" />, <InlineMath math="g'" /> und der <InlineMath math="y" />-Achse beträgt also <InlineMath math="45" /> Flächeneinheiten.
+
+# Warum die anderen Optionen falsch sind
+
+- <InlineMath math="5" /> entsteht mit der Regel **gegen den Uhrzeigersinn** <InlineMath math="(x,y)\mapsto(-y,x)" /> oder wenn du in die Gleichung von <InlineMath math="g" /> direkt <InlineMath math="y" /> für <InlineMath math="x" /> und <InlineMath math="-x" /> für <InlineMath math="y" /> einsetzt. Das Bild wird dann <InlineMath math="-2x+y=10" />, die Geraden schneiden sich in <InlineMath math="(-2,6)" />, die Grundseite ist <InlineMath math="10-5=5" />, und die Fläche ist <InlineMath math="5" />.
+- <InlineMath math="15" /> nimmt die <InlineMath math="y" />-Koordinate von <InlineMath math="R" />, also <InlineMath math="2" />, als Höhe. Die Grundseite ist senkrecht, deshalb muss die Höhe waagerecht sein.
+- <InlineMath math="25" /> ist die Fläche des Dreiecks, das <InlineMath math="g'" /> mit beiden Achsen bildet, <InlineMath math="\tfrac12\cdot5\cdot10" />. Nach diesem Dreieck ist nicht gefragt.
+- <InlineMath math="90" /> vergisst den Faktor <InlineMath math="\tfrac12" /> in der Flächenformel für Dreiecke.

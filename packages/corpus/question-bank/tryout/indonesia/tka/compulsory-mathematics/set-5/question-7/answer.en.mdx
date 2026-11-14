@@ -1,15 +1,39 @@
-Using two price cuts one after another means **composing two functions**. Discount first, then voucher is <InlineMath math="(g\circ f)(x)" />. Voucher first, then discount is <InlineMath math="(f\circ g)(x)" />.
+# Building the composition
+
+The question asks for the sum of **all** possible values of <InlineMath math="f(1)" />. The word all is a hint that more than one function <InlineMath math="f" /> might fit.
+
+Put <InlineMath math="f(x)" /> into <InlineMath math="f" /> itself. Every <InlineMath math="x" /> in the formula <InlineMath math="ax+b" /> is replaced by <InlineMath math="ax+b" />:
 
 <BlockMath math="\begin{aligned}
-(g\circ f)(400{,}000)&=g(320{,}000)=320{,}000-50{,}000=270{,}000 \\
-(f\circ g)(400{,}000)&=f(350{,}000)=0.8\cdot350{,}000=280{,}000
+(f\circ f)(x)&=a(ax+b)+b \\
+&=a^2x+ab+b
 \end{aligned}" />
 
-The difference is <InlineMath math="\text{Rp}10{,}000" />. The general forms show why: <InlineMath math="(g\circ f)(x)=0.8x-50{,}000" /> and <InlineMath math="(f\circ g)(x)=0.8x-40{,}000" />. If the voucher comes first, the discount also shrinks the voucher, so it is only worth <InlineMath math="\text{Rp}40{,}000" />.
+This has to equal <InlineMath math="4x+9" /> for every <InlineMath math="x" />, so the coefficients of <InlineMath math="x" /> and the constants must match:
 
-So using the discount first is cheaper by <InlineMath math="\text{Rp}10{,}000" />.
+<BlockMath math="\begin{aligned}
+a^2&=4 \\
+ab+b=b(a+1)&=9
+\end{aligned}" />
 
-- Voucher first is actually <InlineMath math="\text{Rp}10{,}000" /> more expensive.
-- <InlineMath math="\text{Rp}40{,}000" /> is the voucher's value after the discount, not the difference between the prices.
-- <InlineMath math="\text{Rp}50{,}000" /> is the voucher's face value, not the difference between the two orders.
-- The order matters because the percentage discount acts on different prices.
+# Two possible functions
+
+The equation <InlineMath math="a^2=4" /> has **two solutions**, <InlineMath math="a=2" /> and <InlineMath math="a=-2" />. You have to find <InlineMath math="b" /> again for each one:
+
+<BlockMath math="\begin{aligned}
+a=2&:\ 3b=9\ \Rightarrow\ b=3,\quad f(x)=2x+3,\quad f(1)=5 \\
+a=-2&:\ -b=9\ \Rightarrow\ b=-9,\quad f(x)=-2x-9,\quad f(1)=-11
+\end{aligned}" />
+
+Check both. <InlineMath math="2(2x+3)+3=4x+9" /> and <InlineMath math="-2(-2x-9)-9=4x+18-9=4x+9" />. Both functions satisfy the condition.
+
+<BlockMath math="5+(-11)=-6" />
+
+So the sum of all possible values of <InlineMath math="f(1)" /> is <InlineMath math="-6" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="5" /> only uses <InlineMath math="a=2" />. The root <InlineMath math="a=-2" /> **also satisfies** <InlineMath math="a^2=4" /> and gives a valid function.
+- <InlineMath math="-11" /> only uses <InlineMath math="a=-2" /> and drops <InlineMath math="a=2" />.
+- <InlineMath math="9" /> writes the composition as <InlineMath math="a^2x+2b" />, forgetting that the inner <InlineMath math="b" /> is also multiplied by <InlineMath math="a" />. That gives <InlineMath math="b=\frac92" /> for both functions.
+- <InlineMath math="12" /> makes a sign slip in the case <InlineMath math="a=-2" />: from <InlineMath math="-2b+b=9" /> it gets <InlineMath math="b=9" />. The function <InlineMath math="-2x+9" /> gives <InlineMath math="f(f(x))=4x-9" />, not <InlineMath math="4x+9" />.

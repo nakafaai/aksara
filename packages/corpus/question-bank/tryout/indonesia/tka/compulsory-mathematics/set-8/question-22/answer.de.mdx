@@ -1,14 +1,54 @@
-Die Tabelle nennt nur **fünf Lagemaße**, sicher richtig ist also nur, was sich aus diesen fünf Werten eindeutig ergibt.
+Alle fünf Aussagen verwenden Schätzwerte, also rechnest du jede mit **den Regeln aus dem Lesetext**. Lege zuerst die Häufigkeit jeder Klasse fest und wie man den <InlineMath math="k" />-ten Wert findet, dann prüfe jede Aussage.
+
+# Häufigkeiten und Werte an einer Position
+
+Die Häufigkeit jeder Klasse ist der Unterschied zweier benachbarter kumulierter Zeilen:
+
+| Klasse | <InlineMath math="0\text{ bis }10" /> | <InlineMath math="10\text{ bis }20" /> | <InlineMath math="20\text{ bis }30" /> | <InlineMath math="30\text{ bis }40" /> | <InlineMath math="40\text{ bis }50" /> | <InlineMath math="50\text{ bis }60" /> | <InlineMath math="60\text{ bis }70" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Häufigkeit | <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="24" /> | <InlineMath math="20" /> | <InlineMath math="16" /> | <InlineMath math="6" /> | <InlineMath math="6" /> |
+
+Für den <InlineMath math="k" />-ten Wert suchst du die Klasse, in der er liegt, und **gehst in dieser Klasse anteilig weiter**. Ist die untere Klassengrenze <InlineMath math="L" />, die Anzahl der Werte vor der Klasse <InlineMath math="F" /> und die Klassenhäufigkeit <InlineMath math="f" />, dann gilt
+
+<BlockMath math="k\text{-ter Wert}=L+\frac{k-F}{f}\cdot10" />
+
+# Jede Aussage prüfen
+
+**Aussage 1**. Der Median ist der <InlineMath math="40" />-te Wert. Vor der Klasse <InlineMath math="30\le t<40" /> liegen <InlineMath math="32" /> Werte, bis zu ihrem Ende <InlineMath math="52" />, also liegt der <InlineMath math="40" />-te Wert in dieser Klasse:
+
+<BlockMath math="\text{Median}=30+\frac{40-32}{20}\cdot10=30+4=34\text{ Minuten}" />
+
+Die Zahl <InlineMath math="35" /> ist nur die Klassenmitte. Der <InlineMath math="40" />-te Wert ist erst der <InlineMath math="8" />-te von <InlineMath math="20" /> Werten dieser Klasse, also noch nicht in der Mitte. **Falsch**.
+
+**Aussage 2**. Das untere Quartil ist der <InlineMath math="20" />-te Wert. Vor der Klasse <InlineMath math="20\le t<30" /> liegen <InlineMath math="8" /> Werte, bis zu ihrem Ende <InlineMath math="32" />:
+
+<BlockMath math="Q_1=20+\frac{20-8}{24}\cdot10=20+5=25\text{ Minuten}" />
+
+**Richtig**.
+
+**Aussage 3**. Das obere Quartil ist der <InlineMath math="60" />-te Wert. Vor der Klasse <InlineMath math="40\le t<50" /> liegen <InlineMath math="52" /> Werte, bis zu ihrem Ende <InlineMath math="68" />:
 
 <BlockMath math="\begin{aligned}
-\text{Spannweite XI-1}&=96-45=51 \\
-\text{Spannweite XI-2}&=90-52=38
+Q_3&=40+\frac{60-52}{16}\cdot10=40+5=45\text{ Minuten} \\
+Q_3-Q_1&=45-25=20\text{ Minuten}
 \end{aligned}" />
 
-- Die Spannweite von XI-2 ist <InlineMath math="38" />, kleiner als <InlineMath math="51" />. Die Aussage ist sicher richtig.
-- Der Median von XI-1 ist <InlineMath math="74" />, der von XI-2 ist <InlineMath math="70" />. Die Aussage ist sicher richtig.
-- Den Mittelwert kann man aus der Tabelle nicht berechnen. Der Median <InlineMath math="74" /> ist nur der mittlere Wert, der Mittelwert kann größer oder kleiner sein. Die Aussage ist nicht sicher richtig.
-- Es gibt <InlineMath math="32" /> verschiedene Noten, der Median <InlineMath math="74" /> liegt also zwischen dem <InlineMath math="16" />. und <InlineMath math="17" />. Wert. Die Werte <InlineMath math="17" /> bis <InlineMath math="32" />, also genau <InlineMath math="16" /> Schüler, liegen über <InlineMath math="74" />. Die Aussage ist sicher richtig.
-- Die niedrigste Note in XI-2 ist <InlineMath math="52" />, kein Schüler aus XI-2 hat also unter <InlineMath math="50" />. Die Aussage ist falsch.
+**Richtig**.
 
-Sicher richtig sind also die Aussagen zu den Spannweiten, zu den Medianen und zu genau <InlineMath math="16" /> Schülern der XI-1 mit mehr als <InlineMath math="74" /> Punkten.
+**Aussage 4**. Den Mittelwert schätzt du mit den Klassenmitten <InlineMath math="5,15,25,\ldots,65" />:
+
+<BlockMath math="\begin{aligned}
+\sum f\cdot x&=2\cdot5+6\cdot15+24\cdot25+20\cdot35+16\cdot45+6\cdot55+6\cdot65 \\
+&=10+90+600+700+720+330+390=2{.}840 \\
+\bar{x}&=\frac{2{.}840}{80}=35{,}5\text{ Minuten}
+\end{aligned}" />
+
+Der geschätzte Mittelwert <InlineMath math="35{,}5" /> ist größer als der geschätzte Median <InlineMath math="34" />. Die Vielleser in den oberen Klassen ziehen den Mittelwert nach oben. **Richtig**.
+
+**Aussage 5**. Das <InlineMath math="80" />. Perzentil ist der <InlineMath math="\tfrac{80}{100}\cdot80=64" />-te Wert, noch in der Klasse <InlineMath math="40\le t<50" />:
+
+<BlockMath math="P_{80}=40+\frac{64-52}{16}\cdot10=40+7{,}5=47{,}5\text{ Minuten}" />
+
+Die Zahl <InlineMath math="50" /> entsteht, wenn du einfach die Grenze der Zeile <InlineMath math="t<50" /> nimmst, weil ihre kumulierte Häufigkeit <InlineMath math="68" /> schon über <InlineMath math="64" /> liegt, ohne in der Klasse anteilig weiterzugehen. **Falsch**.
+
+Richtig sind also die Aussagen 2, 3 und 4.

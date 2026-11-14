@@ -1,16 +1,38 @@
-Wer beides macht, wird beim Basketball und noch einmal beim Futsal gezählt, also **ergibt sich die Zahl derer mit mindestens einer AG aus dem Prinzip von Inklusion und Exklusion**.
+Die PIN wird **nur aus gültigen PINs** gezogen, der Ergebnisraum besteht also aus allen PINs, die beide Regeln erfüllen, nicht aus allen vierstelligen Zahlen. Die Wahrscheinlichkeit ist die Anzahl gültiger PINs mit lauter verschiedenen Ziffern geteilt durch die Anzahl aller gültigen PINs.
+
+# Anzahl der gültigen PINs
+
+Füll die Ziffern von links nach rechts aus und zähl die Möglichkeiten an jeder Stelle. Die erste Ziffer darf <InlineMath math="1" /> bis <InlineMath math="9" /> sein. Ab der zweiten Ziffer **ist die <InlineMath math="0" /> wieder erlaubt**, und verboten ist nur, die Ziffer direkt davor zu wiederholen.
 
 <BlockMath math="\begin{aligned}
-n(B\cup F)&=20+15-8=27 \\
-n(\text{keins von beiden})&=36-27=9 \\
-P&=\frac{9}{36}=\frac14
+\text{erste Ziffer}&:\ 9 \text{ Möglichkeiten} \\
+\text{zweite, dritte, vierte Ziffer}&:\ 10-1=9 \text{ Möglichkeiten je Stelle} \\
+n(S)&=9\cdot9\cdot9\cdot9=6{.}561
 \end{aligned}" />
 
-Probe mit einem Venn-Diagramm: nur Basketball <InlineMath math="12" />, nur Futsal <InlineMath math="7" />, beides <InlineMath math="8" />, keins <InlineMath math="9" />, und <InlineMath math="12+7+8+9=36" />.
+# Gültige PINs mit lauter verschiedenen Ziffern
 
-Die Wahrscheinlichkeit ist also <InlineMath math="\frac14" />.
+Sind alle vier Ziffern verschieden, können benachbarte Ziffern nicht gleich sein. Also **ist jede PIN mit vier verschiedenen Ziffern, die nicht mit <InlineMath math="0" /> beginnt, automatisch gültig**, und du musst nur diese zählen.
 
-- <InlineMath math="\frac{1}{36}" /> vergisst, die <InlineMath math="8" /> doppelt gezählten Schüler abzuziehen, sodass nur <InlineMath math="36-35=1" /> übrig bleibt.
-- <InlineMath math="\frac29" /> ist die Wahrscheinlichkeit für beides, <InlineMath math="\frac{8}{36}" />.
-- <InlineMath math="\frac{19}{36}" /> ist die Wahrscheinlichkeit für genau eine AG.
-- <InlineMath math="\frac34" /> ist die Wahrscheinlichkeit für mindestens eine AG.
+<BlockMath math="\begin{aligned}
+\text{erste Ziffer}&:\ 9 \text{ Möglichkeiten } (1 \text{ bis } 9) \\
+\text{zweite Ziffer}&:\ 9 \text{ Möglichkeiten } (0 \text{ erlaubt, nur nicht die erste Ziffer}) \\
+\text{dritte Ziffer}&:\ 8 \text{ Möglichkeiten} \\
+\text{vierte Ziffer}&:\ 7 \text{ Möglichkeiten} \\
+n(A)&=9\cdot9\cdot8\cdot7=4{.}536
+\end{aligned}" />
+
+# Die Wahrscheinlichkeit
+
+Teil die beiden Anzahlen und kürz dann Zähler und Nenner durch <InlineMath math="81" />. Das Beispiel <InlineMath math="1213" /> aus der Aufgabe zeigt, dass manche gültigen PINs eine Ziffer wiederholen, also **muss die Wahrscheinlichkeit kleiner als <InlineMath math="1" /> sein**.
+
+<BlockMath math="P(A)=\frac{n(A)}{n(S)}=\frac{4{.}536}{6{.}561}=\frac{56}{81}" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac{28}{45}" /> nimmt den Ergebnisraum <InlineMath math="10\cdot9\cdot9\cdot9=7{.}290" /> und vergisst beim Zählen der gültigen PINs, dass die erste Ziffer nicht <InlineMath math="0" /> sein darf.
+- <InlineMath math="\frac{63}{125}" /> nimmt den Ergebnisraum <InlineMath math="9{.}000" />, also alle vierstelligen Zahlen. **Gezogen wird aus den gültigen PINs**, nicht aus allen vierstelligen Zahlen.
+- <InlineMath math="\frac{112}{243}" /> nimmt <InlineMath math="9\cdot8\cdot7\cdot6=3{.}024" /> als Zähler, als wäre die <InlineMath math="0" /> überall verboten. Das Verbot gilt aber nur für die erste Ziffer.
+- <InlineMath math="\frac{25}{81}" /> ist <InlineMath math="1-\frac{56}{81}" />, die Wahrscheinlichkeit, dass sich eine Ziffer wiederholt. Das ist das Gegenteil des Gefragten.
+
+Die Wahrscheinlichkeit, dass die gezogene PIN vier verschiedene Ziffern hat, ist also <InlineMath math="\frac{56}{81}" />.

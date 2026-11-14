@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  stimulus: "overtime-pay",
+  stimulus: "grosir",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$\\text{Rp}1{.}075{.}000$$",
+          label: "$$\\text{Rp}376{.}200$$",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}1{.}150{.}000$$",
+          label: "$$\\text{Rp}383{.}600$$",
         },
         {
           correct: true,
-          label: "$$\\text{Rp}1{.}225{.}000$$",
+          label: "$$\\text{Rp}387{.}600$$",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}1{.}375{.}000$$",
+          label: "$$\\text{Rp}396{.}000$$",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}1{.}725{.}000$$",
+          label: "$$\\text{Rp}399{.}000$$",
         },
       ],
     },

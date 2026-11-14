@@ -1,16 +1,51 @@
-In einer arithmetischen Folge gilt <InlineMath math="U_n=a+(n-1)b" />. Vom <InlineMath math="3" />. bis zum <InlineMath math="7" />. Glied wird die Differenz **viermal addiert**.
+# Die erste Einzahlung und die monatliche Erhöhung
+
+Einzahlungen, die jeden Monat um denselben Betrag wachsen, bilden eine **arithmetische Folge**. Die erste Einzahlung steht nicht in der Aufgabe, also bestimme sie aus den zwei bekannten Einzahlungen. Damit die Zahlen handlich bleiben, steht unten jeder Wert in Tausend Rupiah.
+
+Nenne die erste Einzahlung <InlineMath math="a" /> und die monatliche Erhöhung <InlineMath math="b" />. Die Einzahlung im Monat <InlineMath math="n" /> ist <InlineMath math="a+(n-1)b" />:
 
 <BlockMath math="\begin{aligned}
-U_7-U_3&=4b=27-11=16\ \Rightarrow\ b=4 \\
-a&=U_3-2b=11-8=3 \\
-U_{20}&=3+19\cdot4=79
+a+3b&=160 \\
+a+8b&=260 \\
+5b&=100\ \Rightarrow\ b=20,\quad a=160-60=100
 \end{aligned}" />
 
-Probe: <InlineMath math="U_7=3+6\cdot4=27" />, wie gegeben.
+Rina beginnt also mit <InlineMath math="\text{Rp}100{.}000" />, und ihre Einzahlung steigt jeden Monat um <InlineMath math="\text{Rp}20{.}000" />.
 
-Das <InlineMath math="20" />. Glied ist also <InlineMath math="79" />.
+# Der Kontostand nach einigen Monaten
 
-- <InlineMath math="75" /> ist das <InlineMath math="19" />. Glied.
-- <InlineMath math="80" /> rechnet <InlineMath math="20\cdot4" /> und vergisst das erste Glied.
-- <InlineMath math="83" /> ist das <InlineMath math="21" />. Glied, weil es <InlineMath math="20b" /> statt <InlineMath math="19b" /> nimmt.
-- <InlineMath math="87" /> nimmt <InlineMath math="11" /> als erstes Glied, doch <InlineMath math="11" /> ist das <InlineMath math="3" />. Glied.
+Der Kontostand nach <InlineMath math="n" /> Monaten ist **die Summe der ersten <InlineMath math="n" /> Glieder** dieser Folge:
+
+<BlockMath math="\begin{aligned}
+S_n&=\frac n2\left(2a+(n-1)b\right) \\
+&=\frac n2\left(200+20(n-1)\right) \\
+&=\frac n2\left(180+20n\right)=10n^2+90n
+\end{aligned}" />
+
+# Wann der Kontostand das Ziel übertrifft
+
+Das Ziel sind <InlineMath math="5{.}800" /> Tausend, und der Kontostand muss **mehr als** das Ziel sein, nicht gleich:
+
+<BlockMath math="\begin{aligned}
+10n^2+90n&>5{.}800 \\
+n^2+9n-580&>0 \\
+(n-20)(n+29)&>0
+\end{aligned}" />
+
+Die Zahl der Monate <InlineMath math="n" /> ist positiv, also ist <InlineMath math="n+29" /> immer positiv, und die Bedingung wird zu <InlineMath math="n>20" />. Prüfe die Werte an der Grenze:
+
+<BlockMath math="\begin{aligned}
+S_{20}&=10\cdot400+90\cdot20=5{.}800 \\
+S_{21}&=10\cdot441+90\cdot21=6{.}300
+\end{aligned}" />
+
+Nach Monat <InlineMath math="20" /> beträgt der Kontostand **genau** <InlineMath math="\text{Rp}5{.}800{.}000" />, also noch nicht mehr. Erst nach Monat <InlineMath math="21" /> liegt er über dem Ziel.
+
+Rinas Kontostand liegt also zum ersten Mal nach der Einzahlung im Monat <InlineMath math="21" /> über <InlineMath math="\text{Rp}5{.}800{.}000" />.
+
+# Warum die anderen Antworten falsch sind
+
+- Monat <InlineMath math="20" /> ist der Moment, in dem der Kontostand das Ziel **genau erreicht**. Gefragt ist mehr als, dieser Monat reicht also noch nicht.
+- Monat <InlineMath math="16" /> nimmt als Kontostand <InlineMath math="n" /> mal die Einzahlung im Monat <InlineMath math="n" />, also <InlineMath math="20n^2+80n" />. Die frühen Einzahlungen sind kleiner, daher ist das zu viel.
+- Monat <InlineMath math="18" /> nimmt <InlineMath math="160" /> als erste Einzahlung. Das ist aber die Einzahlung im Monat <InlineMath math="4" />.
+- Monat <InlineMath math="23" /> rechnet mit <InlineMath math="\frac n2\left(a+(n-1)b\right)" />. Die Summenformel enthält <InlineMath math="2a" />, also erstes plus letztes Glied.

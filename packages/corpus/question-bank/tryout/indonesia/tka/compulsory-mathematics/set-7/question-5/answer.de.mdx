@@ -1,20 +1,49 @@
-Sei <InlineMath math="a" /> die Anzahl der Erwachsenenkarten und <InlineMath math="c" /> die der Kinderkarten, beide positive ganze Zahlen. In Tausend Rupiah gilt <InlineMath math="35a+20c=235" />, nach Division durch <InlineMath math="5" /> also:
+# Die dritte Gleichung bringt nichts Neues
 
-<BlockMath math="7a+4c=47" />
+Gefragt ist nicht eine Lösung, sondern eine Aussage, die für **jede** Lösung gilt. Prüfe also zuerst, ob die Lösung eindeutig ist. Multipliziere die erste Gleichung mit <InlineMath math="3" /> und ziehe die zweite ab:
 
-Weil <InlineMath math="4c" /> gerade und <InlineMath math="47" /> ungerade ist, muss <InlineMath math="7a" /> ungerade sein, also **ist <InlineMath math="a" /> ungerade**. Außerdem ist <InlineMath math="7a<47" />, also <InlineMath math="a\le6" />. Prüfe jeden ungeraden Wert von <InlineMath math="a" />:
+<BlockMath math="\begin{aligned}
+3(x+y+2z)-(2x-y+z)&=3\cdot9-3 \\
+x+4y+5z&=24
+\end{aligned}" />
 
-| <InlineMath math="a" /> | <InlineMath math="4c=47-7a" /> | <InlineMath math="c" /> |
-| --- | --- | --- |
-| <InlineMath math="1" /> | <InlineMath math="40" /> | <InlineMath math="10" /> |
-| <InlineMath math="3" /> | <InlineMath math="26" /> | keine ganze Zahl |
-| <InlineMath math="5" /> | <InlineMath math="12" /> | <InlineMath math="3" /> |
+Das ist genau die dritte Gleichung. **Die dritte Gleichung ist also nur eine Kombination der ersten beiden**. Du hast nur zwei wirklich verschiedene Gleichungen für drei Unbekannte, also gibt es unendlich viele Lösungen.
 
-Es gibt zwei mögliche Käufe: <InlineMath math="1" /> Erwachsener und <InlineMath math="10" /> Kinder oder <InlineMath math="5" /> Erwachsene und <InlineMath math="3" /> Kinder. Eine Aussage ist **sicher richtig** nur, wenn sie für beide gilt.
+# Die allgemeine Lösung
 
-Sicher richtig ist also, dass die Anzahl der Erwachsenenkarten ungerade ist.
+Addiere die ersten beiden Gleichungen, damit <InlineMath math="y" /> wegfällt, und drücke alles durch <InlineMath math="z" /> aus.
 
-- Mehr Kinderkarten gibt es nur beim ersten Kauf. Beim zweiten sind es <InlineMath math="5" /> Erwachsenen- und <InlineMath math="3" /> Kinderkarten.
-- Insgesamt <InlineMath math="8" /> Karten gibt es nur beim zweiten Kauf. Der erste hat <InlineMath math="11" /> Karten.
-- Mehr als <InlineMath math="2" /> Erwachsenenkarten gibt es nur beim zweiten Kauf.
-- Eine gerade Anzahl Kinderkarten gibt es nur beim ersten Kauf.
+<BlockMath math="\begin{aligned}
+(x+y+2z)+(2x-y+z)&=9+3 \\
+3x+3z&=12 \\
+x&=4-z \\
+y&=9-x-2z=9-(4-z)-2z=5-z
+\end{aligned}" />
+
+**Jede Lösung hat die Form <InlineMath math="(4-z,\ 5-z,\ z)" />** mit beliebigem reellen <InlineMath math="z" />. Zum Beispiel liefert <InlineMath math="z=0" /> die Lösung <InlineMath math="(4,5,0)" /> und <InlineMath math="z=1" /> die Lösung <InlineMath math="(3,4,1)" />. Beide erfüllen alle drei Gleichungen.
+
+# Jede Antwort prüfen
+
+Setze die allgemeine Lösung in jede Antwort ein. Eine Aussage gilt nur dann sicher, wenn **das Ergebnis nicht von <InlineMath math="z" /> abhängt** und gleich der rechten Seite ist.
+
+| Antwort | Linke Seite für <InlineMath math="(4-z,\ 5-z,\ z)" /> | Immer wahr? |
+| :---: | :---: | :---: |
+| <InlineMath math="z=1" /> | <InlineMath math="z" /> | nur bei <InlineMath math="z=1" /> |
+| <InlineMath math="x-y=1" /> | <InlineMath math="-1" /> | nie |
+| <InlineMath math="x+y=7" /> | <InlineMath math="9-2z" /> | nur bei <InlineMath math="z=1" /> |
+| <InlineMath math="2x+y+3z=13" /> | <InlineMath math="13" /> | immer |
+| <InlineMath math="x+y+z=8" /> | <InlineMath math="9-z" /> | nur bei <InlineMath math="z=1" /> |
+
+Die vierte Zeile ausgerechnet:
+
+<BlockMath math="2x+y+3z=2(4-z)+(5-z)+3z=8-2z+5-z+3z=13" />
+
+Die Terme mit <InlineMath math="z" /> heben sich auf, der Wert ist also für jede Lösung <InlineMath math="13" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="z=1" /> gilt für die Lösung <InlineMath math="(3,4,1)" />, aber <InlineMath math="(4,5,0)" /> ist auch eine Lösung, und dort ist <InlineMath math="z=0" />.
+- <InlineMath math="x-y=1" /> hat das falsche Vorzeichen. Für jede Lösung ist <InlineMath math="x-y=(4-z)-(5-z)=-1" />. Die <InlineMath math="1" /> bekommst du, wenn du <InlineMath math="y-x" /> rechnest.
+- <InlineMath math="x+y=7" /> und <InlineMath math="x+y+z=8" /> **passen nur zu <InlineMath math="(3,4,1)" />**. Wenn du nur diese eine Lösung findest und damit die Antworten prüfst, sehen diese beiden und <InlineMath math="z=1" /> richtig aus. Mit <InlineMath math="(4,5,0)" /> ergeben sich <InlineMath math="9" /> und <InlineMath math="9" />.
+
+Die Aussage, die für jede Lösung gilt, ist also <InlineMath math="2x+y+3z=13" />.

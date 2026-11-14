@@ -1,0 +1,38 @@
+PIN dipilih daripada **PIN yang sah sahaja**, jadi ruang sampelnya ialah semua PIN yang mematuhi kedua-dua peraturan, bukan semua nombor empat digit. Kebarangkaliannya ialah bilangan PIN sah yang semua digitnya berbeza dibahagi bilangan semua PIN sah.
+
+# Bilangan PIN yang sah
+
+Isi digit dari kiri ke kanan dan kira pilihan pada setiap kedudukan. Digit pertama boleh <InlineMath math="1" /> hingga <InlineMath math="9" />. Mulai digit kedua, **angka <InlineMath math="0" /> boleh digunakan semula**, dan satu-satunya larangan ialah mengulang digit yang betul-betul di hadapannya.
+
+<BlockMath math="\begin{aligned}
+\text{digit pertama}&:\ 9 \text{ pilihan} \\
+\text{digit kedua, ketiga, keempat}&:\ 10-1=9 \text{ pilihan setiap satu} \\
+n(S)&=9\cdot9\cdot9\cdot9=6{,}561
+\end{aligned}" />
+
+# PIN sah dengan semua digit berbeza
+
+Jika keempat-empat digit berbeza, dua digit yang bersebelahan pasti tidak sama. Jadi **setiap PIN berdigit berbeza yang tidak bermula dengan <InlineMath math="0" /> secara automatik sah**, dan kamu hanya perlu mengira PIN seperti itu.
+
+<BlockMath math="\begin{aligned}
+\text{digit pertama}&:\ 9 \text{ pilihan } (1 \text{ hingga } 9) \\
+\text{digit kedua}&:\ 9 \text{ pilihan } (0 \text{ dibenarkan, kecuali digit pertama}) \\
+\text{digit ketiga}&:\ 8 \text{ pilihan} \\
+\text{digit keempat}&:\ 7 \text{ pilihan} \\
+n(A)&=9\cdot9\cdot8\cdot7=4{,}536
+\end{aligned}" />
+
+# Kebarangkaliannya
+
+Bahagikan kedua-dua bilangan itu, kemudian permudahkan dengan membahagi pengangka dan penyebut dengan <InlineMath math="81" />. Contoh dalam soalan, <InlineMath math="1213" />, menunjukkan ada PIN sah yang digitnya berulang, jadi **kebarangkaliannya memang mesti kurang daripada <InlineMath math="1" />**.
+
+<BlockMath math="P(A)=\frac{n(A)}{n(S)}=\frac{4{,}536}{6{,}561}=\frac{56}{81}" />
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\frac{28}{45}" /> menggunakan ruang sampel <InlineMath math="10\cdot9\cdot9\cdot9=7{,}290" />, iaitu terlupa bahawa digit pertama tidak boleh <InlineMath math="0" /> semasa mengira PIN sah.
+- <InlineMath math="\frac{63}{125}" /> menggunakan ruang sampel <InlineMath math="9{,}000" />, iaitu semua nombor empat digit. **PIN dipilih daripada PIN sah**, bukan daripada semua nombor empat digit.
+- <InlineMath math="\frac{112}{243}" /> menggunakan <InlineMath math="9\cdot8\cdot7\cdot6=3{,}024" /> sebagai pengangka, seolah-olah <InlineMath math="0" /> dilarang pada semua kedudukan. Larangan itu hanya untuk digit pertama.
+- <InlineMath math="\frac{25}{81}" /> ialah <InlineMath math="1-\frac{56}{81}" />, iaitu kebarangkalian PIN mempunyai digit yang berulang. Itu kebalikan daripada yang ditanya.
+
+Jadi, kebarangkalian PIN yang dipilih mempunyai empat digit yang semuanya berbeza ialah <InlineMath math="\frac{56}{81}" />.

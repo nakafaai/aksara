@@ -1,15 +1,58 @@
-Schreib zuerst beide Verkettungen aus. **Die Reihenfolge bestimmt, welche Funktion zuerst wirkt**: <InlineMath math="(f\circ g)(x)=f(g(x))" /> und <InlineMath math="(g\circ f)(x)=g(f(x))" />.
+# Eine praktische Form
+
+Die fünf Aussagen behandeln Wertebereich, Verkettung, Umkehrfunktion und Fixpunkte von <InlineMath math="f" />. Eine Umformung von <InlineMath math="f" /> hilft dabei sehr. **Zerleg den Bruch in eine Konstante plus einen Rest**:
+
+<BlockMath math="f(x)=\frac{2x+6}{x-3}=\frac{2(x-3)+12}{x-3}=2+\frac{12}{x-3}" />
+
+Der Bruch <InlineMath math="\frac{12}{x-3}" /> ist nie null und kann jeden Wert außer null annehmen.
+
+# Erste Aussage
+
+Für <InlineMath math="f(x)=2" /> müsste <InlineMath math="\frac{12}{x-3}" /> null sein, und das geht nicht. Anders gerechnet: <InlineMath math="2x+6=2(x-3)" /> führt auf <InlineMath math="6=-6" />, eine falsche Aussage. Also **gehört <InlineMath math="2" /> nicht zum Wertebereich von <InlineMath math="f" />**, und die Aussage ist **Richtig**.
+
+# Zweite Aussage
+
+Der Wert <InlineMath math="f(f(x))" /> braucht zwei Bedingungen: <InlineMath math="x\neq3" />, damit <InlineMath math="f(x)" /> existiert, und **<InlineMath math="f(x)\neq3" />, damit <InlineMath math="f" /> noch einmal angewendet werden kann**. Bestimm, wann <InlineMath math="f(x)=3" /> gilt:
 
 <BlockMath math="\begin{aligned}
-(f\circ g)(x)&=2x^2+1 \\
-(g\circ f)(x)&=(2x+1)^2=4x^2+4x+1 \\
-f^{-1}(x)&=\frac{x-1}{2}
+\frac{2x+6}{x-3}&=3 \\
+2x+6&=3x-9 \\
+x&=15
 \end{aligned}" />
 
-- Wegen <InlineMath math="x^2\ge0" /> ist <InlineMath math="2x^2+1" /> immer mindestens <InlineMath math="1" />. Die Aussage ist richtig.
-- <InlineMath math="(2x+1)^2" /> ist bei <InlineMath math="x=-\frac12" /> gleich <InlineMath math="0" />, also nicht immer mindestens <InlineMath math="1" />. Die Aussage ist falsch.
-- <InlineMath math="2x^2+1=4x^2+4x+1" /> wird zu <InlineMath math="2x^2+4x=0" />, also <InlineMath math="2x(x+2)=0" />. Die Lösungen sind genau <InlineMath math="x=0" /> und <InlineMath math="x=-2" />. Die Aussage ist richtig.
-- <InlineMath math="g(3)=9" /> und <InlineMath math="f^{-1}(9)=\frac{9-1}{2}=4" />. Probe: <InlineMath math="f(4)=9" />. Die Aussage ist richtig.
-- <InlineMath math="(f\circ g)(-1)=2+1=3" />, aber <InlineMath math="(g\circ f)(-1)=(-1)^2=1" />. Die Aussage ist falsch.
+Bei <InlineMath math="x=15" /> ist <InlineMath math="f(15)=\frac{36}{12}=3" />, und <InlineMath math="f(3)" /> ist nicht definiert. Also ist <InlineMath math="f\circ f" /> auch bei <InlineMath math="x=15" /> nicht definiert, und die Aussage ist **Falsch**.
 
-Richtig sind also <InlineMath math="(f\circ g)(x)\ge1" />, die Lösungen <InlineMath math="x=0" /> und <InlineMath math="x=-2" /> sowie <InlineMath math="f^{-1}(g(3))=4" />.
+# Dritte Aussage
+
+Schreib <InlineMath math="y=f(x)" />, lös nach <InlineMath math="x" /> auf und vertausch dann die Namen:
+
+<BlockMath math="\begin{aligned}
+y(x-3)&=2x+6 \\
+xy-2x&=3y+6 \\
+x(y-2)&=3y+6 \\
+x&=\frac{3y+6}{y-2}
+\end{aligned}" />
+
+Also ist <InlineMath math="f^{-1}(x)=\frac{3x+6}{x-2}" />, und **die Bedingung <InlineMath math="x\neq2" /> passt zur ersten Aussage**, denn der Definitionsbereich der Umkehrfunktion ist der Wertebereich von <InlineMath math="f" />. Probe mit einem Wert: <InlineMath math="f(0)=-2" /> und <InlineMath math="f^{-1}(-2)=\frac{0}{-4}=0" />. Die Aussage ist **Richtig**.
+
+# Vierte Aussage
+
+Die Schnittpunkte mit der Geraden <InlineMath math="y=x" /> erfüllen <InlineMath math="f(x)=x" />:
+
+<BlockMath math="\begin{aligned}
+2x+6&=x(x-3) \\
+x^{2}-5x-6&=0 \\
+(x-6)(x+1)&=0
+\end{aligned}" />
+
+Das ergibt <InlineMath math="x=6" /> oder <InlineMath math="x=-1" />. **Keiner der beiden Werte ist <InlineMath math="3" />**, beide gelten also: <InlineMath math="f(6)=\frac{18}{3}=6" /> und <InlineMath math="f(-1)=\frac{4}{-4}=-1" />. Es gibt genau zwei Punkte, und ihre x-Koordinaten ergeben zusammen <InlineMath math="6+(-1)=5" />. Die Aussage ist **Richtig**.
+
+# Fünfte Aussage
+
+Diese Aussage bedeutet dasselbe wie: <InlineMath math="f" /> ist seine eigene Umkehrfunktion. Die Umkehrfunktion aus der dritten Aussage hat aber eine andere Vorschrift als <InlineMath math="f" />, also **reicht ein Gegenbeispiel**. Nimm <InlineMath math="p=0" />: <InlineMath math="q=f(0)=-2" />, aber
+
+<BlockMath math="f(-2)=\frac{-4+6}{-5}=-\frac{2}{5}\neq0" />
+
+Die Aussage ist **Falsch**.
+
+Richtig sind also die erste, dritte und vierte Aussage.

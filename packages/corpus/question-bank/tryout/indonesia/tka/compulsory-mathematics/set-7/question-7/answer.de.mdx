@@ -1,15 +1,43 @@
-Der Rückgang um <InlineMath math="15\,\%" /> pro Jahr bezieht sich auf den Preis des Vorjahres, also **wird der Preis pro Jahr einmal mit <InlineMath math="0{,}85" /> multipliziert**. Für <InlineMath math="t=2" />:
+# Die Rechnung vor dem Rabatt
+
+Diese Aufgabe läuft rückwärts: Aus dem bezahlten Betrag bestimmst du den Wasserverbrauch. Zuerst nimmst du den Rabatt heraus. Die <InlineMath math="25\%" /> werden von der ganzen Rechnung abgezogen, also ist **der bezahlte Betrag <InlineMath math="75\%" /> der ursprünglichen Rechnung**.
 
 <BlockMath math="\begin{aligned}
-H(2)&=200{.}000{.}000\cdot0{,}85^2 \\
-&=200{.}000{.}000\cdot0{,}7225=144{.}500{.}000
+0{,}75\cdot T&=120{.}000 \\
+T&=\frac{120{.}000}{0{,}75}=160{.}000
 \end{aligned}" />
 
-Jahr für Jahr: nach einem Jahr <InlineMath math="200{.}000{.}000\cdot0{,}85=170{.}000{.}000" />, nach zwei Jahren <InlineMath math="170{.}000{.}000\cdot0{,}85=144{.}500{.}000" />.
+Vor dem Rabatt beträgt die Rechnung <InlineMath math="\text{Rp}160{.}000" />.
 
-Nach <InlineMath math="2" /> Jahren ist das Auto also <InlineMath math="\text{Rp}144{.}500{.}000" /> wert.
+# Die Verbrauchsstufe finden
 
-- <InlineMath math="\text{Rp}4{.}500{.}000" /> nimmt <InlineMath math="0{,}15^2" />, also den verlorenen statt des verbleibenden Anteils.
-- <InlineMath math="\text{Rp}122{.}825{.}000" /> ist der Preis nach <InlineMath math="3" /> Jahren.
-- <InlineMath math="\text{Rp}140{.}000{.}000" /> zieht zweimal <InlineMath math="15\,\%" /> vom Anfangspreis ab, als sänke der Preis fest um <InlineMath math="\text{Rp}30{.}000{.}000" /> pro Jahr.
-- <InlineMath math="\text{Rp}170{.}000{.}000" /> ist der Preis nach <InlineMath math="1" /> Jahr.
+Der Preis pro Kubikmeter ändert sich von Stufe zu Stufe. Finde also zuerst heraus, in welche Stufe der Verbrauch fällt, und berechne dazu die Rechnung genau an den Stufengrenzen.
+
+<BlockMath math="\begin{aligned}
+T(10)&=40{.}000+10\cdot3{.}000=70{.}000 \\
+T(30)&=70{.}000+20\cdot5{.}000=170{.}000
+\end{aligned}" />
+
+Wegen <InlineMath math="70{.}000<160{.}000<170{.}000" /> **liegt der Verbrauch in der zweiten Stufe**, also über <InlineMath math="10\text{ m}^3" /> und höchstens <InlineMath math="30\text{ m}^3" />.
+
+# Den Verbrauch ausrechnen
+
+In der zweiten Stufe kostet der Verbrauch <InlineMath math="u" /> genau <InlineMath math="70{.}000" /> plus <InlineMath math="5{.}000" /> für jeden <InlineMath math="\text{m}^3" /> über <InlineMath math="10" />.
+
+<BlockMath math="\begin{aligned}
+70{.}000+5{.}000\,(u-10)&=160{.}000 \\
+5{.}000\,(u-10)&=90{.}000 \\
+u-10&=18 \\
+u&=28
+\end{aligned}" />
+
+Zur Kontrolle: Für <InlineMath math="28\text{ m}^3" /> beträgt die Rechnung <InlineMath math="40{.}000+30{.}000+90{.}000=160{.}000" />, nach Rabatt <InlineMath math="0{,}75\cdot160{.}000=120{.}000" />. **Das ist genau der bezahlte Betrag**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="18\text{ m}^3" /> ist nur der Teil über <InlineMath math="10\text{ m}^3" />. Die ersten <InlineMath math="10\text{ m}^3" /> wurden nicht wieder dazugezählt.
+- <InlineMath math="20\text{ m}^3" /> nimmt <InlineMath math="\text{Rp}120{.}000" /> als Rechnung, der Rabatt wurde also nicht herausgerechnet.
+- <InlineMath math="24\text{ m}^3" /> rechnet den ganzen Verbrauch mit <InlineMath math="\text{Rp}5{.}000" />, <InlineMath math="(160{.}000-40{.}000):5{.}000" />. Die ersten <InlineMath math="10\text{ m}^3" /> sind aber billiger.
+- <InlineMath math="26\text{ m}^3" /> schlägt <InlineMath math="25\%" /> des bezahlten Betrags auf und kommt so auf <InlineMath math="150{.}000" />. **Der Rabatt ist ein Anteil der ursprünglichen Rechnung, nicht des bezahlten Betrags**, also musst du durch <InlineMath math="0{,}75" /> teilen.
+
+Der Kunde hat also <InlineMath math="28\text{ m}^3" /> Wasser verbraucht.

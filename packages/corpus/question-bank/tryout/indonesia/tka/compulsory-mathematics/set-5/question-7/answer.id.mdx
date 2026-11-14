@@ -1,15 +1,39 @@
-Memakai dua potongan berurutan berarti **menyusun dua fungsi**. Diskon lebih dahulu lalu voucher adalah <InlineMath math="(g\circ f)(x)" />, sedangkan voucher lebih dahulu lalu diskon adalah <InlineMath math="(f\circ g)(x)" />.
+# Menyusun komposisinya
+
+Soal ini meminta jumlah **semua** nilai <InlineMath math="f(1)" /> yang mungkin. Kata semua memberi tanda bahwa fungsi <InlineMath math="f" /> yang memenuhi syarat bisa lebih dari satu.
+
+Masukkan <InlineMath math="f(x)" /> ke dalam <InlineMath math="f" /> sendiri. Setiap <InlineMath math="x" /> pada rumus <InlineMath math="ax+b" /> diganti dengan <InlineMath math="ax+b" />:
 
 <BlockMath math="\begin{aligned}
-(g\circ f)(400{.}000)&=g(320{.}000)=320{.}000-50{.}000=270{.}000 \\
-(f\circ g)(400{.}000)&=f(350{.}000)=0{,}8\cdot350{.}000=280{.}000
+(f\circ f)(x)&=a(ax+b)+b \\
+&=a^2x+ab+b
 \end{aligned}" />
 
-Selisihnya <InlineMath math="\text{Rp}10{.}000" />. Bentuk umumnya menjelaskan alasannya: <InlineMath math="(g\circ f)(x)=0{,}8x-50{.}000" /> dan <InlineMath math="(f\circ g)(x)=0{,}8x-40{.}000" />. Kalau voucher dipakai dulu, potongannya ikut terkena diskon sehingga nilainya tinggal <InlineMath math="\text{Rp}40{.}000" />.
+Bentuk ini harus sama dengan <InlineMath math="4x+9" /> untuk setiap <InlineMath math="x" />, jadi koefisien <InlineMath math="x" /> dan konstantanya harus sama:
 
-Jadi, memakai diskon lebih dahulu lebih murah <InlineMath math="\text{Rp}10{.}000" />.
+<BlockMath math="\begin{aligned}
+a^2&=4 \\
+ab+b=b(a+1)&=9
+\end{aligned}" />
 
-- Voucher lebih dahulu justru lebih mahal <InlineMath math="\text{Rp}10{.}000" />.
-- <InlineMath math="\text{Rp}40{.}000" /> adalah nilai voucher setelah terkena diskon, bukan selisih kedua harga.
-- <InlineMath math="\text{Rp}50{.}000" /> adalah nilai voucher, bukan selisih kedua urutan.
-- Urutan berpengaruh karena diskon persen bekerja pada harga yang berbeda.
+# Dua kemungkinan fungsi
+
+Persamaan <InlineMath math="a^2=4" /> punya **dua penyelesaian**, <InlineMath math="a=2" /> dan <InlineMath math="a=-2" />. Nilai <InlineMath math="b" /> harus dicari ulang untuk masing-masing:
+
+<BlockMath math="\begin{aligned}
+a=2&:\ 3b=9\ \Rightarrow\ b=3,\quad f(x)=2x+3,\quad f(1)=5 \\
+a=-2&:\ -b=9\ \Rightarrow\ b=-9,\quad f(x)=-2x-9,\quad f(1)=-11
+\end{aligned}" />
+
+Cek keduanya. <InlineMath math="2(2x+3)+3=4x+9" /> dan <InlineMath math="-2(-2x-9)-9=4x+18-9=4x+9" />. Dua fungsi itu sama-sama memenuhi syarat.
+
+<BlockMath math="5+(-11)=-6" />
+
+Jadi, jumlah semua nilai <InlineMath math="f(1)" /> yang mungkin adalah <InlineMath math="-6" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="5" /> hanya memakai <InlineMath math="a=2" />. Akar <InlineMath math="a=-2" /> **ikut memenuhi** <InlineMath math="a^2=4" /> dan memberi fungsi yang sah.
+- <InlineMath math="-11" /> hanya memakai <InlineMath math="a=-2" /> dan membuang <InlineMath math="a=2" />.
+- <InlineMath math="9" /> menulis komposisinya sebagai <InlineMath math="a^2x+2b" />, lupa bahwa <InlineMath math="b" /> di dalam ikut dikali <InlineMath math="a" />. Hasilnya <InlineMath math="b=\frac92" /> untuk kedua fungsi.
+- <InlineMath math="12" /> salah tanda pada kasus <InlineMath math="a=-2" />: dari <InlineMath math="-2b+b=9" /> mendapat <InlineMath math="b=9" />. Fungsi <InlineMath math="-2x+9" /> memberi <InlineMath math="f(f(x))=4x-9" />, bukan <InlineMath math="4x+9" />.

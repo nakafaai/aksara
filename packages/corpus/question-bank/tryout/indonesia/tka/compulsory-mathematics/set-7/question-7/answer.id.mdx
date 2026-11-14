@@ -1,15 +1,43 @@
-Penurunan <InlineMath math="15\,\%" /> setiap tahun dihitung dari harga tahun sebelumnya, jadi **harga dikalikan <InlineMath math="0{,}85" /> sekali untuk setiap tahun**. Untuk <InlineMath math="t=2" />:
+# Tagihan sebelum potongan
+
+Soal ini berjalan mundur: dari uang yang dibayar, kamu mencari pemakaian air. Langkah pertama adalah membuang potongan. Potongan <InlineMath math="25\%" /> dihitung dari total tagihan, jadi **yang dibayar adalah <InlineMath math="75\%" /> dari tagihan awal**.
 
 <BlockMath math="\begin{aligned}
-H(2)&=200{.}000{.}000\cdot0{,}85^2 \\
-&=200{.}000{.}000\cdot0{,}7225=144{.}500{.}000
+0{,}75\cdot T&=120{.}000 \\
+T&=\frac{120{.}000}{0{,}75}=160{.}000
 \end{aligned}" />
 
-Cek per tahun: setelah tahun pertama <InlineMath math="200{.}000{.}000\cdot0{,}85=170{.}000{.}000" />, dan setelah tahun kedua <InlineMath math="170{.}000{.}000\cdot0{,}85=144{.}500{.}000" />.
+Tagihan sebelum potongan adalah <InlineMath math="\text{Rp}160{.}000" />.
 
-Jadi, harga jual mobil setelah <InlineMath math="2" /> tahun adalah <InlineMath math="\text{Rp}144{.}500{.}000" />.
+# Menentukan blok pemakaian
 
-- <InlineMath math="\text{Rp}4{.}500{.}000" /> memakai <InlineMath math="0{,}15^2" />, yaitu bagian yang hilang, bukan bagian yang tersisa.
-- <InlineMath math="\text{Rp}122{.}825{.}000" /> adalah harga setelah <InlineMath math="3" /> tahun.
-- <InlineMath math="\text{Rp}140{.}000{.}000" /> mengurangkan <InlineMath math="15\,\%" /> dari harga awal dua kali, seolah penurunannya tetap <InlineMath math="\text{Rp}30{.}000{.}000" /> per tahun.
-- <InlineMath math="\text{Rp}170{.}000{.}000" /> adalah harga setelah <InlineMath math="1" /> tahun.
+Tarifnya berbeda di setiap blok, jadi kamu harus tahu dulu pemakaiannya jatuh di blok mana. Hitung tagihan tepat di batas blok.
+
+<BlockMath math="\begin{aligned}
+T(10)&=40{.}000+10\cdot3{.}000=70{.}000 \\
+T(30)&=70{.}000+20\cdot5{.}000=170{.}000
+\end{aligned}" />
+
+Karena <InlineMath math="70{.}000<160{.}000<170{.}000" />, **pemakaiannya berada di blok kedua**, yaitu di atas <InlineMath math="10\text{ m}^3" /> dan tidak lebih dari <InlineMath math="30\text{ m}^3" />.
+
+# Menghitung pemakaian
+
+Di blok kedua, tagihan untuk pemakaian <InlineMath math="u" /> adalah <InlineMath math="70{.}000" /> ditambah <InlineMath math="5{.}000" /> untuk setiap <InlineMath math="\text{m}^3" /> di atas <InlineMath math="10" />.
+
+<BlockMath math="\begin{aligned}
+70{.}000+5{.}000\,(u-10)&=160{.}000 \\
+5{.}000\,(u-10)&=90{.}000 \\
+u-10&=18 \\
+u&=28
+\end{aligned}" />
+
+Sebagai pemeriksaan, tagihan untuk <InlineMath math="28\text{ m}^3" /> adalah <InlineMath math="40{.}000+30{.}000+90{.}000=160{.}000" />, dan setelah potongan menjadi <InlineMath math="0{,}75\cdot160{.}000=120{.}000" />. **Hasilnya sama dengan uang yang dibayar**.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="18\text{ m}^3" /> hanya bagian di atas <InlineMath math="10\text{ m}^3" />. Bagian <InlineMath math="10\text{ m}^3" /> pertama lupa ditambahkan kembali.
+- <InlineMath math="20\text{ m}^3" /> menganggap <InlineMath math="\text{Rp}120{.}000" /> sebagai tagihan, yaitu lupa membuang potongan.
+- <InlineMath math="24\text{ m}^3" /> memakai tarif <InlineMath math="\text{Rp}5{.}000" /> untuk seluruh pemakaian, <InlineMath math="(160{.}000-40{.}000):5{.}000" />. Padahal <InlineMath math="10\text{ m}^3" /> pertama lebih murah.
+- <InlineMath math="26\text{ m}^3" /> menambahkan <InlineMath math="25\%" /> dari uang yang dibayar, sehingga tagihannya <InlineMath math="150{.}000" />. **Potongan dihitung dari tagihan awal, bukan dari uang yang dibayar**, jadi yang benar adalah membagi dengan <InlineMath math="0{,}75" />.
+
+Jadi, pemakaian air pelanggan itu adalah <InlineMath math="28\text{ m}^3" />.

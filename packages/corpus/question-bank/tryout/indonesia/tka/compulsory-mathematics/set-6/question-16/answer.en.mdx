@@ -1,13 +1,43 @@
-The tent is an upright prism, so **its volume is the base area times the prism's length**. The base is the triangle at the front, and the prism's length runs from the front of the tent to the back.
+The question asks how much wall paint two coats need. Only the wall above the tiles gets painted, minus the parts of the door and window that **lie above the tiles**. Two things need care: the perimeter of the L-shaped plan, and the parts of the door and window that already sit in the tiled zone.
+
+# The perimeter of the L-shaped plan
+
+Two sides of the storeroom have no labels, but you can get them from differences. Its horizontal side is <InlineMath math="6-3=3\text{ m}" /> and its vertical side is <InlineMath math="5-3=2\text{ m}" />. These two sides are also bedroom walls, so they get painted. Walk once around the plan:
 
 <BlockMath math="\begin{aligned}
-L_{\text{triangle}}&=\tfrac12\cdot3\cdot2=3\text{ m}^2 \\
-V&=3\cdot4=12\text{ m}^3
+P&=6+3+3+2+3+5=22\text{ m} \\
+2\cdot(6+5)&=22\text{ m}
 \end{aligned}" />
 
-So the space inside the tent is <InlineMath math="12\text{ m}^3" />.
+That's the same as the perimeter of the <InlineMath math="6\times5" /> rectangle. **Cutting a corner out of a rectangle doesn't change its perimeter**, because the two storeroom walls replace the two missing pieces of the rectangle's sides.
 
-- <InlineMath math="6\text{ m}^3" /> halves the correct result a second time.
-- <InlineMath math="15\text{ m}^3" /> uses the triangle's slanted side, <InlineMath math="2.5\text{ m}" />, as its height.
-- <InlineMath math="24\text{ m}^3" /> forgets the factor <InlineMath math="\tfrac12" /> in the triangle, as if the tent were a cuboid.
-- <InlineMath math="30\text{ m}^3" /> forgets the factor <InlineMath math="\tfrac12" /> and uses the slanted side as the height.
+# The painted wall area
+
+The tiles cover heights from <InlineMath math="0" /> to <InlineMath math="1.2\text{ m}" />, so the painted band is <InlineMath math="3-1.2=1.8\text{ m}" /> tall all the way around. From the door and the window, you subtract **only the part that lies in that band**. Their lower parts are already in the tiled zone, which you never counted.
+
+| Opening | From height | To height | Height above the tiles | Area above the tiles |
+| :---: | :---: | :---: | :---: | :---: |
+| Door, <InlineMath math="1\text{ m}" /> wide | <InlineMath math="0" /> | <InlineMath math="2.1" /> | <InlineMath math="2.1-1.2=0.9" /> | <InlineMath math="0.9\text{ m}^2" /> |
+| Window, <InlineMath math="2\text{ m}" /> wide | <InlineMath math="0.8" /> | <InlineMath math="2.3" /> | <InlineMath math="2.3-1.2=1.1" /> | <InlineMath math="2.2\text{ m}^2" /> |
+
+<BlockMath math="\begin{aligned}
+\text{band area}&=22\cdot1.8=39.6\text{ m}^2 \\
+\text{painted area}&=39.6-0.9-2.2=36.5\text{ m}^2
+\end{aligned}" />
+
+Look closely at the window. Its lower edge is at <InlineMath math="0.8\text{ m}" />, below the top of the tiles at <InlineMath math="1.2\text{ m}" />. So the bottom <InlineMath math="0.4\text{ m}" /> of the window lies in the tiled zone and mustn't be subtracted again.
+
+# Paint for two coats
+
+Each coat covers <InlineMath math="36.5\text{ m}^2" />, and **one litre covers only one coat of <InlineMath math="10\text{ m}^2" />**:
+
+<BlockMath math="\text{paint}=\frac{2\cdot36.5}{10}=\frac{73}{10}=7.3\text{ litres}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="3.65" /> litres is enough for one coat only. The walls get two coats, so the area counts twice.
+- <InlineMath math="5.5" /> litres uses a perimeter of <InlineMath math="17\text{ m}" />. Either the two storeroom walls were forgotten, or the sides of the cut corner were subtracted from the rectangle's perimeter. **The L-shaped plan still has a perimeter of <InlineMath math="22\text{ m}" />**.
+- <InlineMath math="6.9" /> litres subtracts the whole door and the whole window, <InlineMath math="2.1" /> and <InlineMath math="3" /> square metres. Their lower parts were never counted because they're in the tiled zone, so those parts get subtracted twice.
+- <InlineMath math="7.14" /> litres handles the door correctly but subtracts the whole window. The bottom <InlineMath math="0.4\text{ m}" /> of the window is in the tiled zone.
+
+So the wall paint used up is <InlineMath math="7.3" /> litres.

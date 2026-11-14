@@ -1,15 +1,81 @@
-Draw the height from the top of the frame to the middle of the base. It splits the frame into two right triangles with a **horizontal side of <InlineMath math="4\text{ m}" />**, half the base. In each triangle, <InlineMath math="\cos\alpha" /> is the horizontal side divided by the slanted side.
+# Two angles around the altitude
+
+The altitude <InlineMath math="CD" /> splits triangle <InlineMath math="ABC" /> into two right triangles, <InlineMath math="ACD" /> and <InlineMath math="BCD" />, both with the right angle at <InlineMath math="D" />. You'll write <InlineMath math="AD" /> and <InlineMath math="DB" /> in terms of <InlineMath math="CD" />, then use the midpoint <InlineMath math="M" /> to find the actual lengths.
+
+In triangle <InlineMath math="ACD" />, the side opposite angle <InlineMath math="ACD" /> is <InlineMath math="AD" />, and the side next to that angle is <InlineMath math="CD" />. So <InlineMath math="\tan\angle ACD=\frac{AD}{CD}=2" />, which means <InlineMath math="AD=2\,CD" />.
+
+Angles <InlineMath math="ACD" /> and <InlineMath math="BCD" /> together make the right angle at <InlineMath math="C" />, so **<InlineMath math="\angle BCD=90^\circ-\angle ACD" /> and its tangent is the reciprocal of <InlineMath math="2" />**. In triangle <InlineMath math="BCD" />, the side opposite angle <InlineMath math="BCD" /> is <InlineMath math="DB" />:
 
 <BlockMath math="\begin{aligned}
-\cos\alpha=\frac{4}{s}=\frac45\ &\Rightarrow\ s=5\text{ m} \\
-L&=2\cdot(5\cdot10)=100\text{ m}^2
+\tan\angle BCD&=\frac{DB}{CD}=\frac12\quad\Rightarrow\quad CD=2\,DB \\
+AD&=2\,CD=4\,DB
 \end{aligned}" />
 
-Check: the frame's height is <InlineMath math="\sqrt{5^2-4^2}=3\text{ m}" />, so the right triangle has sides <InlineMath math="3" />, <InlineMath math="4" />, and <InlineMath math="5" />.
+# Using the midpoint
 
-So the whole roof covers <InlineMath math="100\text{ m}^2" />.
+Let <InlineMath math="DB=k" />. Then <InlineMath math="CD=2k" />, <InlineMath math="AD=4k" />, and <InlineMath math="AB=5k" />. The midpoint <InlineMath math="M" /> is <InlineMath math="AM=2.5k" /> from <InlineMath math="A" />. Because <InlineMath math="AD=4k" /> is longer than <InlineMath math="AM" />, **the point <InlineMath math="D" /> lies between <InlineMath math="M" /> and <InlineMath math="B" />**.
 
-- <InlineMath math="30\text{ m}^2" /> multiplies the <InlineMath math="3\text{ m}" /> height by the house length for one side only.
-- <InlineMath math="50\text{ m}^2" /> counts only one roof surface.
-- <InlineMath math="60\text{ m}^2" /> uses the <InlineMath math="3\text{ m}" /> height instead of the <InlineMath math="5\text{ m}" /> slanted side as the width.
-- <InlineMath math="80\text{ m}^2" /> uses half the base, <InlineMath math="4\text{ m}" />, as the width.
+<BlockMath math="\begin{aligned}
+DM&=AD-AM=4k-2.5k=1.5k \\
+1.5k&=6\quad\Rightarrow\quad k=4
+\end{aligned}" />
+
+<MathVisual
+  title={<>Triangle <InlineMath math="ABC" /> with its altitude and midpoint</>}
+  description={<>Triangle <InlineMath math="ABC" /> with the right angle at <InlineMath math="C" /> and <InlineMath math="AB" /> horizontal, <InlineMath math="20" /> long. <InlineMath math="M" /> is the midpoint of <InlineMath math="AB" />, and <InlineMath math="D" /> is the foot of the altitude from <InlineMath math="C" />. Along <InlineMath math="AB" /> the points come in the order <InlineMath math="A" />, <InlineMath math="M" />, <InlineMath math="D" />, <InlineMath math="B" />, with <InlineMath math="AM=10" />, <InlineMath math="MD=6" />, and <InlineMath math="DB=4" />. The altitude is <InlineMath math="CD=8" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    m: <InlineMath math="M" />,
+    cd: <InlineMath math="8" />,
+    dm: <InlineMath math="6" />,
+    db: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 23 },
+      y: { min: -4, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 16, y: 8 }] },
+      { id: "altitude", kind: "segment", appearance: "highlight", from: { x: 16, y: 8 }, to: { x: 16, y: 0 } },
+      { id: "piece-dm", kind: "segment", appearance: "secondary", from: { x: 10, y: 0 }, to: { x: 16, y: 0 } },
+      { id: "piece-db", kind: "segment", appearance: "answer", from: { x: 16, y: 0 }, to: { x: 20, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 20, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 16, y: 8 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 16, y: 0 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 10, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 20, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 16, y: 8 }, placement: "above" },
+      { key: "d", objectId: "point-d", at: { x: 16, y: 0 }, placement: "below" },
+      { key: "m", objectId: "point-m", at: { x: 10, y: 0 }, placement: "below" },
+      { key: "cd", objectId: "altitude", at: { x: 16, y: 4 }, placement: "left" },
+      { key: "dm", objectId: "piece-dm", at: { x: 13, y: 0 }, placement: "above" },
+      { key: "db", objectId: "piece-db", at: { x: 18, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Checking the lengths
+
+With <InlineMath math="k=4" /> you get <InlineMath math="DB=4" />, <InlineMath math="CD=8" />, <InlineMath math="AD=16" />, and <InlineMath math="AB=20" />. Check this in two ways. First, <InlineMath math="MB=10" /> and <InlineMath math="DM=MB-DB=10-4=6" />, as given. Second, **the triangle really has its right angle at <InlineMath math="C" />**:
+
+<BlockMath math="AC^2+BC^2=(16^2+8^2)+(4^2+8^2)=320+80=400=20^2=AB^2" />
+
+So the length of <InlineMath math="DB" /> is <InlineMath math="4\text{ cm}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="8\text{ cm}" /> is the altitude <InlineMath math="CD" />, not <InlineMath math="DB" />.
+- <InlineMath math="10\text{ cm}" /> is <InlineMath math="MB" />, half of <InlineMath math="AB" />. The point <InlineMath math="D" /> isn't the midpoint of <InlineMath math="AB" />.
+- <InlineMath math="12\text{ cm}" /> uses the ratio <InlineMath math="AD:DB=2:1" />, as if the tangent applied only once. In fact **the ratio <InlineMath math="2" /> shows up twice**, in <InlineMath math="AD:CD" /> and in <InlineMath math="CD:DB" />, so <InlineMath math="AD:DB=4:1" />.
+- <InlineMath math="16\text{ cm}" /> swaps the opposite and adjacent sides of angle <InlineMath math="ACD" />, giving <InlineMath math="CD=2\,AD" />. The long piece then moves next to <InlineMath math="B" />, and the length you get is really <InlineMath math="AD" />.

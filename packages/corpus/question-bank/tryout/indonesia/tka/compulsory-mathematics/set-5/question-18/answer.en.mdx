@@ -1,15 +1,78 @@
-The glass area is **the rectangle plus the semicircle**. The semicircle's radius is half the window's width, <InlineMath math="0.7\text{ m}" />.
+# The upright side from the area
+
+The perimeter needs the length <InlineMath math="AD" />, but you're only given <InlineMath math="AB" /> and the area of the plate. So find <InlineMath math="AD" /> from the area first, then build the perimeter.
+
+The area of the plate is the area of the rectangle, **plus the two small semicircles attached on top, minus the big semicircle cut out**. The small semicircles have radius <InlineMath math="7" />, and the big one has radius <InlineMath math="14" />.
 
 <BlockMath math="\begin{aligned}
-L_{\text{rectangle}}&=1.4\cdot1=1.4\text{ m}^2 \\
-L_{\text{semicircle}}&=\tfrac12\cdot\tfrac{22}{7}\cdot0.7^2=0.77\text{ m}^2 \\
-L&=1.4+0.77=2.17\text{ m}^2 \\
-\text{cost}&=2.17\cdot350{,}000=759{,}500
+\text{area}&=28\cdot AD+2\cdot\tfrac12\pi\cdot7^2-\tfrac12\pi\cdot14^2 \\
+&=28\cdot AD+49\pi-98\pi=28\cdot AD-49\pi \\
+28\cdot AD-49\pi&=1{,}120-49\pi\quad\Rightarrow\quad AD=40\text{ cm}
 \end{aligned}" />
 
-So the glass for the window costs <InlineMath math="\text{Rp}759{,}500" />.
+Check the shape. The cut-out semicircle reaches <InlineMath math="14\text{ cm}" /> into the plate, well below <InlineMath math="40\text{ cm}" />, so the cut doesn't break through the top side.
 
-- <InlineMath math="\text{Rp}269{,}500" /> counts only the semicircle.
-- <InlineMath math="\text{Rp}490{,}000" /> counts only the rectangle.
-- <InlineMath math="\text{Rp}1{,}029{,}000" /> uses a full circle instead of a semicircle.
-- <InlineMath math="\text{Rp}1{,}568{,}000" /> uses <InlineMath math="1.4\text{ m}" /> as the radius, but <InlineMath math="1.4\text{ m}" /> is the diameter.
+# Which parts form the edge
+
+The perimeter is the length of the plate's outer edge only. The side <InlineMath math="DC" /> is covered by the two attached semicircles, so it lies inside the plate. The side <InlineMath math="AB" /> was thrown away with the cut-out piece. **Neither of them is part of the edge**, so they don't count.
+
+<MathVisual
+  title={<>The edge pieces that count</>}
+  description={<>The same plate. The edge pieces that count are the sides <InlineMath math="AD" /> and <InlineMath math="BC" />, each <InlineMath math="40\text{ cm}" />, the two small arcs of radius <InlineMath math="7\text{ cm}" /> on top, and the big arc of radius <InlineMath math="14\text{ cm}" /> at the bottom. The sides <InlineMath math="AB" /> and <InlineMath math="DC" /> stay as helper lines.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    ad: <InlineMath math="40" />,
+    bc: <InlineMath math="40" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 33 },
+      y: { min: -5, max: 51 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "side-ad", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 0, y: 40 } },
+      { id: "side-bc", kind: "segment", appearance: "highlight", from: { x: 28, y: 0 }, to: { x: 28, y: 40 } },
+      { id: "arc-left", kind: "arc", appearance: "highlight", center: { x: 7, y: 40 }, radius: 7, startDegrees: 0, sweepDegrees: 180 },
+      { id: "arc-right", kind: "arc", appearance: "highlight", center: { x: 21, y: 40 }, radius: 7, startDegrees: 0, sweepDegrees: 180 },
+      { id: "arc-bottom", kind: "arc", appearance: "highlight", center: { x: 14, y: 0 }, radius: 14, startDegrees: 0, sweepDegrees: 180 },
+      { id: "helper-ab", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 28, y: 0 } },
+      { id: "helper-dc", kind: "segment", appearance: "construction", from: { x: 0, y: 40 }, to: { x: 28, y: 40 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 28, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 28, y: 40 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 40 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 28, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 28, y: 40 }, placement: "right" },
+      { key: "d", objectId: "point-d", at: { x: 0, y: 40 }, placement: "left" },
+      { key: "ad", objectId: "side-ad", at: { x: 0, y: 20 }, placement: "left" },
+      { key: "bc", objectId: "side-bc", at: { x: 28, y: 20 }, placement: "right" },
+    ],
+  }}
+/>
+
+Half the circumference of a circle is <InlineMath math="\pi r" />. Add up every piece of the edge:
+
+<BlockMath math="\begin{aligned}
+AD+BC&=40+40=80 \\
+\text{two small arcs}&=2\cdot\pi\cdot7=14\pi \\
+\text{big arc}&=\pi\cdot14=14\pi \\
+\text{perimeter}&=80+14\pi+14\pi=80+28\pi
+\end{aligned}" />
+
+So the perimeter of the plate is <InlineMath math="(80+28\pi)\text{ cm}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="136\text{ cm}" /> assumes that adding and cutting semicircles doesn't change the perimeter, so it equals the rectangle's perimeter <InlineMath math="2(28+40)" />. In fact **the arcs replace straight segments**, and the arcs are <InlineMath math="28\pi\approx88" /> long, more than <InlineMath math="56" />.
+- <InlineMath math="(80+21\pi)\text{ cm}" /> flips the signs in the area: it adds the cut-out semicircle and subtracts the attached ones. That gives <InlineMath math="28\cdot AD=1{,}120-98\pi" />, so <InlineMath math="AD=40-3.5\pi" />.
+- <InlineMath math="\left(80+\tfrac{49}{2}\pi\right)\text{ cm}" /> treats the plate's area as just the rectangle, <InlineMath math="28\cdot AD=1{,}120-49\pi" />, so <InlineMath math="AD=40-1.75\pi" />.
+- <InlineMath math="(136+28\pi)\text{ cm}" /> also counts the sides <InlineMath math="AB" /> and <InlineMath math="DC" />, but one lies inside the plate and the other outside it, not on its edge.

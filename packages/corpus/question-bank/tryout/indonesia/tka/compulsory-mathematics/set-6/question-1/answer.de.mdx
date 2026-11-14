@@ -1,15 +1,42 @@
-Berechne zuerst **den freien Speicher in MB**, denn die Fotogröße ist in MB angegeben.
+# Alle Zuflüsse in Litern pro Minute
+
+Gefragt ist, welcher Anteil des Tanks um 6:30 Uhr (in der Aufgabe 06.30) gefüllt ist. Hahn Q und das Leck sind als Anteile der Kapazität angegeben, Hahn P dagegen in Litern. **Rechne deshalb zuerst alles in Liter pro Minute um**, dann kannst du die Raten addieren.
 
 <BlockMath math="\begin{aligned}
-\text{freier Speicher}&=128-83{,}5=44{,}5\text{ GB}=44{.}500\text{ MB} \\
-\frac{44{.}500}{4{,}5}&=9{.}888{,}8\ldots
+\text{Zufluss Q}&=\tfrac{1}{75}\cdot1{.}200=16\text{ Liter pro Minute} \\
+\text{Leck}&=\tfrac{1}{150}\cdot1{.}200=8\text{ Liter pro Minute} \\
+\text{Inhalt bis zum Riss}&=\tfrac{2}{5}\cdot1{.}200=480\text{ Liter}
 \end{aligned}" />
 
-Die Anzahl der Fotos muss ganzzahlig sein, und das <InlineMath math="9{.}889" />. Foto passt nicht mehr, denn <InlineMath math="9{.}889\cdot4{,}5=44{.}500{,}5" /> MB ist mehr als der freie Speicher. Der Quotient wird also **abgerundet**.
+Die letzte Zeile darfst du so rechnen, weil der Tank ein senkrecht stehender Zylinder ist. Dort ist die Wassermenge proportional zur Füllhöhe. Ein Riss bei <InlineMath math="\tfrac{2}{5}" /> der Höhe heißt also: Wasser läuft erst aus, wenn mehr als <InlineMath math="480" /> Liter im Tank sind.
 
-Es passen also höchstens noch <InlineMath math="9{.}888" /> Fotos auf das Handy.
+# Drei Füllphasen
 
-- <InlineMath math="9{.}889" /> rundet auf, doch dieses letzte Foto passt nicht mehr hinein.
-- <InlineMath math="18{.}555" /> nimmt den belegten Speicher, <InlineMath math="83{.}500" /> MB.
-- <InlineMath math="28{.}444" /> nimmt die ganze Kapazität von <InlineMath math="128{.}000" /> MB, als wäre das Handy leer.
-- <InlineMath math="98{.}888" /> rechnet <InlineMath math="44{,}5\text{ GB}" /> falsch in <InlineMath math="445{.}000" /> MB um.
+Die Nettorate ändert sich jedes Mal, wenn eines von zwei Ereignissen eintritt: Das Wasser erreicht den Riss, oder Hahn Q wird geöffnet. Das Leck beginnt erst, wenn das Wasser über dem Riss steht, also **bestimm zuerst, wann das Wasser den Riss erreicht**.
+
+<BlockMath math="\text{Zeit bis zum Riss}=\frac{480}{24}=20\text{ Minuten}" />
+
+Das Wasser erreicht den Riss um 6:20 Uhr, fünf Minuten bevor Hahn Q aufgeht. Verfolge jetzt den Inhalt Phase für Phase.
+
+| Zeitraum | Was läuft | Nettorate | Zuwachs | Inhalt am Ende |
+| --- | --- | --- | --- | --- |
+| 6:00 bis 6:20 Uhr | Hahn P | <InlineMath math="24" /> Liter pro Minute | <InlineMath math="480" /> Liter | <InlineMath math="480" /> Liter |
+| 6:20 bis 6:25 Uhr | Hahn P und Leck | <InlineMath math="24-8=16" /> Liter pro Minute | <InlineMath math="80" /> Liter | <InlineMath math="560" /> Liter |
+| 6:25 bis 6:30 Uhr | Hahn P, Hahn Q und Leck | <InlineMath math="24+16-8=32" /> Liter pro Minute | <InlineMath math="160" /> Liter | <InlineMath math="720" /> Liter |
+
+Der gefüllte Anteil ist der Inhalt geteilt durch die Kapazität:
+
+<BlockMath math="\frac{720}{1{.}200}=\frac{3}{5}" />
+
+Kurze Kontrolle: <InlineMath math="720" /> Liter liegen über <InlineMath math="480" /> Litern, das Leck läuft also wirklich, und unter der Kapazität, der Tank ist also noch nicht voll.
+
+# Warum die anderen Antworten falsch sind
+
+Jede falsche Antwort entsteht, wenn **eine Rate zum falschen Zeitpunkt beginnt**.
+
+- <InlineMath math="\tfrac{22}{25}" /> entsteht, wenn Hahn Q schon ab 6:00 Uhr offen ist. Dann wäre der Riss nach <InlineMath math="12" /> Minuten erreicht und der Inhalt <InlineMath math="480+32\cdot18=1{.}056" /> Liter. Hahn Q geht aber erst um 6:25 Uhr auf.
+- <InlineMath math="\tfrac{2}{3}" /> entsteht, wenn du das Leck vergisst: <InlineMath math="24\cdot25+40\cdot5=800" /> Liter.
+- <InlineMath math="\tfrac{19}{30}" /> entsteht, wenn das Leck erst mit Hahn Q beginnt: <InlineMath math="24\cdot25+32\cdot5=760" /> Liter. Das Wasser steht aber schon seit 6:20 Uhr über dem Riss.
+- <InlineMath math="\tfrac{7}{15}" /> entsteht, wenn der Tank schon ab 6:00 Uhr leckt: <InlineMath math="16\cdot25+32\cdot5=560" /> Liter. Solange das Wasser unter dem Riss steht, läuft nichts aus.
+
+Um 6:30 Uhr ist der Tank also zu <InlineMath math="\tfrac{3}{5}" /> gefüllt.

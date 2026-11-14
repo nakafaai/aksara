@@ -1,13 +1,33 @@
-Gestrichen wird **der Kegelmantel** mit der Fläche <InlineMath math="\pi rs" />. Die Mantellinie <InlineMath math="s" /> ergibt sich aus dem Radius <InlineMath math="3\text{ m}" /> und der Kegelhöhe <InlineMath math="4\text{ m}" />.
+# Querschnittsfläche bei zwei Tiefen
+
+Die Aufgabe vergleicht das Füllen des Teichs gestern und heute. Die Fließgeschwindigkeit ist bei jeder Tiefe gleich, also gilt: **Das Verhältnis der Durchflüsse ist das Verhältnis der Querschnittsflächen**. Du brauchst also die Querschnittsflächen des Wassers bei <InlineMath math="20\text{ cm}" /> und bei <InlineMath math="40\text{ cm}" /> Tiefe.
+
+Fang mit der Form des Kanals an. Jede Wand weicht seitlich um <InlineMath math="\frac{180-60}{2}=60\text{ cm}" /> aus, und die schräge Wand ist <InlineMath math="100\text{ cm}" /> lang, also ist der Kanal <InlineMath math="\sqrt{100^2-60^2}=80\text{ cm}" /> tief. Die Wände sind gerade, also rückt jede Seite pro <InlineMath math="1\text{ cm}" /> Höhe um <InlineMath math="\frac{60}{80}=\frac34\text{ cm}" /> nach außen. Bei der Tiefe <InlineMath math="h" /> ist die Wasseroberfläche <InlineMath math="60+2\cdot\frac34h=60+1{,}5h" /> breit.
 
 <BlockMath math="\begin{aligned}
-s&=\sqrt{3^2+4^2}=5\text{ m} \\
-L&=\pi rs=3{,}14\cdot3\cdot5=47{,}1\text{ m}^2
+h=20:&\quad \text{Breite}=90\text{ cm},\quad L_{20}=\frac{60+90}{2}\cdot20=1{.}500\text{ cm}^2 \\
+h=40:&\quad \text{Breite}=120\text{ cm},\quad L_{40}=\frac{60+120}{2}\cdot40=3{.}600\text{ cm}^2 \\
+\frac{L_{40}}{L_{20}}&=\frac{3{.}600}{1{.}500}=2{,}4
 \end{aligned}" />
 
-Gestrichen werden also <InlineMath math="47{,}1\text{ m}^2" /> Dach.
+Die Tiefe verdoppelt sich, die Fläche wird aber <InlineMath math="2{,}4" />-mal so groß. Der Grund: Der Boden bleibt <InlineMath math="60\text{ cm}" /> breit, nur die Seiten gehen auseinander.
 
-- <InlineMath math="28{,}26\text{ m}^2" /> ist die Grundfläche des Kegels, die nicht gestrichen wird.
-- <InlineMath math="37{,}68\text{ m}^2" /> nimmt die Höhe <InlineMath math="4\text{ m}" /> statt der Mantellinie.
-- <InlineMath math="75{,}36\text{ m}^2" /> zählt die Grundfläche mit.
-- <InlineMath math="94{,}2\text{ m}^2" /> rechnet <InlineMath math="2\pi rs" />, den doppelten Mantel.
+# Die Füllzeit
+
+Der Durchfluss heute ist das <InlineMath math="2{,}4" />-Fache von gestern. Das Volumen des Teichs bleibt gleich, also ist die Zeit für einen leeren Teich umgekehrt proportional zum Durchfluss. Heute ist der Teich schon zu <InlineMath math="\frac13" /> gefüllt, also **fehlen nur noch <InlineMath math="\frac23" /> des Volumens**:
+
+<BlockMath math="\begin{aligned}
+\text{Zeit von leer bis voll heute}&=\frac{6}{2{,}4}=2{,}5\text{ Stunden} \\
+\text{Zeit für }\tfrac23\text{ des Volumens}&=\tfrac23\cdot2{,}5=\tfrac53\text{ Stunden}=1\text{ Stunde }40\text{ Minuten}
+\end{aligned}" />
+
+Prüf das mit echten Zahlen. Gestern war der Durchfluss <InlineMath math="0{,}15\cdot0{,}5=0{,}075\text{ m}^3\text{/s}" />, also <InlineMath math="270\text{ m}^3" /> pro Stunde, und der Teich fasst <InlineMath math="6\cdot270=1{.}620\text{ m}^3" />. Heute beträgt der Durchfluss <InlineMath math="0{,}36\cdot0{,}5=0{,}18\text{ m}^3\text{/s}" />, also <InlineMath math="648\text{ m}^3" /> pro Stunde. Es fehlen <InlineMath math="\frac23\cdot1{.}620=1{.}080\text{ m}^3" />, und <InlineMath math="\frac{1{.}080}{648}=\frac53" /> Stunden. Dasselbe Ergebnis.
+
+Bis der Teich voll ist, dauert es also <InlineMath math="1" /> Stunde <InlineMath math="40" /> Minuten.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="2" /> Stunden entstehen, wenn du den Durchfluss proportional zur Tiefe ansetzt, also doppelte Tiefe gleich doppelter Durchfluss. **Der Boden des Kanals wird nicht breiter**, deshalb wächst die Fläche auf das <InlineMath math="2{,}4" />-Fache und nicht auf das Doppelte.
+- <InlineMath math="1" /> Stunde entsteht, wenn du die Fläche mit dem Quadrat der Tiefe wachsen lässt, wie bei zwei ähnlichen Figuren. Die beiden Querschnitte sind nicht ähnlich, weil beide denselben <InlineMath math="60\text{ cm}" /> breiten Boden haben.
+- <InlineMath math="1" /> Stunde <InlineMath math="30" /> Minuten entstehen, wenn du jeden Querschnitt als Rechteck rechnest, Oberflächenbreite mal Tiefe: <InlineMath math="90\cdot20" /> und <InlineMath math="120\cdot40" />.
+- <InlineMath math="50" /> Minuten entstehen, wenn du <InlineMath math="\frac13" /> als den leeren Teil liest. Der Teich ist schon zu <InlineMath math="\frac13" /> voll, es fehlen also <InlineMath math="\frac23" />.

@@ -1,17 +1,37 @@
-Misalkan banyak pensil <InlineMath math="x" /> dan banyak penghapus <InlineMath math="y" />, keduanya bilangan bulat dengan <InlineMath math="x\ge1" /> dan <InlineMath math="y\ge1" />. Dalam ribu rupiah, syaratnya adalah <InlineMath math="2x+3y\le12" />. **Hitung pasangan secara teratur untuk setiap nilai <InlineMath math="y" />**.
+# Pertidaksamaan sebagai garis lurus
 
-| <InlineMath math="y" /> | Syarat <InlineMath math="x" /> | Nilai <InlineMath math="x" /> | Banyak |
-| --- | --- | --- | --- |
-| <InlineMath math="1" /> | <InlineMath math="2x\le9" /> | <InlineMath math="1,2,3,4" /> | <InlineMath math="4" /> |
-| <InlineMath math="2" /> | <InlineMath math="2x\le6" /> | <InlineMath math="1,2,3" /> | <InlineMath math="3" /> |
-| <InlineMath math="3" /> | <InlineMath math="2x\le3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
-| <InlineMath math="4" /> | <InlineMath math="2x\le0" /> | tidak ada | <InlineMath math="0" /> |
+Soal ini meminta nilai <InlineMath math="a" /> yang membuat pertidaksamaan benar di seluruh selang <InlineMath math="-1\le x\le4" /> sekaligus salah di <InlineMath math="x=6" />. Pindahkan semua suku ke ruas kiri.
 
-Banyak pasangan seluruhnya <InlineMath math="4+3+1=8" />.
+<BlockMath math="2x+a-ax+3>0 \quad\Longleftrightarrow\quad f(x)=(2-a)x+a+3>0" />
 
-Jadi, ada <InlineMath math="8" /> pilihan pasangan.
+Untuk <InlineMath math="a" /> tertentu, <InlineMath math="f" /> adalah fungsi linear dalam <InlineMath math="x" />, jadi grafiknya garis lurus. Nilai terkecil garis lurus pada suatu selang selalu ada di salah satu ujungnya. Karena itu **<InlineMath math="f(x)>0" /> untuk setiap <InlineMath math="x" /> di selang itu jika dan hanya jika kedua ujungnya positif**. Kamu tidak perlu memecah kasus tanda <InlineMath math="2-a" />, dan kasus <InlineMath math="a=2" /> juga sudah tercakup.
 
-- <InlineMath math="7" /> lupa pasangan untuk <InlineMath math="y=3" />, yaitu <InlineMath math="1" /> pensil dan <InlineMath math="3" /> penghapus.
-- <InlineMath math="12" /> ikut menghitung pembelian tanpa pensil.
-- <InlineMath math="14" /> ikut menghitung pembelian tanpa penghapus.
-- <InlineMath math="19" /> ikut menghitung pembelian tanpa pensil, tanpa penghapus, dan tanpa keduanya.
+# Tiga syarat
+
+Dua syarat pertama datang dari ujung selang.
+
+<BlockMath math="\begin{aligned}
+f(-1)&=-(2-a)+a+3=2a+1>0 &&\Rightarrow\; a>-\tfrac{1}{2} \\
+f(4)&=4(2-a)+a+3=11-3a>0 &&\Rightarrow\; a<\tfrac{11}{3}
+\end{aligned}" />
+
+Syarat ketiga: pertidaksamaan **tidak** berlaku di <InlineMath math="x=6" />. Lawan dari "lebih dari" adalah "kurang dari atau sama dengan", jadi tandanya menjadi <InlineMath math="\le" />. Saat membagi dengan bilangan negatif, arah tanda dibalik.
+
+<BlockMath math="\begin{aligned}
+f(6)=6(2-a)+a+3=15-5a&\le0 \\
+-5a&\le-15 \\
+a&\ge3
+\end{aligned}" />
+
+Irisan ketiganya adalah <InlineMath math="3\le a<\frac{11}{3}" />. Syarat <InlineMath math="a>-\frac{1}{2}" /> otomatis terpenuhi oleh <InlineMath math="a\ge3" />.
+
+Cek kedua batasnya. Untuk <InlineMath math="a=3" />, <InlineMath math="f(x)=-x+6" /> bernilai <InlineMath math="7" /> sampai <InlineMath math="2" /> pada selang itu, jadi positif, dan <InlineMath math="f(6)=0" /> membuat <InlineMath math="0>0" /> salah. Jadi <InlineMath math="a=3" /> ikut. Untuk <InlineMath math="a=\frac{11}{3}" />, <InlineMath math="f(4)=0" />, jadi pertidaksamaan gagal di <InlineMath math="x=4" /> dan nilai ini tidak ikut.
+
+Jadi, semua nilai <InlineMath math="a" /> yang memenuhi adalah <InlineMath math="3\le a<\frac{11}{3}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="-\frac{1}{2}<a<\frac{11}{3}" /> lupa syarat di <InlineMath math="x=6" />. Contohnya <InlineMath math="a=0" /> memberi <InlineMath math="f(6)=15>0" />, jadi pertidaksamaan masih berlaku di sana.
+- <InlineMath math="a\ge3" /> hanya mengecek ujung <InlineMath math="x=-1" />. **Ujung <InlineMath math="x=4" /> juga harus dicek**: untuk <InlineMath math="a=4" />, <InlineMath math="f(4)=-1" />.
+- <InlineMath math="3<a<\frac{11}{3}" /> mengubah "tidak berlaku" menjadi <InlineMath math="f(6)<0" />. Lawan dari <InlineMath math=">" /> adalah <InlineMath math="\le" />, sehingga <InlineMath math="a=3" /> hilang.
+- <InlineMath math="-\frac{1}{2}<a\le3" /> lupa membalik tanda saat membagi dengan <InlineMath math="-5" />, sehingga mendapat <InlineMath math="a\le3" />.

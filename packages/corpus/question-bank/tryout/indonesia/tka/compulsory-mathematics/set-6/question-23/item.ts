@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "shoe-sizes",
+  stimulus: "hujan",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -14,19 +14,18 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "Median ukuran sepatu tetap $$39$$.",
+          label:
+            "Berapa pun curah hujan Kota P pada bulan Juli, median curah hujan Kota P untuk tujuh bulan Januari sampai Juli pasti paling sedikit $$200$$ mm dan paling banyak $$240$$ mm.",
         },
         {
           column: 2,
-          label: "Jangkauan ukuran sepatu bertambah.",
+          label:
+            "Jika rata-rata curah hujan Kota Q selama enam bulan itu ditambahkan sebagai data ketujuh, median curah hujan Kota Q tidak berubah.",
         },
         {
           column: 1,
-          label: "Rata-rata ukuran sepatu menjadi lebih dari $$39{,}5$$.",
-        },
-        {
-          column: 2,
-          label: "Ukuran $$42$$ menjadi modus data.",
+          label:
+            "Jika curah hujan Kota Q pada setiap bulan turun $$40\\%$$, ada tepat $$4$$ bulan dengan curah hujan Kota P lebih tinggi daripada curah hujan Kota Q.",
         },
       ],
     },

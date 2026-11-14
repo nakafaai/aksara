@@ -1,13 +1,43 @@
-Das Zelt ist ein gerades Prisma, also ist **sein Volumen Grundfläche mal Prismenlänge**. Die Grundfläche ist das Dreieck vorn, die Länge reicht von vorn bis hinten.
+Gefragt ist, wie viel Wandfarbe zwei Anstriche brauchen. Gestrichen wird nur die Wand oberhalb der Fliesen, abzüglich der Teile von Tür und Fenster, die **oberhalb der Fliesen liegen**. Zwei Dinge brauchen Sorgfalt: der Umfang des L-förmigen Grundrisses und die Teile von Tür und Fenster, die schon im gefliesten Bereich liegen.
+
+# Der Umfang des L-förmigen Grundrisses
+
+Zwei Seiten des Abstellraums sind nicht beschriftet, du bekommst sie aber über Differenzen. Seine waagerechte Seite ist <InlineMath math="6-3=3\text{ m}" /> lang, seine senkrechte Seite <InlineMath math="5-3=2\text{ m}" />. Diese beiden Seiten sind auch Wände des Schlafzimmers und werden mitgestrichen. Geh einmal um den Grundriss herum:
 
 <BlockMath math="\begin{aligned}
-L_{\text{Dreieck}}&=\tfrac12\cdot3\cdot2=3\text{ m}^2 \\
-V&=3\cdot4=12\text{ m}^3
+U&=6+3+3+2+3+5=22\text{ m} \\
+2\cdot(6+5)&=22\text{ m}
 \end{aligned}" />
 
-Im Zelt sind also <InlineMath math="12\text{ m}^3" /> Platz.
+Das ist genau der Umfang des Rechtecks <InlineMath math="6\times5" />. **Wenn man eine Ecke aus einem Rechteck herausschneidet, ändert sich der Umfang nicht**, denn die beiden Wände des Abstellraums ersetzen die zwei fehlenden Stücke der Rechteckseiten.
 
-- <InlineMath math="6\text{ m}^3" /> halbiert das richtige Ergebnis noch einmal.
-- <InlineMath math="15\text{ m}^3" /> nimmt die schräge Dreiecksseite, <InlineMath math="2{,}5\text{ m}" />, als Höhe.
-- <InlineMath math="24\text{ m}^3" /> vergisst den Faktor <InlineMath math="\tfrac12" /> beim Dreieck, als wäre das Zelt ein Quader.
-- <InlineMath math="30\text{ m}^3" /> vergisst den Faktor <InlineMath math="\tfrac12" /> und nimmt die schräge Seite als Höhe.
+# Die gestrichene Wandfläche
+
+Die Fliesen reichen von der Höhe <InlineMath math="0" /> bis <InlineMath math="1{,}2\text{ m}" />, also ist der gestrichene Streifen ringsum <InlineMath math="3-1{,}2=1{,}8\text{ m}" /> hoch. Von Tür und Fenster ziehst du **nur den Teil ab, der in diesem Streifen liegt**. Ihre unteren Teile liegen schon im gefliesten Bereich, den du nie mitgezählt hast.
+
+| Öffnung | Von Höhe | Bis Höhe | Höhe über den Fliesen | Fläche über den Fliesen |
+| :---: | :---: | :---: | :---: | :---: |
+| Tür, <InlineMath math="1\text{ m}" /> breit | <InlineMath math="0" /> | <InlineMath math="2{,}1" /> | <InlineMath math="2{,}1-1{,}2=0{,}9" /> | <InlineMath math="0{,}9\text{ m}^2" /> |
+| Fenster, <InlineMath math="2\text{ m}" /> breit | <InlineMath math="0{,}8" /> | <InlineMath math="2{,}3" /> | <InlineMath math="2{,}3-1{,}2=1{,}1" /> | <InlineMath math="2{,}2\text{ m}^2" /> |
+
+<BlockMath math="\begin{aligned}
+\text{Streifenfläche}&=22\cdot1{,}8=39{,}6\text{ m}^2 \\
+\text{gestrichene Fläche}&=39{,}6-0{,}9-2{,}2=36{,}5\text{ m}^2
+\end{aligned}" />
+
+Schau dir das Fenster genau an. Seine Unterkante liegt bei <InlineMath math="0{,}8\text{ m}" />, tiefer als die Oberkante der Fliesen bei <InlineMath math="1{,}2\text{ m}" />. Die unteren <InlineMath math="0{,}4\text{ m}" /> des Fensters liegen also im gefliesten Bereich und dürfen nicht noch einmal abgezogen werden.
+
+# Farbe für zwei Anstriche
+
+Jeder Anstrich bedeckt <InlineMath math="36{,}5\text{ m}^2" />, und **ein Liter reicht nur für einen Anstrich von <InlineMath math="10\text{ m}^2" />**:
+
+<BlockMath math="\text{Farbe}=\frac{2\cdot36{,}5}{10}=\frac{73}{10}=7{,}3\text{ Liter}" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="3{,}65" /> Liter reichen nur für einen Anstrich. Die Wände bekommen zwei Anstriche, die Fläche zählt also doppelt.
+- <InlineMath math="5{,}5" /> Liter benutzen den Umfang <InlineMath math="17\text{ m}" />. Entweder fehlen die zwei Wände des Abstellraums, oder die Seiten der ausgeschnittenen Ecke wurden vom Rechteckumfang abgezogen. **Der L-förmige Grundriss hat weiterhin den Umfang <InlineMath math="22\text{ m}" />**.
+- <InlineMath math="6{,}9" /> Liter ziehen die ganze Tür und das ganze Fenster ab, also <InlineMath math="2{,}1" /> und <InlineMath math="3" /> Quadratmeter. Ihre unteren Teile waren wegen der Fliesen nie mitgezählt und werden so doppelt abgezogen.
+- <InlineMath math="7{,}14" /> Liter behandeln die Tür richtig, ziehen aber das ganze Fenster ab. Die unteren <InlineMath math="0{,}4\text{ m}" /> des Fensters liegen im gefliesten Bereich.
+
+Verbraucht werden also <InlineMath math="7{,}3" /> Liter Wandfarbe.

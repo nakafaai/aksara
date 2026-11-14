@@ -1,12 +1,34 @@
-Tulis <InlineMath math="2^{a+1}" /> sebagai <InlineMath math="2\cdot2^a" />, lalu **keluarkan faktor persekutuan <InlineMath math="2^a" />**.
+# Urutan membalik komposisi
 
-<BlockMath math="f(a+1)-f(a)=2^{a+1}-2^a=2\cdot2^a-2^a=2^a(2-1)=2^a" />
+Nilai <InlineMath math="(f\circ g)^{-1}(21)" /> adalah bilangan <InlineMath math="x" /> yang memenuhi <InlineMath math="f(g(x))=21" />. Pada <InlineMath math="f\circ g" />, bilangan <InlineMath math="x" /> masuk ke <InlineMath math="g" /> dulu, lalu hasilnya masuk ke <InlineMath math="f" />. Untuk membaliknya, **buka langkah terakhir lebih dulu**: balik <InlineMath math="f" />, baru balik <InlineMath math="g" />.
 
-Cek dengan <InlineMath math="a=3" />: <InlineMath math="f(4)-f(3)=16-8=8=2^3" />.
+<BlockMath math="(f\circ g)^{-1}(21)=g^{-1}\big(f^{-1}(21)\big)" />
 
-Jadi, <InlineMath math="f(a+1)-f(a)=2^a" />.
+# Membalik fungsi kuadrat
 
-- <InlineMath math="1" /> mengurangkan pangkatnya, <InlineMath math="(a+1)-a" />, padahal pangkat hanya dikurangkan saat membagi.
-- <InlineMath math="2" /> adalah hasil bagi <InlineMath math="\frac{f(a+1)}{f(a)}" />, bukan selisihnya.
-- <InlineMath math="2^{a+1}" /> lupa mengurangkan <InlineMath math="f(a)" />.
-- <InlineMath math="2^{2a+1}" /> mengalikan <InlineMath math="2^{a+1}" /> dengan <InlineMath math="2^a" />, bukan mengurangkannya.
+Cari <InlineMath math="t" /> dengan <InlineMath math="f(t)=21" />.
+
+<BlockMath math="\begin{aligned}
+t^2+8t+21&=21 \\
+t^2+8t&=0 \\
+t(t+8)&=0 \quad\Rightarrow\quad t=0 \;\text{atau}\; t=-8
+\end{aligned}" />
+
+Persamaan kuadrat memberi dua akar, tetapi **daerah asal <InlineMath math="f" /> hanya <InlineMath math="t\ge-4" />**. Pada daerah itu <InlineMath math="f" /> naik terus, sehingga punya invers, dan akar <InlineMath math="t=-8" /> dibuang. Jadi <InlineMath math="f^{-1}(21)=0" />, artinya <InlineMath math="g(x)" /> harus sama dengan <InlineMath math="0" />.
+
+# Membalik fungsi linear
+
+Sekarang cari <InlineMath math="x" /> yang membuat <InlineMath math="g(x)=0" />. **Fungsi <InlineMath math="g" /> berlaku untuk setiap bilangan real**, jadi tidak ada akar yang perlu dibuang di langkah ini.
+
+<BlockMath math="\frac{x-12}{2}=0 \quad\Rightarrow\quad x=12" />
+
+Cek: <InlineMath math="g(12)=0" /> berada di daerah asal <InlineMath math="f" />, dan <InlineMath math="f(0)=21" />. Jadi <InlineMath math="(f\circ g)(12)=21" />.
+
+Jadi, nilai <InlineMath math="(f\circ g)^{-1}(21)" /> adalah <InlineMath math="12" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="-6" /> membalik <InlineMath math="f" /> dengan benar, tetapi lalu memakai <InlineMath math="g(0)=-6" />, bukan <InlineMath math="g^{-1}(0)" />.
+- <InlineMath math="-4" /> memakai akar <InlineMath math="t=-8" />, sehingga <InlineMath math="g^{-1}(-8)=-4" />. **Nilai <InlineMath math="-8" /> ada di luar daerah asal <InlineMath math="f" />**, jadi <InlineMath math="f(g(-4))" /> tidak terdefinisi.
+- <InlineMath math="0" /> berhenti di <InlineMath math="f^{-1}(21)" />. Itu nilai <InlineMath math="g(x)" />, bukan nilai <InlineMath math="x" />.
+- <InlineMath math="3" /> memakai urutan terbalik, <InlineMath math="f^{-1}\big(g^{-1}(21)\big)=f^{-1}(54)=3" />. Padahal <InlineMath math="g(3)=-\frac{9}{2}" /> ada di luar daerah asal <InlineMath math="f" />.

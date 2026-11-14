@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  stimulus: "phone-storage",
+  stimulus: "tandon",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$\\frac{22}{25}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\frac{2}{3}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\frac{19}{30}$$",
+        },
+        {
           correct: true,
-          label: "$$9{.}888$$",
+          label: "$$\\frac{3}{5}$$",
         },
         {
           correct: false,
-          label: "$$9{.}889$$",
-        },
-        {
-          correct: false,
-          label: "$$18{.}555$$",
-        },
-        {
-          correct: false,
-          label: "$$28{.}444$$",
-        },
-        {
-          correct: false,
-          label: "$$98{.}888$$",
+          label: "$$\\frac{7}{15}$$",
         },
       ],
     },

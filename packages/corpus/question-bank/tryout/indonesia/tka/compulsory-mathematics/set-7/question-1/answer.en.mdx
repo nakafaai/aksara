@@ -1,13 +1,42 @@
-The instruction is a fixed ratio: **every <InlineMath math="10" /> mL of fertiliser goes with <InlineMath math="4" /> litres of water**. First find how many <InlineMath math="10" /> mL doses fit into <InlineMath math="250" /> mL.
+# Intensity from each stage
+
+The question asks for the sound level at the guest tent while two groups of drums play together. By the first rule in the reading, **you add intensities, not decibels**. So turn decibels into intensity first, work out each stage, and only then add.
+
+One big drum at <InlineMath math="1\text{ m}" /> has a level of <InlineMath math="100\text{ dB}" />. The formula in the reading gives its intensity:
 
 <BlockMath math="\begin{aligned}
-\frac{250}{10}&=25\ \text{doses} \\
-25\cdot4&=100\ \text{litres of water}
+10\log\frac{I}{10^{-12}}&=100 \\
+\frac{I}{10^{-12}}&=10^{10} \\
+I_{\text{big}}&=10^{-2}\ \text{W/m}^2 \\
+I_{\text{small}}&=\tfrac14\cdot10^{-2}=2.5\cdot10^{-3}\ \text{W/m}^2
 \end{aligned}" />
 
-So one small pack is enough for <InlineMath math="100" /> litres of water.
+Those are intensities at <InlineMath math="1\text{ m}" />. By the second rule, at distance <InlineMath math="r" /> you divide by <InlineMath math="r^2" />. The tent is <InlineMath math="20\text{ m}" /> from stage A, so divide by <InlineMath math="400" />. It's <InlineMath math="5\text{ m}" /> from stage B, so divide by <InlineMath math="25" />.
 
-- <InlineMath math="25" /> litres is the number of doses, not yet multiplied by <InlineMath math="4" /> litres.
-- <InlineMath math="62.5" /> litres divides <InlineMath math="250" /> by <InlineMath math="4" />, which mixes up millilitres and litres.
-- <InlineMath math="400" /> litres is the result for the large pack, <InlineMath math="1{,}000" /> mL.
-- <InlineMath math="1{,}000" /> litres multiplies <InlineMath math="250" /> by <InlineMath math="4" /> without first dividing by <InlineMath math="10" /> mL.
+<BlockMath math="\begin{aligned}
+I_A&=8\cdot\frac{10^{-2}}{400}=2\cdot10^{-4}\ \text{W/m}^2 \\
+I_B&=4\cdot\frac{2.5\cdot10^{-3}}{25}=4\cdot10^{-4}\ \text{W/m}^2
+\end{aligned}" />
+
+Notice that stage B delivers twice as much as stage A. Its drums are smaller and fewer, but they're much closer to the tent.
+
+# The total level
+
+Add the two intensities, then convert back to decibels with <InlineMath math="\log6=\log2+\log3=0.78" />.
+
+<BlockMath math="\begin{aligned}
+I&=2\cdot10^{-4}+4\cdot10^{-4}=6\cdot10^{-4}\ \text{W/m}^2 \\
+\mathrm{TI}&=10\log\frac{6\cdot10^{-4}}{10^{-12}}=10\log\left(6\cdot10^{8}\right) \\
+&=10\,(0.78+8)=87.8\text{ dB}
+\end{aligned}" />
+
+As a check, stage B alone gives <InlineMath math="10\log(4\cdot10^8)=86\text{ dB}" />. Stage A adds only half of B's intensity, so **the result must be above <InlineMath math="86\text{ dB}" /> but below <InlineMath math="89\text{ dB}" />**. The value <InlineMath math="87.8\text{ dB}" /> fits.
+
+# Why the other options are wrong
+
+- <InlineMath math="83\text{ dB}" /> is stage A alone, <InlineMath math="10\log(2\cdot10^8)" />. You get it if you assume the big drums must dominate and forget stage B.
+- <InlineMath math="84.5\text{ dB}" /> is the average of <InlineMath math="83" /> and <InlineMath math="86" />. **You can't average or add decibels directly**, because the scale is logarithmic.
+- <InlineMath math="86\text{ dB}" /> is stage B alone. Stage A still adds some intensity, however small.
+- <InlineMath math="89\text{ dB}" /> adds <InlineMath math="3\text{ dB}" /> as if both stages were equally strong. Adding <InlineMath math="3\text{ dB}" /> only works when the intensity doubles, but here it only grows to <InlineMath math="1.5" /> times.
+
+So the sound level at the guest tent is <InlineMath math="87.8\text{ dB}" />.

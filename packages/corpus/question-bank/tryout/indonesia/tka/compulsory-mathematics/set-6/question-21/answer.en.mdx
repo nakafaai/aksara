@@ -1,18 +1,39 @@
-There are <InlineMath math="40" /> values, so **the median is the mean of the <InlineMath math="20" />th and <InlineMath math="21" />st values** in order. The table is already sorted from the smallest size, so just add up the counts cumulatively.
+This question runs in three steps. The months are chosen using **City P**'s data, but the mean you're asked for uses **City Q**'s data in those months. The words "lebih dari" (more than) matter too, because one month sits exactly on the mean.
 
-| Size | Students | Cumulative |
-| --- | --- | --- |
-| <InlineMath math="37" /> | <InlineMath math="4" /> | <InlineMath math="4" /> |
-| <InlineMath math="38" /> | <InlineMath math="7" /> | <InlineMath math="11" /> |
-| <InlineMath math="39" /> | <InlineMath math="12" /> | <InlineMath math="23" /> |
+# The mean of City P
 
-Values <InlineMath math="12" /> to <InlineMath math="23" /> are all size <InlineMath math="39" />, so the <InlineMath math="20" />th and <InlineMath math="21" />st values are both <InlineMath math="39" />.
+The cut-off for choosing months is City P's six-month mean. Add City P's six values from the table, then **divide by six**, the number of months recorded:
 
-<BlockMath math="\text{median}=\frac{39+39}{2}=39" />
+<BlockMath math="\bar x_P=\frac{330+270+240+200+120+40}{6}=\frac{1{,}200}{6}=200\text{ mm}" />
 
-So the median shoe size is <InlineMath math="39" />.
+# Choosing the months
 
-- <InlineMath math="6" /> is the median of the student-count column, not of the shoe sizes.
-- <InlineMath math="38" /> is the lower quartile, the mean of the <InlineMath math="10" />th and <InlineMath math="11" />th values.
-- <InlineMath math="39.325" /> is the mean shoe size.
-- <InlineMath math="39.5" /> is the middle of the six sizes listed in the table, ignoring how many students wear each.
+Compare City P's value in each month with <InlineMath math="200\text{ mm}" />. **A month at exactly <InlineMath math="200\text{ mm}" /> is not more than the mean**, so it isn't chosen.
+
+| Month | City P | More than <InlineMath math="200" />? | City Q |
+| :---: | :---: | :---: | :---: |
+| January | <InlineMath math="330" /> | yes | <InlineMath math="250" /> |
+| February | <InlineMath math="270" /> | yes | <InlineMath math="230" /> |
+| March | <InlineMath math="240" /> | yes | <InlineMath math="180" /> |
+| April | <InlineMath math="200" /> | no, equal to the mean | <InlineMath math="320" /> |
+| May | <InlineMath math="120" /> | no | <InlineMath math="300" /> |
+| June | <InlineMath math="40" /> | no | <InlineMath math="280" /> |
+
+The chosen months are January, February, and March.
+
+# The mean of City Q in those months
+
+Now take City Q's values in those three months:
+
+<BlockMath math="\frac{250+230+180}{3}=\frac{660}{3}=220\text{ mm}" />
+
+Sanity check: in those three months City Q really is drier than City P, so it makes sense that the result is **smaller than City Q's six-month mean** of <InlineMath math="260\text{ mm}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="245\text{ mm}" /> also includes April, even though City P's April value is exactly the mean: <InlineMath math="\frac{660+320}{4}=245" />.
+- <InlineMath math="260\text{ mm}" /> is City Q's mean over all six months. **The step of choosing months was skipped**.
+- <InlineMath math="280\text{ mm}" /> is City P's mean in the chosen months, <InlineMath math="\frac{330+270+240}{3}" />. The cities got swapped.
+- <InlineMath math="300\text{ mm}" /> comes from choosing the months where City Q is above its own mean, which are April, May, and June. The condition in the question uses City P.
+
+So City Q's mean rainfall in those months is <InlineMath math="220\text{ mm}" />.

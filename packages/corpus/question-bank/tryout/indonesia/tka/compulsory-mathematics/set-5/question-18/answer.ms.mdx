@@ -1,0 +1,78 @@
+# Sisi menegak daripada luas plat
+
+Perimeter plat memerlukan panjang <InlineMath math="AD" />, tetapi soalan hanya memberi <InlineMath math="AB" /> dan luas plat. Jadi cari <InlineMath math="AD" /> daripada luas dahulu, kemudian bina perimeternya.
+
+Luas plat ialah luas segi empat tepat, **ditambah dua semibulatan kecil yang dicantumkan, ditolak semibulatan besar yang dipotong**. Jejari semibulatan kecil ialah <InlineMath math="7" />, dan jejari semibulatan besar ialah <InlineMath math="14" />.
+
+<BlockMath math="\begin{aligned}
+\text{luas}&=28\cdot AD+2\cdot\tfrac12\pi\cdot7^2-\tfrac12\pi\cdot14^2 \\
+&=28\cdot AD+49\pi-98\pi=28\cdot AD-49\pi \\
+28\cdot AD-49\pi&=1{,}120-49\pi\quad\Rightarrow\quad AD=40\text{ cm}
+\end{aligned}" />
+
+Semak bentuknya. Semibulatan yang dipotong masuk sedalam <InlineMath math="14\text{ cm}" /> sahaja, jauh kurang daripada <InlineMath math="40\text{ cm}" />, jadi potongan itu tidak menembusi sisi atas.
+
+# Bahagian yang menjadi tepi plat
+
+Perimeter ialah panjang tepi luar plat sahaja. Sisi <InlineMath math="DC" /> ditutup oleh dua semibulatan yang dicantumkan, jadi sisi itu berada di dalam plat. Sisi <InlineMath math="AB" /> pula terbuang bersama bahagian yang dipotong. **Kedua-dua sisi itu bukan tepi plat**, jadi kedua-duanya tidak dikira.
+
+<MathVisual
+  title={<>Bahagian tepi yang dikira</>}
+  description={<>Plat yang sama. Bahagian tepi yang dikira ialah sisi <InlineMath math="AD" /> dan <InlineMath math="BC" /> yang masing-masing <InlineMath math="40\text{ cm}" />, dua lengkok kecil berjejari <InlineMath math="7\text{ cm}" /> di atas, dan satu lengkok besar berjejari <InlineMath math="14\text{ cm}" /> di bawah. Sisi <InlineMath math="AB" /> dan <InlineMath math="DC" /> kekal sebagai garis bantuan.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    ad: <InlineMath math="40" />,
+    bc: <InlineMath math="40" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 33 },
+      y: { min: -5, max: 51 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "side-ad", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 0, y: 40 } },
+      { id: "side-bc", kind: "segment", appearance: "highlight", from: { x: 28, y: 0 }, to: { x: 28, y: 40 } },
+      { id: "arc-left", kind: "arc", appearance: "highlight", center: { x: 7, y: 40 }, radius: 7, startDegrees: 0, sweepDegrees: 180 },
+      { id: "arc-right", kind: "arc", appearance: "highlight", center: { x: 21, y: 40 }, radius: 7, startDegrees: 0, sweepDegrees: 180 },
+      { id: "arc-bottom", kind: "arc", appearance: "highlight", center: { x: 14, y: 0 }, radius: 14, startDegrees: 0, sweepDegrees: 180 },
+      { id: "helper-ab", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 28, y: 0 } },
+      { id: "helper-dc", kind: "segment", appearance: "construction", from: { x: 0, y: 40 }, to: { x: 28, y: 40 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 28, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 28, y: 40 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 40 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 28, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 28, y: 40 }, placement: "right" },
+      { key: "d", objectId: "point-d", at: { x: 0, y: 40 }, placement: "left" },
+      { key: "ad", objectId: "side-ad", at: { x: 0, y: 20 }, placement: "left" },
+      { key: "bc", objectId: "side-bc", at: { x: 28, y: 20 }, placement: "right" },
+    ],
+  }}
+/>
+
+Panjang separuh lilitan bulatan ialah <InlineMath math="\pi r" />. Jumlahkan semua bahagian tepi:
+
+<BlockMath math="\begin{aligned}
+AD+BC&=40+40=80 \\
+\text{dua lengkok kecil}&=2\cdot\pi\cdot7=14\pi \\
+\text{lengkok besar}&=\pi\cdot14=14\pi \\
+\text{perimeter}&=80+14\pi+14\pi=80+28\pi
+\end{aligned}" />
+
+Jadi, perimeter plat ialah <InlineMath math="(80+28\pi)\text{ cm}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="136\text{ cm}" /> menganggap menambah dan memotong semibulatan tidak mengubah perimeter, jadi perimeternya sama dengan perimeter segi empat tepat <InlineMath math="2(28+40)" />. Sebenarnya **lengkok menggantikan tembereng garis lurus**, dan panjang lengkok itu <InlineMath math="28\pi\approx88" />, lebih daripada <InlineMath math="56" />.
+- <InlineMath math="(80+21\pi)\text{ cm}" /> tersalah tanda dalam luas: semibulatan yang dipotong ditambah, dan yang dicantumkan pula ditolak. Hasilnya <InlineMath math="28\cdot AD=1{,}120-98\pi" />, jadi <InlineMath math="AD=40-3.5\pi" />.
+- <InlineMath math="\left(80+\tfrac{49}{2}\pi\right)\text{ cm}" /> menganggap luas plat sama dengan luas segi empat tepat sahaja, <InlineMath math="28\cdot AD=1{,}120-49\pi" />, jadi <InlineMath math="AD=40-1.75\pi" />.
+- <InlineMath math="(136+28\pi)\text{ cm}" /> turut mengira sisi <InlineMath math="AB" /> dan <InlineMath math="DC" />, sedangkan satu berada di dalam plat dan satu lagi di luar plat, bukan pada tepinya.

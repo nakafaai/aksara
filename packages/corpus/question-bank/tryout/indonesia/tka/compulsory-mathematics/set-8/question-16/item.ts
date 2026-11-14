@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "gift-box",
+  stimulus: "tabung",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$1{.}100\\text{ cm}^2$$",
+          label: "$$1-\\frac{\\pi}{4}$$",
         },
         {
           correct: false,
-          label: "$$1{.}200\\text{ cm}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$1{.}600\\text{ cm}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$1{.}800\\text{ cm}^2$$",
+          label: "$$\\frac{1}{3}$$",
         },
         {
           correct: true,
-          label: "$$2{.}200\\text{ cm}^2$$",
+          label: "$$1-\\frac{\\pi}{6}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\frac{\\pi}{6}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\frac{4}{3}-\\frac{\\pi}{4}$$",
         },
       ],
     },

@@ -1,12 +1,43 @@
-This series has first term <InlineMath math="a=3" /> and **ratio <InlineMath math="r=\frac63=2" />**. Since <InlineMath math="r>1" />, use the sum formula <InlineMath math="S_n=\frac{a(r^n-1)}{r-1}" />.
+# The rebound ratio and the starting height
 
-<BlockMath math="S_6=\frac{3(2^6-1)}{2-1}=3\cdot63=189" />
+The question asks for the total distance the ball travels, up and down, from the drop until it's caught. The starting height isn't given, so find it from the rebounds first. The rebound heights form a **geometric sequence**, because each height is the previous one times a fixed number <InlineMath math="r" />.
 
-Check by adding directly: <InlineMath math="3+6+12+24+48+96=189" />.
+<BlockMath math="\begin{aligned}
+162\cdot r^{2}&=72 \\
+r^{2}&=\frac{72}{162}=\frac{4}{9}
+\end{aligned}" />
 
-So the sum of the first six terms is <InlineMath math="189" />.
+Heights are always positive, so <InlineMath math="r=-\tfrac{2}{3}" /> is ruled out and <InlineMath math="r=\tfrac{2}{3}" />. The first rebound is <InlineMath math="\tfrac{2}{3}" /> of the starting height <InlineMath math="h" />:
 
-- <InlineMath math="93" /> is the sum of the first five terms.
-- <InlineMath math="96" /> is the <InlineMath math="6" />th term, not the sum of six terms.
-- <InlineMath math="192" /> uses <InlineMath math="3\cdot2^6" /> and forgets to subtract <InlineMath math="1" />.
-- <InlineMath math="381" /> is the sum of the first seven terms.
+<BlockMath math="\tfrac{2}{3}\,h=162 \quad\Rightarrow\quad h=243\text{ cm}" />
+
+# Which rebound gets caught
+
+List the rebound heights with ratio <InlineMath math="\tfrac{2}{3}" />:
+
+<BlockMath math="162,\ 108,\ 72,\ 48,\ 32,\ \ldots" />
+
+The fourth rebound is exactly <InlineMath math="48\text{ cm}" />, and **exactly <InlineMath math="48\text{ cm}" /> is not less than <InlineMath math="48\text{ cm}" />**. So the ball isn't caught there. The first rebound below <InlineMath math="48\text{ cm}" /> is the fifth one, <InlineMath math="32\text{ cm}" /> high.
+
+# Adding up the path
+
+There are three kinds of pieces. The first drop only goes down. Rebounds one to four each go up and then down, so they're **counted twice**. The fifth rebound only goes up, because the ball is caught at its top.
+
+<BlockMath math="\begin{aligned}
+\text{path length}&=243+2\,(162+108+72+48)+32 \\
+&=243+2\cdot390+32 \\
+&=1{,}055\text{ cm}
+\end{aligned}" />
+
+You can also check <InlineMath math="162+108+72+48=390" /> with the geometric series formula: <InlineMath math="\frac{162\left(1-\left(\frac{2}{3}\right)^{4}\right)}{1-\frac{2}{3}}=162\cdot\frac{65}{81}\cdot3=390" />.
+
+# Why the other options are wrong
+
+Each wrong option **gets one piece of the path wrong**.
+
+- <InlineMath math="812\text{ cm}" /> forgets the first drop of <InlineMath math="243\text{ cm}" />: <InlineMath math="780+32=812" />.
+- <InlineMath math="975\text{ cm}" /> catches the ball at the <InlineMath math="48\text{ cm}" /> rebound, as if the rule were at most <InlineMath math="48\text{ cm}" />: <InlineMath math="243+2\cdot342+48=975" />.
+- <InlineMath math="1{,}023\text{ cm}" /> forgets the last rise of <InlineMath math="32\text{ cm}" />: <InlineMath math="243+780=1{,}023" />.
+- <InlineMath math="1{,}298\text{ cm}" /> counts the first drop twice, as if the ball had also gone up to its starting point: <InlineMath math="2\cdot243+780+32=1{,}298" />.
+
+So the ball travels <InlineMath math="1{,}055\text{ cm}" /> in total.

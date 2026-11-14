@@ -1,15 +1,47 @@
-Ein Halbkreisbogen ist **der halbe Kreisumfang**, also <InlineMath math="\tfrac12\pi d" />. Vergleiche beide Wege mit dieser Formel.
+Gesucht ist die größte Anbaufläche. Drei Bedingungen wirken zusammen: Der Umfang ist fest <InlineMath math="50\text{ m}" />, die Seiten sind ganze Zahlen, und die Fläche des Gartens ist **kleiner als** <InlineMath math="150\text{ m}^2" />, genau <InlineMath math="150" /> ist also nicht erlaubt.
+
+# Länge und Breite
+
+Nenne die Länge des Gartens <InlineMath math="p" /> und die Breite <InlineMath math="l" />, mit <InlineMath math="p\ge l" />. **Der ganze Zaun geht um den Umfang**, also gilt
+
+<BlockMath math="2(p+l)=50\quad\Rightarrow\quad p+l=25" />
+
+Jede Wahl der Länge legt also die Breite fest, und du suchst nur noch zwei ganze Zahlen mit der Summe <InlineMath math="25" />.
+
+# Die Anbaufläche
+
+Der Weg von <InlineMath math="1\text{ m}" /> Breite läuft an allen vier Seiten entlang. Die Anbaufläche verliert also <InlineMath math="1" /> Meter am linken und <InlineMath math="1" /> Meter am rechten Ende, und bei der Breite genauso zwei Meter. Die Anbaufläche ist ein Rechteck <InlineMath math="(p-2)\times(l-2)" />:
 
 <BlockMath math="\begin{aligned}
-\text{Weg I}&=\tfrac12\cdot\tfrac{22}{7}\cdot28=44 \\
-\text{Weg II}&=2\cdot\tfrac12\cdot\tfrac{22}{7}\cdot14=44
+A_\text{Anbau}&=(p-2)(l-2)=pl-2(p+l)+4 \\
+&=pl-2\cdot25+4=pl-46
 \end{aligned}" />
 
-Das ist kein Zufall. Jeder Halbkreis von Weg II hat nur den halben Durchmesser, aber es sind zwei, zusammen also wieder <InlineMath math="\tfrac12\pi\cdot28" />. Egal aus wie vielen gleichen Halbkreisen über <InlineMath math="AB" /> der Weg besteht, seine Länge bleibt gleich.
+Bei diesem Umfang ist **die Anbaufläche also immer die Gartenfläche minus** <InlineMath math="46" />. Die größte Anbaufläche kommt von der größten Gartenfläche, die noch erlaubt ist.
 
-Beide Wege sind also gleich lang, nämlich <InlineMath math="44\text{ m}" />.
+# Der größte erlaubte Garten
 
-- Weg I ist nicht länger, denn beide Wege messen <InlineMath math="44\text{ m}" />.
-- Der geschwungene Weg II ist auch nicht länger, denn jeder seiner Halbkreise misst nur <InlineMath math="22\text{ m}" />.
-- <InlineMath math="88\text{ m}" /> ist der Umfang eines ganzen Kreises, nicht eines Halbkreises.
-- Weg II ist nicht halb so lang wie Weg I, denn der halbe Durchmesser wird durch doppelt so viele Halbkreise ausgeglichen.
+Bei festem <InlineMath math="p+l" /> **wird die Gartenfläche größer, je näher Länge und Breite beieinander liegen**. Schreib die ganzzahligen Paare mit Summe <InlineMath math="25" /> auf, beginnend mit dem nächstliegenden:
+
+| <InlineMath math="p" /> | <InlineMath math="l" /> | Gartenfläche | Kleiner als <InlineMath math="150" />? |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="13" /> | <InlineMath math="12" /> | <InlineMath math="156" /> | nein |
+| <InlineMath math="14" /> | <InlineMath math="11" /> | <InlineMath math="154" /> | nein |
+| <InlineMath math="15" /> | <InlineMath math="10" /> | <InlineMath math="150" /> | nein, genau die Grenze |
+| <InlineMath math="16" /> | <InlineMath math="9" /> | <InlineMath math="144" /> | ja |
+| <InlineMath math="17" /> | <InlineMath math="8" /> | <InlineMath math="136" /> | ja |
+
+Die weiteren Paare haben noch kleinere Flächen. Die größte erlaubte Gartenfläche ist also <InlineMath math="144\text{ m}^2" />, beim Garten <InlineMath math="16\text{ m}\times9\text{ m}" />.
+
+<BlockMath math="A_\text{Anbau}=(16-2)(9-2)=14\cdot7=98\text{ m}^2" />
+
+Probe mit der Formel von oben: <InlineMath math="144-46=98" />. Passt.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="104\text{ m}^2" /> kommt vom Garten <InlineMath math="15\times10" />. Seine Fläche ist genau <InlineMath math="150" />, aber **die Regel verlangt weniger als** <InlineMath math="150" />.
+- <InlineMath math="110\text{ m}^2" /> kommt vom Garten <InlineMath math="13\times12" /> mit der Fläche <InlineMath math="156" />. Hier wird die Dorfregel übersehen.
+- <InlineMath math="120\text{ m}^2" /> entsteht, wenn du den Weg von jedem Maß nur einmal abziehst, also <InlineMath math="15\times8" />. Der Weg liegt an beiden Enden, darum verliert jedes Maß <InlineMath math="2" /> Meter.
+- <InlineMath math="144\text{ m}^2" /> ist die Fläche des ganzen Gartens mitsamt Weg.
+
+Die größte Fläche, auf der Gemüse wachsen kann, beträgt also <InlineMath math="98\text{ m}^2" />.

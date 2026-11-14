@@ -1,16 +1,38 @@
-Siswa yang mengikuti keduanya terhitung di basket dan juga di futsal, jadi **banyak siswa yang mengikuti paling sedikit satu kegiatan dihitung dengan prinsip inklusi-eksklusi**.
+PIN dipilih dari **PIN yang sah saja**, jadi ruang sampelnya adalah semua PIN yang memenuhi kedua aturan, bukan semua bilangan empat digit. Peluangnya adalah banyak PIN sah yang digitnya berbeda semua dibagi banyak semua PIN sah.
+
+# Banyak PIN yang sah
+
+Isi digit dari kiri ke kanan dan hitung pilihan di setiap posisi. Digit pertama boleh <InlineMath math="1" /> sampai <InlineMath math="9" />. Mulai digit kedua, **angka <InlineMath math="0" /> boleh dipakai lagi**, dan satu-satunya larangan adalah sama dengan digit tepat di depannya.
 
 <BlockMath math="\begin{aligned}
-n(B\cup F)&=20+15-8=27 \\
-n(\text{tidak keduanya})&=36-27=9 \\
-P&=\frac{9}{36}=\frac14
+\text{digit pertama}&:\ 9 \text{ pilihan} \\
+\text{digit kedua, ketiga, keempat}&:\ 10-1=9 \text{ pilihan masing-masing} \\
+n(S)&=9\cdot9\cdot9\cdot9=6{.}561
 \end{aligned}" />
 
-Cek dengan diagram Venn: hanya basket <InlineMath math="12" />, hanya futsal <InlineMath math="7" />, keduanya <InlineMath math="8" />, tidak keduanya <InlineMath math="9" />, dan <InlineMath math="12+7+8+9=36" />.
+# Banyak PIN sah dengan digit berbeda semua
 
-Jadi, peluangnya <InlineMath math="\frac14" />.
+Kalau keempat digit berbeda, dua digit yang bersebelahan pasti tidak sama. Jadi **setiap PIN berdigit berbeda yang tidak diawali <InlineMath math="0" /> otomatis sah**, dan kamu cukup menghitung PIN seperti itu.
 
-- <InlineMath math="\frac{1}{36}" /> lupa mengurangkan <InlineMath math="8" /> siswa yang terhitung dua kali, sehingga yang tersisa hanya <InlineMath math="36-35=1" />.
-- <InlineMath math="\frac29" /> adalah peluang siswa mengikuti keduanya, <InlineMath math="\frac{8}{36}" />.
-- <InlineMath math="\frac{19}{36}" /> adalah peluang siswa mengikuti tepat satu kegiatan.
-- <InlineMath math="\frac34" /> adalah peluang siswa mengikuti paling sedikit satu kegiatan.
+<BlockMath math="\begin{aligned}
+\text{digit pertama}&:\ 9 \text{ pilihan } (1 \text{ sampai } 9) \\
+\text{digit kedua}&:\ 9 \text{ pilihan } (0 \text{ boleh, kecuali digit pertama}) \\
+\text{digit ketiga}&:\ 8 \text{ pilihan} \\
+\text{digit keempat}&:\ 7 \text{ pilihan} \\
+n(A)&=9\cdot9\cdot8\cdot7=4{.}536
+\end{aligned}" />
+
+# Peluangnya
+
+Bagi kedua banyaknya, lalu sederhanakan dengan membagi pembilang dan penyebut dengan <InlineMath math="81" />. Contoh di soal, <InlineMath math="1213" />, menunjukkan ada PIN sah yang digitnya berulang, jadi **peluangnya memang harus kurang dari <InlineMath math="1" />**.
+
+<BlockMath math="P(A)=\frac{n(A)}{n(S)}=\frac{4{.}536}{6{.}561}=\frac{56}{81}" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\frac{28}{45}" /> memakai ruang sampel <InlineMath math="10\cdot9\cdot9\cdot9=7{.}290" />, yaitu lupa bahwa digit pertama tidak boleh <InlineMath math="0" /> saat menghitung PIN sah.
+- <InlineMath math="\frac{63}{125}" /> memakai ruang sampel <InlineMath math="9{.}000" />, yaitu semua bilangan empat digit. **PIN dipilih dari PIN sah**, bukan dari semua bilangan empat digit.
+- <InlineMath math="\frac{112}{243}" /> memakai <InlineMath math="9\cdot8\cdot7\cdot6=3{.}024" /> sebagai pembilang, seolah-olah <InlineMath math="0" /> dilarang di semua posisi. Larangan itu hanya untuk digit pertama.
+- <InlineMath math="\frac{25}{81}" /> adalah <InlineMath math="1-\frac{56}{81}" />, yaitu peluang PIN memiliki digit yang berulang. Itu kebalikan dari yang ditanyakan.
+
+Jadi, peluang PIN yang terpilih memiliki empat digit yang semuanya berbeda adalah <InlineMath math="\frac{56}{81}" />.

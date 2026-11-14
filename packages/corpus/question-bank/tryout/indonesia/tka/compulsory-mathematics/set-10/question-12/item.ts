@@ -12,21 +12,19 @@ const item: ItemSource = {
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label: "$$\\angle ABC$$ adalah sudut terbesar segitiga $$ABC$$.",
-        },
-        {
-          column: 2,
-          label: "Segitiga $$ABC$$ siku-siku.",
-        },
-        {
-          column: 1,
-          label: "Ketiga sudut segitiga $$ABC$$ kurang dari $$90^\\circ$$.",
-        },
-        {
           column: 2,
           label:
-            "Jika panjang $$AB$$ diganti menjadi $$23\\text{ cm}$$ sementara $$BC$$ dan $$AC$$ tetap, ketiga ruas garis itu masih dapat membentuk segitiga.",
+            "Luas seluruh permukaan benda sisa lebih kecil daripada luas seluruh permukaan tabung semula.",
+        },
+        {
+          column: 1,
+          label:
+            "Volume benda sisa sama dengan $$\\frac{2}{3}$$ volume tabung semula.",
+        },
+        {
+          column: 1,
+          label:
+            "Jarak terpendek dari puncak kerucut ke permukaan lengkung setengah bola adalah $$6$$ cm.",
         },
       ],
     },

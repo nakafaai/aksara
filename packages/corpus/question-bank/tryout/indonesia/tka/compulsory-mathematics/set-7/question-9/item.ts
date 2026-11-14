@@ -11,25 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label:
-            "Untuk setiap nilai $$k$$, grafik $$f$$ melalui titik $$(-1,2)$$.",
-        },
-        {
           correct: false,
-          label: "Grafik $$f$$ naik untuk setiap $$k>0$$.",
+          label: "$$a+b>0$$",
         },
         {
           correct: true,
-          label: "Jika grafik $$f$$ sejajar garis $$y=3x+1$$, maka $$k=5$$.",
-        },
-        {
-          correct: false,
-          label: "Jika $$k=2$$, grafik $$f$$ melalui titik $$(0,0)$$.",
+          label: "$$b>0$$",
         },
         {
           correct: true,
-          label: "Jika $$f(1)=0$$, maka $$k=1$$.",
+          label: "$$a-b+c<0$$",
+        },
+        {
+          correct: true,
+          label: "$$2a+b<0$$",
+        },
+        {
+          correct: true,
+          label: "$$c\\,(a+b+c)>0$$",
         },
       ],
     },

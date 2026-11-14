@@ -1,15 +1,78 @@
-Luas kaca adalah **luas persegi panjang ditambah luas setengah lingkaran**. Jari-jari setengah lingkaran adalah setengah dari lebar jendela, yaitu <InlineMath math="0{,}7\text{ m}" />.
+# Panjang sisi tegak dari luas pelat
+
+Keliling pelat butuh panjang <InlineMath math="AD" />, padahal yang diketahui hanya <InlineMath math="AB" /> dan luas pelat. Jadi kamu cari <InlineMath math="AD" /> dulu dari luas, baru menyusun keliling.
+
+Luas pelat sama dengan luas persegi panjang, **ditambah dua setengah lingkaran kecil yang menempel, dikurangi setengah lingkaran besar yang dipotong**. Setengah lingkaran kecil berjari-jari <InlineMath math="7" />, dan setengah lingkaran besar berjari-jari <InlineMath math="14" />.
 
 <BlockMath math="\begin{aligned}
-L_{\text{persegi panjang}}&=1{,}4\cdot1=1{,}4\text{ m}^2 \\
-L_{\text{setengah lingkaran}}&=\tfrac12\cdot\tfrac{22}{7}\cdot0{,}7^2=0{,}77\text{ m}^2 \\
-L&=1{,}4+0{,}77=2{,}17\text{ m}^2 \\
-\text{biaya}&=2{,}17\cdot350{.}000=759{.}500
+\text{luas}&=28\cdot AD+2\cdot\tfrac12\pi\cdot7^2-\tfrac12\pi\cdot14^2 \\
+&=28\cdot AD+49\pi-98\pi=28\cdot AD-49\pi \\
+28\cdot AD-49\pi&=1{.}120-49\pi\quad\Rightarrow\quad AD=40\text{ cm}
 \end{aligned}" />
 
-Jadi, biaya kaca untuk jendela itu adalah <InlineMath math="\text{Rp}759{.}500" />.
+Cek bentuknya. Setengah lingkaran yang dipotong masuk sedalam <InlineMath math="14\text{ cm}" />, masih jauh di bawah <InlineMath math="40\text{ cm}" />, jadi potongan itu tidak menembus sisi atas.
 
-- <InlineMath math="\text{Rp}269{.}500" /> hanya menghitung kaca setengah lingkaran.
-- <InlineMath math="\text{Rp}490{.}000" /> hanya menghitung kaca persegi panjang.
-- <InlineMath math="\text{Rp}1{.}029{.}000" /> memakai lingkaran penuh, bukan setengah lingkaran.
-- <InlineMath math="\text{Rp}1{.}568{.}000" /> memakai <InlineMath math="1{,}4\text{ m}" /> sebagai jari-jari, padahal <InlineMath math="1{,}4\text{ m}" /> adalah diameternya.
+# Bagian yang menjadi tepi pelat
+
+Keliling adalah panjang tepi luar pelat saja. Sisi <InlineMath math="DC" /> tertutup oleh dua setengah lingkaran yang menempel, jadi sisi itu ada di dalam pelat. Sisi <InlineMath math="AB" /> ikut terbuang bersama potongan. **Keduanya bukan tepi pelat**, sehingga tidak dihitung.
+
+<MathVisual
+  title={<>Tepi pelat yang dihitung</>}
+  description={<>Gambar pelat yang sama. Tepi pelat yang dihitung adalah sisi <InlineMath math="AD" /> dan <InlineMath math="BC" /> yang masing-masing <InlineMath math="40\text{ cm}" />, dua busur kecil berjari-jari <InlineMath math="7\text{ cm}" /> di atas, dan satu busur besar berjari-jari <InlineMath math="14\text{ cm}" /> di bawah. Sisi <InlineMath math="AB" /> dan <InlineMath math="DC" /> tetap berupa garis bantu.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    ad: <InlineMath math="40" />,
+    bc: <InlineMath math="40" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 33 },
+      y: { min: -5, max: 51 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "side-ad", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 0, y: 40 } },
+      { id: "side-bc", kind: "segment", appearance: "highlight", from: { x: 28, y: 0 }, to: { x: 28, y: 40 } },
+      { id: "arc-left", kind: "arc", appearance: "highlight", center: { x: 7, y: 40 }, radius: 7, startDegrees: 0, sweepDegrees: 180 },
+      { id: "arc-right", kind: "arc", appearance: "highlight", center: { x: 21, y: 40 }, radius: 7, startDegrees: 0, sweepDegrees: 180 },
+      { id: "arc-bottom", kind: "arc", appearance: "highlight", center: { x: 14, y: 0 }, radius: 14, startDegrees: 0, sweepDegrees: 180 },
+      { id: "helper-ab", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 28, y: 0 } },
+      { id: "helper-dc", kind: "segment", appearance: "construction", from: { x: 0, y: 40 }, to: { x: 28, y: 40 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 28, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 28, y: 40 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 40 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 28, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 28, y: 40 }, placement: "right" },
+      { key: "d", objectId: "point-d", at: { x: 0, y: 40 }, placement: "left" },
+      { key: "ad", objectId: "side-ad", at: { x: 0, y: 20 }, placement: "left" },
+      { key: "bc", objectId: "side-bc", at: { x: 28, y: 20 }, placement: "right" },
+    ],
+  }}
+/>
+
+Panjang setengah keliling lingkaran adalah <InlineMath math="\pi r" />. Jumlahkan semua bagian tepi:
+
+<BlockMath math="\begin{aligned}
+AD+BC&=40+40=80 \\
+\text{dua busur kecil}&=2\cdot\pi\cdot7=14\pi \\
+\text{busur besar}&=\pi\cdot14=14\pi \\
+\text{keliling}&=80+14\pi+14\pi=80+28\pi
+\end{aligned}" />
+
+Jadi, keliling pelat adalah <InlineMath math="(80+28\pi)\text{ cm}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="136\text{ cm}" /> menganggap menambah dan memotong setengah lingkaran tidak mengubah keliling, sehingga kelilingnya sama dengan keliling persegi panjang <InlineMath math="2(28+40)" />. Padahal **busur menggantikan ruas lurus**, dan panjang busur <InlineMath math="28\pi\approx88" /> lebih dari <InlineMath math="56" />.
+- <InlineMath math="(80+21\pi)\text{ cm}" /> tertukar tanda pada luas: setengah lingkaran yang dipotong malah ditambah dan yang menempel malah dikurangi. Hasilnya <InlineMath math="28\cdot AD=1{.}120-98\pi" />, sehingga <InlineMath math="AD=40-3{,}5\pi" />.
+- <InlineMath math="\left(80+\tfrac{49}{2}\pi\right)\text{ cm}" /> menganggap luas pelat sama dengan luas persegi panjang saja, <InlineMath math="28\cdot AD=1{.}120-49\pi" />, sehingga <InlineMath math="AD=40-1{,}75\pi" />.
+- <InlineMath math="(136+28\pi)\text{ cm}" /> ikut menghitung sisi <InlineMath math="AB" /> dan <InlineMath math="DC" />, padahal keduanya ada di dalam atau di luar pelat, bukan di tepinya.
