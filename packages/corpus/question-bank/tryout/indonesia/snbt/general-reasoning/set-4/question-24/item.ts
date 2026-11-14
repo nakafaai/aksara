@@ -29,7 +29,8 @@ const item: ItemSource = {
         },
         {
           column: 1,
-          label: "Kecamatan P meluluskan lebih dari $$60\\%$$ peserta terdaftarnya.",
+          label:
+            "Kecamatan P meluluskan lebih dari $$60\\%$$ peserta terdaftarnya.",
         },
       ],
     },
