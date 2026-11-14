@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "reading",
-    topic: "main-idea",
+    topic: "author-purpose",
   },
-  stimulus: "grain-barn",
+  stimulus: "kenikir",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Petani lebih suka langsung menjual seluruh hasil panennya.",
-        },
-        {
           correct: true,
           label:
-            "Pemerintah desa perlu menghidupkan kembali lumbung padi bersama.",
+            "menutup kemungkinan bahwa selisih kutu daun antarbedeng disebabkan oleh perbedaan perawatan",
         },
         {
           correct: false,
-          label: "Harga beras sering melonjak pada musim paceklik.",
+          label:
+            "menjelaskan mengapa kepik lebih banyak mendatangi bedeng yang dikelilingi kenikir",
         },
         {
           correct: false,
-          label: "Gabah yang disimpan di lumbung mudah berjamur.",
+          label:
+            "menunjukkan bahwa siswa tetap rajin merawat kebun meskipun pestisida tidak lagi dipakai",
         },
         {
           correct: false,
-          label: "Laporan pengelolaan lumbung harus dibacakan setiap panen.",
+          label:
+            "membuktikan bahwa penyiraman dan pemupukan tidak memengaruhi jumlah kutu daun",
+        },
+        {
+          correct: false,
+          label:
+            "mengakui kelemahan pengamatan yang membuat Bu Laras perlu mengulangnya pada musim kemarau",
         },
       ],
     },

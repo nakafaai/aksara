@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "writing",
     topic: "effective-sentence",
   },
-  stimulus: "village-radio",
+  stimulus: "lumbung",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Penyiarnya adalah para pemuda-pemuda desa yang belajar mengoperasikan pemancar dengan cara otodidak.",
-        },
-        {
-          correct: false,
-          label:
-            "Penyiar-penyiarnya adalah para pemuda desa yang belajar mengoperasikan pemancar secara otodidak.",
+            "Meskipun lumbung tidak memungut bunga uang, jumlah daripada gabah yang dikembalikan peminjam harus sebelas kilogram untuk setiap sepuluh kilogram pinjaman.",
         },
         {
           correct: true,
           label:
-            "Penyiarnya adalah para pemuda desa yang belajar mengoperasikan pemancar secara otodidak.",
+            "Meskipun lumbung tidak memungut bunga uang, jumlah gabah yang dikembalikan peminjam harus sebelas kilogram untuk setiap sepuluh kilogram pinjaman.",
         },
         {
           correct: false,
           label:
-            "Penyiarnya adalah pemuda-pemuda desa-desa yang belajar mengoperasikan pemancar secara otodidak.",
+            "Meskipun lumbung tidak memungut bunga uang, namun jumlah gabah yang dikembalikan peminjam harus sebelas kilogram untuk setiap sepuluh kilogram pinjaman.",
         },
         {
           correct: false,
           label:
-            "Penyiarnya adalah para pemuda desa yang mana belajar mengoperasikan pemancar secara otodidak.",
+            "Karena lumbung tidak memungut bunga uang, jumlah gabah yang dikembalikan peminjam harus sebelas kilogram untuk setiap sepuluh kilogram pinjaman.",
+        },
+        {
+          correct: false,
+          label:
+            "Lumbung tidak memungut bunga uang, di mana jumlah gabah yang dikembalikan peminjam harus sebelas kilogram untuk setiap sepuluh kilogram pinjaman.",
         },
       ],
     },
