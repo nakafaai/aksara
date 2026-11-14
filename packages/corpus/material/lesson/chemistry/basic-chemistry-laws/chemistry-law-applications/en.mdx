@@ -149,6 +149,29 @@ Define the **system boundary**, then choose the part of the data that is actuall
 - If it compares two compounds from the same elements, hold one element fixed before comparing the other.
 - If it asks about gas volume, confirm that all gases are measured at the same temperature and pressure.
 
+### The Molecules Behind the Numbers
+
+In a problem that uses two laws, **every mass and volume comes from real molecules**. Turn the models of <InlineMath math="\mathrm{C_3H_8}" />, <InlineMath math="\mathrm{CO_2}" />, and <InlineMath math="\mathrm{H_2O}" />. The relative molecular mass reading shows where a number like <InlineMath math="44" /> or <InlineMath math="18" /> comes from: the masses of the atoms added up.
+
+<MoleculeShapeLab
+  title={<>Molecules in a Combustion Problem</>}
+  description={<>Turn each molecule and read the relative mass the problem uses.</>}
+  molecules={[
+    { id: "propane", name: "Propane" },
+    { id: "carbon-dioxide", name: "Carbon dioxide" },
+    { id: "water", name: "Water" },
+  ]}
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Choose a molecule",
+    fill: <>Space-filling model</>,
+    formula: <>Molecular formula</>,
+    mass: <>Relative molecular mass</>,
+    shape: <>Bond angle or length</>,
+    view: "Three-dimensional molecular model",
+  }}
+/>
+
 ## Methane Combustion
 
 Methane burns according to this balanced equation.
@@ -199,5 +222,30 @@ Read the coefficients of <InlineMath math="\mathrm{CH_4(g)}+2\mathrm{O_2(g)}\rig
     o2: <InlineMath math="2\mathrm{O_2}:\ 100\ \mathrm{mL}" />,
     co2: <InlineMath math="\mathrm{CO_2}:\ 50\ \mathrm{mL}" />,
     h2o: <InlineMath math="2\mathrm{H_2O(g)}:\ 100\ \mathrm{mL}" />,
+  }}
+/>
+
+### Propane Follows the Same Rules
+
+Methane is not the only fuel you can work with. Bottled cooking gas is mostly propane, and its combustion also **balances atom by atom**. Drag the slider and watch <InlineMath math="6" /> reactant molecules become <InlineMath math="7" /> product molecules while both sides keep a mass of <InlineMath math="204" />.
+
+<ReactionBalanceLab
+  title={<>Burning Propane</>}
+  description={<>Drag the slider and watch <InlineMath math="6" /> molecules become <InlineMath math="7" />.</>}
+  reactions={[
+    { id: "propane-combustion", name: "Burning propane", tab: <InlineMath math="\mathrm{C_3H_8}" /> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Atoms of each element</>,
+    choose: "Choose a reaction",
+    economy: <>Atom economy</>,
+    equation: <>Balanced equation</>,
+    mass: <>Mass of reactants and products</>,
+    molecules: <>Number of molecules</>,
+    products: <>Products</>,
+    progress: "Reaction progress",
+    reactants: <>Reactants</>,
+    view: "Reaction at the level of atoms",
   }}
 />

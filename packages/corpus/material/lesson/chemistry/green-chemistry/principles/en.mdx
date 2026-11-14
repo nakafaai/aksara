@@ -95,6 +95,32 @@ Atom economy shows how reactant atoms are distributed. A complete assessment als
 | Flammable solvent | Safer solvents and accident prevention |
 | Product persists in the environment | Design for degradation |
 
+### Addition versus Elimination
+
+Atom economy is easiest to understand by comparing two kinds of reaction. When hydrogen adds to ethene, **every reactant atom enters the product**, so the atom economy is <InlineMath math="100\%" />. When ethanol loses water, one water molecule leaves, so only about <InlineMath math="60.9\%" /> of the reactant mass becomes ethene. Drag the slider and find the atoms that miss the wanted product.
+
+<ReactionBalanceLab
+  title={<>Atom Economy in Addition and Elimination</>}
+  description={<>One reaction without a by-product and one that gives off water.</>}
+  reactions={[
+    { id: "ethene-hydrogenation", name: "Adding hydrogen to ethene", tab: <InlineMath math="\mathrm{C_2H_6}" /> },
+    { id: "ethanol-dehydration", name: "Removing water from ethanol", tab: <InlineMath math="\mathrm{C_2H_4}" /> },
+  ]}
+  reading="economy"
+  labels={{
+    atoms: <>Atoms of each element</>,
+    choose: "Choose a reaction",
+    economy: <>Atom economy</>,
+    equation: <>Balanced equation</>,
+    mass: <>Mass of reactants and products</>,
+    molecules: <>Number of molecules</>,
+    products: <>Products</>,
+    progress: "Reaction progress",
+    reactants: <>Reactants</>,
+    view: "Reaction at the level of atoms",
+  }}
+/>
+
 ## Risk from Material Hazards and Exposure
 
 Natural materials can also be hazardous. [Capsaicin](https://pubchem.ncbi.nlm.nih.gov/compound/Capsaicin) can irritate skin and eyes. [Ethanol](https://pubchem.ncbi.nlm.nih.gov/compound/Ethanol) is highly flammable. A substance's properties determine its intrinsic hazards, such as flammability or irritation. Dose, concentration, and route of exposure <Highlight>affect the level of risk</Highlight>. Intrinsic hazards, dose, concentration, and exposure route must be checked for both natural and synthetic materials. A synthetic material can be designed for low toxicity, useful stability, and safer degradation after use.
@@ -130,6 +156,28 @@ Risk needs both a hazard and an exposure, so an illustrative risk score is <Inli
     start: <InlineMath math="4\cdot4=16" />,
     safer: <InlineMath math="\text{safer material: }4\cdot2=8" />,
     less: <InlineMath math="\text{less contact: }1\cdot4=4" />,
+  }}
+/>
+
+### Same Element with Different Hazards
+
+A substance's hazard does not depend only on its elements. We breathe oxygen, <InlineMath math="\mathrm{O_2}" />, all the time, while ozone, <InlineMath math="\mathrm{O_3}" />, near the ground **irritates the airways**. Both contain only oxygen, but the number of atoms and the shape of the molecule differ. Turn both models and compare the bond angle of ozone.
+
+<MoleculeShapeLab
+  title={<>Ozone and Oxygen</>}
+  description={<>Turn both models and compare the bond angle of ozone.</>}
+  molecules={[
+    { id: "ozone", name: "Ozone" },
+    { id: "oxygen", name: "Oxygen" },
+  ]}
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Choose a molecule",
+    fill: <>Space-filling model</>,
+    formula: <>Molecular formula</>,
+    mass: <>Relative molecular mass</>,
+    shape: <>Bond angle or length</>,
+    view: "Three-dimensional molecular model",
   }}
 />
 

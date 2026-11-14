@@ -126,6 +126,29 @@ Vergleiche zwei Stromquellen für dieselbe Reaktion. Die direkten Produkte bleib
 | Bei der Stromerzeugung | Verbrennung setzt Kohlendioxid frei | Keine Brennstoffverbrennung im Modulbetrieb |
 | Im Lebenszyklus | Abbau, Materialien, Bau, Betrieb, Abfall | Materialien, Modulherstellung, Bau, Nutzungsende |
 
+### Ein Atom ändert die Gefahr
+
+Ein sichererer Prozess beginnt damit, die Stoffe zu kennen. Vergleiche <InlineMath math="\mathrm{CO}" /> mit <InlineMath math="\mathrm{CO_2}" />. Sie unterscheiden sich nur um ein Sauerstoffatom, aber **Kohlenstoffmonoxid ist sehr giftig**, weil es sich an das Hämoglobin im Blut bindet, während Kohlenstoffdioxid in normalen Mengen viel weniger schadet. Auch Methanol ist giftig, wenn man es verschluckt, deshalb braucht ein Prozess damit sichere Behälter und Abläufe.
+
+<MoleculeShapeLab
+  title={<>Stoffe im Methanolprozess</>}
+  description={<>Vergleiche die Formen von Kohlenstoffmonoxid, Kohlenstoffdioxid und Methanol.</>}
+  molecules={[
+    { id: "carbon-monoxide", name: "Kohlenstoffmonoxid" },
+    { id: "carbon-dioxide", name: "Kohlenstoffdioxid" },
+    { id: "methanol", name: "Methanol" },
+  ]}
+  labels={{
+    atoms: <>Atome</>,
+    choose: "Molekül wählen",
+    fill: <>Kalottenmodell</>,
+    formula: <>Summenformel</>,
+    mass: <>Relative Molekülmasse</>,
+    shape: <>Bindungswinkel oder -länge</>,
+    view: "Dreidimensionales Molekülmodell",
+  }}
+/>
+
 ## Methanol aus Kohlendioxid
 
 Methanol wird in der Industrie als Rohstoff und als Kraftstoff verwendet. Konventionelles Methanol stammt häufig aus fossilen Rohstoffen. Ein Verfahren in der Entwicklung stellt Methanol mithilfe eines Katalysators aus Kohlendioxid und Wasserstoff her.
@@ -170,6 +193,32 @@ Der Reaktor macht aus Kohlenstoffdioxid Methanol nach <InlineMath math="\mathrm{
     c: <InlineMath math="\mathrm{C}:\ 1=1" />,
     h: <InlineMath math="\mathrm{H}:\ 3\cdot2=4+2" />,
     o: <InlineMath math="\mathrm{O}:\ 2=1+1" />,
+  }}
+/>
+
+### Zwei Wege zu Methanol
+
+Aus Kohlenstoffdioxid entsteht mit jedem Methanolmolekül auch ein Wassermolekül als Nebenprodukt. Zieh den Regler und beobachte, wie das zweite Sauerstoffatom aus <InlineMath math="\mathrm{CO_2}" /> im Wasser landet. Wähl dann den Weg über Kohlenstoffmonoxid: **Jedes Eduktatom landet im Methanol**, also beträgt die Atomökonomie <InlineMath math="100\%" /> statt <InlineMath math="64\%" />.
+
+<ReactionBalanceLab
+  title={<>Atomökonomie zweier Methanolwege</>}
+  description={<>Zieh den Regler und sieh, welcher Weg Wasser übrig lässt.</>}
+  reactions={[
+    { id: "methanol-synthesis", name: "Methanol aus Kohlenstoffdioxid", tab: <InlineMath math="\mathrm{CO_2}" /> },
+    { id: "carbon-monoxide-methanol", name: "Methanol aus Kohlenstoffmonoxid", tab: <InlineMath math="\mathrm{CO}" /> },
+  ]}
+  reading="economy"
+  labels={{
+    atoms: <>Atome je Element</>,
+    choose: "Reaktion wählen",
+    economy: <>Atomökonomie</>,
+    equation: <>Reaktionsgleichung</>,
+    mass: <>Masse der Edukte und Produkte</>,
+    molecules: <>Anzahl der Moleküle</>,
+    products: <>Produkte</>,
+    progress: "Reaktionsverlauf",
+    reactants: <>Edukte</>,
+    view: "Reaktion auf Teilchenebene",
   }}
 />
 

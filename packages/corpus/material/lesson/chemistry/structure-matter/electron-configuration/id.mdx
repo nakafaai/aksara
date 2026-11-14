@@ -18,8 +18,8 @@ Model Bohr memakai tingkat energi diskret untuk menjelaskan spektrum garis atom 
 Kata **diskret** berarti tidak semua nilai energi boleh dipakai. Bayangkan anak tangga. Kamu bisa berdiri di anak tangga pertama, kedua, atau ketiga, tetapi tidak di ruang kosong antara dua anak tangga. Dalam atom, elektron hanya boleh berada pada tingkat energi tertentu.
 
 <Mermaid
-  title="Warna Nyala Menunjuk Energi Elektron"
-  description="Hubungkan eksitasi elektron dan cahaya yang dipancarkan dengan warna yang terlihat pada uji nyala."
+  title={<>Warna Nyala Menunjuk Energi Elektron</>}
+  description={<>Hubungkan eksitasi elektron dan cahaya yang dipancarkan dengan warna yang terlihat pada uji nyala.</>}
   chart={`flowchart LR
     A["Energi masuk"] --> B["Elektron tereksitasi"]
     B --> C["Elektron kembali"]
@@ -243,6 +243,24 @@ Isi kulit-kulitnya berurutan untuk 20 unsur pertama, dari hidrogen dengan <Inlin
   }}
 />
 
+### Bentuk Orbital s p dan d
+
+Urutan pengisian memakai nama subkulit seperti <InlineMath math="2s" />, <InlineMath math="2p" />, dan <InlineMath math="3d" />. Setiap nama itu punya bentuk awan sendiri. **Orbital s berbentuk bola, orbital p seperti dua balon, dan orbital d punya empat cuping** atau bentuk cincin. Warna berbeda menandai bagian awan dengan tanda fungsi gelombang yang berlawanan.
+
+<OrbitalCloudLab
+  title={<>Orbital s, p, dan d</>}
+  description={<>Pilih orbital dan putar awannya untuk melihat cuping dan bidang simpulnya.</>}
+  orbitals={["2s", "2pz", "3dz2", "3dxy"]}
+  labels={{
+    angular: <>Simpul sudut</>,
+    choose: "Pilih orbital",
+    numbers: <>Bilangan kuantum</>,
+    orbital: <>Orbital</>,
+    radial: <>Simpul radial</>,
+    view: "Awan elektron orbital",
+  }}
+/>
+
 ## Menghubungkan Konfigurasi dengan Spektrum
 
 Spektrum garis muncul ketika elektron menerima energi, lalu kembali ke tingkat energi yang lebih rendah.
@@ -263,6 +281,24 @@ E&=\frac{hc}{\lambda}\\
 \end{aligned}" />
 
 Elektron menempati tingkat energi tertentu. Perpindahan ke tingkat energi yang lebih rendah dapat melepaskan cahaya dengan energi tertentu, sedangkan konfigurasi elektron menunjukkan susunan elektron pada keadaan dasar, yaitu <Highlight>keadaan dengan energi terendah</Highlight>.
+
+### Garis yang Tidak Terlihat Mata
+
+Tidak semua lompatan elektron menghasilkan cahaya tampak. Lompatan ke kulit pertama melepas foton ultraviolet yang berenergi tinggi, sedangkan lompatan ke kulit ketiga melepas foton inframerah. **Makin besar selisih tingkat energi, makin pendek panjang gelombangnya**. Bandingkan energi foton tiap lompatan di bagian bawah kartu.
+
+<BohrEmissionLab
+  title={<>Deret Ultraviolet dan Inframerah</>}
+  description={<>Pilih satu lompatan dan bandingkan energi fotonnya dengan garis tampak.</>}
+  falls={[{ from: 2, to: 1 }, { from: 3, to: 1 }, { from: 4, to: 3 }, { from: 5, to: 3 }]}
+  labels={{
+    choose: "Pilih lompatan elektron",
+    energy: <>Energi foton</>,
+    frequency: <>Frekuensi foton</>,
+    transition: <>Lompatan elektron</>,
+    view: "Atom hidrogen model Bohr",
+    wavelength: <>Panjang gelombang</>,
+  }}
+/>
 
 ## Jumlah Elektron dari Nomor Atom
 

@@ -18,8 +18,8 @@ The Bohr model uses discrete energy levels to explain the line spectrum of hydro
 The word **discrete** means not every energy value is allowed. Picture a staircase. You can stand on the first, second, or third step, but not in the empty space between two steps. In an atom, electrons are only allowed at certain energy levels.
 
 <Mermaid
-  title="Flame Colors Show Energy Differences Between Electron States"
-  description="Connect energy input, electron transitions, and emitted light with the color observed in a flame test."
+  title={<>Flame Colors Show Energy Differences Between Electron States</>}
+  description={<>Connect energy input, electron transitions, and emitted light with the color observed in a flame test.</>}
   chart={`flowchart LR
     A["Energy enters"] --> B["Electron is excited"]
     B --> C["Electron returns"]
@@ -243,6 +243,24 @@ Fill the shells in order for the first 20 elements, from hydrogen with <InlineMa
   }}
 />
 
+### Shapes of s p and d Orbitals
+
+The filling order uses subshell names such as <InlineMath math="2s" />, <InlineMath math="2p" />, and <InlineMath math="3d" />. Each name has its own cloud shape. **An s orbital is a sphere, a p orbital looks like two balloons, and a d orbital has four lobes** or a ring. The two colors mark parts of the cloud where the wave function has opposite signs.
+
+<OrbitalCloudLab
+  title={<>The s, p, and d Orbitals</>}
+  description={<>Choose an orbital and turn its cloud to see its lobes and nodal planes.</>}
+  orbitals={["2s", "2pz", "3dz2", "3dxy"]}
+  labels={{
+    angular: <>Angular nodes</>,
+    choose: "Choose an orbital",
+    numbers: <>Quantum numbers</>,
+    orbital: <>Orbital</>,
+    radial: <>Radial nodes</>,
+    view: "Electron cloud of an orbital",
+  }}
+/>
+
 ## Connecting Configuration to Spectra
 
 The configurations in the shell model show the arrangement of electrons in the ground state, meaning <Highlight>the lowest-energy state</Highlight>. A line spectrum appears when an electron receives energy and then returns to a lower energy level.
@@ -263,6 +281,24 @@ E&=\frac{hc}{\lambda}\\
 \end{aligned}" />
 
 Electrons occupy specific energy levels. A transition to a lower energy level can release light with a specific energy, while electron configuration describes how the electrons are arranged in the ground state.
+
+### Lines the Eye Cannot See
+
+Not every electron jump gives visible light. A jump down to the first shell releases a high-energy ultraviolet photon, while a jump to the third shell releases an infrared photon. **The bigger the energy gap, the shorter the wavelength**. Compare the photon energy of each jump at the bottom of the card.
+
+<BohrEmissionLab
+  title={<>Ultraviolet and Infrared Series</>}
+  description={<>Pick a jump and compare its photon energy with the visible lines.</>}
+  falls={[{ from: 2, to: 1 }, { from: 3, to: 1 }, { from: 4, to: 3 }, { from: 5, to: 3 }]}
+  labels={{
+    choose: "Choose an electron jump",
+    energy: <>Photon energy</>,
+    frequency: <>Photon frequency</>,
+    transition: <>Electron jump</>,
+    view: "Bohr model of hydrogen",
+    wavelength: <>Wavelength</>,
+  }}
+/>
 
 ## Electron Count from Atomic Number
 
