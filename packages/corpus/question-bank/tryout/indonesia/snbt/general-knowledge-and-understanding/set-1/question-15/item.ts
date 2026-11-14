@@ -4,32 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "paragraph-meaning",
-    topic: "detail",
+    topic: "inference",
   },
-  stimulus: "bahasa",
+  stimulus: "serapan",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: true,
           label:
-            "Menurut bacaan, jumlah penutur yang sedikit selalu menjadi tanda utama bahwa sebuah bahasa terancam punah.",
+            "Saat *gambut* dicantumkan sebagai padanan *peat*, pedoman itu memandang bahasa Indonesia belum menyediakan kata yang tepat untuk konsep itu.",
         },
         {
-          column: 1,
-          label: "Kamus membantu merekam kosakata bahasa daerah.",
+          correct: false,
+          label:
+            "Sebelum *gambut* dicantumkan, bahasa Indonesia sama sekali tidak memiliki kata apa pun untuk menyebut benda yang dalam bahasa Inggris disebut *peat*.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Di kelas mendongeng, bahasa daerah dipakai dalam kegiatan seperti bernyanyi dan bercanda.",
+            "*Gambut* dicantumkan karena pedoman itu mendahulukan kata dari bahasa daerah daripada kata dari bahasa Indonesia.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Penulis berpendapat bahwa penyusunan kamus tidak bermanfaat bagi upaya revitalisasi bahasa.",
+            "*Peat* tidak diserap karena pedoman itu melarang bahasa asing dijadikan sumber istilah bahasa Indonesia.",
+        },
+        {
+          correct: false,
+          label:
+            "*Gambut* sudah menjadi kosakata bahasa Indonesia yang mapan sejak kata itu dicantumkan dalam pedoman.",
         },
       ],
     },

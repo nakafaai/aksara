@@ -2,32 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "paragraph-meaning",
-    topic: "detail",
+    cognitiveLevel: "reasoning",
+    contentDomain: "word-relation",
+    topic: "antonym",
   },
-  stimulus: "leuit",
+  stimulus: "mikoriza",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Padi disimpan di leuit dalam bentuk beras agar cepat diolah.",
+          correct: false,
+          label: "Persediaan es batu di warung itu *menipis* menjelang sore.",
         },
         {
-          column: 1,
+          correct: false,
+          label: "Tabungan keluarga itu *menipis* karena biaya berobat.",
+        },
+        {
+          correct: true,
           label:
-            "Kolong leuit membantu mengurangi kelembapan pada padi yang disimpan.",
+            "Bagian kertas yang terlalu sering dihapus itu *menipis* hingga hampir sobek.",
         },
         {
-          column: 2,
-          label: "Semua komunitas yang memiliki leuit melarang penjualan padi.",
+          correct: false,
+          label: "Penonton di tribune mulai *menipis* setelah hujan turun.",
         },
         {
-          column: 1,
-          label: "Sekam ikut melindungi bulir padi dari serangan serangga.",
+          correct: false,
+          label: "Harapan tim itu untuk lolos ke babak final makin *menipis*.",
         },
       ],
     },

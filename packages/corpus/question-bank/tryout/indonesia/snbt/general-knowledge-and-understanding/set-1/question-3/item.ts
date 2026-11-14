@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "paragraph-meaning",
-    topic: "main-idea",
+    contentDomain: "vocabulary",
+    topic: "affix-meaning",
   },
-  stimulus: "leuit",
+  stimulus: "mikoriza",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Leuit dibangun dalam bentuk panggung agar padi di dalamnya tetap kering.",
+            "maknanya tetap karena *menjulur* dan *menjulurkan* sama-sama menyatakan gerak memanjang ke luar",
         },
         {
           correct: false,
           label:
-            "Masyarakat adat di Jawa Barat dan Banten melarang semua bentuk perdagangan hasil pertanian dari kampung mereka.",
+            "kalimat menyatakan bahwa hifa memanjang ke luar untuk kepentingan tanaman",
         },
         {
           correct: false,
           label:
-            "Gagal panen sering terjadi di kampung adat Jawa Barat dan Banten.",
+            "hifa menjadi pihak yang dijulurkan oleh jamur sehingga kalimat bermakna pasif",
         },
         {
           correct: true,
           label:
-            "Padi di leuit menjadi cadangan pangan, yang di beberapa komunitas dijaga dengan aturan khusus.",
+            "kata itu menuntut objek, yaitu benda yang dijulurkan oleh hifa, padahal objek itu tidak ada sehingga kalimat menjadi tidak lengkap",
         },
         {
           correct: false,
           label:
-            "Padi bertangkai lebih tahan terhadap serangga daripada beras.",
+            "lapisan tanah yang sudah miskin fosfor menjadi benda yang dijulurkan oleh hifa",
         },
       ],
     },
