@@ -183,7 +183,7 @@ it("keeps a primed equation label as text", () => {
 it("keeps a clock time as text and a measurement that looks like one as a quantity", () => {
   assert.deepEqual(
     quantities(
-      "Pukul 08.00 ada 10 orang, bus berangkat 12.30 dan 13:05, | 10.00-10.20 | lalu 12.30 kg dan 2.50."
+      "Pukul 08.00 ada 10 orang, bus berangkat 12.30 dan 13:05 sampai 24.00, | 10.00-10.20 | lalu 12.30 kg dan 2.50."
     ),
     ["10", "12.30 kg", "2.50"]
   );

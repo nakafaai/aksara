@@ -37,11 +37,11 @@ const YEAR_PATTERN =
   /^(?:(?:1[5-9]|2[01])\d\d(?:\/\d{2,4})?|\d{1,4}\/(?:1[5-9]|2[01])\d\d)$/u;
 
 /**
- * A clock time with a two-digit hour, such as `08.00` or `12:30`. No locale
+ * A clock time with a two-digit hour, such as `08.00`, `12:30` or the midnight `24.00`. No locale
  * writes a quantity this way with no unit: Indonesian, German and Malay
  * decimals take a comma, and a time names a moment, so it stays text.
  */
-const CLOCK_PATTERN = /^(?:[01]\d|2[0-3])[.:][0-5]\d$/u;
+const CLOCK_PATTERN = /^(?:(?:[01]\d|2[0-3])[.:][0-5]\d|24[.:]00)$/u;
 
 /** Whether a character exists and is a letter, a mark, or an underscore. */
 function isLetter(character: string | undefined): boolean {
