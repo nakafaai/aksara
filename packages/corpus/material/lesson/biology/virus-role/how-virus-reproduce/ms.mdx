@@ -5,7 +5,7 @@ export const metadata = {
     "Virus menggunakan sel perumah untuk bereplikasi. Pada bakteriofaj, kitar litik menghasilkan virion, manakala kitar lisogenik mengekalkan genom faj di dalam bakteria.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-04",
+  dateModified: "2026-11-13",
   subject: "Virus dan Peranannya",
 };
 
@@ -63,6 +63,25 @@ Faj virulen mengikut kitar litik. Faj temperat juga boleh melalui kitar lisogeni
     ],
   }}
 />
+
+Setiap kitar litik membebaskan banyak virion baharu. Dalam sesebuah populasi, penggandaan yang sama berlaku dari seorang ke seorang.
+
+<EpidemicSpreadLab
+  title={<>Satu Kes Menjadi Wabak</>}
+  description={<>Orang ramai berjalan-jalan di dataran bandar. Tekan main untuk melihat satu jangkitan merebak apabila tiada sesiapa mengambil langkah pencegahan.</>}
+  measures={[]}
+  labels={{
+    reproduction: <>Setiap kes menjangkiti</>,
+    peak: <>Paling ramai sakit serentak</>,
+    susceptible: <>Masih boleh dijangkiti</>,
+    infected: <>Sedang dijangkiti</>,
+    recovered: <>Sudah pulih</>,
+    immune: <>Imun kerana vaksin</>,
+    viewLabel: "Dataran bandar dengan orang berjalan dan graf wabak",
+  }}
+/>
+
+Dalam model ini setiap kes menjangkiti <InlineMath math="3" /> orang lain secara purata dan kekal berjangkit selama <InlineMath math="7" /> hari. Bilangan kes meningkat dengan cepat pada mulanya, memuncak apabila kira-kira <InlineMath math="30\%" /> penduduk bandar sakit serentak, dan wabak berakhir selepas kira-kira <InlineMath math="94\%" /> dijangkiti. Virus memerlukan perumah untuk membiak, jadi penularan menjadi perlahan apabila tinggal sedikit orang yang belum imun.
 
 ## Kitar Litik Bermula dengan Pelekatan
 
@@ -152,6 +171,25 @@ Putar bakteriofaj ini ketika ia sedang melekat. Gentian ekornya mencengkam permu
     genome: <>genom yang disuntik</>,
   }}
 />
+
+Penyalinan genom bergantung pada pemasangan bes. Pada faj DNA, dua bebenang terbuka, dan setiap bes mengambil pasangannya: A dengan T, G dengan C.
+
+<DnaHelixLab
+  title={<>Genom Virus Disalin Bes demi Bes</>}
+  description={<>Contoh satu bahagian DNA sepanjang <InlineMath math="27" /> pasangan bes. Gerakkan penyalinan atau tekan main, dan perhatikan nukleotida baharu berpasangan dengan kedua-dua bebenang lama.</>}
+  copy
+  sequence="ATG GCT AGC TTA GGC ATC GAT CCG TAA"
+  labels={{
+    copy: "Kemajuan penyalinan",
+    length: <>Pasangan bes</>,
+    span: <>Panjang</>,
+    copied: <>Bes baharu yang berpasangan</>,
+    turns: <>Pusingan heliks</>,
+    viewLabel: "Heliks DNA terbuka dan sedang disalin",
+  }}
+/>
+
+Setiap bebenang baharu berpasangan dengan satu bebenang lama, jadi kedua-dua salinan sama tepat dengan yang asal. Bahagian sepanjang <InlineMath math="27" /> pasangan bes ini hanya <InlineMath math="27 \times 0.34\text{ nm} \approx 9.2\text{ nm}" /> panjangnya. Genom faj lambda mempunyai <InlineMath math="48{,}502" /> pasangan bes, dan sel perumah membekalkan nukleotida serta tenaga untuk menyalin kesemuanya.
 
 ## Profaj Boleh Kekal dalam Genom Perumah
 
