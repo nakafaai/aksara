@@ -17,7 +17,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "kamar yang mereka sewa dari kerabat setelah mendapat pekerjaan",
+          label:
+            "kamar yang mereka sewa dari kerabat setelah mendapat pekerjaan",
         },
         {
           correct: true,
