@@ -1,17 +1,40 @@
-This rule uses only **the average speed** between the cameras, not the speed at every moment.
+You're looking for the lowest cost of the sand and the gravel. The plan: find the volumes of sand and gravel including the reserve, then for each material **compare every mix of pack sizes**, including buying more than needed.
 
-# The time limit and car P
+# The volumes of sand and gravel
 
-To avoid a violation, the travel time must be at least <InlineMath math="\tfrac{12}{100}" /> h, which is 7 min 12 s. The fourth statement is true. Car P takes exactly 7 min 12 s, so its average speed is exactly 100 km/h and **not above the limit**. The second statement is true.
+The garage floor takes <InlineMath math="5\cdot4\cdot0.1=2\text{ m}^3" /> of concrete, its dry mix is <InlineMath math="2\cdot1.5=3\text{ m}^3" />, and **with the reserve** that becomes <InlineMath math="3.3\text{ m}^3" />. Sand is <InlineMath math="2" /> of the <InlineMath math="6" /> parts and gravel is <InlineMath math="3" /> of the <InlineMath math="6" /> parts.
 
-# Car S and the meaning of average speed
+<BlockMath math="\begin{aligned}
+\text{sand}&=\tfrac26\cdot3.3=1.1\text{ m}^3\\
+\text{gravel}&=\tfrac36\cdot3.3=1.65\text{ m}^3
+\end{aligned}" />
 
-Car S takes 6 min 24 s, which is 384 seconds.
+In buckets, that is <InlineMath math="1.1:0.05=22" /> buckets of sand and <InlineMath math="1.65:0.05=33" /> buckets of gravel.
 
-<BlockMath math="v=\frac{12}{384/3600}=\frac{12\cdot3600}{384}=112.5\text{ km/h}" />
+# The cheapest sand
 
-Its speed is 112.5 km/h, not 115 km/h, so the third statement is false.
+| Way of buying the sand | Cost |
+| :---: | :---: |
+| <InlineMath math="22" /> buckets | <InlineMath math="22\cdot20{,}000=440{,}000" /> |
+| <InlineMath math="1" /> tub and <InlineMath math="2" /> buckets | <InlineMath math="300{,}000+40{,}000=340{,}000" /> |
+| <InlineMath math="1" /> truckload | <InlineMath math="500{,}000" /> |
 
-An average of 100 km/h can come from a car that briefly drove at 120 km/h and then slowed down. So **a car that is not flagged was not necessarily always below 100 km/h**, and the first statement is false.
+The cheapest is **one tub and two buckets**, at <InlineMath math="\text{Rp}340{,}000" />.
 
-So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.
+# The cheapest gravel
+
+| Way of buying the gravel | Cost |
+| :---: | :---: |
+| <InlineMath math="33" /> buckets | <InlineMath math="33\cdot25{,}000=825{,}000" /> |
+| <InlineMath math="1" /> tub and <InlineMath math="13" /> buckets | <InlineMath math="400{,}000+325{,}000=725{,}000" /> |
+| <InlineMath math="1" /> truckload | <InlineMath math="700{,}000" /> |
+
+Here **one truckload is cheaper even though it holds too much**, because the <InlineMath math="13" /> extra buckets already cost more than the gap between a truckload and a tub.
+
+<BlockMath math="340{,}000+700{,}000=1{,}040{,}000" />
+
+# The tempting wrong answers
+
+The answer <InlineMath math="1{,}065{,}000" /> comes from buying the gravel to fit, one tub and <InlineMath math="13" /> buckets, on the belief that **buying too much always loses**. The answer <InlineMath math="1{,}265{,}000" /> comes from buying everything by the bucket. The answer <InlineMath math="950{,}000" /> comes from forgetting the reserve, so that the sand is <InlineMath math="1\text{ m}^3" /> and the gravel is <InlineMath math="1.5\text{ m}^3" />.
+
+So the lowest cost of the sand and the gravel is <InlineMath math="\text{Rp}1{,}040{,}000" />.

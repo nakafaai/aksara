@@ -1,22 +1,46 @@
-Takaran setiap bahan dikalikan **faktor <InlineMath math="\tfrac{30}{12}=2{,}5" />**, kecuali telur yang harus dibulatkan ke atas menjadi butir utuh.
+Kita mencari banyak kantong terkecil agar sisa ikan pada akhir bulan keenam cukup. Rencananya: hitung dari belakang. Cari dulu banyak ikan yang harus tersisa setelah penjualan, lalu banyak ikan hidup yang dibutuhkan pada akhir bulan keempat, lalu banyak benih, dan terakhir **bulatkan ke atas menjadi kantong utuh**.
 
-# Takaran dan biaya setiap bahan
+# Bagian ikan yang bertahan dari bulan keempat ke bulan keenam
 
-Harga dihitung dari **takaran yang benar-benar dibeli**, termasuk telur yang sudah dibulatkan.
+Persentase di tabel dihitung dari benih. Dari akhir bulan keempat ke akhir bulan keenam, ikan hidup turun dari <InlineMath math="76\%" /> menjadi <InlineMath math="70\%" /> benih. Artinya, dari setiap <InlineMath math="76" /> ikan yang hidup pada akhir bulan keempat, <InlineMath math="70" /> ekor masih hidup pada akhir bulan keenam:
 
-| Bahan | Takaran untuk 30 potong | Biaya |
-| :---: | :---: | :---: |
-| Tepung | 625 g | <InlineMath math="0{,}625\cdot12{.}000=7{.}500" /> |
-| Telur | 7,5 butir, dibulatkan menjadi 8 | <InlineMath math="8\cdot2{.}000=16{.}000" /> |
-| Gula | 375 g | <InlineMath math="0{,}375\cdot20{.}000=7{.}500" /> |
-| Susu | 500 ml | <InlineMath math="0{,}5\cdot15{.}000=7{.}500" /> |
+<BlockMath math="\text{bagian yang bertahan}=\frac{70}{76}=\frac{35}{38}" />
 
-# Total biaya
+Penjualan tidak mengubah peluang hidup ikan lain, jadi **bagian ini berlaku untuk ikan yang tersisa** setelah penjualan. Bagian ini bukan <InlineMath math="70\%" /> dari sisa ikan, karena <InlineMath math="70\%" /> dihitung dari benih awal.
 
-<BlockMath math="7{.}500+16{.}000+7{.}500+7{.}500=38{.}500" />
+# Banyak ikan yang dibutuhkan pada akhir bulan keempat
 
-Biaya ini **lebih besar daripada <InlineMath math="2{,}5\cdot15{.}000=37{.}500" />**, karena setengah butir telur tidak dapat dibeli.
+Misalkan <InlineMath math="S" /> adalah sisa ikan setelah penjualan. Sisa itu harus cukup untuk menghasilkan <InlineMath math="2{.}800" /> ekor:
 
-Nilai Rp37.500,00 mengalikan biaya satu resep dengan 2,5 tanpa membulatkan telur. Nilai Rp36.500,00 membulatkan telur ke bawah menjadi 7 butir. Nilai Rp45.000,00 membuat tiga resep penuh, padahal bahan selain telur dapat ditakar sesuai kebutuhan.
+<BlockMath math="\begin{aligned}
+\frac{35}{38}S &\ge 2{.}800\\
+S &\ge 2{.}800\times\frac{38}{35}=3{.}040
+\end{aligned}" />
 
-Jadi, biaya bahan untuk 30 potong kue adalah **Rp38.500,00**.
+Sebelum penjualan, **ikan yang dijual harus ditambahkan kembali**, jadi ikan hidup harus paling sedikit <InlineMath math="3{.}040+1{.}520=4{.}560" /> ekor.
+
+# Banyak benih dan banyak kantong
+
+Ikan hidup pada akhir bulan keempat adalah <InlineMath math="76\%" /> dari benih <InlineMath math="N" />:
+
+<BlockMath math="\begin{aligned}
+0{,}76N &\ge 4{.}560\\
+N &\ge 6{.}000
+\end{aligned}" />
+
+Satu kantong berisi <InlineMath math="500" /> ekor, jadi dibutuhkan paling sedikit <InlineMath math="6{.}000\div500=12" /> kantong. Hasil baginya kebetulan bulat, tetapi **kantong harus utuh**, jadi kalau hasilnya pecahan pun tetap dibulatkan ke atas.
+
+# Memeriksa dua kemungkinan terdekat
+
+Cek dengan <InlineMath math="12" /> kantong dan <InlineMath math="11" /> kantong:
+
+<BlockMath math="\begin{aligned}
+12\text{ kantong}:\quad (0{,}76\times6{.}000-1{.}520)\times\frac{35}{38} &= 3{.}040\times\frac{35}{38}=2{.}800\\
+11\text{ kantong}:\quad (0{,}76\times5{.}500-1{.}520)\times\frac{35}{38} &= 2{.}660\times\frac{35}{38}=2{.}450
+\end{aligned}" />
+
+Dengan <InlineMath math="12" /> kantong, sisa ikan tepat <InlineMath math="2{.}800" /> ekor, jadi syarat **"paling sedikit" terpenuhi**. Dengan <InlineMath math="11" /> kantong, sisanya hanya <InlineMath math="2{.}450" /> ekor.
+
+Kesalahan yang sering muncul: memakai <InlineMath math="70\%" /> dari sisa ikan memberi <InlineMath math="15" /> kantong, menganggap banyak ikan yang mati tetap <InlineMath math="6\%" /> dari benih memberi <InlineMath math="13" /> kantong, dan melupakan penjualan memberi <InlineMath math="8" /> kantong.
+
+Jadi, pembudidaya harus menebar paling sedikit <InlineMath math="12" /> kantong benih.

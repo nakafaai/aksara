@@ -1,22 +1,46 @@
-Jede Zutat wird mit **dem Faktor <InlineMath math="\tfrac{30}{12}=2{,}5" />** multipliziert, außer den Eiern, die auf ganze Eier aufgerundet werden.
+Gesucht ist die kleinste Anzahl Beutel, die am Ende des sechsten Monats genug Fische übrig lässt. Der Plan: Rechne rückwärts. Bestimme zuerst, wie viele Fische nach dem Verkauf übrig sein müssen, dann wie viele am Ende des vierten Monats leben müssen, dann wie viele Setzlinge nötig sind, und **runde zum Schluss auf ganze Beutel auf**.
 
-# Menge und Kosten jeder Zutat
+# Der Anteil, der vom vierten bis zum sechsten Monat überlebt
 
-Die Kosten ergeben sich aus **den tatsächlich gekauften Mengen**, einschließlich der aufgerundeten Eier.
+Die Prozentsätze der Tabelle beziehen sich auf die Setzlinge. Vom Ende des vierten bis zum Ende des sechsten Monats sinken die lebenden Fische von <InlineMath math="76\%" /> auf <InlineMath math="70\%" /> der Setzlinge. Von je <InlineMath math="76" /> Fischen, die am Ende des vierten Monats leben, sind am Ende des sechsten Monats also noch <InlineMath math="70" /> am Leben:
 
-| Zutat | Menge für 30 Stück | Kosten |
-| :---: | :---: | :---: |
-| Mehl | 625 g | <InlineMath math="0{,}625\cdot12\,000=7\,500" /> |
-| Eier | 7,5, aufgerundet auf 8 | <InlineMath math="8\cdot2\,000=16\,000" /> |
-| Zucker | 375 g | <InlineMath math="0{,}375\cdot20\,000=7\,500" /> |
-| Milch | 500 ml | <InlineMath math="0{,}5\cdot15\,000=7\,500" /> |
+<BlockMath math="\text{überlebender Anteil}=\frac{70}{76}=\frac{35}{38}" />
 
-# Gesamtkosten
+Der Verkauf ändert die Überlebenschancen der anderen Fische nicht, also **gilt dieser Anteil für die übrigen Fische** nach dem Verkauf. Es sind nicht <InlineMath math="70\%" /> der übrigen Fische, denn die <InlineMath math="70\%" /> beziehen sich auf die ursprünglichen Setzlinge.
 
-<BlockMath math="7\,500+16\,000+7\,500+7\,500=38\,500" />
+# Benötigte Fische am Ende des vierten Monats
 
-Das ist **mehr als <InlineMath math="2{,}5\cdot15\,000=37\,500" />**, weil man kein halbes Ei kaufen kann.
+Sei <InlineMath math="S" /> die Anzahl der Fische nach dem Verkauf. Sie muss für <InlineMath math="2{.}800" /> Fische reichen:
 
-Der Wert 37 500 Rupiah multipliziert die Kosten eines Rezepts mit 2,5, ohne die Eier zu runden. Der Wert 36 500 Rupiah rundet die Eier auf 7 ab. Der Wert 45 000 Rupiah backt drei volle Rezepte, obwohl Zutaten außer Eiern nach Bedarf abgemessen werden können.
+<BlockMath math="\begin{aligned}
+\frac{35}{38}S &\ge 2{.}800\\
+S &\ge 2{.}800\times\frac{38}{35}=3{.}040
+\end{aligned}" />
 
-Die Zutaten für 30 Stück kosten also **38 500 Rupiah**.
+Vor dem Verkauf **musst du die verkauften Fische wieder dazuzählen**, also müssen mindestens <InlineMath math="3{.}040+1{.}520=4{.}560" /> Fische leben.
+
+# Setzlinge und Beutel
+
+Die lebenden Fische am Ende des vierten Monats sind <InlineMath math="76\%" /> der <InlineMath math="N" /> Setzlinge:
+
+<BlockMath math="\begin{aligned}
+0{,}76N &\ge 4{.}560\\
+N &\ge 6{.}000
+\end{aligned}" />
+
+Ein Beutel enthält <InlineMath math="500" /> Setzlinge, also brauchst du mindestens <InlineMath math="6{.}000\div500=12" /> Beutel. Die Division geht hier zufällig auf, aber **es gibt nur ganze Beutel**, also würde ein Bruch trotzdem aufgerundet.
+
+# Die zwei nächsten Möglichkeiten prüfen
+
+Prüfe <InlineMath math="12" /> Beutel und <InlineMath math="11" /> Beutel:
+
+<BlockMath math="\begin{aligned}
+12\text{ Beutel}:\quad (0{,}76\times6{.}000-1{.}520)\times\frac{35}{38} &= 3{.}040\times\frac{35}{38}=2{.}800\\
+11\text{ Beutel}:\quad (0{,}76\times5{.}500-1{.}520)\times\frac{35}{38} &= 2{.}660\times\frac{35}{38}=2{.}450
+\end{aligned}" />
+
+Mit <InlineMath math="12" /> Beuteln bleiben genau <InlineMath math="2{.}800" /> Fische, also ist die Bedingung **„mindestens“ erfüllt**. Mit <InlineMath math="11" /> Beuteln bleiben nur <InlineMath math="2{.}450" />.
+
+Typische Fehler: Wer <InlineMath math="70\%" /> der übrigen Fische nimmt, erhält <InlineMath math="15" /> Beutel, wer die toten Fische als feste <InlineMath math="6\%" /> der Setzlinge zählt, erhält <InlineMath math="13" /> Beutel, und wer den Verkauf vergisst, erhält <InlineMath math="8" /> Beutel.
+
+In den Teich müssen also mindestens <InlineMath math="12" /> Beutel Setzlinge.

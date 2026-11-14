@@ -1,11 +1,38 @@
-Wähle die Ziffern von links nach rechts. Eine schon verwendete Ziffer **darf nicht noch einmal vorkommen**, die Auswahl wird also an jeder Stelle um eins kleiner.
+Gesucht ist die Zahl der gesunden Pakete. Der Plan: Ordne die Pakete nach ihren Portionen Grillhähnchen und **prüfe in jeder Gruppe Kaloriengrenze und Eiweißgrenze zusammen**.
 
-# Auswahl an jeder Stelle
+# Pakete ohne Grillhähnchen
 
-Die erste Ziffer darf 0 sein, weil eine PIN mit 0 beginnen darf. Es gibt also 10 Möglichkeiten für die erste Ziffer, 9 für die zweite, 8 für die dritte und 7 für die vierte.
+Reis und eine Portion Gemüse enthalten schon <InlineMath math="240\text{ kcal}" /> und <InlineMath math="6\text{ g}" /> Eiweiß. Vier Portionen Tempeh bringen die Kalorien auf <InlineMath math="640\text{ kcal}" />, also sind es höchstens <InlineMath math="3" /> Portionen Tempeh. Drei Portionen Tempeh ergeben <InlineMath math="540\text{ kcal}" /> und <InlineMath math="36\text{ g}" /> Eiweiß, und nur noch eine weitere Portion Gemüse passt hinein.
 
-<BlockMath math="10\cdot9\cdot8\cdot7=5\,040" />
+<BlockMath math="36+2=38<40" />
 
-Das ist **eine Permutation von 4 aus 10**, denn die Reihenfolge der Ziffern zählt.
+Das Eiweiß erreicht nie <InlineMath math="40\text{ g}" />, also **gibt es kein gesundes Paket ohne Grillhähnchen**.
 
-Es gibt also **5 040 PINs** mit vier verschiedenen Ziffern.
+# Pakete mit einer Portion Grillhähnchen
+
+Reis, eine Portion Hähnchen und eine Portion Gemüse enthalten <InlineMath math="390\text{ kcal}" /> und <InlineMath math="30\text{ g}" /> Eiweiß. Es bleiben <InlineMath math="210\text{ kcal}" />, und beim Eiweiß fehlen noch <InlineMath math="10\text{ g}" />.
+
+| Zusätzlicher Tempeh | Mögliches zusätzliches Gemüse | Pakete |
+| :---: | :---: | :---: |
+| <InlineMath math="0" /> Portionen | genau <InlineMath math="5" /> Portionen | <InlineMath math="1" /> |
+| <InlineMath math="1" /> Portion | <InlineMath math="0" />, <InlineMath math="1" /> oder <InlineMath math="2" /> Portionen | <InlineMath math="3" /> |
+| <InlineMath math="2" /> Portionen | <InlineMath math="0" /> Portionen | <InlineMath math="1" /> |
+
+Ohne Tempeh müssen die <InlineMath math="10\text{ g}" /> Eiweiß aus <InlineMath math="5" /> zusätzlichen Portionen Gemüse kommen, und <InlineMath math="5\cdot40=200\text{ kcal}" /> passen noch. **Dieses Paket mit sechs Portionen Gemüse übersieht man leicht**. Die Gruppe enthält <InlineMath math="5" /> Pakete.
+
+# Pakete mit zwei Portionen Grillhähnchen
+
+Reis, zwei Portionen Hähnchen und eine Portion Gemüse enthalten <InlineMath math="540\text{ kcal}" /> und <InlineMath math="54\text{ g}" /> Eiweiß. Die übrigen <InlineMath math="60\text{ kcal}" /> reichen nur für **eine zusätzliche Portion Gemüse**, also gibt es <InlineMath math="2" /> Pakete. Drei Portionen Hähnchen ergeben mit Reis und Gemüse schon <InlineMath math="690\text{ kcal}" />, das geht also nicht.
+
+<BlockMath math="0+5+2=7" />
+
+# Die verlockenden falschen Optionen
+
+Jede andere Option **verliert Pakete durch einen Fehler**.
+
+- <InlineMath math="6" /> entsteht, wenn du das Paket mit einer Portion Hähnchen und sechs Portionen Gemüse übersiehst.
+- <InlineMath math="5" /> entsteht, wenn höchstens zwei Portionen Gemüse erlaubt sein sollen, wodurch zwei Pakete fehlen.
+- <InlineMath math="4" /> entsteht, wenn du die <InlineMath math="4\text{ g}" /> Eiweiß im Reis vergisst.
+- <InlineMath math="3" /> entsteht, wenn du das Eiweiß im Gemüse vergisst.
+
+Es gibt also <InlineMath math="7" /> verschiedene gesunde Pakete.

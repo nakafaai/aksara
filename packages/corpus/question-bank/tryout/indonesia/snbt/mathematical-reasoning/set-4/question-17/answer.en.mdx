@@ -1,9 +1,31 @@
-Two tickets are drawn together and the prizes are the same, so **the order of drawing does not matter**. This is a combination of 2 from 20.
+You're looking for every wall height at which one patterned roll gives exactly <InlineMath math="3" /> strips. The plan: first find the cut lengths that give <InlineMath math="3" /> strips, then remember that **a patterned cut can only be a multiple of <InlineMath math="64\text{ cm}" />**.
 
-# Counting combinations
+# Cut lengths that give three strips
 
-<BlockMath math="\binom{20}{2}=\frac{20\cdot19}{2}=190" />
+Say one cut is <InlineMath math="c\text{ cm}" /> long. A roll of <InlineMath math="1{,}000\text{ cm}" /> gives exactly <InlineMath math="3" /> strips when <InlineMath math="3" /> cuts fit but <InlineMath math="4" /> don't.
 
-Dividing by 2 is needed because the pair of tickets 3 and 7 is the same as the pair 7 and 3. Without it the result is 380, which **counts every pair twice**.
+<BlockMath math="3c\le 1{,}000<4c\quad\text{so}\quad 250<c\le 333\tfrac13" />
 
-So there are **190 possible pairs** of tickets.
+The multiples of <InlineMath math="64" /> around that range are <InlineMath math="192" />, <InlineMath math="256" />, <InlineMath math="320" /> and <InlineMath math="384" />. **Only <InlineMath math="256" /> and <InlineMath math="320" /> fall inside**. A cut of <InlineMath math="192\text{ cm}" /> gives <InlineMath math="5" /> strips, and a cut of <InlineMath math="384\text{ cm}" /> gives only <InlineMath math="2" />.
+
+# The wall heights for each cut
+
+A patterned cut is <InlineMath math="h+10" /> rounded up to a multiple of <InlineMath math="64" />. The result is <InlineMath math="256" /> when <InlineMath math="192<h+10\le256" />, and it is <InlineMath math="320" /> when <InlineMath math="256<h+10\le320" />.
+
+<BlockMath math="\begin{aligned}
+192<h+10\le256&\quad\text{gives}\quad 183\le h\le246\\
+256<h+10\le320&\quad\text{gives}\quad 247\le h\le310
+\end{aligned}" />
+
+The two ranges join up, so **together they are <InlineMath math="183\le h\le310" />**. As a check, <InlineMath math="h=182" /> gives a cut of <InlineMath math="192\text{ cm}" />, and <InlineMath math="h=311" /> gives a cut of <InlineMath math="384\text{ cm}" />.
+
+# The tempting wrong options
+
+Every other option forgets **one cutting rule**.
+
+- <InlineMath math="247\le h\le310" /> only counts the <InlineMath math="320\text{ cm}" /> cut and forgets the <InlineMath math="256\text{ cm}" /> cut.
+- <InlineMath math="241\le h\le323" /> uses the rule for plain wallpaper, <InlineMath math="250<h+10\le333" />.
+- <InlineMath math="193\le h\le320" /> forgets the extra <InlineMath math="10\text{ cm}" /> for trimming.
+- <InlineMath math="251\le h\le333" /> forgets both the extra <InlineMath math="10\text{ cm}" /> and the pattern rounding.
+
+So the possible values are <InlineMath math="183\le h\le310" />.

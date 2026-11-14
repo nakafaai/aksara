@@ -1,21 +1,26 @@
-Sekolah boleh mencetak lebih dari 480 lembar, jadi bandingkan **biaya setiap cara yang memberi paling sedikit 480 lembar**, termasuk cara yang melewati batas kelompok.
+Kamu mencari titik pesan ulang terkecil yang membuat semua permintaan terlayani. Rencananya: cari dulu **hari pesanan pertama harus dibuat** agar hari ke-<InlineMath math="5" /> aman, lalu periksa apakah titik pesan ulang itu juga menyelamatkan hari-hari berikutnya.
 
-# Biaya setiap cara
+# Pesanan pertama harus lebih awal
 
-Setiap cara memberi **paling sedikit 480 lembar**.
+Menurut informasi, stok akhir hari ke-<InlineMath math="1" /> sampai ke-<InlineMath math="4" /> adalah <InlineMath math="100" />, <InlineMath math="75" />, <InlineMath math="45" />, dan <InlineMath math="25" />. Permintaan hari ke-<InlineMath math="5" /> adalah <InlineMath math="35" /> karung, jadi barang harus sudah tiba pada pagi hari ke-<InlineMath math="5" />. Artinya **pesanan harus dibuat paling lambat pada akhir hari ke-<InlineMath math="2" />**, saat stok <InlineMath math="75" /> karung. Pesanan baru dibuat ketika stok paling banyak sama dengan titik pesan ulang, jadi titik pesan ulang paling kecil <InlineMath math="75" />.
 
-| Cara | Biaya |
-| :---: | :---: |
-| 480 lembar sekaligus | <InlineMath math="480\cdot400=192{.}000" /> |
-| 500 lembar sekaligus | <InlineMath math="500\cdot400=200{.}000" /> |
-| dua pesanan 240 lembar | <InlineMath math="2\cdot240\cdot400=192{.}000" /> |
-| lima pesanan 96 lembar | <InlineMath math="5\cdot96\cdot500=240{.}000" /> |
-| 501 lembar sekaligus | <InlineMath math="501\cdot300=150{.}300" /> |
+# Memeriksa hari-hari berikutnya
 
-# Memilih yang termurah
+Dengan titik pesan ulang <InlineMath math="75" />, pesanan pertama tiba pada hari ke-<InlineMath math="5" />.
 
-Memesan 501 lembar memberi harga Rp300,00 per lembar, sehingga **biayanya paling kecil** walaupun ada 21 lembar berlebih. Penghematannya <InlineMath math="192{.}000-150{.}300=41{.}700" /> rupiah dibanding memesan tepat 480 lembar.
+| Hari ke- | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> | <InlineMath math="10" /> | <InlineMath math="11" /> | <InlineMath math="12" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Stok akhir hari | <InlineMath math="140" /> | <InlineMath math="100" /> | <InlineMath math="70" /> | <InlineMath math="45" /> | <InlineMath math="0" /> | <InlineMath math="100" /> | <InlineMath math="70" /> | <InlineMath math="50" /> |
 
-Memecah pesanan tidak membantu, karena setiap pesanan kecil tetap berada di kelompok harga yang sama atau lebih mahal.
+Pesanan kedua dibuat pada akhir hari ke-<InlineMath math="7" /> dan tiba pada hari ke-<InlineMath math="10" />. Stok <InlineMath math="45" /> karung pada pagi hari ke-<InlineMath math="9" /> **tepat sama dengan permintaan hari itu**, jadi tidak ada penjualan hilang sampai hari ke-<InlineMath math="12" />.
 
-Jadi, cara termurah adalah **memesan 501 lembar dalam satu pesanan dengan biaya Rp150.300,00**.
+# Pilihan yang keliru
+
+Setiap pilihan lain juga membuat semua permintaan terlayani, tetapi **bukan yang terkecil**, karena berasal dari cara menaksir yang keliru.
+
+- <InlineMath math="85" /> karung adalah permintaan tiga hari setelah pesanan pertama menurut informasi, yaitu <InlineMath math="30+20+35" />.
+- <InlineMath math="95" /> karung adalah permintaan dua hari berturut-turut yang terbesar, yaitu <InlineMath math="45+50" />.
+- <InlineMath math="120" /> karung adalah permintaan hari ke-<InlineMath math="8" /> sampai ke-<InlineMath math="10" />, yaitu <InlineMath math="25+45+50" />.
+- <InlineMath math="125" /> karung adalah permintaan tiga hari berturut-turut yang terbesar, yaitu <InlineMath math="45+50+30" />.
+
+Jadi, titik pesan ulang terkecil yang membuat tidak ada penjualan hilang adalah <InlineMath math="75" /> karung.

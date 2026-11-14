@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "school-raffle",
+  stimulus: "wallpaper-rolls",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$3$$" },
-        { correct: false, label: "$$4$$" },
-        { correct: false, label: "$$5$$" },
-        { correct: true, label: "$$6$$" },
-        { correct: false, label: "$$10$$" },
+        { correct: false, label: "$$416\\text{ cm}$$" },
+        { correct: false, label: "$$400\\text{ cm}$$" },
+        { correct: false, label: "$$375\\text{ cm}$$" },
+        { correct: false, label: "$$350\\text{ cm}$$" },
+        { correct: true, label: "$$300\\text{ cm}$$" },
       ],
     },
   },

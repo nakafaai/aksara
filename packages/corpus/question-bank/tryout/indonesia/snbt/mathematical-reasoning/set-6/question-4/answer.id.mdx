@@ -1,19 +1,44 @@
-Rata-rata gol per pertandingan adalah **banyak gol seluruhnya dibagi banyak pertandingan**. Kedua angka itu harus dihitung dengan hati-hati agar tidak ada yang terhitung dua kali.
+Kamu mencari jam mulai paling awal untuk pompa Q supaya tidak ada air yang terbuang. Air terbuang hanya jika **isi tandon yang dihitung tanpa pipa luapan sempat melewati <InlineMath math="6{.}000\text{ liter}" />**. Jadi cari kapan isi tandon mencapai puncaknya, lalu atur jadwal pompa Q supaya puncak itu tidak melebihi kapasitas.
 
-# Banyak gol seluruhnya
+# Kapan isi tandon mencapai puncak
 
-Setiap gol tercatat sebagai gol dicetak oleh satu tim. Jumlah kolom gol dicetak adalah
+Debit bersih adalah debit masuk dikurangi debit keluar. Setelah keran K terbuka, ada empat kemungkinan debit bersih.
 
-<BlockMath math="8+6+5+3+2=24" />
+<BlockMath math="\begin{aligned} \text{P dan K: } 60-50 &= 10 \\ \text{Q dan K: } 80-50 &= 30 \\ \text{P, Q, dan K: } 60+80-50 &= 90 \\ \text{K saja: } 0-50 &= -50 \end{aligned}" />
 
-Kolom gol kemasukan juga berjumlah 24, karena **mencatat gol yang sama dari sisi lawan**, jadi kedua kolom tidak boleh dijumlahkan.
+Selama paling sedikit satu pompa menyala, debit bersihnya positif dan isi tandon terus naik. Isi tandon baru turun setelah kedua pompa mati. Jadi **puncak isi tandon terjadi saat pompa terakhir mati**.
 
-# Banyak pertandingan dan rata-rata
+# Pompa Q selesai sebelum pompa P mati
 
-Setiap dua tim bertanding sekali, jadi ada <InlineMath math="\binom52=10" /> pertandingan.
+Misalkan pompa Q dinyalakan paling lambat pukul 06.00, sehingga selesai paling lambat pukul 07.00. Pompa terakhir yang mati adalah pompa P pada pukul 07.00. Saat itu seluruh air kedua pompa sudah masuk, dan keran K sudah terbuka <InlineMath math="100\text{ menit}" /> sejak pukul 05.20.
 
-<BlockMath math="\frac{24}{10}=2{,}4" />
+<BlockMath math="1{.}000+60\cdot 120+80\cdot 60-50\cdot 100=8{.}000" />
 
-Nilai 4,8 menjumlahkan gol dicetak dan gol kemasukan, sehingga setiap gol terhitung dua kali. Nilai 6 membagi 24 dengan 4, yaitu banyak pertandingan setiap tim, bukan banyak seluruh pertandingan.
+Puncaknya <InlineMath math="8{.}000\text{ liter}" />, lebih dari kapasitas, berapa pun pergeserannya. Jadi **menggeser pompa Q di dalam jam kerja pompa P tidak mengurangi air yang terbuang**. Pompa Q harus selesai setelah pukul 07.00.
 
-Jadi, rata-rata gol per pertandingan adalah **2,4**.
+# Pompa Q selesai setelah pompa P mati
+
+Sekarang pompa terakhir yang mati adalah pompa Q. Pada saat itu kedua pompa sudah memasukkan <InlineMath math="60\cdot 120+80\cdot 60=12{.}000\text{ liter}" />. Misalkan <InlineMath math="m" /> adalah lama keran K terbuka, dalam menit, dari pukul 05.20 sampai pompa Q mati. Puncak isi tandon **tidak boleh melebihi kapasitas**.
+
+<BlockMath math="\begin{aligned} 1{.}000+12{.}000-50m &\le 6{.}000 \\ 50m &\ge 7{.}000 \\ m &\ge 140 \end{aligned}" />
+
+Pompa Q harus mati paling awal <InlineMath math="140\text{ menit}" /> setelah pukul 05.20, yaitu pukul 07.40. Karena pompa Q menyala <InlineMath math="60\text{ menit}" />, pompa itu paling awal dinyalakan pukul 06.40.
+
+# Pemeriksaan jadwal baru
+
+Coba jalankan jadwal baru, pompa Q dari 06.40 sampai 07.40. Pada pukul 06.40 pompa P sudah bekerja <InlineMath math="100\text{ menit}" /> dan keran K <InlineMath math="80\text{ menit}" />.
+
+<BlockMath math="\begin{aligned} \text{pukul 06.40: } 1{.}000+60\cdot 100-50\cdot 80 &= 3{.}000 \\ \text{pukul 07.00: } 3{.}000+90\cdot 20 &= 4{.}800 \\ \text{pukul 07.40: } 4{.}800+30\cdot 40 &= 6{.}000 \end{aligned}" />
+
+Isinya **tepat mencapai kapasitas tanpa melebihinya**, jadi tidak ada air yang terbuang. Jika pompa Q dinyalakan <InlineMath math="5\text{ menit}" /> lebih awal, keran K hanya terbuka <InlineMath math="135\text{ menit}" /> sampai pompa Q mati, dan puncaknya <InlineMath math="13{.}000-50\cdot 135=6{.}250\text{ liter}" />. Itu melebihi kapasitas.
+
+# Jebakan pada pilihan lain
+
+Dua pilihan yang terlalu awal masih membuang air, dan **dua pilihan yang lebih lambat memang aman tetapi bukan yang paling awal**.
+
+- Pukul 06.20 muncul jika keran K dianggap terbuka sejak 05.00. Kenyataannya keran K baru terbuka pukul 05.20, sehingga puncaknya <InlineMath math="13{.}000-50\cdot 120=7{.}000\text{ liter}" /> dan <InlineMath math="1{.}000\text{ liter}" /> terbuang.
+- Pukul 06.25 muncul jika isi hanya diperiksa pada pukul 07.00. Tandon memang tepat penuh pukul 07.00, tetapi pompa Q masih menyala sampai 07.25 dengan debit bersih <InlineMath math="30\text{ liter/menit}" />, jadi <InlineMath math="30\cdot 25=750\text{ liter}" /> terbuang.
+- Pukul 07.00 membuat pompa Q baru menyala setelah pompa P mati. Tidak ada air yang terbuang, tetapi pukul 06.40 lebih awal dan juga aman.
+- Pukul 07.40 muncul jika tandon harus menyisakan ruang untuk seluruh <InlineMath math="4{.}800\text{ liter}" /> air pompa Q sebelum pompa itu menyala, padahal keran K terus mengeluarkan air selama pompa Q bekerja.
+
+Jadi, pompa Q paling awal dinyalakan pukul 06.40.

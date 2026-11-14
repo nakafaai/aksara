@@ -1,20 +1,31 @@
-Karena harga kelompok berlaku untuk seluruh lembar, biaya total **turun tiba-tiba ketika pesanan melewati batas kelompok**. Hitung biaya di sekitar batas itu.
+Setiap pernyataan perlu diuji dengan mengikuti stok hari demi hari. Pegangannya adalah jalannya stok menurut informasi, terutama **kapan stok pertama kali turun sampai <InlineMath math="60" /> karung atau kurang** setelah setiap kedatangan.
 
-# Biaya di sekitar batas kelompok
+# Jalannya stok menurut informasi
 
-<BlockMath math="\begin{aligned}
-100\text{ lembar}&:\quad 100\cdot500=50{.}000\\
-101\text{ lembar}&:\quad 101\cdot400=40{.}400\\
-400\text{ lembar}&:\quad 400\cdot400=160{.}000\\
-501\text{ lembar}&:\quad 501\cdot300=150{.}300
-\end{aligned}" />
+| Hari ke- | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> | <InlineMath math="10" /> | <InlineMath math="11" /> | <InlineMath math="12" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Stok akhir hari | <InlineMath math="100" /> | <InlineMath math="75" /> | <InlineMath math="45" /> | <InlineMath math="25" /> | <InlineMath math="0" /> | <InlineMath math="110" /> | <InlineMath math="80" /> | <InlineMath math="55" /> | <InlineMath math="10" /> | <InlineMath math="0" /> | <InlineMath math="120" /> | <InlineMath math="100" /> |
 
-Pesanan 101 lembar lebih murah daripada 100 lembar, dan 501 lembar lebih murah daripada 400 lembar. Pernyataan kedua dan keempat benar. Contoh 100 dan 101 lembar juga menunjukkan bahwa **biaya total tidak selalu naik**, jadi pernyataan ketiga salah.
+Pesanan pertama dibuat pada akhir hari ke-<InlineMath math="3" /> dan tiba pada hari ke-<InlineMath math="6" />. Penjualan hilang <InlineMath math="10" /> karung pada hari ke-<InlineMath math="5" /> dan <InlineMath math="40" /> karung pada hari ke-<InlineMath math="10" />, jadi **totalnya <InlineMath math="50" /> karung**.
 
-# Pesanan 300 lembar
+# Pernyataan pertama tentang pesanan kedua
 
-<BlockMath math="300\cdot400=120{.}000<150{.}300" />
+Setelah kedatangan hari ke-<InlineMath math="6" />, stok akhir hari adalah <InlineMath math="110" />, <InlineMath math="80" />, lalu <InlineMath math="55" />. **Stok baru turun ke bawah <InlineMath math="60" /> pada akhir hari ke-<InlineMath math="8" />**, jadi pesanan kedua dibuat saat itu dan tiba pada hari ke-<InlineMath math="8+3=11" />. Pernyataan pertama benar.
 
-Untuk 300 lembar, memesan tepat 300 lembar **lebih murah**, jadi pernyataan pertama salah.
+# Pernyataan kedua tentang ukuran pesanan
 
-Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **salah**, dan keempat **benar**.
+Dengan pesanan <InlineMath math="100" /> karung, stok setelah kedatangan hari ke-<InlineMath math="6" /> hanya <InlineMath math="60" /> karung, sehingga **pesanan berikutnya langsung dibuat pada akhir hari ke-<InlineMath math="6" />** dan tiba pada hari ke-<InlineMath math="9" />. Stok hari ke-<InlineMath math="9" /> dan ke-<InlineMath math="10" /> cukup, dan penjualan hilang hanya <InlineMath math="10" /> karung pada hari ke-<InlineMath math="5" /> serta <InlineMath math="20" /> karung pada hari ke-<InlineMath math="11" />.
+
+<BlockMath math="10+20=30<50" />
+
+Total penjualan hilang justru lebih kecil, jadi pernyataan kedua salah.
+
+# Pernyataan ketiga tentang waktu tunggu
+
+Dengan waktu tunggu dua hari, pesanan akhir hari ke-<InlineMath math="3" /> tiba pada hari ke-<InlineMath math="5" />, saat stok masih <InlineMath math="25" /> karung. Pesanan kedua dibuat pada akhir hari ke-<InlineMath math="8" /> dengan stok <InlineMath math="45" /> karung, yang **tepat cukup untuk permintaan hari ke-<InlineMath math="9" />**, lalu tiba pada hari ke-<InlineMath math="10" />. Tidak ada penjualan hilang, jadi pernyataan ketiga salah.
+
+# Pernyataan keempat tentang permintaan hari kesembilan
+
+Pesanan kedua tetap dibuat pada akhir hari ke-<InlineMath math="8" /> dan tiba pada hari ke-<InlineMath math="11" />. Stok akhir hari ke-<InlineMath math="9" /> menjadi <InlineMath math="55-35=20" /> karung, sedangkan permintaan hari ke-<InlineMath math="10" /> adalah <InlineMath math="50" /> karung. **Masih hilang <InlineMath math="30" /> karung**, jadi pernyataan keempat salah.
+
+Jadi, pernyataan pertama benar, pernyataan kedua salah, pernyataan ketiga salah, dan pernyataan keempat salah.

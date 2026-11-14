@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "fuel-trip",
+  stimulus: "gym-plans",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "90 km" },
-        { correct: false, label: "100 km" },
-        { correct: false, label: "125 km" },
-        { correct: true, label: "150 km" },
-        { correct: false, label: "225 km" },
+        { correct: false, label: "$$\\text{Rp}500{.}000$$" },
+        { correct: false, label: "$$\\text{Rp}540{.}000$$" },
+        { correct: true, label: "$$\\text{Rp}580{.}000$$" },
+        { correct: false, label: "$$\\text{Rp}610{.}000$$" },
+        { correct: false, label: "$$\\text{Rp}650{.}000$$" },
       ],
     },
   },

@@ -1,9 +1,31 @@
-Dua tiket diambil sekaligus dan hadiahnya sama, jadi **urutan pengambilan tidak diperhatikan**. Ini adalah kombinasi 2 dari 20.
+Kamu mencari semua tinggi dinding yang membuat satu gulung bermotif menghasilkan tepat <InlineMath math="3" /> lembar. Rencananya: cari dulu panjang potongan yang menghasilkan <InlineMath math="3" /> lembar, lalu ingat bahwa **potongan bermotif hanya dapat berupa kelipatan <InlineMath math="64\text{ cm}" />**.
 
-# Menghitung kombinasi
+# Panjang potongan untuk tiga lembar
 
-<BlockMath math="\binom{20}{2}=\frac{20\cdot19}{2}=190" />
+Misalkan panjang satu potongan <InlineMath math="c\text{ cm}" />. Gulungan sepanjang <InlineMath math="1{.}000\text{ cm}" /> menghasilkan tepat <InlineMath math="3" /> lembar jika <InlineMath math="3" /> potongan muat tetapi <InlineMath math="4" /> potongan tidak.
 
-Pembagian dengan 2 diperlukan karena pasangan tiket 3 dan 7 sama dengan pasangan tiket 7 dan 3. Tanpa pembagian itu, hasilnya 380, yang **menghitung setiap pasangan dua kali**.
+<BlockMath math="3c\le 1{.}000<4c\quad\text{sehingga}\quad 250<c\le 333\tfrac13" />
 
-Jadi, ada **190 pasangan** tiket yang mungkin.
+Kelipatan <InlineMath math="64" /> di sekitar rentang itu adalah <InlineMath math="192" />, <InlineMath math="256" />, <InlineMath math="320" />, dan <InlineMath math="384" />. **Hanya <InlineMath math="256" /> dan <InlineMath math="320" /> yang masuk**. Potongan <InlineMath math="192\text{ cm}" /> menghasilkan <InlineMath math="5" /> lembar, dan potongan <InlineMath math="384\text{ cm}" /> hanya <InlineMath math="2" /> lembar.
+
+# Tinggi dinding untuk setiap potongan
+
+Potongan bermotif adalah <InlineMath math="h+10" /> yang dibulatkan ke atas ke kelipatan <InlineMath math="64" />. Hasilnya <InlineMath math="256" /> jika <InlineMath math="192<h+10\le256" />, dan hasilnya <InlineMath math="320" /> jika <InlineMath math="256<h+10\le320" />.
+
+<BlockMath math="\begin{aligned}
+192<h+10\le256&\quad\text{memberi}\quad 183\le h\le246\\
+256<h+10\le320&\quad\text{memberi}\quad 247\le h\le310
+\end{aligned}" />
+
+Kedua rentang itu bersambung, jadi **gabungannya <InlineMath math="183\le h\le310" />**. Sebagai pemeriksaan, <InlineMath math="h=182" /> memberi potongan <InlineMath math="192\text{ cm}" />, dan <InlineMath math="h=311" /> memberi potongan <InlineMath math="384\text{ cm}" />.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain melupakan **satu aturan pemotongan**.
+
+- <InlineMath math="247\le h\le310" /> hanya menghitung potongan <InlineMath math="320\text{ cm}" /> dan melupakan potongan <InlineMath math="256\text{ cm}" />.
+- <InlineMath math="241\le h\le323" /> memakai aturan wallpaper polos, yaitu <InlineMath math="250<h+10\le333" />.
+- <InlineMath math="193\le h\le320" /> melupakan tambahan <InlineMath math="10\text{ cm}" /> untuk perapian.
+- <InlineMath math="251\le h\le333" /> melupakan tambahan <InlineMath math="10\text{ cm}" /> dan pembulatan motif sekaligus.
+
+Jadi, semua nilai <InlineMath math="h" /> yang mungkin adalah <InlineMath math="183\le h\le310" />.

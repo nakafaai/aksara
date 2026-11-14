@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "sprint-times",
+  stimulus: "recycling-bank",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: true, label: "14,3 detik" },
-        { correct: false, label: "14,4 detik" },
-        { correct: false, label: "14,5 detik" },
-        { correct: false, label: "14,6 detik" },
-        { correct: false, label: "14,7 detik" },
+        { correct: false, label: "$$0\\text{ kg}$$, tanpa tambahan" },
+        { correct: false, label: "$$0{,}2\\text{ kg}$$" },
+        { correct: false, label: "$$0{,}4\\text{ kg}$$" },
+        { correct: true, label: "$$0{,}7\\text{ kg}$$" },
+        { correct: false, label: "$$1{,}0\\text{ kg}$$" },
       ],
     },
   },

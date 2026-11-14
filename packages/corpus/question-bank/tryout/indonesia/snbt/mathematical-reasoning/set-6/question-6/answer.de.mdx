@@ -1,15 +1,44 @@
-Gleiche zuerst die Einheiten an: 1 Meter sind 1 000 mm. Dann suchst du **die kleinste ganze Zahl <InlineMath math="n" />** mit <InlineMath math="0{,}1\cdot2^n>1\,000" />.
+Die ersten drei Aussagen beziehen sich auf Ditas Fahrtenliste, die letzte auf jede beliebige Person. Bestimm also zuerst die bezahlten Minuten jeder Fahrt von Dita und die aufgelaufenen Minutengebühren, und prüf dann jede Aussage mit ihrem eigenen Beleg. Denk daran: **Die Obergrenze von <InlineMath math="\text{Rp}30{.}000" /> gilt für die Summe der Minutengebühren im Monat**, nicht für jede einzelne Fahrt.
 
-# Die Bedingung vereinfachen
+# Die aufgelaufenen Minutengebühren
 
-<BlockMath math="0{,}1\cdot2^n>1\,000\;\Longleftrightarrow\;2^n>10\,000" />
+Die bezahlten Minuten einer Fahrt sind ihre Dauer minus <InlineMath math="20" />, oder null, wenn die Fahrt höchstens <InlineMath math="20\text{ Minuten}" /> dauert. Jede bezahlte Minute kostet <InlineMath math="\text{Rp}500" />. Die Tabelle summiert **die Minutengebühren der Reihe nach**, noch ohne Obergrenze.
 
-# Eine genügend große Zweierpotenz finden
+| Fahrt | Dauer | Bezahlte Minuten | Gebühren bis hier |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="25" /> | <InlineMath math="5" /> | <InlineMath math="2{.}500" /> |
+| <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="0" /> | <InlineMath math="2{.}500" /> |
+| <InlineMath math="3" /> | <InlineMath math="38" /> | <InlineMath math="18" /> | <InlineMath math="11{.}500" /> |
+| <InlineMath math="4" /> | <InlineMath math="44" /> | <InlineMath math="24" /> | <InlineMath math="23{.}500" /> |
+| <InlineMath math="5" /> | <InlineMath math="15" /> | <InlineMath math="0" /> | <InlineMath math="23{.}500" /> |
+| <InlineMath math="6" /> | <InlineMath math="31" /> | <InlineMath math="11" /> | <InlineMath math="29{.}000" /> |
+| <InlineMath math="7" /> | <InlineMath math="9" /> | <InlineMath math="0" /> | <InlineMath math="29{.}000" /> |
+| <InlineMath math="8" /> | <InlineMath math="27" /> | <InlineMath math="7" /> | <InlineMath math="32{.}500" /> |
 
-<BlockMath math="2^{13}=8\,192,\qquad 2^{14}=16\,384" />
+Weil die Obergrenze bei <InlineMath math="\text{Rp}30{.}000" /> liegt, zahlt Dita für ihre <InlineMath math="65" /> bezahlten Minuten nur <InlineMath math="\text{Rp}30{.}000" /> Minutengebühren.
 
-Die Potenz 13 **überschreitet 10 000 noch nicht**, die Potenz 14 schon. Nach 13 Faltungen ist der Stapel erst 819,2 mm dick, nach 14 Faltungen 1 638,4 mm.
+# Die Aussage über die umgekehrte Reihenfolge
 
-Der Wert 13 hört einen Schritt zu früh auf. Der Wert 100 nimmt an, dass jede Faltung 10 mm hinzufügt, und 10 verwendet <InlineMath math="2^{10}" />, was nur 102,4 mm ergibt.
+Die Minutengebühr im Monat ist <InlineMath math="500" /> mal die Summe der bezahlten Minuten, gekappt bei <InlineMath math="30{.}000" />. **Die Summe der bezahlten Minuten hängt nicht von der Reihenfolge der Fahrten ab**, weil du Zahlen in jeder Reihenfolge addieren darfst. Die Gebühr bleibt also <InlineMath math="\text{Rp}30{.}000" />. Die Reihenfolge ändert nur, wann die Obergrenze erreicht wird. Bei umgekehrter Reihenfolge laufen die Gebühren als <InlineMath math="3{.}500" />, <InlineMath math="3{.}500" />, <InlineMath math="9{.}000" />, <InlineMath math="9{.}000" />, <InlineMath math="21{.}000" /> und dann <InlineMath math="30{.}000" /> bei Fahrt <InlineMath math="6" /> auf. Gezahlt wird gleich viel. Die Aussage ist **richtig**.
 
-Es braucht also mindestens **14 Faltungen**.
+# Die Aussage über die letzte Fahrt
+
+Vor der letzten Fahrt sind erst <InlineMath math="\text{Rp}29{.}000" /> aufgelaufen, also noch unter der Obergrenze. Die letzte Fahrt bringt <InlineMath math="7\cdot 500=\text{Rp}3{.}500" /> dazu, also **wird die Obergrenze mitten in der letzten Fahrt erreicht**. Die Aussage ist **richtig**.
+
+# Die Aussage über die geteilte Fahrt
+
+Fahrten von <InlineMath math="13" /> und <InlineMath math="12\text{ Minuten}" /> dauern jeweils höchstens <InlineMath math="20\text{ Minuten}" />, also hat keine von beiden bezahlte Minuten. Die bezahlten Minuten des Monats sinken von <InlineMath math="65" /> auf <InlineMath math="60" />.
+
+<BlockMath math="60\cdot 500=30{.}000" />
+
+Die Minutengebühr beträgt genau <InlineMath math="\text{Rp}30{.}000" />, so viel wie vorher wegen der Obergrenze. Also **bleibt die Summe bei <InlineMath math="\text{Rp}60{.}000" />** und wird nicht kleiner. Die Aussage ist **falsch**. Lässt du die Obergrenze weg, vergleichst du <InlineMath math="\text{Rp}32{.}500" /> mit <InlineMath math="\text{Rp}30{.}000" /> und hältst die Aussage fälschlich für richtig.
+
+# Die Aussage über Personen mit wenigen Fahrten
+
+Das Abo kostet immer mindestens <InlineMath math="\text{Rp}30{.}000" />, nämlich die Abogebühr. Im Normaltarif **entstehen die höchsten Kosten bei vier Fahrten von je <InlineMath math="20\text{ Minuten}" />**, denn die Kosten steigen mit jeder weiteren Minute und jeder weiteren Fahrt.
+
+<BlockMath math="4\cdot(2{.}000+250\cdot 20)=4\cdot 7{.}000=28{.}000" />
+
+Der Normaltarif kostet höchstens <InlineMath math="\text{Rp}28{.}000" />, also immer weniger als <InlineMath math="\text{Rp}30{.}000" />. Die Aussage ist für jede solche Person **richtig**. Die Zahl <InlineMath math="4" /> ist dabei wichtig: Bei <InlineMath math="5" /> Fahrten von je <InlineMath math="20\text{ Minuten}" /> kostet der Normaltarif <InlineMath math="\text{Rp}35{.}000" />, mehr als das Abo.
+
+Die Aussage über die umgekehrte Reihenfolge ist also richtig, die über die letzte Fahrt richtig, die über die geteilte Fahrt falsch und die über Personen mit höchstens <InlineMath math="4" /> kurzen Fahrten richtig.

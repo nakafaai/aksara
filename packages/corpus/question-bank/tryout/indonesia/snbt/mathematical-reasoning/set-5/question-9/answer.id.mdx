@@ -1,18 +1,42 @@
-Rata-rata adalah **jumlah semua waktu dibagi banyak siswa**, yaitu 8.
+Kamu mencari berat kardus basah terkecil yang nilainya masih mencapai <InlineMath math="\text{Rp}16{.}000" />. Aturannya bekerja dalam urutan: berat basah dipotong <InlineMath math="20\%" />, lalu dibulatkan ke bawah, lalu dikali harga. Jadi, **kerjakan dari belakang**: dari nilai ke berat yang dipakai, dari berat yang dipakai ke berat sesudah potongan, lalu ke berat basah.
 
-# Jumlah waktu
+# Berat yang dipakai paling sedikit
 
-**Pasangkan nilai** agar penjumlahan lebih mudah.
+Harga kardus <InlineMath math="\text{Rp}2{.}500" /> per kg, jadi berat yang dipakai harus memenuhi:
+
+<BlockMath math="2{.}500 \cdot b \ge 16{.}000 \iff b \ge 6{,}4" />
+
+Tetapi **berat yang dipakai selalu kelipatan <InlineMath math="0{,}5\text{ kg}" />**. Kelipatan <InlineMath math="0{,}5" /> terkecil yang tidak kurang dari <InlineMath math="6{,}4" /> adalah <InlineMath math="6{,}5" />. Berat <InlineMath math="6{,}0\text{ kg}" /> hanya bernilai <InlineMath math="\text{Rp}15{.}000" />, belum cukup.
+
+# Berat sesudah potongan
+
+Pembulatan ke bawah menghasilkan <InlineMath math="6{,}5\text{ kg}" /> kalau berat sesudah potongan **paling sedikit <InlineMath math="6{,}5\text{ kg}" />**. Kalau beratnya <InlineMath math="6{,}49\text{ kg}" />, misalnya, hasil pembulatannya turun ke <InlineMath math="6{,}0\text{ kg}" />.
+
+# Berat kardus basah
+
+Potongan <InlineMath math="20\%" /> berarti yang tersisa <InlineMath math="80\%" /> dari berat basah <InlineMath math="w" />. Untuk kembali ke berat basah, kamu **membagi dengan <InlineMath math="0{,}8" />**:
 
 <BlockMath math="\begin{aligned}
-(14{,}2+13{,}8)+(15{,}1+14{,}0)+(14{,}6+14{,}4)+(13{,}5+16{,}4)&=28+29{,}1+29+29{,}9\\
-&=116
+0{,}8\,w &\ge 6{,}5 \\
+w &\ge \frac{6{,}5}{0{,}8} = 8{,}125
 \end{aligned}" />
 
-# Rata-rata
+Cek dua berat di sekitar jawaban ini:
 
-<BlockMath math="\frac{116}{8}=14{,}5" />
+<BlockMath math="\begin{aligned}
+w = 8{,}125 &: 0{,}8 \cdot 8{,}125 = 6{,}5 \to 6{,}5\text{ kg} \to \text{Rp}16{.}250 \\
+w = 8 &: 0{,}8 \cdot 8 = 6{,}4 \to 6{,}0\text{ kg} \to \text{Rp}15{.}000
+\end{aligned}" />
 
-Hasil ini berada di antara waktu tercepat 13,5 detik dan waktu terlambat 16,4 detik, jadi **masuk akal**.
+Berat <InlineMath math="8{,}125\text{ kg}" /> sudah cukup, sedangkan <InlineMath math="8\text{ kg}" /> belum.
 
-Jadi, rata-rata waktu lari adalah **14,5 detik**.
+# Pilihan yang keliru
+
+Setiap pilihan lain **salah menangani pembulatan atau potongan air**:
+
+- <InlineMath math="7{,}5\text{ kg}" /> membulatkan kebutuhan <InlineMath math="6{,}4\text{ kg}" /> ke bawah menjadi <InlineMath math="6{,}0\text{ kg}" />, padahal <InlineMath math="6{,}0\text{ kg}" /> hanya bernilai <InlineMath math="\text{Rp}15{.}000" />.
+- <InlineMath math="7{,}68\text{ kg}" /> mengabaikan pembulatan dan menaikkan <InlineMath math="6{,}4" /> sebesar <InlineMath math="20\%" /> (dikali <InlineMath math="1{,}2" />).
+- <InlineMath math="7{,}8\text{ kg}" /> sudah membulatkan ke <InlineMath math="6{,}5" />, tetapi menaikkannya sebesar <InlineMath math="20\%" /> (dikali <InlineMath math="1{,}2" />), padahal potongan <InlineMath math="20\%" /> dihitung dari berat basah, jadi harus dibagi <InlineMath math="0{,}8" />.
+- <InlineMath math="8\text{ kg}" /> membagi <InlineMath math="6{,}4" /> dengan <InlineMath math="0{,}8" /> tanpa memperhatikan pembulatan, sehingga berat yang dipakai hanya <InlineMath math="6{,}0\text{ kg}" />.
+
+Jadi, Pak Rudi harus menyetor kardus basah paling sedikit <InlineMath math="8{,}125\text{ kg}" />.

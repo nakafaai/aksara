@@ -1,20 +1,35 @@
-The payback time is **the installation cost divided by the saving per unit of time**. Compute both for 10 panels.
+You're looking for the lowest Booster cost that gets <InlineMath math="62\text{ GB}" /> downloaded within <InlineMath math="12" /> hours. The plan: turn the speeds into time per GB, then work out the download time for each number of Boosters, **starting with none**.
 
-# Cost and saving
+# Download time per GB
 
-One panel makes 0.9 kWh a day, so **10 panels are needed**.
+A speed of <InlineMath math="40\text{ Mbps}" /> is <InlineMath math="5\text{ MB}" /> per second, and <InlineMath math="8\text{ Mbps}" /> is <InlineMath math="1\text{ MB}" /> per second. One GB holds <InlineMath math="1{,}000\text{ MB}" />.
 
 <BlockMath math="\begin{aligned}
-\text{cost}&=10\cdot2{,}430{,}000=24{,}300{,}000\\
-\text{saving per month}&=9\cdot1{,}500\cdot30=405{,}000
+\text{full speed}&:1{,}000:5=200\text{ seconds per GB}\\
+\text{reduced speed}&:1{,}000:1=1{,}000\text{ seconds per GB}
 \end{aligned}" />
 
-# Payback time
+The time available is <InlineMath math="12" /> hours, which is <InlineMath math="43{,}200" /> seconds. The download runs from 07:00 to 19:00, so **the night hours don't help**.
 
-<BlockMath math="\frac{24{,}300{,}000}{405{,}000}=60\text{ months}=5\text{ years}" />
+# No Booster and one Booster
 
-Each month the saving covers **one sixtieth of the installation cost**, so 60 months are needed.
+With no Booster, only <InlineMath math="6\text{ GB}" /> run at full speed and the other <InlineMath math="56\text{ GB}" /> run at the reduced speed.
 
-The value 6 years appears if 12 panels are installed without higher use. The value 10 years appears if only half the saving is counted, and 4 years if the monthly saving is inflated to more than Rp500,000.
+<BlockMath math="6\cdot200+56\cdot1{,}000=57{,}200\text{ seconds}" />
 
-So the installation cost is covered after **5 years**.
+That is more than <InlineMath math="43{,}200" /> seconds, so it isn't enough. With one Booster, the full-speed quota becomes <InlineMath math="20+6=26\text{ GB}" />, because **the main quota that is left still gets used once the Booster runs out**.
+
+<BlockMath math="26\cdot200+36\cdot1{,}000=41{,}200\text{ seconds}" />
+
+A time of <InlineMath math="41{,}200" /> seconds is <InlineMath math="11" /> hours <InlineMath math="26" /> minutes <InlineMath math="40" /> seconds, still within <InlineMath math="12" /> hours. One Booster is enough.
+
+# The tempting wrong options
+
+Every other option comes from **one part of the rules that was missed**.
+
+- <InlineMath math="\text{Rp}0" /> comes from forgetting the speed drop, so that <InlineMath math="62\cdot200=12{,}400" /> seconds looks enough.
+- <InlineMath math="\text{Rp}30{,}000" /> comes from forgetting the <InlineMath math="6\text{ GB}" /> of main quota that is left. One Booster then seems to need <InlineMath math="20\cdot200+42\cdot1{,}000=46{,}000" /> seconds, more than <InlineMath math="12" /> hours.
+- <InlineMath math="\text{Rp}45{,}000" /> comes from thinking all <InlineMath math="56\text{ GB}" /> beyond the main quota have to run at full speed, which takes <InlineMath math="3" /> Boosters.
+- <InlineMath math="\text{Rp}60{,}000" /> comes from thinking all <InlineMath math="62\text{ GB}" /> have to be covered by Boosters, which takes <InlineMath math="4" /> Boosters.
+
+So the lowest Booster cost is <InlineMath math="\text{Rp}15{,}000" />.

@@ -1,18 +1,42 @@
-Der Mittelwert ist **die Summe aller Zeiten geteilt durch die Anzahl der Schüler**, also 8.
+Du suchst das kleinste Gewicht an nassem Karton, dessen Wert noch <InlineMath math="\text{Rp}16{.}000" /> erreicht. Die Regeln greifen in dieser Reihenfolge: Vom nassen Gewicht werden <InlineMath math="20\%" /> abgezogen, dann wird abgerundet, dann mit dem Preis multipliziert. Also **rechne rückwärts**: vom Wert zum gezählten Gewicht, vom gezählten Gewicht zum Gewicht nach dem Abzug und dann zum nassen Gewicht.
 
-# Summe der Zeiten
+# Das kleinste gezählte Gewicht
 
-**Fasse Werte paarweise zusammen**, das erleichtert die Addition.
+Karton bringt <InlineMath math="\text{Rp}2{.}500" /> pro kg, also muss das gezählte Gewicht diese Bedingung erfüllen:
+
+<BlockMath math="2{.}500 \cdot b \ge 16{.}000 \iff b \ge 6{,}4" />
+
+Aber **das gezählte Gewicht ist immer ein Vielfaches von <InlineMath math="0{,}5\text{ kg}" />**. Das kleinste Vielfache von <InlineMath math="0{,}5" />, das mindestens <InlineMath math="6{,}4" /> ist, ist <InlineMath math="6{,}5" />. Ein gezähltes Gewicht von <InlineMath math="6{,}0\text{ kg}" /> ist nur <InlineMath math="\text{Rp}15{.}000" /> wert, das reicht nicht.
+
+# Das Gewicht nach dem Abzug
+
+Abrunden ergibt <InlineMath math="6{,}5\text{ kg}" />, wenn das Gewicht nach dem Abzug **mindestens <InlineMath math="6{,}5\text{ kg}" />** beträgt. Bei <InlineMath math="6{,}49\text{ kg}" /> zum Beispiel wird auf <InlineMath math="6{,}0\text{ kg}" /> abgerundet.
+
+# Das Gewicht des nassen Kartons
+
+Ein Abzug von <InlineMath math="20\%" /> lässt <InlineMath math="80\%" /> des nassen Gewichts <InlineMath math="w" /> übrig. Um zum nassen Gewicht zurückzukommen, **teilst du durch <InlineMath math="0{,}8" />**:
 
 <BlockMath math="\begin{aligned}
-(14{,}2+13{,}8)+(15{,}1+14{,}0)+(14{,}6+14{,}4)+(13{,}5+16{,}4)&=28+29{,}1+29+29{,}9\\
-&=116
+0{,}8\,w &\ge 6{,}5 \\
+w &\ge \frac{6{,}5}{0{,}8} = 8{,}125
 \end{aligned}" />
 
-# Der Mittelwert
+Prüfe zwei Gewichte rund um diese Antwort:
 
-<BlockMath math="\frac{116}{8}=14{,}5" />
+<BlockMath math="\begin{aligned}
+w = 8{,}125 &: 0{,}8 \cdot 8{,}125 = 6{,}5 \to 6{,}5\text{ kg} \to \text{Rp}16{.}250 \\
+w = 8 &: 0{,}8 \cdot 8 = 6{,}4 \to 6{,}0\text{ kg} \to \text{Rp}15{.}000
+\end{aligned}" />
 
-Das liegt zwischen der schnellsten Zeit von 13,5 Sekunden und der langsamsten von 16,4 Sekunden, ist also **plausibel**.
+<InlineMath math="8{,}125\text{ kg}" /> reichen, <InlineMath math="8\text{ kg}" /> reichen nicht.
 
-Die mittlere Zeit beträgt also **14,5 Sekunden**.
+# Die falschen Antworten
+
+Jede andere Antwort **behandelt das Runden oder den Wasserabzug falsch**:
+
+- <InlineMath math="7{,}5\text{ kg}" /> rundet den Bedarf von <InlineMath math="6{,}4\text{ kg}" /> auf <InlineMath math="6{,}0\text{ kg}" /> ab, aber <InlineMath math="6{,}0\text{ kg}" /> sind nur <InlineMath math="\text{Rp}15{.}000" /> wert.
+- <InlineMath math="7{,}68\text{ kg}" /> übersieht das Runden und erhöht <InlineMath math="6{,}4" /> um <InlineMath math="20\%" /> (mal <InlineMath math="1{,}2" />).
+- <InlineMath math="7{,}8\text{ kg}" /> rundet richtig auf <InlineMath math="6{,}5" />, erhöht dann aber um <InlineMath math="20\%" /> (mal <InlineMath math="1{,}2" />), dabei wird der Abzug von <InlineMath math="20\%" /> vom nassen Gewicht genommen, also musst du durch <InlineMath math="0{,}8" /> teilen.
+- <InlineMath math="8\text{ kg}" /> teilt <InlineMath math="6{,}4" /> durch <InlineMath math="0{,}8" />, ohne an das Abrunden zu denken, sodass das gezählte Gewicht nur <InlineMath math="6{,}0\text{ kg}" /> ist.
+
+Pak Rudi muss also mindestens <InlineMath math="8{,}125\text{ kg}" /> nassen Karton abgeben.

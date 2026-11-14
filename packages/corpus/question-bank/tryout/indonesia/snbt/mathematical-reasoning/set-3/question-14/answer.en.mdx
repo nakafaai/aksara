@@ -1,13 +1,46 @@
-The tiler's advice asks for **at least 10% more** than the 180 tiles that exactly cover the floor. Then the number of tiles must be rounded up to whole boxes.
+You're counting pairs <InlineMath math="(n, T)" /> that pass three filters: the rise rule, the step rule and the space limit. The plan: first find the possible <InlineMath math="n" />, then the range of <InlineMath math="T" /> for each <InlineMath math="n" />, and finally **cut that range with the space limit, which uses <InlineMath math="n-1" /> treads**.
 
-# Minimum number of tiles
+# The possible numbers of steps
 
-<BlockMath math="180+10\%\cdot180=180+18=198" />
+The rise rule asks for <InlineMath math="15\le\tfrac{288}{n}\le18" />.
 
-# Number of boxes
+<BlockMath math="\begin{aligned}
+\frac{288}{n}\le18 &\iff n\ge16 \\
+\frac{288}{n}\ge15 &\iff n\le19.2
+\end{aligned}" />
 
-<BlockMath math="\frac{198}{12}=16.5" />
+So **only <InlineMath math="n=16, 17, 18, 19" /> are possible**.
 
-Boxes cannot be bought in part, and 16 boxes hold only 192 tiles, fewer than 198. So the number **must be rounded up** to 17 boxes, which hold 204 tiles.
+# The range of tread widths
 
-So at least **17 boxes** must be bought.
+The step rule <InlineMath math="62\le2R+T\le66" /> means <InlineMath math="62-2R\le T\le66-2R" />. Since <InlineMath math="T" /> is a whole number, **take the whole numbers inside that range**.
+
+| <InlineMath math="n" /> | <InlineMath math="2R" /> | Range of <InlineMath math="T" /> | Whole <InlineMath math="T" /> |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="16" /> | <InlineMath math="36" /> | <InlineMath math="26\le T\le30" /> | <InlineMath math="26" /> to <InlineMath math="30" /> |
+| <InlineMath math="17" /> | <InlineMath math="\tfrac{576}{17}" /> | <InlineMath math="\tfrac{478}{17}\le T\le\tfrac{546}{17}" /> | <InlineMath math="29" /> to <InlineMath math="32" /> |
+| <InlineMath math="18" /> | <InlineMath math="32" /> | <InlineMath math="30\le T\le34" /> | <InlineMath math="30" /> to <InlineMath math="34" /> |
+| <InlineMath math="19" /> | <InlineMath math="\tfrac{576}{19}" /> | <InlineMath math="\tfrac{602}{19}\le T\le\tfrac{678}{19}" /> | <InlineMath math="32" /> to <InlineMath math="35" /> |
+
+The fractions are easy to estimate: <InlineMath math="\tfrac{478}{17}" /> is just above <InlineMath math="28" />, <InlineMath math="\tfrac{546}{17}" /> is just above <InlineMath math="32" />, <InlineMath math="\tfrac{602}{19}" /> is about <InlineMath math="31.7" />, and <InlineMath math="\tfrac{678}{19}" /> is about <InlineMath math="35.7" />.
+
+# The space limit
+
+The floor above doesn't count as a tread, so a stair with <InlineMath math="n" /> steps has <InlineMath math="n-1" /> treads. The space condition is <InlineMath math="(n-1)T\le480" />, so **the tread can be at most <InlineMath math="\tfrac{480}{n-1}" /> wide**.
+
+<BlockMath math="\begin{aligned}
+n=16 &: \ T\le\tfrac{480}{15}=32 \\
+n=17 &: \ T\le\tfrac{480}{16}=30 \\
+n=18 &: \ T\le\tfrac{480}{17}\approx28.2 \\
+n=19 &: \ T\le\tfrac{480}{18}\approx26.7
+\end{aligned}" />
+
+For <InlineMath math="n=16" />, all the values from <InlineMath math="26" /> to <InlineMath math="30" /> fit. For <InlineMath math="n=17" />, only <InlineMath math="29" /> and <InlineMath math="30" /> fit. For <InlineMath math="n=18" /> and <InlineMath math="n=19" />, even the smallest allowed width is already too long.
+
+<BlockMath math="5+2+0+0=7" />
+
+# Check the traps
+
+If you count the floor above as a tread, the condition becomes <InlineMath math="nT\le480" />, and **every choice for <InlineMath math="n=17" /> disappears**, leaving only <InlineMath math="5" /> designs. If you forget the upper limit <InlineMath math="2R+T\le66" />, <InlineMath math="n=16" /> picks up <InlineMath math="T=31" /> and <InlineMath math="T=32" />, giving <InlineMath math="9" /> designs. Both are wrong.
+
+So <InlineMath math="7" /> different designs meet both rules and fit in the space.

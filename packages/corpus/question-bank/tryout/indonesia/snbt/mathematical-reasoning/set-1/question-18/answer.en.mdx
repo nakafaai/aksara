@@ -1,15 +1,31 @@
-Points are handed out match by match. Each match **gives exactly 3 points**, 3 to the winner and 0 to the loser, whatever the result.
+Each statement has to be tested by counting the card order by order. One thing to hold on to: **the free cup comes with the first order after the card holds <InlineMath math="10" /> stamps**, not with the order that brings the card up to <InlineMath math="10" />.
 
-# Number of matches
+# The first statement about ten orders in a row
 
-**Every two teams play once**, so there are <InlineMath math="\binom62=15" /> matches.
+Take a new customer who orders <InlineMath math="10" /> times on Mondays. Each order gives <InlineMath math="1" /> stamp, so the card only holds <InlineMath math="10" /> stamps after the tenth order. **All ten cups are paid**, and the free cup only comes with the eleventh order. One example is enough, so the first statement is false.
 
-# Total points
+# The second statement about Wednesdays and Mondays
 
-Since each match contributes 3 points, the total **does not depend on who wins**.
+Ten Monday orders are all paid, as in the first statement. On Wednesdays, the first five orders give <InlineMath math="5\cdot2=10" /> stamps, so **the sixth order is free** and the next four are paid again.
 
-<BlockMath math="15\cdot3=45" />
+<BlockMath math="\begin{aligned}
+\text{Mondays}&:10\cdot20{,}000=200{,}000\\
+\text{Wednesdays}&:9\cdot15{,}000=135{,}000\\
+\text{difference}&:200{,}000-135{,}000=65{,}000
+\end{aligned}" />
 
-The value 15 is the number of matches, not points. The value 30 assumes each match gives only 2 points. The values 36 and 40 do not fit the rule of 3 points per match.
+The difference is exactly <InlineMath math="\text{Rp}65{,}000" />, so the second statement is true.
 
-So the total of all teams' points is **45**.
+# The third statement about the sixth cup
+
+The Wednesday example already settles it. Five Wednesday orders fill the card with <InlineMath math="10" /> stamps, so **the sixth cup is free**. The third statement is false.
+
+# The fourth statement about orders from Thursday
+
+Count the stamps until the card holds <InlineMath math="10" />. Thursday to Tuesday give <InlineMath math="6" /> stamps, Wednesday gives <InlineMath math="2" /> stamps, then Thursday and Friday give <InlineMath math="2" /> stamps.
+
+<BlockMath math="6+2+2=10" />
+
+The card holds <InlineMath math="10" /> stamps after Friday's order, so **the first free cup falls on a Saturday**, not a Wednesday. The fourth statement is false.
+
+So the first statement is false, the second is true, the third is false and the fourth is false.

@@ -1,18 +1,46 @@
-Die Bodenmaße sind auf beiden Seiten durch die Fliesengröße teilbar, die Fliesen passen also **in Reihen und Spalten ohne Zuschnitt**. Rechne zuerst in Zentimeter um.
+Beide Treppen müssen genau dieselben Stufen haben. Der Plan ist also: **Finde zuerst eine Höhe <InlineMath math="R" />, die zu beiden Abständen gleichzeitig passt**, wähle dann den schmalsten erlaubten Auftritt und zähle zum Schluss die Auftritte.
 
-# Fliesen entlang jeder Seite
+# Die gemeinsame Stufenhöhe
+
+Die untere Treppe hat <InlineMath math="n_1" /> Stufen, die obere <InlineMath math="n_2" />. Weil die Höhen gleich sind, gilt <InlineMath math="R=\tfrac{288}{n_1}=\tfrac{272}{n_2}" />.
 
 <BlockMath math="\begin{aligned}
-450:30&=15\text{ Fliesen entlang der Seite 4,5 m}\\
-360:30&=12\text{ Fliesen entlang der Seite 3,6 m}
+\frac{n_2}{n_1} &= \frac{272}{288} = \frac{17}{18} \\
+n_1 = 18k,\ n_2 &= 17k \\
+R &= \frac{288}{18k} = \frac{16}{k}
 \end{aligned}" />
 
-# Gesamtzahl der Fliesen
+Die zweite Zeile gilt, weil <InlineMath math="17" /> und <InlineMath math="18" /> keinen gemeinsamen Teiler außer <InlineMath math="1" /> haben, also muss <InlineMath math="n_1" /> ein Vielfaches von <InlineMath math="18" /> sein. Dabei ist <InlineMath math="k" /> eine positive ganze Zahl. Die Steigungsregel verlangt <InlineMath math="15\le R\le18" />. Für <InlineMath math="k=1" /> passt <InlineMath math="R=16" />, während <InlineMath math="k=2" /> schon <InlineMath math="R=8" /> ergibt, also zu niedrig. **Die einzige Höhe, die zu beiden Treppen passt, ist also <InlineMath math="16\text{ cm}" />**, mit <InlineMath math="n_1=18" /> und <InlineMath math="n_2=17" />.
 
-<BlockMath math="15\cdot12=180" />
+# Der schmalste Auftritt
 
-Kontrolle über die Fläche: Der Boden hat 162 000 Quadratzentimeter, eine Fliese 900 Quadratzentimeter. Der Quotient **ist ebenfalls 180**.
+Die kürzesten Treppen haben die schmalsten Auftritte. Die Schrittregel mit <InlineMath math="R=16" /> liefert eine Untergrenze für <InlineMath math="T" />.
 
-Der Wert 198 enthält schon die 10 % Reserve, und 204 ist der Inhalt von 17 Kartons. Der Wert 162 entsteht, wenn man die Bodenfläche 16,2 Quadratmeter durch 0,1 teilt, als hätte eine Fliese 0,1 Quadratmeter.
+<BlockMath math="\begin{aligned}
+2\cdot16+T &\ge 62 \\
+T &\ge 30
+\end{aligned}" />
 
-Den Boden bedecken also genau **180** Fliesen.
+Die Obergrenze ist <InlineMath math="T\le66-32=34" />, also ist <InlineMath math="T=30" /> erlaubt, und **das ist der schmalste Auftritt für beide Treppen**.
+
+# Auftritte und Gesamtlänge
+
+Die oberste Stufe jeder Treppe hat keinen Auftritt, weil **das obere Stockwerk nicht als Auftritt zählt**. Jede Treppe hat also einen Auftritt weniger als Stufen.
+
+<BlockMath math="\begin{aligned}
+\text{Auftritte} &= (18-1)+(17-1) = 33 \\
+\text{Gesamtlänge} &= 33\cdot30 = 990\text{ cm}
+\end{aligned}" />
+
+Prüf die Maße. Die Höhen <InlineMath math="18\cdot16=288" /> und <InlineMath math="17\cdot16=272" /> passen zu beiden Abständen, und <InlineMath math="2\cdot16+30=62" /> liegt genau auf der Untergrenze der Schrittregel.
+
+# Warum die anderen Antworten falsch sind
+
+Jede andere Antwort **vergisst die Bedingung gleicher Stufen oder zählt die Auftritte falsch**.
+
+- <InlineMath math="810\text{ cm}" /> entsteht, wenn jede Treppe für sich geplant wird: die untere mit <InlineMath math="16" /> Stufen zu <InlineMath math="18\text{ cm}" /> und <InlineMath math="T=26" /> (<InlineMath math="390\text{ cm}" />), die obere mit <InlineMath math="16" /> Stufen zu <InlineMath math="17\text{ cm}" /> und <InlineMath math="T=28" /> (<InlineMath math="420\text{ cm}" />). Diese Maße sind nicht gleich.
+- <InlineMath math="858\text{ cm}" /> entsteht, wenn <InlineMath math="33" /> Auftritte eine Breite von <InlineMath math="26\text{ cm}" /> bekommen. Diese Breite ist aber nur bei <InlineMath math="R=18" /> erlaubt.
+- <InlineMath math="1{.}020\text{ cm}" /> entsteht, wenn das obere Stockwerk einer Treppe als Auftritt mitgezählt wird, also <InlineMath math="34" /> Auftritte.
+- <InlineMath math="1{.}050\text{ cm}" /> entsteht, wenn die Zahl der Auftritte gleich der Zahl der Stufen gesetzt wird, also <InlineMath math="35" />.
+
+Die kürzeste horizontale Gesamtlänge beider Treppen beträgt also <InlineMath math="990\text{ cm}" />.

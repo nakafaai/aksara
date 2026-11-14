@@ -1,17 +1,47 @@
-Berechne Mittelwert, Median, Modus und Spannweite und prüfe dann jede Wahl. Für den Median brauchst du **die geordneten Daten**.
+Du suchst das Restguthaben nach der größten erlaubten Abhebung. Der Plan: Bestimme das gezählte Gewicht jeder Sorte, addiere den Wert, zieh die Bearbeitungsgebühr ab und achte dabei auf die **Obergrenze von <InlineMath math="\text{Rp}6{.}000" />**, und wähle dann die größte Abhebung, nach der noch mindestens <InlineMath math="\text{Rp}10{.}000" /> übrig bleiben.
 
-# Die Daten ordnen
+# Das gezählte Gewicht jeder Sorte
 
-<BlockMath math="13{,}5,\;13{,}8,\;14{,}0,\;14{,}2,\;14{,}4,\;14{,}6,\;15{,}1,\;16{,}4" />
+Jede Sorte wird getrennt gewogen und auf ein Vielfaches von <InlineMath math="0{,}5\text{ kg}" /> abgerundet. Bei nassem Karton werden **zuerst <InlineMath math="20\%" /> abgezogen, erst danach wird gerundet**:
 
-Es sind 8 Werte, der Median ist also **der Mittelwert des 4. und 5. Werts**.
+<BlockMath math="\begin{aligned}
+\text{Dosen} &: 4{,}8 \to 4{,}5\text{ kg} \\
+\text{Plastikflaschen} &: 6{,}3 \to 6{,}0\text{ kg} \\
+\text{nasser Karton} &: 0{,}8 \cdot 8{,}4 = 6{,}72 \to 6{,}5\text{ kg}
+\end{aligned}" />
 
-<BlockMath math="\text{Median}=\frac{14{,}2+14{,}4}{2}=14{,}3" />
+# Der Wert der Abgabe und die Gebühr
 
-# Weitere Kennwerte und der Vergleich
+Multipliziere jedes Gewicht mit seinem Preis und addiere:
 
-Der Mittelwert ist <InlineMath math="\tfrac{116}{8}=14{,}5" />, also **ist der Mittelwert größer als der Median**. Das liegt daran, dass 16,4 Sekunden weit über den anderen Zeiten liegt und den Mittelwert nach oben zieht, während der Median davon unberührt bleibt.
+<BlockMath math="\begin{aligned}
+\text{Wert der Abgabe} &= 4{,}5 \cdot 12{.}000 + 6{,}0 \cdot 4{.}000 + 6{,}5 \cdot 2{.}500 \\
+&= 54{.}000 + 24{.}000 + 16{.}250 \\
+&= 94{.}250
+\end{aligned}" />
 
-Der Median ist nicht 14,4, denn 14,4 ist nur der 5. Wert. Keine Zeit kommt mehrfach vor, die Daten haben also keinen Modus. Die Spannweite ist <InlineMath math="16{,}4-13{,}5=2{,}9" /> Sekunden, nicht 3,1 Sekunden.
+<InlineMath math="10\%" /> dieses Werts wären <InlineMath math="9{.}425" />, mehr als die Obergrenze. Also **wird nur eine Gebühr von <InlineMath math="\text{Rp}6{.}000" /> abgezogen**:
 
-Wahr ist also: **Der Mittelwert der Zeiten ist größer als ihr Median**.
+<BlockMath math="\text{Guthaben} = 1{.}000 + 94{.}250 - 6{.}000 = 89{.}250" />
+
+# Die größte Abhebung
+
+Eine Abhebung muss ein Vielfaches von <InlineMath math="\text{Rp}20{.}000" /> sein, und **der Rest darf nicht unter <InlineMath math="\text{Rp}10{.}000" /> fallen**. Probiere von oben:
+
+<BlockMath math="\begin{aligned}
+89{.}250 - 80{.}000 &= 9{.}250 < 10{.}000 \\
+89{.}250 - 60{.}000 &= 29{.}250 \ge 10{.}000
+\end{aligned}" />
+
+<InlineMath math="\text{Rp}80{.}000" /> abzuheben ist nicht erlaubt, also beträgt die größte Abhebung <InlineMath math="\text{Rp}60{.}000" />, und es bleiben <InlineMath math="\text{Rp}29{.}250" />.
+
+# Häufige falsche Ergebnisse
+
+Mehrere andere Ergebnisse entstehen aus **einer übersprungenen Regel**:
+
+- <InlineMath math="\text{Rp}9{.}250" /> hebt <InlineMath math="\text{Rp}80{.}000" /> ab und vergisst das Mindestguthaben von <InlineMath math="\text{Rp}10{.}000" />.
+- <InlineMath math="\text{Rp}25{.}825" /> zieht die volle Gebühr von <InlineMath math="9{.}425" /> ohne Obergrenze ab, sodass das Guthaben <InlineMath math="85{.}825" /> beträgt.
+- <InlineMath math="\text{Rp}14{.}600" /> rundet die Gewichte nicht, sodass die Abgabe <InlineMath math="99{.}600" /> wert ist und <InlineMath math="\text{Rp}80{.}000" /> abgehoben werden.
+- <InlineMath math="\text{Rp}29{.}000" /> rundet den Karton zuerst (<InlineMath math="8{,}0\text{ kg}" />) und zieht erst dann das Wasser ab, was <InlineMath math="6{,}4\text{ kg}" /> ergibt.
+
+Pak Jokos Restguthaben nach dieser Abhebung beträgt also <InlineMath math="\text{Rp}29{.}250" />.

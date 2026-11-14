@@ -1,21 +1,43 @@
-Compute the volume, curved-side area and material area of both designs. **Being equal in one measure does not mean being equal in another**, so check each statement with its own formula.
+You're looking for the largest show profit, not the largest ticket revenue, and the price has to meet the audience condition. The plan: write the profit as a formula in the price <InlineMath math="p" /> (in thousands of rupiah), find its peak, turn the audience condition into a price limit, and then **test the multiples of** <InlineMath math="5\text{ thousand}" /> that are still allowed.
 
-# Volume and changing the radius
+# The profit formula
+
+The number of viewers is <InlineMath math="n=280-3.2p" />. Each viewer brings <InlineMath math="p\text{ thousand}" /> for the ticket and <InlineMath math="10\text{ thousand}" /> of snack gain, so **each viewer is worth** <InlineMath math="(p+10)\text{ thousand}" /> to the cinema:
+
+<BlockMath math="K(p)=(p+10)(280-3.2p)-2{,}000" />
+
+The part <InlineMath math="(p+10)(280-3.2p)" /> is zero at <InlineMath math="p=-10" /> and <InlineMath math="p=87.5" />. Its graph is a downward parabola, so the peak sits midway between the roots, at <InlineMath math="p=\tfrac{-10+87.5}{2}=38.75" />. Without the audience condition, the best price would be <InlineMath math="40\text{ thousand}" />, the multiple of <InlineMath math="5\text{ thousand}" /> closest to the peak.
+
+# The price limit from the audience condition
+
+Needing at least <InlineMath math="160" /> viewers sets **an upper limit on the price**:
 
 <BlockMath math="\begin{aligned}
-V_A&=\pi\cdot4^2\cdot10=160\pi\\
-V_B&=\pi\cdot5^2\cdot6.4=160\pi
+280-3.2p &\ge 160\\
+3.2p &\le 120\\
+p &\le 37.5
 \end{aligned}" />
 
-The volumes are equal, so the first statement is true. Volume is proportional to <InlineMath math="r^2" />, so **doubling the radius multiplies the volume by 4**. The third statement is true.
+A price of <InlineMath math="40\text{ thousand}" /> only brings <InlineMath math="152" /> viewers, so **the best unrestricted price is ruled out**. The allowed prices are <InlineMath math="35\text{ thousand}" /> or cheaper.
 
-# Curved side and material area
+# The largest profit under the limit
+
+To the left of the peak, profit rises as the price rises. So among the allowed prices, **the highest allowed price gives the largest profit**, namely <InlineMath math="35\text{ thousand}" />:
 
 <BlockMath math="\begin{aligned}
-\text{side A}&=2\pi\cdot4\cdot10=80\pi,\quad \text{material A}=32\pi+80\pi=112\pi\\
-\text{side B}&=2\pi\cdot5\cdot6.4=64\pi,\quad \text{material B}=50\pi+64\pi=114\pi
+K(35) &= 45\times168-2{,}000=7{,}560-2{,}000=5{,}560\\
+K(30) &= 40\times184-2{,}000=7{,}360-2{,}000=5{,}360
 \end{aligned}" />
 
-Design B needs slightly more material, <InlineMath math="114\pi" /> against <InlineMath math="112\pi" />, so the second statement is false. B's curved side is smaller than A's, so the fourth statement is false.
+Also check the price that fills every seat, <InlineMath math="25\text{ thousand}" />: <InlineMath math="K(25)=35\times200-2{,}000=5{,}000" />. All of these are below <InlineMath math="5{,}560\text{ thousand}" />.
 
-So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.
+# Why the other options are wrong
+
+Each wrong option comes from **one condition or one part of the profit left out**.
+
+- <InlineMath math="\text{Rp}3{,}880{,}000" /> comes from forgetting the snack gain: <InlineMath math="35\times168-2{,}000=3{,}880" />.
+- <InlineMath math="\text{Rp}5{,}000{,}000" /> comes from choosing the price that fills every seat, <InlineMath math="\text{Rp}25{,}000" />.
+- <InlineMath math="\text{Rp}5{,}480{,}000" /> comes from taking the peak of ticket revenue alone, <InlineMath math="\text{Rp}45{,}000" />, which also breaks the audience condition.
+- <InlineMath math="\text{Rp}5{,}600{,}000" /> comes from ignoring the <InlineMath math="160" />-viewer condition and using <InlineMath math="\text{Rp}40{,}000" /> with only <InlineMath math="152" /> viewers.
+
+So the largest show profit that meets the distributor's condition is <InlineMath math="\text{Rp}5{,}560{,}000" />, at a ticket price of <InlineMath math="\text{Rp}35{,}000" />.

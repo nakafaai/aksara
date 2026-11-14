@@ -1,20 +1,24 @@
-Hat Rafi <InlineMath math="k" /> Lose, dann bedeutet eine Wahrscheinlichkeit von mindestens <InlineMath math="\tfrac12" /> für mindestens einen Preis, dass **die Wahrscheinlichkeit für keinen Preis höchstens <InlineMath math="\tfrac12" /> ist**.
+Gesucht ist die größte Breite zweier Wände, die <InlineMath math="4" /> Rollen Mustertapete noch decken. Der Plan: Zähle die Bahnen aus <InlineMath math="4" /> Rollen, teile sie auf die zwei Wände auf und rechne das in eine Breite um. Entscheidend ist, dass **der Rest einer Rolle nicht an den Rest einer anderen angesetzt werden kann**.
 
-# Die Bedingung aufstellen
+# Die Bahnen aus vier Rollen
 
-Kein Preis heißt, dass **keines der Gewinnlose Rafi gehört**, beide also aus den <InlineMath math="20-k" /> anderen Losen stammen.
+Der Zuschnitt für eine <InlineMath math="240\text{ cm}" /> hohe Wand ist <InlineMath math="240+10=250\text{ cm}" />, aufgerundet auf ein Vielfaches von <InlineMath math="64" /> sind das <InlineMath math="256\text{ cm}" />. Eine Rolle ergibt <InlineMath math="3" /> Bahnen, denn <InlineMath math="3\cdot256=768" /> passt und <InlineMath math="4\cdot256=1{.}024" /> nicht.
 
-<BlockMath math="\frac{\binom{20-k}{2}}{190}\le\frac12\;\Longleftrightarrow\;(20-k)(19-k)\le190" />
+<BlockMath math="4\cdot3=12" />
 
-# Werte von k prüfen
+Von jeder Rolle bleiben <InlineMath math="232\text{ cm}" />, weniger als ein Zuschnitt, also **ergeben die vier Reste keine dreizehnte Bahn**.
 
-| <InlineMath math="k" /> | <InlineMath math="(20-k)(19-k)" /> | Erfüllt? |
-| :---: | :---: | :---: |
-| 5 | <InlineMath math="15\cdot14=210" /> | nein |
-| 6 | <InlineMath math="14\cdot13=182" /> | ja |
+# Die Breite jeder Wand
 
-Mit 6 Losen ist die Wahrscheinlichkeit für mindestens einen Preis <InlineMath math="1-\tfrac{91}{190}=\tfrac{99}{190}" />, **knapp über der Hälfte**. Mit 5 Losen ist sie <InlineMath math="1-\tfrac{105}{190}=\tfrac{85}{190}" />, noch unter der Hälfte.
+Zwei gleich breite Wände bekommen je <InlineMath math="12:2=6" /> Bahnen. Jede Wand wird für sich gezählt, also braucht eine Wand von <InlineMath math="w\text{ cm}" /> Breite <InlineMath math="w:50" /> Bahnen, aufgerundet. Sechs Bahnen decken höchstens <InlineMath math="6\cdot50=300\text{ cm}" />, und **eine Wand von <InlineMath math="301\text{ cm}" /> Breite braucht schon eine siebte Bahn**.
 
-Der Wert 10 nimmt an, dass Rafi die Hälfte aller Lose braucht. Die Werte 4 und 5 reichen nicht.
+# Die verlockenden falschen Optionen
 
-Rafi braucht also mindestens **6 Lose**.
+Jede andere Option geht mit der Tapete **freier um, als die Regeln erlauben**.
+
+- <InlineMath math="350\text{ cm}" /> entsteht, wenn du die Länge der vier Rollen zusammenlegst, sodass <InlineMath math="4{.}000:256" /> genau <InlineMath math="15" /> Bahnen ergibt und jede Wand <InlineMath math="7" /> bekommt.
+- <InlineMath math="375\text{ cm}" /> entsteht, wenn du diese <InlineMath math="15" /> Bahnen gleichmäßig teilst, ohne die Bahnen je Wand zu runden.
+- <InlineMath math="400\text{ cm}" /> entsteht, wenn du das Aufrunden für das Muster vergisst und eine Rolle scheinbar <InlineMath math="4" /> Bahnen ergibt.
+- <InlineMath math="416\text{ cm}" /> entsteht, wenn du die Fläche von vier Rollen durch die Fläche der beiden Wände teilst.
+
+Die größte Breite jeder Wand ist also <InlineMath math="300\text{ cm}" />.

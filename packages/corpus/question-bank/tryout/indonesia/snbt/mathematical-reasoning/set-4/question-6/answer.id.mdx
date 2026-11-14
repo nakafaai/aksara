@@ -1,22 +1,50 @@
-Hitung biaya setiap bahan untuk satu resep, jumlahkan, lalu **bagi dengan 12 potong**. Satuan harga harus disesuaikan dengan takaran, misalnya gram dengan kilogram.
+Keempat pernyataan memakai data yang sama, tetapi masing-masing butuh perhitungan sendiri. Rencananya: ubah dulu persentase hidup menjadi banyak ikan, lalu kalikan dengan bobot rata-rata untuk mendapat biomassa. **Biomassa bergantung pada dua hal sekaligus**, banyak ikan dan bobot per ekor, jadi jangan menilainya dari bobot per ekor saja.
 
-# Biaya setiap bahan
+# Banyak ikan dan biomassa setiap bulan
 
-Takaran dalam gram dan mililiter **diubah ke kilogram dan liter** agar sesuai satuan harga.
+Banyak ikan hidup adalah persentase dikali <InlineMath math="5{.}000" />. Biomassa adalah **banyak ikan dikali bobot rata-rata** dalam kilogram. Biomassa akhir bulan pertama, yaitu <InlineMath math="4{.}500\times0{,}04=180\text{ kg}" />, dipakai untuk menghitung tambahan pada bulan kedua:
 
-| Bahan | Takaran | Biaya |
-| :---: | :---: | :---: |
-| Tepung | 0,25 kg | <InlineMath math="0{,}25\cdot12{.}000=3{.}000" /> |
-| Telur | 3 butir | <InlineMath math="3\cdot2{.}000=6{.}000" /> |
-| Gula | 0,15 kg | <InlineMath math="0{,}15\cdot20{.}000=3{.}000" /> |
-| Susu | 0,2 L | <InlineMath math="0{,}2\cdot15{.}000=3{.}000" /> |
+| Akhir bulan ke- | Ikan hidup | Biomassa | Tambahan biomassa | Tambahan bobot per ekor |
+| :---: | :---: | :---: | :---: | :---: |
+| 2 | <InlineMath math="4{.}250" /> | <InlineMath math="4{.}250\times0{,}1=425\text{ kg}" /> | <InlineMath math="245\text{ kg}" /> | <InlineMath math="60\text{ g}" /> |
+| 3 | <InlineMath math="4{.}000" /> | <InlineMath math="4{.}000\times0{,}15=600\text{ kg}" /> | <InlineMath math="175\text{ kg}" /> | <InlineMath math="50\text{ g}" /> |
+| 4 | <InlineMath math="3{.}800" /> | <InlineMath math="3{.}800\times0{,}22=836\text{ kg}" /> | <InlineMath math="236\text{ kg}" /> | <InlineMath math="70\text{ g}" /> |
+| 5 | <InlineMath math="3{.}600" /> | <InlineMath math="3{.}600\times0{,}25=900\text{ kg}" /> | <InlineMath math="64\text{ kg}" /> | <InlineMath math="30\text{ g}" /> |
+| 6 | <InlineMath math="3{.}500" /> | <InlineMath math="3{.}500\times0{,}27=945\text{ kg}" /> | <InlineMath math="45\text{ kg}" /> | <InlineMath math="20\text{ g}" /> |
 
-# Biaya per potong
+# Pernyataan pertama
 
-Total biaya satu resep adalah 15.000, dan **satu resep menghasilkan 12 potong**.
+Tambahan bobot per ekor terbesar terjadi pada bulan keempat, yaitu <InlineMath math="70\text{ g}" />. Tambahan biomassa terbesar terjadi pada bulan kedua, yaitu <InlineMath math="245\text{ kg}" />, sedikit di atas <InlineMath math="236\text{ kg}" /> pada bulan keempat. Tambahan biomassa juga dipengaruhi **banyak ikan yang masih hidup**, bukan hanya tambahan bobot per ekor, dan pada bulan kedua ikannya masih paling banyak. Kedua bulan itu berbeda, jadi pernyataan pertama **salah**.
 
-<BlockMath math="\frac{15{.}000}{12}=1{.}250" />
+# Pernyataan kedua
 
-Nilai Rp15.000,00 adalah biaya seluruh resep, bukan per potong. Nilai Rp1.000,00 melupakan sebagian bahan, misalnya hanya menjumlahkan tepung, gula, dan telur.
+Ikan yang mati selama satu bulan adalah selisih ikan hidup di awal dan di akhir bulan itu:
 
-Jadi, biaya bahan per potong adalah **Rp1.250,00**.
+<BlockMath math="\begin{aligned}
+\text{mati selama bulan kelima} &= 3{.}800-3{.}600=200\text{ ekor}\\
+\text{mati selama bulan keenam} &= 3{.}600-3{.}500=100\text{ ekor}
+\end{aligned}" />
+
+Angka <InlineMath math="100" /> tepat separuh dari <InlineMath math="200" />, bukan kurang dari separuh. Karena pernyataan memakai **"kurang dari"**, kesamaan membuatnya **salah**.
+
+# Pernyataan ketiga
+
+Pada akhir bulan ketiga bobot rata-ratanya <InlineMath math="150\text{ g}" />, jadi harganya <InlineMath math="\text{Rp}20{.}000" />. Pada akhir bulan keempat bobotnya <InlineMath math="220\text{ g}" />, jadi harganya naik ke <InlineMath math="\text{Rp}24{.}000" />:
+
+<BlockMath math="\begin{aligned}
+\text{pendapatan bulan ketiga} &= 600\times20{.}000=12{.}000{.}000\\
+\text{pendapatan bulan keempat} &= 836\times24{.}000=20{.}064{.}000\\
+1{,}5\times12{.}000{.}000 &= 18{.}000{.}000<20{.}064{.}000
+\end{aligned}" />
+
+Biomassanya sendiri hanya naik dari <InlineMath math="600" /> menjadi <InlineMath math="836" />, kurang dari <InlineMath math="1{,}5" /> kali. Yang membuat pendapatan melonjak adalah **kenaikan kelas harga**. Pernyataan ketiga **benar**.
+
+# Pernyataan keempat
+
+Bobot per ekor naik dari <InlineMath math="100\text{ g}" /> menjadi <InlineMath math="270\text{ g}" />, yaitu <InlineMath math="2{,}7" /> kali, dan itu menggoda untuk langsung menjawab benar. Namun, **banyak ikan turun** dari <InlineMath math="4{.}250" /> menjadi <InlineMath math="3{.}500" />:
+
+<BlockMath math="2{,}5\times425=1{.}062{,}5\text{ kg}>945\text{ kg}" />
+
+Biomassa bulan keenam kurang dari <InlineMath math="2{,}5" /> kali biomassa bulan kedua, jadi pernyataan keempat **salah**.
+
+Jadi, pernyataan pertama salah, pernyataan kedua salah, pernyataan ketiga benar, dan pernyataan keempat salah.

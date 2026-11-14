@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "speed-cameras",
+  stimulus: "concrete-mix",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "40 km/jam" },
-        { correct: false, label: "50 km/jam" },
-        { correct: false, label: "60 km/jam" },
-        { correct: false, label: "72 km/jam" },
-        { correct: true, label: "75 km/jam" },
+        { correct: false, label: "$$11$$" },
+        { correct: false, label: "$$15$$" },
+        { correct: false, label: "$$17$$" },
+        { correct: false, label: "$$20$$" },
+        { correct: true, label: "$$22$$" },
       ],
     },
   },

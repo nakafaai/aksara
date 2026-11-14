@@ -1,16 +1,48 @@
-The memory available to the user is **the capacity minus the system share**. Convert it to megabytes, then divide by the size of one photo.
+Andi and Bima meet when Andi has run exactly <InlineMath math="400\text{ m}" />, one full lap, more than Bima. So the thing to track is the **difference in distance** <InlineMath math="g" />, Andi's distance minus Bima's. The plan: see how <InlineMath math="g" /> changes while Andi runs and while he drinks, then find when <InlineMath math="g" /> first reaches <InlineMath math="400" />.
 
-# Available memory
+# The difference while both run
+
+While both are running, Andi covers <InlineMath math="5\text{ m}" /> each second and Bima <InlineMath math="4\text{ m}" />, so **the difference grows by <InlineMath math="1\text{ m}" /> every second**. Andi finishes his first <InlineMath math="4" /> laps in:
 
 <BlockMath math="\begin{aligned}
-128-18&=110\text{ GB}\\
-110\cdot1{,}024&=112{,}640\text{ MB}
+\text{running time} &= \frac{4 \cdot 400}{5} = 320 \text{ s} \\
+g(320) &= 1{,}600 - 4 \cdot 320 = 320
 \end{aligned}" />
 
-# Number of photos
+A difference of <InlineMath math="320" /> is still less than <InlineMath math="400" />, so they don't meet before Andi stops.
 
-<BlockMath math="\frac{112{,}640}{4}=28{,}160" />
+# The difference while Andi drinks
 
-The division is exact, so **28,160 photos fill the memory exactly**.
+For <InlineMath math="50" /> seconds Andi stands still at <InlineMath math="S" />, but Bima keeps running. So **the difference shrinks at Bima's speed**, not at Andi's:
 
-So at most **28,160 photos** can be stored.
+<BlockMath math="g(370) = 320 - 4 \cdot 50 = 120" />
+
+The difference can't reach <InlineMath math="400" /> while Andi drinks, because it only gets smaller.
+
+# When the difference reaches one lap
+
+From second <InlineMath math="370" /> both run again, and the difference grows by <InlineMath math="1\text{ m}" /> each second again. It still needs <InlineMath math="400-120=280" /> metres:
+
+<BlockMath math="t = 370 + \frac{280}{1} = 650" />
+
+Andi's second running stretch lasts from second <InlineMath math="370" /> to second <InlineMath math="690" />, so second <InlineMath math="650" /> is **still inside that running stretch** and Andi hasn't stopped again.
+
+Check with each runner's distance at second <InlineMath math="650" />:
+
+<BlockMath math="\begin{aligned}
+\text{Andi} &= 1{,}600 + 5 \cdot 280 = 3{,}000\text{ m} \\
+\text{Bima} &= 4 \cdot 650 = 2{,}600\text{ m}
+\end{aligned}" />
+
+The difference is exactly <InlineMath math="400\text{ m}" />, so they really are at the same point.
+
+# The wrong options
+
+Each other option **handles the rest break wrongly**:
+
+- Second <InlineMath math="400" /> ignores the break, as if the difference grew by <InlineMath math="1\text{ m}" /> every second from the start.
+- Second <InlineMath math="450" /> keeps the difference at <InlineMath math="320" /> while Andi drinks, then adds <InlineMath math="80" /> seconds after second <InlineMath math="370" />.
+- Second <InlineMath math="600" /> gets the difference right but leaves the <InlineMath math="50" />-second break out of the clock, giving <InlineMath math="320+280" />.
+- Second <InlineMath math="700" /> shrinks the difference at Andi's speed, <InlineMath math="5 \cdot 50=250" />, so it's left with <InlineMath math="70" /> and still needs <InlineMath math="330" /> metres.
+
+So Andi and Bima first meet at second <InlineMath math="650" /> after the start.

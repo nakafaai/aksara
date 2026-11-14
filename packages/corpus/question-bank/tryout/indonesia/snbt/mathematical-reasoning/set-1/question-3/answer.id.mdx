@@ -1,23 +1,44 @@
-Hitung tagihan untuk setiap pemakaian yang disebut dengan cara yang sama: **biaya beban ditambah biaya setiap blok yang terlewati**.
+Ada dua hal yang dicari: penghematan terbesar yang bisa diberikan baterai yang lebih besar, dan kapasitas terkecil yang sudah mencapainya. Kuncinya adalah **memisahkan pembelian yang bisa dihapus baterai dari pembelian yang tidak bisa dihapus**.
 
-# Tagihan 100 kWh dan 200 kWh
+# Biaya dengan baterai lama
+
+Dengan baterai <InlineMath math="6\text{ kWh}" />, keluarga itu membeli <InlineMath math="1\text{ kWh}" /> pada pukul 07.00-08.00 dan <InlineMath math="8\text{ kWh}" /> pada malam hari. Isi baterai pukul 17.00 hanya <InlineMath math="4\text{ kWh}" /> karena **kelebihan siang terbuang saat baterai penuh**.
+
+<BlockMath math="\text{biaya lama}=1\cdot\text{Rp}1{.}000+8\cdot\text{Rp}2{.}500=\text{Rp}21{.}000" />
+
+# Pembelian pagi tidak bisa dihapus
+
+Pukul 07.00 isi baterai sudah sama dengan cadangan, dan jam pertama kekurangan <InlineMath math="1\text{ kWh}" />. Pada saat itu belum ada kelebihan panel yang bisa disimpan. Jadi **kapasitas sebesar apa pun tidak menolong jam pertama**, dan biaya <InlineMath math="\text{Rp}1{.}000" /> tetap dibayar.
+
+# Penghematan terbesar
+
+Yang bisa dihapus hanya pembelian malam <InlineMath math="8\text{ kWh}" />, senilai <InlineMath math="8\cdot\text{Rp}2{.}500=\text{Rp}20{.}000" />. Periksa apakah baterai tanpa batas kapasitas benar-benar bisa menghapus semuanya. Dari pukul 08.00 sampai 15.00 setiap jam ada kelebihan, lalu dua jam terakhir masing-masing kurang <InlineMath math="1\text{ kWh}" />.
 
 <BlockMath math="\begin{aligned}
-T(100)&=20{.}000+100\cdot1{.}000=120{.}000\\
-T(200)&=20{.}000+100{.}000+100\cdot1{.}500=270{.}000
+\text{isi tertinggi} &= 1+(1+2+3+3+2+3+1)=16\text{ kWh}\\
+\text{isi saat sore berakhir} &= 16-1-1=14\text{ kWh}\\
+\text{bagian yang boleh dipakai} &= 14-1=13\text{ kWh}\ge11\text{ kWh}
 \end{aligned}" />
 
-Pernyataan pertama benar. Dua kali <InlineMath math="T(100)" /> adalah 240.000, bukan 270.000, karena **biaya beban hanya dibayar sekali** dan 100 kWh kedua dikenai tarif blok 2. Pernyataan ketiga salah.
+Energi yang tersimpan cukup untuk seluruh malam, jadi **penghematan terbesar adalah** <InlineMath math="\text{Rp}20{.}000" />.
 
-# kWh ke-301 dan pemakaian 400 kWh
+# Kapasitas terkecil
 
-kWh ke-301 sudah masuk blok 3, jadi **tambahannya <InlineMath math="\text{Rp}2{.}000{,}00" />**, bukan Rp1.500,00. Pernyataan kedua salah.
+Dari pukul 08.00 sampai 15.00 isi baterai hanya naik, jadi baterai berkapasitas <InlineMath math="C\le16" /> pasti penuh pada pukul 15.00. Setelah itu isinya turun <InlineMath math="2\text{ kWh}" />. Supaya malam tidak membeli listrik, **isi di atas cadangan harus paling sedikit** <InlineMath math="11\text{ kWh}" />.
 
 <BlockMath math="\begin{aligned}
-T(400)&=20{.}000+100{.}000+300{.}000+100\cdot2{.}000=620{.}000\\
-\frac{620{.}000}{400}&=1{.}550
+(C-2)-1 &\ge 11\\
+C &\ge 14
 \end{aligned}" />
 
-Pernyataan keempat benar.
+# Pemeriksaan dua kapasitas
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.
+Dengan <InlineMath math="C=14" />, isi baterai menjadi <InlineMath math="1,2,4,7,10,12,14,14,13,12" />. Bagian di atas cadangan tepat <InlineMath math="11\text{ kWh}" />, jadi malam hari tidak membeli listrik. Dengan <InlineMath math="C=13" />, isi saat sore berakhir hanya <InlineMath math="11\text{ kWh}" /> dan bagian yang boleh dipakai <InlineMath math="10\text{ kWh}" />, sehingga **masih ada pembelian** <InlineMath math="1\text{ kWh}" /> dan penghematannya hanya <InlineMath math="\text{Rp}17{.}500" />.
+
+# Pilihan yang keliru
+
+- Kapasitas <InlineMath math="16\text{ kWh}" /> dengan penghematan <InlineMath math="\text{Rp}20{.}000{,}00" /> mengira tidak boleh ada energi terbuang. Padahal **energi yang terbuang tidak merugikan** selama malam hari sudah tercukupi.
+- Penghematan <InlineMath math="\text{Rp}21{.}000{,}00" />, dengan <InlineMath math="14" /> atau <InlineMath math="16\text{ kWh}" />, mengira pembelian pagi ikut hilang, padahal kekurangan itu terjadi sebelum ada kelebihan panel.
+- Penghematan <InlineMath math="\text{Rp}25{.}000{,}00" /> menghargai semua <InlineMath math="10\text{ kWh}" /> energi terbuang dengan tarif malam, padahal yang bisa digantikan hanya pembelian malam <InlineMath math="8\text{ kWh}" />.
+
+Jadi, penghematan terbesar adalah <InlineMath math="\text{Rp}20{.}000{,}00" /> per hari, dan kapasitas terkecil yang memberikannya adalah <InlineMath math="14\text{ kWh}" />.

@@ -1,11 +1,30 @@
-Jedes Spiel ist durch **ein Paar von Mannschaften** festgelegt, und die Reihenfolge der beiden spielt keine Rolle. Die Anzahl der Spiele ist also die Anzahl der Möglichkeiten, 2 von 6 Mannschaften auszuwählen.
+Gesucht ist der Betrag, den Dimas in <InlineMath math="28" /> Tagen insgesamt bezahlt. Der Plan: Verfolge die Karte Tag für Tag, finde **die Tage, an denen sein Kaffee gratis ist**, und addiere dann die Preise der bezahlten Tassen.
 
-# Paare von Mannschaften zählen
+# Die erste Gratistasse
 
-<BlockMath math="\binom62=\frac{6\cdot5}{2}=15" />
+Tag <InlineMath math="1" /> ist ein Montag, also fallen die Mittwoche auf die Tage <InlineMath math="3" />, <InlineMath math="10" />, <InlineMath math="17" /> und <InlineMath math="24" />. Montag und Dienstag bringen <InlineMath math="2" /> Stempel, der Mittwoch an Tag <InlineMath math="3" /> bringt <InlineMath math="2" /> Stempel, und die Tage <InlineMath math="4" /> bis <InlineMath math="9" /> bringen <InlineMath math="6" /> Stempel.
 
-# Kontrolle aus Sicht jeder Mannschaft
+<BlockMath math="2+2+6=10" />
 
-Jede Mannschaft spielt gegen die 5 anderen, das ergibt <InlineMath math="6\cdot5=30" /> Spieleinträge. Jedes Spiel **wird doppelt eingetragen**, einmal von jeder beteiligten Mannschaft, also gibt es <InlineMath math="\tfrac{30}{2}=15" /> Spiele.
+Die Karte hat schon vor Tag <InlineMath math="10" /> genau <InlineMath math="10" /> Stempel, also **ist die Tasse an Tag <InlineMath math="10" /> gratis**. Dieser Tag ist ein Mittwoch, Dimas verliert damit eine Chance auf doppelte Stempel. Seine Karte ist wieder leer.
 
-Der Wettbewerb umfasst also **15 Spiele**.
+# Die zweite Gratistasse
+
+Die Tage <InlineMath math="11" /> bis <InlineMath math="16" /> bringen <InlineMath math="6" /> Stempel, der Mittwoch an Tag <InlineMath math="17" /> bringt <InlineMath math="2" /> Stempel, und die Tage <InlineMath math="18" /> und <InlineMath math="19" /> bringen <InlineMath math="2" /> Stempel. Die Karte hat wieder <InlineMath math="10" /> Stempel, also **ist die Tasse an Tag <InlineMath math="20" />, einem Samstag, gratis**. Die Tage <InlineMath math="21" /> bis <InlineMath math="28" /> bringen nur <InlineMath math="1+1+1+2+4=9" /> Stempel, zu wenig für eine dritte Gratistasse.
+
+# Der bezahlte Betrag
+
+Von den <InlineMath math="4" /> Mittwochen **werden nur <InlineMath math="3" /> bezahlt**. Von den anderen <InlineMath math="24" /> Tagen ist <InlineMath math="1" /> gratis, also werden <InlineMath math="23" /> bezahlt.
+
+<BlockMath math="3\cdot15{.}000+23\cdot20{.}000=45{.}000+460{.}000=505{.}000" />
+
+# Die verlockenden falschen Optionen
+
+Jede andere Option entsteht aus **einer übersehenen Kartenregel**.
+
+- <InlineMath math="\text{Rp}480{.}000" /> entsteht, wenn du alle Stempel addierst, als wäre jede Tasse bezahlt, also <InlineMath math="24+2\cdot4=32" /> Stempel, und dann <InlineMath math="3" /> Gratistassen zu je <InlineMath math="\text{Rp}20{.}000" /> abziehst.
+- <InlineMath math="\text{Rp}500{.}000" /> entsteht, wenn der Mittwoch nur <InlineMath math="1" /> Stempel bringt. Die Gratistassen rutschen auf die Tage <InlineMath math="11" /> und <InlineMath math="22" />, sodass alle vier Mittwoche bezahlt werden.
+- <InlineMath math="\text{Rp}520{.}000" /> entsteht, wenn du den Mittwochspreis vergisst und <InlineMath math="26" /> Tassen zu <InlineMath math="\text{Rp}20{.}000" /> rechnest.
+- <InlineMath math="\text{Rp}540{.}000" /> entsteht, wenn du die Gratistassen vergisst, also <InlineMath math="4\cdot15{.}000+24\cdot20{.}000" />.
+
+Dimas bezahlt also insgesamt <InlineMath math="\text{Rp}505{.}000" />.

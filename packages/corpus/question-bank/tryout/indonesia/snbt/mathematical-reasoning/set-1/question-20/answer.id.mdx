@@ -1,17 +1,30 @@
-Hitung pertandingan **per tahap**: babak grup, lalu dua pertandingan penentuan.
+Kamu mencari banyak cangkir hari Rabu yang dibayar pelanggan itu. Rencananya: daftar dulu semua cara membayar tepat <InlineMath math="\text{Rp}240{.}000" />, lalu buang cara yang **tidak cocok dengan isi kartu**.
 
-# Babak grup
+# Cara membayar tepat dua ratus empat puluh ribu rupiah
 
-Setiap grup berisi 3 tim, dan setiap dua tim bertanding sekali, jadi **setiap grup memainkan tiga pertandingan**, yaitu <InlineMath math="\binom32=3" />. Dua grup memainkan <InlineMath math="2\cdot3=6" /> pertandingan.
+Misalkan ia membayar <InlineMath math="w" /> cangkir pada hari Rabu dan <InlineMath math="n" /> cangkir pada hari lain. Dalam ribuan rupiah, <InlineMath math="15w+20n=240" />, sehingga <InlineMath math="3w+4n=48" />. Karena <InlineMath math="4n" /> dan <InlineMath math="48" /> habis dibagi <InlineMath math="4" />, **nilai <InlineMath math="w" /> harus kelipatan <InlineMath math="4" />**. Cangkir gratisnya <InlineMath math="17-w-n" />, dan cap yang terkumpul <InlineMath math="2w+n" />.
 
-# Pertandingan penentuan
+| <InlineMath math="w" /> | <InlineMath math="n" /> | Cangkir gratis | Cap terkumpul | Cap tersisa di kartu |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="12" /> | <InlineMath math="5" /> | <InlineMath math="12" /> | <InlineMath math="12-50=-38" /> |
+| <InlineMath math="4" /> | <InlineMath math="9" /> | <InlineMath math="4" /> | <InlineMath math="17" /> | <InlineMath math="17-40=-23" /> |
+| <InlineMath math="8" /> | <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="22" /> | <InlineMath math="22-30=-8" /> |
+| <InlineMath math="12" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="27" /> | <InlineMath math="27-20=7" /> |
+| <InlineMath math="16" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="32" /> | <InlineMath math="32-10=22" /> |
 
-Setelah babak grup ada **satu final dan satu perebutan tempat ketiga**.
+# Syarat dari isi kartu
 
-<BlockMath math="6+1+1=8" />
+Setiap cangkir gratis menghapus <InlineMath math="10" /> cap, jadi cap tersisa tidak mungkin negatif. Tiga baris pertama gugur. Kartu juga tidak dapat menumpuk cap, karena **begitu berisi <InlineMath math="10" /> cap, pesanan berikutnya langsung gratis**. Sebelum pesanan gratis, kartu berisi paling banyak <InlineMath math="9+2=11" /> cap, sehingga cap tersisa tidak mungkin <InlineMath math="22" />. Baris terakhir juga gugur.
 
-Format ini memerlukan 8 pertandingan, lebih sedikit daripada 15 pertandingan pada format setiap tim melawan setiap tim.
+Hanya baris <InlineMath math="w=12" /> yang cocok. Urutannya memang ada: <InlineMath math="5" /> cangkir hari Rabu, <InlineMath math="1" /> cangkir gratis, <InlineMath math="5" /> cangkir hari Rabu, <InlineMath math="1" /> cangkir gratis, <InlineMath math="2" /> cangkir hari Rabu, lalu <InlineMath math="3" /> cangkir pada hari lain.
 
-Nilai 6 hanya menghitung babak grup, dan nilai 7 melupakan perebutan tempat ketiga.
+<BlockMath math="12\cdot15{.}000+3\cdot20{.}000=180{.}000+60{.}000=240{.}000" />
 
-Jadi, banyak pertandingan dalam format itu adalah **8**.
+# Pilihan yang keliru
+
+Setiap pilihan lain memenuhi persamaan uangnya, tetapi **gagal pada syarat kartu**.
+
+- <InlineMath math="0" />, <InlineMath math="4" />, dan <InlineMath math="8" /> membutuhkan cangkir gratis lebih banyak daripada yang dapat dibayar oleh capnya.
+- <InlineMath math="16" /> muncul kalau kamu hanya memeriksa bahwa <InlineMath math="32" /> cap cukup untuk <InlineMath math="1" /> cangkir gratis. Dengan <InlineMath math="16" /> cangkir hari Rabu, kartu sudah penuh setelah cangkir kelima, sehingga dalam <InlineMath math="17" /> cangkir pasti ada lebih dari <InlineMath math="1" /> cangkir gratis.
+
+Jadi, pelanggan itu membayar <InlineMath math="12" /> cangkir pada hari Rabu.

@@ -1,20 +1,24 @@
-If Rafi holds <InlineMath math="k" /> tickets, a probability of at least <InlineMath math="\tfrac12" /> for at least one prize means **the probability of no prize is at most <InlineMath math="\tfrac12" />**.
+You're looking for the largest width of two walls that <InlineMath math="4" /> patterned rolls still cover. The plan: count the strips that <InlineMath math="4" /> rolls give, split them between the two walls, then turn that into a width. The key is that **the leftover of one roll can't be joined to the leftover of another**.
 
-# Setting up the condition
+# The strips from four rolls
 
-No prize means **neither winning ticket is Rafi's**, so both come from the <InlineMath math="20-k" /> other tickets.
+The cut for a wall <InlineMath math="240\text{ cm}" /> high is <InlineMath math="240+10=250\text{ cm}" />, which rounds up to a multiple of <InlineMath math="64" /> as <InlineMath math="256\text{ cm}" />. One roll gives <InlineMath math="3" /> strips, because <InlineMath math="3\cdot256=768" /> fits and <InlineMath math="4\cdot256=1{,}024" /> doesn't.
 
-<BlockMath math="\frac{\binom{20-k}{2}}{190}\le\frac12\;\Longleftrightarrow\;(20-k)(19-k)\le190" />
+<BlockMath math="4\cdot3=12" />
 
-# Checking values of k
+Each roll has <InlineMath math="232\text{ cm}" /> left, shorter than one cut, so **the four leftovers don't make a thirteenth strip**.
 
-| <InlineMath math="k" /> | <InlineMath math="(20-k)(19-k)" /> | Works? |
-| :---: | :---: | :---: |
-| 5 | <InlineMath math="15\cdot14=210" /> | no |
-| 6 | <InlineMath math="14\cdot13=182" /> | yes |
+# The width of each wall
 
-With 6 tickets, the probability of at least one prize is <InlineMath math="1-\tfrac{91}{190}=\tfrac{99}{190}" />, **just above one half**. With 5 tickets it is <InlineMath math="1-\tfrac{105}{190}=\tfrac{85}{190}" />, still below one half.
+Two walls of equal width get <InlineMath math="12:2=6" /> strips each. Each wall is counted on its own, so a wall <InlineMath math="w\text{ cm}" /> wide needs <InlineMath math="w:50" /> strips, rounded up. Six strips cover at most <InlineMath math="6\cdot50=300\text{ cm}" />, and **a wall <InlineMath math="301\text{ cm}" /> wide already needs a seventh strip**.
 
-The value 10 assumes Rafi needs half of all tickets. The values 4 and 5 are not enough.
+# The tempting wrong options
 
-So Rafi needs at least **6 tickets**.
+Every other option treats the wallpaper **more freely than the rules allow**.
+
+- <InlineMath math="350\text{ cm}" /> comes from pooling the length of the four rolls, so that <InlineMath math="4{,}000:256" /> gives <InlineMath math="15" /> strips and each wall gets <InlineMath math="7" />.
+- <InlineMath math="375\text{ cm}" /> comes from sharing those <InlineMath math="15" /> strips evenly without rounding the strips per wall.
+- <InlineMath math="400\text{ cm}" /> comes from forgetting the pattern rounding, so that a roll seems to give <InlineMath math="4" /> strips.
+- <InlineMath math="416\text{ cm}" /> comes from dividing the area of four rolls by the area of the two walls.
+
+So the largest width of each wall is <InlineMath math="300\text{ cm}" />.

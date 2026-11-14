@@ -1,11 +1,30 @@
-Each match is determined by **a pair of teams**, and the order of the two teams does not matter. So the number of matches equals the number of ways to choose 2 teams from 6.
+You're looking for the total Dimas pays over <InlineMath math="28" /> days. The plan: follow the card day by day to find **the days when his cup is free**, then add up the prices of the cups he pays for.
 
-# Counting pairs of teams
+# The first free cup
 
-<BlockMath math="\binom62=\frac{6\cdot5}{2}=15" />
+Day <InlineMath math="1" /> is a Monday, so the Wednesdays are days <InlineMath math="3" />, <InlineMath math="10" />, <InlineMath math="17" /> and <InlineMath math="24" />. Monday and Tuesday give <InlineMath math="2" /> stamps, the Wednesday on day <InlineMath math="3" /> gives <InlineMath math="2" /> stamps, and days <InlineMath math="4" /> to <InlineMath math="9" /> give <InlineMath math="6" /> stamps.
 
-# Check from each team's side
+<BlockMath math="2+2+6=10" />
 
-Each team plays the 5 other teams, giving <InlineMath math="6\cdot5=30" /> match records. Each match **is recorded twice**, once by each team in it, so the number of matches is <InlineMath math="\tfrac{30}{2}=15" />.
+The card already holds <InlineMath math="10" /> stamps before day <InlineMath math="10" />, so **the cup on day <InlineMath math="10" /> is free**. That day is a Wednesday, so Dimas loses one chance at double stamps. His card is empty again.
 
-So the competition has **15 matches**.
+# The second free cup
+
+Days <InlineMath math="11" /> to <InlineMath math="16" /> give <InlineMath math="6" /> stamps, the Wednesday on day <InlineMath math="17" /> gives <InlineMath math="2" /> stamps, and days <InlineMath math="18" /> and <InlineMath math="19" /> give <InlineMath math="2" /> stamps. The card holds <InlineMath math="10" /> stamps again, so **the cup on day <InlineMath math="20" />, a Saturday, is free**. Days <InlineMath math="21" /> to <InlineMath math="28" /> give only <InlineMath math="1+1+1+2+4=9" /> stamps, not enough for a third free cup.
+
+# The total he pays
+
+Of the <InlineMath math="4" /> Wednesdays, **only <InlineMath math="3" /> are paid**. Of the other <InlineMath math="24" /> days, <InlineMath math="1" /> is free, so <InlineMath math="23" /> are paid.
+
+<BlockMath math="3\cdot15{,}000+23\cdot20{,}000=45{,}000+460{,}000=505{,}000" />
+
+# The tempting wrong options
+
+Every other option comes from **one card rule that was missed**.
+
+- <InlineMath math="\text{Rp}480{,}000" /> comes from adding up the stamps as if every cup were paid, which is <InlineMath math="24+2\cdot4=32" /> stamps, and then taking <InlineMath math="3" /> free cups worth <InlineMath math="\text{Rp}20{,}000" /> each.
+- <InlineMath math="\text{Rp}500{,}000" /> comes from giving Wednesdays only <InlineMath math="1" /> stamp. The free cups move to days <InlineMath math="11" /> and <InlineMath math="22" />, so all four Wednesdays are paid.
+- <InlineMath math="\text{Rp}520{,}000" /> comes from forgetting the Wednesday price, so <InlineMath math="26" /> cups are paid at <InlineMath math="\text{Rp}20{,}000" />.
+- <InlineMath math="\text{Rp}540{,}000" /> comes from forgetting the free cups, which is <InlineMath math="4\cdot15{,}000+24\cdot20{,}000" />.
+
+So Dimas pays <InlineMath math="\text{Rp}505{,}000" /> in total.

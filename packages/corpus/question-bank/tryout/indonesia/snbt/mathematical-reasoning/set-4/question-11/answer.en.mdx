@@ -1,17 +1,41 @@
-Use **the number of passengers on each section**, 25, 29, 25, 27 and 35, and the number boarding at each place.
+These statements apply to any candidate, so each one needs a general proof or a single counterexample. Keep the rule in mind: **"pasti" (for sure) falls to one counterexample**, while "bisa saja" (can happen) is proved by one example.
 
-# Total boarding and the final alighting
+# The first statement
 
-<BlockMath math="25+12+6+9+14=66" />
+Try to build a candidate with the highest possible final score who still fails one component condition. The component with the smallest weight is <InlineMath math="P" />, so set <InlineMath math="P=64" /> and every other component to <InlineMath math="100" />:
 
-The boarders **total 66 people**, not 70, so the first statement is false. On arrival at the last terminal the bus carries 35 passengers, and all of them alight. The second statement is true.
+<BlockMath math="N=0.40\times100+0.25\times100+0.20\times100+0.15\times64=85+9.6=94.6" />
 
-# The 32-person limit and the mean
+The final score is above <InlineMath math="90" />, but <InlineMath math="P=64" /> is below <InlineMath math="65" />, so this candidate doesn't qualify. **A high final score doesn't guarantee that every component passes**, and the first statement is **false**.
 
-On the last section the bus carries 35 people, **more than 32**. The third statement is false.
+# The second statement
 
-<BlockMath math="\frac{25+29+25+27+35}{5}=\frac{141}{5}=28.2" />
+Say all three scores equal <InlineMath math="x" />. When one rises to <InlineMath math="x+8" />, the two highest scores are <InlineMath math="x+8" /> and <InlineMath math="x" />:
 
-The fourth statement is true.
+<BlockMath math="\begin{aligned}
+W_{\text{new}} &= \frac{(x+8)+x}{2}=x+4\\
+\text{rise in }N &= 0.25\times4=1
+\end{aligned}" />
 
-So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.
+The <InlineMath math="8" />-point rise only **passes half of itself into** <InlineMath math="W" />, which is then multiplied by the weight <InlineMath math="0.25" />. The result is exactly <InlineMath math="1" /> point for any <InlineMath math="x" />, so the second statement is **true**.
+
+# The third statement
+
+Take interviewer scores <InlineMath math="60" />, <InlineMath math="80" /> and <InlineMath math="90" />. Raise the <InlineMath math="60" /> to <InlineMath math="70" />. That score is **still the lowest**, so it's still dropped:
+
+<BlockMath math="W=\frac{90+80}{2}=85\quad\text{before and after the rise}" />
+
+<InlineMath math="W" /> doesn't change, so the final score doesn't change either. One example is enough, and the third statement is **true**.
+
+# The fourth statement
+
+Compare two candidates with the same <InlineMath math="T" />, <InlineMath math="R" /> and <InlineMath math="P" />. The first gets <InlineMath math="70" />, <InlineMath math="80" />, <InlineMath math="90" />, and the second gets <InlineMath math="80" />, <InlineMath math="80" />, <InlineMath math="80" />. Both totals are <InlineMath math="240" />, but:
+
+<BlockMath math="\begin{aligned}
+W_{\text{first}} &= \frac{90+80}{2}=85\\
+W_{\text{second}} &= \frac{80+80}{2}=80
+\end{aligned}" />
+
+The values of <InlineMath math="W" /> differ, so the final scores differ by <InlineMath math="0.25\times5=1.25" /> points. **An equal total doesn't guarantee equal top two scores**, so the fourth statement is **false**.
+
+So the first statement is false, the second is true, the third is true, and the fourth is false.

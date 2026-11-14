@@ -1,15 +1,28 @@
-The sample space is **10,000 equally likely PINs**. The probability is the number of PINs with different digits divided by 10,000.
+You're looking for the most protein from a package that costs at most <InlineMath math="\text{Rp}30{,}000" /> and holds at most <InlineMath math="600\text{ kcal}" />. The plan: first set aside the rice and the one portion of vegetables that have to be there, then **compare the packages by their portions of grilled chicken**.
 
-# PINs with different digits
+# The money and the calories left
 
-**The first digit may be 0**, so there are <InlineMath math="10\cdot9\cdot8\cdot7=5{,}040" />.
+**Rice and one portion of vegetables** cost <InlineMath math="\text{Rp}8{,}000" />, hold <InlineMath math="240\text{ kcal}" /> and give <InlineMath math="6\text{ g}" /> of protein. That leaves <InlineMath math="\text{Rp}22{,}000" /> and <InlineMath math="360\text{ kcal}" />.
 
-# Probability
+# The packages by portions of chicken
 
-<BlockMath math="\frac{5{,}040}{10{,}000}=0.504" />
+Two portions of chicken cost <InlineMath math="\text{Rp}24{,}000" />, more than the money left, so **there is at most one portion of chicken**.
 
-This is just over one half, so **almost half of all PINs repeat a digit**.
+| Extras | Cost of the extras | Calories of the extras | Protein of the package |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> chicken and <InlineMath math="2" /> tempeh | <InlineMath math="\text{Rp}20{,}000" /> | <InlineMath math="350\text{ kcal}" /> | <InlineMath math="6+24+20=50\text{ g}" /> |
+| <InlineMath math="1" /> chicken, <InlineMath math="1" /> tempeh and <InlineMath math="2" /> vegetables | <InlineMath math="\text{Rp}22{,}000" /> | <InlineMath math="330\text{ kcal}" /> | <InlineMath math="6+24+10+4=44\text{ g}" /> |
+| <InlineMath math="3" /> tempeh and <InlineMath math="1" /> vegetables | <InlineMath math="\text{Rp}15{,}000" /> | <InlineMath math="340\text{ kcal}" /> | <InlineMath math="6+30+2=38\text{ g}" /> |
 
-The value 0.496 is the probability of the opposite event, a repeated digit. The value 0.4536 forbids a leading 0, although a PIN may start with 0. The value 0.3024 uses <InlineMath math="9\cdot8\cdot7\cdot6" />, and 0.0504 misplaces the decimal point.
+With one portion of chicken, a third tempeh brings the extra calories to <InlineMath math="450\text{ kcal}" />, so it doesn't fit. After one chicken and two tempeh only <InlineMath math="10\text{ kcal}" /> are left, so **nothing else can be added**. With no chicken there are at most three portions of tempeh, and the protein is at most <InlineMath math="38\text{ g}" />.
 
-So the probability is **0.504**.
+# The tempting wrong options
+
+Every other option comes from **a weaker package or an incomplete count**.
+
+- <InlineMath math="48\text{ g}" /> comes from forgetting the protein of the one portion of vegetables in the best package.
+- <InlineMath math="46\text{ g}" /> comes from four portions of tempeh with no chicken, although that package holds <InlineMath math="640\text{ kcal}" />.
+- <InlineMath math="44\text{ g}" /> comes from spending exactly <InlineMath math="\text{Rp}30{,}000" /> on one chicken, one tempeh and three portions of vegetables.
+- <InlineMath math="38\text{ g}" /> comes from finding chicken too expensive, so that only tempeh and vegetables are bought.
+
+So the most protein Raka can get is <InlineMath math="50\text{ g}" />.

@@ -1,15 +1,45 @@
-Jede Aussage verwendet **direkte Proportionalität** zum Rezept für 12 Stück, dazu die Regel, dass Eier aufgerundet werden.
+Gesucht ist der Erntemonat mit dem größten Gewinn. Der Plan: Schreibe den Gewinn als Formel in Biomasse und Anzahl der Monate, berechne ihn für jeden Monat, in dem die Fische schon verkauft werden können, und vergleiche. **Die größte Biomasse liefert nicht unbedingt den größten Gewinn**, weil die Betriebskosten jeden Monat weiter wachsen.
 
-# Kosten und Eier
+# Die Gewinnformel
 
-Das Rezept für 12 Stück kostet 15 000. Für 24 Stück verdoppelt sich jede Menge genau, auch die Eier auf 6, also **verdoppeln sich auch die Kosten** auf 30 000, nicht 25 000. Die erste Aussage ist falsch.
+Einnahme und Futterkosten werden beide pro Kilogramm Biomasse berechnet, also kannst du sie zu **einem Nettogewinn pro Kilogramm** zusammenfassen: Verkaufspreis minus <InlineMath math="\text{Rp}12{.}000" />. Für eine Ernte am Ende von Monat <InlineMath math="n" /> gilt:
 
-Für 30 Stück braucht man <InlineMath math="3\cdot\tfrac{30}{12}=7{,}5" /> Eier. Eier werden nur ganz verwendet, also wird auf 8 Eier aufgerundet. Die zweite Aussage ist wahr.
+<BlockMath math="\text{Gewinn}=(\text{Preis pro kg}-12{.}000)\times\text{Biomasse}-800{.}000n-5{.}000\times200" />
 
-# Verhältnis und Mehlgrenze
+Die Setzlingskosten <InlineMath math="5{.}000\times200=\text{Rp}1{.}000{.}000" /> sind in jedem Monat gleich. Der Nettogewinn pro Kilogramm beträgt je nach Preisklasse <InlineMath math="\text{Rp}8{.}000" />, <InlineMath math="\text{Rp}12{.}000" /> oder <InlineMath math="\text{Rp}16{.}000" />.
 
-<BlockMath math="250:150=5:3" />
+# Der Gewinn für jeden Monat
 
-Die dritte Aussage ist wahr. Mit 1 kg Mehl lässt sich das Rezept <InlineMath math="\tfrac{1\,000}{250}=4" />-mal backen, also **höchstens <InlineMath math="4\cdot12=48" /> Stück**, nicht 40. Die vierte Aussage ist falsch.
+Am Ende des ersten Monats liegt das Durchschnittsgewicht bei <InlineMath math="40\text{ g}" />, also können die Fische noch nicht verkauft werden. Am Ende des fünften Monats sind es genau <InlineMath math="250\text{ g}" />, und die oberste Klasse lautet „<InlineMath math="250\text{ g}" /> oder mehr“. Die Worte **„oder mehr“ schließen die Grenze selbst ein**, also beträgt der Preis <InlineMath math="\text{Rp}28{.}000" />.
 
-Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **wahr** und die vierte **falsch**.
+| Ernte am Ende von Monat | Biomasse | Gewinn pro kg | Gewinn |
+| :---: | :---: | :---: | :---: |
+| 2 | <InlineMath math="425\text{ kg}" /> | <InlineMath math="8{.}000" /> | <InlineMath math="3{.}400{.}000-1{.}600{.}000-1{.}000{.}000=800{.}000" /> |
+| 3 | <InlineMath math="600\text{ kg}" /> | <InlineMath math="8{.}000" /> | <InlineMath math="4{.}800{.}000-2{.}400{.}000-1{.}000{.}000=1{.}400{.}000" /> |
+| 4 | <InlineMath math="836\text{ kg}" /> | <InlineMath math="12{.}000" /> | <InlineMath math="10{.}032{.}000-3{.}200{.}000-1{.}000{.}000=5{.}832{.}000" /> |
+| 5 | <InlineMath math="900\text{ kg}" /> | <InlineMath math="16{.}000" /> | <InlineMath math="14{.}400{.}000-4{.}000{.}000-1{.}000{.}000=9{.}400{.}000" /> |
+| 6 | <InlineMath math="945\text{ kg}" /> | <InlineMath math="16{.}000" /> | <InlineMath math="15{.}120{.}000-4{.}800{.}000-1{.}000{.}000=9{.}320{.}000" /> |
+
+Die Biomasse jedes Monats ist die Anzahl lebender Fische mal das Durchschnittsgewicht, zum Beispiel <InlineMath math="3{.}600\times0{,}25=900\text{ kg}" /> im fünften Monat. Den größten Gewinn bringt also **die Ernte am Ende des fünften Monats**.
+
+# Warum der sechste Monat verliert
+
+Prüfe das, indem du nur den fünften und den sechsten Monat vergleichst. Ein Monat Warten bringt <InlineMath math="945-900=45\text{ kg}" /> Biomasse mit einem Gewinn von <InlineMath math="\text{Rp}16{.}000" /> pro Kilogramm:
+
+<BlockMath math="\begin{aligned}
+\text{zusätzlicher Gewinn} &= 45\times16{.}000=720{.}000\\
+\text{zusätzliche Betriebskosten} &= 800{.}000
+\end{aligned}" />
+
+Die Zusatzkosten sind **größer als der Zusatzgewinn**, also sinkt der Gewinn um <InlineMath math="\text{Rp}80{.}000" />, passend zu <InlineMath math="9{.}400{.}000-9{.}320{.}000" />.
+
+# Warum die anderen Antworten falsch sind
+
+Jede falsche Antwort entsteht aus **vergessenen Kosten** oder einer falsch gelesenen Klassengrenze.
+
+- <InlineMath math="\text{Rp}9{.}320{.}000" /> entsteht, wenn du sofort den Monat mit der größten Biomasse wählst, oder wenn du <InlineMath math="250\text{ g}" /> noch der Klasse mit <InlineMath math="\text{Rp}24{.}000" /> zuordnest. Dann bringt der fünfte Monat nur <InlineMath math="5{.}800{.}000" />, und der sechste Monat wirkt am besten.
+- <InlineMath math="\text{Rp}10{.}400{.}000" /> entsteht, wenn du die Setzlingskosten von <InlineMath math="\text{Rp}1{.}000{.}000" /> vergisst.
+- <InlineMath math="\text{Rp}14{.}120{.}000" /> entsteht, wenn du die Betriebskosten vergisst. Ohne sie wirkt der sechste Monat mit <InlineMath math="15{.}120{.}000-1{.}000{.}000" /> am besten.
+- <InlineMath math="\text{Rp}20{.}660{.}000" /> entsteht, wenn du die Futterkosten vergisst: <InlineMath math="26{.}460{.}000-4{.}800{.}000-1{.}000{.}000" /> im sechsten Monat.
+
+Der größte Gewinn beträgt also <InlineMath math="\text{Rp}9{.}400{.}000" />, mit der Ernte am Ende des fünften Monats.

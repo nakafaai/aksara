@@ -1,14 +1,48 @@
-Banyak penumpang di dalam bus berubah di setiap tempat: **ditambah yang naik dan dikurangi yang turun**. Jalankan perhitungan itu dari terminal awal.
+Kita mencari nilai terkecil dari pewawancara ketiga yang membuat Gita lolos syarat. Rencananya: hitung dulu nilai <InlineMath math="W" /> yang dibutuhkan, lalu tentukan **nilai pewawancara mana yang benar-benar ikut dihitung**, baru cari nilai ketiga yang cukup.
 
-# Menghitung tempat demi tempat
+# Nilai wawancara yang dibutuhkan
+
+Tiga komponen Gita sudah diketahui. Jumlahkan dulu sumbangannya ke nilai akhir:
+
+<BlockMath math="0{,}40\times74+0{,}20\times88+0{,}15\times90=29{,}6+17{,}6+13{,}5=60{,}7" />
+
+Syarat nilai akhir <InlineMath math="N\ge80" /> memberi batas untuk <InlineMath math="W" />:
 
 <BlockMath math="\begin{aligned}
-\text{terminal awal}&:\quad 0+25=25\\
-\text{Halte A}&:\quad 25+12-8=29\\
-\text{Halte B}&:\quad 29+6-10=25\\
-\text{Halte C}&:\quad 25+9-7=27
+60{,}7+0{,}25W &\ge 80\\
+0{,}25W &\ge 19{,}3\\
+W &\ge 77{,}2
 \end{aligned}" />
 
-Hitungan harus dijalankan **berurutan dari awal**, karena setiap halte bergantung pada banyak penumpang sebelumnya.
+Batas ini juga sudah memenuhi **syarat komponen** <InlineMath math="W\ge65" />, jadi yang menentukan adalah <InlineMath math="W\ge77{,}2" />.
 
-Jadi, ketika meninggalkan Halte C, di dalam bus ada **27 orang**.
+# Nilai mana yang ikut dihitung
+
+Misalkan nilai pewawancara ketiga <InlineMath math="t" />. Nilai <InlineMath math="W" /> hanya memakai **dua nilai tertinggi**, jadi ada dua kasus.
+
+Kalau <InlineMath math="t\le58" />, dua nilai tertinggi adalah <InlineMath math="84" /> dan <InlineMath math="58" />, sehingga <InlineMath math="W=\tfrac{84+58}{2}=71" />. Itu kurang dari <InlineMath math="77{,}2" />, jadi kasus ini gagal.
+
+Kalau <InlineMath math="t>58" />, nilai <InlineMath math="58" /> terbuang dan dua nilai tertinggi adalah <InlineMath math="84" /> dan <InlineMath math="t" />:
+
+<BlockMath math="\begin{aligned}
+\frac{84+t}{2} &\ge 77{,}2\\
+84+t &\ge 154{,}4\\
+t &\ge 70{,}4
+\end{aligned}" />
+
+Nilai pewawancara berupa bilangan bulat, jadi **nilai terkecil yang memenuhi adalah** <InlineMath math="71" />. Nilai ini memang lebih dari <InlineMath math="58" />, jadi cocok dengan kasus yang dipakai.
+
+# Memeriksa batasnya
+
+Cek <InlineMath math="t=71" /> dan <InlineMath math="t=70" />:
+
+<BlockMath math="\begin{aligned}
+t=71:\quad W &= 77{,}5,\quad N=60{,}7+0{,}25\times77{,}5=80{,}075\ge80\\
+t=70:\quad W &= 77,\quad N=60{,}7+0{,}25\times77=79{,}95<80
+\end{aligned}" />
+
+Dengan <InlineMath math="71" /> Gita lolos, sedangkan dengan <InlineMath math="70" /> ia **kurang sedikit dari batas**.
+
+Kesalahan yang sering muncul: memakai rata-rata ketiga nilai memberi <InlineMath math="90" />, memasangkan nilai ketiga dengan <InlineMath math="58" /> alih-alih <InlineMath math="84" /> memberi <InlineMath math="97" />, dan membulatkan <InlineMath math="70{,}4" /> ke bawah memberi <InlineMath math="70" /> yang tidak cukup.
+
+Jadi, pewawancara ketiga harus memberi Gita nilai paling sedikit <InlineMath math="71" />.

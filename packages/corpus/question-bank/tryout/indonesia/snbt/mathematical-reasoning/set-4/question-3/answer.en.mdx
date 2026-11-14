@@ -1,19 +1,58 @@
-For flight times, **match the zones of departure and arrival**. For a wait in one city, both times are already in the same zone.
+You know the final bill and have to work backwards to the total distance. The plan: for each package, find the distance that gives exactly <InlineMath math="\text{Rp}1{,}850{,}000" />. Then **throw out any candidate that isn't the cheapest package** for its distance, because Mr. Bima picked the cheapest one.
 
-# Flight times of P1 and P2
+# The day charge after the discount
 
-P1: 06:40 WIB is 07:40 WITA, and up to 10:05 WITA, 2 hours 25 minutes pass.
+A <InlineMath math="5" />-day rental gets the <InlineMath math="20\%" /> discount, but **the discount only applies to the day rate**. The day charge of each package is:
 
-P2: 11:30 WITA is 12:30 WIT, and up to 16:15 WIT, **3 hours 45 minutes** pass. The first statement is true.
+<BlockMath math="\begin{aligned}
+\text{A} &= 0.8\times5\times200{,}000=800{,}000\\
+\text{B} &= 0.8\times5\times350{,}000=1{,}400{,}000\\
+\text{C} &= 0.8\times5\times500{,}000=2{,}000{,}000
+\end{aligned}" />
 
-<BlockMath math="2\text{ h }25\text{ min}+3\text{ h }45\text{ min}=6\text{ h }10\text{ min}" />
+Package C always costs <InlineMath math="\text{Rp}2{,}000{,}000" />, so it can't produce <InlineMath math="\text{Rp}1{,}850{,}000" />.
 
-The fourth statement is true.
+# Finding candidate distances for Packages A and B
 
-# The time in Jakarta and the waiting time
+For Package A, whatever is left of the bill after the day charge is the distance charge, at <InlineMath math="\text{Rp}1{,}500" /> per kilometre:
 
-P1 lands at 10:05 WITA. Jakarta is **one hour behind**, so it is 09:05 WIB, not 11:05 WIB. The second statement is false.
+<BlockMath math="\begin{aligned}
+800{,}000+1{,}500x &= 1{,}850{,}000\\
+1{,}500x &= 1{,}050{,}000\\
+x &= 700
+\end{aligned}" />
 
-Passengers arrive at 10:05 WITA and leave again at 11:30 WITA, so they wait 1 hour 25 minutes, less than 1.5 hours. The third statement is false.
+Package B has an allowance of <InlineMath math="5\times150=750\text{ km}" />. Its bill is above <InlineMath math="1{,}400{,}000" />, so **the distance must go past the allowance**, and only the excess is charged at <InlineMath math="\text{Rp}3{,}000" /> per kilometre:
 
-So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.
+<BlockMath math="\begin{aligned}
+1{,}400{,}000+3{,}000(x-750) &= 1{,}850{,}000\\
+3{,}000(x-750) &= 450{,}000\\
+x &= 750+150=900
+\end{aligned}" />
+
+That leaves two candidates: <InlineMath math="700\text{ km}" /> with Package A, or <InlineMath math="900\text{ km}" /> with Package B.
+
+# Throwing out the candidate that isn't cheapest
+
+Test <InlineMath math="700\text{ km}" />. That distance is still inside Package B's allowance, so Package B would cost only <InlineMath math="\text{Rp}1{,}400{,}000" />. That's **cheaper than Package A**, so Mr. Bima can't have chosen Package A for this distance.
+
+Test <InlineMath math="900\text{ km}" />:
+
+<BlockMath math="\begin{aligned}
+\text{A} &= 800{,}000+1{,}500\times900=2{,}150{,}000\\
+\text{B} &= 1{,}850{,}000\\
+\text{C} &= 2{,}000{,}000
+\end{aligned}" />
+
+Package B really is the cheapest, so this candidate fits every fact.
+
+# Why the other options are wrong
+
+Each wrong option comes from **one step skipped** in the chain above.
+
+- <InlineMath math="150\text{ km}" /> comes from counting the excess from zero, <InlineMath math="450{,}000\div3{,}000=150" />, without adding the <InlineMath math="750\text{ km}" /> allowance.
+- <InlineMath math="700\text{ km}" /> is the Package A candidate that never got tested. For that distance Package B is cheaper.
+- <InlineMath math="875\text{ km}" /> comes from applying the discount to the whole Package A bill: <InlineMath math="0.8(1{,}000{,}000+1{,}500x)=1{,}850{,}000" />.
+- <InlineMath math="1{,}050\text{ km}" /> comes from charging Package B's excess at <InlineMath math="\text{Rp}1{,}500" /> per kilometre: <InlineMath math="750+450{,}000\div1{,}500=1{,}050" />.
+
+So Mr. Bima drove a total of <InlineMath math="900\text{ km}" /> with Package B.

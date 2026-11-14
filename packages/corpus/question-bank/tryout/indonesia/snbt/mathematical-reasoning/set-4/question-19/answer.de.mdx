@@ -1,18 +1,23 @@
-Der Ergebnisraum besteht aus **190 gleich wahrscheinlichen Paaren von Losen**. Zähle die Paare jedes Ereignisses.
+Gesucht ist die kleinste Zahl an Rollen Mustertapete für Rinas Zimmer. Der Plan: Zähle die ganzen und die kurzen Bahnen, bestimme **die Zuschnittlänge mit Muster** für beide und verteile die Zuschnitte dann auf Rollen.
 
-# Zwei Preise und genau ein Preis
+# Die nötigen Bahnen
 
-<BlockMath math="\begin{aligned}
-P(\text{zwei Preise})&=\frac{\binom42}{190}=\frac{6}{190}=\frac{3}{95}\\
-P(\text{genau einer})&=\frac{4\cdot16}{190}=\frac{64}{190}=\frac{32}{95}
-\end{aligned}" />
+Jede Wand wird für sich gezählt, also braucht eine Wand von <InlineMath math="410\text{ cm}" /> Breite <InlineMath math="9" /> Bahnen und eine Wand von <InlineMath math="310\text{ cm}" /> Breite <InlineMath math="7" /> Bahnen. Das ergibt <InlineMath math="9+7+9+7=32" /> Bahnen. Zwei davon liegen über der Tür, also **gibt es <InlineMath math="30" /> ganze Bahnen und <InlineMath math="2" /> kurze**.
 
-Die erste Aussage ist wahr. Genau ein Preis hat die Wahrscheinlichkeit <InlineMath math="\tfrac{32}{95}" />, **nicht <InlineMath math="\tfrac{16}{95}" />**. Der Wert <InlineMath math="\tfrac{16}{95}" /> entsteht, wenn man die 64 Paare noch einmal halbiert, obwohl jedes Paar aus einem Los von Rafi und einem anderen Los nur einmal gezählt wird. Die dritte Aussage ist falsch.
+# Die Zuschnittlängen mit Muster
 
-# Verschiedene Preise und mindestens ein Preis
+Eine ganze Bahn braucht <InlineMath math="240+10=250\text{ cm}" />, aufgerundet auf ein Vielfaches von <InlineMath math="64" /> sind das <InlineMath math="256\text{ cm}" />. Eine kurze Bahn deckt <InlineMath math="240-200=40\text{ cm}" />, braucht <InlineMath math="40+10=50\text{ cm}" /> und wird auf <InlineMath math="64\text{ cm}" /> aufgerundet.
 
-Sind die Preise verschieden, zählt die Reihenfolge: 20 Möglichkeiten für den ersten und 19 für den zweiten Preis, also <InlineMath math="20\cdot19=380" /> Ergebnisse. Die zweite Aussage ist wahr.
+<BlockMath math="3\cdot256=768\le 1{.}000<4\cdot256=1{.}024" />
 
-Mindestens ein Preis hat die Wahrscheinlichkeit <InlineMath math="\tfrac{3}{95}+\tfrac{32}{95}=\tfrac{35}{95}=\tfrac{7}{19}" />, also **weniger als <InlineMath math="\tfrac12" />**. Die vierte Aussage ist falsch.
+Also **ergibt eine Rolle nur <InlineMath math="3" /> ganze Bahnen**, und es bleiben <InlineMath math="1{.}000-768=232\text{ cm}" /> übrig.
 
-Die erste Aussage ist also **wahr**, die zweite **wahr**, die dritte **falsch** und die vierte **falsch**.
+# Die Zuschnitte auf Rollen verteilen
+
+Dreißig ganze Bahnen brauchen <InlineMath math="30:3=10" /> Rollen. Die zwei kurzen Bahnen brauchen <InlineMath math="2\cdot64=128\text{ cm}" />, und das **passt in die <InlineMath math="232\text{ cm}" /> Rest einer Rolle**. Es ist also keine weitere Rolle nötig.
+
+# Die verlockenden falschen Antworten
+
+Die Antwort <InlineMath math="8" /> entsteht, wenn du das Aufrunden für das Muster vergisst und eine Rolle scheinbar <InlineMath math="4" /> Bahnen ergibt. Die Antwort <InlineMath math="11" /> entsteht, wenn du die Tür übergehst und alle <InlineMath math="32" /> Bahnen als ganze Bahnen zählst. Die Antwort <InlineMath math="9" /> entsteht, wenn du die Bahnen aus dem Umfang des Zimmers berechnest, also <InlineMath math="29" />, obwohl **Bahnen nicht um eine Ecke laufen dürfen**. Die Antwort <InlineMath math="7" /> entsteht, wenn du die Wandfläche durch die Fläche einer Rolle teilst.
+
+Rina muss also mindestens <InlineMath math="10" /> Rollen Mustertapete kaufen.

@@ -1,15 +1,30 @@
-The price per sheet depends on the order group, so check **each group** to see how many sheets are affordable.
+You're looking for the opening stock that lets every request be served. The plan: for each option, find **the day the first order is placed**, because that day decides when the goods arrive, then follow the stock to day <InlineMath math="12" />.
 
-# Checking each group
+# The opening stock sets the order day
 
-- Group 1 to 100: at most 100 sheets for 50,000.
-- Group 101 to 500: <InlineMath math="\tfrac{150{,}000}{400}=375" /> sheets, and 375 does lie in this group.
-- Group above 500: the smallest order, 501 sheets, costs <InlineMath math="501\cdot300=150{,}300" />, **slightly more than the money available**.
+The shop only orders when the stock at the end of a day is at most <InlineMath math="60" /> sacks, and the order arrives three days later. So **a larger opening stock actually delays the first order**. The stock after the sales of days <InlineMath math="1" />, <InlineMath math="2" /> and <InlineMath math="3" /> is the opening stock minus <InlineMath math="20" />, <InlineMath math="45" /> and <InlineMath math="75" />.
 
-# Finding the largest number
+| Opening stock | First order | Arrives | Lost sales before it arrives |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="120" /> | end of day <InlineMath math="3" />, stock <InlineMath math="45" /> | day <InlineMath math="6" /> | <InlineMath math="10" /> on day <InlineMath math="5" /> |
+| <InlineMath math="110" /> | end of day <InlineMath math="3" />, stock <InlineMath math="35" /> | day <InlineMath math="6" /> | <InlineMath math="20" /> on day <InlineMath math="5" /> |
+| <InlineMath math="100" /> | end of day <InlineMath math="2" />, stock <InlineMath math="55" /> | day <InlineMath math="5" /> | <InlineMath math="0" /> |
+| <InlineMath math="85" /> | end of day <InlineMath math="2" />, stock <InlineMath math="40" /> | day <InlineMath math="5" /> | <InlineMath math="10" /> on day <InlineMath math="4" /> |
+| <InlineMath math="80" /> | end of day <InlineMath math="1" />, stock <InlineMath math="60" /> | day <InlineMath math="4" /> | <InlineMath math="0" /> |
 
-The largest affordable number is 375 sheets for exactly 150,000.
+# Up to day twelve
 
-The value 501 is almost affordable but 300 rupiah short. The value 300 divides the money by the Rp500 price, which applies only up to 100 sheets.
+Two options are still alive, so carry both on. With an opening stock of <InlineMath math="100" />, the stock on days <InlineMath math="5" /> to <InlineMath math="8" /> is <InlineMath math="120" />, <InlineMath math="80" />, <InlineMath math="50" /> and <InlineMath math="25" />. The second order is placed at the end of day <InlineMath math="7" /> and only arrives on day <InlineMath math="10" />, while day <InlineMath math="9" /> asks for <InlineMath math="45" /> sacks. **That loses <InlineMath math="45-25=20" /> sacks**.
 
-So at most **375 sheets** can be printed.
+With an opening stock of <InlineMath math="80" />, the stock on days <InlineMath math="4" /> to <InlineMath math="8" /> is <InlineMath math="135" />, <InlineMath math="100" />, <InlineMath math="60" />, <InlineMath math="30" /> and <InlineMath math="5" />. The second order is placed at the end of day <InlineMath math="6" /> and arrives on day <InlineMath math="9" />, just before the requests for <InlineMath math="45" /> and <InlineMath math="50" /> sacks. The stock on days <InlineMath math="9" /> to <InlineMath math="12" /> is <InlineMath math="110" />, <InlineMath math="60" />, <InlineMath math="30" /> and <InlineMath math="10" />, so **no request goes unserved**.
+
+# The tempting wrong options
+
+Every other option fails on **one day when the order hasn't arrived yet**.
+
+- <InlineMath math="120" /> sacks loses <InlineMath math="10" /> sacks on day <InlineMath math="5" /> and <InlineMath math="40" /> sacks on day <InlineMath math="10" />.
+- <InlineMath math="110" /> sacks loses <InlineMath math="20" /> sacks on day <InlineMath math="5" /> and <InlineMath math="40" /> sacks on day <InlineMath math="10" />.
+- <InlineMath math="100" /> sacks gets through the first round but loses <InlineMath math="20" /> sacks on day <InlineMath math="9" />.
+- <InlineMath math="85" /> sacks loses <InlineMath math="10" /> sacks on day <InlineMath math="4" /> and <InlineMath math="25" /> sacks on day <InlineMath math="9" />.
+
+So the opening stock with no lost sales is <InlineMath math="80" /> sacks.

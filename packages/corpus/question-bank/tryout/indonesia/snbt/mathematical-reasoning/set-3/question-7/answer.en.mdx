@@ -1,17 +1,44 @@
-A point gets water when **its distance to one of the sprinklers is at most that sprinkler's range**. Place <InlineMath math="A" /> at <InlineMath math="(0,0)" />, <InlineMath math="B" /> at <InlineMath math="(12,0)" /> and <InlineMath math="D" /> at <InlineMath math="(0,8)" />.
+Each book can be renewed or not, and the choice for one book doesn't affect any other book. So the plan: **compare the two choices for each book type**, take the cheaper one, then add up over all the books.
 
-# The midpoint of AB and the point D
+# Two possible delays
 
-The midpoint of <InlineMath math="AB" /> is exactly 6 m from <InlineMath math="A" /> and from <InlineMath math="B" />. A distance of 6 m is still within range, so the first statement is true.
+Without a renewal, every book is <InlineMath math="23" /> days late. With a renewal, the deadline moves <InlineMath math="7" /> days later, so that book is <InlineMath math="23-7=16" /> days late and there's **a renewal fee of <InlineMath math="\text{Rp}3{,}000" />**. Both delays are more than <InlineMath math="3" /> days, so the grace period doesn't help, and every late day is fined.
 
-The point <InlineMath math="D" /> is 8 m from <InlineMath math="A" /> and <InlineMath math="\sqrt{12^2+8^2}=\sqrt{208}" /> m from <InlineMath math="B" />. **Both are more than 6 m**, so the third statement is false.
+# The choice for a regular book
 
-# The intersection of the diagonals
+<BlockMath math="\begin{aligned}
+\text{no renewal} &= \min(23\cdot1{,}000,\,20{,}000) = 20{,}000 \\
+\text{renewal} &= 3{,}000+16\cdot1{,}000 = 19{,}000
+\end{aligned}" />
 
-The diagonals meet at <InlineMath math="(6,4)" />, which is equally far from <InlineMath math="A" /> and <InlineMath math="B" />.
+Without a renewal, the fine of <InlineMath math="23{,}000" /> is cut by the cap to <InlineMath math="20{,}000" />. With a renewal it costs <InlineMath math="19{,}000" />, so **a regular book should be renewed**, saving <InlineMath math="\text{Rp}1{,}000" /> per book.
 
-<BlockMath math="\sqrt{6^2+4^2}=\sqrt{52}\approx7.21\text{ m}" />
+# The choice for a reference book
 
-This is more than 6 m, so the second statement is true. It is **still more than 7 m**, so a range of 7 m is not enough and the fourth statement is false.
+<BlockMath math="\begin{aligned}
+\text{no renewal} &= \min(23\cdot2{,}500,\,40{,}000) = 40{,}000 \\
+\text{renewal} &= 3{,}000+\min(16\cdot2{,}500,\,40{,}000) = 43{,}000
+\end{aligned}" />
 
-So the first statement is **true**, the second is **true**, the third is **false**, and the fourth is **false**.
+The fine for <InlineMath math="16" /> days is already exactly <InlineMath math="40{,}000" />, the same as the cap. So renewing doesn't lower the fine at all, but it still adds <InlineMath math="3{,}000" />. That means **a reference book shouldn't be renewed**.
+
+# The smallest total
+
+<BlockMath math="\begin{aligned}
+\text{total} &= 4\cdot19{,}000+2\cdot40{,}000 \\
+&= 76{,}000+80{,}000 \\
+&= 156{,}000\text{ rupiah}
+\end{aligned}" />
+
+Check it against the two all-or-nothing plans. Renewing every book gives <InlineMath math="4\cdot19{,}000+2\cdot43{,}000=162{,}000" />, and renewing nothing gives <InlineMath math="4\cdot20{,}000+2\cdot40{,}000=160{,}000" />. Both cost more, so **the mixed plan really is the cheapest**.
+
+# Why the other options are wrong
+
+Each other option **makes the same renewal choice for every book** or misreads one rule.
+
+- <InlineMath math="\text{Rp}135{,}000" /> comes from fining only the days after the grace period. That way both book types look worth renewing.
+- <InlineMath math="\text{Rp}160{,}000" /> is the cost if no book is renewed.
+- <InlineMath math="\text{Rp}162{,}000" /> is the cost if every book is renewed, including the reference books whose fine doesn't drop.
+- <InlineMath math="\text{Rp}207{,}000" /> comes from ignoring the cap per book and renewing nothing.
+
+So the smallest total Lina can pay is <InlineMath math="\text{Rp}156{,}000" />.

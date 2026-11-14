@@ -1,17 +1,44 @@
-Ein Punkt wird nass, wenn **sein Abstand zu einem der Sprenger höchstens dessen Reichweite ist**. Lege <InlineMath math="A" /> in <InlineMath math="(0,0)" />, <InlineMath math="B" /> in <InlineMath math="(12,0)" /> und <InlineMath math="D" /> in <InlineMath math="(0,8)" />.
+Jedes Buch kann verlängert werden oder nicht, und die Wahl bei einem Buch beeinflusst kein anderes Buch. Der Plan ist also: **Vergleich die beiden Möglichkeiten für jede Buchart**, nimm die günstigere und addiere über alle Bücher.
 
-# Mittelpunkt von AB und der Punkt D
+# Zwei mögliche Verspätungen
 
-Der Mittelpunkt von <InlineMath math="AB" /> ist genau 6 m von <InlineMath math="A" /> und von <InlineMath math="B" /> entfernt. 6 m liegen noch in der Reichweite, also ist die erste Aussage wahr.
+Ohne Verlängerung ist jedes Buch <InlineMath math="23" /> Tage verspätet. Mit Verlängerung rückt die Frist <InlineMath math="7" /> Tage nach hinten, das Buch ist also <InlineMath math="23-7=16" /> Tage verspätet, und es kommt **eine Verlängerungsgebühr von <InlineMath math="\text{Rp}3{.}000" />** dazu. Beide Verspätungen sind länger als <InlineMath math="3" /> Tage, die Kulanzfrist hilft also nicht, und jeder verspätete Tag kostet.
 
-Der Punkt <InlineMath math="D" /> ist 8 m von <InlineMath math="A" /> und <InlineMath math="\sqrt{12^2+8^2}=\sqrt{208}" /> m von <InlineMath math="B" /> entfernt. **Beides ist mehr als 6 m**, also ist die dritte Aussage falsch.
+# Die Wahl für ein normales Buch
 
-# Schnittpunkt der Diagonalen
+<BlockMath math="\begin{aligned}
+\text{ohne Verlängerung} &= \min(23\cdot1{.}000,\,20{.}000) = 20{.}000 \\
+\text{mit Verlängerung} &= 3{.}000+16\cdot1{.}000 = 19{.}000
+\end{aligned}" />
 
-Die Diagonalen schneiden sich in <InlineMath math="(6,4)" />, gleich weit von <InlineMath math="A" /> und <InlineMath math="B" /> entfernt.
+Ohne Verlängerung wird die Gebühr von <InlineMath math="23{.}000" /> auf <InlineMath math="20{.}000" /> gekappt. Mit Verlängerung kostet es <InlineMath math="19{.}000" />, also **lohnt sich die Verlängerung bei normalen Büchern** und spart <InlineMath math="\text{Rp}1{.}000" /> pro Buch.
 
-<BlockMath math="\sqrt{6^2+4^2}=\sqrt{52}\approx7{,}21\text{ m}" />
+# Die Wahl für ein Nachschlagewerk
 
-Das ist mehr als 6 m, also ist die zweite Aussage wahr. Es ist auch **noch mehr als 7 m**, eine Reichweite von 7 m genügt also nicht, und die vierte Aussage ist falsch.
+<BlockMath math="\begin{aligned}
+\text{ohne Verlängerung} &= \min(23\cdot2{.}500,\,40{.}000) = 40{.}000 \\
+\text{mit Verlängerung} &= 3{.}000+\min(16\cdot2{.}500,\,40{.}000) = 43{.}000
+\end{aligned}" />
 
-Die erste Aussage ist also **wahr**, die zweite **wahr**, die dritte **falsch** und die vierte **falsch**.
+Die Gebühr für <InlineMath math="16" /> Tage beträgt schon genau <InlineMath math="40{.}000" />, also genau die Obergrenze. Die Verlängerung senkt die Gebühr also überhaupt nicht, kostet aber trotzdem <InlineMath math="3{.}000" />. Darum **verlängert man Nachschlagewerke besser nicht**.
+
+# Die kleinste Summe
+
+<BlockMath math="\begin{aligned}
+\text{Gesamt} &= 4\cdot19{.}000+2\cdot40{.}000 \\
+&= 76{.}000+80{.}000 \\
+&= 156{.}000\text{ Rupiah}
+\end{aligned}" />
+
+Prüf das mit den beiden Alles-oder-nichts-Plänen. Alle Bücher zu verlängern ergibt <InlineMath math="4\cdot19{.}000+2\cdot43{.}000=162{.}000" />, gar keins zu verlängern ergibt <InlineMath math="4\cdot20{.}000+2\cdot40{.}000=160{.}000" />. Beides ist teurer, also **ist der gemischte Plan wirklich der günstigste**.
+
+# Warum die anderen Antworten falsch sind
+
+Jede andere Antwort **trifft für alle Bücher dieselbe Wahl** oder liest eine Regel falsch.
+
+- <InlineMath math="\text{Rp}135{.}000" /> entsteht, wenn nur die Tage nach der Kulanzfrist zählen. Dann sieht die Verlängerung bei beiden Bucharten lohnend aus.
+- <InlineMath math="\text{Rp}160{.}000" /> sind die Kosten, wenn kein Buch verlängert wird.
+- <InlineMath math="\text{Rp}162{.}000" /> sind die Kosten, wenn alle Bücher verlängert werden, auch die Nachschlagewerke, deren Gebühr nicht sinkt.
+- <InlineMath math="\text{Rp}207{.}000" /> entsteht, wenn die Obergrenze pro Buch fehlt und kein Buch verlängert wird.
+
+Die kleinste Summe, die Lina zahlen kann, ist also <InlineMath math="\text{Rp}156{.}000" />.

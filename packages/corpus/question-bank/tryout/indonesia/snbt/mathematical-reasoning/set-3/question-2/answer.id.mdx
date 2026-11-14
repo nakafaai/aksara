@@ -1,15 +1,52 @@
-Satu putaran pedal memutar gir depan sekali, sehingga **rantai melewati 48 gigi**. Rantai yang sama melewati 48 gigi pada gir belakang.
+Setiap pernyataan perlu dinilai sendiri. Alat utamanya adalah **rumus biaya satu bagian parkir**, lalu potongan pada pukul 00.00 dan biaya menginap ditambahkan sesuai aturan.
 
-# Putaran roda per putaran pedal
+# Rumus biaya satu bagian
 
-Gir belakang 24 gigi berputar <InlineMath math="\tfrac{48}{24}=2" /> kali, dan **roda belakang ikut berputar 2 kali** karena berputar bersama gir belakang.
+Untuk satu bagian yang dihitung <InlineMath math="k" /> jam, jam pertama <InlineMath math="\text{Rp}6{.}000" /> dan sisanya <InlineMath math="k-1" /> jam masing-masing <InlineMath math="\text{Rp}4{.}000" />.
 
-# Jarak per putaran pedal
+<BlockMath math="\begin{aligned}
+f(k) &= 6{.}000+4{.}000(k-1) \\
+&= 4{.}000k+2{.}000
+\end{aligned}" />
 
-Keliling roda adalah <InlineMath math="\tfrac{22}{7}\cdot70=220" /> cm, yaitu 2,2 m. **Dua putaran roda** memindahkan sepeda
+Untuk <InlineMath math="k=7" />, nilainya tepat <InlineMath math="30{.}000" />. Jadi **mulai <InlineMath math="7" /> jam, biaya satu bagian selalu <InlineMath math="\text{Rp}30{.}000" />** karena batas pada aturan tarif.
 
-<BlockMath math="2\cdot2{,}2=4{,}4\text{ m}" />
+# Pernyataan pertama
 
-Jarak 2,2 m hanya satu keliling roda. Jarak 6,6 m adalah hasil untuk gir belakang 16 gigi, dan 1,1 m membalik perbandingan gigi menjadi <InlineMath math="\tfrac{24}{48}" />.
+Dari pukul 08.20 sampai 14.25 ada <InlineMath math="6\text{ jam }5\text{ menit}" />. Kelebihan <InlineMath math="5\text{ menit}" /> itu **sudah memulai jam ketujuh**, jadi dihitung <InlineMath math="7\text{ jam}" /> dan biayanya <InlineMath math="f(7)=\text{Rp}30{.}000" />. Pernyataan pertama **benar**. Kalau kamu membulatkan ke bawah menjadi <InlineMath math="6\text{ jam}" />, kamu akan mendapat <InlineMath math="\text{Rp}26{.}000" /> dan salah menilainya.
 
-Jadi, setiap putaran pedal memindahkan sepeda sejauh **4,4 m**.
+# Pernyataan kedua
+
+Mobil yang melewati pukul 00.00 tepat satu kali punya dua bagian dan satu biaya menginap. Perhatikan sisa pembagian setiap biaya bagian oleh <InlineMath math="4{.}000" />. Biaya <InlineMath math="4{.}000k+2{.}000" /> selalu bersisa <InlineMath math="2{.}000" />, dan batas <InlineMath math="30{.}000=4{.}000\cdot7+2{.}000" /> juga bersisa <InlineMath math="2{.}000" />.
+
+<BlockMath math="\begin{aligned}
+\text{dua bagian} &= (4{.}000a+2{.}000)+(4{.}000b+2{.}000) \\
+&= 4{.}000(a+b+1)
+\end{aligned}" />
+
+Jadi **jumlah dua bagian selalu kelipatan <InlineMath math="4{.}000" />**. Agar totalnya <InlineMath math="\text{Rp}48{.}000" />, dua bagian itu harus berjumlah <InlineMath math="48{.}000-10{.}000=38{.}000" />, dan <InlineMath math="38{.}000" /> bukan kelipatan <InlineMath math="4{.}000" />. Tidak ada mobil seperti itu, jadi pernyataan kedua **salah**. Total yang mungkin di sekitarnya hanya <InlineMath math="\text{Rp}46{.}000" /> atau <InlineMath math="\text{Rp}50{.}000" />.
+
+# Pernyataan ketiga
+
+Mobil ini melewati pukul 00.00 satu kali, jadi **parkir <InlineMath math="24" /> jam itu dipotong menjadi dua bagian**.
+
+<BlockMath math="\begin{aligned}
+\text{bagian pertama} &= f(1) = 6{.}000 \\
+\text{bagian kedua} &= \min\bigl(f(23),\,30{.}000\bigr) = 30{.}000 \\
+\text{total} &= 6{.}000+30{.}000+10{.}000 = 46{.}000
+\end{aligned}" />
+
+Bagian pertama dari pukul 23.00 sampai 00.00 tepat <InlineMath math="1\text{ jam}" />, dan bagian kedua dari pukul 00.00 sampai 23.00 lamanya <InlineMath math="23\text{ jam}" />. Totalnya <InlineMath math="\text{Rp}46{.}000" />, jadi pernyataan ketiga **benar**. Nilai <InlineMath math="\text{Rp}40{.}000" /> muncul kalau parkir <InlineMath math="24" /> jam itu dianggap satu bagian.
+
+# Pernyataan keempat
+
+Mobil pertama punya dua bagian. Bagian pukul 22.40 sampai 00.00 lamanya <InlineMath math="1\text{ jam }20\text{ menit}" />, dihitung <InlineMath math="2\text{ jam}" />. Bagian pukul 00.00 sampai 01.20 juga <InlineMath math="1\text{ jam }20\text{ menit}" />, dihitung <InlineMath math="2\text{ jam}" />.
+
+<BlockMath math="\begin{aligned}
+\text{mobil malam} &= f(2)+f(2)+10{.}000 = 30{.}000 \\
+\text{mobil siang} &= f(6) = 26{.}000
+\end{aligned}" />
+
+Karena <InlineMath math="30{.}000>26{.}000" />, mobil malam memang lebih mahal walaupun parkirnya lebih singkat. Pernyataan keempat **benar**. Kalau mobil malam dianggap satu bagian <InlineMath math="3\text{ jam}" /> tanpa biaya menginap, biayanya hanya <InlineMath math="\text{Rp}14{.}000" />, dan **jebakan inilah** yang membuat pernyataan ini tampak salah.
+
+Jadi, pernyataan pertama benar, kedua salah, ketiga benar, dan keempat benar.

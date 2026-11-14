@@ -1,20 +1,34 @@
-One panel makes <InlineMath math="0.2\cdot4.5=0.9" /> kWh a day, so the second statement is true. **Ten panels cover the whole 9 kWh**, and everything else follows from this.
+Each statement is tested against the plan's own rules. Use the same time per GB for all of them: <InlineMath math="1\text{ GB}=8{,}000" /> megabits, so **<InlineMath math="1\text{ GB}" /> takes <InlineMath math="200" /> seconds at <InlineMath math="40\text{ Mbps}" /> and <InlineMath math="1{,}000" /> seconds at <InlineMath math="8\text{ Mbps}" />**.
 
-# Saving per month
+# Starting at midnight or in the afternoon
 
-<BlockMath math="9\cdot1{,}500\cdot30=405{,}000" />
-
-The saving is Rp405,000 per month, **not Rp450,000**. The first statement is false.
-
-# Higher use and the payback time
-
-If use rises by 20%, the need is <InlineMath math="1.2\cdot9=10.8" /> kWh, so <InlineMath math="\tfrac{10.8}{0.9}=12" /> panels are needed. The third statement is true.
+Starting at 13.00, only <InlineMath math="5\text{ GB}" /> go fast, and **the rest slows down** because the main quota runs out. Starting at 00.00, the whole file goes fast and uses no quota.
 
 <BlockMath math="\begin{aligned}
-10\cdot2{,}430{,}000&=24{,}300{,}000\\
-\frac{24{,}300{,}000}{405{,}000}&=60\text{ months}=5\text{ years}
+\text{start at 13.00} &: 5 \cdot 200 + 10 \cdot 1{,}000 = 11{,}000 \text{ s} \\
+\text{start at 00.00} &: 15 \cdot 200 = 3{,}000 \text{ s} \\
+\text{difference} &: 11{,}000 - 3{,}000 = 8{,}000 \text{ s}
 \end{aligned}" />
 
-The installation cost is covered after **5 years, not 4**. The fourth statement is false.
+A difference of <InlineMath math="8{,}000" /> seconds is <InlineMath math="2" /> hours <InlineMath math="13" /> minutes <InlineMath math="20" /> seconds, more than <InlineMath math="2" /> hours. The night download finishes in <InlineMath math="50" /> minutes, long before 06.00. This statement is true.
 
-So the first statement is **false**, the second is **true**, the third is **true**, and the fourth is **false**.
+# A big file during the night hours
+
+The night hours last only <InlineMath math="6" /> hours, which is <InlineMath math="21{,}600" /> seconds. In that time you can download **at most <InlineMath math="21{,}600 \div 200 = 108\text{ GB}" />**. A <InlineMath math="120\text{ GB}" /> file needs <InlineMath math="24{,}000" /> seconds, so the last <InlineMath math="12\text{ GB}" /> come after 06.00 and use main quota. This statement is false.
+
+# The Booster and the main quota
+
+By the rules, **the Booster is always used first**. The whole <InlineMath math="15\text{ GB}" /> download comes out of the <InlineMath math="20\text{ GB}" /> Booster, so the Booster has <InlineMath math="5\text{ GB}" /> left and the main quota stays at <InlineMath math="10\text{ GB}" />. The <InlineMath math="5\text{ GB}" /> comes from using the main quota first. This statement is false.
+
+# The average speed
+
+Average speed is **total data divided by total time**, not the mean of the two speeds. Say the file is <InlineMath math="2\text{ GB}" />, so each half is <InlineMath math="1\text{ GB}" />:
+
+<BlockMath math="\begin{aligned}
+\text{total time} &= 200 + 1{,}000 = 1{,}200 \text{ s} \\
+\text{average speed} &= \frac{2 \cdot 8{,}000}{1{,}200} = \frac{40}{3} \approx 13.3\text{ Mbps}
+\end{aligned}" />
+
+You get the same result for any file size, because data and time both scale together. The slow half takes far longer, so the average sits close to <InlineMath math="8\text{ Mbps}" />, not at <InlineMath math="24\text{ Mbps}" />. This statement is false.
+
+So the first statement is true, and the second, third, and fourth statements are false.

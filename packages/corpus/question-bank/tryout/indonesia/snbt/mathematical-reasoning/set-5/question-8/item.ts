@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "phone-storage",
+  stimulus: "track-laps",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "24.300 foto" },
-        { correct: true, label: "24.883 foto" },
-        { correct: false, label: "25.344 foto" },
-        { correct: false, label: "28.160 foto" },
-        { correct: false, label: "29.491 foto" },
+        { correct: false, label: "$$61$$ detik" },
+        { correct: false, label: "$$71$$ detik" },
+        { correct: true, label: "$$74$$ detik" },
+        { correct: false, label: "$$76$$ detik" },
+        { correct: false, label: "$$80$$ detik" },
       ],
     },
   },

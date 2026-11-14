@@ -1,19 +1,44 @@
-Bis 10 GB kostet Hemat nur 50 000 Rupiah, weit unter 95 000. Der Punkt gleicher Kosten muss also **über 10 GB** liegen, wo die Kosten von Hemat zu steigen beginnen.
+Alle Aussagen beruhen auf einer Formel: **Reihe <InlineMath math="n" /> hat** <InlineMath math="17+2n" /> **Plätze**, weil die erste Reihe <InlineMath math="19" /> Plätze hat und jede Reihe <InlineMath math="2" /> dazubekommt. Berechne damit die Plätze je Kategorie und prüfe dann jede Aussage mit ihrem eigenen Nachweis.
 
-# Verbrauch zwischen 10 und 20 GB
+# Plätze je Kategorie
 
-Für <InlineMath math="10<x\le20" /> kostet Hemat <InlineMath math="50\,000+9\,000(x-10)" />, und **Bebas bleibt bei 95 000**.
+Die Plätze pro Reihe bilden eine arithmetische Folge, also ist die Summe einer Kategorie **die Anzahl der Reihen mal der Mittelwert aus erster und letzter Reihe**.
 
 <BlockMath math="\begin{aligned}
-50\,000+9\,000(x-10)&=95\,000\\
-9\,000(x-10)&=45\,000\\
-x&=15
+\text{A, Reihen }1\text{ bis }6 &: \tfrac{6(19+29)}{2}=144\\
+\text{B, Reihen }7\text{ bis }16 &: \tfrac{10(31+49)}{2}=400\\
+\text{C, Reihen }17\text{ bis }30 &: \tfrac{14(51+77)}{2}=896
 \end{aligned}" />
 
-# Sicherstellen, dass es keinen weiteren Punkt gibt
+# Die erste Aussage zur Kategorie C
 
-Über 20 GB kommen bei Hemat 9 000 Rupiah pro GB hinzu, bei Bebas nur 5 000. Der Unterschied **wird immer größer**, die Kosten treffen sich also nicht wieder.
+Doppelt so viele Plätze wie in Kategorie B sind <InlineMath math="800" />, und Kategorie C hat <InlineMath math="896" /> Plätze. Wegen <InlineMath math="896>800" /> ist die erste Aussage wahr. Kategorie C hat nur <InlineMath math="1{,}4" />-mal so viele Reihen wie Kategorie B, aber **ihre Reihen sind viel länger**.
 
-Kontrolle: Bei 15 GB kostet Hemat <InlineMath math="50\,000+5\cdot9\,000=95\,000" />, genauso viel wie Bebas.
+# Die zweite Aussage zu einer Reihe mit fünfzig Plätzen
 
-Beide Tarife kosten also bei **15 GB** gleich viel.
+Für <InlineMath math="17+2n=50" /> bräuchte man <InlineMath math="2n=33" />, also <InlineMath math="n=16{,}5" />, und das ist keine ganze Zahl. Der Grund: **Jede Reihe hat eine ungerade Platzzahl**, während <InlineMath math="50" /> gerade ist. Reihe <InlineMath math="16" /> hat <InlineMath math="49" /> Plätze und Reihe <InlineMath math="17" /> hat <InlineMath math="51" />. Die zweite Aussage ist falsch.
+
+# Die dritte Aussage zu zwei benachbarten Reihen
+
+Zwei benachbarte Reihen, Reihe <InlineMath math="n" /> und Reihe <InlineMath math="n+1" />, haben zusammen so viele Plätze.
+
+<BlockMath math="\begin{aligned}
+(17+2n)+(17+2(n+1)) &= 100\\
+36+4n &= 100\\
+n &= 16
+\end{aligned}" />
+
+Die Reihen <InlineMath math="16" /> und <InlineMath math="17" /> haben <InlineMath math="49+51=100" /> Plätze. Beide Reihen gibt es, also ist **die dritte Aussage wahr**, auch wenn die beiden Reihen zu verschiedenen Kategorien gehören.
+
+# Die vierte Aussage zur Preiserhöhung
+
+Jeder Platz bringt <InlineMath math="\text{Rp}10{.}000" /> mehr, egal in welcher Kategorie. Die Mehreinnahmen sind also **alle Plätze mal** <InlineMath math="\text{Rp}10{.}000" />.
+
+<BlockMath math="\begin{aligned}
+\text{Anzahl der Plätze} &= 144+400+896=1{.}440\\
+\text{Mehreinnahmen} &= 1{.}440\cdot\text{Rp}10{.}000=\text{Rp}14{.}400{.}000
+\end{aligned}" />
+
+Mehreinnahmen von <InlineMath math="\text{Rp}14{.}400{.}000" /> sind mehr als <InlineMath math="\text{Rp}14{.}000{.}000" />, also ist die vierte Aussage wahr.
+
+Die erste Aussage ist also wahr, die zweite falsch, die dritte wahr und die vierte wahr.

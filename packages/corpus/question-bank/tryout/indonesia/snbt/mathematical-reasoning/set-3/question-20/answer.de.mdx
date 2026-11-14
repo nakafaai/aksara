@@ -1,21 +1,26 @@
-Die Schule darf mehr als 480 Blatt drucken, vergleiche also **die Kosten jeder Möglichkeit mit mindestens 480 Blatt**, auch solcher, die eine Gruppengrenze überschreiten.
+Gesucht ist der kleinste Meldebestand, bei dem jede Nachfrage bedient wird. Der Plan: Finde zuerst **den Tag, bis zu dem die erste Bestellung raus sein muss**, damit Tag <InlineMath math="5" /> sicher ist, und prüfe dann, ob dieser Meldebestand auch die folgenden Tage rettet.
 
-# Kosten jeder Möglichkeit
+# Die erste Bestellung muss früher raus
 
-Jede Möglichkeit liefert **mindestens 480 Blatt**.
+Nach den gegebenen Regeln beträgt der Bestand am Ende der Tage <InlineMath math="1" /> bis <InlineMath math="4" /> der Reihe nach <InlineMath math="100" />, <InlineMath math="75" />, <InlineMath math="45" /> und <InlineMath math="25" />. Tag <InlineMath math="5" /> verlangt nach <InlineMath math="35" /> Säcken, also muss die Ware am Morgen von Tag <InlineMath math="5" /> da sein. Das heißt, **die Bestellung muss spätestens am Ende von Tag <InlineMath math="2" /> raus**, wenn der Bestand <InlineMath math="75" /> Säcke beträgt. Bestellt wird erst, wenn der Bestand höchstens so groß ist wie der Meldebestand, also ist der Meldebestand mindestens <InlineMath math="75" />.
 
-| Möglichkeit | Kosten |
-| :---: | :---: |
-| 480 Blatt auf einmal | <InlineMath math="480\cdot400=192\,000" /> |
-| 500 Blatt auf einmal | <InlineMath math="500\cdot400=200\,000" /> |
-| zwei Aufträge zu 240 | <InlineMath math="2\cdot240\cdot400=192\,000" /> |
-| fünf Aufträge zu 96 | <InlineMath math="5\cdot96\cdot500=240\,000" /> |
-| 501 Blatt auf einmal | <InlineMath math="501\cdot300=150\,300" /> |
+# Die folgenden Tage prüfen
 
-# Die günstigste wählen
+Mit dem Meldebestand <InlineMath math="75" /> kommt die erste Bestellung an Tag <InlineMath math="5" /> an.
 
-Mit 501 Blatt sinkt der Preis auf 300 Rupiah pro Blatt, also **sind die Kosten am kleinsten**, obwohl 21 Blatt übrig bleiben. Die Ersparnis beträgt <InlineMath math="192\,000-150\,300=41\,700" /> Rupiah gegenüber genau 480 Blatt.
+| Tag | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> | <InlineMath math="10" /> | <InlineMath math="11" /> | <InlineMath math="12" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Bestand am Tagesende | <InlineMath math="140" /> | <InlineMath math="100" /> | <InlineMath math="70" /> | <InlineMath math="45" /> | <InlineMath math="0" /> | <InlineMath math="100" /> | <InlineMath math="70" /> | <InlineMath math="50" /> |
 
-Aufteilen hilft nicht, weil jeder kleine Auftrag in derselben oder einer teureren Preisgruppe bleibt.
+Die zweite Bestellung geht am Ende von Tag <InlineMath math="7" /> raus und kommt an Tag <InlineMath math="10" /> an. Die <InlineMath math="45" /> Säcke am Morgen von Tag <InlineMath math="9" /> sind **genau die Nachfrage dieses Tages**, also entgeht bis Tag <InlineMath math="12" /> kein Verkauf.
 
-Am günstigsten ist also, **501 Blatt in einem Auftrag für 150 300 Rupiah zu bestellen**.
+# Die verlockenden falschen Optionen
+
+Auch jede andere Option bedient jede Nachfrage, **ist aber nicht die kleinste**, denn sie entsteht aus einer falschen Schätzung.
+
+- <InlineMath math="85" /> Säcke sind die Nachfrage der drei Tage nach der ersten Bestellung nach den gegebenen Regeln, also <InlineMath math="30+20+35" />.
+- <InlineMath math="95" /> Säcke sind die größte Nachfrage zweier Tage in Folge, also <InlineMath math="45+50" />.
+- <InlineMath math="120" /> Säcke sind die Nachfrage der Tage <InlineMath math="8" /> bis <InlineMath math="10" />, also <InlineMath math="25+45+50" />.
+- <InlineMath math="125" /> Säcke sind die größte Nachfrage dreier Tage in Folge, also <InlineMath math="45+50+30" />.
+
+Der kleinste Meldebestand ohne entgangenen Verkauf ist also <InlineMath math="75" /> Säcke.

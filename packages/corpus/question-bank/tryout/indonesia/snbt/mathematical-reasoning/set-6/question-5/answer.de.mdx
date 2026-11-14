@@ -1,13 +1,41 @@
-Jede Faltung verdoppelt die Dicke, nach <InlineMath math="n" /> Faltungen ist sie also **<InlineMath math="0{,}1\cdot2^n" /> mm**. Das ist exponentielles Wachstum, keine feste Zunahme.
+Du brauchst die Gesamtkosten aller acht Fahrten mit beiden Zahlweisen und vergleichst sie dann. Der Normaltarif ist eine einfache Summe. Das Abo ist kniffliger, denn **es hat zwei Grenzen: Freiminuten bei jeder Fahrt und eine Obergrenze für die Minutengebühren im Monat**.
 
-# Lagen nach 10 Faltungen
+# Kosten im Normaltarif
 
-<BlockMath math="2^{10}=1\,024\text{ Lagen}" />
+Jede Fahrt kostet die Entsperrgebühr von <InlineMath math="\text{Rp}2{.}000" /> plus <InlineMath math="\text{Rp}250" /> pro Minute. Also **zählt jede Minute, und die Entsperrgebühr fällt achtmal an**.
 
-# Dicke des Stapels
+<BlockMath math="\begin{aligned} \text{Gesamtdauer} &= 25+6+38+44+15+31+9+27=195 \\ \text{Normaltarif} &= 8\cdot 2{.}000+250\cdot 195 \\ &= 16{.}000+48{.}750=64{.}750 \end{aligned}" />
 
-<BlockMath math="0{,}1\cdot1\,024=102{,}4\text{ mm}" />
+# Bezahlte Minuten im Abo
 
-Wer annimmt, dass jede Faltung **0,1 mm hinzufügt**, erhält nur 1,1 mm. Das ist falsch, weil eine Faltung den ganzen Stapel verdoppelt.
+Im Abo sind die bezahlten Minuten einer Fahrt ihre Dauer minus <InlineMath math="20" />, aber **eine Fahrt von höchstens <InlineMath math="20\text{ Minuten}" /> bringt null bezahlte Minuten**, keine negative Zahl.
 
-Nach 10 Faltungen ist der Stapel also **102,4 mm** dick.
+| Fahrt | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Dauer | <InlineMath math="25" /> | <InlineMath math="6" /> | <InlineMath math="38" /> | <InlineMath math="44" /> | <InlineMath math="15" /> | <InlineMath math="31" /> | <InlineMath math="9" /> | <InlineMath math="27" /> |
+| Bezahlte Minuten | <InlineMath math="5" /> | <InlineMath math="0" /> | <InlineMath math="18" /> | <InlineMath math="24" /> | <InlineMath math="0" /> | <InlineMath math="11" /> | <InlineMath math="0" /> | <InlineMath math="7" /> |
+
+Zusammen sind das <InlineMath math="5+18+24+11+7=65" /> bezahlte Minuten.
+
+# Die Obergrenze im Monat
+
+Ohne Obergrenze lägen die Minutengebühren bei <InlineMath math="65\cdot 500=\text{Rp}32{.}500" />. Das ist mehr als die Obergrenze, also **zahlt Dita nur <InlineMath math="\text{Rp}30{.}000" /> Minutengebühren**.
+
+<BlockMath math="\text{Abokosten}=30{.}000+30{.}000=60{.}000" />
+
+# Der Unterschied
+
+<BlockMath math="64{.}750-60{.}000=4{.}750" />
+
+Das Abo ist **um <InlineMath math="\text{Rp}4{.}750" /> günstiger**. Prüf das mit der Obergrenze: Ein Monat im Abo kostet nie mehr als <InlineMath math="30{.}000+30{.}000=\text{Rp}60{.}000" />. Ditas Normaltarif von <InlineMath math="\text{Rp}64{.}750" /> liegt schon darüber, also muss das Abo günstiger sein.
+
+# Warum die anderen Antworten nicht passen
+
+Jede falsche Antwort **übergeht eine Regel** aus der Preisliste.
+
+- Günstiger um <InlineMath math="\text{Rp}2{.}250" /> entsteht, wenn du die Obergrenze weglässt und das Abo mit <InlineMath math="30{.}000+32{.}500=62{.}500" /> ansetzt.
+- Günstiger um <InlineMath math="\text{Rp}17{.}250" /> entsteht, wenn du die Freiminuten von der Gesamtdauer abziehst, <InlineMath math="195-8\cdot 20=35" />. Dann zählen die kurzen Fahrten mit negativen Minuten.
+- Günstiger um <InlineMath math="\text{Rp}34{.}750" /> entsteht, wenn du die Abogebühr von <InlineMath math="\text{Rp}30{.}000" /> vergisst.
+- Teurer um <InlineMath math="\text{Rp}11{.}250" /> entsteht, wenn du im Normaltarif die Entsperrgebühren vergisst und nur <InlineMath math="\text{Rp}48{.}750" /> ansetzt.
+
+Mit dem Abo kosten Ditas Fahrten im November also <InlineMath math="\text{Rp}4{.}750" /> weniger als im Normaltarif.

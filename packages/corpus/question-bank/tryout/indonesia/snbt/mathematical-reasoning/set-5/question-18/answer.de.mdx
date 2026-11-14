@@ -1,15 +1,28 @@
-Der Ergebnisraum besteht aus **10 000 gleich wahrscheinlichen PINs**. Die Wahrscheinlichkeit ist die Anzahl der PINs mit verschiedenen Ziffern geteilt durch 10 000.
+Gesucht ist das meiste Eiweiß aus einem Paket, das höchstens <InlineMath math="\text{Rp}30{.}000" /> kostet und höchstens <InlineMath math="600\text{ kcal}" /> enthält. Der Plan: Zieh zuerst den Reis und die eine Portion Gemüse ab, die dabei sein müssen, und **vergleiche dann die Pakete nach ihren Portionen Grillhähnchen**.
 
-# PINs mit verschiedenen Ziffern
+# Das übrige Geld und die übrigen Kalorien
 
-**Die erste Ziffer darf 0 sein**, also sind es <InlineMath math="10\cdot9\cdot8\cdot7=5\,040" />.
+**Reis und eine Portion Gemüse** kosten <InlineMath math="\text{Rp}8{.}000" />, enthalten <InlineMath math="240\text{ kcal}" /> und liefern <InlineMath math="6\text{ g}" /> Eiweiß. Es bleiben <InlineMath math="\text{Rp}22{.}000" /> und <InlineMath math="360\text{ kcal}" />.
 
-# Wahrscheinlichkeit
+# Die Pakete nach Portionen Hähnchen
 
-<BlockMath math="\frac{5\,040}{10\,000}=0{,}504" />
+Zwei Portionen Hähnchen kosten <InlineMath math="\text{Rp}24{.}000" />, mehr als das übrige Geld, also **gibt es höchstens eine Portion Hähnchen**.
 
-Das ist knapp über der Hälfte, also **wiederholt fast die Hälfte aller PINs eine Ziffer**.
+| Zusätze | Preis der Zusätze | Kalorien der Zusätze | Eiweiß des Pakets |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> Hähnchen und <InlineMath math="2" /> Tempeh | <InlineMath math="\text{Rp}20{.}000" /> | <InlineMath math="350\text{ kcal}" /> | <InlineMath math="6+24+20=50\text{ g}" /> |
+| <InlineMath math="1" /> Hähnchen, <InlineMath math="1" /> Tempeh und <InlineMath math="2" /> Gemüse | <InlineMath math="\text{Rp}22{.}000" /> | <InlineMath math="330\text{ kcal}" /> | <InlineMath math="6+24+10+4=44\text{ g}" /> |
+| <InlineMath math="3" /> Tempeh und <InlineMath math="1" /> Gemüse | <InlineMath math="\text{Rp}15{.}000" /> | <InlineMath math="340\text{ kcal}" /> | <InlineMath math="6+30+2=38\text{ g}" /> |
 
-Der Wert 0,496 ist die Wahrscheinlichkeit des Gegenereignisses, einer wiederholten Ziffer. Der Wert 0,4536 verbietet eine führende 0, obwohl eine PIN mit 0 beginnen darf. Der Wert 0,3024 verwendet <InlineMath math="9\cdot8\cdot7\cdot6" />, und 0,0504 setzt das Komma falsch.
+Mit einer Portion Hähnchen bringt ein dritter Tempeh die zusätzlichen Kalorien auf <InlineMath math="450\text{ kcal}" />, er passt also nicht. Nach einem Hähnchen und zwei Tempeh bleiben nur <InlineMath math="10\text{ kcal}" />, also **lässt sich nichts weiter hinzufügen**. Ohne Hähnchen sind es höchstens drei Portionen Tempeh, und das Eiweiß beträgt höchstens <InlineMath math="38\text{ g}" />.
 
-Die Wahrscheinlichkeit beträgt also **0,504**.
+# Die verlockenden falschen Optionen
+
+Jede andere Option entsteht aus **einem schwächeren Paket oder einer unvollständigen Rechnung**.
+
+- <InlineMath math="48\text{ g}" /> entsteht, wenn du das Eiweiß der einen Portion Gemüse im besten Paket vergisst.
+- <InlineMath math="46\text{ g}" /> entsteht aus vier Portionen Tempeh ohne Hähnchen, obwohl dieses Paket <InlineMath math="640\text{ kcal}" /> enthält.
+- <InlineMath math="44\text{ g}" /> entsteht, wenn du genau <InlineMath math="\text{Rp}30{.}000" /> für ein Hähnchen, einen Tempeh und drei Portionen Gemüse ausgibst.
+- <InlineMath math="38\text{ g}" /> entsteht, wenn dir das Hähnchen zu teuer erscheint und du nur Tempeh und Gemüse kaufst.
+
+Das meiste Eiweiß, das Raka bekommen kann, sind also <InlineMath math="50\text{ g}" />.

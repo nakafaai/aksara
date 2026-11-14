@@ -1,20 +1,35 @@
-Waktu balik modal adalah **biaya pemasangan dibagi penghematan per satuan waktu**. Hitung keduanya untuk 10 panel.
+Kamu mencari biaya Booster paling sedikit agar <InlineMath math="62\text{ GB}" /> selesai diunduh dalam <InlineMath math="12" /> jam. Rencananya: ubah kecepatan menjadi waktu per GB, lalu hitung waktu unduh untuk setiap banyak Booster, **dimulai dari tanpa Booster**.
 
-# Biaya dan penghematan
+# Waktu unduh setiap GB
 
-Satu panel menghasilkan 0,9 kWh per hari, jadi **diperlukan 10 panel**.
+Kecepatan <InlineMath math="40\text{ Mbps}" /> sama dengan <InlineMath math="5\text{ MB}" /> per detik, dan <InlineMath math="8\text{ Mbps}" /> sama dengan <InlineMath math="1\text{ MB}" /> per detik. Satu GB berisi <InlineMath math="1{.}000\text{ MB}" />.
 
 <BlockMath math="\begin{aligned}
-\text{biaya}&=10\cdot2{.}430{.}000=24{.}300{.}000\\
-\text{hemat per bulan}&=9\cdot1{.}500\cdot30=405{.}000
+\text{kecepatan penuh}&:1{.}000:5=200\text{ detik per GB}\\
+\text{kecepatan turun}&:1{.}000:1=1{.}000\text{ detik per GB}
 \end{aligned}" />
 
-# Waktu balik modal
+Waktu yang tersedia <InlineMath math="12" /> jam, yaitu <InlineMath math="43{.}200" /> detik. Unduhan berlangsung pukul 07.00 sampai 19.00, jadi **jam malam tidak ikut membantu**.
 
-<BlockMath math="\frac{24{.}300{.}000}{405{.}000}=60\text{ bulan}=5\text{ tahun}" />
+# Tanpa Booster dan dengan satu Booster
 
-Setiap bulan penghematan menutup **satu per enam puluh biaya pemasangan**, jadi diperlukan 60 bulan.
+Tanpa Booster, hanya <InlineMath math="6\text{ GB}" /> yang berkecepatan penuh, dan <InlineMath math="56\text{ GB}" /> sisanya berkecepatan turun.
 
-Nilai 6 tahun muncul jika dipasang 12 panel tanpa kenaikan pemakaian. Nilai 10 tahun muncul jika penghematan hanya dihitung setengahnya, dan 4 tahun jika penghematan per bulan dibesarkan menjadi lebih dari Rp500.000,00.
+<BlockMath math="6\cdot200+56\cdot1{.}000=57{.}200\text{ detik}" />
 
-Jadi, biaya pemasangan tertutup setelah **5 tahun**.
+Waktu itu lebih dari <InlineMath math="43{.}200" /> detik, jadi tidak cukup. Dengan satu Booster, kuota berkecepatan penuh menjadi <InlineMath math="20+6=26\text{ GB}" />, karena **kuota utama yang tersisa tetap terpakai setelah Booster habis**.
+
+<BlockMath math="26\cdot200+36\cdot1{.}000=41{.}200\text{ detik}" />
+
+Waktu <InlineMath math="41{.}200" /> detik adalah <InlineMath math="11" /> jam <InlineMath math="26" /> menit <InlineMath math="40" /> detik, masih di dalam <InlineMath math="12" /> jam. Satu Booster cukup.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain muncul dari **satu bagian aturan yang terlewat**.
+
+- <InlineMath math="\text{Rp}0" /> muncul kalau penurunan kecepatan terlupa, sehingga <InlineMath math="62\cdot200=12{.}400" /> detik tampak cukup.
+- <InlineMath math="\text{Rp}30{.}000" /> muncul kalau sisa kuota utama <InlineMath math="6\text{ GB}" /> terlupa. Satu Booster lalu tampak memerlukan <InlineMath math="20\cdot200+42\cdot1{.}000=46{.}000" /> detik, lebih dari <InlineMath math="12" /> jam.
+- <InlineMath math="\text{Rp}45{.}000" /> muncul kalau seluruh <InlineMath math="56\text{ GB}" /> di luar kuota utama dianggap harus berkecepatan penuh, yaitu <InlineMath math="3" /> Booster.
+- <InlineMath math="\text{Rp}60{.}000" /> muncul kalau seluruh <InlineMath math="62\text{ GB}" /> dianggap harus ditutup Booster, yaitu <InlineMath math="4" /> Booster.
+
+Jadi, biaya Booster paling sedikit adalah <InlineMath math="\text{Rp}15{.}000" />.

@@ -1,16 +1,47 @@
-Pemakaian bensin berbeda untuk kedua jenis jalan, jadi **hitung setiap bagian perjalanan terpisah**, lalu jumlahkan.
+Kamu mencari banyak kunjungan paling sedikit yang membuat member baru benar-benar lebih murah. Rencananya begini: cari dulu biaya termurah tanpa member untuk <InlineMath math="n" /> kunjungan, hitung biaya member baru, lalu bandingkan keduanya dengan **syarat lebih murah yang ketat**. Supaya hitungan ringkas, semua harga ditulis dalam ribu rupiah, jadi <InlineMath math="250" /> berarti <InlineMath math="\text{Rp}250{.}000" />.
 
-# Bensin untuk setiap bagian
+# Biaya termurah tanpa member
+
+Semua kunjungan Dimas ada di dalam periode <InlineMath math="30" /> hari. Kartu yang dibeli pada kunjungan pertama masih berlaku sampai akhir periode itu, jadi **jatah kartu tidak ada yang hangus**. Satu kunjungan dengan kartu berharga <InlineMath math="25" />, lebih murah daripada tiket harian <InlineMath math="40" />.
+
+Untuk <InlineMath math="n" /> sedikit di atas <InlineMath math="10" />, cara termurah adalah **<InlineMath math="1" /> kartu ditambah tiket harian** untuk kunjungan sisanya. Cara ini kalah dari <InlineMath math="2" /> kartu hanya kalau biayanya melewati <InlineMath math="500" />:
 
 <BlockMath math="\begin{aligned}
-\text{jalan kota}&:\quad \frac{60}{10}=6\text{ liter}\\
-\text{jalan tol}&:\quad \frac{150}{15}=10\text{ liter}
+\text{satu kartu dan tiket harian} &= 250+40(n-10) \\
+250+40(n-10) > 500 &\iff 40(n-10) > 250 \\
+&\iff n-10 > 6{,}25
 \end{aligned}" />
 
-# Jumlah bensin
+Jadi, untuk <InlineMath math="11 \le n \le 16" /> biaya termurah tanpa member adalah <InlineMath math="250+40(n-10)" />, dan mulai <InlineMath math="n=17" /> biayanya <InlineMath math="500" /> (<InlineMath math="2" /> kartu).
 
-<BlockMath math="6+10=16\text{ liter}" />
+# Biaya member baru
 
-Banyak bensin adalah **jarak dibagi jarak tempuh per liter**, bukan jarak dikali jarak tempuh per liter.
+Dimas belum pernah menjadi member, jadi ia **wajib membayar biaya pendaftaran** di samping harga member:
 
-Jadi, mobil itu memakai **16 liter** bensin.
+<BlockMath math="350+100=450" />
+
+# Membandingkan kedua biaya
+
+Member lebih murah kalau biaya tanpa member lebih besar dari <InlineMath math="450" />. Coba selesaikan pertidaksamaan ini:
+
+<BlockMath math="\begin{aligned}
+250+40(n-10) &> 450 \\
+40(n-10) &> 200 \\
+n-10 &> 5 \\
+n &> 15
+\end{aligned}" />
+
+Pada <InlineMath math="n=15" /> kedua biaya sama, yaitu <InlineMath math="250+40 \cdot 5=450" />. Biaya yang **sama besar belum lebih murah**, jadi <InlineMath math="n=15" /> belum memenuhi. Pada <InlineMath math="n=16" /> biaya tanpa member <InlineMath math="250+40 \cdot 6=490" />, lebih mahal <InlineMath math="40" /> daripada member. Mulai <InlineMath math="n=17" /> biaya tanpa member <InlineMath math="500" />, tetap lebih mahal daripada <InlineMath math="450" />.
+
+Cek dari arah lain: pada <InlineMath math="n=14" />, biaya tanpa member <InlineMath math="250+40 \cdot 4=410" />, masih lebih murah daripada member. Jadi, batasnya memang terletak di antara <InlineMath math="15" /> dan <InlineMath math="16" />.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain muncul dari **satu langkah yang terlewat**:
+
+- <InlineMath math="15" /> kali menganggap biaya yang sama besar sudah lebih murah.
+- <InlineMath math="13" /> kali lupa biaya pendaftaran, sehingga membandingkan dengan <InlineMath math="350" />: <InlineMath math="250+40 \cdot 3=370" /> sudah melewati <InlineMath math="350" />.
+- <InlineMath math="12" /> kali hanya membandingkan dengan tiket harian: <InlineMath math="40 \cdot 12=480" /> melewati <InlineMath math="450" />, padahal kartu jauh lebih hemat.
+- <InlineMath math="11" /> kali hanya memakai kartu utuh, sehingga <InlineMath math="11" /> kunjungan dianggap butuh <InlineMath math="2" /> kartu seharga <InlineMath math="500" />, padahal <InlineMath math="1" /> kartu dan <InlineMath math="1" /> tiket harian cukup <InlineMath math="290" />.
+
+Jadi, Dimas perlu masuk paling sedikit <InlineMath math="16" /> kali dalam periode itu supaya member baru lebih murah.

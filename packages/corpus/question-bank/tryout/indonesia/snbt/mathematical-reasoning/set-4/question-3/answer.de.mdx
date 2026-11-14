@@ -1,19 +1,58 @@
-Für Flugdauern **gleichst du die Zonen von Abflug und Ankunft an**. Für eine Wartezeit in einer Stadt liegen beide Zeiten schon in derselben Zone.
+Du kennst den Rechnungsbetrag und musst rückwärts auf die Gesamtstrecke schließen. Der Plan: Suche für jedes Paket die Strecke, die genau <InlineMath math="\text{Rp}1{.}850{.}000" /> ergibt. Danach **streichst du jeden Kandidaten, der nicht das günstigste Paket** für seine Strecke ist, denn Herr Bima hat das günstigste gewählt.
 
-# Flugdauer von P1 und P2
+# Der Tagesanteil nach dem Rabatt
 
-P1: 06.40 Uhr WIB ist 07.40 Uhr WITA, und bis 10.05 Uhr WITA vergehen 2 Stunden 25 Minuten.
+Eine Miete über <InlineMath math="5" /> Tage bekommt den Rabatt von <InlineMath math="20\%" />, aber **der Rabatt gilt nur für den Tagestarif**. Der Tagesanteil jedes Pakets beträgt:
 
-P2: 11.30 Uhr WITA ist 12.30 Uhr WIT, und bis 16.15 Uhr WIT vergehen **3 Stunden 45 Minuten**. Die erste Aussage ist wahr.
+<BlockMath math="\begin{aligned}
+\text{A} &= 0{,}8\times5\times200{.}000=800{.}000\\
+\text{B} &= 0{,}8\times5\times350{.}000=1{.}400{.}000\\
+\text{C} &= 0{,}8\times5\times500{.}000=2{.}000{.}000
+\end{aligned}" />
 
-<BlockMath math="2\text{ h }25\text{ min}+3\text{ h }45\text{ min}=6\text{ h }10\text{ min}" />
+Paket C kostet immer <InlineMath math="\text{Rp}2{.}000{.}000" />, kann also nicht <InlineMath math="\text{Rp}1{.}850{.}000" /> ergeben.
 
-Die vierte Aussage ist wahr.
+# Kandidaten für Paket A und Paket B
 
-# Uhrzeit in Jakarta und Wartezeit
+Bei Paket A ist alles, was nach dem Tagesanteil übrig bleibt, Streckenkosten zu <InlineMath math="\text{Rp}1{.}500" /> pro Kilometer:
 
-P1 landet um 10.05 Uhr WITA. Jakarta ist **eine Stunde zurück**, dort ist es also 09.05 Uhr WIB, nicht 11.05 Uhr WIB. Die zweite Aussage ist falsch.
+<BlockMath math="\begin{aligned}
+800{.}000+1{.}500x &= 1{.}850{.}000\\
+1{.}500x &= 1{.}050{.}000\\
+x &= 700
+\end{aligned}" />
 
-Die Fluggäste kommen um 10.05 Uhr WITA an und fliegen um 11.30 Uhr WITA weiter, warten also 1 Stunde 25 Minuten, weniger als 1,5 Stunden. Die dritte Aussage ist falsch.
+Paket B hat ein Kontingent von <InlineMath math="5\times150=750\text{ km}" />. Seine Rechnung liegt über <InlineMath math="1{.}400{.}000" />, also **muss die Strecke das Kontingent überschreiten**, und nur die Mehrstrecke kostet <InlineMath math="\text{Rp}3{.}000" /> pro Kilometer:
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.
+<BlockMath math="\begin{aligned}
+1{.}400{.}000+3{.}000(x-750) &= 1{.}850{.}000\\
+3{.}000(x-750) &= 450{.}000\\
+x &= 750+150=900
+\end{aligned}" />
+
+Es bleiben zwei Kandidaten: <InlineMath math="700\text{ km}" /> mit Paket A oder <InlineMath math="900\text{ km}" /> mit Paket B.
+
+# Den Kandidaten streichen, der nicht am günstigsten ist
+
+Prüfe <InlineMath math="700\text{ km}" />. Diese Strecke liegt noch im Kontingent von Paket B, also würde Paket B nur <InlineMath math="\text{Rp}1{.}400{.}000" /> kosten. Das ist **günstiger als Paket A**, also kann Herr Bima für diese Strecke nicht Paket A gewählt haben.
+
+Prüfe <InlineMath math="900\text{ km}" />:
+
+<BlockMath math="\begin{aligned}
+\text{A} &= 800{.}000+1{.}500\times900=2{.}150{.}000\\
+\text{B} &= 1{.}850{.}000\\
+\text{C} &= 2{.}000{.}000
+\end{aligned}" />
+
+Paket B ist tatsächlich am günstigsten, also passt dieser Kandidat zu allen Angaben.
+
+# Warum die anderen Antworten falsch sind
+
+Jede falsche Antwort entsteht aus **einem übersprungenen Schritt** in der Kette oben.
+
+- <InlineMath math="150\text{ km}" /> entsteht, wenn du die Mehrstrecke ab null zählst, <InlineMath math="450{.}000\div3{.}000=150" />, ohne die <InlineMath math="750\text{ km}" /> Kontingent zu addieren.
+- <InlineMath math="700\text{ km}" /> ist der Kandidat von Paket A, der nie geprüft wurde. Für diese Strecke ist Paket B günstiger.
+- <InlineMath math="875\text{ km}" /> entsteht, wenn du den Rabatt auf die ganze Rechnung von Paket A anwendest: <InlineMath math="0{,}8(1{.}000{.}000+1{.}500x)=1{.}850{.}000" />.
+- <InlineMath math="1{.}050\text{ km}" /> entsteht, wenn du die Mehrstrecke von Paket B mit <InlineMath math="\text{Rp}1{.}500" /> pro Kilometer berechnest: <InlineMath math="750+450{.}000\div1{.}500=1{.}050" />.
+
+Herr Bima ist also insgesamt <InlineMath math="900\text{ km}" /> mit Paket B gefahren.
