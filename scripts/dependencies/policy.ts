@@ -88,7 +88,7 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     cohort: "Effect tooling",
     dependency: "@effect/tsgo",
     reason:
-      "Compiler patching is reviewed with tsrs and Effect. Every rule is decided in packages/typescript-config/base.json, and that rule block matches nakafa.com's (docs/adr/compiler.md), whose rule record, docs/adr/0021-rules.md, gives each reason. 0.69.0 patches tsrs 0.25.0-ts7.1.0-beta (the version table of its README), which replaces the TypeScript package: prepare runs effect-tsgo patch --tsrs --no-typescript. base.json decides onExitFailureToOnError, the one rule 0.68 added, which no Aksara module reaches; 0.69 adds none. Every later version must decide its new rules in base.json in the same change.",
+      "Compiler patching is reviewed with tsrs and Effect. Every rule is decided in packages/typescript-config/base.json, and that rule block matches nakafa.com's (docs/adr/compiler.md), whose rule record, docs/adr/0021-rules.md, gives each reason. 0.69.0 patches tsrs 0.25.0-ts7.1.0-beta (the version table of its README), which replaces the TypeScript package: prepare runs effect-tsgo patch --tsrs --no-typescript. base.json decides onExitFailureToOnError, the one rule 0.68 added, which no Aksara module reaches, and missingConcurrencyOption, the one rule 0.69 added, which stays off as in nakafa.com: a missing option means sequential, which is what the sequential calls mean, and upstream ships the rule off. Every later version must decide its new rules in base.json in the same change.",
     registry: "@effect/tsgo@latest",
     reviewedLatest: "0.69.0",
     source: "root-dev-dependency",
