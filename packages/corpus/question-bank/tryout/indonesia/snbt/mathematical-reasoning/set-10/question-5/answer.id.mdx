@@ -1,15 +1,48 @@
-Keberangkatan kereta C terjadi pada pukul 05.00 ditambah kelipatan 40 menit. Cari **kelipatan terbesar yang belum melewati pukul 22.00**.
+Kamu membandingkan seluruh uang yang keluar lewat kredit toko bertenor <InlineMath math="9" /> bulan dengan harga tunai. Rencananya begini: hitung harga tunai setelah potongan, hitung cicilan kredit lengkap dengan **pembulatan ke atas**, jumlahkan semua pembayaran kredit, lalu kurangkan.
 
-# Keberangkatan terakhir
+# Harga tunai setelah potongan
 
-Dari pukul 05.00 sampai 22.00 ada <InlineMath math="17\cdot60=1{.}020" /> menit.
+Pembeli tunai mendapat potongan <InlineMath math="4\%" />, jadi **pembandingnya adalah harga setelah potongan**, bukan harga awal.
 
-<BlockMath math="\frac{1{.}020}{40}=25{,}5" />
+<BlockMath math="\begin{aligned}
+\text{harga tunai} &= 6{.}000{.}000-4\%\cdot6{.}000{.}000\\
+&= 6{.}000{.}000-240{.}000=5{.}760{.}000
+\end{aligned}" />
 
-Jadi keberangkatan terakhir terjadi <InlineMath math="25\cdot40=1{.}000" /> menit setelah 05.00, yaitu pukul 21.40. Kereta berikutnya pukul 22.20, **sudah lewat batas**.
+# Cicilan tenor sembilan bulan
 
-# Banyak keberangkatan
+Uang muka dan bunga dihitung dari dua dasar yang berbeda. Uang muka dihitung dari harga, sedangkan **bunga dihitung dari pokok kredit**. Tenor <InlineMath math="9" /> bulan masih memakai bunga <InlineMath math="1{,}5\%" /> per bulan.
 
-Keberangkatan ke-0 sampai ke-25 berarti <InlineMath math="25+1=26" /> kali. Jangan lupa keberangkatan pertama pukul 05.00 ikut dihitung.
+<BlockMath math="\begin{aligned}
+\text{uang muka} &= 20\%\cdot6{.}000{.}000=1{.}200{.}000\\
+\text{pokok kredit} &= 6{.}000{.}000-1{.}200{.}000=4{.}800{.}000\\
+\text{total bunga} &= 4{.}800{.}000\cdot1{,}5\%\cdot9=648{.}000\\
+\text{cicilan sebelum dibulatkan} &= \frac{4{.}800{.}000+648{.}000}{9}=605{.}333{,}33\ldots
+\end{aligned}" />
 
-Jadi, kereta jurusan C berangkat **26 kali**.
+Aturan keempat meminta pembulatan ke atas ke kelipatan <InlineMath math="1{.}000" />. Jadi cicilannya <InlineMath math="606{.}000" />, walaupun sisanya hanya <InlineMath math="333{,}33" />.
+
+# Seluruh pembayaran kredit
+
+Rina membayar **uang muka dan biaya administrasi di awal**, lalu <InlineMath math="9" /> kali cicilan.
+
+<BlockMath math="\begin{aligned}
+\text{total kredit} &= 1{.}200{.}000+200{.}000+9\cdot606{.}000\\
+&= 1{.}400{.}000+5{.}454{.}000=6{.}854{.}000\\
+\text{selisih} &= 6{.}854{.}000-5{.}760{.}000=1{.}094{.}000
+\end{aligned}" />
+
+# Pemeriksaan pembulatan
+
+Setiap bulan Rina membayar <InlineMath math="606{.}000-605{.}333{,}33\ldots=666{,}66\ldots" /> lebih banyak dari nilai pastinya. Dalam <InlineMath math="9" /> bulan, **tambahan karena pembulatan** adalah <InlineMath math="9\cdot666{,}66\ldots=6{.}000" />. Hasil ini cocok, karena <InlineMath math="4{.}800{.}000+648{.}000+6{.}000=5{.}454{.}000" />.
+
+# Pilihan yang keliru
+
+Setiap pilihan yang keliru **melewatkan satu bagian biaya atau memakai dasar yang salah**.
+
+- <InlineMath math="\text{Rp}1{.}256{.}000{,}00" /> menghitung bunga dari harga penuh <InlineMath math="6{.}000{.}000" />, sehingga bunganya <InlineMath math="810{.}000" /> dan cicilannya <InlineMath math="624{.}000" />.
+- <InlineMath math="\text{Rp}1{.}088{.}000{,}00" /> tidak membulatkan cicilan ke atas.
+- <InlineMath math="\text{Rp}894{.}000{,}00" /> lupa biaya administrasi <InlineMath math="200{.}000" />.
+- <InlineMath math="\text{Rp}854{.}000{,}00" /> membandingkan dengan harga awal <InlineMath math="6{.}000{.}000" />, padahal pembeli tunai membayar <InlineMath math="5{.}760{.}000" />.
+
+Jadi, seluruh uang yang dikeluarkan Rina lebih besar <InlineMath math="\text{Rp}1{.}094{.}000{,}00" /> daripada membeli secara tunai.

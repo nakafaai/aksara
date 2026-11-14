@@ -1,23 +1,41 @@
-Write each plan's cost as a function of the usage <InlineMath math="x" /> GB above its quota. For <InlineMath math="x>10" />, **the Hemat cost is <InlineMath math="50{,}000+9{,}000(x-10)" />**, and for <InlineMath math="x>20" />, the Bebas cost is <InlineMath math="95{,}000+5{,}000(x-20)" />.
+Tickets are sold from the front to the back, so every category A seat sells first, then category B, then category C. The plan: find the revenue of each category once it's sold out, **find the category in which the total passes the target**, then count the tickets inside that category.
 
-# Usage of 25 GB and 12 GB
+# Seats in categories A and B
 
-<BlockMath math="\begin{aligned}
-\text{Hemat}(25)&=50{,}000+15\cdot9{,}000=185{,}000\\
-\text{Bebas}(25)&=95{,}000+5\cdot5{,}000=120{,}000
-\end{aligned}" />
-
-The difference is 65,000, so the first statement is true. For 12 GB, Hemat costs <InlineMath math="50{,}000+2\cdot9{,}000=68{,}000" />, **cheaper than 95,000**. The second statement is false.
-
-# Rate of the difference and the budget limit
-
-Above 20 GB, each GB adds Rp9,000 to Hemat and Rp5,000 to Bebas, so the difference **grows by Rp4,000 per GB**. The third statement is true.
+Row <InlineMath math="n" /> has <InlineMath math="19+2(n-1)=17+2n" /> seats. The seats per row form an arithmetic sequence, so **a category's total is the number of rows times the average of its first and last rows**.
 
 <BlockMath math="\begin{aligned}
-50{,}000+9{,}000(x-10)&\le150{,}000\\
-x-10&\le\tfrac{100}{9}\approx11.1
+\text{A, rows }1\text{ to }6 &: \tfrac{6(19+29)}{2}=144\text{ seats}\\
+\text{B, rows }7\text{ to }16 &: \tfrac{10(31+49)}{2}=400\text{ seats}
 \end{aligned}" />
 
-Usage is counted in whole GB, so at most 21 GB. A usage of 22 GB costs 158,000, above the budget. The fourth statement is false.
+# Revenue once categories A and B are sold out
 
-So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.
+Multiply the seat count by the category's price, because **the ticket price depends on the row's category**.
+
+<BlockMath math="\begin{aligned}
+\text{revenue from A} &= 144\cdot\text{Rp}250{,}000=\text{Rp}36{,}000{,}000\\
+\text{revenue from A and B} &= \text{Rp}36{,}000{,}000+400\cdot\text{Rp}150{,}000=\text{Rp}96{,}000{,}000
+\end{aligned}" />
+
+After <InlineMath math="144+400=544" /> tickets, the revenue is only <InlineMath math="\text{Rp}96{,}000{,}000" />. So **category B sells out before the target is reached**, and the rest of the target has to come from category C tickets.
+
+# The category C tickets needed
+
+The rest of the target is <InlineMath math="\text{Rp}100{,}000{,}000-\text{Rp}96{,}000{,}000=\text{Rp}4{,}000{,}000" />. Each category C ticket is worth <InlineMath math="\text{Rp}100{,}000" />.
+
+<BlockMath math="\begin{aligned}
+\text{C tickets} &= \frac{4{,}000{,}000}{100{,}000}=40\\
+\text{total tickets} &= 144+400+40=584
+\end{aligned}" />
+
+# Checking the answer
+
+After <InlineMath math="583" /> tickets the revenue is <InlineMath math="\text{Rp}96{,}000{,}000+39\cdot\text{Rp}100{,}000=\text{Rp}99{,}900{,}000" />, still **short of the target**. Ticket <InlineMath math="584" /> brings it to exactly <InlineMath math="\text{Rp}100{,}000{,}000" />. Row <InlineMath math="17" /> has <InlineMath math="51" /> seats, so those <InlineMath math="40" /> category C tickets are all in row <InlineMath math="17" />.
+
+# Common wrong answers
+
+- An answer of <InlineMath math="571" /> assumes the <InlineMath math="\text{Rp}64{,}000{,}000" /> left after category A comes from category B tickets, which would be <InlineMath math="427" /> tickets. But **category B has only** <InlineMath math="400" /> **seats**.
+- An answer of <InlineMath math="400" /> divides <InlineMath math="\text{Rp}100{,}000{,}000" /> by the category A price, as if every ticket cost <InlineMath math="\text{Rp}250{,}000" />.
+
+So the total revenue first reaches <InlineMath math="\text{Rp}100{,}000{,}000.00" /> when <InlineMath math="584" /> tickets have been sold.

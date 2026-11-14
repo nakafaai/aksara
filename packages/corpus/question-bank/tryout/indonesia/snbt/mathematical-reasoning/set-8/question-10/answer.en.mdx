@@ -1,13 +1,32 @@
-The sum of the first eight terms of an arithmetic sequence is **the number of terms times the average of the first and last terms**.
+You need to rebuild the profit formula with the fertiliser rule, find its peak, then **check whether that peak fits in the orchard**. The orchard holds at most <InlineMath math="70" /> trees, and that limit is what changes the answer.
 
-# First and eighth terms
+# The profit formula with fertiliser
 
-<BlockMath math="U_8=120+7\cdot15=225" />
+For <InlineMath math="n" /> trees with <InlineMath math="n" /> at least <InlineMath math="40" />, the yield per tree becomes <InlineMath math="120-(n-40)=160-n" /> kilograms. The cost per tree is now **care plus fertiliser**, <InlineMath math="96{,}000+24{,}000=120{,}000" /> rupiah. So:
 
-# Sum over eight years
+<BlockMath math="\begin{aligned}
+\text{profit}&=8{,}000\cdot n(160-n)-120{,}000n\\
+&=8{,}000n(160-n-15)\\
+&=8{,}000n(145-n)
+\end{aligned}" />
 
-<BlockMath math="S_8=\frac{8}{2}(120+225)=4\cdot345=1{,}380" />
+For <InlineMath math="n" /> at most <InlineMath math="40" />, each tree yields <InlineMath math="120\text{ kg}" />, so the profit is <InlineMath math="(960{,}000-120{,}000)n=840{,}000n" />. That keeps rising up to <InlineMath math="n=40" />, so the largest profit must come from <InlineMath math="n" /> of at least <InlineMath math="40" />.
 
-The value 960 assumes 120 seedlings every year. The value 1,065 adds the increase <InlineMath math="7\cdot15" /> only once. The value 1,155 is the sum for seven years. The value 1,320 multiplies 8 by the fourth year's number, although **eight terms have no single middle term**.
+# The peak and the orchard limit
 
-So **1,380 seedlings** are planted in eight years.
+The expression <InlineMath math="8{,}000n(145-n)" /> is zero at <InlineMath math="n=0" /> and <InlineMath math="n=145" />, so its peak sits exactly halfway, at <InlineMath math="n=72.5" />. But the orchard only holds <InlineMath math="70" /> trees, so **the peak lies outside the orchard limit**. Before the peak, the profit keeps rising as you add trees. So among <InlineMath math="40" /> to <InlineMath math="70" /> trees, the largest profit is at <InlineMath math="70" /> trees:
+
+<BlockMath math="8{,}000\cdot70\cdot(145-70)=8{,}000\cdot70\cdot75=42{,}000{,}000" />
+
+Check one tree fewer: <InlineMath math="8{,}000\cdot69\cdot76=41{,}952{,}000" />, which is smaller. Also check per tree: with <InlineMath math="70" /> trees, each tree yields <InlineMath math="90\text{ kg}" />, so it earns <InlineMath math="90\cdot8{,}000-120{,}000=600{,}000" /> rupiah, and <InlineMath math="70\cdot600{,}000=42{,}000{,}000" />.
+
+# The wrong options
+
+Each other option misses one condition.
+
+- <InlineMath math="80" /> trees is the peak of the harvest <InlineMath math="n(160-n)" />. It ignores the costs and the orchard limit.
+- <InlineMath math="72" /> trees rounds the peak <InlineMath math="72.5" /> without checking that **the orchard only fits seventy trees**.
+- <InlineMath math="70" /> trees with <InlineMath math="\text{Rp}43{,}680{,}000" /> forgets the fertiliser cost, giving <InlineMath math="8{,}000\cdot70\cdot78" />.
+- <InlineMath math="47" /> trees is the best choice without fertiliser, which no longer holds once the yield rule changes.
+
+So with the special fertiliser, the largest profit comes from <InlineMath math="70" /> trees and is <InlineMath math="\text{Rp}42{,}000{,}000" />.

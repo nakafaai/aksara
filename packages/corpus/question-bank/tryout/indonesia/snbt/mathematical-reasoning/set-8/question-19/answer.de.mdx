@@ -1,15 +1,33 @@
-Ein Maßstab verbindet Längen auf der Karte mit wirklichen Längen. Bei dieser Karte **steht 1 cm für 250 000 cm, also 2,5 km**.
+Gesucht ist die Wahrscheinlichkeit, dass zwei Spender **sich gegenseitig Blut geben können**, die Verträglichkeit muss also in beide Richtungen gelten. So gehst du vor: Kläre, wann beide Richtungen überhaupt möglich sind, zähle die passenden Paare und teile durch die Zahl aller Paare.
 
-# Den Maßstab lesen
+# Wann zwei Personen in beide Richtungen passen
 
-Eine Entfernung von 10 km sind <InlineMath math="\tfrac{10}{2{,}5}=4" /> cm auf der Karte. Die erste Aussage ist wahr.
+Beginne mit der ABO-Regel. Ein Spender mit O kann an A geben, aber ein Spender mit A nicht an O. Ebenso können A und B an AB geben, aber AB nicht zurück an A oder B. A und B passen in keine Richtung. Also **passen zwei verschiedene ABO-Gruppen nie in beide Richtungen**, und beide Personen brauchen dieselbe ABO-Gruppe.
 
-250 000 cm sind 2,5 km, **nicht 25 km**, denn 1 km sind 100 000 cm. Die zweite Aussage ist falsch.
+Die Rhesus-Regel funktioniert genauso. Rhesus-negativ kann an rhesus-positiv geben, aber nicht umgekehrt. Auch der Rhesus muss also gleich sein. Kurz gesagt: Zwei Spender passen genau dann in beide Richtungen, wenn ihre Blutgruppen völlig gleich sind.
 
-# Den Maßstab wechseln
+# Die Paare zählen
 
-Bei 1 : 500 000 steht jeder Zentimeter für 5 km, doppelt so weit. Dieselbe wirkliche Entfernung wird **halb so lang gezeichnet**, die dritte Aussage ist also wahr.
+Die Zahl der Möglichkeiten, zwei der <InlineMath math="40" /> Spender ohne Reihenfolge auszuwählen, ist <InlineMath math="\binom{40}{2}=780" />. Die Paare mit gleicher Gruppe zählst du Gruppe für Gruppe:
 
-Die vergrößerte Kopie verdoppelt jede Länge auf der Karte, die wirklichen Entfernungen bleiben gleich. 2 cm auf der Kopie stehen also für 2,5 km und 1 cm für 1,25 km. Der Maßstab wird 1 : 125 000, **nicht 1 : 500 000**. Die vierte Aussage ist falsch.
+<BlockMath math="\begin{aligned}
+\binom{9}{2}+\binom{8}{2}+\binom{3}{2}+\binom{14}{2}+\binom{2}{2}+\binom{2}{2}&=36+28+3+91+1+1\\
+&=160
+\end{aligned}" />
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **wahr** und die vierte **falsch**.
+Die Gruppen <InlineMath math="\mathrm{A}^-" /> und <InlineMath math="\mathrm{AB}^-" /> haben jeweils nur einen Spender und **liefern deshalb kein Paar**. Die Wahrscheinlichkeit ist:
+
+<BlockMath math="P=\frac{160}{780}=\frac{8}{39}" />
+
+Prüfe das mit geordneten Paaren. Es gibt <InlineMath math="2\cdot160=320" /> geordnete Paare mit gleicher Gruppe und insgesamt <InlineMath math="40\cdot39=1{.}560" /> geordnete Paare. Das ergibt <InlineMath math="\tfrac{320}{1{.}560}=\tfrac{8}{39}" />, dasselbe.
+
+# Die falschen Antworten
+
+Jede andere Antwort nutzt **eine falsche Bedingung oder falsch gezählte Paare**.
+
+- <InlineMath math="\tfrac{607}{780}" /> liest die Bedingung als Verträglichkeit in mindestens einer Richtung. In eine der beiden Richtungen passen <InlineMath math="607" /> Paare, gefragt sind aber beide Richtungen zugleich.
+- <InlineMath math="\tfrac{48}{65}" /> verlangt nur gleichen Rhesus, <InlineMath math="\tfrac{\binom{34}{2}+\binom{6}{2}}{780}=\tfrac{576}{780}" />, und vergisst die ABO-Regel.
+- <InlineMath math="\tfrac{16}{39}" /> zählt oben geordnete Paare, <InlineMath math="320" />, unten aber ungeordnete, <InlineMath math="780" />.
+- <InlineMath math="\tfrac{18}{65}" /> verlangt nur gleiche ABO-Gruppe, <InlineMath math="\tfrac{216}{780}" />, und vergisst die Rhesus-Regel.
+
+Die Wahrscheinlichkeit, dass sich die beiden Spender gegenseitig Blut geben können, beträgt also <InlineMath math="\tfrac{8}{39}" />.

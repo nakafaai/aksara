@@ -1,17 +1,39 @@
-The amount of medicine is lowest **just before the next dose is taken**. So check those moments for each value of <InlineMath math="T" />.
+You're looking for the largest row spacing that still gives at least <InlineMath math="336" /> seedlings. Find how many rows are needed, split them between the two planting strips, and then find the largest spacing that fits that many rows in each strip. **The channel forces the rows into two separate bands**.
 
-# The first low point
+# The rows needed
 
-Just before the second dose, the body holds only what remains of the first dose, <InlineMath math="360\cdot\left(\tfrac12\right)^{T/8}" />. **The 90 mg limit must hold at this point**, so
+The spacing inside a row doesn't change, so **each row still holds <InlineMath math="28" /> seedlings** on the <InlineMath math="22\text{ m}" /> stretch.
 
-<BlockMath math="360\cdot\left(\tfrac12\right)^{T/8}\ge90\;\Longleftrightarrow\;\left(\tfrac12\right)^{T/8}\ge\tfrac14\;\Longleftrightarrow\;\tfrac{T}{8}\le2\;\Longleftrightarrow\;T\le16" />
+<BlockMath math="\frac{336}{28}=12" />
 
-# Checking T equal to 16 and 24
+Pak Darto needs at least <InlineMath math="12" /> rows.
 
-For <InlineMath math="T=16" />, the amount at 22:00 is exactly 90 mg, which **still meets the condition of not less than 90 mg**. After the second dose it becomes 450 mg, and at the end of the first 24 hours it is still <InlineMath math="450\cdot\tfrac12=225" /> mg.
+# The rows in each strip
 
-For <InlineMath math="T=24" />, there is no second dose before hour 24, and just before hour 24 only 45 mg remain. This value fails.
+Both planting strips are the same width with the same rules, so with the same row spacing they hold the same number of rows. A total of <InlineMath math="12" /> rows means **each strip must hold at least <InlineMath math="6" /> rows**. Rows can only lie in a band <InlineMath math="7-1-0.5=5.5" /> metres wide.
 
-The values 4, 8 and 12 hours also work, but they are all smaller than 16. The value 8 hours is tempting because it equals the half-life, but the condition is only the 90 mg limit.
+# The largest spacing
 
-So the largest value of <InlineMath math="T" /> that works is **16 hours**.
+Six rows in one band means **<InlineMath math="5" /> gaps between the first and the sixth row**, and those five gaps have to fit in the <InlineMath math="5.5\text{ m}" /> band.
+
+<BlockMath math="\begin{aligned}
+5d&\le 5.5 \\
+d&\le 1.1\text{ m}=110\text{ cm}
+\end{aligned}" />
+
+<InlineMath math="110" /> is already a multiple of <InlineMath math="5" />, so the largest spacing is <InlineMath math="110\text{ cm}" />.
+
+# Checking
+
+With <InlineMath math="d=1.1" />, each band holds <InlineMath math="\lfloor 5.5\div 1.1\rfloor+1=6" /> rows, so the total is <InlineMath math="2\cdot 6\cdot 28=336" /> seedlings, just enough. With the next multiple, <InlineMath math="d=1.15" />, each band only holds <InlineMath math="\lfloor 5.5\div 1.15\rfloor+1=4+1=5" /> rows, for a total of <InlineMath math="280" /> seedlings. So **<InlineMath math="110\text{ cm}" /> is the last spacing that's still enough**.
+
+# The wrong options
+
+Each other option comes from **forgetting one distance limit**.
+
+- <InlineMath math="115\text{ cm}" /> comes from ignoring the channel, so the <InlineMath math="12" /> rows seem to sit in one <InlineMath math="13\text{ m}" /> band with <InlineMath math="11" /> gaps.
+- <InlineMath math="120\text{ cm}" /> comes from ignoring the <InlineMath math="0.5\text{ m}" /> limit at the channel, which makes the band <InlineMath math="6\text{ m}" />.
+- <InlineMath math="130\text{ cm}" /> comes from ignoring the <InlineMath math="1\text{ m}" /> limit at the field edge, which makes the band <InlineMath math="6.5\text{ m}" />.
+- <InlineMath math="140\text{ cm}" /> comes from ignoring both limits and using the whole <InlineMath math="7\text{ m}" /> width.
+
+So the largest row spacing that meets Pak Darto's goal is <InlineMath math="110\text{ cm}" />.

@@ -1,17 +1,44 @@
-Sebuah titik terkena air jika **jaraknya ke salah satu alat penyiram paling jauh sama dengan jangkauan alat itu**. Letakkan <InlineMath math="A" /> di <InlineMath math="(0,0)" />, <InlineMath math="B" /> di <InlineMath math="(12,0)" />, dan <InlineMath math="D" /> di <InlineMath math="(0,8)" />.
+Setiap buku boleh diperpanjang atau tidak, dan pilihan untuk satu buku tidak memengaruhi buku lain. Jadi rencananya, **bandingkan dua pilihan untuk setiap jenis buku**, ambil yang lebih murah, lalu jumlahkan untuk semua buku.
 
-# Titik tengah AB dan titik D
+# Dua kemungkinan keterlambatan
 
-Titik tengah <InlineMath math="AB" /> berjarak tepat 6 m dari <InlineMath math="A" /> dan dari <InlineMath math="B" />. Jarak 6 m masih termasuk jangkauan, jadi pernyataan pertama benar.
+Tanpa perpanjangan, setiap buku terlambat <InlineMath math="23" /> hari. Dengan perpanjangan, batasnya mundur <InlineMath math="7" /> hari, jadi buku itu terlambat <InlineMath math="23-7=16" /> hari dan ada **biaya perpanjangan <InlineMath math="\text{Rp}3{.}000" />**. Kedua keterlambatan itu lebih dari <InlineMath math="3" /> hari, jadi masa tenggang tidak menolong, dan semua harinya didenda.
 
-Titik <InlineMath math="D" /> berjarak 8 m dari <InlineMath math="A" /> dan <InlineMath math="\sqrt{12^2+8^2}=\sqrt{208}" /> m dari <InlineMath math="B" />. **Keduanya lebih dari 6 m**, jadi pernyataan ketiga salah.
+# Pilihan untuk buku biasa
 
-# Titik potong diagonal
+<BlockMath math="\begin{aligned}
+\text{tanpa perpanjangan} &= \min(23\cdot1{.}000,\,20{.}000) = 20{.}000 \\
+\text{dengan perpanjangan} &= 3{.}000+16\cdot1{.}000 = 19{.}000
+\end{aligned}" />
 
-Titik potong diagonal adalah <InlineMath math="(6,4)" />, dan jaraknya sama ke <InlineMath math="A" /> dan ke <InlineMath math="B" />.
+Tanpa perpanjangan, denda <InlineMath math="23{.}000" /> dipotong batas menjadi <InlineMath math="20{.}000" />. Dengan perpanjangan, biayanya <InlineMath math="19{.}000" />, jadi **buku biasa sebaiknya diperpanjang** dan menghemat <InlineMath math="\text{Rp}1{.}000" /> per buku.
 
-<BlockMath math="\sqrt{6^2+4^2}=\sqrt{52}\approx7{,}21\text{ m}" />
+# Pilihan untuk buku referensi
 
-Jarak ini lebih dari 6 m, jadi pernyataan kedua benar. Jarak itu juga **masih lebih dari 7 m**, sehingga jangkauan 7 m belum cukup dan pernyataan keempat salah.
+<BlockMath math="\begin{aligned}
+\text{tanpa perpanjangan} &= \min(23\cdot2{.}500,\,40{.}000) = 40{.}000 \\
+\text{dengan perpanjangan} &= 3{.}000+\min(16\cdot2{.}500,\,40{.}000) = 43{.}000
+\end{aligned}" />
 
-Jadi, pernyataan pertama **benar**, kedua **benar**, ketiga **salah**, dan keempat **salah**.
+Denda <InlineMath math="16" /> hari sudah tepat <InlineMath math="40{.}000" />, sama dengan batasnya. Artinya, perpanjangan tidak mengurangi denda sedikit pun, tetapi tetap menambah biaya <InlineMath math="3{.}000" />. Jadi **buku referensi sebaiknya tidak diperpanjang**.
+
+# Total biaya terkecil
+
+<BlockMath math="\begin{aligned}
+\text{total} &= 4\cdot19{.}000+2\cdot40{.}000 \\
+&= 76{.}000+80{.}000 \\
+&= 156{.}000\text{ rupiah}
+\end{aligned}" />
+
+Coba cek dengan dua cara yang serba sama. Memperpanjang semua buku memberi <InlineMath math="4\cdot19{.}000+2\cdot43{.}000=162{.}000" />, dan tidak memperpanjang sama sekali memberi <InlineMath math="4\cdot20{.}000+2\cdot40{.}000=160{.}000" />. Keduanya lebih mahal, jadi **pilihan campuran memang yang termurah**.
+
+# Mengapa pilihan lain keliru
+
+Setiap pilihan lain **memakai keputusan perpanjangan yang sama untuk semua buku** atau salah membaca satu aturan.
+
+- <InlineMath math="\text{Rp}135{.}000" /> muncul kalau denda hanya dihitung untuk hari sesudah masa tenggang. Dengan cara itu kedua jenis buku tampak untung jika diperpanjang.
+- <InlineMath math="\text{Rp}160{.}000" /> adalah biaya kalau tidak ada buku yang diperpanjang.
+- <InlineMath math="\text{Rp}162{.}000" /> adalah biaya kalau semua buku diperpanjang, termasuk buku referensi yang dendanya tidak turun.
+- <InlineMath math="\text{Rp}207{.}000" /> muncul kalau batas denda per buku diabaikan dan tidak ada buku yang diperpanjang.
+
+Jadi, total biaya paling kecil yang mungkin dibayar Lina adalah <InlineMath math="\text{Rp}156{.}000" />.

@@ -1,23 +1,35 @@
-Bagi suara Citra dan Dimas **sesuai perbandingan masing-masing**, lalu tambahkan pada suara tetap Andra dan Bunga.
+Kamu perlu total panen dari kedua jadwal selama <InlineMath math="0\le t\le24" />, lalu selisihnya. Kuncinya, **jadwal lama bisa menghabiskan kultur kecil sebelum sempat tumbuh**, sedangkan jadwal baru memberi waktu tumbuh lebih lama.
 
-# Membagi suara Citra dan Dimas
+# Jadwal pada informasi
 
-Perbandingan <InlineMath math="1:3" /> membagi 48 suara Citra menjadi **4 bagian sama**, masing-masing 12. Perbandingan <InlineMath math="3:1" /> membagi 24 suara Dimas menjadi bagian 6.
+Dari <InlineMath math="20" />, <InlineMath math="3" /> kali penggandaan sampai <InlineMath math="t=3" /> memberi <InlineMath math="20\to40\to80\to160" />. Saat panen, banyak bakteri <InlineMath math="160" />, yang paling banyak <InlineMath math="200" />. Menurut aturan panen, **semua <InlineMath math="160" /> diambil dan kultur habis**. Kultur yang habis tidak tumbuh lagi, jadi total panen jadwal lama hanya <InlineMath math="160" /> juta sel.
 
-<BlockMath math="\begin{aligned}
-\text{Citra}&:\quad \text{Andra }12,\;\text{Bunga }36\\
-\text{Dimas}&:\quad \text{Andra }18,\;\text{Bunga }6
-\end{aligned}" />
+# Jadwal baru
 
-# Total putaran kedua
+Panen pertama ada pada <InlineMath math="t=6" />, sesudah <InlineMath math="6" /> kali penggandaan. Jangan lupa **kapasitas tabung dicek pada setiap penggandaan**.
 
 <BlockMath math="\begin{aligned}
-\text{Andra}&=96+12+18=126\\
-\text{Bunga}&=72+36+6=114
+t=1 \text{ sampai } 6 &: \ 20\to40\to80\to160\to320\to640\to960 \\
+\text{sesudah panen} &: \ 960-400=560
 \end{aligned}" />
 
-Totalnya <InlineMath math="126+114=240" />, sesuai banyak suara sah. **Andra unggul 12 suara**.
+Pada <InlineMath math="t=6" />, <InlineMath math="640\cdot2=1{.}280" /> terpotong menjadi <InlineMath math="960" />, lalu panen mengambil <InlineMath math="400" />. Pada siklus berikutnya, <InlineMath math="560\cdot2=1{.}120" /> langsung terpotong menjadi <InlineMath math="960" />, jadi pada <InlineMath math="t=12" />, <InlineMath math="t=18" />, dan <InlineMath math="t=24" /> panennya kembali <InlineMath math="400" /> dan sisanya <InlineMath math="560" />.
 
-Pilihan Bunga menang dengan selisih 12 suara muncul jika kedua perbandingan tertukar. Pilihan suara sama muncul jika pemilih Citra dan Dimas dianggap terbagi rata.
+Ada <InlineMath math="4" /> kali panen, yaitu pada <InlineMath math="t=6, 12, 18, 24" />, jadi total panen jadwal baru <InlineMath math="4\cdot400=1{.}600" /> juta sel.
 
-Jadi, **Andra menang dengan selisih 12 suara**.
+# Selisih kedua jadwal
+
+<BlockMath math="1{.}600-160=1{.}440" />
+
+Hasil ini masuk akal: jadwal lama **menguras kultur pada panen pertama**, sedangkan jadwal baru membiarkan kultur tumbuh sampai tabung penuh sebelum dipanen.
+
+# Mengapa pilihan lain keliru
+
+Setiap pilihan lain **salah menghitung salah satu jadwal**.
+
+- <InlineMath math="1{.}600" /> muncul kalau jadwal lama dianggap tidak memanen apa pun karena <InlineMath math="160" /> kurang dari <InlineMath math="200" />, padahal aturan panen mengambil semuanya.
+- <InlineMath math="1{.}400" /> muncul kalau panen pertama jadwal lama dianggap tetap <InlineMath math="200" />.
+- <InlineMath math="1{.}040" /> muncul kalau panen pada <InlineMath math="t=24" /> tidak dihitung, sehingga jadwal baru hanya <InlineMath math="3\cdot400=1{.}200" />.
+- <InlineMath math="0" /> muncul kalau kedua jadwal dianggap selalu memanen penuh, yaitu <InlineMath math="8\cdot200" /> dan <InlineMath math="4\cdot400" />.
+
+Jadi, total panen jadwal baru lebih banyak <InlineMath math="1{.}440" /> juta sel daripada jadwal pada informasi.

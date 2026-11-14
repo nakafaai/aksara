@@ -1,24 +1,40 @@
-Dua besaran menjadi dasar semua pernyataan: **kapasitas tangki** dan **volume air yang masuk untuk curah hujan tertentu**. Hitung keduanya lebih dulu.
+Kamu mencari banyak buku terbesar yang ongkosnya masih paling banyak <InlineMath math="\text{Rp}170{.}000" />. Kerjakan dari belakang: **anggaran menentukan berat tagih terbesar, berat tagih menentukan berat aktual terbesar**, dan berat aktual menentukan banyak buku.
 
-# Kapasitas tangki dan pemakaian harian
+# Berat tagih terbesar
 
-<BlockMath math="V_{\text{tangki}}=\tfrac{22}{7}\cdot0{,}7^2\cdot2=1{,}54\cdot2=3{,}08\text{ m}^3" />
-
-Pernyataan pertama benar. Dengan pemakaian 0,14 meter kubik per hari, tangki penuh habis setelah
-
-<BlockMath math="\frac{3{,}08}{0{,}14}=22\text{ hari}" />
-
-Tangki **hanya cukup untuk 22 hari**, kurang dari 25 hari, jadi pernyataan keempat salah.
-
-# Volume air untuk curah hujan tertentu
-
-Volume yang masuk adalah <InlineMath math="77\cdot\text{curah hujan}\cdot0{,}8" />.
+Untuk zona Luar Jawa, ongkos dengan berat tagih <InlineMath math="w" /> adalah biaya administrasi ditambah tarif kilogram pertama ditambah tarif berikutnya. **Biaya administrasi ikut dihitung** dalam anggaran.
 
 <BlockMath math="\begin{aligned}
-40\text{ mm}&:\quad 77\cdot0{,}04\cdot0{,}8=2{,}464\text{ m}^3\\
-25\text{ mm tanpa air terbuang}&:\quad 77\cdot0{,}025=1{,}925\text{ m}^3
+5{.}000+30{.}000+20{.}000(w-1) &\le 170{.}000\\
+20{.}000w+15{.}000 &\le 170{.}000\\
+w &\le 7{,}75
 \end{aligned}" />
 
-Volume 2,464 meter kubik **belum mencapai kapasitas 3,08 meter kubik**, jadi pernyataan kedua salah. Pernyataan ketiga benar.
+Berat tagih selalu bilangan bulat, jadi berat tagih terbesar adalah <InlineMath math="7\text{ kg}" />, dengan ongkos <InlineMath math="\text{Rp}155{.}000" />. Berat tagih <InlineMath math="8\text{ kg}" /> sudah berongkos <InlineMath math="\text{Rp}175{.}000" />.
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **benar**, dan keempat **salah**.
+# Berat aktual terbesar
+
+Berat volume kardus adalah <InlineMath math="\tfrac{40\cdot30\cdot30}{6{.}000}=6\text{ kg}" />. Berat tagih <InlineMath math="7\text{ kg}" /> masih diperoleh selama berat awal tidak lebih dari <InlineMath math="7{,}3\text{ kg}" />, karena **kelebihan sampai** <InlineMath math="0{,}3\text{ kg}" /> **dihapus**. Berat volume <InlineMath math="6\text{ kg}" /> tidak membatasi di sini, jadi batasnya datang dari berat aktual: paling banyak <InlineMath math="7{,}3\text{ kg}" />.
+
+# Banyak buku
+
+Berat aktual paket dengan <InlineMath math="n" /> buku adalah massa kardus ditambah massa buku. Massa kardus kosong **ikut ditimbang**.
+
+<BlockMath math="\begin{aligned}
+0{,}6+0{,}6n &\le 7{,}3\\
+0{,}6n &\le 6{,}7\\
+n &\le 11\tfrac{1}{6}
+\end{aligned}" />
+
+Banyak buku harus bilangan bulat, jadi <InlineMath math="n=11" />. Jumlah ini juga muat karena kardus dapat memuat <InlineMath math="20" /> buku.
+
+# Pemeriksaan
+
+Dengan <InlineMath math="11" /> buku, berat aktualnya <InlineMath math="0{,}6+6{,}6=7{,}2\text{ kg}" />. Kelebihan <InlineMath math="0{,}2\text{ kg}" /> dihapus, berat tagihnya <InlineMath math="7\text{ kg}" />, dan ongkosnya <InlineMath math="\text{Rp}155{.}000" />. Dengan <InlineMath math="12" /> buku, berat aktualnya <InlineMath math="7{,}8\text{ kg}" />, kelebihan <InlineMath math="0{,}8\text{ kg}" /> **memaksa pembulatan ke atas** menjadi <InlineMath math="8\text{ kg}" />, dan ongkosnya <InlineMath math="\text{Rp}175{.}000" />, melewati anggaran.
+
+# Hasil yang sering keliru
+
+- Hasil <InlineMath math="10" /> muncul jika setiap kelebihan dibulatkan ke atas, sehingga berat aktual dibatasi <InlineMath math="7\text{ kg}" />. Aturan kurir ini justru **menghapus kelebihan sampai** <InlineMath math="0{,}3\text{ kg}" />.
+- Hasil <InlineMath math="12" /> muncul jika biaya administrasi dilupakan, sehingga berat tagih <InlineMath math="8\text{ kg}" /> dikira masih masuk anggaran, atau jika massa kardus kosong tidak ikut ditimbang.
+
+Jadi, paling banyak <InlineMath math="11" /> buku dapat dikirim dalam paket itu.

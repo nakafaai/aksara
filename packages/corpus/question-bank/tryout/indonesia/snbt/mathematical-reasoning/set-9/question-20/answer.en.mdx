@@ -1,20 +1,42 @@
-One section is at most 6 m long horizontally. First find **the largest rise one section can still manage**, then compare it with 60 cm.
+You're comparing machine P's running hours on Monday and Tuesday under two maintenance rules. Both rules give <InlineMath math="1" /> maintenance hour for every <InlineMath math="5" /> running hours, but **the day boundary decides how many maintenance hours fall inside these two days**. The plan: trace both schedules hour by hour, then turn the difference in hours into good parts.
 
-# Largest rise for one section
+# The schedule under the old rule
 
-<BlockMath math="\frac{600}{12}=50\text{ cm}" />
+Under the old rule, P runs <InlineMath math="5" /> hours and then gets <InlineMath math="1" /> hour of maintenance, and **its hour count carries into the next day**.
 
-# Raising the yard
+| Day | Maintenance starts | Running hours | Hours carried at 23:00 |
+| :--- | :---: | :---: | :---: |
+| Monday | 12:00, 18:00 | <InlineMath math="5+5+4=14" /> | <InlineMath math="4" /> |
+| Tuesday | 08:00, 14:00, 20:00 | <InlineMath math="1+5+5+2=13" /> | <InlineMath math="2" /> |
 
-If the yard is raised by <InlineMath math="h" /> cm, the ramp must rise <InlineMath math="60-h" /> cm.
+The old rule gives <InlineMath math="14+13=27" /> running hours in total.
 
-<BlockMath math="\begin{aligned}
-60-h&\le50\\
-h&\ge10
-\end{aligned}" />
+# The schedule under the new rule
 
-So the yard **must be raised by at least 10 cm**.
+Under the new rule, P runs <InlineMath math="10" /> hours and then gets <InlineMath math="2" /> hours of maintenance.
 
-The value 50 cm is the largest rise of one section, not the raise of the yard. The value 60 cm raises the yard to the door's level, so no ramp is needed at all. The values 20 cm and 30 cm also make one section enough, but they are not the smallest.
+| Day | Maintenance | Running hours | Hours carried at 23:00 |
+| :--- | :---: | :---: | :---: |
+| Monday | 17:00 to 19:00 | <InlineMath math="10+4=14" /> | <InlineMath math="4" /> |
+| Tuesday | 13:00 to 15:00 | <InlineMath math="6+8=14" /> | <InlineMath math="8" /> |
 
-So the yard must be raised by at least **10 cm**.
+The new rule gives <InlineMath math="14+14=28" /> running hours in total. On Tuesday, **the new rule uses only <InlineMath math="2" /> maintenance hours**, while the old rule uses <InlineMath math="3" />.
+
+# The difference in good parts
+
+Each running hour of P makes <InlineMath math="95\%\times120=114" /> good parts.
+
+<BlockMath math="(28-27)\times114=114" />
+
+Check with Wednesday. The old rule gives <InlineMath math="13" /> hours, and the new rule gives <InlineMath math="2+10=12" /> hours, since its maintenance comes at 09:00 and 21:00. Over three days both give <InlineMath math="40" /> hours. So **the gap of <InlineMath math="114" /> comes from where maintenance falls against the day boundary**, not from the new rule doing less maintenance in the long run.
+
+# The wrong options
+
+Each other option **takes a shortcut that ignores the actual schedule**.
+
+- No change uses the ratio alone: both rules lose one sixth of the time, but in these two days the maintenance falls in different places.
+- An increase of <InlineMath math="120" /> forgets to throw out the faulty parts.
+- An increase of <InlineMath math="228" /> assumes the old rule always uses <InlineMath math="3" /> maintenance hours a day, but Monday has only <InlineMath math="2" />.
+- An increase of <InlineMath math="342" /> counts maintenance events (<InlineMath math="5" /> and <InlineMath math="2" />) as if each one lasted <InlineMath math="1" /> hour.
+
+So under the new rule, machine P makes <InlineMath math="114" /> more good parts over Monday and Tuesday.

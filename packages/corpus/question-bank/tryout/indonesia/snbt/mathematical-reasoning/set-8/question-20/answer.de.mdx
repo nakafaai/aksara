@@ -1,22 +1,41 @@
-Die gezeichnete Fläche ändert sich mit **dem Quadrat des Längenverhältnisses**. Vergleiche also zuerst die Flächen und zieh dann die Wurzel, um das Längenverhältnis zu bekommen.
+Gesucht ist die größte Zahl von Personen, die versorgt werden können. Jede versorgte Person braucht einen eigenen Beutel, also **können nicht mehr Personen versorgt werden, als es wirklich nützliche Beutel gibt**. So gehst du vor: Finde heraus, welche Beutel nützlich sind, bestimme diese obere Grenze und zeige dann eine Verteilung, die sie erreicht.
 
-# Verhältnis der Flächen und Längen
+# Passende Beutel für jede Gruppe
 
-Auf der Touristenkarte hat der gezeichnete See die Fläche <InlineMath math="2\cdot1{,}2=2{,}4\text{ cm}^2" />.
+Kombiniere die ABO-Regel und die Rhesus-Regel für jede wartende Gruppe:
 
-<BlockMath math="\begin{aligned}
-\frac{2{,}4}{0{,}6}&=4\\
-\sqrt4&=2
-\end{aligned}" />
+| Empfänger | Passende Beutel |
+| --- | --- |
+| <InlineMath math="\mathrm{O}^-" /> | <InlineMath math="\mathrm{O}^-" /> |
+| <InlineMath math="\mathrm{A}^-" /> | <InlineMath math="\mathrm{A}^-,\ \mathrm{O}^-" /> |
+| <InlineMath math="\mathrm{B}^-" /> | <InlineMath math="\mathrm{B}^-,\ \mathrm{O}^-" /> |
+| <InlineMath math="\mathrm{O}^+" /> | <InlineMath math="\mathrm{O}^+,\ \mathrm{O}^-" /> |
+| <InlineMath math="\mathrm{A}^+" /> | <InlineMath math="\mathrm{A}^+,\ \mathrm{A}^-,\ \mathrm{O}^+,\ \mathrm{O}^-" /> |
 
-Jede Länge auf der anderen Karte ist **halb so lang** wie auf der Touristenkarte, jeder Zentimeter steht also für die doppelte Entfernung.
+Mehrere Gruppen brauchen gleichzeitig Beutel mit O. Deshalb **darf ein Beutel mit O nicht doppelt gezählt werden** für zwei verschiedene Gruppen.
 
-# Maßstab der anderen Karte
+# Eine obere Grenze aus den nützlichen Beuteln
 
-<BlockMath math="2\cdot250\,000=500\,000" />
+Niemand wartet mit B positiv oder AB, also nützen die Beutel <InlineMath math="\mathrm{B}^+" />, <InlineMath math="\mathrm{AB}^+" /> und <InlineMath math="\mathrm{AB}^-" /> nichts. Ein Beutel <InlineMath math="\mathrm{B}^-" /> passt nur zu <InlineMath math="\mathrm{B}^-" />, und davon wartet nur eine Person, also wird **höchstens einer der zwei Beutel** <InlineMath math="\mathrm{B}^-" /> gebraucht. Nutzbar sind höchstens:
 
-Kontrolle: Bei 1 : 500 000 steht 1 cm für 5 km, also <InlineMath math="1\text{ cm}^2" /> für <InlineMath math="25\text{ km}^2" />, und <InlineMath math="0{,}6\cdot25=15\text{ km}^2" />.
+<BlockMath math="\underbrace{2}_{\mathrm{O}^-}+\underbrace{1}_{\mathrm{A}^-}+\underbrace{1}_{\mathrm{B}^-}+\underbrace{14}_{\mathrm{O}^+}+\underbrace{9}_{\mathrm{A}^+}=27" />
 
-Der Wert 1 : 1 000 000 multipliziert mit dem Flächenverhältnis 4, ohne die Wurzel zu ziehen. Die Werte 1 : 125 000 und 1 : 62 500 teilen, obwohl eine kleinere Zeichnung bedeutet, dass jeder Zentimeter für eine längere Strecke steht. Der Wert 1 : 250 000 ist der Maßstab der Touristenkarte selbst.
+Höchstens <InlineMath math="27" /> Personen können also versorgt werden.
 
-Der Maßstab der anderen Karte ist also **1 : 500 000**.
+# Eine Verteilung, die die Grenze erreicht
+
+Zeige jetzt, dass <InlineMath math="27" /> tatsächlich erreichbar ist:
+
+- Zwei Beutel <InlineMath math="\mathrm{O}^-" /> an zwei Personen mit <InlineMath math="\mathrm{O}^-" />.
+- Ein Beutel <InlineMath math="\mathrm{A}^-" /> an eine Person mit <InlineMath math="\mathrm{A}^-" />.
+- Ein Beutel <InlineMath math="\mathrm{B}^-" /> an die Person mit <InlineMath math="\mathrm{B}^-" />.
+- Vierzehn Beutel <InlineMath math="\mathrm{O}^+" /> an vierzehn Personen mit <InlineMath math="\mathrm{O}^+" />.
+- Neun Beutel <InlineMath math="\mathrm{A}^+" /> an neun Personen mit <InlineMath math="\mathrm{A}^+" />.
+
+**Jede dieser Gaben passt**, zusammen sind es <InlineMath math="2+1+1+14+9=27" /> Personen. Prüfe das von der anderen Seite: Ohne Blut bleiben eine Person mit <InlineMath math="\mathrm{O}^-" />, zwei mit <InlineMath math="\mathrm{A}^-" />, zwei mit <InlineMath math="\mathrm{O}^+" /> und drei mit <InlineMath math="\mathrm{A}^+" />, also <InlineMath math="8" /> Personen. Von <InlineMath math="35" /> Wartenden werden <InlineMath math="35-8=27" /> versorgt, es passt.
+
+# Häufige falsche Antworten
+
+Wer jede Gruppe einzeln zählt und dabei die Gruppe <InlineMath math="\mathrm{O}^+" /> alle <InlineMath math="16" /> Beutel mit O nutzen lässt und die Gruppe <InlineMath math="\mathrm{A}^+" /> dieselben Beutel noch einmal, erhält <InlineMath math="2+3+1+16+12=34" />. Das ist zu groß, weil **die Beutel mit O mehrfach verwendet werden**. Die Antwort <InlineMath math="35" /> nimmt an, dass alle versorgt werden, doch es gibt nur <InlineMath math="27" /> nützliche Beutel.
+
+Höchstens <InlineMath math="27" /> Personen können also passendes Blut erhalten.

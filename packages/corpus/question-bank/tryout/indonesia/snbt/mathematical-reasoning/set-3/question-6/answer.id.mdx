@@ -1,15 +1,34 @@
-Bagian yang tidak terkena air adalah **luas halaman dikurangi luas daerah yang terkena air**.
+Ketiga buku dipinjam pada tanggal yang sama, tetapi dikembalikan pada tanggal berbeda. Rencananya, cari batas pengembalian, hitung keterlambatan tiap buku, lalu terapkan **masa tenggang dan batas denda pada setiap buku secara terpisah**.
 
-# Luas halaman dan luas yang terkena air
+# Batas pengembalian
 
-<BlockMath math="L_{\text{halaman}}=12\cdot8=96\text{ m}^2" />
+Aturan batas pengembalian memberi masa pinjam <InlineMath math="14" /> hari. Dari <InlineMath math="18" /> Mei, kamu perlu **melewati akhir bulan Mei yang punya <InlineMath math="31" /> hari**: ada <InlineMath math="13" /> hari sampai <InlineMath math="31" /> Mei, lalu <InlineMath math="1" /> hari lagi sampai <InlineMath math="1" /> Juni. Jadi batas pengembaliannya <InlineMath math="1" /> Juni.
 
-Setiap alat di titik sudut membasahi seperempat lingkaran berjari-jari 6 m. Kedua seperempat lingkaran **hanya bersentuhan di titik tengah sisi <InlineMath math="AB" />**, karena <InlineMath math="AB=12=6+6" />, jadi tidak ada bagian yang bertumpuk.
+# Keterlambatan setiap buku
 
-<BlockMath math="L_{\text{basah}}=2\cdot\tfrac14\cdot3{,}14\cdot6^2=56{,}52\text{ m}^2" />
+Keterlambatan **dihitung mulai dari batas pengembalian**, yaitu <InlineMath math="1" /> Juni, sampai tanggal buku kembali.
 
-# Luas yang tidak terkena air
+| Buku | Dikembalikan | Terlambat |
+| :---: | :---: | :---: |
+| Biasa pertama | <InlineMath math="4" /> Juni | <InlineMath math="3" /> hari |
+| Referensi | <InlineMath math="11" /> Juni | <InlineMath math="10" /> hari |
+| Biasa kedua | <InlineMath math="23" /> Juni | <InlineMath math="22" /> hari |
 
-<BlockMath math="96-56{,}52=39{,}48\text{ m}^2" />
+# Denda setiap buku
 
-Jadi, luas bagian yang tidak terkena air adalah **39,48 meter persegi**.
+Sekarang terapkan aturan masa tenggang, tarif denda, dan batas denda pada setiap baris.
+
+- Buku biasa pertama terlambat tepat <InlineMath math="3" /> hari. Itu **masih di dalam masa tenggang**, jadi dendanya <InlineMath math="\text{Rp}0" />.
+- Buku referensi terlambat <InlineMath math="10" /> hari, lebih dari <InlineMath math="3" /> hari. Karena itu seluruh <InlineMath math="10" /> hari didenda, termasuk <InlineMath math="3" /> hari pertama: <InlineMath math="10\cdot2{.}500=25{.}000" /> rupiah. Nilai ini di bawah batas <InlineMath math="\text{Rp}40{.}000" />.
+- Buku biasa kedua terlambat <InlineMath math="22" /> hari, jadi dendanya <InlineMath math="22\cdot1{.}000=22{.}000" /> rupiah. Nilai ini **melewati batas buku biasa**, jadi dipotong menjadi <InlineMath math="\text{Rp}20{.}000" />.
+
+<BlockMath math="\begin{aligned}
+\text{total denda} &= 0+25{.}000+20{.}000 \\
+&= 45{.}000\text{ rupiah}
+\end{aligned}" />
+
+# Cek hasilnya
+
+Setiap buku punya **satu aturan yang menentukan**: buku pertama ditentukan oleh masa tenggang, buku referensi oleh hitungan penuh, dan buku biasa kedua oleh batas denda. Kalau salah satu aturan terlewat, hasilnya berubah. Lupa batas denda memberi <InlineMath math="47" /> ribu, mendenda buku pertama memberi <InlineMath math="48" /> ribu, dan hanya menghitung hari sesudah masa tenggang memberi <InlineMath math="36{,}5" /> ribu.
+
+Jadi, total denda yang harus dibayar Nia adalah <InlineMath math="45" /> ribu rupiah.

@@ -1,20 +1,36 @@
-The total paid is **the cash price plus the total interest**. So a cap on the total paid gives a cap on the total interest.
+This problem has two stages. First you find the smallest weight of dark beans for <InlineMath math="108" /> bags, then you count the light bags from the beans that are left. The slippery part is the first stage: **the number of batches rises as the bean weight rises**, and every batch takes taste-test coffee.
 
-# Cap on total interest
+# A first estimate without the taste test
 
-<BlockMath math="4{,}118{,}400-3{,}600{,}000=518{,}400" />
+The order needs <InlineMath math="108\times250=27{,}000\text{ g}" /> of dark coffee. One kilogram of dark beans becomes <InlineMath math="75\%\times1{,}000=750\text{ g}" />, so without the taste test you'd need <InlineMath math="27{,}000\div750=36\text{ kg}" />. That number is **only a lower bound**, because the taste test hasn't been taken out yet.
 
-# Cap on the monthly rate
+# The smallest weight of dark beans
 
-With a flat rate <InlineMath math="r" /> per month, total interest is <InlineMath math="12\cdot r\cdot2{,}880{,}000=34{,}560{,}000\,r" />.
+Now check the weights around that bound, using the right number of batches. Remember, one batch holds at most <InlineMath math="12\text{ kg}" />.
 
 <BlockMath math="\begin{aligned}
-34{,}560{,}000\,r&\le518{,}400\\
-r&\le0.015=1.5\%
+36\text{ kg},\ 3\text{ batches} &: 27{,}000-3\times200=26{,}400=105\times250+150 \\
+37\text{ kg},\ 4\text{ batches} &: 27{,}750-4\times200=26{,}950=107\times250+200 \\
+38\text{ kg},\ 4\text{ batches} &: 28{,}500-4\times200=27{,}700=110\times250+200
 \end{aligned}" />
 
-At <InlineMath math="1.5\%" /> the total paid is **exactly Rp4,118,400**, so it still qualifies.
+<InlineMath math="36\text{ kg}" /> gives only <InlineMath math="105" /> bags. <InlineMath math="37\text{ kg}" /> looks like enough if you keep using <InlineMath math="3" /> batches, but **the thirty-seventh kilogram forces a fourth batch**, so you only get <InlineMath math="107" /> bags. <InlineMath math="38\text{ kg}" /> gives <InlineMath math="110" /> bags, which is enough.
 
-The value <InlineMath math="1.2\%" /> charges interest on the cash price of Rp3,600,000 instead of the principal. The values <InlineMath math="0.5\%" />, <InlineMath math="1\%" /> and <InlineMath math="1.25\%" /> qualify, but they are not the highest.
+Each extra kilogram adds <InlineMath math="750\text{ g}" /> and at most one new batch that takes <InlineMath math="200\text{ g}" />. So a bigger weight never gives fewer bags, and anything below <InlineMath math="36\text{ kg}" /> is surely short. The smallest dark weight is <InlineMath math="38\text{ kg}" />.
 
-So the highest flat rate is **<InlineMath math="1.5\%" /> per month**.
+# Light bags from the leftover beans
+
+The green beans left are <InlineMath math="50-38=12\text{ kg}" />. **That fits in exactly one batch**, so the taste test takes only <InlineMath math="200\text{ g}" />.
+
+<BlockMath math="84\%\times12{,}000-200=10{,}080-200=9{,}880=39\times250+130" />
+
+The light coffee fills <InlineMath math="39" /> full bags, and the remaining <InlineMath math="130\text{ g}" /> isn't sold. Double-check the first stage: <InlineMath math="110\ge108" />, so the dark order is met, while <InlineMath math="37\text{ kg}" /> really fails because <InlineMath math="107<108" />.
+
+# Traps to avoid
+
+Other answers show up when **the batch count isn't recalculated**.
+
+- Forgetting the taste test makes <InlineMath math="36\text{ kg}" /> of dark look enough. The leftover <InlineMath math="14\text{ kg}" /> then takes <InlineMath math="2" /> light batches and gives <InlineMath math="11{,}760-400=11{,}360" /> grams, which is <InlineMath math="45" /> bags.
+- Using <InlineMath math="3" /> batches for <InlineMath math="37\text{ kg}" /> makes the dark order look covered. The leftover <InlineMath math="13\text{ kg}" /> then takes <InlineMath math="2" /> light batches and gives <InlineMath math="10{,}920-400=10{,}520" /> grams, which is <InlineMath math="42" /> bags.
+
+So the shop can sell <InlineMath math="39" /> bags of light coffee.

@@ -1,15 +1,51 @@
-Pada meja bundar tidak ada kursi pertama, karena memutar semua siswa **tidak mengubah susunan**. Jadi tetapkan satu siswa sebagai patokan.
+Kamu mencari banyak relawan per pos yang cukup untuk kelima pos sekaligus. Setiap pos punya waktu mengisi dan target gelas yang berbeda, jadi rencananya begini: hitung waktu mengisi setiap pos, hitung gelas yang harus sudah terisi, cari relawan yang diperlukan setiap pos, lalu **ambil kebutuhan terbesar**.
 
-# Menetapkan patokan
+# Waktu mengisi di setiap pos
 
-Dudukkan Ani di satu kursi sebagai patokan. Keempat siswa lain lalu **mengisi 4 kursi yang tersisa**, dihitung searah jarum jam dari Ani.
+Relawan mulai pukul 05.45, yaitu <InlineMath math="15" /> menit sebelum start. Pelari tercepat tiba di jarak <InlineMath math="d" /> km setelah <InlineMath math="3d" /> menit. Jadi **waktu mengisi di setiap pos** adalah <InlineMath math="15+3d" /> menit, dan satu relawan mengisi <InlineMath math="4" /> gelas setiap menit.
 
-<BlockMath math="4!=24" />
+| Pos | Jarak | Waktu mengisi | Gelas oleh satu relawan |
+| :---: | :---: | :---: | :---: |
+| 1 | <InlineMath math="2\text{ km}" /> | <InlineMath math="15+6=21" /> menit | <InlineMath math="4\cdot21=84" /> |
+| 2 | <InlineMath math="6\text{ km}" /> | <InlineMath math="15+18=33" /> menit | <InlineMath math="4\cdot33=132" /> |
+| 3 | <InlineMath math="10\text{ km}" /> | <InlineMath math="15+30=45" /> menit | <InlineMath math="4\cdot45=180" /> |
+| 4 | <InlineMath math="14\text{ km}" /> | <InlineMath math="15+42=57" /> menit | <InlineMath math="4\cdot57=228" /> |
+| 5 | <InlineMath math="18\text{ km}" /> | <InlineMath math="15+54=69" /> menit | <InlineMath math="4\cdot69=276" /> |
 
-# Hubungan dengan baris
+# Gelas yang harus sudah terisi
 
-Setiap susunan melingkar muncul sebagai 5 susunan baris yang berbeda, satu untuk setiap kursi tempat Ani dapat duduk, jadi <InlineMath math="\tfrac{120}{5}=24" />.
+Gelas rencana setiap pos adalah <InlineMath math="1{.}320" />, <InlineMath math="1{.}298" />, <InlineMath math="2{.}508" />, <InlineMath math="2{.}420" />, dan <InlineMath math="2{.}310" />, yaitu perkiraan pemakaian ditambah cadangan <InlineMath math="10\%" />. Yang wajib terisi hanya **paling sedikit empat puluh persen gelas rencana**.
 
-Nilai 120 menghitung susunan dalam baris. Nilai 60 membagi 120 dengan 2, bukan dengan 5. Nilai 12 juga menganggap susunan yang dicerminkan sama, padahal **tetangga kiri dan kanan bertukar** pada cermin. Nilai 5 hanya menghitung banyak cara memutar satu susunan.
+<BlockMath math="\begin{aligned}
+40\%\cdot1{.}320&=528 & 40\%\cdot1{.}298&=519{,}2\\
+40\%\cdot2{.}508&=1{.}003{,}2 & 40\%\cdot2{.}420&=968\\
+40\%\cdot2{.}310&=924
+\end{aligned}" />
 
-Jadi, ada **24 susunan** duduk yang berbeda.
+# Relawan untuk setiap pos
+
+Banyak relawan di suatu pos adalah gelas wajib dibagi gelas oleh satu relawan, lalu **dibulatkan ke atas**, karena relawan tidak bisa dipecah.
+
+| Pos | Gelas wajib dibagi gelas satu relawan | Relawan |
+| :---: | :---: | :---: |
+| 1 | <InlineMath math="528:84=6{,}28\ldots" /> | <InlineMath math="7" /> |
+| 2 | <InlineMath math="519{,}2:132=3{,}93\ldots" /> | <InlineMath math="4" /> |
+| 3 | <InlineMath math="1{.}003{,}2:180=5{,}57\ldots" /> | <InlineMath math="6" /> |
+| 4 | <InlineMath math="968:228=4{,}24\ldots" /> | <InlineMath math="5" /> |
+| 5 | <InlineMath math="924:276=3{,}34\ldots" /> | <InlineMath math="4" /> |
+
+Setiap pos mendapat banyak relawan yang sama, jadi banyaknya harus cukup untuk pos yang paling berat. **Pos yang paling berat adalah pos 1**, karena waktunya paling singkat, walaupun gelasnya jauh lebih sedikit daripada pos 3.
+
+# Pemeriksaan di pos pertama
+
+Dengan <InlineMath math="7" /> relawan, pos 1 mengisi <InlineMath math="7\cdot84=588\ge528" /> gelas. Dengan <InlineMath math="6" /> relawan, pos 1 hanya mengisi <InlineMath math="6\cdot84=504<528" /> gelas, jadi **enam relawan belum cukup**. Pos lain memerlukan paling banyak <InlineMath math="6" /> relawan, jadi <InlineMath math="7" /> relawan juga cukup di sana.
+
+# Jawaban yang sering muncul
+
+Jawaban-jawaban ini **memeriksa pos yang salah atau memakai waktu dan target yang salah**.
+
+- Jawaban <InlineMath math="6" /> muncul jika kamu hanya memeriksa pos 3 karena gelasnya paling banyak, jika cadangan <InlineMath math="10\%" /> dilupakan, atau jika <InlineMath math="6{,}28\ldots" /> dibulatkan ke bawah.
+- Jawaban <InlineMath math="22" /> lupa bahwa relawan sudah mengisi <InlineMath math="15" /> menit sebelum start, sehingga pos 1 seolah hanya punya <InlineMath math="6" /> menit.
+- Jawaban <InlineMath math="16" /> mengisi semua gelas rencana sebelum pelari pertama tiba, padahal yang wajib hanya <InlineMath math="40\%" />.
+
+Jadi, panitia harus menempatkan paling sedikit <InlineMath math="7" /> relawan di setiap pos.

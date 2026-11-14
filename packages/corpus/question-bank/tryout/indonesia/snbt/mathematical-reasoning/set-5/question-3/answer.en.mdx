@@ -1,17 +1,39 @@
-The trip uses 6 litres on city roads and 10 litres on the toll road, so **16 litres in all**. Each statement is checked from these figures.
+Each statement needs its own proof. A "cheapest cost is" statement needs every way checked, a "surely" statement falls to **one example that breaks it**, and a "there is" statement is proved by one example that works. Every price is written in thousands of rupiah, so <InlineMath math="600" /> means <InlineMath math="\text{Rp}600{,}000" />.
 
-# Cost and average
+# A returning member for forty days
 
-<BlockMath math="16\cdot10{,}000=160{,}000" />
+Each membership period covers only <InlineMath math="30" /> days, so with <InlineMath math="1" /> period there are still <InlineMath math="10" /> visits to pay for another way. For those <InlineMath math="10" /> visits, **the card is the cheapest way**: a card costs <InlineMath math="250" />, <InlineMath math="10" /> day tickets <InlineMath math="400" />, and another membership period <InlineMath math="350" />.
 
-The first statement is true. The average distance per litre is <InlineMath math="\tfrac{210}{16}=13.125" /> km, while the mean of 10 and 15 is 12.5 km. **The two differ**, so the second statement is false.
+<BlockMath math="\begin{aligned}
+\text{one membership and one card} &= 350+250 = 600 \\
+\text{two memberships} &= 2 \cdot 350 = 700
+\end{aligned}" />
 
-# Full tank and the saving
+Without a membership, <InlineMath math="40" /> visits need <InlineMath math="4" /> cards, which is <InlineMath math="1{,}000" />. So the cheapest cost is <InlineMath math="600" />. This statement is **true**.
 
-With 40 litres on the toll road the car can travel <InlineMath math="40\cdot15=600" /> km, **not 500 km**. The third statement is false.
+# A new visitor with twenty visits
 
-<BlockMath math="\frac{60}{10}-\frac{60}{15}=6-4=2\text{ litres}" />
+This statement says "surely", so you only need one schedule that costs less than <InlineMath math="500" />. Say all <InlineMath math="20" /> visits happen on days <InlineMath math="1" /> to <InlineMath math="20" />. They all **fit inside one membership period**, so the cost is just:
 
-The fourth statement is true.
+<BlockMath math="100+350=450" />
 
-So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.
+<InlineMath math="450" /> is less than <InlineMath math="500" />. The <InlineMath math="500" /> comes from <InlineMath math="2" /> cards, but <InlineMath math="2" /> cards aren't the only way. This statement is **false**.
+
+# Three times a week
+
+A card is bought on a visit day, say day <InlineMath math="b" />, and it's valid until day <InlineMath math="b+29" />. Look at the first <InlineMath math="28" /> days of that span. Those <InlineMath math="28" /> days are **exactly <InlineMath math="4" /> full weeks**, and every full week contains each of the person's <InlineMath math="3" /> training days once. So while the card is valid there are at least:
+
+<BlockMath math="4 \cdot 3 = 12 \text{ visits}" />
+
+Since the person only buys a new card after the old one is used up, the card in use gets <InlineMath math="12" /> chances for its <InlineMath math="10" /> visits. It's always used up before it expires. This statement is **true**.
+
+# Two fixed days a week
+
+This statement says "there is", so one example is enough. Try **<InlineMath math="2" /> days in a row**, Monday and Tuesday, with day <InlineMath math="1" /> as a Monday.
+
+- The first card is bought on day <InlineMath math="1" /> and is valid until day <InlineMath math="30" />. Its visits are on days <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="8" />, <InlineMath math="9" />, <InlineMath math="15" />, <InlineMath math="16" />, <InlineMath math="22" />, <InlineMath math="23" />, <InlineMath math="29" />, and <InlineMath math="30" />, exactly <InlineMath math="10" /> visits.
+- The second card is bought on day <InlineMath math="36" /> and is valid until day <InlineMath math="65" />. Its visits are on days <InlineMath math="36" />, <InlineMath math="37" />, <InlineMath math="43" />, <InlineMath math="44" />, <InlineMath math="50" />, <InlineMath math="51" />, <InlineMath math="57" />, <InlineMath math="58" />, <InlineMath math="64" />, and <InlineMath math="65" />, again <InlineMath math="10" /> visits.
+
+Day <InlineMath math="65" /> is the Tuesday of week ten, so the two cards cover all <InlineMath math="20" /> visits. For comparison, Monday and Thursday don't work: the first card is only used on days <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="8" />, <InlineMath math="11" />, <InlineMath math="15" />, <InlineMath math="18" />, <InlineMath math="22" />, <InlineMath math="25" />, and <InlineMath math="29" />, which is <InlineMath math="9" /> visits. The pair of days does matter, but one pair that works is enough. This statement is **true**.
+
+So the first, third, and fourth statements are true, and the second statement is false.

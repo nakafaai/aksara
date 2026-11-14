@@ -1,24 +1,43 @@
-Convert megabits to megabytes by **dividing by 8**, and remember that the 40 Mbps is shared by every device using it at the same time.
+Each statement needs its own calculation with the battery rules. The plan: for each one, find the rate that applies in every battery range, especially when the battery passes <InlineMath math="20\%" /> or <InlineMath math="80\%" />, because that's where the rates change.
 
-# Speed units and the device limit
+# Charging while watching video
 
-40 Mbps means 40 megabits per second, which is <InlineMath math="\tfrac{40}{8}=5" /> MB per second. The first statement is true.
+Below <InlineMath math="80\%" />, the battery changes by <InlineMath math="40\%-20\%=+20\%" /> per hour, or <InlineMath math="40\%-10\%=+30\%" /> per hour in saving mode. So it climbs to <InlineMath math="80\%" />. At <InlineMath math="80\%" /> or more, **the charger adds only <InlineMath math="16\%" /> per hour, less than the <InlineMath math="20\%" /> the video uses**.
 
-Fourteen HD video devices need <InlineMath math="14\cdot3=42" /> Mbps, **more than 40 Mbps**, so the second statement is false.
+<BlockMath math="16\%-20\%=-4\%\text{ per hour}" />
 
-# Data for one hour of video
+As soon as the battery reaches <InlineMath math="80\%" />, it starts to fall, and just below <InlineMath math="80\%" /> it rises again. It gets stuck at <InlineMath math="80\%" /> and never goes above it. The first statement is **true**.
 
-One hour is 3,600 seconds, and HD video uses 3 megabits every second.
+# Gaming from a full battery
+
+From <InlineMath math="100\%" /> down to <InlineMath math="20\%" />, gaming drains the full <InlineMath math="30\%" /> per hour. After that, **power saving mode cuts gaming to <InlineMath math="15\%" /> per hour**.
 
 <BlockMath math="\begin{aligned}
-3\cdot3{,}600&=10{,}800\text{ megabits}\\
-\tfrac{10{,}800}{8}&=1{,}350\text{ MB}=1.35\text{ GB}
+\text{from } 100\% \text{ to } 20\% &: \frac{80}{30}\text{ h}=2\text{ h }40\text{ min} \\
+\text{from } 20\% \text{ to } 0\% &: \frac{20}{15}\text{ h}=1\text{ h }20\text{ min}
 \end{aligned}" />
 
-That is **more than 1 GB**, so the third statement is false.
+That's exactly <InlineMath math="4" /> hours in total. The quick answer <InlineMath math="\frac{100}{30}" /> hours, which is <InlineMath math="3" /> hours <InlineMath math="20" /> minutes, forgets saving mode. The second statement is **true**.
 
-# Faster internet
+# Charging from half a battery
 
-Download time is inversely proportional to speed. At 100 Mbps the time becomes <InlineMath math="\tfrac{40}{100}=0.4" /> times the old time, so it **drops by 60%** for any file. The fourth statement is true.
+Without use, the phone is on standby, so below <InlineMath math="80\%" /> the battery rises <InlineMath math="40\%-4\%=36\%" /> per hour. From <InlineMath math="80\%" /> on, **the gain drops to <InlineMath math="16\%-4\%=12\%" /> per hour**.
 
-So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.
+<BlockMath math="\begin{aligned}
+\text{from } 50\% \text{ to } 80\% &: \frac{30}{36}\text{ h}=50\text{ min} \\
+\text{remaining } 10 \text{ min} &: 80\%+12\%\cdot\frac{10}{60}=82\%
+\end{aligned}" />
+
+The battery ends at <InlineMath math="82\%" />, not <InlineMath math="86\%" />. You get <InlineMath math="86\%" /> if you use <InlineMath math="36\%" /> per hour for the whole hour. The third statement is **false**.
+
+# Swapping reading and video
+
+First order: reading for <InlineMath math="3" /> hours uses <InlineMath math="30\%" />, so the battery is at exactly <InlineMath math="20\%" />. The hour of video then runs in saving mode at <InlineMath math="10\%" /> per hour, leaving <InlineMath math="10\%" />.
+
+Second order: an hour of video takes the battery to <InlineMath math="30\%" />. The first hour of reading takes it to <InlineMath math="20\%" />, and the last two hours run in saving mode at <InlineMath math="5\%" /> per hour.
+
+<BlockMath math="30\%-10\%-5\%\cdot2=10\%" />
+
+Both orders end at <InlineMath math="10\%" />. That's no accident: **without charging, whatever use happens after the battery touches <InlineMath math="20\%" /> is halved, whatever the order**. The fourth statement is **true**.
+
+So the first statement is true, the second is true, the third is false, and the fourth is true.

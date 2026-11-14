@@ -1,15 +1,51 @@
-A round table has no first seat, because turning everyone round **does not change the arrangement**. So fix one student as a reference.
+You're looking for a number of volunteers per station that works at all five stations at once. Each station has a different filling time and a different cup target, so here's the plan: find each station's filling time, find the cups that must be filled, work out the volunteers each station needs, then **take the largest need**.
 
-# Fixing a reference
+# Filling time at each station
 
-Seat Ani in one chair as the reference. The other four then **fill the remaining 4 chairs**, counted clockwise from Ani.
+The volunteers start at 05.45, which is <InlineMath math="15" /> minutes before the start. The fastest runner reaches a distance of <InlineMath math="d" /> km after <InlineMath math="3d" /> minutes. So **the filling time at each station** is <InlineMath math="15+3d" /> minutes, and one volunteer fills <InlineMath math="4" /> cups a minute.
 
-<BlockMath math="4!=24" />
+| Station | Distance | Filling time | Cups by one volunteer |
+| :---: | :---: | :---: | :---: |
+| 1 | <InlineMath math="2\text{ km}" /> | <InlineMath math="15+6=21" /> minutes | <InlineMath math="4\cdot21=84" /> |
+| 2 | <InlineMath math="6\text{ km}" /> | <InlineMath math="15+18=33" /> minutes | <InlineMath math="4\cdot33=132" /> |
+| 3 | <InlineMath math="10\text{ km}" /> | <InlineMath math="15+30=45" /> minutes | <InlineMath math="4\cdot45=180" /> |
+| 4 | <InlineMath math="14\text{ km}" /> | <InlineMath math="15+42=57" /> minutes | <InlineMath math="4\cdot57=228" /> |
+| 5 | <InlineMath math="18\text{ km}" /> | <InlineMath math="15+54=69" /> minutes | <InlineMath math="4\cdot69=276" /> |
 
-# Link with a row
+# Cups that must already be filled
 
-Each circular arrangement shows up as 5 different row arrangements, one for each chair Ani could sit in, so <InlineMath math="\tfrac{120}{5}=24" />.
+The planned cups at the stations are <InlineMath math="1{,}320" />, <InlineMath math="1{,}298" />, <InlineMath math="2{,}508" />, <InlineMath math="2{,}420" />, and <InlineMath math="2{,}310" />, the expected use plus a <InlineMath math="10\%" /> reserve. Only **at least forty percent of the planned cups** must be filled.
 
-The value 120 counts arrangements in a row. The value 60 divides 120 by 2 instead of 5. The value 12 also treats mirror images as the same, although **left and right neighbours swap** in a mirror. The value 5 only counts the ways to rotate one arrangement.
+<BlockMath math="\begin{aligned}
+40\%\cdot1{,}320&=528 & 40\%\cdot1{,}298&=519.2\\
+40\%\cdot2{,}508&=1{,}003.2 & 40\%\cdot2{,}420&=968\\
+40\%\cdot2{,}310&=924
+\end{aligned}" />
 
-So there are **24 different seatings**.
+# Volunteers for each station
+
+The volunteers needed at a station are the required cups divided by one volunteer's cups, **rounded up**, because you can't have part of a volunteer.
+
+| Station | Required cups divided by one volunteer's cups | Volunteers |
+| :---: | :---: | :---: |
+| 1 | <InlineMath math="528\div84=6.28\ldots" /> | <InlineMath math="7" /> |
+| 2 | <InlineMath math="519.2\div132=3.93\ldots" /> | <InlineMath math="4" /> |
+| 3 | <InlineMath math="1{,}003.2\div180=5.57\ldots" /> | <InlineMath math="6" /> |
+| 4 | <InlineMath math="968\div228=4.24\ldots" /> | <InlineMath math="5" /> |
+| 5 | <InlineMath math="924\div276=3.34\ldots" /> | <InlineMath math="4" /> |
+
+Every station gets the same number of volunteers, so the number has to cover the hardest station. **The hardest station is station 1**, because its time is the shortest, even though it has far fewer cups than station 3.
+
+# Checking at the first station
+
+With <InlineMath math="7" /> volunteers, station 1 fills <InlineMath math="7\cdot84=588\ge528" /> cups. With <InlineMath math="6" /> volunteers, it fills only <InlineMath math="6\cdot84=504<528" /> cups, so **six volunteers aren't enough**. The other stations need at most <InlineMath math="6" /> volunteers, so <InlineMath math="7" /> volunteers are enough there too.
+
+# Common wrong answers
+
+These answers **check the wrong station or use the wrong time or target**.
+
+- The answer <InlineMath math="6" /> comes from checking only station 3 because it has the most cups, from forgetting the <InlineMath math="10\%" /> reserve, or from rounding <InlineMath math="6.28\ldots" /> down.
+- The answer <InlineMath math="22" /> forgets that the volunteers start <InlineMath math="15" /> minutes before the start, so station 1 seems to have only <InlineMath math="6" /> minutes.
+- The answer <InlineMath math="16" /> fills all the planned cups before the first runner arrives, but only <InlineMath math="40\%" /> is required.
+
+So the organisers have to place at least <InlineMath math="7" /> volunteers at each station.

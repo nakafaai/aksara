@@ -1,15 +1,39 @@
-Bedakan **perubahan suhu** dari **suhu itu sendiri**. Perubahan hanya dipengaruhi faktor <InlineMath math="\tfrac95" />, sedangkan suhu juga dipengaruhi tambahan 32.
+Kita mencari pengurangan terkecil oleh pintu air yang menjaga tinggi muka air selalu di bawah <InlineMath math="300\text{ cm}" />. Rencananya: hitung bagian yang tidak bergantung pada <InlineMath math="g" />, tulis puncak tinggi muka air sebagai rumus dalam <InlineMath math="g" />, lalu cari bilangan bulat terkecil yang membuat puncak itu di bawah <InlineMath math="300" />.
 
-# Perubahan suhu dan skala Kelvin
+# Bagian yang tidak bergantung pada pintu air
 
-Jika <InlineMath math="C" /> naik 5, maka <InlineMath math="F" /> naik <InlineMath math="\tfrac95\cdot5=9" />, karena tambahan 32 saling menghapus. Pernyataan pertama benar.
+Hujan tiba <InlineMath math="2" /> jam kemudian, jadi perubahan per jam mulai pukul 06.00 adalah <InlineMath math="+40" />, <InlineMath math="+30" />, <InlineMath math="+60" />, <InlineMath math="+90" />, <InlineMath math="+50" />, <InlineMath math="+20" />, <InlineMath math="+10" />, dan <InlineMath math="-10" /> cm. Tinggi muka air menjadi <InlineMath math="210\text{ cm}" /> pukul 08.00 dan mencapai <InlineMath math="250\text{ cm}" /> pukul 08.40. **Sampai pukul 08.40, nilai <InlineMath math="g" /> belum berpengaruh**, karena pintu air baru terbuka saat itu.
 
-Dari <InlineMath math="K=C+273" />, suhu 300 K sama dengan <InlineMath math="300-273=27^\circ\text{C}" />, **bukan 37 °C**. Pernyataan kedua salah.
+# Puncak sebagai rumus
 
-# Membandingkan dan menggandakan suhu
+Setelah pukul 08.40, setiap laju berkurang <InlineMath math="g" />. Nilai <InlineMath math="g=30" /> masih menghasilkan Awas, jadi <InlineMath math="g" /> yang dicari lebih dari <InlineMath math="30" />. Untuk <InlineMath math="g" /> antara <InlineMath math="20" /> dan <InlineMath math="50" />, air masih naik pada pukul 10.00 sampai 11.00 karena <InlineMath math="50-g>0" />, lalu turun pada pukul 11.00 sampai 12.00 karena <InlineMath math="20-g<0" />. Jadi, **puncaknya terjadi pukul 11.00**.
 
-Ubah 100 °F ke Celsius: <InlineMath math="C=\tfrac59(100-32)=\tfrac59\cdot68\approx37{,}8" />. Suhu ini lebih tinggi daripada 37 °C, jadi pernyataan ketiga benar.
+<BlockMath math="\begin{aligned}
+P &= 250+(60-g)\cdot\frac{20}{60}+(90-g)+(50-g) \\
+&= 250+20-\frac{g}{3}+140-2g \\
+&= 410-\frac{7g}{3}
+\end{aligned}" />
 
-Contoh: 10 °C sama dengan 50 °F, sedangkan 20 °C sama dengan 68 °F, bukan 100 °F. Karena ada **tambahan 32**, suhu Fahrenheit tidak sebanding dengan suhu Celsius. Pernyataan keempat salah.
+Suku <InlineMath math="(60-g)\cdot\frac{20}{60}" /> adalah kenaikan pada pukul 08.40 sampai 09.00, yang hanya berlangsung <InlineMath math="20" /> menit.
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **benar**, dan keempat **salah**.
+# Syarat tidak mencapai Awas
+
+Status Awas berlaku mulai <InlineMath math="300\text{ cm}" />, jadi **puncaknya harus kurang dari <InlineMath math="300" />, tidak boleh sama**.
+
+<BlockMath math="\begin{aligned}
+410-\frac{7g}{3} &< 300 \\
+\frac{7g}{3} &> 110 \\
+g &> \frac{330}{7}=47\frac17
+\end{aligned}" />
+
+Bilangan bulat terkecil yang lebih dari <InlineMath math="47\frac17" /> adalah <InlineMath math="48" />.
+
+# Memeriksa dua nilai di sekitar batas
+
+Untuk <InlineMath math="g=48" />, puncaknya <InlineMath math="250+4+42+2=298\text{ cm}" />, di bawah <InlineMath math="300" />. Setelah pukul 11.00 air turun, dan kalau sempat turun ke <InlineMath math="250\text{ cm}" />, air hanya tertahan di sana, jadi **puncak <InlineMath math="298\text{ cm}" /> tidak terlampaui lagi**. Untuk <InlineMath math="g=47" />, puncaknya <InlineMath math="250+\frac{13}{3}+43+3=300\frac13\text{ cm}" />, jadi status Awas tercapai.
+
+# Kesalahan yang sering terjadi
+
+Kalau puncak dianggap terjadi pukul 10.00, **kenaikan pada pukul 10.00 sampai 11.00 terlupa** dan hasilnya terlalu kecil, yaitu <InlineMath math="46" />. Kalau <InlineMath math="47\frac17" /> dibulatkan ke bawah menjadi <InlineMath math="47" />, puncaknya justru <InlineMath math="300\frac13\text{ cm}" />.
+
+Jadi, nilai <InlineMath math="g" /> terkecil adalah <InlineMath math="48" /> cm per jam.

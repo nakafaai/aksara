@@ -1,18 +1,36 @@
-Hitung **berat yang ditagihkan untuk kedua kardus**, lalu bandingkan biayanya.
+Budi punya dua tujuan yang berurutan: pertama tiba secepat mungkin, lalu di antara cara yang sama cepat, membayar paling murah. Jadi **hitung waktu tiba untuk setiap bus A yang bisa dinaiki Budi**, cari waktu tiba paling awal, lalu bandingkan ongkosnya.
 
-# Kardus semula
+# Waktu tiba untuk setiap bus A
 
-Berat volumenya <InlineMath math="\tfrac{50\cdot40\cdot30}{6{.}000}=10" /> kg, lebih besar daripada 4,8 kg, jadi **ditagih 10 kg**, yaitu Rp90.000,00.
+Bus A yang bisa dinaiki Budi adalah bus setelah pukul 21.45, yaitu 21.54, 22.12, 22.30, dan seterusnya. Bus A tiba di Halte Pasar <InlineMath math="25\text{ menit}" /> setelah berangkat. Bus B harus berangkat paling sedikit <InlineMath math="4\text{ menit}" /> setelah bus A tiba, lalu perlu <InlineMath math="15\text{ menit}" /> sampai Halte Kampus.
 
-# Kardus baru dan penghematan
+| Bus A berangkat | Tiba di Halte Pasar | Bus B paling awal | Waktu tunggu | Tiba di Halte Kampus |
+| :---: | :---: | :---: | :---: | :---: |
+| 21.54 | 22.19 | 22.52 | <InlineMath math="33\text{ menit}" /> | 23.07 |
+| 22.12 | 22.37 | 22.52 | <InlineMath math="15\text{ menit}" /> | 23.07 |
+| 22.30 | 22.55 | 23.22 | <InlineMath math="27\text{ menit}" /> | 23.37 |
 
-Berat volume kardus baru adalah <InlineMath math="\tfrac{45\cdot30\cdot20}{6{.}000}=\tfrac{27{.}000}{6{.}000}=4{,}5" /> kg. Kali ini **berat aktual 4,8 kg yang lebih besar**, dan dibulatkan menjadi 5 kg.
+Bus B pukul 22.22 tidak bisa dikejar dari bus A pukul 21.54, karena jaraknya hanya <InlineMath math="3\text{ menit}" />. Bus A yang lebih lambat lagi hanya tiba lebih lambat. Waktu tiba paling awal adalah pukul 23.07, dan **dua bus A memberi waktu tiba yang sama**.
 
-<BlockMath math="\begin{aligned}
-\text{biaya baru}&=5\cdot9{.}000=45{.}000\\
-\text{penghematan}&=90{.}000-45{.}000=45{.}000
-\end{aligned}" />
+# Ongkos kedua cara yang sama cepat
 
-Mengecilkan kardus berhasil karena berat volume turun hampir sampai berat aktual. Setelah itu, mengecilkan kardus lagi tidak akan menurunkan biaya, karena berat aktual tetap 4,8 kg.
+Penumpang tidak membayar tiket bus B jika bus B berangkat paling lama <InlineMath math="15\text{ menit}" /> setelah bus A tiba.
 
-Jadi, penghematannya adalah **Rp45.000,00**.
+<BlockMath math="\begin{aligned} \text{naik bus A pukul 21.54: } & \text{tunggu } 33 > 15,\ \text{ongkos } 5{.}000+4{.}000=9{.}000 \\ \text{naik bus A pukul 22.12: } & \text{tunggu } 15 \le 15,\ \text{ongkos } 5{.}000 \end{aligned}" />
+
+Jadi **bus A yang lebih lambat justru lebih murah** dan tetap tiba pukul 23.07. Budi memilih naik bus A pukul 22.12.
+
+# Pemeriksaan pilihan
+
+Dengan bus A pukul 22.12, Budi tiba di Halte Pasar pukul 22.37, berjalan paling sedikit <InlineMath math="4\text{ menit}" />, naik bus B pukul 22.52, dan tiba di Halte Kampus pukul 23.07. Waktu tunggunya tepat <InlineMath math="15\text{ menit}" />, dan aturan **paling lama <InlineMath math="15\text{ menit}" /> masih mencakup angka <InlineMath math="15" /> itu sendiri**, jadi transfernya gratis.
+
+# Jebakan pada pilihan lain
+
+Setiap pilihan yang salah **mengabaikan satu aturan atau satu tujuan Budi**.
+
+- Bus A pukul 21.54 dengan tiba pukul 22.37 mengabaikan waktu jalan kaki, sehingga bus B pukul 22.22 dianggap terkejar.
+- Bus A pukul 21.54 dengan tiba pukul 23.07 memang paling cepat, tetapi ongkosnya <InlineMath math="\text{Rp}9{.}000" />, padahal ada cara yang sama cepat dengan ongkos <InlineMath math="\text{Rp}5{.}000" />.
+- Bus A pukul 22.12 dengan tiba pukul 22.52 lupa bahwa bus B masih perlu <InlineMath math="15\text{ menit}" /> setelah berangkat pukul 22.52.
+- Bus A pukul 22.48 memang memberi transfer gratis, tetapi Budi baru tiba pukul 23.37. Pilihan ini mendahulukan ongkos di atas kecepatan.
+
+Jadi, Budi naik bus A pukul 22.12 dan tiba di Halte Kampus pukul 23.07.

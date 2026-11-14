@@ -1,15 +1,56 @@
-Rina **buys** foreign currency, so the selling rate applies, the price the customer pays. The service fee is added to a purchase.
+You're looking for the counter and the waiting time of person <InlineMath math="20" />. Build the start schedule for everyone using the rule **the counter that frees up first**, find person <InlineMath math="20" />'s row, and subtract the arrival time from the start time.
 
-# Price of 300 SGD
+# Both counters stay busy
 
-<BlockMath math="300\cdot11{,}800=3{,}540{,}000" />
+Counter A can start a new service every <InlineMath math="4" /> minutes, at 08:00, 08:04, 08:08, and so on. Counter B can every <InlineMath math="6" /> minutes, at 08:00, 08:06, 08:12, and so on. This schedule only holds if **someone is always waiting** when a counter frees up. The table below shows that everyone has already arrived before their start time, so neither counter ever sits idle.
 
-# Adding the service fee
+# The start schedule
 
-<BlockMath math="3{,}540{,}000+25{,}000=3{,}565{,}000" />
+Sort all the available start times at both counters from earliest to latest. At 08:00, 08:12 and 08:24 both counters free up together, so **the person further ahead in line goes to counter A**. Person <InlineMath math="n" /> who comes after 08:00 arrives <InlineMath math="3(n-10)" /> minutes after 08:00.
 
-The service fee is paid **once per transaction**, however many dollars are bought.
+| Person | Arrives | Service starts | Counter |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> | 08:00 | 08:00 | A |
+| <InlineMath math="2" /> | 08:00 | 08:00 | B |
+| <InlineMath math="3" /> | 08:00 | 08:04 | A |
+| <InlineMath math="4" /> | 08:00 | 08:06 | B |
+| <InlineMath math="5" /> | 08:00 | 08:08 | A |
+| <InlineMath math="6" /> | 08:00 | 08:12 | A |
+| <InlineMath math="7" /> | 08:00 | 08:12 | B |
+| <InlineMath math="8" /> | 08:00 | 08:16 | A |
+| <InlineMath math="9" /> | 08:00 | 08:18 | B |
+| <InlineMath math="10" /> | 08:00 | 08:20 | A |
+| <InlineMath math="11" /> | 08:03 | 08:24 | A |
+| <InlineMath math="12" /> | 08:06 | 08:24 | B |
+| <InlineMath math="13" /> | 08:09 | 08:28 | A |
+| <InlineMath math="14" /> | 08:12 | 08:30 | B |
+| <InlineMath math="15" /> | 08:15 | 08:32 | A |
+| <InlineMath math="16" /> | 08:18 | 08:36 | A |
+| <InlineMath math="17" /> | 08:21 | 08:36 | B |
+| <InlineMath math="18" /> | 08:24 | 08:40 | A |
+| <InlineMath math="19" /> | 08:27 | 08:42 | B |
+| <InlineMath math="20" /> | 08:30 | 08:44 | A |
 
-The values Rp3,480,000 and Rp3,505,000 use the buying rate, which applies when a customer sells. The value Rp3,455,000 uses the buying rate and subtracts the fee. The value Rp3,590,000 adds the fee twice.
+In every <InlineMath math="12" /> minutes counter A starts <InlineMath math="3" /> services and counter B starts <InlineMath math="2" />, so the pattern repeats.
 
-So Rina must pay **Rp3,565,000**.
+# Person twenty's waiting time
+
+Person <InlineMath math="19" /> takes counter B at 08:42, so counter B is next free at 08:48. Counter A is free at 08:44, which is earlier, so **person <InlineMath math="20" /> goes to counter A at 08:44**. They arrived <InlineMath math="30" /> minutes after 08:00, at 08:30, and their service starts <InlineMath math="44" /> minutes after 08:00.
+
+<BlockMath math="\begin{aligned}
+\text{arrival minute}&=3\cdot(20-10)=30 \\
+\text{waiting time}&=44-30=14
+\end{aligned}" />
+
+As a check, in the first <InlineMath math="44" /> minutes counter A starts <InlineMath math="12" /> services and counter B starts <InlineMath math="8" />. So person <InlineMath math="20" /> really is the last of the <InlineMath math="12" /> people served at counter A up to then.
+
+# The wrong options
+
+Each other option comes from **one slip in the schedule**.
+
+- Counter A with <InlineMath math="18" /> minutes counts until the service ends at 08:48, but waiting stops when the service starts.
+- Counter A with <InlineMath math="44" /> minutes uses the start time as the waiting time and forgets that the person only arrived at 08:30.
+- Counter B with <InlineMath math="12" /> minutes gives person <InlineMath math="20" /> the 08:42 slot at counter B, but person <InlineMath math="19" /> already took it.
+- Counter B with <InlineMath math="24" /> minutes assumes people alternate between counters A and B, but they go to whichever counter frees up first.
+
+So person <InlineMath math="20" /> is served at counter A after waiting <InlineMath math="14" /> minutes.

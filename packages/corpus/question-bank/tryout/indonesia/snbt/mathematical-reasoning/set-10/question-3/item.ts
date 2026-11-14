@@ -1,31 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "bakery-plan",
+  stimulus: "ferry-crossing",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
-          column: 2,
+          column: 1,
           label:
-            "Bu Sari dapat membuat 80 roti cokelat dan 30 roti keju dalam sehari.",
+            "Dengan aturan antre, kapal berangkat pada perjalanan pertama dengan muatan tepat $$30\\text{ ton}$$.",
         },
         {
           column: 2,
           label:
-            "Bu Sari dapat membuat 30 roti cokelat dan 60 roti keju dalam sehari.",
+            "Jika mobil pada urutan ketiga batal menyeberang, aturan antre tetap memerlukan $$5$$ perjalanan untuk menghabiskan antrean.",
         },
         {
           column: 1,
           label:
-            "Jika hanya membuat roti keju, Bu Sari dapat membuat paling banyak 70 roti dalam sehari.",
+            "Jika batas massa kapal diganti menjadi $$31\\text{ ton}$$ dan panjang lajur tetap $$40\\text{ m}$$, aturan antre menghabiskan antrean dalam $$4$$ perjalanan.",
         },
         {
-          column: 1,
+          column: 2,
           label:
-            "Membuat 100 roti cokelat saja dalam sehari memenuhi semua batasan.",
+            "Jika truk pada urutan kesembilan dipindahkan ke urutan paling belakang, aturan antre menghabiskan antrean dalam $$4$$ perjalanan.",
         },
       ],
     },

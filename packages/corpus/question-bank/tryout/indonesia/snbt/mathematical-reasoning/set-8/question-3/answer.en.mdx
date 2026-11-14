@@ -1,23 +1,37 @@
-Every garden size must meet **two conditions at once**: the wire is exactly 44 m and the side parallel to the wall is at most 20 m, that is, <InlineMath math="x\ge12" />.
+All four statements depend on one thing: **how many days one cylinder actually lasts**. A cylinder is only swapped in the morning, so that number is always whole, and gas that isn't enough for a full day is lost. So first work out how long each cylinder lasts, then test each statement.
 
-# A square garden and a 10 m side
+# How long a cylinder lasts at the current use
 
-A square garden means <InlineMath math="x=44-2x" />, so <InlineMath math="x=\tfrac{44}{3}\approx14.67" /> m. The parallel side is also about 14.67 m, **not longer than the wall**, so the first statement is true.
-
-For <InlineMath math="x=10" /> the parallel side is <InlineMath math="44-20=24" /> m, **longer than the wall**. That garden cannot be built, so the third statement is false.
-
-# An area of 192 <InlineMath math="\text{m}^2" />
+The daily use is <InlineMath math="0.3\cdot3+0.1\cdot7=1.6\text{ kg}" />. A cylinder stays as long as its gas covers a full day, so **the number of days is the quotient rounded down**:
 
 <BlockMath math="\begin{aligned}
-x(44-2x)&=192\\
-x^2-22x+96&=0\\
-(x-6)(x-16)&=0
+5.5\text{ kg}: 3\cdot1.6&=4.8\le5.5 < 4\cdot1.6=6.4 \text{, so } 3\text{ days, } 0.7\text{ kg left}\\
+12\text{ kg}: 7\cdot1.6&=11.2\le12 < 8\cdot1.6=12.8 \text{, so } 7\text{ days, } 0.8\text{ kg left}
 \end{aligned}" />
 
-The value <InlineMath math="x=6" /> makes the parallel side 32 m, **which is impossible**. Only <InlineMath math="x=16" /> works, with a parallel side of 12 m. The second statement is true.
+# Costs before and after the price rise
 
-# How the area changes
+The cost per day is the price of a cylinder divided by the days it lasts:
 
-For <InlineMath math="x\ge12" />, for example <InlineMath math="x=12" /> gives 240 <InlineMath math="\text{m}^2" />, <InlineMath math="x=14" /> gives 224 <InlineMath math="\text{m}^2" /> and <InlineMath math="x=16" /> gives 192 <InlineMath math="\text{m}^2" />. The area **gets smaller**, so the fourth statement is false.
+<BlockMath math="\begin{aligned}
+\text{up to 15 July: } \frac{87{,}000}{3}&=29{,}000 \text{ and } \frac{196{,}000}{7}=28{,}000\\
+\text{from 16 July: } \frac{93{,}000}{3}&=31{,}000 \text{ and } \frac{224{,}000}{7}=32{,}000
+\end{aligned}" />
 
-So the first statement is **true**, the second is **true**, the third is **false**, and the fourth is **false**.
+The first statement is true. Up to <InlineMath math="15" /> July, the <InlineMath math="12\text{ kg}" /> cylinder is cheaper per day, even though its price per kilogram, <InlineMath math="\tfrac{196{,}000}{12}\approx16{,}333" /> rupiah, is higher than <InlineMath math="\tfrac{87{,}000}{5.5}\approx15{,}818" /> rupiah. That happens because **the small cylinder throws away a bigger share of its gas**: <InlineMath math="0.7" /> out of <InlineMath math="5.5\text{ kg}" />, against <InlineMath math="0.8" /> out of <InlineMath math="12\text{ kg}" />.
+
+The second statement is false. From <InlineMath math="16" /> July, the <InlineMath math="12\text{ kg}" /> cylinder costs <InlineMath math="\text{Rp}32{,}000" /> a day, more than the <InlineMath math="5.5\text{ kg}" /> cylinder at <InlineMath math="\text{Rp}31{,}000" /> a day. The big cylinder's price went up by <InlineMath math="\text{Rp}28{,}000" />, far more than the small one's rise of <InlineMath math="\text{Rp}6{,}000" />.
+
+# A slightly larger daily use
+
+If the small stove runs for <InlineMath math="8\text{ hours}" />, the daily use becomes <InlineMath math="0.9+0.8=1.7\text{ kg}" />. Check how long the <InlineMath math="12\text{ kg}" /> cylinder lasts:
+
+<BlockMath math="7\cdot1.7=11.9\le12 < 8\cdot1.7=13.6" />
+
+The cylinder still lasts <InlineMath math="7" /> days, so the cost stays <InlineMath math="\tfrac{196{,}000}{7}=28{,}000" /> rupiah a day. The third statement is true. The extra use **only shrinks the lost gas**, from <InlineMath math="0.8\text{ kg}" /> to <InlineMath math="0.1\text{ kg}" />, without changing the number of days.
+
+# Gas lost at each swap
+
+From the first step, the <InlineMath math="12\text{ kg}" /> cylinder leaves <InlineMath math="0.8\text{ kg}" />, while the <InlineMath math="5.5\text{ kg}" /> cylinder leaves <InlineMath math="0.7\text{ kg}" />. So **the big cylinder actually loses more gas** at each swap, and the fourth statement is false. The big cylinder does lose a smaller share of what it holds, but the statement compares amounts of gas, not shares.
+
+So the first statement is true, the second is false, the third is true, and the fourth is false.

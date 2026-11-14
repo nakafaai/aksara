@@ -1,13 +1,40 @@
-Bacalah kolom yang tepat untuk setiap pernyataan, dan ingat bahwa **setiap gol tercatat dua kali**: sebagai gol dicetak oleh satu tim dan gol kemasukan bagi tim lawan.
+Keran K hanya bisa mengalirkan air yang ada. Jadi **cari dulu kapan tandon kosong**, lalu hitung berapa menit keran K benar-benar mengalirkan <InlineMath math="50\text{ liter}" /> per menit. Untuk tahu kapan tandon kosong, kamu perlu tahu isi tandon saat pompa terakhir mati, dan isi itu dibatasi oleh kapasitas <InlineMath math="6{.}000\text{ liter}" />.
 
-# Poin dan kekalahan
+# Isi tandon saat pompa terakhir mati
 
-Tim C memperoleh <InlineMath math="3\cdot1+2=5" /> poin dan tim D memperoleh <InlineMath math="3\cdot1+1=4" /> poin, jadi pernyataan pertama benar. Tim A tercatat **0 kali kalah**, jadi pernyataan ketiga benar.
+Isi tandon berubah sebesar debit masuk dikurangi debit keluar, yang disebut debit bersih. Hitung per potongan waktu, karena **debit bersih berganti setiap kali ada alat yang mulai atau berhenti**.
 
-# Selisih gol dan jumlah gol
+<BlockMath math="\begin{aligned} \text{05.00 sampai 05.20: } 1{.}000+60\cdot 20 &= 2{.}200 \\ \text{05.20 sampai 05.40: } 2{.}200+(60-50)\cdot 20 &= 2{.}400 \\ \text{05.40 sampai 06.40: } 2{.}400+(60+80-50)\cdot 60 &= 7{.}800 \end{aligned}" />
 
-Selisih gol tim B adalah <InlineMath math="6-4=+2" />, bukan <InlineMath math="+3" />. Pernyataan kedua salah.
+Angka <InlineMath math="7{.}800" /> lebih besar daripada kapasitas, jadi tandon sudah penuh sebelum pukul 06.40 dan kelebihannya terbuang lewat pipa luapan. Isi sebenarnya pada pukul 06.40 adalah <InlineMath math="6{.}000\text{ liter}" />. Dari 06.40 sampai 07.00 debit bersihnya <InlineMath math="60-50=10\text{ liter/menit}" />, masih positif, sehingga tandon tetap penuh. Jadi pada pukul 07.00, saat pompa P mati, **tandon berisi tepat <InlineMath math="6{.}000\text{ liter}" />**.
 
-Jumlah kolom gol dicetak adalah <InlineMath math="8+6+5+3+2=24" />. Jumlah kolom gol kemasukan juga 24, karena **kedua kolom mencatat gol yang sama** dari dua sisi. Jadi seluruh kompetisi menghasilkan 24 gol, bukan 48. Pernyataan keempat salah.
+# Kapan tandon kosong
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **benar**, dan keempat **salah**.
+Setelah pukul 07.00 tidak ada air yang masuk, dan keran K mengeluarkan <InlineMath math="50\text{ liter}" /> per menit.
+
+<BlockMath math="\begin{aligned} \text{waktu sampai kosong} &= \frac{6{.}000}{50} \\ &= 120\text{ menit} \end{aligned}" />
+
+Tandon kosong pukul 09.00. Dari 09.00 sampai 10.00 tidak ada pompa yang menyala, jadi **keran K tidak mengalirkan air sama sekali** walaupun masih terbuka.
+
+# Air yang keluar lewat keran
+
+Keran K **benar-benar mengalirkan air dari pukul 05.20 sampai 09.00**, yaitu selama <InlineMath math="220\text{ menit}" />.
+
+<BlockMath math="50\cdot 220=11{.}000" />
+
+# Pemeriksaan dengan neraca air
+
+Semua air yang pernah ada di tandon harus pergi ke salah satu tujuan: keluar lewat keran K, terbuang lewat pipa luapan, atau tetap di tandon. Kedua sisi neraca ini **harus sama besar**. Air yang ada adalah isi awal ditambah air dari kedua pompa, <InlineMath math="1{.}000+60\cdot 120+80\cdot 60=13{.}000\text{ liter}" />. Air yang terbuang adalah <InlineMath math="7{.}800-6{.}000=1{.}800\text{ liter}" /> sampai pukul 06.40, ditambah <InlineMath math="10\cdot 20=200\text{ liter}" /> sampai pukul 07.00, jadi <InlineMath math="2{.}000\text{ liter}" />. Pada pukul 10.00 tandon kosong.
+
+<BlockMath math="11{.}000+2{.}000+0=13{.}000" />
+
+Neracanya cocok.
+
+# Jebakan yang perlu dihindari
+
+Ada **dua batas yang mudah terlupa**, yaitu kapasitas dan tandon kosong.
+
+- Jika keran K dianggap mengalir selama <InlineMath math="280\text{ menit}" /> penuh dari 05.20 sampai 10.00, hasilnya <InlineMath math="14{.}000\text{ liter}" />. Ini melupakan bahwa tandon kosong pukul 09.00.
+- Jika air berlebih dianggap tetap tersimpan, isi pukul 07.00 menjadi <InlineMath math="8{.}000\text{ liter}" />, tandon baru kosong pukul 09.40, dan hasilnya <InlineMath math="50\cdot 260=13{.}000\text{ liter}" />. Ini melupakan pipa luapan.
+
+Jadi, air yang benar-benar mengalir keluar melalui keran K pada hari itu adalah <InlineMath math="11{.}000\text{ liter}" />.

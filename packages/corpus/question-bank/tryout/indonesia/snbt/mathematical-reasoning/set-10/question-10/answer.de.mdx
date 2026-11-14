@@ -1,15 +1,50 @@
-Fasse Ani und Budi als **einen Block** auf. Denk dann daran, dass die beiden im Block noch die Plätze tauschen können.
+Du suchst, wie viele Kanister noch im Lieferwagen sind, wenn er Station 4 erreicht. Der Wagen lädt Station für Station ab, also **schrumpft seine Ladung in der Reihenfolge der Stationen**. Der Plan: Berechne das Wasser jeder Station aus ihren geplanten Bechern, mache daraus ganze Kanister pro Station und ziehe sie dann Station für Station von der Ladung ab.
 
-# Block und die anderen drei anordnen
+# Wasser für jede Station
 
-Der Block AB mit Citra, Dodi und Eka sind 4 Einheiten, die sich **auf 24 Arten anordnen lassen**.
+Geplante Becher sind der erwartete Verbrauch plus <InlineMath math="10\%" /> Reserve, und an den Stationen 3 bis 5 **nimmt jeder Läufer zwei Becher**. Jeder Becher fasst <InlineMath math="200\text{ ml}=0{,}2\text{ Liter}" />.
 
-# Reihenfolge im Block
+<BlockMath math="\begin{aligned}
+\text{Station 1} &= 1{,}1\cdot1{.}200\cdot0{,}2=1{.}320\cdot0{,}2=264\text{ Liter}\\
+\text{Station 2} &= 1{,}1\cdot1{.}180\cdot0{,}2=1{.}298\cdot0{,}2=259{,}6\text{ Liter}\\
+\text{Station 3} &= 1{,}1\cdot2{.}280\cdot0{,}2=2{.}508\cdot0{,}2=501{,}6\text{ Liter}\\
+\text{Station 4} &= 1{,}1\cdot2{.}200\cdot0{,}2=2{.}420\cdot0{,}2=484\text{ Liter}
+\end{aligned}" />
 
-Im Block ist die Reihenfolge AB oder BA möglich.
+# Ganze Kanister für jede Station
 
-<BlockMath math="24\cdot2=48" />
+Kanister wandern nicht zwischen den Stationen, also **rundet jede Station ihren eigenen Bedarf auf**.
 
-Der Wert 24 vergisst, dass Ani und Budi tauschen können. Der Wert 72 zählt die Anordnungen, in denen sie **nicht** nebeneinander stehen, also <InlineMath math="120-48" />. Der Wert 60 zählt Ani irgendwo links von Budi, nicht unbedingt daneben. Der Wert 96 zählt den Tausch im Block doppelt.
+| Station | Wasser | Wasser geteilt durch neunzehn | Kanister |
+| :---: | :---: | :---: | :---: |
+| 1 | <InlineMath math="264\text{ Liter}" /> | <InlineMath math="13{,}89\ldots" /> | <InlineMath math="14" /> |
+| 2 | <InlineMath math="259{,}6\text{ Liter}" /> | <InlineMath math="13{,}66\ldots" /> | <InlineMath math="14" /> |
+| 3 | <InlineMath math="501{,}6\text{ Liter}" /> | <InlineMath math="26{,}4" /> | <InlineMath math="27" /> |
+| 4 | <InlineMath math="484\text{ Liter}" /> | <InlineMath math="25{,}47\ldots" /> | <InlineMath math="26" /> |
 
-Es gibt also **48 Anordnungen**, in denen Ani und Budi nebeneinander stehen.
+# Die Ladung bis zur vierten Station
+
+Ziehe die Kanister jedes Mal ab, wenn der Wagen eine Station verlässt.
+
+<BlockMath math="\begin{aligned}
+\text{nach Station 1} &= 80-14=66\\
+\text{nach Station 2} &= 66-14=52\\
+\text{nach Station 3} &= 52-27=25
+\end{aligned}" />
+
+Station 4 braucht <InlineMath math="26" /> Kanister, aber im Wagen sind nur noch <InlineMath math="25" />. Laut Aufgabe werden **alle restlichen Kanister an dieser Station abgeladen**, also bekommt Station 4 genau <InlineMath math="25" /> Kanister, und dort fehlt <InlineMath math="1" /> Kanister.
+
+# Kontrolle
+
+Die abgeladenen Kanister ergeben <InlineMath math="14+14+27+25=80" />, **genau die Anfangsladung des Wagens**. Station 5 bekommt von diesem Wagen nichts.
+
+# Die falschen Antworten
+
+Jede falsche Antwort **berechnet die Kanister pro Station falsch**.
+
+- <InlineMath math="26" /> Kanister entstehen, wenn du das Wasser der Stationen 1 bis 3 zuerst addierst, <InlineMath math="1{.}025{,}2" /> Liter, und durch <InlineMath math="19" /> teilst, was <InlineMath math="54" /> Kanister ergibt. Dann tust du so, als könnten sich mehrere Stationen Kanister teilen.
+- <InlineMath math="24" /> Kanister vergisst die Reserve von <InlineMath math="10\%" />, sodass die Stationen 1 bis 3 nur <InlineMath math="50" /> Kanister brauchen und Station 4 nur <InlineMath math="24" />.
+- <InlineMath math="23" /> Kanister füllt alle Becher in den Kartons, etwa <InlineMath math="1{.}400" /> Becher an Station 1, obwohl nur die geplanten Becher gefüllt werden.
+- <InlineMath math="13" /> Kanister übersieht, dass an den Stationen 3 und 4 jeder Läufer <InlineMath math="2" /> Becher nimmt, sodass Station 4 scheinbar nur <InlineMath math="13" /> Kanister braucht.
+
+Station 4 bekommt von dem Wagen also <InlineMath math="25" /> Kanister.

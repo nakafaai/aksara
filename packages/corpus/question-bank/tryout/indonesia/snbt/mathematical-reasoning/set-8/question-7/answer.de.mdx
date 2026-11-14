@@ -1,21 +1,35 @@
-Prüfe jede Aussage mit **den zwei Raten aus der Information**: 2 Sekunden pro durchfahrene Etage und 12 Sekunden pro Halt.
+Der Preis jedes Tickets steht fest, weil seine Nummer feststeht. Wählen können die Freunde nur, **wie sie die neun Tickets auf Käufe verteilen**, und diese Verteilung entscheidet über Rabatt und Servicegebühren. So gehst du vor: Bestimme den Preis jeder Nummer, finde die beste Zahl von Käufen und Rabatten und lege dann die Reihenfolge der Käufe fest.
 
-# Haltezeit
+# Der Preis jeder Ticketnummer
 
-Ein Halt, 12 Sekunden, entspricht der Fahrzeit für <InlineMath math="\tfrac{12}{2}=6" /> Etagen. Die erste Aussage ist wahr.
+Die Freunde bekommen die Tickets <InlineMath math="148" /> bis <InlineMath math="156" />. Die ersten drei, die Nummern <InlineMath math="148" />, <InlineMath math="149" /> und <InlineMath math="150" />, sind **noch Early Bird**. Die übrigen sechs, die Nummern <InlineMath math="151" /> bis <InlineMath math="156" />, sind Presale.
 
-Zwei Halte kosten <InlineMath math="2\cdot12=24" /> Sekunden mehr, **nicht 12 Sekunden**. Die zweite Aussage ist falsch.
+<BlockMath math="3\cdot120{.}000+6\cdot150{.}000=360{.}000+900{.}000=1{.}260{.}000" />
 
-# Hoch und wieder runter
+# Zahl der Käufe und Rabatte
 
-Von Etage 3 bis 11 fährt der Aufzug 8 Etagen hoch, dann von 11 bis 6 fünf Etagen runter. **Die Strecken nach oben und unten werden addiert**:
+Ein Kauf enthält höchstens vier Tickets, für neun Tickets braucht es also mindestens <InlineMath math="3" /> Käufe. Der Rabatt gilt nur für Käufe mit genau vier Tickets, und bei neun Tickets **gibt es höchstens zwei Käufe mit vier Tickets**. Höchstens acht Tickets bekommen also Rabatt, und die beste Aufteilung ist <InlineMath math="4" />, <InlineMath math="4" /> und <InlineMath math="1" /> Ticket. Ein vierter Kauf brächte nur eine weitere Gebühr, aber keinen zusätzlichen Rabatt.
 
-<BlockMath math="(8+5)\cdot2=26\text{ Sekunden}" />
+# Die Reihenfolge der Käufe
 
-Die dritte Aussage ist also falsch.
+Ein Ticket bekommt sicher keinen Rabatt. Der Rabatt beträgt zehn Prozent des Ticketpreises, also **sollte das billigste Ticket leer ausgehen**. Die billigsten Tickets kommen zuerst, das ist Nummer <InlineMath math="148" />. Der erste Kauf enthält also ein Ticket, danach folgen zwei Käufe mit je vier Tickets:
 
-# Last
+<BlockMath math="\begin{aligned}
+\text{Nummer 148: }&120{.}000\\
+\text{Nummern 149 bis 152: }&90\%\cdot(120{.}000+120{.}000+150{.}000+150{.}000)=486{.}000\\
+\text{Nummern 153 bis 156: }&90\%\cdot(4\cdot150{.}000)=540{.}000\\
+\text{Summe: }&120{.}000+486{.}000+540{.}000+3\cdot5{.}000=1{.}161{.}000
+\end{aligned}" />
 
-Elf Personen mit durchschnittlich 62 kg wiegen <InlineMath math="11\cdot62=682" /> kg, **nicht mehr als 700 kg**. Die vierte Aussage ist wahr.
+Prüfe das auf einem zweiten Weg. Der Rabatt beträgt zehn Prozent aller Tickets außer Nummer <InlineMath math="148" />, also <InlineMath math="10\%\cdot(1{.}260{.}000-120{.}000)=114{.}000" />. Die Summe ist dann <InlineMath math="1{.}260{.}000-114{.}000+15{.}000=1{.}161{.}000" />, dasselbe Ergebnis.
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.
+# Die falschen Antworten
+
+Jede andere Antwort entsteht durch **einen naheliegenden Fehler**.
+
+- <InlineMath math="\text{Rp}1{.}146{.}000" /> vergisst die Servicegebühren der drei Käufe.
+- <InlineMath math="\text{Rp}1{.}164{.}000" /> nutzt die Reihenfolge <InlineMath math="4" />, <InlineMath math="4" />, <InlineMath math="1" />. Ohne Rabatt bleibt dann Nummer <InlineMath math="156" /> zu <InlineMath math="\text{Rp}150{.}000" />, der Rabatt ist also um <InlineMath math="\text{Rp}3{.}000" /> kleiner.
+- <InlineMath math="\text{Rp}1{.}191{.}000" /> berechnet die Gebühr pro Ticket, <InlineMath math="9\cdot5{.}000=45{.}000" />, obwohl sie pro Kauf anfällt.
+- <InlineMath math="\text{Rp}1{.}275{.}000" /> teilt die Tickets auf drei Käufe mit je drei Tickets auf, sodass es gar keinen Rabatt gibt.
+
+Die Freunde zahlen also mindestens <InlineMath math="\text{Rp}1{.}161{.}000" />.

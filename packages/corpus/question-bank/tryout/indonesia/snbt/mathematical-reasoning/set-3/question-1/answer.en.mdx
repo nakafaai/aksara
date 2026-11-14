@@ -1,15 +1,47 @@
-One turn of the wheel moves the bicycle **by the circumference of the wheel**. So the number of turns is the distance divided by the circumference, in the same unit.
+You're looking for the latest exit time whose fee is still at most <InlineMath math="\text{Rp}30{,}000" />. The plan: work out the fee for the part before 00.00, add the overnight fee, then see how many hours **the money left over after 00.00** can still pay for.
 
-# Circumference of the wheel
+# The part before midnight
 
-<BlockMath math="K=\pi d=\tfrac{22}{7}\cdot70=220\text{ cm}=2.2\text{ m}" />
+From 21.30 to 00.00 there are <InlineMath math="2\text{ h }30\text{ min}" />. The started-hour rule counts **every hour that has started as one full hour**, so this part counts as <InlineMath math="3\text{ h}" />.
 
-# Number of turns
+<BlockMath math="\begin{aligned}
+\text{fee of the first part} &= 6{,}000+2\cdot4{,}000 \\
+&= 14{,}000\text{ rupiah}
+\end{aligned}" />
 
-The distance 1.1 km equals 1,100 m.
+If Rina left before 00.00, she'd pay at most <InlineMath math="\text{Rp}14{,}000" />, so she'd still have money left. That means the latest exit time has to be after 00.00.
 
-<BlockMath math="\frac{1{,}100}{2.2}=500" />
+# The overnight fee and the money left
 
-The number of gear teeth **plays no part** here, because the question asks about wheel turns, not pedal turns.
+A car that's still in the building at 00.00 pays an overnight fee of <InlineMath math="\text{Rp}10{,}000" />. The overnight rule says this fee **isn't covered by the daily cap**, so it's always added in full. Now work out how much money is left for the part after 00.00.
 
-So the wheel turns **500 times**.
+<BlockMath math="\begin{aligned}
+\text{money left} &= 30{,}000-14{,}000-10{,}000 \\
+&= 6{,}000\text{ rupiah}
+\end{aligned}" />
+
+# The part after midnight
+
+The midnight rule cuts the stay at 00.00, so the part after it **is charged like a new stay that starts at 00.00**. Its first hour costs <InlineMath math="\text{Rp}6{,}000" /> again, not <InlineMath math="\text{Rp}4{,}000" />.
+
+The remaining <InlineMath math="\text{Rp}6{,}000" /> pays for exactly <InlineMath math="1\text{ h}" />. Leaving at exactly 01.00 means parking exactly <InlineMath math="1\text{ h}" /> after midnight, so the money is enough. Leaving at 01.01 already counts as <InlineMath math="2\text{ h}" /> at <InlineMath math="\text{Rp}10{,}000" />, so the money isn't enough.
+
+Check the total fee for leaving at 01.00.
+
+<BlockMath math="\begin{aligned}
+\text{total} &= 14{,}000+10{,}000+6{,}000 \\
+&= 30{,}000\text{ rupiah}
+\end{aligned}" />
+
+The total is exactly <InlineMath math="\text{Rp}30{,}000" />, which matches Rina's money.
+
+# Why the other options are wrong
+
+Each other option comes from **skipping one rule**.
+
+- 01.30 comes from treating the whole stay as a single part. From 21.30 to 01.30 is <InlineMath math="4\text{ h}" /> at <InlineMath math="\text{Rp}18{,}000" />, plus the overnight fee gives <InlineMath math="\text{Rp}28{,}000" />. But the first hour after 00.00 has to be charged again.
+- 02.00 comes from rounding <InlineMath math="2\text{ h }30\text{ min}" /> down to <InlineMath math="2\text{ h}" />, so the first part costs only <InlineMath math="\text{Rp}10{,}000" /> and the rest pays for <InlineMath math="2\text{ h}" />.
+- 03.00 comes from forgetting the overnight fee. The money left becomes <InlineMath math="\text{Rp}16{,}000" />, which pays for <InlineMath math="3\text{ h}" /> at <InlineMath math="\text{Rp}14{,}000" />.
+- 04.30 comes from ignoring both the cut at midnight and the overnight fee. The rule <InlineMath math="6{,}000+4{,}000(n-1)\le30{,}000" /> gives <InlineMath math="n=7" /> hours from 21.30.
+
+So Rina's car has to leave the building by 01.00 the next morning at the latest.

@@ -1,15 +1,33 @@
-Peserta menjawab semua soal, jadi **tidak ada soal kosong**: jika <InlineMath math="b" /> soal benar, maka <InlineMath math="40-b" /> soal salah.
+Kita mencari uang terbanyak yang diterima Pak Joni saat pinjaman cair. Uang itu adalah pokok dikurangi biaya administrasi. Rencananya, cari pokok terbesar yang memenuhi syarat cicilan untuk setiap rencana, kurangi biaya administrasinya, lalu **bandingkan uang bersih kedua rencana**.
 
-# Skor sebagai fungsi banyak jawaban benar
+# Pokok terbesar pada Rencana Tetap
 
-<BlockMath math="4b-(40-b)=5b-40" />
+Pada Rencana Tetap, bunganya sama setiap bulan, jadi **semua cicilan sama besar**. Untuk pokok <InlineMath math="P" />, cicilannya <InlineMath math="\tfrac{P}{12}+1\%\cdot P" />. Cicilan untuk satu juta rupiah pokok kira-kira <InlineMath math="93{.}333" /> rupiah, jadi pokok yang cocok ada di sekitar <InlineMath math="10{,}7" /> juta. Uji dua kelipatan <InlineMath math="600{.}000" /> di dekatnya.
 
-# Menyelesaikan persamaan
+<BlockMath math="\begin{aligned}
+\tfrac{10{.}200{.}000}{12}+1\%\cdot 10{.}200{.}000&=850{.}000+102{.}000=952{.}000 \\
+\tfrac{10{.}800{.}000}{12}+1\%\cdot 10{.}800{.}000&=900{.}000+108{.}000=1{.}008{.}000
+\end{aligned}" />
 
-Skor itu harus sama dengan 95.
+Pokok <InlineMath math="10{.}800{.}000" /> sudah melewati batas, jadi pokok terbesar <InlineMath math="10{.}200{.}000" />. Uang yang diterima adalah pokok dikurangi <InlineMath math="2\%" /> biaya administrasi.
 
-<BlockMath math="5b-40=95\;\Longrightarrow\;5b=135\;\Longrightarrow\;b=27" />
+<BlockMath math="10{.}200{.}000-2\%\cdot 10{.}200{.}000=10{.}200{.}000-204{.}000=9{.}996{.}000" />
 
-Pemeriksaan: 27 benar dan 13 salah memberi <InlineMath math="108-13=95" />. Hasilnya bilangan bulat dan **tidak melebihi 40**, jadi memang mungkin.
+# Pokok terbesar pada Rencana Menurun
 
-Jadi, peserta itu menjawab benar **27 soal**.
+Pada Rencana Menurun, bunga turun setiap bulan karena sisa pokok makin kecil. Jadi **cicilan terbesar adalah cicilan bulan pertama**, saat bunga dihitung dari seluruh pokok. Syaratnya cukup diuji pada bulan pertama: <InlineMath math="\tfrac{P}{12}+2\%\cdot P" />.
+
+<BlockMath math="\begin{aligned}
+\tfrac{9{.}600{.}000}{12}+2\%\cdot 9{.}600{.}000&=800{.}000+192{.}000=992{.}000 \\
+\tfrac{10{.}200{.}000}{12}+2\%\cdot 10{.}200{.}000&=850{.}000+204{.}000=1{.}054{.}000
+\end{aligned}" />
+
+Pokok terbesar <InlineMath math="9{.}600{.}000" />, dan uang yang diterima <InlineMath math="9{.}600{.}000-100{.}000=9{.}500{.}000" />.
+
+# Membandingkan kedua rencana
+
+Rencana Tetap memberi <InlineMath math="9{.}996{.}000" /> rupiah, Rencana Menurun memberi <InlineMath math="9{.}500{.}000" /> rupiah. **Rencana Tetap memberi uang lebih banyak** walaupun biaya administrasinya lebih mahal, karena cicilan bulan pertama Rencana Menurun jauh lebih berat.
+
+Sebagai pemeriksaan, semua cicilan Rencana Tetap <InlineMath math="952{.}000" /> rupiah, tidak lebih dari satu juta, dan pokok berikutnya sudah gagal. Jawaban <InlineMath math="10{.}200{.}000" /> muncul jika biaya administrasi lupa dikurangkan, dan <InlineMath math="11{.}300{.}000" /> muncul jika Rencana Menurun diuji dengan cicilan bulan terakhir, yang justru paling kecil.
+
+Jadi, uang paling banyak yang dapat diterima Pak Joni adalah <InlineMath math="\text{Rp}9{.}996{.}000{,}00" />.

@@ -1,20 +1,44 @@
-Compute the cost of the 45 cm tiles **with the same steps** as the 30 cm tiles: exact number of tiles, add the 10% spare, round up to whole boxes, then multiply by the price.
+A short stair usually uses tall steps and narrow treads. But here there's an extra condition: **<InlineMath math="R" /> has to be whole and <InlineMath math="n=\tfrac{300}{R}" /> has to be whole too**. The plan: find the possible <InlineMath math="R" />, then its narrowest tread, then the length.
 
-# Cost of the 45 cm tiles
+# A whole step height
+
+The rise rule only allows <InlineMath math="R=15, 16, 17, 18" />. The number of steps <InlineMath math="n=\tfrac{300}{R}" /> has to be a whole number, so **<InlineMath math="R" /> has to divide <InlineMath math="300" /> exactly**.
 
 <BlockMath math="\begin{aligned}
-450:45&=10,\quad 360:45=8,\quad 10\cdot8=80\text{ tiles}\\
-80+8&=88\text{ tiles minimum}\\
-\tfrac{88}{5}&=17.6\;\Longrightarrow\;18\text{ boxes}\\
-18\cdot110{,}000&=1{,}980{,}000
+\tfrac{300}{15} &= 20 \\
+\tfrac{300}{16} &= 18.75 \\
+\tfrac{300}{17} &\approx 17.6 \\
+\tfrac{300}{18} &\approx 16.7
 \end{aligned}" />
 
-# Comparing with the 30 cm tiles
+Only <InlineMath math="R=15" /> divides exactly, so this stair has to have <InlineMath math="n=20" /> steps. A steeper stair can't be built with whole sizes.
 
-The 30 cm tiles need 17 boxes costing 1,632,000. **The difference in cost** is
+# The narrowest tread
 
-<BlockMath math="1{,}980{,}000-1{,}632{,}000=348{,}000" />
+For <InlineMath math="R=15" />, the step rule gives a lower and an upper limit for the tread width.
 
-The 30 cm tiles are cheaper. A difference of Rp238,000 appears if 17.6 boxes are rounded down to 17, although 17 boxes hold only 85 tiles. The choices saying the 45 cm tiles are cheaper reverse the comparison.
+<BlockMath math="\begin{aligned}
+2\cdot15+T &\ge 62 \quad\Rightarrow\quad T\ge32 \\
+2\cdot15+T &\le 66 \quad\Rightarrow\quad T\le36
+\end{aligned}" />
 
-So **the 30 cm tiles are cheaper by Rp348,000**.
+The shortest length comes from **the narrowest tread, <InlineMath math="T=32" />**.
+
+# The horizontal length
+
+The floor above doesn't count as a tread, so <InlineMath math="20" /> steps have only <InlineMath math="19" /> treads.
+
+<BlockMath math="19\cdot32=608\text{ cm}" />
+
+Check it: <InlineMath math="20\cdot15=300" /> matches the floor height, and <InlineMath math="2\cdot15+32=62" /> meets the step rule. This is much longer than a stair with a fractional <InlineMath math="R" />, and **that's the price of the whole-size condition**.
+
+# Why the other options are wrong
+
+Each other option **quietly breaks one condition**.
+
+- <InlineMath math="416\text{ cm}" /> comes from <InlineMath math="R=18" /> with <InlineMath math="17" /> steps and <InlineMath math="T=26" />. Its height is <InlineMath math="17\cdot18=306" />, not <InlineMath math="300" />.
+- <InlineMath math="432\text{ cm}" /> comes from leaving <InlineMath math="R=\tfrac{300}{17}" /> as a fraction and using <InlineMath math="T=27" /> for <InlineMath math="16" /> treads. The builder's request doesn't allow a fractional <InlineMath math="R" />.
+- <InlineMath math="494\text{ cm}" /> comes from pairing <InlineMath math="R=15" /> with <InlineMath math="T=26" />, but <InlineMath math="2\cdot15+26=56" /> is too small for the step rule.
+- <InlineMath math="540\text{ cm}" /> comes from <InlineMath math="R=16" /> with <InlineMath math="19" /> steps and <InlineMath math="T=30" />. Its height is <InlineMath math="19\cdot16=304" />, not <InlineMath math="300" />.
+
+So the shortest horizontal length of that stair is <InlineMath math="608\text{ cm}" />.

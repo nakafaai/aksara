@@ -1,17 +1,40 @@
-Berechne die Kosten jedes Tarifs für 13 GB. Entscheidend ist **der Teil des Verbrauchs über dem jeweiligen Inklusivvolumen**.
+Du musst die Plätze mit ungerader Nummer in jeder Kategorie zählen und dann mit dem Preis der Kategorie multiplizieren. Entscheidend ist: **Jede Reihe hat eine ungerade Anzahl Plätze, also gibt es immer einen Platz mit ungerader Nummer mehr als die Hälfte**.
 
-# Kosten des Tarifs Hemat
+# Die Anzahl der Plätze in jeder Reihe
 
-Sein Inklusivvolumen ist 10 GB, also **werden 3 GB zusätzlich berechnet**, denn <InlineMath math="13-10=3" />.
+Reihe <InlineMath math="1" /> hat <InlineMath math="19" /> Plätze, und jede weitere Reihe hat <InlineMath math="2" /> mehr. Das ist eine arithmetische Folge, also hat Reihe <InlineMath math="n" /> genau <InlineMath math="19+2(n-1)=17+2n" /> Plätze. Die Zahl <InlineMath math="17+2n" /> ist **immer ungerade**.
 
-<BlockMath math="50\,000+3\cdot9\,000=77\,000" />
+In einer Reihe mit <InlineMath math="s" /> Plätzen und ungeradem <InlineMath math="s" /> sind die ungeraden Nummern <InlineMath math="1,3,\ldots,s" />, also <InlineMath math="\tfrac{s+1}{2}" /> Stück. Für Reihe <InlineMath math="n" /> sind das <InlineMath math="\tfrac{17+2n+1}{2}=9+n" />.
 
-# Kosten des Tarifs Bebas und der Unterschied
+# Plätze mit ungerader Nummer je Kategorie
 
-Sein Inklusivvolumen ist 20 GB, ein Verbrauch von 13 GB **bleibt also innerhalb des Volumens**, und die Kosten bleiben 95 000.
+Die Anzahl <InlineMath math="9+n" /> pro Reihe ist ebenfalls eine arithmetische Folge. Addiere sie mit **Anzahl der Glieder mal Mittelwert aus erstem und letztem Glied**.
 
-<BlockMath math="95\,000-77\,000=18\,000" />
+<BlockMath math="\begin{aligned}
+\text{A, Reihen }1\text{ bis }6 &: 10+11+\cdots+15=\tfrac{6(10+15)}{2}=75\\
+\text{B, Reihen }7\text{ bis }16 &: 16+17+\cdots+25=\tfrac{10(16+25)}{2}=205\\
+\text{C, Reihen }17\text{ bis }30 &: 26+27+\cdots+39=\tfrac{14(26+39)}{2}=455
+\end{aligned}" />
 
-Ein Unterschied von 27 000 Rupiah ist nur der Zuschlag des Tarifs Hemat. Die Wahlen, nach denen Bebas günstiger ist, entstehen, wenn man 13 GB als über dem Volumen von Bebas ansieht oder den Zuschlag von Hemat ab 0 GB berechnet.
+# Die Einnahmen
 
-Für 13 GB ist also **der Tarif Hemat um 18 000 Rupiah günstiger**.
+Multipliziere die Platzzahl jeder Kategorie mit ihrem Preis, denn **jede Kategorie hat ihren eigenen Preis**.
+
+<BlockMath math="\begin{aligned}
+\text{Einnahmen} &= 75\cdot250{.}000+205\cdot150{.}000+455\cdot100{.}000\\
+&= 18{.}750{.}000+30{.}750{.}000+45{.}500{.}000\\
+&= 95{.}000{.}000
+\end{aligned}" />
+
+# Kontrolle
+
+Die ganze Tribüne hat <InlineMath math="\tfrac{30(19+77)}{2}=1{.}440" /> Plätze. In jeder Reihe sind die ungeraden Plätze die Hälfte plus ein halber Platz, also sind es insgesamt <InlineMath math="\tfrac{1{.}440+30}{2}=735" />. Das **stimmt mit** <InlineMath math="75+205+455=735" /> überein.
+
+# Die falschen Antworten
+
+- <InlineMath math="\text{Rp}93{.}300{.}000{,}00" /> rechnet einen zusätzlichen Platz pro Kategorie, aber **der zusätzliche Platz entsteht in jeder Reihe**.
+- <InlineMath math="\text{Rp}92{.}800{.}000{,}00" /> ist die Hälfte der Einnahmen bei vollem Verkauf und übersieht, dass jede Reihe eine ungerade Platzzahl hat.
+- <InlineMath math="\text{Rp}91{.}100{.}000{,}00" /> zählt für Kategorie C nur <InlineMath math="30-17=13" /> Reihen, sodass **Reihe <InlineMath math="30" /> fehlt**.
+- <InlineMath math="\text{Rp}90{.}600{.}000{,}00" /> zählt die Plätze mit gerader Nummer, also <InlineMath math="\tfrac{s-1}{2}" /> pro Reihe.
+
+Die Einnahmen der Veranstalter aus dem Ticketverkauf betragen also <InlineMath math="\text{Rp}95{.}000{.}000{,}00" />.

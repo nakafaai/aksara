@@ -1,17 +1,40 @@
-Hitung biaya setiap paket untuk 13 GB. Yang penting adalah **bagian pemakaian yang melebihi kuota** masing-masing paket.
+Kamu perlu menghitung banyak kursi bernomor ganjil di setiap kategori, lalu mengalikannya dengan harga kategori itu. Hal yang menentukan: **setiap baris memiliki kursi berjumlah ganjil, jadi kursi bernomor ganjil selalu satu lebih banyak daripada setengahnya**.
 
-# Biaya Paket Hemat
+# Banyak kursi pada setiap baris
 
-Kuotanya 10 GB, jadi ada **3 GB yang dikenai biaya tambahan**, karena <InlineMath math="13-10=3" />.
+Baris ke-<InlineMath math="1" /> punya <InlineMath math="19" /> kursi dan setiap baris berikutnya bertambah <InlineMath math="2" />. Ini barisan aritmetika, jadi baris ke-<InlineMath math="n" /> punya <InlineMath math="19+2(n-1)=17+2n" /> kursi. Bilangan <InlineMath math="17+2n" /> **selalu ganjil**.
 
-<BlockMath math="50{.}000+3\cdot9{.}000=77{.}000" />
+Pada baris dengan <InlineMath math="s" /> kursi dan <InlineMath math="s" /> ganjil, nomor ganjilnya adalah <InlineMath math="1,3,\ldots,s" />, sebanyak <InlineMath math="\tfrac{s+1}{2}" />. Untuk baris ke-<InlineMath math="n" /> banyaknya <InlineMath math="\tfrac{17+2n+1}{2}=9+n" />.
 
-# Biaya Paket Bebas dan selisihnya
+# Kursi bernomor ganjil per kategori
 
-Kuotanya 20 GB, jadi pemakaian 13 GB **belum melewati kuota** dan biayanya tetap 95.000.
+Banyak kursi ganjil per baris, <InlineMath math="9+n" />, juga barisan aritmetika. Jumlahkan dengan **rumus banyak suku kali rata-rata suku pertama dan terakhir**.
 
-<BlockMath math="95{.}000-77{.}000=18{.}000" />
+<BlockMath math="\begin{aligned}
+\text{A, baris ke-}1\text{ sampai ke-}6 &: 10+11+\cdots+15=\tfrac{6(10+15)}{2}=75\\
+\text{B, baris ke-}7\text{ sampai ke-}16 &: 16+17+\cdots+25=\tfrac{10(16+25)}{2}=205\\
+\text{C, baris ke-}17\text{ sampai ke-}30 &: 26+27+\cdots+39=\tfrac{14(26+39)}{2}=455
+\end{aligned}" />
 
-Selisih Rp27.000,00 hanyalah biaya tambahan Paket Hemat. Pilihan bahwa Paket Bebas lebih murah muncul jika 13 GB dianggap sudah melewati kuota Paket Bebas atau jika tambahan Paket Hemat dihitung dari 0 GB.
+# Pendapatan
 
-Jadi, **Paket Hemat lebih murah Rp18.000,00** untuk pemakaian 13 GB.
+Kalikan banyak kursi setiap kategori dengan harganya, karena **setiap kategori punya harga sendiri**.
+
+<BlockMath math="\begin{aligned}
+\text{pendapatan} &= 75\cdot250{.}000+205\cdot150{.}000+455\cdot100{.}000\\
+&= 18{.}750{.}000+30{.}750{.}000+45{.}500{.}000\\
+&= 95{.}000{.}000
+\end{aligned}" />
+
+# Pemeriksaan
+
+Seluruh tribun punya <InlineMath math="\tfrac{30(19+77)}{2}=1{.}440" /> kursi. Kursi ganjil di setiap baris adalah setengah kursi ditambah setengah, jadi totalnya <InlineMath math="\tfrac{1{.}440+30}{2}=735" />. Hasil ini **cocok dengan** <InlineMath math="75+205+455=735" />.
+
+# Pilihan yang keliru
+
+- <InlineMath math="\text{Rp}93{.}300{.}000{,}00" /> menambahkan satu kursi untuk setiap kategori, padahal **tambahan satu kursi terjadi di setiap baris**.
+- <InlineMath math="\text{Rp}92{.}800{.}000{,}00" /> adalah setengah pendapatan jika semua kursi terjual, yang mengabaikan bahwa banyak kursi setiap baris ganjil.
+- <InlineMath math="\text{Rp}91{.}100{.}000{,}00" /> menghitung kategori C hanya <InlineMath math="30-17=13" /> baris, sehingga **baris ke-<InlineMath math="30" /> terlewat**.
+- <InlineMath math="\text{Rp}90{.}600{.}000{,}00" /> menghitung kursi bernomor genap, yaitu <InlineMath math="\tfrac{s-1}{2}" /> per baris.
+
+Jadi, pendapatan panitia dari penjualan tiket acara itu adalah <InlineMath math="\text{Rp}95{.}000{.}000{,}00" />.

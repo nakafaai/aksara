@@ -1,18 +1,40 @@
-Jede Dosis **zerfällt für sich ab dem Zeitpunkt der Einnahme**, und die Reste werden addiert. Um 22.00 Uhr ist die erste Dosis seit 16 Stunden im Körper, die zweite erst seit 8 Stunden.
+Gesucht ist die größte Anzahl an Setzlingen. Zähl die Setzlinge in einer Reihe, dann die Reihen in jedem Pflanzstreifen, wobei **zwei verschiedene Mindestabstände** gelten, zum Feldrand und zum Kanalrand, und multiplizier zum Schluss.
 
-# Rest jeder Dosis
+# Setzlinge in einer Reihe
+
+Die Reihen laufen parallel zur Seite von <InlineMath math="24\text{ m}" />, und jeder Setzling muss mindestens <InlineMath math="1\text{ m}" /> von beiden Enden des Felds entfernt sein. Die Setzlinge dürfen also nur auf einer Strecke von <InlineMath math="24-2\cdot 1=22" /> Metern stehen. Darauf passen höchstens so viele Abstände von <InlineMath math="0{,}8\text{ m}" />, wie die größte ganze Zahl angibt, die <InlineMath math="22:0{,}8" /> nicht überschreitet.
 
 <BlockMath math="\begin{aligned}
-\text{erste Dosis}&:\quad 360\cdot\left(\tfrac12\right)^{16/8}=90\\
-\text{zweite Dosis}&:\quad 360\cdot\left(\tfrac12\right)^{8/8}=180
+\frac{22}{0{,}8}&=27{,}5\ \Rightarrow\ 27\text{ Abstände} \\
+27+1&=28\text{ Setzlinge}
 \end{aligned}" />
 
-# Gesamtmenge
+Du addierst eins, weil **es immer einen Setzling mehr als Abstände gibt**.
 
-<BlockMath math="90+180=270" />
+# Reihen in einem Pflanzstreifen
 
-Anders gerechnet: Direkt nach der zweiten Dosis enthält der Körper <InlineMath math="180+360=540" /> mg, und **8 Stunden später hat sich diese Menge halbiert**, auf 270 mg.
+Jeder Pflanzstreifen ist <InlineMath math="7\text{ m}" /> breit. Auf der einen Seite liegt der Feldrand, die Reihen müssen also mindestens <InlineMath math="1\text{ m}" /> davon entfernt sein. Auf der anderen Seite liegt der Kanalrand, und **zum Kanal reichen <InlineMath math="0{,}5\text{ m}" />**. Die Reihen dürfen also nur in einem Band von <InlineMath math="7-1-0{,}5=5{,}5" /> Metern liegen.
 
-Der Wert 540 mg ist die Menge direkt nach der zweiten Dosis. Der Wert 450 mg lässt die zweite Dosis nicht zerfallen, und 180 mg vergisst den Rest der ersten Dosis.
+<BlockMath math="\begin{aligned}
+\frac{5{,}5}{1{,}2}&=4{,}58\ldots\ \Rightarrow\ 4\text{ Abstände} \\
+4+1&=5\text{ Reihen}
+\end{aligned}" />
 
-Um 22.00 Uhr sind also **270 mg** im Körper.
+Die erste Reihe liegt genau <InlineMath math="1\text{ m}" /> vom Feldrand entfernt, die fünfte <InlineMath math="1+4\cdot 1{,}2=5{,}8" /> Meter. Der Kanalrand liegt <InlineMath math="7\text{ m}" /> vom Feldrand entfernt, die fünfte Reihe ist also <InlineMath math="1{,}2\text{ m}" /> vom Kanal weg, das passt. Eine sechste Reihe läge <InlineMath math="7{,}0" /> Meter vom Feldrand entfernt, direkt am Kanalrand, und ist deshalb nicht erlaubt.
+
+# Alle Setzlinge zusammen
+
+Es gibt **zwei gleiche Pflanzstreifen** mit je <InlineMath math="5" /> Reihen, und jede Reihe hat <InlineMath math="28" /> Setzlinge.
+
+<BlockMath math="2\cdot 5\cdot 28=280" />
+
+# Die falschen Optionen
+
+Jede andere Option entsteht, wenn du **das Plus eins vergisst oder die Richtung der Reihen falsch liest**.
+
+- <InlineMath math="216" /> entsteht, wenn du das Plus eins in beiden Richtungen vergisst, also <InlineMath math="27" /> Setzlinge pro Reihe und <InlineMath math="4" /> Reihen pro Streifen.
+- <InlineMath math="224" /> entsteht, wenn du das Plus eins nur bei den Reihen vergisst, sodass jeder Streifen <InlineMath math="4" /> Reihen hätte.
+- <InlineMath math="266" /> entsteht, wenn die Reihen parallel zur Seite von <InlineMath math="15\text{ m}" /> laufen, obwohl die Regeln Reihen parallel zur Seite von <InlineMath math="24\text{ m}" /> verlangen.
+- <InlineMath math="270" /> entsteht, wenn du das Plus eins innerhalb einer Reihe vergisst, sodass jede Reihe <InlineMath math="27" /> Setzlinge hätte.
+
+Pak Darto kann also höchstens <InlineMath math="280" /> Setzlinge pflanzen.

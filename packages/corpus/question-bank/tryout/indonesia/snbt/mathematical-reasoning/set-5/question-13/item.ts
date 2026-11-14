@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "solar-panels",
+  stimulus: "download-quota",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "5 panel" },
-        { correct: false, label: "8 panel" },
-        { correct: false, label: "9 panel" },
-        { correct: true, label: "10 panel" },
-        { correct: false, label: "45 panel" },
+        { correct: false, label: "$$50$$ menit" },
+        { correct: true, label: "$$154$$ menit" },
+        { correct: false, label: "$$170$$ menit" },
+        { correct: false, label: "$$174$$ menit" },
+        { correct: false, label: "$$250$$ menit" },
       ],
     },
   },

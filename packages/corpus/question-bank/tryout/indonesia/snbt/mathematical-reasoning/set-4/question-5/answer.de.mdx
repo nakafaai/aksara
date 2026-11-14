@@ -1,13 +1,50 @@
-Mehl wird **proportional zur Stückzahl** verwendet, also bestimmst du den Faktor von 12 auf 30 Stück.
+Du vergleichst zwei Einnahmen: alle Fische als eine Gruppe verkaufen oder zwei Gruppen getrennt verkaufen. Der Plan: Berechne die Einnahme ohne Sortieren, bestimme Anzahl und Gewicht jeder Gruppe, finde **die Preisklasse der kleinen Gruppe über ihr Durchschnittsgewicht** und ziehe dann die beiden Einnahmen voneinander ab.
 
-# Der Faktor
+# Einnahme ohne Sortieren
 
-<BlockMath math="\frac{30}{12}=2{,}5" />
+Am Ende des fünften Monats leben <InlineMath math="72\%" /> der Setzlinge, mit einem Durchschnittsgewicht von <InlineMath math="250\text{ g}=0{,}25\text{ kg}" />:
 
-# Benötigtes Mehl
+<BlockMath math="\begin{aligned}
+\text{lebende Fische} &= 72\%\times5{.}000=3{.}600\text{ Fische}\\
+\text{Biomasse} &= 3{.}600\times0{,}25=900\text{ kg}
+\end{aligned}" />
 
-<BlockMath math="250\cdot2{,}5=625\text{ g}" />
+Ein Durchschnittsgewicht von <InlineMath math="250\text{ g}" /> gehört zur **obersten Preisklasse**, <InlineMath math="250\text{ g}" /> oder mehr, also beträgt der Preis <InlineMath math="\text{Rp}28{.}000" /> pro Kilogramm und die Einnahme <InlineMath math="900\times28{.}000=\text{Rp}25{.}200{.}000" />.
 
-Anders als bei den Eiern **muss das Mehl nicht gerundet werden**, weil es sich genau abmessen lässt.
+# Anzahl und Gewicht jeder Gruppe
 
-Es werden also **625 Gramm** Mehl gebraucht.
+Die <InlineMath math="40\%" /> beziehen sich **auf die geernteten Fische**, nicht auf die Setzlinge. Große und kleine Gruppe:
+
+<BlockMath math="\begin{aligned}
+\text{große Gruppe} &= 40\%\times3{.}600=1{.}440\text{ Fische},\quad 1{.}440\times0{,}3=432\text{ kg}\\
+\text{kleine Gruppe} &= 3{.}600-1{.}440=2{.}160\text{ Fische},\quad 900-432=468\text{ kg}
+\end{aligned}" />
+
+Das Durchschnittsgewicht der kleinen Gruppe ist ihr Gewicht geteilt durch die Anzahl ihrer Fische:
+
+<BlockMath math="\frac{468{.}000\text{ g}}{2{.}160}\approx216{,}7\text{ g}" />
+
+Dieser Wert liegt zwischen <InlineMath math="200\text{ g}" /> und <InlineMath math="250\text{ g}" />, also **rutscht die kleine Gruppe in die Preisklasse** von <InlineMath math="\text{Rp}24{.}000" /> pro Kilogramm.
+
+# Einnahme nach dem Sortieren und der Unterschied
+
+Die große Gruppe hat ein Durchschnittsgewicht von <InlineMath math="300\text{ g}" />, bleibt also bei <InlineMath math="\text{Rp}28{.}000" /> pro Kilogramm:
+
+<BlockMath math="\begin{aligned}
+\text{Einnahme sortiert} &= 432\times28{.}000+468\times24{.}000\\
+&= 12{.}096{.}000+11{.}232{.}000=23{.}328{.}000\\
+\text{Unterschied} &= 25{.}200{.}000-23{.}328{.}000=1{.}872{.}000
+\end{aligned}" />
+
+Zur Kontrolle: Die beiden Gruppen wiegen <InlineMath math="432+468=900\text{ kg}" />, genau die ganze Biomasse. Ihr gemeinsamer Durchschnitt bleibt <InlineMath math="250\text{ g}" />, denn <InlineMath math="900{.}000\div3{.}600=250" />. **Das Sortieren ändert das Gewicht also nicht**, es schiebt nur <InlineMath math="468\text{ kg}" /> in einen niedrigeren Preis: <InlineMath math="468\times4{.}000=1{.}872{.}000" />.
+
+# Warum die anderen Antworten falsch sind
+
+Jede falsche Antwort entsteht aus **einer vertauschten Bezugsgröße** oder einer falschen Preisklasse.
+
+- <InlineMath math="\text{Rp}2{.}160{.}000" /> entsteht, wenn du <InlineMath math="40\%" /> der Biomasse nimmst, also <InlineMath math="360\text{ kg}" /> und <InlineMath math="540\text{ kg}" />, obwohl sich die <InlineMath math="40\%" /> auf die Anzahl der Fische beziehen.
+- <InlineMath math="\text{Rp}2{.}400{.}000" /> entsteht, wenn du <InlineMath math="40\%" /> der <InlineMath math="5{.}000" /> Setzlinge nimmst. Die große Gruppe wird dann <InlineMath math="600\text{ kg}" /> schwer, und die kleine Gruppe hat im Schnitt <InlineMath math="187{,}5\text{ g}" /> zum Preis von <InlineMath math="\text{Rp}20{.}000" />.
+- <InlineMath math="\text{Rp}2{.}736{.}000" /> entsteht, wenn du den Durchschnitt der kleinen Gruppe ohne Gewichtung nach der Anzahl berechnest, <InlineMath math="2\times250-300=200\text{ g}" />, und ihr Gewicht deshalb mit <InlineMath math="432\text{ kg}" /> ansetzt.
+- <InlineMath math="\text{Rp}3{.}744{.}000" /> entsteht, wenn du die kleine Gruppe in die billigste Klasse mit <InlineMath math="\text{Rp}20{.}000" /> steckst, obwohl ihr Durchschnitt über <InlineMath math="200\text{ g}" /> liegt.
+
+Nach dem Sortieren sinkt die Verkaufseinnahme also um <InlineMath math="\text{Rp}1{.}872{.}000" />.

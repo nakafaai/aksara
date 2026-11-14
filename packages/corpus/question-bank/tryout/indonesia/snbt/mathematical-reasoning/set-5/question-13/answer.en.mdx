@@ -1,15 +1,41 @@
-Peak power is not daily energy. A panel's daily energy is **peak power times 4.5 hours**, and that is what is compared with the 9 kWh used.
+You're looking for a download time that passes through two speed changes: the main quota runs out partway through, and then the night hours start at 00.00. The plan: turn each speed into **seconds per GB**, then split the download into three parts by speed.
 
-# Daily energy of one panel
+# Time for one GB
 
-<BlockMath math="0.2\text{ kW}\cdot4.5\text{ h}=0.9\text{ kWh}" />
+A size of <InlineMath math="1\text{ GB}" /> is <InlineMath math="1{,}000 \cdot 8 = 8{,}000" /> megabits. So downloading <InlineMath math="1\text{ GB}" /> takes:
 
-# Number of panels
+<BlockMath math="\begin{aligned}
+\text{at } 40\text{ Mbps} &: \frac{8{,}000}{40} = 200 \text{ s} \\
+\text{at } 8\text{ Mbps} &: \frac{8{,}000}{8} = 1{,}000 \text{ s}
+\end{aligned}" />
 
-<BlockMath math="\frac{9}{0.9}=10" />
+# The fast part and the slow part
 
-Ten panels make exactly 9 kWh a day, while nine panels make only 8.1 kWh, **not enough**.
+The remaining <InlineMath math="6\text{ GB}" /> of quota goes fast, in <InlineMath math="6 \cdot 200 = 1{,}200" /> seconds, which is <InlineMath math="20" /> minutes, until 21.50. After that the main quota is gone and **the speed drops to <InlineMath math="8\text{ Mbps}" />**. From 21.50 to 00.00 there are <InlineMath math="130" /> minutes:
 
-The value 45 panels divides 9 by the peak power 0.2 without the 4.5 hours. The value 9 panels assumes each panel makes 1 kWh.
+<BlockMath math="\begin{aligned}
+130 \text{ min} &= 7{,}800 \text{ s} \\
+\text{slow download} &= \frac{7{,}800}{1{,}000} = 7.8\text{ GB}
+\end{aligned}" />
 
-So at least **10 panels** are needed.
+# The part after midnight
+
+From 00.00, **the night hours bring the speed back to <InlineMath math="40\text{ Mbps}" />** even though the main quota is used up. What's left and how long it takes:
+
+<BlockMath math="\begin{aligned}
+\text{rest of the file} &= 15 - 6 - 7.8 = 1.2\text{ GB} \\
+\text{time} &= 1.2 \cdot 200 = 240 \text{ s} = 4 \text{ min}
+\end{aligned}" />
+
+So the whole download takes <InlineMath math="20 + 130 + 4 = 154" /> minutes, and the file is done at 00.04. Check the data: <InlineMath math="6 + 7.8 + 1.2 = 15\text{ GB}" />, the size of the file.
+
+# The wrong options
+
+Each other option **misses one of the speed changes**:
+
+- <InlineMath math="50" /> minutes downloads everything at <InlineMath math="40\text{ Mbps}" />, as if the main quota never ran out.
+- <InlineMath math="170" /> minutes forgets the night hours: the other <InlineMath math="9\text{ GB}" /> go slowly in <InlineMath math="150" /> minutes.
+- <InlineMath math="174" /> minutes takes the rest at midnight as <InlineMath math="15-7.8=7.2\text{ GB}" />, forgetting to subtract the <InlineMath math="6\text{ GB}" /> that already went fast.
+- <InlineMath math="250" /> minutes downloads everything at <InlineMath math="8\text{ Mbps}" />.
+
+So Bu Ani needs <InlineMath math="154" /> minutes to download the file.

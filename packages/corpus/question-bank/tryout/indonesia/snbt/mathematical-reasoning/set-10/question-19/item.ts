@@ -1,31 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "photo-frame",
+  stimulus: "school-canteen",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
+          column: 2,
           label:
-            "Setiap kali lebar bingkai bertambah 1 cm, keliling luar bingkai bertambah 8 cm.",
+            "Hari dengan porsi terjual paling banyak juga merupakan hari dengan laba kotor paling besar.",
         },
         {
           column: 2,
           label:
-            "Jika lebar bingkai 5 cm, keliling luar bingkai adalah 140 cm.",
+            "Menu yang paling banyak terjual dalam minggu itu juga menyumbang laba kotor mingguan paling besar.",
         },
         {
           column: 1,
           label:
-            "Berapa pun lebar bingkainya, panjang luar bingkai selalu 12 cm lebih panjang daripada lebar luarnya.",
+            "Laba kotor hari Senin lebih dari $$70\\%$$ lebih besar daripada laba kotor hari Rabu.",
         },
         {
           column: 2,
           label:
-            "Perbandingan panjang dan lebar ukuran luar bingkai sama dengan perbandingan panjang dan lebar foto.",
+            "Jika harga jual es jeruk naik $$\\text{Rp}1{.}000{,}00$$ per porsi dan banyak porsi setiap menu tetap, laba bersih mingguan naik lebih dari $$40\\%$$.",
         },
       ],
     },

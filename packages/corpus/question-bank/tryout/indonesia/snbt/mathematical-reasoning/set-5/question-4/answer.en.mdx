@@ -1,15 +1,53 @@
-The toll part must be driven, so **first set aside the fuel for the toll road**, then use the rest at the city rate.
+You're looking for the lowest cost for Sari's whole schedule. The plan: first write down the day number of every visit, then check how many visits a card can really cover **before it expires**, and finally compare with the ways that use a membership. Every price is written in thousands of rupiah, so <InlineMath math="580" /> means <InlineMath math="\text{Rp}580{,}000" />.
 
-# Fuel for the toll road
+# Sari's visit days
 
-<BlockMath math="\frac{150}{15}=10\text{ litres}" />
+Day <InlineMath math="1" /> is a Monday, so Tuesday, Thursday, and Saturday of the first week are days <InlineMath math="2" />, <InlineMath math="4" />, and <InlineMath math="6" />. Each following week adds <InlineMath math="7" /> to the day numbers.
 
-# Remaining fuel for city roads
+| Visits | Day numbers | Number of visits |
+| --- | --- | --- |
+| <InlineMath math="1" />st to <InlineMath math="10" />th | <InlineMath math="1, 2, 4, 6, 8, 9, 11, 13, 15, 16" /> | <InlineMath math="10" /> |
+| <InlineMath math="11" />th to <InlineMath math="16" />th | <InlineMath math="18, 20, 22, 23, 25, 27" /> | <InlineMath math="6" /> |
+| <InlineMath math="17" />th to <InlineMath math="20" />th (Saturdays only) | <InlineMath math="34, 41, 48, 55" /> | <InlineMath math="4" /> |
 
-That leaves <InlineMath math="25-10=15" /> litres. On city roads each litre covers only 10 km.
+That's <InlineMath math="20" /> visits. At first glance <InlineMath math="2" /> cards for <InlineMath math="500" /> look like enough, but the **card's validity period** hasn't been counted yet.
 
-<BlockMath math="15\cdot10=150\text{ km}" />
+# The first and the second card
 
-The distance 225 km uses 15 km per litre on city roads, although **that rate only applies on the toll road**. The distance 100 km appears if the toll fuel is computed at the city rate, as 15 litres.
+The first card is bought on day <InlineMath math="1" /> and is valid until day <InlineMath math="30" />. It's used for the first <InlineMath math="10" /> visits, which end on day <InlineMath math="16" />, so nothing on it expires.
 
-So the farthest city distance is **150 km**.
+The second card is bought on the next visit, day <InlineMath math="18" />. The purchase day counts as the first day, so:
+
+<BlockMath math="\text{valid until day }(18+29) = \text{day }47" />
+
+The second card covers days <InlineMath math="18" />, <InlineMath math="20" />, <InlineMath math="22" />, <InlineMath math="23" />, <InlineMath math="25" />, <InlineMath math="27" />, <InlineMath math="34" />, and <InlineMath math="41" />, which is <InlineMath math="8" /> visits. Days <InlineMath math="48" /> and <InlineMath math="55" /> come too late, so **<InlineMath math="2" /> visits on the second card expire** and the last <InlineMath math="2" /> visits are paid with day tickets.
+
+Could the second card be bought later so it also covers day <InlineMath math="48" /> or <InlineMath math="55" />? Every visit the second card skips has to be paid with a day ticket, while its validity only shifts. From day <InlineMath math="18" /> to day <InlineMath math="55" /> there are <InlineMath math="10" /> visits, and any <InlineMath math="30" />-day span holds at most <InlineMath math="8" /> of them. So **at least <InlineMath math="2" /> visits still need day tickets**. A third card for those <InlineMath math="2" /> visits costs more (<InlineMath math="250" />) than <InlineMath math="2" /> day tickets (<InlineMath math="80" />).
+
+<BlockMath math="\begin{aligned}
+\text{two cards and two day tickets} &= 250+250+2 \cdot 40 \\
+&= 580
+\end{aligned}" />
+
+# Comparing with the other ways
+
+The ways that use a membership or only one card turn out **more expensive than** <InlineMath math="580" />:
+
+<BlockMath math="\begin{aligned}
+\text{membership for weeks one to four} &= 100+350+4 \cdot 40 = 610 \\
+\text{one card and ten day tickets} &= 250+10 \cdot 40 = 650 \\
+\text{day tickets only} &= 20 \cdot 40 = 800
+\end{aligned}" />
+
+A membership for days <InlineMath math="1" /> to <InlineMath math="30" /> covers every visit in weeks one to four, but the <InlineMath math="4" /> Saturdays after that still need day tickets. A membership just for those Saturdays doesn't pay off either, because <InlineMath math="350" /> is far more than <InlineMath math="4 \cdot 40=160" />.
+
+# The wrong options
+
+Each other option comes from **a rule that was skipped or misread**:
+
+- <InlineMath math="\text{Rp}500{,}000" /> assumes <InlineMath math="2" /> cards cover all <InlineMath math="20" /> visits and forgets that card visits can expire.
+- <InlineMath math="\text{Rp}540{,}000" /> counts the second card as valid until day <InlineMath math="18+30=48" />, even though the purchase day is already the first day.
+- <InlineMath math="\text{Rp}610{,}000" /> uses a membership for the first <InlineMath math="4" /> weeks, then day tickets for each Saturday after that.
+- <InlineMath math="\text{Rp}650{,}000" /> skips the second card and pays the other <InlineMath math="10" /> visits with day tickets.
+
+So the lowest cost for Sari's whole schedule is <InlineMath math="\text{Rp}580{,}000" />.

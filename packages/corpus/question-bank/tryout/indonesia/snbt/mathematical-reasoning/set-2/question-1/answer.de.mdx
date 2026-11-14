@@ -1,15 +1,57 @@
-Zwei Schritte werden leicht übersehen: **Die Strecke wird zuerst aufgerundet**, und der Grundpreis deckt schon die ersten 2 km ab.
+Gesucht ist Bimas Energie um 12:30 Uhr. Verfolge seine Energie von einem Ereignis zum nächsten und prüfe jedes Mal, **ob die Energie gerade unter <InlineMath math="60" /> liegt**, denn nur unter <InlineMath math="60" /> füllt sie sich automatisch auf.
 
-# Die Strecke runden
+# Der Trank stoppt das Auffüllen
 
-Die Strecke von 7,3 km wird auf 8 km aufgerundet. Davon sind die ersten 2 km im Grundpreis enthalten, also werden **die übrigen 6 km** pro Kilometer berechnet.
+Um 10:03 Uhr gab es noch kein neues Auffüllen, denn das nächste wäre erst um 10:05 Uhr. Bima hat also noch <InlineMath math="52" />. Der Trank bringt <InlineMath math="30" />, danach kostet die Bossmission <InlineMath math="20" />.
 
-# Den Fahrpreis berechnen
+<BlockMath math="\begin{aligned}
+52+30&=82 \\
+82-20&=62
+\end{aligned}" />
 
-<BlockMath math="10\,000+6\cdot2\,500=10\,000+15\,000=25\,000" />
+Mit <InlineMath math="62" /> liegt die Energie immer noch über <InlineMath math="60" />, also **stoppt das automatische Auffüllen ab dem Trank**. Bis 10:13 Uhr bleibt Bimas Energie bei <InlineMath math="62" />.
 
-Die Fahrt liegt außerhalb der Stoßzeit, der Preis wird also nicht mit 1,2 multipliziert.
+# Der Zähler startet wieder bei null
 
-Ein Preis von 22 500 Rupiah rundet 7,3 km auf 7 km ab. Ein Preis von 23 250 Rupiah rundet gar nicht. Ein Preis von 30 000 Rupiah entsteht, wenn man wie zur Stoßzeit mit 1,2 multipliziert oder auch die ersten 2 km mit 2 500 Rupiah pro Kilometer berechnet.
+Um 10:13 Uhr startet Bima die zweite Bossmission, seine Energie wird also <InlineMath math="62-20=42" />. Die Energie ist gerade unter <InlineMath math="60" /> gefallen. Nach der Regel für den Zähler **startet der Zähler genau um 10:13 Uhr wieder bei null**. Er folgt nicht dem alten Takt 10:15, 10:20 und so weiter. Die nächsten Auffüllungen kommen also um 10:18, 10:23, 10:28 Uhr und so weiter.
 
-Dewi zahlt also **25 000 Rupiah**.
+Bis 10:23 Uhr gab es zwei Auffüllungen, um 10:18 und um 10:23 Uhr, dann kostet eine normale Mission <InlineMath math="6" />. Um 10:27 Uhr gibt es kein neues Auffüllen, und noch eine normale Mission kostet <InlineMath math="6" />.
+
+<BlockMath math="\begin{aligned}
+42+2-6&=38 \\
+38-6&=32
+\end{aligned}" />
+
+Die ganze Zeit bleibt die Energie unter <InlineMath math="60" />, also läuft der Zähler weiter und startet nicht neu, wenn Energie verbraucht wird.
+
+# Auffüllen bis kurz vor Mittag
+
+Nach 10:27 Uhr spielt Bima nicht mehr. Aufgefüllt wird um 10:28, 10:33 Uhr und so weiter, das letzte Mal vor Mittag um 11:58 Uhr. Von 10:28 bis 11:58 Uhr sind es <InlineMath math="90" /> Minuten. **Das Auffüllen um 10:28 Uhr zählt mit**, die Anzahl ist also <InlineMath math="90 : 5" /> plus eins.
+
+<BlockMath math="\begin{aligned}
+\frac{90}{5}+1&=19 \\
+32+19&=51
+\end{aligned}" />
+
+Mit <InlineMath math="51" /> bleibt die Energie unter <InlineMath math="60" />, in diesem Abschnitt stoppt das Auffüllen also nie.
+
+# Das Mittagsgeschenk stoppt das Auffüllen
+
+12:00 Uhr ist kein Auffüllzeitpunkt, denn das nächste Auffüllen wäre um 12:03 Uhr. Das Tagesgeschenk bringt <InlineMath math="15" />, die Energie wird also <InlineMath math="51+15=66" />. Das liegt über <InlineMath math="60" />, also **stoppt das automatische Auffüllen wieder**. Bima verbraucht danach keine Energie mehr, deshalb bleibt sie bis 12:30 Uhr bei <InlineMath math="66" />.
+
+# Kontrolle über alle Änderungen
+
+Rechne zur Kontrolle alle Änderungen auf einmal zusammen. Es gibt <InlineMath math="2+19=21" /> automatische Auffüllungen, einen Trank, ein Geschenk, zwei Bossmissionen und zwei normale Missionen. Die Summe muss **mit der schrittweisen Rechnung übereinstimmen**.
+
+<BlockMath math="52+21+30+15-2\cdot 20-2\cdot 6=66" />
+
+# Die falschen Optionen
+
+Jede andere Option entsteht, wenn du **eine Energieregel übersiehst**.
+
+- <InlineMath math="52" /> entsteht, wenn du annimmst, der Trank fülle nur bis <InlineMath math="60" /> auf, sodass das Auffüllen schon nach der ersten Bossmission wieder läuft.
+- <InlineMath math="60" /> entsteht, wenn du annimmst, das Tagesgeschenk fülle nur bis <InlineMath math="60" /> auf.
+- <InlineMath math="72" /> entsteht, wenn das automatische Auffüllen nach dem Geschenk weiterläuft, obwohl die Energie schon <InlineMath math="66" /> beträgt.
+- <InlineMath math="75" /> entsteht, wenn du die Grenze <InlineMath math="60" /> ganz übersiehst und die Energie ab 10:00 Uhr alle <InlineMath math="5" /> Minuten steigen lässt.
+
+Bimas Energie um 12:30 Uhr beträgt also <InlineMath math="66" />.

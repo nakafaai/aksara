@@ -1,30 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "village-trees",
+  stimulus: "orchard-yield",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
-          column: 2,
-          label:
-            "Banyak bibit yang ditanam naik dengan persentase yang sama setiap tahun.",
-        },
-        {
-          column: 1,
-          label: "Banyak pohon yang tumbuh dari bibit tahun kelima adalah 144.",
-        },
-        {
           column: 1,
           label:
-            "Banyak bibit yang mati dari tanaman tiga tahun pertama adalah 81.",
+            "Hasil panen total dengan $$60$$ pohon sama dengan hasil panen total dengan $$40$$ pohon.",
         },
         {
           column: 2,
           label:
-            "Banyak bibit yang ditanam pada tahun kesebelas adalah dua kali banyak bibit tahun pertama.",
+            "Jika harga jeruk naik menjadi $$\\text{Rp}12{.}000$$ per kilogram dan aturan lain tetap, banyak pohon yang memberi keuntungan terbesar tetap $$47$$ pohon.",
+        },
+        {
+          column: 2,
+          label:
+            "Keuntungan dengan $$70$$ pohon lebih kecil daripada keuntungan dengan $$30$$ pohon.",
+        },
+        {
+          column: 2,
+          label:
+            "Jika banyak pohon paling sedikit $$65$$, hasil setiap pohon kurang dari $$70\\text{ kg}$$.",
         },
       ],
     },

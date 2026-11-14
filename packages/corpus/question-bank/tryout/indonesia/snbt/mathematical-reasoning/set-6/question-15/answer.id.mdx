@@ -1,15 +1,34 @@
-Untuk setiap tanggal, hitung **banyak hari setelah 1 Januari 2027**, lalu geser hari Jumat sejauh sisa pembagian oleh 7.
+Kamu mencari banyak responden baru terkecil yang membuat persentase keseluruhan Pasar X mencapai <InlineMath math="52\%" />. Ada dua syarat yang harus dipenuhi bersama: **syarat persentase**, dan **syarat bahwa banyak orang selalu bilangan bulat**.
 
-# Akhir tahun dan awal tahun berikutnya
+# Keadaan Pasar X sekarang
 
-31 Desember adalah 364 hari setelah 1 Januari, dan <InlineMath math="364=7\cdot52" /> habis dibagi 7. Jadi 31 Desember jatuh pada hari Jumat, dan pernyataan kedua benar.
+Pemilih QRIS di Pasar X adalah <InlineMath math="40\cdot 80\%+160\cdot 30\%=32+48=80" /> orang dari <InlineMath math="200" /> responden, yaitu <InlineMath math="40\%" />. Misalkan ada <InlineMath math="n" /> responden baru. **Pemilih QRIS baru adalah <InlineMath math="80\%" /> dari <InlineMath math="n" />**, yaitu <InlineMath math="0{,}8n" /> orang.
 
-1 Januari 2028 adalah 365 hari setelah 1 Januari 2027, dan <InlineMath math="365=7\cdot52+1" />. Harinya **bergeser satu dari Jumat**, yaitu Sabtu. Pernyataan pertama benar.
+# Syarat persentase
 
-# Tanggal 1 Maret dan banyak hari Sabtu
+Persentase keseluruhan yang baru adalah seluruh pemilih QRIS dibagi seluruh responden. Kedua ruas boleh dikali <InlineMath math="100(200+n)" /> karena bilangan itu positif, sehingga **arah tanda pertidaksamaan tidak berubah**.
 
-1 Maret adalah <InlineMath math="31+28=59" /> hari setelah 1 Januari, dan <InlineMath math="59=7\cdot8+3" />. Tiga hari setelah Jumat adalah Senin, **bukan Minggu**. Pernyataan ketiga salah.
+<BlockMath math="\begin{aligned} \frac{80+0{,}8n}{200+n} &\ge \frac{52}{100} \\ 8{.}000+80n &\ge 10{.}400+52n \\ 28n &\ge 2{.}400 \\ n &\ge 85{,}71\ldots \end{aligned}" />
 
-Karena <InlineMath math="365=7\cdot52+1" />, hanya hari Jumat yang muncul 53 kali. Hari Sabtu muncul 52 kali, jadi pernyataan keempat salah.
+Dari syarat ini saja, <InlineMath math="n" /> paling sedikit <InlineMath math="86" />.
 
-Jadi, pernyataan pertama **benar**, kedua **benar**, ketiga **salah**, dan keempat **salah**.
+# Syarat bilangan bulat
+
+Banyak pemilih QRIS baru, <InlineMath math="0{,}8n=\frac{4n}{5}" />, harus bilangan bulat karena menghitung orang. Itu hanya terjadi jika **<InlineMath math="n" /> kelipatan <InlineMath math="5" />**. Untuk <InlineMath math="n=86" />, banyak pemilih QRIS baru adalah <InlineMath math="68{,}8" /> orang, jadi tidak mungkin. Kelipatan <InlineMath math="5" /> terkecil yang paling sedikit <InlineMath math="86" /> adalah <InlineMath math="90" />.
+
+# Pemeriksaan hasil
+
+Bandingkan <InlineMath math="n=90" /> dengan kelipatan <InlineMath math="5" /> sebelumnya, <InlineMath math="n=85" />. Untuk membandingkan pecahan dengan <InlineMath math="52\%" />, **kalikan silang supaya tidak perlu membagi**.
+
+<BlockMath math="\begin{aligned} n=90:\ \ & \frac{80+72}{290}=\frac{152}{290},\quad 152\cdot 100=15{.}200 \ge 52\cdot 290=15{.}080 \\ n=85:\ \ & \frac{80+68}{285}=\frac{148}{285},\quad 148\cdot 100=14{.}800 < 52\cdot 285=14{.}820 \end{aligned}" />
+
+Dengan <InlineMath math="90" /> responden baru, persentasenya sekitar <InlineMath math="52{,}4\%" />, sudah mencapai target. Dengan <InlineMath math="85" /> responden baru, persentasenya sekitar <InlineMath math="51{,}9\%" />, belum mencapai target.
+
+# Jebakan yang perlu dihindari
+
+Ada **dua jawaban yang sering muncul** karena satu syarat terlewat.
+
+- Jawaban <InlineMath math="86" /> hanya memakai syarat persentase. Dengan <InlineMath math="86" /> responden baru, tepat <InlineMath math="80\%" /> dari mereka adalah <InlineMath math="68{,}8" /> orang, yang tidak mungkin.
+- Jawaban <InlineMath math="85" /> muncul jika <InlineMath math="85{,}71\ldots" /> dibulatkan ke bawah. Hasil pemeriksaan menunjukkan <InlineMath math="85" /> belum cukup.
+
+Jadi, paling sedikit <InlineMath math="90" /> responden baru harus ditambahkan.

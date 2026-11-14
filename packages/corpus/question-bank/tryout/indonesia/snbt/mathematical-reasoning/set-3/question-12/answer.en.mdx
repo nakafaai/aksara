@@ -1,23 +1,35 @@
-Split the votes of Citra and Dimas **according to each ratio**, then add them to the fixed votes of Andra and Bunga.
+You need the total harvest of both schedules over <InlineMath math="0\le t\le24" />, then the difference. The key is that **the original schedule can wipe out a small culture before it has time to grow**, while the new schedule gives it longer to grow.
 
-# Splitting the votes of Citra and Dimas
+# The original schedule
 
-The ratio <InlineMath math="1:3" /> splits Citra's 48 votes into **4 equal parts** of 12. The ratio <InlineMath math="3:1" /> splits Dimas's 24 votes into parts of 6.
+From <InlineMath math="20" />, <InlineMath math="3" /> doublings up to <InlineMath math="t=3" /> give <InlineMath math="20\to40\to80\to160" />. At the harvest there are <InlineMath math="160" />, which is at most <InlineMath math="200" />. By the harvest rule, **all <InlineMath math="160" /> are taken and the culture ends**. A finished culture doesn't grow again, so the original schedule harvests only <InlineMath math="160" /> million cells in total.
 
-<BlockMath math="\begin{aligned}
-\text{Citra}&:\quad \text{Andra }12,\;\text{Bunga }36\\
-\text{Dimas}&:\quad \text{Andra }18,\;\text{Bunga }6
-\end{aligned}" />
+# The new schedule
 
-# Second-round totals
+The first harvest is at <InlineMath math="t=6" />, after <InlineMath math="6" /> doublings. Don't forget that **the tank's capacity is checked at every doubling**.
 
 <BlockMath math="\begin{aligned}
-\text{Andra}&=96+12+18=126\\
-\text{Bunga}&=72+36+6=114
+t=1 \text{ to } 6 &: \ 20\to40\to80\to160\to320\to640\to960 \\
+\text{after the harvest} &: \ 960-400=560
 \end{aligned}" />
 
-The totals add up to <InlineMath math="126+114=240" />, the number of valid votes. **Andra leads by 12 votes**.
+At <InlineMath math="t=6" />, <InlineMath math="640\cdot2=1{,}280" /> is cut down to <InlineMath math="960" />, and then the harvest takes <InlineMath math="400" />. In the next cycle, <InlineMath math="560\cdot2=1{,}120" /> is cut down to <InlineMath math="960" /> right away, so at <InlineMath math="t=12" />, <InlineMath math="t=18" /> and <InlineMath math="t=24" /> the harvest is <InlineMath math="400" /> again and <InlineMath math="560" /> is left.
 
-The choice that Bunga wins by 12 appears if the two ratios are swapped. The choice of a tie appears if Citra's and Dimas's voters are split evenly.
+There are <InlineMath math="4" /> harvests, at <InlineMath math="t=6, 12, 18, 24" />, so the new schedule harvests <InlineMath math="4\cdot400=1{,}600" /> million cells in total.
 
-So **Andra wins by 12 votes**.
+# The difference between the schedules
+
+<BlockMath math="1{,}600-160=1{,}440" />
+
+This makes sense: the original schedule **drains the culture at its first harvest**, while the new schedule lets the culture grow until the tank is full before harvesting.
+
+# Why the other options are wrong
+
+Each other option **gets one of the schedules wrong**.
+
+- <InlineMath math="1{,}600" /> comes from thinking the original schedule harvests nothing because <InlineMath math="160" /> is less than <InlineMath math="200" />, but the harvest rule takes all of it.
+- <InlineMath math="1{,}400" /> comes from counting the first harvest of the original schedule as a full <InlineMath math="200" />.
+- <InlineMath math="1{,}040" /> comes from leaving out the harvest at <InlineMath math="t=24" />, so the new schedule gets only <InlineMath math="3\cdot400=1{,}200" />.
+- <InlineMath math="0" /> comes from assuming both schedules always harvest in full, <InlineMath math="8\cdot200" /> and <InlineMath math="4\cdot400" />.
+
+So the new schedule harvests <InlineMath math="1{,}440" /> million cells more than the schedule in the information.

@@ -1,7 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "sprint-times",
+  stimulus: "recycling-bank",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -9,22 +9,23 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "Jangkauan waktu lari kedelapan siswa adalah 2,9 detik.",
-        },
-        {
-          column: 1,
           label:
-            "Lebih dari separuh siswa berlari lebih cepat daripada rata-rata waktu.",
+            "Menyetor $$2{,}8\\text{ kg}$$ kaleng dalam $$2$$ kali setor, masing-masing $$1{,}4\\text{ kg}$$, menambah saldo lebih sedikit daripada menyetor kaleng itu sekaligus.",
         },
         {
           column: 2,
           label:
-            "Jika data waktu Fajar dihapus, median waktu tujuh siswa lainnya tetap 14,3 detik.",
+            "Biaya pengelolaan untuk satu setoran gabungan selalu sama dengan jumlah biaya pengelolaan jika barang yang sama disetor dalam $$2$$ kali setor.",
         },
         {
           column: 2,
           label:
-            "Jika setiap waktu dikurangi 0,3 detik, jangkauan waktu juga berkurang 0,3 detik.",
+            "Nilai kardus basah selalu tepat $$80\\%$$ dari nilai kardus kering yang beratnya sama.",
+        },
+        {
+          column: 2,
+          label:
+            "Tambahan saldo dari satu kali setor tidak pernah lebih dari $$90\\%$$ nilai setoran itu.",
         },
       ],
     },

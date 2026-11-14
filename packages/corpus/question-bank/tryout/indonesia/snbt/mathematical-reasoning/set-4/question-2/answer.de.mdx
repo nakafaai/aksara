@@ -1,15 +1,60 @@
-Flug P3 startet in WIT und landet in WIB. WIT **ist WIB um 2 Stunden voraus**, also rechne zuerst die Abflugzeit in WIB um.
+Jede Aussage braucht ihre eigene Prüfung. Der Plan: Schreibe die Kosten der drei Pakete für eine Miete über <InlineMath math="3" /> Tage als Formel in der Gesamtstrecke <InlineMath math="x" /> km, und nutze diese Formel für die erste, zweite und vierte Aussage. Die dritte Aussage vergleicht zwei Mietdauern, also **musst du Rabatt und Kontingent für jede neu berechnen**.
 
-# Zeitzonen angleichen
+# Kostenformeln für drei Tage
 
-08.00 Uhr WIT entspricht <InlineMath math="08.00-2\text{ Stunden}" />, also **06.00 Uhr WIB**.
+Eine Miete über <InlineMath math="3" /> Tage liegt unter <InlineMath math="5" /> Tagen, also gibt es keinen Rabatt. Das Kontingent von Paket B beträgt <InlineMath math="3\times150=450\text{ km}" />. **Paket B berechnet Streckenkosten erst, wenn die Gesamtstrecke** <InlineMath math="450\text{ km}" /> **übersteigt**, darum hat seine Formel zwei Teile:
 
-# Die Flugdauer berechnen
+<BlockMath math="\begin{aligned}
+A(x) &= 3\times200{.}000+1{.}500x=600{.}000+1{.}500x\\
+B(x) &= 1{.}050{.}000 \quad \text{für } x\le450\\
+B(x) &= 1{.}050{.}000+3{.}000(x-450)=3{.}000x-300{.}000 \quad \text{für } x>450\\
+C(x) &= 3\times500{.}000=1{.}500{.}000
+\end{aligned}" />
 
-Von 06.00 bis 10.50 Uhr WIB vergehen **4 Stunden 50 Minuten**.
+# Die erste Aussage
 
-Kontrolle: Das Flugzeug startet um 08.00 Uhr WIT, fliegt 4 Stunden 50 Minuten und landet um 12.50 Uhr WIT. Das ist 10.50 Uhr WIB, wie im Plan.
+Oberhalb des Kontingents vergleichst du <InlineMath math="A(x)" /> mit dem zweiten Teil von <InlineMath math="B(x)" />:
 
-Die Dauer 2 Stunden 50 Minuten übersieht die Zeitzonen. Die Dauer 6 Stunden 50 Minuten addiert 2 Stunden, obwohl die Abflugzeit um 2 Stunden verringert werden muss.
+<BlockMath math="\begin{aligned}
+600{.}000+1{.}500x &< 3{.}000x-300{.}000\\
+900{.}000 &< 1{.}500x\\
+x &> 600
+\end{aligned}" />
 
-Flug P3 dauert also **4 Stunden 50 Minuten**.
+**Ab einer Strecke über** <InlineMath math="600\text{ km}" /> ist Paket A also günstiger als Paket B. Bei <InlineMath math="700\text{ km}" /> kostet Paket A zum Beispiel <InlineMath math="600{.}000+1{.}050{.}000=1{.}650{.}000" />, Paket B dagegen <InlineMath math="1{.}050{.}000+750{.}000=1{.}800{.}000" />. Die erste Aussage vergleicht nur Paket A mit Paket B, also ist sie **wahr**, auch wenn Paket C noch günstiger ist.
+
+# Die zweite Aussage
+
+Das Wort „pasti“ (sicher) bedeutet: Ein einziges Gegenbeispiel reicht, um sie zu widerlegen. Nimm <InlineMath math="x=500" />, also mehr als <InlineMath math="450" />:
+
+<BlockMath math="\begin{aligned}
+B(500) &= 1{.}050{.}000+3{.}000\times50=1{.}200{.}000\\
+A(500) &= 600{.}000+1{.}500\times500=1{.}350{.}000
+\end{aligned}" />
+
+Paket B mit <InlineMath math="1{.}200{.}000" /> ist günstiger als Paket C mit <InlineMath math="1{.}500{.}000" />. Paket B verliert erst gegen Paket C, wenn <InlineMath math="3{.}000x-300{.}000>1{.}500{.}000" /> gilt, also <InlineMath math="x>600" />. **Das Kontingent zu überschreiten macht Paket C noch nicht zum günstigsten**, und die zweite Aussage ist **falsch**.
+
+# Die dritte Aussage
+
+Eine Miete über <InlineMath math="4" /> Tage hat keinen Rabatt und ein Kontingent von <InlineMath math="600\text{ km}" />. Eine Miete über <InlineMath math="5" /> Tage bekommt den Rabatt und ein Kontingent von <InlineMath math="750\text{ km}" />:
+
+<BlockMath math="\begin{aligned}
+B_{4\text{ Tage}} &= 4\times350{.}000+3{.}000\times(700-600)=1{.}400{.}000+300{.}000=1{.}700{.}000\\
+B_{5\text{ Tage}} &= 0{,}8\times5\times350{.}000+0=1{.}400{.}000
+\end{aligned}" />
+
+Der Rabatt von <InlineMath math="20\%" /> macht den Tagesanteil für <InlineMath math="5" /> Tage genauso groß wie für <InlineMath math="4" /> Tage, denn <InlineMath math="0{,}8\times5=4" />. Der fünfte Tag **bringt zusätzlich** <InlineMath math="150\text{ km}" /> **Kontingent**, sodass die Mehrstrecke verschwindet. Die dritte Aussage ist **wahr**.
+
+# Die vierte Aussage
+
+Setze <InlineMath math="x=600" /> in die Formeln für <InlineMath math="3" /> Tage ein:
+
+<BlockMath math="\begin{aligned}
+A(600) &= 600{.}000+900{.}000=1{.}500{.}000\\
+B(600) &= 1{.}050{.}000+3{.}000\times150=1{.}500{.}000\\
+C(600) &= 1{.}500{.}000
+\end{aligned}" />
+
+Alle drei sind **genau gleich**, also ist die vierte Aussage **wahr**. Das passt zur ersten und zweiten Aussage: Genau bei <InlineMath math="600\text{ km}" /> holen Paket A und Paket B beide Paket C ein.
+
+Die erste Aussage ist also wahr, die zweite falsch, die dritte wahr und die vierte wahr.

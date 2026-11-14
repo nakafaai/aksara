@@ -1,12 +1,17 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "photo-frame",
+  stimulus: "school-canteen",
   versions: {
     id: {
-      kind: "numericEntry",
-      unit: "cm",
-      value: "6",
+      kind: "choice",
+      options: [
+        { correct: false, label: "Senin pada minggu kedua" },
+        { correct: false, label: "Selasa pada minggu kedua" },
+        { correct: false, label: "Rabu pada minggu kedua" },
+        { correct: false, label: "Senin pada minggu ketiga" },
+        { correct: true, label: "Selasa pada minggu ketiga" },
+      ],
     },
   },
 };

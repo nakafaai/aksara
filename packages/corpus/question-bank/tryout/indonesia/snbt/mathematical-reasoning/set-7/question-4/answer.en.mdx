@@ -1,18 +1,38 @@
-The download happens in **two stages with different speeds**: 40 Mbps for the first 60 seconds, then 30 Mbps until it ends.
+You're looking for the time Dimas's phone dies. The plan: follow the battery stage by stage from 19.00, and every time it passes <InlineMath math="20\%" />, check whether power saving mode switches on or off, because that changes the rate.
 
-# Amount downloaded in the first stage
+# Video then gaming until saving mode
 
-<BlockMath math="40\cdot60=2{,}400\text{ megabits}=\frac{2{,}400}{8}=300\text{ MB}" />
+An hour and a half of video uses <InlineMath math="20\%\cdot1.5=30\%" />, so at 20.30 the battery is at <InlineMath math="40\%" />. Gaming at the full <InlineMath math="30\%" /> per hour takes it to <InlineMath math="20\%" /> in <InlineMath math="\frac{20}{30}" /> of an hour, which is <InlineMath math="40" /> minutes, so at 21.10. After that, **power saving mode turns on and gaming uses only <InlineMath math="15\%" /> per hour**.
 
-# Time of the second stage and total time
+<BlockMath math="20\%-15\%\cdot\frac{20}{60}=20\%-5\%=15\%" />
 
-The remaining <InlineMath math="900-300=600" /> MB, or 4,800 megabits, download at <InlineMath math="40-10=30" /> Mbps.
+At 21.30, when the charger goes in, the battery is at <InlineMath math="15\%" />.
 
-<BlockMath math="\begin{aligned}
-\frac{4{,}800}{30}&=160\text{ seconds}\\
-60+160&=220\text{ seconds}
-\end{aligned}" />
+# Charging while gaming
 
-The value 160 seconds is only the second stage. The value 180 seconds ignores the television, and 240 seconds uses 30 Mbps from the start. The total time **must lie between those two values**, because the television starts only after 60 seconds.
+While the battery is at <InlineMath math="20\%" /> or less, it changes by <InlineMath math="40\%-15\%=25\%" /> per hour. Rising from <InlineMath math="15\%" /> to <InlineMath math="20\%" /> takes <InlineMath math="\frac{5}{25}" /> of an hour, which is <InlineMath math="12" /> minutes, so it's done at 21.42.
 
-So the total download time is **220 seconds**.
+Above <InlineMath math="20\%" />, **saving mode switches off, so gaming is back to <InlineMath math="30\%" /> per hour** and the battery rises only <InlineMath math="40\%-30\%=10\%" /> per hour.
+
+<BlockMath math="20\%+10\%\cdot\frac{18}{60}=20\%+3\%=23\%" />
+
+At 22.00, when the charger comes out, the battery is at <InlineMath math="23\%" />.
+
+# Gaming until the phone dies
+
+From <InlineMath math="23\%" /> to <InlineMath math="20\%" />, gaming uses the full rate, so it takes <InlineMath math="\frac{3}{30}" /> of an hour, which is <InlineMath math="6" /> minutes, until 22.06. Then **saving mode turns on again**, and the last <InlineMath math="20\%" /> runs out at <InlineMath math="15\%" /> per hour.
+
+<BlockMath math="\frac{20}{15}\text{ h}=1\text{ h }20\text{ min}" />
+
+The phone dies at 22.06 plus <InlineMath math="1" /> hour <InlineMath math="20" /> minutes, which is 23.26.
+
+As a check, add up all the stages: <InlineMath math="90+40+20+12+18+6+80=266" /> minutes, and 19.00 plus <InlineMath math="266" /> minutes is indeed 23.26.
+
+# The wrong options
+
+- 22.30 comes from **ignoring power saving mode completely**: the battery at 22.00 is taken as <InlineMath math="15\%" /> and runs out in <InlineMath math="30" /> minutes.
+- 22.46 comes from forgetting that saving mode turns on again after 22.00, so the <InlineMath math="23\%" /> is used up at <InlineMath math="30\%" /> per hour.
+- 23.35 comes from keeping saving mode on for the whole charging time, so the battery at 22.00 is taken as <InlineMath math="27.5\%" />.
+- 23.50 comes from forgetting to subtract the gaming drain while charging, so the battery seems to rise <InlineMath math="40\%" /> per hour.
+
+So Dimas's phone dies at 23.26.

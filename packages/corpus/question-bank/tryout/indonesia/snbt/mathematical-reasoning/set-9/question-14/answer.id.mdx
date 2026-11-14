@@ -1,13 +1,41 @@
-Median hanya dapat dibaca setelah **data diurutkan**. Banyak data 12, jadi median adalah rata-rata data ke-6 dan ke-7.
+Semua pernyataan memakai tidur efektif setiap malam, jadi hitung itu dulu, lalu nilai setiap pernyataan dengan buktinya sendiri. **Tidur efektif adalah waktu di tempat tidur dikurangi waktu terjaga**, dan semua waktu di bawah ini dalam menit.
 
-# Data terurut
+# Tidur efektif setiap malam
 
-<BlockMath math="40,\ 50,\ 70,\ 80,\ 120,\ \mathbf{140},\ \mathbf{190},\ 230,\ 250,\ 280,\ 310,\ 340" />
+Hitung waktu di tempat tidur dari jam mulai tidur sampai jam bangun. Kalau mulai sebelum tengah malam, hitung dulu sampai pukul 24.00. Hasilnya, dikurangi waktu terjaga, adalah sebagai berikut.
 
-# Median
+| Hari | Senin | Selasa | Rabu | Kamis | Jumat | Sabtu | Minggu |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Tidur efektif | <InlineMath math="500" /> | <InlineMath math="375" /> | <InlineMath math="380" /> | <InlineMath math="515" /> | <InlineMath math="360" /> | <InlineMath math="600" /> | <InlineMath math="560" /> |
 
-<BlockMath math="\frac{140+190}{2}=165\text{ mm}" />
+Totalnya <InlineMath math="3{.}290" /> menit. Utang tidur dihitung malam demi malam dengan target <InlineMath math="480" /> menit, dan **utang tidak pernah turun di bawah nol**.
 
-Nilai 65 mm memakai data ke-6 dan ke-7 menurut urutan bulan, yaitu Juni dan Juli, **tanpa mengurutkan data**. Nilai 140 mm dan 190 mm hanya salah satu data tengah. Nilai 175 mm adalah rata-rata, <InlineMath math="\tfrac{2{.}100}{12}" />, bukan median.
+<BlockMath math="0\to0\to105\to205\to170\to290\to170\to90" />
 
-Jadi, median curah hujan bulanan adalah **165 mm**.
+Pada Senin malam ia tidur <InlineMath math="20" /> menit lebih dari target, tetapi utangnya masih nol, jadi kelebihan itu terbuang.
+
+# Pernyataan pertama tentang rumus selisih
+
+Rumus itu memberi <InlineMath math="7\times480-3{.}290=3{.}360-3{.}290=70" /> menit. Utang yang sebenarnya <InlineMath math="90" /> menit, karena **kelebihan <InlineMath math="20" /> menit pada Senin malam tidak boleh mengurangi utang yang belum ada**. Rumus selisih hanya benar kalau utang tidak pernah menyentuh nol saat ada kelebihan. Pernyataan pertama salah.
+
+# Pernyataan kedua tentang median dan rata-rata
+
+Rata-ratanya <InlineMath math="3{.}290:7=470" /> menit. Urutkan datanya: <InlineMath math="360, 375, 380, 500, 515, 560, 600" />. Ada tujuh data, jadi **median adalah data keempat**, yaitu <InlineMath math="500" /> menit. Karena <InlineMath math="500>470" />, pernyataan kedua benar.
+
+# Pernyataan ketiga tentang Selasa dan Rabu
+
+Selasa malam ia tidur 23.30 dan bangun 06.00, jadi di tempat tidur <InlineMath math="30+360=390" /> menit, dan tidur efektifnya <InlineMath math="390-15=375" /> menit. Rabu malam ia baru tidur 00.20 dan bangun 06.50, jadi di tempat tidur juga <InlineMath math="390" /> menit, tetapi terjaganya hanya <InlineMath math="10" /> menit, sehingga tidur efektifnya <InlineMath math="380" /> menit. **Tidur lebih larut tidak berarti tidur lebih sedikit**, karena ia juga bangun lebih siang. Pernyataan ketiga benar.
+
+# Pernyataan keempat tentang tambahan dua jam
+
+Tambahan <InlineMath math="2" /> jam membuat Jumat malam <InlineMath math="360+120=480" /> menit, tepat sama dengan target. Ulangi perhitungan utang dari Jumat.
+
+<BlockMath math="\begin{aligned}
+\text{setelah Jumat} &: 170+0=170 \\
+\text{setelah Sabtu} &: 170-120=50 \\
+\text{setelah Minggu} &: 50-80<0,\ \text{jadi utangnya }0
+\end{aligned}" />
+
+**Utang berhenti di nol** dan sisa kelebihan <InlineMath math="30" /> menit pada Minggu malam terbuang. Jadi utang setelah Minggu malam memang nol. Pernyataan keempat benar.
+
+Jadi, pernyataan pertama salah, pernyataan kedua benar, pernyataan ketiga benar, dan pernyataan keempat benar.

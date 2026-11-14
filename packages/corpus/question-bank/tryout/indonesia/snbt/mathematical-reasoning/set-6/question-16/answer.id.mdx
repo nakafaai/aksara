@@ -1,13 +1,34 @@
-Pertemuan diadakan pada hari ke-<InlineMath math="1+10k" /> dalam tahun, untuk <InlineMath math="k=0,1,2,\dots" />. Pertemuan jatuh pada hari Jumat lagi jika **jaraknya dari 1 Januari habis dibagi 7**, yaitu jika <InlineMath math="10k" /> kelipatan 7.
+Kamu perlu tahu target dari Pasar Y dulu, lalu menghitung berapa banyak pemilih QRIS yang harus datang dari kelompok <InlineMath math="30\text{ tahun}" /> ke atas di Pasar X. Kuncinya, **bekerja dengan banyak orang, bukan langsung dengan persentase**, karena kedua kelompok di Pasar X tidak sama besar.
 
-# Mencari k terkecil
+# Target dari Pasar Y
 
-Karena 10 dan 7 tidak memiliki faktor persekutuan selain 1, <InlineMath math="10k" /> kelipatan 7 hanya jika <InlineMath math="k" /> kelipatan 7. Nilai positif terkecil adalah <InlineMath math="k=7" />, yaitu **70 hari setelah 1 Januari**.
+Persentase keseluruhan Pasar Y adalah seluruh pemilih QRIS di Pasar Y dibagi seluruh respondennya. **Hitung banyak orangnya dulu di setiap kelompok.**
 
-# Mengubah urutan hari menjadi tanggal
+<BlockMath math="\begin{aligned} \text{pemilih QRIS di Y} &= 160\cdot 65\%+40\cdot 20\% \\ &= 104+8=112 \\ \text{persentase Y} &= \frac{112}{200}\cdot 100\%=56\% \end{aligned}" />
 
-Pertemuan itu jatuh pada hari ke-71. Januari dan Februari berjumlah <InlineMath math="31+28=59" /> hari, jadi hari ke-71 adalah tanggal <InlineMath math="71-59=12" /> Maret.
+# Pemilih QRIS yang dibutuhkan di Pasar X
 
-Tanggal 11 Maret muncul jika Februari dianggap 29 hari, padahal 2027 bukan tahun kabisat, atau jika hari ke-70 dianggap sebagai tanggal pertemuan.
+Pasar X juga punya <InlineMath math="200" /> responden, jadi persentase <InlineMath math="56\%" /> berarti paling sedikit <InlineMath math="112" /> pemilih QRIS. Kelompok muda tetap menyumbang <InlineMath math="40\cdot 80\%=32" /> orang. **Sisanya harus datang dari kelompok <InlineMath math="30\text{ tahun}" /> ke atas.**
 
-Jadi, pertemuan berikutnya pada hari Jumat diadakan pada **12 Maret 2027**.
+<BlockMath math="112-32=80" />
+
+# Persentase kelompok yang lebih tua
+
+Kelompok <InlineMath math="30\text{ tahun}" /> ke atas di Pasar X berisi <InlineMath math="160" /> responden. Jadi **persentase dihitung terhadap <InlineMath math="160" />**, bukan terhadap <InlineMath math="200" />.
+
+<BlockMath math="\frac{80}{160}\cdot 100\%=50\%" />
+
+# Pemeriksaan hasil
+
+Dengan <InlineMath math="50\%" />, kelompok itu menyumbang <InlineMath math="80" /> orang, sehingga Pasar X punya <InlineMath math="32+80=112" /> pemilih QRIS, tepat <InlineMath math="56\%" />. Jika persentasenya sedikit di bawah <InlineMath math="50\%" />, misalnya <InlineMath math="79" /> orang, totalnya <InlineMath math="111" />, **masih kurang dari target**.
+
+# Jebakan pada pilihan lain
+
+Setiap pilihan yang salah **memakai bobot atau penyebut yang keliru**.
+
+- <InlineMath math="32\%" /> muncul jika persentase keseluruhan dianggap rata-rata biasa kedua kelompok, <InlineMath math="\frac{80\%+p}{2}=56\%" />.
+- <InlineMath math="40\%" /> muncul jika <InlineMath math="80" /> orang dibagi seluruh <InlineMath math="200" /> responden, bukan <InlineMath math="160" /> responden kelompok itu.
+- <InlineMath math="42\%" /> muncul jika persentase kelompok dinaikkan sebanding dengan rasio <InlineMath math="56:40" />, yaitu <InlineMath math="30\%\cdot\frac{56}{40}" />.
+- <InlineMath math="46\%" /> muncul jika selisih keseluruhan <InlineMath math="16" /> poin persen langsung ditambahkan ke <InlineMath math="30\%" />.
+
+Jadi, persentase pemilih QRIS kelompok <InlineMath math="30\text{ tahun}" /> ke atas di Pasar X paling sedikit <InlineMath math="50\%" />.

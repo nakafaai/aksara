@@ -1,13 +1,38 @@
-The intersection of the diagonals is the centre of the lawn, and the centre is **equally far from all four corners**. So the smallest range is the distance from <InlineMath math="A" /> to the centre.
+Each statement gets its own check. For a delay of <InlineMath math="d" /> days, **one book's fine is zero as long as <InlineMath math="d\le3" />**, and after that it's the daily rate times <InlineMath math="d" />, up to a cap.
 
-# Distance to the centre
+<BlockMath math="\begin{aligned}
+\text{regular book} &= \min(1{,}000d,\,20{,}000) \quad\text{for } d>3 \\
+\text{reference book} &= \min(2{,}500d,\,40{,}000) \quad\text{for } d>3
+\end{aligned}" />
 
-The centre is 6 m from <InlineMath math="A" /> along <InlineMath math="AB" /> and 4 m along <InlineMath math="AD" />, **half of 12 m and 8 m**.
+# The first statement
 
-<BlockMath math="\sqrt{6^2+4^2}=\sqrt{52}=\sqrt{4\cdot13}=2\sqrt{13}\approx7.21\text{ m}" />
+Compare a delay of <InlineMath math="3" /> days with one of <InlineMath math="4" /> days. At <InlineMath math="3" /> days the book is still in the grace period, so the fine is <InlineMath math="\text{Rp}0" />. At <InlineMath math="4" /> days, the grace-period rule **fines all <InlineMath math="4" /> days at once**, so the fine is <InlineMath math="\text{Rp}4{,}000" />. That one extra day raises the fine by <InlineMath math="\text{Rp}4{,}000" />, more than <InlineMath math="\text{Rp}1{,}000" />. The first statement is **false**.
 
-# Checking the choices
+# The second statement
 
-The ranges 6 m, 6.5 m, <InlineMath math="4\sqrt3\approx6.93" /> m and 7 m are all less than 7.21 m, so **the centre is not reached**. The choice 7 m is tempting because it is closest, but it is still about 0.21 m short.
+For <InlineMath math="4\le d\le16" />, the ratio is always <InlineMath math="\tfrac{2{,}500d}{1{,}000d}=2.5" />, so it isn't <InlineMath math="2" />. But **the caps change that ratio**. Try <InlineMath math="d=20" />.
 
-So the smallest range needed is **<InlineMath math="2\sqrt{13}\text{ m}" />**.
+<BlockMath math="\begin{aligned}
+\text{reference book} &= \min(50{,}000,\,40{,}000) = 40{,}000 \\
+\text{regular book} &= \min(20{,}000,\,20{,}000) = 20{,}000
+\end{aligned}" />
+
+The reference fine is exactly <InlineMath math="2" /> times the regular fine, and neither is zero. One example is enough to prove a "there is" claim, so the second statement is **true**. In fact every <InlineMath math="d\ge20" /> gives <InlineMath math="40{,}000" /> and <InlineMath math="20{,}000" />.
+
+# The third statement
+
+The deadline is <InlineMath math="14" /> days after <InlineMath math="25" /> January. **January has <InlineMath math="31" /> days**, so it's <InlineMath math="6" /> days to <InlineMath math="31" /> January and <InlineMath math="8" /> more days to <InlineMath math="8" /> February. From <InlineMath math="8" /> February to <InlineMath math="12" /> February is a delay of <InlineMath math="4" /> days. That's more than <InlineMath math="3" /> days, so the fine is <InlineMath math="4\cdot1{,}000=4{,}000" /> rupiah. The third statement is **false**. If you treat January as <InlineMath math="30" /> days, the deadline slides to <InlineMath math="9" /> February and the delay looks like only <InlineMath math="3" /> days.
+
+# The fourth statement
+
+A renewal moves the deadline <InlineMath math="7" /> days later. So the book is <InlineMath math="12-7=5" /> days late compared with the new deadline. Since <InlineMath math="5>3" />, **the grace period no longer applies**, and every one of those days is fined.
+
+<BlockMath math="\begin{aligned}
+\text{total} &= 3{,}000+5\cdot2{,}500 \\
+&= 15{,}500\text{ rupiah}
+\end{aligned}" />
+
+The value <InlineMath math="\text{Rp}8{,}000" /> comes from subtracting the grace period again: <InlineMath math="12-7-3=2" /> days, then <InlineMath math="3{,}000+2\cdot2{,}500=8{,}000" />. That's wrong, because the grace period only clears delays of at most <InlineMath math="3" /> days. The fourth statement is **false**.
+
+So the first statement is false, the second is true, the third is false, and the fourth is false.

@@ -1,15 +1,34 @@
-Der Median ist der Wert zwischen dem 20. und 21. der 40 geordneten Werte, also **der Punkt, der die Daten in zwei gleich große Hälften teilt**. Bei gruppierten Daten suchst du seine Klasse und schätzt ihn dann durch Interpolation.
+Gesucht ist die Menge des Medikaments im Körper kurz vor der Einnahme um 06.00 Uhr am zweiten Tag. Der Plan: Bestimme die Einzeldosis, verfolge die Menge über den ersten Tag und **zähle, wie oft sich die Menge in der Nacht ohne Medikament halbiert**.
 
-# Die Medianklasse finden
+# Die Einzeldosis
 
-Addiere die Häufigkeiten von der untersten Klasse an: 4, dann <InlineMath math="4+10=14" />, dann <InlineMath math="14+15=29" />. Der 20. Wert liegt **in der Klasse 20-29**, weil vor dieser Klasse 14 Werte liegen.
+Nach dem Körpergewicht dürfte das Kind <InlineMath math="10\cdot60=600\text{ mg}" /> bekommen. Aber **die Einzeldosis ist begrenzt** auf <InlineMath math="400\text{ mg}" />, also sind nur <InlineMath math="400\text{ mg}" /> erlaubt. Das sind <InlineMath math="20\text{ mL}" /> Sirup, schon ein Vielfaches von <InlineMath math="2{,}5\text{ mL}" />, also nimmt das Kind jedes Mal genau <InlineMath math="400\text{ mg}" />.
 
-# Interpolation innerhalb der Klasse
+# Die Menge am ersten Tag
 
-Die Klasse 20-29 hat die untere Klassengrenze 19,5, die Breite 10 und 15 Werte. Aus dieser Klasse brauchst du noch <InlineMath math="20-14=6" /> Werte.
+Zwischen zwei Einnahmen liegen <InlineMath math="6" /> Stunden. Vor der nächsten Einnahme ist die Menge also halbiert, und dann **kommen die neu eingenommenen <InlineMath math="400\text{ mg}" /> dazu**.
 
-<BlockMath math="\text{Me}=19{,}5+\frac{20-14}{15}\cdot10=19{,}5+4=23{,}5" />
+<BlockMath math="\begin{aligned}
+\text{nach der Einnahme am Morgen} &= 400\text{ mg}\\
+\text{nach der Einnahme am Mittag} &= \tfrac{1}{2}\cdot400+400=600\text{ mg}\\
+\text{nach der Einnahme am Abend} &= \tfrac{1}{2}\cdot600+400=700\text{ mg}
+\end{aligned}" />
 
-Das Ergebnis liegt tatsächlich zwischen 19,5 und 29,5, passend zur Medianklasse.
+# Die Nacht ohne Medikament
 
-Der Median der Wegzeit beträgt also **23,5 Minuten**.
+Von 18.00 bis 06.00 Uhr vergehen <InlineMath math="12" /> Stunden ohne Einnahme. Das sind **zwei Zeiträume von je** <InlineMath math="6" /> Stunden, also halbiert sich die Menge zweimal.
+
+<BlockMath math="700\cdot\tfrac{1}{2}\cdot\tfrac{1}{2}=\frac{700}{4}=175\text{ mg}" />
+
+# Kontrolle
+
+Um 24.00 Uhr sind noch <InlineMath math="350\text{ mg}" /> im Körper und <InlineMath math="6" /> Stunden später <InlineMath math="175\text{ mg}" />. Das Ergebnis ist auch plausibel, weil es **kleiner als eine Einzeldosis** von <InlineMath math="400\text{ mg}" /> ist: Die lange Nacht baut den größten Teil ab.
+
+# Die falschen Antworten
+
+- <InlineMath math="100\text{ mg}" /> zählt nur die Einnahme um 18.00 Uhr und vergisst den Rest vom Morgen und vom Mittag.
+- <InlineMath math="262{,}5\text{ mg}" /> rechnet mit einer Dosis von <InlineMath math="600\text{ mg}" />, also wird **die Grenze von** <InlineMath math="400\text{ mg}" /> **übersehen**.
+- <InlineMath math="350\text{ mg}" /> halbiert nur einmal, als hätte die Nacht nur <InlineMath math="6" /> Stunden.
+- <InlineMath math="525\text{ mg}" /> verbindet zwei Fehler: eine Dosis von <InlineMath math="600\text{ mg}" /> und nur eine Halbierung.
+
+Kurz vor der Einnahme um 06.00 Uhr am zweiten Tag sind also <InlineMath math="175\text{ mg}" /> des Medikaments im Körper des Kindes.

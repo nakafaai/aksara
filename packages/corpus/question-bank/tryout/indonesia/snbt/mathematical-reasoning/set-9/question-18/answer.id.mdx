@@ -1,13 +1,38 @@
-Bagian miring perlu panjang mendatar paling sedikit <InlineMath math="60\cdot12=720" /> cm atau 7,2 m. Karena satu ruas paling panjang 6 m, tentukan dulu **banyak ruas dan banyak bordes yang diperlukan**.
+Semua pernyataan bergantung pada jadwal kedua mesin, jadi telusuri dulu jadwalnya dari Senin sampai Rabu. Ingat aturan pentingnya: **jam operasi terus terbawa melewati pergantian hari**, dan mesin dirawat begitu batasnya tercapai. Komponen baik per jam adalah <InlineMath math="95\%\times120=114" /> untuk P dan <InlineMath math="90\%\times90=81" /> untuk Q.
 
-# Banyak ruas dan bordes
+# Jadwal kedua mesin
 
-Panjang 7,2 m lebih dari 6 m, jadi satu ruas tidak cukup. Dua ruas sudah cukup, misalnya 3,6 m dan 3,6 m, dan **di antara dua ruas ada satu bordes**.
+Mesin P beroperasi <InlineMath math="5" /> jam lalu dirawat <InlineMath math="1" /> jam. Mesin Q beroperasi <InlineMath math="7" /> jam lalu dirawat <InlineMath math="1" /> jam, sehingga dua putarannya pas <InlineMath math="16" /> jam dan **jadwal Q sama setiap hari**.
 
-# Panjang mendatar seluruhnya
+| Hari | P beroperasi | P dirawat mulai | Jam P pada 23.00 | Q beroperasi | Q dirawat mulai |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| Senin | <InlineMath math="14" /> jam | 12.00, 18.00 | <InlineMath math="4" /> | <InlineMath math="14" /> jam | 14.00, 22.00 |
+| Selasa | <InlineMath math="13" /> jam | 08.00, 14.00, 20.00 | <InlineMath math="2" /> | <InlineMath math="14" /> jam | 14.00, 22.00 |
+| Rabu | <InlineMath math="13" /> jam | 10.00, 16.00, 22.00 | <InlineMath math="0" /> | <InlineMath math="14" /> jam | 14.00, 22.00 |
 
-<BlockMath math="7{,}2+1{,}5=8{,}7\text{ m}" />
+Kolom jam P pada 23.00 menunjukkan jam operasi yang terbawa ke pagi berikutnya. Pada Selasa pagi P hanya perlu <InlineMath math="1" /> jam lagi, dan pada Rabu pagi <InlineMath math="3" /> jam lagi, sebelum dirawat.
 
-Nilai 7,2 m lupa bordes. Nilai 10,2 m memakai dua bordes, padahal dua ruas hanya memerlukan satu. Nilai 12 m memakai dua ruas sepanjang 6 m tanpa bordes, dan 13,5 m memakai dua ruas 6 m dengan bordes, keduanya lebih panjang daripada yang diperlukan.
+# Pernyataan pertama tentang jam operasi P
 
-Jadi, panjang mendatar seluruh ramp paling pendek adalah **8,7 m**.
+Pada hari Senin P beroperasi <InlineMath math="14" /> jam, sedangkan pada hari Selasa <InlineMath math="13" /> jam, karena **sisa <InlineMath math="4" /> jam dari Senin membuat P perlu tiga kali perawatan pada hari Selasa**. Karena <InlineMath math="13<14" />, pernyataan pertama benar.
+
+# Pernyataan kedua tentang jam perawatan P
+
+Perawatan P dimulai pukul 12.00 dan 18.00 pada hari Senin, tetapi pukul 08.00, 14.00, dan 20.00 pada hari Selasa. **Jam yang terbawa menggeser jadwal perawatan** setiap hari, jadi jamnya tidak sama. Pernyataan kedua salah.
+
+# Pernyataan ketiga tentang hasil harian
+
+Hasil P paling kecil terjadi pada hari dengan <InlineMath math="13" /> jam operasi, sedangkan Q selalu <InlineMath math="14" /> jam.
+
+<BlockMath math="\begin{aligned}
+\text{P paling sedikit} &: 13\times114=1{.}482 \\
+\text{Q setiap hari} &: 14\times81=1{.}134
+\end{aligned}" />
+
+Bahkan pada hari terburuknya, **P tetap lebih banyak daripada Q**, karena <InlineMath math="1{.}482>1{.}134" />. Pada hari Senin selisihnya lebih besar lagi, <InlineMath math="14\times114=1{.}596" />. Pernyataan ketiga benar.
+
+# Pernyataan keempat tentang laju gabungan
+
+Angka <InlineMath math="114+81=195" /> hanya berlaku ketika kedua mesin sedang beroperasi. Pada hari Senin pukul 12.00 sampai 13.00, P sedang dirawat, jadi pabrik hanya menghasilkan <InlineMath math="81" /> komponen baik pada jam itu. Pada hari Rabu pukul 22.00 sampai 23.00, **kedua mesin dirawat bersamaan**, jadi hasil jam itu nol. Kata selalu terbantah, jadi pernyataan keempat salah.
+
+Jadi, pernyataan pertama benar, pernyataan kedua salah, pernyataan ketiga benar, dan pernyataan keempat salah.

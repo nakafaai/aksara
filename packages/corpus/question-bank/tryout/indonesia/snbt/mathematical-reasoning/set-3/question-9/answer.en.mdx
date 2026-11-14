@@ -1,15 +1,33 @@
-The percentage is measured **against the valid votes**, not against all ballots cast, because the election rule uses valid votes.
+Each statement needs its own calculation. A handy tool: in one <InlineMath math="3" />-hour cycle, the population <InlineMath math="P" /> doubles <InlineMath math="3" /> times, which is <InlineMath math="2\cdot2\cdot2=8" /> times, and then it's harvested. So **while the tank isn't full, one cycle turns <InlineMath math="P" /> into <InlineMath math="8P-200" />**. If the tank fills up during a cycle, the number gets stuck at <InlineMath math="960" /> first.
 
-# Number of valid votes
+# The first statement
 
-<BlockMath math="96+72+48+24=240" />
+Start from <InlineMath math="40" /> and go hour by hour.
 
-This also equals <InlineMath math="248-8" />, so **the table is complete**.
+<BlockMath math="\begin{aligned}
+t=3 &: \ 40\to80\to160\to320, \ 320-200=120 \\
+t=6 &: \ 120\to240\to480\to960, \ 960-200=760 \\
+t=9 &: \ 760\to960\to960\to960, \ 960-200=760
+\end{aligned}" />
 
-# Bunga's percentage
+In the third cycle, <InlineMath math="760\cdot2=1{,}520" /> is already over capacity, so **the population is stuck at <InlineMath math="960" /> until the harvest**. Every later cycle also starts from <InlineMath math="760" />, so it always ends at <InlineMath math="760" /> again. The first statement is **true**.
 
-<BlockMath math="\frac{72}{240}\times100\%=30\%" />
+# The second statement
 
-Dividing by 248 gives about 29%, which uses the wrong base.
+With a starting population of <InlineMath math="26" />, the first harvest takes <InlineMath math="200" /> out of <InlineMath math="208" />, leaving <InlineMath math="8" />. At <InlineMath math="t=6" /> there are only <InlineMath math="64" />, which is at most <InlineMath math="200" />, so **all <InlineMath math="64" /> are taken and the culture is finished**. The total is <InlineMath math="200+64=264" />.
 
-So Bunga received **30%** of the valid votes.
+With a starting population of <InlineMath math="52" />, the first harvest leaves <InlineMath math="416-200=216" />. At <InlineMath math="t=6" />, <InlineMath math="216\to432\to864\to960" /> and then <InlineMath math="760" /> is left, and at <InlineMath math="t=9" /> and <InlineMath math="t=12" /> the harvest is still <InlineMath math="200" />. The total is <InlineMath math="4\cdot200=800" />.
+
+Since <InlineMath math="2\cdot264=528\ne800" />, the second statement is **false**. A harvest of fixed size doesn't double just because the starting population doubles.
+
+# The third statement
+
+From <InlineMath math="25" />, at <InlineMath math="t=3" /> there are <InlineMath math="25\cdot8=200" />. The harvest rule says **if there are at most <InlineMath math="200" />, all of them are taken**, and that includes exactly <InlineMath math="200" />. So the culture is finished at the first harvest, and the third statement is **true**.
+
+# The fourth statement
+
+One example is enough to knock down "always". Compare starting populations of <InlineMath math="40" /> and <InlineMath math="100" />. For <InlineMath math="40" />, the first statement already showed <InlineMath math="760" /> at <InlineMath math="t=9" />. For <InlineMath math="100" />, the first harvest leaves <InlineMath math="800-200=600" />, then at <InlineMath math="t=6" /> the tank is full and <InlineMath math="760" /> is left, and at <InlineMath math="t=9" /> <InlineMath math="760" /> is left again.
+
+Both starting populations give the same result, because **the tank's capacity wipes out the difference at the start**. The fourth statement is **false**.
+
+So the first statement is true, the second is false, the third is true, and the fourth is false.

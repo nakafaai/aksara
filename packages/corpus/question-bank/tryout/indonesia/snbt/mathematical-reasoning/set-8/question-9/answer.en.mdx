@@ -1,9 +1,52 @@
-The yearly numbers of seedlings form **an arithmetic sequence** with first term 120 and common difference 15.
+To find this season's profit, you need this season's number of trees. That number isn't given, so first find last season's number of trees from its harvest. Be careful: **the harvest equation has two solutions**, and the fact that the harvest fell is what picks one of them.
 
-# The seventh term
+# The harvest formula
 
-From the first year to the seventh there are 6 increases, **not 7**.
+For <InlineMath math="n" /> trees with <InlineMath math="n" /> above <InlineMath math="40" />, there are <InlineMath math="n-40" /> extra trees. Each extra tree lowers the yield of **every tree in the orchard** by <InlineMath math="2\text{ kg}" />, so:
 
-<BlockMath math="U_7=120+6\cdot15=120+90=210" />
+<BlockMath math="\begin{aligned}
+\text{yield per tree}&=120-2(n-40)=200-2n\\
+\text{total harvest}&=n(200-2n)
+\end{aligned}" />
 
-So **210 seedlings** are planted in the seventh year.
+# Last season's number of trees
+
+Last season's total harvest was <InlineMath math="4{,}950\text{ kg}" />, so:
+
+<BlockMath math="\begin{aligned}
+n(200-2n)&=4{,}950\\
+n^2-100n+2{,}475&=0\\
+(n-45)(n-55)&=0
+\end{aligned}" />
+
+Both values, <InlineMath math="45" /> and <InlineMath math="55" />, are above <InlineMath math="40" />. So **you have to test both with the second fact**: after adding <InlineMath math="3" /> trees, the total harvest fell.
+
+<BlockMath math="\begin{aligned}
+45+3=48&: \ 48\cdot(200-96)=48\cdot104=4{,}992\text{ kg}\\
+55+3=58&: \ 58\cdot(200-116)=58\cdot84=4{,}872\text{ kg}
+\end{aligned}" />
+
+Starting from <InlineMath math="45" /> trees, the harvest rises to <InlineMath math="4{,}992\text{ kg}" />, so that case is out. Starting from <InlineMath math="55" /> trees, it falls to <InlineMath math="4{,}872\text{ kg}" />. So last season there were <InlineMath math="55" /> trees, and this season there are <InlineMath math="58" />.
+
+# This season's profit
+
+Sales come from this season's harvest, and **the care cost covers every tree this season**:
+
+<BlockMath math="\begin{aligned}
+\text{profit}&=8{,}000\cdot4{,}872-96{,}000\cdot58\\
+&=38{,}976{,}000-5{,}568{,}000\\
+&=33{,}408{,}000
+\end{aligned}" />
+
+Check it per tree. Each tree yields <InlineMath math="84\text{ kg}" />, so each tree earns <InlineMath math="84\cdot8{,}000-96{,}000=576{,}000" /> rupiah, and <InlineMath math="58\cdot576{,}000=33{,}408{,}000" />. Same result.
+
+# The wrong options
+
+Each other option uses **a right number in the wrong step**.
+
+- <InlineMath math="\text{Rp}33{,}696{,}000" /> uses the care cost of last season's <InlineMath math="55" /> trees, but this season has <InlineMath math="58" /> trees.
+- <InlineMath math="\text{Rp}34{,}320{,}000" /> is last season's profit, <InlineMath math="8{,}000\cdot4{,}950-96{,}000\cdot55" />.
+- <InlineMath math="\text{Rp}35{,}328{,}000" /> picks <InlineMath math="45" /> trees, so this season becomes <InlineMath math="48" /> trees, but with <InlineMath math="48" /> trees the harvest rises.
+- <InlineMath math="\text{Rp}38{,}976{,}000" /> is just the sales, without the care cost taken off.
+
+So Pak Darmo's profit this season is <InlineMath math="\text{Rp}33{,}408{,}000" />.

@@ -1,23 +1,43 @@
-Hitung total biaya dua bulan untuk **setiap paket secara utuh**, lalu bandingkan kedua totalnya.
+Setiap baris yang pindah dari kategori B ke kategori A menaikkan harga semua kursinya. Jadi **pendapatan makin besar jika** <InlineMath math="k" /> **makin besar**, dan tugasmu adalah mencari <InlineMath math="k" /> terbesar yang masih memenuhi syarat banyak kursi, lalu menghitung pendapatannya.
 
-# Total biaya Paket Hemat
+# Batas banyak kursi kategori A
 
-<BlockMath math="\begin{aligned}
-\text{Januari}&:\quad 50{.}000+8\cdot9{.}000=122{.}000\\
-\text{Februari}&:\quad 50{.}000+16\cdot9{.}000=194{.}000\\
-\text{total}&=316{.}000
-\end{aligned}" />
+Baris ke-<InlineMath math="n" /> punya <InlineMath math="17+2n" /> kursi. Seluruh tribun punya <InlineMath math="\tfrac{30(19+77)}{2}=1{.}440" /> kursi, jadi seperempatnya <InlineMath math="360" />. Kategori A harus punya **kurang dari** <InlineMath math="360" /> kursi.
 
-# Total biaya Paket Bebas dan selisihnya
+# Banyak kursi untuk setiap pilihan
 
-Pada Januari, 18 GB **masih di dalam kuota 20 GB**, jadi biayanya 95.000.
+Kategori A dengan <InlineMath math="k" /> baris berisi baris ke-<InlineMath math="1" /> sampai ke-<InlineMath math="k" />, dari <InlineMath math="19" /> kursi sampai <InlineMath math="17+2k" /> kursi.
 
 <BlockMath math="\begin{aligned}
-\text{Februari}&:\quad 95{.}000+6\cdot5{.}000=125{.}000\\
-\text{total}&=95{.}000+125{.}000=220{.}000\\
-\text{selisih}&=316{.}000-220{.}000=96{.}000
+\text{kursi A} &= \frac{k(19+17+2k)}{2}=k^2+18k\\
+k=11 &: 121+198=319<360\\
+k=12 &: 144+216=360
 \end{aligned}" />
 
-Nilai Rp69.000,00 hanya selisih bulan Februari. Nilai Rp122.000,00 adalah biaya Hemat bulan Januari, dan Rp316.000,00 adalah total Paket Hemat.
+Untuk <InlineMath math="k=12" />, kursi A tepat <InlineMath math="360" />. Angka ini **tidak kurang dari seperempat**, jadi <InlineMath math="k=12" /> tidak boleh dipakai. Nilai <InlineMath math="k" /> terbesar adalah <InlineMath math="11" />.
 
-Jadi, selisih total biayanya adalah **Rp96.000,00**.
+# Pendapatan terbesar
+
+Dengan pembagian semula, pendapatan penuh adalah <InlineMath math="144\cdot250{.}000+400\cdot150{.}000+896\cdot100{.}000=185{.}600{.}000" /> rupiah. Baris ke-<InlineMath math="7" /> sampai ke-<InlineMath math="11" /> pindah dari B ke A, sehingga **setiap kursinya naik** <InlineMath math="\text{Rp}100{.}000" />, bukan <InlineMath math="\text{Rp}250{.}000" />.
+
+<BlockMath math="\begin{aligned}
+\text{kursi yang pindah} &= 31+33+35+37+39=175\\
+\text{pendapatan} &= 185{.}600{.}000+175\cdot100{.}000=203{.}100{.}000
+\end{aligned}" />
+
+# Pemeriksaan langsung
+
+Hitung ulang tanpa memakai pendapatan semula. Kategori A punya <InlineMath math="319" /> kursi, kategori B tinggal baris ke-<InlineMath math="12" /> sampai ke-<InlineMath math="16" /> dengan <InlineMath math="41+43+45+47+49=225" /> kursi, dan kategori C tetap <InlineMath math="896" /> kursi.
+
+<BlockMath math="319\cdot250{.}000+225\cdot150{.}000+896\cdot100{.}000=79{.}750{.}000+33{.}750{.}000+89{.}600{.}000=203{.}100{.}000" />
+
+Kedua cara **memberi hasil yang sama**.
+
+# Pilihan yang keliru
+
+- <InlineMath math="\text{Rp}188{.}700{.}000{,}00" /> memakai seperempat banyak baris, <InlineMath math="\tfrac{30}{4}=7{,}5" />, sehingga hanya sampai <InlineMath math="k=7" />.
+- <InlineMath math="\text{Rp}199{.}200{.}000{,}00" /> hanya memindahkan empat baris, yaitu baris ke-<InlineMath math="7" /> sampai ke-<InlineMath math="10" />, karena salah menghitung banyak baris dari ke-<InlineMath math="7" /> sampai ke-<InlineMath math="11" />.
+- <InlineMath math="\text{Rp}207{.}200{.}000{,}00" /> memakai <InlineMath math="k=12" />, yang membuat kursi A tepat seperempat, padahal syaratnya **kurang dari** seperempat.
+- <InlineMath math="\text{Rp}229{.}350{.}000{,}00" /> menambahkan harga penuh <InlineMath math="\text{Rp}250{.}000" /> untuk setiap kursi yang pindah, padahal kursi itu sebelumnya sudah menghasilkan <InlineMath math="\text{Rp}150{.}000" />.
+
+Jadi, pendapatan terbesar yang mungkin jika semua kursi terjual adalah <InlineMath math="\text{Rp}203{.}100{.}000{,}00" />.

@@ -1,15 +1,41 @@
-The draws column records results from each team's point of view. One drawn match **is recorded twice**, once for each team in it.
+All four statements depend on how the water level moves through the day. So build that history once, then judge each statement with its own evidence. The key fact is that **water above the capacity is lost at once**, so the level never goes above <InlineMath math="6{,}000\text{ liters}" />.
 
-# Total draw records
+# The level through the day
 
-<BlockMath math="1+1+2+1+1=6" />
+The level changes by the inflow minus the outflow, which is called the net flow. The net flow changes **every time a device starts or stops**.
 
-# Number of drawn matches
+| Time piece | Net flow | Water level |
+| :---: | :---: | :---: |
+| 05:00 to 05:20 | <InlineMath math="60\text{ liters/min}" /> | rises from <InlineMath math="1{,}000" /> to <InlineMath math="2{,}200" /> |
+| 05:20 to 05:40 | <InlineMath math="60-50=10\text{ liters/min}" /> | rises from <InlineMath math="2{,}200" /> to <InlineMath math="2{,}400" /> |
+| 05:40 to 06:20 | <InlineMath math="60+80-50=90\text{ liters/min}" /> | rises from <InlineMath math="2{,}400" /> to <InlineMath math="6{,}000" /> |
+| 06:20 to 07:00 | still positive | held at <InlineMath math="6{,}000" /> |
+| from 07:00 | <InlineMath math="-50\text{ liters/min}" /> | falls from <InlineMath math="6{,}000" /> |
 
-<BlockMath math="\frac{6}{2}=3" />
+The tank is full at 06:20 because <InlineMath math="2{,}400+90\cdot 40=6{,}000" />. After pump Q stops at 06:40, the net flow is <InlineMath math="60-50=10\text{ liters/min}" />, still positive. That's why the tank stays full until pump P stops at 07:00.
 
-Check: the wins add up to <InlineMath math="3+2+1+1+0=7" />, equal to the losses <InlineMath math="0+1+1+2+3=7" />, and <InlineMath math="7+3=10" /> equals the number of matches, <InlineMath math="\binom52" />.
+# The statement about pump Q
 
-The value 6 is the number of draw records before halving. The value 10 is the total number of matches.
+Pump Q runs from 05:40 to 06:40. From 05:40 to 06:20 the level really does rise. But from 06:20 to 06:40 **the tank is already full, so the level stays the same**, because the extra water leaves through the overflow pipe. For those <InlineMath math="20\text{ minutes}" /> the level doesn't grow. This statement is **false**.
 
-So **3 matches** ended in a draw.
+# The statement about lost water
+
+Water is lost while the tank is full and the net flow is positive, from 06:20 to 07:00. The extra per minute **is different before and after pump Q stops**.
+
+<BlockMath math="\begin{aligned} \text{06:20 to 06:40: } 90\cdot 20 &= 1{,}800 \\ \text{06:40 to 07:00: } 10\cdot 20 &= 200 \\ \text{total: } 1{,}800+200 &= 2{,}000 \end{aligned}" />
+
+Check it another way. Up to 07:00, the pumps put in <InlineMath math="60\cdot 120+80\cdot 60=12{,}000\text{ liters}" /> and tap K lets out <InlineMath math="50\cdot 100=5{,}000\text{ liters}" />. Without the overflow pipe, the level would reach <InlineMath math="1{,}000+12{,}000-5{,}000=8{,}000\text{ liters}" />, so the extra is <InlineMath math="8{,}000-6{,}000=2{,}000\text{ liters}" />. This statement is **true**.
+
+# The statement about opening the tap earlier
+
+If tap K opens at 05:00, it runs <InlineMath math="20\text{ minutes}" /> longer. That lets out an extra <InlineMath math="50\cdot 20=1{,}000\text{ liters}" />. **Without the overflow pipe, the highest level would be <InlineMath math="8{,}000-1{,}000=7{,}000\text{ liters}" />**, still above the capacity. So <InlineMath math="1{,}000\text{ liters}" /> of water would still be lost. This statement is **false**.
+
+# The statement about eight o'clock
+
+At 07:00 the tank holds <InlineMath math="6{,}000\text{ liters}" />, and then only tap K runs for <InlineMath math="60\text{ minutes}" />.
+
+<BlockMath math="6{,}000-50\cdot 60=3{,}000" />
+
+Half the capacity is <InlineMath math="3{,}000\text{ liters}" />. The level is **exactly equal to half the capacity**, and "no more than" allows equality. This statement is **true**. If you keep the overflow water in the tank, you'd get <InlineMath math="8{,}000-3{,}000=5{,}000\text{ liters}" /> and wrongly call it false.
+
+So the statement about pump Q is false, the statement about <InlineMath math="2{,}000\text{ liters}" /> of lost water is true, the statement about opening tap K at 05:00 is false, and the statement about the level at 08:00 is true.

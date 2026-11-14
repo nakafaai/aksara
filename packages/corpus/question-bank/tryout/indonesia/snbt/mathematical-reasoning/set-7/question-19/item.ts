@@ -1,7 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "delivery-drone",
+  stimulus: "class-timetable",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -10,22 +10,22 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Lama terbang dengan baterai penuh berbanding terbalik dengan beban yang dibawa.",
-        },
-        {
-          column: 1,
-          label:
-            "Setiap tambahan beban 1 kg mengurangi lama terbang dengan baterai penuh sebanyak 4 menit.",
+            "Pada hari Senin, JP ke-$$8$$ dimulai lebih lambat daripada JP ke-$$8$$ pada hari Selasa.",
         },
         {
           column: 2,
           label:
-            "Jika beban dijadikan dua kali semula, lama terbang dengan baterai penuh menjadi setengah lama terbang semula.",
+            "Total waktu JP pada hari Jumat lebih dari setengah total waktu JP pada hari Senin, tetapi kurang dari setengah total waktu JP pada hari Selasa.",
         },
         {
           column: 1,
           label:
-            "Dengan beban 3,75 kg, lama terbang dengan baterai penuh tepat setengah lama terbang tanpa beban.",
+            "Pada pukul 10.25, hanya pada hari Senin siswa sedang beristirahat.",
+        },
+        {
+          column: 2,
+          label:
+            "Setiap hari dari Senin sampai Kamis, sekolah selesai sebelum pukul 14.30.",
         },
       ],
     },

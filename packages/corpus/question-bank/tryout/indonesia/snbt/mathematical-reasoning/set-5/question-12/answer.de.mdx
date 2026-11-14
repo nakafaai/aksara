@@ -1,17 +1,52 @@
-Nur ein Wert ändert sich, du musst also nicht alle Zeiten neu addieren. **Korrigiere die alte Summe um die Änderung dieses Werts**.
+Du suchst die kleinste Menge zusätzlicher Dosen, mit der das Guthaben nach der Abgabe in Woche drei für eine Abhebung von <InlineMath math="\text{Rp}100{.}000" /> reicht. Der Plan: Berechne das Guthaben nach den ersten <InlineMath math="2" /> Wochen, bestimme das nötige Guthaben mit dem **Mindestrest von <InlineMath math="\text{Rp}10{.}000" />**, übersetze das in einen Wert für die dritte Abgabe und dann in ein Dosengewicht.
 
-# Die korrigierte Summe
+# Das Guthaben nach zwei Wochen
 
-Fajars Zeit sinkt um <InlineMath math="16{,}4-14{,}8=1{,}6" /> Sekunden, also **sinkt auch die Summe aller Zeiten um 1,6 Sekunden**.
+Jede Woche werden **die gezählten Gewichte abgerundet**, und zwar auf ein Vielfaches von <InlineMath math="0{,}5\text{ kg}" />:
 
-<BlockMath math="116-1{,}6=114{,}4" />
+<BlockMath math="\begin{aligned}
+\text{Plastikflaschen} &: 3{,}8 \to 3{,}5\text{ kg} \to 3{,}5 \cdot 4{.}000 = 14{.}000 \\
+\text{Dosen} &: 2{,}3 \to 2{,}0\text{ kg} \to 2{,}0 \cdot 12{.}000 = 24{.}000 \\
+\text{Zuwachs im Guthaben} &= 38{.}000 - 3{.}800 = 34{.}200
+\end{aligned}" />
 
-# Der neue Mittelwert
+Ein Wert von <InlineMath math="38{.}000" /> liegt unter <InlineMath math="60{.}000" />, also beträgt die Gebühr genau <InlineMath math="10\%" />. Nach <InlineMath math="2" /> Wochen beträgt das Guthaben <InlineMath math="2 \cdot 34{.}200 = 68{.}400" />.
 
-<BlockMath math="\frac{114{,}4}{8}=14{,}3" />
+# Das nötige Guthaben
 
-Schneller: Der Mittelwert **sinkt um <InlineMath math="\tfrac{1{,}6}{8}=0{,}2" /> Sekunden**, von 14,5 auf 14,3.
+<InlineMath math="\text{Rp}100{.}000" /> sind schon ein Vielfaches von <InlineMath math="\text{Rp}20{.}000" />, aber nach der Abhebung **müssen mindestens <InlineMath math="\text{Rp}10{.}000" /> übrig bleiben**. Das Guthaben nach der dritten Abgabe muss also mindestens <InlineMath math="110{.}000" /> betragen, und die dritte Abgabe muss mindestens Folgendes beitragen:
 
-Der Wert 14,5 Sekunden ist der Mittelwert vor der Korrektur. Der Wert 14,7 Sekunden addiert 0,2, obwohl die Zeit gesunken ist.
+<BlockMath math="110{.}000 - 68{.}400 = 41{.}600" />
 
-Der korrigierte Mittelwert beträgt also **14,3 Sekunden**.
+# Der Wert der dritten Abgabe
+
+Nenne den Wert der dritten Abgabe <InlineMath math="V" />. Solange <InlineMath math="V" /> höchstens <InlineMath math="60{.}000" /> beträgt, wächst das Guthaben um <InlineMath math="0{,}9V" />:
+
+<BlockMath math="\begin{aligned}
+0{,}9V &\ge 41{.}600 \\
+V &\ge 46{.}222{,}2\ldots
+\end{aligned}" />
+
+Die Plastikflaschen bringen weiterhin <InlineMath math="14{.}000" />, also müssen die Dosen mindestens <InlineMath math="32{.}222{,}2\ldots" /> wert sein, das heißt ein gezähltes Dosengewicht von mindestens <InlineMath math="2{,}68\ldots\text{ kg}" />. Weil **das gezählte Gewicht immer ein Vielfaches von <InlineMath math="0{,}5\text{ kg}" /> ist**, muss das gezählte Dosengewicht <InlineMath math="3{,}0\text{ kg}" /> betragen. Prüfe beide Möglichkeiten:
+
+<BlockMath math="\begin{aligned}
+2{,}5\text{ kg} &: V = 14{.}000 + 30{.}000 = 44{.}000, \ 68{.}400 + 39{.}600 = 108{.}000 \\
+3{,}0\text{ kg} &: V = 14{.}000 + 36{.}000 = 50{.}000, \ 68{.}400 + 45{.}000 = 113{.}400
+\end{aligned}" />
+
+Ein Guthaben von <InlineMath math="108{.}000" /> ist kleiner als <InlineMath math="110{.}000" />, <InlineMath math="113{.}400" /> dagegen reicht. Der Wert <InlineMath math="50{.}000" /> liegt auch noch unter <InlineMath math="60{.}000" />, die Gebühr von <InlineMath math="10\%" /> gilt also wirklich.
+
+# Das zusätzliche Dosengewicht
+
+Ein gezähltes Gewicht von <InlineMath math="3{,}0\text{ kg}" /> verlangt, dass **alle Dosen auf der Waage** zusammen mindestens <InlineMath math="3{,}0\text{ kg}" /> wiegen. Rina bringt schon <InlineMath math="2{,}3\text{ kg}" />, also muss sie mindestens <InlineMath math="3{,}0-2{,}3=0{,}7\text{ kg}" /> dazulegen.
+
+# Die falschen Antworten
+
+Jede andere Antwort **vergisst eine Regel**:
+
+- <InlineMath math="0\text{ kg}" /> vergisst den Mindestrest: Ohne zusätzliche Dosen beträgt das Guthaben <InlineMath math="102{.}600" />, genug für <InlineMath math="100{.}000" />, aber dann bleiben nur <InlineMath math="2{.}600" />.
+- <InlineMath math="0{,}2\text{ kg}" /> vergisst die Bearbeitungsgebühr, sodass <InlineMath math="V \ge 41{.}600" /> gilt und <InlineMath math="2{,}5\text{ kg}" /> Dosen scheinbar reichen.
+- <InlineMath math="0{,}4\text{ kg}" /> bringt die Dosen auf <InlineMath math="2{,}7\text{ kg}" />, aber dieses Gewicht wird auf <InlineMath math="2{,}5\text{ kg}" /> abgerundet.
+- <InlineMath math="1{,}0\text{ kg}" /> legt Dosen in Schritten von <InlineMath math="0{,}5\text{ kg}" /> dazu, dabei wird das Gesamtgewicht der Dosen gerundet, nicht der zusätzliche Teil.
+
+Rina muss bei der Abgabe in Woche drei also mindestens <InlineMath math="0{,}7\text{ kg}" /> Dosen dazulegen.

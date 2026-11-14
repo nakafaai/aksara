@@ -1,17 +1,34 @@
-Eine Fahrstrecke von 300 m bedeutet 3 Abschnitte, die Kreuzung <InlineMath math="(a,b)" /> muss also **<InlineMath math="\lvert a\rvert+\lvert b\rvert=3" />** erfüllen. **Koordinaten dürfen negativ sein**, weil der Roboter nach Westen und Süden fahren kann.
+Gesucht ist die Wassermenge, die entfernt wird, bevor das Aquarium mit Süßwasser aufgefüllt wird. Der Plan: Bestimme den Zustand des Aquariums nach der Reise, lege fest, wie viel Salz bleiben darf, und finde dann die Wassermenge, die dafür entfernt werden muss.
 
-# Kreuzungen auf den Achsen
+# Das Aquarium nach der Reise
 
-Ist **eine Koordinate null**, sind es <InlineMath math="(3,0)" />, <InlineMath math="(-3,0)" />, <InlineMath math="(0,3)" /> und <InlineMath math="(0,-3)" />, also 4 Kreuzungen.
+Voll enthält das Aquarium <InlineMath math="120\cdot36=4{.}320" /> Gramm Salz. In <InlineMath math="6" /> Tagen verdunsten <InlineMath math="6\cdot4=24\text{ Liter}" />, es bleiben also <InlineMath math="96\text{ Liter}" />. **Das Salz verdunstet nicht**, deshalb steigt der Salzgehalt.
 
-# Kreuzungen abseits der Achsen
+<BlockMath math="\frac{4{.}320}{96}=45\text{ g/L}" />
 
-Ist keine Koordinate null, sind ihre Beträge 1 und 2 in beliebiger Reihenfolge, und **jede Koordinate darf positiv oder negativ sein**.
+Das Wasser, das später entfernt wird, hat <InlineMath math="45\text{ g/L}" />, nicht <InlineMath math="36\text{ g/L}" />.
 
-<BlockMath math="2\cdot2\cdot2=8" />
+# Wie viel Salz bleiben darf
 
-Der erste Faktor 2 wählt die Reihenfolge von 1 und 2, die beiden weiteren das Vorzeichen jeder Koordinate. Es gibt also <InlineMath math="4+8=12" /> Kreuzungen, die zusammen ein schräges Quadrat um G bilden.
+Am Ende ist das Aquarium wieder voll, <InlineMath math="120\text{ Liter}" /> mit <InlineMath math="33\text{ g/L}" />, es enthält also <InlineMath math="120\cdot33=3{.}960" /> Gramm Salz. **Süßwasser bringt kein Salz mit**, also muss dieses ganze Salz schon vor dem Auffüllen im Aquarium sein.
 
-Der Wert 4 zählt nur die Kreuzungen auf den Achsen oder nur die nach Nordosten. Der Wert 8 vergisst die Kreuzungen auf den Achsen.
+# Das Wasser, das entfernt wird
 
-Es gibt also **12 Kreuzungen** mit genau 300 m Fahrstrecke von G.
+Angenommen, es werden <InlineMath math="x\text{ Liter}" /> entfernt. Jeder entfernte Liter nimmt <InlineMath math="45" /> Gramm Salz mit.
+
+<BlockMath math="\begin{aligned}
+4{.}320-45x &= 3{.}960 \\
+45x &= 360 \\
+x &= 8
+\end{aligned}" />
+
+Zur Probe: Es bleiben <InlineMath math="96-8=88\text{ Liter}" /> mit <InlineMath math="45\text{ g/L}" />, also <InlineMath math="88\cdot45=3{.}960" /> Gramm Salz. Dann füllen <InlineMath math="32\text{ Liter}" /> Süßwasser auf <InlineMath math="120\text{ Liter}" /> auf, und <InlineMath math="\frac{3{.}960}{120}=33\text{ g/L}" />.
+
+# Die falschen Antworten
+
+- <InlineMath math="10\text{ Liter}" /> entstehen, wenn du **die Verdunstung übersiehst** und das Wasser aus <InlineMath math="120\text{ Liter}" /> mit <InlineMath math="36\text{ g/L}" /> entfernst.
+- <InlineMath math="25{,}6\text{ Liter}" /> entstehen, wenn das Aquarium nur bis <InlineMath math="96\text{ Liter}" /> aufgefüllt gedacht wird, obwohl das Auffüllen es auf volle <InlineMath math="120\text{ Liter}" /> bringt.
+- <InlineMath math="32\text{ Liter}" /> ist die Menge an Süßwasser, die dazukommt, nämlich <InlineMath math="8+24" />, nicht die entfernte Menge.
+- <InlineMath math="88\text{ Liter}" /> ist die Menge an altem Wasser, die im Aquarium bleibt.
+
+Es müssen also <InlineMath math="8\text{ Liter}" /> Aquariumwasser entfernt werden.

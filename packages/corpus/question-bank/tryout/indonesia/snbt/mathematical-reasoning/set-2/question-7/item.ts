@@ -1,7 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "street-lamp",
+  stimulus: "paint-mixing",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -10,22 +10,22 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Panjang bayangan anak selalu setengah jarak anak ke kaki tiang.",
-        },
-        {
-          column: 1,
-          label:
-            "Setelah berjalan selama 10 detik, ujung bayangan anak berjarak 18 m dari kaki tiang.",
+            "Campuran di ember itu dapat diperbaiki menjadi Hijau Daun tanpa menambahkan cat biru.",
         },
         {
           column: 2,
           label:
-            "Panjang bayangan anak bertambah $$1{,}2\\text{ m}$$ setiap detik.",
+            "Banyak Hijau Daun paling sedikit yang dihasilkan perbaikan itu adalah $$12\\text{ liter}$$.",
         },
         {
           column: 2,
           label:
-            "Jika tinggi anak itu 2 m, panjang bayangannya pada saat ia berada 7 m dari kaki tiang adalah $$3{,}5\\text{ m}$$.",
+            "Biaya paling murah untuk membeli kaleng tambahan yang diperlukan paling banyak $$\\text{Rp}150{.}000{,}00$$.",
+        },
+        {
+          column: 2,
+          label:
+            "Jika kaleng tambahan dibeli dengan biaya paling murah, cat dasar yang tersisa di kaleng-kaleng tambahan itu sebanyak $$0{,}5\\text{ liter}$$.",
         },
       ],
     },

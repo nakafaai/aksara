@@ -1,9 +1,52 @@
-Banyak bibit setiap tahun membentuk **barisan aritmetika** dengan suku pertama 120 dan beda 15.
+Untuk menghitung keuntungan musim ini, kamu perlu tahu banyak pohon musim ini. Banyak pohon itu belum diketahui, jadi cari dulu banyak pohon musim lalu dari hasil panennya. Hati-hati, **persamaan hasil panen punya dua penyelesaian**, dan keterangan bahwa panen turun yang memilih salah satunya.
 
-# Suku ketujuh
+# Rumus hasil panen
 
-Dari tahun pertama ke tahun ketujuh ada 6 kali kenaikan, **bukan 7 kali**.
+Untuk <InlineMath math="n" /> pohon dengan <InlineMath math="n" /> lebih dari <InlineMath math="40" />, ada <InlineMath math="n-40" /> pohon tambahan. Setiap pohon tambahan menurunkan hasil **setiap pohon di kebun** sebesar <InlineMath math="2\text{ kg}" />, jadi:
 
-<BlockMath math="U_7=120+6\cdot15=120+90=210" />
+<BlockMath math="\begin{aligned}
+\text{hasil per pohon}&=120-2(n-40)=200-2n\\
+\text{hasil total}&=n(200-2n)
+\end{aligned}" />
 
-Jadi, pada tahun ketujuh ditanam **210 bibit**.
+# Banyak pohon musim lalu
+
+Hasil total musim lalu <InlineMath math="4{.}950\text{ kg}" />, jadi:
+
+<BlockMath math="\begin{aligned}
+n(200-2n)&=4{.}950\\
+n^2-100n+2{.}475&=0\\
+(n-45)(n-55)&=0
+\end{aligned}" />
+
+Kedua nilai, <InlineMath math="45" /> dan <InlineMath math="55" />, lebih dari <InlineMath math="40" />. Jadi **dua kemungkinan ini harus diuji dengan keterangan kedua**: setelah ditambah <InlineMath math="3" /> pohon, hasil total turun.
+
+<BlockMath math="\begin{aligned}
+45+3=48&: \ 48\cdot(200-96)=48\cdot104=4{.}992\text{ kg}\\
+55+3=58&: \ 58\cdot(200-116)=58\cdot84=4{.}872\text{ kg}
+\end{aligned}" />
+
+Dari <InlineMath math="45" /> pohon, hasilnya naik menjadi <InlineMath math="4{.}992\text{ kg}" />, jadi kemungkinan ini gugur. Dari <InlineMath math="55" /> pohon, hasilnya turun menjadi <InlineMath math="4{.}872\text{ kg}" />. Jadi musim lalu ada <InlineMath math="55" /> pohon, dan musim ini ada <InlineMath math="58" /> pohon.
+
+# Keuntungan musim ini
+
+Hasil penjualan dihitung dari panen musim ini, dan **biaya perawatan dihitung untuk semua pohon musim ini**:
+
+<BlockMath math="\begin{aligned}
+\text{keuntungan}&=8{.}000\cdot4{.}872-96{.}000\cdot58\\
+&=38{.}976{.}000-5{.}568{.}000\\
+&=33{.}408{.}000
+\end{aligned}" />
+
+Coba cek dengan rumus keuntungan per pohon. Setiap pohon menghasilkan <InlineMath math="84\text{ kg}" />, jadi untung per pohon <InlineMath math="84\cdot8{.}000-96{.}000=576{.}000" /> rupiah, dan <InlineMath math="58\cdot576{.}000=33{.}408{.}000" />. Hasilnya sama.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain memakai **bilangan yang benar pada langkah yang salah**.
+
+- <InlineMath math="\text{Rp}33{.}696{.}000" /> memakai biaya perawatan <InlineMath math="55" /> pohon musim lalu, padahal musim ini ada <InlineMath math="58" /> pohon.
+- <InlineMath math="\text{Rp}34{.}320{.}000" /> adalah keuntungan musim lalu, <InlineMath math="8{.}000\cdot4{.}950-96{.}000\cdot55" />.
+- <InlineMath math="\text{Rp}35{.}328{.}000" /> memilih <InlineMath math="45" /> pohon, sehingga musim ini dianggap <InlineMath math="48" /> pohon, padahal dengan <InlineMath math="48" /> pohon panennya naik.
+- <InlineMath math="\text{Rp}38{.}976{.}000" /> hanya hasil penjualan, tanpa dikurangi biaya perawatan.
+
+Jadi, keuntungan Pak Darmo musim ini adalah <InlineMath math="\text{Rp}33{.}408{.}000" />.

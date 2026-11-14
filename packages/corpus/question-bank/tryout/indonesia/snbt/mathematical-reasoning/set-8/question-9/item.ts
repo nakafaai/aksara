@@ -1,12 +1,17 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "village-trees",
+  stimulus: "orchard-yield",
   versions: {
     id: {
-      kind: "numericEntry",
-      unit: "bibit",
-      value: "210",
+      kind: "choice",
+      options: [
+        { correct: true, label: "$$\\text{Rp}33{.}408{.}000$$" },
+        { correct: false, label: "$$\\text{Rp}33{.}696{.}000$$" },
+        { correct: false, label: "$$\\text{Rp}34{.}320{.}000$$" },
+        { correct: false, label: "$$\\text{Rp}35{.}328{.}000$$" },
+        { correct: false, label: "$$\\text{Rp}38{.}976{.}000$$" },
+      ],
     },
   },
 };

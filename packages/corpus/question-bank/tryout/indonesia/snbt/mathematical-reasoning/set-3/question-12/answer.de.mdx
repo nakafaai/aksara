@@ -1,23 +1,35 @@
-Teile die Stimmen von Citra und Dimas **nach dem jeweiligen Verhältnis** auf und addiere sie zu den festen Stimmen von Andra und Bunga.
+Du brauchst die Gesamternte beider Pläne für <InlineMath math="0\le t\le24" /> und dann die Differenz. Entscheidend ist, dass **der ursprüngliche Plan eine kleine Kultur auslöschen kann, bevor sie wachsen kann**, während der neue Plan ihr mehr Zeit zum Wachsen lässt.
 
-# Stimmen von Citra und Dimas aufteilen
+# Der ursprüngliche Plan
 
-Das Verhältnis <InlineMath math="1:3" /> teilt Citras 48 Stimmen in **4 gleiche Teile** zu je 12. Das Verhältnis <InlineMath math="3:1" /> teilt Dimas' 24 Stimmen in Teile zu je 6.
+Von <InlineMath math="20" /> aus ergeben die <InlineMath math="3" /> Verdopplungen bis <InlineMath math="t=3" /> die Folge <InlineMath math="20\to40\to80\to160" />. Bei der Ernte sind es <InlineMath math="160" />, also höchstens <InlineMath math="200" />. Nach der Ernteregel **werden alle <InlineMath math="160" /> genommen und die Kultur erlischt**. Eine erloschene Kultur wächst nicht mehr, der ursprüngliche Plan erntet also insgesamt nur <InlineMath math="160" /> Millionen Zellen.
 
-<BlockMath math="\begin{aligned}
-\text{Citra}&:\quad \text{Andra }12,\;\text{Bunga }36\\
-\text{Dimas}&:\quad \text{Andra }18,\;\text{Bunga }6
-\end{aligned}" />
+# Der neue Plan
 
-# Ergebnis der zweiten Runde
+Die erste Ernte ist bei <InlineMath math="t=6" />, nach <InlineMath math="6" /> Verdopplungen. Vergiss nicht, dass **die Kapazität bei jeder Verdopplung geprüft wird**.
 
 <BlockMath math="\begin{aligned}
-\text{Andra}&=96+12+18=126\\
-\text{Bunga}&=72+36+6=114
+t=1 \text{ bis } 6 &: \ 20\to40\to80\to160\to320\to640\to960 \\
+\text{nach der Ernte} &: \ 960-400=560
 \end{aligned}" />
 
-Zusammen sind es <InlineMath math="126+114=240" />, die Zahl der gültigen Stimmen. **Andra liegt 12 Stimmen vorn**.
+Bei <InlineMath math="t=6" /> wird <InlineMath math="640\cdot2=1{.}280" /> auf <InlineMath math="960" /> gekappt, dann nimmt die Ernte <InlineMath math="400" />. Im nächsten Zyklus wird <InlineMath math="560\cdot2=1{.}120" /> sofort auf <InlineMath math="960" /> gekappt, also beträgt die Ernte bei <InlineMath math="t=12" />, <InlineMath math="t=18" /> und <InlineMath math="t=24" /> wieder <InlineMath math="400" />, und <InlineMath math="560" /> bleiben übrig.
 
-Die Wahl, dass Bunga mit 12 Stimmen gewinnt, entsteht durch vertauschte Verhältnisse. Die Wahl eines Gleichstands entsteht, wenn man die Stimmen von Citra und Dimas gleichmäßig aufteilt.
+Es gibt <InlineMath math="4" /> Ernten, bei <InlineMath math="t=6, 12, 18, 24" />, der neue Plan erntet also insgesamt <InlineMath math="4\cdot400=1{.}600" /> Millionen Zellen.
 
-**Andra gewinnt also mit 12 Stimmen Vorsprung**.
+# Die Differenz der Pläne
+
+<BlockMath math="1{.}600-160=1{.}440" />
+
+Das passt: Der ursprüngliche Plan **leert die Kultur schon bei der ersten Ernte**, der neue Plan lässt sie wachsen, bis der Behälter voll ist, und erntet erst dann.
+
+# Warum die anderen Antworten falsch sind
+
+Jede andere Antwort **rechnet einen der beiden Pläne falsch**.
+
+- <InlineMath math="1{.}600" /> entsteht, wenn man meint, der ursprüngliche Plan ernte gar nichts, weil <InlineMath math="160" /> weniger als <InlineMath math="200" /> ist. Die Ernteregel nimmt aber alles.
+- <InlineMath math="1{.}400" /> entsteht, wenn die erste Ernte des ursprünglichen Plans als volle <InlineMath math="200" /> gezählt wird.
+- <InlineMath math="1{.}040" /> entsteht, wenn die Ernte bei <InlineMath math="t=24" /> fehlt, sodass der neue Plan nur <InlineMath math="3\cdot400=1{.}200" /> erntet.
+- <InlineMath math="0" /> entsteht, wenn beide Pläne immer voll ernten, also <InlineMath math="8\cdot200" /> und <InlineMath math="4\cdot400" />.
+
+Der neue Plan erntet also <InlineMath math="1{.}440" /> Millionen Zellen mehr als der Plan aus der Information.

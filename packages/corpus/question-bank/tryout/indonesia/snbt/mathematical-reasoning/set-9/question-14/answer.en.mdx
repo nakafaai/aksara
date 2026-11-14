@@ -1,13 +1,41 @@
-The median can only be read after **sorting the data**. There are 12 values, so the median is the mean of the 6th and 7th values.
+Every statement uses the effective sleep of each night, so work that out first, then judge each statement with its own proof. **Effective sleep is time in bed minus time awake**, and all times below are in minutes.
 
-# Sorted data
+# Effective sleep each night
 
-<BlockMath math="40,\ 50,\ 70,\ 80,\ 120,\ \mathbf{140},\ \mathbf{190},\ 230,\ 250,\ 280,\ 310,\ 340" />
+Count the time in bed from bedtime to wake-up time. If bedtime is before midnight, count up to 24:00 first. Taking off the time awake gives this.
 
-# Median
+| Day | Mon | Tue | Wed | Thu | Fri | Sat | Sun |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Effective sleep | <InlineMath math="500" /> | <InlineMath math="375" /> | <InlineMath math="380" /> | <InlineMath math="515" /> | <InlineMath math="360" /> | <InlineMath math="600" /> | <InlineMath math="560" /> |
 
-<BlockMath math="\frac{140+190}{2}=165\text{ mm}" />
+The total is <InlineMath math="3{,}290" /> minutes. Sleep debt is tracked night by night against a target of <InlineMath math="480" /> minutes, and **the debt never drops below zero**.
 
-The value 65 mm takes the 6th and 7th values in calendar order, June and July, **without sorting**. The values 140 mm and 190 mm are just one of the two middle values. The value 175 mm is the mean, <InlineMath math="\tfrac{2{,}100}{12}" />, not the median.
+<BlockMath math="0\to0\to105\to205\to170\to290\to170\to90" />
 
-So the median monthly rainfall is **165 mm**.
+On Monday night the user sleeps <InlineMath math="20" /> minutes over target, but the debt is still zero, so that extra is wasted.
+
+# The first statement about the difference formula
+
+That formula gives <InlineMath math="7\times480-3{,}290=3{,}360-3{,}290=70" /> minutes. The real debt is <InlineMath math="90" /> minutes, because **the extra <InlineMath math="20" /> minutes on Monday night can't pay off debt that doesn't exist yet**. The formula only works if the debt never sits at zero when there's extra sleep. The first statement is false.
+
+# The second statement about median and mean
+
+The mean is <InlineMath math="3{,}290\div7=470" /> minutes. Sort the data: <InlineMath math="360, 375, 380, 500, 515, 560, 600" />. There are seven values, so **the median is the fourth one**, <InlineMath math="500" /> minutes. Since <InlineMath math="500>470" />, the second statement is true.
+
+# The third statement about Tuesday and Wednesday
+
+On Tuesday night the user goes to bed at 23:30 and wakes at 06:00, so that's <InlineMath math="30+360=390" /> minutes in bed and <InlineMath math="390-15=375" /> minutes of effective sleep. On Wednesday night they only go to bed at 00:20 and wake at 06:50, which is also <InlineMath math="390" /> minutes in bed, but only <InlineMath math="10" /> minutes awake, so <InlineMath math="380" /> minutes of effective sleep. **Going to bed later doesn't mean sleeping less**, because they also wake later. The third statement is true.
+
+# The fourth statement about two extra hours
+
+Two extra hours make Friday night <InlineMath math="360+120=480" /> minutes, exactly on target. Redo the debt from Friday.
+
+<BlockMath math="\begin{aligned}
+\text{after Friday} &: 170+0=170 \\
+\text{after Saturday} &: 170-120=50 \\
+\text{after Sunday} &: 50-80<0,\ \text{so the debt is }0
+\end{aligned}" />
+
+**The debt stops at zero**, and the leftover <InlineMath math="30" /> minutes of extra sleep on Sunday night is wasted. So the debt after Sunday night really is zero. The fourth statement is true.
+
+So the first statement is false, and the second, third, and fourth statements are true.

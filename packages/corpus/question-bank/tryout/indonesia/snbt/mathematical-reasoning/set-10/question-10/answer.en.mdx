@@ -1,15 +1,50 @@
-Treat Ani and Budi as **one block**. Then remember that inside the block they can still swap places.
+You're looking for how many water jugs are still on the van when it reaches station 4. The van unloads station by station, so **its load shrinks in station order**. Here's the plan: find each station's water from its planned cups, turn it into whole jugs per station, then take the jugs off the van one station at a time.
 
-# Arranging the block and the other three
+# Water for each station
 
-Block AB with Citra, Dodi and Eka is 4 units, which **can be arranged in 24 ways**.
+Planned cups are the expected use plus a <InlineMath math="10\%" /> reserve, and **runners at stations 3 to 5 take two cups**. Each cup holds <InlineMath math="200\text{ ml}=0.2\text{ litres}" />.
 
-# Order inside the block
+<BlockMath math="\begin{aligned}
+\text{station 1} &= 1.1\cdot1{,}200\cdot0.2=1{,}320\cdot0.2=264\text{ litres}\\
+\text{station 2} &= 1.1\cdot1{,}180\cdot0.2=1{,}298\cdot0.2=259.6\text{ litres}\\
+\text{station 3} &= 1.1\cdot2{,}280\cdot0.2=2{,}508\cdot0.2=501.6\text{ litres}\\
+\text{station 4} &= 1.1\cdot2{,}200\cdot0.2=2{,}420\cdot0.2=484\text{ litres}
+\end{aligned}" />
 
-Inside the block the order can be AB or BA.
+# Whole jugs for each station
 
-<BlockMath math="24\cdot2=48" />
+Jugs don't move between stations, so **each station rounds its own need up**.
 
-The value 24 forgets that Ani and Budi can swap. The value 72 counts the arrangements where they are **not** side by side, <InlineMath math="120-48" />. The value 60 counts Ani anywhere to the left of Budi, not necessarily next to each other. The value 96 counts the swap inside the block twice.
+| Station | Water | Water divided by nineteen | Jugs |
+| :---: | :---: | :---: | :---: |
+| 1 | <InlineMath math="264\text{ litres}" /> | <InlineMath math="13.89\ldots" /> | <InlineMath math="14" /> |
+| 2 | <InlineMath math="259.6\text{ litres}" /> | <InlineMath math="13.66\ldots" /> | <InlineMath math="14" /> |
+| 3 | <InlineMath math="501.6\text{ litres}" /> | <InlineMath math="26.4" /> | <InlineMath math="27" /> |
+| 4 | <InlineMath math="484\text{ litres}" /> | <InlineMath math="25.47\ldots" /> | <InlineMath math="26" /> |
 
-So there are **48 arrangements** with Ani and Budi side by side.
+# The van's load up to the fourth station
+
+Take the jugs off the van each time it leaves a station.
+
+<BlockMath math="\begin{aligned}
+\text{after station 1} &= 80-14=66\\
+\text{after station 2} &= 66-14=52\\
+\text{after station 3} &= 52-27=25
+\end{aligned}" />
+
+Station 4 needs <InlineMath math="26" /> jugs, but the van only has <InlineMath math="25" /> left. The question says **all the remaining jugs are unloaded at that station**, so station 4 gets <InlineMath math="25" /> jugs and is <InlineMath math="1" /> jug short.
+
+# Checking
+
+The jugs unloaded add up to <InlineMath math="14+14+27+25=80" />, **exactly the van's starting load**. Station 5 gets no jugs from this van.
+
+# The wrong options
+
+Each wrong option **gets the jugs needed per station wrong**.
+
+- <InlineMath math="26" /> jugs comes from adding the water of stations 1 to 3 first, <InlineMath math="1{,}025.2" /> litres, and dividing by <InlineMath math="19" /> to get <InlineMath math="54" /> jugs. That treats jugs as if several stations could share them.
+- <InlineMath math="24" /> jugs forgets the <InlineMath math="10\%" /> reserve, so stations 1 to 3 use only <InlineMath math="50" /> jugs and station 4 needs only <InlineMath math="24" /> jugs.
+- <InlineMath math="23" /> jugs fills every cup in the boxes, such as <InlineMath math="1{,}400" /> cups at station 1, but only the planned cups get filled.
+- <InlineMath math="13" /> jugs forgets that runners at stations 3 and 4 take <InlineMath math="2" /> cups, so station 4 seems to need only <InlineMath math="13" /> jugs.
+
+So station 4 gets <InlineMath math="25" /> jugs from the van.

@@ -1,19 +1,30 @@
-Hin- und Rückflug verbrauchen den Akku mit **unterschiedlicher Rate**, weil die Last verschieden ist. Bestimme die Zeit jedes Abschnitts und rechne sie in Akkuprozent um.
+Gesucht ist die größte Zahl an Laborstunden in einer Woche. Der Plan: Zerlege jeden Tag in Folgen aufeinanderfolgender Stunden ohne Pause und ohne Stunde <InlineMath math="1" />, zähle, wie viele Stundenpaare ohne Überschneidung in jede Folge passen, und addiere dann alle fünf Tage.
 
-# Zeit jedes Abschnitts
+# Jeden Tag in Folgen zerlegen
 
-36 km/h **sind 0,6 km pro Minute**, jede Richtung dauert also <InlineMath math="\tfrac{5{,}4}{0{,}6}=9" /> Minuten.
+Ein Praktikum darf nicht durch eine Pause geteilt werden, also **trennt jede Pause zwei Folgen von Stunden**. Stunde <InlineMath math="1" /> fällt ebenfalls weg, weil das Labor noch nicht bereit ist.
 
-# Akkuverbrauch
+| Tag | Nutzbare Folgen von Stunden | Praktika |
+| --- | --- | --- |
+| Montag | Stunden <InlineMath math="2" /> bis <InlineMath math="4" />, <InlineMath math="5" /> bis <InlineMath math="7" />, <InlineMath math="8" /> bis <InlineMath math="9" /> | <InlineMath math="1+1+1=3" /> |
+| Dienstag, Mittwoch, Donnerstag | Stunden <InlineMath math="2" /> bis <InlineMath math="3" />, <InlineMath math="4" /> bis <InlineMath math="6" />, <InlineMath math="7" /> bis <InlineMath math="9" /> | <InlineMath math="1+1+1=3" /> pro Tag |
+| Freitag | Stunden <InlineMath math="2" /> bis <InlineMath math="4" />, <InlineMath math="5" /> bis <InlineMath math="6" /> | <InlineMath math="1+1=2" /> |
 
-Mit 2,5 kg Last hält ein voller Akku <InlineMath math="30-4\cdot2{,}5=20" /> Minuten, ohne Last 30 Minuten.
+# Warum eine Folge aus drei Stunden nur ein Praktikum fasst
 
-<BlockMath math="\begin{aligned}
-\text{hin}&:\quad \tfrac{9}{20}\cdot100\%=45\%\\
-\text{zurück}&:\quad \tfrac{9}{30}\cdot100\%=30\%\\
-\text{Rest}&=100\%-45\%-30\%=25\%
-\end{aligned}" />
+Zwei Praktika dürfen keine Stunde teilen, sie brauchen also <InlineMath math="4" /> verschiedene Stunden in einer Folge. **Eine Folge aus <InlineMath math="3" /> Stunden fasst nur ein Praktikum**, die übrige Stunde bleibt ungenutzt. Allgemein fasst eine Folge aus <InlineMath math="n" /> Stunden höchstens <InlineMath math="\left\lfloor \frac{n}{2}\right\rfloor" /> Praktika.
 
-Der Wert 75 % ist der **verbrauchte** Akku, nicht der Rest. Die Werte 30 % und 45 % sind der Verbrauch nur eines Abschnitts, und 55 % bleiben nach dem Hinflug allein übrig.
+# Die Summe der Woche
 
-Bei der Rückkehr sind also noch **25 %** Akku übrig.
+<BlockMath math="3+3\cdot3+2=3+9+2=14" />
+
+Zur Probe: Jede Folge in der Tabelle fasst genau ein Praktikum, und es gibt <InlineMath math="3+3\cdot3+2=14" /> Folgen, ein Plan mit <InlineMath math="14" /> Praktika lässt sich also wirklich aufstellen.
+
+# Die falschen Antworten
+
+- <InlineMath math="12" /> vergisst den Freitag und zählt nur Montag bis Donnerstag.
+- <InlineMath math="16" /> vergisst, dass **Stunde <InlineMath math="1" /> nicht nutzbar ist**. Dann scheint die Folge der Stunden <InlineMath math="1" /> bis <InlineMath math="4" /> am Montag und Freitag zwei Praktika zu fassen.
+- <InlineMath math="18" /> übersieht die Pausen und halbiert einfach die nutzbaren Stunden jedes Tages: <InlineMath math="4+4\cdot3+2=18" />.
+- <InlineMath math="21" /> halbiert alle <InlineMath math="42" /> Stunden der Woche, ohne auf Pausen oder Stunde <InlineMath math="1" /> zu achten.
+
+In einer Woche lassen sich also höchstens <InlineMath math="14" /> Praktika einplanen.

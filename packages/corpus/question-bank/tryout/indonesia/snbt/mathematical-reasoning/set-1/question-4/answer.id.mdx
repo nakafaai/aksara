@@ -1,21 +1,41 @@
-Tagihan tarif bertingkat berubah rumusnya di setiap blok, sedangkan paket datar selalu <InlineMath math="1{.}400x" />. Jadi **bandingkan kedua tagihan di setiap blok secara terpisah**.
+Kamu perlu memeriksa kesepuluh jam mulai, dari pukul 07.00 sampai 16.00, dan membandingkan biayanya dengan hari tanpa mesin cuci. Mesin cuci tidak menambah biaya hanya jika <InlineMath math="3\text{ kWh}" /> itu akhirnya **dibayar oleh energi panel yang semula terbuang**. Jadi, yang menentukan adalah urutan jam, bukan hanya besar kelebihan panel pada jam itu.
 
-# Blok 1, sampai 100 kWh
+# Hari tanpa mesin cuci
 
-<BlockMath math="20{.}000+1{.}000x<1{.}400x\;\Longleftrightarrow\;20{.}000<400x\;\Longleftrightarrow\;x>50" />
+Selisih panel dikurangi pemakaian pada pukul 07.00 sampai 17.00 adalah <InlineMath math="-1,+1,+2,+3,+3,+2,+3,+1,-1,-1" /> dalam kWh. Dengan kapasitas <InlineMath math="6\text{ kWh}" /> dan cadangan <InlineMath math="1\text{ kWh}" />, isi baterai di akhir setiap jam adalah <InlineMath math="1,2,4,6,6,6,6,6,5,4" />. Energi terbuang pada setiap jam adalah <InlineMath math="0,0,0,1,3,2,3,1,0,0" />, dan **biaya tanpa mesin cuci** adalah
 
-# Blok 2, dari 100 sampai 300 kWh
+<BlockMath math="1\cdot\text{Rp}1{.}000+8\cdot\text{Rp}2{.}500=\text{Rp}21{.}000" />
 
-Tagihan bertingkatnya <InlineMath math="20{.}000+100{.}000+1{.}500(x-100)=1{.}500x-30{.}000" />.
+# Aturan yang menentukan
 
-<BlockMath math="1{.}500x-30{.}000<1{.}400x\;\Longleftrightarrow\;100x<30{.}000\;\Longleftrightarrow\;x<300" />
+Mesin cuci menambah kekurangan <InlineMath math="3\text{ kWh}" /> pada jam itu. Ada tiga kemungkinan. Jika baterai sedang di cadangan, kekurangan itu langsung dibeli. Jika baterai bisa menutupnya, isi baterai turun, dan **penurunan itu tidak merugikan hanya jika masih ada energi terbuang sesudahnya** untuk mengisi ulang baterai. Jika tidak ada energi terbuang lagi, baterai mencapai sore hari dengan isi lebih kecil dan pembelian malam bertambah.
 
-Seluruh blok 2 di bawah 300 kWh memenuhi. Pada <InlineMath math="x=300" />, kedua tagihan **sama-sama Rp420.000,00**.
+# Pemeriksaan setiap jam mulai
 
-# Blok 3, di atas 300 kWh
+| Jam mulai | Yang terjadi | Tambahan biaya |
+| :---: | :--- | :---: |
+| 07.00 | Baterai di cadangan, jadi kekurangan <InlineMath math="1+3=4\text{ kWh}" /> dibeli semua | <InlineMath math="3\cdot\text{Rp}1{.}000=\text{Rp}3{.}000" /> |
+| 08.00 | Baterai di cadangan, selisih <InlineMath math="2-1-3=-2" /> dibeli | <InlineMath math="2\cdot\text{Rp}1{.}000=\text{Rp}2{.}000" /> |
+| 09.00 | Baterai turun dari <InlineMath math="2" /> ke <InlineMath math="1" />, lalu penuh lagi pukul 12.00 | <InlineMath math="\text{Rp}0" /> |
+| 10.00 | Selisih <InlineMath math="4-1-3=0" />, baterai tetap <InlineMath math="4" />, lalu penuh pukul 12.00 | <InlineMath math="\text{Rp}0" /> |
+| 11.00 | Selisih <InlineMath math="5-2-3=0" />, baterai tetap penuh | <InlineMath math="\text{Rp}0" /> |
+| 12.00 | Baterai turun ke <InlineMath math="5" />, lalu penuh lagi pukul 14.00 | <InlineMath math="\text{Rp}0" /> |
+| 13.00 | Selisih <InlineMath math="4-1-3=0" />, baterai tetap penuh | <InlineMath math="\text{Rp}0" /> |
+| 14.00 | Baterai turun ke <InlineMath math="4" /> dan sore berakhir dengan <InlineMath math="2" />, malam membeli <InlineMath math="10\text{ kWh}" /> | <InlineMath math="2\cdot\text{Rp}2{.}500=\text{Rp}5{.}000" /> |
+| 15.00 | Baterai turun ke <InlineMath math="2" /> lalu <InlineMath math="1" />, malam membeli <InlineMath math="11\text{ kWh}" /> | <InlineMath math="3\cdot\text{Rp}2{.}500=\text{Rp}7{.}500" /> |
+| 16.00 | Baterai turun dari <InlineMath math="5" /> ke <InlineMath math="1" />, malam membeli <InlineMath math="11\text{ kWh}" /> | <InlineMath math="3\cdot\text{Rp}2{.}500=\text{Rp}7{.}500" /> |
 
-Tagihan bertingkatnya <InlineMath math="420{.}000+2{.}000(x-300)=2{.}000x-180{.}000" />. Syarat <InlineMath math="2{.}000x-180{.}000<1{.}400x" /> berarti <InlineMath math="x<300" />, yang bertentangan dengan <InlineMath math="x>300" />. Di blok ini **paket datar selalu lebih murah**.
+Pukul 09.00 adalah jam yang paling mudah terlewat. Baterai belum penuh dan panel pada jam itu tidak cukup, tetapi **kelebihan pukul 10.00 sampai 12.00 mengisi ulang baterai** sehingga sisa hari berjalan persis seperti semula. Sebaliknya, pukul 14.00 baterai memang penuh, tetapi energi terbuang sesudahnya hanya <InlineMath math="0\text{ kWh}" />, jadi kekurangan itu terbawa sampai malam.
 
-Gabungan ketiga hasil adalah <InlineMath math="50<x<300" />. Pilihan <InlineMath math="x>50" /> lupa blok 3, <InlineMath math="x<300" /> lupa biaya beban pada pemakaian kecil, dan <InlineMath math="100<x<300" /> serta <InlineMath math="50<x<100" /> masing-masing hanya memeriksa satu blok.
+# Hasil dan pemeriksaan
 
-Jadi, tarif bertingkat lebih murah tepat ketika **<InlineMath math="50<x<300" />**.
+Jam mulai tanpa tambahan biaya adalah 09.00, 10.00, 11.00, 12.00, dan 13.00. Sebagai pemeriksaan, energi terbuang pada hari asli sesudah pukul 09.00 adalah <InlineMath math="1+3+2+3+1=10\text{ kWh}" />, jauh lebih banyak daripada <InlineMath math="1\text{ kWh}" /> yang diambil dari baterai, jadi **pengisian ulang itu memang terjadi**.
+
+# Hitungan yang sering keliru
+
+- Menjawab <InlineMath math="2" /> berarti hanya menghitung jam yang membuang tepat <InlineMath math="3\text{ kWh}" />, yaitu pukul 11.00 dan 13.00.
+- Menjawab <InlineMath math="3" /> berarti hanya menghitung jam dengan kelebihan panel paling sedikit <InlineMath math="3\text{ kWh}" />, yaitu pukul 10.00, 11.00, dan 13.00.
+- Menjawab <InlineMath math="4" /> biasanya melewatkan pukul 09.00 karena baterai belum penuh, padahal **baterai yang belum penuh tetap terisi ulang** oleh kelebihan sesudahnya.
+- Menjawab <InlineMath math="6" /> ikut menghitung pukul 08.00 atau 14.00, padahal pada pukul 08.00 baterai sudah di cadangan dan setelah pukul 14.00 tidak ada lagi energi terbuang.
+
+Jadi, ada <InlineMath math="5" /> pilihan jam mulai yang membuat total biaya PLN hari itu tidak bertambah.

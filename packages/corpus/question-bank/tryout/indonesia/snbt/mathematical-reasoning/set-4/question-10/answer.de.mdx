@@ -1,21 +1,50 @@
-Die Fahrgastzahl auf einem Abschnitt ist **die Zahl im Bus beim Verlassen des Abschnittsbeginns**. Berechne sie für alle fünf Abschnitte.
+Gesucht sind die <InlineMath math="3" /> Stipendiaten unter <InlineMath math="6" /> Bewerbern. Der Plan: Berechne <InlineMath math="W" /> mit der Regel der zwei höchsten Bewertungen, berechne die Endnoten, sortiere aus, wer die Bedingungen nicht erfüllt, und bilde dann die Rangfolge. **Drei kleine Regeln entscheiden das Ergebnis**: wie <InlineMath math="W" /> berechnet wird, die Bedingung für jede Komponente und die Regel bei Gleichstand.
 
-# Fahrgäste auf jedem Abschnitt
+# Die Interviewnote jeder Person
 
-Die Last jedes Abschnitts wird **der Reihe nach ab der Anfangsstation berechnet**.
+<InlineMath math="W" /> ist der Mittelwert der zwei höchsten Bewertungen, also **fällt die niedrigste Bewertung jeder Person weg**:
 
-| Abschnitt | Fahrgäste |
-| :---: | :---: |
-| Anfangsstation bis Haltestelle A | 25 |
-| Haltestelle A bis B | <InlineMath math="25+12-8=29" /> |
-| Haltestelle B bis C | <InlineMath math="29+6-10=25" /> |
-| Haltestelle C bis D | <InlineMath math="25+9-7=27" /> |
-| Haltestelle D bis Endstation | <InlineMath math="27+14-6=35" /> |
+<BlockMath math="\begin{aligned}
+W_{\text{Ayu}} &= \tfrac{84+78}{2}=81\\
+W_{\text{Bayu}} &= \tfrac{66+64}{2}=65\\
+W_{\text{Citra}} &= \tfrac{90+88}{2}=89\\
+W_{\text{Dimas}} &= \tfrac{90+88}{2}=89\\
+W_{\text{Eka}} &= \tfrac{84+80}{2}=82\\
+W_{\text{Fajar}} &= \tfrac{82+82}{2}=82
+\end{aligned}" />
 
-# Der vollste Abschnitt
+# Die Endnote jeder Person
 
-Der größte Wert ist 35, auf dem Abschnitt von Haltestelle D bis zur Endstation. An Haltestelle D steigen die meisten ein, entscheidend ist aber **der laufende Saldo aus Ein- und Aussteigen seit dem Start**.
+Setze alle Werte in <InlineMath math="N=0{,}40T+0{,}25W+0{,}20R+0{,}15P" /> ein:
 
-Der Abschnitt von A bis B war mit 29 hoch, fiel aber wieder, als an Haltestelle B 10 Fahrgäste ausstiegen.
+<BlockMath math="\begin{aligned}
+N_{\text{Ayu}} &= 34{,}4+20{,}25+16+12=82{,}65\\
+N_{\text{Bayu}} &= 36+16{,}25+17{,}6+13{,}5=83{,}35\\
+N_{\text{Citra}} &= 31{,}2+22{,}25+17{,}2+12=82{,}65\\
+N_{\text{Dimas}} &= 38{,}4+22{,}25+18+9{,}3=87{,}95\\
+N_{\text{Eka}} &= 34{,}4+20{,}5+16{,}4+11{,}7=83\\
+N_{\text{Fajar}} &= 33{,}6+20{,}5+17+11{,}4=82{,}5
+\end{aligned}" />
 
-Am vollsten ist der Bus also auf dem Abschnitt **von Haltestelle D bis zur Endstation**.
+Alle Endnoten liegen bei mindestens <InlineMath math="80" />, also **scheidet über die Endnote niemand aus**. Aussortiert wird erst über die Komponentenbedingung.
+
+# Wer die Bedingungen nicht erfüllt
+
+Dimas hat die höchste Endnote, aber <InlineMath math="P=62" /> liegt unter <InlineMath math="65" />. Eine einzige schwache Komponente reicht, um **Dimas auszuschließen**.
+
+Bayu hat <InlineMath math="W=65" />. Die Regel verlangt „mindestens <InlineMath math="65" />“, also besteht genau <InlineMath math="65" /> noch. Eka hat von einer Person die Bewertung <InlineMath math="60" /> bekommen, aber die Bedingung gilt für <InlineMath math="W" />, nicht für jede einzelne Bewertung. Ekas <InlineMath math="W" /> beträgt <InlineMath math="82" />, also besteht Eka ebenfalls.
+
+# Rangfolge und Gleichstand
+
+Die Rangfolge der Zugelassenen lautet: Bayu <InlineMath math="83{,}35" />, Eka <InlineMath math="83" />, dann Ayu und Citra beide mit <InlineMath math="82{,}65" />, und Fajar <InlineMath math="82{,}5" />. Für den dritten Platz **entscheidet bei Gleichstand der Wert** <InlineMath math="T" />: Ayu hat <InlineMath math="86" />, Citra hat <InlineMath math="78" />, also kommt Ayu zuerst.
+
+# Warum die anderen Antworten falsch sind
+
+Jede falsche Antwort entsteht aus **einer falsch gelesenen Auswahlregel**.
+
+- Bayu, Dimas und Eka entsteht, wenn du die Bedingung von mindestens <InlineMath math="65" /> für jede Komponente übersiehst, sodass Dimas dabei ist.
+- Ayu, Citra und Fajar entsteht, wenn du <InlineMath math="W" /> als Mittelwert aller drei Bewertungen berechnest. Bayu fällt auf <InlineMath math="W=63{,}33\ldots" /> und scheidet aus, Ekas Endnote sinkt auf <InlineMath math="N\approx81{,}17" />, und Fajar rückt nach.
+- Bayu, Citra und Eka entsteht, wenn du den Gleichstand von Ayu und Citra falsch herum oder ohne <InlineMath math="T" /> auflöst.
+- Ayu, Citra und Eka entsteht, wenn du „mindestens <InlineMath math="65" />“ als „mehr als <InlineMath math="65" />“ liest, sodass Bayu ausscheidet.
+
+Die Stipendien gehen in diesem Jahr also an Ayu, Bayu und Eka.

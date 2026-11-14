@@ -1,18 +1,50 @@
-For each box, compute the volumetric weight, compare it with the actual weight, then **round the larger one up**.
+You need to check every bus A departure, not just one example, and count the ones whose wait qualifies for a free transfer. Three rules decide it: **the walk takes at least <InlineMath math="4\text{ minutes}" />**, **the transfer is free if the wait is at most <InlineMath math="15\text{ minutes}" />**, and the last bus B leaves at 23:52.
 
-# A small, heavy box
+# How many buses A run
 
-The book: its volumetric weight is <InlineMath math="\tfrac{20\cdot15\cdot5}{6{,}000}=0.25" /> kg, far below the actual 2.3 kg. The charge uses 2.3 kg rounded up to 3 kg, so the second statement is true.
+Bus A leaves every <InlineMath math="18\text{ minutes}" /> from 21:00 to 23:42. From 21:00 to 23:42 is <InlineMath math="162\text{ minutes}" />.
 
-This example also shows that for heavy parcels **the cost is set by the actual weight**. A smaller box for the book would not change the cost, so the first statement is false.
+<BlockMath math="\frac{162}{18}+1=9+1=10" />
 
-# A large box and a cube
+So there are **ten departures, and every one needs checking**.
 
-<BlockMath math="\begin{aligned}
-\frac{60\cdot50\cdot40}{6{,}000}&=\frac{120{,}000}{6{,}000}=20\text{ kg}\\
-\frac{30\cdot30\cdot30}{6{,}000}&=\frac{27{,}000}{6{,}000}=4.5\text{ kg}
-\end{aligned}" />
+# The wait for each departure
 
-The large box is charged 20 kg because 20 kg is more than 8 kg, so the third statement is true. The cube's volumetric weight is 4.5 kg, **not 5 kg**. Rounding up applies only to the charged weight, so the fourth statement is false.
+Bus A reaches Halte Pasar <InlineMath math="25\text{ minutes}" /> after it leaves. Riders take the first bus B that leaves at least <InlineMath math="4\text{ minutes}" /> after bus A arrives. The wait runs **from bus A's arrival to bus B's departure**.
 
-So the first statement is **false**, the second is **true**, the third is **true**, and the fourth is **false**.
+| Bus A leaves | Reaches Halte Pasar | Bus B taken | Wait | Free transfer |
+| :---: | :---: | :---: | :---: | :---: |
+| 21:00 | 21:25 | 21:52 | <InlineMath math="27\text{ minutes}" /> | no |
+| 21:18 | 21:43 | 21:52 | <InlineMath math="9\text{ minutes}" /> | yes |
+| 21:36 | 22:01 | 22:22 | <InlineMath math="21\text{ minutes}" /> | no |
+| 21:54 | 22:19 | 22:52 | <InlineMath math="33\text{ minutes}" /> | no |
+| 22:12 | 22:37 | 22:52 | <InlineMath math="15\text{ minutes}" /> | yes |
+| 22:30 | 22:55 | 23:22 | <InlineMath math="27\text{ minutes}" /> | no |
+| 22:48 | 23:13 | 23:22 | <InlineMath math="9\text{ minutes}" /> | yes |
+| 23:06 | 23:31 | 23:52 | <InlineMath math="21\text{ minutes}" /> | no |
+| 23:24 | 23:49 | none | none | no |
+| 23:42 | 00:07 | none | none | no |
+
+# Three borderline cases
+
+Three rows are easy to misread.
+
+- The 22:12 bus A waits exactly <InlineMath math="15\text{ minutes}" />. The rule says **at most <InlineMath math="15\text{ minutes}" />**, so exactly <InlineMath math="15\text{ minutes}" /> is still free.
+- The 21:54 bus A arrives at 22:19. The 22:22 bus B leaves only <InlineMath math="3\text{ minutes}" /> later, less than the walk, so its riders wait for the 22:52 bus.
+- The 23:24 bus A arrives at 23:49, only <InlineMath math="3\text{ minutes}" /> before the last bus B. The 23:42 bus A arrives at 00:07, after the last bus B has left. Riders on these two buses get no bus B at all.
+
+The departures with a free transfer are 21:18, 22:12, and 22:48, so there are <InlineMath math="3" /> of them.
+
+# Checking with the repeating pattern
+
+Bus A repeats every <InlineMath math="18\text{ minutes}" /> and bus B every <InlineMath math="30\text{ minutes}" />, so the waits repeat every <InlineMath math="90\text{ minutes}" />, their least common multiple. The first <InlineMath math="90\text{ minutes}" /> hold **two free transfers**, 21:18 and 22:12. The next <InlineMath math="90\text{ minutes}" /> would give 22:48 and 23:42. But the 23:42 bus A gets no bus B because bus B has stopped running, so only 22:48 is left. The total is still <InlineMath math="2+1=3" />.
+
+# Traps to avoid
+
+Each other answer comes from **breaking one rule**.
+
+- The answer <InlineMath math="2" /> treats exactly <InlineMath math="15\text{ minutes}" /> as not free.
+- The answer <InlineMath math="4" /> carries the <InlineMath math="90\text{-minute}" /> pattern on without checking the last bus B.
+- The answer <InlineMath math="5" /> ignores the walk, so the 21:54 and 23:24 buses A seem to catch a bus B after a <InlineMath math="3\text{-minute}" /> wait.
+
+So <InlineMath math="3" /> bus A departures give their riders a free transfer.

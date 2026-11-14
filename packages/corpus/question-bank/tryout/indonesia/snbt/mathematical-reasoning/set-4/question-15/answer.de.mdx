@@ -1,21 +1,43 @@
-Berechne Volumen, Mantelfläche und Materialfläche beider Entwürfe. **Gleichheit in einer Größe bedeutet nicht Gleichheit in einer anderen**, also prüfe jede Aussage mit ihrer eigenen Formel.
+Gesucht ist der größte Vorstellungsgewinn, nicht die größte Ticketeinnahme, und der Preis muss die Zuschauerbedingung erfüllen. Der Plan: Schreibe den Gewinn als Formel im Preis <InlineMath math="p" /> (in Tausend Rupiah), finde seinen Gipfel, mache aus der Zuschauerbedingung eine Preisgrenze und **prüfe dann die erlaubten Vielfachen von** <InlineMath math="5\text{ Tausend}" />.
 
-# Volumen und Änderung des Radius
+# Die Gewinnformel
+
+Die Zuschauerzahl ist <InlineMath math="n=280-3{,}2p" />. Jede Person bringt <InlineMath math="p\text{ Tausend}" /> für das Ticket und <InlineMath math="10\text{ Tausend}" /> Snackgewinn, also **ist jede Person** <InlineMath math="(p+10)\text{ Tausend}" /> **wert**:
+
+<BlockMath math="K(p)=(p+10)(280-3{,}2p)-2{.}000" />
+
+Der Teil <InlineMath math="(p+10)(280-3{,}2p)" /> ist null bei <InlineMath math="p=-10" /> und <InlineMath math="p=87{,}5" />. Sein Graph ist eine nach unten geöffnete Parabel, also liegt der Gipfel mittig zwischen den Nullstellen, bei <InlineMath math="p=\tfrac{-10+87{,}5}{2}=38{,}75" />. Ohne Zuschauerbedingung wäre <InlineMath math="40\text{ Tausend}" /> der beste Preis, das Vielfache von <InlineMath math="5\text{ Tausend}" /> am nächsten am Gipfel.
+
+# Die Preisgrenze aus der Zuschauerbedingung
+
+Mindestens <InlineMath math="160" /> Zuschauer ergeben **eine obere Grenze für den Preis**:
 
 <BlockMath math="\begin{aligned}
-V_A&=\pi\cdot4^2\cdot10=160\pi\\
-V_B&=\pi\cdot5^2\cdot6{,}4=160\pi
+280-3{,}2p &\ge 160\\
+3{,}2p &\le 120\\
+p &\le 37{,}5
 \end{aligned}" />
 
-Die Volumen sind gleich, also ist die erste Aussage wahr. Das Volumen ist proportional zu <InlineMath math="r^2" />, also **vervierfacht ein doppelter Radius das Volumen**. Die dritte Aussage ist wahr.
+Ein Preis von <InlineMath math="40\text{ Tausend}" /> bringt nur <InlineMath math="152" /> Zuschauer, also **fällt der beste Preis ohne Bedingung weg**. Erlaubt sind <InlineMath math="35\text{ Tausend}" /> oder weniger.
 
-# Mantel und Materialfläche
+# Der größte Gewinn unter der Grenze
+
+Links vom Gipfel steigt der Gewinn, wenn der Preis steigt. Unter den erlaubten Preisen liefert also **der höchste erlaubte Preis den größten Gewinn**, nämlich <InlineMath math="35\text{ Tausend}" />:
 
 <BlockMath math="\begin{aligned}
-\text{Mantel A}&=2\pi\cdot4\cdot10=80\pi,\quad \text{Material A}=32\pi+80\pi=112\pi\\
-\text{Mantel B}&=2\pi\cdot5\cdot6{,}4=64\pi,\quad \text{Material B}=50\pi+64\pi=114\pi
+K(35) &= 45\times168-2{.}000=7{.}560-2{.}000=5{.}560\\
+K(30) &= 40\times184-2{.}000=7{.}360-2{.}000=5{.}360
 \end{aligned}" />
 
-Entwurf B braucht etwas mehr Material, <InlineMath math="114\pi" /> gegenüber <InlineMath math="112\pi" />, also ist die zweite Aussage falsch. Der Mantel von B ist kleiner als der von A, also ist die vierte Aussage falsch.
+Prüfe auch den Preis, der alle Plätze füllt, <InlineMath math="25\text{ Tausend}" />: <InlineMath math="K(25)=35\times200-2{.}000=5{.}000" />. Alles liegt unter <InlineMath math="5{.}560\text{ Tausend}" />.
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **wahr** und die vierte **falsch**.
+# Warum die anderen Antworten falsch sind
+
+Jede falsche Antwort entsteht aus **einer vergessenen Bedingung oder einem vergessenen Gewinnteil**.
+
+- <InlineMath math="\text{Rp}3{.}880{.}000" /> entsteht, wenn du den Snackgewinn vergisst: <InlineMath math="35\times168-2{.}000=3{.}880" />.
+- <InlineMath math="\text{Rp}5{.}000{.}000" /> entsteht, wenn du den Preis wählst, der alle Plätze füllt, <InlineMath math="\text{Rp}25{.}000" />.
+- <InlineMath math="\text{Rp}5{.}480{.}000" /> entsteht, wenn du den Gipfel der reinen Ticketeinnahme nimmst, <InlineMath math="\text{Rp}45{.}000" />, der zudem die Zuschauerbedingung verletzt.
+- <InlineMath math="\text{Rp}5{.}600{.}000" /> entsteht, wenn du die Bedingung von <InlineMath math="160" /> Zuschauern übersiehst und <InlineMath math="\text{Rp}40{.}000" /> mit nur <InlineMath math="152" /> Zuschauern nimmst.
+
+Der größte Vorstellungsgewinn, der die Bedingung des Verleihs erfüllt, beträgt also <InlineMath math="\text{Rp}5{.}560{.}000" />, bei einem Ticketpreis von <InlineMath math="\text{Rp}35{.}000" />.

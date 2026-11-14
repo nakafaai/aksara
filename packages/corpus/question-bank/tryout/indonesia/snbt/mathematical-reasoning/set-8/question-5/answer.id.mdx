@@ -1,17 +1,39 @@
-Waktu total terdiri atas **waktu bergerak** dan **waktu berhenti**. Hitung keduanya terpisah, lalu jumlahkan.
+Kamu membandingkan pendapatan panitia untuk dua cara membagi tahap. Cara paling aman adalah **membandingkan harga setiap nomor tiket** pada kedua pembagian, lalu menjumlahkan selisihnya, dan terakhir mengambil bagian yang benar-benar diterima panitia.
 
-# Waktu bergerak
+# Batas tahap yang bergeser
 
-Dari lantai 1 ke lantai 12, lift melewati <InlineMath math="12-1=11" /> lantai, **berapa kali pun ia berhenti di tengah**.
+Pada pembagian baru, early bird mencakup nomor <InlineMath math="1" /> sampai <InlineMath math="200" />. Presale tetap berisi <InlineMath math="300" /> tiket, tetapi sekarang dimulai dari nomor <InlineMath math="201" />, jadi berakhir di nomor <InlineMath math="500" />. Normal mencakup nomor <InlineMath math="501" /> sampai <InlineMath math="1{.}000" />. Artinya, **batas kedua ikut bergeser**, bukan hanya batas pertama.
 
-<BlockMath math="11\cdot2=22\text{ detik}" />
+| Nomor tiket | Harga sekarang | Harga baru | Selisih per tiket |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> sampai <InlineMath math="150" /> | <InlineMath math="\text{Rp}120{.}000" /> | <InlineMath math="\text{Rp}120{.}000" /> | <InlineMath math="0" /> |
+| <InlineMath math="151" /> sampai <InlineMath math="200" /> | <InlineMath math="\text{Rp}150{.}000" /> | <InlineMath math="\text{Rp}120{.}000" /> | <InlineMath math="-\text{Rp}30{.}000" /> |
+| <InlineMath math="201" /> sampai <InlineMath math="450" /> | <InlineMath math="\text{Rp}150{.}000" /> | <InlineMath math="\text{Rp}150{.}000" /> | <InlineMath math="0" /> |
+| <InlineMath math="451" /> sampai <InlineMath math="500" /> | <InlineMath math="\text{Rp}200{.}000" /> | <InlineMath math="\text{Rp}150{.}000" /> | <InlineMath math="-\text{Rp}50{.}000" /> |
+| <InlineMath math="501" /> sampai <InlineMath math="1{.}000" /> | <InlineMath math="\text{Rp}200{.}000" /> | <InlineMath math="\text{Rp}200{.}000" /> | <InlineMath math="0" /> |
 
-# Waktu berhenti
+# Selisih pendapatan
 
-Lift berhenti di lantai 4, 9, dan 12. Berhenti di lantai 12 juga dihitung, karena **waktunya baru selesai saat pintu tertutup kembali**.
+Hanya dua kelompok yang harganya berubah, masing-masing berisi <InlineMath math="50" /> tiket. Jumlah harga tiket turun sebesar:
 
-<BlockMath math="3\cdot12=36\text{ detik}" />
+<BlockMath math="\begin{aligned}
+50\cdot30{.}000+50\cdot50{.}000&=1{.}500{.}000+2{.}500{.}000\\
+&=4{.}000{.}000
+\end{aligned}" />
 
-Totalnya <InlineMath math="22+36=58" /> detik.
+Panitia hanya menerima <InlineMath math="90\%" /> dari harga tiket, jadi **penurunan yang dirasakan panitia juga hanya sembilan per sepuluh bagian**:
 
-Jadi, waktu yang diperlukan adalah **58 detik**.
+<BlockMath math="90\%\cdot4{.}000{.}000=3{.}600{.}000" />
+
+Coba cek dengan total harga seluruh tiket. Pembagian sekarang memberi <InlineMath math="150\cdot120{.}000+300\cdot150{.}000+550\cdot200{.}000=173{.}000{.}000" /> rupiah. Pembagian baru memberi <InlineMath math="200\cdot120{.}000+300\cdot150{.}000+500\cdot200{.}000=169{.}000{.}000" /> rupiah. Selisihnya <InlineMath math="4{.}000{.}000" /> rupiah, sama dengan perhitungan per kelompok.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain melewatkan satu bagian perhitungan.
+
+- Turun <InlineMath math="\text{Rp}1{.}350{.}000" /> hanya menghitung tiket nomor <InlineMath math="151" /> sampai <InlineMath math="200" />, lalu mengambil <InlineMath math="90\%" />. Bergesernya **batas presale ke normal** terlewat.
+- Turun <InlineMath math="\text{Rp}1{.}500{.}000" /> melewatkan pergeseran batas kedua dan juga bagian <InlineMath math="90\%" /> untuk panitia.
+- Turun <InlineMath math="\text{Rp}2{.}250{.}000" /> hanya menghitung tiket nomor <InlineMath math="451" /> sampai <InlineMath math="500" />, lalu mengambil <InlineMath math="90\%" />.
+- Turun <InlineMath math="\text{Rp}4{.}000{.}000" /> adalah penurunan jumlah harga tiket, padahal panitia hanya menerima <InlineMath math="90\%" /> darinya.
+
+Jadi, dengan pembagian tahap itu pendapatan panitia turun <InlineMath math="\text{Rp}3{.}600{.}000" />.

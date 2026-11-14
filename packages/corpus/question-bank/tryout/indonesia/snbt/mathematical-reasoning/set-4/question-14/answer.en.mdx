@@ -1,17 +1,53 @@
-The volume of a cylinder is **base area times height**. Compute the volume of design A, then find the height of design C that gives the same volume.
+Each statement needs its own calculation from the same formulas. The plan: write the number of viewers and the profit as formulas in the price <InlineMath math="p" /> (in thousands of rupiah), then test each statement. Keep **ticket revenue and show profit** apart, because profit also includes snacks and the fixed cost.
 
-# Volume of design A
+# The formulas
 
-<BlockMath math="V_A=\pi\cdot4^2\cdot10=160\pi\text{ cm}^3" />
+Every <InlineMath math="5\text{ thousand}" /> down adds <InlineMath math="16" /> viewers, so the number of viewers is <InlineMath math="n=280-3.2p" />, at most <InlineMath math="200" />. **The snack gain can be merged with the ticket price**, because both are counted per viewer:
 
-# Height of design C
+<BlockMath math="\text{profit}=(p+10)\,n-2{,}000\text{ thousand}" />
+
+# The first statement
+
+Compare the ticket revenue at the two prices:
 
 <BlockMath math="\begin{aligned}
-\pi\cdot2^2\cdot t&=160\pi\\
-4t&=160\\
-t&=40
+p=50:\quad 50\times120 &= 6{,}000\text{ thousand}\\
+p=45:\quad 45\times136 &= 6{,}120\text{ thousand}
 \end{aligned}" />
 
-The radius is halved, so the base area becomes a quarter. To keep the volume, **the height must become four times as large**, from 10 cm to 40 cm.
+The price falls, but **the extra viewers more than make up** for the cut. The first statement is **true**.
 
-So the height of a design C can is **40 cm**.
+# The second statement
+
+Compute the profit at both prices:
+
+<BlockMath math="\begin{aligned}
+p=30:\quad (30+10)\times184-2{,}000 &= 5{,}360\text{ thousand}\\
+p=50:\quad (50+10)\times120-2{,}000 &= 5{,}200\text{ thousand}
+\end{aligned}" />
+
+The results differ. <InlineMath math="\text{Rp}30{,}000" /> and <InlineMath math="\text{Rp}50{,}000" /> are the same distance from <InlineMath math="\text{Rp}40{,}000" />, but **the profit peak isn't exactly at** <InlineMath math="\text{Rp}40{,}000" />. The peak sits midway between the roots of <InlineMath math="(p+10)(280-3.2p)" />, at <InlineMath math="\tfrac{-10+87.5}{2}=38.75" />, so the two prices aren't symmetric. The second statement is **false**.
+
+# The third statement
+
+Every seat is filled when <InlineMath math="280-3.2p\ge200" />, that is, <InlineMath math="p\le25" />. **The highest price that fills the house** is <InlineMath math="\text{Rp}25{,}000" />:
+
+<BlockMath math="\begin{aligned}
+p=25:\quad (25+10)\times200-2{,}000 &= 5{,}000\text{ thousand}\\
+p=50:\quad (50+10)\times120-2{,}000 &= 5{,}200\text{ thousand}
+\end{aligned}" />
+
+A full studio isn't automatically the most profitable. The third statement is **true**.
+
+# The fourth statement
+
+Test the prices around <InlineMath math="\text{Rp}80{,}000" />, since prices must be multiples of <InlineMath math="\text{Rp}5{,}000" />:
+
+<BlockMath math="\begin{aligned}
+p=80:\quad n &= 280-256=24,\quad (90)(24)-2{,}000=160\text{ thousand}\\
+p=85:\quad n &= 280-272=8,\quad (95)(8)-2{,}000=-1{,}240\text{ thousand}
+\end{aligned}" />
+
+At <InlineMath math="\text{Rp}80{,}000" /> the profit is still positive, while at <InlineMath math="\text{Rp}85{,}000" /> it's already a loss. Higher prices bring even fewer viewers or none, so **the profit stays negative**. The fourth statement is **true**.
+
+So the first statement is true, the second is false, the third is true, and the fourth is true.

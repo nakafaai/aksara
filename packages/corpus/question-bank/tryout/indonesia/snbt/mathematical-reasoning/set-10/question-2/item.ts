@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "bakery-plan",
+  stimulus: "ferry-crossing",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "40 roti" },
-        { correct: true, label: "70 roti" },
-        { correct: false, label: "80 roti" },
-        { correct: false, label: "110 roti" },
-        { correct: false, label: "140 roti" },
+        { correct: false, label: "$$\\text{Rp}1{.}700{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}1{.}800{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}1{.}850{.}000{,}00$$" },
+        { correct: true, label: "$$\\text{Rp}1{.}900{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}2{.}100{.}000{,}00$$" },
       ],
     },
   },

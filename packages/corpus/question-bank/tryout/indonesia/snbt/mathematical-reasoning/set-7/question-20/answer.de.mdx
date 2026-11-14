@@ -1,19 +1,28 @@
-Die Last ist in beiden Richtungen gleich, die ganze Strecke von 12 km verbraucht den Akku also mit einer Rate. Die Bedingung lautet: **Die Flugzeit mit dieser Last ist mindestens so lang wie die Reisezeit**.
+Gesucht ist der Zeitpunkt, an dem Rakas gesamte Unterrichtszeit zum ersten Mal <InlineMath math="22" /> Stunden erreicht. Der Plan: Rechne das Ziel in Minuten um, addiere die Unterrichtszeit Tag für Tag mit der Stundenlänge des jeweiligen Tages und finde dann die genaue Minute am letzten Tag, wobei du die Pause beachtest.
 
-# Reisezeit
+# Unterrichtszeit an jedem Tag
 
-<BlockMath math="\frac{12}{0{,}6}=20\text{ Minuten}" />
-
-# Schwerste Last
+Das Ziel von <InlineMath math="22" /> Stunden sind <InlineMath math="22\cdot60=1{.}320" /> Minuten. **Die Stundenlänge hängt vom Tag ab**, also rechnest du jeden Tag mit seiner eigenen Zeile.
 
 <BlockMath math="\begin{aligned}
-30-4m&\ge20\\
-4m&\le10\\
-m&\le2{,}5
+\text{Montag} &= 9\cdot40=360\text{ min} \\
+\text{Dienstag} &= 9\cdot45=405\text{ min} \\
+\text{Mittwoch} &= 9\cdot45=405\text{ min}
 \end{aligned}" />
 
-Mit 2,5 kg hält ein voller Akku genau 20 Minuten, die Strecke **lässt sich also gerade noch schaffen**. Eine schwerere Last leert den Akku vor der Rückkehr.
+Bis zum Ende des Mittwochs sind es <InlineMath math="360+405+405=1{.}170" /> Minuten. Es fehlen noch <InlineMath math="1{.}320-1{.}170=150" /> Minuten, das Ziel wird also am Donnerstag erreicht.
 
-Auch 1 kg, 1,5 kg, 2 kg und 2,25 kg ermöglichen die Strecke, sind aber nicht die schwerste Last.
+# Die genaue Minute am Donnerstag
 
-Die schwerste mögliche Last beträgt also **2,5 kg**.
+Am Donnerstag beginnt Stunde <InlineMath math="1" /> um 07.15 Uhr. Die Stunden <InlineMath math="1" /> bis <InlineMath math="3" /> bringen <InlineMath math="3\cdot45=135" /> Minuten und enden um 09.30 Uhr. **Die Pause von 09.30 Uhr bis 09.45 Uhr bringt keine Unterrichtszeit**, also kommen die restlichen <InlineMath math="150-135=15" /> Minuten aus Stunde <InlineMath math="4" />, die um 09.45 Uhr beginnt.
+
+Das Ziel ist <InlineMath math="15" /> Minuten nach 09.45 Uhr erreicht, also um 10.00 Uhr. Zur Probe: <InlineMath math="1{.}170+135+15=1{.}320" /> Minuten, genau <InlineMath math="22" /> Stunden.
+
+# Die falschen Antworten
+
+- Donnerstag 09.00 Uhr entsteht, wenn **jede Stunde als <InlineMath math="45" /> Minuten gezählt wird**, auch am Montag. Bis Mittwoch sind es dann <InlineMath math="1{.}215" /> Minuten, und es bleiben <InlineMath math="105" /> Minuten.
+- Donnerstag 09.45 Uhr entsteht, wenn du vergisst, die erste Pause zu überspringen. Dann werden die <InlineMath math="150" /> Minuten direkt zu 07.15 Uhr addiert.
+- Donnerstag 10.15 Uhr entsteht, wenn die erste Pause mit <InlineMath math="30" /> Minuten gerechnet wird, obwohl <InlineMath math="30" /> Minuten die Länge der zweiten Pause ist.
+- Donnerstag 10.30 Uhr ist das Ende von Stunde <InlineMath math="4" />, aber das Ziel ist schon mitten in dieser Stunde erreicht.
+
+Rakas gesamte Unterrichtszeit erreicht also zum ersten Mal am Donnerstag um 10.00 Uhr <InlineMath math="22" /> Stunden.

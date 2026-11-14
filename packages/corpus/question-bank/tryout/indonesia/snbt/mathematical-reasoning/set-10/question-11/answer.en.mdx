@@ -1,15 +1,44 @@
-Fix **the restricted places** first, then arrange the other students in the places left.
+All four claims depend on the boxes and jugs each station gets. Here's the plan: first find the planned cups, boxes, and jugs for every station, then judge each claim with **the cups actually inside the boxes**, not just the planned cups.
 
-# The middle place and left-right order
+# Planned cups and boxes at each station
 
-If Citra is in the middle, the other four fill 4 places in <InlineMath math="4!=24" /> ways. The first statement is true.
+Planned cups are <InlineMath math="110\%" /> of the expected use, and runners at stations 3 to 5 take <InlineMath math="2" /> cups. Boxes are rounded up station by station because **a box's contents aren't shared with another station**.
 
-Each arrangement with Ani left of Budi pairs with the same arrangement where Ani and Budi swap. **The pairing is one to one**, so the two counts are equal, 60 each. The second statement is true.
+| Station | Runners | Planned cups | Boxes | Cups in the boxes |
+| :---: | :---: | :---: | :---: | :---: |
+| 1 | <InlineMath math="1{,}200" /> | <InlineMath math="1{,}320" /> | <InlineMath math="14" /> | <InlineMath math="1{,}400" /> |
+| 2 | <InlineMath math="1{,}180" /> | <InlineMath math="1{,}298" /> | <InlineMath math="13" /> | <InlineMath math="1{,}300" /> |
+| 3 | <InlineMath math="1{,}140" /> | <InlineMath math="2{,}508" /> | <InlineMath math="26" /> | <InlineMath math="2{,}600" /> |
+| 4 | <InlineMath math="1{,}100" /> | <InlineMath math="2{,}420" /> | <InlineMath math="25" /> | <InlineMath math="2{,}500" /> |
+| 5 | <InlineMath math="1{,}050" /> | <InlineMath math="2{,}310" /> | <InlineMath math="24" /> | <InlineMath math="2{,}400" /> |
 
-# Choosing three and filling both ends
+# The station with the most runners
 
-If only 3 students pose, order still matters, so there are <InlineMath math="5\cdot4\cdot3=60" /> arrangements. The number 10 only counts the ways to choose 3 students without order. The third statement is false.
+The most runners pass station 1, <InlineMath math="1{,}200" /> of them, but station 1 needs only <InlineMath math="14" /> boxes. Station 3 needs <InlineMath math="26" /> boxes, because **each of its runners takes two cups**. The first claim is false.
 
-Dodi and Eka can take the two ends in 2 ways, and the other three fill the middle in <InlineMath math="3!=6" /> ways, so <InlineMath math="2\cdot6=12" /> in total, **not 6**. The fourth statement is false.
+# Extra runners at station three
 
-So the first statement is **true**, the second is **true**, the third is **false**, and the fourth is **false**.
+Station 3 gets <InlineMath math="26" /> boxes, so it has <InlineMath math="2{,}600" /> cups.
+
+<BlockMath math="\begin{aligned}
+1{,}290\cdot2=2{,}580\le2{,}600
+\end{aligned}" />
+
+A need of <InlineMath math="2{,}580" /> cups is already more than the <InlineMath math="2{,}508" /> planned cups, but **rounding up to whole boxes adds spare cups**. There are still enough cups, so the second claim is true.
+
+# Half of the jugs for stations three and four
+
+Each station's water is its planned cups times <InlineMath math="0.2" /> litres, divided by <InlineMath math="19" /> litres and **rounded up station by station**.
+
+<BlockMath math="\begin{aligned}
+\text{jugs for stations 1 to 5} &= 14+14+27+26+25=106\\
+\text{jugs for stations 3 and 4} &= 27+26=53=\tfrac{106}{2}
+\end{aligned}" />
+
+These come from <InlineMath math="264" />, <InlineMath math="259.6" />, <InlineMath math="501.6" />, <InlineMath math="484" />, and <InlineMath math="462" /> litres of water. Stations 3 and 4 use exactly half, so the third claim is true.
+
+# Extra runners at station two
+
+Station 2 gets <InlineMath math="13" /> boxes, so it has only <InlineMath math="1{,}300" /> cups. The rounding leaves just <InlineMath math="1{,}300-1{,}298=2" /> spare cups here, so **the spare from rounding at station 2 is almost nothing**. Since <InlineMath math="1{,}310>1{,}300" />, the fourth claim is false.
+
+So the first claim is **false**, the second is **true**, the third is **true**, and the fourth is **false**.

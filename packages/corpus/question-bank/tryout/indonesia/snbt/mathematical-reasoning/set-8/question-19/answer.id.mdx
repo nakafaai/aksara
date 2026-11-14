@@ -1,15 +1,33 @@
-Skala menghubungkan panjang pada peta dengan panjang sebenarnya. Untuk peta ini, **1 cm mewakili 250.000 cm atau 2,5 km**.
+Kamu mencari peluang dua donor **saling dapat memberi darah**, artinya pemberian harus cocok ke dua arah. Rencananya: cari tahu kapan kecocokan dua arah itu mungkin, hitung pasangan yang memenuhi, lalu bagi dengan banyak semua pasangan.
 
-# Membaca skala
+# Kapan dua orang saling cocok
 
-Jarak 10 km sama dengan <InlineMath math="\tfrac{10}{2{,}5}=4" /> cm pada peta. Pernyataan pertama benar.
+Lihat syarat ABO lebih dulu. Donor O dapat memberi kepada pasien A, tetapi donor A tidak dapat memberi kepada pasien O. Begitu juga A dan B ke AB, sedangkan AB tidak bisa kembali ke A atau B. Golongan A dan B bahkan tidak cocok ke arah mana pun. Jadi **dua golongan ABO yang berbeda tidak pernah cocok ke dua arah**, dan kedua orang harus bergolongan ABO sama.
 
-Nilai 250.000 cm sama dengan 2,5 km, **bukan 25 km**, karena 1 km sama dengan 100.000 cm. Pernyataan kedua salah.
+Syarat rhesus bekerja dengan cara yang sama. Rhesus negatif dapat memberi kepada rhesus positif, tetapi tidak sebaliknya. Jadi rhesusnya juga harus sama. Kesimpulannya, dua donor saling cocok tepat ketika golongan darahnya persis sama.
 
-# Mengganti skala
+# Menghitung pasangan
 
-Pada skala 1 : 500.000, setiap 1 cm mewakili 5 km, dua kali lebih jauh. Jarak sebenarnya yang sama digambar **setengah panjang semula**, jadi pernyataan ketiga benar.
+Banyak cara memilih dua donor dari <InlineMath math="40" /> donor, tanpa memperhatikan urutan, adalah <InlineMath math="\binom{40}{2}=780" />. Pasangan dengan golongan sama dihitung per golongan:
 
-Fotokopi yang diperbesar itu membuat setiap panjang pada peta menjadi dua kali, sedangkan jarak sebenarnya tetap. Jadi 2 cm pada hasil fotokopi mewakili 2,5 km, dan 1 cm mewakili 1,25 km. Skalanya menjadi 1 : 125.000, **bukan 1 : 500.000**. Pernyataan keempat salah.
+<BlockMath math="\begin{aligned}
+\binom{9}{2}+\binom{8}{2}+\binom{3}{2}+\binom{14}{2}+\binom{2}{2}+\binom{2}{2}&=36+28+3+91+1+1\\
+&=160
+\end{aligned}" />
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **benar**, dan keempat **salah**.
+Golongan <InlineMath math="\mathrm{A}^-" /> dan <InlineMath math="\mathrm{AB}^-" /> masing-masing hanya punya satu donor, jadi **tidak menyumbang pasangan**. Peluangnya:
+
+<BlockMath math="P=\frac{160}{780}=\frac{8}{39}" />
+
+Coba cek dengan menghitung secara berurutan. Banyak pasangan berurutan dengan golongan sama adalah <InlineMath math="2\cdot160=320" />, dan banyak semua pasangan berurutan <InlineMath math="40\cdot39=1{.}560" />. Hasilnya <InlineMath math="\tfrac{320}{1{.}560}=\tfrac{8}{39}" />, sama.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain memakai **syarat atau cara hitung yang salah**.
+
+- <InlineMath math="\tfrac{607}{780}" /> membaca syaratnya sebagai cocok ke paling sedikit satu arah. Ada <InlineMath math="607" /> pasangan yang cocok ke salah satu arah, padahal soal meminta kedua arah sekaligus.
+- <InlineMath math="\tfrac{48}{65}" /> hanya meminta rhesus sama, <InlineMath math="\tfrac{\binom{34}{2}+\binom{6}{2}}{780}=\tfrac{576}{780}" />, dan lupa syarat ABO.
+- <InlineMath math="\tfrac{16}{39}" /> menghitung pasangan berurutan di pembilang, <InlineMath math="320" />, tetapi pasangan tanpa urutan di penyebut, <InlineMath math="780" />.
+- <InlineMath math="\tfrac{18}{65}" /> hanya meminta golongan ABO sama, <InlineMath math="\tfrac{216}{780}" />, dan lupa syarat rhesus.
+
+Jadi, peluang kedua donor saling dapat memberikan darah adalah <InlineMath math="\tfrac{8}{39}" />.

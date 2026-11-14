@@ -1,17 +1,40 @@
-The fare is per passenger per section. So the revenue is **the sum of the passengers on each section**, times Rp1,000, because everyone on board during a section pays for that section.
+You're looking for every value of <InlineMath math="x" /> that puts Fajar above Eka. The plan: write the difference between Fajar's and Eka's final scores as a formula in <InlineMath math="x" />, find when it's positive, and then **check the tie with the** <InlineMath math="T" /> **rule**.
 
-# Passengers summed over all sections
+# Eka's and Fajar's interview scores
 
-**The passengers on the five sections** are 25, 29, 25, 27 and 35.
+<InlineMath math="W" /> uses the two highest scores. For Eka the <InlineMath math="60" /> is dropped, so <InlineMath math="W=\tfrac{84+80}{2}=82" />. For Fajar, <InlineMath math="W=\tfrac{82+82}{2}=82" />. **Their interview scores are equal**, so the interview part doesn't affect the difference.
 
-<BlockMath math="25+29+25+27+35=141" />
+# The difference as a formula
 
-# Revenue
+Subtract Eka's final score from Fajar's, component by component. The weight of <InlineMath math="T" /> is <InlineMath math="\tfrac{x}{100}" /> and the weight of <InlineMath math="R" /> is <InlineMath math="\tfrac{60-x}{100}" />:
 
-<BlockMath math="141\cdot1{,}000=141{,}000" />
+<BlockMath math="\begin{aligned}
+N_{\text{Fajar}}-N_{\text{Eka}} &= \frac{x}{100}(84-86)+\frac{60-x}{100}(85-82)+0.25(82-82)+0.15(76-78)\\
+&= -0.02x+0.03(60-x)+0-0.3\\
+&= 1.8-0.05x-0.3\\
+&= 1.5-0.05x
+\end{aligned}" />
 
-This equals counting how many sections each passenger rides and adding them up, because **each pair of passenger and section is counted exactly once**.
+Fajar is ahead **when this difference is positive**:
 
-The value Rp330,000 assumes every passenger rides all five sections. The value Rp175,000 uses the top load of 35 for every section. The value Rp264,000 is a flat fare of Rp4,000 for 66 passengers.
+<BlockMath math="\begin{aligned}
+1.5-0.05x &> 0\\
+x &< 30
+\end{aligned}" />
 
-So the revenue from one trip is **Rp141,000**.
+# The tie at the boundary
+
+At <InlineMath math="x=30" /> the difference is zero, so both final scores are equal at <InlineMath math="82.6" />. The tie rule puts the higher <InlineMath math="T" /> first. Eka has <InlineMath math="T=86" /> and Fajar has <InlineMath math="T=84" />, so **in a tie Eka stays on top**. That's why <InlineMath math="x=30" /> is left out, and the answer is <InlineMath math="20\le x\le29" />.
+
+Check two points. At <InlineMath math="x=29" />, Fajar gets <InlineMath math="82.61" /> and Eka gets <InlineMath math="82.56" />, so Fajar is ahead. At <InlineMath math="x=40" />, the current weights, the formula gives <InlineMath math="1.5-2=-0.5" />, which matches the table: Eka <InlineMath math="83" /> and Fajar <InlineMath math="82.5" />.
+
+# Why the other options are wrong
+
+Each wrong option comes from **one part of the difference left out** or a wrong boundary.
+
+- <InlineMath math="20\le x\le30" /> comes from counting the tie at <InlineMath math="x=30" /> as good enough for Fajar, when the <InlineMath math="T" /> rule hands it to Eka.
+- <InlineMath math="20\le x\le35" /> comes from forgetting the achievement difference <InlineMath math="0.15(76-78)=-0.3" />, which turns the condition into <InlineMath math="1.8-0.05x>0" />, that is, <InlineMath math="x<36" />.
+- All values of <InlineMath math="x" /> comes from computing Eka's <InlineMath math="W" /> as the mean of all three scores, <InlineMath math="W\approx74.67" />. That interview gap is big enough to make Fajar look ahead every time.
+- <InlineMath math="31\le x\le40" /> comes from flipping the inequality, as if a bigger test weight helped Fajar, when Fajar's <InlineMath math="T" /> is the lower one.
+
+So Fajar ranks above Eka exactly for <InlineMath math="20\le x\le29" />.

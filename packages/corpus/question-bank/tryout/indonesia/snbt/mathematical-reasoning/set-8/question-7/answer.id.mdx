@@ -1,21 +1,35 @@
-Periksa setiap pernyataan dengan **dua laju dari informasi**: 2 detik untuk setiap lantai yang dilewati dan 12 detik untuk setiap kali berhenti.
+Harga setiap tiket sudah pasti karena nomor urutnya pasti. Yang bisa diatur hanya **cara membagi sembilan tiket ke dalam transaksi**, karena pembagian itu menentukan potongan dan biaya layanan. Rencananya: tentukan harga setiap nomor, cari banyak transaksi dan potongan terbaik, lalu atur urutan transaksinya.
 
-# Waktu berhenti
+# Harga setiap nomor tiket
 
-Satu kali berhenti, 12 detik, sama dengan waktu bergerak <InlineMath math="\tfrac{12}{2}=6" /> lantai. Pernyataan pertama benar.
+Mereka mendapat tiket nomor <InlineMath math="148" /> sampai <InlineMath math="156" />. Tiga tiket pertama, nomor <InlineMath math="148" />, <InlineMath math="149" />, dan <InlineMath math="150" />, **masih early bird**. Enam sisanya, nomor <InlineMath math="151" /> sampai <InlineMath math="156" />, sudah presale.
 
-Dua kali berhenti menambah <InlineMath math="2\cdot12=24" /> detik, **bukan 12 detik**. Pernyataan kedua salah.
+<BlockMath math="3\cdot120{.}000+6\cdot150{.}000=360{.}000+900{.}000=1{.}260{.}000" />
 
-# Gerak naik lalu turun
+# Banyak transaksi dan potongan
 
-Dari lantai 3 ke 11 lift naik 8 lantai, lalu dari 11 ke 6 turun 5 lantai. **Jarak naik dan turun dijumlahkan**:
+Satu transaksi paling banyak berisi empat tiket, jadi sembilan tiket butuh paling sedikit <InlineMath math="3" /> transaksi. Potongan hanya untuk transaksi yang berisi tepat empat tiket, dan dalam sembilan tiket **paling banyak ada dua transaksi berisi empat tiket**. Jadi paling banyak delapan tiket mendapat potongan, dan pembagian terbaik adalah <InlineMath math="4" />, <InlineMath math="4" />, dan <InlineMath math="1" /> tiket. Transaksi keempat hanya menambah biaya layanan tanpa menambah potongan.
 
-<BlockMath math="(8+5)\cdot2=26\text{ detik}" />
+# Urutan transaksi
 
-Jadi pernyataan ketiga salah.
+Satu tiket pasti tidak mendapat potongan. Potongannya sepuluh persen dari harga tiket, jadi **tiket termurah yang sebaiknya tidak mendapat potongan**. Tiket termurah ada di awal, yaitu nomor <InlineMath math="148" />. Maka transaksi pertama berisi satu tiket, lalu dua transaksi berisi empat tiket:
 
-# Beban
+<BlockMath math="\begin{aligned}
+\text{nomor 148: }&120{.}000\\
+\text{nomor 149 sampai 152: }&90\%\cdot(120{.}000+120{.}000+150{.}000+150{.}000)=486{.}000\\
+\text{nomor 153 sampai 156: }&90\%\cdot(4\cdot150{.}000)=540{.}000\\
+\text{total: }&120{.}000+486{.}000+540{.}000+3\cdot5{.}000=1{.}161{.}000
+\end{aligned}" />
 
-Sebelas orang dengan rata-rata 62 kg beratnya <InlineMath math="11\cdot62=682" /> kg, **tidak melebihi 700 kg**. Pernyataan keempat benar.
+Coba cek dengan cara lain. Potongannya sepuluh persen dari semua tiket kecuali nomor <InlineMath math="148" />, yaitu <InlineMath math="10\%\cdot(1{.}260{.}000-120{.}000)=114{.}000" />. Maka totalnya <InlineMath math="1{.}260{.}000-114{.}000+15{.}000=1{.}161{.}000" />, sama.
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.
+# Pilihan yang keliru
+
+Setiap pilihan lain muncul dari **satu kesalahan yang mudah terjadi**.
+
+- <InlineMath math="\text{Rp}1{.}146{.}000" /> lupa biaya layanan tiga transaksi.
+- <InlineMath math="\text{Rp}1{.}164{.}000" /> memakai urutan <InlineMath math="4" />, <InlineMath math="4" />, <InlineMath math="1" />. Tiket tanpa potongan menjadi nomor <InlineMath math="156" /> seharga <InlineMath math="\text{Rp}150{.}000" />, sehingga potongannya <InlineMath math="\text{Rp}3{.}000" /> lebih kecil.
+- <InlineMath math="\text{Rp}1{.}191{.}000" /> menghitung biaya layanan per tiket, <InlineMath math="9\cdot5{.}000=45{.}000" />, padahal biaya itu per transaksi.
+- <InlineMath math="\text{Rp}1{.}275{.}000" /> membagi tiket menjadi tiga transaksi berisi tiga tiket, sehingga tidak ada potongan sama sekali.
+
+Jadi, total uang paling sedikit yang mereka bayar adalah <InlineMath math="\text{Rp}1{.}161{.}000" />.

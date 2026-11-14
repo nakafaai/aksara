@@ -1,9 +1,35 @@
-Dari pukul 06.00 sampai 22.00 berlalu 16 jam. Dalam model ini, **banyak obat menjadi setengahnya setiap 8 jam**, jadi 16 jam berarti dua kali menjadi setengah.
+Kita mencari banyak tiang paling sedikit. Rencananya, tandai dulu tiang yang wajib ada, potong pagar menjadi bagian-bagian lurus di antara tiang wajib, hitung jarak antartiang paling sedikit pada setiap bagian, lalu ubah banyak jarak menjadi banyak tiang. **Tiang wajib membagi pagar menjadi potongan yang dihitung terpisah**.
 
-# Substitusi ke rumus
+# Tiang yang wajib ada
 
-<BlockMath math="M(16)=360\cdot\left(\frac12\right)^{16/8}=360\cdot\left(\frac12\right)^2=360\cdot\frac14=90" />
+Ada <InlineMath math="4" /> tiang di pojok dan <InlineMath math="2" /> **tiang di tepi gerbang**. Gerbang selebar <InlineMath math="3\text{ m}" /> berada di tengah sisi <InlineMath math="24\text{ m}" />, jadi sisa sisi itu terbagi menjadi dua potongan yang sama panjang.
 
-Pemeriksaan bertahap: 360 mg menjadi 180 mg pada pukul 14.00, lalu 90 mg pada pukul 22.00.
+<BlockMath math="\frac{24-3}{2}=10{,}5" />
 
-Jadi, obat yang masih ada pada pukul 22.00 adalah **90 mg**.
+Jadi pagar terdiri atas potongan <InlineMath math="24\text{ m}" />, dua potongan <InlineMath math="15\text{ m}" />, dan dua potongan <InlineMath math="10{,}5\text{ m}" />, ditambah bukaan gerbang.
+
+# Banyak jarak pada setiap potongan
+
+Jarak dua tiang berdampingan paling jauh <InlineMath math="3\text{ m}" />, jadi sebuah potongan sepanjang <InlineMath math="\ell" /> butuh paling sedikit <InlineMath math="\tfrac{\ell}{3}" /> jarak, **dibulatkan ke atas** jika tidak bulat. Jarak tepat <InlineMath math="3\text{ m}" /> masih boleh.
+
+<BlockMath math="\begin{aligned}
+\frac{24}{3}&=8 \\
+\frac{15}{3}&=5 \\
+\frac{10{,}5}{3}&=3{,}5\ \Rightarrow\ 4
+\end{aligned}" />
+
+Potongan <InlineMath math="10{,}5\text{ m}" /> tidak cukup dengan <InlineMath math="3" /> jarak, karena setiap jarak akan menjadi <InlineMath math="3{,}5\text{ m}" />. Dengan <InlineMath math="4" /> jarak, setiap jarak <InlineMath math="10{,}5:4=2{,}625\text{ m}" />, dan itu boleh.
+
+# Dari jarak ke tiang
+
+Pagar keliling lahan tertutup, jadi setiap jarak berakhir di satu tiang dan setiap tiang memulai satu jarak. Karena itu **banyak tiang sama dengan banyak jarak**, dan bukaan gerbang dihitung sebagai satu jarak di antara dua tiang tepi gerbang.
+
+<BlockMath math="8+5+5+4+4+1=27" />
+
+# Pemeriksaan
+
+Tanpa gerbang, sisi itu cukup <InlineMath math="8" /> jarak, sehingga totalnya <InlineMath math="26" />. Dengan gerbang di tengah, sisi itu butuh <InlineMath math="4+4+1=9" /> jarak. Jadi **gerbang di tengah justru menambah satu tiang**, karena potongan <InlineMath math="10{,}5\text{ m}" /> tidak habis dibagi <InlineMath math="3" />.
+
+Jawaban <InlineMath math="26" /> muncul jika keliling <InlineMath math="78\text{ m}" /> langsung dibagi <InlineMath math="3" />, atau jika gerbang diabaikan. Jawaban <InlineMath math="25" /> muncul jika panjang pagar tanpa gerbang, <InlineMath math="75\text{ m}" />, dibagi <InlineMath math="3" /> tanpa memperhatikan tiang wajib.
+
+Jadi, banyak tiang paling sedikit adalah <InlineMath math="27" /> tiang.

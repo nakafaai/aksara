@@ -1,15 +1,48 @@
-Der Draht reicht für **die zwei Seiten senkrecht zur Mauer und die eine Seite parallel zu ihr**. Was nach den zwei senkrechten Seiten übrig bleibt, ist die Länge der parallelen Seite.
+Gesucht ist die längste tägliche Laufzeit des kleinen Kochers, bei der die Gaskosten pro Tag ab dem <InlineMath math="16" />. Juli höchstens <InlineMath math="\text{Rp}30{.}000" /> betragen. So gehst du vor: Für jede Flaschengröße bestimmst du zuerst, **wie viele Tage die Flasche mindestens reichen muss**. Daraus wird eine Grenze für den Gasverbrauch pro Tag und daraus eine Grenze für die Stunden. Am Ende vergleichst du die beiden Größen.
 
-# Länge der Seite parallel zur Mauer
+# Gasverbrauch pro Tag
 
-<BlockMath math="44-2\cdot14=44-28=16\text{ m}" />
+Der große Kocher verbraucht <InlineMath math="0{,}3\text{ kg}" /> pro Stunde, und zwar <InlineMath math="3\text{ Stunden}" /> lang. Der kleine Kocher verbraucht <InlineMath math="0{,}1\text{ kg}" /> pro Stunde, und zwar <InlineMath math="h" /> Stunden lang. Der Tagesverbrauch ist die Summe:
 
-16 m sind nicht länger als die 20 m lange Mauer, der Garten **lässt sich also anlegen**.
+<BlockMath math="d=0{,}3\cdot3+0{,}1\cdot h=0{,}9+0{,}1h\text{ kg}" />
 
-# Fläche des Gartens
+Je länger der kleine Kocher läuft, desto größer wird <InlineMath math="d" />. Die Flasche wird dann früher getauscht, und **die Kosten pro Tag steigen**. Du suchst also das größte <InlineMath math="h" />, das die Kostengrenze noch einhält.
 
-<BlockMath math="14\cdot16=224\text{ m}^2" />
+# Die Flasche mit zwölf Kilogramm
 
-Der Wert 112 <InlineMath math="\text{m}^2" /> zäunt alle vier Seiten ein, sodass für die andere Seite nur 8 m bleiben. Der Wert 280 <InlineMath math="\text{m}^2" /> nimmt die ganze 20 m lange Mauer als Seite, obwohl der Draht dafür nicht reicht. Der Wert 308 <InlineMath math="\text{m}^2" /> nimmt den halben Draht, 22 m, als parallele Seite. Der Wert 420 <InlineMath math="\text{m}^2" /> zieht nur eine senkrechte Seite ab.
+Angenommen, eine Flasche mit <InlineMath math="12\text{ kg}" /> reicht <InlineMath math="n" /> Tage. Ab dem <InlineMath math="16" />. Juli kostet sie <InlineMath math="\text{Rp}224{.}000" />, ihre Kosten pro Tag sind also <InlineMath math="\tfrac{224{.}000}{n}" /> Rupiah. Die Kostenbedingung lautet:
 
-Der Garten hat also eine Fläche von **224 <InlineMath math="\text{m}^2" />**.
+<BlockMath math="\begin{aligned}
+\frac{224{.}000}{n}&\le30{.}000\\
+n&\ge\frac{224{.}000}{30{.}000}=7\tfrac{7}{15}
+\end{aligned}" />
+
+Getauscht wird nur morgens, deshalb ist **die Zahl der Tage immer ganzzahlig**. Die kleinste ganze Zahl, die nicht unter <InlineMath math="7\tfrac{7}{15}" /> liegt, ist <InlineMath math="8" />. Die Flasche reicht <InlineMath math="8" /> Tage, wenn der Verbrauch von <InlineMath math="8" /> Tagen in <InlineMath math="12\text{ kg}" /> passt:
+
+<BlockMath math="\begin{aligned}
+8(0{,}9+0{,}1h)&\le12\\
+0{,}9+0{,}1h&\le1{,}5\\
+h&\le6
+\end{aligned}" />
+
+Prüfe beide Seiten der Grenze. Für <InlineMath math="h=6" /> beträgt der Tagesverbrauch <InlineMath math="1{,}5\text{ kg}" />. Das Gas ist nach genau <InlineMath math="8" /> Tagen aufgebraucht, die Kosten betragen also <InlineMath math="\tfrac{224{.}000}{8}=28{.}000" /> Rupiah pro Tag. Für <InlineMath math="h=7" /> beträgt der Tagesverbrauch <InlineMath math="1{,}6\text{ kg}" />. Nach <InlineMath math="7" /> Tagen bleiben <InlineMath math="12-11{,}2=0{,}8\text{ kg}" />, weniger als <InlineMath math="1{,}6\text{ kg}" />. Die Flasche wird getauscht, und die Kosten betragen <InlineMath math="\tfrac{224{.}000}{7}=32{.}000" /> Rupiah pro Tag, also über der Grenze.
+
+# Die Flasche mit fünfeinhalb Kilogramm
+
+Bei <InlineMath math="\text{Rp}93{.}000" /> muss eine Flasche mit <InlineMath math="5{,}5\text{ kg}" /> mindestens <InlineMath math="\tfrac{93{.}000}{30{.}000}=3{,}1" /> Tage reichen. Tage sind ganzzahlig, also muss diese Flasche **mindestens vier Tage reichen**:
+
+<BlockMath math="\begin{aligned}
+4(0{,}9+0{,}1h)&\le5{,}5\\
+0{,}9+0{,}1h&\le1{,}375\\
+h&\le4{,}75
+\end{aligned}" />
+
+Auch die Stunden sind ganzzahlig, mit dieser Flasche ist <InlineMath math="h" /> also höchstens <InlineMath math="4" />. Für <InlineMath math="h=5" /> beträgt der Tagesverbrauch <InlineMath math="1{,}4\text{ kg}" />, die Flasche reicht nur <InlineMath math="3" /> Tage, und die Kosten betragen <InlineMath math="\tfrac{93{.}000}{3}=31{.}000" /> Rupiah pro Tag.
+
+# Die Wahl der Flaschengröße
+
+Die Flasche mit <InlineMath math="12\text{ kg}" /> erlaubt bis zu <InlineMath math="6" /> Stunden, die Flasche mit <InlineMath math="5{,}5\text{ kg}" /> nur bis zu <InlineMath math="4" /> Stunden. Bu Sari darf wählen, also **entscheidet die lockerere der beiden Grenzen**: <InlineMath math="6" /> Stunden mit der Flasche mit <InlineMath math="12\text{ kg}" />.
+
+Die typischen falschen Antworten überspringen jeweils einen Schritt. Auf <InlineMath math="7" /> kommst du, wenn du mit dem Preis pro Kilogramm rechnest, als könnte eine Flasche auch einen Teil eines Tages reichen. Auf <InlineMath math="8" /> kommst du, wenn du <InlineMath math="7\tfrac{7}{15}" /> auf <InlineMath math="7" /> Tage abrundest. Auf <InlineMath math="4" /> kommst du, wenn du nur die Flasche mit <InlineMath math="5{,}5\text{ kg}" /> prüfst. Auf <InlineMath math="15" /> kommst du, wenn du den Verbrauch des großen Kochers vergisst.
+
+Der kleine Kocher darf also höchstens <InlineMath math="6" /> Stunden pro Tag laufen, mit der Flasche mit <InlineMath math="12\text{ kg}" />.

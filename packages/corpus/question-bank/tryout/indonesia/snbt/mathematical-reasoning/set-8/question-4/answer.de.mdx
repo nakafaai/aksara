@@ -1,18 +1,47 @@
-Werden alle vier Seiten eingezäunt, ist der Umfang 44 m, also sind **Länge plus Breite immer 22 m**. Gesucht sind zwei Zahlen mit der Summe 22 und dem größten Produkt.
+Du musst wissen, **an welchen Tagen die Flasche getauscht wird**, weil der bezahlte Preis vom Tauschtag abhängt. So gehst du vor: Bestimme den Tagesverbrauch, finde heraus, wann der Rest vom <InlineMath math="1" />. Juli aufgebraucht ist, bestimme die Reichweite einer vollen Flasche, liste alle Tauschtage im Juli auf und addiere die Preise.
 
-# Einige Größen vergleichen
+# Der erste Tausch
 
-| Länge | Breite | Fläche |
-| :---: | :---: | :---: |
-| 14 m | 8 m | 112 <InlineMath math="\text{m}^2" /> |
-| 13 m | 9 m | 117 <InlineMath math="\text{m}^2" /> |
-| 12 m | 10 m | 120 <InlineMath math="\text{m}^2" /> |
-| 11 m | 11 m | 121 <InlineMath math="\text{m}^2" /> |
+Der Tagesverbrauch beträgt <InlineMath math="0{,}3\cdot3+0{,}1\cdot7=1{,}6\text{ kg}" />. Am Morgen des <InlineMath math="1" />. Juli reichen die <InlineMath math="2{,}5\text{ kg}" /> für diesen Tag, es wird also noch nicht getauscht. Am Abend bleiben <InlineMath math="2{,}5-1{,}6=0{,}9\text{ kg}" />. Am Morgen des <InlineMath math="2" />. Juli ist <InlineMath math="0{,}9\text{ kg}" /> weniger als <InlineMath math="1{,}6\text{ kg}" />, also **findet der erste Tausch am <InlineMath math="2" />. Juli statt**, und die <InlineMath math="0{,}9\text{ kg}" /> gehen verloren.
 
-Je näher Länge und Breite beieinander liegen, desto größer ist die Fläche. Mit Länge <InlineMath math="11+d" /> und Breite <InlineMath math="11-d" /> ist die Fläche <InlineMath math="121-d^2" />, **die größte Fläche entsteht also bei d = 0**, einem Quadrat.
+# Die Reichweite einer vollen Flasche
 
-# Die Auswahl prüfen
+Eine volle Flasche bleibt angeschlossen, solange ihr Gas für einen ganzen Tag reicht:
 
-Die Werte 112, 117 und 120 <InlineMath math="\text{m}^2" /> sind möglich, aber kleiner als das Quadrat. Der Wert 100 <InlineMath math="\text{m}^2" /> ist ein Quadrat mit 10 m Seitenlänge, dessen Umfang nur 40 m beträgt.
+<BlockMath math="7\cdot1{,}6=11{,}2\le12 < 8\cdot1{,}6=12{,}8" />
 
-Die größte Fläche beträgt also **121 <InlineMath math="\text{m}^2" />**, ein quadratischer Garten mit 11 m Seitenlänge.
+Eine volle Flasche reicht also genau <InlineMath math="7" /> Tage und wird am achten Morgen getauscht, wobei <InlineMath math="0{,}8\text{ kg}" /> verloren gehen. Deshalb **liegt jeder Tausch sieben Tage nach dem vorigen**:
+
+<BlockMath math="2,\ 9,\ 16,\ 23,\ 30" />
+
+Der nächste Tausch wäre am Tag <InlineMath math="37" />, also nach dem Juli. Es gibt somit <InlineMath math="5" /> Tauschvorgänge.
+
+# Der Preis jedes Tauschs
+
+Bezahlt wird der Preis, der am Tauschtag gilt. Die Tauschvorgänge am <InlineMath math="2" />. Juli und <InlineMath math="9" />. Juli kosten noch den alten Preis von <InlineMath math="\text{Rp}196{.}000" />. **Der Tausch am <InlineMath math="16" />. Juli kostet schon den neuen Preis**, weil der neue Preis ab dem <InlineMath math="16" />. Juli gilt, ebenso die Tauschvorgänge am <InlineMath math="23" />. Juli und <InlineMath math="30" />. Juli.
+
+<BlockMath math="\begin{aligned}
+\text{Summe}&=2\cdot196{.}000+3\cdot224{.}000\\
+&=392{.}000+672{.}000\\
+&=1{.}064{.}000
+\end{aligned}" />
+
+Prüfe das, indem du das ganze Gas verfolgst. Im Juli werden <InlineMath math="31\cdot1{,}6=49{,}6\text{ kg}" /> verbraucht. Verloren gehen <InlineMath math="0{,}9\text{ kg}" /> am <InlineMath math="2" />. Juli und je <InlineMath math="0{,}8\text{ kg}" /> beim Tausch am <InlineMath math="9" />., <InlineMath math="16" />., <InlineMath math="23" />. und <InlineMath math="30" />. Juli. Die am <InlineMath math="30" />. Juli angeschlossene Flasche hat erst zwei Tage gedient, in ihr sind also noch <InlineMath math="12-3{,}2=8{,}8\text{ kg}" />.
+
+<BlockMath math="\begin{aligned}
+\text{Gas hinein}&=2{,}5+5\cdot12=62{,}5\text{ kg}\\
+\text{Gas hinaus}&=49{,}6+0{,}9+4\cdot0{,}8+8{,}8=62{,}5\text{ kg}
+\end{aligned}" />
+
+Beide Summen stimmen überein, die Liste der Tauschtage passt also.
+
+# Die falschen Antworten
+
+Jede andere Antwort **übersieht eine Bedingung**.
+
+- <InlineMath math="\text{Rp}1{.}260{.}000" /> bezahlt auch die Flasche, die am <InlineMath math="1" />. Juli schon angeschlossen ist, obwohl sie im Vormonat bezahlt wurde.
+- <InlineMath math="\text{Rp}1{.}036{.}000" /> bezahlt den Tausch am <InlineMath math="16" />. Juli zum alten Preis. Derselbe Wert entsteht, wenn du die <InlineMath math="2{,}5\text{ kg}" /> übersiehst, sodass am <InlineMath math="1" />., <InlineMath math="8" />., <InlineMath math="15" />., <InlineMath math="22" />. und <InlineMath math="29" />. Juli getauscht wird.
+- <InlineMath math="\text{Rp}980{.}000" /> übersieht die Preiserhöhung und bezahlt alle fünf Tauschvorgänge mit <InlineMath math="\text{Rp}196{.}000" />.
+- <InlineMath math="\text{Rp}840{.}000" /> nimmt an, dass kein Gas verloren geht, sodass die benötigten <InlineMath math="49{,}6-2{,}5=47{,}1\text{ kg}" /> in <InlineMath math="4" /> Flaschen passen.
+
+Für die Tauschvorgänge vom <InlineMath math="1" />. Juli bis <InlineMath math="31" />. Juli bezahlt Bu Sari also insgesamt <InlineMath math="\text{Rp}1{.}064{.}000" />.

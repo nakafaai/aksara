@@ -1,20 +1,48 @@
-Cicilan dihitung dari **pokok**, yaitu harga tunai dikurangi uang muka, bukan dari harga tunai.
+Kamu mencari keuntungan dari pesanan ini. Rencananya: hitung banyak batch, berat kopi yang bisa dikemas, banyak kantong penuh, lalu kurangi pendapatan dengan tiga jenis biaya. Ingat aturan pentingnya: **light dan dark tidak pernah dicampur**, baik di mesin maupun di kantong, jadi keduanya dihitung terpisah.
 
-# Uang muka dan pokok
+# Banyak batch untuk tiap tingkat sangrai
+
+Satu batch hanya boleh berisi satu tingkat sangrai dan memuat paling banyak <InlineMath math="12\text{ kg}" />. Light <InlineMath math="18\text{ kg}" /> perlu <InlineMath math="2" /> batch, yaitu <InlineMath math="12\text{ kg}" /> dan <InlineMath math="6\text{ kg}" />. Dark <InlineMath math="15\text{ kg}" /> juga perlu <InlineMath math="2" /> batch, yaitu <InlineMath math="12\text{ kg}" /> dan <InlineMath math="3\text{ kg}" />.
+
+Jadi **pesanan ini memakai empat batch**, bukan tiga. Angka tiga muncul kalau <InlineMath math="33\text{ kg}" /> dihitung bersama, padahal light dan dark tidak boleh berbagi batch.
+
+# Banyak kantong yang terjual
+
+Susut <InlineMath math="16\%" /> berarti kopi light tinggal <InlineMath math="84\%" /> dari berat biji hijaunya. Susut <InlineMath math="25\%" /> berarti kopi dark tinggal <InlineMath math="75\%" />. Lalu, setiap batch diambil <InlineMath math="200\text{ g}" /> untuk uji rasa.
 
 <BlockMath math="\begin{aligned}
-\text{uang muka}&=20\%\cdot3{.}600{.}000=720{.}000\\
-\text{pokok}&=3{.}600{.}000-720{.}000=2{.}880{.}000
+W_{\text{light}} &= 84\%\times18{.}000-2\times200=15{.}120-400=14{.}720\text{ g} \\
+W_{\text{dark}} &= 75\%\times15{.}000-2\times200=11{.}250-400=10{.}850\text{ g}
 \end{aligned}" />
 
-# Cicilan per bulan
+Hanya kantong <InlineMath math="250\text{ g}" /> yang penuh yang dijual, jadi bagi setiap berat dengan <InlineMath math="250" /> dan ambil hasil bulatnya.
 
 <BlockMath math="\begin{aligned}
-\tfrac{1}{12}\cdot2{.}880{.}000&=240{.}000\\
-2\%\cdot2{.}880{.}000&=57{.}600\\
-240{.}000+57{.}600&=297{.}600
+14{.}720 &= 58\times250+220 \\
+10{.}850 &= 43\times250+100
 \end{aligned}" />
 
-Dalam ribu rupiah, **cicilannya 297,6**.
+Kamu dapat <InlineMath math="58" /> kantong light dan <InlineMath math="43" /> kantong dark, total <InlineMath math="101" /> kantong. **Sisa light dan sisa dark tidak boleh digabung** menjadi satu kantong, karena satu kantong hanya berisi satu tingkat sangrai.
 
-Jadi, cicilan setiap bulan adalah **297,6 ribu rupiah**, yaitu Rp297.600,00.
+# Pendapatan dikurangi semua biaya
+
+Pendapatan datang dari kantong yang terjual. Biayanya ada tiga: biji hijau <InlineMath math="33\text{ kg}" />, gas untuk <InlineMath math="4" /> batch, dan <InlineMath math="101" /> kantong.
+
+<BlockMath math="\begin{aligned}
+\text{pendapatan} &= 58\times75{.}000+43\times70{.}000=4{.}350{.}000+3{.}010{.}000=7{.}360{.}000 \\
+\text{biaya} &= 33\times90{.}000+4\times30{.}000+101\times4{.}000=2{.}970{.}000+120{.}000+404{.}000=3{.}494{.}000 \\
+\text{keuntungan} &= 7{.}360{.}000-3{.}494{.}000=3{.}866{.}000
+\end{aligned}" />
+
+Coba cek dengan **menghitung keuntungan tiap tingkat sangrai sendiri-sendiri**. Light memberi <InlineMath math="4{.}350{.}000-1{.}620{.}000-60{.}000-232{.}000=2{.}438{.}000" />. Dark memberi <InlineMath math="3{.}010{.}000-1{.}350{.}000-60{.}000-172{.}000=1{.}428{.}000" />. Jumlahnya <InlineMath math="2{.}438{.}000+1{.}428{.}000=3{.}866{.}000" />, sama.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain lahir dari **satu langkah yang terlewat**.
+
+- <InlineMath math="\text{Rp}3{.}986{.}000{,}00" /> lupa biaya gas <InlineMath math="\text{Rp}120{.}000{,}00" />.
+- <InlineMath math="\text{Rp}4{.}003{.}000{,}00" /> mengambil kopi uji rasa hanya sekali untuk setiap tingkat sangrai, bukan sekali per batch, sehingga mendapat <InlineMath math="59" /> kantong light dan <InlineMath math="44" /> kantong dark.
+- <InlineMath math="\text{Rp}4{.}140{.}000{,}00" /> lupa mengambil kopi uji rasa, sehingga mendapat <InlineMath math="60" /> kantong light dan <InlineMath math="45" /> kantong dark.
+- <InlineMath math="\text{Rp}4{.}270{.}000{,}00" /> lupa biaya kantong <InlineMath math="\text{Rp}404{.}000{,}00" />.
+
+Jadi, keuntungan usaha itu dari pesanan ini adalah <InlineMath math="\text{Rp}3{.}866{.}000{,}00" />.

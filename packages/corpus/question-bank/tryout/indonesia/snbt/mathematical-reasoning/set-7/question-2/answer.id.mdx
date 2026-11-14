@@ -1,18 +1,48 @@
-Kecepatan yang diperlukan adalah **ukuran berkas dalam megabit dibagi waktu dalam detik**. Kedua satuan harus disamakan lebih dulu.
+Kita mencari saat paling lambat Bayu boleh mencolokkan pengisi daya agar baterai pukul 16.00 masih <InlineMath math="55\%" />. Rencananya: catat semua laju yang berlaku, lalu hitung mundur dari pukul 16.00, karena semakin lambat pengisi daya dicolokkan, semakin rendah baterai akhirnya.
 
-# Ukuran dan waktu dalam satuan yang sesuai
+# Laju yang berlaku
+
+Tanpa pengisi daya, video menghabiskan <InlineMath math="20\%" /> per jam. Saat baterai <InlineMath math="20\%" /> atau kurang, **mode hemat daya membuat video hanya menghabiskan <InlineMath math="10\%" /> per jam**. Saat diisi sambil menonton, perubahan baterai adalah tambahan pengisi daya dikurangi laju video.
 
 <BlockMath math="\begin{aligned}
-1{,}5\text{ GB}&=1{.}500\text{ MB}=1{.}500\cdot8=12{.}000\text{ megabit}\\
-4\text{ menit}&=240\text{ detik}
+\text{di atas } 20\% &: 40\%-20\%=20\%\text{ per jam} \\
+\text{pada } 20\% \text{ atau kurang} &: 40\%-10\%=30\%\text{ per jam}
 \end{aligned}" />
 
-# Kecepatan minimum
+Target <InlineMath math="55\%" /> masih di bawah <InlineMath math="80\%" />, jadi laju pengisian yang lebih lambat di atas <InlineMath math="80\%" /> tidak ikut berperan.
 
-<BlockMath math="\frac{12{.}000}{240}=50\text{ Mbps}" />
+# Kapan baterai harus kembali ke dua puluh persen
 
-Kecepatan yang lebih rendah membuat unduhan **lebih lama dari 4 menit**, jadi 50 Mbps adalah batas terendah. Internet 40 Mbps di rumah itu belum cukup, karena memerlukan 300 detik.
+Di atas <InlineMath math="20\%" />, baterai naik <InlineMath math="20\%" /> per jam. Untuk naik dari <InlineMath math="20\%" /> ke <InlineMath math="55\%" /> dibutuhkan waktu berikut.
 
-Nilai 6,25 Mbps lupa mengalikan dengan 8. Nilai 375 Mbps membagi dengan 4 menit, bukan dengan 240 detik, tetapi tetap memakai megabit.
+<BlockMath math="\frac{55-20}{20}\text{ jam}=\frac{35}{20}\text{ jam}=1\text{ jam }45\text{ menit}" />
 
-Jadi, kecepatan paling rendah yang diperlukan adalah **50 Mbps**.
+Jadi, **pukul 14.15 baterai paling sedikit sudah kembali di <InlineMath math="20\%" />** dalam keadaan sedang diisi.
+
+# Turun lalu naik lagi dalam mode hemat
+
+Tanpa pengisi daya, baterai turun dari <InlineMath math="25\%" /> ke <InlineMath math="20\%" /> dalam <InlineMath math="\frac{5}{20}" /> jam, yaitu <InlineMath math="15" /> menit. Jadi, pukul 13.15 baterai sudah <InlineMath math="20\%" />, dan dari pukul 13.15 sampai 14.15 ada <InlineMath math="60" /> menit.
+
+Misalkan pengisi daya dicolokkan <InlineMath math="d" /> menit setelah pukul 13.15. Selama <InlineMath math="d" /> menit itu, **baterai turun dengan laju hemat <InlineMath math="10\%" /> per jam**, lalu harus naik kembali ke <InlineMath math="20\%" /> dengan laju <InlineMath math="30\%" /> per jam. Karena laju naiknya tiga kali laju turunnya, waktu naiknya sepertiga waktu turunnya.
+
+<BlockMath math="\begin{aligned}
+d+\frac{d}{3} &= 60 \\
+\frac{4d}{3} &= 60 \\
+d &= 45
+\end{aligned}" />
+
+Pengisi daya paling lambat dicolokkan <InlineMath math="45" /> menit setelah pukul 13.15, yaitu pukul 14.00, atau <InlineMath math="15+45=60" /> menit setelah pukul 13.00.
+
+# Pemeriksaan dengan menghitung maju
+
+Coba colokkan tepat pukul 14.00. Dari pukul 13.15 sampai 14.00 baterai turun <InlineMath math="10\%\cdot\frac{45}{60}=7{,}5\%" />, jadi tinggal <InlineMath math="12{,}5\%" />. Setelah itu baterai naik ke <InlineMath math="20\%" /> dalam <InlineMath math="\frac{7{,}5}{30}" /> jam, yaitu <InlineMath math="15" /> menit, sehingga tepat pukul 14.15 baterai <InlineMath math="20\%" />. Dari pukul 14.15 sampai 16.00 ada <InlineMath math="105" /> menit.
+
+<BlockMath math="20\%+20\%\cdot\frac{105}{60}=20\%+35\%=55\%" />
+
+Kalau dicolokkan lebih lambat, baterai turun lebih lama dan naik lebih singkat, jadi **baterai akhirnya pasti di bawah <InlineMath math="55\%" />**. Ponsel juga tidak mati sebelum dicolokkan, karena baterai terendahnya <InlineMath math="12{,}5\%" />.
+
+# Kesalahan yang sering terjadi
+
+Kalau **mode hemat daya diabaikan**, baterai dianggap turun dan naik <InlineMath math="20\%" /> per jam. Hasilnya, pengisi daya tampak harus dicolokkan pukul 13.45, yaitu <InlineMath math="45" /> menit, padahal mode hemat memberi tambahan waktu. Kalau laju video saat diisi lupa dikurangkan, baterai tampak naik <InlineMath math="40\%" /> per jam dan waktunya jadi terlalu longgar.
+
+Jadi, pengisi daya paling lambat dicolokkan <InlineMath math="60" /> menit setelah pukul 13.00.

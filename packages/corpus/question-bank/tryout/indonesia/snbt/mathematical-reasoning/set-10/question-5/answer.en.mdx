@@ -1,15 +1,48 @@
-Line C leaves at 05.00 plus multiples of 40 minutes. Find **the largest multiple that does not pass 22.00**.
+You're comparing everything Rina pays on the store credit over <InlineMath math="9" /> months with the cash price. Here's the plan: find the cash price after the discount, find the monthly instalment including the **rounding up**, add up all the credit payments, then subtract.
 
-# Last departure
+# The cash price after the discount
 
-From 05.00 to 22.00 there are <InlineMath math="17\cdot60=1{,}020" /> minutes.
+A cash buyer gets <InlineMath math="4\%" /> off, so **the comparison is with the discounted price**, not the list price.
 
-<BlockMath math="\frac{1{,}020}{40}=25.5" />
+<BlockMath math="\begin{aligned}
+\text{cash price} &= 6{,}000{,}000-4\%\cdot6{,}000{,}000\\
+&= 6{,}000{,}000-240{,}000=5{,}760{,}000
+\end{aligned}" />
 
-So the last departure is <InlineMath math="25\cdot40=1{,}000" /> minutes after 05.00, at 21.40. The next one would be 22.20, **past the limit**.
+# The instalment for nine months
 
-# Number of departures
+The down payment and the interest use two different bases. The down payment comes from the price, while **the interest comes from the loan principal**. A <InlineMath math="9" />-month term still uses <InlineMath math="1.5\%" /> interest per month.
 
-Departures number 0 to 25 make <InlineMath math="25+1=26" />. Remember that the first departure at 05.00 counts too.
+<BlockMath math="\begin{aligned}
+\text{down payment} &= 20\%\cdot6{,}000{,}000=1{,}200{,}000\\
+\text{loan principal} &= 6{,}000{,}000-1{,}200{,}000=4{,}800{,}000\\
+\text{total interest} &= 4{,}800{,}000\cdot1.5\%\cdot9=648{,}000\\
+\text{instalment before rounding} &= \frac{4{,}800{,}000+648{,}000}{9}=605{,}333.33\ldots
+\end{aligned}" />
 
-So line C departs **26 times**.
+Rule four says to round up to a multiple of <InlineMath math="1{,}000" />. So the instalment is <InlineMath math="606{,}000" />, even though the leftover is only <InlineMath math="333.33" />.
+
+# All the credit payments
+
+Rina pays **the down payment and the admin fee at the start**, then <InlineMath math="9" /> instalments.
+
+<BlockMath math="\begin{aligned}
+\text{credit total} &= 1{,}200{,}000+200{,}000+9\cdot606{,}000\\
+&= 1{,}400{,}000+5{,}454{,}000=6{,}854{,}000\\
+\text{difference} &= 6{,}854{,}000-5{,}760{,}000=1{,}094{,}000
+\end{aligned}" />
+
+# Checking the rounding
+
+Each month Rina pays <InlineMath math="606{,}000-605{,}333.33\ldots=666.66\ldots" /> more than the exact value. Over <InlineMath math="9" /> months, **the extra from rounding** is <InlineMath math="9\cdot666.66\ldots=6{,}000" />. That fits, because <InlineMath math="4{,}800{,}000+648{,}000+6{,}000=5{,}454{,}000" />.
+
+# The wrong options
+
+Each wrong option **skips one part of the cost or uses the wrong base**.
+
+- <InlineMath math="\text{Rp}1{,}256{,}000.00" /> charges interest on the full price of <InlineMath math="6{,}000{,}000" />, which gives interest of <InlineMath math="810{,}000" /> and an instalment of <InlineMath math="624{,}000" />.
+- <InlineMath math="\text{Rp}1{,}088{,}000.00" /> doesn't round the instalment up.
+- <InlineMath math="\text{Rp}894{,}000.00" /> forgets the <InlineMath math="200{,}000" /> admin fee.
+- <InlineMath math="\text{Rp}854{,}000.00" /> compares with the list price of <InlineMath math="6{,}000{,}000" />, but a cash buyer pays <InlineMath math="5{,}760{,}000" />.
+
+So Rina pays <InlineMath math="\text{Rp}1{,}094{,}000.00" /> more in total than she would by paying cash.

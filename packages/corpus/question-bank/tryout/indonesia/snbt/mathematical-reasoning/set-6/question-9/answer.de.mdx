@@ -1,15 +1,32 @@
-Vergleiche das tatsächliche Gewicht mit dem Volumengewicht, nimm **das größere**, runde auf und multipliziere mit dem Tarif.
+Du suchst den spätesten Bus A, mit dem Rina noch rechtzeitig an der Halte Kampus ankommt. Am sichersten ist es, **von der Grenze 22:40 Uhr aus rückwärts zu rechnen**: Erst suchst du den letzten Bus B, der noch passt, dann den letzten Bus A, der diesen Bus B noch erreicht.
 
-# Volumengewicht
+# Der letzte Bus B, der noch passt
 
-<BlockMath math="\frac{40\cdot30\cdot25}{6\,000}=\frac{30\,000}{6\,000}=5\text{ kg}" />
+Bus B braucht <InlineMath math="15\text{ Minuten}" /> von der Halte Pasar zur Halte Kampus. Er muss also spätestens <InlineMath math="15\text{ Minuten}" /> vor 22:40 Uhr abfahren, also um 22:25 Uhr. Bus B fährt um 21:22, 21:52, 22:22, 22:52 Uhr und so weiter. **Der letzte passende Bus B ist der um 22:22 Uhr**, denn der Bus um 22:52 Uhr kommt erst um 23:07 Uhr an.
 
-# Abgerechnetes Gewicht und Kosten
+# Der letzte Bus A, der es noch schafft
 
-Das Volumengewicht von 5 kg **ist größer als das tatsächliche Gewicht von 4,2 kg**, also werden 5 kg berechnet. Die 5 ist schon ganzzahlig.
+Rina braucht mindestens <InlineMath math="4\text{ Minuten}" />, um zur Haltestelle von Bus B zu gehen. Also **muss Bus A spätestens um 22:18 Uhr an der Halte Pasar sein**, <InlineMath math="4\text{ Minuten}" /> vor 22:22 Uhr. Bus A kommt <InlineMath math="25\text{ Minuten}" /> nach der Abfahrt an.
 
-<BlockMath math="5\cdot9\,000=45\,000" />
+| Abfahrt Bus A | Ankunft Halte Pasar | Erreicht den Bus um 22:22 Uhr |
+| :---: | :---: | :---: |
+| 21:18 | 21:43 | ja |
+| 21:36 | 22:01 | ja |
+| 21:54 | 22:19 | nein, nur <InlineMath math="3\text{ Minuten}" /> vor 22:22 Uhr |
 
-In Tausend Rupiah sind das 45. Das tatsächliche Gewicht 4,2 kg aufgerundet auf 5 kg ergibt zufällig dieselbe Zahl, aber aus einem anderen Grund.
+Der letzte Bus A, der es noch schafft, fährt um 21:36 Uhr ab.
 
-Der Versand kostet also **45 Tausend Rupiah**.
+# Kontrolle von vorn
+
+Spiel Rinas Fahrt von Anfang an durch. Bus A fährt um 21:36 Uhr ab und ist um 22:01 Uhr an der Halte Pasar. Rina geht hinüber und ist spätestens um 22:05 Uhr bereit, steigt um 22:22 Uhr in Bus B und ist um 22:37 Uhr an der Halte Kampus. Das ist **nicht später als 22:40 Uhr**. Sie wartet <InlineMath math="21\text{ Minuten}" />, mehr als <InlineMath math="15\text{ Minuten}" />, also bekommt sie keinen kostenlosen Umstieg. Gefragt ist aber nur die Zeit, der Fahrpreis ändert die Antwort nicht.
+
+# Warum die anderen Antworten nicht passen
+
+Jede falsche Antwort **benutzt eine falsche Regel oder lässt eine Fahrzeit weg**.
+
+- 21:18 Uhr entsteht, wenn der kostenlose Umstieg als Pflicht gilt. Er betrifft nur den Fahrpreis, nicht die Erlaubnis zum Umsteigen.
+- 21:54 Uhr entsteht, wenn der Fußweg von <InlineMath math="4\text{ Minuten}" /> fehlt. Dieser Bus kommt um 22:19 Uhr an, nur <InlineMath math="3\text{ Minuten}" /> bevor Bus B um 22:22 Uhr abfährt.
+- 22:12 Uhr entsteht, wenn die Fahrt mit Bus B vergessen wird und Rina scheinbar nur bis 22:40 Uhr an der Halte Pasar sein muss. Der Bus A um 22:12 Uhr ist um 22:37 Uhr dort.
+- 22:30 Uhr entsteht, wenn 22:40 Uhr als späteste Einstiegszeit in Bus A gelesen wird, sodass beide Fahrzeiten fehlen.
+
+Der späteste Bus A, den Rina nehmen kann, fährt also um 21:36 Uhr ab.

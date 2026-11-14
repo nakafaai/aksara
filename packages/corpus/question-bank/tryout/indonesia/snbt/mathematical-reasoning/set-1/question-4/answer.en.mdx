@@ -1,21 +1,41 @@
-The tiered bill changes its formula in each block, while the flat plan is always <InlineMath math="1{,}400x" />. So **compare the two bills block by block**.
+You need to check all ten start hours, from 07.00 to 16.00, and compare each cost with the day without the washing machine. The machine adds no cost only if its <InlineMath math="3\text{ kWh}" /> is **paid for by panel energy that would have been wasted anyway**. So what decides it is the order of the hours, not just the size of the panel surplus in that hour.
 
-# Block 1, up to 100 kWh
+# The day without the washing machine
 
-<BlockMath math="20{,}000+1{,}000x<1{,}400x\;\Longleftrightarrow\;20{,}000<400x\;\Longleftrightarrow\;x>50" />
+From 07.00 to 17.00, the panel energy minus the use is <InlineMath math="-1,+1,+2,+3,+3,+2,+3,+1,-1,-1" /> in kWh. With a capacity of <InlineMath math="6\text{ kWh}" /> and a reserve of <InlineMath math="1\text{ kWh}" />, the battery at the end of each hour holds <InlineMath math="1,2,4,6,6,6,6,6,5,4" />. The energy wasted in each hour is <InlineMath math="0,0,0,1,3,2,3,1,0,0" />, and **the cost without the washing machine** is
 
-# Block 2, from 100 to 300 kWh
+<BlockMath math="1\cdot\text{Rp}1{,}000+8\cdot\text{Rp}2{,}500=\text{Rp}21{,}000" />
 
-The tiered bill is <InlineMath math="20{,}000+100{,}000+1{,}500(x-100)=1{,}500x-30{,}000" />.
+# The rule that decides it
 
-<BlockMath math="1{,}500x-30{,}000<1{,}400x\;\Longleftrightarrow\;100x<30{,}000\;\Longleftrightarrow\;x<300" />
+The machine adds a shortfall of <InlineMath math="3\text{ kWh}" /> to its hour. There are three possibilities. If the battery is at its reserve, the shortfall is bought straight away. If the battery can cover it, the battery level drops, and **that drop does no harm only if some energy is still wasted later** to refill the battery. If no more energy is wasted, the battery reaches the afternoon's end lower and the evening purchase grows.
 
-All of block 2 below 300 kWh qualifies. At <InlineMath math="x=300" />, both bills **are Rp420,000**.
+# Checking every start hour
 
-# Block 3, above 300 kWh
+| Start hour | What happens | Extra cost |
+| :---: | :--- | :---: |
+| 07.00 | Battery at reserve, so the whole shortfall of <InlineMath math="1+3=4\text{ kWh}" /> is bought | <InlineMath math="3\cdot\text{Rp}1{,}000=\text{Rp}3{,}000" /> |
+| 08.00 | Battery at reserve, the difference <InlineMath math="2-1-3=-2" /> is bought | <InlineMath math="2\cdot\text{Rp}1{,}000=\text{Rp}2{,}000" /> |
+| 09.00 | Battery drops from <InlineMath math="2" /> to <InlineMath math="1" />, then is full again at 12.00 | <InlineMath math="\text{Rp}0" /> |
+| 10.00 | Difference <InlineMath math="4-1-3=0" />, battery stays at <InlineMath math="4" />, then is full at 12.00 | <InlineMath math="\text{Rp}0" /> |
+| 11.00 | Difference <InlineMath math="5-2-3=0" />, battery stays full | <InlineMath math="\text{Rp}0" /> |
+| 12.00 | Battery drops to <InlineMath math="5" />, then is full again at 14.00 | <InlineMath math="\text{Rp}0" /> |
+| 13.00 | Difference <InlineMath math="4-1-3=0" />, battery stays full | <InlineMath math="\text{Rp}0" /> |
+| 14.00 | Battery drops to <InlineMath math="4" /> and ends the afternoon at <InlineMath math="2" />, the evening buys <InlineMath math="10\text{ kWh}" /> | <InlineMath math="2\cdot\text{Rp}2{,}500=\text{Rp}5{,}000" /> |
+| 15.00 | Battery drops to <InlineMath math="2" /> and then <InlineMath math="1" />, the evening buys <InlineMath math="11\text{ kWh}" /> | <InlineMath math="3\cdot\text{Rp}2{,}500=\text{Rp}7{,}500" /> |
+| 16.00 | Battery drops from <InlineMath math="5" /> to <InlineMath math="1" />, the evening buys <InlineMath math="11\text{ kWh}" /> | <InlineMath math="3\cdot\text{Rp}2{,}500=\text{Rp}7{,}500" /> |
 
-The tiered bill is <InlineMath math="420{,}000+2{,}000(x-300)=2{,}000x-180{,}000" />. The condition <InlineMath math="2{,}000x-180{,}000<1{,}400x" /> means <InlineMath math="x<300" />, which contradicts <InlineMath math="x>300" />. In this block **the flat plan is always cheaper**.
+09.00 is the hour people miss most often. The battery isn't full yet and that hour's panel output isn't enough, but **the surplus from 10.00 to 12.00 refills the battery**, so the rest of the day runs exactly as before. At 14.00 it's the other way round: the battery is full, but the energy wasted after that is only <InlineMath math="0\text{ kWh}" />, so the shortfall carries over into the evening.
 
-Combining the three results gives <InlineMath math="50<x<300" />. The choice <InlineMath math="x>50" /> forgets block 3, <InlineMath math="x<300" /> forgets the fixed charge at small usage, and <InlineMath math="100<x<300" /> and <InlineMath math="50<x<100" /> each check only one block.
+# The result and a check
 
-So the tiered tariff is cheaper exactly when **<InlineMath math="50<x<300" />**.
+The start hours with no extra cost are 09.00, 10.00, 11.00, 12.00, and 13.00. As a check, the energy wasted on the original day after 09.00 is <InlineMath math="1+3+2+3+1=10\text{ kWh}" />, far more than the <InlineMath math="1\text{ kWh}" /> taken from the battery, so **the refill really happens**.
+
+# Common miscounts
+
+- Answering <InlineMath math="2" /> counts only the hours that waste exactly <InlineMath math="3\text{ kWh}" />, which are 11.00 and 13.00.
+- Answering <InlineMath math="3" /> counts only the hours with a panel surplus of at least <InlineMath math="3\text{ kWh}" />, which are 10.00, 11.00, and 13.00.
+- Answering <InlineMath math="4" /> usually skips 09.00 because the battery isn't full yet, but **a battery that isn't full still gets refilled** by the surplus that follows.
+- Answering <InlineMath math="6" /> also counts 08.00 or 14.00, but at 08.00 the battery is already at its reserve, and after 14.00 no more energy is wasted.
+
+So there are <InlineMath math="5" /> start hours that keep the day's total PLN cost from going up.

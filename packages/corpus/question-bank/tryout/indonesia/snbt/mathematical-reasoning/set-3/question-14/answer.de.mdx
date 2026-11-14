@@ -1,13 +1,46 @@
-Der Rat des Fliesenlegers verlangt **mindestens 10 % mehr** als die 180 Fliesen, die den Boden genau bedecken. Danach muss auf volle Kartons aufgerundet werden.
+Du zählst Paare <InlineMath math="(n, T)" />, die drei Filter bestehen: die Steigungsregel, die Schrittregel und die Platzgrenze. Der Plan: Bestimme zuerst die möglichen <InlineMath math="n" />, dann den Bereich für <InlineMath math="T" /> bei jedem <InlineMath math="n" />, und **schneide diesen Bereich zum Schluss mit der Platzgrenze, die mit <InlineMath math="n-1" /> Auftritten rechnet**.
 
-# Mindestzahl der Fliesen
+# Die möglichen Stufenzahlen
 
-<BlockMath math="180+10\%\cdot180=180+18=198" />
+Die Steigungsregel verlangt <InlineMath math="15\le\tfrac{288}{n}\le18" />.
 
-# Anzahl der Kartons
+<BlockMath math="\begin{aligned}
+\frac{288}{n}\le18 &\iff n\ge16 \\
+\frac{288}{n}\ge15 &\iff n\le19{,}2
+\end{aligned}" />
 
-<BlockMath math="\frac{198}{12}=16{,}5" />
+Also **kommen nur <InlineMath math="n=16, 17, 18, 19" /> infrage**.
 
-Kartons gibt es nur ganz, und 16 Kartons enthalten nur 192 Fliesen, weniger als 198. Es muss also **auf 17 Kartons aufgerundet werden**, die 204 Fliesen enthalten.
+# Der Bereich der Auftrittsbreiten
 
-Es müssen also mindestens **17 Kartons** gekauft werden.
+Die Schrittregel <InlineMath math="62\le2R+T\le66" /> bedeutet <InlineMath math="62-2R\le T\le66-2R" />. Weil <InlineMath math="T" /> ganzzahlig ist, **nimmst du die ganzen Zahlen in diesem Bereich**.
+
+| <InlineMath math="n" /> | <InlineMath math="2R" /> | Bereich für <InlineMath math="T" /> | Ganze <InlineMath math="T" /> |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="16" /> | <InlineMath math="36" /> | <InlineMath math="26\le T\le30" /> | <InlineMath math="26" /> bis <InlineMath math="30" /> |
+| <InlineMath math="17" /> | <InlineMath math="\tfrac{576}{17}" /> | <InlineMath math="\tfrac{478}{17}\le T\le\tfrac{546}{17}" /> | <InlineMath math="29" /> bis <InlineMath math="32" /> |
+| <InlineMath math="18" /> | <InlineMath math="32" /> | <InlineMath math="30\le T\le34" /> | <InlineMath math="30" /> bis <InlineMath math="34" /> |
+| <InlineMath math="19" /> | <InlineMath math="\tfrac{576}{19}" /> | <InlineMath math="\tfrac{602}{19}\le T\le\tfrac{678}{19}" /> | <InlineMath math="32" /> bis <InlineMath math="35" /> |
+
+Die Brüche lassen sich leicht abschätzen: <InlineMath math="\tfrac{478}{17}" /> liegt knapp über <InlineMath math="28" />, <InlineMath math="\tfrac{546}{17}" /> knapp über <InlineMath math="32" />, <InlineMath math="\tfrac{602}{19}" /> bei etwa <InlineMath math="31{,}7" /> und <InlineMath math="\tfrac{678}{19}" /> bei etwa <InlineMath math="35{,}7" />.
+
+# Die Platzgrenze
+
+Das obere Stockwerk zählt nicht als Auftritt, eine Treppe mit <InlineMath math="n" /> Stufen hat also <InlineMath math="n-1" /> Auftritte. Die Platzbedingung lautet <InlineMath math="(n-1)T\le480" />, also **darf der Auftritt höchstens <InlineMath math="\tfrac{480}{n-1}" /> breit sein**.
+
+<BlockMath math="\begin{aligned}
+n=16 &: \ T\le\tfrac{480}{15}=32 \\
+n=17 &: \ T\le\tfrac{480}{16}=30 \\
+n=18 &: \ T\le\tfrac{480}{17}\approx28{,}2 \\
+n=19 &: \ T\le\tfrac{480}{18}\approx26{,}7
+\end{aligned}" />
+
+Für <InlineMath math="n=16" /> passen alle Werte von <InlineMath math="26" /> bis <InlineMath math="30" />. Für <InlineMath math="n=17" /> passen nur <InlineMath math="29" /> und <InlineMath math="30" />. Für <InlineMath math="n=18" /> und <InlineMath math="n=19" /> ist schon die kleinste erlaubte Breite zu lang.
+
+<BlockMath math="5+2+0+0=7" />
+
+# Die Fallen prüfen
+
+Zählst du das obere Stockwerk als Auftritt mit, lautet die Bedingung <InlineMath math="nT\le480" />, und **alle Möglichkeiten für <InlineMath math="n=17" /> fallen weg**, sodass nur <InlineMath math="5" /> Entwürfe bleiben. Vergisst du die Obergrenze <InlineMath math="2R+T\le66" />, kommen bei <InlineMath math="n=16" /> noch <InlineMath math="T=31" /> und <InlineMath math="T=32" /> dazu, und du zählst <InlineMath math="9" /> Entwürfe. Beides ist falsch.
+
+Es gibt also <InlineMath math="7" /> verschiedene Entwürfe, die beide Regeln erfüllen und in den Platz passen.

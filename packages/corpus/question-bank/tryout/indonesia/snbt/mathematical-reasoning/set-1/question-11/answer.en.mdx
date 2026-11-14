@@ -1,17 +1,47 @@
-Each statement can be checked from the class frequencies and **the cumulative frequencies** 4, 14, 29, 36 and 40.
+You're looking for the largest whole body weight that keeps the amount of the drug at or below <InlineMath math="700\text{ mg}" /> for two days. The plan: find when the amount peaks, in terms of the dose <InlineMath math="D" />, find the largest safe <InlineMath math="D" />, then **turn that dose into a body weight using the measuring-spoon rule**.
 
-# Percentage and comparing classes
+# When the amount peaks
 
-Students who need 30 minutes or more are in the classes 30-39 and 40-49, <InlineMath math="7+4=11" /> students.
+The amount only rises right after a dose, so you only need the amounts after each dose. Between two daytime doses the amount halves, and **the** <InlineMath math="12" /> **night hours divide it by** <InlineMath math="4" />.
 
-<BlockMath math="\frac{11}{40}\times100\%=27.5\%" />
+<BlockMath math="\begin{aligned}
+\text{first day} &: D,\quad \tfrac{1}{2}D+D=\tfrac{3}{2}D,\quad \tfrac{3}{4}D+D=\tfrac{7}{4}D\\
+\text{second morning} &: \tfrac{1}{4}\cdot\tfrac{7}{4}D+D=\tfrac{23}{16}D\\
+\text{second midday} &: \tfrac{1}{2}\cdot\tfrac{23}{16}D+D=\tfrac{55}{32}D\\
+\text{second evening} &: \tfrac{1}{2}\cdot\tfrac{55}{32}D+D=\tfrac{119}{64}D
+\end{aligned}" />
 
-The first statement is true. The classes 0-9 and 40-49 **both hold 4 students**, so the fourth statement is true.
+The largest value is <InlineMath math="\tfrac{119}{64}D" />, after the evening dose on the second day, because what's left from the first day builds up. So **the peak comes on the second day, not the first**.
 
-# Upper quartile and half of the data
+# The largest safe dose
 
-The upper quartile lies around the 30th value. The cumulative frequency up to the class 20-29 is 29, so **the 30th value is in the class 30-39**. The second statement is false.
+That peak must not be more than <InlineMath math="700\text{ mg}" />.
 
-Students with less than 20 minutes number <InlineMath math="4+10=14" />, which is 35%, less than half. The third statement is false.
+<BlockMath math="\begin{aligned}
+\tfrac{119}{64}D &\le 700\\
+D &\le \frac{44{,}800}{119}=\frac{6{,}400}{17}\approx376.5\text{ mg}
+\end{aligned}" />
 
-So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.
+# From the dose to the body weight
+
+The syrup holds <InlineMath math="100\text{ mg}" /> per <InlineMath math="5\text{ mL}" />, so <InlineMath math="2.5\text{ mL}" /> holds <InlineMath math="50\text{ mg}" />. Since each dose is a multiple of <InlineMath math="2.5\text{ mL}" />, **the dose actually taken is always a multiple of** <InlineMath math="50\text{ mg}" />. The largest multiple of <InlineMath math="50" /> that's no more than <InlineMath math="376.5" /> is <InlineMath math="350" />, while <InlineMath math="400\text{ mg}" /> is already too much.
+
+A child weighing <InlineMath math="w\text{ kg}" /> takes <InlineMath math="350\text{ mg}" /> when the allowed dose, <InlineMath math="10w\text{ mg}" />, is at least <InlineMath math="350" /> but less than <InlineMath math="400" />. That means <InlineMath math="35\le w<40" />. A <InlineMath math="40\text{ kg}" /> child already takes <InlineMath math="400\text{ mg}" />. So the largest whole body weight is <InlineMath math="39\text{ kg}" />.
+
+# Checking the answer
+
+A <InlineMath math="39\text{ kg}" /> child is allowed <InlineMath math="390\text{ mg}" />, so the child takes <InlineMath math="17.5\text{ mL}" /> holding <InlineMath math="350\text{ mg}" />. A <InlineMath math="40\text{ kg}" /> child takes <InlineMath math="400\text{ mg}" />.
+
+<BlockMath math="\begin{aligned}
+\tfrac{119}{64}\cdot350 &\approx 650.8\text{ mg}\le700\text{ mg}\\
+\tfrac{119}{64}\cdot400 &= 743.75\text{ mg}>700\text{ mg}
+\end{aligned}" />
+
+The <InlineMath math="39\text{ kg}" /> child stays safe, while **the** <InlineMath math="40\text{ kg}" /> **child goes over the limit** on the second evening.
+
+# Common wrong answers
+
+- An answer of <InlineMath math="37" /> comes from forgetting the measuring-spoon rule, so <InlineMath math="10w\le376.5" /> gives <InlineMath math="w\le37" /> straight away. But children of <InlineMath math="38" /> and <InlineMath math="39\text{ kg}" /> still take only <InlineMath math="350\text{ mg}" />.
+- If you check only the first day, the peak is <InlineMath math="\tfrac{7}{4}D\le\tfrac{7}{4}\cdot400=700" />, so every weight looks safe, and <InlineMath math="40\text{ kg}" /> or more gets picked. The danger **only shows up on the second day**.
+
+So the child's largest body weight is <InlineMath math="39\text{ kg}" />.

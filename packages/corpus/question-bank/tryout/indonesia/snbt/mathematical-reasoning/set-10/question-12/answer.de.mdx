@@ -1,15 +1,51 @@
-Ein runder Tisch hat keinen ersten Platz, denn wenn alle weiterrücken, **ändert sich die Anordnung nicht**. Leg also einen Schüler als Bezugspunkt fest.
+Du suchst eine Zahl von Helfern pro Station, die an allen fünf Stationen zugleich reicht. Jede Station hat eine andere Füllzeit und ein anderes Becherziel, also gehst du so vor: Bestimme die Füllzeit jeder Station, die Becher, die schon gefüllt sein müssen, und die Helfer, die jede Station braucht, und **nimm dann den größten Bedarf**.
 
-# Einen Bezugspunkt festlegen
+# Füllzeit an jeder Station
 
-Setz Ani auf einen Stuhl als Bezugspunkt. Die anderen vier **besetzen dann die übrigen 4 Stühle**, im Uhrzeigersinn von Ani aus gezählt.
+Die Helfer beginnen um 05.45 Uhr, also <InlineMath math="15" /> Minuten vor dem Start. Der schnellste Läufer erreicht die Entfernung <InlineMath math="d" /> km nach <InlineMath math="3d" /> Minuten. **Die Füllzeit an jeder Station** beträgt also <InlineMath math="15+3d" /> Minuten, und ein Helfer füllt <InlineMath math="4" /> Becher pro Minute.
 
-<BlockMath math="4!=24" />
+| Station | Entfernung | Füllzeit | Becher eines Helfers |
+| :---: | :---: | :---: | :---: |
+| 1 | <InlineMath math="2\text{ km}" /> | <InlineMath math="15+6=21" /> Minuten | <InlineMath math="4\cdot21=84" /> |
+| 2 | <InlineMath math="6\text{ km}" /> | <InlineMath math="15+18=33" /> Minuten | <InlineMath math="4\cdot33=132" /> |
+| 3 | <InlineMath math="10\text{ km}" /> | <InlineMath math="15+30=45" /> Minuten | <InlineMath math="4\cdot45=180" /> |
+| 4 | <InlineMath math="14\text{ km}" /> | <InlineMath math="15+42=57" /> Minuten | <InlineMath math="4\cdot57=228" /> |
+| 5 | <InlineMath math="18\text{ km}" /> | <InlineMath math="15+54=69" /> Minuten | <InlineMath math="4\cdot69=276" /> |
 
-# Zusammenhang mit einer Reihe
+# Becher, die schon gefüllt sein müssen
 
-Jede Anordnung am Tisch erscheint als 5 verschiedene Reihen, eine für jeden Stuhl, auf dem Ani sitzen könnte, also <InlineMath math="\tfrac{120}{5}=24" />.
+Die geplanten Becher der Stationen sind <InlineMath math="1{.}320" />, <InlineMath math="1{.}298" />, <InlineMath math="2{.}508" />, <InlineMath math="2{.}420" /> und <InlineMath math="2{.}310" />, also der erwartete Verbrauch plus <InlineMath math="10\%" /> Reserve. Gefüllt sein müssen nur **mindestens vierzig Prozent der geplanten Becher**.
 
-Der Wert 120 zählt Anordnungen in einer Reihe. Der Wert 60 teilt 120 durch 2 statt durch 5. Der Wert 12 behandelt auch Spiegelbilder als gleich, obwohl **linker und rechter Nachbar im Spiegel tauschen**. Der Wert 5 zählt nur die Drehungen einer Anordnung.
+<BlockMath math="\begin{aligned}
+40\%\cdot1{.}320&=528 & 40\%\cdot1{.}298&=519{,}2\\
+40\%\cdot2{.}508&=1{.}003{,}2 & 40\%\cdot2{.}420&=968\\
+40\%\cdot2{.}310&=924
+\end{aligned}" />
 
-Es gibt also **24 verschiedene Sitzordnungen**.
+# Helfer für jede Station
+
+Die Helfer einer Station sind die Pflichtbecher geteilt durch die Becher eines Helfers, **aufgerundet**, denn einen halben Helfer gibt es nicht.
+
+| Station | Pflichtbecher geteilt durch die Becher eines Helfers | Helfer |
+| :---: | :---: | :---: |
+| 1 | <InlineMath math="528:84=6{,}28\ldots" /> | <InlineMath math="7" /> |
+| 2 | <InlineMath math="519{,}2:132=3{,}93\ldots" /> | <InlineMath math="4" /> |
+| 3 | <InlineMath math="1{.}003{,}2:180=5{,}57\ldots" /> | <InlineMath math="6" /> |
+| 4 | <InlineMath math="968:228=4{,}24\ldots" /> | <InlineMath math="5" /> |
+| 5 | <InlineMath math="924:276=3{,}34\ldots" /> | <InlineMath math="4" /> |
+
+Jede Station bekommt gleich viele Helfer, also muss die Zahl für die schwierigste Station reichen. **Die schwierigste Station ist Station 1**, weil sie die kürzeste Zeit hat, obwohl sie viel weniger Becher braucht als Station 3.
+
+# Kontrolle an der ersten Station
+
+Mit <InlineMath math="7" /> Helfern füllt Station 1 <InlineMath math="7\cdot84=588\ge528" /> Becher. Mit <InlineMath math="6" /> Helfern sind es nur <InlineMath math="6\cdot84=504<528" /> Becher, also **reichen sechs Helfer nicht**. Die anderen Stationen brauchen höchstens <InlineMath math="6" /> Helfer, also reichen <InlineMath math="7" /> Helfer auch dort.
+
+# Häufige falsche Antworten
+
+Diese Antworten **prüfen die falsche Station oder nehmen eine falsche Zeit oder ein falsches Ziel**.
+
+- Die Antwort <InlineMath math="6" /> entsteht, wenn du nur Station 3 prüfst, weil sie die meisten Becher hat, wenn du die Reserve von <InlineMath math="10\%" /> vergisst oder wenn du <InlineMath math="6{,}28\ldots" /> abrundest.
+- Die Antwort <InlineMath math="22" /> vergisst, dass die Helfer schon <InlineMath math="15" /> Minuten vor dem Start anfangen, sodass Station 1 scheinbar nur <InlineMath math="6" /> Minuten hat.
+- Die Antwort <InlineMath math="16" /> füllt alle geplanten Becher, bevor der erste Läufer kommt, obwohl nur <InlineMath math="40\%" /> verlangt sind.
+
+Die Organisatoren müssen also an jeder Station mindestens <InlineMath math="7" /> Helfer einsetzen.
