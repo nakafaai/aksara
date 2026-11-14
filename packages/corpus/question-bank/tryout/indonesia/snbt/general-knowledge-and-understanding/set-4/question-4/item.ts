@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "sentence-meaning",
-    topic: "sentence-relation",
+    topic: "inference",
   },
-  stimulus: "awan",
+  stimulus: "garam",
   versions: {
     id: {
       kind: "choice",
@@ -14,25 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kalimat (8) menjelaskan penyebab kebakaran hutan pada kalimat (7).",
-        },
-        {
-          correct: false,
-          label: "Kalimat (8) mengulang isi kalimat (7) dengan kata-kata lain.",
+            "Lapisan luar yang sudah asin tidak menjamin bahwa garam sudah sampai ke bagian tengah daging.",
         },
         {
           correct: false,
           label:
-            "Kalimat (8) membantah manfaat yang disebut pada kalimat (7) dengan menunjukkan bahwa hujan buatan justru membahayakan kota.",
+            "Makin jauh bagian tengah daging dari permukaan, makin lama garam sampai ke sana.",
         },
         {
           correct: false,
-          label: "Kalimat (8) menyimpulkan seluruh isi paragraf pertama.",
+          label:
+            "Membelah ikan besar membuat garam lebih cepat mencapai seluruh bagian daging.",
         },
         {
           correct: true,
           label:
-            "Kalimat (8) memberikan contoh penggunaan lain yang tujuannya berkebalikan dengan contoh pada kalimat (7).",
+            "Bagian tengah ikan tebal dapat membusuk karena garam bergerak lebih lambat di dalam daging ikan besar daripada di dalam daging ikan kecil.",
+        },
+        {
+          correct: false,
+          label:
+            "Penggaraman yang dilakukan dengan benar pun belum tentu berhasil jika waktunya tidak cukup.",
         },
       ],
     },

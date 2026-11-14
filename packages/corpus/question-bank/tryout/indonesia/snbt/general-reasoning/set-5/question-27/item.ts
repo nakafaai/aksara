@@ -2,34 +2,19 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
-    topic: "scale-rate",
+    topic: "calendar-cycle",
   },
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "pukul 08.27",
-        },
-        {
-          correct: false,
-          label: "pukul 08.35",
-        },
-        {
-          correct: true,
-          label: "pukul 08.42",
-        },
-        {
-          correct: false,
-          label: "pukul 08.50",
-        },
-        {
-          correct: false,
-          label: "pukul 08.57",
-        },
+        { correct: false, label: "$$5$$ kali" },
+        { correct: true, label: "$$6$$ kali" },
+        { correct: false, label: "$$7$$ kali" },
+        { correct: false, label: "$$20$$ kali" },
+        { correct: false, label: "$$27$$ kali" },
       ],
     },
   },

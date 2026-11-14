@@ -2,34 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "paragraph-meaning",
-    topic: "detail",
+    topic: "inference",
   },
-  stimulus: "puter",
+  stimulus: "rawa",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Campuran es dan garam dapat menjadi lebih dingin daripada es batu biasa.",
+            "Lahan basah yang simpanan karbonnya paling besar adalah lahan basah yang paling menguntungkan iklim.",
         },
         {
-          column: 2,
-          label: "Garam ditambahkan agar es batu tidak cepat mencair.",
+          correct: false,
+          label: "Hutan bakau tidak melepaskan gas rumah kaca ke udara.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Pengadukan mencegah terbentuknya lapisan keras di dekat dinding tabung.",
+            "Dua lahan basah yang simpanan karbonnya sama besar dapat berbeda perannya bagi iklim.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Tanpa pengadukan, adonan es puter akan tetap cair seluruhnya.",
+            "Membasahi kembali gambut kering menghentikan pelepasan gas rumah kaca dari gambut itu.",
+        },
+        {
+          correct: false,
+          label:
+            "Karbon yang terlepas dari gambut kering akan tersimpan kembali dalam beberapa tahun setelah gambut itu dibasahi lagi.",
         },
       ],
     },

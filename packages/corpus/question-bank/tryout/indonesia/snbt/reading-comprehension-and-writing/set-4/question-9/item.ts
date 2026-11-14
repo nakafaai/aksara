@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "reading",
-    topic: "conclusion",
+    topic: "main-idea",
   },
-  stimulus: "cassava-flour",
+  stimulus: "gambut",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Tepung singkong fermentasi dapat menggantikan terigu sepenuhnya pada semua kue.",
+            "Regu relawan mengukur suhu gambut dengan termometer tanah pada kedalaman tiga puluh sentimeter di beberapa titik.",
         },
         {
           correct: false,
           label:
-            "Kue dari tepung terigu selalu lebih murah daripada kue dari tepung singkong.",
+            "Api di lahan gambut dapat menyala lagi beberapa hari setelah permukaannya tampak padam.",
         },
         {
           correct: false,
           label:
-            "Fermentasi membuat tepung singkong mengandung gluten seperti terigu.",
-        },
-        {
-          correct: false,
-          label:
-            "Petani singkong di Kabupaten Wonosari tidak mendapat keuntungan dari tepung singkong.",
+            "Kebiasaan regu relawan itu berlebihan karena api di permukaan lahan sudah padam.",
         },
         {
           correct: true,
           label:
-            "Tepung singkong fermentasi dapat mengurangi pemakaian terigu, tetapi belum dapat menggantikannya sepenuhnya.",
+            "Regu relawan baru meninggalkan lahan yang terbakar setelah memastikan, dengan membasahi dan mengukur suhu gambut, bahwa api di dalam gambut benar-benar padam.",
+        },
+        {
+          correct: false,
+          label:
+            "Regu relawan menyemprotkan air ke dalam gambut sampai lapisan bawahnya basah.",
         },
       ],
     },

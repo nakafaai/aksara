@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "data-comparison",
+    topic: "data-inference",
   },
-  stimulus: "bus",
+  stimulus: "bimbel",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -15,22 +15,22 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Pada April, penumpang pukul 05.00 sampai 06.30 lebih dari $$15\\%$$ dari jumlah penumpang harian.",
+            "Banyak siswa yang tidak hadir pada satu sesi pun lebih sedikit pada Februari daripada pada Januari.",
+        },
+        {
+          column: 2,
+          label:
+            "Pada Februari, siswa yang hadir paling sedikit satu sesi rata-rata hadir pada $$7{,}2$$ sesi.",
+        },
+        {
+          column: 2,
+          label:
+            "Pada Februari, rata-rata $$72$$ siswa terdaftar absen pada setiap sesi.",
         },
         {
           column: 1,
           label:
-            "Pendapatan tiket harian pada April lebih rendah daripada pendapatan tiket harian pada Februari.",
-        },
-        {
-          column: 2,
-          label:
-            "Penumpang pukul 06.30 sampai 08.00 turun lebih dari $$25\\%$$ dari Februari ke April.",
-        },
-        {
-          column: 2,
-          label:
-            "Pada April, rata-rata tarif yang dibayar per penumpang lebih dari $$\\text{Rp}3{.}700$$.",
+            "Pada Januari, pasti ada siswa yang hadir pada paling sedikit $$10$$ sesi.",
         },
       ],
     },

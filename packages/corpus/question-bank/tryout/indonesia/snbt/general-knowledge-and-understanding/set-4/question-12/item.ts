@@ -2,34 +2,22 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "vocabulary",
-    topic: "polysemy",
+    topic: "word-meaning",
   },
-  stimulus: "hoaks",
+  stimulus: "pusaka",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "menangkap ikan dengan kail",
-        },
+        { correct: false, label: "halus dan enak dipandang gerak-geriknya" },
+        { correct: false, label: "mudah bergaul dengan siapa saja" },
+        { correct: false, label: "longgar sehingga aturannya boleh dilanggar" },
+        { correct: false, label: "mudah berubah sampai ke dasarnya" },
         {
           correct: true,
-          label: "membangkitkan",
-        },
-        {
-          correct: false,
-          label: "mengurangi",
-        },
-        {
-          correct: false,
-          label: "menyembunyikan",
-        },
-        {
-          correct: false,
-          label: "menenangkan",
+          label: "dapat menyesuaikan diri tanpa meninggalkan dasarnya",
         },
       ],
     },

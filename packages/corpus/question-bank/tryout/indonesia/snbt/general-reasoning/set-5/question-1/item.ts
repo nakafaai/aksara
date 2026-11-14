@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "inductive-reasoning",
     topic: "conclusion",
   },
-  stimulus: "rumpon",
+  stimulus: "tongkol",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Rumpon menambah jumlah ikan yang hidup di perairan kabupaten itu.",
+            "Rumpon menaikkan penghasilan bersih semusim setiap perahu besar sekitar $$60\\%$$.",
         },
         {
           correct: false,
           label:
-            "Semua ikan yang tertangkap di sekitar rumpon berukuran lebih kecil daripada ikan dari perairan lain.",
+            "Harga tongkol di TPI desa turun karena perahu besar membawa pulang lebih banyak tongkol dari rumpon.",
         },
         {
           correct: false,
           label:
-            "Perahu yang menangkap ikan di sekitar rumpon menghabiskan bahan bakar lebih sedikit daripada perahu lain.",
+            "Karena perahu besar lebih jarang melaut, seluruh tangkapan tongkol kelompok itu pada musim 2025 lebih sedikit daripada pada musim 2024.",
+        },
+        {
+          correct: false,
+          label:
+            "Penghasilan bersih semusim setiap perahu kecil turun $$25\\%$$, sama dengan penurunan harga tongkol.",
         },
         {
           correct: true,
           label:
-            "Rumpon lebih banyak memindahkan tempat ikan berkumpul daripada menambah ikan yang dapat ditangkap.",
-        },
-        {
-          correct: false,
-          label:
-            "Memasang rumpon di lebih banyak titik akan melipatgandakan hasil tangkapan seluruh nelayan kabupaten.",
+            "Pada musim 2025, setiap perahu besar membawa pulang lebih banyak tongkol dalam semusim, tetapi penghasilan bersihnya lebih rendah daripada pada musim 2024.",
         },
       ],
     },

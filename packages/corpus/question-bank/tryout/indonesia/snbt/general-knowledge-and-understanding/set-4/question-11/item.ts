@@ -2,36 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "vocabulary",
-    topic: "term-meaning",
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
   },
-  stimulus: "hoaks",
+  stimulus: "pusaka",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Membaca berita dengan cepat dari atas ke bawah.",
-        },
-        {
-          correct: false,
-          label: "Membaca judul berita tanpa membuka isinya.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Membaca berita yang sama berulang kali di satu situs sampai seluruh isinya benar-benar dipahami.",
+            "Dalam perkawinan yang mengikuti adat Minangkabau, seorang anak tidak pernah sesuku dengan ayahnya.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Memeriksa apa yang dikatakan sumber lain tentang klaim atau situs yang sedang dibaca.",
+            "Seorang laki-laki Minangkabau kini dapat mewariskan gelar penghulunya kepada anak laki-lakinya sendiri.",
         },
         {
-          correct: false,
-          label: "Membaca komentar pembaca di bawah berita.",
+          column: 2,
+          label:
+            "Rumah yang dibangun sepasang suami istri dari hasil usaha mereka sendiri termasuk harta pusaka tinggi.",
+        },
+        {
+          column: 1,
+          label:
+            "Seorang laki-laki Minangkabau dapat ikut mengawasi harta yang kelak tidak akan beralih kepada anak-anaknya.",
         },
       ],
     },

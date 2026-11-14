@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "vocabulary",
-    topic: "idiom",
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
   },
-  stimulus: "rempah",
+  stimulus: "purnama",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Dipindahkan dengan tangan dari satu kapal ke kapal lain",
+          label:
+            "Pengamat yang melihat bulan tepat di atas kepala berada lebih dekat ke bulan daripada ketika bulan di cakrawala.",
         },
         {
           correct: false,
-          label: "Disimpan lama di dalam gudang pelabuhan",
+          label:
+            "Pembelokan cahaya oleh udara mengubah tinggi piringan bulan yang rendah, tetapi hampir tidak mengubah lebarnya.",
+        },
+        {
+          correct: false,
+          label:
+            "Kamera dapat merekam perbedaan lebar antara purnama di titik terdekat dan purnama di titik terjauh.",
+        },
+        {
+          correct: false,
+          label:
+            "Ilusi tentang ukuran benda langit yang rendah tidak hanya dilaporkan pada bulan.",
         },
         {
           correct: true,
-          label: "Beralih dari satu pemilik atau pedagang ke pemilik lain",
-        },
-        {
-          correct: false,
-          label: "Dicuri oleh bajak laut di tengah perjalanan",
-        },
-        {
-          correct: false,
-          label: "Ditimbang ulang oleh petugas pelabuhan",
+          label:
+            "Menurut salah satu penjelasan, bulan di cakrawala tampak besar karena otak merasakannya lebih dekat daripada bulan yang tinggi.",
         },
       ],
     },

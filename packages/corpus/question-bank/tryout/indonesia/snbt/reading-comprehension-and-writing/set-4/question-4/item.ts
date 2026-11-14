@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "reading",
-    topic: "word-meaning",
+    topic: "inference",
   },
-  stimulus: "mangrove-nursery",
+  stimulus: "kecapi",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "membalikkan",
+          label:
+            "Di lereng barat, pohon cangkok sama tahannya terhadap angin kencang dengan pohon sambungan.",
         },
         {
           correct: false,
-          label: "menenggelamkan",
+          label:
+            "Lebih dari separuh pohon yang tumbang di desa itu pada musim angin tahun lalu adalah pohon cangkok.",
         },
         {
           correct: false,
-          label: "menghentikan sama sekali",
-        },
-        {
-          correct: false,
-          label: "membelokkan",
+          label:
+            "Di lereng timur, proporsi pohon cangkok yang tumbang $$20$$ kali proporsi pohon sambungan yang tumbang.",
         },
         {
           correct: true,
-          label: "mengurangi",
+          label:
+            "Pada musim angin tahun lalu, sedikitnya $$2$$ pohon berakar tunggang di lereng timur ikut tumbang.",
+        },
+        {
+          correct: false,
+          label:
+            "Seandainya semua pohon cangkok di lereng timur diganti dengan pohon sambungan, paling banyak $$4$$ pohon akan tumbang.",
         },
       ],
     },

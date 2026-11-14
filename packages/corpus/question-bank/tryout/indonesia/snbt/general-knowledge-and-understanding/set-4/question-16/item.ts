@@ -2,34 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "vocabulary",
-    topic: "word-meaning",
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
   },
-  stimulus: "puter",
+  stimulus: "rawa",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "memancarkan",
+          column: 2,
+          label:
+            "Karbon di dalam gambut yang dikeringkan baru terlepas ke udara jika gambut itu terbakar.",
         },
         {
-          correct: false,
-          label: "menolak",
+          column: 2,
+          label:
+            "Metana lebih merugikan iklim daripada karbon dioksida karena menahan panas lebih kuat dan bertahan lebih lama di atmosfer.",
         },
         {
-          correct: true,
-          label: "mengambil",
+          column: 1,
+          label:
+            "Bagian karbon tanah dunia yang tersimpan di lahan gambut jauh lebih besar daripada bagian daratan yang ditempati lahan gambut.",
         },
         {
-          correct: false,
-          label: "menghasilkan",
-        },
-        {
-          correct: false,
-          label: "menaikkan",
+          column: 1,
+          label:
+            "Membasahi kembali gambut yang telah dikeringkan dapat menambah pelepasan salah satu gas rumah kaca, tetapi menurut banyak kajian tetap menguntungkan iklim dalam jangka panjang.",
         },
       ],
     },

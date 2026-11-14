@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "reading",
-    topic: "conclusion",
+    topic: "referent",
   },
-  stimulus: "water-tank",
+  stimulus: "kopi",
   versions: {
     id: {
       kind: "choice",
@@ -14,25 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Tandon air hujan menurunkan pemakaian air PDAM dengan besar yang sama setiap bulan.",
+            "keberatan ketua kelompok terhadap kulit dari buah yang belum merah penuh",
+        },
+        {
+          correct: false,
+          label:
+            "keberatan para pengurus karena harus menimbang buah yang sudah dipilah",
+        },
+        {
+          correct: false,
+          label:
+            "keberatan para pemetik karena buah yang merah penuh sulit ditemukan",
+        },
+        {
+          correct: false,
+          label:
+            "keberatan para pemetik karena upah per kilogram buah terlalu rendah",
         },
         {
           correct: true,
           label:
-            "Tandon air hujan menurunkan pemakaian air PDAM, terutama ketika tandon terisi air hujan.",
-        },
-        {
-          correct: false,
-          label:
-            "Rumah tanpa tandon memakai air jauh lebih banyak ketika hujan jarang turun.",
-        },
-        {
-          correct: false,
-          label: "Warga yang memakai tandon tidak memerlukan air PDAM lagi.",
-        },
-        {
-          correct: false,
-          label: "Pemakaian air rumah tanpa tandon naik setiap bulan.",
+            "keberatan para pemetik karena memilah buah memperlambat kerja sehingga mengurangi upah mereka",
         },
       ],
     },

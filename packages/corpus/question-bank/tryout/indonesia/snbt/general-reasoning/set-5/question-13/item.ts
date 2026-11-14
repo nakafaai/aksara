@@ -13,27 +13,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Setiap kios di Pasar Baru tidak menerima pembayaran nontunai dan tidak memasang daftar harga.",
+            "Setiap peserta kursus tata boga yang tidak menerima sertifikat tidak hadir sejak hari pertama dan tidak mengumpulkan laporan praktik.",
         },
         {
           correct: false,
           label:
-            "Ada kios di Pasar Baru yang tidak menerima pembayaran nontunai atau tidak memasang daftar harga.",
-        },
-        {
-          correct: false,
-          label:
-            "Tidak ada kios di Pasar Baru yang menerima pembayaran nontunai atau memasang daftar harga.",
+            "Beberapa peserta kursus tata boga yang tidak hadir sejak hari pertama atau tidak mengumpulkan laporan praktik menerima sertifikat.",
         },
         {
           correct: true,
           label:
-            "Ada kios di Pasar Baru yang tidak menerima pembayaran nontunai dan tidak memasang daftar harga.",
+            "Setiap peserta kursus tata boga yang hadir sejak hari pertama, tetapi tidak menerima sertifikat, tidak mengumpulkan laporan praktik.",
         },
         {
           correct: false,
           label:
-            "Ada kios di Pasar Baru yang menerima pembayaran nontunai, tetapi tidak memasang daftar harga.",
+            "Setiap peserta kursus tata boga yang hadir sejak hari pertama, tetapi tidak mengumpulkan laporan praktik, tidak menerima sertifikat.",
+        },
+        {
+          correct: false,
+          label:
+            "Setiap peserta kursus tata boga yang menerima sertifikat hadir sejak hari pertama dan mengumpulkan laporan praktik.",
         },
       ],
     },

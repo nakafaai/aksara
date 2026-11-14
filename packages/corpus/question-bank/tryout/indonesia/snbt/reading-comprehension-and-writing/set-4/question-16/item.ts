@@ -2,35 +2,27 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "reading",
-    topic: "data-interpretation",
+    cognitiveLevel: "reasoning",
+    contentDomain: "writing",
+    topic: "revision",
   },
-  stimulus: "water-tank",
+  stimulus: "kopi",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Tepat", "Tidak tepat"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$6$$ meter kubik",
+          column: 1,
+          label:
+            "Pada kalimat (13), kata _dan_ di antara _pagi hari_ dan _sore hari_ diganti dengan _maupun_.",
         },
         {
-          correct: false,
-          label: "$$8$$ meter kubik",
+          column: 2,
+          label: "Pada kalimat (11), kata _agar_ diganti dengan _supaya_.",
         },
-        {
-          correct: false,
-          label: "$$14$$ meter kubik",
-        },
-        {
-          correct: false,
-          label: "$$20$$ meter kubik",
-        },
-        {
-          correct: false,
-          label: "$$34$$ meter kubik",
-        },
+        { column: 2, label: "Pada kalimat (14), kata _bahwa_ dihapus." },
+        { column: 1, label: "Pada kalimat (14), kata _menurut_ dihapus." },
       ],
     },
   },

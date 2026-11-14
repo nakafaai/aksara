@@ -2,35 +2,23 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "writing",
-    topic: "spelling",
+    topic: "affix-meaning",
   },
-  stimulus: "water-tank",
+  stimulus: "kopi",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "kalimat (1)",
+          label: "_pengolahan_ dan _pengemasan_, karena keduanya sudah tepat",
         },
-        {
-          correct: false,
-          label: "kalimat (2)",
-        },
-        {
-          correct: true,
-          label: "kalimat (5)",
-        },
-        {
-          correct: false,
-          label: "kalimat (6)",
-        },
-        {
-          correct: false,
-          label: "kalimat (7)",
-        },
+        { correct: false, label: "_olahan_ dan _pengemasan_" },
+        { correct: true, label: "_olahan_ dan _kemasan_" },
+        { correct: false, label: "_pengolahan_ dan _kemasan_" },
+        { correct: false, label: "_pengolah_ dan _pengemas_" },
       ],
     },
   },

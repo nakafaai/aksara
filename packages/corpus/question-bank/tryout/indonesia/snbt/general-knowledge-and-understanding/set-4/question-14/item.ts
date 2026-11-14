@@ -3,36 +3,19 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "paragraph-meaning",
-    topic: "application",
+    contentDomain: "word-relation",
+    topic: "synonym",
   },
-  stimulus: "hoaks",
+  stimulus: "pusaka",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label:
-            "Mencari apakah media lain yang tepercaya juga memuat klaim yang sama.",
-        },
-        {
-          correct: false,
-          label: "Langsung membagikannya agar teman-teman segera waspada.",
-        },
-        {
-          correct: false,
-          label:
-            "Memeriksa apakah tata letak dan logo situs itu benar-benar mirip dengan media terkenal.",
-        },
-        {
-          correct: false,
-          label: "Membaca judulnya sekali lagi dengan lebih teliti.",
-        },
-        {
-          correct: false,
-          label: "Mempercayainya karena situs itu tampak profesional.",
-        },
+        { correct: false, label: "dimiliki" },
+        { correct: false, label: "diamati" },
+        { correct: true, label: "dijaga" },
+        { correct: false, label: "dikuasai" },
+        { correct: false, label: "diselidiki" },
       ],
     },
   },

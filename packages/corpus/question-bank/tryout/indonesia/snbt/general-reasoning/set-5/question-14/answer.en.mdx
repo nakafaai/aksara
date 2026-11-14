@@ -1,11 +1,29 @@
-Check what happens if Gilang is **not** chosen. By rule 1, Fani cannot be chosen either, since Fani always brings Gilang. The four athletes must then come from Hana, Indra, Joko, Kiki, and Lusi.
+Each option names the four candidates who are **not** chosen. So your first move is to **turn the list into the team that is chosen**, the other four candidates. Only then check the six rules. If you skip this step, you end up checking the wrong team.
 
-- At most one of Hana and Indra can be chosen (rule 2).
-- At most one of Joko and Kiki can be chosen (rule 3).
-- Lusi adds at most one more.
+For rule 1, keep the fields in mind: Danu, Elvira and Fauzan are in chemistry, and Gendis and Haikal are in physics. The table turns each list around and records the result of the check.
 
-So without Gilang at most **three** athletes can be chosen, but the team needs four. Gilang is therefore **certainly** chosen.
+| Candidates not chosen | Team chosen | Result of the check |
+| --- | --- | --- |
+| Bening, Elvira, Fauzan, Haikal | Arka, Cempaka, Danu, Gendis | Meets every rule |
+| Cempaka, Elvira, Fauzan, Gendis | Arka, Bening, Danu, Haikal | Breaks rule 4 |
+| Arka, Danu, Elvira, Fauzan | Bening, Cempaka, Gendis, Haikal | Breaks rule 1 |
+| Arka, Bening, Danu, Gendis | Cempaka, Elvira, Fauzan, Haikal | Breaks rule 5 |
+| Bening, Danu, Fauzan, Haikal | Arka, Cempaka, Elvira, Gendis | Breaks rule 2 |
 
-No other athlete is certain. For example, the team Gilang, Hana, Joko, and Lusi leaves out Fani, the team Gilang, Indra, Joko, and Lusi leaves out Hana, and the team Fani, Gilang, Hana, and Kiki leaves out both Lusi and Joko. All three teams meet every rule.
+Now check the team Arka, Cempaka, Danu and Gendis rule by rule.
 
-So the athlete who is certainly chosen is Gilang.
+- Rule 1: Danu is in chemistry and Gendis is in physics.
+- Rule 2: Arka is chosen, and so is Danu.
+- Rule 3: Bening and Elvira are both left out, so they aren't together.
+- Rule 4: Gendis is chosen. The "if Gendis isn't chosen" part doesn't happen, so this rule demands nothing.
+- Rule 5: Haikal isn't chosen, so this rule demands nothing either.
+- Rule 6: Fauzan isn't chosen, so Fauzan and Gendis aren't together.
+
+The other four lists fail, and each one sets a different trap.
+
+- The list Cempaka, Elvira, Fauzan, Gendis contains both Cempaka and Gendis. That means Gendis is left out and Cempaka is left out too, yet rule 4 requires Cempaka whenever Gendis is out.
+- The list Arka, Danu, Elvira, Fauzan contains all three chemistry candidates. The remaining team has no chemistry member at all, so rule 1 fails. You miss this if you forget to look at the table of fields.
+- The list Arka, Bening, Danu, Gendis is the slipperiest trap. Read as a chosen team, it meets every rule. But it's the list of candidates who are left out, so the team is Cempaka, Elvira, Fauzan and Haikal. Rule 5, "Haikal is chosen only if Bening is chosen", means Haikal may join only when Bening joins. In this team Haikal joins without Bening.
+- The list Bening, Danu, Fauzan, Haikal puts Arka in the team without Danu, so rule 2 fails.
+
+So the possible list of candidates not chosen is Bening, Elvira, Fauzan and Haikal, which gives the team Arka, Cempaka, Danu and Gendis.

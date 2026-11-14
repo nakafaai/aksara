@@ -1,11 +1,23 @@
-Zähle die Quadrate **nach ihrer Größe**. Ein Quadrat aus <InlineMath math="k\times k" /> Fliesen passt an <InlineMath math="3-k+1" /> Zeilenpositionen und <InlineMath math="5-k+1" /> Spaltenpositionen. Die größte Größe ist <InlineMath math="3\times3" />, weil es nur drei Reihen gibt.
+Der Code hat vier Stellen. Die erste und die letzte Stelle sind durch Bedingung 1 und Bedingung 2 schon festgelegt. Nachdenken musst du über **die beiden mittleren Stellen**.
 
-<BlockMath math="\begin{aligned}
-1\times1 &: 3\times5=15 \\
-2\times2 &: 2\times4=8 \\
-3\times3 &: 1\times3=3
-\end{aligned}" />
+Das erste Zeichen ist ein Buchstabe, und der Code muss genau zwei Buchstaben enthalten (Bedingung 3). Das letzte Zeichen ist eine Ziffer, der zweite Buchstabe steht also in der Mitte. Die beiden mittleren Stellen enthalten damit einen Buchstaben und eine Ziffer.
 
-Zusammen sind es <InlineMath math="15+8+3=26" />. Rechtecke, die keine Quadrate sind, etwa <InlineMath math="1\times2" /> Fliesen, zählen nicht.
+Besetz zuerst die Stellen mit den strengsten Bedingungen und multiplizier dann die Zahl der Möglichkeiten.
 
-In der Fliesenfläche gibt es also <InlineMath math="26" /> Quadrate.
+1. Letztes Zeichen: eine gerade Ziffer, also <InlineMath math="2" /> oder <InlineMath math="4" />. Das sind <InlineMath math="2" /> Möglichkeiten.
+2. Erstes Zeichen: einer der fünf Buchstaben. Das sind <InlineMath math="5" /> Möglichkeiten.
+3. Platz des mittleren Buchstabens: zweite oder dritte Stelle. Das sind <InlineMath math="2" /> Möglichkeiten.
+4. Der mittlere Buchstabe: Er darf nicht derselbe sein wie der erste (Bedingung 4). Das sind <InlineMath math="4" /> Möglichkeiten.
+5. Die mittlere Ziffer: Sie darf nicht dieselbe sein wie die letzte (Bedingung 4). Das sind <InlineMath math="3" /> Möglichkeiten.
+
+<BlockMath math="2\cdot5\cdot2\cdot4\cdot3=240" />
+
+Probe auf anderem Weg. Wähl die beiden mittleren Stellen als geordnetes Paar: Buchstabe dann Ziffer ergibt <InlineMath math="4\cdot3=12" /> Möglichkeiten, Ziffer dann Buchstabe noch einmal <InlineMath math="12" />, zusammen <InlineMath math="24" />. Dann ist <InlineMath math="5\cdot24\cdot2=240" />.
+
+Die falschen Antworten entstehen meist durch einen ausgelassenen Schritt.
+
+- <InlineMath math="120" /> entsteht, wenn du den Platz des mittleren Buchstabens nicht mitzählst, obwohl er an zweiter oder dritter Stelle stehen kann.
+- <InlineMath math="400" /> entsteht, wenn du Bedingung 4 vergisst, also <InlineMath math="5\cdot2\cdot5\cdot4\cdot2" />.
+- <InlineMath math="480" /> entsteht, wenn das letzte Zeichen jede Ziffer sein darf und nicht nur eine gerade.
+
+Es lassen sich also <InlineMath math="240" /> verschiedene Codes bilden.

@@ -3,35 +3,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "paragraph-meaning",
-    topic: "inference",
+    contentDomain: "vocabulary",
+    topic: "figurative-meaning",
   },
-  stimulus: "puter",
+  stimulus: "rawa",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Adonan akan membeku lebih cepat karena tidak ada garam yang mengganggu terbentuknya kristal es di dalam tabung.",
-        },
-        {
-          correct: false,
-          label: "Adonan akan langsung berubah menjadi serutan es.",
-        },
-        {
-          correct: false,
-          label: "Es batu tidak akan mencair sama sekali.",
-        },
-        {
           correct: true,
           label:
-            "Adonan akan lebih sulit membeku karena es batu saja tidak sedingin campuran es dan garam.",
+            "tertahan di dalam timbunan sisa tumbuhan selama timbunan itu tetap tergenang",
         },
         {
           correct: false,
-          label: "Tekstur es puter pasti menjadi lebih lembut.",
+          label: "tersimpan untuk selamanya dan tidak mungkin terlepas lagi",
+        },
+        {
+          correct: false,
+          label: "tertutup rapat sehingga tidak dapat dimasuki air",
+        },
+        {
+          correct: false,
+          label: "terikat pada air sehingga ikut mengalir bersama air",
+        },
+        {
+          correct: false,
+          label: "terhenti penguraiannya karena mikroba pengurai mati",
         },
       ],
     },

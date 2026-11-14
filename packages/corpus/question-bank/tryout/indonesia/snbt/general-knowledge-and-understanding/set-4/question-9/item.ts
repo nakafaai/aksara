@@ -2,35 +2,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "word-relation",
     topic: "antonym",
   },
-  stimulus: "rempah",
+  stimulus: "purnama",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "melonjak",
-        },
-        {
-          correct: false,
-          label: "menurun",
-        },
-        {
-          correct: false,
-          label: "berkurang",
-        },
-        {
-          correct: false,
-          label: "jatuh",
-        },
-        {
-          correct: false,
-          label: "anjlok",
-        },
+        { correct: false, label: "samar" },
+        { correct: true, label: "semu" },
+        { correct: false, label: "gaib" },
+        { correct: false, label: "kabur" },
+        { correct: false, label: "kecil" },
       ],
     },
   },

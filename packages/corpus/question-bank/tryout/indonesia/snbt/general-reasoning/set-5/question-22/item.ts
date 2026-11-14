@@ -4,32 +4,17 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
-    topic: "number-pattern",
+    topic: "weighted-average",
   },
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$9$$",
-        },
-        {
-          correct: false,
-          label: "$$7$$",
-        },
-        {
-          correct: false,
-          label: "$$8$$",
-        },
-        {
-          correct: false,
-          label: "$$10$$",
-        },
-        {
-          correct: false,
-          label: "$$11$$",
-        },
+        { correct: false, label: "$$70{,}4$$" },
+        { correct: false, label: "$$69{,}2$$" },
+        { correct: false, label: "$$69$$" },
+        { correct: true, label: "$$68$$" },
+        { correct: false, label: "$$60{,}8$$" },
       ],
     },
   },

@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "evaluation",
+    topic: "explanation",
   },
-  stimulus: "bus",
+  stimulus: "bimbel",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Berapa harga tiket bus kota di kota-kota lain yang berdekatan?",
-        },
-        {
-          correct: false,
-          label:
-            "Berapa banyak bus yang dioperasikan di koridor $$3$$ setiap hari?",
-        },
-        {
-          correct: false,
-          label:
-            "Apakah pengelola berencana menaikkan tarif koridor $$3$$ tahun depan?",
-        },
-        {
-          correct: false,
-          label:
-            "Berapa lama perjalanan bus koridor $$3$$ dari halte pertama sampai halte terakhir pada pagi hari dan pada siang hari?",
+            "Sebagian siswa menonton rekaman sesi yang sama lebih dari sekali.",
         },
         {
           correct: true,
           label:
-            "Apakah pada tahun-tahun sebelumnya penumpang pukul 06.30 sampai 08.00 juga turun dari Februari ke April?",
+            "Siswa yang pada Januari tidak pernah hadir mulai hadir pada beberapa sesi, sedangkan banyak siswa lain hadir pada lebih sedikit sesi daripada sebelumnya.",
+        },
+        {
+          correct: false,
+          label:
+            "Banyak siswa tersambung kurang dari $$80$$ menit pada sesi-sesi Februari sehingga tidak dicatat hadir.",
+        },
+        {
+          correct: false,
+          label:
+            "Pada Februari, bimbel itu menerima siswa baru sehingga siswa terdaftar bertambah.",
+        },
+        {
+          correct: false,
+          label:
+            "Pada Februari, setiap sesi dihadiri oleh $$120$$ siswa yang sama.",
         },
       ],
     },

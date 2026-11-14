@@ -1,9 +1,23 @@
-Die Differenzen zwischen den Gliedern sind <InlineMath math="1, 1, 2, 3, 5" />. Sie sind nicht konstant, aber **jede Differenz ist die Summe der beiden vorigen**: <InlineMath math="1+1=2" />, <InlineMath math="1+2=3" />, <InlineMath math="2+3=5" />. Die nächste Differenz ist <InlineMath math="3+5=8" />, das nächste Glied also:
+Wandle die vorhandenen Buchstaben in ihre Nummern um und schau dir den Sprung von einem Buchstaben zum nächsten an. Nenn die Nummer des ersten fehlenden Buchstabens <InlineMath math="x" /> und die des letzten <InlineMath math="y" />.
 
-<BlockMath math="14+8=22" />
+<BlockMath math="26\xrightarrow{-1}25\xrightarrow{-3}22\xrightarrow{-2}20\longrightarrow x\longrightarrow13\xrightarrow{-5}8\longrightarrow y" />
 
-Dasselbe Muster zeigt sich an den Gliedern selbst: Ab dem dritten Glied ist jedes Glied die Summe der beiden vorigen minus <InlineMath math="1" />.
+Sichtbar sind die Sprünge <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="2" />, dann zwei unbekannte Sprünge, dann <InlineMath math="5" />. Sie wachsen nicht gleichmäßig. Trenn deshalb **die Sprünge an ungerader Stelle von denen an gerader Stelle**.
 
-<BlockMath math="2+3-1=4,\quad 3+4-1=6,\quad 4+6-1=9,\quad 6+9-1=14,\quad 9+14-1=22" />
+- Der <InlineMath math="1." /> und der <InlineMath math="3." /> Sprung sind <InlineMath math="1" /> und <InlineMath math="2" />. Das Muster wächst um eins, also ist der <InlineMath math="5." /> Sprung <InlineMath math="3" /> und der <InlineMath math="7." /> Sprung <InlineMath math="4" />.
+- Der <InlineMath math="2." /> Sprung ist <InlineMath math="3" />. Wächst auch dieses Muster um eins, ist der <InlineMath math="4." /> Sprung <InlineMath math="4" /> und der <InlineMath math="6." /> Sprung <InlineMath math="5" />. Der <InlineMath math="6." /> Sprung ist wirklich <InlineMath math="5" />, die Vermutung passt also.
 
-Beide Wege liefern dasselbe. Die nächste Zahl ist also <InlineMath math="22" />.
+Füll jetzt die fehlenden Buchstaben ein.
+
+<BlockMath math="\begin{aligned}
+x&=20-4=16\\
+y&=8-4=4
+\end{aligned}" />
+
+Prüf es am Buchstaben M. Von <InlineMath math="x=16" /> führt der <InlineMath math="5." /> Sprung der Größe <InlineMath math="3" /> zu <InlineMath math="16-3=13" />, und Nummer <InlineMath math="13" /> ist tatsächlich M. Nummer <InlineMath math="16" /> ist P, Nummer <InlineMath math="4" /> ist D.
+
+<BlockMath math="16+4=20" />
+
+Auf <InlineMath math="21" /> kommst du, wenn du die beiden fehlenden Sprünge vertauschst, also erst <InlineMath math="3" /> und dann <InlineMath math="4" />, sodass <InlineMath math="x=17" /> ist. Beide Reihenfolgen landen bei M, deshalb entscheiden nur die Muster an ungerader und gerader Stelle über die Reihenfolge.
+
+Die Nummern der beiden fehlenden Buchstaben ergeben zusammen also <InlineMath math="20" />.

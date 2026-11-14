@@ -4,13 +4,18 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
-    topic: "remainder",
+    topic: "optimization",
   },
   versions: {
     id: {
-      kind: "numericEntry",
-      unit: "butir",
-      value: "122",
+      kind: "choice",
+      options: [
+        { correct: true, label: "$$\\text{Rp}168{.}000$$" },
+        { correct: false, label: "$$\\text{Rp}178{.}000$$" },
+        { correct: false, label: "$$\\text{Rp}184{.}000$$" },
+        { correct: false, label: "$$\\text{Rp}192{.}000$$" },
+        { correct: false, label: "$$\\text{Rp}204{.}000$$" },
+      ],
     },
   },
 };

@@ -4,12 +4,12 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
-    topic: "number-series",
+    topic: "letter-series",
   },
   versions: {
     id: {
       kind: "numericEntry",
-      value: "22",
+      value: "20",
     },
   },
 };

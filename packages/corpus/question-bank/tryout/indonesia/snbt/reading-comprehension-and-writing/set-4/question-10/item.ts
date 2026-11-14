@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "reading",
-    topic: "referent",
+    cognitiveLevel: "reasoning",
+    contentDomain: "writing",
+    topic: "coherence",
   },
-  stimulus: "cassava-flour",
+  stimulus: "gambut",
   versions: {
     id: {
       kind: "choice",
@@ -14,23 +14,25 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "merendam irisan singkong di dalam air yang diberi bakteri baik",
+            "kalimat (4), karena kata _berlebihan_ bertentangan dengan isi paragraf",
+        },
+        {
+          correct: false,
+          label: "kalimat (5), karena memuat tiga kegiatan dalam satu kalimat",
         },
         {
           correct: true,
-          label: "mencampur tepung singkong fermentasi dengan sedikit terigu",
+          label:
+            "kalimat (6), karena mengulang isi paragraf pertama dan memisahkan _suhu itu_ pada kalimat (7) dari rujukannya",
         },
         {
           correct: false,
-          label: "membuat kue seluruhnya dari tepung singkong",
+          label:
+            "kalimat (7), karena rincian alat ukur tidak berhubungan dengan pemadaman",
         },
         {
           correct: false,
-          label: "menanam singkong sendiri di kabupaten itu",
-        },
-        {
-          correct: false,
-          label: "mengeringkan dan menggiling irisan singkong",
+          label: "kalimat (8), karena mengulang isi kalimat (5)",
         },
       ],
     },

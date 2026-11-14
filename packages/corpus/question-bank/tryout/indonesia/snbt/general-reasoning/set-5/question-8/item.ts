@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "parallel-reasoning",
+    topic: "flaw",
   },
-  stimulus: "robotik",
+  stimulus: "helm",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Sebuah pabrik membagi pekerjanya secara acak menjadi dua kelompok. Kelompok yang diberi waktu istirahat tambahan membuat lebih sedikit kesalahan, sehingga istirahat tambahan diberikan kepada semua pekerja.",
-        },
-        {
-          correct: false,
-          label:
-            "Tiga dari lima toko roti yang dikunjungi Sinta menjual roti gandum, sehingga Sinta menyimpulkan sebagian besar toko roti di kotanya menjual roti gandum.",
-        },
-        {
-          correct: false,
-          label:
-            "Karena seorang pelari terkenal memakai sepatu merek tertentu, sebuah iklan menyatakan bahwa sepatu itu membuat semua pemakainya berlari lebih cepat.",
-        },
-        {
-          correct: false,
-          label:
-            "Semua peserta yang lulus seleksi sudah mengikuti pelatihan. Dodi lulus seleksi, jadi Dodi sudah mengikuti pelatihan.",
+            "ia tidak menghitung pembonceng, padahal pembonceng juga wajib memakai helm",
         },
         {
           correct: true,
           label:
-            "Warga yang secara sukarela ikut kelas memasak sehat di puskesmas memiliki kadar gula darah lebih rendah daripada warga lain, sehingga kelurahan berencana mewajibkan kelas itu bagi semua warga.",
+            "ia menganggap pengendara di persimpangan berkamera, tempat pelanggar tahu akan ditilang, mewakili pengendara di semua jalan kota",
+        },
+        {
+          correct: false,
+          label:
+            "ia membandingkan rata-rata harian Februari dan April, padahal banyak hari pada kedua bulan itu berbeda",
+        },
+        {
+          correct: false,
+          label:
+            "ia menghitung persentase dari $$21{.}000$$ sepeda motor, padahal seharusnya dari $$24{.}000$$ sepeda motor",
+        },
+        {
+          correct: false,
+          label:
+            "ia mengabaikan razia pada Maret yang juga dapat mengurangi pengendara tanpa helm",
         },
       ],
     },

@@ -1,15 +1,19 @@
-Work in three steps: **the real distance**, **the riding time**, then **the arrival time**.
+You need to line up three things in order: when the two events meet, when a meeting lands on a Monday, and how many meetings happen in between.
 
-Real distance:
+The two events meet whenever the number of days gone by is divisible by <InlineMath math="6" /> and by <InlineMath math="8" />. The smallest such number is the least common multiple of <InlineMath math="6" /> and <InlineMath math="8" />.
 
-<BlockMath math="12\text{ cm}\times400{,}000=4{,}800{,}000\text{ cm}=48\text{ km}" />
+<BlockMath math="\operatorname{lcm}(6,8)=24" />
 
-Riding time:
+So they meet every <InlineMath math="24" /> days, not every <InlineMath math="6\cdot8=48" /> days.
 
-<BlockMath math="\frac{48\text{ km}}{40\text{ km/h}}=1.2\text{ h}=1\text{ h }12\text{ min}" />
+Monday comes round every <InlineMath math="7" /> days. A meeting lands on a Monday again when the number of days gone by is also divisible by <InlineMath math="7" />. The numbers <InlineMath math="24" /> and <InlineMath math="7" /> share no factor other than <InlineMath math="1" />, so **the first meeting on a Monday comes after <InlineMath math="24\cdot7=168" /> days**.
 
-Note that <InlineMath math="0.2" /> hours is <InlineMath math="0.2\times60=12" /> minutes, not <InlineMath math="20" /> minutes. Adding the <InlineMath math="15" />-minute rest, the total time is <InlineMath math="1" /> hour <InlineMath math="27" /> minutes. From 07.15, Dina arrives at 08.42.
+Now count the meetings. In <InlineMath math="168" /> days there are <InlineMath math="168:24=7" /> meetings, on days <InlineMath math="24" />, <InlineMath math="48" />, <InlineMath math="72" />, <InlineMath math="96" />, <InlineMath math="120" />, <InlineMath math="144" /> and <InlineMath math="168" />. Meeting number <InlineMath math="7" /> is the Monday meeting itself, so it doesn't count.
 
-The other options come from mistakes: 08.27 leaves out the rest, 08.35 and 08.50 read <InlineMath math="1.2" /> hours as <InlineMath math="1" /> hour <InlineMath math="20" /> minutes, and 08.57 counts the rest twice.
+<BlockMath math="7-1=6" />
 
-So Dina reaches Kota Tanjung at 08.42.
+Check those six meetings: the remainders of <InlineMath math="24" />, <InlineMath math="48" />, <InlineMath math="72" />, <InlineMath math="96" />, <InlineMath math="120" /> and <InlineMath math="144" /> on division by <InlineMath math="7" /> are <InlineMath math="3" />, <InlineMath math="6" />, <InlineMath math="2" />, <InlineMath math="5" />, <InlineMath math="1" /> and <InlineMath math="4" />. None is <InlineMath math="0" />, so none of the six falls on a Monday.
+
+You'd get <InlineMath math="7" /> times by counting the Monday meeting too. You'd get <InlineMath math="20" /> times or <InlineMath math="27" /> times by counting only the market days, <InlineMath math="168:8-1" />, or only the health post days, <InlineMath math="168:6-1" />.
+
+So the two events take place together <InlineMath math="6" /> times on days other than Monday.

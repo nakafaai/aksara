@@ -4,37 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "data-inference",
+    topic: "assumption",
   },
-  stimulus: "bus",
+  stimulus: "bimbel",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Siswa yang hadir langsung pada suatu sesi pasti memahami seluruh materi sesi itu.",
+        },
+        {
+          correct: false,
+          label:
+            "Setiap siswa yang absen pada suatu sesi di bulan Februari menonton rekaman sesi itu.",
+        },
+        {
           correct: true,
           label:
-            "Sebagian penumpang yang semula berangkat pukul 06.30 sampai 08.00 beralih ke keberangkatan yang lebih pagi.",
+            "Paling sedikit sebagian siswa yang absen dari sesi langsung pada Februari tidak memperoleh pemahaman yang setara dari rekamannya.",
         },
         {
           correct: false,
           label:
-            "Penurunan tarif pagi menarik $$900$$ penumpang baru yang sebelumnya tidak pernah naik bus koridor $$3$$ pada jam berapa pun.",
+            "Pada Januari, tidak ada siswa yang absen karena gangguan sambungan internet.",
         },
         {
           correct: false,
           label:
-            "Pendapatan tiket harian koridor $$3$$ naik setelah tarif pagi diturunkan.",
-        },
-        {
-          correct: false,
-          label:
-            "Jumlah penumpang pada setiap rentang waktu keberangkatan naik dari Februari ke April.",
-        },
-        {
-          correct: false,
-          label:
-            "Penumpang pukul 16.00 sampai 19.00 bertambah karena tarif pada rentang itu ikut turun.",
+            "Jika rekaman dihapus, rata-rata banyak siswa yang hadir per sesi akan kembali menjadi $$150$$ siswa.",
         },
       ],
     },

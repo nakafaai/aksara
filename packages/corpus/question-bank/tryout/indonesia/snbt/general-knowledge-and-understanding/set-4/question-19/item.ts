@@ -2,35 +2,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "vocabulary",
-    topic: "polysemy",
+    cognitiveLevel: "reasoning",
+    contentDomain: "word-relation",
+    topic: "analogy",
   },
-  stimulus: "puter",
+  stimulus: "rawa",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "tidak sopan dalam bertutur kata",
-        },
-        {
-          correct: true,
-          label: "berbutir dan tidak halus",
-        },
-        {
-          correct: false,
-          label: "berat sekali",
-        },
-        {
-          correct: false,
-          label: "mahal harganya",
-        },
-        {
-          correct: false,
-          label: "besar ukurannya",
-        },
+        { correct: false, label: "kayu : arang" },
+        { correct: false, label: "benang : kain" },
+        { correct: false, label: "batu : kerikil" },
+        { correct: true, label: "lumpur : delta" },
+        { correct: false, label: "air : es" },
       ],
     },
   },

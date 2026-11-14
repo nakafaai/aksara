@@ -2,36 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "vocabulary",
-    topic: "word-meaning",
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
   },
-  stimulus: "rempah",
+  stimulus: "purnama",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Penjual pertama di pulau asal",
-        },
-        {
-          correct: false,
-          label: "Pembeli akhir di pasar Eropa",
-        },
-        {
-          correct: false,
-          label: "Petani yang menanam rempah",
-        },
-        {
-          correct: true,
+          column: 1,
           label:
-            "Pihak yang menghubungkan penjual dan pembeli lalu mengambil keuntungan",
+            "Bulan di cakrawala sedikit lebih kecil di mata daripada bulan yang tepat di atas kepala.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Pelaut yang mengemudikan kapal pengangkut rempah dari pulau asal ke pelabuhan-pelabuhan lain",
+            "Lapisan udara di dekat cakrawala membuat piringan bulan yang rendah tampak sedikit lebih lebar.",
+        },
+        {
+          column: 2,
+          label:
+            "Para ahli sepakat bahwa ilusi bulan terjadi karena otak salah menafsirkan jarak bulan yang rendah.",
+        },
+        {
+          column: 1,
+          label:
+            "Perbedaan lebar purnama akibat bentuk orbit bulan lebih besar daripada perbedaan ukuran bulan akibat letaknya di langit, tetapi tidak mudah disadari.",
         },
       ],
     },

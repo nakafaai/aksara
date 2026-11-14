@@ -1,19 +1,35 @@
-Gilang is **certainly** on the team, since without Gilang at most three athletes can be chosen. So we only pick three more athletes besides Gilang. Split the cases by **Indra**, because Indra triggers several rules.
+To count every team, you need a split that misses nothing and counts nothing twice. Gendis makes a good dividing point, because rule 4 and rule 6 both mention Gendis. Every team falls into **exactly one** of two groups: teams without Gendis or teams with Gendis.
 
-**Case 1: Indra is chosen**. Indra forces Joko in, Joko rules out Kiki, Indra rules out Hana, and then Lusi must join. Gilang, Indra, Joko, and Lusi already make four. That is **1** team.
+First group: Gendis isn't chosen.
 
-**Case 2: Indra is not chosen**. The other three come from Fani, Hana, Joko, Kiki, and Lusi, without Joko and Kiki together, and with at least one of Hana and Lusi. All possibilities:
+1. Cempaka must be chosen (rule 4).
+2. The team needs a physics member (rule 1). Only Haikal is left, so Haikal is chosen.
+3. Haikal is chosen, so Bening is chosen (rule 5).
+4. Bening is chosen, so Elvira can't be (rule 3).
+5. The fourth member has to come from chemistry (rule 1), so it's Danu or Fauzan. Arka can't join, because only one place is left and Arka requires Danu (rule 2).
 
-| Other three athletes | Rule check |
+This group holds <InlineMath math="2" /> teams.
+
+Second group: Gendis is chosen, so Fauzan is out (rule 6).
+
+- If Haikal is chosen, Bening joins (rule 5), Elvira is out (rule 3), and the chemistry member must be Danu. That gives <InlineMath math="1" /> team: Bening, Danu, Gendis, Haikal.
+- If Haikal isn't chosen, pick three people from Arka, Bening, Cempaka, Danu and Elvira. There are <InlineMath math="10" /> ways to pick three out of five. Cross out the ones with neither Danu nor Elvira, the ones with Arka but no Danu, and the ones with Bening and Elvira together.
+
+| Three people besides Gendis | Check |
 | --- | --- |
-| Fani, Hana, Joko | allowed |
-| Fani, Hana, Kiki | allowed |
-| Fani, Hana, Lusi | allowed |
-| Fani, Joko, Lusi | allowed |
-| Fani, Kiki, Lusi | allowed |
-| Hana, Joko, Lusi | allowed |
-| Hana, Kiki, Lusi | allowed |
+| Arka, Bening, Danu | Allowed |
+| Arka, Cempaka, Danu | Allowed |
+| Arka, Danu, Elvira | Allowed |
+| Bening, Cempaka, Danu | Allowed |
+| Cempaka, Danu, Elvira | Allowed |
+| Arka, Bening, Cempaka | No chemistry member |
+| Arka, Bening, Elvira | Arka without Danu |
+| Arka, Cempaka, Elvira | Arka without Danu |
+| Bening, Cempaka, Elvira | Bening with Elvira |
+| Bening, Danu, Elvira | Bening with Elvira |
 
-The other triples fail: Fani, Joko, and Kiki, Hana, Joko, and Kiki, and Joko, Kiki, and Lusi all put Joko and Kiki together. That is **7** teams.
+This part gives <InlineMath math="5" /> teams.
 
-The total is <InlineMath math="1+7=8" /> teams.
+<BlockMath math="2+1+5=8" />
+
+So there are **<InlineMath math="8" /> teams** that meet all six rules.
