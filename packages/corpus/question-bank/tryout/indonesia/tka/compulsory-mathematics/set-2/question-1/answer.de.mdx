@@ -1,16 +1,51 @@
-Der Preis pro GB ist **Paketpreis geteilt durch Datenmenge**. Die Laufzeit spielt dafür keine Rolle. Berechne den Wert für jedes Paket.
+# Import und Export an einem Tag
+
+Gesucht ist die Rechnung für Oktober plus die Rechnung für November. Zwei Regeln entscheiden: Import und Export werden **Tag für Tag** gezählt, und die Exportgutschrift wird **in jedem Monat einzeln** begrenzt.
+
+Fang mit einem einzigen Tag an. Der Solarstrom am Tag deckt zuerst den Tagesverbrauch von <InlineMath math="4\text{ kWh}" />. Was übrig bleibt, wird exportiert. Reicht er nicht, wird die Lücke importiert. Den Nachtverbrauch von <InlineMath math="4\text{ kWh}" /> importiert das Haus immer.
+
+| Art des Tages | Export | Import |
+| --- | --- | --- |
+| Sonnig | <InlineMath math="14-4=10\text{ kWh}" /> | <InlineMath math="4\text{ kWh}" /> (Nacht) |
+| Bewölkt | <InlineMath math="0\text{ kWh}" /> | <InlineMath math="(4-2)+4=6\text{ kWh}" /> |
+
+An einem bewölkten Tag liefert die Anlage nur <InlineMath math="2\text{ kWh}" />, also fehlen beim Tagesverbrauch noch <InlineMath math="2\text{ kWh}" />. Auch diese Lücke wird importiert.
+
+# Die Rechnung für Oktober
+
+Der Oktober hat <InlineMath math="29" /> sonnige und <InlineMath math="2" /> bewölkte Tage. Bestimme die Energie des Monats, dann die Importkosten und die Gutschrift.
 
 <BlockMath math="\begin{aligned}
-\text{Hemat}&:\ \frac{75{.}000}{25}=3{.}000 \\
-\text{Jumbo}&:\ \frac{110{.}000}{40}=2{.}750 \\
-\text{Harian}&:\ \frac{8{.}000}{2}=4{.}000
+\text{Import}&=29\cdot4+2\cdot6=128\text{ kWh} \\
+\text{Export}&=29\cdot10=290\text{ kWh} \\
+\text{Importkosten}&=128\cdot1{.}500=192{.}000 \\
+\text{Gutschrift}&=290\cdot800=232{.}000
 \end{aligned}" />
 
-Zur Kontrolle: <InlineMath math="40\cdot2{.}750=110{.}000" />.
+Die Gutschrift ist größer als die Importkosten. Nach der Regel ist **die Oktoberrechnung genau die Grundgebühr**, also <InlineMath math="\text{Rp}30{.}000" />. Die überschüssige Gutschrift von <InlineMath math="\text{Rp}40{.}000" /> verfällt und darf nicht in den November mitgenommen werden.
 
-Am günstigsten ist also das Paket Jumbo mit <InlineMath math="\text{Rp}2{.}750" /> pro GB.
+# Die Rechnung für November
 
-- <InlineMath math="\text{Rp}2{.}500" /> teilt den Preis von Hemat durch die <InlineMath math="30" /> Tage. Das ist ein Preis pro Tag, nicht pro GB.
-- <InlineMath math="\text{Rp}3{.}000" /> ist der Preis pro GB von Hemat, der höher ist als bei Jumbo.
-- <InlineMath math="\text{Rp}4{.}000" /> ist der Preis pro GB von Harian, der teuerste der drei.
-- <InlineMath math="\text{Rp}8{.}000" /> ist der Preis eines ganzen Tagespakets mit <InlineMath math="2\text{ GB}" />.
+Der November hat <InlineMath math="15" /> sonnige und <InlineMath math="15" /> bewölkte Tage.
+
+<BlockMath math="\begin{aligned}
+\text{Import}&=15\cdot4+15\cdot6=150\text{ kWh} \\
+\text{Export}&=15\cdot10=150\text{ kWh} \\
+\text{Rechnung}&=30{.}000+150\cdot1{.}500-150\cdot800 \\
+&=30{.}000+225{.}000-120{.}000=135{.}000
+\end{aligned}" />
+
+Hier ist die Gutschrift kleiner als die Importkosten, also **wird die ganze Gutschrift verrechnet**, und die Rechnung beträgt <InlineMath math="\text{Rp}135{.}000" />.
+
+Zusammen ergibt das
+
+<BlockMath math="30{.}000+135{.}000=165{.}000" />
+
+Die Rechnungen für Oktober und November betragen zusammen also <InlineMath math="\text{Rp}165{.}000" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\text{Rp}144{.}000" /> entsteht, wenn du zuerst Erzeugung und Verbrauch des ganzen Monats addierst. Dann deckt der Überschuss sonniger Tage scheinbar die Lücke bewölkter Tage, aber **Import und Export werden täglich erfasst**.
+- <InlineMath math="\text{Rp}135{.}000" /> setzt die Oktoberrechnung auf <InlineMath math="\text{Rp}0" />. Die Gutschrift senkt nur die Importkosten, nie die Grundgebühr.
+- <InlineMath math="\text{Rp}125{.}000" /> nimmt die überschüssige Oktobergutschrift von <InlineMath math="\text{Rp}40{.}000" /> in den November mit. Laut Regel verfällt sie.
+- <InlineMath math="\text{Rp}120{.}000" /> vergisst, dass ein bewölkter Tag auch <InlineMath math="2\text{ kWh}" /> für den Tagesverbrauch importiert. Dann zählt jeder bewölkte Tag nur mit <InlineMath math="4\text{ kWh}" /> Import.

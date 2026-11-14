@@ -1,0 +1,69 @@
+Soalan ini meminta tinggi sebatang tiang di lereng bukit. Jaraknya diukur di sepanjang lereng, sedangkan **sudut dongak diukur dari garis mengufuk**, bukan dari lereng. Jadi kamu perlukan dua segi tiga bersudut tegak yang berkongsi satu sisi mengufuk.
+
+# Kedudukan kaki tiang
+
+Namakan kaki tiang <InlineMath math="F" />, puncaknya <InlineMath math="T" />, dan <InlineMath math="Q" /> titik betul-betul di bawah <InlineMath math="F" /> yang sama aras dengan <InlineMath math="P" />. Segi tiga <InlineMath math="PQF" /> bersudut tegak di <InlineMath math="Q" />, hipotenusnya <InlineMath math="PF=16" /> m, dan sudut di <InlineMath math="P" /> ialah kecondongan lereng <InlineMath math="30^\circ" />:
+
+<BlockMath math="\begin{aligned}
+PQ&=16\cos30^\circ=16\cdot\tfrac12\sqrt3=8\sqrt3\text{ m} \\
+QF&=16\sin30^\circ=16\cdot\tfrac12=8\text{ m}
+\end{aligned}" />
+
+Maksudnya, kaki tiang **sudah <InlineMath math="8" /> m lebih tinggi** daripada <InlineMath math="P" />.
+
+<MathVisual
+  title={<>Tiang di lereng</>}
+  description={<>Titik <InlineMath math="P" /> berada di lereng yang naik dengan sudut <InlineMath math="30^\circ" />. Kaki tiang <InlineMath math="F" /> berjarak <InlineMath math="16" /> meter dari <InlineMath math="P" /> di sepanjang lereng. Titik <InlineMath math="Q" /> betul-betul di bawah <InlineMath math="F" />, sama aras dengan <InlineMath math="P" />, dengan <InlineMath math="PQ=8\sqrt3" /> meter dan <InlineMath math="QF=8" /> meter. Garis penglihatan dari <InlineMath math="P" /> ke puncak <InlineMath math="T" /> membentuk sudut <InlineMath math="60^\circ" /> dengan garis mengufuk, jadi <InlineMath math="QT=24" /> meter dan tiang <InlineMath math="FT=16" /> meter.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    f: <InlineMath math="F" />,
+    t: <InlineMath math="T" />,
+    q: <InlineMath math="Q" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 22 },
+      y: { min: -2, max: 26 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "slope", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 20, y: 11.547005383792516 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 13.856406460551018, y: 0 } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 13.856406460551018, y: 0 }, to: { x: 13.856406460551018, y: 8 } },
+      { id: "pole", kind: "segment", appearance: "primary", from: { x: 13.856406460551018, y: 8 }, to: { x: 13.856406460551018, y: 24 } },
+      { id: "sight", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 13.856406460551018, y: 24 } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-f", kind: "point", appearance: "primary", at: { x: 13.856406460551018, y: 8 } },
+      { id: "point-t", kind: "point", appearance: "answer", at: { x: 13.856406460551018, y: 24 } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 13.856406460551018, y: 0 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point-p", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "f", objectId: "point-f", at: { x: 13.856406460551018, y: 8 }, placement: "right" },
+      { key: "t", objectId: "point-t", at: { x: 13.856406460551018, y: 24 }, placement: "right" },
+      { key: "q", objectId: "point-q", at: { x: 13.856406460551018, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Tinggi puncak dan tinggi tiang
+
+Segi tiga <InlineMath math="PQT" /> juga bersudut tegak di <InlineMath math="Q" />, dengan sisi mengufuk yang sama, <InlineMath math="PQ=8\sqrt3" />, dan sudut dongak <InlineMath math="60^\circ" /> di <InlineMath math="P" />. Puncak tiang berada <InlineMath math="QT" /> di atas <InlineMath math="P" />, dan tiang ialah bahagian dari <InlineMath math="F" /> ke <InlineMath math="T" />:
+
+<BlockMath math="\begin{aligned}
+QT&=PQ\cdot\tan60^\circ=8\sqrt3\cdot\sqrt3=24\text{ m} \\
+FT&=QT-QF=24-8=16\text{ m}
+\end{aligned}" />
+
+Semak dengan segi tiga <InlineMath math="PFT" />. Sudut di <InlineMath math="P" /> ialah <InlineMath math="60^\circ-30^\circ=30^\circ" />. Sudut di <InlineMath math="F" />, antara lereng yang turun ke <InlineMath math="P" /> dan tiang yang naik, ialah <InlineMath math="90^\circ+30^\circ=120^\circ" />. Bakinya, sudut di <InlineMath math="T" /> juga <InlineMath math="30^\circ" />. Segi tiga itu sama kaki, jadi <InlineMath math="FT=FP=16" /> m. **Hasilnya sepadan**.
+
+# Mengapa jawapan lain salah
+
+- <InlineMath math="8\text{ m}" /> muncul jika sudut di kaki tiang dianggap <InlineMath math="60^\circ" />. Tiang itu tegak dan lereng menurun ke arah <InlineMath math="P" />, jadi sudut itu sebenarnya <InlineMath math="120^\circ" />.
+- <InlineMath math="\frac{16}{3}\sqrt3\text{ m}" /> muncul jika tiang dianggap serenjang dengan lereng, jadi <InlineMath math="FT=16\tan30^\circ" />.
+- <InlineMath math="24\text{ m}" /> ialah tinggi puncak di atas <InlineMath math="P" />. **Kamu berhenti satu langkah terlalu awal** kerana terlupa menolak kenaikan <InlineMath math="8" /> m kaki tiang.
+- <InlineMath math="16\sqrt3\text{ m}" /> muncul jika tanah dianggap rata dan <InlineMath math="16" /> m digunakan sebagai jarak mengufuk.
+
+Jadi, tinggi tiang ialah <InlineMath math="16\text{ m}" />.

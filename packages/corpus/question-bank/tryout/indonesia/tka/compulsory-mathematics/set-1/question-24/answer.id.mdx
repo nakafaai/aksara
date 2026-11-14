@@ -1,19 +1,33 @@
-Ada <InlineMath math="99-10+1=90" /> bilangan yang sama peluangnya. Untuk kejadian dengan kata **atau**, hitung kedua himpunan lalu kurangkan bilangan yang termasuk keduanya, agar tidak terhitung dua kali.
+# Banyak semua cara mengambil
+
+Keempat kaus kaki diambil sekaligus, jadi urutannya tidak penting. **Banyak cara memilih <InlineMath math="4" /> dari <InlineMath math="10" />** adalah:
+
+<BlockMath math="C(10,4)=\frac{10\cdot9\cdot8\cdot7}{4\cdot3\cdot2\cdot1}=210" />
+
+# Lewat kejadian sebaliknya
+
+Kata sedikitnya satu pasang mencakup tepat satu pasang dan tepat dua pasang. Lebih mudah **menghitung kebalikannya**: tidak ada satu pun pasangan, artinya keempat kaus kaki bermotif berbeda semua.
+
+Untuk itu, pilih dulu <InlineMath math="4" /> motif dari <InlineMath math="5" /> motif. Lalu dari setiap motif terpilih ambil salah satu dari dua kaus kakinya, kiri atau kanan.
 
 <BlockMath math="\begin{aligned}
-\text{habis dibagi 4}&:\ 12,16,\dots,96\ \Rightarrow\ \frac{96-12}{4}+1=22 \\
-\text{habis dibagi 6}&:\ 12,18,\dots,96\ \Rightarrow\ \frac{96-12}{6}+1=15 \\
-\text{habis dibagi 12}&:\ 12,24,\dots,96\ \Rightarrow\ 8 \\
-P&=\frac{22+15-8}{90}=\frac{29}{90}
+\text{tanpa pasangan}&=C(5,4)\cdot2^4=5\cdot16=80 \\
+P(\text{tanpa pasangan})&=\frac{80}{210}=\frac{8}{21}
 \end{aligned}" />
 
-Sebuah bilangan habis dibagi <InlineMath math="4" /> dan <InlineMath math="6" /> sekaligus tepat ketika bilangan itu habis dibagi KPK-nya, yaitu <InlineMath math="12" />.
+# Peluang yang diminta
 
-Sebagai pemeriksaan, <InlineMath math="29" /> lebih kecil daripada <InlineMath math="22+15=37" />, karena delapan kelipatan <InlineMath math="12" /> hanya boleh dihitung sekali.
+**Kurangkan dari satu**:
 
-Jadi, peluangnya adalah <InlineMath math="\frac{29}{90}" />.
+<BlockMath math="P(\text{sedikitnya satu pasang})=1-\frac{8}{21}=\frac{13}{21}" />
 
-- <InlineMath math="\frac{4}{45}=\frac{8}{90}" /> hanya menghitung bilangan yang habis dibagi keduanya, yaitu memakai dan, bukan atau.
-- <InlineMath math="\frac16=\frac{15}{90}" /> hanya menghitung kelipatan <InlineMath math="6" />.
-- <InlineMath math="\frac{11}{45}=\frac{22}{90}" /> hanya menghitung kelipatan <InlineMath math="4" />.
-- <InlineMath math="\frac{37}{90}" /> menjumlahkan kedua himpunan tanpa mengurangkan kelipatan <InlineMath math="12" /> satu kali.
+Jadi, peluangnya adalah <InlineMath math="\frac{13}{21}" />.
+
+# Kenapa pilihan lain salah
+
+Setiap pilihan yang salah **berhenti terlalu cepat atau menghitung ganda**.
+
+- <InlineMath math="\frac{8}{21}" /> adalah peluang tanpa pasangan, belum dikurangkan dari satu.
+- <InlineMath math="\frac47" /> hanya menghitung tepat satu pasang, yaitu <InlineMath math="120" /> cara, dan melupakan <InlineMath math="10" /> cara yang menghasilkan dua pasang.
+- <InlineMath math="\frac23" /> memilih satu pasang lalu dua kaus kaki bebas dari <InlineMath math="8" /> sisanya, yaitu <InlineMath math="5\cdot28=140" />. Ambilan dengan dua pasang terhitung dua kali.
+- <InlineMath math="\frac{41}{42}" /> lupa bahwa setiap motif terpilih punya dua pilihan kaus kaki, sehingga yang tanpa pasangan dihitung hanya <InlineMath math="5" /> cara.

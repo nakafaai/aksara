@@ -1,17 +1,38 @@
-Bei <InlineMath math="(g\circ f)(a)=g(f(a))" /> wird **zuerst <InlineMath math="f" />** angewendet und das Ergebnis dann in <InlineMath math="g" /> eingesetzt.
+# Der Definitionsbereich der Verkettung
 
-<BlockMath math="\begin{aligned}
-g(f(a))&=(2a+5)^2-4=45 \\
-(2a+5)^2&=49 \\
-2a+5=7\ \text{oder}\ 2a+5&=-7 \\
-a=1\ \text{oder}\ a&=-6
-\end{aligned}" />
+Das Wort **pasti** (sicher) heißt, dass die Aussage für jeden Wert von <InlineMath math="k" /> gelten muss. Ein einziger Wert von <InlineMath math="k" />, für den sie falsch ist, reicht zum Verwerfen.
 
-Zur Kontrolle: <InlineMath math="f(1)=7" /> und <InlineMath math="g(7)=45" />, <InlineMath math="f(-6)=-7" /> und <InlineMath math="g(-7)=45" />.
+Fang mit dem Definitionsbereich an. Die Funktion <InlineMath math="f" /> nimmt nur Eingaben <InlineMath math="x\ge0" /> an, also existiert <InlineMath math="f(g(x))" /> nur, wenn <InlineMath math="g(x)\ge0" /> ist:
 
-Die Summe aller Lösungen ist also <InlineMath math="1+(-6)=-5" />.
+<BlockMath math="3x+k\ge0\iff x\ge-\frac{k}{3}" />
 
-- <InlineMath math="5" /> entsteht, wenn die <InlineMath math="5" /> mit falschem Vorzeichen auf die andere Seite gebracht wird: <InlineMath math="2a=\pm7+5" /> liefert <InlineMath math="6" /> und <InlineMath math="-1" />.
-- <InlineMath math="1" /> ist nur die positive Lösung. Die Gleichung <InlineMath math="(2a+5)^2=49" /> hat aber zwei Lösungen.
-- <InlineMath math="0" /> entsteht mit der falschen Reihenfolge: <InlineMath math="f(g(a))=2a^2-3=45" /> hat zwei Lösungen mit entgegengesetztem Vorzeichen.
-- <InlineMath math="-6" /> ist nur die negative Lösung. Zufällig ist es auch das Produkt der beiden Lösungen.
+Der Definitionsbereich von <InlineMath math="f\circ g" /> verschiebt sich also mit <InlineMath math="k" />. Der von <InlineMath math="g\circ f" /> bleibt dagegen <InlineMath math="x\ge0" />.
+
+# Das Minimum von f nach g
+
+Am saubersten betrachtest du <InlineMath math="u=g(x)" /> als Eingabe von <InlineMath math="f" />. Wenn <InlineMath math="x" /> den ganzen Bereich <InlineMath math="x\ge-\frac{k}{3}" /> durchläuft, durchläuft <InlineMath math="u=3x+k" /> **jede Zahl <InlineMath math="u\ge0" />**, also genau den Definitionsbereich von <InlineMath math="f" />. Damit liefert <InlineMath math="f\circ g" /> genau dieselben Werte wie <InlineMath math="f" />.
+
+<BlockMath math="f(u)=(u-3)^2-4,\qquad u\ge0" />
+
+Der kleinste Wert ist <InlineMath math="-4" /> bei <InlineMath math="u=3" />, und <InlineMath math="u=3" /> erfüllt <InlineMath math="u\ge0" />. Zurück zu <InlineMath math="x" />:
+
+<BlockMath math="3x+k=3\iff x=1-\frac{k}{3}" />
+
+Diese Stelle liegt immer im Definitionsbereich, weil <InlineMath math="1-\frac{k}{3}>-\frac{k}{3}" /> ist. Also ist **das Minimum von <InlineMath math="f\circ g" /> für jedes <InlineMath math="k" /> gleich <InlineMath math="-4" />**, nur seine Lage wandert.
+
+Die Tabelle prüft einige Werte von <InlineMath math="k" />:
+
+| <InlineMath math="k" /> | Definitionsbereich von <InlineMath math="f\circ g" /> | Minimum von <InlineMath math="f\circ g" /> | Minimum von <InlineMath math="g\circ f" /> |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="-6" /> | <InlineMath math="x\ge2" /> | <InlineMath math="-4" /> bei <InlineMath math="x=3" /> | <InlineMath math="-18" /> |
+| <InlineMath math="0" /> | <InlineMath math="x\ge0" /> | <InlineMath math="-4" /> bei <InlineMath math="x=1" /> | <InlineMath math="-12" /> |
+| <InlineMath math="8" /> | <InlineMath math="x\ge-\frac{8}{3}" /> | <InlineMath math="-4" /> bei <InlineMath math="x=-\frac{5}{3}" /> | <InlineMath math="-4" /> |
+
+# Warum die anderen Aussagen nicht sicher sind
+
+- Der Definitionsbereich von <InlineMath math="f\circ g" /> ist <InlineMath math="x\ge-\frac{k}{3}" />, also gleich <InlineMath math="x\ge0" /> **nur für <InlineMath math="k=0" />**. Für <InlineMath math="k=8" /> ist er <InlineMath math="x\ge-\frac{8}{3}" />.
+- <InlineMath math="(g\circ f)(x)=3f(x)+k" />. Die äußere Funktion multipliziert und verschiebt die Werte, das Minimum ist also <InlineMath math="3(-4)+k=k-12" />. Das ist nur für <InlineMath math="k=8" /> gleich <InlineMath math="-4" />.
+- Der Graph schneidet die <InlineMath math="y" />-Achse, wenn <InlineMath math="x=0" /> im Definitionsbereich liegt, also für <InlineMath math="k\ge0" />. Für <InlineMath math="k=-6" /> ist der Bereich <InlineMath math="x\ge2" />, und der Graph erreicht die <InlineMath math="y" />-Achse nie.
+- Das Minimum von <InlineMath math="f\circ g" /> liegt bei <InlineMath math="x=1-\frac{k}{3}" />. Die Zahl <InlineMath math="3" /> ist der Scheitel von <InlineMath math="f" />, und die innere Funktion verschiebt ihn. Bei <InlineMath math="x=3" /> liegt es nur für <InlineMath math="k=-6" />.
+
+Sicher richtig ist also, dass das Minimum von <InlineMath math="f\circ g" /> gleich <InlineMath math="-4" /> ist.

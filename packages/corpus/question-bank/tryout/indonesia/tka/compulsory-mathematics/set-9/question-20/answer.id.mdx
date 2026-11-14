@@ -1,15 +1,69 @@
-Sudut elevasi diukur dari mata pengamat. Jadi segitiga siku-sikunya mempunyai sisi mendatar <InlineMath math="30" /> m setinggi mata, dan **sisi tegaknya adalah tinggi gedung di atas mata**. Sisi tegak di depan sudut dan sisi mendatar di samping sudut, jadi pakai <InlineMath math="\tan60^\circ=\sqrt3" />.
+Soal ini meminta tinggi tiang di lereng. Jaraknya diukur sepanjang lereng, sedangkan **sudut elevasi diukur dari garis horizontal**, bukan dari lereng. Jadi kamu perlu dua segitiga siku-siku yang berbagi satu sisi mendatar.
+
+# Letak kaki tiang
+
+Beri nama kaki tiang <InlineMath math="F" />, puncaknya <InlineMath math="T" />, dan <InlineMath math="Q" /> titik tepat di bawah <InlineMath math="F" /> yang setinggi <InlineMath math="P" />. Segitiga <InlineMath math="PQF" /> siku-siku di <InlineMath math="Q" />, sisi miringnya <InlineMath math="PF=16" /> m, dan sudut di <InlineMath math="P" /> adalah kemiringan lereng <InlineMath math="30^\circ" />:
 
 <BlockMath math="\begin{aligned}
-h_{\text{atas mata}}&=30\tan60^\circ=30\sqrt3 \\
-h&=30\sqrt3+1{,}6
+PQ&=16\cos30^\circ=16\cdot\tfrac12\sqrt3=8\sqrt3\text{ m} \\
+QF&=16\sin30^\circ=16\cdot\tfrac12=8\text{ m}
 \end{aligned}" />
 
-Nilainya sekitar <InlineMath math="30\cdot1{,}732+1{,}6\approx53{,}6" /> m.
+Artinya kaki tiang **sudah <InlineMath math="8" /> m lebih tinggi** daripada <InlineMath math="P" />.
 
-Jadi, tinggi gedung itu <InlineMath math="(30\sqrt3+1{,}6)" /> m.
+<MathVisual
+  title={<>Tiang di lereng</>}
+  description={<>Titik <InlineMath math="P" /> di lereng yang naik dengan sudut <InlineMath math="30^\circ" />. Kaki tiang <InlineMath math="F" /> berjarak <InlineMath math="16" /> meter dari <InlineMath math="P" /> sepanjang lereng. Titik <InlineMath math="Q" /> tepat di bawah <InlineMath math="F" />, setinggi <InlineMath math="P" />, dengan <InlineMath math="PQ=8\sqrt3" /> meter dan <InlineMath math="QF=8" /> meter. Garis pandang dari <InlineMath math="P" /> ke puncak <InlineMath math="T" /> membentuk sudut <InlineMath math="60^\circ" /> dengan garis horizontal, sehingga <InlineMath math="QT=24" /> meter dan tiang <InlineMath math="FT=16" /> meter.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    f: <InlineMath math="F" />,
+    t: <InlineMath math="T" />,
+    q: <InlineMath math="Q" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 22 },
+      y: { min: -2, max: 26 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "slope", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 20, y: 11.547005383792516 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 13.856406460551018, y: 0 } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 13.856406460551018, y: 0 }, to: { x: 13.856406460551018, y: 8 } },
+      { id: "pole", kind: "segment", appearance: "primary", from: { x: 13.856406460551018, y: 8 }, to: { x: 13.856406460551018, y: 24 } },
+      { id: "sight", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 13.856406460551018, y: 24 } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-f", kind: "point", appearance: "primary", at: { x: 13.856406460551018, y: 8 } },
+      { id: "point-t", kind: "point", appearance: "answer", at: { x: 13.856406460551018, y: 24 } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 13.856406460551018, y: 0 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point-p", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "f", objectId: "point-f", at: { x: 13.856406460551018, y: 8 }, placement: "right" },
+      { key: "t", objectId: "point-t", at: { x: 13.856406460551018, y: 24 }, placement: "right" },
+      { key: "q", objectId: "point-q", at: { x: 13.856406460551018, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
-- <InlineMath math="(10\sqrt3+1{,}6)" /> m memakai <InlineMath math="\tan30^\circ=\frac{\sqrt3}{3}" />, sudut yang salah.
-- <InlineMath math="30\sqrt3" /> m lupa menambahkan tinggi mata pengamat.
-- <InlineMath math="(15+1{,}6)" /> m memakai <InlineMath math="30\cos60^\circ" />, padahal <InlineMath math="30" /> m adalah sisi mendatar, bukan sisi miring.
-- <InlineMath math="(60+1{,}6)" /> m memakai <InlineMath math="\frac{30}{\cos60^\circ}" />, yaitu panjang garis pandang, bukan tinggi.
+# Tinggi puncak dan tinggi tiang
+
+Segitiga <InlineMath math="PQT" /> juga siku-siku di <InlineMath math="Q" />, dengan sisi mendatar yang sama, <InlineMath math="PQ=8\sqrt3" />, dan sudut elevasi <InlineMath math="60^\circ" /> di <InlineMath math="P" />. Puncak tiang setinggi <InlineMath math="QT" /> di atas <InlineMath math="P" />, dan tiang adalah bagian dari <InlineMath math="F" /> ke <InlineMath math="T" />:
+
+<BlockMath math="\begin{aligned}
+QT&=PQ\cdot\tan60^\circ=8\sqrt3\cdot\sqrt3=24\text{ m} \\
+FT&=QT-QF=24-8=16\text{ m}
+\end{aligned}" />
+
+Cek dengan segitiga <InlineMath math="PFT" />. Sudut di <InlineMath math="P" /> adalah <InlineMath math="60^\circ-30^\circ=30^\circ" />. Sudut di <InlineMath math="F" />, antara lereng yang turun ke <InlineMath math="P" /> dan tiang yang naik, adalah <InlineMath math="90^\circ+30^\circ=120^\circ" />. Sisanya, sudut di <InlineMath math="T" /> juga <InlineMath math="30^\circ" />. Segitiganya sama kaki, jadi <InlineMath math="FT=FP=16" /> m. **Hasilnya cocok**.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="8\text{ m}" /> muncul kalau sudut di kaki tiang dianggap <InlineMath math="60^\circ" />, padahal tiang tegak dan lereng turun ke arah <InlineMath math="P" />, sehingga sudutnya <InlineMath math="120^\circ" />.
+- <InlineMath math="\frac{16}{3}\sqrt3\text{ m}" /> muncul kalau tiang dianggap tegak lurus lereng, sehingga <InlineMath math="FT=16\tan30^\circ" />.
+- <InlineMath math="24\text{ m}" /> adalah tinggi puncak di atas <InlineMath math="P" />. **Kamu berhenti satu langkah terlalu cepat** karena lupa mengurangkan <InlineMath math="8" /> m kenaikan kaki tiang.
+- <InlineMath math="16\sqrt3\text{ m}" /> muncul kalau tanahnya dianggap datar dan <InlineMath math="16" /> m dipakai sebagai jarak mendatar.
+
+Jadi, tinggi tiang adalah <InlineMath math="16\text{ m}" />.

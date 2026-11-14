@@ -1,15 +1,49 @@
-Kecepatan rata-rata adalah **jarak total dibagi waktu total**, bukan rata-rata dua kecepatan. Misalkan jarak rumah ke sekolah <InlineMath math="d" /> km. Waktu pergi dan waktu pulang berbeda, karena kecepatannya berbeda.
+Soal ini punya dua tahap: mencari umur ketiga orang sekarang, lalu mencari kapan jumlah umur Ayah dan Ibu tepat lima kali umur Kakak. Satu aturan dipakai berkali-kali: **setiap tahun, setiap orang bertambah satu tahun**, jadi jumlah umur dua orang bertambah dua setiap tahun.
+
+# Umur mereka sekarang
+
+Misalkan umur Ayah, Ibu, dan Kakak sekarang <InlineMath math="A" />, <InlineMath math="I" />, dan <InlineMath math="K" />. Tulis setiap kalimat sebagai persamaan, dan tambahkan atau kurangkan tahun pada **setiap orang yang disebut**.
 
 <BlockMath math="\begin{aligned}
-t&=\frac{d}{12}+\frac{d}{18}=\frac{3d+2d}{36}=\frac{5d}{36} \\
-\bar v&=\frac{2d}{\frac{5d}{36}}=\frac{72}{5}=14{,}4
+A-3&=4(K-3)\ \Rightarrow\ A=4K-9 \\
+(I+16)+(K+16)&=(A+16)+28\ \Rightarrow\ I+K=A+12 \\
+A+I+K&=114
 \end{aligned}" />
 
-Variabel <InlineMath math="d" /> saling menghapus, jadi hasilnya sama untuk jarak berapa pun. Cek dengan <InlineMath math="d=36" /> km: pergi <InlineMath math="3" /> jam, pulang <InlineMath math="2" /> jam, jadi <InlineMath math="\frac{72}{5}=14{,}4" /> km per jam.
+Persamaan kedua memberi <InlineMath math="I+K" /> secara utuh, jadi masukkan ke persamaan ketiga.
 
-Jadi, kecepatan rata-rata Rina adalah <InlineMath math="14{,}4" /> km per jam.
+<BlockMath math="\begin{aligned}
+A+(A+12)&=114\ \Rightarrow\ A=51 \\
+51&=4K-9\ \Rightarrow\ K=15 \\
+I&=114-51-15=48
+\end{aligned}" />
 
-- <InlineMath math="6" /> km per jam adalah selisih kedua kecepatan.
-- <InlineMath math="7{,}2" /> km per jam lupa bahwa jarak totalnya <InlineMath math="2d" />, bukan <InlineMath math="d" />.
-- <InlineMath math="15" /> km per jam merata-ratakan kedua kecepatan, padahal Rina lebih lama berada di perjalanan yang lambat.
-- <InlineMath math="30" /> km per jam menjumlahkan kedua kecepatan.
+Cek: tiga tahun lalu Ayah <InlineMath math="48" /> dan Kakak <InlineMath math="12" />, dan <InlineMath math="48=4\cdot12" />. Enam belas tahun lagi Ibu dan Kakak <InlineMath math="64+31=95" />, sama dengan umur Ayah <InlineMath math="67" /> ditambah <InlineMath math="28" />.
+
+# Kapan syarat itu terjadi
+
+Misalkan peristiwanya terjadi <InlineMath math="t" /> tahun dari sekarang. Ayah dan Ibu masing-masing bertambah <InlineMath math="t" />, jadi jumlah umur mereka bertambah <InlineMath math="2t" />. Umur Kakak menjadi <InlineMath math="15+t" />, dan **seluruh umur Kakak itu dikali lima**.
+
+<BlockMath math="\begin{aligned}
+(51+t)+(48+t)&=5(15+t) \\
+99+2t&=75+5t \\
+24&=3t \\
+t&=8
+\end{aligned}" />
+
+Nilai <InlineMath math="t" /> positif, jadi peristiwanya terjadi <InlineMath math="8" /> tahun lagi. Cek: saat itu Ayah <InlineMath math="59" />, Ibu <InlineMath math="56" />, dan Kakak <InlineMath math="23" />, dan <InlineMath math="59+56=115=5\cdot23" />.
+
+# Jumlah umur pada saat itu
+
+Ada tiga orang, dan **masing-masing bertambah** <InlineMath math="8" /> tahun.
+
+<BlockMath math="114+3\cdot8=138=59+56+23" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="122" /> menambahkan <InlineMath math="8" /> tahun **hanya sekali** pada jumlah tiga orang. Setiap orang bertambah <InlineMath math="8" />, jadi jumlahnya bertambah <InlineMath math="24" />.
+- <InlineMath math="132" /> muncul kalau persamaan peristiwa ditulis <InlineMath math="99+t=5(15+t)" />. Jumlah umur Ayah dan Ibu bertambah <InlineMath math="2t" />, bukan <InlineMath math="t" />, jadi <InlineMath math="t=6" /> itu keliru.
+- <InlineMath math="150" /> muncul kalau kalimat enam belas tahun lagi ditulis <InlineMath math="I+K+16=A+16+28" />. Ibu dan Kakak masing-masing bertambah <InlineMath math="16" />, jadi ruas kiri bertambah <InlineMath math="32" />. Kekeliruan ini menghasilkan umur <InlineMath math="43" />, <InlineMath math="58" />, <InlineMath math="13" /> dan <InlineMath math="t=12" />.
+- <InlineMath math="186" /> berhenti di <InlineMath math="3t=24" /> lalu memakai <InlineMath math="t=24" />. Kedua ruas masih harus dibagi <InlineMath math="3" />.
+
+Jadi, jumlah umur mereka bertiga pada saat itu adalah <InlineMath math="138" /> tahun.

@@ -1,12 +1,35 @@
-Eine Frage, die weder Geometrie noch Statistik ist, ist **eine Algebra- oder eine Wahrscheinlichkeitsfrage**. Zähle sie und teile durch <InlineMath math="40" />.
+# Alle Anordnungen zählen
 
-<BlockMath math="P=\frac{12+10}{40}=\frac{22}{40}=\frac{11}{20}" />
+An einem runden Tisch zählt nur, wer neben wem sitzt. Also **legst du eine Person als Bezugspunkt fest** und ordnest die anderen um sie herum an. Für <InlineMath math="7" /> Personen gibt es <InlineMath math="(7-1)!=720" /> Anordnungen.
 
-Zur Kontrolle mit dem Gegenereignis: <InlineMath math="10+8=18" /> Fragen sind Geometrie oder Statistik, und <InlineMath math="1-\frac{18}{40}=\frac{22}{40}" />.
+# Ana und Budi nebeneinander
 
-Die Wahrscheinlichkeit ist also <InlineMath math="\frac{11}{20}" />.
+Damit Ana und Budi sicher nebeneinander sitzen, **bündelst du beide zu einem Block**. Jetzt gibt es <InlineMath math="6" /> Einheiten am runden Tisch, und im Block können Ana und Budi noch die Plätze tauschen.
 
-- <InlineMath math="\frac15" /> ist die Wahrscheinlichkeit einer Statistikfrage, <InlineMath math="\frac{8}{40}" />.
-- <InlineMath math="\frac14" /> ist die Wahrscheinlichkeit einer Geometriefrage, <InlineMath math="\frac{10}{40}" />.
-- <InlineMath math="\frac{9}{20}" /> ist die Wahrscheinlichkeit einer Geometrie- oder Statistikfrage, also das Gegenteil des Gefragten.
-- <InlineMath math="\frac34" /> schließt nur die Geometriefragen aus, <InlineMath math="\frac{30}{40}" />.
+<BlockMath math="(6-1)!\cdot2=120\cdot2=240" />
+
+# Citra und Dimas nebeneinander abziehen
+
+Ein Teil dieser <InlineMath math="240" /> Anordnungen setzt auch Citra und Dimas nebeneinander. **Zähle die unerwünschten und ziehe sie ab**. Bündle Citra und Dimas zu einem zweiten Block, dann gibt es <InlineMath math="5" /> Einheiten, und jeder Block kann seine Reihenfolge tauschen.
+
+<BlockMath math="\begin{aligned}
+\text{auch Citra und Dimas nebeneinander}&=(5-1)!\cdot2\cdot2=96 \\
+\text{gesuchte Anordnungen}&=240-96=144
+\end{aligned}" />
+
+# Die Wahrscheinlichkeit
+
+**Teile durch die Anzahl aller Anordnungen**:
+
+<BlockMath math="P=\frac{144}{720}=\frac15" />
+
+Die Wahrscheinlichkeit ist also <InlineMath math="\frac15" />.
+
+# Warum die anderen Antworten falsch sind
+
+Jede falsche Antwort **lässt einen Teil der Zählung aus**.
+
+- <InlineMath math="\frac29" /> multipliziert <InlineMath math="\frac13" /> mit <InlineMath math="\frac23" />, als ob sich die beiden Bedingungen nicht beeinflussen. Sitzen Ana und Budi aber schon nebeneinander, ändert sich die Wahrscheinlichkeit, dass Citra und Dimas nebeneinander sitzen, auf <InlineMath math="\frac{96}{240}=\frac25" />.
+- <InlineMath math="\frac{4}{15}" /> vergisst, dass Citra und Dimas im Block die Plätze tauschen können, und zieht deshalb nur <InlineMath math="48" /> Anordnungen ab.
+- <InlineMath math="\frac13" /> benutzt nur die Bedingung für Ana und Budi, also <InlineMath math="\frac{240}{720}" />.
+- <InlineMath math="\frac35" /> teilt durch <InlineMath math="240" /> statt durch <InlineMath math="720" />. Das ist die Wahrscheinlichkeit, dass Citra und Dimas nicht nebeneinander sitzen, wenn Ana und Budi schon sicher nebeneinander sitzen.

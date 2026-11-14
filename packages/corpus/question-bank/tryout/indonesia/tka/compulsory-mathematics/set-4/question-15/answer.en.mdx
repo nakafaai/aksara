@@ -1,16 +1,96 @@
-Every image coordinate is the original coordinate **multiplied by <InlineMath math="-2" />**: <InlineMath math="(3,0)\to(-6,0)" /> and <InlineMath math="(0,2)\to(0,-4)" />. So check whether each transformation maps <InlineMath math="(x,y)" /> to <InlineMath math="(-2x,-2y)" />.
+All five statements ask what changes and what stays after two transformations in a row. The safest route is to **write <InlineMath math="T" /> as a single coordinate rule** and then test every statement with that rule.
+
+# The rule of T and the image triangle
+
+The dilation with centre <InlineMath math="P(2,1)" /> and factor <InlineMath math="-2" /> multiplies each displacement from <InlineMath math="P" /> by <InlineMath math="-2" />. After that, the reflection in the <InlineMath math="x" />-axis flips the sign of the <InlineMath math="y" />-coordinate.
 
 <BlockMath math="\begin{aligned}
-\text{rotation }180^\circ\text{ then dilation }2&:\ (x,y)\to(-x,-y)\to(-2x,-2y) \\
-\text{dilation }2\text{ then reflection in }O&:\ (x,y)\to(2x,2y)\to(-2x,-2y) \\
-\text{reflection in the }y\text{-axis then dilation }2&:\ C(0,2)\to(0,2)\to(0,4) \\
-\text{reflection in }y=x\text{ then dilation }-2&:\ B(3,0)\to(0,3)\to(0,-6)
+\text{dilation: }(x,y)&\mapsto\bigl(2-2(x-2),\;1-2(y-1)\bigr)=(6-2x,\;3-2y) \\
+\text{reflection: }(6-2x,\;3-2y)&\mapsto(6-2x,\;2y-3) \\
+T(x,y)&=(6-2x,\;2y-3)
 \end{aligned}" />
 
-- The dilation about <InlineMath math="O" /> with factor <InlineMath math="-2" /> maps <InlineMath math="(x,y)" /> straight to <InlineMath math="(-2x,-2y)" />. True.
-- The reflection in the <InlineMath math="y" />-axis then dilation by <InlineMath math="2" /> sends <InlineMath math="C" /> to <InlineMath math="(0,4)" />, not <InlineMath math="(0,-4)" />. False.
-- The rotation by <InlineMath math="180^\circ" /> then dilation by <InlineMath math="2" /> gives <InlineMath math="(-2x,-2y)" />. True.
-- The reflection in <InlineMath math="y=x" /> then dilation by <InlineMath math="-2" /> sends <InlineMath math="B" /> to <InlineMath math="(0,-6)" />, not <InlineMath math="(-6,0)" />. False.
-- A reflection in the point <InlineMath math="O" /> is a rotation by <InlineMath math="180^\circ" />, so dilation by <InlineMath math="2" /> then reflection in <InlineMath math="O" /> also gives <InlineMath math="(-2x,-2y)" />. True.
+**The three vertices land on** <InlineMath math="D'(6,-3)" />, <InlineMath math="E'(-2,-3)" />, and <InlineMath math="F'(6,3)" />.
 
-So the transformations that work are the dilation by <InlineMath math="-2" />, the rotation by <InlineMath math="180^\circ" /> then dilation by <InlineMath math="2" />, and the dilation by <InlineMath math="2" /> then reflection in <InlineMath math="O" />.
+<MathVisual
+  title={<>Triangle <InlineMath math="DEF" /> and its image</>}
+  description={<>Triangle <InlineMath math="D(0,0)" />, <InlineMath math="E(4,0)" />, <InlineMath math="F(0,3)" /> and its image <InlineMath math="D'(6,-3)" />, <InlineMath math="E'(-2,-3)" />, <InlineMath math="F'(6,3)" />. The point <InlineMath math="P(2,1)" /> and the fixed point <InlineMath math="(2,3)" /> both lie on the line <InlineMath math="x=2" />.</>}
+  labels={{
+    "label-d": <InlineMath math="D" />,
+    "label-e": <InlineMath math="E" />,
+    "label-f": <InlineMath math="F" />,
+    "label-d-image": <InlineMath math="D'" />,
+    "label-e-image": <InlineMath math="E'" />,
+    "label-f-image": <InlineMath math="F'" />,
+    "label-p": <InlineMath math="P(2,1)" />,
+    "label-fixed": <InlineMath math="(2,3)" />,
+    "label-line": <InlineMath math="x=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 8 },
+      y: { min: -5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line-two", kind: "line", appearance: "construction", through: [{ x: 2, y: -4 }, { x: 2, y: 4 }] },
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 0, y: 3 }] },
+      { id: "triangle-image", kind: "polygon", appearance: "secondary", vertices: [{ x: 6, y: -3 }, { x: -2, y: -3 }, { x: 6, y: 3 }] },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+      { id: "point-f", kind: "point", appearance: "reference", at: { x: 0, y: 3 } },
+      { id: "point-d-image", kind: "point", appearance: "reference", at: { x: 6, y: -3 } },
+      { id: "point-e-image", kind: "point", appearance: "reference", at: { x: -2, y: -3 } },
+      { id: "point-f-image", kind: "point", appearance: "reference", at: { x: 6, y: 3 } },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 2, y: 1 } },
+      { id: "point-fixed", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+    ],
+    labels: [
+      { key: "label-d", objectId: "point-d", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "label-e", objectId: "point-e", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "label-f", objectId: "point-f", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "label-d-image", objectId: "point-d-image", at: { x: 6, y: -3 }, placement: "right" },
+      { key: "label-e-image", objectId: "point-e-image", at: { x: -2, y: -3 }, placement: "left" },
+      { key: "label-f-image", objectId: "point-f-image", at: { x: 6, y: 3 }, placement: "right" },
+      { key: "label-p", objectId: "point-p", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "label-fixed", objectId: "point-fixed", at: { x: 2, y: 3 }, placement: "above-right" },
+      { key: "label-line", objectId: "line-two", at: { x: 2, y: -4 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Judging each statement
+
+**True**. Statement 1 is about area. Triangle <InlineMath math="DEF" /> has area <InlineMath math="\tfrac12\cdot4\cdot3=6" />. Triangle <InlineMath math="D'E'F'" /> has its right angle at <InlineMath math="D'" />, with <InlineMath math="D'E'=6-(-2)=8" /> and <InlineMath math="D'F'=3-(-3)=6" />:
+
+<BlockMath math="L_{D'E'F'}=\tfrac12\cdot8\cdot6=24=4\cdot6" />
+
+That matches the general rule: a dilation with factor <InlineMath math="k" /> multiplies areas by <InlineMath math="k^2=(-2)^2=4" />, and a reflection doesn't change area. The minus sign in the scale factor **doesn't make the area negative**.
+
+**True**. Statement 2 is about the direction of a line. Write an image point as <InlineMath math="(X,Y)=(6-2x,\;2y-3)" />, so <InlineMath math="x=\tfrac{6-X}{2}" /> and <InlineMath math="y=\tfrac{Y+3}{2}" />. Substitute these into the original line:
+
+<BlockMath math="\begin{aligned}
+3\cdot\frac{6-X}{2}-4\cdot\frac{Y+3}{2}&=1 \\
+18-3X-4Y-12&=2 \\
+3X+4Y&=4
+\end{aligned}" />
+
+The line <InlineMath math="3x+4y=4" /> is parallel to <InlineMath math="3x+4y=0" /> because both have gradient <InlineMath math="-\tfrac34" />. The dilation keeps the direction of a line, but the reflection in the <InlineMath math="x" />-axis flips the gradient <InlineMath math="\tfrac34" /> to <InlineMath math="-\tfrac34" />. So the image is **not parallel to the original line**.
+
+**False**. Statement 3 is about the order of the vertices. <InlineMath math="D\to E\to F" /> really is counterclockwise: from <InlineMath math="D" /> you go right to <InlineMath math="E" />, then up and left to <InlineMath math="F" />. On the image you go from <InlineMath math="D'(6,-3)" /> left to <InlineMath math="E'(-2,-3)" />, then up and right to <InlineMath math="F'(6,3)" />. That's clockwise. A dilation with a negative factor is a <InlineMath math="180^\circ" /> rotation combined with an enlargement, so **that dilation doesn't reverse the order**. Only the reflection reverses it, and one reversal leaves the image clockwise. The trap is thinking the negative factor and the reflection cancel out.
+
+**False**. Statement 4 is about the centre of the dilation. The dilation leaves its own centre in place, but the reflection afterwards moves it:
+
+<BlockMath math="T(2,1)=(6-4,\;2-3)=(2,-1)\neq(2,1)" />
+
+The point that really stays put satisfies <InlineMath math="6-2x=x" /> and <InlineMath math="2y-3=y" />, which is <InlineMath math="(2,3)" />. So the centre of the dilation **isn't a fixed point of this composition**.
+
+**True**. Statement 5 is about the line <InlineMath math="x=2" />. Every point <InlineMath math="(2,y)" /> on that line goes to
+
+<BlockMath math="T(2,y)=(6-4,\;2y-3)=(2,\;2y-3)" />
+
+The <InlineMath math="x" />-coordinate stays <InlineMath math="2" />, so every image stays on <InlineMath math="x=2" />. In the other direction, any point <InlineMath math="(2,t)" /> is the image of <InlineMath math="\bigl(2,\tfrac{t+3}{2}\bigr)" />. So the image of the line is **exactly the line <InlineMath math="x=2" /> again**, even though its points slide along it, except the fixed point <InlineMath math="(2,3)" />.
+
+So the true statements are statements 1, 2, and 5.

@@ -1,17 +1,36 @@
-Das Volumen eines Zylinders ist **Grundfläche mal Höhe**. Die Grundfläche hängt vom Radius ab, also von der Hälfte des Durchmessers.
+# Wie Punkt und Bild zusammenhängen
+
+Gefragt ist der größtmögliche Abstand zwischen dem Punkt <InlineMath math="P" /> und seinem Bild <InlineMath math="Q" />, während <InlineMath math="P" /> auf dem Kreis wandert. Es gibt zwei Schritte: Schreib <InlineMath math="PQ" /> als einen Abstand, mit dem du leichter rechnen kannst, und such dann den Kreispunkt, für den dieser Abstand am größten ist.
+
+Eine zentrische Streckung mit Zentrum <InlineMath math="C" /> und Faktor <InlineMath math="-2" /> bedeutet: Der Vektor von <InlineMath math="C" /> nach <InlineMath math="Q" /> ist das <InlineMath math="-2" />-Fache des Vektors von <InlineMath math="C" /> nach <InlineMath math="P" />. Das Minuszeichen legt <InlineMath math="Q" /> **auf die andere Seite von <InlineMath math="C" />**, auf dieselbe Gerade wie <InlineMath math="P" />.
 
 <BlockMath math="\begin{aligned}
-r&=\frac{1{,}4}{2}=0{,}7\text{ m} \\
-V&=\pi r^2h=\frac{22}{7}\cdot0{,}49\cdot2=3{,}08\text{ m}^3
+Q-C&=-2\,(P-C) \\
+P-Q&=(P-C)-(Q-C)=(P-C)+2\,(P-C)=3\,(P-C) \\
+PQ&=3\cdot CP
 \end{aligned}" />
 
-Ein Kubikmeter fasst <InlineMath math="1{.}000" /> Liter, denn <InlineMath math="1\text{ m}^3=1{.}000\text{ dm}^3" />. Damit ist <InlineMath math="3{,}08\text{ m}^3=3{.}080" /> Liter.
+Anders gesagt: <InlineMath math="PQ=PC+CQ=CP+2\,CP" />. Also ist <InlineMath math="PQ" /> genau dann am größten, wenn <InlineMath math="CP" /> am größten ist.
 
-Zur Kontrolle: <InlineMath math="\frac{22}{7}\cdot0{,}49=1{,}54" />, und <InlineMath math="1{,}54\cdot2=3{,}08" />.
+# Der entfernteste Kreispunkt
 
-Der Behälter fasst also <InlineMath math="3{.}080" /> Liter.
+Berechne zuerst den Abstand vom Kreismittelpunkt zu <InlineMath math="C" />. Weil <InlineMath math="OC=13" /> größer als der Radius <InlineMath math="3" /> ist, liegt <InlineMath math="C" /> außerhalb des Kreises. Nach der Dreiecksungleichung gilt <InlineMath math="CP\le CO+OP" />, mit Gleichheit, wenn <InlineMath math="P" /> auf der Verlängerung von <InlineMath math="CO" /> über <InlineMath math="O" /> hinaus liegt. Also hat **der entfernteste Punkt den Abstand <InlineMath math="OC" /> plus Radius**.
 
-- <InlineMath math="308" /> Liter rechnet mit <InlineMath math="1\text{ m}^3=100" /> Liter.
-- <InlineMath math="4{.}400" /> Liter vergisst, den Radius zu quadrieren: <InlineMath math="\frac{22}{7}\cdot0{,}7\cdot2=4{,}4" />.
-- <InlineMath math="12{.}320" /> Liter verwendet den Durchmesser <InlineMath math="1{,}4\text{ m}" /> als Radius.
-- <InlineMath math="30{.}800" /> Liter rechnet mit <InlineMath math="1\text{ m}^3=10{.}000" /> Liter.
+<BlockMath math="\begin{aligned}
+OC&=\sqrt{5^2+12^2}=\sqrt{169}=13 \\
+CP_{\text{max}}&=OC+3=16 \\
+PQ_{\text{max}}&=3\cdot16=48
+\end{aligned}" />
+
+Zum Vergleich: Der Kreispunkt, der <InlineMath math="C" /> am nächsten liegt, ist <InlineMath math="13-3=10" /> entfernt. Das kleinste <InlineMath math="PQ" /> ist also <InlineMath math="3\cdot10=30" />, und <InlineMath math="PQ" /> liegt immer zwischen <InlineMath math="30" /> und <InlineMath math="48" />.
+
+# Warum die anderen Antworten falsch sind
+
+Jede falsche Antwort entsteht aus einem einzigen verrutschten Schritt, entweder beim Lesen der Streckung oder bei der Wahl des entferntesten Punktes. **Der Faktor <InlineMath math="3" /> und der addierte Radius** gehen am häufigsten verloren.
+
+- <InlineMath math="39" /> verwendet <InlineMath math="OC=13" />, also den Abstand zum Kreismittelpunkt statt zum entferntesten Kreispunkt. Der Radius <InlineMath math="3" /> fehlt.
+- <InlineMath math="32" /> ist <InlineMath math="2\cdot16" />, also die Länge <InlineMath math="CQ" />. Gefragt ist <InlineMath math="PQ=CP+CQ" />.
+- <InlineMath math="30" /> ist der kleinste Abstand, nicht der größte.
+- <InlineMath math="16" /> entsteht, wenn du das Minuszeichen übersiehst und <InlineMath math="Q" /> auf dieselbe Seite wie <InlineMath math="P" /> legst. Dann wäre <InlineMath math="PQ=2\,CP-CP=CP" />.
+
+Der größtmögliche Abstand zwischen <InlineMath math="P" /> und <InlineMath math="Q" /> ist also <InlineMath math="48" />.

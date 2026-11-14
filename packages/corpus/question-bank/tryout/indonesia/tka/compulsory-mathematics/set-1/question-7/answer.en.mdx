@@ -1,19 +1,40 @@
-Let <InlineMath math="n" /> be the number of rent rises of <InlineMath math="\text{Rp}100{,}000" />. The revenue is **rent per room times rooms let**, a quadratic function of <InlineMath math="n" />.
+# Distance as a function of time
+
+The question asks for the smallest distance between two cars that keep moving. The distance changes all the time, so **first write it as a function of time**, then find its smallest value.
+
+Set up axes with <InlineMath math="O" /> at the origin, east as the positive <InlineMath math="x" />-axis, and north as the positive <InlineMath math="y" />-axis. Let <InlineMath math="t" /> be the time in hours after <InlineMath math="07.00" />.
+
+<BlockMath math="A=(0,\ 30-40t),\qquad B=(-5+30t,\ 0)" />
+
+These formulas still work after a car passes <InlineMath math="O" />. For example, a negative <InlineMath math="y" />-coordinate for car A just means A is south of <InlineMath math="O" />. The two roads are perpendicular, so the distance <InlineMath math="AB" /> comes from Pythagoras:
 
 <BlockMath math="\begin{aligned}
-R(n)&=(1{,}200{,}000+100{,}000n)(40-2n) \\
-&=200{,}000\,(12+n)(20-n)
+d^2&=(-5+30t)^2+(30-40t)^2 \\
+&=(25-300t+900t^2)+(900-2{,}400t+1{,}600t^2) \\
+&=2{,}500t^2-2{,}700t+925
 \end{aligned}" />
 
-The zeros are <InlineMath math="n=-12" /> and <InlineMath math="n=20" />. The vertex of this downward parabola lies exactly halfway, at <InlineMath math="n=\frac{-12+20}{2}=4" />. The rent is then <InlineMath math="1{,}200{,}000+4\cdot100{,}000=1{,}600{,}000" />, and <InlineMath math="40-8=32" /> rooms are let.
+# The vertex of the quadratic
 
-<BlockMath math="R(4)=1{,}600{,}000\cdot32=51{,}200{,}000" />
+The distance <InlineMath math="d" /> is never negative, so <InlineMath math="d" /> is smallest exactly when <InlineMath math="d^2" /> is smallest. <InlineMath math="d^2" /> is a quadratic with a positive <InlineMath math="t^2" /> coefficient, so **its smallest value sits at the vertex**:
 
-As a check, <InlineMath math="n=3" /> and <InlineMath math="n=5" /> both give <InlineMath math="1{,}500{,}000\cdot34=1{,}700{,}000\cdot30=51{,}000{,}000" />, which is less.
+<BlockMath math="\begin{aligned}
+t&=\frac{2{,}700}{2\cdot2{,}500}=0.54\text{ hours} \\
+d^2_{\min}&=925-\frac{2{,}700^2}{4\cdot2{,}500}=925-729=196 \\
+d_{\min}&=14
+\end{aligned}" />
 
-So the largest revenue comes from a rent of <InlineMath math="\text{Rp}1{,}600{,}000" />.
+Check it with the positions at <InlineMath math="t=0.54" />, which is about <InlineMath math="07.32" />. Car A is <InlineMath math="30-21.6=8.4\text{ km}" /> north of <InlineMath math="O" />, and car B is <InlineMath math="-5+16.2=11.2\text{ km}" /> east of <InlineMath math="O" />.
 
-- <InlineMath math="\text{Rp}1{,}200{,}000" /> is the starting rent, with revenue <InlineMath math="48{,}000{,}000" />.
-- <InlineMath math="\text{Rp}1{,}400{,}000" /> brings <InlineMath math="1{,}400{,}000\cdot36=50{,}400{,}000" />.
-- <InlineMath math="\text{Rp}1{,}500{,}000" /> brings <InlineMath math="51{,}000{,}000" />, just below the vertex.
-- <InlineMath math="\text{Rp}2{,}200{,}000" /> comes from placing the vertex at <InlineMath math="n=10" />, halving only the zero <InlineMath math="n=20" />. Then only <InlineMath math="20" /> rooms are let, and the revenue is <InlineMath math="44{,}000{,}000" />.
+<BlockMath math="\sqrt{8.4^2+11.2^2}=\sqrt{70.56+125.44}=\sqrt{196}=14" />
+
+At that moment B has already passed the crossing and A hasn't reached it yet. So the closest moment **doesn't happen when one car is right at the crossing**.
+
+# Why the other options are wrong
+
+- <InlineMath math="10\sqrt{2}\text{ km}" /> comes from assuming the cars are closest when they're equally far from <InlineMath math="O" />, at <InlineMath math="t=0.5" />. That distance is <InlineMath math="\sqrt{10^2+10^2}\approx14.14" />, **a little more than <InlineMath math="14" />**.
+- <InlineMath math="17.5\text{ km}" /> is the distance when A arrives at <InlineMath math="O" />, at <InlineMath math="t=0.75" />. By then B is already <InlineMath math="17.5\text{ km}" /> east of <InlineMath math="O" />.
+- <InlineMath math="18\text{ km}" /> comes from starting B right at <InlineMath math="O" />, which forgets its <InlineMath math="5\text{ km}" /> to the west.
+- <InlineMath math="22\text{ km}" /> comes from placing B <InlineMath math="5\text{ km}" /> east of <InlineMath math="O" />, so the sign of its position is flipped.
+
+So the smallest distance between the two cars is <InlineMath math="14\text{ km}" />.

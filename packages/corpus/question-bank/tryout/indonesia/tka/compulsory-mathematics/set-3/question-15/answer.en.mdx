@@ -1,16 +1,90 @@
-A reflection in the <InlineMath math="y" />-axis maps <InlineMath math="(x,y)" /> to <InlineMath math="(-x,y)" />. So **replace <InlineMath math="x" /> with <InlineMath math="-x" />** in the equation of the line.
+The question asks for the image of point <InlineMath math="C" />. Two things are still unknown: **where <InlineMath math="C" /> itself is**, and the values of <InlineMath math="a" /> and <InlineMath math="b" />. Find both first, then map <InlineMath math="C" />.
+
+# Where point C is
+
+Point <InlineMath math="C" /> lies on the line <InlineMath math="x=6" />, so write it as <InlineMath math="C(6,y)" />. The right angle is at <InlineMath math="C" />, so the hypotenuse is <InlineMath math="AB=10" />. **Use Pythagoras**, <InlineMath math="AC^2+BC^2=AB^2" />:
 
 <BlockMath math="\begin{aligned}
-3(-x)-2y+6&=0 \\
--3x-2y+6&=0 \\
-3x+2y-6&=0
+AC^2&=(6+2)^2+(y-1)^2=64+(y-1)^2 \\
+BC^2&=(6-8)^2+(y-1)^2=4+(y-1)^2 \\
+64+(y-1)^2+4+(y-1)^2&=100 \\
+2(y-1)^2&=32 \\
+(y-1)^2&=16
 \end{aligned}" />
 
-As a check, the point <InlineMath math="(-2,0)" /> lies on <InlineMath math="g" />, and its image <InlineMath math="(2,0)" /> satisfies <InlineMath math="3\cdot2+0-6=0" />. The point <InlineMath math="(0,3)" /> on the <InlineMath math="y" />-axis stays put and also satisfies <InlineMath math="0+6-6=0" />.
+So <InlineMath math="y-1=4" /> or <InlineMath math="y-1=-4" />, which gives <InlineMath math="y=5" /> or <InlineMath math="y=-3" />. Two points make a right angle: <InlineMath math="(6,5)" /> and <InlineMath math="(6,-3)" />. Line <InlineMath math="AB" /> is <InlineMath math="y=1" />, and the question says <InlineMath math="C" /> is below it. So <InlineMath math="C(6,-3)" />.
 
-So the image of <InlineMath math="g" /> is <InlineMath math="3x+2y-6=0" />.
+# The mirror lines from A going to B
 
-- <InlineMath math="2x-3y-6=0" /> is the reflection in the line <InlineMath math="y=x" />, which swaps <InlineMath math="x" /> and <InlineMath math="y" />.
-- <InlineMath math="2x-3y+6=0" /> is the reflection in the line <InlineMath math="y=-x" />.
-- <InlineMath math="3x-2y-6=0" /> replaces both <InlineMath math="x" /> and <InlineMath math="y" />, the reflection in the origin.
-- <InlineMath math="3x+2y+6=0" /> replaces <InlineMath math="y" /> with <InlineMath math="-y" />, the reflection in the <InlineMath math="x" />-axis.
+Reflecting in <InlineMath math="x=a" /> turns <InlineMath math="x" /> into <InlineMath math="2a-x" /> and keeps <InlineMath math="y" />. Reflecting in <InlineMath math="y=b" /> turns <InlineMath math="y" /> into <InlineMath math="2b-y" /> and keeps <InlineMath math="x" />. Doing them one after the other:
+
+<BlockMath math="(x,y)\ \longrightarrow\ (2a-x,\ y)\ \longrightarrow\ (2a-x,\ 2b-y)" />
+
+That's the same as a **<InlineMath math="180^\circ" /> rotation about <InlineMath math="(a,b)" />**, the point where the two mirror lines cross. Now use the fact that <InlineMath math="A(-2,1)" /> lands on <InlineMath math="B(8,1)" />:
+
+<BlockMath math="\begin{aligned}
+2a-(-2)&=8 &\Rightarrow\quad a&=3 \\
+2b-1&=1 &\Rightarrow\quad b&=1
+\end{aligned}" />
+
+The centre of the rotation is <InlineMath math="(3,1)" />, exactly the midpoint of <InlineMath math="AB" />.
+
+# The image of point C
+
+Put <InlineMath math="C(6,-3)" /> into <InlineMath math="(2a-x,\ 2b-y)" /> with <InlineMath math="a=3" /> and <InlineMath math="b=1" />:
+
+<BlockMath math="C''=(6-6,\ 2-(-3))=(0,5)" />
+
+Check it with a picture. A half turn about the midpoint of <InlineMath math="AB" /> swaps <InlineMath math="A" /> and <InlineMath math="B" />, so <InlineMath math="ACBC''" /> is a parallelogram. Its angle at <InlineMath math="C" /> is a right angle, so it's a **rectangle**, and <InlineMath math="C''=A+B-C=(-2+8-6,\ 1+1+3)=(0,5)" />. Same answer.
+
+<MathVisual
+  title={<>Triangle <InlineMath math="ABC" /> and its image</>}
+  description={<>Triangle <InlineMath math="ABC" /> with <InlineMath math="A(-2,1)" />, <InlineMath math="B(8,1)" />, and <InlineMath math="C(6,-3)" />. The mirror lines <InlineMath math="x=3" /> and <InlineMath math="y=1" /> cross at <InlineMath math="M(3,1)" />, the midpoint of <InlineMath math="AB" />. The image triangle has vertices <InlineMath math="B" />, <InlineMath math="A" />, and <InlineMath math="C''(0,5)" />. The points <InlineMath math="A" />, <InlineMath math="C" />, <InlineMath math="B" />, and <InlineMath math="C''" /> form a rectangle.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    image: <InlineMath math="C''" />,
+    centre: <InlineMath math="M" />,
+    "mirror-x": <InlineMath math="x=3" />,
+    "mirror-y": <InlineMath math="y=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 11 },
+      y: { min: -5, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: -2, y: 1 }, { x: 8, y: 1 }, { x: 6, y: -3 }] },
+      { id: "image-triangle", kind: "polygon", appearance: "answer", vertices: [{ x: 8, y: 1 }, { x: -2, y: 1 }, { x: 0, y: 5 }] },
+      { id: "mirror-x", kind: "line", appearance: "reference", through: [{ x: 3, y: 0 }, { x: 3, y: 1 }] },
+      { id: "mirror-y", kind: "line", appearance: "reference", through: [{ x: 0, y: 1 }, { x: 1, y: 1 }] },
+      { id: "point-a", kind: "point", appearance: "primary", at: { x: -2, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "primary", at: { x: 8, y: 1 } },
+      { id: "point-c", kind: "point", appearance: "primary", at: { x: 6, y: -3 } },
+      { id: "point-image", kind: "point", appearance: "answer", at: { x: 0, y: 5 } },
+      { id: "point-centre", kind: "point", appearance: "highlight", at: { x: 3, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: -2, y: 1 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 8, y: 1 }, placement: "above-right" },
+      { key: "c", objectId: "point-c", at: { x: 6, y: -3 }, placement: "below" },
+      { key: "image", objectId: "point-image", at: { x: 0, y: 5 }, placement: "above" },
+      { key: "centre", objectId: "point-centre", at: { x: 3, y: 1 }, placement: "below-right" },
+      { key: "mirror-x", objectId: "mirror-x", at: { x: 3, y: 6 }, placement: "right" },
+      { key: "mirror-y", objectId: "mirror-y", at: { x: 10, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
+So the image of point <InlineMath math="C" /> after both reflections is <InlineMath math="(0,5)" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="(0,-3)" /> can come from two slips. You used <InlineMath math="C(6,5)" />, which is above <InlineMath math="AB" />, or you stopped after the first reflection in <InlineMath math="x=3" />. **You need both the below-<InlineMath math="AB" /> condition and the second reflection**.
+- <InlineMath math="(-1,-2)" /> treats the two reflections as a <InlineMath math="90^\circ" /> clockwise rotation about <InlineMath math="(3,1)" />. Reflections in two perpendicular lines give a rotation through twice the angle between them, <InlineMath math="2\cdot90^\circ=180^\circ" />.
+- <InlineMath math="(4,5)" /> comes from a sign slip when finding <InlineMath math="a" />. The equation is <InlineMath math="2a-(-2)=8" />, so <InlineMath math="2a+2=8" /> and <InlineMath math="a=3" />, not <InlineMath math="2a-2=8" />, which gives <InlineMath math="a=5" />.
+- <InlineMath math="(12,-1)" /> adds <InlineMath math="(2a,2b)=(6,2)" /> to the coordinates of <InlineMath math="C" />. The correct rule is <InlineMath math="(2a-x,\ 2b-y)" />: you subtract the coordinates of <InlineMath math="C" /> from <InlineMath math="2a" /> and <InlineMath math="2b" />, you don't add them.

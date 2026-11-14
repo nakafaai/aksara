@@ -1,12 +1,41 @@
-Bei dieser Aufgabe beurteilst du nur, ob die Angaben **für eine eindeutige Antwort ausreichen**, nicht welche Antwort herauskommt. Prüfe jede Aussage zuerst allein, dann beide zusammen. Eine Aussage reicht aus, wenn sie die Frage für jeden möglichen Fall gleich beantwortet.
+Der Radius des Zylinders ist nicht angegeben, und du brauchst ihn auch nicht. Der Wasserstand steigt um das Volumen des versunkenen Körpers geteilt durch die Grundfläche des Zylinders. Die Grundfläche bleibt gleich, also ist **der Anstieg proportional zum Volumen der Murmeln**. Die großen Murmeln verraten dir den Anstieg pro Murmel, und ein Volumenverhältnis führt dich zu den kleinen.
 
-- **Aussage (1) allein**: Aus <InlineMath math="\frac43\pi r^3=288\pi" /> folgt <InlineMath math="r^3=216" />, also <InlineMath math="r=6" /> und eine Kugeloberfläche von <InlineMath math="4\pi\cdot36=144\pi\approx452{,}4\text{ cm}^2" />. Über den Würfel sagt die Aussage nichts, sie reicht nicht.
-- **Aussage (2) allein**: Sie sagt nichts über die Kugel und reicht nicht.
-- **Beide zusammen**: Die Würfeloberfläche ist <InlineMath math="6s^2" />. Für <InlineMath math="s=8" /> ist sie <InlineMath math="384<452{,}4" />, die Antwort wäre ja. Für <InlineMath math="s=9" /> ist sie <InlineMath math="486>452{,}4" />, die Antwort wäre nein. Auch zusammen bleibt die Frage offen.
+# Anstieg durch eine große Murmel
 
-Die beiden Aussagen reichen also auch zusammen nicht aus.
+Fünf große Murmeln heben das Wasser von <InlineMath math="12\text{ cm}" /> auf <InlineMath math="14{,}7\text{ cm}" />. **Teile diesen Anstieg durch die Anzahl der Murmeln**, dann weißt du, was eine Murmel bewirkt.
 
-- Die Auswahl, nach der nur Aussage (1) allein ausreicht, ist falsch, weil Aussage (1) allein zwei verschiedene Antworten zulässt.
-- Die Auswahl, nach der nur Aussage (2) allein ausreicht, ist falsch, weil Aussage (2) allein zwei verschiedene Antworten zulässt.
-- Die Auswahl, nach der erst beide Aussagen zusammen ausreichen, ist falsch, weil auch beide Aussagen zusammen zwei verschiedene Antworten zulassen.
-- Die Auswahl, nach der jede Aussage allein ausreicht, ist falsch, weil Aussage (1) allein zwei verschiedene Antworten zulässt.
+<BlockMath math="\frac{14{,}7-12}{5}=\frac{2{,}7}{5}=0{,}54\text{ cm pro großer Murmel}" />
+
+# Anstieg durch eine kleine Murmel
+
+Das Volumen einer Kugel ist <InlineMath math="\frac43\pi\left(\frac d2\right)^3" />. Es ist also proportional zur **dritten Potenz des Durchmessers**, nicht zum Durchmesser selbst. Die Durchmesser von kleiner und großer Murmel stehen im Verhältnis <InlineMath math="2:3" />.
+
+<BlockMath math="\begin{aligned}
+\frac{V_{\text{klein}}}{V_{\text{groß}}}&=\left(\frac23\right)^3=\frac{8}{27} \\
+\text{Anstieg pro kleiner Murmel}&=0{,}54\cdot\frac{8}{27}=0{,}16\text{ cm}
+\end{aligned}" />
+
+# Anzahl der kleinen Murmeln
+
+Wenn die großen Murmeln drin sind, bleiben von der Wasseroberfläche bis zum Rand noch <InlineMath math="18-14{,}7=3{,}3\text{ cm}" />. Mit <InlineMath math="n" /> kleinen Murmeln steigt das Wasser um <InlineMath math="0{,}16n" />, und das darf nicht mehr als <InlineMath math="3{,}3" /> sein.
+
+<BlockMath math="\begin{aligned}
+0{,}16n&\le3{,}3 \\
+n&\le\frac{3{,}3}{0{,}16}=20{,}625
+\end{aligned}" />
+
+Die Anzahl ist ganzzahlig, und Aufrunden würde das Wasser überlaufen lassen. Es sind also **höchstens <InlineMath math="20" /> Murmeln**. Prüfe beide Seiten.
+
+<BlockMath math="\begin{aligned}
+n=20&:\ 14{,}7+20\cdot0{,}16=17{,}9\text{ cm}\le18\text{ cm} \\
+n=21&:\ 14{,}7+21\cdot0{,}16=18{,}06\text{ cm}>18\text{ cm}
+\end{aligned}" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="9" /> entsteht, wenn du das Volumen proportional zum Durchmesser nimmst. Dann wäre der Anstieg <InlineMath math="0{,}54\cdot\frac23=0{,}36\text{ cm}" />.
+- <InlineMath math="13" /> entsteht, wenn du das Volumen proportional zum Quadrat des Durchmessers nimmst. Dann wäre der Anstieg <InlineMath math="0{,}54\cdot\frac49=0{,}24\text{ cm}" />. Quadrate gehören zu Flächen, nicht zu Volumen.
+- <InlineMath math="21" /> rundet <InlineMath math="20{,}625" /> auf. Die <InlineMath math="21" />. Murmel hebt das Wasser auf <InlineMath math="18{,}06\text{ cm}" />, es **läuft über**.
+- <InlineMath math="37" /> misst den freien Platz ab dem ursprünglichen Wasserstand, <InlineMath math="18-12=6\text{ cm}" />. Die großen Murmeln liegen aber schon im Zylinder und haben das Wasser bereits angehoben.
+
+Höchstens <InlineMath math="20" /> kleine Murmeln passen also hinein, ohne dass Wasser überläuft.

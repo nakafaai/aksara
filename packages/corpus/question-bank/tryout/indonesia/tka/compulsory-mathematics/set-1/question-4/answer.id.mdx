@@ -1,22 +1,47 @@
-Bekerjalah dengan **lembar per menit**. Misalkan <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" /> adalah kecepatan ketiga mesin. Dalam <InlineMath math="30" /> menit, dua mesin bersama-sama mencetak <InlineMath math="30" /> kali kecepatan gabungannya, sehingga:
+# Dua persamaan untuk tiga bilangan
+
+Misalkan <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" /> adalah banyak kupon A, B, dan C yang terjual. Soal memberi dua persamaan, padahal bilangannya ada tiga. **Dua persamaan saja belum menentukan satu jawaban**, jadi syarat-syarat lain yang akan memilih jawabannya.
+
+Tulis kedua persamaan dengan harga dalam ribuan rupiah, lalu kurangi persamaan kedua dengan <InlineMath math="20" /> kali persamaan pertama supaya <InlineMath math="c" /> hilang:
 
 <BlockMath math="\begin{aligned}
-a+b&=\frac{1{.}800}{30}=60 \\
-b+c&=\frac{1{.}500}{30}=50 \\
-a+c&=\frac{2{.}100}{30}=70
+a+b+c&=120 \\
+50a+30b+20c&=4{.}200 \\
+30a+10b&=4{.}200-2{.}400=1{.}800 \\
+b&=180-3a
 \end{aligned}" />
 
-Jika ketiga persamaan dijumlahkan, setiap kecepatan terhitung dua kali.
+Masukkan ke persamaan pertama untuk mendapat <InlineMath math="c" />:
+
+<BlockMath math="c=120-a-(180-3a)=2a-60" />
+
+Sekarang <InlineMath math="b" /> dan <InlineMath math="c" /> sama-sama ditentukan oleh <InlineMath math="a" />.
+
+# Syarat yang membatasi banyak kupon A
+
+Ada tiga syarat. Setiap jenis terjual paling sedikit satu, dan banyak kupon A **lebih banyak** daripada kupon B. Semua bilangan juga harus bulat.
 
 <BlockMath math="\begin{aligned}
-2(a+b+c)&=180 \\
-a+b+c&=90 \\
-c&=90-60=30,\quad a=90-50=40,\quad b=90-70=20
+b\ge1&\iff 180-3a\ge1\iff a\le59 \\
+c\ge1&\iff 2a-60\ge1\iff a\ge31 \\
+a>b&\iff a>180-3a\iff 4a>180\iff a>45
 \end{aligned}" />
 
-Sebagai pemeriksaan, <InlineMath math="40+20=60" />, <InlineMath math="20+30=50" />, dan <InlineMath math="40+30=70" />.
+Tanda pada syarat terakhir **ketat**. Untuk <InlineMath math="a=45" /> kita dapat <InlineMath math="b=45" />, jadi kupon A tidak lebih banyak, hanya sama banyak. Bilangan bulat terkecil yang memenuhi semua syarat adalah <InlineMath math="a=46" />.
 
-- Mesin <InlineMath math="A" /> paling cepat, yaitu <InlineMath math="40" /> lembar per menit. Pernyataan ini benar.
-- Mesin <InlineMath math="B" /> mencetak <InlineMath math="20" /> lembar per menit, bukan <InlineMath math="30" />. Pernyataan ini salah.
-- Mesin <InlineMath math="C" /> sendiri memerlukan <InlineMath math="\frac{1{.}200}{30}=40" /> menit. Pernyataan ini benar.
-- Ketiga mesin bersama-sama mencetak <InlineMath math="90\cdot30=2{.}700" /> lembar dalam <InlineMath math="30" /> menit. Pernyataan ini benar.
+# Kupon C paling sedikit
+
+Rumus <InlineMath math="c=2a-60" /> makin besar kalau <InlineMath math="a" /> makin besar, jadi <InlineMath math="c" /> paling kecil saat <InlineMath math="a" /> paling kecil, yaitu <InlineMath math="a=46" />:
+
+<BlockMath math="b=180-138=42,\qquad c=2\cdot46-60=32" />
+
+Cek kembali: <InlineMath math="46+42+32=120" /> dan <InlineMath math="50\cdot46+30\cdot42+20\cdot32=2{.}300+1{.}260+640=4{.}200" /> ribu rupiah. Syarat <InlineMath math="46>42" /> juga terpenuhi, jadi **susunan ini benar-benar mungkin terjadi**.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="30" /> muncul dari <InlineMath math="a=45" />. Di situ <InlineMath math="a=b=45" />, padahal kupon A harus **lebih banyak**, bukan sama banyak.
+- <InlineMath math="2" /> muncul kalau syarat <InlineMath math="a>b" /> dilupakan, sehingga <InlineMath math="a" /> boleh turun sampai <InlineMath math="31" />.
+- <InlineMath math="46" /> adalah banyak kupon A, bukan kupon C.
+- <InlineMath math="58" /> adalah banyak kupon C **paling banyak**, yaitu saat <InlineMath math="a=59" />, padahal yang ditanya paling sedikit.
+
+Jadi, banyak kupon C yang terjual paling sedikit adalah <InlineMath math="32" /> lembar.

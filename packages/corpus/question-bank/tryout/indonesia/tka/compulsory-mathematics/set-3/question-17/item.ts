@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "aroma-candles",
+  stimulus: "tangga",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$264\\text{ cm}^2$$",
+          label: "$$27$$ sak",
+        },
+        {
+          correct: false,
+          label: "$$30$$ sak",
+        },
+        {
+          correct: false,
+          label: "$$38$$ sak",
+        },
+        {
+          correct: false,
+          label: "$$41$$ sak",
         },
         {
           correct: true,
-          label: "$$276\\text{ cm}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$288\\text{ cm}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$302{,}5\\text{ cm}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$540\\text{ cm}^2$$",
+          label: "$$42$$ sak",
         },
       ],
     },

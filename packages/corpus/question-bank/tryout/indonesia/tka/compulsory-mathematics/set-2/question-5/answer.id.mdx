@@ -1,12 +1,51 @@
-Pada soal ini, kamu hanya menilai apakah keterangan yang diberikan **cukup untuk jawaban yang pasti**, bukan apa jawabannya. Periksa setiap pernyataan sendiri-sendiri lebih dulu, lalu keduanya bersama-sama. Sebuah pernyataan cukup jika menjawab pertanyaan dengan cara yang sama untuk setiap kemungkinan.
+# Eliminasi tanpa membuang faktor
 
-- **Pernyataan (1) saja**: penyelesaian bulat positif dari <InlineMath math="3x+2y=24" /> adalah <InlineMath math="(2,9)" />, <InlineMath math="(4,6)" />, dan <InlineMath math="(6,3)" />. Pada dua yang pertama <InlineMath math="x<y" />, sedangkan pada yang ketiga <InlineMath math="x>y" />. Pernyataan ini tidak cukup.
-- **Pernyataan (2) saja**: misalnya <InlineMath math="(1,8)" /> dan <InlineMath math="(8,1)" /> sama-sama memenuhi, tetapi jawabannya berlawanan. Pernyataan ini juga tidak cukup.
-- **Keduanya bersama-sama**: jika dua kali persamaan kedua dikurangkan dari persamaan pertama, tersisa <InlineMath math="x=24-18=6" />, sehingga <InlineMath math="y=3" />. Maka pasti <InlineMath math="x>y" />.
+Soal ini punya dua syarat: sistemnya harus punya **tepat satu** penyelesaian, dan penyelesaian itu harus memenuhi <InlineMath math="x>0" /> dan <InlineMath math="y>0" />. Cara paling aman adalah mengeliminasi satu variabel sambil membiarkan semua faktor yang memuat <InlineMath math="k" /> tetap terlihat.
 
-Jadi, kedua pernyataan bersama-sama cukup, tetapi satu pernyataan saja tidak cukup.
+Dari persamaan kedua, <InlineMath math="2x=(k+1)-(k+1)y=(k+1)(1-y)" />. Kalikan persamaan pertama dengan <InlineMath math="2" />, lalu ganti <InlineMath math="2x" />:
 
-- Pilihan bahwa pernyataan (1) saja cukup salah, karena pernyataan (1) saja masih memungkinkan dua jawaban yang berbeda.
-- Pilihan bahwa pernyataan (2) saja cukup salah, karena pernyataan (2) saja masih memungkinkan dua jawaban yang berbeda.
-- Pilihan bahwa setiap pernyataan saja sudah cukup salah, karena pernyataan (1) saja masih memungkinkan dua jawaban yang berbeda.
-- Pilihan bahwa kedua pernyataan bersama-sama pun tidak cukup salah, karena kedua pernyataan bersama-sama menjawab pertanyaan dengan pasti.
+<BlockMath math="\begin{aligned}
+(k+3)\cdot2x+8y&=4(k+1) \\
+(k+3)(k+1)(1-y)+8y&=4(k+1) \\
+\left[8-(k+3)(k+1)\right]y&=4(k+1)-(k+3)(k+1) \\
+-(k+5)(k-1)\,y&=-(k+1)(k-1) \\
+(k+5)(k-1)\,y&=(k+1)(k-1)
+\end{aligned}" />
+
+Di baris ketiga, <InlineMath math="8-(k^2+4k+3)=-(k^2+4k-5)=-(k+5)(k-1)" /> dan <InlineMath math="(k+1)(4-k-3)=-(k+1)(k-1)" />.
+
+# Tiga kemungkinan
+
+Persamaan terakhir berbentuk <InlineMath math="ay=b" />, jadi ada tiga kasus.
+
+- Jika <InlineMath math="k=1" />, persamaannya menjadi <InlineMath math="0\cdot y=0" />. Semua <InlineMath math="y" /> memenuhi, jadi sistemnya punya **tak hingga banyak** penyelesaian. Memang, untuk <InlineMath math="k=1" /> kedua persamaan sama-sama menjadi <InlineMath math="x+y=1" />.
+- Jika <InlineMath math="k=-5" />, persamaannya menjadi <InlineMath math="0\cdot y=24" />, jadi tidak ada penyelesaian.
+- Untuk nilai <InlineMath math="k" /> lainnya, penyelesaiannya tunggal:
+
+<BlockMath math="\begin{aligned}
+y&=\frac{k+1}{k+5} \\
+x&=\frac{(k+1)(1-y)}{2}=\frac{(k+1)}{2}\cdot\frac{4}{k+5}=\frac{2(k+1)}{k+5}
+\end{aligned}" />
+
+# Syarat positif
+
+Karena <InlineMath math="x=2y" />, cukup minta <InlineMath math="y>0" />. Pembilang <InlineMath math="k+1" /> dan penyebut <InlineMath math="k+5" /> harus bertanda sama:
+
+| Selang | <InlineMath math="k+1" /> | <InlineMath math="k+5" /> | <InlineMath math="y" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="k<-5" /> | negatif | negatif | positif |
+| <InlineMath math="-5<k<-1" /> | negatif | positif | negatif |
+| <InlineMath math="k>-1" /> | positif | positif | positif |
+
+Jadi <InlineMath math="y>0" /> untuk <InlineMath math="k<-5" /> atau <InlineMath math="k>-1" />. Sekarang ingat kasus <InlineMath math="k=1" />. Nilai ini ada di dalam <InlineMath math="k>-1" />, tetapi di sana penyelesaiannya tak hingga banyak, bukan tepat satu. Jadi **<InlineMath math="k=1" /> harus dibuang**.
+
+Cek <InlineMath math="k=-6" />: <InlineMath math="y=\frac{-5}{-1}=5" /> dan <InlineMath math="x=10" />. Substitusi: <InlineMath math="-3\cdot10+4\cdot5=-10=2(-6)+2" /> dan <InlineMath math="2\cdot10-5\cdot5=-5=-6+1" />.
+
+Jadi, himpunannya adalah <InlineMath math="k<-5" /> atau <InlineMath math="-1<k<1" /> atau <InlineMath math="k>1" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="-1<k<1" /> atau <InlineMath math="k>1" /> membuang cabang <InlineMath math="k<-5" />. Pecahan positif juga saat **pembilang dan penyebut sama-sama negatif**.
+- <InlineMath math="k<-5" /> atau <InlineMath math="k>-1" /> lupa membuang <InlineMath math="k=1" />. Ini terjadi kalau faktor <InlineMath math="k-1" /> dicoret di kedua ruas, sehingga kasus tak hingga banyak penyelesaian ikut hilang.
+- <InlineMath math="-5<k<-1" /> membalik tabel tanda. Di selang itu <InlineMath math="y" /> justru negatif.
+- <InlineMath math="k\neq-5" /> dan <InlineMath math="k\neq1" /> hanya memastikan penyelesaiannya tunggal, tetapi belum memakai syarat <InlineMath math="x>0" /> dan <InlineMath math="y>0" />.

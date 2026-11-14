@@ -1,17 +1,56 @@
-Yang ditanyakan adalah banyak akun, bukan banyak langganan. Karena itu, tentukan dulu banyak langganan setiap paket dengan **sistem persamaan linear**, lalu ubah setiap langganan menjadi banyak akunnya. Misalkan <InlineMath math="d" /> adalah banyak langganan Duo dan <InlineMath math="k" /> adalah banyak langganan Keluarga. Nilai uang dalam ribuan rupiah:
+Soal ini meminta banyak tiket dalam pesanan Fajar. Misalkan pesanan itu berisi <InlineMath math="e" /> tiket *early bird* dan <InlineMath math="r" /> tiket reguler. Kata **memuat kedua jenis tiket** berarti <InlineMath math="e\ge1" /> dan <InlineMath math="r\ge1" />, dan batas pemesanan memberi <InlineMath math="e+r\le9" />.
+
+# Persamaan pembayaran
+
+Misalkan <InlineMath math="g" /> adalah banyak potongan kelompok. Pembayaran Fajar adalah harga tiket dikurangi potongan, ditambah satu biaya layanan. Supaya angkanya kecil, tulis semua nilai dalam ribuan rupiah.
 
 <BlockMath math="\begin{aligned}
-d+k&=1{.}000 \\
-90d+108k&=98{.}640 \\
-98{.}640-90\cdot1{.}000=18k\ &\Rightarrow\ k=480,\quad d=520 \\
-\text{banyak akun}&=2\cdot520+6\cdot480=1{.}040+2{.}880=3{.}920
+90e+150r-90g+25&=745 \\
+90e+150r-90g&=720
 \end{aligned}" />
 
-Sebagai pemeriksaan, <InlineMath math="90\cdot520+108\cdot480=46{.}800+51{.}840=98{.}640" />.
+Karena <InlineMath math="e+r\le9" />, **pesanan ini paling banyak mendapat satu potongan**. Jadi <InlineMath math="g=0" /> kalau <InlineMath math="e+r\le4" />, dan <InlineMath math="g=1" /> kalau <InlineMath math="5\le e+r\le9" />. Kedua kasus harus dicek.
 
-Jadi, banyak akun pengguna adalah <InlineMath math="3{.}920" />.
+# Kasus tanpa potongan
 
-- <InlineMath math="2{.}880" /> hanya menghitung akun pada langganan Keluarga.
-- <InlineMath math="4{.}000" /> tidak menyelesaikan sistem persamaan dan menganggap setiap langganan rata-rata mempunyai <InlineMath math="4" /> akun, yaitu rata-rata dari <InlineMath math="2" /> dan <InlineMath math="6" />.
-- <InlineMath math="4{.}080" /> menukar kedua penyelesaian, yaitu menganggap ada <InlineMath math="520" /> langganan Keluarga dan <InlineMath math="480" /> langganan Duo.
-- <InlineMath math="6{.}000" /> menganggap seluruh <InlineMath math="1{.}000" /> langganan adalah paket Keluarga.
+Kalau <InlineMath math="g=0" />, bagi kedua ruas dengan <InlineMath math="30" />.
+
+<BlockMath math="\begin{aligned}
+90e+150r&=720 \\
+3e+5r&=24
+\end{aligned}" />
+
+Dengan <InlineMath math="e,r\ge1" />, satu-satunya pasangan bulat adalah <InlineMath math="e=3" /> dan <InlineMath math="r=3" />, sehingga ada <InlineMath math="6" /> tiket. Padahal kasus ini mensyaratkan paling banyak <InlineMath math="4" /> tiket. **Kasus ini bertentangan dengan dirinya sendiri**, jadi dibuang.
+
+# Kasus dengan satu potongan
+
+Kalau <InlineMath math="g=1" />, pindahkan potongannya ke ruas kanan lalu bagi dengan <InlineMath math="30" />.
+
+<BlockMath math="\begin{aligned}
+90e+150r&=810 \\
+3e+5r&=27 \\
+3e&=27-5r
+\end{aligned}" />
+
+Ruas kiri kelipatan <InlineMath math="3" />, jadi <InlineMath math="5r" /> juga harus kelipatan <InlineMath math="3" />. Artinya **<InlineMath math="r" /> harus kelipatan <InlineMath math="3" />**.
+
+| <InlineMath math="r" /> | <InlineMath math="e=\frac{27-5r}{3}" /> | Banyak tiket | Keterangan |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="9" /> | <InlineMath math="9" /> | ditolak, tidak ada tiket reguler |
+| <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="7" /> | memenuhi semua syarat |
+| <InlineMath math="6" /> | <InlineMath math="-1" /> | tidak ada | ditolak, <InlineMath math="e" /> negatif |
+
+Jadi pesanan Fajar berisi <InlineMath math="4" /> tiket *early bird* dan <InlineMath math="3" /> tiket reguler, totalnya <InlineMath math="7" /> tiket. Banyaknya ada di antara <InlineMath math="5" /> dan <InlineMath math="9" />, jadi memang mendapat satu potongan.
+
+Cek dengan menghitung ulang pembayarannya:
+
+<BlockMath math="4\cdot90{.}000+3\cdot150{.}000-90{.}000+25{.}000=360{.}000+450{.}000-65{.}000=745{.}000" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="3" /> hanya banyak tiket reguler, belum ditambah tiket *early bird*.
+- <InlineMath math="4" /> hanya banyak tiket *early bird*, belum ditambah tiket reguler.
+- <InlineMath math="6" /> muncul kalau potongan kelompok dilupakan. Pesanan berisi <InlineMath math="6" /> tiket justru **berhak atas satu potongan**, jadi pasangan <InlineMath math="(3,3)" /> sebenarnya membayar <InlineMath math="\text{Rp}655{.}000" />.
+- <InlineMath math="9" /> berasal dari <InlineMath math="9" /> tiket *early bird* saja. Jumlah uangnya cocok, tetapi pesanan itu tidak memuat tiket reguler, padahal soal menyebut kedua jenis tiket ada.
+
+Jadi, banyak tiket dalam pesanan Fajar adalah <InlineMath math="7" />.

@@ -1,15 +1,44 @@
-The numbers of books per month form an **arithmetic sequence** with <InlineMath math="a=14" /> and <InlineMath math="d=6" />. The question asks for the sum of the first <InlineMath math="12" /> terms, <InlineMath math="S_{12}" />.
+The question asks for the first term, in order, whose value is more than <InlineMath math="1{,}000" />. The sequence is **geometric**, so you get each next term by multiplying by the ratio <InlineMath math="r" />, not by adding a difference. The minus signs in the data will matter a lot.
+
+# The ratio from two groups of terms
+
+Write the <InlineMath math="n" />th term as <InlineMath math="u_n=ar^{n-1}" />. The next three terms are the first three terms, each multiplied by <InlineMath math="r^3" />.
 
 <BlockMath math="\begin{aligned}
-U_{12}&=a+11d=14+66=80 \\
-S_{12}&=\frac{12}{2}\,(a+U_{12})=6\cdot(14+80)=564
+u_4+u_5+u_6&=ar^3+ar^4+ar^5=r^3\left(a+ar+ar^2\right) \\
+168&=r^3\cdot(-21) \\
+r^3&=-8\ \Rightarrow\ r=-2
 \end{aligned}" />
 
-As a check with the other formula, <InlineMath math="S_{12}=\frac{12}{2}\,(2\cdot14+11\cdot6)=6\cdot94=564" />.
+The only real number whose cube is <InlineMath math="-8" /> is <InlineMath math="-2" />. So **the ratio is negative, and the signs of the terms alternate**.
 
-So in <InlineMath math="12" /> months the library receives <InlineMath math="564" /> books.
+# The first term
 
-- <InlineMath math="80" /> books is the donation in month <InlineMath math="12" /> alone, <InlineMath math="U_{12}" />.
-- <InlineMath math="234" /> books works out <InlineMath math="12\cdot14+11\cdot6" />, adding the difference only once in all.
-- <InlineMath math="480" /> books works out <InlineMath math="\frac{12}{2}\cdot80" /> and forgets the first term.
-- <InlineMath math="517" /> books uses <InlineMath math="\frac{11}{2}" /> as the factor instead of <InlineMath math="\frac{12}{2}" />.
+Put <InlineMath math="r=-2" /> into the sum of the first three terms.
+
+<BlockMath math="\begin{aligned}
+a\left(1+r+r^2\right)&=-21 \\
+a(1-2+4)&=-21 \\
+3a&=-21\ \Rightarrow\ a=-7
+\end{aligned}" />
+
+Check: <InlineMath math="-7+14-28=-21" /> and <InlineMath math="56-112+224=168" />. **Both sums match the data**.
+
+# The first term above one thousand
+
+The terms are <InlineMath math="u_n=-7(-2)^{n-1}" />. For odd <InlineMath math="n" />, <InlineMath math="(-2)^{n-1}" /> is positive, so <InlineMath math="u_n" /> is negative. **Only the even-numbered terms are positive**. Now look at the terms close to <InlineMath math="1{,}000" />.
+
+| <InlineMath math="n" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> | <InlineMath math="10" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="u_n" /> | <InlineMath math="224" /> | <InlineMath math="-448" /> | <InlineMath math="896" /> | <InlineMath math="-1{,}792" /> | <InlineMath math="3{,}584" /> |
+
+The <InlineMath math="8" />th term is still <InlineMath math="896" />, and the <InlineMath math="9" />th term is negative. So the first term above <InlineMath math="1{,}000" /> is the <InlineMath math="10" />th term, <InlineMath math="3{,}584" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="1{,}792" /> comes from taking the first term as <InlineMath math="a=7" />. Then the <InlineMath math="9" />th term turns positive, but <InlineMath math="3a=-21" /> makes <InlineMath math="a" /> negative.
+- <InlineMath math="1{,}536" /> comes from ignoring every minus sign in the data, which gives <InlineMath math="r=2" /> and <InlineMath math="7a=21" />, so <InlineMath math="a=3" />. Its <InlineMath math="10" />th term is <InlineMath math="3\cdot2^{9}=1{,}536" />.
+- <InlineMath math="1{,}001" /> is what you get if you treat the sequence as arithmetic. From <InlineMath math="3a+3d=-21" /> and <InlineMath math="3a+12d=168" /> you'd get <InlineMath math="d=21" /> and <InlineMath math="a=-28" />, and the <InlineMath math="50" />th term would be <InlineMath math="1{,}001" />. **The question says the sequence is geometric**, so a fixed difference doesn't apply.
+- <InlineMath math="-1{,}792" /> is the first term whose size passes <InlineMath math="1{,}000" />. But a negative number isn't more than <InlineMath math="1{,}000" />.
+
+So the first term with a value above <InlineMath math="1{,}000" /> is <InlineMath math="3{,}584" />.

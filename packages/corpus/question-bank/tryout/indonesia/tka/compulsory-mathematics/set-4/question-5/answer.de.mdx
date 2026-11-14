@@ -1,17 +1,49 @@
-Es gebe <InlineMath math="a" /> Teams mit <InlineMath math="3" /> und <InlineMath math="b" /> Teams mit <InlineMath math="5" /> Personen. Dann gilt <InlineMath math="3a+5b=41" /> mit **natürlichen Zahlen** <InlineMath math="a" /> und <InlineMath math="b" /> (die Null eingeschlossen). Probiere jedes <InlineMath math="b" /> von <InlineMath math="0" /> bis <InlineMath math="8" />, denn <InlineMath math="5b\le41" />.
+# Alle Wege zu genau hundertzwanzig Stück
+
+Angenommen, das Komitee kauft <InlineMath math="x" /> Schachteln mit <InlineMath math="3" /> Stück und <InlineMath math="y" /> Schachteln mit <InlineMath math="5" /> Stück. Es gibt drei Bedingungen: genau <InlineMath math="120" /> Stück, mindestens eine Schachtel jeder Sorte, und vom Budget **bleibt noch etwas übrig**. Die Kosten müssen also kleiner als <InlineMath math="760{.}000" /> sein, nicht gleich.
+
+Fang mit der Stückzahl an.
+
+<BlockMath math="3x+5y=120" />
+
+<InlineMath math="3x" /> und <InlineMath math="120" /> sind beide Vielfache von <InlineMath math="3" />, also muss auch <InlineMath math="5y" /> ein Vielfaches von <InlineMath math="3" /> sein. Das heißt, **<InlineMath math="y" /> ist ein Vielfaches von <InlineMath math="3" />**. Schreib <InlineMath math="y=3k" /> mit einer ganzen Zahl <InlineMath math="k" />:
 
 <BlockMath math="\begin{aligned}
-41-5b&:\ 41,\ 36,\ 31,\ 26,\ 21,\ 16,\ 11,\ 6,\ 1 \\
-\text{durch }3\text{ teilbar}&:\ 36\ (b=1),\ 21\ (b=4),\ 6\ (b=7)
+3x+15k&=120 \\
+x&=40-5k
 \end{aligned}" />
 
-Möglich sind <InlineMath math="(12,1)" />, <InlineMath math="(7,4)" /> und <InlineMath math="(2,7)" />. Der Wert von <InlineMath math="b" /> steigt jedes Mal um <InlineMath math="3" />, denn drei Fünferteams durch fünf Dreierteams zu ersetzen braucht weiterhin <InlineMath math="15" /> Personen.
+Mindestens eine Schachtel jeder Sorte heißt <InlineMath math="y=3k\ge1" /> und <InlineMath math="x=40-5k\ge1" />, also <InlineMath math="k=1,2,\ldots,7" />.
 
-Zur Kontrolle: <InlineMath math="36+5=41" />, <InlineMath math="21+20=41" /> und <InlineMath math="6+35=41" />.
+# Die Budgetbedingung
 
-Es gibt also <InlineMath math="3" /> mögliche Paare.
+Die Kosten in Tausend Rupiah sind <InlineMath math="20x+30y" />. Setz <InlineMath math="x=40-5k" /> und <InlineMath math="y=3k" /> ein.
 
-- <InlineMath math="0" /> schließt auf unmöglich, weil <InlineMath math="41" /> weder durch <InlineMath math="3" /> noch durch <InlineMath math="5" /> teilbar ist, doch beide Teamarten dürfen gemischt werden.
-- <InlineMath math="1" /> hört beim ersten gefundenen Paar auf.
-- <InlineMath math="2" /> übersieht ein Paar, etwa <InlineMath math="(12,1)" /> mit nur einem Fünferteam.
-- <InlineMath math="4" /> zählt auch <InlineMath math="b=10" /> mit <InlineMath math="a=-3" />, doch eine Teamzahl kann nicht negativ sein.
+<BlockMath math="\begin{aligned}
+20(40-5k)+30(3k)&<760 \\
+800-10k&<760 \\
+k&>4
+\end{aligned}" />
+
+Das Zeichen ist **echt größer**, also fällt <InlineMath math="k=4" /> weg. Zusammen mit <InlineMath math="k\le7" /> bleiben <InlineMath math="k=5,6,7" />.
+
+| <InlineMath math="k" /> | <InlineMath math="(x,y)" /> | Kosten |
+| --- | --- | --- |
+| <InlineMath math="4" /> | <InlineMath math="(20,12)" /> | <InlineMath math="760{.}000" />, nichts übrig |
+| <InlineMath math="5" /> | <InlineMath math="(15,15)" /> | <InlineMath math="750{.}000" /> |
+| <InlineMath math="6" /> | <InlineMath math="(10,18)" /> | <InlineMath math="740{.}000" /> |
+| <InlineMath math="7" /> | <InlineMath math="(5,21)" /> | <InlineMath math="730{.}000" /> |
+| <InlineMath math="8" /> | <InlineMath math="(0,24)" /> | <InlineMath math="720{.}000" />, aber keine Dreierschachtel |
+
+Es gibt <InlineMath math="3" /> Pläne, die alle Bedingungen erfüllen.
+
+# Die verlockenden Antworten
+
+Jede andere Antwort **lockert eine Bedingung**.
+
+- <InlineMath math="4" /> entsteht, wenn du <InlineMath math="(20,12)" /> mitzählst, obwohl die Kosten genau <InlineMath math="760{.}000" /> betragen und nichts übrig bleibt. Dieselbe Zahl kommt heraus, wenn du <InlineMath math="(0,24)" /> mitzählst, das keine Dreierschachtel enthält.
+- <InlineMath math="5" /> entsteht, wenn du beide Pläne mitzählst.
+- <InlineMath math="7" /> ist die Zahl der Pläne für <InlineMath math="k=1" /> bis <InlineMath math="7" />, wenn du das Budget vergisst.
+- <InlineMath math="11" /> entsteht, wenn du die Ungleichung nur für <InlineMath math="y" /> löst, <InlineMath math="12<y\le23" />, und alle ganzen Zahlen <InlineMath math="y=13,\ldots,23" /> zählst. Ist <InlineMath math="y" /> aber kein Vielfaches von <InlineMath math="3" />, dann ist die Schachtelzahl <InlineMath math="x" /> nicht ganzzahlig.
+
+Die Zahl der Einkaufspläne, die alle Bedingungen erfüllen, ist also <InlineMath math="3" />.

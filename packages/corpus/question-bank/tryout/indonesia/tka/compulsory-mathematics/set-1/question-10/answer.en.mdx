@@ -1,20 +1,28 @@
-From one vertex, an <InlineMath math="n" />-gon splits into <InlineMath math="n-2" /> triangles. Its interior angle sum is therefore <InlineMath math="(n-2)\cdot180^\circ" />. Use it to find **the number of sides first**.
+# Splitting the lane into simple pieces
+
+Lane 1 is made of **two rectangles on the straights and two half rings on the bends**. The lane is <InlineMath math="1.25\text{ m}" /> wide. On the bends, its inner edge has radius <InlineMath math="36\text{ m}" /> and its outer edge, the inner edge of lane 2, has radius <InlineMath math="37.25\text{ m}" />.
+
+# The area of each piece
+
+**The two half rings make one full ring**, a big circle minus a small one:
 
 <BlockMath math="\begin{aligned}
-(n-2)\cdot180^\circ&=3{,}240^\circ \\
-n-2&=18 \\
-n&=20
+\text{straights}&=2\cdot85\cdot1.25=212.5 \\
+\text{bends}&=3.14\cdot\left(37.25^2-36^2\right)=3.14\cdot91.5625=287.50625 \\
+\text{lane area}&=212.5+287.50625=500.00625\approx500.01
 \end{aligned}" />
 
-The exterior angles of a polygon always add up to <InlineMath math="360^\circ" />. In a regular 20-gon they are all equal.
+# A quick check
 
-<BlockMath math="\frac{360^\circ}{20}=18^\circ" />
+A ring's area can be written <InlineMath math="\pi\left(R^2-r^2\right)=2\pi\cdot\frac{R+r}{2}\cdot(R-r)" />, the length of the middle circle times the width. So **a lane's area equals the length of its middle line times its width**. Lane 1's middle line has radius <InlineMath math="36.625" /> on the bends:
 
-As a check, each interior angle is <InlineMath math="180^\circ-18^\circ=162^\circ" />, and <InlineMath math="20\cdot162^\circ=3{,}240^\circ" />.
+<BlockMath math="\left(170+2\cdot3.14\cdot36.625\right)\cdot1.25=400.005\cdot1.25=500.00625" />
 
-So each exterior angle measures <InlineMath math="18^\circ" />.
+Same result. So lane 1 covers about <InlineMath math="500.01\text{ m}^2" />.
 
-- <InlineMath math="162^\circ" /> is the interior angle of the 20-gon, not its exterior angle.
-- <InlineMath math="160^\circ" /> comes from taking <InlineMath math="n=18" />, forgetting the <InlineMath math="2" />, and then computing the interior angle <InlineMath math="180^\circ-\frac{360^\circ}{18}=160^\circ" />.
-- <InlineMath math="20^\circ" /> comes from taking <InlineMath math="n=\frac{3{,}240}{180}=18" /> and forgetting the <InlineMath math="2" />.
-- <InlineMath math="40^\circ" /> takes the number of sides as <InlineMath math="\frac{3{,}240}{360}=9" />, as if the angle sum were made of full turns, and then <InlineMath math="\frac{360^\circ}{9}=40^\circ" />.
+# Why the other options are wrong
+
+- <InlineMath math="495.10\text{ m}^2" /> is the length of lane 1's inner edge times the width. **The inner edge is the shortest path in the lane**, so this is too small.
+- <InlineMath math="504.91\text{ m}^2" /> uses the outer edge, so it's too big.
+- <InlineMath math="287.51\text{ m}^2" /> is only the bends.
+- <InlineMath math="212.50\text{ m}^2" /> is only the straights.

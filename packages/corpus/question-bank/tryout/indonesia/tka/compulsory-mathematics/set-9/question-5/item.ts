@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$6$$ km per jam",
+          label: "$$122$$",
         },
         {
           correct: false,
-          label: "$$7{,}2$$ km per jam",
+          label: "$$132$$",
         },
         {
           correct: true,
-          label: "$$14{,}4$$ km per jam",
+          label: "$$138$$",
         },
         {
           correct: false,
-          label: "$$15$$ km per jam",
+          label: "$$150$$",
         },
         {
           correct: false,
-          label: "$$30$$ km per jam",
+          label: "$$186$$",
         },
       ],
     },

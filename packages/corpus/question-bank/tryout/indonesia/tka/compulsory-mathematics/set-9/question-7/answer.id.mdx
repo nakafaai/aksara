@@ -1,16 +1,55 @@
-Keseimbangan terjadi pada **harga yang membuat kedua fungsi bernilai sama**. Cari harga itu dulu, lalu substitusikan ke salah satu fungsi untuk mendapat banyak barang.
+Soal ini meminta semua banyak tas <InlineMath math="x" /> yang memberi keuntungan **paling sedikit** <InlineMath math="\text{Rp}600{.}000" />, jadi tepat <InlineMath math="\text{Rp}600{.}000" /> ikut dihitung. Rumus biayanya berubah setelah <InlineMath math="32" /> tas, jadi soal ini harus dipecah menjadi dua kasus.
+
+# Rumus keuntungan
+
+Hitung semua uang **dalam ribuan rupiah**. Pendapatan adalah banyak tas dikali harga per tas, lalu keuntungan adalah pendapatan dikurangi biaya.
 
 <BlockMath math="\begin{aligned}
-120-2P&=3P-30 \\
-150&=5P\ \Rightarrow\ P=30 \\
-Q&=120-2\cdot30=60
+x\le32&:\ K(x)=x(120-x)-(900+40x)=-x^2+80x-900 \\
+x\ge33&:\ K(x)=-x^2+80x-900-84=-x^2+80x-984
 \end{aligned}" />
 
-Cek dengan fungsi penawaran: <InlineMath math="3\cdot30-30=60" />.
+# Kasus tanpa biaya sewa
 
-Jadi, pada keseimbangan banyak barang adalah <InlineMath math="60" />.
+Untuk <InlineMath math="x\le32" />, selesaikan <InlineMath math="K(x)\ge600" />. Kalikan dengan <InlineMath math="-1" /> dan **balik tanda ketaksamaannya**.
 
-- <InlineMath math="30" /> adalah harga keseimbangan dalam ribu rupiah, bukan banyak barang.
-- <InlineMath math="84" /> salah tanda saat memindahkan <InlineMath math="-30" />, sehingga <InlineMath math="5P=90" /> dan <InlineMath math="P=18" />.
-- <InlineMath math="120" /> adalah banyak barang yang diminta saat harga <InlineMath math="0" />.
-- <InlineMath math="150" /> adalah nilai <InlineMath math="5P" />, belum dibagi <InlineMath math="5" />.
+<BlockMath math="\begin{aligned}
+-x^2+80x-900&\ge600 \\
+x^2-80x+1500&\le0 \\
+(x-30)(x-50)&\le0 \\
+30\le x&\le50
+\end{aligned}" />
+
+Karena kasus ini hanya untuk <InlineMath math="x\le32" />, yang tersisa <InlineMath math="x=30,\ 31,\ 32" />.
+
+# Kasus dengan biaya sewa
+
+Untuk <InlineMath math="x\ge33" />, biaya sewa ikut dikurangkan.
+
+<BlockMath math="\begin{aligned}
+-x^2+80x-984&\ge600 \\
+x^2-80x+1584&\le0 \\
+(x-36)(x-44)&\le0 \\
+36\le x&\le44
+\end{aligned}" />
+
+Semua nilai ini memang lebih dari <InlineMath math="32" />, jadi **seluruhnya terpakai**: <InlineMath math="x=36,\ 37,\ \ldots,\ 44" />.
+
+# Menggabungkan kedua kasus
+
+Di antara kedua kasus ada **celah**, yaitu <InlineMath math="x=33,\ 34,\ 35" />. Biaya sewa muncul tepat di <InlineMath math="x=33" /> dan menurunkan keuntungan dari <InlineMath math="651" /> menjadi <InlineMath math="567" />. Keuntungan baru naik lagi ke <InlineMath math="600" /> di <InlineMath math="x=36" />.
+
+| <InlineMath math="x" /> | <InlineMath math="29" /> | <InlineMath math="30" /> | <InlineMath math="32" /> | <InlineMath math="33" /> | <InlineMath math="35" /> | <InlineMath math="36" /> | <InlineMath math="44" /> | <InlineMath math="45" /> |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| <InlineMath math="K(x)" /> | <InlineMath math="579" /> | <InlineMath math="600" /> | <InlineMath math="636" /> | <InlineMath math="567" /> | <InlineMath math="591" /> | <InlineMath math="600" /> | <InlineMath math="600" /> | <InlineMath math="591" /> |
+
+Nilai <InlineMath math="x=30" />, <InlineMath math="36" />, dan <InlineMath math="44" /> memberi keuntungan tepat <InlineMath math="600" />, dan ketiganya termasuk karena syaratnya paling sedikit <InlineMath math="600" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="36\le x\le44" /> memasang biaya sewa pada semua hari, termasuk saat <InlineMath math="x\le32" />. Padahal untuk <InlineMath math="x=30,\ 31,\ 32" /> tidak ada sewa dan keuntungannya sudah cukup.
+- <InlineMath math="30\le x\le44" /> menggabungkan dua kasus menjadi satu selang tanpa memeriksa celahnya. Untuk <InlineMath math="x=33,\ 34,\ 35" /> keuntungannya **di bawah** <InlineMath math="600" />.
+- <InlineMath math="30\le x\le50" /> melupakan biaya sewa sama sekali.
+- <InlineMath math="31\le x\le32" /> atau <InlineMath math="37\le x\le43" /> membuang nilai yang keuntungannya tepat <InlineMath math="600" />. Kata paling sedikit berarti lebih dari atau sama dengan.
+
+Jadi, keuntungan harian paling sedikit <InlineMath math="\text{Rp}600{.}000" /> tercapai tepat untuk <InlineMath math="30\le x\le32" /> atau <InlineMath math="36\le x\le44" />.

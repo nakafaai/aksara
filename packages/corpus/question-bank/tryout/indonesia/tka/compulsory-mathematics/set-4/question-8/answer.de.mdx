@@ -1,15 +1,42 @@
-Die Nutzerzahlen bilden eine **geometrische Folge** mit <InlineMath math="a=1{.}600" /> und dem Quotienten <InlineMath math="q=1{,}5" />. Vom ersten bis zum fünften Monat wird viermal multipliziert, also <InlineMath math="U_5=aq^4" />.
+# Die Differenz und das erste Glied
+
+Schreib den Gewinn am Tag <InlineMath math="n" /> in Tausend Rupiah als <InlineMath math="U_n=a-(n-1)d" />. Dabei ist <InlineMath math="a" /> der Gewinn am ersten Tag und <InlineMath math="d" /> der Rückgang pro Tag. Gesucht ist der erste Tag mit <InlineMath math="U_n<0" />, also **wirklich negativ, nicht null**.
+
+Fang mit dem Abstand zwischen Tag <InlineMath math="4" /> und Tag <InlineMath math="9" /> an. Von Tag <InlineMath math="4" /> bis Tag <InlineMath math="9" /> sind es <InlineMath math="9-4=5" /> Schritte nach unten, nicht <InlineMath math="4" /> oder <InlineMath math="6" />.
 
 <BlockMath math="\begin{aligned}
-q^4&=1{,}5^4=5{,}0625 \\
-U_5&=1{.}600\cdot5{,}0625=8{.}100
+U_4-U_9&=5d=60 \\
+d&=12
 \end{aligned}" />
 
-Zur Kontrolle Monat für Monat: <InlineMath math="1{.}600\to2{.}400\to3{.}600\to5{.}400\to8{.}100" />.
+Tag <InlineMath math="3" /> und Tag <InlineMath math="11" /> liegen gleich weit von Tag <InlineMath math="7" /> entfernt, ihre Summe ist also <InlineMath math="2U_7" />.
 
-Im fünften Monat gibt es also <InlineMath math="8{.}100" /> Nutzerinnen und Nutzer.
+<BlockMath math="\begin{aligned}
+U_3+U_{11}&=2U_7=432 \\
+U_7&=216 \\
+a=U_7+6d&=216+72=288
+\end{aligned}" />
 
-- <InlineMath math="9{.}600" /> multipliziert den Quotienten mit <InlineMath math="4" />, <InlineMath math="1{.}600\cdot1{,}5\cdot4" />, statt zu potenzieren.
-- <InlineMath math="12{.}000" /> rechnet <InlineMath math="1{.}600\cdot1{,}5\cdot5" />.
-- <InlineMath math="12{.}150" /> nimmt <InlineMath math="q^5" />, als würde fünfmal multipliziert.
-- <InlineMath math="18{.}225" /> nimmt <InlineMath math="q^6" />.
+Also ist <InlineMath math="U_n=288-12(n-1)=300-12n" />.
+
+# Der erste Tag mit Verlust
+
+Such jetzt das kleinste <InlineMath math="n" /> mit negativem Gewinn.
+
+<BlockMath math="\begin{aligned}
+300-12n&<0 \\
+n&>25
+\end{aligned}" />
+
+Am Tag <InlineMath math="25" /> ist der Gewinn <InlineMath math="300-300=0" />. Das ist **noch kein Verlust**, nur ausgeglichen. Am Tag <InlineMath math="26" /> ist der Gewinn <InlineMath math="300-312=-12" />, also ein Verlust von <InlineMath math="\text{Rp}12{.}000" />. Der Stand macht also zum ersten Mal am Tag <InlineMath math="26" /> Verlust.
+
+# Die verlockenden Antworten
+
+Jede andere Antwort entsteht aus **einem verrutschten Schritt**.
+
+- Tag <InlineMath math="22" /> entsteht, wenn du von Tag <InlineMath math="4" /> bis Tag <InlineMath math="9" /> nur <InlineMath math="4" /> Schritte zählst. Dann ist <InlineMath math="d=15" /> und <InlineMath math="U_n=321-15n" />.
+- Tag <InlineMath math="25" /> ist der Tag mit Gewinn genau null. Null ist kein Verlust.
+- Tag <InlineMath math="29" /> entsteht, wenn du <InlineMath math="6" /> Schritte zählst, weil es von Tag <InlineMath math="4" /> bis Tag <InlineMath math="9" /> sechs Tage sind. Dann ist <InlineMath math="d=10" /> und <InlineMath math="U_n=286-10n" />.
+- Tag <InlineMath math="50" /> ist der erste Tag, an dem der **gesamte** Gewinn seit dem ersten Tag negativ wird. Diese Summe ist <InlineMath math="S_n=n(294-6n)" /> und bei <InlineMath math="n=49" /> genau null. Gefragt ist aber der Tagesgewinn, nicht die Summe.
+
+Der Stand macht also zum ersten Mal am Tag <InlineMath math="26" /> Verlust.

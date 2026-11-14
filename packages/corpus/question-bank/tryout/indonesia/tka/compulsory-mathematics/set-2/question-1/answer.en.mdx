@@ -1,16 +1,51 @@
-The price per GB is **package price divided by data allowance**. The validity period plays no part in it. Compute the value for each package.
+# What one day imports and exports
+
+The question asks for the October bill plus the November bill. Two rules decide it: imports and exports are counted **day by day**, and the credit for exports is capped **in each month on its own**.
+
+Start with a single day. Panel power during the day first covers the daytime use of <InlineMath math="4\text{ kWh}" />. Whatever is left is exported. If the panel falls short, the gap is imported. The night use of <InlineMath math="4\text{ kWh}" /> is always imported.
+
+| Type of day | Exported | Imported |
+| --- | --- | --- |
+| Sunny | <InlineMath math="14-4=10\text{ kWh}" /> | <InlineMath math="4\text{ kWh}" /> (night) |
+| Cloudy | <InlineMath math="0\text{ kWh}" /> | <InlineMath math="(4-2)+4=6\text{ kWh}" /> |
+
+On a cloudy day the panel makes only <InlineMath math="2\text{ kWh}" />, so the daytime use is still <InlineMath math="2\text{ kWh}" /> short. That gap is imported too.
+
+# The October bill
+
+October has <InlineMath math="29" /> sunny days and <InlineMath math="2" /> cloudy days. Find the month's energy, then the cost of imports and the credit.
 
 <BlockMath math="\begin{aligned}
-\text{Hemat}&:\ \frac{75{,}000}{25}=3{,}000 \\
-\text{Jumbo}&:\ \frac{110{,}000}{40}=2{,}750 \\
-\text{Harian}&:\ \frac{8{,}000}{2}=4{,}000
+\text{imported}&=29\cdot4+2\cdot6=128\text{ kWh} \\
+\text{exported}&=29\cdot10=290\text{ kWh} \\
+\text{cost of imports}&=128\cdot1{,}500=192{,}000 \\
+\text{credit}&=290\cdot800=232{,}000
 \end{aligned}" />
 
-As a check, <InlineMath math="40\cdot2{,}750=110{,}000" />.
+The credit is bigger than the cost of imports. By the rule, **the October bill is just the fixed charge**, <InlineMath math="\text{Rp}30{,}000" />. The extra credit of <InlineMath math="\text{Rp}40{,}000" /> is lost and can't be used in November.
 
-So the cheapest is the Jumbo package at <InlineMath math="\text{Rp}2{,}750" /> per GB.
+# The November bill
 
-- <InlineMath math="\text{Rp}2{,}500" /> divides the Hemat price by the <InlineMath math="30" /> days. That is a price per day, not per GB.
-- <InlineMath math="\text{Rp}3{,}000" /> is the price per GB of Hemat, which is higher than Jumbo's.
-- <InlineMath math="\text{Rp}4{,}000" /> is the price per GB of Harian, the most expensive of the three.
-- <InlineMath math="\text{Rp}8{,}000" /> is the price of a whole daily package with <InlineMath math="2\text{ GB}" />.
+November has <InlineMath math="15" /> sunny days and <InlineMath math="15" /> cloudy days.
+
+<BlockMath math="\begin{aligned}
+\text{imported}&=15\cdot4+15\cdot6=150\text{ kWh} \\
+\text{exported}&=15\cdot10=150\text{ kWh} \\
+\text{bill}&=30{,}000+150\cdot1{,}500-150\cdot800 \\
+&=30{,}000+225{,}000-120{,}000=135{,}000
+\end{aligned}" />
+
+This time the credit is smaller than the cost of imports, so **the whole credit is used** and the bill is <InlineMath math="\text{Rp}135{,}000" />.
+
+The total is
+
+<BlockMath math="30{,}000+135{,}000=165{,}000" />
+
+So the total bill for October and November is <InlineMath math="\text{Rp}165{,}000" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\text{Rp}144{,}000" /> comes from adding up the month's production and use first. That treats the surplus of sunny days as if it could cover the shortfall of cloudy days, but **imports and exports are recorded each day**.
+- <InlineMath math="\text{Rp}135{,}000" /> makes the October bill <InlineMath math="\text{Rp}0" />. The credit only reduces the cost of imports, never the fixed charge.
+- <InlineMath math="\text{Rp}125{,}000" /> carries October's extra credit of <InlineMath math="\text{Rp}40{,}000" /> into November. The rule says that extra credit is lost.
+- <InlineMath math="\text{Rp}120{,}000" /> forgets that a cloudy day also imports <InlineMath math="2\text{ kWh}" /> for daytime use, so each cloudy day is counted with only <InlineMath math="4\text{ kWh}" /> imported.

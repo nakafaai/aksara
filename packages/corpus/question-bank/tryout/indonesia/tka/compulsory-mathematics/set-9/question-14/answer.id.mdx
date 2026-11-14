@@ -1,16 +1,93 @@
-Dilatasi faktor <InlineMath math="2" /> dengan pusat <InlineMath math="O" /> memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(2x,2y)" />. Jadi **titik asal dari bayangan <InlineMath math="(x,y)" /> adalah <InlineMath math="\left(\frac x2,\frac y2\right)" />**, lalu substitusikan ke persamaan garis semula.
+Pusat dilatasi dan vektor translasinya tidak diketahui, jadi kamu tidak bisa menjalankan <InlineMath math="T" /> langkah demi langkah. Kuncinya: **dilatasi lalu translasi tetap merupakan satu dilatasi dengan faktor yang sama**, hanya pusatnya berpindah. Rencananya: tentukan <InlineMath math="k" />, cari pusat baru dari pasangan <InlineMath math="A" /> dan <InlineMath math="A'" />, lalu pakai pusat itu untuk <InlineMath math="B" />.
+
+# Bentuk umum transformasinya
+
+Misalkan pusat dilatasinya <InlineMath math="P" /> dan vektor translasinya <InlineMath math="\vec v" />. Titik <InlineMath math="X" /> dibawa dulu ke <InlineMath math="P+k(X-P)" />, lalu digeser sejauh <InlineMath math="\vec v" />:
 
 <BlockMath math="\begin{aligned}
-2\cdot\frac x2+3\cdot\frac y2&=6 \\
-x+\frac32y&=6 \\
-2x+3y&=12
+T(X)&=P+k(X-P)+\vec v \\
+&=kX+\big((1-k)P+\vec v\big)=kX+\vec c
 \end{aligned}" />
 
-Cek dengan titik potong sumbu: garis semula memotong sumbu di <InlineMath math="(3,0)" /> dan <InlineMath math="(0,2)" />. Bayangannya <InlineMath math="(6,0)" /> dan <InlineMath math="(0,4)" />, dan keduanya memenuhi <InlineMath math="2x+3y=12" />.
+Ada dua akibat penting. Pertama, untuk dua titik mana pun berlaku <InlineMath math="T(X)-T(Y)=k(X-Y)" />, jadi **setiap ruas dikalikan <InlineMath math="k" />** dan translasi tidak mengubah arahnya. Kedua, kalau <InlineMath math="k\ne1" />, ada satu titik <InlineMath math="Q" /> yang tidak bergerak, dan <InlineMath math="T" /> sama dengan dilatasi berfaktor <InlineMath math="k" /> terhadap <InlineMath math="Q" />.
 
-Jadi, persamaan garis bayangannya adalah <InlineMath math="2x+3y=12" />.
+# Faktor skala dari luas dan letak titik
 
-- <InlineMath math="2x+3y=3" /> mengganti <InlineMath math="x" /> dengan <InlineMath math="2x" /> dan <InlineMath math="y" /> dengan <InlineMath math="2y" />, yaitu arah substitusi yang terbalik.
-- <InlineMath math="3x+2y=12" /> menukar koefisien <InlineMath math="x" /> dan <InlineMath math="y" />.
-- <InlineMath math="2x+3y=24" /> mengalikan konstanta dengan <InlineMath math="4" />, seperti faktor untuk luas.
-- <InlineMath math="4x+6y=12" /> mengalikan setiap koefisien dengan <InlineMath math="2" />, sehingga garisnya tetap garis semula.
+Dilatasi berfaktor <InlineMath math="k" /> mengalikan luas dengan <InlineMath math="k^2" />. Jadi <InlineMath math="k^2=9" />, dan ada **dua kemungkinan**, <InlineMath math="k=3" /> atau <InlineMath math="k=-3" />. Titik <InlineMath math="C" /> yang memutuskan. Karena <InlineMath math="C-A=(0,3)" />:
+
+<BlockMath math="\begin{aligned}
+C'&=A'+k(0,3)=(-2,\ 9+3k) \\
+k=3&\ \Rightarrow\ C'=(-2,18),\ \text{di atas } A' \\
+k=-3&\ \Rightarrow\ C'=(-2,0),\ \text{di bawah } A'
+\end{aligned}" />
+
+Soal berkata <InlineMath math="C'" /> di bawah <InlineMath math="A'" />, jadi <InlineMath math="k=-3" />.
+
+# Pusat dilatasi tunggal
+
+Pusat <InlineMath math="Q" /> adalah titik yang tidak bergerak. Dilatasi berfaktor <InlineMath math="-3" /> terhadap <InlineMath math="Q" /> membawa <InlineMath math="A" /> ke <InlineMath math="A'" />, jadi <InlineMath math="A'-Q=-3(A-Q)" />:
+
+<BlockMath math="\begin{aligned}
+A'-Q&=-3A+3Q \\
+4Q&=A'+3A=(-2,9)+(6,3)=(4,12) \\
+Q&=(1,3)
+\end{aligned}" />
+
+Cek: <InlineMath math="A-Q=(1,-2)" /> dan <InlineMath math="A'-Q=(-3,6)" />, tepat <InlineMath math="-3" /> kalinya. **Titik <InlineMath math="Q" /> ada di antara <InlineMath math="A" /> dan <InlineMath math="A'" />**, seperti seharusnya untuk faktor negatif.
+
+# Bayangan titik yang ditanya
+
+Sekarang dilatasikan <InlineMath math="B" /> terhadap <InlineMath math="Q" /> dengan faktor <InlineMath math="-3" />:
+
+<BlockMath math="\begin{aligned}
+B-Q&=(4,0)-(1,3)=(3,-3) \\
+B'&=Q-3(B-Q)=(1,3)+(-9,9)=(-8,12)
+\end{aligned}" />
+
+Cek dengan sifat ruas: <InlineMath math="B'-A'=(-6,3)" />, dan <InlineMath math="-3(B-A)=-3(2,-1)=(-6,3)" />. **Hasilnya cocok**.
+
+<MathVisual
+  title={<>Dilatasi tunggal terhadap pusat baru</>}
+  description={<>Titik <InlineMath math="Q(1,3)" /> adalah pusat dilatasi tunggal dengan faktor <InlineMath math="-3" />. Ruas dari <InlineMath math="A(2,1)" /> ke <InlineMath math="A'(-2,9)" /> melewati <InlineMath math="Q" />, dan jarak <InlineMath math="QA'" /> tiga kali jarak <InlineMath math="QA" />. Hal yang sama berlaku untuk <InlineMath math="B(4,0)" /> dan bayangannya <InlineMath math="B'(-8,12)" />, yang berada di sisi lain <InlineMath math="Q" />.</>}
+  labels={{
+    q: <InlineMath math="Q" />,
+    a: <InlineMath math="A" />,
+    a2: <InlineMath math="A'" />,
+    b: <InlineMath math="B" />,
+    b2: <InlineMath math="B'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 6 },
+      y: { min: -2, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ray-a", kind: "segment", appearance: "construction", from: { x: 2, y: 1 }, to: { x: -2, y: 9 } },
+      { id: "ray-b", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: -8, y: 12 } },
+      { id: "point-q", kind: "point", appearance: "highlight", at: { x: 1, y: 3 } },
+      { id: "point-a", kind: "point", appearance: "primary", at: { x: 2, y: 1 } },
+      { id: "point-a2", kind: "point", appearance: "secondary", at: { x: -2, y: 9 } },
+      { id: "point-b", kind: "point", appearance: "primary", at: { x: 4, y: 0 } },
+      { id: "point-b2", kind: "point", appearance: "answer", at: { x: -8, y: 12 } },
+    ],
+    labels: [
+      { key: "q", objectId: "point-q", at: { x: 1, y: 3 }, placement: "right" },
+      { key: "a", objectId: "point-a", at: { x: 2, y: 1 }, placement: "below-left" },
+      { key: "a2", objectId: "point-a2", at: { x: -2, y: 9 }, placement: "right" },
+      { key: "b", objectId: "point-b", at: { x: 4, y: 0 }, placement: "above-right" },
+      { key: "b2", objectId: "point-b2", at: { x: -8, y: 12 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="(-4,4)" /> mendilatasikan <InlineMath math="B" /> terhadap <InlineMath math="A" /> dengan faktor <InlineMath math="-3" />, seolah-olah <InlineMath math="A" /> adalah pusat yang diam. Padahal <InlineMath math="A" /> **ikut bergerak** ke <InlineMath math="A'" />.
+- <InlineMath math="(0,8)" /> menganggap <InlineMath math="T" /> hanya translasi sejauh <InlineMath math="A'-A=(-4,8)" />. Translasi tidak mengubah luas, padahal luasnya menjadi <InlineMath math="9" /> kali.
+- <InlineMath math="(4,6)" /> memakai <InlineMath math="k=3" />. Dengan faktor itu, <InlineMath math="C'=(-2,18)" /> berada di atas <InlineMath math="A'" />, bertentangan dengan fakta ketiga.
+- <InlineMath math="(10,-6)" /> sudah menemukan pusat <InlineMath math="Q(1,3)" /> dengan benar, tetapi lupa tanda negatif saat mendilatasikan <InlineMath math="B" />, sehingga memakai <InlineMath math="Q+3(B-Q)" />.
+
+Jadi, bayangan titik <InlineMath math="B(4,0)" /> oleh <InlineMath math="T" /> adalah <InlineMath math="(-8,12)" />.

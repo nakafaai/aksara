@@ -1,19 +1,31 @@
-Only the four walls are painted, and **the same area twice**. First find the wall area without the door and windows, double it for the two coats, then convert to litres and cans.
+# The shape of the water after tilting
+
+The question asks how many litres of water leave the tank. At the start there's <InlineMath math="40\cdot30\cdot15=18{,}000\text{ cm}^3" /> of water, which is <InlineMath math="18" /> litres. If you know how much water still fits at a tilt of <InlineMath math="45^\circ" />, the rest is what spills.
+
+Look at the tank from the side, at right angles to the <InlineMath math="30\text{ cm}" /> edge it rests on. The cross-section is a rectangle with a <InlineMath math="40\text{ cm}" /> base and a <InlineMath math="25\text{ cm}" /> wall standing on the resting edge. That cross-section is the same all along the <InlineMath math="30\text{ cm}" /> edge, so the water's volume is its cross-section area times <InlineMath math="30" />.
+
+The water surface **always stays horizontal**. When the base tilts by <InlineMath math="45^\circ" />, the wall above the resting edge tilts by <InlineMath math="45^\circ" /> the other way, because the wall is perpendicular to the base. The top of that wall is the lowest point of the rim, so that's where water pours out. The surface line through the top of the wall makes <InlineMath math="45^\circ" /> with both the wall and the base.
+
+So the water's cross-section is a right isosceles triangle. One leg is the <InlineMath math="25\text{ cm}" /> wall, so the other leg along the base is <InlineMath math="25\text{ cm}" /> too. The base is <InlineMath math="40\text{ cm}" /> long, more than <InlineMath math="25\text{ cm}" />, so the surface really does meet the base before it reaches the far wall.
 
 <BlockMath math="\begin{aligned}
-\text{walls}&=2\cdot(5+4)\cdot2.5=45\text{ m}^2 \\
-\text{openings}&=0.8\cdot2+2\cdot1.5\cdot1.2=1.6+3.6=5.2\text{ m}^2 \\
-\text{to paint}&=2\cdot(45-5.2)=79.6\text{ m}^2 \\
-\text{paint}&=\frac{79.6}{12}\approx6.63\text{ litres}
+L_{\text{water section}}&=\tfrac12\cdot25\cdot25=312.5\text{ cm}^2 \\
+V_{\text{left}}&=312.5\cdot30=9{,}375\text{ cm}^3=9.375\text{ litres}
 \end{aligned}" />
 
-Only whole cans are sold, so you need <InlineMath math="7" /> cans.
+# The water that spills
 
-As a check, <InlineMath math="6" /> cans cover <InlineMath math="72\text{ m}^2" />, which is too little, and <InlineMath math="7" /> cans cover <InlineMath math="84\text{ m}^2" />.
+The <InlineMath math="9.375" /> litres left is less than the <InlineMath math="18" /> litres you started with, so water really does spill. **The spill is the starting water minus the water left**.
 
-So at least <InlineMath math="7" /> cans must be bought.
+<BlockMath math="V_{\text{spilled}}=18-9.375=8.625\text{ litres}" />
 
-- <InlineMath math="4" /> cans cover only one coat: <InlineMath math="\frac{39.8}{12}\approx3.32" />.
-- <InlineMath math="6" /> cans round <InlineMath math="6.63" /> down. Then paint for <InlineMath math="7.6\text{ m}^2" /> is missing.
-- <InlineMath math="8" /> cans forget to subtract the door and windows: <InlineMath math="\frac{90}{12}=7.5" />. The same number comes from rounding each coat up to <InlineMath math="4" /> cans separately, although leftover paint may be reused.
-- <InlineMath math="10" /> cans also paint the ceiling of <InlineMath math="20\text{ m}^2" />: <InlineMath math="\frac{2\cdot59.8}{12}\approx9.97" />.
+# Why the other options are wrong
+
+The wrong options come from a wrong cross-section shape or from answering a different quantity. Check **the shape of the water at <InlineMath math="45^\circ" />** before you calculate.
+
+- <InlineMath math="3" /> litres comes from assuming the surface runs from the top of the wall to the far bottom corner, giving a <InlineMath math="25\times40" /> triangle. That happens at a smaller tilt, not at <InlineMath math="45^\circ" />.
+- <InlineMath math="5.5" /> litres comes from taking the cross-section from the wrong side: a <InlineMath math="25\times25" /> triangle times <InlineMath math="40" />. The resting edge is <InlineMath math="30\text{ cm}" /> long, so you multiply by <InlineMath math="30" />.
+- <InlineMath math="9.375" /> litres is the water that stays inside, not the water that spills.
+- <InlineMath math="12" /> litres comes from the trapezoid formula with a depth at the far end of <InlineMath math="25-40=-15\text{ cm}" />. A negative depth means the surface already meets the base, so the shape is a triangle.
+
+So the volume of water that spills is <InlineMath math="8.625" /> litres.

@@ -12,28 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "Pernyataan (1) SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan (2) SAJA tidak cukup.",
-        },
-        {
-          correct: false,
-          label:
-            "Pernyataan (2) SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan (1) SAJA tidak cukup.",
+          label: "$$-1<k<1$$ atau $$k>1$$",
         },
         {
           correct: true,
-          label:
-            "DUA pernyataan BERSAMA-SAMA cukup untuk menjawab pertanyaan, tetapi SATU pernyataan SAJA tidak cukup.",
+          label: "$$k<-5$$ atau $$-1<k<1$$ atau $$k>1$$",
         },
         {
           correct: false,
-          label:
-            "Pernyataan (1) SAJA cukup untuk menjawab pertanyaan dan pernyataan (2) SAJA cukup.",
+          label: "$$k<-5$$ atau $$k>-1$$",
         },
         {
           correct: false,
-          label:
-            "Pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.",
+          label: "$$-5<k<-1$$",
+        },
+        {
+          correct: false,
+          label: "$$k\\neq-5$$ dan $$k\\neq1$$",
         },
       ],
     },

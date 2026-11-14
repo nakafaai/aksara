@@ -1,12 +1,67 @@
-Kaleng berbentuk tabung, jadi volumenya **luas alas dikali tinggi**, <InlineMath math="V=\pi r^2t" />, dengan jari-jari setengah diameter, <InlineMath math="r=3{,}5\text{ cm}" />.
+Setiap bidang atap berbentuk persegi panjang. Jadi kamu perlu dua ukurannya: **panjang miring dari tepi bawah sampai bubungan** dan panjang sejajar bubungan. Keduanya harus memuat bagian yang menjorok.
 
-<BlockMath math="V=\frac{22}{7}\cdot3{,}5^2\cdot10=38{,}5\cdot10=385\text{ cm}^3" />
+# Panjang miring sampai dinding
 
-Sebagai pemeriksaan, luas alasnya <InlineMath math="\frac{22}{7}\cdot12{,}25=38{,}5\text{ cm}^2" />, dan <InlineMath math="38{,}5\cdot10=385" />.
+Lihat penampang atap. Dari puncak dinding ke titik di bawah bubungan jaraknya setengah lebar rumah, <InlineMath math="\tfrac12\cdot8=4\text{ m}" />, dan bubungan <InlineMath math="3\text{ m}" /> lebih tinggi. Bagian atap dari puncak dinding ke bubungan adalah **sisi miring segitiga siku-siku** itu:
 
-Jadi, satu kaleng berisi <InlineMath math="385\text{ cm}^3" /> susu.
+<BlockMath math="s_1=\sqrt{4^2+3^2}=\sqrt{25}=5\text{ m}" />
 
-- <InlineMath math="110\text{ cm}^3" /> menghitung <InlineMath math="\pi rt" />, jari-jarinya tidak dikuadratkan.
-- <InlineMath math="220\text{ cm}^3" /> menghitung luas selimut <InlineMath math="2\pi rt" />, bukan volume.
-- <InlineMath math="770\text{ cm}^3" /> memakai <InlineMath math="2\pi" /> seperti pada rumus keliling.
-- <InlineMath math="1{.}540\text{ cm}^3" /> memakai diameter <InlineMath math="7\text{ cm}" /> sebagai jari-jari.
+# Bagian yang menjorok di sisi bawah
+
+Angka <InlineMath math="80\text{ cm}" /> diukur **mendatar**, bukan sepanjang atap. Karena kemiringannya sama, bagian yang menjorok membentuk segitiga kecil yang sebangun dengan segitiga tadi. Pada segitiga besar, setiap <InlineMath math="4\text{ m}" /> mendatar sama dengan <InlineMath math="5\text{ m}" /> sepanjang atap. Perbandingan yang sama berlaku pada segitiga kecil:
+
+<BlockMath math="\begin{aligned}
+s_2&=0{,}8\cdot\frac{5}{4}=1\text{ m} \\
+\text{panjang miring}&=s_1+s_2=5+1=6\text{ m}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Dua segitiga sebangun pada penampang atap</>}
+  description={<>Segitiga besar mempunyai sisi mendatar <InlineMath math="4\text{ m}" />, sisi tegak <InlineMath math="3\text{ m}" />, dan sisi miring <InlineMath math="5\text{ m}" />. Di bawah puncak dinding ada segitiga kecil yang sebangun, dengan sisi mendatar <InlineMath math="0{,}8\text{ m}" /> dan sisi miring <InlineMath math="1\text{ m}" />.</>}
+  labels={{
+    "label-run": <InlineMath math="4\text{ m}" />,
+    "label-rise": <InlineMath math="3\text{ m}" />,
+    "label-rafter": <InlineMath math="5\text{ m}" />,
+    "label-eave": <InlineMath math="1\text{ m}" />,
+    "label-overhang": <InlineMath math="0{,}8\text{ m}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 6 },
+      y: { min: -2, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rafter", kind: "segment", appearance: "primary", from: { x: 0, y: 3 }, to: { x: 4, y: 0 } },
+      { id: "eave", kind: "segment", appearance: "highlight", from: { x: 4, y: 0 }, to: { x: 4.8, y: -0.6 } },
+      { id: "run", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "rise", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 3 } },
+      { id: "overhang", kind: "segment", appearance: "construction", from: { x: 4, y: -0.6 }, to: { x: 4.8, y: -0.6 } },
+      { id: "wall", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4, y: -1.5 } },
+    ],
+    labels: [
+      { key: "label-run", objectId: "run", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "label-rise", objectId: "rise", at: { x: 0, y: 1.5 }, placement: "left" },
+      { key: "label-rafter", objectId: "rafter", at: { x: 2, y: 1.5 }, placement: "above-right" },
+      { key: "label-eave", objectId: "eave", at: { x: 4.4, y: -0.3 }, placement: "above-right" },
+      { key: "label-overhang", objectId: "overhang", at: { x: 4.4, y: -0.6 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Panjang sejajar bubungan dan luas
+
+Sejajar bubungan, atap menjorok <InlineMath math="50\text{ cm}" /> di **kedua** ujung, jadi panjangnya <InlineMath math="11+0{,}5+0{,}5=12\text{ m}" />. Atap terdiri atas dua bidang persegi panjang yang sama:
+
+<BlockMath math="L=2\cdot(6\cdot12)=144\text{ m}^2" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="115{,}2\text{ m}^2" /> memakai lebar mendatar <InlineMath math="4+0{,}8=4{,}8\text{ m}" /> sebagai lebar bidang atap. Bidang atap itu miring, jadi **lebarnya diukur sepanjang kemiringan**.
+- <InlineMath math="120\text{ m}^2" /> lupa bagian yang menjorok di sisi bawah dan hanya memakai <InlineMath math="5\text{ m}" />.
+- <InlineMath math="132\text{ m}^2" /> lupa tambahan <InlineMath math="50\text{ cm}" /> di kedua ujung bubungan dan memakai panjang <InlineMath math="11\text{ m}" />.
+- <InlineMath math="139{,}2\text{ m}^2" /> menambahkan <InlineMath math="0{,}8\text{ m}" /> langsung ke <InlineMath math="5\text{ m}" />. Angka <InlineMath math="0{,}8" /> adalah ukuran mendatar, sedangkan panjang miringnya <InlineMath math="1\text{ m}" />.
+
+Jadi, luas seluruh permukaan atap adalah <InlineMath math="144\text{ m}^2" />.

@@ -1,15 +1,84 @@
-Rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap <InlineMath math="O" /> memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(x',y')=(-y,x)" />. **Nyatakan titik asal dengan titik bayangan**, yaitu <InlineMath math="x=y'" /> dan <InlineMath math="y=-x'" />, lalu substitusikan ke persamaan garis.
+Soal ini memberi bayangan <InlineMath math="P'(2,5)" /> dan menanyakan titik asalnya <InlineMath math="P" />. Jadi kamu perlu dua langkah: **temukan dulu aturan <InlineMath math="T" /> dari gambar**, lalu jalankan aturan itu secara terbalik.
+
+# Jenis transformasinya
+
+Bandingkan arah sisi-sisi segitiga sebelum dan sesudah dipetakan. Sisi <InlineMath math="AB" /> panjangnya <InlineMath math="4" /> dan mengarah ke kanan. Sisi <InlineMath math="A'B'" /> juga panjangnya <InlineMath math="4" />, tetapi mengarah ke atas. Sisi <InlineMath math="AC" /> panjangnya <InlineMath math="3" /> dan mengarah ke atas, sedangkan <InlineMath math="A'C'" /> panjangnya <InlineMath math="3" /> dan mengarah ke kiri.
+
+Kanan berubah menjadi atas, dan atas berubah menjadi kiri. Kedua sisi diputar dengan cara yang sama, yaitu <InlineMath math="90^\circ" /> berlawanan arah jarum jam. Itu ciri **rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam**, dan panjang sisinya tetap.
+
+Hati-hati dengan pencerminan. Pencerminan terhadap garis <InlineMath math="y=x+2" /> memang membawa <InlineMath math="A" /> ke <InlineMath math="A'" /> dan <InlineMath math="B" /> ke <InlineMath math="B'" />. Tetapi titik <InlineMath math="C(1,4)" /> akan pergi ke <InlineMath math="(2,3)" />, di sebelah kanan <InlineMath math="A'" />, padahal <InlineMath math="C'" /> ada di <InlineMath math="(-4,3)" />, di sebelah kiri. Pencerminan membalik urutan putaran titik sudut, sedangkan di gambar urutannya tetap. Jadi mencocokkan dua titik saja tidak cukup.
+
+# Aturan T
+
+Rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam mengubah arah <InlineMath math="(x,y)" /> menjadi <InlineMath math="(-y,x)" />. Karena pusatnya belum tentu di <InlineMath math="O" />, tulis aturannya sebagai putaran itu ditambah sebuah geseran, lalu cari geserannya dengan titik <InlineMath math="A" />.
 
 <BlockMath math="\begin{aligned}
--x'&=2y'+4 \\
-y'&=-\frac12x'-2
+T(x,y)&=(-y+a,\;x+b) \\
+T(1,1)&=(-1+a,\;1+b)=(-1,3) \\
+a&=0,\quad b=2 \\
+T(x,y)&=(-y,\;x+2)
 \end{aligned}" />
 
-Sebagai pemeriksaan dengan dua titik, <InlineMath math="(0,4)" /> menjadi <InlineMath math="(-4,0)" /> dan <InlineMath math="(-2,0)" /> menjadi <InlineMath math="(0,-2)" />. Kedua bayangan memenuhi <InlineMath math="y=-\frac12x-2" />.
+Cek dengan dua titik lainnya: <InlineMath math="T(5,1)=(-1,7)=B'" /> dan <InlineMath math="T(1,4)=(-4,3)=C'" />. Cocok semua. Titik yang tidak bergerak memenuhi <InlineMath math="-y=x" /> dan <InlineMath math="x+2=y" />, yaitu <InlineMath math="K(-1,1)" />. Jadi <InlineMath math="T" /> adalah rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam dengan **pusat <InlineMath math="K(-1,1)" />, bukan pusat <InlineMath math="O" />**.
 
-Jadi, bayangan garisnya <InlineMath math="y=-\frac12x-2" />.
+# Mencari titik asal P
 
-- <InlineMath math="y=-2x-4" /> adalah hasil pencerminan terhadap sumbu <InlineMath math="x" />.
-- <InlineMath math="y=-2x+4" /> adalah hasil pencerminan terhadap sumbu <InlineMath math="y" />.
-- <InlineMath math="y=2x-4" /> adalah hasil rotasi <InlineMath math="180^\circ" />.
-- <InlineMath math="y=-\frac12x+2" /> adalah hasil rotasi <InlineMath math="90^\circ" /> searah jarum jam.
+Misalkan <InlineMath math="P=(x,y)" />. Bayangannya harus <InlineMath math="(2,5)" />, jadi samakan setiap koordinat:
+
+<BlockMath math="\begin{aligned}
+-y&=2 &&\Rightarrow\; y=-2 \\
+x+2&=5 &&\Rightarrow\; x=3
+\end{aligned}" />
+
+Cek: <InlineMath math="T(3,-2)=(2,\;3+2)=(2,5)" />. Hasilnya **tepat sama dengan <InlineMath math="P'" />**, jadi titik asal yang dicari memang <InlineMath math="(3,-2)" />.
+
+<MathVisual
+  title={<>Rotasi dengan pusat <InlineMath math="K" /></>}
+  description={<>Segitiga <InlineMath math="ABC" /> dengan <InlineMath math="A(1,1)" />, <InlineMath math="B(5,1)" />, <InlineMath math="C(1,4)" /> diputar <InlineMath math="90^\circ" /> berlawanan arah jarum jam dengan pusat <InlineMath math="K(-1,1)" /> menjadi segitiga <InlineMath math="A'(-1,3)" />, <InlineMath math="B'(-1,7)" />, <InlineMath math="C'(-4,3)" />. Rotasi yang sama membawa <InlineMath math="P(3,-2)" /> ke <InlineMath math="P'(2,5)" />.</>}
+  labels={{
+    "label-k": <InlineMath math="K(-1,1)" />,
+    "label-p": <InlineMath math="P(3,-2)" />,
+    "label-p-image": <InlineMath math="P'(2,5)" />,
+    "label-a": <InlineMath math="A" />,
+    "label-a-image": <InlineMath math="A'" />,
+    "label-c-image": <InlineMath math="C'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 7 },
+      y: { min: -4, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 1 }, { x: 5, y: 1 }, { x: 1, y: 4 }] },
+      { id: "triangle-image", kind: "polygon", appearance: "secondary", vertices: [{ x: -1, y: 3 }, { x: -1, y: 7 }, { x: -4, y: 3 }] },
+      { id: "arm-p", kind: "segment", appearance: "construction", from: { x: -1, y: 1 }, to: { x: 3, y: -2 } },
+      { id: "arm-p-image", kind: "segment", appearance: "construction", from: { x: -1, y: 1 }, to: { x: 2, y: 5 } },
+      { id: "point-k", kind: "point", appearance: "highlight", at: { x: -1, y: 1 } },
+      { id: "point-p", kind: "point", appearance: "answer", at: { x: 3, y: -2 } },
+      { id: "point-p-image", kind: "point", appearance: "reference", at: { x: 2, y: 5 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+      { id: "point-a-image", kind: "point", appearance: "reference", at: { x: -1, y: 3 } },
+      { id: "point-c-image", kind: "point", appearance: "reference", at: { x: -4, y: 3 } },
+    ],
+    labels: [
+      { key: "label-k", objectId: "point-k", at: { x: -1, y: 1 }, placement: "left" },
+      { key: "label-p", objectId: "point-p", at: { x: 3, y: -2 }, placement: "right" },
+      { key: "label-p-image", objectId: "point-p-image", at: { x: 2, y: 5 }, placement: "above-right" },
+      { key: "label-a", objectId: "point-a", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "label-a-image", objectId: "point-a-image", at: { x: -1, y: 3 }, placement: "above-right" },
+      { key: "label-c-image", objectId: "point-c-image", at: { x: -4, y: 3 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="(-5,4)" /> adalah <InlineMath math="T(2,5)" />. Ini bayangan dari <InlineMath math="P'" />, padahal yang ditanya titik yang **dibawa ke** <InlineMath math="P'" />. Aturannya harus dijalankan terbalik.
+- <InlineMath math="(3,4)" /> muncul kalau kamu mengira <InlineMath math="T" /> pencerminan terhadap <InlineMath math="y=x+2" /> karena hanya mengecek <InlineMath math="A" /> dan <InlineMath math="B" />. Titik <InlineMath math="C" /> membuktikan itu bukan pencerminan.
+- <InlineMath math="(4,3)" /> muncul kalau <InlineMath math="T" /> dianggap translasi sejauh <InlineMath math="\overrightarrow{AA'}=(-2,2)" />. Segitiganya berputar, jadi titik lain tidak bergeser sejauh itu.
+- <InlineMath math="(5,-2)" /> muncul kalau rotasinya dianggap berpusat di <InlineMath math="O" />. Rotasi dengan pusat <InlineMath math="O" /> membawa <InlineMath math="A(1,1)" /> ke <InlineMath math="(-1,1)" />, bukan ke <InlineMath math="A'(-1,3)" />.
+
+Jadi, koordinat titik <InlineMath math="P" /> adalah <InlineMath math="(3,-2)" />.

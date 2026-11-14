@@ -1,0 +1,33 @@
+# Bilangan semua cara mengambil
+
+Keempat-empat stoking diambil serentak, jadi susunan tidak penting. **Bilangan cara memilih <InlineMath math="4" /> daripada <InlineMath math="10" />** ialah:
+
+<BlockMath math="C(10,4)=\frac{10\cdot9\cdot8\cdot7}{4\cdot3\cdot2\cdot1}=210" />
+
+# Melalui peristiwa pelengkap
+
+Sekurang-kurangnya satu pasang merangkumi tepat satu pasang dan tepat dua pasang. Lebih mudah **mengira sebaliknya**: tiada pasangan langsung, iaitu keempat-empat stoking bercorak berbeza.
+
+Untuk itu, pilih dahulu <InlineMath math="4" /> corak daripada <InlineMath math="5" /> corak. Kemudian daripada setiap corak yang dipilih ambil salah satu daripada dua stokingnya, kiri atau kanan.
+
+<BlockMath math="\begin{aligned}
+\text{tiada pasangan}&=C(5,4)\cdot2^4=5\cdot16=80 \\
+P(\text{tiada pasangan})&=\frac{80}{210}=\frac{8}{21}
+\end{aligned}" />
+
+# Kebarangkalian yang diminta
+
+**Tolak daripada satu**:
+
+<BlockMath math="P(\text{sekurang-kurangnya satu pasang})=1-\frac{8}{21}=\frac{13}{21}" />
+
+Jadi, kebarangkaliannya ialah <InlineMath math="\frac{13}{21}" />.
+
+# Mengapa pilihan lain salah
+
+Setiap pilihan yang salah **berhenti terlalu awal atau mengira dua kali**.
+
+- <InlineMath math="\frac{8}{21}" /> ialah kebarangkalian tiada pasangan, belum ditolak daripada satu.
+- <InlineMath math="\frac47" /> hanya mengira tepat satu pasang, iaitu <InlineMath math="120" /> cara, dan terlupa <InlineMath math="10" /> cara yang menghasilkan dua pasang.
+- <InlineMath math="\frac23" /> memilih satu pasang kemudian dua stoking bebas daripada <InlineMath math="8" /> yang tinggal, iaitu <InlineMath math="5\cdot28=140" />. Pengambilan dengan dua pasang dikira dua kali.
+- <InlineMath math="\frac{41}{42}" /> terlupa bahawa setiap corak yang dipilih ada dua stoking untuk dipilih, jadi yang tiada pasangan dikira hanya <InlineMath math="5" /> cara.

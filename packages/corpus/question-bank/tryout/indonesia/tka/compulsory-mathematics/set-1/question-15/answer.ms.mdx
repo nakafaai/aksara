@@ -1,0 +1,48 @@
+# Mencari imej kedua-dua titik
+
+Soalan ini mahu luas sisi empat yang dibentuk oleh tembereng garis <InlineMath math="AB" /> dan imejnya. Pusat putaran ialah <InlineMath math="P(1,1)" />, **bukan asalan**, jadi petua <InlineMath math="(x,y)\mapsto(-y,x)" /> tidak boleh terus digunakan pada koordinat <InlineMath math="A" /> dan <InlineMath math="B" />.
+
+Caranya ada tiga langkah. Pertama, cari kedudukan setiap titik secara relatif kepada <InlineMath math="P" />. Kedua, putarkan kedudukan relatif itu dengan petua <InlineMath math="(u,v)\mapsto(-v,u)" />. Ketiga, tambah semula koordinat <InlineMath math="P" />.
+
+<BlockMath math="\begin{aligned}
+A-P&=(3,1)\;\mapsto\;(-1,3), & A'&=(1-1,\;1+3)=(0,4) \\
+B-P&=(5,3)\;\mapsto\;(-3,5), & B'&=(1-3,\;1+5)=(-2,6)
+\end{aligned}" />
+
+# Mengira luas sisi empat
+
+Bucu-bucunya mengikut urutan ialah <InlineMath math="A(4,2)" />, <InlineMath math="B(6,4)" />, <InlineMath math="B'(-2,6)" /> dan <InlineMath math="A'(0,4)" />. Cara yang selamat ialah **segi empat tepat yang melingkungi tolak segi tiga di luar**. Segi empat tepat terkecil yang memuatkan keempat-empat titik itu terbentang dari <InlineMath math="x=-2" /> hingga <InlineMath math="x=6" /> dan dari <InlineMath math="y=2" /> hingga <InlineMath math="y=6" />, jadi luasnya <InlineMath math="8\cdot4=32" />.
+
+Bahagian segi empat tepat di luar sisi empat itu boleh dipotong kepada empat segi tiga. Tapak dan tinggi setiap satunya mengufuk atau menegak.
+
+| Segi tiga | Tapak | Tinggi | Luas |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="A,\,(6,2),\,B" /> | <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
+| <InlineMath math="B,\,(6,6),\,B'" /> | <InlineMath math="8" /> | <InlineMath math="2" /> | <InlineMath math="8" /> |
+| <InlineMath math="B',\,(-2,2),\,A'" /> | <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="4" /> |
+| <InlineMath math="(-2,2),\,A,\,A'" /> | <InlineMath math="6" /> | <InlineMath math="2" /> | <InlineMath math="6" /> |
+
+<BlockMath math="\begin{aligned}
+L_{ABB'A'}&=32-(2+8+4+6) \\
+&=12\text{ unit persegi}
+\end{aligned}" />
+
+Ada cara pantas untuk menyemak. Segi tiga <InlineMath math="PAA'" /> dan <InlineMath math="PBB'" /> ialah segi tiga bersudut tegak sama kaki di <InlineMath math="P" />, kerana putaran <InlineMath math="90^\circ" /> mengekalkan jarak ke pusat. Segi tiga <InlineMath math="PAB" /> dan imejnya <InlineMath math="PA'B'" /> kongruen, jadi sumbangan kedua-duanya saling membatalkan. Yang tinggal hanyalah beza dua segi tiga bersudut tegak itu.
+
+<BlockMath math="\begin{aligned}
+PA^2&=3^2+1^2=10, \qquad PB^2=5^2+3^2=34 \\
+L_{ABB'A'}&=\tfrac12 PB^2-\tfrac12 PA^2=17-5=12
+\end{aligned}" />
+
+Kedua-dua cara memberi jawapan yang sama.
+
+# Mengapa pilihan lain salah
+
+Setiap pilihan yang salah datang daripada kesilapan pada langkah putaran atau langkah luas. **Pusat putaran dan tanda tolak** ialah dua tempat yang perlu kamu jaga.
+
+- <InlineMath math="22" /> muncul apabila luas segi tiga <InlineMath math="PAA'" /> ditambah, <InlineMath math="17+5" />. Luas itu sepatutnya ditolak.
+- <InlineMath math="17" /> hanyalah luas segi tiga <InlineMath math="PBB'" />. Segi tiga <InlineMath math="PAA'" /> terlupa dibuang.
+- <InlineMath math="16" /> muncul apabila putaran dibuat terhadap asalan, sehingga <InlineMath math="A'=(-2,4)" /> dan <InlineMath math="B'=(-4,6)" />. Pusatnya ialah <InlineMath math="P(1,1)" />.
+- <InlineMath math="8" /> muncul apabila <InlineMath math="ABB'A'" /> dianggap sebagai segi empat sama bersisi <InlineMath math="AB=2\sqrt{2}" />. Sebenarnya <InlineMath math="AA'=\sqrt{20}" />, tidak sama dengan <InlineMath math="AB" />.
+
+Jadi, luas sisi empat <InlineMath math="ABB'A'" /> ialah <InlineMath math="12" /> unit persegi.

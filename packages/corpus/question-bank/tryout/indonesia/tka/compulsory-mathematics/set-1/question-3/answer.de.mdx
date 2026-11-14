@@ -1,22 +1,63 @@
-Beginne mit der **Parität**. Die einzige gerade Primzahl ist <InlineMath math="2" />. Wäre eine der beiden Zahlen <InlineMath math="2" />, so wäre die andere <InlineMath math="28" />, und <InlineMath math="28" /> ist keine Primzahl. Also sind <InlineMath math="p" /> und <InlineMath math="q" /> beide ungerade. Prüfe nun alle ungeraden Primzahlen unter <InlineMath math="15" /> als kleinere Zahl.
+# Zwei Preisfunktionen
+
+Alle vier Aussagen vergleichen zwei Funktionen: den Preis außerhalb der Hauptverkehrszeit <InlineMath math="F(d)" /> und den Preis zur Hauptverkehrszeit <InlineMath math="P(d)" />, wobei <InlineMath math="d" /> die Strecke in km ist. Nenn <InlineMath math="K(d)" /> den Teil des normalen Preises, der pro km berechnet wird:
+
+<BlockMath math="K(d)=\begin{cases}0, & 0<d\le2 \\ 4{.}500\,(d-2), & 2<d\le12 \\ 45{.}000+3{.}500\,(d-12), & d>12\end{cases}" />
+
+Die Grundgebühr wird nicht multipliziert, also
+
+<BlockMath math="F(d)=10{.}000+K(d),\qquad P(d)=10{.}000+1{,}2\,K(d)." />
+
+**Jede Aussage lässt sich mit diesen zwei Formeln beurteilen**, solange du jeden Streckenabschnitt prüfst.
+
+# Erste Aussage
+
+Aus der Formel für <InlineMath math="F" /> folgt für den Kilometeranteil <InlineMath math="K=F-10{.}000" />. Setz das in die Formel für <InlineMath math="P" /> ein:
 
 <BlockMath math="\begin{aligned}
-3+27&:\quad 27=3^3\text{ ist keine Primzahl} \\
-5+25&:\quad 25=5^2\text{ ist keine Primzahl} \\
-7+23,\ 11+19,\ 13+17&:\quad \text{alle Summanden prim}
+P&=10{.}000+1{,}2\,(F-10{.}000) \\
+&=10{.}000+1{,}2F-12{.}000 \\
+&=1{,}2F-2{.}000
 \end{aligned}" />
 
-Es gibt also genau drei Paare. Für jedes Paar berechnest du die gefragten Größen.
+Das gilt auf jedem Abschnitt, auch für <InlineMath math="d\le2" />. Dort ist <InlineMath math="F=10{.}000" /> und <InlineMath math="1{,}2\cdot10{.}000-2{.}000=10{.}000" />, genau <InlineMath math="P" />. Der Preis zur Hauptverkehrszeit ist also **nicht <InlineMath math="1{,}2F" />, sondern <InlineMath math="1{,}2F" /> minus <InlineMath math="2{.}000" />**, weil die Grundgebühr nicht steigt. Die Aussage ist **Richtig**.
+
+# Zweite Aussage
+
+Bis <InlineMath math="2\text{ km}" /> zahlt man nur die Grundgebühr. Nimm Fahrten über <InlineMath math="1\text{ km}" /> und <InlineMath math="2\text{ km}" />:
+
+<BlockMath math="F(1)=F(2)=10{.}000" />
+
+Zwei verschiedene Strecken kosten gleich viel, also ist **die Funktion <InlineMath math="F" /> nicht injektiv** am Anfang der Fahrt. Ein Gegenbeispiel reicht. Die Aussage ist **Falsch**.
+
+# Dritte Aussage
+
+Vergleich, was ein zusätzlicher km kostet. Zur Hauptverkehrszeit nach km <InlineMath math="12" /> kostet ein weiterer km <InlineMath math="1{,}2\cdot3{.}500" />. Außerhalb der Hauptverkehrszeit zwischen km <InlineMath math="2" /> und km <InlineMath math="12" /> kostet ein weiterer km <InlineMath math="4{.}500" />.
+
+<BlockMath math="1{,}2\cdot3{.}500=4{.}200<4{.}500" />
+
+Die Hauptverkehrszeit ist für **dieselbe Strecke** teurer, aber hier vergleichst du die Zuwachsrate auf zwei verschiedenen Abschnitten. Der Zuwachs ist sogar kleiner. Die Aussage ist **Falsch**.
+
+# Vierte Aussage
+
+Die Bedingung <InlineMath math="P(d)=F(d+3)" /> bedeutet <InlineMath math="1{,}2\,K(d)=K(d+3)" />. Die Formel für <InlineMath math="K" /> wechselt bei km <InlineMath math="2" /> und km <InlineMath math="12" />, also **prüf jeden Fall und verwirf jede Lösung, die außerhalb ihres eigenen Falls liegt**.
+
+| Fall | Gleichung | Lösung | Entscheidung |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="d\le2" /> | <InlineMath math="10{.}000=F(d+3)" /> | keine | <InlineMath math="F(d+3)\ge F(3)=14{.}500" /> |
+| <InlineMath math="2<d\le9" /> | <InlineMath math="5{.}400(d-2)=4{.}500(d+1)" /> | <InlineMath math="d=17" /> | verworfen, <InlineMath math="17>9" /> |
+| <InlineMath math="9<d\le12" /> | <InlineMath math="5{.}400(d-2)=45{.}000+3{.}500(d-9)" /> | <InlineMath math="d=\frac{243}{19}\approx12{,}79" /> | verworfen, größer als <InlineMath math="12" /> |
+| <InlineMath math="d>12" /> | <InlineMath math="1{,}2\,[45{.}000+3{.}500(d-12)]=45{.}000+3{.}500(d-9)" /> | <InlineMath math="d=\frac{99}{7}\approx14{,}14" /> | angenommen |
+
+Der letzte Fall ausgerechnet:
 
 <BlockMath math="\begin{aligned}
-pq&:\quad 161,\ 209,\ 221 \\
-p^2+q^2&:\quad 578,\ 482,\ 458 \\
-|p-q|&:\quad 16,\ 8,\ 4
+54{.}000+4{.}200(d-12)&=45{.}000+3{.}500(d-9) \\
+3{.}600+4{.}200d&=13{.}500+3{.}500d \\
+700d&=9{.}900 \\
+d&=\tfrac{99}{7}
 \end{aligned}" />
 
-Dass jede Differenz durch <InlineMath math="4" /> teilbar ist, ist kein Zufall. Eine ungerade Zahl lässt beim Teilen durch <InlineMath math="4" /> den Rest <InlineMath math="1" /> oder <InlineMath math="3" />. Weil <InlineMath math="30" /> den Rest <InlineMath math="2" /> lässt, haben <InlineMath math="p" /> und <InlineMath math="q" /> denselben Rest, und ihre Differenz ist ein Vielfaches von <InlineMath math="4" />.
+Probe: Der Kilometeranteil für <InlineMath math="\frac{99}{7}\text{ km}" /> ist <InlineMath math="45{.}000+3{.}500\cdot\frac{15}{7}=52{.}500" />, also <InlineMath math="P=10{.}000+1{,}2\cdot52{.}500=73{.}000" />. Für <InlineMath math="\frac{120}{7}\text{ km}" /> ist er <InlineMath math="45{.}000+3{.}500\cdot\frac{36}{7}=63{.}000" />, also <InlineMath math="F=73{.}000" />. Wenn du nur die Formel mit <InlineMath math="4{.}500" /> pro km probierst, landest du bei der verworfenen Lösung <InlineMath math="d=17" /> und glaubst vielleicht, es gäbe keine. Die Aussage ist **Richtig**.
 
-Richtig sind also die Aussagen, dass beide Zahlen ungerade sind, dass <InlineMath math="221" /> das größte Produkt ist und dass die Differenz stets ein Vielfaches von <InlineMath math="4" /> ist.
-
-- Vier Paare entstehen, wenn <InlineMath math="1+29" /> mitgezählt wird. Die Zahl <InlineMath math="1" /> ist aber keine Primzahl, es bleiben drei Paare.
-- <InlineMath math="p^2+q^2" /> ist nicht immer durch <InlineMath math="10" /> teilbar, zum Beispiel ist <InlineMath math="49+529=578" />.
+Die Reihenfolge ist also: Richtig, Falsch, Falsch, Richtig.

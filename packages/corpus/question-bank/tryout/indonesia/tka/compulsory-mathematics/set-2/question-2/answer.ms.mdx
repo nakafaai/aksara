@@ -1,0 +1,33 @@
+# Tenaga bulan September
+
+Soalan ini meminta harga eksport paling kecil yang menjadikan bil September tinggal caj tetap sahaja. Maksudnya, **kredit mesti menampung seluruh kos tenaga yang diambil daripada grid**. Kredit tidak boleh mengurangkan caj tetap, jadi caj tetap tidak termasuk dalam perkara yang perlu ditampung.
+
+Kira tenaga setiap hari dahulu, kerana tenaga keluar dan masuk direkodkan setiap hari. Hari cerah mengeksport <InlineMath math="14-4=10\text{ kWh}" /> dan mengambil <InlineMath math="4\text{ kWh}" /> daripada grid untuk waktu malam. Hari mendung tidak mengeksport apa-apa dan mengambil <InlineMath math="(4-2)+4=6\text{ kWh}" /> daripada grid, kerana penggunaan siangnya masih kurang <InlineMath math="2\text{ kWh}" />.
+
+September mempunyai <InlineMath math="20" /> hari cerah dan <InlineMath math="10" /> hari mendung:
+
+<BlockMath math="\begin{aligned}
+\text{eksport}&=20\cdot10=200\text{ kWh} \\
+\text{import}&=20\cdot4+10\cdot6=140\text{ kWh} \\
+\text{kos import}&=140\cdot1{,}500=210{,}000
+\end{aligned}" />
+
+# Syarat bil sama dengan caj tetap
+
+Dengan harga eksport <InlineMath math="\text{Rp}b" /> sekWh, kreditnya ialah <InlineMath math="200b" /> rupiah. Bil turun kepada caj tetap tepat apabila kredit **sekurang-kurangnya sama dengan** kos import. Jika kredit lebih besar, lebihannya hangus dan bil tidak turun lagi.
+
+<BlockMath math="\begin{aligned}
+200b&\ge210{,}000 \\
+b&\ge1{,}050
+\end{aligned}" />
+
+Semak dengan <InlineMath math="b=1{,}050" />: kreditnya <InlineMath math="200\cdot1{,}050=210{,}000" />, sama tepat dengan kos import, jadi bilnya <InlineMath math="\text{Rp}30{,}000" />. Pada harga sekarang, <InlineMath math="\text{Rp}800" />, bilnya masih <InlineMath math="30{,}000+210{,}000-160{,}000=80{,}000" />.
+
+Jadi, nilai <InlineMath math="b" /> paling kecil ialah <InlineMath math="\text{Rp}1{,}050" /> sekWh.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\text{Rp}600" /> hanya menyemak satu hari cerah: <InlineMath math="10b\ge4\cdot1{,}500" />. **Hari mendung juga ada kos import** yang mesti ditampung oleh kredit.
+- <InlineMath math="\text{Rp}900" /> terlupa bahawa hari mendung mengambil kekurangan siang <InlineMath math="2\text{ kWh}" /> daripada grid, jadi tenaga yang diambil dikira <InlineMath math="30\cdot4=120\text{ kWh}" /> sahaja.
+- <InlineMath math="\text{Rp}1{,}000" /> menjumlahkan pengeluaran sebulan dahulu (<InlineMath math="300\text{ kWh}" />) lalu menganggap <InlineMath math="300-120=180\text{ kWh}" /> dieksport. Sebenarnya lebihan hari cerah tidak boleh menampung kekurangan hari mendung.
+- <InlineMath math="\text{Rp}1{,}200" /> membuat kredit menampung caj tetap juga: <InlineMath math="200b\ge240{,}000" />. Peraturan menyatakan kredit hanya mengurangkan kos import.

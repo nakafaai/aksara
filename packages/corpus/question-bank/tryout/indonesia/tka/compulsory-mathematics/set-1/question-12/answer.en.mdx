@@ -1,17 +1,48 @@
-The ladder, the ground and the slide form a right triangle. The height <InlineMath math="2.4\text{ m}" /> is opposite the angle <InlineMath math="\alpha" />, and the slide is the hypotenuse. So you need **the sine**, but the tangent is given.
+# The formula for one lap
 
-From <InlineMath math="\tan\alpha=\frac34" /> you get a right triangle with legs <InlineMath math="3" /> and <InlineMath math="4" /> and hypotenuse <InlineMath math="5" />, so <InlineMath math="\sin\alpha=\frac35" />.
+If each straight has length <InlineMath math="L" /> and a lane's inner edge has radius <InlineMath math="r" />, one lap in that lane is
+
+<BlockMath math="K=2L+2\pi r" />
+
+**You can judge almost every statement by looking at which part of this formula changes**.
+
+# The first statement
+
+Lanes 8 and 1 have the same <InlineMath math="L" />, so <InlineMath math="2L" /> cancels when you subtract:
+
+<BlockMath math="K_8-K_1=2\pi\,(r_8-r_1)=2\pi\cdot7\cdot1.25" />
+
+The length of the straights doesn't appear. The statement is **True**.
+
+# The second statement
+
+Each straight gets <InlineMath math="2\pi" /> shorter, so <InlineMath math="2L" /> drops by <InlineMath math="4\pi" />. The radius grows by <InlineMath math="2" />, so <InlineMath math="2\pi r" /> grows by <InlineMath math="2\pi\cdot2=4\pi" />.
+
+<BlockMath math="K_{\text{new}}=2(L-2\pi)+2\pi(r+2)=2L-4\pi+2\pi r+4\pi=2L+2\pi r" />
+
+The decrease and the increase cancel. The statement is **True**.
+
+# The third statement
+
+The field inside lane 1's edge is an <InlineMath math="85\times72" /> rectangle (its width is twice the radius) plus two semicircles, which make one full circle of radius <InlineMath math="36" />:
 
 <BlockMath math="\begin{aligned}
-\sin\alpha&=\frac{2.4}{\ell} \\
-\ell&=\frac{2.4}{\frac35}=4\text{ m}
+\text{area}&=85\cdot72+3.14\cdot36^2 \\
+&=6{,}120+4{,}069.44 \\
+&=10{,}189.44\text{ m}^2
 \end{aligned}" />
 
-As a check, the horizontal distance is <InlineMath math="\frac{2.4}{\tan\alpha}=3.2\text{ m}" />, and <InlineMath math="2.4^2+3.2^2=5.76+10.24=16=4^2" />.
+The area is a little **more** than <InlineMath math="10{,}000\text{ m}^2" />. The statement is **False**.
 
-So the slide is <InlineMath math="4\text{ m}" /> long.
+# The fourth statement
 
-- <InlineMath math="4.8\text{ m}" /> assumes a slope angle of <InlineMath math="30^\circ" />, that is, <InlineMath math="\sin\alpha=\frac12" />. But <InlineMath math="\tan\alpha=\frac34" /> goes with <InlineMath math="\sin\alpha=\frac35" />.
-- <InlineMath math="3\text{ m}" /> divides by <InlineMath math="\cos\alpha=\frac45" /> instead of by <InlineMath math="\sin\alpha" />.
-- <InlineMath math="3.2\text{ m}" /> is the horizontal distance between the ladder and the end of the slide.
-- <InlineMath math="5.6\text{ m}" /> adds the height and the horizontal distance instead of using the Pythagorean theorem.
+Lane 4's start moves forward by <InlineMath math="2\pi\cdot3w" />, where <InlineMath math="w" /> is the lane width.
+
+<BlockMath math="\begin{aligned}
+w=1.5:&\quad 2\cdot3.14\cdot4.5=28.26\text{ m} \\
+w=1.25:&\quad 2\cdot3.14\cdot3.75=23.55\text{ m}
+\end{aligned}" />
+
+The extra distance is <InlineMath math="28.26-23.55=4.71\text{ m}" />, which is less than <InlineMath math="5\text{ m}" />. The statement is **False**.
+
+So the answers are True, True, False, False.

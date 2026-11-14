@@ -1,20 +1,28 @@
-Dari satu titik sudut, segi-<InlineMath math="n" /> dapat dibagi menjadi <InlineMath math="n-2" /> segitiga. Karena itu, jumlah sudut dalamnya <InlineMath math="(n-2)\cdot180^\circ" />. Gunakan rumus itu untuk menentukan **banyak sisi lebih dulu**.
+# Memecah jalur menjadi bagian sederhana
+
+Jalur 1 terdiri atas **dua persegi panjang di bagian lurus dan dua setengah cincin di tikungan**. Lebar jalur <InlineMath math="1{,}25\text{ m}" />. Pada tikungan, tepi dalamnya berjari-jari <InlineMath math="36\text{ m}" /> dan tepi luarnya, yaitu tepi dalam jalur 2, berjari-jari <InlineMath math="37{,}25\text{ m}" />.
+
+# Luas setiap bagian
+
+**Dua setengah cincin membentuk satu cincin penuh**, yaitu lingkaran besar dikurangi lingkaran kecil:
 
 <BlockMath math="\begin{aligned}
-(n-2)\cdot180^\circ&=3{.}240^\circ \\
-n-2&=18 \\
-n&=20
+\text{bagian lurus}&=2\cdot85\cdot1{,}25=212{,}5 \\
+\text{tikungan}&=3{,}14\cdot\left(37{,}25^2-36^2\right)=3{,}14\cdot91{,}5625=287{,}50625 \\
+\text{luas jalur}&=212{,}5+287{,}50625=500{,}00625\approx500{,}01
 \end{aligned}" />
 
-Jumlah semua sudut luar segi banyak selalu <InlineMath math="360^\circ" />. Pada segi-20 beraturan, semua sudut luarnya sama besar.
+# Cara cepat untuk mengecek
 
-<BlockMath math="\frac{360^\circ}{20}=18^\circ" />
+Luas cincin bisa ditulis <InlineMath math="\pi\left(R^2-r^2\right)=2\pi\cdot\frac{R+r}{2}\cdot(R-r)" />, yaitu keliling lingkaran tengah dikali lebar. Jadi **luas sebuah jalur sama dengan panjang garis tengah jalur dikali lebarnya**. Garis tengah jalur 1 berjari-jari <InlineMath math="36{,}625" /> di tikungan:
 
-Sebagai pemeriksaan, setiap sudut dalam besarnya <InlineMath math="180^\circ-18^\circ=162^\circ" />, dan <InlineMath math="20\cdot162^\circ=3{.}240^\circ" />.
+<BlockMath math="\left(170+2\cdot3{,}14\cdot36{,}625\right)\cdot1{,}25=400{,}005\cdot1{,}25=500{,}00625" />
 
-Jadi, besar setiap sudut luarnya adalah <InlineMath math="18^\circ" />.
+Hasilnya sama. Jadi, luas jalur 1 sekitar <InlineMath math="500{,}01\text{ m}^2" />.
 
-- <InlineMath math="162^\circ" /> adalah sudut dalam segi-20, bukan sudut luarnya.
-- <InlineMath math="160^\circ" /> muncul jika diambil <InlineMath math="n=18" />, yaitu angka <InlineMath math="2" /> terlupa, lalu dihitung sudut dalam <InlineMath math="180^\circ-\frac{360^\circ}{18}=160^\circ" />.
-- <InlineMath math="20^\circ" /> muncul jika diambil <InlineMath math="n=\frac{3{.}240}{180}=18" /> dan angka <InlineMath math="2" /> terlupa.
-- <InlineMath math="40^\circ" /> muncul jika banyak sisi dihitung sebagai <InlineMath math="\frac{3{.}240}{360}=9" />, seolah-olah jumlah sudut dalam terdiri atas putaran penuh, lalu <InlineMath math="\frac{360^\circ}{9}=40^\circ" />.
+# Kenapa pilihan lain salah
+
+- <InlineMath math="495{,}10\text{ m}^2" /> adalah panjang tepi dalam jalur 1 dikali lebarnya. **Tepi dalam adalah lintasan terpendek di jalur itu**, jadi hasilnya terlalu kecil.
+- <InlineMath math="504{,}91\text{ m}^2" /> memakai tepi luar, jadi terlalu besar.
+- <InlineMath math="287{,}51\text{ m}^2" /> hanya luas tikungan.
+- <InlineMath math="212{,}50\text{ m}^2" /> hanya luas bagian lurus.

@@ -1,16 +1,47 @@
-Eine Drehung um einen anderen Punkt als den Ursprung geht in drei Schritten: **das Zentrum in den Ursprung verschieben, drehen, zurückverschieben**. Eine Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um den Ursprung bildet <InlineMath math="(a,b)" /> auf <InlineMath math="(-b,a)" /> ab.
+Gesucht ist das Bild des Punktes <InlineMath math="C" />, aber der Streckfaktor <InlineMath math="k" /> und der Verschiebungsvektor sind noch unbekannt. Bestimme also zuerst <InlineMath math="k" />, <InlineMath math="a" /> und <InlineMath math="b" /> aus den Punkten <InlineMath math="A" /> und <InlineMath math="B" /> und aus der Bedingung, dass **<InlineMath math="B'" /> im III. Quadranten liegt**.
+
+# Die Abbildungsvorschrift
+
+Eine zentrische Streckung mit Zentrum <InlineMath math="O" /> und Faktor <InlineMath math="k" /> multipliziert beide Koordinaten mit <InlineMath math="k" />. Danach addiert die Verschiebung <InlineMath math="a" /> zur x-Koordinate und <InlineMath math="b" /> zur y-Koordinate. Es gilt also **erst strecken, dann verschieben**:
+
+<BlockMath math="T(x,y)=(kx+a,\ ky+b)" />
+
+# Zwei mögliche Streckfaktoren
+
+Eine Streckung macht jede Strecke <InlineMath math="|k|" />-mal so lang, eine Verschiebung ändert Längen gar nicht. Berechne <InlineMath math="AB" /> und vergleiche mit <InlineMath math="A'B'=10" />:
 
 <BlockMath math="\begin{aligned}
-B-C&=(7-2,\ 3-(-1))=(5,4) \\
-(5,4)&\to(-4,5) \\
-B'&=(-4+2,\ 5+(-1))=(-2,4)
+AB&=\sqrt{(4-1)^2+(6-2)^2}=\sqrt{9+16}=5 \\
+A'B'&=|k|\cdot AB \\
+10&=|k|\cdot5 \\
+|k|&=2
 \end{aligned}" />
 
-Zur Kontrolle: <InlineMath math="CB=\sqrt{5^2+4^2}=\sqrt{41}" /> und <InlineMath math="CB'=\sqrt{(-4)^2+5^2}=\sqrt{41}" />, und <InlineMath math="(5,4)\cdot(-4,5)=-20+20=0" />, die beiden Strecken stehen also senkrecht aufeinander.
+Also ist <InlineMath math="k=2" /> oder <InlineMath math="k=-2" />. **Die Länge allein verrät das Vorzeichen von <InlineMath math="k" /> nicht**, deshalb prüfst du beide Fälle. Bestimme für jedes <InlineMath math="k" /> das Paar <InlineMath math="(a,b)" /> aus <InlineMath math="T(1,2)=(k+a,\ 2k+b)=(3,1)" /> und berechne dann <InlineMath math="B'=T(4,6)=(4k+a,\ 6k+b)" />.
 
-Das Bild von <InlineMath math="B" /> ist also <InlineMath math="(-2,4)" />.
+| <InlineMath math="k" /> | <InlineMath math="(a,b)" /> | <InlineMath math="B'" /> | Lage von <InlineMath math="B'" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="2" /> | <InlineMath math="(1,-3)" /> | <InlineMath math="(9,9)" /> | I. Quadrant |
+| <InlineMath math="-2" /> | <InlineMath math="(5,5)" /> | <InlineMath math="(-3,-7)" /> | III. Quadrant |
 
-- <InlineMath math="(-4,5)" /> vergisst, den gedrehten Punkt zum Zentrum <InlineMath math="C" /> zurückzuschieben.
-- <InlineMath math="(-3,7)" /> dreht um den Ursprung statt um <InlineMath math="C" />.
-- <InlineMath math="(6,4)" /> vertauscht die Koordinaten von <InlineMath math="(5,4)" />, ohne ein Vorzeichen zu ändern.
-- <InlineMath math="(6,-6)" /> dreht im Uhrzeigersinn, <InlineMath math="(5,4)\to(4,-5)" />.
+Nur bei <InlineMath math="k=-2" /> liegt <InlineMath math="B'" /> im III. Quadranten. Der Streckfaktor ist also <InlineMath math="-2" />, der Verschiebungsvektor <InlineMath math="(5,5)" />.
+
+# Das Bild von Punkt C
+
+Jetzt ist die Vorschrift vollständig. **Setze <InlineMath math="C(2,-1)" /> ein**:
+
+<BlockMath math="\begin{aligned}
+T(x,y)&=(-2x+5,\ -2y+5) \\
+T(2,-1)&=(-4+5,\ 2+5)=(1,7)
+\end{aligned}" />
+
+Probe mit den Angaben: <InlineMath math="T(1,2)=(-2+5,\ -4+5)=(3,1)" />, also genau <InlineMath math="A'" />. Außerdem ist <InlineMath math="B'=(-3,-7)" />, also <InlineMath math="A'B'=\sqrt{6^2+8^2}=10" />. Alle Bedingungen stimmen.
+
+Das Bild von <InlineMath math="C" /> unter <InlineMath math="T" /> ist also <InlineMath math="(1,7)" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="(5,-5)" /> entsteht, wenn du sofort <InlineMath math="k=2" /> nimmst. **Die Bedingung III. Quadrant schließt <InlineMath math="k=2" /> aus**, denn dann wäre <InlineMath math="B'=(9,9)" /> im I. Quadranten.
+- <InlineMath math="(-14,-8)" /> entsteht, wenn du <InlineMath math="C" /> erst verschiebst und danach streckst: <InlineMath math="-2\,(2+5,\ -1+5)=(-14,-8)" />. Laut Aufgabe kommt die Streckung zuerst.
+- <InlineMath math="(-4,2)" /> ist nur die Streckung <InlineMath math="-2\cdot(2,-1)" />. Die Verschiebung um <InlineMath math="(5,5)" /> fehlt.
+- <InlineMath math="(-9,-3)" /> benutzt den Verschiebungsvektor mit falschem Vorzeichen. Aus <InlineMath math="A'=kA+(a,b)" /> folgt <InlineMath math="(a,b)=A'-kA=(5,5)" />, nicht <InlineMath math="kA-A'=(-5,-5)" />.

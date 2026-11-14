@@ -1,12 +1,109 @@
-Die große Kerze ist ein Zylinder, ihr Volumen ist also **Grundfläche mal Höhe**, <InlineMath math="V=\pi r^2h" />. Der Radius ist der halbe Durchmesser, <InlineMath math="r=3{,}5\text{ cm}" />.
+Gefragt ist das Betonvolumen der ganzen Treppe. Die Treppe ist massiv, also ist jede Stufe und das Podest ein Quader, der auf dem Garagenboden steht. Deshalb ist **das Volumen der Treppe die Summe der Volumen aller Quader**. Dafür brauchst du zuerst die Höhe einer Steigung.
 
-<BlockMath math="V=\frac{22}{7}\cdot3{,}5^2\cdot12=\frac{22}{7}\cdot12{,}25\cdot12=38{,}5\cdot12=462\text{ cm}^3" />
+# Die Höhe einer Steigung
 
-Zur Kontrolle: Die Grundfläche misst <InlineMath math="38{,}5\text{ cm}^2" />, und <InlineMath math="38{,}5\cdot12=462" />.
+Zähle alle Steigungen vom Garagenboden bis zum Terrassenboden. Achtung: **Die letzte Steigung auf die Terrasse zählt mit**.
 
-Eine große Kerze hat also das Volumen <InlineMath math="462\text{ cm}^3" />.
+| Abschnitt | Anzahl Steigungen |
+| --- | --- |
+| Garagenboden zur Stufe <InlineMath math="1" />, dann bis Stufe <InlineMath math="5" /> | <InlineMath math="5" /> |
+| Stufe <InlineMath math="5" /> zum Podest | <InlineMath math="1" /> |
+| Podest zur Stufe <InlineMath math="6" /> | <InlineMath math="1" /> |
+| Stufe <InlineMath math="6" /> bis Stufe <InlineMath math="9" /> | <InlineMath math="3" /> |
+| Stufe <InlineMath math="9" /> zum Terrassenboden | <InlineMath math="1" /> |
 
-- <InlineMath math="132\text{ cm}^3" /> rechnet <InlineMath math="\pi rh" />, ohne den Radius zu quadrieren.
-- <InlineMath math="154\text{ cm}^3" /> nimmt die Kegelformel <InlineMath math="\frac13\pi r^2h" />.
-- <InlineMath math="264\text{ cm}^3" /> berechnet den Mantel <InlineMath math="2\pi rh" />, nicht das Volumen.
-- <InlineMath math="1{.}848\text{ cm}^3" /> nimmt den Durchmesser <InlineMath math="7\text{ cm}" /> als Radius.
+Das sind <InlineMath math="11" /> gleich hohe Steigungen für <InlineMath math="220\text{ cm}" />:
+
+<BlockMath math="\text{Steigungshöhe}=\frac{220\text{ cm}}{11}=20\text{ cm}" />
+
+# Die Höhe jedes Quaders
+
+Jeder Quader ist so hoch wie seine Oberfläche über dem Garagenboden. Stufe <InlineMath math="k" /> im unteren Lauf ist <InlineMath math="20k\text{ cm}" /> hoch. Das Podest liegt eine Steigung über Stufe <InlineMath math="5" />, also <InlineMath math="120\text{ cm}" /> hoch. Die oberen Stufen stehen ebenfalls auf dem Garagenboden, deshalb **geht ihre Höhe ab <InlineMath math="120\text{ cm}" /> weiter** und beginnt nicht wieder bei null.
+
+<BlockMath math="\begin{aligned}
+\text{Stufen }1\text{ bis }5&:\ 20,\ 40,\ 60,\ 80,\ 100\text{ cm} \\
+\text{Podest}&:\ 120\text{ cm} \\
+\text{Stufen }6\text{ bis }9&:\ 140,\ 160,\ 180,\ 200\text{ cm}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Seitenansicht der Treppe</>}
+  description={<>Seitenansicht der massiven Treppe in Zentimetern. Die ersten fünf Stufen haben ihre Oberfläche in den Höhen <InlineMath math="20" />, <InlineMath math="40" />, <InlineMath math="60" />, <InlineMath math="80" /> und <InlineMath math="100" />, jeweils mit einem Auftritt von <InlineMath math="30" />. Das Podest ist <InlineMath math="100" /> lang und <InlineMath math="120" /> hoch. Die nächsten vier Stufen sind <InlineMath math="140" />, <InlineMath math="160" />, <InlineMath math="180" /> und <InlineMath math="200" /> hoch. Der Terrassenboden liegt bei <InlineMath math="220" />. Alles unter der Treppenoberfläche ist bis zum Garagenboden mit Beton gefüllt.</>}
+  labels={{
+    step: <InlineMath math="100" />,
+    landing: <InlineMath math="120" />,
+    top: <InlineMath math="200" />,
+    terrace: <InlineMath math="220" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -20, max: 420 },
+      y: { min: -20, max: 260 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      {
+        id: "stair",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 0 },
+          { x: 0, y: 20 },
+          { x: 30, y: 20 },
+          { x: 30, y: 40 },
+          { x: 60, y: 40 },
+          { x: 60, y: 60 },
+          { x: 90, y: 60 },
+          { x: 90, y: 80 },
+          { x: 120, y: 80 },
+          { x: 120, y: 100 },
+          { x: 150, y: 100 },
+          { x: 150, y: 120 },
+          { x: 250, y: 120 },
+          { x: 250, y: 140 },
+          { x: 280, y: 140 },
+          { x: 280, y: 160 },
+          { x: 310, y: 160 },
+          { x: 310, y: 180 },
+          { x: 340, y: 180 },
+          { x: 340, y: 200 },
+          { x: 370, y: 200 },
+          { x: 370, y: 0 },
+        ],
+      },
+      { id: "garage", kind: "segment", appearance: "reference", from: { x: -20, y: 0 }, to: { x: 420, y: 0 } },
+      { id: "terrace", kind: "segment", appearance: "reference", from: { x: 370, y: 220 }, to: { x: 420, y: 220 } },
+    ],
+    labels: [
+      { key: "step", objectId: "stair", at: { x: 135, y: 100 }, placement: "above" },
+      { key: "landing", objectId: "stair", at: { x: 200, y: 120 }, placement: "above" },
+      { key: "top", objectId: "stair", at: { x: 355, y: 200 }, placement: "above" },
+      { key: "terrace", objectId: "terrace", at: { x: 400, y: 220 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Das Volumen aller Quader
+
+Jede Stufe ist ein Quader mit <InlineMath math="30\text{ cm}" /> Länge, <InlineMath math="100\text{ cm}" /> Breite und ihrer eigenen Höhe. Addiere zuerst die Höhen der neun Stufen und nimm dann den Podestquader mit <InlineMath math="100\text{ cm}" /> Länge dazu:
+
+<BlockMath math="\begin{aligned}
+\text{Summe der Stufenhöhen}&=(20+40+60+80+100)+(140+160+180+200) \\
+&=300+680=980\text{ cm} \\
+V_{\text{Stufen}}&=30\cdot100\cdot980=2{.}940{.}000\text{ cm}^3 \\
+V_{\text{Podest}}&=100\cdot100\cdot120=1{.}200{.}000\text{ cm}^3 \\
+V&=2{.}940{.}000+1{.}200{.}000=4{.}140{.}000\text{ cm}^3
+\end{aligned}" />
+
+Wegen <InlineMath math="1\text{ m}^3=1{.}000{.}000\text{ cm}^3" /> sind das <InlineMath math="4{,}14\text{ m}^3" />. **Prüf es nach Bauabschnitten**: Abschnitt I enthält <InlineMath math="0{,}9+1{,}2=2{,}1\text{ m}^3" />, Abschnitt II <InlineMath math="2{,}04\text{ m}^3" />, zusammen wieder <InlineMath math="4{,}14\text{ m}^3" />.
+
+Das Betonvolumen der ganzen Treppe ohne Mehrmenge beträgt also <InlineMath math="4{,}14\text{ m}^3" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="4{,}554\text{ m}^3" /> entsteht, wenn du nur <InlineMath math="10" /> Steigungen zählst und so <InlineMath math="22\text{ cm}" /> pro Steigung bekommst. Die Steigung von Stufe <InlineMath math="9" /> auf den Terrassenboden **gehört auch zu den** <InlineMath math="220\text{ cm}" />.
+- <InlineMath math="3{,}3\text{ m}^3" /> behandelt das Podest wie eine normale Stufe mit <InlineMath math="30\text{ cm}" /> Länge. Das Podest ist <InlineMath math="100\text{ cm}" /> lang, sein Quader hat also <InlineMath math="1{,}2\text{ m}^3" />, nicht <InlineMath math="0{,}36\text{ m}^3" />.
+- <InlineMath math="2{,}94\text{ m}^3" /> sind nur die neun Stufen. Der Podestquader mit <InlineMath math="1{,}2\text{ m}^3" /> fehlt.
+- <InlineMath math="2{,}7\text{ m}^3" /> misst die oberen Stufen ab der Podestoberfläche, also <InlineMath math="20" />, <InlineMath math="40" />, <InlineMath math="60" /> und <InlineMath math="80\text{ cm}" />. Die Treppe ist aber massiv, der Beton darunter reicht bis zum Garagenboden.

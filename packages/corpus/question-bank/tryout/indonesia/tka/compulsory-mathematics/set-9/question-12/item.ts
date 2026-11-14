@@ -13,19 +13,16 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "$$\\angle ABC=70^\\circ$$",
+          label: "Ada tepat tiga kemungkinan letak titik $$D$$.",
         },
         {
           column: 1,
-          label: "$$AD$$ tegak lurus $$BC$$.",
+          label: "Salah satu jajargenjang yang mungkin adalah persegi panjang.",
         },
         {
           column: 2,
-          label: "$$\\angle BAD=40^\\circ$$",
-        },
-        {
-          column: 1,
-          label: "Segitiga $$ABD$$ dan segitiga $$ACD$$ kongruen.",
+          label:
+            "Semua jajargenjang yang mungkin mempunyai keliling yang sama.",
         },
       ],
     },

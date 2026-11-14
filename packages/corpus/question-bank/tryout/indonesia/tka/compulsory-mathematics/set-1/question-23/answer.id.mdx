@@ -1,11 +1,39 @@
-Periksa setiap ukuran satu per satu. Lima data baru di **ujung atas data** menggeser rata-rata, tetapi belum tentu menggeser median.
+# Bekal hitungan
 
-- **Rata-rata**: sebelumnya <InlineMath math="\frac{1{.}515}{30}=50{,}5" />, sesudahnya <InlineMath math="\frac{1{.}515+300}{35}=\frac{1{.}815}{35}\approx51{,}86" />. Rata-rata naik, jadi pernyataan bahwa rata-rata naik benar.
-- **Rata-rata lebih dari 52**: <InlineMath math="51{,}86<52" />, jadi pernyataan ini salah.
-- **Median**: pada <InlineMath math="35" /> data, median adalah data ke-<InlineMath math="18" />. Sampai <InlineMath math="45" /> ada <InlineMath math="10" /> data, dan sampai <InlineMath math="50" /> ada <InlineMath math="19" />. Jadi, data ke-<InlineMath math="18" /> adalah <InlineMath math="50" />, dan pernyataan itu benar.
-- **Modus**: sekarang <InlineMath math="50" /> dan <InlineMath math="60" /> masing-masing muncul <InlineMath math="9" /> kali. Data itu mempunyai dua modus, jadi pernyataan bahwa modusnya hanya <InlineMath math="60" /> salah.
-- **Jangkauan**: data terkecil dan terbesar tetap <InlineMath math="40" /> dan <InlineMath math="60" />, jadi jangkauannya tetap <InlineMath math="20" />. Pernyataan itu benar.
+Keempat pernyataan memakai dua bekal yang sama: taksiran total lama panggilan dan taksiran modus. Hitung keduanya sekali, lalu pakai berulang. **Taksiran total adalah jumlah frekuensi dikali nilai tengah kelas**, dan taksiran rata-rata adalah total itu dibagi <InlineMath math="80" />.
 
-Jumlah <InlineMath math="1{.}515" /> berasal dari <InlineMath math="40\cdot2+45\cdot8+50\cdot9+55\cdot7+60\cdot4=80+360+450+385+240" />.
+<BlockMath math="\begin{aligned}
+\sum f\cdot x&=6\cdot2{,}5+22\cdot7{,}5+14\cdot12{,}5+18\cdot17{,}5+12\cdot22{,}5+8\cdot27{,}5 \\
+&=15+165+175+315+270+220=1{.}160 \\
+\bar x&=\frac{1{.}160}{80}=14{,}5\text{ menit}
+\end{aligned}" />
 
-Jadi, pernyataan yang benar adalah pernyataan tentang rata-rata yang naik, median <InlineMath math="50" />, dan jangkauan yang tetap.
+Kelas modus adalah kelas <InlineMath math="5\le t<10" />, karena frekuensinya <InlineMath math="22" /> paling besar. Kelas sebelumnya berfrekuensi <InlineMath math="6" /> dan kelas sesudahnya <InlineMath math="14" />.
+
+<BlockMath math="\begin{aligned}
+d_1&=22-6=16,\qquad d_2=22-14=8 \\
+Mo&=5+\frac{16}{16+8}\cdot5=5+\frac{10}{3}=8\tfrac13\text{ menit}
+\end{aligned}" />
+
+# Menilai setiap pernyataan
+
+**Pernyataan pertama.** Panggilan yang paling sedikit <InlineMath math="20" /> menit ada <InlineMath math="12+8=20" />, tepat seperempat dari <InlineMath math="80" />. Taksiran total lamanya <InlineMath math="270+220=490" /> menit. Batas <InlineMath math="40\%" /> dari total adalah <InlineMath math="0{,}4\cdot1{.}160=464" /> menit, dan <InlineMath math="490>464" />. Bagian waktunya sekitar <InlineMath math="42\%" />, jauh di atas bagian banyaknya. Panggilan panjang memang sedikit, tetapi setiap panggilannya memakan banyak waktu. Pernyataan ini **Benar**.
+
+**Pernyataan kedua.** Tabel baru berfrekuensi <InlineMath math="6+22=28" />, <InlineMath math="14+18=32" />, dan <InlineMath math="12+8=20" />, dengan nilai tengah <InlineMath math="5" />, <InlineMath math="15" />, dan <InlineMath math="25" />.
+
+<BlockMath math="\bar x_{\text{baru}}=\frac{28\cdot5+32\cdot15+20\cdot25}{80}=\frac{140+480+500}{80}=\frac{1{.}120}{80}=14" />
+
+Taksirannya turun dari <InlineMath math="14{,}5" /> menjadi <InlineMath math="14" />. Alasannya, setiap panggilan di separuh bawah kelas gabungan dianggap naik <InlineMath math="2{,}5" /> menit, dan setiap panggilan di separuh atas dianggap turun <InlineMath math="2{,}5" /> menit. Separuh bawah memuat <InlineMath math="6+14+12=32" /> panggilan, separuh atas <InlineMath math="22+18+8=48" />, jadi perubahannya <InlineMath math="2{,}5\cdot\frac{32-48}{80}=-0{,}5" />. Data aslinya sama, tetapi taksirannya bergantung pada pengelompokan. Pernyataan ini **Salah**.
+
+**Pernyataan ketiga.** Selisihnya <InlineMath math="14{,}5-8\tfrac13=6\tfrac16" /> menit, sedikit lebih dari <InlineMath math="6" />. Jadi modus lebih kecil dan selisihnya lebih dari <InlineMath math="6" /> menit. Pernyataan ini **Benar**.
+
+**Pernyataan keempat.** Setelah <InlineMath math="7" /> panggilan dipindah, frekuensinya menjadi <InlineMath math="6, 22, 21, 11, 12, 8" />. Kelas <InlineMath math="10\le t<15" /> naik menjadi <InlineMath math="21" />, tetapi masih kalah dari <InlineMath math="22" />, jadi kelas modus tetap <InlineMath math="5\le t<10" />. Yang berubah hanya <InlineMath math="d_2" />.
+
+<BlockMath math="\begin{aligned}
+d_1&=22-6=16,\qquad d_2=22-21=1 \\
+Mo&=5+\frac{16}{17}\cdot5=9\tfrac{12}{17}\approx9{,}71\text{ menit}
+\end{aligned}" />
+
+Modusnya naik, tetapi tetap di bawah <InlineMath math="10" /> menit. Kelas modus baru berpindah kalau frekuensi kelas <InlineMath math="10\le t<15" /> melampaui <InlineMath math="22" />. Pernyataan ini **Salah**.
+
+Jadi, urutannya adalah Benar, Salah, Benar, Salah.
