@@ -6,7 +6,6 @@ import {
   MutableList,
   Option,
   Order,
-  pipe,
   Record as Rec,
   Schema,
 } from "effect";
@@ -19,6 +18,13 @@ import {
   readQuestionPrompts,
 } from "#corpus/question-bank/prompt";
 import {
+  FormulaPairsSchema,
+  formulaPairs,
+  formulaShapes,
+  MATH_ATTRIBUTE_PATTERN,
+} from "#corpus/question-bank/similarity/formula";
+import { collect, pairs } from "#corpus/question-bank/similarity/group";
+import {
   type Print,
   PrintSchema,
   score,
@@ -26,7 +32,6 @@ import {
 } from "#corpus/question-bank/similarity/print";
 import type { QuestionSet } from "#corpus/question-bank/source";
 
-const MATH_ATTRIBUTE_PATTERN = /math="(?<math>[^"]*)"/gu;
 const TAG_PATTERN = /<[^>]+>/gu;
 const PARAGRAPH_PATTERN = /\n\s*\n/u;
 const COMMAND_PATTERN = /\\(?<command>[a-z]+)/gu;
@@ -66,6 +71,7 @@ export type SimilarityMatch = typeof SimilarityMatchSchema.Type;
 
 /** Every item and passage pair at or above the threshold, highest first. */
 const SimilarityReportSchema = Schema.Struct({
+  formulas: FormulaPairsSchema,
   items: Schema.Array(SimilarityMatchSchema),
   passages: Schema.Array(SimilarityMatchSchema),
 });
@@ -73,6 +79,7 @@ type SimilarityReport = typeof SimilarityReportSchema.Type;
 
 /** One prompt with its own wording separated from the passage it shares. */
 const UnitSchema = Schema.Struct({
+  formulas: Schema.HashSet(Schema.String),
   full: PrintSchema,
   id: Schema.Finite,
   locale: Schema.String,
@@ -147,6 +154,7 @@ function units(prompts: readonly QuestionPrompt[]) {
       );
       const own = Arr.filter(list, (part) => !isShared(part));
       return {
+        formulas: formulaShapes(prompt.rawMdx, answers),
         full: print(Arr.join([...list, ...answers], " ")),
         locale: prompt.language,
         own: print(Arr.join([...own, ...answers], " ")),
@@ -156,36 +164,6 @@ function units(prompts: readonly QuestionPrompt[]) {
       };
     });
   });
-}
-
-/** Adds one unit to the list kept under one key. */
-function collect(
-  map: MutableHashMap.MutableHashMap<string, MutableList.MutableList<Unit>>,
-  key: string,
-  unit: Unit
-) {
-  const list = Option.getOrUndefined(MutableHashMap.get(map, key));
-  if (list === undefined) {
-    const created = MutableList.make<Unit>();
-    MutableList.append(created, unit);
-    MutableHashMap.set(map, key, created);
-    return;
-  }
-  MutableList.append(list, unit);
-}
-
-/** Lists each unordered pair of one group once when either side is a target. */
-function pairs<Item>(
-  group: readonly Item[],
-  isTarget: (item: Item) => boolean
-) {
-  return Arr.flatMap(group, (left, index) =>
-    pipe(
-      Arr.drop(group, index + 1),
-      Arr.filter((right) => isTarget(left) || isTarget(right)),
-      Arr.map((right) => ({ left, right }))
-    )
-  );
 }
 
 /** Compares siblings by their own wording and other sets by the whole item. */
@@ -299,7 +277,10 @@ const RANKING = Order.combineAll([
   Order.mapInput(Order.String, (match: SimilarityMatch) => match.second),
 ]);
 
-/** Finds questions and passages under a target that read like others in the bank. */
+/**
+ * Finds questions and passages under a target that read like others in the
+ * bank, and questions in any language that repeat another set's formulas.
+ */
 export const scanQuestionSimilarity = Effect.fn(
   "AksaraCorpus.scanQuestionSimilarity"
 )(function* (
@@ -314,6 +295,7 @@ export const scanQuestionSimilarity = Effect.fn(
   const isTarget = (root: string) =>
     root === target || root.startsWith(`${target}/`);
   return {
+    formulas: formulaPairs(all, isTarget, threshold),
     items: Arr.sort(itemMatches(all, isTarget, threshold), RANKING),
     passages: Arr.sort(passageMatches(all, isTarget, threshold), RANKING),
   } satisfies SimilarityReport;

@@ -1,20 +1,34 @@
-Zwei Unbekannte, die Zahl der kleinen Tische mit <InlineMath math="4" /> Plätzen und die Zahl der großen Tische mit <InlineMath math="6" /> Plätzen, sind durch **zwei Bedingungen** festgelegt: die Gesamtzahl der Tische und die Gesamtzahl der Plätze. Es sei <InlineMath math="g" /> die Zahl der Tische mit <InlineMath math="6" /> Plätzen. Dann haben <InlineMath math="14-g" /> Tische je <InlineMath math="4" /> Plätze.
+# Eine Basis für alles
 
-Die Plätze beider Tischarten ergeben zusammen <InlineMath math="68" />:
+Du hast Logarithmen zur Basis <InlineMath math="2" /> und zur Basis <InlineMath math="3" />, gefragt ist aber die Basis <InlineMath math="15" />. **Bring alles auf die Basis <InlineMath math="2" />**:
+
+<BlockMath math="\log_{15}20=\frac{\log_2 20}{\log_2 15}" />
+
+# Zwei Logarithmen verketten
+
+Die Zahl <InlineMath math="5" /> kommt nur in <InlineMath math="b=\log_3 5" /> vor, und das hat die Basis <InlineMath math="3" />. **Die Kette der Basen verbindet <InlineMath math="2" /> über <InlineMath math="3" /> mit <InlineMath math="5" />**:
+
+<BlockMath math="\log_2 5=\log_2 3\cdot\log_3 5=ab" />
+
+Jetzt zerlege <InlineMath math="20=4\cdot5" /> und <InlineMath math="15=3\cdot5" />:
 
 <BlockMath math="\begin{aligned}
-4(14-g)+6g&=68 \\
-56-4g+6g&=68 \\
-2g&=12 \\
-g&=6
+\log_2 20&=\log_2 4+\log_2 5=2+ab \\
+\log_2 15&=\log_2 3+\log_2 5=a+ab
 \end{aligned}" />
 
-Zur Kontrolle: <InlineMath math="6" /> große Tische bieten <InlineMath math="36" /> Plätze, die übrigen <InlineMath math="8" /> kleinen Tische <InlineMath math="32" /> Plätze, zusammen <InlineMath math="68" />.
+# Das Ergebnis
 
-In dem Restaurant stehen also <InlineMath math="6" /> Tische mit <InlineMath math="6" /> Plätzen.
+<BlockMath math="\log_{15}20=\frac{2+ab}{a+ab}" />
 
-- <InlineMath math="3" /> große Tische ergäben nur <InlineMath math="18+44=62" /> Plätze.
-- <InlineMath math="4" /> große Tische ergäben nur <InlineMath math="24+40=64" /> Plätze.
-- <InlineMath math="5" /> große Tische ergäben <InlineMath math="30+36=66" /> Plätze, zwei zu wenig.
-- <InlineMath math="7" /> große Tische ergäben <InlineMath math="42+28=70" /> Plätze, zwei zu viel.
-- <InlineMath math="8" /> ist die Zahl der Tische mit <InlineMath math="4" /> Plätzen. Sie entsteht auch, wenn die Platzzahlen vertauscht werden, also <InlineMath math="6(14-g)+4g=68" /> gerechnet wird.
+Probe mit Zahlen: <InlineMath math="a\approx1{,}585" /> und <InlineMath math="b\approx1{,}465" /> ergeben <InlineMath math="\frac{4{,}322}{3{,}907}\approx1{,}106" />. **Der Wert ist plausibel**, denn <InlineMath math="20" /> ist etwas größer als <InlineMath math="15" />.
+
+Also ist <InlineMath math="\log_{15}20=\frac{2+ab}{a+ab}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac{2+b}{a+b}" /> benutzt <InlineMath math="b" /> als <InlineMath math="\log_2 5" />. **Aber <InlineMath math="b" /> hat die Basis <InlineMath math="3" />** und muss erst mit <InlineMath math="a" /> multipliziert werden.
+- <InlineMath math="\frac{2+ab}{a+b}" /> verkettet die Basen nur im Zähler und vergisst den Nenner.
+- <InlineMath math="\frac{2ab}{a+ab}" /> schreibt <InlineMath math="\log_2(4\cdot5)" /> als <InlineMath math="\log_2 4\cdot\log_2 5" />. Der Logarithmus eines Produkts ist eine Summe, kein Produkt.
+- <InlineMath math="\frac{2+ab}{a^2b}" /> macht denselben Fehler im Nenner, <InlineMath math="\log_2 3\cdot\log_2 5=a\cdot ab" />.
+- <InlineMath math="\frac{a+ab}{2+ab}" /> vertauscht Zähler und Nenner. Das ist <InlineMath math="\log_{20}15" />.
