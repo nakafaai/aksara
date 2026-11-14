@@ -151,7 +151,7 @@ layer(Path.layer)("public page source", (it) => {
           readPageDocument(corpusRoot, entry)
         ).pipe(Effect.provide(NodeServices.layer));
 
-        expect(documents).toHaveLength(3);
+        expect(documents).toHaveLength(4);
         for (const { rawMdx } of documents) {
           expect(rawMdx.length).toBeGreaterThan(3000);
           expect(rawMdx.match(/^# /gmu)).toHaveLength(1);
@@ -175,7 +175,8 @@ layer(Path.layer)("public page source", (it) => {
         const expectedTitles = HashMap.make(
           ["de", "Entwicklerressourcen"],
           ["en", "Developer Resources"],
-          ["id", "Panduan Developer"]
+          ["id", "Panduan Developer"],
+          ["ms", "Sumber untuk Pembangun"]
         );
         for (const { rawMdx, route } of documents) {
           const expectedTitle = Option.getOrUndefined(
@@ -216,7 +217,7 @@ layer(Path.layer)("public page source", (it) => {
           if (Option.isNone(english)) {
             return yield* Effect.die("Expected an English legal page.");
           }
-          expect(locales).toHaveLength(3);
+          expect(locales).toHaveLength(4);
           for (const locale of locales) {
             expect(locale.blocks).toEqual(english.value.blocks);
           }

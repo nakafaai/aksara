@@ -1,0 +1,125 @@
+export const metadata = {
+  title: "Sumber untuk Pembangun",
+  description: "Gunakan REST API awam, kontrak OpenAPI, pelayan MCP dan klien baris arahan Nakafa dalam aliran kerja pendidikan yang boleh dipercayai.",
+  datePublished: "2026-08-28",
+  dateModified: "2026-10-25",
+};
+
+# Sumber untuk Pembangun
+
+Kemas kini terakhir: 25 Oktober 2026
+
+Nakafa menyediakan akses awam yang boleh dibaca mesin kepada bahan pembelajaran dalam pelbagai bahasa dan rujukan Quran yang terbatas. Antara muka ini sesuai untuk ejen dan aplikasi yang memerlukan input bertaip, ralat yang boleh dijangka dan rujukan kandungan kanonik. Semua antara muka ini bersifat baca sahaja, tidak memerlukan akaun Nakafa, dan tidak mendedahkan rekod peribadi pelajar, pembelian atau tindakan akaun.
+
+## Pelaksanaan yang disahkan
+
+Antara muka awam ini disahkan secara langsung pada komit Nakafa [`927d7f681a43acb205d8abcbd63101a8ecd31b41`](https://github.com/nakafaai/nakafa.com/commit/927d7f681a43acb205d8abcbd63101a8ecd31b41): indeks REST, kontrak OpenAPI dan titik akhir MCP memulangkan identiti keluaran yang sama, dan `@nakafa/cli@0.1.1` tersedia daripada npm dengan asal usul yang boleh disahkan.
+
+Pada semakan itu, [`api.ts`](https://github.com/nakafaai/nakafa.com/blob/927d7f681a43acb205d8abcbd63101a8ecd31b41/packages/backend/convex/routes/agent/api.ts) mengendalikan REST, [`route.ts`](https://github.com/nakafaai/nakafa.com/blob/927d7f681a43acb205d8abcbd63101a8ecd31b41/packages/backend/convex/routes/agent/mcp/route.ts) mengendalikan MCP, [`document.ts`](https://github.com/nakafaai/nakafa.com/blob/927d7f681a43acb205d8abcbd63101a8ecd31b41/packages/backend/agent/openapi/document.ts) menjana OpenAPI, dan [`program.ts`](https://github.com/nakafaai/nakafa.com/blob/927d7f681a43acb205d8abcbd63101a8ecd31b41/packages/cli/src/program.ts) mentakrifkan semua arahan CLI.
+
+## REST API awam
+
+Asas API kanonik ialah [https://api.nakafa.com/v1](https://api.nakafa.com/v1). Mulakan dengan indeks perkhidmatan dan gunakan carian untuk mencari item yang berkaitan. Dapatkan sesuatu hasil mengikut ID kandungan hanya apabila hasil itu mengandungi `markdown_url`. Hasil katalog peperiksaan percubaan yang tiada `markdown_url` hanya untuk dipetik, dan hasil itu memaut ke URL aplikasi kanoniknya. API ini juga mendedahkan taksonomi yang diterbitkan dan rujukan ayat Quran yang terbatas.
+
+- `GET /v1`: identiti perkhidmatan dan pautan penemuan
+- `GET /v1/health`: status kesihatan perkhidmatan
+- `GET /v1/search`: cari mengikut pertanyaan, bahagian, lokal, had dan ofset
+- `GET /v1/content?ref=...`: dapatkan ID kandungan yang tepat atau URL kanonik
+- `GET /v1/taxonomy`: periksa taksonomi yang diterbitkan
+- `GET /v1/quran/{surah}`: dapatkan julat ayat yang bertaip
+
+Carian memulangkan 10 hasil secara lalai dan menerima paling banyak 10 bagi setiap permintaan. Tetingkap carian mengandungi paling banyak 10 hasil, dengan `offset` dari 0 hingga 9. Apabila kamu menggunakan `limit` yang lebih kecil, ikut `has_more` dan `next_offset` untuk membaca halaman seterusnya dalam tetingkap itu. Kuota bacaan awam terpakai pada permintaan carian, kandungan, Quran, taksonomi dan MCP. Setiap IP klien boleh menghantar sehingga 30 permintaan sekali gus, dan peruntukannya diisi semula pada kadar 120 permintaan setiap 60 saat, jadi klien patut menjarakkan permintaan mengikut kadar itu dan mengendalikan respons HTTP 429 dengan backoff.
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "search.sh",
+    code: `curl "https://api.nakafa.com/v1/search?query=linear%20equations&locale=en&limit=5"`
+  }]}
+/>
+
+## OpenAPI dan ralat
+
+[Kontrak OpenAPI 3.1 Nakafa](https://api.nakafa.com/openapi.json) menerangkan setiap operasi awam, input, respons dan contoh. Penambahan yang serasi kekal dalam `v1`. Perubahan yang memecahkan keserasian memerlukan laluan versi utama yang baharu.
+
+Kegagalan API yang dikendalikan oleh Convex menggunakan RFC 9457 Problem Details dengan jenis media `application/problem+json`. Setiap respons mengandungi `code` yang stabil, `detail` yang boleh dibaca manusia, `resolution` yang konkrit dan `request_id` yang boleh dijejak. Cloudflare boleh menolak permintaan sebelum permintaan itu sampai ke Convex. Peraturan tembok api pada zon nakafa.com menolak permintaan yang ejen penggunanya menamakan perayap khusus untuk latihan, seperti GPTBot atau ClaudeBot, pada setiap hos dalam zon itu, termasuk api.nakafa.com dan mcp.nakafa.com. Penolakan itu ialah respons Cloudflare sendiri, bukan respons Problem Details, dan mencuba semula dengan backoff tidak membantu.
+
+<CodeBlock
+  data={[{
+    language: "json",
+    filename: "problem.json",
+    code: `{
+  "type": "https://nakafa.com/problems/invalid-request",
+  "title": "Invalid request",
+  "status": 400,
+  "detail": "Unknown query parameter: page.",
+  "instance": "/v1/search",
+  "code": "INVALID_REQUEST",
+  "resolution": "Use only these query parameters: limit, locale, offset, query, section.",
+  "request_id": "request-example"
+}`
+  }]}
+/>
+
+## Model Context Protocol
+
+Titik akhir MCP kanonik ialah [https://mcp.nakafa.com/mcp](https://mcp.nakafa.com/mcp). Gunakan MCP apabila ejen sudah menyokong penemuan alat dan panggilan alat berstruktur. Gunakan REST untuk integrasi HTTP biasa atau klien OpenAPI yang dijana. Kedua-dua antara muka melaksanakan keupayaan milik Convex yang sama dan mengesahkan penerbitan Aksara bertandatangan yang sama.
+
+Pelayan ini mendedahkan empat alat baca sahaja:
+
+- `nakafa_search_content`
+- `nakafa_get_content`
+- `nakafa_get_taxonomy`
+- `nakafa_get_quran_reference`
+
+Klien moden menggunakan Streamable HTTP. Protokol `2026-07-28` menggantikan kitaran hayat `initialize` yang lama dengan `server/discover` dan sampul `_meta` bagi setiap permintaan. Klien menemui semakan protokol yang disokong dahulu, kemudian menyenaraikan atau memanggil alat dengan sampul yang sama. Nakafa menerima semakan protokol yang didokumenkan ini dan melaporkan setiap semakan yang disokong melalui penemuan. Identiti dan keupayaan pelayan datang daripada respons `server/discover`. Titik akhir Nakafa yang tanpa keadaan tidak mendedahkan manifes `GET` yang berasingan.
+
+<CodeBlock
+  data={[{
+    language: "http",
+    filename: "mcp.http",
+    code: `POST /mcp HTTP/1.1
+Host: mcp.nakafa.com
+Content-Type: application/json
+Accept: application/json, text/event-stream
+MCP-Protocol-Version: 2026-07-28
+Mcp-Method: server/discover
+
+{"jsonrpc":"2.0","id":1,"method":"server/discover","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"example-client","version":"1.0.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}
+
+###
+
+POST /mcp HTTP/1.1
+Host: mcp.nakafa.com
+Content-Type: application/json
+Accept: application/json, text/event-stream
+MCP-Protocol-Version: 2026-07-28
+Mcp-Method: tools/list
+
+{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"example-client","version":"1.0.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}`
+  }]}
+/>
+
+## Baris arahan
+
+Pakej Node 24 yang rasmi ialah `@nakafa/cli`, dengan atur cara boleh laku `nakafa`. Pakej ini memanggil REST API awam untuk arahan search, get, taxonomy dan quran, dan mencetak JSON padat secara lalai. Tambah `--pretty` untuk output yang mudah dibaca, atau `--api-base` apabila mengesahkan titik akhir API serasi yang berjalan secara setempat atau dihoskan secara bebas.
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "nakafa.sh",
+    code: `npm install --global @nakafa/cli
+nakafa search linear equations
+nakafa quran 1 --from-verse 1 --to-verse 7 --pretty
+nakafa mcp`
+  }]}
+/>
+
+CLI mengekalkan JSON Problem Details pada strim ralat piawai dan menggunakan kategori status keluar bukan sifar yang stabil untuk kegagalan pemanggilan, kegagalan API, dan kegagalan rangkaian atau pelayan.
+
+## Penemuan yang boleh dibaca mesin
+
+- [Halaman pembangun](https://nakafa.com/ms/developers)
+- [Arahan untuk ejen](https://nakafa.com/skill.md)
+- [Indeks ejen di akar laman](https://nakafa.com/llms.txt)
+- [OpenAPI 3.1](https://api.nakafa.com/openapi.json)

@@ -9,6 +9,7 @@ export const porkBarrelPoliticsPowerArticle = defineArticleSource({
     de: "sozialhilfe-und-wahlpolitische-anreize",
     en: "pork-barrel-politics-power",
     id: "pork-barrel-politics-power",
+    ms: "bantuan-sosial-dan-politik-pork-barrel",
   },
   slug: "pork-barrel-politics-power",
   sourceRoot: "articles/politics/pork-barrel/politics-power",

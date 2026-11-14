@@ -29,15 +29,15 @@ function rejectRegistry(input: unknown) {
 
 describe("public page registry", () => {
   it.effect(
-    "projects every active locale from the stable source identities",
+    "projects every active and carried locale from the stable source identities",
     () =>
       Effect.gen(function* () {
         const entries = yield* decodePageRegistry();
 
-        expect(entries).toHaveLength(18);
+        expect(entries).toHaveLength(24);
         expect(
           Rec.fromEntries(
-            Arr.map(["en", "id", "de"], (appLocale) => [
+            Arr.map(["en", "id", "de", "ms"], (appLocale) => [
               appLocale,
               Arr.filter(
                 entries,
@@ -45,7 +45,7 @@ describe("public page registry", () => {
               ).length,
             ])
           )
-        ).toEqual({ de: 6, en: 6, id: 6 });
+        ).toEqual({ de: 6, en: 6, id: 6, ms: 6 });
         const englishImprint = Option.getOrUndefined(
           Arr.findFirst(
             entries,
