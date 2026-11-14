@@ -1,0 +1,136 @@
+export const metadata = {
+  title: "Terbitan sebagai Kadar Perubahan",
+  description: "Terbitan ialah kadar perubahan setempat dan kecerunan tangen yang diperoleh daripada had kecerunan garis sekan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Pembezaan",
+};
+
+
+
+## Kecerunan di Satu Titik pada Lengkung
+
+Bayangkan sebuah basikal bergerak di sepanjang jalan berbukit. Ada bahagian jalan yang mendaki dengan curam, ada pula yang hampir rata. **Kecerunan** jalan itu berubah dari satu titik ke titik yang lain. Graf fungsi yang melengkung pun berkelakuan lebih kurang sama.
+
+Bagi garis lurus, kecerunannya sama di setiap titik. Bagi garis yang melengkung, kecerunannya berubah dari satu titik ke titik yang lain. **Terbitan** memberikan kecerunan atau kadar perubahan pada **satu titik tertentu** pada lengkung.
+
+## Kecerunan Garis Sekan
+
+Kita mulakan dengan **garis sekan**, iaitu garis lurus yang melalui dua titik berbeza pada lengkung.
+
+Katakan lengkung itu mewakili <InlineMath math="y = f(x)" />. Pilih dua titik berbeza, <InlineMath math="P(x, f(x))" /> dan <InlineMath math="Q(x+\Delta x, f(x+\Delta x))" />, pada lengkung itu. Di sini, <InlineMath math="\Delta x" /> (dibaca "delta x") ialah perubahan mengufuk dari <InlineMath math="P" /> ke <InlineMath math="Q" />, jadi <InlineMath math="\Delta x \ne 0" />.
+
+Kecerunan garis sekan yang melalui <InlineMath math="P" /> dan <InlineMath math="Q" /> ialah:
+
+<BlockMath math="\begin{aligned} m_{\text{sekan}} &amp;= \frac{\Delta y}{\Delta x} \\ &amp;= \frac{f(x + \Delta x) - f(x)}{\Delta x} \end{aligned}" />
+
+Kecerunan ini ialah **kadar perubahan purata** bagi <InlineMath math="f(x)" /> di antara <InlineMath math="P" /> dan <InlineMath math="Q" />.
+
+<MathVisual
+  title={<>Garis sekan dan garis tangen</>}
+  description={<>Garis sekan yang melalui <InlineMath math="P(1, 1)" /> dan <InlineMath math="Q(3, 9)" /> pada <InlineMath math="y = x^2" /> ada kecerunan <InlineMath math="4" />. Tangen di <InlineMath math="P" />, <InlineMath math="y = 2x - 1" />, ada kecerunan <InlineMath math="2" />, iaitu kecerunan lengkung di <InlineMath math="P" />.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    secant: <InlineMath math="m = 4" />,
+    tangent: <InlineMath math="m = 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 3.6 }, y: { min: -3.6, max: 10.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -3 / 2, max: 16 / 5 }, appearance: "primary" },
+      { id: "secant", kind: "segment", from: { x: 1, y: 1 }, to: { x: 3, y: 9 }, appearance: "secondary" },
+      { id: "tangent", kind: "segment", from: { x: -1, y: -3 }, to: { x: 3, y: 5 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "q", kind: "point", at: { x: 3, y: 9 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 1 }, placement: "below-right" },
+      { key: "q", objectId: "q", at: { x: 3, y: 9 }, placement: "left" },
+      { key: "secant", objectId: "secant", at: { x: 2, y: 5 }, placement: "left" },
+      { key: "tangent", objectId: "tangent", at: { x: 3, y: 5 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Daripada Garis Sekan kepada Garis Tangen
+
+Bayangkan kita memilih <InlineMath math="Q" /> pada parabola itu semakin dekat dengan <InlineMath math="P" />. Jarak mengufuk <InlineMath math="\Delta x" /> pun menghampiri sifar. Kita boleh kira kesan memilih titik yang berbeza sambil mengekalkan parabola yang sama.
+
+Apabila <InlineMath math="\Delta x \to 0" /> (dibaca "delta x menghampiri sifar"), garis-garis sekan menghampiri **garis tangen** di <InlineMath math="P" />. Garis tangen menunjukkan arah setempat lengkung pada titik itu. Garis tangen tidak semestinya menyilang lengkung itu sekali sahaja di sepanjang lengkung. Yang penting ialah kelakuannya secara setempat berhampiran <InlineMath math="P" />.
+
+Kecerunan tangen ialah **kadar perubahan seketika** lengkung di <InlineMath math="P" />. Kita mencarinya menggunakan **had**:
+
+<BlockMath math="\begin{aligned} &amp;m_{\text{tangen}} = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x} \end{aligned}" />
+
+Untuk parabola yang diplot, tetapkan <InlineMath math="P=(1,1)" /> dan tulis <InlineMath math="h=\Delta x" />. Titik kedua ialah <InlineMath math="Q=(1+h,(1+h)^2)" />. Selagi <InlineMath math="h\ne0" />, kecerunan sekan boleh dipermudahkan menjadi:
+
+<BlockMath math="\begin{aligned}\frac{(1+h)^2-1}{h}&=\frac{2h+h^2}{h}\\&=2+h\end{aligned}" />
+
+Kita boleh membatalkan faktor <InlineMath math="h" /> kerana kedua-dua titik itu masih berbeza. Jadual ini membandingkan kecerunan apabila <InlineMath math="Q" /> berada di kiri dan di kanan <InlineMath math="P" />.
+
+| <InlineMath math="h" /> | Kecerunan sekan <InlineMath math="2+h" /> |
+| --- | --- |
+| <InlineMath math="-0.5" /> | <InlineMath math="1.5" /> |
+| <InlineMath math="-0.1" /> | <InlineMath math="1.9" /> |
+| <InlineMath math="0.1" /> | <InlineMath math="2.1" /> |
+| <InlineMath math="0.5" /> | <InlineMath math="2.5" /> |
+| <InlineMath math="1" /> | <InlineMath math="3" /> |
+
+Apabila **jarak mengufuk menghampiri sifar dari kedua-dua belah**, kecerunannya menghampiri <InlineMath math="2" />. Jadi kecerunan tangen di <InlineMath math="P" /> ialah <InlineMath math="2" />. Kita ambil had selepas pecahan itu dipermudahkan, jadi tiada pembahagian dengan sifar berlaku.
+
+Jadualkan kecerunan sekan <InlineMath math="2 + h" /> apabila <InlineMath math="Q" /> bergerak ke arah <InlineMath math="P" />. Dari <InlineMath math="h = 1" /> turun hingga <InlineMath math="h = -0.5" />, palang-palang itu semakin hampir kepada <InlineMath math="2" /> dari kedua-dua belah, iaitu kecerunan tangen di <InlineMath math="P" />.
+
+<BarChart
+  title={<>Kecerunan sekan apabila <InlineMath math="h" /> mengecil</>}
+  description={<>Palang kecerunan sekan <InlineMath math="2 + h" /> untuk <InlineMath math="h = -0.5, -0.1, 0.1, 0.5, 1" />.</>}
+  yAxisLabel="Kecerunan sekan"
+  data={[-0.5, -0.1, 0.1, 0.5, 1].map((x) => ({ name: String(x), value: 2 + x }))}
+  chartConfig={{ value: { label: "Kecerunan sekan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Takrif Terbitan
+
+<Highlight>[Had](/ms/subjek/matematik/had/konsep-had-fungsi) bagi kecerunan sekan</Highlight> apabila <InlineMath math="\Delta x" /> menghampiri sifar dinamakan **terbitan**.
+
+Terbitan bagi fungsi <InlineMath math="f(x)" />, yang ditandakan sebagai <InlineMath math="f'(x)" /> (dibaca "f prima x"), ditakrifkan sebagai:
+
+<BlockMath math="f'(x) = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}" />
+
+Proses mencari terbitan dinamakan **pembezaan**.
+
+Terbitan <InlineMath math="f'(x)" /> ialah satu fungsi baharu. Pada setiap nilai <InlineMath math="x" /> yang hadnya wujud, terbitan memberikan **kadar perubahan seketika** bagi <InlineMath math="f(x)" />, yang juga ialah kecerunan garis tangen di situ. Kalkulus pembezaan menggunakan fungsi terbitan untuk menganalisis kedua-dua kuantiti ini.
+
+Apabila <InlineMath math="Q" /> bergerak ke arah <InlineMath math="P" />, garis-garis sekan berpusing ke arah tangen. <InlineMath math="h = 1" /> memberikan kecerunan <InlineMath math="3" />, <InlineMath math="h = \tfrac12" /> memberikan <InlineMath math="2.5" />, dan tangen di <InlineMath math="P" /> ada kecerunan <InlineMath math="2" />: inilah had bagi kecerunan sekan.
+
+<MathVisual
+  title={<>Garis sekan berpusing menjadi tangen</>}
+  description={<>Lengkung <InlineMath math="y = x^2" /> dengan garis sekan dari <InlineMath math="P(1, 1)" /> ke <InlineMath math="(2, 4)" /> dan ke <InlineMath math="\left(\tfrac32, \tfrac94\right)" />, serta tangen berkecerunan <InlineMath math="2" /> di <InlineMath math="P" />.</>}
+  labels={{
+    s1: <InlineMath math="m = 3" />,
+    s2: <InlineMath math="m = 2.5" />,
+    t: <InlineMath math="m = 2" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 2.6 }, y: { min: -1.4, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 0, max: 2 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 1, y: 1 }, to: { x: 2, y: 4 }, appearance: "secondary" },
+      { id: "s2", kind: "segment", from: { x: 1, y: 1 }, to: { x: 3 / 2, y: 9 / 4 }, appearance: "highlight" },
+      { id: "t", kind: "segment", from: { x: 0, y: -1 }, to: { x: 2, y: 3 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s1", objectId: "s1", at: { x: 2, y: 4 }, placement: "left" },
+      { key: "s2", objectId: "s2", at: { x: 3 / 2, y: 9 / 4 }, placement: "left" },
+      { key: "t", objectId: "t", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: 1, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
