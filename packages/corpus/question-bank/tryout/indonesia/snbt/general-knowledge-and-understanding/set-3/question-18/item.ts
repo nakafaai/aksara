@@ -4,34 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "paragraph-meaning",
-    topic: "main-idea",
+    topic: "detail",
   },
-  stimulus: "lebah",
+  stimulus: "koperasi",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Lebah madu lebih penting daripada lebah liar bagi petani.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Pestisida adalah satu-satunya penyebab berkurangnya lebah, sehingga larangan pestisida sudah cukup untuk memulihkan populasi lebah di semua negara.",
+            "Anggota yang tidak pernah meminjam tetap dapat memperoleh bagian SHU.",
         },
         {
-          correct: false,
-          label: "Peternak lebah harus memeriksa koloninya setiap hari.",
-        },
-        {
-          correct: false,
-          label: "Populasi lebah menurun di semua negara.",
-        },
-        {
-          correct: true,
+          column: 1,
           label:
-            "Populasi lebah menurun karena beberapa penyebab yang saling berkaitan, sehingga perlindungannya memerlukan berbagai langkah.",
+            "Jika seorang anggota mengambil bunga simpanan sukarelanya setiap bulan dan tidak menambah setoran, bunga yang ia terima tiap bulan dihitung dari jumlah yang sama, seperti pada bunga tunggal.",
+        },
+        {
+          column: 2,
+          label:
+            "Pada akhir bulan ketiga, selisih saldo antara bunga majemuk dan bunga tunggal untuk setoran $$\\text{Rp}1{.}000{.}000$$ dengan bunga $$1\\%$$ per bulan tepat $$\\text{Rp}300$$.",
+        },
+        {
+          column: 2,
+          label:
+            "Bunga majemuk membuat setiap setoran berlipat dua dalam sekitar $$70$$ bulan, berapa pun besar bunganya.",
         },
       ],
     },
