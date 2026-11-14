@@ -5,7 +5,7 @@ export const metadata = {
     "Bacteria are prokaryotic cells with varied shapes, nucleoids, ribosomes, diverse cell envelopes, and many ecological roles.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Biodiversity of Living Organisms",
 };
 
@@ -18,6 +18,29 @@ Bacteria can cause **changes in food** before their cells are visible under a mi
 Milk can become yogurt, coconut water can become nata de coco, and food kept too long can spoil. Different bacteria and processes are involved in each case. Because the cells are too small to see directly, we often recognize their activity from changes in smell, taste, texture, or color.
 
 **Bacteria** are <Highlight>unicellular prokaryotic organisms</Highlight>. **Unicellular** means the body consists of one cell. **Prokaryotic** means the genetic material is not enclosed by a nuclear membrane. Bacteria are living cells, but their internal organization differs from animal, plant, or fungal cells.
+
+Yogurt is an example you can watch yourself. Lactic acid bacteria turn the milk's sugar into lactic acid, so the milk gets more and more acidic. Fresh milk has a pH of about <InlineMath math="6.7" />. Once the pH drops to about <InlineMath math="4.6" />, casein, milk's main protein, loses its charge and sticks together, so the milk **sets into a gel**.
+
+<YogurtLab
+  title={<>Milk Becomes Yogurt</>}
+  description={
+    <>
+      Milk with lactic acid bacteria is kept at{" "}
+      <InlineMath math="43^\circ\text{C}" />. Slide the hours, then tilt the
+      jar to test whether the milk has set.
+    </>
+  }
+  labels={{
+    hours: "Hours of incubation",
+    tilt: "Tilt",
+    ph: <>Milk pH</>,
+    state: <>State of the milk</>,
+    states: { liquid: <>still liquid</>, set: <>set into a gel</> },
+    viewLabel: "Jar of milk and pH meter in a yogurt maker",
+  }}
+/>
+
+This card uses an S-curve model: the pH falls slowly at first, fast once the bacteria are many, then slowly again, and passes <InlineMath math="4.6" /> after four hours. While the pH is still above that value, the milk's surface stays level when you tilt the jar. Once it passes, the yogurt tilts with the jar because its casein has formed a network.
 
 ### Structure of a Living Prokaryotic Cell
 
@@ -82,7 +105,7 @@ Bacteria can change food so quickly because they multiply by splitting. One cell
 
 <MathVisual
   title={<>Splitting Doubles the Cells</>}
-  description={<>Cell count after each split, starting from one cell. Horizontal: number of splits. Vertical: one grid step is 10 cells.</>}
+  description={<>Cell count after each split, starting from one cell. Horizontal: number of splits. Vertical: one grid step is <InlineMath math="10" /> cells.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 7 } },
@@ -107,6 +130,29 @@ Bacteria can change food so quickly because they multiply by splitting. One cell
     end: <InlineMath math="2^6=64" />,
   }}
 />
+
+### One Cell Becomes a Colony
+
+The graph counts the cells, but you can also watch how they divide. A rod-shaped cell such as Escherichia coli grows to almost twice its length, pinches in the middle, and splits into **two daughter cells** that are alike. In a rich broth at <InlineMath math="37^\circ\text{C}" />, one round takes about <InlineMath math="20\text{ minutes}" />.
+
+<BinaryFissionLab
+  title={<>Binary Fission Builds a Colony</>}
+  description={
+    <>
+      One Escherichia coli cell divides every{" "}
+      <InlineMath math="20\text{ minutes}" />. Slide the time or play the
+      first two hours.
+    </>
+  }
+  labels={{
+    minutes: "Minutes since the first cell",
+    generations: <>Divisions</>,
+    cells: <>Number of cells</>,
+    viewLabel: "Colony of rod-shaped bacteria under a microscope",
+  }}
+/>
+
+Two hours hold <InlineMath math="120/20=6" /> divisions, so one cell becomes <InlineMath math="2^6=64" /> cells. Each daughter cell stays where its parent was, so the cells pile up into a colony. A colony that shows up on food without a microscope already holds millions of cells like these.
 
 ## Observing Bacterial Cell Shapes
 
@@ -142,11 +188,39 @@ The nucleoid is not enclosed by a nuclear membrane. Bacterial DNA can still be c
 
 Many bacteria have cell walls containing **peptidoglycan**, a molecular network that gives shape and protection. Gram-positive bacteria tend to have a thick peptidoglycan layer. Gram-negative bacteria have a thinner peptidoglycan layer and an outer membrane. This outer membrane can affect resistance to certain substances.
 
+A **Gram stain** shows that difference in the wall. Crystal violet colours every cell, then iodine locks the colour in. Alcohol then washes the purple out of the thin walls of Gram-negative bacteria, but not out of the thick walls of Gram-positive bacteria. Safranin finally colours the pale cells pink.
+
+<GramStainLab
+  title={<>A Gram Stain under the Microscope</>}
+  description={
+    <>
+      The slide holds clustered cocci, bacilli and spirals. Pick a staining
+      step to see each shape's colour.
+    </>
+  }
+  labels={{
+    chooseStep: "Choose the staining step",
+    steps: {
+      smear: "Smear",
+      violet: "Crystal violet",
+      iodine: "Iodine",
+      alcohol: "Alcohol",
+      safranin: "Safranin",
+    },
+    positive: <>Cocci, Gram-positive</>,
+    negative: <>Bacilli and spirals, Gram-negative</>,
+    hues: { clear: <>pale</>, purple: <>purple</>, pink: <>pink</> },
+    viewLabel: "Bacterial slide seen through a microscope lens",
+  }}
+/>
+
+Look at the alcohol step. That's where the two groups part: the cocci stay purple, while the bacilli and spirals turn pale. The final colour helps identification, but it still has to be combined with other traits.
+
 A cell takes in food and gets rid of waste through its surface, while what it needs grows with its volume. A cube with side <InlineMath math="s" /> has surface <InlineMath math="6s^2" /> and volume <InlineMath math="s^3" />, so every unit of volume gets <InlineMath math="\tfrac{6}{s}" /> units of surface. Rotate the cubes: the smallest one has the most surface for its size, which helps a tiny bacterium exchange substances quickly.
 
 <MathVisual
   title={<>Small Cells Have More Surface per Volume</>}
-  description={<>Cubes with sides of 1, 2 and 4 micrometers. Each label divides the surface area by the volume.</>}
+  description={<>Cubes with sides of <InlineMath math="1" />, <InlineMath math="2" /> and <InlineMath math="4" /> micrometers. Each label divides the surface area by the volume.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 9.5 }, y: { min: 0, max: 4.5 }, z: { min: -2.5, max: 2.5 } },
@@ -169,6 +243,29 @@ A cell takes in food and gets rid of waste through its surface, while what it ne
   }}
 />
 
+### Flagella Carry a Cell toward Food
+
+Many rod-shaped bacteria swim with **flagella**, long tails that turn like propellers. Escherichia coli swims straight at about <InlineMath math="25\ \mu\text{m/s}" /> for roughly <InlineMath math="1\text{ s}" />, then tumbles for about <InlineMath math="0.1\text{ s}" /> and faces a new random direction. The cell can't see food, but it can sense whether the sugar around it is increasing.
+
+<ChemotaxisLab
+  title={<>Bacteria Swim toward Sugar</>}
+  description={
+    <>
+      Two cells run and tumble at random. The teal cell senses sugar from the
+      crystal on the right, while the grey cell lacks the receptors. Time runs
+      four times faster.
+    </>
+  }
+  labels={{
+    sensing: <>Progress toward sugar, teal cell</>,
+    mutant: <>Progress toward sugar, grey cell</>,
+    elapsed: <>Time</>,
+    viewLabel: "Two bacteria swimming in a dish with sugar",
+  }}
+/>
+
+When the sugar increases, the teal cell puts off its tumble, so its runs toward the sugar last longer than its runs in other directions. Within a minute the random walk drifts toward the food. This directed movement is called **chemotaxis**, and the grey cell without receptors just wanders.
+
 ## Bacterial Roles in Disease and Everyday Life
 
 Some bacteria cause disease, but many bacteria have useful roles. Some help make yogurt, cheese, or nata de coco. Others help decompose remains, produce vitamins, support genetic engineering, or contribute to bioremediation. **Bioremediation** means using organisms to help break down pollutants.
@@ -178,8 +275,8 @@ The human body contains microbial communities linked to health. [Studies of heal
 To assess a bacterium's role, ask where it lives, which metabolic process it uses, and how it affects other organisms.
 
 <Mermaid
-  title="Evidence for Identifying Bacteria"
-  description="Combine outer shape, cell contents, and cell-wall evidence to identify a bacterium from several clues."
+  title={<>Evidence for Identifying Bacteria</>}
+  description={<>Combine outer shape, cell contents, and cell-wall evidence to identify a bacterium from several clues.</>}
   chart={`flowchart LR
     A["Outer shape"] --> B["Morphology clue"]
     C["Cell contents"] --> D["DNA and ribosomes"]

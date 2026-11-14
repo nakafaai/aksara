@@ -5,7 +5,7 @@ export const metadata = {
     "Warum die Gesamtmasse bei einer chemischen Reaktion erhalten bleibt, wenn Produkte, Reaktantenreste und entweichende Gase vollständig erfasst werden.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Grundgesetze der Chemie",
 };
 
@@ -17,9 +17,70 @@ Bei einer chemischen Reaktion verschwinden Atome nicht und entstehen auch nicht 
 
 Die Systemgrenze legt fest, welche Stoffe zur Masse gehören. In einem geschlossenen Behälter bleiben alle Stoffe innerhalb des gewogenen Bereichs. Aus einem offenen Behälter kann Gas diese Grenze überschreiten. Die Waage zeigt dann weniger Masse an, weil sich das Gas außerhalb des gewogenen Bereichs befindet. Die Materie ist weiterhin vorhanden. Die Gesamtmenge an Materie bleibt bei chemischen und physikalischen Veränderungen unverändert.
 
+### Ein neuer Feststoff mit derselben Masse
+
+Eine Reaktion kann einen ganz neuen Stoff bilden, ohne die Masse zu ändern. Silbernitratlösung und Kochsalzlösung sind beide klar. Wenn du sie mischst, verbinden sich Silberionen und Chloridionen zu Silberchlorid, das sich nicht löst, und es erscheint ein **weißer Niederschlag** wie eine Wolke.
+
+<BlockMath math="\mathrm{AgNO_3(aq)} + \mathrm{NaCl(aq)} \rightarrow \mathrm{AgCl(s)} + \mathrm{NaNO_3(aq)}" />
+
+Jedes Becherglas enthält <InlineMath math="50{,}00\ \mathrm{g}" /> Wasser mit <InlineMath math="0{,}0050\ \mathrm{mol}" /> seines Salzes, also <InlineMath math="0{,}85\ \mathrm{g}" /> Silbernitrat und <InlineMath math="0{,}29\ \mathrm{g}" /> Natriumchlorid. Beide Bechergläser stehen vor und nach dem Umgießen auf derselben Waage.
+
+<PrecipitateLab
+  title={<>Ein weißer Niederschlag auf der Waage</>}
+  description={
+    <>
+      Spiel das Umgießen der Silbernitratlösung in die Kochsalzlösung ab. Eine
+      Wolke aus Silberchlorid erscheint, und die Anzeige bleibt gleich.
+    </>
+  }
+  labels={{
+    readingBefore: <>Anzeige vor dem Umgießen</>,
+    readingAfter: <>Anzeige nach dem Umgießen</>,
+    precipitate: (
+      <>
+        Gebildeter Niederschlag <InlineMath math="\mathrm{AgCl}" />
+      </>
+    ),
+    viewLabel: "Zwei Bechergläser auf einer Waage",
+  }}
+/>
+
+Die Waage zeigt vor und nach dem Umgießen <InlineMath math="101{,}14\ \mathrm{g}" />. Etwa <InlineMath math="0{,}72\ \mathrm{g}" /> festes Silberchlorid entstehen, aber ihre Atome stammen aus Stoffen, die schon in den Gläsern waren. Kein Gas kommt hinzu oder entweicht, also behalten sogar offene Gläser dieselbe Masse.
+
 ## Messungen von Lavoisier
 
 Vor der modernen Chemie wurde Verbrennung häufig mit Phlogiston erklärt, als würde beim Brennen eine unsichtbare Substanz entweichen. Antoine Lavoisier stellte diese Vorstellung durch sorgfältiges Wiegen infrage. Er erfasste die Massen von Reaktanten und Produkten **einschließlich der Gase** und zeigte damit, dass bei der Verbrennung eine Reaktion mit Sauerstoff stattfindet.
+
+Sein bekanntester Versuch steht in [Lavoisiers Buch Elements of Chemistry](https://www.gutenberg.org/ebooks/30775). Er erhitzte vier Unzen Quecksilber zwölf Tage lang in einem Glaskolben. Der Hals des Kolbens öffnete sich in die Luft unter einer Glasglocke, die in einer Wanne mit Quecksilber stand. Auf dem Quecksilber bildeten sich rote Teilchen, die er Quecksilberkalk nannte, und die Luft unter der Glocke schrumpfte von etwa <InlineMath math="50" /> auf <InlineMath math="42" /> bis <InlineMath math="43" /> Kubikzoll.
+
+<LavoisierCalxLab
+  title={<>Lavoisiers zwölf Tage Quecksilber im Feuer</>}
+  description={
+    <>
+      Schieb oder spiel die Tage des Erhitzens ab. Auf dem Quecksilber wachsen
+      rote Teilchen, und das Quecksilber in der Glocke steigt, weil Luft
+      verbraucht wird.
+    </>
+  }
+  labels={{
+    day: "Tag des Erhitzens",
+    air: <>Luft unter der Glocke</>,
+    airUnit: "Kubikzoll",
+    calx: <>Gebildeter roter Kalk</>,
+    calxUnit: "Gran",
+    reverseLabel: <>Wenn der Kalk stärker erhitzt wird</>,
+    reverse: (
+      <>
+        Aus <InlineMath math="45" /> Gran Kalk werden{" "}
+        <InlineMath math="41{,}5" /> Gran Quecksilber und{" "}
+        <InlineMath math="7" /> bis <InlineMath math="8" /> Kubikzoll Gas
+      </>
+    ),
+    viewLabel: "Lavoisiers Ofen, Quecksilberkolben und Glasglocke",
+  }}
+/>
+
+Lavoisier sammelte <InlineMath math="45" /> Gran Kalk. Als er diesen Kalk stärker erhitzte, wurde daraus wieder <InlineMath math="41{,}5" /> Gran Quecksilber und <InlineMath math="7" /> bis <InlineMath math="8" /> Kubikzoll Gas. Der Unterschied von <InlineMath math="45-41{,}5=3{,}5" /> Gran ist die Masse des Gases, das das Quecksilber der Luft entzogen hatte. **Masse entsteht nicht aus dem Nichts**: Der Kalk ist schwerer, weil sich Sauerstoff aus der Luft angelagert hat.
 
 Lavoisier begründete den Massenerhaltungssatz und verknüpfte Verbrennung mit Sauerstoff.
 
@@ -101,7 +162,7 @@ Die drei Säulen unten sind die Anzeigen der Waage, ein Gitterschritt für <Inli
 
 <MathVisual
   title={<>Was die Waage anzeigt</>}
-  description={<>10,00 g Zink und 2,00 g Schwefel vor der Reaktion, danach im geschlossenen und im offenen System. Ein Gitterschritt nach oben sind 4 g.</>}
+  description={<><InlineMath math="10{,}00\text{ g}" /> Zink und <InlineMath math="2{,}00\text{ g}" /> Schwefel vor der Reaktion, danach im geschlossenen und im offenen System. Ein Gitterschritt nach oben sind <InlineMath math="4\text{ g}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
@@ -123,6 +184,74 @@ Die drei Säulen unten sind die Anzeigen der Waage, ein Gitterschritt für <Inli
     open: <InlineMath math="11{,}00\ \mathrm{g}" />,
   }}
 />
+
+Gas kann ein offenes System verlassen, aber Gas aus der Luft kann auch hineinkommen und mitreagieren. Die nächsten beiden Versuche zeigen beide Richtungen auf derselben Art von Waage.
+
+### Gas entweicht aus dem offenen Kolben
+
+Natron, also Natriumhydrogencarbonat, reagiert mit der Essigsäure im Essig zu Kohlenstoffdioxid.
+
+<BlockMath math="\mathrm{NaHCO_3} + \mathrm{CH_3COOH} \rightarrow \mathrm{CH_3COONa} + \mathrm{H_2O} + \mathrm{CO_2}" />
+
+Jedes Mol Natron liefert **ein Mol Kohlenstoffdioxid**. Aus <InlineMath math="2{,}00\ \mathrm{g}" /> Natron entstehen <InlineMath math="2{,}00\times\frac{44{,}01}{84{,}01}\approx1{,}05\ \mathrm{g}" /> Gas. Die Waage ist mit dem leeren Kolben und Schälchen tariert, also zeigt sie am Anfang die <InlineMath math="100{,}00\ \mathrm{g}" /> Essig plus das Natron.
+
+<FizzBalanceLab
+  title={<>Natron und Essig auf der Waage</>}
+  description={
+    <>
+      Spiel ab, wie das Natron in den Essig fällt. Vergleich einen offenen
+      Kolben mit einem Kolben, der mit einem Stopfen verschlossen ist.
+    </>
+  }
+  labels={{
+    chooseSeal: "Kolben wählen",
+    seals: { open: "Offen", closed: "Verschlossen" },
+    readingBefore: <>Anzeige vor der Reaktion</>,
+    readingAfter: <>Anzeige nach der Reaktion</>,
+    gasFormed: (
+      <>
+        Gebildetes <InlineMath math="\mathrm{CO_2}" />
+      </>
+    ),
+    gasEscaped: (
+      <>
+        Entwichenes <InlineMath math="\mathrm{CO_2}" />
+      </>
+    ),
+    viewLabel: "Kolben mit Essig und Schälchen mit Natron auf einer Waage",
+  }}
+/>
+
+Beim offenen Kolben sinkt die Anzeige von <InlineMath math="102{,}00\ \mathrm{g}" /> auf <InlineMath math="100{,}95\ \mathrm{g}" />, weil Gas durch den Hals entweicht. Beim verschlossenen Kolben bleibt das Gas drin, und die Anzeige bleibt bei <InlineMath math="102{,}00\ \mathrm{g}" />. Die Rechnung nimmt an, dass das ganze Gas die Flüssigkeit verlässt. In Wirklichkeit bleibt etwas Kohlenstoffdioxid gelöst, deshalb kann der gemessene Rückgang etwas kleiner sein.
+
+### Eisen bindet Sauerstoff aus der Luft
+
+Brennende Stahlwolle wird sogar **schwerer**. Eisen reagiert mit Sauerstoff aus der Luft zu einem blauschwarzen Eisenoxid.
+
+<BlockMath math="3\mathrm{Fe} + 2\mathrm{O_2} \rightarrow \mathrm{Fe_3O_4}" />
+
+Je <InlineMath math="3\times55{,}845=167{,}535\ \mathrm{g}" /> Eisen binden <InlineMath math="4\times15{,}999=63{,}996\ \mathrm{g}" /> Sauerstoff. Verbrennen alle <InlineMath math="1{,}50\ \mathrm{g}" /> Stahlwolle, kommt <InlineMath math="1{,}50\times\frac{63{,}996}{167{,}535}\approx0{,}57\ \mathrm{g}" /> Sauerstoff hinzu. [Der Versuch der Royal Society of Chemistry zur Verbrennung von Eisenwolle](https://edu.rsc.org/experiments/the-combustion-of-iron-wool/717.article) zeigt diese Massenzunahme auf einer einfachen Waage.
+
+<SteelWoolLab
+  title={<>Brennende Stahlwolle wird schwerer</>}
+  description={
+    <>
+      Spiel ab, wie die Stahlwolle mit einer Batterie entzündet wird. Vergleich
+      das Verbrennen an offener Luft mit dem Verbrennen in einem geschlossenen
+      Glas voller Luft.
+    </>
+  }
+  labels={{
+    chooseSeal: "Ort wählen",
+    seals: { open: "Offene Luft", closed: "Geschlossenes Glas" },
+    readingBefore: <>Anzeige vor dem Verbrennen</>,
+    readingAfter: <>Anzeige nach dem Verbrennen</>,
+    oxygenJoined: <>Angelagerter Sauerstoff</>,
+    viewLabel: "Stahlwolle brennt auf einer Waage",
+  }}
+/>
+
+An offener Luft kommt der Sauerstoff von außerhalb des gewogenen Systems, also steigt die Anzeige von <InlineMath math="1{,}50\ \mathrm{g}" /> auf <InlineMath math="2{,}07\ \mathrm{g}" />. Im geschlossenen Glas wurde dieser Sauerstoff von Anfang an mitgewogen, deshalb bleibt die Anzeige gleich. Im echten Versuch verbrennt meist nur ein Teil der Wolle, also fällt die Zunahme kleiner aus als in dieser Rechnung für vollständiges Verbrennen.
 
 ## Zink und Schwefel
 
@@ -163,7 +292,7 @@ Halte die drei Massen im Versuch mit Zink und Schwefel auseinander. Vor der Reak
 
 <MathVisual
   title={<>Drei Fragen zur Masse</>}
-  description={<>Vorher (links): restliches Zink (grau), reagierendes Zink (orange) und Schwefel (gelb). Nachher (rechts): restliches Zink (grau) und Zinksulfid (türkis). Ein Gitterschritt nach oben ist 1 Gramm.</>}
+  description={<>Vorher (links): restliches Zink (grau), reagierendes Zink (orange) und Schwefel (gelb). Nachher (rechts): restliches Zink (grau) und Zinksulfid (türkis). Ein Gitterschritt nach oben ist <InlineMath math="1\text{ g}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 13 }, z: { min: -1.5, max: 1.5 } },

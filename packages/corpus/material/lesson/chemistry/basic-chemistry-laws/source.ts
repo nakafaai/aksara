@@ -74,6 +74,8 @@ export const lessonChemistryBasicChemistryLawsMaterial = defineLessonMaterial({
     },
     {
       evidenceUrls: [
+        "https://edu.rsc.org/experiments/the-combustion-of-iron-wool/717.article",
+        "https://www.gutenberg.org/ebooks/30775",
         "https://www.sciencehistory.org/education/scientific-biographies/antoine-laurent-lavoisier/",
         "https://www.ciaaw.org/abridged-atomic-weights.htm",
         "https://openstax.org/books/chemistry-2e/pages/1-2-phases-and-classification-of-matter",

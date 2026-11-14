@@ -5,7 +5,7 @@ export const metadata = {
     "Stopping distance is the sum of reaction distance and braking distance under the stated motion conditions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Kinematics",
 };
 
@@ -49,7 +49,7 @@ The area under velocity is the distance. During the reaction time the car keeps 
 
 <MathVisual
   title={<>Two Phases of Stopping</>}
-  description={<>Velocity against time while stopping from 20 m/s: reaction (teal) and braking (orange). Horizontal: seconds. Vertical: one grid step is 5 m/s.</>}
+  description={<>Velocity against time while stopping from <InlineMath math="20\text{ m/s}" />: reaction (teal) and braking (orange). Horizontal: seconds. Vertical: one grid step is <InlineMath math="5\text{ m/s}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 5 } },
@@ -69,6 +69,39 @@ The area under velocity is the distance. During the reaction time the car keeps 
   }}
 />
 
+### Measure Your Own Reaction Time
+
+Reaction time isn't a fixed number, and the clearest way to feel that is to measure your own. In this card you drive at <InlineMath math="20\text{ m/s}" />, which is <InlineMath math="72\text{ km/h}" />, two seconds behind another car. Press **Start**, then press **Brake** as soon as the brake lights of the car ahead come on.
+
+<ReactionTimeLab
+  title={<>Test Your Reaction Time</>}
+  description={
+    <>
+      Press Brake as soon as the brake lights of the car ahead come on. The
+      card records your reaction time and the distance you still cover at{" "}
+      <InlineMath math="20\text{ m/s}" />.
+    </>
+  }
+  labels={{
+    start: "Start",
+    brake: "Brake",
+    early: <>Too early, wait for the lights</>,
+    lastTime: <>Your reaction time</>,
+    reactionDistance: (
+      <>
+        Reaction distance at <InlineMath math="20\text{ m/s}" />
+      </>
+    ),
+    best: <>Fastest</>,
+    average: <>Mean of your last five tries</>,
+    viewLabel: "View from the driver's seat",
+  }}
+/>
+
+The time you measure turns straight into distance through <InlineMath math="d_{\text{reaction}}=vt_r" />. If your time is <InlineMath math="0.3\text{ s}" />, the car keeps going for <InlineMath math="20\cdot0.3=6\text{ m}" /> before the brakes act. Once you brake, both cars stop with the same deceleration, so the gap between them shrinks by **exactly your reaction distance**.
+
+On a real road the numbers are bigger than on a screen. A driver has to see the hazard, decide to brake, and move a foot to the pedal. [Marc Green's summary of driver reaction time research](https://www.visualexpert.com/Resources/reactiontime.html) gives about <InlineMath math="0.7\text{ s}" /> for a driver who's ready to brake, <InlineMath math="1.25\text{ s}" /> for brake lights ahead that the driver wasn't waiting for, and <InlineMath math="1.5\text{ s}" /> for something that suddenly enters the road from the side.
+
 ## Braking Distance Uses Constant Deceleration
 
 While the brakes act, the vehicle slows down. If deceleration is **treated as constant** and the final velocity is zero, a uniformly accelerated motion equation can be used to find the braking distance.
@@ -82,6 +115,62 @@ While the brakes act, the vehicle slows down. If deceleration is **treated as co
 The quantity <InlineMath math="b" /> is the magnitude of the deceleration, so it is written as a positive value.
 
 This formula uses a simple assumption: the path is straight, braking deceleration is treated as constant, and the vehicle does not skid. If the road condition changes, the value of <InlineMath math="b" /> can change too.
+
+### The Road Surface Changes the Deceleration
+
+The path stays straight, but if a car without ABS brakes as hard as it can, its wheels lock and the tyres slide straight along the road. Then the only force slowing the car is friction between tyre and road. Its size is <InlineMath math="\mu mg" />, where <InlineMath math="\mu" /> is the coefficient of friction. The car's mass appears on both sides, so the deceleration **depends only on the road**.
+
+<MathContainer>
+  <BlockMath math="mb=\mu mg" />
+  <BlockMath math="b=\mu g" />
+  <BlockMath math="d_{\text{brake}}=\frac{v^2}{2\mu g}" />
+</MathContainer>
+
+The sliding friction coefficients in this table come from [Soica and Gheorghe's 2025 review of tyre and road interaction](https://www.mdpi.com/2075-1702/13/11/1005). For wet asphalt the review gives a range from <InlineMath math="0.45" /> to <InlineMath math="0.6" />, and the table uses its lower end. The last column is worked out for <InlineMath math="20\text{ m/s}" /> with <InlineMath math="g=9.8\text{ m/s}^2" />.
+
+| Surface | Friction coefficient | Deceleration | Braking distance |
+| --- | --- | --- | --- |
+| Dry asphalt | <InlineMath math="0.75" /> | <InlineMath math="7.35\text{ m/s}^2" /> | <InlineMath math="27.2\text{ m}" /> |
+| Wet asphalt | <InlineMath math="0.45" /> | <InlineMath math="4.41\text{ m/s}^2" /> | <InlineMath math="45.4\text{ m}" /> |
+| Gravel | <InlineMath math="0.55" /> | <InlineMath math="5.39\text{ m/s}^2" /> | <InlineMath math="37.1\text{ m}" /> |
+| Packed snow | <InlineMath math="0.15" /> | <InlineMath math="1.47\text{ m/s}^2" /> | <InlineMath math="136.1\text{ m}" /> |
+| Ice | <InlineMath math="0.07" /> | <InlineMath math="0.686\text{ m/s}^2" /> | <InlineMath math="291.5\text{ m}" /> |
+
+<BrakingSurfaceLab
+  title={<>Road Surface and Braking Distance</>}
+  description={
+    <>
+      The car drives at <InlineMath math="20\text{ m/s}" />, and its wheels
+      lock right at the white line. Pick a road surface, then play to see the
+      skid marks and the distance posts.
+    </>
+  }
+  labels={{
+    chooseSurface: "Choose the road surface",
+    surfaces: {
+      dry: "Dry",
+      wet: "Wet",
+      gravel: "Gravel",
+      snow: "Snow",
+      ice: "Ice",
+    },
+    friction: (
+      <>
+        Friction coefficient <InlineMath math="\mu" />
+      </>
+    ),
+    deceleration: (
+      <>
+        Deceleration <InlineMath math="b" />
+      </>
+    ),
+    brakingDistance: <>Braking distance</>,
+    brakingTime: <>Braking time</>,
+    viewLabel: "A car braking on different road surfaces",
+  }}
+/>
+
+Compare dry and wet asphalt. The friction coefficient drops from <InlineMath math="0.75" /> to <InlineMath math="0.45" />, so the braking distance grows <InlineMath math="0.75/0.45\approx1.67" /> times, from <InlineMath math="27.2\text{ m}" /> to <InlineMath math="45.4\text{ m}" />. On ice the same car only stops after almost <InlineMath math="300\text{ m}" />. Watch the skid marks too: their length is the braking distance you read off the posts.
 
 ## Braking Distance Grows with the Square of Speed
 
@@ -103,7 +192,7 @@ The graph below adds the two parts for every speed up to <InlineMath math="30\te
 
 <MathVisual
   title={<>Stopping Distance against Speed</>}
-  description={<>Reaction time 1 s and braking deceleration <InlineMath math="5\text{ m/s}^2" />. Horizontal: speed in units of 5 m/s. Vertical: distance in units of 20 m.</>}
+  description={<>Reaction time <InlineMath math="1\text{ s}" /> and braking deceleration <InlineMath math="5\text{ m/s}^2" />. Horizontal: speed in units of <InlineMath math="5\text{ m/s}" />. Vertical: distance in units of <InlineMath math="20\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.5, max: 6.5 } },
@@ -125,6 +214,72 @@ The graph below adds the two parts for every speed up to <InlineMath math="30\te
     at: <InlineMath math="v=20\text{ m/s}:\ 60\text{ m}" />,
   }}
 />
+
+### Motion Turns into Heat in the Brakes
+
+Why does braking distance follow <InlineMath math="v^2" />? The brakes have to use up the car's kinetic energy, <InlineMath math="K=\tfrac{1}{2}mv^2" />. Friction between the pads and the disc turns that energy into **heat**, so the disc warms up. With a constant braking force, the energy used up equals force times distance, so braking distance scales with <InlineMath math="v^2" /> as well.
+
+The card below uses a <InlineMath math="1200\text{ kg}" /> car with four <InlineMath math="8\text{ kg}" /> iron discs that share the heat equally. The specific heat of iron is <InlineMath math="449\text{ J/(kg K)}" /> from the CRC Handbook of Chemistry and Physics, and the discs start at <InlineMath math="30^\circ\text{C}" />.
+
+<MathContainer>
+  <BlockMath math="Q=K=\tfrac{1}{2}mv^2" />
+  <BlockMath math="\Delta T=\frac{Q}{4m_{\text{disc}}c}" />
+</MathContainer>
+
+<BrakeHeatLab
+  title={<>Heat in the Brake Disc</>}
+  description={
+    <>
+      Pick a speed, then play the braking until the car stops at{" "}
+      <InlineMath math="5\text{ m/s}^2" />. The thermal camera colours each
+      part of the wheel by its temperature.
+    </>
+  }
+  labels={{
+    chooseSpeed: "Choose the starting speed",
+    thermal: "Thermal camera",
+    kineticEnergy: <>Kinetic energy</>,
+    temperatureRise: <>Rise in disc temperature</>,
+    discTemperature: <>Disc temperature after the stop</>,
+    viewLabel: "Front wheel with brake disc and caliper",
+  }}
+/>
+
+Your eye sees no change on the disc, but the thermal camera shows it as the hottest part. From <InlineMath math="20\text{ m/s}" /> the energy is <InlineMath math="\tfrac{1}{2}\cdot1200\cdot20^2=240\text{ kJ}" /> and the disc warms by about <InlineMath math="16.7\text{ K}" />. From <InlineMath math="10\text{ m/s}" /> it only warms by about <InlineMath math="4.2\text{ K}" />. Twice the speed makes **four times the heat**.
+
+## A Safe Gap Behind Another Vehicle
+
+When the car ahead brakes hard, you only need to stop before you hit it, and that car keeps moving while it brakes too. If both cars brake equally hard, their braking distances are equal. The only difference is your reaction distance: for <InlineMath math="t_r" /> you're still at full speed while the car ahead is already slowing down.
+
+Say you keep a time gap <InlineMath math="h" /> behind that car. At speed <InlineMath math="v" /> the starting gap is <InlineMath math="vh" />, and once both have stopped, what's left is
+
+<BlockMath math="d_{\text{left}}=vh-vt_r=v\,(h-t_r)" />
+
+So the gap runs out exactly when <InlineMath math="h<t_r" />, **whatever the speed**. That's why [the UK Highway Code in rule 126](https://www.gov.uk/guidance/the-highway-code/general-rules-techniques-and-advice-for-all-drivers-and-riders-103-to-158) asks for at least a two-second gap on high-speed roads, at least double that on wet roads, and up to ten times as much on icy roads.
+
+<FollowingDistanceLab
+  title={<>Time Gap Behind Another Car</>}
+  description={
+    <>
+      Both cars drive at <InlineMath math="25\text{ m/s}" /> and brake at{" "}
+      <InlineMath math="5\text{ m/s}^2" />. Pick the time gap and the reaction
+      time, then play.
+    </>
+  }
+  labels={{
+    chooseHeadway: "Choose the time gap",
+    reactionTime: "Reaction time",
+    initialGap: <>Starting gap</>,
+    reactionDistance: <>Reaction distance</>,
+    finalGap: <>Gap left</>,
+    safe: <>safe</>,
+    impactSpeed: <>Speed difference at impact</>,
+    crash: <>crash</>,
+    viewLabel: "Two cars in one motorway lane",
+  }}
+/>
+
+Try a time gap of <InlineMath math="1\text{ s}" /> with a reaction time of <InlineMath math="1.5\text{ s}" />. The starting gap is <InlineMath math="25\text{ m}" />, shorter than the reaction distance of <InlineMath math="37.5\text{ m}" />, so your car hits the one ahead with a speed difference of <InlineMath math="5\cdot1.5=7.5\text{ m/s}" />. With a <InlineMath math="2\text{ s}" /> gap, <InlineMath math="25\,(2-1.5)=12.5\text{ m}" /> is left.
 
 ## Calculating Total Stopping Distance
 

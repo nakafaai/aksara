@@ -5,7 +5,7 @@ export const metadata = {
     "Bakteria ialah sel prokariot dengan bentuk yang pelbagai, nukleoid, ribosom, sampul sel yang berbeza-beza dan banyak peranan ekologi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Biodiversiti",
 };
 
@@ -18,6 +18,29 @@ Bakteria boleh menyebabkan **perubahan pada makanan** sebelum sel-selnya dapat d
 Susu boleh menjadi yogurt, air kelapa boleh menjadi nata de coco, dan makanan yang disimpan terlalu lama boleh rosak. Bakteria dan proses yang terlibat berbeza dalam setiap kes. Oleh sebab sel-selnya terlalu kecil untuk dilihat secara langsung, kita selalunya mengenal aktivitinya melalui perubahan bau, rasa, tekstur atau warna.
 
 **Bakteria** ialah <Highlight>organisma prokariot unisel</Highlight>. **Unisel** bermaksud badannya terdiri daripada satu sel sahaja. **Prokariot** bermaksud bahan genetiknya tidak dikelilingi oleh membran nukleus. Bakteria ialah sel hidup, tetapi susunan dalamannya berbeza daripada sel haiwan, tumbuhan atau fungi.
+
+Yogurt ialah contoh yang boleh kamu perhatikan sendiri. Bakteria asid laktik menukarkan gula susu kepada asid laktik, jadi susu menjadi semakin berasid. Susu segar mempunyai pH kira-kira <InlineMath math="6.7" />. Apabila pH turun kepada kira-kira <InlineMath math="4.6" />, kasein, iaitu protein utama susu, kehilangan casnya dan saling melekat, jadi susu itu **mengeras menjadi gel**.
+
+<YogurtLab
+  title={<>Susu Menjadi Yogurt</>}
+  description={
+    <>
+      Susu dengan bakteria asid laktik disimpan pada{" "}
+      <InlineMath math="43^\circ\text{C}" />. Gerakkan jamnya, kemudian condongkan
+      balang untuk menguji sama ada susu sudah mengeras.
+    </>
+  }
+  labels={{
+    hours: "Jam pengeraman",
+    tilt: "Kecondongan",
+    ph: <>pH susu</>,
+    state: <>Keadaan susu</>,
+    states: { liquid: <>masih cair</>, set: <>sudah menjadi gel</> },
+    viewLabel: "Balang susu dan meter pH di dalam pembuat yogurt",
+  }}
+/>
+
+Kad ini menggunakan model lengkung S: pH turun perlahan pada mulanya, cepat apabila bakteria sudah banyak, kemudian perlahan semula, dan melepasi <InlineMath math="4.6" /> selepas empat jam. Selagi pH masih di atas nilai itu, permukaan susu kekal mendatar apabila kamu mencondongkan balang. Selepas melepasinya, yogurt itu condong bersama balang kerana kaseinnya sudah membentuk jaringan.
 
 ### Struktur Sel Prokariot yang Hidup
 
@@ -82,7 +105,7 @@ Bakteria boleh mengubah makanan dengan begitu cepat kerana ia membiak dengan car
 
 <MathVisual
   title={<>Pembelahan Menggandakan Bilangan Sel</>}
-  description={<>Bilangan sel selepas setiap pembelahan, bermula daripada satu sel. Mengufuk: bilangan pembelahan. Menegak: satu selang grid mewakili 10 sel.</>}
+  description={<>Bilangan sel selepas setiap pembelahan, bermula daripada satu sel. Mengufuk: bilangan pembelahan. Menegak: satu selang grid mewakili <InlineMath math="10" /> sel.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 7 } },
@@ -107,6 +130,29 @@ Bakteria boleh mengubah makanan dengan begitu cepat kerana ia membiak dengan car
     end: <InlineMath math="2^6=64" />,
   }}
 />
+
+### Satu Sel Menjadi Satu Koloni
+
+Graf itu mengira sel, tetapi kamu juga boleh melihat cara sel membahagi. Sel berbentuk rod seperti Escherichia coli membesar hingga hampir dua kali panjangnya, mencerut di tengah, lalu terbahagi kepada **dua sel anak** yang serupa. Dalam kaldu nutrien pada <InlineMath math="37^\circ\text{C}" />, satu pusingan mengambil masa kira-kira <InlineMath math="20\text{ minit}" />.
+
+<BinaryFissionLab
+  title={<>Pembelahan Dedua Membina Koloni</>}
+  description={
+    <>
+      Satu sel Escherichia coli membahagi setiap{" "}
+      <InlineMath math="20\text{ minit}" />. Gerakkan masanya atau mainkan
+      dua jam yang pertama.
+    </>
+  }
+  labels={{
+    minutes: "Minit sejak sel pertama",
+    generations: <>Pembelahan</>,
+    cells: <>Bilangan sel</>,
+    viewLabel: "Koloni bakteria berbentuk rod di bawah mikroskop",
+  }}
+/>
+
+Dua jam memuatkan <InlineMath math="120/20=6" /> pembelahan, jadi satu sel menjadi <InlineMath math="2^6=64" /> sel. Setiap sel anak kekal di tempat sel induknya, jadi sel-sel itu bertimbun menjadi satu koloni. Koloni yang kelihatan pada makanan tanpa mikroskop sudah mengandungi berjuta-juta sel seperti ini.
 
 ## Memerhati Bentuk Sel Bakteria
 
@@ -142,11 +188,39 @@ Nukleoid tidak dikelilingi oleh membran nukleus. DNA bakteria tetap boleh disali
 
 Banyak bakteria mempunyai dinding sel yang mengandungi **peptidoglikan**, iaitu rangkaian molekul yang memberi bentuk dan perlindungan. Bakteria Gram positif cenderung mempunyai lapisan peptidoglikan yang tebal. Bakteria Gram negatif mempunyai lapisan peptidoglikan yang lebih nipis dan satu membran luar. Membran luar ini boleh mempengaruhi ketahanan bakteria terhadap bahan tertentu.
 
+**Pewarnaan Gram** menunjukkan perbezaan pada dinding sel itu. Ungu kristal mewarnakan setiap sel, kemudian iodin mengunci warna itu. Alkohol kemudian melunturkan warna ungu daripada dinding nipis bakteria Gram negatif, tetapi tidak daripada dinding tebal bakteria Gram positif. Akhirnya safranin mewarnakan sel yang pucat itu menjadi merah jambu.
+
+<GramStainLab
+  title={<>Pewarnaan Gram di Bawah Mikroskop</>}
+  description={
+    <>
+      Slaid ini mengandungi kokus yang berkelompok, basilus dan spirilum. Pilih satu
+      langkah pewarnaan untuk melihat warna setiap bentuk.
+    </>
+  }
+  labels={{
+    chooseStep: "Pilih langkah pewarnaan",
+    steps: {
+      smear: "Calitan",
+      violet: "Ungu kristal",
+      iodine: "Iodin",
+      alcohol: "Alkohol",
+      safranin: "Safranin",
+    },
+    positive: <>Kokus, Gram positif</>,
+    negative: <>Basilus dan spirilum, Gram negatif</>,
+    hues: { clear: <>pucat</>, purple: <>ungu</>, pink: <>merah jambu</> },
+    viewLabel: "Slaid bakteria dilihat melalui kanta mikroskop",
+  }}
+/>
+
+Lihat langkah alkohol. Di situlah dua kumpulan itu berpisah: kokus kekal ungu, manakala basilus dan spirilum menjadi pucat. Warna akhir membantu pengenalpastian, tetapi masih perlu digabungkan dengan ciri lain.
+
 Sel mengambil makanan dan menyingkirkan bahan buangan melalui permukaannya, manakala keperluannya bertambah mengikut isi padunya. Kubus dengan sisi <InlineMath math="s" /> mempunyai luas permukaan <InlineMath math="6s^2" /> dan isi padu <InlineMath math="s^3" />, jadi setiap unit isi padu mendapat <InlineMath math="\tfrac{6}{s}" /> unit luas permukaan. Putar kubus-kubus itu: kubus paling kecil mempunyai luas permukaan paling besar berbanding saiznya, dan ini membantu bakteria yang sangat kecil menukar bahan dengan cepat.
 
 <MathVisual
   title={<>Sel Kecil Mempunyai Lebih Banyak Permukaan bagi Setiap Isi Padu</>}
-  description={<>Kubus dengan sisi 1, 2 dan 4 mikrometer. Setiap label membahagikan luas permukaan dengan isi padu.</>}
+  description={<>Kubus dengan sisi <InlineMath math="1" />, <InlineMath math="2" /> dan <InlineMath math="4" /> mikrometer. Setiap label membahagikan luas permukaan dengan isi padu.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 9.5 }, y: { min: 0, max: 4.5 }, z: { min: -2.5, max: 2.5 } },
@@ -169,6 +243,29 @@ Sel mengambil makanan dan menyingkirkan bahan buangan melalui permukaannya, mana
   }}
 />
 
+### Flagelum Membawa Sel ke Arah Makanan
+
+Banyak bakteria berbentuk rod berenang dengan **flagelum**, iaitu ekor panjang yang berputar seperti kipas bot. Escherichia coli berenang lurus pada kira-kira <InlineMath math="25\ \mu\text{m/s}" /> selama lebih kurang <InlineMath math="1\text{ s}" />, kemudian berguling selama kira-kira <InlineMath math="0.1\text{ s}" /> dan menghadap arah rawak yang baharu. Sel itu tidak dapat melihat makanan, tetapi dapat mengesan sama ada gula di sekelilingnya semakin bertambah.
+
+<ChemotaxisLab
+  title={<>Bakteria Berenang ke Arah Gula</>}
+  description={
+    <>
+      Dua sel berenang dan berguling secara rawak. Sel hijau kebiruan mengesan gula daripada
+      hablur di sebelah kanan, manakala sel kelabu tiada reseptornya. Masa berjalan
+      empat kali lebih cepat.
+    </>
+  }
+  labels={{
+    sensing: <>Kemajuan ke arah gula, sel hijau kebiruan</>,
+    mutant: <>Kemajuan ke arah gula, sel kelabu</>,
+    elapsed: <>Masa</>,
+    viewLabel: "Dua bakteria berenang di dalam piring yang mengandungi gula",
+  }}
+/>
+
+Apabila gula bertambah, sel hijau kebiruan menangguhkan gulingannya, jadi renangannya ke arah gula lebih lama daripada renangannya ke arah lain. Dalam masa seminit, gerakan rawak itu beransur-ansur menghala ke makanan. Pergerakan berarah ini dipanggil **kemotaksis**, dan sel kelabu yang tiada reseptor hanya merayau.
+
 ## Peranan Bakteria dalam Penyakit dan Kehidupan Harian
 
 Sesetengah bakteria menyebabkan penyakit, tetapi banyak bakteria mempunyai peranan yang berguna. Ada yang membantu menghasilkan yogurt, keju atau nata de coco. Ada juga yang membantu menguraikan sisa organisma mati, menghasilkan vitamin, menyokong kejuruteraan genetik atau menyumbang kepada bioremediasi. **Bioremediasi** bermaksud penggunaan organisma untuk membantu menguraikan bahan pencemar.
@@ -178,8 +275,8 @@ Badan manusia mengandungi komuniti mikrob yang berkait dengan kesihatan. [Kajian
 Untuk menilai peranan sesuatu bakteria, tanyakan di mana ia hidup, proses metabolisme mana yang digunakannya dan bagaimana ia mempengaruhi organisma lain.
 
 <Mermaid
-  title="Bukti untuk Mengenal Pasti Bakteria"
-  description="Gabungkan bukti bentuk luar, kandungan sel dan dinding sel untuk mengenal pasti bakteria daripada beberapa petunjuk."
+  title={<>Bukti untuk Mengenal Pasti Bakteria</>}
+  description={<>Gabungkan bukti bentuk luar, kandungan sel dan dinding sel untuk mengenal pasti bakteria daripada beberapa petunjuk.</>}
   chart={`flowchart LR
     A["Bentuk luar"] --> B["Petunjuk morfologi"]
     C["Kandungan sel"] --> D["DNA dan ribosom"]

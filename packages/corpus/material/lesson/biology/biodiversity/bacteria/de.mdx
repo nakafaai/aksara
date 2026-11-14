@@ -5,7 +5,7 @@ export const metadata = {
     "Bakterien sind prokaryotische Einzeller mit verschiedenen Formen, einem Nukleoid, Ribosomen, unterschiedlichen Zellhüllen und vielfältigen ökologischen Rollen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Vielfalt der Lebewesen",
 };
 
@@ -18,6 +18,29 @@ Bakterien können **Lebensmittel verändern**, bevor ihre Zellen unter dem Mikro
 Milch kann durch Fermentation zu Joghurt und Kokoswasser zu Nata de Coco werden. Auch am Verderb zu lange gelagerter Lebensmittel können Bakterien beteiligt sein. Dabei wirken jeweils andere Arten und Prozesse. Weil die Zellen zu klein sind, um sie direkt zu sehen, erkennen wir ihre Aktivität oft an Veränderungen von Geruch, Geschmack, Konsistenz oder Farbe.
 
 **Bakterien** sind <Highlight>einzellige prokaryotische Organismen</Highlight>. **Einzellig** bedeutet, dass der Körper aus einer Zelle besteht. **Prokaryotisch** bedeutet, dass das genetische Material nicht von einer Kernmembran umgeben ist. Ihre innere Organisation unterscheidet sich von Tier-, Pflanzen- und Pilzzellen.
+
+Joghurt ist ein Beispiel, das du selbst beobachten kannst. Milchsäurebakterien verwandeln den Milchzucker in Milchsäure, also wird die Milch immer saurer. Frische Milch hat einen pH-Wert von etwa <InlineMath math="6{,}7" />. Sinkt er auf etwa <InlineMath math="4{,}6" />, verliert Kasein, das wichtigste Milcheiweiß, seine Ladung und verklebt, und die Milch **wird zu einem Gel**.
+
+<YogurtLab
+  title={<>Aus Milch wird Joghurt</>}
+  description={
+    <>
+      Milch mit Milchsäurebakterien steht bei{" "}
+      <InlineMath math="43^\circ\text{C}" />. Schieb die Stunden weiter und
+      kipp das Glas, um zu prüfen, ob die Milch fest geworden ist.
+    </>
+  }
+  labels={{
+    hours: "Stunden im Joghurtbereiter",
+    tilt: "Kippen",
+    ph: <>pH-Wert der Milch</>,
+    state: <>Zustand der Milch</>,
+    states: { liquid: <>noch flüssig</>, set: <>zu einem Gel geworden</> },
+    viewLabel: "Glas mit Milch und pH-Messgerät im Joghurtbereiter",
+  }}
+/>
+
+Die Karte nutzt ein Modell mit S-Kurve: Der pH-Wert sinkt erst langsam, dann schnell, sobald es viele Bakterien gibt, dann wieder langsam, und unterschreitet <InlineMath math="4{,}6" /> nach vier Stunden. Solange er darüber liegt, bleibt die Oberfläche der Milch beim Kippen waagerecht. Danach kippt der Joghurt mit dem Glas, weil sein Kasein ein Netz gebildet hat.
 
 ### Aufbau einer lebenden prokaryotischen Zelle
 
@@ -83,7 +106,7 @@ Bakterien können Lebensmittel so schnell verändern, weil sie sich durch Teilun
 
 <MathVisual
   title={<>Teilung verdoppelt die Zellen</>}
-  description={<>Zellzahl nach jeder Teilung, ausgehend von einer Zelle. Waagerecht: Anzahl der Teilungen. Senkrecht: Ein Gitterschritt entspricht 10 Zellen.</>}
+  description={<>Zellzahl nach jeder Teilung, ausgehend von einer Zelle. Waagerecht: Anzahl der Teilungen. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="10" /> Zellen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 7 } },
@@ -108,6 +131,29 @@ Bakterien können Lebensmittel so schnell verändern, weil sie sich durch Teilun
     end: <InlineMath math="2^6=64" />,
   }}
 />
+
+### Aus einer Zelle wird eine Kolonie
+
+Das Diagramm zählt die Zellen, aber du kannst auch zusehen, wie sie sich teilen. Eine Stäbchenzelle wie Escherichia coli wächst fast auf die doppelte Länge, schnürt sich in der Mitte ein und zerfällt in **zwei gleiche Tochterzellen**. In einer nährstoffreichen Brühe bei <InlineMath math="37^\circ\text{C}" /> dauert eine Runde etwa <InlineMath math="20\text{ Minuten}" />.
+
+<BinaryFissionLab
+  title={<>Zweiteilung bis zur Kolonie</>}
+  description={
+    <>
+      Eine Zelle von Escherichia coli teilt sich alle{" "}
+      <InlineMath math="20\text{ Minuten}" />. Schieb die Zeit oder spiel die
+      ersten zwei Stunden ab.
+    </>
+  }
+  labels={{
+    minutes: "Minuten seit der ersten Zelle",
+    generations: <>Teilungen</>,
+    cells: <>Anzahl der Zellen</>,
+    viewLabel: "Kolonie von Stäbchenbakterien unter dem Mikroskop",
+  }}
+/>
+
+In zwei Stunden passen <InlineMath math="120:20=6" /> Teilungen, also werden aus einer Zelle <InlineMath math="2^6=64" /> Zellen. Jede Tochterzelle bleibt dort, wo ihre Mutterzelle war, deshalb häufen sich die Zellen zu einer Kolonie. Eine Kolonie, die du auf einem Lebensmittel mit bloßem Auge siehst, enthält schon Millionen solcher Zellen.
 
 ## Zellformen von Bakterien beobachten
 
@@ -143,11 +189,39 @@ Das Nukleoid ist nicht von einer Kernmembran umgeben. Die bakterielle DNA kann d
 
 Viele Bakterien besitzen eine Zellwand aus **Peptidoglykan**, einem molekularen Netzwerk, das Form und Schutz verleiht. Grampositive Bakterien haben meist eine dicke Peptidoglykan-Schicht. Bei gramnegativen Bakterien ist diese Schicht dünner und von einer Außenmembran umgeben. Der Unterschied zwischen der dicken und der dünnen Peptidoglykan-Schicht kann die Widerstandsfähigkeit gegen bestimmte Stoffe beeinflussen.
 
+Diesen Unterschied in der Wand siehst du mit der **Gramfärbung**. Kristallviolett färbt jede Zelle, dann hält Iod die Farbe fest. Alkohol wäscht das Violett danach aus den dünnen Wänden gramnegativer Bakterien, aber nicht aus den dicken Wänden grampositiver Bakterien. Safranin färbt zuletzt die blassen Zellen rosa.
+
+<GramStainLab
+  title={<>Gramfärbung unter dem Mikroskop</>}
+  description={
+    <>
+      Auf dem Präparat liegen Kokken in Haufen, Stäbchen und Spirillen. Wähl
+      einen Färbeschritt und sieh dir die Farbe jeder Form an.
+    </>
+  }
+  labels={{
+    chooseStep: "Färbeschritt wählen",
+    steps: {
+      smear: "Ausstrich",
+      violet: "Kristallviolett",
+      iodine: "Iod",
+      alcohol: "Alkohol",
+      safranin: "Safranin",
+    },
+    positive: <>Kokken, grampositiv</>,
+    negative: <>Stäbchen und Spirillen, gramnegativ</>,
+    hues: { clear: <>blass</>, purple: <>violett</>, pink: <>rosa</> },
+    viewLabel: "Bakterienpräparat durch das Objektiv eines Mikroskops",
+  }}
+/>
+
+Achte auf den Alkoholschritt. Genau dort trennen sich die beiden Gruppen: Die Kokken bleiben violett, die Stäbchen und Spirillen werden blass. Die Endfarbe hilft bei der Bestimmung, muss aber mit anderen Merkmalen zusammen gelesen werden.
+
 Eine Zelle nimmt Nahrung über ihre Oberfläche auf und gibt dort Abfall ab, während ihr Bedarf mit dem Volumen wächst. Ein Würfel mit Kante <InlineMath math="s" /> hat die Oberfläche <InlineMath math="6s^2" /> und das Volumen <InlineMath math="s^3" />, also kommen auf jede Volumeneinheit <InlineMath math="\tfrac{6}{s}" /> Flächeneinheiten. Dreh die Würfel: Der kleinste hat für seine Größe die meiste Oberfläche, und das hilft einem winzigen Bakterium, Stoffe schnell auszutauschen.
 
 <MathVisual
   title={<>Kleine Zellen haben mehr Oberfläche pro Volumen</>}
-  description={<>Würfel mit 1, 2 und 4 Mikrometern Kantenlänge. Jedes Label teilt die Oberfläche durch das Volumen.</>}
+  description={<>Würfel mit <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="4" /> Mikrometern Kantenlänge. Jedes Label teilt die Oberfläche durch das Volumen.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 9.5 }, y: { min: 0, max: 4.5 }, z: { min: -2.5, max: 2.5 } },
@@ -170,6 +244,29 @@ Eine Zelle nimmt Nahrung über ihre Oberfläche auf und gibt dort Abfall ab, wä
   }}
 />
 
+### Geißeln bringen die Zelle zur Nahrung
+
+Viele Stäbchenbakterien schwimmen mit **Geißeln**, langen Fäden, die sich wie Propeller drehen. Escherichia coli schwimmt etwa <InlineMath math="1\text{ s}" /> lang mit rund <InlineMath math="25\ \mu\text{m/s}" /> geradeaus, taumelt dann etwa <InlineMath math="0{,}1\text{ s}" /> und zeigt danach in eine neue, zufällige Richtung. Die Zelle sieht die Nahrung nicht, aber sie spürt, ob der Zucker um sie herum zunimmt.
+
+<ChemotaxisLab
+  title={<>Bakterien schwimmen zum Zucker</>}
+  description={
+    <>
+      Zwei Zellen schwimmen und taumeln zufällig. Die türkise Zelle spürt den
+      Zucker aus dem Kristall rechts, der grauen Zelle fehlen die Rezeptoren.
+      Die Zeit läuft viermal so schnell.
+    </>
+  }
+  labels={{
+    sensing: <>Weg zum Zucker, türkise Zelle</>,
+    mutant: <>Weg zum Zucker, graue Zelle</>,
+    elapsed: <>Zeit</>,
+    viewLabel: "Zwei Bakterien schwimmen in einer Schale mit Zucker",
+  }}
+/>
+
+Nimmt der Zucker zu, taumelt die türkise Zelle später, also dauern ihre Läufe zum Zucker länger als ihre Läufe in andere Richtungen. Innerhalb einer Minute verschiebt sich der Zufallsweg in Richtung Nahrung. Diese gerichtete Bewegung heißt **Chemotaxis**, und die graue Zelle ohne Rezeptoren irrt nur umher.
+
 ## Bakterien bei Krankheiten und im Alltag
 
 Einige Bakterien verursachen Krankheiten, viele erfüllen jedoch nützliche Aufgaben. Sie helfen bei der Herstellung von Joghurt, Käse oder Nata de Coco, zersetzen organische Reste, produzieren Vitamine, werden in der Gentechnik eingesetzt oder tragen zur Sanierung belasteter Umweltbereiche bei. **Bioremediation** bezeichnet den Einsatz von Organismen zum Abbau von Schadstoffen.
@@ -179,8 +276,8 @@ Der menschliche Körper beherbergt mikrobielle Gemeinschaften, die mit der Gesun
 Ob ein Bakterium nützlich oder schädlich ist, hängt davon ab, wo es lebt, welche Stoffwechselprozesse es nutzt und wie es auf andere Organismen wirkt.
 
 <Mermaid
-  title="Merkmale zur Bestimmung von Bakterien"
-  description="Verbinde äußere Form, Zellinhalt und Zellwand, statt ein Bakterium anhand eines einzigen sichtbaren Merkmals zu bestimmen."
+  title={<>Merkmale zur Bestimmung von Bakterien</>}
+  description={<>Verbinde äußere Form, Zellinhalt und Zellwand, statt ein Bakterium anhand eines einzigen sichtbaren Merkmals zu bestimmen.</>}
   chart={`flowchart LR
     A["Äußere Form"] --> B["Hinweis zur Morphologie"]
     C["Zellinhalt"] --> D["DNA und Ribosomen"]

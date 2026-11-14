@@ -5,7 +5,7 @@ export const metadata = {
     "Mass stays constant in a chemical reaction when the whole system is counted, including products, leftover reactants, and any gas that may escape.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-03",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-13",
   subject: "Basic Laws of Chemistry",
 };
 
@@ -17,9 +17,69 @@ When a chemical reaction happens, atoms do not vanish or appear from nothing. Th
 
 The system boundary determines what is included in the mass. In a closed container, every substance remains inside the part being weighed. In an open container, gas may leave that boundary. The balance then shows less mass because the escaped gas is no longer on it. <Highlight>The total amount of matter</Highlight> stays the same during chemical and physical changes, so the reading dropped while the matter did not disappear.
 
+### A New Solid with the Same Mass
+
+A reaction can make a completely new substance without changing the mass. Silver nitrate solution and table salt solution are both clear. When you mix them, silver ions and chloride ions join into silver chloride, which doesn't dissolve, so a **white precipitate** appears like a cloud.
+
+<BlockMath math="\mathrm{AgNO_3(aq)} + \mathrm{NaCl(aq)} \rightarrow \mathrm{AgCl(s)} + \mathrm{NaNO_3(aq)}" />
+
+Each beaker holds <InlineMath math="50.00\ \mathrm{g}" /> of water with <InlineMath math="0.0050\ \mathrm{mol}" /> of its salt, that's <InlineMath math="0.85\ \mathrm{g}" /> of silver nitrate and <InlineMath math="0.29\ \mathrm{g}" /> of sodium chloride. Both beakers stand on the same balance before and after the pour.
+
+<PrecipitateLab
+  title={<>A White Precipitate on the Balance</>}
+  description={
+    <>
+      Play to pour the silver nitrate solution into the salt solution. A cloud
+      of silver chloride appears, and the reading stays put.
+    </>
+  }
+  labels={{
+    readingBefore: <>Reading before the pour</>,
+    readingAfter: <>Reading after the pour</>,
+    precipitate: (
+      <>
+        <InlineMath math="\mathrm{AgCl}" /> precipitate formed
+      </>
+    ),
+    viewLabel: "Two beakers on a balance",
+  }}
+/>
+
+The balance reads <InlineMath math="101.14\ \mathrm{g}" /> before and after the pour. About <InlineMath math="0.72\ \mathrm{g}" /> of solid silver chloride forms, but its atoms come from substances already in the beakers. No gas enters or leaves, so even open beakers keep the same mass.
+
 ## Measurements by Lavoisier
 
 Before modern chemistry, combustion was often explained with phlogiston, as if something left a material when it burned. Antoine Lavoisier challenged that idea through careful weighing. He tracked the mass of reactants and products, **including gases**, and showed that combustion involves a reaction with oxygen.
+
+His best-known experiment is recorded in [Lavoisier's book Elements of Chemistry](https://www.gutenberg.org/ebooks/30775). He heated four ounces of mercury in a glass flask for twelve days. The flask's neck opened into the air under a glass bell jar that stood in a trough of mercury. Red particles, which he called calx of mercury, formed on the mercury, and the air under the bell jar shrank from about <InlineMath math="50" /> to between <InlineMath math="42" /> and <InlineMath math="43" /> cubic inches.
+
+<LavoisierCalxLab
+  title={<>Lavoisier's Twelve Days of Heating Mercury</>}
+  description={
+    <>
+      Slide or play the days of heating. Red particles grow on the mercury
+      while the mercury inside the bell jar rises because the air is used up.
+    </>
+  }
+  labels={{
+    day: "Day of heating",
+    air: <>Air under the bell jar</>,
+    airUnit: "cubic inches",
+    calx: <>Red calx formed</>,
+    calxUnit: "grains",
+    reverseLabel: <>When the calx is heated more strongly</>,
+    reverse: (
+      <>
+        <InlineMath math="45" /> grains of calx become{" "}
+        <InlineMath math="41.5" /> grains of mercury and{" "}
+        <InlineMath math="7" /> to <InlineMath math="8" /> cubic inches of gas
+      </>
+    ),
+    viewLabel: "Lavoisier's furnace, mercury flask and bell jar",
+  }}
+/>
+
+Lavoisier collected <InlineMath math="45" /> grains of calx. When he heated that calx more strongly, it turned back into <InlineMath math="41.5" /> grains of mercury and <InlineMath math="7" /> to <InlineMath math="8" /> cubic inches of gas. The difference, <InlineMath math="45-41.5=3.5" /> grains, is the mass of gas the mercury had taken from the air. **Mass doesn't appear from nothing**: the calx is heavier because oxygen from the air joined it.
 
 Lavoisier helped establish the law of conservation of mass and connected combustion with oxygen.
 
@@ -101,7 +161,7 @@ The three columns below are what the balance reads, with one grid step for <Inli
 
 <MathVisual
   title={<>What the Balance Reads</>}
-  description={<>10.00 g of zinc and 2.00 g of sulfur before the reaction, then after it in a closed and in an open system. One grid step up is 4 g.</>}
+  description={<><InlineMath math="10.00\text{ g}" /> of zinc and <InlineMath math="2.00\text{ g}" /> of sulfur before the reaction, then after it in a closed and in an open system. One grid step up is <InlineMath math="4\text{ g}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
@@ -123,6 +183,73 @@ The three columns below are what the balance reads, with one grid step for <Inli
     open: <InlineMath math="11.00\ \mathrm{g}" />,
   }}
 />
+
+Gas can leave an open system, but gas from the air can also come in and take part in a reaction. The next two experiments show both directions on the same kind of balance.
+
+### Gas Escapes from an Open Flask
+
+Baking soda, sodium bicarbonate, reacts with the acetic acid in vinegar and makes carbon dioxide gas.
+
+<BlockMath math="\mathrm{NaHCO_3} + \mathrm{CH_3COOH} \rightarrow \mathrm{CH_3COONa} + \mathrm{H_2O} + \mathrm{CO_2}" />
+
+Each mole of baking soda gives **one mole of carbon dioxide**. From <InlineMath math="2.00\ \mathrm{g}" /> of baking soda you get <InlineMath math="2.00\times\frac{44.01}{84.01}\approx1.05\ \mathrm{g}" /> of gas. The balance is tared with the empty flask and dish, so its first reading is the <InlineMath math="100.00\ \mathrm{g}" /> of vinegar plus the baking soda.
+
+<FizzBalanceLab
+  title={<>Baking Soda and Vinegar on a Balance</>}
+  description={
+    <>
+      Play to tip the baking soda into the vinegar. Compare an open flask with
+      a flask closed by a stopper.
+    </>
+  }
+  labels={{
+    chooseSeal: "Choose the flask",
+    seals: { open: "Open", closed: "Closed" },
+    readingBefore: <>Reading before the reaction</>,
+    readingAfter: <>Reading after the reaction</>,
+    gasFormed: (
+      <>
+        <InlineMath math="\mathrm{CO_2}" /> formed
+      </>
+    ),
+    gasEscaped: (
+      <>
+        <InlineMath math="\mathrm{CO_2}" /> escaped
+      </>
+    ),
+    viewLabel: "Flask of vinegar and dish of baking soda on a balance",
+  }}
+/>
+
+With the open flask, the reading drops from <InlineMath math="102.00\ \mathrm{g}" /> to <InlineMath math="100.95\ \mathrm{g}" /> as gas leaves through the neck. With the stoppered flask, the gas stays inside and the reading stays at <InlineMath math="102.00\ \mathrm{g}" />. This calculation assumes all the gas leaves the liquid. In reality a little carbon dioxide stays dissolved, so the measured drop can be slightly smaller.
+
+### Oxygen from the Air Joins In
+
+Steel wool that burns actually gets **heavier**. Iron reacts with oxygen from the air and forms a bluish-black iron oxide.
+
+<BlockMath math="3\mathrm{Fe} + 2\mathrm{O_2} \rightarrow \mathrm{Fe_3O_4}" />
+
+Every <InlineMath math="3\times55.845=167.535\ \mathrm{g}" /> of iron binds <InlineMath math="4\times15.999=63.996\ \mathrm{g}" /> of oxygen. If all <InlineMath math="1.50\ \mathrm{g}" /> of steel wool burns, the oxygen that joins is <InlineMath math="1.50\times\frac{63.996}{167.535}\approx0.57\ \mathrm{g}" />. [The Royal Society of Chemistry's iron wool combustion experiment](https://edu.rsc.org/experiments/the-combustion-of-iron-wool/717.article) shows this gain in mass on a simple balance.
+
+<SteelWoolLab
+  title={<>Burning Steel Wool Gets Heavier</>}
+  description={
+    <>
+      Play to light the steel wool with a battery. Compare burning in the open
+      air with burning inside a closed jar of air.
+    </>
+  }
+  labels={{
+    chooseSeal: "Choose the setting",
+    seals: { open: "Open air", closed: "Closed jar" },
+    readingBefore: <>Reading before burning</>,
+    readingAfter: <>Reading after burning</>,
+    oxygenJoined: <>Oxygen that joined</>,
+    viewLabel: "Steel wool burning on a balance",
+  }}
+/>
+
+In the open air, the oxygen comes from outside the system on the balance, so the reading rises from <InlineMath math="1.50\ \mathrm{g}" /> to <InlineMath math="2.07\ \mathrm{g}" />. Inside the closed jar, that oxygen was weighed from the start, so the reading stays the same. In a real experiment only part of the wool usually burns, so the gain is smaller than this complete-burning calculation.
 
 ## Zinc and Sulfur
 
@@ -163,7 +290,7 @@ Keep the three masses of the zinc and sulfur experiment apart. Before the reacti
 
 <MathVisual
   title={<>Three Mass Questions</>}
-  description={<>Before (left): leftover zinc (gray), reacting zinc (orange) and sulfur (amber). After (right): leftover zinc (gray) and zinc sulfide (teal). One grid step up is 1 gram.</>}
+  description={<>Before (left): leftover zinc (gray), reacting zinc (orange) and sulfur (amber). After (right): leftover zinc (gray) and zinc sulfide (teal). One grid step up is <InlineMath math="1\text{ g}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 13 }, z: { min: -1.5, max: 1.5 } },
