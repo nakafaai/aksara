@@ -2,40 +2,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "calculation",
   },
-  stimulus: "chili-prices",
+  stimulus: "river-quality",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "Harga rata-rata cabai rawit di pasar induk yang sama pada bulan Juli dan Agustus tahun itu",
-        },
-        {
-          correct: false,
-          label:
-            "Harga cabai merah besar di pasar induk itu pada bulan Januari sampai Juni tahun itu",
-        },
-        {
-          correct: false,
-          label:
-            "Pendapat para pembeli di pasar induk tentang harga cabai rawit pada bulan Februari",
-        },
-        {
-          correct: true,
-          label:
-            "Curah hujan dan pasokan pada bulan yang sama selama beberapa tahun di kabupaten itu",
-        },
-        {
-          correct: false,
-          label:
-            "Jumlah pedagang cabai rawit di pasar induk itu pada setiap bulan selama tahun itu",
-        },
+        { correct: false, label: "$$20\\%$$" },
+        { correct: false, label: "$$45\\%$$" },
+        { correct: false, label: "$$55\\%$$" },
+        { correct: false, label: "$$60\\%$$" },
+        { correct: true, label: "$$80\\%$$" },
       ],
     },
   },

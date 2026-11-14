@@ -4,37 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "main-idea",
+    topic: "detail",
   },
-  stimulus: "sriwijaya-stones",
+  stimulus: "pranata-mangsa",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Sriwijaya adalah kerajaan terbesar di Asia Tenggara karena memiliki ribuan biksu.",
+            "Pranata mangsa disusun menurut peredaran bulan, seperti kalender Jawa yang lain.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "I-Tsing adalah orang pertama yang menemukan prasasti-prasasti Sriwijaya.",
+            "Pada tahun yang hujannya datang terlambat, Lintang Waluku tetap tampak pada letak dan waktu yang biasa.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Prasasti Sriwijaya membuktikan bahwa bahasa Indonesia tidak berubah sejak abad ke-7.",
+            "Jadwal pranata mangsa tidak dapat langsung dipakai di daerah yang musim hujannya datang pada bulan lain.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Pusat Sriwijaya berada di Jambi, bukan di Palembang seperti dugaan banyak ahli.",
-        },
-        {
-          correct: true,
-          label:
-            "Sejarah Sriwijaya disusun dari prasasti dan catatan musafir, yang memiliki batas.",
+            "Perubahan iklim membuat tanda dari hewan dan tumbuhan tidak lagi berguna bagi petani.",
         },
       ],
     },

@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "application",
   },
-  stimulus: "sriwijaya-stones",
+  stimulus: "pranata-mangsa",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Prasasti Kedukan Bukit lebih tua daripada Prasasti Kota Kapur.",
+            "Segera membajak dan menyemai, karena letak Lintang Waluku sudah menunjukkan saatnya.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "I-Tsing menganjurkan biksu Tiongkok langsung belajar ke India tanpa singgah di Sriwijaya.",
+            "Meninggalkan pranata mangsa sepenuhnya dan hanya menunggu siaran prakiraan resmi.",
         },
         {
-          column: 1,
-          label: "Para ahli belum sepakat tentang letak pusat Sriwijaya.",
+          correct: false,
+          label:
+            "Menyemai sebagian benih sekarang dan sisanya pada tanggal yang sama tahun depan.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Prasasti-prasasti Sriwijaya ditulis dalam bahasa Sanskerta dengan aksara Latin.",
+            "Mengikuti jadwal tanam daerah lain yang musim hujannya sudah dimulai.",
+        },
+        {
+          correct: true,
+          label:
+            "Menunda menyemai sampai tanda dari makhluk hidup dan keadaan tanah menunjukkan hujan benar-benar datang, sambil mencocokkannya dengan prakiraan resmi.",
         },
       ],
     },

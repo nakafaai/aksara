@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "author-view",
   },
-  stimulus: "electric-cars",
+  stimulus: "keroncong-origin",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Penjualan mobil listrik pribadi naik tajam setelah insentif pajak untuk pembelinya diberlakukan.",
-        },
-        {
-          correct: false,
-          label:
-            "Biaya perawatan mobil listrik lebih rendah daripada biaya perawatan mobil bensin.",
-        },
-        {
           correct: true,
           label:
-            "Subsidi bus listrik menurunkan emisi per rupiah lebih banyak daripada subsidi mobil.",
+            "Sebutan itu benar untuk asal alat petiknya, tetapi keliru jika diartikan bahwa jenis musiknya sendiri didatangkan dari Portugal.",
         },
         {
           correct: false,
           label:
-            "Sebagian besar pembeli mobil listrik pribadi tinggal di kota-kota besar.",
+            "Sebutan itu keliru, sebab keroncong sepenuhnya berasal dari Jawa dan baru kemudian memakai alat musik Eropa.",
         },
         {
           correct: false,
           label:
-            "Pembangkit batu bara di negara itu ditutup dalam beberapa tahun ke depan.",
+            "Sebutan itu benar, sebab orang Tugu memelihara musik leluhurnya tanpa perubahan selama beberapa generasi.",
+        },
+        {
+          correct: false,
+          label:
+            "Sebutan itu tidak dapat dinilai, sebab asal-usul sebuah jenis musik tidak mungkin ditelusuri.",
+        },
+        {
+          correct: false,
+          label:
+            "Sebutan itu benar sampai akhir abad ke-19, tetapi tidak berlaku lagi setelah biola dan selo masuk.",
         },
       ],
     },

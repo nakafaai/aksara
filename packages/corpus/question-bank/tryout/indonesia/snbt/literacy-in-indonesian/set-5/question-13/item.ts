@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "theme-message",
+    contentDomain: "informational-text",
+    topic: "assumption",
   },
-  stimulus: "radio-repair",
+  stimulus: "mountain-quota",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Barang lama sebaiknya segera diganti dengan barang yang memakai teknologi baru.",
+            "sebagian besar pendaki perorangan sebenarnya lebih suka mendaki pada hari kerja",
         },
         {
           correct: false,
           label:
-            "Anak muda sebaiknya selalu menuruti nasihat orang tuanya tentang barang lama.",
+            "porter desa lebih terampil daripada porter yang dibawa operator dari kota",
         },
         {
           correct: false,
           label:
-            "Pekerjaan yang dikerjakan dengan sabar pasti dibayar dengan harga yang mahal.",
+            "pengelola taman nasional bersedia menaikkan kuota harian di atas $$400$$ orang",
         },
         {
           correct: false,
           label:
-            "Kejujuran merugikan pedagang kecil yang sedang kehilangan pelanggan.",
+            "pendapatan porter desa sebelum kuota berlaku sudah mencukupi kebutuhan mereka",
         },
         {
           correct: true,
           label:
-            "Masa lalu tidak bisa diputar ulang, tetapi sisa-sisanya masih dapat dirawat.",
+            "operator perjalanan tidak dapat dengan mudah mengakali batas itu dengan memesan lewat banyak nama",
         },
       ],
     },

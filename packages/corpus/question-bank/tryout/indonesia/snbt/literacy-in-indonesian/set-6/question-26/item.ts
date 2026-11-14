@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-reasoning",
+    topic: "author-view",
   },
-  stimulus: "sriwijaya-stones",
+  stimulus: "marshmallow-test",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Uji kudapan terbukti tidak berhubungan sama sekali dengan prestasi anak di kemudian hari.",
+        },
+        {
+          correct: false,
+          label:
+            "Pengendalian diri tidak berpengaruh apa pun pada sukses seseorang.",
+        },
+        {
+          correct: false,
+          label:
+            "Temuan awal di Stanford keliru karena para peneliti salah mencatat lama anak menunggu.",
+        },
+        {
           correct: true,
           label:
-            "prasasti perlu dibaca dengan menyadari sudut pandang pembuatnya",
+            "Uji kudapan mengukur lebih dari pengendalian diri, dan hubungannya dengan prestasi sebagian besar dapat dijelaskan oleh latar keluarga dan kemampuan awal anak.",
         },
         {
           correct: false,
           label:
-            "prasasti Sriwijaya tidak dapat dipercaya sama sekali sebagai sumber sejarah",
-        },
-        {
-          correct: false,
-          label:
-            "rakyat Sriwijaya dilarang menulis apa pun tentang kehidupan mereka",
-        },
-        {
-          correct: false,
-          label:
-            "catatan I-Tsing lebih lengkap daripada semua prasasti yang ditemukan",
-        },
-        {
-          correct: false,
-          label:
-            "raja Sriwijaya tidak pandai menulis sehingga prasastinya singkat",
+            "Anak dari keluarga mampu selalu sanggup menunggu lebih lama daripada anak dari keluarga kurang mampu.",
         },
       ],
     },

@@ -3,38 +3,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "assumption",
+    contentDomain: "fiction",
+    topic: "interpretation",
   },
-  stimulus: "social-media-age",
+  stimulus: "ferry-mechanic",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "remaja akan selalu jujur tentang usianya ketika membuat akun di platform besar",
+            "Kalimat tentang mesin tua yang harus dipanaskan pelan-pelan dapat dibaca sebagai gambaran Pak Wiryo tentang dirinya sendiri.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "rancangan platform, bukan hanya usia pengguna, ikut menentukan bahaya bagi remaja",
+            "Dengan melipat surat itu mengikuti bekas lipatannya, Pak Wiryo menunjukkan bahwa ia sudah menerima tanggal yang tertulis di dalamnya.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "orang dewasa tidak boleh lagi memilih beranda yang disusun oleh algoritma",
+            "Permintaan Darto untuk belajar mendengarkan mesin memberi Pak Wiryo alasan baru untuk merasa masih diperlukan.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "perundungan daring hanya terjadi pada akun media sosial yang bersifat publik",
-        },
-        {
-          correct: false,
-          label:
-            "platform kecil tanpa tim moderasi kemungkinan akan ditutup oleh negara",
+            "Pak Wiryo yakin bahwa Darto tidak akan pernah mampu menggantikannya di kamar mesin.",
         },
       ],
     },

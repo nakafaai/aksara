@@ -2,39 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "conclusion",
   },
-  stimulus: "pollinators",
+  stimulus: "growth-mindset",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Petani di kebun itu menolak membiarkan daun gugur membusuk di bawah pohon.",
+            "Dalam studi nasional itu, jarak nilai antara siswa berprestasi rendah dan siswa berprestasi tinggi menyempit setelah intervensi.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Agas hanya dapat diamati di laboratorium, bukan di kebun milik petani.",
+            "Efek rata-rata yang kecil berarti setiap siswa memperoleh manfaat yang sama kecilnya.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Jumlah buah kakao di kebun-kebun itu justru turun setelah serasah dibiarkan.",
+            "Intervensi itu akan memberi manfaat yang lebih besar jika diberikan dalam lebih banyak sesi.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Kenaikan jumlah buah belum dapat dipastikan disebabkan oleh tumpukan serasah.",
-        },
-        {
-          correct: false,
-          label:
-            "Tumpukan kulit buah terlalu mahal untuk dipakai oleh semua petani.",
+            "Lingkungan sekolah ikut menentukan besar manfaat yang diperoleh siswa dari intervensi itu.",
         },
       ],
     },

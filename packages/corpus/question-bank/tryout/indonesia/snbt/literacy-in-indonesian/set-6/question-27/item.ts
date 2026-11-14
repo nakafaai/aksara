@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
+    contentDomain: "informational-text",
+    topic: "conclusion",
   },
-  stimulus: "dawn-market",
+  stimulus: "marshmallow-test",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "hiperbola, karena keramaian pasar dilebih-lebihkan hingga tidak masuk akal",
+            "Anak yang pernah dikecewakan kehilangan kemampuan pengendalian dirinya untuk seterusnya.",
         },
         {
           correct: false,
           label:
-            'simile, karena pasar dibandingkan dengan sesuatu memakai kata "seperti"',
+            "Eksperimen 2013 membantah bahwa anak dapat menunggu sama sekali.",
         },
         {
           correct: true,
           label:
-            "personifikasi, karena pasar digambarkan dapat membuka mata seperti manusia",
+            "Lama anak menunggu dapat bergantung pada pengalamannya tentang dapat tidaknya janji orang dewasa dipercaya, bukan hanya pada kemampuannya menahan diri.",
         },
         {
           correct: false,
           label:
-            "ironi, karena pasar disebut terjaga padahal sebenarnya masih tertidur",
+            "Anak yang dijanjikan alat gambar lebih menyukai alat gambar daripada kudapan.",
         },
         {
           correct: false,
-          label: 'metonimia, karena kata "pasar" menggantikan nama pemiliknya',
+          label:
+            "Peneliti yang menepati janji membuat anak menjadi lebih cerdas.",
         },
       ],
     },

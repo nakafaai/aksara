@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "main-idea",
+    topic: "author-purpose",
   },
-  stimulus: "wayang-school",
+  stimulus: "keroncong-origin",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Wayang kulit ditetapkan UNESCO sebagai warisan budaya karena lakonnya berasal dari India.",
+            "menunjukkan bahwa keroncong makin lama makin mendekati musik Eropa",
         },
         {
           correct: false,
           label:
-            "Punakawan adalah tokoh paling bijak dalam wayang karena Semar sebenarnya seorang dewa.",
-        },
-        {
-          correct: false,
-          label:
-            "Pertunjukan wayang semalam suntuk sebaiknya diganti dengan pertunjukan yang singkat.",
+            "menjelaskan mengapa kendang tidak lagi disukai para pemain keroncong",
         },
         {
           correct: true,
           label:
-            "Wayang menjadi sarana pendidikan yang lentur, terutama melalui bagian yang diisi punakawan.",
+            "menunjukkan bahwa alat yang masuk dari luar dipakai menurut kebutuhan musik setempat, sehingga menguatkan gagasan bahwa keroncong dibentuk di Nusantara",
         },
         {
           correct: false,
           label:
-            "Sunan Kalijaga satu-satunya tokoh yang memakai wayang untuk tujuan pendidikan.",
+            "membuktikan bahwa selo lebih dahulu hadir dalam keroncong daripada cak dan cuk",
+        },
+        {
+          correct: false,
+          label:
+            "menunjukkan bahwa para pemain keroncong pada masa itu belum mampu menggesek selo",
         },
       ],
     },

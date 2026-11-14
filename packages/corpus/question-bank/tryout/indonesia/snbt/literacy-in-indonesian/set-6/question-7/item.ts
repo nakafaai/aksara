@@ -3,33 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "fact-opinion",
+    contentDomain: "fiction",
+    topic: "figurative-meaning",
   },
-  stimulus: "homework-debate",
+  stimulus: "kite-maker",
   versions: {
     id: {
-      columns: ["Fakta", "Opini"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Tinjauan penelitian menemukan hubungan pekerjaan rumah dan prestasi lebih kuat pada siswa sekolah menengah.",
+            "Kakek menyalahkan pabrik yang membuat benang itu terlalu rapuh.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Tinjauan itu mencakup puluhan penelitian yang dilakukan di Amerika Serikat.",
+            "Kakek menilai benang itu masih cukup bagus sehingga tidak perlu dibuang.",
         },
         {
-          column: 2,
-          label: "Pekerjaan rumah sebaiknya dihapus di sekolah dasar.",
+          correct: false,
+          label:
+            "Kakek menyindir cucunya yang hanya ikut-ikutan membeli layangan seperti anak-anak lain.",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "Waktu sore anak-anak lebih berguna untuk membaca, bermain, dan tidur cukup.",
+            "Kakek menunjukkan bahwa penyebab putusnya ada pada hal yang menarik benang itu dari kedua ujung, bukan pada benang, tanpa menyebut siapa yang salah.",
+        },
+        {
+          correct: false,
+          label:
+            "Kakek menegaskan bahwa benang pada layangan buatannya tidak pernah putus.",
         },
       ],
     },

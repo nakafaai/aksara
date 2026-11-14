@@ -3,35 +3,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "tone-attitude",
+    contentDomain: "informational-text",
+    topic: "application",
   },
-  stimulus: "dawn-market",
+  stimulus: "marshmallow-test",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "tegang dan mencekam karena pasar dipenuhi pertengkaran",
+          label: "tanda bahwa anak itu kelak akan gagal di sekolah",
         },
         {
           correct: true,
           label:
-            "sibuk tetapi akrab, digambarkan dengan rincian kerja yang hangat",
-        },
-        {
-          correct: false,
-          label: "sepi dan muram karena para pedagang tidak mendapat pembeli",
-        },
-        {
-          correct: false,
-          label: "meriah dan gemerlap seperti pasar malam pada hari raya",
+            "pilihan yang masuk akal berdasarkan pengalamannya bahwa sesuatu yang ditunda bisa saja tidak pernah didapat",
         },
         {
           correct: false,
           label:
-            "marah dan getir karena para pedagang merasa diperas oleh pembeli",
+            "bukti bahwa anak itu tidak memiliki pengendalian diri sejak lahir",
+        },
+        {
+          correct: false,
+          label: "akibat ketidaksukaan anak itu kepada peneliti",
+        },
+        {
+          correct: false,
+          label: "tanda bahwa anak itu belum memahami tawaran peneliti",
         },
       ],
     },

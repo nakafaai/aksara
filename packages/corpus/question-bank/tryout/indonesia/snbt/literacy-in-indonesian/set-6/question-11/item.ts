@@ -3,35 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
+    contentDomain: "informational-text",
+    topic: "comparison",
   },
-  stimulus: "boat-race",
+  stimulus: "ride-hailing",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "kecewa karena anaknya kalah, tetapi berusaha menahan marah",
+          label:
+            "Pengemudi ojek daring harus diakui sebagai pekerja agar terlindungi.",
         },
         {
           correct: false,
           label:
-            "tidak peduli karena terlalu sibuk menyulam jaring dan menjahit layar",
+            "Kebebasan memilih jam kerja tidak berarti apa-apa bagi pengemudi ojek daring.",
         },
         {
           correct: false,
-          label: "bangga dan memuji Ilham dengan keras di depan para penonton",
+          label:
+            "Perusahaan aplikasi pasti membatasi jumlah pengemudi jika diwajibkan membayar upah minimum.",
         },
         {
           correct: true,
           label:
-            "menyetujuinya tanpa banyak kata, lalu menunjukkannya lewat tindakan",
+            "Pengemudi berhak atas jaminan kecelakaan dan atas aturan yang jelas sebelum akunnya diputus.",
         },
         {
           correct: false,
-          label: "menyesal karena telah meminjamkan perahunya kepada Ilham",
+          label:
+            "Sebutan mitra sudah menggambarkan kedudukan pengemudi dengan tepat.",
         },
       ],
     },

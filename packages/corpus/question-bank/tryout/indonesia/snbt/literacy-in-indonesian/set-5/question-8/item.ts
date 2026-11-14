@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "character",
   },
-  stimulus: "social-media-age",
+  stimulus: "ferry-mechanic",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Aplikasi pesan berkelompok makin populer di kalangan pengguna dewasa dalam beberapa tahun terakhir.",
-        },
-        {
-          correct: false,
-          label:
-            "Situs kecil tanpa tim moderasi memuat lebih banyak konten berbahaya daripada platform besar.",
-        },
-        {
-          correct: false,
-          label:
-            "Banyak remaja yang kehilangan akun beralih ke aplikasi pesan yang tidak dimoderasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian orang tua mungkin merasa lebih tenang setelah larangan media sosial berlaku.",
+            "Pak Wiryo sungguh tidak tersinggung, sebab ia sudah terbiasa menghadapi anak baru yang rajin mencatat.",
         },
         {
           correct: true,
           label:
-            "Di negara yang melarang, kebanyakan remaja yang kehilangan akun tidak pindah ke aplikasi lain.",
+            "Pak Wiryo tersinggung tetapi tidak mengakuinya, seperti tampak dari sindirannya tentang anak-anak sekarang dan dari caranya memeriksa silinder secara diam-diam.",
+        },
+        {
+          correct: false,
+          label:
+            "Pak Wiryo tersinggung dan memperlihatkannya terang-terangan dengan menolak memeriksa silinder empat.",
+        },
+        {
+          correct: false,
+          label:
+            "Pak Wiryo tidak tersinggung, sebab ia yakin pembacaan Darto salah dan terbukti demikian.",
+        },
+        {
+          correct: false,
+          label:
+            "Pak Wiryo tersinggung karena Darto naik ke geladak sebelum pekerjaannya di kamar mesin selesai.",
         },
       ],
     },

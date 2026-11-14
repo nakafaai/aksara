@@ -4,32 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "application",
   },
-  stimulus: "fine-dust",
+  stimulus: "ride-hailing",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "16,3",
+          label:
+            "Ia menganggapnya belum cukup, karena usul itu membiarkan perusahaan tetap menetapkan tarif dan menilai pengemudi tanpa menanggung kewajiban pemberi kerja.",
         },
         {
           correct: false,
-          label: "26,0",
+          label:
+            "Ia menerimanya sepenuhnya, karena usul itu sudah memuat semua hak yang ia tuntut.",
         },
         {
           correct: false,
-          label: "32,0",
+          label:
+            "Ia menolaknya, karena menurutnya pengemudi tidak membutuhkan jaminan kecelakaan.",
         },
         {
           correct: false,
-          label: "55,9",
+          label:
+            "Ia menerimanya, asalkan pengemudi sambilan dilarang memakai aplikasi.",
         },
         {
           correct: false,
-          label: "114,0",
+          label:
+            "Ia menolaknya, karena jalur banding akan membuat perusahaan rugi.",
         },
       ],
     },

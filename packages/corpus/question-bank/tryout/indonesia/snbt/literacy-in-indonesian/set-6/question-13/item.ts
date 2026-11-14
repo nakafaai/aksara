@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "conflict",
+    contentDomain: "informational-text",
+    topic: "strengthen-weaken",
   },
-  stimulus: "boat-race",
+  stimulus: "ride-hailing",
   versions: {
     id: {
       kind: "choice",
@@ -14,24 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "bersekolah setiap hari dan berlatih berlayar di teluk setiap sore",
-        },
-        {
-          correct: false,
-          label: "meminta izin kepada ayahnya dan meminjam perahu diam-diam",
+            "Banyak pengemudi ojek daring yang mengemudi lebih dari $$10$$ jam sehari.",
         },
         {
           correct: true,
           label:
-            "mengejar kemenangan dan menolong anak yang perahunya terbalik",
+            "Sebuah kota mewajibkan upah minimum bagi pengemudi ojek daring, tetapi upah itu dihitung hanya untuk jam ketika pengemudi sedang membawa pesanan, dan jumlah pengemudi sambilan di kota itu tetap sama.",
         },
         {
           correct: false,
-          label: "memprotes panitia atau menerima hasil lomba begitu saja",
+          label:
+            "Sebagian pengemudi ojek daring juga bekerja sebagai guru atau karyawan.",
         },
         {
           correct: false,
-          label: "tetap menjadi nelayan dan belajar menjahit layar",
+          label:
+            "Perusahaan aplikasi pernah menaikkan potongan tanpa pemberitahuan yang cukup.",
+        },
+        {
+          correct: false,
+          label:
+            "Pengemudi sambilan rata-rata membawa lebih sedikit pesanan per hari daripada pengemudi penuh waktu.",
         },
       ],
     },

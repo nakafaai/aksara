@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "point-of-view",
   },
-  stimulus: "urban-heat",
+  stimulus: "wallace-line",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Atap-atap itu akan menyimpan lebih banyak panas untuk dilepaskan pada malam hari.",
+            "Penulis menolaknya, karena pergantian burung yang dicatat Wallace di antara Bali dan Lombok sudah cukup tajam untuk ditandai dengan satu garis.",
         },
         {
           correct: false,
           label:
-            "Pendingin ruangan di gedung-gedung itu akan bekerja lebih keras pada siang hari.",
+            "Penulis menerimanya sepenuhnya, karena adanya garis Weber menunjukkan bahwa tidak ada satu batas pun yang tepat di kawasan itu.",
         },
         {
           correct: false,
           label:
-            "Peta satelit kota itu tidak akan lagi menunjukkan perbedaan suhu permukaan.",
-        },
-        {
-          correct: false,
-          label:
-            "Penguapan dari atap akan meningkat seperti penguapan dari daun.",
+            "Penulis menerimanya hanya untuk mamalia darat, karena kelompok inilah yang paling sulit menyeberangi laut dalam.",
         },
         {
           correct: true,
           label:
-            "Atap-atap itu akan memantulkan lebih banyak sinar sehingga menyerap lebih sedikit panas.",
+            "Penulis menerimanya untuk makhluk yang mudah menyeberangi laut, tetapi tetap memandang Selat Lombok sebagai batas yang tajam bagi mamalia darat.",
+        },
+        {
+          correct: false,
+          label:
+            "Penulis menganggapnya belum dapat dinilai, karena sebagian hewan di timur garis kemungkinan dibawa oleh manusia.",
         },
       ],
     },

@@ -2,35 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "conclusion",
   },
-  stimulus: "social-media-age",
+  stimulus: "ferry-mechanic",
   versions: {
     id: {
-      columns: ["Sesuai", "Tidak sesuai"],
+      columns: ["Ya", "Tidak"],
       kind: "matrix",
       statements: [
         {
           column: 2,
           label:
-            "Penulis menilai pemindaian wajah sebagai cara pemeriksaan usia yang paling aman.",
+            "Pak Wiryo mengakui kepada Darto bahwa pembacaan suhu silinder empat itu benar.",
         },
         {
           column: 1,
           label:
-            "Sebagian besar platform selama ini memeriksa usia hanya dengan menanyakan tanggal lahir.",
+            "Pemeriksaan Pak Wiryo sendiri membuktikan bahwa pembacaan Darto tentang silinder empat tepat.",
         },
         {
           column: 1,
           label:
-            "Menurut penulis, larangan dapat mendorong remaja pindah ke aplikasi yang lebih sulit diawasi.",
+            "Kepala Kamar Mesin sudah memperlakukan Pak Wiryo sebagai orang yang segera meninggalkan kapal.",
         },
         {
           column: 2,
           label:
-            "Penulis mengusulkan agar notifikasi akun remaja dimatikan sepanjang hari.",
+            "Darto meremehkan cara kerja Pak Wiryo yang mengandalkan pendengaran.",
+        },
+        {
+          column: 2,
+          label:
+            "Alasan yang diberikan Pak Wiryo untuk bunyi lututnya dapat diterima begitu saja oleh pembaca.",
         },
       ],
     },

@@ -4,33 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "application",
   },
-  stimulus: "chili-prices",
+  stimulus: "mountain-quota",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Bulan dengan curah hujan tertinggi juga memiliki harga rata-rata tertinggi.",
+            "Ia menolaknya, karena setiap perubahan cara membagi kuota akan menambah beban gunung.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Dari Maret ke April, pasokan cabai rawit naik lebih dari 20%.",
+            "Ia tidak punya alasan untuk menolaknya, karena usul itu tidak menambah pendaki per hari sehingga tidak menyentuh alasan ekologi dan keselamatannya.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Harga rata-rata pada Juni lebih rendah daripada harga rata-rata pada Mei.",
+            "Ia menolaknya, karena menurutnya pendapatan warga tidak perlu diperhitungkan dalam pengelolaan gunung.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Setiap kali curah hujan turun dari bulan sebelumnya, harga rata-rata juga turun.",
+            "Ia menerimanya, asalkan kuota harian dinaikkan supaya operator dari kota tidak dirugikan.",
+        },
+        {
+          correct: false,
+          label:
+            "Ia menerimanya, karena usul yang sama sudah ia kemukakan pada alinea terakhir tulisannya.",
         },
       ],
     },

@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
+    contentDomain: "informational-text",
+    topic: "comparison",
   },
-  stimulus: "radio-repair",
+  stimulus: "mountain-quota",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "menyembunyikan kegagalannya dengan memutar rekaman seolah-olah siaran asli",
+            "Jumlah pendaki dalam setahun tidak perlu turun setelah kuota berlaku.",
         },
         {
           correct: false,
           label:
-            "acuh tak acuh karena pelanggan kiosnya makin sedikit dari hari ke hari",
+            "Operator perjalanan dari kota ikut merusak ekosistem Gunung Sangkala.",
         },
         {
           correct: true,
           label:
-            "jujur tentang apa yang tidak bisa ia pulihkan, tetapi tetap memenuhi maksud gadis itu",
+            "Jumlah pendaki dalam satu hari perlu dibatasi agar gunung tidak rusak.",
         },
         {
           correct: false,
           label:
-            "mudah menyerah ketika mengetahui bahwa stasiun radio itu sudah lama berhenti bersiaran",
+            "Pendapatan warga harus didahulukan daripada pemulihan padang edelweis.",
         },
         {
           correct: false,
           label:
-            "mungkin ingin membeli radio itu karena mengenali merek dan tahun pembuatannya",
+            "Pendaki akhir pekan dapat beralih ke hari kerja tanpa banyak kesulitan.",
         },
       ],
     },

@@ -3,38 +3,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "plot-function",
+    contentDomain: "informational-text",
+    topic: "point-of-view",
   },
-  stimulus: "radio-repair",
+  stimulus: "mountain-quota",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Teks A", "Teks B"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "pertemuan tadi menghidupkan lagi kepeduliannya pada radio yang ditinggalkan",
+            "Kerugian ekonomi yang muncul sekarang layak ditanggung demi mencegah kerugian yang lebih besar nanti.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "ia ingin menjual radio-radio lama di raknya untuk menutup kerugian kios",
+            "Aturan yang adil bagi gunung belum tentu adil bagi orang yang hidup di lerengnya.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "ia mencari kabel lain untuk menyambungkan telepon genggamnya ke radio",
+            "Jalur yang kosong pada hari kerja menunjukkan bahwa kuota masih menyisakan ruang bagi pendaki yang tidak kebagian tempat.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "ia menyesal karena telah memutar rekaman, bukan siaran wayang yang asli",
+            "Siapa yang mendapat tempat sama pentingnya dengan berapa banyak tempat yang tersedia.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "ia akan menutup kiosnya karena tidak ada lagi pemilik radio yang kembali",
+            "Usul yang baik di atas kertas dapat gagal karena mengabaikan keadaan orang yang diharapkan menjalankannya.",
         },
       ],
     },
